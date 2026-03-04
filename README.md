@@ -39,7 +39,7 @@ This separation is intentional to keep the web frontend lightweight, durable, an
 
 ## Getting Started
 
-Requires [Bun](https://bun.sh) and [Portless](https://github.com/vercel-labs/portless): `npm install -g portless`
+Requires [Bun](https://bun.sh). [Portless](https://github.com/vercel-labs/portless) is installed with project dependencies via `bun install`
 
 ```bash
 bun install          # Install dependencies
