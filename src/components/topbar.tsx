@@ -110,7 +110,7 @@ export default function Topbar() {
                 {t("nav.status")}
               </NavLink>
               <NavLink
-                href="https://github.com/bitsocialhq"
+                href="https://github.com/bitsocialnet"
                 onClick={handleNavClick}
               >
                 GitHub
@@ -150,7 +150,7 @@ export default function Topbar() {
               {t("nav.status")}
             </NavLink>
             <NavLink
-              href="https://github.com/bitsocialhq"
+              href="https://github.com/bitsocialnet"
               onClick={handleNavClick}
               noUnderline
             >

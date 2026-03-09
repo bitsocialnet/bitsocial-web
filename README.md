@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/badge/license-AGPL--3.0--only-red.svg)](https://github.com/bitsocialhq/5chan/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-AGPL--3.0--only-red.svg)](https://github.com/bitsocialnet/5chan/blob/master/LICENSE)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 # Bitsocial Official Website
@@ -184,7 +184,7 @@ Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 - [ ] Initial design similar to nostrapps.com, with Bitsocial visual language
 - [ ] Categories and subcategories per app/client type (including profile-based, community-based, imageboard, blog, crowdfunding, indexers, RPC services)
 - [ ] Keep useful categories visible even when empty, with translated descriptions
-- [ ] Integrate lists from `bitsocialhq/lists`
+- [ ] Integrate lists from `bitsocialnet/lists`
 - [ ] Add "submit your own" PR flow per category/subcategory
 - [ ] Define and publish listing requirements
 

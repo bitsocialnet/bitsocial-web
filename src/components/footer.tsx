@@ -75,7 +75,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="https://github.com/bitsocialhq"
+                  href="https://github.com/bitsocialnet"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={linkClassName}
@@ -85,7 +85,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://twitter.com/bitsocialhq"
+                  href="https://twitter.com/bitsocialnet"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={linkClassName}
@@ -95,7 +95,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://t.me/bitsocialhq"
+                  href="https://t.me/bitsocialnet"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={linkClassName}
@@ -111,7 +111,7 @@ export default function Footer() {
           <p className="font-display">{t("footer.bottomTagline")}</p>
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/bitsocialhq/bitsocial-web/blob/master/LICENSE"
+              href="https://github.com/bitsocialnet/bitsocial-web/blob/master/LICENSE"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-foreground transition-colors"

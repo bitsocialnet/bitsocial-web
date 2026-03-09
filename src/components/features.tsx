@@ -16,7 +16,7 @@ const features: Feature[] = [
     description:
       "Bitsocial is open source under GPLv2 license: the code is public, can be modified, and outside contributions are welcome.",
     expandedContent:
-      "Please contribute! Bitsocial needs as many developers as possible to help it grow and succeed. You can find our team's code on https://github.com/bitsocialhq, pull requests are welcome. You are also free to fork our code and create your own Bitsocial app as well. You are very much encouraged to experiment with the code to create your own custom Bitsocial app; the more apps there are, the more opportunities the userbase has to grow, exponentially. Every Bitsocial app should be designed to be compatible with each other, so the overall Bitsocial userbase can be shared across clients, and thus new clients have a higher chance of success.",
+      "Please contribute! Bitsocial needs as many developers as possible to help it grow and succeed. You can find our team's code on https://github.com/bitsocialnet, pull requests are welcome. You are also free to fork our code and create your own Bitsocial app as well. You are very much encouraged to experiment with the code to create your own custom Bitsocial app; the more apps there are, the more opportunities the userbase has to grow, exponentially. Every Bitsocial app should be designed to be compatible with each other, so the overall Bitsocial userbase can be shared across clients, and thus new clients have a higher chance of success.",
   },
   {
     id: "peer-to-peer",
