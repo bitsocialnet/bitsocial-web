@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react"
+import { createContext, lazy, Suspense, useContext, useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import { Trans, useTranslation } from "react-i18next"
@@ -9,34 +9,47 @@ import { triggerFeatureGlow } from "@/lib/utils"
 const PlanetGraphic = lazy(() => import("./planet-graphic"))
 const MeshGraphic = lazy(() => import("./mesh-graphic"))
 
+const HighlightIndexCtx = createContext(-1)
+
+const TAGLINE_LINK_COUNT = 6
+const INTRO_START_DELAY = 1800
+const INTRO_STEP_MS = 1000
+
 function handleTaglineClick(hash: string) {
-  // Update URL instantly without triggering browser scroll
   window.history.replaceState(null, "", `#${hash}`)
-  // Trigger glow effect (includes smooth scroll)
   triggerFeatureGlow(hash)
 }
 
-// Reusable clickable span for tagline links
 function TaglineLink({
   hash,
+  index,
   children,
 }: {
   hash: string
+  index?: number
   children?: React.ReactNode
 }) {
+  const highlightedIndex = useContext(HighlightIndexCtx)
+  const isIntroActive = typeof index === "number" && highlightedIndex === index
+
   return (
     <span
       onClick={() => handleTaglineClick(hash)}
-      className="cursor-pointer transition-all duration-300 hover:text-blue-glow relative"
+      className="cursor-pointer transition-all duration-500 hover:text-blue-glow relative"
       style={{
-        filter: "drop-shadow(0 0 0 transparent)",
+        filter: isIntroActive
+          ? "drop-shadow(0 0 12px rgba(37, 99, 235, 0.8))"
+          : "drop-shadow(0 0 0 transparent)",
+        color: isIntroActive ? "#2563eb" : undefined,
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.filter =
           "drop-shadow(0 0 12px rgba(37, 99, 235, 0.8))"
+        e.currentTarget.style.color = "#2563eb"
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.filter = "drop-shadow(0 0 0 transparent)"
+        e.currentTarget.style.color = ""
       }}
     >
       {children}
@@ -74,10 +87,29 @@ function HeroFallbackImage() {
   )
 }
 
+function useTaglineIntro() {
+  const [index, setIndex] = useState(-1)
+  useEffect(() => {
+    const timers: ReturnType<typeof setTimeout>[] = []
+    const start = setTimeout(() => {
+      for (let i = 0; i < TAGLINE_LINK_COUNT; i++) {
+        timers.push(setTimeout(() => setIndex(i), i * INTRO_STEP_MS))
+      }
+      timers.push(
+        setTimeout(() => setIndex(-1), TAGLINE_LINK_COUNT * INTRO_STEP_MS)
+      )
+    }, INTRO_START_DELAY)
+    timers.push(start)
+    return () => timers.forEach(clearTimeout)
+  }, [])
+  return index
+}
+
 export default function Hero() {
   const { t } = useTranslation()
   const graphicsMode = useGraphicsMode()
   const showGraphics = graphicsMode === "full"
+  const highlightedIndex = useTaglineIntro()
 
   const staticFallback = (
     <div className="absolute bottom-8 md:bottom-12 left-0 right-0 w-full h-[60vh] md:h-[48vh] pointer-events-none overflow-visible md:overflow-hidden overscroll-none">
@@ -101,17 +133,19 @@ export default function Hero() {
         className="max-w-3xl text-center mb-12 px-4 relative z-10"
       >
         <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-display font-normal">
-          <Trans
-            i18nKey="hero.tagline"
-            components={{
-              openSource: <TaglineLink hash="open-source" />,
-              p2p: <TaglineLink hash="peer-to-peer" />,
-              socialApps: <TaglineLink hash="social-apps" />,
-              noServers: <TaglineLink hash="no-servers" />,
-              noBans: <TaglineLink hash="no-global-bans" />,
-              crypto: <TaglineLink hash="cryptographic-property" />,
-            }}
-          />
+          <HighlightIndexCtx.Provider value={highlightedIndex}>
+            <Trans
+              i18nKey="hero.tagline"
+              components={{
+                openSource: <TaglineLink hash="open-source" index={0} />,
+                p2p: <TaglineLink hash="peer-to-peer" index={1} />,
+                socialApps: <TaglineLink hash="social-apps" index={2} />,
+                noServers: <TaglineLink hash="no-servers" index={3} />,
+                noBans: <TaglineLink hash="no-global-bans" index={4} />,
+                crypto: <TaglineLink hash="cryptographic-property" index={5} />,
+              }}
+            />
+          </HighlightIndexCtx.Provider>
         </p>
       </motion.div>
 
