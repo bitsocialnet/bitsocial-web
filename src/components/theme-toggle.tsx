@@ -26,7 +26,7 @@ export function ThemeToggle({ mobile }: { mobile?: boolean }) {
   if (!mounted) {
     if (mobile) {
       return (
-        <button className="flex items-center justify-center w-full border border-border px-3 py-3 text-muted-foreground font-display text-sm">
+        <button className="flex items-center justify-center w-full rounded-full glass-card px-3 py-3 text-muted-foreground font-display text-sm">
           <span className="flex items-center gap-2">
             <Sun className="h-4 w-4 shrink-0" />
             <span>{t("nav.theme")}</span>
@@ -51,7 +51,7 @@ export function ThemeToggle({ mobile }: { mobile?: boolean }) {
       <button
         ref={buttonRef}
         onClick={toggleTheme}
-        className="flex items-center justify-center w-full border border-border px-3 py-3 text-muted-foreground hover:text-foreground hover:border-muted-foreground/40 transition-colors font-display text-sm"
+        className="flex items-center justify-center w-full rounded-full glass-card px-3 py-3 text-muted-foreground hover:text-foreground hover:border-muted-foreground/40 transition-all font-display text-sm"
       >
         <span className="flex items-center gap-2">
           {resolvedTheme === "dark" ? (

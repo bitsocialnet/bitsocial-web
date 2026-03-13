@@ -70,7 +70,7 @@ export default function MasterPlan() {
                 >
                   {/* Timeline dot */}
                   <div className="relative z-10 flex-shrink-0">
-                    <div className="w-4 h-4 bg-blue-core ring-4 ring-background border-2 border-blue-glow" />
+                    <div className="w-4 h-4 rounded-full bg-blue-core ring-4 ring-background border-2 border-blue-glow" />
                   </div>
 
                   {/* Content card */}

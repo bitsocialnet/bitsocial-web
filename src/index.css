@@ -102,7 +102,7 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --radius: 1.25rem;
   }
   .dark {
     --background: 0 0% 0%;
@@ -150,14 +150,104 @@
   }
 
   .glass-card {
-    @apply bg-card backdrop-blur-md border border-border;
+    @apply rounded-3xl;
+    position: relative;
+    isolation: isolate;
+    border: 1px solid rgba(100, 100, 100, 0.08);
+    background: linear-gradient(
+      rgba(170, 182, 200, 0.133),
+      rgba(144, 160, 185, 0.1),
+      rgba(93, 117, 155, 0.067)
+    );
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .dark .glass-card {
+    border-color: rgba(211, 211, 211, 0.03);
+    background: linear-gradient(
+      rgba(222, 244, 255, 0.04),
+      rgba(171, 188, 197, 0.05),
+      rgba(93, 103, 109, 0.1)
+    );
   }
 
   .topbar-frosted {
-    background: hsl(var(--background) / 0.55);
-    -webkit-backdrop-filter: blur(28px) saturate(180%);
-    backdrop-filter: blur(28px) saturate(180%);
-    border-bottom-color: hsl(var(--border) / 0.35);
+    isolation: isolate;
+  }
+
+  .topbar-frosted::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+  }
+
+  .topbar-frosted::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: -1;
+    border: 1px solid rgba(100, 100, 100, 0.08);
+    background: linear-gradient(
+      rgba(170, 182, 200, 0.133),
+      rgba(144, 160, 185, 0.1),
+      rgba(93, 117, 155, 0.067)
+    );
+  }
+
+  .dark .topbar-frosted::after {
+    border-color: rgba(211, 211, 211, 0.03);
+    background: linear-gradient(
+      rgba(222, 244, 255, 0.04),
+      rgba(171, 188, 197, 0.05),
+      rgba(93, 103, 109, 0.1)
+    );
+  }
+
+  @media (max-width: 768px) {
+    .topbar-frosted::after {
+      background: linear-gradient(
+        rgba(170, 182, 200, 0.23),
+        rgba(144, 160, 185, 0.1),
+        rgba(93, 117, 155, 0.067)
+      );
+    }
+    .dark .topbar-frosted::after {
+      background: linear-gradient(
+        rgba(222, 244, 255, 0.06),
+        rgba(171, 188, 197, 0.05),
+        rgba(93, 103, 109, 0.1)
+      );
+    }
+  }
+
+  .footer-glass {
+    @apply rounded-t-[2rem];
+    position: relative;
+    isolation: isolate;
+    border: 1px solid rgba(100, 100, 100, 0.08);
+    border-bottom: none;
+    background: linear-gradient(
+      rgba(170, 182, 200, 0.133),
+      rgba(144, 160, 185, 0.1),
+      rgba(93, 117, 155, 0.067)
+    );
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .dark .footer-glass {
+    border-color: rgba(211, 211, 211, 0.03);
+    background: linear-gradient(
+      rgba(222, 244, 255, 0.04),
+      rgba(171, 188, 197, 0.05),
+      rgba(93, 103, 109, 0.1)
+    );
   }
 
   .ring-glow {

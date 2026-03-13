@@ -2,8 +2,6 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import { useTranslation } from "react-i18next"
-import { useGraphicsMode } from "@/lib/graphics-mode"
-import { cn } from "@/lib/utils"
 import { ThemeToggle } from "./theme-toggle"
 import HamburgerButton from "./hamburger-button"
 import LanguageSelector from "./language-selector"
@@ -69,7 +67,6 @@ function NavLink({
 
 export default function Topbar() {
   const { t } = useTranslation()
-  const graphicsMode = useGraphicsMode()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [menuHeight, setMenuHeight] = useState(0)
 
@@ -83,15 +80,19 @@ export default function Topbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 border-b border-border",
-          graphicsMode === "full" ? "topbar-frosted" : "bg-card",
-        )}
+        className="fixed top-3 left-4 right-4 z-50 mx-auto max-w-7xl rounded-full topbar-frosted"
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 flex items-center justify-between relative">
-          <Link to="/" className="flex items-center gap-1 group">
-            <img src="/logo-small.png" alt="Bitsocial" className="h-8 w-8" />
-            <span className="text-xl font-display font-regular text-muted-foreground">
+        <div className="px-5 md:px-7 py-2 flex items-center justify-between relative">
+          <Link
+            to="/"
+            className="flex items-center gap-1 group transition-colors"
+          >
+            <img
+              src="/logo-small.png"
+              alt="Bitsocial"
+              className="h-8 w-8 transition-[filter] group-hover:brightness-110"
+            />
+            <span className="text-xl font-display font-regular text-muted-foreground group-hover:text-foreground transition-colors">
               Bitsocial
             </span>
           </Link>
@@ -100,18 +101,19 @@ export default function Topbar() {
           <div className="hidden md:flex items-center">
             {/* Nav links */}
             <div className="flex items-center gap-5">
-              <NavLink to="/apps" onClick={handleNavClick}>
+              <NavLink to="/apps" onClick={handleNavClick} noUnderline>
                 {t("nav.apps")}
               </NavLink>
-              <NavLink to="/docs" onClick={handleNavClick}>
+              <NavLink to="/docs" onClick={handleNavClick} noUnderline>
                 {t("nav.docs")}
               </NavLink>
-              <NavLink to="/status" onClick={handleNavClick}>
+              <NavLink to="/status" onClick={handleNavClick} noUnderline>
                 {t("nav.status")}
               </NavLink>
               <NavLink
                 href="https://github.com/bitsocialnet"
                 onClick={handleNavClick}
+                noUnderline
               >
                 GitHub
               </NavLink>
@@ -159,7 +161,7 @@ export default function Topbar() {
           </div>
 
           {/* Controls */}
-          <div className="border-t border-border pt-4 mt-2 flex flex-row gap-2">
+          <div className="border-t border-border/30 pt-4 mt-2 flex flex-row gap-2">
             <div className="flex-1">
               <LanguageSelector mobile />
             </div>

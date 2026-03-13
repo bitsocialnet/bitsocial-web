@@ -19,7 +19,7 @@ export default function Apps() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-card p-6 hover:border-muted-foreground/50 transition-all duration-300"
+                className="glass-card p-6 hover:border-muted-foreground/40 transition-all duration-300 hover:shadow-xl"
               >
                 <div className="text-4xl mb-4">📱</div>
                 <h3 className="text-xl font-display font-semibold mb-3 text-foreground">

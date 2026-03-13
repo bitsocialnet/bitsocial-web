@@ -77,7 +77,7 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         {mobile ? (
-          <button className="flex items-center justify-center w-full border border-border px-3 py-3 text-muted-foreground hover:text-foreground hover:border-muted-foreground/40 transition-colors font-display text-sm">
+          <button className="flex items-center justify-center w-full rounded-full glass-card px-3 py-3 text-muted-foreground hover:text-foreground hover:border-muted-foreground/40 transition-all font-display text-sm">
             <span className="flex items-center gap-2">
               <Globe className="h-4 w-4 shrink-0" />
               <span>{t("nav.language")}</span>
@@ -96,7 +96,7 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="w-full sm:max-w-md rounded-none [&>button]:rounded-none"
+        className="w-full sm:max-w-md [&>button]:rounded-full"
       >
         <SheetHeader>
           <SheetTitle className="font-display text-muted-foreground">Select Language</SheetTitle>
@@ -109,7 +109,7 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
               placeholder="Search languages..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-none border border-input bg-background px-10 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="w-full rounded-full border border-input bg-background px-10 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             />
           </div>
           <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
@@ -119,7 +119,7 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
                   key={language.code}
                   onClick={() => handleLanguageChange(language.code)}
                   className={cn(
-                    "flex items-center justify-between rounded-none border border-input bg-background px-4 py-3 text-left transition-colors hover:bg-secondary",
+                    "flex items-center justify-between rounded-2xl border border-input bg-background px-4 py-3 text-left transition-all hover:bg-secondary",
                     i18n.language === language.code &&
                       "border-blue-glow bg-secondary",
                   )}

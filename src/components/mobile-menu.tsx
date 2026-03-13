@@ -35,7 +35,7 @@ export default function MobileMenu({
             duration: 0.3,
             ease: [0.4, 0, 0.2, 1],
           }}
-          className="absolute top-full left-0 right-0 bg-card backdrop-blur-md border-b border-border overflow-hidden"
+          className="absolute top-[calc(100%+0.5rem)] left-0 right-0 glass-card rounded-[16px] overflow-hidden"
         >
           <motion.nav
             initial={{ y: -20 }}

@@ -8,7 +8,7 @@ export default function Footer() {
   const { t } = useTranslation()
 
   return (
-    <footer className="border-t border-border py-12 px-6">
+    <footer className="footer-glass py-12 px-6 mt-12">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           {/* Branding */}
@@ -107,7 +107,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-muted-foreground text-sm">
+        <div className="pt-8 border-t border-border/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-muted-foreground text-sm">
           <p className="font-display">{t("footer.bottomTagline")}</p>
           <div className="flex items-center gap-4">
             <a
