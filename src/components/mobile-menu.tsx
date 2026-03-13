@@ -5,12 +5,14 @@ interface MobileMenuProps {
   isOpen: boolean
   children: React.ReactNode
   onHeightChange?: (height: number) => void
+  onExitComplete?: () => void
 }
 
 export default function MobileMenu({
   isOpen,
   children,
   onHeightChange,
+  onExitComplete,
 }: MobileMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -24,7 +26,7 @@ export default function MobileMenu({
   }, [isOpen, children, onHeightChange])
 
   return (
-    <AnimatePresence>
+    <AnimatePresence onExitComplete={onExitComplete}>
       {isOpen && (
         <motion.div
           ref={menuRef}
@@ -35,7 +37,7 @@ export default function MobileMenu({
             duration: 0.3,
             ease: [0.4, 0, 0.2, 1],
           }}
-          className="absolute top-[calc(100%+0.5rem)] left-0 right-0 glass-card rounded-[16px] overflow-hidden"
+          className="overflow-hidden md:hidden"
         >
           <motion.nav
             initial={{ y: -20 }}
