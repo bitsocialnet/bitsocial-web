@@ -39,7 +39,7 @@
         "lint-staged": "^16.2.7",
         "oxfmt": "^0.1.0",
         "oxlint": "^1.0.0",
-        "portless": "0.5.2",
+        "portless": "0.7.0",
         "postcss": "^8.4.38",
         "react-doctor": "0.0.28",
         "react-grab": "0.1.9",
@@ -1059,7 +1059,7 @@
 
     "please-upgrade-node": ["please-upgrade-node@3.2.0", "", { "dependencies": { "semver-compare": "^1.0.0" } }, "sha512-gQR3WpIgNIKwBMVLkpMUeR3e1/E1y42bqDQZfql+kDeXd8COYfM8PQA4X6y7a8u9Ua9FHmsrrmirW2vHs45hWg=="],
 
-    "portless": ["portless@0.5.2", "", { "dependencies": { "chalk": "^5.3.0" }, "os": [ "linux", "darwin", ], "bin": { "portless": "dist/cli.js" } }, "sha512-LnJvnFUduG4QSIDqc4og9WCLRA6L0+btA96nn6icY6cxyEAR44cnWaIxVzmw7y74KQ+R7zJM1HpenankphympA=="],
+    "portless": ["portless@0.7.0", "", { "dependencies": { "chalk": "^5.3.0" }, "os": [ "linux", "win32", "darwin", ], "bin": { "portless": "dist/cli.js" } }, "sha512-rxreakOeTfgGcOpa4C5GSH4dra9xX4XIRunwRwtjp9g/ercLjkB/h4hT+4w0LQiIHER0xzxJ7sJxpBwEdtRZIg=="],
 
     "postcss": ["postcss@8.5.6", "", { "dependencies": { "nanoid": "^3.3.11", "picocolors": "^1.1.1", "source-map-js": "^1.2.1" } }, "sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg=="],
 
