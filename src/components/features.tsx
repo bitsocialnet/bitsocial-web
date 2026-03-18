@@ -1,12 +1,12 @@
-import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect } from "react"
-import { triggerFeatureGlow } from "@/lib/utils"
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { triggerFeatureGlow, triggerTaglineGlow } from "@/lib/utils";
 
 interface Feature {
-  id: string
-  title: string
-  description: string
-  expandedContent: string
+  id: string;
+  title: string;
+  description: string;
+  expandedContent: string;
 }
 
 const features: Feature[] = [
@@ -58,49 +58,51 @@ const features: Feature[] = [
     expandedContent:
       "Finally, the web has cryptographically unseizable communities for the first time ever. Just like in the real world you may have your own private property, on Bitsocial you can have your own community as your property, with your own rules. A Bitsocial community and profile therefore act as if they're their own websites, even using their own domains as addresses, which other Bitsocial users subscribe to and connect to P2P. Even so—unlike traditional websites that can get taken down at any time by the domain registrar, DNS, SSL certificate, etc.—Bitsocial identities are pure P2P nodes, which are censorship-resistant, similarly to Bitcoin nodes and BitTorrent seeders.",
   },
-]
+];
 
 export default function Features() {
-  const [expandedId, setExpandedId] = useState<string | null>(null)
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout> | null = null
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
     const handleHashChange = () => {
-      const hash = window.location.hash.slice(1)
+      const hash = window.location.hash.slice(1);
       if (hash && features.some((f) => f.id === hash)) {
         if (timeoutId) {
-          clearTimeout(timeoutId)
+          clearTimeout(timeoutId);
         }
         // Small delay to ensure DOM is ready
         timeoutId = setTimeout(() => {
-          triggerFeatureGlow(hash)
-        }, 100)
+          triggerFeatureGlow(hash);
+        }, 100);
       }
-    }
+    };
 
     // Handle initial hash on mount
-    handleHashChange()
+    handleHashChange();
 
     // Listen for hash changes (navigation, back/forward buttons, etc.)
-    window.addEventListener("hashchange", handleHashChange)
+    window.addEventListener("hashchange", handleHashChange);
 
     return () => {
       if (timeoutId) {
-        clearTimeout(timeoutId)
+        clearTimeout(timeoutId);
       }
-      window.removeEventListener("hashchange", handleHashChange)
-    }
-  }, [])
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
 
-  const toggleExpand = (
-    id: string,
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    setExpandedId(expandedId === id ? null : id)
+  const toggleExpand = (id: string, event: React.MouseEvent<HTMLButtonElement>) => {
+    setExpandedId(expandedId === id ? null : id);
     // Remove focus after click to ensure hover state works properly
-    event.currentTarget.blur()
-  }
+    event.currentTarget.blur();
+  };
+
+  const handleTitleClick = (id: string) => {
+    window.history.replaceState(null, "", "#hero-tagline");
+    triggerTaglineGlow(id);
+  };
 
   return (
     <section className="py-24 px-6 md:-mt-32 md:pt-32">
@@ -117,8 +119,8 @@ export default function Features() {
 
         <div className="space-y-12 md:space-y-16">
           {features.map((feature, index) => {
-            const isExpanded = expandedId === feature.id
-            const isEven = index % 2 === 0
+            const isExpanded = expandedId === feature.id;
+            const isEven = index % 2 === 0;
 
             return (
               <div key={feature.id} id={feature.id} className="scroll-mt-24">
@@ -134,8 +136,14 @@ export default function Features() {
                   {/* Card Content */}
                   <div className="flex-1 w-full md:w-1/2">
                     <div className="glass-card p-6 md:p-8">
-                      <h3 className="text-xl md:text-2xl font-display font-normal mb-4 text-muted-foreground italic">
-                        {feature.title}
+                      <h3 className="mb-4">
+                        <button
+                          type="button"
+                          onClick={() => handleTitleClick(feature.id)}
+                          className="interactive-feature-link w-full text-left text-xl md:text-2xl font-display font-normal italic text-muted-foreground focus-visible:outline-none"
+                        >
+                          {feature.title}
+                        </button>
                       </h3>
                       <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
                         {feature.description}
@@ -175,10 +183,10 @@ export default function Features() {
                   )}
                 </AnimatePresence>
               </div>
-            )
+            );
           })}
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -246,7 +246,7 @@
       180deg,
       rgba(14, 14, 18, 0.94) 0%,
       rgba(10, 10, 14, 0.92) 50%,
-      rgba(8, 8, 12, 0.90) 100%
+      rgba(8, 8, 12, 0.9) 100%
     );
     border-color: rgba(255, 255, 255, 0.06);
     box-shadow:
@@ -287,6 +287,19 @@
     box-shadow: 0 0 20px rgba(37, 99, 235, 0.35);
   }
 
+  .interactive-feature-link {
+    transition-property: color, filter;
+    transition-duration: 500ms;
+    transition-timing-function: ease;
+  }
+
+  .interactive-feature-link:hover,
+  .interactive-feature-link:focus-visible,
+  .highlight-text-glow {
+    color: rgb(37 99 235);
+    filter: drop-shadow(0 0 12px rgba(37, 99, 235, 0.8));
+  }
+
   .highlight-glow {
     animation: glow-fade 5s ease-in-out forwards;
   }
@@ -308,6 +321,10 @@
 
   [data-reduced-motion="true"] .chrome-text {
     animation: none;
+  }
+
+  [data-reduced-motion="true"] .interactive-feature-link {
+    transition-duration: 0ms;
   }
 
   [data-reduced-motion="true"] .highlight-glow {

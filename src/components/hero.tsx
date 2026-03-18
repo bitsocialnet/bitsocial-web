@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 import { useTheme } from "next-themes";
 import { useGraphicsMode } from "@/lib/graphics-mode";
-import { triggerFeatureGlow } from "@/lib/utils";
+import { cn, triggerFeatureGlow } from "@/lib/utils";
 
 const PlanetGraphic = lazy(() => import("./planet-graphic"));
 const MeshGraphic = lazy(() => import("./mesh-graphic"));
@@ -33,27 +33,24 @@ function TaglineLink({
   const isIntroActive = typeof index === "number" && highlightedIndex === index;
 
   return (
-    <button
-      type="button"
+    <span
+      data-tagline-link={hash}
+      role="button"
+      tabIndex={0}
       onClick={() => handleTaglineClick(hash)}
-      className="relative inline cursor-pointer border-0 bg-transparent p-0 font-inherit text-inherit transition-all duration-500 hover:text-blue-glow"
-      style={{
-        filter: isIntroActive
-          ? "drop-shadow(0 0 12px rgba(37, 99, 235, 0.8))"
-          : "drop-shadow(0 0 0 transparent)",
-        color: isIntroActive ? "#2563eb" : undefined,
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleTaglineClick(hash);
+        }
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.filter = "drop-shadow(0 0 12px rgba(37, 99, 235, 0.8))";
-        e.currentTarget.style.color = "#2563eb";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.filter = "drop-shadow(0 0 0 transparent)";
-        e.currentTarget.style.color = "";
-      }}
+      className={cn(
+        "interactive-feature-link relative cursor-pointer focus-visible:outline-none",
+        isIntroActive && "highlight-text-glow",
+      )}
     >
       {children}
-    </button>
+    </span>
   );
 }
 
@@ -130,7 +127,10 @@ export default function Hero() {
         transition={{ delay: 0.3, duration: 0.6 }}
         className="max-w-3xl text-center mb-12 px-4 relative z-10"
       >
-        <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-display font-normal">
+        <p
+          id="hero-tagline"
+          className="text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-display font-normal"
+        >
           <HighlightIndexCtx.Provider value={highlightedIndex}>
             {isEnglishTagline ? (
               <>
@@ -153,9 +153,8 @@ export default function Hero() {
                 </TaglineLink>
                 ,{" "}
                 <TaglineLink hash="cryptographic-property" index={5}>
-                  where users and communities are cryptographic property
+                  where users and communities are cryptographic property.
                 </TaglineLink>
-                .
               </>
             ) : (
               <Trans
