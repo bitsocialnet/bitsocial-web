@@ -23,7 +23,7 @@ function NavLink({
   noUnderline?: boolean
 }) {
   const baseClassName =
-    "text-muted-foreground hover:text-foreground transition-colors relative group text-base md:text-base font-display leading-none py-2 px-2 block"
+    "text-muted-foreground hover:text-foreground transition-colors relative group text-lg md:text-base font-display leading-none py-2 px-2 block"
   const className = extraClassName
     ? `${baseClassName} ${extraClassName}`
     : baseClassName
