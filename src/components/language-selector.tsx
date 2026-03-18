@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Globe, Check, Search } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import {
@@ -53,6 +53,9 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
   const { i18n, t } = useTranslation()
   const [open, setOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
+  const [activeIndex, setActiveIndex] = useState(0)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const optionRefs = useRef<Array<HTMLButtonElement | null>>([])
 
   const currentLanguage =
     languages.find((lang) => lang.code === i18n.language) || languages[6] // Default to English
@@ -66,15 +69,82 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
       ),
     [searchQuery],
   )
+  const effectiveActiveIndex =
+    filteredLanguages.length === 0
+      ? -1
+      : Math.min(activeIndex, filteredLanguages.length - 1)
+  const activeLanguage =
+    effectiveActiveIndex >= 0 ? filteredLanguages[effectiveActiveIndex] : null
 
   const handleLanguageChange = (code: string) => {
     i18n.changeLanguage(code)
     setOpen(false)
     setSearchQuery("")
+    setActiveIndex(0)
+  }
+
+  useEffect(() => {
+    if (!open) return
+
+    const focusTimer = window.setTimeout(() => {
+      inputRef.current?.focus()
+    }, 0)
+
+    return () => window.clearTimeout(focusTimer)
+  }, [open])
+
+  useEffect(() => {
+    if (!open || effectiveActiveIndex < 0) return
+    optionRefs.current[effectiveActiveIndex]?.scrollIntoView({ block: "nearest" })
+  }, [effectiveActiveIndex, open])
+
+  const handleOpenChange = (nextOpen: boolean) => {
+    setOpen(nextOpen)
+
+    if (nextOpen) {
+      const selectedIndex = filteredLanguages.findIndex(
+        (language) => language.code === i18n.language,
+      )
+      setActiveIndex(selectedIndex >= 0 ? selectedIndex : 0)
+      return
+    }
+
+    setSearchQuery("")
+    setActiveIndex(0)
+  }
+
+  const handleSearchKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (filteredLanguages.length === 0) return
+
+    if (event.key === "ArrowDown") {
+      event.preventDefault()
+      setActiveIndex((current) =>
+        current >= filteredLanguages.length - 1 ? 0 : current + 1,
+      )
+      return
+    }
+
+    if (event.key === "ArrowUp") {
+      event.preventDefault()
+      setActiveIndex((current) =>
+        current <= 0 ? filteredLanguages.length - 1 : current - 1,
+      )
+      return
+    }
+
+    if (event.key === "Enter") {
+      const nextLanguage =
+        filteredLanguages.length === 1 ? filteredLanguages[0] : activeLanguage
+
+      if (!nextLanguage) return
+
+      event.preventDefault()
+      handleLanguageChange(nextLanguage.code)
+    }
   }
 
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
+    <Sheet open={open} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
         {mobile ? (
           <button className="flex items-center justify-center w-full rounded-full glass-card px-3 py-3 text-muted-foreground hover:text-foreground hover:border-muted-foreground/40 transition-all font-display text-sm">
@@ -105,22 +175,34 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
+              ref={inputRef}
               type="text"
               placeholder="Search languages..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value)
+                setActiveIndex(0)
+              }}
+              onKeyDown={handleSearchKeyDown}
               className="w-full rounded-full bg-foreground/[0.04] border border-foreground/[0.08] px-10 py-2.5 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-colors"
             />
           </div>
           <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {filteredLanguages.map((language) => (
+              {filteredLanguages.map((language, index) => (
                 <button
                   key={language.code}
+                  ref={(node) => {
+                    optionRefs.current[index] = node
+                  }}
+                  type="button"
                   onClick={() => handleLanguageChange(language.code)}
+                  onMouseEnter={() => setActiveIndex(index)}
                   className={cn(
                     "flex items-center justify-between rounded-2xl px-4 py-3 text-left transition-all",
                     "bg-foreground/[0.03] border border-foreground/[0.06] hover:bg-foreground/[0.07] hover:border-foreground/[0.12]",
+                    effectiveActiveIndex === index &&
+                      "border-foreground/[0.16] bg-foreground/[0.08]",
                     i18n.language === language.code &&
                       "border-blue-glow bg-blue-glow/[0.08] hover:bg-blue-glow/[0.12] hover:border-blue-glow",
                   )}
