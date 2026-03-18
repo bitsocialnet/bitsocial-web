@@ -284,7 +284,7 @@
 
   .ring-glow:hover,
   .ring-glow:hover:focus {
-    box-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.35);
   }
 
   .highlight-glow {
@@ -293,16 +293,16 @@
 
   @keyframes glow-fade {
     0% {
-      box-shadow: 0 0 30px rgba(37, 99, 235, 0);
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0);
     }
     20% {
-      box-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.35);
     }
     80% {
-      box-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.35);
     }
     100% {
-      box-shadow: 0 0 30px rgba(37, 99, 235, 0);
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0);
     }
   }
 
