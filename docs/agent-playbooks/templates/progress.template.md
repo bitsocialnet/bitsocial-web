@@ -7,6 +7,6 @@ Append one entry per session.
 - Item: F001
 - Summary: Replace this with the session summary.
 - Files: `path/to/file`
-- Verification: `bun run build`, `bun run lint`, `bun run typecheck`
+- Verification: `corepack yarn build`, `corepack yarn lint`, `corepack yarn typecheck`
 - Blockers: none
 - Next: Replace this with the next best follow-up.

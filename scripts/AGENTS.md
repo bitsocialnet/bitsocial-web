@@ -5,6 +5,6 @@ These rules apply to `scripts/**`. Follow the repo-root `AGENTS.md` first, then 
 - Keep scripts non-interactive and idempotent. Print the command, URL, branch, or path being acted on so failures are diagnosable.
 - Use repo-relative paths and environment variables instead of user-specific absolute paths.
 - For dev-server helpers, default to `http://bitsocial.localhost:1355` and respect the existing `PORTLESS=0` fallback instead of hard-coding alternate ports.
-- Keep shell helpers thin. When logic becomes stateful or cross-platform, prefer a JS script run by Bun.
+- Keep shell helpers thin. When logic becomes stateful or cross-platform, prefer a JS script run by Node.js.
 - Git and worktree helpers must validate input and default to safe operations.
 - If a helper deletes local branches automatically, document the exact eligibility checks and keep the behavior conservative.

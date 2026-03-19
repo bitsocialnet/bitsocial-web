@@ -22,7 +22,7 @@ Do not manually edit every language file. Use `scripts/update-translations.js`.
 2. Apply the translation map:
 
 ```bash
-bun scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
+node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
 ```
 
 3. Delete the temporary dictionary file.
@@ -31,13 +31,13 @@ bun scripts/update-translations.js --key my_new_key --map translations-temp.json
 
 ```bash
 # Copy a key from English to all languages (dry run then write)
-bun scripts/update-translations.js --key some_key --from en --dry
-bun scripts/update-translations.js --key some_key --from en --write
+node scripts/update-translations.js --key some_key --from en --dry
+node scripts/update-translations.js --key some_key --from en --write
 
 # Delete a key from all languages
-bun scripts/update-translations.js --key obsolete_key --delete --write
+node scripts/update-translations.js --key obsolete_key --delete --write
 
 # Audit for unused translation keys
-bun scripts/update-translations.js --audit --dry
-bun scripts/update-translations.js --audit --write
+node scripts/update-translations.js --audit --dry
+node scripts/update-translations.js --audit --write
 ```

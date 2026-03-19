@@ -62,6 +62,6 @@ Use a short structure like:
 - Item: F003
 - Summary: Updated the browser-check flow to use the shared init/bootstrap path.
 - Files: `.cursor/agents/browser-check.md`, `.codex/agents/browser-check.toml`
-- Verification: `bun run build`, `bun run lint`, `bun run typecheck`
+- Verification: `corepack yarn build`, `corepack yarn lint`, `corepack yarn typecheck`
 - Next: Run the smoke flow and update the task-board status.
 ```

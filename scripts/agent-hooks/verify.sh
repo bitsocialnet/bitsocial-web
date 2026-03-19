@@ -59,13 +59,13 @@ echo ""
 
 failures=0
 
-run_required_check "bun run build" bun run build || failures=1
-run_required_check "bun run lint" bun run lint || failures=1
-run_required_check "bun run typecheck" bun run typecheck || failures=1
-run_required_check "bun run format:check" bun run format:check || failures=1
+run_required_check "corepack yarn build" corepack yarn build || failures=1
+run_required_check "corepack yarn lint" corepack yarn lint || failures=1
+run_required_check "corepack yarn typecheck" corepack yarn typecheck || failures=1
+run_required_check "corepack yarn format:check" corepack yarn format:check || failures=1
 
-echo "=== bun audit ==="
-bun audit 2>&1 || true
+echo "=== corepack yarn npm audit ==="
+corepack yarn npm audit 2>&1 || true
 echo ""
 
 cleanup_generated_dir dist

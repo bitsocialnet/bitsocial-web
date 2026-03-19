@@ -6,6 +6,7 @@
 This repository contains the official Bitsocial web frontend.
 
 It currently powers:
+
 - the public landing page
 - protocol documentation
 - the Bitsocial apps & services explorer
@@ -19,6 +20,7 @@ Over time, this repository will evolve into the **flagship Bitsocial web client*
 ## Scope
 
 **In scope**
+
 - Public landing pages and protocol overview
 - Apps & services catalog (`/apps`)
 - Documentation frontend (`/docs`)
@@ -27,6 +29,7 @@ Over time, this repository will evolve into the **flagship Bitsocial web client*
 - Performance-sensitive visualizations and animations
 
 **Out of scope**
+
 - Wallet integration
 - Authentication / login flows
 - Governance or voting UIs
@@ -39,55 +42,60 @@ This separation is intentional to keep the web frontend lightweight, durable, an
 
 ## Getting Started
 
-Requires [Bun](https://bun.sh). [Portless](https://github.com/vercel-labs/portless) is installed with project dependencies via `bun install`
+Requires [Node.js](https://nodejs.org/) 22+ and [Corepack](https://nodejs.org/api/corepack.html). This repo uses Yarn 4 via the pinned `packageManager` field.
 
 ```bash
-bun install          # Install dependencies
-bun run dev          # Start dev server (http://bitsocial.localhost:1355)
-bun run build        # Production build
-bun run preview      # Preview production build
+corepack yarn install  # Install dependencies
+corepack yarn dev      # Start dev server (http://bitsocial.localhost:1355)
+corepack yarn build    # Production build
+corepack yarn preview  # Preview production build
 ```
 
-The dev server runs at http://bitsocial.localhost:1355 via [Portless](https://port1355.dev/), which gives each Bitsocial project a stable, named URL instead of a random port. To bypass Portless: `PORTLESS=0 bun run dev`
+The dev server runs at http://bitsocial.localhost:1355 via [Portless](https://port1355.dev/), which gives each Bitsocial project a stable, named URL instead of a random port. To bypass Portless: `PORTLESS=0 corepack yarn dev`
 
 ---
 
 ## Contributing
+
 This repo includes an `AGENTS.md` file with detailed guidance for AI coding agents.
 
 When using an AI assistant to make changes, it is expected to follow the conventions defined there.
 
 ### Making Changes
-1.	Run `bun run dev` (opens at http://bitsocial.localhost:1355)
-2.	Make your changes (manually or via an AI agent)
-3.	Test on desktop and mobile viewports
-4.	Verify performance and animations
-5.	Run all quality checks before committing
+
+1. Run `corepack yarn dev` (opens at http://bitsocial.localhost:1355)
+2. Make your changes (manually or via an AI agent)
+3. Test on desktop and mobile viewports
+4. Verify performance and animations
+5. Run all quality checks before committing
 
 ### Code Quality
+
 All checks must pass before committing:
 
 ```bash
-bun run typecheck    # Type check with tsgo
-bun run lint         # Lint with oxlint
-bun run format:check # Check formatting with oxfmt
+corepack yarn typecheck    # Type check with tsgo
+corepack yarn lint         # Lint with oxlint
+corepack yarn format:check # Check formatting with oxfmt
 ```
 
 To auto-fix issues:
 
 ```bash
-bun run lint:fix
-bun run format
+corepack yarn lint:fix
+corepack yarn format
 ```
 
 ### Translations
+
 We welcome translation improvements via PRs.
 
 If you are improving an existing translation in your native language:
-1.	Open `public/translations/{lang}/default.json` for your language.
-2.	Edit only the string values for the keys you want to improve.
-3.	Do not add, remove, or rename keys.
-4.	Open a PR with just that language file updated.
+
+1. Open `public/translations/{lang}/default.json` for your language.
+2. Edit only the string values for the keys you want to improve.
+3. Do not add, remove, or rename keys.
+4. Open a PR with just that language file updated.
 
 If you need to add or remove keys across languages, use `scripts/update-translations.js`:
 
@@ -99,26 +107,27 @@ node scripts/update-translations.js --audit --dry
 ```
 
 ### Commits
+
 This repo supports Commitizen for guided Conventional Commits.
-Use `bun run commit` (or `bunx cz`) for the interactive prompt. `git commit` will also trigger Commitizen via Husky.
+Use `corepack yarn commit` (or `corepack yarn exec cz`) for the interactive prompt. `git commit` will also trigger Commitizen via Husky.
 
 Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 
--	`feat`: new features
--	`fix`: bug fixes
--	`perf`: performance improvements
--	`refactor`: refactors without behavior changes
--	`docs`: documentation changes
--	`style`: formatting only
--	`chore`: maintenance tasks
+- `feat`: new features
+- `fix`: bug fixes
+- `perf`: performance improvements
+- `refactor`: refactors without behavior changes
+- `docs`: documentation changes
+- `style`: formatting only
+- `chore`: maintenance tasks
 
 ### Pre-PR Checklist
 
--	`bun run typecheck` passes
--	`bun run lint` passes
--	`bun run format:check` passes
--	Tested on mobile viewport
--	Animations are smooth and respect `prefers-reduced-motion`
+- `corepack yarn typecheck` passes
+- `corepack yarn lint` passes
+- `corepack yarn format:check` passes
+- Tested on mobile viewport
+- Animations are smooth and respect `prefers-reduced-motion`
 
 ---
 
@@ -127,6 +136,7 @@ Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 ### Milestone #1: Frontpage
 
 #### Topbar
+
 - [x] Small size logo with no background, and logo text with official font (`Exo`)
 - [x] Most important links, with underline animation
 - [x] Language selector for as many languages as possible
@@ -134,6 +144,7 @@ Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 - [ ] Dark/light theme button
 
 #### Hero background graphic
+
 - [x] Cool and impactful original hero background concept
 - [x] 3D design and animation with three.js (planet graphic + p2p mesh graphic)
 - [ ] Optional GSAP scroll animation (previous attempt was buggy, may revisit)
@@ -141,15 +152,18 @@ Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 - [x] Light and dark mode variants should look slightly different
 
 #### Hero tagline text
+
 - [x] Translated in all languages
 - [x] Interactive keyword/key phrase jump to matching Core Features section
 - [ ] GSAP animation to highlight each keyword
 
 #### Hero buttons
+
 - [x] Funnel developers to docs
 - [x] Funnel users to apps dashboard
 
 #### Core Features section
+
 - [x] Explains hero tagline concepts
 - [x] Initial card design (`S`-pattern)
 - [x] Hash-link-friendly navigation to feature sections
@@ -160,6 +174,7 @@ Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 - [ ] Link each feature section to specific docs pages (card, expanded section, or both)
 
 #### Master Plan section
+
 - [x] Initial roadmap-like design
 - [ ] Write each phase (concise and somewhat vague)
 - [ ] Maybe add per-phase expand buttons (similar to Core Features)
@@ -170,6 +185,7 @@ Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 - [x] Hidden easter egg
 
 #### Footer
+
 - [ ] Prominent mailing list in footer, with three.js graphic (+ static fallback for low-end devices)
 - [ ] Hash link for mailing list section to share directly
 - [ ] Visual quality comparable to topbar/hero, translucent design + static fallback for low-end devices
@@ -178,9 +194,11 @@ Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 ### Milestone #2: App Dashboard (`/apps`)
 
 #### Goal
+
 - Make it at least as good as [nostrapps.com](https://nostrapps.com/) while matching Bitsocial site design.
 
 #### Scope
+
 - [ ] Initial design similar to nostrapps.com, with Bitsocial visual language
 - [ ] Categories and subcategories per app/client type (including profile-based, community-based, imageboard, blog, crowdfunding, indexers, RPC services)
 - [ ] Keep useful categories visible even when empty, with translated descriptions
@@ -191,6 +209,7 @@ Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 ### Milestone #3: Docs (`/docs`)
 
 #### Goal
+
 - Build docs with strong LLM discoverability and scraping compatibility.
 
 - [ ] Choose docs stack optimized for LLM scraping/indexing (e.g. Mintlify, GitBook, Docusaurus)
@@ -202,6 +221,7 @@ Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 ### Milestone #4: Status/Analytics Page (`/status`)
 
 #### Goal
+
 - Rebuild plebbit.online but fully rebranded and aligned with frontpage design.
 - Position as "pro analytics" rather than a traditional "status page".
 
@@ -214,10 +234,12 @@ Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 ### Milestone #5: Official Core Team Blog (`/blog`)
 
 #### Goal
+
 - Launch an official Bitsocial Core Team blog powered by protocol-native, P2P-loaded content.
 - Use it as the canonical source for development updates and team-authored long-form posts.
 
 #### Scope
+
 - [ ] Build a dedicated blog experience that matches the current Bitsocial visual language
 - [ ] Source posts from a Bitsocial community operated in the background by the core developer team
 - [ ] Load and render blog content P2P via the Bitsocial protocol

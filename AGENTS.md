@@ -24,30 +24,30 @@ Bitsocial Web is the public-facing landing page and ecosystem entrypoint for Bit
 
 ## Task Router (Read First)
 
-| Situation | Required action |
-|---|---|
-| React UI logic changed (`src/components`, `src/pages`, `src/app.tsx`, `src/main.tsx`, `src/lib`) | Follow React architecture rules below and run `bun run doctor` |
-| `package.json` changed | Run `bun install` to keep `bun.lock` in sync |
-| Translation key/value changed | Use `docs/agent-playbooks/translations.md` |
-| Bug report in a specific file/line | Start with git history scan from `docs/agent-playbooks/bug-investigation.md` before editing |
-| UI or visual behavior changed | Verify in browser with `playwright-cli`; check desktop and mobile behavior when relevant |
-| Browsing performance regression, rerender hotspot, or route jank needs investigation | Use the `profile-browsing` skill |
-| Need to map a rendered DOM node back to the React file that produced it | Use the `inspect-elements` skill |
-| Long-running task spans multiple sessions, handoffs, or spawned agents | Use `docs/agent-playbooks/long-running-agent-workflow.md`, keep a machine-readable feature list plus a progress log, and run `./scripts/agent-init.sh --smoke` before starting a fresh feature slice |
-| New reviewable feature, fix, docs change, or chore started while on `master` | Create a short-lived `codex/feature/*`, `codex/fix/*`, `codex/docs/*`, or `codex/chore/*` branch from `master` before editing; use a separate worktree only for parallel tasks |
-| New unrelated task started while another task branch is already checked out or being worked on by another agent | Create a separate worktree from `master`, create a new short-lived task branch there, and keep each agent on its own worktree, branch, and PR |
-| Open PR needs feedback triage or merge readiness check | Use the `review-and-merge-pr` skill |
-| Repo AI workflow files changed (`.codex/**`, `.cursor/**`, `AGENTS.md`, `docs/agent-playbooks/**`, `scripts/agent-hooks/**`) | Keep the Codex and Cursor copies aligned when they represent the same workflow; update `AGENTS.md` if the default agent policy changes |
-| GitHub operation needed | Use `gh` CLI, not GitHub MCP |
-| User asks for commit or issue phrasing | Use `docs/agent-playbooks/commit-issue-format.md` |
-| Surprising or ambiguous repo behavior encountered | Alert the developer and, once confirmed, document it in `docs/agent-playbooks/known-surprises.md` |
+| Situation                                                                                                                    | Required action                                                                                                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| React UI logic changed (`src/components`, `src/pages`, `src/app.tsx`, `src/main.tsx`, `src/lib`)                             | Follow React architecture rules below and run `corepack yarn doctor`                                                                                                                                 |
+| `package.json` changed                                                                                                       | Run `corepack yarn install` to keep `yarn.lock` in sync                                                                                                                                              |
+| Translation key/value changed                                                                                                | Use `docs/agent-playbooks/translations.md`                                                                                                                                                           |
+| Bug report in a specific file/line                                                                                           | Start with git history scan from `docs/agent-playbooks/bug-investigation.md` before editing                                                                                                          |
+| UI or visual behavior changed                                                                                                | Verify in browser with `playwright-cli`; check desktop and mobile behavior when relevant                                                                                                             |
+| Browsing performance regression, rerender hotspot, or route jank needs investigation                                         | Use the `profile-browsing` skill                                                                                                                                                                     |
+| Need to map a rendered DOM node back to the React file that produced it                                                      | Use the `inspect-elements` skill                                                                                                                                                                     |
+| Long-running task spans multiple sessions, handoffs, or spawned agents                                                       | Use `docs/agent-playbooks/long-running-agent-workflow.md`, keep a machine-readable feature list plus a progress log, and run `./scripts/agent-init.sh --smoke` before starting a fresh feature slice |
+| New reviewable feature, fix, docs change, or chore started while on `master`                                                 | Create a short-lived `codex/feature/*`, `codex/fix/*`, `codex/docs/*`, or `codex/chore/*` branch from `master` before editing; use a separate worktree only for parallel tasks                       |
+| New unrelated task started while another task branch is already checked out or being worked on by another agent              | Create a separate worktree from `master`, create a new short-lived task branch there, and keep each agent on its own worktree, branch, and PR                                                        |
+| Open PR needs feedback triage or merge readiness check                                                                       | Use the `review-and-merge-pr` skill                                                                                                                                                                  |
+| Repo AI workflow files changed (`.codex/**`, `.cursor/**`, `AGENTS.md`, `docs/agent-playbooks/**`, `scripts/agent-hooks/**`) | Keep the Codex and Cursor copies aligned when they represent the same workflow; update `AGENTS.md` if the default agent policy changes                                                               |
+| GitHub operation needed                                                                                                      | Use `gh` CLI, not GitHub MCP                                                                                                                                                                         |
+| User asks for commit or issue phrasing                                                                                       | Use `docs/agent-playbooks/commit-issue-format.md`                                                                                                                                                    |
+| Surprising or ambiguous repo behavior encountered                                                                            | Alert the developer and, once confirmed, document it in `docs/agent-playbooks/known-surprises.md`                                                                                                    |
 
 ## Stack
 
 - React 18 + TypeScript
 - React Router v6
 - Vite
-- Bun
+- Yarn 4 via Corepack
 - Tailwind CSS
 - Radix UI
 - i18next
@@ -71,8 +71,8 @@ src/
 
 ### Package and Dependency Rules
 
-- Use `bun`, never `npm` or `yarn`.
-- Keep `bun.lock` synchronized when dependency manifests change.
+- Use Yarn 4 via Corepack, never `npm` or `bun`.
+- Keep `yarn.lock` synchronized when dependency manifests change.
 - Respect the repo's existing dependency versioning style. Do not rewrite version ranges just to satisfy a personal preference.
 
 ### React Architecture Rules
@@ -112,9 +112,9 @@ src/
 ### Verification Rules
 
 - Never mark work complete without verification.
-- After code changes, run `bun run build`, `bun run lint`, and `bun run typecheck`.
-- Before handing off a PR or commit, also run `bun run format:check`.
-- After React UI logic changes, run `bun run doctor`.
+- After code changes, run `corepack yarn build`, `corepack yarn lint`, and `corepack yarn typecheck`.
+- Before handing off a PR or commit, also run `corepack yarn format:check`.
+- After React UI logic changes, run `corepack yarn doctor`.
 - Treat React Doctor output as actionable guidance; prioritize `error` then `warning`.
 - For UI or visual changes, verify with `playwright-cli` on the local dev URL and cover a mobile viewport flow when the change affects layout, touch behavior, or responsiveness.
 - The shared hook verification path is strict by default. Only set `AGENT_VERIFY_MODE=advisory` when you intentionally need signal from a broken tree without blocking the session.
@@ -153,26 +153,26 @@ src/
 - When proposing or implementing meaningful code changes, include both:
   - a Conventional Commit title suggestion
   - a short GitHub issue suggestion
-  Use the format playbook: `docs/agent-playbooks/commit-issue-format.md`.
+    Use the format playbook: `docs/agent-playbooks/commit-issue-format.md`.
 - When stuck on a bug, search the web for recent fixes or workarounds.
 - After user corrections, identify the root cause and apply the lesson in subsequent steps.
 
 ## Local Development URLs
 
-This project uses [Portless](https://github.com/vercel-labs/portless) for local dev. The dev server is available at `http://bitsocial.localhost:1355` instead of a random port. To bypass Portless, use `PORTLESS=0 bun run dev`.
+This project uses [Portless](https://github.com/vercel-labs/portless) for local dev. The dev server is available at `http://bitsocial.localhost:1355` instead of a random port. To bypass Portless, use `PORTLESS=0 corepack yarn dev`.
 
 ## Common Commands
 
 ```bash
-bun install
-bun run dev                 # http://bitsocial.localhost:1355
-bun run build
-bun run lint
-bun run typecheck
-bun run format:check
-bun run doctor
-bun run doctor:score
-bun run doctor:verbose
+corepack yarn install
+corepack yarn dev            # http://bitsocial.localhost:1355
+corepack yarn build
+corepack yarn lint
+corepack yarn typecheck
+corepack yarn format:check
+corepack yarn doctor
+corepack yarn doctor:score
+corepack yarn doctor:verbose
 ./scripts/create-task-worktree.sh chore ai-workflow-improvement
 ./scripts/agent-init.sh --smoke
 ```

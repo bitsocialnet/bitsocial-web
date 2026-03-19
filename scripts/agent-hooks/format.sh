@@ -28,7 +28,7 @@ case "$file_path" in
     resolved_dir="$(cd -P -- "$repo_root/$dir_part" 2>/dev/null && pwd -P)" || exit 0
     resolved_path="$resolved_dir/$base_name"
     case "$resolved_path" in
-      "$repo_root"/*) bunx oxfmt "$resolved_path" 2>/dev/null || true ;;
+      "$repo_root"/*) corepack yarn exec oxfmt "$resolved_path" 2>/dev/null || true ;;
       *) exit 0 ;;
     esac
     ;;
