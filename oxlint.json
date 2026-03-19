@@ -5,11 +5,5 @@
     "react/rules-of-hooks": "error",
     "react/exhaustive-deps": "warn"
   },
-  "ignore": [
-    "node_modules/**",
-    "build/**",
-    "dist/**",
-    ".vite/**",
-    "public/**"
-  ]
+  "ignorePatterns": ["node_modules/**", "build/**", "dist/**", ".vite/**", "public/**"]
 }

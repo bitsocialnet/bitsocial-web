@@ -9,8 +9,8 @@
   "scripts": {
     "dev": "portless bitsocial vite",
     "build": "tsgo --noEmit --project tsconfig.json && vite build",
-    "lint": "oxlint --react-plugin",
-    "lint:fix": "oxlint --fix --react-plugin",
+    "lint": "oxlint --config oxlint.json --react-plugin",
+    "lint:fix": "oxlint --config oxlint.json --fix --react-plugin",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
     "typecheck": "tsgo --noEmit --project tsconfig.json",
@@ -72,7 +72,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "oxlint --fix --react-plugin",
+      "oxlint --config oxlint.json --fix --react-plugin",
       "oxfmt"
     ],
     "*.{json,css}": "oxfmt"
