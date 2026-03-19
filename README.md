@@ -42,16 +42,17 @@ This separation is intentional to keep the web frontend lightweight, durable, an
 
 ## Getting Started
 
-Requires [Node.js](https://nodejs.org/) 22+ and [Corepack](https://nodejs.org/api/corepack.html). This repo uses Yarn 4 via the pinned `packageManager` field.
+Use the pinned Node.js 22.12.0 toolchain from [`.nvmrc`](./.nvmrc). This repo uses Yarn 4 via the pinned `packageManager` field.
 
 ```bash
-corepack yarn install  # Install dependencies
-corepack yarn dev      # Start dev server (http://bitsocial.localhost:1355)
-corepack yarn build    # Production build
-corepack yarn preview  # Preview production build
+nvm install && nvm use
+corepack enable
+yarn install  # Install dependencies
+yarn build     # Production build
+yarn typecheck # Type check with tsgo
 ```
 
-The dev server runs at http://bitsocial.localhost:1355 via [Portless](https://port1355.dev/), which gives each Bitsocial project a stable, named URL instead of a random port. To bypass Portless: `PORTLESS=0 corepack yarn dev`
+The dev server runs at http://bitsocial.localhost:1355 via [Portless](https://port1355.dev/), which gives each Bitsocial project a stable, named URL instead of a random port. To bypass Portless: `PORTLESS=0 yarn dev`
 
 ---
 
@@ -63,7 +64,7 @@ When using an AI assistant to make changes, it is expected to follow the convent
 
 ### Making Changes
 
-1. Run `corepack yarn dev` (opens at http://bitsocial.localhost:1355)
+1. Run `yarn dev` (opens at http://bitsocial.localhost:1355)
 2. Make your changes (manually or via an AI agent)
 3. Test on desktop and mobile viewports
 4. Verify performance and animations
@@ -74,16 +75,16 @@ When using an AI assistant to make changes, it is expected to follow the convent
 All checks must pass before committing:
 
 ```bash
-corepack yarn typecheck    # Type check with tsgo
-corepack yarn lint         # Lint with oxlint
-corepack yarn format:check # Check formatting with oxfmt
+yarn typecheck    # Type check with tsgo
+yarn lint         # Lint with oxlint
+yarn format:check # Check formatting with oxfmt
 ```
 
 To auto-fix issues:
 
 ```bash
-corepack yarn lint:fix
-corepack yarn format
+yarn lint:fix
+yarn format
 ```
 
 ### Translations
@@ -109,7 +110,7 @@ node scripts/update-translations.js --audit --dry
 ### Commits
 
 This repo supports Commitizen for guided Conventional Commits.
-Use `corepack yarn commit` (or `corepack yarn exec cz`) for the interactive prompt. `git commit` will also trigger Commitizen via Husky.
+Use `yarn commit` (or `yarn exec cz`) for the interactive prompt. `git commit` will also trigger Commitizen via Husky.
 
 Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 
@@ -123,9 +124,9 @@ Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 
 ### Pre-PR Checklist
 
-- `corepack yarn typecheck` passes
-- `corepack yarn lint` passes
-- `corepack yarn format:check` passes
+- `yarn typecheck` passes
+- `yarn lint` passes
+- `yarn format:check` passes
 - Tested on mobile viewport
 - Animations are smooth and respect `prefers-reduced-motion`
 

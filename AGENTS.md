@@ -26,8 +26,8 @@ Bitsocial Web is the public-facing landing page and ecosystem entrypoint for Bit
 
 | Situation                                                                                                                    | Required action                                                                                                                                                                                      |
 | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| React UI logic changed (`src/components`, `src/pages`, `src/app.tsx`, `src/main.tsx`, `src/lib`)                             | Follow React architecture rules below and run `corepack yarn doctor`                                                                                                                                 |
-| `package.json` changed                                                                                                       | Run `corepack yarn install` to keep `yarn.lock` in sync                                                                                                                                              |
+| React UI logic changed (`src/components`, `src/pages`, `src/app.tsx`, `src/main.tsx`, `src/lib`)                             | Follow React architecture rules below and run `yarn doctor`                                                                                                                                          |
+| `package.json` changed                                                                                                       | Run `yarn install` to keep `yarn.lock` in sync                                                                                                                                                        |
 | Translation key/value changed                                                                                                | Use `docs/agent-playbooks/translations.md`                                                                                                                                                           |
 | Bug report in a specific file/line                                                                                           | Start with git history scan from `docs/agent-playbooks/bug-investigation.md` before editing                                                                                                          |
 | UI or visual behavior changed                                                                                                | Verify in browser with `playwright-cli`; check desktop and mobile behavior when relevant                                                                                                             |
@@ -112,9 +112,10 @@ src/
 ### Verification Rules
 
 - Never mark work complete without verification.
-- After code changes, run `corepack yarn build`, `corepack yarn lint`, and `corepack yarn typecheck`.
-- Before handing off a PR or commit, also run `corepack yarn format:check`.
-- After React UI logic changes, run `corepack yarn doctor`.
+- Use the Node 22.12.0 toolchain from `.nvmrc`; after `corepack enable`, run plain `yarn` commands.
+- After code changes, run `yarn build`, `yarn lint`, and `yarn typecheck`.
+- Before handing off a PR or commit, also run `yarn format:check`.
+- After React UI logic changes, run `yarn doctor`.
 - Treat React Doctor output as actionable guidance; prioritize `error` then `warning`.
 - For UI or visual changes, verify with `playwright-cli` on the local dev URL and cover a mobile viewport flow when the change affects layout, touch behavior, or responsiveness.
 - The shared hook verification path is strict by default. Only set `AGENT_VERIFY_MODE=advisory` when you intentionally need signal from a broken tree without blocking the session.
@@ -159,20 +160,20 @@ src/
 
 ## Local Development URLs
 
-This project uses [Portless](https://github.com/vercel-labs/portless) for local dev. The dev server is available at `http://bitsocial.localhost:1355` instead of a random port. To bypass Portless, use `PORTLESS=0 corepack yarn dev`.
+This project uses [Portless](https://github.com/vercel-labs/portless) for local dev. The dev server is available at `http://bitsocial.localhost:1355` instead of a random port. To bypass Portless, use `PORTLESS=0 yarn dev`.
 
 ## Common Commands
 
 ```bash
-corepack yarn install
-corepack yarn dev            # http://bitsocial.localhost:1355
-corepack yarn build
-corepack yarn lint
-corepack yarn typecheck
-corepack yarn format:check
-corepack yarn doctor
-corepack yarn doctor:score
-corepack yarn doctor:verbose
+yarn install
+yarn dev            # http://bitsocial.localhost:1355
+yarn build
+yarn lint
+yarn typecheck
+yarn format:check
+yarn doctor
+yarn doctor:score
+yarn doctor:verbose
 ./scripts/create-task-worktree.sh chore ai-workflow-improvement
 ./scripts/agent-init.sh --smoke
 ```
