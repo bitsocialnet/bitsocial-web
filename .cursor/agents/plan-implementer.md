@@ -1,6 +1,6 @@
 ---
 name: plan-implementer
-model: composer-1.5
+model: composer-2
 description: Implements assigned tasks from a plan. Receives specific tasks from the parent agent, implements them sequentially, verifies them, and reports back. The parent agent handles parallelization by spawning multiple plan-implementer subagents with different task subsets.
 ---
 
