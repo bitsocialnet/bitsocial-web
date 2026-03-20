@@ -172,6 +172,14 @@
     );
   }
 
+  .feature-connector-path {
+    stroke: rgba(100, 100, 100, 0.08);
+  }
+
+  .dark .feature-connector-path {
+    stroke: rgba(211, 211, 211, 0.03);
+  }
+
   .topbar-frosted {
     isolation: isolate;
   }

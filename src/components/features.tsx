@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { triggerFeatureGlow, triggerTaglineGlow } from "@/lib/utils";
 
@@ -8,6 +8,9 @@ interface Feature {
   description: string;
   expandedContent: string;
 }
+
+/** Circle quarter fillet via cubic Bézier (avoids elliptical-arc sweep ambiguity in SVG). */
+const CONNECTOR_R = 10;
 
 const features: Feature[] = [
   {
@@ -60,8 +63,24 @@ const features: Feature[] = [
   },
 ];
 
+function featureConnectorPathD(isEven: boolean): string {
+  const r = CONNECTOR_R;
+  const k = 0.5522847498 * r;
+  const yMid = 32;
+  const yTop = yMid - r;
+  const yBot = yMid + r;
+  const xL = 250;
+  const xR = 750;
+
+  if (isEven) {
+    return `M ${xL},0 L ${xL},${yTop} C ${xL},${yTop + k} ${xL + r - k},${yMid} ${xL + r},${yMid} L ${xR - r},${yMid} C ${xR - r + k},${yMid} ${xR},${yBot - k} ${xR},${yBot} L ${xR},64`;
+  }
+  return `M ${xR},0 L ${xR},${yTop} C ${xR},${yTop + k} ${xR - r + k},${yMid} ${xR - r},${yMid} L ${xL + r},${yMid} C ${xL + r - k},${yMid} ${xL},${yBot - k} ${xL},${yBot} L ${xL},64`;
+}
+
 export default function Features() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -117,13 +136,17 @@ export default function Features() {
           Core Features
         </motion.h2>
 
-        <div className="space-y-12 md:space-y-16">
+        <div>
           {features.map((feature, index) => {
             const isExpanded = expandedId === feature.id;
             const isEven = index % 2 === 0;
 
             return (
-              <div key={feature.id} id={feature.id} className="scroll-mt-24">
+              <div
+                key={feature.id}
+                id={feature.id}
+                className={`scroll-mt-24 ${index < features.length - 1 ? "mb-12 md:mb-0" : ""}`}
+              >
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -182,6 +205,35 @@ export default function Features() {
                     </motion.div>
                   )}
                 </AnimatePresence>
+
+                {index < features.length - 1 && (
+                  <div
+                    className="hidden md:block pointer-events-none select-none h-16 w-full shrink-0"
+                    aria-hidden="true"
+                  >
+                    <svg viewBox="0 0 1000 64" className="h-full w-full" fill="none">
+                      <motion.path
+                        className="feature-connector-path"
+                        d={featureConnectorPathD(isEven)}
+                        strokeWidth={2}
+                        strokeLinecap="square"
+                        strokeLinejoin="round"
+                        vectorEffect="non-scaling-stroke"
+                        {...(prefersReducedMotion
+                          ? {}
+                          : {
+                              initial: { pathLength: 0 },
+                              whileInView: { pathLength: 1 },
+                              viewport: { once: true },
+                              transition: {
+                                duration: 1,
+                                ease: "easeInOut",
+                              },
+                            })}
+                      />
+                    </svg>
+                  </div>
+                )}
               </div>
             );
           })}
