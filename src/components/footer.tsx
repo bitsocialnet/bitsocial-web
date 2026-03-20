@@ -130,7 +130,14 @@ export default function Footer() {
               {t("footer.license")}
             </a>
             <span className="text-border/50">&bull;</span>
-            <span>&copy; {new Date().getFullYear()} Bitsocial Forge, Inc.</span>
+            <a
+              href="https://bitsocialforge.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors"
+            >
+              &copy; {new Date().getFullYear()} Bitsocial Forge, Inc.
+            </a>
           </div>
         </div>
       </div>
