@@ -6,37 +6,56 @@ interface Point {
   y: number;
 }
 
-interface TriData {
+interface EdgeData {
   a: number;
   b: number;
-  c: number;
-  cx: number;
-  cy: number;
-  glow: number;
+  mx: number;
+  my: number;
+  slowGlow: number;
+  fastGlow: number;
+  hash: number;
 }
 
 const SPACING = 85;
 const JITTER_FACTOR = 0.42;
-const GLOW_RADIUS = 150;
-const GLOW_EASE_IN = 0.14;
-const GLOW_EASE_OUT = 0.045;
-const MAX_FILL_OPACITY = 0.14;
+const FADE_HEIGHT = 450;
 const EDGE_BASE_WIDTH = 0.5;
-const EDGE_GLOW_WIDTH = 1;
+const EDGE_GLOW_WIDTH = 1.5;
 const DOT_RADIUS = 1.2;
-
-const AMBIENT_FADE_IN = 2200;
-const AMBIENT_HOLD = 1800;
-const AMBIENT_FADE_OUT = 2800;
-const AMBIENT_DELAY_MIN = 2000;
-const AMBIENT_DELAY_MAX = 5000;
-const AMBIENT_MAX_ACTIVE = 2;
-const AMBIENT_GLOW_RADIUS = 130;
-const AMBIENT_MAX_FILL = 0.1;
+const DOT_GLOW_RADIUS = 2.2;
 
 const BLUE_R = 37;
 const BLUE_G = 99;
 const BLUE_B = 235;
+
+// Matches devin.ai ScreenPaint dissipation values (adjusted for ~30fps)
+const SLOW_DECAY = 0.975;
+const FAST_DECAY = 0.45;
+
+const MIN_PAINT_RADIUS = 20;
+const MAX_PAINT_RADIUS = 180;
+const MIN_SPEED = 2;
+const MAX_SPEED = 60;
+
+// Angle sweep animation (matches devin.ai angleStrength)
+const SWEEP_SPEED = 0.08;
+const SWEEP_THRESHOLD = 0.72;
+
+function fadeAtY(y: number): number {
+  if (y >= FADE_HEIGHT) return 1;
+  if (y <= 0) return 0;
+  const t = y / FADE_HEIGHT;
+  return t * t * t;
+}
+
+function fract(x: number): number {
+  return x - Math.floor(x);
+}
+
+function smoothstep(edge0: number, edge1: number, x: number): number {
+  const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
+  return t * t * (3 - 2 * t);
+}
 
 function generateMesh(width: number, height: number) {
   const cols = Math.ceil(width / SPACING) + 2;
@@ -55,81 +74,52 @@ function generateMesh(width: number, height: number) {
   }
 
   const idx = (r: number, c: number) => (r + 1) * totalCols + (c + 1);
-  const triangles: TriData[] = [];
-
-  function addTri(a: number, b: number, c: number) {
-    triangles.push({
-      a,
-      b,
-      c,
-      cx: (points[a].x + points[b].x + points[c].x) / 3,
-      cy: (points[a].y + points[b].y + points[c].y) / 3,
-      glow: 0,
-    });
-  }
-
+  const edgeSet = new Set<string>();
+  const rawEdges: [number, number][] = [];
   for (let r = -1; r < rows; r++) {
     for (let c = -1; c < cols; c++) {
       const tl = idx(r, c);
       const tr = idx(r, c + 1);
       const bl = idx(r + 1, c);
       const br = idx(r + 1, c + 1);
-      if (Math.random() > 0.5) {
-        addTri(tl, tr, br);
-        addTri(tl, br, bl);
-      } else {
-        addTri(tl, tr, bl);
-        addTri(tr, br, bl);
+      const pairs: [number, number][] =
+        Math.random() > 0.5
+          ? [
+              [tl, tr],
+              [tr, br],
+              [tl, br],
+              [tl, bl],
+              [bl, br],
+            ]
+          : [
+              [tl, tr],
+              [tr, bl],
+              [tl, bl],
+              [tr, br],
+              [bl, br],
+            ];
+      for (const [a, b] of pairs) {
+        const k = a < b ? `${a}-${b}` : `${b}-${a}`;
+        if (!edgeSet.has(k)) {
+          edgeSet.add(k);
+          rawEdges.push([a, b]);
+        }
       }
     }
   }
 
-  const edgeSet = new Set<string>();
-  const edges: [number, number][] = [];
-  for (const t of triangles) {
-    for (const pair of [
-      [t.a, t.b],
-      [t.b, t.c],
-      [t.a, t.c],
-    ] as [number, number][]) {
-      const k = pair[0] < pair[1] ? `${pair[0]}-${pair[1]}` : `${pair[1]}-${pair[0]}`;
-      if (!edgeSet.has(k)) {
-        edgeSet.add(k);
-        edges.push(pair);
-      }
-    }
-  }
+  const edges: EdgeData[] = rawEdges.map(([a, b], i) => ({
+    a,
+    b,
+    mx: (points[a].x + points[b].x) / 2,
+    my: (points[a].y + points[b].y) / 2,
+    slowGlow: 0,
+    fastGlow: 0,
+    hash: fract(Math.sin(i * 127.1 + 311.7) * 43758.5453),
+  }));
 
-  return { points, triangles, edges };
-}
-
-interface AmbientSource {
-  x: number;
-  y: number;
-  t0: number;
-  phase: 0 | 1 | 2;
-}
-
-function ambientIntensity(s: AmbientSource, now: number): number {
-  const dt = now - s.t0;
-  if (s.phase === 0) {
-    if (dt >= AMBIENT_FADE_IN) {
-      s.phase = 1;
-      s.t0 = now;
-      return 1;
-    }
-    return dt / AMBIENT_FADE_IN;
-  }
-  if (s.phase === 1) {
-    if (dt >= AMBIENT_HOLD) {
-      s.phase = 2;
-      s.t0 = now;
-      return 1;
-    }
-    return 1;
-  }
-  if (dt >= AMBIENT_FADE_OUT) return -1;
-  return 1 - dt / AMBIENT_FADE_OUT;
+  const vertexGlow = new Float32Array(points.length);
+  return { points, edges, vertexGlow };
 }
 
 function initMesh(
@@ -137,7 +127,6 @@ function initMesh(
   container: HTMLElement,
   ctx: CanvasRenderingContext2D,
   isDark: boolean,
-  hasHover: boolean,
 ): () => void {
   const edgeAlpha = isDark ? 0.055 : 0.085;
   const dotAlpha = isDark ? 0.06 : 0.1;
@@ -159,140 +148,173 @@ function initMesh(
 
   let mesh = generateMesh(w, h);
 
-  let mx = -9999;
-  let my = -9999;
-  let mouseIn = false;
+  let curX = -9999;
+  let curY = -9999;
+  let prevX = -9999;
+  let prevY = -9999;
+  let smoothedSpeed = 0;
+  let time = 0;
 
   function onMove(e: MouseEvent) {
-    if (!hasHover) return;
     const r = canvas.getBoundingClientRect();
-    mx = e.clientX - r.left;
-    my = e.clientY - r.top;
-    mouseIn = mx >= -50 && mx <= w + 50 && my >= -50 && my <= h + 50;
+    curX = e.clientX - r.left;
+    curY = e.clientY - r.top;
   }
 
-  function onLeave() {
-    mouseIn = false;
-    mx = -9999;
-    my = -9999;
+  function onTouchMove(e: TouchEvent) {
+    if (e.touches.length === 0) return;
+    const touch = e.touches[0];
+    const r = canvas.getBoundingClientRect();
+    curX = touch.clientX - r.left;
+    curY = touch.clientY - r.top;
+  }
+
+  function onPointerLeave() {
+    curX = -9999;
+    curY = -9999;
+    prevX = -9999;
+    prevY = -9999;
   }
 
   window.addEventListener("mousemove", onMove, { passive: true });
-  document.addEventListener("mouseleave", onLeave);
-
-  let ambients: AmbientSource[] = [];
-  let lastSpawn = 0;
-  let nextDelay = AMBIENT_DELAY_MIN;
-
-  function spawnAmbient(now: number) {
-    if (ambients.length >= AMBIENT_MAX_ACTIVE) return;
-    const i = Math.floor(Math.random() * mesh.triangles.length);
-    ambients.push({ x: mesh.triangles[i].cx, y: mesh.triangles[i].cy, t0: now, phase: 0 });
-    lastSpawn = now;
-    nextDelay = AMBIENT_DELAY_MIN + Math.random() * (AMBIENT_DELAY_MAX - AMBIENT_DELAY_MIN);
-  }
+  document.addEventListener("mouseleave", onPointerLeave);
+  window.addEventListener("touchmove", onTouchMove, { passive: true });
+  window.addEventListener("touchstart", onTouchMove, { passive: true });
+  window.addEventListener("touchend", onPointerLeave, { passive: true });
 
   let af: number;
   let lt = 0;
-  const glowRadiusSq = GLOW_RADIUS * GLOW_RADIUS;
-  const ambRadiusSq = AMBIENT_GLOW_RADIUS * AMBIENT_GLOW_RADIUS;
 
   function frame(now: number) {
     af = requestAnimationFrame(frame);
     if (now - lt < 33) return;
+    const dt = (now - lt) / 1000;
     lt = now;
-
-    ctx.clearRect(0, 0, w, h);
+    time += dt;
 
     const pts = mesh.points;
-    const tris = mesh.triangles;
     const edges = mesh.edges;
+    const vGlow = mesh.vertexGlow;
 
-    if (hasHover) {
-      for (const t of tris) {
-        const dx = t.cx - mx;
-        const dy = t.cy - my;
+    // --- Cursor speed (like devin's u_moveRatio) ---
+    let frameSpeed = 0;
+    if (curX > -9000 && prevX > -9000) {
+      const dx = curX - prevX;
+      const dy = curY - prevY;
+      frameSpeed = Math.sqrt(dx * dx + dy * dy);
+    }
+    prevX = curX;
+    prevY = curY;
+
+    const rawSpeed =
+      frameSpeed <= MIN_SPEED ? 0 : Math.min(1, (frameSpeed - MIN_SPEED) / (MAX_SPEED - MIN_SPEED));
+    const speedTarget = rawSpeed * rawSpeed;
+    smoothedSpeed += (speedTarget - smoothedSpeed) * (speedTarget > smoothedSpeed ? 0.25 : 0.035);
+
+    const paintRadius = MIN_PAINT_RADIUS + (MAX_PAINT_RADIUS - MIN_PAINT_RADIUS) * smoothedSpeed;
+    const paintRadiusSq = paintRadius * paintRadius;
+
+    // --- Per-edge: decay + paint + angle sweep ---
+    for (let i = 0; i < edges.length; i++) {
+      const e = edges[i];
+
+      // Dissipation (like devin's weight1Dissipation / weight2Dissipation)
+      e.slowGlow *= SLOW_DECAY;
+      e.fastGlow *= FAST_DECAY;
+
+      // Paint cursor proximity onto both channels
+      if (curX > -9000) {
+        const dx = e.mx - curX;
+        const dy = e.my - curY;
         const distSq = dx * dx + dy * dy;
-        if (!mouseIn || distSq > glowRadiusSq) {
-          t.glow += (0 - t.glow) * GLOW_EASE_OUT;
-        } else {
+        if (distSq < paintRadiusSq) {
           const dist = Math.sqrt(distSq);
-          const tgt = (1 - dist / GLOW_RADIUS) ** 2;
-          t.glow += (tgt - t.glow) * (tgt > t.glow ? GLOW_EASE_IN : GLOW_EASE_OUT);
+          const paintStrength = Math.pow(1 - dist / paintRadius, 1.5) * smoothedSpeed;
+          if (paintStrength > e.slowGlow) e.slowGlow = paintStrength;
+          if (paintStrength > e.fastGlow) e.fastGlow = paintStrength;
         }
       }
-    } else {
-      if (now - lastSpawn > nextDelay) spawnAmbient(now);
-      for (const t of tris) {
-        let maxTgt = 0;
-        for (const s of ambients) {
-          const intensity = ambientIntensity(s, now);
-          if (intensity < 0) continue;
-          const dx = t.cx - s.x;
-          const dy = t.cy - s.y;
-          const dSq = dx * dx + dy * dy;
-          if (dSq < ambRadiusSq) {
-            const d = Math.sqrt(dSq);
-            maxTgt = Math.max(maxTgt, (1 - d / AMBIENT_GLOW_RADIUS) ** 2 * intensity);
-          }
-        }
-        t.glow += (maxTgt - t.glow) * (maxTgt > t.glow ? 0.035 : 0.025);
-      }
-      ambients = ambients.filter((s) => ambientIntensity(s, now) >= 0);
+
+      if (e.slowGlow < 0.002) e.slowGlow = 0;
+      if (e.fastGlow < 0.002) e.fastGlow = 0;
     }
 
-    // Atmospheric radial glow at cursor
-    if (mouseIn && hasHover) {
-      const rr = GLOW_RADIUS * 1.4;
-      const grad = ctx.createRadialGradient(mx, my, 0, mx, my, rr);
-      grad.addColorStop(0, `rgba(${BLUE_R},${BLUE_G},${BLUE_B},0.04)`);
-      grad.addColorStop(1, `rgba(${BLUE_R},${BLUE_G},${BLUE_B},0)`);
-      ctx.fillStyle = grad;
-      ctx.fillRect(mx - rr, my - rr, rr * 2, rr * 2);
+    // --- Vertex glow from adjacent edges ---
+    vGlow.fill(0);
+    for (const e of edges) {
+      const g = (e.slowGlow + e.fastGlow) * 0.5;
+      if (g < 0.01) continue;
+      if (g > vGlow[e.a]) vGlow[e.a] = g;
+      if (g > vGlow[e.b]) vGlow[e.b] = g;
     }
 
-    // Glow triangle fills
-    for (const t of tris) {
-      if (t.glow < 0.005) continue;
-      const opacity = t.glow * (hasHover ? MAX_FILL_OPACITY : AMBIENT_MAX_FILL);
-      ctx.fillStyle = `rgba(${BLUE_R},${BLUE_G},${BLUE_B},${opacity})`;
-      ctx.beginPath();
-      ctx.moveTo(pts[t.a].x, pts[t.a].y);
-      ctx.lineTo(pts[t.b].x, pts[t.b].y);
-      ctx.lineTo(pts[t.c].x, pts[t.c].y);
-      ctx.closePath();
-      ctx.fill();
-    }
+    // ========== RENDER ==========
+    ctx.clearRect(0, 0, w, h);
 
-    // Base mesh edges
+    // --- Base mesh edges (with Y-fade) ---
     ctx.strokeStyle = `rgba(${edgeRGB},${edgeAlpha})`;
     ctx.lineWidth = EDGE_BASE_WIDTH;
     ctx.beginPath();
-    for (const [a, b] of edges) {
-      ctx.moveTo(pts[a].x, pts[a].y);
-      ctx.lineTo(pts[b].x, pts[b].y);
+    for (const e of edges) {
+      if (pts[e.a].y >= FADE_HEIGHT && pts[e.b].y >= FADE_HEIGHT) {
+        ctx.moveTo(pts[e.a].x, pts[e.a].y);
+        ctx.lineTo(pts[e.b].x, pts[e.b].y);
+      }
     }
     ctx.stroke();
 
-    // Glow edges
-    for (const t of tris) {
-      if (t.glow < 0.05) continue;
-      ctx.strokeStyle = `rgba(${BLUE_R},${BLUE_G},${BLUE_B},${t.glow * 0.35})`;
+    for (const e of edges) {
+      if (pts[e.a].y < FADE_HEIGHT || pts[e.b].y < FADE_HEIGHT) {
+        const fade = (fadeAtY(pts[e.a].y) + fadeAtY(pts[e.b].y)) * 0.5;
+        if (fade < 0.01) continue;
+        ctx.strokeStyle = `rgba(${edgeRGB},${edgeAlpha * fade})`;
+        ctx.lineWidth = EDGE_BASE_WIDTH;
+        ctx.beginPath();
+        ctx.moveTo(pts[e.a].x, pts[e.a].y);
+        ctx.lineTo(pts[e.b].x, pts[e.b].y);
+        ctx.stroke();
+      }
+    }
+
+    // --- Glow edges (blue, matching devin's color formula) ---
+    for (const e of edges) {
+      const weight = (e.slowGlow + e.fastGlow) * 0.5;
+
+      // Angle sweep animation (devin's angleStrength)
+      const cycle = fract(e.hash - time * SWEEP_SPEED);
+      const angleStrength = smoothstep(SWEEP_THRESHOLD, 1, cycle) * smoothedSpeed;
+
+      const totalGlow = weight + angleStrength * 0.35;
+      if (totalGlow < 0.015) continue;
+
+      const fade = fadeAtY(e.my);
+      if (fade < 0.01) continue;
+
+      const alpha = Math.min(totalGlow * 0.55, 0.6) * fade;
+      ctx.strokeStyle = `rgba(${BLUE_R},${BLUE_G},${BLUE_B},${alpha})`;
       ctx.lineWidth = EDGE_GLOW_WIDTH;
       ctx.beginPath();
-      ctx.moveTo(pts[t.a].x, pts[t.a].y);
-      ctx.lineTo(pts[t.b].x, pts[t.b].y);
-      ctx.lineTo(pts[t.c].x, pts[t.c].y);
-      ctx.closePath();
+      ctx.moveTo(pts[e.a].x, pts[e.a].y);
+      ctx.lineTo(pts[e.b].x, pts[e.b].y);
       ctx.stroke();
     }
 
-    // Vertex dots (P2P network nodes)
-    ctx.fillStyle = `rgba(${dotRGB},${dotAlpha})`;
-    for (const p of pts) {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, DOT_RADIUS, 0, Math.PI * 2);
-      ctx.fill();
+    // --- Vertex dots (with Y-fade and glow) ---
+    for (let i = 0; i < pts.length; i++) {
+      const fade = fadeAtY(pts[i].y);
+      if (fade < 0.01) continue;
+      const g = vGlow[i];
+      if (g > 0.03) {
+        ctx.fillStyle = `rgba(${BLUE_R},${BLUE_G},${BLUE_B},${g * 0.5 * fade})`;
+        ctx.beginPath();
+        ctx.arc(pts[i].x, pts[i].y, DOT_GLOW_RADIUS, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.fillStyle = `rgba(${dotRGB},${dotAlpha * fade})`;
+        ctx.beginPath();
+        ctx.arc(pts[i].x, pts[i].y, DOT_RADIUS, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
   }
 
@@ -316,7 +338,10 @@ function initMesh(
     cancelAnimationFrame(af);
     clearTimeout(resizeTimer);
     window.removeEventListener("mousemove", onMove);
-    document.removeEventListener("mouseleave", onLeave);
+    document.removeEventListener("mouseleave", onPointerLeave);
+    window.removeEventListener("touchmove", onTouchMove);
+    window.removeEventListener("touchstart", onTouchMove);
+    window.removeEventListener("touchend", onPointerLeave);
     ro.disconnect();
   };
 }
@@ -336,9 +361,8 @@ export default function PolygonMeshBackground() {
     const isDark =
       resolvedTheme === "dark" ||
       (!resolvedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    const hasHover = window.matchMedia("(hover: hover)").matches;
 
-    return initMesh(canvas, container, ctx, isDark, hasHover);
+    return initMesh(canvas, container, ctx, isDark);
   }, [resolvedTheme]);
 
   return (
@@ -348,14 +372,6 @@ export default function PolygonMeshBackground() {
       aria-hidden="true"
     >
       <canvas ref={canvasRef} className="block w-full h-full" />
-      <div
-        className="absolute top-0 left-0 right-0 h-48 md:h-64 pointer-events-none"
-        style={{
-          zIndex: 1,
-          background:
-            "linear-gradient(to bottom, hsl(var(--background)) 0%, hsl(var(--background) / 0.85) 25%, hsl(var(--background) / 0.5) 55%, transparent 100%)",
-        }}
-      />
     </div>
   );
 }

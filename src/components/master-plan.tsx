@@ -52,8 +52,8 @@ export default function MasterPlan() {
 
         <div className="relative">
           <div className="relative">
-            {/* Timeline spine */}
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-px w-0.5 h-full bg-gradient-to-b from-blue-core/60 via-blue-glow/40 to-blue-core/20" />
+            {/* Timeline line - visible on both mobile and desktop */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-blue-core via-blue-glow to-blue-core" />
 
             <div className="space-y-16 md:space-y-20">
               {phases.map((item, index) => (
@@ -69,8 +69,8 @@ export default function MasterPlan() {
                 >
                   {/* Phase indicator */}
                   <div className="relative z-10 flex-shrink-0">
-                    <div className="w-10 h-10 rounded-full bg-background border-2 border-blue-core/50 flex items-center justify-center shadow-[0_0_16px_rgba(37,99,235,0.15)]">
-                      <span className="text-sm font-display font-semibold text-blue-glow tabular-nums">
+                    <div className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center">
+                      <span className="text-sm font-display font-semibold text-muted-foreground tabular-nums">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                     </div>
@@ -96,24 +96,35 @@ export default function MasterPlan() {
             </div>
           </div>
 
-          {/* Dashed continuation line */}
-          <div className="hidden md:flex flex-col items-center">
-            <div className="w-0.5 h-12 bg-gradient-to-b from-blue-glow/30 to-blue-glow/10" />
-            <svg width="2" height="48" className="text-blue-glow/30">
+          {/* Dashed continuation line - visible on both mobile and desktop */}
+          <div className="flex flex-col items-center">
+            <div className="w-0.5 h-16 bg-blue-glow" />
+            <svg width="2" height="64" className="text-blue-glow">
               <line
                 x1="1"
                 y1="0"
                 x2="1"
-                y2="48"
+                y2="64"
                 stroke="currentColor"
                 strokeWidth="2"
-                strokeDasharray="4 6"
+                strokeDasharray="6 4"
+              />
+            </svg>
+            <svg width="2" height="56" className="text-blue-glow">
+              <line
+                x1="1"
+                y1="0"
+                x2="1"
+                y2="56"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeDasharray="2 4"
               />
             </svg>
           </div>
 
           {/* End logo */}
-          <div className="flex justify-center mt-3">
+          <div className="flex justify-center mt-2">
             <motion.button
               onClick={() => setShowGif(true)}
               className="relative z-10 flex-shrink-0 cursor-pointer transition-all duration-300"
