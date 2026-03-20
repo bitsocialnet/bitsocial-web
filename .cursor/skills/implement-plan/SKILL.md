@@ -63,9 +63,9 @@ When a subagent reports PARTIAL or FAILED:
 
 After all batches complete:
 
-1. Run `bun run build` to confirm everything compiles
-2. Run `bun run lint` and `bun run typecheck`
-3. If the plan touched React components/hooks, run `bun run doctor`
+1. Run `yarn build` to confirm everything compiles
+2. Run `yarn lint` and `yarn typecheck`
+3. If the plan touched React components/hooks, run `yarn doctor`
 4. For UI changes, verify in the browser with playwright-cli
 
 ### 6. Report

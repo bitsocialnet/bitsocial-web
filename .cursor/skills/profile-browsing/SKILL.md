@@ -9,7 +9,7 @@ Two-layer profiling: browser-level symptoms (Web Vitals, long tasks, scroll jank
 
 ## Prerequisites
 
-- Dev server running at `http://bitsocial.localhost:1355` (`bun run dev` via Portless)
+- Dev server running at `http://bitsocial.localhost:1355` (`yarn start` via Portless)
 - `playwright-cli` installed (`npm install -g @playwright/cli@latest`)
 
 **IMPORTANT:** The orchestrator (you) is responsible for ensuring exactly one dev server is running. Profiler subagents must never start a dev server themselves.
@@ -33,7 +33,7 @@ curl -sf http://bitsocial.localhost:1355 -o /dev/null && echo "OK" || echo "NOT 
 ```
 
 - If `OK`: proceed to Step 1.
-- If `NOT RUNNING`: start one instance with `bun run dev` in the background, then poll until it responds. Do not start more than one.
+- If `NOT RUNNING`: start one instance with `yarn start` in the background, then poll until it responds. Do not start more than one.
 
 ## Step 1: Define Route Batches
 

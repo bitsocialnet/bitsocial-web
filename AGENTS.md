@@ -160,13 +160,13 @@ src/
 
 ## Local Development URLs
 
-This project uses [Portless](https://github.com/vercel-labs/portless) for local dev. The dev server is available at `http://bitsocial.localhost:1355` instead of a random port. To bypass Portless, use `PORTLESS=0 yarn dev`.
+This project uses [Portless](https://github.com/vercel-labs/portless) for local dev. The dev server is available at `http://bitsocial.localhost:1355` instead of a random port. To bypass Portless, use `PORTLESS=0 yarn start`.
 
 ## Common Commands
 
 ```bash
 yarn install
-yarn dev            # http://bitsocial.localhost:1355
+yarn start          # http://bitsocial.localhost:1355
 yarn build
 yarn lint
 yarn typecheck

@@ -44,8 +44,8 @@ For each violation:
 ### Step 4: Verify
 
 ```bash
-bun run build 2>&1
-bun run doctor 2>&1
+yarn build 2>&1
+yarn doctor 2>&1
 ```
 
 If the build or doctor check breaks because of your changes, fix and re-run.
@@ -74,4 +74,4 @@ If the build or doctor check breaks because of your changes, fix and re-run.
 - Only fix pattern violations. Do not refactor unrelated code.
 - Follow patterns defined in `AGENTS.md`.
 - If a fix would require significant restructuring, report it instead of applying it.
-- Use `bun`, not `npm` or `yarn`.
+- Use Yarn via Corepack (`yarn`), not `npm`.

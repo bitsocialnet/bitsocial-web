@@ -41,7 +41,7 @@ Follow the plan provided by the parent agent. Apply changes using project patter
 Run React Doctor to check whether the specific issue is resolved:
 
 ```bash
-bun run doctor 2>&1
+yarn doctor 2>&1
 ```
 
 Parse the output and check:
@@ -80,4 +80,4 @@ Return a structured report to the parent agent:
 - Only fix the targeted diagnostic or diagnostics.
 - Always verify with React Doctor before reporting back.
 - If the fix is unclear or risky, report back with concerns instead of guessing.
-- Use `bun`, not `npm` or `yarn`.
+- Use Yarn via Corepack (`yarn`), not `npm`.

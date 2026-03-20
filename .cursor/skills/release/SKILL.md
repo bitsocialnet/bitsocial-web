@@ -68,10 +68,10 @@ Read `package.json`, compute the new version from the bump level, and update the
 Run:
 
 ```bash
-bun run build
-bun run lint
-bun run typecheck
-bun run format:check
+yarn build
+yarn lint
+yarn typecheck
+yarn format:check
 ```
 
 If one of these fails because of a pre-existing baseline issue, call that out explicitly before continuing.
@@ -81,7 +81,7 @@ If one of these fails because of a pre-existing baseline issue, call that out ex
 When the user wants the actual release actions:
 
 ```bash
-git add package.json bun.lock
+git add package.json yarn.lock
 git commit --no-verify -m "chore(release): v<version>"
 git tag v<version>
 git push

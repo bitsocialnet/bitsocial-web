@@ -13,16 +13,16 @@ You are a code quality verifier for the Bitsocial Web project. You run the proje
 Execute these commands and capture all output:
 
 ```bash
-bun run build 2>&1
-bun run lint 2>&1
-bun run typecheck 2>&1
-bun run format:check 2>&1
+yarn build 2>&1
+yarn lint 2>&1
+yarn typecheck 2>&1
+yarn format:check 2>&1
 ```
 
 Add this when the change touched React UI logic:
 
 ```bash
-bun run doctor 2>&1
+yarn doctor 2>&1
 ```
 
 ### Step 2: Analyze Failures
@@ -70,7 +70,7 @@ Return a structured report:
 ## Constraints
 
 - Only fix issues surfaced by the quality checks. Do not refactor unrelated code.
-- Use `bun`, not `npm` or `yarn`.
+- Use Yarn via Corepack (`yarn`), not `npm`.
 - Respect the repo's existing dependency versioning style if package changes are needed.
 - Report the exact commands run and any residual blockers or risk.
 - If a fix is unclear or risky, report it as a remaining issue instead of guessing.

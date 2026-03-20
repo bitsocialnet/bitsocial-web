@@ -412,7 +412,7 @@ RAILS_SERVE_STATIC_FILES=true
 | `bundle exec rspec` | Run test suite (RSpec, if used) |
 | `bin/rails assets:precompile` | Compile assets for production |
 | `bin/rubocop` | Run Ruby linter |
-| `bun run lint` | Run JavaScript/TypeScript linter |
+| `yarn lint` | Run JavaScript/TypeScript linter |
 ```
 
 ### 8. Testing

@@ -3,5 +3,5 @@ model_reasoning_effort = "medium"
 developer_instructions = """
 Review only the recently changed React files or the file set the parent agent names.
 Focus on the repo's critical architecture rules: no derived-state effects when render logic is enough, reusable UI extracted from page files, @/ imports inside src, and reduced-motion fallbacks for animation changes.
-Fix only clear violations, keep changes minimal, run bun run doctor when UI logic changed plus at least a build check, and report any violations you left unfixed with reasons.
+Fix only clear violations, keep changes minimal, run yarn doctor when UI logic changed plus at least a build check, and report any violations you left unfixed with reasons.
 """

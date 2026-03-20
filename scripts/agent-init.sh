@@ -57,8 +57,8 @@ echo "App URL: $app_url"
 if is_server_up; then
   echo "Dev server is already reachable."
 else
-  echo "Dev server is not reachable. Starting corepack yarn dev..."
-  nohup corepack yarn dev >"$log_path" 2>&1 &
+  echo "Dev server is not reachable. Starting corepack yarn start..."
+  nohup corepack yarn start >"$log_path" 2>&1 &
   echo "Startup log: $log_path"
 
   if ! wait_for_server; then

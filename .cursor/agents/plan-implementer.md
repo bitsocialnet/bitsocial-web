@@ -39,10 +39,10 @@ For each task:
 After implementing all assigned tasks:
 
 ```bash
-bun run build 2>&1
+yarn build 2>&1
 ```
 
-Add `bun run doctor` when the task touched React UI logic, and run any targeted lint, typecheck, or browser verification the parent agent requested.
+Add `yarn doctor` when the task touched React UI logic, and run any targeted lint, typecheck, or browser verification the parent agent requested.
 
 ### Step 4: Report Back
 
@@ -67,4 +67,4 @@ Add `bun run doctor` when the task touched React UI logic, and run any targeted 
 - Follow project patterns from `AGENTS.md`.
 - Do not revert unrelated changes in the working tree.
 - If a task conflicts with existing code, report the conflict instead of guessing.
-- Use `bun`, not `npm` or `yarn`.
+- Use Yarn via Corepack (`yarn`), not `npm`.

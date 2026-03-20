@@ -35,7 +35,7 @@ If uncertain, ask the developer before adding an entry.
 - **Context:** Browser verification and smoke flows
 - **What was surprising:** The default local URL is not the usual Vite port. The repo expects `http://bitsocial.localhost:1355` through Portless, so checking `localhost:3000` or `localhost:5173` can hit the wrong app or nothing at all.
 - **Impact:** Browser checks can fail or validate the wrong target even when the dev server is healthy.
-- **Mitigation:** Use `http://bitsocial.localhost:1355` first. Only bypass it with `PORTLESS=0 corepack yarn dev` when you explicitly need a direct Vite port.
+- **Mitigation:** Use `http://bitsocial.localhost:1355` first. Only bypass it with `PORTLESS=0 corepack yarn start` when you explicitly need a direct Vite port.
 - **Status:** confirmed
 
 ### Commitizen hooks block non-interactive commits

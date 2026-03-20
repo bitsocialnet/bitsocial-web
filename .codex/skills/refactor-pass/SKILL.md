@@ -21,7 +21,7 @@ description: Perform a refactor pass focused on simplicity after recent changes.
 
 3. **Verify** — run all three checks:
    ```bash
-   bun run build && bun run lint && bun run typecheck
+   yarn build && yarn lint && yarn typecheck
    ```
 
 4. **Optional suggestions** — identify abstractions or reusable patterns only if they clearly improve clarity. Keep suggestions brief; don't refactor speculatively.

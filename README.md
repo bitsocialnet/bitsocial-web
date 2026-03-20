@@ -52,7 +52,7 @@ yarn build     # Production build
 yarn typecheck # Type check with tsgo
 ```
 
-The dev server runs at http://bitsocial.localhost:1355 via [Portless](https://port1355.dev/), which gives each Bitsocial project a stable, named URL instead of a random port. To bypass Portless: `PORTLESS=0 yarn dev`
+The dev server runs at http://bitsocial.localhost:1355 via [Portless](https://port1355.dev/), which gives each Bitsocial project a stable, named URL instead of a random port. To bypass Portless: `PORTLESS=0 yarn start`
 
 ---
 
@@ -64,7 +64,7 @@ When using an AI assistant to make changes, it is expected to follow the convent
 
 ### Making Changes
 
-1. Run `yarn dev` (opens at http://bitsocial.localhost:1355)
+1. Run `yarn start` (opens at http://bitsocial.localhost:1355)
 2. Make your changes (manually or via an AI agent)
 3. Test on desktop and mobile viewports
 4. Verify performance and animations

@@ -44,7 +44,7 @@ Write `translations-temp.json` in the project root with the translations:
 ### Step 4 — Dry run
 
 ```bash
-bun scripts/update-translations.js --key <KEY> --map translations-temp.json --include-en --dry
+yarn node scripts/update-translations.js --key <KEY> --map translations-temp.json --include-en --dry
 ```
 
 Verify the output looks correct.
@@ -52,7 +52,7 @@ Verify the output looks correct.
 ### Step 5 — Apply
 
 ```bash
-bun scripts/update-translations.js --key <KEY> --map translations-temp.json --include-en --write
+yarn node scripts/update-translations.js --key <KEY> --map translations-temp.json --include-en --write
 ```
 
 ### Step 6 — Clean up

@@ -48,7 +48,7 @@ Open each conflicting file and remove conflict markers. Merge both sides logical
 Run all three checks. Fix any failures before proceeding.
 
 ```bash
-bun run build && bun run lint && bun run typecheck
+yarn build && yarn lint && yarn typecheck
 ```
 
 If `package.json` was modified, run `yarn install` first.
@@ -78,6 +78,6 @@ git commit -m "chore: resolve merge conflicts"
 ## Deliverables
 
 - Clean working tree with all conflicts resolved
-- Passing `bun run build && bun run lint && bun run typecheck`
+- Passing `yarn build && yarn lint && yarn typecheck`
 - One local commit: `chore: resolve merge conflicts`
 - Brief summary of files touched and notable resolution choices
