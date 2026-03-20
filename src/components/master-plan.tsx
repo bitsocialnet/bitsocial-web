@@ -4,33 +4,33 @@ import { useState } from "react";
 const phases = [
   {
     phase: "Phase 1",
-    title: "Lorem Ipsum",
+    title: "Decentralize imageboards",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Imageboards are the simplest form of social media to decentralize: no user profiles, few default boards, no cutting-edge features like ai chatbots, monetization, etc. This is why we're launching 5chan, the first Bitsocial app. 5chan delivers the most popular imageboard experience, while removing global admins from the equation.",
   },
   {
     phase: "Phase 2",
-    title: "Dolor Sit Amet",
+    title: "Launch Bitsocial RPC",
     description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Our team's first startup, Bitsocial Forge, will launch its first non-custodial RPC service for Bitsocial apps. It will let developers rent Bitsocial nodes to power their apps, so users can manage P2P nodes from their mobile phones. Anyone can always run a Bitsocial node, it even runs on a raspberry pi. Anyone can also run their own RPC service competing with Bitsocial Forge.",
   },
   {
     phase: "Phase 3",
-    title: "Consectetur Adipiscing",
+    title: "Decentralize forums",
     description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Forums are message boards with profiles and post history. Our first prototype Bitsocial app is an reddit alternative, Seedit, still experimental. A public RPC (master plan phase 2) is critical to let all Seedit users create and manage communities from anywhere, connecting to their full Bitsocial node remotely.",
   },
   {
     phase: "Phase 4",
-    title: "Sed Do Eiusmod",
+    title: "Launch Bitsocial Network",
     description:
-      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "In order to decentralize all social media, Bitsocial will need killer features: unstoppable financial structures, decentralized autonomous organizations (DAOs) powering bitsocial communities, decentralized Bitsocial domains (.bso), middleware authentication layers. All of this would be powered by Bitsocial Network, an Ethereum L2 appchain solution for Bitsocial apps participating in the network.",
   },
   {
     phase: "Phase 5",
-    title: "Tempor Incididunt",
+    title: "Decentralize all social media",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "As the protocol matures, profile nodes will let every user be reachable P2P and produce content for apps rivaling Facebook, Instagram, TikTok, X, and YouTube. Profile nodes are ultra-cheap Bitsocial nodes, provisioned automatically via RPCs on first sign-up. Bitsocial Network (L2) enables content monetization without banks seizing funds or admins banning users. Algorithms powering feeds are provided by competing RPCs, and users choose, combine, self-host, or opt out entirely. Social media finally finds its equilibrium: a fully decentralized, peer-to-peer network with no owners; Bitsocial.",
   },
 ];
 
