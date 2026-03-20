@@ -122,8 +122,8 @@ function initMesh(
   ctx: CanvasRenderingContext2D,
   isDark: boolean,
 ): () => void {
-  const edgeAlpha = isDark ? 0.055 : 0.085;
-  const dotAlpha = isDark ? 0.06 : 0.1;
+  const edgeAlpha = isDark ? 0.072 : 0.085;
+  const dotAlpha = isDark ? 0.078 : 0.1;
   const edgeRGB = isDark ? "255,255,255" : "100,116,139";
   const dotRGB = isDark ? "255,255,255" : "100,116,139";
 

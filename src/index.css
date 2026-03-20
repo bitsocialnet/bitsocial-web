@@ -106,7 +106,7 @@
     --glass-border-subtle: rgba(68, 74, 88, 0.16);
   }
   .dark {
-    --background: 0 0% 7%;
+    --background: 0 0% 0%;
     --foreground: 0 0% 93%;
     --card: 0 0% 12%;
     --card-foreground: 0 0% 93%;
@@ -154,7 +154,8 @@
     @apply rounded-3xl;
     position: relative;
     isolation: isolate;
-    border: 1px solid var(--glass-border-subtle);
+    --card-border-rest: var(--glass-border-subtle);
+    border: 1px solid var(--card-border-rest);
     background: linear-gradient(
       rgba(170, 182, 200, 0.133),
       rgba(144, 160, 185, 0.1),
@@ -165,7 +166,7 @@
   }
 
   .dark .glass-card {
-    border-color: rgba(232, 238, 247, 0.14);
+    --card-border-rest: rgba(232, 238, 247, 0.14);
     background: linear-gradient(
       rgba(222, 244, 255, 0.1),
       rgba(171, 188, 197, 0.11),
@@ -313,18 +314,23 @@
     animation: glow-fade 5s ease-in-out forwards;
   }
 
+  /* Border peak matches Tailwind `blue-glow` / Learn More `hover:border-blue-glow` (#2563eb). */
   @keyframes glow-fade {
     0% {
       box-shadow: 0 0 20px rgba(37, 99, 235, 0);
+      border-color: var(--card-border-rest);
     }
     20% {
       box-shadow: 0 0 20px rgba(37, 99, 235, 0.35);
+      border-color: rgb(37 99 235);
     }
     80% {
       box-shadow: 0 0 20px rgba(37, 99, 235, 0.35);
+      border-color: rgb(37 99 235);
     }
     100% {
       box-shadow: 0 0 20px rgba(37, 99, 235, 0);
+      border-color: var(--card-border-rest);
     }
   }
 
