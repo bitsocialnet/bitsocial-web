@@ -11,8 +11,6 @@ interface EdgeData {
   b: number;
   mx: number;
   my: number;
-  slowGlow: number;
-  fastGlow: number;
   hash: number;
 }
 
@@ -22,24 +20,23 @@ const FADE_HEIGHT = 450;
 const EDGE_BASE_WIDTH = 0.5;
 const EDGE_GLOW_WIDTH = 1.5;
 const DOT_RADIUS = 1.2;
-const DOT_GLOW_RADIUS = 2.2;
 
 const BLUE_R = 37;
 const BLUE_G = 99;
 const BLUE_B = 235;
 
-// Matches devin.ai ScreenPaint dissipation values (adjusted for ~30fps)
-const SLOW_DECAY = 0.975;
-const FAST_DECAY = 0.45;
-
-const MIN_PAINT_RADIUS = 20;
-const MAX_PAINT_RADIUS = 180;
 const MIN_SPEED = 2;
 const MAX_SPEED = 60;
 
 // Angle sweep animation (matches devin.ai angleStrength)
 const SWEEP_SPEED = 0.08;
-const SWEEP_THRESHOLD = 0.72;
+// Slightly lower = longer pulse window so neighboring edges overlap more
+const SWEEP_THRESHOLD = 0.66;
+// Midpoint-based phase keeps nearby edges in sync; hash retains subtle variation
+const SWEEP_SPATIAL_X = 0.0068;
+const SWEEP_SPATIAL_Y = 0.0051;
+/** 0 = pure traveling wave by position, 1 = fully independent per-edge (disconnected) */
+const SWEEP_PHASE_HASH_MIX = 0.38;
 
 function fadeAtY(y: number): number {
   if (y >= FADE_HEIGHT) return 1;
@@ -113,13 +110,10 @@ function generateMesh(width: number, height: number) {
     b,
     mx: (points[a].x + points[b].x) / 2,
     my: (points[a].y + points[b].y) / 2,
-    slowGlow: 0,
-    fastGlow: 0,
     hash: fract(Math.sin(i * 127.1 + 311.7) * 43758.5453),
   }));
 
-  const vertexGlow = new Float32Array(points.length);
-  return { points, edges, vertexGlow };
+  return { points, edges };
 }
 
 function initMesh(
@@ -194,7 +188,6 @@ function initMesh(
 
     const pts = mesh.points;
     const edges = mesh.edges;
-    const vGlow = mesh.vertexGlow;
 
     // --- Cursor speed (like devin's u_moveRatio) ---
     let frameSpeed = 0;
@@ -210,43 +203,6 @@ function initMesh(
       frameSpeed <= MIN_SPEED ? 0 : Math.min(1, (frameSpeed - MIN_SPEED) / (MAX_SPEED - MIN_SPEED));
     const speedTarget = rawSpeed * rawSpeed;
     smoothedSpeed += (speedTarget - smoothedSpeed) * (speedTarget > smoothedSpeed ? 0.25 : 0.035);
-
-    const paintRadius = MIN_PAINT_RADIUS + (MAX_PAINT_RADIUS - MIN_PAINT_RADIUS) * smoothedSpeed;
-    const paintRadiusSq = paintRadius * paintRadius;
-
-    // --- Per-edge: decay + paint + angle sweep ---
-    for (let i = 0; i < edges.length; i++) {
-      const e = edges[i];
-
-      // Dissipation (like devin's weight1Dissipation / weight2Dissipation)
-      e.slowGlow *= SLOW_DECAY;
-      e.fastGlow *= FAST_DECAY;
-
-      // Paint cursor proximity onto both channels
-      if (curX > -9000) {
-        const dx = e.mx - curX;
-        const dy = e.my - curY;
-        const distSq = dx * dx + dy * dy;
-        if (distSq < paintRadiusSq) {
-          const dist = Math.sqrt(distSq);
-          const paintStrength = Math.pow(1 - dist / paintRadius, 1.5) * smoothedSpeed;
-          if (paintStrength > e.slowGlow) e.slowGlow = paintStrength;
-          if (paintStrength > e.fastGlow) e.fastGlow = paintStrength;
-        }
-      }
-
-      if (e.slowGlow < 0.002) e.slowGlow = 0;
-      if (e.fastGlow < 0.002) e.fastGlow = 0;
-    }
-
-    // --- Vertex glow from adjacent edges ---
-    vGlow.fill(0);
-    for (const e of edges) {
-      const g = (e.slowGlow + e.fastGlow) * 0.5;
-      if (g < 0.01) continue;
-      if (g > vGlow[e.a]) vGlow[e.a] = g;
-      if (g > vGlow[e.b]) vGlow[e.b] = g;
-    }
 
     // ========== RENDER ==========
     ctx.clearRect(0, 0, w, h);
@@ -276,15 +232,15 @@ function initMesh(
       }
     }
 
-    // --- Glow edges (blue, matching devin's color formula) ---
+    // --- Glow edges (blue): global angle sweep when moving, no cursor-local paint ---
     for (const e of edges) {
-      const weight = (e.slowGlow + e.fastGlow) * 0.5;
-
-      // Angle sweep animation (devin's angleStrength)
-      const cycle = fract(e.hash - time * SWEEP_SPEED);
+      const spatialPhase = fract(e.mx * SWEEP_SPATIAL_X + e.my * SWEEP_SPATIAL_Y);
+      const blendedPhase =
+        spatialPhase * (1 - SWEEP_PHASE_HASH_MIX) + e.hash * SWEEP_PHASE_HASH_MIX;
+      const cycle = fract(blendedPhase - time * SWEEP_SPEED);
       const angleStrength = smoothstep(SWEEP_THRESHOLD, 1, cycle) * smoothedSpeed;
 
-      const totalGlow = weight + angleStrength * 0.35;
+      const totalGlow = angleStrength * 0.35;
       if (totalGlow < 0.015) continue;
 
       const fade = fadeAtY(e.my);
@@ -299,22 +255,14 @@ function initMesh(
       ctx.stroke();
     }
 
-    // --- Vertex dots (with Y-fade and glow) ---
+    // --- Vertex dots (Y-fade) ---
     for (let i = 0; i < pts.length; i++) {
       const fade = fadeAtY(pts[i].y);
       if (fade < 0.01) continue;
-      const g = vGlow[i];
-      if (g > 0.03) {
-        ctx.fillStyle = `rgba(${BLUE_R},${BLUE_G},${BLUE_B},${g * 0.5 * fade})`;
-        ctx.beginPath();
-        ctx.arc(pts[i].x, pts[i].y, DOT_GLOW_RADIUS, 0, Math.PI * 2);
-        ctx.fill();
-      } else {
-        ctx.fillStyle = `rgba(${dotRGB},${dotAlpha * fade})`;
-        ctx.beginPath();
-        ctx.arc(pts[i].x, pts[i].y, DOT_RADIUS, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      ctx.fillStyle = `rgba(${dotRGB},${dotAlpha * fade})`;
+      ctx.beginPath();
+      ctx.arc(pts[i].x, pts[i].y, DOT_RADIUS, 0, Math.PI * 2);
+      ctx.fill();
     }
   }
 
