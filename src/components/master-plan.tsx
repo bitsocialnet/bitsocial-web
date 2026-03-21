@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useRef, useState } from "react";
 
 const phases = [
   {
@@ -24,18 +24,23 @@ const phases = [
     phase: "Phase 4",
     title: "Launch Bitsocial Network",
     description:
-      "In order to decentralize all social media, Bitsocial will need killer features: unstoppable financial structures, decentralized autonomous organizations (DAOs) powering bitsocial communities, decentralized Bitsocial domains (.bso), middleware authentication layers. All of this would be powered by Bitsocial Network, an Ethereum L2 appchain solution for Bitsocial apps participating in the network.",
+      "In order to decentralize all social media, Bitsocial will need killer features and strong network effects, unstoppable financial structures, decentralized Bitsocial domains (.bso), middleware authentication layers. All of this would be powered by Bitsocial Network, a decentralized appchain solution for Bitsocial apps.",
   },
   {
     phase: "Phase 5",
     title: "Decentralize all social media",
     description:
-      "As the protocol matures, profile nodes will let every user be reachable P2P and produce content for apps rivaling Facebook, Instagram, TikTok, X, and YouTube. Profile nodes are ultra-cheap Bitsocial nodes, provisioned automatically via RPCs on first sign-up. Bitsocial Network (L2) enables content monetization without banks seizing funds or admins banning users. Algorithms powering feeds are provided by competing RPCs, and users choose, combine, self-host, or opt out entirely. Social media finally finds its equilibrium: a fully decentralized, peer-to-peer network with no owners; Bitsocial.",
+      "As the protocol matures, profile nodes will let every user be reachable P2P and produce content for apps rivaling Facebook, Instagram, TikTok, X, and YouTube. Profile nodes will be ultra-cheap Bitsocial nodes, provisioned automatically via RPCs on first sign-up. Bitsocial Network will enable content monetization without banks seizing funds or admins banning users. Algorithms powering feeds will be provided by competing Bitsocial RPCs, and users choose, combine, self-host, or opt out entirely. Social media finally finds its equilibrium: a fully decentralized, peer-to-peer network with no owners; Bitsocial.",
   },
 ];
 
 export default function MasterPlan() {
   const [showGif, setShowGif] = useState(false);
+  const timelineRef = useRef<HTMLDivElement | null>(null);
+  const showTimeline = useInView(timelineRef, {
+    once: true,
+    amount: 0.1,
+  });
 
   return (
     <section className="py-24 px-6">
@@ -50,17 +55,42 @@ export default function MasterPlan() {
           Master Plan
         </motion.h2>
 
-        <div className="relative">
-          <div className="relative">
-            {/* Timeline line - animates in after phase cards */}
+        <div ref={timelineRef} className="relative w-full">
+          <div className="relative w-full">
+            {/* One centered timeline element so the solid and dashed tail stay perfectly aligned and animate together. */}
             <motion.div
               initial={{ scaleY: 0, opacity: 0 }}
-              whileInView={{ scaleY: 1, opacity: 1 }}
-              viewport={{ once: true }}
+              animate={showTimeline ? { scaleY: 1, opacity: 1 } : undefined}
               transition={{ delay: 0.5, duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
               style={{ transformOrigin: "top" }}
-              className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-blue-core via-blue-glow to-blue-core"
-            />
+              className="pointer-events-none absolute left-1/2 top-0 z-0 flex h-full w-0.5 -translate-x-1/2 flex-col"
+              aria-hidden
+            >
+              <div className="min-h-0 flex-1 bg-gradient-to-b from-blue-core via-blue-glow to-blue-core" />
+              <div className="h-16 shrink-0 bg-blue-glow" />
+              <svg width="2" height="64" className="block shrink-0 text-blue-glow">
+                <line
+                  x1="1"
+                  y1="0"
+                  x2="1"
+                  y2="64"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeDasharray="6 4"
+                />
+              </svg>
+              <svg width="2" height="56" className="block shrink-0 text-blue-glow">
+                <line
+                  x1="1"
+                  y1="0"
+                  x2="1"
+                  y2="56"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeDasharray="2 4"
+                />
+              </svg>
+            </motion.div>
 
             <div className="space-y-16 md:space-y-20">
               {phases.map((item, index) => (
@@ -101,33 +131,9 @@ export default function MasterPlan() {
                 </motion.div>
               ))}
             </div>
-          </div>
 
-          {/* Dashed continuation line - visible on both mobile and desktop */}
-          <div className="flex flex-col items-center">
-            <div className="w-0.5 h-16 bg-blue-glow" />
-            <svg width="2" height="64" className="text-blue-glow">
-              <line
-                x1="1"
-                y1="0"
-                x2="1"
-                y2="64"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeDasharray="6 4"
-              />
-            </svg>
-            <svg width="2" height="56" className="text-blue-glow">
-              <line
-                x1="1"
-                y1="0"
-                x2="1"
-                y2="56"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeDasharray="2 4"
-              />
-            </svg>
+            {/* Reserve space for the solid and dashed tail that the absolute timeline renders. */}
+            <div aria-hidden className="h-[184px]" />
           </div>
 
           {/* End logo */}
