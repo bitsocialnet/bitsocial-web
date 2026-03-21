@@ -54,6 +54,11 @@ yarn typecheck # Type check with tsgo
 
 The dev server runs at http://bitsocial.localhost:1355 via [Portless](https://port1355.dev/), which gives each Bitsocial project a stable, named URL instead of a random port. To bypass Portless: `PORTLESS=0 yarn start`
 
+For device testing without Portless:
+
+- `yarn start:android-usb` starts Vite on localhost and configures `adb reverse`, so a USB-connected Android device can open `http://localhost:<port>`.
+- `yarn start:ios-sim` starts Vite on localhost and opens the site in the iOS Simulator on this Mac. It requires Xcode's Simulator tooling (`simctl`).
+
 ---
 
 ## Contributing
@@ -65,6 +70,8 @@ When using an AI assistant to make changes, it is expected to follow the convent
 ### Making Changes
 
 1. Run `yarn start` (opens at http://bitsocial.localhost:1355)
+   Android over USB: run `yarn start:android-usb`
+   iOS Simulator on this Mac: run `yarn start:ios-sim`
 2. Make your changes (manually or via an AI agent)
 3. Test on desktop and mobile viewports
 4. Verify performance and animations

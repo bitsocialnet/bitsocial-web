@@ -8,6 +8,8 @@
   "type": "module",
   "scripts": {
     "start": "portless bitsocial vite",
+    "start:android-usb": "node scripts/start-android-usb.mjs",
+    "start:ios-sim": "node scripts/start-ios-sim.mjs",
     "build": "tsgo --noEmit --project tsconfig.json && vite build",
     "lint": "oxlint --config oxlint.json --react-plugin",
     "lint:fix": "oxlint --config oxlint.json --fix --react-plugin",
