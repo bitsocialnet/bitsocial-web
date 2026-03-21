@@ -79,9 +79,31 @@ export function GraphicsModeProvider({ children }: { children: React.ReactNode }
   }, []);
 
   useEffect(() => {
-    if (typeof document === "undefined") return;
-    document.documentElement.dataset.reducedMotion = graphicsMode === "fallback" ? "true" : "false";
-  }, [graphicsMode]);
+    if (typeof document === "undefined" || typeof window === "undefined") return;
+
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateReducedMotion = () => {
+      document.documentElement.dataset.reducedMotion = reducedMotionQuery.matches
+        ? "true"
+        : "false";
+    };
+
+    updateReducedMotion();
+
+    if (reducedMotionQuery.addEventListener) {
+      reducedMotionQuery.addEventListener("change", updateReducedMotion);
+    } else {
+      reducedMotionQuery.addListener(updateReducedMotion);
+    }
+
+    return () => {
+      if (reducedMotionQuery.removeEventListener) {
+        reducedMotionQuery.removeEventListener("change", updateReducedMotion);
+      } else {
+        reducedMotionQuery.removeListener(updateReducedMotion);
+      }
+    };
+  }, []);
 
   return (
     <GraphicsModeContext.Provider value={graphicsMode}>{children}</GraphicsModeContext.Provider>

@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./theme-toggle";
 import HamburgerButton from "./hamburger-button";
 import LanguageSelector from "./language-selector";
@@ -67,17 +68,6 @@ export default function Topbar() {
   const { t } = useTranslation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
-  const [menuHeight, setMenuHeight] = useState(0);
-  const barRef = useRef<HTMLDivElement>(null);
-  const [pillRadius, setPillRadius] = useState(24);
-
-  useEffect(() => {
-    if (barRef.current) setPillRadius(barRef.current.offsetHeight / 2);
-  }, []);
-
-  useEffect(() => {
-    if (isMobileMenuOpen) setIsMenuExpanded(true);
-  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     const mql = window.matchMedia("(min-width: 768px)");
@@ -95,18 +85,33 @@ export default function Topbar() {
     setIsMobileMenuOpen(false);
   };
 
+  const handleMenuToggle = () => {
+    setIsMobileMenuOpen((isOpen) => {
+      const nextIsOpen = !isOpen;
+      if (nextIsOpen) {
+        setIsMenuExpanded(true);
+      }
+      return nextIsOpen;
+    });
+  };
+
   return (
-    <>
-      <motion.nav
-        initial={{ y: -100, borderRadius: 9999 }}
-        animate={{ y: 0, borderRadius: isMenuExpanded ? pillRadius : 9999 }}
-        transition={{
-          y: { duration: 0.5 },
-          borderRadius: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
-        }}
-        className="fixed top-3 left-4 right-4 z-50 mx-auto max-w-7xl topbar-frosted"
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1],
+      }}
+      className="fixed top-3 left-4 right-4 z-50 mx-auto max-w-7xl"
+    >
+      <div
+        className={cn(
+          "relative overflow-hidden topbar-frosted",
+          isMenuExpanded ? "rounded-[2rem]" : "rounded-full",
+        )}
       >
-        <div ref={barRef} className="px-5 md:px-7 py-2 flex items-center justify-between relative">
+        <div className="px-5 md:px-7 py-2 flex items-center justify-between relative">
           <Link to="/" className="flex items-center gap-1 group transition-colors">
             <img
               src="/logo-small.png"
@@ -153,19 +158,10 @@ export default function Topbar() {
 
           {/* Mobile Navigation */}
           <div className="md:hidden">
-            <HamburgerButton
-              isOpen={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
+            <HamburgerButton isOpen={isMobileMenuOpen} onClick={handleMenuToggle} />
           </div>
         </div>
-
-        {/* Mobile Menu - positioned absolutely below topbar */}
-        <MobileMenu
-          isOpen={isMobileMenuOpen}
-          onHeightChange={setMenuHeight}
-          onExitComplete={() => setIsMenuExpanded(false)}
-        >
+        <MobileMenu isOpen={isMobileMenuOpen} onExitComplete={() => setIsMenuExpanded(false)}>
           {/* Nav links */}
           <div className="flex flex-col gap-1">
             <NavLink to="/apps" onClick={handleNavClick} noUnderline>
@@ -197,17 +193,7 @@ export default function Topbar() {
             </div>
           </div>
         </MobileMenu>
-      </motion.nav>
-      {/* Spacer to push content down when menu is open */}
-      <motion.div
-        animate={{ height: menuHeight }}
-        transition={{
-          duration: 0.3,
-          ease: [0.4, 0, 0.2, 1],
-        }}
-        className="md:hidden"
-        aria-hidden="true"
-      />
-    </>
+      </div>
+    </motion.nav>
   );
 }

@@ -8,8 +8,6 @@ export function cn(...inputs: ClassValue[]) {
 const highlightTimeouts = new WeakMap<Element, ReturnType<typeof setTimeout>>();
 const TEMPORARY_HIGHLIGHT_DURATION_MS = 5000;
 const HERO_TAGLINE_ID = "hero-tagline";
-const TAGLINE_HIGHLIGHT_COLOR = "#2563eb";
-const TAGLINE_HIGHLIGHT_FILTER = "drop-shadow(0 0 12px rgba(37, 99, 235, 0.8))";
 
 function getScrollBehavior(): ScrollBehavior {
   return document.documentElement.dataset.reducedMotion === "true" ? "auto" : "smooth";
@@ -36,26 +34,6 @@ function applyTemporaryHighlight(
   highlightTimeouts.set(element, timeoutId);
 }
 
-function applyTemporaryTextHighlight(
-  element: HTMLElement,
-  durationMs = TEMPORARY_HIGHLIGHT_DURATION_MS,
-) {
-  element.style.color = TAGLINE_HIGHLIGHT_COLOR;
-  element.style.filter = TAGLINE_HIGHLIGHT_FILTER;
-
-  const existingTimeout = highlightTimeouts.get(element);
-  if (existingTimeout) {
-    clearTimeout(existingTimeout);
-  }
-
-  const timeoutId = setTimeout(() => {
-    element.style.color = "";
-    element.style.filter = "";
-  }, durationMs);
-
-  highlightTimeouts.set(element, timeoutId);
-}
-
 /** Stops in-flight card glow animations and tagline link highlights so a new target can take over. */
 function clearInteractiveFeatureHighlights() {
   document.querySelectorAll(".highlight-glow").forEach((node) => {
@@ -71,8 +49,7 @@ function clearInteractiveFeatureHighlights() {
     const tid = highlightTimeouts.get(node);
     if (tid != null) clearTimeout(tid);
     highlightTimeouts.delete(node);
-    node.style.color = "";
-    node.style.filter = "";
+    node.classList.remove("highlight-text-glow");
   });
 }
 
@@ -102,6 +79,6 @@ export function triggerTaglineGlow(hash: string) {
   tagline?.scrollIntoView({ behavior: getScrollBehavior(), block: "center" });
 
   if (link) {
-    applyTemporaryTextHighlight(link);
+    applyTemporaryHighlight(link, "highlight-text-glow");
   }
 }
