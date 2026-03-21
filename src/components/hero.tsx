@@ -99,12 +99,10 @@ function useTaglineIntro() {
 }
 
 export default function Hero() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const graphicsMode = useGraphicsMode();
   const showGraphics = graphicsMode === "full";
   const highlightedIndex = useTaglineIntro();
-  const activeLanguage = i18n.resolvedLanguage ?? i18n.language ?? i18n.languages?.[0] ?? "";
-  const isEnglishTagline = activeLanguage.toLowerCase().startsWith("en");
 
   const staticFallback = (
     <div className="absolute bottom-8 md:bottom-12 left-0 right-0 w-full h-[60vh] md:h-[48vh] pointer-events-none overflow-visible md:overflow-hidden overscroll-none">
@@ -132,43 +130,17 @@ export default function Hero() {
           className="text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-display font-normal"
         >
           <HighlightIndexCtx.Provider value={highlightedIndex}>
-            {isEnglishTagline ? (
-              <>
-                <TaglineLink hash="open-source" index={0}>
-                  Bitsocial is an open-source
-                </TaglineLink>{" "}
-                <TaglineLink hash="peer-to-peer" index={1}>
-                  peer-to-peer network
-                </TaglineLink>{" "}
-                <TaglineLink hash="social-apps" index={2}>
-                  for social apps
-                </TaglineLink>
-                ,{" "}
-                <TaglineLink hash="no-servers" index={3}>
-                  with no servers
-                </TaglineLink>
-                ,{" "}
-                <TaglineLink hash="no-global-bans" index={4}>
-                  no global bans
-                </TaglineLink>
-                ,{" "}
-                <TaglineLink hash="cryptographic-property" index={5}>
-                  where users and communities are cryptographic property.
-                </TaglineLink>
-              </>
-            ) : (
-              <Trans
-                i18nKey="hero.tagline"
-                components={{
-                  openSource: <TaglineLink hash="open-source" index={0} />,
-                  p2p: <TaglineLink hash="peer-to-peer" index={1} />,
-                  socialApps: <TaglineLink hash="social-apps" index={2} />,
-                  noServers: <TaglineLink hash="no-servers" index={3} />,
-                  noBans: <TaglineLink hash="no-global-bans" index={4} />,
-                  crypto: <TaglineLink hash="cryptographic-property" index={5} />,
-                }}
-              />
-            )}
+            <Trans
+              i18nKey="hero.tagline"
+              components={{
+                openSource: <TaglineLink hash="open-source" index={0} />,
+                p2p: <TaglineLink hash="peer-to-peer" index={1} />,
+                socialApps: <TaglineLink hash="social-apps" index={2} />,
+                noServers: <TaglineLink hash="no-servers" index={3} />,
+                noBans: <TaglineLink hash="no-global-bans" index={4} />,
+                crypto: <TaglineLink hash="cryptographic-property" index={5} />,
+              }}
+            />
           </HighlightIndexCtx.Provider>
         </p>
       </motion.div>
