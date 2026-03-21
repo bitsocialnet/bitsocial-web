@@ -17,7 +17,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="footer-glass pt-14 px-6 mt-12"
+      className="footer-glass px-6 pt-6 mt-8 md:pt-14 md:mt-12"
       style={{ paddingBottom: "calc(3.5rem + env(safe-area-inset-bottom, 0px))" }}
     >
       <div className="max-w-7xl mx-auto">
