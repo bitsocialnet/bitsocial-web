@@ -136,9 +136,16 @@ export default function MasterPlan() {
             <div aria-hidden className="h-[184px]" />
           </div>
 
-          {/* End logo */}
+          {/* End logo — fades in when the vertical line finishes drawing (matches timeline delay + duration). */}
           <div className="flex justify-center mt-2">
             <motion.button
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={showTimeline ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
+              transition={{
+                delay: showTimeline ? 0.5 + 1.5 : 0,
+                duration: 0.4,
+                ease: [0.4, 0, 0.2, 1],
+              }}
               onClick={() => setShowGif(true)}
               className="relative z-10 flex-shrink-0 cursor-pointer transition-all duration-300"
               whileHover={{ scale: 1.1 }}
