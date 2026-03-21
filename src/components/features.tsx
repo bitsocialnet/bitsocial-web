@@ -65,20 +65,29 @@ const features: Feature[] = [
   },
 ];
 
+/** Matches original feature-card framing: excerpt from the hero line with ellipses and commas. */
 function featureTitleFromTaglineSegments(t: (key: string) => string, id: FeatureId): string {
+  const e = "...";
+  let segment: string;
   switch (id) {
     case "open-source":
-      return t("hero.taglineSegments.openSource");
+      segment = t("hero.taglineSegments.openSource");
+      return `${segment}${e}`;
     case "peer-to-peer":
-      return t("hero.taglineSegments.p2p");
+      segment = t("hero.taglineSegments.p2p");
+      return `${e}${segment}${e}`;
     case "social-apps":
-      return t("hero.taglineSegments.socialApps");
+      segment = t("hero.taglineSegments.socialApps");
+      return `${e}${segment},${e}`;
     case "no-servers":
-      return t("hero.taglineSegments.noServers");
+      segment = t("hero.taglineSegments.noServers");
+      return `${e}${segment},${e}`;
     case "no-global-bans":
-      return t("hero.taglineSegments.noBans");
+      segment = t("hero.taglineSegments.noBans");
+      return `${e}${segment},${e}`;
     case "cryptographic-property":
-      return t("hero.taglineSegments.crypto");
+      segment = t("hero.taglineSegments.crypto");
+      return `${e}${segment}`;
   }
 }
 
