@@ -75,14 +75,14 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
   };
 
   useEffect(() => {
-    if (!open) return;
+    if (!open || mobile) return;
 
     const focusTimer = window.setTimeout(() => {
       inputRef.current?.focus();
     }, 0);
 
     return () => window.clearTimeout(focusTimer);
-  }, [open]);
+  }, [open, mobile]);
 
   useEffect(() => {
     if (!open || effectiveActiveIndex < 0) return;
