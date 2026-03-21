@@ -131,8 +131,13 @@ export default function Topbar() {
               <NavLink to="/status" onClick={handleNavClick} noUnderline>
                 {t("nav.status")}
               </NavLink>
-              <NavLink href="https://github.com/bitsocialnet" onClick={handleNavClick} noUnderline>
-                GitHub
+              <NavLink
+                href="https://github.com/bitsocialnet"
+                onClick={handleNavClick}
+                noUnderline
+                className="capitalize"
+              >
+                {t("nav.sourceCode")}
               </NavLink>
             </div>
 
@@ -172,8 +177,13 @@ export default function Topbar() {
             <NavLink to="/status" onClick={handleNavClick} noUnderline>
               {t("nav.status")}
             </NavLink>
-            <NavLink href="https://github.com/bitsocialnet" onClick={handleNavClick} noUnderline>
-              GitHub
+            <NavLink
+              href="https://github.com/bitsocialnet"
+              onClick={handleNavClick}
+              noUnderline
+              className="capitalize"
+            >
+              {t("nav.sourceCode")}
             </NavLink>
           </div>
 
