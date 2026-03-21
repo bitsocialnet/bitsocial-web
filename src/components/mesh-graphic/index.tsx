@@ -16,7 +16,11 @@ type MeshThemeRefs = {
 export default function MeshGraphic() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return false;
+    const hardwareConcurrency = navigator.hardwareConcurrency || 4;
+    return window.innerWidth < 768 || hardwareConcurrency < 4;
+  });
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const { resolvedTheme } = useTheme();
   const themeRefs = useRef<MeshThemeRefs | null>(null);
@@ -123,6 +127,7 @@ export default function MeshGraphic() {
     // Node parameters - smaller and fewer on mobile
     const nodeCount = isMobile ? 80 : 200;
     const connectionDistance = isMobile ? 6 : 5; // Slightly larger on mobile to maintain connectivity with fewer nodes
+    const connectionDistanceSq = connectionDistance * connectionDistance;
     const nodeSize = isMobile ? 0.03 : 0.05;
 
     // Create nodes evenly distributed across entire U-shape area
@@ -186,7 +191,8 @@ export default function MeshGraphic() {
       pointPositions[i * 3 + 2] = nodes[i].position.z;
     }
 
-    pointsGeometry.setAttribute("position", new THREE.BufferAttribute(pointPositions, 3));
+    const pointPositionAttribute = new THREE.BufferAttribute(pointPositions, 3);
+    pointsGeometry.setAttribute("position", pointPositionAttribute);
 
     // Custom shader for hollow circle nodes with center dot
     const pointsMaterial = new THREE.ShaderMaterial({
@@ -242,8 +248,10 @@ export default function MeshGraphic() {
     const lineAlphas = new Float32Array(maxConnections * 2);
 
     const linesGeometry = new THREE.BufferGeometry();
-    linesGeometry.setAttribute("position", new THREE.BufferAttribute(linePositions, 3));
-    linesGeometry.setAttribute("alpha", new THREE.BufferAttribute(lineAlphas, 1));
+    const linePositionAttribute = new THREE.BufferAttribute(linePositions, 3);
+    const lineAlphaAttribute = new THREE.BufferAttribute(lineAlphas, 1);
+    linesGeometry.setAttribute("position", linePositionAttribute);
+    linesGeometry.setAttribute("alpha", lineAlphaAttribute);
 
     // Custom shader for fading lines
     const linesMaterial = new THREE.ShaderMaterial({
@@ -279,6 +287,9 @@ export default function MeshGraphic() {
     // Animation
     let animationId: number;
     let time = 0;
+    let pageVisible = document.visibilityState === "visible";
+    let inViewport = true;
+    let shouldAnimate = pageVisible;
 
     const updateConnections = () => {
       let lineIndex = 0;
@@ -286,21 +297,26 @@ export default function MeshGraphic() {
       const alphas = linesGeometry.attributes.alpha.array as Float32Array;
 
       for (let i = 0; i < nodeCount; i++) {
+        const nodeA = nodes[i];
         for (let j = i + 1; j < nodeCount; j++) {
-          const dist = nodes[i].position.distanceTo(nodes[j].position);
+          const nodeB = nodes[j];
+          const dx = nodeA.position.x - nodeB.position.x;
+          const dy = nodeA.position.y - nodeB.position.y;
+          const dz = nodeA.position.z - nodeB.position.z;
+          const distSq = dx * dx + dy * dy + dz * dz;
 
-          if (dist < connectionDistance && lineIndex < maxConnections) {
+          if (distSq < connectionDistanceSq && lineIndex < maxConnections) {
             const idx = lineIndex * 6;
             const alphaIdx = lineIndex * 2;
 
-            positions[idx] = nodes[i].position.x;
-            positions[idx + 1] = nodes[i].position.y;
-            positions[idx + 2] = nodes[i].position.z;
-            positions[idx + 3] = nodes[j].position.x;
-            positions[idx + 4] = nodes[j].position.y;
-            positions[idx + 5] = nodes[j].position.z;
+            positions[idx] = nodeA.position.x;
+            positions[idx + 1] = nodeA.position.y;
+            positions[idx + 2] = nodeA.position.z;
+            positions[idx + 3] = nodeB.position.x;
+            positions[idx + 4] = nodeB.position.y;
+            positions[idx + 5] = nodeB.position.z;
 
-            const alpha = 1 - dist / connectionDistance;
+            const alpha = 1 - Math.sqrt(distSq) / connectionDistance;
             alphas[alphaIdx] = alpha;
             alphas[alphaIdx + 1] = alpha;
 
@@ -327,8 +343,31 @@ export default function MeshGraphic() {
       linesGeometry.attributes.alpha.needsUpdate = true;
     };
 
+    const syncAnimationState = () => {
+      const nextShouldAnimate = pageVisible && inViewport;
+      if (shouldAnimate === nextShouldAnimate) return;
+
+      shouldAnimate = nextShouldAnimate;
+    };
+
+    const handleVisibilityChange = () => {
+      pageVisible = document.visibilityState === "visible";
+      syncAnimationState();
+    };
+
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        inViewport = entry?.isIntersecting ?? false;
+        syncAnimationState();
+      },
+      { threshold: 0 },
+    );
+    intersectionObserver.observe(container);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     const animate = () => {
       animationId = requestAnimationFrame(animate);
+      if (!shouldAnimate) return;
       time += 0.005;
 
       // Update node positions with subtle floating motion
@@ -368,6 +407,7 @@ export default function MeshGraphic() {
 
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(width, height);
     };
 
@@ -376,6 +416,8 @@ export default function MeshGraphic() {
     return () => {
       themeRefs.current = null;
       cancelAnimationFrame(animationId);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      intersectionObserver.disconnect();
       window.removeEventListener("resize", handleResize);
 
       pointsGeometry.dispose();

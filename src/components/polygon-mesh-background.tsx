@@ -41,6 +41,7 @@ const SWEEP_SPATIAL_X = 0.0068;
 const SWEEP_SPATIAL_Y = 0.0051;
 /** 0 = pure traveling wave by position, 1 = fully independent per-edge (disconnected) */
 const SWEEP_PHASE_HASH_MIX = 0.38;
+const VIEWPORT_OVERSCAN = 240;
 
 function fadeAtY(y: number): number {
   if (y >= FADE_HEIGHT) return 1;
@@ -136,8 +137,8 @@ function initMesh(
 
   let w = container.clientWidth;
   let h = container.clientHeight;
-  const dpr = Math.min(window.devicePixelRatio, 1.5);
   const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  const dpr = Math.min(window.devicePixelRatio, 1.5);
   const FRAME_BUDGET = isTouchDevice ? 50 : 33;
 
   function setCanvasSize() {
@@ -150,6 +151,13 @@ function initMesh(
   setCanvasSize();
 
   let mesh = generateMesh(w, h);
+  let canvasRect = canvas.getBoundingClientRect();
+  let viewportTop = 0;
+  let viewportBottom = h;
+  let visiblePointIndices: number[] = [];
+  let visibleBaseEdgeIndices: number[] = [];
+  let visibleFadedEdgeIndices: number[] = [];
+  let visibleGlowEdgeIndices: number[] = [];
 
   let curX = -9999;
   let curY = -9999;
@@ -157,22 +165,78 @@ function initMesh(
   let prevY = -9999;
   let smoothedSpeed = 0;
   let time = 0;
-  let visible = true;
+  let inViewport = true;
+  let pageVisible = document.visibilityState === "visible";
   let scrollInjectedSpeed = 0;
   let lastScrollY = window.scrollY;
 
+  function updateCanvasRect() {
+    canvasRect = canvas.getBoundingClientRect();
+  }
+
+  function updateViewportWindow() {
+    const nextTop = Math.max(0, -canvasRect.top - VIEWPORT_OVERSCAN);
+    viewportTop = nextTop;
+    viewportBottom = Math.min(h, nextTop + window.innerHeight + VIEWPORT_OVERSCAN * 2);
+  }
+
+  function rebuildVisibleSlices() {
+    const pts = mesh.points;
+    const edges = mesh.edges;
+
+    const nextPointIndices: number[] = [];
+    for (let i = 0; i < pts.length; i++) {
+      const y = pts[i].y;
+      if (y >= viewportTop && y <= viewportBottom) {
+        nextPointIndices.push(i);
+      }
+    }
+
+    const nextBaseEdgeIndices: number[] = [];
+    const nextFadedEdgeIndices: number[] = [];
+    const nextGlowEdgeIndices: number[] = [];
+
+    for (let i = 0; i < edges.length; i++) {
+      const edge = edges[i];
+      const aY = pts[edge.a].y;
+      const bY = pts[edge.b].y;
+      const minY = Math.min(aY, bY);
+      const maxY = Math.max(aY, bY);
+
+      if (maxY < viewportTop || minY > viewportBottom) continue;
+
+      nextGlowEdgeIndices.push(i);
+      if (aY >= FADE_HEIGHT && bY >= FADE_HEIGHT) {
+        nextBaseEdgeIndices.push(i);
+      } else {
+        nextFadedEdgeIndices.push(i);
+      }
+    }
+
+    visiblePointIndices = nextPointIndices;
+    visibleBaseEdgeIndices = nextBaseEdgeIndices;
+    visibleFadedEdgeIndices = nextFadedEdgeIndices;
+    visibleGlowEdgeIndices = nextGlowEdgeIndices;
+  }
+
+  function syncViewportState() {
+    updateCanvasRect();
+    updateViewportWindow();
+    rebuildVisibleSlices();
+  }
+
+  syncViewportState();
+
   function onMove(e: MouseEvent) {
-    const r = canvas.getBoundingClientRect();
-    curX = e.clientX - r.left;
-    curY = e.clientY - r.top;
+    curX = e.clientX - canvasRect.left;
+    curY = e.clientY - canvasRect.top;
   }
 
   function onTouchMove(e: TouchEvent) {
     if (e.touches.length === 0) return;
     const touch = e.touches[0];
-    const r = canvas.getBoundingClientRect();
-    curX = touch.clientX - r.left;
-    curY = touch.clientY - r.top;
+    curX = touch.clientX - canvasRect.left;
+    curY = touch.clientY - canvasRect.top;
   }
 
   function onPointerLeave() {
@@ -186,6 +250,7 @@ function initMesh(
     const dy = Math.abs(window.scrollY - lastScrollY);
     lastScrollY = window.scrollY;
     scrollInjectedSpeed = Math.min(1, dy / 12);
+    syncViewportState();
   }
 
   window.addEventListener("mousemove", onMove, { passive: true });
@@ -197,18 +262,31 @@ function initMesh(
 
   const io = new IntersectionObserver(
     ([entry]) => {
-      visible = entry.isIntersecting;
+      inViewport = entry.isIntersecting;
+      if (inViewport) {
+        lt = 0;
+        syncViewportState();
+      }
     },
     { threshold: 0 },
   );
   io.observe(container);
+
+  const handleVisibilityChange = () => {
+    pageVisible = document.visibilityState === "visible";
+    if (pageVisible) {
+      lt = 0;
+      syncViewportState();
+    }
+  };
+  document.addEventListener("visibilitychange", handleVisibilityChange);
 
   let af: number;
   let lt = 0;
 
   function frame(now: number) {
     af = requestAnimationFrame(frame);
-    if (!visible) return;
+    if (!inViewport || !pageVisible) return;
     if (now - lt < FRAME_BUDGET) return;
     const dt = (now - lt) / 1000;
     lt = now;
@@ -234,60 +312,62 @@ function initMesh(
     smoothedSpeed += (speedTarget - smoothedSpeed) * (speedTarget > smoothedSpeed ? 0.25 : 0.035);
 
     // ========== RENDER ==========
-    ctx.clearRect(0, 0, w, h);
+    const clearTop = Math.max(0, viewportTop - 2);
+    const clearHeight = Math.max(0, viewportBottom - clearTop + 2);
+    ctx.clearRect(0, clearTop, w, clearHeight);
 
     ctx.strokeStyle = `rgba(${edgeRGB},${edgeAlpha})`;
     ctx.lineWidth = EDGE_BASE_WIDTH;
     ctx.beginPath();
-    for (const e of edges) {
-      if (pts[e.a].y >= FADE_HEIGHT && pts[e.b].y >= FADE_HEIGHT) {
-        ctx.moveTo(pts[e.a].x, pts[e.a].y);
-        ctx.lineTo(pts[e.b].x, pts[e.b].y);
-      }
+    for (const edgeIndex of visibleBaseEdgeIndices) {
+      const edge = edges[edgeIndex];
+      ctx.moveTo(pts[edge.a].x, pts[edge.a].y);
+      ctx.lineTo(pts[edge.b].x, pts[edge.b].y);
     }
     ctx.stroke();
 
-    for (const e of edges) {
-      if (pts[e.a].y < FADE_HEIGHT || pts[e.b].y < FADE_HEIGHT) {
-        const fade = (fadeAtY(pts[e.a].y) + fadeAtY(pts[e.b].y)) * 0.5;
-        if (fade < 0.01) continue;
-        ctx.strokeStyle = `rgba(${edgeRGB},${edgeAlpha * fade})`;
-        ctx.lineWidth = EDGE_BASE_WIDTH;
-        ctx.beginPath();
-        ctx.moveTo(pts[e.a].x, pts[e.a].y);
-        ctx.lineTo(pts[e.b].x, pts[e.b].y);
-        ctx.stroke();
-      }
+    for (const edgeIndex of visibleFadedEdgeIndices) {
+      const edge = edges[edgeIndex];
+      const fade = (fadeAtY(pts[edge.a].y) + fadeAtY(pts[edge.b].y)) * 0.5;
+      if (fade < 0.01) continue;
+      ctx.strokeStyle = `rgba(${edgeRGB},${edgeAlpha * fade})`;
+      ctx.lineWidth = EDGE_BASE_WIDTH;
+      ctx.beginPath();
+      ctx.moveTo(pts[edge.a].x, pts[edge.a].y);
+      ctx.lineTo(pts[edge.b].x, pts[edge.b].y);
+      ctx.stroke();
     }
 
-    for (const e of edges) {
-      const spatialPhase = fract(e.mx * SWEEP_SPATIAL_X + e.my * SWEEP_SPATIAL_Y);
+    for (const edgeIndex of visibleGlowEdgeIndices) {
+      const edge = edges[edgeIndex];
+      const spatialPhase = fract(edge.mx * SWEEP_SPATIAL_X + edge.my * SWEEP_SPATIAL_Y);
       const blendedPhase =
-        spatialPhase * (1 - SWEEP_PHASE_HASH_MIX) + e.hash * SWEEP_PHASE_HASH_MIX;
+        spatialPhase * (1 - SWEEP_PHASE_HASH_MIX) + edge.hash * SWEEP_PHASE_HASH_MIX;
       const cycle = fract(blendedPhase - time * SWEEP_SPEED);
       const angleStrength = smoothstep(SWEEP_THRESHOLD, 1, cycle) * smoothedSpeed;
 
       const totalGlow = angleStrength * 0.35;
       if (totalGlow < 0.015) continue;
 
-      const fade = fadeAtY(e.my);
+      const fade = fadeAtY(edge.my);
       if (fade < 0.01) continue;
 
       const alpha = Math.min(totalGlow * 0.55, 0.6) * fade * (isDark ? 1.12 : 1);
       ctx.strokeStyle = `rgba(${glowR},${glowG},${glowB},${alpha})`;
       ctx.lineWidth = EDGE_GLOW_WIDTH;
       ctx.beginPath();
-      ctx.moveTo(pts[e.a].x, pts[e.a].y);
-      ctx.lineTo(pts[e.b].x, pts[e.b].y);
+      ctx.moveTo(pts[edge.a].x, pts[edge.a].y);
+      ctx.lineTo(pts[edge.b].x, pts[edge.b].y);
       ctx.stroke();
     }
 
-    for (let i = 0; i < pts.length; i++) {
-      const fade = fadeAtY(pts[i].y);
+    for (const pointIndex of visiblePointIndices) {
+      const point = pts[pointIndex];
+      const fade = fadeAtY(point.y);
       if (fade < 0.01) continue;
       ctx.fillStyle = `rgba(${dotRGB},${dotAlpha * fade})`;
       ctx.beginPath();
-      ctx.arc(pts[i].x, pts[i].y, DOT_RADIUS, 0, Math.PI * 2);
+      ctx.arc(point.x, point.y, DOT_RADIUS, 0, Math.PI * 2);
       ctx.fill();
     }
   }
@@ -303,6 +383,7 @@ function initMesh(
       if (w > 0 && h > 0) {
         setCanvasSize();
         mesh = generateMesh(w, h);
+        syncViewportState();
       }
     }, 200);
   });
@@ -311,6 +392,7 @@ function initMesh(
   return () => {
     cancelAnimationFrame(af);
     clearTimeout(resizeTimer);
+    document.removeEventListener("visibilitychange", handleVisibilityChange);
     window.removeEventListener("mousemove", onMove);
     document.removeEventListener("mouseleave", onPointerLeave);
     window.removeEventListener("touchmove", onTouchMove);

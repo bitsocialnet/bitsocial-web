@@ -11,46 +11,62 @@ export type GraphicsMode = "full" | "fallback";
 
 const GraphicsModeContext = createContext<GraphicsMode | null>(null);
 
+function getConnection() {
+  if (typeof navigator === "undefined") return undefined;
+
+  const nav = navigator as Navigator & {
+    connection?: NetworkInformation;
+    mozConnection?: NetworkInformation;
+    webkitConnection?: NetworkInformation;
+  };
+
+  return nav.connection ?? nav.mozConnection ?? nav.webkitConnection;
+}
+
+function getReducedMotionQuery() {
+  if (typeof window === "undefined") return null;
+  return window.matchMedia("(prefers-reduced-motion: reduce)");
+}
+
+function computeGraphicsMode(reducedMotionQuery = getReducedMotionQuery()): GraphicsMode {
+  if (typeof navigator === "undefined") return "fallback";
+
+  const { deviceMemory } = navigator as Navigator & {
+    deviceMemory?: number;
+  };
+  const hardwareConcurrency = navigator.hardwareConcurrency ?? 8;
+  const memoryBudget = deviceMemory ?? 8;
+  const connection = getConnection();
+  const saveData = Boolean(connection?.saveData);
+  const effectiveType = connection?.effectiveType ?? "";
+  const isSlowConnection = effectiveType === "slow-2g" || effectiveType === "2g";
+  const isLowEnd =
+    Boolean(reducedMotionQuery?.matches) ||
+    memoryBudget <= 4 ||
+    hardwareConcurrency <= 4 ||
+    saveData ||
+    isSlowConnection;
+
+  return isLowEnd ? "fallback" : "full";
+}
+
+function syncReducedMotionDataset(isReducedMotion: boolean) {
+  if (typeof document === "undefined") return;
+  document.documentElement.dataset.reducedMotion = isReducedMotion ? "true" : "false";
+}
+
 export function GraphicsModeProvider({ children }: { children: React.ReactNode }) {
-  const [graphicsMode, setGraphicsMode] = useState<GraphicsMode>("fallback");
-  const lastModeRef = useRef<GraphicsMode>("fallback");
+  const [graphicsMode, setGraphicsMode] = useState<GraphicsMode>(() => computeGraphicsMode());
+  const lastModeRef = useRef<GraphicsMode>(graphicsMode);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const getConnection = () => {
-      const nav = navigator as Navigator & {
-        connection?: NetworkInformation;
-        mozConnection?: NetworkInformation;
-        webkitConnection?: NetworkInformation;
-      };
-      return nav.connection ?? nav.mozConnection ?? nav.webkitConnection;
-    };
-
-    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const computeGraphicsMode = () => {
-      const { deviceMemory } = navigator as Navigator & {
-        deviceMemory?: number;
-      };
-      const hardwareConcurrency = navigator.hardwareConcurrency ?? 8;
-      const memoryBudget = deviceMemory ?? 8;
-      const connection = getConnection();
-      const saveData = Boolean(connection?.saveData);
-      const effectiveType = connection?.effectiveType ?? "";
-      const isSlowConnection = effectiveType === "slow-2g" || effectiveType === "2g";
-      const isLowEnd =
-        reducedMotionQuery.matches ||
-        memoryBudget <= 4 ||
-        hardwareConcurrency <= 4 ||
-        saveData ||
-        isSlowConnection;
-
-      return isLowEnd ? "fallback" : "full";
-    };
+    const reducedMotionQuery = getReducedMotionQuery();
+    if (!reducedMotionQuery) return;
 
     const updateMode = () => {
-      const nextMode = computeGraphicsMode();
+      syncReducedMotionDataset(reducedMotionQuery.matches);
+
+      const nextMode = computeGraphicsMode(reducedMotionQuery);
       if (lastModeRef.current === nextMode) return;
       lastModeRef.current = nextMode;
       setGraphicsMode(nextMode);
@@ -75,33 +91,6 @@ export function GraphicsModeProvider({ children }: { children: React.ReactNode }
         reducedMotionQuery.removeListener(handleReducedMotionChange);
       }
       connection?.removeEventListener?.("change", updateMode);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (typeof document === "undefined" || typeof window === "undefined") return;
-
-    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updateReducedMotion = () => {
-      document.documentElement.dataset.reducedMotion = reducedMotionQuery.matches
-        ? "true"
-        : "false";
-    };
-
-    updateReducedMotion();
-
-    if (reducedMotionQuery.addEventListener) {
-      reducedMotionQuery.addEventListener("change", updateReducedMotion);
-    } else {
-      reducedMotionQuery.addListener(updateReducedMotion);
-    }
-
-    return () => {
-      if (reducedMotionQuery.removeEventListener) {
-        reducedMotionQuery.removeEventListener("change", updateReducedMotion);
-      } else {
-        reducedMotionQuery.removeListener(updateReducedMotion);
-      }
     };
   }, []);
 

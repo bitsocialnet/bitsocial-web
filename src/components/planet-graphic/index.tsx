@@ -452,9 +452,38 @@ export default function PlanetGraphic() {
 
     // Animation
     let animationId: number;
+    let pageVisible = document.visibilityState === "visible";
+    let inViewport = true;
+    let shouldAnimate = pageVisible;
+
+    const syncAnimationState = () => {
+      const nextShouldAnimate = pageVisible && inViewport;
+      if (shouldAnimate === nextShouldAnimate) return;
+
+      shouldAnimate = nextShouldAnimate;
+      ring1RotationTween.paused(!shouldAnimate);
+      ring2RotationTween.paused(!shouldAnimate);
+    };
+
+    const handleVisibilityChange = () => {
+      pageVisible = document.visibilityState === "visible";
+      syncAnimationState();
+    };
+
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        inViewport = entry?.isIntersecting ?? false;
+        syncAnimationState();
+      },
+      { threshold: 0 },
+    );
+    intersectionObserver.observe(container);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    syncAnimationState();
 
     const animate = () => {
       animationId = requestAnimationFrame(animate);
+      if (!shouldAnimate) return;
 
       // Very slow rotation of the sphere
       sphere.rotation.y += 0.0005;
@@ -512,11 +541,13 @@ export default function PlanetGraphic() {
     return () => {
       themeRefs.current = null;
       cancelAnimationFrame(animationId);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (resizeTimeoutId) {
         clearTimeout(resizeTimeoutId);
       }
       window.removeEventListener("resize", scheduleResize);
       resizeObserver.disconnect();
+      intersectionObserver.disconnect();
 
       ring1RotationTween.kill();
       ring2RotationTween.kill();
