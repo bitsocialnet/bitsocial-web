@@ -181,6 +181,11 @@ Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 - [ ] Translate all expanded content
 - [ ] Link each feature section to specific docs pages (card, expanded section, or both)
 
+#### Sanctuary Communication section
+
+- [x] Landing page section between Core Features and Master Plan (compares federated, blockchain, and Bitsocial approaches)
+- [ ] Expand copy, visuals, or deep links as the protocol story evolves
+
 #### Master Plan section
 
 - [x] Initial roadmap-like design
@@ -192,12 +197,18 @@ Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
 - [ ] Add hash links for each phase (or one for master plan)
 - [x] Hidden easter egg
 
+#### Newsletter section
+
+The **newsletter** is a dedicated section above the footer (signup UI lives there, not in the footer). The footer still links to it under Resources as “Newsletter,” scrolling to the `#mailing-list` hash on the home page.
+
+- [ ] Prominent newsletter block with optional three.js graphic (+ static fallback for low-end devices)
+- [x] Hash link `#mailing-list` for sharing and in-app navigation to the section
+- [ ] Visual quality comparable to topbar/hero where it makes sense
+
 #### Footer
 
-- [ ] Prominent mailing list in footer, with three.js graphic (+ static fallback for low-end devices)
-- [ ] Hash link for mailing list section to share directly
 - [ ] Visual quality comparable to topbar/hero, translucent design + static fallback for low-end devices
-- [ ] Include all important links and mailing list field again
+- [ ] Include all important links (including a newsletter link that jumps to the section above—no duplicate signup field in the footer)
 
 ### Milestone #2: App Dashboard (`/apps`)
 
