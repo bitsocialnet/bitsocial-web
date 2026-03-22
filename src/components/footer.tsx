@@ -138,12 +138,12 @@ export default function Footer() {
           <p className="font-display tracking-wide">{t("footer.bottomTagline")}</p>
           <div className="flex items-center gap-3 text-xs">
             <a
-              href="https://github.com/bitsocialnet/bitsocial-web/blob/master/LICENSE"
+              href="https://github.com/bitsocialnet/bitsocial-web"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-foreground transition-colors"
             >
-              {t("footer.license")}
+              {t("footer.contribute")}
             </a>
             <span className="text-border/50">&bull;</span>
             <a
