@@ -1,4 +1,5 @@
 import { m } from "framer-motion";
+import { Check, X } from "lucide-react";
 import { useState, useRef, useCallback } from "react";
 
 type ApproachId = "federated" | "blockchain" | "bitsocial";
@@ -75,13 +76,20 @@ function ComparisonCard({
             <p className="text-xs uppercase tracking-wider text-muted-foreground/50 mb-0.5">
               {row.label}
             </p>
-            <p
-              className={`text-sm font-medium ${
-                isBitsocial ? "text-foreground" : "text-muted-foreground"
-              }`}
-            >
-              {row.values[approach.id]}
-            </p>
+            <div className="flex gap-2 items-start">
+              {isBitsocial ? (
+                <Check className="h-4 w-4 shrink-0 text-emerald-500 mt-0.5" aria-hidden />
+              ) : (
+                <X className="h-4 w-4 shrink-0 text-red-500 mt-0.5" aria-hidden />
+              )}
+              <p
+                className={`text-sm font-medium min-w-0 ${
+                  isBitsocial ? "text-foreground" : "text-muted-foreground"
+                }`}
+              >
+                {row.values[approach.id]}
+              </p>
+            </div>
           </div>
         ))}
       </div>
