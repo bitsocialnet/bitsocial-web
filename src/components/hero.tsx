@@ -168,7 +168,7 @@ export default function Hero() {
       >
         <p
           id="hero-tagline"
-          className="text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-display font-normal"
+          className="text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-display font-normal text-balance"
         >
           <HighlightIndexCtx.Provider value={highlightedIndex}>
             <Trans

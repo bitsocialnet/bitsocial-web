@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Github, Send } from "lucide-react";
+import { goToMailingListSection } from "@/lib/mailing-list-nav";
 
 const linkClassName = "text-muted-foreground hover:text-foreground transition-colors text-sm";
 
@@ -14,6 +15,13 @@ function XIcon({ className }: { className?: string }) {
 
 export default function Footer() {
   const { t } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNewsletterClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    goToMailingListSection(location.pathname, location.hash, navigate);
+  };
 
   return (
     <footer
@@ -74,6 +82,11 @@ export default function Footer() {
                 <Link to="/about" className={linkClassName}>
                   {t("footer.about")}
                 </Link>
+              </li>
+              <li>
+                <a href="/#mailing-list" className={linkClassName} onClick={handleNewsletterClick}>
+                  {t("footer.newsletter")}
+                </a>
               </li>
             </ul>
           </div>

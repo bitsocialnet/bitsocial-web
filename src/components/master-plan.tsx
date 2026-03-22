@@ -50,7 +50,7 @@ export default function MasterPlan() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-display font-normal text-center mb-20 text-muted-foreground"
+          className="text-4xl md:text-5xl font-display font-normal text-center mb-20 text-muted-foreground text-balance"
         >
           Master Plan
         </m.h2>

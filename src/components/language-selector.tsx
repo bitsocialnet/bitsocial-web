@@ -181,7 +181,10 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
             <input
               ref={inputRef}
               type="text"
-              placeholder="Search languages..."
+              placeholder="Search languages\u2026"
+              aria-label="Search languages"
+              autoComplete="off"
+              spellCheck={false}
               value={searchQuery}
               onChange={(e) => {
                 setSearchQuery(e.target.value);

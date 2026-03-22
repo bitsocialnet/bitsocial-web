@@ -13,6 +13,7 @@
     @apply bg-background text-foreground font-body;
     letter-spacing: 0.01em;
     overflow-x: hidden;
+    touch-action: manipulation;
   }
   button,
   [role="button"] {
@@ -106,6 +107,7 @@
     --glass-border-subtle: rgba(68, 74, 88, 0.16);
   }
   .dark {
+    color-scheme: dark;
     --background: 0 0% 0%;
     --foreground: 0 0% 93%;
     --card: 0 0% 12%;

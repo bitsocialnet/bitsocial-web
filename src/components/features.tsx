@@ -67,7 +67,7 @@ const features: Feature[] = [
 
 /** Matches original feature-card framing: excerpt from the hero line with ellipses and commas. */
 function featureTitleFromTaglineSegments(t: (key: string) => string, id: FeatureId): string {
-  const e = "...";
+  const e = "\u2026";
   let segment: string;
   switch (id) {
     case "open-source":
@@ -160,7 +160,7 @@ export default function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-display font-normal text-center mb-16 text-muted-foreground"
+          className="text-4xl md:text-5xl font-display font-normal text-center mb-16 text-muted-foreground text-balance"
         >
           Core Features
         </m.h2>

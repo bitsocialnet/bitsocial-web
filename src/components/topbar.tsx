@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { m } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
+import { goToMailingListSection } from "@/lib/mailing-list-nav";
 import { ThemeToggle } from "./theme-toggle";
 import HamburgerButton from "./hamburger-button";
 import LanguageSelector from "./language-selector";
@@ -66,6 +67,8 @@ function NavLink({
 
 export default function Topbar() {
   const { t } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
 
@@ -93,6 +96,11 @@ export default function Topbar() {
       }
       return nextIsOpen;
     });
+  };
+
+  const handleNewsletterClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    goToMailingListSection(location.pathname, location.hash, navigate, handleNavClick);
   };
 
   return (
@@ -144,6 +152,13 @@ export default function Topbar() {
               >
                 {t("nav.sourceCode")}
               </NavLink>
+              <a
+                href="/#mailing-list"
+                className="text-muted-foreground hover:text-foreground transition-colors relative group text-lg md:text-base font-display leading-none py-2 px-2 block"
+                onClick={handleNewsletterClick}
+              >
+                {t("nav.newsletter")}
+              </a>
             </div>
 
             {/* Divider */}
@@ -181,6 +196,13 @@ export default function Topbar() {
             >
               {t("nav.sourceCode")}
             </NavLink>
+            <a
+              href="/#mailing-list"
+              className="text-muted-foreground hover:text-foreground transition-colors relative group text-lg md:text-base font-display leading-none py-2 px-2 block"
+              onClick={handleNewsletterClick}
+            >
+              {t("nav.newsletter")}
+            </a>
           </div>
 
           {/* Controls */}
