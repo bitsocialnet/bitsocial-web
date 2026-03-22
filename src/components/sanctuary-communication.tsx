@@ -12,11 +12,19 @@ const approaches: { id: ApproachId; label: string; subtitle: string }[] = [
 
 const rows: { label: string; values: Record<ApproachId, string> }[] = [
   {
-    label: "Run a node",
+    label: "Node requirements",
     values: {
       federated: "Server + domain + SSL",
       blockchain: "Datacenter hardware",
-      bitsocial: "Low resources (e.g., Raspberry Pi)",
+      bitsocial: "Very low (e.g., Raspberry Pi)",
+    },
+  },
+  {
+    label: "Data hosting",
+    values: {
+      federated: "Instance operator's server",
+      blockchain: "Entire chain on every node",
+      bitsocial: "Community/profile owners, via full nodes",
     },
   },
   {
@@ -28,14 +36,6 @@ const rows: { label: string; values: Record<ApproachId, string> }[] = [
     },
   },
   {
-    label: "Infra cost",
-    values: {
-      federated: "Hosting + domain fees",
-      blockchain: "Expensive chain storage",
-      bitsocial: "Zero",
-    },
-  },
-  {
     label: "Resilience",
     values: {
       federated: "DDoS, SSL revoked, domain seized",
@@ -44,10 +44,10 @@ const rows: { label: string; values: Record<ApproachId, string> }[] = [
     },
   },
   {
-    label: "Run a full node",
+    label: "Getting started",
     values: {
-      federated: "Deploy and maintain a server",
-      blockchain: "Sync terabytes of chain data",
+      federated: "Sign up on someone's instance",
+      blockchain: "Buy tokens, create wallet",
       bitsocial: "Open a Bitsocial app",
     },
   },
