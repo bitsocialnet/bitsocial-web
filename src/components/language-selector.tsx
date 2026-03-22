@@ -194,44 +194,55 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
               className="w-full rounded-full bg-foreground/[0.04] border border-foreground/[0.08] px-10 py-2.5 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-colors"
             />
           </div>
-          <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {filteredLanguages.map((language, index) => (
-                <button
-                  key={language.code}
-                  ref={(node) => {
-                    optionRefs.current[index] = node;
-                  }}
-                  type="button"
-                  onClick={() => handleLanguageChange(language.code)}
-                  onMouseEnter={() => setActiveIndex(index)}
-                  className={cn(
-                    "flex items-center justify-between rounded-2xl px-4 py-3 text-left transition-all",
-                    "bg-foreground/[0.03] border border-foreground/[0.06] hover:bg-foreground/[0.07] hover:border-foreground/[0.12]",
-                    effectiveActiveIndex === index &&
-                      "border-foreground/[0.16] bg-foreground/[0.08]",
-                    i18n.language === language.code &&
-                      "border-blue-glow bg-blue-glow/[0.08] hover:bg-blue-glow/[0.12] hover:border-blue-glow",
-                  )}
-                  dir={language.dir}
-                >
-                  <span
+          <div className="relative">
+            <div className="max-h-[calc(100vh-200px)] overflow-y-auto pb-14">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {filteredLanguages.map((language, index) => (
+                  <button
+                    key={language.code}
+                    ref={(node) => {
+                      optionRefs.current[index] = node;
+                    }}
+                    type="button"
+                    onClick={() => handleLanguageChange(language.code)}
+                    onMouseEnter={() => setActiveIndex(index)}
                     className={cn(
-                      "font-medium",
-                      i18n.language === language.code ? "text-foreground" : "text-muted-foreground",
+                      "flex items-center justify-between rounded-2xl px-4 py-3 text-left transition-all",
+                      "bg-foreground/[0.03] border border-foreground/[0.06] hover:bg-foreground/[0.07] hover:border-foreground/[0.12]",
+                      effectiveActiveIndex === index &&
+                        "border-foreground/[0.16] bg-foreground/[0.08]",
+                      i18n.language === language.code &&
+                        "border-blue-glow bg-blue-glow/[0.08] hover:bg-blue-glow/[0.12] hover:border-blue-glow",
                     )}
+                    dir={language.dir}
                   >
-                    {language.name}
-                  </span>
-                  {i18n.language === language.code && <Check className="h-4 w-4 text-blue-glow" />}
-                </button>
-              ))}
-            </div>
-            {filteredLanguages.length === 0 ? (
-              <div className="py-8 text-center text-sm text-muted-foreground">
-                No languages found
+                    <span
+                      className={cn(
+                        "font-medium",
+                        i18n.language === language.code
+                          ? "text-foreground"
+                          : "text-muted-foreground",
+                      )}
+                    >
+                      {language.name}
+                    </span>
+                    {i18n.language === language.code && (
+                      <Check className="h-4 w-4 text-blue-glow" />
+                    )}
+                  </button>
+                ))}
               </div>
-            ) : null}
+              {filteredLanguages.length === 0 ? (
+                <div className="py-8 text-center text-sm text-muted-foreground">
+                  No languages found
+                </div>
+              ) : null}
+            </div>
+            {/* Bottom fade matches `.sheet-glass` end stops in index.css */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[rgb(242_244_249/0.97)] to-transparent dark:from-[rgb(14_14_20/0.97)]"
+            />
           </div>
         </div>
       </SheetContent>
