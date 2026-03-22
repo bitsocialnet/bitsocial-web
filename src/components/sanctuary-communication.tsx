@@ -300,7 +300,7 @@ export default function SanctuaryCommunication() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="block text-center text-xs md:text-sm text-muted-foreground/40 mt-14 italic max-w-lg mx-auto rounded-md hover:text-muted-foreground/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+          className="block text-center text-xs md:text-sm text-muted-foreground/40 mt-14 italic max-w-lg mx-auto rounded-md hover:text-muted-foreground/55 transition-[color,box-shadow] duration-300"
         >
           &ldquo;Your community literally cannot be banned or blocked by anyone, even a government.
           We solve that problem.&rdquo;

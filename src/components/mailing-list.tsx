@@ -75,8 +75,8 @@ export default function MailingList() {
                   aria-label={t("mailingList.inputLabel")}
                   className={cn(
                     "w-full rounded-full bg-foreground/[0.04] border border-foreground/[0.08] px-5 py-3 text-sm font-display",
-                    "placeholder:text-muted-foreground/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow/40 focus-visible:border-blue-glow/30",
-                    "transition-[color,background-color,border-color,box-shadow] duration-200",
+                    "placeholder:text-muted-foreground/50",
+                    "transition-[color,background-color] duration-200",
                   )}
                   disabled={formState === "submitting"}
                 />

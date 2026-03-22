@@ -48,11 +48,44 @@
     outline: none;
     box-shadow: none;
   }
-  /* Keyboard accessibility: visible focus indicator */
-  button:focus-visible,
-  [role="button"]:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
+  /* Keyboard accessibility: blue ring + glow (aligned with `.ring-glow` / Learn More) */
+  button:focus-visible:not(.interactive-feature-link),
+  [role="button"]:focus-visible:not(.interactive-feature-link) {
+    outline: none;
+    box-shadow: var(--focus-app-ring);
+  }
+  input[type="text"],
+  input[type="search"],
+  input[type="email"],
+  input[type="url"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  input:not([type]),
+  textarea,
+  select {
+    transition-property: border-color, box-shadow;
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+  }
+  input[type="text"]:focus-visible,
+  input[type="search"]:focus-visible,
+  input[type="email"]:focus-visible,
+  input[type="url"]:focus-visible,
+  input[type="password"]:focus-visible,
+  input[type="number"]:focus-visible,
+  input[type="tel"]:focus-visible,
+  input:not([type]):focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: none;
+    border-color: var(--focus-app-blue);
+    box-shadow: var(--focus-app-glow);
+  }
+  a:focus-visible {
+    outline: none;
+    border-radius: 0.25rem;
+    box-shadow: var(--focus-app-ring);
   }
   /* Mobile-specific: suppress focus rings for touch but preserve for keyboard */
   @media (hover: none) and (pointer: coarse) {
@@ -72,10 +105,10 @@
       --tw-ring-offset-shadow: 0 0 #0000;
     }
     /* Still show focus-visible on mobile for external keyboard users */
-    button:focus-visible,
-    [role="button"]:focus-visible {
-      outline: 2px solid hsl(var(--ring));
-      outline-offset: 2px;
+    button:focus-visible:not(.interactive-feature-link),
+    [role="button"]:focus-visible:not(.interactive-feature-link) {
+      outline: none;
+      box-shadow: var(--focus-app-ring);
     }
   }
   :root {
@@ -105,10 +138,16 @@
     --chart-5: 27 87% 67%;
     --radius: 1.25rem;
     --glass-border-subtle: rgba(68, 74, 88, 0.16);
+    /* Keyboard focus: blue border + glow (matches `blue-glow` / `.ring-glow` / core feature cards) */
+    --focus-app-blue: rgb(37 99 235);
+    --focus-app-glow: 0 0 20px rgba(37, 99, 235, 0.35);
+    --focus-app-ring: 0 0 0 2px rgb(37 99 235), 0 0 20px rgba(37, 99, 235, 0.35);
   }
   .dark {
     color-scheme: dark;
     --background: 0 0% 0%;
+    /* Slide-over panels (e.g. language sheet): slightly above black, still neutral */
+    --sheet-surface: 0 0% 9%;
     --foreground: 0 0% 93%;
     --card: 0 0% 12%;
     --card-foreground: 0 0% 93%;
@@ -254,12 +293,9 @@
   }
 
   .dark .sheet-glass {
-    background: linear-gradient(
-      180deg,
-      rgba(24, 24, 30, 0.97) 0%,
-      rgba(18, 18, 24, 0.95) 50%,
-      rgba(14, 14, 20, 0.93) 100%
-    );
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: hsl(var(--sheet-surface));
     border-color: rgba(232, 238, 247, 0.12);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.08),
@@ -297,6 +333,12 @@
   .ring-glow:hover,
   .ring-glow:hover:focus {
     box-shadow: 0 0 20px rgba(37, 99, 235, 0.35);
+  }
+
+  /* Opt-in when base selectors do not apply (e.g. custom focus targets). Uses same tokens as `:root` focus vars. */
+  .focus-ring-app:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-app-ring);
   }
 
   .interactive-feature-link {
