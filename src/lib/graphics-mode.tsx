@@ -28,6 +28,15 @@ function getReducedMotionQuery() {
   return window.matchMedia("(prefers-reduced-motion: reduce)");
 }
 
+function isAppleMobilePlatform() {
+  if (typeof navigator === "undefined") return false;
+
+  const userAgent = navigator.userAgent ?? "";
+  if (/\b(iPhone|iPad|iPod)\b/i.test(userAgent)) return true;
+
+  return navigator.platform === "MacIntel" && (navigator.maxTouchPoints ?? 0) > 1;
+}
+
 function computeGraphicsMode(reducedMotionQuery = getReducedMotionQuery()): GraphicsMode {
   if (typeof navigator === "undefined") return "fallback";
 
@@ -40,10 +49,13 @@ function computeGraphicsMode(reducedMotionQuery = getReducedMotionQuery()): Grap
   const saveData = Boolean(connection?.saveData);
   const effectiveType = connection?.effectiveType ?? "";
   const isSlowConnection = effectiveType === "slow-2g" || effectiveType === "2g";
+  // iPhone/iPad Safari can intentionally coarsen hardwareConcurrency for privacy, so
+  // don't use it alone to disable the animated hero when deviceMemory is unavailable.
+  const shouldUseLowCoreFallback = !(deviceMemory == null && isAppleMobilePlatform());
   const isLowEnd =
     Boolean(reducedMotionQuery?.matches) ||
     memoryBudget <= 4 ||
-    hardwareConcurrency <= 4 ||
+    (shouldUseLowCoreFallback && hardwareConcurrency <= 4) ||
     saveData ||
     isSlowConnection;
 
