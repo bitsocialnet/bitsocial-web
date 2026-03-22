@@ -148,7 +148,7 @@ export default function Features() {
   };
 
   const handleTitleClick = (id: string) => {
-    window.history.replaceState(null, "", "#hero-tagline");
+    window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
     triggerTaglineGlow(id);
   };
 

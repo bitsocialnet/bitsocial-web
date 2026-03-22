@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Home from "@/pages/home";
 import Docs from "@/pages/docs";
 import Apps from "@/pages/apps";
@@ -10,14 +10,19 @@ import { normalizeInitialHomeScrollPosition } from "@/lib/initial-scroll";
 
 function InitialHomeScrollGuard() {
   const location = useLocation();
+  const navigate = useNavigate();
   const hasNormalizedInitialLoad = useRef(false);
 
   useLayoutEffect(() => {
+    if (location.hash === "#hero-tagline") {
+      navigate({ pathname: location.pathname, search: location.search }, { replace: true });
+      return;
+    }
     if (hasNormalizedInitialLoad.current) return;
     hasNormalizedInitialLoad.current = true;
     if (location.pathname !== "/" || location.hash) return;
     return normalizeInitialHomeScrollPosition();
-  }, [location.pathname, location.hash]);
+  }, [location.pathname, location.hash, location.search, navigate]);
 
   return null;
 }

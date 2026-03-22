@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 const highlightTimeouts = new WeakMap<Element, ReturnType<typeof setTimeout>>();
 const TEMPORARY_HIGHLIGHT_DURATION_MS = 5000;
-const HERO_TAGLINE_ID = "hero-tagline";
+const HERO_TAGLINE_SELECTOR = "[data-hero-tagline]";
 
 function getScrollBehavior(): ScrollBehavior {
   return document.documentElement.dataset.reducedMotion === "true" ? "auto" : "smooth";
@@ -75,7 +75,7 @@ export function triggerFeatureGlow(hash: string) {
 export function triggerTaglineGlow(hash: string) {
   clearInteractiveFeatureHighlights();
 
-  const tagline = document.getElementById(HERO_TAGLINE_ID);
+  const tagline = document.querySelector<HTMLElement>(HERO_TAGLINE_SELECTOR);
   const link = document.querySelector<HTMLElement>(`[data-tagline-link="${hash}"]`);
   tagline?.scrollIntoView({ behavior: getScrollBehavior(), block: "center" });
 
