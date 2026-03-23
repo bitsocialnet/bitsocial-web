@@ -56,7 +56,7 @@ The dev server runs at http://bitsocial.localhost:1355 via [Portless](https://po
 
 For device testing without Portless:
 
-- `yarn start:android-usb` starts Vite on localhost and configures `adb reverse`, so a USB-connected Android device can open `http://localhost:<port>`.
+- `yarn start:android-usb` starts Vite on localhost and configures `adb reverse`, so a USB-connected Android device can open `http://localhost:<port>`. When the server is listening, it opens that URL in each device’s default browser via `adb` (`am start` VIEW). Set `ANDROID_USB_OPEN_BROWSER=0` to skip auto-open.
 - `yarn start:ios-sim` starts Vite on localhost and opens the site in the iOS Simulator on this Mac. It requires Xcode's Simulator tooling (`simctl`).
 
 ---

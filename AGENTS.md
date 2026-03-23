@@ -162,11 +162,14 @@ src/
 
 This project uses [Portless](https://github.com/vercel-labs/portless) for local dev. The dev server is available at `http://bitsocial.localhost:1355` instead of a random port. To bypass Portless, use `PORTLESS=0 yarn start`.
 
+Android phone over USB (default browser opens via `adb`; `ANDROID_USB_OPEN_BROWSER=0` to skip): `yarn start:android-usb`
+
 ## Common Commands
 
 ```bash
 yarn install
 yarn start          # http://bitsocial.localhost:1355
+yarn start:android-usb  # Vite + adb reverse; opens http://localhost:<port> on device
 yarn build
 yarn lint
 yarn typecheck

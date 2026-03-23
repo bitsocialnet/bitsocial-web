@@ -2,11 +2,13 @@
 
 import { spawnSync } from "node:child_process";
 import process from "node:process";
-import { isWindows, repoRoot, resolvePort, startVite } from "./dev-server-utils.mjs";
+import { isWindows, repoRoot, resolvePort, startVite, waitForPort } from "./dev-server-utils.mjs";
 
 const adbBin = isWindows ? "adb.exe" : "adb";
 const host = "127.0.0.1";
 const requestedPort = Number(process.env.ANDROID_USB_PORT || 1355);
+const openBrowser =
+  process.env.ANDROID_USB_OPEN_BROWSER !== "0" && process.env.ANDROID_USB_OPEN_BROWSER !== "false";
 
 function fail(message) {
   console.error(message);
@@ -65,6 +67,26 @@ function reversePorts(devices, port) {
   }
 }
 
+/** Opens the preview URL in each device's default browser via VIEW intent. */
+function openPreviewOnDevices(devices, url) {
+  for (const serial of devices) {
+    const open = spawnSync(
+      adbBin,
+      ["-s", serial, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", url],
+      {
+        cwd: repoRoot,
+        encoding: "utf8",
+      },
+    );
+
+    if (open.status !== 0) {
+      console.warn(
+        `Could not open URL on ${serial}: ${open.stderr.trim() || open.stdout.trim() || "unknown error"}`,
+      );
+    }
+  }
+}
+
 const devices = getReadyDevices();
 const port = await resolvePort(requestedPort);
 
@@ -77,7 +99,26 @@ if (port !== requestedPort) {
   console.log(`Preferred port ${requestedPort} is busy, so this run will use ${port}.`);
 }
 console.log(`ADB reverse is active for: ${devices.join(", ")}`);
-console.log(`Open http://localhost:${port} in Chrome on the Android device.`);
+const deviceUrl = `http://localhost:${port}`;
+if (openBrowser) {
+  console.log(
+    `Opening ${deviceUrl} in the default browser on the device(s) when the dev server is ready…`,
+  );
+} else {
+  console.log(`Open ${deviceUrl} in a browser on the Android device (ANDROID_USB_OPEN_BROWSER=0).`);
+}
 console.log("");
 
 startVite(host, port);
+
+if (openBrowser) {
+  waitForPort(host, port)
+    .then(() => {
+      openPreviewOnDevices(devices, deviceUrl);
+      console.log(`Opened ${deviceUrl} on device(s): ${devices.join(", ")}`);
+      console.log("");
+    })
+    .catch((err) => {
+      console.warn(String(err.message || err));
+    });
+}
