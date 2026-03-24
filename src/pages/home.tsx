@@ -12,6 +12,11 @@ import { MAILING_LIST_HASH, scrollToMailingListSection } from "@/lib/mailing-lis
 
 export default function Home() {
   const location = useLocation();
+  const isTouchDevice =
+    typeof window !== "undefined" &&
+    ("ontouchstart" in window ||
+      (typeof navigator !== "undefined" && navigator.maxTouchPoints > 0));
+  const splitPolygonSectionsActive = isTouchDevice;
 
   // Hash scroll after route paint: layout effect + rAF so #mailing-list target exists (SPA + deep links).
   useLayoutEffect(() => {
@@ -30,14 +35,39 @@ export default function Home() {
     <div className="min-h-screen">
       <Topbar />
       <Hero />
-      <div className="relative">
-        <PolygonMeshBackground />
-        <Features />
-        <SanctuaryCommunication />
-        <MasterPlan />
-        <MailingList />
-        <Footer />
-      </div>
+      {splitPolygonSectionsActive ? (
+        <>
+          <div className="relative">
+            <PolygonMeshBackground />
+            <Features />
+          </div>
+          <div className="relative">
+            <PolygonMeshBackground />
+            <SanctuaryCommunication />
+          </div>
+          <div className="relative">
+            <PolygonMeshBackground />
+            <MasterPlan />
+          </div>
+          <div className="relative">
+            <PolygonMeshBackground />
+            <MailingList />
+          </div>
+          <div className="relative">
+            <PolygonMeshBackground />
+            <Footer />
+          </div>
+        </>
+      ) : (
+        <div className="relative">
+          <PolygonMeshBackground />
+          <Features />
+          <SanctuaryCommunication />
+          <MasterPlan />
+          <MailingList />
+          <Footer />
+        </div>
+      )}
     </div>
   );
 }

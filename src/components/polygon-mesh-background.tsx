@@ -24,22 +24,16 @@ const DOT_RADIUS = 1.2;
 const BLUE_R = 37;
 const BLUE_G = 99;
 const BLUE_B = 235;
-/** Same hue as `BLUE_*`, lifted for contrast on near-black backgrounds (dark mode mesh + glow). */
 const BLUE_ON_DARK_R = 59;
 const BLUE_ON_DARK_G = 130;
 const BLUE_ON_DARK_B = 246;
 
 const MIN_SPEED = 2;
 const MAX_SPEED = 60;
-
-// Angle sweep animation (matches devin.ai angleStrength)
 const SWEEP_SPEED = 0.08;
-// Slightly lower = longer pulse window so neighboring edges overlap more
 const SWEEP_THRESHOLD = 0.66;
-// Midpoint-based phase keeps nearby edges in sync; hash retains subtle variation
 const SWEEP_SPATIAL_X = 0.0068;
 const SWEEP_SPATIAL_Y = 0.0051;
-/** 0 = pure traveling wave by position, 1 = fully independent per-edge (disconnected) */
 const SWEEP_PHASE_HASH_MIX = 0.38;
 const VIEWPORT_OVERSCAN = 240;
 
@@ -139,7 +133,7 @@ function initMesh(
   let h = container.clientHeight;
   const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
   const dpr = Math.min(window.devicePixelRatio, 1.5);
-  const FRAME_BUDGET = isTouchDevice ? 50 : 33;
+  const frameBudget = isTouchDevice ? 50 : 33;
 
   function setCanvasSize() {
     canvas.width = w * dpr;
@@ -148,6 +142,7 @@ function initMesh(
     canvas.style.height = `${h}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
+
   setCanvasSize();
 
   let mesh = generateMesh(w, h);
@@ -266,6 +261,7 @@ function initMesh(
       if (inViewport) {
         lt = 0;
         syncViewportState();
+        scheduleFrame();
       }
     },
     { threshold: 0 },
@@ -277,17 +273,27 @@ function initMesh(
     if (pageVisible) {
       lt = 0;
       syncViewportState();
+      scheduleFrame();
     }
   };
   document.addEventListener("visibilitychange", handleVisibilityChange);
 
-  let af: number;
+  let af: number | null = null;
   let lt = 0;
 
-  function frame(now: number) {
+  function scheduleFrame() {
+    if (af != null) return;
     af = requestAnimationFrame(frame);
+  }
+
+  function frame(now: number) {
+    af = null;
     if (!inViewport || !pageVisible) return;
-    if (now - lt < FRAME_BUDGET) return;
+    if (now - lt < frameBudget) {
+      scheduleFrame();
+      return;
+    }
+
     const dt = (now - lt) / 1000;
     lt = now;
     time += dt;
@@ -311,7 +317,6 @@ function initMesh(
     scrollInjectedSpeed *= 0.85;
     smoothedSpeed += (speedTarget - smoothedSpeed) * (speedTarget > smoothedSpeed ? 0.25 : 0.035);
 
-    // ========== RENDER ==========
     const clearTop = Math.max(0, viewportTop - 2);
     const clearHeight = Math.max(0, viewportBottom - clearTop + 2);
     ctx.clearRect(0, clearTop, w, clearHeight);
@@ -370,9 +375,11 @@ function initMesh(
       ctx.arc(point.x, point.y, DOT_RADIUS, 0, Math.PI * 2);
       ctx.fill();
     }
+
+    scheduleFrame();
   }
 
-  af = requestAnimationFrame(frame);
+  scheduleFrame();
 
   let resizeTimer: ReturnType<typeof setTimeout>;
   const ro = new ResizeObserver(() => {
@@ -390,7 +397,9 @@ function initMesh(
   ro.observe(container);
 
   return () => {
-    cancelAnimationFrame(af);
+    if (af != null) {
+      cancelAnimationFrame(af);
+    }
     clearTimeout(resizeTimer);
     document.removeEventListener("visibilitychange", handleVisibilityChange);
     window.removeEventListener("mousemove", onMove);
