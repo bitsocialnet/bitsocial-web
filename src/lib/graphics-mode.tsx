@@ -49,6 +49,8 @@ function computeGraphicsMode(reducedMotionQuery = getReducedMotionQuery()): Grap
   const saveData = Boolean(connection?.saveData);
   const effectiveType = connection?.effectiveType ?? "";
   const isSlowConnection = effectiveType === "slow-2g" || effectiveType === "2g";
+  // iPhone/iPad Safari can intentionally coarsen hardwareConcurrency for privacy, so
+  // don't use it alone to disable the animated hero when deviceMemory is unavailable.
   const shouldUseLowCoreFallback = !(deviceMemory == null && isAppleMobilePlatform());
   const isLowEnd =
     Boolean(reducedMotionQuery?.matches) ||

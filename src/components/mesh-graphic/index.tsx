@@ -76,11 +76,9 @@ export default function MeshGraphic() {
       canvas,
       alpha: true,
       antialias: !isMobile,
-      powerPreference: isMobile ? "low-power" : "default",
     });
     renderer.setSize(container.clientWidth, container.clientHeight, false);
-    const maxDpr = isMobile ? 1.5 : 2;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     // Mesh color - adapts to theme
     // Light mode: darker color for visibility, Dark mode: brighter color
@@ -283,12 +281,12 @@ export default function MeshGraphic() {
 
     themeRefs.current = { pointsMat: pointsMaterial, linesMat: linesMaterial };
 
-    // Animation — only schedule rAF while visible (see planet-graphic).
-    let animationId: number | null = null;
+    // Animation
+    let animationId: number;
     let time = 0;
     let pageVisible = document.visibilityState === "visible";
     let inViewport = true;
-    let shouldAnimate = false;
+    let shouldAnimate = pageVisible;
 
     const updateConnections = () => {
       let lineIndex = 0;
@@ -327,17 +325,31 @@ export default function MeshGraphic() {
       linesGeometry.attributes.alpha.needsUpdate = true;
     };
 
-    const stopRenderLoop = () => {
-      if (animationId != null) {
-        cancelAnimationFrame(animationId);
-        animationId = null;
-      }
+    const syncAnimationState = () => {
+      const nextShouldAnimate = pageVisible && inViewport;
+      if (shouldAnimate === nextShouldAnimate) return;
+
+      shouldAnimate = nextShouldAnimate;
     };
 
-    const tick = () => {
-      animationId = null;
-      if (!shouldAnimate) return;
+    const handleVisibilityChange = () => {
+      pageVisible = document.visibilityState === "visible";
+      syncAnimationState();
+    };
 
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        inViewport = entry?.isIntersecting ?? false;
+        syncAnimationState();
+      },
+      { threshold: 0 },
+    );
+    intersectionObserver.observe(container);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    const animate = () => {
+      animationId = requestAnimationFrame(animate);
+      if (!shouldAnimate) return;
       time += 0.005;
 
       // Update node positions with subtle floating motion
@@ -365,38 +377,9 @@ export default function MeshGraphic() {
       updateConnections();
 
       renderer.render(scene, camera);
-      animationId = requestAnimationFrame(tick);
     };
 
-    const startRenderLoop = () => {
-      if (animationId != null || !shouldAnimate) return;
-      animationId = requestAnimationFrame(tick);
-    };
-
-    const syncAnimationState = () => {
-      const nextShouldAnimate = pageVisible && inViewport;
-      if (shouldAnimate === nextShouldAnimate) return;
-
-      shouldAnimate = nextShouldAnimate;
-      if (shouldAnimate) startRenderLoop();
-      else stopRenderLoop();
-    };
-
-    const handleVisibilityChange = () => {
-      pageVisible = document.visibilityState === "visible";
-      syncAnimationState();
-    };
-
-    const intersectionObserver = new IntersectionObserver(
-      ([entry]) => {
-        inViewport = entry?.isIntersecting ?? false;
-        syncAnimationState();
-      },
-      { threshold: 0 },
-    );
-    intersectionObserver.observe(container);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    syncAnimationState();
+    animate();
 
     let resizeTimeoutId: ReturnType<typeof setTimeout> | null = null;
     const handleResize = () => {
@@ -412,8 +395,7 @@ export default function MeshGraphic() {
 
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
-      const maxDprResize = nextIsMobile ? 1.5 : 2;
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDprResize));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(width, height, false);
     };
 
@@ -430,7 +412,7 @@ export default function MeshGraphic() {
 
     return () => {
       themeRefs.current = null;
-      stopRenderLoop();
+      cancelAnimationFrame(animationId);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       intersectionObserver.disconnect();
       if (resizeTimeoutId) {

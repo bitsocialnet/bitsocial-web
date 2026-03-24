@@ -203,11 +203,9 @@ export default function PlanetGraphic() {
       alpha: true,
       antialias: !initialIsMobile,
       premultipliedAlpha: false,
-      powerPreference: initialIsMobile ? "low-power" : "default",
     });
     renderer.setSize(container.clientWidth, container.clientHeight, false);
-    const maxDpr = initialIsMobile ? 1.5 : 2;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
@@ -453,34 +451,11 @@ export default function PlanetGraphic() {
       ring2RotationQuaternion,
     );
 
-    // Animation — only schedule rAF while visible; avoid idle 60–120Hz wakeups (battery/heat).
-    let animationId: number | null = null;
+    // Animation
+    let animationId: number;
     let pageVisible = document.visibilityState === "visible";
     let inViewport = true;
-    let shouldAnimate = false;
-
-    const stopRenderLoop = () => {
-      if (animationId != null) {
-        cancelAnimationFrame(animationId);
-        animationId = null;
-      }
-    };
-
-    const tick = () => {
-      animationId = null;
-      if (!shouldAnimate) return;
-
-      // Very slow rotation of the sphere
-      sphere.rotation.y += 0.0005;
-
-      renderer.render(scene, camera);
-      animationId = requestAnimationFrame(tick);
-    };
-
-    const startRenderLoop = () => {
-      if (animationId != null || !shouldAnimate) return;
-      animationId = requestAnimationFrame(tick);
-    };
+    let shouldAnimate = pageVisible;
 
     const syncAnimationState = () => {
       const nextShouldAnimate = pageVisible && inViewport;
@@ -489,8 +464,6 @@ export default function PlanetGraphic() {
       shouldAnimate = nextShouldAnimate;
       ring1RotationTween.paused(!shouldAnimate);
       ring2RotationTween.paused(!shouldAnimate);
-      if (shouldAnimate) startRenderLoop();
-      else stopRenderLoop();
     };
 
     const handleVisibilityChange = () => {
@@ -509,6 +482,18 @@ export default function PlanetGraphic() {
     document.addEventListener("visibilitychange", handleVisibilityChange);
     syncAnimationState();
 
+    const animate = () => {
+      animationId = requestAnimationFrame(animate);
+      if (!shouldAnimate) return;
+
+      // Very slow rotation of the sphere
+      sphere.rotation.y += 0.0005;
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+
     // Handle resize (debounced to avoid excessive reflows)
     let resizeTimeoutId: ReturnType<typeof setTimeout> | null = null;
     const handleResize = () => {
@@ -525,8 +510,7 @@ export default function PlanetGraphic() {
       camera.aspect = width / height;
       camera.position.set(0, 1, nextCameraZ);
       camera.updateProjectionMatrix();
-      const maxDprResize = isMobileNow ? 1.5 : 2;
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDprResize));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(width, height, false);
 
       // Ring cross-section matches mobile vs desktop layout; rebuild only when crossing breakpoint.
@@ -557,7 +541,7 @@ export default function PlanetGraphic() {
 
     return () => {
       themeRefs.current = null;
-      stopRenderLoop();
+      cancelAnimationFrame(animationId);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (resizeTimeoutId) {
         clearTimeout(resizeTimeoutId);
