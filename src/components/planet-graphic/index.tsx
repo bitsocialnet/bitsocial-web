@@ -4,6 +4,15 @@ import { gsap } from "gsap";
 import { useTheme } from "next-themes";
 import { getPlanetRingRotationDelaySeconds } from "@/lib/hero-intro-timing";
 
+const MOBILE_BREAKPOINT = 768;
+const LOW_END_CONCURRENCY = 4;
+const PLANET_MIN_VIEWPORT_WIDTH = 390;
+const PLANET_MAX_VIEWPORT_WIDTH = 1440;
+const PLANET_MIN_FOV = 62;
+const PLANET_MAX_FOV = 45;
+const PLANET_MIN_CAMERA_Z = 21.5;
+const PLANET_MAX_CAMERA_Z = 17;
+
 // Create a 3D ring with rectangular cross-section (like the logo)
 function createMetallicRing(
   radius: number,
@@ -156,13 +165,39 @@ function usePlanetThemeRefs() {
   return useRef<PlanetThemeRefs | null>(null);
 }
 
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function lerp(start: number, end: number, progress: number) {
+  return start + (end - start) * progress;
+}
+
+function getIsMobileLayout(width: number) {
+  const hardwareConcurrency =
+    typeof navigator === "undefined" ? LOW_END_CONCURRENCY : navigator.hardwareConcurrency || 4;
+  return width < MOBILE_BREAKPOINT || hardwareConcurrency < LOW_END_CONCURRENCY;
+}
+
+function getPlanetCameraLayout(width: number) {
+  const progress = clamp(
+    (width - PLANET_MIN_VIEWPORT_WIDTH) / (PLANET_MAX_VIEWPORT_WIDTH - PLANET_MIN_VIEWPORT_WIDTH),
+    0,
+    1,
+  );
+
+  return {
+    fov: lerp(PLANET_MIN_FOV, PLANET_MAX_FOV, progress),
+    cameraZ: lerp(PLANET_MIN_CAMERA_Z, PLANET_MAX_CAMERA_Z, progress),
+  };
+}
+
 export default function PlanetGraphic() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window === "undefined") return false;
-    const hardwareConcurrency = navigator.hardwareConcurrency || 4;
-    return window.innerWidth < 768 || hardwareConcurrency < 4;
+    return getIsMobileLayout(window.innerWidth);
   });
   const { resolvedTheme } = useTheme();
   const themeRefs = usePlanetThemeRefs();
@@ -179,23 +214,21 @@ export default function PlanetGraphic() {
     const canvas = canvasRef.current;
     const container = containerRef.current;
     const resizeDebounceMs = 140;
-    const getIsMobile = (width: number) => width < 768 || (navigator.hardwareConcurrency || 4) < 4;
 
     const isDark = resolveIsDark(resolvedTheme);
 
     // Scene setup
     const scene = new THREE.Scene();
-    const initialIsMobile = getIsMobile(container.clientWidth);
+    const initialIsMobile = getIsMobileLayout(container.clientWidth);
+    const initialCameraLayout = getPlanetCameraLayout(container.clientWidth);
     setIsMobile((prev) => (prev === initialIsMobile ? prev : initialIsMobile));
-    const fov = initialIsMobile ? 65 : 45;
-    const cameraZ = initialIsMobile ? 20 : 17;
     const camera = new THREE.PerspectiveCamera(
-      fov,
+      initialCameraLayout.fov,
       container.clientWidth / container.clientHeight,
       0.1,
       100,
     );
-    camera.position.set(0, 1, cameraZ);
+    camera.position.set(0, 1, initialCameraLayout.cameraZ);
     camera.lookAt(0, -2, 0);
 
     const renderer = new THREE.WebGLRenderer({
@@ -501,14 +534,13 @@ export default function PlanetGraphic() {
       const width = container.clientWidth;
       const height = container.clientHeight;
       if (!width || !height) return;
-      const isMobileNow = getIsMobile(width);
-      const nextFov = isMobileNow ? 65 : 45;
-      const nextCameraZ = isMobileNow ? 20 : 17;
+      const isMobileNow = getIsMobileLayout(width);
+      const nextCameraLayout = getPlanetCameraLayout(width);
 
       setIsMobile((prev) => (prev === isMobileNow ? prev : isMobileNow));
-      camera.fov = nextFov;
+      camera.fov = nextCameraLayout.fov;
       camera.aspect = width / height;
-      camera.position.set(0, 1, nextCameraZ);
+      camera.position.set(0, 1, nextCameraLayout.cameraZ);
       camera.updateProjectionMatrix();
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(width, height, false);
@@ -570,7 +602,7 @@ export default function PlanetGraphic() {
   return (
     <div
       ref={containerRef}
-      className="h-[55vh] md:h-[75vh] relative pointer-events-none w-full overflow-hidden overscroll-none"
+      className="h-[55vh] md:h-[min(75vh,72vw)] xl:h-[75vh] relative pointer-events-none w-full overflow-hidden overscroll-none"
       style={{
         transform: isMobile ? "translateY(calc(-1rem - 12vh))" : "translateY(calc(-2rem - 4vh))",
       }}
