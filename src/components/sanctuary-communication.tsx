@@ -174,7 +174,6 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
       </div>
 
       <div
-        className="overflow-hidden"
         onTouchStart={(e) => {
           touchStartX.current = e.touches[0].clientX;
         }}
