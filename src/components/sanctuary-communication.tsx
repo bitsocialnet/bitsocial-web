@@ -1,6 +1,14 @@
-import { m } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { Check, X } from "lucide-react";
-import { memo, useCallback, useRef, useState } from "react";
+import {
+  memo,
+  startTransition,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 
 type ApproachId = "federated" | "blockchain" | "bitsocial";
 
@@ -118,28 +126,171 @@ const ComparisonCard = memo(function ComparisonCard({
 
 const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
   const [activeIndex, setActiveIndex] = useState(DEFAULT_APPROACH_INDEX);
-  const touchStartX = useRef(0);
-  const activeApproach = approaches[activeIndex];
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const scrollFrameRef = useRef<number | null>(null);
+  const prefersReducedMotion = useReducedMotion();
 
-  const setPage = useCallback((nextIndex: number) => {
-    setActiveIndex((currentIndex) => (currentIndex === nextIndex ? currentIndex : nextIndex));
+  const clampIndex = useCallback(
+    (nextIndex: number) => Math.max(0, Math.min(approaches.length - 1, nextIndex)),
+    [],
+  );
+
+  const scrollToIndex = useCallback(
+    (nextIndex: number, behavior: ScrollBehavior = prefersReducedMotion ? "auto" : "smooth") => {
+      const carousel = carouselRef.current;
+      if (!carousel) {
+        return;
+      }
+
+      const boundedIndex = clampIndex(nextIndex);
+
+      carousel.scrollTo({
+        left: boundedIndex * carousel.clientWidth,
+        behavior,
+      });
+    },
+    [clampIndex, prefersReducedMotion],
+  );
+
+  const cancelScrollAnimation = useCallback(() => {
+    if (animationFrameRef.current === null) {
+      return;
+    }
+
+    window.cancelAnimationFrame(animationFrameRef.current);
+    animationFrameRef.current = null;
+
+    const carousel = carouselRef.current;
+    if (carousel) {
+      carousel.style.scrollSnapType = "";
+    }
   }, []);
 
-  const handleSwipe = useCallback((startX: number, endX: number) => {
-    const diff = startX - endX;
-    const threshold = 50;
-    const isRtl = document.documentElement.dir === "rtl";
-    const effectiveDiff = isRtl ? -diff : diff;
+  const animateToIndex = useCallback(
+    (nextIndex: number) => {
+      const carousel = carouselRef.current;
+      if (!carousel) {
+        return;
+      }
 
-    setActiveIndex((currentIndex) => {
-      if (effectiveDiff > threshold && currentIndex < approaches.length - 1) {
-        return currentIndex + 1;
+      const boundedIndex = clampIndex(nextIndex);
+      const startScrollLeft = carousel.scrollLeft;
+      const targetScrollLeft = boundedIndex * carousel.clientWidth;
+
+      if (Math.abs(targetScrollLeft - startScrollLeft) < 1) {
+        setActiveIndex((currentIndex) =>
+          currentIndex === boundedIndex ? currentIndex : boundedIndex,
+        );
+        return;
       }
-      if (effectiveDiff < -threshold && currentIndex > 0) {
-        return currentIndex - 1;
+
+      cancelScrollAnimation();
+
+      const duration = 360;
+      let startTime: number | null = null;
+      carousel.style.scrollSnapType = "none";
+
+      const step = (timestamp: number) => {
+        if (startTime === null) {
+          startTime = timestamp;
+        }
+
+        const progress = Math.min(1, (timestamp - startTime) / duration);
+        const easedProgress = 1 - (1 - progress) ** 3;
+        carousel.scrollLeft =
+          startScrollLeft + (targetScrollLeft - startScrollLeft) * easedProgress;
+
+        if (progress < 1) {
+          animationFrameRef.current = window.requestAnimationFrame(step);
+          return;
+        }
+
+        carousel.scrollLeft = targetScrollLeft;
+        carousel.style.scrollSnapType = "";
+        animationFrameRef.current = null;
+        setActiveIndex((currentIndex) =>
+          currentIndex === boundedIndex ? currentIndex : boundedIndex,
+        );
+      };
+
+      animationFrameRef.current = window.requestAnimationFrame(step);
+    },
+    [cancelScrollAnimation, clampIndex],
+  );
+
+  const setPage = useCallback(
+    (nextIndex: number, behavior?: ScrollBehavior) => {
+      const boundedIndex = clampIndex(nextIndex);
+
+      if (behavior === "auto" || prefersReducedMotion) {
+        setActiveIndex((currentIndex) =>
+          currentIndex === boundedIndex ? currentIndex : boundedIndex,
+        );
+        cancelScrollAnimation();
+        scrollToIndex(boundedIndex, "auto");
+        return;
       }
-      return currentIndex;
+
+      animateToIndex(boundedIndex);
+    },
+    [animateToIndex, cancelScrollAnimation, clampIndex, prefersReducedMotion, scrollToIndex],
+  );
+
+  const syncActiveIndex = useCallback(() => {
+    scrollFrameRef.current = null;
+
+    const carousel = carouselRef.current;
+    if (!carousel || carousel.clientWidth === 0) {
+      return;
+    }
+
+    const nextIndex = clampIndex(Math.round(carousel.scrollLeft / carousel.clientWidth));
+
+    startTransition(() => {
+      setActiveIndex((currentIndex) => (currentIndex === nextIndex ? currentIndex : nextIndex));
     });
+  }, [clampIndex]);
+
+  const handleScroll = useCallback(() => {
+    if (scrollFrameRef.current !== null) {
+      return;
+    }
+
+    scrollFrameRef.current = window.requestAnimationFrame(syncActiveIndex);
+  }, [syncActiveIndex]);
+
+  useLayoutEffect(() => {
+    scrollToIndex(DEFAULT_APPROACH_INDEX, "auto");
+  }, [scrollToIndex]);
+
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) {
+      return;
+    }
+
+    const observer = new ResizeObserver(() => {
+      scrollToIndex(activeIndex, "auto");
+    });
+
+    observer.observe(carousel);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [activeIndex, scrollToIndex]);
+
+  useEffect(() => {
+    return () => {
+      if (scrollFrameRef.current !== null) {
+        window.cancelAnimationFrame(scrollFrameRef.current);
+      }
+
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -157,6 +308,7 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
             role="tab"
             aria-selected={activeIndex === index}
             aria-controls={`panel-${approach.id}`}
+            id={`tab-${approach.id}`}
             onClick={() => setPage(index)}
             className={`px-4 py-2 rounded-full border border-transparent text-xs font-display font-medium transition-colors duration-200 motion-reduce:transition-none ${
               activeIndex === index
@@ -174,44 +326,29 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
       </div>
 
       <div
-        onTouchStart={(e) => {
-          touchStartX.current = e.touches[0].clientX;
-        }}
-        onTouchEnd={(e) => {
-          handleSwipe(touchStartX.current, e.changedTouches[0].clientX);
-        }}
+        ref={carouselRef}
+        onScroll={handleScroll}
+        onPointerDownCapture={cancelScrollAnimation}
+        className="overflow-x-auto overflow-y-visible overscroll-x-contain touch-pan-x snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        style={{ WebkitOverflowScrolling: "touch" }}
       >
-        <div
-          className={`glass-card p-5 border md:p-7 ${
-            activeApproach.id === "bitsocial"
-              ? "!border-blue-glow shadow-[0_0_20px_rgba(37,99,235,0.35)]"
-              : "border-[var(--glass-border-subtle)]"
-          }`}
-        >
-          <div className="grid">
-            {approaches.map((approach, index) => {
-              const isActive = activeIndex === index;
+        <div className="flex">
+          {approaches.map((approach, index) => {
+            const isActive = activeIndex === index;
 
-              return (
-                <div
-                  key={approach.id}
-                  id={`panel-${approach.id}`}
-                  role="tabpanel"
-                  aria-hidden={!isActive}
-                  className={`col-start-1 row-start-1 transition-[opacity,transform] duration-200 motion-reduce:transition-none ${
-                    isActive
-                      ? "visible opacity-100 translate-y-0"
-                      : "invisible opacity-0 pointer-events-none translate-y-1"
-                  }`}
-                >
-                  <ComparisonCardContent
-                    approach={approach}
-                    isBitsocial={approach.id === "bitsocial"}
-                  />
-                </div>
-              );
-            })}
-          </div>
+            return (
+              <div
+                key={approach.id}
+                id={`panel-${approach.id}`}
+                role="tabpanel"
+                aria-hidden={!isActive}
+                aria-labelledby={`tab-${approach.id}`}
+                className="min-w-full snap-center snap-always px-1"
+              >
+                <ComparisonCard approach={approach} isBitsocial={approach.id === "bitsocial"} />
+              </div>
+            );
+          })}
         </div>
       </div>
 
