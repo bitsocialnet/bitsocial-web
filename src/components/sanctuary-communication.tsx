@@ -1,4 +1,5 @@
 import { m, useReducedMotion } from "framer-motion";
+import { gsap } from "gsap";
 import { Check, X } from "lucide-react";
 import {
   memo,
@@ -70,6 +71,12 @@ const DEFAULT_APPROACH_INDEX = Math.max(
   approaches.findIndex(({ id }) => id === "bitsocial"),
 );
 const MOBILE_CARD_SIDE_PEEK_CLASS = "w-9";
+const MOBILE_CARD_FOCUS_TRANSITION = {
+  type: "spring" as const,
+  stiffness: 280,
+  damping: 30,
+  mass: 0.9,
+};
 
 const ComparisonCardContent = memo(function ComparisonCardContent({
   approach,
@@ -132,10 +139,9 @@ const ComparisonCard = memo(function ComparisonCard({
 const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
   const [activeIndex, setActiveIndex] = useState(DEFAULT_APPROACH_INDEX);
   const carouselRef = useRef<HTMLDivElement | null>(null);
-  const animationFrameRef = useRef<number | null>(null);
   const scrollFrameRef = useRef<number | null>(null);
+  const scrollTweenRef = useRef<gsap.core.Tween | null>(null);
   const prefersReducedMotion = useReducedMotion();
-
   const getPanels = useCallback(() => {
     const carousel = carouselRef.current;
     if (!carousel) {
@@ -185,12 +191,8 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
   );
 
   const cancelScrollAnimation = useCallback(() => {
-    if (animationFrameRef.current === null) {
-      return;
-    }
-
-    window.cancelAnimationFrame(animationFrameRef.current);
-    animationFrameRef.current = null;
+    scrollTweenRef.current?.kill();
+    scrollTweenRef.current = null;
 
     const carousel = carouselRef.current;
     if (carousel) {
@@ -206,10 +208,9 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
       }
 
       const boundedIndex = clampIndex(nextIndex);
-      const startScrollLeft = carousel.scrollLeft;
       const targetScrollLeft = getPanelScrollLeft(boundedIndex);
 
-      if (Math.abs(targetScrollLeft - startScrollLeft) < 1) {
+      if (Math.abs(targetScrollLeft - carousel.scrollLeft) < 1) {
         setActiveIndex((currentIndex) =>
           currentIndex === boundedIndex ? currentIndex : boundedIndex,
         );
@@ -217,35 +218,21 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
       }
 
       cancelScrollAnimation();
-
-      const duration = 360;
-      let startTime: number | null = null;
       carousel.style.scrollSnapType = "none";
 
-      const step = (timestamp: number) => {
-        if (startTime === null) {
-          startTime = timestamp;
-        }
-
-        const progress = Math.min(1, (timestamp - startTime) / duration);
-        const easedProgress = 1 - (1 - progress) ** 3;
-        carousel.scrollLeft =
-          startScrollLeft + (targetScrollLeft - startScrollLeft) * easedProgress;
-
-        if (progress < 1) {
-          animationFrameRef.current = window.requestAnimationFrame(step);
-          return;
-        }
-
-        carousel.scrollLeft = targetScrollLeft;
-        carousel.style.scrollSnapType = "";
-        animationFrameRef.current = null;
-        setActiveIndex((currentIndex) =>
-          currentIndex === boundedIndex ? currentIndex : boundedIndex,
-        );
-      };
-
-      animationFrameRef.current = window.requestAnimationFrame(step);
+      scrollTweenRef.current = gsap.to(carousel, {
+        scrollLeft: targetScrollLeft,
+        duration: 0.55,
+        ease: "power3.out",
+        overwrite: true,
+        onComplete: () => {
+          carousel.style.scrollSnapType = "";
+          scrollTweenRef.current = null;
+          setActiveIndex((currentIndex) =>
+            currentIndex === boundedIndex ? currentIndex : boundedIndex,
+          );
+        },
+      });
     },
     [cancelScrollAnimation, clampIndex, getPanelScrollLeft],
   );
@@ -318,7 +305,7 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
     }
 
     const observer = new ResizeObserver(() => {
-      scrollToIndex(activeIndex, "auto");
+      setPage(activeIndex, "auto");
     });
 
     observer.observe(carousel);
@@ -326,7 +313,7 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
     return () => {
       observer.disconnect();
     };
-  }, [activeIndex, scrollToIndex]);
+  }, [activeIndex, setPage]);
 
   useEffect(() => {
     return () => {
@@ -334,11 +321,9 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
         window.cancelAnimationFrame(scrollFrameRef.current);
       }
 
-      if (animationFrameRef.current !== null) {
-        window.cancelAnimationFrame(animationFrameRef.current);
-      }
+      cancelScrollAnimation();
     };
-  }, []);
+  }, [cancelScrollAnimation]);
 
   return (
     <m.div
@@ -386,16 +371,18 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
               const isActive = activeIndex === index;
 
               return (
-                <div
+                <m.div
                   key={approach.id}
                   id={`panel-${approach.id}`}
                   role="tabpanel"
                   aria-hidden={!isActive}
                   aria-labelledby={`tab-${approach.id}`}
-                  className="w-[calc(100vw-4.5rem)] shrink-0 snap-center snap-always px-2"
+                  animate={{ scale: isActive ? 1 : 0.985 }}
+                  transition={prefersReducedMotion ? { duration: 0 } : MOBILE_CARD_FOCUS_TRANSITION}
+                  className="w-[calc(100vw-4.5rem)] shrink-0 snap-center snap-always px-2 transform-gpu"
                 >
                   <ComparisonCard approach={approach} isBitsocial={approach.id === "bitsocial"} />
-                </div>
+                </m.div>
               );
             })}
             <div aria-hidden className={`${MOBILE_CARD_SIDE_PEEK_CLASS} shrink-0`} />
