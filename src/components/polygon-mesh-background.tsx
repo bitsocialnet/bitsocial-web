@@ -1,5 +1,6 @@
 import { memo, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
+import { useGraphicsMode } from "@/lib/graphics-mode";
 
 interface Point {
   x: number;
@@ -16,7 +17,6 @@ interface EdgeData {
 
 const SPACING = 85;
 const JITTER_FACTOR = 0.42;
-const FADE_HEIGHT = 450;
 const EDGE_BASE_WIDTH = 0.5;
 const EDGE_GLOW_WIDTH = 1.5;
 const DOT_RADIUS = 1.2;
@@ -35,14 +35,6 @@ const SWEEP_THRESHOLD = 0.66;
 const SWEEP_SPATIAL_X = 0.0068;
 const SWEEP_SPATIAL_Y = 0.0051;
 const SWEEP_PHASE_HASH_MIX = 0.38;
-const VIEWPORT_OVERSCAN = 240;
-
-function fadeAtY(y: number): number {
-  if (y >= FADE_HEIGHT) return 1;
-  if (y <= 0) return 0;
-  const t = y / FADE_HEIGHT;
-  return t * t * t;
-}
 
 function fract(x: number): number {
   return x - Math.floor(x);
@@ -117,9 +109,11 @@ function generateMesh(width: number, height: number) {
 
 function initMesh(
   canvas: HTMLCanvasElement,
-  container: HTMLElement,
+  root: HTMLElement,
+  viewport: HTMLElement,
   ctx: CanvasRenderingContext2D,
   isDark: boolean,
+  shouldAnimate: boolean,
 ): () => void {
   const edgeAlpha = isDark ? 0.1 : 0.085;
   const dotAlpha = isDark ? 0.108 : 0.1;
@@ -129,8 +123,8 @@ function initMesh(
   const glowG = isDark ? BLUE_ON_DARK_G : BLUE_G;
   const glowB = isDark ? BLUE_ON_DARK_B : BLUE_B;
 
-  let w = container.clientWidth;
-  let h = container.clientHeight;
+  let w = viewport.clientWidth;
+  let h = viewport.clientHeight;
   const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
   const dpr = Math.min(window.devicePixelRatio, 1.5);
   const frameBudget = isTouchDevice ? 50 : 33;
@@ -146,13 +140,7 @@ function initMesh(
   setCanvasSize();
 
   let mesh = generateMesh(w, h);
-  let canvasRect = canvas.getBoundingClientRect();
-  let viewportTop = 0;
-  let viewportBottom = h;
-  let visiblePointIndices: number[] = [];
-  let visibleBaseEdgeIndices: number[] = [];
-  let visibleFadedEdgeIndices: number[] = [];
-  let visibleGlowEdgeIndices: number[] = [];
+  let viewportRect = viewport.getBoundingClientRect();
 
   let curX = -9999;
   let curY = -9999;
@@ -165,73 +153,76 @@ function initMesh(
   let scrollInjectedSpeed = 0;
   let lastScrollY = window.scrollY;
 
-  function updateCanvasRect() {
-    canvasRect = canvas.getBoundingClientRect();
+  function updateViewportRect() {
+    viewportRect = viewport.getBoundingClientRect();
   }
 
-  function updateViewportWindow() {
-    const nextTop = Math.max(0, -canvasRect.top - VIEWPORT_OVERSCAN);
-    viewportTop = nextTop;
-    viewportBottom = Math.min(h, nextTop + window.innerHeight + VIEWPORT_OVERSCAN * 2);
+  function syncViewportClip() {
+    const rootRect = root.getBoundingClientRect();
+    const clipTop = Math.min(h, Math.max(0, rootRect.top));
+    const clipBottom = Math.min(h, Math.max(0, h - rootRect.bottom));
+    const clipValue = `inset(${clipTop}px 0px ${clipBottom}px 0px)`;
+
+    viewport.style.clipPath = clipValue;
+    viewport.style.setProperty("-webkit-clip-path", clipValue);
   }
 
-  function rebuildVisibleSlices() {
+  function drawFrame() {
     const pts = mesh.points;
     const edges = mesh.edges;
 
-    const nextPointIndices: number[] = [];
-    for (let i = 0; i < pts.length; i++) {
-      const y = pts[i].y;
-      if (y >= viewportTop && y <= viewportBottom) {
-        nextPointIndices.push(i);
+    ctx.clearRect(0, 0, w, h);
+
+    ctx.strokeStyle = `rgba(${edgeRGB},${edgeAlpha})`;
+    ctx.lineWidth = EDGE_BASE_WIDTH;
+    ctx.beginPath();
+    for (const edge of edges) {
+      ctx.moveTo(pts[edge.a].x, pts[edge.a].y);
+      ctx.lineTo(pts[edge.b].x, pts[edge.b].y);
+    }
+    ctx.stroke();
+
+    if (shouldAnimate) {
+      for (const edge of edges) {
+        const spatialPhase = fract(edge.mx * SWEEP_SPATIAL_X + edge.my * SWEEP_SPATIAL_Y);
+        const blendedPhase =
+          spatialPhase * (1 - SWEEP_PHASE_HASH_MIX) + edge.hash * SWEEP_PHASE_HASH_MIX;
+        const cycle = fract(blendedPhase - time * SWEEP_SPEED);
+        const angleStrength = smoothstep(SWEEP_THRESHOLD, 1, cycle) * smoothedSpeed;
+
+        const totalGlow = angleStrength * 0.35;
+        if (totalGlow < 0.015) continue;
+
+        const alpha = Math.min(totalGlow * 0.55, 0.6) * (isDark ? 1.12 : 1);
+        ctx.strokeStyle = `rgba(${glowR},${glowG},${glowB},${alpha})`;
+        ctx.lineWidth = EDGE_GLOW_WIDTH;
+        ctx.beginPath();
+        ctx.moveTo(pts[edge.a].x, pts[edge.a].y);
+        ctx.lineTo(pts[edge.b].x, pts[edge.b].y);
+        ctx.stroke();
       }
     }
 
-    const nextBaseEdgeIndices: number[] = [];
-    const nextFadedEdgeIndices: number[] = [];
-    const nextGlowEdgeIndices: number[] = [];
-
-    for (let i = 0; i < edges.length; i++) {
-      const edge = edges[i];
-      const aY = pts[edge.a].y;
-      const bY = pts[edge.b].y;
-      const minY = Math.min(aY, bY);
-      const maxY = Math.max(aY, bY);
-
-      if (maxY < viewportTop || minY > viewportBottom) continue;
-
-      nextGlowEdgeIndices.push(i);
-      if (aY >= FADE_HEIGHT && bY >= FADE_HEIGHT) {
-        nextBaseEdgeIndices.push(i);
-      } else {
-        nextFadedEdgeIndices.push(i);
-      }
+    ctx.fillStyle = `rgba(${dotRGB},${dotAlpha})`;
+    for (const point of pts) {
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, DOT_RADIUS, 0, Math.PI * 2);
+      ctx.fill();
     }
-
-    visiblePointIndices = nextPointIndices;
-    visibleBaseEdgeIndices = nextBaseEdgeIndices;
-    visibleFadedEdgeIndices = nextFadedEdgeIndices;
-    visibleGlowEdgeIndices = nextGlowEdgeIndices;
   }
-
-  function syncViewportState() {
-    updateCanvasRect();
-    updateViewportWindow();
-    rebuildVisibleSlices();
-  }
-
-  syncViewportState();
 
   function onMove(e: MouseEvent) {
-    curX = e.clientX - canvasRect.left;
-    curY = e.clientY - canvasRect.top;
+    updateViewportRect();
+    curX = e.clientX - viewportRect.left;
+    curY = e.clientY - viewportRect.top;
   }
 
   function onTouchMove(e: TouchEvent) {
     if (e.touches.length === 0) return;
     const touch = e.touches[0];
-    curX = touch.clientX - canvasRect.left;
-    curY = touch.clientY - canvasRect.top;
+    updateViewportRect();
+    curX = touch.clientX - viewportRect.left;
+    curY = touch.clientY - viewportRect.top;
   }
 
   function onPointerLeave() {
@@ -245,38 +236,29 @@ function initMesh(
     const dy = Math.abs(window.scrollY - lastScrollY);
     lastScrollY = window.scrollY;
     scrollInjectedSpeed = Math.min(1, dy / 12);
-    syncViewportState();
+    syncViewportClip();
   }
 
-  window.addEventListener("mousemove", onMove, { passive: true });
-  document.addEventListener("mouseleave", onPointerLeave);
-  window.addEventListener("touchmove", onTouchMove, { passive: true });
-  window.addEventListener("touchstart", onTouchMove, { passive: true });
-  window.addEventListener("touchend", onPointerLeave, { passive: true });
-  window.addEventListener("scroll", onScroll, { passive: true });
-
-  const io = new IntersectionObserver(
-    ([entry]) => {
-      inViewport = entry.isIntersecting;
-      if (inViewport) {
-        lt = 0;
-        syncViewportState();
-        scheduleFrame();
+  let resizeTimer: ReturnType<typeof setTimeout>;
+  const ro = new ResizeObserver(() => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      w = viewport.clientWidth;
+      h = viewport.clientHeight;
+      if (w > 0 && h > 0) {
+        setCanvasSize();
+        mesh = generateMesh(w, h);
+        updateViewportRect();
+        syncViewportClip();
+        drawFrame();
+        if (shouldAnimate) {
+          lt = 0;
+          scheduleFrame();
+        }
       }
-    },
-    { threshold: 0 },
-  );
-  io.observe(container);
-
-  const handleVisibilityChange = () => {
-    pageVisible = document.visibilityState === "visible";
-    if (pageVisible) {
-      lt = 0;
-      syncViewportState();
-      scheduleFrame();
-    }
-  };
-  document.addEventListener("visibilitychange", handleVisibilityChange);
+    }, 200);
+  });
+  ro.observe(viewport);
 
   let af: number | null = null;
   let lt = 0;
@@ -298,9 +280,6 @@ function initMesh(
     lt = now;
     time += dt;
 
-    const pts = mesh.points;
-    const edges = mesh.edges;
-
     let frameSpeed = 0;
     if (curX > -9000 && prevX > -9000) {
       const dx = curX - prevX;
@@ -317,84 +296,56 @@ function initMesh(
     scrollInjectedSpeed *= 0.85;
     smoothedSpeed += (speedTarget - smoothedSpeed) * (speedTarget > smoothedSpeed ? 0.25 : 0.035);
 
-    const clearTop = Math.max(0, viewportTop - 2);
-    const clearHeight = Math.max(0, viewportBottom - clearTop + 2);
-    ctx.clearRect(0, clearTop, w, clearHeight);
-
-    ctx.strokeStyle = `rgba(${edgeRGB},${edgeAlpha})`;
-    ctx.lineWidth = EDGE_BASE_WIDTH;
-    ctx.beginPath();
-    for (const edgeIndex of visibleBaseEdgeIndices) {
-      const edge = edges[edgeIndex];
-      ctx.moveTo(pts[edge.a].x, pts[edge.a].y);
-      ctx.lineTo(pts[edge.b].x, pts[edge.b].y);
-    }
-    ctx.stroke();
-
-    for (const edgeIndex of visibleFadedEdgeIndices) {
-      const edge = edges[edgeIndex];
-      const fade = (fadeAtY(pts[edge.a].y) + fadeAtY(pts[edge.b].y)) * 0.5;
-      if (fade < 0.01) continue;
-      ctx.strokeStyle = `rgba(${edgeRGB},${edgeAlpha * fade})`;
-      ctx.lineWidth = EDGE_BASE_WIDTH;
-      ctx.beginPath();
-      ctx.moveTo(pts[edge.a].x, pts[edge.a].y);
-      ctx.lineTo(pts[edge.b].x, pts[edge.b].y);
-      ctx.stroke();
-    }
-
-    for (const edgeIndex of visibleGlowEdgeIndices) {
-      const edge = edges[edgeIndex];
-      const spatialPhase = fract(edge.mx * SWEEP_SPATIAL_X + edge.my * SWEEP_SPATIAL_Y);
-      const blendedPhase =
-        spatialPhase * (1 - SWEEP_PHASE_HASH_MIX) + edge.hash * SWEEP_PHASE_HASH_MIX;
-      const cycle = fract(blendedPhase - time * SWEEP_SPEED);
-      const angleStrength = smoothstep(SWEEP_THRESHOLD, 1, cycle) * smoothedSpeed;
-
-      const totalGlow = angleStrength * 0.35;
-      if (totalGlow < 0.015) continue;
-
-      const fade = fadeAtY(edge.my);
-      if (fade < 0.01) continue;
-
-      const alpha = Math.min(totalGlow * 0.55, 0.6) * fade * (isDark ? 1.12 : 1);
-      ctx.strokeStyle = `rgba(${glowR},${glowG},${glowB},${alpha})`;
-      ctx.lineWidth = EDGE_GLOW_WIDTH;
-      ctx.beginPath();
-      ctx.moveTo(pts[edge.a].x, pts[edge.a].y);
-      ctx.lineTo(pts[edge.b].x, pts[edge.b].y);
-      ctx.stroke();
-    }
-
-    for (const pointIndex of visiblePointIndices) {
-      const point = pts[pointIndex];
-      const fade = fadeAtY(point.y);
-      if (fade < 0.01) continue;
-      ctx.fillStyle = `rgba(${dotRGB},${dotAlpha * fade})`;
-      ctx.beginPath();
-      ctx.arc(point.x, point.y, DOT_RADIUS, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
+    drawFrame();
     scheduleFrame();
   }
 
-  scheduleFrame();
+  if (!shouldAnimate) {
+    syncViewportClip();
+    drawFrame();
 
-  let resizeTimer: ReturnType<typeof setTimeout>;
-  const ro = new ResizeObserver(() => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      w = container.clientWidth;
-      h = container.clientHeight;
-      if (w > 0 && h > 0) {
-        setCanvasSize();
-        mesh = generateMesh(w, h);
-        syncViewportState();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      clearTimeout(resizeTimer);
+      window.removeEventListener("scroll", onScroll);
+      ro.disconnect();
+    };
+  }
+
+  window.addEventListener("mousemove", onMove, { passive: true });
+  document.addEventListener("mouseleave", onPointerLeave);
+  window.addEventListener("touchmove", onTouchMove, { passive: true });
+  window.addEventListener("touchstart", onTouchMove, { passive: true });
+  window.addEventListener("touchend", onPointerLeave, { passive: true });
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  const io = new IntersectionObserver(
+    ([entry]) => {
+      inViewport = entry.isIntersecting;
+      if (inViewport) {
+        lt = 0;
+        syncViewportClip();
+        scheduleFrame();
       }
-    }, 200);
-  });
-  ro.observe(container);
+    },
+    { threshold: 0 },
+  );
+  io.observe(root);
+
+  const handleVisibilityChange = () => {
+    pageVisible = document.visibilityState === "visible";
+    if (pageVisible) {
+      lt = 0;
+      syncViewportClip();
+      scheduleFrame();
+    }
+  };
+  document.addEventListener("visibilitychange", handleVisibilityChange);
+
+  syncViewportClip();
+  drawFrame();
+  scheduleFrame();
 
   return () => {
     if (af != null) {
@@ -415,13 +366,16 @@ function initMesh(
 
 const PolygonMeshBackground = memo(function PolygonMeshBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
   const { resolvedTheme } = useTheme();
+  const graphicsMode = useGraphicsMode();
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (!canvas || !container) return;
+    const root = rootRef.current;
+    const viewport = viewportRef.current;
+    if (!canvas || !root || !viewport) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -429,16 +383,14 @@ const PolygonMeshBackground = memo(function PolygonMeshBackground() {
       resolvedTheme === "dark" ||
       (!resolvedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches);
 
-    return initMesh(canvas, container, ctx, isDark);
-  }, [resolvedTheme]);
+    return initMesh(canvas, root, viewport, ctx, isDark, graphicsMode === "full");
+  }, [graphicsMode, resolvedTheme]);
 
   return (
-    <div
-      ref={containerRef}
-      className="absolute inset-0 overflow-hidden pointer-events-none"
-      aria-hidden="true"
-    >
-      <canvas ref={canvasRef} className="block w-full h-full" />
+    <div ref={rootRef} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div ref={viewportRef} className="fixed inset-0 overflow-hidden">
+        <canvas ref={canvasRef} className="block w-full h-full" />
+      </div>
     </div>
   );
 });
