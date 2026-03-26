@@ -169,9 +169,11 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
       const target = event.target as Node | null;
       const isSearchInput = target === inputRef.current;
 
-      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      const isNextKey = event.key === "ArrowDown" || event.key === "ArrowRight";
+      const isPrevKey = event.key === "ArrowUp" || event.key === "ArrowLeft";
+      if (isNextKey || isPrevKey) {
         event.preventDefault();
-        const direction = event.key === "ArrowDown" ? 1 : -1;
+        const direction = isNextKey ? 1 : -1;
         const len = filteredLanguages.length;
         setActiveIndex((current) => {
           const at = Math.min(Math.max(0, current), len - 1);
