@@ -65,6 +65,7 @@ const DEFAULT_APPROACH_INDEX = Math.max(
   0,
   approaches.findIndex(({ id }) => id === "bitsocial"),
 );
+const MOBILE_CARD_SIDE_PEEK_CLASS = "w-9";
 
 const ComparisonCardContent = memo(function ComparisonCardContent({
   approach,
@@ -116,7 +117,7 @@ const ComparisonCard = memo(function ComparisonCard({
   return (
     <div
       className={`glass-card p-5 md:p-7 h-full ${
-        isBitsocial ? "border !border-blue-glow shadow-[0_0_20px_rgba(37,99,235,0.35)]" : ""
+        isBitsocial ? "border !border-blue-glow shadow-[0_0_28px_rgba(37,99,235,0.28)]" : ""
       }`}
     >
       <ComparisonCardContent approach={approach} isBitsocial={isBitsocial} />
@@ -130,6 +131,32 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
   const animationFrameRef = useRef<number | null>(null);
   const scrollFrameRef = useRef<number | null>(null);
   const prefersReducedMotion = useReducedMotion();
+
+  const getPanels = useCallback(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) {
+      return [];
+    }
+
+    return Array.from(carousel.querySelectorAll<HTMLDivElement>("[role='tabpanel']"));
+  }, []);
+
+  const getPanelScrollLeft = useCallback(
+    (nextIndex: number) => {
+      const carousel = carouselRef.current;
+      if (!carousel) {
+        return 0;
+      }
+
+      const panel = getPanels()[nextIndex];
+      if (!panel) {
+        return 0;
+      }
+
+      return Math.max(0, panel.offsetLeft - (carousel.clientWidth - panel.offsetWidth) / 2);
+    },
+    [getPanels],
+  );
 
   const clampIndex = useCallback(
     (nextIndex: number) => Math.max(0, Math.min(approaches.length - 1, nextIndex)),
@@ -146,11 +173,11 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
       const boundedIndex = clampIndex(nextIndex);
 
       carousel.scrollTo({
-        left: boundedIndex * carousel.clientWidth,
+        left: getPanelScrollLeft(boundedIndex),
         behavior,
       });
     },
-    [clampIndex, prefersReducedMotion],
+    [clampIndex, getPanelScrollLeft, prefersReducedMotion],
   );
 
   const cancelScrollAnimation = useCallback(() => {
@@ -176,7 +203,7 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
 
       const boundedIndex = clampIndex(nextIndex);
       const startScrollLeft = carousel.scrollLeft;
-      const targetScrollLeft = boundedIndex * carousel.clientWidth;
+      const targetScrollLeft = getPanelScrollLeft(boundedIndex);
 
       if (Math.abs(targetScrollLeft - startScrollLeft) < 1) {
         setActiveIndex((currentIndex) =>
@@ -216,7 +243,7 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
 
       animationFrameRef.current = window.requestAnimationFrame(step);
     },
-    [cancelScrollAnimation, clampIndex],
+    [cancelScrollAnimation, clampIndex, getPanelScrollLeft],
   );
 
   const setPage = useCallback(
@@ -245,12 +272,28 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
       return;
     }
 
-    const nextIndex = clampIndex(Math.round(carousel.scrollLeft / carousel.clientWidth));
+    const panelOffsets = getPanels().map((panel) =>
+      Math.max(0, panel.offsetLeft - (carousel.clientWidth - panel.offsetWidth) / 2),
+    );
+    if (panelOffsets.length === 0) {
+      return;
+    }
+
+    const nextIndex = clampIndex(
+      panelOffsets.reduce((closestIndex, panelOffset, index) => {
+        const closestOffset = panelOffsets[closestIndex] ?? Number.POSITIVE_INFINITY;
+
+        return Math.abs(panelOffset - carousel.scrollLeft) <
+          Math.abs(closestOffset - carousel.scrollLeft)
+          ? index
+          : closestIndex;
+      }, 0),
+    );
 
     startTransition(() => {
       setActiveIndex((currentIndex) => (currentIndex === nextIndex ? currentIndex : nextIndex));
     });
-  }, [clampIndex]);
+  }, [clampIndex, getPanels]);
 
   const handleScroll = useCallback(() => {
     if (scrollFrameRef.current !== null) {
@@ -325,30 +368,34 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
         ))}
       </div>
 
-      <div
-        ref={carouselRef}
-        onScroll={handleScroll}
-        onPointerDownCapture={cancelScrollAnimation}
-        className="overflow-x-auto overflow-y-visible overscroll-x-contain touch-pan-x snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        style={{ WebkitOverflowScrolling: "touch" }}
-      >
-        <div className="flex">
-          {approaches.map((approach, index) => {
-            const isActive = activeIndex === index;
+      <div className="-mx-6 overflow-visible">
+        <div
+          ref={carouselRef}
+          onScroll={handleScroll}
+          onPointerDownCapture={cancelScrollAnimation}
+          className="overflow-x-auto overscroll-x-contain touch-pan-x snap-x snap-mandatory py-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          style={{ WebkitOverflowScrolling: "touch" }}
+        >
+          <div className="flex items-stretch gap-3">
+            <div aria-hidden className={`${MOBILE_CARD_SIDE_PEEK_CLASS} shrink-0`} />
+            {approaches.map((approach, index) => {
+              const isActive = activeIndex === index;
 
-            return (
-              <div
-                key={approach.id}
-                id={`panel-${approach.id}`}
-                role="tabpanel"
-                aria-hidden={!isActive}
-                aria-labelledby={`tab-${approach.id}`}
-                className="min-w-full snap-center snap-always px-1"
-              >
-                <ComparisonCard approach={approach} isBitsocial={approach.id === "bitsocial"} />
-              </div>
-            );
-          })}
+              return (
+                <div
+                  key={approach.id}
+                  id={`panel-${approach.id}`}
+                  role="tabpanel"
+                  aria-hidden={!isActive}
+                  aria-labelledby={`tab-${approach.id}`}
+                  className="w-[calc(100vw-4.5rem)] shrink-0 snap-center snap-always px-2"
+                >
+                  <ComparisonCard approach={approach} isBitsocial={approach.id === "bitsocial"} />
+                </div>
+              );
+            })}
+            <div aria-hidden className={`${MOBILE_CARD_SIDE_PEEK_CLASS} shrink-0`} />
+          </div>
         </div>
       </div>
 
