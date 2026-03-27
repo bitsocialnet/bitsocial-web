@@ -280,7 +280,9 @@ export default function Topbar() {
               className="flex items-center gap-1 group transition-colors"
             >
               <img
-                src="/logo-small.png"
+                src="/logo.png"
+                width={32}
+                height={32}
                 alt="Bitsocial"
                 className="h-8 w-8 transition-[filter] group-hover:brightness-110"
               />
