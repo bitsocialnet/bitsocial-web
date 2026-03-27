@@ -1,5 +1,6 @@
-import { m, AnimatePresence, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import EasterEggOverlay from "@/components/easter-egg-overlay";
 
 const phases = [
   {
@@ -165,31 +166,12 @@ export default function MasterPlan() {
         </div>
       </div>
 
-      {/* GIF overlay */}
-      <AnimatePresence>
-        {showGif && (
-          <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
-            onClick={() => setShowGif(false)}
-          >
-            <m.img
-              src={easterEgg.gifSrc}
-              alt={easterEgg.alt}
-              className="max-w-[90vw] max-h-[90vh] cursor-pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowGif(false);
-              }}
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-          </m.div>
-        )}
-      </AnimatePresence>
+      <EasterEggOverlay
+        imageSrc={easterEgg.gifSrc}
+        alt={easterEgg.alt}
+        open={showGif}
+        onOpenChange={setShowGif}
+      />
     </section>
   );
 }

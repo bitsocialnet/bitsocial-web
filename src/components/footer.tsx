@@ -1,6 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Github, Send } from "lucide-react";
+import { useState } from "react";
+import EasterEggOverlay from "@/components/easter-egg-overlay";
 import { goHomeScrollTop } from "@/lib/home-nav";
 import { goToMailingListSection } from "@/lib/mailing-list-nav";
 
@@ -18,6 +20,7 @@ export default function Footer() {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
+  const [showDominoEffect, setShowDominoEffect] = useState(false);
 
   const handleNewsletterClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -142,7 +145,13 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-border/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-muted-foreground/70 text-xs">
-          <p className="font-display tracking-wide">{t("footer.bottomTagline")}</p>
+          <button
+            type="button"
+            onClick={() => setShowDominoEffect(true)}
+            className="font-display tracking-wide rounded-md transition-colors duration-300 hover:text-muted-foreground/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            {t("footer.bottomTagline")}
+          </button>
           <div className="flex items-center gap-3 text-xs">
             <a
               href="https://github.com/bitsocialnet/bitsocial-web"
@@ -165,6 +174,13 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      <EasterEggOverlay
+        imageSrc="/domino-effect-easter-egg.jpg"
+        alt="Domino effect"
+        open={showDominoEffect}
+        onOpenChange={setShowDominoEffect}
+      />
     </footer>
   );
 }
