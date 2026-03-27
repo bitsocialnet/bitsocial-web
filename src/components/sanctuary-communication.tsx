@@ -77,6 +77,7 @@ const MOBILE_CARD_FOCUS_TRANSITION = {
   damping: 30,
   mass: 0.9,
 };
+const MOBILE_SCROLL_SETTLE_DELAY_MS = 96;
 
 const ComparisonCardContent = memo(function ComparisonCardContent({
   approach,
@@ -138,8 +139,9 @@ const ComparisonCard = memo(function ComparisonCard({
 
 const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
   const [activeIndex, setActiveIndex] = useState(DEFAULT_APPROACH_INDEX);
+  const [pendingIndex, setPendingIndex] = useState<number | null>(null);
   const carouselRef = useRef<HTMLDivElement | null>(null);
-  const scrollFrameRef = useRef<number | null>(null);
+  const scrollSettleTimeoutRef = useRef<number | null>(null);
   const scrollTweenRef = useRef<gsap.core.Tween | null>(null);
   const prefersReducedMotion = useReducedMotion();
   const getPanels = useCallback(() => {
@@ -190,6 +192,13 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
     [clampIndex, getPanelScrollLeft, prefersReducedMotion],
   );
 
+  const clearScrollSettleTimeout = useCallback(() => {
+    if (scrollSettleTimeoutRef.current !== null) {
+      window.clearTimeout(scrollSettleTimeoutRef.current);
+      scrollSettleTimeoutRef.current = null;
+    }
+  }, []);
+
   const cancelScrollAnimation = useCallback(() => {
     scrollTweenRef.current?.kill();
     scrollTweenRef.current = null;
@@ -217,24 +226,32 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
         return;
       }
 
+      const distance = Math.abs(targetScrollLeft - carousel.scrollLeft);
+      const duration = Math.min(0.8, Math.max(0.56, 0.46 + distance / 1600));
+
+      setPendingIndex((currentIndex) =>
+        currentIndex === boundedIndex ? currentIndex : boundedIndex,
+      );
+      clearScrollSettleTimeout();
       cancelScrollAnimation();
       carousel.style.scrollSnapType = "none";
 
       scrollTweenRef.current = gsap.to(carousel, {
         scrollLeft: targetScrollLeft,
-        duration: 0.55,
-        ease: "power3.out",
+        duration,
+        ease: "power2.out",
         overwrite: true,
         onComplete: () => {
           carousel.style.scrollSnapType = "";
           scrollTweenRef.current = null;
+          setPendingIndex(null);
           setActiveIndex((currentIndex) =>
             currentIndex === boundedIndex ? currentIndex : boundedIndex,
           );
         },
       });
     },
-    [cancelScrollAnimation, clampIndex, getPanelScrollLeft],
+    [cancelScrollAnimation, clampIndex, clearScrollSettleTimeout, getPanelScrollLeft],
   );
 
   const setPage = useCallback(
@@ -242,9 +259,11 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
       const boundedIndex = clampIndex(nextIndex);
 
       if (behavior === "auto" || prefersReducedMotion) {
+        setPendingIndex(null);
         setActiveIndex((currentIndex) =>
           currentIndex === boundedIndex ? currentIndex : boundedIndex,
         );
+        clearScrollSettleTimeout();
         cancelScrollAnimation();
         scrollToIndex(boundedIndex, "auto");
         return;
@@ -252,14 +271,21 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
 
       animateToIndex(boundedIndex);
     },
-    [animateToIndex, cancelScrollAnimation, clampIndex, prefersReducedMotion, scrollToIndex],
+    [
+      animateToIndex,
+      cancelScrollAnimation,
+      clampIndex,
+      clearScrollSettleTimeout,
+      prefersReducedMotion,
+      scrollToIndex,
+    ],
   );
 
   const syncActiveIndex = useCallback(() => {
-    scrollFrameRef.current = null;
+    scrollSettleTimeoutRef.current = null;
 
     const carousel = carouselRef.current;
-    if (!carousel || carousel.clientWidth === 0) {
+    if (!carousel || carousel.clientWidth === 0 || scrollTweenRef.current) {
       return;
     }
 
@@ -282,17 +308,28 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
     );
 
     startTransition(() => {
+      setPendingIndex(null);
       setActiveIndex((currentIndex) => (currentIndex === nextIndex ? currentIndex : nextIndex));
     });
   }, [clampIndex, getPanels]);
 
   const handleScroll = useCallback(() => {
-    if (scrollFrameRef.current !== null) {
+    if (scrollTweenRef.current) {
       return;
     }
 
-    scrollFrameRef.current = window.requestAnimationFrame(syncActiveIndex);
-  }, [syncActiveIndex]);
+    clearScrollSettleTimeout();
+    scrollSettleTimeoutRef.current = window.setTimeout(
+      syncActiveIndex,
+      MOBILE_SCROLL_SETTLE_DELAY_MS,
+    );
+  }, [clearScrollSettleTimeout, syncActiveIndex]);
+
+  const handlePointerDownCapture = useCallback(() => {
+    setPendingIndex(null);
+    clearScrollSettleTimeout();
+    cancelScrollAnimation();
+  }, [cancelScrollAnimation, clearScrollSettleTimeout]);
 
   useLayoutEffect(() => {
     scrollToIndex(DEFAULT_APPROACH_INDEX, "auto");
@@ -317,13 +354,10 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
 
   useEffect(() => {
     return () => {
-      if (scrollFrameRef.current !== null) {
-        window.cancelAnimationFrame(scrollFrameRef.current);
-      }
-
+      clearScrollSettleTimeout();
       cancelScrollAnimation();
     };
-  }, [cancelScrollAnimation]);
+  }, [cancelScrollAnimation, clearScrollSettleTimeout]);
 
   return (
     <m.div
@@ -343,7 +377,7 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
             id={`tab-${approach.id}`}
             onClick={() => setPage(index)}
             className={`px-4 py-2 rounded-full border border-transparent text-xs font-display font-medium transition-colors duration-200 motion-reduce:transition-none ${
-              activeIndex === index
+              (pendingIndex ?? activeIndex) === index
                 ? approach.id === "bitsocial"
                   ? "bg-blue-core text-white shadow-[0_0_12px_rgba(37,99,235,0.4)]"
                   : "glass-card text-foreground"
@@ -361,7 +395,7 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
         <div
           ref={carouselRef}
           onScroll={handleScroll}
-          onPointerDownCapture={cancelScrollAnimation}
+          onPointerDownCapture={handlePointerDownCapture}
           className="overflow-x-auto overscroll-x-contain touch-pan-x snap-x snap-mandatory py-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           style={{ WebkitOverflowScrolling: "touch" }}
         >
@@ -379,7 +413,7 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
                   aria-labelledby={`tab-${approach.id}`}
                   animate={{ scale: isActive ? 1 : 0.985 }}
                   transition={prefersReducedMotion ? { duration: 0 } : MOBILE_CARD_FOCUS_TRANSITION}
-                  className="w-[calc(100vw-4.5rem)] shrink-0 snap-center snap-always px-2 transform-gpu"
+                  className="w-[calc(100vw-4.5rem)] shrink-0 snap-center px-2 transform-gpu"
                 >
                   <ComparisonCard approach={approach} isBitsocial={approach.id === "bitsocial"} />
                 </m.div>
