@@ -16,11 +16,48 @@ type MeshThemeRefs = {
 const MOBILE_BREAKPOINT = 768;
 const LOW_END_CONCURRENCY = 4;
 const CONNECTION_SEARCH_PADDING = 0.75;
+const MESH_NODE_MIN_VIEWPORT_WIDTH = 768;
+const MESH_NODE_MAX_VIEWPORT_WIDTH = 1920;
+const MESH_NODE_MIN_SIZE = 0.028;
+const MESH_NODE_MAX_SIZE = 0.05;
 
 function getIsMobileLayout(width: number) {
   const hardwareConcurrency =
     typeof navigator === "undefined" ? LOW_END_CONCURRENCY : navigator.hardwareConcurrency || 4;
   return width < MOBILE_BREAKPOINT || hardwareConcurrency < LOW_END_CONCURRENCY;
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function lerp(start: number, end: number, progress: number) {
+  return start + (end - start) * progress;
+}
+
+function getMeshNodeSize(width: number, isMobileLayout: boolean) {
+  if (isMobileLayout) return 0.03;
+
+  const progress = clamp(
+    (width - MESH_NODE_MIN_VIEWPORT_WIDTH) /
+      (MESH_NODE_MAX_VIEWPORT_WIDTH - MESH_NODE_MIN_VIEWPORT_WIDTH),
+    0,
+    1,
+  );
+
+  return lerp(MESH_NODE_MAX_SIZE, MESH_NODE_MIN_SIZE, progress);
+}
+
+function getViewportResizeKey(container: HTMLDivElement) {
+  const viewport = window.visualViewport;
+  return [
+    container.clientWidth,
+    container.clientHeight,
+    window.devicePixelRatio,
+    viewport?.width ?? 0,
+    viewport?.height ?? 0,
+    viewport?.scale ?? 1,
+  ].join(":");
 }
 
 export default function MeshGraphic() {
@@ -32,6 +69,8 @@ export default function MeshGraphic() {
   });
   const { resolvedTheme } = useTheme();
   const themeRefs = useRef<MeshThemeRefs | null>(null);
+  const containerHeight = isMobile ? "min(55vh, 30rem)" : "clamp(35rem, calc(58rem - 14vw), 44rem)";
+  const topOffset = isMobile ? "-8vh" : "clamp(-4.5rem, calc(-1rem - 3vw), -2.5rem)";
 
   useEffect(() => {
     if (!themeRefs.current) return;
@@ -107,7 +146,7 @@ export default function MeshGraphic() {
     const connectionDistanceSq = connectionDistance * connectionDistance;
     const candidateConnectionDistance = connectionDistance + CONNECTION_SEARCH_PADDING;
     const candidateConnectionDistanceSq = candidateConnectionDistance * candidateConnectionDistance;
-    const nodeSize = isMobile ? 0.03 : 0.05;
+    const nodeSize = getMeshNodeSize(container.clientWidth, isMobile);
 
     // Create nodes evenly distributed across entire U-shape area
     const nodes: Node[] = [];
@@ -338,6 +377,10 @@ export default function MeshGraphic() {
       animationId = null;
       if (!shouldAnimate) return;
 
+      if (getViewportResizeKey(container) !== lastResizeKey) {
+        handleResize();
+      }
+
       time += 0.005;
 
       // Update node positions with subtle floating motion
@@ -399,10 +442,12 @@ export default function MeshGraphic() {
     syncAnimationState();
 
     let resizeTimeoutId: ReturnType<typeof setTimeout> | null = null;
+    let lastResizeKey = getViewportResizeKey(container);
     const handleResize = () => {
       if (!container) return;
       const width = container.clientWidth;
       const height = container.clientHeight;
+      lastResizeKey = getViewportResizeKey(container);
       const nextIsMobile = getIsMobileLayout(width);
 
       if (nextIsMobile !== isMobile) {
@@ -410,11 +455,13 @@ export default function MeshGraphic() {
         return;
       }
 
+      const nextNodeSize = getMeshNodeSize(width, nextIsMobile);
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       const maxDprResize = nextIsMobile ? 1.5 : 2;
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDprResize));
       renderer.setSize(width, height, false);
+      pointsMaterial.uniforms.size.value = nextNodeSize * 100;
     };
 
     const scheduleResize = () => {
@@ -424,9 +471,22 @@ export default function MeshGraphic() {
       resizeTimeoutId = setTimeout(handleResize, 250);
     };
 
+    const scheduleResizeIfViewportChanged = () => {
+      if (!container) return;
+      const nextResizeKey = getViewportResizeKey(container);
+      if (nextResizeKey === lastResizeKey) return;
+      scheduleResize();
+    };
+
     const resizeObserver = new ResizeObserver(scheduleResize);
     resizeObserver.observe(container);
     window.addEventListener("resize", scheduleResize, { passive: true });
+    window.visualViewport?.addEventListener("resize", scheduleResizeIfViewportChanged, {
+      passive: true,
+    });
+    window.visualViewport?.addEventListener("scroll", scheduleResizeIfViewportChanged, {
+      passive: true,
+    });
 
     return () => {
       themeRefs.current = null;
@@ -438,6 +498,8 @@ export default function MeshGraphic() {
       }
       resizeObserver.disconnect();
       window.removeEventListener("resize", scheduleResize);
+      window.visualViewport?.removeEventListener("resize", scheduleResizeIfViewportChanged);
+      window.visualViewport?.removeEventListener("scroll", scheduleResizeIfViewportChanged);
 
       pointsGeometry.dispose();
       pointsMaterial.dispose();
@@ -451,8 +513,8 @@ export default function MeshGraphic() {
   return (
     <div
       ref={containerRef}
-      className="h-[55vh] md:h-[70vh] absolute inset-x-0 pointer-events-none overflow-hidden overscroll-none"
-      style={{ top: isMobile ? "-8vh" : "-5vh" }}
+      className="absolute inset-x-0 pointer-events-none overflow-hidden overscroll-none"
+      style={{ height: containerHeight, top: topOffset }}
     >
       <canvas ref={canvasRef} className="block w-full h-full touch-pan-y" />
       {/* Bottom fade gradient overlay - tall and strong to dissolve into next section */}

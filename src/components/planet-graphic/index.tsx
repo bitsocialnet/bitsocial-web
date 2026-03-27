@@ -192,6 +192,18 @@ function getPlanetCameraLayout(width: number) {
   };
 }
 
+function getViewportResizeKey(container: HTMLDivElement) {
+  const viewport = window.visualViewport;
+  return [
+    container.clientWidth,
+    container.clientHeight,
+    window.devicePixelRatio,
+    viewport?.width ?? 0,
+    viewport?.height ?? 0,
+    viewport?.scale ?? 1,
+  ].join(":");
+}
+
 export default function PlanetGraphic() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -201,6 +213,10 @@ export default function PlanetGraphic() {
   });
   const { resolvedTheme } = useTheme();
   const themeRefs = usePlanetThemeRefs();
+  const containerHeight = isMobile ? "min(55vh, 30rem)" : "clamp(33rem, calc(52rem - 12vw), 40rem)";
+  const translateY = isMobile
+    ? "translateY(calc(-1rem - 12vh))"
+    : "translateY(clamp(-4.5rem, calc(-1rem - 3vw), -2.5rem))";
 
   // Update Three.js materials in-place when theme changes (no scene rebuild)
   useEffect(() => {
@@ -503,6 +519,10 @@ export default function PlanetGraphic() {
       animationId = null;
       if (!shouldAnimate) return;
 
+      if (getViewportResizeKey(container) !== lastResizeKey) {
+        handleResize();
+      }
+
       // Very slow rotation of the sphere
       sphere.rotation.y += 0.0005;
 
@@ -544,11 +564,13 @@ export default function PlanetGraphic() {
 
     // Handle resize (debounced to avoid excessive reflows)
     let resizeTimeoutId: ReturnType<typeof setTimeout> | null = null;
+    let lastResizeKey = getViewportResizeKey(container);
     const handleResize = () => {
       if (!container) return;
       const width = container.clientWidth;
       const height = container.clientHeight;
       if (!width || !height) return;
+      lastResizeKey = getViewportResizeKey(container);
       const isMobileNow = getIsMobileLayout(width);
       const nextCameraLayout = getPlanetCameraLayout(width);
 
@@ -583,9 +605,22 @@ export default function PlanetGraphic() {
       resizeTimeoutId = setTimeout(handleResize, resizeDebounceMs);
     };
 
+    const scheduleResizeIfViewportChanged = () => {
+      if (!container) return;
+      const nextResizeKey = getViewportResizeKey(container);
+      if (nextResizeKey === lastResizeKey) return;
+      scheduleResize();
+    };
+
     const resizeObserver = new ResizeObserver(scheduleResize);
     resizeObserver.observe(container);
     window.addEventListener("resize", scheduleResize, { passive: true });
+    window.visualViewport?.addEventListener("resize", scheduleResizeIfViewportChanged, {
+      passive: true,
+    });
+    window.visualViewport?.addEventListener("scroll", scheduleResizeIfViewportChanged, {
+      passive: true,
+    });
 
     return () => {
       themeRefs.current = null;
@@ -595,6 +630,8 @@ export default function PlanetGraphic() {
         clearTimeout(resizeTimeoutId);
       }
       window.removeEventListener("resize", scheduleResize);
+      window.visualViewport?.removeEventListener("resize", scheduleResizeIfViewportChanged);
+      window.visualViewport?.removeEventListener("scroll", scheduleResizeIfViewportChanged);
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
 
@@ -618,9 +655,10 @@ export default function PlanetGraphic() {
   return (
     <div
       ref={containerRef}
-      className="h-[55vh] md:h-[min(75vh,72vw)] xl:h-[75vh] relative pointer-events-none w-full overflow-hidden overscroll-none"
+      className="relative pointer-events-none w-full overflow-hidden overscroll-none"
       style={{
-        transform: isMobile ? "translateY(calc(-1rem - 12vh))" : "translateY(calc(-2rem - 4vh))",
+        height: containerHeight,
+        transform: translateY,
       }}
     >
       <canvas ref={canvasRef} className="block w-full h-full touch-pan-y" />
