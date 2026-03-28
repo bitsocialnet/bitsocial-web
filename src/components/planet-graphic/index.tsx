@@ -2,11 +2,13 @@ import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { gsap } from "gsap";
 import { useTheme } from "next-themes";
+import {
+  getHeroGraphicMaxPixelRatio,
+  getIsMobileHeroGraphicLayout,
+} from "@/lib/hero-graphic-performance";
 import { getPlanetRingRotationDelaySeconds } from "@/lib/hero-intro-timing";
 import { getHeroGraphicViewportProgress } from "@/lib/hero-graphic-layout";
 
-const MOBILE_BREAKPOINT = 768;
-const LOW_END_CONCURRENCY = 4;
 const PLANET_MIN_FOV = 62;
 const PLANET_MAX_FOV = 45;
 const PLANET_MIN_CAMERA_Z = 21.5;
@@ -169,9 +171,7 @@ function lerp(start: number, end: number, progress: number) {
 }
 
 function getIsMobileLayout(width: number) {
-  const hardwareConcurrency =
-    typeof navigator === "undefined" ? LOW_END_CONCURRENCY : navigator.hardwareConcurrency || 4;
-  return width < MOBILE_BREAKPOINT || hardwareConcurrency < LOW_END_CONCURRENCY;
+  return getIsMobileHeroGraphicLayout(width);
 }
 
 function getPlanetCameraLayout(width: number) {
@@ -254,8 +254,9 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
       return;
     }
     renderer.setSize(container.clientWidth, container.clientHeight, false);
-    const maxDpr = initialIsMobile ? 1.5 : 2;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
+    renderer.setPixelRatio(
+      Math.min(window.devicePixelRatio, getHeroGraphicMaxPixelRatio(initialIsMobile)),
+    );
     renderer.setClearColor(0x000000, 0);
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
@@ -578,8 +579,9 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
       camera.aspect = width / height;
       camera.position.set(0, 1, nextCameraLayout.cameraZ);
       camera.updateProjectionMatrix();
-      const maxDprResize = isMobileNow ? 1.5 : 2;
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDprResize));
+      renderer.setPixelRatio(
+        Math.min(window.devicePixelRatio, getHeroGraphicMaxPixelRatio(isMobileNow)),
+      );
       renderer.setSize(width, height, false);
 
       // Ring cross-section matches mobile vs desktop layout; rebuild only when crossing breakpoint.

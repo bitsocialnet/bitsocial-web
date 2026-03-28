@@ -1,6 +1,10 @@
 import { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 import { useTheme } from "next-themes";
+import {
+  getHeroGraphicMaxPixelRatio,
+  getIsMobileHeroGraphicLayout,
+} from "@/lib/hero-graphic-performance";
 import { getHeroGraphicViewportProgress } from "@/lib/hero-graphic-layout";
 
 interface Node {
@@ -14,17 +18,13 @@ type MeshThemeRefs = {
   linesMat: THREE.ShaderMaterial;
 };
 
-const MOBILE_BREAKPOINT = 768;
-const LOW_END_CONCURRENCY = 4;
 const CONNECTION_SEARCH_PADDING = 0.75;
 const MESH_NODE_MIN_SIZE = 0.028;
 const MESH_NODE_MAX_SIZE = 0.05;
 const RESIZE_DEBOUNCE_MS = 140;
 
 function getIsMobileLayout(width: number) {
-  const hardwareConcurrency =
-    typeof navigator === "undefined" ? LOW_END_CONCURRENCY : navigator.hardwareConcurrency || 4;
-  return width < MOBILE_BREAKPOINT || hardwareConcurrency < LOW_END_CONCURRENCY;
+  return getIsMobileHeroGraphicLayout(width);
 }
 
 function lerp(start: number, end: number, progress: number) {
@@ -203,8 +203,9 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
       return;
     }
     renderer.setSize(container.clientWidth, container.clientHeight, false);
-    const maxDpr = isMobile ? 1.5 : 2;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
+    renderer.setPixelRatio(
+      Math.min(window.devicePixelRatio, getHeroGraphicMaxPixelRatio(isMobile)),
+    );
 
     // Mesh color - adapts to theme
     // Light mode: darker color for visibility, Dark mode: brighter color
@@ -481,8 +482,9 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
       camera.position.set(0, nextCameraYOffset, 30);
       camera.lookAt(0, nextCameraYOffset, 0);
       camera.updateProjectionMatrix();
-      const maxDprResize = nextIsMobile ? 1.5 : 2;
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDprResize));
+      renderer.setPixelRatio(
+        Math.min(window.devicePixelRatio, getHeroGraphicMaxPixelRatio(nextIsMobile)),
+      );
       renderer.setSize(width, height, false);
       pointsMaterial.uniforms.size.value = nextNodeSize * 100;
       layoutMeshNodes(nodes, width, height, nextIsMobile);
