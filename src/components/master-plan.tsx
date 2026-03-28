@@ -5,33 +5,34 @@ import EasterEggOverlay from "@/components/easter-egg-overlay";
 const phases = [
   {
     phase: "Phase 1",
+    status: "Ongoing",
     title: "Decentralize imageboards",
     description:
-      "Imageboards are the simplest form of social media to decentralize: no user profiles, few default boards, no cutting-edge features like ai chatbots, monetization, etc. This is why we're launching 5chan, the first Bitsocial app. 5chan delivers the most popular imageboard experience, while removing global admins from the equation.",
+      "Imageboards are the simplest form of social media to decentralize: anonymous posting, few default boards, and no profile graph. This is why we're launching 5chan, the first Bitsocial app. 5chan proves Bitsocial can replace centralized imageboards while removing global admins from the equation.",
   },
   {
     phase: "Phase 2",
     title: "Launch Bitsocial RPC",
     description:
-      "Our team's first startup, Bitsocial Forge, will launch its first non-custodial RPC service for Bitsocial apps. It will let developers rent Bitsocial nodes to power their apps, so users can manage P2P nodes from their mobile phones. Anyone can always run a Bitsocial node, it even runs on a raspberry pi. Anyone can also run their own RPC service competing with Bitsocial Forge.",
+      "Bitsocial Forge will launch the first non-custodial RPC service for Bitsocial apps. Bitsocial RPC will let apps and users manage Bitsocial nodes remotely, while preserving the option to self-host or run competing RPC infrastructure. Users will be able to create and manage unstoppable p2p communities from anywhere.",
   },
   {
     phase: "Phase 3",
     title: "Decentralize forums",
     description:
-      "Forums are message boards with profiles and post history. Our first prototype Bitsocial app is an reddit alternative, Seedit, still experimental. A public RPC (master plan phase 2) is critical to let all Seedit users create and manage communities from anywhere, connecting to their full Bitsocial node remotely.",
+      "Forums add persistent identities, post history, and community management. Our first prototype Bitsocial app to decentralize forums is Seedit, a reddit alternative. Seedit will bring Reddit-style discussion to Bitsocial once Phase 2 makes always-on communities practical from anywhere.",
   },
   {
     phase: "Phase 4",
     title: "Launch Bitsocial Network",
     description:
-      "In order to decentralize all social media, Bitsocial will need killer features and strong network effects, unstoppable financial structures, decentralized Bitsocial domains (.bso), middleware authentication layers. All of this would be powered by Bitsocial Network, a decentralized appchain solution for Bitsocial apps.",
+      "In order to decentralize all social media, Bitsocial apps will need killer features and strong network effects, unstoppable financial structures, decentralized Bitsocial domains (.bso), common liquidity. All of this will be powered by Bitsocial Network, a decentralized appchain solution for Bitsocial apps.",
   },
   {
     phase: "Phase 5",
     title: "Decentralize all social media",
     description:
-      "As the protocol matures, profile nodes will let every user be reachable P2P and produce content for apps rivaling Facebook, Instagram, TikTok, X, and YouTube. Profile nodes will be ultra-cheap Bitsocial nodes, provisioned automatically via RPCs on first sign-up. Bitsocial Network will enable content monetization without banks seizing funds or admins banning users. Algorithms powering feeds will be provided by competing Bitsocial RPCs, and users choose, combine, self-host, or opt out entirely. Social media finally finds its equilibrium: a fully decentralized, peer-to-peer network with no owners; Bitsocial.",
+      "With profile nodes, public RPCs, and Bitsocial Network in place, Bitsocial apps will be able to rival all kinds of social media, including Facebook, Instagram, TikTok, X, and YouTube. Profile nodes will be ultra-cheap Bitsocial nodes, provisioned automatically via RPCs on first sign-up. Bitsocial Network will enable content monetization without banks seizing funds or admins banning users. Multiple Bitsocial RPCs will compete to provide feeds powered by algorithms (or no algorithms at all), and users choose, combine, self-host, or opt out entirely. Social media finally finds its equilibrium: a fully decentralized, peer-to-peer network with no owners; Bitsocial.",
   },
 ];
 
@@ -123,6 +124,9 @@ export default function MasterPlan() {
                   <div className="flex-1 glass-card p-7 md:p-8 max-w-lg">
                     <div className="text-xs text-blue-glow/80 font-display font-medium uppercase tracking-widest mb-3">
                       {item.phase}
+                      {"status" in item ? (
+                        <span className="ml-2 text-amber-400/90">— {item.status}</span>
+                      ) : null}
                     </div>
                     <h3 className="text-xl md:text-2xl font-display font-semibold mb-3 text-foreground/85">
                       {item.title}

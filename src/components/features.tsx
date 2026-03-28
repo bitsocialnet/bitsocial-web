@@ -27,7 +27,7 @@ const features: Feature[] = [
   {
     id: "open-source",
     description:
-      "Bitsocial is GPLv2 open source: the protocol and clients are public, forkable, and open to outside contributions. Anyone can inspect the code, ship improvements, or build a compatible app without asking permission from a company.",
+      "Bitsocial is free and open source software: the protocol and clients are public, forkable, and open to outside contributions. Anyone can inspect the code, ship improvements, or build a compatible app without asking permission from a company.",
     ctaLabel: "Browse source code",
     ctaHref: "https://github.com/bitsocialnet",
     external: true,
