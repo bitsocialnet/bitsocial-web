@@ -2,7 +2,15 @@ import { m, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import EasterEggOverlay from "@/components/easter-egg-overlay";
 
-const phases = [
+const masterPlanEpilogue =
+  "Social media finally finds its equilibrium: a fully decentralized, peer-to-peer network that nobody owns; Bitsocial.";
+
+const phases: {
+  phase: string;
+  status?: string;
+  title: string;
+  description: string;
+}[] = [
   {
     phase: "Phase 1",
     status: "Ongoing",
@@ -14,13 +22,13 @@ const phases = [
     phase: "Phase 2",
     title: "Launch Bitsocial RPC",
     description:
-      "Bitsocial Forge will launch the first non-custodial RPC service for Bitsocial apps. Bitsocial RPC will let apps and users manage Bitsocial nodes remotely, while preserving the option to self-host or run competing RPC infrastructure. Users will be able to create and manage unstoppable p2p communities from anywhere.",
+      "Bitsocial Forge will launch the first non-custodial RPC service for Bitsocial apps. Bitsocial RPC will let users manage nodes remotely, while preserving the option to self-host or run competing RPC infrastructure. Users will be able to create and manage unstoppable p2p communities from mobile.",
   },
   {
     phase: "Phase 3",
     title: "Decentralize forums",
     description:
-      "Forums add persistent identities, post history, and community management. Our first prototype Bitsocial app to decentralize forums is Seedit, a reddit alternative. Seedit will bring Reddit-style discussion to Bitsocial once Phase 2 makes always-on communities practical from anywhere.",
+      "Forums add persistent identities, post history, and community management. Our first prototype Bitsocial app to decentralize forums is Seedit, a reddit alternative. Seedit will bring Reddit-style discussion to Bitsocial, once Bitsocial RPC makes always-on P2P communities practical from anywhere.",
   },
   {
     phase: "Phase 4",
@@ -32,7 +40,7 @@ const phases = [
     phase: "Phase 5",
     title: "Decentralize all social media",
     description:
-      "With profile nodes, public RPCs, and Bitsocial Network in place, Bitsocial apps will be able to rival all kinds of social media, including Facebook, Instagram, TikTok, X, and YouTube. Profile nodes will be ultra-cheap Bitsocial nodes, provisioned automatically via RPCs on first sign-up. Bitsocial Network will enable content monetization without banks seizing funds or admins banning users. Multiple Bitsocial RPCs will compete to provide feeds powered by algorithms (or no algorithms at all), and users choose, combine, self-host, or opt out entirely. Social media finally finds its equilibrium: a fully decentralized, peer-to-peer network with no owners; Bitsocial.",
+      "With multiple public RPCs competiting with each other to provide profile nodes and optional feed algorithms, and with Bitsocial Network enabling content monetization without banks seizing funds, Bitsocial apps will be able to rival all kinds of social media, including Facebook, Instagram, TikTok, X, and YouTube.",
   },
 ];
 
@@ -100,28 +108,10 @@ export default function MasterPlan() {
             </m.div>
 
             <div className="space-y-16 md:space-y-20">
-              {phases.map((item, index) => (
-                <m.div
-                  key={item.phase}
-                  initial={{ x: index % 2 === 0 ? -40 : 40 }}
-                  whileInView={{ x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.08, duration: 0.5 }}
-                  className={`flex flex-col md:flex-row items-center gap-8 ${
-                    index % 2 === 0 ? "md:flex-row-reverse" : ""
-                  }`}
-                >
-                  {/* Phase indicator */}
-                  <div className="relative z-10 flex-shrink-0">
-                    <div className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center">
-                      <span className="text-sm font-display font-semibold text-muted-foreground tabular-nums">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content card */}
-                  <div className="flex-1 glass-card p-7 md:p-8 max-w-lg">
+              {phases.map((item, index) => {
+                const isPhase5 = index === phases.length - 1;
+                const phaseCardBody = (
+                  <>
                     <div className="text-xs text-blue-glow/80 font-display font-medium uppercase tracking-widest mb-3">
                       {item.phase}
                       {"status" in item ? (
@@ -134,12 +124,63 @@ export default function MasterPlan() {
                     <p className="text-muted-foreground text-sm leading-relaxed">
                       {item.description}
                     </p>
-                  </div>
+                  </>
+                );
+                return (
+                  <m.div
+                    key={item.phase}
+                    initial={{ x: index % 2 === 0 ? -40 : 40 }}
+                    whileInView={{ x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.08, duration: 0.5 }}
+                    className={`flex flex-col md:flex-row items-center gap-8 ${
+                      index % 2 === 0 ? "md:flex-row-reverse" : ""
+                    }`}
+                  >
+                    {/* Phase indicator */}
+                    <div className="relative z-10 flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center">
+                        <span className="text-sm font-display font-semibold text-muted-foreground tabular-nums">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                    </div>
 
-                  {/* Spacer for alternating layout */}
-                  <div className="hidden md:block flex-1" />
-                </m.div>
-              ))}
+                    {/* Content card(s) — Phase 5 stacks a second frosted card below with 10px gap */}
+                    <div
+                      className={
+                        isPhase5
+                          ? "flex flex-1 flex-col gap-[10px] max-w-lg min-w-0"
+                          : "flex-1 glass-card p-7 md:p-8 max-w-lg"
+                      }
+                    >
+                      {isPhase5 ? (
+                        <>
+                          <div className="glass-card p-7 md:p-8">{phaseCardBody}</div>
+                          <m.div
+                            initial={{ opacity: 0, y: 8 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.06, duration: 0.45 }}
+                            className="glass-card p-7 md:p-8"
+                          >
+                            <p className="text-muted-foreground text-sm leading-relaxed">
+                              <strong className="font-semibold text-foreground/90">
+                                {masterPlanEpilogue}
+                              </strong>
+                            </p>
+                          </m.div>
+                        </>
+                      ) : (
+                        phaseCardBody
+                      )}
+                    </div>
+
+                    {/* Spacer for alternating layout */}
+                    <div className="hidden md:block flex-1" />
+                  </m.div>
+                );
+              })}
             </div>
 
             {/* Reserve space for the solid and dashed tail that the absolute timeline renders. */}
