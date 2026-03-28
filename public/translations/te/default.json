@@ -51,5 +51,121 @@
   "languageSelector": {
     "title": "భాషను ఎంచుకోండి",
     "searchPlaceholder": "భాషలను శోధించండి..."
+  },
+  "features": {
+    "title": "ముఖ్య లక్షణాలు",
+    "items": {
+      "open-source": {
+        "description": "Bitsocial ఉచితమైన, ఓపెన్-సోర్స్ సాఫ్ట్‌వేర్: ప్రోటోకాల్ మరియు క్లయింట్లు పబ్లిక్‌గా ఉన్నాయి, fork చేయవచ్చు, మరియు బయట వారి సహకారానికి తెరిచి ఉన్నాయి. ఎవరికైనా కోడ్‌ను పరిశీలించడం, మెరుగుదలలు పంపించడం, లేదా కంపెనీ అనుమతి లేకుండా అనుకూలమైన appను నిర్మించడం సాధ్యం.",
+        "cta": "సోర్స్ కోడ్ చూడండి"
+      },
+      "peer-to-peer": {
+        "description": "Bitsocial federated గానీ on-chain గానీ కాదు. ప్రతి community ఒక peer-to-peer swarm, hosted website కంటే BitTorrent‌కు దగ్గరగా ఉంటుంది: వినియోగదారులు వారు చదివినదాన్ని seed చేస్తారు, nodes చవక hardwareపై నడవగలవు, మరియు ప్రతి community global platform policyపై ఆధారపడకుండా తన స్వంత anti-spam challengeను అమలు చేయగలదు.",
+        "cta": "ఇది sanctuary communication"
+      },
+      "social-apps": {
+        "description": "ఎవరైనా Bitsocial కోసం తమ స్వంత interface, discovery model, లేదా defaults‌తో appను నిర్మించవచ్చు. Apps ఉత్పత్తి నాణ్యతపై పోటీ పడతాయి, private databaseలో వినియోగదారులను బంధించవు, ఎందుకంటే compatible clients ఒకే communities, identities, మరియు networkను పంచుకోగలవు.",
+        "cta": "అ్యాప్స్ అన్వేషించండి"
+      },
+      "no-servers": {
+        "description": "Bitsocialలో ప్రతి community onlineగా ఉండేందుకు datacenter boxను అద్దెకు తీసుకోవడం, domain కొనడం, లేదా SSL నిర్వహించడం అవసరం లేదు. ఒక community node ఇంటి నుంచి consumer hardwareపై నడవగలదు, మరియు మొత్తం networkను కూల్చగల ఒకే company-run backend ఏదీ లేదు.",
+        "cta": "నెట్‌వర్క్ స్థితిని చూడండి"
+      },
+      "no-global-bans": {
+        "description": "Moderation ఉంటుంది, కానీ అది localగానే ఉంటుంది. Community owners తమ spaces నియమాలను తాము నిర్ణయిస్తారు, మరియు apps ఏమి index చేయాలి లేదా చూపించాలి అనేది ఎంచుకోవచ్చు, కానీ protocol-level super-admin ఎవరూ లేరు, ఎవరు profileను తొలగించగలరు లేదా network నుంచి communityను స్వాధీనం చేసుకోగలరు.",
+        "cta": "Moderation notes చదవండి"
+      },
+      "cryptographic-property": {
+        "description": "Profiles మరియు communities revocable platform accounts బదులు private keys ద్వారా నియంత్రించబడతాయి. మీరు ownershipను వదలకుండా hostingను delegate చేయవచ్చు, కాబట్టి మీ identity మరియు community కంపెనీ నుంచి అద్దెకు తీసుకున్న username కంటే wallet-controlled propertyలా ప్రవర్తిస్తాయి.",
+        "cta": "Ownership notes చదవండి"
+      }
+    }
+  },
+  "sanctuary": {
+    "sectionLabel": "Sanctuary Communication",
+    "headline": "ఇది 그냥 పని చేస్తుంది.",
+    "supporting": "అద్దెకు తీసుకోవాల్సిన server లేదు. కొనాల్సిన domain లేదు. sync చేయాల్సిన chain లేదు. ఒక Bitsocial node Raspberry Piపై నడుస్తుంది. మరియు ప్రతి community తన anti-spam challengeను అమలు చేయవచ్చు: captchaలు, reputation, SMS, payments, tokens, IP checks, లేదా code చేయగల ఏదైనా.",
+    "approaches": {
+      "federated": {
+        "label": "Federated",
+        "subtitle": "Bluesky, Mastodon, Lemmy"
+      },
+      "blockchain": {
+        "label": "Chain / Hub",
+        "subtitle": "Farcaster, Lens, DeSo, Steemit"
+      },
+      "bitsocial": {
+        "label": "Bitsocial",
+        "subtitle": "ఏ anti-spam challenge అయినా సాధ్యమైన స్వచ్ఛమైన P2P"
+      }
+    },
+    "rows": {
+      "selfHostingCost": {
+        "label": "Self-hosting ఖర్చు",
+        "federated": "Server + domain + SSL",
+        "blockchain": "ఖరీదైన node, hub, లేదా RPC",
+        "bitsocial": "చాలా చవక, Raspberry Piపై నడుస్తుంది"
+      },
+      "whoKeepsOnline": {
+        "label": "దాన్ని onlineగా ఎవరు ఉంచుతారు",
+        "federated": "Service / instance operator",
+        "blockchain": "Chain, hub, లేదా RPC infrastructure",
+        "bitsocial": "Community owners + helper seeders"
+      },
+      "scalingModel": {
+        "label": "Scaling model",
+        "federated": "పెద్ద instances, ఎక్కువ bills",
+        "blockchain": "ఎక్కువ state, భారమైన infrastructure",
+        "bitsocial": "ఎక్కువ peers, ఎక్కువ bandwidth"
+      },
+      "customAntiSpam": {
+        "label": "Custom anti-spam logic",
+        "federated": "ప్రోటోకాల్‌లో అంతర్గతంగా లేదు",
+        "blockchain": "Chains, hubs, లేదా feesతో ముడిపడి ఉంది",
+        "bitsocial": "అంతర్గతం: challenge ఏదైనా కావచ్చు"
+      },
+      "takedownChokePoints": {
+        "label": "తొలగింపు choke points",
+        "federated": "Host, registrar, SSL, DDoS provider",
+        "blockchain": "Validators, hubs, RPCs",
+        "bitsocial": "ఒక్క choke point కూడా లేదు"
+      }
+    },
+    "quote": "మీ communityని అక్షరాలా ఎవరూ, ప్రభుత్వమూ కూడా, ban చేయలేరు లేదా block చేయలేరు. ఆ సమస్యను మేము పరిష్కరించాం.",
+    "quoteAttribution": "— Esteban Abaroa, Bitsocial founder"
+  },
+  "masterPlan": {
+    "title": "Master Plan",
+    "logoAlt": "Logo",
+    "easterEggAlt": "SpongeBob",
+    "epilogue": "సామాజిక మాధ్యమం చివరికి తన సమతౌల్యాన్ని కనుగొంటుంది: పూర్తిగా decentralized, peer-to-peer network, దాని యజమాని ఎవరూ కాదు; Bitsocial.",
+    "phases": {
+      "phase1": {
+        "phase": "దశ 1",
+        "status": "కొనసాగుతోంది",
+        "title": "Imageboardsను decentralize చేయండి",
+        "description": "Imageboards అనేవి decentralize చేయడానికి అత్యంత సులభమైన social media రూపం: anonymous posting, తక్కువ default boards, మరియు profile graph లేదు. అందుకే మేము 5chanను ప్రారంభిస్తున్నాం, Bitsocial యొక్క మొదటి app. 5chan Bitsocial centralized imageboardsను భర్తీ చేయగలదని, అలాగే global adminsను సమీకరణం నుంచి తొలగించగలదని నిరూపిస్తుంది."
+      },
+      "phase2": {
+        "phase": "దశ 2",
+        "title": "Bitsocial RPCను ప్రారంభించండి",
+        "description": "Bitsocial Forge Bitsocial apps కోసం మొదటి non-custodial RPC serviceను ప్రారంభిస్తుంది. Bitsocial RPC వినియోగదారులు nodesను దూరం నుంచే నిర్వహించడానికి అనుమతిస్తుంది, అదే సమయంలో self-host చేయడం లేదా పోటీ RPC infrastructure నడపడం అనే ఎంపికను కూడా కాపాడుతుంది. వినియోగదారులు mobile నుంచే unstoppable p2p communitiesను సృష్టించి నిర్వహించగలరు."
+      },
+      "phase3": {
+        "phase": "దశ 3",
+        "title": "Forumsను decentralize చేయండి",
+        "description": "Forums శాశ్వత identities, post history, మరియు community managementను జోడిస్తాయి. forumsను decentralize చేయడానికి మా మొదటి prototype Bitsocial app Seedit, ఒక Reddit ప్రత్యామ్నాయం. Bitsocial RPC ఎక్కడి నుంచైనా always-on P2P communitiesను ప్రాయోగికంగా మార్చిన తర్వాత Seedit Reddit-శైలిలోని చర్చను Bitsocialకు తీసుకువస్తుంది."
+      },
+      "phase4": {
+        "phase": "దశ 4",
+        "title": "Bitsocial Networkను ప్రారంభించండి",
+        "description": "అన్ని social mediaను decentralize చేయడానికి Bitsocial appsకి killer features మరియు బలమైన network effects, unstoppable financial structures, decentralized Bitsocial domains (.bso), common liquidity అవసరం. ఇవన్నీ Bitsocial Network ద్వారా శక్తివంతమవుతాయి, ఇది Bitsocial apps కోసం ఒక decentralized appchain solution."
+      },
+      "phase5": {
+        "phase": "దశ 5",
+        "title": "అన్ని social mediaను decentralize చేయండి",
+        "description": "Profile nodes మరియు optional feed algorithmsను అందించడానికి అనేక public RPCలు పరస్పరం పోటీ పడతాయి, మరియు Bitsocial Network banks funds seize చేయకుండా content monetizationను సాధ్యం చేస్తుంది; దాంతో Bitsocial apps Facebook, Instagram, TikTok, X, మరియు YouTube సహా అన్ని రకాల social mediaతో పోటీ పడగలవు."
+      }
+    }
   }
 }

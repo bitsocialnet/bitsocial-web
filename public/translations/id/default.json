@@ -51,5 +51,121 @@
   "languageSelector": {
     "title": "Pilih bahasa",
     "searchPlaceholder": "Cari bahasa..."
+  },
+  "features": {
+    "title": "Fitur Inti",
+    "items": {
+      "open-source": {
+        "description": "Bitsocial adalah perangkat lunak sumber terbuka gratis: protokol dan klien bersifat publik, bisa difork, dan terbuka untuk kontribusi eksternal. Siapa pun dapat memeriksa kodenya, merilis peningkatan, atau membangun aplikasi yang kompatibel tanpa meminta izin dari perusahaan.",
+        "cta": "Jelajahi kode sumber"
+      },
+      "peer-to-peer": {
+        "description": "Bitsocial bukan federasi dan bukan pula on-chain. Setiap komunitas adalah kawanan peer-to-peer, lebih mirip BitTorrent daripada situs web yang di-host: pengguna membantu seed apa yang mereka baca, node bisa berjalan di perangkat keras murah, dan tiap komunitas dapat menerapkan tantangan anti-spamnya sendiri alih-alih bergantung pada kebijakan platform global.",
+        "cta": "Komunikasi sanctuary"
+      },
+      "social-apps": {
+        "description": "Siapa pun bisa membangun aplikasi Bitsocial dengan antarmuka, model penemuan, atau pengaturan bawaan sendiri. Aplikasi bersaing pada kualitas produk alih-alih mengunci pengguna ke basis data pribadi, karena klien yang kompatibel dapat berbagi komunitas, identitas, dan jaringan yang sama.",
+        "cta": "Jelajahi aplikasi"
+      },
+      "no-servers": {
+        "description": "Bitsocial tidak mengharuskan setiap komunitas menyewa kotak pusat data, membeli domain, atau mengelola SSL hanya untuk tetap online. Node komunitas bisa dijalankan dari rumah pada perangkat keras konsumen, dan tidak ada backend tunggal yang dioperasikan perusahaan yang dapat menjatuhkan seluruh jaringan.",
+        "cta": "Periksa status jaringan"
+      },
+      "no-global-bans": {
+        "description": "Moderasi tetap ada, tetapi bersifat lokal. Pemilik komunitas menetapkan aturan untuk ruang mereka sendiri dan aplikasi dapat memilih apa yang mereka indeks atau tampilkan, namun tidak ada superadmin tingkat protokol yang dapat menghapus profil atau merebut sebuah komunitas dari jaringan itu sendiri.",
+        "cta": "Baca catatan moderasi"
+      },
+      "cryptographic-property": {
+        "description": "Profil dan komunitas dikendalikan oleh kunci privat, bukan oleh akun platform yang bisa dicabut. Anda bisa mendelegasikan hosting tanpa melepaskan kepemilikan, jadi identitas dan komunitas Anda berperilaku lebih seperti properti yang dikontrol dompet daripada nama pengguna yang disewa dari perusahaan.",
+        "cta": "Baca catatan kepemilikan"
+      }
+    }
+  },
+  "sanctuary": {
+    "sectionLabel": "Komunikasi Sanctuary",
+    "headline": "Begitu saja, langsung jalan.",
+    "supporting": "Tidak perlu menyewa server. Tidak perlu membeli domain. Tidak perlu sinkron chain. Node Bitsocial bisa berjalan di Raspberry Pi. Dan tiap komunitas dapat menegakkan tantangan anti-spamnya sendiri: captcha, reputasi, SMS, pembayaran, token, pemeriksaan IP, atau apa pun yang bisa dikodekan.",
+    "approaches": {
+      "federated": {
+        "label": "Federasi",
+        "subtitle": "Bluesky, Mastodon, Lemmy"
+      },
+      "blockchain": {
+        "label": "Chain / Hub",
+        "subtitle": "Farcaster, Lens, DeSo, Steemit"
+      },
+      "bitsocial": {
+        "label": "Bitsocial",
+        "subtitle": "P2P murni dengan tantangan anti-spam arbitrer"
+      }
+    },
+    "rows": {
+      "selfHostingCost": {
+        "label": "Biaya self-hosting",
+        "federated": "Server + domain + SSL",
+        "blockchain": "Node, hub, atau RPC mahal",
+        "bitsocial": "Sangat murah, berjalan di Raspberry Pi"
+      },
+      "whoKeepsOnline": {
+        "label": "Siapa yang menjaga tetap online",
+        "federated": "Operator layanan / instance",
+        "blockchain": "Infrastruktur chain, hub, atau RPC",
+        "bitsocial": "Pemilik komunitas + seeder pendukung"
+      },
+      "scalingModel": {
+        "label": "Model penskalaan",
+        "federated": "Instance lebih besar, tagihan lebih tinggi",
+        "blockchain": "Lebih banyak state, infrastruktur lebih berat",
+        "bitsocial": "Lebih banyak peer, lebih banyak bandwidth"
+      },
+      "customAntiSpam": {
+        "label": "Logika anti-spam kustom",
+        "federated": "Tidak dibangun ke dalam protokol",
+        "blockchain": "Terikat ke chain, hub, atau biaya",
+        "bitsocial": "Bawaan: tantangan bisa apa saja"
+      },
+      "takedownChokePoints": {
+        "label": "Titik cekik untuk penurunan",
+        "federated": "Host, registrar, SSL, penyedia DDoS",
+        "blockchain": "Validator, hub, RPC",
+        "bitsocial": "Tidak ada satu titik cekik"
+      }
+    },
+    "quote": "Komunitas Anda benar-benar tidak bisa diblokir atau dilarang oleh siapa pun, bahkan pemerintah. Kami menyelesaikan masalah itu.",
+    "quoteAttribution": "— Esteban Abaroa, pendiri Bitsocial"
+  },
+  "masterPlan": {
+    "title": "Rencana Utama",
+    "logoAlt": "Logo",
+    "easterEggAlt": "SpongeBob",
+    "epilogue": "Akhirnya media sosial menemukan keseimbangannya: jaringan peer-to-peer yang sepenuhnya terdesentralisasi dan tidak dimiliki siapa pun; Bitsocial.",
+    "phases": {
+      "phase1": {
+        "phase": "Tahap 1",
+        "status": "Berjalan",
+        "title": "Mendesentralisasi imageboard",
+        "description": "Imageboard adalah bentuk media sosial yang paling sederhana untuk didesentralisasi: posting anonim, sedikit papan default, dan tanpa grafik profil. Itulah sebabnya kami meluncurkan 5chan, aplikasi Bitsocial pertama. 5chan membuktikan Bitsocial bisa menggantikan imageboard terpusat sambil menghapus admin global dari persamaan."
+      },
+      "phase2": {
+        "phase": "Tahap 2",
+        "title": "Meluncurkan Bitsocial RPC",
+        "description": "Bitsocial Forge akan meluncurkan layanan RPC non-kustodial pertama untuk aplikasi Bitsocial. Bitsocial RPC akan memungkinkan pengguna mengelola node dari jarak jauh, sambil mempertahankan opsi untuk self-host atau menjalankan infrastruktur RPC yang bersaing. Pengguna akan bisa membuat dan mengelola komunitas P2P yang tak terhentikan dari ponsel."
+      },
+      "phase3": {
+        "phase": "Tahap 3",
+        "title": "Mendesentralisasi forum",
+        "description": "Forum menambahkan identitas persisten, riwayat posting, dan pengelolaan komunitas. Prototipe aplikasi Bitsocial pertama kami untuk mendesentralisasi forum adalah Seedit, alternatif Reddit. Seedit akan membawa diskusi ala Reddit ke Bitsocial, begitu Bitsocial RPC membuat komunitas P2P yang selalu aktif praktis diakses dari mana saja."
+      },
+      "phase4": {
+        "phase": "Tahap 4",
+        "title": "Meluncurkan Bitsocial Network",
+        "description": "Untuk mendesentralisasi seluruh media sosial, aplikasi Bitsocial akan membutuhkan fitur andalan dan efek jaringan yang kuat, struktur finansial yang tak terhentikan, domain Bitsocial terdesentralisasi (.bso), dan likuiditas bersama. Semua ini akan didukung oleh Bitsocial Network, solusi appchain terdesentralisasi untuk aplikasi Bitsocial."
+      },
+      "phase5": {
+        "phase": "Tahap 5",
+        "title": "Mendesentralisasi seluruh media sosial",
+        "description": "Dengan beberapa RPC publik yang bersaing satu sama lain untuk menyediakan node profil dan algoritma feed opsional, serta Bitsocial Network yang memungkinkan monetisasi konten tanpa bank menyita dana, aplikasi Bitsocial akan mampu menyaingi semua jenis media sosial, termasuk Facebook, Instagram, TikTok, X, dan YouTube."
+      }
+    }
   }
 }

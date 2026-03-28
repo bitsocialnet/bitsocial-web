@@ -51,5 +51,121 @@
   "languageSelector": {
     "title": "选择语言",
     "searchPlaceholder": "搜索语言..."
+  },
+  "features": {
+    "title": "核心功能",
+    "items": {
+      "open-source": {
+        "description": "Bitsocial 是免费的开源软件：协议和客户端都是公开的、可分叉的，也欢迎外部贡献。任何人都可以审查代码、提交改进，或在无需公司许可的情况下构建兼容应用。",
+        "cta": "浏览源代码"
+      },
+      "peer-to-peer": {
+        "description": "Bitsocial 既不是联邦式的，也不是链上系统。每个社区都是一个点对点的 swarm，更像 BitTorrent，而不是托管网站：用户会做种自己读过的内容，节点可以在廉价硬件上运行，而每个社区都能执行自己的反垃圾验证，而不必依赖全球平台政策。",
+        "cta": "这就是庇护式通信"
+      },
+      "social-apps": {
+        "description": "任何人都可以构建一款拥有自己界面、发现模式或默认设置的 Bitsocial 应用。由于兼容客户端可以共享同一批社区、身份和网络，应用之间竞争的是产品质量，而不是把用户锁进私有数据库。",
+        "cta": "探索应用"
+      },
+      "no-servers": {
+        "description": "Bitsocial 不要求每个社区为了保持在线就去租数据中心机器、购买域名或管理 SSL。社区节点可以在家用消费级硬件上运行，而且不存在任何一家由公司运营、能够让整个网络宕机的后端。",
+        "cta": "查看网络状态"
+      },
+      "no-global-bans": {
+        "description": "审核依然存在，但它保持在本地。社区所有者为自己的空间制定规则，应用也可以选择索引或展示哪些内容；然而，没有任何协议级超级管理员可以删除个人资料，或从网络本身手中夺走一个社区。",
+        "cta": "阅读审核说明"
+      },
+      "cryptographic-property": {
+        "description": "个人资料和社区由私钥控制，而不是由可撤销的平台账号控制。你可以在不放弃所有权的情况下委托托管，因此你的身份和社区更像由钱包控制的资产，而不是从公司租来的用户名。",
+        "cta": "阅读所有权说明"
+      }
+    }
+  },
+  "sanctuary": {
+    "sectionLabel": "庇护通信",
+    "headline": "就是这么简单。",
+    "supporting": "无需租服务器。无需购买域名。无需同步链。Bitsocial 节点可以在 Raspberry Pi 上运行。而且每个社区都可以执行自己的反垃圾验证：验证码、信誉分、短信、支付、代币、IP 检查，或者任何可以编写出来的其他方式。",
+    "approaches": {
+      "federated": {
+        "label": "联邦式",
+        "subtitle": "Bluesky, Mastodon, Lemmy"
+      },
+      "blockchain": {
+        "label": "链 / 枢纽",
+        "subtitle": "Farcaster, Lens, DeSo, Steemit"
+      },
+      "bitsocial": {
+        "label": "Bitsocial",
+        "subtitle": "带任意反垃圾验证的纯 P2P"
+      }
+    },
+    "rows": {
+      "selfHostingCost": {
+        "label": "自托管成本",
+        "federated": "服务器 + 域名 + SSL",
+        "blockchain": "昂贵的节点、枢纽或 RPC",
+        "bitsocial": "极其便宜，可在 Raspberry Pi 上运行"
+      },
+      "whoKeepsOnline": {
+        "label": "谁来维持在线",
+        "federated": "服务 / 实例运营方",
+        "blockchain": "链、枢纽或 RPC 基础设施",
+        "bitsocial": "社区所有者 + 协助做种者"
+      },
+      "scalingModel": {
+        "label": "扩展模式",
+        "federated": "实例越大，账单越高",
+        "blockchain": "状态越多，基础设施越重",
+        "bitsocial": "节点越多，带宽越多"
+      },
+      "customAntiSpam": {
+        "label": "自定义反垃圾逻辑",
+        "federated": "协议中没有内置",
+        "blockchain": "绑定于链、枢纽或费用",
+        "bitsocial": "内置：验证方式可以是任何东西"
+      },
+      "takedownChokePoints": {
+        "label": "下线要害",
+        "federated": "主机、注册商、SSL、DDoS 服务商",
+        "blockchain": "验证者、枢纽、RPC",
+        "bitsocial": "没有单点瓶颈"
+      }
+    },
+    "quote": "你的社区字面上不可能被任何人封禁或阻止，哪怕是政府。这个问题由我们来解决。",
+    "quoteAttribution": "— Esteban Abaroa，Bitsocial 创始人"
+  },
+  "masterPlan": {
+    "title": "总体规划",
+    "logoAlt": "标志",
+    "easterEggAlt": "SpongeBob",
+    "epilogue": "社交媒体终于找到了平衡：一个完全去中心化、没有任何人拥有的点对点网络；Bitsocial。",
+    "phases": {
+      "phase1": {
+        "phase": "阶段 1",
+        "status": "进行中",
+        "title": "图片论坛去中心化",
+        "description": "图片论坛是最容易去中心化的社交媒体形式：匿名发帖、默认版块少、没有个人资料图谱。这就是我们推出首个 Bitsocial 应用 5chan 的原因。5chan 证明了 Bitsocial 可以取代中心化图片论坛，同时将全局管理员从这套机制中移除。"
+      },
+      "phase2": {
+        "phase": "阶段 2",
+        "title": "推出 Bitsocial RPC",
+        "description": "Bitsocial Forge 将推出首个面向 Bitsocial 应用的非托管 RPC 服务。Bitsocial RPC 会让用户远程管理节点，同时保留自托管或运行竞争性 RPC 基础设施的选项。用户将能够在手机上创建和管理无法被阻断的 P2P 社区。"
+      },
+      "phase3": {
+        "phase": "阶段 3",
+        "title": "论坛去中心化",
+        "description": "论坛带来了持久身份、帖子历史和社区管理。我们第一个用于将论坛去中心化的 Bitsocial 应用原型是 Seedit，一个 Reddit 替代品。一旦 Bitsocial RPC 让随时在线的 P2P 社区能从任何地方切实可行，Seedit 就会把 Reddit 风格的讨论带到 Bitsocial。"
+      },
+      "phase4": {
+        "phase": "阶段 4",
+        "title": "推出 Bitsocial Network",
+        "description": "要让所有社交媒体都去中心化，Bitsocial 应用需要杀手级功能和强大的网络效应、无法阻止的金融结构、去中心化的 Bitsocial 域名（.bso）以及共享流动性。所有这一切都将由 Bitsocial Network 提供支持，它是面向 Bitsocial 应用的去中心化 appchain 解决方案。"
+      },
+      "phase5": {
+        "phase": "阶段 5",
+        "title": "去中心化所有社交媒体",
+        "description": "当多个公开 RPC 竞争提供个人资料节点和可选的信息流算法，同时 Bitsocial Network 还能让内容变现而不会被银行冻结资金时，Bitsocial 应用将能够与 Facebook、Instagram、TikTok、X 和 YouTube 等各种社交媒体一较高下。"
+      }
+    }
   }
 }

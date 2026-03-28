@@ -51,5 +51,121 @@
   "languageSelector": {
     "title": "Selectează limba",
     "searchPlaceholder": "Caută limbi..."
+  },
+  "features": {
+    "title": "Funcționalități de bază",
+    "items": {
+      "open-source": {
+        "description": "Bitsocial este software liber și open source: protocolul și clienții sunt publici, pot fi fork-uiți și sunt deschiși contribuțiilor din exterior. Oricine poate inspecta codul, lansa îmbunătățiri sau construi o aplicație compatibilă fără să ceară permisiunea unei companii.",
+        "cta": "Răsfoiește codul sursă"
+      },
+      "peer-to-peer": {
+        "description": "Bitsocial nu este nici federat, nici pe lanț. Fiecare comunitate este un roi peer-to-peer, mai apropiat de BitTorrent decât de un site găzduit: utilizatorii fac seed la ceea ce citesc, nodurile pot rula pe hardware ieftin, iar fiecare comunitate își poate aplica propria provocare anti-spam în loc să depindă de o politică globală a platformei.",
+        "cta": "Este comunicare de sanctuar"
+      },
+      "social-apps": {
+        "description": "Oricine poate construi o aplicație Bitsocial cu propria interfață, propriul model de descoperire sau propriile setări implicite. Aplicațiile concurează prin calitatea produsului în loc să blocheze utilizatorii într-o bază de date privată, pentru că clienții compatibili pot partaja aceleași comunități, identități și rețea.",
+        "cta": "Explorează aplicațiile"
+      },
+      "no-servers": {
+        "description": "Bitsocial nu le cere fiecărei comunități să închirieze un server dintr-un centru de date, să cumpere un domeniu sau să gestioneze SSL doar ca să rămână online. Un nod de comunitate poate rula de acasă, pe hardware de consum, și nu există niciun backend operat de o singură companie care să poată doborî întreaga rețea.",
+        "cta": "Verifică starea rețelei"
+      },
+      "no-global-bans": {
+        "description": "Moderarea există în continuare, dar rămâne locală. Proprietarii comunităților stabilesc regulile pentru propriile spații, iar aplicațiile pot alege ce indexează sau afișează, însă nu există un superadministrator la nivel de protocol care să poată șterge un profil sau să confiște o comunitate din rețea însăși.",
+        "cta": "Citește notele de moderare"
+      },
+      "cryptographic-property": {
+        "description": "Profilurile și comunitățile sunt controlate de chei private, nu de conturi de platformă revocabile. Poți delega găzduirea fără să renunți la proprietate, astfel încât identitatea ta și comunitatea ta se comportă mai degrabă ca o proprietate controlată de portofel decât ca un nume de utilizator închiriat de la o companie.",
+        "cta": "Citește notele despre proprietate"
+      }
+    }
+  },
+  "sanctuary": {
+    "sectionLabel": "Comunicare de sanctuar",
+    "headline": "Pur și simplu funcționează.",
+    "supporting": "Nu trebuie să închiriezi servere. Nu trebuie să cumperi domenii. Nu trebuie să sincronizezi lanțuri. Un nod Bitsocial rulează pe un Raspberry Pi. Iar fiecare comunitate își poate aplica propria provocare anti-spam: captchas, reputație, SMS, plăți, tokenuri, verificări IP sau orice altceva poate fi programat.",
+    "approaches": {
+      "federated": {
+        "label": "Federat",
+        "subtitle": "Bluesky, Mastodon, Lemmy"
+      },
+      "blockchain": {
+        "label": "Lanț / hub",
+        "subtitle": "Farcaster, Lens, DeSo, Steemit"
+      },
+      "bitsocial": {
+        "label": "Bitsocial",
+        "subtitle": "P2P pur, cu provocări anti-spam arbitrare"
+      }
+    },
+    "rows": {
+      "selfHostingCost": {
+        "label": "Costul self-hostingului",
+        "federated": "Server + domeniu + SSL",
+        "blockchain": "Nod, hub sau RPC costisitor",
+        "bitsocial": "Foarte ieftin, rulează pe Raspberry Pi"
+      },
+      "whoKeepsOnline": {
+        "label": "Cine îl ține online",
+        "federated": "Operatorul serviciului / instanței",
+        "blockchain": "Infrastructura lanțului, hubului sau RPC-ului",
+        "bitsocial": "Proprietarii comunității + seeders ajutători"
+      },
+      "scalingModel": {
+        "label": "Model de scalare",
+        "federated": "Instanțe mai mari, facturi mai mari",
+        "blockchain": "Mai mult state, infrastructură mai grea",
+        "bitsocial": "Mai mulți peeri, mai multă lățime de bandă"
+      },
+      "customAntiSpam": {
+        "label": "Logică anti-spam personalizată",
+        "federated": "Nu este integrată în protocol",
+        "blockchain": "Legată de lanțuri, huburi sau taxe",
+        "bitsocial": "Integrată: provocarea poate fi orice"
+      },
+      "takedownChokePoints": {
+        "label": "Puncte de blocaj pentru închidere",
+        "federated": "Host, registrar, SSL, furnizor DDoS",
+        "blockchain": "Validatori, huburi, RPC-uri",
+        "bitsocial": "Niciun punct unic de blocaj"
+      }
+    },
+    "quote": "Comunitatea ta literalmente nu poate fi interzisă sau blocată de nimeni, nici măcar de un guvern. Rezolvăm această problemă.",
+    "quoteAttribution": "— Esteban Abaroa, fondator Bitsocial"
+  },
+  "masterPlan": {
+    "title": "Planul principal",
+    "logoAlt": "Logo",
+    "easterEggAlt": "SpongeBob",
+    "epilogue": "Social media își găsește în sfârșit echilibrul: o rețea complet descentralizată, peer-to-peer, care nu aparține nimănui; Bitsocial.",
+    "phases": {
+      "phase1": {
+        "phase": "Faza 1",
+        "status": "În desfășurare",
+        "title": "Decentralizarea imageboard-urilor",
+        "description": "Imageboard-urile sunt cea mai simplă formă de social media de decentralizat: postări anonime, puține board-uri implicite și fără grafic de profil. De aceea lansăm 5chan, prima aplicație Bitsocial. 5chan demonstrează că Bitsocial poate înlocui imageboard-urile centralizate eliminând administratorii globali din ecuație."
+      },
+      "phase2": {
+        "phase": "Faza 2",
+        "title": "Lansarea Bitsocial RPC",
+        "description": "Bitsocial Forge va lansa primul serviciu RPC non-custodial pentru aplicațiile Bitsocial. Bitsocial RPC le va permite utilizatorilor să gestioneze noduri de la distanță, păstrând în același timp opțiunea de self-hosting sau de a rula o infrastructură RPC concurentă. Utilizatorii vor putea crea și gestiona comunități P2P de neoprit de pe mobil."
+      },
+      "phase3": {
+        "phase": "Faza 3",
+        "title": "Decentralizarea forumurilor",
+        "description": "Forumurile adaugă identități persistente, istoric de postări și administrarea comunității. Primul nostru prototip de aplicație Bitsocial pentru decentralizarea forumurilor este Seedit, o alternativă la Reddit. Seedit va aduce discuțiile în stil Reddit pe Bitsocial, odată ce Bitsocial RPC va face practice comunitățile P2P mereu active, de oriunde."
+      },
+      "phase4": {
+        "phase": "Faza 4",
+        "title": "Lansarea Bitsocial Network",
+        "description": "Pentru a decentraliza toată social media, aplicațiile Bitsocial vor avea nevoie de funcționalități-vedetă și efecte de rețea puternice, structuri financiare de neoprit, domenii Bitsocial descentralizate (.bso), lichiditate comună. Toate acestea vor fi alimentate de Bitsocial Network, o soluție de appchain descentralizată pentru aplicațiile Bitsocial."
+      },
+      "phase5": {
+        "phase": "Faza 5",
+        "title": "Decentralizarea întregii social media",
+        "description": "Cu mai multe RPC-uri publice care concurează între ele pentru a oferi noduri de profil și algoritmi de feed opționali, și cu Bitsocial Network permițând monetizarea conținutului fără ca băncile să poată confisca fondurile, aplicațiile Bitsocial vor putea rivaliza cu orice fel de social media, inclusiv Facebook, Instagram, TikTok, X și YouTube."
+      }
+    }
   }
 }

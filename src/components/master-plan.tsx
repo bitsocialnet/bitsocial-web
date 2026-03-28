@@ -1,61 +1,61 @@
 import { m, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import EasterEggOverlay from "@/components/easter-egg-overlay";
 
-const masterPlanEpilogue =
-  "Social media finally finds its equilibrium: a fully decentralized, peer-to-peer network that nobody owns; Bitsocial.";
+const EASTER_EGG_GIF = "/spongebob-easter-egg.gif";
 
-const phases: {
+type PhaseItem = {
   phase: string;
   status?: string;
   title: string;
   description: string;
-}[] = [
-  {
-    phase: "Phase 1",
-    status: "Ongoing",
-    title: "Decentralize imageboards",
-    description:
-      "Imageboards are the simplest form of social media to decentralize: anonymous posting, few default boards, and no profile graph. This is why we're launching 5chan, the first Bitsocial app. 5chan proves Bitsocial can replace centralized imageboards while removing global admins from the equation.",
-  },
-  {
-    phase: "Phase 2",
-    title: "Launch Bitsocial RPC",
-    description:
-      "Bitsocial Forge will launch the first non-custodial RPC service for Bitsocial apps. Bitsocial RPC will let users manage nodes remotely, while preserving the option to self-host or run competing RPC infrastructure. Users will be able to create and manage unstoppable p2p communities from mobile.",
-  },
-  {
-    phase: "Phase 3",
-    title: "Decentralize forums",
-    description:
-      "Forums add persistent identities, post history, and community management. Our first prototype Bitsocial app to decentralize forums is Seedit, a reddit alternative. Seedit will bring Reddit-style discussion to Bitsocial, once Bitsocial RPC makes always-on P2P communities practical from anywhere.",
-  },
-  {
-    phase: "Phase 4",
-    title: "Launch Bitsocial Network",
-    description:
-      "In order to decentralize all social media, Bitsocial apps will need killer features and strong network effects, unstoppable financial structures, decentralized Bitsocial domains (.bso), common liquidity. All of this will be powered by Bitsocial Network, a decentralized appchain solution for Bitsocial apps.",
-  },
-  {
-    phase: "Phase 5",
-    title: "Decentralize all social media",
-    description:
-      "With multiple public RPCs competiting with each other to provide profile nodes and optional feed algorithms, and with Bitsocial Network enabling content monetization without banks seizing funds, Bitsocial apps will be able to rival all kinds of social media, including Facebook, Instagram, TikTok, X, and YouTube.",
-  },
-];
-
-const easterEgg = {
-  alt: "SpongeBob",
-  gifSrc: "/spongebob-easter-egg.gif",
 };
 
 export default function MasterPlan() {
+  const { t } = useTranslation();
   const [showGif, setShowGif] = useState(false);
   const timelineRef = useRef<HTMLDivElement | null>(null);
   const showTimeline = useInView(timelineRef, {
     once: true,
     amount: 0.1,
   });
+
+  const phases: PhaseItem[] = useMemo(
+    () => [
+      {
+        phase: t("masterPlan.phases.phase1.phase"),
+        status: t("masterPlan.phases.phase1.status"),
+        title: t("masterPlan.phases.phase1.title"),
+        description: t("masterPlan.phases.phase1.description"),
+      },
+      {
+        phase: t("masterPlan.phases.phase2.phase"),
+        title: t("masterPlan.phases.phase2.title"),
+        description: t("masterPlan.phases.phase2.description"),
+      },
+      {
+        phase: t("masterPlan.phases.phase3.phase"),
+        title: t("masterPlan.phases.phase3.title"),
+        description: t("masterPlan.phases.phase3.description"),
+      },
+      {
+        phase: t("masterPlan.phases.phase4.phase"),
+        title: t("masterPlan.phases.phase4.title"),
+        description: t("masterPlan.phases.phase4.description"),
+      },
+      {
+        phase: t("masterPlan.phases.phase5.phase"),
+        title: t("masterPlan.phases.phase5.title"),
+        description: t("masterPlan.phases.phase5.description"),
+      },
+    ],
+    [t],
+  );
+
+  const masterPlanEpilogue = t("masterPlan.epilogue");
+  const easterEggAlt = t("masterPlan.easterEggAlt");
+  const logoAlt = t("masterPlan.logoAlt");
 
   return (
     <section className="py-24 px-6">
@@ -67,7 +67,7 @@ export default function MasterPlan() {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-display font-normal text-center mb-20 text-muted-foreground text-balance"
         >
-          Master Plan
+          {t("masterPlan.title")}
         </m.h2>
 
         <div ref={timelineRef} className="relative w-full">
@@ -114,7 +114,7 @@ export default function MasterPlan() {
                   <>
                     <div className="text-xs text-blue-glow/80 font-display font-medium uppercase tracking-widest mb-3">
                       {item.phase}
-                      {"status" in item ? (
+                      {item.status ? (
                         <span className="ml-2 text-amber-400/90">— {item.status}</span>
                       ) : null}
                     </div>
@@ -203,7 +203,7 @@ export default function MasterPlan() {
             >
               <img
                 src="/logo-small.png"
-                alt="Logo"
+                alt={logoAlt}
                 className="w-8 h-8 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(37,99,235,0.8)]"
               />
             </m.button>
@@ -212,8 +212,8 @@ export default function MasterPlan() {
       </div>
 
       <EasterEggOverlay
-        imageSrc={easterEgg.gifSrc}
-        alt={easterEgg.alt}
+        imageSrc={EASTER_EGG_GIF}
+        alt={easterEggAlt}
         open={showGif}
         onOpenChange={setShowGif}
       />

@@ -51,5 +51,121 @@
   "languageSelector": {
     "title": "Vyberte jazyk",
     "searchPlaceholder": "Hledat jazyky..."
+  },
+  "features": {
+    "title": "Klíčové funkce",
+    "items": {
+      "open-source": {
+        "description": "Bitsocial je svobodný a open-source software: protokol i klienti jsou veřejné, lze je forknout a jsou otevřené externím příspěvkům. Kdokoli si může prohlédnout kód, dodávat vylepšení nebo vytvořit kompatibilní aplikaci, aniž by musel žádat společnost o povolení.",
+        "cta": "Procházet zdrojový kód"
+      },
+      "peer-to-peer": {
+        "description": "Bitsocial není ani federovaný, ani on-chain. Každá komunita je peer-to-peer roj, blíž BitTorrentu než hostovanému webu: uživatelé sami sdílejí to, co čtou, uzly mohou běžet na levném hardwaru a každá komunita si může vynutit vlastní anti-spamovou výzvu místo spoléhání na globální zásady platformy.",
+        "cta": "Komunikace v útočišti"
+      },
+      "social-apps": {
+        "description": "Kdokoli může postavit Bitsocial aplikaci s vlastním rozhraním, modelem vyhledávání nebo výchozím nastavením. Aplikace soutěží kvalitou produktu místo toho, aby uživatele zamykaly v soukromé databázi, protože kompatibilní klienti mohou sdílet stejné komunity, identity i síť.",
+        "cta": "Prozkoumat aplikace"
+      },
+      "no-servers": {
+        "description": "Bitsocial nevyžaduje, aby si každá komunita pronajímala datacentrový server, kupovala doménu nebo spravovala SSL jen proto, aby byla online. Uzel komunity může běžet doma na spotřebním hardwaru a neexistuje žádný backend provozovaný jednou společností, který by mohl shodit celou síť.",
+        "cta": "Zkontrolovat stav sítě"
+      },
+      "no-global-bans": {
+        "description": "Moderace stále existuje, ale zůstává lokální. Vlastníci komunit nastavují pravidla pro své vlastní prostory a aplikace si mohou vybrat, co budou indexovat nebo zobrazovat, ale neexistuje žádný superadministrátor na úrovni protokolu, který by mohl smazat profil nebo komunitu sebrat ze samotné sítě.",
+        "cta": "Přečíst poznámky k moderaci"
+      },
+      "cryptographic-property": {
+        "description": "Profily a komunity ovládají soukromé klíče, ne odvolatelné platformní účty. Můžete delegovat hosting, aniž byste vzdali vlastnictví, takže se vaše identita i komunita chovají spíš jako majetek ovládaný peněženkou než jako uživatelské jméno pronajaté od firmy.",
+        "cta": "Přečíst poznámky k vlastnictví"
+      }
+    }
+  },
+  "sanctuary": {
+    "sectionLabel": "Komunikace v útočišti",
+    "headline": "Prostě to funguje.",
+    "supporting": "Žádný server k pronájmu. Žádná doména ke koupi. Žádné blockchainy k synchronizaci. Uzel Bitsocial běží na Raspberry Pi. A každá komunita si může prosadit vlastní anti-spamovou výzvu: captchy, reputaci, SMS, platby, tokeny, kontrolu IP nebo cokoli jiného, co lze naprogramovat.",
+    "approaches": {
+      "federated": {
+        "label": "Federované",
+        "subtitle": "Bluesky, Mastodon, Lemmy"
+      },
+      "blockchain": {
+        "label": "Řetězec / Hub",
+        "subtitle": "Farcaster, Lens, DeSo, Steemit"
+      },
+      "bitsocial": {
+        "label": "Bitsocial",
+        "subtitle": "Čisté P2P s libovolnými anti-spamovými výzvami"
+      }
+    },
+    "rows": {
+      "selfHostingCost": {
+        "label": "Cena vlastního hostingu",
+        "federated": "Server + doména + SSL",
+        "blockchain": "Drahý uzel, hub nebo RPC",
+        "bitsocial": "Extrémně levné, běží na Raspberry Pi"
+      },
+      "whoKeepsOnline": {
+        "label": "Kdo to udržuje online",
+        "federated": "Provozovatel služby / instance",
+        "blockchain": "Infrastruktura chainu, hubu nebo RPC",
+        "bitsocial": "Vlastníci komunit + pomocní seedeři"
+      },
+      "scalingModel": {
+        "label": "Model škálování",
+        "federated": "Větší instance, vyšší účty",
+        "blockchain": "Více stavu, těžší infrastruktura",
+        "bitsocial": "Více peerů, více šířky pásma"
+      },
+      "customAntiSpam": {
+        "label": "Vlastní anti-spamová logika",
+        "federated": "Není součástí protokolu",
+        "blockchain": "Vázaná na chainy, huby nebo poplatky",
+        "bitsocial": "Vestavěná: výzva může být cokoli"
+      },
+      "takedownChokePoints": {
+        "label": "Místa odstavení",
+        "federated": "Hostitel, registrátor, SSL, DDoS poskytovatel",
+        "blockchain": "Validátoři, huby, RPC",
+        "bitsocial": "Žádný jediný bod selhání"
+      }
+    },
+    "quote": "Vaši komunitu doslova nemůže nikdo zakázat ani zablokovat, dokonce ani vláda. Ten problém řešíme.",
+    "quoteAttribution": "— Esteban Abaroa, zakladatel Bitsocial"
+  },
+  "masterPlan": {
+    "title": "Hlavní plán",
+    "logoAlt": "Logo",
+    "easterEggAlt": "SpongeBob",
+    "epilogue": "Sociální média konečně najdou svou rovnováhu: plně decentralizovaná peer-to-peer síť, kterou nikdo nevlastní; Bitsocial.",
+    "phases": {
+      "phase1": {
+        "phase": "Fáze 1",
+        "status": "Probíhá",
+        "title": "Decentralizovat imageboardy",
+        "description": "Imageboardy jsou nejjednodušší formou sociálních médií k decentralizaci: anonymní příspěvky, jen několik výchozích nástěnek a žádný profilový graf. Proto spouštíme 5chan, první Bitsocial aplikaci. 5chan dokazuje, že Bitsocial může nahradit centralizované imageboardy a zároveň odstranit globální administrátory ze hry."
+      },
+      "phase2": {
+        "phase": "Fáze 2",
+        "title": "Spustit Bitsocial RPC",
+        "description": "Bitsocial Forge spustí první ne-kustodiální RPC službu pro Bitsocial aplikace. Bitsocial RPC umožní uživatelům spravovat uzly na dálku a zároveň zachová možnost self-hosteovat nebo provozovat konkurenční RPC infrastrukturu. Uživatelé budou moci vytvářet a spravovat nezastavitelné p2p komunity z mobilu."
+      },
+      "phase3": {
+        "phase": "Fáze 3",
+        "title": "Decentralizovat fóra",
+        "description": "Fóra přidávají trvalé identity, historii příspěvků a správu komunit. Náš první prototyp Bitsocial aplikace pro decentralizaci fór je Seedit, alternativa Redditu. Seedit přinese na Bitsocial diskuse ve stylu Redditu, jakmile Bitsocial RPC učiní vždy zapnuté P2P komunity praktické odkudkoli."
+      },
+      "phase4": {
+        "phase": "Fáze 4",
+        "title": "Spustit Bitsocial Network",
+        "description": "Aby bylo možné decentralizovat všechna sociální média, budou Bitsocial aplikace potřebovat zásadní funkce a silné síťové efekty, nezastavitelné finanční struktury, decentralizované domény Bitsocial (.bso), společnou likviditu. To vše bude pohánět Bitsocial Network, decentralizované appchain řešení pro Bitsocial aplikace."
+      },
+      "phase5": {
+        "phase": "Fáze 5",
+        "title": "Decentralizovat veškerá sociální média",
+        "description": "S více veřejnými RPC, které mezi sebou soutěží o poskytování profilových uzlů a volitelných feed algoritmů, a s Bitsocial Network, která umožňuje monetizaci obsahu bez toho, aby banky zabavovaly prostředky, budou Bitsocial aplikace schopné soupeřit se všemi druhy sociálních médií, včetně Facebooku, Instagramu, TikToku, X a YouTube."
+      }
+    }
   }
 }

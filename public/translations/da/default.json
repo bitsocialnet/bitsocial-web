@@ -51,5 +51,121 @@
   "languageSelector": {
     "title": "Vælg sprog",
     "searchPlaceholder": "Søg efter sprog..."
+  },
+  "features": {
+    "title": "Kernefunktioner",
+    "items": {
+      "open-source": {
+        "description": "Bitsocial er fri og open source-software: protokollen og klienterne er offentlige, kan forkses og er åbne for bidrag udefra. Alle kan inspicere koden, sende forbedringer eller bygge en kompatibel app uden at spørge et firma om lov.",
+        "cta": "Gennemse kildekoden"
+      },
+      "peer-to-peer": {
+        "description": "Bitsocial er hverken federeret eller on-chain. Hvert fællesskab er en peer-to-peer-sværm, tættere på BitTorrent end på et hostet website: brugerne seeder det, de læser, noder kan køre på billigt hardware, og hvert fællesskab kan håndhæve sin egen antispam-udfordring i stedet for at være afhængig af en global platformpolitik.",
+        "cta": "Fristedskommunikation"
+      },
+      "social-apps": {
+        "description": "Alle kan bygge en Bitsocial-app med sit eget interface, sin egen opdagelsesmodel eller sine egne standardindstillinger. Apps konkurrerer på produktkvalitet i stedet for at låse brugerne inde i en privat database, fordi kompatible klienter kan dele de samme fællesskaber, identiteter og netværk.",
+        "cta": "Udforsk apps"
+      },
+      "no-servers": {
+        "description": "Bitsocial kræver ikke, at hvert fællesskab lejer en server i et datacenter, køber et domæne eller administrerer SSL bare for at holde sig online. En fællesskabsnode kan køre hjemme på forbrugerhardware, og der findes ikke nogen backend drevet af et enkelt firma, som kan lukke hele netværket ned.",
+        "cta": "Tjek netværksstatus"
+      },
+      "no-global-bans": {
+        "description": "Moderation findes stadig, men den bliver lokal. Fællesskabsejere sætter reglerne for deres egne rum, og apps kan vælge, hvad de indekserer eller viser, men der findes ingen protokolniveau-superadmin, som kan slette en profil eller overtage et fællesskab fra selve netværket.",
+        "cta": "Læs moderationsnoter"
+      },
+      "cryptographic-property": {
+        "description": "Profiler og fællesskaber styres af private nøgler, ikke af tilbagekaldelige platformkonti. Du kan delegere hosting uden at afgive ejerskab, så din identitet og dit fællesskab opfører sig mere som walletstyret ejendom end som et brugernavn lejet af et firma.",
+        "cta": "Læs ejerskabsnoter"
+      }
+    }
+  },
+  "sanctuary": {
+    "sectionLabel": "Fristedskommunikation",
+    "headline": "Det virker bare.",
+    "supporting": "Ingen server at leje. Intet domæne at købe. Ingen chains at synkronisere. En Bitsocial-node kører på en Raspberry Pi. Og hvert fællesskab kan håndhæve sin egen antispam-udfordring: captchas, reputation, SMS, betalinger, tokens, IP-tjek eller hvad som helst andet, der kan kodes.",
+    "approaches": {
+      "federated": {
+        "label": "Federeret",
+        "subtitle": "Bluesky, Mastodon, Lemmy"
+      },
+      "blockchain": {
+        "label": "Kæde / Hub",
+        "subtitle": "Farcaster, Lens, DeSo, Steemit"
+      },
+      "bitsocial": {
+        "label": "Bitsocial",
+        "subtitle": "Ren P2P med vilkårlige antispam-udfordringer"
+      }
+    },
+    "rows": {
+      "selfHostingCost": {
+        "label": "Pris for selvhosting",
+        "federated": "Server + domæne + SSL",
+        "blockchain": "Dyr node, hub eller RPC",
+        "bitsocial": "Ekstremt billigt, kører på Raspberry Pi"
+      },
+      "whoKeepsOnline": {
+        "label": "Hvem holder det online",
+        "federated": "Tjeneste- / instansoperatør",
+        "blockchain": "Chain-, hub- eller RPC-infrastruktur",
+        "bitsocial": "Fællesskabsejere + hjælpeseedere"
+      },
+      "scalingModel": {
+        "label": "Skaleringsmodel",
+        "federated": "Større instanser, højere regninger",
+        "blockchain": "Mere state, tungere infrastruktur",
+        "bitsocial": "Flere peers, mere båndbredde"
+      },
+      "customAntiSpam": {
+        "label": "Brugerdefineret antispam-logik",
+        "federated": "Ikke indbygget i protokollen",
+        "blockchain": "Bundet til chains, hubs eller gebyrer",
+        "bitsocial": "Indbygget: udfordringen kan være hvad som helst"
+      },
+      "takedownChokePoints": {
+        "label": "Nedlukningsflaskehalse",
+        "federated": "Host, registrar, SSL, DDoS-udbyder",
+        "blockchain": "Validatorer, hubs, RPC'er",
+        "bitsocial": "Intet enkelt flaskehalssted"
+      }
+    },
+    "quote": "Dit fællesskab kan bogstaveligt talt ikke blive forbudt eller blokeret af nogen, selv ikke en regering. Det er det problem, vi løser.",
+    "quoteAttribution": "— Esteban Abaroa, Bitsocial-stifter"
+  },
+  "masterPlan": {
+    "title": "Hovedplan",
+    "logoAlt": "Logo",
+    "easterEggAlt": "SpongeBob",
+    "epilogue": "Sociale medier finder endelig deres ligevægt: et fuldt decentraliseret peer-to-peer-netværk, som ingen ejer; Bitsocial.",
+    "phases": {
+      "phase1": {
+        "phase": "Fase 1",
+        "status": "I gang",
+        "title": "Decentraliser imageboards",
+        "description": "Imageboards er den enkleste form for sociale medier at decentralisere: anonym posting, få standardboards og ingen profilgraf. Derfor lancerer vi 5chan, den første Bitsocial-app. 5chan viser, at Bitsocial kan erstatte centraliserede imageboards, samtidig med at globale administratorer fjernes fra ligningen."
+      },
+      "phase2": {
+        "phase": "Fase 2",
+        "title": "Lancér Bitsocial RPC",
+        "description": "Bitsocial Forge vil lancere den første non-custodial RPC-tjeneste til Bitsocial-apps. Bitsocial RPC vil gøre det muligt for brugere at administrere noder eksternt, samtidig med at muligheden for selvhosting eller konkurrerende RPC-infrastruktur bevares. Brugere vil kunne oprette og administrere ustoppelige p2p-fællesskaber fra mobilen."
+      },
+      "phase3": {
+        "phase": "Fase 3",
+        "title": "Decentraliser fora",
+        "description": "Fora tilføjer vedvarende identiteter, posthistorik og fællesskabsstyring. Vores første prototype-Bitsocial-app til at decentralisere fora er Seedit, et reddit-alternativ. Seedit vil bringe Reddit-lignende diskussion til Bitsocial, når Bitsocial RPC gør altid-aktive P2P-fællesskaber praktiske fra hvor som helst."
+      },
+      "phase4": {
+        "phase": "Fase 4",
+        "title": "Lancér Bitsocial Network",
+        "description": "For at decentralisere alle sociale medier får Bitsocial-apps brug for killer-features og stærke netværkseffekter, ustoppelige finansielle strukturer, decentraliserede Bitsocial-domæner (.bso) og fælles likviditet. Alt dette drives af Bitsocial Network, en decentral appchain-løsning til Bitsocial-apps."
+      },
+      "phase5": {
+        "phase": "Fase 5",
+        "title": "Decentraliser alle sociale medier",
+        "description": "Med flere offentlige RPC'er, der konkurrerer med hinanden om at levere profilnoder og valgfrie feed-algoritmer, og med Bitsocial Network, der muliggør indtægtsgenerering af indhold uden at banker beslaglægger midler, vil Bitsocial-apps kunne konkurrere med alle typer sociale medier, herunder Facebook, Instagram, TikTok, X og YouTube."
+      }
+    }
   }
 }

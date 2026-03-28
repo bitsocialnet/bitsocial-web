@@ -51,5 +51,121 @@
   "languageSelector": {
     "title": "Selecciona l'idioma",
     "searchPlaceholder": "Cerca idiomes..."
+  },
+  "features": {
+    "title": "Característiques principals",
+    "items": {
+      "open-source": {
+        "description": "Bitsocial és programari lliure i de codi obert: el protocol i els clients són públics, es poden bifurcar i estan oberts a aportacions externes. Qualsevol pot inspeccionar el codi, publicar millores o crear una aplicació compatible sense demanar permís a cap empresa.",
+        "cta": "Explora el codi font"
+      },
+      "peer-to-peer": {
+        "description": "Bitsocial no és ni federat ni a la cadena. Cada comunitat és un ramat peer-to-peer, més semblant a BitTorrent que a un lloc web allotjat: els usuaris mantenen el que llegeixen, els nodes poden funcionar amb maquinari barat i cada comunitat pot fer complir el seu propi repte anti-spam en lloc de dependre d'una política global de la plataforma.",
+        "cta": "És comunicació de santuari"
+      },
+      "social-apps": {
+        "description": "Qualsevol pot crear una aplicació Bitsocial amb la seva pròpia interfície, model de descoberta o valors per defecte. Les aplicacions competeixen en qualitat de producte en lloc de tancar els usuaris dins d'una base de dades privada, perquè els clients compatibles poden compartir les mateixes comunitats, identitats i xarxa.",
+        "cta": "Explora les aplicacions"
+      },
+      "no-servers": {
+        "description": "Bitsocial no exigeix que cada comunitat llogui un servidor en un centre de dades, compri un domini o gestioni SSL només per continuar en línia. Un node de comunitat pot funcionar des de casa amb maquinari de consum, i no hi ha cap backend gestionat per una sola empresa que pugui fer caure tota la xarxa.",
+        "cta": "Consulta l'estat de la xarxa"
+      },
+      "no-global-bans": {
+        "description": "La moderació continua existint, però es manté local. Els propietaris de les comunitats defineixen les regles dels seus propis espais i les aplicacions poden triar què indexen o mostren, però no hi ha un superadministrador a nivell de protocol que pugui esborrar un perfil o prendre una comunitat de la mateixa xarxa.",
+        "cta": "Llegeix les notes de moderació"
+      },
+      "cryptographic-property": {
+        "description": "Els perfils i les comunitats estan controlats per claus privades, no per comptes de plataforma revocables. Pots delegar l'allotjament sense renunciar a la propietat, de manera que la teva identitat i la teva comunitat funcionen més com una propietat controlada per una cartera que no pas com un nom d'usuari llogat a una empresa.",
+        "cta": "Llegeix les notes de propietat"
+      }
+    }
+  },
+  "sanctuary": {
+    "sectionLabel": "Comunicació de santuari",
+    "headline": "Simplement funciona.",
+    "supporting": "No cal llogar servidors. No cal comprar dominis. No cal sincronitzar cadenes. Un node Bitsocial funciona en un Raspberry Pi. I cada comunitat pot fer complir el seu propi repte anti-spam: captchas, reputació, SMS, pagaments, tokens, comprovacions d'IP o qualsevol altra cosa que es pugui programar.",
+    "approaches": {
+      "federated": {
+        "label": "Federat",
+        "subtitle": "Bluesky, Mastodon, Lemmy"
+      },
+      "blockchain": {
+        "label": "Cadena / hub",
+        "subtitle": "Farcaster, Lens, DeSo, Steemit"
+      },
+      "bitsocial": {
+        "label": "Bitsocial",
+        "subtitle": "P2P pur amb reptes anti-spam arbitraris"
+      }
+    },
+    "rows": {
+      "selfHostingCost": {
+        "label": "Cost de l'autoallotjament",
+        "federated": "Servidor + domini + SSL",
+        "blockchain": "Node, hub o RPC cars",
+        "bitsocial": "Extremadament barat, funciona en un Raspberry Pi"
+      },
+      "whoKeepsOnline": {
+        "label": "Qui el manté en línia",
+        "federated": "Operador del servei / la instància",
+        "blockchain": "Infraestructura de la cadena, del hub o de l'RPC",
+        "bitsocial": "Propietaris de la comunitat + seedders de suport"
+      },
+      "scalingModel": {
+        "label": "Model d'escalat",
+        "federated": "Instàncies més grans, factures més altes",
+        "blockchain": "Més estat, infraestructura més pesada",
+        "bitsocial": "Més peers, més ample de banda"
+      },
+      "customAntiSpam": {
+        "label": "Lògica anti-spam personalitzada",
+        "federated": "No està integrada al protocol",
+        "blockchain": "Vinculada a cadenes, hubs o comissions",
+        "bitsocial": "Integrada: el repte pot ser qualsevol cosa"
+      },
+      "takedownChokePoints": {
+        "label": "Punts crítics de desactivació",
+        "federated": "Host, registrador, SSL, proveïdor DDoS",
+        "blockchain": "Validadors, hubs, RPCs",
+        "bitsocial": "Cap punt crític únic"
+      }
+    },
+    "quote": "La teva comunitat literalment no pot ser prohibida ni bloquejada per ningú, ni tan sols per un govern. Resolem aquest problema.",
+    "quoteAttribution": "— Esteban Abaroa, fundador de Bitsocial"
+  },
+  "masterPlan": {
+    "title": "Pla mestre",
+    "logoAlt": "Logotip",
+    "easterEggAlt": "SpongeBob",
+    "epilogue": "Les xarxes socials finalment troben el seu equilibri: una xarxa totalment descentralitzada, peer-to-peer, que no és propietat de ningú; Bitsocial.",
+    "phases": {
+      "phase1": {
+        "phase": "Fase 1",
+        "status": "En curs",
+        "title": "Descentralitzar els imageboards",
+        "description": "Els imageboards són la forma més senzilla de descentralitzar les xarxes socials: publicació anònima, poques taules per defecte i cap gràfic de perfils. Per això llancem 5chan, la primera aplicació Bitsocial. 5chan demostra que Bitsocial pot substituir els imageboards centralitzats eliminant els administradors globals de l'equació."
+      },
+      "phase2": {
+        "phase": "Fase 2",
+        "title": "Llançar Bitsocial RPC",
+        "description": "Bitsocial Forge llançarà el primer servei RPC no custodial per a aplicacions Bitsocial. Bitsocial RPC permetrà als usuaris gestionar nodes de manera remota, alhora que preserva l'opció d'autoallotjar o d'executar una infraestructura RPC competidora. Els usuaris podran crear i gestionar comunitats P2P imparables des del mòbil."
+      },
+      "phase3": {
+        "phase": "Fase 3",
+        "title": "Descentralitzar els fòrums",
+        "description": "Els fòrums afegeixen identitats persistents, historial de publicacions i gestió de comunitats. El nostre primer prototip d'aplicació Bitsocial per descentralitzar fòrums és Seedit, una alternativa a Reddit. Seedit portarà la conversa a l'estil Reddit a Bitsocial, un cop Bitsocial RPC faci pràctiques les comunitats P2P sempre actives des de qualsevol lloc."
+      },
+      "phase4": {
+        "phase": "Fase 4",
+        "title": "Llançar Bitsocial Network",
+        "description": "Per descentralitzar totes les xarxes socials, les aplicacions Bitsocial necessitaran funcions estrella i forts efectes de xarxa, estructures financeres imparables, dominis Bitsocial descentralitzats (.bso), liquiditat comuna. Tot això serà impulsat per Bitsocial Network, una solució d'appchain descentralitzada per a aplicacions Bitsocial."
+      },
+      "phase5": {
+        "phase": "Fase 5",
+        "title": "Descentralitzar totes les xarxes socials",
+        "description": "Amb diversos RPC públics competint entre ells per oferir nodes de perfil i algorismes de feed opcionals, i amb Bitsocial Network permetent la monetització de contingut sense que els bancs puguin confiscar els fons, les aplicacions Bitsocial podran rivalitzar amb tota mena de xarxes socials, incloent Facebook, Instagram, TikTok, X i YouTube."
+      }
+    }
   }
 }

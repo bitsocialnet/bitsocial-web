@@ -1,5 +1,5 @@
 import { m, useReducedMotion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { getScrollBehavior, triggerFeatureGlow, triggerTaglineGlow } from "@/lib/utils";
@@ -23,51 +23,61 @@ interface Feature {
 /** Circle quarter fillet via cubic Bézier (avoids elliptical-arc sweep ambiguity in SVG). */
 const CONNECTOR_R = 10;
 
-const features: Feature[] = [
-  {
-    id: "open-source",
-    description:
-      "Bitsocial is free and open source software: the protocol and clients are public, forkable, and open to outside contributions. Anyone can inspect the code, ship improvements, or build a compatible app without asking permission from a company.",
-    ctaLabel: "Browse source code",
-    ctaHref: "https://github.com/bitsocialnet",
-    external: true,
-  },
-  {
-    id: "peer-to-peer",
-    description:
-      "Bitsocial is neither federated nor on-chain. Each community is a peer-to-peer swarm, closer to BitTorrent than a hosted website: users seed what they read, nodes can run on cheap hardware, and each community can enforce its own anti-spam challenge instead of depending on a global platform policy.",
-    ctaLabel: "It's sanctuary communication",
-    ctaHref: "#sanctuary-communication",
-  },
-  {
-    id: "social-apps",
-    description:
-      "Anyone can build a Bitsocial app with its own interface, discovery model, or defaults. Apps compete on product quality instead of locking users into a private database, because compatible clients can share the same communities, identities, and network.",
-    ctaLabel: "Explore apps",
-    ctaHref: "/apps",
-  },
-  {
-    id: "no-servers",
-    description:
-      "Bitsocial does not require every community to rent a datacenter box, buy a domain, or manage SSL just to stay online. A community node can run from home on consumer hardware, and there is no single company-run backend that can take the whole network down.",
-    ctaLabel: "Check network status",
-    ctaHref: "/status",
-  },
-  {
-    id: "no-global-bans",
-    description:
-      "Moderation still exists, but it stays local. Community owners set rules for their own spaces and apps can choose what they index or show, yet there is no protocol-level super-admin who can erase a profile or seize a community from the network itself.",
-    ctaLabel: "Read moderation notes",
-    ctaHref: "/docs#local-moderation",
-  },
-  {
-    id: "cryptographic-property",
-    description:
-      "Profiles and communities are controlled by private keys, not by revocable platform accounts. You can delegate hosting without giving away ownership, so your identity and community behave more like wallet-controlled property than a username rented from a company.",
-    ctaLabel: "Read ownership notes",
-    ctaHref: "/docs#identity-and-ownership",
-  },
+const FEATURE_ORDER: FeatureId[] = [
+  "open-source",
+  "peer-to-peer",
+  "social-apps",
+  "no-servers",
+  "no-global-bans",
+  "cryptographic-property",
 ];
+
+/** Static i18n keys (avoid dynamic `t(\`...\${id}\`)` for tooling). */
+const FEATURE_I18N: Record<FeatureId, { description: string; cta: string }> = {
+  "open-source": {
+    description: "features.items.open-source.description",
+    cta: "features.items.open-source.cta",
+  },
+  "peer-to-peer": {
+    description: "features.items.peer-to-peer.description",
+    cta: "features.items.peer-to-peer.cta",
+  },
+  "social-apps": {
+    description: "features.items.social-apps.description",
+    cta: "features.items.social-apps.cta",
+  },
+  "no-servers": {
+    description: "features.items.no-servers.description",
+    cta: "features.items.no-servers.cta",
+  },
+  "no-global-bans": {
+    description: "features.items.no-global-bans.description",
+    cta: "features.items.no-global-bans.cta",
+  },
+  "cryptographic-property": {
+    description: "features.items.cryptographic-property.description",
+    cta: "features.items.cryptographic-property.cta",
+  },
+};
+
+function buildFeatures(t: (key: string) => string): Feature[] {
+  const hrefs: Record<FeatureId, { ctaHref: string; external?: boolean }> = {
+    "open-source": { ctaHref: "https://github.com/bitsocialnet", external: true },
+    "peer-to-peer": { ctaHref: "#sanctuary-communication" },
+    "social-apps": { ctaHref: "/apps" },
+    "no-servers": { ctaHref: "/status" },
+    "no-global-bans": { ctaHref: "/docs#local-moderation" },
+    "cryptographic-property": { ctaHref: "/docs#identity-and-ownership" },
+  };
+
+  return FEATURE_ORDER.map((id) => ({
+    id,
+    description: t(FEATURE_I18N[id].description),
+    ctaLabel: t(FEATURE_I18N[id].cta),
+    ctaHref: hrefs[id].ctaHref,
+    external: hrefs[id].external,
+  }));
+}
 
 const featureCtaClassName =
   "px-8 py-3 rounded-full glass-card text-muted-foreground hover:text-foreground font-display font-semibold hover:border-blue-glow ring-glow transition-all duration-300 w-full md:w-auto text-center";
@@ -148,6 +158,7 @@ function FeatureCta({ className, feature, onSanctuaryClick }: FeatureCtaProps) {
 export default function Features() {
   const { t } = useTranslation();
   const prefersReducedMotion = useReducedMotion();
+  const features = useMemo(() => buildFeatures(t), [t]);
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -177,7 +188,7 @@ export default function Features() {
       }
       window.removeEventListener("hashchange", handleHashChange);
     };
-  }, []);
+  }, [features]);
 
   const handleTitleClick = (id: string) => {
     window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
@@ -215,7 +226,7 @@ export default function Features() {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-display font-normal text-center mb-16 text-muted-foreground text-balance"
         >
-          Core Features
+          {t("features.title")}
         </m.h2>
 
         <div>

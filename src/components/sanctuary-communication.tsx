@@ -7,69 +7,114 @@ import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
+import type { TFunction } from "i18next";
+import { useTranslation } from "react-i18next";
 
 type ApproachId = "federated" | "blockchain" | "bitsocial";
 
-const approaches: { id: ApproachId; label: string; subtitle: string }[] = [
-  { id: "federated", label: "Federated", subtitle: "Bluesky, Mastodon, Lemmy" },
-  { id: "blockchain", label: "Chain / Hub", subtitle: "Farcaster, Lens, DeSo, Steemit" },
-  {
-    id: "bitsocial",
-    label: "Bitsocial",
-    subtitle: "Pure P2P with arbitrary anti-spam challenges",
-  },
+type RowKey =
+  | "selfHostingCost"
+  | "whoKeepsOnline"
+  | "scalingModel"
+  | "customAntiSpam"
+  | "takedownChokePoints";
+
+const ROW_KEYS: RowKey[] = [
+  "selfHostingCost",
+  "whoKeepsOnline",
+  "scalingModel",
+  "customAntiSpam",
+  "takedownChokePoints",
 ];
 
-const rows: { label: string; values: Record<ApproachId, string> }[] = [
-  {
-    label: "Self-hosting cost",
-    values: {
-      federated: "Server + domain + SSL",
-      blockchain: "Expensive node, hub, or RPC",
-      bitsocial: "Extremely cheap, runs on Raspberry Pi",
-    },
+/** Static row keys (avoid dynamic template keys for tooling). */
+const SANCTUARY_ROW_I18N: Record<
+  RowKey,
+  { label: string; federated: string; blockchain: string; bitsocial: string }
+> = {
+  selfHostingCost: {
+    label: "sanctuary.rows.selfHostingCost.label",
+    federated: "sanctuary.rows.selfHostingCost.federated",
+    blockchain: "sanctuary.rows.selfHostingCost.blockchain",
+    bitsocial: "sanctuary.rows.selfHostingCost.bitsocial",
   },
-  {
-    label: "Who keeps it online",
-    values: {
-      federated: "Service / instance operator",
-      blockchain: "Chain, hub, or RPC infrastructure",
-      bitsocial: "Community owners + helper seeders",
-    },
+  whoKeepsOnline: {
+    label: "sanctuary.rows.whoKeepsOnline.label",
+    federated: "sanctuary.rows.whoKeepsOnline.federated",
+    blockchain: "sanctuary.rows.whoKeepsOnline.blockchain",
+    bitsocial: "sanctuary.rows.whoKeepsOnline.bitsocial",
   },
-  {
-    label: "Scaling model",
-    values: {
-      federated: "Bigger instances, higher bills",
-      blockchain: "More state, heavier infra",
-      bitsocial: "More peers, more bandwidth",
-    },
+  scalingModel: {
+    label: "sanctuary.rows.scalingModel.label",
+    federated: "sanctuary.rows.scalingModel.federated",
+    blockchain: "sanctuary.rows.scalingModel.blockchain",
+    bitsocial: "sanctuary.rows.scalingModel.bitsocial",
   },
-  {
-    label: "Custom anti-spam logic",
-    values: {
-      federated: "Not built into the protocol",
-      blockchain: "Tied to chains, hubs, or fees",
-      bitsocial: "Built in: challenge can be anything",
-    },
+  customAntiSpam: {
+    label: "sanctuary.rows.customAntiSpam.label",
+    federated: "sanctuary.rows.customAntiSpam.federated",
+    blockchain: "sanctuary.rows.customAntiSpam.blockchain",
+    bitsocial: "sanctuary.rows.customAntiSpam.bitsocial",
   },
-  {
-    label: "Takedown choke points",
-    values: {
-      federated: "Host, registrar, SSL, DDoS provider",
-      blockchain: "Validators, hubs, RPCs",
-      bitsocial: "No single choke point",
-    },
+  takedownChokePoints: {
+    label: "sanctuary.rows.takedownChokePoints.label",
+    federated: "sanctuary.rows.takedownChokePoints.federated",
+    blockchain: "sanctuary.rows.takedownChokePoints.blockchain",
+    bitsocial: "sanctuary.rows.takedownChokePoints.bitsocial",
   },
-];
+};
 
-const DEFAULT_APPROACH_INDEX = Math.max(
-  0,
-  approaches.findIndex(({ id }) => id === "bitsocial"),
-);
+type Approach = { id: ApproachId; label: string; subtitle: string };
+type ComparisonRow = { label: string; values: Record<ApproachId, string> };
+
+function useSanctuaryComparisonData(t: TFunction) {
+  return useMemo(() => {
+    const approaches: Approach[] = [
+      {
+        id: "federated",
+        label: t("sanctuary.approaches.federated.label"),
+        subtitle: t("sanctuary.approaches.federated.subtitle"),
+      },
+      {
+        id: "blockchain",
+        label: t("sanctuary.approaches.blockchain.label"),
+        subtitle: t("sanctuary.approaches.blockchain.subtitle"),
+      },
+      {
+        id: "bitsocial",
+        label: t("sanctuary.approaches.bitsocial.label"),
+        subtitle: t("sanctuary.approaches.bitsocial.subtitle"),
+      },
+    ];
+    const rows: ComparisonRow[] = ROW_KEYS.map((rk) => {
+      const keys = SANCTUARY_ROW_I18N[rk];
+      return {
+        label: t(keys.label),
+        values: {
+          federated: t(keys.federated),
+          blockchain: t(keys.blockchain),
+          bitsocial: t(keys.bitsocial),
+        },
+      };
+    });
+    return { approaches, rows };
+  }, [t]);
+}
+
+function useDefaultApproachIndex(approaches: Approach[]) {
+  return useMemo(
+    () =>
+      Math.max(
+        0,
+        approaches.findIndex(({ id }) => id === "bitsocial"),
+      ),
+    [approaches],
+  );
+}
 const MOBILE_CARD_SIDE_PEEK_CLASS = "w-9";
 const MOBILE_CARD_FOCUS_TRANSITION = {
   type: "spring" as const,
@@ -81,9 +126,11 @@ const MOBILE_SCROLL_SETTLE_DELAY_MS = 96;
 
 const ComparisonCardContent = memo(function ComparisonCardContent({
   approach,
+  rows,
   isBitsocial,
 }: {
-  approach: (typeof approaches)[number];
+  approach: Approach;
+  rows: ComparisonRow[];
   isBitsocial: boolean;
 }) {
   return (
@@ -121,9 +168,11 @@ const ComparisonCardContent = memo(function ComparisonCardContent({
 
 const ComparisonCard = memo(function ComparisonCard({
   approach,
+  rows,
   isBitsocial,
 }: {
-  approach: (typeof approaches)[number];
+  approach: Approach;
+  rows: ComparisonRow[];
   isBitsocial: boolean;
 }) {
   return (
@@ -132,13 +181,21 @@ const ComparisonCard = memo(function ComparisonCard({
         isBitsocial ? "border !border-blue-glow shadow-[0_0_28px_rgba(37,99,235,0.28)]" : ""
       }`}
     >
-      <ComparisonCardContent approach={approach} isBitsocial={isBitsocial} />
+      <ComparisonCardContent approach={approach} rows={rows} isBitsocial={isBitsocial} />
     </div>
   );
 });
 
-const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
-  const [activeIndex, setActiveIndex] = useState(DEFAULT_APPROACH_INDEX);
+const MobileComparisonCarousel = memo(function MobileComparisonCarousel({
+  approaches,
+  rows,
+  defaultApproachIndex,
+}: {
+  approaches: Approach[];
+  rows: ComparisonRow[];
+  defaultApproachIndex: number;
+}) {
+  const [activeIndex, setActiveIndex] = useState(defaultApproachIndex);
   const [pendingIndex, setPendingIndex] = useState<number | null>(null);
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const scrollSettleTimeoutRef = useRef<number | null>(null);
@@ -172,7 +229,7 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
 
   const clampIndex = useCallback(
     (nextIndex: number) => Math.max(0, Math.min(approaches.length - 1, nextIndex)),
-    [],
+    [approaches.length],
   );
 
   const scrollToIndex = useCallback(
@@ -332,8 +389,8 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
   }, [cancelScrollAnimation, clearScrollSettleTimeout]);
 
   useLayoutEffect(() => {
-    scrollToIndex(DEFAULT_APPROACH_INDEX, "auto");
-  }, [scrollToIndex]);
+    scrollToIndex(defaultApproachIndex, "auto");
+  }, [scrollToIndex, defaultApproachIndex]);
 
   useEffect(() => {
     const carousel = carouselRef.current;
@@ -415,7 +472,11 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
                   transition={prefersReducedMotion ? { duration: 0 } : MOBILE_CARD_FOCUS_TRANSITION}
                   className="w-[calc(100vw-4.5rem)] shrink-0 snap-center px-2 transform-gpu"
                 >
-                  <ComparisonCard approach={approach} isBitsocial={approach.id === "bitsocial"} />
+                  <ComparisonCard
+                    approach={approach}
+                    rows={rows}
+                    isBitsocial={approach.id === "bitsocial"}
+                  />
                 </m.div>
               );
             })}
@@ -444,6 +505,10 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel() {
 });
 
 export default function SanctuaryCommunication() {
+  const { t } = useTranslation();
+  const { approaches, rows } = useSanctuaryComparisonData(t);
+  const defaultApproachIndex = useDefaultApproachIndex(approaches);
+
   return (
     <section id="sanctuary-communication" className="scroll-mt-24 py-24 px-6">
       <div className="max-w-7xl mx-auto">
@@ -459,7 +524,7 @@ export default function SanctuaryCommunication() {
           transition={{ duration: 0.6 }}
           className="block text-xs md:text-sm font-display tracking-[0.2em] uppercase text-center mb-6 text-muted-foreground/50 rounded-md hover:text-muted-foreground/70 transition-[color,box-shadow] duration-300"
         >
-          Sanctuary Communication
+          {t("sanctuary.sectionLabel")}
         </m.a>
 
         {/* Hero statement — reads first (biggest, boldest) */}
@@ -470,7 +535,7 @@ export default function SanctuaryCommunication() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-4xl md:text-6xl lg:text-7xl font-display font-semibold text-center mb-6 text-balance leading-[1.1] text-muted-foreground"
         >
-          It just works.
+          {t("sanctuary.headline")}
         </m.h2>
 
         {/* Supporting text — reads second */}
@@ -481,12 +546,14 @@ export default function SanctuaryCommunication() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-base md:text-lg text-center text-muted-foreground max-w-2xl mx-auto mb-16 text-balance leading-relaxed"
         >
-          No servers to rent. No domains to buy. No chains to sync. A Bitsocial node runs on a
-          Raspberry Pi. And each community can enforce its own anti-spam challenge: captchas,
-          reputation, SMS, payments, tokens, IP checks, or anything else that can be coded.
+          {t("sanctuary.supporting")}
         </m.p>
 
-        <MobileComparisonCarousel />
+        <MobileComparisonCarousel
+          approaches={approaches}
+          rows={rows}
+          defaultApproachIndex={defaultApproachIndex}
+        />
 
         {/* ---- Desktop: three-column grid ---- */}
         <div className="hidden md:grid md:grid-cols-3 gap-5">
@@ -498,7 +565,7 @@ export default function SanctuaryCommunication() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
             >
-              <ComparisonCard approach={a} isBitsocial={a.id === "bitsocial"} />
+              <ComparisonCard approach={a} rows={rows} isBitsocial={a.id === "bitsocial"} />
             </m.div>
           ))}
         </div>
@@ -514,9 +581,8 @@ export default function SanctuaryCommunication() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="block text-center text-xs md:text-sm text-muted-foreground/40 mt-14 italic max-w-lg mx-auto rounded-md hover:text-muted-foreground/55 transition-[color,box-shadow] duration-300"
         >
-          &ldquo;Your community literally cannot be banned or blocked by anyone, even a government.
-          We solve that problem.&rdquo;
-          <span className="not-italic block mt-1">— Esteban Abaroa, Bitsocial founder</span>
+          &ldquo;{t("sanctuary.quote")}&rdquo;
+          <span className="not-italic block mt-1">{t("sanctuary.quoteAttribution")}</span>
         </m.a>
       </div>
     </section>

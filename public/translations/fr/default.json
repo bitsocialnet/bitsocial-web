@@ -51,5 +51,121 @@
   "languageSelector": {
     "title": "Sélectionner la langue",
     "searchPlaceholder": "Rechercher des langues..."
+  },
+  "features": {
+    "title": "Fonctionnalités principales",
+    "items": {
+      "open-source": {
+        "description": "Bitsocial est un logiciel libre et open source : le protocole et les clients sont publics, forkables et ouverts aux contributions externes. N’importe qui peut inspecter le code, publier des améliorations ou créer une application compatible sans demander l’autorisation d’une entreprise.",
+        "cta": "Parcourir le code source"
+      },
+      "peer-to-peer": {
+        "description": "Bitsocial n’est ni fédéré ni sur chaîne. Chaque communauté est un essaim pair-à-pair, plus proche de BitTorrent que d’un site hébergé : les utilisateurs partagent ce qu’ils lisent, les nœuds peuvent tourner sur du matériel bon marché, et chaque communauté peut imposer son propre défi anti-spam au lieu de dépendre d’une politique globale de plateforme.",
+        "cta": "C’est la communication Sanctuary"
+      },
+      "social-apps": {
+        "description": "N’importe qui peut créer une application Bitsocial avec sa propre interface, son propre modèle de découverte ou ses propres paramètres par défaut. Les applications se font concurrence sur la qualité du produit au lieu d’enfermer les utilisateurs dans une base de données privée, car des clients compatibles peuvent partager les mêmes communautés, identités et réseau.",
+        "cta": "Explorer les applications"
+      },
+      "no-servers": {
+        "description": "Bitsocial ne demande pas à chaque communauté de louer un serveur de datacenter, d’acheter un domaine ou de gérer le SSL simplement pour rester en ligne. Un nœud communautaire peut fonctionner depuis chez soi sur du matériel grand public, et il n’existe pas de backend unique géré par une entreprise capable de mettre tout le réseau hors ligne.",
+        "cta": "Vérifier l’état du réseau"
+      },
+      "no-global-bans": {
+        "description": "La modération existe toujours, mais elle reste locale. Les propriétaires de communautés définissent les règles de leurs espaces et les applications peuvent choisir ce qu’elles indexent ou affichent, mais il n’y a pas de super-admin au niveau du protocole capable d’effacer un profil ou de s’emparer d’une communauté depuis le réseau lui-même.",
+        "cta": "Lire les notes de modération"
+      },
+      "cryptographic-property": {
+        "description": "Les profils et les communautés sont contrôlés par des clés privées, et non par des comptes de plateforme révocables. Vous pouvez déléguer l’hébergement sans céder la propriété, de sorte que votre identité et votre communauté se comportent davantage comme un bien contrôlé par portefeuille que comme un nom d’utilisateur loué à une entreprise.",
+        "cta": "Lire les notes sur la propriété"
+      }
+    }
+  },
+  "sanctuary": {
+    "sectionLabel": "Communication Sanctuary",
+    "headline": "Ça fonctionne, tout simplement.",
+    "supporting": "Pas de serveur à louer. Pas de domaine à acheter. Pas de chaînes à synchroniser. Un nœud Bitsocial tourne sur un Raspberry Pi. Et chaque communauté peut imposer son propre défi anti-spam : captchas, réputation, SMS, paiements, tokens, vérifications IP, ou tout autre mécanisme qu’on peut coder.",
+    "approaches": {
+      "federated": {
+        "label": "Fédéré",
+        "subtitle": "Bluesky, Mastodon, Lemmy"
+      },
+      "blockchain": {
+        "label": "Chaîne / hub",
+        "subtitle": "Farcaster, Lens, DeSo, Steemit"
+      },
+      "bitsocial": {
+        "label": "Bitsocial",
+        "subtitle": "P2P pur avec des défis anti-spam arbitraires"
+      }
+    },
+    "rows": {
+      "selfHostingCost": {
+        "label": "Coût de l’auto-hébergement",
+        "federated": "Serveur + domaine + SSL",
+        "blockchain": "Nœud, hub ou RPC coûteux",
+        "bitsocial": "Ultra bon marché, fonctionne sur un Raspberry Pi"
+      },
+      "whoKeepsOnline": {
+        "label": "Qui le maintient en ligne",
+        "federated": "Opérateur du service / de l’instance",
+        "blockchain": "Infrastructure de chaîne, hub ou RPC",
+        "bitsocial": "Propriétaires de communautés + seeders bénévoles"
+      },
+      "scalingModel": {
+        "label": "Modèle de montée en charge",
+        "federated": "Instances plus grandes, factures plus élevées",
+        "blockchain": "Plus d’état, une infra plus lourde",
+        "bitsocial": "Plus de pairs, plus de bande passante"
+      },
+      "customAntiSpam": {
+        "label": "Logique anti-spam personnalisée",
+        "federated": "Pas intégrée au protocole",
+        "blockchain": "Liée aux chaînes, aux hubs ou aux frais",
+        "bitsocial": "Intégrée : le défi peut être n’importe quoi"
+      },
+      "takedownChokePoints": {
+        "label": "Points de blocage pour la mise hors ligne",
+        "federated": "Hébergeur, registrar, SSL, fournisseur DDoS",
+        "blockchain": "Validateurs, hubs, RPC",
+        "bitsocial": "Aucun point de blocage unique"
+      }
+    },
+    "quote": "Votre communauté ne peut littéralement être bannie ni bloquée par qui que ce soit, pas même par un gouvernement. C’est ce problème que nous résolvons.",
+    "quoteAttribution": "— Esteban Abaroa, fondateur de Bitsocial"
+  },
+  "masterPlan": {
+    "title": "Plan directeur",
+    "logoAlt": "Logo",
+    "easterEggAlt": "SpongeBob",
+    "epilogue": "Les réseaux sociaux trouvent enfin leur équilibre : un réseau pair-à-pair entièrement décentralisé qui n’appartient à personne ; Bitsocial.",
+    "phases": {
+      "phase1": {
+        "phase": "Phase 1",
+        "status": "En cours",
+        "title": "Décentraliser les imageboards",
+        "description": "Les imageboards sont la forme de réseau social la plus simple à décentraliser : publications anonymes, quelques boards par défaut et aucun graphe de profils. C’est pourquoi nous lançons 5chan, la première application Bitsocial. 5chan prouve que Bitsocial peut remplacer les imageboards centralisés tout en supprimant les administrateurs globaux de l’équation."
+      },
+      "phase2": {
+        "phase": "Phase 2",
+        "title": "Lancer Bitsocial RPC",
+        "description": "Bitsocial Forge lancera le premier service RPC non custodial pour les applications Bitsocial. Bitsocial RPC permettra aux utilisateurs de gérer les nœuds à distance, tout en conservant la possibilité d’auto-héberger ou d’exploiter une infrastructure RPC concurrente. Les utilisateurs pourront créer et gérer depuis leur mobile des communautés P2P impossibles à arrêter."
+      },
+      "phase3": {
+        "phase": "Phase 3",
+        "title": "Décentraliser les forums",
+        "description": "Les forums ajoutent des identités persistantes, un historique des publications et la gestion des communautés. Notre premier prototype d’application Bitsocial pour décentraliser les forums est Seedit, une alternative à Reddit. Seedit apportera des discussions façon Reddit sur Bitsocial, une fois que Bitsocial RPC rendra les communautés P2P toujours en ligne pratiques depuis n’importe où."
+      },
+      "phase4": {
+        "phase": "Phase 4",
+        "title": "Lancer Bitsocial Network",
+        "description": "Pour décentraliser tous les réseaux sociaux, les applications Bitsocial auront besoin de fonctionnalités phares, de puissants effets de réseau, de structures financières impossibles à arrêter, de domaines Bitsocial décentralisés (.bso) et d’une liquidité commune. Tout cela sera alimenté par Bitsocial Network, une solution d’appchain décentralisée pour les applications Bitsocial."
+      },
+      "phase5": {
+        "phase": "Phase 5",
+        "title": "Décentraliser tous les réseaux sociaux",
+        "description": "Avec plusieurs RPC publics en concurrence pour fournir des nœuds de profil et des algorithmes de fil optionnels, et avec Bitsocial Network permettant la monétisation du contenu sans que les banques ne saisissent les fonds, les applications Bitsocial pourront rivaliser avec toutes sortes de réseaux sociaux, y compris Facebook, Instagram, TikTok, X et YouTube."
+      }
+    }
   }
 }

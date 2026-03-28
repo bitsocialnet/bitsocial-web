@@ -51,5 +51,121 @@
   "languageSelector": {
     "title": "Chọn ngôn ngữ",
     "searchPlaceholder": "Tìm kiếm ngôn ngữ..."
+  },
+  "features": {
+    "title": "Tính năng cốt lõi",
+    "items": {
+      "open-source": {
+        "description": "Bitsocial là phần mềm nguồn mở miễn phí: giao thức và các client đều công khai, có thể fork và sẵn sàng đón nhận đóng góp từ bên ngoài. Bất kỳ ai cũng có thể kiểm tra mã nguồn, đưa ra cải tiến hoặc xây dựng một ứng dụng tương thích mà không cần xin phép từ một công ty.",
+        "cta": "Xem mã nguồn"
+      },
+      "peer-to-peer": {
+        "description": "Bitsocial không phải là hệ liên bang cũng không phải on-chain. Mỗi cộng đồng là một swarm peer-to-peer, gần với BitTorrent hơn là một trang web được lưu trữ: người dùng seed những gì họ đã đọc, các node có thể chạy trên phần cứng giá rẻ, và mỗi cộng đồng có thể tự thực thi cơ chế chống spam của riêng mình thay vì phụ thuộc vào chính sách toàn nền tảng.",
+        "cta": "Đó chính là giao tiếp nơi an toàn"
+      },
+      "social-apps": {
+        "description": "Bất kỳ ai cũng có thể xây dựng một ứng dụng Bitsocial với giao diện, mô hình khám phá hoặc thiết lập mặc định riêng. Các ứng dụng cạnh tranh bằng chất lượng sản phẩm thay vì khóa người dùng vào một cơ sở dữ liệu riêng, vì các client tương thích có thể chia sẻ cùng cộng đồng, danh tính và mạng lưới.",
+        "cta": "Khám phá ứng dụng"
+      },
+      "no-servers": {
+        "description": "Bitsocial không yêu cầu mỗi cộng đồng phải thuê máy chủ trung tâm dữ liệu, mua tên miền hay quản lý SSL chỉ để duy trì trực tuyến. Node của cộng đồng có thể chạy tại nhà trên phần cứng tiêu dùng, và không có một backend do một công ty vận hành nào có thể làm cả mạng lưới sập xuống.",
+        "cta": "Kiểm tra trạng thái mạng"
+      },
+      "no-global-bans": {
+        "description": "Việc kiểm duyệt vẫn tồn tại, nhưng nó chỉ diễn ra ở phạm vi cục bộ. Chủ sở hữu cộng đồng đặt ra quy tắc cho không gian của mình, và các ứng dụng có thể chọn những gì họ lập chỉ mục hoặc hiển thị; tuy nhiên, không có siêu quản trị viên cấp giao thức nào có thể xóa hồ sơ hoặc chiếm đoạt một cộng đồng khỏi chính mạng lưới.",
+        "cta": "Đọc ghi chú về kiểm duyệt"
+      },
+      "cryptographic-property": {
+        "description": "Hồ sơ và cộng đồng được kiểm soát bằng khóa riêng, chứ không phải các tài khoản nền tảng có thể bị thu hồi. Bạn có thể ủy quyền lưu trữ mà không cần từ bỏ quyền sở hữu, nên danh tính và cộng đồng của bạn hoạt động giống tài sản do ví kiểm soát hơn là một tên người dùng được thuê từ một công ty.",
+        "cta": "Đọc ghi chú về quyền sở hữu"
+      }
+    }
+  },
+  "sanctuary": {
+    "sectionLabel": "Truyền thông nơi an toàn",
+    "headline": "Chạy mượt là xong.",
+    "supporting": "Không cần thuê máy chủ. Không cần mua tên miền. Không cần đồng bộ chuỗi. Một node Bitsocial có thể chạy trên Raspberry Pi. Và mỗi cộng đồng có thể áp dụng cơ chế chống spam riêng: captcha, điểm uy tín, SMS, thanh toán, token, kiểm tra IP, hoặc bất kỳ thứ gì có thể lập trình được.",
+    "approaches": {
+      "federated": {
+        "label": "Liên bang",
+        "subtitle": "Bluesky, Mastodon, Lemmy"
+      },
+      "blockchain": {
+        "label": "Chuỗi / hub",
+        "subtitle": "Farcaster, Lens, DeSo, Steemit"
+      },
+      "bitsocial": {
+        "label": "Bitsocial",
+        "subtitle": "P2P thuần túy với cơ chế chống spam tùy ý"
+      }
+    },
+    "rows": {
+      "selfHostingCost": {
+        "label": "Chi phí tự lưu trữ",
+        "federated": "Máy chủ + tên miền + SSL",
+        "blockchain": "Node, hub hoặc RPC đắt đỏ",
+        "bitsocial": "Cực rẻ, chạy được trên Raspberry Pi"
+      },
+      "whoKeepsOnline": {
+        "label": "Ai duy trì trực tuyến",
+        "federated": "Nhà vận hành dịch vụ / instance",
+        "blockchain": "Cơ sở hạ tầng chuỗi, hub hoặc RPC",
+        "bitsocial": "Chủ sở hữu cộng đồng + seeder hỗ trợ"
+      },
+      "scalingModel": {
+        "label": "Mô hình mở rộng",
+        "federated": "Instance càng lớn, hóa đơn càng cao",
+        "blockchain": "Càng nhiều trạng thái, hạ tầng càng nặng",
+        "bitsocial": "Càng nhiều peer, băng thông càng tăng"
+      },
+      "customAntiSpam": {
+        "label": "Logic chống spam tùy biến",
+        "federated": "Không được tích hợp sẵn trong giao thức",
+        "blockchain": "Gắn với chuỗi, hub hoặc phí",
+        "bitsocial": "Được tích hợp: cơ chế thách thức có thể là bất cứ thứ gì"
+      },
+      "takedownChokePoints": {
+        "label": "Các điểm nghẽn khi gỡ bỏ",
+        "federated": "Máy chủ, nhà đăng ký, SSL, nhà cung cấp DDoS",
+        "blockchain": "Validator, hub, RPC",
+        "bitsocial": "Không có điểm nghẽn đơn lẻ"
+      }
+    },
+    "quote": "Về cơ bản, cộng đồng của bạn không thể bị bất kỳ ai cấm hoặc chặn, kể cả chính phủ. Chúng tôi giải quyết vấn đề đó.",
+    "quoteAttribution": "— Esteban Abaroa, nhà sáng lập Bitsocial"
+  },
+  "masterPlan": {
+    "title": "Kế hoạch tổng thể",
+    "logoAlt": "Logo",
+    "easterEggAlt": "SpongeBob",
+    "epilogue": "Cuối cùng mạng xã hội cũng tìm được trạng thái cân bằng: một mạng ngang hàng phi tập trung hoàn toàn, không thuộc sở hữu của bất kỳ ai; Bitsocial.",
+    "phases": {
+      "phase1": {
+        "phase": "Giai đoạn 1",
+        "status": "Đang diễn ra",
+        "title": "Phi tập trung hóa imageboard",
+        "description": "Imageboard là dạng mạng xã hội đơn giản nhất để phi tập trung hóa: đăng ẩn danh, ít bảng mặc định, và không có đồ thị hồ sơ. Đó là lý do chúng tôi ra mắt 5chan, ứng dụng Bitsocial đầu tiên. 5chan chứng minh Bitsocial có thể thay thế imageboard tập trung trong khi loại bỏ quản trị viên toàn cục khỏi phương trình."
+      },
+      "phase2": {
+        "phase": "Giai đoạn 2",
+        "title": "Ra mắt Bitsocial RPC",
+        "description": "Bitsocial Forge sẽ ra mắt dịch vụ RPC không lưu ký đầu tiên cho các ứng dụng Bitsocial. Bitsocial RPC sẽ cho phép người dùng quản lý node từ xa, đồng thời vẫn giữ tùy chọn tự lưu trữ hoặc vận hành hạ tầng RPC cạnh tranh. Người dùng sẽ có thể tạo và quản lý các cộng đồng P2P không thể bị ngăn chặn ngay trên di động."
+      },
+      "phase3": {
+        "phase": "Giai đoạn 3",
+        "title": "Phi tập trung hóa forum",
+        "description": "Forum bổ sung danh tính bền vững, lịch sử bài viết và quản lý cộng đồng. Ứng dụng Bitsocial nguyên mẫu đầu tiên của chúng tôi để phi tập trung hóa forum là Seedit, một lựa chọn thay thế cho Reddit. Seedit sẽ mang thảo luận kiểu Reddit đến Bitsocial, khi Bitsocial RPC khiến các cộng đồng P2P luôn bật trở nên khả thi từ bất cứ đâu."
+      },
+      "phase4": {
+        "phase": "Giai đoạn 4",
+        "title": "Ra mắt Bitsocial Network",
+        "description": "Để phi tập trung hóa toàn bộ mạng xã hội, các ứng dụng Bitsocial sẽ cần những tính năng chủ lực và hiệu ứng mạng mạnh, cấu trúc tài chính không thể bị ngăn chặn, tên miền Bitsocial phi tập trung (.bso), và thanh khoản chung. Tất cả những điều đó sẽ được Bitsocial Network hỗ trợ, một giải pháp appchain phi tập trung dành cho các ứng dụng Bitsocial."
+      },
+      "phase5": {
+        "phase": "Giai đoạn 5",
+        "title": "Phi tập trung hóa toàn bộ mạng xã hội",
+        "description": "Với nhiều RPC công khai cạnh tranh để cung cấp node hồ sơ và các thuật toán nguồn cấp tùy chọn, cùng Bitsocial Network cho phép kiếm tiền từ nội dung mà không để ngân hàng tịch thu tiền, các ứng dụng Bitsocial sẽ có thể cạnh tranh với mọi loại mạng xã hội, bao gồm Facebook, Instagram, TikTok, X và YouTube."
+      }
+    }
   }
 }

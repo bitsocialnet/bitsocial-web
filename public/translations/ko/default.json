@@ -51,5 +51,121 @@
   "languageSelector": {
     "title": "언어 선택",
     "searchPlaceholder": "언어 검색..."
+  },
+  "features": {
+    "title": "핵심 기능",
+    "items": {
+      "open-source": {
+        "description": "Bitsocial은 무료 오픈 소스 소프트웨어입니다. 프로토콜과 클라이언트는 공개되어 있고, 포크할 수 있으며, 외부 기여도 열려 있습니다. 누구나 코드를 검토하고, 개선 사항을 배포하고, 회사의 허락 없이 호환되는 앱을 만들 수 있습니다.",
+        "cta": "소스 코드 둘러보기"
+      },
+      "peer-to-peer": {
+        "description": "Bitsocial은 연합형도 체인 기반도 아닙니다. 각 커뮤니티는 peer-to-peer 스웜이며, 호스팅된 웹사이트보다 BitTorrent에 더 가깝습니다. 사용자는 자신이 읽은 것을 시드하고, 노드는 저렴한 하드웨어에서 실행할 수 있으며, 각 커뮤니티는 전역 플랫폼 정책에 의존하지 않고 자체적인 스팸 방지 챌린지를 적용할 수 있습니다.",
+        "cta": "그게 바로 성역형 커뮤니케이션입니다"
+      },
+      "social-apps": {
+        "description": "누구나 자신만의 인터페이스, 발견 모델, 기본값을 가진 Bitsocial 앱을 만들 수 있습니다. 호환되는 클라이언트가 같은 커뮤니티, ID, 네트워크를 공유할 수 있기 때문에, 앱은 사용자를 비공개 데이터베이스에 가두는 대신 제품 품질로 경쟁합니다.",
+        "cta": "앱 둘러보기"
+      },
+      "no-servers": {
+        "description": "Bitsocial은 모든 커뮤니티가 온라인 상태를 유지하기 위해 데이터센터 박스를 임대하거나, 도메인을 사거나, SSL을 관리할 필요가 없습니다. 커뮤니티 노드는 집의 소비자용 하드웨어에서 실행할 수 있고, 네트워크 전체를 다운시킬 수 있는 단일 회사 운영 백엔드도 없습니다.",
+        "cta": "네트워크 상태 확인"
+      },
+      "no-global-bans": {
+        "description": "모더레이션은 여전히 존재하지만 로컬에 머뭅니다. 커뮤니티 소유자는 자신들의 공간 규칙을 정하고, 앱은 무엇을 색인하거나 표시할지 선택할 수 있습니다. 하지만 프로토콜 수준에서 프로필을 지우거나 커뮤니티를 네트워크 자체에서 빼앗을 수 있는 슈퍼 관리자는 없습니다.",
+        "cta": "모더레이션 참고사항 읽기"
+      },
+      "cryptographic-property": {
+        "description": "프로필과 커뮤니티는 취소 가능한 플랫폼 계정이 아니라 개인 키로 제어됩니다. 소유권을 넘기지 않고도 호스팅을 위임할 수 있으므로, 당신의 정체성과 커뮤니티는 회사에서 빌린 사용자 이름보다 지갑으로 관리하는 자산처럼 작동합니다.",
+        "cta": "소유권 참고사항 읽기"
+      }
+    }
+  },
+  "sanctuary": {
+    "sectionLabel": "성역형 커뮤니케이션",
+    "headline": "그냥 잘 됩니다.",
+    "supporting": "서버를 임대할 필요도, 도메인을 살 필요도, 체인을 동기화할 필요도 없습니다. Bitsocial 노드는 Raspberry Pi에서 실행됩니다. 그리고 각 커뮤니티는 captcha, 평판, SMS, 결제, 토큰, IP 검사, 또는 코드로 구현할 수 있는 어떤 방식이든 자체 스팸 방지 챌린지를 강제할 수 있습니다.",
+    "approaches": {
+      "federated": {
+        "label": "연합형",
+        "subtitle": "Bluesky, Mastodon, Lemmy"
+      },
+      "blockchain": {
+        "label": "체인 / 허브",
+        "subtitle": "Farcaster, Lens, DeSo, Steemit"
+      },
+      "bitsocial": {
+        "label": "Bitsocial",
+        "subtitle": "임의의 스팸 방지 챌린지를 지원하는 순수 P2P"
+      }
+    },
+    "rows": {
+      "selfHostingCost": {
+        "label": "셀프 호스팅 비용",
+        "federated": "서버 + 도메인 + SSL",
+        "blockchain": "비싼 노드, 허브 또는 RPC",
+        "bitsocial": "매우 저렴함, Raspberry Pi에서 실행"
+      },
+      "whoKeepsOnline": {
+        "label": "누가 온라인을 유지하나",
+        "federated": "서비스 / 인스턴스 운영자",
+        "blockchain": "체인, 허브 또는 RPC 인프라",
+        "bitsocial": "커뮤니티 소유자 + 도우미 시더"
+      },
+      "scalingModel": {
+        "label": "확장 모델",
+        "federated": "인스턴스가 커질수록 요금도 커짐",
+        "blockchain": "상태가 늘수록 인프라도 무거워짐",
+        "bitsocial": "피어가 늘수록 대역폭도 늘어남"
+      },
+      "customAntiSpam": {
+        "label": "맞춤형 스팸 방지 로직",
+        "federated": "프로토콜에 내장되어 있지 않음",
+        "blockchain": "체인, 허브 또는 수수료에 묶임",
+        "bitsocial": "내장됨: 챌린지는 무엇이든 가능"
+      },
+      "takedownChokePoints": {
+        "label": "삭제의 병목 지점",
+        "federated": "호스트, 등록기관, SSL, DDoS 제공업체",
+        "blockchain": "검증자, 허브, RPC",
+        "bitsocial": "단일 병목 지점 없음"
+      }
+    },
+    "quote": "당신의 커뮤니티는 문자 그대로 누구에게도, 심지어 정부에게도 차단되거나 막힐 수 없습니다. 우리는 그 문제를 해결합니다.",
+    "quoteAttribution": "— Esteban Abaroa, Bitsocial 창립자"
+  },
+  "masterPlan": {
+    "title": "마스터 플랜",
+    "logoAlt": "로고",
+    "easterEggAlt": "SpongeBob",
+    "epilogue": "소셜 미디어는 마침내 균형점을 찾습니다. 누구의 소유도 아닌 완전히 분산화된 peer-to-peer 네트워크, Bitsocial.",
+    "phases": {
+      "phase1": {
+        "phase": "페이즈 1",
+        "status": "진행 중",
+        "title": "이미지보드 탈중앙화",
+        "description": "이미지보드는 탈중앙화하기 가장 단순한 소셜 미디어 형식입니다. 익명 게시, 적은 기본 게시판, 프로필 그래프가 없기 때문입니다. 그래서 우리는 첫 번째 Bitsocial 앱인 5chan을 출시합니다. 5chan은 전역 관리자를 배제하면서도 Bitsocial이 중앙집중형 이미지보드를 대체할 수 있음을 증명합니다."
+      },
+      "phase2": {
+        "phase": "페이즈 2",
+        "title": "Bitsocial RPC 출시",
+        "description": "Bitsocial Forge는 Bitsocial 앱을 위한 최초의 비수탁형 RPC 서비스를 출시할 예정입니다. Bitsocial RPC는 사용자가 원격으로 노드를 관리할 수 있게 해 주면서도, 자가 호스팅이나 경쟁 RPC 인프라를 운영할 선택권은 그대로 보장합니다. 사용자는 모바일에서 멈출 수 없는 P2P 커뮤니티를 만들고 관리할 수 있게 됩니다."
+      },
+      "phase3": {
+        "phase": "페이즈 3",
+        "title": "포럼 탈중앙화",
+        "description": "포럼은 영구적인 신원, 게시 기록, 커뮤니티 관리를 더합니다. 포럼을 탈중앙화하는 우리의 첫 번째 Bitsocial 앱 프로토타입은 Reddit의 대안인 Seedit입니다. Bitsocial RPC가 언제 어디서나 항상 켜져 있는 P2P 커뮤니티를 현실적으로 만들게 되면, Seedit은 Reddit 스타일의 토론을 Bitsocial로 가져올 것입니다."
+      },
+      "phase4": {
+        "phase": "페이즈 4",
+        "title": "Bitsocial Network 출시",
+        "description": "모든 소셜 미디어를 탈중앙화하려면 Bitsocial 앱에 강력한 기능과 탄탄한 네트워크 효과, 멈출 수 없는 금융 구조, 탈중앙화된 Bitsocial 도메인(.bso), 공통 유동성이 필요합니다. 이 모든 것은 Bitsocial 앱을 위한 탈중앙화 appchain 솔루션인 Bitsocial Network가 지원합니다."
+      },
+      "phase5": {
+        "phase": "페이즈 5",
+        "title": "모든 소셜 미디어 탈중앙화",
+        "description": "여러 개의 공개 RPC가 프로필 노드와 선택적 피드 알고리즘을 제공하기 위해 경쟁하고, Bitsocial Network가 은행이 자금을 압류하지 못하게 하면서 콘텐츠 수익화를 가능하게 하면, Bitsocial 앱은 Facebook, Instagram, TikTok, X, YouTube를 포함한 모든 종류의 소셜 미디어와 경쟁할 수 있게 됩니다."
+      }
+    }
   }
 }
