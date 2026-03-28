@@ -213,10 +213,12 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
   });
   const { resolvedTheme } = useTheme();
   const themeRefs = usePlanetThemeRefs();
-  const containerHeight = isMobile ? "min(55vh, 30rem)" : "clamp(33rem, calc(52rem - 12vw), 40rem)";
+  const containerHeight = isMobile
+    ? "clamp(22rem, 42vh, 28rem)"
+    : "clamp(34rem, calc(46rem - 6vw), 40rem)";
   const translateY = isMobile
-    ? "translateY(calc(-1rem - 12vh))"
-    : "translateY(clamp(-4.5rem, calc(-1rem - 3vw), -2.5rem))";
+    ? "translateY(clamp(-4.5rem, calc(-1rem - 5vh), -3rem))"
+    : "translateY(clamp(-4rem, calc(-5rem + 2vw), -2.5rem))";
 
   // Update Three.js materials in-place when theme changes (no scene rebuild)
   useEffect(() => {
@@ -670,7 +672,7 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
       <canvas ref={canvasRef} className="block w-full h-full touch-pan-y" />
       {/* Bottom fade gradient overlay - tall and strong to dissolve into next section */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-48 md:h-80 pointer-events-none z-10"
+        className="absolute bottom-0 left-0 right-0 h-40 md:h-[clamp(10rem,calc(15rem-4vw),14rem)] pointer-events-none z-10"
         style={{
           background:
             "linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background)) 25%, hsl(var(--background) / 0.9) 40%, hsl(var(--background) / 0.6) 60%, hsl(var(--background) / 0.2) 80%, transparent 100%)",

@@ -32,8 +32,8 @@ export default function Home() {
       <Hero />
       <div className="relative">
         <PolygonMeshBackground />
-        <div className="absolute inset-x-0 top-0 h-32 md:h-48 pointer-events-none z-[1]">
-          <div className="absolute inset-x-6 md:inset-x-16 -top-10 md:-top-14 h-24 md:h-32 rounded-[999px] bg-background/85 blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-28 md:h-[clamp(8rem,calc(11rem-2vw),10rem)] pointer-events-none z-[1]">
+          <div className="absolute inset-x-6 md:inset-x-16 -top-10 md:-top-12 h-20 md:h-24 rounded-[999px] bg-background/85 blur-3xl" />
           <div
             className="absolute inset-0"
             style={{

@@ -99,7 +99,7 @@ function HeroFallbackGraphic({ className }: { className?: string }) {
     <div className={cn("left-0 right-0 w-full pointer-events-none overscroll-none", className)}>
       <HeroFallbackImage />
       <div
-        className="absolute bottom-0 left-0 right-0 h-28 md:h-44 pointer-events-none z-10"
+        className="absolute bottom-0 left-0 right-0 h-24 md:h-[clamp(8rem,calc(11rem-2vw),10rem)] pointer-events-none z-10"
         style={{
           background:
             "linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background)) 25%, hsl(var(--background) / 0.9) 40%, hsl(var(--background) / 0.6) 60%, hsl(var(--background) / 0.2) 80%, transparent 100%)",
@@ -165,11 +165,11 @@ export default function Hero() {
   }, []);
 
   const staticFallback = (
-    <HeroFallbackGraphic className="absolute bottom-4 md:bottom-8 h-[52vh] md:h-[40vh] overflow-visible" />
+    <HeroFallbackGraphic className="absolute bottom-4 md:bottom-8 h-[clamp(22rem,42vh,28rem)] md:h-[40vh] overflow-visible" />
   );
 
   return (
-    <section className="min-h-[100svh] md:min-h-screen flex flex-col items-center justify-start pt-28 md:pt-40 px-6 relative overflow-x-hidden overflow-y-visible">
+    <section className="min-h-[min(100svh,58rem)] md:min-h-[min(100svh,clamp(55rem,calc(64rem-7vw),60rem))] flex flex-col items-center justify-start pt-28 md:pt-40 px-6 relative overflow-x-hidden overflow-y-visible">
       <m.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: -20 }}
@@ -254,7 +254,7 @@ export default function Hero() {
 
       {/* Planet and Mesh graphics */}
       {showGraphics ? (
-        <div className="mt-4 md:mt-6 relative -mx-6 w-[calc(100%+3rem)] pointer-events-none overscroll-none touch-pan-y">
+        <div className="mt-10 sm:mt-12 md:mt-6 relative -mx-6 w-[calc(100%+3rem)] pointer-events-none overscroll-none touch-pan-y">
           {/* P2P Mesh Network - behind the planet */}
           <m.div
             initial={{ opacity: 0 }}
@@ -284,7 +284,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.8 }}
-          className="mt-6 md:mt-10 relative -mx-6 w-[calc(100%+3rem)] h-[52vh] md:h-[40vh]"
+          className="mt-10 sm:mt-12 md:mt-10 relative -mx-6 w-[calc(100%+3rem)] h-[clamp(22rem,42vh,28rem)] md:h-[40vh]"
         >
           <HeroFallbackGraphic className="relative h-full overflow-visible" />
         </m.div>
@@ -292,7 +292,7 @@ export default function Hero() {
 
       {/* Bottom fade gradient - seamless transition to next section */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-48 md:h-96 pointer-events-none z-40"
+        className="absolute bottom-0 left-0 right-0 h-40 md:h-[clamp(12rem,calc(18rem-4vw),16rem)] pointer-events-none z-40"
         style={{
           background:
             "linear-gradient(to bottom, transparent 0%, hsl(var(--background) / 0.3) 30%, hsl(var(--background) / 0.7) 60%, hsl(var(--background)) 85%, hsl(var(--background)) 100%)",

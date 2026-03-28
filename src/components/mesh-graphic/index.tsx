@@ -69,8 +69,12 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
   });
   const { resolvedTheme } = useTheme();
   const themeRefs = useRef<MeshThemeRefs | null>(null);
-  const containerHeight = isMobile ? "min(55vh, 30rem)" : "clamp(35rem, calc(58rem - 14vw), 44rem)";
-  const topOffset = isMobile ? "-8vh" : "clamp(-4.5rem, calc(-1rem - 3vw), -2.5rem)";
+  const containerHeight = isMobile
+    ? "clamp(24rem, 44vh, 30rem)"
+    : "clamp(36rem, calc(51rem - 7vw), 44rem)";
+  const topOffset = isMobile
+    ? "clamp(-4.5rem, calc(-1rem - 5vh), -2.75rem)"
+    : "clamp(-4rem, calc(-5rem + 2vw), -2.5rem)";
 
   useEffect(() => {
     if (!themeRefs.current) return;
@@ -525,7 +529,7 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
       <canvas ref={canvasRef} className="block w-full h-full touch-pan-y" />
       {/* Bottom fade gradient overlay - tall and strong to dissolve into next section */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-64 md:h-80 pointer-events-none z-10"
+        className="absolute bottom-0 left-0 right-0 h-48 md:h-[clamp(11rem,calc(16rem-4vw),15rem)] pointer-events-none z-10"
         style={{
           background:
             "linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background)) 25%, hsl(var(--background) / 0.9) 40%, hsl(var(--background) / 0.6) 60%, hsl(var(--background) / 0.2) 80%, transparent 100%)",
