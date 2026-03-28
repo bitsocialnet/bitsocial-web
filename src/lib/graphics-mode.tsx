@@ -8,7 +8,7 @@ type NetworkInformation = {
   removeEventListener?: (type: "change", listener: () => void) => void;
 };
 
-export type GraphicsMode = "full" | "fallback";
+type GraphicsMode = "full" | "fallback";
 
 const GraphicsModeContext = createContext<GraphicsMode | null>(null);
 

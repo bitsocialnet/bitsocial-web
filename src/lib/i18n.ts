@@ -53,5 +53,3 @@ void i18n
   });
 
 i18n.on("languageChanged", updateDocumentDirection);
-
-export default i18n;

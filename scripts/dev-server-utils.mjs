@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const repoRoot = path.resolve(__dirname, "..");
 export const isWindows = process.platform === "win32";
-export const yarnBin = isWindows ? "yarn.cmd" : "yarn";
+const yarnBin = isWindows ? "yarn.cmd" : "yarn";
 
 function checkPort(port) {
   return new Promise((resolve) => {

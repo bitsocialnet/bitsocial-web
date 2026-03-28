@@ -1,0 +1,18 @@
+{
+  "$schema": "https://unpkg.com/knip@6.1.0/schema-jsonc.json",
+  "ignoreBinaries": [
+    // Portless is only used by local dev scripts, so production-only binary checks should not flag it.
+    "portless",
+  ],
+  "ignoreFiles": [
+    // These CLIs are intentionally run from docs or one-off maintenance flows rather than package scripts.
+    "scripts/sync-hero-tagline-segments.mjs",
+    "scripts/update-translations.js",
+  ],
+  "ignoreDependencies": [
+    // Loaded from Tailwind config, but still misreported by Knip in this repo's config graph.
+    "tailwindcss-animate",
+    // Imported from index.html for runtime instrumentation rather than from the source import graph.
+    "react-grab",
+  ],
+}

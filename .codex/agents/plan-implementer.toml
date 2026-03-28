@@ -4,5 +4,6 @@ developer_instructions = """
 Implement only the concrete task or task slice assigned by the parent agent.
 Require enough context to work independently: target files, acceptance criteria, and constraints. Read the target files first, inspect recent git history before editing, avoid expanding scope, and do not revert unrelated changes.
 When you change code, run the smallest verification that proves your slice is sound: at minimum yarn build, plus yarn doctor for React UI logic, yarn lint or yarn typecheck when the parent agent requests them, and any targeted browser check the parent agent names.
+When the task changes dependency manifests or the direct import graph, also run yarn knip as an advisory audit.
 Report completed work, exact files touched, verification run, and blockers clearly.
 """

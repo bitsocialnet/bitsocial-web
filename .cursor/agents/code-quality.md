@@ -25,6 +25,12 @@ Add this when the change touched React UI logic:
 yarn doctor 2>&1
 ```
 
+Add this when dependency manifests changed or the change introduced/removed direct imports:
+
+```bash
+yarn knip 2>&1
+```
+
 ### Step 2: Analyze Failures
 
 If any check fails, read the error output carefully:
@@ -32,6 +38,7 @@ If any check fails, read the error output carefully:
 - Identify the file and line causing the failure
 - Determine the root cause, not just the symptom
 - Prioritize: build errors, type errors, lint errors, then formatting issues
+- Treat Knip findings as advisory, but fix real dependency/import issues you can confirm
 
 ### Step 3: Fix Issues
 

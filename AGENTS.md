@@ -28,6 +28,7 @@ Bitsocial Web is the public-facing landing page and ecosystem entrypoint for Bit
 | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | React UI logic changed (`src/components`, `src/pages`, `src/app.tsx`, `src/main.tsx`, `src/lib`)                             | Follow React architecture rules below and run `yarn doctor`                                                                                                                                          |
 | `package.json` changed                                                                                                       | Run `yarn install` to keep `yarn.lock` in sync                                                                                                                                                       |
+| Dependencies or import graph changed                                                                                         | Run `yarn knip` as an advisory manifest/import audit                                                                                                                                                 |
 | Translation key/value changed                                                                                                | Use `docs/agent-playbooks/translations.md`                                                                                                                                                           |
 | Bug report in a specific file/line                                                                                           | Start with git history scan from `docs/agent-playbooks/bug-investigation.md` before editing                                                                                                          |
 | UI or visual behavior changed                                                                                                | Verify in browser with `playwright-cli`; check desktop and mobile behavior when relevant                                                                                                             |
@@ -151,6 +152,7 @@ src/
 - Keep context lean: delegate heavy or verbose tasks when possible.
 - For complex work, parallelize independent checks.
 - When touching already-covered logic, prefer extending nearby tests or clearly call out the missing coverage if the repo area has no existing test harness.
+- Use `yarn knip` when adding/removing dependencies or introducing new direct imports; treat findings as advisory, but resolve real issues before finishing.
 - When proposing or implementing meaningful code changes, include both:
   - a Conventional Commit title suggestion
   - a short GitHub issue suggestion
@@ -171,6 +173,8 @@ yarn install
 yarn start          # http://bitsocial.localhost:1355
 yarn start:android-usb  # Vite + adb reverse; opens http://localhost:<port> on device
 yarn build
+yarn knip
+yarn knip:full
 yarn lint
 yarn typecheck
 yarn format:check
