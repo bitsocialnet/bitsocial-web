@@ -3,6 +3,7 @@ import { Globe, Check, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { DEFAULT_LANGUAGE_CODE, normalizeLanguageCode } from "@/lib/locales";
 import { cn } from "@/lib/utils";
 
 const languages = [
@@ -49,10 +50,10 @@ type LanguageEntry = (typeof languages)[number];
 const LANGUAGE_BY_CODE = new Map<string, LanguageEntry>(
   languages.map((language) => [language.code, language]),
 );
-const DEFAULT_LANGUAGE = LANGUAGE_BY_CODE.get("en")!;
+const DEFAULT_LANGUAGE = LANGUAGE_BY_CODE.get(DEFAULT_LANGUAGE_CODE)!;
 
-function getLanguageEntry(code: string): LanguageEntry {
-  return LANGUAGE_BY_CODE.get(code) ?? DEFAULT_LANGUAGE;
+function getLanguageEntry(code: string | null | undefined): LanguageEntry {
+  return LANGUAGE_BY_CODE.get(normalizeLanguageCode(code)) ?? DEFAULT_LANGUAGE;
 }
 
 export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
@@ -65,8 +66,9 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
   const focusSearchAfterOpenTimerRef = useRef<number | null>(null);
   const optionRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [showListBottomFade, setShowListBottomFade] = useState(false);
+  const currentLanguageCode = normalizeLanguageCode(i18n.resolvedLanguage ?? i18n.language);
 
-  const currentLanguage = getLanguageEntry(i18n.language);
+  const currentLanguage = getLanguageEntry(currentLanguageCode);
 
   const filteredLanguages = useMemo(() => {
     const query = searchQuery.toLowerCase();
@@ -141,7 +143,7 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
 
     if (nextOpen) {
       const selectedIndex = filteredLanguages.findIndex(
-        (language) => language.code === i18n.language,
+        (language) => language.code === currentLanguageCode,
       );
       setActiveIndex(selectedIndex >= 0 ? selectedIndex : 0);
       return;
@@ -272,7 +274,7 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
                       "bg-foreground/[0.03] border border-foreground/[0.06] hover:bg-foreground/[0.07] hover:border-foreground/[0.12]",
                       effectiveActiveIndex === index &&
                         "border-foreground/[0.16] bg-foreground/[0.08]",
-                      i18n.language === language.code &&
+                      currentLanguageCode === language.code &&
                         "border-blue-glow bg-blue-glow/[0.08] hover:bg-blue-glow/[0.12] hover:border-blue-glow",
                     )}
                     dir={language.dir}
@@ -280,14 +282,14 @@ export default function LanguageSelector({ mobile }: { mobile?: boolean }) {
                     <span
                       className={cn(
                         "font-medium",
-                        i18n.language === language.code
+                        currentLanguageCode === language.code
                           ? "text-foreground"
                           : "text-muted-foreground",
                       )}
                     >
                       {language.name}
                     </span>
-                    {i18n.language === language.code && (
+                    {currentLanguageCode === language.code && (
                       <Check className="h-4 w-4 text-blue-glow" />
                     )}
                   </button>

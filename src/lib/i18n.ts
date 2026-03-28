@@ -2,54 +2,32 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import HttpBackend from "i18next-http-backend";
+import {
+  DEFAULT_LANGUAGE_CODE,
+  SUPPORTED_LANGUAGE_CODES,
+  isRtlLanguage,
+  normalizeLanguageCode,
+} from "@/lib/locales";
 
-const supportedLngs = [
-  "ar",
-  "bn",
-  "ca",
-  "cs",
-  "da",
-  "de",
-  "el",
-  "en",
-  "es",
-  "fa",
-  "fi",
-  "fil",
-  "fr",
-  "he",
-  "hi",
-  "hu",
-  "id",
-  "it",
-  "ja",
-  "ko",
-  "mr",
-  "nl",
-  "no",
-  "pl",
-  "pt",
-  "ro",
-  "ru",
-  "sq",
-  "sv",
-  "te",
-  "th",
-  "tr",
-  "uk",
-  "ur",
-  "vi",
-  "zh",
-];
+function updateDocumentDirection(language: string | null | undefined) {
+  const normalizedLanguage = normalizeLanguageCode(language);
+  const dir = isRtlLanguage(normalizedLanguage) ? "rtl" : "ltr";
 
-i18n
+  document.documentElement.dir = dir;
+  document.documentElement.lang = normalizedLanguage;
+}
+
+void i18n
   .use(HttpBackend)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: "en",
+    fallbackLng: DEFAULT_LANGUAGE_CODE,
     debug: import.meta.env.DEV,
-    supportedLngs,
+    supportedLngs: SUPPORTED_LANGUAGE_CODES,
+    cleanCode: true,
+    load: "languageOnly",
+    nonExplicitSupportedLngs: true,
 
     interpolation: {
       escapeValue: false, // React already escapes
@@ -67,16 +45,12 @@ i18n
       order: ["querystring", "localStorage", "navigator"],
       caches: ["localStorage"],
       lookupQuerystring: "lang",
+      convertDetectedLanguage: normalizeLanguageCode,
     },
+  })
+  .then(() => {
+    updateDocumentDirection(i18n.resolvedLanguage ?? i18n.language);
   });
-
-const RTL_LANGUAGES = new Set(["ar", "fa", "he", "ur"]);
-
-function updateDocumentDirection(lng: string) {
-  const dir = RTL_LANGUAGES.has(lng) ? "rtl" : "ltr";
-  document.documentElement.dir = dir;
-  document.documentElement.lang = lng;
-}
 
 i18n.on("languageChanged", updateDocumentDirection);
 
