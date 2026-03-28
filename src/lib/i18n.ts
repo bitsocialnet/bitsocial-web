@@ -79,5 +79,3 @@ function updateDocumentDirection(lng: string) {
 }
 
 i18n.on("languageChanged", updateDocumentDirection);
-
-export default i18n;

@@ -4,12 +4,12 @@ If your AI coding assistant supports lifecycle hooks, configure these for this r
 
 ## Recommended Hooks
 
-| Hook            | Command                                    | Purpose                                                                                  |
-| --------------- | ------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| `afterFileEdit` | `scripts/agent-hooks/format.sh`            | Auto-format files after AI edits                                                         |
-| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`      | Run `corepack yarn install` when `package.json` changes                                  |
-| `stop`          | `scripts/agent-hooks/sync-git-branches.sh` | Prune stale refs and delete integrated temporary task branches                           |
-| `stop`          | `scripts/agent-hooks/verify.sh`            | Hard-gate build, lint, typecheck, and format checks; keep `yarn npm audit` informational |
+| Hook            | Command                                    | Purpose                                                                                                                                                                       |
+| --------------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `afterFileEdit` | `scripts/agent-hooks/format.sh`            | Auto-format files after AI edits                                                                                                                                              |
+| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`      | Run `corepack yarn install` when `package.json` changes                                                                                                                       |
+| `stop`          | `scripts/agent-hooks/sync-git-branches.sh` | Prune stale refs and delete integrated temporary task branches                                                                                                                |
+| `stop`          | `scripts/agent-hooks/verify.sh`            | Hard-gate build, lint, typecheck, and format checks; keep `yarn npm audit` informational and run `yarn knip` separately as an advisory audit when dependencies/imports change |
 
 ## Why
 
@@ -17,6 +17,7 @@ If your AI coding assistant supports lifecycle hooks, configure these for this r
 - Lockfile stays in sync
 - Build/lint/type issues caught early
 - Security visibility via `yarn npm audit`
+- Dependency/import drift can be checked with `yarn knip` without turning it into a noisy global stop hook
 - One shared hook implementation for both Codex and Cursor
 - Temporary task branches stay aligned with the repo's worktree workflow
 
@@ -54,7 +55,7 @@ echo "=== yarn npm audit ===" && (corepack yarn npm audit || true)  # informatio
 exit $status
 ```
 
-By default, `scripts/agent-hooks/verify.sh` exits non-zero when a required check fails. Set `AGENT_VERIFY_MODE=advisory` only when you intentionally need signal from a broken tree without blocking the hook.
+By default, `scripts/agent-hooks/verify.sh` exits non-zero when a required check fails. Set `AGENT_VERIFY_MODE=advisory` only when you intentionally need signal from a broken tree without blocking the hook. Keep `yarn knip` out of the hard gate unless the repo explicitly decides to fail on advisory import/dependency issues.
 
 ### Yarn Install Hook
 

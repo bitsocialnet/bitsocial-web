@@ -43,6 +43,7 @@ yarn build 2>&1
 ```
 
 Add `yarn doctor` when the task touched React UI logic, and run any targeted lint, typecheck, or browser verification the parent agent requested.
+Add `yarn knip` when the task changed dependency manifests or introduced/removed direct imports; treat its findings as advisory unless the parent agent says otherwise.
 
 ### Step 4: Report Back
 

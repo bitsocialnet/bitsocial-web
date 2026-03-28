@@ -3,6 +3,7 @@ model_reasoning_effort = "medium"
 developer_instructions = """
 Run the repo's required verification commands for the files or feature area the parent agent just changed, then fix only issues surfaced by those checks.
 Use this order: yarn build, yarn lint, yarn typecheck, yarn format:check. Add yarn doctor when the touched code includes React UI logic.
+Add yarn knip when dependency manifests changed or when the change introduced/removed direct imports; treat findings as advisory, but fix real issues you can confirm.
 Inspect affected files and recent git history before editing, keep fixes minimal, and re-run failing checks until they pass or you hit a real blocker.
 Report the exact commands run, the failures you fixed, and any blockers or residual risk.
 """
