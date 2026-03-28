@@ -388,14 +388,12 @@ function StaticPolygonMeshBackground() {
 
   return (
     <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <img
-        src={fallbackSrc}
-        alt=""
-        aria-hidden="true"
-        className="block h-full w-full object-cover object-top"
-        loading="eager"
-        decoding="async"
-      />
+      <div className="absolute inset-0 flex justify-center overflow-hidden">
+        <div
+          className="h-full w-full max-w-[90rem] bg-contain bg-top bg-repeat-y"
+          style={{ backgroundImage: `url(${fallbackSrc})` }}
+        />
+      </div>
     </div>
   );
 }

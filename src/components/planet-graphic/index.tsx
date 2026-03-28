@@ -204,7 +204,7 @@ function getViewportResizeKey(container: HTMLDivElement) {
   ].join(":");
 }
 
-export default function PlanetGraphic() {
+export default function PlanetGraphic({ onInitError }: { onInitError?: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isMobile, setIsMobile] = useState(() => {
@@ -247,13 +247,19 @@ export default function PlanetGraphic() {
     camera.position.set(0, 1, initialCameraLayout.cameraZ);
     camera.lookAt(0, -2, 0);
 
-    const renderer = new THREE.WebGLRenderer({
-      canvas,
-      alpha: true,
-      antialias: !initialIsMobile,
-      premultipliedAlpha: false,
-      powerPreference: initialIsMobile ? "low-power" : "default",
-    });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: !initialIsMobile,
+        premultipliedAlpha: false,
+        powerPreference: initialIsMobile ? "low-power" : "default",
+      });
+    } catch {
+      onInitError?.();
+      return;
+    }
     renderer.setSize(container.clientWidth, container.clientHeight, false);
     const maxDpr = initialIsMobile ? 1.5 : 2;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
@@ -650,7 +656,7 @@ export default function PlanetGraphic() {
       renderer.dispose();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- theme changes handled by separate effect
-  }, []);
+  }, [onInitError]);
 
   return (
     <div

@@ -80,17 +80,32 @@ function HeroFallbackImage() {
   const mobileSrc = isDark ? "/hero-fallback-mobile-dark.png" : "/hero-fallback-mobile-light.png";
 
   return (
-    <picture>
+    <picture className="block h-full w-full">
       <source media="(max-width: 767px)" srcSet={mobileSrc} />
       <img
         src={desktopSrc}
         alt=""
         aria-hidden="true"
-        className="w-full h-full object-contain md:object-cover object-bottom"
+        className="mx-auto h-full w-full max-w-[min(92rem,100%)] object-contain object-bottom"
         loading="eager"
         decoding="async"
       />
     </picture>
+  );
+}
+
+function HeroFallbackGraphic({ className }: { className?: string }) {
+  return (
+    <div className={cn("left-0 right-0 w-full pointer-events-none overscroll-none", className)}>
+      <HeroFallbackImage />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-28 md:h-44 pointer-events-none z-10"
+        style={{
+          background:
+            "linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background)) 25%, hsl(var(--background) / 0.9) 40%, hsl(var(--background) / 0.6) 60%, hsl(var(--background) / 0.2) 80%, transparent 100%)",
+        }}
+      />
+    </div>
   );
 }
 
@@ -128,7 +143,8 @@ function useTaglineIntro() {
 export default function Hero() {
   const { t } = useTranslation();
   const graphicsMode = useGraphicsMode();
-  const showGraphics = graphicsMode === "full";
+  const [graphicsInitFailed, setGraphicsInitFailed] = useState(false);
+  const showGraphics = graphicsMode === "full" && !graphicsInitFailed;
   const { highlightedIndex, resetIntro } = useTaglineIntro();
 
   useLayoutEffect(() => {
@@ -144,18 +160,12 @@ export default function Hero() {
     },
     [resetIntro],
   );
+  const handleGraphicsInitError = useCallback(() => {
+    setGraphicsInitFailed(true);
+  }, []);
 
   const staticFallback = (
-    <div className="absolute bottom-8 md:bottom-12 left-0 right-0 w-full h-[60vh] md:h-[48vh] pointer-events-none overflow-visible md:overflow-hidden overscroll-none">
-      <HeroFallbackImage />
-      <div
-        className="absolute bottom-0 left-0 right-0 h-28 md:h-44 pointer-events-none z-10"
-        style={{
-          background:
-            "linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background)) 25%, hsl(var(--background) / 0.9) 40%, hsl(var(--background) / 0.6) 60%, hsl(var(--background) / 0.2) 80%, transparent 100%)",
-        }}
-      />
-    </div>
+    <HeroFallbackGraphic className="absolute bottom-4 md:bottom-8 h-[52vh] md:h-[40vh] overflow-visible" />
   );
 
   return (
@@ -253,7 +263,7 @@ export default function Hero() {
             className="absolute inset-0 z-0"
           >
             <Suspense fallback={staticFallback}>
-              <MeshGraphic />
+              <MeshGraphic onInitError={handleGraphicsInitError} />
             </Suspense>
           </m.div>
 
@@ -265,7 +275,7 @@ export default function Hero() {
             className="relative z-30 pt-24 -mt-24 pointer-events-none"
           >
             <Suspense fallback={staticFallback}>
-              <PlanetGraphic />
+              <PlanetGraphic onInitError={handleGraphicsInitError} />
             </Suspense>
           </m.div>
         </div>
@@ -274,8 +284,9 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.8 }}
+          className="mt-6 md:mt-10 relative -mx-6 w-[calc(100%+3rem)] h-[52vh] md:h-[40vh]"
         >
-          {staticFallback}
+          <HeroFallbackGraphic className="relative h-full overflow-visible" />
         </m.div>
       )}
 

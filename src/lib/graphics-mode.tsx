@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { hasWebGLSupport } from "@/lib/webgl-support";
 
 type NetworkInformation = {
   saveData?: boolean;
@@ -39,6 +40,7 @@ function isAppleMobilePlatform() {
 
 function computeGraphicsMode(reducedMotionQuery = getReducedMotionQuery()): GraphicsMode {
   if (typeof navigator === "undefined") return "fallback";
+  if (!hasWebGLSupport()) return "fallback";
 
   const { deviceMemory } = navigator as Navigator & {
     deviceMemory?: number;
