@@ -669,7 +669,7 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
         transform: translateY,
       }}
     >
-      <canvas ref={canvasRef} className="block w-full h-full touch-pan-y" />
+      <canvas ref={canvasRef} className="block w-full h-full" />
       {/* Bottom fade gradient overlay - tall and strong to dissolve into next section */}
       <div
         className="absolute bottom-0 left-0 right-0 h-40 md:h-[clamp(10rem,calc(15rem-4vw),14rem)] pointer-events-none z-10"

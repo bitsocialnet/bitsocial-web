@@ -526,7 +526,7 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
       className="absolute inset-x-0 pointer-events-none overflow-hidden overscroll-none"
       style={{ height: containerHeight, top: topOffset }}
     >
-      <canvas ref={canvasRef} className="block w-full h-full touch-pan-y" />
+      <canvas ref={canvasRef} className="block w-full h-full" />
       {/* Bottom fade gradient overlay - tall and strong to dissolve into next section */}
       <div
         className="absolute bottom-0 left-0 right-0 h-48 md:h-[clamp(11rem,calc(16rem-4vw),15rem)] pointer-events-none z-10"

@@ -169,7 +169,7 @@ export default function Hero() {
   );
 
   return (
-    <section className="min-h-[min(100svh,58rem)] md:min-h-[min(100svh,clamp(55rem,calc(64rem-7vw),60rem))] flex flex-col items-center justify-start pt-28 md:pt-40 px-6 relative overflow-x-hidden overflow-y-visible">
+    <section className="min-h-[min(100svh,58rem)] md:min-h-[min(100svh,clamp(55rem,calc(64rem-7vw),60rem))] flex flex-col items-center justify-start pt-28 md:pt-40 px-6 relative overflow-x-clip">
       <m.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: -20 }}
@@ -254,7 +254,7 @@ export default function Hero() {
 
       {/* Planet and Mesh graphics */}
       {showGraphics ? (
-        <div className="mt-10 sm:mt-12 md:mt-6 relative -mx-6 w-[calc(100%+3rem)] pointer-events-none overscroll-none touch-pan-y">
+        <div className="mt-10 sm:mt-12 md:mt-6 relative -mx-6 w-[calc(100%+3rem)] pointer-events-none overscroll-none">
           {/* P2P Mesh Network - behind the planet */}
           <m.div
             initial={{ opacity: 0 }}
