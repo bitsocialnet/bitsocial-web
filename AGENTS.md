@@ -38,7 +38,7 @@ Bitsocial Web is the public-facing landing page and ecosystem entrypoint for Bit
 | New reviewable feature, fix, docs change, or chore started while on `master`                                                 | Create a short-lived `codex/feature/*`, `codex/fix/*`, `codex/docs/*`, or `codex/chore/*` branch from `master` before editing; use a separate worktree only for parallel tasks                       |
 | New unrelated task started while another task branch is already checked out or being worked on by another agent              | Create a separate worktree from `master`, create a new short-lived task branch there, and keep each agent on its own worktree, branch, and PR                                                        |
 | Open PR needs feedback triage or merge readiness check                                                                       | Use the `review-and-merge-pr` skill                                                                                                                                                                  |
-| Repo AI workflow files changed (`.codex/**`, `.cursor/**`, `AGENTS.md`, `docs/agent-playbooks/**`, `scripts/agent-hooks/**`) | Keep the Codex and Cursor copies aligned when they represent the same workflow; update `AGENTS.md` if the default agent policy changes                                                               |
+| Repo AI workflow files changed (`.codex/**`, `.cursor/**`, `.claude/**`, `AGENTS.md`, `docs/agent-playbooks/**`, `scripts/agent-hooks/**`) | Keep the Codex, Cursor, and Claude copies aligned when they represent the same workflow; update `AGENTS.md` if the default agent policy changes                                                               |
 | GitHub operation needed                                                                                                      | Use `gh` CLI, not GitHub MCP                                                                                                                                                                         |
 | User asks for commit or issue phrasing                                                                                       | Use `docs/agent-playbooks/commit-issue-format.md`                                                                                                                                                    |
 | Surprising or ambiguous repo behavior encountered                                                                            | Alert the developer and, once confirmed, document it in `docs/agent-playbooks/known-surprises.md`                                                                                                    |
@@ -132,11 +132,11 @@ src/
 
 ### AI Tooling Rules
 
-- Treat `.codex/` and `.cursor/` as repo-managed contributor tooling, not private scratch space.
-- Keep equivalent workflow files aligned across both toolchains when both directories contain the same skill, hook, or agent.
+- Treat `.codex/`, `.cursor/`, and `.claude/` as repo-managed contributor tooling, not private scratch space.
+- Keep equivalent workflow files aligned across all toolchains when their directories contain the same skill, hook, or agent.
 - Keep shared policy in tracked files when possible: `AGENTS.md`, `src/AGENTS.md`, `scripts/AGENTS.md`, `docs/agent-playbooks/**`, and `scripts/agent-hooks/**`.
-- When changing shared agent behavior, update the relevant files in `.codex/skills/`, `.cursor/skills/`, `.codex/agents/`, `.cursor/agents/`, `.codex/hooks/`, `.cursor/hooks/`, and their `hooks.json` or config entry points as needed.
-- Review `.codex/config.toml` and `.cursor/hooks.json` before changing agent orchestration or hook behavior, because they are the entry points contributors will actually load.
+- When changing shared agent behavior, update the relevant files in `.codex/skills/`, `.cursor/skills/`, `.claude/skills/`, `.codex/agents/`, `.cursor/agents/`, `.claude/agents/`, `.codex/hooks/`, `.cursor/hooks/`, `.claude/hooks/`, and their `hooks.json` or config entry points as needed.
+- Review `.codex/config.toml`, `.cursor/hooks.json`, and `.claude/hooks.json` before changing agent orchestration or hook behavior, because they are the entry points contributors will actually load.
 - Directory-specific auto-loaded rules live under `src/AGENTS.md` and `scripts/AGENTS.md`; read them before editing files in those trees.
 - For work expected to span multiple sessions, keep explicit task state in a `feature-list.json` plus `progress.md` pair using `docs/agent-playbooks/long-running-agent-workflow.md`.
 - If more than one human or toolchain needs the same task state, keep it in a tracked location such as `docs/agent-runs/<slug>/` instead of burying it in a tool-specific hidden directory.
