@@ -255,7 +255,7 @@ export default function Features() {
                         <button
                           type="button"
                           onClick={() => handleTitleClick(feature.id)}
-                          className="interactive-feature-link w-full text-start text-xl md:text-2xl font-display font-normal italic text-muted-foreground focus-visible:outline-none"
+                          className="interactive-feature-link w-full text-start text-xl md:text-2xl font-display font-normal italic text-foreground/85 focus-visible:outline-none"
                         >
                           {featureTitleFromTaglineSegments(t, feature.id)}
                         </button>
