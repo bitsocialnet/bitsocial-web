@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { useTheme } from "next-themes";
 import {
   getHeroGraphicMaxPixelRatio,
+  getHeroGraphicShouldAntialias,
   getIsMobileHeroGraphicLayout,
 } from "@/lib/hero-graphic-performance";
 import { getPlanetRingRotationDelaySeconds } from "@/lib/hero-intro-timing";
@@ -245,7 +246,7 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
       renderer = new THREE.WebGLRenderer({
         canvas,
         alpha: true,
-        antialias: !initialIsMobile,
+        antialias: getHeroGraphicShouldAntialias(initialIsMobile),
         premultipliedAlpha: false,
         powerPreference: initialIsMobile ? "low-power" : "default",
       });
