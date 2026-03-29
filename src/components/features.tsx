@@ -2,6 +2,7 @@ import { m, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import CardInlineCta, { prominentCtaClassName } from "@/components/card-inline-cta";
 import { getScrollBehavior, triggerFeatureGlow, triggerTaglineGlow } from "@/lib/utils";
 
 type FeatureId =
@@ -79,13 +80,15 @@ function buildFeatures(t: (key: string) => string): Feature[] {
   }));
 }
 
-const featureCtaClassName =
-  "px-8 py-3 rounded-full glass-card text-muted-foreground hover:text-foreground font-display font-semibold hover:border-blue-glow ring-glow transition-all duration-300 w-full md:w-auto text-center";
-const mobileFeatureCtaClassName =
-  "inline-flex items-center justify-center glass-card !rounded-3xl px-5 py-2 text-sm text-center text-muted-foreground transition-all duration-300 hover:border-blue-glow hover:text-foreground ring-glow font-display font-semibold";
+const featureCtaClassName = `${prominentCtaClassName} w-full md:w-auto`;
 
 interface FeatureCtaProps {
   className: string;
+  feature: Feature;
+  onSanctuaryClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+}
+
+interface MobileFeatureCtaProps {
   feature: Feature;
   onSanctuaryClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
@@ -152,6 +155,14 @@ function FeatureCta({ className, feature, onSanctuaryClick }: FeatureCtaProps) {
     <Link to={feature.ctaHref} className={className}>
       {feature.ctaLabel}
     </Link>
+  );
+}
+
+function MobileFeatureCta({ feature, onSanctuaryClick }: MobileFeatureCtaProps) {
+  return (
+    <CardInlineCta href={feature.ctaHref} onClick={onSanctuaryClick}>
+      {feature.ctaLabel}
+    </CardInlineCta>
   );
 }
 
@@ -264,9 +275,8 @@ export default function Features() {
                         {feature.description}
                       </p>
                       <div className="mt-4 flex justify-end rtl:justify-start md:hidden -mb-2 -mr-2 rtl:-ml-2 rtl:mr-0">
-                        <FeatureCta
+                        <MobileFeatureCta
                           feature={feature}
-                          className={mobileFeatureCtaClassName}
                           onSanctuaryClick={handleSanctuaryClick}
                         />
                       </div>

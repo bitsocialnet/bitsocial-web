@@ -24,24 +24,25 @@ Bitsocial Web is the public-facing landing page and ecosystem entrypoint for Bit
 
 ## Task Router (Read First)
 
-| Situation                                                                                                                    | Required action                                                                                                                                                                                      |
+| Situation | Required action |
+| Situation | Required action |
 | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| React UI logic changed (`src/components`, `src/pages`, `src/app.tsx`, `src/main.tsx`, `src/lib`)                             | Follow React architecture rules below and run `yarn doctor`                                                                                                                                          |
-| `package.json` changed                                                                                                       | Run `yarn install` to keep `yarn.lock` in sync                                                                                                                                                       |
-| Dependencies or import graph changed                                                                                         | Run `yarn knip` as an advisory manifest/import audit                                                                                                                                                 |
-| Translation key/value changed                                                                                                | Use `docs/agent-playbooks/translations.md`                                                                                                                                                           |
-| Bug report in a specific file/line                                                                                           | Start with git history scan from `docs/agent-playbooks/bug-investigation.md` before editing                                                                                                          |
-| UI or visual behavior changed                                                                                                | Verify in browser with `playwright-cli`; check desktop and mobile behavior when relevant                                                                                                             |
-| Browsing performance regression, rerender hotspot, or route jank needs investigation                                         | Use the `profile-browsing` skill                                                                                                                                                                     |
-| Need to map a rendered DOM node back to the React file that produced it                                                      | Use the `inspect-elements` skill                                                                                                                                                                     |
-| Long-running task spans multiple sessions, handoffs, or spawned agents                                                       | Use `docs/agent-playbooks/long-running-agent-workflow.md`, keep a machine-readable feature list plus a progress log, and run `./scripts/agent-init.sh --smoke` before starting a fresh feature slice |
-| New reviewable feature, fix, docs change, or chore started while on `master`                                                 | Create a short-lived `codex/feature/*`, `codex/fix/*`, `codex/docs/*`, or `codex/chore/*` branch from `master` before editing; use a separate worktree only for parallel tasks                       |
-| New unrelated task started while another task branch is already checked out or being worked on by another agent              | Create a separate worktree from `master`, create a new short-lived task branch there, and keep each agent on its own worktree, branch, and PR                                                        |
-| Open PR needs feedback triage or merge readiness check                                                                       | Use the `review-and-merge-pr` skill                                                                                                                                                                  |
-| Repo AI workflow files changed (`.codex/**`, `.cursor/**`, `.claude/**`, `AGENTS.md`, `docs/agent-playbooks/**`, `scripts/agent-hooks/**`) | Keep the Codex, Cursor, and Claude copies aligned when they represent the same workflow; update `AGENTS.md` if the default agent policy changes                                                               |
-| GitHub operation needed                                                                                                      | Use `gh` CLI, not GitHub MCP                                                                                                                                                                         |
-| User asks for commit or issue phrasing                                                                                       | Use `docs/agent-playbooks/commit-issue-format.md`                                                                                                                                                    |
-| Surprising or ambiguous repo behavior encountered                                                                            | Alert the developer and, once confirmed, document it in `docs/agent-playbooks/known-surprises.md`                                                                                                    |
+| React UI logic changed (`src/components`, `src/pages`, `src/app.tsx`, `src/main.tsx`, `src/lib`) | Follow React architecture rules below and run `yarn doctor` |
+| `package.json` changed | Run `yarn install` to keep `yarn.lock` in sync |
+| Dependencies or import graph changed | Run `yarn knip` as an advisory manifest/import audit |
+| Translation key/value changed | Use `docs/agent-playbooks/translations.md` |
+| Bug report in a specific file/line | Start with git history scan from `docs/agent-playbooks/bug-investigation.md` before editing |
+| UI or visual behavior changed | Verify in browser with `playwright-cli`; check desktop and mobile behavior when relevant |
+| Browsing performance regression, rerender hotspot, or route jank needs investigation | Use the `profile-browsing` skill |
+| Need to map a rendered DOM node back to the React file that produced it | Use the `inspect-elements` skill |
+| Long-running task spans multiple sessions, handoffs, or spawned agents | Use `docs/agent-playbooks/long-running-agent-workflow.md`, keep a machine-readable feature list plus a progress log, and run `./scripts/agent-init.sh --smoke` before starting a fresh feature slice |
+| New reviewable feature, fix, docs change, or chore started while on `master` | Create a short-lived `codex/feature/*`, `codex/fix/*`, `codex/docs/*`, or `codex/chore/*` branch from `master` before editing; use a separate worktree only for parallel tasks |
+| New unrelated task started while another task branch is already checked out or being worked on by another agent | Create a separate worktree from `master`, create a new short-lived task branch there, and keep each agent on its own worktree, branch, and PR |
+| Open PR needs feedback triage or merge readiness check | Use the `review-and-merge-pr` skill |
+| Repo AI workflow files changed (`.codex/**`, `.cursor/**`, `.claude/**`, `AGENTS.md`, `docs/agent-playbooks/**`, `scripts/agent-hooks/**`) | Keep the Codex, Cursor, and Claude copies aligned when they represent the same workflow; update `AGENTS.md` if the default agent policy changes |
+| GitHub operation needed | Use `gh` CLI, not GitHub MCP |
+| User asks for commit or issue phrasing | Use `docs/agent-playbooks/commit-issue-format.md` |
+| Surprising or ambiguous repo behavior encountered | Alert the developer and, once confirmed, document it in `docs/agent-playbooks/known-surprises.md` |
 
 ## Stack
 

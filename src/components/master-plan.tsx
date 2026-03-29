@@ -1,11 +1,14 @@
 import { m, useInView } from "framer-motion";
 import { useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import CardInlineCta, { prominentCtaClassName } from "@/components/card-inline-cta";
 import EasterEggOverlay from "@/components/easter-egg-overlay";
 
 const EASTER_EGG_GIF = "/spongebob-easter-egg.gif";
 
 type PhaseItem = {
+  ctaHref: string;
+  ctaLabel: string;
   phase: string;
   status?: string;
   title: string;
@@ -24,27 +27,37 @@ export default function MasterPlan() {
   const phases: PhaseItem[] = useMemo(
     () => [
       {
+        ctaHref: "https://5chan.app",
+        ctaLabel: t("masterPlan.cta.try5chan"),
         phase: t("masterPlan.phases.phase1.phase"),
         status: t("masterPlan.phases.phase1.status"),
         title: t("masterPlan.phases.phase1.title"),
         description: t("masterPlan.phases.phase1.description"),
       },
       {
+        ctaHref: "https://github.com/plebbit/plebbit-js/issues/66",
+        ctaLabel: t("masterPlan.cta.readTechnicalSpec"),
         phase: t("masterPlan.phases.phase2.phase"),
         title: t("masterPlan.phases.phase2.title"),
         description: t("masterPlan.phases.phase2.description"),
       },
       {
+        ctaHref: "https://seedit.app",
+        ctaLabel: t("masterPlan.cta.trySeedit"),
         phase: t("masterPlan.phases.phase3.phase"),
         title: t("masterPlan.phases.phase3.title"),
         description: t("masterPlan.phases.phase3.description"),
       },
       {
+        ctaHref: "/docs",
+        ctaLabel: t("masterPlan.cta.learnMore"),
         phase: t("masterPlan.phases.phase4.phase"),
         title: t("masterPlan.phases.phase4.title"),
         description: t("masterPlan.phases.phase4.description"),
       },
       {
+        ctaHref: "/docs",
+        ctaLabel: t("masterPlan.cta.learnMore"),
         phase: t("masterPlan.phases.phase5.phase"),
         title: t("masterPlan.phases.phase5.title"),
         description: t("masterPlan.phases.phase5.description"),
@@ -124,6 +137,14 @@ export default function MasterPlan() {
                     <p className="text-muted-foreground text-sm leading-relaxed">
                       {item.description}
                     </p>
+                    <div className="mt-5 flex justify-end -mb-3 -mr-3 rtl:-ml-3 rtl:mr-0 md:-mb-4 md:-mr-4 md:rtl:-ml-4">
+                      <CardInlineCta
+                        href={item.ctaHref}
+                        className={`${prominentCtaClassName} w-auto max-w-full !rounded-3xl !py-2 text-sm`}
+                      >
+                        {item.ctaLabel}
+                      </CardInlineCta>
+                    </div>
                   </>
                 );
                 return (
