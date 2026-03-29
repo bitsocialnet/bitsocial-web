@@ -5,7 +5,6 @@ import {
   getHeroGraphicMaxPixelRatio,
   getIsMobileHeroGraphicLayout,
 } from "@/lib/hero-graphic-performance";
-import { getHeroGraphicViewportProgress } from "@/lib/hero-graphic-layout";
 
 interface Node {
   position: THREE.Vector3;
@@ -19,8 +18,12 @@ type MeshThemeRefs = {
 };
 
 const CONNECTION_SEARCH_PADDING = 0.75;
-const MESH_NODE_MIN_SIZE = 0.028;
-const MESH_NODE_MAX_SIZE = 0.05;
+const DESKTOP_MESH_MIN_WIDTH = 768;
+const DESKTOP_MESH_MAX_WIDTH = 1440;
+const DESKTOP_MESH_NODE_MIN_SIZE = 0.024;
+const DESKTOP_MESH_NODE_MAX_SIZE = 0.042;
+const DESKTOP_MESH_NODE_MIN_COUNT = 120;
+const DESKTOP_MESH_NODE_MAX_COUNT = 180;
 const RESIZE_DEBOUNCE_MS = 140;
 
 function getIsMobileLayout(width: number) {
@@ -31,12 +34,36 @@ function lerp(start: number, end: number, progress: number) {
   return start + (end - start) * progress;
 }
 
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function getDesktopMeshViewportProgress(width: number) {
+  return clamp(
+    (width - DESKTOP_MESH_MIN_WIDTH) / (DESKTOP_MESH_MAX_WIDTH - DESKTOP_MESH_MIN_WIDTH),
+    0,
+    1,
+  );
+}
+
 function getMeshNodeSize(width: number, isMobileLayout: boolean) {
   if (isMobileLayout) return 0.03;
 
-  const progress = getHeroGraphicViewportProgress(width);
+  const progress = getDesktopMeshViewportProgress(width);
 
-  return lerp(MESH_NODE_MIN_SIZE, MESH_NODE_MAX_SIZE, progress);
+  return lerp(DESKTOP_MESH_NODE_MIN_SIZE, DESKTOP_MESH_NODE_MAX_SIZE, progress);
+}
+
+function getMeshNodeCount(width: number, isMobileLayout: boolean) {
+  if (isMobileLayout) return 80;
+
+  return Math.round(
+    lerp(
+      DESKTOP_MESH_NODE_MIN_COUNT,
+      DESKTOP_MESH_NODE_MAX_COUNT,
+      getDesktopMeshViewportProgress(width),
+    ),
+  );
 }
 
 /**
@@ -142,6 +169,12 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
     if (typeof window === "undefined") return false;
     return getIsMobileLayout(window.innerWidth);
   });
+  const [meshNodeCount, setMeshNodeCount] = useState(() => {
+    if (typeof window === "undefined") return 80;
+
+    const width = window.innerWidth;
+    return getMeshNodeCount(width, getIsMobileLayout(width));
+  });
   const { resolvedTheme } = useTheme();
   const themeRefs = useRef<MeshThemeRefs | null>(null);
   const containerHeight = isMobile
@@ -169,9 +202,18 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
     const canvas = canvasRef.current;
     const container = containerRef.current;
     const sceneIsMobile = getIsMobileLayout(container.clientWidth || window.innerWidth);
+    const sceneNodeCount = getMeshNodeCount(
+      container.clientWidth || window.innerWidth,
+      sceneIsMobile,
+    );
 
     if (sceneIsMobile !== isMobile) {
       setIsMobile(sceneIsMobile);
+      return;
+    }
+
+    if (sceneNodeCount !== meshNodeCount) {
+      setMeshNodeCount(sceneNodeCount);
       return;
     }
 
@@ -219,8 +261,8 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
     const nodeAlphaMultiplier = isDark ? 0.35 : 0.2;
     const lineAlphaMultiplier = isDark ? 0.9 : 0.7; // Increased for better contrast
 
-    // Node parameters - smaller and fewer on mobile
-    const nodeCount = isMobile ? 80 : 200;
+    // Taper desktop density with width so mid-sized laptop/1080p viewports do not look overcrowded.
+    const nodeCount = meshNodeCount;
     const connectionDistance = isMobile ? 6 : 5; // Slightly larger on mobile to maintain connectivity with fewer nodes
     const connectionDistanceSq = connectionDistance * connectionDistance;
     const candidateConnectionDistance = connectionDistance + CONNECTION_SEARCH_PADDING;
@@ -469,11 +511,13 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
 
       lastResizeKey = getViewportResizeKey(container);
       const nextIsMobile = getIsMobileLayout(width);
+      const nextNodeCount = getMeshNodeCount(width, nextIsMobile);
 
-      // Match planet-graphic: always sync WebGL size/camera on resize. Breakpoint changes also
-      // remount this effect via isMobile; early-returning here left lastResizeKey updated without
-      // resizing the renderer, so the canvas could stay stale until the next viewport change.
-      setIsMobile((prev) => (prev === nextIsMobile ? prev : nextIsMobile));
+      if (nextIsMobile !== isMobile || nextNodeCount !== meshNodeCount) {
+        setIsMobile((prev) => (prev === nextIsMobile ? prev : nextIsMobile));
+        setMeshNodeCount((prev) => (prev === nextNodeCount ? prev : nextNodeCount));
+        return;
+      }
 
       const nextNodeSize =
         getMeshNodeSize(width, nextIsMobile) * meshPointPixelScale(window.devicePixelRatio);
@@ -539,7 +583,7 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
       renderer.dispose();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- theme changes handled by separate effect
-  }, [isMobile, onInitError]);
+  }, [isMobile, meshNodeCount, onInitError]);
 
   return (
     <div
