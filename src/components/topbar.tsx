@@ -252,9 +252,6 @@ export default function Topbar() {
 
   return (
     <>
-      {usesCompactNavigation && isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-black/25" aria-hidden onClick={handleNavClick} />
-      )}
       <m.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
