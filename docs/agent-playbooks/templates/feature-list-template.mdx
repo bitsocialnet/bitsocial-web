@@ -1,0 +1,28 @@
+---
+title: Feature List Template
+description: Machine-readable template used for long-running multi-session task tracking.
+---
+
+# Feature List Template
+
+This page mirrors the JSON template shipped in
+`docs/agent-playbooks/templates/feature-list.template.json` so it can be browsed directly inside the
+docs site as well.
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```

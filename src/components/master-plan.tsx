@@ -3,6 +3,7 @@ import { useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CardInlineCta, { prominentCtaClassName } from "@/components/card-inline-cta";
 import EasterEggOverlay from "@/components/easter-egg-overlay";
+import { DOCS_LINKS } from "@/lib/docs-links";
 
 const EASTER_EGG_GIF = "/spongebob-easter-egg.gif";
 
@@ -35,7 +36,7 @@ export default function MasterPlan() {
         description: t("masterPlan.phases.phase1.description"),
       },
       {
-        ctaHref: "https://github.com/plebbit/plebbit-js/issues/66",
+        ctaHref: DOCS_LINKS.permissionlessPublicRpc,
         ctaLabel: t("masterPlan.cta.readTechnicalSpec"),
         phase: t("masterPlan.phases.phase2.phase"),
         title: t("masterPlan.phases.phase2.title"),
@@ -49,14 +50,14 @@ export default function MasterPlan() {
         description: t("masterPlan.phases.phase3.description"),
       },
       {
-        ctaHref: "/docs",
+        ctaHref: DOCS_LINKS.bitsocialNetwork,
         ctaLabel: t("masterPlan.cta.learnMore"),
         phase: t("masterPlan.phases.phase4.phase"),
         title: t("masterPlan.phases.phase4.title"),
         description: t("masterPlan.phases.phase4.description"),
       },
       {
-        ctaHref: "/docs",
+        ctaHref: DOCS_LINKS.decentralizeAllSocialMedia,
         ctaLabel: t("masterPlan.cta.learnMore"),
         phase: t("masterPlan.phases.phase5.phase"),
         title: t("masterPlan.phases.phase5.title"),

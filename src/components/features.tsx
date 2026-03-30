@@ -3,6 +3,7 @@ import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import CardInlineCta, { prominentCtaClassName } from "@/components/card-inline-cta";
+import { DOCS_LINKS, isDocsPath } from "@/lib/docs-links";
 import { getScrollBehavior, triggerFeatureGlow, triggerTaglineGlow } from "@/lib/utils";
 
 type FeatureId =
@@ -67,8 +68,8 @@ function buildFeatures(t: (key: string) => string): Feature[] {
     "peer-to-peer": { ctaHref: "#sanctuary-communication" },
     "social-apps": { ctaHref: "/apps" },
     "no-servers": { ctaHref: "/status" },
-    "no-global-bans": { ctaHref: "/docs#local-moderation" },
-    "cryptographic-property": { ctaHref: "/docs#identity-and-ownership" },
+    "no-global-bans": { ctaHref: DOCS_LINKS.localModeration },
+    "cryptographic-property": { ctaHref: DOCS_LINKS.identityAndOwnership },
   };
 
   return FEATURE_ORDER.map((id) => ({
@@ -138,6 +139,14 @@ function FeatureCta({ className, feature, onSanctuaryClick }: FeatureCtaProps) {
   if (feature.external) {
     return (
       <a href={feature.ctaHref} target="_blank" rel="noreferrer" className={className}>
+        {feature.ctaLabel}
+      </a>
+    );
+  }
+
+  if (isDocsPath(feature.ctaHref)) {
+    return (
+      <a href={feature.ctaHref} className={className}>
         {feature.ctaLabel}
       </a>
     );

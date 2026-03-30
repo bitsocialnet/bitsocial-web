@@ -1,0 +1,101 @@
+.searchShell {
+  display: grid;
+  gap: 1rem;
+}
+
+.header {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.header h2 {
+  margin: 0;
+  font-family: var(--ifm-heading-font-family);
+  font-size: clamp(1.6rem, 1.15rem + 1.2vw, 2.25rem);
+  letter-spacing: 0.01em;
+}
+
+.header p:last-child {
+  margin: 0;
+  max-width: 52rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.surface {
+  border: 1px solid var(--bitsocial-glass-border);
+  border-radius: 1.5rem;
+  background: var(--bitsocial-glass-fill);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  padding: 1rem;
+}
+
+.status {
+  margin: 0.9rem 0 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.95rem;
+}
+
+.surface :global(.pagefind-ui) {
+  color: inherit;
+}
+
+.surface :global(.pagefind-ui__form) {
+  margin: 0;
+}
+
+.surface :global(.pagefind-ui__search-input) {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid var(--bitsocial-glass-border);
+  background: color-mix(in srgb, var(--bitsocial-surface) 88%, transparent);
+  color: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-base);
+  padding: 0.95rem 1.1rem;
+  box-shadow: none;
+}
+
+.surface :global(.pagefind-ui__search-input:focus-visible) {
+  outline: none;
+  border-color: var(--bitsocial-blue-core);
+  box-shadow:
+    0 0 0 2px rgba(37, 99, 235, 0.18),
+    0 0 18px rgba(37, 99, 235, 0.18);
+}
+
+.surface :global(.pagefind-ui__search-clear) {
+  color: var(--ifm-color-emphasis-600);
+}
+
+.surface :global(.pagefind-ui__drawer) {
+  margin-top: 1rem;
+}
+
+.surface :global(.pagefind-ui__result) {
+  border-top: 1px solid color-mix(in srgb, var(--bitsocial-glass-border) 80%, transparent);
+  padding: 1rem 0;
+}
+
+.surface :global(.pagefind-ui__result-link) {
+  color: var(--ifm-heading-color);
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.surface :global(.pagefind-ui__result-link:hover) {
+  color: var(--bitsocial-blue-glow);
+}
+
+.surface :global(.pagefind-ui__result-excerpt),
+.surface :global(.pagefind-ui__message) {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.surface :global(.pagefind-ui__button) {
+  border-radius: 999px;
+  border: 1px solid var(--bitsocial-glass-border);
+  background: color-mix(in srgb, var(--bitsocial-surface) 90%, transparent);
+  color: var(--ifm-font-color-base);
+}

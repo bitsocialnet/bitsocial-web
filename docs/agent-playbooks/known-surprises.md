@@ -57,3 +57,13 @@ If uncertain, ask the developer before adding an entry.
 - **Impact:** Developers can accidentally bypass the repo's package-manager pinning and get different install behavior or lockfile output.
 - **Mitigation:** Use `corepack yarn ...` for shell commands, or run `corepack enable` first so plain `yarn` resolves to the pinned Yarn 4 version.
 - **Status:** confirmed
+
+### Docs preview used to hard-code port 3001
+
+- **Date:** 2026-03-30
+- **Observed by:** Codex
+- **Context:** Running `yarn start` alongside other local repos and agents
+- **What was surprising:** The root dev command ran the docs workspace with `docusaurus start --port 3001`, so the whole dev session failed whenever another process already owned `3001`, even though the main app already used Portless.
+- **Impact:** `yarn start` could kill the web process immediately after it booted, interrupting unrelated local work over a docs-port collision.
+- **Mitigation:** Keep docs startup behind `yarn start:docs`, which now uses Portless plus `scripts/start-docs.mjs` to honor an injected free port or fall back to the next available port when run directly.
+- **Status:** confirmed

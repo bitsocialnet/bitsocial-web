@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { m } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { DOCS_LINKS, isDocsPath } from "@/lib/docs-links";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { cn } from "@/lib/utils";
 import { goHomeScrollTop } from "@/lib/home-nav";
@@ -56,6 +57,14 @@ function NavLink({
   }
 
   if (to) {
+    if (isDocsPath(to)) {
+      return (
+        <a href={to} className={className} onClick={onClick}>
+          {content}
+        </a>
+      );
+    }
+
     return (
       <Link to={to} className={className} onClick={onClick}>
         {content}
@@ -238,7 +247,7 @@ export default function Topbar() {
   const newsletterLabel = t("nav.newsletter");
   const routeLinks = [
     { label: appsLabel, to: "/apps" },
-    { label: docsLabel, to: "/docs" },
+    { label: docsLabel, to: DOCS_LINKS.home },
     { label: statusLabel, to: "/status" },
   ].filter((link) => isRouteAccessible(link.to));
 
@@ -329,13 +338,8 @@ export default function Topbar() {
               </a>
             </div>
 
-            <div className="border-t border-border/30 pt-4 mt-2 flex flex-row gap-2">
-              <div className="flex-1">
-                <LanguageSelector mobile />
-              </div>
-              <div className="flex-1">
-                <ThemeToggle mobile />
-              </div>
+            <div className="border-t border-border/30 pt-4 mt-2">
+              <LanguageSelector mobile />
             </div>
           </MobileMenu>
         </div>

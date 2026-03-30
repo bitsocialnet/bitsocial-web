@@ -13,6 +13,7 @@ import { m } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 import { useTheme } from "next-themes";
+import { DOCS_LINKS } from "@/lib/docs-links";
 import {
   registerHeroMountForIntroSync,
   resetHeroMountForIntroSync,
@@ -238,12 +239,12 @@ export default function Hero() {
         transition={{ delay: 0.5, duration: 0.6 }}
         className="flex flex-col sm:flex-row gap-4 relative z-40"
       >
-        <Link
-          to="/docs"
+        <a
+          href={DOCS_LINKS.home}
           className="px-8 py-3 rounded-full glass-card text-muted-foreground hover:text-foreground font-display font-semibold hover:border-blue-glow ring-glow transition-all duration-300 text-center md:text-start"
         >
           {t("hero.readDocs")}
-        </Link>
+        </a>
         <Link
           to="/apps"
           className="px-8 py-3 rounded-full border border-blue-core/30 bg-blue-core/10 backdrop-blur-[10px] text-muted-foreground hover:text-foreground font-display font-semibold hover:bg-blue-core/20 hover:border-blue-glow ring-glow transition-all duration-300 text-center md:text-start dark:border-blue-core/55 dark:bg-blue-core/28 dark:hover:bg-blue-core/42"

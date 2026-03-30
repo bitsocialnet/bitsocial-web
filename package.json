@@ -5,12 +5,18 @@
   "description": "Official Bitsocial web frontend: landing page, docs, apps explorer, and future flagship client",
   "license": "AGPL-3.0-only",
   "author": "Bitsocial Forge",
+  "workspaces": [
+    "docs-site"
+  ],
   "type": "module",
   "scripts": {
-    "start": "portless bitsocial vite",
+    "start": "concurrently -k -n web,docs -c blue,cyan \"yarn start:web\" \"yarn start:docs\"",
+    "start:web": "portless bitsocial vite",
+    "start:docs": "portless docs.bitsocial node scripts/start-docs.mjs",
     "start:android-usb": "node scripts/start-android-usb.mjs",
     "start:ios-sim": "node scripts/start-ios-sim.mjs",
-    "build": "tsgo --noEmit --project tsconfig.json && vite build",
+    "build": "tsgo --noEmit --project tsconfig.json && vite build && yarn docs:build",
+    "docs:build": "yarn --cwd docs-site build --out-dir ../dist/docs && yarn --cwd docs-site exec pagefind --site ../dist/docs",
     "knip": "knip --production --include dependencies,unlisted,binaries --no-progress",
     "knip:full": "knip --no-progress --no-exit-code",
     "lint": "oxlint --config oxlint.json --react-plugin",
@@ -52,6 +58,7 @@
     "@vitejs/plugin-react": "^6.0.0",
     "autoprefixer": "^10.4.19",
     "commitizen": "^4.3.1",
+    "concurrently": "^9.2.1",
     "cz-conventional-changelog": "^3.3.0",
     "element-source": "0.0.5",
     "husky": "4",

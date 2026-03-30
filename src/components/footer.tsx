@@ -1,21 +1,14 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Github, Send } from "lucide-react";
+import { Github, Send, X } from "lucide-react";
 import { useState } from "react";
 import EasterEggOverlay from "@/components/easter-egg-overlay";
+import { DOCS_LINKS, isDocsPath } from "@/lib/docs-links";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { goHomeScrollTop } from "@/lib/home-nav";
 import { goToMailingListSection } from "@/lib/mailing-list-nav";
 
 const linkClassName = "text-muted-foreground hover:text-foreground transition-colors text-sm";
-
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -24,7 +17,7 @@ export default function Footer() {
   const [showDominoEffect, setShowDominoEffect] = useState(false);
   const productLinks = [
     { label: t("footer.apps"), to: "/apps" },
-    { label: t("footer.docs"), to: "/docs" },
+    { label: t("footer.docs"), to: DOCS_LINKS.home },
     { label: t("footer.status"), to: "/status" },
   ].filter((link) => isRouteAccessible(link.to));
   const resourceLinks = [
@@ -72,9 +65,15 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {productLinks.map((link) => (
                   <li key={link.to}>
-                    <Link to={link.to} className={linkClassName}>
-                      {link.label}
-                    </Link>
+                    {isDocsPath(link.to) ? (
+                      <a href={link.to} className={linkClassName}>
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link to={link.to} className={linkClassName}>
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -126,7 +125,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className={`${linkClassName} inline-flex items-center gap-2`}
                 >
-                  <XIcon className="h-3.5 w-3.5" />
+                  <X className="h-3.5 w-3.5" />
                   {t("footer.twitter")}
                 </a>
               </li>
