@@ -57,3 +57,13 @@ If uncertain, ask the developer before adding an entry.
 - **Impact:** Developers can accidentally bypass the repo's package-manager pinning and get different install behavior or lockfile output.
 - **Mitigation:** Use `corepack yarn ...` for shell commands, or run `corepack enable` first so plain `yarn` resolves to the pinned Yarn 4 version.
 - **Status:** confirmed
+
+### Fixed Portless app names collide across Bitsocial Web worktrees
+
+- **Date:** 2026-03-30
+- **Observed by:** Codex
+- **Context:** Starting `yarn start` in one Bitsocial Web worktree while another worktree was already serving through Portless
+- **What was surprising:** Using the literal Portless app name `bitsocial` in every worktree makes the route itself collide, even when the backing ports are different, so the second process fails because `bitsocial.localhost` is already registered.
+- **Impact:** Parallel Bitsocial Web branches can block each other even though Portless is meant to let them coexist safely.
+- **Mitigation:** Keep Portless startup behind `scripts/start-dev.mjs`, which now uses a branch-scoped `*.bitsocial.localhost:1355` route outside the canonical case and falls back to a branch-scoped route when the bare `bitsocial.localhost` name is already occupied.
+- **Status:** confirmed

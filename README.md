@@ -52,7 +52,7 @@ yarn build     # Production build
 yarn typecheck # Type check with tsgo
 ```
 
-The dev server runs at http://bitsocial.localhost:1355 via [Portless](https://port1355.dev/), which gives each Bitsocial project a stable, named URL instead of a random port. To bypass Portless: `PORTLESS=0 yarn start`
+The dev server normally runs at http://bitsocial.localhost:1355 via [Portless](https://port1355.dev/), which gives each Bitsocial project a stable, named URL instead of a random port. On non-`master` branches, or when another legacy process is already holding the canonical route, `yarn start` automatically uses a branch-scoped `*.bitsocial.localhost:1355` URL instead of failing. To bypass Portless: `PORTLESS=0 yarn start`
 
 For device testing without Portless:
 

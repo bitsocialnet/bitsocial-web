@@ -7,7 +7,7 @@
   "author": "Bitsocial Forge",
   "type": "module",
   "scripts": {
-    "start": "portless bitsocial vite",
+    "start": "node scripts/start-dev.mjs",
     "start:android-usb": "node scripts/start-android-usb.mjs",
     "start:ios-sim": "node scripts/start-ios-sim.mjs",
     "build": "tsgo --noEmit --project tsconfig.json && vite build",
