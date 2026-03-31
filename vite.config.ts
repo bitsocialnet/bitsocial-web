@@ -7,6 +7,24 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const previewOpenUrl = "http://bitsocial.localhost:1355/";
 const isPreviewCommand = process.argv.includes("preview");
 
+/** Docusaurus dev server when `yarn start:docs` runs under Portless (`docs.bitsocial.localhost:1355`). */
+const docsDevProxyDefaultPortless = "http://docs.bitsocial.localhost:1355";
+/**
+ * When Portless is off, `start-docs.mjs` binds Docusaurus to localhost (default 3001).
+ * When Portless is on, the real port is random (4000–4999); proxy via the public URL instead.
+ * Override for worktrees where the docs host is prefixed (see Portless git worktree behavior).
+ */
+function docsDevProxyTarget() {
+  if (process.env.DOCS_DEV_PROXY_TARGET) {
+    return process.env.DOCS_DEV_PROXY_TARGET;
+  }
+  if (process.env.PORTLESS === "0") {
+    const port = process.env.DOCS_PORT ?? "3001";
+    return `http://127.0.0.1:${port}`;
+  }
+  return docsDevProxyDefaultPortless;
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
   plugins: [react()],
@@ -17,8 +35,9 @@ export default defineConfig(({ command }) => ({
       command === "serve" && !isPreviewCommand
         ? {
             "^/docs(?:/.*)?$": {
-              target: "http://127.0.0.1:3001",
+              target: docsDevProxyTarget(),
               changeOrigin: true,
+              ws: true,
             },
           }
         : undefined,
