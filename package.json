@@ -16,7 +16,7 @@
     "start:android-usb": "node scripts/start-android-usb.mjs",
     "start:ios-sim": "node scripts/start-ios-sim.mjs",
     "build": "tsgo --noEmit --project tsconfig.json && vite build && yarn docs:build",
-    "docs:build": "yarn --cwd docs-site build --out-dir ../dist/docs && yarn --cwd docs-site exec pagefind --site ../dist/docs",
+    "docs:build": "yarn --cwd docs-site build --out-dir ../dist/docs && yarn --cwd docs-site pagefind --site ../dist/docs",
     "knip": "knip --production --include dependencies,unlisted,binaries --no-progress",
     "knip:full": "knip --no-progress --no-exit-code",
     "lint": "oxlint --config oxlint.json --react-plugin",
