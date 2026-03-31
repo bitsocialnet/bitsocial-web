@@ -28,12 +28,12 @@ npm install @bitsocial/captcha-canvas-challenge
 
 ## Configuration Options
 
-| Option | Type | Default | Description |
-|---|---|---|---|
-| `characters` | `number` | `6` | Number of random characters rendered in the captcha image. |
-| `height` | `number` | `100` | Height of the generated image in pixels. |
-| `width` | `number` | `300` | Width of the generated image in pixels. |
-| `colors` | `string` | `#32cf7e` | Primary color used for the captcha text. |
+| Option       | Type     | Default   | Description                                                |
+| ------------ | -------- | --------- | ---------------------------------------------------------- |
+| `characters` | `number` | `6`       | Number of random characters rendered in the captcha image. |
+| `height`     | `number` | `100`     | Height of the generated image in pixels.                   |
+| `width`      | `number` | `300`     | Width of the generated image in pixels.                    |
+| `colors`     | `string` | `#32cf7e` | Primary color used for the captcha text.                   |
 
 ## How It Works
 

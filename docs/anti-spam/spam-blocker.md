@@ -21,14 +21,14 @@ Spam Blocker is a centralized spam detection service that evaluates incoming pub
 
 Every publication submitted to the `/evaluate` endpoint receives a numeric risk score. The score is a weighted combination of several signals:
 
-| Signal | Description |
-|---|---|
-| Account age | Newer accounts receive higher risk scores. |
-| Karma | Accumulated community karma reduces risk. |
-| Author reputation | Reputation data gathered by the background network indexer. |
-| Content analysis | Text-level heuristics (link density, known spam patterns, etc.). |
-| Velocity | Rapid successive posts from the same author increase risk. |
-| IP intelligence | Country-level geolocation and threat-feed lookups. Only country codes are stored -- raw IP addresses are never shared with communities. |
+| Signal            | Description                                                                                                                             |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Account age       | Newer accounts receive higher risk scores.                                                                                              |
+| Karma             | Accumulated community karma reduces risk.                                                                                               |
+| Author reputation | Reputation data gathered by the background network indexer.                                                                             |
+| Content analysis  | Text-level heuristics (link density, known spam patterns, etc.).                                                                        |
+| Velocity          | Rapid successive posts from the same author increase risk.                                                                              |
+| IP intelligence   | Country-level geolocation and threat-feed lookups. Only country codes are stored -- raw IP addresses are never shared with communities. |
 
 ## Tier Thresholds
 

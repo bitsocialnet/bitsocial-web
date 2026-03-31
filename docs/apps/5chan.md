@@ -14,11 +14,11 @@ This project's codebase still uses the legacy "plebbit" naming from before the B
 
 ## Downloads
 
-| Platform | Link |
-|----------|------|
-| Web | [5chan.app](https://5chan.app) |
-| Desktop | Available for Mac, Windows, and Linux |
-| Mobile | Available for Android |
+| Platform | Link                                  |
+| -------- | ------------------------------------- |
+| Web      | [5chan.app](https://5chan.app)        |
+| Desktop  | Available for Mac, Windows, and Linux |
+| Mobile   | Available for Android                 |
 
 ## How boards work
 

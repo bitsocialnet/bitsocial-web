@@ -28,13 +28,13 @@ npm install @bitsocial/evm-contract-challenge
 
 ## Configuration Options
 
-| Option | Type | Description |
-|---|---|---|
-| `chainTicker` | `string` | The chain to query (e.g., `eth`, `matic`, `avax`). |
-| `address` | `string` | The smart contract address to call. |
-| `abi` | `string` | The ABI fragment for the function being called. |
-| `condition` | `string` | A comparison expression evaluated against the contract return value (e.g., `> 1000`). |
-| `error` | `string` | The error message shown to authors who do not meet the condition. |
+| Option        | Type     | Description                                                                           |
+| ------------- | -------- | ------------------------------------------------------------------------------------- |
+| `chainTicker` | `string` | The chain to query (e.g., `eth`, `matic`, `avax`).                                    |
+| `address`     | `string` | The smart contract address to call.                                                   |
+| `abi`         | `string` | The ABI fragment for the function being called.                                       |
+| `condition`   | `string` | A comparison expression evaluated against the contract return value (e.g., `> 1000`). |
+| `error`       | `string` | The error message shown to authors who do not meet the condition.                     |
 
 ## Example
 

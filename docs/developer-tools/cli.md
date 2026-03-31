@@ -38,14 +38,14 @@ On first launch, the daemon outputs links to the **WebUI**, a browser-based grap
 
 ## Key Commands
 
-| Command | Description |
-|---|---|
-| `daemon` | Start the Bitsocial P2P node |
-| `create subplebbit` | Create a new community |
-| `subplebbit edit` | Update community settings (title, description, rules) |
-| `subplebbit list` | List communities hosted on this node |
-| `subplebbit start` | Start serving a specific community |
-| `subplebbit stop` | Stop serving a specific community |
+| Command             | Description                                           |
+| ------------------- | ----------------------------------------------------- |
+| `daemon`            | Start the Bitsocial P2P node                          |
+| `create subplebbit` | Create a new community                                |
+| `subplebbit edit`   | Update community settings (title, description, rules) |
+| `subplebbit list`   | List communities hosted on this node                  |
+| `subplebbit start`  | Start serving a specific community                    |
+| `subplebbit stop`   | Stop serving a specific community                     |
 
 Run any command with `--help` to see available options and flags:
 

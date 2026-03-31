@@ -25,10 +25,10 @@ Instantiate the resolver by passing a configuration object to the constructor:
 const resolver = new BsoResolver({ key, provider, dataPath });
 ```
 
-| Parameter  | Required | Description |
-|------------|----------|-------------|
-| `key`      | Yes      | Identifier for the resolver instance. |
-| `provider` | Yes      | Transport configuration (see below). |
+| Parameter  | Required | Description                                         |
+| ---------- | -------- | --------------------------------------------------- |
+| `key`      | Yes      | Identifier for the resolver instance.               |
+| `provider` | Yes      | Transport configuration (see below).                |
 | `dataPath` | No       | Directory for the SQLite cache file (Node.js only). |
 
 ### Provider Options
@@ -57,11 +57,11 @@ Tears down the resolver, closing database connections and releasing resources. C
 
 Resolved names are cached automatically to reduce redundant network lookups. The caching backend is chosen based on the runtime environment:
 
-| Environment | Backend | Notes |
-|-------------|---------|-------|
-| Node.js     | SQLite  | Stored at `dataPath`. Uses WAL mode for concurrent access. |
-| Browser     | IndexedDB | Uses native IndexedDB transactions. |
-| Fallback    | In-memory `Map` | Used when neither SQLite nor IndexedDB is available. |
+| Environment | Backend         | Notes                                                      |
+| ----------- | --------------- | ---------------------------------------------------------- |
+| Node.js     | SQLite          | Stored at `dataPath`. Uses WAL mode for concurrent access. |
+| Browser     | IndexedDB       | Uses native IndexedDB transactions.                        |
+| Fallback    | In-memory `Map` | Used when neither SQLite nor IndexedDB is available.       |
 
 All cache entries have a **one-hour TTL** and are automatically evicted after expiration.
 

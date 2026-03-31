@@ -26,11 +26,11 @@ Because the NFT is non-transferable, it stays bound to the wallet that completed
 
 The repository is organized into three main areas:
 
-| Directory     | Purpose |
-|---------------|---------|
-| `contracts/`  | Solidity smart contracts for the verification NFT. |
-| `challenge/`  | Integration layer for the Bitsocial challenge system. |
-| `web/`        | Next.js and React frontend for the minting flow. |
+| Directory    | Purpose                                               |
+| ------------ | ----------------------------------------------------- |
+| `contracts/` | Solidity smart contracts for the verification NFT.    |
+| `challenge/` | Integration layer for the Bitsocial challenge system. |
+| `web/`       | Next.js and React frontend for the minting flow.      |
 
 ## Privacy and Data Handling
 
@@ -52,11 +52,11 @@ Community operators can enable additional protections depending on their threat 
 
 ## Technology Stack
 
-| Layer       | Technology |
-|-------------|------------|
-| Contracts   | Solidity, deployed with Hardhat and Foundry |
-| Frontend    | Next.js + React |
-| Network     | Base (Ethereum L2) |
+| Layer     | Technology                                  |
+| --------- | ------------------------------------------- |
+| Contracts | Solidity, deployed with Hardhat and Foundry |
+| Frontend  | Next.js + React                             |
+| Network   | Base (Ethereum L2)                          |
 
 Deploying on Base keeps gas costs low while inheriting Ethereum's security guarantees.
 

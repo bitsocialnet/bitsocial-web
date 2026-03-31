@@ -12,10 +12,10 @@ The Bitsocial Telegram bots monitor client community lists on the Bitsocial netw
 
 ## Available Bots
 
-| Bot | Status | Description |
-|-----|--------|-------------|
-| **5chan Feed** | Active | Monitors all 5chan directories and forwards new posts to Telegram. |
-| **Seedit Feed** | Planned | Will provide the same functionality for Seedit communities. |
+| Bot             | Status  | Description                                                        |
+| --------------- | ------- | ------------------------------------------------------------------ |
+| **5chan Feed**  | Active  | Monitors all 5chan directories and forwards new posts to Telegram. |
+| **Seedit Feed** | Planned | Will provide the same functionality for Seedit communities.        |
 
 ## Setup
 
