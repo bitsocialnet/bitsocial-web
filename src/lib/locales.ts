@@ -43,13 +43,41 @@ export const DEFAULT_LANGUAGE_CODE: SupportedLanguageCode = "en";
 
 const SUPPORTED_LANGUAGE_CODE_SET = new Set<string>(SUPPORTED_LANGUAGE_CODES);
 const RTL_LANGUAGE_CODES = new Set<SupportedLanguageCode>(["ar", "fa", "he", "ur"]);
+const ENGLISH_DEFAULT_REGION_CODES = new Set([
+  // EF EPI 2025 High/Very high proficiency markets relevant to supported locales.
+  "AT",
+  "BE",
+  "CH",
+  "CZ",
+  "DE",
+  "DK",
+  "FI",
+  "GR",
+  "HU",
+  "MY",
+  "NL",
+  "NO",
+  "PH",
+  "PL",
+  "PT",
+  "RO",
+  "SE",
+  // Singapore Census 2020: English is the most frequently spoken home language.
+  "SG",
+]);
 
-export function normalizeLanguageCode(language: string | null | undefined): SupportedLanguageCode {
+function getNormalizedLocaleTag(language: string): string {
+  return language.trim().replace(/_/g, "-");
+}
+
+export function resolveSupportedLanguageCode(
+  language: string | null | undefined,
+): SupportedLanguageCode | null {
   if (!language) {
-    return DEFAULT_LANGUAGE_CODE;
+    return null;
   }
 
-  const normalizedLanguage = language.trim().toLowerCase().replace(/_/g, "-");
+  const normalizedLanguage = getNormalizedLocaleTag(language).toLowerCase();
 
   if (SUPPORTED_LANGUAGE_CODE_SET.has(normalizedLanguage)) {
     return normalizedLanguage as SupportedLanguageCode;
@@ -58,6 +86,73 @@ export function normalizeLanguageCode(language: string | null | undefined): Supp
   const [baseLanguage] = normalizedLanguage.split("-");
   if (baseLanguage && SUPPORTED_LANGUAGE_CODE_SET.has(baseLanguage)) {
     return baseLanguage as SupportedLanguageCode;
+  }
+
+  return null;
+}
+
+export function normalizeLanguageCode(language: string | null | undefined): SupportedLanguageCode {
+  return resolveSupportedLanguageCode(language) ?? DEFAULT_LANGUAGE_CODE;
+}
+
+export function extractRegionCode(locale: string | null | undefined): string | null {
+  if (!locale) {
+    return null;
+  }
+
+  const normalizedLocale = getNormalizedLocaleTag(locale);
+  if (normalizedLocale === "") {
+    return null;
+  }
+
+  if (typeof Intl !== "undefined" && typeof Intl.Locale === "function") {
+    try {
+      const parsedLocale = new Intl.Locale(normalizedLocale);
+      if (parsedLocale.region) {
+        return parsedLocale.region.toUpperCase();
+      }
+    } catch {
+      // Fall through to the lightweight parser for malformed or unsupported locale tags.
+    }
+  }
+
+  const parts = normalizedLocale.split("-");
+  for (const part of parts.slice(1)) {
+    if (/^[A-Za-z]{4}$/.test(part)) {
+      continue;
+    }
+    if (/^[A-Za-z]{2}$/.test(part)) {
+      return part.toUpperCase();
+    }
+    break;
+  }
+
+  return null;
+}
+
+export function shouldDefaultToEnglishByRegion(regionCode: string | null | undefined): boolean {
+  if (!regionCode) {
+    return false;
+  }
+
+  return ENGLISH_DEFAULT_REGION_CODES.has(regionCode.trim().toUpperCase());
+}
+
+export function resolveAutomaticLanguage(
+  languageLocales: readonly string[],
+  primaryRegionLocale?: string | null,
+): SupportedLanguageCode {
+  const regionCode = extractRegionCode(primaryRegionLocale ?? languageLocales[0] ?? null);
+
+  if (regionCode && shouldDefaultToEnglishByRegion(regionCode)) {
+    return DEFAULT_LANGUAGE_CODE;
+  }
+
+  for (const locale of languageLocales) {
+    const supportedLanguage = resolveSupportedLanguageCode(locale);
+    if (supportedLanguage) {
+      return supportedLanguage;
+    }
   }
 
   return DEFAULT_LANGUAGE_CODE;
