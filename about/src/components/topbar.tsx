@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { m } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { DOCS_LINKS, isDocsPath } from "@/lib/docs-links";
+import { DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { cn } from "@/lib/utils";
 import { goHomeScrollTop } from "@/lib/home-nav";
@@ -57,7 +57,7 @@ function NavLink({
   }
 
   if (to) {
-    if (isDocsPath(to)) {
+    if (isDocsPath(to) || isStatsPath(to)) {
       return (
         <a href={to} className={className} onClick={onClick}>
           {content}
@@ -242,13 +242,13 @@ export default function Topbar() {
 
   const appsLabel = t("nav.apps");
   const docsLabel = t("nav.docs");
-  const statusLabel = t("nav.status");
+  const statsLabel = t("nav.status");
   const sourceCodeLabel = t("nav.sourceCode");
   const newsletterLabel = t("nav.newsletter");
   const routeLinks = [
     { label: appsLabel, to: "/apps" },
     { label: docsLabel, to: DOCS_LINKS.home },
-    { label: statusLabel, to: "/status" },
+    { label: statsLabel, to: STATS_LINKS.home },
   ].filter((link) => isRouteAccessible(link.to));
 
   return (

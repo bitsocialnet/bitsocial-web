@@ -27,7 +27,7 @@ Bitsocial Web is the public-facing landing page and ecosystem entrypoint for Bit
 | Situation | Required action |
 | Situation | Required action |
 | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| React UI logic changed (`src/components`, `src/pages`, `src/app.tsx`, `src/main.tsx`, `src/lib`) | Follow React architecture rules below and run `yarn doctor` |
+| React UI logic changed (`about/src/components`, `about/src/pages`, `about/src/app.tsx`, `about/src/main.tsx`, `about/src/lib`) | Follow React architecture rules below and run `yarn doctor` |
 | `package.json` changed | Run `yarn install` to keep `yarn.lock` in sync |
 | Dependencies or import graph changed | Run `yarn knip` as an advisory manifest/import audit |
 | Translation key/value changed | Use `docs/agent-playbooks/translations.md` |
@@ -61,12 +61,17 @@ Bitsocial Web is the public-facing landing page and ecosystem entrypoint for Bit
 ## Project Structure
 
 ```text
-src/
-├── components/   # Reusable UI components
-├── pages/        # Route-level page composition
-├── lib/          # Utilities and helpers
-├── assets/       # Imported static assets
-└── index.css     # Global styles
+about/
+├── src/
+│   ├── components/   # Reusable UI components
+│   ├── pages/        # Route-level page composition
+│   ├── lib/          # Utilities and helpers
+│   └── index.css     # Global styles
+├── public/           # Landing-site static assets and translations
+└── vite.config.ts    # Landing-site Vite config
+
+docs/                 # Docusaurus site and agent playbooks
+stats/                # Monitoring, Grafana, Prometheus, and deployment assets
 ```
 
 ## Core MUST Rules
@@ -79,17 +84,17 @@ src/
 
 ### React Architecture Rules
 
-- Keep route composition in `src/pages/`, reusable UI in `src/components/`, and shared helpers in `src/lib/`.
+- Keep route composition in `about/src/pages/`, reusable UI in `about/src/components/`, and shared helpers in `about/src/lib/`.
 - Do not use `useEffect` to synchronize derived state that can be calculated during render.
 - Prefer extracting repeated UI or logic instead of copy-pasting across pages.
-- Use `@/` imports for `src/**`. Do not introduce new `../` imports into the source tree.
+- Use `@/` imports for `about/src/**`. Do not introduce new `../` imports into that source tree.
 - Preserve `prefers-reduced-motion` fallbacks whenever you add or change animation.
 - Use React Router for navigation instead of manual `window.location` changes unless there is a clear reason.
 
 ### Code Organization Rules
 
-- Keep page components focused on page composition. Move reusable sections and primitives into `src/components/`.
-- Follow the existing visual system in `src/index.css` and `tailwind.config.ts` instead of inventing a parallel styling layer.
+- Keep page components focused on page composition. Move reusable sections and primitives into `about/src/components/`.
+- Follow the existing visual system in `about/src/index.css` and `about/tailwind.config.ts` instead of inventing a parallel styling layer.
 - Add comments only for non-obvious reasoning, constraints, or tradeoffs.
 
 ### Git Workflow Rules
@@ -135,10 +140,10 @@ src/
 
 - Treat `.codex/`, `.cursor/`, and `.claude/` as repo-managed contributor tooling, not private scratch space.
 - Keep equivalent workflow files aligned across all toolchains when their directories contain the same skill, hook, or agent.
-- Keep shared policy in tracked files when possible: `AGENTS.md`, `src/AGENTS.md`, `scripts/AGENTS.md`, `docs/agent-playbooks/**`, and `scripts/agent-hooks/**`.
+- Keep shared policy in tracked files when possible: `AGENTS.md`, `about/src/AGENTS.md`, `scripts/AGENTS.md`, `docs/agent-playbooks/**`, and `scripts/agent-hooks/**`.
 - When changing shared agent behavior, update the relevant files in `.codex/skills/`, `.cursor/skills/`, `.claude/skills/`, `.codex/agents/`, `.cursor/agents/`, `.claude/agents/`, `.codex/hooks/`, `.cursor/hooks/`, `.claude/hooks/`, and their `hooks.json` or config entry points as needed.
 - Review `.codex/config.toml`, `.cursor/hooks.json`, and `.claude/hooks.json` before changing agent orchestration or hook behavior, because they are the entry points contributors will actually load.
-- Directory-specific auto-loaded rules live under `src/AGENTS.md` and `scripts/AGENTS.md`; read them before editing files in those trees.
+- Directory-specific auto-loaded rules live under `about/src/AGENTS.md` and `scripts/AGENTS.md`; read them before editing files in those trees.
 - For work expected to span multiple sessions, keep explicit task state in a `feature-list.json` plus `progress.md` pair using `docs/agent-playbooks/long-running-agent-workflow.md`.
 - If more than one human or toolchain needs the same task state, keep it in a tracked location such as `docs/agent-runs/<slug>/` instead of burying it in a tool-specific hidden directory.
 

@@ -32,19 +32,15 @@ if (!usingPortless && port !== requestedPort) {
 }
 console.log("");
 
-const child = spawn(
-  yarnBin,
-  ["--cwd", "docs-site", "start", "--host", host, "--port", String(port)],
-  {
-    cwd: repoRoot,
-    env: {
-      ...process.env,
-      HOST: host,
-      PORT: String(port),
-    },
-    stdio: "inherit",
+const child = spawn(yarnBin, ["--cwd", "docs", "start", "--host", host, "--port", String(port)], {
+  cwd: repoRoot,
+  env: {
+    ...process.env,
+    HOST: host,
+    PORT: String(port),
   },
-);
+  stdio: "inherit",
+});
 
 const forwardSignal = (signal) => {
   if (!child.killed) {

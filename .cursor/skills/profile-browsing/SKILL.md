@@ -16,7 +16,7 @@ Two-layer profiling: browser-level symptoms (Web Vitals, long tasks, scroll jank
 
 ### react-scan and element-source (already configured)
 
-The app exposes performance and source-inspection helpers in `src/lib/react-scan.ts`. In dev mode it:
+The app exposes performance and source-inspection helpers in `about/src/lib/react-scan.ts`. In dev mode it:
 
 - enables `react-scan`
 - exposes `window.__getReactScanReport()` for programmatic render data
@@ -41,11 +41,11 @@ Split routes into batches of 2 to 4 for parallel profiling.
 
 Default batches for this app:
 
-| Batch | Session  | Routes             | Focus                              |
-| ----- | -------- | ------------------ | ---------------------------------- |
-| 1     | `prof-1` | `/`, `/docs`       | Home page plus docs content        |
-| 2     | `prof-2` | `/apps`, `/about`  | App directory plus about page      |
-| 3     | `prof-3` | `/blog`, `/status` | Secondary content plus status page |
+| Batch | Session  | Routes            | Focus                             |
+| ----- | -------- | ----------------- | --------------------------------- |
+| 1     | `prof-1` | `/`, `/docs`      | Home page plus docs content       |
+| 2     | `prof-2` | `/apps`, `/about` | App directory plus about page     |
+| 3     | `prof-3` | `/blog`, `/stats` | Secondary content plus stats page |
 
 Adjust batches to match the routes relevant to the change under investigation.
 

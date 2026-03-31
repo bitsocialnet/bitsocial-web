@@ -6202,6 +6202,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bitsocial-docs@workspace:docs":
+  version: 0.0.0-use.local
+  resolution: "bitsocial-docs@workspace:docs"
+  dependencies:
+    "@docusaurus/core": "npm:3.9.2"
+    "@docusaurus/module-type-aliases": "npm:3.9.2"
+    "@docusaurus/preset-classic": "npm:3.9.2"
+    "@docusaurus/tsconfig": "npm:3.9.2"
+    "@docusaurus/types": "npm:3.9.2"
+    "@mdx-js/react": "npm:^3.0.0"
+    "@types/react": "npm:^19.2.14"
+    "@types/react-dom": "npm:^19.2.3"
+    clsx: "npm:^2.0.0"
+    pagefind: "npm:^1.4.0"
+    prism-react-renderer: "npm:^2.3.0"
+    react: "npm:^19.0.0"
+    react-dom: "npm:^19.0.0"
+    react-grab: "npm:0.1.28"
+    typescript: "npm:~5.6.2"
+  languageName: unknown
+  linkType: soft
+
 "bitsocial-web@workspace:.":
   version: 0.0.0-use.local
   resolution: "bitsocial-web@workspace:."
@@ -7813,28 +7835,6 @@ __metadata:
   checksum: 10c0/8948d3d03063fb68e04a1e386875f8c3bcc398fc375f535f2b438fad8f41bf1afa6f5e70893ba44f4ae884c089247e0a31045722fa6ff0f01d228da103f1811d
   languageName: node
   linkType: hard
-
-"docs-site@workspace:docs-site":
-  version: 0.0.0-use.local
-  resolution: "docs-site@workspace:docs-site"
-  dependencies:
-    "@docusaurus/core": "npm:3.9.2"
-    "@docusaurus/module-type-aliases": "npm:3.9.2"
-    "@docusaurus/preset-classic": "npm:3.9.2"
-    "@docusaurus/tsconfig": "npm:3.9.2"
-    "@docusaurus/types": "npm:3.9.2"
-    "@mdx-js/react": "npm:^3.0.0"
-    "@types/react": "npm:^19.2.14"
-    "@types/react-dom": "npm:^19.2.3"
-    clsx: "npm:^2.0.0"
-    pagefind: "npm:^1.4.0"
-    prism-react-renderer: "npm:^2.3.0"
-    react: "npm:^19.0.0"
-    react-dom: "npm:^19.0.0"
-    react-grab: "npm:0.1.28"
-    typescript: "npm:~5.6.2"
-  languageName: unknown
-  linkType: soft
 
 "dom-converter@npm:^0.2.0":
   version: 0.2.0

@@ -1,4 +1,4 @@
-export const DEV_ONLY_ROUTE_PATHS = ["/about", "/apps", "/blog", "/status"] as const;
+export const DEV_ONLY_ROUTE_PATHS = ["/about", "/apps", "/blog"] as const;
 
 const devOnlyRoutePathSet = new Set<string>(DEV_ONLY_ROUTE_PATHS);
 

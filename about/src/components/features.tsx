@@ -3,7 +3,7 @@ import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import CardInlineCta, { prominentCtaClassName } from "@/components/card-inline-cta";
-import { DOCS_LINKS, isDocsPath } from "@/lib/docs-links";
+import { DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
 import { getScrollBehavior, triggerFeatureGlow, triggerTaglineGlow } from "@/lib/utils";
 
 type FeatureId =
@@ -67,7 +67,7 @@ function buildFeatures(t: (key: string) => string): Feature[] {
     "open-source": { ctaHref: "https://github.com/bitsocialnet", external: true },
     "peer-to-peer": { ctaHref: "#sanctuary-communication" },
     "social-apps": { ctaHref: "/apps" },
-    "no-servers": { ctaHref: "/status" },
+    "no-servers": { ctaHref: STATS_LINKS.home },
     "no-global-bans": { ctaHref: DOCS_LINKS.localModeration },
     "cryptographic-property": { ctaHref: DOCS_LINKS.identityAndOwnership },
   };
@@ -144,7 +144,7 @@ function FeatureCta({ className, feature, onSanctuaryClick }: FeatureCtaProps) {
     );
   }
 
-  if (isDocsPath(feature.ctaHref)) {
+  if (isDocsPath(feature.ctaHref) || isStatsPath(feature.ctaHref)) {
     return (
       <a href={feature.ctaHref} className={className}>
         {feature.ctaLabel}

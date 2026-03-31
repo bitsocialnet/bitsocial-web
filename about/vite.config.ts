@@ -1,7 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import autoprefixer from "autoprefixer";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import tailwindcss from "tailwindcss";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const previewOpenUrl = "http://bitsocial.localhost:1355/";
@@ -27,6 +29,7 @@ function docsDevProxyTarget() {
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
+  root: __dirname,
   plugins: [react()],
   server: {
     // Portless serves the app at a stable hostname; open that URL, not the internal Vite port.
@@ -44,6 +47,20 @@ export default defineConfig(({ command }) => ({
   },
   preview: {
     open: process.env.PORTLESS === "0" ? true : previewOpenUrl,
+  },
+  build: {
+    outDir: path.resolve(__dirname, "../dist/about"),
+    emptyOutDir: true,
+  },
+  css: {
+    postcss: {
+      plugins: [
+        tailwindcss({
+          config: path.resolve(__dirname, "tailwind.config.ts"),
+        }),
+        autoprefixer(),
+      ],
+    },
   },
   resolve: {
     alias: {

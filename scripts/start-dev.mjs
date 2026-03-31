@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
+const aboutViteConfig = path.join("about", "vite.config.ts");
 const isWindows = process.platform === "win32";
 const usePortless = process.env.PORTLESS !== "0" && !isWindows;
 const binDir = path.join(repoRoot, "node_modules", ".bin");
@@ -72,13 +73,16 @@ if (command === portlessBin) {
   const appName = getPortlessAppName();
   const publicUrl = `http://${appName}.localhost:1355`;
 
-  args = [appName, "vite"];
+  args = [appName, "vite", "--config", aboutViteConfig];
 
   if (appName !== "bitsocial") {
     console.log(`Starting Portless dev server at ${publicUrl}`);
   }
 } else if (process.env.PORTLESS !== "0") {
   console.warn("portless unavailable on this platform, using vite directly");
+  args = ["--config", aboutViteConfig];
+} else {
+  args = ["--config", aboutViteConfig];
 }
 
 const child = spawn(command, args, {

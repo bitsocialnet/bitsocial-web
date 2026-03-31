@@ -9,6 +9,15 @@ export const DOCS_LINKS = {
   decentralizeAllSocialMedia: "/docs/decentralize-all-social-media/",
 } as const;
 
+export const STATS_LINKS = {
+  home: "/stats",
+  client5chan: "/stats/5chan",
+} as const;
+
 export function isDocsPath(pathOrHref: string) {
   return pathOrHref === "/docs" || pathOrHref === "/docs/" || pathOrHref.startsWith("/docs/");
+}
+
+export function isStatsPath(pathOrHref: string) {
+  return pathOrHref === "/stats" || pathOrHref === "/stats/" || pathOrHref.startsWith("/stats/");
 }

@@ -11,7 +11,6 @@ import Home from "@/pages/home";
 import Apps from "@/pages/apps";
 import About from "@/pages/about";
 import Blog from "@/pages/blog";
-import Status from "@/pages/status";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { normalizeInitialHomeScrollPosition } from "@/lib/initial-scroll";
 
@@ -71,14 +70,6 @@ function App() {
           element={
             <DevelopmentOnlyRoute>
               <Blog />
-            </DevelopmentOnlyRoute>
-          }
-        />
-        <Route
-          path="/status"
-          element={
-            <DevelopmentOnlyRoute>
-              <Status />
             </DevelopmentOnlyRoute>
           }
         />

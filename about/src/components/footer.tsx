@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Github, Send, X } from "lucide-react";
 import { useState } from "react";
 import EasterEggOverlay from "@/components/easter-egg-overlay";
-import { DOCS_LINKS, isDocsPath } from "@/lib/docs-links";
+import { DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { goHomeScrollTop } from "@/lib/home-nav";
 import { goToMailingListSection } from "@/lib/mailing-list-nav";
@@ -18,7 +18,7 @@ export default function Footer() {
   const productLinks = [
     { label: t("footer.apps"), to: "/apps" },
     { label: t("footer.docs"), to: DOCS_LINKS.home },
-    { label: t("footer.status"), to: "/status" },
+    { label: t("footer.status"), to: STATS_LINKS.home },
   ].filter((link) => isRouteAccessible(link.to));
   const resourceLinks = [
     { label: t("footer.blog"), to: "/blog" },
@@ -65,7 +65,7 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {productLinks.map((link) => (
                   <li key={link.to}>
-                    {isDocsPath(link.to) ? (
+                    {isDocsPath(link.to) || isStatsPath(link.to) ? (
                       <a href={link.to} className={linkClassName}>
                         {link.label}
                       </a>

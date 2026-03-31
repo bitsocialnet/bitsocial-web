@@ -1,10 +1,7 @@
-import path from "node:path";
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
-const repoRoot = path.resolve(__dirname, "..");
-const docsRoot = path.join(repoRoot, "docs");
 const repoEditUrl = "https://github.com/bitsocialnet/bitsocial-web/tree/master";
 
 const config: Config = {
@@ -39,14 +36,23 @@ const config: Config = {
       "classic",
       {
         docs: {
-          path: docsRoot,
+          path: ".",
           routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
           editUrl: repoEditUrl,
           breadcrumbs: false,
           showLastUpdateTime: true,
           showLastUpdateAuthor: false,
-          exclude: ["**/*.template.json"],
+          exclude: [
+            ".docusaurus/**",
+            "build/**",
+            "dist/**",
+            "node_modules/**",
+            "src/**",
+            "static/**",
+            "agent-runs/**",
+            "**/*.template.json",
+          ],
         },
         blog: false,
         theme: {
