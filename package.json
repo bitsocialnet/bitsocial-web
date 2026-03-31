@@ -6,13 +6,15 @@
   "license": "AGPL-3.0-only",
   "author": "Bitsocial Forge",
   "workspaces": [
-    "docs"
+    "docs",
+    "stats/monitor"
   ],
   "type": "module",
   "scripts": {
     "start": "concurrently -k -n about,docs -c blue,cyan \"yarn start:about\" \"yarn start:docs\"",
     "start:about": "node scripts/start-dev.mjs",
     "start:docs": "portless docs.bitsocial node scripts/start-docs.mjs",
+    "start:stats-monitor": "yarn workspace @bitsocial/stats-monitor start",
     "start:android-usb": "node scripts/start-android-usb.mjs",
     "start:ios-sim": "node scripts/start-ios-sim.mjs",
     "build": "tsgo --noEmit --project about/tsconfig.json && vite build --config about/vite.config.ts && yarn docs:build",

@@ -1,0 +1,53 @@
+{
+  "name": "@bitsocial/stats-monitor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Bitsocial network stats monitor powering Grafana and Prometheus dashboards.",
+  "homepage": "https://github.com/bitsocialnet/bitsocial-web/tree/master/stats/monitor#readme",
+  "bugs": {
+    "url": "https://github.com/bitsocialnet/bitsocial-web/issues"
+  },
+  "license": "AGPL-3.0-only",
+  "author": "Bitsocial Forge",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitsocialnet/bitsocial-web.git"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node ./monitor.js"
+  },
+  "dependencies": {
+    "@chainsafe/libp2p-noise": "16.1.3",
+    "@chainsafe/libp2p-yamux": "7.0.2",
+    "@helia/block-brokers": "4.2.2",
+    "@helia/strings": "4.0.6",
+    "@libp2p/identify": "3.0.36",
+    "@libp2p/tcp": "10.1.16",
+    "@libp2p/websockets": "9.2.16",
+    "@plebbit/plebbit-js": "https://github.com/plebbit/plebbit-js.git#692ec349f01aa6d8e939ff1d6d07315ab92e4099",
+    "cborg": "1.9.6",
+    "debug": "4.3.7",
+    "decompress": "4.2.1",
+    "dotenv": "16.0.3",
+    "express": "4.19.2",
+    "fs-extra": "11.1.0",
+    "helia": "5.4.2",
+    "http-proxy": "1.18.1",
+    "http-proxy-agent": "7.0.2",
+    "https-proxy-agent": "7.0.4",
+    "ip": "2.0.1",
+    "javascript-time-ago": "2.5.10",
+    "kubo-rpc-client": "5.0.2",
+    "libp2p": "2.8.11",
+    "node-fetch": "3.3.2",
+    "p-queue": "8.0.1",
+    "p-timeout": "6.1.3",
+    "peer-id": "0.16.0",
+    "progress": "2.0.3",
+    "prom-client": "15.1.3",
+    "string-strip-html": "13.4.8",
+    "tcp-port-used": "1.0.2",
+    "yargs": "17.7.1"
+  }
+}

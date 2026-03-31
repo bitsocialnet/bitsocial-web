@@ -1,0 +1,75 @@
+{
+  "task": "stats-monorepo",
+  "last_updated": "2026-03-31",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "completed",
+      "description": "Restructure the repository into top-level about, docs, and stats projects with updated root workspace and dev/build tooling.",
+      "verification": [
+        "corepack yarn install",
+        "corepack yarn build",
+        "corepack yarn lint",
+        "corepack yarn typecheck",
+        "corepack yarn format:check"
+      ],
+      "files": ["package.json", "README.md", "scripts", "vercel.json", "vite.config.ts"],
+      "notes": "Use top-level about/docs/stats directories, not apps/. Keep /stats as the only public stats route."
+    },
+    {
+      "id": "F002",
+      "priority": 2,
+      "status": "in_progress",
+      "description": "Add the stats monitor service with 5chan-only community ingestion, Bitsocial metric naming, and Prometheus export.",
+      "verification": [
+        "corepack yarn install",
+        "corepack yarn lint",
+        "corepack yarn typecheck",
+        "corepack yarn build",
+        "corepack yarn format:check"
+      ],
+      "files": ["stats/monitor", "stats/prometheus"],
+      "notes": "Use the official 5chan directories list only in v1. No Seedit communities yet. This slice also wires the monitor package into the root workspace."
+    },
+    {
+      "id": "F003",
+      "priority": 3,
+      "status": "pending",
+      "description": "Provision Grafana dashboards that mirror plebbit.online visually and structurally while using Bitsocial/community terminology.",
+      "verification": [
+        "open local Grafana and inspect summary dashboard",
+        "open local Grafana and inspect /stats/5chan dashboard"
+      ],
+      "files": ["stats/grafana"],
+      "notes": "Keep the world map, peer charts, summary tables, provider sections, and repeated community panels. Hide NFT panels in v1."
+    },
+    {
+      "id": "F004",
+      "priority": 4,
+      "status": "pending",
+      "description": "Deploy the about/docs/stats stack to the VPS using host Caddy plus a new Docker Compose stack for Grafana, Prometheus, and the monitor.",
+      "verification": [
+        "ssh root@91.234.199.189 docker compose ls",
+        "ssh root@91.234.199.189 curl -I http://127.0.0.1:<grafana-port>",
+        "ssh root@91.234.199.189 curl -I http://127.0.0.1:<prometheus-port>"
+      ],
+      "files": ["stats/deploy", "stats/deploy/Caddyfile", "stats/deploy/compose.yaml"],
+      "notes": "Current VPS already runs Caddy and listmonk. Do not disturb newsletter.bitsocial.net."
+    },
+    {
+      "id": "F005",
+      "priority": 5,
+      "status": "pending",
+      "description": "Complete production cutover to bitsocial.net root, /docs, and /stats after the user updates Cloudflare manually, then run end-to-end verification.",
+      "verification": [
+        "curl -I https://bitsocial.net/",
+        "curl -I https://bitsocial.net/docs",
+        "curl -I https://bitsocial.net/stats",
+        "playwright-cli verification on desktop and mobile"
+      ],
+      "files": ["about", "docs", "stats", "/etc/caddy/Caddyfile"],
+      "notes": "Ask the user to update Cloudflare routing only after VPS deployment is ready."
+    }
+  ]
+}
