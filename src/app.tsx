@@ -8,7 +8,6 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Home from "@/pages/home";
-import Docs from "@/pages/docs";
 import Apps from "@/pages/apps";
 import About from "@/pages/about";
 import Blog from "@/pages/blog";
@@ -51,14 +50,6 @@ function App() {
       <InitialHomeScrollGuard />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/docs"
-          element={
-            <DevelopmentOnlyRoute>
-              <Docs />
-            </DevelopmentOnlyRoute>
-          }
-        />
         <Route
           path="/apps"
           element={

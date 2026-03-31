@@ -1,5 +1,6 @@
 import type { MouseEvent, ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { isDocsPath } from "@/lib/docs-links";
 import { cn } from "@/lib/utils";
 
 export const prominentCtaClassName =
@@ -20,6 +21,14 @@ export default function CardInlineCta({ children, className, href, onClick }: Ca
   if (href.startsWith("http://") || href.startsWith("https://")) {
     return (
       <a href={href} target="_blank" rel="noreferrer" className={resolvedClassName}>
+        {children}
+      </a>
+    );
+  }
+
+  if (isDocsPath(href)) {
+    return (
+      <a href={href} className={resolvedClassName}>
         {children}
       </a>
     );

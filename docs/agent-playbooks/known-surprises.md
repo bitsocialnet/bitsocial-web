@@ -67,3 +67,13 @@ If uncertain, ask the developer before adding an entry.
 - **Impact:** Parallel Bitsocial Web branches can block each other even though Portless is meant to let them coexist safely.
 - **Mitigation:** Keep Portless startup behind `scripts/start-dev.mjs`, which now uses a branch-scoped `*.bitsocial.localhost:1355` route outside the canonical case and falls back to a branch-scoped route when the bare `bitsocial.localhost` name is already occupied.
 - **Status:** confirmed
+
+### Docs preview used to hard-code port 3001
+
+- **Date:** 2026-03-30
+- **Observed by:** Codex
+- **Context:** Running `yarn start` alongside other local repos and agents
+- **What was surprising:** The root dev command ran the docs workspace with `docusaurus start --port 3001`, so the whole dev session failed whenever another process already owned `3001`, even though the main app already used Portless.
+- **Impact:** `yarn start` could kill the web process immediately after it booted, interrupting unrelated local work over a docs-port collision.
+- **Mitigation:** Keep docs startup behind `yarn start:docs`, which now uses Portless plus `scripts/start-docs.mjs` to honor an injected free port or fall back to the next available port when run directly.
+- **Status:** confirmed
