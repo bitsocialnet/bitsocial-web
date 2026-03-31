@@ -1,3 +1,15 @@
+const parseCsvEnv = (value) =>
+  value
+    ?.split(",")
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+
+const kuboRpcUrl = process.env.BITSOCIAL_STATS_KUBO_RPC_URL || "http://127.0.0.1:5001";
+const pubsubKuboRpcUrl = process.env.BITSOCIAL_STATS_PUBSUB_KUBO_RPC_URL || kuboRpcUrl;
+const delegatedRoutingUrls = parseCsvEnv(process.env.BITSOCIAL_STATS_DELEGATED_ROUTING_URLS) || [
+  "https://delegated-ipfs.dev",
+];
+
 export default {
   monitoring: {
     clients: [
@@ -43,9 +55,9 @@ export default {
     ],
     nfts: [],
   },
-  delegatedRoutingUrls: ["https://delegated-ipfs.dev"],
-  kuboRpcUrl: "http://127.0.0.1:5001",
-  pubsubKuboRpcUrl: "http://127.0.0.1:5001",
+  delegatedRoutingUrls,
+  kuboRpcUrl,
+  pubsubKuboRpcUrl,
   plebbitOptions: {
     ipfsGatewayUrls: [
       "https://ipfs.io",

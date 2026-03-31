@@ -20,7 +20,7 @@
     {
       "id": "F002",
       "priority": 2,
-      "status": "in_progress",
+      "status": "completed",
       "description": "Add the stats monitor service with 5chan-only community ingestion, Bitsocial metric naming, and Prometheus export.",
       "verification": [
         "corepack yarn install",
@@ -35,13 +35,13 @@
     {
       "id": "F003",
       "priority": 3,
-      "status": "pending",
+      "status": "completed",
       "description": "Provision Grafana dashboards that mirror plebbit.online visually and structurally while using Bitsocial/community terminology.",
       "verification": [
         "open local Grafana and inspect summary dashboard",
         "open local Grafana and inspect /stats/5chan dashboard"
       ],
-      "files": ["stats/grafana"],
+      "files": ["stats/grafana", "stats/compose.yaml", "stats/monitor/Dockerfile"],
       "notes": "Keep the world map, peer charts, summary tables, provider sections, and repeated community panels. Hide NFT panels in v1."
     },
     {

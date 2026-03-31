@@ -1,0 +1,97 @@
+services:
+  ipfs:
+    build:
+      context: ..
+      dockerfile: stats/monitor/Dockerfile
+    command: node start-ipfs.js
+    restart: unless-stopped
+    volumes:
+      - stats-ipfs-bin:/app/stats/monitor/bin
+      - stats-ipfs-data:/app/stats/monitor/.ipfs
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:11111/api/v0/version',{method:'POST'}).then((response)=>process.exit(response.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 20s
+
+  monitor:
+    build:
+      context: ..
+      dockerfile: stats/monitor/Dockerfile
+    command: node monitor.js
+    restart: unless-stopped
+    environment:
+      BITSOCIAL_STATS_KUBO_RPC_URL: http://ipfs:11111
+      BITSOCIAL_STATS_PUBSUB_KUBO_RPC_URL: http://ipfs:11111
+    depends_on:
+      ipfs:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3301:3000"
+    volumes:
+      - stats-monitor-plebbit:/app/stats/monitor/.plebbit
+      - stats-monitor-history:/app/stats/monitor/history
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/metrics/prometheus').then((response)=>process.exit(response.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 20s
+
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --web.enable-lifecycle
+    restart: unless-stopped
+    depends_on:
+      monitor:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:9091:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - stats-prometheus-data:/prometheus
+
+  grafana:
+    image: grafana/grafana-oss:11.2.0
+    restart: unless-stopped
+    depends_on:
+      prometheus:
+        condition: service_started
+    environment:
+      GF_SECURITY_ADMIN_USER: bitsocial
+      GF_SECURITY_ADMIN_PASSWORD: bitsocial
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_AUTH_DISABLE_LOGIN_FORM: "false"
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/bitsocial-stats.json
+    ports:
+      - "127.0.0.1:3300:3000"
+    volumes:
+      - ./grafana/provisioning/datasources/prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml:ro
+      - ./grafana/provisioning/dashboards/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - stats-grafana-data:/var/lib/grafana
+
+volumes:
+  stats-grafana-data:
+  stats-ipfs-bin:
+  stats-ipfs-data:
+  stats-monitor-history:
+  stats-monitor-plebbit:
+  stats-prometheus-data:

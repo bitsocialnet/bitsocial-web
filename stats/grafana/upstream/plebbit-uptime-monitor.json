@@ -1,0 +1,4598 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": false,
+    "canEdit": false,
+    "canAdmin": false,
+    "canStar": true,
+    "canDelete": false,
+    "slug": "plebbit-uptime-monitor",
+    "url": "/d/ce0v8nrz7fchsd/plebbit-uptime-monitor",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2024-10-14T17:17:41Z",
+    "updated": "2025-06-24T19:12:40Z",
+    "updatedBy": "admin",
+    "createdBy": "admin",
+    "version": 98,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderUid": "",
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": "",
+    "annotationsPermissions": {
+      "dashboard": { "canAdd": false, "canEdit": false, "canDelete": false },
+      "organization": { "canAdd": false, "canEdit": false, "canDelete": false }
+    }
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": { "type": "grafana", "uid": "-- Grafana --" },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations \u0026 Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 6,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": false,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+        "id": 5,
+        "panels": [],
+        "title": "Plebbit Uptime Monitor",
+        "type": "row"
+      },
+      {
+        "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+        "fieldConfig": {
+          "defaults": {
+            "color": { "mode": "palette-classic" },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisGridShow": false,
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 90,
+              "gradientMode": "none",
+              "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": { "type": "linear" },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": { "group": "A", "mode": "none" },
+              "thresholdsStyle": { "mode": "off" }
+            },
+            "decimals": 0,
+            "mappings": [],
+            "max": 1,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "red", "value": 80 }
+              ]
+            },
+            "unit": "bool_yes_no"
+          },
+          "overrides": []
+        },
+        "gridPos": { "h": 4, "w": 12, "x": 0, "y": 1 },
+        "id": 1,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": { "mode": "single", "sort": "none" }
+        },
+        "targets": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "editorMode": "code",
+            "expr": "plebbit_uptime_monitor_up",
+            "instant": false,
+            "legendFormat": "{{job}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Uptime",
+        "type": "timeseries"
+      },
+      {
+        "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+        "fieldConfig": {
+          "defaults": {
+            "color": { "mode": "palette-classic" },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 50,
+              "gradientMode": "none",
+              "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": { "type": "linear" },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": { "group": "A", "mode": "percent" },
+              "thresholdsStyle": { "mode": "off" }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "red", "value": 80 }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": { "h": 4, "w": 12, "x": 12, "y": 1 },
+        "id": 2,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": { "mode": "single", "sort": "none" }
+        },
+        "pluginVersion": "11.1.0",
+        "targets": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "editorMode": "code",
+            "expr": "plebbit_uptime_monitor_ipfs_gateway_comment_fetch_count",
+            "instant": false,
+            "legendFormat": "{{ipfs_gateway_url}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "IPFS Gateway Comment Fetch Count",
+        "type": "timeseries"
+      },
+      {
+        "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": { "mode": "palette-classic" },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 50,
+              "gradientMode": "none",
+              "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": { "type": "linear" },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": { "group": "A", "mode": "percent" },
+              "thresholdsStyle": { "mode": "off" }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "red", "value": 80 }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": { "h": 4, "w": 12, "x": 0, "y": 5 },
+        "id": 529,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": { "mode": "single", "sort": "none" }
+        },
+        "pluginVersion": "11.1.0",
+        "targets": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "editorMode": "code",
+            "expr": "plebbit_uptime_monitor_plebbit_previewer_comment_preview_fetch_count",
+            "instant": false,
+            "legendFormat": "{{plebbit_previewer_url}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Plebbit Previewer Fetch Count",
+        "type": "timeseries"
+      },
+      {
+        "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+        "fieldConfig": {
+          "defaults": {
+            "color": { "mode": "palette-classic" },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 50,
+              "gradientMode": "none",
+              "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": { "type": "linear" },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": { "group": "A", "mode": "percent" },
+              "thresholdsStyle": { "mode": "off" }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "red", "value": 80 }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": { "h": 4, "w": 12, "x": 12, "y": 5 },
+        "id": 427,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": { "mode": "single", "sort": "none" }
+        },
+        "pluginVersion": "11.1.0",
+        "targets": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "editorMode": "code",
+            "expr": "plebbit_uptime_monitor_http_router_get_providers_fetch_count",
+            "instant": false,
+            "legendFormat": "{{http_router_url}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "HTTP Router Get Providers Fetch Count",
+        "type": "timeseries"
+      },
+      {
+        "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+        "fieldConfig": {
+          "defaults": {
+            "color": { "mode": "palette-classic" },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 50,
+              "gradientMode": "none",
+              "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": { "type": "linear" },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": { "group": "A", "mode": "percent" },
+              "thresholdsStyle": { "mode": "off" }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "red", "value": 80 }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": { "h": 4, "w": 12, "x": 0, "y": 9 },
+        "id": 538,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": { "mode": "single", "sort": "none" }
+        },
+        "pluginVersion": "11.1.0",
+        "targets": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "editorMode": "code",
+            "expr": "plebbit_uptime_monitor_webpage_webpage_fetch_count",
+            "instant": false,
+            "legendFormat": "{{webpage_url}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Webpage Fetch Count",
+        "type": "timeseries"
+      },
+      {
+        "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+        "fieldConfig": {
+          "defaults": {
+            "color": { "mode": "palette-classic" },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 50,
+              "gradientMode": "none",
+              "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": { "type": "linear" },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": { "group": "A", "mode": "percent" },
+              "thresholdsStyle": { "mode": "off" }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "red", "value": 80 }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": { "h": 4, "w": 12, "x": 12, "y": 9 },
+        "id": 532,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": { "mode": "single", "sort": "none" }
+        },
+        "pluginVersion": "11.1.0",
+        "targets": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "editorMode": "code",
+            "expr": "plebbit_uptime_monitor_chain_provider_resolve_address_count",
+            "instant": false,
+            "legendFormat": "{{chain_provider_url}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Chain Provider Resolve Address Count",
+        "type": "timeseries"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 13 },
+        "id": 6,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 50,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "normal" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                },
+                "unit": "percentunit"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 24, "x": 0, "y": 86 },
+            "id": 3,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_ipfs_gateway_comment_fetch_success_count or (plebbit_uptime_monitor_ipfs_gateway_comment_fetch_count * 0)) / plebbit_uptime_monitor_ipfs_gateway_comment_fetch_count",
+                "instant": false,
+                "legendFormat": "{{ipfs_gateway_url}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "IPFS Gateway Comment Fetch Success Rate",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 0, "y": 94 },
+            "id": 4,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_ipfs_gateway_last_comment_fetch_duration_seconds or plebbit_uptime_monitor_ipfs_gateway_last_comment_fetch_success * 0) * plebbit_uptime_monitor_ipfs_gateway_last_comment_fetch_success",
+                "instant": false,
+                "legendFormat": "{{ipfs_gateway_url}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "IPFS Gateway Comment Fetch Duration",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "decimals": 0,
+                "fieldMinMax": false,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 12, "y": 94 },
+            "id": 7,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_ipfs_gateway_last_comment_fetch_attempt_count or plebbit_uptime_monitor_ipfs_gateway_last_comment_fetch_success * 0) * plebbit_uptime_monitor_ipfs_gateway_last_comment_fetch_success",
+                "instant": false,
+                "legendFormat": "{{ipfs_gateway_url}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "IPFS Gateway Comment Fetch Attempts",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "fieldMinMax": false,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                },
+                "unit": "seconds/m"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 0, "y": 102 },
+            "id": 8,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "disableTextWrap": false,
+                "editorMode": "code",
+                "expr": "rate(plebbit_uptime_monitor_ipfs_gateway_comment_fetch_duration_seconds_sum[30m]) * 60",
+                "fullMetaSearch": false,
+                "includeNullMetadata": true,
+                "instant": false,
+                "legendFormat": "{{ipfs_gateway_url}}",
+                "range": true,
+                "refId": "A",
+                "useBackend": false
+              }
+            ],
+            "title": "IPFS Gateway Comment Fetch Duration Per Minute",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "fieldMinMax": false,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                },
+                "unit": "attempts/m"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 12, "y": 102 },
+            "id": 9,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "disableTextWrap": false,
+                "editorMode": "code",
+                "expr": "rate(plebbit_uptime_monitor_ipfs_gateway_comment_fetch_attempt_count[30m]) * 60",
+                "fullMetaSearch": false,
+                "includeNullMetadata": true,
+                "instant": false,
+                "legendFormat": "{{ipfs_gateway_url}}",
+                "range": true,
+                "refId": "A",
+                "useBackend": false
+              }
+            ],
+            "title": "IPFS Gateway Comment Fetch Attempts Per Minute",
+            "type": "timeseries"
+          }
+        ],
+        "title": "IPFS Gateways Summary",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 14 },
+        "id": 37,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "area" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 30 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 9, "x": 0, "y": 79 },
+            "id": 10,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "ipfs_gateway_url",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_ipfs_gateway_last_comment_fetch_duration_seconds{ipfs_gateway_url=~\"$ipfs_gateway_url\"} or plebbit_uptime_monitor_ipfs_gateway_last_comment_fetch_success{ipfs_gateway_url=~\"$ipfs_gateway_url\"} * 0) * plebbit_uptime_monitor_ipfs_gateway_last_comment_fetch_success{ipfs_gateway_url=~\"$ipfs_gateway_url\"}",
+                "instant": false,
+                "legendFormat": "{{ipfs_gateway_url}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "IPFS Gateway Comment Fetch Duration",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "decimals": 0,
+                "fieldMinMax": false,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 2 }]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 5, "x": 9, "y": 79 },
+            "id": 24,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "ipfs_gateway_url",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_ipfs_gateway_last_comment_fetch_attempt_count{ipfs_gateway_url=~\"$ipfs_gateway_url\"} or plebbit_uptime_monitor_ipfs_gateway_last_comment_fetch_success{ipfs_gateway_url=~\"$ipfs_gateway_url\"} * 0) * plebbit_uptime_monitor_ipfs_gateway_last_comment_fetch_success{ipfs_gateway_url=~\"$ipfs_gateway_url\"}",
+                "instant": false,
+                "legendFormat": "{{ipfs_gateway_url}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "IPFS Gateway Comment Fetch Attempts",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 25,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 30 }]
+                },
+                "unit": "bool_yes_no"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 5, "x": 14, "y": 79 },
+            "id": 424,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "ipfs_gateway_url",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_ipfs_gateway_last_subplebbit_ipns_fetch_success{ipfs_gateway_url=~\"$ipfs_gateway_url\"}",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit IPNS Fetch Success",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "mappings": [],
+                "max": 1,
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 30 }]
+                },
+                "unit": "percentunit"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 5, "x": 19, "y": 79 },
+            "id": 425,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "ipfs_gateway_url",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "sum(plebbit_uptime_monitor_ipfs_gateway_last_subplebbit_ipns_fetch_success{ipfs_gateway_url=~\"$ipfs_gateway_url\"}) / count(plebbit_uptime_monitor_ipfs_gateway_last_subplebbit_ipns_fetch_success{ipfs_gateway_url=~\"$ipfs_gateway_url\"})",
+                "instant": false,
+                "legendFormat": "Success",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit IPNS Fetch Success Rate",
+            "type": "timeseries"
+          }
+        ],
+        "title": "IPFS Gateways",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 15 },
+        "id": 1361,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "red" },
+                    { "color": "green", "value": 1 },
+                    { "color": "yellow", "value": 1800 },
+                    { "color": "red", "value": 7200 }
+                  ]
+                },
+                "unit": "s"
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": ["business-and-finance.eth"],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": []
+                }
+              ]
+            },
+            "gridPos": { "h": 5, "w": 3, "x": 0, "y": 64 },
+            "id": 1468,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "percentChangeColorMode": "standard",
+              "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+              "showPercentChange": false,
+              "textMode": "name",
+              "wideLayout": true
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_last_subplebbit_update_fetch_seconds_since_updated_at{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"} * 0) * plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"}",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit",
+            "type": "stat"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "area" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 1800 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 21, "x": 3, "y": 64 },
+            "id": 1467,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_ipfs_gateway_last_subplebbit_ipns_fetch_seconds_since_updated_at{subplebbit_address=~\"$subplebbit_address\"}",
+                "instant": false,
+                "legendFormat": "{{ipfs_gateway_url}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit Time Since Last Updated",
+            "type": "timeseries"
+          }
+        ],
+        "title": "IPFS Gateways Subplebbit IPNS",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 16 },
+        "id": 1284,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "area" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 30 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 12, "x": 0, "y": 65 },
+            "id": 1321,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "pubsub_provider_url",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_pubsub_provider_last_publish_duration_seconds{pubsub_provider_url=~\"$pubsub_provider_url\"} or plebbit_uptime_monitor_pubsub_provider_last_publish_success{pubsub_provider_url=~\"$pubsub_provider_url\"} * 0) * plebbit_uptime_monitor_pubsub_provider_last_publish_success{pubsub_provider_url=~\"$pubsub_provider_url\"}",
+                "instant": false,
+                "legendFormat": "{{pubsub_provider_url}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Pubsub Provider Publish Duration",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "area" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 30 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 12, "x": 12, "y": 65 },
+            "id": 1360,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "pubsub_provider_url",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_pubsub_provider_last_subscribe_duration_seconds{pubsub_provider_url=~\"$pubsub_provider_url\"} or plebbit_uptime_monitor_pubsub_provider_last_subscribe_success{pubsub_provider_url=~\"$pubsub_provider_url\"} * 0) * plebbit_uptime_monitor_pubsub_provider_last_subscribe_success{pubsub_provider_url=~\"$pubsub_provider_url\"}",
+                "instant": false,
+                "legendFormat": "{{pubsub_provider_url}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Pubsub Provider Subscribe Duration",
+            "type": "timeseries"
+          }
+        ],
+        "title": "Pubsub Providers",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 17 },
+        "id": 46,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "custom": {
+                  "align": "auto",
+                  "cellOptions": { "type": "auto", "wrapText": false },
+                  "inspect": false
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                },
+                "unit": "none"
+              },
+              "overrides": [
+                {
+                  "matcher": { "id": "byName", "options": "Subplebbit" },
+                  "properties": [{ "id": "custom.width", "value": 308 }]
+                },
+                {
+                  "matcher": { "id": "byName", "options": "Users" },
+                  "properties": [{ "id": "custom.width", "value": 99 }]
+                },
+                {
+                  "matcher": { "id": "byName", "options": "Posts" },
+                  "properties": [{ "id": "custom.width", "value": 99 }]
+                },
+                {
+                  "matcher": { "id": "byName", "options": "Unique Addrs" },
+                  "properties": [{ "id": "custom.width", "value": 116 }]
+                }
+              ]
+            },
+            "gridPos": { "h": 8, "w": 8, "x": 0, "y": 88 },
+            "id": 175,
+            "options": {
+              "cellHeight": "sm",
+              "footer": { "countRows": true, "fields": "", "reducer": ["count"], "show": true },
+              "frameIndex": 1,
+              "showHeader": true,
+              "sortBy": [{ "desc": true, "displayName": "Posts" }]
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "exemplar": false,
+                "expr": "plebbit_uptime_monitor_subplebbit_stats_all_active_user_count",
+                "hide": false,
+                "instant": true,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": false,
+                "refId": "B"
+              },
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "exemplar": false,
+                "expr": "plebbit_uptime_monitor_subplebbit_stats_all_post_count",
+                "hide": false,
+                "instant": true,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": false,
+                "refId": "C"
+              }
+            ],
+            "title": "Popular Subplebbits",
+            "transformations": [
+              {
+                "id": "timeSeriesTable",
+                "options": {
+                  "A": { "timeField": "Time" },
+                  "B": { "timeField": "Time" },
+                  "C": { "timeField": "Time" }
+                }
+              },
+              {
+                "id": "joinByField",
+                "options": { "byField": "subplebbit_address", "mode": "outer" }
+              },
+              {
+                "id": "organize",
+                "options": {
+                  "excludeByName": {
+                    "Trend #C": false,
+                    "__name__ 1": true,
+                    "__name__ 2": true,
+                    "__name__ 3": true,
+                    "instance 1": true,
+                    "instance 2": true,
+                    "instance 3": true,
+                    "job 1": true,
+                    "job 2": true,
+                    "job 3": true,
+                    "service 1": true,
+                    "service 2": true,
+                    "service 3": true
+                  },
+                  "includeByName": {},
+                  "indexByName": {
+                    "Trend #A": 1,
+                    "Trend #B": 2,
+                    "Trend #C": 3,
+                    "__name__ 1": 4,
+                    "__name__ 2": 8,
+                    "__name__ 3": 12,
+                    "instance 1": 5,
+                    "instance 2": 9,
+                    "instance 3": 13,
+                    "job 1": 6,
+                    "job 2": 10,
+                    "job 3": 14,
+                    "service 1": 7,
+                    "service 2": 11,
+                    "service 3": 15,
+                    "subplebbit_address": 0
+                  },
+                  "renameByName": {
+                    "Trend #A": "Time Since Last Update",
+                    "Trend #B": "Unique Addrs",
+                    "Trend #C": "Posts",
+                    "__name__ 1": "",
+                    "subplebbit_address": "Subplebbit"
+                  }
+                }
+              },
+              { "id": "sortBy", "options": { "fields": {}, "sort": [{ "field": "Posts" }] } }
+            ],
+            "type": "table"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 15,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "decimals": 0,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                },
+                "unit": "addresses"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 8, "x": 8, "y": 88 },
+            "id": 177,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "sum(plebbit_uptime_monitor_subplebbit_stats_all_active_user_count)",
+                "instant": false,
+                "legendFormat": "users",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Plebbit Unique Addresses",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 15,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "decimals": 0,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                },
+                "unit": "posts"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 8, "x": 16, "y": 88 },
+            "id": 178,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "sum(plebbit_uptime_monitor_subplebbit_stats_all_post_count)",
+                "hide": false,
+                "instant": false,
+                "legendFormat": "posts",
+                "range": true,
+                "refId": "B"
+              }
+            ],
+            "title": "Plebbit Posts",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 35,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                },
+                "unit": "bool_yes_no"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 24, "x": 0, "y": 96 },
+            "id": 48,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_last_subplebbit_update_fetch_success",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit Update Fetch Success",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "area" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 1800 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 12, "w": 24, "x": 0, "y": 101 },
+            "id": 47,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_last_subplebbit_update_fetch_seconds_since_updated_at or plebbit_uptime_monitor_last_subplebbit_update_fetch_success * 0) * plebbit_uptime_monitor_last_subplebbit_update_fetch_success",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit Time Since Last Updated",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "red" },
+                    { "color": "green", "value": 1 },
+                    { "color": "yellow", "value": 1800 },
+                    { "color": "orange", "value": 7200 },
+                    { "color": "red", "value": 86400 }
+                  ]
+                },
+                "unit": "s"
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": ["business-and-finance.eth"],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": []
+                }
+              ]
+            },
+            "gridPos": { "h": 12, "w": 24, "x": 0, "y": 113 },
+            "id": 58,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "area",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "percentChangeColorMode": "standard",
+              "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+              "showPercentChange": false,
+              "text": { "titleSize": 12 },
+              "textMode": "auto",
+              "wideLayout": true
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_last_subplebbit_update_fetch_seconds_since_updated_at or plebbit_uptime_monitor_last_subplebbit_update_fetch_success * 0) * plebbit_uptime_monitor_last_subplebbit_update_fetch_success",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit Time Since Last Updated",
+            "type": "stat"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "red" },
+                    { "color": "green", "value": 1 },
+                    { "color": "yellow", "value": 1800 },
+                    { "color": "orange", "value": 7200 },
+                    { "color": "red", "value": 86400 }
+                  ]
+                },
+                "unit": "s"
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": ["business-and-finance.eth"],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": []
+                }
+              ]
+            },
+            "gridPos": { "h": 12, "w": 24, "x": 0, "y": 125 },
+            "id": 543,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "area",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "percentChangeColorMode": "standard",
+              "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+              "showPercentChange": false,
+              "text": { "titleSize": 12 },
+              "textMode": "auto",
+              "wideLayout": true
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_subplebbit_pubsub_seconds_since_last_subplebbit_pubsub_message or plebbit_uptime_monitor_last_subplebbit_update_fetch_success * 0",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit Time Since Last Pubsub Message",
+            "type": "stat"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "red" },
+                    { "color": "green", "value": 1 },
+                    { "color": "yellow", "value": 1800 },
+                    { "color": "orange", "value": 7200 },
+                    { "color": "red", "value": 86400 }
+                  ]
+                },
+                "unit": "peers"
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": ["business-and-finance.eth"],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": []
+                }
+              ]
+            },
+            "gridPos": { "h": 12, "w": 24, "x": 0, "y": 137 },
+            "id": 544,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "area",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "percentChangeColorMode": "standard",
+              "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+              "showPercentChange": false,
+              "text": { "titleSize": 12 },
+              "textMode": "auto",
+              "wideLayout": true
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_last_subplebbit_ipns_http_routers_peer_count or plebbit_uptime_monitor_last_subplebbit_update_fetch_success * 0",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit IPNS Peers",
+            "type": "stat"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "custom": {
+                  "align": "auto",
+                  "cellOptions": { "type": "auto", "wrapText": false },
+                  "filterable": false,
+                  "inspect": false
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 0, "y": 149 },
+            "id": 59,
+            "options": {
+              "cellHeight": "sm",
+              "footer": { "countRows": true, "fields": "", "reducer": ["count"], "show": true },
+              "frameIndex": 1,
+              "showHeader": true,
+              "sortBy": []
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "exemplar": false,
+                "expr": "plebbit_uptime_monitor_last_subplebbit_update_fetch_seconds_since_updated_at \u003c 7200 and plebbit_uptime_monitor_last_subplebbit_update_fetch_success != 0 ",
+                "instant": true,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": false,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbits Online",
+            "transformations": [
+              { "id": "timeSeriesTable", "options": { "A": { "timeField": "Time" } } },
+              {
+                "id": "organize",
+                "options": {
+                  "excludeByName": {
+                    "__name__": true,
+                    "instance": true,
+                    "job": true,
+                    "service": true
+                  },
+                  "includeByName": {},
+                  "indexByName": {},
+                  "renameByName": {
+                    "Trend #A": "Time Since Last Update",
+                    "subplebbit_address": "Subplebbit"
+                  }
+                }
+              },
+              { "id": "sortBy", "options": { "fields": {}, "sort": [{ "field": "Subplebbit" }] } }
+            ],
+            "type": "table"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "custom": {
+                  "align": "auto",
+                  "cellOptions": { "type": "auto" },
+                  "filterable": false,
+                  "inspect": false
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 12, "y": 149 },
+            "id": 60,
+            "options": {
+              "cellHeight": "sm",
+              "footer": { "countRows": true, "fields": "", "reducer": ["count"], "show": true },
+              "frameIndex": 1,
+              "showHeader": true,
+              "sortBy": [{ "desc": true, "displayName": "Subplebbit" }]
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "exemplar": false,
+                "expr": "plebbit_uptime_monitor_last_subplebbit_update_fetch_seconds_since_updated_at \u003e= 7200 or plebbit_uptime_monitor_last_subplebbit_update_fetch_success == 0 ",
+                "instant": true,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": false,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbits Offline",
+            "transformations": [
+              { "id": "timeSeriesTable", "options": { "A": { "timeField": "Time" } } },
+              {
+                "id": "organize",
+                "options": {
+                  "excludeByName": {
+                    "__name__": true,
+                    "instance": true,
+                    "job": true,
+                    "service": true
+                  },
+                  "includeByName": {},
+                  "indexByName": {},
+                  "renameByName": {
+                    "Trend #A": "Time Since Last Update",
+                    "subplebbit_address": "Subplebbit"
+                  }
+                }
+              },
+              { "id": "sortBy", "options": { "fields": {}, "sort": [{ "field": "Subplebbit" }] } }
+            ],
+            "type": "table"
+          }
+        ],
+        "title": "Subplebbits Summary",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 18 },
+        "id": 61,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "red" },
+                    { "color": "green", "value": 1 },
+                    { "color": "yellow", "value": 1800 },
+                    { "color": "red", "value": 7200 }
+                  ]
+                },
+                "unit": "s"
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": ["business-and-finance.eth"],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": []
+                }
+              ]
+            },
+            "gridPos": { "h": 4, "w": 3, "x": 0, "y": 27 },
+            "id": 63,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "percentChangeColorMode": "standard",
+              "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+              "showPercentChange": false,
+              "textMode": "name",
+              "wideLayout": true
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_last_subplebbit_update_fetch_seconds_since_updated_at{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"} * 0) * plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"}",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit",
+            "type": "stat"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "red" },
+                    { "color": "green", "value": 1 },
+                    { "color": "yellow", "value": 1800 },
+                    { "color": "red", "value": 7200 }
+                  ]
+                },
+                "unit": "s"
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": ["business-and-finance.eth"],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": []
+                }
+              ]
+            },
+            "gridPos": { "h": 4, "w": 4, "x": 3, "y": 27 },
+            "id": 64,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "percentChangeColorMode": "standard",
+              "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+              "showPercentChange": false,
+              "textMode": "auto",
+              "wideLayout": true
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_last_subplebbit_update_fetch_seconds_since_updated_at{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"} * 0) * plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"}",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Time Since Updated",
+            "type": "stat"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "area" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 1800 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 4, "w": 17, "x": 7, "y": 27 },
+            "id": 62,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_last_subplebbit_update_fetch_seconds_since_updated_at{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"} * 0) * plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"}",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit Time Since Last Updated",
+            "type": "timeseries"
+          }
+        ],
+        "title": "Subplebbits Uptime",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 19 },
+        "id": 171,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "red" },
+                    { "color": "green", "value": 1 },
+                    { "color": "yellow", "value": 1800 },
+                    { "color": "red", "value": 7200 }
+                  ]
+                },
+                "unit": "s"
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": ["business-and-finance.eth"],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": []
+                }
+              ]
+            },
+            "gridPos": { "h": 5, "w": 3, "x": 0, "y": 28 },
+            "id": 172,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "percentChangeColorMode": "standard",
+              "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+              "showPercentChange": false,
+              "textMode": "name",
+              "wideLayout": true
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_last_subplebbit_update_fetch_seconds_since_updated_at{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"} * 0) * plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"}",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit",
+            "type": "stat"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 25,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "decimals": 0,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 1800 }]
+                },
+                "unit": "users"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 7, "x": 3, "y": 28 },
+            "id": 170,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_subplebbit_stats_all_active_user_count{subplebbit_address=~\"$subplebbit_address\"}",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit Users",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 25,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "decimals": 0,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 1800 }]
+                },
+                "unit": "posts"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 7, "x": 10, "y": 28 },
+            "id": 173,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_subplebbit_stats_all_post_count{subplebbit_address=~\"$subplebbit_address\"}",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit Posts",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 25,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "decimals": 0,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 1800 }]
+                },
+                "unit": "replies"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 7, "x": 17, "y": 28 },
+            "id": 174,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_subplebbit_stats_all_reply_count{subplebbit_address=~\"$subplebbit_address\"} ",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit Replies",
+            "type": "timeseries"
+          }
+        ],
+        "title": "Subplebbits Stats",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 20 },
+        "id": 542,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "red" },
+                    { "color": "green", "value": 1 },
+                    { "color": "yellow", "value": 1800 },
+                    { "color": "red", "value": 7200 }
+                  ]
+                },
+                "unit": "s"
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": ["business-and-finance.eth"],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": []
+                }
+              ]
+            },
+            "gridPos": { "h": 4, "w": 3, "x": 0, "y": 21 },
+            "id": 650,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "percentChangeColorMode": "standard",
+              "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+              "showPercentChange": false,
+              "textMode": "name",
+              "wideLayout": true
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "exemplar": false,
+                "expr": "plebbit_uptime_monitor_subplebbit_pubsub_seconds_since_last_subplebbit_pubsub_message{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"} * 0",
+                "instant": true,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": false,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit",
+            "type": "stat"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "red" },
+                    { "color": "green", "value": 1 },
+                    { "color": "yellow", "value": 1800 },
+                    { "color": "red", "value": 7200 }
+                  ]
+                },
+                "unit": "s"
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": ["business-and-finance.eth"],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": []
+                }
+              ]
+            },
+            "gridPos": { "h": 4, "w": 2, "x": 3, "y": 21 },
+            "id": 3752,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "percentChangeColorMode": "standard",
+              "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+              "showPercentChange": false,
+              "textMode": "auto",
+              "wideLayout": true
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_last_subplebbit_update_fetch_seconds_since_updated_at{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"} * 0) * plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"}",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Updated",
+            "type": "stat"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "red" },
+                    { "color": "green", "value": 1 },
+                    { "color": "yellow", "value": 1800 },
+                    { "color": "red", "value": 7200 }
+                  ]
+                },
+                "unit": "s"
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": ["business-and-finance.eth"],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": []
+                }
+              ]
+            },
+            "gridPos": { "h": 4, "w": 3, "x": 5, "y": 21 },
+            "id": 1001,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "percentChangeColorMode": "standard",
+              "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+              "showPercentChange": false,
+              "textMode": "auto",
+              "wideLayout": true
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "exemplar": false,
+                "expr": "plebbit_uptime_monitor_subplebbit_pubsub_seconds_since_last_subplebbit_pubsub_message{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"} * 0",
+                "instant": true,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": false,
+                "refId": "A"
+              }
+            ],
+            "title": "Last Pubsub Message",
+            "type": "stat"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "area" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 1800 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 4, "w": 6, "x": 8, "y": 21 },
+            "id": 2206,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_subplebbit_pubsub_seconds_since_last_subplebbit_pubsub_message{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"} * 0",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Time Since Last Pubsub Message",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 15,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "decimals": 0,
+                "mappings": [],
+                "thresholds": { "mode": "absolute", "steps": [{ "color": "transparent" }] },
+                "unit": "messages"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 4, "w": 4, "x": 14, "y": 21 },
+            "id": 1247,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_subplebbit_pubsub_message_count{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"} * 0",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Pubsub Message Count",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 15,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "decimals": 0,
+                "mappings": [],
+                "thresholds": { "mode": "absolute", "steps": [{ "color": "transparent" }] },
+                "unit": "peers"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 4, "w": 3, "x": 18, "y": 21 },
+            "id": 1644,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_last_subplebbit_pubsub_pubsub_peer_count{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_last_subplebbit_pubsub_pubsub_peers_fetch_success{subplebbit_address=~\"$subplebbit_address\"} * 0",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Pubsub Peers",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 15,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "decimals": 0,
+                "mappings": [],
+                "thresholds": { "mode": "absolute", "steps": [{ "color": "transparent" }] },
+                "unit": "peers"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 4, "w": 3, "x": 21, "y": 21 },
+            "id": 1785,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_last_subplebbit_pubsub_http_routers_peer_count{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_last_subplebbit_pubsub_http_routers_peers_fetch_success{subplebbit_address=~\"$subplebbit_address\"} * 0",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "HTTP Routers Peers",
+            "type": "timeseries"
+          }
+        ],
+        "title": "Subplebbits Pubsub",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 21 },
+        "id": 2417,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "red" },
+                    { "color": "green", "value": 1 },
+                    { "color": "yellow", "value": 1800 },
+                    { "color": "red", "value": 7200 }
+                  ]
+                },
+                "unit": "s"
+              },
+              "overrides": [
+                {
+                  "__systemRef": "hideSeriesFrom",
+                  "matcher": {
+                    "id": "byNames",
+                    "options": {
+                      "mode": "exclude",
+                      "names": ["business-and-finance.eth"],
+                      "prefix": "All except:",
+                      "readOnly": true
+                    }
+                  },
+                  "properties": []
+                }
+              ]
+            },
+            "gridPos": { "h": 6, "w": 3, "x": 0, "y": 30 },
+            "id": 2628,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "percentChangeColorMode": "standard",
+              "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+              "showPercentChange": false,
+              "textMode": "name",
+              "wideLayout": true
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "exemplar": false,
+                "expr": "plebbit_uptime_monitor_subplebbit_pubsub_seconds_since_last_subplebbit_pubsub_message{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_last_subplebbit_update_fetch_success{subplebbit_address=~\"$subplebbit_address\"} * 0",
+                "instant": true,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": false,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit",
+            "type": "stat"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 1800 }]
+                },
+                "unit": "s"
+              },
+              "overrides": [
+                {
+                  "matcher": { "id": "byFrameRefID", "options": "B" },
+                  "properties": [{ "id": "custom.axisPlacement", "value": "right" }]
+                }
+              ]
+            },
+            "gridPos": { "h": 6, "w": 11, "x": 3, "y": 30 },
+            "id": 2910,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_subplebbit_pubsub_seconds_since_last_subplebbit_pubsub_message{subplebbit_address=~\"$subplebbit_address\"} ",
+                "instant": false,
+                "legendFormat": "time since last pubsub message",
+                "range": true,
+                "refId": "A"
+              },
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_subplebbit_pubsub_last_publish_duration_seconds{subplebbit_address=~\"$subplebbit_address\"} * plebbit_uptime_monitor_subplebbit_pubsub_last_publish_success{subplebbit_address=~\"$subplebbit_address\"} or plebbit_uptime_monitor_subplebbit_pubsub_last_publish_success{subplebbit_address=~\"$subplebbit_address\"} * 0",
+                "hide": false,
+                "instant": false,
+                "legendFormat": "last publish duration",
+                "range": true,
+                "refId": "B"
+              }
+            ],
+            "title": "Time Since Last Pubsub Message",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 10,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "decimals": 0,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 1800 }]
+                },
+                "unit": "bool_yes_no"
+              },
+              "overrides": [
+                {
+                  "matcher": { "id": "byFrameRefID", "options": "B" },
+                  "properties": [
+                    { "id": "custom.axisPlacement", "value": "right" },
+                    { "id": "unit", "value": "errors" },
+                    { "id": "custom.axisSoftMax", "value": 3 },
+                    { "id": "color", "value": { "mode": "continuous-reds" } }
+                  ]
+                }
+              ]
+            },
+            "gridPos": { "h": 6, "w": 10, "x": 14, "y": 30 },
+            "id": 3296,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "repeat": "subplebbit_address",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_subplebbit_pubsub_last_publish_success{subplebbit_address=~\"$subplebbit_address\"}",
+                "instant": false,
+                "legendFormat": "success",
+                "range": true,
+                "refId": "A"
+              },
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_subplebbit_pubsub_last_publish_error_count{subplebbit_address=~\"$subplebbit_address\"}",
+                "hide": false,
+                "instant": false,
+                "legendFormat": "error count",
+                "range": true,
+                "refId": "B"
+              }
+            ],
+            "title": "Publish Success",
+            "type": "timeseries"
+          }
+        ],
+        "title": "Subplebbits Pubsub Publish",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 22 },
+        "id": 426,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 50,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "normal" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                },
+                "unit": "percentunit"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 24, "x": 0, "y": 185 },
+            "id": 428,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_http_router_get_providers_fetch_success_count or (plebbit_uptime_monitor_http_router_get_providers_fetch_count * 0)) / plebbit_uptime_monitor_http_router_get_providers_fetch_count",
+                "instant": false,
+                "legendFormat": "{{http_router_url}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "HTTP Router Get Providers Fetch Success Rate",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 1 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 0, "y": 193 },
+            "id": 429,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_http_router_last_get_providers_fetch_duration_seconds or plebbit_uptime_monitor_http_router_last_get_providers_fetch_success * 0) * plebbit_uptime_monitor_http_router_last_get_providers_fetch_success",
+                "instant": false,
+                "legendFormat": "GET {{http_router_url}}",
+                "range": true,
+                "refId": "A"
+              },
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_http_router_last_post_providers_fetch_duration_seconds or plebbit_uptime_monitor_http_router_last_get_providers_fetch_success * 0) * plebbit_uptime_monitor_http_router_last_get_providers_fetch_success",
+                "hide": false,
+                "instant": false,
+                "legendFormat": "POST {{http_router_url}}",
+                "range": true,
+                "refId": "B"
+              }
+            ],
+            "title": "HTTP Routers Get Providers Fetch Duration",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "fieldMinMax": false,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                },
+                "unit": "seconds/m"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 12, "y": 193 },
+            "id": 430,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "disableTextWrap": false,
+                "editorMode": "code",
+                "expr": "rate(plebbit_uptime_monitor_http_router_get_providers_fetch_duration_seconds_sum[30m]) * 60",
+                "fullMetaSearch": false,
+                "includeNullMetadata": true,
+                "instant": false,
+                "legendFormat": "{{http_router_url}}",
+                "range": true,
+                "refId": "A",
+                "useBackend": false
+              }
+            ],
+            "title": "HTTP Routers Get Providers Fetch Duration Per Minute",
+            "type": "timeseries"
+          }
+        ],
+        "title": "HTTP Routers Summary",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 23 },
+        "id": 431,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "area" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 1 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 9, "x": 0, "y": 136 },
+            "id": 448,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "http_router_url",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_http_router_last_get_providers_fetch_duration_seconds{http_router_url=~\"$http_router_url\"} or plebbit_uptime_monitor_http_router_last_get_providers_fetch_success{http_router_url=~\"$http_router_url\"} * 0) * plebbit_uptime_monitor_http_router_last_get_providers_fetch_success{http_router_url=~\"$http_router_url\"}",
+                "instant": false,
+                "legendFormat": "GET {{http_router_url}}",
+                "range": true,
+                "refId": "A"
+              },
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_http_router_last_post_providers_fetch_duration_seconds{http_router_url=~\"$http_router_url\"} or plebbit_uptime_monitor_http_router_last_get_providers_fetch_success{http_router_url=~\"$http_router_url\"} * 0) * plebbit_uptime_monitor_http_router_last_get_providers_fetch_success{http_router_url=~\"$http_router_url\"}",
+                "hide": false,
+                "instant": false,
+                "legendFormat": "POST {{http_router_url}}",
+                "range": true,
+                "refId": "B"
+              }
+            ],
+            "title": "HTTP Router Get Providers Fetch Duration",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 25,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "decimals": 0,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 30 }]
+                },
+                "unit": "providers"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 9, "x": 9, "y": 136 },
+            "id": 486,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "http_router_url",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_http_router_last_subplebbit_ipns_get_providers_fetch_provider_count{http_router_url=~\"$http_router_url\"} or (plebbit_uptime_monitor_http_router_last_subplebbit_ipns_get_providers_fetch_success{http_router_url=~\"$http_router_url\"} * 0)",
+                "instant": false,
+                "legendFormat": "{{subplebbit_address}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit IPNS Provider Count",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "mappings": [],
+                "max": 1,
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 30 }]
+                },
+                "unit": "percentunit"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 6, "x": 18, "y": 136 },
+            "id": 525,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": false
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "http_router_url",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "count(plebbit_uptime_monitor_http_router_last_subplebbit_ipns_get_providers_fetch_provider_count{http_router_url=~\"$http_router_url\"} \u003e 0) or vector(0)\n/\ncount(plebbit_uptime_monitor_http_router_last_subplebbit_ipns_get_providers_fetch_success{http_router_url=~\"$http_router_url\"})\n",
+                "instant": false,
+                "legendFormat": "Success",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Subplebbit IPNS Success Rate",
+            "type": "timeseries"
+          }
+        ],
+        "title": "HTTP Routers",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 24 },
+        "id": 533,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "area" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "transparent" }, { "color": "red", "value": 10 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 5, "w": 24, "x": 0, "y": 25 },
+            "id": 534,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "chain_provider_url",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_chain_provider_last_resolve_address_duration_seconds{chain_provider_url=~\"$chain_provider_url\"} or plebbit_uptime_monitor_chain_provider_last_resolve_address_success{chain_provider_url=~\"$chain_provider_url\"} * 0) * plebbit_uptime_monitor_chain_provider_last_resolve_address_success{chain_provider_url=~\"$chain_provider_url\"}",
+                "instant": false,
+                "legendFormat": "{{chain_provider_url}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Chain Provider Resolve Address Duration",
+            "type": "timeseries"
+          }
+        ],
+        "title": "Chain Providers",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 25 },
+        "id": 3753,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "green", "value": null },
+                    { "color": "red", "value": 80 }
+                  ]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 7, "w": 18, "x": 0, "y": 26 },
+            "id": 3754,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_plebbit_seeder_last_subplebbit_update_cid_fetch_duration_seconds or plebbit_uptime_monitor_plebbit_seeder_last_subplebbit_update_cid_fetch_success * 0) * plebbit_uptime_monitor_plebbit_seeder_last_subplebbit_update_cid_fetch_success",
+                "instant": false,
+                "legendFormat": "{{plebbit_seeder_peer_id}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Plebbit Seeder Subplebbit Fetch Duration",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "custom": {
+                  "align": "auto",
+                  "cellOptions": { "type": "auto", "wrapText": false },
+                  "filterable": false,
+                  "inspect": false
+                },
+                "fieldMinMax": false,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "green", "value": null },
+                    { "color": "red", "value": 80 }
+                  ]
+                }
+              },
+              "overrides": [
+                {
+                  "matcher": { "id": "byName", "options": "Last Online" },
+                  "properties": [
+                    { "id": "unit", "value": "dateTimeFromNow" },
+                    { "id": "custom.width", "value": 95 }
+                  ]
+                },
+                {
+                  "matcher": { "id": "byName", "options": "Plebbit Previewer" },
+                  "properties": [{ "id": "custom.width", "value": 221 }]
+                }
+              ]
+            },
+            "gridPos": { "h": 7, "w": 6, "x": 18, "y": 26 },
+            "id": 3755,
+            "options": {
+              "cellHeight": "sm",
+              "footer": { "countRows": true, "fields": "", "reducer": ["count"], "show": true },
+              "frameIndex": 8,
+              "showHeader": true,
+              "sortBy": []
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "exemplar": false,
+                "expr": "timestamp(plebbit_uptime_monitor_plebbit_seeder_last_subplebbit_update_cid_fetch_success == 1) * 1000",
+                "instant": false,
+                "legendFormat": "{{plebbit_seeder_peer_id}}",
+                "range": true,
+                "refId": "A"
+              },
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_plebbit_seeder_last_subplebbit_update_cid_fetch_success",
+                "hide": false,
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "B"
+              }
+            ],
+            "title": "Plebbit Seeders Offline",
+            "transformations": [
+              {
+                "id": "timeSeriesTable",
+                "options": {
+                  "A": { "stat": "lastNotNull", "timeField": "Time" },
+                  "B": { "timeField": "Time" }
+                }
+              },
+              {
+                "id": "joinByField",
+                "options": { "byField": "plebbit_seeder_peer_id", "mode": "outer" }
+              },
+              {
+                "id": "extractFields",
+                "options": {
+                  "format": "json",
+                  "jsonPaths": [{ "alias": "timestamp", "path": "value" }],
+                  "source": "Trend #A"
+                }
+              },
+              {
+                "id": "extractFields",
+                "options": {
+                  "format": "json",
+                  "jsonPaths": [{ "alias": "success", "path": "value" }],
+                  "source": "Trend #B"
+                }
+              },
+              {
+                "id": "filterByValue",
+                "options": {
+                  "filters": [
+                    {
+                      "config": { "id": "equal", "options": { "value": 1 } },
+                      "fieldName": "success"
+                    }
+                  ],
+                  "match": "any",
+                  "type": "exclude"
+                }
+              },
+              {
+                "id": "organize",
+                "options": {
+                  "excludeByName": {
+                    "Trend #A": true,
+                    "Trend #B": true,
+                    "__name__": true,
+                    "instance": true,
+                    "instance 1": true,
+                    "instance 2": true,
+                    "job": true,
+                    "job 1": true,
+                    "job 2": true,
+                    "service": true,
+                    "service 1": true,
+                    "service 2": true,
+                    "success": true
+                  },
+                  "includeByName": {},
+                  "indexByName": {},
+                  "renameByName": {
+                    "plebbit_previewer_url": "Plebbit Previewer",
+                    "plebbit_seeder_peer_id": "Plebbit Seeder",
+                    "timestamp": "Last Online",
+                    "webpage_url": "Webpage"
+                  }
+                }
+              },
+              {
+                "id": "sortBy",
+                "options": { "fields": {}, "sort": [{ "desc": true, "field": "Last Online" }] }
+              }
+            ],
+            "type": "table"
+          }
+        ],
+        "title": "Plebbit Seeders",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 26 },
+        "id": 531,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "green", "value": null },
+                    { "color": "red", "value": 80 }
+                  ]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 7, "w": 18, "x": 0, "y": 34 },
+            "id": 530,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_plebbit_previewer_last_comment_preview_fetch_duration_seconds or plebbit_uptime_monitor_plebbit_previewer_last_comment_preview_fetch_success * 0) * plebbit_uptime_monitor_plebbit_previewer_last_comment_preview_fetch_success",
+                "instant": false,
+                "legendFormat": "{{plebbit_previewer_url}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Plebbit Previewer Comment Preview Fetch Duration",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "custom": {
+                  "align": "auto",
+                  "cellOptions": { "type": "auto", "wrapText": false },
+                  "filterable": false,
+                  "inspect": false
+                },
+                "fieldMinMax": false,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    { "color": "green", "value": null },
+                    { "color": "red", "value": 80 }
+                  ]
+                }
+              },
+              "overrides": [
+                {
+                  "matcher": { "id": "byName", "options": "Last Online" },
+                  "properties": [
+                    { "id": "unit", "value": "dateTimeFromNow" },
+                    { "id": "custom.width", "value": 95 }
+                  ]
+                },
+                {
+                  "matcher": { "id": "byName", "options": "Plebbit Previewer" },
+                  "properties": [{ "id": "custom.width", "value": 221 }]
+                }
+              ]
+            },
+            "gridPos": { "h": 7, "w": 6, "x": 18, "y": 34 },
+            "id": 539,
+            "options": {
+              "cellHeight": "sm",
+              "footer": { "countRows": true, "fields": "", "reducer": ["count"], "show": true },
+              "frameIndex": 8,
+              "showHeader": true,
+              "sortBy": []
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "exemplar": false,
+                "expr": "timestamp(plebbit_uptime_monitor_plebbit_previewer_last_comment_preview_fetch_success == 1) * 1000",
+                "instant": false,
+                "legendFormat": "{{plebbit_previewer_url}}",
+                "range": true,
+                "refId": "A"
+              },
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_plebbit_previewer_last_comment_preview_fetch_success",
+                "hide": false,
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "B"
+              }
+            ],
+            "title": "Plebbit Previewers Offline",
+            "transformations": [
+              {
+                "id": "timeSeriesTable",
+                "options": {
+                  "A": { "stat": "lastNotNull", "timeField": "Time" },
+                  "B": { "timeField": "Time" }
+                }
+              },
+              {
+                "id": "joinByField",
+                "options": { "byField": "plebbit_previewer_url", "mode": "outer" }
+              },
+              {
+                "id": "extractFields",
+                "options": {
+                  "format": "json",
+                  "jsonPaths": [{ "alias": "timestamp", "path": "value" }],
+                  "source": "Trend #A"
+                }
+              },
+              {
+                "id": "extractFields",
+                "options": {
+                  "format": "json",
+                  "jsonPaths": [{ "alias": "success", "path": "value" }],
+                  "source": "Trend #B"
+                }
+              },
+              {
+                "id": "filterByValue",
+                "options": {
+                  "filters": [
+                    {
+                      "config": { "id": "equal", "options": { "value": 1 } },
+                      "fieldName": "success"
+                    }
+                  ],
+                  "match": "any",
+                  "type": "exclude"
+                }
+              },
+              {
+                "id": "organize",
+                "options": {
+                  "excludeByName": {
+                    "Trend #A": true,
+                    "Trend #B": true,
+                    "__name__": true,
+                    "instance": true,
+                    "instance 1": true,
+                    "instance 2": true,
+                    "job": true,
+                    "job 1": true,
+                    "job 2": true,
+                    "service": true,
+                    "service 1": true,
+                    "service 2": true,
+                    "success": true
+                  },
+                  "includeByName": {},
+                  "indexByName": {},
+                  "renameByName": {
+                    "plebbit_previewer_url": "Plebbit Previewer",
+                    "timestamp": "Last Online",
+                    "webpage_url": "Webpage"
+                  }
+                }
+              },
+              {
+                "id": "sortBy",
+                "options": { "fields": {}, "sort": [{ "desc": true, "field": "Last Online" }] }
+              }
+            ],
+            "type": "table"
+          }
+        ],
+        "title": "Plebbit Previewers",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 27 },
+        "id": 535,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "palette-classic" },
+                "custom": {
+                  "axisBorderShow": false,
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 20,
+                  "gradientMode": "none",
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": { "type": "linear" },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": { "group": "A", "mode": "none" },
+                  "thresholdsStyle": { "mode": "off" }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                },
+                "unit": "s"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 7, "w": 18, "x": 0, "y": 35 },
+            "id": 536,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "(plebbit_uptime_monitor_webpage_last_webpage_fetch_duration_seconds or plebbit_uptime_monitor_webpage_last_webpage_fetch_success * 0) * plebbit_uptime_monitor_webpage_last_webpage_fetch_success",
+                "instant": false,
+                "legendFormat": "{{webpage_url}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "Webpage Fetch Duration",
+            "type": "timeseries"
+          },
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "custom": {
+                  "align": "auto",
+                  "cellOptions": { "type": "auto", "wrapText": false },
+                  "filterable": false,
+                  "inspect": false
+                },
+                "fieldMinMax": false,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "green" }, { "color": "red", "value": 80 }]
+                }
+              },
+              "overrides": [
+                {
+                  "matcher": { "id": "byName", "options": "Last Online" },
+                  "properties": [
+                    { "id": "unit", "value": "dateTimeFromNow" },
+                    { "id": "custom.width", "value": 95 }
+                  ]
+                },
+                {
+                  "matcher": { "id": "byName", "options": "Webpage" },
+                  "properties": [{ "id": "custom.width", "value": 221 }]
+                }
+              ]
+            },
+            "gridPos": { "h": 7, "w": 6, "x": 18, "y": 35 },
+            "id": 537,
+            "options": {
+              "cellHeight": "sm",
+              "footer": { "countRows": true, "fields": "", "reducer": ["count"], "show": true },
+              "frameIndex": 8,
+              "showHeader": true,
+              "sortBy": []
+            },
+            "pluginVersion": "11.1.0",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "exemplar": false,
+                "expr": "timestamp(plebbit_uptime_monitor_webpage_last_webpage_fetch_success == 1) * 1000",
+                "instant": false,
+                "legendFormat": "{{webpage_url}}",
+                "range": true,
+                "refId": "A"
+              },
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_webpage_last_webpage_fetch_success",
+                "hide": false,
+                "instant": false,
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "B"
+              }
+            ],
+            "title": "Webpages Offline",
+            "transformations": [
+              {
+                "id": "timeSeriesTable",
+                "options": {
+                  "A": { "stat": "lastNotNull", "timeField": "Time" },
+                  "B": { "timeField": "Time" }
+                }
+              },
+              { "id": "joinByField", "options": { "byField": "webpage_url", "mode": "outer" } },
+              {
+                "id": "extractFields",
+                "options": {
+                  "format": "json",
+                  "jsonPaths": [{ "alias": "timestamp", "path": "value" }],
+                  "source": "Trend #A"
+                }
+              },
+              {
+                "id": "extractFields",
+                "options": {
+                  "format": "json",
+                  "jsonPaths": [{ "alias": "success", "path": "value" }],
+                  "source": "Trend #B"
+                }
+              },
+              {
+                "id": "filterByValue",
+                "options": {
+                  "filters": [
+                    {
+                      "config": { "id": "equal", "options": { "value": 1 } },
+                      "fieldName": "success"
+                    }
+                  ],
+                  "match": "any",
+                  "type": "exclude"
+                }
+              },
+              {
+                "id": "organize",
+                "options": {
+                  "excludeByName": {
+                    "Trend #A": true,
+                    "Trend #B": true,
+                    "__name__": true,
+                    "instance": true,
+                    "instance 1": true,
+                    "instance 2": true,
+                    "job": true,
+                    "job 1": true,
+                    "job 2": true,
+                    "service": true,
+                    "service 1": true,
+                    "service 2": true,
+                    "success": true
+                  },
+                  "includeByName": {},
+                  "indexByName": {},
+                  "renameByName": { "timestamp": "Last Online", "webpage_url": "Webpage" }
+                }
+              },
+              {
+                "id": "sortBy",
+                "options": { "fields": {}, "sort": [{ "desc": true, "field": "Last Online" }] }
+              }
+            ],
+            "type": "table"
+          }
+        ],
+        "title": "Webpages",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": { "h": 1, "w": 24, "x": 0, "y": 28 },
+        "id": 540,
+        "panels": [
+          {
+            "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": { "mode": "thresholds" },
+                "custom": {
+                  "fillOpacity": 66,
+                  "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                  "insertNulls": false,
+                  "lineWidth": 1,
+                  "spanNulls": false
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [{ "color": "red" }, { "color": "green", "value": 1 }]
+                },
+                "unit": "bool_yes_no"
+              },
+              "overrides": []
+            },
+            "gridPos": { "h": 4, "w": 24, "x": 0, "y": 108 },
+            "id": 541,
+            "options": {
+              "alignValue": "left",
+              "legend": { "displayMode": "list", "placement": "bottom", "showLegend": false },
+              "mergeValues": false,
+              "rowHeight": 0.95,
+              "showValue": "auto",
+              "tooltip": { "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "11.1.0",
+            "repeat": "nft_name",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+                "editorMode": "code",
+                "expr": "plebbit_uptime_monitor_nft_last_ipfs_gateway_fetch_success{nft_name=~\"$nft_name\"}",
+                "instant": false,
+                "legendFormat": "{{nft_name}} {{ipfs_gateway_url}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "NFT IPFS Gateway Fetch Success",
+            "type": "state-timeline"
+          }
+        ],
+        "title": "NFTs",
+        "type": "row"
+      }
+    ],
+    "refresh": "",
+    "schemaVersion": 39,
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": true,
+            "text": [
+              "https://4everland.io",
+              "https://cloudflare-ipfs.com",
+              "https://dweb.link",
+              "https://flk-ipfs.xyz",
+              "https://gateway.forumindex.com",
+              "https://gateway.pinata.cloud",
+              "https://gateway.plebpubsub.xyz",
+              "https://ipfs.cyou",
+              "https://ipfs.io",
+              "https://ipfsgateway.xyz"
+            ],
+            "value": [
+              "https://4everland.io",
+              "https://cloudflare-ipfs.com",
+              "https://dweb.link",
+              "https://flk-ipfs.xyz",
+              "https://gateway.forumindex.com",
+              "https://gateway.pinata.cloud",
+              "https://gateway.plebpubsub.xyz",
+              "https://ipfs.cyou",
+              "https://ipfs.io",
+              "https://ipfsgateway.xyz"
+            ]
+          },
+          "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+          "definition": "label_values(plebbit_uptime_monitor_ipfs_gateway_comment_fetch_count, ipfs_gateway_url)",
+          "hide": 0,
+          "includeAll": false,
+          "label": "ipfs_gateway_url",
+          "multi": true,
+          "name": "ipfs_gateway_url",
+          "options": [],
+          "query": {
+            "qryType": 5,
+            "query": "label_values(plebbit_uptime_monitor_ipfs_gateway_comment_fetch_count, ipfs_gateway_url)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 2,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        },
+        {
+          "current": {
+            "selected": true,
+            "text": [
+              "askplebbit.eth",
+              "bitcoinbrothers.eth",
+              "brasilandia.eth",
+              "business-and-finance.eth",
+              "cave2cave.eth",
+              "censorship-watch.eth",
+              "chantdownbabylon.eth",
+              "cringeposting.eth",
+              "cryptoserious.eth",
+              "decentralizedscam.eth",
+              "diyeconomy.eth",
+              "fatpeoplehate.eth",
+              "health-nutrition-science.eth",
+              "mktwallet.eth",
+              "monarkia.eth",
+              "movies-tv-anime.eth",
+              "plebbit-ukraine.eth",
+              "plebbrothers.eth",
+              "plebcouncil.eth",
+              "pleblore.eth",
+              "plebmusic.eth",
+              "plebpiracy.eth",
+              "plebshelpingplebs.eth",
+              "plebtoken.eth",
+              "plebwhales.eth",
+              "politically-incorrect.eth",
+              "psychicgarden.eth",
+              "reddit-screenshots.eth",
+              "redditdeath.sol",
+              "ripmy.eth",
+              "socomfy.sol",
+              "technopleb.eth",
+              "videos-livestreams-podcasts.eth",
+              "weaponized-autism.eth",
+              "wereadbooks.eth",
+              "💩posting.eth"
+            ],
+            "value": [
+              "askplebbit.eth",
+              "bitcoinbrothers.eth",
+              "brasilandia.eth",
+              "business-and-finance.eth",
+              "cave2cave.eth",
+              "censorship-watch.eth",
+              "chantdownbabylon.eth",
+              "cringeposting.eth",
+              "cryptoserious.eth",
+              "decentralizedscam.eth",
+              "diyeconomy.eth",
+              "fatpeoplehate.eth",
+              "health-nutrition-science.eth",
+              "mktwallet.eth",
+              "monarkia.eth",
+              "movies-tv-anime.eth",
+              "plebbit-ukraine.eth",
+              "plebbrothers.eth",
+              "plebcouncil.eth",
+              "pleblore.eth",
+              "plebmusic.eth",
+              "plebpiracy.eth",
+              "plebshelpingplebs.eth",
+              "plebtoken.eth",
+              "plebwhales.eth",
+              "politically-incorrect.eth",
+              "psychicgarden.eth",
+              "reddit-screenshots.eth",
+              "redditdeath.sol",
+              "ripmy.eth",
+              "socomfy.sol",
+              "technopleb.eth",
+              "videos-livestreams-podcasts.eth",
+              "weaponized-autism.eth",
+              "wereadbooks.eth",
+              "💩posting.eth"
+            ]
+          },
+          "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+          "definition": "label_values(plebbit_uptime_monitor_subplebbit_update_fetch_count, subplebbit_address)",
+          "hide": 0,
+          "includeAll": false,
+          "label": "subplebbit_address",
+          "multi": true,
+          "name": "subplebbit_address",
+          "options": [],
+          "query": {
+            "qryType": 5,
+            "query": "label_values(plebbit_uptime_monitor_subplebbit_update_fetch_count, subplebbit_address)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 2,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        },
+        {
+          "current": {
+            "selected": true,
+            "text": ["https://peers.pleb.bot", "https://routing.lol"],
+            "value": ["https://peers.pleb.bot", "https://routing.lol"]
+          },
+          "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+          "definition": "label_values(plebbit_uptime_monitor_http_router_get_providers_fetch_count, http_router_url)",
+          "hide": 0,
+          "includeAll": false,
+          "label": "http_router_url",
+          "multi": true,
+          "name": "http_router_url",
+          "options": [],
+          "query": {
+            "qryType": 5,
+            "query": "label_values(plebbit_uptime_monitor_http_router_get_providers_fetch_count, http_router_url)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 2,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        },
+        {
+          "current": {
+            "selected": true,
+            "text": ["ethers.js", "https://ethrpc.xyz", "https://solrpc.xyz", "viem", "web3.js"],
+            "value": ["ethers.js", "https://ethrpc.xyz", "https://solrpc.xyz", "viem", "web3.js"]
+          },
+          "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+          "definition": "label_values(plebbit_uptime_monitor_chain_provider_resolve_address_count, chain_provider_url)",
+          "hide": 0,
+          "includeAll": false,
+          "label": "chain_provider_url",
+          "multi": true,
+          "name": "chain_provider_url",
+          "options": [],
+          "query": {
+            "qryType": 5,
+            "query": "label_values(plebbit_uptime_monitor_chain_provider_resolve_address_count, chain_provider_url)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 2,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        },
+        {
+          "current": {
+            "selected": true,
+            "text": ["BitcoinBrothers", "BoredApeYachtClub", "ExosPlebs"],
+            "value": ["BitcoinBrothers", "BoredApeYachtClub", "ExosPlebs"]
+          },
+          "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+          "definition": "label_values(plebbit_uptime_monitor_nft_ipfs_gateway_fetch_count, nft_name)",
+          "hide": 0,
+          "includeAll": false,
+          "label": "nft_name",
+          "multi": true,
+          "name": "nft_name",
+          "options": [],
+          "query": {
+            "qryType": 5,
+            "query": "label_values(plebbit_uptime_monitor_nft_ipfs_gateway_fetch_count, nft_name)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 2,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        },
+        {
+          "current": {
+            "selected": true,
+            "text": [
+              "https://plebpubsub.xyz/api/v0",
+              "https://pubsubprovider.xyz/api/v0",
+              "https://rannithepleb.com/api/v0"
+            ],
+            "value": [
+              "https://plebpubsub.xyz/api/v0",
+              "https://pubsubprovider.xyz/api/v0",
+              "https://rannithepleb.com/api/v0"
+            ]
+          },
+          "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
+          "definition": "label_values(plebbit_uptime_monitor_pubsub_provider_publish_count, pubsub_provider_url)",
+          "hide": 0,
+          "includeAll": false,
+          "label": "pubsub_provider_url",
+          "multi": true,
+          "name": "pubsub_provider_url",
+          "options": [],
+          "query": {
+            "qryType": 5,
+            "query": "label_values(plebbit_uptime_monitor_pubsub_provider_publish_count, pubsub_provider_url)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 2,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        }
+      ]
+    },
+    "time": { "from": "now-24h", "to": "now" },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "Plebbit Uptime Monitor",
+    "uid": "ce0v8nrz7fchsd",
+    "version": 98,
+    "weekStart": ""
+  }
+}

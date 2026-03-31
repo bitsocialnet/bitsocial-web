@@ -9,11 +9,18 @@ yarn install
 yarn start:stats-monitor -- --only webpages
 ```
 
+For the full local Grafana stack, use:
+
+```bash
+yarn stats:up
+```
+
 The main configuration lives in [config.js](./config.js). Community monitoring is client-aware:
 
 - `5chan` is enabled now via the official `5chan-directories.json` list
 - `5chan` community labels remain the public `.bso` aliases, but the monitor queries the matching `.eth` community internally because that is what current clients resolve against
 - future clients can be added through `monitoring.clients`
+- container deployments can override the local Kubo RPC endpoints with `BITSOCIAL_STATS_KUBO_RPC_URL` and `BITSOCIAL_STATS_PUBSUB_KUBO_RPC_URL`
 
 The API listens on port `3000` by default:
 
