@@ -1,16 +1,17 @@
 ## Bitsocial VPS Deploy
 
-This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current` on the VPS and that the static `dist/about` and `dist/docs` builds are already present in that checkout.
+This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current` on the VPS. The VPS hosts the Grafana/Prometheus stack only; the public apex site and docs stay on Vercel.
 
 ### Expected host layout
 
 - repo checkout: `/srv/bitsocial-web/current`
 - host Caddy config: `/etc/caddy/Caddyfile`
 - newsletter/listmonk remains on `newsletter.bitsocial.net` via `127.0.0.1:9000`
+- Vercel owns `bitsocial.net` and proxies `/stats` to this VPS origin at `http://91.234.199.189:8080/stats`
 
 ### Syncing a release
 
-From a local checkout that already ran `yarn build`, sync the repo and build output:
+From a local checkout, sync the repo:
 
 ```bash
 rsync -az --delete \
@@ -45,17 +46,16 @@ systemctl reload caddy
 
 ### Smoke checks
 
-Before DNS cutover:
+Before or after Vercel cutover, verify the VPS origin directly:
 
 ```bash
-curl -H 'Host: bitsocial.net' http://127.0.0.1/
-curl -H 'Host: bitsocial.net' http://127.0.0.1/docs/
-curl -H 'Host: bitsocial.net' http://127.0.0.1/stats/
-curl -H 'Host: bitsocial.net' http://127.0.0.1/stats/5chan
+curl -I http://91.234.199.189:8080/stats
+curl -I http://91.234.199.189:8080/stats/
+curl -I http://91.234.199.189:8080/stats/5chan
 curl -fsS http://127.0.0.1:9091/api/v1/targets
 ```
 
-After DNS cutover:
+After Vercel deploy:
 
 ```bash
 curl -I https://bitsocial.net/

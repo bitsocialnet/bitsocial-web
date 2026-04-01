@@ -2,6 +2,18 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
+      "source": "/stats",
+      "destination": "http://91.234.199.189:8080/stats"
+    },
+    {
+      "source": "/stats/",
+      "destination": "http://91.234.199.189:8080/stats/"
+    },
+    {
+      "source": "/stats/:path*",
+      "destination": "http://91.234.199.189:8080/stats/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

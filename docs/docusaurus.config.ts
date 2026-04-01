@@ -3,6 +3,7 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
 const repoEditUrl = "https://github.com/bitsocialnet/bitsocial-web/tree/master";
+const showDocsGitMetadata = process.env.VERCEL !== "1";
 
 const config: Config = {
   title: "Bitsocial Docs",
@@ -41,7 +42,7 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           editUrl: repoEditUrl,
           breadcrumbs: false,
-          showLastUpdateTime: true,
+          showLastUpdateTime: showDocsGitMetadata,
           showLastUpdateAuthor: false,
           exclude: [
             ".docusaurus/**",

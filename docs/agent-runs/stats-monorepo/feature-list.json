@@ -65,7 +65,7 @@
     {
       "id": "F005",
       "priority": 5,
-      "status": "pending",
+      "status": "completed",
       "description": "Complete production cutover to bitsocial.net root, /docs, and /stats after the user updates Cloudflare manually, then run end-to-end verification.",
       "verification": [
         "curl -I https://bitsocial.net/",
@@ -74,7 +74,7 @@
         "playwright-cli verification on desktop and mobile"
       ],
       "files": ["about", "docs", "stats", "/etc/caddy/Caddyfile"],
-      "notes": "Ask the user to update Cloudflare routing only after VPS deployment is ready."
+      "notes": "Vercel owns the apex and docs; `/stats` is proxied from Vercel to the VPS Grafana origin on port 8080. Grafana Live websockets still return 400 through Vercel, but the dashboards render and refresh through normal HTTP queries."
     }
   ]
 }

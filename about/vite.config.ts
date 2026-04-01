@@ -49,7 +49,7 @@ export default defineConfig(({ command }) => ({
     open: process.env.PORTLESS === "0" ? true : previewOpenUrl,
   },
   build: {
-    outDir: path.resolve(__dirname, "../dist/about"),
+    outDir: path.resolve(__dirname, "../dist"),
     emptyOutDir: true,
   },
   css: {

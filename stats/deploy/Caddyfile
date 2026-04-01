@@ -1,5 +1,8 @@
-bitsocial.net {
+http://:8080 {
 	encode gzip
+	header {
+		X-Robots-Tag "noindex, nofollow, noarchive"
+	}
 
 	@stats5chan path /stats/5chan
 	redir @stats5chan /stats/d/bitsocial-5chan/5chan-stats?orgId=1 302
@@ -11,18 +14,7 @@ bitsocial.net {
 		reverse_proxy 127.0.0.1:3300
 	}
 
-	@docsNoSlash path /docs
-	redir @docsNoSlash /docs/ 308
-
-	handle_path /docs/* {
-		root * /srv/bitsocial-web/current/dist/docs
-		try_files {path} {path}/ {path}.html /index.html
-		file_server
-	}
-
-	root * /srv/bitsocial-web/current/dist/about
-	try_files {path} {path}/ /index.html
-	file_server
+	respond 404
 }
 
 newsletter.bitsocial.net {
