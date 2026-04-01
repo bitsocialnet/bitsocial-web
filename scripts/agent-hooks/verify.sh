@@ -54,11 +54,19 @@ run_required_check() {
   return 1
 }
 
-echo "Running build, lint, typecheck, format check, and security audit..."
+dependency_state_changed() {
+  ! git diff --quiet -- package.json docs-site/package.json yarn.lock
+}
+
+echo "Running pinned dependency check, build, lint, typecheck, format check, and security audit..."
 echo ""
 
 failures=0
 
+run_required_check "corepack yarn deps:check-pinned" corepack yarn deps:check-pinned || failures=1
+if dependency_state_changed; then
+  run_required_check "corepack yarn deps:check-hardened" corepack yarn deps:check-hardened || failures=1
+fi
 run_required_check "corepack yarn build" corepack yarn build || failures=1
 run_required_check "corepack yarn lint" corepack yarn lint || failures=1
 run_required_check "corepack yarn typecheck" corepack yarn typecheck || failures=1

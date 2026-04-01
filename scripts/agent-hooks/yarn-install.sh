@@ -10,11 +10,13 @@ if [ -z "$file_path" ]; then
   exit 0
 fi
 
-if [ "$file_path" = "package.json" ]; then
-  repo_root="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
-  cd "$repo_root" || exit 0
-  echo "package.json changed - running corepack yarn install to update yarn.lock..."
-  corepack yarn install
-fi
+case "$file_path" in
+  package.json|*/package.json)
+    repo_root="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+    cd "$repo_root" || exit 0
+    echo "package.json changed - running corepack yarn deps:install:hardened to update yarn.lock..."
+    corepack yarn deps:install:hardened
+    ;;
+esac
 
 exit 0
