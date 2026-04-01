@@ -10,6 +10,7 @@ It currently powers:
 - the public landing page
 - protocol documentation
 - the Bitsocial apps & services explorer
+- the Bitsocial stats dashboard route (`/stats`)
 
 Over time, this repository will evolve into the **flagship Bitsocial web client**, while the marketing and documentation content moves to subdomains (e.g. `about.bitsocial.net`).
 
@@ -24,7 +25,7 @@ Over time, this repository will evolve into the **flagship Bitsocial web client*
 - Public landing pages and protocol overview
 - Apps & services catalog (`/apps`)
 - Documentation frontend (`/docs`)
-- Network status pages (`/status`)
+- Network stats pages (`/stats`)
 - Shared UI, routing, and internationalization
 - Performance-sensitive visualizations and animations
 
@@ -100,7 +101,7 @@ We welcome translation improvements via PRs.
 
 If you are improving an existing translation in your native language:
 
-1. Open `public/translations/{lang}/default.json` for your language.
+1. Open `about/public/translations/{lang}/default.json` for your language.
 2. Edit only the string values for the keys you want to improve.
 3. Do not add, remove, or rename keys.
 4. Open a PR with just that language file updated.
@@ -237,14 +238,14 @@ The **newsletter** is a dedicated section above the footer (signup UI lives ther
 - [ ] Add `/llms.txt`, `/llms-full.txt`, and `/llms-small.txt`
 - [ ] Submit docs metadata to [llmstxt.cloud directory](https://directory.llmstxt.cloud/)
 
-### Milestone #4: Status/Analytics Page (`/status`)
+### Milestone #4: Stats/Analytics Page (`/stats`)
 
 #### Goal
 
-- Rebuild plebbit.online but fully rebranded and aligned with frontpage design.
+- Rebuild plebbit.online but fully rebranded and aligned with Bitsocial terminology.
 - Position as "pro analytics" rather than a traditional "status page".
 
-- [ ] Initialize status/analytics page from plebbit.online architecture, fully rebranded
+- [ ] Initialize stats/analytics page from plebbit.online architecture, fully rebranded
 - [ ] Categories and filters: default client list, merged/all lists view, and indexer-based discovery views
 - [ ] Let users discover non-default subs (e.g. via ENS queries) with clear safety disclaimers
 - [ ] Add ENS-query-based discovery list with explicit "search results may be unsafe" warning

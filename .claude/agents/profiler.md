@@ -17,7 +17,7 @@ You receive from the parent agent:
 
 ## How It Works
 
-The app exposes `window.__getReactScanReport()` in dev mode via `src/lib/react-scan.ts`. It returns per-component render counts and times: `{ ComponentName: { count, time } }`.
+The app exposes `window.__getReactScanReport()` in dev mode via `about/src/lib/react-scan.ts`. It returns per-component render counts and times: `{ ComponentName: { count, time } }`.
 
 The profiler's `addInitScript` also intercepts `__REACT_DEVTOOLS_GLOBAL_HOOK__` to count React commits independently, which still works if the `react-scan` report is unavailable.
 
@@ -69,7 +69,7 @@ playwright-cli -s=SESSION eval "JSON.stringify(performance.getEntriesByType('mea
 playwright-cli -s=SESSION eval "typeof window.__getReactScanReport==='function'?JSON.stringify(window.__getReactScanReport()):null"
 ```
 
-Replace `ROUTE` with the actual path (for example: `/`, `/apps`, `/docs`, `/about`, `/blog`, `/status`).
+Replace `ROUTE` with the actual path (for example: `/`, `/apps`, `/docs`, `/about`, `/blog`, `/stats`).
 
 ### Step 3: Collect Final Metrics and Close
 
@@ -149,4 +149,4 @@ Routes profiled: /route1, /route2, ...
 - If `__getReactScanReport` returns null, note `react-scan report unavailable` and rely on commit counts.
 - If a route has little content or fails to load, note it in `Info` and continue with the remaining routes.
 - Always stop tracing and close the browser when done, even on errors.
-- Common routes in this app are `/`, `/docs`, `/apps`, `/about`, `/blog`, and `/status`.
+- Common routes in this app are `/`, `/docs`, `/apps`, `/about`, `/blog`, and `/stats`.

@@ -30,9 +30,9 @@ Follow the plan provided by the parent agent. Apply changes using project patter
 | Concern           | Avoid                               | Use Instead                                   |
 | ----------------- | ----------------------------------- | --------------------------------------------- |
 | Derived state     | `useEffect` syncing local state     | Calculate during render                       |
-| Reusable UI       | Copy-paste across pages             | Extract components in `src/components/`       |
+| Reusable UI       | Copy-paste across pages             | Extract components in `about/src/components/` |
 | Navigation        | Manual `window.location` changes    | React Router navigation                       |
-| Source imports    | `../` chains inside `src`           | `@/` alias                                    |
+| Source imports    | `../` chains inside `about/src`     | `@/` alias                                    |
 | Motion            | Always-on animation                 | Respect `prefers-reduced-motion`              |
 | Large route files | Mixed page and reusable UI concerns | Split page composition from reusable sections |
 

@@ -16,7 +16,7 @@ Check what was recently modified (the parent agent may specify files, or use):
 git diff --name-only HEAD~1 -- '*.tsx' '*.ts'
 ```
 
-Focus on files in `src/components/`, `src/pages/`, `src/lib/`, `src/app.tsx`, and `src/main.tsx`.
+Focus on files in `about/src/components/`, `about/src/pages/`, `about/src/lib/`, `about/src/app.tsx`, and `about/src/main.tsx`.
 
 ### Step 2: Review for Violations
 
@@ -25,8 +25,8 @@ Read each changed file and check for these project-critical anti-patterns:
 | Violation                                         | Fix                                         |
 | ------------------------------------------------- | ------------------------------------------- |
 | `useEffect` syncing derived state                 | Calculate during render instead             |
-| Reusable UI duplicated across pages               | Extract to `src/components/`                |
-| New relative imports into `src/**`                | Replace with `@/` imports                   |
+| Reusable UI duplicated across pages               | Extract to `about/src/components/`          |
+| New relative imports into `about/src/**`          | Replace with `@/` imports                   |
 | Motion without reduced-motion fallback            | Add `prefers-reduced-motion` handling       |
 | Page components mixing too much reusable UI logic | Split page composition from shared sections |
 

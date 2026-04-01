@@ -6,17 +6,23 @@
   "license": "AGPL-3.0-only",
   "author": "Bitsocial Forge",
   "workspaces": [
-    "docs-site"
+    "docs",
+    "stats/monitor"
   ],
   "type": "module",
   "scripts": {
-    "start": "concurrently -k -n web,docs -c blue,cyan \"yarn start:web\" \"yarn start:docs\"",
-    "start:web": "node scripts/start-dev.mjs",
+    "start": "concurrently -k -n about,docs -c blue,cyan \"yarn start:about\" \"yarn start:docs\"",
+    "start:about": "node scripts/start-dev.mjs",
     "start:docs": "portless docs.bitsocial node scripts/start-docs.mjs",
+    "start:stats-monitor": "yarn workspace @bitsocial/stats-monitor start",
+    "build:stats-dashboards": "node stats/grafana/scripts/build-dashboards.mjs && oxfmt stats/grafana/dashboards/5chan-stats.json stats/grafana/dashboards/bitsocial-stats.json",
+    "stats:up": "docker compose -f stats/compose.yaml up --build",
+    "stats:down": "docker compose -f stats/compose.yaml down --remove-orphans",
+    "stats:logs": "docker compose -f stats/compose.yaml logs -f",
     "start:android-usb": "node scripts/start-android-usb.mjs",
     "start:ios-sim": "node scripts/start-ios-sim.mjs",
-    "build": "tsgo --noEmit --project tsconfig.json && vite build && yarn docs:build",
-    "docs:build": "yarn --cwd docs-site build --out-dir ../dist/docs && yarn --cwd docs-site pagefind --site ../dist/docs",
+    "build": "tsgo --noEmit --project about/tsconfig.json && vite build --config about/vite.config.ts && yarn docs:build",
+    "docs:build": "yarn --cwd docs build --out-dir ../dist/docs && yarn --cwd docs pagefind --site ../dist/docs",
     "deps:check-pinned": "node scripts/check-pinned-versions.mjs",
     "deps:check-hardened": "YARN_ENABLE_HARDENED_MODE=1 yarn install --immutable",
     "deps:install:hardened": "YARN_ENABLE_HARDENED_MODE=1 yarn install",
@@ -26,11 +32,11 @@
     "lint:fix": "oxlint --config oxlint.json --fix --react-plugin",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
-    "typecheck": "tsgo --noEmit --project tsconfig.json",
-    "preview": "vite preview",
-    "doctor": "react-doctor . -y",
-    "doctor:score": "react-doctor . --score -y",
-    "doctor:verbose": "react-doctor . --verbose -y",
+    "typecheck": "tsgo --noEmit --project about/tsconfig.json && yarn --cwd docs typecheck",
+    "preview": "vite preview --config about/vite.config.ts",
+    "doctor": "react-doctor about -y",
+    "doctor:score": "react-doctor about --score -y",
+    "doctor:verbose": "react-doctor about --verbose -y",
     "commit": "cz"
   },
   "dependencies": {
@@ -97,6 +103,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "engines": {
+    "node": "22.x"
   },
   "packageManager": "yarn@4.13.0"
 }

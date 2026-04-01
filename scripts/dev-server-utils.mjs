@@ -61,7 +61,17 @@ export async function waitForPort(host, port, timeoutMs = 30_000) {
 export function startVite(host, port) {
   const child = spawn(
     yarnBin,
-    ["exec", "vite", "--host", host, "--port", String(port), "--strictPort"],
+    [
+      "exec",
+      "vite",
+      "--config",
+      "about/vite.config.ts",
+      "--host",
+      host,
+      "--port",
+      String(port),
+      "--strictPort",
+    ],
     {
       cwd: repoRoot,
       env: {

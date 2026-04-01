@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: bitsocial-stats-monitor
+    metrics_path: /metrics/prometheus
+    static_configs:
+      - targets:
+          - monitor:3000
