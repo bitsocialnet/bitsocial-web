@@ -74,7 +74,10 @@ src/
 ### Package and Dependency Rules
 
 - Use Yarn 4 via Corepack, never `npm` or `bun`.
+- Use exact versions for `dependencies`, `devDependencies`, and `optionalDependencies` in every tracked `package.json`. Do not introduce semver ranges, `^`, `~`, wildcard ranges, or tags like `latest`.
+- Keep the repo's Yarn registry hardening enabled: exact-version defaults, checksum verification, and a 3-day `npmMinimalAgeGate`. If a dependency or lockfile change needs to bypass the age gate, document the reason before introducing a preapproval exception.
 - Keep `yarn.lock` synchronized when dependency manifests change.
+- Keep Yarn configured to add exact versions by default, keep `yarn deps:check-pinned` passing, and run `yarn deps:check-hardened` when dependency manifests or `yarn.lock` change.
 - Respect the repo's existing dependency versioning style. Do not rewrite version ranges just to satisfy a personal preference.
 
 ### React Architecture Rules
