@@ -14,7 +14,11 @@ Only record items that are repo-specific, likely to recur, and have a concrete m
 
 ## Project Overview
 
-Bitsocial Web is the public-facing landing page and ecosystem entrypoint for Bitsocial.
+Bitsocial Web is a small monorepo for the public Bitsocial web surface:
+
+- `about/` for the marketing and ecosystem site served at `bitsocial.net`
+- `docs/` for the Docusaurus docs served at `bitsocial.net/docs`
+- `stats/` for Grafana, Prometheus, and deployment assets behind `bitsocial.net/stats`
 
 ## Instruction Priority
 
@@ -46,7 +50,7 @@ Bitsocial Web is the public-facing landing page and ecosystem entrypoint for Bit
 
 ## Stack
 
-- React 18 + TypeScript
+- React 19 + TypeScript
 - React Router v6
 - Vite
 - Yarn 4 via Corepack
@@ -71,6 +75,7 @@ about/
 └── vite.config.ts    # Landing-site Vite config
 
 docs/                 # Docusaurus site and agent playbooks
+docs/i18n/            # Docusaurus translations
 stats/                # Monitoring, Grafana, Prometheus, and deployment assets
 ```
 
@@ -143,10 +148,10 @@ stats/                # Monitoring, Grafana, Prometheus, and deployment assets
 
 - Treat `.codex/`, `.cursor/`, and `.claude/` as repo-managed contributor tooling, not private scratch space.
 - Keep equivalent workflow files aligned across all toolchains when their directories contain the same skill, hook, or agent.
-- Keep shared policy in tracked files when possible: `AGENTS.md`, `about/src/AGENTS.md`, `scripts/AGENTS.md`, `docs/agent-playbooks/**`, and `scripts/agent-hooks/**`.
+- Keep shared policy in tracked files when possible: `AGENTS.md`, `about/AGENTS.md`, `about/src/AGENTS.md`, `docs/AGENTS.md`, `stats/AGENTS.md`, `scripts/AGENTS.md`, `docs/agent-playbooks/**`, and `scripts/agent-hooks/**`.
 - When changing shared agent behavior, update the relevant files in `.codex/skills/`, `.cursor/skills/`, `.claude/skills/`, `.codex/agents/`, `.cursor/agents/`, `.claude/agents/`, `.codex/hooks/`, `.cursor/hooks/`, `.claude/hooks/`, and their `hooks.json` or config entry points as needed.
 - Review `.codex/config.toml`, `.cursor/hooks.json`, and `.claude/hooks.json` before changing agent orchestration or hook behavior, because they are the entry points contributors will actually load.
-- Directory-specific auto-loaded rules live under `about/src/AGENTS.md` and `scripts/AGENTS.md`; read them before editing files in those trees.
+- Directory-specific auto-loaded rules live under `about/AGENTS.md`, `about/src/AGENTS.md`, `docs/AGENTS.md`, `stats/AGENTS.md`, and `scripts/AGENTS.md`; read them before editing files in those trees.
 - For work expected to span multiple sessions, keep explicit task state in a `feature-list.json` plus `progress.md` pair using `docs/agent-playbooks/long-running-agent-workflow.md`.
 - If more than one human or toolchain needs the same task state, keep it in a tracked location such as `docs/agent-runs/<slug>/` instead of burying it in a tool-specific hidden directory.
 
@@ -190,6 +195,10 @@ yarn format:check
 yarn doctor
 yarn doctor:score
 yarn doctor:verbose
+yarn build:stats-dashboards
+yarn stats:up
+yarn stats:down
+yarn stats:logs
 ./scripts/create-task-worktree.sh chore ai-workflow-improvement
 ./scripts/agent-init.sh --smoke
 ```

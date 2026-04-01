@@ -1,276 +1,146 @@
 [![License](https://img.shields.io/badge/license-AGPL--3.0--only-red.svg)](https://github.com/bitsocialnet/5chan/blob/master/LICENSE)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-# Bitsocial Official Website
+# Bitsocial Web
 
-This repository contains the official Bitsocial web frontend.
+Bitsocial Web is the public web monorepo for Bitsocial.
 
-It currently powers:
+It currently serves:
 
-- the public landing page
-- protocol documentation
-- the Bitsocial apps & services explorer
-- the Bitsocial stats dashboard route (`/stats`)
+- `https://bitsocial.net/` for the public marketing and ecosystem site
+- `https://bitsocial.net/docs/` for Docusaurus docs
+- `https://bitsocial.net/stats/` for the Grafana-backed stats dashboard
 
-Over time, this repository will evolve into the **flagship Bitsocial web client**, while the marketing and documentation content moves to subdomains (e.g. `about.bitsocial.net`).
+The public URL strategy is route-first, not subdomain-first. Until the flagship web client takes over `bitsocial.net`, docs and stats stay under the main domain for SEO and brand consolidation.
 
-**Live:** https://bitsocial.net
+## Repo Layout
 
----
+```text
+about/   Public marketing and ecosystem site
+docs/    Docusaurus docs, i18n files, and contributor playbooks
+stats/   Grafana, Prometheus, Docker Compose, deploy config, and monitor package
+scripts/ Shared repo scripts and agent hooks
+```
 
-## Scope
+Each top-level subproject has its own local documentation:
 
-**In scope**
+- [`about/README.md`](./about/README.md)
+- [`docs/README.md`](./docs/README.md)
+- [`stats/README.md`](./stats/README.md)
 
-- Public landing pages and protocol overview
-- Apps & services catalog (`/apps`)
-- Documentation frontend (`/docs`)
-- Network stats pages (`/stats`)
-- Shared UI, routing, and internationalization
-- Performance-sensitive visualizations and animations
-
-**Out of scope**
-
-- Wallet integration
-- Authentication / login flows
-- Governance or voting UIs
-- Token economics dashboards
-- Backend services or indexers
-
-This separation is intentional to keep the web frontend lightweight, durable, and relocatable as the ecosystem evolves.
-
----
+The repo root remains the orchestration layer for installs, verification, and cross-project commands.
 
 ## Getting Started
 
-Use the pinned Node.js 22.12.0 toolchain from [`.nvmrc`](./.nvmrc). This repo uses Yarn 4 via the pinned `packageManager` field.
+Use the pinned Node.js version from [`.nvmrc`](./.nvmrc) and Yarn 4 via Corepack.
 
 ```bash
 nvm install && nvm use
 corepack enable
-yarn install  # Install dependencies
-yarn build     # Production build
-yarn typecheck # Type check with tsgo
+corepack yarn install
 ```
 
-The dev server normally runs at http://bitsocial.localhost:1355 via [Portless](https://port1355.dev/), which gives each Bitsocial project a stable, named URL instead of a random port. On non-`master` branches, or when another legacy process is already holding the canonical route, `yarn start` automatically uses a branch-scoped `*.bitsocial.localhost:1355` URL instead of failing. To bypass Portless: `PORTLESS=0 yarn start`
+The main local URL is:
 
-For device testing without Portless:
+- `http://bitsocial.localhost:1355`
 
-- `yarn start:android-usb` starts Vite on localhost and configures `adb reverse`, so a USB-connected Android device can open `http://localhost:<port>`. When the server is listening, it opens that URL in each device’s default browser via `adb` (`am start` VIEW). Set `ANDROID_USB_OPEN_BROWSER=0` to skip auto-open.
-- `yarn start:ios-sim` starts Vite on localhost and opens the site in the iOS Simulator on this Mac. It requires Xcode's Simulator tooling (`simctl`).
+Portless keeps a stable named local URL. On non-`master` branches, the repo can fall back to a branch-scoped `*.bitsocial.localhost:1355` route so parallel worktrees do not collide.
 
----
-
-## Contributing
-
-This repo includes an `AGENTS.md` file with detailed guidance for AI coding agents.
-
-When using an AI assistant to make changes, it is expected to follow the conventions defined there.
-
-### Making Changes
-
-1. Run `yarn start` (opens at http://bitsocial.localhost:1355)
-   Android over USB: run `yarn start:android-usb`
-   iOS Simulator on this Mac: run `yarn start:ios-sim`
-2. Make your changes (manually or via an AI agent)
-3. Test on desktop and mobile viewports
-4. Verify performance and animations
-5. Run all quality checks before committing
-
-### Code Quality
-
-All checks must pass before committing:
+## Common Commands
 
 ```bash
-yarn typecheck    # Type check with tsgo
-yarn lint         # Lint with oxlint
-yarn format:check # Check formatting with oxfmt
+corepack yarn start
+corepack yarn start:android-usb
+corepack yarn start:ios-sim
+corepack yarn build
+corepack yarn lint
+corepack yarn typecheck
+corepack yarn format:check
+corepack yarn doctor
+corepack yarn build:stats-dashboards
+corepack yarn stats:up
+corepack yarn stats:down
+corepack yarn stats:logs
 ```
 
-To auto-fix issues:
+## Verification
+
+Before committing code changes, run:
 
 ```bash
-yarn lint:fix
-yarn format
+corepack yarn build
+corepack yarn lint
+corepack yarn typecheck
+corepack yarn format:check
 ```
 
-### Translations
-
-We welcome translation improvements via PRs.
-
-If you are improving an existing translation in your native language:
-
-1. Open `about/public/translations/{lang}/default.json` for your language.
-2. Edit only the string values for the keys you want to improve.
-3. Do not add, remove, or rename keys.
-4. Open a PR with just that language file updated.
-
-If you need to add or remove keys across languages, use `scripts/update-translations.js`:
+If you changed React UI logic in `about/src/**`, also run:
 
 ```bash
-node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --dry
-node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
-node scripts/update-translations.js --key obsolete_key --delete --write
-node scripts/update-translations.js --audit --dry
+corepack yarn doctor
 ```
 
-### Commits
+If dependencies or manifests changed, also run:
 
-This repo supports Commitizen for guided Conventional Commits.
-Use `yarn commit` (or `yarn exec cz`) for the interactive prompt. `git commit` will also trigger Commitizen via Husky.
+```bash
+corepack yarn deps:check-pinned
+corepack yarn deps:check-hardened
+corepack yarn knip
+```
 
-Use the [Conventional Commits](https://www.conventionalcommits.org/) format:
+## Subproject Notes
 
-- `feat`: new features
-- `fix`: bug fixes
-- `perf`: performance improvements
-- `refactor`: refactors without behavior changes
-- `docs`: documentation changes
-- `style`: formatting only
-- `chore`: maintenance tasks
+### `about/`
 
-### Pre-PR Checklist
+- Contains the Bitsocial public site, not just the `/` landing route
+- Includes the home, about, apps, and blog pages
+- Keeps static assets and translations in `about/public/`
 
-- `yarn typecheck` passes
-- `yarn lint` passes
-- `yarn format:check` passes
-- Tested on mobile viewport
-- Animations are smooth and respect `prefers-reduced-motion`
+### `docs/`
 
----
+- Contains the canonical Docusaurus project
+- Translation source lives in `docs/i18n/`
+- Contributor playbooks and long-running agent state also live here
 
-## Roadmap for this repository
+### `stats/`
 
-### Milestone #1: Frontpage
+- Contains the Grafana/Prometheus stack and deployment files
+- The executable monitor service lives in `stats/monitor/`
+- Public traffic still lands on `bitsocial.net/stats/`, with Vercel proxying to the VPS-hosted Grafana origin
 
-#### Topbar
+## Translations
 
-- [x] Small size logo with no background, and logo text with official font (`Exo`)
-- [x] Most important links, with underline animation
-- [x] Language selector for as many languages as possible
-- [x] Hamburger menu on mobile and mobile topbar design
-- [ ] Dark/light theme button
+Landing-site translations live under:
 
-#### Hero background graphic
+- `about/public/translations/{lang}/default.json`
 
-- [x] Cool and impactful original hero background concept
-- [x] 3D design and animation with three.js (planet graphic + p2p mesh graphic)
-- [ ] Optional GSAP scroll animation (previous attempt was buggy, may revisit)
-- [x] Static version for low-end devices and `prefers-reduced-motion`
-- [x] Light and dark mode variants should look slightly different
+Docs translations live under:
 
-#### Hero tagline text
+- `docs/i18n/{lang}/...`
 
-- [x] Translated in all languages
-- [x] Interactive keyword/key phrase jump to matching Core Features section
-- [ ] GSAP animation to highlight each keyword
+For translation workflow details, see [`docs/agent-playbooks/translations.md`](./docs/agent-playbooks/translations.md).
 
-#### Hero buttons
+## AI Contributor Policy
 
-- [x] Funnel developers to docs
-- [x] Funnel users to apps dashboard
+This repo uses tracked AI workflow files and instructions. Read [`AGENTS.md`](./AGENTS.md) before making changes.
 
-#### Core Features section
+Relevant local rules also live in:
 
-- [x] Explains hero tagline concepts
-- [x] Initial card design (`S`-pattern)
-- [x] Hash-link-friendly navigation to feature sections
-- [x] "Learn more" expand button for each feature
-- [x] GSAP animation for cards on scroll
-- [ ] Fill expanded sections (or switch to full-page overlay pattern)
-- [ ] Translate all expanded content
-- [ ] Link each feature section to specific docs pages (card, expanded section, or both)
+- [`about/AGENTS.md`](./about/AGENTS.md)
+- [`about/src/AGENTS.md`](./about/src/AGENTS.md)
+- [`docs/AGENTS.md`](./docs/AGENTS.md)
+- [`stats/AGENTS.md`](./stats/AGENTS.md)
 
-#### Sanctuary Communication section
+## Deployment Shape
 
-- [x] Landing page section between Core Features and Master Plan (compares federated, blockchain, and Bitsocial approaches)
-- [ ] Expand copy, visuals, or deep links as the protocol story evolves
+- `bitsocial.net` is served by Vercel
+- `/docs` is served from the docs build
+- `/stats` is routed through Vercel to the VPS-hosted Grafana stack
+- `newsletter.bitsocial.net` remains separate
 
-#### Master Plan section
+## Commit Workflow
 
-- [x] Initial roadmap-like design
-- [ ] Write each phase (concise and somewhat vague)
-- [ ] Maybe add per-phase expand buttons (similar to Core Features)
-- [ ] Improve tone and trust (honest/professional)
-- [ ] Link each phase to detailed docs pages
-- [ ] Cover both short-term goals and long-term vision
-- [ ] Add hash links for each phase (or one for master plan)
-- [x] Hidden easter egg
+This repo uses Commitizen for Conventional Commits.
 
-#### Newsletter section
-
-The **newsletter** is a dedicated section above the footer (signup UI lives there, not in the footer). The footer still links to it under Resources as “Newsletter,” scrolling to the `#mailing-list` hash on the home page.
-
-- [ ] Prominent newsletter block with optional three.js graphic (+ static fallback for low-end devices)
-- [x] Hash link `#mailing-list` for sharing and in-app navigation to the section
-- [ ] Visual quality comparable to topbar/hero where it makes sense
-
-#### Footer
-
-- [ ] Visual quality comparable to topbar/hero, translucent design + static fallback for low-end devices
-- [ ] Include all important links (including a newsletter link that jumps to the section above—no duplicate signup field in the footer)
-
-### Milestone #2: App Dashboard (`/apps`)
-
-#### Goal
-
-- Make it at least as good as [nostrapps.com](https://nostrapps.com/) while matching Bitsocial site design.
-
-#### Scope
-
-- [ ] Initial design similar to nostrapps.com, with Bitsocial visual language
-- [ ] Categories and subcategories per app/client type (including profile-based, community-based, imageboard, blog, crowdfunding, indexers, RPC services)
-- [ ] Keep useful categories visible even when empty, with translated descriptions
-- [ ] Integrate lists from `bitsocialnet/lists`
-- [ ] Add "submit your own" PR flow per category/subcategory
-- [ ] Define and publish listing requirements
-
-### Milestone #3: Docs (`/docs`)
-
-#### Goal
-
-- Build docs with strong LLM discoverability and scraping compatibility.
-
-- [ ] Choose docs stack optimized for LLM scraping/indexing (e.g. Mintlify, GitBook, Docusaurus)
-- [ ] Write essential docs first, expand over time
-- [ ] Translate docs to all supported languages
-- [ ] Add `/llms.txt`, `/llms-full.txt`, and `/llms-small.txt`
-- [ ] Submit docs metadata to [llmstxt.cloud directory](https://directory.llmstxt.cloud/)
-
-### Milestone #4: Stats/Analytics Page (`/stats`)
-
-#### Goal
-
-- Rebuild plebbit.online but fully rebranded and aligned with Bitsocial terminology.
-- Position as "pro analytics" rather than a traditional "status page".
-
-- [ ] Initialize stats/analytics page from plebbit.online architecture, fully rebranded
-- [ ] Categories and filters: default client list, merged/all lists view, and indexer-based discovery views
-- [ ] Let users discover non-default subs (e.g. via ENS queries) with clear safety disclaimers
-- [ ] Add ENS-query-based discovery list with explicit "search results may be unsafe" warning
-- [ ] Consider "pro analytics" branding direction inspired by products like [Arkham](https://arkm.com/)
-
-### Milestone #5: Official Core Team Blog (`/blog`)
-
-#### Goal
-
-- Launch an official Bitsocial Core Team blog powered by protocol-native, P2P-loaded content.
-- Use it as the canonical source for development updates and team-authored long-form posts.
-
-#### Scope
-
-- [ ] Build a dedicated blog experience that matches the current Bitsocial visual language
-- [ ] Source posts from a Bitsocial community operated in the background by the core developer team
-- [ ] Load and render blog content P2P via the Bitsocial protocol
-- [ ] Publish development news, release updates, and protocol progress reports
-- [ ] Publish team-member articles for opinions, analysis, and ecosystem commentary
-- [ ] Define simple content categories/tags (e.g. development news vs team opinions)
-
----
-
-## License
-
-This project is licensed under the **GNU Affero General Public License v3 (AGPLv3)**.
-
-The AGPLv3 is used to ensure that all deployed modifications to the Bitsocial web frontend remain free and open source, even when used as a hosted service.
+- Interactive: `corepack yarn commit`
+- Non-interactive agent commits should use `git commit --no-verify -m "message"` because the Husky Commitizen hook expects a TTY

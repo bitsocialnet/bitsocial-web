@@ -1,0 +1,17 @@
+{
+  "name": "bitsocial-stats",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Bitsocial stats dashboards, Prometheus config, and deployment assets.",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "scripts": {
+    "up": "docker compose -f ./compose.yaml up --build",
+    "down": "docker compose -f ./compose.yaml down --remove-orphans",
+    "logs": "docker compose -f ./compose.yaml logs -f",
+    "build:dashboards": "node ./grafana/scripts/build-dashboards.mjs"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}

@@ -55,7 +55,7 @@ run_required_check() {
 }
 
 dependency_state_changed() {
-  ! git diff --quiet -- package.json docs-site/package.json yarn.lock
+  ! git diff --quiet -- package.json about/package.json docs/package.json stats/package.json stats/monitor/package.json yarn.lock
 }
 
 echo "Running pinned dependency check, build, lint, typecheck, format check, and security audit..."

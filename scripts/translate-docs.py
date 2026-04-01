@@ -14,7 +14,7 @@ from deep_translator import GoogleTranslator
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DOCS_ROOT = REPO_ROOT / "docs"
-DOCS_I18N_ROOT = REPO_ROOT / "docs-site" / "i18n"
+DOCS_I18N_ROOT = REPO_ROOT / "docs" / "i18n"
 
 LOCALE_TARGETS = {
     "ar": "ar",
@@ -527,7 +527,7 @@ def translate_category_json(value: Any, locale: str, key: str | None = None) -> 
 
 
 def extract_docs_home_messages() -> dict[str, dict[str, str]]:
-    docs_home_path = REPO_ROOT / "docs-site" / "src" / "components" / "DocsHome.tsx"
+    docs_home_path = REPO_ROOT / "docs" / "src" / "components" / "DocsHome.tsx"
     content = docs_home_path.read_text()
     pattern = re.compile(
         r'tr\(\s*"([^"]+)"\s*,\s*"((?:[^"\\]|\\.)*)"\s*,\s*"((?:[^"\\]|\\.)*)"\s*\)',

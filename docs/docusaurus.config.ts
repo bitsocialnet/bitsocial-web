@@ -72,6 +72,8 @@ const config: Config = {
             "src/**",
             "static/**",
             "agent-runs/**",
+            "AGENTS.md",
+            "README.md",
             "**/*.template.json",
           ],
         },
