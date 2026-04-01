@@ -10,12 +10,12 @@ Seedit là một giải pháp thay thế không cần máy chủ, không cần q
 
 ## Tải xuống
 
-| Nền tảng | Liên kết |
-| --------- | ------------------------------------------------ |
-| Web | [seeit.app](https://seedit.app) |
-| Web (ENS) | `seedit.eth` qua trình duyệt Brave hoặc IPFS Companion |
-| Máy tính để bàn | Có sẵn cho Mac, Windows và Linux |
-| Điện thoại di động | Có sẵn cho Android |
+| Nền tảng           | Liên kết                                               |
+| ------------------ | ------------------------------------------------------ |
+| Web                | [seeit.app](https://seedit.app)                        |
+| Web (ENS)          | `seedit.eth` qua trình duyệt Brave hoặc IPFS Companion |
+| Máy tính để bàn    | Có sẵn cho Mac, Windows và Linux                       |
+| Điện thoại di động | Có sẵn cho Android                                     |
 
 ## Cách cộng đồng hoạt động
 

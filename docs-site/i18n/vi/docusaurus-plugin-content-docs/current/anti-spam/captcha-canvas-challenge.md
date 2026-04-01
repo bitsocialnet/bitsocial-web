@@ -28,12 +28,12 @@ npm install @bitsocial/captcha-canvas-challenge
 
 ## Tùy chọn cấu hình
 
-| Tùy chọn | Loại | Mặc định | Mô tả |
+| Tùy chọn     | Loại     | Mặc định  | Mô tả                                                      |
 | ------------ | -------- | --------- | ---------------------------------------------------------- |
-| `characters` | `number` | `6` | Số ký tự ngẫu nhiên được hiển thị trong hình ảnh xác thực. |
-| `height` | `number` | `100` | Chiều cao của hình ảnh được tạo bằng pixel.                   |
-| `width` | `number` | `300` | Chiều rộng của hình ảnh được tạo bằng pixel.                    |
-| `colors` | `string` | `#32cf7e` | Màu chính được sử dụng cho văn bản xác thực.                   |
+| `characters` | `number` | `6`       | Số ký tự ngẫu nhiên được hiển thị trong hình ảnh xác thực. |
+| `height`     | `number` | `100`     | Chiều cao của hình ảnh được tạo bằng pixel.                |
+| `width`      | `number` | `300`     | Chiều rộng của hình ảnh được tạo bằng pixel.               |
+| `colors`     | `string` | `#32cf7e` | Màu chính được sử dụng cho văn bản xác thực.               |
 
 ## Nó hoạt động như thế nào
 

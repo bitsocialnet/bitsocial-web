@@ -10,59 +10,62 @@ import time
 from pathlib import Path
 from typing import Any
 
-from deep_translator import MyMemoryTranslator
+from deep_translator import GoogleTranslator
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DOCS_ROOT = REPO_ROOT / "docs"
 DOCS_I18N_ROOT = REPO_ROOT / "docs-site" / "i18n"
 
 LOCALE_TARGETS = {
-    "ar": "ar-SA",
-    "bn": "bn-IN",
-    "ca": "ca-ES",
-    "cs": "cs-CZ",
-    "da": "da-DK",
-    "de": "de-DE",
-    "el": "el-GR",
-    "en": "en-GB",
-    "es": "es-ES",
-    "fa": "fa-IR",
-    "fi": "fi-FI",
-    "fil": "fil-PH",
-    "fr": "fr-FR",
-    "he": "he-IL",
-    "hi": "hi-IN",
-    "hu": "hu-HU",
-    "id": "id-ID",
-    "it": "it-IT",
-    "ja": "ja-JP",
-    "ko": "ko-KR",
-    "mr": "mr-IN",
-    "nl": "nl-NL",
-    "no": "nb-NO",
-    "pl": "pl-PL",
-    "pt": "pt-PT",
-    "ro": "ro-RO",
-    "ru": "ru-RU",
-    "sq": "sq-AL",
-    "sv": "sv-SE",
-    "te": "te-IN",
-    "th": "th-TH",
-    "tr": "tr-TR",
-    "uk": "uk-UA",
-    "ur": "ur-PK",
-    "vi": "vi-VN",
+    "ar": "ar",
+    "bn": "bn",
+    "ca": "ca",
+    "cs": "cs",
+    "da": "da",
+    "de": "de",
+    "el": "el",
+    "en": "en",
+    "es": "es",
+    "fa": "fa",
+    "fi": "fi",
+    "fil": "tl",
+    "fr": "fr",
+    "he": "iw",
+    "hi": "hi",
+    "hu": "hu",
+    "id": "id",
+    "it": "it",
+    "ja": "ja",
+    "ko": "ko",
+    "mr": "mr",
+    "nl": "nl",
+    "no": "no",
+    "pl": "pl",
+    "pt": "pt",
+    "ro": "ro",
+    "ru": "ru",
+    "sq": "sq",
+    "sv": "sv",
+    "te": "te",
+    "th": "th",
+    "tr": "tr",
+    "uk": "uk",
+    "ur": "ur",
+    "vi": "vi",
     "zh": "zh-CN",
 }
 
 TRANSLATABLE_FRONTMATTER_KEYS = {"title", "description", "sidebar_label"}
 JSON_SKIP_KEYS = {"slug", "type", "id", "task", "status", "last_updated"}
 PLACEHOLDER_PREFIX = "ZXQPLACEHOLDER"
-BATCH_SIZE = 20
-BATCH_DELAY_SECONDS = 1.1
-MAX_REQUEST_CHARS = 420
+BATCH_SEPARATOR = "<zxqsep/>"
+BATCH_SIZE = 1
+BATCH_DELAY_SECONDS = 0.05
+MAX_REQUEST_CHARS = 3500
+MAX_RETRIES = 2
+RETRY_BASE_DELAY_SECONDS = 1.5
 
-translator_cache: dict[str, MyMemoryTranslator] = {}
+translator_cache: dict[str, GoogleTranslator] = {}
 text_cache: dict[tuple[str, str], str] = {}
 
 
@@ -70,9 +73,12 @@ def log(message: str) -> None:
     print(message, flush=True)
 
 
-def get_translator(locale: str) -> MyMemoryTranslator:
+def get_translator(locale: str) -> GoogleTranslator:
     if locale not in translator_cache:
-        translator_cache[locale] = MyMemoryTranslator(source=LOCALE_TARGETS["en"], target=LOCALE_TARGETS[locale])
+        translator_cache[locale] = GoogleTranslator(
+            source=LOCALE_TARGETS["en"],
+            target=LOCALE_TARGETS[locale],
+        )
     return translator_cache[locale]
 
 
@@ -99,7 +105,7 @@ def chunked_by_request_size(values: list[str], max_chars: int) -> list[list[str]
             chunks.append([value])
             continue
 
-        separator_length = len(f"\n{PLACEHOLDER_PREFIX}SEPZXQ\n") if current_chunk else 0
+        separator_length = len(BATCH_SEPARATOR) if current_chunk else 0
         if current_chunk and current_length + separator_length + value_length > max_chars:
             chunks.append(current_chunk)
             current_chunk = [value]
@@ -137,10 +143,9 @@ def translate_text_batch(texts: list[str], locale: str) -> list[str]:
         for count_batch in chunked(uncached_texts, BATCH_SIZE):
             sized_batches.extend(chunked_by_request_size(count_batch, MAX_REQUEST_CHARS))
 
-        for batch_index, batch in enumerate(sized_batches):
-            separator = f"\n{PLACEHOLDER_PREFIX}SEP{batch_index}ZXQ\n"
-            translated_batch: list[str]
-            for attempt in range(3):
+        for batch in sized_batches:
+            separator = BATCH_SEPARATOR
+            for attempt in range(MAX_RETRIES):
                 try:
                     translated_joined = translator.translate(separator.join(batch))
                     translated_batch = translated_joined.split(separator)
@@ -149,10 +154,41 @@ def translate_text_batch(texts: list[str], locale: str) -> list[str]:
                             f"Unexpected translated batch split for {locale}: {len(translated_batch)} != {len(batch)}"
                         )
                     break
-                except Exception:
-                    if attempt == 2:
-                        raise
-                    time.sleep(1 + attempt)
+                except Exception as error:
+                    if "Unexpected translated batch split" in str(error) and len(batch) > 1:
+                        log(
+                            f"Separator mismatch for {locale} batch of {len(batch)} entries; falling back to individual translations ({error})"
+                        )
+                        translated_batch = translate_texts_individually(batch, locale)
+                        break
+
+                    if "No translation was found" in str(error) and len(batch) == 1:
+                        log(
+                            f"No translation found for {locale} single entry; keeping source text ({error})"
+                        )
+                        translated_batch = list(batch)
+                        break
+
+                    is_last_attempt = attempt == MAX_RETRIES - 1
+                    if is_last_attempt:
+                        if len(batch) == 1:
+                            log(
+                                f"Retry budget exhausted for {locale} single entry; keeping source text ({error})"
+                            )
+                            translated_batch = list(batch)
+                            break
+
+                        log(
+                            f"Retry budget exhausted for {locale} batch of {len(batch)} entries; falling back to individual translations ({error})"
+                        )
+                        translated_batch = translate_texts_individually(batch, locale)
+                        break
+
+                    sleep_for = RETRY_BASE_DELAY_SECONDS * (attempt + 1)
+                    log(
+                        f"Translate request failed for {locale} batch of {len(batch)} entries (attempt {attempt + 1}/{MAX_RETRIES}): {error}. Sleeping {sleep_for}s before retry."
+                    )
+                    time.sleep(sleep_for)
 
             for source_text, translated_text in zip(batch, translated_batch):
                 text_cache[(locale, source_text)] = translated_text
@@ -163,6 +199,34 @@ def translate_text_batch(texts: list[str], locale: str) -> list[str]:
         translated_texts[index] = text_cache.get((locale, text), text)
 
     return translated_texts
+
+
+def translate_text_individual(text: str, locale: str) -> str:
+    if locale == "en" or not text or not should_translate_text(text):
+        return text
+
+    translator = get_translator(locale)
+    for attempt in range(MAX_RETRIES):
+        try:
+            return translator.translate(text)
+        except Exception as error:
+            if "No translation was found" in str(error):
+                log(f"No translation found for {locale} single entry; keeping source text ({error})")
+                return text
+            if attempt == MAX_RETRIES - 1:
+                log(
+                    f"Retry budget exhausted for {locale} single entry; keeping source text ({error})"
+                )
+                return text
+            sleep_for = RETRY_BASE_DELAY_SECONDS * (attempt + 1)
+            log(
+                f"Translate request failed for {locale} single entry (attempt {attempt + 1}/{MAX_RETRIES}): {error}. Sleeping {sleep_for}s before retry."
+            )
+            time.sleep(sleep_for)
+
+
+def translate_texts_individually(texts: list[str], locale: str) -> list[str]:
+    return [translate_text_individual(text, locale) for text in texts]
 
 
 def protect_patterns(text: str, pattern: str, placeholders: dict[str, str]) -> str:
@@ -234,6 +298,9 @@ def split_markdown_translation_unit(line: str) -> tuple[str, str] | None:
     if stripped.startswith(("import ", "export ")):
         return None
 
+    if stripped.startswith(":::"):
+        return None
+
     if stripped.startswith("<") and stripped.endswith(">"):
         return None
 
@@ -263,6 +330,9 @@ def translate_markdown_line(line: str, locale: str) -> str:
     indent = line[: len(line) - len(stripped)]
 
     if stripped.startswith(("import ", "export ")):
+        return line
+
+    if stripped.startswith(":::"):
         return line
 
     if stripped.startswith("<") and stripped.endswith(">"):
@@ -297,6 +367,8 @@ def is_plain_paragraph_line(line: str) -> bool:
     if not stripped:
         return False
     if "|" in stripped:
+        return False
+    if stripped.startswith(":::"):
         return False
     if stripped.startswith(("import ", "export ", "<")):
         return False
@@ -494,6 +566,28 @@ def ensure_custom_code_messages(locales: list[str]) -> None:
         target_code_path.write_text(json.dumps(target_code, ensure_ascii=False, indent=2) + "\n")
 
 
+def ensure_locale_scaffold(locale: str) -> None:
+    if locale == "en":
+        return
+
+    source_root = DOCS_I18N_ROOT / "en"
+    target_root = DOCS_I18N_ROOT / locale
+    scaffold_files = [
+        Path("code.json"),
+        Path("docusaurus-plugin-content-docs") / "current.json",
+        Path("docusaurus-theme-classic") / "footer.json",
+        Path("docusaurus-theme-classic") / "navbar.json",
+    ]
+
+    for relative_path in scaffold_files:
+        source_path = source_root / relative_path
+        target_path = target_root / relative_path
+        if target_path.exists():
+            continue
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        target_path.write_text(source_path.read_text())
+
+
 def copy_and_translate_docs(locale: str) -> None:
     target_root = DOCS_I18N_ROOT / locale / "docusaurus-plugin-content-docs" / "current"
     log(f"Translating markdown docs for {locale} into {target_root}")
@@ -506,9 +600,11 @@ def copy_and_translate_docs(locale: str) -> None:
         target_path = target_root / relative_path
 
         if source_path.suffix in {".md", ".mdx"}:
+            log(f"  [{locale}] {relative_path}")
             translate_markdown_file(source_path, target_path, locale)
         elif source_path.name == "_category_.json":
             data = json.loads(source_path.read_text())
+            log(f"  [{locale}] {relative_path}")
             translated = translate_category_json(data, locale)
             target_path.parent.mkdir(parents=True, exist_ok=True)
             target_path.write_text(json.dumps(translated, ensure_ascii=False, indent=2) + "\n")
@@ -529,8 +625,9 @@ def translate_locale_json(locale: str) -> None:
             continue
 
         source_data = json.loads(source_path.read_text())
-        target_data = json.loads(target_path.read_text())
+        target_data = json.loads(target_path.read_text()) if target_path.exists() else source_data
         translated = translate_json_messages(source_data, target_data, locale)
+        target_path.parent.mkdir(parents=True, exist_ok=True)
         target_path.write_text(json.dumps(translated, ensure_ascii=False, indent=2) + "\n")
 
 
@@ -547,6 +644,8 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+    for locale in args.locales:
+        ensure_locale_scaffold(locale)
     ensure_custom_code_messages(args.locales)
 
     for locale in args.locales:

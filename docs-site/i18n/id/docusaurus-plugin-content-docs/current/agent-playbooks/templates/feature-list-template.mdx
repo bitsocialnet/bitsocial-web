@@ -1,0 +1,26 @@
+---
+title: Templat Daftar Fitur
+description: Templat yang dapat dibaca mesin yang digunakan untuk pelacakan tugas multisesi yang berjalan lama.
+---
+
+# Templat Daftar Fitur
+
+Halaman ini mencerminkan template JSON yang dikirimkan dalam `docs/agent-playbooks/templates/feature-list.template.json` sehingga dapat dijelajahi langsung di dalam situs dokumen juga.
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```

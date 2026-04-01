@@ -1,0 +1,26 @@
+---
+title: Șablon de listă de caracteristici
+description: Șablon care poate fi citit de mașină, utilizat pentru urmărirea sarcinilor cu mai multe sesiuni de lungă durată.
+---
+
+# Șablon de listă de caracteristici
+
+Această pagină reflectă șablonul JSON livrat în `docs/agent-playbooks/templates/feature-list.template.json`, astfel încât să poată fi răsfoit și direct în site-ul de documente.
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```

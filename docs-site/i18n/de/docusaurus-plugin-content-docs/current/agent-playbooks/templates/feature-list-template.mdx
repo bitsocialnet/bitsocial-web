@@ -1,0 +1,26 @@
+---
+title: Feature-Listenvorlage
+description: Maschinenlesbare Vorlage, die für die Nachverfolgung von Aufgaben mit mehreren Sitzungen mit langer Laufzeit verwendet wird.
+---
+
+# Feature-Listenvorlage
+
+Diese Seite spiegelt die in `docs/agent-playbooks/templates/feature-list.template.json` enthaltene JSON-Vorlage wider, sodass sie auch direkt auf der Dokumentationsseite durchsucht werden kann.
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```

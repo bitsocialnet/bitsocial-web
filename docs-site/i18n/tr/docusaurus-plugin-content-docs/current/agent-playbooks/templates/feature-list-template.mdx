@@ -1,0 +1,26 @@
+---
+title: Özellik Listesi Şablonu
+description: Uzun süreli çok oturumlu görev takibi için kullanılan makine tarafından okunabilir şablon.
+---
+
+# Özellik Listesi Şablonu
+
+Bu sayfa, `docs/agent-playbooks/templates/feature-list.template.json`'da gönderilen JSON şablonunu yansıtır, böylece doğrudan dokümanlar sitesinde de gezinilebilir.
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```

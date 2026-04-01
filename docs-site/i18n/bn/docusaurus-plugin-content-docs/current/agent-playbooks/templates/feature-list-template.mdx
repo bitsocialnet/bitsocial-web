@@ -1,0 +1,26 @@
+---
+title: বৈশিষ্ট্য তালিকা টেমপ্লেট
+description: দীর্ঘ-চলমান বহু-সেশন টাস্ক ট্র্যাকিংয়ের জন্য ব্যবহৃত মেশিন-পাঠযোগ্য টেমপ্লেট।
+---
+
+# বৈশিষ্ট্য তালিকা টেমপ্লেট
+
+এই পৃষ্ঠাটি `docs/agent-playbooks/templates/feature-list.template.json`-এ পাঠানো JSON টেমপ্লেটটিকে মিরর করে যাতে এটি সরাসরি ডক্স সাইটের ভিতরেও ব্রাউজ করা যায়।
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```

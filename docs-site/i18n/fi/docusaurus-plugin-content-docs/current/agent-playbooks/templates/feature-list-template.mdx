@@ -1,0 +1,26 @@
+---
+title: Ominaisuusluettelomalli
+description: Koneluettava malli, jota käytetään pitkäaikaiseen usean istunnon tehtävien seurantaan.
+---
+
+# Ominaisuusluettelomalli
+
+Tämä sivu peilaa `docs/agent-playbooks/templates/feature-list.template.json`:ssa toimitettua JSON-mallia, joten sitä voi selata suoraan myös dokumenttisivustossa.
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```

@@ -28,13 +28,13 @@ npm install @bitsocial/evm-contract-challenge
 
 ## Tùy chọn cấu hình
 
-| Tùy chọn | Loại | Mô tả |
-| ------------- | -------- | ------------------------------------------------------------------------------------- |
-| `chainTicker` | `string` | Chuỗi cần truy vấn (ví dụ: `eth`, `matic`, `avax`).                                    |
-| `address` | `string` | Địa chỉ hợp đồng thông minh để gọi.                                                   |
-| `abi` | `string` | Đoạn ABI cho hàm đang được gọi.                                       |
-| `condition` | `string` | Biểu thức so sánh được đánh giá dựa trên giá trị trả lại của hợp đồng (ví dụ: `> 1000`). |
-| `error` | `string` | Thông báo lỗi hiển thị cho các tác giả không đáp ứng điều kiện.                     |
+| Tùy chọn      | Loại     | Mô tả                                                                                    |
+| ------------- | -------- | ---------------------------------------------------------------------------------------- |
+| `chainTicker` | `string` | Chuỗi cần truy vấn (ví dụ: `eth`, `matic`, `avax`).                                      |
+| `address`     | `string` | Địa chỉ hợp đồng thông minh để gọi.                                                      |
+| `abi`         | `string` | Đoạn ABI cho hàm đang được gọi.                                                          |
+| `condition`   | `string` | Biểu thức so sánh được đánh giá dựa trên giá trị trả lại của hợp đồng (ví dụ: `> 1000`). |
+| `error`       | `string` | Thông báo lỗi hiển thị cho các tác giả không đáp ứng điều kiện.                          |
 
 ## Ví dụ
 

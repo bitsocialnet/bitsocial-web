@@ -21,14 +21,14 @@ Trình chặn thư rác là một dịch vụ phát hiện thư rác tập trung
 
 Mọi ấn phẩm được gửi tới điểm cuối `/evaluate` đều nhận được điểm rủi ro bằng số. Điểm số là sự kết hợp có trọng số của một số tín hiệu:
 
-| Tín hiệu | Mô tả |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Tuổi tài khoản | Tài khoản mới nhận được điểm rủi ro cao hơn.                                                                                              |
-| Nghiệp chướng | Nghiệp cộng đồng tích lũy làm giảm rủi ro.                                                                                               |
-| Danh tiếng tác giả | Dữ liệu danh tiếng được thu thập bởi người lập chỉ mục mạng nền.                                                                             |
-| Phân tích nội dung | Chẩn đoán cấp độ văn bản (mật độ liên kết, các mẫu thư rác đã biết, v.v.).                                                                        |
-| Vận tốc | Các bài đăng liên tiếp nhanh chóng từ cùng một tác giả sẽ làm tăng rủi ro.                                                                              |
-| Trí tuệ IP | Định vị địa lý cấp quốc gia và tra cứu nguồn cấp dữ liệu mối đe dọa. Chỉ mã quốc gia được lưu trữ -- địa chỉ IP thô không bao giờ được chia sẻ với cộng đồng. |
+| Tín hiệu           | Mô tả                                                                                                                                                         |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tuổi tài khoản     | Tài khoản mới nhận được điểm rủi ro cao hơn.                                                                                                                  |
+| Nghiệp chướng      | Nghiệp cộng đồng tích lũy làm giảm rủi ro.                                                                                                                    |
+| Danh tiếng tác giả | Dữ liệu danh tiếng được thu thập bởi người lập chỉ mục mạng nền.                                                                                              |
+| Phân tích nội dung | Chẩn đoán cấp độ văn bản (mật độ liên kết, các mẫu thư rác đã biết, v.v.).                                                                                    |
+| Vận tốc            | Các bài đăng liên tiếp nhanh chóng từ cùng một tác giả sẽ làm tăng rủi ro.                                                                                    |
+| Trí tuệ IP         | Định vị địa lý cấp quốc gia và tra cứu nguồn cấp dữ liệu mối đe dọa. Chỉ mã quốc gia được lưu trữ -- địa chỉ IP thô không bao giờ được chia sẻ với cộng đồng. |
 
 ## Ngưỡng cấp
 

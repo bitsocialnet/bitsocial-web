@@ -12,7 +12,7 @@
 npx skills add https://github.com/intellectronica/agent-skills --skill context7
 ```
 
-### Playwright CLI
+### 剧作家 CLI
 
 使用 `playwright-cli` 进行浏览器自动化（导航、交互、屏幕截图、测试、提取）。
 
@@ -23,8 +23,8 @@ playwright-cli install --skills
 
 技能安装位置：
 
-- `.cursor/skills/playwright-cli/`
-- `.claude/skills/playwright-cli/`
+- ZXQ占位符0ZXQ
+- ZXQ占位符0ZXQ
 
 ### Vercel React 最佳实践
 
@@ -34,7 +34,7 @@ playwright-cli install --skills
 npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-react-best-practices
 ```
 
-### 查找技能
+### 寻找技能
 
 从开放生态系统中发现/安装技能。
 
@@ -42,9 +42,9 @@ npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-react-
 npx skills add https://github.com/vercel-labs/skills --skill find-skills
 ```
 
-## MCP 政策原理
+## MCP 政策理由
 
-此项目避免使用 GitHub MCP 和浏览器 MCP 服务器，因为它们会增加大量的工具架构/上下文开销。
+避免在此项目中使用 GitHub MCP 和浏览器 MCP 服务器，因为它们会增加大量的工具架构/上下文开销。
 
-- GitHub 操作：使用 `gh` CLI。
+- GitHub操作：使用`gh` CLI。
 - 浏览器操作：使用`playwright-cli`。

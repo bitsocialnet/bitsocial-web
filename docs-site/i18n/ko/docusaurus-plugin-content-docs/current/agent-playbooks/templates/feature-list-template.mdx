@@ -1,0 +1,26 @@
+---
+title: 기능 목록 템플릿
+description: 장기 실행 다중 세션 작업 추적에 사용되는 컴퓨터 판독 가능 템플릿입니다.
+---
+
+# 기능 목록 템플릿
+
+이 페이지는 `docs/agent-playbooks/templates/feature-list.template.json`에 제공된 JSON 템플릿을 미러링하므로 문서 사이트 내에서도 직접 찾아볼 수 있습니다.
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```

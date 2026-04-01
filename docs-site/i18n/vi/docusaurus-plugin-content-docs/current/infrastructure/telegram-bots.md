@@ -1,6 +1,6 @@
 ---
 title: Bot Telegram
-description: Bot nguồn cấp dữ liệu theo dõi danh sách cộng đồng Bitsocial và chuyển tiếp bài đăng tới các kênh Telegram.
+description: Các bot cung cấp dữ liệu theo dõi danh sách cộng đồng Bitsocial và chuyển tiếp bài đăng tới các kênh Telegram.
 sidebar_position: 3
 ---
 
@@ -10,14 +10,14 @@ Các bot Bitsocial Telegram giám sát danh sách cộng đồng khách hàng tr
 
 - **GitHub**: [bitsocialnet/bitsocial-telegram-bot](https://github.com/bitsocialnet/bitsocial-telegram-bots)
 
-## Các bot có sẵn
+## Bot có sẵn
 
-| Bot | Trạng thái | Mô tả |
-| --------------- | ------- | ------------------------------------------------------------------ |
-| **5chan Feed** | Đang hoạt động | Giám sát tất cả 5chan thư mục và chuyển tiếp bài viết mới đến Telegram |
-| **Nguồn cấp dữ liệu Seedit** | Đã lên kế hoạch | Sẽ cung cấp chức năng tương tự cho cộng đồng Seedit.        |
+| Bot                          | Trạng thái      | Mô tả                                                                           |
+| ---------------------------- | --------------- | ------------------------------------------------------------------------------- |
+| **Nguồn cấp dữ liệu 5chan**  | Đang hoạt động  | Giám sát tất cả các thư mục 5chan và chuyển tiếp các bài đăng mới tới Telegram. |
+| **Nguồn cấp dữ liệu Seedit** | Đã lên kế hoạch | Sẽ cung cấp chức năng tương tự cho cộng đồng Seedit.                            |
 
-## Thiết lập
+## Cài đặt
 
 ### Điều kiện tiên quyết
 
@@ -27,7 +27,7 @@ Các bot Bitsocial Telegram giám sát danh sách cộng đồng khách hàng tr
 
 ### Cài đặt
 
-Sao chép kho lưu trữ và cài đặt các phần phụ thuộc:
+Sao chép kho lưu trữ và cài đặt phụ thuộc:
 
 ```bash
 git clone https://github.com/bitsocialnet/bitsocial-telegram-bots.git
@@ -56,6 +56,6 @@ yarn start
 Khi bot chuyển tiếp một bài đăng tới Telegram, nó sẽ bao gồm hai nút nội tuyến:
 
 - **Xem trên 5chan** -- Mở bài đăng trong ứng dụng khách web 5chan.
-- **Xem trên Seedit** -- Mở bài đăng trong ứng dụng khách web Seedit.
+- **Xem trên Seedit** -- Mở bài đăng trong ứng dụng web Seedit.
 
 Điều này cho phép người đăng ký Telegram chuyển thẳng đến chuỗi thảo luận đầy đủ trên bất kỳ ứng dụng khách nào họ thích.

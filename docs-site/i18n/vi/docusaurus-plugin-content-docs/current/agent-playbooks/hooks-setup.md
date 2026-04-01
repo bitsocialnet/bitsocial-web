@@ -4,12 +4,12 @@ Nếu trợ lý mã hóa AI của bạn hỗ trợ các móc nối vòng đời,
 
 ## Móc được đề xuất
 
-| Móc | Lệnh | Mục đích |
-| --------------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `afterFileEdit` | `scripts/agent-hooks/format.sh` | Tự động định dạng tệp sau khi chỉnh sửa AI |
-| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh` | Chạy `corepack yarn install` khi `package.json` thay đổi |
-| `stop` | `scripts/agent-hooks/sync-git-branches.sh` | Cắt bớt các tài liệu tham khảo cũ và xóa các nhánh tác vụ tạm thời được tích hợp |
-| `stop` | `scripts/agent-hooks/verify.sh` | Xây dựng cổng cứng, kiểm tra lỗi mã nguồn, đánh máy và định dạng; lưu giữ thông tin về `yarn npm audit` và chạy `yarn knip` riêng biệt dưới dạng kiểm tra tư vấn khi các phần phụ thuộc/nhập khẩu thay đổi |
+| Móc             | Lệnh                                       | Mục đích                                                                                                                                                                                                   |
+| --------------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `afterFileEdit` | `scripts/agent-hooks/format.sh`            | Tự động định dạng tệp sau khi chỉnh sửa AI                                                                                                                                                                 |
+| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`      | Chạy `corepack yarn install` khi `package.json` thay đổi                                                                                                                                                   |
+| `stop`          | `scripts/agent-hooks/sync-git-branches.sh` | Cắt bớt các tài liệu tham khảo cũ và xóa các nhánh tác vụ tạm thời được tích hợp                                                                                                                           |
+| `stop`          | `scripts/agent-hooks/verify.sh`            | Xây dựng cổng cứng, kiểm tra lỗi mã nguồn, đánh máy và định dạng; lưu giữ thông tin về `yarn npm audit` và chạy `yarn knip` riêng biệt dưới dạng kiểm tra tư vấn khi các phần phụ thuộc/nhập khẩu thay đổi |
 
 ## Tại sao
 

@@ -14,11 +14,11 @@ Cơ sở mã của dự án này vẫn sử dụng cách đặt tên "plebbit" k
 
 ## Tải xuống
 
-| Nền tảng | Liên kết |
-| -------- | ------------------------------------- |
-| Web | [5chan.app](https://5chan.app) |
-| Máy tính để bàn | Có sẵn cho Mac, Windows và Linux |
-| Điện thoại di động | Có sẵn cho Android |
+| Nền tảng           | Liên kết                         |
+| ------------------ | -------------------------------- |
+| Web                | [5chan.app](https://5chan.app)   |
+| Máy tính để bàn    | Có sẵn cho Mac, Windows và Linux |
+| Điện thoại di động | Có sẵn cho Android               |
 
 ## Bảng hoạt động như thế nào
 

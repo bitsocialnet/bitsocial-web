@@ -1,6 +1,6 @@
 # 翻译工作流程
 
-此项目使用 `public/translations/{lang}/default.json` 中的 i18next 翻译文件。
+该项目使用`public/translations/{lang}/default.json`中的i18next翻译文件。
 
 ## 规则
 
@@ -8,7 +8,7 @@
 
 ## 添加或更新密钥
 
-1. 创建一个临时字典文件，例如`translations-temp.json`:
+1. 创建一个临时字典文件，例如ZXQ占位符0ZXQ：
 
 ```json
 {
@@ -19,15 +19,15 @@
 }
 ```
 
-2. 应用翻译地图：
+2. 应用平移图：
 
 ```bash
 node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
 ```
 
-3. 删除临时字典文件。
+3. 删除临时词典文件。
 
-## 其他有用命令
+## 其他有用的命令
 
 ```bash
 # Copy a key from English to all languages (dry run then write)

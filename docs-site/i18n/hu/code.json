@@ -1,54 +1,54 @@
 {
   "docs.pagefindSearch.description": {
-    "message": "Full-text search across the live docs. The index appears after the docs build runs.",
+    "message": "Teljes szöveges keresés az élő dokumentumok között. Az index a docs build futtatása után jelenik meg.",
     "description": "Default description shown above the full-page docs search widget."
   },
   "docs.pagefindSearch.heading": {
-    "message": "Search the docs",
+    "message": "Keresse meg a dokumentumokat",
     "description": "Heading shown above the full-page docs search widget."
   },
   "docs.pagefindSearch.placeholder": {
-    "message": "Search Bitsocial docs",
+    "message": "Keresés a Bitsocial dokumentumok között",
     "description": "Placeholder inside the full-page Pagefind docs search input."
   },
   "docs.pagefindSearch.zeroResults": {
-    "message": "No matching docs yet.",
+    "message": "Még nincsenek megfelelő dokumentumok.",
     "description": "Message shown when the full-page Pagefind docs search has no matches."
   },
   "docs.pagefindSearch.loadMore": {
-    "message": "Load more",
+    "message": "Töltsön be többet",
     "description": "Button label to load more Pagefind search results on the full search page."
   },
   "docs.pagefindSearch.kicker": {
-    "message": "Pagefind",
+    "message": "Oldalkeresés",
     "description": "Kicker label shown above the full-page docs search block."
   },
   "docs.pagefindSearch.loading": {
-    "message": "Loading search UI…",
+    "message": "Keresési felület betöltése…",
     "description": "Status shown while the full-page Pagefind UI is booting."
   },
   "docs.pagefindSearch.error": {
-    "message": "Search is unavailable in this dev session until the static docs build completes.",
+    "message": "A keresés nem érhető el ebben a fejlesztői munkamenetben, amíg a statikus dokumentumok összeállítása be nem fejeződik.",
     "description": "Status shown on the full-page search screen when Pagefind assets are unavailable in a dev session."
   },
   "docs.navbarSearch.placeholder": {
-    "message": "Search docs",
+    "message": "Dokumentumok keresése",
     "description": "Placeholder shown inside the navbar docs search input."
   },
   "docs.navbarSearch.zeroResults": {
-    "message": "No matching docs yet.",
+    "message": "Még nincsenek megfelelő dokumentumok.",
     "description": "Message shown when the navbar docs search has no matches."
   },
   "docs.navbarSearch.loadMore": {
-    "message": "More results",
+    "message": "További eredmények",
     "description": "Button label to load more results in the navbar docs search drawer."
   },
   "docs.navbarSearch.linkAriaLabel": {
-    "message": "Search docs",
+    "message": "Dokumentumok keresése",
     "description": "ARIA label for the fallback navbar docs search link."
   },
   "docs.navbarSearch.linkLabel": {
-    "message": "Search docs",
+    "message": "Dokumentumok keresése",
     "description": "Label for the fallback navbar docs search link."
   },
   "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
@@ -100,7 +100,7 @@
     "description": "The label of the link targeting the tag list page"
   },
   "theme.colorToggle.ariaLabel.mode.system": {
-    "message": "system mode",
+    "message": "rendszer mód",
     "description": "The name for the system color mode"
   },
   "theme.colorToggle.ariaLabel.mode.light": {
@@ -235,7 +235,7 @@
     "description": "The ARIA label to collapse the sidebar category"
   },
   "theme.IconExternalLink.ariaLabel": {
-    "message": "(opens in new tab)",
+    "message": "(új lapon nyílik meg)",
     "description": "The ARIA label for the external link icon"
   },
   "theme.NavBar.navAriaLabel": {
@@ -311,11 +311,11 @@
     "description": "The ARIA label for hamburger menu button of mobile navigation"
   },
   "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
-    "message": "Expand the dropdown",
+    "message": "Bontsa ki a legördülő listát",
     "description": "The ARIA label of the button to expand the mobile dropdown navbar item"
   },
   "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {
-    "message": "Collapse the dropdown",
+    "message": "A legördülő menü összecsukása",
     "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
   },
   "theme.docs.sidebar.expandButtonTitle": {
@@ -335,11 +335,11 @@
     "description": "The title of the page for a blog tag"
   },
   "theme.blog.author.pageTitle": {
-    "message": "{authorName} - {nPosts}",
+    "message": "{authorName} – {nPosts}",
     "description": "The title of the page for a blog author"
   },
   "theme.blog.authorsList.pageTitle": {
-    "message": "Authors",
+    "message": "Szerzők",
     "description": "The title of the authors page"
   },
   "theme.blog.authorsList.viewAll": {
@@ -347,7 +347,7 @@
     "description": "The label of the link targeting the blog authors page"
   },
   "theme.blog.author.noPosts": {
-    "message": "This author has not written any posts yet.",
+    "message": "Ez a szerző még nem írt bejegyzést.",
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
@@ -359,11 +359,11 @@
     "description": "The unlisted content banner message"
   },
   "theme.contentVisibility.draftBanner.title": {
-    "message": "Draft page",
+    "message": "Oldalvázlat",
     "description": "The draft content banner title"
   },
   "theme.contentVisibility.draftBanner.message": {
-    "message": "This page is a draft. It will only be visible in dev and be excluded from the production build.",
+    "message": "Ez az oldal egy piszkozat. Csak a fejlesztőben lesz látható, és ki van zárva az éles összeállításból.",
     "description": "The draft content banner message"
   },
   "theme.ErrorPageContent.tryAgain": {
@@ -379,23 +379,23 @@
     "description": "The title of the tag list page"
   },
   "docs.home.roadmap.card.phase2.eyebrow": {
-    "message": "Phase 2",
+    "message": "2. fázis",
     "description": "Roadmap card eyebrow."
   },
   "docs.home.roadmap.card.phase4.eyebrow": {
-    "message": "Phase 4",
+    "message": "4. fázis",
     "description": "Roadmap card eyebrow."
   },
   "docs.home.roadmap.card.phase5.eyebrow": {
-    "message": "Phase 5",
+    "message": "5. fázis",
     "description": "Roadmap card eyebrow."
   },
   "docs.home.apps.card.5chan.eyebrow": {
-    "message": "Imageboard",
+    "message": "Képtábla",
     "description": "Apps card eyebrow for 5chan."
   },
   "docs.home.apps.card.seedit.eyebrow": {
-    "message": "Forum",
+    "message": "Fórum",
     "description": "Apps card eyebrow for Seedit."
   }
 }

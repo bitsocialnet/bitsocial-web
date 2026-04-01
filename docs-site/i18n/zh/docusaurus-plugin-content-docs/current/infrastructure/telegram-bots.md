@@ -1,29 +1,29 @@
 ---
-title: Telegram 机器人
+title: 电报机器人
 description: 监控 Bitsocial 社区列表并将帖子转发到 Telegram 频道的 Feed 机器人。
 sidebar_position: 3
 ---
 
-# Telegram 机器人
+# 电报机器人
 
-Bitsocial Telegram 机器人监控 Bitsocial 网络上的客户社区列表，并自动将新帖子转发到 Telegram 频道。每条转发的消息都包含链接回 5chan 和 Seeedit 上原始帖子的内联按钮。
+Bitsocial Telegram 机器人监控 Bitsocial 网络上的客户社区列表，并自动将新帖子转发到 Telegram 频道。每条转发的消息都包含内嵌按钮，可链接回 5chan 和 Seeedit 上的原始帖子。
 
-- **GitHub**：[bitsocialnet/bitsocial-电报机器人](https://github.com/bitsocialnet/bitsocial-telegram-bots)
+- **GitHub**: [bitsocialnet/bitsocial-电报机器人](https://github.com/bitsocialnet/bitsocial-telegram-bots)
 
-## 可用机器人
+## 可用的机器人
 
-| 机器人 | 状态 | 描述 |
-| --------------- | ------- | ------------------------------------------------------------------ |
-| **5chan Feed** | 活动 | 监控所有 5chan 目录并将新帖子转发到电报。
-| **种子编辑饲料** |计划|将为 Seeedit 社区提供相同的功能。        |
+| 机器人           | 状态 | 描述                                           |
+| ---------------- | ---- | ---------------------------------------------- |
+| **5chan 饲料**   | 活跃 | 监控所有 5chan 目录并将新帖子转发到 Telegram。 |
+| **种子编辑饲料** | 计划 | 将为 Seeedit 社区提供相同的功能。              |
 
 ## 设置
 
 ### 先决条件
 
 - Node.js
-- Yarn
-- Telegram 机器人令牌（通过 [机器人之父] 创建一个（https://t.me/BotFather))
+- 纱
+- 一个 Telegram 机器人代币（通过 [机器人之父](https://t.me/BotFather)) 创建一个
 
 ### 安装
 
@@ -37,13 +37,13 @@ yarn install
 
 ### 配置
 
-使用机器人令牌在项目根目录中创建一个 `.env` 文件：
+使用您的机器人令牌在项目根目录中创建 `.env` 文件：
 
 ```env
 BOT_TOKEN=your_telegram_bot_token
 ```
 
-### 运行
+### 跑步
 
 配置环境后启动机器人：
 

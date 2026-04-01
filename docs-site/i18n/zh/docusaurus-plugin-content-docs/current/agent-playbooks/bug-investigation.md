@@ -1,12 +1,12 @@
 # 错误调查工作流程
 
-当特定文件/行/代码块中报告错误时使用此流程。
+当特定文件/行/代码块中报告错误时使用此选项。
 
 ## 强制第一步
 
-在编辑之前，检查相关代码的 git 历史记录。 Previous contributors may have introduced behavior for an edge case/workaround.
+在编辑之前，请检查相关代码的 git 历史记录。以前的贡献者可能已经引入了边缘案例/解决方法的行为。
 
-## Workflow
+## 工作流程
 
 1. 扫描文件/区域的最近提交标题（仅标题）：
 
@@ -25,8 +25,8 @@ git blame -L 120,135 src/components/post-desktop/post-desktop.tsx
 git show <commit-hash> -- path/to/file.tsx
 ```
 
-3. 在了解历史上下文后继续复制和修复。
+3. 了解历史背景后继续复制和修复。
 
 ## 故障排除规则
 
-被阻止时，在网络上搜索最近的修复/解决方法。
+被阻止时，请在网络上搜索最新的修复/解决方法。
