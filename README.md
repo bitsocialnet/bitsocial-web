@@ -7,7 +7,7 @@ Bitsocial Web is the public web monorepo for Bitsocial.
 
 It currently serves:
 
-- `https://bitsocial.net/` for the public marketing and ecosystem site
+- `https://bitsocial.net/` for the public Bitsocial landing/about site
 - `https://bitsocial.net/docs/` for Docusaurus docs
 - `https://bitsocial.net/stats/` for the Grafana-backed stats dashboard
 
@@ -16,7 +16,7 @@ The public URL strategy is route-first, not subdomain-first. Until the flagship 
 ## Repo Layout
 
 ```text
-about/   Public marketing and ecosystem site
+about/   Public Bitsocial landing/about site
 docs/    Docusaurus docs, i18n files, and contributor playbooks
 stats/   Grafana, Prometheus, Docker Compose, deploy config, and monitor package
 scripts/ Shared repo scripts and agent hooks
@@ -92,9 +92,9 @@ corepack yarn knip
 
 ### `about/`
 
-- Contains the Bitsocial public site, not just the `/` landing route
-- Includes the home, about, apps, and blog pages
+- Contains the Bitsocial landing/about site
 - Keeps static assets and translations in `about/public/`
+- Should not be treated as the long-term home for the apps dashboard or the blog
 
 ### `docs/`
 
@@ -107,6 +107,12 @@ corepack yarn knip
 - Contains the Grafana/Prometheus stack and deployment files
 - The executable monitor service lives in `stats/monitor/`
 - Public traffic still lands on `bitsocial.net/stats/`, with Vercel proxying to the VPS-hosted Grafana origin
+
+### Future Splits
+
+- The apps dashboard at `/apps` is expected to become its own subproject, and later may move to `apps.bitsocial.net`.
+- The blog is also expected to become its own subproject rather than continue to live under `about/`.
+- `about/` should stay focused on explaining Bitsocial as a whole.
 
 ## Translations
 
