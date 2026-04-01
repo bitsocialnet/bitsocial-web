@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, type ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -83,6 +84,7 @@ function App() {
           }
         />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
