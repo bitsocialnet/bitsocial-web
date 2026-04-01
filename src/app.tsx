@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, type ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -85,6 +86,7 @@ function App() {
         />
       </Routes>
       <Analytics />
+      <SpeedInsights />
     </Router>
   );
 }
