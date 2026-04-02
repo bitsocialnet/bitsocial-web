@@ -24,7 +24,7 @@ Read `public/translations/en/default.json` and find the value for the given key.
 
 ### Step 2 — Translate
 
-Translate the English value into all supported languages. Produce accurate, natural translations. Keep technical terms, brand names, and placeholders like `{{variable}}` unchanged.
+Translate the English value into all supported languages. Produce accurate, natural translations that sound idiomatic to native speakers. Preserve the same meaning and user-facing intent as the English, but do not follow English wording, word order, or idioms so literally that the result sounds awkward, robotic, or unnatural. Keep technical terms, brand names, and placeholders like `{{variable}}` unchanged.
 
 Supported language codes:
 ar, bn, ca, cs, da, de, el, en, es, fa, fi, fil, fr, he, hi, hu, id, it, ja, ko, mr, nl, no, pl, pt, ro, ru, sq, sv, te, th, tr, uk, ur, vi, zh
@@ -71,6 +71,8 @@ Return a short confirmation message:
 
 - Always translate into all 36 languages. Never skip any.
 - Never copy English to all languages unless it is a brand name, technical term, or placeholder.
+- Prefer the phrasing a native speaker would naturally use in product UI, even if that means departing from a word-for-word English rendering.
+- Keep the original meaning, tone, and important nuance intact; be literal only when the literal wording already sounds natural in the target language.
 - Use `--include-en` so English is also written by the script.
 - Always dry-run before writing.
 - Always delete the temp file when done.
