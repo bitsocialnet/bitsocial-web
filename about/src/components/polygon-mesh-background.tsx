@@ -21,6 +21,9 @@ const EDGE_BASE_WIDTH = 0.5;
 const EDGE_GLOW_WIDTH = 1.5;
 const DOT_RADIUS = 1.2;
 
+const BLUE_R = 37;
+const BLUE_G = 99;
+const BLUE_B = 235;
 const BLUE_ON_LIGHT_R = 56;
 const BLUE_ON_LIGHT_G = 88;
 const BLUE_ON_LIGHT_B = 154;
@@ -125,15 +128,37 @@ function initMesh(
   isDark: boolean,
   shouldAnimate: boolean,
 ): () => void {
-  const edgeAlpha = isDark ? 0.22 : 0.155;
-  const dotAlpha = isDark ? 0.24 : 0.18;
-  const edgeRGB = isDark
-    ? `${BLUE_ON_DARK_R},${BLUE_ON_DARK_G},${BLUE_ON_DARK_B}`
-    : `${BLUE_ON_LIGHT_R},${BLUE_ON_LIGHT_G},${BLUE_ON_LIGHT_B}`;
+  const edgeAlpha = shouldAnimate ? (isDark ? 0.1 : 0.085) : isDark ? 0.22 : 0.155;
+  const dotAlpha = shouldAnimate ? (isDark ? 0.108 : 0.1) : isDark ? 0.24 : 0.18;
+  const edgeRGB = shouldAnimate
+    ? isDark
+      ? `${BLUE_ON_DARK_R},${BLUE_ON_DARK_G},${BLUE_ON_DARK_B}`
+      : "100,116,139"
+    : isDark
+      ? `${BLUE_ON_DARK_R},${BLUE_ON_DARK_G},${BLUE_ON_DARK_B}`
+      : `${BLUE_ON_LIGHT_R},${BLUE_ON_LIGHT_G},${BLUE_ON_LIGHT_B}`;
   const dotRGB = edgeRGB;
-  const glowR = isDark ? BLUE_ON_DARK_R : BLUE_ON_LIGHT_R;
-  const glowG = isDark ? BLUE_ON_DARK_G : BLUE_ON_LIGHT_G;
-  const glowB = isDark ? BLUE_ON_DARK_B : BLUE_ON_LIGHT_B;
+  const glowR = shouldAnimate
+    ? isDark
+      ? BLUE_ON_DARK_R
+      : BLUE_R
+    : isDark
+      ? BLUE_ON_DARK_R
+      : BLUE_ON_LIGHT_R;
+  const glowG = shouldAnimate
+    ? isDark
+      ? BLUE_ON_DARK_G
+      : BLUE_G
+    : isDark
+      ? BLUE_ON_DARK_G
+      : BLUE_ON_LIGHT_G;
+  const glowB = shouldAnimate
+    ? isDark
+      ? BLUE_ON_DARK_B
+      : BLUE_B
+    : isDark
+      ? BLUE_ON_DARK_B
+      : BLUE_ON_LIGHT_B;
 
   let w = viewport.clientWidth;
   let h = viewport.clientHeight;
@@ -203,10 +228,10 @@ function initMesh(
         const cycle = fract(blendedPhase - time * SWEEP_SPEED);
         const angleStrength = smoothstep(SWEEP_THRESHOLD, 1, cycle) * smoothedSpeed;
 
-        const totalGlow = angleStrength * (isDark ? 0.56 : 0.44);
+        const totalGlow = angleStrength * 0.35;
         if (totalGlow < 0.015) continue;
 
-        const alpha = Math.min(totalGlow * 0.68, isDark ? 0.82 : 0.62) * (isDark ? 1.08 : 1);
+        const alpha = Math.min(totalGlow * 0.55, 0.6) * (isDark ? 1.12 : 1);
         ctx.strokeStyle = `rgba(${glowR},${glowG},${glowB},${alpha})`;
         ctx.lineWidth = EDGE_GLOW_WIDTH * strokeScale;
         ctx.beginPath();
