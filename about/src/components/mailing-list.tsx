@@ -2,29 +2,44 @@ import { useState } from "react";
 import { m } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Mail, ArrowRight, Check } from "lucide-react";
+import {
+  isNewsletterConfigured,
+  NewsletterConfigurationError,
+  subscribeToNewsletter,
+} from "@/lib/newsletter";
 import { cn } from "@/lib/utils";
 
-type FormState = "idle" | "submitting" | "success";
+type FormState = "idle" | "submitting" | "success" | "error";
 
 export default function MailingList() {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [formState, setFormState] = useState<FormState>("idle");
+  const normalizedEmail = email.trim();
+  const isValid = normalizedEmail.includes("@") && normalizedEmail.includes(".");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || formState === "submitting") return;
+    if (!normalizedEmail || formState === "submitting" || !isNewsletterConfigured) return;
 
     setFormState("submitting");
 
-    // Simulated submission -- replace with real endpoint when available
-    setTimeout(() => {
+    try {
+      await subscribeToNewsletter(normalizedEmail);
       setFormState("success");
       setEmail("");
-    }, 1200);
+    } catch (error) {
+      console.error("Newsletter signup failed", error);
+      setFormState(error instanceof NewsletterConfigurationError ? "idle" : "error");
+    }
   };
 
-  const isValid = email.includes("@") && email.includes(".");
+  const statusMessage =
+    formState === "error"
+      ? t("mailingList.error")
+      : !isNewsletterConfigured
+        ? t("mailingList.unavailable")
+        : null;
 
   return (
     <section id="mailing-list" className="py-20 md:py-28 px-6 scroll-mt-24">
@@ -70,7 +85,12 @@ export default function MailingList() {
                   spellCheck={false}
                   required
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (formState === "error") {
+                      setFormState("idle");
+                    }
+                  }}
                   placeholder={t("mailingList.placeholder")}
                   aria-label={t("mailingList.inputLabel")}
                   className={cn(
@@ -84,7 +104,7 @@ export default function MailingList() {
 
               <button
                 type="submit"
-                disabled={formState === "submitting" || !isValid}
+                disabled={formState === "submitting" || !isValid || !isNewsletterConfigured}
                 className={cn(
                   "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-display font-semibold text-sm",
                   "border border-blue-core/30 bg-blue-core/10 text-muted-foreground",
@@ -111,6 +131,18 @@ export default function MailingList() {
               </button>
             </form>
           )}
+
+          {statusMessage ? (
+            <p
+              aria-live="polite"
+              className={cn(
+                "mt-4 text-sm font-display",
+                formState === "error" ? "text-destructive" : "text-muted-foreground/60",
+              )}
+            >
+              {statusMessage}
+            </p>
+          ) : null}
 
           <p className="text-muted-foreground/40 text-xs mt-5 font-display">
             {t("mailingList.privacy")}
