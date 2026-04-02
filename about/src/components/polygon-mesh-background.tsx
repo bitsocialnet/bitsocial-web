@@ -21,12 +21,12 @@ const EDGE_BASE_WIDTH = 0.5;
 const EDGE_GLOW_WIDTH = 1.5;
 const DOT_RADIUS = 1.2;
 
-const BLUE_R = 37;
-const BLUE_G = 99;
-const BLUE_B = 235;
-const BLUE_ON_DARK_R = 59;
-const BLUE_ON_DARK_G = 130;
-const BLUE_ON_DARK_B = 246;
+const BLUE_ON_LIGHT_R = 56;
+const BLUE_ON_LIGHT_G = 88;
+const BLUE_ON_LIGHT_B = 154;
+const BLUE_ON_DARK_R = 94;
+const BLUE_ON_DARK_G = 164;
+const BLUE_ON_DARK_B = 255;
 
 const MIN_SPEED = 2;
 const MAX_SPEED = 60;
@@ -125,13 +125,15 @@ function initMesh(
   isDark: boolean,
   shouldAnimate: boolean,
 ): () => void {
-  const edgeAlpha = isDark ? 0.1 : 0.085;
-  const dotAlpha = isDark ? 0.108 : 0.1;
-  const edgeRGB = isDark ? `${BLUE_ON_DARK_R},${BLUE_ON_DARK_G},${BLUE_ON_DARK_B}` : "100,116,139";
-  const dotRGB = isDark ? `${BLUE_ON_DARK_R},${BLUE_ON_DARK_G},${BLUE_ON_DARK_B}` : "100,116,139";
-  const glowR = isDark ? BLUE_ON_DARK_R : BLUE_R;
-  const glowG = isDark ? BLUE_ON_DARK_G : BLUE_G;
-  const glowB = isDark ? BLUE_ON_DARK_B : BLUE_B;
+  const edgeAlpha = isDark ? 0.22 : 0.155;
+  const dotAlpha = isDark ? 0.24 : 0.18;
+  const edgeRGB = isDark
+    ? `${BLUE_ON_DARK_R},${BLUE_ON_DARK_G},${BLUE_ON_DARK_B}`
+    : `${BLUE_ON_LIGHT_R},${BLUE_ON_LIGHT_G},${BLUE_ON_LIGHT_B}`;
+  const dotRGB = edgeRGB;
+  const glowR = isDark ? BLUE_ON_DARK_R : BLUE_ON_LIGHT_R;
+  const glowG = isDark ? BLUE_ON_DARK_G : BLUE_ON_LIGHT_G;
+  const glowB = isDark ? BLUE_ON_DARK_B : BLUE_ON_LIGHT_B;
 
   let w = viewport.clientWidth;
   let h = viewport.clientHeight;
@@ -201,10 +203,10 @@ function initMesh(
         const cycle = fract(blendedPhase - time * SWEEP_SPEED);
         const angleStrength = smoothstep(SWEEP_THRESHOLD, 1, cycle) * smoothedSpeed;
 
-        const totalGlow = angleStrength * 0.35;
+        const totalGlow = angleStrength * (isDark ? 0.56 : 0.44);
         if (totalGlow < 0.015) continue;
 
-        const alpha = Math.min(totalGlow * 0.55, 0.6) * (isDark ? 1.12 : 1);
+        const alpha = Math.min(totalGlow * 0.68, isDark ? 0.82 : 0.62) * (isDark ? 1.08 : 1);
         ctx.strokeStyle = `rgba(${glowR},${glowG},${glowB},${alpha})`;
         ctx.lineWidth = EDGE_GLOW_WIDTH * strokeScale;
         ctx.beginPath();
@@ -399,13 +401,20 @@ function StaticPolygonMeshBackground() {
   const fallbackSrc = isDark
     ? "/polygon-mesh-fallback-dark.png"
     : "/polygon-mesh-fallback-light.png";
+  const fallbackFilter = isDark
+    ? "brightness(1.68) contrast(2.2) saturate(1.28)"
+    : "brightness(0.92) contrast(3.15) saturate(1.42)";
 
   return (
     <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
       <div className="absolute inset-0 flex justify-center overflow-hidden">
         <div
           className="h-full w-full max-w-[90rem] bg-contain bg-top bg-repeat-y"
-          style={{ backgroundImage: `url(${fallbackSrc})` }}
+          style={{
+            backgroundImage: `url(${fallbackSrc})`,
+            filter: fallbackFilter,
+            opacity: isDark ? 1 : 0.97,
+          }}
         />
       </div>
     </div>
@@ -419,8 +428,8 @@ const PolygonMeshBackground = memo(function PolygonMeshBackground() {
   const { resolvedTheme } = useTheme();
   const graphicsMode = useGraphicsMode();
   const [didCanvasInitFail, setDidCanvasInitFail] = useState(false);
-  const shouldUseStaticFallback =
-    graphicsMode !== "full" || didCanvasInitFail || !supportsDynamicMesh();
+  const shouldAnimate = graphicsMode === "full";
+  const shouldUseStaticFallback = didCanvasInitFail || !supportsDynamicMesh();
 
   useEffect(() => {
     if (shouldUseStaticFallback) return;
@@ -439,8 +448,8 @@ const PolygonMeshBackground = memo(function PolygonMeshBackground() {
       resolvedTheme === "dark" ||
       (!resolvedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches);
 
-    return initMesh(canvas, root, viewport, ctx, isDark, graphicsMode === "full");
-  }, [graphicsMode, resolvedTheme, shouldUseStaticFallback]);
+    return initMesh(canvas, root, viewport, ctx, isDark, shouldAnimate);
+  }, [resolvedTheme, shouldAnimate, shouldUseStaticFallback]);
 
   if (shouldUseStaticFallback) {
     return <StaticPolygonMeshBackground />;

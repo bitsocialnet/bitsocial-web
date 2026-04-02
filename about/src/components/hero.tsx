@@ -30,6 +30,87 @@ const HighlightIndexCtx = createContext(-1);
 const TAGLINE_LINK_COUNT = 6;
 const INTRO_START_DELAY = TAGLINE_INTRO_START_MS;
 const INTRO_STEP_MS = 1000;
+const HERO_FALLBACK_MOBILE_QUERY = "(max-width: 767px)";
+const HERO_FALLBACK_PRELOAD_ATTR = "data-hero-fallback-preload";
+const HERO_FALLBACK_BOTTOM_MASK =
+  "linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.28) 9%, black 22%, black 100%)";
+const HERO_FALLBACK_SOURCES = {
+  desktop: {
+    dark: "/hero-fallback-desktop-dark.png",
+    light: "/hero-fallback-desktop-light.png",
+  },
+  mobile: {
+    dark: "/hero-fallback-mobile-dark.png",
+    light: "/hero-fallback-mobile-light.png",
+  },
+} as const;
+
+type HeroFallbackViewport = keyof typeof HERO_FALLBACK_SOURCES;
+
+function resolveIsDarkTheme(resolvedTheme: string | undefined) {
+  return (
+    resolvedTheme === "dark" ||
+    (!resolvedTheme &&
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  );
+}
+
+function getHeroFallbackSources(isDark: boolean) {
+  return {
+    desktopSrc: isDark ? HERO_FALLBACK_SOURCES.desktop.dark : HERO_FALLBACK_SOURCES.desktop.light,
+    mobileSrc: isDark ? HERO_FALLBACK_SOURCES.mobile.dark : HERO_FALLBACK_SOURCES.mobile.light,
+  };
+}
+
+function ensureHeroFallbackPreloads(viewport: HeroFallbackViewport) {
+  if (typeof document === "undefined") return;
+
+  for (const src of Object.values(HERO_FALLBACK_SOURCES[viewport])) {
+    if (document.head.querySelector(`link[${HERO_FALLBACK_PRELOAD_ATTR}="${src}"]`)) {
+      continue;
+    }
+
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = src;
+    link.setAttribute(HERO_FALLBACK_PRELOAD_ATTR, src);
+    document.head.appendChild(link);
+  }
+}
+
+function useHeroFallbackPreloads() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (typeof window.matchMedia !== "function") {
+      ensureHeroFallbackPreloads("desktop");
+      ensureHeroFallbackPreloads("mobile");
+      return;
+    }
+
+    const mobileQuery = window.matchMedia(HERO_FALLBACK_MOBILE_QUERY);
+    const syncPreloads = () => {
+      ensureHeroFallbackPreloads(mobileQuery.matches ? "mobile" : "desktop");
+    };
+
+    syncPreloads();
+
+    if (mobileQuery.addEventListener) {
+      mobileQuery.addEventListener("change", syncPreloads);
+    } else {
+      mobileQuery.addListener(syncPreloads);
+    }
+
+    return () => {
+      if (mobileQuery.removeEventListener) {
+        mobileQuery.removeEventListener("change", syncPreloads);
+      } else {
+        mobileQuery.removeListener(syncPreloads);
+      }
+    };
+  }, []);
+}
 
 function TaglineLink({
   hash,
@@ -69,16 +150,8 @@ function TaglineLink({
 
 function HeroFallbackImage() {
   const { resolvedTheme } = useTheme();
-  const isDark =
-    resolvedTheme === "dark" ||
-    (!resolvedTheme &&
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches);
-
-  const desktopSrc = isDark
-    ? "/hero-fallback-desktop-dark.png"
-    : "/hero-fallback-desktop-light.png";
-  const mobileSrc = isDark ? "/hero-fallback-mobile-dark.png" : "/hero-fallback-mobile-light.png";
+  const isDark = resolveIsDarkTheme(resolvedTheme);
+  const { desktopSrc, mobileSrc } = getHeroFallbackSources(isDark);
 
   return (
     <picture className="block h-full w-full">
@@ -87,9 +160,13 @@ function HeroFallbackImage() {
         src={desktopSrc}
         alt=""
         aria-hidden="true"
-        className="mx-auto h-full w-full max-w-[min(92rem,100%)] object-contain object-bottom"
+        className="mx-auto h-auto w-auto max-h-[clamp(19rem,34vh,23rem)] md:max-h-[min(36vh,24rem)] lg:max-h-[min(38vh,28rem)] xl:max-h-[min(42vh,32rem)] max-w-[min(100rem,100%)] object-contain object-bottom"
         loading="eager"
         decoding="async"
+        style={{
+          maskImage: HERO_FALLBACK_BOTTOM_MASK,
+          WebkitMaskImage: HERO_FALLBACK_BOTTOM_MASK,
+        }}
       />
     </picture>
   );
@@ -97,15 +174,13 @@ function HeroFallbackImage() {
 
 function HeroFallbackGraphic({ className }: { className?: string }) {
   return (
-    <div className={cn("left-0 right-0 w-full pointer-events-none overscroll-none", className)}>
+    <div
+      className={cn(
+        "left-0 right-0 flex w-full justify-center pointer-events-none overscroll-none",
+        className,
+      )}
+    >
       <HeroFallbackImage />
-      <div
-        className="absolute bottom-0 left-0 right-0 h-24 md:h-[clamp(8rem,calc(11rem-2vw),10rem)] pointer-events-none z-10"
-        style={{
-          background:
-            "linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background)) 25%, hsl(var(--background) / 0.9) 40%, hsl(var(--background) / 0.6) 60%, hsl(var(--background) / 0.2) 80%, transparent 100%)",
-        }}
-      />
     </div>
   );
 }
@@ -148,6 +223,8 @@ export default function Hero() {
   const showGraphics = graphicsMode === "full" && !graphicsInitFailed;
   const { highlightedIndex, resetIntro } = useTaglineIntro();
 
+  useHeroFallbackPreloads();
+
   useLayoutEffect(() => {
     registerHeroMountForIntroSync();
     return () => resetHeroMountForIntroSync();
@@ -166,7 +243,7 @@ export default function Hero() {
   }, []);
 
   const staticFallback = (
-    <HeroFallbackGraphic className="absolute bottom-4 md:bottom-8 h-[clamp(22rem,42vh,28rem)] md:h-[40vh] overflow-visible" />
+    <HeroFallbackGraphic className="absolute bottom-4 md:bottom-8 overflow-visible" />
   );
 
   return (
@@ -285,9 +362,9 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.8 }}
-          className="mt-10 sm:mt-12 md:mt-10 relative -mx-6 w-[calc(100%+3rem)] h-[clamp(22rem,42vh,28rem)] md:h-[40vh]"
+          className="mt-10 sm:mt-12 md:mt-10 relative -mx-6 flex w-[calc(100%+3rem)] justify-center"
         >
-          <HeroFallbackGraphic className="relative h-full overflow-visible" />
+          <HeroFallbackGraphic className="relative overflow-visible" />
         </m.div>
       )}
 

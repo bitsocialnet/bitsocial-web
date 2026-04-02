@@ -237,7 +237,7 @@ export default function Features() {
   };
 
   return (
-    <section className="px-6 py-24 -mt-[clamp(2.5rem,5vh,4rem)] pt-[clamp(2.5rem,5vh,4rem)] md:-mt-[clamp(8rem,calc(3rem+7vw),11rem)] md:pt-[clamp(8rem,calc(3rem+7vw),11rem)]">
+    <section className="px-6 py-24 -mt-[clamp(2.5rem,5vh,4rem)] pt-[clamp(2.5rem,5vh,4rem)] md:-mt-[clamp(3rem,5vh,4.5rem)] md:pt-[clamp(6rem,9vh,7.5rem)]">
       <div className="max-w-7xl mx-auto">
         <m.h2
           initial={{ opacity: 0, y: 20 }}
