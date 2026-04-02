@@ -43,6 +43,8 @@ You are the translator subagent. Translate the following i18next key into all 36
 Key: upload_failed
 English value: "Upload failed"
 
+Make each translation sound natural in its language. Preserve the English meaning, but do not mirror English wording so literally that the result sounds awkward or robotic.
+
 Follow your system prompt for the full workflow (create dictionary file, dry run, apply, clean up).
 ```
 
