@@ -7,7 +7,12 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Protocol notes",
-      items: ["custom-challenges", "local-moderation", "identity-and-ownership"],
+      items: [
+        "peer-to-peer-protocol",
+        "custom-challenges",
+        "local-moderation",
+        "identity-and-ownership",
+      ],
     },
     {
       type: "category",

@@ -36,10 +36,12 @@ const config: Config = {
   onBrokenLinks: "throw",
   trailingSlash: true,
   markdown: {
+    mermaid: true,
     hooks: {
       onBrokenMarkdownLinks: "warn",
     },
   },
+  themes: ["@docusaurus/theme-mermaid"],
   i18n: {
     defaultLocale: "en",
     locales: [...SUPPORTED_LANGUAGE_CODES],
@@ -122,6 +124,7 @@ const config: Config = {
         {
           title: "Protocol",
           items: [
+            { label: "Peer-to-peer protocol", to: "/peer-to-peer-protocol/" },
             { label: "Custom challenges", to: "/custom-challenges/" },
             { label: "Local moderation", to: "/local-moderation/" },
             { label: "Identity and ownership", to: "/identity-and-ownership/" },

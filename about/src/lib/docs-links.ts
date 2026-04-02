@@ -1,6 +1,7 @@
 export const DOCS_LINKS = {
   home: "/docs/",
   search: "/docs/search/",
+  peerToPeerProtocol: "/docs/peer-to-peer-protocol/",
   customChallenges: "/docs/custom-challenges/",
   localModeration: "/docs/local-moderation/",
   identityAndOwnership: "/docs/identity-and-ownership/",
