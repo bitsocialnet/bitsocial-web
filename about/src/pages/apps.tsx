@@ -128,7 +128,7 @@ export default function Apps() {
           <div className="mx-auto max-w-7xl">
             <section className="mb-6">
               <p className="text-xs font-display uppercase tracking-[0.2em] text-foreground/45">
-                App Directory
+                {t("apps.sectionLabel")}
               </p>
               <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                 <div className="max-w-3xl">
@@ -252,6 +252,7 @@ export default function Apps() {
                 onCategoryChange={handleCategoryChange}
                 allLabel={t("apps.allProjects")}
                 allDescription={t("apps.allProjectsDescription")}
+                directoryLabel={t("apps.directoryLabel")}
                 totalCount={appsForCategoryCounts.length}
               />
 

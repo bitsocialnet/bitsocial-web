@@ -44,6 +44,7 @@ interface AppLogoProps {
   icon: AppIconKey;
   logoSrc?: string;
   pixelated?: boolean;
+  loading?: "eager" | "lazy";
   size?: keyof typeof sizeMap;
   className?: string;
 }
@@ -53,6 +54,7 @@ export default function AppLogo({
   icon,
   logoSrc,
   pixelated = false,
+  loading = "lazy",
   size = "md",
   className,
 }: AppLogoProps) {
@@ -71,7 +73,7 @@ export default function AppLogo({
         <img
           src={logoSrc}
           alt={`${name} logo`}
-          loading="lazy"
+          loading={loading}
           className={cn("object-contain", styles.image, pixelated && "image-rendering-pixelated")}
         />
       ) : (

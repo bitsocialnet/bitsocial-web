@@ -9,6 +9,7 @@ interface CategoryFilterProps {
   onCategoryChange: (category: AppCategorySlug | null) => void;
   allLabel: string;
   allDescription: string;
+  directoryLabel: string;
   totalCount: number;
 }
 
@@ -24,13 +25,14 @@ export default function CategoryFilter({
   onCategoryChange,
   allLabel,
   allDescription,
+  directoryLabel,
   totalCount,
 }: CategoryFilterProps) {
   return (
     <aside className="h-fit lg:sticky lg:top-28">
       <div className="mb-3 px-1 pt-1">
         <p className="text-xs font-display uppercase tracking-[0.2em] text-foreground/50">
-          Directory
+          {directoryLabel}
         </p>
       </div>
 
