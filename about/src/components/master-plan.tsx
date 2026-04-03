@@ -182,7 +182,7 @@ export default function MasterPlan() {
                               {item.ctaLabel}
                             </CardInlineCta>
                             <span className="shrink-0 text-sm text-muted-foreground/70 italic">
-                              - or -
+                              {t("masterPlan.phases.phase1.callout.separator")}
                             </span>
                             <CardInlineCta
                               href={item.secondaryCtaHref!}
