@@ -88,6 +88,16 @@ If uncertain, ask the developer before adding an entry.
 - **Mitigation:** Keep docs startup behind `scripts/start-docs.mjs`, which now derives the same branch-scoped Portless hostname as the about app and injects that shared public URL into the `/docs` dev proxy target.
 - **Status:** confirmed
 
+### Worktree shells can miss the repo's pinned Node version
+
+- **Date:** 2026-04-03
+- **Observed by:** Codex
+- **Context:** Running `yarn start` in Git worktrees such as `.claude/worktrees/*` or sibling worktree checkouts
+- **What was surprising:** Some worktree shells resolved `node` and `yarn node` to Homebrew Node `25.2.1` even though the repo pins `22.12.0` in `.nvmrc`, so `yarn start` could silently run the dev launchers under the wrong runtime.
+- **Impact:** Dev-server behavior can drift between the main checkout and worktrees, making bugs hard to reproduce and violating the repo's expected Node 22 toolchain.
+- **Mitigation:** Keep the dev launchers behind `scripts/start-dev.mjs` and `scripts/start-docs.mjs`, which now re-exec under the `.nvmrc` Node binary when the current shell is on the wrong version. Shell setup should still prefer `nvm use`.
+- **Status:** confirmed
+
 ### `docs-site/` leftovers can hide missing docs source after the refactor
 
 - **Date:** 2026-04-01
