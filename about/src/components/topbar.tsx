@@ -288,7 +288,7 @@ export default function Topbar() {
                 ref={logoRef}
                 to="/"
                 onClick={handleLogoClick}
-                className="flex items-center gap-1 group transition-colors"
+                className="inline-flex items-center gap-1 group transition-colors"
               >
                 <img
                   src="/logo.png"

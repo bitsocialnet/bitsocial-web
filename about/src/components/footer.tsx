@@ -53,7 +53,11 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-10">
           {/* Branding */}
           <div className="col-span-2 md:col-span-1">
-            <Link to="/" onClick={handleLogoClick} className="flex items-center gap-1.5 mb-4 group">
+            <Link
+              to="/"
+              onClick={handleLogoClick}
+              className="inline-flex items-center gap-1.5 mb-4 group"
+            >
               <img src="/logo-small.png" alt="Bitsocial" className="h-6 w-6" />
               <span className="text-lg font-display text-muted-foreground group-hover:text-foreground transition-colors">
                 Bitsocial
