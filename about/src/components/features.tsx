@@ -1,5 +1,5 @@
 import { m, useReducedMotion } from "framer-motion";
-import { useEffect, useMemo } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import CardInlineCta, { prominentCtaClassName } from "@/components/card-inline-cta";
@@ -24,6 +24,10 @@ interface Feature {
 
 /** Circle quarter fillet via cubic Bézier (avoids elliptical-arc sweep ambiguity in SVG). */
 const CONNECTOR_R = 10;
+const CONNECTOR_CARD_GAP = 1;
+const CONNECTOR_MATCH_EPSILON = 1;
+const MOBILE_CONNECTOR_START_FRACTION = 0.25;
+const MOBILE_CONNECTOR_END_FRACTION = 0.75;
 
 const FEATURE_ORDER: FeatureId[] = [
   "open-source",
@@ -120,19 +124,66 @@ function featureTitleFromTaglineSegments(t: (key: string) => string, id: Feature
   }
 }
 
-function featureConnectorPathD(isEven: boolean): string {
-  const r = CONNECTOR_R;
+interface FeatureConnectorLayout {
+  d: string;
+  hasEnteredView: boolean;
+  height: number;
+  id: string;
+  top: number;
+  width: number;
+}
+
+function approximatelyEqual(left: number, right: number): boolean {
+  return Math.abs(left - right) <= CONNECTOR_MATCH_EPSILON;
+}
+
+function getMobileConnectorFraction(index: number, isRtl: boolean): { end: number; start: number } {
+  const start = index % 2 === 0 ? MOBILE_CONNECTOR_START_FRACTION : MOBILE_CONNECTOR_END_FRACTION;
+  const end = index % 2 === 0 ? MOBILE_CONNECTOR_END_FRACTION : MOBILE_CONNECTOR_START_FRACTION;
+
+  if (!isRtl) {
+    return { start, end };
+  }
+
+  return {
+    start: 1 - start,
+    end: 1 - end,
+  };
+}
+
+function featureConnectorPathD(startX: number, endX: number, height: number): string {
+  const r = Math.min(CONNECTOR_R, Math.abs(endX - startX) / 2, height / 2);
   const k = 0.5522847498 * r;
-  const yMid = 32;
+  const yMid = height / 2;
   const yTop = yMid - r;
   const yBot = yMid + r;
-  const xL = 250;
-  const xR = 750;
 
-  if (isEven) {
-    return `M ${xL},0 L ${xL},${yTop} C ${xL},${yTop + k} ${xL + r - k},${yMid} ${xL + r},${yMid} L ${xR - r},${yMid} C ${xR - r + k},${yMid} ${xR},${yBot - k} ${xR},${yBot} L ${xR},64`;
+  if (startX <= endX) {
+    return `M ${startX},0 L ${startX},${yTop} C ${startX},${yTop + k} ${startX + r - k},${yMid} ${startX + r},${yMid} L ${endX - r},${yMid} C ${endX - r + k},${yMid} ${endX},${yBot - k} ${endX},${yBot} L ${endX},${height}`;
   }
-  return `M ${xR},0 L ${xR},${yTop} C ${xR},${yTop + k} ${xR - r + k},${yMid} ${xR - r},${yMid} L ${xL + r},${yMid} C ${xL + r - k},${yMid} ${xL},${yBot - k} ${xL},${yBot} L ${xL},64`;
+
+  return `M ${startX},0 L ${startX},${yTop} C ${startX},${yTop + k} ${startX - r + k},${yMid} ${startX - r},${yMid} L ${endX + r},${yMid} C ${endX + r - k},${yMid} ${endX},${yBot - k} ${endX},${yBot} L ${endX},${height}`;
+}
+
+function areConnectorLayoutsEqual(
+  current: FeatureConnectorLayout[],
+  next: FeatureConnectorLayout[],
+): boolean {
+  if (current.length !== next.length) {
+    return false;
+  }
+
+  return current.every((connector, index) => {
+    const nextConnector = next[index];
+    return (
+      connector.id === nextConnector.id &&
+      connector.top === nextConnector.top &&
+      connector.hasEnteredView === nextConnector.hasEnteredView &&
+      connector.height === nextConnector.height &&
+      connector.width === nextConnector.width &&
+      connector.d === nextConnector.d
+    );
+  });
 }
 
 function FeatureCta({ className, feature, onSanctuaryClick }: FeatureCtaProps) {
@@ -179,6 +230,11 @@ export default function Features() {
   const { t } = useTranslation();
   const prefersReducedMotion = useReducedMotion();
   const features = useMemo(() => buildFeatures(t), [t]);
+  const [drawnConnectorIds, setDrawnConnectorIds] = useState<Record<string, true>>({});
+  const featureListRef = useRef<HTMLDivElement | null>(null);
+  const featureCardRefs = useRef<Partial<Record<FeatureId, HTMLDivElement | null>>>({});
+  const scheduleConnectorMeasurementRef = useRef<() => void>(() => {});
+  const [connectors, setConnectors] = useState<FeatureConnectorLayout[]>([]);
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -209,6 +265,141 @@ export default function Features() {
       window.removeEventListener("hashchange", handleHashChange);
     };
   }, [features]);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    let frameId: number | null = null;
+
+    frameId = window.requestAnimationFrame(() => {
+      setDrawnConnectorIds((current) => {
+        const next = { ...current };
+        let changed = false;
+
+        for (const connector of connectors) {
+          if (connector.hasEnteredView && !next[connector.id]) {
+            next[connector.id] = true;
+            changed = true;
+          }
+        }
+
+        return changed ? next : current;
+      });
+    });
+
+    return () => {
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
+  }, [connectors, prefersReducedMotion]);
+
+  useLayoutEffect(() => {
+    const featureList = featureListRef.current;
+    if (!featureList) {
+      return;
+    }
+
+    let frameId: number | null = null;
+
+    const measureConnectors = () => {
+      frameId = null;
+
+      const featureListRect = featureList.getBoundingClientRect();
+      const isRtl = getComputedStyle(featureList).direction === "rtl";
+      const nextConnectors: FeatureConnectorLayout[] = [];
+      const existingConnectorsById = new Map(
+        connectors.map((connector) => [connector.id, connector]),
+      );
+
+      for (let index = 0; index < FEATURE_ORDER.length - 1; index += 1) {
+        const currentCard = featureCardRefs.current[FEATURE_ORDER[index]];
+        const nextCard = featureCardRefs.current[FEATURE_ORDER[index + 1]];
+
+        if (!currentCard || !nextCard) {
+          continue;
+        }
+
+        const currentRect = currentCard.getBoundingClientRect();
+        const nextRect = nextCard.getBoundingClientRect();
+        const isStacked =
+          approximatelyEqual(currentRect.left, nextRect.left) &&
+          approximatelyEqual(currentRect.right, nextRect.right);
+        const mobileFractions = getMobileConnectorFraction(index, isRtl);
+        const startFraction = isStacked ? mobileFractions.start : 0.5;
+        const endFraction = isStacked ? mobileFractions.end : 0.5;
+        const startX = currentRect.left - featureListRect.left + currentRect.width * startFraction;
+        const endX = nextRect.left - featureListRect.left + nextRect.width * endFraction;
+        const top = currentRect.bottom - featureListRect.top + CONNECTOR_CARD_GAP;
+        const height = Math.max(nextRect.top - currentRect.bottom - CONNECTOR_CARD_GAP * 2, 1);
+        const viewportTop = currentRect.bottom + CONNECTOR_CARD_GAP;
+        const viewportBottom = nextRect.top - CONNECTOR_CARD_GAP;
+        const connectorId = `${FEATURE_ORDER[index]}-${FEATURE_ORDER[index + 1]}`;
+        const hasEnteredView =
+          existingConnectorsById.get(connectorId)?.hasEnteredView ||
+          (viewportBottom > 0 && viewportTop < window.innerHeight);
+
+        nextConnectors.push({
+          id: connectorId,
+          hasEnteredView,
+          top,
+          height,
+          width: featureListRect.width,
+          d: featureConnectorPathD(startX, endX, height),
+        });
+      }
+
+      setConnectors((current) =>
+        areConnectorLayoutsEqual(current, nextConnectors) ? current : nextConnectors,
+      );
+    };
+
+    const scheduleMeasure = () => {
+      if (frameId !== null) {
+        return;
+      }
+
+      frameId = window.requestAnimationFrame(measureConnectors);
+    };
+
+    scheduleConnectorMeasurementRef.current = scheduleMeasure;
+    scheduleMeasure();
+    const settleMeasurementId = window.setTimeout(scheduleMeasure, 120);
+
+    const resizeObserver = new ResizeObserver(scheduleMeasure);
+    resizeObserver.observe(featureList);
+
+    for (const featureId of FEATURE_ORDER) {
+      const featureCard = featureCardRefs.current[featureId];
+      if (featureCard) {
+        resizeObserver.observe(featureCard);
+      }
+    }
+
+    window.addEventListener("resize", scheduleMeasure);
+    window.addEventListener("scroll", scheduleMeasure, { passive: true });
+    window.addEventListener("load", scheduleMeasure);
+    window.addEventListener("pageshow", scheduleMeasure);
+
+    return () => {
+      scheduleConnectorMeasurementRef.current = () => {};
+      window.clearTimeout(settleMeasurementId);
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", scheduleMeasure);
+      window.removeEventListener("scroll", scheduleMeasure);
+      window.removeEventListener("load", scheduleMeasure);
+      window.removeEventListener("pageshow", scheduleMeasure);
+    };
+  }, [connectors, features]);
+
+  const setFeatureCardRef = (id: FeatureId) => (node: HTMLDivElement | null) => {
+    featureCardRefs.current[id] = node;
+  };
 
   const handleTitleClick = (id: string) => {
     window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
@@ -249,7 +440,7 @@ export default function Features() {
           {t("features.title")}
         </m.h2>
 
-        <div>
+        <div ref={featureListRef} className="relative">
           {features.map((feature, index) => {
             const isEven = index % 2 === 0;
 
@@ -257,20 +448,26 @@ export default function Features() {
               <div
                 key={feature.id}
                 id={feature.id}
-                className={`scroll-mt-24 ${index < features.length - 1 ? "mb-0" : ""}`}
+                className={`scroll-mt-24 ${index < features.length - 1 ? "pb-12 md:pb-16" : ""}`}
               >
                 <m.div
                   initial={{ y: 30 }}
                   whileInView={{ y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
+                  onUpdate={() => {
+                    scheduleConnectorMeasurementRef.current();
+                  }}
                   className={`flex flex-col ${
                     isEven ? "md:flex-row" : "md:flex-row-reverse"
                   } gap-2 md:gap-8 items-center`}
                 >
                   {/* Card Content */}
                   <div className="flex-1 w-full md:w-1/2">
-                    <div className="glass-card flex h-full flex-col p-6 md:p-8">
+                    <div
+                      ref={setFeatureCardRef(feature.id)}
+                      className="glass-card flex h-full flex-col p-6 md:p-8"
+                    >
                       <h3 className="mb-4">
                         <button
                           type="button"
@@ -301,68 +498,40 @@ export default function Features() {
                     />
                   </div>
                 </m.div>
-
-                {index < features.length - 1 && (
-                  <>
-                    <div
-                      className="hidden md:block pointer-events-none select-none h-16 w-full shrink-0"
-                      aria-hidden="true"
-                    >
-                      <svg
-                        viewBox="0 0 1000 64"
-                        className="h-full w-full rtl:-scale-x-100"
-                        fill="none"
-                      >
-                        <m.path
-                          className="feature-connector-path"
-                          d={featureConnectorPathD(isEven)}
-                          strokeWidth={2}
-                          strokeLinecap="square"
-                          strokeLinejoin="round"
-                          vectorEffect="non-scaling-stroke"
-                          {...(prefersReducedMotion
-                            ? {}
-                            : {
-                                initial: { pathLength: 0 },
-                                whileInView: { pathLength: 1 },
-                                viewport: { once: true },
-                                transition: {
-                                  duration: 1,
-                                  ease: "easeInOut",
-                                },
-                              })}
-                        />
-                      </svg>
-                    </div>
-                    <svg
-                      viewBox="0 0 1000 64"
-                      className="pointer-events-none -mt-px block h-12 w-full shrink-0 select-none md:hidden rtl:-scale-x-100"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <m.path
-                        className="feature-connector-path"
-                        d={featureConnectorPathD(isEven)}
-                        strokeWidth={2}
-                        strokeLinecap="square"
-                        strokeLinejoin="round"
-                        vectorEffect="non-scaling-stroke"
-                        {...(prefersReducedMotion
-                          ? {}
-                          : {
-                              initial: { pathLength: 0 },
-                              whileInView: { pathLength: 1 },
-                              viewport: { once: true },
-                              transition: {
-                                duration: 1,
-                                ease: "easeInOut",
-                              },
-                            })}
-                      />
-                    </svg>
-                  </>
-                )}
               </div>
+            );
+          })}
+          {connectors.map((connector) => {
+            const isDrawn = prefersReducedMotion || Boolean(drawnConnectorIds[connector.id]);
+
+            return (
+              <svg
+                key={connector.id}
+                viewBox={`0 0 ${connector.width} ${connector.height}`}
+                className="pointer-events-none absolute left-0 w-full select-none"
+                style={{ top: `${connector.top}px`, height: `${connector.height}px` }}
+                fill="none"
+                aria-hidden="true"
+              >
+                <m.path
+                  className="feature-connector-path"
+                  d={connector.d}
+                  strokeWidth={2}
+                  strokeLinecap="square"
+                  strokeLinejoin="round"
+                  vectorEffect="non-scaling-stroke"
+                  {...(prefersReducedMotion
+                    ? {}
+                    : {
+                        initial: { pathLength: 0 },
+                        animate: { pathLength: isDrawn ? 1 : 0 },
+                        transition: {
+                          duration: 1,
+                          ease: "easeInOut",
+                        },
+                      })}
+                />
+              </svg>
             );
           })}
         </div>
