@@ -1,63 +1,54 @@
 #!/usr/bin/env node
 
+import { existsSync } from "node:fs";
 import { spawn } from "node:child_process";
+import path from "node:path";
 import process from "node:process";
-import { isWindows, repoRoot, resolvePort } from "./dev-server-utils.mjs";
+import { fileURLToPath } from "node:url";
+import {
+  ensurePinnedNodeVersion,
+  getPortlessAppName,
+  getPortlessPublicUrl,
+  isWindows,
+  portlessBin,
+  repoRoot,
+} from "./dev-server-utils.mjs";
 
-const yarnBin = isWindows ? "yarn.cmd" : "yarn";
-const fallbackPort = Number(process.env.DOCS_PORT || 3001);
-const requestedPort = Number(process.env.PORT || fallbackPort);
-const host = process.env.HOST || "127.0.0.1";
-const usingPortless = Boolean(process.env.PORTLESS_URL);
+await ensurePinnedNodeVersion(import.meta.url);
 
-function fail(message) {
-  console.error(message);
-  process.exit(1);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const usePortless = process.env.PORTLESS !== "0" && !isWindows;
+const docsServerScript = path.join(__dirname, "start-docs-server.mjs");
+const command = usePortless && existsSync(portlessBin) ? portlessBin : process.execPath;
+const childEnv = {
+  ...process.env,
+};
+let args = [];
+
+if (command === portlessBin) {
+  const appName = getPortlessAppName("docs.bitsocial");
+  const publicUrl = getPortlessPublicUrl(appName);
+
+  args = [appName, process.execPath, docsServerScript];
+
+  if (appName !== "docs.bitsocial") {
+    console.log(`Starting Portless docs server at ${publicUrl}`);
+  }
+} else if (process.env.PORTLESS !== "0") {
+  console.warn("portless unavailable on this platform, using docs directly");
+  childEnv.PORTLESS = "0";
+  args = [docsServerScript];
+} else {
+  args = [docsServerScript];
 }
 
-if (!Number.isInteger(requestedPort) || requestedPort <= 0) {
-  fail(`Invalid docs port: ${process.env.PORT || process.env.DOCS_PORT || "undefined"}`);
-}
-
-const port = usingPortless ? requestedPort : await resolvePort(requestedPort);
-
-console.log("");
-console.log(`Starting docs preview from ${repoRoot}`);
-if (usingPortless) {
-  console.log(`Public URL: ${process.env.PORTLESS_URL}`);
-}
-console.log(`Host URL: http://${host}:${port}`);
-if (!usingPortless && port !== requestedPort) {
-  console.log(`Preferred port ${requestedPort} is busy, so this run will use ${port}.`);
-}
-console.log("");
-
-const child = spawn(yarnBin, ["--cwd", "docs", "start", "--host", host, "--port", String(port)], {
+const child = spawn(command, args, {
   cwd: repoRoot,
-  env: {
-    ...process.env,
-    HOST: host,
-    PORT: String(port),
-  },
+  env: childEnv,
   stdio: "inherit",
 });
 
-const forwardSignal = (signal) => {
-  if (!child.killed) {
-    child.kill(signal);
-  }
-};
-
-const onSigint = () => forwardSignal("SIGINT");
-const onSigterm = () => forwardSignal("SIGTERM");
-
-process.on("SIGINT", onSigint);
-process.on("SIGTERM", onSigterm);
-
 child.on("exit", (code, signal) => {
-  process.off("SIGINT", onSigint);
-  process.off("SIGTERM", onSigterm);
-
   if (signal) {
     process.kill(process.pid, signal);
     return;

@@ -15,7 +15,7 @@
   "scripts": {
     "start": "concurrently -k -n about,docs -c blue,cyan \"yarn start:about\" \"yarn start:docs\"",
     "start:about": "node scripts/start-dev.mjs",
-    "start:docs": "portless docs.bitsocial node scripts/start-docs.mjs",
+    "start:docs": "node scripts/start-docs.mjs",
     "start:stats-monitor": "yarn workspace @bitsocial/stats-monitor start",
     "build:stats-dashboards": "yarn workspace bitsocial-stats build:dashboards && oxfmt stats/grafana/dashboards/5chan-stats.json stats/grafana/dashboards/bitsocial-stats.json",
     "stats:up": "yarn workspace bitsocial-stats up",
