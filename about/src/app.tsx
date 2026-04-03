@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import Home from "@/pages/home";
 import Apps from "@/pages/apps";
+import AppDetail from "@/pages/app-detail";
 import About from "@/pages/about";
 import Blog from "@/pages/blog";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
@@ -51,14 +52,8 @@ function App() {
       <InitialHomeScrollGuard />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/apps"
-          element={
-            <DevelopmentOnlyRoute>
-              <Apps />
-            </DevelopmentOnlyRoute>
-          }
-        />
+        <Route path="/apps" element={<Apps />} />
+        <Route path="/apps/:slug" element={<AppDetail />} />
         <Route
           path="/about"
           element={

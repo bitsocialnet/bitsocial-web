@@ -410,4 +410,9 @@
   [data-reduced-motion="true"] .highlight-glow {
     animation: none;
   }
+
+  .image-rendering-pixelated {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
 }
