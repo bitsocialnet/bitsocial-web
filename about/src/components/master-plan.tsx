@@ -6,6 +6,50 @@ import EasterEggOverlay from "@/components/easter-egg-overlay";
 import { DOCS_LINKS } from "@/lib/docs-links";
 
 const EASTER_EGG_GIF = "/spongebob-easter-egg.gif";
+const phaseOneCtaRowClassName =
+  "flex w-full min-w-0 flex-col items-stretch gap-2 md:flex-row md:items-center md:justify-end md:gap-4";
+const phaseOneCtaButtonClassName =
+  "w-full max-w-full whitespace-normal text-center leading-snug !rounded-3xl !px-4 !py-2 text-sm md:w-auto md:whitespace-nowrap md:leading-none md:!px-8";
+const phaseOneCtaSeparatorClassName =
+  "text-center text-sm text-muted-foreground/70 italic md:shrink-0";
+
+interface ResponsivePhaseOneCtasProps {
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref: string;
+  secondaryLabel: string;
+  separatorLabel: string;
+}
+
+function ResponsivePhaseOneCtas({
+  primaryHref,
+  primaryLabel,
+  secondaryHref,
+  secondaryLabel,
+  separatorLabel,
+}: ResponsivePhaseOneCtasProps) {
+  return (
+    <div className="w-full min-w-0 overflow-hidden">
+      <div className="flex w-full justify-end">
+        <div className={phaseOneCtaRowClassName}>
+          <CardInlineCta
+            href={primaryHref}
+            className={`${prominentCtaClassName} ${phaseOneCtaButtonClassName}`}
+          >
+            {primaryLabel}
+          </CardInlineCta>
+          <span className={phaseOneCtaSeparatorClassName}>{separatorLabel}</span>
+          <CardInlineCta
+            href={secondaryHref}
+            className={`${prominentCtaClassName} ${phaseOneCtaButtonClassName}`}
+          >
+            {secondaryLabel}
+          </CardInlineCta>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 type PhaseItem = {
   ctaHref: string;
@@ -173,24 +217,14 @@ export default function MasterPlan() {
                         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                           {item.extraDescription}
                         </p>
-                        <div className="mt-auto flex justify-end pt-5 -mb-3 -mr-3 rtl:-ml-3 rtl:mr-0 md:-mb-4 md:-mr-4 md:rtl:-ml-4">
-                          <div className="flex flex-nowrap items-center justify-end gap-2 text-sm md:gap-4">
-                            <CardInlineCta
-                              href={item.ctaHref}
-                              className={`${prominentCtaClassName} w-auto max-w-full shrink-0 whitespace-nowrap !rounded-3xl !px-4 !py-2 text-sm md:!px-8`}
-                            >
-                              {item.ctaLabel}
-                            </CardInlineCta>
-                            <span className="shrink-0 text-sm text-muted-foreground/70 italic">
-                              {t("masterPlan.phases.phase1.callout.separator")}
-                            </span>
-                            <CardInlineCta
-                              href={item.secondaryCtaHref!}
-                              className={`${prominentCtaClassName} w-auto max-w-full shrink-0 whitespace-nowrap !rounded-3xl !px-4 !py-2 text-sm md:!px-8`}
-                            >
-                              {item.secondaryCtaLabel}
-                            </CardInlineCta>
-                          </div>
+                        <div className="mt-auto flex justify-end pt-5 md:-mb-4 md:-mr-4 md:rtl:-ml-4">
+                          <ResponsivePhaseOneCtas
+                            primaryHref={item.ctaHref}
+                            primaryLabel={item.ctaLabel}
+                            secondaryHref={item.secondaryCtaHref!}
+                            secondaryLabel={item.secondaryCtaLabel!}
+                            separatorLabel={t("masterPlan.phases.phase1.callout.separator")}
+                          />
                         </div>
                       </>
                     ) : (
