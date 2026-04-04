@@ -39,6 +39,16 @@
 
 .surface :global(.pagefind-ui) {
   color: inherit;
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-primary: var(--ifm-heading-color);
+  --pagefind-ui-text: var(--ifm-font-color-base);
+  --pagefind-ui-background: color-mix(in srgb, var(--bitsocial-surface) 92%, transparent);
+  --pagefind-ui-border: var(--bitsocial-glass-border);
+  --pagefind-ui-tag: color-mix(in srgb, var(--bitsocial-surface) 82%, transparent);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 1.5rem;
+  --pagefind-ui-image-border-radius: 0.9rem;
+  --pagefind-ui-font: var(--ifm-font-family-base);
 }
 
 .surface :global(.pagefind-ui__form) {

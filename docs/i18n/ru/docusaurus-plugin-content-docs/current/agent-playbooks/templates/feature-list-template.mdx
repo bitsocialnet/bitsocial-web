@@ -1,0 +1,26 @@
+---
+title: Шаблон списка функций
+description: Машиночитаемый шаблон, используемый для длительного отслеживания многосессионных задач.
+---
+
+# Шаблон списка функций
+
+Эта страница отражает шаблон JSON, поставляемый в `docs/agent-playbooks/templates/feature-list.template.json`, поэтому ее также можно просматривать непосредственно на сайте документации.
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```

@@ -1,5 +1,5 @@
 import React, { useEffect, type ReactNode } from "react";
-import { useHistory, useLocation } from "@docusaurus/router";
+import { useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import {
   getLocalizedDocsPath,
@@ -12,7 +12,6 @@ import {
 } from "../lib/docsLanguage";
 
 function DocsLanguageSync() {
-  const history = useHistory();
   const location = useLocation();
   const {
     i18n: { currentLocale, defaultLocale },
@@ -41,7 +40,7 @@ function DocsLanguageSync() {
 
     if (shouldRedirect) {
       persistDocsLanguage(targetLanguage);
-      history.replace(targetUrl);
+      window.location.replace(targetUrl);
       return;
     }
 
@@ -49,7 +48,7 @@ function DocsLanguageSync() {
     persistDocsLanguage(language.code);
     document.documentElement.lang = language.code;
     document.documentElement.dir = language.dir === "rtl" ? "rtl" : "ltr";
-  }, [currentLocale, defaultLocale, history, location.hash, location.pathname, location.search]);
+  }, [currentLocale, defaultLocale, location.hash, location.pathname, location.search]);
 
   return null;
 }

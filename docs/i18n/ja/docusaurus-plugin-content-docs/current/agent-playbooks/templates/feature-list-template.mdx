@@ -1,0 +1,26 @@
+---
+title: 機能リスト テンプレート
+description: 長時間実行のマルチセッション タスクの追跡に使用される機械可読テンプレート。
+---
+
+# 機能リスト テンプレート
+
+このページは、`docs/agent-playbooks/templates/feature-list.template.json` に同梱されている JSON テンプレートを反映しているため、ドキュメント サイト内で直接参照することもできます。
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```

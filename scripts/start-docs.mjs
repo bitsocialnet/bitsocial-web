@@ -6,12 +6,15 @@ import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 import {
+  ensurePinnedNodeVersion,
   getPortlessAppName,
   getPortlessPublicUrl,
   isWindows,
   portlessBin,
   repoRoot,
 } from "./dev-server-utils.mjs";
+
+await ensurePinnedNodeVersion(import.meta.url);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const usePortless = process.env.PORTLESS !== "0" && !isWindows;

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { translate } from "@docusaurus/Translate";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import { useMemo, useRef } from "react";
+import { usePagefindPaths } from "../lib/pagefindPaths";
 import { usePagefindUi } from "../lib/usePagefindUi";
 import styles from "./PagefindSearch.module.css";
 
@@ -24,9 +24,7 @@ export default function PagefindSearch({
     description: "Heading shown above the full-page docs search widget.",
   }),
 }: PagefindSearchProps) {
-  const bundlePath = useBaseUrl("pagefind/");
-  const scriptUrl = useBaseUrl("pagefind/pagefind-ui.js");
-  const styleUrl = useBaseUrl("pagefind/pagefind-ui.css");
+  const { bundlePath, scriptUrl, styleUrl } = usePagefindPaths();
   const containerRef = useRef<HTMLDivElement>(null);
   const uiOptions = useMemo(
     () => ({

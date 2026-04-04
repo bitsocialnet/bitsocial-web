@@ -347,7 +347,7 @@
     "description": "The label of the link targeting the blog authors page"
   },
   "theme.blog.author.noPosts": {
-    "message": "This author has not written any posts yet.",
+    "message": "Bu yazar henüz herhangi bir yazı yazmadı.",
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
@@ -397,5 +397,37 @@
   "docs.home.apps.card.seedit.eyebrow": {
     "message": "Forum",
     "description": "Apps card eyebrow for Seedit."
+  },
+  "docs.navbarSearch.mobileLinkAriaLabel": {
+    "message": "Doküman aramasını aç",
+    "description": "ARIA label for the compact mobile docs search trigger."
+  },
+  "docs.languageSelector.mobileLabel": {
+    "message": "Diller",
+    "description": "Label for the mobile docs language selector trigger."
+  },
+  "docs.languageSelector.title": {
+    "message": "Dil seçin",
+    "description": "Title shown in the docs language selector panel."
+  },
+  "docs.languageSelector.searchPlaceholder": {
+    "message": "Dilleri ara",
+    "description": "Placeholder shown in the docs language selector search input."
+  },
+  "docs.languageSelector.emptyState": {
+    "message": "Aramanızla eşleşen dil yok.",
+    "description": "Empty state shown when the docs language selector finds no language matches."
+  },
+  "docs.languageSelector.closeBackdrop": {
+    "message": "Dil seçiciyi kapat",
+    "description": "ARIA label for the backdrop behind the docs language selector."
+  },
+  "docs.languageSelector.eyebrow": {
+    "message": "Yerelleştirme",
+    "description": "Small eyebrow label shown above the docs language selector title."
+  },
+  "docs.languageSelector.closeButton": {
+    "message": "Kapalı",
+    "description": "Accessible label for the docs language selector close button."
   }
 }

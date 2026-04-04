@@ -78,6 +78,16 @@ If uncertain, ask the developer before adding an entry.
 - **Mitigation:** Keep docs startup behind `yarn start:docs`, which now uses Portless plus `scripts/start-docs.mjs` to honor an injected free port or fall back to the next available port when run directly.
 - **Status:** confirmed
 
+### Fixed docs Portless hostname was hard-coded
+
+- **Date:** 2026-04-03
+- **Observed by:** Codex
+- **Context:** Running `yarn start` in a secondary Bitsocial Web worktree while another worktree was already serving docs through Portless
+- **What was surprising:** `start:docs` still registered the literal `docs.bitsocial.localhost` hostname, so `yarn start` could fail even though the about app already knew how to avoid Portless route collisions for its own hostname.
+- **Impact:** Parallel worktrees could not reliably use the root dev command because the docs process exited first and `concurrently` then killed the rest of the session.
+- **Mitigation:** Keep docs startup behind `scripts/start-docs.mjs`, which now derives the same branch-scoped Portless hostname as the about app and injects that shared public URL into the `/docs` dev proxy target.
+- **Status:** confirmed
+
 ### `docs-site/` leftovers can hide missing docs source after the refactor
 
 - **Date:** 2026-04-01
@@ -86,4 +96,14 @@ If uncertain, ask the developer before adding an entry.
 - **What was surprising:** The old `docs-site/` folder can remain on disk with stale but important files like `i18n/`, even after the tracked repo moved to `docs/`. That makes the refactor look duplicated locally and can hide the fact that tracked docs translations were not actually moved into `docs/`.
 - **Impact:** Agents can delete the old folder as “junk” and accidentally lose the only local copy of docs translations, or keep editing scripts that still point at the dead `docs-site/` path.
 - **Mitigation:** Treat `docs/` as the only canonical docs project. Before deleting any local `docs-site/` leftovers, restore tracked source like `docs/i18n/` and update scripts and hooks to stop referencing `docs-site`.
+- **Status:** confirmed
+
+### Multilocale docs preview can spike RAM during verification
+
+- **Date:** 2026-04-01
+- **Observed by:** Codex
+- **Context:** Fixing docs i18n, locale routing, and Pagefind behavior with `yarn start:docs` plus Playwright
+- **What was surprising:** The default docs preview mode now does a full multilocale docs build plus Pagefind indexing before serving, and keeping that process alive alongside multiple Playwright or Chrome sessions can consume much more RAM than a normal Vite or single-locale Docusaurus dev loop.
+- **Impact:** The machine can become memory-constrained, browser sessions can crash, and interrupted runs can leave stale docs servers or headless browsers behind that keep consuming memory.
+- **Mitigation:** For docs work that does not need locale-route or Pagefind verification, prefer `DOCS_START_MODE=live yarn start:docs`. Only use the default multilocale preview when you need to validate translated routes or Pagefind. Keep a single Playwright session, close old browser sessions before opening new ones, and stop the docs server after verification if you no longer need it.
 - **Status:** confirmed

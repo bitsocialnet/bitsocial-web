@@ -70,6 +70,7 @@ const config: Config = {
             ".docusaurus/**",
             "build/**",
             "dist/**",
+            "i18n/**",
             "node_modules/**",
             "src/**",
             "static/**",

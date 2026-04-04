@@ -1,0 +1,26 @@
+---
+title: Šablona seznamu funkcí
+description: Strojově čitelná šablona používaná pro dlouhodobé sledování úkolů s více relacemi.
+---
+
+# Šablona seznamu funkcí
+
+Tato stránka zrcadlí šablonu JSON dodávanou v `docs/agent-playbooks/templates/feature-list.template.json`, takže ji lze procházet také přímo na webu dokumentů.
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```

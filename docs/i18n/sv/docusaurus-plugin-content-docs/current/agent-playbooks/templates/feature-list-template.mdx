@@ -1,0 +1,26 @@
+---
+title: Funktionslistamall
+description: Maskinläsbar mall som används för långvarig uppgiftsspårning i flera sessioner.
+---
+
+# Funktionslistamall
+
+Den här sidan speglar JSON-mallen som levereras i `docs/agent-playbooks/templates/feature-list.template.json` så att den kan bläddras direkt inuti docs-webbplatsen också.
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```

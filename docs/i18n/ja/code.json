@@ -20,7 +20,7 @@
     "description": "Button label to load more Pagefind search results on the full search page."
   },
   "docs.pagefindSearch.kicker": {
-    "message": "Pagefind",
+    "message": "ページ検索",
     "description": "Kicker label shown above the full-page docs search block."
   },
   "docs.pagefindSearch.loading": {
@@ -397,5 +397,37 @@
   "docs.home.apps.card.seedit.eyebrow": {
     "message": "フォーラム",
     "description": "Apps card eyebrow for Seedit."
+  },
+  "docs.navbarSearch.mobileLinkAriaLabel": {
+    "message": "ドキュメント検索を開く",
+    "description": "ARIA label for the compact mobile docs search trigger."
+  },
+  "docs.languageSelector.mobileLabel": {
+    "message": "言語",
+    "description": "Label for the mobile docs language selector trigger."
+  },
+  "docs.languageSelector.title": {
+    "message": "言語を選択してください",
+    "description": "Title shown in the docs language selector panel."
+  },
+  "docs.languageSelector.searchPlaceholder": {
+    "message": "検索言語",
+    "description": "Placeholder shown in the docs language selector search input."
+  },
+  "docs.languageSelector.emptyState": {
+    "message": "検索に一致する言語はありません。",
+    "description": "Empty state shown when the docs language selector finds no language matches."
+  },
+  "docs.languageSelector.closeBackdrop": {
+    "message": "言語選択ツールを閉じる",
+    "description": "ARIA label for the backdrop behind the docs language selector."
+  },
+  "docs.languageSelector.eyebrow": {
+    "message": "ローカリゼーション",
+    "description": "Small eyebrow label shown above the docs language selector title."
+  },
+  "docs.languageSelector.closeButton": {
+    "message": "近い",
+    "description": "Accessible label for the docs language selector close button."
   }
 }

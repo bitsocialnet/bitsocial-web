@@ -1,0 +1,26 @@
+---
+title: Mẫu danh sách tính năng
+description: Mẫu máy có thể đọc được dùng để theo dõi tác vụ nhiều phiên chạy trong thời gian dài.
+---
+
+# Mẫu danh sách tính năng
+
+Trang này phản ánh mẫu JSON được gửi trong `docs/agent-playbooks/templates/feature-list.template.json` để nó cũng có thể được duyệt trực tiếp bên trong trang tài liệu.
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```

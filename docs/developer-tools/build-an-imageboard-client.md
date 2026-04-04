@@ -29,8 +29,8 @@ If you want the shortest path to shipping, contribute to 5chan directly first:
 If 5chan does not match the community or interface you want, build a separate client instead. Compatible Bitsocial clients can share the same network without sharing the same product decisions.
 
 1. Learn the protocol-facing tools:
-   - [Bitsocial React hooks](/docs/developer-tools/react-hooks/)
-   - [Bitsocial CLI](/docs/developer-tools/cli/)
+   - [Bitsocial React hooks](../react-hooks/)
+   - [Bitsocial CLI](../cli/)
 2. Decide what kind of imageboard you are actually building.
    Choose the board structure, identity assumptions, moderation model, discovery flow, and visual language first.
 3. Pick the implementation path that fits the project.

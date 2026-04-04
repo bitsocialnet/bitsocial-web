@@ -2,7 +2,7 @@ import React, { useEffect, useId, useMemo, useRef, useState, type ReactNode } fr
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { translate } from "@docusaurus/Translate";
-import { useHistory, useLocation } from "@docusaurus/router";
+import { useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import type { Props } from "@theme/NavbarItem/LocaleDropdownNavbarItem";
 import {
@@ -103,7 +103,6 @@ function CloseGlyph({ className }: { className?: string }) {
 }
 
 export default function LocaleDropdownNavbarItem({ mobile, className }: Props): ReactNode {
-  const history = useHistory();
   const location = useLocation();
   const {
     i18n: { currentLocale, locales },
@@ -168,7 +167,7 @@ export default function LocaleDropdownNavbarItem({ mobile, className }: Props): 
   const navigateToLanguage = (language: LanguageOption) => {
     persistDocsLanguage(language.code);
     closePanel();
-    history.push(language.href);
+    window.location.assign(language.href);
   };
 
   useEffect(() => {

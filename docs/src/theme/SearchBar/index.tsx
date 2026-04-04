@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import { translate } from "@docusaurus/Translate";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import { usePagefindPaths } from "../../lib/pagefindPaths";
 import { usePagefindUi } from "../../lib/usePagefindUi";
 import styles from "./styles.module.css";
 
@@ -14,9 +15,7 @@ function SearchGlyph() {
 }
 
 export default function SearchBar() {
-  const bundlePath = useBaseUrl("pagefind/");
-  const scriptUrl = useBaseUrl("pagefind/pagefind-ui.js");
-  const styleUrl = useBaseUrl("pagefind/pagefind-ui.css");
+  const { bundlePath, scriptUrl, styleUrl } = usePagefindPaths();
   const searchPageHref = useBaseUrl("/search/");
   const containerRef = useRef<HTMLDivElement>(null);
   const shortcutLabel =
@@ -116,6 +115,17 @@ export default function SearchBar() {
           })}
         </a>
       ) : null}
+      <a
+        href={searchPageHref}
+        className={styles.mobileLink}
+        aria-label={translate({
+          id: "docs.navbarSearch.mobileLinkAriaLabel",
+          message: "Open docs search",
+          description: "ARIA label for the compact mobile docs search trigger.",
+        })}
+      >
+        <SearchGlyph />
+      </a>
       <kbd className={styles.shortcut}>{shortcutLabel}</kbd>
     </div>
   );

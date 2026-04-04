@@ -1,0 +1,26 @@
+---
+title: Modello di elenco funzionalità
+description: Modello leggibile dal computer utilizzato per il monitoraggio delle attività multisessione di lunga durata.
+---
+
+# Modello di elenco funzionalità
+
+Questa pagina rispecchia il modello JSON fornito in `docs/agent-playbooks/templates/feature-list.template.json` in modo che possa essere sfogliato direttamente anche all'interno del sito dei documenti.
+
+```json
+{
+  "task": "replace-with-task-slug",
+  "last_updated": "YYYY-MM-DD",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "pending",
+      "description": "Describe one end-to-end feature or one reviewable task slice.",
+      "verification": ["List the command or user-visible check that proves this item works."],
+      "files": [],
+      "notes": ""
+    }
+  ]
+}
+```
