@@ -35,7 +35,7 @@ function docsDevProxyTarget() {
 }
 
 function staticSeoPlugin() {
-  const outDir = path.resolve(__dirname, "../dist");
+  let outDir = path.resolve(__dirname, "../dist");
 
   function routeToOutputPath(pathname: string) {
     if (pathname === "/") {
@@ -48,6 +48,11 @@ function staticSeoPlugin() {
   return {
     name: "bitsocial-static-seo",
     apply: "build" as const,
+    configResolved(config) {
+      outDir = path.isAbsolute(config.build.outDir)
+        ? config.build.outDir
+        : path.resolve(config.root, config.build.outDir);
+    },
     async closeBundle() {
       const indexHtmlPath = path.join(outDir, "index.html");
       const baseHtml = await fs.readFile(indexHtmlPath, "utf8");
