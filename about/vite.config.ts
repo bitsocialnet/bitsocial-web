@@ -1,9 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import autoprefixer from "autoprefixer";
+import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import tailwindcss from "tailwindcss";
+import {
+  getStaticSeoRoutes,
+  injectSeoHead,
+  renderRobotsTxt,
+  renderSitemapXml,
+} from "./src/lib/seo";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const previewOpenUrl = "http://bitsocial.localhost:1355/";
@@ -27,10 +34,44 @@ function docsDevProxyTarget() {
   return docsDevProxyDefaultPortless;
 }
 
+function staticSeoPlugin() {
+  const outDir = path.resolve(__dirname, "../dist");
+
+  function routeToOutputPath(pathname: string) {
+    if (pathname === "/") {
+      return path.join(outDir, "index.html");
+    }
+
+    return path.join(outDir, pathname.replace(/^\//, ""), "index.html");
+  }
+
+  return {
+    name: "bitsocial-static-seo",
+    apply: "build" as const,
+    async closeBundle() {
+      const indexHtmlPath = path.join(outDir, "index.html");
+      const baseHtml = await fs.readFile(indexHtmlPath, "utf8");
+      const routes = getStaticSeoRoutes();
+
+      await Promise.all(
+        routes.map(async (route) => {
+          const outputPath = routeToOutputPath(route.pathname);
+          const html = injectSeoHead(baseHtml, route.seo);
+          await fs.mkdir(path.dirname(outputPath), { recursive: true });
+          await fs.writeFile(outputPath, html);
+        }),
+      );
+
+      await fs.writeFile(path.join(outDir, "robots.txt"), renderRobotsTxt());
+      await fs.writeFile(path.join(outDir, "sitemap.xml"), renderSitemapXml(routes));
+    },
+  };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
   root: __dirname,
-  plugins: [react()],
+  plugins: [react(), staticSeoPlugin()],
   server: {
     // Portless serves the app at a stable hostname; open that URL, not the internal Vite port.
     open: process.env.PORTLESS === "0" ? true : previewOpenUrl,

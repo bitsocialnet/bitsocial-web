@@ -12,6 +12,7 @@ import {
 import Home from "@/pages/home";
 import About from "@/pages/about";
 import Blog from "@/pages/blog";
+import SeoHead from "@/components/seo-head";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { normalizeInitialHomeScrollPosition } from "@/lib/initial-scroll";
 
@@ -54,6 +55,7 @@ function DevelopmentOnlyRoute({ children }: { children: ReactNode }) {
 function App() {
   return (
     <Router>
+      <SeoHead />
       <InitialHomeScrollGuard />
       <Routes>
         <Route path="/" element={<Home />} />
