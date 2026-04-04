@@ -58,27 +58,27 @@
     "title": "Fitur Inti",
     "items": {
       "open-source": {
-        "description": "Bitsocial adalah perangkat lunak sumber terbuka gratis: protokol dan klien bersifat publik, bisa difork, dan terbuka untuk kontribusi eksternal. Siapa pun dapat memeriksa kodenya, merilis peningkatan, atau membangun aplikasi yang kompatibel tanpa meminta izin dari perusahaan.",
+        "description": "Bitsocial adalah perangkat lunak <strong>gratis dan sumber terbuka</strong>: protokol dan kliennya bersifat publik, dapat di-fork, dan terbuka terhadap kontribusi dari luar. <strong>Siapa pun dapat memeriksa kode</strong>, mengirimkan penyempurnaan, atau membuat aplikasi yang kompatibel tanpa meminta izin dari perusahaan.",
         "cta": "Jelajahi kode sumber"
       },
       "peer-to-peer": {
-        "description": "Bitsocial bukan federasi dan bukan pula on-chain. Setiap komunitas adalah kawanan peer-to-peer, lebih mirip BitTorrent daripada situs web yang di-host: pengguna membantu seed apa yang mereka baca, node bisa berjalan di perangkat keras murah, dan tiap komunitas dapat menerapkan tantangan anti-spamnya sendiri alih-alih bergantung pada kebijakan platform global.",
+        "description": "Bitsocial <strong>tidak terfederasi atau on-chain</strong>. Setiap komunitas merupakan kelompok peer-to-peer, <strong>lebih dekat dengan BitTorrent</strong> dibandingkan dengan situs web yang dihosting: pengguna memasukkan apa yang mereka baca, node dapat berjalan pada perangkat keras yang murah, dan setiap komunitas dapat menerapkan tantangan anti-spamnya sendiri alih-alih bergantung pada kebijakan platform global.",
         "cta": "Pelajari cara kerja p2p"
       },
       "social-apps": {
-        "description": "Siapa pun bisa membangun aplikasi Bitsocial dengan antarmuka, model penemuan, atau pengaturan bawaan sendiri. Aplikasi bersaing pada kualitas produk alih-alih mengunci pengguna ke basis data pribadi, karena klien yang kompatibel dapat berbagi komunitas, identitas, dan jaringan yang sama.",
+        "description": "Siapa pun dapat membuat aplikasi Bitsocial dengan antarmuka, model penemuan, atau defaultnya sendiri. Aplikasi bersaing dalam hal kualitas produk dibandingkan mengunci pengguna ke database pribadi, karena klien yang kompatibel dapat <strong>berbagi komunitas, identitas, dan jaringan yang sama</strong>.",
         "cta": "Jelajahi aplikasi"
       },
       "no-servers": {
-        "description": "Bitsocial tidak mengharuskan setiap komunitas menyewa kotak pusat data, membeli domain, atau mengelola SSL hanya untuk tetap online. Node komunitas bisa dijalankan dari rumah pada perangkat keras konsumen, dan tidak ada backend tunggal yang dioperasikan perusahaan yang dapat menjatuhkan seluruh jaringan.",
+        "description": "Bitsocial tidak mengharuskan setiap komunitas untuk menyewa kotak pusat data, membeli domain, atau mengelola SSL hanya untuk tetap online. Node komunitas dapat dijalankan dari rumah pada perangkat keras konsumen, dan <strong>tidak ada satu pun backend yang dikelola perusahaan yang dapat mematikan seluruh jaringan</strong>.",
         "cta": "Periksa status jaringan"
       },
       "no-global-bans": {
-        "description": "Moderasi tetap ada, tetapi bersifat lokal. Pemilik komunitas menetapkan aturan untuk ruang mereka sendiri dan aplikasi dapat memilih apa yang mereka indeks atau tampilkan, namun tidak ada superadmin tingkat protokol yang dapat menghapus profil atau merebut sebuah komunitas dari jaringan itu sendiri.",
+        "description": "Moderasi masih ada, namun tetap bersifat lokal. Pemilik komunitas menetapkan aturan untuk ruang mereka sendiri dan aplikasi dapat memilih apa yang mereka indeks atau tampilkan, namun <strong>tidak ada admin super tingkat protokol</strong> yang dapat menghapus profil atau mengambil komunitas dari jaringan itu sendiri.",
         "cta": "Baca catatan moderasi"
       },
       "cryptographic-property": {
-        "description": "Profil dan komunitas dikendalikan oleh kunci privat, bukan oleh akun platform yang bisa dicabut. Anda bisa mendelegasikan hosting tanpa melepaskan kepemilikan, jadi identitas dan komunitas Anda berperilaku lebih seperti properti yang dikontrol dompet daripada nama pengguna yang disewa dari perusahaan.",
+        "description": "Profil dan komunitas dikendalikan oleh kunci pribadi, bukan oleh akun platform yang dapat dibatalkan. Anda dapat mendelegasikan hosting tanpa memberikan kepemilikan, sehingga <strong>identitas dan komunitas Anda lebih berperilaku seperti properti yang dikontrol dompet</strong> dibandingkan nama pengguna yang disewa dari perusahaan.",
         "cta": "Baca catatan kepemilikan"
       }
     }
@@ -146,9 +146,9 @@
         "phase": "Tahap 1",
         "status": "Berjalan",
         "title": "Mendesentralisasi imageboard",
-        "description": "Imageboard adalah bentuk media sosial yang paling sederhana untuk didesentralisasi: posting anonim, sedikit papan default, dan tanpa grafik profil. Itulah sebabnya kami meluncurkan 5chan, aplikasi Bitsocial pertama. 5chan membuktikan Bitsocial bisa menggantikan imageboard terpusat sambil menghapus admin global dari persamaan.",
+        "description": "<strong>Papan gambar adalah bentuk media sosial yang paling sederhana untuk didesentralisasi</strong>: postingan anonim, sedikit papan default, dan tidak ada grafik profil. Inilah alasan kami meluncurkan 5chan, aplikasi Bitsocial pertama. 5chan membuktikan Bitsocial dapat menggantikan imageboard terpusat sekaligus menghilangkan admin global dari persamaan.",
         "callout": {
-          "description": "5chan adalah bukti awal, bukan garis akhir. Kami ingin banyak klien imageboard dengan budaya, antarmuka, dan default yang berbeda: papan bergaya altchan, eksperimen mobile-first, komunitas niche, dan fork yang memecahkan kebutuhan yang takkan pernah diselesaikan 5chan.",
+          "description": "5chan adalah titik pembuktian pertama, bukan garis finis. <strong>Kami menginginkan beberapa klien imageboard dengan budaya berbeda</strong>, antarmuka, dan default: papan bergaya altchan, eksperimen mobile-first, komunitas khusus, dan fork yang memecahkan kebutuhan yang tidak akan pernah bisa dilakukan oleh 5chan.",
           "ctaLabel": "Buat milikmu sendiri",
           "separator": "- atau -"
         }
@@ -156,22 +156,22 @@
       "phase2": {
         "phase": "Tahap 2",
         "title": "Meluncurkan Bitsocial RPC",
-        "description": "Bitsocial Forge akan meluncurkan layanan RPC non-kustodial pertama untuk aplikasi Bitsocial. Bitsocial RPC akan memungkinkan pengguna mengelola node dari jarak jauh, sambil mempertahankan opsi untuk self-host atau menjalankan infrastruktur RPC yang bersaing. Pengguna akan bisa membuat dan mengelola komunitas P2P yang tak terhentikan dari ponsel."
+        "description": "Bitsocial Forge akan meluncurkan layanan RPC non-penahanan pertama untuk aplikasi Bitsocial. RPC Bitsocial akan memungkinkan pengguna mengelola node dari jarak jauh, sambil mempertahankan opsi untuk menghosting sendiri atau menjalankan infrastruktur RPC yang bersaing. <strong>Pengguna akan dapat membuat dan mengelola komunitas p2p yang tak terhentikan dari seluler</strong>."
       },
       "phase3": {
         "phase": "Tahap 3",
         "title": "Mendesentralisasi forum",
-        "description": "Forum menambahkan identitas persisten, riwayat posting, dan pengelolaan komunitas. Prototipe aplikasi Bitsocial pertama kami untuk mendesentralisasi forum adalah Seedit, alternatif Reddit. Seedit akan membawa diskusi ala Reddit ke Bitsocial, begitu Bitsocial RPC membuat komunitas P2P yang selalu aktif praktis diakses dari mana saja."
+        "description": "Forum menambahkan identitas persisten, riwayat postingan, dan pengelolaan komunitas. Prototipe pertama aplikasi Bitsocial kami yang mendesentralisasikan forum adalah Seedit, sebuah alternatif reddit. <strong>Seedit akan menghadirkan diskusi bergaya Reddit ke Bitsocial</strong>, setelah Bitsocial RPC menjadikan komunitas P2P yang selalu aktif menjadi praktis dari mana saja."
       },
       "phase4": {
         "phase": "Tahap 4",
         "title": "Meluncurkan Bitsocial Network",
-        "description": "Untuk mendesentralisasi seluruh media sosial, aplikasi Bitsocial akan membutuhkan fitur andalan dan efek jaringan yang kuat, struktur finansial yang tak terhentikan, domain Bitsocial terdesentralisasi (.bso), dan likuiditas bersama. Semua ini akan didukung oleh Bitsocial Network, solusi appchain terdesentralisasi untuk aplikasi Bitsocial."
+        "description": "Untuk mendesentralisasikan semua media sosial, aplikasi Bitsocial memerlukan fitur-fitur canggih dan efek jaringan yang kuat, <strong>struktur keuangan yang tidak dapat dihentikan</strong>, domain Bitsocial yang terdesentralisasi (.bso), dan likuiditas umum. Semua ini akan didukung oleh Bitsocial Network, sebuah <strong>solusi rantai aplikasi terdesentralisasi</strong> untuk aplikasi Bitsocial."
       },
       "phase5": {
         "phase": "Tahap 5",
         "title": "Mendesentralisasi seluruh media sosial",
-        "description": "Dengan beberapa RPC publik yang bersaing satu sama lain untuk menyediakan node profil dan algoritma feed opsional, serta Bitsocial Network yang memungkinkan monetisasi konten tanpa bank menyita dana, aplikasi Bitsocial akan mampu menyaingi semua jenis media sosial, termasuk Facebook, Instagram, TikTok, X, dan YouTube."
+        "description": "Dengan banyaknya RPC publik yang bersaing satu sama lain untuk menyediakan node profil dan <strong>algoritme feed opsional</strong>, dan dengan Bitsocial Network yang memungkinkan monetisasi konten tanpa bank menyita dana, <strong>Aplikasi Bitsocial akan mampu menyaingi semua jenis media sosial</strong>, termasuk Facebook, Instagram, TikTok, X, dan YouTube."
       }
     },
     "cta": {

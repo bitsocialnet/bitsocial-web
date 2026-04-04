@@ -1,7 +1,7 @@
 import { m, useReducedMotion } from "framer-motion";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { type ReactNode, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import CardInlineCta, { prominentCtaClassName } from "@/components/card-inline-cta";
 import { DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
 import { getScrollBehavior, triggerFeatureGlow, triggerTaglineGlow } from "@/lib/utils";
@@ -16,7 +16,7 @@ type FeatureId =
 
 interface Feature {
   id: FeatureId;
-  description: string;
+  description: ReactNode;
   ctaLabel: string;
   ctaHref: string;
   external?: boolean;
@@ -78,7 +78,7 @@ function buildFeatures(t: (key: string) => string): Feature[] {
 
   return FEATURE_ORDER.map((id) => ({
     id,
-    description: t(FEATURE_I18N[id].description),
+    description: <Trans i18nKey={FEATURE_I18N[id].description} components={richTextComponents} />,
     ctaLabel: t(FEATURE_I18N[id].cta),
     ctaHref: hrefs[id].ctaHref,
     external: hrefs[id].external,
@@ -86,6 +86,9 @@ function buildFeatures(t: (key: string) => string): Feature[] {
 }
 
 const featureCtaClassName = `${prominentCtaClassName} w-full md:w-auto`;
+const richTextComponents = {
+  strong: <strong className="font-semibold" />,
+};
 
 interface FeatureCtaProps {
   className: string;

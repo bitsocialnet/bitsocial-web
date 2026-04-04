@@ -58,27 +58,27 @@
     "title": "Temel Özellikler",
     "items": {
       "open-source": {
-        "description": "Bitsocial ücretsiz ve açık kaynaklı bir yazılımdır: protokol ve istemciler herkese açıktır, çatallanabilir ve dış katkılara açıktır. Herkes kodu inceleyebilir, iyileştirmeler yayınlayabilir veya bir şirketten izin almadan uyumlu bir uygulama geliştirebilir.",
+        "description": "Bitsocial <strong>ücretsiz ve açık kaynaklı</strong> bir yazılımdır: protokol ve istemciler halka açıktır, çatallanabilir ve dış katkılara açıktır. <strong>Herkes, bir şirketten izin istemeden kodu inceleyebilir</strong>, iyileştirmeler gönderebilir veya uyumlu bir uygulama geliştirebilir.",
         "cta": "Kaynak koduna göz at"
       },
       "peer-to-peer": {
-        "description": "Bitsocial ne federasyonludur ne de zincir üzerindedir. Her topluluk, barındırılan bir web sitesinden çok BitTorrent'e benzeyen eşler arası bir sürüdür: kullanıcılar okuduklarını paylaşır, düğümler ucuz donanımda çalışabilir ve her topluluk küresel platform politikasına bağlı kalmak yerine kendi spam önleme sınamasını uygulayabilir.",
+        "description": "Bitsocial <strong>federe veya zincirleme değildir</strong>. Her topluluk, barındırılan bir web sitesinden <strong>BitTorrent'e daha yakın</strong>, eşler arası bir sürüdür: kullanıcılar okuduklarını tohumlar, düğümler ucuz donanım üzerinde çalışabilir ve her topluluk, küresel bir platform politikasına bağlı kalmak yerine kendi spam önleme mücadelesini uygulayabilir.",
         "cta": "p2p'nin nasıl çalıştığını öğrenin"
       },
       "social-apps": {
-        "description": "Herkes kendi arayüzüne, keşif modeline veya varsayılanlarına sahip bir Bitsocial uygulaması geliştirebilir. Uyumlular aynı toplulukları, kimlikleri ve ağı paylaşabildiği için uygulamalar özel bir veritabanına kullanıcıları kilitlemek yerine ürün kalitesinde rekabet eder.",
+        "description": "Herkes kendi arayüzü, keşif modeli veya varsayılanları olan bir Bitsocial uygulaması oluşturabilir. Uyumlu istemciler <strong>aynı toplulukları, kimlikleri ve ağı paylaşabildiğinden</strong>, uygulamalar kullanıcıları özel bir veritabanına kilitlemek yerine ürün kalitesi konusunda rekabet eder.",
         "cta": "Uygulamaları keşfet"
       },
       "no-servers": {
-        "description": "Bitsocial, her topluluğun çevrim içi kalmak için bir veri merkezi kutusu kiralamasını, alan adı satın almasını ya da SSL yönetmesini gerektirmez. Bir topluluk düğümü tüketici sınıfı donanımda evden çalışabilir ve tüm ağı devirebilecek, şirket tarafından işletilen tek bir arka uç yoktur.",
+        "description": "Bitsocial, her topluluğun yalnızca çevrimiçi kalabilmek için bir veri merkezi kutusu kiralamasını, alan adı satın almasını veya SSL'yi yönetmesini gerektirmez. Bir topluluk düğümü evden tüketici donanımı üzerinde çalıştırılabilir ve <strong>tüm ağı çökertebilecek, şirket tarafından işletilen tek bir arka uç yoktur</strong>.",
         "cta": "Ağ durumunu kontrol et"
       },
       "no-global-bans": {
-        "description": "Moderasyon yine vardır, ama yereldir. Topluluk sahipleri kendi alanları için kuralları belirler; uygulamalar neyi dizine ekleyeceklerine veya göstereceklerine karar verebilir, ancak bir profili silebilecek ya da bir topluluğu ağın kendisinden koparabilecek protokol düzeyinde bir süper yönetici yoktur.",
+        "description": "Moderasyon hala mevcut ancak yerel kalıyor. Topluluk sahipleri kendi alanları için kurallar koyar ve uygulamalar neyi indeksleyeceklerini veya göstereceklerini seçebilirler, ancak bir profili silebilecek veya bir topluluğu ağdan ele geçirebilecek <strong>protokol düzeyinde bir süper yönetici yoktur</strong>.",
         "cta": "Moderasyon notlarını oku"
       },
       "cryptographic-property": {
-        "description": "Profiller ve topluluklar iptal edilebilir platform hesaplarıyla değil, özel anahtarlarla kontrol edilir. Sahipliği devretmeden barındırma yetkisi verebilirsiniz; böylece kimliğiniz ve topluluğunuz bir şirketten kiralanmış kullanıcı adından çok cüzdan kontrollü mülke benzer.",
+        "description": "Profiller ve topluluklar, iptal edilebilir platform hesapları tarafından değil, özel anahtarlar tarafından kontrol edilir. Sahipliği vermeden barındırma yetkisini devredebilirsiniz; böylece <strong>kimliğiniz ve topluluğunuz, bir şirketten kiralanan bir kullanıcı adından çok, cüzdan tarafından kontrol edilen bir mülk gibi davranır</strong>.",
         "cta": "Sahiplik notlarını oku"
       }
     }
@@ -146,9 +146,9 @@
         "phase": "Aşama 1",
         "status": "Sürüyor",
         "title": "Imageboard'ları merkezsizleştir",
-        "description": "Imageboard'lar merkezsizleştirilmesi en basit sosyal medya biçimidir: anonim gönderi, az sayıda varsayılan pano ve profil grafiği yok. Bu yüzden ilk Bitsocial uygulaması olan 5chan'i başlatıyoruz. 5chan, Bitsocial'ın küresel yöneticileri denklemden çıkarırken merkezi imageboard'ların yerini alabileceğini kanıtlıyor.",
+        "description": "<strong>Görüntü panoları, merkezi olmayan sosyal medyanın en basit biçimidir</strong>: anonim paylaşım, az sayıda varsayılan pano ve profil grafiğinin olmaması. Bu nedenle ilk Bitsocial uygulaması olan 5chan'ı başlatıyoruz. 5chan, Bitsocial'ın küresel yöneticileri denklemden çıkarırken merkezi görüntü panolarının yerini alabileceğini kanıtlıyor.",
         "callout": {
-          "description": "5chan ilk kanıt noktasıdır, bitiş çizgisi değil. Farklı kültürlere, arayüzlere ve varsayılanlara sahip birden fazla imageboard istemcisi istiyoruz: altchan tarzı panolar, mobile-first deneyler, niş topluluklar ve 5chan’in asla çözemeyeceği ihtiyaçları çözen fork’lar.",
+          "description": "5chan ilk kanıt noktasıdır, bitiş çizgisi değil. <strong>Farklı kültürlere, arayüzlere ve varsayılanlara sahip birden fazla imageboard istemcisi istiyoruz</strong>: altchan tarzı panolar, mobile-first deneyler, niş topluluklar ve 5chan’in asla çözemeyeceği ihtiyaçları çözen fork’lar.",
           "ctaLabel": "Kendininkini oluştur",
           "separator": "- veya -"
         }
@@ -156,22 +156,22 @@
       "phase2": {
         "phase": "Aşama 2",
         "title": "Bitsocial RPC'yi kullanıma sun",
-        "description": "Bitsocial Forge, Bitsocial uygulamaları için ilk emanetsiz RPC hizmetini başlatacak. Bitsocial RPC, kullanıcıların düğümleri uzaktan yönetmesine izin verirken kendi kendine barındırma veya rakip RPC altyapısı çalıştırma seçeneğini koruyacak. Kullanıcılar mobilde durdurulamaz P2P toplulukları oluşturup yönetebilecek."
+        "description": "Bitsocial Forge, Bitsocial uygulamaları için ilk gözetimsiz RPC hizmetini başlatacak. Bitsocial RPC, kullanıcıların düğümleri uzaktan yönetmesine olanak tanırken, kendi kendine barındırma veya rakip RPC altyapısını çalıştırma seçeneğini de koruyacak. <strong>Kullanıcılar mobil cihazlardan durdurulamaz p2p toplulukları oluşturup yönetebilecekler</strong>."
       },
       "phase3": {
         "phase": "Aşama 3",
         "title": "Forumları merkezsizleştir",
-        "description": "Forumlar kalıcı kimlikler, gönderi geçmişi ve topluluk yönetimi ekler. Forumları merkezsizleştiren ilk prototip Bitsocial uygulamamız, bir reddit alternatifi olan Seedit'tir. Seedit, Bitsocial RPC dünyanın her yerinden her zaman açık P2P toplulukları pratik hale getirdiğinde Reddit tarzı tartışmayı Bitsocial'a taşıyacak."
+        "description": "Forumlar kalıcı kimlikler, gönderi geçmişi ve topluluk yönetimi ekler. Forumları merkezi olmayan hale getirmeye yönelik ilk prototip Bitsocial uygulamamız, bir reddit alternatifi olan Seedit'tir. Bitsocial RPC, her zaman etkin olan P2P topluluklarını her yerden pratik hale getirdiğinde <strong>Seedit, Bitsocial'a Reddit tarzı tartışmayı getirecek</strong>."
       },
       "phase4": {
         "phase": "Aşama 4",
         "title": "Bitsocial Network'ü kullanıma sun",
-        "description": "Tüm sosyal medyayı merkezsizleştirmek için Bitsocial uygulamalarının öldürücü özelliklere ve güçlü ağ etkilerine, durdurulamaz finansal yapılara, merkezsiz Bitsocial alan adlarına (.bso), ortak likiditeye ihtiyacı olacak. Bütün bunları Bitsocial uygulamaları için merkezsiz bir appchain çözümü olan Bitsocial Network güçlendirecek."
+        "description": "Tüm sosyal medyayı merkezi olmayan hale getirmek için Bitsocial uygulamalarının mükemmel özelliklere ve güçlü ağ etkilerine, <strong>durdurulamaz finansal yapılara</strong>, merkezi olmayan Bitsosyal alan adlarına (.bso) ve ortak likiditeye ihtiyacı olacak. Tüm bunlar, Bitsocial uygulamaları için <strong>merkezi olmayan bir uygulama zinciri çözümü</strong> olan Bitsocial Network tarafından desteklenecek."
       },
       "phase5": {
         "phase": "Aşama 5",
         "title": "Tüm sosyal medyayı merkezsizleştir",
-        "description": "Birbiriyle yarışan birden çok herkese açık RPC, profil düğümleri ve isteğe bağlı akış algoritmaları sunarken, Bitsocial Network de bankalar fonlara el koymadan içerik para kazanımını mümkün kılarken, Bitsocial uygulamaları Facebook, Instagram, TikTok, X ve YouTube dahil her tür sosyal medya ile yarışabilecek."
+        "description": "Profil düğümleri ve <strong>isteğe bağlı yayın algoritmaları</strong> sağlamak için birbirleriyle rekabet eden çok sayıda halka açık RPC ve bankalar fonlara el koymadan içerikten para kazanmayı mümkün kılan Bitsocial Network ile <strong>Bitsocial uygulamaları, Facebook, Instagram, TikTok, X ve YouTube da dahil olmak üzere her türlü sosyal medyaya rakip olabilecektir</strong>."
       }
     },
     "cta": {

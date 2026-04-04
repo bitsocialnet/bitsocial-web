@@ -58,27 +58,27 @@
     "title": "Ydintoiminnot",
     "items": {
       "open-source": {
-        "description": "Bitsocial on ilmainen ja avoimen lähdekoodin ohjelmisto: protokolla ja asiakkaat ovat julkisia, forkattavia ja avoimia ulkopuolisille panoksille. Kuka tahansa voi tarkastaa koodin, julkaista parannuksia tai rakentaa yhteensopivan sovelluksen kysymättä lupaa yritykseltä.",
+        "description": "Bitsocial on <strong>ilmainen ja avoimen lähdekoodin</strong> ohjelmisto: protokolla ja asiakkaat ovat julkisia, forkoitavia ja avoimia ulkopuolisille lahjoituksille. <strong>Kuka tahansa voi tarkistaa koodin</strong>, toimittaa parannuksia tai rakentaa yhteensopivan sovelluksen ilman lupaa yritykseltä.",
         "cta": "Selaa lähdekoodia"
       },
       "peer-to-peer": {
-        "description": "Bitsocial ei ole federated eikä on-chain. Jokainen yhteisö on peer-to-peer-parvi, lähempänä BitTorrentia kuin isännöityä verkkosivua: käyttäjät seedaavat sen, mitä lukevat, solmut voivat toimia halvalla raudalla, ja jokainen yhteisö voi pakottaa oman roskapostin vastaisen haasteensa sen sijaan, että se riippuisi globaalista alustapolitiikasta.",
+        "description": "Bitsocial <strong>ei ole liittoutunut eikä ketjussa</strong>. Jokainen yhteisö on vertaisparvi, <strong>lähempänä BitTorrentia</strong> kuin isännöity verkkosivusto: käyttäjät siementävät lukemaansa, solmut voivat toimia halvalla laitteistolla ja jokainen yhteisö voi toteuttaa oman roskapostin torjuntahaasteen sen sijaan, että riippuisi maailmanlaajuisesta alustakäytännöstä.",
         "cta": "Opi kuinka p2p toimii"
       },
       "social-apps": {
-        "description": "Kuka tahansa voi rakentaa Bitsocial-sovelluksen omalla käyttöliittymällään, löytämislogiikallaan tai oletusasetuksillaan. Sovellukset kilpailevat tuotteen laadulla sen sijaan, että lukitsisivat käyttäjät yksityiseen tietokantaan, koska yhteensopivat asiakkaat voivat jakaa samat yhteisöt, identiteetit ja verkon.",
+        "description": "Kuka tahansa voi rakentaa Bitsocial-sovelluksen, jossa on oma käyttöliittymä, etsintämalli tai oletusasetukset. Sovellukset kilpailevat tuotteiden laadusta sen sijaan, että lukitsisivat käyttäjiä yksityiseen tietokantaan, koska yhteensopivat asiakkaat voivat <strong>jakaa samat yhteisöt, identiteetit ja verkon</strong>.",
         "cta": "Tutustu sovelluksiin"
       },
       "no-servers": {
-        "description": "Bitsocial ei vaadi jokaista yhteisöä vuokraamaan datakeskuksen laatikkoa, ostamaan domainia tai hallinnoimaan SSL:ää vain pysyäkseen verkossa. Yhteisön solmu voi toimia kotoa kuluttajalaitteistolla, eikä ole yhtä yrityksen ylläpitämää backendia, joka voisi kaataa koko verkon.",
+        "description": "Bitsocial ei vaadi jokaista yhteisöä vuokraamaan datakeskuslaatikkoa, ostamaan verkkotunnusta tai hallitsemaan SSL:ää vain pysyäkseen verkossa. Yhteisösolmu voi toimia kotoa käsin kuluttajalaitteistolla, ja <strong>ei ole olemassa yhtä yrityksen ylläpitämää taustajärjestelmää, joka voisi kaataa koko verkon</strong>.",
         "cta": "Tarkista verkon tila"
       },
       "no-global-bans": {
-        "description": "Moderointi on silti olemassa, mutta se pysyy paikallisena. Yhteisöjen omistajat asettavat säännöt omille tiloilleen ja sovellukset voivat valita, mitä ne indeksoivat tai näyttävät, mutta ei ole protokollatason superadminia, joka voisi poistaa profiilin tai ottaa yhteisön pois itse verkolta.",
+        "description": "Maltillisuus on edelleen olemassa, mutta se pysyy paikallisena. Yhteisön omistajat asettavat sääntöjä omille tiloilleen, ja sovellukset voivat valita, mitä ne indeksoivat tai näyttävät, mutta <strong>ei ole protokollatason superjärjestelmänvalvojaa</strong>, joka voisi poistaa profiilin tai kaapata yhteisön verkosta.",
         "cta": "Lue moderointihuomiot"
       },
       "cryptographic-property": {
-        "description": "Profiileja ja yhteisöjä hallitaan yksityisillä avaimilla, ei peruutettavilla alustatileillä. Voit delegoida hostingin luopumatta omistajuudesta, joten identiteettisi ja yhteisösi toimivat enemmän lompakolla hallittuna omaisuutena kuin yritykseltä vuokrattuna käyttäjänimenä.",
+        "description": "Profiilit ja yhteisöt ovat yksityisten avainten hallinnassa, eivät peruutettavien alustatilien avulla. Voit delegoida isännöinnin luovuttamatta omistajuutta, joten <strong>identiteettisi ja yhteisösi käyttäytyvät enemmän kuin lompakko-ohjattu omaisuus</strong> kuin yritykseltä vuokrattu käyttäjätunnus.",
         "cta": "Lue omistajuushuomiot"
       }
     }
@@ -146,9 +146,9 @@
         "phase": "Vaihe 1",
         "status": "Käynnissä",
         "title": "Hajauta imageboardit",
-        "description": "Imageboardit ovat yksinkertaisin sosiaalisen median muoto hajauttaa: anonyymit julkaisut, vain muutama oletustaulu ja ei profiiligrafiaa. Siksi lanseeraamme 5chanin, ensimmäisen Bitsocial-sovelluksen. 5chan todistaa, että Bitsocial voi korvata keskitetyt imageboardit poistamalla globaalit ylläpitäjät yhtälöstä.",
+        "description": "<strong>Kuvataulut ovat yksinkertaisin hajautettava sosiaalisen median muoto</strong>: anonyymi julkaisu, muutama oletustaulu eikä profiilikaaviota. Tästä syystä julkaisemme 5chanin, ensimmäisen Bitsocial-sovelluksen. 5chan todistaa, että Bitsocial voi korvata keskitetyt kuvataulut ja poistaa samalla globaalit järjestelmänvalvojat yhtälöstä.",
         "callout": {
-          "description": "5chan on ensimmäinen todistepiste, ei maaliviiva. Haluamme useita imageboard-asiakkaita, joilla on erilaiset kulttuurit, käyttöliittymät ja oletukset: altchan-tyylisiä boardeja, mobile-first-kokeiluja, niche-yhteisöjä ja forkkeja, jotka ratkaisevat tarpeita, joita 5chan ei koskaan ratkaise.",
+          "description": "5chan on ensimmäinen todiste, ei maaliviiva. <strong>Haluamme useita imageboard-asiakkaita, joilla on erilaisia ​​kulttuureja</strong>, käyttöliittymiä ja oletusasetuksia: altchan-tyylisiä tauluja, mobiilialustaisia ​​kokeiluja, niche-yhteisöjä ja haarukoita, jotka ratkaisevat tarpeet, joita 5chan ei koskaan tule ratkaisemaan.",
           "ctaLabel": "Rakenna omasi",
           "separator": "- tai -"
         }
@@ -156,22 +156,22 @@
       "phase2": {
         "phase": "Vaihe 2",
         "title": "Julkaise Bitsocial RPC",
-        "description": "Bitsocial Forge julkaisee ensimmäisen ei-huolehtivan RPC-palvelun Bitsocial-sovelluksille. Bitsocial RPC antaa käyttäjien hallita solmuja etänä säilyttäen samalla mahdollisuuden itsehostaukseen tai kilpailevan RPC-infrastruktuurin ajamiseen. Käyttäjät voivat luoda ja hallita pysäyttämättömiä p2p-yhteisöjä mobiilista."
+        "description": "Bitsocial Forge lanseeraa ensimmäisen ei-vapauden RPC-palvelun Bitsocial-sovelluksille. Bitsocial RPC:n avulla käyttäjät voivat hallita solmuja etänä, samalla kun he voivat isännöidä itse tai käyttää kilpailevaa RPC-infrastruktuuria. <strong>Käyttäjät voivat luoda ja hallita pysäyttämättömiä p2p-yhteisöjä mobiililaitteella</strong>."
       },
       "phase3": {
         "phase": "Vaihe 3",
         "title": "Hajauta foorumit",
-        "description": "Foorumit lisäävät pysyvät identiteetit, viestihistorian ja yhteisön hallinnan. Ensimmäinen prototyyppimme Bitsocial-sovellus foorumien hajauttamiseen on Seedit, Reddit-vaihtoehto. Seedit tuo Reddit-tyylisen keskustelun Bitsocialiin, kunhan Bitsocial RPC tekee aina päällä olevista P2P-yhteisöistä käytännöllisiä mistä tahansa."
+        "description": "Foorumit lisäävät pysyviä identiteettejä, viestihistoriaa ja yhteisön hallintaa. Ensimmäinen prototyyppi Bitsocial-sovelluksemme foorumien hajauttamiseksi on Seedit, reddit-vaihtoehto. <strong>Seedit tuo Reddit-tyylisen keskustelun Bitsocialiin</strong>, kun Bitsocial RPC tekee aina käytössä olevista P2P-yhteisöistä käytännöllisiä mistä tahansa."
       },
       "phase4": {
         "phase": "Vaihe 4",
         "title": "Julkaise Bitsocial Network",
-        "description": "Jotta kaikki sosiaalinen media voidaan hajauttaa, Bitsocial-sovellukset tarvitsevat tappavia ominaisuuksia ja vahvoja verkostovaikutuksia, pysäyttämättömiä rahoitusrakenteita, hajautettuja Bitsocial-domainja (.bso) ja yhteistä likviditeettiä. Kaikkea tätä pyörittää Bitsocial Network, hajautettu appchain-ratkaisu Bitsocial-sovelluksille."
+        "description": "Kaiken sosiaalisen median hajauttamiseksi Bitsocial-sovellukset tarvitsevat tappavia ominaisuuksia ja vahvoja verkkovaikutuksia, <strong>pysäyttämättömiä rahoitusrakenteita</strong>, hajautettuja Bitsocial-verkkotunnuksia (.bso) ja yhteistä likviditeettiä. Kaiken tämän tarjoaa Bitsocial Network, <strong>hajautettu sovellusketjuratkaisu</strong> Bitsocial-sovelluksille."
       },
       "phase5": {
         "phase": "Vaihe 5",
         "title": "Hajauta kaikki sosiaalinen media",
-        "description": "Kun useat julkiset RPC:t kilpailevat tarjotakseen profiilisolmuja ja valinnaisia feed-algoritmeja, ja Bitsocial Network mahdollistaa sisällön kaupallistamisen ilman, että pankit takavarikoivat varoja, Bitsocial-sovellukset voivat kilpailla kaikenlaisen sosiaalisen median kanssa, mukaan lukien Facebook, Instagram, TikTok, X ja YouTube."
+        "description": "Kun useat julkiset RPC:t kilpailevat keskenään profiilisolmujen ja <strong>valinnaisten syötealgoritmien</strong> tarjoamisesta, ja Bitsocial Network mahdollistaa sisällön kaupallistamisen ilman, että pankit takavarikoivat varoja, joten <strong>Bitsocial-sovellukset voivat kilpailla kaikenlaisen sosiaalisen median</strong> kanssa, mukaan lukien Facebook, Instagram, TikTok, X ja YouTube."
       }
     },
     "cta": {

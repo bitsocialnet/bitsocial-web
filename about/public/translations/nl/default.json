@@ -58,27 +58,27 @@
     "title": "Kernfuncties",
     "items": {
       "open-source": {
-        "description": "Bitsocial is vrije en open-source software: het protocol en de clients zijn openbaar, forkbaar en open voor bijdragen van buitenaf. Iedereen kan de code inspecteren, verbeteringen uitbrengen of een compatibele app bouwen zonder toestemming van een bedrijf te vragen.",
+        "description": "Bitsocial is <strong>gratis en open source</strong> software: het protocol en de clients zijn openbaar, afsplitsbaar en staan ​​open voor bijdragen van buitenaf. <strong>Iedereen kan de code inspecteren</strong>, verbeteringen aandragen of een compatibele app bouwen zonder toestemming te vragen aan een bedrijf.",
         "cta": "Broncode bekijken"
       },
       "peer-to-peer": {
-        "description": "Bitsocial is niet gefedereerd en ook niet on-chain. Elke community is een peer-to-peerzwerm, dichter bij BitTorrent dan bij een gehoste website: gebruikers seeden wat ze lezen, nodes kunnen op goedkope hardware draaien en elke community kan zijn eigen anti-spamuitdaging afdwingen in plaats van te leunen op een wereldwijd platformbeleid.",
+        "description": "Bitsocial is <strong>noch federatief noch on-chain</strong>. Elke community is een peer-to-peer-zwerm, <strong>dichter bij BitTorrent</strong> dan een gehoste website: gebruikers zaaien wat ze lezen, knooppunten kunnen op goedkope hardware draaien en elke community kan zijn eigen anti-spam-uitdaging afdwingen in plaats van afhankelijk te zijn van een mondiaal platformbeleid.",
         "cta": "Lees hoe p2p werkt"
       },
       "social-apps": {
-        "description": "Iedereen kan een Bitsocial-app bouwen met een eigen interface, ontdekkingsmodel of standaardinstellingen. Apps concurreren op productkwaliteit in plaats van gebruikers op te sluiten in een privédatabase, omdat compatibele clients dezelfde communities, identiteiten en hetzelfde netwerk kunnen delen.",
+        "description": "Iedereen kan een Bitsocial-app bouwen met zijn eigen interface, ontdekkingsmodel of standaardinstellingen. Apps concurreren op productkwaliteit in plaats van gebruikers op te sluiten in een privédatabase, omdat compatibele clients <strong>dezelfde communities, identiteiten en netwerken kunnen delen</strong>.",
         "cta": "Apps verkennen"
       },
       "no-servers": {
-        "description": "Bitsocial vereist niet dat elke community een server in een datacenter huurt, een domein koopt of SSL beheert om online te blijven. Een communitynode kan thuis op consumentenhardware draaien, en er is geen enkele backend van een bedrijf die het hele netwerk plat kan leggen.",
+        "description": "Bitsocial vereist niet dat elke community een datacenterbox huurt, een domein koopt of SSL beheert om online te blijven. Een communitynode kan vanuit huis op consumentenhardware draaien, en <strong>er is geen enkele door het bedrijf beheerde backend die het hele netwerk kan platleggen</strong>.",
         "cta": "Netwerkstatus controleren"
       },
       "no-global-bans": {
-        "description": "Moderatie bestaat nog steeds, maar blijft lokaal. Community-eigenaren bepalen de regels voor hun eigen ruimtes en apps kunnen kiezen wat ze indexeren of tonen, maar er is geen protocolbrede superadmin die een profiel kan wissen of een community uit het netwerk zelf kan weghalen.",
+        "description": "Moderatie bestaat nog steeds, maar het blijft lokaal. Community-eigenaren stellen regels op voor hun eigen ruimtes en apps kunnen kiezen wat ze indexeren of weergeven, maar <strong>er is geen superbeheerder op protocolniveau</strong> die een profiel kan wissen of een community van het netwerk zelf kan overnemen.",
         "cta": "Moderatie-notities lezen"
       },
       "cryptographic-property": {
-        "description": "Profielen en communities worden beheerd door privésleutels, niet door intrekbare platformaccounts. Je kunt hosting delegeren zonder eigendom op te geven, zodat je identiteit en community zich meer gedragen als wallet-gestuurd bezit dan als een gebruikersnaam die van een bedrijf wordt gehuurd.",
+        "description": "Profielen en communities worden beheerd door privésleutels, niet door herroepbare platformaccounts. U kunt de hosting delegeren zonder het eigendom weg te geven, zodat <strong>uw identiteit en community zich meer gedragen als door een portemonnee beheerd eigendom</strong> dan als een gebruikersnaam die van een bedrijf wordt gehuurd.",
         "cta": "Eigendomsnotities lezen"
       }
     }
@@ -146,9 +146,9 @@
         "phase": "Fase 1",
         "status": "Lopend",
         "title": "Imageboards decentraliseren",
-        "description": "Imageboards zijn de eenvoudigste vorm van sociale media om te decentraliseren: anonieme posts, weinig standaardboards en geen profielgrafiek. Daarom lanceren we 5chan, de eerste Bitsocial-app. 5chan bewijst dat Bitsocial gecentraliseerde imageboards kan vervangen terwijl globale beheerders uit de vergelijking verdwijnen.",
+        "description": "<strong>Imageboards zijn de eenvoudigste vorm van sociale media om te decentraliseren</strong>: anoniem posten, weinig standaardborden en geen profielgrafiek. Daarom lanceren we 5chan, de eerste Bitsocial-app. 5chan bewijst dat Bitsocial gecentraliseerde imageboards kan vervangen en tegelijkertijd wereldwijde beheerders uit de vergelijking kan verwijderen.",
         "callout": {
-          "description": "5chan is het eerste bewijs, niet de finish. We willen meerdere imageboard-clients met verschillende culturen, interfaces en standaardinstellingen: altchan-achtige boards, mobile-first experimenten, nichegemeenschappen en forks die behoeften oplossen die 5chan nooit zal oplossen.",
+          "description": "5chan is het eerste bewijspunt, niet de finishlijn. <strong>We willen meerdere imageboard-clients met verschillende culturen</strong>, interfaces en standaardinstellingen: borden in altchan-stijl, mobile-first-experimenten, nichegemeenschappen en forks die behoeften oplossen die 5chan nooit zal oplossen.",
           "ctaLabel": "Bouw je eigen",
           "separator": "- of -"
         }
@@ -156,22 +156,22 @@
       "phase2": {
         "phase": "Fase 2",
         "title": "Bitsocial RPC lanceren",
-        "description": "Bitsocial Forge lanceert de eerste non-custodial RPC-dienst voor Bitsocial-apps. Bitsocial RPC laat gebruikers nodes op afstand beheren, terwijl de optie blijft bestaan om zelf te hosten of concurrerende RPC-infrastructuur te draaien. Gebruikers kunnen via mobiel onstuitbare P2P-communities creëren en beheren."
+        "description": "Bitsocial Forge zal de eerste niet-bewarende RPC-service voor Bitsocial-apps lanceren. Met Bitsocial RPC kunnen gebruikers knooppunten op afstand beheren, terwijl de mogelijkheid behouden blijft om zelf een concurrerende RPC-infrastructuur te hosten of uit te voeren. <strong>Gebruikers kunnen onstuitbare p2p-community's vanaf mobiel creëren en beheren</strong>."
       },
       "phase3": {
         "phase": "Fase 3",
         "title": "Forums decentraliseren",
-        "description": "Forums voegen blijvende identiteiten, postgeschiedenis en communitybeheer toe. Ons eerste Bitsocial-app-prototype om forums te decentraliseren is Seedit, een alternatief voor Reddit. Seedit brengt Reddit-achtige discussies naar Bitsocial zodra Bitsocial RPC overal altijd-online P2P-communities praktisch maakt."
+        "description": "Forums voegen persistente identiteiten, postgeschiedenis en communitybeheer toe. Ons eerste prototype van de Bitsocial-app om forums te decentraliseren is Seedit, een reddit-alternatief. <strong>Seedit zal discussies in Reddit-stijl naar Bitsocial brengen</strong>, zodra Bitsocial RPC P2P-communities die altijd actief zijn, overal praktisch maakt."
       },
       "phase4": {
         "phase": "Fase 4",
         "title": "Bitsocial Network lanceren",
-        "description": "Om alle sociale media te decentraliseren, hebben Bitsocial-apps killer features en sterke netwerkeffecten, onstuitbare financiële structuren, gedecentraliseerde Bitsocial-domeinen (.bso) en gemeenschappelijke liquiditeit nodig. Dit alles wordt aangedreven door Bitsocial Network, een gedecentraliseerde appchain-oplossing voor Bitsocial-apps."
+        "description": "Om alle sociale media te decentraliseren, hebben Bitsocial-apps geweldige functies en sterke netwerkeffecten nodig, <strong>onstuitbare financiële structuren</strong>, gedecentraliseerde Bitsocial-domeinen (.bso) en gemeenschappelijke liquiditeit. Dit alles wordt mogelijk gemaakt door Bitsocial Network, een <strong>gedecentraliseerde appchain-oplossing</strong> voor Bitsocial-apps."
       },
       "phase5": {
         "phase": "Fase 5",
         "title": "Alle sociale media decentraliseren",
-        "description": "Met meerdere openbare RPC's die met elkaar concurreren om profielnodes en optionele feed-algoritmen te leveren, en met Bitsocial Network dat contentmonetisatie mogelijk maakt zonder dat banken fondsen kunnen in beslag nemen, kunnen Bitsocial-apps concurreren met allerlei soorten sociale media, waaronder Facebook, Instagram, TikTok, X en YouTube."
+        "description": "Omdat meerdere openbare RPC's met elkaar concurreren om profielknooppunten en <strong>optionele feedalgoritmen</strong> te bieden, en omdat Bitsocial Network het genereren van inkomsten met inhoud mogelijk maakt zonder dat banken geld in beslag nemen, zullen <strong>Bitsocial-apps kunnen wedijveren met allerlei soorten sociale media</strong>, waaronder Facebook, Instagram, TikTok, X en YouTube."
       }
     },
     "cta": {

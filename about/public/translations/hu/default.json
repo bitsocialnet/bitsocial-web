@@ -58,27 +58,27 @@
     "title": "Alapfunkciók",
     "items": {
       "open-source": {
-        "description": "A Bitsocial szabad és nyílt forráskódú szoftver: a protokoll és az ügyfelek nyilvánosak, forkolhatók és nyitottak a külső hozzájárulásokra. Bárki megvizsgálhatja a kódot, fejlesztéseket adhat ki, vagy kompatibilis alkalmazást építhet egy vállalat engedélye nélkül.",
+        "description": "A Bitsocial egy <strong>ingyenes és nyílt forráskódú</strong> szoftver: a protokoll és a kliensek nyilvánosak, forkerhetőek, és nyitottak a külső hozzájárulásokra. <strong>Bárki ellenőrizheti a kódot</strong>, fejlesztéseket szállíthat, vagy kompatibilis alkalmazást készíthet anélkül, hogy engedélyt kérne egy vállalattól.",
         "cta": "Forráskód böngészése"
       },
       "peer-to-peer": {
-        "description": "A Bitsocial sem nem föderált, sem nem láncon futó rendszer. Minden közösség egy peer-to-peer raj, közelebb áll a BitTorrenthez, mint egy hosztolt webhelyhez: a felhasználók továbbseedelik, amit olvasnak, a csomópontok olcsó hardveren is futhatnak, és minden közösség saját spamellenes kihívást érvényesíthet a globális platformszabályzat helyett.",
+        "description": "A Bitsocial <strong>nem egyesített és nem is láncon belüli</strong>. Minden közösség egy peer-to-peer raj, <strong>közelebb van a BitTorrenthez</strong>, mint egy hosztolt webhely: a felhasználók beolvassák, amit olvasnak, a csomópontok olcsó hardveren futhatnak, és minden közösség érvényesítheti saját spamellenes kihívását ahelyett, hogy a globális platformszabályzattól függne.",
         "cta": "Tudjon meg többet a p2p működéséről"
       },
       "social-apps": {
-        "description": "Bárki készíthet Bitsocial alkalmazást saját felülettel, felfedezési modellel vagy alapértelmezésekkel. Az alkalmazások a termékminőségben versenyeznek ahelyett, hogy egy privát adatbázisba zárnák a felhasználókat, mert a kompatibilis kliensek ugyanazokat a közösségeket, identitásokat és hálózatot oszthatják meg.",
+        "description": "Bárki készíthet Bitsocial alkalmazást saját felülettel, felfedezési modellel vagy alapértelmezett beállításokkal. Az alkalmazások a termékek minőségén versenyeznek ahelyett, hogy privát adatbázisba zárnák a felhasználókat, mivel a kompatibilis kliensek <strong>megoszthatják ugyanazt a közösséget, azonosságot és hálózatot</strong>.",
         "cta": "Alkalmazások felfedezése"
       },
       "no-servers": {
-        "description": "A Bitsocial nem követeli meg, hogy minden közösség adatközponti szervert béreljen, domaint vásároljon vagy SSL-t kezeljen csak azért, hogy online maradjon. Egy közösségi csomópont otthonról, fogyasztói hardveren is futhat, és nincs egyetlen vállalat által üzemeltetett backend, amely az egész hálózatot le tudná állítani.",
+        "description": "A Bitsocial nem követeli meg minden közösségtől, hogy béreljen adatközpontot, vásároljon domaint vagy kezelje az SSL-t, csak az online maradás érdekében. Egy közösségi csomópont otthonról is futhat fogyasztói hardveren, és <strong>nincs egyetlen vállalati háttérrendszer, amely az egész hálózatot tönkretenné</strong>.",
         "cta": "Hálózati állapot ellenőrzése"
       },
       "no-global-bans": {
-        "description": "A moderálás továbbra is létezik, de helyben marad. A közösségek tulajdonosai határozzák meg a saját tereik szabályait, és az alkalmazások eldönthetik, mit indexelnek vagy jelenítenek meg, de nincs protokollszintű szuperadmin, aki egy profilt törölhetne vagy egy közösséget lefoglalhatna magától a hálózattól.",
+        "description": "A mértéktartás továbbra is létezik, de marad a helyben. A közösségtulajdonosok szabályokat állítanak fel saját tereikhez, és az alkalmazások kiválaszthatják, hogy mit indexeljenek vagy mutassanak, de <strong>nincs protokollszintű szuperadminisztrátor</strong>, aki törölhetne egy profilt vagy lefoglalhatna egy közösséget magáról a hálózatról.",
         "cta": "Moderálási jegyzetek elolvasása"
       },
       "cryptographic-property": {
-        "description": "A profilokat és közösségeket privát kulcsok irányítják, nem visszavonható platformfiókok. A hostingot úgy delegálhatod, hogy közben nem adod fel a tulajdonjogot, így az identitásod és a közösséged inkább tárca által vezérelt tulajdonként működik, mint egy cégtől bérelt felhasználónévként.",
+        "description": "A profilokat és közösségeket privát kulcsok vezérlik, nem pedig visszavonható platformfiókok. A tárhelyet anélkül ruházhatja át, hogy átadná a tulajdonjogát, így <strong>az Ön személyazonossága és közössége inkább pénztárca által ellenőrzött tulajdonként viselkedik</strong>, mint egy cégtől bérelt felhasználónévként.",
         "cta": "Tulajdonlási jegyzetek elolvasása"
       }
     }
@@ -146,9 +146,9 @@
         "phase": "1. fázis",
         "status": "Folyamatban",
         "title": "Az imageboardok decentralizálása",
-        "description": "Az imageboardok a közösségi média legegyszerűbb formái, amelyeket decentralizálni lehet: anonim posztolás, kevés alapértelmezett tábla és nincs profilgráf. Ezért indítjuk el az 5chant, az első Bitsocial alkalmazást. Az 5chan megmutatja, hogy a Bitsocial képes kiváltani a központosított imageboardokat úgy, hogy a globális adminokat kiveszi az egyenletből.",
+        "description": "<strong>A képtáblák a közösségi média legegyszerűbben decentralizálható formája</strong>: névtelen bejegyzés, kevés alapértelmezett tábla és nincs profildiagram. Ezért indítjuk el az 5chan-t, az első Bitsocial alkalmazást. Az 5chan bebizonyítja, hogy a Bitsocial képes helyettesíteni a központosított képtáblákat, miközben eltávolítja a globális rendszergazdákat az egyenletből.",
         "callout": {
-          "description": "Az 5chan az első bizonyíték, nem a célvonal. Több imageboard-klienst akarunk különböző kultúrákkal, felületekkel és alapbeállításokkal: altchan-stílusú táblákat, mobile-first kísérleteket, rétegközösségeket és olyan forkokat, amelyek olyan igényeket oldanak meg, amelyeket az 5chan soha nem fog.",
+          "description": "Az 5chan az első bizonyítási pont, nem a célvonal. <strong>Több imageboard-klienst szeretnénk különböző kultúrákkal</strong>, interfészekkel és alapértelmezett beállításokkal: altchan-stílusú táblák, mobil-első kísérletek, résközösségek és fork-ok, amelyek olyan igényeket oldanak meg, amelyekre az 5chan soha nem fog.",
           "ctaLabel": "Építsd meg a sajátodat",
           "separator": "- vagy -"
         }
@@ -156,22 +156,22 @@
       "phase2": {
         "phase": "2. fázis",
         "title": "Bitsocial RPC indítása",
-        "description": "A Bitsocial Forge elindítja az első letétkezelésmentes RPC szolgáltatást Bitsocial alkalmazásokhoz. A Bitsocial RPC lehetővé teszi a felhasználók számára a csomópontok távoli kezelését, miközben megőrzi az önhosztolás vagy a versengő RPC infrastruktúra futtatásának lehetőségét. A felhasználók mobilról is létrehozhatnak és kezelhetnek megállíthatatlan P2P közösségeket."
+        "description": "A Bitsocial Forge elindítja az első nem őrizetbe vett RPC szolgáltatást a Bitsocial alkalmazások számára. A Bitsocial RPC lehetővé teszi a felhasználók számára a csomópontok távoli kezelését, miközben megőrzi a lehetőséget, hogy önállóan hosztolják vagy futtassák a versengő RPC infrastruktúrát. <strong>A felhasználók megállíthatatlan p2p-közösségeket hozhatnak létre és kezelhetnek mobilról</strong>."
       },
       "phase3": {
         "phase": "3. fázis",
         "title": "Fórumok decentralizálása",
-        "description": "A fórumok tartós identitásokat, posztelőzményt és közösségkezelést adnak hozzá. Az első prototípus Bitsocial alkalmazásunk a fórumok decentralizálására a Seedit, egy Reddit-alternatíva. A Seedit elhozza a Reddit-stílusú beszélgetést a Bitsocialra, amint a Bitsocial RPC bárhonnan praktikussá teszi az állandóan elérhető P2P közösségeket."
+        "description": "A fórumok állandó identitást, bejegyzéstörténetet és közösségkezelést biztosítanak. Az első prototípus Bitsocial alkalmazásunk a fórumok decentralizálására a Seedit, egy reddit alternatíva. <strong>A Seedit a Reddit-stílusú beszélgetéseket hozza a Bitsocialba</strong>, miután a Bitsocial RPC bárhonnan praktikussá teszi a mindig működő P2P közösségeket."
       },
       "phase4": {
         "phase": "4. fázis",
         "title": "Bitsocial Network indítása",
-        "description": "Ahhoz, hogy minden közösségi médiát decentralizálni lehessen, a Bitsocial alkalmazásoknak ütős funkciókra és erős hálózati hatásokra, megállíthatatlan pénzügyi struktúrákra, decentralizált Bitsocial domainekre (.bso), közös likviditásra lesz szükségük. Mindezt a Bitsocial Network fogja működtetni, egy decentralizált appchain-megoldás Bitsocial alkalmazások számára."
+        "description": "Az összes közösségi média decentralizálása érdekében a Bitsocial alkalmazásoknak gyilkos funkciókra és erős hálózati hatásokra, <strong>megállíthatatlan pénzügyi struktúrákra</strong>, decentralizált Bitsocial tartományokra (.bso) és közös likviditásra lesz szükségük. Mindezt a Bitsocial Network, egy <strong>decentralizált alkalmazáslánc-megoldás</strong> biztosítja a Bitsocial alkalmazásokhoz."
       },
       "phase5": {
         "phase": "5. fázis",
         "title": "Minden közösségi média decentralizálása",
-        "description": "Több nyilvános RPC egymással versenyezve profilcsomópontokat és opcionális feedalgoritmusokat biztosít, és a Bitsocial Network lehetővé teszi a tartalommonetizálást anélkül, hogy a bankok lefoglalnák a pénzeszközöket, így a Bitsocial alkalmazások mindenféle közösségi médiával felvehetik a versenyt, beleértve a Facebookot, az Instagramot, a TikTokot, az X-et és a YouTube-ot."
+        "description": "Mivel több nyilvános RPC verseng egymással a profilcsomópontok és az <strong>opcionális feed-algoritmusok</strong> biztosításáért, valamint a Bitsocial Network lehetővé teszi a tartalom bevételszerzését anélkül, hogy a bankok lefoglalnák az alapokat, a <strong>Bitsocial alkalmazások mindenféle közösségi médiával vetekedhetnek</strong>, beleértve a Facebookot, az Instagramot, a TikTok-ot, az X-et és a YouTube-ot."
       }
     },
     "cta": {

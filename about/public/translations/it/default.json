@@ -58,27 +58,27 @@
     "title": "Funzionalità principali",
     "items": {
       "open-source": {
-        "description": "Bitsocial è software libero e open source: il protocollo e i client sono pubblici, forkabili e aperti ai contributi esterni. Chiunque può ispezionare il codice, pubblicare miglioramenti o creare un'app compatibile senza chiedere il permesso a un'azienda.",
+        "description": "Bitsocial è un software <strong>gratuito e open source</strong>: il protocollo e i client sono pubblici, diramabili e aperti a contributi esterni. <strong>Chiunque può controllare il codice</strong>, fornire miglioramenti o creare un'app compatibile senza chiedere l'autorizzazione a un'azienda.",
         "cta": "Sfoglia il codice sorgente"
       },
       "peer-to-peer": {
-        "description": "Bitsocial non è né federato né on-chain. Ogni community è uno sciame peer-to-peer, più simile a BitTorrent che a un sito ospitato: gli utenti fanno seeding di ciò che leggono, i nodi possono girare su hardware economico e ogni community può far rispettare il proprio controllo anti-spam invece di dipendere da una politica globale della piattaforma.",
+        "description": "Bitsocial <strong>non è né federato né on-chain</strong>. Ogni comunità è uno sciame peer-to-peer, <strong>più vicino a BitTorrent</strong> che a un sito Web ospitato: gli utenti seminano ciò che leggono, i nodi possono essere eseguiti su hardware economico e ogni comunità può imporre la propria sfida anti-spam invece di dipendere da una politica globale della piattaforma.",
         "cta": "Scopri come funziona p2p"
       },
       "social-apps": {
-        "description": "Chiunque può creare un'app Bitsocial con una propria interfaccia, un proprio modello di scoperta o impostazioni predefinite proprie. Le app competono sulla qualità del prodotto invece di rinchiudere gli utenti in un database privato, perché i client compatibili possono condividere le stesse community, identità e rete.",
+        "description": "Chiunque può creare un'app Bitsocial con la propria interfaccia, modello di rilevamento o impostazioni predefinite. Le app competono sulla qualità del prodotto invece di rinchiudere gli utenti in un database privato, perché i client compatibili possono <strong>condividere le stesse comunità, identità e rete</strong>.",
         "cta": "Esplora le app"
       },
       "no-servers": {
-        "description": "Bitsocial non richiede a ogni community di affittare un server in un datacenter, comprare un dominio o gestire SSL solo per restare online. Un nodo di community può girare da casa su hardware consumer, e non esiste un backend unico gestito da un'azienda che possa mandare giù l'intera rete.",
+        "description": "Bitsocial non richiede a ogni comunità di affittare un datacenter, acquistare un dominio o gestire SSL solo per rimanere online. Un nodo della community può essere eseguito da casa su hardware consumer e <strong>non esiste un singolo backend gestito dall'azienda che possa mettere fuori uso l'intera rete</strong>.",
         "cta": "Controlla lo stato della rete"
       },
       "no-global-bans": {
-        "description": "La moderazione esiste ancora, ma resta locale. I proprietari della community stabiliscono le regole dei propri spazi e le app possono scegliere cosa indicizzare o mostrare, ma non esiste un super-admin a livello di protocollo che possa cancellare un profilo o sottrarre una community alla rete stessa.",
+        "description": "La moderazione esiste ancora, ma rimane locale. I proprietari della comunità stabiliscono le regole per i propri spazi e le app possono scegliere cosa indicizzare o mostrare, ma <strong>non esiste un super amministratore a livello di protocollo</strong> che possa cancellare un profilo o sequestrare una comunità dalla rete stessa.",
         "cta": "Leggi le note di moderazione"
       },
       "cryptographic-property": {
-        "description": "I profili e le community sono controllati da chiavi private, non da account di piattaforma revocabili. Puoi delegare l'hosting senza cedere la proprietà, così la tua identità e la tua community si comportano più come una proprietà controllata da wallet che come un nome utente affittato da un'azienda.",
+        "description": "I profili e le comunità sono controllati da chiavi private, non da account di piattaforma revocabili. Puoi delegare l'hosting senza rivelare la proprietà, quindi <strong>la tua identità e la tua comunità si comportano più come una proprietà controllata dal portafoglio</strong> che come un nome utente affittato da un'azienda.",
         "cta": "Leggi le note sulla proprietà"
       }
     }
@@ -146,9 +146,9 @@
         "phase": "Fase 1",
         "status": "In corso",
         "title": "Decentralizzare gli imageboard",
-        "description": "Gli imageboard sono la forma più semplice di social media da decentralizzare: pubblicazioni anonime, pochi board predefiniti e nessun grafo dei profili. Per questo stiamo lanciando 5chan, la prima app Bitsocial. 5chan dimostra che Bitsocial può sostituire gli imageboard centralizzati togliendo di mezzo gli admin globali.",
+        "description": "<strong>Le imageboard sono la forma più semplice di social media da decentralizzare</strong>: post anonimi, poche board predefinite e nessun grafico del profilo. Ecco perché stiamo lanciando 5chan, la prima app Bitsocial. 5chan dimostra che Bitsocial può sostituire le imageboard centralizzate rimuovendo gli amministratori globali dall'equazione.",
         "callout": {
-          "description": "5chan è il primo punto di prova, non il traguardo. Vogliamo più client imageboard con culture, interfacce e impostazioni predefinite diverse: board in stile altchan, esperimenti mobile-first, comunità di nicchia e fork che risolvano bisogni che 5chan non risolverà mai.",
+          "description": "5chan è il primo punto di prova, non il traguardo. <strong>Vogliamo più client di imageboard con culture</strong>, interfacce e impostazioni predefinite diverse: schede in stile altchan, esperimenti mobile-first, comunità di nicchia e fork che risolvono esigenze che 5chan non risolverà mai.",
           "ctaLabel": "Crea il tuo",
           "separator": "- o -"
         }
@@ -156,22 +156,22 @@
       "phase2": {
         "phase": "Fase 2",
         "title": "Lanciare Bitsocial RPC",
-        "description": "Bitsocial Forge lancerà il primo servizio RPC non custodial per le app Bitsocial. Bitsocial RPC permetterà agli utenti di gestire i nodi da remoto, mantenendo la possibilità di fare self-hosting o di gestire infrastrutture RPC concorrenti. Gli utenti potranno creare e gestire comunità P2P inarrestabili dal mobile."
+        "description": "Bitsocial Forge lancerà il primo servizio RPC non custodito per le app Bitsocial. Bitsocial RPC consentirà agli utenti di gestire i nodi da remoto, preservando la possibilità di ospitarsi autonomamente o di eseguire infrastrutture RPC concorrenti. <strong>Gli utenti potranno creare e gestire comunità p2p inarrestabili da mobile</strong>."
       },
       "phase3": {
         "phase": "Fase 3",
         "title": "Decentralizzare i forum",
-        "description": "I forum aggiungono identità persistenti, cronologia dei post e gestione delle community. Il nostro primo prototipo di app Bitsocial per decentralizzare i forum è Seedit, un'alternativa a Reddit. Seedit porterà discussioni in stile Reddit su Bitsocial, una volta che Bitsocial RPC renderà praticabili ovunque le community P2P sempre online."
+        "description": "I forum aggiungono identità persistenti, cronologia dei post e gestione della comunità. Il nostro primo prototipo di app Bitsocial per decentralizzare i forum è Seedit, un'alternativa a Reddit. <strong>Seedit porterà la discussione in stile Reddit su Bitsocial</strong>, una volta che Bitsocial RPC renderà pratiche le comunità P2P sempre attive da qualsiasi luogo."
       },
       "phase4": {
         "phase": "Fase 4",
         "title": "Lanciare Bitsocial Network",
-        "description": "Per decentralizzare tutti i social media, le app Bitsocial avranno bisogno di funzionalità di punta e forti effetti di rete, strutture finanziarie inarrestabili, domini Bitsocial decentralizzati (.bso) e liquidità comune. Tutto questo sarà alimentato da Bitsocial Network, una soluzione appchain decentralizzata per le app Bitsocial."
+        "description": "Per decentralizzare tutti i social media, le app Bitsocial avranno bisogno di funzionalità killer e forti effetti di rete, <strong>strutture finanziarie inarrestabili</strong>, domini Bitsocial decentralizzati (.bso), liquidità comune. Tutto questo sarà alimentato da Bitsocial Network, una <strong>soluzione di appchain decentralizzata</strong> per le app Bitsocial."
       },
       "phase5": {
         "phase": "Fase 5",
         "title": "Decentralizzare tutti i social media",
-        "description": "Con più RPC pubblici in competizione tra loro per fornire nodi profilo e algoritmi del feed opzionali, e con Bitsocial Network che consente la monetizzazione dei contenuti senza che le banche sequestrino i fondi, le app Bitsocial potranno competere con tutti i tipi di social media, inclusi Facebook, Instagram, TikTok, X e YouTube."
+        "description": "Con più RPC pubblici in competizione tra loro per fornire nodi di profilo e <strong>algoritmi di feed opzionali</strong>, e con Bitsocial Network che consente la monetizzazione dei contenuti senza che le banche sequestrino fondi, <strong>le app Bitsocial saranno in grado di rivaleggiare con tutti i tipi di social media</strong>, inclusi Facebook, Instagram, TikTok, X e YouTube."
       }
     },
     "cta": {

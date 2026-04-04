@@ -1,6 +1,6 @@
 import { m, useInView } from "framer-motion";
-import { useMemo, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { type ReactNode, useMemo, useRef, useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
 import CardInlineCta, { prominentCtaClassName } from "@/components/card-inline-cta";
 import EasterEggOverlay from "@/components/easter-egg-overlay";
 import { DOCS_LINKS } from "@/lib/docs-links";
@@ -12,6 +12,9 @@ const phaseOneCtaButtonClassName =
   "w-full min-w-0 max-w-full whitespace-normal text-center leading-snug !rounded-3xl !px-4 !py-2 text-sm md:!px-5";
 const phaseOneCtaSeparatorClassName =
   "text-center text-sm text-muted-foreground/70 italic md:shrink-0";
+const richTextComponents = {
+  strong: <strong className="font-semibold" />,
+};
 
 interface ResponsivePhaseOneCtasProps {
   primaryHref: string;
@@ -52,13 +55,13 @@ function ResponsivePhaseOneCtas({
 type PhaseItem = {
   ctaHref: string;
   ctaLabel: string;
-  extraDescription?: string;
+  extraDescription?: ReactNode;
   phase: string;
   status?: string;
   secondaryCtaHref?: string;
   secondaryCtaLabel?: string;
   title: string;
-  description: string;
+  description: ReactNode;
 };
 
 export default function MasterPlan() {
@@ -75,41 +78,56 @@ export default function MasterPlan() {
       {
         ctaHref: "https://5chan.app",
         ctaLabel: t("masterPlan.cta.try5chan"),
-        extraDescription: t("masterPlan.phases.phase1.callout.description"),
+        extraDescription: (
+          <Trans
+            i18nKey="masterPlan.phases.phase1.callout.description"
+            components={richTextComponents}
+          />
+        ),
         phase: t("masterPlan.phases.phase1.phase"),
         status: t("masterPlan.phases.phase1.status"),
         secondaryCtaHref: DOCS_LINKS.buildImageboardClient,
         secondaryCtaLabel: t("masterPlan.phases.phase1.callout.ctaLabel"),
         title: t("masterPlan.phases.phase1.title"),
-        description: t("masterPlan.phases.phase1.description"),
+        description: (
+          <Trans i18nKey="masterPlan.phases.phase1.description" components={richTextComponents} />
+        ),
       },
       {
         ctaHref: DOCS_LINKS.permissionlessPublicRpc,
         ctaLabel: t("masterPlan.cta.readTechnicalSpec"),
         phase: t("masterPlan.phases.phase2.phase"),
         title: t("masterPlan.phases.phase2.title"),
-        description: t("masterPlan.phases.phase2.description"),
+        description: (
+          <Trans i18nKey="masterPlan.phases.phase2.description" components={richTextComponents} />
+        ),
       },
       {
         ctaHref: "https://seedit.app",
         ctaLabel: t("masterPlan.cta.trySeedit"),
         phase: t("masterPlan.phases.phase3.phase"),
         title: t("masterPlan.phases.phase3.title"),
-        description: t("masterPlan.phases.phase3.description"),
+        description: (
+          <Trans i18nKey="masterPlan.phases.phase3.description" components={richTextComponents} />
+        ),
       },
       {
         ctaHref: DOCS_LINKS.bitsocialNetwork,
         ctaLabel: t("masterPlan.cta.learnMore"),
         phase: t("masterPlan.phases.phase4.phase"),
         title: t("masterPlan.phases.phase4.title"),
-        description: t("masterPlan.phases.phase4.description"),
+        description: (
+          <Trans i18nKey="masterPlan.phases.phase4.description" components={richTextComponents} />
+        ),
       },
       {
         ctaHref: DOCS_LINKS.decentralizeAllSocialMedia,
         ctaLabel: t("masterPlan.cta.learnMore"),
         phase: t("masterPlan.phases.phase5.phase"),
         title: t("masterPlan.phases.phase5.title"),
-        description: t("masterPlan.phases.phase5.description"),
+        description: (
+          <Trans i18nKey="masterPlan.phases.phase5.description" components={richTextComponents} />
+        ),
       },
     ],
     [t],
