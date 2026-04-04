@@ -26,7 +26,7 @@ Scan the diff against main and remove AI-generated slop introduced in this branc
 3. **Fix** each instance — remove or rewrite to match the surrounding code style
 4. **Verify** the build still passes:
    ```bash
-   yarn build && yarn lint && yarn typecheck
+   yarn build:verify && yarn lint && yarn typecheck
    ```
 5. **Report** a 1-3 sentence summary of what you changed
 

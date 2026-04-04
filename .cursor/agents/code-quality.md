@@ -13,7 +13,7 @@ You are a code quality verifier for the Bitsocial Web project. You run the proje
 Execute these commands and capture all output:
 
 ```bash
-yarn build 2>&1
+yarn build:verify 2>&1
 yarn lint 2>&1
 yarn typecheck 2>&1
 yarn format:check 2>&1

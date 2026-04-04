@@ -4,18 +4,18 @@ If your AI coding assistant supports lifecycle hooks, configure these for this r
 
 ## Recommended Hooks
 
-| Hook            | Command                                    | Purpose                                                                                                                                                                       |
-| --------------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `afterFileEdit` | `scripts/agent-hooks/format.sh`            | Auto-format files after AI edits                                                                                                                                              |
-| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`      | Run `corepack yarn install` when `package.json` changes                                                                                                                       |
-| `stop`          | `scripts/agent-hooks/sync-git-branches.sh` | Prune stale refs and delete integrated temporary task branches                                                                                                                |
-| `stop`          | `scripts/agent-hooks/verify.sh`            | Hard-gate build, lint, typecheck, and format checks; keep `yarn npm audit` informational and run `yarn knip` separately as an advisory audit when dependencies/imports change |
+| Hook            | Command                                    | Purpose                                                                                                                                                                                             |
+| --------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `afterFileEdit` | `scripts/agent-hooks/format.sh`            | Auto-format files after AI edits                                                                                                                                                                    |
+| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`      | Run `corepack yarn install` when `package.json` changes                                                                                                                                             |
+| `stop`          | `scripts/agent-hooks/sync-git-branches.sh` | Prune stale refs and delete integrated temporary task branches                                                                                                                                      |
+| `stop`          | `scripts/agent-hooks/verify.sh`            | Hard-gate targeted build verification, lint, typecheck, and format checks; keep `yarn npm audit` informational and run `yarn knip` separately as an advisory audit when dependencies/imports change |
 
 ## Why
 
 - Consistent formatting
 - Lockfile stays in sync
-- Build/lint/type issues caught early
+- Workspace-relevant build/lint/type issues caught early without forcing the full multi-locale docs build on every task
 - Security visibility via `yarn npm audit`
 - Dependency/import drift can be checked with `yarn knip` without turning it into a noisy global stop hook
 - One shared hook implementation for both Codex and Cursor
@@ -43,11 +43,11 @@ exit 0
 
 ```bash
 #!/bin/bash
-# Run build, lint, typecheck, format check, and security audit when agent finishes
+# Run targeted build verification, lint, typecheck, format check, and security audit when agent finishes
 
 cat > /dev/null  # consume stdin
 status=0
-corepack yarn build || status=1
+corepack yarn build:verify || status=1
 corepack yarn lint || status=1
 corepack yarn typecheck || status=1
 corepack yarn format:check || status=1

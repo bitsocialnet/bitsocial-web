@@ -39,7 +39,7 @@ For each task:
 After implementing all assigned tasks:
 
 ```bash
-yarn build 2>&1
+yarn build:verify 2>&1
 ```
 
 Add `yarn doctor` when the task touched React UI logic, and run any targeted lint, typecheck, or browser verification the parent agent requested.

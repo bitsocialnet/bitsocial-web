@@ -58,7 +58,7 @@ dependency_state_changed() {
   ! git diff --quiet -- package.json about/package.json docs/package.json stats/package.json stats/monitor/package.json yarn.lock
 }
 
-echo "Running pinned dependency check, build, lint, typecheck, format check, and security audit..."
+echo "Running pinned dependency check, targeted build verification, lint, typecheck, format check, and security audit..."
 echo ""
 
 failures=0
@@ -67,7 +67,7 @@ run_required_check "corepack yarn deps:check-pinned" corepack yarn deps:check-pi
 if dependency_state_changed; then
   run_required_check "corepack yarn deps:check-hardened" corepack yarn deps:check-hardened || failures=1
 fi
-run_required_check "corepack yarn build" corepack yarn build || failures=1
+run_required_check "corepack yarn build:verify" corepack yarn build:verify || failures=1
 run_required_check "corepack yarn lint" corepack yarn lint || failures=1
 run_required_check "corepack yarn typecheck" corepack yarn typecheck || failures=1
 run_required_check "corepack yarn format:check" corepack yarn format:check || failures=1

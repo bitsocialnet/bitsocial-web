@@ -25,7 +25,7 @@ Based on https://react.dev/learn/you-might-not-need-an-effect
 2. **Scan for anti-patterns** — check each `useEffect` against the patterns below
 
 3. **Fix or propose** — depending on the `fix` argument:
-   - `fix=true`: apply the refactors, then verify with `yarn build && yarn lint && yarn typecheck`
+   - `fix=true`: apply the refactors, then verify with `yarn build:verify && yarn lint && yarn typecheck`
    - `fix=false`: list each anti-pattern found with a before/after code suggestion
 
 4. **Report** — summarize what was found and changed

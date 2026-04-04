@@ -44,7 +44,7 @@ For each violation:
 ### Step 4: Verify
 
 ```bash
-yarn build 2>&1
+yarn build:verify 2>&1
 yarn doctor 2>&1
 ```
 

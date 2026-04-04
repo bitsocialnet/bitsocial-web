@@ -83,7 +83,7 @@ git push
 
 After code changes, follow repo verification rules from `AGENTS.md`:
 
-- run `yarn build`, `yarn lint`, `yarn typecheck`, and `yarn format:check`
+- run `yarn build:verify`, `yarn lint`, `yarn typecheck`, and `yarn format:check`
 - run `yarn doctor` after React UI logic changes
 - use `playwright-cli` for UI or visual changes on desktop and mobile when relevant
 

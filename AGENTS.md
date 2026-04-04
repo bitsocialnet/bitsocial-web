@@ -128,7 +128,9 @@ stats/                # Monitoring, Grafana, Prometheus, and deployment assets
 
 - Never mark work complete without verification.
 - Use the Node 22.12.0 toolchain from `.nvmrc`; after `corepack enable`, run plain `yarn` commands.
-- After code changes, run `yarn build`, `yarn lint`, and `yarn typecheck`.
+- After code changes, run the smallest relevant build check plus `yarn lint` and `yarn typecheck`.
+- Use `yarn build:verify` as the default build check for local verification; it auto-selects the affected workspace build instead of rebuilding every docs locale.
+- Use `yarn build` only when you intentionally need the full production build, including the multi-locale docs output.
 - Before handing off a PR or commit, also run `yarn format:check`.
 - After React UI logic changes, run `yarn doctor`.
 - Treat React Doctor output as actionable guidance; prioritize `error` then `warning`.
@@ -186,7 +188,12 @@ Android phone over USB (default browser opens via `adb`; `ANDROID_USB_OPEN_BROWS
 yarn install
 yarn start          # http://bitsocial.localhost:1355
 yarn start:android-usb  # Vite + adb reverse; opens http://localhost:<port> on device
+yarn build:verify
+yarn build:about
+yarn build:stats-monitor
 yarn build
+yarn docs:build:verify
+yarn docs:build
 yarn knip
 yarn knip:full
 yarn lint
