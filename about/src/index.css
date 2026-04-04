@@ -54,6 +54,24 @@
     outline: none;
     box-shadow: var(--focus-app-ring);
   }
+  button.category-filter-button[data-active="true"] {
+    border-color: rgb(37 99 235 / 0.3);
+    box-shadow: 0 0 24px rgba(37, 99, 235, 0.12);
+  }
+  .dark button.category-filter-button[data-active="true"] {
+    border-color: rgb(37 99 235 / 0.55);
+  }
+  button.category-filter-button[data-active="true"]:focus:not(:focus-visible),
+  button.category-filter-button[data-active="true"]:active,
+  button.category-filter-button[data-active="true"]:focus-within:not(:focus-visible) {
+    border-color: rgb(37 99 235 / 0.3);
+    box-shadow: 0 0 24px rgba(37, 99, 235, 0.12);
+  }
+  .dark button.category-filter-button[data-active="true"]:focus:not(:focus-visible),
+  .dark button.category-filter-button[data-active="true"]:active,
+  .dark button.category-filter-button[data-active="true"]:focus-within:not(:focus-visible) {
+    border-color: rgb(37 99 235 / 0.55);
+  }
   input[type="text"],
   input[type="search"],
   input[type="email"],

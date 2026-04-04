@@ -85,10 +85,11 @@ function CategoryButton({
     <button
       type="button"
       onClick={onClick}
+      data-active={active ? "true" : undefined}
       className={cn(
-        "glass-card group flex w-full items-start justify-between rounded-[1.4rem] px-5 py-4 text-left transition-all duration-300",
+        "category-filter-button glass-card group flex w-full items-start justify-between rounded-[1.4rem] px-5 py-4 text-left transition-all duration-300",
         active
-          ? "border-blue-core/30 text-foreground ring-glow shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55"
+          ? "border-blue-core/30 text-foreground hover:border-blue-core/30 shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55 dark:hover:border-blue-core/55"
           : "hover:border-blue-glow",
       )}
     >
