@@ -11,11 +11,11 @@
     },
     {
       "src": "^/docs/?$",
-      "dest": "/api/docs"
+      "dest": "https://bitsocial-docs-toms-projects-2188af94.vercel.app/"
     },
     {
       "src": "^/docs/(.*)$",
-      "dest": "/api/docs?path=$1"
+      "dest": "https://bitsocial-docs-toms-projects-2188af94.vercel.app/$1"
     },
     {
       "handle": "filesystem"
