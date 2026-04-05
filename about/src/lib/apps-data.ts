@@ -7,6 +7,7 @@ export type AppLinkKind = "launch" | "download" | "mirror";
 export type AppIconKey =
   | "image"
   | "message-square"
+  | "send"
   | "shield"
   | "ticket"
   | "blocks"
@@ -336,6 +337,20 @@ export const APPS: AppData[] = [
     links: [],
     relatedSlugs: ["5chan-board-manager"],
     searchTerms: ["terminal", "command line", "automation"],
+  },
+  {
+    slug: "telegram-bots",
+    name: "Bitsocial Telegram Bots",
+    tagline: "Feed bots that relay new Bitsocial posts into Telegram channels or groups.",
+    description:
+      "Bitsocial Telegram Bots monitor client community lists and forward new posts into Telegram destinations with inline links back to Bitsocial clients. The active bot covers 5chan feeds today, with the repo structured to add more client-specific bots over time.",
+    category: "apps",
+    tags: ["Telegram", "Bots", "Feeds"],
+    icon: "send",
+    githubRepo: "bitsocialnet/bitsocial-telegram-bots",
+    links: [],
+    relatedSlugs: ["5chan", "seedit", "bitsocial-cli"],
+    searchTerms: ["telegram", "bots", "feeds", "5chan", "automation"],
   },
   {
     slug: "5chan-board-manager",
