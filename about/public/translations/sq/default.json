@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Buletini",
-    "contribute": "Përmirëso këtë faqe"
+    "contribute": "Përmirëso këtë faqe",
+    "privacy": "Privatësia"
   },
   "mailingList": {
     "title": "Qëndro në hap",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Katalogu i aplikacioneve",
     "directoryLabel": "Katalog"
+  },
+  "privacy": {
+    "eyebrow": "Si i trajton bitsocial.net të dhënat",
+    "title": "Njoftim për privatësinë",
+    "sections": {
+      "summary": {
+        "title": "Përmbledhje",
+        "body": [
+          "bitsocial.net mbledh shumë pak të dhëna.",
+          "Kodi i bitsocial.net është i lirë dhe me burim të hapur dhe ndodhet në repository-n publik bitsocial-web.",
+          "Nëse regjistrohesh për buletinin, adresa e emailit që futet dërgohet te shërbimi i listës së postës i konfiguruar për sitin.",
+          "Përndryshe, bitsocial.net përdor matje të trafikut dhe performancës me fokus privatësinë, ruan preferencën tënde të gjuhës në storage-in e shfletuesit dhe ngarkon fontet nga Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Çfarë përdor bitsocial.net",
+        "body": [
+          "Regjistrimi për buletinin e dërgon adresën tënde të emailit te endpoint-i i listës së postës vetëm kur dorëzon formularin.",
+          "Vercel Web Analytics dhe Speed Insights përdoren në bitsocial.net për matje të përmbledhura të trafikut dhe performancës.",
+          "Sajti about dhe sajti docs ruajnë zgjedhjen tënde të gjuhës në storage-in e shfletuesit që ndërfaqja të hapet sërish në gjuhën që zgjodhe.",
+          "Faqet publike ngarkojnë fontet nga Google Fonts, kështu që shfletuesi yt lidhet me serverët e fontit të Google."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies dhe storage",
+        "body": [
+          "bitsocial.net nuk përdor Google Analytics, Google Tag Manager, Meta Pixel, Hotjar, ose skripte të ngjashme reklamuese apo profilizuese në sitin publik.",
+          "bitsocial.net përpiqet të shmangë cookie-t e gjurmimit që nuk janë thelbësore.",
+          "Siti përdor storage-in e shfletuesit për preferencën e gjuhës, dhe zona stats mund të mbështetet në gjendjen e sesionit të Grafana-s që është rreptësisht e nevojshme për hyrjen e administratorit.",
+          "Nuk ka banner për cookie-t për momentin sepse siti publik është i kufizuar në ruajtjen e preferencës së gjuhës dhe matje me fokus privatësinë. Nëse kjo ndryshon, duhet të ndryshojë edhe kjo faqe."
+        ]
+      },
+      "choices": {
+        "title": "Zgjedhjet e tua",
+        "body": [
+          "Mund ta shmangësh përpunimin e buletinit duke mos dorëzuar formularin e regjistrimit.",
+          "Mund ta pastrosh preferencën e gjuhës në çdo kohë duke pastruar storage-in e sitit në shfletuesin tënd.",
+          "Mund të bllokosh kërkesat e fonteve në distancë me kontrolle të shfletuesit ose të rrjetit, megjithëse kjo mund të ndryshojë pamjen e sitit.",
+          "Do ta përditësojmë këtë faqe nëse siti publik fillon të përdorë gjurmim shtesë, embed-e ose rrjedha regjistrimi.",
+          "Ky version u përditësua për herë të fundit më 5 prill 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Kontakt",
+      "body": "Pyetjet ose korrigjimet për këtë faqe mund të dërgohen te"
+    }
   }
 }

@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "뉴스레터",
-    "contribute": "이 페이지 개선하기"
+    "contribute": "이 페이지 개선하기",
+    "privacy": "개인정보"
   },
   "mailingList": {
     "title": "소식을 놓치지 마세요",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "앱 디렉터리",
     "directoryLabel": "목록"
+  },
+  "privacy": {
+    "eyebrow": "bitsocial.net이 데이터를 처리하는 방식",
+    "title": "개인정보 고지",
+    "sections": {
+      "summary": {
+        "title": "요약",
+        "body": [
+          "bitsocial.net은 매우 적은 양의 데이터만 수집합니다.",
+          "bitsocial.net의 코드는 자유 소프트웨어이자 오픈 소스이며, 공개 bitsocial-web repository에 있습니다.",
+          "뉴스레터에 가입하면 입력한 이메일 주소가 사이트에 구성된 메일링 리스트 서비스로 전송됩니다.",
+          "그 외에는 bitsocial.net이 개인정보 중심의 트래픽 및 성능 측정을 사용하고, 언어 기본 설정을 브라우저 저장소에 저장하며, Google Fonts에서 글꼴을 불러옵니다."
+        ]
+      },
+      "uses": {
+        "title": "bitsocial.net이 사용하는 것",
+        "body": [
+          "뉴스레터 가입은 양식을 제출할 때만 입력한 이메일 주소를 구성된 메일링 리스트 엔드포인트로 보냅니다.",
+          "bitsocial.net에서는 전체 트래픽과 성능 측정을 위해 Vercel Web Analytics와 Speed Insights를 사용합니다.",
+          "about site와 docs site는 선택한 언어로 인터페이스를 다시 열 수 있도록 언어 선택을 브라우저 저장소에 저장합니다.",
+          "공개 페이지는 Google Fonts에서 글꼴을 불러오므로 브라우저가 Google의 font servers에 연결합니다."
+        ]
+      },
+      "cookies": {
+        "title": "쿠키와 저장소",
+        "body": [
+          "bitsocial.net은 공개 사이트에서 Google Analytics, Google Tag Manager, Meta Pixel, Hotjar 또는 유사한 광고나 프로파일링 스크립트를 사용하지 않습니다.",
+          "bitsocial.net은 필수적이지 않은 추적 쿠키를 피하려고 합니다.",
+          "이 사이트는 언어 기본 설정을 위해 브라우저 저장소를 사용하며, stats 영역은 관리자 로그인을 위해 엄격히 필요한 Grafana 세션 상태에 의존할 수 있습니다.",
+          "현재 cookie banner는 없습니다. 공개 사이트가 언어 기본 설정 저장과 개인정보 중심 측정으로 제한되어 있기 때문입니다. 이것이 바뀌면 이 페이지도 바뀌어야 합니다."
+        ]
+      },
+      "choices": {
+        "title": "선택 사항",
+        "body": [
+          "가입 양식을 제출하지 않으면 뉴스레터 처리를 피할 수 있습니다.",
+          "브라우저에서 사이트 저장소를 지우면 언제든지 언어 기본 설정을 삭제할 수 있습니다.",
+          "브라우저나 네트워크 제어로 원격 글꼴 요청을 차단할 수 있지만, 그렇게 하면 사이트의 외형이 바뀔 수 있습니다.",
+          "공개 사이트가 추가 추적, 임베드 또는 가입 흐름을 사용하기 시작하면 이 페이지를 업데이트하겠습니다.",
+          "이 버전은 2026년 4월 5일에 마지막으로 업데이트되었습니다."
+        ]
+      }
+    },
+    "contact": {
+      "title": "문의",
+      "body": "이 페이지에 대한 질문이나 수정 사항은 다음으로 보낼 수 있습니다"
+    }
   }
 }

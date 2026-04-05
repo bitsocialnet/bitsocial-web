@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Butlletí",
-    "contribute": "Millora aquesta pàgina"
+    "contribute": "Millora aquesta pàgina",
+    "privacy": "Privacitat"
   },
   "mailingList": {
     "title": "No et perdis res",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Directori d'aplicacions",
     "directoryLabel": "Directori"
+  },
+  "privacy": {
+    "eyebrow": "Com gestiona bitsocial.net les dades",
+    "title": "Avís de privadesa",
+    "sections": {
+      "summary": {
+        "title": "Resum",
+        "body": [
+          "bitsocial.net recopila molt poques dades.",
+          "El codi de bitsocial.net és lliure i de codi obert i es troba al repositori públic bitsocial-web.",
+          "Si et subscrius al butlletí, l'adreça electrònica que introdueixis s'envia al servei de llista de correu configurat per al lloc.",
+          "A banda d'això, bitsocial.net fa servir mesura de trànsit i rendiment centrada en la privadesa, desa la teva preferència d'idioma a l'emmagatzematge del navegador i carrega fonts de Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Què fa servir bitsocial.net",
+        "body": [
+          "La subscripció al butlletí envia la teva adreça electrònica només al punt final de la llista de correu configurat quan envies el formulari.",
+          "Vercel Web Analytics i Speed Insights s'utilitzen a bitsocial.net per mesurar el trànsit agregat i el rendiment.",
+          "El lloc about i el lloc docs desa la teva elecció d'idioma a l'emmagatzematge del navegador perquè la interfície es pugui tornar a obrir en l'idioma que has seleccionat.",
+          "Les pàgines públiques carreguen fonts de Google Fonts, de manera que el teu navegador es connecta als servidors de fonts de Google."
+        ]
+      },
+      "cookies": {
+        "title": "Galetes i emmagatzematge",
+        "body": [
+          "bitsocial.net no fa servir Google Analytics, Google Tag Manager, Meta Pixel, Hotjar ni scripts publicitaris o de perfilatge similars al lloc públic.",
+          "bitsocial.net intenta evitar les galetes de seguiment no essencials.",
+          "El lloc sí que fa servir l'emmagatzematge del navegador per a la preferència d'idioma, i l'àrea de stats pot dependre de l'estat de sessió estrictament necessari de Grafana per a l'inici de sessió d'administrador.",
+          "Ara mateix no hi ha cap bàner de galetes perquè el lloc públic es limita a l'emmagatzematge de la preferència d'idioma i a una mesura centrada en la privadesa. Si això canvia, aquesta pàgina també s'haurà de canviar."
+        ]
+      },
+      "choices": {
+        "title": "Les teves opcions",
+        "body": [
+          "Pots evitar el processament del butlletí simplement no enviant el formulari de subscripció.",
+          "Pots esborrar la preferència d'idioma en qualsevol moment eliminant l'emmagatzematge del lloc al teu navegador.",
+          "Pots bloquejar les peticions remotes de fonts amb els controls del navegador o de la xarxa, tot i que fer-ho pot canviar l'aparença del lloc.",
+          "Actualitzarem aquesta pàgina si el lloc públic comença a utilitzar més seguiment, incrustacions o fluxos de subscripció.",
+          "Aquesta versió es va actualitzar per última vegada el 5 d'abril de 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Contacte",
+      "body": "Les preguntes o correccions sobre aquesta pàgina es poden enviar a"
+    }
   }
 }

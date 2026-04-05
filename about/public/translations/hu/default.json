@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Hírlevél",
-    "contribute": "Tedd jobbá ezt az oldalt"
+    "contribute": "Tedd jobbá ezt az oldalt",
+    "privacy": "Adatvédelem"
   },
   "mailingList": {
     "title": "Maradjon naprakész",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Alkalmazáskönyvtár",
     "directoryLabel": "Katalógus"
+  },
+  "privacy": {
+    "eyebrow": "Hogyan kezeli a bitsocial.net az adatokat",
+    "title": "Adatvédelmi tájékoztató",
+    "sections": {
+      "summary": {
+        "title": "Összefoglaló",
+        "body": [
+          "A bitsocial.net nagyon kevés adatot gyűjt.",
+          "A bitsocial.net kódja szabad és nyílt forráskódú, és a nyilvános bitsocial-web repository-ban található.",
+          "Ha feliratkozol a hírlevélre, az általad megadott e-mail címet elküldjük az oldalhoz beállított levelezőlista-szolgáltatásnak.",
+          "Ezen kívül a bitsocial.net adatvédelmet szem előtt tartó forgalom- és teljesítménymérést használ, a nyelvi beállításodat a böngésző tárhelyében tárolja, és a betűtípusokat a Google Fonts-ból tölti be."
+        ]
+      },
+      "uses": {
+        "title": "Mit használ a bitsocial.net",
+        "body": [
+          "A hírlevél-feliratkozás csak akkor küldi el az e-mail címedet a beállított levelezőlista-végpontra, amikor elküldöd az űrlapot.",
+          "A bitsocial.neten a Vercel Web Analytics és a Speed Insights szolgál az összesített forgalom- és teljesítménymérésre.",
+          "Az about site és a docs site a böngésző tárhelyében tárolja a nyelvválasztásodat, hogy a felület újra abban a nyelvben nyíljon meg, amelyet kiválasztottál.",
+          "A nyilvános oldalak a Google Fonts-ból töltenek be betűtípusokat, így a böngésződ a Google betűtípus-szervereihez kapcsolódik."
+        ]
+      },
+      "cookies": {
+        "title": "Sütik és tárolás",
+        "body": [
+          "A bitsocial.net nem használ Google Analyticset, Google Tag Managert, Meta Pixelt, Hotjart vagy hasonló hirdetési vagy profilozó szkripteket a nyilvános oldalon.",
+          "A bitsocial.net igyekszik elkerülni a nem lényeges követők sütiket.",
+          "Az oldal a nyelvi beállításhoz böngésző-tárhelyet használ, és a stats felület az adminisztrátori bejelentkezéshez szigorúan szükséges Grafana munkamenet-állapotra támaszkodhat.",
+          "Jelenleg nincs süti-banner, mert a nyilvános oldal csak a nyelvi beállítás tárolására és adatvédelem-központú mérésre korlátozódik. Ha ez változik, ennek az oldalnak is változnia kell."
+        ]
+      },
+      "choices": {
+        "title": "A te választásaid",
+        "body": [
+          "Elkerülheted a hírlevél-feldolgozást azzal, hogy nem küldöd el a feliratkozási űrlapot.",
+          "Bármikor törölheted a nyelvi beállítást azzal, hogy kiüríted az oldal tárhelyét a böngésződben.",
+          "Letilthatod a távoli betűtípus-kéréseket böngésző- vagy hálózati vezérlőkkel, bár ez megváltoztathatja az oldal megjelenését.",
+          "Frissítjük ezt az oldalt, ha a nyilvános oldal további követést, beágyazásokat vagy regisztrációs folyamatokat kezd használni.",
+          "Ezt a verziót utoljára 2026. április 5-én frissítettük."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Kapcsolat",
+      "body": "Az oldalra vonatkozó kérdéseket vagy javításokat ide lehet küldeni"
+    }
   }
 }

@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "न्यूज़लेटर",
-    "contribute": "इस पेज को बेहतर बनाएं"
+    "contribute": "इस पेज को बेहतर बनाएं",
+    "privacy": "गोपनीयता"
   },
   "mailingList": {
     "title": "जुड़े रहें",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "ऐप निर्देशिका",
     "directoryLabel": "निर्देशिका"
+  },
+  "privacy": {
+    "eyebrow": "bitsocial.net डेटा को कैसे संभालता है",
+    "title": "गोपनीयता सूचना",
+    "sections": {
+      "summary": {
+        "title": "सारांश",
+        "body": [
+          "bitsocial.net बहुत कम डेटा एकत्र करता है।",
+          "bitsocial.net का कोड मुक्त और ओपन सोर्स है और सार्वजनिक bitsocial-web repository में मौजूद है।",
+          "यदि आप newsletter के लिए sign up करते हैं, तो आपके द्वारा दर्ज किया गया email address site के लिए configured mailing-list service को भेजा जाता है।",
+          "इसके अलावा, bitsocial.net privacy-focused traffic और performance measurement का उपयोग करता है, आपकी language preference को browser storage में संग्रहीत करता है, और Google Fonts से fonts लोड करता है।"
+        ]
+      },
+      "uses": {
+        "title": "bitsocial.net क्या उपयोग करता है",
+        "body": [
+          "Newsletter signup आपका email address केवल तब configured mailing-list endpoint को भेजता है जब आप form submit करते हैं।",
+          "Vercel Web Analytics और Speed Insights का उपयोग bitsocial.net पर aggregate traffic और performance measurement के लिए किया जाता है।",
+          "about site और docs site आपकी language choice को browser storage में रखते हैं ताकि interface आपके चुने हुए language में फिर से खुल सके।",
+          "Public pages Google Fonts से fonts लोड करती हैं, इसलिए आपका browser Google के font servers से जुड़ता है।"
+        ]
+      },
+      "cookies": {
+        "title": "Cookies और storage",
+        "body": [
+          "bitsocial.net public site पर Google Analytics, Google Tag Manager, Meta Pixel, Hotjar, या इसी तरह की advertising या profiling scripts का उपयोग नहीं करता।",
+          "bitsocial.net गैर-आवश्यक tracking cookies से बचने की कोशिश करता है।",
+          "Site language preference के लिए browser storage का उपयोग करता है, और stats surface administrator login के लिए strictly necessary Grafana session state पर निर्भर हो सकती है।",
+          "अभी cookie banner नहीं है क्योंकि public site केवल language-preference storage और privacy-focused measurement तक सीमित है। यदि यह बदलता है, तो यह page भी बदलनी चाहिए।"
+        ]
+      },
+      "choices": {
+        "title": "आपके विकल्प",
+        "body": [
+          "आप signup form submit न करके newsletter processing से बच सकते हैं।",
+          "आप अपने browser में site storage साफ़ करके किसी भी समय language preference हटा सकते हैं।",
+          "आप browser या network controls से remote font requests block कर सकते हैं, हालांकि ऐसा करने से site का रूप बदल सकता है।",
+          "यदि public site अतिरिक्त tracking, embeds, या signup flows का उपयोग शुरू करता है, तो हम इस page को अपडेट करेंगे।",
+          "यह संस्करण अंतिम बार 5 अप्रैल 2026 को अपडेट किया गया था।"
+        ]
+      }
+    },
+    "contact": {
+      "title": "संपर्क",
+      "body": "इस पृष्ठ के बारे में प्रश्न या सुधार भेजे जा सकते हैं"
+    }
   }
 }

@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Newsletter",
-    "contribute": "Pagbutihin ang pahinang ito"
+    "contribute": "Pagbutihin ang pahinang ito",
+    "privacy": "Privacy"
   },
   "mailingList": {
     "title": "Manatiling naka-antabay",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Direktoryo ng mga app",
     "directoryLabel": "Direktoryo"
+  },
+  "privacy": {
+    "eyebrow": "Paano hinahandle ng bitsocial.net ang data",
+    "title": "Paunawa sa Privacy",
+    "sections": {
+      "summary": {
+        "title": "Buod",
+        "body": [
+          "Napakakaunti ng kinokolektang data ng bitsocial.net.",
+          "Ang code ng bitsocial.net ay libre at open source at nasa pampublikong bitsocial-web repository.",
+          "Kung mag-sign up ka sa newsletter, ipapadala ang email address na ilalagay mo sa mailing-list service na naka-configure para sa site.",
+          "Bukod doon, gumagamit ang bitsocial.net ng privacy-focused na pagsukat ng trapiko at performance, iniimbak ang iyong language preference sa browser storage, at naglo-load ng mga font mula sa Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Ano ang ginagamit ng bitsocial.net",
+        "body": [
+          "Ang pag-sign up sa newsletter ay nagpapadala ng iyong email address sa configured mailing-list endpoint lamang kapag isinumite mo ang form.",
+          "Ginagamit ang Vercel Web Analytics at Speed Insights sa bitsocial.net para sa pinagsama-samang pagsukat ng trapiko at performance.",
+          "Iniimbak ng about site at docs site ang pinili mong wika sa browser storage para muling mabuksan ang interface sa wikang pinili mo.",
+          "Naglo-load ang mga pampublikong page ng mga font mula sa Google Fonts, kaya kumokonekta ang iyong browser sa mga font server ng Google."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies at storage",
+        "body": [
+          "Hindi gumagamit ang bitsocial.net ng Google Analytics, Google Tag Manager, Meta Pixel, Hotjar, o katulad na advertising o profiling scripts sa pampublikong site.",
+          "Sinusubukan ng bitsocial.net na iwasan ang mga non-essential tracking cookie.",
+          "Gumagamit ang site ng browser storage para sa language preference, at maaaring umasa ang stats surface sa strictly necessary Grafana session state para sa administrator login.",
+          "Wala pang cookie banner ngayon dahil limitado ang pampublikong site sa language-preference storage at privacy-focused measurement. Kung magbago iyon, dapat magbago rin ang pahinang ito."
+        ]
+      },
+      "choices": {
+        "title": "Iyong mga pagpipilian",
+        "body": [
+          "Maaari mong iwasan ang pagproseso ng newsletter sa pamamagitan ng hindi pagsusumite ng signup form.",
+          "Maaari mong burahin ang language preference anumang oras sa pamamagitan ng pag-clear ng site storage sa iyong browser.",
+          "Maaari mong i-block ang remote font requests gamit ang browser o network controls, bagama't maaari nitong baguhin ang hitsura ng site.",
+          "Ia-update namin ang pahinang ito kung magsimulang gumamit ang pampublikong site ng karagdagang tracking, embeds, o signup flows.",
+          "Huling na-update ang bersyong ito noong Abril 5, 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Pakikipag-ugnayan",
+      "body": "Ang mga tanong o pagwawasto tungkol sa pahinang ito ay maaaring ipadala sa"
+    }
   }
 }

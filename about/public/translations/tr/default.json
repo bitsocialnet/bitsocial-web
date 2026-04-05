@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Bülten",
-    "contribute": "Bu sayfayı iyileştir"
+    "contribute": "Bu sayfayı iyileştir",
+    "privacy": "Gizlilik"
   },
   "mailingList": {
     "title": "Haberdar olun",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Uygulama Dizini",
     "directoryLabel": "Dizin"
+  },
+  "privacy": {
+    "eyebrow": "bitsocial.net verileri nasıl işler",
+    "title": "Gizlilik Bildirimi",
+    "sections": {
+      "summary": {
+        "title": "Özet",
+        "body": [
+          "bitsocial.net çok az veri toplar.",
+          "bitsocial.net için kullanılan kod özgür ve açık kaynaklıdır ve genel bitsocial-web repository içinde yer alır.",
+          "Bültene kaydolursanız, girdiğiniz e-posta adresi site için yapılandırılmış mailing-list hizmetine gönderilir.",
+          "Bunun dışında bitsocial.net gizlilik odaklı trafik ve performans ölçümü kullanır, dil tercihinizi tarayıcı depolamasında saklar ve yazı tiplerini Google Fonts'tan yükler."
+        ]
+      },
+      "uses": {
+        "title": "bitsocial.net ne kullanır",
+        "body": [
+          "Bülten kaydı, e-posta adresinizi yalnızca formu gönderdiğinizde yapılandırılmış mailing-list endpoint'ine gönderir.",
+          "bitsocial.net'te toplu trafik ve performans ölçümü için Vercel Web Analytics ve Speed Insights kullanılır.",
+          "about site ve docs site, arayüzün seçtiğiniz dilde yeniden açılabilmesi için dil seçiminizi tarayıcı depolamasında saklar.",
+          "Genel sayfalar yazı tiplerini Google Fonts'tan yükler, bu yüzden tarayıcınız Google'ın font sunucularına bağlanır."
+        ]
+      },
+      "cookies": {
+        "title": "Çerezler ve depolama",
+        "body": [
+          "bitsocial.net genel sitede Google Analytics, Google Tag Manager, Meta Pixel, Hotjar veya benzeri reklam ya da profilleme betiklerini kullanmaz.",
+          "bitsocial.net gerekli olmayan izleme çerezlerinden kaçınmaya çalışır.",
+          "Site dil tercihi için tarayıcı depolamasını kullanır ve stats yüzeyi, yönetici girişi için kesinlikle gerekli Grafana oturum durumuna dayanabilir.",
+          "Şu anda bir çerez banner'ı yok, çünkü genel site dil tercihi depolaması ve gizlilik odaklı ölçüm ile sınırlıdır. Bu değişirse bu sayfa da değişmelidir."
+        ]
+      },
+      "choices": {
+        "title": "Seçimleriniz",
+        "body": [
+          "Kayıt formunu göndermeyerek bülten işlemeyi önleyebilirsiniz.",
+          "Tarayıcınızdaki site depolamasını temizleyerek dil tercihini istediğiniz zaman silebilirsiniz.",
+          "Tarayıcı veya ağ kontrolleriyle uzak font isteklerini engelleyebilirsiniz; ancak bunu yapmak sitenin görünümünü değiştirebilir.",
+          "Genel site ek izleme, gömme içerikler veya kayıt akışları kullanmaya başlarsa bu sayfayı güncelleyeceğiz.",
+          "Bu sürüm en son 5 Nisan 2026 tarihinde güncellendi."
+        ]
+      }
+    },
+    "contact": {
+      "title": "İletişim",
+      "body": "Bu page hakkındaki sorular veya düzeltmeler şuraya gönderilebilir"
+    }
   }
 }

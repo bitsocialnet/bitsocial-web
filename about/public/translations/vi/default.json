@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Bản tin",
-    "contribute": "Cải thiện trang này"
+    "contribute": "Cải thiện trang này",
+    "privacy": "Quyền riêng tư"
   },
   "mailingList": {
     "title": "Luôn cập nhật",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Danh mục ứng dụng",
     "directoryLabel": "Danh mục"
+  },
+  "privacy": {
+    "eyebrow": "bitsocial.net xử lý dữ liệu như thế nào",
+    "title": "Thông báo quyền riêng tư",
+    "sections": {
+      "summary": {
+        "title": "Tóm tắt",
+        "body": [
+          "bitsocial.net thu thập rất ít dữ liệu.",
+          "Mã nguồn của bitsocial.net là miễn phí và mã nguồn mở và nằm trong repository công khai bitsocial-web.",
+          "Nếu bạn đăng ký nhận bản tin, địa chỉ email bạn nhập sẽ được gửi đến dịch vụ mailing-list được cấu hình cho trang web.",
+          "Ngoài ra, bitsocial.net sử dụng đo lường lưu lượng và hiệu năng tập trung vào quyền riêng tư, lưu tùy chọn ngôn ngữ của bạn trong bộ nhớ trình duyệt, và tải phông chữ từ Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "bitsocial.net sử dụng gì",
+        "body": [
+          "Đăng ký bản tin sẽ chỉ gửi địa chỉ email của bạn đến đầu cuối mailing-list đã được cấu hình khi bạn gửi biểu mẫu.",
+          "Vercel Web Analytics và Speed Insights được dùng trên bitsocial.net để đo lường tổng hợp lưu lượng và hiệu năng.",
+          "Trang about và trang docs lưu lựa chọn ngôn ngữ của bạn trong bộ nhớ trình duyệt để giao diện có thể mở lại bằng ngôn ngữ bạn đã chọn.",
+          "Các trang công khai tải phông chữ từ Google Fonts, vì vậy trình duyệt của bạn kết nối tới máy chủ phông chữ của Google."
+        ]
+      },
+      "cookies": {
+        "title": "Cookie và bộ nhớ",
+        "body": [
+          "bitsocial.net không dùng Google Analytics, Google Tag Manager, Meta Pixel, Hotjar hoặc các script quảng cáo hay profiling tương tự trên trang công khai.",
+          "bitsocial.net cố gắng tránh các cookie theo dõi không cần thiết.",
+          "Trang web có dùng bộ nhớ trình duyệt cho tùy chọn ngôn ngữ, và khu vực stats có thể phụ thuộc vào trạng thái phiên Grafana thật sự cần thiết cho đăng nhập quản trị viên.",
+          "Hiện chưa có banner cookie vì trang công khai chỉ giới hạn ở việc lưu tùy chọn ngôn ngữ và đo lường tập trung vào quyền riêng tư. Nếu điều đó thay đổi, trang này cũng nên thay đổi."
+        ]
+      },
+      "choices": {
+        "title": "Lựa chọn của bạn",
+        "body": [
+          "Bạn có thể tránh việc xử lý bản tin bằng cách không gửi biểu mẫu đăng ký.",
+          "Bạn có thể xóa tùy chọn ngôn ngữ bất cứ lúc nào bằng cách xóa bộ nhớ trang web trong trình duyệt.",
+          "Bạn có thể chặn các yêu cầu phông chữ từ xa bằng điều khiển của trình duyệt hoặc mạng, dù làm vậy có thể thay đổi giao diện trang web.",
+          "Chúng tôi sẽ cập nhật trang này nếu trang công khai bắt đầu dùng thêm theo dõi, nội dung nhúng hoặc luồng đăng ký.",
+          "Phiên bản này được cập nhật lần cuối vào ngày 5 tháng 4 năm 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Liên hệ",
+      "body": "Câu hỏi hoặc chỉnh sửa về trang này có thể được gửi tới"
+    }
   }
 }

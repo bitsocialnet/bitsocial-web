@@ -12,6 +12,7 @@ import {
 import Home from "@/pages/home";
 import About from "@/pages/about";
 import Blog from "@/pages/blog";
+import Privacy from "@/pages/privacy";
 import SeoHead from "@/components/seo-head";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { normalizeInitialHomeScrollPosition } from "@/lib/initial-scroll";
@@ -75,6 +76,7 @@ function App() {
             </Suspense>
           }
         />
+        <Route path="/privacy" element={<Privacy />} />
         <Route
           path="/about"
           element={

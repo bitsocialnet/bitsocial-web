@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Uutiskirje",
-    "contribute": "Paranna tätä sivua"
+    "contribute": "Paranna tätä sivua",
+    "privacy": "Tietosuoja"
   },
   "mailingList": {
     "title": "Pysy kärryillä",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Sovellushakemisto",
     "directoryLabel": "Hakemisto"
+  },
+  "privacy": {
+    "eyebrow": "Miten bitsocial.net käsittelee tietoja",
+    "title": "Tietosuojailmoitus",
+    "sections": {
+      "summary": {
+        "title": "Yhteenveto",
+        "body": [
+          "bitsocial.net kerää hyvin vähän tietoja.",
+          "bitsocial.netin koodi on vapaata ja avointa lähdekoodia, ja se löytyy julkisesta bitsocial-web-repositoriosta.",
+          "Jos ilmoittaudut uutiskirjeeseen, syöttämäsi sähköpostiosoite lähetetään sivustolle määritettyyn postituslistapalveluun.",
+          "Muuten bitsocial.net käyttää yksityisyyttä korostavaa liikenne- ja suorituskykymittausta, tallentaa kieliasetuksesi selaimen tallennustilaan ja lataa fontit Google Fontsista."
+        ]
+      },
+      "uses": {
+        "title": "Mitä bitsocial.net käyttää",
+        "body": [
+          "Uutiskirjeen tilaus lähettää sähköpostiosoitteesi määritettyyn postituslistan päätepisteeseen vain, kun lähetät lomakkeen.",
+          "bitsocial.netissä käytetään Vercel Web Analyticsia ja Speed Insightsia liikenteen ja suorituskyvyn koontimittaukseen.",
+          "about-sivusto ja docs-sivusto tallentavat kielivalintasi selaimen tallennustilaan, jotta käyttöliittymä voidaan avata uudelleen valitsemallasi kielellä.",
+          "Julkiset sivut lataavat fontit Google Fontsista, joten selaimesi yhdistyy Googlen fonttipalvelimiin."
+        ]
+      },
+      "cookies": {
+        "title": "Evästeet ja tallennus",
+        "body": [
+          "bitsocial.net ei käytä julkisella sivustolla Google Analyticsia, Google Tag Manageria, Meta Pixeliä, Hotjaria tai vastaavia mainonta- tai profilointiskriptejä.",
+          "bitsocial.net pyrkii välttämään ei-välttämättömiä seurantaevästeitä.",
+          "Sivusto käyttää selaimen tallennustilaa kieliasetusta varten, ja stats-näkymä voi nojata tiukasti tarpeelliseen Grafanan istuntotilaan ylläpitäjän kirjautumista varten.",
+          "Evästeilmoitusta ei ole tällä hetkellä, koska julkinen sivusto rajoittuu kieliasetuksen tallentamiseen ja yksityisyyttä korostavaan mittaukseen. Jos tämä muuttuu, myös tämän sivun pitäisi muuttua."
+        ]
+      },
+      "choices": {
+        "title": "Valintasi",
+        "body": [
+          "Voit välttää uutiskirjeen käsittelyn jättämällä tilauslomakkeen lähettämättä.",
+          "Voit tyhjentää kieliasetuksen milloin tahansa poistamalla sivuston tallennustiedot selaimestasi.",
+          "Voit estää etäfonttipyynnöt selaimen tai verkon hallintakeinoilla, vaikka se saattaa muuttaa sivuston ulkoasua.",
+          "Päivitämme tämän sivun, jos julkinen sivusto alkaa käyttää lisäseurantaa, upotuksia tai rekisteröitymisvirtoja.",
+          "Tämä versio päivitettiin viimeksi 5. huhtikuuta 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Yhteystiedot",
+      "body": "Tätä sivua koskevat kysymykset tai korjaukset voi lähettää osoitteeseen"
+    }
   }
 }

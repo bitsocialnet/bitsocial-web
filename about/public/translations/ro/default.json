@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Buletin",
-    "contribute": "Îmbunătățește această pagină"
+    "contribute": "Îmbunătățește această pagină",
+    "privacy": "Confidențialitate"
   },
   "mailingList": {
     "title": "Rămâi la curent",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Catalog de aplicații",
     "directoryLabel": "Catalog"
+  },
+  "privacy": {
+    "eyebrow": "Cum gestionează bitsocial.net datele",
+    "title": "Notificare de confidențialitate",
+    "sections": {
+      "summary": {
+        "title": "Rezumat",
+        "body": [
+          "bitsocial.net colectează foarte puține date.",
+          "Codul pentru bitsocial.net este gratuit și open source și se află în repository-ul public bitsocial-web.",
+          "Dacă te înscrii la newsletter, adresa de email pe care o introduci este trimisă către serviciul de listă de corespondență configurat pentru site.",
+          "În rest, bitsocial.net folosește măsurare a traficului și performanței axată pe confidențialitate, îți salvează preferința de limbă în stocarea browserului și încarcă fonturi de la Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Ce folosește bitsocial.net",
+        "body": [
+          "Înscrierea la newsletter trimite adresa ta de email către endpointul listei de corespondență configurat doar atunci când trimiți formularul.",
+          "Vercel Web Analytics și Speed Insights sunt folosite pe bitsocial.net pentru măsurarea agregată a traficului și a performanței.",
+          "Site-ul about și site-ul docs îți salvează alegerea limbii în stocarea browserului, astfel încât interfața să se poată redeschide în limba selectată.",
+          "Paginiile publice încarcă fonturi de la Google Fonts, astfel că browserul tău se conectează la serverele de fonturi ale Google."
+        ]
+      },
+      "cookies": {
+        "title": "Cookie-uri și stocare",
+        "body": [
+          "bitsocial.net nu folosește Google Analytics, Google Tag Manager, Meta Pixel, Hotjar sau scripturi similare de publicitate ori profilare pe site-ul public.",
+          "bitsocial.net încearcă să evite cookie-urile de urmărire neesențiale.",
+          "Site-ul folosește stocarea browserului pentru preferința de limbă, iar zona stats se poate baza pe starea de sesiune Grafana strict necesară pentru autentificarea administratorului.",
+          "În prezent nu există un banner de cookie-uri, deoarece site-ul public este limitat la stocarea preferinței de limbă și la măsurare axată pe confidențialitate. Dacă acest lucru se schimbă, și această pagină ar trebui să se schimbe."
+        ]
+      },
+      "choices": {
+        "title": "Opțiunile tale",
+        "body": [
+          "Poți evita procesarea newsletterului dacă nu trimiți formularul de înscriere.",
+          "Poți șterge preferința de limbă oricând, curățând stocarea site-ului din browserul tău.",
+          "Poți bloca solicitările de fonturi de la distanță cu controale din browser sau rețea, deși acest lucru poate schimba aspectul site-ului.",
+          "Vom actualiza această pagină dacă site-ul public începe să folosească urmărire suplimentară, embed-uri sau fluxuri de înscriere.",
+          "Această versiune a fost actualizată ultima dată pe 5 aprilie 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "body": "Întrebările sau corecturile despre această pagină pot fi trimise la"
+    }
   }
 }

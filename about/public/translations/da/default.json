@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Nyhedsbrev",
-    "contribute": "Forbedr denne side"
+    "contribute": "Forbedr denne side",
+    "privacy": "Privatliv"
   },
   "mailingList": {
     "title": "Hold dig opdateret",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Appkatalog",
     "directoryLabel": "Katalog"
+  },
+  "privacy": {
+    "eyebrow": "Sådan håndterer bitsocial.net data",
+    "title": "Privatlivsmeddelelse",
+    "sections": {
+      "summary": {
+        "title": "Resumé",
+        "body": [
+          "bitsocial.net indsamler meget lidt data.",
+          "Koden til bitsocial.net er gratis og open source og ligger i det offentlige bitsocial-web-repository.",
+          "Hvis du tilmelder dig nyhedsbrevet, sendes den e-mailadresse, du indtaster, til den mailingliste-tjeneste, der er konfigureret til webstedet.",
+          "Ud over det bruger bitsocial.net privatlivsorienteret trafik- og ydelsesmåling, gemmer din sprogindstilling i browserlagring og indlæser skrifttyper fra Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Hvad bitsocial.net bruger",
+        "body": [
+          "Tilmelding til nyhedsbrevet sender kun din e-mailadresse til den konfigurerede mailingliste-endpoint, når du indsender formularen.",
+          "Vercel Web Analytics og Speed Insights bruges på bitsocial.net til samlet måling af trafik og ydelse.",
+          "about-sitet og docs-sitet gemmer dit sprogvalg i browserlagring, så brugerfladen kan åbne igen på det sprog, du valgte.",
+          "De offentlige sider indlæser skrifttyper fra Google Fonts, så din browser forbinder til Googles skrifttypeservere."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies og lagring",
+        "body": [
+          "bitsocial.net bruger ikke Google Analytics, Google Tag Manager, Meta Pixel, Hotjar eller lignende reklame- eller profileringsscripts på det offentlige site.",
+          "bitsocial.net forsøger at undgå ikke-essentielle sporingscookies.",
+          "Sitet bruger browserlagring til sprogpræference, og stats-fladen kan være afhængig af strengt nødvendig Grafana-sessionsstate til administratorlogin.",
+          "Der er ingen cookie-banner lige nu, fordi det offentlige site er begrænset til lagring af sprogpræference og privatlivsorienteret måling. Hvis det ændrer sig, bør denne side også ændres."
+        ]
+      },
+      "choices": {
+        "title": "Dine valg",
+        "body": [
+          "Du kan undgå nyhedsbrevbehandling ved ikke at indsende tilmeldingsformularen.",
+          "Du kan til enhver tid rydde sprogpræferencen ved at rydde webstedslagring i din browser.",
+          "Du kan blokere eksterne skriftanmodninger med browser- eller netværkskontroller, selv om det kan ændre webstedets udseende.",
+          "Vi opdaterer denne side, hvis det offentlige site begynder at bruge yderligere sporing, indlejringer eller tilmeldingsflows.",
+          "Denne version blev senest opdateret den 5. april 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Kontakt",
+      "body": "Spørgsmål eller rettelser til denne side kan sendes til"
+    }
   }
 }

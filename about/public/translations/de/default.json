@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Newsletter",
-    "contribute": "Diese Seite verbessern"
+    "contribute": "Diese Seite verbessern",
+    "privacy": "Datenschutz"
   },
   "mailingList": {
     "title": "Bleib auf dem Laufenden",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "App-Verzeichnis",
     "directoryLabel": "Katalog"
+  },
+  "privacy": {
+    "eyebrow": "Wie bitsocial.net mit Daten umgeht",
+    "title": "Datenschutzhinweis",
+    "sections": {
+      "summary": {
+        "title": "Zusammenfassung",
+        "body": [
+          "bitsocial.net erhebt nur sehr wenige Daten.",
+          "Der Code von bitsocial.net ist frei und Open Source und liegt im öffentlichen Repository bitsocial-web.",
+          "Wenn du dich für den Newsletter anmeldest, wird die von dir eingegebene E-Mail-Adresse an den für die Website konfigurierten Mailinglisten-Dienst gesendet.",
+          "Ansonsten verwendet bitsocial.net datenschutzorientierte Messungen für Traffic und Leistung, speichert deine Sprachauswahl im Browser-Speicher und lädt Schriftarten von Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Was bitsocial.net verwendet",
+        "body": [
+          "Die Anmeldung zum Newsletter sendet deine E-Mail-Adresse nur dann an den konfigurierten Mailinglisten-Endpunkt, wenn du das Formular absendest.",
+          "Vercel Web Analytics und Speed Insights werden auf bitsocial.net für aggregierte Messungen von Traffic und Leistung eingesetzt.",
+          "Die about-Site und die docs-Site speichern deine Sprachauswahl im Browser-Speicher, damit die Oberfläche wieder in der von dir gewählten Sprache geöffnet werden kann.",
+          "Die öffentlichen Seiten laden Schriftarten von Google Fonts, sodass dein Browser eine Verbindung zu Googles Schriftarten-Servern herstellt."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies und Speicher",
+        "body": [
+          "bitsocial.net verwendet auf der öffentlichen Website weder Google Analytics, Google Tag Manager, Meta Pixel, Hotjar noch ähnliche Werbe- oder Profiling-Skripte.",
+          "bitsocial.net versucht, nicht notwendige Tracking-Cookies zu vermeiden.",
+          "Die Website nutzt Browser-Speicher für die Sprachpräferenz, und der stats-Bereich kann sich für den Administrator-Login auf den zwingend erforderlichen Grafana-Sitzungsstatus stützen.",
+          "Es gibt derzeit keinen Cookie-Banner, weil sich die öffentliche Website auf die Speicherung der Sprachpräferenz und datenschutzorientierte Messungen beschränkt. Wenn sich das ändert, sollte sich auch diese Seite ändern."
+        ]
+      },
+      "choices": {
+        "title": "Deine Wahlmöglichkeiten",
+        "body": [
+          "Du kannst die Verarbeitung für den Newsletter vermeiden, indem du das Anmeldeformular nicht absendest.",
+          "Du kannst die Sprachpräferenz jederzeit löschen, indem du den Website-Speicher in deinem Browser leerst.",
+          "Du kannst entfernte Schriftanfragen mit Browser- oder Netzwerkkontrollen blockieren, auch wenn sich dadurch das Erscheinungsbild der Website ändern kann.",
+          "Wir werden diese Seite aktualisieren, wenn die öffentliche Website zusätzliche Nachverfolgung, Einbettungen oder Anmeldeflows verwendet.",
+          "Diese Version wurde zuletzt am 5. April 2026 aktualisiert."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Kontakt",
+      "body": "Fragen oder Korrekturen zu dieser Seite können gesendet werden an"
+    }
   }
 }

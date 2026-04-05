@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "बातमीपत्र",
-    "contribute": "हे पेज सुधारित करा"
+    "contribute": "हे पेज सुधारित करा",
+    "privacy": "गोपनीयता"
   },
   "mailingList": {
     "title": "अपडेट रहा",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "अ‍ॅप निर्देशिका",
     "directoryLabel": "निर्देशिका"
+  },
+  "privacy": {
+    "eyebrow": "bitsocial.net डेटा कसे हाताळते",
+    "title": "गोपनीयता सूचना",
+    "sections": {
+      "summary": {
+        "title": "सारांश",
+        "body": [
+          "bitsocial.net अतिशय कमी डेटा गोळा करते.",
+          "bitsocial.net चा कोड मुक्त आणि मुक्त स्रोत आहे आणि तो सार्वजनिक bitsocial-web repository मध्ये आहे.",
+          "जर तुम्ही newsletter साठी sign up केले, तर तुम्ही दिलेला email address site साठी configured mailing-list service कडे पाठवला जातो.",
+          "याव्यतिरिक्त, bitsocial.net privacy-केंद्रित traffic आणि performance measurement वापरते, तुमची language preference browser storage मध्ये साठवते, आणि Google Fonts मधून fonts लोड करते."
+        ]
+      },
+      "uses": {
+        "title": "bitsocial.net काय वापरते",
+        "body": [
+          "Newsletter signup मध्ये तुम्ही form submit केल्यावरच तुमचा email address configured mailing-list endpoint कडे पाठवला जातो.",
+          "bitsocial.net वर एकूण traffic आणि performance measurement साठी Vercel Web Analytics आणि Speed Insights वापरले जातात.",
+          "about site आणि docs site तुमची language choice browser storage मध्ये ठेवतात, जेणेकरून interface तुम्ही निवडलेल्या भाषेत पुन्हा उघडता येईल.",
+          "Public pages Google Fonts मधून fonts लोड करतात, त्यामुळे तुमचा browser Google च्या font servers शी जोडला जातो."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies आणि storage",
+        "body": [
+          "bitsocial.net public site वर Google Analytics, Google Tag Manager, Meta Pixel, Hotjar, किंवा अशाच प्रकारचे advertising किंवा profiling scripts वापरत नाही.",
+          "bitsocial.net अनावश्यक tracking cookies टाळण्याचा प्रयत्न करते.",
+          "Site language preference साठी browser storage वापरते, आणि stats surface वर administrator login साठी काटेकोरपणे आवश्यक Grafana session state अवलंबून असू शकते.",
+          "सध्या cookie banner नाही कारण public site language-preference storage आणि privacy-focused measurement इतक्यापुरतेच मर्यादित आहे. ते बदलल्यास, ही page देखील बदलली पाहिजे."
+        ]
+      },
+      "choices": {
+        "title": "तुमचे पर्याय",
+        "body": [
+          "Signup form submit न केल्यास तुम्ही newsletter processing टाळू शकता.",
+          "Browser मधील site storage साफ करून तुम्ही कधीही language preference हटवू शकता.",
+          "Browser किंवा network controls वापरून remote font requests block करू शकता, जरी त्यामुळे site चे appearance बदलू शकते.",
+          "Public site अतिरिक्त tracking, embeds, किंवा signup flows वापरू लागल्यास आम्ही ही page update करू.",
+          "ही आवृत्ती शेवटची 5 एप्रिल 2026 रोजी अपडेट केली होती."
+        ]
+      }
+    },
+    "contact": {
+      "title": "संपर्क",
+      "body": "या पानाबद्दलचे प्रश्न किंवा दुरुस्त्या येथे पाठवता येतील"
+    }
   }
 }

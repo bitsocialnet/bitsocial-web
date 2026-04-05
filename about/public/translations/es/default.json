@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Boletín",
-    "contribute": "Mejora esta página"
+    "contribute": "Mejora esta página",
+    "privacy": "Privacidad"
   },
   "mailingList": {
     "title": "Mantente al día",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Directorio de aplicaciones",
     "directoryLabel": "Directorio"
+  },
+  "privacy": {
+    "eyebrow": "Cómo gestiona bitsocial.net los datos",
+    "title": "Aviso de privacidad",
+    "sections": {
+      "summary": {
+        "title": "Resumen",
+        "body": [
+          "bitsocial.net recopila muy pocos datos.",
+          "El código de bitsocial.net es libre y de código abierto y vive en el repositorio público bitsocial-web.",
+          "Si te suscribes al boletín, la dirección de correo que introduzcas se envía al servicio de lista de correo configurado para el sitio.",
+          "Fuera de eso, bitsocial.net usa medición de tráfico y rendimiento centrada en la privacidad, guarda tu preferencia de idioma en el almacenamiento del navegador y carga fuentes desde Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Qué usa bitsocial.net",
+        "body": [
+          "El registro al boletín envía tu dirección de correo al punto final de la lista de correo configurado solo cuando envías el formulario.",
+          "Vercel Web Analytics y Speed Insights se usan en bitsocial.net para medir de forma agregada el tráfico y el rendimiento.",
+          "El sitio about y el sitio docs guardan tu elección de idioma en el almacenamiento del navegador para que la interfaz pueda volver a abrirse en el idioma que seleccionaste.",
+          "Las páginas públicas cargan fuentes desde Google Fonts, por lo que tu navegador se conecta a los servidores de fuentes de Google."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies y almacenamiento",
+        "body": [
+          "bitsocial.net no usa Google Analytics, Google Tag Manager, Meta Pixel, Hotjar ni scripts publicitarios o de perfilado similares en el sitio público.",
+          "bitsocial.net intenta evitar las cookies de seguimiento no esenciales.",
+          "El sitio sí usa el almacenamiento del navegador para la preferencia de idioma, y la zona de stats puede depender del estado de sesión estrictamente necesario de Grafana para el inicio de sesión de administrador.",
+          "Ahora mismo no hay banner de cookies porque el sitio público se limita al almacenamiento de la preferencia de idioma y a la medición centrada en la privacidad. Si eso cambia, esta página también debería cambiar."
+        ]
+      },
+      "choices": {
+        "title": "Tus opciones",
+        "body": [
+          "Puedes evitar el procesamiento del boletín no enviando el formulario de registro.",
+          "Puedes borrar la preferencia de idioma en cualquier momento eliminando el almacenamiento del sitio en tu navegador.",
+          "Puedes bloquear las solicitudes remotas de fuentes con los controles del navegador o de la red, aunque hacerlo puede cambiar la apariencia del sitio.",
+          "Actualizaremos esta página si el sitio público empieza a usar seguimiento adicional, incrustaciones o flujos de registro.",
+          "Esta versión se actualizó por última vez el 5 de abril de 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Contacto",
+      "body": "Las preguntas o correcciones sobre esta página pueden enviarse a"
+    }
   }
 }

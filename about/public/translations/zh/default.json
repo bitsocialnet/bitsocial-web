@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "通讯",
-    "contribute": "改进此页面"
+    "contribute": "改进此页面",
+    "privacy": "隐私"
   },
   "mailingList": {
     "title": "保持关注",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "应用目录",
     "directoryLabel": "目录"
+  },
+  "privacy": {
+    "eyebrow": "bitsocial.net 如何处理数据",
+    "title": "隐私声明",
+    "sections": {
+      "summary": {
+        "title": "摘要",
+        "body": [
+          "bitsocial.net 收集的数据非常少。",
+          "bitsocial.net 的代码是自由且开源的，位于公开的 bitsocial-web repository 中。",
+          "如果你订阅 newsletter，你输入的电子邮件地址会发送到为该站点配置的 mailing-list service。",
+          "除此之外，bitsocial.net 使用注重隐私的流量和性能测量，将你的语言偏好存储在浏览器存储中，并从 Google Fonts 加载字体。"
+        ]
+      },
+      "uses": {
+        "title": "bitsocial.net 使用什么",
+        "body": [
+          "只有在你提交表单时，newsletter 订阅才会把你的电子邮件地址发送到已配置的 mailing-list endpoint。",
+          "bitsocial.net 使用 Vercel Web Analytics 和 Speed Insights 进行总体流量和性能测量。",
+          "about site 和 docs site 会把你的语言选择存储在浏览器存储中，以便界面可以用你选择的语言重新打开。",
+          "公开页面会从 Google Fonts 加载字体，因此你的浏览器会连接到 Google 的 font servers。"
+        ]
+      },
+      "cookies": {
+        "title": "Cookie 和存储",
+        "body": [
+          "bitsocial.net 在公开站点上不使用 Google Analytics、Google Tag Manager、Meta Pixel、Hotjar，或类似的广告或画像脚本。",
+          "bitsocial.net 会尽量避免非必要的跟踪 cookie。",
+          "该站点确实会为语言偏好使用浏览器存储，而 stats 区域可能依赖于管理员登录所必需的 Grafana session state。",
+          "目前没有 cookie banner，因为公开站点仅限于语言偏好存储和注重隐私的测量。如果这点发生变化，这一页也应该随之更新。"
+        ]
+      },
+      "choices": {
+        "title": "你的选择",
+        "body": [
+          "你可以通过不提交注册表单来避免 newsletter 处理。",
+          "你可以随时清除浏览器中的站点存储，从而清除语言偏好。",
+          "你可以使用浏览器或网络控制来阻止远程字体请求，不过这样做可能会改变网站外观。",
+          "如果公开站点开始使用额外的跟踪、嵌入内容或注册流程，我们会更新此页面。",
+          "此版本最后更新于 2026 年 4 月 5 日。"
+        ]
+      }
+    },
+    "contact": {
+      "title": "联系",
+      "body": "有关此页面的问题或更正可发送至"
+    }
   }
 }

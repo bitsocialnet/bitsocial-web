@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Newsletter",
-    "contribute": "Migliora questa pagina"
+    "contribute": "Migliora questa pagina",
+    "privacy": "Privacy"
   },
   "mailingList": {
     "title": "Resta aggiornato",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Catalogo app",
     "directoryLabel": "Elenco"
+  },
+  "privacy": {
+    "eyebrow": "Come bitsocial.net gestisce i dati",
+    "title": "Informativa sulla privacy",
+    "sections": {
+      "summary": {
+        "title": "Sintesi",
+        "body": [
+          "bitsocial.net raccoglie pochissimi dati.",
+          "Il codice di bitsocial.net è libero e open source e si trova nel repository pubblico bitsocial-web.",
+          "Se ti iscrivi alla newsletter, l'indirizzo email che inserisci viene inviato al servizio di mailing list configurato per il sito.",
+          "Per il resto, bitsocial.net usa misurazioni del traffico e delle prestazioni orientate alla privacy, memorizza la tua preferenza linguistica nell'archiviazione del browser e carica i font da Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Cosa usa bitsocial.net",
+        "body": [
+          "L'iscrizione alla newsletter invia il tuo indirizzo email all'endpoint della mailing list configurato solo quando invii il modulo.",
+          "Vercel Web Analytics e Speed Insights vengono usati su bitsocial.net per misurazioni aggregate del traffico e delle prestazioni.",
+          "Il sito about e il sito docs memorizzano la tua scelta della lingua nell'archiviazione del browser, così l'interfaccia può riaprirsi nella lingua che hai selezionato.",
+          "Le pagine pubbliche caricano i font da Google Fonts, quindi il tuo browser si connette ai server dei font di Google."
+        ]
+      },
+      "cookies": {
+        "title": "Cookie e archiviazione",
+        "body": [
+          "bitsocial.net non usa Google Analytics, Google Tag Manager, Meta Pixel, Hotjar o script pubblicitari o di profilazione simili sul sito pubblico.",
+          "bitsocial.net cerca di evitare i cookie di tracciamento non essenziali.",
+          "Il sito usa l'archiviazione del browser per la preferenza linguistica, e l'area stats può fare affidamento sullo stato di sessione di Grafana strettamente necessario per l'accesso amministratore.",
+          "Al momento non c'è alcun banner sui cookie perché il sito pubblico è limitato all'archiviazione della preferenza linguistica e a una misurazione orientata alla privacy. Se questo cambia, dovrebbe cambiare anche questa pagina."
+        ]
+      },
+      "choices": {
+        "title": "Le tue scelte",
+        "body": [
+          "Puoi evitare il trattamento della newsletter non inviando il modulo di iscrizione.",
+          "Puoi cancellare la preferenza linguistica in qualsiasi momento svuotando l'archiviazione del sito nel browser.",
+          "Puoi bloccare le richieste di font remoti con i controlli del browser o della rete, anche se farlo può modificare l'aspetto del sito.",
+          "Aggiorneremo questa pagina se il sito pubblico inizierà a usare tracciamento aggiuntivo, embed o flussi di iscrizione.",
+          "Questa versione è stata aggiornata l'ultima volta il 5 aprile 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Contatti",
+      "body": "Domande o correzioni su questa pagina possono essere inviate a"
+    }
   }
 }

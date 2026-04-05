@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Nyhetsbrev",
-    "contribute": "Forbedre denne siden"
+    "contribute": "Forbedre denne siden",
+    "privacy": "Personvern"
   },
   "mailingList": {
     "title": "Hold deg oppdatert",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Appkatalog",
     "directoryLabel": "Katalog"
+  },
+  "privacy": {
+    "eyebrow": "Hvordan bitsocial.net håndterer data",
+    "title": "Personvernerklæring",
+    "sections": {
+      "summary": {
+        "title": "Sammendrag",
+        "body": [
+          "bitsocial.net samler inn svært lite data.",
+          "Koden for bitsocial.net er fri og åpen kildekode og ligger i det offentlige bitsocial-web-repositoriet.",
+          "Hvis du melder deg på nyhetsbrevet, sendes e-postadressen du oppgir til mailingliste-tjenesten som er konfigurert for nettstedet.",
+          "Utover det bruker bitsocial.net personvernfokusert trafikk- og ytelsesmåling, lagrer språkinnstillingen din i nettleserlagring og laster skrifter fra Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Hva bitsocial.net bruker",
+        "body": [
+          "Påmelding til nyhetsbrevet sender e-postadressen din til den konfigurerte mailingliste-endepunkten bare når du sender inn skjemaet.",
+          "Vercel Web Analytics og Speed Insights brukes på bitsocial.net for aggregert trafikk- og ytelsesmåling.",
+          "about-siden og docs-siden lagrer språkvalget ditt i nettleserlagring slik at grensesnittet kan åpnes på nytt på språket du valgte.",
+          "De offentlige sidene laster skrifter fra Google Fonts, så nettleseren din kobler til Googles skriftservere."
+        ]
+      },
+      "cookies": {
+        "title": "Informasjonskapsler og lagring",
+        "body": [
+          "bitsocial.net bruker ikke Google Analytics, Google Tag Manager, Meta Pixel, Hotjar eller lignende reklame- eller profileringsskript på det offentlige nettstedet.",
+          "bitsocial.net forsøker å unngå ikke-essensielle sporingskapsler.",
+          "Nettstedet bruker nettleserlagring for språkinnstilling, og stats-flaten kan være avhengig av strengt nødvendig Grafana-øktstatus for administratorinnlogging.",
+          "Det er ingen cookie-banner akkurat nå fordi det offentlige nettstedet er begrenset til lagring av språkinnstilling og personvernfokusert måling. Hvis det endrer seg, bør denne siden også endres."
+        ]
+      },
+      "choices": {
+        "title": "Dine valg",
+        "body": [
+          "Du kan unngå nyhetsbrevbehandling ved å ikke sende inn registreringsskjemaet.",
+          "Du kan når som helst slette språkinnstillingen ved å tømme nettstedlagringen i nettleseren din.",
+          "Du kan blokkere eksterne skriftforespørsler med nettleser- eller nettverkskontroller, selv om det kan endre hvordan nettstedet ser ut.",
+          "Vi oppdaterer denne siden hvis det offentlige nettstedet begynner å bruke mer sporing, innebygde elementer eller registreringsflyter.",
+          "Denne versjonen ble sist oppdatert 5. april 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Kontakt",
+      "body": "Spørsmål eller rettelser om denne siden kan sendes til"
+    }
   }
 }

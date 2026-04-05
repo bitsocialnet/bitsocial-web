@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "న్యూస్‌లెటర్",
-    "contribute": "ఈ పేజీని మెరుగుపరచండి"
+    "contribute": "ఈ పేజీని మెరుగుపరచండి",
+    "privacy": "గోప్యత"
   },
   "mailingList": {
     "title": "తాజా సమాచారంతో ఉండండి",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "యాప్ డైరెక్టరీ",
     "directoryLabel": "డైరెక్టరీ"
+  },
+  "privacy": {
+    "eyebrow": "bitsocial.net డేటాను ఎలా నిర్వహిస్తుంది",
+    "title": "గోప్యతా నోటీసు",
+    "sections": {
+      "summary": {
+        "title": "సారాంశం",
+        "body": [
+          "bitsocial.net చాలా తక్కువ డేటాను సేకరిస్తుంది.",
+          "bitsocial.net కోసం ఉన్న కోడ్ ఉచితం మరియు open source, మరియు ఇది public bitsocial-web repositoryలో ఉంటుంది.",
+          "మీరు newsletter కోసం sign up చేస్తే, మీరు నమోదు చేసిన email address site కోసం configured mailing-list serviceకు పంపబడుతుంది.",
+          "దీనికి మించి, bitsocial.net privacy-focused traffic మరియు performance measurementను ఉపయోగిస్తుంది, మీ language preferenceను browser storageలో నిల్వ చేస్తుంది, మరియు Google Fonts నుండి fontsను లోడ్ చేస్తుంది."
+        ]
+      },
+      "uses": {
+        "title": "bitsocial.net ఏమి ఉపయోగిస్తుంది",
+        "body": [
+          "Newsletter signup మీరు form submit చేసినప్పుడు మాత్రమే మీ email addressను configured mailing-list endpointకు పంపుతుంది.",
+          "bitsocial.netలో మొత్తం traffic మరియు performance measurement కోసం Vercel Web Analytics మరియు Speed Insights ఉపయోగించబడతాయి.",
+          "about site మరియు docs site మీరు ఎంచుకున్న భాషలో interface మళ్లీ తెరవబడేలా మీ language choiceను browser storageలో నిల్వ చేస్తాయి.",
+          "Public pages Google Fonts నుండి fontsను లోడ్ చేస్తాయి, కాబట్టి మీ browser Google యొక్క font serversకు కలుస్తుంది."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies మరియు storage",
+        "body": [
+          "bitsocial.net public siteలో Google Analytics, Google Tag Manager, Meta Pixel, Hotjar, లేదా ఇలాంటి advertising లేదా profiling scriptsను ఉపయోగించదు.",
+          "bitsocial.net అవసరం లేని tracking cookiesను నివారించడానికి ప్రయత్నిస్తుంది.",
+          "Site language preference కోసం browser storageను ఉపయోగిస్తుంది, మరియు stats surface administrator login కోసం strictly necessary Grafana session stateపై ఆధారపడవచ్చు.",
+          "ప్రస్తుతం cookie banner లేదు, ఎందుకంటే public site language-preference storage మరియు privacy-focused measurementకే పరిమితం. అది మారితే, ఈ page కూడా మారాలి."
+        ]
+      },
+      "choices": {
+        "title": "మీ ఎంపికలు",
+        "body": [
+          "Signup formను submit చేయకపోతే మీరు newsletter processingను నివారించవచ్చు.",
+          "మీ browserలో site storageను clear చేసి మీరు ఎప్పుడైనా language preferenceను తొలగించవచ్చు.",
+          "Browser లేదా network controlsతో remote font requestsను block చేయవచ్చు, అయితే అలా చేస్తే site రూపం మారవచ్చు.",
+          "Public site అదనపు tracking, embeds, లేదా signup flowsను ఉపయోగించడం ప్రారంభిస్తే మేము ఈ pageను update చేస్తాము.",
+          "ఈ version చివరిసారిగా 5 ఏప్రిల్ 2026న updated చేయబడింది."
+        ]
+      }
+    },
+    "contact": {
+      "title": "సంప్రదింపు",
+      "body": "ఈ పేజీ గురించి ప్రశ్నలు లేదా సవరణలను కు పంపవచ్చు"
+    }
   }
 }

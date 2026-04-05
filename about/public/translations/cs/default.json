@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Zpravodaj",
-    "contribute": "Vylepšit tuto stránku"
+    "contribute": "Vylepšit tuto stránku",
+    "privacy": "Soukromí"
   },
   "mailingList": {
     "title": "Buďte v obraze",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Adresář aplikací",
     "directoryLabel": "Adresář"
+  },
+  "privacy": {
+    "eyebrow": "Jak bitsocial.net zachází s daty",
+    "title": "Zásady ochrany osobních údajů",
+    "sections": {
+      "summary": {
+        "title": "Shrnutí",
+        "body": [
+          "bitsocial.net shromažďuje jen velmi málo dat.",
+          "Kód bitsocial.net je zdarma a otevřený a je uložen ve veřejném repozitáři bitsocial-web.",
+          "Pokud se přihlásíte k odběru newsletteru, zadaná e-mailová adresa se odešle do služby mailing listu nastavené pro tento web.",
+          "Kromě toho bitsocial.net používá měření provozu a výkonu se zaměřením na soukromí, ukládá vaši jazykovou preference do úložiště prohlížeče a načítá písma z Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Co bitsocial.net používá",
+        "body": [
+          "Přihlášení k newsletteru odešle vaši e-mailovou adresu do nakonfigurovaného koncového bodu mailing listu pouze při odeslání formuláře.",
+          "Na bitsocial.net se pro souhrnné měření provozu a výkonu používají Vercel Web Analytics a Speed Insights.",
+          "Web about a web docs ukládají vaši volbu jazyka do úložiště prohlížeče, aby se rozhraní mohlo znovu otevřít v jazyce, který jste si vybrali.",
+          "Veřejné stránky načítají písma z Google Fonts, takže se váš prohlížeč připojuje k fontovým serverům Google."
+        ]
+      },
+      "cookies": {
+        "title": "Soubory cookie a úložiště",
+        "body": [
+          "bitsocial.net na veřejném webu nepoužívá Google Analytics, Google Tag Manager, Meta Pixel, Hotjar ani podobné reklamní nebo profilovací skripty.",
+          "bitsocial.net se snaží vyhýbat nepodstatným sledovacím cookies.",
+          "Web používá úložiště prohlížeče pro preferenci jazyka a oblast stats může pro přihlášení správce spoléhat na nezbytně nutný stav relace Grafana.",
+          "Zatím zde není lišta s cookies, protože veřejný web se omezuje na ukládání jazykové preference a měření zaměřené na soukromí. Pokud se to změní, měla by se změnit i tato stránka."
+        ]
+      },
+      "choices": {
+        "title": "Vaše volby",
+        "body": [
+          "Zpracování newsletteru můžete obejít tím, že neodešlete registrační formulář.",
+          "Jazykovou preferenci můžete kdykoli smazat vymazáním úložiště webu ve svém prohlížeči.",
+          "Můžete blokovat vzdálené požadavky na písma pomocí ovládání prohlížeče nebo sítě, i když tím se může změnit vzhled webu.",
+          "Tuto stránku aktualizujeme, pokud veřejný web začne používat další sledování, vložený obsah nebo registrační toky.",
+          "Tato verze byla naposledy aktualizována 5. dubna 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Kontakt",
+      "body": "Dotazy nebo opravy k této stránce lze poslat na"
+    }
   }
 }

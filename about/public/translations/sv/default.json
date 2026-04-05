@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Nyhetsbrev",
-    "contribute": "Förbättra den här sidan"
+    "contribute": "Förbättra den här sidan",
+    "privacy": "Integritet"
   },
   "mailingList": {
     "title": "Håll dig uppdaterad",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Appkatalog",
     "directoryLabel": "Katalog"
+  },
+  "privacy": {
+    "eyebrow": "Hur bitsocial.net hanterar data",
+    "title": "Integritetsmeddelande",
+    "sections": {
+      "summary": {
+        "title": "Sammanfattning",
+        "body": [
+          "bitsocial.net samlar in mycket lite data.",
+          "Koden för bitsocial.net är fri och öppen källkod och finns i det publika bitsocial-web-repot.",
+          "Om du anmäler dig till nyhetsbrevet skickas den e-postadress du anger till den e-postlistetjänst som är konfigurerad för webbplatsen.",
+          "Utöver det använder bitsocial.net integritetsfokuserad trafik- och prestandamätning, lagrar ditt språkval i webbläsarens lagring och laddar typsnitt från Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Vad bitsocial.net använder",
+        "body": [
+          "Nyhetsbrevsanmälan skickar din e-postadress till den konfigurerade e-postliste-slutpunkten endast när du skickar formuläret.",
+          "Vercel Web Analytics och Speed Insights används på bitsocial.net för aggregerad trafik- och prestandamätning.",
+          "about-webbplatsen och docs-webbplatsen lagrar ditt språkval i webbläsarens lagring så att gränssnittet kan öppnas igen på det språk du valde.",
+          "De offentliga sidorna laddar typsnitt från Google Fonts, så din webbläsare ansluter till Googles typsnittsservrar."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies och lagring",
+        "body": [
+          "bitsocial.net använder inte Google Analytics, Google Tag Manager, Meta Pixel, Hotjar eller liknande reklam- eller profileringsskript på den offentliga webbplatsen.",
+          "bitsocial.net försöker undvika icke-nödvändiga spårningscookies.",
+          "Webbplatsen använder webbläsarens lagring för språkval, och stats-vyn kan förlita sig på strikt nödvändig Grafana-sessionsstatus för administratörsinloggning.",
+          "Det finns ingen cookie-banner just nu eftersom den offentliga webbplatsen är begränsad till lagring av språkval och integritetsfokuserad mätning. Om det ändras bör även den här sidan ändras."
+        ]
+      },
+      "choices": {
+        "title": "Dina val",
+        "body": [
+          "Du kan undvika nyhetsbrevsbehandling genom att inte skicka anmälningsformuläret.",
+          "Du kan rensa språkvalet när som helst genom att tömma webbplatslagringen i din webbläsare.",
+          "Du kan blockera fjärranrop för typsnitt med webbläsar- eller nätverkskontroller, även om det kan ändra webbplatsens utseende.",
+          "Vi uppdaterar den här sidan om den offentliga webbplatsen börjar använda ytterligare spårning, inbäddningar eller anmälningsflöden.",
+          "Den här versionen uppdaterades senast den 5 april 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Kontakt",
+      "body": "Frågor eller rättelser om den här sidan kan skickas till"
+    }
   }
 }

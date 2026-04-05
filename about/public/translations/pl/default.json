@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Biuletyn",
-    "contribute": "Ulepsz tę stronę"
+    "contribute": "Ulepsz tę stronę",
+    "privacy": "Prywatność"
   },
   "mailingList": {
     "title": "Bądź na bieżąco",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Katalog aplikacji",
     "directoryLabel": "Katalog"
+  },
+  "privacy": {
+    "eyebrow": "Jak bitsocial.net przetwarza dane",
+    "title": "Informacja o prywatności",
+    "sections": {
+      "summary": {
+        "title": "Podsumowanie",
+        "body": [
+          "bitsocial.net zbiera bardzo mało danych.",
+          "Kod bitsocial.net jest wolny i otwartoźródłowy i znajduje się w publicznym repozytorium bitsocial-web.",
+          "Jeśli zapiszesz się do newslettera, podany adres e-mail zostanie wysłany do usługi listy mailingowej skonfigurowanej dla witryny.",
+          "Poza tym bitsocial.net korzysta z pomiarów ruchu i wydajności z naciskiem na prywatność, zapisuje preferencję językową w pamięci przeglądarki i wczytuje czcionki z Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Z czego korzysta bitsocial.net",
+        "body": [
+          "Zapis do newslettera wysyła Twój adres e-mail do skonfigurowanego punktu końcowego listy mailingowej tylko po przesłaniu formularza.",
+          "Na bitsocial.net do zbiorczego pomiaru ruchu i wydajności używane są Vercel Web Analytics oraz Speed Insights.",
+          "Witryna about i witryna docs zapisują wybór języka w pamięci przeglądarki, aby interfejs mógł się ponownie otworzyć w wybranym przez Ciebie języku.",
+          "Publiczne strony wczytują czcionki z Google Fonts, więc Twoja przeglądarka łączy się z serwerami czcionek Google."
+        ]
+      },
+      "cookies": {
+        "title": "Pliki cookie i pamięć",
+        "body": [
+          "bitsocial.net nie używa na publicznej stronie Google Analytics, Google Tag Manager, Meta Pixel, Hotjar ani podobnych skryptów reklamowych lub profilujących.",
+          "bitsocial.net stara się unikać nieistotnych plików cookie śledzących.",
+          "Witryna korzysta z pamięci przeglądarki na potrzeby preferencji językowej, a obszar stats może opierać się na ściśle niezbędnym stanie sesji Grafana do logowania administratora.",
+          "Obecnie nie ma banera cookie, ponieważ publiczna witryna ogranicza się do przechowywania preferencji językowej i pomiarów z naciskiem na prywatność. Jeśli to się zmieni, ta strona również powinna się zmienić."
+        ]
+      },
+      "choices": {
+        "title": "Twoje wybory",
+        "body": [
+          "Możesz uniknąć przetwarzania newslettera, nie wysyłając formularza zapisu.",
+          "Możesz w dowolnym momencie usunąć preferencję językową, czyszcząc pamięć witryny w przeglądarce.",
+          "Możesz blokować zdalne żądania czcionek za pomocą ustawień przeglądarki lub sieci, choć może to zmienić wygląd witryny.",
+          "Zaktualizujemy tę stronę, jeśli publiczna witryna zacznie korzystać z dodatkowego śledzenia, osadzanych treści lub formularzy zapisu.",
+          "Ta wersja została ostatnio zaktualizowana 5 kwietnia 2026 r."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Kontakt",
+      "body": "Pytania lub poprawki dotyczące tej strony można wysyłać na"
+    }
   }
 }

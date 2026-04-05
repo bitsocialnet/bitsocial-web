@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "จดหมายข่าว",
-    "contribute": "ปรับปรุงหน้านี้"
+    "contribute": "ปรับปรุงหน้านี้",
+    "privacy": "ความเป็นส่วนตัว"
   },
   "mailingList": {
     "title": "อย่าพลาดข่าวสาร",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "ไดเรกทอรีแอป",
     "directoryLabel": "ไดเรกทอรี"
+  },
+  "privacy": {
+    "eyebrow": "bitsocial.net จัดการข้อมูลอย่างไร",
+    "title": "ประกาศความเป็นส่วนตัว",
+    "sections": {
+      "summary": {
+        "title": "สรุป",
+        "body": [
+          "bitsocial.net เก็บข้อมูลน้อยมาก",
+          "โค้ดของ bitsocial.net เป็นแบบ free และ open source และอยู่ใน repository สาธารณะ bitsocial-web",
+          "หากคุณสมัครรับจดหมายข่าว ที่อยู่อีเมลที่คุณกรอกจะถูกส่งไปยังบริการ mailing-list ที่กำหนดไว้สำหรับเว็บไซต์",
+          "นอกเหนือจากนั้น bitsocial.net ใช้การวัดปริมาณการใช้งานและประสิทธิภาพที่ให้ความสำคัญกับความเป็นส่วนตัว บันทึกการตั้งค่าภาษาไว้ใน browser storage และโหลดฟอนต์จาก Google Fonts"
+        ]
+      },
+      "uses": {
+        "title": "bitsocial.net ใช้อะไรบ้าง",
+        "body": [
+          "การสมัครจดหมายข่าวจะส่งที่อยู่อีเมลของคุณไปยัง configured mailing-list endpoint เฉพาะเมื่อคุณส่งแบบฟอร์ม",
+          "bitsocial.net ใช้ Vercel Web Analytics และ Speed Insights สำหรับการวัดปริมาณการใช้งานและประสิทธิภาพแบบรวม",
+          "site about และ docs site เก็บตัวเลือกภาษาของคุณไว้ใน browser storage เพื่อให้ interface เปิดกลับมาเป็นภาษาที่คุณเลือกได้",
+          "หน้า public โหลดฟอนต์จาก Google Fonts ดังนั้น browser ของคุณจะเชื่อมต่อกับ font servers ของ Google"
+        ]
+      },
+      "cookies": {
+        "title": "คุกกี้และ storage",
+        "body": [
+          "bitsocial.net ไม่ใช้ Google Analytics, Google Tag Manager, Meta Pixel, Hotjar หรือสคริปต์โฆษณาหรือ profiling ที่คล้ายกันบน public site",
+          "bitsocial.net พยายามหลีกเลี่ยง tracking cookies ที่ไม่จำเป็น",
+          "site ใช้ browser storage สำหรับการตั้งค่าภาษา และ stats surface อาจอาศัย Grafana session state ที่จำเป็นอย่างยิ่งสำหรับการเข้าสู่ระบบผู้ดูแล",
+          "ตอนนี้ยังไม่มี cookie banner เพราะ public site จำกัดอยู่ที่การเก็บการตั้งค่าภาษาและการวัดผลที่ให้ความสำคัญกับความเป็นส่วนตัว หากมีการเปลี่ยนแปลง ข้อนี้ก็ควรเปลี่ยนตาม"
+        ]
+      },
+      "choices": {
+        "title": "ตัวเลือกของคุณ",
+        "body": [
+          "คุณสามารถหลีกเลี่ยงการประมวลผลจดหมายข่าวได้โดยไม่ส่งแบบฟอร์มสมัคร",
+          "คุณสามารถลบการตั้งค่าภาษาได้ทุกเมื่อโดยล้าง site storage ใน browser ของคุณ",
+          "คุณสามารถบล็อกการร้องขอฟอนต์ระยะไกลด้วยตัวควบคุมของ browser หรือเครือข่าย แม้ว่าอาจทำให้รูปลักษณ์ของเว็บไซต์เปลี่ยนไป",
+          "เราจะอัปเดตหน้านี้หาก public site เริ่มใช้ tracking, embeds หรือ signup flows เพิ่มเติม",
+          "เวอร์ชันนี้อัปเดตล่าสุดเมื่อ 5 เมษายน 2026"
+        ]
+      }
+    },
+    "contact": {
+      "title": "ติดต่อ",
+      "body": "คำถามหรือข้อแก้ไขเกี่ยวกับหน้านี้ส่งได้ที่"
+    }
   }
 }

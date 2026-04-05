@@ -197,6 +197,41 @@ function buildAppsSeoMetadata(search: string): SeoMetadata {
   };
 }
 
+function buildPrivacySeoMetadata(): SeoMetadata {
+  const canonicalUrl = toAbsoluteUrl("/privacy");
+
+  return {
+    title: "Bitsocial | Privacy",
+    description: truncateDescription(
+      "How bitsocial.net handles newsletter signups, privacy-friendly analytics, language preferences, and third-party services across the about site, docs, and stats surfaces.",
+    ),
+    canonicalUrl,
+    robots: DEFAULT_ROBOTS,
+    ogType: "website",
+    imageUrl: toAbsoluteUrl(DEFAULT_IMAGE_PATH),
+    imageAlt: "Bitsocial privacy notice",
+    structuredData: createStructuredData([
+      buildOrganizationSchema(),
+      buildWebsiteSchema(),
+      {
+        "@type": "WebPage",
+        "@id": `${canonicalUrl}#webpage`,
+        url: canonicalUrl,
+        name: "Bitsocial | Privacy",
+        description:
+          "How bitsocial.net handles newsletter signups, privacy-friendly analytics, language preferences, and third-party services.",
+        isPartOf: {
+          "@id": `${SITE_ORIGIN}/#website`,
+        },
+      },
+      buildBreadcrumbSchema([
+        { name: SITE_NAME, url: toAbsoluteUrl("/") },
+        { name: "Privacy", url: canonicalUrl },
+      ]),
+    ]),
+  };
+}
+
 function getApplicationCategory(category: AppCategorySlug) {
   switch (category) {
     case "apps":
@@ -336,6 +371,10 @@ export function getSeoMetadata(pathname: string, search = ""): SeoMetadata {
     return buildAppsSeoMetadata(search);
   }
 
+  if (normalizedPath === "/privacy") {
+    return buildPrivacySeoMetadata();
+  }
+
   const appSlugMatch = normalizedPath.match(/^\/apps\/([^/]+)$/);
   if (appSlugMatch?.[1]) {
     const app = getAppBySlug(appSlugMatch[1]);
@@ -348,7 +387,7 @@ export function getSeoMetadata(pathname: string, search = ""): SeoMetadata {
 }
 
 export function getStaticSeoRoutes(): StaticSeoRoute[] {
-  return ["/", "/apps", ...APPS.map((app) => `/apps/${app.slug}`)].map((pathname) => ({
+  return ["/", "/apps", "/privacy", ...APPS.map((app) => `/apps/${app.slug}`)].map((pathname) => ({
     pathname,
     seo: getSeoMetadata(pathname),
   }));

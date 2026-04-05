@@ -5,7 +5,7 @@ import { useState } from "react";
 import EasterEggOverlay from "@/components/easter-egg-overlay";
 import { DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
-import { goHomeScrollTop } from "@/lib/home-nav";
+import { goHomeScrollTop, goRouteScrollTop } from "@/lib/home-nav";
 import { goToMailingListSection } from "@/lib/mailing-list-nav";
 
 const linkClassName = "text-muted-foreground hover:text-foreground transition-colors text-sm";
@@ -42,6 +42,12 @@ export default function Footer() {
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     goHomeScrollTop(location.pathname, navigate);
+  };
+
+  const handlePrivacyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    goRouteScrollTop(location.pathname, "/privacy", navigate);
   };
 
   return (
@@ -105,6 +111,11 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link to="/privacy" className={linkClassName} onClick={handlePrivacyClick}>
+                  {t("footer.privacy")}
+                </Link>
+              </li>
               <li>
                 <a href="/#mailing-list" className={linkClassName} onClick={handleNewsletterClick}>
                   {t("footer.newsletter")}

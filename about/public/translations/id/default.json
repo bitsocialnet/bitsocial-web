@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Buletin",
-    "contribute": "Tingkatkan halaman ini"
+    "contribute": "Tingkatkan halaman ini",
+    "privacy": "Privasi"
   },
   "mailingList": {
     "title": "Tetap ikuti perkembangan",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Direktori aplikasi",
     "directoryLabel": "Direktori"
+  },
+  "privacy": {
+    "eyebrow": "Cara bitsocial.net menangani data",
+    "title": "Pemberitahuan Privasi",
+    "sections": {
+      "summary": {
+        "title": "Ringkasan",
+        "body": [
+          "bitsocial.net mengumpulkan sangat sedikit data.",
+          "Kode untuk bitsocial.net bersifat bebas dan sumber terbuka dan berada di repository publik bitsocial-web.",
+          "Jika Anda mendaftar newsletter, alamat email yang Anda masukkan akan dikirim ke layanan milis yang dikonfigurasi untuk situs ini.",
+          "Selain itu, bitsocial.net menggunakan pengukuran trafik dan performa yang berfokus pada privasi, menyimpan preferensi bahasa Anda di penyimpanan browser, dan memuat font dari Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Apa yang digunakan bitsocial.net",
+        "body": [
+          "Pendaftaran newsletter mengirim alamat email Anda ke endpoint milis yang dikonfigurasi hanya saat Anda mengirim formulir.",
+          "Vercel Web Analytics dan Speed Insights digunakan di bitsocial.net untuk pengukuran trafik dan performa agregat.",
+          "Situs about dan situs docs menyimpan pilihan bahasa Anda di penyimpanan browser agar antarmuka dapat dibuka kembali dalam bahasa yang Anda pilih.",
+          "Halaman publik memuat font dari Google Fonts, jadi browser Anda terhubung ke server font milik Google."
+        ]
+      },
+      "cookies": {
+        "title": "Cookie dan penyimpanan",
+        "body": [
+          "bitsocial.net tidak menggunakan Google Analytics, Google Tag Manager, Meta Pixel, Hotjar, atau skrip iklan atau profiling serupa di situs publik.",
+          "bitsocial.net berupaya menghindari cookie pelacakan yang tidak esensial.",
+          "Situs memang menggunakan penyimpanan browser untuk preferensi bahasa, dan tampilan stats dapat bergantung pada status sesi Grafana yang benar-benar diperlukan untuk login administrator.",
+          "Saat ini belum ada banner cookie karena situs publik dibatasi pada penyimpanan preferensi bahasa dan pengukuran yang berfokus pada privasi. Jika itu berubah, halaman ini juga harus berubah."
+        ]
+      },
+      "choices": {
+        "title": "Pilihan Anda",
+        "body": [
+          "Anda dapat menghindari pemrosesan newsletter dengan tidak mengirim formulir pendaftaran.",
+          "Anda dapat menghapus preferensi bahasa kapan saja dengan membersihkan penyimpanan situs di browser Anda.",
+          "Anda dapat memblokir permintaan font jarak jauh dengan kontrol browser atau jaringan, meskipun hal itu dapat mengubah tampilan situs.",
+          "Kami akan memperbarui halaman ini jika situs publik mulai menggunakan pelacakan tambahan, embed, atau alur pendaftaran.",
+          "Versi ini terakhir diperbarui pada 5 April 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Kontak",
+      "body": "Pertanyaan atau koreksi tentang halaman ini dapat dikirim ke"
+    }
   }
 }

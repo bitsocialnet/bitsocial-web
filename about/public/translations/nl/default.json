@@ -36,7 +36,8 @@
     "twitter": "Twitter",
     "telegram": "Telegram",
     "newsletter": "Nieuwsbrief",
-    "contribute": "Verbeter deze pagina"
+    "contribute": "Verbeter deze pagina",
+    "privacy": "Privacy"
   },
   "mailingList": {
     "title": "Blijf op de hoogte",
@@ -206,5 +207,52 @@
     "experimental": "Experimental",
     "sectionLabel": "Appcatalogus",
     "directoryLabel": "Catalogus"
+  },
+  "privacy": {
+    "eyebrow": "Hoe bitsocial.net met gegevens omgaat",
+    "title": "Privacyverklaring",
+    "sections": {
+      "summary": {
+        "title": "Samenvatting",
+        "body": [
+          "bitsocial.net verzamelt zeer weinig gegevens.",
+          "De code van bitsocial.net is vrij en open source en staat in de openbare bitsocial-web-repository.",
+          "Als je je aanmeldt voor de nieuwsbrief, wordt het e-mailadres dat je invoert verzonden naar de geconfigureerde mailinglijstservice voor de site.",
+          "Verder gebruikt bitsocial.net privacygerichte metingen voor verkeer en prestaties, slaat het je taalvoorkeur op in browseropslag en laadt het lettertypen van Google Fonts."
+        ]
+      },
+      "uses": {
+        "title": "Wat bitsocial.net gebruikt",
+        "body": [
+          "Aanmelding voor de nieuwsbrief stuurt je e-mailadres alleen naar het geconfigureerde mailinglijst-eindpunt wanneer je het formulier verzendt.",
+          "Vercel Web Analytics en Speed Insights worden op bitsocial.net gebruikt voor geaggregeerde metingen van verkeer en prestaties.",
+          "De about site en docs site slaan je taalkeuze op in browseropslag, zodat de interface opnieuw kan worden geopend in de taal die je hebt gekozen.",
+          "De openbare pagina's laden lettertypen van Google Fonts, dus je browser maakt verbinding met de fontservers van Google."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies en opslag",
+        "body": [
+          "bitsocial.net gebruikt op de openbare site geen Google Analytics, Google Tag Manager, Meta Pixel, Hotjar of vergelijkbare advertentie- of profileringsscripts.",
+          "bitsocial.net probeert niet-essentiële trackingcookies te vermijden.",
+          "De site gebruikt wel browseropslag voor taalvoorkeur, en de stats-weergave kan vertrouwen op strikt noodzakelijke Grafana-sessiestatus voor beheerderslogin.",
+          "Er is momenteel geen cookiebanner omdat de openbare site beperkt is tot opslag van taalvoorkeur en privacygerichte metingen. Als dat verandert, moet deze pagina ook veranderen."
+        ]
+      },
+      "choices": {
+        "title": "Je keuzes",
+        "body": [
+          "Je kunt nieuwsbriefverwerking vermijden door het aanmeldformulier niet te verzenden.",
+          "Je kunt de taalvoorkeur op elk moment wissen door de site-opslag in je browser te wissen.",
+          "Je kunt verzoeken om externe lettertypen blokkeren met browser- of netwerkcontroles, hoewel dat het uiterlijk van de site kan veranderen.",
+          "We zullen deze pagina bijwerken als de openbare site extra tracking, embeds of aanmeldflows gaat gebruiken.",
+          "Deze versie is voor het laatst bijgewerkt op 5 april 2026."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "body": "Vragen of correcties over deze pagina kunnen worden gestuurd naar"
+    }
   }
 }
