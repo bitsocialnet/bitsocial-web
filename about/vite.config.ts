@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import autoprefixer from "autoprefixer";
 import fs from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import tailwindcss from "tailwindcss";
@@ -32,6 +33,29 @@ function docsDevProxyTarget() {
     return `http://127.0.0.1:${port}`;
   }
   return docsDevProxyDefaultPortless;
+}
+
+function statsDevProxyTarget() {
+  if (process.env.STATS_DEV_PROXY_TARGET) {
+    return process.env.STATS_DEV_PROXY_TARGET;
+  }
+
+  try {
+    const vercelConfig = JSON.parse(
+      readFileSync(path.resolve(__dirname, "vercel.json"), "utf8"),
+    ) as {
+      routes?: Array<{ src?: string; dest?: string }>;
+    };
+    const statsRoute = vercelConfig.routes?.find((route) => route.src === "^/stats/?$");
+
+    if (!statsRoute?.dest) {
+      return undefined;
+    }
+
+    return new URL(statsRoute.dest).origin;
+  } catch {
+    return undefined;
+  }
 }
 
 function staticSeoPlugin() {
@@ -74,46 +98,59 @@ function staticSeoPlugin() {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => ({
-  root: __dirname,
-  plugins: [react(), staticSeoPlugin()],
-  server: {
-    // Portless serves the app at a stable hostname; open that URL, not the internal Vite port.
-    open: process.env.PORTLESS === "0" ? true : previewOpenUrl,
-    proxy:
-      command === "serve" && !isPreviewCommand
-        ? {
-            "^/docs(?:/.*)?$": {
-              target: docsDevProxyTarget(),
-              changeOrigin: true,
-              ws: true,
-            },
-          }
-        : undefined,
-  },
-  preview: {
-    open: process.env.PORTLESS === "0" ? true : previewOpenUrl,
-  },
-  build: {
-    outDir: path.resolve(__dirname, "../dist"),
-    emptyOutDir: true,
-  },
-  css: {
-    postcss: {
-      plugins: [
-        tailwindcss({
-          config: path.resolve(__dirname, "tailwind.config.ts"),
-        }),
-        autoprefixer(),
-      ],
+export default defineConfig(({ command }) => {
+  const statsProxyTarget = statsDevProxyTarget();
+
+  return {
+    root: __dirname,
+    plugins: [react(), staticSeoPlugin()],
+    server: {
+      // Portless serves the app at a stable hostname; open that URL, not the internal Vite port.
+      open: process.env.PORTLESS === "0" ? true : previewOpenUrl,
+      proxy:
+        command === "serve" && !isPreviewCommand
+          ? {
+              "^/docs(?:/.*)?$": {
+                target: docsDevProxyTarget(),
+                changeOrigin: true,
+                ws: true,
+              },
+              ...(statsProxyTarget
+                ? {
+                    "^/stats(?:/.*)?$": {
+                      target: statsProxyTarget,
+                      changeOrigin: true,
+                      ws: true,
+                    },
+                  }
+                : {}),
+            }
+          : undefined,
     },
-  },
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+    preview: {
+      open: process.env.PORTLESS === "0" ? true : previewOpenUrl,
     },
-  },
-  optimizeDeps: {
-    include: ["three"],
-  },
-}));
+    build: {
+      outDir: path.resolve(__dirname, "../dist"),
+      emptyOutDir: true,
+    },
+    css: {
+      postcss: {
+        plugins: [
+          tailwindcss({
+            config: path.resolve(__dirname, "tailwind.config.ts"),
+          }),
+          autoprefixer(),
+        ],
+      },
+    },
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
+    },
+    optimizeDeps: {
+      include: ["three"],
+    },
+  };
+});

@@ -12,7 +12,7 @@ export const DOCS_LINKS = {
 } as const;
 
 export const STATS_LINKS = {
-  home: "/stats",
+  home: "/stats/",
   client5chan: "/stats/5chan",
 } as const;
 
