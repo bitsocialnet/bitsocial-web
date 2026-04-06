@@ -5,6 +5,7 @@ import {
   getLocalizedDocsPath,
   getQueryLanguage,
   getSupportedLanguageEntry,
+  resolveDocsPreviewMode,
   isDocsNotFoundPath,
   persistDocsLanguage,
   resolveDocsLanguage,
@@ -15,7 +16,9 @@ function DocsLanguageSync() {
   const location = useLocation();
   const {
     i18n: { currentLocale, defaultLocale },
+    siteConfig,
   } = useDocusaurusContext();
+  const previewMode = resolveDocsPreviewMode(siteConfig.customFields?.docsPreviewMode);
 
   useEffect(() => {
     if (typeof document === "undefined") {
@@ -23,8 +26,27 @@ function DocsLanguageSync() {
     }
 
     const currentLanguage = getSupportedLanguageEntry(currentLocale).code;
-    const queryLanguage = getQueryLanguage(location.search);
     const nextSearch = stripLanguageQueryParam(location.search);
+
+    if (previewMode === "live") {
+      const targetPathname = getLocalizedDocsPath(location.pathname, currentLanguage);
+      const targetUrl = `${targetPathname}${nextSearch}${location.hash}`;
+      const currentUrl = `${location.pathname}${location.search}${location.hash}`;
+
+      if (targetUrl !== currentUrl) {
+        persistDocsLanguage(currentLanguage);
+        window.location.replace(targetUrl);
+        return;
+      }
+
+      const language = getSupportedLanguageEntry(currentLanguage);
+      persistDocsLanguage(language.code);
+      document.documentElement.lang = language.code;
+      document.documentElement.dir = language.dir === "rtl" ? "rtl" : "ltr";
+      return;
+    }
+
+    const queryLanguage = getQueryLanguage(location.search);
     const fallbackLanguage = resolveDocsLanguage(nextSearch);
     const targetLanguage =
       queryLanguage ?? (currentLanguage !== defaultLocale ? currentLanguage : fallbackLanguage);
@@ -48,7 +70,14 @@ function DocsLanguageSync() {
     persistDocsLanguage(language.code);
     document.documentElement.lang = language.code;
     document.documentElement.dir = language.dir === "rtl" ? "rtl" : "ltr";
-  }, [currentLocale, defaultLocale, location.hash, location.pathname, location.search]);
+  }, [
+    currentLocale,
+    defaultLocale,
+    location.hash,
+    location.pathname,
+    location.search,
+    previewMode,
+  ]);
 
   return null;
 }

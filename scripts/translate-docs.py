@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import ast
 import argparse
 import json
 import re
@@ -281,8 +282,11 @@ def restore_placeholders(text: str, placeholders: dict[str, str]) -> str:
     return text
 
 
-def decode_js_string(value: str) -> str:
-    return json.loads(f'"{value}"')
+def decode_js_string(value: str, quote: str = '"') -> str:
+    if quote == '"':
+        return json.loads(f'"{value}"')
+
+    return ast.literal_eval(f"{quote}{value}{quote}")
 
 
 def prepare_inline_text(text: str, locale: str) -> tuple[str, dict[str, str]]:
@@ -566,17 +570,26 @@ def translate_category_json(value: Any, locale: str, key: str | None = None) -> 
 def extract_docs_home_messages() -> dict[str, dict[str, str]]:
     docs_home_path = REPO_ROOT / "docs" / "src" / "components" / "DocsHome.tsx"
     content = docs_home_path.read_text()
+    string_literal = r'(?:"((?:[^"\\]|\\.)*)"|\'((?:[^\'\\]|\\.)*)\')'
     pattern = re.compile(
-        r'tr\(\s*"([^"]+)"\s*,\s*"((?:[^"\\]|\\.)*)"\s*,\s*"((?:[^"\\]|\\.)*)"\s*\)',
+        rf"tr\(\s*{string_literal}\s*,\s*{string_literal}\s*,\s*{string_literal}\s*,?\s*\)",
         re.S,
     )
     messages: dict[str, dict[str, str]] = {}
 
     for match in pattern.finditer(content):
-        message_id, message, description = match.groups()
+        message_id_groups = match.groups()[0:2]
+        message_groups = match.groups()[2:4]
+        description_groups = match.groups()[4:6]
+        message_id = next(value for value in message_id_groups if value is not None)
+        message = next(value for value in message_groups if value is not None)
+        description = next(value for value in description_groups if value is not None)
         messages[message_id] = {
-            "message": decode_js_string(message),
-            "description": decode_js_string(description),
+            "message": decode_js_string(message, '"' if message_groups[0] is not None else "'"),
+            "description": decode_js_string(
+                description,
+                '"' if description_groups[0] is not None else "'",
+            ),
         }
 
     return messages

@@ -429,5 +429,301 @@
   "docs.languageSelector.closeButton": {
     "message": "Lukke",
     "description": "Accessible label for the docs language selector close button."
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "Anti-spam",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "Tilpassede utfordringer",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "Hvorfor hvert fellesskap kan velge sin egen anti-spam-policy i stedet for å arve en global modereringsstabel.",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "Moderasjon",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "Lokal moderering",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "Hva \"ingen globale forbud\" betyr i praksis, og hva som fortsatt blir moderert lokalt av fellesskap og apper.",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "Eierskap",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "Identitet og fellesskapseierskap",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "Hvordan nøkler, vertsdelegering og utskiftbar infrastruktur passer sammen uten å gjøre tjenesteleverandører til forvaltere.",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "Tillatelsesløs offentlig RPC",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "Et forslag for flerbruker Bitsocial RPC-infrastruktur med isolerte brukere, scoped tillatelser og varig eierskap.",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "Bitsocialt nettverk",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "Appkjedelaget foreslo å drive delt likviditet, desentraliserte domener og varige insentiver på tvers av apper.",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "Desentraliser alle sosiale medier",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "Slutttilstanden: mange offentlige RPC-er, konkurrerende apper, bærbare identiteter og valgfrie feedmarkeder i stedet for captive plattformer.",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "Et desentralisert imageboard hvor hvem som helst kan lage og eie brett, og flere brett konkurrerer om hver katalogplass.",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "Et alternativ i gammel.reddit-stil der fellesskap er brukereide og konkurrerer om standard listeplasser.",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "React Hooks",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "Et hooks API for å hente feeder, kommentarer, profiler, publisere innhold og administrere kontoer – alt uten en sentral server.",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "Bitsocial CLI",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "Kommandolinjegrensesnitt for å kjøre en P2P-node, opprette fellesskap og administrere innstillinger.",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "Risikoscoring",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "Spamblokkering",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "En sentralisert risikopoengtjeneste med OAuth- og CAPTCHA-utfordringer, dynamisk hastighetsbegrensning og en nettverksindekserer.",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "Bilde captcha",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "Captcha lerret",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "Genererer bildecaptchaer med konfigurerbare tegn, dimensjoner og farger.",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "Invitasjonskoder",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "Voucher Challenge",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "Portpublisering bak unike kupongkoder distribuert av fellesskapseiere til pålitelige brukere.",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "På-kjede",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "EVM-kontraktanrop",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "Bekreft forhold i kjeden - tokensaldoer, NFT-eierskap eller en hvilken som helst smart kontraktstilstand - før du tillater et innlegg.",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "Navn",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "BSO-løser",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "Løser .bso-domenenavn til offentlige nøkler via ENS TXT-poster, med caching for Node og nettleser.",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "Identitet",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "NFT-basert bevis-på-personlighet via SMS-verifisering, reduserer sybilangrep som falske stemmer og forbud mot unndragelse.",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "Bots",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "Telegram-bots",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "Feed-roboter som overvåker Bitsocial-fellesskap og videresender nye innlegg til Telegram-kanaler.",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "Arbeidsflyt",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "Bidragsytere lekebøker",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "Hooks-oppsett, feilundersøkelse, arbeidsflyt for oversettelse, langvarige agentoverleveringer og andre repospesifikke driftsregler.",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "Maler",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "Fremdrifts- og funksjonslistemaler",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "Referansedokumenter for langvarig arbeid, inkludert den maskinlesbare funksjonslistemalen som brukes av repo-arbeidsflyten.",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "Protokollnotater, veikartdetaljer og bidragsyterlekebøker.",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "Dette er kilden til sannhet for ideene landingssiden peker på. Det starter med konseptene på protokollnivå Bitsocial er bygget rundt, og utvides deretter til veikartforslag og arbeidsflytdokumentene som brukes i dette depotet.",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "Lokal moderering",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "Tillatelsesløs offentlig RPC",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "Søk i dokumenter",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "Protokollnotater",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "Forklar kjernepåstandene fra forsiden.",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "Disse sidene erstatter den gamle notatvisningen på én side med separate ruter, slik at landingssiden kan lenke direkte til ideen den snakker om.",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "Veikart detalj",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "Utvid hovedplanen til sider folk faktisk kan lese.",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "Veikartkortene på landingssiden har nå destinasjonssider i stedet for generiske dokumentkoblinger eller et utdatert GitHub-problem.",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "Apper",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "Klienter bygget på Bitsocial-protokollen.",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "Hver app gir et annet grensesnitt til det samme desentraliserte nettverket. Fellesskap og innhold er interoperable på tvers av dem alle.",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "Utviklerverktøy",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "Bygg videre på protokollen med kroker og CLI-verktøy.",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "Biblioteker og verktøy for utviklere som bygger Bitsocial-klienter, roboter eller arbeidsflyter for fellesskapsadministrasjon.",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "Anti-spam utfordringer",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "Modulære utfordringer fellesskap kan blande og matche.",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "Hver utfordringstype er en frittstående pakke som fellesskap kan aktivere, konfigurere og kombinere for å passe deres moderasjonsbehov.",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "Infrastruktur",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "Støttetjenester og verktøy på protokollnivå.",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "Navneoppløsning, identitetsbekreftelse og integrasjoner på tvers av plattformer som underbygger Bitsocial-økosystemet.",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "Bidragsyterreferanse",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "Hold repo-arbeidsflytdokumentene synlige i stedet for å skjule dem i en rå nedmerkingsmappe.",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "De eksisterende dokumentene under",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "er bevart og publisert her for åpenhet. De er først og fremst rettet mot bidragsytere, men de lever nå inne i dokumentbrukergrensesnittet som de offentlige sidene gjør.",
+    "description": "Suffix text for the contributor reference section description."
   }
 }

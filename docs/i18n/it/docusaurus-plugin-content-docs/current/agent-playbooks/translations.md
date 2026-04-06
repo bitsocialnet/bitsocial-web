@@ -1,14 +1,14 @@
-# Flusso di lavoro delle traduzioni
+# Translations Workflow
 
-Questo progetto utilizza file di traduzione i18next in `public/translations/{lang}/default.json`.
+This project uses i18next translation files in `public/translations/{lang}/default.json`.
 
-## Regola
+## Rule
 
-Non modificare manualmente ogni file di lingua. Utilizza `scripts/update-translations.js`.
+Do not manually edit every language file. Use `scripts/update-translations.js`.
 
-## Aggiungi o aggiorna una chiave
+## Add or Update a Key
 
-1. Crea un file dizionario temporaneo, ad es. `translations-temp.json`:
+1. Create a temporary dictionary file, e.g. `translations-temp.json`:
 
 ```json
 {
@@ -19,25 +19,25 @@ Non modificare manualmente ogni file di lingua. Utilizza `scripts/update-transla
 }
 ```
 
-2. Applica la mappa di traduzione:
+2. Apply the translation map:
 
 ```bash
 node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
 ```
 
-3. Elimina il file dizionario temporaneo.
+3. Delete the temporary dictionary file.
 
-## Altri comandi utili
+## Other Useful Commands
 
 ```bash
-# Copia una chiave dall'inglese a tutte le lingue (esegui prima una prova, poi scrivi)
+# Copy a key from English to all languages (dry run then write)
 node scripts/update-translations.js --key some_key --from en --dry
 node scripts/update-translations.js --key some_key --from en --write
 
-# Elimina una chiave da tutte le lingue
+# Delete a key from all languages
 node scripts/update-translations.js --key obsolete_key --delete --write
 
-# Verifica le chiavi di traduzione inutilizzate
+# Audit for unused translation keys
 node scripts/update-translations.js --audit --dry
 node scripts/update-translations.js --audit --write
 ```

@@ -62,8 +62,14 @@
   background: color-mix(in srgb, var(--bitsocial-surface) 88%, transparent);
   color: var(--ifm-font-color-base);
   font-family: var(--ifm-font-family-base);
+  font-weight: 500 !important;
   padding: 0.95rem 1.1rem;
   box-shadow: none;
+}
+
+.surface :global(.pagefind-ui__search-input::placeholder) {
+  color: var(--bitsocial-muted) !important;
+  opacity: 1 !important;
 }
 
 .surface :global(.pagefind-ui__search-input:focus-visible) {

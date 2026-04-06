@@ -429,5 +429,301 @@
   "docs.languageSelector.closeButton": {
     "message": "Tutup",
     "description": "Accessible label for the docs language selector close button."
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "Anti-spam",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "Tantangan khusus",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "Mengapa setiap komunitas dapat memilih kebijakan anti-spamnya sendiri dibandingkan mewarisi tumpukan moderasi global.",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "Moderasi",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "Moderasi lokal",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "Apa yang dimaksud dengan \"tidak ada larangan global\" dalam praktiknya, dan apa yang masih dimoderasi secara lokal oleh komunitas dan aplikasi.",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "Kepemilikan",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "Identitas dan kepemilikan komunitas",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "Bagaimana kunci, delegasi hosting, dan infrastruktur yang dapat diganti saling menyatu tanpa menjadikan penyedia layanan sebagai pemelihara.",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "RPC publik tanpa izin",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "Proposal untuk infrastruktur RPC Bitsocial multi-pengguna dengan pengguna terisolasi, izin terbatas, dan kepemilikan yang tahan lama.",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "Jaringan Bitsosial",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "Lapisan rantai aplikasi diusulkan untuk mendukung likuiditas bersama, domain terdesentralisasi, dan insentif yang tahan lama di seluruh aplikasi.",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "Desentralisasi semua media sosial",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "Keadaan akhir: banyak RPC publik, aplikasi pesaing, identitas portabel, dan pasar feed opsional, bukan platform captive.",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "Papan gambar terdesentralisasi tempat siapa pun dapat membuat dan memiliki papan, dan banyak papan bersaing untuk setiap slot direktori.",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "Alternatif gaya lama.reddit di mana komunitas dimiliki oleh pengguna dan bersaing untuk mendapatkan slot daftar default.",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "Bereaksi Kait",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "API kait untuk mengambil feed, komentar, profil, menerbitkan konten, dan mengelola akun - semuanya tanpa server pusat.",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "CLI Bitsosial",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "Antarmuka baris perintah untuk menjalankan node P2P, membuat komunitas, dan mengelola pengaturan.",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "Penilaian risiko",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "Pemblokir Spam",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "Layanan penilaian risiko terpusat dengan tantangan OAuth dan CAPTCHA, pembatasan tingkat dinamis, dan pengindeks jaringan.",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "Captcha gambar",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "Kanvas Captcha",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "Menghasilkan captcha gambar dengan karakter, dimensi, dan warna yang dapat dikonfigurasi.",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "Kode undangan",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "Tantangan Voucher",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "Penerbitan gerbang di balik kode voucher unik yang didistribusikan oleh pemilik komunitas kepada pengguna tepercaya.",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "dalam rantai",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "Panggilan Kontrak EVM",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "Verifikasi kondisi on-chain - saldo token, kepemilikan NFT, atau status kontrak pintar apa pun - sebelum mengizinkan postingan.",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "Nama",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "Penyelesai BSO",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "Menyelesaikan nama domain .bso menjadi kunci publik melalui data TXT ENS, dengan cache untuk Node dan browser.",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "Identitas",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "Bukti identitas berbasis NFT melalui verifikasi SMS, mengurangi serangan sybil seperti suara palsu dan penghindaran larangan.",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "Bot",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "Bot Telegram",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "Memberi makan bot yang memantau komunitas Bitsocial dan meneruskan postingan baru ke saluran Telegram.",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "Alur kerja",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "Buku pedoman kontributor",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "Penyiapan hook, investigasi bug, alur kerja terjemahan, serah terima agen yang sudah berjalan lama, dan aturan pengoperasian khusus repo lainnya.",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "Templat",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "Templat kemajuan dan daftar fitur",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "Dokumen referensi untuk pekerjaan yang berjalan lama, termasuk templat daftar fitur yang dapat dibaca mesin yang digunakan oleh alur kerja repo.",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "Catatan protokol, detail peta jalan, dan buku pedoman kontributor.",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "Ini adalah sumber kebenaran dari ide-ide yang ditunjukkan oleh halaman arahan. Ini dimulai dengan konsep tingkat protokol yang dibangun Bitsocial, kemudian berkembang menjadi proposal peta jalan dan dokumen alur kerja yang saat ini digunakan di dalam repositori ini.",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "Moderasi lokal",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "RPC publik tanpa izin",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "Telusuri dokumen",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "Catatan protokol",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "Jelaskan klaim inti dari halaman depan.",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "Halaman-halaman ini menggantikan tampilan catatan satu halaman lama dengan rute terpisah, sehingga halaman arahan dapat terhubung langsung ke ide yang dibicarakan.",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "Detail peta jalan",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "Perluas rencana induk menjadi halaman-halaman yang benar-benar dapat dibaca orang.",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "Kartu peta jalan di laman landas kini memiliki laman tujuan, bukan tautan dokumen umum atau masalah GitHub yang sudah ketinggalan zaman.",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "Aplikasi",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "Klien yang dibangun di atas protokol Bitsocial.",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "Setiap aplikasi menyediakan antarmuka berbeda ke jaringan terdesentralisasi yang sama. Komunitas dan konten dapat dioperasikan di seluruh komunitas.",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "Alat pengembang",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "Bangun protokol dengan hook dan peralatan CLI.",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "Perpustakaan dan alat untuk pengembang yang membangun klien Bitsocial, bot, atau alur kerja manajemen komunitas.",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "Tantangan anti-spam",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "Tantangan modular yang dapat dipadupadankan oleh komunitas.",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "Setiap jenis tantangan merupakan paket mandiri yang dapat diaktifkan, dikonfigurasikan, dan digabungkan oleh komunitas agar sesuai dengan kebutuhan moderasi mereka.",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "Infrastruktur",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "Layanan pendukung dan peralatan tingkat protokol.",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "Resolusi nama, verifikasi identitas, dan integrasi lintas platform yang mendukung ekosistem Bitsocial.",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "Referensi kontributor",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "Jaga agar dokumen alur kerja repo tetap terlihat alih-alih menyembunyikannya di folder penurunan harga mentah.",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "Dokumen yang ada di bawah",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "disimpan dan diterbitkan di sini untuk transparansi. Halaman-halaman tersebut terutama menghadap kontributor, namun sekarang berada di dalam UI dokumen seperti halnya halaman yang menghadap publik.",
+    "description": "Suffix text for the contributor reference section description."
   }
 }

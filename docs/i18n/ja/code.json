@@ -429,5 +429,301 @@
   "docs.languageSelector.closeButton": {
     "message": "閉じる",
     "description": "Accessible label for the docs language selector close button."
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "スパム対策",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "カスタムチャレンジ",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "各コミュニティがグローバル モデレーション スタックを継承するのではなく、独自のスパム対策ポリシーを選択できる理由。",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "節度",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "ローカルモデレーション",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "「世界的な禁止なし」が実際に何を意味するのか、そして依然としてコミュニティやアプリによってローカルで管理されているものは何なのか。",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "所有権",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "アイデンティティとコミュニティの所有権",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "サービスプロバイダーを管理者に変えることなく、キー、ホスティング委任、交換可能なインフラストラクチャをどのように組み合わせるか。",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "許可のないパブリック RPC",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "分離されたユーザー、範囲指定されたアクセス許可、および永続的な所有権を備えたマルチユーザー Bitsocial RPC インフラストラクチャの提案。",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "ビットソーシャルネットワーク",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "アプリチェーン層は、アプリ全体で共有流動性、分散ドメイン、永続的なインセンティブを強化することを提案しました。",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "すべてのソーシャルメディアを分散化する",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "最終状態: 多くのパブリック RPC、競合アプリ、ポータブル ID、キャプティブ プラットフォームの代わりのオプションのフィード マーケット。",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "誰でもボードを作成および所有でき、複数のボードが各ディレクトリ スロットをめぐって競合する分散型イメージボード。",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "コミュニティがユーザー所有であり、デフォルトのリストスロットをめぐって競合する古い.redditスタイルの代替案。",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "反応フック",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "フィード、コメント、プロフィールの取得、コンテンツの公開、アカウントの管理をすべて中央サーバーなしで行うためのフック API。",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "ビットソーシャル CLI",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "P2P ノードの実行、コミュニティの作成、設定の管理のためのコマンドライン インターフェイス。",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "リスクスコアリング",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "スパムブロッカー",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "OAuth および CAPTCHA チャレンジ、動的レート制限、ネットワーク インデクサーを備えた集中リスク スコアリング サービス。",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "画像キャプチャ",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "キャプチャキャンバス",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "構成可能な文字、寸法、色を使用して画像キャプチャを生成します。",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "招待コード",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "バウチャーチャレンジ",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "コミュニティ所有者によって信頼できるユーザーに配布される固有のバウチャー コードを使用して公開をゲートします。",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "オンチェーン",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "EVM契約コール",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "投稿を許可する前に、オンチェーンの条件 (トークン残高、NFT 所有権、またはスマート コントラクトの状態) を確認してください。",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "名前",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "BSO リゾルバー",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "ノードとブラウザーのキャッシュを使用して、ENS TXT レコードを介して .bso ドメイン名を公開キーに解決します。",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "アイデンティティ",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "SMS 検証による NFT ベースの本人証明により、偽投票や禁止回避などのシビル攻撃が軽減されます。",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "ボット",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "電報ボット",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "Bitsocial コミュニティを監視し、新しい投稿を Telegram チャネルに転送するフィード ボット。",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "ワークフロー",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "貢献者のプレイブック",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "フックのセットアップ、バグ調査、翻訳ワークフロー、長時間実行されるエージェントのハンドオフ、その他のリポジトリ固有の運用ルール。",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "テンプレート",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "進捗状況と機能リストのテンプレート",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "リポジトリ ワークフローで使用される機械可読機能リスト テンプレートなど、長期にわたる作業のためのリファレンス ドキュメント。",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "プロトコルのメモ、ロードマップの詳細、および貢献者のプレイブック。",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "これは、ランディング ページが指すアイデアの真実の情報源です。これは、Bitsocial が構築されるプロトコル レベルの概念から始まり、その後、このリポジトリ内で現在使用されているロードマップ提案とワークフロー ドキュメントに拡張されます。",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "ローカルモデレーション",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "許可のないパブリック RPC",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "ドキュメントの検索",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "プロトコルのメモ",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "最初のページから核心的な主張を説明します。",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "これらのページは、古い 1 ページのメモ ビューを個別のルートに置き換えるため、ランディング ページが話しているアイデアに直接リンクできるようになります。",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "ロードマップの詳細",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "基本計画を人々が実際に読めるページに拡張します。",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "ランディング ページのロードマップ カードには、一般的なドキュメント リンクや古い GitHub の問題の代わりに宛先ページが表示されるようになりました。",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "アプリ",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "クライアントは Bitsocial プロトコルに基づいて構築されています。",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "各アプリは、同じ分散ネットワークに対して異なるインターフェイスを提供します。コミュニティとコンテンツは、それらすべてで相互運用可能です。",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "開発者ツール",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "フックと CLI ツールを使用してプロトコルを構築します。",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "Bitsocial クライアント、ボット、コミュニティ管理ワークフローを構築する開発者向けのライブラリとツール。",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "スパム対策の課題",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "モジュール式の課題をコミュニティで組み合わせて組み合わせることができます。",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "各チャレンジ タイプはスタンドアロン パッケージであり、コミュニティはモデレーションのニーズに合わせて有効化、構成、組み合わせができます。",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "インフラストラクチャー",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "サービスとプロトコル レベルのツールをサポートします。",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "Bitsocial エコシステムを支える名前解決、本人確認、クロスプラットフォーム統合。",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "寄稿者リファレンス",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "リポジトリ ワークフロー ドキュメントを生のマークダウン フォルダーに隠すのではなく、表示されたままにしておきます。",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "以下の既存のドキュメント",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "透明性を確保するためにここで保存および公開されます。これらは主に投稿者向けですが、現在は一般公開ページと同様にドキュメント UI 内に存在します。",
+    "description": "Suffix text for the contributor reference section description."
   }
 }

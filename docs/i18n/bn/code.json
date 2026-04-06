@@ -421,5 +421,301 @@
   },
   "docs.languageSelector.closeButton": {
     "message": "বন্ধ"
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "অ্যান্টি-স্প্যাম",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "কাস্টম চ্যালেঞ্জ",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "কেন প্রতিটি সম্প্রদায় একটি বিশ্বব্যাপী মডারেশন স্ট্যাকের উত্তরাধিকারী হওয়ার পরিবর্তে তার নিজস্ব স্প্যাম-বিরোধী নীতি বেছে নিতে পারে।",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "সংযম",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "স্থানীয় সংযম",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "অনুশীলনে \"কোনও বৈশ্বিক নিষেধাজ্ঞা\" বলতে কী বোঝায়, এবং যা এখনও স্থানীয়ভাবে সম্প্রদায় এবং অ্যাপ দ্বারা সংযত হয়৷",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "মালিকানা",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "পরিচয় এবং সম্প্রদায়ের মালিকানা",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "কী, হোস্টিং ডেলিগেশন, এবং প্রতিস্থাপনযোগ্য পরিকাঠামো কীভাবে পরিষেবা প্রদানকারীদের কাস্টোডিয়ানে পরিণত না করে একসাথে ফিট করে।",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "অনুমতিহীন পাবলিক RPC",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "বিচ্ছিন্ন ব্যবহারকারী, সুযোগযুক্ত অনুমতি এবং টেকসই মালিকানা সহ বহু-ব্যবহারকারী বিটসোশ্যাল RPC পরিকাঠামোর জন্য একটি প্রস্তাব।",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "বিটসোশ্যাল নেটওয়ার্ক",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "অ্যাপচেন স্তরটি পাওয়ার শেয়ার্ড লিকুইডিটি, বিকেন্দ্রীভূত ডোমেন এবং অ্যাপ জুড়ে টেকসই ইনসেনটিভের প্রস্তাব করেছে।",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "সমস্ত সোশ্যাল মিডিয়াকে বিকেন্দ্রীকরণ করুন",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "শেষ অবস্থা: ক্যাপটিভ প্ল্যাটফর্মের পরিবর্তে অনেক পাবলিক RPC, প্রতিযোগী অ্যাপ, পোর্টেবল আইডেন্টিটি এবং ঐচ্ছিক ফিড মার্কেট।",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "একটি বিকেন্দ্রীভূত ইমেজবোর্ড যেখানে যে কেউ বোর্ড তৈরি করতে এবং তার মালিক হতে পারে এবং একাধিক বোর্ড প্রতিটি ডিরেক্টরি স্লটের জন্য প্রতিযোগিতা করে।",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "একটি old.reddit-শৈলী বিকল্প যেখানে সম্প্রদায়গুলি ব্যবহারকারীর মালিকানাধীন এবং ডিফল্ট তালিকা স্লটের জন্য প্রতিযোগিতা করে৷",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "হুক প্রতিক্রিয়া",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "একটি কেন্দ্রীয় সার্ভার ছাড়াই ফিড, মন্তব্য, প্রোফাইল, বিষয়বস্তু প্রকাশ এবং অ্যাকাউন্ট পরিচালনার জন্য একটি হুক API।",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "বিটসোশ্যাল সিএলআই",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "একটি P2P নোড চালানো, সম্প্রদায় তৈরি এবং সেটিংস পরিচালনার জন্য কমান্ড-লাইন ইন্টারফেস।",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "ঝুঁকি স্কোরিং",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "স্প্যাম ব্লকার",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "OAuth এবং ক্যাপচা চ্যালেঞ্জ, গতিশীল হার সীমিতকরণ, এবং একটি নেটওয়ার্ক সূচক সহ একটি কেন্দ্রীভূত ঝুঁকি-স্কোরিং পরিষেবা।",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "ইমেজ ক্যাপচা",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "ক্যাপচা ক্যানভাস",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "কনফিগারযোগ্য অক্ষর, মাত্রা এবং রঙ সহ চিত্র ক্যাপচা তৈরি করে।",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "আমন্ত্রণ কোড",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "ভাউচার চ্যালেঞ্জ",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "বিশ্বস্ত ব্যবহারকারীদের কাছে সম্প্রদায়ের মালিকদের দ্বারা বিতরণ করা অনন্য ভাউচার কোডগুলির পিছনে গেট প্রকাশনা৷",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "অন-চেইন",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "ইভিএম চুক্তি কল",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "একটি পোস্টের অনুমতি দেওয়ার আগে অন-চেইন শর্তগুলি - টোকেন ব্যালেন্স, এনএফটি মালিকানা, বা কোনও স্মার্ট চুক্তির অবস্থা যাচাই করুন৷",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "নাম",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "BSO সমাধানকারী",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "নোড এবং ব্রাউজারের জন্য ক্যাশিং সহ ENS TXT রেকর্ডের মাধ্যমে পাবলিক কীগুলিতে .bso ডোমেন নামগুলি সমাধান করে৷",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "পরিচয়",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "এসএমএস যাচাইয়ের মাধ্যমে NFT-ভিত্তিক প্রমাণ-অব-ব্যক্তিত্ব, জাল ভোটের মতো সিবিল আক্রমণ হ্রাস করা এবং ফাঁকি দেওয়া নিষিদ্ধ।",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "বট",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "টেলিগ্রাম বট",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "ফিড বটগুলি বিটসোশ্যাল সম্প্রদায়গুলি নিরীক্ষণ করে এবং টেলিগ্রাম চ্যানেলগুলিতে নতুন পোস্টগুলি ফরোয়ার্ড করে৷",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "কর্মপ্রবাহ",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "অবদানকারী প্লেবুক",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "হুক সেটআপ, বাগ তদন্ত, অনুবাদ কর্মপ্রবাহ, দীর্ঘ-চলমান এজেন্ট হ্যান্ডঅফ, এবং অন্যান্য রেপো-নির্দিষ্ট অপারেটিং নিয়ম।",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "টেমপ্লেট",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "অগ্রগতি এবং বৈশিষ্ট্য-তালিকা টেমপ্লেট",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "রেপো ওয়ার্কফ্লো দ্বারা ব্যবহৃত মেশিন-পাঠযোগ্য বৈশিষ্ট্য তালিকা টেমপ্লেট সহ দীর্ঘ-চলমান কাজের জন্য রেফারেন্স নথি।",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "প্রোটোকল নোট, রোডম্যাপ বিশদ, এবং অবদানকারী প্লেবুক।",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "ল্যান্ডিং পৃষ্ঠাটি যে ধারণাগুলি নির্দেশ করে তার জন্য এটি সত্যের উত্স৷ এটি প্রোটোকল-স্তরের ধারণাগুলির সাথে শুরু হয় Bitsocial চারপাশে তৈরি করা হয়েছে, তারপরে রোডম্যাপ প্রস্তাবগুলিতে এবং বর্তমানে এই সংগ্রহস্থলের ভিতরে ব্যবহৃত ওয়ার্কফ্লো ডক্সগুলিতে প্রসারিত হয়৷",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "স্থানীয় সংযম",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "অনুমতিহীন পাবলিক RPC",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "ডক্স অনুসন্ধান করুন",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "প্রোটোকল নোট",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "প্রথম পৃষ্ঠা থেকে মূল দাবিগুলি ব্যাখ্যা করুন।",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "এই পৃষ্ঠাগুলি পুরানো একক-পৃষ্ঠার নোটের দৃশ্যকে আলাদা রুটের সাথে প্রতিস্থাপন করে, তাই ল্যান্ডিং পৃষ্ঠাটি যে ধারণাটির কথা বলছে তার সাথে সরাসরি লিঙ্ক করতে পারে।",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "রোডম্যাপের বিস্তারিত",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "মানুষ আসলে পড়তে পারে এমন পৃষ্ঠাগুলিতে মাস্টার প্ল্যান প্রসারিত করুন।",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "ল্যান্ডিং পৃষ্ঠার রোডম্যাপ কার্ডে এখন জেনেরিক ডক্স লিঙ্ক বা পুরানো গিটহাব সমস্যার পরিবর্তে গন্তব্য পৃষ্ঠা রয়েছে।",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "অ্যাপস",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "Bitsocial প্রোটোকলের উপর নির্মিত ক্লায়েন্ট।",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "প্রতিটি অ্যাপ একই বিকেন্দ্রীভূত নেটওয়ার্কে একটি ভিন্ন ইন্টারফেস প্রদান করে। সম্প্রদায় এবং বিষয়বস্তু তাদের সব জুড়ে আন্তঃক্রিয়াশীল।",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "বিকাশকারী সরঞ্জাম",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "হুক এবং CLI টুলিং সহ প্রোটোকল তৈরি করুন।",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "বিটসোশ্যাল ক্লায়েন্ট, বট বা কমিউনিটি ম্যানেজমেন্ট ওয়ার্কফ্লো তৈরির ডেভেলপারদের জন্য লাইব্রেরি এবং টুল।",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "স্প্যাম-বিরোধী চ্যালেঞ্জ",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "মডুলার চ্যালেঞ্জ সম্প্রদায়গুলি মিশ্রিত এবং মেলাতে পারে।",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "প্রতিটি চ্যালেঞ্জের ধরন হল একটি স্বতন্ত্র প্যাকেজ যা সম্প্রদায়গুলি তাদের সংযম প্রয়োজনের সাথে মানানসই করতে সক্ষম, কনফিগার এবং একত্রিত করতে পারে।",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "অবকাঠামো",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "সহায়ক পরিষেবা এবং প্রোটোকল-স্তরের টুলিং।",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "নামের রেজোলিউশন, পরিচয় যাচাইকরণ এবং ক্রস-প্ল্যাটফর্ম ইন্টিগ্রেশন যা বিটসোশ্যাল ইকোসিস্টেমকে আন্ডারপিন করে।",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "অবদানকারীর রেফারেন্স",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "রেপো ওয়ার্কফ্লো ডক্সগুলিকে একটি কাঁচা মার্কডাউন ফোল্ডারে লুকিয়ে রাখার পরিবর্তে দৃশ্যমান রাখুন।",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "অধীনে বিদ্যমান নথি",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "স্বচ্ছতার জন্য এখানে সংরক্ষিত এবং প্রকাশ করা হয়। তারা প্রাথমিকভাবে অবদানকারী-মুখী, কিন্তু তারা এখন ডক্স UI-এর মধ্যে বাস করে যেমন পাবলিক-মুখী পৃষ্ঠাগুলি করে।",
+    "description": "Suffix text for the contributor reference section description."
   }
 }

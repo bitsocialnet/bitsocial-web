@@ -429,5 +429,301 @@
   "docs.languageSelector.closeButton": {
     "message": "Kapalı",
     "description": "Accessible label for the docs language selector close button."
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "Anti-spam",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "Özel zorluklar",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "Neden her topluluk küresel bir denetleme yığınını devralmak yerine kendi anti-spam politikasını seçebilir?",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "Moderasyon",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "Yerel denetleme",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "\"Küresel yasak yok\"un pratikte ne anlama geldiği ve hâlâ topluluklar ve uygulamalar tarafından yerel olarak denetlenen şey.",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "Mülkiyet",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "Kimlik ve topluluk sahipliği",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "Anahtarların, barındırma yetkisinin ve değiştirilebilir altyapının, hizmet sağlayıcıları saklama görevlilerine dönüştürmeden nasıl bir araya geldiği.",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "İzinsiz genel RPC",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "Yalıtılmış kullanıcılara, kapsamlı izinlere ve kalıcı sahipliğe sahip çok kullanıcılı Bitsocial RPC altyapısına yönelik bir teklif.",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "Bitsosyal Ağ",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "Uygulama zinciri katmanı, uygulamalar genelinde paylaşılan likiditeyi, merkezi olmayan alanları ve kalıcı teşvikleri güçlendirmeyi önerdi.",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "Tüm sosyal medyayı merkezi olmayan hale getirin",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "Son durum: birçok genel RPC, rakip uygulamalar, taşınabilir kimlikler ve sabit platformlar yerine isteğe bağlı yayın pazarları.",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "Herkesin pano oluşturup sahip olabileceği ve her bir dizin yuvası için birden fazla panonun yarışabileceği, merkezi olmayan bir görüntü panosu.",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "Toplulukların kullanıcıya ait olduğu ve varsayılan listeleme alanları için rekabet ettiği eski.reddit tarzı bir alternatif.",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "Tepki Kancaları",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "Özet akışlarını, yorumları, profilleri almak, içerik yayınlamak ve hesapları yönetmek için kullanılan bir kanca API'si; üstelik merkezi bir sunucu olmadan.",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "Bitsosyal CLI",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "Bir P2P düğümünü çalıştırmak, topluluklar oluşturmak ve ayarları yönetmek için komut satırı arayüzü.",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "Risk puanlaması",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "Spam Engelleyici",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "OAuth ve CAPTCHA zorlukları, dinamik hız sınırlaması ve ağ dizinleyicisi ile merkezi bir risk puanlama hizmeti.",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "Resim yakalama",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "Captcha Kanvası",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "Yapılandırılabilir karakterler, boyutlar ve renklerle görüntü yakalamaları oluşturur.",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "Kodları davet et",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "Kupon Yarışması",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "Topluluk sahipleri tarafından güvenilir kullanıcılara dağıtılan benzersiz kupon kodlarının arkasında kapı yayınlama.",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "Zincir üzerinde",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "EVM Sözleşme Çağrısı",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "Bir gönderiye izin vermeden önce zincir üzerindeki koşulları (token bakiyeleri, NFT sahipliği veya herhangi bir akıllı sözleşme durumu) doğrulayın.",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "İsimler",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "BSO Çözücü",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "Düğüm ve tarayıcı için önbelleğe alma ile .bso alan adlarını ENS TXT kayıtları aracılığıyla genel anahtarlara dönüştürür.",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "Kimlik",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "SMS doğrulama yoluyla NFT tabanlı kimlik kanıtı, sahte oylama ve yasak kaçırma gibi sybil saldırılarını azaltır.",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "Botlar",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "Telgraf Botları",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "Bitsocial topluluklarını izleyen ve yeni gönderileri Telegram kanallarına ileten botları besleyin.",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "İş akışı",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "Katkıda bulunanların başucu kitapları",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "Kanca kurulumu, hata araştırması, çeviri iş akışı, uzun süredir devam eden aracı aktarımları ve depoya özgü diğer işletim kuralları.",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "Şablonlar",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "İlerleme ve özellik listesi şablonları",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "Repo iş akışı tarafından kullanılan makine tarafından okunabilen özellik listesi şablonu da dahil olmak üzere, uzun süren çalışmalara yönelik referans belgeleri.",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "Protokol notları, yol haritası ayrıntıları ve katkıda bulunanların taktik kitapları.",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "Bu, açılış sayfasının işaret ettiği fikirlerin doğruluğunun kaynağıdır. Bitsocial'ın etrafında inşa edildiği protokol düzeyindeki kavramlarla başlar, ardından yol haritası önerilerine ve bu depoda halihazırda kullanılan iş akışı belgelerine doğru genişler.",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "Yerel denetleme",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "İzinsiz genel RPC",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "Dokümanlarda ara",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "Protokol notları",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "Ön sayfadaki temel iddiaları açıklayın.",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "Bu sayfalar, eski tek sayfalık not görünümünü ayrı rotalarla değiştirir, böylece açılış sayfası, bahsettiği fikre doğrudan bağlantı verebilir.",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "Yol haritası ayrıntısı",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "Master planı insanların gerçekten okuyabileceği sayfalara genişletin.",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "Açılış sayfasındaki yol haritası kartlarında artık genel doküman bağlantıları veya güncel olmayan GitHub sorunu yerine hedef sayfalar var.",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "Uygulamalar",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "Müşteriler Bitsocial protokolünü temel aldı.",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "Her uygulama aynı merkezi olmayan ağa farklı bir arayüz sağlar. Topluluklar ve içerik hepsinde birlikte çalışabilir.",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "Geliştirici araçları",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "Kancalar ve CLI araçlarıyla protokolü temel alın.",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "Bitsosyal istemciler, botlar veya topluluk yönetimi iş akışları oluşturan geliştiricilere yönelik kitaplıklar ve araçlar.",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "Spam karşıtı zorluklar",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "Toplulukların karıştırıp eşleştirebileceği modüler zorluklar.",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "Her meydan okuma türü, toplulukların denetleme ihtiyaçlarına uyacak şekilde etkinleştirebileceği, yapılandırabileceği ve birleştirebileceği bağımsız bir pakettir.",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "Altyapı",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "Destekleyici hizmetler ve protokol düzeyinde araçlar.",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "Bitsocial ekosistemini destekleyen ad çözümlemesi, kimlik doğrulama ve platformlar arası entegrasyonlar.",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "Katkıda bulunan referansı",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "Repo iş akışı belgelerini ham işaretleme klasöründe saklamak yerine görünür tutun.",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "altında mevcut dokümanlar",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "şeffaflık amacıyla burada saklanır ve yayınlanır. Bunlar öncelikle katkıda bulunanlara yöneliktir, ancak artık herkese açık sayfalar gibi dokümanların kullanıcı arayüzünde yaşıyorlar.",
+    "description": "Suffix text for the contributor reference section description."
   }
 }

@@ -1,12 +1,12 @@
-# Registro di avanzamento
+# Progress Log
 
-Aggiungi una voce per sessione.
+Append one entry per session.
 
-## AAAA-MM-GG HH:MM
+## YYYY-MM-DD HH:MM
 
-- Elemento: F001
-- Riepilogo: sostituiscilo con il riepilogo della sessione.
-- File: `path/to/file`
-- Verifica: `corepack yarn build`, `corepack yarn lint`, `corepack yarn typecheck`
-- Bloccanti: nessuno
-- Successivo: sostituiscilo con il successivo miglior follow-up.
+- Item: F001
+- Summary: Replace this with the session summary.
+- Files: `path/to/file`
+- Verification: `corepack yarn build:verify`, `corepack yarn lint`, `corepack yarn typecheck`
+- Blockers: none
+- Next: Replace this with the next best follow-up.

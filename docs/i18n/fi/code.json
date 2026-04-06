@@ -429,5 +429,301 @@
   "docs.languageSelector.closeButton": {
     "message": "Lähellä",
     "description": "Accessible label for the docs language selector close button."
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "Roskapostin esto",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "Mukautetut haasteet",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "Miksi jokainen yhteisö voi valita oman roskapostin vastaisen käytäntönsä sen sijaan, että he perivät maailmanlaajuisen valvontapinon.",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "Maltillisuus",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "Paikallinen moderointi",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "Mitä \"ei globaaleja kieltoja\" tarkoittaa käytännössä ja mitä yhteisöt ja sovellukset valvovat edelleen paikallisesti.",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "Omistajuus",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "Identiteetti ja yhteisön omistajuus",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "Kuinka avaimet, isännöinnin delegointi ja vaihdettava infrastruktuuri sopivat yhteen ilman, että palveluntarjoajista tulee säilyttäjiä.",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "Luvaton julkinen RPC",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "Ehdotus usean käyttäjän Bitsocial RPC -infrastruktuuriksi, jossa on yksittäisiä käyttäjiä, rajatut käyttöoikeudet ja kestävä omistus.",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "Bitsocial verkko",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "Sovellusketjutaso ehdotti tarjoamaan jaettua likviditeettiä, hajautettuja verkkotunnuksia ja kestäviä kannustimia sovellusten välillä.",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "Hajauttaa kaikki sosiaalinen media",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "Lopputila: monet julkiset RPC:t, kilpailevat sovellukset, kannettavat identiteetit ja valinnaiset syötemarkkinat captive-alustojen sijaan.",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "Hajautettu kuvataulu, jossa kuka tahansa voi luoda ja omistaa tauluja, ja useat taulut kilpailevat kustakin hakemistopaikasta.",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "Old.reddit-tyylinen vaihtoehto, jossa yhteisöt ovat käyttäjien omistamia ja kilpailevat oletuslistauspaikoista.",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "Reagoi koukut",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "Hook-sovellusliittymä syötteiden, kommenttien, profiilien hakemiseen, sisällön julkaisemiseen ja tilien hallintaan – kaikki ilman keskuspalvelinta.",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "Bitsocial CLI",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "Komentoriviliittymä P2P-solmun käyttämiseen, yhteisöjen luomiseen ja asetusten hallintaan.",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "Riskipisteytys",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "Roskapostin esto",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "Keskitetty riskinarviointipalvelu, jossa on OAuth- ja CAPTCHA-haasteita, dynaaminen nopeuden rajoitus ja verkkoindeksointi.",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "Kuva captcha",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "Captcha Canvas",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "Luo kuvien captcha-kuvia, joissa on määritettäviä merkkejä, mittoja ja värejä.",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "Kutsukoodit",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "Lahjakorttihaaste",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "Porttijulkaisu yksilöllisten kuponkikoodien takana, jotka yhteisön omistajat jakavat luotetuille käyttäjille.",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "Ketjussa",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "EVM sopimuskutsu",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "Tarkista ketjun ehdot – token-saldot, NFT-omistus tai mikä tahansa älykäs sopimustila – ennen kuin sallit postauksen.",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "Nimet",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "BSO Resolver",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "Ratkaisee .bso-verkkotunnusten nimet julkisiksi avaimille ENS TXT -tietueiden kautta sekä välimuistin solmulle ja selaimelle.",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "Identiteetti",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "NFT-pohjainen henkilöllisyystodistus tekstiviestivahvistuksella, mikä vähentää sybilhyökkäyksiä, kuten väärennettyjä ääniä, ja estää kieltojen kiertämisen.",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "Botit",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "Telegram-botit",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "Syötebotit, jotka seuraavat Bitsocial-yhteisöjä ja välittävät uusia viestejä Telegram-kanaville.",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "Työnkulku",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "Avustajien pelikirjat",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "Koukkujen määrittäminen, virheiden tutkiminen, käännöstyönkulku, pitkäaikaiset agenttien vaihdot ja muut repokohtaiset toimintasäännöt.",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "Mallit",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "Edistyminen ja ominaisuusluettelomallit",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "Viiteasiakirjat pitkäaikaista työtä varten, mukaan lukien repo-työnkulun koneellisesti luettava ominaisuusluettelomalli.",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "Pöytäkirjamuistiinpanot, etenemissuunnitelman yksityiskohdat ja avustajien pelikirjat.",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "Tämä on totuuden lähde niille ideoille, joihin aloitussivu viittaa. Se alkaa protokollatason käsitteistä, joiden ympärille Bitsocial on rakennettu, ja laajenee sitten etenemissuunnitelmaehdotuksiin ja työnkulkudokumentteihin, joita tällä hetkellä käytetään tässä arkistossa.",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "Paikallinen moderointi",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "Luvaton julkinen RPC",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "Hae asiakirjoja",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "Pöytäkirjan huomautukset",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "Selitä tärkeimmät väitteet etusivulta.",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "Nämä sivut korvaavat vanhan yksisivuisen muistiinpanonäkymän erillisillä reiteillä, joten aloitussivulla voi olla suora linkki ideaan, josta se puhuu.",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "Tiekartan yksityiskohdat",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "Laajenna yleissuunnitelma sivuille, joita ihmiset voivat todella lukea.",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "Aloitussivun tiekarttakorteissa on nyt kohdesivut yleisten dokumenttilinkkien sijaan tai vanhentunut GitHub-ongelma.",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "Sovellukset",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "Bitsocial-protokollalle rakennetut asiakkaat.",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "Jokainen sovellus tarjoaa eri käyttöliittymän samaan hajautettuun verkkoon. Yhteisöt ja sisältö ovat yhteentoimivia niissä kaikissa.",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "Kehittäjän työkalut",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "Rakenna protokollan päälle koukkujen ja CLI-työkalujen avulla.",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "Kirjastot ja työkalut kehittäjille, jotka rakentavat Bitsocial-asiakkaita, botteja tai yhteisön hallintatyönkulkuja.",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "Roskapostin torjuntahaasteet",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "Modulaarisia haasteita yhteisöt voivat yhdistellä ja sovittaa yhteen.",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "Jokainen haastetyyppi on erillinen paketti, jonka yhteisöt voivat ottaa käyttöön, määrittää ja yhdistää moderointitarpeisiinsa.",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "Infrastruktuuri",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "Tukipalvelut ja protokollatason työkalut.",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "Bitsocial-ekosysteemin perustana on nimenselvitys, henkilöllisyyden vahvistus ja eri alustojen integraatiot.",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "Osallistujan viite",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "Pidä repo-työnkulun asiakirjat näkyvissä sen sijaan, että piilottaisit ne raakamerkintäkansioon.",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "Olemassa olevat asiakirjat alla",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "säilytetään ja julkaistaan täällä avoimuuden vuoksi. Ne ovat ensisijaisesti tekijöille suunnattuja, mutta nyt ne elävät dokumenttien käyttöliittymässä kuten julkiset sivut.",
+    "description": "Suffix text for the contributor reference section description."
   }
 }

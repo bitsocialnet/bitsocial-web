@@ -429,5 +429,301 @@
   "docs.languageSelector.closeButton": {
     "message": "Blízko",
     "description": "Accessible label for the docs language selector close button."
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "Anti-spam",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "Vlastní výzvy",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "Proč si každá komunita může zvolit vlastní antispamovou politiku namísto zdědění globálního systému moderování.",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "Moderování",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "Místní moderování",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "Co v praxi znamená „žádné globální zákazy“ a co je stále lokálně moderováno komunitami a aplikacemi.",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "Vlastnictví",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "Identita a vlastnictví komunity",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "Jak klíče, delegování hostingu a vyměnitelná infrastruktura do sebe zapadají, aniž by se poskytovatelé služeb stali správci.",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "Veřejné RPC bez povolení",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "Návrh pro víceuživatelskou infrastrukturu Bitsocial RPC s izolovanými uživateli, omezenými oprávněními a trvalým vlastnictvím.",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "Bitsociální síť",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "Vrstva appchain navrhla, aby poháněla sdílenou likviditu, decentralizované domény a trvalé pobídky napříč aplikacemi.",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "Decentralizovat všechna sociální média",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "Koncový stav: mnoho veřejných RPC, konkurenční aplikace, přenosné identity a volitelné trhy se zdroji namísto kaptivních platforem.",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "Decentralizovaný imageboard, kde může kdokoli vytvářet a vlastnit nástěnky a více nástěnek soutěží o každý adresářový slot.",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "Alternativa ve stylu old.reddit, kde jsou komunity vlastněné uživateli a soutěží o výchozí sloty.",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "Reagovat Hooks",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "Hákové API pro načítání zdrojů, komentářů, profilů, publikování obsahu a správu účtů – to vše bez centrálního serveru.",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "Bitsocial CLI",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "Rozhraní příkazového řádku pro spouštění uzlu P2P, vytváření komunit a správu nastavení.",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "Bodování rizika",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "Blokátor spamu",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "Centralizovaná služba pro hodnocení rizik s výzvami OAuth a CAPTCHA, dynamickým omezováním rychlosti a síťovým indexátorem.",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "Obrázek captcha",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "Captcha plátno",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "Generuje obrázky captcha s konfigurovatelnými znaky, rozměry a barvami.",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "Zvací kódy",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "Voucherová výzva",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "Brána publikování za unikátní kódy voucherů distribuované vlastníky komunity důvěryhodným uživatelům.",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "Na řetězu",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "Hovor smlouvy EVM",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "Před povolením příspěvku ověřte podmínky v řetězci – zůstatky tokenů, vlastnictví NFT nebo jakýkoli stav inteligentní smlouvy.",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "Jména",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "BSO Resolver",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "Překládá názvy domén .bso na veřejné klíče prostřednictvím záznamů ENS TXT s ukládáním do mezipaměti pro uzel a prohlížeč.",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "Identita",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "Prokazování identity založené na NFT prostřednictvím ověření SMS, což snižuje útoky sybil, jako jsou falešné hlasy a zákaz úniků.",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "roboti",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "Telegramové roboty",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "Nakrmte roboty, kteří monitorují komunity Bitsocial a přepošlou nové příspěvky na kanály Telegramu.",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "Pracovní postup",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "Příručky pro přispěvatele",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "Nastavení háčků, vyšetřování chyb, pracovní postup překladu, dlouhodobé předávání agentů a další provozní pravidla specifická pro repo.",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "Šablony",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "Šablony postupu a seznamu funkcí",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "Referenční dokumenty pro dlouhodobou práci, včetně strojově čitelné šablony seznamu funkcí, kterou používá pracovní postup repo.",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "Poznámky k protokolu, podrobnosti o plánu a příručky přispěvatelů.",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "Toto je zdroj pravdy pro myšlenky, na které cílová stránka ukazuje. Začíná s koncepty na úrovni protokolu, na kterých je Bitsocial postaven, a poté se rozšiřuje do návrhů plánů a dokumentů pracovního postupu, které se aktuálně používají v tomto úložišti.",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "Místní moderování",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "Veřejné RPC bez povolení",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "Hledat v dokumentech",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "Poznámky k protokolu",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "Vysvětlete základní tvrzení z titulní strany.",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "Tyto stránky nahrazují staré jednostránkové zobrazení poznámek samostatnými trasami, takže vstupní stránka může odkazovat přímo na myšlenku, o které mluví.",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "Detail cestovní mapy",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "Rozšiřte hlavní plán na stránky, které mohou lidé skutečně číst.",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "Karty plánu na vstupní stránce nyní obsahují cílové stránky namísto obecných odkazů na dokumenty nebo zastaralý problém GitHubu.",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "Aplikace",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "Klienti postaveni na protokolu Bitsocial.",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "Každá aplikace poskytuje jiné rozhraní do stejné decentralizované sítě. Komunity a obsah jsou interoperabilní napříč všemi z nich.",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "Vývojářské nástroje",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "Stavte na protokolu s háčky a nástroji CLI.",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "Knihovny a nástroje pro vývojáře vytvářející klienty Bitsocial, roboty nebo pracovní postupy pro správu komunity.",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "Výzvy proti spamu",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "Komunity modulárních výzev se mohou kombinovat.",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "Každý typ výzvy je samostatný balíček, který mohou komunity aktivovat, konfigurovat a kombinovat tak, aby vyhovoval jejich potřebám moderování.",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "Infrastruktura",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "Podpůrné služby a nástroje na úrovni protokolu.",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "Rozlišování jmen, ověřování identity a integrace napříč platformami, které jsou základem ekosystému Bitsocial.",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "Reference přispěvatele",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "Udržujte dokumenty pracovního postupu úložiště viditelné namísto jejich skrývání v nezpracované složce markdown.",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "Stávající dokumenty pod",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "jsou zachovány a zveřejněny zde pro transparentnost. Jsou primárně určené pro přispěvatele, ale nyní žijí v uživatelském rozhraní dokumentů stejně jako veřejné stránky.",
+    "description": "Suffix text for the contributor reference section description."
   }
 }

@@ -429,5 +429,301 @@
   "docs.languageSelector.closeButton": {
     "message": "Isara",
     "description": "Accessible label for the docs language selector close button."
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "Anti-spam",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "Mga custom na hamon",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "Bakit maaaring pumili ang bawat komunidad ng sarili nitong patakaran sa anti-spam sa halip na magmana ng isang global moderation stack.",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "Moderation",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "Lokal na moderation",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "Ano ang ibig sabihin ng \"walang pandaigdigang pagbabawal\" sa pagsasanay, at kung ano pa rin ang lokal na pinangangasiwaan ng mga komunidad at app.",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "Pagmamay-ari",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "Pagkakakilanlan at pagmamay-ari ng komunidad",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "Paano magkatugma ang mga susi, delegasyon sa pagho-host, at mapapalitang imprastraktura nang hindi ginagawang mga tagapag-alaga ang mga service provider.",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "Walang pahintulot na pampublikong RPC",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "Isang panukala para sa multi-user na imprastraktura ng Bitsocial RPC na may mga nakahiwalay na user, mga saklaw na pahintulot, at matibay na pagmamay-ari.",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "Bitsocial Network",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "Ang layer ng appchain ay iminungkahi para sa power shared liquidity, mga desentralisadong domain, at matibay na insentibo sa mga app.",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "I-desentralisa ang lahat ng social media",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "Ang end-state: maraming pampublikong RPC, nakikipagkumpitensya na app, portable na pagkakakilanlan, at opsyonal na feed market sa halip na mga captive platform.",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "Isang desentralisadong imageboard kung saan maaaring gumawa at magmay-ari ng mga board ang sinuman, at maraming board ang nakikipagkumpitensya para sa bawat slot ng direktoryo.",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "Isang old.reddit-style na alternatibo kung saan ang mga komunidad ay pagmamay-ari ng user at nakikipagkumpitensya para sa mga default na slot ng listahan.",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "React Hooks",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "Isang hooks API para sa pagkuha ng mga feed, komento, profile, pag-publish ng nilalaman, at pamamahala ng mga account - lahat nang walang sentral na server.",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "Bitsocial CLI",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "Command-line interface para sa pagpapatakbo ng P2P node, paglikha ng mga komunidad, at pamamahala ng mga setting.",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "Panganib na pagmamarka",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "Spam Blocker",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "Isang sentralisadong serbisyo sa pagmamarka ng panganib na may mga hamon sa OAuth at CAPTCHA, dynamic na paglilimita sa rate, at isang network indexer.",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "Image captcha",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "Captcha Canvas",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "Bumubuo ng mga captcha ng larawan na may mga na-configure na character, dimensyon, at kulay.",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "Mga code ng imbitasyon",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "Hamon ng Voucher",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "Gate publishing sa likod ng mga natatanging voucher code na ibinahagi ng mga may-ari ng komunidad sa mga pinagkakatiwalaang user.",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "On-chain",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "EVM Contract Call",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "I-verify ang on-chain na mga kundisyon - mga balanse ng token, pagmamay-ari ng NFT, o anumang estado ng matalinong kontrata - bago payagan ang isang post.",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "Mga pangalan",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "BSO Resolver",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "Niresolba ang mga .bso domain name sa mga pampublikong key sa pamamagitan ng mga tala ng ENS TXT, na may pag-cache para sa Node at browser.",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "Pagkakakilanlan",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "NFT-based proof-of-personhood sa pamamagitan ng SMS verification, binabawasan ang mga pag-atake ng sybil tulad ng mga pekeng boto at pagbabawal sa pag-iwas.",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "Mga bot",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "Mga Telegram Bot",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "Feed bots na sumusubaybay sa mga komunidad ng Bitsocial at nagpapasa ng mga bagong post sa mga channel ng Telegram.",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "Daloy ng trabaho",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "Mga playbook ng kontribyutor",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "Pag-setup ng Hooks, pagsisiyasat ng bug, daloy ng trabaho sa pagsasalin, mga handoff ng ahente na matagal nang tumatakbo, at iba pang panuntunan sa pagpapatakbo na partikular sa repo.",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "Mga template",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "Mga template ng pag-unlad at listahan ng tampok",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "Mga dokumento ng sanggunian para sa matagal nang trabaho, kabilang ang template ng listahan ng feature na nababasa ng makina na ginagamit ng workflow ng repo.",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "Mga tala ng protocol, detalye ng roadmap, at mga playbook ng contributor.",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "Ito ang pinagmulan ng katotohanan para sa mga ideya na itinuturo ng landing page. Nagsisimula ito sa mga konsepto sa antas ng protocol na binuo ng Bitsocial, pagkatapos ay lumalawak sa mga panukala sa roadmap at ang mga doc ng daloy ng trabaho na kasalukuyang ginagamit sa loob ng repositoryong ito.",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "Lokal na moderation",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "Walang pahintulot na pampublikong RPC",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "Maghanap ng mga doc",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "Mga tala sa protocol",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "Ipaliwanag ang mga pangunahing claim mula sa front page.",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "Pinapalitan ng mga page na ito ang lumang single-page na view ng mga tala ng mga hiwalay na ruta, kaya maaaring direktang mag-link ang landing page sa ideyang pinag-uusapan nito.",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "Detalye ng roadmap",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "Palawakin ang master plan sa mga pahinang talagang mababasa ng mga tao.",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "Ang mga roadmap card sa landing page ay mayroon na ngayong mga patutunguhang page sa halip na mga generic na link ng docs o isang lumang isyu sa GitHub.",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "Mga app",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "Ang mga kliyente ay binuo sa Bitsocial protocol.",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "Ang bawat app ay nagbibigay ng ibang interface sa parehong desentralisadong network. Ang mga komunidad at nilalaman ay interoperable sa lahat ng ito.",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "Mga tool ng developer",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "Bumuo sa protocol na may mga kawit at CLI tooling.",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "Mga library at tool para sa mga developer na bumubuo ng mga Bitsocial client, bot, o mga daloy ng trabaho sa pamamahala ng komunidad.",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "Mga hamon laban sa spam",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "Ang mga modular na hamon ay maaaring paghaluin at tugma ng mga komunidad.",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "Ang bawat uri ng hamon ay isang standalone na pakete na maaaring paganahin, i-configure, at pagsamahin ng mga komunidad upang umangkop sa kanilang mga pangangailangan sa pag-moderate.",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "Imprastraktura",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "Mga serbisyong sumusuporta at tooling sa antas ng protocol.",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "Paglutas ng pangalan, pag-verify ng pagkakakilanlan, at pagsasama-sama ng cross-platform na sumasailalim sa Bitsocial ecosystem.",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "Sanggunian ng nag-aambag",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "Panatilihing nakikita ang repo workflow docs sa halip na itago ang mga ito sa isang raw markdown folder.",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "Ang mga kasalukuyang doc sa ilalim",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "ay pinapanatili at nai-publish dito para sa transparency. Pangunahin silang nakaharap sa contributor, ngunit nakatira na sila ngayon sa loob ng docs UI tulad ng ginagawa ng mga page na nakaharap sa publiko.",
+    "description": "Suffix text for the contributor reference section description."
   }
 }

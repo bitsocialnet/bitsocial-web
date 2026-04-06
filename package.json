@@ -16,6 +16,7 @@
     "start": "concurrently -k -n about,docs -c blue,cyan \"yarn start:about\" \"yarn start:docs\"",
     "start:about": "node scripts/start-dev.mjs",
     "start:docs": "node scripts/start-docs.mjs",
+    "start:docs:live": "node scripts/start-docs.mjs --mode=live",
     "start:docs:full": "node scripts/start-docs.mjs --mode=multilocale",
     "start:stats-monitor": "yarn workspace @bitsocial/stats-monitor start",
     "build:verify": "node scripts/verify-build.mjs",

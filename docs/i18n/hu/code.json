@@ -429,5 +429,301 @@
   "docs.languageSelector.closeButton": {
     "message": "Közeli",
     "description": "Accessible label for the docs language selector close button."
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "Anti-spam",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "Egyedi kihívások",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "Miért választhatja meg minden közösség saját spamellenes szabályzatát ahelyett, hogy globális moderációs csomagot örökölne.",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "Moderálás",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "Helyi moderálás",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "Mit jelent a gyakorlatban a „nincs globális tiltás”, és mi az, amit továbbra is helyi szinten moderálnak a közösségek és az alkalmazások.",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "Tulajdonjog",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "Identitás és közösségi tulajdon",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "Hogyan illeszkednek egymáshoz a kulcsok, a tárhely-delegálás és a cserélhető infrastruktúra anélkül, hogy a szolgáltatókat letétkezelőkké változtatnák.",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "Engedély nélküli nyilvános RPC",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "Javaslat többfelhasználós Bitsocial RPC infrastruktúrára elszigetelt felhasználókkal, hatókörű engedélyekkel és tartós tulajdonjoggal.",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "Bitsocial Network",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "Az alkalmazáslánc-réteg a megosztott likviditás, a decentralizált tartományok és az alkalmazások közötti tartós ösztönzők támogatását javasolta.",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "Decentralizálja az összes közösségi médiát",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "A végállapot: sok nyilvános RPC, versengő alkalmazások, hordozható identitások és opcionális feed-piacok a kötött platformok helyett.",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "Egy decentralizált képtábla, ahol bárki létrehozhat és birtokolhat táblákat, és több tábla verseng az egyes könyvtárhelyekért.",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "Egy old.reddit stílusú alternatíva, ahol a közösségek a felhasználók tulajdonában vannak, és versenyeznek az alapértelmezett listázási helyekért.",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "React Hooks",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "Hook API feedek, megjegyzések, profilok lekéréséhez, tartalom közzétételéhez és fiókok kezeléséhez – mindezt központi szerver nélkül.",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "Bitsocial CLI",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "Parancssori felület P2P csomópont futtatásához, közösségek létrehozásához és beállítások kezeléséhez.",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "Kockázati pontozás",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "Spam Blocker",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "Központosított kockázatértékelési szolgáltatás OAuth és CAPTCHA kihívásokkal, dinamikus sebességkorlátozással és hálózati indexelővel.",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "Kép captcha",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "Captcha Canvas",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "Kép captchákat hoz létre konfigurálható karakterekkel, méretekkel és színekkel.",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "Meghívó kódok",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "Utalványkihívás",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "A közösség tulajdonosai által megbízható felhasználóknak kiosztott egyedi kuponkódok mögötti kapuk közzététele.",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "Láncon belül",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "EVM szerződés felhívás",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "A bejegyzés engedélyezése előtt ellenőrizze a láncon belüli feltételeket – a token egyenlegét, az NFT tulajdonjogát vagy bármely intelligens szerződés állapotát.",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "Nevek",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "BSO Resolver",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "A .bso tartományneveket nyilvános kulcsokká oldja fel ENS TXT rekordokon keresztül, gyorsítótárazással a csomóponthoz és a böngészőhöz.",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "Identitás",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "NFT-alapú személyi igazolás SMS-ellenőrzéssel, csökkentve az olyan szibil támadásokat, mint a hamis szavazatok és a kitiltás.",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "Botok",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "Telegram Botok",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "Feedbotok, amelyek figyelik a Bitsocial közösségeket, és továbbítják az új bejegyzéseket a Telegram csatornáinak.",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "Munkafolyamat",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "Közreműködői játékkönyvek",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "Hookok beállítása, hibavizsgálat, fordítási munkafolyamat, hosszú távú ügynök-átadások és egyéb repo-specifikus működési szabályok.",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "Sablonok",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "Előrehaladás és szolgáltatáslista-sablonok",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "Referenciadokumentumok a régóta futó munkához, beleértve a repo munkafolyamat által használt, géppel olvasható szolgáltatáslista sablont.",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "Protokolljegyzetek, ütemterv részletei és közreműködők játékkönyvei.",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "Ez az igazság forrása azoknak az ötleteknek, amelyekre a nyitóoldal mutat. A Bitsocial által felépített protokollszintű koncepciókkal kezdődik, majd kibővül az ütemterv-javaslatokkal és az ebben a tárolóban jelenleg használt munkafolyamat-dokumentumokkal.",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "Helyi moderálás",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "Engedély nélküli nyilvános RPC",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "Dokumentumok keresése",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "Jegyzőkönyv megjegyzések",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "Magyarázza el a fő állításokat a címlapon.",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "Ezek az oldalak felváltják a régi egyoldalas jegyzetnézetet külön útvonalakkal, így a céloldal közvetlenül hivatkozhat arra az ötletre, amelyről beszél.",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "Útiterv részlet",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "Bővítse ki az alaptervet olyan oldalakra, amelyeket az emberek valóban elolvashatnak.",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "A céloldalon található ütemtervkártyákon mostantól céloldalak találhatók általános dokumentumhivatkozások helyett, vagy egy elavult GitHub-probléma.",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "Alkalmazások elemre",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "Bitsocial protokollra épülő kliensek.",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "Minden alkalmazás más interfészt biztosít ugyanahhoz a decentralizált hálózathoz. A közösségek és a tartalom mindegyiken átjárhatóak.",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "Fejlesztői eszközök",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "Építsen a protokollra horgokkal és CLI-eszközökkel.",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "Könyvtárak és eszközök a Bitsocial klienseket, robotokat vagy közösségkezelési munkafolyamatokat készítő fejlesztők számára.",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "Anti-spam kihívások",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "A moduláris kihívásokat a közösségek keverhetik.",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "Mindegyik kihívástípus egy önálló csomag, amelyet a közösségek engedélyezhetnek, konfigurálhatnak és kombinálhatnak moderálási igényeiknek megfelelően.",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "Infrastruktúra",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "Támogató szolgáltatások és protokoll szintű eszközök.",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "Névfeloldás, személyazonosság-ellenőrzés és platformok közötti integrációk, amelyek a Bitsocial ökoszisztémáját támasztják alá.",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "Közreműködő hivatkozás",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "Tartsa láthatóan a repo munkafolyamat-dokumentumokat ahelyett, hogy elrejtené őket egy nyers leértékelési mappában.",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "alatti meglévő dokumentumok",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "az átláthatóság érdekében megőrizzük és itt közzétesszük. Ezek elsősorban a közreműködőknek néznek, de most már a dokumentumok felhasználói felületén belül élnek, mint a nyilvános oldalak.",
+    "description": "Suffix text for the contributor reference section description."
   }
 }

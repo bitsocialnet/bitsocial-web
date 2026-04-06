@@ -429,5 +429,301 @@
   "docs.languageSelector.closeButton": {
     "message": "Đóng",
     "description": "Accessible label for the docs language selector close button."
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "Chống thư rác",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "Thử thách tùy chỉnh",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "Tại sao mỗi cộng đồng có thể chọn chính sách chống thư rác của riêng mình thay vì kế thừa hệ thống kiểm duyệt toàn cầu.",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "Kiểm duyệt",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "Kiểm duyệt cục bộ",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "Trên thực tế, \"không có lệnh cấm toàn cầu\" nghĩa là gì và những gì vẫn được cộng đồng và ứng dụng kiểm duyệt tại địa phương.",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "quyền sở hữu",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "Bản sắc và quyền sở hữu cộng đồng",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "Làm thế nào các khóa, ủy quyền lưu trữ và cơ sở hạ tầng có thể thay thế khớp với nhau mà không biến nhà cung cấp dịch vụ thành người giám sát.",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "RPC công cộng không được phép",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "Đề xuất về cơ sở hạ tầng Bitsocial RPC nhiều người dùng với người dùng bị cô lập, quyền có phạm vi và quyền sở hữu lâu dài.",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "Mạng xã hội Bit",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "Lớp chuỗi ứng dụng được đề xuất để tăng cường tính thanh khoản được chia sẻ, các miền phi tập trung và các ưu đãi lâu dài trên các ứng dụng.",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "Phân cấp tất cả các phương tiện truyền thông xã hội",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "Trạng thái cuối: nhiều RPC công khai, ứng dụng cạnh tranh, danh tính di động và thị trường nguồn cấp dữ liệu tùy chọn thay vì nền tảng cố định.",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "Một bảng hình ảnh phi tập trung nơi mọi người có thể tạo và sở hữu các bảng, đồng thời nhiều bảng cạnh tranh nhau cho từng vị trí thư mục.",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "Một giải pháp thay thế kiểu old.reddit trong đó các cộng đồng do người dùng sở hữu và cạnh tranh để giành được các vị trí danh sách mặc định.",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "Móc phản ứng",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "API hook để tìm nạp nguồn cấp dữ liệu, nhận xét, hồ sơ, xuất bản nội dung và quản lý tài khoản - tất cả đều không có máy chủ trung tâm.",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "CLI xã hội Bit",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "Giao diện dòng lệnh để chạy nút P2P, tạo cộng đồng và quản lý cài đặt.",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "Chấm điểm rủi ro",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "Trình chặn thư rác",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "Dịch vụ chấm điểm rủi ro tập trung với các thử thách OAuth và CAPTCHA, giới hạn tốc độ động và bộ lập chỉ mục mạng.",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "hình ảnh xác thực",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "Canvas Captcha",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "Tạo hình ảnh xác thực với các ký tự, kích thước và màu sắc có thể định cấu hình.",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "Mã mời",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "Thử thách chứng từ",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "Cổng xuất bản đằng sau các mã phiếu thưởng duy nhất được chủ sở hữu cộng đồng phân phối cho người dùng đáng tin cậy.",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "Trên chuỗi",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "Lệnh gọi hợp đồng EVM",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "Xác minh các điều kiện trên chuỗi - số dư mã thông báo, quyền sở hữu NFT hoặc bất kỳ trạng thái hợp đồng thông minh nào - trước khi cho phép đăng bài.",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "Tên",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "Trình giải quyết BSO",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "Phân giải tên miền .bso thành khóa công khai thông qua bản ghi ENS TXT, với bộ nhớ đệm cho Nút và trình duyệt.",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "Danh tính",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "Bằng chứng nhận dạng cá nhân dựa trên NFT thông qua xác minh SMS, giảm các cuộc tấn công âm thầm như phiếu bầu giả và trốn lệnh cấm.",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "Bot",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "Bot Telegram",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "Các bot cung cấp dữ liệu giám sát các cộng đồng Bitsocial và chuyển tiếp các bài đăng mới tới các kênh Telegram.",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "Quy trình làm việc",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "Sách hướng dẫn dành cho người đóng góp",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "Thiết lập hook, điều tra lỗi, quy trình dịch thuật, chuyển giao tác nhân trong thời gian dài và các quy tắc vận hành dành riêng cho kho lưu trữ khác.",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "Mẫu",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "Mẫu danh sách tính năng và tiến trình",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "Tài liệu tham khảo cho công việc chạy dài, bao gồm mẫu danh sách tính năng có thể đọc được bằng máy được sử dụng bởi quy trình làm việc kho lưu trữ.",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "Ghi chú giao thức, chi tiết lộ trình và sổ tay đóng góp.",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "Đây là nguồn gốc của những ý tưởng mà trang đích hướng tới. Nó bắt đầu với các khái niệm cấp độ giao thức mà Bitsocial được xây dựng xung quanh, sau đó mở rộng thành các đề xuất lộ trình và tài liệu quy trình làm việc hiện được sử dụng bên trong kho lưu trữ này.",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "Kiểm duyệt cục bộ",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "RPC công cộng không được phép",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "Tìm kiếm tài liệu",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "Ghi chú giao thức",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "Giải thích những tuyên bố cốt lõi từ trang đầu.",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "Các trang này thay thế chế độ xem ghi chú một trang cũ bằng các tuyến riêng biệt, do đó trang đích có thể liên kết trực tiếp đến ý tưởng mà nó đang nói đến.",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "Chi tiết lộ trình",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "Mở rộng kế hoạch tổng thể thành các trang mà mọi người thực sự có thể đọc được.",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "Thẻ lộ trình trên trang đích hiện có trang đích thay vì liên kết tài liệu chung hoặc vấn đề GitHub đã lỗi thời.",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "Ứng dụng",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "Khách hàng được xây dựng trên giao thức Bitsocial.",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "Mỗi ứng dụng cung cấp một giao diện khác nhau cho cùng một mạng phi tập trung. Cộng đồng và nội dung có thể tương tác trên tất cả chúng.",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "Công cụ dành cho nhà phát triển",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "Xây dựng trên giao thức với hook và công cụ CLI.",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "Thư viện và công cụ dành cho nhà phát triển xây dựng ứng dụng khách, bot hoặc quy trình quản lý cộng đồng của Bitsocial.",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "Thử thách chống thư rác",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "Các thách thức mô-đun mà cộng đồng có thể kết hợp và kết hợp.",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "Mỗi loại thử thách là một gói độc lập mà cộng đồng có thể kích hoạt, định cấu hình và kết hợp để phù hợp với nhu cầu kiểm duyệt của họ.",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "Cơ sở hạ tầng",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "Các dịch vụ hỗ trợ và công cụ ở cấp độ giao thức.",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "Phân giải tên, xác minh danh tính và tích hợp đa nền tảng làm nền tảng cho hệ sinh thái Bitsocial.",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "Tài liệu tham khảo của người đóng góp",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "Giữ tài liệu quy trình làm việc repo hiển thị thay vì ẩn chúng trong thư mục đánh dấu thô.",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "Các tài liệu hiện có dưới",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "đều được bảo tồn và công bố tại đây để minh bạch. Chúng chủ yếu hướng tới cộng tác viên nhưng hiện tại chúng nằm trong giao diện người dùng tài liệu giống như các trang hướng tới công chúng.",
+    "description": "Suffix text for the contributor reference section description."
   }
 }
