@@ -5,6 +5,9 @@ const newsletterListUuids =
     .map((value) => value.trim())
     .filter(Boolean) ?? [];
 
+export const newsletterRequiresConfirmation =
+  import.meta.env.VITE_NEWSLETTER_CONFIRMATION_REQUIRED === "true";
+
 export const isNewsletterConfigured =
   newsletterSubscribeUrl.length > 0 && newsletterListUuids.length > 0;
 
