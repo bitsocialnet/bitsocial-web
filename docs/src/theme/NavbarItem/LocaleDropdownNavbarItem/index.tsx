@@ -7,6 +7,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import type { Props } from "@theme/NavbarItem/LocaleDropdownNavbarItem";
 import {
   getLocalizedDocsPath,
+  resolveDocsPreviewMode,
   getSupportedLanguageEntry,
   isDocsNotFoundPath,
   persistDocsLanguage,
@@ -106,6 +107,7 @@ export default function LocaleDropdownNavbarItem({ mobile, className }: Props): 
   const location = useLocation();
   const {
     i18n: { currentLocale, locales },
+    siteConfig,
   } = useDocusaurusContext();
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -115,20 +117,25 @@ export default function LocaleDropdownNavbarItem({ mobile, className }: Props): 
   const optionRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const currentLanguage = getSupportedLanguageEntry(currentLocale);
   const normalizedQuery = searchQuery.trim().toLocaleLowerCase();
+  const previewMode = resolveDocsPreviewMode(siteConfig.customFields?.docsPreviewMode);
 
   const languageOptions = useMemo<LanguageOption[]>(() => {
     const nextSearch = stripLanguageQueryParam(location.search);
+    const availableLanguages =
+      previewMode === "live"
+        ? [currentLanguage]
+        : SUPPORTED_LANGUAGES.filter((language) => locales.includes(language.code));
 
-    return SUPPORTED_LANGUAGES.filter((language) => locales.includes(language.code)).map(
-      (language) => ({
-        ...language,
-        href: `${getLocalizedDocsPath(
-          isDocsNotFoundPath(location.pathname) ? "/docs/404/" : location.pathname,
-          language.code,
-        )}${nextSearch}${location.hash}`,
-      }),
-    );
-  }, [locales, location.hash, location.pathname, location.search]);
+    return availableLanguages.map((language) => ({
+      ...language,
+      href: `${getLocalizedDocsPath(
+        isDocsNotFoundPath(location.pathname) ? "/docs/404/" : location.pathname,
+        language.code,
+      )}${nextSearch}${location.hash}`,
+    }));
+  }, [currentLanguage, locales, location.hash, location.pathname, location.search, previewMode]);
+
+  const canSwitchLanguages = languageOptions.length > 1;
 
   const filteredLanguages = useMemo(() => {
     if (normalizedQuery === "") {
@@ -243,7 +250,12 @@ export default function LocaleDropdownNavbarItem({ mobile, className }: Props): 
       return;
     }
 
-    if (event.key === "Enter" && event.target === inputRef.current && activeLanguage) {
+    if (
+      canSwitchLanguages &&
+      event.key === "Enter" &&
+      event.target === inputRef.current &&
+      activeLanguage
+    ) {
       event.preventDefault();
       navigateToLanguage(activeLanguage);
     }
@@ -256,11 +268,30 @@ export default function LocaleDropdownNavbarItem({ mobile, className }: Props): 
         description: "Label for the mobile docs language selector trigger.",
       })
     : currentLanguage.label;
-  const panelTitle = translate({
-    id: "docs.languageSelector.title",
-    message: "Choose language",
-    description: "Title shown in the docs language selector panel.",
-  });
+  const triggerMetaLabel =
+    previewMode === "live"
+      ? translate({
+          id: "docs.languageSelector.livePreviewMeta",
+          message: "Live preview",
+          description:
+            "Small helper text shown on the language trigger during single-locale live preview.",
+        })
+      : mobile
+        ? currentLanguage.label
+        : null;
+  const panelTitle =
+    previewMode === "live"
+      ? translate({
+          id: "docs.languageSelector.livePreviewTitle",
+          message: "Live preview locale",
+          description:
+            "Title shown in the language selector panel during single-locale live preview.",
+        })
+      : translate({
+          id: "docs.languageSelector.title",
+          message: "Choose language",
+          description: "Title shown in the docs language selector panel.",
+        });
   const searchPlaceholder = translate({
     id: "docs.languageSelector.searchPlaceholder",
     message: "Search languages",
@@ -270,6 +301,22 @@ export default function LocaleDropdownNavbarItem({ mobile, className }: Props): 
     id: "docs.languageSelector.emptyState",
     message: "No languages match your search.",
     description: "Empty state shown when the docs language selector finds no language matches.",
+  });
+  const livePreviewBody = translate(
+    {
+      id: "docs.languageSelector.livePreviewBody",
+      message:
+        "This dev server can only preview one locale at a time. You are currently viewing {language}.",
+      description:
+        "Explanation shown in the language selector panel during single-locale live preview.",
+    },
+    { language: currentLanguage.label },
+  );
+  const livePreviewHint = translate({
+    id: "docs.languageSelector.livePreviewHint",
+    message: "Run yarn start:docs for the multi-locale preview if you need to switch languages.",
+    description:
+      "Action hint shown in the language selector panel during single-locale live preview.",
   });
 
   return (
@@ -299,7 +346,9 @@ export default function LocaleDropdownNavbarItem({ mobile, className }: Props): 
           <GlobeGlyph className={styles.triggerIcon} />
           <span className={styles.triggerText}>
             <span className={styles.triggerLabel}>{triggerLabel}</span>
-            {mobile ? <span className={styles.triggerCurrent}>{currentLanguage.label}</span> : null}
+            {triggerMetaLabel ? (
+              <span className={styles.triggerCurrent}>{triggerMetaLabel}</span>
+            ) : null}
           </span>
         </span>
         <ChevronGlyph className={clsx(styles.chevron, open && styles.chevronOpen)} />
@@ -350,25 +399,45 @@ export default function LocaleDropdownNavbarItem({ mobile, className }: Props): 
                     <CloseGlyph className={styles.closeIcon} />
                   </button>
                 </div>
-                <label className={styles.searchShell}>
-                  <SearchGlyph className={styles.searchIcon} />
-                  <input
-                    ref={inputRef}
-                    type="text"
-                    value={searchQuery}
-                    autoComplete="off"
-                    spellCheck={false}
-                    className={styles.searchInput}
-                    placeholder={searchPlaceholder}
-                    aria-label={searchPlaceholder}
-                    onChange={(event) => {
-                      setSearchQuery(event.target.value);
-                      setActiveIndex(0);
-                    }}
-                  />
-                </label>
+                {canSwitchLanguages ? (
+                  <label className={styles.searchShell}>
+                    <SearchGlyph className={styles.searchIcon} />
+                    <input
+                      ref={inputRef}
+                      type="text"
+                      value={searchQuery}
+                      autoComplete="off"
+                      spellCheck={false}
+                      className={styles.searchInput}
+                      placeholder={searchPlaceholder}
+                      aria-label={searchPlaceholder}
+                      onChange={(event) => {
+                        setSearchQuery(event.target.value);
+                        setActiveIndex(0);
+                      }}
+                    />
+                  </label>
+                ) : (
+                  <div className={styles.livePreviewNotice}>
+                    <p className={styles.livePreviewCopy}>{livePreviewBody}</p>
+                    <p className={styles.livePreviewHint}>{livePreviewHint}</p>
+                  </div>
+                )}
                 <div className={styles.list}>
-                  {filteredLanguages.length > 0 ? (
+                  {!canSwitchLanguages ? (
+                    <div
+                      dir={currentLanguage.dir}
+                      className={clsx(styles.option, styles.optionCurrent, styles.optionStatic)}
+                    >
+                      <span className={styles.optionText}>
+                        <span className={styles.optionLabel}>{currentLanguage.label}</span>
+                        <span className={styles.optionMeta}>
+                          {currentLanguage.code.toUpperCase()}
+                        </span>
+                      </span>
+                      <CheckGlyph className={styles.checkIcon} />
+                    </div>
+                  ) : filteredLanguages.length > 0 ? (
                     filteredLanguages.map((language, index) => {
                       const isCurrentLanguage = language.code === currentLanguage.code;
                       const isActiveLanguage = index === effectiveActiveIndex;

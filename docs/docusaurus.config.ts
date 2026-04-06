@@ -9,6 +9,7 @@ import {
 
 const repoEditUrl = "https://github.com/bitsocialnet/bitsocial-web/tree/master";
 const showDocsGitMetadata = process.env.VERCEL !== "1";
+const docsPreviewMode = process.env.DOCS_START_MODE === "live" ? "live" : "multilocale";
 
 /** Docs live under /docs/; logo + title must link to the main site root, not useBaseUrl("/"). */
 const mainSiteOrigin = "https://bitsocial.net";
@@ -19,7 +20,7 @@ const localeConfigs = Object.fromEntries(
       label: language.label,
       htmlLang: language.code,
       direction: language.dir === "rtl" ? ("rtl" as const) : ("ltr" as const),
-      translate: language.code === DEFAULT_LANGUAGE_CODE,
+      translate: language.code !== DEFAULT_LANGUAGE_CODE,
     },
   ]),
 );
@@ -30,6 +31,9 @@ const config: Config = {
   favicon: "favicon.ico",
   future: {
     v4: true,
+  },
+  customFields: {
+    docsPreviewMode,
   },
   url: mainSiteOrigin,
   baseUrl: "/docs/",

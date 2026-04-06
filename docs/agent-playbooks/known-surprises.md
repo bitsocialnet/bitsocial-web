@@ -117,3 +117,13 @@ If uncertain, ask the developer before adding an entry.
 - **Impact:** The machine can become memory-constrained, browser sessions can crash, and interrupted runs can leave stale docs servers or headless browsers behind that keep consuming memory.
 - **Mitigation:** For docs work that does not need locale-route or Pagefind verification, prefer `DOCS_START_MODE=live yarn start:docs`. Only use the default multilocale preview when you need to validate translated routes or Pagefind. Keep a single Playwright session, close old browser sessions before opening new ones, and stop the docs server after verification if you no longer need it.
 - **Status:** confirmed
+
+### `translate-docs.py` can leave docs locales half-translated or with broken link targets
+
+- **Date:** 2026-04-06
+- **Observed by:** Codex
+- **Context:** Fixing localized docs routes and content after `yarn start:docs` served English detail pages or failed to build locale output
+- **What was surprising:** The docs translation pipeline had two repo-specific failure modes at once: `scripts/translate-docs.py` only extracted a small subset of `DocsHome` messages when `tr(...)` calls used forms it did not parse, and translated markdown under `docs/i18n/**` could contain machine-translated slugs or `ZXQPLACEHOLDER` artifacts inside link targets.
+- **Impact:** Localized homepages can silently fall back to English, localized detail pages can appear untranslated, and full `yarn docs:build` can fail on broken locale links even though the source docs are valid.
+- **Mitigation:** After changing docs translations or regenerating locale files, always run `yarn docs:build` from the repo root, scan `docs/i18n/**` markdown for `ZXQPLACEHOLDER`, and verify translated links still point to canonical doc slugs such as `/apps/5chan/` instead of translated URL paths. If `DocsHome` copy changed, confirm `scripts/translate-docs.py` still extracts all `docs.home.*` messages.
+- **Status:** confirmed

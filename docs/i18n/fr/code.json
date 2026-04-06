@@ -429,5 +429,301 @@
   "docs.languageSelector.closeButton": {
     "message": "Fermer",
     "description": "Accessible label for the docs language selector close button."
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "Anti-spam",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "Défis personnalisés",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "Pourquoi chaque communauté peut choisir sa propre politique anti-spam au lieu d'hériter d'une pile de modération globale.",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "Modération",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "Modération locale",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "Ce que signifie « pas d'interdiction mondiale » dans la pratique, et ce qui est toujours modéré localement par les communautés et les applications.",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "Propriété",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "Identité et propriété communautaire",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "Comment les clés, la délégation d'hébergement et l'infrastructure remplaçable s'articulent sans transformer les fournisseurs de services en dépositaires.",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "RPC public sans autorisation",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "Une proposition d'infrastructure Bitsocial RPC multi-utilisateurs avec des utilisateurs isolés, des autorisations étendues et une propriété durable.",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "Réseau social Bit",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "La couche Appchain proposée pour alimenter une liquidité partagée, des domaines décentralisés et des incitations durables entre les applications.",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "Décentraliser tous les médias sociaux",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "L’état final : de nombreux RPC publics, des applications concurrentes, des identités portables et des marchés de flux facultatifs au lieu de plates-formes captives.",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "Un tableau d'images décentralisé où n'importe qui peut créer et posséder des tableaux, et plusieurs tableaux sont en compétition pour chaque emplacement de répertoire.",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "Une alternative de style old.reddit où les communautés appartiennent aux utilisateurs et se disputent les emplacements de liste par défaut.",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "Réagir aux crochets",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "Une API hooks pour récupérer des flux, des commentaires, des profils, publier du contenu et gérer des comptes, le tout sans serveur central.",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "CLI Bitsocial",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "Interface de ligne de commande pour exécuter un nœud P2P, créer des communautés et gérer les paramètres.",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "Notation des risques",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "Bloqueur de spam",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "Un service centralisé de notation des risques avec des défis OAuth et CAPTCHA, une limitation de débit dynamique et un indexeur de réseau.",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "Captcha d'image",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "Toile Captcha",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "Génère des captchas d'image avec des caractères, des dimensions et des couleurs configurables.",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "Codes d'invitation",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "Défi des bons d'achat",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "Publication de portail derrière des codes de réduction uniques distribués par les propriétaires de la communauté aux utilisateurs de confiance.",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "En chaîne",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "Appel de contrat EVM",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "Vérifiez les conditions en chaîne - soldes de jetons, propriété NFT ou tout état de contrat intelligent - avant d'autoriser une publication.",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "Noms",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "Résolveur BSO",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "Résout les noms de domaine .bso en clés publiques via les enregistrements ENS TXT, avec mise en cache pour le nœud et le navigateur.",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "Identité",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "Preuve de personnalité basée sur NFT via la vérification par SMS, réduisant les attaques sybil comme les faux votes et l'évasion d'interdiction.",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "Bots",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "Bots de télégramme",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "Nourrissez les robots qui surveillent les communautés Bitsocial et transmettent les nouvelles publications aux chaînes Telegram.",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "Flux de travail",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "Manuels des contributeurs",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "Configuration des hooks, enquête sur les bogues, flux de travail de traduction, transferts d'agents de longue durée et autres règles de fonctionnement spécifiques au dépôt.",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "Modèles",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "Modèles de progression et de liste de fonctionnalités",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "Documents de référence pour les travaux de longue durée, y compris le modèle de liste de fonctionnalités lisible par machine utilisé par le workflow de dépôt.",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "Notes de protocole, détails de la feuille de route et manuels des contributeurs.",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "C’est la source de vérité pour les idées vers lesquelles pointe la page de destination. Cela commence par les concepts au niveau du protocole autour desquels Bitsocial est construit, puis se développe dans les propositions de feuille de route et les documents de flux de travail actuellement utilisés dans ce référentiel.",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "Modération locale",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "RPC public sans autorisation",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "Rechercher des documents",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "Notes de protocole",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "Expliquez les principales affirmations de la première page.",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "Ces pages remplacent l'ancienne vue de notes sur une seule page par des itinéraires distincts, afin que la page de destination puisse créer un lien direct vers l'idée dont elle parle.",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "Détail de la feuille de route",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "Développez le plan directeur en pages que les gens peuvent réellement lire.",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "Les cartes de feuille de route sur la page de destination comportent désormais des pages de destination au lieu de liens vers des documents génériques ou d'un problème GitHub obsolète.",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "Applications",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "Clients construits sur le protocole Bitsocial.",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "Chaque application fournit une interface différente avec le même réseau décentralisé. Les communautés et le contenu sont interopérables entre eux.",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "Outils de développement",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "Développez le protocole avec des hooks et des outils CLI.",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "Bibliothèques et outils pour les développeurs créant des clients Bitsocial, des robots ou des workflows de gestion de communauté.",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "Défis anti-spam",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "Les communautés de défis modulaires peuvent se mélanger et s'associer.",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "Chaque type de défi est un package autonome que les communautés peuvent activer, configurer et combiner pour répondre à leurs besoins de modération.",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "Infrastructures",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "Services de support et outils au niveau du protocole.",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "Résolution de noms, vérification d'identité et intégrations multiplateformes qui soutiennent l'écosystème Bitsocial.",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "Référence du contributeur",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "Gardez les documents du flux de travail du dépôt visibles au lieu de les masquer dans un dossier de démarques brutes.",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "Les documents existants sous",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "sont conservés et publiés ici par souci de transparence. Ils sont principalement destinés aux contributeurs, mais ils résident désormais dans l'interface utilisateur de la documentation, comme le font les pages destinées au public.",
+    "description": "Suffix text for the contributor reference section description."
   }
 }

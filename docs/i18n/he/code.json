@@ -429,5 +429,301 @@
   "docs.languageSelector.closeButton": {
     "message": "לִסְגוֹר",
     "description": "Accessible label for the docs language selector close button."
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "אנטי ספאם",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "אתגרים מותאמים אישית",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "מדוע כל קהילה יכולה לבחור את מדיניות האנטי-ספאם שלה במקום לרשת ערימת ניהול גלובלית.",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "מתינות",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "מתינות מקומית",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "מה המשמעות של \"ללא איסורים גלובליים\" בפועל, ומה עדיין מקבל ניהול מקומי על ידי קהילות ואפליקציות.",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "בעלות",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "זהות ובעלות קהילתית",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "כיצד מפתחות, האצלת אירוח ותשתית הניתנת להחלפה משתלבים זה בזה מבלי להפוך ספקי שירות לאפוטרופוסים.",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "RPC ציבורי ללא רשות",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "הצעה לתשתית Bitsocial RPC מרובת משתמשים עם משתמשים מבודדים, הרשאות בהיקף ובעלות עמידה.",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "רשת Bitsocial",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "שכבת האפליקציה הציעה להניע נזילות משותפת, תחומים מבוזרים ותמריצים עמידים בין אפליקציות.",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "ביזור כל המדיה החברתית",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "המצב הסופי: RPCs ציבוריים רבים, אפליקציות מתחרות, זהויות ניידות ושווקי הזנה אופציונליים במקום פלטפורמות שבויות.",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "לוח תמונה מבוזר שבו כל אחד יכול ליצור לוחות ולהחזיק בו, ולוחות מרובים מתחרים על כל משבצת ספרייה.",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "אלטרנטיבה בסגנון old.reddit שבה הקהילות הן בבעלות המשתמש ומתחרות על משבצות ברירת מחדל.",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "React Hooks",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "ממשק API של hooks לאחזור עדכונים, הערות, פרופילים, פרסום תוכן וניהול חשבונות - הכל ללא שרת מרכזי.",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "Bitsocial CLI",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "ממשק שורת פקודה להפעלת צומת P2P, יצירת קהילות וניהול הגדרות.",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "ניקוד סיכון",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "חוסם דואר זבל",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "שירות ניקוד סיכונים מרכזי עם אתגרי OAuth ו-CAPTCHA, הגבלת קצב דינמי ואינדקס רשת.",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "Captcha תמונה",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "קפטצ'ה קנבס",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "יוצר קפטצ'ים של תמונה עם תווים, מידות וצבעים הניתנים להגדרה.",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "קוד הזמנה",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "אתגר השוברים",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "פרסום שער מאחורי קודי שוברים ייחודיים המופצים על ידי בעלי הקהילה למשתמשים מהימנים.",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "על-שרשרת",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "שיחת חוזה EVM",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "אמת תנאים בשרשרת - יתרות אסימונים, בעלות על NFT או כל מצב של חוזה חכם - לפני מתן אישור לפרסום.",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "שמות",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "פותר BSO",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "פותר שמות דומיין .bso למפתחות ציבוריים באמצעות רשומות ENS TXT, עם שמירה במטמון עבור Node ודפדפן.",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "זהות",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "הוכחת אישיות מבוססת NFT באמצעות אימות SMS, הפחתת התקפות סיביל כמו הצבעות מזויפות ואיסור התחמקות.",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "בוטים",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "בוטים של טלגרם",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "בוטים להאכיל שמנטרים קהילות Bitsocial ומעבירים פוסטים חדשים לערוצי טלגרם.",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "זרימת עבודה",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "ספרי משחק של תורמים",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "הגדרת Hooks, חקירת באגים, זרימת עבודה של תרגום, מסירות ארוכות של סוכנים וכללי הפעלה ספציפיים לריפו.",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "תבניות",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "תבניות התקדמות ורשימת תכונות",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "מסמכי עזר לעבודה ארוכת טווח, כולל תבנית רשימת התכונות הניתנת לקריאה במכונה המשמשת את זרימת העבודה של ריפו.",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "הערות פרוטוקול, פירוט מפת דרכים וספרי הפעלה של תורמים.",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "זהו מקור האמת לרעיונות שדף הנחיתה מצביע עליהם. זה מתחיל עם המושגים ברמת הפרוטוקול שסביבם בנוי Bitsocial, ואז מתרחב להצעות מפת דרכים ומסמכי זרימת העבודה המשמשים כעת בתוך מאגר זה.",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "מתינות מקומית",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "RPC ציבורי ללא רשות",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "חפש במסמכים",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "הערות פרוטוקול",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "הסבר את הטענות המרכזיות מהעמוד הראשון.",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "דפים אלו מחליפים את תצוגת ההערות הישנה של עמוד בודד במסלולים נפרדים, כך שדף הנחיתה יכול לקשר ישירות לרעיון עליו הוא מדבר.",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "פירוט מפת הדרכים",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "הרחב את תוכנית האב לדפים שאנשים באמת יכולים לקרוא.",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "לכרטיסי מפת הדרכים בדף הנחיתה יש כעת דפי יעד במקום קישורי מסמכים כלליים או בעיית GitHub מיושנת.",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "אפליקציות",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "לקוחות שנבנו על פרוטוקול Bitsocial.",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "כל אפליקציה מספקת ממשק שונה לאותה רשת מבוזרת. קהילות ותוכן ניתנים להפעלה הדדית בכולם.",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "כלים למפתחים",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "בנו על הפרוטוקול עם ווים וכלי CLI.",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "ספריות וכלים למפתחים בונים לקוחות Bitsocial, בוטים או תהליכי עבודה של ניהול קהילה.",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "אתגרי אנטי ספאם",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "אתגרים מודולריים קהילות יכולות לערבב ולהתאים.",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "כל סוג אתגר הוא חבילה עצמאית שקהילות יכולות להפעיל, להגדיר ולשלב כדי להתאים לצורכי הניהול שלהן.",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "תשתית",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "שירותים תומכים וכלים ברמת פרוטוקול.",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "רזולוציית שמות, אימות זהות ואינטגרציות בין פלטפורמות העומדות בבסיס מערכת האקולוגית Bitsocial.",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "התייחסות לתורם",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "השאר את מסמכי זרימת העבודה של ריפו גלויים במקום להסתיר אותם בתיקיית סימון גולמית.",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "המסמכים הקיימים תחת",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "נשמרים ומתפרסמים כאן לשקיפות. הם פונים בעיקר לתורמים, אבל הם חיים כעת בתוך ממשק המשתמש של המסמכים כמו הדפים הפונה לציבור.",
+    "description": "Suffix text for the contributor reference section description."
   }
 }

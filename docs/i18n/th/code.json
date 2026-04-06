@@ -429,5 +429,301 @@
   "docs.languageSelector.closeButton": {
     "message": "ปิด",
     "description": "Accessible label for the docs language selector close button."
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "ป้องกันสแปม",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "ความท้าทายที่กำหนดเอง",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "เหตุใดแต่ละชุมชนจึงสามารถเลือกนโยบายป้องกันสแปมของตนเอง แทนที่จะสืบทอดสแต็กการดูแลส่วนกลาง",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "การกลั่นกรอง",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "การกลั่นกรองในท้องถิ่น",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "ในทางปฏิบัติแล้ว \"ไม่มีการแบนทั่วโลก\" หมายความว่าอย่างไร และสิ่งที่ยังคงได้รับการดูแลโดยชุมชนและแอปในท้องถิ่น",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "ความเป็นเจ้าของ",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "อัตลักษณ์และความเป็นเจ้าของชุมชน",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "คีย์ การมอบหมายการโฮสต์ และโครงสร้างพื้นฐานที่เปลี่ยนได้เข้ากันได้อย่างไรโดยไม่ต้องเปลี่ยนผู้ให้บริการให้กลายเป็นผู้ดูแล",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "RPC สาธารณะที่ไม่ได้รับอนุญาต",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "ข้อเสนอสำหรับโครงสร้างพื้นฐาน Bitsocial RPC ที่มีผู้ใช้หลายรายพร้อมผู้ใช้แบบแยก สิทธิ์ในขอบเขต และความเป็นเจ้าของแบบถาวร",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "บิทโซเชียลเน็ตเวิร์ก",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "เลเยอร์ Appchain ที่เสนอเพื่อขับเคลื่อนสภาพคล่องที่ใช้ร่วมกัน โดเมนแบบกระจายอำนาจ และสิ่งจูงใจที่คงทนทั่วทั้งแอป",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "กระจายอำนาจโซเชียลมีเดียทั้งหมด",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "สถานะสุดท้าย: RPC สาธารณะจำนวนมาก แอปที่แข่งขันกัน ข้อมูลระบุตัวตนแบบพกพา และตลาดฟีดเสริมแทนที่จะเป็นแพลตฟอร์มแบบ Captive",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "บอร์ดรูปภาพแบบกระจายอำนาจที่ใครๆ ก็สามารถสร้างและเป็นเจ้าของบอร์ดได้ และบอร์ดหลายตัวก็แข่งขันกันในแต่ละช่องไดเร็กทอรี",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "ทางเลือกสไตล์ old.reddit ที่ชุมชนเป็นเจ้าของและแข่งขันกันเพื่อชิงช่องรายการเริ่มต้น",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "ตอบสนองฮุคส์",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "Hooks API สำหรับการดึงฟีด ความคิดเห็น โปรไฟล์ การเผยแพร่เนื้อหา และการจัดการบัญชี ทั้งหมดนี้โดยไม่ต้องใช้เซิร์ฟเวอร์กลาง",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "Bitsocial CLI",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "อินเทอร์เฟซบรรทัดคำสั่งสำหรับการรันโหนด P2P การสร้างชุมชน และการจัดการการตั้งค่า",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "การให้คะแนนความเสี่ยง",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "ตัวบล็อกสแปม",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "บริการให้คะแนนความเสี่ยงแบบรวมศูนย์พร้อมความท้าทายของ OAuth และ CAPTCHA การจำกัดอัตราแบบไดนามิก และเครื่องสร้างดัชนีเครือข่าย",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "รูปภาพแคปช่า",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "แคปช่าแคนวาส",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "สร้างแคปต์ชารูปภาพด้วยอักขระ ขนาด และสีที่กำหนดค่าได้",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "รหัสเชิญ",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "ความท้าทายบัตรกำนัล",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "การเผยแพร่ Gate ที่อยู่เบื้องหลังรหัสบัตรกำนัลที่ไม่ซ้ำใครที่เจ้าของชุมชนแจกจ่ายให้กับผู้ใช้ที่เชื่อถือได้",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "ออนไลน์",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "การเรียกสัญญา EVM",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "ตรวจสอบเงื่อนไขออนไลน์ - ยอดโทเค็น ความเป็นเจ้าของ NFT หรือสถานะสัญญาอัจฉริยะใด ๆ - ก่อนที่จะอนุญาตการโพสต์",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "ชื่อ",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "ตัวแก้ไข BSO",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "แก้ไขชื่อโดเมน .bso ให้เป็นคีย์สาธารณะผ่านบันทึก ENS TXT พร้อมแคชสำหรับโหนดและเบราว์เซอร์",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "อัตลักษณ์",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "การพิสูจน์ความเป็นบุคคลโดยใช้ NFT ผ่านการยืนยันทาง SMS ช่วยลดการโจมตีของ sybil เช่น การโหวตปลอม และการห้ามหลบเลี่ยง",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "บอท",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "บอทโทรเลข",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "ฟีดบอทที่ติดตามชุมชน Bitsocial และส่งต่อโพสต์ใหม่ไปยังช่องทาง Telegram",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "ขั้นตอนการทำงาน",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "Playbooks ของผู้ร่วมให้ข้อมูล",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "การตั้งค่า Hooks การตรวจสอบข้อบกพร่อง ขั้นตอนการแปล การส่งมอบตัวแทนที่ใช้เวลานาน และกฎการปฏิบัติงานเฉพาะ Repo อื่นๆ",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "เทมเพลต",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "ความคืบหน้าและเทมเพลตรายการคุณลักษณะ",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "เอกสารอ้างอิงสำหรับงานที่ต้องใช้เวลานาน รวมถึงเทมเพลตรายการคุณลักษณะที่เครื่องอ่านได้ซึ่งใช้โดยเวิร์กโฟลว์ repo",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "บันทึกโปรโตคอล รายละเอียดแผนงาน และ Playbooks ของผู้ร่วมให้ข้อมูล",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "นี่คือที่มาของความจริงสำหรับแนวคิดที่หน้า Landing Page ชี้ไป เริ่มต้นด้วยแนวคิดระดับโปรโตคอลที่ Bitsocial สร้างขึ้น จากนั้นขยายไปสู่ข้อเสนอแผนงานและเอกสารขั้นตอนการทำงานที่ใช้ภายในพื้นที่เก็บข้อมูลนี้ในปัจจุบัน",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "การกลั่นกรองในท้องถิ่น",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "RPC สาธารณะที่ไม่ได้รับอนุญาต",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "ค้นหาเอกสาร",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "บันทึกโปรโตคอล",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "อธิบายการอ้างสิทธิ์หลักจากหน้าแรก",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "หน้าเหล่านี้จะแทนที่มุมมองบันทึกย่อหน้าเดียวแบบเก่าด้วยเส้นทางที่แยกจากกัน ดังนั้นหน้า Landing Page จึงสามารถเชื่อมโยงไปยังแนวคิดที่กำลังพูดถึงได้โดยตรง",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "รายละเอียดแผนงาน",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "ขยายแผนแม่บทเป็นหน้าที่ผู้คนสามารถอ่านได้จริง",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "การ์ดแผนงานบนหน้า Landing Page มีหน้าปลายทาง แทนที่จะเป็นลิงก์เอกสารทั่วไปหรือปัญหา GitHub ที่ล้าสมัย",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "แอพ",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "ไคลเอนต์ที่สร้างขึ้นบนโปรโตคอล Bitsocial",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "แต่ละแอปมีอินเทอร์เฟซที่แตกต่างกันไปยังเครือข่ายกระจายอำนาจเดียวกัน ชุมชนและเนื้อหาสามารถทำงานร่วมกันได้ในทุกชุมชน",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "เครื่องมือสำหรับนักพัฒนา",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "สร้างบนโปรโตคอลด้วย hooks และเครื่องมือ CLI",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "ไลบรารีและเครื่องมือสำหรับนักพัฒนาที่สร้างไคลเอนต์ Bitsocial บอท หรือเวิร์กโฟลว์การจัดการชุมชน",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "ความท้าทายในการต่อต้านสแปม",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "ชุมชนความท้าทายแบบแยกส่วนสามารถผสมผสานและจับคู่ได้",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "ความท้าทายแต่ละประเภทเป็นแพ็คเกจแบบสแตนด์อโลนที่ชุมชนสามารถเปิดใช้งาน กำหนดค่า และรวมเข้าด้วยกันเพื่อให้เหมาะกับความต้องการในการกลั่นกรอง",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "โครงสร้างพื้นฐาน",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "บริการสนับสนุนและเครื่องมือระดับโปรโตคอล",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "การจำแนกชื่อ การยืนยันตัวตน และการบูรณาการข้ามแพลตฟอร์มที่สนับสนุนระบบนิเวศของ Bitsocial",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "การอ้างอิงผู้ร่วมให้ข้อมูล",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "ทำให้เอกสารเวิร์กโฟลว์ Repo มองเห็นได้ แทนที่จะซ่อนไว้ในโฟลเดอร์ Raw Markdown",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "เอกสารที่มีอยู่ภายใต้",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "ได้รับการเก็บรักษาและเผยแพร่ที่นี่เพื่อความโปร่งใส โดยหลักแล้วพวกเขาจะพบปะกับผู้ร่วมให้ข้อมูล แต่ตอนนี้พวกเขาอาศัยอยู่ภายใน UI ของเอกสารเหมือนกับที่เพจสาธารณะทำ",
+    "description": "Suffix text for the contributor reference section description."
   }
 }

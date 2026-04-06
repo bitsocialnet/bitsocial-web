@@ -429,5 +429,301 @@
   "docs.languageSelector.closeButton": {
     "message": "بستن",
     "description": "Accessible label for the docs language selector close button."
+  },
+  "docs.home.protocol.card.antiSpam.eyebrow": {
+    "message": "ضد اسپم",
+    "description": "Eyebrow label for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.title": {
+    "message": "چالش های سفارشی",
+    "description": "Title for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.antiSpam.body": {
+    "message": "چرا هر جامعه می تواند سیاست ضد هرزنامه خود را به جای به ارث بردن یک پشته تعدیل جهانی انتخاب کند.",
+    "description": "Description for the custom challenges card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.eyebrow": {
+    "message": "اعتدال",
+    "description": "Eyebrow label for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.title": {
+    "message": "اعتدال محلی",
+    "description": "Title for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.moderation.body": {
+    "message": "\"بدون ممنوعیت جهانی\" در عمل به چه معناست، و آنچه هنوز به صورت محلی توسط جوامع و برنامه ها تعدیل می شود.",
+    "description": "Description for the local moderation card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.eyebrow": {
+    "message": "مالکیت",
+    "description": "Eyebrow label for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.title": {
+    "message": "هویت و مالکیت جامعه",
+    "description": "Title for the identity and ownership card on the docs home page."
+  },
+  "docs.home.protocol.card.ownership.body": {
+    "message": "چگونه کلیدها، نمایندگی میزبانی، و زیرساخت قابل تعویض بدون تبدیل ارائه دهندگان خدمات به متولیان، با هم هماهنگ می شوند.",
+    "description": "Description for the identity and ownership card on the docs home page."
+  },
+  "docs.home.roadmap.card.phase2.title": {
+    "message": "RPC عمومی بدون مجوز",
+    "description": "Roadmap card title for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase2.body": {
+    "message": "پیشنهادی برای زیرساخت Bitsocial RPC چند کاربره با کاربران ایزوله، مجوزهای محدوده و مالکیت بادوام.",
+    "description": "Roadmap card description for permissionless public RPC."
+  },
+  "docs.home.roadmap.card.phase4.title": {
+    "message": "شبکه بیت اجتماعی",
+    "description": "Roadmap card title for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase4.body": {
+    "message": "لایه appchain برای تقویت نقدینگی مشترک، دامنه های غیرمتمرکز و مشوق های بادوام در بین برنامه ها پیشنهاد می شود.",
+    "description": "Roadmap card description for Bitsocial Network."
+  },
+  "docs.home.roadmap.card.phase5.title": {
+    "message": "تمام رسانه های اجتماعی را غیرمتمرکز کنید",
+    "description": "Roadmap card title for the decentralize all social media page."
+  },
+  "docs.home.roadmap.card.phase5.body": {
+    "message": "وضعیت نهایی: بسیاری از RPCهای عمومی، برنامه های رقیب، هویت های قابل حمل و بازارهای خوراک اختیاری به جای پلتفرم های اسیر.",
+    "description": "Roadmap card description for the decentralize all social media page."
+  },
+  "docs.home.apps.card.5chan.body": {
+    "message": "یک تابلوی تصویر غیرمتمرکز که در آن هر کسی می‌تواند تابلوهایی ایجاد کند و مالک آن باشد، و تابلوهای متعدد برای هر شکاف دایرکتوری رقابت می‌کنند.",
+    "description": "Apps card description for 5chan."
+  },
+  "docs.home.apps.card.seedit.body": {
+    "message": "جایگزینی به سبک old.reddit که در آن جوامع متعلق به کاربر هستند و برای اسلات های فهرست پیش فرض رقابت می کنند.",
+    "description": "Apps card description for Seedit."
+  },
+  "docs.home.devtools.card.reactHooks.title": {
+    "message": "React Hooks",
+    "description": "Developer tools card title for React Hooks."
+  },
+  "docs.home.devtools.card.reactHooks.body": {
+    "message": "یک API قلاب برای واکشی فیدها، نظرات، نمایه‌ها، انتشار محتوا و مدیریت حساب‌ها - همه بدون سرور مرکزی.",
+    "description": "Developer tools card description for React Hooks."
+  },
+  "docs.home.devtools.card.cli.title": {
+    "message": "Bitsocial CLI",
+    "description": "Developer tools card title for Bitsocial CLI."
+  },
+  "docs.home.devtools.card.cli.body": {
+    "message": "رابط خط فرمان برای اجرای یک گره P2P، ایجاد جوامع و مدیریت تنظیمات.",
+    "description": "Developer tools card description for Bitsocial CLI."
+  },
+  "docs.home.antispam.card.spamBlocker.eyebrow": {
+    "message": "امتیازدهی ریسک",
+    "description": "Anti-spam card eyebrow for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.title": {
+    "message": "مسدود کننده اسپم",
+    "description": "Anti-spam card title for Spam Blocker."
+  },
+  "docs.home.antispam.card.spamBlocker.body": {
+    "message": "یک سرویس امتیازدهی متمرکز ریسک با چالش‌های OAuth و CAPTCHA، محدود کردن نرخ پویا، و نمایه‌گر شبکه.",
+    "description": "Anti-spam card description for Spam Blocker."
+  },
+  "docs.home.antispam.card.captcha.eyebrow": {
+    "message": "کپچای تصویر",
+    "description": "Anti-spam card eyebrow for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.title": {
+    "message": "بوم کپچا",
+    "description": "Anti-spam card title for Captcha Canvas."
+  },
+  "docs.home.antispam.card.captcha.body": {
+    "message": "کپچاهای تصویری با کاراکترها، ابعاد و رنگ های قابل تنظیم تولید می کند.",
+    "description": "Anti-spam card description for Captcha Canvas."
+  },
+  "docs.home.antispam.card.voucher.eyebrow": {
+    "message": "کدهای دعوت",
+    "description": "Anti-spam card eyebrow for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.title": {
+    "message": "چالش کوپن",
+    "description": "Anti-spam card title for Voucher Challenge."
+  },
+  "docs.home.antispam.card.voucher.body": {
+    "message": "انتشار دروازه در پشت کدهای کوپن منحصر به فرد توزیع شده توسط مالکان انجمن بین کاربران مورد اعتماد.",
+    "description": "Anti-spam card description for Voucher Challenge."
+  },
+  "docs.home.antispam.card.evm.eyebrow": {
+    "message": "روی زنجیر",
+    "description": "Anti-spam card eyebrow for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.title": {
+    "message": "تماس با قرارداد EVM",
+    "description": "Anti-spam card title for EVM Contract Call."
+  },
+  "docs.home.antispam.card.evm.body": {
+    "message": "قبل از اجازه دادن به یک پست، شرایط روی زنجیره را بررسی کنید - موجودی توکن، مالکیت NFT یا هر وضعیت قرارداد هوشمند.",
+    "description": "Anti-spam card description for EVM Contract Call."
+  },
+  "docs.home.infrastructure.card.bso.eyebrow": {
+    "message": "نام ها",
+    "description": "Infrastructure card eyebrow for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.title": {
+    "message": "حل‌کننده BSO",
+    "description": "Infrastructure card title for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.bso.body": {
+    "message": "نام دامنه .bso را به کلیدهای عمومی از طریق سوابق ENS TXT، با کش برای Node و مرورگر حل می کند.",
+    "description": "Infrastructure card description for BSO Resolver."
+  },
+  "docs.home.infrastructure.card.mintpass.eyebrow": {
+    "message": "هویت",
+    "description": "Infrastructure card eyebrow for Mintpass."
+  },
+  "docs.home.infrastructure.card.mintpass.body": {
+    "message": "اثبات هویت مبتنی بر NFT از طریق تأیید پیامک، کاهش حملات سیبیل مانند رأی‌های جعلی و ممنوعیت فرار.",
+    "description": "Infrastructure card description for Mintpass."
+  },
+  "docs.home.infrastructure.card.telegram.eyebrow": {
+    "message": "ربات ها",
+    "description": "Infrastructure card eyebrow for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.title": {
+    "message": "ربات های تلگرام",
+    "description": "Infrastructure card title for Telegram Bots."
+  },
+  "docs.home.infrastructure.card.telegram.body": {
+    "message": "فید ربات‌هایی که بر جوامع بیت‌سوشال نظارت می‌کنند و پست‌های جدید را به کانال‌های تلگرام ارسال می‌کنند.",
+    "description": "Infrastructure card description for Telegram Bots."
+  },
+  "docs.home.contributor.card.playbooks.eyebrow": {
+    "message": "گردش کار",
+    "description": "Contributor reference card eyebrow for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.title": {
+    "message": "کتاب های بازی مشارکت کننده",
+    "description": "Contributor reference card title for playbooks."
+  },
+  "docs.home.contributor.card.playbooks.body": {
+    "message": "راه‌اندازی قلاب‌ها، بررسی اشکالات، گردش کار ترجمه، انتقال طولانی‌مدت عامل، و سایر قوانین عملیاتی خاص مخزن.",
+    "description": "Contributor reference card description for playbooks."
+  },
+  "docs.home.contributor.card.templates.eyebrow": {
+    "message": "قالب ها",
+    "description": "Contributor reference card eyebrow for templates."
+  },
+  "docs.home.contributor.card.templates.title": {
+    "message": "الگوهای پیشرفت و لیست ویژگی",
+    "description": "Contributor reference card title for templates."
+  },
+  "docs.home.contributor.card.templates.body": {
+    "message": "اسناد مرجع برای کارهای طولانی مدت، از جمله الگوی لیست ویژگی های قابل خواندن توسط ماشین که توسط گردش کار repo استفاده می شود.",
+    "description": "Contributor reference card description for templates."
+  },
+  "docs.home.hero.heading": {
+    "message": "یادداشت‌های پروتکل، جزئیات نقشه راه، و کتاب‌های راهنما.",
+    "description": "Main heading on the docs home hero section."
+  },
+  "docs.home.hero.lede": {
+    "message": "این منبع حقیقت ایده هایی است که صفحه فرود به آنها اشاره می کند. با مفاهیم سطح پروتکل Bitsocial که پیرامون آن ساخته شده است شروع می شود، سپس به طرح های نقشه راه و اسناد گردش کار که در حال حاضر در این مخزن استفاده می شوند گسترش می یابد.",
+    "description": "Lead paragraph on the docs home hero section."
+  },
+  "docs.home.hero.action.localModeration": {
+    "message": "اعتدال محلی",
+    "description": "Primary docs home CTA linking to the local moderation doc."
+  },
+  "docs.home.hero.action.permissionlessPublicRpc": {
+    "message": "RPC عمومی بدون مجوز",
+    "description": "Primary docs home CTA linking to the permissionless public RPC doc."
+  },
+  "docs.home.hero.action.searchDocs": {
+    "message": "جستجوی اسناد",
+    "description": "Primary docs home CTA linking to the docs search page."
+  },
+  "docs.home.protocol.kicker": {
+    "message": "یادداشت های پروتکل",
+    "description": "Section kicker for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.heading": {
+    "message": "ادعاهای اصلی را از صفحه اول توضیح دهید.",
+    "description": "Section heading for the protocol notes section on the docs home page."
+  },
+  "docs.home.protocol.body": {
+    "message": "این صفحات جایگزین نمای یادداشت های تک صفحه ای قدیمی با مسیرهای جداگانه می شوند، بنابراین صفحه فرود می تواند مستقیماً به ایده ای که در مورد آن صحبت می شود پیوند دهد.",
+    "description": "Section description for the protocol notes section on the docs home page."
+  },
+  "docs.home.roadmap.kicker": {
+    "message": "جزئیات نقشه راه",
+    "description": "Section kicker for the roadmap section."
+  },
+  "docs.home.roadmap.heading": {
+    "message": "طرح اصلی را به صفحاتی که مردم واقعاً می توانند بخوانند گسترش دهید.",
+    "description": "Section heading for the roadmap section on the docs home page."
+  },
+  "docs.home.roadmap.body": {
+    "message": "کارت‌های نقشه راه در صفحه فرود اکنون به جای پیوندهای اسناد عمومی یا یک مشکل قدیمی GitHub دارای صفحات مقصد هستند.",
+    "description": "Section description for the roadmap section on the docs home page."
+  },
+  "docs.home.apps.kicker": {
+    "message": "برنامه ها",
+    "description": "Section kicker for the apps section on the docs home page."
+  },
+  "docs.home.apps.heading": {
+    "message": "کلاینت هایی که بر اساس پروتکل Bitsocial ساخته شده اند.",
+    "description": "Section heading for the apps section on the docs home page."
+  },
+  "docs.home.apps.body": {
+    "message": "هر برنامه رابط متفاوتی را برای همان شبکه غیرمتمرکز فراهم می کند. جوامع و محتوا در همه آنها قابل همکاری است.",
+    "description": "Section description for the apps section on the docs home page."
+  },
+  "docs.home.devtools.kicker": {
+    "message": "ابزارهای توسعه دهنده",
+    "description": "Section kicker for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.heading": {
+    "message": "پروتکل را با قلاب ها و ابزار CLI بسازید.",
+    "description": "Section heading for the developer tools section on the docs home page."
+  },
+  "docs.home.devtools.body": {
+    "message": "کتابخانه‌ها و ابزارهایی برای توسعه‌دهندگانی که مشتریان Bitsocial، ربات‌ها یا گردش‌های کاری مدیریت جامعه را ایجاد می‌کنند.",
+    "description": "Section description for the developer tools section on the docs home page."
+  },
+  "docs.home.antispam.kicker": {
+    "message": "چالش های ضد اسپم",
+    "description": "Section kicker for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.heading": {
+    "message": "چالش‌های مدولار می‌توانند با هم ترکیب شوند.",
+    "description": "Section heading for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.antispam.body": {
+    "message": "هر نوع چالش یک بسته مستقل است که جوامع می توانند آن را فعال، پیکربندی و ترکیب کنند تا متناسب با نیازهای تعدیل خود باشند.",
+    "description": "Section description for the anti-spam challenges section on the docs home page."
+  },
+  "docs.home.infrastructure.kicker": {
+    "message": "زیرساخت",
+    "description": "Section kicker for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.heading": {
+    "message": "خدمات پشتیبانی و ابزار در سطح پروتکل.",
+    "description": "Section heading for the infrastructure section on the docs home page."
+  },
+  "docs.home.infrastructure.body": {
+    "message": "تفکیک نام، تأیید هویت، و ادغام های بین پلتفرمی که زیربنای اکوسیستم Bitsocial هستند.",
+    "description": "Section description for the infrastructure section on the docs home page."
+  },
+  "docs.home.contributor.kicker": {
+    "message": "مرجع مشارکت کننده",
+    "description": "Section kicker for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.heading": {
+    "message": "اسناد گردش کار مخزن را به جای پنهان کردن آنها در یک پوشه علامت گذاری خام قابل مشاهده نگه دارید.",
+    "description": "Section heading for the contributor reference section on the docs home page."
+  },
+  "docs.home.contributor.body.prefix": {
+    "message": "اسناد موجود تحت",
+    "description": "Prefix text for the contributor reference section description."
+  },
+  "docs.home.contributor.body.suffix": {
+    "message": "برای شفافیت در اینجا حفظ و منتشر می شوند. آنها عمدتاً رو به مشارکت‌کننده هستند، اما اکنون مانند صفحات عمومی در داخل رابط کاربری اسناد زندگی می‌کنند.",
+    "description": "Suffix text for the contributor reference section description."
   }
 }

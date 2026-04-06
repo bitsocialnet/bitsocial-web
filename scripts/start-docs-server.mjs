@@ -9,7 +9,7 @@ const fallbackPort = Number(process.env.DOCS_PORT || 3001);
 const requestedPort = Number(process.env.PORT || fallbackPort);
 const host = process.env.HOST || "127.0.0.1";
 const usingPortless = Boolean(process.env.PORTLESS_URL);
-const docsStartMode = process.env.DOCS_START_MODE === "multilocale" ? "multilocale" : "live";
+const docsStartMode = process.env.DOCS_START_MODE === "live" ? "live" : "multilocale";
 let activeChild = null;
 
 function fail(message) {
@@ -72,11 +72,11 @@ if (!usingPortless && port !== requestedPort) {
 }
 if (docsStartMode === "live") {
   console.log(
-    "Using Docusaurus live dev server (single-locale preview). Run `yarn start:docs:full` for the built multi-locale Pagefind preview.",
+    "Using Docusaurus live dev server (single-locale preview). Use `yarn start:docs` for the built multi-locale Pagefind preview.",
   );
 } else {
   console.log(
-    "Using built multi-locale preview so localized docs routes and Pagefind resolve locally.",
+    "Using built multi-locale preview so localized docs routes and Pagefind resolve locally. Run `yarn start:docs:live` for faster single-locale HMR.",
   );
 }
 console.log("");

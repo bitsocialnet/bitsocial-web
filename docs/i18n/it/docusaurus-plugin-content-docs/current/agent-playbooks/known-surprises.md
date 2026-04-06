@@ -1,18 +1,18 @@
-# Sorprese conosciute
+# Known Surprises
 
-Questo file tiene traccia dei punti di confusione specifici del repository che hanno causato errori dell'agente.
+This file tracks repository-specific confusion points that caused agent mistakes.
 
-## Criteri di ingresso
+## Entry Criteria
 
-Aggiungi una voce solo se sono tutte vere:
+Add an entry only if all are true:
 
-- È specifico per questo repository (non un consiglio generico).
-- È probabile che si ripeta per i futuri agenti.
-- Ha una mitigazione concreta che può essere seguita.
+- It is specific to this repository (not generic advice).
+- It is likely to recur for future agents.
+- It has a concrete mitigation that can be followed.
 
-In caso di dubbi, chiedi allo sviluppatore prima di aggiungere una voce.
+If uncertain, ask the developer before adding an entry.
 
-## Modello di inserimento
+## Entry Template
 
 ```md
 ### [Short title]
@@ -26,94 +26,94 @@ In caso di dubbi, chiedi allo sviluppatore prima di aggiungere una voce.
 - **Status:** confirmed | superseded
 ```
 
-## Voci
+## Entries
 
-### Portless modifica l'URL canonico dell'app locale
+### Portless changes the canonical local app URL
 
-- **Data:** 2026-03-18
-- **Osservato da:** Codice
-- **Contesto:** Verifica del browser e flussi di fumo
-- **Ciò che è stato sorprendente:** L'URL locale predefinito non è la solita porta Vite. Il repository prevede `http://bitsocial.localhost:1355` tramite Portless, quindi il controllo di `localhost:3000` o `localhost:5173` può colpire l'app sbagliata o niente.
-- **Impatto:** i controlli del browser possono fallire o convalidare la destinazione sbagliata anche quando il server di sviluppo è integro.
-- **Mitigazione:** utilizzare prima `http://bitsocial.localhost:1355`. Evitalo solo con `PORTLESS=0 corepack yarn start` quando hai esplicitamente bisogno di una porta Vite diretta.
-- **Stato:** confermato
+- **Date:** 2026-03-18
+- **Observed by:** Codex
+- **Context:** Browser verification and smoke flows
+- **What was surprising:** The default local URL is not the usual Vite port. The repo expects `http://bitsocial.localhost:1355` through Portless, so checking `localhost:3000` or `localhost:5173` can hit the wrong app or nothing at all.
+- **Impact:** Browser checks can fail or validate the wrong target even when the dev server is healthy.
+- **Mitigation:** Use `http://bitsocial.localhost:1355` first. Only bypass it with `PORTLESS=0 corepack yarn start` when you explicitly need a direct Vite port.
+- **Status:** confirmed
 
-### Gli hook di commit bloccano i commit non interattivi
+### Commitizen hooks block non-interactive commits
 
-- **Data:** 2026-03-18
-- **Osservato da:** Codice
-- **Contesto:** flussi di lavoro di commit gestiti da agenti
-- **Ciò che è stato sorprendente:** `git commit` attiva Commitizen tramite Husky e attende l'input TTY interattivo, che blocca le shell dell'agente non interattivo.
-- **Impatto:** gli agenti possono bloccarsi indefinitamente durante quello che dovrebbe essere un commit normale.
-- **Mitigazione:** utilizza `git commit --no-verify -m "message"` per i commit creati dall'agente. Gli esseri umani possono ancora utilizzare `corepack yarn commit` o `corepack yarn exec cz`.
-- **Stato:** confermato
+- **Date:** 2026-03-18
+- **Observed by:** Codex
+- **Context:** Agent-driven commit workflows
+- **What was surprising:** `git commit` triggers Commitizen through Husky and waits for interactive TTY input, which hangs non-interactive agent shells.
+- **Impact:** Agents can stall indefinitely during what should be a normal commit.
+- **Mitigation:** Use `git commit --no-verify -m "message"` for agent-created commits. Humans can still use `corepack yarn commit` or `corepack yarn exec cz`.
+- **Status:** confirmed
 
-### Corepack è necessario per evitare Yarn classic
+### Corepack is required to avoid Yarn classic
 
-- **Data:** 2026-03-19
-- **Osservato da:** Codice
-- **Contesto:** Migrazione del gestore pacchetti a Yarn 4
-- **Ciò che è stato sorprendente:** La macchina ha ancora un'installazione classica di Yarn globale su `PATH`, quindi l'esecuzione del semplice `yarn` può risolversi nella v1 anziché nella versione Yarn 4 bloccata.
-- **Impatto:** gli sviluppatori possono ignorare accidentalmente il blocco del gestore pacchetti del repository e ottenere un comportamento di installazione o un output del file di blocco diversi.
-- **Mitigazione:** utilizzare `corepack yarn ...` per i comandi della shell oppure eseguire prima `corepack enable` in modo che `yarn` si risolva nella versione Yarn 4 bloccata.
-- **Stato:** confermato
+- **Date:** 2026-03-19
+- **Observed by:** Codex
+- **Context:** Package manager migration to Yarn 4
+- **What was surprising:** The machine still has a global Yarn classic install on `PATH`, so running plain `yarn` can resolve to v1 instead of the pinned Yarn 4 version.
+- **Impact:** Developers can accidentally bypass the repo's package-manager pinning and get different install behavior or lockfile output.
+- **Mitigation:** Use `corepack yarn ...` for shell commands, or run `corepack enable` first so plain `yarn` resolves to the pinned Yarn 4 version.
+- **Status:** confirmed
 
-### Risolti i problemi con i nomi delle app Portless che si scontravano tra gli alberi di lavoro Web Bitsocial
+### Fixed Portless app names collide across Bitsocial Web worktrees
 
-- **Data:** 30-03-2026
-- **Osservato da:** Codice
-- **Contesto:** Avvio di `yarn start` in un albero di lavoro Web Bitsocial mentre un altro albero di lavoro era già disponibile tramite Portless
-- **Ciò che è stato sorprendente:** L'utilizzo del nome letterale dell'app Portless `bitsocial` in ogni albero di lavoro fa sì che il percorso stesso entri in collisione, anche quando le porte di supporto sono diverse, quindi il secondo processo fallisce perché `bitsocial.localhost` è già registrato.
-- **Impatto:** i rami Web paralleli di Bitsocial possono bloccarsi a vicenda anche se Portless è pensato per consentire loro di coesistere in sicurezza.
-- **Mitigazione:** mantenere l'avvio Portless dietro `scripts/start-dev.mjs`, che ora utilizza una route ZXQPLACEholder1ZXQ con ambito ramo al di fuori del caso canonico e ritorna a una route con ambito ramo quando il nome `bitsocial.localhost` nudo è già occupato.
-- **Stato:** confermato
+- **Date:** 2026-03-30
+- **Observed by:** Codex
+- **Context:** Starting `yarn start` in one Bitsocial Web worktree while another worktree was already serving through Portless
+- **What was surprising:** Using the literal Portless app name `bitsocial` in every worktree makes the route itself collide, even when the backing ports are different, so the second process fails because `bitsocial.localhost` is already registered.
+- **Impact:** Parallel Bitsocial Web branches can block each other even though Portless is meant to let them coexist safely.
+- **Mitigation:** Keep Portless startup behind `scripts/start-dev.mjs`, which now uses a branch-scoped `*.bitsocial.localhost:1355` route outside the canonical case and falls back to a branch-scoped route when the bare `bitsocial.localhost` name is already occupied.
+- **Status:** confirmed
 
-### Anteprima dei documenti utilizzata per codificare la porta 3001
+### Docs preview used to hard-code port 3001
 
-- **Data:** 30-03-2026
-- **Osservato da:** Codice
-- **Contesto:** esecuzione di `yarn start` insieme ad altri repository e agenti locali
-- **Ciò che è stato sorprendente:** il comando root dev eseguiva l'area di lavoro docs con `docusaurus start --port 3001`, quindi l'intera sessione di sviluppo falliva ogni volta che un altro processo possedeva già `3001`, anche se l'app principale utilizzava già Portless.
-- **Impatto:** `yarn start` potrebbe interrompere il processo Web immediatamente dopo l'avvio, interrompendo il lavoro locale non correlato a causa di una collisione della porta dei documenti.
-- **Mitigazione:** mantieni l'avvio dei documenti dietro `yarn start:docs`, che ora utilizza Portless più `scripts/start-docs.mjs` per rispettare una porta libera inserita o ricorrere alla successiva porta disponibile quando viene eseguito direttamente.
-- **Stato:** confermato
+- **Date:** 2026-03-30
+- **Observed by:** Codex
+- **Context:** Running `yarn start` alongside other local repos and agents
+- **What was surprising:** The root dev command ran the docs workspace with `docusaurus start --port 3001`, so the whole dev session failed whenever another process already owned `3001`, even though the main app already used Portless.
+- **Impact:** `yarn start` could kill the web process immediately after it booted, interrupting unrelated local work over a docs-port collision.
+- **Mitigation:** Keep docs startup behind `yarn start:docs`, which now uses Portless plus `scripts/start-docs.mjs` to honor an injected free port or fall back to the next available port when run directly.
+- **Status:** confirmed
 
-### Documenti risolti Il nome host Portless era hardcoded
+### Fixed docs Portless hostname was hard-coded
 
-- **Data:** 03-04-2026
-- **Osservato da:** Codice
-- **Contesto:** esecuzione di `yarn start` in un albero di lavoro Bitsocial Web secondario mentre un altro albero di lavoro stava già servendo documenti tramite Portless
-- **Ciò che è stato sorprendente:** `start:docs` ha comunque registrato il nome host letterale `docs.bitsocial.localhost`, quindi `yarn start` potrebbe fallire anche se l'app about sapeva già come evitare collisioni di percorsi Portless per il proprio nome host.
-- **Impatto:** gli alberi di lavoro paralleli non potevano utilizzare in modo affidabile il comando root dev perché il processo dei documenti è terminato per primo e `concurrently` ha poi interrotto il resto della sessione.
-- **Mitigazione:** mantieni l'avvio dei documenti dietro `scripts/start-docs.mjs`, che ora deriva lo stesso nome host Portless con ambito ramo dell'app Informazioni e inserisce l'URL pubblico condiviso nella destinazione proxy di sviluppo `/docs`.
-- **Stato:** confermato
+- **Date:** 2026-04-03
+- **Observed by:** Codex
+- **Context:** Running `yarn start` in a secondary Bitsocial Web worktree while another worktree was already serving docs through Portless
+- **What was surprising:** `start:docs` still registered the literal `docs.bitsocial.localhost` hostname, so `yarn start` could fail even though the about app already knew how to avoid Portless route collisions for its own hostname.
+- **Impact:** Parallel worktrees could not reliably use the root dev command because the docs process exited first and `concurrently` then killed the rest of the session.
+- **Mitigation:** Keep docs startup behind `scripts/start-docs.mjs`, which now derives the same branch-scoped Portless hostname as the about app and injects that shared public URL into the `/docs` dev proxy target.
+- **Status:** confirmed
 
-### Le shell Worktree possono non avere la versione del nodo bloccato del repository
+### Worktree shells can miss the repo's pinned Node version
 
-- **Data:** 03-04-2026
-- **Osservato da:** Codice
-- **Contesto:** esecuzione di `yarn start` in alberi di lavoro Git come `.claude/worktrees/*` o checkout di alberi di lavoro fratelli
-- **Ciò che è stato sorprendente:** alcune shell dell'albero di lavoro hanno risolto `node` e ZXQPLACEholder1ZXQ nel nodo Homebrew ZXQPLACEholder2ZXQ anche se il repository aggiunge ZXQPLACEholder3ZXQ in ZXQPLACEholder4ZXQ, quindi ZXQPLACEholder5ZXQ poteva eseguire silenziosamente i launcher degli sviluppatori con il runtime sbagliato.
-- **Impatto:** il comportamento del server di sviluppo può spostarsi tra il checkout principale e gli alberi di lavoro, rendendo difficile la riproduzione dei bug e violando la toolchain Nodo 22 prevista del repository.
-- **Mitigazione:** mantieni i launcher di sviluppo dietro `scripts/start-dev.mjs` e `scripts/start-docs.mjs`, che ora vengono rieseguiti sotto il binario del nodo `.nvmrc` quando la shell corrente è sulla versione sbagliata. La configurazione della shell dovrebbe comunque preferire `nvm use`.
-- **Stato:** confermato
+- **Date:** 2026-04-03
+- **Observed by:** Codex
+- **Context:** Running `yarn start` in Git worktrees such as `.claude/worktrees/*` or sibling worktree checkouts
+- **What was surprising:** Some worktree shells resolved `node` and `yarn node` to Homebrew Node `25.2.1` even though the repo pins `22.12.0` in `.nvmrc`, so `yarn start` could silently run the dev launchers under the wrong runtime.
+- **Impact:** Dev-server behavior can drift between the main checkout and worktrees, making bugs hard to reproduce and violating the repo's expected Node 22 toolchain.
+- **Mitigation:** Keep the dev launchers behind `scripts/start-dev.mjs` and `scripts/start-docs.mjs`, which now re-exec under the `.nvmrc` Node binary when the current shell is on the wrong version. Shell setup should still prefer `nvm use`.
+- **Status:** confirmed
 
-### Gli avanzi di `docs-site/` possono nascondere l'origine dei documenti mancanti dopo il refactoring
+### `docs-site/` leftovers can hide missing docs source after the refactor
 
-- **Data:** 01-04-2026
-- **Osservato da:** Codice
-- **Contesto:** pulizia monorepo post-unione dopo lo spostamento del progetto Docusaurus da `docs-site/` a `docs/`
-- **Ciò che è stato sorprendente:** La vecchia cartella `docs-site/` può rimanere sul disco con file obsoleti ma importanti come `i18n/`, anche dopo che il repository tracciato è stato spostato su `docs/`. Ciò fa sì che il refactoring sembri duplicato localmente e può nascondere il fatto che le traduzioni dei documenti tracciati non sono state effettivamente spostate in `docs/`.
-- **Impatto:** gli agenti possono eliminare la vecchia cartella come "posta indesiderata" e perdere accidentalmente l'unica copia locale delle traduzioni dei documenti oppure continuare a modificare script che puntano ancora al percorso `docs-site/` morto.
-- **Mitigazione:** tratta `docs/` come l'unico progetto di documenti canonico. Prima di eliminare eventuali residui di `docs-site/` locale, ripristina l'origine tracciata come `docs/i18n/` e aggiorna script e hook per interrompere il riferimento a `docs-site`.
-- **Stato:** confermato
+- **Date:** 2026-04-01
+- **Observed by:** Codex
+- **Context:** Post-merge monorepo cleanup after moving the Docusaurus project from `docs-site/` to `docs/`
+- **What was surprising:** The old `docs-site/` folder can remain on disk with stale but important files like `i18n/`, even after the tracked repo moved to `docs/`. That makes the refactor look duplicated locally and can hide the fact that tracked docs translations were not actually moved into `docs/`.
+- **Impact:** Agents can delete the old folder as “junk” and accidentally lose the only local copy of docs translations, or keep editing scripts that still point at the dead `docs-site/` path.
+- **Mitigation:** Treat `docs/` as the only canonical docs project. Before deleting any local `docs-site/` leftovers, restore tracked source like `docs/i18n/` and update scripts and hooks to stop referencing `docs-site`.
+- **Status:** confirmed
 
-### L'anteprima dei documenti multilocale può aumentare la RAM durante la verifica
+### Multilocale docs preview can spike RAM during verification
 
-- **Data:** 01-04-2026
-- **Osservato da:** Codice
-- **Contesto:** Correzione dei documenti i18n, routing locale e comportamento di Pagefind con `yarn start:docs` plus Playwright
-- **Ciò che è stato sorprendente:** la modalità di anteprima dei documenti predefinita ora esegue una creazione completa di documenti multilocale più l'indicizzazione di Pagefind prima della pubblicazione e mantenere attivo quel processo insieme a più sessioni di Playwright o Chrome può consumare molta più RAM di un normale ciclo di sviluppo Vite o Docusaurus a locale singola.
-- **Impatto:** il computer può avere limiti di memoria, le sessioni del browser possono bloccarsi e le esecuzioni interrotte possono lasciare server di documenti obsoleti o browser headless che continuano a consumare memoria.
-- **Mitigazione:** per i lavori sui documenti che non richiedono la verifica del percorso locale o della ricerca di pagine, preferisci `DOCS_START_MODE=live yarn start:docs`. Utilizza l'anteprima multilocale predefinita solo quando devi convalidare percorsi tradotti o Pagefind. Mantieni una singola sessione di Playwright, chiudi le vecchie sessioni del browser prima di aprirne di nuove e arresta il server dei documenti dopo la verifica se non ne hai più bisogno.
-- **Stato:** confermato
+- **Date:** 2026-04-01
+- **Observed by:** Codex
+- **Context:** Fixing docs i18n, locale routing, and Pagefind behavior with `yarn start:docs` plus Playwright
+- **What was surprising:** The default docs preview mode now does a full multilocale docs build plus Pagefind indexing before serving, and keeping that process alive alongside multiple Playwright or Chrome sessions can consume much more RAM than a normal Vite or single-locale Docusaurus dev loop.
+- **Impact:** The machine can become memory-constrained, browser sessions can crash, and interrupted runs can leave stale docs servers or headless browsers behind that keep consuming memory.
+- **Mitigation:** For docs work that does not need locale-route or Pagefind verification, prefer `DOCS_START_MODE=live yarn start:docs`. Only use the default multilocale preview when you need to validate translated routes or Pagefind. Keep a single Playwright session, close old browser sessions before opening new ones, and stop the docs server after verification if you no longer need it.
+- **Status:** confirmed

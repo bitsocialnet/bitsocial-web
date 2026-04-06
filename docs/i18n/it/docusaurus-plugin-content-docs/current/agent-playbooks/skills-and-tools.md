@@ -1,50 +1,50 @@
-# Competenze e strumenti
+# Skills and Tools
 
-Utilizza questo playbook quando imposti/modifichi competenze e strumenti esterni.
+Use this playbook when setting up/adjusting skills and external tooling.
 
-## Competenze consigliate
+## Recommended Skills
 
-### Context7 (documenti della libreria)
+### Context7 (library docs)
 
-Per documenti aggiornati sulle librerie.
+For up-to-date docs on libraries.
 
 ```bash
 npx skills add https://github.com/intellectronica/agent-skills --skill context7
 ```
 
-### CL di Playwright
+### Playwright CLI
 
-Utilizza `playwright-cli` per l'automazione del browser (navigazione, interazione, screenshot, test, estrazione).
+Use `playwright-cli` for browser automation (navigation, interaction, screenshots, tests, extraction).
 
 ```bash
 npm install -g @playwright/cli@latest
 playwright-cli install --skills
 ```
 
-Posizioni di installazione delle competenze:
+Skill install locations:
 
 - `.cursor/skills/playwright-cli/`
 - `.claude/skills/playwright-cli/`
 
-### Best practice di Vercel React
+### Vercel React Best Practices
 
-Per indicazioni più approfondite sulle prestazioni di React/Next.
+For deeper React/Next performance guidance.
 
 ```bash
 npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-react-best-practices
 ```
 
-### Trova competenze
+### Find Skills
 
-Scopri/installa competenze dall'ecosistema aperto.
+Discover/install skills from the open ecosystem.
 
 ```bash
 npx skills add https://github.com/vercel-labs/skills --skill find-skills
 ```
 
-## Motivazione della policy MCP
+## MCP Policy Rationale
 
-Evita GitHub MCP e browser MCP server per questo progetto perché aggiungono un notevole sovraccarico di schema di strumenti/contesto.
+Avoid GitHub MCP and browser MCP servers for this project because they add significant tool-schema/context overhead.
 
-- Operazioni GitHub: utilizzare `gh` CLI.
-- Operazioni browser: utilizzare `playwright-cli`.
+- GitHub operations: use `gh` CLI.
+- Browser operations: use `playwright-cli`.

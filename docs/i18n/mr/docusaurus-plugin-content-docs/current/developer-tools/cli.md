@@ -14,7 +14,7 @@ sidebar_position: 2
 
 Windows, macOS आणि Linux साठी पूर्व-निर्मित बायनरी उपलब्ध आहेत. GitHub वरून आपल्या प्लॅटफॉर्मसाठी नवीनतम प्रकाशन डाउनलोड करा:
 
-\*\*[GitHub प्रकाशन डाउनलोड करा](ZXQHOLDER0ZXQ
+**[GitHub प्रकाशन डाउनलोड करा](https://github.com/bitsocialnet/bitsocial-cli/releases)**
 
 डाउनलोड केल्यानंतर, बायनरी एक्झिक्युटेबल बनवा (macOS/Linux):
 

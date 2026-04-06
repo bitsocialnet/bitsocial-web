@@ -14,9 +14,14 @@ export { SUPPORTED_LANGUAGES, type SupportedLanguage, type SupportedLanguageCode
 export { LANGUAGE_QUERY_PARAM };
 
 const DOCS_BASE_PATH = "/docs";
+export type DocsPreviewMode = "live" | "multilocale";
 
 function canUseDom() {
   return typeof window !== "undefined";
+}
+
+export function resolveDocsPreviewMode(value: unknown): DocsPreviewMode {
+  return value === "live" ? "live" : "multilocale";
 }
 
 function getResolvedBrowserLocale(): string | null {

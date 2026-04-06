@@ -29,7 +29,7 @@
   border-color: var(--bitsocial-glass-border);
 }
 
-.trigger:hover,
+.trigger:not(:disabled):hover,
 .triggerOpen {
   color: var(--ifm-heading-color);
   background: var(--ifm-menu-color-background-hover);
@@ -210,6 +210,24 @@
     0 0 18px rgba(37, 99, 235, 0.18);
 }
 
+.livePreviewNotice {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.15rem 0.1rem 0;
+}
+
+.livePreviewCopy,
+.livePreviewHint {
+  margin: 0;
+  color: var(--bitsocial-muted);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.livePreviewHint {
+  color: var(--ifm-font-color-base);
+}
+
 .list {
   display: grid;
   min-height: 0;
@@ -250,6 +268,10 @@
 .optionCurrent {
   border-color: color-mix(in srgb, var(--bitsocial-blue-core) 44%, var(--bitsocial-glass-border));
   background: color-mix(in srgb, var(--bitsocial-blue-core) 10%, var(--bitsocial-surface));
+}
+
+.optionStatic {
+  cursor: default;
 }
 
 .optionText {
