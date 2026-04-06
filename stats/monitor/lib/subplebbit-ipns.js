@@ -1,7 +1,6 @@
-import config from "../config.js";
 import monitorState from "./monitor-state.js";
 import { getCommunityMetricLabelNames, getCommunityMetricLabels } from "./community-metrics.js";
-import { plebbit } from "./plebbit-js/plebbit-js.js";
+import { kubo, plebbitKuboRpc } from "./plebbit-js/plebbit-js.js";
 import {
   getTimeAgo,
   createCounter,
@@ -16,13 +15,41 @@ import Debug from "debug";
 const debug = Debug("bitsocial-stats-monitor:subplebbit-ipns");
 
 const countGetSubplebbit = createCounter();
+
+const readJsonFromKubo = async (path) => {
+  const chunks = [];
+  for await (const chunk of kubo.cat(path)) {
+    chunks.push(Buffer.from(chunk));
+  }
+
+  return JSON.parse(Buffer.concat(chunks).toString("utf8"));
+};
+
+// Resolve the public `.eth` alias first, then fetch the canonical `.bso` record via Kubo.
+const fetchSubplebbitUpdate = async (subplebbitAddress, targetAddress) => {
+  const resolvedIpnsName =
+    await plebbitKuboRpc._clientsManager.resolveSubplebbitAddressIfNeeded(targetAddress);
+  const subplebbitUpdate = await readJsonFromKubo(`/ipns/${resolvedIpnsName}`);
+
+  if (subplebbitUpdate?.address !== subplebbitAddress) {
+    throw Error(
+      `resolved '${targetAddress}' to '${resolvedIpnsName}' but fetched '${subplebbitUpdate?.address}'`,
+    );
+  }
+
+  return { resolvedIpnsName, subplebbitUpdate };
+};
+
 export const monitorSubplebbitsIpns = async () => {
   for (const subplebbit of monitorState.subplebbitsMonitoring) {
     const targetAddress = subplebbit?.targetAddress || subplebbit?.address;
     debug(`fetching subplebbit '${subplebbit?.address}' ipns via '${targetAddress}'`);
     (async () => {
       try {
-        const subplebbitUpdate = await plebbit.getSubplebbit(targetAddress);
+        const { resolvedIpnsName, subplebbitUpdate } = await fetchSubplebbitUpdate(
+          subplebbit.address,
+          targetAddress,
+        );
         debug(
           `fetched subplebbit '${subplebbit.address}' ipns last updated ${getTimeAgo(subplebbitUpdate.updatedAt)}`,
         );
@@ -32,7 +59,9 @@ export const monitorSubplebbitsIpns = async () => {
           lastSubplebbitUpdateTimestamp: subplebbitUpdate.updatedAt,
           pubsubTopic: subplebbitUpdate.pubsubTopic, // needed for pubsub monitoring
           publicKey: subplebbitUpdate.signature.publicKey, // needed for pubsub monitoring
-          ipnsName: getPlebbitAddressFromPublicKey(subplebbitUpdate.signature.publicKey), // useful for debugging
+          ipnsName:
+            resolvedIpnsName ||
+            getPlebbitAddressFromPublicKey(subplebbitUpdate.signature.publicKey), // useful for debugging
           lastPostCid: subplebbitUpdate.lastPostCid, // needed for plebbit previewer monitoring
           lastUpdateCid: subplebbitUpdate.updateCid, // needed for plebbit seeder monitoring
         };
@@ -41,10 +70,9 @@ export const monitorSubplebbitsIpns = async () => {
 
         // fetch subplebbit stats
         if (subplebbitUpdate.statsCid) {
-          plebbit
-            .fetchCid(subplebbitUpdate.statsCid)
+          readJsonFromKubo(subplebbitUpdate.statsCid)
             .then((res) => {
-              const subplebbitStats = JSON.parse(res);
+              const subplebbitStats = res;
               debug(
                 `fetched subplebbit stats for '${subplebbit.address}' ${subplebbitStats.allPostCount} posts`,
               );
