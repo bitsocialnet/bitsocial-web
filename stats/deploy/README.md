@@ -8,6 +8,7 @@ This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current
 - host Caddy config: `/etc/caddy/Caddyfile`
 - newsletter/listmonk remains on `newsletter.bitsocial.net` via `127.0.0.1:9000`
 - Vercel owns `bitsocial.net` and proxies `/stats` to this VPS origin at `http://91.234.199.189:8080/stats`
+- the VPS entrypoint redirects `/stats` and `/stats/5chan` to kiosk-mode dashboard URLs so visitors land on the clean public view instead of Grafana's generic app shell
 
 ### Syncing a release
 
@@ -54,6 +55,8 @@ curl -I http://91.234.199.189:8080/stats/
 curl -I http://91.234.199.189:8080/stats/5chan
 curl -fsS http://127.0.0.1:9091/api/v1/targets
 ```
+
+The `curl -I` checks for `/stats` and `/stats/5chan` should now return `302` redirects to the corresponding kiosk dashboard URLs.
 
 After Vercel deploy:
 

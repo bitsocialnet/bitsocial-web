@@ -5,10 +5,10 @@ http://:8080 {
 	}
 
 	@stats5chan path /stats/5chan
-	redir @stats5chan /stats/d/bitsocial-5chan/5chan-stats?orgId=1 302
+	redir @stats5chan /stats/d/bitsocial-5chan/5chan-stats?orgId=1&kiosk 302
 
-	@statsNoSlash path /stats
-	redir @statsNoSlash /stats/ 308
+	@statsRoot path /stats /stats/
+	redir @statsRoot /stats/d/bitsocial-stats/bitsocial-stats?orgId=1&kiosk 302
 
 	handle /stats/* {
 		reverse_proxy 127.0.0.1:3300
