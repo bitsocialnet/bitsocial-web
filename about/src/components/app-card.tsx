@@ -1,4 +1,3 @@
-import { m } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Download, Github, Globe, Monitor, Smartphone } from "lucide-react";
@@ -29,7 +28,6 @@ interface AppCardProps {
   activeTag?: string | null;
   app: AppData;
   compact?: boolean;
-  index: number;
   onCategorySelect?: (slug: AppCategorySlug) => void;
   onPlatformSelect?: (platform: AppPlatformSlug) => void;
   onTagSelect?: (tag: string) => void;
@@ -41,7 +39,6 @@ export default function AppCard({
   activePlatform = null,
   activeTag = null,
   app,
-  index,
   onCategorySelect,
   onPlatformSelect,
   onTagSelect,
@@ -58,11 +55,7 @@ export default function AppCard({
   const sourceUrl = getGithubUrl(app);
 
   return (
-    <m.article
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ delay: Math.min(index * 0.04, 0.24), duration: 0.35 }}
+    <article
       className={cn(
         "glass-card flex h-full flex-col overflow-hidden p-5 md:p-6",
         compact ? "gap-4" : "gap-5",
@@ -143,7 +136,7 @@ export default function AppCard({
         <div className="flex flex-wrap gap-2">
           <CardInlineCta
             href={`/apps/${app.slug}`}
-            className={`${highlightedCtaClassName} !px-5 !py-2 text-sm`}
+            className={`apps-frosted-cta ${highlightedCtaClassName} !px-5 !py-2 text-sm`}
           >
             <span className="inline-flex items-center gap-2">
               <ArrowUpRight className="h-4 w-4" />
@@ -154,7 +147,7 @@ export default function AppCard({
           {primaryActionLink ? (
             <CardInlineCta
               href={primaryActionLink.url}
-              className={`${highlightedCtaClassName} !px-5 !py-2 text-sm`}
+              className={`apps-frosted-cta ${highlightedCtaClassName} !px-5 !py-2 text-sm`}
             >
               <span className="inline-flex items-center gap-2">
                 {getLinkIcon(primaryActionLink)}
@@ -170,7 +163,7 @@ export default function AppCard({
               <CardInlineCta
                 key={link.url}
                 href={link.url}
-                className={`${cardInlineCtaClassName} !rounded-full !px-4 !py-2`}
+                className={`apps-frosted-cta ${cardInlineCtaClassName} !rounded-full !px-4 !py-2`}
               >
                 <span className="inline-flex items-center gap-2">
                   {getLinkIcon(link)}
@@ -191,7 +184,7 @@ export default function AppCard({
                 <CardInlineCta
                   key={mirror.url}
                   href={mirror.url}
-                  className={`${cardInlineCtaClassName} !rounded-full !px-3 !py-1.5 !text-xs`}
+                  className={`apps-frosted-cta ${cardInlineCtaClassName} !rounded-full !px-3 !py-1.5 !text-xs`}
                 >
                   <span className="inline-flex items-center gap-1.5">
                     <ArrowUpRight className="h-3.5 w-3.5" />
@@ -213,7 +206,7 @@ export default function AppCard({
           <span>{t("apps.sourceCode")}</span>
         </a>
       </div>
-    </m.article>
+    </article>
   );
 }
 

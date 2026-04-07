@@ -285,6 +285,19 @@
     );
   }
 
+  .apps-page[data-surface-mode="simplified"] .glass-card,
+  .apps-page[data-surface-mode="simplified"] .apps-frosted-cta {
+    background: rgba(248, 250, 252, 0.94);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .dark .apps-page[data-surface-mode="simplified"] .glass-card,
+  .dark .apps-page[data-surface-mode="simplified"] .apps-frosted-cta {
+    border-color: rgba(232, 238, 247, 0.16);
+    background: rgba(15, 23, 42, 0.82);
+  }
+
   .feature-connector-path {
     stroke: var(--glass-border-subtle);
   }

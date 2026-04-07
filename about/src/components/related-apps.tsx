@@ -18,8 +18,8 @@ export default function RelatedApps({ app }: RelatedAppsProps) {
         {t("apps.relatedApps")}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {related.map((relatedApp, index) => (
-          <AppCard key={relatedApp.slug} app={relatedApp} index={index} compact />
+        {related.map((relatedApp) => (
+          <AppCard key={relatedApp.slug} app={relatedApp} compact />
         ))}
       </div>
     </div>

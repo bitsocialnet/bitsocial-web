@@ -20,6 +20,7 @@ import {
   type AppCategorySlug,
   type AppPlatformSlug,
 } from "@/lib/apps-data";
+import { useGraphicsMode } from "@/lib/graphics-mode";
 import { cn } from "@/lib/utils";
 
 const SUBMIT_APP_URL =
@@ -40,8 +41,13 @@ const platformIconMap = {
   web: Globe,
 } as const;
 
+function isFirefoxLikeBrowser() {
+  return typeof navigator !== "undefined" && /\bFirefox\//i.test(navigator.userAgent);
+}
+
 export default function Apps() {
   const { t } = useTranslation();
+  const graphicsMode = useGraphicsMode();
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryParam = searchParams.get("category");
   const platformParam = searchParams.get("platform");
@@ -85,6 +91,7 @@ export default function Apps() {
     });
 
   const isFiltered = Boolean(query || activePlatform || activeCategory || activeTag);
+  const useSimplifiedSurfaces = graphicsMode === "fallback" || isFirefoxLikeBrowser();
 
   function updateSearchParams(updates: Record<string, string | null>) {
     const nextParams = new URLSearchParams(searchParams);
@@ -119,7 +126,10 @@ export default function Apps() {
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div
+      className="apps-page min-h-screen overflow-x-hidden"
+      data-surface-mode={useSimplifiedSurfaces ? "simplified" : "default"}
+    >
       <Topbar />
       <div className="relative">
         <PolygonMeshBackground />
@@ -238,7 +248,7 @@ export default function Apps() {
 
                 <CardInlineCta
                   href={SUBMIT_APP_URL}
-                  className={`${highlightedCtaClassName} !px-6 !py-3 text-sm`}
+                  className={`apps-frosted-cta ${highlightedCtaClassName} !px-6 !py-3 text-sm`}
                 >
                   {t("apps.submitApp")}
                 </CardInlineCta>
@@ -275,14 +285,13 @@ export default function Apps() {
                   </div>
                 ) : (
                   <div className="grid gap-5 xl:grid-cols-2">
-                    {filteredApps.map((app, index) => (
+                    {filteredApps.map((app) => (
                       <AppCard
                         key={app.slug}
                         activeCategory={activeCategory}
                         activePlatform={activePlatform}
                         activeTag={activeTag}
                         app={app}
-                        index={index}
                         onCategorySelect={(slug) => handleCategoryChange(slug)}
                         onPlatformSelect={(platform) => handlePlatformChange(platform)}
                         onTagSelect={handleTagSelect}
