@@ -9,7 +9,7 @@ Denne side rammer offentlig RPC som et Bitsocial-forslag på produktniveau i ste
 
 ## Mål i almindeligt sprog
 
-Bitsocial Forge kan køre en offentlig RPC-tjeneste, der lader mange brugere administrere deres egne Bitsocial-fællesskaber eksternt, uden at gøre operatøren til en administrator af disse fællesskaber.
+[Bitsocial Forge](https://bitsocialforge.com) kan køre en offentlig RPC-tjeneste, der lader mange brugere administrere deres egne Bitsocial-fællesskaber eksternt, uden at gøre operatøren til en administrator af disse fællesskaber.
 
 Tjenesten skal gøre mobile og lette kunder praktiske og samtidig bevare tre begrænsninger:
 

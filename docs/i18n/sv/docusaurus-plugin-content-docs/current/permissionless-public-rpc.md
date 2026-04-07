@@ -9,7 +9,7 @@ Det ursprungliga offentliga RPC-förslaget levde som ett GitHub-nummer skrivet m
 
 ## Klarspråksmål
 
-Bitsocial Forge kan köra en offentlig RPC-tjänst som låter många användare hantera sina egna Bitsocial-gemenskaper på distans, utan att göra operatören till en väktare av dessa gemenskaper.
+[Bitsocial Forge](https://bitsocialforge.com) kan köra en offentlig RPC-tjänst som låter många användare hantera sina egna Bitsocial-gemenskaper på distans, utan att göra operatören till en väktare av dessa gemenskaper.
 
 Tjänsten ska göra mobila och lätta kunder praktiska samtidigt som tre begränsningar bevaras:
 

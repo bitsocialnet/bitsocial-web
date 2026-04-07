@@ -9,7 +9,7 @@ Op deze pagina wordt de openbare RPC geframed als een Bitsocial-voorstel op prod
 
 ## Doel in duidelijke taal
 
-Bitsocial Forge kan een openbare RPC-service uitvoeren waarmee veel gebruikers hun eigen Bitsocial-gemeenschappen op afstand kunnen beheren, zonder dat de operator een beheerder van die gemeenschappen wordt.
+[Bitsocial Forge](https://bitsocialforge.com) kan een openbare RPC-service uitvoeren waarmee veel gebruikers hun eigen Bitsocial-gemeenschappen op afstand kunnen beheren, zonder dat de operator een beheerder van die gemeenschappen wordt.
 
 De dienst moet mobiele en lichtgewicht clients praktisch maken, met behoud van drie beperkingen:
 

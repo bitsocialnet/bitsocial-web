@@ -9,7 +9,7 @@ Halaman ini membingkai RPC publik sebagai proposal Bitsocial tingkat produk, buk
 
 ## Tujuan bahasa sederhana
 
-Bitsocial Forge dapat menjalankan layanan RPC publik yang memungkinkan banyak pengguna mengelola komunitas Bitsocial mereka dari jarak jauh, tanpa mengubah operator menjadi penjaga komunitas tersebut.
+[Bitsocial Forge](https://bitsocialforge.com) dapat menjalankan layanan RPC publik yang memungkinkan banyak pengguna mengelola komunitas Bitsocial mereka dari jarak jauh, tanpa mengubah operator menjadi penjaga komunitas tersebut.
 
 Layanan ini harus membuat klien mobile dan ringan menjadi praktis dengan tetap menjaga tiga kendala:
 
