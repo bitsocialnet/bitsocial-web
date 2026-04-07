@@ -9,7 +9,7 @@ Ez az oldal a nyilvános RPC-t termékszintű Bitsocial-javaslatként keretezi a
 
 ## Egyszerű nyelvű cél
 
-A Bitsocial Forge egy nyilvános RPC szolgáltatást futtathat, amely lehetővé teszi sok felhasználó számára, hogy távolról kezelje saját Bitsocial közösségeit anélkül, hogy az üzemeltetőt a közösségek letéteményesévé tenné.
+A [Bitsocial Forge](https://bitsocialforge.com) egy nyilvános RPC szolgáltatást futtathat, amely lehetővé teszi sok felhasználó számára, hogy távolról kezelje saját Bitsocial közösségeit anélkül, hogy az üzemeltetőt a közösségek letéteményesévé tenné.
 
 A szolgáltatásnak praktikussá kell tennie a mobil és könnyű ügyfeleket, miközben meg kell őriznie három korlátot:
 

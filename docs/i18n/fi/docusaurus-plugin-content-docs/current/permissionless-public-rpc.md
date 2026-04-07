@@ -9,7 +9,7 @@ Tämä sivu kehystää julkisen RPC:n tuotetason Bitsocial-ehdotukseksi toteutus
 
 ## Selkeäkielinen tavoite
 
-Bitsocial Forge voi käyttää julkista RPC-palvelua, jonka avulla monet käyttäjät voivat hallita omia Bitsocial-yhteisöjään etäältä ilman, että operaattorista tulee näiden yhteisöjen ylläpitäjä.
+[Bitsocial Forge](https://bitsocialforge.com) voi käyttää julkista RPC-palvelua, jonka avulla monet käyttäjät voivat hallita omia Bitsocial-yhteisöjään etäältä ilman, että operaattorista tulee näiden yhteisöjen ylläpitäjä.
 
 Palvelun tulee tehdä mobiili- ja kevytasiakkaista käytännöllisiä, mutta silti kolme rajoitusta säilytetään:
 

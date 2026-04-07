@@ -13,6 +13,7 @@ const docsPreviewMode = process.env.DOCS_START_MODE === "live" ? "live" : "multi
 
 /** Docs live under /docs/; logo + title must link to the main site root, not useBaseUrl("/"). */
 const mainSiteOrigin = "https://bitsocial.net";
+const navbarBrandTitle = "Bitsocial";
 const localeConfigs = Object.fromEntries(
   SUPPORTED_LANGUAGES.map((language) => [
     language.code,
@@ -34,6 +35,7 @@ const config: Config = {
   },
   customFields: {
     docsPreviewMode,
+    navbarBrandTitle,
   },
   url: mainSiteOrigin,
   baseUrl: "/docs/",
@@ -96,7 +98,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: "Bitsocial",
+      title: navbarBrandTitle,
       logo: {
         alt: "Bitsocial logo",
         src: "img/logo.png",

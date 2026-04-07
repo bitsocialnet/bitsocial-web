@@ -9,7 +9,7 @@ Diese Seite stellt öffentlichen RPC als einen Bitsocial-Vorschlag auf Produkteb
 
 ## Klares Ziel
 
-Bitsocial Forge kann einen öffentlichen RPC-Dienst betreiben, der es vielen Benutzern ermöglicht, ihre eigenen Bitsocial-Communitys aus der Ferne zu verwalten, ohne den Betreiber zum Verwalter dieser Communities zu machen.
+[Bitsocial Forge](https://bitsocialforge.com) kann einen öffentlichen RPC-Dienst betreiben, der es vielen Benutzern ermöglicht, ihre eigenen Bitsocial-Communitys aus der Ferne zu verwalten, ohne den Betreiber zum Verwalter dieser Communities zu machen.
 
 Der Dienst sollte mobile und leichtgewichtige Clients praktisch machen und gleichzeitig drei Einschränkungen wahren:
 

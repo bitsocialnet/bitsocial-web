@@ -10,7 +10,7 @@ implementation detail.
 
 ## Plain-language goal
 
-Bitsocial Forge can run a public RPC service that lets many users manage their own Bitsocial
+[Bitsocial Forge](https://bitsocialforge.com) can run a public RPC service that lets many users manage their own Bitsocial
 communities remotely, without turning the operator into a custodian of those communities.
 
 The service should make mobile and lightweight clients practical while preserving three constraints:

@@ -9,7 +9,7 @@ Propozimi origjinal publik RPC jetoi si një çështje e GitHub e shkruar në te
 
 ## Qëllimi në gjuhë të thjeshtë
 
-Bitsocial Forge mund të ekzekutojë një shërbim publik RPC që lejon shumë përdorues të menaxhojnë komunitetet e tyre Bitsocial nga distanca, pa e kthyer operatorin në një kujdestar të atyre komuniteteve.
+[Bitsocial Forge](https://bitsocialforge.com) mund të ekzekutojë një shërbim publik RPC që lejon shumë përdorues të menaxhojnë komunitetet e tyre Bitsocial nga distanca, pa e kthyer operatorin në një kujdestar të atyre komuniteteve.
 
 Shërbimi duhet t'i bëjë klientët e lëvizshëm dhe me peshë të lehtë praktike duke ruajtur tre kufizime:
 

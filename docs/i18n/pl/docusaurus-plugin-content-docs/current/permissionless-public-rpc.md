@@ -9,7 +9,7 @@ Oryginalna publiczna propozycja RPC istniała jako problem GitHuba napisany w st
 
 ## Cel prostym językiem
 
-Bitsocial Forge może uruchomić publiczną usługę RPC, która pozwala wielu użytkownikom zdalnie zarządzać własnymi społecznościami Bitsocial, bez konieczności zamieniania operatora w opiekuna tych społeczności.
+[Bitsocial Forge](https://bitsocialforge.com) może uruchomić publiczną usługę RPC, która pozwala wielu użytkownikom zdalnie zarządzać własnymi społecznościami Bitsocial, bez konieczności zamieniania operatora w opiekuna tych społeczności.
 
 Usługa powinna sprawić, że klienci mobilni i lekcy będą praktyczni, przy jednoczesnym zachowaniu trzech ograniczeń:
 

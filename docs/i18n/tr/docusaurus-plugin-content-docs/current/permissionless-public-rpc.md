@@ -9,7 +9,7 @@ Orijinal halka açık RPC teklifi, eski plebbit terminolojisiyle yazılmış bir
 
 ## Sade dil hedefi
 
-Bitsocial Forge, operatörü bu toplulukların koruyucusu haline getirmeden, birçok kullanıcının kendi Bitsocial topluluklarını uzaktan yönetmesine olanak tanıyan halka açık bir RPC hizmeti çalıştırabilir.
+[Bitsocial Forge](https://bitsocialforge.com), operatörü bu toplulukların koruyucusu haline getirmeden, birçok kullanıcının kendi Bitsocial topluluklarını uzaktan yönetmesine olanak tanıyan halka açık bir RPC hizmeti çalıştırabilir.
 
 Hizmet, üç kısıtlamayı korurken mobil ve hafif istemcileri pratik hale getirmelidir:
 

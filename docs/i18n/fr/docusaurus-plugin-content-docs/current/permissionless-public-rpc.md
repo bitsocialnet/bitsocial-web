@@ -9,7 +9,7 @@ Cette page présente le RPC public comme une proposition Bitsocial au niveau du 
 
 ## Objectif en langage simple
 
-Bitsocial Forge peut gérer un service RPC public qui permet à de nombreux utilisateurs de gérer leurs propres communautés Bitsocial à distance, sans transformer l'opérateur en gardien de ces communautés.
+[Bitsocial Forge](https://bitsocialforge.com) peut gérer un service RPC public qui permet à de nombreux utilisateurs de gérer leurs propres communautés Bitsocial à distance, sans transformer l'opérateur en gardien de ces communautés.
 
 Le service doit rendre les clients mobiles et légers pratiques tout en préservant trois contraintes :
 

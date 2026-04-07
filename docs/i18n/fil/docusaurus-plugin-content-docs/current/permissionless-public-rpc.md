@@ -9,7 +9,7 @@ Binabalangkas ng page na ito ang pampublikong RPC bilang isang panukalang Bitsoc
 
 ## Layunin sa simpleng wika
 
-Maaaring magpatakbo ang Bitsocial Forge ng pampublikong serbisyo ng RPC na nagbibigay-daan sa maraming user na pamahalaan ang kanilang sariling mga komunidad ng Bitsocial nang malayuan, nang hindi ginagawang tagapag-ingat ang operator ng mga komunidad na iyon.
+Maaaring magpatakbo ang [Bitsocial Forge](https://bitsocialforge.com) ng pampublikong serbisyo ng RPC na nagbibigay-daan sa maraming user na pamahalaan ang kanilang sariling mga komunidad ng Bitsocial nang malayuan, nang hindi ginagawang tagapag-ingat ang operator ng mga komunidad na iyon.
 
 Dapat gawing praktikal ng serbisyo ang mga mobile at magaan na kliyente habang pinapanatili ang tatlong hadlang:
 

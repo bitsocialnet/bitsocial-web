@@ -9,7 +9,7 @@ Tato stránka rámuje veřejné RPC jako návrh Bitsocial na úrovni produktu na
 
 ## Cíl v prostém jazyce
 
-Bitsocial Forge může provozovat veřejnou službu RPC, která umožňuje mnoha uživatelům vzdáleně spravovat své vlastní komunity Bitsocial, aniž by se provozovatel stal správcem těchto komunit.
+[Bitsocial Forge](https://bitsocialforge.com) může provozovat veřejnou službu RPC, která umožňuje mnoha uživatelům vzdáleně spravovat své vlastní komunity Bitsocial, aniž by se provozovatel stal správcem těchto komunit.
 
 Služba by měla učinit mobilní a nenáročné klienty praktickými při zachování tří omezení:
 

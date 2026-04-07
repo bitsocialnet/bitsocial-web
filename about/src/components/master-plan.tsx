@@ -13,6 +13,14 @@ const phaseOneCtaButtonClassName =
 const phaseOneCtaSeparatorClassName =
   "text-center text-sm text-muted-foreground/70 italic md:shrink-0";
 const richTextComponents = {
+  forgeLink: (
+    <a
+      href="https://bitsocialforge.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-medium underline decoration-current/35 underline-offset-4 transition-colors hover:text-blue-glow hover:decoration-blue-glow"
+    />
+  ),
   strong: <strong className="font-semibold" />,
 };
 

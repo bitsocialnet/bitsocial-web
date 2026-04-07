@@ -9,7 +9,7 @@ Aquesta pàgina emmarca RPC públic com una proposta Bitsocial a nivell de produ
 
 ## Objectiu de llenguatge senzill
 
-Bitsocial Forge pot executar un servei públic RPC que permet a molts usuaris gestionar les seves pròpies comunitats Bitsocial de forma remota, sense convertir l'operador en un custodi d'aquestes comunitats.
+[Bitsocial Forge](https://bitsocialforge.com) pot executar un servei públic RPC que permet a molts usuaris gestionar les seves pròpies comunitats Bitsocial de forma remota, sense convertir l'operador en un custodi d'aquestes comunitats.
 
 El servei hauria de fer que els clients mòbils i lleugers siguin pràctics tot preservant tres limitacions:
 
