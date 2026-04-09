@@ -116,7 +116,7 @@ export default function MailingList() {
                   "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-display font-semibold text-sm",
                   "border border-blue-core/30 bg-blue-core/[0.08] text-foreground/90",
                   "hover:text-foreground hover:bg-blue-core/[0.14] hover:border-blue-glow",
-                  "ring-glow transition-[box-shadow,border-color,background-color,color,opacity] duration-300",
+                  "ring-glow cta-glow transition-[box-shadow,border-color,background-color,color,opacity] duration-300",
                   "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-blue-core/30 disabled:hover:bg-blue-core/[0.08] disabled:hover:text-foreground/90 disabled:hover:shadow-none",
                   "dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:hover:bg-blue-core/[0.24]",
                 )}
