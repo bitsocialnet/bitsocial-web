@@ -44,3 +44,13 @@ Hovedplanen plasserer dette etter de tidligere prøvepunktene på app-nivå:
 4. starte Bitsocial Network
 
 Denne sekvensen er fornuftig fordi et koordineringslag på økosystemnivå er mer nyttig når ekte apper og ekte brukeratferd allerede eksisterer på nettverket.
+
+## Designprinsipper
+
+Siden Bitsocial Network fortsatt er foreslått infrastruktur og ikke et lansert produkt, bør den nåværende planen være disiplinert på noen punkter:
+
+- apper og fellesskap først. Nettverkslaget bør følge reell bruk i Bitsocial-apper, ikke gå foran med spekulative finansfunksjoner.
+- reelt bidrag foran hype. Hvis Bitsocial senere legger til aktiva på fellesskaps-, skaper- eller klientnivå, bør de belønne deltakelse og langsiktig bygging i stedet for kopierte lanseringer eller kortsiktig handel.
+- kuratering er tillatt. Bitsocial-apper kan forme rangeringer, standardvalg, oppdagelse og utrullingstempo slik at varige fellesskap prioriteres fremfor kasinolignende atferd.
+- gradvis utrulling er sunt. Det er rimelig å utsette appchain-native finansfunksjoner til økosystemet har nok brukere, modereringsverktøy og produktklarhet til å støtte dem på en trygg måte.
+- de nøyaktige mekanismene er fortsatt åpne. Denne siden forklarer rollen til Bitsocial Network, ikke et låst løfte om token-launchere, gebyrformler eller endelige tokenomics.

@@ -44,3 +44,13 @@ El pla mestre situa això després dels punts de prova anteriors a nivell d'apli
 4. llançar Bitsocial Network
 
 Aquesta seqüència té sentit perquè una capa de coordinació a nivell d'ecosistema és més útil quan ja existeixen aplicacions reals i comportament real dels usuaris a la xarxa.
+
+## Principis de disseny
+
+Com que Bitsocial Network continua sent una infraestructura proposada i no un producte ja llançat, el pla actual ha de mantenir disciplina en alguns punts:
+
+- Primer les aplicacions i les comunitats. La capa de xarxa ha de seguir l'ús real dins de les aplicacions de Bitsocial, no avançar-se amb funcions financeres especulatives.
+- La contribució real per sobre del soroll. Si més endavant Bitsocial afegeix actius de comunitat, de creador o de client, haurien de premiar la participació i la construcció a llarg termini en lloc de llançaments imitadors o trading a curt termini.
+- La curació és vàlida. Les aplicacions de Bitsocial poden definir rànquings, valors per defecte, descoberta i ritme de desplegament per afavorir comunitats duradores davant de dinàmiques de casino.
+- El desplegament gradual és saludable. Té sentit retardar les funcions financeres natives de l'appchain fins que l'ecosistema tingui prou usuaris, eines de moderació i claredat de producte per sostenir-les amb seguretat.
+- Els mecanismes exactes continuen oberts. Aquesta pàgina explica el paper de Bitsocial Network, no una promesa tancada sobre llançadors de tokens, fórmules de comissions o la tokenòmica final.

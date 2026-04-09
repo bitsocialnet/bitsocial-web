@@ -44,3 +44,13 @@ Il piano generale colloca questo dopo i precedenti punti di prova a livello di a
 4. lanciano Bitsocial Network
 
 Questa sequenza ha senso perché un livello di coordinamento a livello di ecosistema è più utile una volta che sulla rete esistono già app reali e comportamenti reali degli utenti.
+
+## Principi di progettazione
+
+Poiché Bitsocial Network è ancora un'infrastruttura proposta e non un prodotto già lanciato, il piano attuale dovrebbe restare disciplinato in alcuni punti:
+
+- Prima le app e le comunità. Il livello di rete dovrebbe seguire l'uso reale nelle app Bitsocial, non anticiparlo con funzionalità finanziarie speculative.
+- Il contributo reale prima dell'hype. Se in futuro Bitsocial aggiungerà asset a livello di comunità, creator o client, dovranno premiare la partecipazione e la costruzione di lungo periodo invece di launch imitativi o trading di breve termine.
+- La curazione è ammessa. Le app Bitsocial possono modellare classifiche, impostazioni predefinite, discovery e tempi di rollout per favorire comunità durature rispetto a comportamenti da casinò.
+- Un rollout graduale è sano. È ragionevole rinviare le funzionalità finanziarie native dell'appchain finché l'ecosistema non avrà abbastanza utenti, strumenti di moderazione e chiarezza di prodotto per sostenerle in modo sicuro.
+- I meccanismi esatti restano aperti. Questa pagina spiega il ruolo di Bitsocial Network, non una promessa bloccata su token launcher, formule di commissione o tokenomics finali.

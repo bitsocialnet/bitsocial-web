@@ -44,3 +44,13 @@ A főterv ezt a korábbi alkalmazásszintű bizonyítási pontok mögé helyezi:
 4. indítsa el a Bitsocial Networköt
 
 Ennek a sorrendnek van értelme, mert az ökoszisztéma-szintű koordinációs réteg hasznosabb, ha már léteznek valódi alkalmazások és valós felhasználói viselkedés a hálózaton.
+
+## Tervezési elvek
+
+Mivel a Bitsocial Network továbbra is javasolt infrastruktúra, és nem egy már elindított termék, a jelenlegi tervnek néhány ponton fegyelmezettnek kell maradnia:
+
+- Először az appok és a közösségek. A hálózati rétegnek a Bitsocial-appok valós használatát kell követnie, nem pedig spekulatív pénzügyi funkciókkal elöl járnia.
+- Valódi hozzájárulás a hype előtt. Ha a Bitsocial később közösségi, alkotói vagy kliensszintű eszközöket ad hozzá, azoknak a részvételt és a hosszú távú építkezést kell jutalmazniuk az utánzó indulások vagy a rövid távú kereskedés helyett.
+- A kurálás megengedett. A Bitsocial-appok alakíthatják a rangsorokat, az alapértelmezéseket, a felfedezést és a rollout ütemét úgy, hogy a tartós közösségeket részesítsék előnyben a kaszinószerű viselkedéssel szemben.
+- A fokozatos rollout egészséges. Ésszerű késleltetni az appchain-natív pénzügyi funkciókat addig, amíg az ökoszisztéma nem rendelkezik elég felhasználóval, moderációs eszközzel és termékbeli tisztasággal ahhoz, hogy ezeket biztonságosan támogassa.
+- A pontos mechanikák továbbra is nyitottak. Ez az oldal a Bitsocial Network szerepét magyarázza, nem pedig egy rögzített ígéretet tokenindítókról, díjképletekről vagy a végleges tokenomikáról.

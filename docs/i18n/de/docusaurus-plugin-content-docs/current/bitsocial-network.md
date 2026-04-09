@@ -44,3 +44,13 @@ Der Masterplan platziert dies nach den früheren Prüfpunkten auf App-Ebene:
 4. Starten Sie das Bitsocial Network
 
 Diese Reihenfolge ist sinnvoll, da eine Koordinationsschicht auf Ökosystemebene nützlicher ist, wenn bereits echte Apps und echtes Benutzerverhalten im Netzwerk vorhanden sind.
+
+## Designprinzipien
+
+Da Bitsocial Network weiterhin vorgeschlagene Infrastruktur und kein gestartetes Produkt ist, sollte der aktuelle Plan in einigen Punkten diszipliniert bleiben:
+
+- Zuerst Apps und Communities. Die Netzwerkschicht sollte realer Nutzung in Bitsocial-Apps folgen und nicht mit spekulativen Finanzfunktionen vorangehen.
+- Echter Beitrag vor Hype. Falls Bitsocial später Community-, Creator- oder Client-Assets einführt, sollten sie Beteiligung und langfristigen Aufbau belohnen statt Nachahmer-Launches oder kurzfristigen Handel.
+- Kuratierung ist erlaubt. Bitsocial-Apps können Rankings, Voreinstellungen, Discovery und Rollout-Timing so gestalten, dass belastbare Communities gegenüber Casino-artigem Verhalten bevorzugt werden.
+- Schrittweiser Rollout ist sinnvoll. Es ist vernünftig, appchain-native Finanzfunktionen zu verschieben, bis das Ökosystem genügend Nutzer, Moderationswerkzeuge und Produktklarheit hat, um sie sicher zu tragen.
+- Die genauen Mechaniken bleiben offen. Diese Seite erklärt die Rolle von Bitsocial Network, nicht ein festes Versprechen über Token-Launcher, Gebührenformeln oder endgültige Tokenomics.

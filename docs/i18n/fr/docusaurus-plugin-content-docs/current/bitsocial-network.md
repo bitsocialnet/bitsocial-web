@@ -44,3 +44,13 @@ Le plan directeur place ceci après les points de preuve précédents au niveau 
 4. lancer le réseau Bitsocial
 
 Cette séquence est logique car une couche de coordination au niveau de l’écosystème est plus utile une fois que de vraies applications et un véritable comportement d’utilisateur existent déjà sur le réseau.
+
+## Principes de conception
+
+Comme Bitsocial Network reste une infrastructure proposée et non un produit déjà lancé, le plan actuel doit rester discipliné sur quelques points :
+
+- Les applications et les communautés d’abord. La couche réseau doit suivre l’usage réel dans les applications Bitsocial, et non prendre de l’avance avec des fonctions financières spéculatives.
+- La contribution réelle avant le battage. Si Bitsocial ajoute plus tard des actifs au niveau des communautés, des créateurs ou des clients, ils devraient récompenser la participation et la construction de long terme plutôt que des lancements imitateurs ou du trading de court terme.
+- La curation est légitime. Les applications Bitsocial peuvent façonner les classements, les paramètres par défaut, la découverte et le calendrier de déploiement afin de favoriser les communautés durables plutôt que des dynamiques de casino.
+- Un déploiement progressif est sain. Il est raisonnable de repousser les fonctions financières natives à l’appchain jusqu’à ce que l’écosystème dispose d’assez d’utilisateurs, d’outils de modération et de clarté produit pour les prendre en charge en toute sécurité.
+- Les mécanismes exacts restent ouverts. Cette page explique le rôle de Bitsocial Network, pas une promesse figée sur des lanceurs de tokens, des formules de frais ou la tokenomique finale.

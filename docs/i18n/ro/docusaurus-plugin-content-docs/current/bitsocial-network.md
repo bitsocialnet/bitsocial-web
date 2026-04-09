@@ -44,3 +44,13 @@ Planul general plasează acest lucru după punctele de dovadă anterioare la niv
 4. lansează Bitsocial Network
 
 Această secvență are sens, deoarece un strat de coordonare la nivel de ecosistem este mai util odată ce aplicațiile reale și comportamentul real al utilizatorilor există deja în rețea.
+
+## Principii de proiectare
+
+Pentru că Bitsocial Network este încă infrastructură propusă, nu un produs deja lansat, planul actual ar trebui să rămână disciplinat în câteva privințe:
+
+- Mai întâi aplicațiile și comunitățile. Stratul de rețea ar trebui să urmeze utilizarea reală din aplicațiile Bitsocial, nu să iasă în față cu funcții financiare speculative.
+- Contribuția reală înaintea hype-ului. Dacă Bitsocial va adăuga mai târziu active la nivel de comunitate, creator sau client, acestea ar trebui să recompenseze participarea și construcția pe termen lung, nu lansările imitatoare sau tranzacționarea pe termen scurt.
+- Curatarea este permisă. Aplicațiile Bitsocial pot modela clasamentele, setările implicite, descoperirea și ritmul lansării pentru a favoriza comunități durabile în locul unui comportament de tip cazinou.
+- O lansare graduală este sănătoasă. Este rezonabil să amâni funcțiile financiare native appchainului până când ecosistemul are suficienți utilizatori, instrumente de moderare și claritate de produs pentru a le susține în siguranță.
+- Mecanismele exacte rămân deschise. Această pagină explică rolul Bitsocial Network, nu o promisiune fixă despre lansatoare de tokenuri, formule de taxe sau tokenomics-ul final.

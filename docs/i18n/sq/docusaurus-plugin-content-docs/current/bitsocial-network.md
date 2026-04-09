@@ -44,3 +44,13 @@ Masterplani e vendos këtë pas pikave të mëparshme të provës në nivelin e 
 4. lëshoni Rrjetin Bitsocial
 
 Kjo sekuencë ka kuptim sepse një shtresë koordinimi në nivel ekosistemi është më e dobishme kur aplikacionet reale dhe sjellja reale e përdoruesve ekzistojnë tashmë në rrjet.
+
+## Parime të dizajnit
+
+Meqë Bitsocial Network mbetet ende një infrastrukturë e propozuar dhe jo një produkt i lançuar, plani aktual duhet të mbetet i disiplinuar në disa pika:
+
+- Së pari aplikacionet dhe komunitetet. Shtresa e rrjetit duhet të ndjekë përdorimin real në aplikacionet Bitsocial, jo të dalë përpara me veçori financiare spekulative.
+- Kontributi real mbi hype-in. Nëse Bitsocial më vonë shton asete në nivel komuniteti, krijuesi ose klienti, ato duhet të shpërblejnë pjesëmarrjen dhe ndërtimin afatgjatë, jo lançime imituese apo tregtim afatshkurtër.
+- Kurimi lejohet. Aplikacionet Bitsocial mund të formësojnë renditjet, parazgjedhjet, zbulimin dhe ritmin e rollout-it për të favorizuar komunitete të qëndrueshme mbi sjelljen e stilit kazino.
+- Rollout-i gradual është i shëndetshëm. Është e arsyeshme të shtyhen veçoritë financiare native të appchain-it derisa ekosistemi të ketë mjaft përdorues, mjete moderimi dhe qartësi produkti për t'i mbështetur në mënyrë të sigurt.
+- Mekanizmat e saktë mbeten të hapur. Kjo faqe shpjegon rolin e Bitsocial Network, jo një premtim të mbyllur për launchers tokenësh, formula tarifash ose tokenomics-in përfundimtar.

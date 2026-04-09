@@ -44,3 +44,13 @@ Hlavní plán to umístí za předchozí body kontroly na úrovni aplikace:
 4. spustit Bitsocial Network
 
 Tato sekvence dává smysl, protože koordinační vrstva na úrovni ekosystému je užitečnější, jakmile v síti již existují skutečné aplikace a skutečné chování uživatelů.
+
+## Principy návrhu
+
+Protože je Bitsocial Network zatím navrhovanou infrastrukturou a ne spuštěným produktem, měl by současný plán zůstat disciplinovaný v několika ohledech:
+
+- Nejdřív aplikace a komunity. Síťová vrstva by měla vycházet ze skutečného používání v aplikacích Bitsocial, ne začínat spekulativními finančními funkcemi.
+- Skutečný přínos má přednost před humbukem. Pokud Bitsocial později přidá aktiva na úrovni komunit, tvůrců nebo klientů, měla by odměňovat účast a dlouhodobé budování, ne napodobovací launchy nebo krátkodobé obchodování.
+- Kurátorství je v pořádku. Aplikace Bitsocial mohou nastavovat žebříčky, výchozí volby, objevování i tempo zavádění tak, aby upřednostňovaly trvanlivé komunity před kasinovým chováním.
+- Postupné zavádění je zdravé. Dává smysl odložit finanční funkce nativní pro appchain, dokud ekosystém nebude mít dost uživatelů, nástrojů pro moderaci a produktové jasnosti, aby je bylo možné bezpečně podpořit.
+- Přesné mechanismy zůstávají otevřené. Tato stránka vysvětluje roli Bitsocial Network, nikoli pevný slib o launcherech tokenů, vzorcích poplatků nebo konečné tokenomice.

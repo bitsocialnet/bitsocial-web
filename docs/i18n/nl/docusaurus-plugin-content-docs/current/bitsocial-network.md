@@ -44,3 +44,13 @@ Het masterplan plaatst dit na de eerdere bewijspunten op app-niveau:
 4. lanceer Bitsocial Network
 
 Die volgorde is logisch omdat een coördinatielaag op ecosysteemniveau nuttiger is zodra er al echte apps en echt gebruikersgedrag op het netwerk bestaan.
+
+## Ontwerpprincipes
+
+Omdat Bitsocial Network nog steeds voorgestelde infrastructuur is en geen gelanceerd product, moet het huidige plan op een paar punten gedisciplineerd blijven:
+
+- Apps en communities eerst. De netwerklaag moet echte gebruikspatronen in Bitsocial-apps volgen en niet vooroplopen met speculatieve financiële functies.
+- Echte bijdrage boven hype. Als Bitsocial later assets op community-, creator- of clientniveau toevoegt, moeten die deelname en langetermijnopbouw belonen in plaats van kopieer-lanceringen of kortetermijnhandel.
+- Curatie is toegestaan. Bitsocial-apps kunnen rankings, standaarden, discovery en rollout-timing vormgeven om duurzame communities te bevoordelen boven casino-achtig gedrag.
+- Een geleidelijke uitrol is gezond. Het is redelijk om appchain-native financiële functies uit te stellen totdat het ecosysteem genoeg gebruikers, moderatietools en productduidelijkheid heeft om ze veilig te ondersteunen.
+- De exacte mechanismen liggen nog open. Deze pagina legt de rol van Bitsocial Network uit, niet een vaststaande belofte over token launchers, feeformules of definitieve tokenomics.

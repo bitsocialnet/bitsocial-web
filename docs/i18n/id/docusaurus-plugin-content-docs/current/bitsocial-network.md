@@ -44,3 +44,13 @@ Rencana induk menempatkan ini setelah poin bukti tingkat aplikasi sebelumnya:
 4. meluncurkan Jaringan Bitsocial
 
 Urutan tersebut masuk akal karena lapisan koordinasi tingkat ekosistem akan lebih berguna setelah aplikasi nyata dan perilaku pengguna nyata sudah ada di jaringan.
+
+## Prinsip Desain
+
+Karena Bitsocial Network masih berupa infrastruktur yang diusulkan, bukan produk yang sudah diluncurkan, rencana saat ini harus tetap disiplin dalam beberapa hal:
+
+- Aplikasi dan komunitas lebih dulu. Lapisan jaringan harus mengikuti penggunaan nyata di aplikasi Bitsocial, bukan mendahului dengan fitur keuangan spekulatif.
+- Kontribusi nyata di atas hype. Jika nanti Bitsocial menambahkan aset tingkat komunitas, kreator, atau klien, aset itu harus memberi imbalan pada partisipasi dan pembangunan jangka panjang, bukan peluncuran tiruan atau perdagangan jangka pendek.
+- Kurasi diperbolehkan. Aplikasi Bitsocial dapat membentuk peringkat, pengaturan bawaan, penemuan, dan waktu rollout untuk mengutamakan komunitas yang tahan lama dibanding perilaku bergaya kasino.
+- Rollout bertahap itu sehat. Masuk akal untuk menunda fitur keuangan native appchain sampai ekosistem memiliki cukup pengguna, alat moderasi, dan kejelasan produk untuk mendukungnya dengan aman.
+- Mekanisme pastinya masih terbuka. Halaman ini menjelaskan peran Bitsocial Network, bukan janji yang sudah terkunci tentang peluncur token, rumus biaya, atau tokenomics final.

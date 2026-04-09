@@ -44,3 +44,13 @@ Masterplanen placerer dette efter de tidligere bevispunkter på app-niveau:
 4. start Bitsocial Network
 
 Denne sekvens giver mening, fordi et koordineringslag på økosystemniveau er mere nyttigt, når rigtige apps og ægte brugeradfærd allerede eksisterer på netværket.
+
+## Designprincipper
+
+Fordi Bitsocial Network stadig er foreslået infrastruktur og ikke et lanceret produkt, bør den nuværende plan være disciplineret på nogle få punkter:
+
+- Apps og communities først. Netværkslaget bør følge reel brug i Bitsocial-apps i stedet for at starte med spekulative finansielle funktioner.
+- Reel deltagelse frem for hype. Hvis Bitsocial senere tilføjer aktiver på community-, creator- eller klientniveau, bør de belønne deltagelse og langsigtet opbygning frem for kopilanceringer eller kortsigtet handel.
+- Kuratering er tilladt. Bitsocial-apps kan forme rangeringer, standardvalg, discovery og rollout-timing, så holdbare communities prioriteres over kasinoadfærd.
+- Gradvis udrulning er sundt. Det er rimeligt at udskyde appchain-native finansielle funktioner, indtil økosystemet har nok brugere, moderationsværktøjer og produktklarhed til at understøtte dem sikkert.
+- De præcise mekanikker er stadig åbne. Denne side forklarer Bitsocial Networks rolle, ikke et fast løfte om token-launchere, gebyrformler eller endelig tokenøkonomi.

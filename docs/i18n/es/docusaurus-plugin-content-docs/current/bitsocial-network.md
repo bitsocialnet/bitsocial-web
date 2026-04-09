@@ -44,3 +44,13 @@ El plan maestro coloca esto después de los puntos de prueba anteriores a nivel 
 4. lanzar la red Bitsocial
 
 Esa secuencia tiene sentido porque una capa de coordinación a nivel de ecosistema es más útil una vez que las aplicaciones reales y el comportamiento real del usuario ya existen en la red.
+
+## Principios de diseño
+
+Como Bitsocial Network sigue siendo una infraestructura propuesta y no un producto ya lanzado, el plan actual debe mantenerse disciplinado en varios puntos:
+
+- Primero las apps y las comunidades. La capa de red debe seguir el uso real dentro de las apps de Bitsocial, no adelantarse con funciones financieras especulativas.
+- La contribución real por encima del hype. Si más adelante Bitsocial añade activos a nivel de comunidad, creador o cliente, deberían recompensar la participación y la construcción a largo plazo en lugar de lanzamientos imitativos o trading a corto plazo.
+- La curación es válida. Las apps de Bitsocial pueden definir rankings, valores por defecto, descubrimiento y ritmo de despliegue para favorecer comunidades duraderas frente a dinámicas de casino.
+- Un despliegue gradual es sano. Tiene sentido retrasar las funciones financieras nativas del appchain hasta que el ecosistema tenga suficientes usuarios, herramientas de moderación y claridad de producto para sostenerlas con seguridad.
+- Los mecanismos exactos siguen abiertos. Esta página explica el papel de Bitsocial Network, no una promesa cerrada sobre lanzadores de tokens, fórmulas de comisiones o la tokenómica final.

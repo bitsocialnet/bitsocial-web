@@ -44,3 +44,13 @@ Masterplanen placerar detta efter de tidigare provpunkterna på appnivå:
 4. starta Bitsocial Network
 
 Den sekvensen är vettig eftersom ett koordinationslager på ekosystemnivå är mer användbart när riktiga appar och verkligt användarbeteende redan finns på nätverket.
+
+## Designprinciper
+
+Eftersom Bitsocial Network fortfarande är föreslagen infrastruktur och inte en lanserad produkt bör den nuvarande planen vara disciplinerad på några punkter:
+
+- Appar och communities först. Nätverkslagret bör följa verklig användning i Bitsocial-appar, inte gå före med spekulativa finansiella funktioner.
+- Verkligt bidrag före hype. Om Bitsocial senare lägger till tillgångar på community-, kreatörs- eller klientnivå bör de belöna deltagande och långsiktigt byggande i stället för copycat-lanseringar eller kortsiktig handel.
+- Kurering är tillåten. Bitsocial-appar kan forma rankningar, standardval, discovery och rollout-timing för att gynna hållbara communities framför kasinoliknande beteende.
+- Gradvis utrullning är sunt. Det är rimligt att skjuta upp appchain-nativa finansiella funktioner tills ekosystemet har tillräckligt många användare, modereringsverktyg och produktklarhet för att stödja dem säkert.
+- De exakta mekanismerna är fortfarande öppna. Den här sidan förklarar Bitsocial Networks roll, inte ett låst löfte om token-launchers, avgiftsformler eller slutlig tokenomics.

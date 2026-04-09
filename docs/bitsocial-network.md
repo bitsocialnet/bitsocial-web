@@ -52,3 +52,20 @@ The master plan places this after the earlier app-level proof points:
 
 That sequence makes sense because an ecosystem-level coordination layer is more useful once real
 apps and real user behavior already exist on the network.
+
+## Design Principles
+
+Because Bitsocial Network is still proposed infrastructure rather than a launched product, the
+current plan should stay disciplined in a few ways:
+
+- Apps and communities first. The network layer should follow real usage in Bitsocial apps, not
+  lead with speculative financial features.
+- Real contribution over hype. If Bitsocial later adds community-, creator-, or client-level
+  assets, they should reward participation and long-term building rather than copycat launches or
+  short-term trading.
+- Curation is allowed. Bitsocial apps can shape rankings, defaults, discovery, and rollout timing
+  to favor durable communities over casino-style behavior.
+- Gradual rollout is healthy. It is reasonable to delay appchain-native financial features until
+  the ecosystem has enough users, moderation tools, and product clarity to support them safely.
+- Exact mechanics are still open. This page explains the role of Bitsocial Network, not a locked
+  promise about token launchers, fee formulas, or final tokenomics.

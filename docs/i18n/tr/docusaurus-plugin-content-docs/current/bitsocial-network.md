@@ -44,3 +44,13 @@ Ana plan bunu daha önceki uygulama düzeyindeki kanıt noktalarından sonra yer
 4. Bitsocial Network'ü başlat
 
 Bu sıralama mantıklıdır çünkü ekosistem düzeyindeki bir koordinasyon katmanı, gerçek uygulamalar ve gerçek kullanıcı davranışı ağda zaten mevcut olduğunda daha kullanışlı olur.
+
+## Tasarım İlkeleri
+
+Bitsocial Network hâlâ yayımlanmış bir ürün değil, önerilmiş bir altyapı olduğu için mevcut planın birkaç konuda disiplinli kalması gerekir:
+
+- Önce uygulamalar ve topluluklar. Ağ katmanı, spekülatif finansal özelliklerle öne geçmek yerine Bitsocial uygulamalarındaki gerçek kullanımı takip etmelidir.
+- Heyecandan önce gerçek katkı. Bitsocial ileride topluluk, üretici veya istemci düzeyinde varlıklar eklerse, bunlar kopya lansmanlar ya da kısa vadeli al-sat yerine katılımı ve uzun vadeli inşayı ödüllendirmelidir.
+- Kürasyon kabul edilebilir. Bitsocial uygulamaları sıralamaları, varsayılanları, keşfi ve rollout zamanlamasını, casino benzeri davranışlar yerine kalıcı toplulukları destekleyecek şekilde biçimlendirebilir.
+- Kademeli rollout sağlıklıdır. Appchain'e özgü finansal özellikleri, ekosistem bunları güvenle destekleyebilecek yeterli kullanıcıya, moderasyon aracına ve ürün netliğine ulaşana kadar ertelemek makuldür.
+- Kesin mekanikler hâlâ açıktır. Bu sayfa Bitsocial Network'ün rolünü açıklar; token launcher'lar, ücret formülleri veya nihai tokenomics hakkında kilitlenmiş bir vaat değildir.

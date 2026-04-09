@@ -44,3 +44,13 @@ Yleissuunnitelma sijoittaa tämän aikaisempien sovellustason todistuspisteiden 
 4. käynnistää Bitsocial Network
 
 Tämä järjestys on järkevä, koska ekosysteemitason koordinointikerros on hyödyllisempi, kun verkossa on jo todellisia sovelluksia ja todellista käyttäjän käyttäytymistä.
+
+## Suunnitteluperiaatteet
+
+Koska Bitsocial Network on yhä ehdotettua infrastruktuuria eikä julkaistu tuote, nykyisen suunnitelman pitäisi pysyä kurinalaisena muutamassa asiassa:
+
+- Sovellukset ja yhteisöt ensin. Verkkokerroksen pitäisi seurata todellista käyttöä Bitsocial-sovelluksissa eikä lähteä liikkeelle spekulatiivisilla rahoitusominaisuuksilla.
+- Todellinen osallistuminen hypen edelle. Jos Bitsocial lisää myöhemmin yhteisö-, luoja- tai asiakastason varoja, niiden pitäisi palkita osallistumista ja pitkäjänteistä rakentamista jäljittelyjulkaisujen tai lyhyen aikavälin kaupankäynnin sijaan.
+- Kuratointi on sallittua. Bitsocial-sovellukset voivat muokata sijoituksia, oletuksia, löytämistä ja käyttöönoton ajoitusta niin, että kestävät yhteisöt asetetaan kasinotyylisen käyttäytymisen edelle.
+- Vaiheittainen käyttöönotto on tervettä. On järkevää lykätä appchain-natiiveja rahoitusominaisuuksia, kunnes ekosysteemissä on riittävästi käyttäjiä, moderointityökaluja ja tuoteselkeyttä niiden turvalliseen tukemiseen.
+- Tarkat mekanismit ovat yhä avoimia. Tämä sivu selittää Bitsocial Networkin roolin, ei lukittua lupausta token launchereista, maksukaavoista tai lopullisesta tokenomiikasta.

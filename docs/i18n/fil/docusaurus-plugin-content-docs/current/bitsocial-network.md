@@ -44,3 +44,13 @@ Inilalagay ito ng master plan pagkatapos ng mga naunang punto ng patunay sa anta
 4. ilunsad ang Bitsocial Network
 
 Makatuwiran ang pagkakasunud-sunod na iyon dahil mas kapaki-pakinabang ang isang layer ng koordinasyon sa antas ng ecosystem kapag umiral na ang mga totoong app at totoong gawi ng user sa network.
+
+## Mga Prinsipyo sa Disenyo
+
+Dahil iminungkahing imprastraktura pa lamang ang Bitsocial Network at hindi pa inilulunsad na produkto, dapat manatiling disiplinado ang kasalukuyang plano sa ilang bagay:
+
+- Unahin ang mga app at komunidad. Dapat sumunod ang network layer sa totoong paggamit sa loob ng mga Bitsocial app, hindi mauna sa mga mapagsapalarang financial feature.
+- Mas mahalaga ang tunay na ambag kaysa hype. Kung magdadagdag ang Bitsocial sa hinaharap ng mga asset sa antas ng komunidad, creator, o client, dapat nitong gantimpalaan ang pakikilahok at pangmatagalang pagbuo kaysa panggagayang launch o panandaliang trading.
+- Pinapayagan ang curation. Maaaring hubugin ng mga Bitsocial app ang rankings, defaults, discovery, at timing ng rollout upang paboran ang matitibay na komunidad kaysa asal na parang casino.
+- Mabuti ang unti-unting rollout. Makatuwirang ipagpaliban ang appchain-native na mga financial feature hanggang magkaroon ang ecosystem ng sapat na users, moderation tools, at linaw ng produkto upang masuportahan ang mga ito nang ligtas.
+- Bukas pa rin ang eksaktong mechanics. Ipinapaliwanag ng pahinang ito ang papel ng Bitsocial Network, hindi isang nakapirming pangako tungkol sa mga token launcher, formula ng fee, o pinal na tokenomics.

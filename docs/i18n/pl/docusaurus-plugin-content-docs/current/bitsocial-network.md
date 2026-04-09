@@ -44,3 +44,13 @@ Plan główny umieszcza to po wcześniejszych punktach kontrolnych na poziomie a
 4. uruchom sieć Bitsocial
 
 Ta sekwencja ma sens, ponieważ warstwa koordynacji na poziomie ekosystemu jest bardziej użyteczna, gdy w sieci istnieją już prawdziwe aplikacje i rzeczywiste zachowania użytkowników.
+
+## Zasady projektowe
+
+Ponieważ Bitsocial Network nadal jest proponowaną infrastrukturą, a nie uruchomionym produktem, obecny plan powinien zachować dyscyplinę w kilku kwestiach:
+
+- najpierw aplikacje i społeczności. Warstwa sieciowa powinna wynikać z rzeczywistego użycia w aplikacjach Bitsocial, a nie wyprzedzać je spekulacyjnymi funkcjami finansowymi.
+- realny wkład ponad hype. Jeśli Bitsocial doda później aktywa na poziomie społeczności, twórców lub klientów, powinny one nagradzać uczestnictwo i długoterminowe budowanie zamiast kopiowanych launchy czy krótkoterminowego handlu.
+- kuracja jest dopuszczalna. Aplikacje Bitsocial mogą kształtować rankingi, ustawienia domyślne, odkrywanie i tempo wdrażania tak, by faworyzować trwałe społeczności zamiast zachowań w stylu kasyna.
+- stopniowe wdrażanie jest zdrowe. Rozsądne jest opóźnienie funkcji finansowych natywnych dla appchaina, dopóki ekosystem nie będzie miał wystarczającej liczby użytkowników, narzędzi moderacji i jasności produktowej, by wspierać je bezpiecznie.
+- dokładne mechanizmy pozostają otwarte. Ta strona wyjaśnia rolę Bitsocial Network, a nie składa sztywnej obietnicy dotyczącej launcherów tokenów, wzorów opłat czy ostatecznej tokenomiki.
