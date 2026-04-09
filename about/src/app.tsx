@@ -10,6 +10,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Home from "@/pages/home";
+import Apps from "@/pages/apps";
 import About from "@/pages/about";
 import Blog from "@/pages/blog";
 import Privacy from "@/pages/privacy";
@@ -17,7 +18,6 @@ import SeoHead from "@/components/seo-head";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { normalizeInitialHomeScrollPosition } from "@/lib/initial-scroll";
 
-const Apps = lazy(() => import("@/pages/apps"));
 const AppDetail = lazy(() => import("@/pages/app-detail"));
 
 function RouteLoadingFallback() {
@@ -76,14 +76,7 @@ function App() {
       <RouteScrollReset />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/apps"
-          element={
-            <Suspense fallback={<RouteLoadingFallback />}>
-              <Apps />
-            </Suspense>
-          }
-        />
+        <Route path="/apps" element={<Apps />} />
         <Route
           path="/apps/:slug"
           element={
