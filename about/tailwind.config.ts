@@ -64,7 +64,7 @@ export default {
       },
       fontFamily: {
         display: ["Exo", "sans-serif"],
-        body: ["Inter", "sans-serif"],
+        body: ["Manrope", "sans-serif"],
       },
       animation: {
         shimmer: "shimmer 3s linear infinite",

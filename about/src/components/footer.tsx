@@ -77,9 +77,9 @@ export default function Footer() {
           {/* Product */}
           {exploreLinks.length > 0 ? (
             <div>
-              <h4 className="text-xs font-display font-semibold uppercase tracking-widest text-foreground/70 mb-5">
+              <h3 className="text-xs font-display font-semibold uppercase tracking-widest text-foreground/70 mb-5">
                 {t("footer.explore")}
-              </h4>
+              </h3>
               <ul className="space-y-2.5">
                 {exploreLinks.map((link) => (
                   <li key={link.to}>
@@ -100,9 +100,9 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="text-xs font-display font-semibold uppercase tracking-widest text-foreground/70 mb-5">
+            <h3 className="text-xs font-display font-semibold uppercase tracking-widest text-foreground/70 mb-5">
               {t("footer.resources")}
-            </h4>
+            </h3>
             <ul className="space-y-2.5">
               {resourceLinks.map((link) => (
                 <li key={link.to}>
@@ -126,9 +126,9 @@ export default function Footer() {
 
           {/* Community */}
           <div>
-            <h4 className="text-xs font-display font-semibold uppercase tracking-widest text-foreground/70 mb-5">
+            <h3 className="text-xs font-display font-semibold uppercase tracking-widest text-foreground/70 mb-5">
               {t("footer.community")}
-            </h4>
+            </h3>
             <ul className="space-y-2.5">
               <li>
                 <a

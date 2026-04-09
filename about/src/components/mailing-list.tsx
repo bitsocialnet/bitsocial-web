@@ -55,8 +55,11 @@ export default function MailingList() {
           transition={{ duration: 0.5 }}
           className="glass-card p-8 md:p-12 text-center"
         >
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-core/10 dark:bg-blue-core/20 mb-6">
-            <Mail className="h-5 w-5 text-blue-glow" aria-hidden="true" />
+          <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full border border-blue-core/20 bg-blue-core/[0.07] dark:border-blue-core/35 dark:bg-blue-core/[0.14]">
+            <Mail
+              className="h-5 w-5 text-foreground/78 dark:text-foreground/84"
+              aria-hidden="true"
+            />
           </div>
 
           <h2 className="text-2xl md:text-3xl font-display font-normal mb-3 text-balance text-muted-foreground dark:text-foreground/85">
@@ -71,7 +74,7 @@ export default function MailingList() {
             <m.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="flex items-center justify-center gap-2 text-blue-glow font-display font-medium"
+              className="flex items-center justify-center gap-2 font-display font-medium text-foreground/90"
             >
               <Check className="h-5 w-5" aria-hidden="true" />
               <span>{successMessage}</span>
@@ -111,11 +114,11 @@ export default function MailingList() {
                 disabled={formState === "submitting" || !isValid || !isNewsletterConfigured}
                 className={cn(
                   "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-display font-semibold text-sm",
-                  "border border-blue-core/30 bg-blue-core/10 text-muted-foreground",
-                  "hover:text-foreground hover:bg-blue-core/20 hover:border-blue-glow",
+                  "border border-blue-core/30 bg-blue-core/[0.08] text-foreground/90",
+                  "hover:text-foreground hover:bg-blue-core/[0.14] hover:border-blue-glow",
                   "ring-glow transition-[box-shadow,border-color,background-color,color,opacity] duration-300",
-                  "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-blue-core/30 disabled:hover:bg-blue-core/10 disabled:hover:text-muted-foreground disabled:hover:shadow-none",
-                  "dark:border-blue-core/55 dark:bg-blue-core/28 dark:hover:bg-blue-core/42",
+                  "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-blue-core/30 disabled:hover:bg-blue-core/[0.08] disabled:hover:text-foreground/90 disabled:hover:shadow-none",
+                  "dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:hover:bg-blue-core/[0.24]",
                 )}
               >
                 {formState === "submitting" ? (

@@ -533,10 +533,10 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel({
             tabIndex={-1}
             aria-label={approach.label}
             onClick={() => setPage(index)}
-            className={`h-1.5 rounded-full transition-[width,background-color] duration-200 motion-reduce:transition-none ${
+            className={`h-1.5 w-6 origin-center rounded-full transform-gpu transition-[transform,background-color,opacity] duration-200 motion-reduce:transition-none ${
               index === highlightedIndex
-                ? "w-6 bg-blue-glow"
-                : "w-1.5 bg-muted-foreground/20 hover:bg-muted-foreground/40"
+                ? "scale-x-100 bg-blue-glow"
+                : "scale-x-[0.25] bg-muted-foreground/20 hover:bg-muted-foreground/40"
             }`}
           />
         ))}
