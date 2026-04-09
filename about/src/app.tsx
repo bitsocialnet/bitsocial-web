@@ -43,6 +43,21 @@ function InitialHomeScrollGuard() {
   return null;
 }
 
+function RouteScrollReset() {
+  const location = useLocation();
+  const previousPathnameRef = useRef(location.pathname);
+
+  useLayoutEffect(() => {
+    if (previousPathnameRef.current !== location.pathname) {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+
+    previousPathnameRef.current = location.pathname;
+  }, [location.pathname]);
+
+  return null;
+}
+
 function DevelopmentOnlyRoute({ children }: { children: ReactNode }) {
   const location = useLocation();
 
@@ -58,6 +73,7 @@ function App() {
     <Router>
       <SeoHead />
       <InitialHomeScrollGuard />
+      <RouteScrollReset />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route

@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { m } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { cn } from "@/lib/utils";
-import { goHomeScrollTop } from "@/lib/home-nav";
+import { goHomeScrollTop, goRouteScrollTop } from "@/lib/home-nav";
 import { goToMailingListSection } from "@/lib/mailing-list-nav";
 import { ThemeToggle } from "./theme-toggle";
 import HamburgerButton from "./hamburger-button";
@@ -29,7 +29,7 @@ function NavLink({
   to?: string;
   href?: string;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
   className?: string;
   noUnderline?: boolean;
 }) {
@@ -84,19 +84,26 @@ function TopbarLinks({
   sourceCodeLabel,
   newsletterLabel,
   onNavClick,
+  onAppsClick,
   onNewsletterClick,
   routeLinks,
 }: {
   sourceCodeLabel: string;
   newsletterLabel: string;
   onNavClick: () => void;
+  onAppsClick: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
   onNewsletterClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   routeLinks: Array<{ label: string; to: string }>;
 }) {
   return (
     <div className="flex items-center gap-5">
       {routeLinks.map((link) => (
-        <NavLink key={link.to} to={link.to} onClick={onNavClick} noUnderline>
+        <NavLink
+          key={link.to}
+          to={link.to}
+          onClick={link.to === "/apps" ? onAppsClick : onNavClick}
+          noUnderline
+        >
           {link.label}
         </NavLink>
       ))}
@@ -119,12 +126,14 @@ function DesktopNavigation({
   sourceCodeLabel,
   newsletterLabel,
   onNavClick,
+  onAppsClick,
   onNewsletterClick,
   routeLinks,
 }: {
   sourceCodeLabel: string;
   newsletterLabel: string;
   onNavClick: () => void;
+  onAppsClick: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
   onNewsletterClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   routeLinks: Array<{ label: string; to: string }>;
 }) {
@@ -134,6 +143,7 @@ function DesktopNavigation({
         sourceCodeLabel={sourceCodeLabel}
         newsletterLabel={newsletterLabel}
         onNavClick={onNavClick}
+        onAppsClick={onAppsClick}
         onNewsletterClick={onNewsletterClick}
         routeLinks={routeLinks}
       />
@@ -269,6 +279,13 @@ export default function Topbar() {
     goHomeScrollTop(location.pathname, navigate);
   };
 
+  const handleAppsClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    handleNavClick();
+    goRouteScrollTop(location.pathname, "/apps", navigate);
+  };
+
   const appsLabel = t("nav.apps");
   const docsLabel = t("nav.docs");
   const statsLabel = t("nav.status");
@@ -308,6 +325,7 @@ export default function Topbar() {
                 sourceCodeLabel={sourceCodeLabel}
                 newsletterLabel={newsletterLabel}
                 onNavClick={handleNavClick}
+                onAppsClick={handleAppsClick}
                 onNewsletterClick={handleNewsletterClick}
                 routeLinks={routeLinks}
               />
@@ -339,6 +357,7 @@ export default function Topbar() {
                   sourceCodeLabel={sourceCodeLabel}
                   newsletterLabel={newsletterLabel}
                   onNavClick={handleNavClick}
+                  onAppsClick={handleAppsClick}
                   onNewsletterClick={handleNewsletterClick}
                   routeLinks={routeLinks}
                 />
@@ -351,7 +370,12 @@ export default function Topbar() {
           >
             <div className="flex flex-col gap-1">
               {routeLinks.map((link) => (
-                <NavLink key={link.to} to={link.to} onClick={handleNavClick} noUnderline>
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  onClick={link.to === "/apps" ? handleAppsClick : handleNavClick}
+                  noUnderline
+                >
                   {link.label}
                 </NavLink>
               ))}
