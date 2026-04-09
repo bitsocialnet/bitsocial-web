@@ -78,12 +78,14 @@ export default function AppCard({
 
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <Link
-              to={`/apps/${app.slug}`}
-              className="font-display text-2xl leading-none text-foreground transition-colors hover:text-blue-core"
-            >
-              {app.name}
-            </Link>
+            <h3 className="font-display text-2xl leading-none">
+              <Link
+                to={`/apps/${app.slug}`}
+                className="text-foreground transition-colors hover:text-blue-core"
+              >
+                {app.name}
+              </Link>
+            </h3>
             {app.status ? (
               <span className={getStatusClassName(app.status)}>
                 {app.status === "ready" ? t("apps.readyToUse") : t("apps.experimental")}

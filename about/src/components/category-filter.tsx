@@ -31,9 +31,9 @@ export default function CategoryFilter({
   return (
     <aside className="h-fit lg:sticky lg:top-28">
       <div className="mb-3 px-1 pt-1">
-        <p className="text-xs font-display uppercase tracking-[0.2em] text-foreground/50">
+        <h2 className="text-xs font-display uppercase tracking-[0.2em] text-foreground/50">
           {directoryLabel}
-        </p>
+        </h2>
       </div>
 
       <div className="space-y-2">
