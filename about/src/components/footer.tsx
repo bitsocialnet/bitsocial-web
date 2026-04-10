@@ -50,6 +50,13 @@ export default function Footer() {
     goRouteScrollTop(location.pathname, "/privacy", navigate);
   };
 
+  const handleInternalRouteClick =
+    (targetPath: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      goRouteScrollTop(location.pathname, targetPath, navigate);
+    };
+
   return (
     <footer
       className="footer-glass px-6 pt-6 mt-8 md:pt-14 md:mt-12"
@@ -88,7 +95,11 @@ export default function Footer() {
                         {link.label}
                       </a>
                     ) : (
-                      <Link to={link.to} className={linkClassName}>
+                      <Link
+                        to={link.to}
+                        className={linkClassName}
+                        onClick={handleInternalRouteClick(link.to)}
+                      >
                         {link.label}
                       </Link>
                     )}
@@ -106,7 +117,11 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {resourceLinks.map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} className={linkClassName}>
+                  <Link
+                    to={link.to}
+                    className={linkClassName}
+                    onClick={handleInternalRouteClick(link.to)}
+                  >
                     {link.label}
                   </Link>
                 </li>
