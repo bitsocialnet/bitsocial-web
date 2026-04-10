@@ -141,7 +141,7 @@ export default function AppCard({
         <div className="flex flex-wrap gap-2">
           <CardInlineCta
             href={`/apps/${app.slug}`}
-            className={`apps-frosted-cta ${highlightedCtaClassName} !px-5 !py-2 text-sm`}
+            className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-5 !py-2 text-sm`}
           >
             <span className="inline-flex items-center gap-2">
               <ArrowUpRight className="h-4 w-4" />
@@ -152,7 +152,7 @@ export default function AppCard({
           {primaryActionLink ? (
             <CardInlineCta
               href={primaryActionLink.url}
-              className={`apps-frosted-cta ${highlightedCtaClassName} !px-5 !py-2 text-sm`}
+              className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-5 !py-2 text-sm`}
             >
               <span className="inline-flex items-center gap-2">
                 {getLinkIcon(primaryActionLink)}

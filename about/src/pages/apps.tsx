@@ -254,7 +254,7 @@ export default function Apps() {
 
                 <CardInlineCta
                   href={SUBMIT_APP_URL}
-                  className={`apps-frosted-cta ${highlightedCtaClassName} !px-6 !py-3 text-sm`}
+                  className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-6 !py-3 text-sm`}
                 >
                   {t("apps.submitApp")}
                 </CardInlineCta>
