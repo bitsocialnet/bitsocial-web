@@ -232,6 +232,44 @@ function buildPrivacySeoMetadata(): SeoMetadata {
   };
 }
 
+function buildAboutSeoMetadata(): SeoMetadata {
+  const canonicalUrl = toAbsoluteUrl("/about");
+
+  return {
+    title: "About Bitsocial | Core Team",
+    description: truncateDescription(
+      "Meet the Bitsocial core team and learn about the peer-to-peer social protocol they have been building since early 2022.",
+    ),
+    canonicalUrl,
+    robots: NOINDEX_ROBOTS,
+    ogType: "website",
+    imageUrl: toAbsoluteUrl(DEFAULT_IMAGE_PATH),
+    imageAlt: "Bitsocial core team page",
+    structuredData: createStructuredData([
+      buildOrganizationSchema(),
+      buildWebsiteSchema(),
+      {
+        "@type": "AboutPage",
+        "@id": `${canonicalUrl}#webpage`,
+        url: canonicalUrl,
+        name: "About Bitsocial | Core Team",
+        description:
+          "Meet the Bitsocial core team and learn about the peer-to-peer social protocol they have been building since early 2022.",
+        isPartOf: {
+          "@id": `${SITE_ORIGIN}/#website`,
+        },
+        about: {
+          "@id": `${SITE_ORIGIN}/#organization`,
+        },
+      },
+      buildBreadcrumbSchema([
+        { name: SITE_NAME, url: toAbsoluteUrl("/") },
+        { name: "About", url: canonicalUrl },
+      ]),
+    ]),
+  };
+}
+
 function getApplicationCategory(category: AppCategorySlug) {
   switch (category) {
     case "apps":
@@ -373,6 +411,10 @@ export function getSeoMetadata(pathname: string, search = ""): SeoMetadata {
 
   if (normalizedPath === "/privacy") {
     return buildPrivacySeoMetadata();
+  }
+
+  if (normalizedPath === "/about") {
+    return buildAboutSeoMetadata();
   }
 
   const appSlugMatch = normalizedPath.match(/^\/apps\/([^/]+)$/);

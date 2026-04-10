@@ -37,6 +37,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  /* Exo's large uppercase glyphs read slightly indented on left-aligned headlines. */
+  .optical-display-start {
+    margin-left: -0.035em;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;

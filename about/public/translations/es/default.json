@@ -29,7 +29,7 @@
     "status": "Estado",
     "resources": "Recursos",
     "blog": "Blog",
-    "about": "Acerca de",
+    "about": "Sobre nosotros",
     "community": "Comunidad",
     "github": "GitHub",
     "twitter": "Twitter",
@@ -383,5 +383,22 @@
       "title": "Contacto",
       "body": "Las preguntas o correcciones sobre esta página pueden enviarse a"
     }
+  },
+  "about": {
+    "sectionLabel": "Sobre nosotros",
+    "title": "Equipo central de Bitsocial",
+    "subtitle": "Bitsocial ha estado en desarrollo activo desde principios de 2022. El proyecto cambió de nombre recientemente. También estamos construyendo <pkcLink>PKC</pkcLink>, una implementación básica del backend peer-to-peer, destinada al uso general en desarrollo.",
+    "members": {
+      "esteban": {
+        "role": "Fundador de Bitsocial, desarrollador principal."
+      },
+      "rinse": {
+        "role": "Cofundador de Bitsocial, desarrollo central."
+      },
+      "tommaso": {
+        "role": "Cofundador y desarrollador principal de Bitsocial, fundador y director ejecutivo de <forgeLink>Bitsocial Forge</forgeLink>"
+      }
+    },
+    "memberProfileAlt": "Foto de perfil de {{name}}"
   }
 }

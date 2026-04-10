@@ -7,7 +7,9 @@ export default function Blog() {
       <Topbar />
       <main className="pt-24 px-6 pb-12">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-display font-bold mb-8 chrome-text">Blog</h1>
+          <h1 className="optical-display-start text-5xl font-display font-bold mb-8 chrome-text">
+            Blog
+          </h1>
           <div className="glass-card p-8">
             <p className="text-muted-foreground leading-relaxed mb-4">
               The Bitsocial blog will feature protocol updates, development progress, ecosystem

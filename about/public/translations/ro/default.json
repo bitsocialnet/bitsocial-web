@@ -29,7 +29,7 @@
     "status": "Status",
     "resources": "Resurse",
     "blog": "Blog",
-    "about": "Despre",
+    "about": "Despre noi",
     "community": "Comunitate",
     "github": "GitHub",
     "twitter": "Twitter",
@@ -383,5 +383,22 @@
       "title": "Contact",
       "body": "Întrebările sau corecturile despre această pagină pot fi trimise la"
     }
+  },
+  "about": {
+    "sectionLabel": "Despre noi",
+    "title": "Echipa de bază Bitsocial",
+    "subtitle": "Bitsocial a fost în dezvoltare activă de la începutul anului 2022. Proiectul și-a schimbat recent numele. De asemenea, construim <pkcLink>PKC</pkcLink>, o implementare simplă a backend-ului peer-to-peer, destinată dezvoltării generale.",
+    "members": {
+      "esteban": {
+        "role": "Fondator Bitsocial, dezvoltator principal."
+      },
+      "rinse": {
+        "role": "Co-fondator Bitsocial, dezvoltator de bază."
+      },
+      "tommaso": {
+        "role": "Co-fondator Bitsocial și dezvoltator de bază, fondator și CEO al <forgeLink>Bitsocial Forge</forgeLink>"
+      }
+    },
+    "memberProfileAlt": "Fotografia de profil a lui {{name}}"
   }
 }

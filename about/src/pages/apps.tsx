@@ -146,11 +146,11 @@ export default function Apps() {
                 {t("apps.sectionLabel")}
               </p>
               <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                <div className="max-w-3xl">
-                  <h1 className="text-4xl font-display font-semibold leading-[1.1] text-balance text-muted-foreground md:text-6xl lg:text-7xl">
+                <div className="max-w-2xl">
+                  <h1 className="optical-display-start text-4xl font-display font-semibold leading-[1.1] text-balance text-muted-foreground md:text-6xl lg:text-7xl">
                     {t("apps.title")}
                   </h1>
-                  <p className="mt-3 max-w-2xl text-base leading-7 text-muted-foreground">
+                  <p className="mt-3 max-w-2xl text-base md:text-lg text-balance leading-relaxed text-muted-foreground">
                     {t("apps.subtitle")}
                   </p>
                 </div>

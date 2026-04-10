@@ -134,7 +134,7 @@ export default function Privacy() {
             <p className="mb-3 text-xs font-display uppercase tracking-[0.2em] text-muted-foreground/65">
               {privacy.eyebrow}
             </p>
-            <h1 className="max-w-3xl text-4xl font-display font-normal text-balance text-muted-foreground dark:text-foreground/90 md:text-5xl">
+            <h1 className="optical-display-start max-w-3xl text-4xl font-display font-normal text-balance text-muted-foreground dark:text-foreground/90 md:text-5xl">
               {privacy.title}
             </h1>
           </div>

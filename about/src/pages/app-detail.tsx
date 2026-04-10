@@ -123,7 +123,7 @@ export default function AppDetail() {
                       ) : null}
                     </div>
 
-                    <h1 className="mt-4 text-4xl font-display font-normal text-foreground md:text-5xl">
+                    <h1 className="optical-display-start mt-4 text-4xl font-display font-normal text-foreground md:text-5xl">
                       {app.name}
                     </h1>
                     <p className="mt-3 text-lg font-medium leading-7 text-foreground/70">

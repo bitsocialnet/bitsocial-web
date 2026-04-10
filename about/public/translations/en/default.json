@@ -47,7 +47,7 @@
     "status": "Stats",
     "resources": "Resources",
     "blog": "Blog",
-    "about": "About",
+    "about": "About Us",
     "newsletter": "Newsletter",
     "community": "Community",
     "github": "GitHub",
@@ -383,5 +383,22 @@
       "title": "Contact",
       "body": "Questions or corrections about this page can be sent to"
     }
+  },
+  "about": {
+    "sectionLabel": "About Us",
+    "title": "Bitsocial Core Team",
+    "subtitle": "Bitsocial has been in active development since early 2022. The project recently rebranded. We're also building <pkcLink>PKC</pkcLink>, a barebones implementation of the peer-to-peer backend, intended for general development use.",
+    "members": {
+      "esteban": {
+        "role": "Bitsocial founder and lead developer"
+      },
+      "rinse": {
+        "role": "Bitsocial co-founder and core developer"
+      },
+      "tommaso": {
+        "role": "Bitsocial co-founder and core developer, founder & CEO of <forgeLink>Bitsocial Forge</forgeLink>"
+      }
+    },
+    "memberProfileAlt": "Profile photo of {{name}}"
   }
 }

@@ -29,7 +29,7 @@
     "status": "Tila",
     "resources": "Resurssit",
     "blog": "Blogi",
-    "about": "Tietoa",
+    "about": "Tietoja meistä",
     "community": "Yhteisö",
     "github": "GitHub",
     "twitter": "Twitter",
@@ -383,5 +383,22 @@
       "title": "Yhteystiedot",
       "body": "Tätä sivua koskevat kysymykset tai korjaukset voi lähettää osoitteeseen"
     }
+  },
+  "about": {
+    "sectionLabel": "Tietoa meistä",
+    "title": "Bitsocialin ydintiimi",
+    "subtitle": "Bitsocial on ollut aktiivisessa kehityksessä vuoden 2022 alusta lähtien. Projekti on hiljattain uusittu. Rakennamme myös <pkcLink>PKC</pkcLink>, barebone-toteutus peer-to-peer backendistä, joka on tarkoitettu yleiseen kehityskäyttöön.",
+    "members": {
+      "esteban": {
+        "role": "Bitsocialin perustaja, johtava kehittäjä."
+      },
+      "rinse": {
+        "role": "Bitsocialin perustaja, ydinkehittäjä."
+      },
+      "tommaso": {
+        "role": "Bitsocialin toinen perustaja ja ydinkehittäjä, <forgeLink>Bitsocial Forge</forgeLink>:n perustaja ja toimitusjohtaja"
+      }
+    },
+    "memberProfileAlt": "Profiilikuva henkilöstä {{name}}"
   }
 }
