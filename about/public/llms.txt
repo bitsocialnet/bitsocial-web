@@ -1,0 +1,37 @@
+# Bitsocial
+
+> Bitsocial is an open-source peer-to-peer social network and app ecosystem. This site is the public entry point for the network overview, app directory, privacy notice, and documentation covering protocol notes, apps, anti-spam modules, infrastructure, and contributor workflows.
+
+Use `https://bitsocial.net/` for the public product overview and `https://bitsocial.net/docs/` for deeper technical documentation. Ignore `/about` and `/blog` if they appear in source code or local builds; those routes exist in the web app but are currently development-only, not public production surfaces.
+
+## Main site
+
+- [Home](https://bitsocial.net/): High-level explanation of Bitsocial and why it is built around peer-to-peer social apps instead of a centralized platform.
+- [Apps](https://bitsocial.net/apps): Directory of Bitsocial clients, anti-spam modules, and operator tools.
+- [Privacy](https://bitsocial.net/privacy): Privacy notice for the about site, docs, analytics, and newsletter flows.
+
+## Apps and tools
+
+- [5chan](https://bitsocial.net/apps/5chan): Decentralized imageboard client with web, Android, and desktop distribution.
+- [Seedit](https://bitsocial.net/apps/seedit): Forum-style client for Bitsocial with browser, Android, and desktop access.
+- [Mintpass](https://bitsocial.net/apps/mintpass): NFT-backed access control and anti-spam gateway for Bitsocial communities.
+- [Spam Blocker](https://bitsocial.net/apps/spam-blocker): Risk-scoring service for filtering abusive publications.
+- [Bitsocial CLI](https://bitsocial.net/apps/bitsocial-cli): Command-line interface for nodes, publishing, and automation workflows.
+- [Telegram Bots](https://bitsocial.net/apps/telegram-bots): Feed bots that relay Bitsocial posts into Telegram channels.
+
+## Docs
+
+- [Docs home](https://bitsocial.net/docs/): Entry point for protocol notes, roadmap material, app docs, and contributor playbooks.
+- [Docs llms.txt](https://bitsocial.net/docs/llms.txt): Curated docs-specific index for LLMs.
+- [Peer-to-Peer Protocol](https://bitsocial.net/docs/peer-to-peer-protocol/): Core explanation of the serverless social model and pubsub-based protocol.
+- [Bitsocial Network](https://bitsocial.net/docs/bitsocial-network/): Master-plan overview of the shared appchain layer proposed for Bitsocial apps.
+- [Build an imageboard client](https://bitsocial.net/docs/developer-tools/build-an-imageboard-client/): Contributor guide for building new imageboard experiences on Bitsocial.
+- [CLI](https://bitsocial.net/docs/developer-tools/cli/): Command-line documentation for the Bitsocial protocol tooling.
+- [Spam Blocker](https://bitsocial.net/docs/anti-spam/spam-blocker/): Technical documentation for the centralized risk-scoring anti-spam service.
+
+## Optional
+
+- [llms-full.txt](https://bitsocial.net/llms-full.txt): Expanded inline corpus covering the public docs plus companion project READMEs.
+- [Docs llms-full.txt](https://bitsocial.net/docs/llms-full.txt): Docs-scoped full inline corpus if only the documentation surface is needed.
+- [Contributor playbooks](https://bitsocial.net/docs/agent-playbooks/): Public workflow docs for contributors and AI agents; useful for repo and process questions, but usually unnecessary for end-user product questions.
+- [All public docs pages](https://bitsocial.net/docs/llms.txt): 29 curated public docs entries from the Bitsocial docs site.

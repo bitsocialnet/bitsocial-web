@@ -1,0 +1,64 @@
+# Bitsocial Docs
+
+> Bitsocial Docs is the technical documentation surface for the Bitsocial protocol, roadmap, apps, anti-spam modules, infrastructure, and contributor workflows.
+
+Use this file as the short routing index for `https://bitsocial.net/docs/`. Use `https://bitsocial.net/docs/llms-full.txt` when you want the full inline documentation corpus instead of the curated map.
+
+## Protocol notes
+
+- [Custom Anti-Spam Challenges](https://bitsocial.net/docs/custom-challenges/): Why Bitsocial lets each community define its own anti-spam policy.
+- [Identity and Community Ownership](https://bitsocial.net/docs/identity-and-ownership/): How Bitsocial treats profiles and communities as key-controlled property instead of revocable platform accounts.
+- [Local Moderation, Not Global Bans](https://bitsocial.net/docs/local-moderation/): What Bitsocial means when it says moderation stays local.
+- [Peer-to-Peer Protocol](https://bitsocial.net/docs/peer-to-peer-protocol/): How Bitsocial uses public-key addressing and peer-to-peer pubsub to deliver serverless social media.
+
+## Master plan
+
+- [Bitsocial Network](https://bitsocial.net/docs/bitsocial-network/): Phase 4 of the master plan, covering the shared appchain layer proposed for Bitsocial apps.
+- [Decentralize All Social Media](https://bitsocial.net/docs/decentralize-all-social-media/): Phase 5 of the Bitsocial master plan and the end-state it is aiming for.
+- [Permissionless Public RPC](https://bitsocial.net/docs/permissionless-public-rpc/): Proposed design for a public Bitsocial RPC service with isolated users, scoped permissions, and community ownership.
+
+## Apps
+
+- [5chan](https://bitsocial.net/docs/apps/5chan/): A serverless, decentralized imageboard built on the Bitsocial protocol where anyone can create and own boards.
+- [Seedit](https://bitsocial.net/docs/apps/seedit/): A serverless, decentralized Reddit-style forum built on the Bitsocial protocol where anyone can create and own communities.
+
+## Developer tools
+
+- [Build an imageboard client](https://bitsocial.net/docs/developer-tools/build-an-imageboard-client/): Phase 1 contribution guide for builders who want to ship new imageboard experiences on Bitsocial.
+- [CLI](https://bitsocial.net/docs/developer-tools/cli/): Command-line interface for running a Bitsocial node, creating communities, and managing protocol operations.
+- [React Hooks](https://bitsocial.net/docs/developer-tools/react-hooks/): React hooks library for building decentralized social applications on the Bitsocial protocol.
+
+## Anti-spam challenges
+
+- [Captcha Canvas Challenge](https://bitsocial.net/docs/anti-spam/captcha-canvas-challenge/): Standalone image-based captcha generator with configurable characters, dimensions, and colors.
+- [EVM Contract Call Challenge](https://bitsocial.net/docs/anti-spam/evm-contract-call/): Anti-spam challenge that verifies on-chain conditions by calling an EVM smart contract.
+- [Spam Blocker](https://bitsocial.net/docs/anti-spam/spam-blocker/): Centralized spam detection service with risk scoring, OAuth challenges, and configurable tier thresholds.
+- [Voucher Challenge](https://bitsocial.net/docs/anti-spam/voucher-challenge/): Anti-spam challenge that gates publishing behind unique voucher codes distributed by community owners.
+
+## Infrastructure
+
+- [BSO Resolver](https://bitsocial.net/docs/infrastructure/bso-resolver/): Resolve .bso domain names to public keys using ENS TXT records, with built-in caching and cross-platform support.
+- [Mintpass](https://bitsocial.net/docs/infrastructure/mintpass/): NFT-based authentication system that helps Bitsocial communities verify users and reduce sybil attacks.
+- [Telegram Bots](https://bitsocial.net/docs/infrastructure/telegram-bots/): Feed bots that monitor Bitsocial community lists and forward posts to Telegram channels.
+
+## Contributor playbooks
+
+- [Bug Investigation Workflow](https://bitsocial.net/docs/agent-playbooks/bug-investigation/): Use this when a bug is reported in a specific file/line/code block.
+- [Commit and Issue Format](https://bitsocial.net/docs/agent-playbooks/commit-issue-format/): Use this when proposing or implementing meaningful code changes.
+- [Agent Hooks Setup](https://bitsocial.net/docs/agent-playbooks/hooks-setup/): If your AI coding assistant supports lifecycle hooks, configure these for this repo.
+- [Known Surprises](https://bitsocial.net/docs/agent-playbooks/known-surprises/): This file tracks repository specific confusion points that caused agent mistakes.
+- [Long-Running Agent Workflow](https://bitsocial.net/docs/agent-playbooks/long-running-agent-workflow/): Use this playbook when a task is likely to span multiple sessions, handoffs, or spawned agents.
+- [Skills and Tools](https://bitsocial.net/docs/agent-playbooks/skills-and-tools/): Use this playbook when setting up/adjusting skills and external tooling.
+- [Feature List Template](https://bitsocial.net/docs/agent-playbooks/templates/feature-list-template/): Machine-readable template used for long-running multi-session task tracking.
+- [Progress Log](https://bitsocial.net/docs/agent-playbooks/templates/progress.template/): Append one entry per session.
+- [Translations Workflow](https://bitsocial.net/docs/agent-playbooks/translations/): This project uses i18next translation files in public/translations/{lang}/default.json.
+
+## Other
+
+- [i18n Default Language Policy](https://bitsocial.net/docs/i18n-default-language-policy/): Anonymous visitors now resolve language in this order:
+
+## Optional
+
+- [llms-full.txt](https://bitsocial.net/docs/llms-full.txt): Full inline markdown aggregation of the public Bitsocial docs plus companion project READMEs.
+- [Main site llms.txt](https://bitsocial.net/llms.txt): Site-wide entry point covering the public web surfaces outside the docs app.
+- [Main site llms-full.txt](https://bitsocial.net/llms-full.txt): Site-wide full corpus that includes the public docs and the app/project README appendix.
