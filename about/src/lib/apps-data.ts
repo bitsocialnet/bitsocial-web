@@ -542,7 +542,7 @@ export const APPS: AppData[] = [
     tagline: "Feed bots that relay new Bitsocial posts into Telegram channels or groups.",
     description:
       "Bitsocial Telegram Bots monitor client community lists and forward new posts into Telegram destinations with inline links back to Bitsocial clients. The active bot covers 5chan feeds today, with the repo structured to add more client-specific bots over time.",
-    category: "apps",
+    category: "tools",
     tags: ["Telegram", "Bots", "Feeds"],
     icon: "send",
     githubRepo: "bitsocialnet/bitsocial-telegram-bots",
