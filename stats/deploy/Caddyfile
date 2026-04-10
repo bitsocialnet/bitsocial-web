@@ -10,6 +10,10 @@ http://:8080 {
 	@statsRoot path /stats /stats/
 	redir @statsRoot /stats/public-dashboards/e9277bcc0c421ddcacd29f591466678c 302
 
+	handle /stats/api/health {
+		respond 404
+	}
+
 	handle /stats/* {
 		reverse_proxy 127.0.0.1:3300
 	}
