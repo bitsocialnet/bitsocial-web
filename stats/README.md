@@ -13,5 +13,5 @@ This subproject contains the Bitsocial stats stack behind `https://bitsocial.net
 ## Important Notes
 
 - `stats/` is the umbrella project. The executable Node service is [`stats/monitor`](./monitor).
-- Public traffic reaches Grafana through `bitsocial.net/stats`, even though Grafana itself runs on the VPS.
+- Public traffic reaches Grafana through shared dashboard URLs under `bitsocial.net/stats`, even though the Grafana app itself runs on the VPS.
 - For stats-specific workflow rules, read [`stats/AGENTS.md`](./AGENTS.md).

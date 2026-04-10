@@ -1,7 +1,6 @@
 const prefix = "bitsocial_stats_";
 
 import promClient from "prom-client";
-promClient.collectDefaultMetrics({ prefix });
 
 const up = new promClient.Gauge({
   name: `${prefix}up`,

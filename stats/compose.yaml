@@ -68,7 +68,7 @@ services:
       - stats-prometheus-data:/prometheus
 
   grafana:
-    image: grafana/grafana-oss:11.2.0
+    image: grafana/grafana:12.4.2
     restart: unless-stopped
     depends_on:
       prometheus:
@@ -76,9 +76,8 @@ services:
     environment:
       GF_SECURITY_ADMIN_USER: bitsocial
       GF_SECURITY_ADMIN_PASSWORD: bitsocial
-      GF_AUTH_ANONYMOUS_ENABLED: "true"
-      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
-      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_AUTH_DISABLE_LOGIN_FORM: "false"
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/bitsocial-stats.json
     ports:
       - "127.0.0.1:3300:3000"
@@ -87,6 +86,19 @@ services:
       - ./grafana/provisioning/dashboards/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml:ro
       - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
       - stats-grafana-data:/var/lib/grafana
+
+  grafana-bootstrap:
+    image: node:22.12.0-alpine
+    depends_on:
+      grafana:
+        condition: service_started
+    environment:
+      BITSOCIAL_STATS_GRAFANA_BOOTSTRAP_URL: http://grafana:3000
+      BITSOCIAL_STATS_GRAFANA_ADMIN_USER: bitsocial
+      BITSOCIAL_STATS_GRAFANA_ADMIN_PASSWORD: bitsocial
+    command: node /app/ensure-shared-dashboards.mjs
+    volumes:
+      - ./grafana/scripts/ensure-shared-dashboards.mjs:/app/ensure-shared-dashboards.mjs:ro
 
 volumes:
   stats-grafana-data:

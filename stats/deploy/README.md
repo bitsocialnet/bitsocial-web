@@ -8,7 +8,7 @@ This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current
 - host Caddy config: `/etc/caddy/Caddyfile`
 - newsletter/listmonk remains on `newsletter.bitsocial.net` via `127.0.0.1:9000`
 - Vercel owns `bitsocial.net` and proxies `/stats` to this VPS origin at `http://91.234.199.189:8080/stats`
-- the VPS entrypoint redirects `/stats` and `/stats/5chan` to kiosk-mode dashboard URLs so visitors land on the clean public view instead of Grafana's generic app shell
+- the VPS entrypoint redirects `/stats` and `/stats/5chan` to Grafana shared-dashboard URLs so visitors land on the public view without anonymous access to the full Grafana app
 
 ### Syncing a release
 
@@ -56,7 +56,18 @@ curl -I http://91.234.199.189:8080/stats/5chan
 curl -fsS http://127.0.0.1:9091/api/v1/targets
 ```
 
-The `curl -I` checks for `/stats` and `/stats/5chan` should now return `302` redirects to the corresponding kiosk dashboard URLs.
+The `curl -I` checks for `/stats` and `/stats/5chan` should now return `302` redirects to the corresponding public dashboard URLs.
+
+Once the stack is up, verify Grafana bootstrapped the public dashboards and left the login-protected app closed off:
+
+```bash
+curl -I http://127.0.0.1:3300/login
+curl -I http://127.0.0.1:3300/public-dashboards/e9277bcc0c421ddcacd29f591466678c
+curl -I http://127.0.0.1:3300/public-dashboards/fa6f2225e0ea98e116fb6f85d84e0186
+curl -i http://127.0.0.1:3300/api/ds/query
+```
+
+The shared dashboard URLs should return `200`, while direct Grafana API access without a login should return `401`.
 
 After Vercel deploy:
 

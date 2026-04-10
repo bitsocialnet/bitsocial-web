@@ -31,8 +31,9 @@ yarn stats:up
 
 Useful local URLs:
 
-- Grafana summary dashboard: `http://127.0.0.1:3300/`
-- Grafana 5chan dashboard: `http://127.0.0.1:3300/d/bitsocial-5chan/5chan-stats`
+- Grafana login: `http://127.0.0.1:3300/login`
+- Public summary dashboard: `http://127.0.0.1:3300/public-dashboards/e9277bcc0c421ddcacd29f591466678c`
+- Public 5chan dashboard: `http://127.0.0.1:3300/public-dashboards/fa6f2225e0ea98e116fb6f85d84e0186`
 - Prometheus targets: `http://127.0.0.1:9091/targets`
 - Monitor JSON API: `http://127.0.0.1:3301/`
 
