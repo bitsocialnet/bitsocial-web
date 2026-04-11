@@ -9,7 +9,9 @@ RUN apt-get update \
 RUN corepack enable
 
 COPY .yarnrc.yml package.json yarn.lock ./
+COPY about/package.json ./about/package.json
 COPY docs/package.json ./docs/package.json
+COPY stats/package.json ./stats/package.json
 COPY stats/monitor/package.json ./stats/monitor/package.json
 
 RUN yarn install --immutable
