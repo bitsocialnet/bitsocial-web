@@ -2,6 +2,20 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "routes": [
     {
+      "src": "^/(?!docs(?:/|$)|stats(?:/|$)).*$",
+      "headers": {
+        "Access-Control-Allow-Origin": "https://bitsocial.net",
+        "Content-Security-Policy": "default-src 'self'; base-uri 'self'; connect-src 'self' https://newsletter.bitsocial.net; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://newsletter.bitsocial.net; frame-ancestors 'none'; img-src 'self' data: https:; object-src 'none'; script-src 'self' 'sha256-NhPbeWZiMmSqcYasrsctmwiryDCgGXUab5aAjHUzN+M='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; upgrade-insecure-requests",
+        "Cross-Origin-Opener-Policy": "same-origin",
+        "Cross-Origin-Resource-Policy": "same-site",
+        "Permissions-Policy": "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      },
+      "continue": true
+    },
+    {
       "src": "^/stats/?$",
       "dest": "http://91.234.199.189:8080/stats/"
     },

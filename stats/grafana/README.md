@@ -26,6 +26,8 @@ That generation step keeps the panel layout close to the upstream reference dash
 Boot the full local stack with:
 
 ```bash
+cp stats/.env.example stats/.env
+$EDITOR stats/.env
 yarn stats:up
 ```
 
@@ -37,4 +39,4 @@ Useful local URLs:
 - Prometheus targets: `http://127.0.0.1:9091/targets`
 - Monitor JSON API: `http://127.0.0.1:3301/`
 
-Local Grafana admin credentials are `bitsocial` / `bitsocial`.
+Local Grafana admin credentials come from `stats/.env` and are reused by the `grafana-bootstrap` job.
