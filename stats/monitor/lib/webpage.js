@@ -48,7 +48,7 @@ const getWebpageFetchStats = async (webpageUrl, match) => {
   };
 };
 // test
-// debug(await getWebpageFetchStats('https://plebbit.com', 'test'))
+// debug(await getWebpageFetchStats('https://bitsocial.net', 'Bitsocial'))
 
 // test
 // monitorWebpages(); setInterval(() => monitorWebpages(), 1000 * 60 * 10)

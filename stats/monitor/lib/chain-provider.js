@@ -10,12 +10,9 @@ import Debug from "debug";
 const debug = Debug("bitsocial-stats-monitor:chain-provider");
 
 const require = createRequire(import.meta.url);
-const plebbitJsEntryPath = require.resolve("@plebbit/plebbit-js");
-const plebbitJsInternalModulePath = path.join(
-  path.dirname(plebbitJsEntryPath),
-  "domain-resolver.js",
-);
-const plebbitJsInternal = await import(pathToFileURL(plebbitJsInternalModulePath).href);
+const pkcJsEntryPath = require.resolve("@plebbit/plebbit-js");
+const pkcJsInternalModulePath = path.join(path.dirname(pkcJsEntryPath), "domain-resolver.js");
+const pkcJsInternal = await import(pathToFileURL(pkcJsInternalModulePath).href);
 
 const resolvers = {};
 const resolve = (address, txtRecordName, chainTicker, chainProviderUrl, chainId) => {
@@ -23,16 +20,12 @@ const resolve = (address, txtRecordName, chainTicker, chainProviderUrl, chainId)
   if (!resolvers[key]) {
     try {
       const chainProviders = { [chainTicker]: { url: chainProviderUrl, chainId } };
-      resolvers[key] = new plebbitJsInternal.DomainResolver({ chainProviders });
+      resolvers[key] = new pkcJsInternal.DomainResolver({ chainProviders });
       if (typeof resolvers[key].resolveTxtRecord !== "function") {
-        throw Error(
-          "plebbit-js/dist/node/domain-resolver.js domainResolver.resolveTxtRecord is not a function",
-        );
+        throw Error("upstream domain-resolver resolveTxtRecord is not a function");
       }
     } catch (e) {
-      throw Error(
-        "failed getting resolveTxtRecord function, the plebbit-js internal api probably changed when upgrading plebbit-js",
-      );
+      throw Error("failed getting resolveTxtRecord function from the current upstream client");
     }
   }
   return resolvers[key].resolveTxtRecord(

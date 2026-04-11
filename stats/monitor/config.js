@@ -58,7 +58,7 @@ export default {
   delegatedRoutingUrls,
   kuboRpcUrl,
   pubsubKuboRpcUrl,
-  plebbitOptions: {
+  pkcOptions: {
     ipfsGatewayUrls: [
       "https://ipfs.io",
       "https://ipfsgateway.xyz",

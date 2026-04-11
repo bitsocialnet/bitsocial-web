@@ -18,8 +18,8 @@ const peersNames = [
 
 const getPeerCount = (peersName) => {
   const peersMap = new Map();
-  for (const { address: subplebbitAddress } of monitorState.subplebbitsMonitoring) {
-    for (const peer of monitorState.subplebbits[subplebbitAddress][peersName] || []) {
+  for (const { address: communityAddress } of monitorState.communitiesMonitoring) {
+    for (const peer of monitorState.communities[communityAddress][peersName] || []) {
       peersMap.set(peer.ID || peer, peer); // peer can be an object or string
     }
   }
@@ -28,8 +28,8 @@ const getPeerCount = (peersName) => {
 
 const getCountriesPeerCount = (peersName) => {
   const peersMap = new Map();
-  for (const { address: subplebbitAddress } of monitorState.subplebbitsMonitoring) {
-    for (const peer of monitorState.subplebbits[subplebbitAddress][peersName] || []) {
+  for (const { address: communityAddress } of monitorState.communitiesMonitoring) {
+    for (const peer of monitorState.communities[communityAddress][peersName] || []) {
       peersMap.set(peer.ID || peer, peer); // peer can be an object or string
     }
   }
@@ -51,7 +51,7 @@ const gauges = {};
 const toSnakeCase = (string) => string.replace(/([a-zA-Z])(?=[A-Z])/g, "$1_").toLowerCase();
 for (const peersName of peersNames) {
   const peerCountName = `${peersName.replace(/s$/, "")}Count`;
-  gauges[`plebbit${peerCountName}`] = new prometheus.promClient.Gauge({
+  gauges[`network${peerCountName}`] = new prometheus.promClient.Gauge({
     name: `${prometheus.prefix}network_${toSnakeCase(peerCountName)}`,
     help: `gauge of network ${toSnakeCase(peerCountName).replaceAll("_", " ")} labeled with: ${labelNames.join(", ")}`,
     labelNames,

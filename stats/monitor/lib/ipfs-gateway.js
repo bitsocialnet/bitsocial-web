@@ -1,8 +1,8 @@
 import config from "../config.js";
 import monitorState from "./monitor-state.js";
 import { getCommunityMetricLabelNames, getCommunityMetricLabels } from "./community-metrics.js";
-import { kubo } from "./plebbit-js/plebbit-js.js";
-import { fetchJson, getPlebbitAddressFromPublicKey, createCounter } from "./utils.js";
+import { kubo } from "./pkc-js/pkc-js.js";
+import { fetchJson, getCommunityIpnsNameFromPublicKey, createCounter } from "./utils.js";
 import prometheus from "./prometheus.js";
 import pTimeout from "p-timeout";
 import Debug from "debug";
@@ -14,8 +14,8 @@ const initIpfsGatewayMonitorState = (ipfsGatewayUrl) => {
   if (!monitorState.ipfsGateways[ipfsGatewayUrl]) {
     monitorState.ipfsGateways[ipfsGatewayUrl] = {};
   }
-  if (!monitorState.ipfsGateways[ipfsGatewayUrl].subplebbitIpnsFetches) {
-    monitorState.ipfsGateways[ipfsGatewayUrl].subplebbitIpnsFetches = {};
+  if (!monitorState.ipfsGateways[ipfsGatewayUrl].communityIpnsFetches) {
+    monitorState.ipfsGateways[ipfsGatewayUrl].communityIpnsFetches = {};
   }
 };
 
@@ -37,19 +37,18 @@ export const monitorIpfsGateways = async () => {
       })
       .catch((e) => debug(e.message));
 
-    // subplebbit ipns fetches
+    // community ipns fetches
     (async () => {
-      for (const subplebbit of monitorState.subplebbitsMonitoring) {
+      for (const community of monitorState.communitiesMonitoring) {
         // one at a time to not ddos gateway
         try {
-          const stats = await getSubplebbitIpnsFetchStats(
+          const stats = await getCommunityIpnsFetchStats(
             ipfsGatewayUrl,
-            subplebbit.address,
-            monitorState.subplebbits[subplebbit.address],
+            community.address,
+            monitorState.communities[community.address],
           );
-          monitorState.ipfsGateways[ipfsGatewayUrl].subplebbitIpnsFetches[subplebbit.address] =
-            stats;
-          prometheusObserveSubplebbitIpnsFetch(ipfsGatewayUrl, subplebbit.address, stats);
+          monitorState.ipfsGateways[ipfsGatewayUrl].communityIpnsFetches[community.address] = stats;
+          prometheusObserveCommunityIpnsFetch(ipfsGatewayUrl, community.address, stats);
         } catch (e) {
           debug(e.message);
         }
@@ -150,66 +149,66 @@ const getCommentFetchStats = async (ipfsGatewayUrl) => {
 // test
 // debug(await getCommentFetchStats('https://pubsubprovider.xyz'))
 
-const countSubplebbitIpnsFetch = createCounter();
-const getSubplebbitIpnsFetchStats = async (ipfsGatewayUrl, subplebbitAddress, subplebbit) => {
-  if (!subplebbit?.publicKey) {
+const countCommunityIpnsFetch = createCounter();
+const getCommunityIpnsFetchStats = async (ipfsGatewayUrl, communityAddress, community) => {
+  if (!community?.publicKey) {
     throw Error(
-      `can't monitor ipfs gateway '${ipfsGatewayUrl}' subplebbit ipns for '${subplebbitAddress}' no subplebbit public key found yet`,
+      `can't monitor ipfs gateway '${ipfsGatewayUrl}' community ipns for '${communityAddress}' no community public key found yet`,
     );
   }
-  const suplebbitIpnsName = getPlebbitAddressFromPublicKey(subplebbit.publicKey);
+  const communityIpnsName = getCommunityIpnsNameFromPublicKey(community.publicKey);
 
   debug(
-    `fetching subplebbit '${subplebbit.address}' ipns '${suplebbitIpnsName}' from '${ipfsGatewayUrl}'`,
+    `fetching community '${community.address}' ipns '${communityIpnsName}' from '${ipfsGatewayUrl}'`,
   );
-  let lastSubplebbitIpnsFetchSuccess = false;
-  let lastSubplebbitIpnsFetchTime;
-  let lastSubplebbitIpnsFetchAttemptCount;
-  let lastSubplebbitIpnsUpdatedAt;
+  let lastCommunityIpnsFetchSuccess = false;
+  let lastCommunityIpnsFetchTime;
+  let lastCommunityIpnsFetchAttemptCount;
+  let lastCommunityIpnsUpdatedAt;
   const fetchJsonRetryOptions = {
-    url: `${ipfsGatewayUrl}/ipns/${suplebbitIpnsName}`,
+    url: `${ipfsGatewayUrl}/ipns/${communityIpnsName}`,
     retries: 3,
     attempts: 0,
   };
   try {
     const beforeTimestamp = Date.now();
-    const fetchedSubplebbit = await fetchJsonRetry(fetchJsonRetryOptions);
-    if (fetchedSubplebbit.signature.publicKey !== subplebbit.publicKey) {
+    const fetchedCommunity = await fetchJsonRetry(fetchJsonRetryOptions);
+    if (fetchedCommunity.signature.publicKey !== community.publicKey) {
       throw Error(
-        `failed fetching got response '${JSON.stringify(fetchedSubplebbit).substring(0, 300)}'`,
+        `failed fetching got response '${JSON.stringify(fetchedCommunity).substring(0, 300)}'`,
       );
     }
-    lastSubplebbitIpnsFetchSuccess = true;
-    lastSubplebbitIpnsFetchTime = (Date.now() - beforeTimestamp) / 1000;
-    lastSubplebbitIpnsFetchAttemptCount = fetchJsonRetryOptions.attempts;
-    lastSubplebbitIpnsUpdatedAt = fetchedSubplebbit.updatedAt;
+    lastCommunityIpnsFetchSuccess = true;
+    lastCommunityIpnsFetchTime = (Date.now() - beforeTimestamp) / 1000;
+    lastCommunityIpnsFetchAttemptCount = fetchJsonRetryOptions.attempts;
+    lastCommunityIpnsUpdatedAt = fetchedCommunity.updatedAt;
 
     debug(
-      `fetched subplebbit '${subplebbit.address}' ipns '${suplebbitIpnsName}' from '${ipfsGatewayUrl}' in ${lastSubplebbitIpnsFetchTime}s`,
+      `fetched community '${community.address}' ipns '${communityIpnsName}' from '${ipfsGatewayUrl}' in ${lastCommunityIpnsFetchTime}s`,
     );
   } catch (e) {
     debug(
-      `failed fetching subplebbit '${subplebbit.address}' ipns '${suplebbitIpnsName}' from '${ipfsGatewayUrl}': ${e.message}`,
+      `failed fetching community '${community.address}' ipns '${communityIpnsName}' from '${ipfsGatewayUrl}': ${e.message}`,
     );
   }
 
   return {
-    subplebbitIpnsFetchCount: countSubplebbitIpnsFetch(ipfsGatewayUrl + subplebbitAddress),
-    lastSubplebbitIpnsFetchSuccess,
-    lastSubplebbitIpnsFetchTime,
-    lastSubplebbitIpnsFetchAttemptCount,
-    lastSubplebbitIpnsUpdatedAt,
+    communityIpnsFetchCount: countCommunityIpnsFetch(ipfsGatewayUrl + communityAddress),
+    lastCommunityIpnsFetchSuccess,
+    lastCommunityIpnsFetchTime,
+    lastCommunityIpnsFetchAttemptCount,
+    lastCommunityIpnsUpdatedAt,
   };
 };
 // test
-// debug(await getSubplebbitIpnsFetchStats('https://ipfsgateway.xyz', 'plebtoken.eth', {address: 'plebtoken.eth', publicKey: 'oqb9NJrUccHpOHqfi1daakTAFup2BB7tYNbpkOcFOyE'}))
+// debug(await getCommunityIpnsFetchStats('https://ipfsgateway.xyz', 'plebtoken.eth', {address: 'plebtoken.eth', publicKey: 'oqb9NJrUccHpOHqfi1daakTAFup2BB7tYNbpkOcFOyE'}))
 
 // test
 // monitorIpfsGateways(); setInterval(() => monitorIpfsGateways(), 1000 * 60 * 10)
 
 // prometheus
 const commentFetchLabelNames = ["ipfs_gateway_url"];
-const subplebbitIpnsFetchLabelNames = getCommunityMetricLabelNames(["ipfs_gateway_url"]);
+const communityIpnsFetchLabelNames = getCommunityMetricLabelNames(["ipfs_gateway_url"]);
 const counters = {
   commentFetchCount: new prometheus.promClient.Counter({
     name: `${prometheus.prefix}ipfs_gateway_comment_fetch_count`,
@@ -235,28 +234,28 @@ const counters = {
     labelNames: commentFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  subplebbitIpnsFetchCount: new prometheus.promClient.Counter({
+  communityIpnsFetchCount: new prometheus.promClient.Counter({
     name: `${prometheus.prefix}ipfs_gateway_community_ipns_fetch_count`,
-    help: `count of ipfs gateways community ipns fetch labeled with: ${subplebbitIpnsFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsFetchLabelNames,
+    help: `count of ipfs gateways community ipns fetch labeled with: ${communityIpnsFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  subplebbitIpnsFetchDurationSeconds: new prometheus.promClient.Counter({
+  communityIpnsFetchDurationSeconds: new prometheus.promClient.Counter({
     name: `${prometheus.prefix}ipfs_gateway_community_ipns_fetch_duration_seconds_sum`,
-    help: `count of ipfs gateways community ipns fetch duration seconds labeled with: ${subplebbitIpnsFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsFetchLabelNames,
+    help: `count of ipfs gateways community ipns fetch duration seconds labeled with: ${communityIpnsFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  subplebbitIpnsFetchSuccessCount: new prometheus.promClient.Counter({
+  communityIpnsFetchSuccessCount: new prometheus.promClient.Counter({
     name: `${prometheus.prefix}ipfs_gateway_community_ipns_fetch_success_count`,
-    help: `count of ipfs gateways community ipns fetch success labeled with: ${subplebbitIpnsFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsFetchLabelNames,
+    help: `count of ipfs gateways community ipns fetch success labeled with: ${communityIpnsFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  subplebbitIpnsFetchSecondsSinceUpdatedAtSum: new prometheus.promClient.Counter({
+  communityIpnsFetchSecondsSinceUpdatedAtSum: new prometheus.promClient.Counter({
     name: `${prometheus.prefix}ipfs_gateway_community_ipns_fetch_seconds_since_updated_at_sum`,
-    help: `sum of ipfs gateways community ipns seconds since last update labeled with: ${subplebbitIpnsFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsFetchLabelNames,
+    help: `sum of ipfs gateways community ipns seconds since last update labeled with: ${communityIpnsFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
 };
@@ -279,22 +278,22 @@ const gauges = {
     labelNames: commentFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  lastSubplebbitIpnsFetchDurationSeconds: new prometheus.promClient.Gauge({
+  lastCommunityIpnsFetchDurationSeconds: new prometheus.promClient.Gauge({
     name: `${prometheus.prefix}ipfs_gateway_last_community_ipns_fetch_duration_seconds`,
-    help: `duration gauge of last ipfs gateways community ipns fetch labeled with: ${subplebbitIpnsFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsFetchLabelNames,
+    help: `duration gauge of last ipfs gateways community ipns fetch labeled with: ${communityIpnsFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  lastSubplebbitIpnsFetchSuccess: new prometheus.promClient.Gauge({
+  lastCommunityIpnsFetchSuccess: new prometheus.promClient.Gauge({
     name: `${prometheus.prefix}ipfs_gateway_last_community_ipns_fetch_success`,
-    help: `success gauge of last ipfs gateways community ipns fetch labeled with: ${subplebbitIpnsFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsFetchLabelNames,
+    help: `success gauge of last ipfs gateways community ipns fetch labeled with: ${communityIpnsFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  lastSubplebbitIpnsFetchSecondsSinceUpdatedAt: new prometheus.promClient.Gauge({
+  lastCommunityIpnsFetchSecondsSinceUpdatedAt: new prometheus.promClient.Gauge({
     name: `${prometheus.prefix}ipfs_gateway_last_community_ipns_fetch_seconds_since_updated_at`,
-    help: `gauge of last ipfs gateways community ipns seconds since last update labeled with: ${subplebbitIpnsFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsFetchLabelNames,
+    help: `gauge of last ipfs gateways community ipns seconds since last update labeled with: ${communityIpnsFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
 };
@@ -334,26 +333,26 @@ const prometheusObserveCommentFetch = (ipfsGatewayUrl, stats) => {
     histograms.commentFetchDurationSeconds.observe(labels, stats.lastCommentFetchTime);
   }
 };
-const prometheusObserveSubplebbitIpnsFetch = (ipfsGatewayUrl, subplebbitAddress, stats) => {
-  const labels = getCommunityMetricLabels(subplebbitAddress, { ipfs_gateway_url: ipfsGatewayUrl });
-  const secondsSinceUpdatedAt = Math.ceil(Date.now() / 1000) - stats.lastSubplebbitIpnsUpdatedAt;
+const prometheusObserveCommunityIpnsFetch = (ipfsGatewayUrl, communityAddress, stats) => {
+  const labels = getCommunityMetricLabels(communityAddress, { ipfs_gateway_url: ipfsGatewayUrl });
+  const secondsSinceUpdatedAt = Math.ceil(Date.now() / 1000) - stats.lastCommunityIpnsUpdatedAt;
   // counters
-  counters.subplebbitIpnsFetchCount.inc(labels, 1);
-  if (stats.lastSubplebbitIpnsFetchSuccess) {
-    counters.subplebbitIpnsFetchSuccessCount.inc(labels, 1);
+  counters.communityIpnsFetchCount.inc(labels, 1);
+  if (stats.lastCommunityIpnsFetchSuccess) {
+    counters.communityIpnsFetchSuccessCount.inc(labels, 1);
   }
-  if (isNumber(stats.lastSubplebbitIpnsFetchTime)) {
-    counters.subplebbitIpnsFetchDurationSeconds.inc(labels, stats.lastSubplebbitIpnsFetchTime);
+  if (isNumber(stats.lastCommunityIpnsFetchTime)) {
+    counters.communityIpnsFetchDurationSeconds.inc(labels, stats.lastCommunityIpnsFetchTime);
   }
   if (isNumber(secondsSinceUpdatedAt)) {
-    counters.subplebbitIpnsFetchSecondsSinceUpdatedAtSum.inc(labels, secondsSinceUpdatedAt);
+    counters.communityIpnsFetchSecondsSinceUpdatedAtSum.inc(labels, secondsSinceUpdatedAt);
   }
   // gauges
-  if (isNumber(stats.lastSubplebbitIpnsFetchTime)) {
-    gauges.lastSubplebbitIpnsFetchDurationSeconds.set(labels, stats.lastSubplebbitIpnsFetchTime);
+  if (isNumber(stats.lastCommunityIpnsFetchTime)) {
+    gauges.lastCommunityIpnsFetchDurationSeconds.set(labels, stats.lastCommunityIpnsFetchTime);
   }
-  gauges.lastSubplebbitIpnsFetchSuccess.set(labels, stats.lastSubplebbitIpnsFetchSuccess ? 1 : 0);
+  gauges.lastCommunityIpnsFetchSuccess.set(labels, stats.lastCommunityIpnsFetchSuccess ? 1 : 0);
   if (isNumber(secondsSinceUpdatedAt)) {
-    gauges.lastSubplebbitIpnsFetchSecondsSinceUpdatedAt.set(labels, secondsSinceUpdatedAt);
+    gauges.lastCommunityIpnsFetchSecondsSinceUpdatedAt.set(labels, secondsSinceUpdatedAt);
   }
 };

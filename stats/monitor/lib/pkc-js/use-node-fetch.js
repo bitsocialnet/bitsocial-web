@@ -1,4 +1,4 @@
-// import this file before '@plebbit/plebbit-js' or 'kubo-rpc-client' to use node-fetch instead of native fetch
+// Import this before the upstream PKC client or kubo-rpc-client to use node-fetch instead of native fetch.
 
 import nodeFetch from "node-fetch";
 

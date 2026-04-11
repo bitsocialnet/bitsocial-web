@@ -9,7 +9,7 @@ import {
 } from "./utils.js";
 import * as cborg from "cborg";
 import { toString as uint8ArrayToString } from "uint8arrays/to-string";
-import { kuboPubsub, kuboPubsubProviders, pubsubKuboRpcUrl } from "./plebbit-js/plebbit-js.js";
+import { kuboPubsub, kuboPubsubProviders, pubsubKuboRpcUrl } from "./pkc-js/pkc-js.js";
 import prometheus from "./prometheus.js";
 import { createEd25519PeerId } from "@libp2p/peer-id-factory";
 import Debug from "debug";

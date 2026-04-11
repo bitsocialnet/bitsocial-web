@@ -19,7 +19,7 @@ export const fetchMultisubUrl = async (multisubUrl) => {
   } catch (e) {
     throw Error(`failed fetching multisub from url '${multisubUrl}': ${e.message}`);
   }
-  if (!Array.isArray(multisub.subplebbits)) {
+  if (!Array.isArray(multisub.communities)) {
     throw Error(
       `failed fetching multisub from url '${multisubUrl}' got response '${JSON.stringify(multisub)
         .substring(0, 300)
@@ -171,12 +171,12 @@ export const fetchHttpRoutersPeers = async (cid) => {
     }
   };
 
-  if (!config.plebbitOptions?.httpRoutersOptions?.length) {
-    throw Error(`can't fetch http routers peers, missing config.plebbitOptions.httpRoutersOptions`);
+  if (!config.pkcOptions?.httpRoutersOptions?.length) {
+    throw Error(`can't fetch http routers peers, missing config.pkcOptions.httpRoutersOptions`);
   }
 
   // fetch all http routers concurrently
-  const promises = config.plebbitOptions.httpRoutersOptions.map((httpRouterUrl) =>
+  const promises = config.pkcOptions.httpRoutersOptions.map((httpRouterUrl) =>
     fetchHttpRouterPeers(httpRouterUrl, cid),
   );
   const allResponses = await Promise.allSettled(promises);
@@ -209,7 +209,7 @@ import { toString as uint8ArrayToString } from "uint8arrays/to-string";
 import { create as createMultihash } from "multiformats/hashes/digest";
 const protobufPublicKeyPrefix = new Uint8Array([8, 1, 18, 32]);
 const multihashIdentityCode = 0;
-export const getPlebbitAddressFromPublicKey = (publicKeyBase64) => {
+export const getCommunityIpnsNameFromPublicKey = (publicKeyBase64) => {
   const publicKeyBuffer = uint8ArrayFromString(publicKeyBase64, "base64");
   const publicKeyBufferWithPrefix = new Uint8Array(
     protobufPublicKeyPrefix.length + publicKeyBuffer.length,

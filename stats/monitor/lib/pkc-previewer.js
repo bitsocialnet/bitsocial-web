@@ -3,40 +3,39 @@ import monitorState from "./monitor-state.js";
 import { fetchHtml, createCounter } from "./utils.js";
 import prometheus from "./prometheus.js";
 import Debug from "debug";
-const debug = Debug("bitsocial-stats-monitor:plebbit-previewer");
+const debug = Debug("bitsocial-stats-monitor:pkc-previewer");
 
-const initPlebbitPreviewerMonitorState = (plebbitPreviewerUrl) => {
-  if (!monitorState.plebbitPreviewers[plebbitPreviewerUrl]) {
-    monitorState.plebbitPreviewers[plebbitPreviewerUrl] = {};
+const initPkcPreviewerMonitorState = (pkcPreviewerUrl) => {
+  if (!monitorState.pkcPreviewers[pkcPreviewerUrl]) {
+    monitorState.pkcPreviewers[pkcPreviewerUrl] = {};
   }
 };
 
-export const monitorPlebbitPreviewers = async () => {
-  const previewerUrls =
-    config.monitoring.previewerUrls || config.monitoring.plebbitPreviewerUrls || [];
+export const monitorPkcPreviewers = async () => {
+  const previewerUrls = config.monitoring.previewerUrls || config.monitoring.pkcPreviewerUrls || [];
   debug(`monitoring ${previewerUrls.length} previewers: ${previewerUrls.join(" ")}`);
-  for (const plebbitPreviewerUrl of previewerUrls) {
-    initPlebbitPreviewerMonitorState(plebbitPreviewerUrl);
+  for (const pkcPreviewerUrl of previewerUrls) {
+    initPkcPreviewerMonitorState(pkcPreviewerUrl);
 
     // comment preview fetches
-    getCommentPreviewFetchStats(plebbitPreviewerUrl)
+    getCommentPreviewFetchStats(pkcPreviewerUrl)
       .then((stats) => {
-        monitorState.plebbitPreviewers[plebbitPreviewerUrl] = stats;
-        prometheusObserveCommentPreviewFetch(plebbitPreviewerUrl, stats);
+        monitorState.pkcPreviewers[pkcPreviewerUrl] = stats;
+        prometheusObserveCommentPreviewFetch(pkcPreviewerUrl, stats);
       })
       .catch((e) => debug(e.message));
   }
 };
 
-const getRandomPlebbitPreviewerUrlPath = () => {
+const getRandomPkcPreviewerUrlPath = () => {
   const yesterday = Math.round(Date.now() / 1000) - 60 * 60 * 24;
-  const subplebbits = monitorState.subplebbitsMonitoring.map(
-    (subplebbit) => monitorState.subplebbits[subplebbit.address],
+  const communities = monitorState.communitiesMonitoring.map(
+    (community) => monitorState.communities[community.address],
   );
-  const paths = subplebbits
-    .map((subplebbit) => {
-      if (subplebbit?.lastSubplebbitUpdateTimestamp > yesterday && subplebbit.lastPostCid) {
-        return `/p/${subplebbit.address}/c/${subplebbit.lastPostCid}`;
+  const paths = communities
+    .map((community) => {
+      if (community?.lastCommunityUpdateTimestamp > yesterday && community.lastPostCid) {
+        return `/p/${community.address}/c/${community.lastPostCid}`;
       }
     })
     .filter((item) => !!item);
@@ -44,7 +43,7 @@ const getRandomPlebbitPreviewerUrlPath = () => {
 };
 
 const countCommentPreviewFetch = createCounter();
-const getCommentPreviewFetchStats = async (plebbitPreviewerUrl) => {
+const getCommentPreviewFetchStats = async (pkcPreviewerUrl) => {
   let lastCommentPreviewFetchSuccess = false;
   let lastCommentPreviewFetchTime;
 
@@ -52,13 +51,13 @@ const getCommentPreviewFetchStats = async (plebbitPreviewerUrl) => {
   while (attempts--) {
     let url;
     try {
-      const urlPath = getRandomPlebbitPreviewerUrlPath();
+      const urlPath = getRandomPkcPreviewerUrlPath();
       if (!urlPath) {
         throw Error(
-          `failed getting random lastPostCid from monitorState.subplebbits to monitor '${plebbitPreviewerUrl}'`,
+          `failed getting random lastPostCid from monitorState.communities to monitor '${pkcPreviewerUrl}'`,
         );
       }
-      url = `${plebbitPreviewerUrl}${urlPath}`;
+      url = `${pkcPreviewerUrl}${urlPath}`;
 
       const beforeTimestamp = Date.now();
       const fetchedHtml = await fetchHtml(url);
@@ -80,7 +79,7 @@ const getCommentPreviewFetchStats = async (plebbitPreviewerUrl) => {
   }
 
   return {
-    commentPreviewFetchCount: countCommentPreviewFetch(plebbitPreviewerUrl),
+    commentPreviewFetchCount: countCommentPreviewFetch(pkcPreviewerUrl),
     lastCommentPreviewFetchSuccess,
     lastCommentPreviewFetchTime,
   };
@@ -89,7 +88,7 @@ const getCommentPreviewFetchStats = async (plebbitPreviewerUrl) => {
 // debug(await getCommentPreviewFetchStats('https://pleb.bz'))
 
 // test
-// monitorPlebbitPreviewers(); setInterval(() => monitorPlebbitPreviewers(), 1000 * 60 * 10)
+// monitorPkcPreviewers(); setInterval(() => monitorPkcPreviewers(), 1000 * 60 * 10)
 
 // prometheus
 const commentPreviewFetchLabelNames = ["previewer_url"];
@@ -128,8 +127,8 @@ const gauges = {
   }),
 };
 const isNumber = (number) => typeof number === "number" && isFinite(number);
-const prometheusObserveCommentPreviewFetch = (plebbitPreviewerUrl, stats) => {
-  const labels = { previewer_url: plebbitPreviewerUrl };
+const prometheusObserveCommentPreviewFetch = (pkcPreviewerUrl, stats) => {
+  const labels = { previewer_url: pkcPreviewerUrl };
   // counters
   counters.commentPreviewFetchCount.inc(labels, 1);
   if (stats.lastCommentPreviewFetchSuccess) {

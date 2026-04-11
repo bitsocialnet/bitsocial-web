@@ -87,6 +87,8 @@ const communityMetricPrefixes = [
   "bitsocial_stats_ipfs_gateway_last_community_",
 ];
 
+const dedupeIgnoredLabels = ["instance", "job", "service"];
+
 let nextGeneratedPanelId = GENERATED_PANEL_ID_START;
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -97,28 +99,33 @@ const replaceAll = (value, replacements) =>
 const isCommunityMetric = (metricName) =>
   communityMetricPrefixes.some((prefix) => metricName.startsWith(prefix));
 
-const injectClientFilter = (expr, clientId) =>
+const addClientFilter = (metricName, selector, clientId) => {
+  if (!clientId || !isCommunityMetric(metricName)) {
+    return selector;
+  }
+
+  if (!selector) {
+    return `{client_id="${clientId}"}`;
+  }
+
+  if (selector.includes("client_id=")) {
+    return selector;
+  }
+
+  const selectorBody = selector.slice(1, -1).trim();
+  const nextSelector = selectorBody
+    ? `${selectorBody},client_id="${clientId}"`
+    : `client_id="${clientId}"`;
+
+  return `{${nextSelector}}`;
+};
+
+const normalizeMetricSelectors = (expr, { clientId } = {}) =>
   expr.replace(
     /\b(bitsocial_stats_[a-z0-9_]+)(\{[^{}]*\})?/g,
     (match, metricName, selector = "") => {
-      if (!isCommunityMetric(metricName)) {
-        return match;
-      }
-
-      if (!selector) {
-        return `${metricName}{client_id="${clientId}"}`;
-      }
-
-      if (selector.includes("client_id=")) {
-        return `${metricName}${selector}`;
-      }
-
-      const selectorBody = selector.slice(1, -1).trim();
-      const nextSelector = selectorBody
-        ? `${selectorBody},client_id="${clientId}"`
-        : `client_id="${clientId}"`;
-
-      return `${metricName}{${nextSelector}}`;
+      const nextSelector = addClientFilter(metricName, selector, clientId);
+      return `max without(${dedupeIgnoredLabels.join(", ")}) (${metricName}${nextSelector})`;
     },
   );
 
@@ -129,12 +136,7 @@ const transformExpr = (expr, { clientId } = {}) => {
 
   let transformed = replaceAll(expr, exprReplacements);
   transformed = transformed.replaceAll("subplebbit_address", "community_address");
-
-  if (clientId) {
-    transformed = injectClientFilter(transformed, clientId);
-  }
-
-  return transformed;
+  return normalizeMetricSelectors(transformed, { clientId });
 };
 
 const transformDisplayText = (value) => replaceAll(value, displayReplacements);
@@ -174,9 +176,49 @@ const normalizeDatasource = (panel) => {
   return panel;
 };
 
+const moveLegacyFieldMapping = (mapping, fromKey, toKey) => {
+  if (!mapping || typeof mapping !== "object" || !(fromKey in mapping)) {
+    return;
+  }
+
+  if (!(toKey in mapping)) {
+    mapping[toKey] = mapping[fromKey];
+  }
+
+  delete mapping[fromKey];
+};
+
+const normalizeTransformations = (panel) => {
+  for (const transformation of panel.transformations || []) {
+    if (transformation?.id !== "organize") {
+      continue;
+    }
+
+    transformation.options = transformation.options || {};
+    transformation.options.excludeByName = transformation.options.excludeByName || {};
+    transformation.options.indexByName = transformation.options.indexByName || {};
+    transformation.options.renameByName = transformation.options.renameByName || {};
+
+    moveLegacyFieldMapping(
+      transformation.options.indexByName,
+      "subplebbit_address",
+      "community_address",
+    );
+    moveLegacyFieldMapping(
+      transformation.options.renameByName,
+      "subplebbit_address",
+      "community_address",
+    );
+    delete transformation.options.excludeByName.subplebbit_address;
+  }
+
+  return panel;
+};
+
 const transformPanel = (panel, { clientId } = {}) => {
   const transformedPanel = transformObjectStrings(clone(panel));
   normalizeDatasource(transformedPanel);
+  normalizeTransformations(transformedPanel);
 
   for (const target of transformedPanel.targets || []) {
     target.expr = transformExpr(target.expr, { clientId });

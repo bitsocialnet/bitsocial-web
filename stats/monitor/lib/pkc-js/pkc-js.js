@@ -1,4 +1,4 @@
-// import the file to replace node-fetch first so it gets used in kubo and plebbit-js
+// import the file to replace node-fetch first so it gets used in kubo and the upstream PKC client
 // NOTE: this makes new version of viem not work, so don't do it anymore
 // import './use-node-fetch.js'
 import config from "../../config.js";
@@ -6,28 +6,28 @@ const pubsubKuboRpcUrl = config.pubsubKuboRpcUrl || config.kuboRpcUrl;
 import { create as createKubo } from "kubo-rpc-client";
 import { Agent as HttpsAgent } from "https";
 import { Agent as HttpAgent } from "http";
-import Plebbit from "@plebbit/plebbit-js";
+import createPkcClient from "@plebbit/plebbit-js";
 
-const plebbitKuboRpc = await Plebbit({
-  ...config.plebbitOptions,
+const pkcKuboRpc = await createPkcClient({
+  ...config.pkcOptions,
   kuboRpcClientsOptions: [config.kuboRpcUrl],
   pubsubKuboRpcClientsOptions: [config.kuboRpcUrl],
 });
-plebbitKuboRpc.on("error", (error) => {
-  // console.log(error) // logging plebbit errors are only useful for debugging, not production
+pkcKuboRpc.on("error", (error) => {
+  // console.log(error) // upstream client errors are only useful for debugging, not production
 });
-const plebbitPubsubKuboRpc = await Plebbit({
-  ...config.plebbitOptions,
+const pkcPubsubKuboRpc = await createPkcClient({
+  ...config.pkcOptions,
   kuboRpcClientsOptions: [pubsubKuboRpcUrl],
   pubsubKuboRpcClientsOptions: [pubsubKuboRpcUrl],
 });
-plebbitPubsubKuboRpc.on("error", (error) => {
-  // console.log(error) // logging plebbit errors are only useful for debugging, not production
+pkcPubsubKuboRpc.on("error", (error) => {
+  // console.log(error) // upstream client errors are only useful for debugging, not production
 });
 
-const plebbit = await Plebbit(config.plebbitOptions);
-plebbit.on("error", (error) => {
-  // console.log(error) // logging plebbit errors are only useful for debugging, not production
+const pkc = await createPkcClient(config.pkcOptions);
+pkc.on("error", (error) => {
+  // console.log(error) // upstream client errors are only useful for debugging, not production
 });
 
 const Agent = config.kuboRpcUrl?.startsWith("https") ? HttpsAgent : HttpAgent;
@@ -53,8 +53,8 @@ export {
   kubo,
   kuboPubsub,
   kuboPubsubProviders,
-  plebbit,
-  plebbitKuboRpc,
-  plebbitPubsubKuboRpc,
+  pkc,
+  pkcKuboRpc,
+  pkcPubsubKuboRpc,
   pubsubKuboRpcUrl,
 };

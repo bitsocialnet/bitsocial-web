@@ -10,10 +10,8 @@ import { getPeerCounts } from "./peers.js"; // must always import ./peers.js to 
 
 const apiPort = argv.apiPort || 3000;
 const app = express();
-const previewerUrls =
-  config.monitoring.previewerUrls || config.monitoring.plebbitPreviewerUrls || [];
-const seederPeerIds =
-  config.monitoring.seederPeerIds || config.monitoring.plebbitSeederPeerIds || [];
+const previewerUrls = config.monitoring.previewerUrls || config.monitoring.pkcPreviewerUrls || [];
+const seederPeerIds = config.monitoring.seederPeerIds || config.monitoring.pkcSeederPeerIds || [];
 const clientLabels = Object.fromEntries(
   (config.monitoring.clients || []).map((client) => [client.id, client.label || client.id]),
 );
@@ -28,9 +26,9 @@ app.get("/", (req, res) => {
   const network = { communityStats: {}, communityCount: 0, ...getPeerCounts() };
   const communities = {};
   const clients = {};
-  const communitiesMonitoring = monitorState.subplebbitsMonitoring || [];
-  for (const { address: subplebbitAddress } of communitiesMonitoring) {
-    const monitoredCommunity = monitorState.subplebbits[subplebbitAddress];
+  const communitiesMonitoring = monitorState.communitiesMonitoring || [];
+  for (const { address: communityAddress } of communitiesMonitoring) {
+    const monitoredCommunity = monitorState.communities[communityAddress];
     const clientId = monitoredCommunity?.clientId || "unknown";
     if (!clients[clientId]) {
       clients[clientId] = {
@@ -41,10 +39,10 @@ app.get("/", (req, res) => {
       };
     }
 
-    communities[subplebbitAddress] = {
+    communities[communityAddress] = {
       //utils
-      address: subplebbitAddress,
-      communityAddress: subplebbitAddress,
+      address: communityAddress,
+      communityAddress: communityAddress,
       targetAddress: monitoredCommunity?.targetAddress,
       title: monitoredCommunity?.title,
       directoryCode: monitoredCommunity?.directoryCode,
@@ -57,8 +55,8 @@ app.get("/", (req, res) => {
       ipnsPubsubTopic: monitoredCommunity?.ipnsPubsubTopic,
       ipnsPubsubTopicRoutingCid: monitoredCommunity?.ipnsPubsubTopicRoutingCid,
       // ipns
-      getSubplebbitCount: monitoredCommunity?.getSubplebbitCount,
-      lastSubplebbitUpdateTimestamp: monitoredCommunity?.lastSubplebbitUpdateTimestamp,
+      getCommunityCount: monitoredCommunity?.getCommunityCount,
+      lastCommunityUpdateTimestamp: monitoredCommunity?.lastCommunityUpdateTimestamp,
       ipnsDhtPeerCount: monitoredCommunity?.ipnsDhtPeers?.length,
       ipnsHttpRoutersPeerCount: monitoredCommunity?.ipnsHttpRoutersPeers?.length,
       ipnsCidHttpRoutersPeerCount: monitoredCommunity?.ipnsCidHttpRoutersPeers?.length,
@@ -67,25 +65,22 @@ app.get("/", (req, res) => {
       pubsubHttpRoutersPeerCount: monitoredCommunity?.pubsubHttpRoutersPeers?.length,
       pubsubPeerCount: monitoredCommunity?.pubsubPeers?.length,
       lastPubsubMessageTimestamp: monitoredCommunity?.lastPubsubMessageTimestamp,
-      lastSubplebbitPubsubMessageTimestamp:
-        monitoredCommunity?.lastSubplebbitPubsubMessageTimestamp,
-      // stats
-      communityStats: monitoredCommunity?.subplebbitStats,
-      subplebbitStats: monitoredCommunity?.subplebbitStats,
+      lastCommunityPubsubMessageTimestamp: monitoredCommunity?.lastCommunityPubsubMessageTimestamp,
+      communityStats: monitoredCommunity?.communityStats,
     };
 
     // add community stats to network + per-client aggregates
     network.communityCount++;
     clients[clientId].communityCount++;
-    for (const statsName in monitoredCommunity?.subplebbitStats || {}) {
+    for (const statsName in monitoredCommunity?.communityStats || {}) {
       if (!network.communityStats[statsName]) {
         network.communityStats[statsName] = 0;
       }
       if (!clients[clientId].communityStats[statsName]) {
         clients[clientId].communityStats[statsName] = 0;
       }
-      network.communityStats[statsName] += monitoredCommunity.subplebbitStats[statsName];
-      clients[clientId].communityStats[statsName] += monitoredCommunity.subplebbitStats[statsName];
+      network.communityStats[statsName] += monitoredCommunity.communityStats[statsName];
+      clients[clientId].communityStats[statsName] += monitoredCommunity.communityStats[statsName];
     }
   }
   const ipfsGateways = {};
@@ -110,31 +105,17 @@ app.get("/", (req, res) => {
     };
   }
   const seeders = {};
-  for (const plebbitSeederPeerId of seederPeerIds) {
-    seeders[plebbitSeederPeerId] = {
-      peerId: plebbitSeederPeerId,
-      ...monitorState.plebbitSeeders[plebbitSeederPeerId],
-    };
-  }
-  const plebbitSeeders = {};
-  for (const plebbitSeederPeerId of seederPeerIds) {
-    plebbitSeeders[plebbitSeederPeerId] = {
-      peerId: plebbitSeederPeerId,
-      ...monitorState.plebbitSeeders[plebbitSeederPeerId],
+  for (const pkcSeederPeerId of seederPeerIds) {
+    seeders[pkcSeederPeerId] = {
+      peerId: pkcSeederPeerId,
+      ...monitorState.pkcSeeders[pkcSeederPeerId],
     };
   }
   const previewers = {};
-  for (const plebbitPreviewerUrl of previewerUrls) {
-    previewers[plebbitPreviewerUrl] = {
-      url: plebbitPreviewerUrl,
-      ...monitorState.plebbitPreviewers[plebbitPreviewerUrl],
-    };
-  }
-  const plebbitPreviewers = {};
-  for (const plebbitPreviewerUrl of previewerUrls) {
-    plebbitPreviewers[plebbitPreviewerUrl] = {
-      url: plebbitPreviewerUrl,
-      ...monitorState.plebbitPreviewers[plebbitPreviewerUrl],
+  for (const pkcPreviewerUrl of previewerUrls) {
+    previewers[pkcPreviewerUrl] = {
+      url: pkcPreviewerUrl,
+      ...monitorState.pkcPreviewers[pkcPreviewerUrl],
     };
   }
   const chainProviders = {};
@@ -160,12 +141,6 @@ app.get("/", (req, res) => {
       ...monitorState.nfts[nftName],
     };
   }
-  const subplebbits = communities;
-  const plebbit = {
-    ...network,
-    subplebbitsStats: network.communityStats,
-    subplebbitCount: network.communityCount,
-  };
   const jsonResponse = {
     communities,
     clients,
@@ -174,14 +149,12 @@ app.get("/", (req, res) => {
     httpRouters,
     seeders,
     previewers,
-    plebbitSeeders,
-    plebbitPreviewers,
+    pkcSeeders: seeders,
+    pkcPreviewers: previewers,
     chainProviders,
     webpages,
     nfts,
     network,
-    subplebbits,
-    plebbit,
   };
 
   // include
@@ -253,7 +226,7 @@ app.get("/history", async (req, res) => {
     const from = req.query.from ? toDate(req.query.from).getTime() : 0; // in seconds
     const to = req.query.to ? toDate(req.query.to).getTime() : Infinity; // in seconds
     const ipfsGatewayUrl = req.query.ipfsGatewayUrl;
-    const communityAddress = req.query.communityAddress || req.query.subplebbitAddress;
+    const communityAddress = req.query.communityAddress;
     const include = req.query.include?.split(",");
     const interval = req.query.interval; // in seconds
 
@@ -302,10 +275,6 @@ app.get("/history", async (req, res) => {
             communities: {
               [communityAddress]:
                 stats.communities?.[communityAddress] || stats.subplebbits?.[communityAddress],
-            },
-            subplebbits: {
-              [communityAddress]:
-                stats.subplebbits?.[communityAddress] || stats.communities?.[communityAddress],
             },
           };
         }

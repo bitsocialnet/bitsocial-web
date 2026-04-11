@@ -3,7 +3,7 @@ import monitorState from "./monitor-state.js";
 import { getCommunityMetricLabelNames, getCommunityMetricLabels } from "./community-metrics.js";
 import {
   fetchJson,
-  getPlebbitAddressFromPublicKey,
+  getCommunityIpnsNameFromPublicKey,
   stringToCid,
   getOwnIp,
   ipnsNameToIpnsOverPubsubTopic,
@@ -23,8 +23,8 @@ const initHttpRouterMonitorState = (httpRouterUrl) => {
   if (!monitorState.httpRouters[httpRouterUrl]) {
     monitorState.httpRouters[httpRouterUrl] = {};
   }
-  if (!monitorState.httpRouters[httpRouterUrl].subplebbitIpnsGetProvidersFetches) {
-    monitorState.httpRouters[httpRouterUrl].subplebbitIpnsGetProvidersFetches = {};
+  if (!monitorState.httpRouters[httpRouterUrl].communityIpnsGetProvidersFetches) {
+    monitorState.httpRouters[httpRouterUrl].communityIpnsGetProvidersFetches = {};
   }
 };
 
@@ -46,24 +46,20 @@ export const monitorHttpRouters = async () => {
       })
       .catch((e) => debug(e.message));
 
-    // subplebbit ipns get providers fetches
+    // community ipns get providers fetches
     (async () => {
-      for (const subplebbit of monitorState.subplebbitsMonitoring) {
+      for (const community of monitorState.communitiesMonitoring) {
         // one at a time to not ddos router
         try {
-          const stats = await getSubplebbitIpnsGetProvidersFetchStats(
+          const stats = await getCommunityIpnsGetProvidersFetchStats(
             httpRouterUrl,
-            subplebbit.address,
-            monitorState.subplebbits[subplebbit.address],
+            community.address,
+            monitorState.communities[community.address],
           );
-          monitorState.httpRouters[httpRouterUrl].subplebbitIpnsGetProvidersFetches[
-            subplebbit.address
+          monitorState.httpRouters[httpRouterUrl].communityIpnsGetProvidersFetches[
+            community.address
           ] = stats;
-          prometheusObserveSubplebbitIpnsGetProvidersFetch(
-            httpRouterUrl,
-            subplebbit.address,
-            stats,
-          );
+          prometheusObserveCommunityIpnsGetProvidersFetch(httpRouterUrl, community.address, stats);
         } catch (e) {
           debug(e.message);
         }
@@ -158,27 +154,27 @@ const getProvidersFetchStats = async (httpRouterUrl) => {
 // debug(await getProvidersFetchStats('https://peers.pleb.bot'))
 // debug(await getProvidersFetchStats('https://routing.lol'))
 
-const countSubplebbitIpnsGetProvidersFetch = createCounter();
-const getSubplebbitIpnsGetProvidersFetchStats = async (
+const countCommunityIpnsGetProvidersFetch = createCounter();
+const getCommunityIpnsGetProvidersFetchStats = async (
   httpRouterUrl,
-  subplebbitAddress,
-  subplebbit,
+  communityAddress,
+  community,
 ) => {
-  if (!subplebbit?.publicKey) {
+  if (!community?.publicKey) {
     throw Error(
-      `can't monitor http router '${httpRouterUrl}' subplebbit ipns providers for '${subplebbitAddress}' no subplebbit public key found yet`,
+      `can't monitor http router '${httpRouterUrl}' community ipns providers for '${communityAddress}' no community public key found yet`,
     );
   }
-  const suplebbitIpnsName = getPlebbitAddressFromPublicKey(subplebbit.publicKey);
-  const ipnsOverPubsubTopic = ipnsNameToIpnsOverPubsubTopic(suplebbitIpnsName);
+  const communityIpnsName = getCommunityIpnsNameFromPublicKey(community.publicKey);
+  const ipnsOverPubsubTopic = ipnsNameToIpnsOverPubsubTopic(communityIpnsName);
   const dhtKey = await pubsubTopicToDhtKey(ipnsOverPubsubTopic);
 
   debug(
-    `getting providers for subplebbit '${subplebbit.address}' ipns '${suplebbitIpnsName}' from '${httpRouterUrl}'`,
+    `getting providers for community '${community.address}' ipns '${communityIpnsName}' from '${httpRouterUrl}'`,
   );
-  let lastSubplebbitIpnsGetProvidersFetchSuccess = false;
-  let lastSubplebbitIpnsGetProvidersFetchTime;
-  let lastSubplebbitIpnsGetProvidersFetchProviderCount;
+  let lastCommunityIpnsGetProvidersFetchSuccess = false;
+  let lastCommunityIpnsGetProvidersFetchTime;
+  let lastCommunityIpnsGetProvidersFetchProviderCount;
   try {
     const beforeTimestamp = Date.now();
     const fetchedProviders = await fetchJson(`${httpRouterUrl}/routing/v1/providers/${dhtKey}`);
@@ -191,37 +187,37 @@ const getSubplebbitIpnsGetProvidersFetchStats = async (
         `failed fetching got response '${JSON.stringify(fetchedProviders).substring(0, 300)}'`,
       );
     }
-    lastSubplebbitIpnsGetProvidersFetchSuccess = true;
-    lastSubplebbitIpnsGetProvidersFetchTime = (Date.now() - beforeTimestamp) / 1000;
-    lastSubplebbitIpnsGetProvidersFetchProviderCount = fetchedProviders.Providers.length;
+    lastCommunityIpnsGetProvidersFetchSuccess = true;
+    lastCommunityIpnsGetProvidersFetchTime = (Date.now() - beforeTimestamp) / 1000;
+    lastCommunityIpnsGetProvidersFetchProviderCount = fetchedProviders.Providers.length;
 
     debug(
-      `got ${lastSubplebbitIpnsGetProvidersFetchProviderCount} providers for subplebbit '${subplebbit.address}' ipns '${suplebbitIpnsName}' from '${httpRouterUrl}' in ${lastSubplebbitIpnsGetProvidersFetchTime}s`,
+      `got ${lastCommunityIpnsGetProvidersFetchProviderCount} providers for community '${community.address}' ipns '${communityIpnsName}' from '${httpRouterUrl}' in ${lastCommunityIpnsGetProvidersFetchTime}s`,
     );
   } catch (e) {
     debug(
-      `failed getting providers for subplebbit '${subplebbit.address}' ipns '${suplebbitIpnsName}' from '${httpRouterUrl}': ${e.message}`,
+      `failed getting providers for community '${community.address}' ipns '${communityIpnsName}' from '${httpRouterUrl}': ${e.message}`,
     );
   }
 
   return {
-    subplebbitIpnsGetProvidersFetchCount: countSubplebbitIpnsGetProvidersFetch(
-      httpRouterUrl + subplebbitAddress,
+    communityIpnsGetProvidersFetchCount: countCommunityIpnsGetProvidersFetch(
+      httpRouterUrl + communityAddress,
     ),
-    lastSubplebbitIpnsGetProvidersFetchSuccess,
-    lastSubplebbitIpnsGetProvidersFetchTime,
-    lastSubplebbitIpnsGetProvidersFetchProviderCount,
+    lastCommunityIpnsGetProvidersFetchSuccess,
+    lastCommunityIpnsGetProvidersFetchTime,
+    lastCommunityIpnsGetProvidersFetchProviderCount,
   };
 };
 // test
-// debug(await getSubplebbitIpnsGetProvidersFetchStats('https://peers.pleb.bot', 'plebtoken.eth', {address: 'plebtoken.eth', publicKey: 'oqb9NJrUccHpOHqfi1daakTAFup2BB7tYNbpkOcFOyE'}))
+// debug(await getCommunityIpnsGetProvidersFetchStats('https://peers.pleb.bot', 'plebtoken.eth', {address: 'plebtoken.eth', publicKey: 'oqb9NJrUccHpOHqfi1daakTAFup2BB7tYNbpkOcFOyE'}))
 
 // test
 // monitorHttpRouters(); setInterval(() => monitorHttpRouters(), 1000 * 60 * 10)
 
 // prometheus
 const getProvidersFetchLabelNames = ["http_router_url"];
-const subplebbitIpnsGetProvidersFetchLabelNames = getCommunityMetricLabelNames(["http_router_url"]);
+const communityIpnsGetProvidersFetchLabelNames = getCommunityMetricLabelNames(["http_router_url"]);
 const counters = {
   getProvidersFetchCount: new prometheus.promClient.Counter({
     name: `${prometheus.prefix}http_router_get_providers_fetch_count`,
@@ -247,28 +243,28 @@ const counters = {
     labelNames: getProvidersFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  subplebbitIpnsGetProvidersFetchCount: new prometheus.promClient.Counter({
+  communityIpnsGetProvidersFetchCount: new prometheus.promClient.Counter({
     name: `${prometheus.prefix}http_router_community_ipns_get_providers_fetch_count`,
-    help: `count of http routers community ipns get providers fetch labeled with: ${subplebbitIpnsGetProvidersFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsGetProvidersFetchLabelNames,
+    help: `count of http routers community ipns get providers fetch labeled with: ${communityIpnsGetProvidersFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsGetProvidersFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  subplebbitIpnsGetProvidersFetchDurationSeconds: new prometheus.promClient.Counter({
+  communityIpnsGetProvidersFetchDurationSeconds: new prometheus.promClient.Counter({
     name: `${prometheus.prefix}http_router_community_ipns_get_providers_fetch_duration_seconds_sum`,
-    help: `count of http routers community ipns get providers fetch duration seconds labeled with: ${subplebbitIpnsGetProvidersFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsGetProvidersFetchLabelNames,
+    help: `count of http routers community ipns get providers fetch duration seconds labeled with: ${communityIpnsGetProvidersFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsGetProvidersFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  subplebbitIpnsGetProvidersFetchProviderCount: new prometheus.promClient.Counter({
+  communityIpnsGetProvidersFetchProviderCount: new prometheus.promClient.Counter({
     name: `${prometheus.prefix}http_router_community_ipns_get_providers_fetch_provider_count_sum`,
-    help: `sum of http routers community ipns get providers fetch provider count labeled with: ${subplebbitIpnsGetProvidersFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsGetProvidersFetchLabelNames,
+    help: `sum of http routers community ipns get providers fetch provider count labeled with: ${communityIpnsGetProvidersFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsGetProvidersFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  subplebbitIpnsGetProvidersFetchSuccessCount: new prometheus.promClient.Counter({
+  communityIpnsGetProvidersFetchSuccessCount: new prometheus.promClient.Counter({
     name: `${prometheus.prefix}http_router_community_ipns_get_providers_fetch_success_count`,
-    help: `count of http routers community ipns get providers fetch success labeled with: ${subplebbitIpnsGetProvidersFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsGetProvidersFetchLabelNames,
+    help: `count of http routers community ipns get providers fetch success labeled with: ${communityIpnsGetProvidersFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsGetProvidersFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
 };
@@ -291,22 +287,22 @@ const gauges = {
     labelNames: getProvidersFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  lastSubplebbitIpnsGetProvidersFetchDurationSeconds: new prometheus.promClient.Gauge({
+  lastCommunityIpnsGetProvidersFetchDurationSeconds: new prometheus.promClient.Gauge({
     name: `${prometheus.prefix}http_router_last_community_ipns_get_providers_fetch_duration_seconds`,
-    help: `duration gauge of last http routers community ipns get providers fetch labeled with: ${subplebbitIpnsGetProvidersFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsGetProvidersFetchLabelNames,
+    help: `duration gauge of last http routers community ipns get providers fetch labeled with: ${communityIpnsGetProvidersFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsGetProvidersFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  lastSubplebbitIpnsGetProvidersFetchProviderCount: new prometheus.promClient.Gauge({
+  lastCommunityIpnsGetProvidersFetchProviderCount: new prometheus.promClient.Gauge({
     name: `${prometheus.prefix}http_router_last_community_ipns_get_providers_fetch_provider_count`,
-    help: `provider count gauge of last http routers community ipns get providers fetch labeled with: ${subplebbitIpnsGetProvidersFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsGetProvidersFetchLabelNames,
+    help: `provider count gauge of last http routers community ipns get providers fetch labeled with: ${communityIpnsGetProvidersFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsGetProvidersFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
-  lastSubplebbitIpnsGetProvidersFetchSuccess: new prometheus.promClient.Gauge({
+  lastCommunityIpnsGetProvidersFetchSuccess: new prometheus.promClient.Gauge({
     name: `${prometheus.prefix}http_router_last_community_ipns_get_providers_fetch_success`,
-    help: `success gauge of last http routers community ipns get providers fetch labeled with: ${subplebbitIpnsGetProvidersFetchLabelNames.join(", ")}`,
-    labelNames: subplebbitIpnsGetProvidersFetchLabelNames,
+    help: `success gauge of last http routers community ipns get providers fetch labeled with: ${communityIpnsGetProvidersFetchLabelNames.join(", ")}`,
+    labelNames: communityIpnsGetProvidersFetchLabelNames,
     registers: [prometheus.promClient.register],
   }),
 };
@@ -333,44 +329,44 @@ const prometheusObserveGetProvidersFetch = (httpRouterUrl, stats) => {
   }
   gauges.lastGetProvidersFetchSuccess.set(labels, stats.lastGetProvidersFetchSuccess ? 1 : 0);
 };
-const prometheusObserveSubplebbitIpnsGetProvidersFetch = (
+const prometheusObserveCommunityIpnsGetProvidersFetch = (
   httpRouterUrl,
-  subplebbitAddress,
+  communityAddress,
   stats,
 ) => {
-  const labels = getCommunityMetricLabels(subplebbitAddress, { http_router_url: httpRouterUrl });
+  const labels = getCommunityMetricLabels(communityAddress, { http_router_url: httpRouterUrl });
   // counters
-  counters.subplebbitIpnsGetProvidersFetchCount.inc(labels, 1);
-  if (stats.lastSubplebbitIpnsGetProvidersFetchSuccess) {
-    counters.subplebbitIpnsGetProvidersFetchSuccessCount.inc(labels, 1);
+  counters.communityIpnsGetProvidersFetchCount.inc(labels, 1);
+  if (stats.lastCommunityIpnsGetProvidersFetchSuccess) {
+    counters.communityIpnsGetProvidersFetchSuccessCount.inc(labels, 1);
   }
-  if (isNumber(stats.lastSubplebbitIpnsGetProvidersFetchTime)) {
-    counters.subplebbitIpnsGetProvidersFetchDurationSeconds.inc(
+  if (isNumber(stats.lastCommunityIpnsGetProvidersFetchTime)) {
+    counters.communityIpnsGetProvidersFetchDurationSeconds.inc(
       labels,
-      stats.lastSubplebbitIpnsGetProvidersFetchTime,
+      stats.lastCommunityIpnsGetProvidersFetchTime,
     );
   }
-  if (isNumber(stats.lastSubplebbitIpnsGetProvidersFetchProviderCount)) {
-    counters.subplebbitIpnsGetProvidersFetchProviderCount.inc(
+  if (isNumber(stats.lastCommunityIpnsGetProvidersFetchProviderCount)) {
+    counters.communityIpnsGetProvidersFetchProviderCount.inc(
       labels,
-      stats.lastSubplebbitIpnsGetProvidersFetchProviderCount,
+      stats.lastCommunityIpnsGetProvidersFetchProviderCount,
     );
   }
   // gauges
-  if (isNumber(stats.lastSubplebbitIpnsGetProvidersFetchTime)) {
-    gauges.lastSubplebbitIpnsGetProvidersFetchDurationSeconds.set(
+  if (isNumber(stats.lastCommunityIpnsGetProvidersFetchTime)) {
+    gauges.lastCommunityIpnsGetProvidersFetchDurationSeconds.set(
       labels,
-      stats.lastSubplebbitIpnsGetProvidersFetchTime,
+      stats.lastCommunityIpnsGetProvidersFetchTime,
     );
   }
-  if (isNumber(stats.lastSubplebbitIpnsGetProvidersFetchProviderCount)) {
-    gauges.lastSubplebbitIpnsGetProvidersFetchProviderCount.set(
+  if (isNumber(stats.lastCommunityIpnsGetProvidersFetchProviderCount)) {
+    gauges.lastCommunityIpnsGetProvidersFetchProviderCount.set(
       labels,
-      stats.lastSubplebbitIpnsGetProvidersFetchProviderCount,
+      stats.lastCommunityIpnsGetProvidersFetchProviderCount,
     );
   }
-  gauges.lastSubplebbitIpnsGetProvidersFetchSuccess.set(
+  gauges.lastCommunityIpnsGetProvidersFetchSuccess.set(
     labels,
-    stats.lastSubplebbitIpnsGetProvidersFetchSuccess ? 1 : 0,
+    stats.lastCommunityIpnsGetProvidersFetchSuccess ? 1 : 0,
   );
 };

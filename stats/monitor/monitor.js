@@ -14,16 +14,16 @@ Debug.enable("bitsocial-stats-monitor:*");
 import { fetchClientCommunities } from "./lib/client-sources.js";
 import config from "./config.js";
 import monitorState from "./lib/monitor-state.js";
-import { monitorSubplebbitsIpns } from "./lib/subplebbit-ipns.js";
-import { monitorSubplebbitsPubsub } from "./lib/subplebbit-pubsub.js";
+import { monitorCommunitiesIpns } from "./lib/community-ipns.js";
+import { monitorCommunitiesPubsub } from "./lib/community-pubsub.js";
 import { monitorIpfsGateways } from "./lib/ipfs-gateway.js";
 import { monitorPubsubProviders } from "./lib/pubsub-provider.js";
 import { monitorHttpRouters } from "./lib/http-router.js";
-import { monitorPlebbitPreviewers } from "./lib/plebbit-previewer.js";
+import { monitorPkcPreviewers } from "./lib/pkc-previewer.js";
 import { monitorChainProviders } from "./lib/chain-provider.js";
 import { monitorWebpages } from "./lib/webpage.js";
 import { monitorNfts } from "./lib/nft.js";
-import { monitorPlebbitSeeders } from "./lib/plebbit-seeder.js";
+import { monitorPkcSeeders } from "./lib/pkc-seeder.js";
 
 // start server on port 3000
 import "./lib/server.js";
@@ -34,19 +34,19 @@ if (!config?.monitoring?.clients?.length) {
 }
 
 const multisubsIntervalMs = 1000 * 60 * 60;
-const subplebbitsIpnsIntervalMs = 1000 * 60 * 10;
-const subplebbitsPubsubIntervalMs = 1000 * 60 * 10;
+const communitiesIpnsIntervalMs = 1000 * 60 * 10;
+const communitiesPubsubIntervalMs = 1000 * 60 * 10;
 const ipfsGatewaysIntervalMs = 1000 * 60 * 10;
 const pubsubProvidersIntervalMs = 1000 * 60 * 10;
 const httpRoutersIntervalMs = 1000 * 60 * 10;
-const plebbitPreviewersIntervalMs = 1000 * 60 * 10;
+const pkcPreviewersIntervalMs = 1000 * 60 * 10;
 const chainProvidersIntervalMs = 1000 * 60;
 const webpagesIntervalMs = 1000 * 60 * 10;
 const nftsIntervalMs = 1000 * 60 * 10;
-const plebbitSeedersIntervalMs = 1000 * 60 * 10;
+const pkcSeedersIntervalMs = 1000 * 60 * 10;
 const monitoringNameAliases = {
-  previewers: "plebbitPreviewers",
-  seeders: "plebbitSeeders",
+  previewers: "pkcPreviewers",
+  seeders: "pkcSeeders",
 };
 
 // fetch communities to monitor every hour
@@ -77,10 +77,10 @@ const getCommunitiesMonitoring = async () => {
 
   // set initial state
   if (communitiesMap.size > 0) {
-    monitorState.subplebbitsMonitoring = [...communitiesMap.values()];
-    for (const community of monitorState.subplebbitsMonitoring) {
-      monitorState.subplebbits[community.address] = {
-        ...monitorState.subplebbits[community.address],
+    monitorState.communitiesMonitoring = [...communitiesMap.values()];
+    for (const community of monitorState.communitiesMonitoring) {
+      monitorState.communities[community.address] = {
+        ...monitorState.communities[community.address],
         address: community.address,
         communityAddress: community.communityAddress,
         targetAddress: community.targetAddress,
@@ -101,9 +101,9 @@ setInterval(
 await getCommunitiesMonitoring();
 
 // fetch communities to monitor at least once before starting
-while (!monitorState.subplebbitsMonitoring) {
+while (!monitorState.communitiesMonitoring) {
   await getCommunitiesMonitoring();
-  if (!monitorState.subplebbitsMonitoring) {
+  if (!monitorState.communitiesMonitoring) {
     console.log("retrying getting communities to monitor in 10 seconds");
     await new Promise((r) => setTimeout(r, 10000));
   }
@@ -126,26 +126,26 @@ const isMonitoringOnly = (name) => {
   );
 };
 
-// fetch subplebbits ipns every 10min
-if (isMonitoring("subplebbitsIpns")) {
-  monitorSubplebbitsIpns().catch((e) => console.log(e.message));
+// fetch communities ipns every 10min
+if (isMonitoring("communitiesIpns")) {
+  monitorCommunitiesIpns().catch((e) => console.log(e.message));
   setInterval(
-    () => monitorSubplebbitsIpns().catch((e) => console.log(e.message)),
-    subplebbitsIpnsIntervalMs,
+    () => monitorCommunitiesIpns().catch((e) => console.log(e.message)),
+    communitiesIpnsIntervalMs,
   );
 }
 
 // rejoin pubsub every 10min
-if (isMonitoring("subplebbitsPubsub")) {
+if (isMonitoring("communitiesPubsub")) {
   setTimeout(
     () => {
-      monitorSubplebbitsPubsub().catch((e) => console.log(e.message));
+      monitorCommunitiesPubsub().catch((e) => console.log(e.message));
       setInterval(
-        () => monitorSubplebbitsPubsub().catch((e) => console.log(e.message)),
-        subplebbitsPubsubIntervalMs,
+        () => monitorCommunitiesPubsub().catch((e) => console.log(e.message)),
+        communitiesPubsubIntervalMs,
       );
     },
-    isMonitoringOnly("subplebbitsPubsub") ? 1 : 1000 * 180,
+    isMonitoringOnly("communitiesPubsub") ? 1 : 1000 * 180,
   ); // wait for some pubsub topics to be fetched
 }
 
@@ -160,7 +160,7 @@ if (isMonitoring("ipfsGateways")) {
       );
     },
     isMonitoringOnly("ipfsGateways") ? 1 : 1000 * 60,
-  ); // wait to not ddos ipfs gateways from monitorSubplebbitsIpns
+  ); // wait to not ddos ipfs gateways from monitorCommunitiesIpns
 }
 
 // publish to pubsub providers every 10min
@@ -183,30 +183,35 @@ if (isMonitoring("httpRouters")) {
       );
     },
     isMonitoringOnly("httpRouters") ? 1 : 1000 * 120,
-  ); // wait to not ddos http routers from monitorSubplebbitsIpns
+  ); // wait to not ddos http routers from monitorCommunitiesIpns
 }
 
-// fetch plebbit seeders every 10min
+// fetch pkc seeders every 10min
 if (isMonitoring("seeders")) {
-  monitorPlebbitSeeders().catch((e) => console.log(e.message));
-  setInterval(
-    () => monitorPlebbitSeeders().catch((e) => console.log(e.message)),
-    plebbitSeedersIntervalMs,
-  );
+  setTimeout(
+    () => {
+      monitorPkcSeeders().catch((e) => console.log(e.message));
+      setInterval(
+        () => monitorPkcSeeders().catch((e) => console.log(e.message)),
+        pkcSeedersIntervalMs,
+      );
+    },
+    isMonitoringOnly("seeders") ? 1 : 1000 * 30,
+  ); // wait for community update cids from monitorCommunitiesIpns
 }
 
-// fetch plebbit previewers every 10min
+// fetch previewers every 10min
 if (isMonitoring("previewers")) {
   setTimeout(
     () => {
-      monitorPlebbitPreviewers().catch((e) => console.log(e.message));
+      monitorPkcPreviewers().catch((e) => console.log(e.message));
       setInterval(
-        () => monitorPlebbitPreviewers().catch((e) => console.log(e.message)),
-        plebbitPreviewersIntervalMs,
+        () => monitorPkcPreviewers().catch((e) => console.log(e.message)),
+        pkcPreviewersIntervalMs,
       );
     },
     isMonitoringOnly("previewers") ? 1 : 1000 * 60,
-  ); // wait for some subplebbit.lastPostCid to be fetched
+  ); // wait for some community.lastPostCid to be fetched
 }
 
 // fetch chain providers every 1min

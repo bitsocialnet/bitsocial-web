@@ -1,17 +1,14 @@
 {
 communities: {[communityAddress: string]: CommunityStatus}
-subplebbits: {[subplebbitAddress: string]: SubplebbitStatus}
 ipfsGateways: {[ipfsGatewaysUrl: string]: IpfsGatewayStatus}
 pubsubProviders: {[pubsubProviderUrl: string]: PubsubProviderStatus}
 httpRouters: {[httpRouterUrl: string]: HttpRouterStatus}
 previewers: {[previewerUrl: string]: PreviewerStatus}
-plebbitPreviewers: {[plebbitPreviewerUrl: string]: PlebbitPreviewerStatus}
 seeders: {[seederPeerId: string]: SeederStatus}
 chainProviders: {[chainProviderUrl: string]: ChainProviderStatus}
 webpages: {[webpageUrl: string]: WebpageStatus}
 nfts: {[nftName: string]: NftStatus}
 network: NetworkStatus
-plebbit: PlebbitStatus
 }
 
 CommunityStatus {
@@ -20,8 +17,8 @@ communityAddress: string
 clientId: string
 title: string
 directoryCode: string
-getSubplebbitCount: number
-lastSubplebbitUpdateTimestamp: number
+getCommunityCount: number
+lastCommunityUpdateTimestamp: number
 ipnsDhtPeers: Multiaddresses[] // bitsocial clients do not run the ipfs dht directly, so delegated routing is used
 ipnsHttpRoutersPeers: Multiaddresses[]
 ipnsCidHttpRoutersPeers: Multiaddresses[]
@@ -30,22 +27,7 @@ pubsubDhtPeers: Multiaddresses[]
 pubsubHttpRoutersPeers: Multiaddresses[]
 pubsubMessageCount: number
 lastPubsubMessageTimestamp: number
-lastSubplebbitPubsubMessageTimestamp: number
-}
-
-SubplebbitStatus {
-address: string
-getSubplebbitCount: number
-lastSubplebbitUpdateTimestamp: number
-ipnsDhtPeers: Multiaddresses[] // plebbit nodes dont run the ipfs dht, so only through delegated routing
-ipnsHttpRoutersPeers: Multiaddresses[]
-ipnsCidHttpRoutersPeers: Multiaddresses[]
-pubsubPeers: Multiaddresses[]
-pubsubDhtPeers: Multiaddresses[] // plebbit nodes dont run the ipfs dht, so only through delegated routing
-pubsubHttpRoutersPeers: Multiaddresses[]
-pubsubMessageCount: number
-lastPubsubMessageTimestamp: number
-lastSubplebbitPubsubMessageTimestamp: number
+lastCommunityPubsubMessageTimestamp: number
 }
 
 IpfsGatewayStatus {
@@ -54,16 +36,16 @@ commentFetchCount: number
 lastCommentFetchTime: number
 lastCommentFetchSuccess: bool
 lastCommentFetchAttemptCount: number
-subplebbitIpnsFetches: {[subplebbitAddress: string]: SubplebbitIpnsFetch}
+communityIpnsFetches: {[communityAddress: string]: CommunityIpnsFetch}
 }
 
-SubplebbitIpnsFetch {
-subplebbitIpnsFetchCount: number
-lastSubplebbitIpnsFetchSuccess: bool
-lastSubplebbitIpnsFetchTime: number
-lastSubplebbitIpnsFetchTimestamp: number
-lastSubplebbitIpnsFetchAttemptTimestamp: number
-lastSubplebbitIpnsFetchAttemptCount: number
+CommunityIpnsFetch {
+communityIpnsFetchCount: number
+lastCommunityIpnsFetchSuccess: bool
+lastCommunityIpnsFetchTime: number
+lastCommunityIpnsFetchTimestamp: number
+lastCommunityIpnsFetchAttemptTimestamp: number
+lastCommunityIpnsFetchAttemptCount: number
 }
 
 PubsubProviderStatus {
@@ -80,14 +62,14 @@ url: string
 getProvidersFetchCount: number
 lastGetProvidersFetchSuccess: number
 lastGetProvidersFetchTime: number
-subplebbitIpnsGetProvidersFetches: {[subplebbitAddress: string]: SubplebbitIpnsGetProvidersFetch}
+communityIpnsGetProvidersFetches: {[communityAddress: string]: CommunityIpnsGetProvidersFetch}
 }
 
-SubplebbitIpnsGetProvidersFetch {
-subplebbitIpnsGetProvidersFetchCount: number
-lastSubplebbitIpnsGetProvidersFetchSuccess: bool
-lastSubplebbitIpnsGetProvidersFetchTime: number
-lastSubplebbitIpnsGetProvidersFetchProviderCount: number
+CommunityIpnsGetProvidersFetch {
+communityIpnsGetProvidersFetchCount: number
+lastCommunityIpnsGetProvidersFetchSuccess: bool
+lastCommunityIpnsGetProvidersFetchTime: number
+lastCommunityIpnsGetProvidersFetchProviderCount: number
 }
 
 NftStatus {
@@ -101,15 +83,6 @@ lastIpfsGatewayFetchSuccess: bool
 lastIpfsGatewayFetchTime: number
 }
 
-PlebbitStatus {
-subplebbitCount: number
-subplebbitsStats: {
-allActiveUserCount: number
-allPostCount: number
-etc...
-}
-}
-
 PreviewerStatus {
 url: string
 commentPreviewFetchCount: number
@@ -119,9 +92,9 @@ lastCommentPreviewFetchTime: number
 
 SeederStatus {
 peerId: string
-subplebbitUpdateCidFetch: number
-lastSubplebbitUpdateCidFetchSuccess: bool
-lastSubplebbitUpdateCidFetchTime: number
+communityUpdateCidFetch: number
+lastCommunityUpdateCidFetchSuccess: bool
+lastCommunityUpdateCidFetchTime: number
 }
 
 NetworkStatus {

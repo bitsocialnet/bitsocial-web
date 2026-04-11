@@ -3,12 +3,13 @@ import config from "../config.js";
 
 // no initial state, the app state is set by importing this file and adding props to this object
 let monitorState = {
-  subplebbits: {},
-  subplebbitsMonitoring: undefined, // keep undefined until monitor.js fetches multisubs to monitor
+  communities: {},
+  communitiesMonitoring: undefined, // keep undefined until monitor.js fetches multisubs to monitor
   ipfsGateways: {},
   pubsubProviders: {},
   httpRouters: {},
-  plebbitPreviewers: {},
+  pkcPreviewers: {},
+  pkcSeeders: {},
   chainProviders: {},
   webpages: {},
   nfts: {},
@@ -18,6 +19,23 @@ let monitorState = {
 try {
   monitorState = JSON.parse(fs.readFileSync("monitorState.json", "utf8"));
 } catch (e) {}
+
+if (!monitorState.communities) {
+  monitorState.communities = monitorState.subplebbits || {};
+}
+if (monitorState.communitiesMonitoring === undefined) {
+  monitorState.communitiesMonitoring = monitorState.subplebbitsMonitoring;
+}
+if (!monitorState.pkcPreviewers) {
+  monitorState.pkcPreviewers = monitorState.plebbitPreviewers || {};
+}
+if (!monitorState.pkcSeeders) {
+  monitorState.pkcSeeders = monitorState.plebbitSeeders || {};
+}
+delete monitorState.subplebbits;
+delete monitorState.subplebbitsMonitoring;
+delete monitorState.plebbitPreviewers;
+delete monitorState.plebbitSeeders;
 
 // migrate to new schema: make ipfsGateway commentFetchHistory a property
 for (const ipfsGatewayUrl in monitorState.ipfsGateways) {
@@ -36,9 +54,9 @@ if (!monitorState.httpRouters) {
   monitorState.httpRouters = {};
 }
 
-// migrate to new schema: add plebbit previewers
-if (!monitorState.plebbitPreviewers) {
-  monitorState.plebbitPreviewers = {};
+// migrate to new schema: add previewers
+if (!monitorState.pkcPreviewers) {
+  monitorState.pkcPreviewers = {};
 }
 
 // migrate to new schema: remove ipfsGateway commentFetchHistory
@@ -68,9 +86,9 @@ if (!monitorState.pubsubProviders) {
   monitorState.pubsubProviders = {};
 }
 
-// migrate to new schema: add plebbit seeders
-if (!monitorState.plebbitSeeders) {
-  monitorState.plebbitSeeders = {};
+// migrate to new schema: add PKC seeders
+if (!monitorState.pkcSeeders) {
+  monitorState.pkcSeeders = {};
 }
 
 export default monitorState;

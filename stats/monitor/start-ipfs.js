@@ -195,7 +195,7 @@ const startIpfs = async () => {
   const httpRoutersMethodsConfig = {
     "find-providers": { RouterName: "HttpRoutersParallel" },
     provide: { RouterName: "HttpRoutersParallel" },
-    // not supported by plebbit trackers
+    // not supported by the current delegated routers we use here
     "find-peers": { RouterName: "HttpRouterNotSupported" },
     "get-ipns": { RouterName: "HttpRouterNotSupported" },
     "put-ipns": { RouterName: "HttpRouterNotSupported" },
@@ -381,7 +381,7 @@ const startServer = (port) => {
     // start of pubsub related endpoints
     console.log(req.method, req.url, req.rawHeaders);
 
-    // don't let plebbit-js call shutdown or change config
+    // don't let the upstream client call shutdown or change config
     if (req.url === "/api/v0/shutdown" || req.url.startsWith("/api/v0/config")) {
       res.statusCode = 403;
       res.end();
