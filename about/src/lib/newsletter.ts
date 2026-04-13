@@ -8,6 +8,8 @@ const newsletterListUuids =
 export const newsletterRequiresConfirmation =
   import.meta.env.VITE_NEWSLETTER_CONFIRMATION_REQUIRED === "true";
 
+export const newsletterSubscribeAction = newsletterSubscribeUrl;
+export const configuredNewsletterListUuids = newsletterListUuids;
 export const isNewsletterConfigured =
   newsletterSubscribeUrl.length > 0 && newsletterListUuids.length > 0;
 
@@ -33,10 +35,19 @@ async function parseSubscribeResponse(
   }
 }
 
-export async function subscribeToNewsletter(email: string) {
+type NewsletterSubscribeOptions = {
+  locale?: string | null;
+};
+
+export async function subscribeToNewsletter(
+  email: string,
+  options: NewsletterSubscribeOptions = {},
+) {
   if (!isNewsletterConfigured) {
     throw new NewsletterConfigurationError();
   }
+
+  const normalizedLocale = options.locale?.trim();
 
   const response = await fetch(newsletterSubscribeUrl, {
     method: "POST",
@@ -46,6 +57,12 @@ export async function subscribeToNewsletter(email: string) {
     body: JSON.stringify({
       email,
       list_uuids: newsletterListUuids,
+      ...(normalizedLocale
+        ? {
+            lang: normalizedLocale,
+            locale: normalizedLocale,
+          }
+        : {}),
     }),
   });
 

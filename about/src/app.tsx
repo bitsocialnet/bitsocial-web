@@ -1,29 +1,17 @@
-import { Suspense, lazy, useLayoutEffect, useRef, type ReactNode } from "react";
+import { useLayoutEffect, useRef, type ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import {
-  BrowserRouter as Router,
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Home from "@/pages/home";
 import Apps from "@/pages/apps";
 import About from "@/pages/about";
 import Blog from "@/pages/blog";
 import Privacy from "@/pages/privacy";
+import AppDetail from "@/pages/app-detail";
 import PolygonMeshBackground from "@/components/polygon-mesh-background";
 import SeoHead from "@/components/seo-head";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { normalizeInitialHomeScrollPosition } from "@/lib/initial-scroll";
-
-const AppDetail = lazy(() => import("@/pages/app-detail"));
-
-function RouteLoadingFallback() {
-  return <div className="min-h-screen bg-background" aria-hidden />;
-}
 
 function InitialHomeScrollGuard() {
   const location = useLocation();
@@ -69,26 +57,25 @@ function DevelopmentOnlyRoute({ children }: { children: ReactNode }) {
   return <Navigate to="/" replace state={{ unavailablePath: location.pathname }} />;
 }
 
-function App() {
+function AppFrame({
+  enableClientEffects,
+  includeAnalytics,
+}: {
+  enableClientEffects: boolean;
+  includeAnalytics: boolean;
+}) {
   return (
-    <Router>
-      <SeoHead />
-      <InitialHomeScrollGuard />
-      <RouteScrollReset />
+    <>
+      {enableClientEffects ? <SeoHead /> : null}
+      {enableClientEffects ? <InitialHomeScrollGuard /> : null}
+      {enableClientEffects ? <RouteScrollReset /> : null}
       <div className="relative min-h-screen overflow-x-hidden">
         <PolygonMeshBackground />
         <div className="relative z-10">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/apps" element={<Apps />} />
-            <Route
-              path="/apps/:slug"
-              element={
-                <Suspense fallback={<RouteLoadingFallback />}>
-                  <AppDetail />
-                </Suspense>
-              }
-            />
+            <Route path="/apps/:slug" element={<AppDetail />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/about" element={<About />} />
             <Route
@@ -102,9 +89,27 @@ function App() {
           </Routes>
         </div>
       </div>
-      <Analytics />
-      <SpeedInsights />
-    </Router>
+      {includeAnalytics ? <Analytics /> : null}
+      {includeAnalytics ? <SpeedInsights /> : null}
+    </>
+  );
+}
+
+export function AppShell({
+  enableClientEffects,
+  includeAnalytics,
+}: {
+  enableClientEffects: boolean;
+  includeAnalytics: boolean;
+}) {
+  return <AppFrame enableClientEffects={enableClientEffects} includeAnalytics={includeAnalytics} />;
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppShell enableClientEffects includeAnalytics />
+    </BrowserRouter>
   );
 }
 

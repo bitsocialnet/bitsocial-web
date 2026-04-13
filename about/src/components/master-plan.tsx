@@ -339,7 +339,7 @@ export default function MasterPlan() {
                 ease: [0.4, 0, 0.2, 1],
               }}
               onClick={() => setShowGif(true)}
-              className="relative z-10 flex-shrink-0 cursor-pointer transition-all duration-300"
+              className="js-only relative z-10 flex-shrink-0 cursor-pointer transition-all duration-300"
               whileHover={{ scale: 1.1 }}
             >
               <img
@@ -350,6 +350,22 @@ export default function MasterPlan() {
                 className="h-10 w-10 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(37,99,235,0.8)]"
               />
             </m.button>
+            <noscript>
+              <a
+                href={EASTER_EGG_GIF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nojs-inline-flex relative z-10 flex-shrink-0 cursor-pointer transition-all duration-300"
+              >
+                <img
+                  src="/logo.png"
+                  width={40}
+                  height={40}
+                  alt={logoAlt}
+                  className="h-10 w-10 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(37,99,235,0.8)]"
+                />
+              </a>
+            </noscript>
           </div>
         </div>
       </div>

@@ -17,12 +17,9 @@ import {
 await ensurePinnedNodeVersion(import.meta.url);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const aboutViteConfig = path.join("about", "vite.config.ts");
+const aboutServerScript = path.join(__dirname, "start-about-server.mjs");
 const usePortless = process.env.PORTLESS !== "0" && !isWindows;
-const binDir = path.join(repoRoot, "node_modules", ".bin");
-const executableSuffix = isWindows ? ".cmd" : "";
-const viteBin = path.join(binDir, `vite${executableSuffix}`);
-const command = usePortless && existsSync(portlessBin) ? portlessBin : viteBin;
+const command = usePortless && existsSync(portlessBin) ? portlessBin : process.execPath;
 const childEnv = {
   ...process.env,
 };
@@ -33,18 +30,18 @@ if (command === portlessBin) {
   const publicUrl = getPortlessPublicUrl(appName);
   const docsAppName = getPortlessAppName("docs.bitsocial");
 
-  args = [appName, "vite", "--config", aboutViteConfig];
+  args = [appName, process.execPath, aboutServerScript];
   childEnv.DOCS_DEV_PROXY_TARGET = getPortlessPublicUrl(docsAppName);
 
   if (appName !== "bitsocial") {
     console.log(`Starting Portless dev server at ${publicUrl}`);
   }
 } else if (process.env.PORTLESS !== "0") {
-  console.warn("portless unavailable on this platform, using vite directly");
+  console.warn("portless unavailable on this platform, using the about SSR dev server directly");
   childEnv.PORTLESS = "0";
-  args = ["--config", aboutViteConfig];
+  args = [aboutServerScript];
 } else {
-  args = ["--config", aboutViteConfig];
+  args = [aboutServerScript];
 }
 
 const child = spawn(command, args, {

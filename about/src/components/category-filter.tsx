@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { LayoutGrid, Shield, Wrench } from "lucide-react";
 import type { AppCategorySlug, CategoryData } from "@/lib/apps-data";
 import { cn } from "@/lib/utils";
@@ -6,10 +7,11 @@ import { cn } from "@/lib/utils";
 interface CategoryFilterProps {
   categories: Array<CategoryData & { count: number }>;
   activeCategory: AppCategorySlug | null;
-  onCategoryChange: (category: AppCategorySlug | null) => void;
-  allLabel: string;
   allDescription: string;
+  allLabel: string;
   directoryLabel: string;
+  getCategoryHref?: (category: AppCategorySlug | null) => string;
+  onCategoryChange?: (category: AppCategorySlug | null) => void;
   totalCount: number;
 }
 
@@ -26,6 +28,7 @@ export default function CategoryFilter({
   allLabel,
   allDescription,
   directoryLabel,
+  getCategoryHref,
   totalCount,
 }: CategoryFilterProps) {
   return (
@@ -39,11 +42,12 @@ export default function CategoryFilter({
       <div className="space-y-2">
         <CategoryButton
           active={activeCategory === null}
-          label={allLabel}
-          description={allDescription}
           count={totalCount}
-          onClick={() => onCategoryChange(null)}
+          description={allDescription}
+          href={getCategoryHref ? getCategoryHref(null) : undefined}
           icon={<LayoutGrid className="h-4 w-4" aria-hidden="true" />}
+          label={allLabel}
+          onClick={onCategoryChange ? () => onCategoryChange(null) : undefined}
         />
 
         {categories.map((category) => {
@@ -53,11 +57,12 @@ export default function CategoryFilter({
             <CategoryButton
               key={category.slug}
               active={activeCategory === category.slug}
-              label={category.label}
-              description={category.description}
               count={category.count}
-              onClick={() => onCategoryChange(category.slug)}
+              description={category.description}
+              href={getCategoryHref ? getCategoryHref(category.slug) : undefined}
               icon={<Icon className="h-4 w-4" aria-hidden="true" />}
+              label={category.label}
+              onClick={onCategoryChange ? () => onCategoryChange(category.slug) : undefined}
             />
           );
         })}
@@ -68,31 +73,29 @@ export default function CategoryFilter({
 
 function CategoryButton({
   active,
-  label,
-  description,
   count,
-  onClick,
+  description,
+  href,
   icon,
+  label,
+  onClick,
 }: {
   active: boolean;
-  label: string;
-  description: string;
   count: number;
-  onClick: () => void;
+  description: string;
+  href?: string;
   icon: ReactNode;
+  label: string;
+  onClick?: () => void;
 }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      data-active={active ? "true" : undefined}
-      className={cn(
-        "category-filter-button glass-card group flex w-full items-start justify-between rounded-[1.4rem] px-5 py-4 text-left transition-all duration-300",
-        active
-          ? "border-blue-core/30 text-foreground hover:border-blue-core/30 shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55 dark:hover:border-blue-core/55"
-          : "hover:border-blue-glow",
-      )}
-    >
+  const className = cn(
+    "category-filter-button glass-card group flex w-full items-start justify-between rounded-[1.4rem] px-5 py-4 text-left transition-all duration-300",
+    active
+      ? "border-blue-core/30 text-foreground hover:border-blue-core/30 shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55 dark:hover:border-blue-core/55"
+      : "hover:border-blue-glow",
+  );
+  const content = (
+    <>
       <div className="min-w-0 pr-4">
         <div className="flex items-center gap-2">
           <span className={cn(active ? "text-blue-glow" : "text-muted-foreground")}>{icon}</span>
@@ -116,6 +119,25 @@ function CategoryButton({
       >
         {count}
       </span>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link to={href} data-active={active ? "true" : undefined} className={className}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      data-active={active ? "true" : undefined}
+      className={className}
+    >
+      {content}
     </button>
   );
 }

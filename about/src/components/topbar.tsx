@@ -7,15 +7,14 @@ import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { cn } from "@/lib/utils";
 import { goHomeScrollTop, goRouteScrollTop } from "@/lib/home-nav";
 import { goToMailingListSection } from "@/lib/mailing-list-nav";
-import { ThemeToggle } from "./theme-toggle";
+import { NoJsThemeToggle, ThemeToggle } from "./theme-toggle";
 import HamburgerButton from "./hamburger-button";
-import LanguageSelector from "./language-selector";
+import LanguageSelector, { NoJsLanguageSelector } from "./language-selector";
 import MobileMenu from "./mobile-menu";
 
 const navLinkClassName =
   "text-muted-foreground hover:text-foreground transition-colors relative group text-lg md:text-base font-display leading-none py-2 px-2 block";
-// Trigger the compact nav before the desktop layout looks cramped.
-const compactNavigationTriggerBufferPx = 24;
+const compactNavigationTriggerBufferPx = 160;
 const MOBILE_MENU_INTERACTION_GUARD_ATTRIBUTE = "data-mobile-menu-interaction-guard";
 
 function NavLink({
@@ -96,7 +95,7 @@ function TopbarLinks({
   routeLinks: Array<{ label: string; to: string }>;
 }) {
   return (
-    <div className="flex items-center gap-5">
+    <div className="topbar-links flex items-center gap-5">
       {routeLinks.map((link) => (
         <NavLink
           key={link.to}
@@ -129,6 +128,7 @@ function DesktopNavigation({
   onAppsClick,
   onNewsletterClick,
   routeLinks,
+  includeNoJsControls = true,
 }: {
   sourceCodeLabel: string;
   newsletterLabel: string;
@@ -136,9 +136,10 @@ function DesktopNavigation({
   onAppsClick: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
   onNewsletterClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   routeLinks: Array<{ label: string; to: string }>;
+  includeNoJsControls?: boolean;
 }) {
   return (
-    <div className="flex items-center">
+    <div className="topbar-desktop-nav flex items-center">
       <TopbarLinks
         sourceCodeLabel={sourceCodeLabel}
         newsletterLabel={newsletterLabel}
@@ -148,11 +149,76 @@ function DesktopNavigation({
         routeLinks={routeLinks}
       />
       {routeLinks.length > 0 ? <div className="h-4 w-px bg-border mx-4" /> : null}
-      <div className="flex items-center gap-2">
-        <LanguageSelector />
-        <ThemeToggle />
+      <div className="topbar-controls flex items-center gap-2">
+        <div className="js-only">
+          <LanguageSelector />
+        </div>
+        <div className="js-only">
+          <ThemeToggle />
+        </div>
+        {includeNoJsControls ? (
+          <noscript>
+            <div className="topbar-nojs-controls nojs-inline-flex items-center gap-2">
+              <NoJsLanguageSelector />
+              <NoJsThemeToggle />
+            </div>
+          </noscript>
+        ) : null}
       </div>
     </div>
+  );
+}
+
+function NoJsMobileMenu({
+  newsletterLabel,
+  routeLinks,
+  sourceCodeLabel,
+}: {
+  newsletterLabel: string;
+  routeLinks: Array<{ label: string; to: string }>;
+  sourceCodeLabel: string;
+}) {
+  return (
+    <details className="nojs-mobile-menu">
+      <summary className="nojs-mobile-summary flex h-9 w-9 list-none cursor-pointer items-center justify-center rounded-full text-muted-foreground hover:text-foreground [&::-webkit-details-marker]:hidden">
+        <span className="sr-only">Menu</span>
+        <span className="relative h-5 w-5">
+          <span className="absolute left-0 top-0.5 h-0.5 w-5 rounded-full bg-current" />
+          <span className="absolute left-0 top-[9px] h-0.5 w-5 rounded-full bg-current" />
+          <span className="absolute left-0 top-[17px] h-0.5 w-5 rounded-full bg-current" />
+        </span>
+      </summary>
+
+      <div className="nojs-mobile-panel px-4 py-6">
+        <nav className="flex flex-col gap-1">
+          {routeLinks.map((link) => (
+            <a key={link.to} href={link.to} className={navLinkClassName}>
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="https://github.com/bitsocialnet"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${navLinkClassName} capitalize`}
+          >
+            {sourceCodeLabel}
+          </a>
+          <a href="/#mailing-list" className={navLinkClassName}>
+            {newsletterLabel}
+          </a>
+        </nav>
+
+        <div className="mt-2 flex flex-col gap-3 border-t border-border/30 pt-4">
+          <div>
+            <NoJsThemeToggle mobile />
+          </div>
+          <div>
+            <NoJsLanguageSelector mobile />
+          </div>
+        </div>
+      </div>
+    </details>
   );
 }
 
@@ -328,6 +394,7 @@ export default function Topbar() {
                 onAppsClick={handleAppsClick}
                 onNewsletterClick={handleNewsletterClick}
                 routeLinks={routeLinks}
+                includeNoJsControls={false}
               />
             </div>
 
@@ -351,7 +418,9 @@ export default function Topbar() {
               </Link>
 
               {usesCompactNavigation ? (
-                <HamburgerButton isOpen={isMobileMenuOpen} onClick={handleMenuToggle} />
+                <div className="flex items-center gap-2">
+                  <HamburgerButton isOpen={isMobileMenuOpen} onClick={handleMenuToggle} />
+                </div>
               ) : (
                 <DesktopNavigation
                   sourceCodeLabel={sourceCodeLabel}
@@ -362,6 +431,14 @@ export default function Topbar() {
                   routeLinks={routeLinks}
                 />
               )}
+
+              <noscript>
+                <NoJsMobileMenu
+                  newsletterLabel={newsletterLabel}
+                  routeLinks={routeLinks}
+                  sourceCodeLabel={sourceCodeLabel}
+                />
+              </noscript>
             </div>
           </div>
           <MobileMenu

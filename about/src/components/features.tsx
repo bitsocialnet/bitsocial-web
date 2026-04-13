@@ -442,7 +442,7 @@ export default function Features() {
               <div
                 key={feature.id}
                 id={feature.id}
-                className={`scroll-mt-24 ${index < features.length - 1 ? "pb-12 md:pb-16" : ""}`}
+                className={`nojs-target-highlight scroll-mt-24 ${index < features.length - 1 ? "pb-12 md:pb-16" : ""}`}
               >
                 <m.div
                   initial={{ y: 30 }}
@@ -466,10 +466,18 @@ export default function Features() {
                         <button
                           type="button"
                           onClick={() => handleTitleClick(feature.id)}
-                          className="interactive-feature-link w-full text-start text-xl md:text-2xl font-display font-normal italic text-foreground/85 focus-visible:outline-none"
+                          className="js-only interactive-feature-link w-full text-start text-xl md:text-2xl font-display font-normal italic text-foreground/85 focus-visible:outline-none"
                         >
                           {featureTitleFromTaglineSegments(t, feature.id)}
                         </button>
+                        <noscript>
+                          <a
+                            href="#hero-tagline"
+                            className="nojs-inline interactive-feature-link w-full text-start text-xl md:text-2xl font-display font-normal italic text-foreground/85 focus-visible:outline-none"
+                          >
+                            {featureTitleFromTaglineSegments(t, feature.id)}
+                          </a>
+                        </noscript>
                       </h3>
                       <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
                         {feature.description}

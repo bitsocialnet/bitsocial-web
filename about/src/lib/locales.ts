@@ -47,6 +47,7 @@ export interface SupportedLanguage {
 export const DEFAULT_LANGUAGE_CODE: SupportedLanguageCode = "en";
 export const LANGUAGE_QUERY_PARAM = "lang";
 export const LANGUAGE_STORAGE_KEY = "i18nextLng";
+export const LANGUAGE_COOKIE_NAME = LANGUAGE_STORAGE_KEY;
 export const SUPPORTED_LANGUAGES: readonly SupportedLanguage[] = [
   { code: "ar", label: "العربية", dir: "rtl" },
   { code: "bn", label: "বাংলা" },
@@ -213,4 +214,93 @@ export function resolveAutomaticLanguage(
 
 export function isRtlLanguage(language: string | null | undefined): boolean {
   return RTL_LANGUAGE_CODES.has(normalizeLanguageCode(language));
+}
+
+function parseAcceptLanguageHeader(acceptLanguageHeader: string | null | undefined): string[] {
+  if (!acceptLanguageHeader) {
+    return [];
+  }
+
+  return acceptLanguageHeader
+    .split(",")
+    .map((part) => {
+      const [localePart, ...parameterParts] = part.trim().split(";");
+      const qualityPart = parameterParts.find((parameter) => parameter.trim().startsWith("q="));
+      const quality = qualityPart ? Number.parseFloat(qualityPart.trim().slice(2)) : 1;
+
+      return {
+        locale: localePart?.trim() ?? "",
+        quality: Number.isFinite(quality) ? quality : 0,
+      };
+    })
+    .filter((candidate) => candidate.locale && candidate.quality > 0)
+    .sort((left, right) => right.quality - left.quality)
+    .map((candidate) => candidate.locale);
+}
+
+function parseCookieHeader(cookieHeader: string | null | undefined): Record<string, string> {
+  if (!cookieHeader) {
+    return {};
+  }
+
+  const entries = cookieHeader
+    .split(";")
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => {
+      const separatorIndex = part.indexOf("=");
+      if (separatorIndex < 0) {
+        return null;
+      }
+
+      const name = part.slice(0, separatorIndex).trim();
+      const value = part.slice(separatorIndex + 1).trim();
+      if (!name || !value) {
+        return null;
+      }
+
+      try {
+        return [name, decodeURIComponent(value)] as const;
+      } catch {
+        return [name, value] as const;
+      }
+    })
+    .filter((entry): entry is readonly [string, string] => entry !== null);
+
+  return Object.fromEntries(entries);
+}
+
+export function getLanguageFromCookieHeader(
+  cookieHeader: string | null | undefined,
+): SupportedLanguageCode | null {
+  const cookies = parseCookieHeader(cookieHeader);
+  return resolveSupportedLanguageCode(cookies[LANGUAGE_COOKIE_NAME]);
+}
+
+export function createLanguageCookieValue(language: string | null | undefined): string | null {
+  const normalizedLanguage = resolveSupportedLanguageCode(language);
+  if (!normalizedLanguage) {
+    return null;
+  }
+
+  return `${LANGUAGE_COOKIE_NAME}=${encodeURIComponent(normalizedLanguage)}; Path=/; Max-Age=31536000; SameSite=Lax`;
+}
+
+export function resolveRequestLanguage(input: {
+  queryLanguage?: string | null | undefined;
+  cookieHeader?: string | null | undefined;
+  acceptLanguageHeader?: string | null | undefined;
+}): SupportedLanguageCode {
+  const queryLanguage = resolveSupportedLanguageCode(input.queryLanguage);
+  if (queryLanguage) {
+    return queryLanguage;
+  }
+
+  const cookieLanguage = getLanguageFromCookieHeader(input.cookieHeader);
+  if (cookieLanguage) {
+    return cookieLanguage;
+  }
+
+  const acceptLanguageCandidates = parseAcceptLanguageHeader(input.acceptLanguageHeader);
+  return resolveAutomaticLanguage(acceptLanguageCandidates, acceptLanguageCandidates[0] ?? null);
 }

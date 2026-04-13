@@ -46,5 +46,9 @@ export default function EasterEggOverlay({
     </AnimatePresence>
   );
 
+  if (typeof document === "undefined") {
+    return overlay;
+  }
+
   return createPortal(overlay, document.body);
 }

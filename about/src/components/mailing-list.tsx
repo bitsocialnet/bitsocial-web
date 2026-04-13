@@ -2,10 +2,13 @@ import { useState } from "react";
 import { m } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Mail, ArrowRight, Check } from "lucide-react";
+import { normalizeLanguageCode } from "@/lib/locales";
 import {
+  configuredNewsletterListUuids,
   isNewsletterConfigured,
   NewsletterConfigurationError,
   newsletterRequiresConfirmation,
+  newsletterSubscribeAction,
   subscribeToNewsletter,
 } from "@/lib/newsletter";
 import { cn } from "@/lib/utils";
@@ -13,20 +16,29 @@ import { cn } from "@/lib/utils";
 type FormState = "idle" | "submitting" | "success" | "error";
 
 export default function MailingList() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [email, setEmail] = useState("");
   const [formState, setFormState] = useState<FormState>("idle");
   const normalizedEmail = email.trim();
+  const locale = normalizeLanguageCode(i18n.resolvedLanguage ?? i18n.language);
   const isValid = normalizedEmail.includes("@") && normalizedEmail.includes(".");
 
   const handleSubmit = async (e: React.FormEvent) => {
+    if (formState === "submitting" || !isNewsletterConfigured) {
+      e.preventDefault();
+      return;
+    }
+
+    if (!normalizedEmail) {
+      return;
+    }
+
     e.preventDefault();
-    if (!normalizedEmail || formState === "submitting" || !isNewsletterConfigured) return;
 
     setFormState("submitting");
 
     try {
-      await subscribeToNewsletter(normalizedEmail);
+      await subscribeToNewsletter(normalizedEmail, { locale });
       setFormState("success");
       setEmail("");
     } catch (error) {
@@ -46,7 +58,7 @@ export default function MailingList() {
     : t("mailingList.success");
 
   return (
-    <section id="mailing-list" className="py-20 md:py-28 px-6 scroll-mt-24">
+    <section id="mailing-list" className="nojs-target-highlight py-20 md:py-28 px-6 scroll-mt-24">
       <div className="max-w-2xl mx-auto">
         <m.div
           initial={{ y: 24 }}
@@ -81,9 +93,17 @@ export default function MailingList() {
             </m.div>
           ) : (
             <form
+              action={newsletterSubscribeAction || undefined}
+              method="post"
               onSubmit={handleSubmit}
               className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
             >
+              {configuredNewsletterListUuids.map((listUuid) => (
+                <input key={listUuid} type="hidden" name="list_uuids" value={listUuid} />
+              ))}
+              <input type="hidden" name="lang" value={locale} />
+              <input type="hidden" name="locale" value={locale} />
+
               <div className="relative flex-1 min-w-0">
                 <input
                   type="email"

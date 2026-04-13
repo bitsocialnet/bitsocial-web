@@ -1,6 +1,6 @@
 import { m, useReducedMotion } from "framer-motion";
 import { gsap } from "gsap";
-import { Check, X } from "lucide-react";
+import { Check, ChevronDown, X } from "lucide-react";
 import {
   memo,
   startTransition,
@@ -185,6 +185,73 @@ const ComparisonCard = memo(function ComparisonCard({
       }`}
     >
       <ComparisonCardContent approach={approach} rows={rows} isBitsocial={isBitsocial} />
+    </div>
+  );
+});
+
+const NoJsMobileComparisonList = memo(function NoJsMobileComparisonList({
+  approaches,
+  rows,
+}: {
+  approaches: Approach[];
+  rows: ComparisonRow[];
+}) {
+  return (
+    <div className="space-y-3 md:hidden">
+      {approaches.map((approach, index) => {
+        const isBitsocial = approach.id === "bitsocial";
+
+        return (
+          <details
+            key={approach.id}
+            className={`glass-card overflow-hidden ${isBitsocial ? "border !border-blue-glow" : ""}`}
+            open={index === 0}
+          >
+            <summary className="flex cursor-pointer list-none items-start justify-between gap-3 px-5 py-4 [&::-webkit-details-marker]:hidden">
+              <div className="min-w-0">
+                <div className="flex items-center gap-2">
+                  {isBitsocial ? (
+                    <Check className="h-4 w-4 shrink-0 text-emerald-500" aria-hidden />
+                  ) : (
+                    <X className="h-4 w-4 shrink-0 text-red-500" aria-hidden />
+                  )}
+                  <h3 className="text-base font-display font-semibold text-foreground">
+                    {approach.label}
+                  </h3>
+                </div>
+                <p className="mt-1 text-sm text-muted-foreground/70">{approach.subtitle}</p>
+              </div>
+              <ChevronDown className="mt-1 h-4 w-4 shrink-0 text-muted-foreground/60" />
+            </summary>
+
+            <div className="border-t border-[var(--glass-border-subtle)] px-5 pb-5 pt-4">
+              <div className="space-y-3.5">
+                {rows.map((row) => (
+                  <div key={row.label}>
+                    <p className="mb-0.5 text-xs uppercase tracking-wider text-muted-foreground/50">
+                      {row.label}
+                    </p>
+                    <div className="flex items-start gap-2">
+                      {isBitsocial ? (
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" aria-hidden />
+                      ) : (
+                        <X className="mt-0.5 h-4 w-4 shrink-0 text-red-500" aria-hidden />
+                      )}
+                      <p
+                        className={`min-w-0 text-sm font-medium ${
+                          isBitsocial ? "text-foreground" : "text-muted-foreground"
+                        }`}
+                      >
+                        {row.values[approach.id]}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </details>
+        );
+      })}
     </div>
   );
 });
@@ -549,6 +616,12 @@ export default function SanctuaryCommunication() {
   const { t } = useTranslation();
   const { approaches, rows } = useSanctuaryComparisonData(t);
   const defaultApproachIndex = useDefaultApproachIndex(approaches);
+  const noJsMobileApproaches = useMemo(() => {
+    const bitsocialApproach = approaches.find(({ id }) => id === "bitsocial");
+    const otherApproaches = approaches.filter(({ id }) => id !== "bitsocial");
+
+    return bitsocialApproach ? [bitsocialApproach, ...otherApproaches] : approaches;
+  }, [approaches]);
 
   return (
     <section className="py-24 px-6">
@@ -598,11 +671,16 @@ export default function SanctuaryCommunication() {
           {t("sanctuary.supporting")}
         </m.p>
 
-        <MobileComparisonCarousel
-          approaches={approaches}
-          rows={rows}
-          defaultApproachIndex={defaultApproachIndex}
-        />
+        <div className="js-only md:hidden">
+          <MobileComparisonCarousel
+            approaches={approaches}
+            rows={rows}
+            defaultApproachIndex={defaultApproachIndex}
+          />
+        </div>
+        <noscript>
+          <NoJsMobileComparisonList approaches={noJsMobileApproaches} rows={rows} />
+        </noscript>
 
         {/* ---- Desktop: three-column grid ---- */}
         <div className="hidden md:grid md:grid-cols-3 gap-5">

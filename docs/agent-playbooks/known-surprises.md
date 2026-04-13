@@ -127,3 +127,13 @@ If uncertain, ask the developer before adding an entry.
 - **Impact:** Localized homepages can silently fall back to English, localized detail pages can appear untranslated, and full `yarn docs:build` can fail on broken locale links even though the source docs are valid.
 - **Mitigation:** After changing docs translations or regenerating locale files, always run `yarn docs:build` from the repo root, scan `docs/i18n/**` markdown for `ZXQPLACEHOLDER`, and verify translated links still point to canonical doc slugs such as `/apps/5chan/` instead of translated URL paths. If `DocsHome` copy changed, confirm `scripts/translate-docs.py` still extracts all `docs.home.*` messages.
 - **Status:** confirmed
+
+### About-site no-JS checks must use the Portless route, not a standalone SSR preview
+
+- **Date:** 2026-04-12
+- **Observed by:** Codex
+- **Context:** Verifying no-JS support for the `about/` site from a branch worktree
+- **What was surprising:** A standalone SSR preview can look healthy while the actual branch-scoped Portless route is still serving the wrong app shell or an older process. In this repo, the real local contract is the Portless hostname from `yarn start`, not an ad hoc preview server.
+- **Impact:** Agents can incorrectly claim no-JS support works, or miss regressions that only show up on `*.bitsocial.localhost:1355`.
+- **Mitigation:** For `about/` browser verification, always start the real local server with `yarn start` or `yarn start:about` and test the branch-scoped Portless URL first. If a Portless hostname looks stale, inspect and stop the old process before retesting.
+- **Status:** confirmed

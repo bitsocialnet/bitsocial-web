@@ -12,7 +12,6 @@ import {
 import { m } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
-import { useTheme } from "next-themes";
 import {
   registerHeroMountForIntroSync,
   resetHeroMountForIntroSync,
@@ -47,15 +46,6 @@ const HERO_FALLBACK_SOURCES = {
 } as const;
 
 type HeroFallbackViewport = keyof typeof HERO_FALLBACK_SOURCES;
-
-function resolveIsDarkTheme(resolvedTheme: string | undefined) {
-  return (
-    resolvedTheme === "dark" ||
-    (!resolvedTheme &&
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  );
-}
 
 function getHeroFallbackSources(isDark: boolean) {
   return {
@@ -126,36 +116,42 @@ function TaglineLink({
 }) {
   const highlightedIndex = useContext(HighlightIndexCtx);
   const isIntroActive = typeof index === "number" && highlightedIndex === index;
+  const className = cn(
+    "interactive-feature-link relative cursor-pointer focus-visible:outline-none",
+    isIntroActive && "highlight-text-glow",
+  );
 
   return (
-    <span
-      data-tagline-link={hash}
-      role="button"
-      tabIndex={0}
-      onClick={() => onNavigateToFeature(hash)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onNavigateToFeature(hash);
-        }
-      }}
-      className={cn(
-        "interactive-feature-link relative cursor-pointer focus-visible:outline-none",
-        isIntroActive && "highlight-text-glow",
-      )}
-    >
-      {children}
-    </span>
+    <>
+      <span
+        data-tagline-link={hash}
+        role="button"
+        tabIndex={0}
+        onClick={() => onNavigateToFeature(hash)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            onNavigateToFeature(hash);
+          }
+        }}
+        className={cn("js-only", className)}
+      >
+        {children}
+      </span>
+      <noscript>
+        <a data-tagline-link={hash} href={`#${hash}`} className={cn("nojs-inline", className)}>
+          {children}
+        </a>
+      </noscript>
+    </>
   );
 }
 
-function HeroFallbackImage() {
-  const { resolvedTheme } = useTheme();
-  const isDark = resolveIsDarkTheme(resolvedTheme);
+function HeroFallbackPicture({ isDark }: { isDark: boolean }) {
   const { desktopSrc, mobileSrc } = getHeroFallbackSources(isDark);
 
   return (
-    <picture className="block h-full w-full">
+    <picture className={cn("h-full w-full", isDark ? "hidden dark:block" : "block dark:hidden")}>
       <source media="(max-width: 767px)" srcSet={mobileSrc} />
       <img
         src={desktopSrc}
@@ -170,6 +166,15 @@ function HeroFallbackImage() {
         }}
       />
     </picture>
+  );
+}
+
+function HeroFallbackImage() {
+  return (
+    <>
+      <HeroFallbackPicture isDark={false} />
+      <HeroFallbackPicture isDark />
+    </>
   );
 }
 
@@ -265,6 +270,7 @@ export default function Hero() {
         className="max-w-3xl text-center mb-12 px-4 relative z-10"
       >
         <p
+          id="hero-tagline"
           data-hero-tagline
           className="text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-display font-normal text-balance"
         >

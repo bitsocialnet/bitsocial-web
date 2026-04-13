@@ -32,7 +32,11 @@ interface AppCardProps {
   activePlatform?: AppPlatformSlug | null;
   activeTag?: string | null;
   app: AppData;
+  buildAppsHref?: (
+    updates: Partial<Record<"category" | "platform" | "tag", string | null>>,
+  ) => string;
   compact?: boolean;
+  detailHref?: string;
   onCategorySelect?: (slug: AppCategorySlug) => void;
   onPlatformSelect?: (platform: AppPlatformSlug) => void;
   onTagSelect?: (tag: string) => void;
@@ -44,11 +48,13 @@ export default function AppCard({
   activePlatform = null,
   activeTag = null,
   app,
+  buildAppsHref,
   onCategorySelect,
   onPlatformSelect,
   onTagSelect,
   preferredPlatform = null,
   compact = false,
+  detailHref,
 }: AppCardProps) {
   const { t } = useTranslation();
   const category = getCategoryBySlug(app.category);
@@ -60,6 +66,7 @@ export default function AppCard({
   const sourceUrl = getGithubUrl(app);
   const tagline = getAppTagline(app, t);
   const description = getAppDescription(app, t);
+  const resolvedDetailHref = detailHref ?? `/apps/${app.slug}`;
 
   return (
     <article
@@ -87,7 +94,7 @@ export default function AppCard({
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="font-display text-2xl leading-none">
               <Link
-                to={`/apps/${app.slug}`}
+                to={resolvedDetailHref}
                 className="text-foreground transition-colors hover:text-blue-core"
               >
                 {app.name}
@@ -111,7 +118,11 @@ export default function AppCard({
           <AppTagPill
             active={activeCategory === category.slug}
             href={
-              onCategorySelect ? undefined : `/apps?category=${encodeURIComponent(category.slug)}`
+              onCategorySelect
+                ? undefined
+                : buildAppsHref
+                  ? buildAppsHref({ category: category.slug })
+                  : `/apps?category=${encodeURIComponent(category.slug)}`
             }
             label={getCategoryLabel(category, t)}
             onClick={onCategorySelect ? () => onCategorySelect(category.slug) : undefined}
@@ -121,7 +132,13 @@ export default function AppCard({
           <AppTagPill
             key={tag}
             active={tagsMatchFilter(activeTag, tag)}
-            href={onTagSelect ? undefined : `/apps?tag=${encodeURIComponent(tag)}`}
+            href={
+              onTagSelect
+                ? undefined
+                : buildAppsHref
+                  ? buildAppsHref({ tag })
+                  : `/apps?tag=${encodeURIComponent(tag)}`
+            }
             label={getAppTagLabel(tag, t)}
             onClick={onTagSelect ? () => onTagSelect(tag) : undefined}
           />
@@ -130,7 +147,13 @@ export default function AppCard({
           <AppTagPill
             key={platform}
             active={activePlatform === platform}
-            href={onPlatformSelect ? undefined : `/apps?platform=${encodeURIComponent(platform)}`}
+            href={
+              onPlatformSelect
+                ? undefined
+                : buildAppsHref
+                  ? buildAppsHref({ platform })
+                  : `/apps?platform=${encodeURIComponent(platform)}`
+            }
             label={getPlatformShortLabel(platform, t)}
             onClick={onPlatformSelect ? () => onPlatformSelect(platform) : undefined}
           />
@@ -140,7 +163,7 @@ export default function AppCard({
       <div className="mt-auto space-y-3">
         <div className="flex flex-wrap gap-2">
           <CardInlineCta
-            href={`/apps/${app.slug}`}
+            href={resolvedDetailHref}
             className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-5 !py-2 text-sm`}
           >
             <span className="inline-flex items-center gap-2">

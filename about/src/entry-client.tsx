@@ -1,12 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { domAnimation, LazyMotion, MotionConfig } from "framer-motion";
-import App from "./app.tsx";
-import { ThemeProvider } from "./components/theme-provider";
+import App from "@/app";
+import { ThemeProvider } from "@/components/theme-provider";
 import { GraphicsModeProvider } from "@/lib/graphics-mode";
-import { i18nReady } from "@/lib/i18n";
+import { getClientBootstrapPayload } from "@/lib/bootstrap";
+import { initializeClientI18n } from "@/lib/i18n";
 import "@/lib/react-scan";
-import "./index.css";
 
 function AnimationGate({ children }: { children: React.ReactNode }) {
   return (
@@ -17,9 +17,15 @@ function AnimationGate({ children }: { children: React.ReactNode }) {
 }
 
 async function bootstrap() {
-  await i18nReady;
+  const root = document.getElementById("root");
+  if (!root) {
+    throw new Error("Missing #root element for about-site bootstrap.");
+  }
 
-  ReactDOM.createRoot(document.getElementById("root")!).render(
+  const bootstrapPayload = getClientBootstrapPayload();
+  await initializeClientI18n(bootstrapPayload);
+
+  const app = (
     <React.StrictMode>
       <ThemeProvider>
         <GraphicsModeProvider>
@@ -28,8 +34,15 @@ async function bootstrap() {
           </AnimationGate>
         </GraphicsModeProvider>
       </ThemeProvider>
-    </React.StrictMode>,
+    </React.StrictMode>
   );
+
+  if (bootstrapPayload) {
+    hydrateRoot(root, app);
+    return;
+  }
+
+  createRoot(root).render(app);
 }
 
 void bootstrap();

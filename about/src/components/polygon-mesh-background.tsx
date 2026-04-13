@@ -431,29 +431,25 @@ function supportsDynamicMesh() {
 }
 
 function StaticPolygonMeshBackground() {
-  const { resolvedTheme } = useTheme();
-  const isDark =
-    resolvedTheme === "dark" ||
-    (!resolvedTheme &&
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches);
-
-  const fallbackSrc = isDark
-    ? "/polygon-mesh-fallback-dark.png"
-    : "/polygon-mesh-fallback-light.png";
-  const fallbackFilter = isDark
-    ? "brightness(1.68) contrast(2.2) saturate(1.28)"
-    : "brightness(0.92) contrast(3.15) saturate(1.42)";
-
   return (
-    <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <div className="absolute inset-0 flex justify-center overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+      <div className="absolute inset-0 overflow-hidden dark:hidden">
         <div
-          className="h-full w-full max-w-[90rem] bg-contain bg-top bg-repeat-y"
+          className="h-full w-full bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url(${fallbackSrc})`,
-            filter: fallbackFilter,
-            opacity: isDark ? 1 : 0.97,
+            backgroundImage: "url(/polygon-mesh-fallback-light-transparent.png)",
+            opacity: 0.11,
+            filter: "saturate(0.9) contrast(0.82) brightness(1.01)",
+          }}
+        />
+      </div>
+      <div className="absolute inset-0 hidden overflow-hidden dark:block">
+        <div
+          className="h-full w-full bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url(/polygon-mesh-fallback-dark-transparent.png)",
+            opacity: 0.32,
+            filter: "saturate(1) contrast(0.84) brightness(0.94)",
           }}
         />
       </div>

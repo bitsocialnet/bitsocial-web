@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
@@ -23,6 +23,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/src/index.css" />
     <!-- SEO_START -->
     <title data-seo-managed="title">Bitsocial - Open Source P2P Network for Social Apps</title>
     <meta
@@ -91,9 +92,146 @@
         import("react-grab");
       }
     </script>
+    <style>
+      .nojs-block,
+      .nojs-flex,
+      .nojs-grid,
+      .nojs-inline,
+      .nojs-inline-flex {
+        display: none !important;
+      }
+    </style>
+    <noscript>
+      <style>
+        .js-only {
+          display: none !important;
+        }
+        .nojs-block {
+          display: block !important;
+        }
+        .nojs-flex {
+          display: flex !important;
+        }
+        .nojs-grid {
+          display: grid !important;
+        }
+        .nojs-inline {
+          display: inline !important;
+        }
+        .nojs-inline-flex {
+          display: inline-flex !important;
+        }
+        #root [style*="opacity:0"] {
+          opacity: 1 !important;
+        }
+        #root [style*="transform:translate"],
+        #root [style*="transform:scale"] {
+          transform: none !important;
+        }
+        #root .topbar-frosted {
+          overflow: visible !important;
+        }
+        #root .topbar-desktop-nav {
+          justify-content: flex-end;
+          margin-left: auto;
+          min-width: 0;
+          width: max-content;
+        }
+        #root .topbar-links,
+        #root .topbar-controls,
+        #root .topbar-nojs-controls {
+          flex-shrink: 0;
+        }
+        #root .topbar-nojs-controls {
+          margin-left: auto;
+        }
+        #root .nojs-mobile-menu {
+          display: none !important;
+          margin-left: auto;
+          position: relative;
+          flex: none;
+        }
+        #root .nojs-mobile-panel {
+          display: none !important;
+        }
+        #root .nojs-language-menu {
+          position: relative;
+          flex-shrink: 0;
+        }
+        #root .nojs-language-summary {
+          display: inline-flex;
+          align-items: center;
+        }
+        #root .nojs-language-panel {
+          display: none !important;
+          position: absolute;
+          top: calc(100% + 0.75rem);
+          right: 0;
+          z-index: 60;
+          width: min(28rem, calc(100vw - 2rem));
+          min-width: 18rem;
+        }
+        #root .nojs-language-menu[open] .nojs-language-summary {
+          background: hsl(var(--border) / 0.7);
+          color: hsl(var(--foreground));
+        }
+        #root .nojs-language-menu[open] .nojs-language-panel {
+          display: block !important;
+        }
+        #root .nojs-target-highlight:target .glass-card {
+          border-color: rgb(37 99 235) !important;
+          box-shadow: 0 0 20px rgba(37, 99, 235, 0.35) !important;
+        }
+        @media (max-width: 1200px) {
+          #root .topbar-desktop-nav {
+            display: none !important;
+          }
+          #root .nojs-mobile-menu {
+            display: block !important;
+            margin-left: auto;
+          }
+          #root .nojs-mobile-menu[open] .nojs-mobile-panel {
+            display: block !important;
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            z-index: 60;
+            width: min(24rem, calc(100vw - 2rem));
+            max-height: min(70vh, 32rem);
+            overflow-y: auto;
+            border-radius: 2rem;
+            border: 1px solid hsl(var(--border) / 0.34);
+            background: var(--frosted-surface-fill-mobile);
+            -webkit-backdrop-filter: blur(18px) saturate(1.06);
+            backdrop-filter: blur(18px) saturate(1.06);
+            box-shadow: 0 22px 52px rgba(15, 23, 42, 0.14);
+          }
+          #root .nojs-mobile-panel .glass-card {
+            background: hsl(var(--background) / 0.8) !important;
+            box-shadow: none;
+          }
+        }
+        @media (max-width: 768px) {
+          #root .nojs-language-panel {
+            min-width: 16rem;
+          }
+          #root .nojs-mobile-menu[open] .nojs-mobile-panel {
+            width: min(22rem, calc(100vw - 2rem));
+          }
+        }
+        .dark #root .nojs-mobile-menu[open] .nojs-mobile-panel {
+          background: var(--frosted-surface-fill-mobile);
+          box-shadow: 0 22px 52px rgba(0, 0, 0, 0.34);
+        }
+        .dark #root .nojs-mobile-panel .glass-card {
+          background: hsl(var(--background) / 0.74) !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div id="root"><!--app-html--></div>
+    <template id="bitsocial-bootstrap"><!--app-bootstrap--></template>
+    <script type="module" src="/src/entry-client.tsx"></script>
   </body>
 </html>

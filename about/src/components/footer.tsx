@@ -64,7 +64,6 @@ export default function Footer() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-10">
-          {/* Branding */}
           <div className="col-span-2 md:col-span-1">
             <Link
               to="/"
@@ -81,7 +80,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Product */}
           {exploreLinks.length > 0 ? (
             <div>
               <h3 className="text-xs font-display font-semibold uppercase tracking-widest text-foreground/70 mb-5">
@@ -109,7 +107,6 @@ export default function Footer() {
             </div>
           ) : null}
 
-          {/* Resources */}
           <div>
             <h3 className="text-xs font-display font-semibold uppercase tracking-widest text-foreground/70 mb-5">
               {t("footer.resources")}
@@ -139,7 +136,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Community */}
           <div>
             <h3 className="text-xs font-display font-semibold uppercase tracking-widest text-foreground/70 mb-5">
               {t("footer.community")}
@@ -175,10 +171,20 @@ export default function Footer() {
           <button
             type="button"
             onClick={() => setShowDominoEffect(true)}
-            className="font-display tracking-wide rounded-md transition-colors duration-300 hover:text-muted-foreground/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="js-only font-display tracking-wide rounded-md transition-colors duration-300 hover:text-muted-foreground/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             {t("footer.bottomTagline")}
           </button>
+          <noscript>
+            <a
+              href="/domino-effect-easter-egg.jpg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nojs-inline font-display tracking-wide rounded-md transition-colors duration-300 hover:text-muted-foreground/95"
+            >
+              {t("footer.bottomTagline")}
+            </a>
+          </noscript>
           <div className="flex items-center gap-3 text-xs">
             <a
               href="https://github.com/bitsocialnet/bitsocial-web"

@@ -2,8 +2,10 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import HttpBackend from "i18next-http-backend";
+import { getClientBootstrapPayload, type BootstrapPayload } from "@/lib/bootstrap";
 import {
   DEFAULT_LANGUAGE_CODE,
+  createLanguageCookieValue,
   LANGUAGE_QUERY_PARAM,
   LANGUAGE_STORAGE_KEY,
   SUPPORTED_LANGUAGE_CODES,
@@ -61,20 +63,27 @@ function updateDocumentDirection(language: string | null | undefined) {
   document.documentElement.lang = normalizedLanguage;
 }
 
-export const i18nReady = i18n
-  .use(HttpBackend)
-  .use(languageDetector)
-  .use(initReactI18next)
-  .init({
+let i18nReadyPromise: Promise<typeof i18n> | null = null;
+
+function createBaseConfig(bootstrapPayload?: BootstrapPayload | null) {
+  return {
     fallbackLng: DEFAULT_LANGUAGE_CODE,
+    lng: bootstrapPayload?.locale,
     debug: import.meta.env.DEV,
     supportedLngs: SUPPORTED_LANGUAGE_CODES,
     cleanCode: true,
-    load: "languageOnly",
+    load: "languageOnly" as const,
     nonExplicitSupportedLngs: true,
+    resources: bootstrapPayload
+      ? {
+          [bootstrapPayload.locale]: {
+            translation: bootstrapPayload.i18n.resources,
+          },
+        }
+      : undefined,
 
     interpolation: {
-      escapeValue: false, // React already escapes
+      escapeValue: false,
     },
 
     react: {
@@ -84,7 +93,14 @@ export const i18nReady = i18n
     backend: {
       loadPath: "/translations/{{lng}}/default.json",
     },
+  };
+}
 
+function initWithBrowserDetection() {
+  i18n.use(HttpBackend).use(languageDetector).use(initReactI18next);
+
+  return i18n.init({
+    ...createBaseConfig(),
     detection: {
       order: ["querystring", "localStorage", REGION_AWARE_NAVIGATOR_DETECTOR_NAME],
       caches: ["localStorage"],
@@ -92,17 +108,56 @@ export const i18nReady = i18n
       lookupQuerystring: LANGUAGE_QUERY_PARAM,
       convertDetectedLanguage: normalizeLanguageCode,
     },
-  })
-  .then(() => {
-    updateDocumentDirection(i18n.resolvedLanguage ?? i18n.language);
-    return i18n;
-  })
-  .catch((error) => {
-    console.error("Failed to initialize translations before first render.", error);
-    updateDocumentDirection(i18n.resolvedLanguage ?? i18n.language);
-    return i18n;
   });
+}
+
+function initWithBootstrapPayload(bootstrapPayload: BootstrapPayload) {
+  i18n.use(HttpBackend).use(initReactI18next);
+
+  return i18n.init(createBaseConfig(bootstrapPayload));
+}
+
+export function initializeClientI18n(bootstrapPayload = getClientBootstrapPayload()) {
+  if (!i18nReadyPromise) {
+    i18nReadyPromise = (
+      bootstrapPayload ? initWithBootstrapPayload(bootstrapPayload) : initWithBrowserDetection()
+    )
+      .then(() => {
+        updateDocumentDirection(bootstrapPayload?.locale ?? i18n.resolvedLanguage ?? i18n.language);
+        return i18n;
+      })
+      .catch((error) => {
+        console.error("Failed to initialize translations before first render.", error);
+        updateDocumentDirection(bootstrapPayload?.locale ?? i18n.resolvedLanguage ?? i18n.language);
+        return i18n;
+      });
+  }
+
+  return i18nReadyPromise;
+}
+
+export const i18nReady = initializeClientI18n();
 
 i18n.on("languageChanged", updateDocumentDirection);
+i18n.on("languageChanged", (language) => {
+  const normalizedLanguage = normalizeLanguageCode(language);
+
+  try {
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, normalizedLanguage);
+  } catch {
+    // Ignore storage failures in restricted browsing modes.
+  }
+
+  const cookieValue = createLanguageCookieValue(normalizedLanguage);
+  if (!cookieValue) {
+    return;
+  }
+
+  try {
+    document.cookie = cookieValue;
+  } catch {
+    // Ignore cookie failures in restricted browsing modes.
+  }
+});
 
 export default i18n;

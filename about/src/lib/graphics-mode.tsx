@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { getClientBootstrapPayload } from "@/lib/bootstrap";
 import { hasWebGLSupport } from "@/lib/webgl-support";
 
 type NetworkInformation = {
@@ -68,7 +69,10 @@ function syncReducedMotionDataset(isReducedMotion: boolean) {
 }
 
 export function GraphicsModeProvider({ children }: { children: React.ReactNode }) {
-  const [graphicsMode, setGraphicsMode] = useState<GraphicsMode>(() => computeGraphicsMode());
+  const [graphicsMode, setGraphicsMode] = useState<GraphicsMode>(() => {
+    const bootstrapPayload = getClientBootstrapPayload();
+    return bootstrapPayload?.clientDefaults.graphicsMode ?? computeGraphicsMode();
+  });
   const lastModeRef = useRef<GraphicsMode>(graphicsMode);
 
   useEffect(() => {

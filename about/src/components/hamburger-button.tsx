@@ -12,7 +12,6 @@ export default function HamburgerButton({ isOpen, onClick }: HamburgerButtonProp
 
   const handleClick = () => {
     onClick();
-    // Blur on mobile to remove persistent focus outline
     requestAnimationFrame(() => {
       buttonRef.current?.blur();
     });
