@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
-import { gsap } from "gsap";
+import gsap from "gsap";
 import { useTheme } from "next-themes";
 import {
   getHeroGraphicMaxPixelRatio,

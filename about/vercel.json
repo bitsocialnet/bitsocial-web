@@ -34,6 +34,22 @@
       "env": ["DOCS_ORIGIN"]
     },
     {
+      "src": "^/$",
+      "dest": "/api/ssr"
+    },
+    {
+      "src": "^/(about|privacy|blog)/?$",
+      "dest": "/api/ssr"
+    },
+    {
+      "src": "^/apps/?$",
+      "dest": "/api/ssr"
+    },
+    {
+      "src": "^/apps/[^/]+/?$",
+      "dest": "/api/ssr"
+    },
+    {
       "handle": "filesystem"
     },
     {

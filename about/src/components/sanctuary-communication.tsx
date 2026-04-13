@@ -1,5 +1,5 @@
 import { m, useReducedMotion } from "framer-motion";
-import { gsap } from "gsap";
+import gsap from "gsap";
 import { Check, ChevronDown, X } from "lucide-react";
 import {
   memo,
