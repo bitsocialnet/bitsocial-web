@@ -1,5 +1,4 @@
 import { m, useReducedMotion } from "framer-motion";
-import gsap from "gsap";
 import { Check, ChevronDown, X } from "lucide-react";
 import {
   memo,
@@ -13,6 +12,7 @@ import {
 } from "react";
 import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
+import { loadGsap, type TweenLike } from "@/lib/load-gsap";
 
 type ApproachId = "federated" | "blockchain" | "bitsocial";
 
@@ -270,7 +270,8 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel({
   const [pendingIndex, setPendingIndex] = useState<number | null>(null);
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const scrollSettleTimeoutRef = useRef<number | null>(null);
-  const scrollTweenRef = useRef<gsap.core.Tween | null>(null);
+  const scrollTweenRef = useRef<TweenLike | null>(null);
+  const scrollAnimationRequestRef = useRef(0);
   const prefersReducedMotion = useReducedMotion();
   const getPanels = useCallback(() => {
     const carousel = carouselRef.current;
@@ -355,6 +356,7 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel({
   }, []);
 
   const cancelScrollAnimation = useCallback(() => {
+    scrollAnimationRequestRef.current += 1;
     scrollTweenRef.current?.kill();
     scrollTweenRef.current = null;
 
@@ -396,26 +398,62 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel({
       clearScrollSettleTimeout();
       cancelScrollAnimation();
       carousel.style.scrollSnapType = "none";
+      const animationRequest = scrollAnimationRequestRef.current;
 
-      scrollTweenRef.current = gsap.to(carousel, {
-        scrollLeft: targetScrollLeft,
-        duration,
-        ease: "power2.out",
-        overwrite: true,
-        onComplete: () => {
+      void loadGsap()
+        .then((gsap) => {
+          if (!gsap || scrollAnimationRequestRef.current !== animationRequest) {
+            carousel.style.scrollSnapType = "";
+            setPendingIndex(null);
+            return;
+          }
+
+          scrollTweenRef.current = gsap.to(carousel, {
+            scrollLeft: targetScrollLeft,
+            duration,
+            ease: "power2.out",
+            overwrite: true,
+            onComplete: () => {
+              if (scrollAnimationRequestRef.current !== animationRequest) {
+                return;
+              }
+
+              carousel.style.scrollSnapType = "";
+              scrollTweenRef.current = null;
+              setPendingIndex(null);
+              setHighlightedIndex((currentIndex) =>
+                currentIndex === boundedIndex ? currentIndex : boundedIndex,
+              );
+              setActiveIndex((currentIndex) =>
+                currentIndex === boundedIndex ? currentIndex : boundedIndex,
+              );
+            },
+          });
+        })
+        .catch(() => {
+          if (scrollAnimationRequestRef.current !== animationRequest) {
+            return;
+          }
+
           carousel.style.scrollSnapType = "";
           scrollTweenRef.current = null;
           setPendingIndex(null);
+          scrollToIndex(boundedIndex, "smooth");
           setHighlightedIndex((currentIndex) =>
             currentIndex === boundedIndex ? currentIndex : boundedIndex,
           );
           setActiveIndex((currentIndex) =>
             currentIndex === boundedIndex ? currentIndex : boundedIndex,
           );
-        },
-      });
+        });
     },
-    [cancelScrollAnimation, clampIndex, clearScrollSettleTimeout, getPanelScrollLeft],
+    [
+      cancelScrollAnimation,
+      clampIndex,
+      clearScrollSettleTimeout,
+      getPanelScrollLeft,
+      scrollToIndex,
+    ],
   );
 
   const setPage = useCallback(
