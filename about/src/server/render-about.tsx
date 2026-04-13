@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import { readFile } from "node:fs/promises";
 import React from "react";
 import { renderToString } from "react-dom/server";
 import { createInstance, type i18n as I18nInstance } from "i18next";
@@ -19,8 +21,6 @@ import { getSeoMetadata, injectSeoHead } from "@/lib/seo";
 import { resolveRequestTheme } from "@/lib/theme";
 import { GraphicsModeProvider } from "@/lib/graphics-mode";
 
-import clientTemplateHtml from "../../index.html?raw";
-
 const translationModules = import.meta.glob<Record<string, unknown>>(
   "../../public/translations/*/default.json",
   {
@@ -36,6 +36,9 @@ const TRANSLATION_RESOURCES = Object.fromEntries(
     return languageMatch ? [[languageMatch[1], resource]] : [];
   }),
 ) as Record<string, Record<string, unknown>>;
+
+const BUILT_CLIENT_TEMPLATE_URL = new URL("../index.html", import.meta.url);
+const SOURCE_CLIENT_TEMPLATE_URL = new URL("../../index.html", import.meta.url);
 
 interface RenderRequest {
   url: string;
@@ -76,6 +79,14 @@ async function readLocaleResources(language: string) {
   }
 
   throw new Error(`Missing bundled translation resources for locale "${language}"`);
+}
+
+async function readClientTemplate() {
+  const templateUrl = existsSync(BUILT_CLIENT_TEMPLATE_URL)
+    ? BUILT_CLIENT_TEMPLATE_URL
+    : SOURCE_CLIENT_TEMPLATE_URL;
+
+  return readFile(templateUrl, "utf8");
 }
 
 async function createServerI18n(payload: BootstrapPayload) {
@@ -157,7 +168,7 @@ export async function renderAboutRequest(request: RenderRequest) {
   const i18nInstance = await createServerI18n(bootstrapPayload);
   const appHtml = renderApplication(`${requestUrl.pathname}${requestUrl.search}`, i18nInstance);
   const seo = getSeoMetadata(requestUrl.pathname, requestUrl.search);
-  const template = request.templateHtml ?? clientTemplateHtml;
+  const template = request.templateHtml ?? (await readClientTemplate());
   const htmlWithSeo = injectSeoHead(template, seo);
   const htmlWithAttributes = injectHtmlAttributes(htmlWithSeo, bootstrapPayload, theme);
   const html = htmlWithAttributes
