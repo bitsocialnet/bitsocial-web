@@ -8,13 +8,16 @@ If your AI coding assistant supports lifecycle hooks, configure these for this r
 | --------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `afterFileEdit` | `scripts/agent-hooks/format.sh`            | Auto-format files after AI edits                                                                                                                                                                    |
 | `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`      | Run `corepack yarn install` when `package.json` changes                                                                                                                                             |
+| `afterFileEdit` | `scripts/agent-hooks/react-pattern-review.sh` | When a diff adds `useEffect`/memo primitives in `about/src/`, remind the agent to reconsider with the React review skills                                                                        |
 | `stop`          | `scripts/agent-hooks/sync-git-branches.sh` | Prune stale refs and delete integrated temporary task branches                                                                                                                                      |
+| `stop`          | `scripts/agent-hooks/react-pattern-review.sh` | Re-scan the current diff for new React effects/memos in `about/src/` before the final verify gate                                                                                                |
 | `stop`          | `scripts/agent-hooks/verify.sh`            | Hard-gate targeted build verification, lint, typecheck, and format checks; keep `yarn npm audit` informational and run `yarn knip` separately as an advisory audit when dependencies/imports change |
 
 ## Why
 
 - Consistent formatting
 - Lockfile stays in sync
+- New `useEffect`/memo additions in the about site get an explicit second look before the agent finishes
 - Workspace-relevant build/lint/type issues caught early without forcing the full multi-locale docs build on every task
 - Security visibility via `yarn npm audit`
 - Dependency/import drift can be checked with `yarn knip` without turning it into a noisy global stop hook
