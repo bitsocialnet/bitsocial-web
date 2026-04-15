@@ -233,12 +233,13 @@ const publishFakeChallengeRequest = async (community) => {
     lastPublishErrorCount: 0,
   };
   const beforeTimestamp = Date.now();
+  const publishCommunityAddress = community.targetAddress || community.address;
 
   const signer = await pkcPubsubKuboRpc.createSigner();
   const getRandomString = () => (Math.random() + 1).toString(36).replace(".", "");
   const comment = await pkcPubsubKuboRpc.createComment({
     signer,
-    subplebbitAddress: community.address,
+    subplebbitAddress: publishCommunityAddress,
     title: `I am the community uptime monitor ${getRandomString()}`,
     content: `I am the community uptime monitor ${getRandomString()}`,
   });

@@ -56,7 +56,7 @@ const fetchCommunityUpdate = async (communityAddress, targetAddress) => {
   const resolvedUpdateCid = getCidFromIpfsPath(resolvedUpdatePath);
   const communityUpdate = await readJsonFromKubo(resolvedUpdatePath);
 
-  if (communityUpdate?.address !== communityAddress) {
+  if (communityUpdate?.address && communityUpdate.address !== communityAddress) {
     throw Error(
       `resolved '${targetAddress}' to '${resolvedIpnsName}' but fetched '${communityUpdate?.address}'`,
     );
