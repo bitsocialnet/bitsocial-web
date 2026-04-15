@@ -18,7 +18,7 @@ const peersNames = [
 
 const getPeerCount = (peersName) => {
   const peersMap = new Map();
-  for (const { address: communityAddress } of monitorState.communitiesMonitoring) {
+  for (const { address: communityAddress } of monitorState.communitiesMonitoring || []) {
     for (const peer of monitorState.communities[communityAddress][peersName] || []) {
       peersMap.set(peer.ID || peer, peer); // peer can be an object or string
     }
@@ -28,7 +28,7 @@ const getPeerCount = (peersName) => {
 
 const getCountriesPeerCount = (peersName) => {
   const peersMap = new Map();
-  for (const { address: communityAddress } of monitorState.communitiesMonitoring) {
+  for (const { address: communityAddress } of monitorState.communitiesMonitoring || []) {
     for (const peer of monitorState.communities[communityAddress][peersName] || []) {
       peersMap.set(peer.ID || peer, peer); // peer can be an object or string
     }

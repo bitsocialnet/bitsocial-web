@@ -13,21 +13,22 @@ const readJsonSource = async (source) => {
 };
 
 const normalizeDirectory = async (clientId, directory) => {
-  if (typeof directory?.communityAddress !== "string") {
-    throw Error(`client '${clientId}' directory is missing communityAddress`);
+  const communityAddress = directory?.communityAddress || directory?.name;
+  if (typeof communityAddress !== "string") {
+    throw Error(`client '${clientId}' directory is missing communityAddress/name`);
   }
 
-  let targetAddress = directory.communityAddress;
+  let targetAddress = communityAddress;
   let resolutionError;
   try {
-    targetAddress = await resolveCommunityTargetAddress(directory.communityAddress);
+    targetAddress = await resolveCommunityTargetAddress(communityAddress);
   } catch (error) {
     resolutionError = error?.message || String(error);
   }
 
   return {
-    address: directory.communityAddress,
-    communityAddress: directory.communityAddress,
+    address: communityAddress,
+    communityAddress,
     targetAddress,
     title: directory.title,
     directoryCode: directory.directoryCode,
