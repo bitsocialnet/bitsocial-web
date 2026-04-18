@@ -143,7 +143,7 @@ export default defineConfig(({ command }) => {
     plugins: [react(), staticMetadataPlugin(), ssrServerBuildPlugin()],
     server: {
       // Portless serves the app at a stable hostname; open that URL, not the internal Vite port.
-      open: process.env.PORTLESS === "0" ? true : previewOpenUrl,
+      open: process.env.PORTLESS_URL || (process.env.PORTLESS === "0" ? true : previewOpenUrl),
       proxy:
         command === "serve" && !isPreviewCommand
           ? {
@@ -165,7 +165,7 @@ export default defineConfig(({ command }) => {
           : undefined,
     },
     preview: {
-      open: process.env.PORTLESS === "0" ? true : previewOpenUrl,
+      open: process.env.PORTLESS_URL || (process.env.PORTLESS === "0" ? true : previewOpenUrl),
     },
     build: {
       outDir: path.resolve(__dirname, "../dist"),

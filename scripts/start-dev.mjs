@@ -2,6 +2,7 @@
 
 import { existsSync } from "node:fs";
 import { spawn } from "node:child_process";
+import { get } from "node:http";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -24,6 +25,7 @@ const childEnv = {
   ...process.env,
 };
 let args = [];
+let browserOpenUrl = null;
 
 if (command === portlessBin) {
   const appName = getPortlessAppName("bitsocial");
@@ -32,6 +34,7 @@ if (command === portlessBin) {
 
   args = [appName, process.execPath, aboutServerScript];
   childEnv.DOCS_DEV_PROXY_TARGET = getPortlessPublicUrl(docsAppName);
+  browserOpenUrl = publicUrl;
 
   if (appName !== "bitsocial") {
     console.log(`Starting Portless dev server at ${publicUrl}`);
@@ -50,6 +53,17 @@ const child = spawn(command, args, {
   env: childEnv,
 });
 
+if (browserOpenUrl && process.env.BROWSER !== "none") {
+  waitForHttpReady(browserOpenUrl, 30_000)
+    .then(() => {
+      console.log(`Opening ${browserOpenUrl} in browser...`);
+      openInBrowser(browserOpenUrl);
+    })
+    .catch((error) => {
+      console.warn(`Could not auto-open ${browserOpenUrl}: ${error.message}`);
+    });
+}
+
 child.on("exit", (code, signal) => {
   if (signal) {
     process.kill(process.pid, signal);
@@ -58,3 +72,40 @@ child.on("exit", (code, signal) => {
 
   process.exit(code ?? 0);
 });
+
+async function waitForHttpReady(url, timeoutMs) {
+  const startedAt = Date.now();
+
+  while (Date.now() - startedAt < timeoutMs) {
+    const ready = await new Promise((resolve) => {
+      const request = get(url, (response) => {
+        response.resume();
+        const statusCode = response.statusCode ?? 500;
+        resolve(statusCode >= 200 && statusCode < 400);
+      });
+
+      request.on("error", () => resolve(false));
+      request.setTimeout(2_000, () => {
+        request.destroy();
+        resolve(false);
+      });
+    });
+
+    if (ready) {
+      return;
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 200));
+  }
+
+  throw new Error(`Timed out waiting for ${url}`);
+}
+
+function openInBrowser(url) {
+  const opener =
+    process.platform === "darwin" ? { cmd: "open", args: [url] }
+    : process.platform === "win32" ? { cmd: "cmd", args: ["/c", "start", '""', url] }
+    : { cmd: "xdg-open", args: [url] };
+
+  spawn(opener.cmd, opener.args, { stdio: "ignore", detached: true }).unref();
+}
