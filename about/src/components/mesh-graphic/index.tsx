@@ -22,9 +22,11 @@ const DESKTOP_MESH_MIN_WIDTH = 768;
 const DESKTOP_MESH_MAX_WIDTH = 1440;
 const DESKTOP_MESH_NODE_MIN_SIZE = 0.024;
 const DESKTOP_MESH_NODE_MAX_SIZE = 0.042;
+const MOBILE_MESH_NODE_COUNT = 56;
 const DESKTOP_MESH_NODE_MIN_COUNT = 120;
 const DESKTOP_MESH_NODE_MAX_COUNT = 180;
 const RESIZE_DEBOUNCE_MS = 140;
+const MOBILE_FRAME_BUDGET_MS = 33;
 
 function getIsMobileLayout(width: number) {
   return getIsMobileHeroGraphicLayout(width);
@@ -55,7 +57,7 @@ function getMeshNodeSize(width: number, isMobileLayout: boolean) {
 }
 
 function getMeshNodeCount(width: number, isMobileLayout: boolean) {
-  if (isMobileLayout) return 80;
+  if (isMobileLayout) return MOBILE_MESH_NODE_COUNT;
 
   return Math.round(
     lerp(
@@ -170,7 +172,7 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
     return getIsMobileLayout(window.innerWidth);
   });
   const [meshNodeCount, setMeshNodeCount] = useState(() => {
-    if (typeof window === "undefined") return 80;
+    if (typeof window === "undefined") return MOBILE_MESH_NODE_COUNT;
 
     const width = window.innerWidth;
     return getMeshNodeCount(width, getIsMobileLayout(width));
@@ -389,6 +391,8 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
     let pageVisible = document.visibilityState === "visible";
     let inViewport = true;
     let shouldAnimate = false;
+    let lastRenderTime = 0;
+    const frameBudgetMs = isMobile ? MOBILE_FRAME_BUDGET_MS : 0;
 
     const updateConnections = () => {
       let lineIndex = 0;
@@ -434,9 +438,15 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
       }
     };
 
-    const tick = () => {
+    const tick = (now: number) => {
       animationId = null;
       if (!shouldAnimate) return;
+
+      if (frameBudgetMs > 0 && now - lastRenderTime < frameBudgetMs) {
+        animationId = requestAnimationFrame(tick);
+        return;
+      }
+      lastRenderTime = now;
 
       if (getViewportResizeKey(container) !== lastResizeKey) {
         handleResize();

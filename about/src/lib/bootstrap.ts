@@ -25,7 +25,7 @@ export interface BootstrapPayload {
     requiresConfirmation: boolean;
   };
   clientDefaults: {
-    graphicsMode: "fallback";
+    graphicsMode: "pending";
   };
 }
 
@@ -77,7 +77,7 @@ export function createBootstrapPayload(input: {
       requiresConfirmation: input.newsletter?.requiresConfirmation ?? false,
     },
     clientDefaults: {
-      graphicsMode: "fallback",
+      graphicsMode: "pending",
     },
   };
 }

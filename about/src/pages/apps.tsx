@@ -116,7 +116,7 @@ export default function Apps() {
     });
 
   const isFiltered = Boolean(query || activePlatform || activeCategory || activeTag);
-  const useSimplifiedSurfaces = graphicsMode === "fallback" || isFirefoxLikeBrowser();
+  const useSimplifiedSurfaces = graphicsMode !== "full" || isFirefoxLikeBrowser();
 
   function updateSearchParams(updates: Record<string, string | null>) {
     const nextParams = new URLSearchParams(searchParams);

@@ -437,7 +437,7 @@ function StaticPolygonMeshBackground() {
         <div
           className="h-full w-full bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url(/polygon-mesh-fallback-light-transparent.png)",
+            backgroundImage: "url(/polygon-mesh-fallback-light-transparent.webp)",
             opacity: 0.11,
             filter: "saturate(0.9) contrast(0.82) brightness(1.01)",
           }}
@@ -447,7 +447,7 @@ function StaticPolygonMeshBackground() {
         <div
           className="h-full w-full bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url(/polygon-mesh-fallback-dark-transparent.png)",
+            backgroundImage: "url(/polygon-mesh-fallback-dark-transparent.webp)",
             opacity: 0.32,
             filter: "saturate(1) contrast(0.84) brightness(0.94)",
           }}
@@ -465,8 +465,11 @@ const PolygonMeshBackground = memo(function PolygonMeshBackground() {
   const { resolvedTheme } = useTheme();
   const graphicsMode = useGraphicsMode();
   const [didCanvasInitFail, setDidCanvasInitFail] = useState(false);
+  const isGraphicsModePending = graphicsMode === "pending";
   const shouldAnimate = graphicsMode === "full";
-  const shouldUseStaticFallback = didCanvasInitFail || !supportsDynamicMesh();
+  const shouldUseStaticFallback =
+    !isGraphicsModePending &&
+    (graphicsMode === "fallback" || didCanvasInitFail || !supportsDynamicMesh());
 
   if (meshSeedRef.current == null) {
     // Keep one seed per mounted background so viewport-height changes do not reshuffle the mesh.
@@ -475,7 +478,7 @@ const PolygonMeshBackground = memo(function PolygonMeshBackground() {
   const meshSeed = meshSeedRef.current!;
 
   useEffect(() => {
-    if (shouldUseStaticFallback) return;
+    if (isGraphicsModePending || shouldUseStaticFallback) return;
 
     const canvas = canvasRef.current;
     const root = rootRef.current;
@@ -492,7 +495,11 @@ const PolygonMeshBackground = memo(function PolygonMeshBackground() {
       (!resolvedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches);
 
     return initMesh(canvas, root, viewport, ctx, isDark, shouldAnimate, meshSeed);
-  }, [meshSeed, resolvedTheme, shouldAnimate, shouldUseStaticFallback]);
+  }, [isGraphicsModePending, meshSeed, resolvedTheme, shouldAnimate, shouldUseStaticFallback]);
+
+  if (isGraphicsModePending) {
+    return null;
+  }
 
   if (shouldUseStaticFallback) {
     return <StaticPolygonMeshBackground />;
