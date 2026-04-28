@@ -144,6 +144,31 @@ Relevant local rules also live in:
 - `/stats` is routed through Vercel to the VPS-hosted Grafana stack
 - `newsletter.bitsocial.net` remains separate
 
+### Verified App Mirror Deployments
+
+The `/apps` catalog can show a verified check next to app mirrors when a mirror serves
+the same HTML entrypoint hash as an official GitHub release artifact. This is meant to
+attest release parity, not domain ownership.
+
+For 5chan and Seedit verified web links, the Vercel `5chan` and `seedit` projects are
+configured so Git pushes do not automatically create deployments:
+
+```text
+gitProviderOptions.createDeployments = "disabled"
+```
+
+Production domains such as `5chan.cc`, `5channel.org`, `5chan.app`, `seedit.app`,
+`www.seedit.app`, and `p2p.seedit.app` should only be updated from a GitHub release
+or tag deployment. Do not point those domains at a raw `master` deployment unless
+that deployment has first been promoted into an official release and its static HTML
+artifact hash has been checked.
+
+When adding or updating mirror verification metadata in `about/src/lib/apps-data.ts`,
+verify the live mirror HTML against the matching release ZIP before showing the badge.
+If the live hash does not match a GitHub release artifact, leave the mirror unverified
+until the mirror is redeployed from the release or a new release is cut for the served
+artifact.
+
 ## Commit Workflow
 
 This repo uses Commitizen for Conventional Commits.

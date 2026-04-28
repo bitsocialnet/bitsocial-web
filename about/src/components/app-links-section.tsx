@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { ArrowUpRight, Download, Github, Globe, Package, Smartphone } from "lucide-react";
+import AppMirrorLinkCta from "@/components/app-mirror-link-cta";
 import CardInlineCta, {
   cardInlineCtaClassName,
   highlightedCtaClassName,
@@ -105,22 +106,36 @@ function LinkGroup({
     <div className="rounded-[1.4rem] border border-border/60 p-4">
       <h3 className="mb-3 font-display text-lg text-foreground">{title}</h3>
       <div className="flex flex-wrap gap-2.5">
-        {links.map((link) => (
-          <CardInlineCta
-            key={link.url}
-            href={link.url}
-            className={
-              link.kind === "mirror"
-                ? `${cardInlineCtaClassName} !rounded-full !px-4 !py-2`
-                : `${highlightedCtaClassName} !px-4 !py-2 text-sm`
-            }
-          >
-            <span className="inline-flex items-center gap-2">
-              {getLinkIcon(link)}
-              <span>{getAppLinkLabel(link, t)}</span>
-            </span>
-          </CardInlineCta>
-        ))}
+        {links.map((link) =>
+          link.verification ? (
+            <AppMirrorLinkCta
+              key={link.url}
+              link={link}
+              icon={link.kind === "mirror" ? undefined : getLinkIcon(link)}
+              className={
+                link.kind === "mirror"
+                  ? `${cardInlineCtaClassName} !rounded-full !px-4 !py-2`
+                  : `${highlightedCtaClassName} !px-4 !py-2 text-sm`
+              }
+              showVerifiedLabel={link.kind === "mirror"}
+            />
+          ) : (
+            <CardInlineCta
+              key={link.url}
+              href={link.url}
+              className={
+                link.kind === "mirror"
+                  ? `${cardInlineCtaClassName} !rounded-full !px-4 !py-2`
+                  : `${highlightedCtaClassName} !px-4 !py-2 text-sm`
+              }
+            >
+              <span className="inline-flex items-center gap-2">
+                {getLinkIcon(link)}
+                <span>{getAppLinkLabel(link, t)}</span>
+              </span>
+            </CardInlineCta>
+          ),
+        )}
       </div>
     </div>
   );
