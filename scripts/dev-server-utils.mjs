@@ -15,6 +15,13 @@ const yarnBin = isWindows ? "yarn.cmd" : "yarn";
 const binDir = path.join(repoRoot, "node_modules", ".bin");
 const executableSuffix = isWindows ? ".cmd" : "";
 export const portlessBin = path.join(binDir, `portless${executableSuffix}`);
+export const portlessProxyPort = process.env.PORTLESS_PORT || "443";
+export const portlessEnv = {
+  ...process.env,
+  PORTLESS_PORT: portlessProxyPort,
+  PORTLESS_HTTPS: process.env.PORTLESS_HTTPS ?? "1",
+  PORTLESS_LAN: process.env.PORTLESS_LAN ?? "0",
+};
 const canonicalBranches = new Set(["main", "master"]);
 const nvmNodeReexecGuard = "BITSOCIAL_PINNED_NODE_REEXEC";
 
@@ -82,6 +89,22 @@ function listPortlessRouteHosts() {
 
 export function getPortlessPublicUrl(appName) {
   return `https://${appName}.localhost`;
+}
+
+export function ensurePortlessProxy() {
+  const result = spawnSync(
+    portlessBin,
+    ["proxy", "start", "--port", portlessProxyPort, "--https"],
+    {
+      cwd: repoRoot,
+      env: portlessEnv,
+      stdio: "inherit",
+    },
+  );
+
+  if (result.status !== 0) {
+    process.exit(result.status ?? 1);
+  }
 }
 
 export function getPortlessAppName(baseName) {

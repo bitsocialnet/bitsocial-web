@@ -8,10 +8,12 @@ import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 import {
+  ensurePortlessProxy,
   ensurePinnedNodeVersion,
   getPortlessAppName,
   getPortlessPublicUrl,
   isWindows,
+  portlessEnv,
   portlessBin,
   repoRoot,
 } from "./dev-server-utils.mjs";
@@ -29,6 +31,7 @@ let args = [];
 let browserOpenUrl = null;
 
 if (command === portlessBin) {
+  ensurePortlessProxy();
   const appName = getPortlessAppName("bitsocial");
   const publicUrl = getPortlessPublicUrl(appName);
   const docsAppName = getPortlessAppName("docs.bitsocial");
@@ -51,7 +54,7 @@ if (command === portlessBin) {
 const child = spawn(command, args, {
   cwd: repoRoot,
   stdio: "inherit",
-  env: childEnv,
+  env: command === portlessBin ? { ...portlessEnv, ...childEnv } : childEnv,
 });
 
 if (browserOpenUrl && process.env.BROWSER !== "none") {
