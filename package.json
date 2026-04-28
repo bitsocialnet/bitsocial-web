@@ -41,6 +41,7 @@
     "lint:fix": "oxlint --config oxlint.json --fix --react-plugin",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
+    "test:planet-theme": "playwright test --config about/playwright.config.ts",
     "typecheck": "tsgo --noEmit --project about/tsconfig.json && yarn --cwd docs typecheck",
     "preview": "vite preview --config about/vite.config.ts",
     "doctor": "react-doctor about -y",
@@ -49,6 +50,7 @@
     "commit": "cz"
   },
   "devDependencies": {
+    "@playwright/test": "1.59.1",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/three": "0.182.0",

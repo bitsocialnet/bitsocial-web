@@ -1,8 +1,10 @@
 if (import.meta.env.DEV) {
   import("react-scan").then(({ scan, getReport }) => {
+    const isVisualTesting = Boolean((window as any).__VISUAL_TESTING__);
+
     scan({
-      enabled: true,
-      showToolbar: !(window as any).__PROFILING__,
+      enabled: !isVisualTesting,
+      showToolbar: !isVisualTesting && !(window as any).__PROFILING__,
     });
 
     const notReady = async () => ({
