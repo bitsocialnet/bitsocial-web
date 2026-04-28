@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { ArrowUpRight, Download, Github, Globe, Monitor, Smartphone } from "lucide-react";
+import { ArrowUpRight, Download, Github, Globe, Package, Smartphone } from "lucide-react";
 import CardInlineCta, {
   cardInlineCtaClassName,
   highlightedCtaClassName,
@@ -31,7 +31,8 @@ export default function AppLinksSection({ app }: AppLinksSectionProps) {
   const desktopLinks = app.links.filter(
     (link) => link.platform === "desktop" && link.kind === "download" && link.primary !== false,
   );
-  const extraLinks = getSecondaryLinks(app);
+  const packageLinks = app.links.filter((link) => link.kind === "package");
+  const extraLinks = getSecondaryLinks(app).filter((link) => link.kind !== "package");
   const mirrorLinks = getMirrorLinks(app);
   const githubUrl = getGithubUrl(app);
 
@@ -57,6 +58,13 @@ export default function AppLinksSection({ app }: AppLinksSectionProps) {
         ) : null}
         {desktopLinks.length > 0 ? (
           <LinkGroup title={t("apps.desktopDownloads")} links={desktopLinks} t={t} />
+        ) : null}
+        {packageLinks.length > 0 ? (
+          <LinkGroup
+            title={t("apps.packages", { defaultValue: "Packages" })}
+            links={packageLinks}
+            t={t}
+          />
         ) : null}
         {extraLinks.length > 0 ? (
           <LinkGroup title={t("apps.extraDownloads")} links={extraLinks} t={t} />
@@ -119,6 +127,10 @@ function LinkGroup({
 }
 
 function getLinkIcon(link: AppLink) {
+  if (link.kind === "package") {
+    return <Package className="h-4 w-4" />;
+  }
+
   if (link.platform === "web") {
     return link.kind === "mirror" ? (
       <ArrowUpRight className="h-4 w-4" />
@@ -131,12 +143,8 @@ function getLinkIcon(link: AppLink) {
     return <Smartphone className="h-4 w-4" />;
   }
 
-  if (link.platform === "desktop") {
-    return link.kind === "download" ? (
-      <Download className="h-4 w-4" />
-    ) : (
-      <Monitor className="h-4 w-4" />
-    );
+  if (link.platform === "desktop" && link.kind === "download") {
+    return <Download className="h-4 w-4" />;
   }
 
   return <ArrowUpRight className="h-4 w-4" />;
