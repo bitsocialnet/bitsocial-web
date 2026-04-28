@@ -108,12 +108,16 @@ function createMetallicRing(
 }
 
 function resolveIsDark(theme: string | undefined): boolean {
-  return (
-    theme === "dark" ||
-    (!theme &&
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  );
+  if (theme === "dark") return true;
+  if (theme === "light") return false;
+
+  if (typeof document !== "undefined") {
+    const rootClasses = document.documentElement.classList;
+    if (rootClasses.contains("dark")) return true;
+    if (rootClasses.contains("light")) return false;
+  }
+
+  return typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
 
 function applyPlanetTheme(
@@ -164,6 +168,24 @@ type PlanetThemeRefs = {
   topLight: THREE.DirectionalLight;
   envTex: THREE.CanvasTexture;
   envCanvas: HTMLCanvasElement;
+  render: () => void;
+};
+
+type PlanetGraphicDebugPose = {
+  ring1: [number, number, number, number];
+  ring1Base: [number, number, number, number];
+  ring2: [number, number, number, number];
+  ring2Base: [number, number, number, number];
+};
+
+type PlanetGraphicDebugState = {
+  getPose: () => PlanetGraphicDebugPose;
+};
+
+type PlanetGraphicWindow = Window & {
+  __PLANET_GRAPHIC_DEBUG__?: boolean;
+  __PLANET_GRAPHIC_STATE__?: PlanetGraphicDebugState;
+  __VISUAL_TESTING__?: boolean;
 };
 
 function usePlanetThemeRefs() {
@@ -211,7 +233,10 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
     return getIsMobileLayout(window.innerWidth);
   });
   const { resolvedTheme } = useTheme();
+  const latestResolvedThemeRef = useRef(resolvedTheme);
   const themeRefs = usePlanetThemeRefs();
+  latestResolvedThemeRef.current = resolvedTheme;
+  const getCurrentIsDark = () => resolveIsDark(latestResolvedThemeRef.current);
   const containerHeight = isMobile
     ? "clamp(22rem, 42vh, 28rem)"
     : "clamp(34rem, calc(46rem - 6vw), 40rem)";
@@ -221,8 +246,10 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
 
   // Update Three.js materials in-place when theme changes (no scene rebuild)
   useEffect(() => {
-    if (!themeRefs.current) return;
-    applyPlanetTheme(themeRefs.current, resolveIsDark(resolvedTheme));
+    const refs = themeRefs.current;
+    if (!refs) return;
+    applyPlanetTheme(refs, resolveIsDark(resolvedTheme));
+    refs.render();
   }, [resolvedTheme, themeRefs]);
 
   useEffect(() => {
@@ -240,8 +267,9 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
       const canvas = canvasRef.current;
       const container = containerRef.current;
       const resizeDebounceMs = 140;
+      const isVisualTesting = Boolean((window as PlanetGraphicWindow).__VISUAL_TESTING__);
 
-      const isDark = resolveIsDark(resolvedTheme);
+      const isDark = getCurrentIsDark();
 
       // Scene setup
       const scene = new THREE.Scene();
@@ -459,17 +487,6 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
       const ring2Material = ringMaterial.clone();
       ring2Material.envMap = envTexture;
       const ring2 = new THREE.Mesh(ring2Geometry, ring2Material);
-
-      themeRefs.current = {
-        sphereMat: sphereMaterial,
-        ringMat: ringMaterial,
-        ring2Mat: ring2Material,
-        edgeLightL: edgeLightLeft,
-        edgeLightR: edgeLightRight,
-        topLight,
-        envTex: envTexture,
-        envCanvas: envMapCanvas,
-      };
       ring2.rotation.set(ring2RotX, ring2RotY, ring2RotZ);
       ring2.position.set(ring2PosX, sphereY + ring2PosY, ring2PosZ);
       scene.add(ring2);
@@ -483,6 +500,7 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
       const ring2BaseQuaternion = ring2.quaternion.clone();
       const ring1RotationQuaternion = new THREE.Quaternion();
       const ring2RotationQuaternion = new THREE.Quaternion();
+      let shouldAnimate = false;
 
       const getRandomRotationAxis = () => {
         const axis = new THREE.Vector3(
@@ -535,11 +553,34 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
         ring2RotationQuaternion,
       );
 
+      themeRefs.current = {
+        sphereMat: sphereMaterial,
+        ringMat: ringMaterial,
+        ring2Mat: ring2Material,
+        edgeLightL: edgeLightLeft,
+        edgeLightR: edgeLightRight,
+        topLight,
+        envTex: envTexture,
+        envCanvas: envMapCanvas,
+        render: () => renderer.render(scene, camera),
+      };
+      applyPlanetTheme(themeRefs.current, getCurrentIsDark());
+
+      if ((window as PlanetGraphicWindow).__PLANET_GRAPHIC_DEBUG__) {
+        (window as PlanetGraphicWindow).__PLANET_GRAPHIC_STATE__ = {
+          getPose: () => ({
+            ring1: ring1.quaternion.toArray() as [number, number, number, number],
+            ring1Base: ring1BaseQuaternion.toArray() as [number, number, number, number],
+            ring2: ring2.quaternion.toArray() as [number, number, number, number],
+            ring2Base: ring2BaseQuaternion.toArray() as [number, number, number, number],
+          }),
+        };
+      }
+
       // Animation — only schedule rAF while visible; avoid idle 60–120Hz wakeups (battery/heat).
       let animationId: number | null = null;
       let pageVisible = document.visibilityState === "visible";
       let inViewport = true;
-      let shouldAnimate = false;
       let lastRenderTime = 0;
       const frameBudgetMs = initialIsMobile ? MOBILE_FRAME_BUDGET_MS : 0;
 
@@ -581,8 +622,8 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
         if (shouldAnimate === nextShouldAnimate) return;
 
         shouldAnimate = nextShouldAnimate;
-        ring1RotationTween.paused?.(!shouldAnimate);
-        ring2RotationTween.paused?.(!shouldAnimate);
+        ring1RotationTween.paused?.(!shouldAnimate || isVisualTesting);
+        ring2RotationTween.paused?.(!shouldAnimate || isVisualTesting);
         if (shouldAnimate) startRenderLoop();
         else stopRenderLoop();
       };
@@ -690,6 +731,9 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
         ring2Material.dispose();
         envTexture.dispose();
 
+        if ((window as PlanetGraphicWindow).__PLANET_GRAPHIC_STATE__) {
+          delete (window as PlanetGraphicWindow).__PLANET_GRAPHIC_STATE__;
+        }
         renderer.dispose();
       };
     })().catch(() => {
