@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Download, Github, Globe, Monitor, Smartphone } from "lucide-react";
+import { ArrowUpRight, Download, Github, Globe, Monitor, Package, Smartphone } from "lucide-react";
 import AppLogo from "@/components/app-logo";
 import AppTagPill from "@/components/app-tag-pill";
 import CardInlineCta, {
@@ -248,6 +248,10 @@ function getStatusClassName(status: NonNullable<AppData["status"]>) {
 }
 
 function getLinkIcon(link: AppLink) {
+  if (link.kind === "package") {
+    return <Package className="h-4 w-4" />;
+  }
+
   if (link.platform === "web") {
     return <Globe className="h-4 w-4" />;
   }

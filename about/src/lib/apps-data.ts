@@ -4,7 +4,7 @@ export type AppCategorySlug = "apps" | "anti-spam" | "tools";
 
 export type AppPlatformSlug = "web" | "android" | "ios" | "desktop";
 
-export type AppLinkKind = "launch" | "download" | "mirror";
+export type AppLinkKind = "launch" | "download" | "package" | "mirror";
 
 export type AppIconKey =
   | "image"
@@ -115,6 +115,13 @@ const DESKTOP_VARIANT_ORDER: DesktopVariant[] = [
   "linux",
   "linux-arm",
 ];
+
+const APP_LINK_KIND_ORDER: Record<AppLinkKind, number> = {
+  launch: 0,
+  package: 1,
+  download: 2,
+  mirror: 3,
+};
 
 const CATEGORY_TRANSLATION_KEYS: Record<AppCategorySlug, { label: string; description: string }> = {
   apps: {
@@ -462,9 +469,39 @@ export const APPS: AppData[] = [
     githubRepo: "bitsocialnet/mintpass",
     links: [
       { label: "Open website", url: "https://mintpass.org", kind: "launch", platform: "web" },
+      {
+        label: "@bitsocial/mintpass-challenge",
+        url: "https://www.npmjs.com/package/@bitsocial/mintpass-challenge",
+        kind: "package",
+      },
+    ],
+    relatedSlugs: [
+      "ai-moderation-challenge",
+      "spam-blocker",
+      "captcha-canvas-challenge",
+      "voucher-challenge",
+    ],
+    searchTerms: ["identity", "nft", "auth"],
+  },
+  {
+    slug: "ai-moderation-challenge",
+    name: "AI Moderation Challenge",
+    tagline: "OpenAI-compatible moderation checks against each community's rules.",
+    description:
+      "AI Moderation Challenge evaluates Bitsocial comment content against community.rules with an OpenAI-compatible model endpoint. Communities can route risky posts to review while keeping provider keys and prompts in private node settings.",
+    category: "anti-spam",
+    tags: ["Moderation", "Risk scores"],
+    icon: "shield",
+    githubRepo: "bitsocialnet/ai-moderation-challenge",
+    links: [
+      {
+        label: "@bitsocial/ai-moderation-challenge",
+        url: "https://www.npmjs.com/package/@bitsocial/ai-moderation-challenge",
+        kind: "package",
+      },
     ],
     relatedSlugs: ["spam-blocker", "captcha-canvas-challenge", "voucher-challenge"],
-    searchTerms: ["identity", "nft", "auth"],
+    searchTerms: ["ai", "openai", "llm", "rules", "review", "moderation"],
   },
   {
     slug: "spam-blocker",
@@ -476,8 +513,14 @@ export const APPS: AppData[] = [
     tags: ["Risk scores", "Moderation"],
     icon: "shield",
     githubRepo: "bitsocialnet/spam-blocker",
-    links: [],
-    relatedSlugs: ["mintpass", "captcha-canvas-challenge"],
+    links: [
+      {
+        label: "@bitsocial/spam-blocker-challenge",
+        url: "https://www.npmjs.com/package/@bitsocial/spam-blocker-challenge",
+        kind: "package",
+      },
+    ],
+    relatedSlugs: ["ai-moderation-challenge", "mintpass", "captcha-canvas-challenge"],
     searchTerms: ["filtering", "risk", "moderation"],
   },
   {
@@ -490,8 +533,14 @@ export const APPS: AppData[] = [
     tags: ["Captcha", "Human checks"],
     icon: "image",
     githubRepo: "bitsocialnet/captcha-canvas-challenge",
-    links: [],
-    relatedSlugs: ["mintpass", "voucher-challenge", "evm-contract-call"],
+    links: [
+      {
+        label: "@bitsocial/captcha-canvas-challenge",
+        url: "https://www.npmjs.com/package/@bitsocial/captcha-canvas-challenge",
+        kind: "package",
+      },
+    ],
+    relatedSlugs: ["ai-moderation-challenge", "mintpass", "voucher-challenge", "evm-contract-call"],
     searchTerms: ["captcha", "verification", "images"],
   },
   {
@@ -504,8 +553,19 @@ export const APPS: AppData[] = [
     tags: ["Invites", "Access control"],
     icon: "ticket",
     githubRepo: "bitsocialnet/voucher-challenge",
-    links: [],
-    relatedSlugs: ["captcha-canvas-challenge", "evm-contract-call", "mintpass"],
+    links: [
+      {
+        label: "@bitsocial/voucher-challenge",
+        url: "https://www.npmjs.com/package/@bitsocial/voucher-challenge",
+        kind: "package",
+      },
+    ],
+    relatedSlugs: [
+      "ai-moderation-challenge",
+      "captcha-canvas-challenge",
+      "evm-contract-call",
+      "mintpass",
+    ],
     searchTerms: ["voucher", "invite", "codes"],
   },
   {
@@ -518,7 +578,13 @@ export const APPS: AppData[] = [
     tags: ["On-chain", "Contracts"],
     icon: "blocks",
     githubRepo: "bitsocialnet/evm-contract-call",
-    links: [],
+    links: [
+      {
+        label: "@bitsocial/evm-contract-challenge",
+        url: "https://www.npmjs.com/package/@bitsocial/evm-contract-challenge",
+        kind: "package",
+      },
+    ],
     relatedSlugs: ["voucher-challenge", "mintpass"],
     searchTerms: ["ethereum", "token gating", "smart contract"],
   },
@@ -532,7 +598,13 @@ export const APPS: AppData[] = [
     tags: ["CLI", "Automation"],
     icon: "terminal",
     githubRepo: "bitsocialnet/bitsocial-cli",
-    links: [],
+    links: [
+      {
+        label: "@bitsocial/bitsocial-cli",
+        url: "https://www.npmjs.com/package/@bitsocial/bitsocial-cli",
+        kind: "package",
+      },
+    ],
     relatedSlugs: ["5chan-board-manager"],
     searchTerms: ["terminal", "command line", "automation"],
   },
@@ -602,18 +674,14 @@ export function getDownloadLinks(app: AppData): AppLink[] {
 
 export function getPrimaryLinks(app: AppData, preferredPlatform?: AppPlatformSlug): AppLink[] {
   return sortAppLinks(
-    app.links.filter(
-      (link) => (link.kind === "launch" || link.kind === "download") && link.primary !== false,
-    ),
+    app.links.filter((link) => isActionLink(link) && link.primary !== false),
     preferredPlatform,
   );
 }
 
 export function getSecondaryLinks(app: AppData, preferredPlatform?: AppPlatformSlug): AppLink[] {
   return sortAppLinks(
-    app.links.filter(
-      (link) => (link.kind === "launch" || link.kind === "download") && link.primary === false,
-    ),
+    app.links.filter((link) => isActionLink(link) && link.primary === false),
     preferredPlatform,
   );
 }
@@ -673,6 +741,10 @@ function normalizeTagForFilter(s: string): string {
   return s.trim().toLowerCase();
 }
 
+function isActionLink(link: AppLink): boolean {
+  return link.kind === "launch" || link.kind === "download" || link.kind === "package";
+}
+
 /** Compares active filter tag from the URL to a tag string from app data (trim + case-insensitive). */
 export function tagsMatchFilter(active: string | null | undefined, candidate: string): boolean {
   if (active == null || active === "") return false;
@@ -696,8 +768,8 @@ function sortAppLinks(links: AppLink[], preferredPlatform?: AppPlatformSlug): Ap
     const rightPrimaryRank = right.primary === false ? 1 : 0;
     if (leftPrimaryRank !== rightPrimaryRank) return leftPrimaryRank - rightPrimaryRank;
 
-    const leftKindRank = left.kind === "launch" ? 0 : left.kind === "download" ? 1 : 2;
-    const rightKindRank = right.kind === "launch" ? 0 : right.kind === "download" ? 1 : 2;
+    const leftKindRank = APP_LINK_KIND_ORDER[left.kind];
+    const rightKindRank = APP_LINK_KIND_ORDER[right.kind];
     if (leftKindRank !== rightKindRank) return leftKindRank - rightKindRank;
 
     const leftPlatformRank =

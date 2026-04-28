@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Github, Package } from "lucide-react";
 import AppLinksSection from "@/components/app-links-section";
 import AppLogo from "@/components/app-logo";
 import AppTagPill from "@/components/app-tag-pill";
@@ -24,6 +24,7 @@ import {
   getMirrorLinks,
   getPlatformShortLabel,
   getPrimaryLinks,
+  type AppLink,
 } from "@/lib/apps-data";
 import { cn } from "@/lib/utils";
 
@@ -147,7 +148,7 @@ export default function AppDetail() {
                   }
                 >
                   <span className="inline-flex items-center gap-2">
-                    <ArrowUpRight className="h-4 w-4" />
+                    {getPrimaryLinkIcon(link)}
                     <span>{getAppLinkLabel(link, t)}</span>
                   </span>
                 </CardInlineCta>
@@ -207,5 +208,13 @@ function getStatusClassName(status: "ready" | "experimental") {
     status === "ready"
       ? "border-blue-core/20 text-blue-core dark:border-blue-core/55"
       : "border-amber-500/25 text-amber-700 dark:border-amber-400/35 dark:text-amber-200",
+  );
+}
+
+function getPrimaryLinkIcon(link: AppLink) {
+  return link.kind === "package" ? (
+    <Package className="h-4 w-4" />
+  ) : (
+    <ArrowUpRight className="h-4 w-4" />
   );
 }
