@@ -36,28 +36,45 @@ const HERO_FALLBACK_BOTTOM_MASK =
   "linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.28) 9%, black 22%, black 100%)";
 const HERO_FALLBACK_SOURCES = {
   desktop: {
-    dark: "/hero-fallback-desktop-dark.png",
-    light: "/hero-fallback-desktop-light.png",
+    dark: {
+      png: "/hero-fallback-desktop-dark.png",
+      webp: "/hero-fallback-desktop-dark.webp",
+    },
+    light: {
+      png: "/hero-fallback-desktop-light.png",
+      webp: "/hero-fallback-desktop-light.webp",
+    },
   },
   mobile: {
-    dark: "/hero-fallback-mobile-dark.png",
-    light: "/hero-fallback-mobile-light.png",
+    dark: {
+      png: "/hero-fallback-mobile-dark.png",
+      webp: "/hero-fallback-mobile-dark.webp",
+    },
+    light: {
+      png: "/hero-fallback-mobile-light.png",
+      webp: "/hero-fallback-mobile-light.webp",
+    },
   },
 } as const;
 
 type HeroFallbackViewport = keyof typeof HERO_FALLBACK_SOURCES;
 
 function getHeroFallbackSources(isDark: boolean) {
+  const desktop = isDark ? HERO_FALLBACK_SOURCES.desktop.dark : HERO_FALLBACK_SOURCES.desktop.light;
+  const mobile = isDark ? HERO_FALLBACK_SOURCES.mobile.dark : HERO_FALLBACK_SOURCES.mobile.light;
+
   return {
-    desktopSrc: isDark ? HERO_FALLBACK_SOURCES.desktop.dark : HERO_FALLBACK_SOURCES.desktop.light,
-    mobileSrc: isDark ? HERO_FALLBACK_SOURCES.mobile.dark : HERO_FALLBACK_SOURCES.mobile.light,
+    desktopPng: desktop.png,
+    desktopWebp: desktop.webp,
+    mobilePng: mobile.png,
+    mobileWebp: mobile.webp,
   };
 }
 
 function ensureHeroFallbackPreloads(viewport: HeroFallbackViewport) {
   if (typeof document === "undefined") return;
 
-  for (const src of Object.values(HERO_FALLBACK_SOURCES[viewport])) {
+  for (const { webp: src } of Object.values(HERO_FALLBACK_SOURCES[viewport])) {
     if (document.head.querySelector(`link[${HERO_FALLBACK_PRELOAD_ATTR}="${src}"]`)) {
       continue;
     }
@@ -66,13 +83,15 @@ function ensureHeroFallbackPreloads(viewport: HeroFallbackViewport) {
     link.rel = "preload";
     link.as = "image";
     link.href = src;
+    link.type = "image/webp";
     link.setAttribute(HERO_FALLBACK_PRELOAD_ATTR, src);
     document.head.appendChild(link);
   }
 }
 
-function useHeroFallbackPreloads() {
+function useHeroFallbackPreloads(enabled: boolean) {
   useEffect(() => {
+    if (!enabled) return;
     if (typeof window === "undefined") return;
     if (typeof window.matchMedia !== "function") {
       ensureHeroFallbackPreloads("desktop");
@@ -100,7 +119,7 @@ function useHeroFallbackPreloads() {
         mobileQuery.removeListener(syncPreloads);
       }
     };
-  }, []);
+  }, [enabled]);
 }
 
 function TaglineLink({
@@ -148,18 +167,21 @@ function TaglineLink({
 }
 
 function HeroFallbackPicture({ isDark }: { isDark: boolean }) {
-  const { desktopSrc, mobileSrc } = getHeroFallbackSources(isDark);
+  const { desktopPng, desktopWebp, mobilePng, mobileWebp } = getHeroFallbackSources(isDark);
 
   return (
     <picture className={cn("h-full w-full", isDark ? "hidden dark:block" : "block dark:hidden")}>
-      <source media="(max-width: 767px)" srcSet={mobileSrc} />
+      <source media="(max-width: 767px)" srcSet={mobileWebp} type="image/webp" />
+      <source srcSet={desktopWebp} type="image/webp" />
+      <source media="(max-width: 767px)" srcSet={mobilePng} />
       <img
-        src={desktopSrc}
+        src={desktopPng}
         alt=""
         aria-hidden="true"
         className="mx-auto h-auto w-auto max-h-[clamp(19rem,34vh,23rem)] md:max-h-[min(36vh,24rem)] lg:max-h-[min(38vh,28rem)] xl:max-h-[min(42vh,32rem)] max-w-[min(100rem,100%)] object-contain object-bottom"
         loading="eager"
         decoding="async"
+        fetchPriority="high"
         style={{
           maskImage: HERO_FALLBACK_BOTTOM_MASK,
           WebkitMaskImage: HERO_FALLBACK_BOTTOM_MASK,
@@ -188,6 +210,12 @@ function HeroFallbackGraphic({ className }: { className?: string }) {
     >
       <HeroFallbackImage />
     </div>
+  );
+}
+
+function HeroGraphicLoadSpace() {
+  return (
+    <div className="relative pointer-events-none w-full overflow-hidden overscroll-none h-[clamp(22rem,42vh,28rem)] md:h-[clamp(34rem,calc(46rem-6vw),40rem)]" />
   );
 }
 
@@ -229,9 +257,10 @@ export default function Hero() {
   const graphicsMode = useGraphicsMode();
   const [graphicsInitFailed, setGraphicsInitFailed] = useState(false);
   const showGraphics = graphicsMode === "full" && !graphicsInitFailed;
+  const showFallbackGraphic = graphicsMode === "fallback" || graphicsInitFailed;
   const { highlightedIndex, resetIntro } = useTaglineIntro();
 
-  useHeroFallbackPreloads();
+  useHeroFallbackPreloads(showFallbackGraphic);
 
   useLayoutEffect(() => {
     registerHeroMountForIntroSync();
@@ -255,10 +284,6 @@ export default function Hero() {
       goToMailingListSection(location.pathname, location.hash, navigate);
     },
     [location.hash, location.pathname, navigate],
-  );
-
-  const staticFallback = (
-    <HeroFallbackGraphic className="absolute bottom-4 md:bottom-8 overflow-visible" />
   );
 
   return (
@@ -354,7 +379,7 @@ export default function Hero() {
             transition={{ delay: 0.8, duration: 1.2 }}
             className="absolute inset-0 z-0"
           >
-            <Suspense fallback={staticFallback}>
+            <Suspense fallback={null}>
               <MeshGraphic onInitError={handleGraphicsInitError} />
             </Suspense>
           </m.div>
@@ -366,20 +391,21 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.6 }}
             className="relative z-30 pt-24 -mt-24 pointer-events-none"
           >
-            <Suspense fallback={staticFallback}>
+            <Suspense fallback={<HeroGraphicLoadSpace />}>
               <PlanetGraphic onInitError={handleGraphicsInitError} />
             </Suspense>
           </m.div>
         </div>
-      ) : (
-        <m.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.8 }}
-          className="mt-10 sm:mt-12 md:mt-10 relative -mx-6 flex w-[calc(100%+3rem)] justify-center"
-        >
+      ) : showFallbackGraphic ? (
+        <div className="mt-10 sm:mt-12 md:mt-10 relative -mx-6 flex w-[calc(100%+3rem)] justify-center">
           <HeroFallbackGraphic className="relative overflow-visible" />
-        </m.div>
+        </div>
+      ) : (
+        <div className="mt-10 sm:mt-12 md:mt-6 relative -mx-6 w-[calc(100%+3rem)] pointer-events-none overscroll-none">
+          <div className="relative z-30 pt-24 -mt-24 pointer-events-none">
+            <HeroGraphicLoadSpace />
+          </div>
+        </div>
       )}
 
       {/* Bottom fade gradient - seamless transition to next section */}

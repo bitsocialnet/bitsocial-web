@@ -1,0 +1,28 @@
+{
+  "task": "performance-audit",
+  "last_updated": "2026-04-28",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "completed",
+      "description": "Keep live hero and background graphics enabled on normal mobile browsers while retaining static fallbacks for reduced motion or unsupported graphics, without flashing fallback imagery before live graphics initialize.",
+      "verification": [
+        "corepack yarn build:verify",
+        "corepack yarn lint",
+        "corepack yarn typecheck",
+        "corepack yarn doctor",
+        "playwright-cli cross-browser desktop and mobile visual checks",
+        "playwright-cli reduced-motion and simulated WebGL-failure fallback checks"
+      ],
+      "files": [
+        "about/src/lib/graphics-mode.tsx",
+        "about/src/components/hero.tsx",
+        "about/src/components/polygon-mesh-background.tsx",
+        "about/src/components/mesh-graphic/index.tsx",
+        "about/src/components/planet-graphic/index.tsx"
+      ],
+      "notes": "Normal desktop and mobile keep live canvases and do not request fallback image resources. Pending mode reserves layout space until live graphics mount, avoiding the first-load static-image flash. Reduced motion and simulated WebGL failure use WebP static fallbacks. Verification passed; lint/doctor/knip warnings are existing advisory findings outside this slice."
+    }
+  ]
+}

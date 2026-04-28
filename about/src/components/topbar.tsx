@@ -406,7 +406,7 @@ export default function Topbar() {
                 className="inline-flex items-center gap-1 group transition-colors"
               >
                 <img
-                  src="/logo.png"
+                  src="/logo-small.png"
                   width={32}
                   height={32}
                   alt="Bitsocial"

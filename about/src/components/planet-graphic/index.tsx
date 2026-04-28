@@ -14,6 +14,9 @@ const PLANET_MIN_FOV = 62;
 const PLANET_MAX_FOV = 45;
 const PLANET_MIN_CAMERA_Z = 21.5;
 const PLANET_MAX_CAMERA_Z = 17;
+const MOBILE_PLANET_GEOMETRY_SEGMENTS = 48;
+const DESKTOP_PLANET_GEOMETRY_SEGMENTS = 128;
+const MOBILE_FRAME_BUDGET_MS = 33;
 
 // Create a 3D ring with rectangular cross-section (like the logo)
 function createMetallicRing(
@@ -184,6 +187,10 @@ function getPlanetCameraLayout(width: number) {
   };
 }
 
+function getPlanetGeometrySegments(isMobileLayout: boolean) {
+  return isMobileLayout ? MOBILE_PLANET_GEOMETRY_SEGMENTS : DESKTOP_PLANET_GEOMETRY_SEGMENTS;
+}
+
 function getViewportResizeKey(container: HTMLDivElement) {
   const viewport = window.visualViewport;
   return [
@@ -299,7 +306,12 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
 
       const sphereRadius = 7;
       const sphereY = -5;
-      const sphereGeometry = new THREE.SphereGeometry(sphereRadius, 128, 128);
+      const sphereGeometrySegments = getPlanetGeometrySegments(initialIsMobile);
+      const sphereGeometry = new THREE.SphereGeometry(
+        sphereRadius,
+        sphereGeometrySegments,
+        sphereGeometrySegments,
+      );
 
       const sphereMaterial = new THREE.ShaderMaterial({
         transparent: false,
@@ -357,6 +369,7 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
       const ringTubeWidthDesktop = 0.3;
       const getRingTubeWidth = (mobile: boolean) =>
         mobile ? ringTubeWidthMobile : ringTubeWidthDesktop;
+      const getRingSegments = (mobile: boolean) => getPlanetGeometrySegments(mobile);
       const tubeHeight = 0.2;
 
       let ringLayoutIsMobile = initialIsMobile;
@@ -426,13 +439,23 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
 
       // ============================================
 
-      let ring1Geometry = createMetallicRing(ringRadius, tubeWidth, tubeHeight, 128);
+      let ring1Geometry = createMetallicRing(
+        ringRadius,
+        tubeWidth,
+        tubeHeight,
+        getRingSegments(initialIsMobile),
+      );
       const ring1 = new THREE.Mesh(ring1Geometry, ringMaterial);
       ring1.rotation.set(ring1RotX, ring1RotY, ring1RotZ);
       ring1.position.set(ring1PosX, sphereY + ring1PosY, ring1PosZ);
       scene.add(ring1);
 
-      let ring2Geometry = createMetallicRing(ringRadius, tubeWidth, tubeHeight, 128);
+      let ring2Geometry = createMetallicRing(
+        ringRadius,
+        tubeWidth,
+        tubeHeight,
+        getRingSegments(initialIsMobile),
+      );
       const ring2Material = ringMaterial.clone();
       ring2Material.envMap = envTexture;
       const ring2 = new THREE.Mesh(ring2Geometry, ring2Material);
@@ -517,6 +540,8 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
       let pageVisible = document.visibilityState === "visible";
       let inViewport = true;
       let shouldAnimate = false;
+      let lastRenderTime = 0;
+      const frameBudgetMs = initialIsMobile ? MOBILE_FRAME_BUDGET_MS : 0;
 
       const stopRenderLoop = () => {
         if (animationId != null) {
@@ -525,9 +550,15 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
         }
       };
 
-      const tick = () => {
+      const tick = (now: number) => {
         animationId = null;
         if (!shouldAnimate) return;
+
+        if (frameBudgetMs > 0 && now - lastRenderTime < frameBudgetMs) {
+          animationId = requestAnimationFrame(tick);
+          return;
+        }
+        lastRenderTime = now;
 
         if (getViewportResizeKey(container) !== lastResizeKey) {
           handleResize();
@@ -598,8 +629,9 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
         if (isMobileNow !== ringLayoutIsMobile) {
           ringLayoutIsMobile = isMobileNow;
           tubeWidth = getRingTubeWidth(isMobileNow);
-          const newGeo1 = createMetallicRing(ringRadius, tubeWidth, tubeHeight, 128);
-          const newGeo2 = createMetallicRing(ringRadius, tubeWidth, tubeHeight, 128);
+          const nextRingSegments = getRingSegments(isMobileNow);
+          const newGeo1 = createMetallicRing(ringRadius, tubeWidth, tubeHeight, nextRingSegments);
+          const newGeo2 = createMetallicRing(ringRadius, tubeWidth, tubeHeight, nextRingSegments);
           ring1Geometry.dispose();
           ring2Geometry.dispose();
           ring1Geometry = newGeo1;

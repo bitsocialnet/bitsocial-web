@@ -2,8 +2,8 @@ const MOBILE_BREAKPOINT = 768;
 const LOW_END_CONCURRENCY = 4;
 const HIGH_END_MOBILE_CONCURRENCY = 6;
 const HIGH_END_MOBILE_MEMORY_GB = 4;
-const MOBILE_DEFAULT_MAX_DPR = 1.5;
-const MOBILE_HIGH_END_MAX_DPR = 2;
+const MOBILE_DEFAULT_MAX_DPR = 1.25;
+const MOBILE_HIGH_END_MAX_DPR = 1.5;
 const DESKTOP_MAX_DPR = 2;
 
 function getHardwareConcurrency() {
@@ -48,5 +48,5 @@ export function getHeroGraphicMaxPixelRatio(isMobileLayout: boolean) {
 }
 
 export function getHeroGraphicShouldAntialias(isMobileLayout: boolean) {
-  return !isMobileLayout || getUsesEnhancedMobileQuality();
+  return !isMobileLayout;
 }

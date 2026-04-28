@@ -343,7 +343,7 @@ export default function MasterPlan() {
               whileHover={{ scale: 1.1 }}
             >
               <img
-                src="/logo.png"
+                src="/logo-small.png"
                 width={40}
                 height={40}
                 alt={logoAlt}
@@ -358,7 +358,7 @@ export default function MasterPlan() {
                 className="nojs-inline-flex relative z-10 flex-shrink-0 cursor-pointer transition-all duration-300"
               >
                 <img
-                  src="/logo.png"
+                  src="/logo-small.png"
                   width={40}
                   height={40}
                   alt={logoAlt}
