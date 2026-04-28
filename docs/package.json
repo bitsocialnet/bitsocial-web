@@ -5,7 +5,10 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "yarn build:static && yarn pagefind:build",
+    "build:static": "docusaurus build",
+    "pagefind:build": "pagefind --site build",
+    "pagefind:dist": "pagefind --site ../dist/docs",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
