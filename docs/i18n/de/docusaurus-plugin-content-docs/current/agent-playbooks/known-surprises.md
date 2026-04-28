@@ -33,9 +33,9 @@ Wenn Sie unsicher sind, fragen Sie den Entwickler, bevor Sie einen Eintrag hinzu
 - **Datum:** 18.03.2026
 - **Beobachtet von:** Codex
 - **Kontext:** Browserüberprüfung und Rauchentwicklung
-- **Was überraschend war:** Die standardmäßige lokale URL ist nicht der übliche Vite-Port. Das Repo erwartet `http://bitsocial.localhost:1355` über Portless, sodass die Überprüfung von `localhost:3000` oder `localhost:5173` möglicherweise die falsche App oder gar nichts trifft.
+- **Was überraschend war:** Die standardmäßige lokale URL ist nicht der übliche Vite-Port. Das Repo erwartet `https://bitsocial.localhost` über Portless, sodass die Überprüfung von `localhost:3000` oder `localhost:5173` möglicherweise die falsche App oder gar nichts trifft.
 - **Auswirkungen:** Browserprüfungen können fehlschlagen oder das falsche Ziel validieren, selbst wenn der Entwicklungsserver fehlerfrei ist.
-- **Abhilfe:** Verwenden Sie zuerst `http://bitsocial.localhost:1355`. Umgehen Sie es nur mit `PORTLESS=0 corepack yarn start`, wenn Sie explizit einen direkten Vite-Port benötigen.
+- **Abhilfe:** Verwenden Sie zuerst `https://bitsocial.localhost`. Umgehen Sie es nur mit `PORTLESS=0 corepack yarn start`, wenn Sie explizit einen direkten Vite-Port benötigen.
 - **Status:** bestätigt
 
 ### Commitizen-Hooks blockieren nicht interaktive Commits
@@ -65,7 +65,7 @@ Wenn Sie unsicher sind, fragen Sie den Entwickler, bevor Sie einen Eintrag hinzu
 - **Kontext:** `yarn start` wird in einem Bitsocial Web-Arbeitsbaum gestartet, während ein anderer Arbeitsbaum bereits über Portless bereitgestellt wurde
 - **Was überraschend war:** Die Verwendung des wörtlichen portlosen App-Namens `bitsocial` in jedem Arbeitsbaum führt zu einer Kollision der Route selbst, selbst wenn die Backing-Ports unterschiedlich sind, sodass der zweite Prozess fehlschlägt, weil `bitsocial.localhost` bereits registriert ist.
 - **Auswirkungen:** Parallele Bitsocial-Webzweige können sich gegenseitig blockieren, obwohl Portless dafür gedacht ist, dass sie sicher koexistieren.
-- **Abhilfe:** Behalten Sie den Portless-Start hinter `scripts/start-dev.mjs` bei, der jetzt außerhalb des kanonischen Falls eine verzweigungsbezogene Route `*.bitsocial.localhost:1355` verwendet und auf eine verzweigungsbezogene Route zurückgreift, wenn der bloße Name `bitsocial.localhost` bereits belegt ist.
+- **Abhilfe:** Behalten Sie den Portless-Start hinter `scripts/start-dev.mjs` bei, der jetzt außerhalb des kanonischen Falls eine verzweigungsbezogene Route `*.bitsocial.localhost` verwendet und auf eine verzweigungsbezogene Route zurückgreift, wenn der bloße Name `bitsocial.localhost` bereits belegt ist.
 - **Status:** bestätigt
 
 ### Die Vorschau der Dokumente wurde zum Festcodieren von Port 3001 verwendet

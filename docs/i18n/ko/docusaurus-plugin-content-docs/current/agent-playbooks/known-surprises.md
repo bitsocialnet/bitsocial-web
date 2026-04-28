@@ -33,9 +33,9 @@
 - **날짜:** 2026-03-18
 - **관찰자:** Codex
 - **컨텍스트:** 브라우저 확인 및 연기 흐름
-- **놀랐던 점:** 기본 로컬 URL은 일반적인 Vite 포트가 아닙니다. 저장소는 Portless를 통해 `http://bitsocial.localhost:1355`를 예상하므로 `localhost:3000` 또는 `localhost:5173`를 확인하면 잘못된 앱이 실행되거나 전혀 실행되지 않을 수 있습니다.
+- **놀랐던 점:** 기본 로컬 URL은 일반적인 Vite 포트가 아닙니다. 저장소는 Portless를 통해 `https://bitsocial.localhost`를 예상하므로 `localhost:3000` 또는 `localhost:5173`를 확인하면 잘못된 앱이 실행되거나 전혀 실행되지 않을 수 있습니다.
 - **영향:** 개발 서버가 정상인 경우에도 브라우저 검사가 실패하거나 잘못된 대상의 유효성을 검사할 수 있습니다.
-- **완화:** 먼저 `http://bitsocial.localhost:1355`를 사용하세요. 직접 Vite 포트가 명시적으로 필요한 경우에만 `PORTLESS=0 corepack yarn start`를 사용하여 이를 우회하세요.
+- **완화:** 먼저 `https://bitsocial.localhost`를 사용하세요. 직접 Vite 포트가 명시적으로 필요한 경우에만 `PORTLESS=0 corepack yarn start`를 사용하여 이를 우회하세요.
 - **상태:** 확인됨
 
 ### Commitizen 후크는 비대화형 커밋을 차단합니다.
@@ -65,7 +65,7 @@
 - **컨텍스트:** 다른 작업 트리가 이미 Portless를 통해 서비스를 제공하고 있는 동안 하나의 Bitsocial Web 작업 트리에서 `yarn start`를 시작합니다.
 - **놀라운 점:** 모든 작업 트리에서 문자 그대로의 포트리스 앱 이름 `bitsocial`를 사용하면 지원 포트가 다른 경우에도 경로 자체가 충돌하므로 `bitsocial.localhost`가 이미 등록되어 있으므로 두 번째 프로세스가 실패합니다.
 - **영향:** Portless가 안전하게 공존할 수 있도록 의도된 병렬 Bitsocial 웹 분기는 서로를 차단할 수 있습니다.
-- **완화:** 이제 정식 케이스 외부의 분기 범위 `*.bitsocial.localhost:1355` 경로를 사용하고 기본 `bitsocial.localhost` 이름이 이미 사용 중인 경우 분기 범위 경로로 폴백하는 `scripts/start-dev.mjs` 뒤에 포트리스 시작을 유지합니다.
+- **완화:** 이제 정식 케이스 외부의 분기 범위 `*.bitsocial.localhost` 경로를 사용하고 기본 `bitsocial.localhost` 이름이 이미 사용 중인 경우 분기 범위 경로로 폴백하는 `scripts/start-dev.mjs` 뒤에 포트리스 시작을 유지합니다.
 - **상태:** 확인됨
 
 ### 포트 3001을 하드 코딩하는 데 사용되는 문서 미리보기

@@ -33,9 +33,9 @@ Kung hindi sigurado, magtanong sa developer bago magdagdag ng entry.
 - **Petsa:** 2026-03-18
 - **Inobserbahan ni:** Codex
 - **Konteksto:** Pag-verify ng browser at umaagos ang usok
-- **Ano ang nakakagulat:** Ang default na lokal na URL ay hindi ang karaniwang Vite port. Inaasahan ng repo ang `http://bitsocial.localhost:1355` sa pamamagitan ng Portless, kaya ang pagsuri sa `localhost:3000` o `localhost:5173` ay maaaring matamaan ang maling app o wala talaga.
+- **Ano ang nakakagulat:** Ang default na lokal na URL ay hindi ang karaniwang Vite port. Inaasahan ng repo ang `https://bitsocial.localhost` sa pamamagitan ng Portless, kaya ang pagsuri sa `localhost:3000` o `localhost:5173` ay maaaring matamaan ang maling app o wala talaga.
 - **Epekto:** Maaaring mabigo o mapatunayan ng mga pagsusuri sa browser ang maling target kahit na malusog ang dev server.
-- **Mitigation:** Gamitin muna ang `http://bitsocial.localhost:1355`. I-bypass lang ito gamit ang `PORTLESS=0 corepack yarn start` kapag tahasang kailangan mo ng direktang Vite port.
+- **Mitigation:** Gamitin muna ang `https://bitsocial.localhost`. I-bypass lang ito gamit ang `PORTLESS=0 corepack yarn start` kapag tahasang kailangan mo ng direktang Vite port.
 - **Status:** nakumpirma
 
 ### Hinaharang ng mga commitizen hook ang mga non-interactive na commit
@@ -65,7 +65,7 @@ Kung hindi sigurado, magtanong sa developer bago magdagdag ng entry.
 - **Context:** Nagsisimula ang `yarn start` sa isang Bitsocial Web worktree habang ang isa pang worktree ay nagsisilbi na sa pamamagitan ng Portless
 - **Ano ang nakakagulat:** Ang paggamit ng literal na Portless na pangalan ng app na `bitsocial` sa bawat worktree ay nagiging sanhi ng pagbangga mismo ng ruta, kahit na magkaiba ang mga backing port, kaya nabigo ang pangalawang proseso dahil nakarehistro na ang `bitsocial.localhost`.
 - **Epekto:** Maaaring i-block ng mga parallel Bitsocial Web branch ang isa't isa kahit na ang Portless ay nilayon upang hayaan silang magkasamang mabuhay nang ligtas.
-- **Mitigation:** Panatilihin ang Portless startup sa likod ng `scripts/start-dev.mjs`, na ngayon ay gumagamit ng isang branch-scoped `*.bitsocial.localhost:1355` na ruta sa labas ng canonical case at bumabalik sa isang branch-scoped na ruta kapag ang hubad na `bitsocial.localhost` na pangalan ay okupado na.
+- **Mitigation:** Panatilihin ang Portless startup sa likod ng `scripts/start-dev.mjs`, na ngayon ay gumagamit ng isang branch-scoped `*.bitsocial.localhost` na ruta sa labas ng canonical case at bumabalik sa isang branch-scoped na ruta kapag ang hubad na `bitsocial.localhost` na pangalan ay okupado na.
 - **Status:** nakumpirma
 
 ### Docs preview na ginamit sa hard-code port 3001

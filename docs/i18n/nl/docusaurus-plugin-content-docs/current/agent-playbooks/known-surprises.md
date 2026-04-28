@@ -33,9 +33,9 @@ Als u het niet zeker weet, vraag het dan aan de ontwikkelaar voordat u een item 
 - **Datum:** 18-03-2026
 - **Waargenomen door:** Codex
 - **Context:** Browserverificatie en rookstromen
-- **Wat verrassend was:** De standaard lokale URL is niet de gebruikelijke Vite-poort. De repository verwacht `http://bitsocial.localhost:1355` via Portless, dus het controleren van `localhost:3000` of `localhost:5173` kan de verkeerde app of helemaal niets opleveren.
+- **Wat verrassend was:** De standaard lokale URL is niet de gebruikelijke Vite-poort. De repository verwacht `https://bitsocial.localhost` via Portless, dus het controleren van `localhost:3000` of `localhost:5173` kan de verkeerde app of helemaal niets opleveren.
 - **Impact:** Browsercontroles kunnen mislukken of het verkeerde doel valideren, zelfs als de ontwikkelaarsserver in orde is.
-- **Beperking:** Gebruik eerst `http://bitsocial.localhost:1355`. Omzeil het alleen met `PORTLESS=0 corepack yarn start` als je expliciet een directe Vite-poort nodig hebt.
+- **Beperking:** Gebruik eerst `https://bitsocial.localhost`. Omzeil het alleen met `PORTLESS=0 corepack yarn start` als je expliciet een directe Vite-poort nodig hebt.
 - **Status:** bevestigd
 
 ### Commitzen hooks blokkeren niet-interactieve commits
@@ -65,7 +65,7 @@ Als u het niet zeker weet, vraag het dan aan de ontwikkelaar voordat u een item 
 - **Context:** `yarn start` starten in een Bitsocial Web-werkboom terwijl een andere werkboom al via Portless werkte
 - **Wat verrassend was:** Het gebruik van de letterlijke poortloze app-naam `bitsocial` in elke werkboom zorgt ervoor dat de route zelf botst, zelfs als de backing-poorten verschillend zijn, dus het tweede proces mislukt omdat `bitsocial.localhost` al is geregistreerd.
 - **Impact:** Parallelle Bitsocial-webtakken kunnen elkaar blokkeren, ook al is Portless bedoeld om ze veilig naast elkaar te laten bestaan.
-- **Mitigatie:** Houd Portless opstarten achter `scripts/start-dev.mjs`, dat nu een vertakkingsgerichte `*.bitsocial.localhost:1355`-route buiten het canonieke geval gebruikt en terugvalt op een vertakkingsgerichte route wanneer de kale `bitsocial.localhost`-naam al bezet is.
+- **Mitigatie:** Houd Portless opstarten achter `scripts/start-dev.mjs`, dat nu een vertakkingsgerichte `*.bitsocial.localhost`-route buiten het canonieke geval gebruikt en terugvalt op een vertakkingsgerichte route wanneer de kale `bitsocial.localhost`-naam al bezet is.
 - **Status:** bevestigd
 
 ### Documentenvoorbeeld gebruikt om poort 3001 hard te coderen

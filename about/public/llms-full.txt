@@ -1777,9 +1777,9 @@ If uncertain, ask the developer before adding an entry.
 - **Date:** 2026-03-18
 - **Observed by:** Codex
 - **Context:** Browser verification and smoke flows
-- **What was surprising:** The default local URL is not the usual Vite port. The repo expects `http://bitsocial.localhost:1355` through Portless, so checking `localhost:3000` or `localhost:5173` can hit the wrong app or nothing at all.
+- **What was surprising:** The default local URL is not the usual Vite port. The repo expects `https://bitsocial.localhost` through Portless, so checking `localhost:3000` or `localhost:5173` can hit the wrong app or nothing at all.
 - **Impact:** Browser checks can fail or validate the wrong target even when the dev server is healthy.
-- **Mitigation:** Use `http://bitsocial.localhost:1355` first. Only bypass it with `PORTLESS=0 corepack yarn start` when you explicitly need a direct Vite port.
+- **Mitigation:** Use `https://bitsocial.localhost` first. Only bypass it with `PORTLESS=0 corepack yarn start` when you explicitly need a direct Vite port.
 - **Status:** confirmed
 
 ### Commitizen hooks block non-interactive commits
@@ -1809,7 +1809,7 @@ If uncertain, ask the developer before adding an entry.
 - **Context:** Starting `yarn start` in one Bitsocial Web worktree while another worktree was already serving through Portless
 - **What was surprising:** Using the literal Portless app name `bitsocial` in every worktree makes the route itself collide, even when the backing ports are different, so the second process fails because `bitsocial.localhost` is already registered.
 - **Impact:** Parallel Bitsocial Web branches can block each other even though Portless is meant to let them coexist safely.
-- **Mitigation:** Keep Portless startup behind `scripts/start-dev.mjs`, which now uses a branch-scoped `*.bitsocial.localhost:1355` route outside the canonical case and falls back to a branch-scoped route when the bare `bitsocial.localhost` name is already occupied.
+- **Mitigation:** Keep Portless startup behind `scripts/start-dev.mjs`, which now uses a branch-scoped `*.bitsocial.localhost` route outside the canonical case and falls back to a branch-scoped route when the bare `bitsocial.localhost` name is already occupied.
 - **Status:** confirmed
 
 ### Docs preview used to hard-code port 3001
@@ -2233,9 +2233,9 @@ corepack yarn install
 
 The main local URL is:
 
-- `http://bitsocial.localhost:1355`
+- `https://bitsocial.localhost`
 
-Portless keeps a stable named local URL. On non-`master` branches, the repo can fall back to a branch-scoped `*.bitsocial.localhost:1355` route so parallel worktrees do not collide.
+Portless keeps a stable named local URL. On non-`master` branches, the repo can fall back to a branch-scoped `*.bitsocial.localhost` route so parallel worktrees do not collide.
 
 ## Common Commands
 
@@ -2443,15 +2443,15 @@ To have your board appear in a directory on the 5chan homepage:
 2. Install dependencies: `yarn install`
 3. Start the web client: `yarn start`
 
-The dev server normally runs at http://5chan.localhost:1355 via [Portless](https://port1355.dev/), which gives each Bitsocial project a stable, named URL instead of a random port. On non-`master` branches, or when another legacy process is already holding the canonical route, `yarn start` will automatically use a branch-scoped `*.5chan.localhost:1355` URL instead of failing. To bypass Portless and use a plain Vite dev server, run `PORTLESS=0 yarn start`; it will start at `http://5chan.localhost:1355` and automatically fall forward to the next free port if `1355` is already in use.
+The dev server normally runs at https://5chan.localhost via [Portless](https://github.com/vercel-labs/portless), which gives each Bitsocial project a stable, named URL instead of a random port. On non-`master` branches, or when another legacy process is already holding the canonical route, `yarn start` will automatically use a branch-scoped `*.5chan.localhost` URL instead of failing. To bypass Portless and use a plain Vite dev server, run `PORTLESS=0 yarn start`; it will start at `https://5chan.localhost` and automatically fall forward to the next free port if `1355` is already in use.
 
 For device testing on a USB-connected Android phone (without relying on `5chan.localhost` DNS from the device):
 
-- `yarn start:android-usb` starts Vite bound to `127.0.0.1` and runs `adb reverse`, so the phone can load the dev site at `http://localhost:1355`. When the server is up, it opens that URL in each connected device’s default browser via `adb`. Set `ANDROID_USB_OPEN_BROWSER=0` to skip auto-open. Requires [Android platform-tools](https://developer.android.com/tools/releases/platform-tools) (`adb` on your `PATH`), USB debugging enabled, and the device showing as `device` in `adb devices`.
+- `yarn start:android-usb` starts Vite bound to `127.0.0.1` and runs `adb reverse`, so the phone can load the dev site at `http://localhost:3000`. When the server is up, it opens that URL in each connected device’s default browser via `adb`. Set `ANDROID_USB_OPEN_BROWSER=0` to skip auto-open. Requires [Android platform-tools](https://developer.android.com/tools/releases/platform-tools) (`adb` on your `PATH`), USB debugging enabled, and the device showing as `device` in `adb devices`.
 
 ### Scripts
 
-- **Web client**: `yarn start` (http://5chan.localhost:1355)
+- **Web client**: `yarn start` (https://5chan.localhost)
 - **Web client (Android phone over USB)**: `yarn start:android-usb` (see above)
 - **Electron client** (must start web client first): `yarn electron`
 - **Electron client** (don't delete data): `yarn electron:no-delete-data`
@@ -2510,11 +2510,11 @@ The default list of communities, used on s/all on Seedit, is bitsocial's [defaul
 1. `yarn install` to install Seedit dependencies
 2. `yarn start` to run the web client
 
-The default web dev server runs at `http://seedit.localhost:1355` via [Portless](https://port1355.dev/), so it can share the same proxy as other Bitsocial projects without colliding on raw Vite ports. On non-`master` branches, or when another legacy process is already holding the canonical route, `yarn start` automatically uses a branch-scoped `*.seedit.localhost:1355` URL instead of failing, and repeated branch-scoped runs keep suffixing (`-2`, `-3`, ...) until they find a free route. To bypass Portless and use plain Vite directly, run `PORTLESS=0 yarn start`; it will probe from port `3000` unless you pin `PORT` yourself.
+The default web dev server runs at `https://seedit.localhost` via [Portless](https://github.com/vercel-labs/portless), so it can share the same proxy as other Bitsocial projects without colliding on raw Vite ports. On non-`master` branches, or when another legacy process is already holding the canonical route, `yarn start` automatically uses a branch-scoped `*.seedit.localhost` URL instead of failing, and repeated branch-scoped runs keep suffixing (`-2`, `-3`, ...) until they find a free route. To bypass Portless and use plain Vite directly, run `PORTLESS=0 yarn start`; it will probe from port `3000` unless you pin `PORT` yourself.
 
 ### Scripts:
 
-- Web client: `yarn start` (`http://seedit.localhost:1355`)
+- Web client: `yarn start` (`https://seedit.localhost`)
 - Electron client (must start web client first): `yarn electron`
 - Electron client and don't delete data: `yarn electron:no-delete-data`
 - Web client and electron client: `yarn electron:start` (forces `PORTLESS=0 PORT=3000` and uses `http://localhost:3000`)
@@ -2587,7 +2587,7 @@ mintpass/
 
 - Contracts: `cd contracts && yarn install && yarn test`
 - Challenge: `cd challenge && yarn install && yarn test`
-- Web: `cd web && yarn install && yarn dev` then open `http://mintpass.localhost:1355/request`
+- Web: `cd web && yarn install && yarn dev` then open `https://mintpass.localhost/request`
 
 ## Using MintPass in your community
 

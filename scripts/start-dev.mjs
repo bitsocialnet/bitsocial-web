@@ -2,7 +2,8 @@
 
 import { existsSync } from "node:fs";
 import { spawn } from "node:child_process";
-import { get } from "node:http";
+import { get as httpGet } from "node:http";
+import { get as httpsGet } from "node:https";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -54,7 +55,7 @@ const child = spawn(command, args, {
 });
 
 if (browserOpenUrl && process.env.BROWSER !== "none") {
-  waitForHttpReady(browserOpenUrl, 30_000)
+  waitForUrlReady(browserOpenUrl, 30_000)
     .then(() => {
       console.log(`Opening ${browserOpenUrl} in browser...`);
       openInBrowser(browserOpenUrl);
@@ -73,16 +74,22 @@ child.on("exit", (code, signal) => {
   process.exit(code ?? 0);
 });
 
-async function waitForHttpReady(url, timeoutMs) {
+async function waitForUrlReady(url, timeoutMs) {
   const startedAt = Date.now();
 
   while (Date.now() - startedAt < timeoutMs) {
     const ready = await new Promise((resolve) => {
-      const request = get(url, (response) => {
+      const parsedUrl = new URL(url);
+      const getUrl = parsedUrl.protocol === "https:" ? httpsGet : httpGet;
+      const onResponse = (response) => {
         response.resume();
         const statusCode = response.statusCode ?? 500;
         resolve(statusCode >= 200 && statusCode < 400);
-      });
+      };
+      const request =
+        parsedUrl.protocol === "https:"
+          ? getUrl(parsedUrl, { rejectUnauthorized: false }, onResponse)
+          : getUrl(parsedUrl, onResponse);
 
       request.on("error", () => resolve(false));
       request.setTimeout(2_000, () => {
@@ -103,9 +110,11 @@ async function waitForHttpReady(url, timeoutMs) {
 
 function openInBrowser(url) {
   const opener =
-    process.platform === "darwin" ? { cmd: "open", args: [url] }
-    : process.platform === "win32" ? { cmd: "cmd", args: ["/c", "start", '""', url] }
-    : { cmd: "xdg-open", args: [url] };
+    process.platform === "darwin"
+      ? { cmd: "open", args: [url] }
+      : process.platform === "win32"
+        ? { cmd: "cmd", args: ["/c", "start", '""', url] }
+        : { cmd: "xdg-open", args: [url] };
 
   spawn(opener.cmd, opener.args, { stdio: "ignore", detached: true }).unref();
 }

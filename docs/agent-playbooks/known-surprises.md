@@ -33,9 +33,9 @@ If uncertain, ask the developer before adding an entry.
 - **Date:** 2026-03-18
 - **Observed by:** Codex
 - **Context:** Browser verification and smoke flows
-- **What was surprising:** The default local URL is not the usual Vite port. The repo expects `http://bitsocial.localhost:1355` through Portless, so checking `localhost:3000` or `localhost:5173` can hit the wrong app or nothing at all.
+- **What was surprising:** The default local URL is not the usual Vite port. The repo expects `https://bitsocial.localhost` through Portless, so checking `localhost:3000` or `localhost:5173` can hit the wrong app or nothing at all.
 - **Impact:** Browser checks can fail or validate the wrong target even when the dev server is healthy.
-- **Mitigation:** Use `http://bitsocial.localhost:1355` first. Only bypass it with `PORTLESS=0 corepack yarn start` when you explicitly need a direct Vite port.
+- **Mitigation:** Use `https://bitsocial.localhost` first. Only bypass it with `PORTLESS=0 corepack yarn start` when you explicitly need a direct Vite port.
 - **Status:** confirmed
 
 ### Commitizen hooks block non-interactive commits
@@ -65,7 +65,7 @@ If uncertain, ask the developer before adding an entry.
 - **Context:** Starting `yarn start` in one Bitsocial Web worktree while another worktree was already serving through Portless
 - **What was surprising:** Using the literal Portless app name `bitsocial` in every worktree makes the route itself collide, even when the backing ports are different, so the second process fails because `bitsocial.localhost` is already registered.
 - **Impact:** Parallel Bitsocial Web branches can block each other even though Portless is meant to let them coexist safely.
-- **Mitigation:** Keep Portless startup behind `scripts/start-dev.mjs`, which now uses a branch-scoped `*.bitsocial.localhost:1355` route outside the canonical case and falls back to a branch-scoped route when the bare `bitsocial.localhost` name is already occupied.
+- **Mitigation:** Keep Portless startup behind `scripts/start-dev.mjs`, which now uses a branch-scoped `*.bitsocial.localhost` route outside the canonical case and falls back to a branch-scoped route when the bare `bitsocial.localhost` name is already occupied.
 - **Status:** confirmed
 
 ### Docs preview used to hard-code port 3001
@@ -134,6 +134,6 @@ If uncertain, ask the developer before adding an entry.
 - **Observed by:** Codex
 - **Context:** Verifying no-JS support for the `about/` site from a branch worktree
 - **What was surprising:** A standalone SSR preview can look healthy while the actual branch-scoped Portless route is still serving the wrong app shell or an older process. In this repo, the real local contract is the Portless hostname from `yarn start`, not an ad hoc preview server.
-- **Impact:** Agents can incorrectly claim no-JS support works, or miss regressions that only show up on `*.bitsocial.localhost:1355`.
+- **Impact:** Agents can incorrectly claim no-JS support works, or miss regressions that only show up on `*.bitsocial.localhost`.
 - **Mitigation:** For `about/` browser verification, always start the real local server with `yarn start` or `yarn start:about` and test the branch-scoped Portless URL first. If a Portless hostname looks stale, inspect and stop the old process before retesting.
 - **Status:** confirmed

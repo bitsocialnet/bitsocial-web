@@ -9,11 +9,11 @@ import tailwindcss from "tailwindcss";
 import { renderRobotsTxt, renderSitemapXml, getStaticSeoRoutes } from "./src/lib/seo";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const previewOpenUrl = "http://bitsocial.localhost:1355/";
+const previewOpenUrl = "https://bitsocial.localhost/";
 const isPreviewCommand = process.argv.includes("preview");
 
-/** Docusaurus dev server when `yarn start:docs` runs under Portless (`docs.bitsocial.localhost:1355`). */
-const docsDevProxyDefaultPortless = "http://docs.bitsocial.localhost:1355";
+/** Docusaurus dev server when `yarn start:docs` runs under Portless (`docs.bitsocial.localhost`). */
+const docsDevProxyDefaultPortless = "https://docs.bitsocial.localhost";
 /**
  * When Portless is off, `start-docs.mjs` binds Docusaurus to localhost (default 3001).
  * When Portless is on, the real port is random (4000–4999); proxy via the public URL instead.

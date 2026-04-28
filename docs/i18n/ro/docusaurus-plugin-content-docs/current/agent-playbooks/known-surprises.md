@@ -33,9 +33,9 @@ Dacă nu sunteți sigur, întrebați dezvoltatorul înainte de a adăuga o intra
 - **Data:** 2026-03-18
 - **Observat de:** Codex
 - **Context:** Verificarea browserului și fluxurile de fum
-- **Ce a fost surprinzător:** URL-ul local implicit nu este portul obișnuit Vite. Repo se așteaptă ca `http://bitsocial.localhost:1355` prin Portless, așa că verificarea `localhost:3000` sau `localhost:5173` poate lovi aplicația greșită sau nimic.
+- **Ce a fost surprinzător:** URL-ul local implicit nu este portul obișnuit Vite. Repo se așteaptă ca `https://bitsocial.localhost` prin Portless, așa că verificarea `localhost:3000` sau `localhost:5173` poate lovi aplicația greșită sau nimic.
 - **Impact:** Verificările browserului pot eșua sau valida ținta greșită chiar și atunci când serverul de dezvoltare este sănătos.
-- **Atenuare:** utilizați mai întâi `http://bitsocial.localhost:1355`. Ocoliți-l doar cu `PORTLESS=0 corepack yarn start` atunci când aveți nevoie în mod explicit de un port Vite direct.
+- **Atenuare:** utilizați mai întâi `https://bitsocial.localhost`. Ocoliți-l doar cu `PORTLESS=0 corepack yarn start` atunci când aveți nevoie în mod explicit de un port Vite direct.
 - **Stare:** confirmată
 
 ### Cârligele Commitizen blochează comiterile non-interactive
@@ -65,7 +65,7 @@ Dacă nu sunteți sigur, întrebați dezvoltatorul înainte de a adăuga o intra
 - **Context:** Pornirea `yarn start` într-un arbore de lucru Bitsocial Web în timp ce un alt arbore de lucru era deja difuzat prin Portless
 - **Ceea ce a fost surprinzător:** Utilizarea numelui literal al aplicației Portless `bitsocial` în fiecare arbore de lucru face ca ruta în sine să se ciocnească, chiar și atunci când porturile de rezervă sunt diferite, astfel încât al doilea proces eșuează deoarece `bitsocial.localhost` este deja înregistrat.
 - **Impact:** ramurile Bitsocial Web paralele se pot bloca reciproc, chiar dacă Portless este menit să le permită să coexiste în siguranță.
-- **Atenuare:** Păstrați pornirea fără port în spatele `scripts/start-dev.mjs`, care acum folosește o rută `*.bitsocial.localhost:1355` cu ramuri în afara cazului canonic și se întoarce la o rută cu ramuri atunci când numele `bitsocial.localhost` gol este deja ocupat.
+- **Atenuare:** Păstrați pornirea fără port în spatele `scripts/start-dev.mjs`, care acum folosește o rută `*.bitsocial.localhost` cu ramuri în afara cazului canonic și se întoarce la o rută cu ramuri atunci când numele `bitsocial.localhost` gol este deja ocupat.
 - **Stare:** confirmată
 
 ### Previzualizarea documentelor este folosită pentru a codifica hard portul 3001

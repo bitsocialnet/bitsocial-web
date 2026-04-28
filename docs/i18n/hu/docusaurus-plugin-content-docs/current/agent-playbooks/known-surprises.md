@@ -33,9 +33,9 @@ Ha bizonytalan, kérdezze meg a fejlesztőt a bejegyzés hozzáadása előtt.
 - **Dátum:** 2026-03-18
 - **Megfigyelte:** Codex
 - **Kontextus:** A böngésző ellenőrzése és füstáramlás
-- **Ami meglepő volt:** Az alapértelmezett helyi URL nem a szokásos Vite port. A repo a `http://bitsocial.localhost:1355`-t a Portlessen keresztül várja, így a `localhost:3000` vagy a `localhost:5173` ellenőrzése rossz alkalmazást vagy akár semmit sem találhat.
+- **Ami meglepő volt:** Az alapértelmezett helyi URL nem a szokásos Vite port. A repo a `https://bitsocial.localhost`-t a Portlessen keresztül várja, így a `localhost:3000` vagy a `localhost:5173` ellenőrzése rossz alkalmazást vagy akár semmit sem találhat.
 - **Hatás:** A böngészőellenőrzések sikertelenek lehetnek, vagy rossz célt érvényesíthetnek, még akkor is, ha a fejlesztői kiszolgáló egészséges.
-- **Enyhítés:** Először használja a `http://bitsocial.localhost:1355`-t. Csak akkor kerülje ki a `PORTLESS=0 corepack yarn start` segítségével, ha kifejezetten szüksége van egy közvetlen Vite portra.
+- **Enyhítés:** Először használja a `https://bitsocial.localhost`-t. Csak akkor kerülje ki a `PORTLESS=0 corepack yarn start` segítségével, ha kifejezetten szüksége van egy közvetlen Vite portra.
 - **Állapot:** megerősítve
 
 ### A Commitizen hook blokkolja a nem interaktív véglegesítéseket
@@ -65,7 +65,7 @@ Ha bizonytalan, kérdezze meg a fejlesztőt a bejegyzés hozzáadása előtt.
 - **Kontextus:** A `yarn start` elindítása az egyik Bitsocial Web munkafában, miközben egy másik munkafa már kiszolgált a Portlessen keresztül
 - **Ami meglepő volt:** A `bitsocial` szó szerinti Portless alkalmazásnév használata minden munkafában maga az útvonal ütközését eredményezi, még akkor is, ha a háttérportok eltérőek, így a második folyamat meghiúsul, mert a `bitsocial.localhost` már regisztrálva van.
 - **Hatás:** A párhuzamos Bitsocial Web ágak blokkolhatják egymást, még akkor is, ha a Portless lehetővé teszi számukra a biztonságos együttélést.
-- **Enyhítés:** Tartsa a port nélküli indítást a `scripts/start-dev.mjs` mögött, amely mostantól a kanonikus eseten kívül egy elágazási hatókörű `*.bitsocial.localhost:1355` útvonalat használ, és visszaáll egy leágazási hatókörű útvonalra, amikor a csupasz `bitsocial.localhost` név már foglalt.
+- **Enyhítés:** Tartsa a port nélküli indítást a `scripts/start-dev.mjs` mögött, amely mostantól a kanonikus eseten kívül egy elágazási hatókörű `*.bitsocial.localhost` útvonalat használ, és visszaáll egy leágazási hatókörű útvonalra, amikor a csupasz `bitsocial.localhost` név már foglalt.
 - **Állapot:** megerősítve
 
 ### A 3001-es port kódolásához használt dokumentumok előnézete

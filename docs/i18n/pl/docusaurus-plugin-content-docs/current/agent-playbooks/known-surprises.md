@@ -33,9 +33,9 @@ Jeśli nie jesteś pewien, zapytaj programistę przed dodaniem wpisu.
 - **Data:** 18.03.2026
 - **Obserwowane przez:** Kodeks
 - **Kontekst:** Weryfikacja przeglądarki i przepływ dymu
-- **Co było zaskakujące:** Domyślny lokalny adres URL nie jest zwykłym portem Vite. Repozytorium oczekuje `http://bitsocial.localhost:1355` przez Portless, więc sprawdzenie `localhost:3000` lub `localhost:5173` może spowodować trafienie w niewłaściwą aplikację lub nic.
+- **Co było zaskakujące:** Domyślny lokalny adres URL nie jest zwykłym portem Vite. Repozytorium oczekuje `https://bitsocial.localhost` przez Portless, więc sprawdzenie `localhost:3000` lub `localhost:5173` może spowodować trafienie w niewłaściwą aplikację lub nic.
 - **Skutek:** Sprawdzanie przeglądarki może zakończyć się niepowodzeniem lub zweryfikować niewłaściwy cel, nawet jeśli serwer deweloperski jest w dobrym stanie.
-- **Środki zaradcze:** Najpierw użyj `http://bitsocial.localhost:1355`. Pomiń go za pomocą `PORTLESS=0 corepack yarn start` tylko wtedy, gdy wyraźnie potrzebujesz bezpośredniego portu Vite.
+- **Środki zaradcze:** Najpierw użyj `https://bitsocial.localhost`. Pomiń go za pomocą `PORTLESS=0 corepack yarn start` tylko wtedy, gdy wyraźnie potrzebujesz bezpośredniego portu Vite.
 - **Stan:** potwierdzony
 
 ### Haki Commitizen blokują nieinteraktywne zatwierdzenia
@@ -65,7 +65,7 @@ Jeśli nie jesteś pewien, zapytaj programistę przed dodaniem wpisu.
 - **Kontekst:** Uruchamianie `yarn start` w jednym drzewie roboczym Bitsocial Web, podczas gdy inne drzewo robocze było już obsługiwane przez Portless
 - **Co było zaskakujące:** Użycie dosłownej nazwy aplikacji Portless `bitsocial` w każdym drzewie roboczym powoduje, że sama trasa koliduje, nawet jeśli porty zapasowe są różne, więc drugi proces kończy się niepowodzeniem, ponieważ `bitsocial.localhost` jest już zarejestrowany.
 - **Skutek:** Równoległe gałęzie Bitsocial Web mogą się wzajemnie blokować, mimo że Portless ma umożliwiać im bezpieczne współistnienie.
-- **Środki zaradcze:** Pozostaw uruchamianie bez portów za `scripts/start-dev.mjs`, które teraz używa trasy `*.bitsocial.localhost:1355` o zasięgu rozgałęzionym poza przypadkiem kanonicznym i powraca do trasy o zasięgu rozgałęzionym, gdy sama nazwa `bitsocial.localhost` jest już zajęta.
+- **Środki zaradcze:** Pozostaw uruchamianie bez portów za `scripts/start-dev.mjs`, które teraz używa trasy `*.bitsocial.localhost` o zasięgu rozgałęzionym poza przypadkiem kanonicznym i powraca do trasy o zasięgu rozgałęzionym, gdy sama nazwa `bitsocial.localhost` jest już zajęta.
 - **Stan:** potwierdzony
 
 ### Podgląd dokumentów używany do zakodowania portu 3001

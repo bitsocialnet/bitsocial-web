@@ -9,7 +9,7 @@ Two-layer profiling: browser-level symptoms (Web Vitals, long tasks, scroll jank
 
 ## Prerequisites
 
-- Dev server running at `http://bitsocial.localhost:1355` (`yarn start` via Portless)
+- Dev server running at `https://bitsocial.localhost` (`yarn start` via Portless)
 - `playwright-cli` installed (`npm install -g @playwright/cli@latest`)
 
 **IMPORTANT:** The orchestrator (you) is responsible for ensuring exactly one dev server is running. Profiler subagents must never start a dev server themselves.
@@ -29,7 +29,7 @@ The profiler's `addInitScript` sets `window.__PROFILING__ = true` before the app
 Before spawning any profiler subagents, verify exactly one dev server is available:
 
 ```bash
-curl -sf http://bitsocial.localhost:1355 -o /dev/null && echo "OK" || echo "NOT RUNNING"
+curl -sf https://bitsocial.localhost -o /dev/null && echo "OK" || echo "NOT RUNNING"
 ```
 
 - If `OK`: proceed to Step 1.

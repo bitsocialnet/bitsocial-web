@@ -33,9 +33,9 @@ Se não tiver certeza, pergunte ao desenvolvedor antes de adicionar uma entrada.
 - **Data:** 18/03/2026
 - **Observado por:** Codex
 - **Contexto:** Verificação do navegador e fluxos de fumaça
-- **O que foi surpreendente:** O URL local padrão não é a porta normal do Vite. O repo espera `http://bitsocial.localhost:1355` por meio do Portless, portanto, verificar `localhost:3000` ou `localhost:5173` pode atingir o aplicativo errado ou nada.
+- **O que foi surpreendente:** O URL local padrão não é a porta normal do Vite. O repo espera `https://bitsocial.localhost` por meio do Portless, portanto, verificar `localhost:3000` ou `localhost:5173` pode atingir o aplicativo errado ou nada.
 - **Impacto:** as verificações do navegador podem falhar ou validar o destino errado mesmo quando o servidor de desenvolvimento está íntegro.
-- **Mitigação:** Use `http://bitsocial.localhost:1355` primeiro. Ignore-o apenas com `PORTLESS=0 corepack yarn start` quando você precisar explicitamente de uma porta Vite direta.
+- **Mitigação:** Use `https://bitsocial.localhost` primeiro. Ignore-o apenas com `PORTLESS=0 corepack yarn start` quando você precisar explicitamente de uma porta Vite direta.
 - **Status:** confirmado
 
 ### Ganchos Commitizen bloqueiam commits não interativos
@@ -65,7 +65,7 @@ Se não tiver certeza, pergunte ao desenvolvedor antes de adicionar uma entrada.
 - **Contexto:** Iniciando `yarn start` em uma árvore de trabalho Bitsocial Web enquanto outra árvore de trabalho já estava servindo através do Portless
 - **O que foi surpreendente:** Usar o nome literal do aplicativo Portless `bitsocial` em cada árvore de trabalho faz com que a própria rota colida, mesmo quando as portas de apoio são diferentes, então o segundo processo falha porque `bitsocial.localhost` já está registrado.
 - **Impacto:** As ramificações paralelas da Bitsocial Web podem bloquear umas às outras, mesmo que o objetivo do Portless seja permitir que elas coexistam com segurança.
-- **Mitigação:** Mantenha a inicialização do Portless atrás de `scripts/start-dev.mjs`, que agora usa uma rota `*.bitsocial.localhost:1355` com escopo de ramificação fora do caso canônico e retorna para uma rota com escopo de ramificação quando o nome `bitsocial.localhost` vazio já estiver ocupado.
+- **Mitigação:** Mantenha a inicialização do Portless atrás de `scripts/start-dev.mjs`, que agora usa uma rota `*.bitsocial.localhost` com escopo de ramificação fora do caso canônico e retorna para uma rota com escopo de ramificação quando o nome `bitsocial.localhost` vazio já estiver ocupado.
 - **Status:** confirmado
 
 ### Visualização do Documentos usada para codificar a porta 3001

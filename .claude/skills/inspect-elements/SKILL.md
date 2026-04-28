@@ -9,7 +9,7 @@ Use this skill to jump from a concrete DOM node in the running Bitsocial Web app
 
 ## Prerequisites
 
-- Dev server running at `http://bitsocial.localhost:1355`
+- Dev server running at `https://bitsocial.localhost`
 - `playwright-cli` installed
 - Use the local dev app, not production. The element-source helpers are exposed only in dev mode.
 
@@ -33,8 +33,8 @@ The result includes:
 ## Session Setup
 
 ```bash
-playwright-cli -s=inspect open http://bitsocial.localhost:1355
-playwright-cli -s=inspect goto http://bitsocial.localhost:1355/
+playwright-cli -s=inspect open https://bitsocial.localhost
+playwright-cli -s=inspect goto https://bitsocial.localhost/
 playwright-cli -s=inspect eval "window.__ELEMENT_SOURCE__?.ready ?? false"
 playwright-cli -s=inspect snapshot
 ```

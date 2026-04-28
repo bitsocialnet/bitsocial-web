@@ -9375,7 +9375,7 @@ __metadata:
     lint-staged: "npm:16.4.0"
     oxfmt: "npm:0.20.0"
     oxlint: "npm:1.56.0"
-    portless: "npm:0.7.0"
+    portless: "npm:0.11.1"
     postcss: "npm:8.5.8"
     react: "npm:19.2.4"
     react-doctor: "npm:0.0.31"
@@ -19916,14 +19916,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"portless@npm:0.7.0":
-  version: 0.7.0
-  resolution: "portless@npm:0.7.0"
-  dependencies:
-    chalk: "npm:^5.3.0"
+"portless@npm:0.11.1":
+  version: 0.11.1
+  resolution: "portless@npm:0.11.1"
   bin:
     portless: dist/cli.js
-  checksum: 10c0/bcb7feeb7bc3e1e60b4b6d86d7fbaa1da74bd1ccd7e251c8cae3d7ce80219fe73d42adb1b8259683e19bc4f38199180964c3637105619bf1d3062c4e9a7d9607
+  checksum: 10c0/eeb50eba54a8b3120a5f240845fcb58f928af7c883c23f6daa576446423b8c459fa1b91ced6789ed90496b2ce4aa988f83934fbdd619fc3be7a5c8777e836866
   conditions: (os=darwin | os=linux | os=win32)
   languageName: node
   linkType: hard

@@ -33,9 +33,9 @@ Emin değilseniz, bir giriş eklemeden önce geliştiriciye sorun.
 - **Tarih:** 2026-03-18
 - **Gözleyen:** Kodeks
 - **Bağlam:** Tarayıcı doğrulaması ve duman akışları
-- **Şaşırtıcı olan şey:** Varsayılan yerel URL, olağan Vite bağlantı noktası değil. Depo, Portless aracılığıyla `http://bitsocial.localhost:1355`'yu bekliyor, bu nedenle `localhost:3000` veya `localhost:5173`'yu kontrol etmek yanlış uygulamaya rastlayabilir veya hiçbir şey yapmayabilir.
+- **Şaşırtıcı olan şey:** Varsayılan yerel URL, olağan Vite bağlantı noktası değil. Depo, Portless aracılığıyla `https://bitsocial.localhost`'yu bekliyor, bu nedenle `localhost:3000` veya `localhost:5173`'yu kontrol etmek yanlış uygulamaya rastlayabilir veya hiçbir şey yapmayabilir.
 - **Etki:** Geliştirici sunucusu sağlıklı olsa bile tarayıcı kontrolleri başarısız olabilir veya yanlış hedefi doğrulayabilir.
-- **Azaltma:** Önce `http://bitsocial.localhost:1355` kullanın. Doğrudan bir Vite bağlantı noktasına açıkça ihtiyaç duyduğunuzda bunu yalnızca `PORTLESS=0 corepack yarn start` ile atlayın.
+- **Azaltma:** Önce `https://bitsocial.localhost` kullanın. Doğrudan bir Vite bağlantı noktasına açıkça ihtiyaç duyduğunuzda bunu yalnızca `PORTLESS=0 corepack yarn start` ile atlayın.
 - **Durum:** onaylandı
 
 ### Taahhüt kancaları etkileşimli olmayan taahhütleri engeller
@@ -65,7 +65,7 @@ Emin değilseniz, bir giriş eklemeden önce geliştiriciye sorun.
 - **Bağlam:** Başka bir çalışma ağacı zaten Portless üzerinden hizmet veriyorken `yarn start`'yu bir Bitsocial Web çalışma ağacında başlatmak
 - **Şaşırtıcı olan şey:** Her çalışma ağacında gerçek Portless uygulama adının `bitsocial` kullanılması, destek bağlantı noktaları farklı olsa bile rotanın kendisinin çakışmasına neden olur ve `bitsocial.localhost` zaten kayıtlı olduğundan ikinci işlem başarısız olur.
 - **Etki:** Portless'ın güvenli bir şekilde bir arada var olmalarına izin vermesi amaçlanmış olsa da Paralel Bitsosyal Web şubeleri birbirlerini engelleyebilir.
-- **Azaltma:** Artık standart durumun dışında dal kapsamlı bir `*.bitsocial.localhost:1355` rotası kullanan ve çıplak `bitsocial.localhost` adı zaten kullanıldığında dal kapsamlı bir rotaya geri dönen Portless başlatmayı `scripts/start-dev.mjs`'nun arkasında tutun.
+- **Azaltma:** Artık standart durumun dışında dal kapsamlı bir `*.bitsocial.localhost` rotası kullanan ve çıplak `bitsocial.localhost` adı zaten kullanıldığında dal kapsamlı bir rotaya geri dönen Portless başlatmayı `scripts/start-dev.mjs`'nun arkasında tutun.
 - **Durum:** onaylandı
 
 ### Bağlantı noktası 3001'i sabit kodlamak için kullanılan Dokümanlar önizlemesi

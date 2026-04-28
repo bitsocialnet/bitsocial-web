@@ -182,7 +182,7 @@ stats/                # Monitoring, Grafana, Prometheus, and deployment assets
 
 ## Local Development URLs
 
-This project uses [Portless](https://github.com/vercel-labs/portless) for local dev. The canonical dev URL is `http://bitsocial.localhost:1355`, and non-`master` branches can automatically fall back to a branch-scoped `*.bitsocial.localhost:1355` route when needed so parallel worktrees do not collide. To bypass Portless, use `PORTLESS=0 yarn start`.
+This project uses [Portless](https://github.com/vercel-labs/portless) for local dev. The canonical dev URL is `https://bitsocial.localhost`, and non-`master` branches can automatically fall back to a branch-scoped `*.bitsocial.localhost` route when needed so parallel worktrees do not collide. To bypass Portless, use `PORTLESS=0 yarn start`.
 
 Android phone over USB (default browser opens via `adb`; `ANDROID_USB_OPEN_BROWSER=0` to skip): `yarn start:android-usb`
 
@@ -190,7 +190,7 @@ Android phone over USB (default browser opens via `adb`; `ANDROID_USB_OPEN_BROWS
 
 ```bash
 yarn install
-yarn start          # http://bitsocial.localhost:1355
+yarn start          # https://bitsocial.localhost
 yarn start:android-usb  # Vite + adb reverse; opens http://localhost:<port> on device
 yarn build:verify
 yarn build:about

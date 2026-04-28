@@ -42,9 +42,9 @@ corepack yarn install
 
 The main local URL is:
 
-- `http://bitsocial.localhost:1355`
+- `https://bitsocial.localhost`
 
-Portless keeps a stable named local URL. On non-`master` branches, the repo can fall back to a branch-scoped `*.bitsocial.localhost:1355` route so parallel worktrees do not collide.
+Portless keeps a stable named local URL. On non-`master` branches, the repo can fall back to a branch-scoped `*.bitsocial.localhost` route so parallel worktrees do not collide.
 
 ## Common Commands
 

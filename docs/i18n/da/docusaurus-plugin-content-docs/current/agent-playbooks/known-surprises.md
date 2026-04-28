@@ -33,9 +33,9 @@ Hvis du er usikker, så spørg udvikleren, før du tilføjer en post.
 - **Dato:** 2026-03-18
 - **Observeret af:** Codex
 - **Kontekst:** Browserbekræftelse og røgstrømme
-- **Hvad var overraskende:** Den lokale standardwebadresse er ikke den sædvanlige Vite-port. Repo'en forventer `http://bitsocial.localhost:1355` gennem Portless, så kontrol af `localhost:3000` eller `localhost:5173` kan ramme den forkerte app eller slet intet.
+- **Hvad var overraskende:** Den lokale standardwebadresse er ikke den sædvanlige Vite-port. Repo'en forventer `https://bitsocial.localhost` gennem Portless, så kontrol af `localhost:3000` eller `localhost:5173` kan ramme den forkerte app eller slet intet.
 - **Konsekvens:** Browsertjek kan mislykkes eller validere det forkerte mål, selv når udviklerserveren er sund.
-- **Afbødning:** Brug først `http://bitsocial.localhost:1355`. Omgå det kun med `PORTLESS=0 corepack yarn start`, når du eksplicit har brug for en direkte Vite-port.
+- **Afbødning:** Brug først `https://bitsocial.localhost`. Omgå det kun med `PORTLESS=0 corepack yarn start`, når du eksplicit har brug for en direkte Vite-port.
 - **Status:** bekræftet
 
 ### Commitizen hooks blokerer ikke-interaktive commits
@@ -65,7 +65,7 @@ Hvis du er usikker, så spørg udvikleren, før du tilføjer en post.
 - **Kontekst:** Start af `yarn start` i ét Bitsocial Web-arbejdstræ, mens et andet arbejdstræ allerede serverede via Portless
 - **Hvad var overraskende:** Brug af det bogstavelige Portless-appnavn `bitsocial` i hvert arbejdstræ får selve ruten til at kollidere, selv når de understøttende porte er forskellige, så den anden proces mislykkes, fordi `bitsocial.localhost` allerede er registreret.
 - **Indvirkning:** Parallelle Bitsocial-webgrene kan blokere hinanden, selvom Portless er beregnet til at lade dem sameksistere sikkert.
-- **Afbødning:** Hold portløs opstart bag `scripts/start-dev.mjs`, som nu bruger en gren-omfattet `*.bitsocial.localhost:1355`-rute uden for det kanoniske tilfælde og falder tilbage til en gren-omfattet rute, når det blottede `bitsocial.localhost`-navn allerede er optaget.
+- **Afbødning:** Hold portløs opstart bag `scripts/start-dev.mjs`, som nu bruger en gren-omfattet `*.bitsocial.localhost`-rute uden for det kanoniske tilfælde og falder tilbage til en gren-omfattet rute, når det blottede `bitsocial.localhost`-navn allerede er optaget.
 - **Status:** bekræftet
 
 ### Dokumenteksempel bruges til at hardkode port 3001

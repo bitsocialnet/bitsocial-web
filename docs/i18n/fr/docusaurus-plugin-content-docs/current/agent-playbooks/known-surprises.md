@@ -33,9 +33,9 @@ En cas de doute, demandez au développeur avant d'ajouter une entrée.
 - **Date :** 2026-03-18
 - **Observé par :** Codex
 - **Contexte :** Vérification du navigateur et flux de fumée
-- **Ce qui était surprenant :** L'URL locale par défaut n'est pas le port Vite habituel. Le dépôt attend `http://bitsocial.localhost:1355` via Portless, donc vérifier `localhost:3000` ou `localhost:5173` peut toucher la mauvaise application ou rien du tout.
+- **Ce qui était surprenant :** L'URL locale par défaut n'est pas le port Vite habituel. Le dépôt attend `https://bitsocial.localhost` via Portless, donc vérifier `localhost:3000` ou `localhost:5173` peut toucher la mauvaise application ou rien du tout.
 - **Impact :** Les vérifications du navigateur peuvent échouer ou valider la mauvaise cible même lorsque le serveur de développement est sain.
-- **Atténuation :** Utilisez d'abord `http://bitsocial.localhost:1355`. Contournez-le uniquement avec `PORTLESS=0 corepack yarn start` lorsque vous avez explicitement besoin d'un port Vite direct.
+- **Atténuation :** Utilisez d'abord `https://bitsocial.localhost`. Contournez-le uniquement avec `PORTLESS=0 corepack yarn start` lorsque vous avez explicitement besoin d'un port Vite direct.
 - **Statut :** confirmé
 
 ### Les hooks de validation bloquent les validations non interactives
@@ -65,7 +65,7 @@ En cas de doute, demandez au développeur avant d'ajouter une entrée.
 - **Contexte :** Démarrage de `yarn start` dans une arborescence de travail Web Bitsocial alors qu'une autre arborescence de travail était déjà diffusée via Portless
 - **Ce qui était surprenant :** L'utilisation du nom littéral de l'application sans port `bitsocial` dans chaque arbre de travail provoque une collision de la route elle-même, même lorsque les ports de support sont différents, de sorte que le deuxième processus échoue car `bitsocial.localhost` est déjà enregistré.
 - **Impact :** Les branches Web parallèles Bitsocial peuvent se bloquer même si Portless est censé les laisser coexister en toute sécurité.
-- **Atténuation :** Conservez le démarrage sans port derrière `scripts/start-dev.mjs`, qui utilise désormais une route `*.bitsocial.localhost:1355` à portée de branche en dehors du cas canonique et revient à une route à portée de branche lorsque le nom nu `bitsocial.localhost` est déjà occupé.
+- **Atténuation :** Conservez le démarrage sans port derrière `scripts/start-dev.mjs`, qui utilise désormais une route `*.bitsocial.localhost` à portée de branche en dehors du cas canonique et revient à une route à portée de branche lorsque le nom nu `bitsocial.localhost` est déjà occupé.
 - **Statut :** confirmé
 
 ### Aperçu de la documentation utilisé pour coder en dur le port 3001

@@ -33,9 +33,9 @@ Nëse nuk jeni të sigurt, pyesni zhvilluesin përpara se të shtoni një hyrje.
 - **Data:** 2026-03-18
 - **Vëzhguar nga:** Codex
 - **Konteksti:** Verifikimi i shfletuesit dhe rrjedhja e tymit
-- **Ajo që ishte befasuese:** URL-ja lokale e paracaktuar nuk është porti i zakonshëm Vite. Repo pret `http://bitsocial.localhost:1355` përmes Portless, kështu që kontrollimi i `localhost:3000` ose `localhost:5173` mund të godasë aplikacionin e gabuar ose asgjë fare.
+- **Ajo që ishte befasuese:** URL-ja lokale e paracaktuar nuk është porti i zakonshëm Vite. Repo pret `https://bitsocial.localhost` përmes Portless, kështu që kontrollimi i `localhost:3000` ose `localhost:5173` mund të godasë aplikacionin e gabuar ose asgjë fare.
 - **Ndikimi:** Kontrollet e shfletuesit mund të dështojnë ose të vërtetojnë objektivin e gabuar edhe kur serveri i devijimit është i shëndetshëm.
-- **Zbutja:** Përdor `http://bitsocial.localhost:1355` fillimisht. Anashkaloni atë vetëm me `PORTLESS=0 corepack yarn start` kur keni nevojë në mënyrë të qartë për një port të drejtpërdrejtë Vite.
+- **Zbutja:** Përdor `https://bitsocial.localhost` fillimisht. Anashkaloni atë vetëm me `PORTLESS=0 corepack yarn start` kur keni nevojë në mënyrë të qartë për një port të drejtpërdrejtë Vite.
 - **Statusi:** i konfirmuar
 
 ### Hooks Commitizen bllokojnë angazhimet jo-interaktive
@@ -65,7 +65,7 @@ Nëse nuk jeni të sigurt, pyesni zhvilluesin përpara se të shtoni një hyrje.
 - **Konteksti:** Nisja e `yarn start` në një pemë pune të Uebit Bitsocial ndërsa një pemë tjetër pune po shërbente tashmë përmes Portless
 - **Ajo që ishte befasuese:** Përdorimi i emrit të drejtpërdrejtë të aplikacionit Portless `bitsocial` në çdo pemë pune bën që vetë rruga të përplaset, edhe kur portat mbështetëse janë të ndryshme, kështu që procesi i dytë dështon sepse `bitsocial.localhost` është regjistruar tashmë.
 - **Ndikimi:** Degët paralele të Uebit Bitsocial mund të bllokojnë njëra-tjetrën edhe pse Portless ka për qëllim t'i lejojë ato të bashkëjetojnë në mënyrë të sigurt.
-- **Zbutja:** Mbajeni fillimin Portless pas `scripts/start-dev.mjs`, i cili tani përdor një rrugë `*.bitsocial.localhost:1355` me shtrirje të degës jashtë rastit kanonik dhe kthehet në një rrugë me shtrirje të degës kur emri i zhveshur `bitsocial.localhost` është tashmë i zënë.
+- **Zbutja:** Mbajeni fillimin Portless pas `scripts/start-dev.mjs`, i cili tani përdor një rrugë `*.bitsocial.localhost` me shtrirje të degës jashtë rastit kanonik dhe kthehet në një rrugë me shtrirje të degës kur emri i zhveshur `bitsocial.localhost` është tashmë i zënë.
 - **Statusi:** i konfirmuar
 
 ### Pamja paraprake e Docs përdoret në portin 3001 të kodit të fortë

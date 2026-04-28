@@ -33,9 +33,9 @@
 - **日期：** 2026-03-18
 - **观察者：** 食品法典委员会
 - **上下文：** 浏览器验证和烟雾流
-- **令人惊讶的是：** 默认的本地 URL 不是通常的 Vite 端口。该存储库期望通过 Portless 实现 `http://bitsocial.localhost:1355`，因此检查 `localhost:3000` 或 `localhost:5173` 可能会命中错误的应用程序或根本无法命中任何内容。
+- **令人惊讶的是：** 默认的本地 URL 不是通常的 Vite 端口。该存储库期望通过 Portless 实现 `https://bitsocial.localhost`，因此检查 `localhost:3000` 或 `localhost:5173` 可能会命中错误的应用程序或根本无法命中任何内容。
 - **影响：** 即使开发服务器运行状况良好，浏览器检查也可能会失败或验证错误的目标。
-- **缓解措施：** 首先使用 `http://bitsocial.localhost:1355`。仅当您明确需要直接 Vite 端口时，才使用 `PORTLESS=0 corepack yarn start` 绕过它。
+- **缓解措施：** 首先使用 `https://bitsocial.localhost`。仅当您明确需要直接 Vite 端口时，才使用 `PORTLESS=0 corepack yarn start` 绕过它。
 - **状态：**已确认
 
 ### Commitize 挂钩会阻止非交互式提交
@@ -65,7 +65,7 @@
 - **上下文：** 在一个 Bitsocial Web 工作树中启动 `yarn start`，而另一个工作树已通过 Portless 提供服务
 - **令人惊讶的是：** 在每个工作树中使用字面无端口应用程序名称 `bitsocial` 会使路由本身发生冲突，即使支持端口不同也是如此，因此第二个进程会失败，因为 `bitsocial.localhost` 已经注册。
 - **影响：** 并行 Bitsocial Web 分支可能会互相阻塞，尽管 Portless 旨在让它们安全共存。
-- **缓解措施：** 将无端口启动保留在 `scripts/start-dev.mjs` 之后，它现在在规范情况之外使用分支范围的 `*.bitsocial.localhost:1355` 路由，并在裸 `bitsocial.localhost` 名称已被占用时回退到分支范围的路由。
+- **缓解措施：** 将无端口启动保留在 `scripts/start-dev.mjs` 之后，它现在在规范情况之外使用分支范围的 `*.bitsocial.localhost` 路由，并在裸 `bitsocial.localhost` 名称已被占用时回退到分支范围的路由。
 - **状态：**已确认
 
 ### 用于硬编码端口 3001 的文档预览

@@ -33,9 +33,9 @@ Si no está seguro, consulte al desarrollador antes de agregar una entrada.
 - **Fecha:** 2026-03-18
 - **Observado por:** Códice
 - **Contexto:** Verificación del navegador y flujos de humo.
-- **Lo sorprendente:** La URL local predeterminada no es el puerto habitual de Vite. El repositorio espera `http://bitsocial.localhost:1355` a través de Portless, por lo que al verificar `localhost:3000` o `localhost:5173` se puede encontrar la aplicación incorrecta o no encontrar nada en absoluto.
+- **Lo sorprendente:** La URL local predeterminada no es el puerto habitual de Vite. El repositorio espera `https://bitsocial.localhost` a través de Portless, por lo que al verificar `localhost:3000` o `localhost:5173` se puede encontrar la aplicación incorrecta o no encontrar nada en absoluto.
 - **Impacto:** Las comprobaciones del navegador pueden fallar o validar el destino incorrecto incluso cuando el servidor de desarrollo está en buen estado.
-- **Mitigación:** Utilice `http://bitsocial.localhost:1355` primero. Solo omítalo con `PORTLESS=0 corepack yarn start` cuando necesites explícitamente un puerto Vite directo.
+- **Mitigación:** Utilice `https://bitsocial.localhost` primero. Solo omítalo con `PORTLESS=0 corepack yarn start` cuando necesites explícitamente un puerto Vite directo.
 - **Estado:** confirmado
 
 ### Los ganchos de confirmación bloquean las confirmaciones no interactivas
@@ -65,7 +65,7 @@ Si no está seguro, consulte al desarrollador antes de agregar una entrada.
 - **Contexto:** Iniciando `yarn start` en un árbol de trabajo web de Bitsocial mientras otro árbol de trabajo ya estaba sirviendo a través de Portless
 - **Lo sorprendente:** El uso literal del nombre de la aplicación sin puerto `bitsocial` en cada árbol de trabajo hace que la ruta en sí colisione, incluso cuando los puertos de respaldo son diferentes, por lo que el segundo proceso falla porque `bitsocial.localhost` ya está registrado.
 - **Impacto:** Las ramas web paralelas de Bitsocial pueden bloquearse entre sí, aunque Portless está diseñado para permitirles coexistir de forma segura.
-- **Mitigación:** Mantenga el inicio sin puerto detrás de `scripts/start-dev.mjs`, que ahora utiliza una ruta `*.bitsocial.localhost:1355` con ámbito de rama fuera del caso canónico y recurre a una ruta con ámbito de rama cuando el nombre básico `bitsocial.localhost` ya está ocupado.
+- **Mitigación:** Mantenga el inicio sin puerto detrás de `scripts/start-dev.mjs`, que ahora utiliza una ruta `*.bitsocial.localhost` con ámbito de rama fuera del caso canónico y recurre a una ruta con ámbito de rama cuando el nombre básico `bitsocial.localhost` ya está ocupado.
 - **Estado:** confirmado
 
 ### Vista previa de documentos utilizada para codificar el puerto 3001

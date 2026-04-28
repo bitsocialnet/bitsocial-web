@@ -4,7 +4,7 @@ set -euo pipefail
 
 run_smoke=0
 wait_timeout="${AGENT_INIT_TIMEOUT_SECONDS:-60}"
-app_url="${AGENT_APP_URL:-http://bitsocial.localhost:1355}"
+app_url="${AGENT_APP_URL:-https://bitsocial.localhost}"
 log_path="${AGENT_START_LOG:-${TMPDIR:-/tmp}/bitsocial-web-agent-start.log}"
 
 while [ "$#" -gt 0 ]; do
@@ -25,7 +25,7 @@ repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 
 is_server_up() {
-  curl -fsS "$app_url" >/dev/null 2>&1
+  curl -fsSk "$app_url" >/dev/null 2>&1
 }
 
 wait_for_server() {
@@ -44,7 +44,7 @@ wait_for_server() {
 run_smoke_check() {
   local html
 
-  html="$(curl -fsS "$app_url")"
+  html="$(curl -fsSk "$app_url")"
   if ! printf '%s' "$html" | grep -Eq 'id="root"|id='\''root'\''|Bitsocial'; then
     echo "Smoke check failed: expected app shell markers were not found at $app_url" >&2
     return 1

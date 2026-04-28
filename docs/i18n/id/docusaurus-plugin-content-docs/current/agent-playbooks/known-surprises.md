@@ -33,9 +33,9 @@ Jika tidak yakin, tanyakan kepada pengembang sebelum menambahkan entri.
 - **Tanggal:** 18-03-2026
 - **Diamati oleh:** Codex
 - **Konteks:** Verifikasi browser dan aliran asap
-- **Yang mengejutkan:** URL lokal default bukan port Vite biasa. Repo mengharapkan `http://bitsocial.localhost:1355` melalui Portless, jadi memeriksa `localhost:3000` atau `localhost:5173` dapat menemukan aplikasi yang salah atau tidak sama sekali.
+- **Yang mengejutkan:** URL lokal default bukan port Vite biasa. Repo mengharapkan `https://bitsocial.localhost` melalui Portless, jadi memeriksa `localhost:3000` atau `localhost:5173` dapat menemukan aplikasi yang salah atau tidak sama sekali.
 - **Dampak:** Pemeriksaan browser dapat gagal atau memvalidasi target yang salah meskipun server pengembang dalam keadaan sehat.
-- **Mitigasi:** Gunakan `http://bitsocial.localhost:1355` terlebih dahulu. Hanya lewati dengan `PORTLESS=0 corepack yarn start` ketika Anda secara eksplisit membutuhkan port Vite langsung.
+- **Mitigasi:** Gunakan `https://bitsocial.localhost` terlebih dahulu. Hanya lewati dengan `PORTLESS=0 corepack yarn start` ketika Anda secara eksplisit membutuhkan port Vite langsung.
 - **Status:** dikonfirmasi
 
 ### Kait komit memblokir komitmen non-interaktif
@@ -65,7 +65,7 @@ Jika tidak yakin, tanyakan kepada pengembang sebelum menambahkan entri.
 - **Konteks:** Memulai `yarn start` di satu pohon kerja Web Bitsocial sementara pohon kerja lain sudah ditayangkan melalui Portless
 - **Yang mengejutkan:** Menggunakan nama aplikasi Portless literal `bitsocial` di setiap pohon kerja membuat rute itu sendiri bertabrakan, meskipun port pendukungnya berbeda, sehingga proses kedua gagal karena `bitsocial.localhost` sudah terdaftar.
 - **Dampak:** Cabang Web Bitsocial paralel dapat memblokir satu sama lain meskipun Portless dimaksudkan agar cabang tersebut dapat hidup berdampingan dengan aman.
-- **Mitigasi:** Pertahankan startup Portless di belakang `scripts/start-dev.mjs`, yang sekarang menggunakan rute `*.bitsocial.localhost:1355` cakupan cabang di luar kasus kanonis dan kembali ke rute cakupan cabang ketika nama `bitsocial.localhost` kosong sudah digunakan.
+- **Mitigasi:** Pertahankan startup Portless di belakang `scripts/start-dev.mjs`, yang sekarang menggunakan rute `*.bitsocial.localhost` cakupan cabang di luar kasus kanonis dan kembali ke rute cakupan cabang ketika nama `bitsocial.localhost` kosong sudah digunakan.
 - **Status:** dikonfirmasi
 
 ### Pratinjau Dokumen digunakan untuk mengkodekan port 3001

@@ -6,7 +6,7 @@ import { isWindows, repoRoot, resolvePort, startVite, waitForPort } from "./dev-
 
 const adbBin = isWindows ? "adb.exe" : "adb";
 const host = "127.0.0.1";
-const requestedPort = Number(process.env.ANDROID_USB_PORT || 1355);
+const requestedPort = Number(process.env.ANDROID_USB_PORT || 3000);
 const openBrowser =
   process.env.ANDROID_USB_OPEN_BROWSER !== "0" && process.env.ANDROID_USB_OPEN_BROWSER !== "false";
 

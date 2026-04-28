@@ -19,7 +19,7 @@ If either is missing, report back asking for the missing information.
 
 ### Step 1: Use the Existing Dev Server
 
-Use the already-running Portless dev server at `http://bitsocial.localhost:1355` unless the parent agent gives you a different URL.
+Use the already-running Portless dev server at `https://bitsocial.localhost` unless the parent agent gives you a different URL.
 
 Do not start, restart, or stop the dev server yourself. If the app is unreachable, report the failure and stop.
 
@@ -28,9 +28,9 @@ Do not start, restart, or stop the dev server yourself. If the app is unreachabl
 Use `playwright-cli` to check the relevant page in all three browser engines with separate sessions:
 
 ```bash
-playwright-cli -s=verify-chrome open http://bitsocial.localhost:1355 --browser=chrome
-playwright-cli -s=verify-firefox open http://bitsocial.localhost:1355 --browser=firefox
-playwright-cli -s=verify-webkit open http://bitsocial.localhost:1355 --browser=webkit
+playwright-cli -s=verify-chrome open https://bitsocial.localhost --browser=chrome
+playwright-cli -s=verify-firefox open https://bitsocial.localhost --browser=firefox
+playwright-cli -s=verify-webkit open https://bitsocial.localhost --browser=webkit
 ```
 
 Navigate each engine session to the specific page or route where the change should be visible.
@@ -59,7 +59,7 @@ playwright-cli -s=verify-webkit snapshot
 ## Browser Check Results
 
 ### Page Tested
-- URL: http://bitsocial.localhost:1355/...
+- URL: https://bitsocial.localhost/...
 
 ### What Was Checked
 - description of each verification

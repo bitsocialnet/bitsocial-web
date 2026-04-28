@@ -33,9 +33,9 @@ Pokud si nejste jisti, zeptejte se vývojáře, než přidáte záznam.
 - **Datum:** 2026-03-18
 - **Dodržováno:** Kodex
 - **Kontext:** Ověření prohlížeče a toky kouře
-- **Co bylo překvapivé:** Výchozí místní adresa URL není obvyklý port Vite. Repo očekává `http://bitsocial.localhost:1355` přes Portless, takže kontrola `localhost:3000` nebo `localhost:5173` může zasáhnout nesprávnou aplikaci nebo vůbec nic.
+- **Co bylo překvapivé:** Výchozí místní adresa URL není obvyklý port Vite. Repo očekává `https://bitsocial.localhost` přes Portless, takže kontrola `localhost:3000` nebo `localhost:5173` může zasáhnout nesprávnou aplikaci nebo vůbec nic.
 - **Dopad:** Kontroly prohlížeče mohou selhat nebo ověřit nesprávný cíl, i když je dev server v pořádku.
-- **Zmírnění:** Nejprve použijte `http://bitsocial.localhost:1355`. Pomocí `PORTLESS=0 corepack yarn start` jej obejděte pouze tehdy, když výslovně potřebujete přímý port Vite.
+- **Zmírnění:** Nejprve použijte `https://bitsocial.localhost`. Pomocí `PORTLESS=0 corepack yarn start` jej obejděte pouze tehdy, když výslovně potřebujete přímý port Vite.
 - **Stav:** potvrzeno
 
 ### Háky potvrzení blokují neinteraktivní potvrzení
@@ -65,7 +65,7 @@ Pokud si nejste jisti, zeptejte se vývojáře, než přidáte záznam.
 - **Kontext:** Spuštění `yarn start` v jednom pracovním stromu Bitsocial Web, zatímco jiný pracovní strom již sloužil přes Portless
 - **Co bylo překvapivé:** Použití doslovného názvu aplikace Portless `bitsocial` v každém pracovním stromu způsobí kolizi samotné trasy, i když jsou podpůrné porty různé, takže druhý proces selže, protože `bitsocial.localhost` je již zaregistrován.
 - **Dopad:** Paralelní pobočky Bitsocial Web se mohou navzájem blokovat, i když je Portless má umožnit bezpečně koexistovat.
-- **Zmírnění:** Udržujte spuštění Portless za `scripts/start-dev.mjs`, které nyní používá směrování `*.bitsocial.localhost:1355` s rozsahem větve mimo kanonický případ a vrátí se zpět na směrování s rozsahem větve, když je již obsazený holý název `bitsocial.localhost`.
+- **Zmírnění:** Udržujte spuštění Portless za `scripts/start-dev.mjs`, které nyní používá směrování `*.bitsocial.localhost` s rozsahem větve mimo kanonický případ a vrátí se zpět na směrování s rozsahem větve, když je již obsazený holý název `bitsocial.localhost`.
 - **Stav:** potvrzeno
 
 ### Náhled dokumentů použitý k pevnému zakódování portu 3001

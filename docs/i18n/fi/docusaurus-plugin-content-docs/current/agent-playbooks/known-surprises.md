@@ -33,9 +33,9 @@ Jos olet epävarma, kysy kehittäjältä ennen merkinnän lisäämistä.
 - **Päivämäärä:** 18.3.2026
 - **Havaittu:** Codex
 - **Konteksti:** Selaimen vahvistus ja savuvirta
-- **Mikä oli yllättävää:** Paikallinen oletus-URL-osoite ei ole tavallinen Vite-portti. Repo odottaa `http://bitsocial.localhost:1355`:ta Portlessin kautta, joten `localhost:3000`:n tai `localhost:5173`:n tarkistaminen voi osua väärään sovellukseen tai ei ollenkaan.
+- **Mikä oli yllättävää:** Paikallinen oletus-URL-osoite ei ole tavallinen Vite-portti. Repo odottaa `https://bitsocial.localhost`:ta Portlessin kautta, joten `localhost:3000`:n tai `localhost:5173`:n tarkistaminen voi osua väärään sovellukseen tai ei ollenkaan.
 - **Vaikutus:** Selaimen tarkistukset voivat epäonnistua tai vahvistaa väärän kohteen, vaikka kehityspalvelin olisi kunnossa.
-- **Liikennys:** Käytä ensin `http://bitsocial.localhost:1355`. Ohita se vain `PORTLESS=0 corepack yarn start`:lla, kun tarvitset suoraan Vite-portin.
+- **Liikennys:** Käytä ensin `https://bitsocial.localhost`. Ohita se vain `PORTLESS=0 corepack yarn start`:lla, kun tarvitset suoraan Vite-portin.
 - **Tila:** vahvistettu
 
 ### Commitizen-koukut estävät ei-interaktiiviset sitoumukset
@@ -65,7 +65,7 @@ Jos olet epävarma, kysy kehittäjältä ennen merkinnän lisäämistä.
 - **Konteksti:** `yarn start` käynnistetään yhdessä Bitsocial Web -työpuussa, kun toinen työpuu palveli jo Portlessin kautta
 - **Mikä oli yllättävää:** Portless-sovelluksen kirjaimellisen nimen `bitsocial` käyttäminen jokaisessa työpuussa saa itse reitin törmäämään, vaikka taustaportit ovat erilaiset, joten toinen prosessi epäonnistuu, koska `bitsocial.localhost` on jo rekisteröity.
 - **Vaikutus:** Rinnakkaiset Bitsocial Web -haarat voivat estää toisensa, vaikka Portlessin on tarkoitus antaa niiden olemassaolo turvallisesti rinnakkain.
-- **Liikennys:** Säilytä porttiton käynnistys `scripts/start-dev.mjs`:n takana, joka nyt käyttää haaralaajuista `*.bitsocial.localhost:1355`-reittiä kanonisen tapauksen ulkopuolella ja palaa haaralaajuiseen reittiin, kun paljas `bitsocial.localhost`-nimi on jo varattu.
+- **Liikennys:** Säilytä porttiton käynnistys `scripts/start-dev.mjs`:n takana, joka nyt käyttää haaralaajuista `*.bitsocial.localhost`-reittiä kanonisen tapauksen ulkopuolella ja palaa haaralaajuiseen reittiin, kun paljas `bitsocial.localhost`-nimi on jo varattu.
 - **Tila:** vahvistettu
 
 ### Asiakirjojen esikatselu, jota käytetään portin 3001 kovakoodaukseen

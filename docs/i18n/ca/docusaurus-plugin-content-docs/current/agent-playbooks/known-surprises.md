@@ -33,9 +33,9 @@ Si no esteu segurs, pregunteu al desenvolupador abans d'afegir una entrada.
 - **Data:** 18-03-2026
 - **Observat per:** Codex
 - **Context:** verificació del navegador i fluxos de fum
-- **El que va ser sorprenent:** L'URL local predeterminat no és el port habitual de Vite. El repo espera que `http://bitsocial.localhost:1355` a través de Portless, de manera que comprovar `localhost:3000` o `localhost:5173` pot afectar l'aplicació equivocada o res de res.
+- **El que va ser sorprenent:** L'URL local predeterminat no és el port habitual de Vite. El repo espera que `https://bitsocial.localhost` a través de Portless, de manera que comprovar `localhost:3000` o `localhost:5173` pot afectar l'aplicació equivocada o res de res.
 - **Impacte:** Les comprovacions del navegador poden fallar o validar l'objectiu equivocat fins i tot quan el servidor de desenvolupament està en bon estat.
-- **Mitigació:** utilitzeu primer `http://bitsocial.localhost:1355`. Ometeu-lo només amb `PORTLESS=0 corepack yarn start` quan necessiteu explícitament un port Vite directe.
+- **Mitigació:** utilitzeu primer `https://bitsocial.localhost`. Ometeu-lo només amb `PORTLESS=0 corepack yarn start` quan necessiteu explícitament un port Vite directe.
 - **Estat:** confirmat
 
 ### Els ganxos de Commitizen bloquegen les confirmacions no interactives
@@ -65,7 +65,7 @@ Si no esteu segurs, pregunteu al desenvolupador abans d'afegir una entrada.
 - **Context:** S'està iniciant `yarn start` en un arbre de treball de Bitsocial Web mentre un altre arbre de treball ja funcionava a través de Portless
 - **El que va ser sorprenent:** L'ús del nom literal de l'aplicació Portless `bitsocial` a cada arbre de treball fa que la ruta xoqui, fins i tot quan els ports de suport són diferents, de manera que el segon procés falla perquè `bitsocial.localhost` ja està registrat.
 - **Impacte:** Les branques web paral·leles de Bitsocial es poden bloquejar entre elles tot i que Portless està pensat per permetre-les coexistir de manera segura.
-- **Mitigació:** Mantingueu l'inici sense port darrere de `scripts/start-dev.mjs`, que ara utilitza una ruta `*.bitsocial.localhost:1355` amb àmbit de branca fora del cas canònic i torna a una ruta amb àmbit de branca quan el nom `bitsocial.localhost` nu està ocupat.
+- **Mitigació:** Mantingueu l'inici sense port darrere de `scripts/start-dev.mjs`, que ara utilitza una ruta `*.bitsocial.localhost` amb àmbit de branca fora del cas canònic i torna a una ruta amb àmbit de branca quan el nom `bitsocial.localhost` nu està ocupat.
 - **Estat:** confirmat
 
 ### La previsualització de documents s'utilitza per codificar el port 3001

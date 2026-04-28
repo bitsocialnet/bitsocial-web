@@ -60,9 +60,9 @@ function getCurrentBranch() {
   return result.stdout.trim() || null;
 }
 
-function listPortlessRoutes() {
+function listPortlessRouteHosts() {
   if (!existsSync(portlessBin)) {
-    return "";
+    return new Set();
   }
 
   const result = spawnSync(portlessBin, ["list"], {
@@ -72,14 +72,16 @@ function listPortlessRoutes() {
   });
 
   if (result.status !== 0) {
-    return "";
+    return new Set();
   }
 
-  return result.stdout;
+  const matches = result.stdout.match(/https?:\/\/[a-z0-9.-]+\.localhost(?::\d+)?/g) || [];
+
+  return new Set(matches.map((url) => new URL(url).hostname));
 }
 
 export function getPortlessPublicUrl(appName) {
-  return `http://${appName}.localhost:1355`;
+  return `https://${appName}.localhost`;
 }
 
 export function getPortlessAppName(baseName) {
@@ -90,7 +92,7 @@ export function getPortlessAppName(baseName) {
     return `${scopedLabel}.${baseName}`;
   }
 
-  if (listPortlessRoutes().includes(getPortlessPublicUrl(baseName))) {
+  if (listPortlessRouteHosts().has(`${baseName}.localhost`)) {
     return `${scopedLabel}.${baseName}`;
   }
 
