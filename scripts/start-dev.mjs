@@ -103,9 +103,11 @@ async function waitForHttpReady(url, timeoutMs) {
 
 function openInBrowser(url) {
   const opener =
-    process.platform === "darwin" ? { cmd: "open", args: [url] }
-    : process.platform === "win32" ? { cmd: "cmd", args: ["/c", "start", '""', url] }
-    : { cmd: "xdg-open", args: [url] };
+    process.platform === "darwin"
+      ? { cmd: "open", args: [url] }
+      : process.platform === "win32"
+        ? { cmd: "cmd", args: ["/c", "start", '""', url] }
+        : { cmd: "xdg-open", args: [url] };
 
   spawn(opener.cmd, opener.args, { stdio: "ignore", detached: true }).unref();
 }

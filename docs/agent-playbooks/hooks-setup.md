@@ -4,14 +4,14 @@ If your AI coding assistant supports lifecycle hooks, configure these for this r
 
 ## Recommended Hooks
 
-| Hook            | Command                                    | Purpose                                                                                                                                                                                             |
-| --------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `afterFileEdit` | `scripts/agent-hooks/format.sh`            | Auto-format files after AI edits                                                                                                                                                                    |
-| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`      | Run `corepack yarn install` when `package.json` changes                                                                                                                                             |
-| `afterFileEdit` | `scripts/agent-hooks/react-pattern-review.sh` | When a diff adds `useEffect`/memo primitives in `about/src/`, remind the agent to reconsider with the React review skills                                                                        |
-| `stop`          | `scripts/agent-hooks/sync-git-branches.sh` | Prune stale refs and delete integrated temporary task branches                                                                                                                                      |
-| `stop`          | `scripts/agent-hooks/react-pattern-review.sh` | Re-scan the current diff for new React effects/memos in `about/src/` before the final verify gate                                                                                                |
-| `stop`          | `scripts/agent-hooks/verify.sh`            | Hard-gate targeted build verification, lint, typecheck, and format checks; keep `yarn npm audit` informational and run `yarn knip` separately as an advisory audit when dependencies/imports change |
+| Hook            | Command                                       | Purpose                                                                                                                                                                                             |
+| --------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `afterFileEdit` | `scripts/agent-hooks/format.sh`               | Auto-format files after AI edits                                                                                                                                                                    |
+| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`         | Run `corepack yarn install` when `package.json` changes                                                                                                                                             |
+| `afterFileEdit` | `scripts/agent-hooks/react-pattern-review.sh` | When a diff adds `useEffect`/memo primitives in `about/src/`, remind the agent to reconsider with the React review skills                                                                           |
+| `stop`          | `scripts/agent-hooks/sync-git-branches.sh`    | Prune stale refs and delete integrated temporary task branches                                                                                                                                      |
+| `stop`          | `scripts/agent-hooks/react-pattern-review.sh` | Re-scan the current diff for new React effects/memos in `about/src/` before the final verify gate                                                                                                   |
+| `stop`          | `scripts/agent-hooks/verify.sh`               | Hard-gate targeted build verification, lint, typecheck, and format checks; keep `yarn npm audit` informational and run `yarn knip` separately as an advisory audit when dependencies/imports change |
 
 ## Why
 
