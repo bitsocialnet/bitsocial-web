@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
 import AppLinksSection from "@/components/app-links-section";
 import AppLogo from "@/components/app-logo";
+import AppMirrorLinkCta from "@/components/app-mirror-link-cta";
 import AppTagPill from "@/components/app-tag-pill";
 import CardInlineCta, {
   cardInlineCtaClassName,
@@ -136,22 +137,35 @@ export default function AppDetail() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-2.5">
-              {primaryLinks.map((link, index) => (
-                <CardInlineCta
-                  key={link.url}
-                  href={link.url}
-                  className={
-                    index < 2
-                      ? `${highlightedCtaClassName} !px-5 !py-2.5 text-sm`
-                      : `${cardInlineCtaClassName} !rounded-full !px-5 !py-2.5`
-                  }
-                >
-                  <span className="inline-flex items-center gap-2">
-                    <ArrowUpRight className="h-4 w-4" />
-                    <span>{getAppLinkLabel(link, t)}</span>
-                  </span>
-                </CardInlineCta>
-              ))}
+              {primaryLinks.map((link, index) =>
+                link.verification ? (
+                  <AppMirrorLinkCta
+                    key={link.url}
+                    link={link}
+                    icon={<ArrowUpRight className="h-4 w-4" />}
+                    className={
+                      index < 2
+                        ? `${highlightedCtaClassName} !px-5 !py-2.5 text-sm`
+                        : `${cardInlineCtaClassName} !rounded-full !px-5 !py-2.5`
+                    }
+                  />
+                ) : (
+                  <CardInlineCta
+                    key={link.url}
+                    href={link.url}
+                    className={
+                      index < 2
+                        ? `${highlightedCtaClassName} !px-5 !py-2.5 text-sm`
+                        : `${cardInlineCtaClassName} !rounded-full !px-5 !py-2.5`
+                    }
+                  >
+                    <span className="inline-flex items-center gap-2">
+                      <ArrowUpRight className="h-4 w-4" />
+                      <span>{getAppLinkLabel(link, t)}</span>
+                    </span>
+                  </CardInlineCta>
+                ),
+              )}
 
               <CardInlineCta
                 href={githubUrl}
@@ -171,16 +185,12 @@ export default function AppDetail() {
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {mirrors.map((mirror) => (
-                    <CardInlineCta
+                    <AppMirrorLinkCta
                       key={mirror.url}
-                      href={mirror.url}
+                      link={mirror}
                       className={`${cardInlineCtaClassName} !rounded-full !px-3 !py-1.5 !text-xs`}
-                    >
-                      <span className="inline-flex items-center gap-1.5">
-                        <ArrowUpRight className="h-3.5 w-3.5" />
-                        <span>{getAppLinkLabel(mirror, t)}</span>
-                      </span>
-                    </CardInlineCta>
+                      iconClassName="h-3.5 w-3.5"
+                    />
                   ))}
                 </div>
               </div>

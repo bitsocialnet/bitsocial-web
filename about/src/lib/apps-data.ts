@@ -6,6 +6,16 @@ export type AppPlatformSlug = "web" | "android" | "ios" | "desktop";
 
 export type AppLinkKind = "launch" | "download" | "mirror";
 
+export interface AppMirrorVerification {
+  appName: string;
+  checkedAt: string;
+  indexHtmlSha256: string;
+  releaseAssetName: string;
+  releaseAssetSha256: string;
+  releaseAssetUrl: string;
+  releaseTag: string;
+}
+
 export type AppIconKey =
   | "image"
   | "message-square"
@@ -38,6 +48,7 @@ export interface AppLink {
   platform?: AppPlatformSlug;
   variant?: DesktopVariant;
   primary?: boolean;
+  verification?: AppMirrorVerification;
 }
 
 export interface AppData {
@@ -240,6 +251,39 @@ function translateCatalogValue(t: TFunction, key: string, fallback: string): str
   return typeof translatedValue === "string" ? translatedValue : fallback;
 }
 
+const FIVECHAN_0_8_0_HTML_VERIFICATION: AppMirrorVerification = {
+  appName: "5chan",
+  checkedAt: "2026-04-28",
+  indexHtmlSha256: "ce82acd37c26292d0ce44620e0b6268aea5b01faed0b8740eaeb6356ef26a6e4",
+  releaseAssetName: "5chan-0.8.0-html.zip",
+  releaseAssetSha256: "sha256:8954fd1965ab386d41ea17858f0b3436b3534eaf8a751936c47061b36314ef8b",
+  releaseAssetUrl:
+    "https://github.com/bitsocialnet/5chan/releases/download/v0.8.0/5chan-0.8.0-html.zip",
+  releaseTag: "v0.8.0",
+};
+
+const SEEDIT_0_5_9_HTML_VERIFICATION: AppMirrorVerification = {
+  appName: "Seedit",
+  checkedAt: "2026-04-24",
+  indexHtmlSha256: "d7247e460ff14367f1413ec56fe1ac51f4c33c818e405e203428cb6fc9ebbbf4",
+  releaseAssetName: "seedit-html-0.5.9.zip",
+  releaseAssetSha256: "sha256:25bb49e8d5703fd5c0791fb4941549813cbbd59390eaf0da4938723dec7c8d86",
+  releaseAssetUrl:
+    "https://github.com/bitsocialnet/seedit/releases/download/v0.5.9/seedit-html-0.5.9.zip",
+  releaseTag: "v0.5.9",
+};
+
+const SEEDIT_0_5_10_HTML_VERIFICATION: AppMirrorVerification = {
+  appName: "Seedit",
+  checkedAt: "2026-04-28",
+  indexHtmlSha256: "227d8b780e3490e04a29e03248f1ef4f05235953c7365c33a01b6ec54af22418",
+  releaseAssetName: "seedit-html-0.5.10.zip",
+  releaseAssetSha256: "sha256:fd8b3d6cf3ec93055bac01e2e482ee768ff6d6fe1cdddc12f7bcfa0209122deb",
+  releaseAssetUrl:
+    "https://github.com/bitsocialnet/seedit/releases/download/v0.5.10/seedit-html-0.5.10.zip",
+  releaseTag: "v0.5.10",
+};
+
 export function getCategoryLabel(
   categoryOrSlug: CategoryData | AppCategorySlug,
   t: TFunction,
@@ -327,7 +371,13 @@ export const APPS: AppData[] = [
     logoPixelated: true,
     githubRepo: "bitsocialnet/5chan",
     links: [
-      { label: "Open web app", url: "https://5chan.app", kind: "launch", platform: "web" },
+      {
+        label: "Open web app",
+        url: "https://5chan.app",
+        kind: "launch",
+        platform: "web",
+        verification: FIVECHAN_0_8_0_HTML_VERIFICATION,
+      },
       {
         label: "Android APK",
         url: "https://github.com/bitsocialnet/5chan/releases/download/v0.7.3/5chan-0.7.3.apk",
@@ -370,9 +420,27 @@ export const APPS: AppData[] = [
         variant: "linux-arm",
         primary: false,
       },
-      { label: "5chan.cc", url: "https://5chan.cc", kind: "mirror", platform: "web" },
-      { label: "5channel.org", url: "https://5channel.org", kind: "mirror", platform: "web" },
-      { label: "5chan.eth.limo", url: "https://5chan.eth.limo", kind: "mirror", platform: "web" },
+      {
+        label: "5chan.cc",
+        url: "https://5chan.cc",
+        kind: "mirror",
+        platform: "web",
+        verification: FIVECHAN_0_8_0_HTML_VERIFICATION,
+      },
+      {
+        label: "5channel.org",
+        url: "https://5channel.org",
+        kind: "mirror",
+        platform: "web",
+        verification: FIVECHAN_0_8_0_HTML_VERIFICATION,
+      },
+      {
+        label: "5chan.eth.limo",
+        url: "https://5chan.eth.limo",
+        kind: "mirror",
+        platform: "web",
+        verification: FIVECHAN_0_8_0_HTML_VERIFICATION,
+      },
     ],
     relatedSlugs: ["5chan-board-manager", "seedit"],
     featured: true,
@@ -391,7 +459,13 @@ export const APPS: AppData[] = [
     logoSrc: "https://www.seedit.app/favicon.ico",
     githubRepo: "bitsocialnet/seedit",
     links: [
-      { label: "Open web app", url: "https://www.seedit.app", kind: "launch", platform: "web" },
+      {
+        label: "Open web app",
+        url: "https://www.seedit.app",
+        kind: "launch",
+        platform: "web",
+        verification: SEEDIT_0_5_10_HTML_VERIFICATION,
+      },
       {
         label: "Android APK",
         url: "https://github.com/bitsocialnet/seedit/releases/download/v0.5.10/seedit-0.5.10.apk",
@@ -442,7 +516,13 @@ export const APPS: AppData[] = [
         variant: "windows-portable",
         primary: false,
       },
-      { label: "seedit.eth.limo", url: "https://seedit.eth.limo", kind: "mirror", platform: "web" },
+      {
+        label: "seedit.eth.limo",
+        url: "https://seedit.eth.limo",
+        kind: "mirror",
+        platform: "web",
+        verification: SEEDIT_0_5_9_HTML_VERIFICATION,
+      },
     ],
     relatedSlugs: ["5chan"],
     featured: true,

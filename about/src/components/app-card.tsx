@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Download, Github, Globe, Monitor, Smartphone } from "lucide-react";
+import AppMirrorLinkCta from "@/components/app-mirror-link-cta";
 import AppLogo from "@/components/app-logo";
 import AppTagPill from "@/components/app-tag-pill";
 import CardInlineCta, {
@@ -160,7 +161,7 @@ export default function AppCard({
         ))}
       </div>
 
-      <div className="mt-auto space-y-3">
+      <div className="space-y-3">
         <div className="flex flex-wrap gap-2">
           <CardInlineCta
             href={resolvedDetailHref}
@@ -173,32 +174,49 @@ export default function AppCard({
           </CardInlineCta>
 
           {primaryActionLink ? (
-            <CardInlineCta
-              href={primaryActionLink.url}
-              className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-5 !py-2 text-sm`}
-            >
-              <span className="inline-flex items-center gap-2">
-                {getLinkIcon(primaryActionLink)}
-                <span>{getAppLinkLabel(primaryActionLink, t)}</span>
-              </span>
-            </CardInlineCta>
+            primaryActionLink.verification ? (
+              <AppMirrorLinkCta
+                link={primaryActionLink}
+                icon={getLinkIcon(primaryActionLink)}
+                className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-5 !py-2 text-sm`}
+              />
+            ) : (
+              <CardInlineCta
+                href={primaryActionLink.url}
+                className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-5 !py-2 text-sm`}
+              >
+                <span className="inline-flex items-center gap-2">
+                  {getLinkIcon(primaryActionLink)}
+                  <span>{getAppLinkLabel(primaryActionLink, t)}</span>
+                </span>
+              </CardInlineCta>
+            )
           ) : null}
         </div>
 
         {quickLinks.length > 0 ? (
           <div className="flex flex-wrap gap-2">
-            {quickLinks.map((link) => (
-              <CardInlineCta
-                key={link.url}
-                href={link.url}
-                className={`apps-frosted-cta ${cardInlineCtaClassName} !rounded-full !px-4 !py-2`}
-              >
-                <span className="inline-flex items-center gap-2">
-                  {getLinkIcon(link)}
-                  <span>{getAppLinkLabel(link, t)}</span>
-                </span>
-              </CardInlineCta>
-            ))}
+            {quickLinks.map((link) =>
+              link.verification ? (
+                <AppMirrorLinkCta
+                  key={link.url}
+                  link={link}
+                  icon={getLinkIcon(link)}
+                  className={`apps-frosted-cta ${cardInlineCtaClassName} !rounded-full !px-4 !py-2`}
+                />
+              ) : (
+                <CardInlineCta
+                  key={link.url}
+                  href={link.url}
+                  className={`apps-frosted-cta ${cardInlineCtaClassName} !rounded-full !px-4 !py-2`}
+                >
+                  <span className="inline-flex items-center gap-2">
+                    {getLinkIcon(link)}
+                    <span>{getAppLinkLabel(link, t)}</span>
+                  </span>
+                </CardInlineCta>
+              ),
+            )}
           </div>
         ) : null}
 
@@ -209,16 +227,12 @@ export default function AppCard({
             </div>
             <div className="flex flex-wrap gap-2">
               {mirrors.slice(0, compact ? 1 : 3).map((mirror) => (
-                <CardInlineCta
+                <AppMirrorLinkCta
                   key={mirror.url}
-                  href={mirror.url}
+                  link={mirror}
                   className={`apps-frosted-cta ${cardInlineCtaClassName} !rounded-full !px-3 !py-1.5 !text-xs`}
-                >
-                  <span className="inline-flex items-center gap-1.5">
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                    <span>{getAppLinkLabel(mirror, t)}</span>
-                  </span>
-                </CardInlineCta>
+                  iconClassName="h-3.5 w-3.5"
+                />
               ))}
             </div>
           </div>
