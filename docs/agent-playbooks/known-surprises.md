@@ -28,6 +28,16 @@ If uncertain, ask the developer before adding an entry.
 
 ## Entries
 
+### Vercel app production domains can drift back to Git master deployments
+
+- **Date:** 2026-04-28
+- **Observed by:** Tommaso + Codex
+- **Context:** Verifying Seedit and 5chan app mirrors in the Bitsocial Web app directory.
+- **What was surprising:** The Vercel `seedit` and `5chan` projects had `gitProviderOptions.createDeployments = "enabled"`, so GitHub `master` pushes were promoted to the production domains even though the repo policy expects production app mirrors to serve release artifacts only.
+- **Impact:** App-directory verified mirror badges can become false because production domains serve the latest development commit instead of the GitHub release ZIP whose `index.html` hash is recorded in `about/src/lib/apps-data.ts`.
+- **Mitigation:** Before adding or refreshing mirror verification metadata, check the Vercel project with `vercel api /v9/projects/<project-id>` and confirm `gitProviderOptions.createDeployments = "disabled"`. Deploy release ZIP contents with `vercel deploy --prebuilt --prod` and use `seedit-omega.vercel.app` or `5chan-omega.vercel.app` for development deployments.
+- **Status:** confirmed
+
 ### Portless 0.11 reuses legacy proxy state unless the launcher forces HTTPS
 
 - **Date:** 2026-04-28
