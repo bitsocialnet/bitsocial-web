@@ -1,15 +1,15 @@
 ---
 title: BSO Resolver
-description: Resolve .bso domain names to public keys using ENS TXT records, with built-in caching and cross-platform support.
+description: Resolve .bso domain names to public keys via Bitsocial TXT records, with built-in caching and cross-platform support.
 sidebar_position: 1
 ---
 
 # BSO Resolver
 
-The BSO Resolver translates `.bso` domain names into their corresponding public keys by reading Bitsocial TXT records stored on ENS. It provides a shared viem client, persistent caching, and works in both Node.js and browser environments.
+The BSO Resolver translates `.bso` domain names into their corresponding public keys by reading Bitsocial TXT records. It provides a shared viem client, persistent caching, and works in both Node.js and browser environments.
 
 - **GitHub**: [bitsocialnet/bso-resolver](https://github.com/bitsocialnet/bso-resolver)
-- **License**: GPL-2.0-only
+- **License**: GPL-3.0-or-later
 
 ## Installation
 
@@ -43,7 +43,7 @@ The `provider` parameter accepts three formats:
 
 ### `resolve({ name, abortSignal? })`
 
-Looks up a `.bso` name and returns the associated public key. An optional `AbortSignal` can be passed to cancel long-running requests.
+Looks up a `.bso` name and returns a result object containing the associated `publicKey` (plus any other parsed TXT-record fields), or `undefined` if the name does not resolve. An optional `AbortSignal` can be passed to cancel long-running requests.
 
 ### `canResolve({ name })`
 
@@ -67,10 +67,12 @@ All cache entries have a **one-hour TTL** and are automatically evicted after ex
 
 ## Integration with pkc-js
 
-The resolver can be plugged directly into pkc-js through the `nameResolvers` option, enabling transparent `.bso` name resolution during key lookups:
+The resolver can be plugged directly into pkc-js through the `nameResolvers` option, enabling transparent `.bso` name resolution during key lookups. `pkc-js` exposes its entry as an async factory, not a constructor:
 
 ```js
-const pkc = new Pkc({
+import PKC from "@pkcprotocol/pkc-js";
+
+const pkc = await PKC({
   nameResolvers: [resolver],
   // ...other options
 });

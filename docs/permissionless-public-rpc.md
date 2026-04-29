@@ -86,11 +86,11 @@ type PermissionBundle = {
     getComment: boolean;
     getCommentPage: boolean;
     getCommunityPage: boolean;
-    fetchContent: boolean;
-    resolveAuthorAddress: boolean;
+    fetchCid: boolean;
+    resolveAuthorName: boolean;
     commentUpdateSubscribe: boolean;
     communityUpdateSubscribe: boolean;
-    communityListSubscribe: boolean;
+    communitiesSubscribe: boolean;
     settingsSubscribe: boolean;
   };
   rateLimits: {
