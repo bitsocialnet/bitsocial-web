@@ -428,6 +428,13 @@ export const APPS: AppData[] = [
         primary: false,
       },
       {
+        label: "5chan.eth.limo",
+        url: "https://5chan.eth.limo",
+        kind: "mirror",
+        platform: "web",
+        verification: FIVECHAN_0_8_0_HTML_VERIFICATION,
+      },
+      {
         label: "5chan.cc",
         url: "https://5chan.cc",
         kind: "mirror",
@@ -437,13 +444,6 @@ export const APPS: AppData[] = [
       {
         label: "5channel.org",
         url: "https://5channel.org",
-        kind: "mirror",
-        platform: "web",
-        verification: FIVECHAN_0_8_0_HTML_VERIFICATION,
-      },
-      {
-        label: "5chan.eth.limo",
-        url: "https://5chan.eth.limo",
         kind: "mirror",
         platform: "web",
         verification: FIVECHAN_0_8_0_HTML_VERIFICATION,

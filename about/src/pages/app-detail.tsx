@@ -27,12 +27,17 @@ import {
   getPrimaryLinks,
   type AppLink,
 } from "@/lib/apps-data";
+import {
+  filterCryptoWalletGatedLinks,
+  useHasCryptoWalletProvider,
+} from "@/lib/crypto-wallet-provider";
 import { cn } from "@/lib/utils";
 
 export default function AppDetail() {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useTranslation();
   const app = slug ? getAppBySlug(slug) : undefined;
+  const hasCryptoWalletProvider = useHasCryptoWalletProvider();
 
   if (!app) {
     return (
@@ -64,7 +69,7 @@ export default function AppDetail() {
   const category = getCategoryBySlug(app.category);
   const platformTags = getAppPlatforms(app);
   const primaryLinks = getPrimaryLinks(app);
-  const mirrors = getMirrorLinks(app);
+  const mirrors = filterCryptoWalletGatedLinks(getMirrorLinks(app), hasCryptoWalletProvider);
   const githubUrl = getGithubUrl(app);
   const tagline = getAppTagline(app, t);
   const description = getAppDescription(app, t);

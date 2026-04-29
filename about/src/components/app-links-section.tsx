@@ -13,6 +13,10 @@ import {
   type AppData,
   type AppLink,
 } from "@/lib/apps-data";
+import {
+  filterCryptoWalletGatedLinks,
+  useHasCryptoWalletProvider,
+} from "@/lib/crypto-wallet-provider";
 
 interface AppLinksSectionProps {
   app: AppData;
@@ -20,6 +24,7 @@ interface AppLinksSectionProps {
 
 export default function AppLinksSection({ app }: AppLinksSectionProps) {
   const { t } = useTranslation();
+  const hasCryptoWalletProvider = useHasCryptoWalletProvider();
   const webLinks = app.links.filter(
     (link) => link.platform === "web" && link.kind === "launch" && link.primary !== false,
   );
@@ -34,7 +39,7 @@ export default function AppLinksSection({ app }: AppLinksSectionProps) {
   );
   const packageLinks = app.links.filter((link) => link.kind === "package");
   const extraLinks = getSecondaryLinks(app).filter((link) => link.kind !== "package");
-  const mirrorLinks = getMirrorLinks(app);
+  const mirrorLinks = filterCryptoWalletGatedLinks(getMirrorLinks(app), hasCryptoWalletProvider);
   const githubUrl = getGithubUrl(app);
 
   return (
