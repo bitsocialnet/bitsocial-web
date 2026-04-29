@@ -32,20 +32,41 @@ similar idea with public keys: the hash of a community's public key becomes its 
 graph LR
     K["🔑 Community keypair"] --> H["#️⃣ Hash of public key"]
     H --> A["📍 Network address"]
-    A --> D["🌐 DHT lookup"]
+    A --> D["🌐 HTTP router(s) lookup"]
     D --> C["📄 Latest community content"]
 ```
 
-Any peer on the network can perform a DHT (distributed hash table) query for that address and
-retrieve the community's latest state. Each time the content is updated, its version number
-increases. The network only keeps the latest version — there is no need to preserve every historical
-state, which is what makes this approach lightweight compared to a blockchain.
+Any peer on the network can query an **HTTP router** for that address: the router replies with a
+list of peer network addresses currently providing the hash of the community, and the client
+connects to those peers directly to fetch the community's latest state. Each time the content is
+updated, its version number increases. The network only keeps the latest version — there is no need
+to preserve every historical state, which is what makes this approach lightweight compared to a
+blockchain.
+
+> **What an HTTP router actually holds.** An HTTP router is a thin index. For each content address
+> it knows, it stores only the network addresses of peers that announced themselves as providers
+> (IP/port pairs, libp2p multiaddrs, that sort of thing). It does **not** store the community's
+> content, its metadata, post text, member list, or even the human-readable label of what is at
+> that address; it just answers "which peers claim to have this hash?". This makes routers cheap to
+> run, easy to swap, and not liable for what users publish, similar to a BitTorrent tracker but
+> with even less surface area: a tracker at least stores the torrent's name, while an HTTP router
+> stores only the bare address.
+>
+> For redundancy, the client queries **several HTTP routers in parallel** and merges the provider
+> lists it gets back. Anyone can run a router, and replacing or adding routers is a config change
+> with no data migration.
+>
+> Bitsocial uses HTTP routers instead of a DHT because running a DHT at the scale needed for
+> content discovery is expensive, especially for mobile. A DHT also does not work in the browser,
+> since browsers cannot join a libp2p DHT directly. An HTTP router runs cheaply on commodity HTTP
+> infrastructure and works equally well from a phone or a browser.
 
 ### What gets stored at the address
 
 The community address does not contain full post content directly. Instead it stores a list of
 content identifiers — hashes that point to the actual data. The client then fetches each piece of
-content through the DHT or tracker-style lookups.
+content directly from the peers returned by the HTTP routers. The routers themselves never see or
+store the content.
 
 ```mermaid
 graph TD
@@ -103,15 +124,18 @@ This is what happens when a user opens the app and views a community's latest po
 ```mermaid
 sequenceDiagram
     participant User as 👤 User app
-    participant DHT as 🌐 DHT network
+    participant Routers as 🌐 HTTP routers
     participant Node as 🖥️ Community node
 
-    User->>DHT: Query community address
-    Note over DHT: Distributed lookup<br/>across network peers
-    DHT-->>User: Return latest content pointers + metadata
+    User->>Routers: Query community address (in parallel)
+    Note over Routers: Each router returns<br/>peer addresses only, never content
+    Routers-->>User: Return provider peer addresses
 
-    User->>DHT: Fetch post content by hash
-    DHT-->>User: Return post data
+    User->>Node: Connect to peer, fetch latest pointers + metadata
+    Node-->>User: Return latest content pointers + metadata
+
+    User->>Node: Fetch post content by hash
+    Node-->>User: Return post data
     Note over User: Render posts in<br/>familiar social UI
 
     Note over User,Node: Multiple community queries<br/>run concurrently
@@ -120,10 +144,12 @@ sequenceDiagram
 **Step by step:**
 
 1. The user opens the app and sees a social interface.
-2. The client joins the peer-to-peer network and makes a DHT query for each community the user
-   follows. Queries take a few seconds each but run concurrently.
-3. Each query returns the community's latest content pointers and metadata (title, description,
-   moderator list, challenge configuration).
+2. The client queries several HTTP routers in parallel for each community the user follows; each
+   router returns peer addresses only, never content. Queries usually return in under a second and
+   run concurrently.
+3. Once the client has peer addresses, it connects to those peers and fetches the community's
+   latest content pointers and metadata (title, description, moderator list, challenge
+   configuration).
 4. The client fetches the actual post content using those pointers, then renders everything in a
    familiar social interface.
 
@@ -199,13 +225,13 @@ graph TB
     end
 
     subgraph Network ["Network layer"]
-        DHT["🗂️ DHT<br/>(content discovery)"]
+        Router["🛰️ HTTP router<br/>(content discovery)"]
         GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
     end
 
     A1 & A2 & A3 --> PK & PS & CH
-    PK --> DHT
+    PK --> Router
     PS --> GS
     CH --> GS
     PK --> TR
@@ -215,7 +241,7 @@ graph TB
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | **App**      | User interface. Multiple apps can exist, each with its own design, all sharing the same communities and identities.                       |
 | **Protocol** | Defines how communities are addressed, how posts are published, and how spam is prevented.                                                |
-| **Network**  | The underlying peer-to-peer infrastructure: DHT for discovery, gossipsub for real-time messaging, and content transfer for data exchange. |
+| **Network**  | The underlying peer-to-peer infrastructure: HTTP routers for discovery, gossipsub for real-time messaging, and content transfer for data exchange. |
 
 ---
 
