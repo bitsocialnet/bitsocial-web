@@ -122,7 +122,10 @@
         .nojs-inline-flex {
           display: inline-flex !important;
         }
-        #root [style*="opacity:0"] {
+        #root [style*="opacity:0;"],
+        #root [style*="opacity: 0;"],
+        #root [style$="opacity:0"],
+        #root [style$="opacity: 0"] {
           opacity: 1 !important;
         }
         #root [style*="transform:translate"],

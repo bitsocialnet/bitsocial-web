@@ -20,6 +20,10 @@ const JITTER_FACTOR = 0.42;
 const EDGE_BASE_WIDTH = 0.5;
 const EDGE_GLOW_WIDTH = 1.5;
 const DOT_RADIUS = 1.2;
+const STATIC_POLYGON_MESH_FALLBACK_SOURCES = {
+  light: "/polygon-mesh-fallback-light-vector.svg",
+  dark: "/polygon-mesh-fallback-dark-vector.svg",
+};
 
 const BLUE_R = 37;
 const BLUE_G = 99;
@@ -436,24 +440,24 @@ function StaticPolygonMeshBackground() {
       <div className="absolute inset-0 overflow-hidden dark:hidden">
         <div
           className="h-full w-full bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url(/polygon-mesh-fallback-light-transparent.webp)",
-            opacity: 0.11,
-            filter: "saturate(0.9) contrast(0.82) brightness(1.01)",
-          }}
+          style={{ backgroundImage: `url(${STATIC_POLYGON_MESH_FALLBACK_SOURCES.light})` }}
         />
       </div>
       <div className="absolute inset-0 hidden overflow-hidden dark:block">
         <div
           className="h-full w-full bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url(/polygon-mesh-fallback-dark-transparent.webp)",
-            opacity: 0.32,
-            filter: "saturate(1) contrast(0.84) brightness(0.94)",
-          }}
+          style={{ backgroundImage: `url(${STATIC_POLYGON_MESH_FALLBACK_SOURCES.dark})` }}
         />
       </div>
     </div>
+  );
+}
+
+function NoScriptStaticPolygonMeshBackground() {
+  return (
+    <noscript>
+      <StaticPolygonMeshBackground />
+    </noscript>
   );
 }
 
@@ -498,7 +502,7 @@ const PolygonMeshBackground = memo(function PolygonMeshBackground() {
   }, [isGraphicsModePending, meshSeed, resolvedTheme, shouldAnimate, shouldUseStaticFallback]);
 
   if (isGraphicsModePending) {
-    return null;
+    return <NoScriptStaticPolygonMeshBackground />;
   }
 
   if (shouldUseStaticFallback) {

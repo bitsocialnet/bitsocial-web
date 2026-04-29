@@ -8,7 +8,7 @@ import {
 } from "@/lib/hero-graphic-performance";
 import { getPlanetRingRotationDelaySeconds } from "@/lib/hero-intro-timing";
 import { getHeroGraphicViewportProgress } from "@/lib/hero-graphic-layout";
-import { loadGsap, type TweenLike } from "@/lib/load-gsap";
+import { loadGsap, type TweenLike } from "@/lib/motion-runtime";
 
 const PLANET_MIN_FOV = 62;
 const PLANET_MAX_FOV = 45;
@@ -17,6 +17,8 @@ const PLANET_MAX_CAMERA_Z = 17;
 const MOBILE_PLANET_GEOMETRY_SEGMENTS = 48;
 const DESKTOP_PLANET_GEOMETRY_SEGMENTS = 128;
 const MOBILE_FRAME_BUDGET_MS = 33;
+const VISIBLE_PIXEL_CHANNEL_THRESHOLD = 8;
+const INITIAL_RENDER_WATCHDOG_MS = 700;
 
 // Create a 3D ring with rectangular cross-section (like the logo)
 function createMetallicRing(
@@ -225,7 +227,58 @@ function getViewportResizeKey(container: HTMLDivElement) {
   ].join(":");
 }
 
-export default function PlanetGraphic({ onInitError }: { onInitError?: () => void }) {
+function hasVisibleWebGLPixels(renderer: THREE.WebGLRenderer) {
+  const gl = renderer.getContext();
+  if (gl.isContextLost()) return false;
+
+  const width = gl.drawingBufferWidth;
+  const height = gl.drawingBufferHeight;
+  if (!width || !height) return false;
+
+  const pixel = new Uint8Array(4);
+  const samplePoints = [
+    [0.5, 0.35],
+    [0.4, 0.45],
+    [0.5, 0.45],
+    [0.6, 0.45],
+    [0.35, 0.55],
+    [0.5, 0.55],
+    [0.65, 0.55],
+    [0.4, 0.65],
+    [0.5, 0.65],
+    [0.6, 0.65],
+  ] as const;
+
+  for (const [xRatio, yRatio] of samplePoints) {
+    const x = Math.min(width - 1, Math.max(0, Math.round(width * xRatio)));
+    const y = Math.min(height - 1, Math.max(0, Math.round(height * yRatio)));
+
+    try {
+      gl.readPixels(x, y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+    } catch {
+      return false;
+    }
+
+    if (
+      pixel[0] > VISIBLE_PIXEL_CHANNEL_THRESHOLD ||
+      pixel[1] > VISIBLE_PIXEL_CHANNEL_THRESHOLD ||
+      pixel[2] > VISIBLE_PIXEL_CHANNEL_THRESHOLD ||
+      pixel[3] > VISIBLE_PIXEL_CHANNEL_THRESHOLD
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+export default function PlanetGraphic({
+  onInitError,
+  onReady,
+}: {
+  onInitError?: () => void;
+  onReady?: () => void;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isMobile, setIsMobile] = useState(() => {
@@ -255,12 +308,23 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
   useEffect(() => {
     let dispose: (() => void) | null = null;
     let cancelled = false;
+    let initErrorReported = false;
+    let renderWatchdogTimeoutId: ReturnType<typeof setTimeout> | null = null;
+    const reportInitError = () => {
+      if (initErrorReported) return;
+      initErrorReported = true;
+      onInitError?.();
+    };
 
     void (async () => {
       if (!canvasRef.current || !containerRef.current) return;
 
       const gsap = await loadGsap();
-      if (!gsap || cancelled || !canvasRef.current || !containerRef.current) {
+      if (!gsap) {
+        reportInitError();
+        return;
+      }
+      if (cancelled || !canvasRef.current || !containerRef.current) {
         return;
       }
 
@@ -295,7 +359,7 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
           powerPreference: initialIsMobile ? "low-power" : "default",
         });
       } catch {
-        onInitError?.();
+        reportInitError();
         return;
       }
       renderer.setSize(container.clientWidth, container.clientHeight, false);
@@ -303,6 +367,11 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
         Math.min(window.devicePixelRatio, getHeroGraphicMaxPixelRatio(initialIsMobile)),
       );
       renderer.setClearColor(0x000000, 0);
+      const handleContextLost = (event: Event) => {
+        event.preventDefault();
+        reportInitError();
+      };
+      canvas.addEventListener("webglcontextlost", handleContextLost);
 
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
       scene.add(ambientLight);
@@ -420,7 +489,7 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
       envMapCanvas.height = envMapSize;
       const envCtx = envMapCanvas.getContext("2d");
       if (!envCtx) {
-        console.error("Failed to get 2D context from canvas for environment map generation");
+        reportInitError();
         return;
       }
       const gradient = envCtx.createLinearGradient(0, 0, 0, envMapSize);
@@ -565,6 +634,19 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
         render: () => renderer.render(scene, camera),
       };
       applyPlanetTheme(themeRefs.current, getCurrentIsDark());
+      renderer.render(scene, camera);
+
+      renderWatchdogTimeoutId = setTimeout(() => {
+        if (cancelled || initErrorReported) return;
+
+        renderer.render(scene, camera);
+        if (!hasVisibleWebGLPixels(renderer)) {
+          reportInitError();
+          return;
+        }
+
+        onReady?.();
+      }, INITIAL_RENDER_WATCHDOG_MS);
 
       if ((window as PlanetGraphicWindow).__PLANET_GRAPHIC_DEBUG__) {
         (window as PlanetGraphicWindow).__PLANET_GRAPHIC_STATE__ = {
@@ -709,6 +791,10 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
       dispose = () => {
         themeRefs.current = null;
         stopRenderLoop();
+        canvas.removeEventListener("webglcontextlost", handleContextLost);
+        if (renderWatchdogTimeoutId) {
+          clearTimeout(renderWatchdogTimeoutId);
+        }
         document.removeEventListener("visibilitychange", handleVisibilityChange);
         if (resizeTimeoutId) {
           clearTimeout(resizeTimeoutId);
@@ -738,7 +824,7 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
       };
     })().catch(() => {
       if (!cancelled) {
-        onInitError?.();
+        reportInitError();
       }
     });
 
@@ -747,7 +833,7 @@ export default function PlanetGraphic({ onInitError }: { onInitError?: () => voi
       dispose?.();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- theme changes handled by separate effect
-  }, [onInitError, themeRefs]);
+  }, [onInitError, onReady, themeRefs]);
 
   return (
     <div
