@@ -12,7 +12,7 @@ import {
 } from "react";
 import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
-import { loadGsap, type TweenLike } from "@/lib/load-gsap";
+import { loadGsap, type TweenLike } from "@/lib/motion-runtime";
 
 type ApproachId = "federated" | "blockchain" | "bitsocial";
 

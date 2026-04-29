@@ -203,6 +203,12 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
 
     const canvas = canvasRef.current;
     const container = containerRef.current;
+    let initErrorReported = false;
+    const reportInitError = () => {
+      if (initErrorReported) return;
+      initErrorReported = true;
+      onInitError?.();
+    };
     const sceneIsMobile = getIsMobileLayout(container.clientWidth || window.innerWidth);
     const sceneNodeCount = getMeshNodeCount(
       container.clientWidth || window.innerWidth,
@@ -243,9 +249,14 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
         powerPreference: isMobile ? "low-power" : "default",
       });
     } catch {
-      onInitError?.();
+      reportInitError();
       return;
     }
+    const handleContextLost = (event: Event) => {
+      event.preventDefault();
+      reportInitError();
+    };
+    canvas.addEventListener("webglcontextlost", handleContextLost);
     renderer.setSize(container.clientWidth, container.clientHeight, false);
     renderer.setPixelRatio(
       Math.min(window.devicePixelRatio, getHeroGraphicMaxPixelRatio(isMobile)),
@@ -581,6 +592,7 @@ export default function MeshGraphic({ onInitError }: { onInitError?: () => void 
       if (resizeTimeoutId) {
         clearTimeout(resizeTimeoutId);
       }
+      canvas.removeEventListener("webglcontextlost", handleContextLost);
       resizeObserver.disconnect();
       window.removeEventListener("resize", scheduleResize);
       window.visualViewport?.removeEventListener("resize", scheduleResizeIfViewportChanged);
