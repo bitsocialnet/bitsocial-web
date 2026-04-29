@@ -26,6 +26,10 @@ import {
   getPrimaryLinks,
   tagsMatchFilter,
 } from "@/lib/apps-data";
+import {
+  filterCryptoWalletGatedLinks,
+  useHasCryptoWalletProvider,
+} from "@/lib/crypto-wallet-provider";
 import { cn } from "@/lib/utils";
 
 interface AppCardProps {
@@ -58,8 +62,9 @@ export default function AppCard({
   detailHref,
 }: AppCardProps) {
   const { t } = useTranslation();
+  const hasCryptoWalletProvider = useHasCryptoWalletProvider();
   const category = getCategoryBySlug(app.category);
-  const mirrors = getMirrorLinks(app);
+  const mirrors = filterCryptoWalletGatedLinks(getMirrorLinks(app), hasCryptoWalletProvider);
   const platformTags = getAppPlatforms(app);
   const primaryLinks = getPrimaryLinks(app, preferredPlatform ?? undefined);
   const primaryActionLink = primaryLinks[0];
