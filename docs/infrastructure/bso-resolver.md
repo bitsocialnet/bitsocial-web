@@ -9,7 +9,7 @@ sidebar_position: 1
 The BSO Resolver translates `.bso` domain names into their corresponding public keys by reading Bitsocial TXT records. It provides a shared viem client, persistent caching, and works in both Node.js and browser environments.
 
 - **GitHub**: [bitsocialnet/bso-resolver](https://github.com/bitsocialnet/bso-resolver)
-- **License**: GPL-3.0-or-later
+- **License**: GPL-3.0
 
 ## Installation
 
