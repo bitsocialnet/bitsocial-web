@@ -19,7 +19,7 @@ Pre-built binaries are available for Windows, macOS, and Linux. Download the lat
 After downloading, make the binary executable (macOS/Linux):
 
 ```bash
-chmod +x bitsocial-cli
+chmod +x bitsocial
 ```
 
 ## Running the Daemon
@@ -27,7 +27,7 @@ chmod +x bitsocial-cli
 The most common use of the CLI is running a Bitsocial node. The daemon starts the P2P networking layer and exposes a local API that clients can connect to.
 
 ```bash
-bitsocial-cli daemon
+bitsocial daemon
 ```
 
 On first launch, the daemon outputs links to the **WebUI**, a browser-based graphical interface for managing your node, communities, and settings. This is useful if you prefer a GUI over terminal commands.
@@ -46,8 +46,8 @@ On first launch, the daemon outputs links to the **WebUI**, a browser-based grap
 Run the CLI with `--help` to see the current command names and flags exposed by your installed release:
 
 ```bash
-bitsocial-cli --help
-bitsocial-cli daemon --help
+bitsocial --help
+bitsocial daemon --help
 ```
 
 ## Typical Workflow
@@ -56,10 +56,10 @@ A common setup flow for hosting a new community:
 
 ```bash
 # 1. Start the daemon
-bitsocial-cli daemon
+bitsocial daemon
 
 # 2. In another terminal, inspect the available community-management commands
-bitsocial-cli --help
+bitsocial --help
 ```
 
 From there, use the installed release's community-management commands to create, configure, and start serving a community. Once started, the community is live on the Bitsocial network and accessible from compatible clients.
