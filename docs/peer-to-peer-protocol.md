@@ -33,7 +33,8 @@ graph LR
     K["🔑 Community keypair"] --> H["#️⃣ Hash of public key"]
     H --> A["📍 Network address"]
     A --> D["🌐 HTTP router(s) lookup"]
-    D --> C["📄 Latest community content"]
+    D --> P["🔌 Provider peer addresses"]
+    P --> C["📄 Latest community content from peers"]
 ```
 
 Any peer on the network can query an **HTTP router** for that address: the router replies with a
@@ -49,8 +50,8 @@ blockchain.
 > content, its metadata, post text, member list, or even the human-readable label of what is at
 > that address; it just answers "which peers claim to have this hash?". This makes routers cheap to
 > run, easy to swap, and not liable for what users publish, similar to a BitTorrent tracker but
-> with even less surface area: a tracker at least stores the torrent's name, while an HTTP router
-> stores only the bare address.
+> without torrent metadata: a tracker maps infohashes to peers, while an HTTP router only maps a
+> content address to provider peer addresses.
 >
 > For redundancy, the client queries **several HTTP routers in parallel** and merges the provider
 > lists it gets back. Anyone can run a router, and replacing or adding routers is a config change
@@ -145,8 +146,9 @@ sequenceDiagram
 
 1. The user opens the app and sees a social interface.
 2. The client queries several HTTP routers in parallel for each community the user follows; each
-   router returns peer addresses only, never content. Queries usually return in under a second and
-   run concurrently.
+   router returns peer addresses only, never content. Query latency depends on network conditions
+   and router load; under typical low-latency conditions, queries often return within about one
+   second and run concurrently.
 3. Once the client has peer addresses, it connects to those peers and fetches the community's
    latest content pointers and metadata (title, description, moderator list, challenge
    configuration).
@@ -237,10 +239,10 @@ graph TB
     PK --> TR
 ```
 
-| Layer        | Role                                                                                                                                      |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| **App**      | User interface. Multiple apps can exist, each with its own design, all sharing the same communities and identities.                       |
-| **Protocol** | Defines how communities are addressed, how posts are published, and how spam is prevented.                                                |
+| Layer        | Role                                                                                                                                               |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **App**      | User interface. Multiple apps can exist, each with its own design, all sharing the same communities and identities.                                |
+| **Protocol** | Defines how communities are addressed, how posts are published, and how spam is prevented.                                                         |
 | **Network**  | The underlying peer-to-peer infrastructure: HTTP routers for discovery, gossipsub for real-time messaging, and content transfer for data exchange. |
 
 ---
