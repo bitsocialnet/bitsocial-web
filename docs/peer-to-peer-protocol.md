@@ -31,8 +31,7 @@ similar idea with public keys: the hash of a community's public key becomes its 
 ```mermaid
 graph LR
     K["🔑 Community keypair"] --> H["#️⃣ Hash of public key"]
-    H --> A["📍 Network address"]
-    A --> D["🌐 HTTP router(s) lookup"]
+    H --> D["🌐 HTTP router(s) lookup of hash"]
     D --> P["🔌 Provider peer addresses"]
     P --> C["📄 Latest community content from peers"]
 ```
