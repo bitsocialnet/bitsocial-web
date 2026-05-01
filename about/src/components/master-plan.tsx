@@ -6,6 +6,9 @@ import EasterEggOverlay from "@/components/easter-egg-overlay";
 import { DOCS_LINKS } from "@/lib/docs-links";
 
 const EASTER_EGG_GIF = "/spongebob-easter-egg.gif";
+const masterPlanLogoSrcSet = "/logo-small.png 64w, /apple-touch-icon.png 180w, /logo.png 640w";
+const masterPlanLogoClassName =
+  "h-10 w-10 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(37,99,235,0.8)]";
 const phaseOneCtaRowClassName =
   "grid w-full min-w-0 grid-cols-1 items-stretch gap-2 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-center md:gap-3";
 const phaseOneCtaButtonClassName =
@@ -30,6 +33,20 @@ interface ResponsivePhaseOneCtasProps {
   secondaryHref: string;
   secondaryLabel: string;
   separatorLabel: string;
+}
+
+function MasterPlanLogoImage({ alt }: { alt: string }) {
+  return (
+    <img
+      src="/logo.png"
+      srcSet={masterPlanLogoSrcSet}
+      sizes="40px"
+      width={40}
+      height={40}
+      alt={alt}
+      className={masterPlanLogoClassName}
+    />
+  );
 }
 
 function ResponsivePhaseOneCtas({
@@ -342,13 +359,7 @@ export default function MasterPlan() {
               className="js-only relative z-10 flex-shrink-0 cursor-pointer transition-all duration-300"
               whileHover={{ scale: 1.1 }}
             >
-              <img
-                src="/logo-small.png"
-                width={40}
-                height={40}
-                alt={logoAlt}
-                className="h-10 w-10 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(37,99,235,0.8)]"
-              />
+              <MasterPlanLogoImage alt={logoAlt} />
             </m.button>
             <noscript>
               <a
@@ -357,13 +368,7 @@ export default function MasterPlan() {
                 rel="noopener noreferrer"
                 className="nojs-inline-flex relative z-10 flex-shrink-0 cursor-pointer transition-all duration-300"
               >
-                <img
-                  src="/logo-small.png"
-                  width={40}
-                  height={40}
-                  alt={logoAlt}
-                  className="h-10 w-10 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(37,99,235,0.8)]"
-                />
+                <MasterPlanLogoImage alt={logoAlt} />
               </a>
             </noscript>
           </div>
