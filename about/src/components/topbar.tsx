@@ -409,7 +409,8 @@ export default function Topbar() {
                   src="/logo-small.png"
                   width={32}
                   height={32}
-                  alt="Bitsocial"
+                  alt=""
+                  aria-hidden="true"
                   className="h-8 w-8 transition-[filter] group-hover:brightness-110"
                 />
                 <span className="text-xl font-display font-regular text-muted-foreground group-hover:text-foreground transition-colors">

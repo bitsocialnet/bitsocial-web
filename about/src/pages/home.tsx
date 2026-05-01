@@ -159,46 +159,48 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <div className="bg-background">
-        <Topbar />
-        {unavailablePath ? (
-          <div className="px-6 pt-28 md:pt-32">
-            <div className="mx-auto flex max-w-4xl items-start justify-between gap-4 rounded-3xl border border-border/60 bg-background/85 px-5 py-4 text-sm text-muted-foreground shadow-lg backdrop-blur">
-              <p className="leading-relaxed">
-                {t("home.devOnlyRouteNotice", { path: unavailablePath })}
-              </p>
-              <button
-                type="button"
-                onClick={() => setUnavailablePath(null)}
-                className="rounded-full p-1 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                aria-label={t("home.dismissDevOnlyRouteNotice")}
-              >
-                <X className="h-4 w-4" />
-              </button>
+      <Topbar />
+      <main>
+        <div className="bg-background">
+          {unavailablePath ? (
+            <div className="px-6 pt-28 md:pt-32">
+              <div className="mx-auto flex max-w-4xl items-start justify-between gap-4 rounded-3xl border border-border/60 bg-background/85 px-5 py-4 text-sm text-muted-foreground shadow-lg backdrop-blur">
+                <p className="leading-relaxed">
+                  {t("home.devOnlyRouteNotice", { path: unavailablePath })}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setUnavailablePath(null)}
+                  className="rounded-full p-1 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  aria-label={t("home.dismissDevOnlyRouteNotice")}
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
             </div>
+          ) : null}
+          <Hero />
+        </div>
+        <div className="relative">
+          <div className="absolute inset-x-0 top-0 hidden md:block h-[clamp(8rem,calc(11rem-2vw),10rem)] pointer-events-none z-[1]">
+            <div className="absolute inset-x-6 md:inset-x-16 -top-10 md:-top-12 h-20 md:h-24 rounded-[999px] bg-background/85 blur-3xl" />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to bottom, hsl(var(--background)) 0%, hsl(var(--background) / 0.9) 24%, hsl(var(--background) / 0.52) 58%, hsl(var(--background) / 0.14) 82%, transparent 100%)",
+              }}
+            />
           </div>
-        ) : null}
-        <Hero />
-      </div>
-      <div className="relative">
-        <div className="absolute inset-x-0 top-0 hidden md:block h-[clamp(8rem,calc(11rem-2vw),10rem)] pointer-events-none z-[1]">
-          <div className="absolute inset-x-6 md:inset-x-16 -top-10 md:-top-12 h-20 md:h-24 rounded-[999px] bg-background/85 blur-3xl" />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to bottom, hsl(var(--background)) 0%, hsl(var(--background) / 0.9) 24%, hsl(var(--background) / 0.52) 58%, hsl(var(--background) / 0.14) 82%, transparent 100%)",
-            }}
-          />
+          <div className="relative z-10">
+            <Features />
+            <SanctuaryCommunication />
+            <MasterPlan />
+            <MailingList />
+            <Footer />
+          </div>
         </div>
-        <div className="relative z-10">
-          <Features />
-          <SanctuaryCommunication />
-          <MasterPlan />
-          <MailingList />
-          <Footer />
-        </div>
-      </div>
+      </main>
     </div>
   );
 }
