@@ -78,6 +78,7 @@ function ResponsivePhaseOneCtas({
 }
 
 type PhaseItem = {
+  ctaContext?: string;
   ctaHref: string;
   ctaLabel: string;
   extraDescription?: ReactNode;
@@ -138,6 +139,7 @@ export default function MasterPlan() {
       },
       {
         ctaHref: DOCS_LINKS.bitsocialNetwork,
+        ctaContext: t("masterPlan.phases.phase4.title"),
         ctaLabel: t("masterPlan.cta.learnMore"),
         phase: t("masterPlan.phases.phase4.phase"),
         title: t("masterPlan.phases.phase4.title"),
@@ -147,6 +149,7 @@ export default function MasterPlan() {
       },
       {
         ctaHref: DOCS_LINKS.decentralizeAllSocialMedia,
+        ctaContext: t("masterPlan.phases.phase5.title"),
         ctaLabel: t("masterPlan.cta.learnMore"),
         phase: t("masterPlan.phases.phase5.phase"),
         title: t("masterPlan.phases.phase5.title"),
@@ -286,6 +289,9 @@ export default function MasterPlan() {
                           className={`${prominentCtaClassName} w-auto max-w-full !rounded-3xl !py-2 text-sm`}
                         >
                           {item.ctaLabel}
+                          {item.ctaContext ? (
+                            <span className="sr-only">: {item.ctaContext}</span>
+                          ) : null}
                         </CardInlineCta>
                       </div>
                     )}

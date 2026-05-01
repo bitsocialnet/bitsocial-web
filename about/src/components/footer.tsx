@@ -70,7 +70,7 @@ export default function Footer() {
               onClick={handleLogoClick}
               className="inline-flex items-center gap-1.5 mb-4 group"
             >
-              <img src="/logo-small.png" alt="Bitsocial" className="h-6 w-6" />
+              <img src="/logo-small.png" alt="" aria-hidden="true" className="h-6 w-6" />
               <span className="text-lg font-display text-muted-foreground group-hover:text-foreground transition-colors">
                 Bitsocial
               </span>
