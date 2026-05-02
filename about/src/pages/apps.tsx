@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { Globe, Monitor, Search, Smartphone, X } from "lucide-react";
 import AppCard from "@/components/app-card";
+import AppsGithubTopicCta from "@/components/apps-github-topic-cta";
 import AppTagPill from "@/components/app-tag-pill";
 import CardInlineCta, { highlightedCtaClassName } from "@/components/card-inline-cta";
 import CategoryFilter from "@/components/category-filter";
@@ -434,6 +435,8 @@ export default function Apps() {
               </form>
             </section>
           </noscript>
+
+          <AppsGithubTopicCta />
 
           <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
             <div className="apps-js-sidebar">
