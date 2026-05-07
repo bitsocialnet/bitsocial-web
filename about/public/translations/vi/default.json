@@ -64,7 +64,7 @@
         "cta": "Xem mã nguồn"
       },
       "peer-to-peer": {
-        "description": "Bitsocial <strong>không được liên kết cũng như không nằm trong chuỗi</strong>. Mỗi cộng đồng là một nhóm ngang hàng, <strong>gần với BitTorrent</strong> hơn là một trang web được lưu trữ trên máy chủ: người dùng nhập nội dung họ đọc, các nút có thể chạy trên phần cứng giá rẻ và mỗi cộng đồng có thể thực thi thách thức chống thư rác của riêng mình thay vì phụ thuộc vào chính sách nền tảng toàn cầu.",
+        "description": "Bitsocial <strong>không liên bang và cũng không on-chain</strong>. Mỗi cộng đồng là một swarm ngang hàng dùng <strong>các primitive <ipfs>IPFS</ipfs>/libp2p</strong>: bản ghi được định địa chỉ bằng khóa công khai, gossipsub pubsub và truyền nội dung gần với BitTorrent hơn là một website được lưu trữ. Người dùng seed những gì họ đọc, node có thể chạy trên phần cứng rẻ, và mỗi cộng đồng tự áp dụng anti-spam challenge của mình thay vì phụ thuộc vào chính sách nền tảng toàn cầu.",
         "cta": "Tìm hiểu cách p2p hoạt động"
       },
       "social-apps": {

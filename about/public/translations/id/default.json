@@ -64,7 +64,7 @@
         "cta": "Jelajahi kode sumber"
       },
       "peer-to-peer": {
-        "description": "Bitsocial <strong>tidak terfederasi atau on-chain</strong>. Setiap komunitas merupakan kelompok peer-to-peer, <strong>lebih dekat dengan BitTorrent</strong> dibandingkan dengan situs web yang dihosting: pengguna memasukkan apa yang mereka baca, node dapat berjalan pada perangkat keras yang murah, dan setiap komunitas dapat menerapkan tantangan anti-spamnya sendiri alih-alih bergantung pada kebijakan platform global.",
+        "description": "Bitsocial <strong>bukan federasi dan bukan on-chain</strong>. Setiap komunitas adalah swarm peer-to-peer yang memakai <strong>primitive <ipfs>IPFS</ipfs>/libp2p</strong>: rekaman beralamat kunci publik, gossipsub pubsub, dan transfer konten yang lebih dekat ke BitTorrent daripada situs web terhosting. Pengguna men-seed apa yang mereka baca, node dapat berjalan di perangkat murah, dan setiap komunitas menerapkan tantangan anti-spamnya sendiri alih-alih bergantung pada kebijakan platform global.",
         "cta": "Pelajari cara kerja p2p"
       },
       "social-apps": {

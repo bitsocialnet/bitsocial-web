@@ -10,7 +10,7 @@ const SITE_NAME = "Bitsocial";
 const SITE_ORIGIN = "https://bitsocial.net";
 const SITE_TITLE = "Bitsocial - Open Source P2P Network for Social Apps";
 const SITE_DESCRIPTION =
-  "Bitsocial is an open-source peer-to-peer network for social apps, with no servers, no global bans, where users and communities are cryptographic property.";
+  "Bitsocial is an open-source IPFS-backed peer-to-peer network for social apps, with no servers, no global bans, where users and communities are cryptographic property.";
 const DEFAULT_IMAGE_PATH = "/hero-fallback-desktop-light.png";
 const DEFAULT_IMAGE_ALT = "Bitsocial network preview";
 const DEFAULT_ROBOTS =
@@ -24,9 +24,9 @@ const ROOT_MARKER_REGEX = /<div id="root"><\/div>/;
 
 const HOME_SEO_FEATURES = [
   {
-    title: "Pure peer-to-peer communities",
+    title: "IPFS-backed peer-to-peer communities",
     description:
-      "Bitsocial communities run as swarms instead of company-controlled servers, so they can stay online without a global platform backend.",
+      "Bitsocial communities use IPFS/libp2p primitives for public-key-addressed records, gossipsub pubsub, and content transfer instead of company-controlled servers.",
     href: "/docs/peer-to-peer-protocol/",
     cta: "Read the peer-to-peer protocol",
   },

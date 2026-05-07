@@ -88,6 +88,14 @@ function buildFeatures(t: (key: string) => string): Feature[] {
 const featureCtaClassName = `${prominentCtaClassName} w-full md:w-auto`;
 const richTextComponents = {
   strong: <strong className="font-semibold" />,
+  ipfs: (
+    <a
+      href="https://ipfs.tech/"
+      target="_blank"
+      rel="noreferrer"
+      className="font-semibold text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-blue-glow"
+    />
+  ),
 };
 
 interface FeatureCtaProps {

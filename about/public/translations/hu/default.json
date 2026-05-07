@@ -64,7 +64,7 @@
         "cta": "Forráskód böngészése"
       },
       "peer-to-peer": {
-        "description": "A Bitsocial <strong>nem egyesített és nem is láncon belüli</strong>. Minden közösség egy peer-to-peer raj, <strong>közelebb van a BitTorrenthez</strong>, mint egy hosztolt webhely: a felhasználók beolvassák, amit olvasnak, a csomópontok olcsó hardveren futhatnak, és minden közösség érvényesítheti saját spamellenes kihívását ahelyett, hogy a globális platformszabályzattól függne.",
+        "description": "A Bitsocial <strong>nem föderált és nem is on-chain</strong>. Minden közösség egy peer-to-peer raj, amely <strong><ipfs>IPFS</ipfs>/libp2p primitíveket</strong> használ: nyilvános kulccsal címzett rekordokat, gossipsub pubsubot és a BitTorrenthez közelebb álló tartalomátvitelt egy hosztolt webhely helyett. A felhasználók seedelik, amit olvasnak, a node-ok olcsó hardveren is futhatnak, és minden közösség a saját spamellenes kihívását kényszeríti ki globális platformszabályzat helyett.",
         "cta": "Tudjon meg többet a p2p működéséről"
       },
       "social-apps": {

@@ -64,7 +64,7 @@
         "cta": "Selaa lähdekoodia"
       },
       "peer-to-peer": {
-        "description": "Bitsocial <strong>ei ole liittoutunut eikä ketjussa</strong>. Jokainen yhteisö on vertaisparvi, <strong>lähempänä BitTorrentia</strong> kuin isännöity verkkosivusto: käyttäjät siementävät lukemaansa, solmut voivat toimia halvalla laitteistolla ja jokainen yhteisö voi toteuttaa oman roskapostin torjuntahaasteen sen sijaan, että riippuisi maailmanlaajuisesta alustakäytännöstä.",
+        "description": "Bitsocial <strong>ei ole federoitu eikä on-chain</strong>. Jokainen yhteisö on vertaisverkko-swarm, joka käyttää <strong><ipfs>IPFS</ipfs>/libp2p-primitiivejä</strong>: julkisella avaimella osoitettuja tietueita, gossipsub-pubsubia ja sisällönsiirtoa, joka on lähempänä BitTorrentia kuin hostattua verkkosivua. Käyttäjät seedaavat lukemansa, noodit voivat pyöriä halvalla raudalla, ja jokainen yhteisö valvoo omaa roskapostinestohastettaan globaalin alustapolitiikan sijaan.",
         "cta": "Opi kuinka p2p toimii"
       },
       "social-apps": {

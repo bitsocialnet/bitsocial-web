@@ -1,14 +1,26 @@
 ---
 title: Peer-to-Peer Protocol
-description: How Bitsocial uses public-key addressing and peer-to-peer pubsub to deliver serverless social media.
+description: How Bitsocial uses IPFS/libp2p, public-key addressing, and peer-to-peer pubsub to deliver serverless social media.
 ---
 
 # Peer-to-Peer Protocol
 
 Bitsocial does not use a blockchain, a federation server, or a centralized backend. Instead it
-combines two ideas — **public-key-based addressing** and **peer-to-peer pubsub** — to let anyone
-host a community from consumer hardware while users read and post without accounts on any
-company-controlled service.
+uses the IPFS/libp2p stack to combine two ideas: **public-key-based addressing** and
+**peer-to-peer pubsub**. Together they let anyone host a community from consumer hardware while
+users read and post without accounts on any company-controlled service.
+
+## Does Bitsocial use IPFS?
+
+Yes. Bitsocial nodes use IPFS/libp2p primitives for the peer-to-peer layer: public-key-addressed
+community records, content transfer between peers, and gossipsub pubsub for real-time messages.
+When these docs say "pubsub," they mean IPFS/libp2p pubsub, not a separate centralized message
+broker.
+
+The protocol currently describes discovery through HTTP routers because Bitsocial clients query
+router endpoints for provider peer addresses instead of relying on a browser-hostile DHT for every
+lookup. Routers only return peers; content transfer and pubsub traffic still move through the
+peer-to-peer network.
 
 ## The two problems
 

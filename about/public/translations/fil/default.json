@@ -64,7 +64,7 @@
         "cta": "Tingnan ang source code"
       },
       "peer-to-peer": {
-        "description": "Ang Bitsocial ay <strong>hindi federated o on-chain</strong>. Ang bawat komunidad ay isang peer-to-peer swarm, <strong>mas malapit sa BitTorrent</strong> kaysa sa isang naka-host na website: ang mga user ay seed kung ano ang kanilang nabasa, ang mga node ay maaaring tumakbo sa murang hardware, at ang bawat komunidad ay maaaring magpatupad ng sarili nitong anti-spam na hamon sa halip na depende sa isang pandaigdigang patakaran sa platform.",
+        "description": "Ang Bitsocial ay <strong>hindi federated at hindi rin on-chain</strong>. Ang bawat komunidad ay isang peer-to-peer swarm na gumagamit ng <strong><ipfs>IPFS</ipfs>/libp2p primitives</strong>: mga record na naka-address sa public key, gossipsub pubsub, at content transfer na mas malapit sa BitTorrent kaysa sa hosted website. Sina-seed ng mga user ang binabasa nila, maaaring tumakbo ang mga node sa murang hardware, at ipinapatupad ng bawat komunidad ang sarili nitong anti-spam challenge sa halip na umasa sa pandaigdigang patakaran ng platform.",
         "cta": "Matuto kung paano gumagana ang p2p"
       },
       "social-apps": {

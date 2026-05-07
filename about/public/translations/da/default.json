@@ -64,7 +64,7 @@
         "cta": "Gennemse kildekoden"
       },
       "peer-to-peer": {
-        "description": "Bitsocial er <strong>hverken fødereret eller on-chain</strong>. Hvert fællesskab er en peer-to-peer-sværm, <strong>tættere på BitTorrent</strong> end et hostet websted: brugere ser det, de læser, noder kan køre på billig hardware, og hvert fællesskab kan håndhæve sin egen anti-spam-udfordring i stedet for at være afhængig af en global platformspolitik.",
+        "description": "Bitsocial er <strong>hverken fødereret eller on-chain</strong>. Hvert fællesskab er en peer-to-peer-sværm, der bruger <strong><ipfs>IPFS</ipfs>/libp2p-primitiver</strong>: poster adresseret med offentlige nøgler, gossipsub pubsub og indholdsoverførsel tættere på BitTorrent end et hostet website. Brugere seeder det, de læser, noder kan køre på billig hardware, og hvert fællesskab håndhæver sin egen anti-spam-udfordring i stedet for at afhænge af en global platformspolitik.",
         "cta": "Lær hvordan p2p fungerer"
       },
       "social-apps": {
