@@ -348,16 +348,7 @@ export default function LanguageSelector({
                         )}
                         dir={language.dir}
                       >
-                        <span
-                          className={cn(
-                            "font-medium",
-                            currentLanguageCode === language.code
-                              ? "text-foreground"
-                              : "text-muted-foreground",
-                          )}
-                        >
-                          {language.label}
-                        </span>
+                        <span className="font-medium text-foreground/80">{language.label}</span>
                         {currentLanguageCode === language.code ? (
                           <Check className="h-4 w-4 text-blue-glow shrink-0" />
                         ) : null}
