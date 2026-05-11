@@ -169,28 +169,27 @@ function TaglineLink({
   );
 
   return (
-    <>
-      <span
-        data-tagline-link={hash}
-        role="button"
-        tabIndex={0}
-        onClick={() => onNavigateToFeature(hash)}
-        onKeyDown={(event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            onNavigateToFeature(hash);
-          }
-        }}
-        className={cn("js-only", className)}
-      >
-        {children}
-      </span>
-      <noscript>
-        <a data-tagline-link={hash} href={`#${hash}`} className={cn("nojs-inline", className)}>
-          {children}
-        </a>
-      </noscript>
-    </>
+    <a
+      data-tagline-link={hash}
+      href={`#${hash}`}
+      onClick={(event) => {
+        if (
+          event.defaultPrevented ||
+          event.button !== 0 ||
+          event.metaKey ||
+          event.altKey ||
+          event.ctrlKey ||
+          event.shiftKey
+        ) {
+          return;
+        }
+
+        onNavigateToFeature(hash);
+      }}
+      className={className}
+    >
+      {children}
+    </a>
   );
 }
 
@@ -261,29 +260,40 @@ function HeroGraphicLoadSpace() {
 
 function useTaglineIntro() {
   const [index, setIndex] = useState(-1);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const resetIntro = useCallback(() => {
-    timersRef.current.forEach(clearTimeout);
-    timersRef.current = [];
-    setIndex(-1);
+  const clearIntroTimer = useCallback(() => {
+    if (timerRef.current != null) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
   }, []);
 
-  useEffect(() => {
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    timersRef.current = timers;
+  const resetIntro = useCallback(() => {
+    clearIntroTimer();
+    setIndex(-1);
+  }, [clearIntroTimer]);
 
-    const start = setTimeout(() => {
-      for (let i = 0; i < TAGLINE_LINK_COUNT; i++) {
-        timers.push(setTimeout(() => setIndex(i), i * INTRO_STEP_MS));
-      }
-      timers.push(setTimeout(() => setIndex(-1), TAGLINE_LINK_COUNT * INTRO_STEP_MS));
-    }, INTRO_START_DELAY);
-    timers.push(start);
+  useEffect(() => {
+    function scheduleStep(nextIndex: number, delay: number) {
+      timerRef.current = setTimeout(() => {
+        setIndex(nextIndex < TAGLINE_LINK_COUNT ? nextIndex : -1);
+
+        if (nextIndex < TAGLINE_LINK_COUNT) {
+          scheduleStep(nextIndex + 1, INTRO_STEP_MS);
+        } else {
+          timerRef.current = null;
+        }
+      }, delay);
+    }
+
+    scheduleStep(0, INTRO_START_DELAY);
 
     return () => {
-      timers.forEach(clearTimeout);
-      timersRef.current = [];
+      if (timerRef.current != null) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
     };
   }, []);
 
@@ -313,7 +323,7 @@ export default function Hero() {
     (hash: string) => {
       resetIntro();
       window.history.replaceState(null, "", `#${hash}`);
-      triggerFeatureGlow(hash);
+      requestAnimationFrame(() => triggerFeatureGlow(hash));
     },
     [resetIntro],
   );
