@@ -64,7 +64,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     ],
   },
   {
-    name: "Rinse",
+    name: "Rinse12",
     roleKey: "about.members.rinse.role",
     githubLogin: "rinse12",
     links: [
