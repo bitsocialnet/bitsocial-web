@@ -72,7 +72,8 @@ export default function AppMirrorLinkCta({
   const mirrorVerificationState = useCurrentMirrorVerification(link);
   const releaseIntegrityState = useReleaseIntegrityProbe(link);
   const linkLabel = getAppLinkLabel(link, t);
-  const verifiedLabel = t("apps.mirrorVerified");
+  const mirrorVerifiedLabel = t("apps.mirrorVerified");
+  const releaseVerifiedLabel = t("apps.releaseVerified", { defaultValue: "Verified release" });
   const ensName = getEthNameFromEthLimo(link);
   const tooltipText = verification
     ? t("apps.mirrorVerificationTooltip", {
@@ -134,9 +135,9 @@ export default function AppMirrorLinkCta({
       aria-describedby={describedBy}
       aria-label={
         releaseIntegrity
-          ? `${linkLabel} ${verifiedLabel}: ${destinationLabel} ${releaseIntegrity.version}`
+          ? `${linkLabel} ${releaseVerifiedLabel}: ${destinationLabel} ${releaseIntegrity.version}`
           : showVerification
-            ? `${linkLabel} ${verifiedLabel}: ${destinationLabel}`
+            ? `${linkLabel} ${mirrorVerifiedLabel}: ${destinationLabel}`
             : undefined
       }
     >
@@ -163,7 +164,7 @@ export default function AppMirrorLinkCta({
             <MirrorVerifiedBadge
               checkedAt={verification.checkedAt}
               id={verificationTooltipId}
-              label={verifiedLabel}
+              label={mirrorVerifiedLabel}
               showLabel={showVerifiedLabel}
               title={destinationTooltipLabel}
               tooltip={tooltipText ?? ""}

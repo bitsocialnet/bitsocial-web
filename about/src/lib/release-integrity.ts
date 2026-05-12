@@ -6,6 +6,7 @@ const TARGET_MEASUREMENTS_SCHEMA = "bitsocial.release-integrity-target-measureme
 const RELEASE_SIGNATURE_ALGORITHM = "ECDSA-P256-SHA256";
 const RELEASE_INTEGRITY_FETCH_TIMEOUT_MS = 30_000;
 const RUNTIME_INTEGRITY_FILE_PATTERN = /\.(?:css|html|js|json|mjs|txt|webmanifest|wasm)$/;
+const URL_SCHEME_PATTERN = /^[a-zA-Z][a-zA-Z0-9+.-]*:/;
 const textEncoder = new TextEncoder();
 
 interface ReleaseManifestFile {
@@ -40,6 +41,11 @@ interface TargetMeasurements {
   measuredAt: string;
   schema: typeof TARGET_MEASUREMENTS_SCHEMA;
   targetUrl: string;
+}
+
+interface TargetVerificationResult {
+  filesVerified: number;
+  measuredAt: string;
 }
 
 export interface ReleaseIntegrityResult {
@@ -89,12 +95,17 @@ export async function verifySignedReleaseIntegrity(
     throw new Error(`Unexpected release manifest app: ${manifest.appName}`);
   }
 
-  const filesVerified = await verifyTargetMeasurements(targetUrl, probe, manifest, manifestSha256);
+  const targetVerification = await verifyTargetMeasurements(
+    targetUrl,
+    probe,
+    manifest,
+    manifestSha256,
+  );
 
   return {
     appName: manifest.appName,
-    checkedAt: manifest.generatedAt,
-    filesVerified,
+    checkedAt: targetVerification.measuredAt,
+    filesVerified: targetVerification.filesVerified,
     keyId: signature.keyId,
     manifestSha256,
     releaseTag: manifest.releaseTag,
@@ -194,7 +205,7 @@ function parseManifestFile(value: unknown): ReleaseManifestFile {
     sha256: requireString(value.sha256, "sha256").toLowerCase(),
   };
 
-  if (file.path.startsWith("/") || file.path.includes("..")) {
+  if (file.path.startsWith("/") || file.path.includes("..") || URL_SCHEME_PATTERN.test(file.path)) {
     throw new Error(`Unsafe release manifest path: ${file.path}`);
   }
 
@@ -259,7 +270,7 @@ async function verifyTargetMeasurements(
   probe: AppReleaseIntegrityProbe,
   manifest: ReleaseManifest,
   manifestSha256: string,
-) {
+): Promise<TargetVerificationResult> {
   const runtimeFiles = getRuntimeFiles(manifest.files);
   const measurements = parseTargetMeasurements(
     await fetchJson(getTargetMeasurementsUrl(probe.targetMeasurementsUrl, targetUrl)),
@@ -296,7 +307,10 @@ async function verifyTargetMeasurements(
     }
   }
 
-  return runtimeFiles.length;
+  return {
+    filesVerified: runtimeFiles.length,
+    measuredAt: measurements.measuredAt,
+  };
 }
 
 function getRuntimeFiles(files: ReleaseManifestFile[]) {

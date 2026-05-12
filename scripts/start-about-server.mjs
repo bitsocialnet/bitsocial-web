@@ -31,8 +31,10 @@ const targetMeasurementsSchema = "bitsocial.release-integrity-target-measurement
 const targetMeasurementsAsset = "target-measurements";
 const latestDownloadAsset = "download";
 const targetCheckConcurrency = 24;
+const releaseFetchTimeoutMs = 15_000;
 const targetFetchTimeoutMs = 15_000;
 const runtimeIntegrityFilePattern = /\.(?:css|html|js|json|mjs|txt|webmanifest|wasm)$/;
+const urlSchemePattern = /^[a-zA-Z][a-zA-Z0-9+.-]*:/;
 const releaseTextEncoder = new TextEncoder();
 const releaseIntegrityAssets = new Map([
   [
@@ -361,7 +363,7 @@ async function handleTargetMeasurementsRequest(app, requestUrl, response) {
 }
 
 async function resolveLatestDownloadUrl(downloadAsset) {
-  const releaseResponse = await fetch(
+  const releaseResponse = await fetchReleaseUrlWithTimeout(
     `https://api.github.com/repos/${downloadAsset.repository}/releases/latest`,
     {
       headers: {
@@ -404,13 +406,29 @@ async function resolveLatestDownloadUrl(downloadAsset) {
 }
 
 async function fetchReleaseAsset(releaseAsset) {
-  return fetch(releaseAsset.url, {
+  return fetchReleaseUrlWithTimeout(releaseAsset.url, {
     headers: {
       Accept: "application/json",
       "User-Agent": "bitsocial-web-release-integrity-proxy",
     },
     redirect: "follow",
   });
+}
+
+async function fetchReleaseUrlWithTimeout(url, init) {
+  const abortController = new AbortController();
+  const timeout = setTimeout(() => {
+    abortController.abort();
+  }, releaseFetchTimeoutMs);
+
+  try {
+    return await fetch(url, {
+      ...init,
+      signal: abortController.signal,
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 function normalizeAllowedTargetUrl(app, targetUrlValue) {
@@ -489,7 +507,7 @@ function parseReleaseManifestFile(value) {
     sha256: requireString(value.sha256, "sha256").toLowerCase(),
   };
 
-  if (file.path.startsWith("/") || file.path.includes("..")) {
+  if (file.path.startsWith("/") || file.path.includes("..") || urlSchemePattern.test(file.path)) {
     throw new ReleaseIntegrityHttpError(502, "Unsafe release manifest path");
   }
 
@@ -548,6 +566,14 @@ async function measureTargetFiles(targetUrl, files) {
 async function measureTargetFile(targetUrl, baseUrl, file) {
   const fileUrl =
     file.path === "index.html" ? new URL(targetUrl.href) : new URL(file.path, baseUrl);
+
+  if (
+    (fileUrl.protocol !== "http:" && fileUrl.protocol !== "https:") ||
+    fileUrl.origin !== targetUrl.origin
+  ) {
+    throw new ReleaseIntegrityHttpError(502, "Unsafe release manifest path");
+  }
+
   const response = await fetchWithTimeout(fileUrl.href);
 
   if (!response.ok) {

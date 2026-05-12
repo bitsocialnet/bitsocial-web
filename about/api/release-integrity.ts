@@ -48,8 +48,10 @@ const TARGET_MEASUREMENTS_SCHEMA = "bitsocial.release-integrity-target-measureme
 const TARGET_MEASUREMENTS_ASSET = "target-measurements";
 const LATEST_DOWNLOAD_ASSET = "download";
 const TARGET_CHECK_CONCURRENCY = 24;
+const RELEASE_FETCH_TIMEOUT_MS = 15_000;
 const TARGET_FETCH_TIMEOUT_MS = 15_000;
 const RUNTIME_INTEGRITY_FILE_PATTERN = /\.(?:css|html|js|json|mjs|txt|webmanifest|wasm)$/;
+const URL_SCHEME_PATTERN = /^[a-zA-Z][a-zA-Z0-9+.-]*:/;
 const releaseTextEncoder = new TextEncoder();
 
 const RELEASE_INTEGRITY_ASSETS: Record<string, ReleaseIntegrityAsset> = {
@@ -269,7 +271,7 @@ async function handleTargetMeasurementsRequest(
 }
 
 async function resolveLatestDownloadUrl(downloadAsset: ReleaseDownloadAsset) {
-  const releaseResponse = await fetch(
+  const releaseResponse = await fetchReleaseUrlWithTimeout(
     `https://api.github.com/repos/${downloadAsset.repository}/releases/latest`,
     {
       headers: {
@@ -312,13 +314,29 @@ async function resolveLatestDownloadUrl(downloadAsset: ReleaseDownloadAsset) {
 }
 
 async function fetchReleaseAsset(releaseAsset: ReleaseIntegrityAsset) {
-  return fetch(releaseAsset.url, {
+  return fetchReleaseUrlWithTimeout(releaseAsset.url, {
     headers: {
       Accept: "application/json",
       "User-Agent": "bitsocial-web-release-integrity-proxy",
     },
     redirect: "follow",
   });
+}
+
+async function fetchReleaseUrlWithTimeout(url: string, init: RequestInit) {
+  const abortController = new AbortController();
+  const timeout = setTimeout(() => {
+    abortController.abort();
+  }, RELEASE_FETCH_TIMEOUT_MS);
+
+  try {
+    return await fetch(url, {
+      ...init,
+      signal: abortController.signal,
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 function normalizeAllowedTargetUrl(app: string | null | undefined, targetUrlValue: string | null) {
@@ -397,7 +415,7 @@ function parseReleaseManifestFile(value: unknown): ReleaseManifestFile {
     sha256: requireString(value.sha256, "sha256").toLowerCase(),
   };
 
-  if (file.path.startsWith("/") || file.path.includes("..")) {
+  if (file.path.startsWith("/") || file.path.includes("..") || URL_SCHEME_PATTERN.test(file.path)) {
     throw new ReleaseIntegrityHttpError(502, "Unsafe release manifest path");
   }
 
@@ -456,6 +474,14 @@ async function measureTargetFiles(targetUrl: URL, files: ReleaseManifestFile[]) 
 async function measureTargetFile(targetUrl: URL, baseUrl: URL, file: ReleaseManifestFile) {
   const fileUrl =
     file.path === "index.html" ? new URL(targetUrl.href) : new URL(file.path, baseUrl);
+
+  if (
+    (fileUrl.protocol !== "http:" && fileUrl.protocol !== "https:") ||
+    fileUrl.origin !== targetUrl.origin
+  ) {
+    throw new ReleaseIntegrityHttpError(502, "Unsafe release manifest path");
+  }
+
   const response = await fetchWithTimeout(fileUrl.href);
 
   if (!response.ok) {

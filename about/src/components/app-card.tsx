@@ -22,6 +22,7 @@ import {
   getCategoryLabel,
   getGithubUrl,
   getMirrorLinks,
+  linkHasVerifiableStatus,
   getPlatformShortLabel,
   getPrimaryLinks,
   tagsMatchFilter,
@@ -264,10 +265,6 @@ function getStatusClassName(status: NonNullable<AppData["status"]>) {
       ? "border-blue-core/20 text-blue-core dark:border-blue-core/55"
       : "border-amber-500/25 text-amber-700 dark:border-amber-400/35 dark:text-amber-200",
   );
-}
-
-function linkHasVerifiableStatus(link: AppLink) {
-  return Boolean(link.verification || link.releaseIntegrity);
 }
 
 function getLinkIcon(link: AppLink) {

@@ -23,6 +23,7 @@ import {
   getCategoryLabel,
   getGithubUrl,
   getMirrorLinks,
+  linkHasVerifiableStatus,
   getPlatformShortLabel,
   getPrimaryLinks,
   type AppLink,
@@ -236,8 +237,4 @@ function getPrimaryLinkIcon(link: AppLink) {
   }
 
   return <ArrowUpRight className="h-4 w-4" />;
-}
-
-function linkHasVerifiableStatus(link: AppLink) {
-  return Boolean(link.verification || link.releaseIntegrity);
 }

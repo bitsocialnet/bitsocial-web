@@ -88,6 +88,10 @@ export interface AppData {
   searchTerms?: string[];
 }
 
+export function linkHasVerifiableStatus(link: AppLink) {
+  return Boolean(link.verification || link.releaseIntegrity);
+}
+
 export const CATEGORIES: CategoryData[] = [
   {
     slug: "apps",

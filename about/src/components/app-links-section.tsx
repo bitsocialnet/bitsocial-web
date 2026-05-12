@@ -10,6 +10,7 @@ import {
   getGithubUrl,
   getMirrorLinks,
   getSecondaryLinks,
+  linkHasVerifiableStatus,
   type AppData,
   type AppLink,
 } from "@/lib/apps-data";
@@ -144,10 +145,6 @@ function LinkGroup({
       </div>
     </div>
   );
-}
-
-function linkHasVerifiableStatus(link: AppLink) {
-  return Boolean(link.verification || link.releaseIntegrity);
 }
 
 function getLinkIcon(link: AppLink) {
