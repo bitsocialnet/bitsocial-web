@@ -57,6 +57,19 @@ export default function CardInlineCta({
     );
   }
 
+  if (href.startsWith("/api/")) {
+    return (
+      <a
+        href={href}
+        className={resolvedClassName}
+        aria-describedby={ariaDescribedBy}
+        aria-label={ariaLabel}
+      >
+        {children}
+      </a>
+    );
+  }
+
   if (href.startsWith("#")) {
     return (
       <a
