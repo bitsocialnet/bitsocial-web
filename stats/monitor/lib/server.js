@@ -134,6 +134,15 @@ app.get("/", (req, res) => {
       ...monitorState.webpages[webpageUrl],
     };
   }
+  const serviceProbes = {};
+  for (const { id: serviceProbeId, label, url } of config.monitoring.serviceProbes || []) {
+    serviceProbes[serviceProbeId] = {
+      id: serviceProbeId,
+      label,
+      url,
+      ...monitorState.serviceProbes[serviceProbeId],
+    };
+  }
   const nfts = {};
   for (const { name: nftName } of config.monitoring.nfts || []) {
     nfts[nftName] = {
@@ -153,6 +162,7 @@ app.get("/", (req, res) => {
     pkcPreviewers: previewers,
     chainProviders,
     webpages,
+    serviceProbes,
     nfts,
     network,
   };

@@ -22,6 +22,10 @@ http://:8080 {
 }
 
 newsletter.bitsocial.net {
+	handle /api/bitsocial/* {
+		reverse_proxy 127.0.0.1:9011
+	}
+
 	reverse_proxy 127.0.0.1:9000
 
 	header {

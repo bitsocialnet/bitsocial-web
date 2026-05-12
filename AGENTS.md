@@ -120,6 +120,7 @@ stats/                # Monitoring, Grafana, Prometheus, and deployment assets
 - If the user asks for a reviewable feature or fix and the current branch is `master`, create a short-lived task branch before making code changes unless the user explicitly asks to work directly on `master`.
 - Name short-lived AI task branches by intent under the Codex prefix: `codex/feature/*`, `codex/fix/*`, `codex/docs/*`, `codex/chore/*`.
 - Open PRs from task branches into `master` so review bots can run against the actual change.
+- Never open PRs as draft unless the user explicitly asks for a draft PR. Bugbot and other review automation may not run on drafts.
 - Prefer short-lived task branches over long-lived staging branches unless the user explicitly asks otherwise.
 - Use worktrees only when parallel tasks need isolated checkouts. One active task branch per worktree.
 - If a new task is unrelated to the currently checked out branch, do not stack it on that branch. Create a new worktree from `master` and create a separate short-lived task branch there.
