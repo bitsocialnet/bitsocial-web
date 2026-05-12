@@ -16,6 +16,8 @@ A decentralizált közösségi hálózatnak két kérdésre kell választ adnia:
 
 A Bitsocial úgy oldja meg az adatproblémát, hogy teljesen kihagyja a blokkláncot: a közösségi médiának nincs szüksége globális tranzakciós rendelésre vagy minden régi bejegyzés állandó elérhetőségére. Megoldja a levélszemét-problémát azáltal, hogy minden közösség számára lehetővé teszi a saját levélszemét-ellenes kihívásának futtatását a peer-to-peer hálózaton keresztül.
 
+A hálózati réteg feletti felfedezési modellhez lásd: [Tartalom felfedezése](./content-discovery.md).
+
 ---
 
 ## Nyilvános kulcs alapú címzés

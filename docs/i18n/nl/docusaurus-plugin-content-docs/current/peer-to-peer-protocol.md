@@ -16,6 +16,8 @@ Een gedecentraliseerd sociaal netwerk moet twee vragen beantwoorden:
 
 Bitsocial lost het dataprobleem op door de blockchain volledig over te slaan: sociale media hebben geen wereldwijde transactiebestelling of permanente beschikbaarheid van elk oud bericht nodig. Het lost het spamprobleem op door elke community zijn eigen anti-spam-uitdaging te laten uitvoeren via het peer-to-peer-netwerk.
 
+Voor het ontdekkingsmodel boven deze netwerklaag, zie [Inhoud ontdekken](./content-discovery.md).
+
 ---
 
 ## Op openbare sleutels gebaseerde adressering

@@ -16,6 +16,8 @@ Merkezi olmayan bir sosyal ağın iki soruyu yanıtlaması gerekir:
 
 Bitsocial, veri sorununu blok zincirini tamamen atlayarak çözüyor: sosyal medyanın küresel işlem sıralamasına veya her eski gönderinin kalıcı olarak bulunmasına ihtiyacı yok. Her topluluğun eşler arası ağ üzerinden kendi anti-spam mücadelesini yürütmesine izin vererek spam sorununu çözer.
 
+Bu ağ katmanının üzerindeki keşif modeli için bkz. [İçerik Keşfi](./content-discovery.md).
+
 ---
 
 ## Genel anahtar tabanlı adresleme

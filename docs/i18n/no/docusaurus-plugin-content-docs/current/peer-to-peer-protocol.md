@@ -16,6 +16,8 @@ Et desentralisert sosialt nettverk må svare på to spørsmål:
 
 Bitsocial løser dataproblemet ved å hoppe over blokkjeden helt: sosiale medier trenger ikke global transaksjonsbestilling eller permanent tilgjengelighet for alle gamle innlegg. Det løser spam-problemet ved å la hvert fellesskap kjøre sin egen anti-spam-utfordring over peer-to-peer-nettverket.
 
+For funnmodellen over dette nettverkslaget, se [Oppdagelse av innhold](./content-discovery.md).
+
 ---
 
 ## Offentlig nøkkelbasert adressering

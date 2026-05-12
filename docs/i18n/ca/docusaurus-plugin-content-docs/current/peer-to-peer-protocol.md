@@ -16,6 +16,8 @@ Una xarxa social descentralitzada ha de respondre a dues preguntes:
 
 Bitsocial soluciona el problema de les dades saltant completament la cadena de blocs: les xarxes socials no necessiten ordenar transaccions globals ni disponibilitat permanent de cada publicació antiga. Soluciona el problema del correu brossa deixant que cada comunitat executi el seu propi repte anti-spam a través de la xarxa peer-to-peer.
 
+Per al model de descoberta per sobre d'aquesta capa de xarxa, vegeu [Descobriment de continguts](./content-discovery.md).
+
 ---
 
 ## Adreçament basat en clau pública

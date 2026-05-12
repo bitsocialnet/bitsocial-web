@@ -33,6 +33,8 @@ Bitsocial solves the data problem by skipping the blockchain entirely: social me
 global transaction ordering or permanent availability of every old post. It solves the spam problem
 by letting each community run its own anti-spam challenge over the peer-to-peer network.
 
+For the discovery model above this network layer, see [Content Discovery](./content-discovery.md).
+
 ---
 
 ## Public-key-based addressing

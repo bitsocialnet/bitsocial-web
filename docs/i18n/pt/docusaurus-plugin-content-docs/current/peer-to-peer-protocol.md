@@ -16,6 +16,8 @@ Uma rede social descentralizada deve responder a duas questões:
 
 O Bitsocial resolve o problema dos dados ignorando totalmente o blockchain: a mídia social não precisa de pedidos de transações globais ou de disponibilidade permanente de todas as postagens antigas. Ele resolve o problema do spam, permitindo que cada comunidade execute seu próprio desafio anti-spam na rede ponto a ponto.
 
+Para o modelo de descoberta acima desta camada de rede, consulte [Descoberta de conteúdo](./content-discovery.md).
+
 ---
 
 ## Endereçamento baseado em chave pública

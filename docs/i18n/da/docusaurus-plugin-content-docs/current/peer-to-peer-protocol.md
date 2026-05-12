@@ -16,6 +16,8 @@ Et decentraliseret socialt netværk skal besvare to spørgsmål:
 
 Bitsocial løser dataproblemet ved at springe blockchain helt over: sociale medier behøver ikke global transaktionsbestilling eller permanent tilgængelighed af alle gamle indlæg. Det løser spam-problemet ved at lade hvert fællesskab køre sin egen anti-spam-udfordring over peer-to-peer-netværket.
 
+For opdagelsesmodellen over dette netværkslag, se [Opdagelse af indhold](./content-discovery.md).
+
 ---
 
 ## Offentlig nøgle-baseret adressering

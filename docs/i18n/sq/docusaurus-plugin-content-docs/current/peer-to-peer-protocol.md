@@ -16,6 +16,8 @@ Një rrjet social i decentralizuar duhet t'i përgjigjet dy pyetjeve:
 
 Bitsocial zgjidh problemin e të dhënave duke anashkaluar tërësisht blockchain: media sociale nuk ka nevojë për porositjen globale të transaksioneve ose disponueshmërinë e përhershme të çdo postimi të vjetër. Ai zgjidh problemin e postës së padëshiruar duke lejuar çdo komunitet të ekzekutojë sfidën e tij anti-spam mbi rrjetin peer-to-peer.
 
+Për modelin e zbulimit mbi këtë shtresë rrjeti, shihni [Zbulimi i përmbajtjes](./content-discovery.md).
+
 ---
 
 ## Adresimi i bazuar në çelës publik

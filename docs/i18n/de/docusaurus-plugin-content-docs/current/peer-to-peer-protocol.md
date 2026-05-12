@@ -16,6 +16,8 @@ Ein dezentrales soziales Netzwerk muss zwei Fragen beantworten:
 
 Bitsocial löst das Datenproblem, indem es die Blockchain vollständig überspringt: Social Media benötigt keine globale Transaktionsreihenfolge oder permanente Verfügbarkeit jedes alten Beitrags. Es löst das Spam-Problem, indem es jeder Community ermöglicht, ihre eigene Anti-Spam-Herausforderung über das Peer-to-Peer-Netzwerk durchzuführen.
 
+Informationen zum Erkennungsmodell über dieser Netzwerkschicht finden Sie unter [Inhaltserkennung](./content-discovery.md).
+
 ---
 
 ## Adressierung auf Basis öffentlicher Schlüssel

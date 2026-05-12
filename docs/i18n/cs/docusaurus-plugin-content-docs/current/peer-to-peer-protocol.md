@@ -16,6 +16,8 @@ Decentralizovaná sociální síť musí odpovědět na dvě otázky:
 
 Bitsocial řeší problém s daty úplným vynecháním blockchainu: sociální média nepotřebují globální objednávání transakcí ani trvalou dostupnost každého starého příspěvku. Řeší problém se spamem tím, že každé komunitě umožňuje spustit vlastní antispamovou výzvu přes síť peer-to-peer.
 
+Pro model zjišťování nad touto síťovou vrstvou viz [Objevování obsahu](./content-discovery.md).
+
 ---
 
 ## Adresování na základě veřejného klíče

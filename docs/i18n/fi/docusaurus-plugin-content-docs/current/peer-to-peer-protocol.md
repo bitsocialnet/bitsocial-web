@@ -16,6 +16,8 @@ Hajautetun sosiaalisen verkoston on vastattava kahteen kysymykseen:
 
 Bitsocial ratkaisee dataongelman ohittamalla lohkoketjun kokonaan: sosiaalinen media ei tarvitse globaalia tapahtumajärjestystä tai jokaisen vanhan postauksen pysyvää saatavuutta. Se ratkaisee roskapostiongelman antamalla jokaisen yhteisön suorittaa oman roskapostin estohaasteensa vertaisverkon kautta.
 
+Tämän verkkokerroksen yläpuolella olevasta etsintämallista löytyy [Sisällön löytäminen](./content-discovery.md).
+
 ---
 
 ## Julkiseen avaimeen perustuva osoitus

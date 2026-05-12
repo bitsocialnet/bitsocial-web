@@ -16,6 +16,8 @@ Một mạng xã hội phi tập trung phải trả lời hai câu hỏi:
 
 Bitsocial giải quyết vấn đề dữ liệu bằng cách bỏ qua hoàn toàn blockchain: phương tiện truyền thông xã hội không cần đặt hàng giao dịch toàn cầu hoặc tính khả dụng vĩnh viễn của mỗi bài đăng cũ. Nó giải quyết vấn đề thư rác bằng cách cho phép mỗi cộng đồng thực hiện thử thách chống thư rác riêng trên mạng ngang hàng.
 
+Để biết mô hình khám phá phía trên lớp mạng này, hãy xem [Khám phá nội dung](./content-discovery.md).
+
 ---
 
 ## Địa chỉ dựa trên khóa công khai

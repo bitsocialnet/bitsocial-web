@@ -9,6 +9,7 @@ const sidebars: SidebarsConfig = {
       label: "Protocol notes",
       items: [
         "peer-to-peer-protocol",
+        "content-discovery",
         "custom-challenges",
         "local-moderation",
         "identity-and-ownership",

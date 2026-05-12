@@ -16,6 +16,8 @@ Jejaring sosial yang terdesentralisasi harus menjawab dua pertanyaan:
 
 Bitsocial memecahkan masalah data dengan melewatkan blockchain sepenuhnya: media sosial tidak memerlukan pemesanan transaksi global atau ketersediaan permanen dari setiap postingan lama. Ini memecahkan masalah spam dengan membiarkan setiap komunitas menjalankan tantangan anti-spamnya sendiri melalui jaringan peer-to-peer.
 
+Untuk model penemuan di atas lapisan jaringan ini, lihat [Penemuan Konten](./content-discovery.md).
+
 ---
 
 ## Pengalamatan berbasis kunci publik

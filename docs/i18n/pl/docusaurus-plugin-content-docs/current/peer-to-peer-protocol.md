@@ -16,6 +16,8 @@ Zdecentralizowana sieć społecznościowa musi odpowiedzieć na dwa pytania:
 
 Bitsocial rozwiązuje problem danych, całkowicie pomijając blockchain: media społecznościowe nie wymagają globalnego porządkowania transakcji ani stałej dostępności każdego starego postu. Rozwiązuje problem spamu, umożliwiając każdej społeczności prowadzenie własnego wyzwania antyspamowego w sieci peer-to-peer.
 
+Model odkrywania nad tą warstwą sieci opisuje [Odkrywanie treści](./content-discovery.md).
+
 ---
 
 ## Adresowanie oparte na kluczu publicznym

@@ -16,6 +16,8 @@ Ang isang desentralisadong social network ay kailangang sagutin ang dalawang tan
 
 Nilulutas ng Bitsocial ang problema sa data sa pamamagitan ng paglaktaw sa blockchain nang buo: hindi kailangan ng social media ang pag-order ng pandaigdigang transaksyon o permanenteng pagkakaroon ng bawat lumang post. Niresolba nito ang problema sa spam sa pamamagitan ng pagpayag sa bawat komunidad na magpatakbo ng sarili nitong anti-spam na hamon sa peer-to-peer network.
 
+Para sa modelo ng pagtuklas sa itaas ng network layer na ito, tingnan ang [Pagtuklas ng Nilalaman](./content-discovery.md).
+
 ---
 
 ## Pampublikong-key-based na addressing

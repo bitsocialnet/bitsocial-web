@@ -16,6 +16,8 @@ O rețea socială descentralizată trebuie să răspundă la două întrebări:
 
 Bitsocial rezolvă problema datelor ignorând în întregime blockchain-ul: rețelele sociale nu au nevoie de comandarea tranzacțiilor globale sau disponibilitatea permanentă a fiecărei postări vechi. Rezolvă problema spam-ului, permițând fiecărei comunități să își execute propria provocare anti-spam prin rețeaua peer-to-peer.
 
+Pentru modelul de descoperire de deasupra acestui strat de rețea, consultați [Descoperirea conținutului](./content-discovery.md).
+
 ---
 
 ## Adresare bazată pe chei publice
