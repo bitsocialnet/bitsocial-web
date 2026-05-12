@@ -22,6 +22,7 @@ import { monitorHttpRouters } from "./lib/http-router.js";
 import { monitorPkcPreviewers } from "./lib/pkc-previewer.js";
 import { monitorChainProviders } from "./lib/chain-provider.js";
 import { monitorWebpages } from "./lib/webpage.js";
+import { monitorServiceProbes } from "./lib/service-probe.js";
 import { monitorNfts } from "./lib/nft.js";
 import { monitorPkcSeeders } from "./lib/pkc-seeder.js";
 
@@ -42,6 +43,7 @@ const httpRoutersIntervalMs = 1000 * 60 * 10;
 const pkcPreviewersIntervalMs = 1000 * 60 * 10;
 const chainProvidersIntervalMs = 1000 * 60;
 const webpagesIntervalMs = 1000 * 60 * 10;
+const serviceProbesIntervalMs = 1000 * 60;
 const nftsIntervalMs = 1000 * 60 * 10;
 const pkcSeedersIntervalMs = 1000 * 60 * 10;
 const monitoringNameAliases = {
@@ -227,6 +229,15 @@ if (isMonitoring("chainProviders")) {
 if (isMonitoring("webpages")) {
   monitorWebpages().catch((e) => console.log(e.message));
   setInterval(() => monitorWebpages().catch((e) => console.log(e.message)), webpagesIntervalMs);
+}
+
+// run service probes every 1min
+if (isMonitoring("serviceProbes")) {
+  monitorServiceProbes().catch((e) => console.log(e.message));
+  setInterval(
+    () => monitorServiceProbes().catch((e) => console.log(e.message)),
+    serviceProbesIntervalMs,
+  );
 }
 
 // fetch nfts every 10min

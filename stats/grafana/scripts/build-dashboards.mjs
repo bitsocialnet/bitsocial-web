@@ -24,6 +24,7 @@ const LOWER_SECTIONS_START = 384;
 const NFT_ROW_INDEX = 432;
 const COMMUNITY_PANEL_COUNT_PER_GROUP = 5;
 const COMMUNITY_GROUP_HEIGHT = 4;
+const SERVICE_SECTION_HEIGHT = 9;
 const GENERATED_PANEL_ID_START = 2000000000;
 const PROMETHEUS_DATASOURCE = { type: "prometheus", uid: "prometheus" };
 
@@ -292,6 +293,216 @@ const shiftPanelsY = (panels, deltaY, { clientId } = {}) =>
     return transformedPanel;
   });
 
+const makeRowPanel = ({ title, y }) => ({
+  collapsed: false,
+  gridPos: { h: 1, w: 24, x: 0, y },
+  id: makeGeneratedPanelId(),
+  panels: [],
+  title,
+  type: "row",
+});
+
+const makeStatPanel = ({ title, expr, x, y, w, h, unit = "none", mappings, thresholds }) => ({
+  datasource: clone(PROMETHEUS_DATASOURCE),
+  fieldConfig: {
+    defaults: {
+      color: {
+        mode: "thresholds",
+      },
+      mappings: mappings || [],
+      thresholds: thresholds || {
+        mode: "absolute",
+        steps: [
+          { color: "red", value: null },
+          { color: "green", value: 1 },
+        ],
+      },
+      unit,
+    },
+    overrides: [],
+  },
+  gridPos: { h, w, x, y },
+  id: makeGeneratedPanelId(),
+  options: {
+    colorMode: "background",
+    graphMode: "area",
+    justifyMode: "auto",
+    orientation: "auto",
+    percentChangeColorMode: "standard",
+    reduceOptions: {
+      calcs: ["lastNotNull"],
+      fields: "",
+      values: false,
+    },
+    showPercentChange: false,
+    textMode: "auto",
+    wideLayout: true,
+  },
+  targets: [
+    {
+      datasource: clone(PROMETHEUS_DATASOURCE),
+      editorMode: "code",
+      expr,
+      legendFormat: "__auto",
+      range: true,
+      refId: "A",
+    },
+  ],
+  title,
+  type: "stat",
+});
+
+const makeTimeseriesPanel = ({ title, expr, x, y, w, h, unit = "s" }) => ({
+  datasource: clone(PROMETHEUS_DATASOURCE),
+  fieldConfig: {
+    defaults: {
+      color: {
+        mode: "palette-classic",
+      },
+      custom: {
+        axisBorderShow: false,
+        axisCenteredZero: false,
+        axisColorMode: "text",
+        axisLabel: "",
+        axisPlacement: "auto",
+        barAlignment: 0,
+        drawStyle: "line",
+        fillOpacity: 0,
+        gradientMode: "none",
+        hideFrom: {
+          legend: false,
+          tooltip: false,
+          viz: false,
+        },
+        insertNulls: false,
+        lineInterpolation: "linear",
+        lineWidth: 1,
+        pointSize: 5,
+        scaleDistribution: {
+          type: "linear",
+        },
+        showPoints: "never",
+        spanNulls: false,
+        stacking: {
+          group: "A",
+          mode: "none",
+        },
+        thresholdsStyle: {
+          mode: "off",
+        },
+      },
+      thresholds: {
+        mode: "absolute",
+        steps: [{ color: "green", value: null }],
+      },
+      unit,
+    },
+    overrides: [],
+  },
+  gridPos: { h, w, x, y },
+  id: makeGeneratedPanelId(),
+  options: {
+    legend: {
+      calcs: ["lastNotNull"],
+      displayMode: "list",
+      placement: "bottom",
+      showLegend: true,
+    },
+    tooltip: {
+      hideZeros: false,
+      mode: "single",
+      sort: "none",
+    },
+  },
+  targets: [
+    {
+      datasource: clone(PROMETHEUS_DATASOURCE),
+      editorMode: "code",
+      expr,
+      legendFormat: "__auto",
+      range: true,
+      refId: "A",
+    },
+  ],
+  title,
+  type: "timeseries",
+});
+
+const serviceStatusMappings = [
+  {
+    options: {
+      0: { color: "red", text: "Down" },
+      1: { color: "green", text: "Up" },
+    },
+    type: "value",
+  },
+];
+
+const buildServicePanels = (startY) => [
+  makeRowPanel({ title: "Bitsocial Services", y: startY }),
+  makeStatPanel({
+    title: "Newsletter Gateway",
+    expr: 'bitsocial_stats_service_probe_last_success{service_probe_id="newsletter_subscribe_gateway"}',
+    x: 0,
+    y: startY + 1,
+    w: 6,
+    h: 4,
+    mappings: serviceStatusMappings,
+  }),
+  makeStatPanel({
+    title: "Newsletter CORS",
+    expr: 'bitsocial_stats_service_probe_last_success{service_probe_id="newsletter_subscribe_preflight"}',
+    x: 6,
+    y: startY + 1,
+    w: 6,
+    h: 4,
+    mappings: serviceStatusMappings,
+  }),
+  makeStatPanel({
+    title: "Newsletter Site",
+    expr: 'bitsocial_stats_service_probe_last_success{service_probe_id="newsletter_site_root"}',
+    x: 12,
+    y: startY + 1,
+    w: 6,
+    h: 4,
+    mappings: serviceStatusMappings,
+  }),
+  makeStatPanel({
+    title: "Newsletter API Latency",
+    expr: 'bitsocial_stats_service_probe_last_duration_seconds{service_probe_id="newsletter_subscribe_gateway"}',
+    x: 18,
+    y: startY + 1,
+    w: 6,
+    h: 4,
+    unit: "s",
+    thresholds: {
+      mode: "absolute",
+      steps: [
+        { color: "green", value: null },
+        { color: "orange", value: 3 },
+        { color: "red", value: 10 },
+      ],
+    },
+  }),
+  makeTimeseriesPanel({
+    title: "Newsletter API Latency",
+    expr: 'bitsocial_stats_service_probe_last_duration_seconds{service_probe_id="newsletter_subscribe_gateway"}',
+    x: 0,
+    y: startY + 5,
+    w: 12,
+    h: 4,
+  }),
+  makeTimeseriesPanel({
+    title: "Newsletter Availability",
+    expr: 'min(bitsocial_stats_service_probe_last_success{service_probe_id=~"newsletter_site_root|newsletter_subscribe_gateway|newsletter_subscribe_preflight"})',
+    x: 12,
+    y: startY + 5,
+    w: 12,
+    h: 4,
+    unit: "bool",
+  }),
+];
+
 const applyPanelTitleOverrides = (dashboard) => {
   const panelsById = new Map(dashboard.panels.map((panel) => [panel.id, panel]));
 
@@ -343,23 +554,26 @@ const buildDashboard = ({ upstreamDashboard, communities, title, uid }) => {
     PUBSUB_PANEL_START + COMMUNITY_PANEL_COUNT_PER_GROUP,
   );
 
-  setPanelGridY(pubsubRow, pubsubRow.gridPos.y - communitySectionDelta);
+  const servicePanels = buildServicePanels(communityRow.gridPos.y);
+
+  setPanelGridY(communityRow, communityRow.gridPos.y + SERVICE_SECTION_HEIGHT);
+  setPanelGridY(pubsubRow, pubsubRow.gridPos.y - communitySectionDelta + SERVICE_SECTION_HEIGHT);
 
   const communityPanels = buildCommunitySectionPanels({
     templatePanels: communityTemplatePanels,
     communities,
-    startY: communityTemplatePanels[0].gridPos.y,
+    startY: communityTemplatePanels[0].gridPos.y + SERVICE_SECTION_HEIGHT,
     clientId: COMMUNITY_FILTER,
   });
   const pubsubPanels = buildCommunitySectionPanels({
     templatePanels: pubsubTemplatePanels,
     communities,
-    startY: pubsubTemplatePanels[0].gridPos.y - communitySectionDelta,
+    startY: pubsubTemplatePanels[0].gridPos.y - communitySectionDelta + SERVICE_SECTION_HEIGHT,
     clientId: COMMUNITY_FILTER,
   });
   const lowerPanels = shiftPanelsY(
     basePanels.slice(LOWER_SECTIONS_START, NFT_ROW_INDEX),
-    -(communitySectionDelta + pubsubSectionDelta),
+    -(communitySectionDelta + pubsubSectionDelta) + SERVICE_SECTION_HEIGHT,
   );
 
   const dashboard = clone(upstreamDashboard);
@@ -371,6 +585,7 @@ const buildDashboard = ({ upstreamDashboard, communities, title, uid }) => {
   dashboard.editable = false;
   dashboard.panels = [
     ...topPanels,
+    ...servicePanels,
     communityRow,
     ...communityPanels,
     pubsubRow,
