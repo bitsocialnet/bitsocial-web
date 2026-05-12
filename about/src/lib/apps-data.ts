@@ -16,6 +16,15 @@ export interface AppMirrorVerification {
   releaseTag: string;
 }
 
+export interface AppReleaseIntegrityProbe {
+  appName: string;
+  keyId: string;
+  manifestUrl: string;
+  publicKeyJwk: JsonWebKey;
+  signatureUrl: string;
+  targetMeasurementsUrl: string;
+}
+
 export type AppIconKey =
   | "image"
   | "message-square"
@@ -41,15 +50,25 @@ export interface CategoryData {
   icon: "layout-grid" | "shield" | "wrench";
 }
 
-export interface AppLink {
+interface BaseAppLink {
   label: string;
   url: string;
-  kind: AppLinkKind;
   platform?: AppPlatformSlug;
   variant?: DesktopVariant;
   primary?: boolean;
-  verification?: AppMirrorVerification;
 }
+
+export type AppLink =
+  | (BaseAppLink & {
+      kind: "launch" | "mirror";
+      releaseIntegrity?: AppReleaseIntegrityProbe;
+      verification?: AppMirrorVerification;
+    })
+  | (BaseAppLink & {
+      kind: Exclude<AppLinkKind, "launch" | "mirror">;
+      releaseIntegrity?: never;
+      verification?: never;
+    });
 
 export interface AppData {
   slug: string;
@@ -67,6 +86,10 @@ export interface AppData {
   featured?: boolean;
   status?: "ready" | "experimental";
   searchTerms?: string[];
+}
+
+export function linkHasVerifiableStatus(link: AppLink) {
+  return Boolean(link.verification || link.releaseIntegrity);
 }
 
 export const CATEGORIES: CategoryData[] = [
@@ -258,37 +281,40 @@ function translateCatalogValue(t: TFunction, key: string, fallback: string): str
   return typeof translatedValue === "string" ? translatedValue : fallback;
 }
 
-const FIVECHAN_0_8_0_HTML_VERIFICATION: AppMirrorVerification = {
+const FIVECHAN_RELEASE_PUBLIC_KEY_JWK: JsonWebKey = {
+  crv: "P-256",
+  ext: true,
+  key_ops: ["verify"],
+  kty: "EC",
+  x: "IR6Kz6DlypO9x1cQzjcFUYq3suWWsPuacSI5tdottcQ",
+  y: "38GJRFhC6IKVDX_N8csqlRX4ERqIVgbLm9wmqspNDkI",
+};
+
+const SEEDIT_RELEASE_PUBLIC_KEY_JWK: JsonWebKey = {
+  crv: "P-256",
+  ext: true,
+  key_ops: ["verify"],
+  kty: "EC",
+  x: "JO91ctROSL7ft410tY9KuY9aYkmbyikbjGDawhhL6vA",
+  y: "LPp2XNKyfM2GDHj11gaOHhD3YV0sRzhCODLKPGNt5oA",
+};
+
+const FIVECHAN_SIGNED_RELEASE_INTEGRITY: AppReleaseIntegrityProbe = {
   appName: "5chan",
-  checkedAt: "2026-04-28",
-  indexHtmlSha256: "ce82acd37c26292d0ce44620e0b6268aea5b01faed0b8740eaeb6356ef26a6e4",
-  releaseAssetName: "5chan-0.8.0-html.zip",
-  releaseAssetSha256: "sha256:8954fd1965ab386d41ea17858f0b3436b3534eaf8a751936c47061b36314ef8b",
-  releaseAssetUrl:
-    "https://github.com/bitsocialnet/5chan/releases/download/v0.8.0/5chan-0.8.0-html.zip",
-  releaseTag: "v0.8.0",
+  keyId: "5chan-release-p256-2026-05",
+  manifestUrl: "/api/release-integrity?app=5chan&asset=manifest",
+  publicKeyJwk: FIVECHAN_RELEASE_PUBLIC_KEY_JWK,
+  signatureUrl: "/api/release-integrity?app=5chan&asset=signature",
+  targetMeasurementsUrl: "/api/release-integrity?app=5chan&asset=target-measurements",
 };
 
-const SEEDIT_0_5_9_HTML_VERIFICATION: AppMirrorVerification = {
+const SEEDIT_SIGNED_RELEASE_INTEGRITY: AppReleaseIntegrityProbe = {
   appName: "Seedit",
-  checkedAt: "2026-04-24",
-  indexHtmlSha256: "d7247e460ff14367f1413ec56fe1ac51f4c33c818e405e203428cb6fc9ebbbf4",
-  releaseAssetName: "seedit-html-0.5.9.zip",
-  releaseAssetSha256: "sha256:25bb49e8d5703fd5c0791fb4941549813cbbd59390eaf0da4938723dec7c8d86",
-  releaseAssetUrl:
-    "https://github.com/bitsocialnet/seedit/releases/download/v0.5.9/seedit-html-0.5.9.zip",
-  releaseTag: "v0.5.9",
-};
-
-const SEEDIT_0_5_10_HTML_VERIFICATION: AppMirrorVerification = {
-  appName: "Seedit",
-  checkedAt: "2026-04-28",
-  indexHtmlSha256: "227d8b780e3490e04a29e03248f1ef4f05235953c7365c33a01b6ec54af22418",
-  releaseAssetName: "seedit-html-0.5.10.zip",
-  releaseAssetSha256: "sha256:fd8b3d6cf3ec93055bac01e2e482ee768ff6d6fe1cdddc12f7bcfa0209122deb",
-  releaseAssetUrl:
-    "https://github.com/bitsocialnet/seedit/releases/download/v0.5.10/seedit-html-0.5.10.zip",
-  releaseTag: "v0.5.10",
+  keyId: "seedit-release-p256-2026-05",
+  manifestUrl: "/api/release-integrity?app=seedit&asset=manifest",
+  publicKeyJwk: SEEDIT_RELEASE_PUBLIC_KEY_JWK,
+  signatureUrl: "/api/release-integrity?app=seedit&asset=signature",
+  targetMeasurementsUrl: "/api/release-integrity?app=seedit&asset=target-measurements",
 };
 
 export function getCategoryLabel(
@@ -363,7 +389,7 @@ export function getAppDescription(app: AppData, t: TFunction) {
   return key ? translateCatalogValue(t, key, app.description) : app.description;
 }
 
-// Release asset URLs were verified on 2026-04-03 via `gh release view`.
+// Native release downloads go through the same-origin release API so they can track latest assets.
 export const APPS: AppData[] = [
   {
     slug: "5chan",
@@ -383,45 +409,45 @@ export const APPS: AppData[] = [
         url: "https://5chan.app",
         kind: "launch",
         platform: "web",
-        verification: FIVECHAN_0_8_0_HTML_VERIFICATION,
+        releaseIntegrity: FIVECHAN_SIGNED_RELEASE_INTEGRITY,
       },
       {
         label: "Android APK",
-        url: "https://github.com/bitsocialnet/5chan/releases/download/v0.7.3/5chan-0.7.3.apk",
+        url: "/api/release-integrity?app=5chan&asset=download&variant=android",
         kind: "download",
         platform: "android",
       },
       {
         label: "Windows",
-        url: "https://github.com/bitsocialnet/5chan/releases/download/v0.7.3/5chan-0.7.3.Setup.exe",
+        url: "/api/release-integrity?app=5chan&asset=download&variant=windows",
         kind: "download",
         platform: "desktop",
         variant: "windows",
       },
       {
         label: "macOS Intel",
-        url: "https://github.com/bitsocialnet/5chan/releases/download/v0.7.3/5chan-0.7.3-x64.dmg",
+        url: "/api/release-integrity?app=5chan&asset=download&variant=macos-x64",
         kind: "download",
         platform: "desktop",
         variant: "macos",
       },
       {
         label: "Linux x64",
-        url: "https://github.com/bitsocialnet/5chan/releases/download/v0.7.3/5chan-0.7.3-x64.AppImage",
+        url: "/api/release-integrity?app=5chan&asset=download&variant=linux-x64",
         kind: "download",
         platform: "desktop",
         variant: "linux",
       },
       {
         label: "macOS Apple",
-        url: "https://github.com/bitsocialnet/5chan/releases/download/v0.7.3/5chan-0.7.3-arm64.dmg",
+        url: "/api/release-integrity?app=5chan&asset=download&variant=macos-arm64",
         kind: "download",
         platform: "desktop",
         variant: "macos-arm",
       },
       {
         label: "Linux ARM",
-        url: "https://github.com/bitsocialnet/5chan/releases/download/v0.7.3/5chan-0.7.3-arm64.AppImage",
+        url: "/api/release-integrity?app=5chan&asset=download&variant=linux-arm64",
         kind: "download",
         platform: "desktop",
         variant: "linux-arm",
@@ -432,21 +458,21 @@ export const APPS: AppData[] = [
         url: "https://5chan.eth.limo",
         kind: "mirror",
         platform: "web",
-        verification: FIVECHAN_0_8_0_HTML_VERIFICATION,
+        releaseIntegrity: FIVECHAN_SIGNED_RELEASE_INTEGRITY,
       },
       {
         label: "5chan.cc",
         url: "https://5chan.cc",
         kind: "mirror",
         platform: "web",
-        verification: FIVECHAN_0_8_0_HTML_VERIFICATION,
+        releaseIntegrity: FIVECHAN_SIGNED_RELEASE_INTEGRITY,
       },
       {
         label: "5channel.org",
         url: "https://5channel.org",
         kind: "mirror",
         platform: "web",
-        verification: FIVECHAN_0_8_0_HTML_VERIFICATION,
+        releaseIntegrity: FIVECHAN_SIGNED_RELEASE_INTEGRITY,
       },
     ],
     relatedSlugs: ["5chan-board-manager", "seedit"],
@@ -468,48 +494,48 @@ export const APPS: AppData[] = [
     links: [
       {
         label: "Open web app",
-        url: "https://www.seedit.app",
+        url: "https://seedit.app",
         kind: "launch",
         platform: "web",
-        verification: SEEDIT_0_5_10_HTML_VERIFICATION,
+        releaseIntegrity: SEEDIT_SIGNED_RELEASE_INTEGRITY,
       },
       {
         label: "Android APK",
-        url: "https://github.com/bitsocialnet/seedit/releases/download/v0.5.10/seedit-0.5.10.apk",
+        url: "/api/release-integrity?app=seedit&asset=download&variant=android",
         kind: "download",
         platform: "android",
       },
       {
         label: "Windows",
-        url: "https://github.com/bitsocialnet/seedit/releases/download/v0.5.10/seedit.Setup.0.5.10.exe",
+        url: "/api/release-integrity?app=seedit&asset=download&variant=windows",
         kind: "download",
         platform: "desktop",
         variant: "windows",
       },
       {
         label: "macOS Intel",
-        url: "https://github.com/bitsocialnet/seedit/releases/download/v0.5.10/seedit-0.5.10.dmg",
+        url: "/api/release-integrity?app=seedit&asset=download&variant=macos-x64",
         kind: "download",
         platform: "desktop",
         variant: "macos",
       },
       {
         label: "Linux",
-        url: "https://github.com/bitsocialnet/seedit/releases/download/v0.5.10/seedit-0.5.10.AppImage",
+        url: "/api/release-integrity?app=seedit&asset=download&variant=linux-x64",
         kind: "download",
         platform: "desktop",
         variant: "linux",
       },
       {
         label: "macOS Apple",
-        url: "https://github.com/bitsocialnet/seedit/releases/download/v0.5.10/seedit-0.5.10-arm64.dmg",
+        url: "/api/release-integrity?app=seedit&asset=download&variant=macos-arm64",
         kind: "download",
         platform: "desktop",
         variant: "macos-arm",
       },
       {
         label: "Linux ARM",
-        url: "https://github.com/bitsocialnet/seedit/releases/download/v0.5.10/seedit-0.5.10-arm64.AppImage",
+        url: "/api/release-integrity?app=seedit&asset=download&variant=linux-arm64",
         kind: "download",
         platform: "desktop",
         variant: "linux-arm",
@@ -517,7 +543,7 @@ export const APPS: AppData[] = [
       },
       {
         label: "Windows Portable",
-        url: "https://github.com/bitsocialnet/seedit/releases/download/v0.5.10/seedit.Portable.0.5.10.exe",
+        url: "/api/release-integrity?app=seedit&asset=download&variant=windows-portable",
         kind: "download",
         platform: "desktop",
         variant: "windows-portable",
@@ -528,21 +554,21 @@ export const APPS: AppData[] = [
         url: "https://seedit.eth.limo",
         kind: "mirror",
         platform: "web",
-        verification: SEEDIT_0_5_9_HTML_VERIFICATION,
+        releaseIntegrity: SEEDIT_SIGNED_RELEASE_INTEGRITY,
       },
       {
         label: "seedit.online",
         url: "https://seedit.online",
         kind: "mirror",
         platform: "web",
-        verification: SEEDIT_0_5_10_HTML_VERIFICATION,
+        releaseIntegrity: SEEDIT_SIGNED_RELEASE_INTEGRITY,
       },
       {
         label: "seedit.today",
         url: "https://seedit.today",
         kind: "mirror",
         platform: "web",
-        verification: SEEDIT_0_5_10_HTML_VERIFICATION,
+        releaseIntegrity: SEEDIT_SIGNED_RELEASE_INTEGRITY,
       },
     ],
     relatedSlugs: ["5chan"],

@@ -10,6 +10,7 @@ import {
   getGithubUrl,
   getMirrorLinks,
   getSecondaryLinks,
+  linkHasVerifiableStatus,
   type AppData,
   type AppLink,
 } from "@/lib/apps-data";
@@ -112,7 +113,7 @@ function LinkGroup({
       <h3 className="mb-3 font-display text-lg text-foreground">{title}</h3>
       <div className="flex flex-wrap gap-2.5">
         {links.map((link) =>
-          link.verification ? (
+          linkHasVerifiableStatus(link) ? (
             <AppMirrorLinkCta
               key={link.url}
               link={link}
@@ -151,6 +152,10 @@ function getLinkIcon(link: AppLink) {
     return <Package className="h-4 w-4" />;
   }
 
+  if (link.kind === "download") {
+    return <Download className="h-4 w-4" />;
+  }
+
   if (link.platform === "web") {
     return link.kind === "mirror" ? (
       <ArrowUpRight className="h-4 w-4" />
@@ -161,10 +166,6 @@ function getLinkIcon(link: AppLink) {
 
   if (link.platform === "android" || link.platform === "ios") {
     return <Smartphone className="h-4 w-4" />;
-  }
-
-  if (link.platform === "desktop" && link.kind === "download") {
-    return <Download className="h-4 w-4" />;
   }
 
   return <ArrowUpRight className="h-4 w-4" />;
