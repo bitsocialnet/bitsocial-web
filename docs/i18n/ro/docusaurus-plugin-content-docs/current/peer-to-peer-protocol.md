@@ -1,6 +1,6 @@
 ---
 title: Protocolul peer-to-peer
-description: Cum folosește Bitsocial adresarea cu cheie publică și pubsub peer-to-peer pentru a oferi rețele sociale fără server.
+description: Cum folosește Bitsocial IPFS/libp2p, adresarea cu cheie publică, pubsub peer-to-peer și nodurile P2P ale browserului pentru a furniza rețele sociale fără server.
 ---
 
 # Protocolul peer-to-peer
@@ -212,16 +212,34 @@ Acest lucru este similar cu modul în care BitTorrent face posibilă descoperire
 
 ---
 
-## Utilizatori de browser și gateway-uri
+## Browser peer-to-peer
 
-Browserele nu se pot conecta direct la rețele peer-to-peer. Bitsocial se ocupă de asta cu **gateway-uri HTTP** care transmit date între rețeaua P2P și clienții browser. Aceste gateway-uri:
+Browserul P2P este acum posibil în clienții Bitsocial. O aplicație de browser poate rula un nod [Helia](https://helia.io/), poate folosi aceeași stivă de client de protocol Bitsocial ca și alte aplicații și poate prelua conținut de la colegi în loc să ceară unui gateway IPFS centralizat să-l servească. Browserul poate participa și la pubsub direct, astfel încât postarea nu necesită un furnizor pubsub deținut de platformă în calea fericită.
+
+Acesta este punctul de hotar important pentru distribuția web: un site web HTTPS normal se poate deschide într-un client social P2P live. Utilizatorii nu trebuie să instaleze o aplicație desktop înainte de a putea citi din rețea, iar operatorul aplicației nu trebuie să ruleze un gateway central care devine punctul de blocare de cenzură sau moderare pentru fiecare utilizator de browser.
+
+Calea browserului are limite diferite față de un nod desktop sau server:
+
+- un nod de browser nu poate accepta de obicei conexiuni de intrare arbitrare de la internetul public
+- poate încărca, valida, stoca în cache și publica date în timp ce aplicația este deschisă
+- nu ar trebui tratat ca o gazdă de lungă durată pentru datele unei comunități
+- găzduirea comunitară completă este încă gestionată cel mai bine de o aplicație desktop, `bitsocial-cli` sau de altă
+  nodul mereu activ
+
+Routerele HTTP contează încă pentru descoperirea conținutului: returnează adresele furnizorilor pentru un hash comunitar. Nu sunt gateway-uri IPFS, deoarece nu servesc conținutul în sine. După descoperire, clientul browser se conectează la colegi și preia datele prin stiva P2P.
+
+5chan expune acest lucru ca un comutator opt-in Setări avansate în aplicația web normală 5chan.app. Cea mai recentă stivă de browser `pkc-js` a devenit suficient de stabilă pentru testarea publică după ce serviciul de interoperabilitate libp2p/gossipsub în amonte a abordat livrarea mesajelor între colegii Helia și Kubo. Setarea menține browserul P2P controlat în timp ce primește mai multe teste în lumea reală; odată ce are suficientă încredere în producție, poate deveni calea web implicită.
+
+## Gateway alternativă
+
+Accesul la browser susținut de gateway este încă util ca alternativă de compatibilitate și lansare. Un gateway poate transmite date între rețeaua P2P și un client de browser atunci când un browser nu se poate conecta direct la rețea sau când aplicația alege în mod intenționat calea mai veche. Aceste gateway-uri:
 
 - poate fi condus de oricine
 - nu necesită conturi de utilizator sau plăți
 - nu obțineți custodia asupra identităților sau comunităților utilizatorilor
 - poate fi schimbat fără a pierde date
 
-Acest lucru menține experiența browserului perfect, păstrând în același timp arhitectura descentralizată de dedesubt.
+Arhitectura țintă este browserul P2P mai întâi, cu gateway-uri ca o rezervă opțională, mai degrabă decât blocajul implicit.
 
 ---
 

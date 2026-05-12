@@ -34,7 +34,7 @@ sidebar_position: 1
 
 ## 内部结构
 
-在底层，5chan 使用 plebbit-js API 层进行协议交互。正如上面警告中所指出的，这些内部引用仍然带有 Bitsocial 品牌重塑之前的旧命名。
+在幕后，5chan 使用共享的 Bitsocial 协议客户端层进行网络交互。当从高级设置启用浏览器 P2P 时，5chan.app 上的 Web 应用程序还可以在浏览器中运行 Helia 节点，因此读者可以从对等点加载，而无需集中式 IPFS 网关。请参阅对等协议说明中的浏览器 P2P 部分。
 
 ## 链接
 

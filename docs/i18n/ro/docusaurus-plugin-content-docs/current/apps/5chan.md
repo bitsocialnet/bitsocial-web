@@ -34,7 +34,7 @@ Atribuțiile de slot de director (care placă apare la ce cale) sunt gestionate 
 
 ## Interne
 
-Sub capotă, 5chan folosește stratul API plebbit-js pentru interacțiunile sale de protocol. După cum s-a menționat în avertismentul de mai sus, aceste referințe interne poartă încă o denumire moștenită care precede rebrand-ul Bitsocial.
+Sub capotă, 5chan folosește stratul de client al protocolului Bitsocial partajat pentru interacțiunile sale în rețea. Aplicația web de la 5chan.app poate rula și un nod Helia în browser atunci când browserul P2P este activat din Setări avansate, astfel încât cititorii să poată încărca de la colegi fără un gateway IPFS centralizat. Consultați secțiunea P2P a browserului din notele protocolului peer-to-peer.
 
 ## Legături
 

@@ -1,6 +1,6 @@
 ---
 title: Protocolo ponto a ponto
-description: Como o Bitsocial usa endereçamento de chave pública e pubsub peer-to-peer para fornecer mídia social sem servidor.
+description: Como o Bitsocial usa IPFS/libp2p, endereçamento de chave pública, pubsub peer-to-peer e nós P2P de navegador para fornecer mídia social sem servidor.
 ---
 
 # Protocolo ponto a ponto
@@ -212,16 +212,34 @@ Isso é semelhante a como o BitTorrent torna possível descobrir quais IPs propa
 
 ---
 
-## Usuários e gateways do navegador
+## Navegador ponto a ponto
 
-Os navegadores não podem ingressar diretamente em redes ponto a ponto. O Bitsocial lida com isso com **gateways HTTP** que retransmitem dados entre a rede P2P e os clientes do navegador. Esses portais:
+O navegador P2P agora é possível em clientes Bitsocial. Um aplicativo de navegador pode executar um nó [Hélia](https://helia.io/), usar a mesma pilha de cliente de protocolo Bitsocial que outros aplicativos e buscar conteúdo de pares em vez de solicitar um gateway IPFS centralizado para servi-lo. O navegador também pode participar diretamente do pubsub, portanto, a postagem não precisa de um provedor de pubsub de propriedade da plataforma no caminho feliz.
 
-- pode ser administrado por qualquer pessoa
+Este é um marco importante para a distribuição na web: um site HTTPS normal pode abrir em um cliente social P2P ao vivo. Os usuários não precisam instalar um aplicativo de desktop antes de poderem ler na rede, e o operador do aplicativo não precisa executar um gateway central que se torne o gargalo de censura ou moderação para cada usuário do navegador.
+
+O caminho do navegador tem limites diferentes de um nó de desktop ou servidor:
+
+- um nó do navegador geralmente não pode aceitar conexões de entrada arbitrárias da Internet pública
+- ele pode carregar, validar, armazenar em cache e publicar dados enquanto o aplicativo está aberto
+- não deve ser tratado como um hospedeiro duradouro dos dados de uma comunidade
+- hospedagem comunitária completa ainda é melhor gerenciada por um aplicativo de desktop, `bitsocial-cli` ou outro
+  nó sempre ativo
+
+Os roteadores HTTP ainda são importantes para a descoberta de conteúdo: eles retornam endereços de provedores para um hash de comunidade. Eles não são gateways IPFS porque não servem o conteúdo em si. Após a descoberta, o cliente do navegador se conecta aos pares e busca os dados por meio da pilha P2P.
+
+O 5chan expõe isso como uma opção opcional de configurações avançadas no aplicativo da web 5chan.app normal. A pilha de navegador `pkc-js` mais recente tornou-se estável o suficiente para testes públicos depois que o trabalho de interoperabilidade upstream libp2p/gossipsub abordou a entrega de mensagens entre os pares Helia e Kubo. A configuração mantém o navegador P2P controlado enquanto realiza mais testes no mundo real; uma vez que tenha confiança de produção suficiente, ele pode se tornar o caminho da web padrão.
+
+## Reserva de gateway
+
+O acesso ao navegador apoiado por gateway ainda é útil como alternativa de compatibilidade e implementação. Um gateway pode retransmitir dados entre a rede P2P e um cliente de navegador quando um navegador não consegue ingressar diretamente na rede ou quando o aplicativo escolhe intencionalmente o caminho mais antigo. Esses portais:
+
+- pode ser executado por qualquer pessoa
 - não exigem contas de usuário ou pagamentos
 - não obtenha custódia sobre identidades ou comunidades de usuários
 - pode ser trocado sem perder dados
 
-Isso mantém a experiência do navegador perfeita, preservando a arquitetura descentralizada subjacente.
+A arquitetura alvo é o navegador P2P primeiro, com gateways como um substituto opcional em vez do gargalo padrão.
 
 ---
 

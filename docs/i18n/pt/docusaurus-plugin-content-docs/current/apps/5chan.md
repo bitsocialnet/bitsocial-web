@@ -34,7 +34,7 @@ As atribuições de slot de diretório (qual placa aparece em qual caminho) são
 
 ## Internos
 
-Nos bastidores, o 5chan usa a camada API plebbit-js para suas interações de protocolo. Conforme observado no aviso acima, essas referências internas ainda carregam nomes legados anteriores à reformulação da marca Bitsocial.
+Nos bastidores, o 5chan usa a camada de cliente do protocolo Bitsocial compartilhado para suas interações de rede. O aplicativo da web em 5chan.app também pode executar um nó Helia no navegador quando o navegador P2P está habilitado nas configurações avançadas, para que os leitores possam carregar de pares sem um gateway IPFS centralizado. Consulte a seção P2P do navegador nas notas do protocolo ponto a ponto.
 
 ## Ligações
 

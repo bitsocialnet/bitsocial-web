@@ -1,6 +1,6 @@
 ---
 title: Protokolli Peer-to-Peer
-description: Si Bitsocial përdor adresimin me çelës publik dhe pubsub peer-to-peer për të ofruar media sociale pa server.
+description: Si përdor Bitsocial IPFS/libp2p, adresimin me çelës publik, pubsub peer-to-peer dhe nyjet P2P të shfletuesit për të ofruar media sociale pa server.
 ---
 
 # Protokolli Peer-to-Peer
@@ -212,16 +212,34 @@ Kjo është e ngjashme me mënyrën se si BitTorrent bën të mundur zbulimin se
 
 ---
 
-## Përdoruesit dhe portat e shfletuesit
+## Shfletuesi peer-to-peer
 
-Shfletuesit nuk mund të bashkohen drejtpërdrejt me rrjetet peer-to-peer. Bitsocial e trajton këtë me **portat HTTP** që transmetojnë të dhëna ndërmjet rrjetit P2P dhe klientëve të shfletuesit. Këto porta:
+Shfletuesi P2P tani është i mundur në klientët Bitsocial. Një aplikacion shfletuesi mund të ekzekutojë një nyje [Helia](https://helia.io/), të përdorë të njëjtin grumbull klientësh të protokollit Bitsocial si aplikacionet e tjera dhe të marrë përmbajtje nga kolegët në vend që të kërkojë nga një portë e centralizuar IPFS për ta shërbyer atë. Shfletuesi mund të marrë pjesë drejtpërdrejt në pubsub, kështu që postimi nuk ka nevojë për një platformë në pronësinë e platformës në shtegun e lumtur të pubsub-it.
+
+Ky është momenti historik i rëndësishëm për shpërndarjen në ueb: një faqe interneti normale HTTPS mund të hapet në një klient të drejtpërdrejtë social P2P. Përdoruesit nuk kanë nevojë të instalojnë një aplikacion desktopi përpara se të mund të lexojnë nga rrjeti dhe operatori i aplikacionit nuk ka nevojë të ekzekutojë një portë qendrore që bëhet pika e censurimit ose moderimi për çdo përdorues të shfletuesit.
+
+Rruga e shfletuesit ka kufij të ndryshëm nga një nyje desktopi ose serveri:
+
+- një nyje shfletuesi zakonisht nuk mund të pranojë lidhje arbitrare hyrëse nga interneti publik
+- mund të ngarkojë, vërtetojë, ruajë memorien dhe publikon të dhënat ndërsa aplikacioni është i hapur
+- nuk duhet të trajtohet si pritës jetëgjatë për të dhënat e një komuniteti
+- Pritja e plotë e komunitetit ende trajtohet më së miri nga një aplikacion desktopi, `bitsocial-cli` ose një tjetër
+  nyja gjithmonë e ndezur
+
+Ruterët HTTP ende kanë rëndësi për zbulimin e përmbajtjes: ata kthejnë adresat e ofruesit për një hash të komunitetit. Ato nuk janë porta IPFS, sepse nuk i shërbejnë vetë përmbajtjes. Pas zbulimit, klienti i shfletuesit lidhet me kolegët dhe merr të dhënat përmes stivës P2P.
+
+5chan e ekspozon këtë si një ndërprerës i Cilësimeve të Avancuara për të zgjedhur në aplikacionin normal të uebit 5chan.app. Stafi më i fundit i shfletuesit `pkc-js` është bërë mjaft i qëndrueshëm për testimin publik pas punës së ndërveprimit të libp2p/gossipsub në rrjedhën e sipërme të adresuar dërgimin e mesazheve midis kolegëve Helia dhe Kubo. Cilësimi e mban të kontrolluar shfletuesin P2P ndërsa merr më shumë testime në botën reale; pasi të ketë besim të mjaftueshëm të prodhimit, mund të bëhet shtegu i paracaktuar i uebit.
+
+## Rikthim i portës
+
+Qasja e shfletuesit e mbështetur nga porta është ende e dobishme si një përputhshmëri dhe kthim prapa. Një portë mund të transmetojë të dhëna midis rrjetit P2P dhe një klienti të shfletuesit kur një shfletues nuk mund të bashkohet drejtpërdrejt me rrjetin ose kur aplikacioni zgjedh qëllimisht rrugën e vjetër. Këto porta:
 
 - mund të drejtohet nga kushdo
 - nuk kërkojnë llogari përdoruesi ose pagesa
 - mos fitoni kujdestarinë mbi identitetet ose komunitetet e përdoruesve
 - mund të këmbehet pa humbur të dhëna
 
-Kjo e mban përvojën e shfletuesit pa probleme duke ruajtur arkitekturën e decentralizuar poshtë.
+Arkitektura e synuar është fillimisht P2P i shfletuesit, me portat si një alternativë opsionale dhe jo si pengesë e paracaktuar.
 
 ---
 

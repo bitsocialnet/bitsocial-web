@@ -1,6 +1,6 @@
 ---
 title: Peer-to-Peer Protokoll
-description: Hogyan használja a Bitsocial a nyilvános kulcsú címzést és a peer-to-peer pubokat a kiszolgáló nélküli közösségi média megjelenítésére.
+description: Hogyan használja a Bitsocial az IPFS/libp2p-t, a nyilvános kulcsú címzést, a peer-to-peer pub-ot és a böngésző P2P-csomópontjait a kiszolgáló nélküli közösségi média eléréséhez.
 ---
 
 # Peer-to-Peer Protokoll
@@ -212,16 +212,34 @@ Ez hasonló ahhoz, ahogy a BitTorrent lehetővé teszi annak felfedezését, hog
 
 ---
 
-## Böngésző felhasználók és átjárók
+## Böngésző peer-to-peer
 
-A böngészők nem csatlakozhatnak közvetlenül a peer-to-peer hálózatokhoz. A Bitsocial ezt **HTTP-átjárókkal** kezeli, amelyek adatokat továbbítanak a P2P-hálózat és a böngészőkliensek között. Ezek az átjárók:
+A P2P böngésző mostantól lehetséges a Bitsocial kliensekben. A böngészőalkalmazások futtathatnak egy [Helia](https://helia.io/) csomópontot, ugyanazt a Bitsocial protokoll kliens veremét használhatják, mint más alkalmazások, és tartalmat kérhetnek le a társaktól, ahelyett, hogy központi IPFS-átjárót kérnének a kiszolgáláshoz. A böngésző közvetlenül is részt vehet a közzétételben, így a közzétételhez nincs szükség platformtulajdonos pubsub-szolgáltatóra a boldog útvonalon.
+
+Ez a webes terjesztés fontos mérföldköve: egy normál HTTPS-webhely megnyílhat élő P2P közösségi klienssé. A felhasználóknak nem kell asztali alkalmazást telepíteniük ahhoz, hogy olvashassanak a hálózatról, és az alkalmazás üzemeltetőjének nem kell központi átjárót futtatnia, amely minden böngészőfelhasználó számára a cenzúra vagy a moderálás korlátja lesz.
+
+A böngésző elérési útja eltérő korlátokkal rendelkezik, mint egy asztali vagy kiszolgáló csomópont:
+
+- egy böngésző csomópont általában nem tud tetszőleges bejövő kapcsolatokat elfogadni a nyilvános internetről
+- képes betölteni, ellenőrizni, gyorsítótárazni és közzétenni az adatokat, amíg az alkalmazás nyitva van
+- nem szabad egy közösség adatainak hosszú életű gazdájaként kezelni
+- a teljes közösségi tárhelyszolgáltatást továbbra is legjobban egy asztali alkalmazás, a `bitsocial-cli` vagy más
+  mindig bekapcsolt csomópont
+
+A HTTP-útválasztók továbbra is fontosak a tartalomfelderítés szempontjából: a közösségi hash-hez szolgáltatói címeket adnak vissza. Ezek nem IPFS-átjárók, mert nem magát a tartalmat szolgálják ki. A felfedezés után a böngészőkliens csatlakozik a társakhoz, és lekéri az adatokat a P2P-veremen keresztül.
+
+Az 5chan ezt a normál 5chan.app webalkalmazás Speciális beállítások kapcsolójaként teszi közzé. A legújabb `pkc-js` böngészőverem kellően stabillá vált a nyilvános teszteléshez, miután a libp2p/gossipsub felfelé irányuló együttműködési munkája címzett üzeneteket kézbesített a Helia és a Kubo partnerek között. A beállítás a böngésző P2P vezérlését tartja, miközben több valós tesztelést kap; amint elegendő termelési biztonsággal rendelkezik, az alapértelmezett webes elérési úttá válhat.
+
+## Átjáró tartalék
+
+Az átjáró által támogatott böngészőhozzáférés továbbra is hasznos a kompatibilitás és a bevezetés tartalékaként. Az átjáró adatokat továbbíthat a P2P hálózat és a böngészőkliens között, ha a böngésző nem tud közvetlenül csatlakozni a hálózathoz, vagy ha az alkalmazás szándékosan a régebbi utat választja. Ezek az átjárók:
 
 - bárki irányíthatja
 - nem igényel felhasználói fiókot vagy fizetést
 - ne szerezzen felügyeleti jogot a felhasználói identitások vagy közösségek felett
 - adatvesztés nélkül kicserélhető
 
-Ez zökkenőmentesen tartja a böngésző élményét, miközben megőrzi az alatta lévő decentralizált architektúrát.
+A célarchitektúra először a böngésző P2P, és az átjárók opcionális tartalék, nem pedig az alapértelmezett szűk keresztmetszet.
 
 ---
 

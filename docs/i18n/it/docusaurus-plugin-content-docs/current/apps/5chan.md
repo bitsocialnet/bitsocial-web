@@ -30,7 +30,7 @@ Le assegnazioni degli slot di directory (quale scheda appare in quale percorso) 
 
 ## Interni
 
-Sotto il cofano, 5chan utilizza il livello client del protocollo Bitsocial condiviso per le sue interazioni di rete.
+Sotto il cofano, 5chan utilizza il livello client del protocollo Bitsocial condiviso per le sue interazioni di rete. L'app Web su 5chan.app può anche eseguire un nodo Helia nel browser quando il P2P del browser è abilitato da Impostazioni avanzate, in modo che i lettori possano caricare da peer senza un gateway IPFS centralizzato. Vedi la sezione P2P del browser nelle note sul protocollo peer-to-peer.
 
 ## Collegamenti
 

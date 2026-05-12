@@ -30,7 +30,7 @@ Les assignacions d'espai de directori (quin tauler apareix en quin camí) es ges
 
 ## Interns
 
-Sota el capó, 5chan utilitza la capa de client de protocol Bitsocial compartida per a les seves interaccions de xarxa.
+Sota el capó, 5chan utilitza la capa de client de protocol Bitsocial compartida per a les seves interaccions de xarxa. L'aplicació web de 5chan.app també pot executar un node Helia al navegador quan el navegador P2P està habilitat des de la configuració avançada, de manera que els lectors poden carregar des d'un mateix sense una passarel·la IPFS centralitzada. Consulteu la secció P2P del navegador a les notes del protocol peer-to-peer.
 
 ## Enllaços
 

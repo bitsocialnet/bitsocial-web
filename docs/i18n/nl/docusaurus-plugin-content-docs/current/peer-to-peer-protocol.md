@@ -1,6 +1,6 @@
 ---
 title: Peer-to-peer-protocol
-description: Hoe Bitsocial gebruik maakt van openbare-sleuteladressering en peer-to-peer pubsub om serverloze sociale media te leveren.
+description: Hoe Bitsocial IPFS/libp2p, public-key adressering, peer-to-peer pubsub en browser P2P-nodes gebruikt om serverloze sociale media te leveren.
 ---
 
 # Peer-to-peer-protocol
@@ -212,16 +212,34 @@ Dit is vergelijkbaar met hoe BitTorrent het mogelijk maakt om te ontdekken welke
 
 ---
 
-## Browsergebruikers en gateways
+## Peer-to-peer-browser
 
-Browsers kunnen niet rechtstreeks verbinding maken met peer-to-peer-netwerken. Bitsocial handelt dit af met **HTTP-gateways** die gegevens doorgeven tussen het P2P-netwerk en browserclients. Deze gateways:
+Browser P2P is nu mogelijk in Bitsocial-clients. Een browser-app kan een [Helia](https://helia.io/)-knooppunt uitvoeren, dezelfde Bitsocial-protocol-clientstack gebruiken als andere apps, en inhoud ophalen van peers in plaats van een gecentraliseerde IPFS-gateway te vragen om deze te bedienen. De browser kan ook rechtstreeks deelnemen aan pubsub, dus voor het plaatsen van berichten is op het gelukkige pad geen pubsub-provider nodig die eigendom is van een platform.
+
+Dit is de belangrijke mijlpaal voor webdistributie: een normale HTTPS-website kan worden geopend in een live P2P sociale client. Gebruikers hoeven geen desktop-app te installeren voordat ze van het netwerk kunnen lezen, en de app-operator hoeft geen centrale gateway te runnen die voor elke browsergebruiker het censuur- of moderatie-knelpunt wordt.
+
+Het browserpad heeft andere limieten dan een desktop- of serverknooppunt:
+
+- een browserknooppunt kan doorgaans geen willekeurige inkomende verbindingen van het openbare internet accepteren
+- het kan gegevens laden, valideren, in de cache opslaan en publiceren terwijl de app geopend is
+- het mag niet worden behandeld als de langlevende host voor de gegevens van een gemeenschap
+- volledige communityhosting kan nog steeds het beste worden afgehandeld via een desktop-app, `bitsocial-cli`, of een andere
+  Always-on-knooppunt
+
+HTTP-routers zijn nog steeds belangrijk voor het ontdekken van inhoud: ze retourneren provideradressen voor een community-hash. Het zijn geen IPFS-gateways, omdat ze de inhoud zelf niet bedienen. Na ontdekking maakt de browserclient verbinding met peers en haalt de gegevens op via de P2P-stack.
+
+5chan stelt dit bloot als een opt-in geavanceerde instellingenschakelaar in de normale 5chan.app-webapp. De nieuwste `pkc-js`-browserstack is stabiel genoeg geworden voor openbare tests nadat upstream libp2p/gossipsub-interoperabiliteit de bezorging van berichten tussen Helia- en Kubo-peers had aangepakt. De instelling houdt de browser P2P onder controle terwijl deze in de praktijk wordt getest; zodra het voldoende productievertrouwen heeft, kan het het standaard webpad worden.
+
+## Terugval op de gateway
+
+Door een gateway ondersteunde browsertoegang is nog steeds nuttig als reserve voor compatibiliteit en uitrol. Een gateway kan gegevens doorgeven tussen het P2P-netwerk en een browserclient wanneer een browser niet rechtstreeks verbinding kan maken met het netwerk of wanneer de app opzettelijk het oudere pad kiest. Deze gateways:
 
 - kan door iedereen worden gerund
 - vereisen geen gebruikersaccounts of betalingen
 - verkrijg geen voogdij over gebruikersidentiteiten of gemeenschappen
 - kan worden uitgewisseld zonder gegevensverlies
 
-Hierdoor blijft de browserervaring naadloos, terwijl de gedecentraliseerde architectuur eronder behouden blijft.
+De doelarchitectuur is eerst browser-P2P, met gateways als optionele fallback in plaats van het standaardknelpunt.
 
 ---
 

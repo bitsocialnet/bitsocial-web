@@ -1,6 +1,6 @@
 ---
 title: Protokol Peer-to-Peer
-description: Jak Bitsocial používá adresování veřejného klíče a peer-to-peer pubsub k poskytování sociálních médií bez serveru.
+description: Jak Bitsocial používá IPFS/libp2p, adresování veřejného klíče, peer-to-peer pubsub a P2P uzly prohlížeče k poskytování sociálních médií bez serveru.
 ---
 
 # Protokol Peer-to-Peer
@@ -212,16 +212,34 @@ Je to podobné tomu, jak BitTorrent umožňuje odhalit, které IP adresy přivá
 
 ---
 
-## Uživatelé prohlížeče a brány
+## Prohlížeč peer-to-peer
 
-Prohlížeče se nemohou připojit k sítím peer-to-peer přímo. Bitsocial to řeší pomocí **HTTP bran**, které přenášejí data mezi P2P sítí a klienty prohlížeče. Tyto brány:
+Prohlížeč P2P je nyní možný v klientech Bitsocial. Aplikace prohlížeče může spouštět [Helia](uzel https://helia.io/), používat stejnou sadu klientů protokolu Bitsocial jako jiné aplikace a načítat obsah od kolegů, aniž by žádal o jeho obsluhu centralizovanou bránu IPFS. Prohlížeč se také může přímo podílet na pubsub, takže odesílání nepotřebuje poskytovatele pubsub vlastněného platformou na šťastné cestě.
+
+Toto je důležitý milník pro webovou distribuci: běžný web HTTPS se může otevřít v živém P2P sociálním klientovi. Uživatelé nemusí instalovat aplikaci pro stolní počítače, než budou moci číst ze sítě, a operátor aplikace nemusí spouštět centrální bránu, která se pro každého uživatele prohlížeče stane centrálním bodem cenzury nebo moderování.
+
+Cesta prohlížeče má jiné limity než uzel desktopu nebo serveru:
+
+- uzel prohlížeče obvykle nemůže přijímat libovolná příchozí připojení z veřejného internetu
+- může načítat, ověřovat, ukládat do mezipaměti a publikovat data, když je aplikace otevřená
+- nemělo by se s ním zacházet jako s dlouhodobým hostitelem pro data komunity
+- Úplný komunitní hosting stále nejlépe zvládne desktopová aplikace, `bitsocial-cli` nebo jiná
+  vždy zapnutý uzel
+
+Směrovače HTTP jsou pro zjišťování obsahu stále důležité: vracejí adresy poskytovatelů pro hash komunity. Nejsou to brány IPFS, protože neslouží samotný obsah. Po zjištění se klient prohlížeče připojí k peerům a načte data prostřednictvím P2P zásobníku.
+
+5chan to odhaluje jako volitelný přepínač pokročilých nastavení v normální webové aplikaci 5chan.app. Nejnovější zásobník prohlížeče `pkc-js` se stal dostatečně stabilním pro veřejné testování poté, co upstreamová interopová práce libp2p/gossipsub řešila doručování zpráv mezi Helia a Kubo. Toto nastavení udržuje prohlížeč P2P pod kontrolou, zatímco se více testuje v reálném světě; jakmile má dostatečnou produkční jistotu, může se stát výchozí webovou cestou.
+
+## Záložní brána
+
+Přístup z prohlížeče podporovaný bránou je stále užitečný jako záložní zdroj pro kompatibilitu a zavedení. Brána může přenášet data mezi sítí P2P a klientem prohlížeče, když se prohlížeč nemůže připojit k síti přímo nebo když aplikace záměrně zvolí starší cestu. Tyto brány:
 
 - může provozovat kdokoli
 - nevyžadují uživatelské účty ani platby
 - nezískávejte kontrolu nad identitami uživatelů nebo komunitami
 - lze vyměnit bez ztráty dat
 
-Díky tomu je prohlížeč bezproblémový a zároveň zachovává decentralizovanou architekturu pod ním.
+Cílovou architekturou je nejprve P2P prohlížeče, s bránami jako volitelným záložním řešením, nikoli výchozím úzkým hrdlem.
 
 ---
 

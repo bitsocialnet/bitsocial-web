@@ -30,7 +30,7 @@ Mapslottoewijzingen (welk bord op welk pad verschijnt) worden momenteel beheerd 
 
 ## Interne onderdelen
 
-Onder de motorkap gebruikt 5chan de gedeelde Bitsocial-protocolclientlaag voor zijn netwerkinteracties.
+Onder de motorkap gebruikt 5chan de gedeelde Bitsocial-protocolclientlaag voor zijn netwerkinteracties. De webapp op 5chan.app kan ook een Helia-knooppunt in de browser uitvoeren wanneer browser-P2P is ingeschakeld via Geavanceerde instellingen, zodat lezers kunnen laden van peers zonder een gecentraliseerde IPFS-gateway. Zie de browser-P2P-sectie in de peer-to-peer-protocolopmerkingen.
 
 ## Koppelingen
 

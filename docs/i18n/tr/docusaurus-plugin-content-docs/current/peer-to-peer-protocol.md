@@ -1,6 +1,6 @@
 ---
 title: Eşler Arası Protokol
-description: Bitsocial, sunucusuz sosyal medya sunmak için genel anahtar adreslemeyi ve eşler arası pubsub'u nasıl kullanıyor?
+description: Bitsocial, sunucusuz sosyal medya sunmak için IPFS/libp2p, genel anahtar adresleme, eşler arası pubsub ve tarayıcı P2P düğümlerini nasıl kullanıyor?
 ---
 
 # Eşler Arası Protokol
@@ -212,16 +212,34 @@ Bu, BitTorrent'in torrenti hangi IP'lerin tohumladığını ancak orijinal olara
 
 ---
 
-## Tarayıcı kullanıcıları ve ağ geçitleri
+## Tarayıcı eşler arası
 
-Tarayıcılar eşler arası ağlara doğrudan katılamaz. Bitsocial bunu, P2P ağı ile tarayıcı istemcileri arasında veri aktaran **HTTP ağ geçitleri** ile gerçekleştirir. Bu ağ geçitleri:
+Tarayıcı P2P artık Bitsocial istemcilerinde mümkün. Bir tarayıcı uygulaması bir [Helia](https://helia.io/) düğümünü çalıştırabilir, diğer uygulamalarla aynı Bitsocial protokol istemci yığınını kullanabilir ve merkezi bir IPFS ağ geçidinin ona hizmet vermesini istemek yerine eşlerden içerik alabilir. Tarayıcı ayrıca pubsub'a doğrudan katılabilir, bu nedenle gönderi yayınlamanın mutlu yolda platforma ait bir pubsub sağlayıcısına ihtiyacı yoktur.
+
+Bu, web dağıtımı için önemli bir dönüm noktasıdır: normal bir HTTPS web sitesi, canlı bir P2P sosyal istemcisine açılabilir. Kullanıcıların ağdan okuyabilmeleri için bir masaüstü uygulaması yüklemelerine gerek yoktur ve uygulama operatörünün, her tarayıcı kullanıcısı için sansür veya denetleme geçiş noktası haline gelen merkezi bir ağ geçidini çalıştırmasına gerek yoktur.
+
+Tarayıcı yolunun bir masaüstü veya sunucu düğümünden farklı sınırları vardır:
+
+- bir tarayıcı düğümü genellikle genel internetten gelen rastgele gelen bağlantıları kabul edemez
+- uygulama açıkken verileri yükleyebilir, doğrulayabilir, önbelleğe alabilir ve yayınlayabilir
+- bir topluluğun verilerinin uzun ömürlü ana bilgisayarı olarak görülmemelidir
+- Tam topluluk barındırma hâlâ en iyi şekilde bir masaüstü uygulaması, `bitsocial-cli` veya başka bir uygulama tarafından gerçekleştirilir.
+  her zaman açık düğüm
+
+HTTP yönlendiricileri içerik keşfi için hala önemlidir: topluluk karması için sağlayıcı adreslerini döndürürler. İçeriğin kendisini sunmadıkları için IPFS ağ geçitleri değildirler. Keşiften sonra, tarayıcı istemcisi eşlere bağlanır ve verileri P2P yığını aracılığıyla getirir.
+
+5chan, bunu normal 5chan.app web uygulamasında isteğe bağlı bir Gelişmiş Ayarlar anahtarı olarak gösterir. En yeni `pkc-js` tarayıcı yığını, Helia ve Kubo eşleri arasında mesaj teslimine yönelik yukarı akış libp2p/gossipsub birlikte çalışma çalışmasının ardından genel testler için yeterince kararlı hale geldi. Bu ayar, daha fazla gerçek dünya testi alırken tarayıcının P2P'sini kontrol altında tutar; Yeterli üretim güvenine sahip olduğunda varsayılan web yolu haline gelebilir.
+
+## Ağ geçidi yedeği
+
+Ağ geçidi destekli tarayıcı erişimi, uyumluluk ve kullanıma sunma geri dönüşü olarak hâlâ kullanışlıdır. Bir ağ geçidi, bir tarayıcı ağa doğrudan katılamadığında veya uygulama kasıtlı olarak eski yolu seçtiğinde, P2P ağı ile tarayıcı istemcisi arasında veri aktarabilir. Bu ağ geçitleri:
 
 - herkes tarafından çalıştırılabilir
 - kullanıcı hesabı veya ödeme gerektirmez
 - kullanıcı kimlikleri veya toplulukları üzerinde denetim sahibi olmayın
 - veri kaybı olmadan değiştirilebilir
 
-Bu, alttaki merkezi olmayan mimariyi korurken tarayıcı deneyimini kusursuz tutar.
+Hedef mimari, varsayılan darboğaz yerine isteğe bağlı bir geri dönüş olarak ağ geçitleriyle birlikte öncelikle tarayıcı P2P'sidir.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Protokol ng Peer-to-Peer
-description: Paano ginagamit ng Bitsocial ang public-key addressing at peer-to-peer pubsub para maghatid ng walang server na social media.
+description: Paano ginagamit ng Bitsocial ang IPFS/libp2p, public-key addressing, peer-to-peer pubsub, at browser P2P node para maghatid ng walang server na social media.
 ---
 
 # Protokol ng Peer-to-Peer
@@ -212,16 +212,34 @@ Ito ay katulad ng kung paano ginagawang posible ng BitTorrent na matuklasan kung
 
 ---
 
-## Mga user at gateway ng browser
+## Browser peer-to-peer
 
-Ang mga browser ay hindi maaaring direktang sumali sa mga peer-to-peer na network. Pinangangasiwaan ito ng Bitsocial gamit ang **mga HTTP gateway** na naghahatid ng data sa pagitan ng P2P network at mga kliyente ng browser. Ang mga gateway na ito:
+Ang Browser P2P ay posible na ngayon sa mga kliyenteng Bitsocial. Ang isang browser app ay maaaring magpatakbo ng isang [Helia](https://helia.io/) node, gumamit ng parehong Bitsocial protocol client stack gaya ng iba pang app, at kumuha ng content mula sa mga peer sa halip na humiling sa isang sentralisadong IPFS gateway upang ihatid ito. Ang browser ay maaari ding direktang lumahok sa pubsub, kaya ang pag-post ay hindi nangangailangan ng isang platform-owned pubsub provider sa happy path.
+
+Ito ang mahalagang milestone para sa pamamahagi ng web: ang isang normal na website ng HTTPS ay maaaring magbukas sa isang live na P2P social client. Hindi kailangang mag-install ng desktop app ang mga user bago sila makapagbasa mula sa network, at hindi kailangang magpatakbo ng central gateway ang operator ng app na nagiging censorship o moderation chokepoint para sa bawat user ng browser.
+
+Ang path ng browser ay may iba't ibang limitasyon mula sa isang desktop o server node:
+
+- ang isang browser node ay karaniwang hindi maaaring tumanggap ng mga arbitrary na papasok na koneksyon mula sa pampublikong internet
+- maaari itong mag-load, mag-validate, mag-cache, at mag-publish ng data habang bukas ang app
+- hindi ito dapat ituring bilang pangmatagalang host para sa data ng isang komunidad
+- ang buong community hosting ay pinakamainam pa ring pinangangasiwaan ng isang desktop app, `bitsocial-cli`, o iba pa
+  palaging nasa node
+
+Mahalaga pa rin ang mga HTTP router para sa pagtuklas ng content: nagbabalik sila ng mga address ng provider para sa isang hash ng komunidad. Hindi sila IPFS gateway, dahil hindi nila inihahatid ang nilalaman mismo. Pagkatapos ng pagtuklas, kumokonekta ang browser client sa mga peer at kinukuha ang data sa pamamagitan ng P2P stack.
+
+Inilalantad ito ng 5chan bilang switch ng mga Advanced na Setting ng pag-opt in sa normal na 5chan.app web app. Ang pinakabagong `pkc-js` browser stack ay naging sapat na stable para sa pampublikong pagsubok pagkatapos ng upstream libp2p/gossipsub interop work na tumugon sa paghahatid ng mensahe sa pagitan ng mga kasamahan ni Helia at Kubo. Pinapanatili ng setting na kontrolado ang P2P ng browser habang nakakakuha ito ng higit pang real-world na pagsubok; kapag mayroon na itong sapat na kumpiyansa sa produksyon, maaari itong maging default na web path.
+
+## Gateway fallback
+
+Ang access sa browser na suportado ng gateway ay kapaki-pakinabang pa rin bilang compatibility at rollout fallback. Ang isang gateway ay maaaring mag-relay ng data sa pagitan ng P2P network at isang browser client kapag ang isang browser ay hindi maaaring direktang sumali sa network o kapag ang app ay sadyang pumili ng mas lumang path. Ang mga gateway na ito:
 
 - maaaring patakbuhin ng sinuman
 - hindi nangangailangan ng mga user account o pagbabayad
 - huwag makakuha ng kustodiya sa mga pagkakakilanlan o komunidad ng gumagamit
 - maaaring ipagpalit nang hindi nawawala ang data
 
-Pinapanatili nitong maayos ang karanasan ng browser habang pinapanatili ang desentralisadong arkitektura sa ilalim.
+Ang target na arkitektura ay browser P2P muna, na may mga gateway bilang isang opsyonal na fallback sa halip na ang default na bottleneck.
 
 ---
 

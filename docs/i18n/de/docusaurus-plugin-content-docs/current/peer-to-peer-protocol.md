@@ -1,6 +1,6 @@
 ---
 title: Peer-to-Peer-Protokoll
-description: Wie Bitsocial Public-Key-Adressierung und Peer-to-Peer-Pubsub nutzt, um serverlose soziale Medien bereitzustellen.
+description: Wie Bitsocial IPFS/libp2p, Public-Key-Adressierung, Peer-to-Peer-Pubsub und Browser-P2P-Knoten nutzt, um serverlose soziale Medien bereitzustellen.
 ---
 
 # Peer-to-Peer-Protokoll
@@ -212,16 +212,34 @@ Dies ähnelt der Art und Weise, wie BitTorrent es ermöglicht, herauszufinden, w
 
 ---
 
-## Browserbenutzer und Gateways
+## Browser-Peer-to-Peer
 
-Browser können Peer-to-Peer-Netzwerken nicht direkt beitreten. Bitsocial erledigt dies mit **HTTP-Gateways**, die Daten zwischen dem P2P-Netzwerk und Browser-Clients weiterleiten. Diese Gateways:
+Browser-P2P ist jetzt in Bitsocial-Clients möglich. Eine Browser-App kann einen [Helia](https://helia.io/)-Knoten ausführen, denselben Bitsocial-Protokoll-Client-Stack wie andere Apps verwenden und Inhalte von Peers abrufen, anstatt ein zentrales IPFS-Gateway um die Bereitstellung zu bitten. Der Browser kann auch direkt an Pubsub teilnehmen, sodass für die Veröffentlichung kein plattformeigener Pubsub-Anbieter im Happy Path erforderlich ist.
+
+Dies ist der wichtige Meilenstein für die Webverbreitung: Eine normale HTTPS-Website kann zu einem Live-P2P-Social-Client geöffnet werden. Benutzer müssen keine Desktop-App installieren, bevor sie aus dem Netzwerk lesen können, und der App-Betreiber muss kein zentrales Gateway betreiben, das für jeden Browser-Benutzer zum Zensur- oder Moderations-Heckpunkt wird.
+
+Der Browserpfad hat andere Grenzen als ein Desktop- oder Serverknoten:
+
+- Ein Browserknoten kann normalerweise keine beliebigen eingehenden Verbindungen aus dem öffentlichen Internet akzeptieren
+- Es kann Daten laden, validieren, zwischenspeichern und veröffentlichen, während die App geöffnet ist
+- Es sollte nicht als langlebiger Host für die Daten einer Community betrachtet werden
+- Das vollständige Community-Hosting lässt sich immer noch am besten über eine Desktop-App, `bitsocial-cli`, oder eine andere erledigen
+  Always-on-Knoten
+
+HTTP-Router sind für die Inhaltserkennung immer noch wichtig: Sie geben Anbieteradressen für einen Community-Hash zurück. Sie sind keine IPFS-Gateways, da sie den Inhalt selbst nicht bereitstellen. Nach der Erkennung stellt der Browser-Client eine Verbindung zu Peers her und ruft die Daten über den P2P-Stack ab.
+
+5chan macht dies als Opt-in-Schalter für erweiterte Einstellungen in der normalen 5chan.app-Webanwendung verfügbar. Der neueste `pkc-js`-Browser-Stack ist stabil genug für öffentliche Tests geworden, nachdem sich die Upstream-Interop-Arbeiten mit libp2p/gossipsub mit der Nachrichtenzustellung zwischen Helia- und Kubo-Peers befasst haben. Die Einstellung sorgt dafür, dass das Browser-P2P kontrolliert wird, während es mehr Tests in der realen Welt gibt; Sobald er über genügend Produktionssicherheit verfügt, kann er zum Standard-Webpfad werden.
+
+## Gateway-Fallback
+
+Der Gateway-gestützte Browserzugriff ist weiterhin als Kompatibilitäts- und Rollout-Fallback nützlich. Ein Gateway kann Daten zwischen dem P2P-Netzwerk und einem Browser-Client weiterleiten, wenn ein Browser nicht direkt mit dem Netzwerk verbunden werden kann oder wenn die App absichtlich den älteren Pfad wählt. Diese Gateways:
 
 - kann von jedem betrieben werden
 - erfordern keine Benutzerkonten oder Zahlungen
 - Erhalten Sie kein Sorgerecht für Benutzeridentitäten oder Communities
 - können ohne Datenverlust ausgetauscht werden
 
-Dadurch bleibt das Browser-Erlebnis nahtlos, während die darunter liegende dezentrale Architektur erhalten bleibt.
+Die Zielarchitektur ist zuerst Browser-P2P, mit Gateways als optionalem Fallback und nicht als Standardengpass.
 
 ---
 

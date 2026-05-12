@@ -30,7 +30,7 @@ Hakemistopaikkojen määrityksiä (mikä kortti näkyy missä polussa) hallitaan
 
 ## Sisäosat
 
-Kotelon alla 5chan käyttää jaettua Bitsocial-protokollan asiakaskerrosta verkkovuorovaikutukseensa.
+Kotelon alla 5chan käyttää jaettua Bitsocial-protokollan asiakaskerrosta verkkovuorovaikutukseensa. Verkkosovellus osoitteessa 5chan.app voi myös ajaa Helia-solmun selaimessa, kun selaimen P2P on otettu käyttöön lisäasetuksista, joten lukijat voivat ladata vertaisilta ilman keskitettyä IPFS-yhdyskäytävää. Katso selaimen P2P-osio vertaisprotokollan huomautuksista.
 
 ## Linkit
 

@@ -1,6 +1,6 @@
 ---
 title: Protocol peer-to-peer
-description: Com utilitza Bitsocial l'adreçament de clau pública i el pubsub peer-to-peer per oferir xarxes socials sense servidor.
+description: Com utilitza Bitsocial IPFS/libp2p, adreçament de clau pública, pubsub peer-to-peer i nodes P2P del navegador per oferir xarxes socials sense servidor.
 ---
 
 # Protocol peer-to-peer
@@ -212,16 +212,34 @@ Això és semblant a com BitTorrent fa possible descobrir quines IP generen un t
 
 ---
 
-## Usuaris del navegador i passarel·les
+## Navegador peer-to-peer
 
-Els navegadors no poden unir-se directament a xarxes peer-to-peer. Bitsocial ho gestiona amb **passareles HTTP** que transmeten dades entre la xarxa P2P i els clients del navegador. Aquestes passarel·les:
+El navegador P2P ara és possible als clients de Bitsocial. Una aplicació de navegador pot executar un node [Hèlia](https://helia.io/), utilitzar la mateixa pila de client de protocol Bitsocial que altres aplicacions i obtenir contingut dels companys en lloc de demanar-lo a una passarel·la IPFS centralitzada que el serveixi. El navegador també pot participar directament en pubsub, de manera que la publicació no necessita un proveïdor de pubsub propietat de la plataforma al camí feliç.
+
+Aquesta és la fita important per a la distribució web: un lloc web HTTPS normal es pot obrir en un client social P2P en directe. Els usuaris no necessiten instal·lar una aplicació d'escriptori abans de poder llegir des de la xarxa, i l'operador de l'aplicació no necessita executar una passarel·la central que es converteixi en el punt d'interrogació de censura o moderació per a cada usuari del navegador.
+
+La ruta del navegador té límits diferents d'un node d'escriptori o servidor:
+
+- un node del navegador normalment no pot acceptar connexions entrants arbitràries d'Internet pública
+- pot carregar, validar, emmagatzemar a la memòria cau i publicar dades mentre l'aplicació està oberta
+- no s'ha de tractar com l'amfitrió de llarga vida de les dades d'una comunitat
+- L'allotjament de la comunitat completa encara es gestiona millor amb una aplicació d'escriptori, `bitsocial-cli` o una altra
+  node sempre activat
+
+Els encaminadors HTTP encara són importants per al descobriment de contingut: tornen adreces de proveïdors per a un hash de comunitat. No són passarel·les IPFS, perquè no serveixen el contingut en si. Després del descobriment, el client del navegador es connecta als companys i obté les dades a través de la pila P2P.
+
+5chan exposa això com un interruptor de configuració avançada activat a l'aplicació web normal de 5chan.app. La darrera pila de navegadors `pkc-js` s'ha tornat prou estable per a les proves públiques després que el treball d'interoperabilitat libp2p/gossipsub abordés el lliurament de missatges entre Helia i Kubo. La configuració manté controlat el P2P del navegador mentre fa més proves del món real; un cop tingui prou confiança en la producció, es pot convertir en la ruta web predeterminada.
+
+## Fallback de la passarel·la
+
+L'accés al navegador recolzat per passarel·la segueix sent útil com a alternativa de compatibilitat i llançament. Una passarel·la pot transmetre dades entre la xarxa P2P i un client del navegador quan un navegador no pot unir-se a la xarxa directament o quan l'aplicació tria intencionadament el camí anterior. Aquestes passarel·les:
 
 - pot ser dirigit per qualsevol
 - no requereixen comptes d'usuari ni pagaments
 - no guanyin la custòdia de les identitats o comunitats dels usuaris
 - es pot canviar sense perdre dades
 
-Això manté l'experiència del navegador perfecta alhora que es conserva l'arquitectura descentralitzada que hi ha a sota.
+L'arquitectura objectiu és el navegador P2P primer, amb passarel·les com a alternativa opcional en lloc de coll d'ampolla predeterminat.
 
 ---
 

@@ -30,7 +30,7 @@ Katalogslottildelinger (hvilket bord vises på hvilken sti) administreres i øje
 
 ## Internaler
 
-Under hætten bruger 5chan det delte Bitsocial-protokol-klientlag til sine netværksinteraktioner.
+Under hætten bruger 5chan det delte Bitsocial-protokol-klientlag til sine netværksinteraktioner. Webappen på 5chan.app kan også køre en Helia-node i browseren, når browseren P2P er aktiveret fra Avancerede indstillinger, så læsere kan indlæse fra peers uden en centraliseret IPFS-gateway. Se browserens P2P-sektion i peer-to-peer-protokollen.
 
 ## Links
 

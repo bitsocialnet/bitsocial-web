@@ -30,7 +30,7 @@ A címtárhely-hozzárendelések (melyik kártya melyik elérési útvonalon jel
 
 ## Belsők
 
-A motorháztető alatt az 5chan a megosztott Bitsocial protokoll kliens réteget használja a hálózati interakciókhoz.
+A motorháztető alatt az 5chan a megosztott Bitsocial protokoll kliens réteget használja a hálózati interakciókhoz. Az 5chan.app webalkalmazása egy Helia-csomópontot is futtathat a böngészőben, ha a P2P engedélyezve van a Speciális beállításokból, így az olvasók központi IPFS-átjáró nélkül tölthetnek be társaikról. Lásd a böngésző P2P szakaszát a peer-to-peer protokoll megjegyzéseiben.
 
 ## Linkek
 

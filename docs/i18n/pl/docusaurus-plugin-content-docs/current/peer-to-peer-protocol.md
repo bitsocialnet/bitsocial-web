@@ -1,6 +1,6 @@
 ---
 title: Protokół peer-to-peer
-description: Jak Bitsocial wykorzystuje adresowanie klucza publicznego i pubsub peer-to-peer, aby dostarczać media społecznościowe bez serwera.
+description: Jak Bitsocial wykorzystuje IPFS/libp2p, adresowanie klucza publicznego, pubsub peer-to-peer i węzły P2P przeglądarki, aby dostarczać media społecznościowe bez serwera.
 ---
 
 # Protokół peer-to-peer
@@ -212,16 +212,34 @@ Przypomina to sposób, w jaki BitTorrent umożliwia odkrycie, które adresy IP w
 
 ---
 
-## Użytkownicy przeglądarki i bramy
+## Przeglądarka peer-to-peer
 
-Przeglądarki nie mogą bezpośrednio łączyć się z sieciami peer-to-peer. Bitsocial radzi sobie z tym za pomocą **bram HTTP**, które przekazują dane pomiędzy siecią P2P a klientami przeglądarki. Te bramy:
+Przeglądarka P2P jest teraz możliwa w klientach Bitsocial. Aplikacja przeglądarkowa może uruchomić węzeł [Helia](https://helia.io/), używać tego samego stosu klienta protokołu Bitsocial co inne aplikacje i pobierać treści od równorzędnych użytkowników, zamiast prosić scentralizowaną bramę IPFS o jej obsłużenie. Przeglądarka może również bezpośrednio uczestniczyć w pubsub, więc publikowanie nie wymaga obecności dostawcy pubsub będącego własnością platformy na szczęśliwej ścieżce.
+
+Jest to ważny kamień milowy w dystrybucji internetowej: zwykła witryna internetowa HTTPS może otworzyć się na działającym kliencie społecznościowym P2P. Użytkownicy nie muszą instalować aplikacji komputerowej, zanim będą mogli czytać z sieci, a operator aplikacji nie musi uruchamiać centralnej bramy, która staje się wąskim punktem cenzury lub moderacji dla każdego użytkownika przeglądarki.
+
+Ścieżka przeglądarki ma inne ograniczenia niż węzeł pulpitu lub serwera:
+
+- węzeł przeglądarki zwykle nie może akceptować dowolnych połączeń przychodzących z publicznego Internetu
+- może ładować, sprawdzać, buforować i publikować dane, gdy aplikacja jest otwarta
+- nie należy go traktować jako długotrwałego hosta danych społeczności
+- pełny hosting społecznościowy nadal najlepiej obsługuje aplikacja komputerowa `bitsocial-cli` lub inna
+  węzeł zawsze włączony
+
+Routery HTTP nadal mają znaczenie w wykrywaniu treści: zwracają adresy dostawców dla skrótu społeczności. Nie są bramami IPFS, ponieważ nie obsługują samej treści. Po wykryciu klient przeglądarki łączy się z urządzeniami równorzędnymi i pobiera dane za pośrednictwem stosu P2P.
+
+5chan udostępnia to jako opcjonalny przełącznik ustawień zaawansowanych w zwykłej aplikacji internetowej 5chan.app. Najnowszy stos przeglądarki `pkc-js` stał się wystarczająco stabilny, aby można było go publicznie przetestować po tym, jak wcześniejsza praca interoperacyjna libp2p/gossipsub zajęła się dostarczaniem komunikatów pomiędzy urządzeniami równorzędnymi Helia i Kubo. To ustawienie utrzymuje kontrolę nad P2P w przeglądarce, podczas gdy jest poddawana większej liczbie testów w świecie rzeczywistym; gdy uzyska wystarczającą pewność produkcji, może stać się domyślną ścieżką internetową.
+
+## Powrót do bramy
+
+Dostęp do przeglądarki wspieranej przez bramę jest nadal przydatny jako zabezpieczenie w zakresie zgodności i wdrażania awaryjnego. Brama może przekazywać dane pomiędzy siecią P2P a klientem przeglądarki, gdy przeglądarka nie może bezpośrednio połączyć się z siecią lub gdy aplikacja celowo wybiera starszą ścieżkę. Te bramy:
 
 - może być prowadzony przez każdego
 - nie wymagają kont użytkowników ani płatności
 - nie przejmuj kontroli nad tożsamościami użytkowników ani społecznościami
 - można wymienić bez utraty danych
 
-Dzięki temu korzystanie z przeglądarki jest płynne, przy jednoczesnym zachowaniu zdecentralizowanej architektury.
+Docelowa architektura to przede wszystkim P2P w przeglądarce, z bramami jako opcjonalnym rozwiązaniem awaryjnym, a nie domyślnym wąskim gardłem.
 
 ---
 
