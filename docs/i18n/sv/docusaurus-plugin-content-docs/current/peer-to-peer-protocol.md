@@ -1,6 +1,6 @@
 ---
 title: Peer-to-Peer-protokoll
-description: Hur Bitsocial använder public-key-adressering och peer-to-peer pubsub för att leverera serverlösa sociala medier.
+description: Hur Bitsocial använder public-key-adressering, peer-to-peer pubsub och webbläsares P2P-noder för att leverera serverlösa sociala medier.
 ---
 
 # Peer-to-Peer-protokoll
@@ -210,16 +210,34 @@ Detta liknar hur BitTorrent gör det möjligt att upptäcka vilka IP-adresser so
 
 ---
 
-## Webbläsaranvändare och gateways
+## Webbläsare peer-to-peer
 
-Webbläsare kan inte ansluta till peer-to-peer-nätverk direkt. Bitsocial hanterar detta med **HTTP-gateways** som vidarebefordrar data mellan P2P-nätverket och webbläsarklienter. Dessa gateways:
+Webbläsare P2P är nu möjligt i Bitsocial-klienter. En webbläsarapp kan köra en [Helia](https://helia.io/)-nod, använda samma Bitsocial-protokollklientstack som andra appar, och hämta innehåll från peers istället för att be en centraliserad IPFS-gateway att betjäna den. Webbläsaren kan också delta i pubsub direkt, så att posta inte behöver en plattformsägd pubsub-leverantör på den lyckliga vägen.
+
+Detta är den viktiga milstolpen för webbdistribution: en normal HTTPS-webbplats kan öppnas till en live P2P social klient. Användare behöver inte installera en stationär app innan de kan läsa från nätverket, och appoperatören behöver inte köra en central gateway som blir censur eller moderering chokepoint för varje webbläsaranvändare.
+
+Webbläsarsökvägen har andra gränser än en skrivbords- eller servernod:
+
+- en webbläsarnod kan vanligtvis inte acceptera godtyckliga inkommande anslutningar från det offentliga internet
+- den kan ladda, validera, cachelagra och publicera data medan appen är öppen
+- den ska inte behandlas som den långlivade värden för en gemenskaps data
+- Fullständig community-hosting hanteras fortfarande bäst av en stationär app, `bitsocial-cli` eller annan
+  alltid på nod
+
+HTTP-routrar har fortfarande betydelse för innehållsupptäckt: de returnerar leverantörsadresser för en community-hash. De är inte IPFS-gateways, eftersom de inte tjänar själva innehållet. Efter upptäckt ansluter webbläsarklienten till peers och hämtar data via P2P-stacken.
+
+5chan avslöjar detta som en opt-in Advanced Settings switch i den vanliga 5chan.app webbappen. Den senaste webbläsarstacken `pkc-js` har blivit tillräckligt stabil för offentliga tester efter att uppströms libp2p/gossipsub-interoparbete adresserat meddelandeleverans mellan Helia- och Kubo-kamrater. Inställningen håller webbläsarens P2P-kontrollerad medan den blir mer verklig testning; när den har tillräckligt med produktionsförtroende kan den bli standardwebbvägen.
+
+## Gateway fallback
+
+Gateway-stödd webbläsaråtkomst är fortfarande användbar som en reserv för kompatibilitet och lansering. En gateway kan vidarebefordra data mellan P2P-nätverket och en webbläsarklient när en webbläsare inte kan ansluta till nätverket direkt eller när appen avsiktligt väljer den äldre sökvägen. Dessa gateways:
 
 - kan drivas av vem som helst
 - kräver inte användarkonton eller betalningar
 - får inte vårdnaden om användaridentiteter eller gemenskaper
 - kan bytas ut utan att förlora data
 
-Detta håller webbläsarupplevelsen sömlös samtidigt som den decentraliserade arkitekturen under bevaras.
+Målarkitekturen är webbläsaren P2P först, med gateways som en valfri reserv snarare än standardflaskhalsen.
 
 ---
 

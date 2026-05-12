@@ -30,7 +30,7 @@ Přiřazení adresářových slotů (která deska se na které cestě objeví) s
 
 ## Vnitřnosti
 
-Pod kapotou 5chan používá sdílenou vrstvu klienta protokolu Bitsocial pro své síťové interakce.
+Pod kapotou 5chan používá sdílenou vrstvu klienta protokolu Bitsocial pro své síťové interakce. Webová aplikace na 5chan.app může také spouštět uzel Helia v prohlížeči, když je v prohlížeči povoleno P2P z pokročilých nastavení, takže čtenáři mohou načítat od kolegů bez centralizované brány IPFS. Viz část P2P prohlížeče v poznámkách k protokolu peer-to-peer.
 
 ## Odkazy
 

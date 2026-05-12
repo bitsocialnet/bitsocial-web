@@ -34,7 +34,7 @@ Việc gán vị trí thư mục (bảng nào xuất hiện ở đường dẫn 
 
 ## Nội bộ
 
-Về cơ bản, 5chan sử dụng lớp API plebbit-js cho các tương tác giao thức của nó. Như đã lưu ý trong cảnh báo ở trên, các tài liệu tham khảo nội bộ này vẫn mang cách đặt tên kế thừa trước khi đổi thương hiệu Bitsocial.
+Về cơ bản, 5chan sử dụng lớp máy khách giao thức Bitsocial được chia sẻ cho các tương tác mạng của mình. Ứng dụng web tại 5chan.app cũng có thể chạy nút Helia trong trình duyệt khi trình duyệt P2P được bật từ Cài đặt nâng cao, do đó người đọc có thể tải từ các thiết bị ngang hàng mà không cần cổng IPFS tập trung. Xem phần P2P của trình duyệt trong ghi chú giao thức ngang hàng.
 
 ## Liên kết
 

@@ -34,7 +34,7 @@ Dizin yuvası atamaları (hangi panonun hangi yolda göründüğü) şu anda `5c
 
 ## İç kısımlar
 
-Temel olarak 5chan, protokol etkileşimleri için plebbit-js API katmanını kullanıyor. Yukarıdaki uyarıda belirtildiği gibi, bu dahili referanslar hâlâ Bitsocial'ın yeniden markalanmasından önce gelen eski adlandırmaları taşıyor.
+Temel olarak 5chan, ağ etkileşimleri için paylaşılan Bitsocial protokolü istemci katmanını kullanıyor. 5chan.app'teki web uygulaması, Gelişmiş Ayarlar'dan tarayıcı P2P etkinleştirildiğinde tarayıcıda bir Helia düğümü çalıştırabilir, böylece okuyucular merkezi bir IPFS ağ geçidi olmadan eşlerden yükleme yapabilir. Eşler arası protokol notlarındaki tarayıcı P2P bölümüne bakın.
 
 ## Bağlantılar
 

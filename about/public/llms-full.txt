@@ -38,7 +38,7 @@ Two interpretation notes matter:
 - [Custom Anti-Spam Challenges](https://bitsocial.net/docs/custom-challenges/): Why Bitsocial lets each community define its own anti-spam policy.
 - [Identity and Community Ownership](https://bitsocial.net/docs/identity-and-ownership/): How Bitsocial treats profiles and communities as key-controlled property instead of revocable platform accounts.
 - [Local Moderation, Not Global Bans](https://bitsocial.net/docs/local-moderation/): What Bitsocial means when it says moderation stays local.
-- [Peer-to-Peer Protocol](https://bitsocial.net/docs/peer-to-peer-protocol/): How Bitsocial uses public-key addressing and peer-to-peer pubsub to deliver serverless social media.
+- [Peer-to-Peer Protocol](https://bitsocial.net/docs/peer-to-peer-protocol/): How Bitsocial uses public-key addressing, peer-to-peer pubsub, and browser P2P nodes to deliver serverless social media.
 
 ## Master plan
 
@@ -66,7 +66,7 @@ Two interpretation notes matter:
 
 ## Infrastructure
 
-- [BSO Resolver](https://bitsocial.net/docs/infrastructure/bso-resolver/): Resolve .bso domain names to public keys using ENS TXT records, with built-in caching and cross-platform support.
+- [BSO Resolver](https://bitsocial.net/docs/infrastructure/bso-resolver/): Resolve .bso domain names to public keys via Bitsocial TXT records, with built-in caching and cross-platform support.
 - [Mintpass](https://bitsocial.net/docs/infrastructure/mintpass/): NFT-based authentication system that helps Bitsocial communities verify users and reduce sybil attacks.
 - [Telegram Bots](https://bitsocial.net/docs/infrastructure/telegram-bots/): Feed bots that monitor Bitsocial community lists and forward posts to Telegram channels.
 
@@ -221,7 +221,7 @@ That is what “no global bans” is trying to preserve.
 
 Source: https://bitsocial.net/docs/peer-to-peer-protocol/
 Path: docs/peer-to-peer-protocol.md
-Description: How Bitsocial uses public-key addressing and peer-to-peer pubsub to deliver serverless social media.
+Description: How Bitsocial uses public-key addressing, peer-to-peer pubsub, and browser P2P nodes to deliver serverless social media.
 
 # Peer-to-Peer Protocol
 
@@ -251,21 +251,42 @@ similar idea with public keys: the hash of a community's public key becomes its 
 ```mermaid
 graph LR
     K["🔑 Community keypair"] --> H["#️⃣ Hash of public key"]
-    H --> A["📍 Network address"]
-    A --> D["🌐 DHT lookup"]
-    D --> C["📄 Latest community content"]
+    H --> D["🌐 HTTP router(s) lookup of hash"]
+    D --> P["🔌 Provider peer addresses"]
+    P --> C["📄 Latest community content from peers"]
 ```
 
-Any peer on the network can perform a DHT (distributed hash table) query for that address and
-retrieve the community's latest state. Each time the content is updated, its version number
-increases. The network only keeps the latest version — there is no need to preserve every historical
-state, which is what makes this approach lightweight compared to a blockchain.
+Any peer on the network can query an **HTTP router** for that address: the router replies with a
+list of peer network addresses currently providing the hash of the community, and the client
+connects to those peers directly to fetch the community's latest state. Each time the content is
+updated, its version number increases. The network only keeps the latest version — there is no need
+to preserve every historical state, which is what makes this approach lightweight compared to a
+blockchain.
+
+> **What an HTTP router actually holds.** An HTTP router is a thin index. For each content address
+> it knows, it stores only the network addresses of peers that announced themselves as providers
+> (IP/port pairs, libp2p multiaddrs, that sort of thing). It does **not** store the community's
+> content, its metadata, post text, member list, or even the human-readable label of what is at
+> that address; it just answers "which peers claim to have this hash?". This makes routers cheap to
+> run, easy to swap, and not liable for what users publish, similar to a BitTorrent tracker but
+> without torrent metadata: a tracker maps infohashes to peers, while an HTTP router only maps a
+> content address to provider peer addresses.
+>
+> For redundancy, the client queries **several HTTP routers in parallel** and merges the provider
+> lists it gets back. Anyone can run a router, and replacing or adding routers is a config change
+> with no data migration.
+>
+> Bitsocial uses HTTP routers instead of a DHT because running a DHT at the scale needed for
+> content discovery is expensive, especially for mobile. A DHT also does not work in the browser,
+> since browsers cannot join a libp2p DHT directly. An HTTP router runs cheaply on commodity HTTP
+> infrastructure and works equally well from a phone or a browser.
 
 ### What gets stored at the address
 
 The community address does not contain full post content directly. Instead it stores a list of
 content identifiers — hashes that point to the actual data. The client then fetches each piece of
-content through the DHT or tracker-style lookups.
+content directly from the peers returned by the HTTP routers. The routers themselves never see or
+store the content.
 
 ```mermaid
 graph TD
@@ -323,15 +344,18 @@ This is what happens when a user opens the app and views a community's latest po
 ```mermaid
 sequenceDiagram
     participant User as 👤 User app
-    participant DHT as 🌐 DHT network
+    participant Routers as 🌐 HTTP routers
     participant Node as 🖥️ Community node
 
-    User->>DHT: Query community address
-    Note over DHT: Distributed lookup<br/>across network peers
-    DHT-->>User: Return latest content pointers + metadata
+    User->>Routers: Query community address (in parallel)
+    Note over Routers: Each router returns<br/>peer addresses only, never content
+    Routers-->>User: Return provider peer addresses
 
-    User->>DHT: Fetch post content by hash
-    DHT-->>User: Return post data
+    User->>Node: Connect to peer, fetch latest pointers + metadata
+    Node-->>User: Return latest content pointers + metadata
+
+    User->>Node: Fetch post content by hash
+    Node-->>User: Return post data
     Note over User: Render posts in<br/>familiar social UI
 
     Note over User,Node: Multiple community queries<br/>run concurrently
@@ -340,10 +364,13 @@ sequenceDiagram
 **Step by step:**
 
 1. The user opens the app and sees a social interface.
-2. The client joins the peer-to-peer network and makes a DHT query for each community the user
-   follows. Queries take a few seconds each but run concurrently.
-3. Each query returns the community's latest content pointers and metadata (title, description,
-   moderator list, challenge configuration).
+2. The client queries several HTTP routers in parallel for each community the user follows; each
+   router returns peer addresses only, never content. Query latency depends on network conditions
+   and router load; under typical low-latency conditions, queries often return within about one
+   second and run concurrently.
+3. Once the client has peer addresses, it connects to those peers and fetches the community's
+   latest content pointers and metadata (title, description, moderator list, challenge
+   configuration).
 4. The client fetches the actual post content using those pointers, then renders everything in a
    familiar social interface.
 
@@ -419,23 +446,23 @@ graph TB
     end
 
     subgraph Network ["Network layer"]
-        DHT["🗂️ DHT<br/>(content discovery)"]
+        Router["🛰️ HTTP router<br/>(content discovery)"]
         GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
     end
 
     A1 & A2 & A3 --> PK & PS & CH
-    PK --> DHT
+    PK --> Router
     PS --> GS
     CH --> GS
     PK --> TR
 ```
 
-| Layer        | Role                                                                                                                                      |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| **App**      | User interface. Multiple apps can exist, each with its own design, all sharing the same communities and identities.                       |
-| **Protocol** | Defines how communities are addressed, how posts are published, and how spam is prevented.                                                |
-| **Network**  | The underlying peer-to-peer infrastructure: DHT for discovery, gossipsub for real-time messaging, and content transfer for data exchange. |
+| Layer        | Role                                                                                                                                               |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **App**      | User interface. Multiple apps can exist, each with its own design, all sharing the same communities and identities.                                |
+| **Protocol** | Defines how communities are addressed, how posts are published, and how spam is prevented.                                                         |
+| **Network**  | The underlying peer-to-peer infrastructure: HTTP routers for discovery, gossipsub for real-time messaging, and content transfer for data exchange. |
 
 ---
 
@@ -454,18 +481,50 @@ baseline.
 
 ---
 
-## Browser users and gateways
+## Browser peer-to-peer
 
-Browsers cannot join peer-to-peer networks directly. Bitsocial handles this with **HTTP gateways**
-that relay data between the P2P network and browser clients. These gateways:
+Browser P2P is now possible in Bitsocial clients. A browser app can run a
+[Helia](https://helia.io/) node, use the same Bitsocial protocol client stack as other apps, and
+fetch content from peers instead of asking a centralized IPFS gateway to serve it. The browser can
+also participate in pubsub directly, so posting does not need a platform-owned pubsub provider in
+the happy path.
+
+This is the important milestone for web distribution: a normal HTTPS website can open into a live
+P2P social client. Users do not need to install a desktop app before they can read from the network,
+and the app operator does not need to run a central gateway that becomes the censorship or
+moderation chokepoint for every browser user.
+
+The browser path has different limits from a desktop or server node:
+
+- a browser node usually cannot accept arbitrary inbound connections from the public internet
+- it can load, validate, cache, and publish data while the app is open
+- it should not be treated as the long-lived host for a community's data
+- full community hosting is still best handled by a desktop app, `bitsocial-cli`, or another
+  always-on node
+
+HTTP routers still matter for content discovery: they return provider addresses for a community
+hash. They are not IPFS gateways, because they do not serve the content itself. After discovery, the
+browser client connects to peers and fetches the data through the P2P stack.
+
+5chan exposes this as an opt-in Advanced Settings switch in the normal 5chan.app web app. The latest
+`pkc-js` browser stack has become stable enough for public testing after upstream libp2p/gossipsub
+interop work addressed message delivery between Helia and Kubo peers. The setting keeps browser P2P
+controlled while it gets more real-world testing; once it has enough production confidence, it can
+become the default web path.
+
+## Gateway fallback
+
+Gateway-backed browser access is still useful as a compatibility and rollout fallback. A gateway can
+relay data between the P2P network and a browser client when a browser cannot join the network
+directly or when the app intentionally chooses the older path. These gateways:
 
 - can be run by anyone
 - do not require user accounts or payments
 - do not gain custody over user identities or communities
 - can be swapped out without losing data
 
-This keeps the browser experience seamless while preserving the decentralized architecture
-underneath.
+The target architecture is browser P2P first, with gateways as an optional fallback rather than the
+default bottleneck.
 
 ---
 
@@ -572,6 +631,23 @@ The master plan places this after the earlier app-level proof points:
 
 That sequence makes sense because an ecosystem-level coordination layer is more useful once real
 apps and real user behavior already exist on the network.
+
+## Design Principles
+
+Because Bitsocial Network is still proposed infrastructure rather than a launched product, the
+current plan should stay disciplined in a few ways:
+
+- Apps and communities first. The network layer should follow real usage in Bitsocial apps, not
+  lead with speculative financial features.
+- Real contribution over hype. If Bitsocial later adds community-, creator-, or client-level
+  assets, they should reward participation and long-term building rather than copycat launches or
+  short-term trading.
+- Curation is allowed. Bitsocial apps can shape rankings, defaults, discovery, and rollout timing
+  to favor durable communities over casino-style behavior.
+- Gradual rollout is healthy. It is reasonable to delay appchain-native financial features until
+  the ecosystem has enough users, moderation tools, and product clarity to support them safely.
+- Exact mechanics are still open. This page explains the role of Bitsocial Network, not a locked
+  promise about token launchers, fee formulas, or final tokenomics.
 
 ### Decentralize All Social Media
 
@@ -722,11 +798,11 @@ type PermissionBundle = {
     getComment: boolean;
     getCommentPage: boolean;
     getCommunityPage: boolean;
-    fetchContent: boolean;
-    resolveAuthorAddress: boolean;
+    fetchCid: boolean;
+    resolveAuthorName: boolean;
     commentUpdateSubscribe: boolean;
     communityUpdateSubscribe: boolean;
-    communityListSubscribe: boolean;
+    communitiesSubscribe: boolean;
     settingsSubscribe: boolean;
   };
   rateLimits: {
@@ -869,6 +945,9 @@ Directory slot assignments (which board appears at which path) are currently man
 ## Internals
 
 Under the hood, 5chan uses the shared Bitsocial protocol client layer for its network interactions.
+The web app at 5chan.app can also run a Helia node in the browser when browser P2P is enabled from
+Advanced Settings, so readers can load from peers without a centralized IPFS gateway. See the
+browser P2P section in the peer-to-peer protocol notes.
 
 ## Links
 
@@ -983,7 +1062,7 @@ Pre-built binaries are available for Windows, macOS, and Linux. Download the lat
 After downloading, make the binary executable (macOS/Linux):
 
 ```bash
-chmod +x bitsocial-cli
+chmod +x bitsocial
 ```
 
 ## Running the Daemon
@@ -991,7 +1070,7 @@ chmod +x bitsocial-cli
 The most common use of the CLI is running a Bitsocial node. The daemon starts the P2P networking layer and exposes a local API that clients can connect to.
 
 ```bash
-bitsocial-cli daemon
+bitsocial daemon
 ```
 
 On first launch, the daemon outputs links to the **WebUI**, a browser-based graphical interface for managing your node, communities, and settings. This is useful if you prefer a GUI over terminal commands.
@@ -1010,8 +1089,8 @@ On first launch, the daemon outputs links to the **WebUI**, a browser-based grap
 Run the CLI with `--help` to see the current command names and flags exposed by your installed release:
 
 ```bash
-bitsocial-cli --help
-bitsocial-cli daemon --help
+bitsocial --help
+bitsocial daemon --help
 ```
 
 ## Typical Workflow
@@ -1020,10 +1099,10 @@ A common setup flow for hosting a new community:
 
 ```bash
 # 1. Start the daemon
-bitsocial-cli daemon
+bitsocial daemon
 
 # 2. In another terminal, inspect the available community-management commands
-bitsocial-cli --help
+bitsocial --help
 ```
 
 From there, use the installed release's community-management commands to create, configure, and start serving a community. Once started, the community is live on the Bitsocial network and accessible from compatible clients.
@@ -1202,13 +1281,14 @@ npm install @bitsocial/evm-contract-challenge
 
 ## Configuration Options
 
-| Option        | Type     | Description                                                                           |
-| ------------- | -------- | ------------------------------------------------------------------------------------- |
-| `chainTicker` | `string` | The chain to query (e.g., `eth`, `matic`, `avax`).                                    |
-| `address`     | `string` | The smart contract address to call.                                                   |
-| `abi`         | `string` | The ABI fragment for the function being called.                                       |
-| `condition`   | `string` | A comparison expression evaluated against the contract return value (e.g., `> 1000`). |
-| `error`       | `string` | The error message shown to authors who do not meet the condition.                     |
+| Option        | Type     | Description                                                                                                       |
+| ------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| `chainTicker` | `string` | The chain to query (e.g., `eth`, `matic`, `avax`).                                                                |
+| `rpcUrls`     | `string` | Optional comma-separated JSON-RPC URLs for the chain (e.g., `https://eth.llamarpc.com,https://rpc.ankr.com/eth`). |
+| `address`     | `string` | The smart contract address to call.                                                                               |
+| `abi`         | `string` | The ABI fragment for the function being called.                                                                   |
+| `condition`   | `string` | A comparison expression evaluated against the contract return value (e.g., `> 1000`).                             |
+| `error`       | `string` | The error message shown to authors who do not meet the condition.                                                 |
 
 ## Example
 
@@ -1351,14 +1431,14 @@ Voucher Challenge plugs into the same challenge interface used by other anti-spa
 
 Source: https://bitsocial.net/docs/infrastructure/bso-resolver/
 Path: docs/infrastructure/bso-resolver.md
-Description: Resolve .bso domain names to public keys using ENS TXT records, with built-in caching and cross-platform support.
+Description: Resolve .bso domain names to public keys via Bitsocial TXT records, with built-in caching and cross-platform support.
 
 # BSO Resolver
 
-The BSO Resolver translates `.bso` domain names into their corresponding public keys by reading Bitsocial TXT records stored on ENS. It provides a shared viem client, persistent caching, and works in both Node.js and browser environments.
+The BSO Resolver translates `.bso` domain names into their corresponding public keys by reading Bitsocial TXT records. It provides a shared viem client, persistent caching, and works in both Node.js and browser environments.
 
 - **GitHub**: [bitsocialnet/bso-resolver](https://github.com/bitsocialnet/bso-resolver)
-- **License**: GPL-2.0-only
+- **License**: GPL-3.0
 
 ## Installation
 
@@ -1392,7 +1472,7 @@ The `provider` parameter accepts three formats:
 
 ### `resolve({ name, abortSignal? })`
 
-Looks up a `.bso` name and returns the associated public key. An optional `AbortSignal` can be passed to cancel long-running requests.
+Looks up a `.bso` name and returns a result object containing the associated `publicKey` (plus any other parsed TXT-record fields), or `undefined` if the name does not resolve. An optional `AbortSignal` can be passed to cancel long-running requests.
 
 ### `canResolve({ name })`
 
@@ -1416,10 +1496,11 @@ All cache entries have a **one-hour TTL** and are automatically evicted after ex
 
 ## Integration with pkc-js
 
-The resolver can be plugged directly into pkc-js through the `nameResolvers` option, enabling transparent `.bso` name resolution during key lookups:
+The resolver can be plugged directly into pkc-js through the `nameResolvers` option, enabling transparent `.bso` name resolution during key lookups. `pkc-js` exposes its entry as an async factory, not a constructor:
 
 ```js
-const pkc = new Pkc({
+
+const pkc = await PKC({
   nameResolvers: [resolver],
   // ...other options
 });
@@ -1654,17 +1735,20 @@ If your AI coding assistant supports lifecycle hooks, configure these for this r
 
 ## Recommended Hooks
 
-| Hook            | Command                                    | Purpose                                                                                                                                                                                             |
-| --------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `afterFileEdit` | `scripts/agent-hooks/format.sh`            | Auto-format files after AI edits                                                                                                                                                                    |
-| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`      | Run `corepack yarn install` when `package.json` changes                                                                                                                                             |
-| `stop`          | `scripts/agent-hooks/sync-git-branches.sh` | Prune stale refs and delete integrated temporary task branches                                                                                                                                      |
-| `stop`          | `scripts/agent-hooks/verify.sh`            | Hard-gate targeted build verification, lint, typecheck, and format checks; keep `yarn npm audit` informational and run `yarn knip` separately as an advisory audit when dependencies/imports change |
+| Hook            | Command                                       | Purpose                                                                                                                                                                                             |
+| --------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `afterFileEdit` | `scripts/agent-hooks/format.sh`               | Auto-format files after AI edits                                                                                                                                                                    |
+| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`         | Run `corepack yarn install` when `package.json` changes                                                                                                                                             |
+| `afterFileEdit` | `scripts/agent-hooks/react-pattern-review.sh` | When a diff adds `useEffect`/memo primitives in `about/src/`, remind the agent to reconsider with the React review skills                                                                           |
+| `stop`          | `scripts/agent-hooks/sync-git-branches.sh`    | Prune stale refs and delete integrated temporary task branches                                                                                                                                      |
+| `stop`          | `scripts/agent-hooks/react-pattern-review.sh` | Re-scan the current diff for new React effects/memos in `about/src/` before the final verify gate                                                                                                   |
+| `stop`          | `scripts/agent-hooks/verify.sh`               | Hard-gate targeted build verification, lint, typecheck, and format checks; keep `yarn npm audit` informational and run `yarn knip` separately as an advisory audit when dependencies/imports change |
 
 ## Why
 
 - Consistent formatting
 - Lockfile stays in sync
+- New `useEffect`/memo additions in the about site get an explicit second look before the agent finishes
 - Workspace-relevant build/lint/type issues caught early without forcing the full multi-locale docs build on every task
 - Security visibility via `yarn npm audit`
 - Dependency/import drift can be checked with `yarn knip` without turning it into a noisy global stop hook
@@ -1772,6 +1856,26 @@ If uncertain, ask the developer before adding an entry.
 
 ## Entries
 
+### Vercel app production domains can drift back to Git master deployments
+
+- **Date:** 2026-04-28
+- **Observed by:** Tommaso + Codex
+- **Context:** Verifying Seedit and 5chan app mirrors in the Bitsocial Web app directory.
+- **What was surprising:** The Vercel `seedit` and `5chan` projects had `gitProviderOptions.createDeployments = "enabled"`, so GitHub `master` pushes were promoted to the production domains even though the repo policy expects production app mirrors to serve release artifacts only.
+- **Impact:** App-directory verified mirror badges can become false because production domains serve the latest development commit instead of the GitHub release ZIP whose `index.html` hash is recorded in `about/src/lib/apps-data.ts`.
+- **Mitigation:** Before adding or refreshing mirror verification metadata, check the Vercel project with `vercel api /v9/projects/<project-id>` and confirm `gitProviderOptions.createDeployments = "disabled"`. Deploy release ZIP contents with `vercel deploy --prebuilt --prod` and use `seedit-omega.vercel.app` or `5chan-omega.vercel.app` for development deployments.
+- **Status:** confirmed
+
+### Portless 0.11 reuses legacy proxy state unless the launcher forces HTTPS
+
+- **Date:** 2026-04-28
+- **Observed by:** Tommaso + Codex
+- **Context:** Upgrading the normal `yarn start` flow from the old `http://bitsocial.localhost:1355` proxy URL to `https://bitsocial.localhost`.
+- **What was surprising:** Even with `portless@0.11.1` installed, Portless reused the existing `~/.portless/proxy.port = 1355` HTTP proxy and printed the legacy `:1355` URL.
+- **Impact:** Updating package versions and docs is not enough; `yarn start` can still advertise and use the old URL when a contributor has legacy Portless state running.
+- **Mitigation:** Keep the start scripts explicitly starting the Portless HTTPS proxy on port `443` before registering app routes, so the runtime flow migrates away from persisted `1355` state instead of inheriting it.
+- **Status:** confirmed
+
 ### Portless changes the canonical local app URL
 
 - **Date:** 2026-03-18
@@ -1870,6 +1974,16 @@ If uncertain, ask the developer before adding an entry.
 - **What was surprising:** The docs translation pipeline had two repo-specific failure modes at once: `scripts/translate-docs.py` only extracted a small subset of `DocsHome` messages when `tr(...)` calls used forms it did not parse, and translated markdown under `docs/i18n/**` could contain machine-translated slugs or `ZXQPLACEHOLDER` artifacts inside link targets.
 - **Impact:** Localized homepages can silently fall back to English, localized detail pages can appear untranslated, and full `yarn docs:build` can fail on broken locale links even though the source docs are valid.
 - **Mitigation:** After changing docs translations or regenerating locale files, always run `yarn docs:build` from the repo root, scan `docs/i18n/**` markdown for `ZXQPLACEHOLDER`, and verify translated links still point to canonical doc slugs such as `/apps/5chan/` instead of translated URL paths. If `DocsHome` copy changed, confirm `scripts/translate-docs.py` still extracts all `docs.home.*` messages.
+- **Status:** confirmed
+
+### About-site no-JS checks must use the Portless route, not a standalone SSR preview
+
+- **Date:** 2026-04-12
+- **Observed by:** Codex
+- **Context:** Verifying no-JS support for the `about/` site from a branch worktree
+- **What was surprising:** A standalone SSR preview can look healthy while the actual branch-scoped Portless route is still serving the wrong app shell or an older process. In this repo, the real local contract is the Portless hostname from `yarn start`, not an ad hoc preview server.
+- **Impact:** Agents can incorrectly claim no-JS support works, or miss regressions that only show up on `*.bitsocial.localhost`.
+- **Mitigation:** For `about/` browser verification, always start the real local server with `yarn start` or `yarn start:about` and test the branch-scoped Portless URL first. If a Portless hostname looks stale, inspect and stop the old process before retesting.
 - **Status:** confirmed
 
 ### Long-Running Agent Workflow
@@ -2335,6 +2449,31 @@ Relevant local rules also live in:
 - `/stats` is routed through Vercel to the VPS-hosted Grafana stack
 - `newsletter.bitsocial.net` remains separate
 
+### Verified App Mirror Deployments
+
+The `/apps` catalog can show a verified check next to app mirrors when a mirror serves
+the same HTML entrypoint hash as an official GitHub release artifact. This is meant to
+attest release parity, not domain ownership.
+
+For 5chan and Seedit verified web links, the Vercel `5chan` and `seedit` projects are
+configured so Git pushes do not automatically create deployments:
+
+```text
+gitProviderOptions.createDeployments = "disabled"
+```
+
+Production domains such as `5chan.cc`, `5channel.org`, `5chan.app`, `seedit.app`,
+`www.seedit.app`, and `p2p.seedit.app` should only be updated from a GitHub release
+or tag deployment. Do not point those domains at a raw `master` deployment unless
+that deployment has first been promoted into an official release and its static HTML
+artifact hash has been checked.
+
+When adding or updating mirror verification metadata in `about/src/lib/apps-data.ts`,
+verify the live mirror HTML against the matching release ZIP before showing the badge.
+If the live hash does not match a GitHub release artifact, leave the mirror unverified
+until the mirror is redeployed from the release or a new release is cut for the served
+artifact.
+
 ## Commit Workflow
 
 This repo uses Commitizen for Conventional Commits.
@@ -2360,13 +2499,13 @@ Unlike traditional imageboards, 5chan has no global admins or central authority.
 ### Competitive Directory System
 5chan maintains the familiar imageboard directory structure (Japanese Culture, Video Games, Interests, Creative, etc.), but introduces competition: **multiple boards can compete for each directory slot**. For example, there can be unlimited "Business & Finance" boards, but only the highest-voted one appears in the directory on the homepage.
 
-Currently, directory assignments are temporarily handpicked by developers through GitHub pull requests. In the future, this will be fully automated through **gasless pubsub voting** (see [Future Roadmap](#future-roadmap) below), making the process completely decentralized and community-driven.
+Currently, directory assignments are temporarily handpicked by developers through GitHub pull requests. In the future, each directory will have its own voting page. 5chan Pass holders are expected to participate in directory voting, while final governance mechanics are still being designed to include BSO-holder alignment instead of pass-only final control.
 
 ### How It Works
 
 - **Current System**: Developers manually curate directory assignments by reviewing pull requests to the [5chan-directories.json](https://github.com/bitsocialnet/lists/blob/master/5chan-directories.json) file.
 
-- **Future System**: Directory board assignments will be determined through gasless voting using pubsub. Community members will vote on which board should be assigned to each directory, and the highest-voted board will automatically become the directory board. This creates a competitive marketplace where board quality and community engagement determine directory placement.
+- **Future System**: Each directory will have its own voting page listing the boards competing for that slot. 5chan Pass holders are expected to participate in directory voting, while final governance mechanics are still being designed to include BSO-holder alignment instead of pass-only final control.
 
 - **Accessing Boards**: Users can access any board at any time using its address, regardless of directory assignment. Boards can be accessed via the search bar, by subscribing to them (which adds them to the top bar), or by directly navigating to their address.
 
@@ -2376,15 +2515,9 @@ Currently, directory assignments are temporarily handpicked by developers throug
 
 Creating boards directly from the 5chan web app (5chan.app) is planned. This requires connecting via RPC to a bitsocial node—technically already possible, but there's no default connection configured. A default connection would require a public RPC service (similar to what Infura provides for crypto wallets, but for bitsocial nodes). This would allow all users to be connected to a P2P node by default using a free tier subscription in the background, potentially monetized via ads injected in the RPC service-owned boards.
 
-#### Pubsub Voting
+#### Directory Voting
 
-The protocol design for pubsub voting is already drafted in [pkc-js issue #25](https://github.com/pkcprotocol/pkc-js/issues/25). This will enable:
-- Gasless voting using pubsub topics
-- Weighted voting based on token balances
-- Automatic directory resolution based on vote tallies
-- Full decentralization without any intermediaries
-
-This feature is on the pkc-js roadmap but hasn't been implemented yet.
+Directory voting pages are planned for each slot on 5chan. These pages will list the competing boards for that directory, and 5chan Pass holders are expected to participate in voting. Final governance mechanics are still being designed to include BSO-holder alignment instead of pass-only final control.
 
 ## Downloads
 
@@ -2394,13 +2527,18 @@ This feature is on the pkc-js roadmap but hasn't been implemented yet.
 
 ## Creating a Board
 
-In the bitsocial protocol, a 5chan board is called a _community_. To create and run a community:
+In the bitsocial protocol, a 5chan board is called a _community_. To deliver the expected 5chan imageboard UX, a board should run on a bitsocial node together with [5chan Board Manager](https://github.com/bitsocialnet/5chan-board-manager). The board manager applies imageboard-style lifecycle rules that bitsocial communities do not enforce by themselves: thread limits, bump limits, archived-thread retention, and purging of author-deleted content.
+
+To create and run a board:
 
 1. Install bitsocial-cli, available for Windows, macOS, and Linux: [latest release](https://github.com/bitsocialnet/bitsocial-cli/releases/latest);
 2. Follow the instructions in the repo's README;
 3. When running the daemon for the first time, it will output WebUI links you can use to manage your bitsocial community with a GUI.
+4. Run 5chan Board Manager against the same bitsocial node and add your community to it. The recommended setup is the Docker Compose flow in the [5chan-board-manager README](https://github.com/bitsocialnet/5chan-board-manager#standalone-bitsocial-cli-already-running) for an existing bitsocial-cli daemon.
 
 Once created, anyone can connect to your community using any bitsocial client (such as 5chan) by using the community address. The address is not stored in any central database—bitsocial is a pure peer-to-peer protocol.
+
+Without 5chan Board Manager, a community can still be opened in 5chan, but it will not behave like a conventional imageboard board: old threads will not be archived when they fall past the last page, bump limits will not be enforced, archived threads will not be purged after the retention window, and author-deleted content will not be automatically purged.
 
 **Note**: Creating boards directly from the 5chan web app is planned for the future (see [Future Roadmap](#future-roadmap)).
 
@@ -2443,7 +2581,7 @@ To have your board appear in a directory on the 5chan homepage:
 2. Install dependencies: `yarn install`
 3. Start the web client: `yarn start`
 
-The dev server normally runs at https://5chan.localhost via [Portless](https://github.com/vercel-labs/portless), which gives each Bitsocial project a stable, named URL instead of a random port. On non-`master` branches, or when another legacy process is already holding the canonical route, `yarn start` will automatically use a branch-scoped `*.5chan.localhost` URL instead of failing. To bypass Portless and use a plain Vite dev server, run `PORTLESS=0 yarn start`; it will start at `https://5chan.localhost` and automatically fall forward to the next free port if `1355` is already in use.
+The dev server normally runs at https://5chan.localhost via [Portless](https://github.com/vercel-labs/portless), which gives each Bitsocial project a stable, named URL instead of a random port. Portless 0.11 serves this URL through an HTTPS proxy on port 443, so the first `yarn start` after install or proxy reset may prompt for sudo; accept the prompt so the URL can stay portless. On non-`master` branches, or when another legacy process is already holding the canonical route, `yarn start` will automatically use a branch-scoped `*.5chan.localhost` URL instead of failing. To bypass Portless and use a plain Vite dev server, run `PORTLESS=0 yarn start`; it will start at `http://localhost:3000` and automatically fall forward to the next free port if `3000` is already in use.
 
 For device testing on a USB-connected Android phone (without relying on `5chan.localhost` DNS from the device):
 
@@ -2468,7 +2606,7 @@ The Linux/Windows/macOS/Android build scripts are in [.github/workflows/release.
 
 ## License
 
-5chan is open-source software (GPLv2 license) with no owner—anyone can host their own instance on any domain. The operator of any domain is merely hosting the web app and does not own, create, moderate, or control 5chan or any board content, which is stored peer-to-peer and generated by board owners and users.
+5chan is open-source software (GPL-3.0-or-later) with no owner—anyone can host their own instance on any domain. The operator of any domain is merely hosting the web app and does not own, create, moderate, or control 5chan or any board content, which is stored peer-to-peer and generated by board owners and users.
 
 ### Seedit
 
@@ -2593,6 +2731,42 @@ mintpass/
 
 Community owners add the MintPass challenge to their community settings. When enabled, every publication (post, reply, vote) requires the author to hold a valid MintPass NFT. The challenge is published as [`@bitsocial/mintpass-challenge`](https://www.npmjs.com/package/@bitsocial/mintpass-challenge) on npm.
 
+### With pkc-js over RPC
+
+If your RPC server is already running, first install the challenge on the server:
+
+```bash
+bitsocial challenge install @bitsocial/mintpass-challenge
+```
+
+Then from your RPC client, connect and set the challenge on your community by name — no npm install or challenge registration needed on the client side:
+
+```ts
+import PKC from "@pkcprotocol/pkc-js";
+
+const pkc = await PKC({
+  pkcRpcClientsOptions: ["ws://localhost:9138"]
+});
+
+const community = await pkc.createCommunity({ address: "your-community-address.bso" });
+
+await community.edit({
+  settings: {
+    challenges: [
+      {
+        name: "@bitsocial/mintpass-challenge",
+        options: {
+          chainTicker: "base",
+          contractAddress: "0x13d41d6B8EA5C86096bb7a94C3557FCF184491b9",
+          requiredTokenType: "0",
+          transferCooldownSeconds: "604800"
+        }
+      }
+    ]
+  }
+});
+```
+
 ### With pkc-js (TypeScript)
 
 Install the challenge package:
@@ -2608,7 +2782,7 @@ import PKC from '@pkcprotocol/pkc-js'
 import mintpassChallenge from '@bitsocial/mintpass-challenge'
 
 // Register the challenge so it can be referenced by name
-PKC.challenges['mintpass'] = mintpassChallenge
+PKC.challenges['@bitsocial/mintpass-challenge'] = mintpassChallenge
 
 const pkc = await PKC({ /* your pkc options */ })
 const community = await pkc.createCommunity({ address: 'your-community.bso' })
@@ -2616,7 +2790,7 @@ const community = await pkc.createCommunity({ address: 'your-community.bso' })
 await community.edit({
   settings: {
     challenges: [{
-      name: 'mintpass',
+      name: '@bitsocial/mintpass-challenge',
       options: {
         chainTicker: 'base',
         contractAddress: '0x13d41d6B8EA5C86096bb7a94C3557FCF184491b9',
@@ -2655,7 +2829,7 @@ Edit your community to use the challenge:
 
 ```bash
 bitsocial community edit your-community.bso \
-  '--settings.challenges[0].name' mintpass \
+  '--settings.challenges[0].name' @bitsocial/mintpass-challenge \
   '--settings.challenges[0].options.chainTicker' base \
   '--settings.challenges[0].options.contractAddress' '0x13d41d6B8EA5C86096bb7a94C3557FCF184491b9' \
   '--settings.challenges[0].options.requiredTokenType' '0' \
@@ -2663,7 +2837,7 @@ bitsocial community edit your-community.bso \
   '--settings.challenges[0].options.transferCooldownSeconds' '604800'
 ```
 
-See the [bitsocial-cli documentation](https://github.com/bitsocialnet/bitsocial-cli) for full CLI reference.
+See the [bitsocial-cli documentation](https://github.com/bitsocial/bitsocial-cli) for full CLI reference.
 
 ## Where MintPass is useful
 
@@ -2691,29 +2865,180 @@ MIT License — see [LICENSE](LICENSE).
 
 Open source and commercial‑friendly. A hosted version is available at [mintpass.org](https://mintpass.org).
 
+### @bitsocial/ai-moderation-challenge
+
+Repository: bitsocialnet/ai-moderation-challenge
+Source: https://github.com/bitsocialnet/ai-moderation-challenge#readme
+Description: Automatic PKC challenge that evaluates Bitsocial comment content against community.rules with an OpenAI compatible model endpoint. The package runs on the community node and does not require a hosted Bitsocial moderation server.
+
+# @bitsocial/ai-moderation-challenge
+
+Automatic PKC challenge that evaluates Bitsocial comment content against `community.rules` with an OpenAI-compatible model endpoint. The package runs on the community node and does not require a hosted Bitsocial moderation server.
+
+## Installation
+
+```bash
+bitsocial challenge install @bitsocial/ai-moderation-challenge
+```
+
+## Configuration
+
+Install this challenge twice: one `allow` branch and one `review` branch. The `review` branch uses PKC `pendingApproval` to route rule-breaking comments to the moderator queue.
+
+```js
+[
+    { name: "@bitsocial/spam-blocker-challenge" },
+    {
+        name: "@bitsocial/ai-moderation-challenge",
+        options: {
+            apiKey: "sk-...",
+            branch: "allow",
+            promptPath: "/root/bitsocial-ai-moderation-prompt.md"
+        },
+        exclude: [{ challenges: [2] }]
+    },
+    {
+        name: "@bitsocial/ai-moderation-challenge",
+        options: {
+            apiKey: "sk-...",
+            branch: "review",
+            promptPath: "/root/bitsocial-ai-moderation-prompt.md"
+        },
+        pendingApproval: true,
+        exclude: [{ challenges: [1] }]
+    }
+];
+```
+
+Challenge options are private community-node settings in `pkc-js`, so `apiKey`, `prompt`, `promptPath`, `apiUrl`, `cachePath`, and `auditLogPath` are not copied into the public community challenge metadata. Keep local settings backups private because they can contain `apiKey`.
+
+Production operators should keep the real moderation prompt in a private node-local file referenced by `promptPath`. Do not commit production prompts to public repositories; the built-in prompt is only a public fallback and the challenge emits a warning when it is used.
+
+## Options
+
+| Option         | Default                                  | Description                                                                           |
+| -------------- | ---------------------------------------- | ------------------------------------------------------------------------------------- |
+| `apiUrl`       | `https://api.openai.com/v1/responses`    | Full OpenAI-compatible endpoint URL                                                   |
+| `apiFormat`    | `responses`                              | Request/response format: `responses` or `chat-completions`                            |
+| `apiKey`       | none                                     | Private provider API key                                                              |
+| `model`        | `gpt-5.4-nano`                           | Model name sent to the provider                                                       |
+| `branch`       | `allow`                                  | Branch mode: `allow` or `review`                                                      |
+| `prompt`       | built-in prompt                          | Private inline system prompt text                                                     |
+| `promptPath`   | none                                     | Private file path for a system prompt on the community node                           |
+| `cachePath`    | `~/.bitsocial-ai-moderation-cache.json`  | Private JSON verdict cache path; set to an empty string to disable persistent caching |
+| `auditLogPath` | `~/.bitsocial-ai-moderation-audit.jsonl` | Private JSONL verdict audit log path; set to an empty string to disable audit logging |
+| `error`        | `Rejected by Bitsocial AI moderation.`   | Error shown when content edits are rejected or moderation is unavailable for an edit  |
+
+If both `prompt` and `promptPath` are set, `prompt` takes priority and the challenge emits a warning that `promptPath` is being ignored.
+
+For providers exposing the chat-completions API shape, set both `apiFormat` and `apiUrl`:
+
+```js
+{
+    name: "@bitsocial/ai-moderation-challenge",
+    options: {
+        branch: "allow",
+        apiFormat: "chat-completions",
+        apiUrl: "https://provider.example/v1/chat/completions",
+        apiKey: "provider-key",
+        model: "provider-model"
+    }
+}
+```
+
+OpenAI-compatible APIs are a practical compatibility convention, not a formal open standard. Test custom providers before enabling the challenge on live communities.
+
+## Behavior
+
+- New comments with verdict `allow` publish normally.
+- New comments with verdict `review` are sent to pending approval.
+- New comments are also sent to pending approval if the model API is unavailable.
+- Content edits with verdict `review` are rejected until PKC supports pending approval for edits.
+- Content edits are rejected if the model API is unavailable.
+- Delete-only edits and non-comment publication types bypass AI moderation.
+- The challenge sends text, title, link URL/domain/path, flags, flairs, community address/title/description, and `community.rules`.
+- The model payload explicitly labels publication fields as untrusted user content, not instructions.
+- The challenge does not fetch linked media in v1.
+- Two branch invocations for the same publication reuse one in-process verdict promise.
+- Successful verdicts are cached in a private JSON file keyed by a SHA-256 hash over model/provider config, community context, target content, and the final prompt hash. The cache does not store the raw prompt or API key.
+- Verdicts are written to a private JSONL audit log with the model reason, raw publication fields, and hashes/metadata for correlation. The audit log does not store the raw prompt or API key.
+
+## Moderation Audit Community
+
+The challenge writes one private JSONL audit entry per model verdict. To mirror those entries into a Bitsocial community for moderators, create an unnamed local community with a single `question` challenge, store the answer in a private node-local file, and run the publisher script on the node:
+
+```bash
+node scripts/publish-audit-log-to-community.mjs \
+  --community 12D3KooW... \
+  --audit-log ~/.bitsocial-ai-moderation-audit.jsonl \
+  --challenge-answer-file ~/.bitsocial-ai-moderation-mod-log-password \
+  --follow
+```
+
+The publisher creates a persistent local signer at `~/.bitsocial-ai-moderation-mod-log-signer.json`, stores its read offset in `~/.bitsocial-ai-moderation-mod-log-state.json`, and submits the private challenge answer when publishing. Each mod-log post includes the AI action, verdict reason, matched rule indexes, source community, publication kind, author identifiers, available CIDs, link metadata, content/title, provider/model, cache key, prompt hash, and rule hash.
+
+## Test Coverage
+
+The coverage badge reports line coverage generated with `yarn test:coverage`. On pushes to `master`, CI writes a Shields-compatible endpoint payload and publishes it to GitHub Pages.
+
+The test suite covers the moderation-critical flow: OpenAI-compatible Responses and chat-completions requests include `community.rules`, model `review` verdicts fail the `allow` branch and pass the `review` branch used with `pendingApproval`, provider outages and malformed responses route new comments to review, and content edits are rejected on review or outage.
+
+## Publishing
+
+The first npm publish must create the package before trusted publishing can be configured:
+
+```bash
+npm publish --access public
+```
+
+After the package exists, configure npm trusted publishing:
+
+- Publisher: GitHub Actions
+- Organization: `bitsocialnet`
+- Repository: `ai-moderation-challenge`
+- Workflow filename: `publish.yml`
+- Environment: leave blank
+
+Equivalent npm CLI command:
+
+```bash
+npm trust github @bitsocial/ai-moderation-challenge --repo bitsocialnet/ai-moderation-challenge --file publish.yml
+```
+
+Future releases publish automatically when `package.json` version changes on `master`. The publish workflow skips versions that already exist on npm.
+
 ### BitsocialSpamBlocker
 
 Repository: bitsocialnet/spam-blocker
 Source: https://github.com/bitsocialnet/spam-blocker#readme
-Description: A centralized spam detection service that evaluates publications and provides risk scores to help communities filter spam. Consists of:
+Description: A centralized spam detection service that evaluates publications and provides risk scores to help communities filter spam. This public workspace contains the integration packages:
 
 # BitsocialSpamBlocker
 
 ## Overview
 
-A centralized spam detection service that evaluates publications and provides risk scores to help communities filter spam. Consists of:
+A centralized spam detection service that evaluates publications and provides risk scores to help communities filter spam. This public workspace contains the integration packages:
 
-1. **HTTP Server** (`@bitsocial/spam-blocker-server`) - Risk assessment and challenge server
-2. **Challenge Package** (`@bitsocial/spam-blocker-challenge`) - package for community integration
+1. **Challenge Package** (`@bitsocial/spam-blocker-challenge`) - package for community integration
+2. **Shared Package** (`@bitsocial/spam-blocker-shared`) - shared schemas and response types used by the public integration surface
+
+## Licensing
+
+This monorepo uses package-specific licensing:
+
+- `packages/challenge`: `GPL-3.0-or-later`. This is the public challenge package for community integrations.
+- `packages/shared`: `MIT`. This is the permissive shared-types package intended to be reused by both private services and public integrations.
+
+The hosted Bitsocial spam blocker server implementation now lives in a separate private repository and is not included here. The repo root is marked `UNLICENSED` so the workspace metadata does not imply a single open-source license for the whole repository.
 
 ## Development Workflow
 
 Repo-specific AI workflow guidance lives in:
 
-- [`AGENTS.md`](/Users/Tommaso/Desktop/bitsocial/spam-blocker/AGENTS.md)
-- [`CLAUDE.md`](/Users/Tommaso/Desktop/bitsocial/spam-blocker/CLAUDE.md)
-- [`docs/agent-playbooks/hooks-setup.md`](/Users/Tommaso/Desktop/bitsocial/spam-blocker/docs/agent-playbooks/hooks-setup.md)
-- [`docs/agent-playbooks/skills-and-tools.md`](/Users/Tommaso/Desktop/bitsocial/spam-blocker/docs/agent-playbooks/skills-and-tools.md)
+- [`AGENTS.md`](./AGENTS.md)
+- [`CLAUDE.md`](./CLAUDE.md)
+- [`docs/agent-playbooks/hooks-setup.md`](./docs/agent-playbooks/hooks-setup.md)
+- [`docs/agent-playbooks/skills-and-tools.md`](./docs/agent-playbooks/skills-and-tools.md)
 
 The repo is intended to be worked with Corepack-managed Yarn and repo-managed agent hooks. See the playbooks for the recommended setup and verification flow.
 
@@ -2725,8 +3050,8 @@ Quick setup for a fresh machine:
 
 **Important:**
 
-- The HTTP server must import and use schemas from `pkc-js` to validate incoming challenge requests. This ensures type compatibility with `DecryptedChallengeRequestMessageTypeWithcommunityAuthor`.
-- The HTTP server must verify that the publication in the ChallengeRequest is correctly signed by the author.
+- `packages/shared` defines the public response schemas used by the challenge package and by hosted server integrations.
+- The hosted server implementation is private; this README documents the public integration contract exposed to the challenge package.
 
 ## Repository Structure
 
@@ -2736,19 +3061,6 @@ bitsocial-spam-blocker/
 ├── tsconfig.base.json
 ├── docs/                           # Agent playbooks and workflow notes
 ├── packages/
-│   ├── server/                     # HTTP server (Fastify + better-sqlite3)
-│   │   ├── src/
-│   │   │   ├── index.ts            # Entry point
-│   │   │   ├── routes/             # API endpoints
-│   │   │   ├── risk-score/         # Risk scoring factors and calculation
-│   │   │   ├── challenges/         # CAPTCHA providers (Turnstile, etc.)
-│   │   │   ├── challenge-iframes/  # Generated HTML iframes for challenges
-│   │   │   ├── oauth/              # OAuth provider configuration (arctic)
-│   │   │   ├── ip-intel/           # IP intelligence (ipapi.is)
-│   │   │   ├── security/           # Signature verification
-│   │   │   ├── db/                 # better-sqlite3 (no ORM)
-│   │   │   └── indexer/            # Background network indexer
-│   │   └── scripts/                # Scenario generation, etc.
 │   ├── challenge/                  # package for community owners
 │   │   └── src/
 │   │       └── index.ts            # ChallengeFileFactory
@@ -3034,9 +3346,7 @@ The challenge flow uses **server-side state tracking** - no tokens are passed fr
 
 The risk score is a value between 0.0 and 1.0 that indicates the likelihood a publication is spam or malicious. It's calculated as a weighted combination of multiple factors including account age, karma, author reputation, content analysis, velocity, and IP intelligence.
 
-For detailed documentation on how risk scoring works, including all factors, weights, and scoring logic, see:
-
-**[Risk Scoring Documentation](packages/server/src/risk-score/RISK_SCORING.md)**
+Detailed risk-scoring implementation notes live with the private server codebase. This public repo documents the exposed API contract and the public challenge/shared packages.
 
 ## Indexer
 
@@ -3048,9 +3358,7 @@ The server includes a background indexer that crawls the Bitsocial network to bu
 - Detects bans/removals by monitoring CommentUpdate availability
 - Provides network-wide author reputation data for risk scoring
 
-For detailed documentation on the indexer architecture and implementation, see:
-
-**[Indexer Documentation](packages/server/src/indexer/README.md)**
+Indexer implementation details live with the private server codebase.
 
 **Tier Thresholds (configurable per community via challenge options):**
 
@@ -3103,7 +3411,7 @@ An opt-in pre-check that hard-rejects publications (HTTP 429) when an author exc
 | vote          | 10     | 200     |
 | **aggregate** | **40** | **250** |
 
-Check order: per-type hourly → per-type daily → aggregate hourly → aggregate daily. Only user-generated content (posts, replies, votes) is rate-limited. community-level actions (commentEdit, commentModeration, communityEdit) are rejected by the evaluate endpoint since they don't require spam detection.
+Check order: per-type hourly → per-type daily → aggregate hourly → aggregate daily. Only user-generated content (posts, replies, votes) is rate-limited. The challenge package accepts community-level actions (commentEdit, commentModeration, communityEdit) without calling the evaluate endpoint since they don't require spam detection.
 
 ## Challenge Verification
 
@@ -3254,7 +3562,7 @@ field from its internal database of author history, so new authors won't have it
 
 **Post-challenge filtering:** After a user completes a challenge, the `/verify` response includes IP intelligence data. The challenge code uses the above options to reject publications even after successful challenge completion (e.g., if the user is from a blacklisted country or using a VPN).
 
-**Error Handling:** If the server is unreachable, the challenge code throws an error (does not silently accept or reject). This ensures the community owner is notified of issues.
+**Error Handling:** If the server is unreachable, the challenge code returns a failed challenge result instead of silently accepting or rejecting user-generated content. Community-level actions are accepted locally without contacting the server.
 
 **Privacy of options:** The `options` object (including `serverUrl` and all threshold/filtering settings) is **not** exposed in the public `community.challenges` IPFS record. bitsocial-js strips `options` when computing the public `communityChallenge` from `communityChallengeSetting`, so only `type`, `description`, and `exclude` are published. This means the server URL, thresholds, and filtering rules remain private to the community operator.
 
@@ -3318,7 +3626,7 @@ These settings are configured on the HTTP server, not in the challenge package:
 - **Primary Challenge Provider:** Cloudflare Turnstile (free, privacy-friendly)
 - **Challenge Model:** CAPTCHA-first with score-based OAuth gating (CAPTCHA always required; OAuth only if score remains too high after adjustment)
 - **OAuth Library:** Arctic (lightweight, supports many providers)
-- **Error Handling:** Always throw on server errors (no silent failures)
+- **Error Handling:** Return failed challenge results on server errors (no silent failures)
 - **IP Storage:** Raw IPs stored (not hashed) for accurate analysis
 - **IP Intelligence:** ipapi.is (external HTTP API, best-effort, works without API key)
 - **Ephemeral Sessions:** Challenge sessions auto-purge after 1 hour
@@ -3330,7 +3638,7 @@ These settings are configured on the HTTP server, not in the challenge package:
 - IP intelligence lookups are sent to ipapi.is when enabled
 - OAuth identity (provider:userId) is stored server-side but never shared with communities
 - All data is visible to the server operator
-- Open source for auditability
+- Public integration contract documented here; hosted implementation is private
 - Explanation field shows reasoning for scores
 
 ## Known Limitations
@@ -3340,36 +3648,13 @@ These settings are configured on the HTTP server, not in the challenge package:
 - IP intelligence fields are optional and may be removed from the engine response in the future; challenge code only applies IP filtering options when they are present
 - IP-based options are intentionally rejection-only; we do not support IP-derived auto-approval (e.g., a country whitelist), because it is easy to game and can be used to flood a community
 
-## Implementation Steps
-
-1. **Setup monorepo** with Yarn workspaces, TypeScript, ESM
-2. **Implement shared types** package
-3. **Build server**:
-    - Fastify setup with routes
-    - better-sqlite3 database
-    - Import pkc-js schemas for validation
-    - Risk scoring with weighted factors
-    - Ed25519 request signature verification
-    - Turnstile integration
-    - OAuth providers (arctic)
-    - Challenge iframe generation (CAPTCHA-first with score-based OAuth gating)
-    - IP intelligence (ipapi.is)
-    - Background network indexer
-4. **Build challenge package**:
-    - ChallengeFileFactory implementation
-    - HTTP client for server communication
-5. **Testing**: Unit tests, integration tests with bitsocial-js
-6. **Documentation**: README, API docs, risk score scenarios, agent playbooks
-
 ## Verification Plan
 
-1. Run server locally: `cd packages/server && DATABASE_PATH=spam_detection.db corepack yarn dev`
-2. Test /evaluate endpoint with `{ challengeRequest: DecryptedChallengeRequestMessageTypeWithcommunityAuthor }`
-3. Test iframe flow using challengeUrl from /evaluate response
-4. Test /challenge/verify with valid and invalid tokens
-5. Test post-challenge filtering (country blacklist, VPN blocking, etc.)
-6. Integrate challenge package with local pkc-js community
-7. Verify full end-to-end flow
+1. Build the public packages with `corepack yarn build`
+2. Type-check the public packages with `corepack yarn type-check`
+3. Run the challenge-package tests with `corepack yarn test`
+4. Integrate the challenge package with a server instance that implements the API contract documented in this README
+5. Verify end-to-end flow against a local or hosted private server deployment
 
 ## Reference Files
 
@@ -3405,6 +3690,44 @@ This captcha can be brute-forced easily and should not be used to protect a real
 
 Community owners add the captcha-canvas challenge to their community settings. When enabled, every publication (post, reply, vote) requires the author to solve a captcha. The challenge is published as [`@bitsocial/captcha-canvas-challenge`](https://www.npmjs.com/package/@bitsocial/captcha-canvas-challenge) on npm.
 
+The challenge name is the npm package name, `@bitsocial/captcha-canvas-challenge`, on every install path — that's the key in `PKC.challenges` and the value passed as `community.settings.challenges[].name`. `bitsocial challenge install` registers it this way automatically; manual registration should match.
+
+### With pkc-js over RPC
+
+If your RPC server is already running, first install the challenge on the server:
+
+```bash
+bitsocial challenge install @bitsocial/captcha-canvas-challenge
+```
+
+Then from your RPC client, connect and set the challenge on your community by name — no npm install or challenge registration needed on the client side:
+
+```ts
+import PKC from "@pkcprotocol/pkc-js";
+
+const pkc = await PKC({
+  pkcRpcClientsOptions: ["ws://localhost:9138"]
+});
+
+const community = await pkc.createCommunity({ address: "your-community-address.bso" });
+
+await community.edit({
+  settings: {
+    challenges: [
+      {
+        name: "@bitsocial/captcha-canvas-challenge",
+        options: {
+          characters: "6",
+          width: "300",
+          height: "100",
+          colors: "#32cf7e"
+        }
+      }
+    ]
+  }
+});
+```
+
 ### With pkc-js (TypeScript)
 
 Install the challenge package:
@@ -3420,7 +3743,7 @@ import PKC from '@pkcprotocol/pkc-js'
 import { captchaCanvasChallenge } from '@bitsocial/captcha-canvas-challenge'
 
 // Register the challenge so it can be referenced by name
-PKC.challenges['captcha-canvas-v3'] = captchaCanvasChallenge
+PKC.challenges['@bitsocial/captcha-canvas-challenge'] = captchaCanvasChallenge
 
 const pkc = await PKC({ /* your pkc options */ })
 const community = await pkc.createCommunity({ address: 'your-community.bso' })
@@ -3428,7 +3751,7 @@ const community = await pkc.createCommunity({ address: 'your-community.bso' })
 await community.edit({
   settings: {
     challenges: [{
-      name: 'captcha-canvas-v3',
+      name: '@bitsocial/captcha-canvas-challenge',
       options: {
         characters: '6',
         width: '300',
@@ -3463,7 +3786,7 @@ Edit your community to use the challenge:
 
 ```bash
 bitsocial community edit your-community.bso \
-  '--settings.challenges[0].name' captcha-canvas-v3 \
+  '--settings.challenges[0].name' @bitsocial/captcha-canvas-challenge \
   '--settings.challenges[0].options.characters' '6' \
   '--settings.challenges[0].options.width' '300' \
   '--settings.challenges[0].options.height' '100' \
@@ -3480,20 +3803,19 @@ npm run build
 npm test
 ```
 
-### @bitsocial/evm-contract-challenge
+### @bitsocial/voucher-challenge
 
-Repository: bitsocialnet/evm-contract-call
-Source: https://github.com/bitsocialnet/evm-contract-call#readme
-Description: Standalone EVM contract call challenge extracted from plebbit js, packaged with independent dependencies.
+Repository: bitsocialnet/voucher-challenge
+Source: https://github.com/bitsocialnet/voucher-challenge#readme
+Description: Standalone voucher challenge extracted from plebbit js, packaged with independent dependencies.
 
-# @bitsocial/evm-contract-challenge
+# @bitsocial/voucher-challenge
 
-Standalone EVM contract call challenge extracted from `plebbit-js`, packaged with independent dependencies.
+Standalone voucher challenge extracted from `plebbit-js`, packaged with independent dependencies.
 
-## Status
+## How it works
 
-- Runtime peer dependency is currently `@plebbit/plebbit-js`.
-- This package is expected to migrate to `@pkc/pkc-js` soon.
+Community owners configure a list of voucher codes on their community. When a user publishes for the first time, they are prompted to enter a voucher code. Once redeemed, the voucher becomes permanently bound to the user's `author.address` — that author can continue using the same voucher for future publications (posts, replies, votes), but no other author can claim it. This prevents voucher sharing across different users.
 
 ## Requirements
 
@@ -3502,26 +3824,284 @@ Standalone EVM contract call challenge extracted from `plebbit-js`, packaged wit
 
 ## Install
 
+### With bitsocial-cli
+
 ```bash
-npm install @bitsocial/evm-contract-challenge
+bitsocial challenge install @bitsocial/voucher-challenge
 ```
 
-## Usage
+Edit your community to use the challenge:
+
+```bash
+bitsocial community edit your-community.bso \
+  '--settings.challenges[0].name' @bitsocial/voucher-challenge \
+  '--settings.challenges[0].options.vouchers' 'VOUCHER1,VOUCHER2,VOUCHER3'
+```
+
+### With pkc-js over RPC
+
+If your RPC server is already running, first install the challenge on the server:
+
+```bash
+bitsocial challenge install @bitsocial/voucher-challenge
+```
+
+Then from your RPC client, connect and set the challenge on your community by name — no npm install or challenge registration needed on the client side:
 
 ```ts
-import Plebbit from "@plebbit/plebbit-js";
-import { evmContractChallenge } from "@bitsocial/evm-contract-challenge";
+import PKC from "@pkcprotocol/pkc-js";
 
-Plebbit.challenges["evm-contract-call"] = evmContractChallenge;
+const pkc = await PKC({
+  pkcRpcClientsOptions: ["ws://localhost:9138"]
+});
+
+const community = await pkc.createCommunity({ address: "your-community-address.bso" });
+
+await community.edit({
+  settings: {
+    challenges: [
+      {
+        name: "@bitsocial/voucher-challenge",
+        options: {
+          vouchers: "VOUCHER1,VOUCHER2,VOUCHER3"
+        }
+      }
+    ]
+  }
+});
+```
+
+### With pkc-js (TypeScript)
+
+If you are running your own node locally without connecting over RPC, you can install via npm and register the challenge manually:
+
+```bash
+npm install @bitsocial/voucher-challenge
+```
+
+```ts
+import PKC from "@pkcprotocol/pkc-js";
+import { voucherChallenge } from "@bitsocial/voucher-challenge";
+
+PKC.challenges["@bitsocial/voucher-challenge"] = voucherChallenge;
+```
+
+Then set the challenge on your community:
+
+```ts
+await community.edit({
+  settings: {
+    challenges: [
+      {
+        name: "@bitsocial/voucher-challenge",
+        options: {
+          vouchers: "VOUCHER1,VOUCHER2,VOUCHER3"
+        }
+      }
+    ]
+  }
+});
 ```
 
 ## Challenge Options
 
-- `chainTicker`: Chain key used from `plebbit.chainProviders` (example: `eth`)
-- `address`: Contract address to call
-- `abi`: JSON string of the contract method ABI
-- `condition`: Comparison expression (`=`, `>`, `<`) against call result, e.g. `>1000`
-- `error`: Custom error string returned when condition check fails
+All option values must be strings.
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `question` | `"What is your voucher code?"` | The interactive prompt the user is asked to type an answer to |
+| `vouchers` | *(required)* | Comma-separated list of voucher codes |
+| `description` | — | Informational text shown in the UI explaining what the challenge is about |
+| `invalidVoucherError` | Default message | Error shown for invalid voucher codes |
+| `alreadyRedeemedError` | Default message | Error shown when a voucher is already redeemed by another author |
+
+## Scripts
+
+```bash
+npm run typecheck
+npm run build
+npm test
+```
+
+### @bitsocial/evm-contract-challenge
+
+Repository: bitsocialnet/evm-contract-call
+Source: https://github.com/bitsocialnet/evm-contract-call#readme
+Description: An automatic challenge for @pkcprotocol/pkc js communities that verifies an author's EVM wallet address meets a condition from a smart contract call.
+
+# @bitsocial/evm-contract-challenge
+
+An automatic challenge for `@pkcprotocol/pkc-js` communities that verifies an author's EVM wallet address meets a condition from a smart contract call.
+
+## How it works
+
+When an author publishes to a community with this challenge enabled, the community node calls a read-only smart contract method with the author's wallet address as the argument and compares the return value against a configured condition (e.g. `>1000`). The challenge tries three sources for the wallet address:
+
+1. **Wallet address** — the `author.wallets[chainTicker]` address, verified via EIP-191 signature
+2. **ENS/BSO domain** — if the author's address is a `.eth` or `.bso` domain, it resolves to an on-chain address
+3. **NFT avatar** — the current owner of the author's avatar NFT
+
+If any source produces a wallet that passes the contract call condition, the challenge succeeds. No user interaction is required.
+
+## Requirements
+
+- Node.js `>=22`
+- ESM-only environment
+
+## Install
+
+### With bitsocial-cli
+
+```bash
+bitsocial challenge install @bitsocial/evm-contract-challenge
+```
+
+Edit your community to use the challenge:
+
+```bash
+bitsocial community edit your-community.bso \
+  '--settings.challenges[0].name' @bitsocial/evm-contract-challenge \
+  '--settings.challenges[0].options.chainTicker' eth \
+  '--settings.challenges[0].options.address' '0xEA81DaB2e0EcBc6B5c4172DE4c22B6Ef6E55Bd8f' \
+  '--settings.challenges[0].options.abi' '{"constant":true,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}' \
+  '--settings.challenges[0].options.condition' '>10000000000000000000' \
+  '--settings.challenges[0].options.error' 'You need at least 10 Bitsocial tokens to post.'
+```
+
+### With pkc-js over RPC
+
+If your RPC server is already running, first install the challenge on the server:
+
+```bash
+bitsocial challenge install @bitsocial/evm-contract-challenge
+```
+
+Then from your RPC client, connect and set the challenge on your community by name — no npm install or challenge registration needed on the client side:
+
+```ts
+import PKC from "@pkcprotocol/pkc-js";
+
+const pkc = await PKC({
+  pkcRpcClientsOptions: ["ws://localhost:9138"]
+});
+
+const community = await pkc.createCommunity({ address: "your-community-address.bso" });
+
+await community.edit({
+  settings: {
+    challenges: [
+      {
+        name: "@bitsocial/evm-contract-challenge",
+        options: {
+          chainTicker: "eth",
+          address: "0xEA81DaB2e0EcBc6B5c4172DE4c22B6Ef6E55Bd8f",
+          abi: '{"constant":true,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}',
+          condition: ">10000000000000000000",
+          error: "You need at least 10 Bitsocial tokens to post."
+        }
+      }
+    ]
+  }
+});
+```
+
+### With pkc-js (TypeScript)
+
+If you are running your own node locally without connecting over RPC, you can install via npm and register the challenge manually:
+
+```bash
+npm install @bitsocial/evm-contract-challenge
+```
+
+```ts
+import PKC from "@pkcprotocol/pkc-js";
+import { evmContractChallenge } from "@bitsocial/evm-contract-challenge";
+
+PKC.challenges["@bitsocial/evm-contract-challenge"] = evmContractChallenge;
+```
+
+Then set the challenge on your community:
+
+```ts
+await community.edit({
+  settings: {
+    challenges: [
+      {
+        name: "@bitsocial/evm-contract-challenge",
+        options: {
+          chainTicker: "eth",
+          address: "0xEA81DaB2e0EcBc6B5c4172DE4c22B6Ef6E55Bd8f",
+          abi: '{"constant":true,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}',
+          condition: ">10000000000000000000",
+          error: "You need at least 10 Bitsocial tokens to post."
+        }
+      }
+    ]
+  }
+});
+```
+
+## Example Challenges
+
+Each example uses a read-only contract function that takes a single `address` argument. The `condition` compares against the raw return value including decimal places (e.g. 10 USDC with 6 decimals = `10000000` raw).
+
+### Common ABIs
+
+<a id="balanceof-abi"></a>**`balanceOf`** — standard ERC-20 / ERC-721 token balance:
+
+```json
+{"constant":true,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}
+```
+
+<a id="getscore-abi"></a>**`getScore`** — Gitcoin Passport score (returns `uint256` with 4 decimals):
+
+```json
+{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getScore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}
+```
+
+### Examples
+
+| Description | `chainTicker` | `address` | ABI | `condition` |
+|---|---|---|---|---|
+| At least 10 Bitsocial (BSO) tokens | `eth` | `0xEA81DaB2e0EcBc6B5c4172DE4c22B6Ef6E55Bd8f` | [`balanceOf`](#balanceof-abi) | `>10000000000000000000` |
+| Minimum 10 USDC | `eth` | `0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48` | [`balanceOf`](#balanceof-abi) | `>10000000` |
+| Any WETH balance | `eth` | `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2` | [`balanceOf`](#balanceof-abi) | `>0` |
+| Gitcoin Passport score above 20 (proof of personhood) | `op` | `0xd6c51bB9E23bD7f1fEa22A3F2f85E3BFC8338Cb0` | [`getScore`](#getscore-abi) | `>200000` |
+| At least 10 MATIC on Polygon | `matic` | `0x0000000000000000000000000000000000001010` | [`balanceOf`](#balanceof-abi) | `>10000000000000000000` |
+| Any stETH balance (Lido staked ETH) | `eth` | `0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84` | [`balanceOf`](#balanceof-abi) | `>0` |
+
+> For chains other than Ethereum mainnet (e.g. Optimism, Polygon), you will also need to set `rpcUrls` to one or more JSON-RPC endpoints for that chain.
+
+## Challenge Options
+
+All option values must be strings.
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `chainTicker` | `"eth"` | The chain ticker (e.g. `eth`, `matic`) |
+| `rpcUrls` | — | Comma-separated JSON-RPC URLs for the chain (uses viem defaults if omitted) |
+| `address` | *(required)* | The contract address to call |
+| `abi` | *(required)* | The ABI of the contract method as a JSON object (not an array) |
+| `condition` | *(required)* | Condition the return value must pass (`=`, `>`, or `<` followed by a value, e.g. `>1000`) |
+| `error` | `"Contract call response doesn't pass condition."` | Custom error message shown when the condition fails |
+
+## Multiple RPC URLs
+
+You can provide multiple RPC endpoints as a comma-separated string:
+
+```
+https://eth.llamarpc.com,https://rpc.ankr.com/eth,https://eth.drpc.org
+```
+
+When multiple URLs are provided, viem's [`fallback`](https://viem.sh/docs/clients/transports/fallback) transport is used with automatic ranking enabled (`rank: true`). This means:
+
+- Requests are sent to the highest-ranked RPC endpoint
+- If a request fails, it automatically falls back to the next endpoint
+- viem periodically pings all endpoints in the background and reorders them by latency and stability
+- A single URL works the same as before (no fallback overhead)
+- If `rpcUrls` is omitted, viem's built-in default RPCs are used
+
+This improves reliability — if one RPC provider goes down, the challenge automatically uses the next available endpoint.
 
 ## Scripts
 
@@ -3569,30 +4149,30 @@ Bitsocial is p2p and decentralized social media protocol built completely with I
 
 ## Install
 
-### For Linux/MacOS
+Requires Node.js 22 or later. We recommend using [nvm](https://github.com/nvm-sh/nvm) to install and manage Node.js versions.
 
 ```sh-session
-curl https://raw.githubusercontent.com/bitsocialhq/bitsocial-cli/master/bin/install.sh | sh
+npm install -g @bitsocial/bitsocial-cli
 ```
 
-#### If you want to install a specific bitsocial-cli version
+To install a specific version:
 
 ```sh-session
-curl https://raw.githubusercontent.com/bitsocialhq/bitsocial-cli/master/bin/install.sh | sh -s 0.14.4
+npm install -g @bitsocial/bitsocial-cli@0.19.39
 ```
 
-If you get `libfontconfig dependency error`, then you need to install libfontconfig by running `sudo apt install -y libfontconfig1 fontconfig libfontconfig1-dev libfontconfig`
+To update to the latest version:
 
-### For Windows
+```sh-session
+bitsocial update install
+```
 
-For Windows, You need to install [vc-redist](https://learn.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170) first. After you install `vc-redist`, download the installer of [bitsocial](https://github.com/bitsocialhq/bitsocial-cli/releases/latest/download/bitsocial_installer_win32_x64.exe) and next your way to the end
+### Build from source (optional)
 
-### Build your Bitsocial executable manually (optional)
-
-In case the installation script is not working for you or you just want to build the source code directly. First, you need to have `NodeJS 22` and `npm` installed
+If you want to build from source directly:
 
 ```
-git clone https://github.com/bitsocialhq/bitsocial-cli
+git clone https://github.com/bitsocialnet/bitsocial-cli
 cd bitsocial-cli
 npm ci
 npm run build
@@ -3683,7 +4263,7 @@ Debug and trace logs are written only to the log file, not to stdout, so `docker
 ```yaml
 services:
   bitsocial:
-    image: ghcr.io/bitsocialhq/bitsocial-cli:latest
+    image: ghcr.io/bitsocialnet/bitsocial-cli:latest
     container_name: bitsocial
     restart: unless-stopped
     ports:
@@ -3718,7 +4298,7 @@ docker run -d \
   -p 6473:6473 \
   -v bitsocial-data:/data \
   -v bitsocial-logs:/logs \
-  ghcr.io/bitsocialhq/bitsocial-cli:latest
+  ghcr.io/bitsocialnet/bitsocial-cli:latest
 ```
 
 With a custom auth key:
@@ -3733,7 +4313,7 @@ docker run -d \
   -v bitsocial-data:/data \
   -v bitsocial-logs:/logs \
   -e PKC_RPC_AUTH_KEY=my-secret-key \
-  ghcr.io/bitsocialhq/bitsocial-cli:latest
+  ghcr.io/bitsocialnet/bitsocial-cli:latest
 ```
 
 ### Building the Docker image locally
@@ -3841,35 +4421,38 @@ $ bitsocial community edit mysub.bso '--roles["author-address.bso"]' null
 * [`bitsocial community create`](#bitsocial-community-create)
 * [`bitsocial community delete ADDRESSES`](#bitsocial-community-delete-addresses)
 * [`bitsocial community edit ADDRESS`](#bitsocial-community-edit-address)
-* [`bitsocial community get ADDRESS`](#bitsocial-community-get-address)
+* [`bitsocial community get [ADDRESS]`](#bitsocial-community-get-address)
 * [`bitsocial community list`](#bitsocial-community-list)
 * [`bitsocial community start ADDRESSES`](#bitsocial-community-start-addresses)
 * [`bitsocial community stop ADDRESSES`](#bitsocial-community-stop-addresses)
 * [`bitsocial daemon`](#bitsocial-daemon)
 * [`bitsocial help [COMMAND]`](#bitsocial-help-command)
 * [`bitsocial logs`](#bitsocial-logs)
+* [`bitsocial update check`](#bitsocial-update-check)
+* [`bitsocial update install [VERSION]`](#bitsocial-update-install-version)
+* [`bitsocial update versions`](#bitsocial-update-versions)
 
-### `bitsocial challenge install PACKAGE`
+## `bitsocial challenge install PACKAGE`
 
 Install a challenge package (npm package name, git URL, tarball URL, or local path)
 
 ```
 USAGE
-  $ bitsocial challenge install PACKAGE [--plebbitOptions.dataPath <value>]
+  $ bitsocial challenge install PACKAGE [--pkcOptions.dataPath <value>]
 
 ARGUMENTS
   PACKAGE  Package specifier — anything npm can install (name, name@version, git URL, tarball URL, local path)
 
 FLAGS
-  --plebbitOptions.dataPath=<value>  Data path to install the challenge into
+  --pkcOptions.dataPath=<value>  Data path to install the challenge into
 
 DESCRIPTION
   Install a challenge package (npm package name, git URL, tarball URL, or local path)
 
 EXAMPLES
-  $ bitsocial challenge install @mintpass/challenge
+  $ bitsocial challenge install @bitsocial/mintpass-challenge
 
-  $ bitsocial challenge install @mintpass/challenge@1.0.0
+  $ bitsocial challenge install @bitsocial/mintpass-challenge@1.0.0
 
   $ bitsocial challenge install github:user/repo
 
@@ -3878,19 +4461,19 @@ EXAMPLES
   $ bitsocial challenge install ./my-local-challenge
 ```
 
-_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialhq/bitsocial-cli/blob/v0.19.35/src/cli/commands/challenge/install.ts)_
+_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/challenge/install.ts)_
 
-### `bitsocial challenge list`
+## `bitsocial challenge list`
 
 List installed challenge packages
 
 ```
 USAGE
-  $ bitsocial challenge list [-q] [--plebbitOptions.dataPath <value>]
+  $ bitsocial challenge list [-q] [--pkcOptions.dataPath <value>]
 
 FLAGS
-  -q, --quiet                            Only display challenge names
-      --plebbitOptions.dataPath=<value>  Data path where challenges are installed
+  -q, --quiet                        Only display challenge names
+      --pkcOptions.dataPath=<value>  Data path where challenges are installed
 
 DESCRIPTION
   List installed challenge packages
@@ -3901,21 +4484,21 @@ EXAMPLES
   $ bitsocial challenge list -q
 ```
 
-_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialhq/bitsocial-cli/blob/v0.19.35/src/cli/commands/challenge/list.ts)_
+_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/challenge/list.ts)_
 
-### `bitsocial challenge remove NAME`
+## `bitsocial challenge remove NAME`
 
 Remove an installed challenge package
 
 ```
 USAGE
-  $ bitsocial challenge remove NAME [--plebbitOptions.dataPath <value>]
+  $ bitsocial challenge remove NAME [--pkcOptions.dataPath <value>]
 
 ARGUMENTS
   NAME  The challenge package name (e.g., my-challenge or @scope/my-challenge)
 
 FLAGS
-  --plebbitOptions.dataPath=<value>  Data path where challenges are installed
+  --pkcOptions.dataPath=<value>  Data path where challenges are installed
 
 DESCRIPTION
   Remove an installed challenge package
@@ -3926,47 +4509,51 @@ EXAMPLES
   $ bitsocial challenge remove @scope/my-challenge
 ```
 
-_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialhq/bitsocial-cli/blob/v0.19.35/src/cli/commands/challenge/remove.ts)_
+_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/challenge/remove.ts)_
 
-### `bitsocial community create`
+## `bitsocial community create`
 
-Create a community with specific properties. A newly created community will be started after creation and be able to receive publications. For a list of properties, visit https://github.com/plebbit/plebbit-js#subplebbiteditsubplebbiteditoptions
+Create a community with specific properties. A newly created community will be started after creation and be able to receive publications. For a list of properties, visit https://github.com/pkcprotocol/pkc-js
 
 ```
 USAGE
-  $ bitsocial community create --plebbitRpcUrl <value> [--privateKeyPath <value>]
+  $ bitsocial community create --pkcRpcUrl <value> [--privateKeyPath <value>] [-f <value>]
 
 FLAGS
-  --plebbitRpcUrl=<value>   (required) [default: ws://localhost:9138/] URL to Plebbit RPC
-  --privateKeyPath=<value>  Private key (PEM) of the community signer that will be used to determine address (if address
-                            is not a domain). If it's not provided then Plebbit will generate a private key
+  -f, --jsonFile=<value>        Path to a JSON/JSONC file containing create options (supports comments)
+      --pkcRpcUrl=<value>       (required) [default: ws://localhost:9138/] URL to PKC RPC
+      --privateKeyPath=<value>  Private key (PEM) of the community signer that will be used to determine address (if
+                                address is not a domain). If it's not provided then PKC will generate a private key
 
 DESCRIPTION
   Create a community with specific properties. A newly created community will be started after creation and be able to
-  receive publications. For a list of properties, visit
-  https://github.com/plebbit/plebbit-js#subplebbiteditsubplebbiteditoptions
+  receive publications. For a list of properties, visit https://github.com/pkcprotocol/pkc-js
 
 EXAMPLES
   Create a community with title 'Hello Plebs' and description 'Welcome'
 
     $ bitsocial community create --title 'Hello Plebs' --description 'Welcome'
+
+  Create a community using options from a JSON/JSONC file
+
+    $ bitsocial community create --jsonFile ./create-options.json
 ```
 
-_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialhq/bitsocial-cli/blob/v0.19.35/src/cli/commands/community/create.ts)_
+_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/create.ts)_
 
-### `bitsocial community delete ADDRESSES`
+## `bitsocial community delete ADDRESSES`
 
 Delete a community permanently.
 
 ```
 USAGE
-  $ bitsocial community delete ADDRESSES... --plebbitRpcUrl <value>
+  $ bitsocial community delete ADDRESSES... --pkcRpcUrl <value>
 
 ARGUMENTS
   ADDRESSES...  Addresses of communities to delete. Separated by space
 
 FLAGS
-  --plebbitRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to Plebbit RPC
+  --pkcRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to PKC RPC
 
 DESCRIPTION
   Delete a community permanently.
@@ -3977,74 +4564,93 @@ EXAMPLES
   $ bitsocial community delete 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialhq/bitsocial-cli/blob/v0.19.35/src/cli/commands/community/delete.ts)_
+_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/delete.ts)_
 
-### `bitsocial community edit ADDRESS`
+## `bitsocial community edit ADDRESS`
 
-Edit a community's properties. For a list of properties, visit https://github.com/plebbit/plebbit-js#subplebbiteditsubplebbiteditoptions
+Edit a community's properties. For a list of properties, visit https://github.com/pkcprotocol/pkc-js
 
 ```
 USAGE
-  $ bitsocial community edit ADDRESS --plebbitRpcUrl <value>
+  $ bitsocial community edit ADDRESS --pkcRpcUrl <value> [-f <value>]
 
 ARGUMENTS
-  ADDRESS  Address of the community to edit
+  ADDRESS  Address of the community to edit. It could be the name domain, or a public key
 
 FLAGS
-  --plebbitRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to Plebbit RPC
+  -f, --jsonFile=<value>   Path to a JSON/JSONC file containing edit options (supports comments)
+      --pkcRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to PKC RPC
 
 DESCRIPTION
-  Edit a community's properties. For a list of properties, visit
-  https://github.com/plebbit/plebbit-js#subplebbiteditsubplebbiteditoptions
+  Edit a community's properties. For a list of properties, visit https://github.com/pkcprotocol/pkc-js
+
+  Merge behavior with CLI flags:
+  - Objects are merged with the community's current state (new keys are added, existing keys are overwritten).
+  - Arrays are extended: new values are prepended to the existing array.
+  - Setting a value to null removes it (e.g. --roles['mod.bso'] null).
+
+  Merge behavior with --jsonFile:
+  - Objects are merged the same way as CLI flags.
+  - Arrays are replaced entirely (RFC 7396 JSON Merge Patch semantics).
+  - When both --jsonFile and CLI flags are provided, CLI flags take priority.
+
+  For modifying complex settings like challenges, consider using a web UI instead: https://bitsocial.net/apps
 
 EXAMPLES
-  Change the address of the community to a new domain address
+  Change the name of the community
 
-    $ bitsocial community edit 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu --address newAddress.bso
+    $ bitsocial community edit 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu --name newName.bso
 
   Add the author address 'esteban.bso' as an admin on the community
 
-    $ bitsocial community edit mysub.bso '--roles["esteban.bso"].role' admin
+    $ bitsocial community edit mycommunity.bso '--roles["esteban.bso"].role' admin
 
   Add two challenges to the community. The first challenge will be a question and answer, and the second will be an
   image captcha
 
-    $ bitsocial community edit mysub.bso --settings.challenges[0].name question \
+    $ bitsocial community edit mycommunity.bso --settings.challenges[0].name question \
       --settings.challenges[0].options.question "what is the password?" --settings.challenges[0].options.answer \
       thepassword --settings.challenges[1].name captcha-canvas-v3
 
   Change the title and description
 
-    $ bitsocial community edit mysub.bso --title "This is the new title" --description "This is the new description"
+    $ bitsocial community edit mycommunity.bso --title "This is the new title" --description "This is the new \
+      description"
 
   Remove a role from a moderator/admin/owner
 
-    $ bitsocial community edit plebbit.bso --roles['rinse12.bso'] null
+    $ bitsocial community edit bitsocial.bso --roles['rinse12.bso'] null
 
   Enable settings.fetchThumbnailUrls to fetch the thumbnail of url submitted by authors
 
-    $ bitsocial community edit plebbit.bso --settings.fetchThumbnailUrls
+    $ bitsocial community edit bitsocial.bso --settings.fetchThumbnailUrls
 
   disable settings.fetchThumbnailUrls
 
-    $ bitsocial community edit plebbit.bso --settings.fetchThumbnailUrls=false
+    $ bitsocial community edit bitsocial.bso --settings.fetchThumbnailUrls=false
+
+  Edit a community using options from a JSON/JSONC file
+
+    $ bitsocial community edit bitsocial.bso --jsonFile ./edit-options.json
 ```
 
-_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialhq/bitsocial-cli/blob/v0.19.35/src/cli/commands/community/edit.ts)_
+_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/edit.ts)_
 
-### `bitsocial community get ADDRESS`
+## `bitsocial community get [ADDRESS]`
 
 Fetch a local or remote community, and print its json in the terminal
 
 ```
 USAGE
-  $ bitsocial community get ADDRESS --plebbitRpcUrl <value>
+  $ bitsocial community get [ADDRESS] --pkcRpcUrl <value> [--name <value>] [--publicKey <value>]
 
 ARGUMENTS
-  ADDRESS  Address of the community to fetch
+  [ADDRESS]  Address of the community to fetch
 
 FLAGS
-  --plebbitRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to Plebbit RPC
+  --name=<value>       Name of the community to fetch
+  --pkcRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to PKC RPC
+  --publicKey=<value>  Public key of the community to fetch
 
 DESCRIPTION
   Fetch a local or remote community, and print its json in the terminal
@@ -4053,21 +4659,25 @@ EXAMPLES
   $ bitsocial community get plebmusic.bso
 
   $ bitsocial community get 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
+
+  $ bitsocial community get --name my-community
+
+  $ bitsocial community get --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialhq/bitsocial-cli/blob/v0.19.35/src/cli/commands/community/get.ts)_
+_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/get.ts)_
 
-### `bitsocial community list`
+## `bitsocial community list`
 
 List your communities
 
 ```
 USAGE
-  $ bitsocial community list --plebbitRpcUrl <value> [-q]
+  $ bitsocial community list --pkcRpcUrl <value> [-q]
 
 FLAGS
-  -q, --quiet                  Only display community addresses
-      --plebbitRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to Plebbit RPC
+  -q, --quiet              Only display community addresses
+      --pkcRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to PKC RPC
 
 DESCRIPTION
   List your communities
@@ -4078,21 +4688,22 @@ EXAMPLES
   $ bitsocial community list
 ```
 
-_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialhq/bitsocial-cli/blob/v0.19.35/src/cli/commands/community/list.ts)_
+_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/list.ts)_
 
-### `bitsocial community start ADDRESSES`
+## `bitsocial community start ADDRESSES`
 
 Start a community
 
 ```
 USAGE
-  $ bitsocial community start ADDRESSES... --plebbitRpcUrl <value>
+  $ bitsocial community start ADDRESSES... --pkcRpcUrl <value> [--concurrency <value>]
 
 ARGUMENTS
   ADDRESSES...  Addresses of communities to start. Separated by space
 
 FLAGS
-  --plebbitRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to Plebbit RPC
+  --concurrency=<value>  [default: 5] Number of communities to start in parallel
+  --pkcRpcUrl=<value>    (required) [default: ws://localhost:9138/] URL to PKC RPC
 
 DESCRIPTION
   Start a community
@@ -4105,23 +4716,27 @@ EXAMPLES
   Start all communities in your data path
 
     $ bitsocial community start $(bitsocial community list -q)
+
+  Start communities sequentially (no concurrency)
+
+    $ bitsocial community start $(bitsocial community list -q) --concurrency 1
 ```
 
-_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialhq/bitsocial-cli/blob/v0.19.35/src/cli/commands/community/start.ts)_
+_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/start.ts)_
 
-### `bitsocial community stop ADDRESSES`
+## `bitsocial community stop ADDRESSES`
 
 Stop a community. The community will not publish or receive any publications until it is started again.
 
 ```
 USAGE
-  $ bitsocial community stop ADDRESSES... --plebbitRpcUrl <value>
+  $ bitsocial community stop ADDRESSES... --pkcRpcUrl <value>
 
 ARGUMENTS
   ADDRESSES...  Addresses of communities to stop. Separated by space
 
 FLAGS
-  --plebbitRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to Plebbit RPC
+  --pkcRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to PKC RPC
 
 DESCRIPTION
   Stop a community. The community will not publish or receive any publications until it is started again.
@@ -4132,45 +4747,49 @@ EXAMPLES
   $ bitsocial community stop Qmb99crTbSUfKXamXwZBe829Vf6w5w5TktPkb6WstC9RFW
 ```
 
-_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialhq/bitsocial-cli/blob/v0.19.35/src/cli/commands/community/stop.ts)_
+_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/stop.ts)_
 
-### `bitsocial daemon`
+## `bitsocial daemon`
 
 Run a network-connected Bitsocial node. Once the daemon is running you can create and start your communities and receive publications from users. The daemon will also serve web ui on http that can be accessed through a browser on any machine. Within the web ui users are able to browse, create and manage their communities fully P2P.
 
 ```
 USAGE
-  $ bitsocial daemon --plebbitRpcUrl <value> --logPath <value>
+  $ bitsocial daemon --pkcRpcUrl <value> --logPath <value> [--chainProviderUrls <value>...]
 
 FLAGS
-  --logPath=<value>        (required) [default: /home/runner/.local/state/bitsocial] Specify a directory which will be
-                           used to store logs
-  --plebbitRpcUrl=<value>  (required) [default: ws://localhost:9138/] Specify Plebbit RPC URL to listen on
+  --chainProviderUrls=<value>...  [default:
+                                  https://eth.drpc.org,https://ethereum.publicnode.com,https://ethereum-rpc.publicnode.c
+                                  om,https://rpc.mevblocker.io,https://1rpc.io/eth,https://eth-pokt.nodies.app] RPC
+                                  URL(s) for .bso name resolution. Can be specified multiple times.
+  --logPath=<value>               (required) [default: /home/runner/.local/state/bitsocial] Specify a directory which
+                                  will be used to store logs
+  --pkcRpcUrl=<value>             (required) [default: ws://localhost:9138/] Specify PKC RPC URL to listen on
 
 DESCRIPTION
   Run a network-connected Bitsocial node. Once the daemon is running you can create and start your communities and
   receive publications from users. The daemon will also serve web ui on http that can be accessed through a browser on
   any machine. Within the web ui users are able to browse, create and manage their communities fully P2P.
-  Options can be passed to the RPC's instance through flag --plebbitOptions.optionName. For a list of plebbit options
-  (https://github.com/plebbit/plebbit-js?tab=readme-ov-file#plebbitoptions)
+  Options can be passed to the RPC's instance through flag --pkcOptions.optionName. For a list of pkc options
+  (https://github.com/pkcprotocol/pkc-js?tab=readme-ov-file#pkcoptions)
   If you need to modify ipfs config, you should head to {bitsocial-data-path}/.ipfs-bitsocial-cli/config and modify the
   config file
 
 EXAMPLES
   $ bitsocial daemon
 
-  $ bitsocial daemon --plebbitRpcUrl ws://localhost:53812
+  $ bitsocial daemon --pkcRpcUrl ws://localhost:53812
 
-  $ bitsocial daemon --plebbitOptions.dataPath /tmp/bitsocial-datapath/
+  $ bitsocial daemon --pkcOptions.dataPath /tmp/bitsocial-datapath/
 
-  $ bitsocial daemon --plebbitOptions.chainProviders.eth[0].url https://ethrpc.com
+  $ bitsocial daemon --pkcOptions.kuboRpcClientsOptions[0] https://remoteipfsnode.com
 
-  $ bitsocial daemon --plebbitOptions.kuboRpcClientsOptions[0] https://remoteipfsnode.com
+  $ bitsocial daemon --chainProviderUrls https://mainnet.infura.io/v3/YOUR_KEY
 ```
 
-_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialhq/bitsocial-cli/blob/v0.19.35/src/cli/commands/daemon.ts)_
+_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/daemon.ts)_
 
-### `bitsocial help [COMMAND]`
+## `bitsocial help [COMMAND]`
 
 Display help for bitsocial.
 
@@ -4190,21 +4809,25 @@ DESCRIPTION
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v6.2.36/src/cli/commands/help.ts)_
 
-### `bitsocial logs`
+## `bitsocial logs`
 
 View the latest BitSocial daemon log file. By default dumps the full log and exits. Use --follow to stream new output in real-time (like tail -f).
 
 ```
 USAGE
-  $ bitsocial logs [-f] [-n <value>] [--since <value>] [--until <value>]
+  $ bitsocial logs [-f] [-n <value>] [--since <value>] [--until <value>] [--logPath <value>] [--stdout |
+    --stderr]
 
 FLAGS
-  -f, --follow         Follow log output in real-time (like tail -f)
-  -n, --tail=<value>   [default: all] Number of log entries to show from the end. Use "all" to show everything.
-      --since=<value>  Show logs since timestamp (ISO 8601, e.g. 2026-01-02T13:23:37Z) or relative time (e.g. 30s, 42m,
-                       2h, 1d)
-      --until=<value>  Show logs before timestamp (ISO 8601, e.g. 2026-01-02T13:23:37Z) or relative time (e.g. 30s, 42m,
-                       2h, 1d)
+  -f, --follow           Follow log output in real-time (like tail -f)
+  -n, --tail=<value>     [default: all] Number of log entries to show from the end. Use "all" to show everything.
+      --logPath=<value>  Specify the directory containing log files
+      --since=<value>    Show logs since timestamp (ISO 8601, e.g. 2026-01-02T13:23:37Z) or relative time (e.g. 30s,
+                         42m, 2h, 1d)
+      --stderr           Show only stderr log entries (output of pkc-logger library)
+      --stdout           Show only stdout log entries
+      --until=<value>    Show logs before timestamp (ISO 8601, e.g. 2026-01-02T13:23:37Z) or relative time (e.g. 30s,
+                         42m, 2h, 1d)
 
 DESCRIPTION
   View the latest BitSocial daemon log file. By default dumps the full log and exits. Use --follow to stream new output
@@ -4222,9 +4845,86 @@ EXAMPLES
   $ bitsocial logs --since 2026-01-02T13:23:37Z --until 2026-01-02T14:00:00Z
 
   $ bitsocial logs --since 1h -f
+
+  $ bitsocial logs --stdout
+
+  $ bitsocial logs --stderr
+
+  $ bitsocial logs --stdout -f
 ```
 
-_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialhq/bitsocial-cli/blob/v0.19.35/src/cli/commands/logs.ts)_
+_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/logs.ts)_
+
+## `bitsocial update check`
+
+Check if a newer version of bitsocial is available on npm
+
+```
+USAGE
+  $ bitsocial update check
+
+DESCRIPTION
+  Check if a newer version of bitsocial is available on npm
+
+EXAMPLES
+  $ bitsocial update check
+```
+
+_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/update/check.ts)_
+
+## `bitsocial update install [VERSION]`
+
+Install a specific version of bitsocial from npm
+
+```
+USAGE
+  $ bitsocial update install [VERSION] [--force] [--restart-daemons]
+
+ARGUMENTS
+  [VERSION]  [default: latest] Version to install (e.g. "0.19.40" or "latest")
+
+FLAGS
+  --force                 Reinstall even if already on the requested version
+  --[no-]restart-daemons  Stop all running daemons, update, and restart them with the same settings
+
+DESCRIPTION
+  Install a specific version of bitsocial from npm
+
+EXAMPLES
+  $ bitsocial update install
+
+  $ bitsocial update install latest
+
+  $ bitsocial update install 0.19.40
+
+  $ bitsocial update install --force
+
+  $ bitsocial update install --no-restart-daemons
+```
+
+_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/update/install.ts)_
+
+## `bitsocial update versions`
+
+List available bitsocial versions on npm
+
+```
+USAGE
+  $ bitsocial update versions [--limit <value>]
+
+FLAGS
+  --limit=<value>  [default: 20] Maximum number of versions to display
+
+DESCRIPTION
+  List available bitsocial versions on npm
+
+EXAMPLES
+  $ bitsocial update versions
+
+  $ bitsocial update versions --limit 5
+```
+
+_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/update/versions.ts)_
 <!-- commandsstop -->
 
 ## Contribution
@@ -4340,7 +5040,7 @@ A CLI tool that implements 4chan-style thread auto-archiving and purging for 5ch
 - After each board update, determine thread positions in active sort
 - Filter out pinned threads (they're exempt)
 - Count non-pinned threads; any beyond position `per_page × pages` → archive via `createCommentModeration({ commentModeration: { archived: true } })`
-- Archived threads are read-only (plebbit-js already enforces this)
+- Archived threads are read-only (pkc-js already enforces this)
 
 ### Feature 2: Bump limit
 
@@ -4400,22 +5100,38 @@ Config and state are stored per-board under `~/.config/5chan/`, managed via `5ch
 **Minimal config:** a single directory `boards/my-board.bso/config.json` containing `{ "address": "my-board.bso" }`
 
 All fields except each board's `address` are optional:
-- `rpcUrl` — falls back to `PLEBBIT_RPC_WS_URL` env var, then `ws://localhost:9138`
+- `rpcUrl` — falls back to `PKC_RPC_WS_URL` env var, then `ws://localhost:9138`
 - `defaults` — applied to all boards unless overridden per-board
 - Per-board fields (`perPage`, `pages`, `bumpLimit`, `archivePurgeSeconds`, `moderationReasons`) override `defaults`
-- `moderationReasons` — optional object with `archiveCapacity`, `archiveBumpLimit`, `purgeArchived`, `purgeDeleted` string fields. Per-board values override defaults per-field (not the whole object). These reason strings are passed to `createCommentModeration()` so plebbit clients can display why a thread was archived or purged.
+- `moderationReasons` — optional object with `archiveCapacity`, `archiveBumpLimit`, `purgeArchived`, `purgeDeleted` string fields. Per-board values override defaults per-field (not the whole object). These reason strings are passed to `createCommentModeration()` so PKC clients can display why a thread was archived or purged.
 - Board directory names must match the address field in `config.json`
+
+## Installation
+
+Docker is the only supported install path. The published image
+(`ghcr.io/bitsocialnet/5chan-board-manager:latest`) is built and tested with the
+bitsocial-cli version the default preset assumes, including the
+`@bitsocial/spam-blocker-challenge` that the preset references. Running 5chan
+outside Docker — or against a bitsocial-cli you manage yourself — is possible
+but unsupported; you will have to keep the challenge and auth-key wiring in
+sync by hand (see [Standalone](#standalone-bitsocial-cli-already-running) below).
 
 ### Docker Compose (recommended)
 
 #### Full stack (with bitsocial-cli)
 
-If you **don't** already have [bitsocial-cli](https://github.com/bitsocialhq/bitsocial-cli) running, use the full stack compose file which boots both bitsocial-cli (Plebbit RPC server) and 5chan together.:
+If you **don't** already have [bitsocial-cli](https://github.com/bitsocialnet/bitsocial-cli) running, use the full stack compose file which boots both bitsocial-cli (PKC RPC server) and 5chan together.:
 
 ```bash
-wget -O docker-compose.yml https://raw.githubusercontent.com/bitsocialhq/5chan-board-manager/master/docker-compose.example.yml
-# Add boards via 5chan board add (see Config Directory Layout above)
+wget -O docker-compose.yml https://raw.githubusercontent.com/bitsocialnet/5chan-board-manager/master/docker-compose.example.yml
 docker compose up -d
+
+# Install the spam-blocker challenge referenced by the default preset
+# (skip this only if you also remove spam-blocker entries from your preset
+# or always use --skip-apply-defaults):
+docker compose exec bitsocial bitsocial challenge install @bitsocial/spam-blocker-challenge
+
+# Now add boards via 5chan board add (see Config Directory Layout above)
 ```
 
 See [`docker-compose.example.yml`](docker-compose.example.yml) for the full configuration.
@@ -4432,8 +5148,11 @@ Use this flow to create a new board with `bitsocial-cli` and immediately add it 
 > **Note:** The container starts gracefully even with no boards configured — it waits for boards to be added and picks them up automatically via config hot-reload.
 
 ```bash
-wget -O docker-compose.yml https://raw.githubusercontent.com/bitsocialhq/5chan-board-manager/master/docker-compose.example.yml
+wget -O docker-compose.yml https://raw.githubusercontent.com/bitsocialnet/5chan-board-manager/master/docker-compose.example.yml
 docker compose up -d
+
+# Install the spam-blocker challenge referenced by the default preset
+docker compose exec bitsocial bitsocial challenge install @bitsocial/spam-blocker-challenge
 
 # Create a community (copy the created address from output)
 docker compose exec bitsocial bitsocial community create \
@@ -4455,15 +5174,23 @@ If you **already** have bitsocial-cli running separately (on the host, in anothe
 
 ```bash
 cp docker-compose.standalone.example.yml docker-compose.yml
-# Edit PLEBBIT_RPC_WS_URL in docker-compose.yml — replace YOUR-AUTH-KEY with
+# Edit PKC_RPC_WS_URL in docker-compose.yml — replace YOUR-AUTH-KEY with
 # your bitsocial-cli auth key (find it with: docker logs <bitsocial-container> 2>&1 | grep "secret auth key")
 docker compose up -d
 ```
 
-Set `PLEBBIT_RPC_WS_URL` to the address of your existing instance, **including the auth key** as a path segment:
+Set `PKC_RPC_WS_URL` to the address of your existing instance, **including the auth key** as a path segment:
 
 - **bitsocial-cli on the host (no container):** Use `ws://host.docker.internal:9138/YOUR-AUTH-KEY`. The example compose file includes `extra_hosts: ["host.docker.internal:host-gateway"]` so this works on Linux, macOS, and Windows.
 - **bitsocial-cli in another Docker container/network:** Use the container or service name, e.g. `ws://bitsocial:9138/YOUR-AUTH-KEY`, and make sure both containers share the same Docker network.
+
+**You must install the spam-blocker challenge on your bitsocial-cli instance**, because the default preset (`src/presets/community-defaults.jsonc`) references it and `5chan board add --apply-defaults` will be rejected by the PKC RPC server if the challenge is missing:
+
+```bash
+bitsocial challenge install @bitsocial/spam-blocker-challenge
+```
+
+If you do not want this dependency, remove both `@bitsocial/spam-blocker-challenge` entries from your preset (they are marked optional in the file) or use `--skip-apply-defaults`.
 
 See [`docker-compose.standalone.example.yml`](docker-compose.standalone.example.yml) for the configuration.
 
@@ -4525,13 +5252,13 @@ Run `5chan board add --help` for full details on preset defaults flags (`--apply
 
 Preset JSONC is validated with Zod. Both plain JSON and JSONC (with `//` comments) are accepted as preset files.
 
-`boardSettings` must follow plebbit-js `SubplebbitEditOptions`:
-https://github.com/plebbit/plebbit-js?tab=readme-ov-file#subplebbiteditoptions
+`boardSettings` must follow pkc-js `CommunityEditOptions`:
+https://github.com/pkcprotocol/pkc-js?tab=readme-ov-file#communityeditcommunityeditoptions
 
 Bundled preset JSONC defaults:
 [`src/presets/community-defaults.jsonc`](src/presets/community-defaults.jsonc)
 
-`boardSettings` is merged into `subplebbit.edit()` with "missing only" semantics (only absent values are applied). `boardManagerSettings` is used as default values for `board add` config fields, and explicit CLI flags override these defaults.
+`boardSettings` is merged into `community.edit()` with "missing only" semantics (only absent values are applied). `boardManagerSettings` is used as default values for `board add` config fields, and explicit CLI flags override these defaults.
 
 The bundled preset file is `src/presets/community-defaults.jsonc`.
 
@@ -4544,20 +5271,21 @@ The bundled preset file is `src/presets/community-defaults.jsonc`.
 * [`5chan board remove ADDRESS`](#5chan-board-remove-address)
 * [`5chan defaults set`](#5chan-defaults-set)
 * [`5chan help [COMMAND]`](#5chan-help-command)
+* [`5chan logs`](#5chan-logs)
 * [`5chan start`](#5chan-start)
 
 ## `5chan board add ADDRESS`
 
-Add a board to the config
+Add one or more boards to the config
 
 ```
 USAGE
-  $ 5chan board add ADDRESS [--rpc-url <value>] [--per-page <value>] [--pages <value>] [--bump-limit <value>]
-    [--archive-purge-seconds <value>] [--apply-defaults] [--skip-apply-defaults] [--interactive-apply-defaults]
+  $ 5chan board add ADDRESS... [--rpc-url <value>] [--per-page <value>] [--pages <value>] [--bump-limit
+    <value>] [--archive-purge-seconds <value>] [--apply-defaults] [--skip-apply-defaults] [--interactive-apply-defaults]
     [--defaults-preset <value>]
 
 ARGUMENTS
-  ADDRESS  Board address to add
+  ADDRESS...  Board address(es) to add (one or more, space-separated)
 
 FLAGS
   --apply-defaults                 Apply preset defaults silently (no prompts)
@@ -4567,12 +5295,17 @@ FLAGS
   --interactive-apply-defaults     Interactively review and modify preset defaults before applying
   --pages=<value>                  Number of pages
   --per-page=<value>               Posts per page
-  --rpc-url=<value>                [default: ws://localhost:9138, env: PLEBBIT_RPC_WS_URL] Plebbit RPC WebSocket URL
-                                   (for validation)
+  --rpc-url=<value>                [default: ws://localhost:9138, env: PKC_RPC_WS_URL] PKC RPC WebSocket URL (for
+                                   validation)
   --skip-apply-defaults            Skip applying preset defaults
 
 DESCRIPTION
-  Add a board to the config
+  Add one or more boards to the config
+
+  Multiple addresses may be supplied space-separated; the same defaults decision
+  and preset are applied to each. All addresses are validated and checked for
+  conflicts up front, so nothing is written if any address is invalid or already
+  present.
 
   Preset defaults behavior:
   --apply-defaults              Apply all preset defaults silently (no prompts)
@@ -4586,10 +5319,12 @@ DESCRIPTION
 
   Note: "board add" only accepts 5chan settings flags (pagination, bump limits, archiving).
   To set board settings (title, description, rules, etc.), use a WebUI or bitsocial-cli:
-  https://github.com/bitsocialhq/bitsocial-cli#bitsocial-community-edit-address
+  https://github.com/bitsocialnet/bitsocial-cli#bitsocial-community-edit-address
 
 EXAMPLES
   $ 5chan board add random.bso
+
+  $ 5chan board add random.bso tech.bso flash.bso
 
   $ 5chan board add tech.bso --bump-limit 500
 
@@ -4599,6 +5334,8 @@ EXAMPLES
 
   $ 5chan board add my-board.bso --apply-defaults
 
+  $ 5chan board add my-board.bso other-board.bso --apply-defaults
+
   $ 5chan board add my-board.bso --skip-apply-defaults
 
   $ 5chan board add my-board.bso --interactive-apply-defaults
@@ -4606,7 +5343,7 @@ EXAMPLES
   $ 5chan board add my-board.bso --apply-defaults --defaults-preset ./my-preset.json
 ```
 
-_See code: [src/commands/board/add.ts](https://github.com/bitsocialhq/5chan-board-manager/blob/v0.2.3/src/commands/board/add.ts)_
+_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.16/src/commands/board/add.ts)_
 
 ## `5chan board edit ADDRESS`
 
@@ -4635,7 +5372,7 @@ DESCRIPTION
   This command configures how 5chan manages the board (pagination, bump limits, archiving).
   Use --interactive (-i) to open the board config in $EDITOR for direct viewing/editing.
   To edit board settings (title, description, rules, etc.), use a WebUI or bitsocial-cli:
-  https://github.com/bitsocialhq/bitsocial-cli#bitsocial-community-edit-address
+  https://github.com/bitsocialnet/bitsocial-cli#bitsocial-community-edit-address
 
 EXAMPLES
   $ 5chan board edit tech.bso --bump-limit 500
@@ -4653,7 +5390,7 @@ EXAMPLES
   $ 5chan board edit random.bso -i
 ```
 
-_See code: [src/commands/board/edit.ts](https://github.com/bitsocialhq/5chan-board-manager/blob/v0.2.3/src/commands/board/edit.ts)_
+_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.16/src/commands/board/edit.ts)_
 
 ## `5chan board list`
 
@@ -4670,7 +5407,7 @@ EXAMPLES
   $ 5chan board list
 ```
 
-_See code: [src/commands/board/list.ts](https://github.com/bitsocialhq/5chan-board-manager/blob/v0.2.3/src/commands/board/list.ts)_
+_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.16/src/commands/board/list.ts)_
 
 ## `5chan board remove ADDRESS`
 
@@ -4681,7 +5418,7 @@ USAGE
   $ 5chan board remove ADDRESS
 
 ARGUMENTS
-  ADDRESS  Subplebbit address to remove
+  ADDRESS  Community address to remove
 
 DESCRIPTION
   Remove a board from the config
@@ -4690,7 +5427,7 @@ EXAMPLES
   $ 5chan board remove random.bso
 ```
 
-_See code: [src/commands/board/remove.ts](https://github.com/bitsocialhq/5chan-board-manager/blob/v0.2.3/src/commands/board/remove.ts)_
+_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.16/src/commands/board/remove.ts)_
 
 ## `5chan defaults set`
 
@@ -4730,7 +5467,7 @@ EXAMPLES
   $ 5chan defaults set -i
 ```
 
-_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialhq/5chan-board-manager/blob/v0.2.3/src/commands/defaults/set.ts)_
+_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.16/src/commands/defaults/set.ts)_
 
 ## `5chan help [COMMAND]`
 
@@ -4752,16 +5489,63 @@ DESCRIPTION
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v6.2.37/src/commands/help.ts)_
 
+## `5chan logs`
+
+View the latest 5chan daemon log file. By default dumps the full log and exits. Use --follow to stream new output in real-time (like tail -f).
+
+```
+USAGE
+  $ 5chan logs [-f] [-n <value>] [--since <value>] [--until <value>] [--logPath <value>] [--stdout |
+    --stderr]
+
+FLAGS
+  -f, --follow           Follow log output in real-time (like tail -f)
+  -n, --tail=<value>     [default: all] Number of log entries to show from the end. Use "all" to show everything.
+      --logPath=<value>  Specify the directory containing log files
+      --since=<value>    Show logs since timestamp (ISO 8601, e.g. 2026-01-02T13:23:37Z) or relative time (e.g. 30s,
+                         42m, 2h, 1d)
+      --stderr           Show only stderr log entries (output of pkc-logger library)
+      --stdout           Show only stdout log entries
+      --until=<value>    Show logs before timestamp (ISO 8601, e.g. 2026-01-02T13:23:37Z) or relative time (e.g. 30s,
+                         42m, 2h, 1d)
+
+DESCRIPTION
+  View the latest 5chan daemon log file. By default dumps the full log and exits. Use --follow to stream new output in
+  real-time (like tail -f).
+
+EXAMPLES
+  $ 5chan logs
+
+  $ 5chan logs -f
+
+  $ 5chan logs -n 50
+
+  $ 5chan logs --since 5m
+
+  $ 5chan logs --since 2026-01-02T13:23:37Z --until 2026-01-02T14:00:00Z
+
+  $ 5chan logs --since 1h -f
+
+  $ 5chan logs --stdout
+
+  $ 5chan logs --stderr
+
+  $ 5chan logs --stdout -f
+```
+
+_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.16/src/commands/logs.ts)_
+
 ## `5chan start`
 
 Start board managers for all configured boards
 
 ```
 USAGE
-  $ 5chan start [-c <value>]
+  $ 5chan start [-c <value>] [--log-path <value>]
 
 FLAGS
   -c, --config-dir=<value>  Path to config directory (overrides default)
+      --log-path=<value>    [default: /home/runner/.local/state/5chan] Directory to store daemon log files
 
 DESCRIPTION
   Start board managers for all configured boards
@@ -4775,13 +5559,19 @@ DESCRIPTION
   The config directory is watched for changes; boards are hot-reloaded
   (added, removed, or restarted) without requiring a full restart.
 
+  Daemon output is written to a rotated log file (default: /home/runner/.local/state/5chan).
+  View it with `5chan logs`. stderr is suppressed on the terminal; real
+  uncaught errors still reach the terminal.
+
 EXAMPLES
   $ 5chan start
 
   $ 5chan start --config-dir /path/to/config
+
+  $ 5chan start --log-path /var/log/5chan
 ```
 
-_See code: [src/commands/start.ts](https://github.com/bitsocialhq/5chan-board-manager/blob/v0.2.3/src/commands/start.ts)_
+_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.16/src/commands/start.ts)_
 <!-- commandsstop -->
 
 ## Config Hot-Reload
@@ -4814,18 +5604,18 @@ The board manager detects comments and replies that were deleted by their author
 
 ## Auto Mod Signer Management
 
-On startup for each board (using the internally-created Plebbit instance):
+On startup for each board (using the internally-created PKC instance):
 
 1. Check state JSON for a signer private key for this board address
-2. If none exists, create one via `plebbit.createSigner()` and save to state JSON
-3. Check board roles via `subplebbit.roles` for the signer's address
-4. If not a mod, auto-add via `subplebbit.edit()` (works because we run on `LocalSubplebbit` or `RpcLocalSubplebbit` — we own the board)
+2. If none exists, create one via `pkc.createSigner()` and save to state JSON
+3. Check board roles via `community.roles` for the signer's address
+4. If not a mod, auto-add via `community.edit()` (works because we run on `LocalCommunity` or `RpcLocalCommunity` — we own the board)
 
-Logged via `plebbit-logger` when creating signer or adding mod role.
+Logged via `pkc-logger` when creating signer or adding mod role.
 
 ## Address Change Handling
 
-When bitsocial-cli changes a board's address (e.g., from a hash like `12D3KooW...` to a named address like `random.bso`), the board manager detects the change automatically via the plebbit-js `update` event and migrates all associated files:
+When bitsocial-cli changes a board's address (e.g., from a hash like `12D3KooW...` to a named address like `random.bso`), the board manager detects the change automatically via the pkc-js `update` event and migrates all associated files:
 
 1. Signer key is moved to the new address in the state file
 2. Board directory is renamed from `boards/{oldAddress}/` to `boards/{newAddress}/` (with updated `address` field in `config.json`)
@@ -4860,11 +5650,11 @@ The script may start long after the board has been running. On first run, many t
 
 ## Idempotency
 
-Before archiving, checks the thread's `archived` property. Skips if already archived (plebbit-js throws on duplicate moderation actions).
+Before archiving, checks the thread's `archived` property. Skips if already archived (pkc-js throws on duplicate moderation actions).
 
 ## Logging
 
-Uses `plebbit-logger` (same logger as the plebbit-js ecosystem). Key events logged:
+Uses `pkc-logger` (same logger as the pkc-js ecosystem). Key events logged:
 
 - Board manager start/stop
 - Threads archived (with CID and reason: capacity vs bump limit)
@@ -4874,18 +5664,54 @@ Uses `plebbit-logger` (same logger as the plebbit-js ecosystem). Key events logg
 - Mod role auto-added
 - Errors
 
-**Docker:** Debug logging (`DEBUG=5chan:*`) is enabled by default in the Docker image, so `docker logs` shows the full plebbit-logger output. To silence it, override the variable:
+**Daemon log file.** When `5chan start` runs, stdout and stderr are captured to a
+rotated log file under `$XDG_STATE_HOME/5chan/log/` (inside Docker: `/data/5chan/log/`).
+Each entry is prefixed with `[ISO-timestamp] [stdout|stderr]`. At most 5 files are
+retained; the oldest is deleted on each restart. Each file is capped at 20MB.
+
+stderr is suppressed on the terminal — only real uncaught errors reach it. Use
+`5chan logs` (or `5chan logs -f`) to view daemon output:
 
 ```bash
-docker run -e DEBUG= 5chan-board-manager
+docker compose exec 5chan 5chan logs        # dump latest log
+docker compose exec 5chan 5chan logs -f     # stream live
+docker compose exec 5chan 5chan logs --stderr -f   # only pkc-logger output
 ```
 
-Or in `docker-compose.yml`:
+**Docker:** debug logging is **off** by default. The example compose files set
+`DEBUG=bitsocial:5chan-board-manager*` on the `5chan` service so daemon output
+flows into the log file. Because stderr is no longer teed to the terminal,
+`docker logs` will be quieter than before — use `5chan logs` to see the full
+debug stream. To silence the log file, drop the variable from your compose
+file (or override it to empty):
 
 ```yaml
 environment:
   DEBUG: ""
 ```
+
+To broaden the captured namespaces (e.g. to include pkc-js events), widen `DEBUG`:
+
+```yaml
+environment:
+  DEBUG: "bitsocial:5chan-board-manager*,pkc*,pkc-js*"
+```
+
+## Heartbeat & Health Check
+
+Each board manager runs a periodic heartbeat that:
+
+- Logs a line per tick at trace level (`[board <addr>] heartbeat — last update: <ISO> (<n>s ago)`) so you can confirm the daemon is alive even when a board is idle. Visible with the default `DEBUG='bitsocial:5chan-board-manager*'`.
+- Touches a shared heartbeat file (default `$XDG_STATE_HOME/5chan/heartbeat`, i.e. `/data/5chan/heartbeat` in Docker) for the Docker healthcheck to consume.
+- If `now - lastUpdateAt` exceeds `HEARTBEAT_STALE_UPDATE_SECONDS`, an error-level `[board <addr>] no update events for <n>s` line is logged each tick. The process is **not** restarted automatically — operators should monitor the log or rely on the file-mtime healthcheck below.
+
+| Env var | Default | Purpose |
+|---|---|---|
+| `HEARTBEAT_INTERVAL_SECONDS` | `300` | Tick cadence. |
+| `HEARTBEAT_STALE_UPDATE_SECONDS` | `1800` | If no `community.update` event has fired within this window, a stale-update warning is logged each tick. |
+| `HEARTBEAT_FILE` | `<log-path>/heartbeat` | Override the heartbeat file path (e.g. for tests). |
+
+The example compose files include a healthcheck that reports `unhealthy` if the heartbeat file's mtime is older than 10 minutes — useful for `docker ps` and external watchdogs. Note this only catches "process completely dead" (the file's mtime stops advancing only when the interval timer stops firing); if the RPC connection is stuck but the process is alive, the heartbeat file keeps getting touched, so watch the log for the stale-update warning instead.
 
 ## 4chan Board Behavior Reference
 
@@ -4910,7 +5736,7 @@ Capacity examples: /b/ = 150, /v/ = 200, /f/ = 30.
 
 ### Bumping
 
-A reply moves the thread to the top of page 1. This is equivalent to plebbit's **"active sort"**, which orders threads by `lastReplyTimestamp`.
+A reply moves the thread to the top of page 1. This is equivalent to PKC's **"active sort"**, which orders threads by `lastReplyTimestamp`.
 
 ### Bump limit
 
@@ -4936,24 +5762,46 @@ External services (archive.4plebs.org, desuarchive.org) independently scrape and
 
 `image_limit`, `max_filesize`, `max_comment_chars`, `cooldowns`, `spoilers`, `country_flags`, `user_ids`, `forced_anon`, etc.
 
+## Testing
+
+Unit tests run under Vitest:
+
+```bash
+npm test
+```
+
+End-to-end tests run the real board manager against a real PKC RPC server:
+
+```bash
+npm run test:e2e
+```
+
+The e2e suite spawns its own Kubo (IPFS) daemon on random ports and an in-process PKC RPC server on port `19138`. All state is written to temp directories that are removed at teardown. No `bitsocial-cli` or docker-compose stack needs to be running — Kubo is provided by the `kubo` npm package installed as a devDependency.
+
+To point the suite at an externally-running RPC instead (e.g. a long-lived docker-compose stack), set `PKC_RPC_WS_URL` before invoking the script — when set, global-setup skips spawning and uses the provided URL verbatim:
+
+```bash
+PKC_RPC_WS_URL=ws://localhost:9138/YOUR-AUTH-KEY npm run test:e2e
+```
+
 ## Differences from 4chan
 
 | Behavior | 4chan | This module |
 |----------|------|-------------|
-| **Bump limit** | Threads past bump limit still accept replies — they just stop rising in the catalog | Threads are **archived** (no more replies) because plebbit-js has no "stop bumping without archiving" mechanism |
-| **Sage** | Replying with `sage` in the email field prevents the thread from being bumped | Not supported — plebbit has no equivalent mechanism, so all replies bump the thread |
-| **Image limit** | Per-thread image limit (e.g., 150 images on /b/) after which no more images can be posted | Not implemented — plebbit-js has its own file-size constraints but no per-thread image count limit |
+| **Bump limit** | Threads past bump limit still accept replies — they just stop rising in the catalog | Threads are **archived** (no more replies) because pkc-js has no "stop bumping without archiving" mechanism |
+| **Sage** | Replying with `sage` in the email field prevents the thread from being bumped | Not supported — PKC has no equivalent mechanism, so all replies bump the thread |
+| **Image limit** | Per-thread image limit (e.g., 150 images on /b/) after which no more images can be posted | Not implemented — pkc-js has its own file-size constraints but no per-thread image count limit |
 
-## Plebbit-js Implementation
+## PKC-js Implementation
 
 ### Architecture
 
-External module using plebbit-js's public API:
+External module using pkc-js's public API:
 
-- No plebbit-js core modifications needed
-- Uses `plebbit.createCommentModeration()` for both archiving and purging
-- Listens to board `update` events (via `subplebbit.on('update', ...)`) to detect new posts
-- Gets thread positions from board post feeds (`subplebbit.posts.pageCids.active`), or falls back to sorting preloaded pages by `lastReplyTimestamp` descending (then `postNumber`)
+- No pkc-js core modifications needed
+- Uses `pkc.createCommentModeration()` for both archiving and purging
+- Listens to board `update` events (via `community.on('update', ...)`) to detect new posts
+- Gets thread positions from board post feeds (`community.posts.pageCids.active`), or falls back to sorting preloaded pages by `lastReplyTimestamp` descending (then `postNumber`)
 
 ### Configurable settings
 
@@ -4971,30 +5819,30 @@ Uses 4chan field names for interoperability.
 
 ### API note
 
-Cannot do `subplebbit.posts.getPage("active")`. Must either:
+Cannot do `community.posts.getPage("active")`. Must either:
 
-1. Use `subplebbit.posts.pageCids.active` to get the CID, then fetch that page
+1. Use `community.posts.pageCids.active` to get the CID, then fetch that page
 2. Or fall back to sorting preloaded pages by `lastReplyTimestamp` descending, then `postNumber` (approximates active sort without needing `pageCids.active`)
 
 ### Board record size constraint
 
-The entire board IPFS record is capped at 1MB (`MAX_FILE_SIZE_BYTES_FOR_SUBPLEBBIT_IPFS`). `subplebbit.posts.pages.hot` is preloaded into the record with whatever space remains after the rest of the record (title, description, roles, challenges, etc.).
+The entire board IPFS record is capped at 1MB (`MAX_FILE_SIZE_BYTES_FOR_COMMUNITY_IPFS`). `community.posts.pages.hot` is preloaded into the record with whatever space remains after the rest of the record (title, description, roles, challenges, etc.).
 
 - If the preloaded page has **no `nextCid`**, it contains all posts — no pagination needed
-- If `nextCid` **is present**, additional pages must be fetched via `subplebbit.posts.getPage({ cid: nextCid })`
-- `subplebbit.posts.pageCids.active` provides the CID of the first active-sorted page, which is the sort order the board manager needs
+- If `nextCid` **is present**, additional pages must be fetched via `community.posts.getPage({ cid: nextCid })`
+- `community.posts.pageCids.active` provides the CID of the first active-sorted page, which is the sort order the board manager needs
 
-Reference: `plebbit-js/src/subplebbit/subplebbit-client-manager.ts:38`, `plebbit-js/src/runtime/node/subplebbit/local-subplebbit.ts:714`
+Reference: `pkc-js/src/community/community-client-manager.ts`, `pkc-js/src/runtime/node/community/local-community.ts`
 
 ### Module flow
 
 ```
-1. Create Plebbit instance internally from the provided plebbitRpcUrl
-2. Load state JSON; get or create signer for this board via `plebbit.createSigner()`
-3. Get board (`LocalSubplebbit` or `RpcLocalSubplebbit`)
-4. Check board roles via `subplebbit.roles`; if missing, call `subplebbit.edit()` to add as mod
+1. Create PKC instance internally from the provided pkcRpcUrl
+2. Load state JSON; get or create signer for this board via `pkc.createSigner()`
+3. Get board (`LocalCommunity` or `RpcLocalCommunity`)
+4. Check board roles via `community.roles`; if missing, call `community.edit()` to add as mod
 5. Acquire file lock to prevent concurrent board managers on same board
-6. Call `subplebbit.update()`
+6. Call `community.update()`
 7. On each 'update' event:
    a. Determine thread source (three scenarios):
       1. pageCids.active exists → fetch via getPage(), paginate via nextCid
@@ -5017,23 +5865,23 @@ Reference: `plebbit-js/src/subplebbit/subplebbit-client-manager.ts:38`, `plebbit
       - createCommentModeration({ purged: true }) and publish
 ```
 
-### Key plebbit-js APIs used
+### Key pkc-js APIs used
 
 | API | Purpose |
 |-----|---------|
-| `plebbit.createCommentModeration()` | Archive and purge threads |
+| `pkc.createCommentModeration()` | Archive and purge threads |
 | `commentModeration.publish()` | Publish the moderation action |
-| `subplebbit.posts.pageCids.active` | Get active sort page CID |
-| `subplebbit.posts.pages.hot` | Preloaded first page (for calculating active sort) |
-| `subplebbit.on('update', ...)` | Listen for new posts/updates |
+| `community.posts.pageCids.active` | Get active sort page CID |
+| `community.posts.pages.hot` | Preloaded first page (for calculating active sort) |
+| `community.on('update', ...)` | Listen for new posts/updates |
 | `page.nextCid` | Paginate through multi-page feeds |
 
-### Key plebbit-js source files (reference only, not modified)
+### Key pkc-js source files (reference only, not modified)
 
 | File | Relevant code |
 |------|--------------|
-| `src/plebbit/plebbit.ts:806` | `createCommentModeration()` definition |
-| `src/publications/comment-moderation/schema.ts:24` | ModeratorOptionsSchema with `archived`, `purged` fields |
-| `src/runtime/node/subplebbit/local-subplebbit.ts:1658` | Existing archived check that blocks replies |
-| `src/runtime/node/subplebbit/db-handler.ts:2567` | `queryPostsWithActiveScore()` — active sort CTE |
+| `src/pkc/pkc.ts` | `createCommentModeration()` definition |
+| `src/publications/comment-moderation/schema.ts` | ModeratorOptionsSchema with `archived`, `purged` fields |
+| `src/runtime/node/community/local-community.ts` | Existing archived check that blocks replies |
+| `src/runtime/node/community/db-handler.ts` | `queryPostsWithActiveScore()` — active sort CTE |
 | `src/pages/util.ts` | Sort type definitions and scoring functions |

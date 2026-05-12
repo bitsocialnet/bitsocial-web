@@ -1,6 +1,6 @@
 ---
 title: Protocolo de igual a igual
-description: Cómo utiliza Bitsocial el direccionamiento de clave pública y el pubsub de igual a igual para ofrecer redes sociales sin servidor.
+description: Cómo utiliza Bitsocial el direccionamiento de clave pública, el pubsub de igual a igual y los nodos P2P del navegador para ofrecer redes sociales sin servidor.
 ---
 
 # Protocolo de igual a igual
@@ -210,16 +210,34 @@ Esto es similar a cómo BitTorrent hace posible descubrir qué IP generan un tor
 
 ---
 
-## Usuarios del navegador y puertas de enlace
+## Navegador punto a punto
 
-Los navegadores no pueden unirse directamente a redes peer-to-peer. Bitsocial maneja esto con **puertas de enlace HTTP** que transmiten datos entre la red P2P y los clientes del navegador. Estas puertas de enlace:
+El navegador P2P ahora es posible en los clientes de Bitsocial. Una aplicación de navegador puede ejecutar un nodo [helia](https://helia.io/), usar la misma pila de cliente de protocolo Bitsocial que otras aplicaciones y obtener contenido de sus pares en lugar de pedirle a una puerta de enlace IPFS centralizada que lo proporcione. El navegador también puede participar en pubsub directamente, por lo que la publicación no necesita un proveedor de pubsub propiedad de la plataforma en el camino feliz.
+
+Este es un hito importante para la distribución web: un sitio web HTTPS normal puede abrirse en un cliente social P2P en vivo. Los usuarios no necesitan instalar una aplicación de escritorio antes de poder leer desde la red, y el operador de la aplicación no necesita ejecutar una puerta de enlace central que se convierta en el punto crítico de censura o moderación para cada usuario del navegador.
+
+La ruta del navegador tiene límites diferentes a los de un nodo de escritorio o servidor:
+
+- Por lo general, un nodo de navegador no puede aceptar conexiones entrantes arbitrarias desde la Internet pública.
+- puede cargar, validar, almacenar en caché y publicar datos mientras la aplicación está abierta
+- no debe ser tratado como el anfitrión de larga duración de los datos de una comunidad
+- El hosting comunitario completo sigue siendo mejor manejado por una aplicación de escritorio, `bitsocial-cli`, u otra
+  nodo siempre activo
+
+Los enrutadores HTTP siguen siendo importantes para el descubrimiento de contenido: devuelven direcciones de proveedores para un hash comunitario. No son puertas de enlace IPFS porque no ofrecen el contenido en sí. Después del descubrimiento, el cliente del navegador se conecta con sus pares y recupera los datos a través de la pila P2P.
+
+5chan expone esto como un interruptor de configuración avanzada opcional en la aplicación web normal 5chan.app. La última pila de navegador `pkc-js` se ha vuelto lo suficientemente estable para pruebas públicas después de que el trabajo de interoperabilidad libp2p/gossipsub abordó la entrega de mensajes entre pares Helia y Kubo. La configuración mantiene el navegador P2P controlado mientras realiza más pruebas en el mundo real; una vez que tenga suficiente confianza en la producción, puede convertirse en la ruta web predeterminada.
+
+## Reserva de puerta de enlace
+
+El acceso al navegador respaldado por puerta de enlace sigue siendo útil como respaldo de compatibilidad e implementación. Una puerta de enlace puede transmitir datos entre la red P2P y un cliente de navegador cuando un navegador no puede unirse a la red directamente o cuando la aplicación elige intencionalmente la ruta anterior. Estas puertas de enlace:
 
 - puede ser dirigido por cualquiera
 - no requiere cuentas de usuario ni pagos
 - no obtenga la custodia de las identidades o comunidades de los usuarios
 - se puede cambiar sin perder datos
 
-Esto mantiene la experiencia del navegador perfecta y al mismo tiempo preserva la arquitectura descentralizada subyacente.
+La arquitectura de destino es primero P2P del navegador, con puertas de enlace como alternativa opcional en lugar del cuello de botella predeterminado.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Protocollo peer-to-peer
-description: Come Bitsocial utilizza l'indirizzamento a chiave pubblica e il pubsub peer-to-peer per fornire social media serverless.
+description: Come Bitsocial utilizza l'indirizzamento a chiave pubblica, il pubsub peer-to-peer e i nodi P2P del browser per fornire social media serverless.
 ---
 
 # Protocollo peer-to-peer
@@ -210,16 +210,34 @@ Questo è simile a come BitTorrent rende possibile scoprire quali IP seminano un
 
 ---
 
-## Utenti e gateway del browser
+## Browser peer-to-peer
 
-I browser non possono connettersi direttamente alle reti peer-to-peer. Bitsocial gestisce tutto ciò con **gateway HTTP** che trasmettono dati tra la rete P2P e i client browser. Questi gateway:
+Il browser P2P è ora possibile nei client Bitsocial. Un'app browser può eseguire un nodo [Elia](https://helia.io/), utilizzare lo stesso stack client del protocollo Bitsocial di altre app e recuperare contenuti dai peer invece di chiedere a un gateway IPFS centralizzato di servirlo. Il browser può anche partecipare direttamente a pubsub, quindi la pubblicazione non ha bisogno di un provider pubsub di proprietà della piattaforma nel percorso felice.
+
+Questa è la pietra miliare importante per la distribuzione sul web: un normale sito web HTTPS può aprirsi in un client sociale P2P live. Gli utenti non hanno bisogno di installare un’app desktop prima di poter leggere dalla rete e l’operatore dell’app non ha bisogno di eseguire un gateway centrale che diventa il punto di censura o di moderazione per ogni utente del browser.
+
+Il percorso del browser ha limiti diversi da un nodo desktop o server:
+
+- un nodo browser di solito non può accettare connessioni in entrata arbitrarie dall'Internet pubblica
+- può caricare, convalidare, memorizzare nella cache e pubblicare dati mentre l'app è aperta
+- non dovrebbe essere trattato come un host di lunga durata per i dati di una comunità
+- l'hosting completo della comunità è ancora meglio gestito da un'app desktop, `bitsocial-cli` o un'altra
+  nodo sempre attivo
+
+I router HTTP sono ancora importanti per la scoperta dei contenuti: restituiscono gli indirizzi dei provider per un hash della comunità. Non sono gateway IPFS perché non servono il contenuto stesso. Dopo il rilevamento, il client browser si connette ai peer e recupera i dati tramite lo stack P2P.
+
+5chan lo espone come un interruttore di attivazione delle Impostazioni avanzate nella normale app Web 5chan.app. L'ultimo stack del browser `pkc-js` è diventato sufficientemente stabile per i test pubblici dopo che il lavoro di interoperabilità upstream libp2p/gossipsub ha indirizzato la consegna dei messaggi tra i peer Helia e Kubo. L'impostazione mantiene il browser P2P controllato mentre vengono eseguiti ulteriori test nel mondo reale; una volta raggiunta una sufficiente sicurezza di produzione, può diventare il percorso Web predefinito.
+
+## Ripiego del gateway
+
+L'accesso al browser supportato dal gateway è ancora utile come fallback di compatibilità e implementazione. Un gateway può trasmettere dati tra la rete P2P e un client browser quando un browser non può connettersi direttamente alla rete o quando l'app sceglie intenzionalmente il percorso precedente. Questi gateway:
 
 - può essere gestito da chiunque
 - non richiedono account utente o pagamenti
 - non ottenere la custodia delle identità o delle comunità degli utenti
 - può essere scambiato senza perdere dati
 
-Ciò mantiene l'esperienza del browser fluida preservando l'architettura decentralizzata sottostante.
+L'architettura di destinazione è innanzitutto il P2P del browser, con i gateway come fallback opzionale anziché come collo di bottiglia predefinito.
 
 ---
 

@@ -30,7 +30,7 @@ Penetapan slot direktori (papan mana yang muncul di jalur mana) saat ini dikelol
 
 ## Internal
 
-Di balik terpalnya, 5chan menggunakan lapisan klien protokol Bitsocial bersama untuk interaksi jaringannya.
+Di balik terpalnya, 5chan menggunakan lapisan klien protokol Bitsocial bersama untuk interaksi jaringannya. Aplikasi web di 5chan.app juga dapat menjalankan node Helia di browser ketika P2P browser diaktifkan dari Pengaturan Lanjutan, sehingga pembaca dapat memuat dari rekan-rekan tanpa gateway IPFS terpusat. Lihat bagian P2P browser di catatan protokol peer-to-peer.
 
 ## Tautan
 

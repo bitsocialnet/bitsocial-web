@@ -30,7 +30,7 @@ Zuweisungen von Verzeichnissteckplätzen (welches Board in welchem Pfad angezeig
 
 ## Interna
 
-Unter der Haube nutzt 5chan die gemeinsame Bitsocial-Protokoll-Client-Schicht für seine Netzwerkinteraktionen.
+Unter der Haube nutzt 5chan die gemeinsame Bitsocial-Protokoll-Client-Schicht für seine Netzwerkinteraktionen. Die Web-App bei 5chan.app kann auch einen Helia-Knoten im Browser ausführen, wenn Browser-P2P in den erweiterten Einstellungen aktiviert ist, sodass Leser von Peers ohne ein zentrales IPFS-Gateway laden können. Weitere Informationen finden Sie im Abschnitt „Browser-P2P“ in den Hinweisen zum Peer-to-Peer-Protokoll.
 
 ## Links
 

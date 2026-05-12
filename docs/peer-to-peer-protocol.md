@@ -1,6 +1,6 @@
 ---
 title: Peer-to-Peer Protocol
-description: How Bitsocial uses public-key addressing and peer-to-peer pubsub to deliver serverless social media.
+description: How Bitsocial uses public-key addressing, peer-to-peer pubsub, and browser P2P nodes to deliver serverless social media.
 ---
 
 # Peer-to-Peer Protocol
@@ -261,18 +261,50 @@ baseline.
 
 ---
 
-## Browser users and gateways
+## Browser peer-to-peer
 
-Browsers cannot join peer-to-peer networks directly. Bitsocial handles this with **HTTP gateways**
-that relay data between the P2P network and browser clients. These gateways:
+Browser P2P is now possible in Bitsocial clients. A browser app can run a
+[Helia](https://helia.io/) node, use the same Bitsocial protocol client stack as other apps, and
+fetch content from peers instead of asking a centralized IPFS gateway to serve it. The browser can
+also participate in pubsub directly, so posting does not need a platform-owned pubsub provider in
+the happy path.
+
+This is the important milestone for web distribution: a normal HTTPS website can open into a live
+P2P social client. Users do not need to install a desktop app before they can read from the network,
+and the app operator does not need to run a central gateway that becomes the censorship or
+moderation chokepoint for every browser user.
+
+The browser path has different limits from a desktop or server node:
+
+- a browser node usually cannot accept arbitrary inbound connections from the public internet
+- it can load, validate, cache, and publish data while the app is open
+- it should not be treated as the long-lived host for a community's data
+- full community hosting is still best handled by a desktop app, `bitsocial-cli`, or another
+  always-on node
+
+HTTP routers still matter for content discovery: they return provider addresses for a community
+hash. They are not IPFS gateways, because they do not serve the content itself. After discovery, the
+browser client connects to peers and fetches the data through the P2P stack.
+
+5chan exposes this as an opt-in Advanced Settings switch in the normal 5chan.app web app. The latest
+`pkc-js` browser stack has become stable enough for public testing after upstream libp2p/gossipsub
+interop work addressed message delivery between Helia and Kubo peers. The setting keeps browser P2P
+controlled while it gets more real-world testing; once it has enough production confidence, it can
+become the default web path.
+
+## Gateway fallback
+
+Gateway-backed browser access is still useful as a compatibility and rollout fallback. A gateway can
+relay data between the P2P network and a browser client when a browser cannot join the network
+directly or when the app intentionally chooses the older path. These gateways:
 
 - can be run by anyone
 - do not require user accounts or payments
 - do not gain custody over user identities or communities
 - can be swapped out without losing data
 
-This keeps the browser experience seamless while preserving the decentralized architecture
-underneath.
+The target architecture is browser P2P first, with gateways as an optional fallback rather than the
+default bottleneck.
 
 ---
 

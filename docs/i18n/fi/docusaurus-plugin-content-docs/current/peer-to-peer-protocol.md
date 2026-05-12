@@ -1,6 +1,6 @@
 ---
 title: Peer-to-Peer-protokolla
-description: Kuinka Bitsocial käyttää julkisen avaimen osoitteita ja peer-to-peer-pubia palvelimettoman sosiaalisen median toimittamiseen.
+description: Kuinka Bitsocial käyttää julkisen avaimen osoitteita, peer-to-peer pub- ja selaimen P2P-solmuja palvelimettoman sosiaalisen median toimittamiseen.
 ---
 
 # Peer-to-Peer-protokolla
@@ -210,16 +210,34 @@ Tämä on samanlainen tapa kuin BitTorrentin avulla on mahdollista selvittää, 
 
 ---
 
-## Selaimen käyttäjät ja yhdyskäytävät
+## Selaimen vertaisverkko
 
-Selaimet eivät voi liittyä suoraan vertaisverkkoihin. Bitsocial hoitaa tämän **HTTP-yhdyskäytävillä**, jotka välittävät tietoja P2P-verkon ja selainasiakkaiden välillä. Nämä yhdyskäytävät:
+Selain P2P on nyt mahdollista Bitsocial-asiakkaissa. Selainsovellus voi suorittaa [Helia](https://helia.io/)-solmun, käyttää samaa Bitsocial-protokollaasiakaspinoa kuin muut sovellukset ja hakea sisältöä vertaisilta sen sijaan, että se pyytäisi keskitettyä IPFS-yhdyskäytävää palvelemaan sitä. Selain voi myös osallistua suoraan pubsub-palveluun, joten postaukseen ei tarvita alustan omistamaa pubsub-palveluntarjoajaa onnellisen polun kautta.
+
+Tämä on tärkeä virstanpylväs verkkojakelulle: normaali HTTPS-verkkosivusto voi avautua eläväksi P2P-sosiaaliseksi asiakkaaksi. Käyttäjien ei tarvitse asentaa työpöytäsovellusta ennen kuin he voivat lukea verkosta, eikä sovellusoperaattorin tarvitse käyttää keskusyhdyskäytävää, josta tulee jokaisen selaimen käyttäjän sensuurin tai moderoinnin rajoituspiste.
+
+Selainpolulla on erilaiset rajoitukset kuin työpöydällä tai palvelinsolmulla:
+
+- selainsolmu ei yleensä voi hyväksyä mielivaltaisia ​​saapuvia yhteyksiä julkisesta Internetistä
+- se voi ladata, vahvistaa, tallentaa välimuistiin ja julkaista tietoja sovelluksen ollessa auki
+- sitä ei pitäisi käsitellä yhteisön tietojen pitkäikäisenä isäntänä
+- koko yhteisöisännöinti onnistuu edelleen parhaiten työpöytäsovelluksella, `bitsocial-cli` tai muulla
+  aina päällä oleva solmu
+
+HTTP-reitittimillä on edelleen merkitystä sisällön löytämisessä: ne palauttavat palveluntarjoajan osoitteet yhteisön hashille. Ne eivät ole IPFS-yhdyskäytäviä, koska ne eivät palvele itse sisältöä. Löytämisen jälkeen selainasiakas muodostaa yhteyden vertaisverkkoihin ja hakee tiedot P2P-pinon kautta.
+
+5chan paljastaa tämän valinnaisena Lisäasetukset-kytkimenä tavallisessa 5chan.app-verkkosovelluksessa. Uusimmasta `pkc-js`-selainpinosta on tullut riittävän vakaa julkista testausta varten sen jälkeen, kun ylävirran libp2p/gossipsub-yhteistoimitus käsitteli viestien toimittamista Helian ja Kubon vertaisten välillä. Asetus pitää selaimen P2P-hallinnan samalla kun se saa enemmän todellista testausta; Kun sillä on tarpeeksi tuotantovarmuutta, siitä voi tulla oletusverkkopolku.
+
+## Gateway-varaus
+
+Yhdyskäytävätuettu selaimen käyttöoikeus on edelleen hyödyllinen yhteensopivuuden ja käyttöönoton vararatkaisuna. Yhdyskäytävä voi välittää tietoja P2P-verkon ja selainasiakkaan välillä, kun selain ei voi liittyä verkkoon suoraan tai kun sovellus valitsee tarkoituksella vanhemman polun. Nämä yhdyskäytävät:
 
 - voi johtaa kuka tahansa
 - eivät vaadi käyttäjätilejä tai maksuja
 - älä saa käyttäjien identiteettejä tai yhteisöjä
 - voidaan vaihtaa ilman tietojen menettämistä
 
-Tämä pitää selainkokemuksen saumattomana ja säilyttää alla olevan hajautetun arkkitehtuurin.
+Kohdearkkitehtuuri on selain P2P ensin, ja yhdyskäytävät ovat valinnainen varavaihtoehto oletuspullonkaulan sijaan.
 
 ---
 

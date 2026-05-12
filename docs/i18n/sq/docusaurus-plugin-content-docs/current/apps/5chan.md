@@ -34,7 +34,7 @@ Caktimet e sloteve të drejtorisë (cila tabelë shfaqet në cilën shteg) menax
 
 ## Të brendshmet
 
-Nën kapuçin, 5chan përdor shtresën API plebbit-js për ndërveprimet e tij të protokollit. Siç u përmend në paralajmërimin e mësipërm, këto referenca të brendshme ende mbajnë emërtim të trashëguar që i paraprin riemërimit Bitsocial.
+Nën kapuçin, 5chan përdor shtresën e përbashkët të klientit të protokollit Bitsocial për ndërveprimet e tij në rrjet. Aplikacioni ueb në 5chan.app mund të ekzekutojë gjithashtu një nyje Helia në shfletues kur shfletuesi P2P aktivizohet nga Cilësimet e Avancuara, kështu që lexuesit mund të ngarkojnë nga kolegët pa një portë të centralizuar IPFS. Shihni seksionin P2P të shfletuesit në shënimet e protokollit peer-to-peer.
 
 ## Lidhjet
 

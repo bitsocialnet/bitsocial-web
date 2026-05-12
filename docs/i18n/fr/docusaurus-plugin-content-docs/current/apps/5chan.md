@@ -30,7 +30,7 @@ Les attributions d'emplacements de répertoire (quelle carte apparaît sur quel 
 
 ## Internes
 
-Sous le capot, 5chan utilise la couche client du protocole Bitsocial partagé pour ses interactions réseau.
+Sous le capot, 5chan utilise la couche client du protocole Bitsocial partagé pour ses interactions réseau. L'application Web sur 5chan.app peut également exécuter un nœud Helia dans le navigateur lorsque le P2P du navigateur est activé à partir des paramètres avancés, afin que les lecteurs puissent charger à partir de pairs sans passerelle IPFS centralisée. Consultez la section P2P du navigateur dans les notes sur le protocole peer-to-peer.
 
 ## Liens
 

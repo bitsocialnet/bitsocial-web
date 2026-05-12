@@ -34,7 +34,7 @@ Katalogplatstilldelningar (vilket kort visas på vilken sökväg) hanteras för 
 
 ## Interner
 
-Under huven använder 5chan plebbit-js API-lagret för sina protokollinteraktioner. Som noterats i varningen ovan har dessa interna referenser fortfarande äldre namn som går före Bitsocial-omvarumärket.
+Under huven använder 5chan det delade Bitsocial-protokollklientlagret för sina nätverksinteraktioner. Webbappen på 5chan.app kan också köra en Helia-nod i webbläsaren när webbläsaren P2P är aktiverad från avancerade inställningar, så att läsare kan ladda från peers utan en centraliserad IPFS-gateway. Se avsnittet om webbläsarens P2P i peer-to-peer-protokollanteckningarna.
 
 ## Länkar
 

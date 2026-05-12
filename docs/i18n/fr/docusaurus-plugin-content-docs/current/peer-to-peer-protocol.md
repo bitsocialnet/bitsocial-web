@@ -1,6 +1,6 @@
 ---
 title: Protocole peer-to-peer
-description: Comment Bitsocial utilise l'adressage à clé publique et le pubsub peer-to-peer pour fournir des médias sociaux sans serveur.
+description: Comment Bitsocial utilise l'adressage par clé publique, le pubsub peer-to-peer et les nœuds P2P de navigateur pour fournir des médias sociaux sans serveur.
 ---
 
 # Protocole peer-to-peer
@@ -210,16 +210,34 @@ Ceci est similaire à la façon dont BitTorrent permet de découvrir quelles adr
 
 ---
 
-## Utilisateurs et passerelles du navigateur
+## Navigateur peer-to-peer
 
-Les navigateurs ne peuvent pas rejoindre directement les réseaux peer-to-peer. Bitsocial gère cela avec des **passerelles HTTP** qui relaient les données entre le réseau P2P et les clients du navigateur. Ces passerelles :
+Le P2P par navigateur est désormais possible dans les clients Bitsocial. Une application de navigateur peut exécuter un nœud [Hélia](https://helia.io/), utiliser la même pile client de protocole Bitsocial que d'autres applications et récupérer le contenu de ses pairs au lieu de demander à une passerelle IPFS centralisée de le servir. Le navigateur peut également participer directement à pubsub, donc la publication n'a pas besoin d'un fournisseur pubsub appartenant à la plate-forme dans le chemin heureux.
+
+Il s’agit d’une étape importante pour la distribution Web : un site Web HTTPS normal peut s’ouvrir sur un client social P2P en direct. Les utilisateurs n'ont pas besoin d'installer une application de bureau avant de pouvoir lire sur le réseau, et l'opérateur de l'application n'a pas besoin d'exécuter une passerelle centrale qui devient le point d'étranglement de la censure ou de la modération pour chaque utilisateur du navigateur.
+
+Le chemin du navigateur a des limites différentes de celles d'un nœud de bureau ou de serveur :
+
+- un nœud de navigateur ne peut généralement pas accepter les connexions entrantes arbitraires provenant de l'Internet public
+- il peut charger, valider, mettre en cache et publier des données pendant que l'application est ouverte
+- il ne doit pas être traité comme un hôte de longue durée pour les données d'une communauté
+- l'hébergement communautaire complet est toujours mieux géré par une application de bureau, `bitsocial-cli` ou une autre
+  nœud toujours actif
+
+Les routeurs HTTP sont toujours importants pour la découverte de contenu : ils renvoient les adresses des fournisseurs pour un hachage de communauté. Ce ne sont pas des passerelles IPFS, car elles ne servent pas le contenu lui-même. Après la découverte, le client du navigateur se connecte à ses pairs et récupère les données via la pile P2P.
+
+5chan expose cela en tant que commutateur de paramètres avancés opt-in dans l'application Web 5chan.app normale. La dernière pile de navigateur `pkc-js` est devenue suffisamment stable pour des tests publics après que le travail d'interopérabilité en amont de libp2p/gossipsub ait abordé la transmission des messages entre les pairs Helia et Kubo. Le paramètre permet de contrôler le P2P du navigateur pendant qu'il subit davantage de tests dans le monde réel ; une fois qu’il a suffisamment confiance en la production, il peut devenir le chemin Web par défaut.
+
+## Passerelle de secours
+
+L'accès au navigateur basé sur une passerelle est toujours utile comme solution de secours en matière de compatibilité et de déploiement. Une passerelle peut relayer les données entre le réseau P2P et un client navigateur lorsqu'un navigateur ne peut pas rejoindre directement le réseau ou lorsque l'application choisit intentionnellement l'ancien chemin. Ces passerelles :
 
 - peut être dirigé par n'importe qui
 - ne nécessitent pas de comptes d'utilisateurs ni de paiements
 - ne pas avoir la garde des identités ou des communautés des utilisateurs
 - peut être remplacé sans perte de données
 
-Cela maintient l'expérience du navigateur transparente tout en préservant l'architecture décentralisée en dessous.
+L'architecture cible est d'abord le navigateur P2P, avec des passerelles comme solution de secours facultative plutôt que comme goulot d'étranglement par défaut.
 
 ---
 

@@ -30,7 +30,7 @@ Las asignaciones de ranuras de directorio (qué placa aparece en qué ruta) se a
 
 ## Internos
 
-En el fondo, 5chan utiliza la capa de cliente del protocolo Bitsocial compartido para sus interacciones de red.
+En el fondo, 5chan utiliza la capa de cliente del protocolo Bitsocial compartido para sus interacciones de red. La aplicación web en 5chan.app también puede ejecutar un nodo Helia en el navegador cuando P2P del navegador está habilitado desde Configuración avanzada, de modo que los lectores pueden cargar desde pares sin una puerta de enlace IPFS centralizada. Consulte la sección P2P del navegador en las notas del protocolo peer-to-peer.
 
 ## Enlaces
 

@@ -30,7 +30,7 @@ Katalogsportilordninger (hvilket bord vises på hvilken bane) administreres for 
 
 ## Internaler
 
-Under panseret bruker 5chan det delte Bitsocial-protokollklientlaget for sine nettverksinteraksjoner.
+Under panseret bruker 5chan det delte Bitsocial-protokollklientlaget for sine nettverksinteraksjoner. Nettappen på 5chan.app kan også kjøre en Helia-node i nettleseren når nettleseren P2P er aktivert fra Avanserte innstillinger, slik at lesere kan laste fra jevnaldrende uten en sentralisert IPFS-gateway. Se P2P-delen av nettleseren i notatene om node-til-node-protokoll.
 
 ## Lenker
 

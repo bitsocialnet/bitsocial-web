@@ -9,7 +9,7 @@ Use this file as the short routing index for `https://bitsocial.net/docs/`. Use 
 - [Custom Anti-Spam Challenges](https://bitsocial.net/docs/custom-challenges/): Why Bitsocial lets each community define its own anti-spam policy.
 - [Identity and Community Ownership](https://bitsocial.net/docs/identity-and-ownership/): How Bitsocial treats profiles and communities as key-controlled property instead of revocable platform accounts.
 - [Local Moderation, Not Global Bans](https://bitsocial.net/docs/local-moderation/): What Bitsocial means when it says moderation stays local.
-- [Peer-to-Peer Protocol](https://bitsocial.net/docs/peer-to-peer-protocol/): How Bitsocial uses public-key addressing and peer-to-peer pubsub to deliver serverless social media.
+- [Peer-to-Peer Protocol](https://bitsocial.net/docs/peer-to-peer-protocol/): How Bitsocial uses public-key addressing, peer-to-peer pubsub, and browser P2P nodes to deliver serverless social media.
 
 ## Master plan
 
@@ -37,7 +37,7 @@ Use this file as the short routing index for `https://bitsocial.net/docs/`. Use 
 
 ## Infrastructure
 
-- [BSO Resolver](https://bitsocial.net/docs/infrastructure/bso-resolver/): Resolve .bso domain names to public keys using ENS TXT records, with built-in caching and cross-platform support.
+- [BSO Resolver](https://bitsocial.net/docs/infrastructure/bso-resolver/): Resolve .bso domain names to public keys via Bitsocial TXT records, with built-in caching and cross-platform support.
 - [Mintpass](https://bitsocial.net/docs/infrastructure/mintpass/): NFT-based authentication system that helps Bitsocial communities verify users and reduce sybil attacks.
 - [Telegram Bots](https://bitsocial.net/docs/infrastructure/telegram-bots/): Feed bots that monitor Bitsocial community lists and forward posts to Telegram channels.
 

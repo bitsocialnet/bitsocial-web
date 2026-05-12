@@ -30,7 +30,7 @@ Przypisaniami miejsc katalogowych (która płyta pojawia się w której ścieżc
 
 ## Elementy wewnętrzne
 
-Pod maską 5chan wykorzystuje współdzieloną warstwę klienta protokołu Bitsocial do interakcji sieciowych.
+Pod maską 5chan wykorzystuje współdzieloną warstwę klienta protokołu Bitsocial do interakcji sieciowych. Aplikacja internetowa pod adresem 5chan.app może również uruchomić węzeł Helia w przeglądarce, gdy w przeglądarce włączona jest funkcja P2P w Ustawieniach zaawansowanych, dzięki czemu czytelnicy mogą ładować z urządzeń równorzędnych bez scentralizowanej bramy IPFS. Zobacz sekcję P2P przeglądarki w uwagach do protokołu peer-to-peer.
 
 ## Spinki do mankietów
 

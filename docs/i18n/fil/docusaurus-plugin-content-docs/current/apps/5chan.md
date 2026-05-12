@@ -30,7 +30,7 @@ Ang mga pagtatalaga ng slot ng direktoryo (kung aling board ang lalabas kung saa
 
 ## Mga panloob
 
-Sa ilalim ng hood, ginagamit ng 5chan ang nakabahaging Bitsocial protocol client layer para sa mga pakikipag-ugnayan sa network nito.
+Sa ilalim ng hood, ginagamit ng 5chan ang nakabahaging Bitsocial protocol client layer para sa mga pakikipag-ugnayan sa network nito. Ang web app sa 5chan.app ay maaari ding magpatakbo ng isang Helia node sa browser kapag ang browser P2P ay pinagana mula sa Advanced na Mga Setting, upang ang mga mambabasa ay makakapag-load mula sa mga kapantay na walang sentralisadong IPFS gateway. Tingnan ang seksyong P2P ng browser sa mga tala ng peer-to-peer na protocol.
 
 ## Mga link
 

@@ -1,6 +1,6 @@
 ---
 title: Protokol Peer-to-Peer
-description: Bagaimana Bitsocial menggunakan pengalamatan kunci publik dan pubsub peer-to-peer untuk menghadirkan media sosial tanpa server.
+description: Bagaimana Bitsocial menggunakan pengalamatan kunci publik, pubsub peer-to-peer, dan node P2P browser untuk menghadirkan media sosial tanpa server.
 ---
 
 # Protokol Peer-to-Peer
@@ -210,16 +210,34 @@ Hal ini mirip dengan bagaimana BitTorrent memungkinkan untuk menemukan IP mana y
 
 ---
 
-## Pengguna browser dan gateway
+## Peramban peer-to-peer
 
-Browser tidak dapat bergabung dengan jaringan peer-to-peer secara langsung. Bitsocial menangani hal ini dengan **gateway HTTP** yang menyampaikan data antara jaringan P2P dan klien browser. Gerbang ini:
+P2P browser sekarang dapat dilakukan di klien Bitsocial. Aplikasi browser dapat menjalankan node [Helia](https://helia.io/), menggunakan tumpukan klien protokol Bitsocial yang sama dengan aplikasi lain, dan mengambil konten dari rekan-rekan alih-alih meminta gateway IPFS terpusat untuk menyajikannya. Browser juga dapat berpartisipasi dalam pubsub secara langsung, jadi pengeposan tidak memerlukan penyedia pubsub milik platform di jalur bahagia.
+
+Ini adalah tonggak penting untuk distribusi web: situs web HTTPS biasa dapat dibuka menjadi klien sosial P2P langsung. Pengguna tidak perlu menginstal aplikasi desktop sebelum mereka dapat membaca dari jaringan, dan operator aplikasi tidak perlu menjalankan gateway pusat yang menjadi titik penyensoran atau moderasi untuk setiap pengguna browser.
+
+Jalur browser memiliki batasan yang berbeda dari node desktop atau server:
+
+- node browser biasanya tidak dapat menerima koneksi masuk yang sewenang-wenang dari internet publik
+- itu dapat memuat, memvalidasi, menyimpan cache, dan mempublikasikan data saat aplikasi terbuka
+- ia tidak boleh diperlakukan sebagai tempat penyimpanan data komunitas yang berumur panjang
+- hosting komunitas lengkap masih paling baik ditangani oleh aplikasi desktop, `bitsocial-cli`, atau lainnya
+  simpul yang selalu aktif
+
+Router HTTP masih penting dalam penemuan konten: mereka mengembalikan alamat penyedia untuk hash komunitas. Ini bukan gateway IPFS karena tidak menyajikan konten itu sendiri. Setelah penemuan, klien browser terhubung ke rekan-rekan dan mengambil data melalui tumpukan P2P.
+
+5chan memaparkan ini sebagai tombol Pengaturan Lanjutan keikutsertaan di aplikasi web 5chan.app normal. Tumpukan browser `pkc-js` terbaru telah menjadi cukup stabil untuk pengujian publik setelah pekerjaan interop libp2p/gossipsub upstream menangani pengiriman pesan antara rekan-rekan Helia dan Kubo. Pengaturan ini membuat P2P browser tetap terkontrol saat melakukan lebih banyak pengujian di dunia nyata; setelah memiliki kepercayaan produksi yang cukup, ini dapat menjadi jalur web default.
+
+## Penggantian gerbang
+
+Akses browser yang didukung gateway masih berguna sebagai pengganti kompatibilitas dan peluncuran. Gateway dapat menyampaikan data antara jaringan P2P dan klien browser ketika browser tidak dapat bergabung dengan jaringan secara langsung atau ketika aplikasi sengaja memilih jalur yang lebih lama. Gerbang ini:
 
 - dapat dijalankan oleh siapa saja
 - tidak memerlukan akun pengguna atau pembayaran
 - tidak mendapatkan hak asuh atas identitas pengguna atau komunitas
 - dapat ditukar tanpa kehilangan data
 
-Hal ini menjaga pengalaman browser tetap lancar sambil mempertahankan arsitektur terdesentralisasi di bawahnya.
+Arsitektur targetnya adalah P2P browser terlebih dahulu, dengan gateway sebagai alternatif opsional, bukan hambatan default.
 
 ---
 

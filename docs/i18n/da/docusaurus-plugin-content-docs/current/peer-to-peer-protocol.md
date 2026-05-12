@@ -1,6 +1,6 @@
 ---
 title: Peer-to-Peer protokol
-description: Hvordan Bitsocial bruger public-key-adressering og peer-to-peer pubsub til at levere serverløse sociale medier.
+description: Hvordan Bitsocial bruger public-key-adressering, peer-to-peer pubsub og browser P2P noder til at levere serverløse sociale medier.
 ---
 
 # Peer-to-Peer protokol
@@ -210,16 +210,34 @@ Dette svarer til, hvordan BitTorrent gør det muligt at finde ud af, hvilke IP'e
 
 ---
 
-## Browserbrugere og gateways
+## Browser peer-to-peer
 
-Browsere kan ikke tilslutte sig peer-to-peer-netværk direkte. Bitsocial håndterer dette med **HTTP-gateways**, der videresender data mellem P2P-netværket og browserklienter. Disse gateways:
+Browser P2P er nu muligt i Bitsocial-klienter. En browser-app kan køre en [Helia](https://helia.io/)-node, bruge den samme Bitsocial-protokol-klientstack som andre apps og hente indhold fra peers i stedet for at bede en centraliseret IPFS-gateway om at betjene det. Browseren kan også deltage i pubsub direkte, så udstationering behøver ikke en platformejet pubsub-udbyder på den gode vej.
+
+Dette er den vigtige milepæl for webdistribution: et normalt HTTPS-websted kan åbnes til en live P2P social klient. Brugere behøver ikke at installere en desktop-app, før de kan læse fra netværket, og app-operatøren behøver ikke at køre en central gateway, der bliver censur- eller moderations-chokepoint for hver browserbruger.
+
+Browserstien har forskellige grænser fra en desktop- eller servernode:
+
+- en browsernode kan normalt ikke acceptere vilkårlige indgående forbindelser fra det offentlige internet
+- den kan indlæse, validere, cache og udgive data, mens appen er åben
+- det bør ikke behandles som den langlivede vært for et fællesskabs data
+- fuld fællesskabshosting håndteres stadig bedst af en desktop-app, `bitsocial-cli` eller en anden
+  altid tændt node
+
+HTTP-routere har stadig betydning for indholdsopdagelse: de returnerer udbyderadresser til en community-hash. De er ikke IPFS-gateways, fordi de ikke tjener selve indholdet. Efter opdagelse opretter browserklienten forbindelse til peers og henter dataene gennem P2P-stakken.
+
+5chan afslører dette som en opt-in Advanced Settings switch i den normale 5chan.app webapp. Den seneste `pkc-js` browserstak er blevet stabil nok til offentlig testning efter opstrøms libp2p/gossipsub-interoparbejde rettet mod meddelelseslevering mellem Helia og Kubo-peers. Indstillingen holder browserens P2P kontrolleret, mens den bliver testet mere i den virkelige verden; når først den har tilstrækkelig produktionstillid, kan den blive standardwebstien.
+
+## Gateway fallback
+
+Gateway-understøttet browseradgang er stadig nyttig som en kompatibilitets- og udrulningsreserve. En gateway kan videresende data mellem P2P-netværket og en browserklient, når en browser ikke kan tilslutte sig netværket direkte, eller når appen med vilje vælger den ældre sti. Disse gateways:
 
 - kan drives af alle
 - kræver ikke brugerkonti eller betalinger
 - ikke opnå forældremyndighed over brugeridentiteter eller fællesskaber
 - kan skiftes ud uden at miste data
 
-Dette holder browseroplevelsen problemfri, samtidig med at den decentraliserede arkitektur nedenunder bevares.
+Målarkitekturen er browseren P2P først, med gateways som et valgfrit fald i stedet for standardflaskehalsen.
 
 ---
 
