@@ -12,6 +12,8 @@ let monitorState = {
   pkcSeeders: {},
   chainProviders: {},
   webpages: {},
+  serviceProbes: {},
+  alerts: {},
   nfts: {},
 };
 
@@ -74,6 +76,16 @@ if (!monitorState.chainProviders) {
 // migrate to new schema: add webpages
 if (!monitorState.webpages) {
   monitorState.webpages = {};
+}
+
+// migrate to new schema: add service probes
+if (!monitorState.serviceProbes) {
+  monitorState.serviceProbes = {};
+}
+
+// migrate to new schema: add alert transition state
+if (!monitorState.alerts) {
+  monitorState.alerts = {};
 }
 
 // migrate to new schema: add nfts

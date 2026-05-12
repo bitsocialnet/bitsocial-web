@@ -30,6 +30,9 @@ services:
     environment:
       BITSOCIAL_STATS_KUBO_RPC_URL: http://ipfs:11111
       BITSOCIAL_STATS_PUBSUB_KUBO_RPC_URL: http://ipfs:11111
+      BITSOCIAL_STATS_ALERT_NAME: ${BITSOCIAL_STATS_ALERT_NAME:-Bitsocial Stats}
+      BITSOCIAL_STATS_TELEGRAM_BOT_TOKEN: ${BITSOCIAL_STATS_TELEGRAM_BOT_TOKEN:-}
+      BITSOCIAL_STATS_TELEGRAM_CHAT_ID: ${BITSOCIAL_STATS_TELEGRAM_CHAT_ID:-}
     depends_on:
       ipfs:
         condition: service_healthy

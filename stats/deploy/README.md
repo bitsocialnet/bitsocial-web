@@ -7,6 +7,7 @@ This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current
 - repo checkout: `/srv/bitsocial-web/current`
 - host Caddy config: `/etc/caddy/Caddyfile`
 - newsletter/listmonk remains on `newsletter.bitsocial.net` via `127.0.0.1:9000`
+- newsletter gateway API traffic under `/api/bitsocial/*` goes to `127.0.0.1:9011`
 - Vercel owns `bitsocial.net` and proxies `/stats` to this VPS origin at `http://91.234.199.189:8080/stats`
 - the VPS entrypoint redirects `/stats` and `/stats/5chan` to Grafana shared-dashboard URLs so visitors land on the public view without anonymous access to the full Grafana app
 
@@ -36,6 +37,10 @@ $EDITOR stats/deploy/.env
 docker compose -f stats/deploy/compose.yaml up -d --build
 ```
 
+Set `BITSOCIAL_STATS_TELEGRAM_BOT_TOKEN` and `BITSOCIAL_STATS_TELEGRAM_CHAT_ID` in
+`stats/deploy/.env` to enable Telegram alerts for service probes. Leave them blank to keep
+dashboard-only monitoring.
+
 ### Activating Caddy
 
 Install `stats/deploy/Caddyfile` to `/etc/caddy/Caddyfile`, then validate and reload:
@@ -54,6 +59,7 @@ curl -I http://91.234.199.189:8080/stats
 curl -I http://91.234.199.189:8080/stats/
 curl -I http://91.234.199.189:8080/stats/5chan
 curl -fsS http://127.0.0.1:9091/api/v1/targets
+curl -fsS http://127.0.0.1:3301/metrics/prometheus | grep bitsocial_stats_service_probe_last_success
 ```
 
 The `curl -I` checks for `/stats` and `/stats/5chan` should now return `302` redirects to the corresponding public dashboard URLs.
