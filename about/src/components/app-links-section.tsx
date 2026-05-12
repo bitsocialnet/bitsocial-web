@@ -112,7 +112,7 @@ function LinkGroup({
       <h3 className="mb-3 font-display text-lg text-foreground">{title}</h3>
       <div className="flex flex-wrap gap-2.5">
         {links.map((link) =>
-          link.verification ? (
+          linkHasVerifiableStatus(link) ? (
             <AppMirrorLinkCta
               key={link.url}
               link={link}
@@ -146,9 +146,17 @@ function LinkGroup({
   );
 }
 
+function linkHasVerifiableStatus(link: AppLink) {
+  return Boolean(link.verification || link.releaseIntegrity);
+}
+
 function getLinkIcon(link: AppLink) {
   if (link.kind === "package") {
     return <Package className="h-4 w-4" />;
+  }
+
+  if (link.kind === "download") {
+    return <Download className="h-4 w-4" />;
   }
 
   if (link.platform === "web") {
@@ -161,10 +169,6 @@ function getLinkIcon(link: AppLink) {
 
   if (link.platform === "android" || link.platform === "ios") {
     return <Smartphone className="h-4 w-4" />;
-  }
-
-  if (link.platform === "desktop" && link.kind === "download") {
-    return <Download className="h-4 w-4" />;
   }
 
   return <ArrowUpRight className="h-4 w-4" />;

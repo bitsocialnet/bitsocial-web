@@ -179,7 +179,7 @@ export default function AppCard({
           </CardInlineCta>
 
           {primaryActionLink ? (
-            primaryActionLink.verification ? (
+            linkHasVerifiableStatus(primaryActionLink) ? (
               <AppMirrorLinkCta
                 link={primaryActionLink}
                 icon={getLinkIcon(primaryActionLink)}
@@ -202,7 +202,7 @@ export default function AppCard({
         {quickLinks.length > 0 ? (
           <div className="flex flex-wrap gap-2">
             {quickLinks.map((link) =>
-              link.verification ? (
+              linkHasVerifiableStatus(link) ? (
                 <AppMirrorLinkCta
                   key={link.url}
                   link={link}
@@ -266,9 +266,17 @@ function getStatusClassName(status: NonNullable<AppData["status"]>) {
   );
 }
 
+function linkHasVerifiableStatus(link: AppLink) {
+  return Boolean(link.verification || link.releaseIntegrity);
+}
+
 function getLinkIcon(link: AppLink) {
   if (link.kind === "package") {
     return <Package className="h-4 w-4" />;
+  }
+
+  if (link.kind === "download") {
+    return <Download className="h-4 w-4" />;
   }
 
   if (link.platform === "web") {
@@ -280,11 +288,7 @@ function getLinkIcon(link: AppLink) {
   }
 
   if (link.platform === "desktop") {
-    return link.kind === "download" ? (
-      <Download className="h-4 w-4" />
-    ) : (
-      <Monitor className="h-4 w-4" />
-    );
+    return <Monitor className="h-4 w-4" />;
   }
 
   return <ArrowUpRight className="h-4 w-4" />;

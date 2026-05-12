@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowUpRight, Github, Package } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Download, Github, Package } from "lucide-react";
 import AppLinksSection from "@/components/app-links-section";
 import AppLogo from "@/components/app-logo";
 import AppMirrorLinkCta from "@/components/app-mirror-link-cta";
@@ -144,7 +144,7 @@ export default function AppDetail() {
 
             <div className="mt-8 flex flex-wrap gap-2.5">
               {primaryLinks.map((link, index) =>
-                link.verification ? (
+                linkHasVerifiableStatus(link) ? (
                   <AppMirrorLinkCta
                     key={link.url}
                     link={link}
@@ -227,9 +227,17 @@ function getStatusClassName(status: "ready" | "experimental") {
 }
 
 function getPrimaryLinkIcon(link: AppLink) {
-  return link.kind === "package" ? (
-    <Package className="h-4 w-4" />
-  ) : (
-    <ArrowUpRight className="h-4 w-4" />
-  );
+  if (link.kind === "package") {
+    return <Package className="h-4 w-4" />;
+  }
+
+  if (link.kind === "download") {
+    return <Download className="h-4 w-4" />;
+  }
+
+  return <ArrowUpRight className="h-4 w-4" />;
+}
+
+function linkHasVerifiableStatus(link: AppLink) {
+  return Boolean(link.verification || link.releaseIntegrity);
 }
