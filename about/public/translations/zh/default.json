@@ -411,5 +411,29 @@
       }
     },
     "memberProfileAlt": "{{name}} 的个人资料照片"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "反垃圾邮件? 面向未来。",
+    "supporting": "每个节点运行自己的反垃圾邮件挑战，纯粹与用户进行点对点交换。当垃圾邮件演变时，节点无需更改协议即可适应。",
+    "diagram": {
+      "user": "用户",
+      "userHint": "发布一条帖子",
+      "node": "Bitsocial 节点",
+      "nodeHint": "运行挑战",
+      "module": "挑战模块",
+      "moduleHint": "任何代码驱动的测试",
+      "request": "请求",
+      "challenge": "验证"
+    },
+    "optionsLabel": "插入任何挑战",
+    "options": {
+      "code": "任意代码",
+      "service": "AI驱动的内容审核",
+      "proof": "SMS OTP",
+      "next": "接下来的一切"
+    },
+    "quote": "Bitsocial唯一的创新是使用p2p上的验证码等任意挑战来解决垃圾邮件和DDoS攻击。",
+    "quoteAttribution": "— Esteban Abaroa，Bitsocial 创始人"
   }
 }

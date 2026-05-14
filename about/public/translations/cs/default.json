@@ -377,5 +377,29 @@
       }
     },
     "memberProfileAlt": "Profilová fotka uživatele {{name}}"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "Anti-spam? Budoucnost-proof.",
+    "supporting": "Každý uzel provozuje svou vlastní anti-spam výzvu, vyměňovanou čistě peer-to-peer s uživatelem. Když se spam vyvíjí, uzly se přizpůsobují bez změny protokolu.",
+    "diagram": {
+      "user": "Uživatel",
+      "userHint": "zveřejňuje příspěvek",
+      "node": "Uzel Bitsocial",
+      "nodeHint": "spouští výzvu",
+      "module": "Modul výzvy",
+      "moduleHint": "jakýkoliv test backed kódem",
+      "request": "Požadavek",
+      "challenge": "Ověření"
+    },
+    "optionsLabel": "Přidej libovolnou výzvu",
+    "options": {
+      "code": "libovolný kód",
+      "service": "Moderování poháněné AI",
+      "proof": "SMS OTP",
+      "next": "co bude dál"
+    },
+    "quote": "Jediná inovace Bitsocial je řešení spamu a DDoS útoků pomocí libovolných výzev, jako jsou captchas přes p2p.",
+    "quoteAttribution": "— Esteban Abaroa, zakladatel Bitsocial"
   }
 }

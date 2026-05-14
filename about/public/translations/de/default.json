@@ -411,5 +411,29 @@
       }
     },
     "memberProfileAlt": "Profilfoto von {{name}}"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "Anti-spam? Zukunftssicher.",
+    "supporting": "Jeder Knoten betreibt seine eigene Anti-Spam-Herausforderung, rein Peer-to-Peer mit dem Benutzer ausgetauscht. Wenn sich Spam weiterentwickelt, passen sich Knoten an, ohne das Protokoll zu ändern.",
+    "diagram": {
+      "user": "Benutzer",
+      "userHint": "veröffentlicht einen Beitrag",
+      "node": "Bitsocial-Knoten",
+      "nodeHint": "führt die Herausforderung durch",
+      "module": "Challenge-Modul",
+      "moduleHint": "beliebiger codegestützter Test",
+      "request": "Anfrage",
+      "challenge": "Verifikation"
+    },
+    "optionsLabel": "Beliebige Challenge einfügen",
+    "options": {
+      "code": "beliebiger Code",
+      "service": "KI-gestützte Moderation",
+      "proof": "SMS-OTP",
+      "next": "was noch kommt"
+    },
+    "quote": "Die einzige Innovation von Bitsocial ist die Lösung von Spam und DDoS-Angriffen durch beliebige Challenges wie Captchas über p2p.",
+    "quoteAttribution": "— Esteban Abaroa, Bitsocial-Gründer"
   }
 }

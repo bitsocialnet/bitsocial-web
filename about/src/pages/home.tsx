@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import { X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
+import ArbitraryChallenges from "@/components/arbitrary-challenges";
 import Footer from "@/components/footer";
 import Hero from "@/components/hero";
 import MailingList from "@/components/mailing-list";
@@ -12,7 +13,11 @@ import Features from "@/components/features";
 import { MAILING_LIST_HASH, scheduleMailingListHashScroll } from "@/lib/mailing-list-nav";
 import { getScrollBehavior } from "@/lib/utils";
 
-const HOME_SECTION_HASHES = new Set(["#sanctuary-communication", "#master-plan"]);
+const HOME_SECTION_HASHES = new Set([
+  "#sanctuary-communication",
+  "#arbitrary-challenges",
+  "#master-plan",
+]);
 const HOME_SECTION_LAYOUT_DELTA_PX = 1;
 const HOME_SECTION_LAYOUT_STABLE_FRAMES = 2;
 const HOME_SECTION_SCROLL_MAX_WAIT_MS = 1400;
@@ -195,6 +200,7 @@ export default function Home() {
           <div className="relative z-10">
             <Features />
             <SanctuaryCommunication />
+            <ArbitraryChallenges />
             <MasterPlan />
             <MailingList />
             <Footer />

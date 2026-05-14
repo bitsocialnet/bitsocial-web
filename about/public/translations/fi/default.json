@@ -411,5 +411,29 @@
       }
     },
     "memberProfileAlt": "Profiilikuva henkilöstä {{name}}"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "Anti-spam? Tulevaisuusvarma.",
+    "supporting": "Jokainen solmu ajaa omaa anti-spam-haastettaan, vaihdettu puhtaasti vertaisverkon avulla käyttäjän kanssa. Kun roskapostia kehittyy, solmut mukautuvat ilman protokollan muuttamista.",
+    "diagram": {
+      "user": "Käyttäjä",
+      "userHint": "julkaisee viestin",
+      "node": "Bitsocial-solmu",
+      "nodeHint": "suorittaa haasteen",
+      "module": "Haaste-moduuli",
+      "moduleHint": "mikä tahansa koodeilla tuettu testi",
+      "request": "Pyyntö",
+      "challenge": "Vahvistus"
+    },
+    "optionsLabel": "Liitä mikä tahansa haaste",
+    "options": {
+      "code": "mikä tahansa koodi",
+      "service": "Tekoäly-pohjainen moderaatio",
+      "proof": "SMS-kertakoodia",
+      "next": "mitä tulee seuraavaksi"
+    },
+    "quote": "Bitsocialin ainoa innovaatio on roskapostin ja DDoS-hyökkäysten ratkaiseminen mielivaltaisilla haasteilla, kuten captchoilla p2p:n yli.",
+    "quoteAttribution": "— Esteban Abaroa, Bitsocialin perustaja"
   }
 }

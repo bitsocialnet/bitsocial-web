@@ -411,5 +411,29 @@
       }
     },
     "memberProfileAlt": "Zdjęcie profilowe {{name}}"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "Anti-spam? Odporny na przyszłość.",
+    "supporting": "Każdy węzeł uruchamia swoje własne wyzwanie anty-spamowe, wymieniane czystym peer-to-peer z użytkownikiem. Gdy spam się rozwija, węzły dostosowują się bez zmiany protokołu.",
+    "diagram": {
+      "user": "Użytkownik",
+      "userHint": "publikuje post",
+      "node": "Węzeł Bitsocial",
+      "nodeHint": "uruchamia wyzwanie",
+      "module": "Moduł wyzwania",
+      "moduleHint": "dowolny test wspierany kodem",
+      "request": "Żądanie",
+      "challenge": "Weryfikacja"
+    },
+    "optionsLabel": "Podłącz dowolne wyzwanie",
+    "options": {
+      "code": "dowolny kod",
+      "service": "Moderacja oparta na AI",
+      "proof": "SMS OTP",
+      "next": "co będzie dalej"
+    },
+    "quote": "Jedyną innowacją Bitsocial jest rozwiązywanie spamu i ataków DDoS za pomocą arbitralnych wyzwań, takich jak captchas w p2p.",
+    "quoteAttribution": "— Esteban Abaroa, założyciel Bitsocial"
   }
 }

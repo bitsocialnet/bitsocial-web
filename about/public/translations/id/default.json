@@ -411,5 +411,29 @@
       }
     },
     "memberProfileAlt": "Foto profil {{name}}"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "Anti-spam? Tahan masa depan.",
+    "supporting": "Setiap node menjalankan tantangan anti-spam miliknya sendiri, ditukar murni peer-to-peer dengan pengguna. Ketika spam berkembang, node beradaptasi tanpa mengubah protokol.",
+    "diagram": {
+      "user": "Pengguna",
+      "userHint": "menerbitkan sebuah posting",
+      "node": "Node Bitsocial",
+      "nodeHint": "menjalankan tantangan",
+      "module": "Modul tantangan",
+      "moduleHint": "segala tes yang didukung kode",
+      "request": "Permintaan",
+      "challenge": "Tantangan"
+    },
+    "optionsLabel": "Colokkan tantangan apa saja",
+    "options": {
+      "code": "kode apa pun",
+      "service": "Moderasi bertenaga AI",
+      "proof": "SMS OTP",
+      "next": "apa yang akan datang"
+    },
+    "quote": "Satu-satunya inovasi Bitsocial adalah menyelesaikan spam dan serangan DDoS menggunakan tantangan arbitrer seperti captchas melalui p2p.",
+    "quoteAttribution": "— Esteban Abaroa, pendiri Bitsocial"
   }
 }

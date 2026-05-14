@@ -411,5 +411,29 @@
       }
     },
     "memberProfileAlt": "Ảnh hồ sơ của {{name}}"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "Chống spam? Bền với tương lai.",
+    "supporting": "Mỗi nút chạy thử thách chống spam của riêng nó, được trao đổi thuần peer-to-peer với người dùng. Khi spam phát triển, các nút thích nghi mà không thay đổi giao thức.",
+    "diagram": {
+      "user": "Người dùng",
+      "userHint": "đăng bài viết",
+      "node": "Nút Bitsocial",
+      "nodeHint": "chạy thử thách",
+      "module": "Mô-đun thách thức",
+      "moduleHint": "bất kỳ bài kiểm tra nào được hỗ trợ bởi mã",
+      "request": "Yêu cầu",
+      "challenge": "Xác minh"
+    },
+    "optionsLabel": "Cắm bất kỳ thách thức nào",
+    "options": {
+      "code": "bất kỳ mã nào",
+      "service": "Kiểm duyệt được cung cấp bởi AI",
+      "proof": "SMS OTP",
+      "next": "bất cứ điều gì tiếp theo"
+    },
+    "quote": "Chỉ có một sáng kiến duy nhất của Bitsocial là giải quyết spam và DDoS bằng cách sử dụng các thách thức tùy ý như captchas trên p2p.",
+    "quoteAttribution": "— Esteban Abaroa, nhà sáng lập Bitsocial"
   }
 }

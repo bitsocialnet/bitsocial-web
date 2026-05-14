@@ -411,5 +411,29 @@
       }
     },
     "memberProfileAlt": "{{name}} की प्रोफ़ाइल फ़ोटो"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "स्पैम विरोधी? भविष्य के लिए तैयार।",
+    "supporting": "प्रत्येक नोड अपनी स्वयं की स्पैम-विरोधी चुनौती चलाता है, जिसे उपयोगकर्ता के साथ शुद्ध peer-to-peer रूप से विनिमय किया जाता है। जब स्पैम विकसित होता है, नोड्स प्रोटोकॉल को बदले बिना अनुकूल होते हैं।",
+    "diagram": {
+      "user": "उपयोगकर्ता",
+      "userHint": "एक पोस्ट प्रकाशित करता है",
+      "node": "Bitsocial नोड",
+      "nodeHint": "चुनौती चलाता है",
+      "module": "चैलेंज मॉड्यूल",
+      "moduleHint": "कोई भी कोड-समर्थित परीक्षण",
+      "request": "अनुरोध",
+      "challenge": "चुनौती"
+    },
+    "optionsLabel": "कोई भी चुनौती जोड़ें",
+    "options": {
+      "code": "कोई भी कोड",
+      "service": "एआई-संचालित संचालन",
+      "proof": "SMS OTP",
+      "next": "जो भी आगे आए"
+    },
+    "quote": "Bitsocial की एकमात्र नवाचार स्पैम और DDoS को p2p पर captchas जैसी मनमानी चुनौतियों का उपयोग करके हल करना है।",
+    "quoteAttribution": "— एस्तेबान अबारोआ, Bitsocial संस्थापक"
   }
 }
