@@ -410,5 +410,29 @@
       }
     },
     "memberProfileAlt": "{{name}} profilfotója"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "Anti-spam? Jövőbiztos.",
+    "supporting": "Minden csomópont saját spam elleni kihívást futtat, tisztán peer-to-peer módon cserélve a felhasználóval. Amikor a spam fejlődik, a csomópontok alkalmazkodnak anélkül, hogy megváltoztatnák a protokollt.",
+    "diagram": {
+      "user": "Felhasználó",
+      "userHint": "közzétesz egy bejegyzést",
+      "node": "Bitsocial-csomópont",
+      "nodeHint": "futtatja a kihívást",
+      "module": "Kihívás modul",
+      "moduleHint": "bármilyen kóddal támogatott teszt",
+      "request": "Kérelem",
+      "challenge": "Ellenőrzés"
+    },
+    "optionsLabel": "Bármilyen kihívás csatlakoztatása",
+    "options": {
+      "code": "bármilyen kód",
+      "service": "MI-alapú moderálás",
+      "proof": "SMS OTP",
+      "next": "ami később jön"
+    },
+    "quote": "A Bitsocial egyetlen innovációja a spam és a DDoS-támadások megoldása tetszőleges kihívásokkal, mint a captchas a p2p-n keresztül.",
+    "quoteAttribution": "— Esteban Abaroa, a Bitsocial alapítója"
   }
 }

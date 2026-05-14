@@ -410,5 +410,29 @@
       }
     },
     "memberProfileAlt": "Φωτογραφία προφίλ του {{name}}"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "Anti-spam? Ανθεκτικό στο μέλλον.",
+    "supporting": "Κάθε κόμβος εκτελεί τη δική του αντι-spam πρόκληση, ανταλλασσόμενη καθαρά peer-to-peer με τον χρήστη. Όταν το spam εξελίσσεται, οι κόμβοι προσαρμόζονται χωρίς να αλλάζουν το πρωτόκολλο.",
+    "diagram": {
+      "user": "Χρήστης",
+      "userHint": "δημοσιεύει μια δημοσίευση",
+      "node": "Κόμβος Bitsocial",
+      "nodeHint": "εκτελεί την πρόκληση",
+      "module": "Μονάδα πρόκλησης",
+      "moduleHint": "οποιαδήποτε δοκιμή υποστηριζόμενη από κώδικα",
+      "request": "Αίτημα",
+      "challenge": "Πρόκληση"
+    },
+    "optionsLabel": "Προσθέστε οποιαδήποτε πρόκληση",
+    "options": {
+      "code": "οποιοσδήποτε κώδικας",
+      "service": "Διαμεσολάβηση με AI",
+      "proof": "SMS OTP",
+      "next": "ό,τι έρχεται"
+    },
+    "quote": "Η μόνη καινοτομία του Bitsocial είναι η επίλυση spam και DDoS χρησιμοποιώντας αυθαίρετες προκλήσεις όπως captchas μέσω p2p.",
+    "quoteAttribution": "— Esteban Abaroa, ιδρυτής του Bitsocial"
   }
 }

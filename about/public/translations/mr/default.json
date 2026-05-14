@@ -410,5 +410,29 @@
       }
     },
     "memberProfileAlt": "{{name}} चा प्रोफाइल फोटो"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "स्पॅम विरोधी? भविष्यासाठी तयार।",
+    "supporting": "प्रत्येक नोड स्वतंत्र अँटी-स्पॅम चॅलेंज चालवते, जे वापरकर्त्याशी पूर्णपणे peer-to-peer एक्सचेंज केले जाते. स्पॅम विकसित होत असताना, नोड्स प्रोटोकॉल बदलल्याशिवाय अनुकूल होतात.",
+    "diagram": {
+      "user": "वापरकर्ता",
+      "userHint": "एक पोस्ट प्रकाशित करते",
+      "node": "Bitsocial नोड",
+      "nodeHint": "आव्हान चलवते",
+      "module": "आव्हान मॉड्यूल",
+      "moduleHint": "कोडद्वारे समर्थित कोणतीही चाचणी",
+      "request": "विनंती",
+      "challenge": "आव्हान"
+    },
+    "optionsLabel": "कोणतीही आव्हान जोडा",
+    "options": {
+      "code": "कोणतीही कोड",
+      "service": "एआই-संचालित मॉडरेशन",
+      "proof": "SMS OTP",
+      "next": "जे काही येईल"
+    },
+    "quote": "Bitsocial चा एकमेव नवाचार म्हणजे p2p वर captchas सारख्या अनियंत्रित आव्हानांचा वापर करून स्पॅम आणि DDoS हल करणे.",
+    "quoteAttribution": "— Esteban Abaroa, Bitsocial founder"
   }
 }

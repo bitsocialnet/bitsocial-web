@@ -410,5 +410,29 @@
       }
     },
     "memberProfileAlt": "Larawan sa profile ni {{name}}"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "Anti-spam? Handa sa hinaharap.",
+    "supporting": "Ang bawat node ay tumatakbo ng sarili nitong anti-spam challenge, na ipinagpalit purong peer-to-peer sa user. Kapag umuunlad ang spam, ang mga node ay umaangkop nang hindi nagbabago ng protocol.",
+    "diagram": {
+      "user": "Gumagamit",
+      "userHint": "naglalathala ng post",
+      "node": "Node ng Bitsocial",
+      "nodeHint": "pinagtutupad ang hamon",
+      "module": "Challenge module",
+      "moduleHint": "anumang code-backed na pagsusulit",
+      "request": "Kahilingan",
+      "challenge": "Hamon"
+    },
+    "optionsLabel": "Mag-plug ng anumang hamon",
+    "options": {
+      "code": "anumang code",
+      "service": "AI-powered na moderation",
+      "proof": "SMS OTP",
+      "next": "anuman ang susunod"
+    },
+    "quote": "Ang tanging innovation ng Bitsocial ay ang paglutas sa spam at DDoS gamit ang arbitrary challenges tulad ng captchas sa p2p.",
+    "quoteAttribution": "— Esteban Abaroa, tagapagtatag ng Bitsocial"
   }
 }

@@ -410,5 +410,29 @@
       }
     },
     "memberProfileAlt": "Foto de perfil de {{name}}"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "Anti-spam? A prova de futur.",
+    "supporting": "Cada node executa el seu propi desafiament anti-spam, intercanviat puament entre usuari i usuari. Quan el spam evoluciona, els nodes s'adapten sense canviar el protocol.",
+    "diagram": {
+      "user": "Usuari",
+      "userHint": "publica una publicació",
+      "node": "Node Bitsocial",
+      "nodeHint": "executa el desafiament",
+      "module": "Mòdul de desafiament",
+      "moduleHint": "qualsevol prova recolzada per codi",
+      "request": "Petició",
+      "challenge": "Desafiament"
+    },
+    "optionsLabel": "Conecta qualsevol desafiament",
+    "options": {
+      "code": "qualsevol codi",
+      "service": "Moderació amb IA",
+      "proof": "SMS OTP",
+      "next": "el que vindrà"
+    },
+    "quote": "L'única innovació de Bitsocial és resoldre spam i DDoS utilitzant desafiaments arbitraris com captchas en p2p.",
+    "quoteAttribution": "— Esteban Abaroa, fundador de Bitsocial"
   }
 }

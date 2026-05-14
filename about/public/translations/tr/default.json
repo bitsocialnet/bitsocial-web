@@ -410,5 +410,29 @@
       }
     },
     "memberProfileAlt": "{{name}} profil fotoğrafı"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "Anti-spam? Geleceğe dayanıklı.",
+    "supporting": "Her düğüm kendi spam-karşıtı meydan okumasını çalıştırır ve tamamen peer-to-peer olarak kullanıcıyla değiştirilir. Spam geliştiğinde, düğümler protokolü değiştirmeden uyum sağlar.",
+    "diagram": {
+      "user": "Kullanıcı",
+      "userHint": "bir gönderi yayınlar",
+      "node": "Bitsocial düğümü",
+      "nodeHint": "zorluğu çalıştırır",
+      "module": "Challenge Modülü",
+      "moduleHint": "kod tarafından desteklenen herhangi bir test",
+      "request": "İstek",
+      "challenge": "Doğrulama"
+    },
+    "optionsLabel": "Herhangi bir zorluk ekle",
+    "options": {
+      "code": "herhangi bir kod",
+      "service": "Yapay Zeka Destekli İtidal",
+      "proof": "SMS OTP",
+      "next": "sırada ne varsa"
+    },
+    "quote": "Bitsocial'ın tek yeniliği, p2p üzerinden captchalar gibi keyfi zorlukları kullanarak spam ve DDoS saldırılarını çözmektir.",
+    "quoteAttribution": "— Esteban Abaroa, Bitsocial kurucusu"
   }
 }

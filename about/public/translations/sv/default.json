@@ -410,5 +410,29 @@
       }
     },
     "memberProfileAlt": "Profilbild på {{name}}"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "Anti-spam? Framtidssäker.",
+    "supporting": "Varje nod kör sin egen anti-spam-utmaning, utbytt rent peer-to-peer med användaren. När spam utvecklas anpassar noderna sig utan att ändra protokollet.",
+    "diagram": {
+      "user": "Användare",
+      "userHint": "publicerar ett inlägg",
+      "node": "Bitsocial-nod",
+      "nodeHint": "kör utmaningen",
+      "module": "Utmaningsmodul",
+      "moduleHint": "alla kodbaserade tester",
+      "request": "Begäran",
+      "challenge": "Verifiering"
+    },
+    "optionsLabel": "Anslut vilken utmaning som helst",
+    "options": {
+      "code": "godtycklig kod",
+      "service": "AI-driven moderering",
+      "proof": "SMS OTP",
+      "next": "vad som kommer härnäst"
+    },
+    "quote": "Bitsocials enda innovation är att lösa spam och DDoS-attacker genom hjälp av godtyckliga utmaningar som captchas över p2p.",
+    "quoteAttribution": "— Esteban Abaroa, Bitsocials grundare"
   }
 }

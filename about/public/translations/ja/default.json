@@ -410,5 +410,29 @@
       }
     },
     "memberProfileAlt": "{{name}} のプロフィール写真"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "アンチスパム？ 将来対応。",
+    "supporting": "各ノードは独自のスパム対策チャレンジを実行し、ユーザーと純粋にピアツーピアで交換されます。スパムが進化する場合、ノードはプロトコルを変更することなく適応します。",
+    "diagram": {
+      "user": "ユーザー",
+      "userHint": "投稿を公開する",
+      "node": "Bitsocialノード",
+      "nodeHint": "チャレンジを実行する",
+      "module": "チャレンジモジュール",
+      "moduleHint": "コードで実装された任意のテスト",
+      "request": "リクエスト",
+      "challenge": "チャレンジ"
+    },
+    "optionsLabel": "任意のチャレンジをプラグイン",
+    "options": {
+      "code": "任意のコード",
+      "service": "AI駆動のモデレーション",
+      "proof": "SMS OTP",
+      "next": "次に来るもの"
+    },
+    "quote": "Bitsocial唯一の革新は、p2p上のcaptchasのような任意のチャレンジを使用してスパムとDDoS攻撃を解決することです。",
+    "quoteAttribution": "— Esteban Abaroa、Bitsocial 創設者"
   }
 }

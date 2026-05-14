@@ -410,5 +410,29 @@
       }
     },
     "memberProfileAlt": "{{name}}의 프로필 사진"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "안티스팸? 미래 대비.",
+    "supporting": "각 노드는 자체 스팸 방지 챌린지를 실행하며, 사용자와 순수하게 피어-투-피어로 교환됩니다. 스팸이 진화하면 노드는 프로토콜을 변경하지 않고 적응합니다.",
+    "diagram": {
+      "user": "사용자",
+      "userHint": "게시물을 게시한다",
+      "node": "Bitsocial 노드",
+      "nodeHint": "챌린지를 실행한다",
+      "module": "챌린지 모듈",
+      "moduleHint": "코드로 구현된 모든 테스트",
+      "request": "요청",
+      "challenge": "인증"
+    },
+    "optionsLabel": "모든 챌린지 추가",
+    "options": {
+      "code": "모든 코드",
+      "service": "AI 기반 모더레이션",
+      "proof": "SMS OTP",
+      "next": "다음에 올 것"
+    },
+    "quote": "Bitsocial의 유일한 혁신은 p2p에서 captchas와 같은 임의의 챌린지를 사용하여 스팸과 DDoS 공격을 해결하는 것입니다.",
+    "quoteAttribution": "— Esteban Abaroa, Bitsocial 창립자"
   }
 }

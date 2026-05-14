@@ -410,5 +410,29 @@
       }
     },
     "memberProfileAlt": "Photo de profil de {{name}}"
+  },
+  "arbitraryChallenges": {
+    "sectionLabel": "Arbitrary Challenges",
+    "title": "Anti-spam? À l'épreuve du temps.",
+    "supporting": "Chaque nœud exécute son propre défi anti-spam, échangé purement en peer-to-peer avec l'utilisateur. Lorsque le spam évolue, les nœuds s'adaptent sans modifier le protocole.",
+    "diagram": {
+      "user": "Utilisateur",
+      "userHint": "publie un message",
+      "node": "Nœud Bitsocial",
+      "nodeHint": "exécute le défi",
+      "module": "Module de défi",
+      "moduleHint": "tout test supporté par le code",
+      "request": "Demande",
+      "challenge": "Vérification"
+    },
+    "optionsLabel": "Branchez n'importe quel défi",
+    "options": {
+      "code": "n'importe quel code",
+      "service": "Modération par IA",
+      "proof": "SMS OTP",
+      "next": "ce qui vient ensuite"
+    },
+    "quote": "La seule innovation de Bitsocial est de résoudre le spam et les attaques DDoS en utilisant des défis arbitraires comme les captchas en p2p.",
+    "quoteAttribution": "— Esteban Abaroa, fondateur de Bitsocial"
   }
 }
