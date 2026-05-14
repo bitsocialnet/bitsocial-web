@@ -9,13 +9,16 @@ Use this file as the short routing index for `https://bitsocial.net/docs/`. Use 
 - [Custom Anti-Spam Challenges](https://bitsocial.net/docs/custom-challenges/): Why Bitsocial lets each community define its own anti-spam policy.
 - [Identity and Community Ownership](https://bitsocial.net/docs/identity-and-ownership/): How Bitsocial treats profiles and communities as key-controlled property instead of revocable platform accounts.
 - [Local Moderation, Not Global Bans](https://bitsocial.net/docs/local-moderation/): What Bitsocial means when it says moderation stays local.
-- [Peer-to-Peer Protocol](https://bitsocial.net/docs/peer-to-peer-protocol/): How Bitsocial uses public-key addressing and peer-to-peer pubsub to deliver serverless social media.
+- [Peer-to-Peer Protocol](https://bitsocial.net/docs/peer-to-peer-protocol/): How Bitsocial uses IPFS/libp2p, public-key addressing, and peer-to-peer pubsub to deliver serverless social media.
 
 ## Master plan
 
-- [Bitsocial Network](https://bitsocial.net/docs/bitsocial-network/): Phase 4 of the master plan, covering the shared appchain layer proposed for Bitsocial apps.
-- [Decentralize All Social Media](https://bitsocial.net/docs/decentralize-all-social-media/): Phase 5 of the Bitsocial master plan and the end-state it is aiming for.
+- [Bitsocial Network](https://bitsocial.net/docs/bitsocial-network/): Phase 2 of the master plan, covering the shared economic layer proposed for Bitsocial apps.
+- [Build your own client](https://bitsocial.net/docs/build-your-own-client/): Builder guide for shipping independent Bitsocial clients, from imageboards and forums to niche social apps.
+- [Decentralize All Social Media](https://bitsocial.net/docs/decentralize-all-social-media/): Phase 5 of the master plan, focused on funding and building the long tail of Bitsocial social clients.
+- [Flagship Bitsocial App](https://bitsocial.net/docs/flagship-bitsocial-app/): The profile-based Bitsocial client proposed for Phase 3 of the master plan.
 - [Permissionless Public RPC](https://bitsocial.net/docs/permissionless-public-rpc/): Proposed design for a public Bitsocial RPC service with isolated users, scoped permissions, and community ownership.
+- [Scale Bitsocial Economies](https://bitsocial.net/docs/scale-bitsocial-economies/): Phase 4 of the master plan, focused on funding, infrastructure pluralism, and competing services around Bitsocial.
 
 ## Apps
 
@@ -24,7 +27,6 @@ Use this file as the short routing index for `https://bitsocial.net/docs/`. Use 
 
 ## Developer tools
 
-- [Build an imageboard client](https://bitsocial.net/docs/developer-tools/build-an-imageboard-client/): Phase 1 contribution guide for builders who want to ship new imageboard experiences on Bitsocial.
 - [CLI](https://bitsocial.net/docs/developer-tools/cli/): Command-line interface for running a Bitsocial node, creating communities, and managing protocol operations.
 - [React Hooks](https://bitsocial.net/docs/developer-tools/react-hooks/): React hooks library for building decentralized social applications on the Bitsocial protocol.
 
@@ -37,7 +39,7 @@ Use this file as the short routing index for `https://bitsocial.net/docs/`. Use 
 
 ## Infrastructure
 
-- [BSO Resolver](https://bitsocial.net/docs/infrastructure/bso-resolver/): Resolve .bso domain names to public keys using ENS TXT records, with built-in caching and cross-platform support.
+- [BSO Resolver](https://bitsocial.net/docs/infrastructure/bso-resolver/): Resolve .bso domain names to public keys via Bitsocial TXT records, with built-in caching and cross-platform support.
 - [Mintpass](https://bitsocial.net/docs/infrastructure/mintpass/): NFT-based authentication system that helps Bitsocial communities verify users and reduce sybil attacks.
 - [Telegram Bots](https://bitsocial.net/docs/infrastructure/telegram-bots/): Feed bots that monitor Bitsocial community lists and forward posts to Telegram channels.
 
@@ -55,6 +57,7 @@ Use this file as the short routing index for `https://bitsocial.net/docs/`. Use 
 
 ## Other
 
+- [Content Discovery](https://bitsocial.net/docs/content-discovery/): How Bitsocial separates peer discovery from app-level curation.
 - [i18n Default Language Policy](https://bitsocial.net/docs/i18n-default-language-policy/): Anonymous visitors now resolve language in this order:
 
 ## Optional

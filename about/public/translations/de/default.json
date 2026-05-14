@@ -140,50 +140,50 @@
     "quoteAttribution": "— Esteban Abaroa, Bitsocial-Gründer"
   },
   "masterPlan": {
-    "title": "Handlungsaufforderung",
+    "title": "Ein Aufruf zum Handeln",
     "logoAlt": "Logo",
     "easterEggAlt": "SpongeBob",
-    "epilogue": "So findet soziale Medien endlich ihr Gleichgewicht: ein vollständig dezentralisiertes Peer-to-Peer-Netzwerk, das niemand besitzt; Bitsocial.",
+    "epilogue": "Der Endzustand ist nicht eine App. Es handelt sich um einen Markt aus Kunden, Knoten, Diensten und Communities, der Plattformeigentum durch Protokollwettbewerb ersetzen kann.",
+    "epilogueFinal": "Die sozialen Medien finden endlich ihr Gleichgewicht: ein vollständig dezentralisiertes soziales Peer-to-Peer-Netzwerk, das niemandem gehört; Bitsocial.",
     "phases": {
       "phase1": {
         "phase": "Phase 1",
-        "status": "Läuft",
-        "title": "Imageboards dezentralisieren",
-        "description": "<strong>Imageboards sind die am einfachsten zu dezentralisierende Form sozialer Medien</strong>: anonyme Beiträge, wenige Standard-Boards und kein Profildiagramm. Aus diesem Grund bringen wir 5chan auf den Markt, die erste Bitsocial-App. 5chan beweist, dass Bitsocial zentralisierte Imageboards ersetzen und gleichzeitig globale Administratoren aus der Gleichung entfernen kann.",
-        "callout": {
-          "description": "5chan ist der erste Beweispunkt, nicht die Ziellinie. <strong>Wir wollen mehrere Imageboard-Clients mit unterschiedlichen Kulturen</strong>, Schnittstellen und Standardeinstellungen: Boards im Altchan-Stil, Mobile-First-Experimente, Nischen-Communities und Forks, die Bedürfnisse lösen, die 5chan niemals erfüllen wird.",
-          "ctaLabel": "Erstelle deine eigene",
-          "separator": "- oder -"
-        }
+        "status": "Laufend",
+        "title": "Dezentralisieren Sie Imageboards und Foren",
+        "description": "<strong>Imageboards sind die am einfachsten zu dezentralisierende Form sozialer Medien</strong>: anonymes Posten, wenige Standard-Boards und kein Profildiagramm. 5chan beweist, dass Bitsocial zentralisierte Imageboards ersetzen und gleichzeitig globale Administratoren aus der Gleichung entfernen kann.",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink> wird den ersten nicht verwahrten RPC-Dienst für Bitsocial-Apps starten. Mit <rpcLink>Bitsocial RPC</rpcLink> können Benutzer Knoten aus der Ferne verwalten, während die Option zum Selbsthosten oder Ausführen einer konkurrierenden RPC-Infrastruktur erhalten bleibt. <strong>Benutzer können von mobile</strong> aus unaufhaltsame p2p-Communitys erstellen und verwalten.",
+        "forumsDescription": "Foren fügen dauerhafte Identitäten, Beitragsverlauf und Community-Verwaltung hinzu. Seedit ist der erste Prototyp einer Bitsocial-App für Diskussionen im <strong>Reddit-Stil</strong>, und das öffentliche RPC macht diese stets verfügbaren P2P-Communitys von überall aus praktisch."
       },
       "phase2": {
         "phase": "Phase 2",
-        "title": "Bitsocial RPC einführen",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink> wird den ersten nicht verwahrten RPC-Dienst für Bitsocial-Apps starten. Mit Bitsocial RPC können Benutzer Knoten aus der Ferne verwalten und haben gleichzeitig die Möglichkeit, die RPC-Infrastruktur selbst zu hosten oder eine konkurrierende RPC-Infrastruktur auszuführen. <strong>Benutzer können unaufhaltsame P2P-Communitys von Mobilgeräten aus erstellen und verwalten</strong>."
+        "title": "Start von Bitsocial Network",
+        "description": "Um alle sozialen Medien zu dezentralisieren, benötigen Bitsocial-Apps Killerfunktionen und starke Netzwerkeffekte:<strong>unaufhaltsame Finanzstrukturen</strong>, dezentrale Bitsocial-Domains (.bso), Prämien und Trinkgelder, gemeinsame Liquidität und praktische Monetarisierung. All dies wird von Bitsocial Network, a<strong>dezentrale Appchain-Lösung</strong> für Bitsocial-Apps."
       },
       "phase3": {
         "phase": "Phase 3",
-        "title": "Foren dezentralisieren",
-        "description": "Foren fügen dauerhafte Identitäten, Beitragsverlauf und Community-Verwaltung hinzu. Unser erster Prototyp einer Bitsocial-App zur Dezentralisierung von Foren ist Seedit, eine Reddit-Alternative. <strong>Seedit wird Diskussionen im Reddit-Stil zu Bitsocial bringen</strong>, sobald Bitsocial RPC die ständig verfügbaren P2P-Communitys von überall aus praktikabel macht."
+        "title": "Starten Sie die Flaggschiff-App Bitsocial",
+        "description": "Die Flaggschiff-App von Bitsocial sollte der erste profilbasierte Client sein: Beiträge, Antworten, Follower, öffentliche Konversation in Echtzeit und Communities, die Netzwerkeffekte von jedem Bitsocial-Client ziehen können. <strong>Standardmäßig kann es sich so vertraut anfühlen wie eine moderne For You-Social-App</strong>, während Benutzer dennoch RPCs, Feeds, Instanzen, Algorithmen, Anzeigen wechseln oder das Ranking vollständig entfernen können.",
+        "rpcNodes": "Durch den nicht verwahrten RPC kann jeder Benutzer weiterhin als vollwertiger p2p-Knoten fungieren, ohne dem RPC die Eigentümerschaft anzuvertrauen. Jeder sollte in der Lage sein, jederzeit zu seinem eigenen Profilknoten auf einem Computer mit niedriger Spezifikation, einschließlich eines Raspberry Pi, zu wechseln.",
+        "everythingApp": "Da Phase 2 der App eine unaufhaltsame Krypto-Finanzebene verleiht, kann der Flaggschiff-Client möglicherweise zu einem werden<strong>Alles-App</strong> ohne sich in eine Depotplattform zu verwandeln."
       },
       "phase4": {
         "phase": "Phase 4",
-        "title": "Bitsocial Network einführen",
-        "description": "Um alle sozialen Medien zu dezentralisieren, benötigen Bitsocial-Apps Killerfunktionen und starke Netzwerkeffekte, <strong>unaufhaltsame Finanzstrukturen</strong>, dezentrale Bitsocial-Domains (.bso) und gemeinsame Liquidität. All dies wird von Bitsocial Network unterstützt, einer <strong>dezentralen Appchain-Lösung</strong> für Bitsocial-Apps."
+        "title": "Skalieren Sie Bitsocial Volkswirtschaften",
+        "description": "Die nächste Ebene ist die Finanzierung von Ökosystemen und der Pluralismus der Infrastruktur. <strong>Der RPC von Bitsocial Forge sollte nicht der einzige erfolgreiche RPC sein</strong>: Viele Unternehmen, unabhängige Teams, anonyme Betreiber und Community-Einheiten sollten RPCs, Medienhosting, Discovery, Moderation und andere Dienste auf Bitsocial aufbauen. Die Finanzierung sollte diese Dezentralisierung vorantreiben, damit Entwickler und Betreiber konkurrieren können, um das Netzwerk schneller, billiger, zuverlässiger und schwieriger zu erfassen zu machen."
       },
       "phase5": {
         "phase": "Phase 5",
-        "title": "Alle sozialen Medien dezentralisieren",
-        "description": "Da mehrere öffentliche RPCs miteinander konkurrieren, um Profilknoten und <strong>optionale Feed-Algorithmen</strong> bereitzustellen, und da Bitsocial Network die Monetarisierung von Inhalten ermöglicht, ohne dass Banken Gelder beschlagnahmen, können <strong>Bitsocial-Apps mit allen Arten von sozialen Medien konkurrieren</strong>, einschließlich Facebook, Instagram, TikTok, X und YouTube."
+        "title": "Dezentralisieren Sie alle sozialen Medien",
+        "description": "Wenn die Kern-Apps, öffentliche RPCs, Profilknoten, Erkennung und Monetarisierung vorhanden sind,<strong>Bitsocial kann den Long Tail von Social-Kunden finanzieren und aufbauen</strong>: Blogging, Crowdfunding, Creator-Video und eine glaubwürdige YouTube-Alternative, Nischenexperimente und jedes Format zu früh für die ersten vier Phasen. Bitsocial Forge kann einige davon erstellen, zentralisierte Clients können ebenfalls konkurrieren, sie müssen nicht alle FOSS sein, und dezentrale Community-Zuschüsse können so viele Entwickler wie möglich finanzieren."
       }
     },
     "cta": {
-      "learnMore": "Mehr erfahren",
-      "try5chan": "Probier 5chan aus",
-      "readTechnicalSpec": "Vorgeschlagene technische Spezifikation lesen",
-      "trySeedit": "Seedit ausprobieren (experimentell)"
+      "learnMore": "Erfahren Sie mehr",
+      "try5chan": "Versuchen Sie es mit 5chan",
+      "trySeedit": "Versuchen Sie es mit Seedit",
+      "buildYourOwn": "Bauen Sie Ihr eigenes"
     },
-    "subtitle": "Bitsocial gewinnt, indem es so viele Builder wie möglich anzieht. Betreibe deine eigene unaufhaltsame Community, entwickle deine eigene dezentrale Social-App oder starte sogar dein eigenes Geschäft auf Bitsocial. Mit jedem Builder steigt die Flut.",
+    "subtitle": "Bitsocial gewinnt, indem es so viele Bauherren wie möglich anzieht. Betreiben Sie Ihre eigene unaufhaltsame Community, entwickeln Sie Ihre eigene dezentrale soziale App oder starten Sie sogar Ihr eigenes Unternehmen auf Basis von Bitsocial. Die Flut steigt mit jedem Baumeister.",
     "sectionLabel": "Masterplan"
   },
   "home": {

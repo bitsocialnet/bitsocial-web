@@ -143,47 +143,47 @@
     "title": "Výzva k akci",
     "logoAlt": "Logo",
     "easterEggAlt": "SpongeBob",
-    "epilogue": "Sociální média konečně najdou svou rovnováhu: plně decentralizovaná peer-to-peer síť, kterou nikdo nevlastní; Bitsocial.",
+    "epilogue": "Koncový stav není jedna aplikace. Je to trh klientů, uzlů, služeb a komunit, které mohou nahradit vlastnictví platformy konkurencí protokolů.",
+    "epilogueFinal": "Sociální média konečně nacházejí svou rovnováhu: plně decentralizovaná sociální síť typu peer-to-peer, kterou nikdo nevlastní; Bitsocial.",
     "phases": {
       "phase1": {
         "phase": "Fáze 1",
         "status": "Probíhá",
-        "title": "Decentralizovat imageboardy",
-        "description": "<strong>Obrázkové tabule jsou nejjednodušší formou sociálních médií, kterou lze decentralizovat</strong>: anonymní zveřejňování, málo výchozích nástěnek a žádný profilový graf. To je důvod, proč spouštíme 5chan, první aplikaci Bitsocial. 5chan dokazuje, že Bitsocial může nahradit centralizované imageboardy a zároveň odstranit globální administrátory z rovnice.",
-        "callout": {
-          "description": "5chan je první důkazní bod, ne cílová čára. <strong>Chceme více klientů imageboardů s různými kulturami</strong>, rozhraními a výchozími nastaveními: nástěnky ve stylu altchan, mobilní experimenty, specializované komunity a forky, které řeší potřeby 5chan nikdy nebude.",
-          "ctaLabel": "Vytvořte si vlastní",
-          "separator": "- nebo -"
-        }
+        "title": "Decentralizovat imageboardy a fóra",
+        "description": "<strong>Imageboardy jsou nejjednodušší formou sociálních médií, kterou lze decentralizovat</strong>: anonymní příspěvky, několik výchozích nástěnek a žádný graf profilu. 5chan dokazuje, že Bitsocial může nahradit centralizované obrazové desky a zároveň z rovnice odstranit globální správce.",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink> spustí první službu RPC bez úschovy pro aplikace Bitsocial. <rpcLink>Bitsocial RPC</rpcLink> umožní uživatelům vzdáleně spravovat uzly, přičemž si zachová možnost vlastního hostování nebo provozování konkurenční infrastruktury RPC. Uživatelé <strong> budou moci vytvářet a spravovat nezastavitelné komunity p2p z mobilu</strong>.",
+        "forumsDescription": "Fóra přidávají trvalé identity, historii příspěvků a správu komunity. Seedit je první prototyp aplikace Bitsocial pro diskusi ve stylu <strong>Reddit</strong> a veřejná RPC dělá tyto komunity P2P, které jsou stále aktivní, praktickou odkudkoli."
       },
       "phase2": {
         "phase": "Fáze 2",
-        "title": "Spustit Bitsocial RPC",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink> spustí první necustodial službu RPC pro aplikace Bitsocial. Bitsocial RPC umožní uživatelům spravovat uzly vzdáleně, přičemž si zachová možnost vlastního hostování nebo provozování konkurenční infrastruktury RPC. <strong>Uživatelé budou moci vytvářet a spravovat nezastavitelné komunity p2p z mobilu</strong>."
+        "title": "Uvedení Bitsocial Network",
+        "description": "Aby bylo možné decentralizovat všechna sociální média, budou aplikace Bitsocial potřebovat zabijácké funkce a silné síťové efekty:<strong>nezastavitelné finanční struktury</strong>, decentralizované domény Bitsocial (.bso), ocenění a spropitné, běžná likvidita a praktická monetizace. To vše bude pohánět společnost Bitsocial Network, a<strong>decentralizované řešení appchain</strong> pro aplikace Bitsocial."
       },
       "phase3": {
         "phase": "Fáze 3",
-        "title": "Decentralizovat fóra",
-        "description": "Fóra přidávají trvalé identity, historii příspěvků a správu komunity. Náš první prototyp aplikace Bitsocial pro decentralizaci fór je Seedit, alternativa redditu. <strong>Seedit přinese diskuzi ve stylu Reddit na Bitsocial</strong>, jakmile Bitsocial RPC učiní vždy zapnuté P2P komunity praktické odkudkoli."
+        "title": "Spusťte vlajkovou loď aplikace Bitsocial",
+        "description": "Vlajková loď aplikace Bitsocial by měla být prvním klientem založeným na profilu: příspěvky, odpovědi, sledování, veřejná konverzace v reálném čase a komunity, které dokážou získat síťové efekty z každého klienta Bitsocial. <strong>Ve výchozím nastavení vám může připadat povědomá jako moderní sociální aplikace For You</strong>, přičemž stále umožňuje uživatelům přepínat RPC, zdroje, instance, algoritmy, reklamy nebo zcela odstranit hodnocení.",
+        "rpcNodes": "Prostřednictvím non-custodia RPC může každý uživatel stále fungovat jako úplný uzel p2p, aniž by důvěřoval RPC vlastnictvím. Každý by měl mít možnost přesunout se do svého vlastního profilového uzlu na stroji s nízkou specifikací, včetně Raspberry Pi, kdykoli bude chtít.",
+        "everythingApp": "Vzhledem k tomu, že fáze 2 dává aplikaci nezastavitelnou kryptofinanční vrstvu, vlajkový klient se může potenciálně stát<strong>vše-aplikace</strong> aniž by se proměnila ve vězeňskou platformu."
       },
       "phase4": {
         "phase": "Fáze 4",
-        "title": "Spustit Bitsocial Network",
-        "description": "K decentralizaci všech sociálních médií budou aplikace Bitsocial potřebovat zabijácké funkce a silné síťové efekty, <strong>nezastavitelné finanční struktury</strong>, decentralizované domény Bitsocial (.bso), běžnou likviditu. To vše bude pohánět Bitsocial Network, <strong>decentralizované řešení appchain</strong> pro aplikace Bitsocial."
+        "title": "Měřítko Bitsocial úspor",
+        "description": "Další vrstvou je financování ekosystémů a pluralita infrastruktury. <strong>RPC od Bitsocial Forge by neměl být jediným úspěšným RPC</strong>: Mnoho firem, nezávislých týmů, anonymních operátorů a komunitních subjektů by mělo na Bitsocial postavit RPCs, mediální hosting, objevování, moderování a další služby. Financování by mělo posunout tuto decentralizaci kupředu, takže vývojáři a operátoři mohou soutěžit o to, aby byla síť rychlejší, levnější, spolehlivější a obtížněji zachytitelná."
       },
       "phase5": {
         "phase": "Fáze 5",
-        "title": "Decentralizovat veškerá sociální média",
-        "description": "Díky několika veřejným RPC, které mezi sebou soutěží o poskytování profilových uzlů a <strong>volitelných algoritmů zdrojů</strong>, a díky Bitsocial Network umožňující monetizaci obsahu, aniž by banky zabíraly finanční prostředky, budou <strong>aplikace Bitsocial schopny konkurovat všem druhům sociálních médií</strong>, včetně Facebooku, Instagramu, TikTok, X a YouTube."
+        "title": "Decentralizovat všechna sociální média",
+        "description": "Díky základním aplikacím, veřejným RPCs, uzlům profilu, zjišťování a monetizaci,<strong>Bitsocial může financovat a budovat long tail sociálních klientů</strong>: blogování, crowdfunding, video pro tvůrce a důvěryhodná alternativa YouTube, specializované experimenty a každý formát příliš brzy na první čtyři fáze. Bitsocial Forge může postavit některé z nich, centralizovaní klienti mohou také soutěžit, nemusí být všichni FOSS a decentralizované komunitní granty mohou financovat co nejvíce vývojářů."
       }
     },
     "cta": {
-      "learnMore": "Zjistit více",
-      "try5chan": "Vyzkoušejte 5chan",
-      "readTechnicalSpec": "Přečtěte si navrhovanou technickou specifikaci",
-      "trySeedit": "Vyzkoušejte Seedit (experimentální)"
+      "learnMore": "Další informace",
+      "try5chan": "Zkuste 5chan",
+      "trySeedit": "Zkuste Seedit",
+      "buildYourOwn": "Sestavte si vlastní"
     },
-    "subtitle": "Bitsocial vyhrává tím, že přitahuje co nejvíce tvůrců. Veďte vlastní nezastavitelnou komunitu, vyvíjejte vlastní decentralizovanou sociální aplikaci nebo dokonce spusťte vlastní podnikání na Bitsocialu. S každým tvůrcem roste příliv.",
+    "subtitle": "Bitsocial vyhrává tím, že přiláká co nejvíce stavitelů. Provozujte svou vlastní nezastavitelnou komunitu, vyvíjejte svou vlastní decentralizovanou sociální aplikaci nebo dokonce rozjeďte vlastní podnikání nad Bitsocial. S každým stavitelem stoupá příliv.",
     "sectionLabel": "Hlavní plán"
   },
   "home": {

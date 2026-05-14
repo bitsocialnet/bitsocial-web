@@ -5,9 +5,11 @@ export const DOCS_LINKS = {
   customChallenges: "/docs/custom-challenges/",
   localModeration: "/docs/local-moderation/",
   identityAndOwnership: "/docs/identity-and-ownership/",
-  buildImageboardClient: "/docs/developer-tools/build-an-imageboard-client/",
+  buildYourOwnClient: "/docs/build-your-own-client/",
   permissionlessPublicRpc: "/docs/permissionless-public-rpc/",
   bitsocialNetwork: "/docs/bitsocial-network/",
+  flagshipBitsocialApp: "/docs/flagship-bitsocial-app/",
+  scaleBitsocialEconomies: "/docs/scale-bitsocial-economies/",
   decentralizeAllSocialMedia: "/docs/decentralize-all-social-media/",
 } as const;
 

@@ -140,51 +140,51 @@
     "quoteAttribution": "— Esteban Abaroa, fundador de Bitsocial"
   },
   "masterPlan": {
-    "title": "Crida a l'acció",
+    "title": "Una crida a l'acció",
     "logoAlt": "Logotip",
-    "easterEggAlt": "SpongeBob",
-    "epilogue": "Les xarxes socials finalment troben el seu equilibri: una xarxa totalment descentralitzada, peer-to-peer, que no és propietat de ningú; Bitsocial.",
+    "easterEggAlt": "Bob Esponja",
+    "epilogue": "L'estat final no és una aplicació. És un mercat de clients, nodes, serveis i comunitats que poden substituir la propietat de la plataforma per la competència de protocols.",
+    "epilogueFinal": "Les xarxes socials finalment troben el seu equilibri: una xarxa social totalment descentralitzada i d'igual a igual que ningú posseeix; Bitsocial.",
     "phases": {
       "phase1": {
         "phase": "Fase 1",
         "status": "En curs",
-        "title": "Descentralitzar els imageboards",
-        "description": "<strong>Els taulers d'imatge són la forma més senzilla de descentralitzar les xarxes socials</strong>: publicació anònima, pocs taulers predeterminats i cap gràfic de perfil. Per això estem llançant 5chan, la primera aplicació Bitsocial. 5chan demostra que Bitsocial pot substituir els taulers d'imatges centralitzats alhora que elimina els administradors globals de l'equació.",
-        "callout": {
-          "description": "5chan és el primer punt de prova, no la línia de meta. <strong>Volem diversos clients de taulers d'imatges amb diferents cultures</strong>, interfícies i valors predeterminats: taulers d'estil altchan, experiments per a mòbils, comunitats de nínxol i forquilles que resolguin les necessitats que 5chan mai ho farà.",
-          "ctaLabel": "Construeix el teu propi",
-          "separator": "- o -"
-        }
+        "title": "Descentralitzar taulers d'imatges i fòrums",
+        "description": "<strong>Les imatges són la forma més senzilla de descentralitzar les xarxes socials</strong>: publicació anònima, pocs taulers predeterminats i cap gràfic de perfil. 5chan demostra que Bitsocial pot substituir els taulers d'imatges centralitzats alhora que elimina els administradors globals de l'equació.",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink> llançarà el primer servei RPC sense custòdia per a aplicacions Bitsocial. <rpcLink>Bitsocial RPC</rpcLink> permetrà als usuaris gestionar nodes de forma remota, alhora que conserva l'opció d'acollir-se o executar la infraestructura RPC de la competència. Els usuaris de <strong>U podran crear i gestionar comunitats p2p imparables des del mòbil</strong>.",
+        "forumsDescription": "Els fòrums afegeixen identitats persistents, historial de publicacions i gestió de comunitats. Seedit és el primer prototip d'aplicació Bitsocial per a la discussió a l'estil <strong>Reddit</strong>, i RPC pública fa que les comunitats P2P estiguin sempre en funcionament des de qualsevol lloc."
       },
       "phase2": {
         "phase": "Fase 2",
-        "title": "Llançar Bitsocial RPC",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink> llançarà el primer servei RPC sense custòdia per a les aplicacions Bitsocial. Bitsocial RPC permetrà als usuaris gestionar nodes de forma remota, alhora que conserva l'opció d'allotjar-se o executar una infraestructura RPC competidora. <strong>Els usuaris podran crear i gestionar comunitats p2p imparables des del mòbil</strong>."
+        "title": "Llançament de Bitsocial Network",
+        "description": "Per tal de descentralitzar totes les xarxes socials, les aplicacions Bitsocial necessitaran funcions assassines i efectes de xarxa forts:<strong>estructures financeres imparables</strong>, dominis Bitsocial descentralitzats (.bso), premis i propina, liquiditat comuna i monetització pràctica. Tot això serà impulsat per Bitsocial Network, a<strong>solució d'appchain descentralitzada</strong> per a les aplicacions Bitsocial."
       },
       "phase3": {
         "phase": "Fase 3",
-        "title": "Descentralitzar els fòrums",
-        "description": "Els fòrums afegeixen identitats persistents, historial de publicacions i gestió de comunitats. El nostre primer prototip d'aplicació Bitsocial per descentralitzar fòrums és Seedit, una alternativa de reddit. <strong>Seedit portarà una discussió a l'estil de Reddit a Bitsocial</strong>, una vegada que Bitsocial RPC faci que les comunitats P2P sempre actives siguin pràctiques des de qualsevol lloc."
+        "title": "Inicieu l'aplicació insígnia Bitsocial",
+        "description": "L'aplicació insígnia Bitsocial hauria de ser el primer client basat en el perfil: publicacions, respostes, seguiments, converses públiques en temps real i comunitats que poden treure efectes de xarxa de cada client de Bitsocial. <strong>De manera predeterminada, pot sentir-se tan familiar com una aplicació social moderna For You</strong>, alhora que permet als usuaris canviar de RPC, fonts, instàncies, algorismes, anuncis o eliminar completament la classificació.",
+        "rpcNodes": "Mitjançant RPC sense custòdia, cada usuari encara pot actuar com un node p2p complet sense confiar en el RPC amb la propietat. Qualsevol persona hauria de poder moure's al seu propi node de perfil en una màquina de baixes especificacions, inclosa una Raspberry Pi, sempre que vulgui.",
+        "everythingApp": "Com que la Fase 2 ofereix a l'aplicació una capa financera de criptografia imparable, el client insígnia pot convertir-se en un<strong>tot-aplicació</strong> sense convertir-se en una plataforma de custòdia."
       },
       "phase4": {
         "phase": "Fase 4",
-        "title": "Llançar Bitsocial Network",
-        "description": "Per tal de descentralitzar totes les xarxes socials, les aplicacions Bitsocial necessitaran funcions assassines i forts efectes de xarxa, <strong>estructures financeres imparables</strong>, dominis Bitsocial descentralitzats (.bso), liquiditat comuna. Tot això serà impulsat per Bitsocial Network, una <strong>solució descentralitzada de cadena d'aplicacions</strong> per a aplicacions Bitsocial."
+        "title": "Economies d'escala Bitsocial",
+        "description": "La següent capa és el finançament dels ecosistemes i el pluralisme d'infraestructures. <strong>El RPC de Bitsocial Forge no hauria de ser l'únic RPC reeixit</strong>: moltes empreses, equips independents, operadors anònims i entitats de la comunitat haurien de crear RPCs, allotjament de mitjans, descobriment, moderació i altres serveis a sobre de Bitsocial. El finançament hauria d'impulsar aquesta descentralització, de manera que els desenvolupadors i els operadors puguin competir per fer que la xarxa sigui més ràpida, més barata, més fiable i més difícil de capturar."
       },
       "phase5": {
         "phase": "Fase 5",
         "title": "Descentralitzar totes les xarxes socials",
-        "description": "Amb diversos RPC públics que competeixen entre ells per proporcionar nodes de perfil i <strong>algoritmes d'alimentació opcionals</strong>, i amb la xarxa Bitsocial que permet la monetització del contingut sense que els bancs s'apoderin de fons, les <strong>aplicacions Bitsocial podran rivalitzar amb tot tipus de xarxes socials</strong>, com ara Facebook, Instagram, TikTok, X i YouTube."
+        "description": "Amb les aplicacions bàsiques, RPCs públics, nodes de perfil, descobriment i monetització al seu lloc,<strong>Bitsocial pot finançar i construir la llarga cua dels clients socials</strong>: blocs, finançament col·lectiu, vídeo del creador i una alternativa creïble a YouTube, experiments de nínxol i tots els formats massa aviat per a les quatre primeres fases. Bitsocial Forge pot crear-ne alguns, els clients centralitzats també poden competir, no tots han de ser FOSS i les subvencions comunitàries descentralitzades poden finançar tants desenvolupadors com sigui possible."
       }
     },
     "cta": {
       "learnMore": "Més informació",
       "try5chan": "Prova 5chan",
-      "readTechnicalSpec": "Llegeix l'especificació tècnica proposada",
-      "trySeedit": "Prova Seedit (experimental)"
+      "trySeedit": "Prova Seedit",
+      "buildYourOwn": "Construeix el teu propi"
     },
-    "subtitle": "Bitsocial guanya atraient tants constructors com sigui possible. Gestiona la teva pròpia comunitat imparable, desenvolupa la teva pròpia aplicació social descentralitzada o fins i tot llança el teu propi negoci sobre Bitsocial. La marea puja amb cada constructor.",
-    "sectionLabel": "Pla mestre"
+    "subtitle": "Bitsocial guanya atraient tants constructors com sigui possible. Dirigeix ​​la teva pròpia comunitat imparable, desenvolupa la teva pròpia aplicació social descentralitzada o, fins i tot, llança el teu propi negoci a sobre de Bitsocial. La marea puja amb cada constructor.",
+    "sectionLabel": "Pla director"
   },
   "home": {
     "devOnlyRouteNotice": "{{path}} encara està en construcció. T'hem redirigit a la pàgina principal.",

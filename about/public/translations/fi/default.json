@@ -142,49 +142,49 @@
   "masterPlan": {
     "title": "Toimintakehotus",
     "logoAlt": "Logo",
-    "easterEggAlt": "SpongeBob",
-    "epilogue": "Sosiaalinen media löytää vihdoin tasapainonsa: täysin hajautettu, peer-to-peer-verkko, jota kukaan ei omista; Bitsocial.",
+    "easterEggAlt": "Paavo Pesusieni",
+    "epilogue": "Lopputila ei ole yksi sovellus. Se on asiakkaiden, solmujen, palveluiden ja yhteisöjen markkinat, jotka voivat korvata alustan omistamisen protokollakilpailulla.",
+    "epilogueFinal": "Sosiaalinen media löytää vihdoin tasapainonsa: täysin hajautettu, peer-to-peer sosiaalinen verkosto, jota kukaan ei omista; Bitsocial.",
     "phases": {
       "phase1": {
         "phase": "Vaihe 1",
-        "status": "Käynnissä",
-        "title": "Hajauta imageboardit",
-        "description": "<strong>Kuvataulut ovat yksinkertaisin hajautettava sosiaalisen median muoto</strong>: anonyymi julkaisu, muutama oletustaulu eikä profiilikaaviota. Tästä syystä julkaisemme 5chanin, ensimmäisen Bitsocial-sovelluksen. 5chan todistaa, että Bitsocial voi korvata keskitetyt kuvataulut ja poistaa samalla globaalit järjestelmänvalvojat yhtälöstä.",
-        "callout": {
-          "description": "5chan on ensimmäinen todiste, ei maaliviiva. <strong>Haluamme useita imageboard-asiakkaita, joilla on erilaisia ​​kulttuureja</strong>, käyttöliittymiä ja oletusasetuksia: altchan-tyylisiä tauluja, mobiilialustaisia ​​kokeiluja, niche-yhteisöjä ja haarukoita, jotka ratkaisevat tarpeet, joita 5chan ei koskaan tule ratkaisemaan.",
-          "ctaLabel": "Rakenna omasi",
-          "separator": "- tai -"
-        }
+        "status": "Meneillään",
+        "title": "Hajauttaa kuvataulut ja foorumit",
+        "description": "<strong>Kuvataulut ovat yksinkertaisin hajautettava sosiaalisen median muoto</strong>: anonyymi lähettäminen, muutama oletustaulu eikä profiilikaaviota. 5chan todistaa, että Bitsocial voi korvata keskitetyt kuvataulut samalla, kun se poistaa globaalit järjestelmänvalvojat yhtälöstä.",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink> julkaisee ensimmäisen ei-vapauden RPC-palvelun Bitsocial-sovelluksille. <rpcLink>Bitsocial RPC</rpcLink> antaa käyttäjien hallita solmuja etänä, mutta säilyttää mahdollisuuden isännöidä itse tai käyttää kilpailevaa RPC-infrastruktuuria. <strong>U-käyttäjät voivat luoda ja hallita pysäyttämättömiä p2p-yhteisöjä mobile</strong>:sta.",
+        "forumsDescription": "Foorumit lisäävät pysyviä identiteettejä, viestihistoriaa ja yhteisön hallintaa. Seedit on ensimmäinen prototyyppi Bitsocial-sovellus <strong>Reddit-tyyliseen keskusteluun</strong>, ja julkinen RPC tekee niistä aina käytössä olevista P2P-yhteisöistä käytännöllisiä mistä tahansa."
       },
       "phase2": {
         "phase": "Vaihe 2",
-        "title": "Julkaise Bitsocial RPC",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink> lanseeraa ensimmäisen ei-vapauden RPC-palvelun Bitsocial-sovelluksille. Bitsocial RPC:n avulla käyttäjät voivat hallita solmuja etänä, samalla kun he voivat isännöidä itse tai käyttää kilpailevaa RPC-infrastruktuuria. <strong>Käyttäjät voivat luoda ja hallita pysäyttämättömiä p2p-yhteisöjä mobiililaitteella</strong>."
+        "title": "Bitsocial Networkin lanseeraus",
+        "description": "Kaiken sosiaalisen median hajauttamiseksi Bitsocial-sovellukset tarvitsevat tappavia ominaisuuksia ja vahvoja verkkovaikutuksia:<strong>pysäyttämättömiä rahoitusrakenteita</strong>, hajautetut Bitsocial-verkkotunnukset (.bso), palkinnot ja juomarahat, yhteinen likviditeetti ja käytännön kaupallistaminen. Kaikki tämä saa virtansa Bitsocial Network:sta, a<strong>hajautettu sovellusketjuratkaisu</strong> Bitsocial-sovelluksille."
       },
       "phase3": {
         "phase": "Vaihe 3",
-        "title": "Hajauta foorumit",
-        "description": "Foorumit lisäävät pysyviä identiteettejä, viestihistoriaa ja yhteisön hallintaa. Ensimmäinen prototyyppi Bitsocial-sovelluksemme foorumien hajauttamiseksi on Seedit, reddit-vaihtoehto. <strong>Seedit tuo Reddit-tyylisen keskustelun Bitsocialiin</strong>, kun Bitsocial RPC tekee aina käytössä olevista P2P-yhteisöistä käytännöllisiä mistä tahansa."
+        "title": "Käynnistä lippulaiva Bitsocial-sovellus",
+        "description": "Lippulaiva Bitsocial-sovelluksen tulisi olla ensimmäinen profiilipohjainen asiakas: viestit, vastaukset, seuraajat, reaaliaikainen julkinen keskustelu ja yhteisöt, jotka voivat saada verkkotehosteita jokaisesta Bitsocial-asiakkaasta. <strong>Oletusarvoisesti se voi tuntua yhtä tutulta kuin moderni For You -sosiaalinen sovellus</strong>, samalla kun käyttäjät voivat vaihtaa RPC:itä, syötteitä, esiintymiä, algoritmeja, mainoksia tai poistaa sijoituksen kokonaan.",
+        "rpcNodes": "Ei-vapauden RPC:n avulla jokainen käyttäjä voi silti toimia täysimääräisenä p2p-solmuna luottamatta RPC:n omistukseen. Jokaisen pitäisi pystyä siirtymään omaan profiilisolmuunsa matalan tason koneella, mukaan lukien Raspberry Pi, milloin tahansa.",
+        "everythingApp": "Koska vaihe 2 antaa sovellukselle pysäyttämättömän kryptotalouden kerroksen, lippulaivaasiakkaasta voi mahdollisesti tulla<strong>kaikki-sovellus</strong> muuttumatta vankeusalustaksi."
       },
       "phase4": {
         "phase": "Vaihe 4",
-        "title": "Julkaise Bitsocial Network",
-        "description": "Kaiken sosiaalisen median hajauttamiseksi Bitsocial-sovellukset tarvitsevat tappavia ominaisuuksia ja vahvoja verkkovaikutuksia, <strong>pysäyttämättömiä rahoitusrakenteita</strong>, hajautettuja Bitsocial-verkkotunnuksia (.bso) ja yhteistä likviditeettiä. Kaiken tämän tarjoaa Bitsocial Network, <strong>hajautettu sovellusketjuratkaisu</strong> Bitsocial-sovelluksille."
+        "title": "Skaalaa Bitsocial-talouksia",
+        "description": "Seuraava kerros on ekosysteemirahoitus ja infrastruktuurien moniarvoisuus. <strong>Bitsocial Forge:n RPC ei pitäisi olla ainoa menestyvä RPC</strong>: monien yritysten, riippumattomien tiimien, nimettömien operaattoreiden ja yhteisökokonaisuuksien tulisi rakentaa RPCs-, mediapalvelu-, etsintä-, moderointi- ja muita palveluita Bitsocial:n päälle. Rahoituksen pitäisi viedä tätä hajauttamista eteenpäin, jotta kehittäjät ja operaattorit voivat kilpailla tehdäkseen verkosta nopeamman, halvemman, luotettavamman ja vaikeammin talteen otettavan."
       },
       "phase5": {
         "phase": "Vaihe 5",
-        "title": "Hajauta kaikki sosiaalinen media",
-        "description": "Kun useat julkiset RPC:t kilpailevat keskenään profiilisolmujen ja <strong>valinnaisten syötealgoritmien</strong> tarjoamisesta, ja Bitsocial Network mahdollistaa sisällön kaupallistamisen ilman, että pankit takavarikoivat varoja, joten <strong>Bitsocial-sovellukset voivat kilpailla kaikenlaisen sosiaalisen median</strong> kanssa, mukaan lukien Facebook, Instagram, TikTok, X ja YouTube."
+        "title": "Hajauttaa kaikki sosiaalinen media",
+        "description": "Kun ydinsovellukset, julkinen RPCs, profiilisolmut, löytäminen ja kaupallistaminen ovat paikoillaan,<strong>Bitsocial voi rahoittaa ja rakentaa sosiaalisten asiakkaiden pitkän hännän</strong>: bloggaaminen, joukkorahoitus, luojavideo ja uskottava YouTube-vaihtoehto, erikoiskokeiluja ja jokainen formaatti liian aikaista neljään ensimmäiseen vaiheeseen. Bitsocial Forge voi rakentaa osan niistä, myös keskitetyt asiakkaat voivat kilpailla, kaikkien ei tarvitse olla FOSS, ja hajautetut yhteisön apurahat voivat rahoittaa mahdollisimman monia kehittäjiä."
       }
     },
     "cta": {
-      "learnMore": "Lue lisää",
-      "try5chan": "Kokeile 5chania",
-      "readTechnicalSpec": "Lue ehdotettu tekninen spesifikaatio",
-      "trySeedit": "Kokeile Seeditiä (kokeellinen)"
+      "learnMore": "Lisätietoja",
+      "try5chan": "Kokeile 5chan:ta",
+      "trySeedit": "Kokeile Seedit:ta",
+      "buildYourOwn": "Rakenna omasi"
     },
-    "subtitle": "Bitsocial voittaa houkuttelemalla mahdollisimman paljon rakentajia. Pyöritä omaa pysäyttämätöntä yhteisöäsi, kehitä oma hajautettu sosiaalinen sovelluksesi tai jopa käynnistä oma liiketoimintasi Bitsocialin päälle. Nousuvesi kohoaa jokaisen rakentajan myötä.",
-    "sectionLabel": "Pääsuunnitelma"
+    "subtitle": "Bitsocial voittaa houkuttelemalla mahdollisimman monta rakentajaa. Järjestä omaa pysäyttämätöntä yhteisöäsi, kehitä oma hajautettu sosiaalinen sovellus tai jopa käynnistä oma yritys Bitsocial:n päälle. Vuorovesi nousee jokaisen rakentajan mukana.",
+    "sectionLabel": "Yleissuunnitelma"
   },
   "home": {
     "devOnlyRouteNotice": "{{path}} on vielä rakenteilla. Sinut on ohjattu etusivulle.",

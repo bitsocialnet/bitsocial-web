@@ -155,27 +155,27 @@ The admin API can stay boring and explicit:
 
 Authentication for this operator API should be completely separate from end-user RPC auth.
 
-## Rollout phases
+## Implementation milestones
 
-### Phase 1
+### Milestone 1
 
 - establish the public RPC project structure
 - add user records and ownership tracking
 - fork or extend the current RPC server
 
-### Phase 2
+### Milestone 2
 
 - implement permission bundles
 - enforce them at the RPC method layer
 - return permissions metadata on connect
 
-### Phase 3
+### Milestone 3
 
 - add the operator API
 - add audit logging
 - add admin authentication
 
-### Phase 4
+### Milestone 4
 
 - ship the admin dashboard
 - test abuse controls

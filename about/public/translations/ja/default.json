@@ -142,49 +142,49 @@
   "masterPlan": {
     "title": "行動喚起",
     "logoAlt": "ロゴ",
-    "easterEggAlt": "SpongeBob",
-    "epilogue": "ソーシャルメディアはついに均衡にたどり着きます。誰のものでもない、完全に分散化された peer-to-peer ネットワーク。Bitsocial です。",
+    "easterEggAlt": "スポンジ・ボブ",
+    "epilogue": "最終状態は 1 つのアプリではありません。これは、プラットフォームの所有権をプロトコルの競争に置き換えることができる、クライアント、ノード、サービス、およびコミュニティの市場です。",
+    "epilogueFinal": "ソーシャル メディアはついにその均衡を取り戻します。つまり、誰も所有しない、完全に分散化されたピアツーピアのソーシャル ネットワークです。 Bitsocial。",
     "phases": {
       "phase1": {
         "phase": "フェーズ 1",
         "status": "進行中",
-        "title": "画像掲示板を分散化する",
-        "description": "<strong>イメージボードは分散化が可能なソーシャル メディアの最も単純な形式</strong>です。匿名の投稿、デフォルトのボードがほとんどなく、プロフィール グラフがありません。これが、私たちが最初の Bitsocial アプリである 5chan を立ち上げる理由です。 5chan は、Bitsocial が全体管理者を方程式から排除しながら、集中管理された画像掲示板を置き換えることができることを証明しました。",
-        "callout": {
-          "description": "5chanは最初の証明点であって、ゴールではありません。<strong>私たちは、異なる文化、UI、既定値を持つ複数の imageboard クライアントを求めています</strong>。altchan 風の掲示板、モバイルファーストの実験、ニッチなコミュニティ、そして 5chan では決して解決できないニーズを解決するフォークです。",
-          "ctaLabel": "自分のものを作る",
-          "separator": "- または -"
-        }
+        "title": "イメージボードとフォーラムを分散化する",
+        "description": "<strong>イメージボードは分散化する最も簡単なソーシャル メディアの形式です</strong>: 匿名の投稿、デフォルトのボードがほとんどなく、プロフィール グラフがありません。 5chan は、Bitsocial が全体管理者を方程式から排除しながら、集中型イメージボードを置き換えることができることを証明しています。",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink> は、Bitsocial アプリ向けの最初の非保管型 RPC サービスを開始します。 <rpcLink>Bitsocial RPC</rpcLink> を使用すると、ユーザーはノードをリモートで管理できるようになりますが、セルフホストまたは競合する RPC インフラストラクチャを実行するオプションは維持されます。 <strong>ユーザーは、モバイル</strong>から止められないp2pコミュニティを作成および管理できるようになります。",
+        "forumsDescription": "フォーラムでは、永続的な ID、投稿履歴、コミュニティ管理が追加されます。 Seedit は、<strong>Reddit スタイルのディスカッション </strong> 用の最初のプロトタイプ Bitsocial アプリであり、パブリック RPC は、常時接続の P2P コミュニティをどこからでも実用的にします。"
       },
       "phase2": {
-        "phase": "フェーズ 2",
-        "title": "Bitsocial RPC を立ち上げる",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink> は、Bitsocial アプリ向け初の非カストディアル RPC サービスを開始します。 Bitsocial RPC を使用すると、ユーザーはノードをリモートで管理できると同時に、セルフホストまたは競合する RPC インフラストラクチャを実行するオプションを維持できます。 <strong>ユーザーはモバイルから止められない p2p コミュニティを作成、 管理できる</strong>ようになります。"
+        "phase": "フェーズ2",
+        "title": "Bitsocial Networkのローンチ",
+        "description": "すべてのソーシャル メディアを分散化するには、Bitsocial アプリにはキラー機能と強力なネットワーク効果が必要です。 <strong>止まらない財務構造</strong>、分散型 Bitsocial ドメイン (.bso)、特典と投げ銭、共通の流動性、および実際的な収益化。これらはすべて Bitsocial Network によって駆動されます。 <strong>分散型アプリチェーン ソリューション</strong> Bitsocial アプリ用。"
       },
       "phase3": {
         "phase": "フェーズ 3",
-        "title": "フォーラムを分散化する",
-        "description": "フォーラムでは、永続的な ID、投稿履歴、コミュニティ管理が追加されます。フォーラムを分散化するための最初のプロトタイプ Bitsocial アプリは、reddit の代替手段である Seedit です。 Bitsocial RPC がどこからでも常時接続の P2P コミュニティを実用化すれば、<strong>Seedit は Reddit スタイルのディスカッションを Bitsocial にもたらすことになる</strong>でしょう。"
+        "title": "フラッグシップ Bitsocial アプリを起動します",
+        "description": "主力の Bitsocial アプリは、投稿、返信、フォロー、リアルタイムの公開会話、およびすべての Bitsocial クライアントからネットワーク効果を引き出すことができるコミュニティなど、最初のプロファイル ベースのクライアントである必要があります。 <strong>デフォルトでは、最新の For You ソーシャル アプリ </strong> と同じくらい使い慣れているように感じられますが、ユーザーは RPC、フィード、インスタンス、アルゴリズム、広告を切り替えたり、ランキングを完全に削除したりできます。",
+        "rpcNodes": "非保管の RPC を通じて、各ユーザーは RPC の所有権を信頼せずに、完全な p2p ノードとして機能することができます。誰もがいつでも、Raspberry Pi を含む低スペック マシン上の自分のプロファイル ノードに移動できる必要があります。",
+        "everythingApp": "フェーズ 2 ではアプリに止められない暗号金融レイヤーが与えられるため、主力クライアントは潜在的に<strong>すべてのアプリ</strong> 保管プラットフォームにならずに。"
       },
       "phase4": {
-        "phase": "フェーズ 4",
-        "title": "Bitsocial Network を立ち上げる",
-        "description": "すべてのソーシャルメディアを分散化するには、Bitsocial アプリにはキラー機能と強力なネットワーク効果、<strong>止められない財務構造</strong>、分散化された Bitsocial ドメイン (.bso)、共通の流動性が必要になります。これらはすべて、Bitsocial アプリ用の<strong>分散型アプリチェーン ソリューション</strong>である Bitsocial Network によって強化されます。"
+        "phase": "フェーズ4",
+        "title": "Bitsocial 経済を拡大する",
+        "description": "次の層はエコシステムへの資金提供とインフラの多元化です。 <strong>Bitsocial Forge の RPC が唯一の成功した RPC であってはなりません</strong>: 多くの企業、独立チーム、匿名オペレーター、コミュニティ エンティティは、RPCs、メディア ホスティング、ディスカバリー、モデレーション、その他のサービスを Bitsocial 上に構築する必要があります。資金提供によって分散化を推進し、開発者と運用者が競争してネットワークをより速く、より安く、より信頼性が高く、捕捉されにくくすることができるようにする必要があります。"
       },
       "phase5": {
-        "phase": "フェーズ 5",
+        "phase": "フェーズ5",
         "title": "すべてのソーシャルメディアを分散化する",
-        "description": "複数のパブリック RPC がプロファイル ノードと<strong>オプションのフィード アルゴリズム</strong>を提供するために互いに競合し、銀行が資金を差し押さえることなくコンテンツの収益化を可能にする Bitsocial Network により、<strong>Bitsocial アプリは Facebook、Instagram、TikTok、X、YouTube を含むあらゆる種類のソーシャル メディアに匹敵する</strong>ことができるようになります。"
+        "description": "コア アプリ、パブリック RPCs、プロファイル ノード、検出、収益化を整備すると、<strong>Bitsocial はソーシャル クライアントのロングテールに資金を提供して構築できます</strong>：ブログ、クラウドファンディング、クリエイタービデオ、信頼できるYouTube代替品、ニッチな実験、そしてあらゆるフォーマットは最初の4つのフェーズには早すぎます。 Bitsocial Forge はそれらの一部を構築でき、集中型クライアントも競争でき、すべてが FOSS である必要はなく、分散型コミュニティ補助金によりできるだけ多くの開発者に資金を提供できます。"
       }
     },
     "cta": {
-      "learnMore": "詳細を見る",
-      "try5chan": "5chan を試す",
-      "readTechnicalSpec": "提案された技術仕様を読む",
-      "trySeedit": "Seedit を試す（実験版）"
+      "learnMore": "さらに詳しく",
+      "try5chan": "5chan を試してください",
+      "trySeedit": "Seedit を試してください",
+      "buildYourOwn": "自分で構築する"
     },
-    "subtitle": "Bitsocialは、できるだけ多くのビルダーを惹きつけることで勝ちます。自分だけの止められないコミュニティを運営し、自分だけの分散型ソーシャルアプリを開発し、あるいはBitsocialの上で自分のビジネスを立ち上げることもできます。ビルダーが増えるほど、潮は満ちていきます。",
-    "sectionLabel": "全体計画"
+    "subtitle": "Bitsocial は、できるだけ多くのビルダーを引き付けることで勝ちます。独自の止められないコミュニティを運営したり、独自の分散型ソーシャル アプリを開発したり、Bitsocial 上で独自のビジネスを立ち上げたりすることもできます。建設者が現れるたびに潮流は高まります。",
+    "sectionLabel": "マスタープラン"
   },
   "home": {
     "devOnlyRouteNotice": "{{path}} はまだ工事中です。トップページにリダイレクトされました。",

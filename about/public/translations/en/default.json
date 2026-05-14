@@ -143,45 +143,45 @@
     "title": "A Call to Action",
     "logoAlt": "Logo",
     "easterEggAlt": "SpongeBob",
-    "epilogue": "Social media finally finds its equilibrium: a fully decentralized, peer-to-peer network that nobody owns; Bitsocial.",
+    "epilogue": "The end state is not one app. It is a market of clients, nodes, services, and communities that can replace platform ownership with protocol competition.",
+    "epilogueFinal": "Social media finally finds its equilibrium: a fully decentralized, peer-to-peer social network that nobody owns; Bitsocial.",
     "phases": {
       "phase1": {
         "phase": "Phase 1",
         "status": "Ongoing",
-        "title": "Decentralize imageboards",
-        "description": "<strong>Imageboards are the simplest form of social media to decentralize</strong>: anonymous posting, few default boards, and no profile graph. This is why we're launching 5chan, the first Bitsocial app. 5chan proves Bitsocial can replace centralized imageboards while removing global admins from the equation.",
-        "callout": {
-          "description": "5chan is the first proof point, not the finish line. <strong>We want multiple imageboard clients with different cultures</strong>, interfaces, and defaults: altchan-style boards, mobile-first experiments, niche communities, and forks that solve needs 5chan never will.",
-          "ctaLabel": "Build your own",
-          "separator": "- or -"
-        }
+        "title": "Decentralize imageboards and forums",
+        "description": "<strong>Imageboards are the simplest form of social media to decentralize</strong>: anonymous posting, few default boards, and no profile graph. 5chan proves Bitsocial can replace centralized imageboards while removing global admins from the equation.",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink> will launch the first non-custodial RPC service for Bitsocial apps. <rpcLink>Bitsocial RPC</rpcLink> will let users manage nodes remotely, while preserving the option to self-host or run competing RPC infrastructure. <strong>Users will be able to create and manage unstoppable p2p communities from mobile</strong>.",
+        "forumsDescription": "Forums add persistent identities, post history, and community management. Seedit is the first prototype Bitsocial app for <strong>Reddit-style discussion</strong>, and public RPC makes those always-on P2P communities practical from anywhere."
       },
       "phase2": {
         "phase": "Phase 2",
-        "title": "Launch Bitsocial RPC",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink> will launch the first non-custodial RPC service for Bitsocial apps. Bitsocial RPC will let users manage nodes remotely, while preserving the option to self-host or run competing RPC infrastructure. <strong>Users will be able to create and manage unstoppable p2p communities from mobile</strong>."
+        "title": "Launch Bitsocial Network",
+        "description": "In order to decentralize all social media, Bitsocial apps will need killer features and strong network effects: <strong>unstoppable financial structures</strong>, decentralized Bitsocial domains (.bso), awards and tipping, common liquidity, and practical monetization. All of this will be powered by Bitsocial Network, a <strong>decentralized appchain solution</strong> for Bitsocial apps."
       },
       "phase3": {
         "phase": "Phase 3",
-        "title": "Decentralize forums",
-        "description": "Forums add persistent identities, post history, and community management. Our first prototype Bitsocial app to decentralize forums is Seedit, a reddit alternative. <strong>Seedit will bring Reddit-style discussion to Bitsocial</strong>, once Bitsocial RPC makes always-on P2P communities practical from anywhere."
+        "title": "Launch the flagship Bitsocial app",
+        "description": "The flagship Bitsocial app should be the first profile-based client: posts, replies, follows, real-time public conversation, and communities that can pull network effects from every Bitsocial client. <strong>By default, it can feel as familiar as a modern For You social app</strong>, while still letting users switch RPCs, feeds, instances, algorithms, ads, or remove ranking entirely.",
+        "rpcNodes": "Through non-custodial RPC, each user can still act as a full p2p node without trusting the RPC with ownership. Anyone should be able to move to their own profile node on a low-spec machine, including a Raspberry Pi, whenever they want.",
+        "everythingApp": "Because Phase 2 gives the app an unstoppable crypto financial layer, the flagship client can potentially become an <strong>everything-app</strong> without turning into a custodial platform."
       },
       "phase4": {
         "phase": "Phase 4",
-        "title": "Launch Bitsocial Network",
-        "description": "In order to decentralize all social media, Bitsocial apps will need killer features and strong network effects, <strong>unstoppable financial structures</strong>, decentralized Bitsocial domains (.bso), common liquidity. All of this will be powered by Bitsocial Network, a <strong>decentralized appchain solution</strong> for Bitsocial apps."
+        "title": "Scale Bitsocial economies",
+        "description": "The next layer is ecosystem funding and infrastructure pluralism. <strong>Bitsocial Forge's RPC should not be the only successful RPC</strong>: many businesses, independent teams, anonymous operators, and community entities should build RPCs, media hosting, discovery, moderation, and other services on top of Bitsocial. Funding should push that decentralization forward, so developers and operators can compete to make the network faster, cheaper, more reliable, and harder to capture."
       },
       "phase5": {
         "phase": "Phase 5",
         "title": "Decentralize all social media",
-        "description": "With multiple public RPCs competing with each other to provide profile nodes and <strong>optional feed algorithms</strong>, and with Bitsocial Network enabling content monetization without banks seizing funds, <strong>Bitsocial apps will be able to rival all kinds of social media</strong>, including Facebook, Instagram, TikTok, X, and YouTube."
+        "description": "With the core apps, public RPCs, profile nodes, discovery, and monetization in place, <strong>Bitsocial can fund and build the long tail of social clients</strong>: blogging, crowdfunding, creator video and a credible YouTube alternative, niche experiments, and every format too early for the first four phases. Bitsocial Forge can build some of them, centralized clients can compete too, they do not all have to be FOSS, and decentralized community grants can fund as many developers as possible."
       }
     },
     "cta": {
       "learnMore": "Learn More",
       "try5chan": "Try 5chan",
-      "readTechnicalSpec": "Read Proposed Technical Spec",
-      "trySeedit": "Try Out Seedit (Experimental)"
+      "trySeedit": "Try Seedit",
+      "buildYourOwn": "Build your own"
     },
     "subtitle": "Bitsocial wins by attracting as many builders as possible. Run your own unstoppable community, develop your own decentralized social app, or even launch your own business on top of Bitsocial. The tide rises with every builder.",
     "sectionLabel": "Master Plan"

@@ -140,51 +140,51 @@
     "quoteAttribution": "— Esteban Abaroa, fondator Bitsocial"
   },
   "masterPlan": {
-    "title": "Apel la acțiune",
+    "title": "Un apel la acțiune",
     "logoAlt": "Logo",
     "easterEggAlt": "SpongeBob",
-    "epilogue": "Social media își găsește în sfârșit echilibrul: o rețea complet descentralizată, peer-to-peer, care nu aparține nimănui; Bitsocial.",
+    "epilogue": "Starea finală nu este o singură aplicație. Este o piață de clienți, noduri, servicii și comunități care pot înlocui proprietatea platformei cu competiția de protocol.",
+    "epilogueFinal": "Rețelele sociale își găsesc în sfârșit echilibrul: o rețea socială complet descentralizată, peer-to-peer, pe care nimeni nu o deține; Bitsocial.",
     "phases": {
       "phase1": {
         "phase": "Faza 1",
-        "status": "În desfășurare",
-        "title": "Decentralizarea imageboard-urilor",
-        "description": "<strong>Planurile cu imagini sunt cea mai simplă formă de rețele sociale de descentralizat</strong>: postare anonimă, puține panouri implicite și niciun grafic de profil. Acesta este motivul pentru care lansăm 5chan, prima aplicație Bitsocial. 5chan demonstrează că Bitsocial poate înlocui panourile de imagine centralizate în timp ce elimină administratorii globali din ecuație.",
-        "callout": {
-          "description": "5chan este primul punct de probă, nu linia de sosire. <strong>Dorim mai mulți clienți imageboard cu culturi diferite</strong>, interfețe și valori implicite: panouri în stil altchan, experimente pe mobil, comunități de nișă și furculițe care rezolvă nevoile 5chan nu va face niciodată.",
-          "ctaLabel": "Construiește-l pe al tău",
-          "separator": "- sau -"
-        }
+        "status": "În curs de desfășurare",
+        "title": "Descentralizați panourile de imagini și forumurile",
+        "description": "<strong>Imageboard-urile sunt cea mai simplă formă de social media de descentralizat</strong>: postare anonimă, puține panouri implicite și niciun grafic de profil. 5chan demonstrează că Bitsocial poate înlocui panourile de imagine centralizate în timp ce elimină administratorii globali din ecuație.",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink> va lansa primul serviciu RPC fără custodie pentru aplicațiile Bitsocial. <rpcLink>Bitsocial RPC</rpcLink> va permite utilizatorilor să gestioneze nodurile de la distanță, păstrând în același timp opțiunea de auto-găzduire sau de a rula infrastructura RPC concurentă. Utilizatorii <strong>U vor putea crea și gestiona comunități p2p de neoprit de pe mobil</strong>.",
+        "forumsDescription": "Forumurile adaugă identități persistente, istoricul postărilor și managementul comunității. Seedit este primul prototip de aplicație Bitsocial pentru discuții în stil <strong>Reddit</strong>, iar RPC publică face comunitățile P2P mereu active de oriunde."
       },
       "phase2": {
         "phase": "Faza 2",
-        "title": "Lansarea Bitsocial RPC",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink> va lansa primul serviciu RPC fără custodie pentru aplicațiile Bitsocial. Bitsocial RPC va permite utilizatorilor să gestioneze nodurile de la distanță, păstrând în același timp opțiunea de auto-găzduire sau de a rula infrastructura RPC concurentă. <strong>Utilizatorii vor putea crea și gestiona comunități p2p de neoprit de pe mobil</strong>."
+        "title": "Lansarea Bitsocial Network",
+        "description": "Pentru a descentraliza toate rețelele sociale, aplicațiile Bitsocial vor avea nevoie de funcții ucigașe și efecte de rețea puternice:<strong>structuri financiare de neoprit</strong>, domenii descentralizate Bitsocial (.bso), premii și bacșișuri, lichiditate comună și monetizare practică. Toate acestea vor fi alimentate de Bitsocial Network, a<strong>soluție descentralizată Appchain</strong> pentru aplicațiile Bitsocial."
       },
       "phase3": {
         "phase": "Faza 3",
-        "title": "Decentralizarea forumurilor",
-        "description": "Forumurile adaugă identități persistente, istoricul postărilor și managementul comunității. Primul nostru prototip de aplicație Bitsocial pentru descentralizarea forumurilor este Seedit, o alternativă reddit. <strong>Seedit va aduce discuții în stil Reddit pe Bitsocial</strong>, odată ce Bitsocial RPC va face comunitățile P2P mereu active de oriunde."
+        "title": "Lansați aplicația emblematică Bitsocial",
+        "description": "Aplicația emblematică Bitsocial ar trebui să fie primul client bazat pe profil: postări, răspunsuri, urmăriri, conversație publică în timp real și comunități care pot extrage efecte de rețea de la fiecare client Bitsocial. <strong>În mod implicit, se poate simți la fel de familiar ca o aplicație socială modernă For You</strong>, permițând totuși utilizatorilor să schimbe RPC-uri, fluxuri, instanțe, algoritmi, anunțuri sau să elimine complet clasarea.",
+        "rpcNodes": "Prin RPC fără custodie, fiecare utilizator poate acționa în continuare ca un nod p2p complet fără a avea încredere în RPC cu proprietatea. Oricine ar trebui să poată trece la propriul nod de profil pe o mașină cu specificații reduse, inclusiv un Raspberry Pi, oricând dorește.",
+        "everythingApp": "Deoarece Faza 2 oferă aplicației un strat cripto-financiar de neoprit, clientul emblematic poate deveni un<strong>totul-aplicație</strong> fără a se transforma într-o platformă de custodie."
       },
       "phase4": {
         "phase": "Faza 4",
-        "title": "Lansarea Bitsocial Network",
-        "description": "Pentru a descentraliza toate rețelele sociale, aplicațiile Bitsocial vor avea nevoie de caracteristici ucigașe și efecte puternice de rețea, <strong>structuri financiare de neoprit</strong>, domenii Bitsocial descentralizate (.bso), lichiditate comună. Toate acestea vor fi susținute de Bitsocial Network, o <strong>soluție descentralizată de lanț de aplicații</strong> pentru aplicațiile Bitsocial."
+        "title": "Scala economiile Bitsocial",
+        "description": "Următorul nivel este finanțarea ecosistemelor și pluralismul infrastructurii. <strong>Bitsocial Forge RPC nu ar trebui să fie singurul RPC de succes</strong>: multe companii, echipe independente, operatori anonimi și entități comunitare ar trebui să creeze RPCs, găzduire media, descoperire, moderare și alte servicii pe deasupra Bitsocial. Finanțarea ar trebui să impulsioneze această descentralizare, astfel încât dezvoltatorii și operatorii să poată concura pentru a face rețeaua mai rapidă, mai ieftină, mai fiabilă și mai greu de captat."
       },
       "phase5": {
         "phase": "Faza 5",
-        "title": "Decentralizarea întregii social media",
-        "description": "Cu mai multe RPC-uri publice care concurează între ele pentru a oferi noduri de profil și <strong>algoritmi opționali de feed</strong>, iar rețeaua Bitsocial care permite monetizarea conținutului fără ca băncile să sechestreze fonduri, <strong>aplicațiile Bitsocial vor putea rivaliza cu toate tipurile de rețele sociale</strong>, inclusiv Facebook, Instagram, TikTok, X și YouTube."
+        "title": "Descentralizați toate rețelele sociale",
+        "description": "Cu aplicațiile de bază, RPCs publice, nodurile de profil, descoperirea și generarea de bani activate,<strong>Bitsocial poate finanța și construi coada lungă a clienților sociali</strong>: blogging, crowdfunding, video pentru creatori și o alternativă credibilă YouTube, experimente de nișă și fiecare format prea devreme pentru primele patru faze. Bitsocial Forge poate construi unele dintre ele, clienții centralizați pot concura și ei, nu trebuie să fie toți FOSS, iar granturile comunitare descentralizate pot finanța cât mai mulți dezvoltatori."
       }
     },
     "cta": {
       "learnMore": "Aflați mai multe",
-      "try5chan": "Încearcă 5chan",
-      "readTechnicalSpec": "Citește specificația tehnică propusă",
-      "trySeedit": "Încearcă Seedit (experimental)"
+      "try5chan": "Încercați 5chan",
+      "trySeedit": "Încercați Seedit",
+      "buildYourOwn": "Construiește-ți propriul tău"
     },
-    "subtitle": "Bitsocial câștigă atrăgând cât mai mulți builderi posibil. Rulează propria ta comunitate de neoprit, dezvoltă propria ta aplicație socială descentralizată sau chiar lansează-ți propria afacere deasupra Bitsocial. Valul crește cu fiecare builder.",
-    "sectionLabel": "Planul principal"
+    "subtitle": "Bitsocial câștigă atrăgând cât mai mulți constructori. Conduceți-vă propria comunitate de neoprit, dezvoltați propria aplicație socială descentralizată sau chiar lansați-vă propria afacere pe Bitsocial. Valul crește cu fiecare constructor.",
+    "sectionLabel": "Master Plan"
   },
   "home": {
     "devOnlyRouteNotice": "{{path}} este încă în construcție. Ai fost redirecționat către pagina principală.",

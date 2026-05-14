@@ -142,6 +142,8 @@ const config: Config = {
           items: [
             { label: "Permissionless public RPC", to: "/permissionless-public-rpc/" },
             { label: "Bitsocial Network", to: "/bitsocial-network/" },
+            { label: "Flagship Bitsocial app", to: "/flagship-bitsocial-app/" },
+            { label: "Scale Bitsocial economies", to: "/scale-bitsocial-economies/" },
             {
               label: "Decentralize all social media",
               to: "/decentralize-all-social-media/",
@@ -153,6 +155,7 @@ const config: Config = {
           items: [
             { label: "5chan", to: "/apps/5chan/" },
             { label: "Seedit", to: "/apps/seedit/" },
+            { label: "Build your own client", to: "/build-your-own-client/" },
             { label: "React Hooks", to: "/developer-tools/react-hooks/" },
             { label: "CLI", to: "/developer-tools/cli/" },
           ],

@@ -140,51 +140,51 @@
     "quoteAttribution": "— Esteban Abaroa, tagapagtatag ng Bitsocial"
   },
   "masterPlan": {
-    "title": "Panawagan sa pagkilos",
+    "title": "Isang Tawag sa Pagkilos",
     "logoAlt": "Logo",
     "easterEggAlt": "SpongeBob",
-    "epilogue": "Sa wakas, natagpuan ng social media ang balanse nito: isang ganap na desentralisado, peer-to-peer na network na walang may-ari; Bitsocial.",
+    "epilogue": "Ang end state ay hindi isang app. Ito ay isang merkado ng mga kliyente, node, serbisyo, at komunidad na maaaring palitan ang pagmamay-ari ng platform ng kumpetisyon sa protocol.",
+    "epilogueFinal": "Sa wakas, natagpuan ng social media ang ekwilibriyo nito: isang ganap na desentralisado, peer-to-peer na social network na walang nagmamay-ari; Bitsocial.",
     "phases": {
       "phase1": {
-        "phase": "Yugto 1",
-        "status": "Kasalukuyan",
-        "title": "I-desentralisa ang mga imageboard",
-        "description": "<strong>Ang mga imageboard ay ang pinakasimpleng anyo ng social media upang i-desentralisa</strong>: anonymous na pag-post, ilang mga default na board, at walang profile graph. Ito ang dahilan kung bakit inilulunsad namin ang 5chan, ang unang Bitsocial app. Pinatunayan ng 5chan na kayang palitan ng Bitsocial ang mga sentralisadong imageboard habang inaalis ang mga pandaigdigang admin mula sa equation.",
-        "callout": {
-          "description": "Ang 5chan ang unang proof point, hindi ang finish line. <strong>Gusto namin ng maraming kliyente ng imageboard na may iba't ibang kultura</strong>, mga interface, at mga default: mga board na istilong-altchan, mga eksperimentong pang-mobile, mga angkop na komunidad, at mga tinidor na tumutugon sa mga pangangailangan na hinding-hindi mangyayari.",
-          "ctaLabel": "Bumuo ng sarili mo",
-          "separator": "- o -"
-        }
+        "phase": "Phase 1",
+        "status": "Patuloy",
+        "title": "I-desentralisa ang mga imageboard at forum",
+        "description": "<strong>Ang mga imageboard ay ang pinakasimpleng anyo ng social media upang i-desentralisa</strong>: anonymous na pag-post, ilang default na board, at walang profile graph. Pinatunayan ng 5chan na kayang palitan ng Bitsocial ang mga sentralisadong imageboard habang inaalis ang mga pandaigdigang admin mula sa equation.",
+        "rpcDescription": "Ilulunsad ng <forgeLink>Bitsocial Forge</forgeLink> ang unang hindi-custodial na serbisyo ng RPC para sa Bitsocial app. Hahayaan ng <rpcLink>Bitsocial RPC</rpcLink> ang mga user na pamahalaan ang mga node nang malayuan, habang pinapanatili ang opsyong mag-self-host o magpatakbo ng nakikipagkumpitensyang imprastraktura ng RPC. Ang mga <strong>Users ay makakagawa at makakapamahala ng hindi mapigilang p2p na komunidad mula sa mobile</strong>.",
+        "forumsDescription": "Ang mga forum ay nagdaragdag ng patuloy na pagkakakilanlan, kasaysayan ng post, at pamamahala ng komunidad. Ang Seedit ay ang unang prototype na Bitsocial app para sa <strong>Reddit-style na talakayan</strong>, at ginagawa ng pampublikong RPC na praktikal ang mga komunidad na palaging nasa P2P kahit saan."
       },
       "phase2": {
-        "phase": "Yugto 2",
-        "title": "Ilunsad ang Bitsocial RPC",
-        "description": "Ilulunsad ng <forgeLink>Bitsocial Forge</forgeLink> ang unang hindi-custodial na serbisyo ng RPC para sa mga Bitsocial na app. Hahayaan ng Bitsocial RPC ang mga user na pamahalaan ang mga node nang malayuan, habang pinapanatili ang opsyon na mag-self-host o magpatakbo ng nakikipagkumpitensyang imprastraktura ng RPC. <strong>Magagawa ng mga user na lumikha at mamahala ng hindi mapipigilan na mga p2p na komunidad mula sa mobile</strong>."
+        "phase": "Phase 2",
+        "title": "Paglulunsad ng Bitsocial Network",
+        "description": "Upang ma-desentralisa ang lahat ng social media, ang Bitsocial app ay mangangailangan ng mga pamatay na feature at malalakas na epekto sa network:<strong>hindi mapigilan na mga istrukturang pinansyal</strong>, mga desentralisadong Bitsocial domain (.bso), mga parangal at tipping, karaniwang liquidity, at praktikal na monetization. Ang lahat ng ito ay papaganahin ng Bitsocial Network, a<strong>desentralisadong solusyon sa appchain</strong> para sa Bitsocial apps."
       },
       "phase3": {
-        "phase": "Yugto 3",
-        "title": "I-desentralisa ang mga forum",
-        "description": "Ang mga forum ay nagdaragdag ng patuloy na pagkakakilanlan, kasaysayan ng post, at pamamahala ng komunidad. Ang aming unang prototype na Bitsocial app na nagdesentralisa ng mga forum ay ang Seedit, isang alternatibong reddit. <strong>Dadalhin ng Seedit ang istilong-reddit na talakayan sa Bitsocial</strong>, sa sandaling gawing praktikal ng Bitsocial RPC ang mga komunidad ng P2P na laging naka-on kahit saan."
+        "phase": "Phase 3",
+        "title": "Ilunsad ang flagship Bitsocial app",
+        "description": "Ang punong barkong Bitsocial app ay dapat ang unang kliyenteng nakabatay sa profile: mga post, tugon, pagsubaybay, real-time na pampublikong pag-uusap, at mga komunidad na maaaring kumuha ng mga epekto sa network mula sa bawat kliyente ng Bitsocial. <strong>By default, parang pamilyar ito gaya ng modernong For You social app</strong>, habang hinahayaan pa rin ang mga user na lumipat ng RPC, feed, instance, algorithm, ad, o ganap na alisin ang ranking.",
+        "rpcNodes": "Sa pamamagitan ng non-custodial RPC, ang bawat user ay maaari pa ring kumilos bilang isang buong p2p node nang hindi nagtitiwala sa RPC sa pagmamay-ari. Kahit sino ay dapat na makalipat sa kanilang sariling profile node sa isang mababang-spec na makina, kabilang ang isang Raspberry Pi, kahit kailan nila gusto.",
+        "everythingApp": "Dahil ang Phase 2 ay nagbibigay sa app ng hindi mapigilang crypto financial layer, ang flagship client ay maaaring maging isang<strong>everything-app</strong> nang hindi nagiging custodial platform."
       },
       "phase4": {
-        "phase": "Yugto 4",
-        "title": "Ilunsad ang Bitsocial Network",
-        "description": "Upang ma-desentralisa ang lahat ng social media, ang mga Bitsocial app ay mangangailangan ng mga nakamamatay na feature at malalakas na epekto sa network, <strong>hindi mapigilan na mga istrukturang pinansyal</strong>, mga desentralisadong Bitsocial na domain (.bso), karaniwang pagkatubig. Ang lahat ng ito ay papaganahin ng Bitsocial Network, isang <strong>desentralisadong solusyon sa appchain</strong> para sa mga Bitsocial na app."
+        "phase": "Phase 4",
+        "title": "I-scale ang Bitsocial na ekonomiya",
+        "description": "Ang susunod na layer ay ang pagpopondo ng ecosystem at pluralism ng imprastraktura. <strong>Ang Bitsocial Forge ng RPC ay hindi dapat ang tanging matagumpay na RPC</strong>: maraming negosyo, independent team, anonymous na operator, at community entity ang dapat bumuo ng RPCs, media hosting, discovery, moderation, at iba pang serbisyo sa ibabaw ng Bitsocial. Dapat itulak ng pagpopondo ang desentralisasyong iyon, upang ang mga developer at operator ay maaaring makipagkumpitensya upang gawing mas mabilis, mas mura, mas maaasahan, at mas mahirap makuha ang network."
       },
       "phase5": {
-        "phase": "Yugto 5",
-        "title": "I-desentralisa ang buong social media",
-        "description": "Sa maraming pampublikong RPC na nakikipagkumpitensya sa isa't isa upang magbigay ng mga profile node at <strong>mga opsyonal na feed algorithm</strong>, at sa Bitsocial Network na nagpapagana ng content monetization nang hindi nang-aagaw ng mga pondo ang mga bangko, <strong>Ang mga Bitsocial app ay makakalaban sa lahat ng uri ng social media</strong>, kabilang ang Facebook, Instagram, TikTok, X, at YouTube."
+        "phase": "Phase 5",
+        "title": "I-desentralisa ang lahat ng social media",
+        "description": "Gamit ang mga pangunahing app, pampublikong RPCs, mga profile node, pagtuklas, at monetization sa lugar,<strong>Maaaring pondohan at itayo ng Bitsocial ang mahabang buntot ng mga social na kliyente</strong>: blogging, crowdfunding, creator video at isang mapagkakatiwalaang alternatibong YouTube, mga angkop na eksperimento, at bawat format na masyadong maaga para sa unang apat na yugto. Ang Bitsocial Forge ay maaaring bumuo ng ilan sa mga ito, ang mga sentralisadong kliyente ay maaari ding makipagkumpitensya, hindi lahat sila ay kailangang maging FOSS, at ang mga desentralisadong gawad ng komunidad ay maaaring pondohan ang pinakamaraming developer hangga't maaari."
       }
     },
     "cta": {
       "learnMore": "Matuto pa",
       "try5chan": "Subukan ang 5chan",
-      "readTechnicalSpec": "Basahin ang Iminungkahing Teknikal na Espesipikasyon",
-      "trySeedit": "Subukan ang Seedit (eksperimental)"
+      "trySeedit": "Subukan ang Seedit",
+      "buildYourOwn": "Bumuo ng iyong sarili"
     },
-    "subtitle": "Nanalo ang Bitsocial sa pamamagitan ng pag-akit ng pinakamaraming builders hangga't maaari. Patakbuhin ang sarili mong hindi matitinag na komunidad, bumuo ng sarili mong decentralized social app, o kaya'y maglunsad ng sarili mong negosyo sa ibabaw ng Bitsocial. Umaangat ang alon sa bawat builder.",
-    "sectionLabel": "Pangunahing Plano"
+    "subtitle": "Nanalo ang Bitsocial sa pamamagitan ng pag-akit ng maraming builder hangga't maaari. Patakbuhin ang sarili mong hindi mapipigilan na komunidad, bumuo ng sarili mong desentralisadong social app, o ilunsad ang sarili mong negosyo sa ibabaw ng Bitsocial. Ang pagtaas ng tubig sa bawat tagabuo.",
+    "sectionLabel": "Master Plan"
   },
   "home": {
     "devOnlyRouteNotice": "Ang {{path}} ay kasalukuyang ginagawa pa. Na-redirect ka sa front page.",
