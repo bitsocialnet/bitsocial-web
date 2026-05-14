@@ -19,9 +19,12 @@ The content is biased toward inference-time lookup, not formal API reference gen
 
 ## Master plan
 
-- [Bitsocial Network](https://bitsocial.net/docs/bitsocial-network/): Phase 4 of the master plan, covering the shared appchain layer proposed for Bitsocial apps.
-- [Decentralize All Social Media](https://bitsocial.net/docs/decentralize-all-social-media/): Phase 5 of the Bitsocial master plan and the end-state it is aiming for.
+- [Bitsocial Network](https://bitsocial.net/docs/bitsocial-network/): Phase 2 of the master plan, covering the shared economic layer proposed for Bitsocial apps.
+- [Build your own client](https://bitsocial.net/docs/build-your-own-client/): Builder guide for shipping independent Bitsocial clients, from imageboards and forums to niche social apps.
+- [Decentralize All Social Media](https://bitsocial.net/docs/decentralize-all-social-media/): Phase 5 of the master plan, focused on funding and building the long tail of Bitsocial social clients.
+- [Flagship Bitsocial App](https://bitsocial.net/docs/flagship-bitsocial-app/): The profile-based Bitsocial client proposed for Phase 3 of the master plan.
 - [Permissionless Public RPC](https://bitsocial.net/docs/permissionless-public-rpc/): Proposed design for a public Bitsocial RPC service with isolated users, scoped permissions, and community ownership.
+- [Scale Bitsocial Economies](https://bitsocial.net/docs/scale-bitsocial-economies/): Phase 4 of the master plan, focused on funding, infrastructure pluralism, and competing services around Bitsocial.
 
 ## Apps
 
@@ -30,7 +33,6 @@ The content is biased toward inference-time lookup, not formal API reference gen
 
 ## Developer tools
 
-- [Build an imageboard client](https://bitsocial.net/docs/developer-tools/build-an-imageboard-client/): Phase 1 contribution guide for builders who want to ship new imageboard experiences on Bitsocial.
 - [CLI](https://bitsocial.net/docs/developer-tools/cli/): Command-line interface for running a Bitsocial node, creating communities, and managing protocol operations.
 - [React Hooks](https://bitsocial.net/docs/developer-tools/react-hooks/): React hooks library for building decentralized social applications on the Bitsocial protocol.
 
@@ -572,134 +574,309 @@ peer-to-peer pubsub for real-time communication. Together they produce a social 
 
 Source: https://bitsocial.net/docs/bitsocial-network/
 Path: docs/bitsocial-network.md
-Description: Phase 4 of the master plan, covering the shared appchain layer proposed for Bitsocial apps.
+Description: Phase 2 of the master plan, covering the shared economic layer proposed for Bitsocial apps.
 
 # Bitsocial Network
 
-Bitsocial Network is the name used in the master plan for the shared appchain layer that would sit
-under Bitsocial apps.
+Bitsocial Network is the proposed economic layer for Bitsocial apps.
 
-The idea is not to replace the peer-to-peer social layer. It is to provide the shared economic and
-coordination primitives that social apps will need if they are going to compete with incumbent
-platforms at scale.
+The peer-to-peer social layer lets communities, identities, and content move outside a central
+platform database. Bitsocial Network is meant to add the shared naming, monetization, and payment
+primitives that make those apps harder to starve financially.
 
 ## What it is meant to power
 
 - decentralized Bitsocial domains such as `.bso`
-- shared liquidity across apps
+- awards and tipping
 - durable monetization rails
+- shared liquidity across apps
 - financial structures that are harder for banks or platforms to choke off
 - network effects that do not depend on one company owning the whole stack
+
+The goal is not to lead with token mechanics. The goal is to make useful social apps more durable,
+more fundable, and less dependent on centralized payment or naming providers.
 
 ## Why it matters
 
 Decentralizing communities and identities is necessary, but it is not enough to decentralize all of
 social media.
 
-If the economic layer still depends on a handful of centralized rails, then apps remain easy to
-pressure, deplatform, or starve financially. Bitsocial Network is the proposed answer to that
-second layer of dependency.
+If social apps still depend on a few centralized economic rails, they remain easy to pressure,
+deplatform, or starve financially. Bitsocial Network is the proposed answer to that second layer of
+dependency.
 
-## Relationship to the rest of Bitsocial
+## Relationship to apps
 
-Bitsocial Network is proposed as shared infrastructure for Bitsocial apps, not as the product that
-users interact with directly every day.
+Bitsocial Network should sit under Bitsocial apps, not replace them.
 
-The public-facing result would be:
+The public-facing result should be:
 
 - communities stay peer-to-peer
 - apps stay differentiated
-- monetization and naming become more durable
+- users get practical naming and monetization features
+- creators and communities can receive support across clients
 - value can move across the ecosystem without recreating a centralized platform owner
 
-## Why this sits in Phase 4
+## Why this sits early
 
-The master plan places this after the earlier app-level proof points:
+The current master plan places Bitsocial Network immediately after the first wedge categories:
+imageboards, forums, and the public RPC layer that makes those apps practical for more users.
 
-1. decentralize imageboards
-2. launch Bitsocial RPC
-3. decentralize forums
-4. launch Bitsocial Network
+That timing matters because social apps need strong network effects. If naming, support, awards,
+tipping, and monetization arrive too late, centralized competitors keep their biggest advantage for
+too long.
 
-That sequence makes sense because an ecosystem-level coordination layer is more useful once real
-apps and real user behavior already exist on the network.
+## Design principles
 
-## Design Principles
+Because Bitsocial Network is still proposed infrastructure rather than a launched product, the plan
+should stay disciplined:
 
-Because Bitsocial Network is still proposed infrastructure rather than a launched product, the
-current plan should stay disciplined in a few ways:
-
-- Apps and communities first. The network layer should follow real usage in Bitsocial apps, not
-  lead with speculative financial features.
-- Real contribution over hype. If Bitsocial later adds community-, creator-, or client-level
-  assets, they should reward participation and long-term building rather than copycat launches or
-  short-term trading.
-- Curation is allowed. Bitsocial apps can shape rankings, defaults, discovery, and rollout timing
-  to favor durable communities over casino-style behavior.
-- Gradual rollout is healthy. It is reasonable to delay appchain-native financial features until
-  the ecosystem has enough users, moderation tools, and product clarity to support them safely.
+- Apps and communities first. The network layer should make real social products stronger.
+- Practical features first. Names, awards, tipping, and payments are easier to explain than abstract
+  financial architecture.
+- Real contribution over hype. Economic primitives should reward participation, building, and
+  community support.
+- Curation is allowed. Apps can shape rankings, defaults, and discovery to favor durable
+  communities.
 - Exact mechanics are still open. This page explains the role of Bitsocial Network, not a locked
-  promise about token launchers, fee formulas, or final tokenomics.
+  promise about final economics.
+
+### Build your own client
+
+Source: https://bitsocial.net/docs/build-your-own-client/
+Path: docs/build-your-own-client.md
+Description: Builder guide for shipping independent Bitsocial clients, from imageboards and forums to niche social apps.
+
+# Build your own client
+
+Bitsocial does not win by having one official app for every use case. It wins when many clients can
+share the same protocol while competing on interface, culture, discovery, defaults, and business
+model.
+
+5chan and Seedit are early proof points, not a ceiling. A builder should be able to ship a new
+imageboard, a forum, a profile client, a mobile-first social app, a niche community tool, or a
+centralized client that uses Bitsocial underneath without asking permission from a platform owner.
+
+## What builders can change
+
+A Bitsocial client can compete on product decisions without forking the whole network:
+
+- interface and visual language
+- onboarding flow
+- community defaults
+- moderation surfaces
+- discovery model
+- media experience
+- mobile, desktop, or low-bandwidth constraints
+- monetization and business model
+
+The common layer is the protocol. The product layer is open to competition.
+
+## Fastest way to learn
+
+Start with the apps that already exist:
+
+- Try [5chan](https://5chan.app) for anonymous imageboard communities.
+- Try [Seedit](https://seedit.app) for Reddit-style discussion.
+- Read the [Bitsocial React hooks](/developer-tools/react-hooks/) docs for client-side integration.
+- Read the [Bitsocial CLI](/developer-tools/cli/) docs for node and community operations.
+
+If you want to move quickly, contribute to an existing app first. If the interface, culture, or
+community model you want does not fit, build a separate client.
+
+## Pick a narrow first version
+
+The best first version is not a universal social app. It is a client with one clear audience and one
+strong reason to exist.
+
+Good starting points include:
+
+- a cleaner imageboard client for one specific culture
+- a mobile-first forum client
+- a single-community app with strict defaults
+- a creator community client
+- a read-only discovery client
+- a moderation or operator console
+- a client optimized for a language, region, or device class
+
+Small clients are useful because Bitsocial lets them grow into the same network instead of trapping
+their users in a private database.
+
+## Implementation paths
+
+There are three practical paths:
+
+1. Fork an existing client when your idea is close to 5chan or Seedit.
+2. Build a new React client with Bitsocial React hooks.
+3. Build your own integration on top of node APIs and public RPC infrastructure.
+
+Public RPC should make the third path much more practical. A user can start through a hosted,
+non-custodial RPC provider, then move to self-hosting or a competing provider later.
+
+## Design principle
+
+Do not wait for one flagship app to solve every category. Build the client that should exist for
+your community, then let compatible clients compete in public.
 
 ### Decentralize All Social Media
 
 Source: https://bitsocial.net/docs/decentralize-all-social-media/
 Path: docs/decentralize-all-social-media.md
-Description: Phase 5 of the Bitsocial master plan and the end-state it is aiming for.
+Description: Phase 5 of the master plan, focused on funding and building the long tail of Bitsocial social clients.
 
 # Decentralize All Social Media
 
-This is the end-state described by the Bitsocial master plan: not one app, but an ecosystem of
-Bitsocial apps that can rival every major category of social media.
+The end state is not one app. It is a market of clients, nodes, services, and communities that can
+replace platform ownership with protocol competition.
 
-## The model
+Phase 5 is where Bitsocial pushes beyond the first priority categories and starts funding as many
+social formats as possible.
 
-In the proposed mature state of the network:
+## What still needs to be built
 
-- multiple public RPC providers compete to host profile nodes
-- users can still self-host
-- feed algorithms become optional services instead of mandatory platform law
-- monetization does not depend on banks being willing to keep the platform alive
-- apps compete on product quality, discovery, and interface design
+The first phases focus on the highest-leverage categories: imageboards, forums, public RPC,
+Bitsocial Network, profile nodes, the flagship app, and the service economy around them.
 
-## What success would look like
+After that, the network should expand into the long tail:
 
-Bitsocial apps should be able to challenge platforms across formats, not only in one niche:
-
-- text and discussion
-- imageboards
-- forums
+- blogging clients
+- crowdfunding apps
+- creator video and a credible YouTube alternative
 - creator communities
-- short-form video and broader media products
+- short-form media experiments
+- local or language-specific social apps
+- niche clients that are too small for the first four phases
+- tools that make existing communities easier to run
 
-The goal is not to force one universal interface on everyone. It is to give many apps access to the
-same underlying communities, identities, and network.
+Some of these apps can be open source. Some can be centralized clients. Some can be built by
+Bitsocial Forge, and many should be built by independent developers.
 
-## Why the RPC layer matters here
+## Funding many builders
 
-Always-on communities and profiles become much more practical once public RPC markets exist.
-Without that layer, self-hosting remains too high-friction for many users, especially on mobile.
+The goal is to make new social clients fundable before they already have platform-scale traction.
 
-## Why the network layer matters here
+That can include direct investment, grants, community funding, revenue from successful Bitsocial
+services, or decentralized grant programs where the broader Bitsocial community helps decide which
+developers should receive support.
 
-If content monetization can be cut off by ordinary banking or platform pressure, then the ecosystem
-stays fragile. Bitsocial Network is proposed as the economic layer that makes long-term competition
-more credible.
+The important part is pluralism. The network should fund many attempts, not wait for one official
+app to cover every category.
 
-## The core bet
+## What success looks like
 
-The big bet is that social media can be broken into replaceable layers:
+Bitsocial succeeds when social media can be broken into replaceable layers:
 
 - protocol
 - communities
 - identity
 - hosting
 - discovery
+- moderation
 - monetization
 - apps
 
-Once those layers are replaceable, no single company has to own the entire social graph in order
-for the product to work.
+Once those layers are replaceable, no single company has to own the entire social graph for the
+product to work.
+
+## The core bet
+
+A mature Bitsocial ecosystem should contain public RPCs, self-hosted nodes, feed algorithm markets,
+media hosts, discovery services, open-source clients, commercial clients, and community-funded
+experiments.
+
+Social media finally finds its equilibrium: a fully decentralized, peer-to-peer social network that
+nobody owns; Bitsocial.
+
+### Flagship Bitsocial App
+
+Source: https://bitsocial.net/docs/flagship-bitsocial-app/
+Path: docs/flagship-bitsocial-app.md
+Description: The profile-based Bitsocial client proposed for Phase 3 of the master plan.
+
+# Flagship Bitsocial App
+
+The flagship Bitsocial app is the proposed first profile-based client for the network. 5chan proves
+anonymous communities can work. Seedit moves toward persistent discussion. The flagship app would
+add profiles, follows, replies, feeds, communities, and a broader public conversation surface while
+keeping the protocol replaceable underneath.
+
+## What it should prove
+
+The app should prove that a profile-based social network can avoid becoming a custodial platform:
+
+- users can own identities and profiles
+- communities and profile nodes can stay peer-to-peer
+- communities can carry network effects across Bitsocial clients
+- RPC providers can make the app convenient without taking custody
+- feed algorithms can be optional services instead of platform law
+- other clients can still compete for the same network
+
+The point is not to make the only Bitsocial client. The point is to make the first broad client that
+shows how far the protocol can stretch.
+
+## Familiar by default, replaceable by design
+
+The default experience should be competitive with mainstream public conversation apps: a fast feed,
+follows, replies, repost-style distribution, communities, notifications, and a ranked For You view
+that works immediately.
+
+The difference is that the default should not become the prison. A user should be able to switch
+RPCs, feeds, instances, ranking systems, ads, and discovery providers, or remove ranking entirely.
+The app can be opinionated at first launch while keeping every major service replaceable.
+
+Bitsocial Forge can run the first default RPC and feed service. If that service earns enough revenue,
+it can fund stronger infrastructure and richer feed features without making those features mandatory
+for everyone.
+
+## Cross-client communities
+
+Communities should be much more important than isolated groups inside one app.
+
+A Bitsocial community can be created, hosted, discovered, and used through different clients. That
+means the flagship app can show communities and posts from the wider Bitsocial network, not only from
+users who started inside the flagship app.
+
+That is the core network-effect advantage: one client can feel familiar to mainstream users while
+still pulling value from many clients, community nodes, RPC providers, and independent services.
+
+## Optional feed algorithms
+
+The flagship app should not force one global ranking system on everyone.
+
+Feed algorithms should be opt-in. A user could choose an algorithm from a marketplace, switch
+providers, use an algorithm from a company, use one run by an anonymous operator, use one built by a
+community, run a personal one, or use no algorithm at all.
+
+Public RPC providers are a natural place for these services to compete. They can index, rank, and
+recommend content, but they should not own the user or the profile.
+
+Those services can also compete on the shape of the app itself. One RPC might provide a ranked feed
+with ads. Another might provide an unranked chronological feed. Another might specialize in privacy,
+translation, moderation, community discovery, or a niche social graph.
+
+If the economics work, RPC-backed feed services could add AI translations, summaries, bot-assisted
+replies, or community-note style context. Those features should be service choices, not protocol
+requirements.
+
+## Non-custodial RPC
+
+Each user should be able to participate as a full peer-to-peer node through RPC without giving the
+RPC provider ownership over their identity or profile.
+
+The hosted path matters because most users will not start by running a server. The exit path matters
+just as much: a user should be able to move to their own profile node on low-spec hardware, including
+a Raspberry Pi, whenever they want.
+
+That is the difference between convenience and custody.
+
+## Why it can become an everything-app
+
+If Bitsocial Network gives apps durable naming, payments, tipping, awards, and other financial
+rails, the flagship app could become much more than a feed client.
+
+The important constraint is that the app should not become the new owner of the network. It can be a
+large client, maybe even the most popular client, while still leaving room for competing apps,
+competing RPCs, competing feed algorithms, and self-hosted profile nodes.
 
 ### Permissionless Public RPC
 
@@ -859,27 +1036,27 @@ The admin API can stay boring and explicit:
 
 Authentication for this operator API should be completely separate from end-user RPC auth.
 
-## Rollout phases
+## Implementation milestones
 
-### Phase 1
+### Milestone 1
 
 - establish the public RPC project structure
 - add user records and ownership tracking
 - fork or extend the current RPC server
 
-### Phase 2
+### Milestone 2
 
 - implement permission bundles
 - enforce them at the RPC method layer
 - return permissions metadata on connect
 
-### Phase 3
+### Milestone 3
 
 - add the operator API
 - add audit logging
 - add admin authentication
 
-### Phase 4
+### Milestone 4
 
 - ship the admin dashboard
 - test abuse controls
@@ -903,6 +1080,63 @@ should be treated as a migration detail, not as the permanent public vocabulary 
 This proposal is really about one thing: making public RPC infrastructure useful without making it
 custodial. A good public Bitsocial RPC should feel like optional assistance for running communities,
 not like a new central platform that reclaims ownership through the back door.
+
+### Scale Bitsocial Economies
+
+Source: https://bitsocial.net/docs/scale-bitsocial-economies/
+Path: docs/scale-bitsocial-economies.md
+Description: Phase 4 of the master plan, focused on funding, infrastructure pluralism, and competing services around Bitsocial.
+
+# Scale Bitsocial Economies
+
+Phase 4 is about making the ecosystem large enough that no single company, RPC, hosting provider, or
+client becomes the new platform owner.
+
+Bitsocial Forge can build the first public RPC and the first major services, but that should not be
+the end state. The network is healthier if many businesses, teams, anonymous operators, community
+entities, and independent developers can build useful infrastructure on top of Bitsocial.
+
+## What needs to scale
+
+The ecosystem needs more than apps:
+
+- competing public RPCs
+- media hosting services
+- discovery and indexing services
+- moderation services
+- feed algorithm providers
+- profile-node hosting
+- analytics and observability
+- developer tools
+- grants and funding channels
+
+Each service should be replaceable. A useful provider can become successful, but users and apps
+should still have somewhere else to go.
+
+## Funding as decentralization
+
+Funding should push the network toward more independent operators, not toward one permanent hub.
+
+That means funding developers who build clients, infrastructure, moderation tools, indexing tools,
+mobile experiences, media services, and competing RPCs. It also means leaving room for companies,
+community groups, anonymous operators, and solo builders to find sustainable businesses inside the
+network.
+
+## Why economies matter
+
+Social infrastructure is expensive to maintain. If only one organization pays for RPC, hosting,
+discovery, and development, the network stays fragile even if the protocol is peer-to-peer.
+
+The stronger version is a market of services around the protocol:
+
+- clients compete for users
+- RPCs compete on reliability and trust model
+- media hosts compete on price and policy
+- discovery services compete on relevance
+- developers compete for grants, revenue, and reputation
+
+Bitsocial economies should make the protocol harder to capture by making useful work fundable across
+many independent actors.
 
 ### 5chan
 
@@ -986,52 +1220,6 @@ The list of default communities that appear on the front page is defined in `def
 - **GitHub**: [github.com/bitsocialnet/seedit](https://github.com/bitsocialnet/seedit)
 - **Telegram**: [t.me/seeditreact](https://t.me/seeditreact)
 - **License**: GPL-2.0-only
-
-### Build an imageboard client
-
-Source: https://bitsocial.net/docs/developer-tools/build-an-imageboard-client/
-Path: docs/developer-tools/build-an-imageboard-client.md
-Description: Phase 1 contribution guide for builders who want to ship new imageboard experiences on Bitsocial.
-
-# Build an imageboard client
-
-Phase 1 is not about one official app covering the whole category. 5chan is the first proof point, but the actual goal is a broad imageboard ecosystem: multiple Bitsocial clients with different visual languages, moderation defaults, directory models, and target communities.
-
-## What Phase 1 needs
-
-- Familiar 4chan-style clients for mainstream onboarding
-- Altchan-inspired clients with different cultures and board bundles
-- Mobile-first or low-bandwidth clients
-- Single-community or niche clients with strong opinionated defaults
-- Better moderation, media, onboarding, or discovery flows than the first app ships with
-
-## Fastest way to help
-
-If you want the shortest path to shipping, contribute to 5chan directly first:
-
-- Explore the live app at [5chan.app](https://5chan.app)
-- Review the source at [github.com/bitsocialnet/5chan](https://github.com/bitsocialnet/5chan)
-- Join the builder chat at [t.me/fivechandev](https://t.me/fivechandev)
-
-## Build your own client
-
-If 5chan does not match the community or interface you want, build a separate client instead. Compatible Bitsocial clients can share the same network without sharing the same product decisions.
-
-1. Learn the protocol-facing tools:
-   - [Bitsocial React hooks](../react-hooks/)
-   - [Bitsocial CLI](../cli/)
-2. Decide what kind of imageboard you are actually building.
-   Choose the board structure, identity assumptions, moderation model, discovery flow, and visual language first.
-3. Pick the implementation path that fits the project.
-   Fork 5chan if you want to move fast with a familiar imageboard base. Start fresh if the UI or interaction model needs to be radically different.
-4. Ship a narrow first version.
-   One client that serves one real community well is more valuable than a vague clone meant to satisfy everyone.
-5. Publish the result and let communities test it.
-   Bitsocial improves when outside builders ship opinionated clients that compete on product quality instead of waiting for one official app to do everything.
-
-## Design principle
-
-Bitsocial does not win by having one blessed client. It wins when many clients can coexist, fork, specialize, and serve needs the first app never will.
 
 ### CLI
 

@@ -140,51 +140,51 @@
     "quoteAttribution": "— Esteban Abaroa, themeluesi i Bitsocial"
   },
   "masterPlan": {
-    "title": "Thirrje për veprim",
+    "title": "Një Thirrje për Veprim",
     "logoAlt": "Logo",
     "easterEggAlt": "SpongeBob",
-    "epilogue": "Rrjetet sociale më në fund gjejnë ekuilibrin e tyre: një rrjet plotësisht të decentralizuar, peer-to-peer, që nuk e zotëron askush; Bitsocial.",
+    "epilogue": "Gjendja përfundimtare nuk është një aplikacion. Është një treg i klientëve, nyjeve, shërbimeve dhe komuniteteve që mund të zëvendësojnë pronësinë e platformës me konkurrencën e protokolleve.",
+    "epilogueFinal": "Mediat sociale më në fund gjen ekuilibrin e saj: një rrjet social plotësisht i decentralizuar, peer-to-peer që askush nuk e zotëron; Bitsocial.",
     "phases": {
       "phase1": {
         "phase": "Faza 1",
         "status": "Në vazhdim",
-        "title": "Decentralizo imageboard-et",
-        "description": "<strong>Tabelat e imazheve janë forma më e thjeshtë e mediave sociale për t'u decentralizuar</strong>: postime anonime, pak tabela të paracaktuara dhe asnjë grafik profili. Kjo është arsyeja pse ne po lançojmë 5chan, aplikacionin e parë Bitsocial. 5chan dëshmon se Bitsocial mund të zëvendësojë tabelat e centralizuara të imazheve duke hequr administratorët globalë nga ekuacioni.",
-        "callout": {
-          "description": "5chan është pika e parë e provës, jo vija e finishit. <strong>Ne duam klientë të shumtë të imazheve me kultura të ndryshme</strong>, ndërfaqe dhe parazgjedhje: tabela të stilit altchan, eksperimente të para në celular, komunitete të veçanta dhe forks që zgjidhin nevojat 5chan nuk do t'i bëjë kurrë.",
-          "ctaLabel": "Ndërto tënden",
-          "separator": "- ose -"
-        }
+        "title": "Decentralizoni tabelat e imazheve dhe forumet",
+        "description": "<strong>Tabelat e imazheve janë forma më e thjeshtë e mediave sociale për t'u decentralizuar</strong>: postim anonim, pak tabela të paracaktuara dhe asnjë grafik profili. 5chan dëshmon se Bitsocial mund të zëvendësojë tabelat e centralizuara të imazheve duke hequr administratorët globalë nga ekuacioni.",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink> do të nisë shërbimin e parë jo-kujdestar RPC për aplikacionet Bitsocial. <rpcLink>Bitsocial RPC</rpcLink> do t'i lejojë përdoruesit të menaxhojnë nyjet nga distanca, duke ruajtur opsionin për të vetë-strehuar ose drejtuar infrastrukturën konkurruese RPC. Përdoruesit e <strong>Q do të jenë në gjendje të krijojnë dhe menaxhojnë komunitete të pandalshme p2p nga celulari</strong>.",
+        "forumsDescription": "Forumet shtojnë identitete të vazhdueshme, histori të postimeve dhe menaxhim të komunitetit. Seedit është prototipi i parë i aplikacionit Bitsocial për diskutim të stilit <strong>Reddit</strong> dhe RPC publik i bën ato komunitete P2P gjithmonë të ndezura praktike nga kudo."
       },
       "phase2": {
         "phase": "Faza 2",
-        "title": "Lanco Bitsocial RPC",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink> do të nisë shërbimin e parë RPC jo-kujdestar për aplikacionet Bitsocial. RPC Bitsocial do t'i lejojë përdoruesit të menaxhojnë nyjet nga distanca, duke ruajtur opsionin për të vetë-strehuar ose drejtuar infrastrukturën konkurruese RPC. <strong>Përdoruesit do të jenë në gjendje të krijojnë dhe menaxhojnë komunitete të pandalshme p2p nga celulari</strong>."
+        "title": "Lansimi i Bitsocial Network",
+        "description": "Për të decentralizuar të gjitha mediat sociale, aplikacionet Bitsocial do të kenë nevojë për veçori vrasëse dhe efekte të forta rrjeti:<strong>struktura financiare të pandalshme</strong>, domenet e decentralizuara Bitsocial (.bso), çmimet dhe bakshishi, likuiditeti i përbashkët dhe fitimi praktik. E gjithë kjo do të mundësohet nga Bitsocial Network, a<strong>zgjidhje e decentralizuar e zinxhirit të aplikacioneve</strong> për aplikacionet Bitsocial."
       },
       "phase3": {
         "phase": "Faza 3",
-        "title": "Decentralizo forumet",
-        "description": "Forumet shtojnë identitete të vazhdueshme, histori të postimeve dhe menaxhim të komunitetit. Prototipi ynë i parë i aplikacionit Bitsocial për të decentralizuar forumet është Seedit, një alternativë reddit. <strong>Seedit do të sjellë diskutime të stilit Reddit në Bitsocial</strong>, sapo Bitsocial RPC t'i bëjë praktike nga kudo komunitetet P2P gjithmonë aktive."
+        "title": "Hapni aplikacionin kryesor Bitsocial",
+        "description": "Aplikacioni kryesor Bitsocial duhet të jetë klienti i parë i bazuar në profil: postime, përgjigje, ndjekje, biseda publike në kohë reale dhe komunitete që mund të tërheqin efektet e rrjetit nga çdo klient Bitsocial. <strong>Si parazgjedhje, mund të ndihet po aq i njohur sa një aplikacion social modern Për ty</strong>, ndërkohë që i lejon përdoruesit të ndryshojnë RPC, furnizime, instanca, algoritme, reklama ose të heqin tërësisht renditjen.",
+        "rpcNodes": "Nëpërmjet RPC jo-kujdestare, çdo përdorues mund të veprojë ende si një nyje e plotë p2p pa i besuar zotërimit të RPC. Çdokush duhet të jetë në gjendje të lëvizë në nyjen e tij të profilit në një makinë me specifika të ulëta, duke përfshirë një Raspberry Pi, sa herë që dëshiron.",
+        "everythingApp": "Për shkak se Faza 2 i jep aplikacionit një shtresë financiare të pandalshme kripto, klienti kryesor mund të bëhet një<strong>gjithçka-aplikacion</strong> pa u kthyer në një platformë kujdestarie."
       },
       "phase4": {
         "phase": "Faza 4",
-        "title": "Lanco Bitsocial Network",
-        "description": "Për të decentralizuar të gjitha mediat sociale, aplikacionet Bitsocial do të kenë nevojë për veçori vrasëse dhe efekte të forta rrjeti, <strong>struktura financiare të pandalshme</strong>, domene të decentralizuara Bitsocial (.bso), likuiditet të përbashkët. E gjithë kjo do të mundësohet nga Bitsocial Network, një <strong>zgjidhje e decentralizuar e zinxhirit të aplikacioneve</strong> për aplikacionet Bitsocial."
+        "title": "Shkalla e ekonomive Bitsocial",
+        "description": "Shtresa tjetër është financimi i ekosistemit dhe pluralizmi i infrastrukturës. <strong>RPC i Bitsocial Forge nuk duhet të jetë i vetmi RPC i suksesshëm</strong>: shumë biznese, ekipe të pavarura, operatorë anonimë dhe entitete të komunitetit duhet të ndërtojnë RPCs, pritjen e mediave, zbulimin, moderimin dhe shërbime të tjera në krye të Bitsocial. Financimi duhet ta shtyjë këtë decentralizim përpara, në mënyrë që zhvilluesit dhe operatorët të mund të konkurrojnë për ta bërë rrjetin më të shpejtë, më të lirë, më të besueshëm dhe më të vështirë për t'u kapur."
       },
       "phase5": {
         "phase": "Faza 5",
-        "title": "Decentralizo të gjitha mediat sociale",
-        "description": "Me RPC të shumta publike që konkurrojnë me njëri-tjetrin për të ofruar nyje të profilit dhe <strong>algoritme opsionale të furnizimit</strong>, dhe me Rrjetin Bitsocial që mundëson fitimin e parave të përmbajtjes pa bankat të kapin fonde, <strong>Aplikacionet Bitsocial do të jenë në gjendje të rivalizojnë të gjitha llojet e mediave sociale</strong>, duke përfshirë Facebook, Instagram, TikTok, X dhe YouTube."
+        "title": "Decentralizoni të gjitha mediat sociale",
+        "description": "Me aplikacionet kryesore, RPCs publike, nyjet e profilit, zbulimin dhe fitimin e parave,<strong>Bitsocial mund të financojë dhe të ndërtojë bishtin e gjatë të klientëve socialë</strong>: Blogging, Crowdfunding, video e krijuesit dhe një alternativë e besueshme YouTube, eksperimente të veçanta dhe çdo format shumë herët për katër fazat e para. Bitsocial Forge mund të ndërtojë disa prej tyre, klientët e centralizuar mund të konkurrojnë gjithashtu, ata nuk duhet të jenë të gjithë FOSS dhe grantet e decentralizuara të komunitetit mund të financojnë sa më shumë zhvillues të jetë e mundur."
       }
     },
     "cta": {
       "learnMore": "Mësoni më shumë",
-      "try5chan": "Provo 5chan",
-      "readTechnicalSpec": "Lexo specifikimin teknik të propozuar",
-      "trySeedit": "Provo Seedit (eksperimental)"
+      "try5chan": "Provoni 5chan",
+      "trySeedit": "Provoni Seedit",
+      "buildYourOwn": "Ndërtoni tuajën"
     },
-    "subtitle": "Bitsocial fiton duke tërhequr sa më shumë ndërtues të jetë e mundur. Drejto komunitetin tënd të pandalshëm, zhvillo aplikacionin tënd social të decentralizuar, ose madje nis biznesin tënd mbi Bitsocial. Baticë ngrihet me çdo ndërtues.",
-    "sectionLabel": "Plani Kryesor"
+    "subtitle": "Bitsocial fiton duke tërhequr sa më shumë ndërtues të jetë e mundur. Drejtoni komunitetin tuaj të pandalshëm, zhvilloni aplikacionin tuaj social të decentralizuar ose madje nisni biznesin tuaj në krye të Bitsocial. Batica rritet me çdo ndërtues.",
+    "sectionLabel": "Master Plani"
   },
   "home": {
     "dismissDevOnlyRouteNotice": "Mbyll njoftimin",

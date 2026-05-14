@@ -140,51 +140,51 @@
     "quoteAttribution": "— Esteban Abaroa, a Bitsocial alapítója"
   },
   "masterPlan": {
-    "title": "Felhívás cselekvésre",
+    "title": "Felhívás a cselekvésre",
     "logoAlt": "Logó",
-    "easterEggAlt": "SpongeBob",
-    "epilogue": "A közösségi média végre megtalálja az egyensúlyát: egy teljesen decentralizált, peer-to-peer hálózat, amely senki tulajdona; a Bitsocial.",
+    "easterEggAlt": "Spongyabob",
+    "epilogue": "A végállapot nem egy alkalmazás. Ez egy olyan ügyfelek, csomópontok, szolgáltatások és közösségek piaca, amelyek a platform tulajdonjogát protokollversenyre cserélhetik.",
+    "epilogueFinal": "A közösségi média végre megtalálja egyensúlyát: egy teljesen decentralizált, peer-to-peer közösségi hálózat, amely senkinek sem a tulajdonosa; Bitsocial.",
     "phases": {
       "phase1": {
         "phase": "1. fázis",
         "status": "Folyamatban",
-        "title": "Az imageboardok decentralizálása",
-        "description": "<strong>A képtáblák a közösségi média legegyszerűbben decentralizálható formája</strong>: névtelen bejegyzés, kevés alapértelmezett tábla és nincs profildiagram. Ezért indítjuk el az 5chan-t, az első Bitsocial alkalmazást. Az 5chan bebizonyítja, hogy a Bitsocial képes helyettesíteni a központosított képtáblákat, miközben eltávolítja a globális rendszergazdákat az egyenletből.",
-        "callout": {
-          "description": "Az 5chan az első bizonyítási pont, nem a célvonal. <strong>Több imageboard-klienst szeretnénk különböző kultúrákkal</strong>, interfészekkel és alapértelmezett beállításokkal: altchan-stílusú táblák, mobil-első kísérletek, résközösségek és fork-ok, amelyek olyan igényeket oldanak meg, amelyekre az 5chan soha nem fog.",
-          "ctaLabel": "Építsd meg a sajátodat",
-          "separator": "- vagy -"
-        }
+        "title": "Decentralizálja a képtáblákat és a fórumokat",
+        "description": "<strong>Az imageboardok a közösségi média legegyszerűbb decentralizálási formája</strong>: névtelen bejegyzés, kevés alapértelmezett tábla és nincs profilgrafikon. A 5chan bizonyítja, hogy a Bitsocial képes helyettesíteni a központosított képtáblákat, miközben eltávolítja a globális rendszergazdákat az egyenletből.",
+        "rpcDescription": "A <forgeLink>Bitsocial Forge</forgeLink> elindítja az első, szabadságvesztés nélküli RPC szolgáltatást a Bitsocial alkalmazásokhoz. A <rpcLink>Bitsocial RPC</rpcLink> lehetővé teszi a felhasználók számára a csomópontok távoli kezelését, miközben megőrzi a lehetőséget, hogy önállóan hosztolják vagy futtassák a versengő RPC infrastruktúrát. A <strong>Userek képesek lesznek megállíthatatlan p2p közösségeket létrehozni és kezelni a mobile</strong> segítségével.",
+        "forumsDescription": "A fórumok állandó identitást, bejegyzéstörténetet és közösségkezelést adnak hozzá. A Seedit az első Bitsocial prototípus a <strong>Reddit-stílusú beszélgetésekhez</strong>, a nyilvános RPC pedig bárhonnan praktikussá teszi a mindig jelen lévő P2P közösségeket."
       },
       "phase2": {
         "phase": "2. fázis",
-        "title": "Bitsocial RPC indítása",
-        "description": "A <forgeLink>Bitsocial Forge</forgeLink> elindítja az első nem őrizetbe vett RPC szolgáltatást a Bitsocial alkalmazások számára. A Bitsocial RPC lehetővé teszi a felhasználók számára a csomópontok távoli kezelését, miközben megőrzi a lehetőséget, hogy önállóan hosztolják vagy futtassák a versengő RPC infrastruktúrát. <strong>A felhasználók megállíthatatlan p2p-közösségeket hozhatnak létre és kezelhetnek mobilról</strong>."
+        "title": "A Bitsocial Network bevezetése",
+        "description": "Az összes közösségi média decentralizálása érdekében a Bitsocial alkalmazásoknak gyilkos funkciókra és erős hálózati hatásokra lesz szükségük:<strong>megállíthatatlan pénzügyi struktúrák</strong>, decentralizált Bitsocial tartományok (.bso), díjak és borravalók, közös likviditás és gyakorlati bevételszerzés. Mindezt a Bitsocial Network, a<strong>decentralizált appchain megoldás</strong> Bitsocial alkalmazásokhoz."
       },
       "phase3": {
         "phase": "3. fázis",
-        "title": "Fórumok decentralizálása",
-        "description": "A fórumok állandó identitást, bejegyzéstörténetet és közösségkezelést biztosítanak. Az első prototípus Bitsocial alkalmazásunk a fórumok decentralizálására a Seedit, egy reddit alternatíva. <strong>A Seedit a Reddit-stílusú beszélgetéseket hozza a Bitsocialba</strong>, miután a Bitsocial RPC bárhonnan praktikussá teszi a mindig működő P2P közösségeket."
+        "title": "Indítsa el a zászlóshajó Bitsocial alkalmazást",
+        "description": "A zászlóshajó Bitsocial alkalmazás legyen az első profil alapú kliens: bejegyzések, válaszok, követések, valós idejű nyilvános beszélgetések és olyan közösségek, amelyek minden Bitsocial klienstől hálózati hatásokat hoznak létre.<strong>Alapértelmezés szerint olyan ismerősnek tűnik, mint egy modern For You közösségi alkalmazás</strong>, miközben továbbra is lehetővé teszi a felhasználók számára, hogy RPC-ket, hírcsatornákat, példányokat, algoritmusokat, hirdetéseket váltsanak, vagy teljesen eltávolítsák a rangsorolást.",
+        "rpcNodes": "A nem őrizetbe vett RPC révén minden felhasználó továbbra is teljes p2p csomópontként működhet anélkül, hogy a RPC tulajdonjogát rábízná. Bárkinek át kell tudnia lépni a saját profilcsomópontjára egy alacsony specifikációjú gépen, beleértve a Raspberry Pi-t is, amikor csak akar.",
+        "everythingApp": "Mivel a 2. fázis megállíthatatlan kriptográfiai pénzügyi réteget ad az alkalmazásnak, a zászlóshajó kliens potenciálisan<strong>minden-alk</strong> anélkül, hogy őrizetbe vételi emelvényré változna."
       },
       "phase4": {
         "phase": "4. fázis",
-        "title": "Bitsocial Network indítása",
-        "description": "Az összes közösségi média decentralizálása érdekében a Bitsocial alkalmazásoknak gyilkos funkciókra és erős hálózati hatásokra, <strong>megállíthatatlan pénzügyi struktúrákra</strong>, decentralizált Bitsocial tartományokra (.bso) és közös likviditásra lesz szükségük. Mindezt a Bitsocial Network, egy <strong>decentralizált alkalmazáslánc-megoldás</strong> biztosítja a Bitsocial alkalmazásokhoz."
+        "title": "Bitsocial méretgazdaságosság",
+        "description": "A következő réteg az ökoszisztéma finanszírozása és az infrastruktúra pluralizmusa. <strong>A Bitsocial Forge RPC nem lehet az egyetlen sikeres RPC</strong>: sok vállalkozásnak, független csapatnak, névtelen üzemeltetőnek és közösségi entitásnak ki kell építenie a RPCs-t, a médiatárhelyet, a felfedezést, a moderálást és más szolgáltatásokat a Bitsocial-n felül. A finanszírozásnak elő kell vinnie ezt a decentralizációt, hogy a fejlesztők és az üzemeltetők versenyezhessenek a hálózat gyorsabbá, olcsóbbá, megbízhatóbbá és nehezebben rögzíthetővé tételéért."
       },
       "phase5": {
         "phase": "5. fázis",
-        "title": "Minden közösségi média decentralizálása",
-        "description": "Mivel több nyilvános RPC verseng egymással a profilcsomópontok és az <strong>opcionális feed-algoritmusok</strong> biztosításáért, valamint a Bitsocial Network lehetővé teszi a tartalom bevételszerzését anélkül, hogy a bankok lefoglalnák az alapokat, a <strong>Bitsocial alkalmazások mindenféle közösségi médiával vetekedhetnek</strong>, beleértve a Facebookot, az Instagramot, a TikTok-ot, az X-et és a YouTube-ot."
+        "title": "Decentralizálja az összes közösségi médiát",
+        "description": "Az alapalkalmazásokkal, a nyilvános RPCs-val, a profilcsomópontokkal, a felfedezéssel és a bevételszerzéssel,<strong>A Bitsocial képes finanszírozni és felépíteni a közösségi ügyfelek hosszú farkát</strong>: blogírás, közösségi finanszírozás, alkotói videó és egy hiteles YouTube alternatíva, réskísérletek és minden formátum túl korai az első négy fázishoz. A Bitsocial Forge néhányat meg tud építeni, a központosított ügyfelek is versenyezhetnek, nem kell mindegyiknek FOSS-nak lennie, és a decentralizált közösségi támogatások a lehető legtöbb fejlesztőt finanszírozhatják."
       }
     },
     "cta": {
       "learnMore": "További információ",
-      "try5chan": "Próbáld ki a 5chant",
-      "readTechnicalSpec": "Olvasd el a javasolt műszaki specifikációt",
-      "trySeedit": "Próbáld ki a Seeditet (kísérleti)"
+      "try5chan": "Próbáld ki a 5chan-t",
+      "trySeedit": "Próbáld ki a Seedit-t",
+      "buildYourOwn": "Építsd meg a sajátodat"
     },
-    "subtitle": "A Bitsocial úgy győz, hogy a lehető legtöbb építőt vonzza be. Indítsd el a saját megállíthatatlan közösségedet, fejleszd a saját decentralizált közösségi appodat, vagy akár indítsd el a saját vállalkozásodat a Bitsocialra építve. Minden építővel emelkedik az áradás.",
-    "sectionLabel": "Mesterterv"
+    "subtitle": "A Bitsocial úgy nyer, hogy minél több építőt vonz. Futtassa saját megállíthatatlan közösségét, fejlessze saját decentralizált közösségi alkalmazását, vagy akár indítson saját vállalkozást a Bitsocial mellett. A dagály minden építővel együtt emelkedik.",
+    "sectionLabel": "Főterv"
   },
   "home": {
     "devOnlyRouteNotice": "A(z) {{path}} még fejlesztés alatt áll. Át lettél irányítva a főoldalra.",

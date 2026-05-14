@@ -1,58 +1,67 @@
 ---
 title: Decentralize All Social Media
-description: Phase 5 of the Bitsocial master plan and the end-state it is aiming for.
+description: Phase 5 of the master plan, focused on funding and building the long tail of Bitsocial social clients.
 ---
 
 # Decentralize All Social Media
 
-This is the end-state described by the Bitsocial master plan: not one app, but an ecosystem of
-Bitsocial apps that can rival every major category of social media.
+The end state is not one app. It is a market of clients, nodes, services, and communities that can
+replace platform ownership with protocol competition.
 
-## The model
+Phase 5 is where Bitsocial pushes beyond the first priority categories and starts funding as many
+social formats as possible.
 
-In the proposed mature state of the network:
+## What still needs to be built
 
-- multiple public RPC providers compete to host profile nodes
-- users can still self-host
-- feed algorithms become optional services instead of mandatory platform law
-- monetization does not depend on banks being willing to keep the platform alive
-- apps compete on product quality, discovery, and interface design
+The first phases focus on the highest-leverage categories: imageboards, forums, public RPC,
+Bitsocial Network, profile nodes, the flagship app, and the service economy around them.
 
-## What success would look like
+After that, the network should expand into the long tail:
 
-Bitsocial apps should be able to challenge platforms across formats, not only in one niche:
-
-- text and discussion
-- imageboards
-- forums
+- blogging clients
+- crowdfunding apps
+- creator video and a credible YouTube alternative
 - creator communities
-- short-form video and broader media products
+- short-form media experiments
+- local or language-specific social apps
+- niche clients that are too small for the first four phases
+- tools that make existing communities easier to run
 
-The goal is not to force one universal interface on everyone. It is to give many apps access to the
-same underlying communities, identities, and network.
+Some of these apps can be open source. Some can be centralized clients. Some can be built by
+Bitsocial Forge, and many should be built by independent developers.
 
-## Why the RPC layer matters here
+## Funding many builders
 
-Always-on communities and profiles become much more practical once public RPC markets exist.
-Without that layer, self-hosting remains too high-friction for many users, especially on mobile.
+The goal is to make new social clients fundable before they already have platform-scale traction.
 
-## Why the network layer matters here
+That can include direct investment, grants, community funding, revenue from successful Bitsocial
+services, or decentralized grant programs where the broader Bitsocial community helps decide which
+developers should receive support.
 
-If content monetization can be cut off by ordinary banking or platform pressure, then the ecosystem
-stays fragile. Bitsocial Network is proposed as the economic layer that makes long-term competition
-more credible.
+The important part is pluralism. The network should fund many attempts, not wait for one official
+app to cover every category.
 
-## The core bet
+## What success looks like
 
-The big bet is that social media can be broken into replaceable layers:
+Bitsocial succeeds when social media can be broken into replaceable layers:
 
 - protocol
 - communities
 - identity
 - hosting
 - discovery
+- moderation
 - monetization
 - apps
 
-Once those layers are replaceable, no single company has to own the entire social graph in order
-for the product to work.
+Once those layers are replaceable, no single company has to own the entire social graph for the
+product to work.
+
+## The core bet
+
+A mature Bitsocial ecosystem should contain public RPCs, self-hosted nodes, feed algorithm markets,
+media hosts, discovery services, open-source clients, commercial clients, and community-funded
+experiments.
+
+Social media finally finds its equilibrium: a fully decentralized, peer-to-peer social network that
+nobody owns; Bitsocial.

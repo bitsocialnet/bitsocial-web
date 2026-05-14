@@ -66,43 +66,75 @@ const protocolCards = [
 const roadmapCards = [
   {
     to: "/permissionless-public-rpc/",
-    eyebrow: tr("docs.home.roadmap.card.phase2.eyebrow", "Phase 2", "Roadmap card eyebrow."),
+    eyebrow: tr(
+      "docs.home.roadmap.card.rpc.eyebrow",
+      "Infrastructure",
+      "Roadmap card eyebrow for permissionless public RPC.",
+    ),
     title: tr(
-      "docs.home.roadmap.card.phase2.title",
+      "docs.home.roadmap.card.rpc.title",
       "Permissionless public RPC",
       "Roadmap card title for permissionless public RPC.",
     ),
     body: tr(
-      "docs.home.roadmap.card.phase2.body",
-      "A proposal for multi-user Bitsocial RPC infrastructure with isolated users, scoped permissions, and durable ownership.",
+      "docs.home.roadmap.card.rpc.body",
+      "Multi-user Bitsocial RPC infrastructure with isolated users, scoped permissions, and durable ownership.",
       "Roadmap card description for permissionless public RPC.",
     ),
   },
   {
     to: "/bitsocial-network/",
-    eyebrow: tr("docs.home.roadmap.card.phase4.eyebrow", "Phase 4", "Roadmap card eyebrow."),
+    eyebrow: tr("docs.home.roadmap.card.network.eyebrow", "Phase 2", "Roadmap card eyebrow."),
     title: tr(
-      "docs.home.roadmap.card.phase4.title",
+      "docs.home.roadmap.card.network.title",
       "Bitsocial Network",
       "Roadmap card title for Bitsocial Network.",
     ),
     body: tr(
-      "docs.home.roadmap.card.phase4.body",
-      "The appchain layer proposed to power shared liquidity, decentralized domains, and durable incentives across apps.",
+      "docs.home.roadmap.card.network.body",
+      "The economic layer proposed to power .bso names, awards, tipping, monetization, and shared app network effects.",
       "Roadmap card description for Bitsocial Network.",
     ),
   },
   {
-    to: "/decentralize-all-social-media/",
-    eyebrow: tr("docs.home.roadmap.card.phase5.eyebrow", "Phase 5", "Roadmap card eyebrow."),
+    to: "/flagship-bitsocial-app/",
+    eyebrow: tr("docs.home.roadmap.card.flagship.eyebrow", "Phase 3", "Roadmap card eyebrow."),
     title: tr(
-      "docs.home.roadmap.card.phase5.title",
+      "docs.home.roadmap.card.flagship.title",
+      "Flagship Bitsocial app",
+      "Roadmap card title for the flagship Bitsocial app page.",
+    ),
+    body: tr(
+      "docs.home.roadmap.card.flagship.body",
+      "The profile-based client with optional feed algorithms, non-custodial RPC, and self-hostable profile nodes.",
+      "Roadmap card description for the flagship Bitsocial app page.",
+    ),
+  },
+  {
+    to: "/scale-bitsocial-economies/",
+    eyebrow: tr("docs.home.roadmap.card.economies.eyebrow", "Phase 4", "Roadmap card eyebrow."),
+    title: tr(
+      "docs.home.roadmap.card.economies.title",
+      "Scale Bitsocial economies",
+      "Roadmap card title for the scale Bitsocial economies page.",
+    ),
+    body: tr(
+      "docs.home.roadmap.card.economies.body",
+      "Funding and infrastructure pluralism for many RPCs, media hosts, discovery services, operators, and developers.",
+      "Roadmap card description for the scale Bitsocial economies page.",
+    ),
+  },
+  {
+    to: "/decentralize-all-social-media/",
+    eyebrow: tr("docs.home.roadmap.card.social.eyebrow", "Phase 5", "Roadmap card eyebrow."),
+    title: tr(
+      "docs.home.roadmap.card.social.title",
       "Decentralize all social media",
       "Roadmap card title for the decentralize all social media page.",
     ),
     body: tr(
-      "docs.home.roadmap.card.phase5.body",
-      "The end-state: many public RPCs, competing apps, portable identities, and optional feed markets instead of captive platforms.",
+      "docs.home.roadmap.card.social.body",
+      "The long tail: blogging, crowdfunding, video, niche clients, grants, and many independent builders.",
       "Roadmap card description for the decentralize all social media page.",
     ),
   },
@@ -132,6 +164,24 @@ const appCards = [
 ] as const;
 
 const developerToolCards = [
+  {
+    to: "/build-your-own-client/",
+    eyebrow: tr(
+      "docs.home.devtools.card.buildClient.eyebrow",
+      "Clients",
+      "Developer tools card eyebrow for the build your own client page.",
+    ),
+    title: tr(
+      "docs.home.devtools.card.buildClient.title",
+      "Build your own client",
+      "Developer tools card title for the build your own client page.",
+    ),
+    body: tr(
+      "docs.home.devtools.card.buildClient.body",
+      "A builder guide for independent Bitsocial clients across imageboards, forums, profile apps, and niche social products.",
+      "Developer tools card description for the build your own client page.",
+    ),
+  },
   {
     to: "/developer-tools/react-hooks/",
     eyebrow: "React",

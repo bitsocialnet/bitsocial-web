@@ -140,51 +140,51 @@
     "quoteAttribution": "— Esteban Abaroa, Bitsocial-stifter"
   },
   "masterPlan": {
-    "title": "Opfordring til handling",
+    "title": "En opfordring til handling",
     "logoAlt": "Logo",
-    "easterEggAlt": "SpongeBob",
-    "epilogue": "Sociale medier finder endelig deres ligevægt: et fuldt decentraliseret peer-to-peer-netværk, som ingen ejer; Bitsocial.",
+    "easterEggAlt": "SvampeBob",
+    "epilogue": "Sluttilstanden er ikke én app. Det er et marked af kunder, noder, tjenester og fællesskaber, der kan erstatte platformsejerskab med protokolkonkurrence.",
+    "epilogueFinal": "Sociale medier finder endelig sin ligevægt: et fuldt decentraliseret, peer-to-peer socialt netværk, som ingen ejer; Bitsocial.",
     "phases": {
       "phase1": {
         "phase": "Fase 1",
-        "status": "I gang",
-        "title": "Decentraliser imageboards",
-        "description": "<strong>Billedtavler er den enkleste form for sociale medier at decentralisere</strong>: anonyme opslag, få standardtavler og ingen profilgraf. Det er derfor, vi lancerer 5chan, den første Bitsocial-app. 5chan beviser, at Bitsocial kan erstatte centraliserede imageboards, mens globale administratorer fjernes fra ligningen.",
-        "callout": {
-          "description": "5chan er det første bevispunkt, ikke målstregen. <strong>Vi vil have flere imageboard-klienter med forskellige kulturer</strong>, grænseflader og standardindstillinger: tavler i altchan-stil, mobile-first-eksperimenter, nichefællesskaber og gafler, der løser behov, 5chan vil aldrig.",
-          "ctaLabel": "Byg din egen",
-          "separator": "- eller -"
-        }
+        "status": "Løbende",
+        "title": "Decentraliser imageboards og fora",
+        "description": "<strong>Imageboards er den enkleste form for sociale medier at decentralisere</strong>: anonymt opslag, få standardtavler og ingen profilgraf. 5chan beviser, at Bitsocial kan erstatte centraliserede imageboards og samtidig fjerne globale administratorer fra ligningen.",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink> vil lancere den første ikke-frihedsberøvede RPC-tjeneste til Bitsocial-apps. <rpcLink>Bitsocial RPC</rpcLink> vil lade brugere fjernadministrere noder, mens de bevarer muligheden for selv at hoste eller køre konkurrerende RPC-infrastruktur. <strong>Usere vil være i stand til at oprette og administrere ustoppelige p2p-fællesskaber fra mobile</strong>.",
+        "forumsDescription": "Fora tilføjer vedvarende identiteter, posthistorik og fællesskabsadministration. Seedit er den første prototype Bitsocial-app til <strong>Reddit-lignende diskussion</strong>, og offentlige RPC gør disse P2P-fællesskaber, der altid er på, praktiske hvor som helst."
       },
       "phase2": {
         "phase": "Fase 2",
-        "title": "Lancér Bitsocial RPC",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink> vil lancere den første ikke-frihedsberøvede RPC-tjeneste til Bitsocial-apps. Bitsocial RPC vil lade brugere fjernadministrere noder, mens de bevarer muligheden for selv at hoste eller køre konkurrerende RPC-infrastruktur. <strong>Brugere vil være i stand til at oprette og administrere ustoppelige p2p-fællesskaber fra mobilen</strong>."
+        "title": "Lancering af Bitsocial Network",
+        "description": "For at decentralisere alle sociale medier, har Bitsocial apps brug for dræbende funktioner og stærke netværkseffekter:<strong>ustoppelige finansielle strukturer</strong>, decentraliserede Bitsocial-domæner (.bso), priser og drikkepenge, fælles likviditet og praktisk indtægtsgenerering. Alt dette vil blive drevet af Bitsocial Network, en<strong>decentraliseret appchain-løsning</strong> til Bitsocial apps."
       },
       "phase3": {
         "phase": "Fase 3",
-        "title": "Decentraliser fora",
-        "description": "Fora tilføjer vedvarende identiteter, posthistorik og fællesskabsadministration. Vores første prototype Bitsocial-app til at decentralisere fora er Seedit, et reddit-alternativ. <strong>Seedit vil bringe Reddit-lignende diskussion til Bitsocial</strong>, når Bitsocial RPC gør P2P-fællesskaber, der altid er på, praktiske, hvor som helst."
+        "title": "Start flagskibet Bitsocial-appen",
+        "description": "Flagskibet Bitsocial-appen skulle være den første profilbaserede klient: indlæg, svar, følger, offentlig samtale i realtid og fællesskaber, der kan trække netværkseffekter fra hver Bitsocial-klient. <strong>Som standard kan den føles lige så velkendt som en moderne For You-social app</strong>, mens den stadig lader brugere skifte RPC'er, feeds, forekomster, algoritmer, annoncer eller helt fjerne rangering.",
+        "rpcNodes": "Gennem ikke-frihedsberøvede RPC kan hver bruger stadig fungere som en fuld p2p node uden at stole på RPC med ejerskab. Enhver skal kunne flytte til deres egen profilknude på en lavspecifik maskine, inklusive en Raspberry Pi, når de vil.",
+        "everythingApp": "Fordi fase 2 giver appen et ustoppeligt kryptofinansielt lag, kan flagskibsklienten potentielt blive en<strong>alt-app</strong> uden at blive til en forvaringsplatform."
       },
       "phase4": {
         "phase": "Fase 4",
-        "title": "Lancér Bitsocial Network",
-        "description": "For at decentralisere alle sociale medier vil Bitsocial-apps have brug for dræbende funktioner og stærke netværkseffekter, <strong>ustoppelige finansielle strukturer</strong>, decentraliserede Bitsocial-domæner (.bso), fælles likviditet. Alt dette vil blive drevet af Bitsocial Network, en <strong>decentraliseret appchain-løsning</strong> til Bitsocial-apps."
+        "title": "Skala Bitsocial økonomier",
+        "description": "Det næste lag er økosystemfinansiering og infrastrukturpluralisme. <strong>Bitsocial Forge's RPC burde ikke være den eneste succesfulde RPC</strong>: mange virksomheder, uafhængige teams, anonyme operatører og samfundsenheder bør bygge RPCs, mediehosting, opdagelse, moderering og andre tjenester oven på Bitsocial. Finansiering bør skubbe den decentralisering fremad, så udviklere og operatører kan konkurrere om at gøre netværket hurtigere, billigere, mere pålideligt og sværere at fange."
       },
       "phase5": {
         "phase": "Fase 5",
         "title": "Decentraliser alle sociale medier",
-        "description": "Med flere offentlige RPC'er, der konkurrerer med hinanden om at levere profilknuder og <strong>valgfri feedalgoritmer</strong>, og med Bitsocial Network, der muliggør indtægtsgenerering af indhold, uden at banker beslaglægger midler, vil <strong>Bitsocial apps være i stand til at konkurrere med alle slags sociale medier</strong>, inklusive Facebook, Instagram, TikTok, X og YouTube."
+        "description": "Med kerneapps, offentlige RPCs, profilknuder, opdagelse og indtægtsgenerering på plads,<strong>Bitsocial kan finansiere og bygge den lange hale af sociale klienter</strong>: blogging, crowdfunding, skabervideo og et troværdigt YouTube-alternativ, nicheeksperimenter og hvert format for tidligt til de første fire faser. Bitsocial Forge kan bygge nogle af dem, centraliserede kunder kan også konkurrere, de behøver ikke alle at være FOSS, og decentraliserede fællesskabstilskud kan finansiere så mange udviklere som muligt."
       }
     },
     "cta": {
-      "learnMore": "Læs mere",
+      "learnMore": "Lær mere",
       "try5chan": "Prøv 5chan",
-      "readTechnicalSpec": "Læs den foreslåede tekniske specifikation",
-      "trySeedit": "Prøv Seedit (eksperimentel)"
+      "trySeedit": "Prøv Seedit",
+      "buildYourOwn": "Byg din egen"
     },
-    "subtitle": "Bitsocial vinder ved at tiltrække så mange byggere som muligt. Kør dit eget ustoppelige fællesskab, udvikl din egen decentrale sociale app, eller lancér endda din egen forretning oven på Bitsocial. Tidevandet stiger med hver bygger.",
-    "sectionLabel": "Hovedplan"
+    "subtitle": "Bitsocial vinder ved at tiltrække så mange bygherrer som muligt. Kør dit eget ustoppelige fællesskab, udvikle din egen decentraliserede sociale app, eller start din egen virksomhed oven på Bitsocial. Tidevandet stiger med hver bygherre.",
+    "sectionLabel": "Masterplan"
   },
   "home": {
     "devOnlyRouteNotice": "{{path}} er stadig under konstruktion. Du er blevet sendt videre til forsiden.",

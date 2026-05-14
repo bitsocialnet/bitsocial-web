@@ -140,51 +140,51 @@
     "quoteAttribution": "— Esteban Abaroa, Bitsocials grundare"
   },
   "masterPlan": {
-    "title": "Uppmaning till handling",
+    "title": "En uppmaning till handling",
     "logoAlt": "Logotyp",
-    "easterEggAlt": "SpongeBob",
-    "epilogue": "Sociala medier hittar äntligen sin jämvikt: ett fullt decentraliserat peer-to-peer-nätverk som ingen äger; Bitsocial.",
+    "easterEggAlt": "Svampbob",
+    "epilogue": "Sluttillståndet är inte en app. Det är en marknad av kunder, noder, tjänster och gemenskaper som kan ersätta plattformsägande med protokollkonkurrens.",
+    "epilogueFinal": "Sociala medier finner äntligen sin jämvikt: ett helt decentraliserat, peer-to-peer socialt nätverk som ingen äger; Bitsocial.",
     "phases": {
       "phase1": {
         "phase": "Fas 1",
-        "status": "Pågående",
-        "title": "Decentralisera imageboards",
-        "description": "<strong>Bildtavlor är den enklaste formen av sociala medier att decentralisera</strong>: anonyma inlägg, få standardtavlor och inget profildiagram. Det är därför vi lanserar 5chan, den första Bitsocial-appen. 5chan bevisar att Bitsocial kan ersätta centraliserade imageboards samtidigt som de tar bort globala administratörer från ekvationen.",
-        "callout": {
-          "description": "5chan är den första bevispunkten, inte mållinjen. <strong>Vi vill ha flera imageboard-klienter med olika kulturer</strong>, gränssnitt och standardinställningar: tavlor i altchan-stil, experiment i första hand med mobila enheter, nischgemenskaper och forks som löser behov 5chan kommer aldrig att göra.",
-          "ctaLabel": "Bygg din egen",
-          "separator": "- eller -"
-        }
+        "status": "Pågår",
+        "title": "Decentralisera imageboards och forum",
+        "description": "<strong>Bildtavlor är den enklaste formen av sociala medier att decentralisera</strong>: anonymt inlägg, få standardtavlor och ingen profilgraf. 5chan bevisar att Bitsocial kan ersätta centraliserade imageboards samtidigt som de tar bort globala administratörer från ekvationen.",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink> kommer att lansera den första RPC-tjänsten utan frihetsberövande för Bitsocial-appar. <rpcLink>Bitsocial RPC</rpcLink> låter användare hantera noder på distans, samtidigt som de behåller möjligheten att själv hosta eller köra konkurrerande RPC-infrastruktur. <strong>Users kommer att kunna skapa och hantera ostoppbara p2p-gemenskaper från mobile</strong>.",
+        "forumsDescription": "Forum lägger till beständiga identiteter, inläggshistorik och gemenskapshantering. Seedit är den första prototypen av Bitsocial-appen för <strong>Reddit-liknande diskussioner</strong>, och offentliga RPC gör dessa P2P-gemenskaper som alltid är på, praktiska var som helst."
       },
       "phase2": {
         "phase": "Fas 2",
-        "title": "Lansera Bitsocial RPC",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink> kommer att lansera den första RPC-tjänsten för Bitsocial-appar som inte är fristående. Bitsocial RPC låter användare hantera noder på distans, samtidigt som de behåller möjligheten att själv hosta eller köra konkurrerande RPC-infrastruktur. <strong>Användare kommer att kunna skapa och hantera ostoppbara p2p-gemenskaper från mobilen</strong>."
+        "title": "Lanseringen av Bitsocial Network",
+        "description": "För att decentralisera alla sociala medier kommer Bitsocial-appar att behöva mördande funktioner och starka nätverkseffekter:<strong>ostoppbara finansiella strukturer</strong>, decentraliserade Bitsocial-domäner (.bso), utmärkelser och dricks, gemensam likviditet och praktisk intäktsgenerering. Allt detta kommer att drivas av Bitsocial Network, en<strong>decentraliserad appchain-lösning</strong> för Bitsocial-appar."
       },
       "phase3": {
         "phase": "Fas 3",
-        "title": "Decentralisera forum",
-        "description": "Forum lägger till beständiga identiteter, inläggshistorik och gemenskapshantering. Vår första prototyp Bitsocial-app för att decentralisera forum är Seedit, ett reddit-alternativ. <strong>Seedit kommer att föra diskussioner i Reddit-stil till Bitsocial</strong>, när Bitsocial RPC gör P2P-gemenskaper som alltid är aktiva praktiska var som helst."
+        "title": "Starta flaggskeppet Bitsocial-appen",
+        "description": "Flaggskeppet Bitsocial-appen borde vara den första profilbaserade klienten: inlägg, svar, följer, offentliga samtal i realtid och gemenskaper som kan dra nätverkseffekter från varje Bitsocial-klient. <strong>Som standard kan den kännas lika bekant som en modern For You-social app</strong>, samtidigt som den låter användare byta RPC, flöden, instanser, algoritmer, annonser eller ta bort rankning helt.",
+        "rpcNodes": "Genom icke-frihetsberövande RPC kan varje användare fortfarande agera som en fullständig p2p-nod utan att lita på ägandet av RPC. Vem som helst ska kunna flytta till sin egen profilnod på en lågspecifik maskin, inklusive en Raspberry Pi, när de vill.",
+        "everythingApp": "Eftersom Fas 2 ger appen ett ostoppbart kryptofinansiellt lager, kan flaggskeppsklienten potentiellt bli en<strong>allt-app</strong> utan att förvandlas till en frihetsberövande plattform."
       },
       "phase4": {
         "phase": "Fas 4",
-        "title": "Lansera Bitsocial Network",
-        "description": "För att decentralisera alla sociala medier kommer Bitsocial-appar att behöva mördande funktioner och starka nätverkseffekter, <strong>ostoppbara finansiella strukturer</strong>, decentraliserade Bitsocial-domäner (.bso), gemensam likviditet. Allt detta kommer att drivas av Bitsocial Network, en <strong>decentraliserad appchain-lösning</strong> för Bitsocial-appar."
+        "title": "Skala Bitsocial ekonomier",
+        "description": "Nästa lager är ekosystemfinansiering och infrastrukturpluralism. <strong>Bitsocial Forge:s RPC borde inte vara den enda framgångsrika RPC</strong>: många företag, oberoende team, anonyma operatörer och community-enheter bör bygga RPCs, mediahosting, upptäckt, moderering och andra tjänster ovanpå Bitsocial. Finansiering bör driva den decentraliseringen framåt, så att utvecklare och operatörer kan konkurrera om att göra nätverket snabbare, billigare, mer pålitligt och svårare att fånga."
       },
       "phase5": {
         "phase": "Fas 5",
         "title": "Decentralisera alla sociala medier",
-        "description": "Med flera offentliga RPC:er som konkurrerar med varandra om att tillhandahålla profilnoder och <strong>valfria flödesalgoritmer</strong>, och med Bitsocial Network som möjliggör intäktsgenerering för innehåll utan att banker lägger beslag på pengar, <strong>Bitsocial-appar kommer att kunna konkurrera med alla typer av sociala medier</strong>, inklusive Facebook, Instagram, TikTok, X och YouTube."
+        "description": "Med kärnapparna, offentliga RPCs, profilnoder, upptäckt och intäktsgenerering på plats,<strong>Bitsocial kan finansiera och bygga upp sociala klienters långa svans</strong>: bloggande, crowdfunding, skaparvideo och ett trovärdigt YouTube-alternativ, nischade experiment och varje format för tidigt för de första fyra faserna. Bitsocial Forge kan bygga några av dem, centraliserade kunder kan också konkurrera, de behöver inte alla vara FOSS, och decentraliserade community-bidrag kan finansiera så många utvecklare som möjligt."
       }
     },
     "cta": {
       "learnMore": "Läs mer",
       "try5chan": "Prova 5chan",
-      "readTechnicalSpec": "Läs den föreslagna tekniska specifikationen",
-      "trySeedit": "Testa Seedit (experimentell)"
+      "trySeedit": "Prova Seedit",
+      "buildYourOwn": "Bygg din egen"
     },
-    "subtitle": "Bitsocial vinner genom att attrahera så många byggare som möjligt. Driv din egen ostoppbara community, utveckla din egen decentraliserade sociala app, eller lansera till och med ditt eget företag ovanpå Bitsocial. Tidvattnet stiger med varje byggare.",
-    "sectionLabel": "Huvudplan"
+    "subtitle": "Bitsocial vinner genom att attrahera så många byggare som möjligt. Kör din egen ostoppbara community, utveckla din egen decentraliserade sociala app, eller till och med starta ditt eget företag ovanpå Bitsocial. Tidvattnet stiger med varje byggare.",
+    "sectionLabel": "Översiktsplan"
   },
   "home": {
     "dismissDevOnlyRouteNotice": "Stäng meddelandet",

@@ -140,51 +140,51 @@
     "quoteAttribution": "— Esteban Abaroa, pendiri Bitsocial"
   },
   "masterPlan": {
-    "title": "Ajakan bertindak",
-    "logoAlt": "Logo",
+    "title": "Panggilan untuk Bertindak",
+    "logoAlt": "logo",
     "easterEggAlt": "SpongeBob",
-    "epilogue": "Akhirnya media sosial menemukan keseimbangannya: jaringan peer-to-peer yang sepenuhnya terdesentralisasi dan tidak dimiliki siapa pun; Bitsocial.",
+    "epilogue": "Status akhir bukanlah satu aplikasi. Ini adalah pasar klien, node, layanan, dan komunitas yang dapat menggantikan kepemilikan platform dengan kompetisi protokol.",
+    "epilogueFinal": "Media sosial akhirnya menemukan keseimbangannya: jaringan sosial peer-to-peer yang sepenuhnya terdesentralisasi dan tidak dimiliki oleh siapa pun; Bitsocial.",
     "phases": {
       "phase1": {
-        "phase": "Tahap 1",
-        "status": "Berjalan",
-        "title": "Mendesentralisasi imageboard",
-        "description": "<strong>Papan gambar adalah bentuk media sosial yang paling sederhana untuk didesentralisasi</strong>: postingan anonim, sedikit papan default, dan tidak ada grafik profil. Inilah alasan kami meluncurkan 5chan, aplikasi Bitsocial pertama. 5chan membuktikan Bitsocial dapat menggantikan imageboard terpusat sekaligus menghilangkan admin global dari persamaan.",
-        "callout": {
-          "description": "5chan adalah titik pembuktian pertama, bukan garis finis. <strong>Kami menginginkan beberapa klien imageboard dengan budaya berbeda</strong>, antarmuka, dan default: papan bergaya altchan, eksperimen mobile-first, komunitas khusus, dan fork yang memecahkan kebutuhan yang tidak akan pernah bisa dilakukan oleh 5chan.",
-          "ctaLabel": "Buat milikmu sendiri",
-          "separator": "- atau -"
-        }
+        "phase": "Fase 1",
+        "status": "Sedang berlangsung",
+        "title": "Desentralisasi papan gambar dan forum",
+        "description": "<strong>Imageboard adalah bentuk media sosial yang paling sederhana untuk didesentralisasi</strong>: postingan anonim, sedikit papan default, dan tidak ada grafik profil. 5chan membuktikan Bitsocial dapat menggantikan imageboard terpusat sekaligus menghilangkan admin global dari persamaan.",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink> akan meluncurkan layanan RPC non-penahanan pertama untuk aplikasi Bitsocial. <rpcLink>Bitsocial RPC</rpcLink> akan memungkinkan pengguna mengelola node dari jarak jauh, sambil mempertahankan opsi untuk menghosting sendiri atau menjalankan infrastruktur RPC yang bersaing. <strong>Pengguna akan dapat membuat dan mengelola komunitas p2p yang tak terhentikan dari seluler</strong>.",
+        "forumsDescription": "Forum menambahkan identitas persisten, riwayat postingan, dan pengelolaan komunitas. Seedit is the first prototype Bitsocial app for <strong>Reddit-style discussion</strong>, and public RPC makes those always-on P2P communities practical from anywhere."
       },
       "phase2": {
-        "phase": "Tahap 2",
-        "title": "Meluncurkan Bitsocial RPC",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink> akan meluncurkan layanan RPC non-penahanan pertama untuk aplikasi Bitsocial. RPC Bitsocial akan memungkinkan pengguna mengelola node dari jarak jauh, sambil mempertahankan opsi untuk menghosting sendiri atau menjalankan infrastruktur RPC yang bersaing. <strong>Pengguna akan dapat membuat dan mengelola komunitas p2p yang tak terhentikan dari seluler</strong>."
+        "phase": "Fase 2",
+        "title": "Peluncuran Bitsocial Network",
+        "description": "Untuk mendesentralisasikan semua media sosial, aplikasi Bitsocial memerlukan fitur mematikan dan efek jaringan yang kuat:<strong>struktur keuangan yang tidak dapat dihentikan</strong>, domain Bitsocial terdesentralisasi (.bso), penghargaan dan pemberian tip, likuiditas umum, dan monetisasi praktis. Semua ini akan didukung oleh Bitsocial Network, a<strong>solusi rantai aplikasi terdesentralisasi</strong> untuk aplikasi Bitsocial."
       },
       "phase3": {
-        "phase": "Tahap 3",
-        "title": "Mendesentralisasi forum",
-        "description": "Forum menambahkan identitas persisten, riwayat postingan, dan pengelolaan komunitas. Prototipe pertama aplikasi Bitsocial kami yang mendesentralisasikan forum adalah Seedit, sebuah alternatif reddit. <strong>Seedit akan menghadirkan diskusi bergaya Reddit ke Bitsocial</strong>, setelah Bitsocial RPC menjadikan komunitas P2P yang selalu aktif menjadi praktis dari mana saja."
+        "phase": "Fase 3",
+        "title": "Luncurkan aplikasi andalan Bitsocial",
+        "description": "Aplikasi unggulan Bitsocial harus menjadi klien berbasis profil pertama: postingan, balasan, mengikuti, percakapan publik real-time, dan komunitas yang dapat menarik efek jaringan dari setiap klien Bitsocial. <strong>Secara default, ini terasa familier seperti aplikasi sosial modern Untuk Anda</strong>, namun tetap memungkinkan pengguna mengganti RPC, feed, instance, algoritma, iklan, atau menghapus peringkat seluruhnya.",
+        "rpcNodes": "Melalui RPC non-penahanan, setiap pengguna masih dapat bertindak sebagai node p2p penuh tanpa memercayai kepemilikan RPC. Siapa pun harus dapat berpindah ke node profilnya sendiri pada mesin berspesifikasi rendah, termasuk Raspberry Pi, kapan pun mereka mau.",
+        "everythingApp": "Karena Fase 2 memberi aplikasi lapisan keuangan kripto yang tidak dapat dihentikan, klien andalan berpotensi menjadi<strong>semuanya-aplikasi</strong> tanpa berubah menjadi platform kustodian."
       },
       "phase4": {
-        "phase": "Tahap 4",
-        "title": "Meluncurkan Bitsocial Network",
-        "description": "Untuk mendesentralisasikan semua media sosial, aplikasi Bitsocial memerlukan fitur-fitur canggih dan efek jaringan yang kuat, <strong>struktur keuangan yang tidak dapat dihentikan</strong>, domain Bitsocial yang terdesentralisasi (.bso), dan likuiditas umum. Semua ini akan didukung oleh Bitsocial Network, sebuah <strong>solusi rantai aplikasi terdesentralisasi</strong> untuk aplikasi Bitsocial."
+        "phase": "Fase 4",
+        "title": "Skala perekonomian Bitsocial",
+        "description": "Lapisan berikutnya adalah pendanaan ekosistem dan pluralisme infrastruktur. <strong>RPC Bitsocial Forge seharusnya bukan satu-satunya RPC yang sukses</strong>: banyak bisnis, tim independen, operator anonim, dan entitas komunitas harus membangun RPCs, hosting media, penemuan, moderasi, dan layanan lainnya di atas Bitsocial. Pendanaan harus mendorong desentralisasi ke depan, sehingga pengembang dan operator dapat bersaing untuk membuat jaringan lebih cepat, lebih murah, lebih dapat diandalkan, dan lebih sulit untuk ditangkap."
       },
       "phase5": {
-        "phase": "Tahap 5",
-        "title": "Mendesentralisasi seluruh media sosial",
-        "description": "Dengan banyaknya RPC publik yang bersaing satu sama lain untuk menyediakan node profil dan <strong>algoritme feed opsional</strong>, dan dengan Bitsocial Network yang memungkinkan monetisasi konten tanpa bank menyita dana, <strong>Aplikasi Bitsocial akan mampu menyaingi semua jenis media sosial</strong>, termasuk Facebook, Instagram, TikTok, X, dan YouTube."
+        "phase": "Fase 5",
+        "title": "Desentralisasi semua media sosial",
+        "description": "Dengan aplikasi inti, RPCs publik, node profil, penemuan, dan monetisasi,<strong>Bitsocial dapat mendanai dan membangun klien sosial jangka panjang</strong>: blogging, crowdfunding, video pembuat konten dan alternatif YouTube yang kredibel, eksperimen khusus, dan setiap format terlalu dini untuk empat fase pertama. Bitsocial Forge dapat membangun beberapa di antaranya, klien terpusat juga dapat bersaing, tidak semuanya harus FOSS, dan hibah komunitas yang terdesentralisasi dapat mendanai sebanyak mungkin pengembang."
       }
     },
     "cta": {
-      "learnMore": "Pelajari lebih lanjut",
+      "learnMore": "Pelajari Lebih Lanjut",
       "try5chan": "Coba 5chan",
-      "readTechnicalSpec": "Baca spesifikasi teknis yang diusulkan",
-      "trySeedit": "Coba Seedit (eksperimental)"
+      "trySeedit": "Coba Seedit",
+      "buildYourOwn": "Bangun milik Anda sendiri"
     },
-    "subtitle": "Bitsocial menang dengan menarik sebanyak mungkin builder. Jalankan komunitas Anda sendiri yang tak terbendung, kembangkan aplikasi sosial terdesentralisasi Anda sendiri, atau bahkan luncurkan bisnis Anda sendiri di atas Bitsocial. Pasang naik terus bertambah dengan setiap builder.",
-    "sectionLabel": "Rencana Utama"
+    "subtitle": "Bitsocial menang dengan menarik sebanyak mungkin pembangun. Jalankan komunitas Anda yang tak terhentikan, kembangkan aplikasi sosial terdesentralisasi Anda sendiri, atau bahkan luncurkan bisnis Anda sendiri di atas Bitsocial. Gelombang pasang meningkat seiring dengan setiap pembangun.",
+    "sectionLabel": "Rencana Induk"
   },
   "home": {
     "devOnlyRouteNotice": "{{path}} masih dalam pengembangan. Anda telah dialihkan ke halaman utama.",

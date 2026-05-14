@@ -140,50 +140,50 @@
     "quoteAttribution": "— Esteban Abaroa，Bitsocial 创始人"
   },
   "masterPlan": {
-    "title": "行动号召",
+    "title": "号召性用语",
     "logoAlt": "标志",
-    "easterEggAlt": "SpongeBob",
-    "epilogue": "社交媒体终于找到了平衡：一个完全去中心化、没有任何人拥有的点对点网络；Bitsocial。",
+    "easterEggAlt": "海绵宝宝",
+    "epilogue": "最终状态不是一个应用程序。这是一个由客户端、节点、服务和社区组成的市场，可以用协议竞争取代平台所有权。",
+    "epilogueFinal": "社交媒体最终找到了平衡：一个完全去中心化的、无人拥有的点对点社交网络； Bitsocial。",
     "phases": {
       "phase1": {
-        "phase": "阶段 1",
+        "phase": "第一阶段",
         "status": "进行中",
-        "title": "图片论坛去中心化",
-        "description": "<strong>图片板是最简单的去中心化社交媒体形式</strong>：匿名发帖、少量默认板，并且没有个人资料图。这就是我们推出第一个 Bitsocial 应用程序 5chan 的原因。 5chan 证明 Bitsocial 可以取代集中式图像板，同时消除全局管理员。",
-        "callout": {
-          "description": "5chan是第一个证明点，而不是终点线。<strong>我们想要多个具有不同文化的 imageboard 客户端</strong>、界面和默认设置：altchan 风格的面板、移动优先实验、利基社区以及能够解决 5chan 永远无法解决的需求的分叉。",
-          "ctaLabel": "打造你自己的",
-          "separator": "- 或 -"
-        }
+        "title": "分散图像板和论坛",
+        "description": "<strong>图片板是最简单的去中心化社交媒体形式</strong>：匿名发帖，很少有默认版块，并且没有个人资料图。 5chan 证明 Bitsocial 可以取代集中式图像板，同时消除全局管理员。",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink>将为Bitsocial应用程序推出首个非托管RPC服务。 <rpcLink>Bitsocial RPC</rpcLink> 将允许用户远程管理节点，同时保留自托管或运行竞争性 RPC 基础设施的选项。 <strong>U用户将能够从mobile</strong>创建和管理势不可挡的p2p社区。",
+        "forumsDescription": "论坛添加了持久身份、帖子历史记录和社区管理。 Seedit 是用于 <strong>Reddit 风格讨论的第一个原型 Bitsocial 应用程序</strong>，而公共 RPC 使那些始终在线的 P2P 社区在任何地方都很实用。"
       },
       "phase2": {
-        "phase": "阶段 2",
-        "title": "推出 Bitsocial RPC",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink> 将为 Bitsocial 应用推出首个非托管 RPC 服务。 Bitsocial RPC 将允许用户远程管理节点，同时保留自托管或运行竞争性 RPC 基础设施的选项。 <strong>用户将能够通过移动设备创建和管理势不可挡的 p2p 社区</strong>。"
+        "phase": "第二阶段",
+        "title": "Bitsocial Network 的上线",
+        "description": "为了去中心化所有社交媒体，Bitsocial 应用程序将需要杀手级功能和强大的网络效应：<strong>不可阻挡的金融结构</strong>，去中心化的Bitsocial域名（.bso），奖励和小费，共同的流动性和实用的货币化。所有这一切都将由 Bitsocial Network 提供支持，Bitsocial Network<strong>去中心化应用链解决方案</strong> 适用于 Bitsocial 应用程序。"
       },
       "phase3": {
-        "phase": "阶段 3",
-        "title": "论坛去中心化",
-        "description": "论坛添加了持久身份、帖子历史记录和社区管理。我们的第一个用于去中心化论坛的原型 Bitsocial 应用程序是 Seedit，它是 Reddit 的替代品。一旦 Bitsocial RPC 使永远在线的 P2P 社区在任何地方变得实用，<strong>Seedit 将为 Bitsocial 带来 Reddit 风格的讨论</strong>。"
+        "phase": "第三阶段",
+        "title": "推出旗舰Bitsocial应用程序",
+        "description": "旗舰级 Bitsocial 应用程序应该是第一个基于个人资料的客户端：发帖、回复、关注、实时公共对话以及可以从每个 Bitsocial 客户端中拉动网络效应的社区。<strong>默认情况下，它就像现代的 For You 社交应用程序一样熟悉</strong>，同时仍然允许用户切换 RPC、提要、实例、算法、广告或完全删除排名。",
+        "rpcNodes": "通过非托管RPC，每个用户仍然可以充当完整的p2p节点，而无需信任RPC的所有权。任何人都应该能够随时在低规格机器（包括 Raspberry Pi）上移动到自己的配置文件节点。",
+        "everythingApp": "由于第二阶段为应用程序提供了不可阻挡的加密金融层，因此旗舰客户有可能成为<strong>一切应用程序</strong> 而不变成托管平台。"
       },
       "phase4": {
-        "phase": "阶段 4",
-        "title": "推出 Bitsocial Network",
-        "description": "为了使所有社交媒体去中心化，Bitsocial 应用程序将需要杀手级功能和强大的网络效应、<strong>不可阻挡的金融结构</strong>、去中心化的 Bitsocial 域 (.bso)、共同的流动性。所有这一切都将由 Bitsocial Network 提供支持，这是一个针对 Bitsocial 应用的<strong>去中心化应用链解决方案</strong>。"
+        "phase": "第四阶段",
+        "title": "经济规模 Bitsocial",
+        "description": "下一层是生态系统融资和基础设施多元化。 <strong>Bitsocial Forge的RPC不应该是唯一成功的RPC</strong>：许多企业、独立团队、匿名运营商和社区实体应该在 Bitsocial 之上构建 RPCs、媒体托管、发现、审核和其他服务。资金应该推动去中心化的发展，这样开发商和运营商就可以竞争，让网络更快、更便宜、更可靠、更难被占领。"
       },
       "phase5": {
-        "phase": "阶段 5",
+        "phase": "第五阶段",
         "title": "去中心化所有社交媒体",
-        "description": "当多个公开 RPC 竞争提供个人资料节点和<strong>可选的信息流算法</strong>，同时 Bitsocial Network 还能让内容变现而不会被银行冻结资金时，<strong>Bitsocial 应用将能够与 Facebook、Instagram、TikTok、X 和 YouTube 等各种社交媒体一较高下</strong>。"
+        "description": "有了核心应用程序、公共 RPCs、配置文件节点、发现和货币化，<strong>Bitsocial可以资助和建立社会客户的长尾</strong>：博客、众筹、创作者视频和可靠的 YouTube 替代方案、利基实验以及每种格式对于前四个阶段来说还为时过早。 Bitsocial Forge 可以构建其中一些，中心化客户端也可以竞争，它们不必全部是 FOSS，去中心化社区赠款可以为尽可能多的开发者提供资金。"
       }
     },
     "cta": {
       "learnMore": "了解更多",
-      "try5chan": "试试 5chan",
-      "readTechnicalSpec": "阅读拟议的技术规范",
-      "trySeedit": "试用 Seedit（实验版）"
+      "try5chan": "试试5chan",
+      "trySeedit": "试试Seedit",
+      "buildYourOwn": "建立你自己的"
     },
-    "subtitle": "Bitsocial 的胜利在于尽可能吸引更多建设者。运行你自己的不可阻挡的社区，开发你自己的去中心化社交应用，甚至在 Bitsocial 之上启动你自己的业务。每一位建设者都会让潮水上涨。",
+    "subtitle": "Bitsocial 通过吸引尽可能多的建造者来获胜。运营您自己的不可阻挡的社区，开发您自己的去中心化社交应用程序，甚至在 Bitsocial 之上开展您自己的业务。潮水随着每一位建设者而上涨。",
     "sectionLabel": "总体规划"
   },
   "home": {

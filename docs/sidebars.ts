@@ -18,7 +18,14 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Master plan",
-      items: ["permissionless-public-rpc", "bitsocial-network", "decentralize-all-social-media"],
+      items: [
+        "permissionless-public-rpc",
+        "bitsocial-network",
+        "flagship-bitsocial-app",
+        "scale-bitsocial-economies",
+        "build-your-own-client",
+        "decentralize-all-social-media",
+      ],
     },
     {
       type: "category",
@@ -28,11 +35,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Developer tools",
-      items: [
-        "developer-tools/build-an-imageboard-client",
-        "developer-tools/react-hooks",
-        "developer-tools/cli",
-      ],
+      items: ["developer-tools/react-hooks", "developer-tools/cli"],
     },
     {
       type: "category",

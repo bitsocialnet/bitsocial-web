@@ -191,6 +191,9 @@ function categorizeDoc(relativePath) {
     [
       "permissionless-public-rpc.md",
       "bitsocial-network.md",
+      "flagship-bitsocial-app.md",
+      "scale-bitsocial-economies.md",
+      "build-your-own-client.md",
       "decentralize-all-social-media.md",
     ].includes(relativePath)
   ) {
@@ -387,8 +390,8 @@ ${renderBulletList(siteAppEntries)}
 - [Docs home](${siteOrigin}/docs/): Entry point for protocol notes, roadmap material, app docs, and contributor playbooks.
 - [Docs llms.txt](${siteOrigin}/docs/llms.txt): Curated docs-specific index for LLMs.
 - [Peer-to-Peer Protocol](${siteOrigin}/docs/peer-to-peer-protocol/): Core explanation of the serverless social model and pubsub-based protocol.
-- [Bitsocial Network](${siteOrigin}/docs/bitsocial-network/): Master-plan overview of the shared appchain layer proposed for Bitsocial apps.
-- [Build an imageboard client](${siteOrigin}/docs/developer-tools/build-an-imageboard-client/): Contributor guide for building new imageboard experiences on Bitsocial.
+- [Bitsocial Network](${siteOrigin}/docs/bitsocial-network/): Master-plan overview of the shared economic layer proposed for Bitsocial apps.
+- [Build your own client](${siteOrigin}/docs/build-your-own-client/): Builder guide for shipping independent Bitsocial clients.
 - [CLI](${siteOrigin}/docs/developer-tools/cli/): Command-line documentation for the Bitsocial protocol tooling.
 - [Spam Blocker](${siteOrigin}/docs/anti-spam/spam-blocker/): Technical documentation for the centralized risk-scoring anti-spam service.
 

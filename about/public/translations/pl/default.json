@@ -143,47 +143,47 @@
     "title": "Wezwanie do działania",
     "logoAlt": "Logo",
     "easterEggAlt": "SpongeBob",
-    "epilogue": "Media społecznościowe wreszcie znajdują równowagę: w pełni zdecentralizowana sieć peer-to-peer należąca do nikogo; Bitsocial.",
+    "epilogue": "Stan końcowy nie jest jedną aplikacją. Jest to rynek klientów, węzłów, usług i społeczności, który może zastąpić własność platformy konkurencją protokołów.",
+    "epilogueFinal": "Media społecznościowe w końcu odnajdują swoją równowagę: w pełni zdecentralizowana sieć społecznościowa typu peer-to-peer, której nikt nie jest właścicielem; Bitsocial.",
     "phases": {
       "phase1": {
         "phase": "Faza 1",
-        "status": "W toku",
-        "title": "Zdecentralizować imageboardy",
-        "description": "<strong>Tablice obrazów to najprostsza forma mediów społecznościowych do decentralizacji</strong>: anonimowe posty, kilka domyślnych tablic i brak wykresu profilowego. Dlatego uruchamiamy 5chan, pierwszą aplikację Bitsocial. 5chan udowadnia, że ​​Bitsocial może zastąpić scentralizowane tablice graficzne, jednocześnie usuwając z równania globalnych administratorów.",
-        "callout": {
-          "description": "5chan to pierwszy punkt kontrolny, a nie linia mety. <strong>Chcemy wielu klientów tablic graficznych z różnymi kulturami</strong>, interfejsami i ustawieniami domyślnymi: tablice w stylu Altchan, eksperymenty zorientowane na urządzenia mobilne, społeczności niszowe i forki, które rozwiążą potrzeby, których 5chan nigdy nie będzie.",
-          "ctaLabel": "Zbuduj własny",
-          "separator": "- lub -"
-        }
+        "status": "Trwa",
+        "title": "Decentralizacja tablic graficznych i forów",
+        "description": "<strong>Tablice graficzne to najprostsza forma mediów społecznościowych do decentralizacji</strong>: anonimowe posty, kilka domyślnych tablic i brak wykresu profilu. 5chan udowadnia, że ​​Bitsocial może zastąpić scentralizowane tablice graficzne, jednocześnie usuwając z równania globalnych administratorów.",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink> uruchomi pierwszą usługę RPC bez nadzoru dla aplikacji Bitsocial. <rpcLink>Bitsocial RPC</rpcLink> pozwoli użytkownikom na zdalne zarządzanie węzłami, zachowując jednocześnie opcję samodzielnego hostowania lub uruchamiania konkurencyjnej infrastruktury RPC. <strong>Użytkownicy będą mogli tworzyć niepowstrzymane społeczności p2p i zarządzać nimi z poziomu mobile</strong>.",
+        "forumsDescription": "Fora dodają trwałe tożsamości, historię postów i zarządzanie społecznością. Seedit to pierwsza prototypowa aplikacja Bitsocial do <strong>dyskusji w stylu Reddit</strong>, a publiczna aplikacja RPC sprawia, że ​​zawsze aktywne społeczności P2P są praktyczne z dowolnego miejsca."
       },
       "phase2": {
         "phase": "Faza 2",
-        "title": "Uruchomić Bitsocial RPC",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink> uruchomi pierwszą usługę RPC bez nadzoru dla aplikacji Bitsocial. Bitsocial RPC umożliwi użytkownikom zdalne zarządzanie węzłami, zachowując jednocześnie możliwość samodzielnego hostowania lub uruchamiania konkurencyjnej infrastruktury RPC. <strong>Użytkownicy będą mogli tworzyć niepowstrzymane społeczności p2p i zarządzać nimi za pomocą urządzeń mobilnych</strong>."
+        "title": "Uruchomienie Bitsocial Network",
+        "description": "Aby zdecentralizować wszystkie media społecznościowe, aplikacje Bitsocial będą potrzebować zabójczych funkcji i silnych efektów sieciowych:<strong>struktur finansowych, których nie da się zatrzymać</strong>, zdecentralizowane domeny Bitsocial (.bso), nagrody i napiwki, wspólna płynność i praktyczna monetyzacja. Wszystko to będzie zasilane przez Bitsocial Network, a<strong>zdecentralizowane rozwiązanie Appchain</strong> dla aplikacji Bitsocial."
       },
       "phase3": {
         "phase": "Faza 3",
-        "title": "Zdecentralizować fora",
-        "description": "Fora dodają trwałe tożsamości, historię postów i zarządzanie społecznością. Naszą pierwszą prototypową aplikacją Bitsocial do decentralizacji forów jest Seedit, alternatywa dla Reddita. <strong>Seedit przeniesie dyskusję w stylu Reddita do Bitsocial</strong>, gdy Bitsocial RPC sprawi, że zawsze aktywne społeczności P2P będą praktyczne z dowolnego miejsca."
+        "title": "Uruchom flagową aplikację Bitsocial",
+        "description": "Flagowa aplikacja Bitsocial powinna być pierwszym klientem opartym na profilach: posty, odpowiedzi, obserwowanie, publiczne rozmowy w czasie rzeczywistym i społeczności, które mogą pobierać efekty sieciowe z każdego klienta Bitsocial.<strong>Domyślnie może wydawać się tak znajoma, jak nowoczesna aplikacja społecznościowa For You</strong>, jednocześnie umożliwiając użytkownikom przełączanie wywołań RPC, kanałów informacyjnych, instancji, algorytmów i reklam lub całkowite usuwanie rankingu.",
+        "rpcNodes": "Dzięki nienadzorowanemu RPC każdy użytkownik może nadal działać jako pełny węzeł p2p bez powierzania RPC własności. Każdy powinien mieć możliwość przejścia do własnego węzła profilu na maszynie o niskich specyfikacjach, w tym Raspberry Pi, kiedy tylko chce.",
+        "everythingApp": "Ponieważ faza 2 zapewnia aplikacji niepowstrzymaną warstwę kryptograficzną, flagowy klient może potencjalnie stać się<strong>aplikacja wszystko</strong> nie zamieniając się w platformę opiekuńczą."
       },
       "phase4": {
         "phase": "Faza 4",
-        "title": "Uruchomić Bitsocial Network",
-        "description": "Aby zdecentralizować wszystkie media społecznościowe, aplikacje Bitsocial będą potrzebowały zabójczych funkcji i silnych efektów sieciowych, <strong>niepowstrzymanych struktur finansowych</strong>, zdecentralizowanych domen Bitsocial (.bso) i wspólnej płynności. Wszystko to będzie obsługiwane przez Bitsocial Network, <strong>zdecentralizowane rozwiązanie Appchain</strong> dla aplikacji Bitsocial."
+        "title": "Skaluj ekonomię Bitsocial",
+        "description": "Kolejną warstwą jest finansowanie ekosystemów i pluralizm infrastruktury. <strong>Bitsocial Forge RPC nie powinien być jedynym udanym RPC</strong>: wiele firm, niezależnych zespołów, anonimowych operatorów i podmiotów społecznych powinno zbudować RPCs, hosting multimediów, wykrywanie, moderację i inne usługi na bazie Bitsocial. Finansowanie powinno popchnąć tę decentralizację do przodu, aby deweloperzy i operatorzy mogli konkurować, aby sieć była szybsza, tańsza, bardziej niezawodna i trudniejsza do przejęcia."
       },
       "phase5": {
         "phase": "Faza 5",
-        "title": "Zdecentralizować wszystkie media społecznościowe",
-        "description": "Dzięki wielu publicznym RPC konkurującym ze sobą o dostarczanie węzłów profili i <strong>opcjonalnych algorytmów kanału</strong> oraz dzięki sieci Bitsocial Network umożliwiającej monetyzację treści bez przejmowania funduszy przez banki, <strong>aplikacje Bitsocial będą w stanie konkurować ze wszystkimi rodzajami mediów społecznościowych</strong>, w tym Facebookiem, Instagramem, TikTok, X i YouTube."
+        "title": "Zdecentralizuj wszystkie media społecznościowe",
+        "description": "Dzięki podstawowym aplikacjom, publicznemu RPCs, węzłom profili, wykrywaniu i monetyzacji,<strong>Bitsocial może finansować i budować długi ogon klientów społecznościowych</strong>: blogowanie, finansowanie społecznościowe, wideo twórców i wiarygodna alternatywa YouTube, eksperymenty niszowe i każdy format za wcześnie na pierwsze cztery fazy. Bitsocial Forge może zbudować niektóre z nich, scentralizowani klienci również mogą konkurować, nie wszyscy muszą być FOSS, a zdecentralizowane dotacje społeczności mogą sfinansować jak najwięcej programistów."
       }
     },
     "cta": {
       "learnMore": "Dowiedz się więcej",
       "try5chan": "Wypróbuj 5chan",
-      "readTechnicalSpec": "Przeczytaj proponowaną specyfikację techniczną",
-      "trySeedit": "Wypróbuj Seedit (eksperymentalne)"
+      "trySeedit": "Wypróbuj Seedit",
+      "buildYourOwn": "Zbuduj swój własny"
     },
-    "subtitle": "Bitsocial wygrywa, przyciągając jak najwięcej twórców. Prowadź własną niepowstrzymaną społeczność, rozwijaj własną zdecentralizowaną aplikację społecznościową, a nawet uruchom własny biznes na Bitsocial. Fala rośnie z każdym twórcą.",
+    "subtitle": "Bitsocial wygrywa, przyciągając jak najwięcej budowniczych. Prowadź własną, niepowstrzymaną społeczność, twórz własną zdecentralizowaną aplikację społecznościową, a nawet rozpocznij własną działalność gospodarczą na platformie Bitsocial. Fala rośnie wraz z każdym budowniczym.",
     "sectionLabel": "Plan główny"
   },
   "home": {

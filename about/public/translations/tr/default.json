@@ -140,51 +140,51 @@
     "quoteAttribution": "— Esteban Abaroa, Bitsocial kurucusu"
   },
   "masterPlan": {
-    "title": "Eylem çağrısı",
-    "logoAlt": "Logo",
-    "easterEggAlt": "SpongeBob",
-    "epilogue": "Sosyal medya nihayet dengesini buluyor: kimsenin sahip olmadığı, tam merkezsiz, eşler arası bir ağ; Bitsocial.",
+    "title": "Bir Eylem Çağrısı",
+    "logoAlt": "logo",
+    "easterEggAlt": "Sünger Bob",
+    "epilogue": "Son durum tek bir uygulama değil. Platform mülkiyetini protokol rekabetiyle değiştirebilecek müşteriler, düğümler, hizmetler ve topluluklardan oluşan bir pazardır.",
+    "epilogueFinal": "Sosyal medya nihayet dengesini buluyor: kimsenin sahip olmadığı tamamen merkezi olmayan, eşler arası bir sosyal ağ; Bitsocial.",
     "phases": {
       "phase1": {
         "phase": "Aşama 1",
-        "status": "Sürüyor",
-        "title": "Imageboard'ları merkezsizleştir",
-        "description": "<strong>Görüntü panoları, merkezi olmayan sosyal medyanın en basit biçimidir</strong>: anonim paylaşım, az sayıda varsayılan pano ve profil grafiğinin olmaması. Bu nedenle ilk Bitsocial uygulaması olan 5chan'ı başlatıyoruz. 5chan, Bitsocial'ın küresel yöneticileri denklemden çıkarırken merkezi görüntü panolarının yerini alabileceğini kanıtlıyor.",
-        "callout": {
-          "description": "5chan ilk kanıt noktasıdır, bitiş çizgisi değil. <strong>Farklı kültürlere, arayüzlere ve varsayılanlara sahip birden fazla imageboard istemcisi istiyoruz</strong>: altchan tarzı panolar, mobile-first deneyler, niş topluluklar ve 5chan’in asla çözemeyeceği ihtiyaçları çözen fork’lar.",
-          "ctaLabel": "Kendininkini oluştur",
-          "separator": "- veya -"
-        }
+        "status": "devam ediyor",
+        "title": "Resim panolarını ve forumları merkezi olmayan hale getirin",
+        "description": "<strong>Görüntü panoları, merkezi olmayan sosyal medyanın en basit biçimidir</strong>: Anonim paylaşım, az sayıda varsayılan pano ve profil grafiği yok. 5chan, Bitsocial'nun küresel yöneticileri denklemden çıkarırken merkezi görüntü panolarının yerini alabileceğini kanıtlıyor.",
+        "rpcDescription": "<forgeLink>Bitsocial Forge</forgeLink>, Bitsocial uygulamaları için ilk gözetimsiz RPC hizmetini başlatacak. <rpcLink>Bitsocial RPC</rpcLink>, kullanıcıların düğümleri uzaktan yönetmesine olanak tanırken, kendi kendini barındırma veya rakip RPC altyapısını çalıştırma seçeneğini de koruyacak. <strong>Kullanıcılar mobil </strong> üzerinden durdurulamaz p2p toplulukları oluşturup yönetebilecek.",
+        "forumsDescription": "Forumlar kalıcı kimlikler, gönderi geçmişi ve topluluk yönetimi ekler. Seedit, <strong>Reddit tarzı tartışma</strong> için ilk prototip Bitsocial uygulamasıdır ve herkese açık RPC, her zaman açık olan P2P topluluklarını her yerden pratik hale getirir."
       },
       "phase2": {
         "phase": "Aşama 2",
-        "title": "Bitsocial RPC'yi kullanıma sun",
-        "description": "<forgeLink>Bitsocial Forge</forgeLink>, Bitsocial uygulamaları için ilk gözetimsiz RPC hizmetini başlatacak. Bitsocial RPC, kullanıcıların düğümleri uzaktan yönetmesine olanak tanırken, kendi kendine barındırma veya rakip RPC altyapısını çalıştırma seçeneğini de koruyacak. <strong>Kullanıcılar mobil cihazlardan durdurulamaz p2p toplulukları oluşturup yönetebilecekler</strong>."
+        "title": "Bitsocial Network'in lansmanı",
+        "description": "Tüm sosyal medyayı merkezi olmayan hale getirmek için Bitsocial uygulamalarının mükemmel özelliklere ve güçlü ağ efektlerine ihtiyacı olacak:<strong>durdurulamayan finansal yapılar</strong>, merkezi olmayan Bitsocial alanları (.bso), ödüller ve tüyolar, ortak likidite ve pratik para kazanma. Tüm bunlar Bitsocial Network tarafından desteklenecek. <strong>merkezi olmayan uygulama zinciri çözümü</strong> Bitsocial uygulamaları için."
       },
       "phase3": {
         "phase": "Aşama 3",
-        "title": "Forumları merkezsizleştir",
-        "description": "Forumlar kalıcı kimlikler, gönderi geçmişi ve topluluk yönetimi ekler. Forumları merkezi olmayan hale getirmeye yönelik ilk prototip Bitsocial uygulamamız, bir reddit alternatifi olan Seedit'tir. Bitsocial RPC, her zaman etkin olan P2P topluluklarını her yerden pratik hale getirdiğinde <strong>Seedit, Bitsocial'a Reddit tarzı tartışmayı getirecek</strong>."
+        "title": "Amiral gemisi Bitsocial uygulamasını başlatın",
+        "description": "Amiral gemisi Bitsocial uygulaması ilk profil tabanlı istemci olmalıdır: gönderiler, yanıtlar, takipler, gerçek zamanlı halka açık konuşmalar ve her Bitsocial istemcisinden ağ efektleri alabilen topluluklar. <strong>Varsayılan olarak, modern bir Sizin İçin sosyal uygulaması kadar tanıdık gelebilir</strong>, aynı zamanda kullanıcıların RPC'leri, akışları, örnekleri, algoritmaları, reklamları değiştirmesine veya sıralamayı tamamen kaldırmasına olanak tanır.",
+        "rpcNodes": "Gözaltına alınmayan RPC aracılığıyla her kullanıcı, mülkiyet konusunda RPC'ya güvenmeden tam bir p2p düğümü olarak hareket edebilir. Herkes istediği zaman Raspberry Pi da dahil olmak üzere düşük özellikli bir makinede kendi profil düğümüne geçebilmelidir.",
+        "everythingApp": "Aşama 2, uygulamaya durdurulamaz bir kripto finansal katmanı sağladığından, amiral gemisi müşterisi potansiyel olarak bir<strong>her şey-uygulama</strong> bir saklama platformuna dönüşmeden."
       },
       "phase4": {
         "phase": "Aşama 4",
-        "title": "Bitsocial Network'ü kullanıma sun",
-        "description": "Tüm sosyal medyayı merkezi olmayan hale getirmek için Bitsocial uygulamalarının mükemmel özelliklere ve güçlü ağ etkilerine, <strong>durdurulamaz finansal yapılara</strong>, merkezi olmayan Bitsosyal alan adlarına (.bso) ve ortak likiditeye ihtiyacı olacak. Tüm bunlar, Bitsocial uygulamaları için <strong>merkezi olmayan bir uygulama zinciri çözümü</strong> olan Bitsocial Network tarafından desteklenecek."
+        "title": "Bitsocial ekonomilerini ölçeklendirin",
+        "description": "Bir sonraki katman ekosistem finansmanı ve altyapı çoğulculuğudur. <strong>Bitsocial Forge'nun RPC'su tek başarılı RPC olmamalı</strong>: birçok işletme, bağımsız ekip, anonim operatör ve topluluk kuruluşu RPCs, medya barındırma, keşif, denetleme ve diğer hizmetleri Bitsocial'nun üzerine kurmalıdır. Finansman, bu merkezileşmeyi ileriye taşımalı, böylece geliştiriciler ve operatörler ağı daha hızlı, daha ucuz, daha güvenilir ve ele geçirilmesi daha zor hale getirmek için rekabet edebilir."
       },
       "phase5": {
         "phase": "Aşama 5",
-        "title": "Tüm sosyal medyayı merkezsizleştir",
-        "description": "Profil düğümleri ve <strong>isteğe bağlı yayın algoritmaları</strong> sağlamak için birbirleriyle rekabet eden çok sayıda halka açık RPC ve bankalar fonlara el koymadan içerikten para kazanmayı mümkün kılan Bitsocial Network ile <strong>Bitsocial uygulamaları, Facebook, Instagram, TikTok, X ve YouTube da dahil olmak üzere her türlü sosyal medyaya rakip olabilecektir</strong>."
+        "title": "Tüm sosyal medyayı merkezi olmayan hale getirin",
+        "description": "Temel uygulamalar, genel RPCs, profil düğümleri, keşif ve para kazanma özellikleri mevcut olduğundan,<strong>Bitsocial, sosyal müşterilerin uzun kuyruğunu finanse edebilir ve oluşturabilir</strong>: blog yazma, kitle fonlaması, içerik oluşturucu videosu ve güvenilir bir YouTube alternatifi, niş deneyler ve her format ilk dört aşama için çok erken. Bitsocial Forge bunlardan bazılarını oluşturabilir, merkezi istemciler de rekabet edebilir, hepsinin FOSS olması gerekmez ve merkezi olmayan topluluk bağışları mümkün olduğu kadar çok geliştiriciye fon sağlayabilir."
       }
     },
     "cta": {
-      "learnMore": "Daha fazla bilgi",
-      "try5chan": "5chan'ı deneyin",
-      "readTechnicalSpec": "Önerilen teknik spesifikasyonu oku",
-      "trySeedit": "Seedit’i deneyin (deneysel)"
+      "learnMore": "Daha Fazla Bilgi Edinin",
+      "try5chan": "5chan'yu deneyin",
+      "trySeedit": "Seedit'yu deneyin",
+      "buildYourOwn": "Kendinizinkini oluşturun"
     },
-    "subtitle": "Bitsocial, mümkün olduğunca çok yapımcıyı çekerek kazanır. Kendi durdurulamaz topluluğunu yönet, kendi merkeziyetsiz sosyal uygulamanı geliştir ya da hatta Bitsocial üzerinde kendi işini başlat. Her yapımcıyla birlikte gelgit yükselir.",
-    "sectionLabel": "Ana Plan"
+    "subtitle": "Bitsocial mümkün olduğu kadar çok inşaatçının ilgisini çekerek kazanır. Kendi durdurulamaz topluluğunuzu yönetin, kendi merkezi olmayan sosyal uygulamanızı geliştirin, hatta Bitsocial üzerinde kendi işinizi kurun. Her inşaatçıyla birlikte dalga yükseliyor.",
+    "sectionLabel": "Master Planı"
   },
   "home": {
     "dismissDevOnlyRouteNotice": "Bildirimi kapat",
