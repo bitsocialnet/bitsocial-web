@@ -35,7 +35,6 @@ const HighlightIndexCtx = createContext(-1);
 const TAGLINE_LINK_COUNT = 6;
 const INTRO_START_DELAY = TAGLINE_INTRO_START_MS;
 const INTRO_STEP_MS = 1000;
-const HERO_GRAPHIC_LOAD_TIMEOUT_MS = 2200;
 const HERO_FALLBACK_MOBILE_QUERY = "(max-width: 767px)";
 const HERO_FALLBACK_PRELOAD_ATTR = "data-hero-fallback-preload";
 const HERO_FALLBACK_BOTTOM_MASK =
@@ -306,7 +305,6 @@ export default function Hero() {
   const navigate = useNavigate();
   const graphicsMode = useGraphicsMode();
   const [graphicsInitFailed, setGraphicsInitFailed] = useState(false);
-  const graphicsReadyRef = useRef(false);
   const showGraphics = graphicsMode === "full" && !graphicsInitFailed;
   const showFallbackGraphic = graphicsMode === "fallback" || graphicsInitFailed;
   const preferPngFallback = shouldPreferPngGraphicsFallback();
@@ -331,22 +329,6 @@ export default function Hero() {
     requestGraphicsFallback();
     setGraphicsInitFailed(true);
   }, []);
-  const handleGraphicsReady = useCallback(() => {
-    graphicsReadyRef.current = true;
-  }, []);
-
-  useEffect(() => {
-    graphicsReadyRef.current = false;
-    if (!showGraphics) return;
-
-    const timeoutId = setTimeout(() => {
-      if (!graphicsReadyRef.current) {
-        handleGraphicsInitError();
-      }
-    }, HERO_GRAPHIC_LOAD_TIMEOUT_MS);
-
-    return () => clearTimeout(timeoutId);
-  }, [handleGraphicsInitError, showGraphics]);
 
   const handleNewsletterClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -463,10 +445,7 @@ export default function Hero() {
               className="relative z-30 pt-24 -mt-24 pointer-events-none"
             >
               <Suspense fallback={<HeroGraphicLoadSpace />}>
-                <PlanetGraphic
-                  onInitError={handleGraphicsInitError}
-                  onReady={handleGraphicsReady}
-                />
+                <PlanetGraphic onInitError={handleGraphicsInitError} />
               </Suspense>
             </m.div>
           </HeroGraphicErrorBoundary>
