@@ -215,6 +215,11 @@
       rgba(144, 160, 185, 0.1),
       rgba(93, 117, 155, 0.067)
     );
+    --glass-card-fill: linear-gradient(
+      rgba(170, 182, 200, 0.133),
+      rgba(144, 160, 185, 0.1),
+      rgba(93, 117, 155, 0.067)
+    );
     --frosted-surface-fill-mobile: linear-gradient(
       rgba(170, 182, 200, 0.23),
       rgba(144, 160, 185, 0.1),
@@ -258,6 +263,11 @@
       rgba(188, 200, 214, 0.045),
       rgba(118, 128, 140, 0.06),
       rgba(52, 58, 68, 0.075)
+    );
+    --glass-card-fill: linear-gradient(
+      rgba(222, 244, 255, 0.1),
+      rgba(171, 188, 197, 0.11),
+      rgba(120, 135, 148, 0.14)
     );
     --frosted-surface-fill-mobile: linear-gradient(
       rgba(188, 200, 214, 0.055),
@@ -316,22 +326,22 @@
     isolation: isolate;
     --card-border-rest: var(--glass-border-subtle);
     border: 1px solid var(--card-border-rest);
-    background: linear-gradient(
-      rgba(170, 182, 200, 0.133),
-      rgba(144, 160, 185, 0.1),
-      rgba(93, 117, 155, 0.067)
-    );
+    background: var(--glass-card-fill);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
   }
 
   .dark .glass-card {
     --card-border-rest: rgba(232, 238, 247, 0.14);
-    background: linear-gradient(
-      rgba(222, 244, 255, 0.1),
-      rgba(171, 188, 197, 0.11),
-      rgba(120, 135, 148, 0.14)
-    );
+    background: var(--glass-card-fill);
+  }
+
+  .deep-comparison-modal-surface {
+    background: var(--glass-card-fill), hsl(var(--background));
+  }
+
+  .dark .deep-comparison-modal-surface {
+    background: var(--glass-card-fill);
   }
 
   .apps-page[data-surface-mode="simplified"] .glass-card {

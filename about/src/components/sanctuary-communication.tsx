@@ -1,6 +1,7 @@
 import { m, useReducedMotion } from "framer-motion";
-import { Check, ChevronDown, X } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, X } from "lucide-react";
 import {
+  Fragment,
   memo,
   startTransition,
   useCallback,
@@ -9,12 +10,23 @@ import {
   useMemo,
   useRef,
   useState,
+  type KeyboardEvent as ReactKeyboardEvent,
 } from "react";
 import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
+import EasterEggOverlay from "@/components/easter-egg-overlay";
 import { loadGsap, type TweenLike } from "@/lib/motion-runtime";
 
 type ApproachId = "federated" | "blockchain" | "bitsocial";
+type DeepComparisonServiceId =
+  | "nostr"
+  | "bluesky"
+  | "mastodon"
+  | "lemmy"
+  | "farcaster"
+  | "lens"
+  | "deso"
+  | "steemit";
 
 type RowKey =
   | "selfHostingCost"
@@ -70,6 +82,473 @@ const SANCTUARY_ROW_I18N: Record<
 
 type Approach = { id: ApproachId; label: string; subtitle: string };
 type ComparisonRow = { label: string; values: Record<ApproachId, string> };
+type DeepComparisonRowKey =
+  | "dataLayer"
+  | "browserMobile"
+  | "identity"
+  | "communityModel"
+  | "antiSpam"
+  | "replies"
+  | "contentDiscovery"
+  | "scalingEconomics"
+  | "moderation";
+type DeepComparisonSourceId =
+  | "atprotoDataRepos"
+  | "atprotoFeeds"
+  | "atprotoFederation"
+  | "atprotoIdentity"
+  | "atprotoModeration"
+  | "atprotoOverview"
+  | "atprotoRelayOps"
+  | "atprotoRepository"
+  | "atprotoSelfHosting"
+  | "atprotoSync"
+  | "bitsocialBsoDocs"
+  | "nip01"
+  | "nip10"
+  | "nip11"
+  | "nip13"
+  | "nip29"
+  | "nip42"
+  | "nip50"
+  | "nip65"
+  | "nip72"
+  | "blueskyRateLimits"
+  | "bitsocialDocs";
+type DeepComparisonRow = {
+  bitsocial: string;
+  detail: string;
+  id: DeepComparisonRowKey;
+  label: string;
+  service: string;
+  sources: DeepComparisonSource[];
+};
+type DeepComparisonSource = {
+  href: string;
+  id: DeepComparisonSourceId;
+  label: string;
+  shortLabel: string;
+};
+type DeepComparison = {
+  id: DeepComparisonServiceId;
+  label: string;
+  rows: DeepComparisonRow[];
+};
+
+const DEEP_COMPARISON_SERVICE_IDS: DeepComparisonServiceId[] = [
+  "nostr",
+  "bluesky",
+  // TODO: re-enable these after their deep comparisons are researched.
+  // "mastodon",
+  // "lemmy",
+  // "farcaster",
+  // "lens",
+  // "deso",
+  // "steemit",
+];
+const DEEP_COMPARISON_CONTENT_SERVICE_IDS: DeepComparisonServiceId[] = ["nostr", "bluesky"];
+const DEEP_COMPARISON_SERVICE_I18N: Record<DeepComparisonServiceId, { label: string }> = {
+  nostr: { label: "sanctuary.deepComparison.services.nostr" },
+  bluesky: { label: "sanctuary.deepComparison.services.bluesky" },
+  mastodon: { label: "sanctuary.deepComparison.services.mastodon" },
+  lemmy: { label: "sanctuary.deepComparison.services.lemmy" },
+  farcaster: { label: "sanctuary.deepComparison.services.farcaster" },
+  lens: { label: "sanctuary.deepComparison.services.lens" },
+  deso: { label: "sanctuary.deepComparison.services.deso" },
+  steemit: { label: "sanctuary.deepComparison.services.steemit" },
+};
+const DEEP_COMPARISON_HASH_BY_SERVICE: Record<DeepComparisonServiceId, string> = {
+  nostr: "nostr-comparison",
+  bluesky: "bluesky-comparison",
+  mastodon: "mastodon-comparison",
+  lemmy: "lemmy-comparison",
+  farcaster: "farcaster-comparison",
+  lens: "lens-comparison",
+  deso: "deso-comparison",
+  steemit: "steemit-comparison",
+};
+const DEEP_COMPARISON_ROW_KEYS: DeepComparisonRowKey[] = [
+  "replies",
+  "antiSpam",
+  "scalingEconomics",
+  "dataLayer",
+  "moderation",
+  "communityModel",
+  "browserMobile",
+  "identity",
+  "contentDiscovery",
+];
+const DEEP_COMPARISON_ROW_I18N: Record<
+  DeepComparisonRowKey,
+  {
+    bitsocial: string;
+    detail: string;
+    bitsocialByService?: Partial<Record<DeepComparisonServiceId, string>>;
+    detailByService?: Partial<Record<DeepComparisonServiceId, string>>;
+    label: string;
+    services: Partial<Record<DeepComparisonServiceId, string>>;
+    sources: DeepComparisonSourceId[];
+    sourcesByService?: Partial<Record<DeepComparisonServiceId, DeepComparisonSourceId[]>>;
+  }
+> = {
+  dataLayer: {
+    label: "sanctuary.deepComparison.rows.dataLayer.label",
+    services: {
+      nostr: "sanctuary.deepComparison.rows.dataLayer.nostr",
+      bluesky: "sanctuary.deepComparison.rows.dataLayer.bluesky",
+    },
+    bitsocial: "sanctuary.deepComparison.rows.dataLayer.bitsocial",
+    detail: "sanctuary.deepComparison.rows.dataLayer.detail",
+    detailByService: {
+      bluesky: "sanctuary.deepComparison.rows.dataLayer.detailBluesky",
+    },
+    sources: ["nip01", "bitsocialDocs"],
+    sourcesByService: {
+      bluesky: ["atprotoRepository", "atprotoSync", "atprotoOverview", "bitsocialDocs"],
+    },
+  },
+  browserMobile: {
+    label: "sanctuary.deepComparison.rows.browserMobile.label",
+    services: {
+      nostr: "sanctuary.deepComparison.rows.browserMobile.nostr",
+      bluesky: "sanctuary.deepComparison.rows.browserMobile.bluesky",
+    },
+    bitsocial: "sanctuary.deepComparison.rows.browserMobile.bitsocial",
+    detail: "sanctuary.deepComparison.rows.browserMobile.detail",
+    detailByService: {
+      bluesky: "sanctuary.deepComparison.rows.browserMobile.detailBluesky",
+    },
+    sources: ["nip01", "bitsocialDocs"],
+    sourcesByService: {
+      bluesky: ["atprotoFederation", "blueskyRateLimits", "bitsocialDocs"],
+    },
+  },
+  identity: {
+    label: "sanctuary.deepComparison.rows.identity.label",
+    services: {
+      nostr: "sanctuary.deepComparison.rows.identity.nostr",
+      bluesky: "sanctuary.deepComparison.rows.identity.bluesky",
+    },
+    bitsocial: "sanctuary.deepComparison.rows.identity.bitsocial",
+    detail: "sanctuary.deepComparison.rows.identity.detail",
+    detailByService: {
+      bluesky: "sanctuary.deepComparison.rows.identity.detailBluesky",
+    },
+    sources: ["nip01", "bitsocialDocs"],
+    sourcesByService: {
+      bluesky: ["atprotoIdentity", "atprotoOverview", "bitsocialBsoDocs"],
+    },
+  },
+  communityModel: {
+    label: "sanctuary.deepComparison.rows.communityModel.label",
+    services: {
+      nostr: "sanctuary.deepComparison.rows.communityModel.nostr",
+      bluesky: "sanctuary.deepComparison.rows.communityModel.bluesky",
+    },
+    bitsocial: "sanctuary.deepComparison.rows.communityModel.bitsocial",
+    detail: "sanctuary.deepComparison.rows.communityModel.detail",
+    detailByService: {
+      bluesky: "sanctuary.deepComparison.rows.communityModel.detailBluesky",
+    },
+    sources: ["nip29", "nip72", "bitsocialDocs"],
+    sourcesByService: {
+      bluesky: ["atprotoFederation", "atprotoFeeds", "bitsocialDocs"],
+    },
+  },
+  antiSpam: {
+    label: "sanctuary.deepComparison.rows.antiSpam.label",
+    services: {
+      nostr: "sanctuary.deepComparison.rows.antiSpam.nostr",
+      bluesky: "sanctuary.deepComparison.rows.antiSpam.bluesky",
+    },
+    bitsocial: "sanctuary.deepComparison.rows.antiSpam.bitsocial",
+    detail: "sanctuary.deepComparison.rows.antiSpam.detail",
+    detailByService: {
+      bluesky: "sanctuary.deepComparison.rows.antiSpam.detailBluesky",
+    },
+    sources: ["nip13", "nip42", "bitsocialDocs"],
+    sourcesByService: {
+      bluesky: ["atprotoModeration", "blueskyRateLimits", "bitsocialDocs"],
+    },
+  },
+  replies: {
+    label: "sanctuary.deepComparison.rows.replies.label",
+    services: {
+      nostr: "sanctuary.deepComparison.rows.replies.nostr",
+      bluesky: "sanctuary.deepComparison.rows.replies.bluesky",
+    },
+    bitsocial: "sanctuary.deepComparison.rows.replies.bitsocial",
+    detail: "sanctuary.deepComparison.rows.replies.detail",
+    detailByService: {
+      bluesky: "sanctuary.deepComparison.rows.replies.detailBluesky",
+    },
+    sources: ["nip10", "nip72", "bitsocialDocs"],
+    sourcesByService: {
+      bluesky: ["blueskyRateLimits", "atprotoModeration", "bitsocialDocs"],
+    },
+  },
+  contentDiscovery: {
+    label: "sanctuary.deepComparison.rows.contentDiscovery.label",
+    services: {
+      nostr: "sanctuary.deepComparison.rows.contentDiscovery.nostr",
+      bluesky: "sanctuary.deepComparison.rows.contentDiscovery.bluesky",
+    },
+    bitsocial: "sanctuary.deepComparison.rows.contentDiscovery.bitsocial",
+    detail: "sanctuary.deepComparison.rows.contentDiscovery.detail",
+    detailByService: {
+      bluesky: "sanctuary.deepComparison.rows.contentDiscovery.detailBluesky",
+    },
+    sources: ["nip65", "nip50", "bitsocialDocs"],
+    sourcesByService: {
+      bluesky: ["atprotoOverview", "atprotoFederation", "atprotoFeeds", "bitsocialDocs"],
+    },
+  },
+  scalingEconomics: {
+    label: "sanctuary.deepComparison.rows.scalingEconomics.label",
+    services: {
+      nostr: "sanctuary.deepComparison.rows.scalingEconomics.nostr",
+      bluesky: "sanctuary.deepComparison.rows.scalingEconomics.bluesky",
+    },
+    bitsocial: "sanctuary.deepComparison.rows.scalingEconomics.bitsocial",
+    detail: "sanctuary.deepComparison.rows.scalingEconomics.detail",
+    detailByService: {
+      bluesky: "sanctuary.deepComparison.rows.scalingEconomics.detailBluesky",
+    },
+    sources: ["nip11", "bitsocialDocs"],
+    sourcesByService: {
+      bluesky: ["atprotoSelfHosting", "atprotoRelayOps", "atprotoFeeds", "bitsocialDocs"],
+    },
+  },
+  moderation: {
+    label: "sanctuary.deepComparison.rows.moderation.label",
+    services: {
+      nostr: "sanctuary.deepComparison.rows.moderation.nostr",
+      bluesky: "sanctuary.deepComparison.rows.moderation.bluesky",
+    },
+    bitsocial: "sanctuary.deepComparison.rows.moderation.bitsocial",
+    detail: "sanctuary.deepComparison.rows.moderation.detail",
+    detailByService: {
+      bluesky: "sanctuary.deepComparison.rows.moderation.detailBluesky",
+    },
+    sources: ["nip01", "nip29", "nip72", "bitsocialDocs"],
+    sourcesByService: {
+      bluesky: ["atprotoOverview", "atprotoFederation", "atprotoSelfHosting", "bitsocialDocs"],
+    },
+  },
+};
+const DEEP_COMPARISON_SOURCE_LINKS: DeepComparisonSource[] = [
+  {
+    id: "atprotoOverview",
+    label: "AT Protocol overview",
+    shortLabel: "ATProto Overview",
+    href: "https://atproto.com/guides/overview",
+  },
+  {
+    id: "atprotoDataRepos",
+    label: "AT Protocol data repositories",
+    shortLabel: "ATProto Repos",
+    href: "https://atproto.com/guides/data-repos",
+  },
+  {
+    id: "atprotoRepository",
+    label: "AT Protocol repository specification",
+    shortLabel: "ATProto Repository",
+    href: "https://atproto.com/specs/repository",
+  },
+  {
+    id: "atprotoSync",
+    label: "AT Protocol synchronization specification",
+    shortLabel: "ATProto Sync",
+    href: "https://atproto.com/specs/sync",
+  },
+  {
+    id: "atprotoFederation",
+    label: "Bluesky federation architecture",
+    shortLabel: "Bluesky Architecture",
+    href: "https://docs.bsky.app/docs/advanced-guides/federation-architecture",
+  },
+  {
+    id: "atprotoSelfHosting",
+    label: "AT Protocol self-hosting guide",
+    shortLabel: "ATProto Self-hosting",
+    href: "https://atproto.com/guides/self-hosting",
+  },
+  {
+    id: "atprotoIdentity",
+    label: "AT Protocol identity guide",
+    shortLabel: "ATProto Identity",
+    href: "https://atproto.com/guides/identity",
+  },
+  {
+    id: "atprotoModeration",
+    label: "AT Protocol moderation guide",
+    shortLabel: "ATProto Moderation",
+    href: "https://atproto.com/guides/moderation",
+  },
+  {
+    id: "atprotoFeeds",
+    label: "AT Protocol custom feeds guide",
+    shortLabel: "ATProto Feeds",
+    href: "https://atproto.com/guides/feeds",
+  },
+  {
+    id: "atprotoRelayOps",
+    label: "AT Protocol relay operational updates",
+    shortLabel: "Relay Ops",
+    href: "https://atproto.com/blog/relay-ops",
+  },
+  {
+    id: "blueskyRateLimits",
+    label: "Bluesky rate limits",
+    shortLabel: "Bluesky Rate Limits",
+    href: "https://docs.bsky.app/docs/advanced-guides/rate-limits",
+  },
+  {
+    id: "nip01",
+    label: "NIP-01: basic relay protocol",
+    shortLabel: "NIP-01",
+    href: "https://github.com/nostr-protocol/nips/blob/master/01.md",
+  },
+  {
+    id: "nip10",
+    label: "NIP-10: text notes and replies",
+    shortLabel: "NIP-10",
+    href: "https://nips.nostr.com/10",
+  },
+  {
+    id: "nip11",
+    label: "NIP-11: relay information and limits",
+    shortLabel: "NIP-11",
+    href: "https://nips.nostr.com/11",
+  },
+  {
+    id: "nip13",
+    label: "NIP-13: proof-of-work spam deterrence",
+    shortLabel: "NIP-13",
+    href: "https://nips.nostr.com/13",
+  },
+  {
+    id: "nip29",
+    label: "NIP-29: relay-based groups",
+    shortLabel: "NIP-29",
+    href: "https://nips.nostr.com/29",
+  },
+  {
+    id: "nip42",
+    label: "NIP-42: relay authentication",
+    shortLabel: "NIP-42",
+    href: "https://nips.nostr.com/42",
+  },
+  {
+    id: "nip50",
+    label: "NIP-50: relay search",
+    shortLabel: "NIP-50",
+    href: "https://nips.nostr.com/50",
+  },
+  {
+    id: "nip65",
+    label: "NIP-65: relay list metadata and outbox",
+    shortLabel: "NIP-65",
+    href: "https://nips.nostr.com/65",
+  },
+  {
+    id: "nip72",
+    label: "NIP-72: moderated communities",
+    shortLabel: "NIP-72",
+    href: "https://nips.nostr.com/72",
+  },
+  {
+    id: "bitsocialDocs",
+    label: "Bitsocial Docs",
+    shortLabel: "Bitsocial Docs",
+    href: "/docs/peer-to-peer-protocol/",
+  },
+  {
+    id: "bitsocialBsoDocs",
+    label: "Bitsocial Docs: BSO Resolver",
+    shortLabel: "Bitsocial Docs",
+    href: "/docs/infrastructure/bso-resolver/",
+  },
+];
+const DEEP_COMPARISON_SOURCE_BY_ID = DEEP_COMPARISON_SOURCE_LINKS.reduce(
+  (sources, source) => {
+    sources[source.id] = source;
+    return sources;
+  },
+  {} as Record<DeepComparisonSourceId, DeepComparisonSource>,
+);
+
+function getDeepComparisonHash(serviceId: DeepComparisonServiceId) {
+  return `#${DEEP_COMPARISON_HASH_BY_SERVICE[serviceId]}`;
+}
+
+function getDeepComparisonServiceFromHash(hash: string): DeepComparisonServiceId | null {
+  const normalizedHash = hash.replace(/^#/, "");
+
+  return (
+    DEEP_COMPARISON_SERVICE_IDS.find(
+      (serviceId) => DEEP_COMPARISON_HASH_BY_SERVICE[serviceId] === normalizedHash,
+    ) ?? null
+  );
+}
+
+function replaceDeepComparisonHash(nextHash: string) {
+  if (typeof window === "undefined" || window.location.hash === nextHash) {
+    return;
+  }
+
+  window.history.replaceState(null, "", nextHash);
+}
+
+function pushDeepComparisonHash(serviceId: DeepComparisonServiceId) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  const nextHash = getDeepComparisonHash(serviceId);
+
+  if (window.location.hash === nextHash) {
+    return;
+  }
+
+  window.history.pushState(null, "", nextHash);
+}
+
+function getSanctuaryDeepComparisons(t: TFunction): DeepComparison[] {
+  return DEEP_COMPARISON_SERVICE_IDS.map((serviceId) => ({
+    id: serviceId,
+    label: t(DEEP_COMPARISON_SERVICE_I18N[serviceId].label),
+    rows: DEEP_COMPARISON_ROW_KEYS.map((rowKey) => {
+      const keys = DEEP_COMPARISON_ROW_I18N[rowKey];
+      const serviceKey = keys.services[serviceId];
+      const hasComparisonContent = DEEP_COMPARISON_CONTENT_SERVICE_IDS.includes(serviceId);
+      const bitsocialKey = keys.bitsocialByService?.[serviceId] ?? keys.bitsocial;
+      const detailKey = keys.detailByService?.[serviceId] ?? keys.detail;
+      const sourceIds = keys.sourcesByService?.[serviceId] ?? keys.sources;
+
+      return {
+        id: rowKey,
+        label: t(keys.label),
+        service: serviceKey
+          ? t(serviceKey)
+          : t("sanctuary.deepComparison.placeholder.service", {
+              service: t(DEEP_COMPARISON_SERVICE_I18N[serviceId].label),
+            }),
+        bitsocial: hasComparisonContent
+          ? t(bitsocialKey)
+          : t("sanctuary.deepComparison.placeholder.bitsocial"),
+        detail: hasComparisonContent
+          ? t(detailKey)
+          : t("sanctuary.deepComparison.placeholder.detail", {
+              service: t(DEEP_COMPARISON_SERVICE_I18N[serviceId].label),
+            }),
+        sources: hasComparisonContent
+          ? sourceIds.map((sourceId) => DEEP_COMPARISON_SOURCE_BY_ID[sourceId])
+          : [],
+      };
+    }),
+  }));
+}
 
 function useSanctuaryComparisonData(t: TFunction) {
   return useMemo(() => {
@@ -650,16 +1129,554 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel({
   );
 });
 
+type DeepComparisonSide = "service" | "bitsocial";
+
+function getDeepComparisonCellClass(side: DeepComparisonSide) {
+  if (side === "bitsocial") {
+    return "border-emerald-500/30 bg-emerald-500/[0.07] text-foreground dark:border-emerald-400/45 dark:bg-emerald-500/[0.12]";
+  }
+
+  return "border-red-500/25 bg-red-500/[0.04] text-foreground dark:border-red-400/45 dark:bg-red-500/[0.09]";
+}
+
+function DeepComparisonResultIcon({ side }: { side: DeepComparisonSide }) {
+  if (side === "bitsocial") {
+    return <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" aria-hidden />;
+  }
+
+  return <X className="mt-0.5 h-4 w-4 shrink-0 text-red-400" aria-hidden />;
+}
+
+function DeepComparisonSourceLinks({
+  sources,
+  t,
+}: {
+  sources: DeepComparisonSource[];
+  t: TFunction;
+}) {
+  if (sources.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="mt-3 flex flex-wrap items-center gap-1.5">
+      <span className="font-display text-[0.68rem] font-normal leading-none text-foreground/75">
+        {t("sanctuary.deepComparison.sourcesLabel")}
+      </span>
+      {sources.map((source) => {
+        const isExternal = source.href.startsWith("http");
+
+        return (
+          <a
+            key={source.href}
+            href={source.href}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noreferrer" : undefined}
+            title={source.label}
+            className="ring-glow cta-glow rounded-full border border-blue-core/20 bg-blue-core/[0.06] px-2 py-1 text-[0.68rem] font-display font-semibold leading-none text-foreground/75 hover:border-blue-glow hover:bg-blue-core/[0.12] hover:text-foreground dark:border-blue-core/35 dark:bg-blue-core/[0.14] dark:text-foreground/80 dark:hover:border-blue-glow dark:hover:bg-blue-core/[0.2] motion-reduce:transition-none"
+          >
+            {source.shortLabel}
+          </a>
+        );
+      })}
+    </div>
+  );
+}
+
+function DeepComparisonExpandButton({
+  className = "mt-3",
+  controls,
+  expanded,
+  onClick,
+  t,
+}: {
+  className?: string;
+  controls: string;
+  expanded: boolean;
+  onClick: () => void;
+  t: TFunction;
+}) {
+  return (
+    <button
+      type="button"
+      aria-controls={controls}
+      aria-expanded={expanded}
+      data-expanded={expanded ? "true" : undefined}
+      onClick={onClick}
+      className={`${className} ring-glow cta-glow flex w-fit items-center gap-1.5 rounded-full border border-blue-core/30 bg-blue-core/[0.07] px-3 py-1.5 text-[0.72rem] font-display font-semibold text-foreground/80 hover:border-blue-glow hover:bg-blue-core/[0.13] hover:text-foreground active:border-blue-core/45 active:bg-blue-core/[0.12] data-[expanded=true]:border-blue-core/45 data-[expanded=true]:bg-blue-core/[0.12] data-[expanded=true]:hover:border-blue-glow data-[expanded=true]:hover:bg-blue-core/[0.13] dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:text-foreground/85 dark:hover:border-blue-glow dark:hover:bg-blue-core/[0.24] dark:data-[expanded=true]:border-blue-core/45 dark:data-[expanded=true]:bg-blue-glow/[0.08] dark:data-[expanded=true]:hover:border-blue-glow dark:data-[expanded=true]:hover:bg-blue-core/[0.24] [&:focus-within:not(:focus-visible)]:border-blue-core/40 [&:focus:not(:focus-visible)]:border-blue-core/40 [&:focus-within:not(:focus-visible):hover]:border-blue-glow [&:focus:not(:focus-visible):hover]:border-blue-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transition-none`}
+    >
+      {expanded ? t("sanctuary.deepComparison.collapse") : t("sanctuary.deepComparison.expand")}
+      <ChevronDown
+        className={`h-3.5 w-3.5 transition-transform duration-300 motion-reduce:transition-none ${
+          expanded ? "rotate-180" : ""
+        }`}
+        aria-hidden
+      />
+    </button>
+  );
+}
+
+function DeepComparisonOverlay({
+  comparison,
+  open,
+  onOpenChange,
+  t,
+}: {
+  comparison: DeepComparison;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  t: TFunction;
+}) {
+  const title = t("sanctuary.deepComparison.modalTitle", { service: comparison.label });
+  const [expandedRows, setExpandedRows] = useState<ReadonlySet<DeepComparisonRowKey>>(
+    () => new Set(),
+  );
+  const toggleExpandedRow = (rowId: DeepComparisonRowKey) => {
+    setExpandedRows((currentRows) => {
+      const nextRows = new Set(currentRows);
+
+      if (nextRows.has(rowId)) {
+        nextRows.delete(rowId);
+      } else {
+        nextRows.add(rowId);
+      }
+
+      return nextRows;
+    });
+  };
+
+  return (
+    <EasterEggOverlay
+      ariaLabel={title}
+      contentInitialScale={1}
+      contentClassName="glass-card deep-comparison-modal-surface max-h-[88vh] w-[min(1180px,calc(100vw-1.5rem))] overflow-y-auto overscroll-contain !rounded-[1.75rem] p-5 shadow-[0_0_40px_rgba(37,99,235,0.2)] [scrollbar-width:none] dark:shadow-[0_24px_80px_rgba(0,0,0,0.48)] sm:p-6 md:p-8 [&::-webkit-scrollbar]:hidden"
+      open={open}
+      onOpenChange={onOpenChange}
+    >
+      <div className="flex items-start justify-between gap-4 border-b border-[var(--glass-border-subtle)] pb-5">
+        <div className="min-w-0">
+          <p className="mb-2 text-xs font-display font-semibold uppercase tracking-[0.18em] text-blue-glow">
+            {t("sanctuary.deepComparison.modalEyebrow")}
+          </p>
+          <h3 className="-ml-px text-2xl font-display font-semibold leading-tight text-foreground md:text-3xl">
+            {title}
+          </h3>
+        </div>
+        <button
+          type="button"
+          aria-label={t("sanctuary.deepComparison.close")}
+          onClick={() => onOpenChange(false)}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--glass-border-subtle)] bg-background/70 text-muted-foreground transition-[border-color,color,box-shadow] duration-300 hover:border-blue-glow hover:text-foreground hover:shadow-[0_0_16px_rgba(37,99,235,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:bg-muted/60 dark:text-foreground/70 motion-reduce:transition-none"
+        >
+          <X className="h-4 w-4" aria-hidden />
+        </button>
+      </div>
+
+      <div className="mt-6 space-y-3 md:hidden">
+        {comparison.rows.map((row) => {
+          const detailId = `${comparison.id}-${row.id}-mobile-detail`;
+          const expanded = expandedRows.has(row.id);
+
+          return (
+            <section
+              key={row.id}
+              className="overflow-hidden rounded-[1.25rem] border border-[var(--glass-border-subtle)] dark:bg-background/35"
+            >
+              <div className="bg-blue-core/10 px-4 py-3 dark:bg-muted/55">
+                <h4 className="text-sm font-display font-semibold text-foreground">{row.label}</h4>
+              </div>
+              <div className="space-y-2 px-4 py-3">
+                <div
+                  className={`rounded-[1rem] border p-3 ${getDeepComparisonCellClass("service")}`}
+                >
+                  <p className="mb-1 text-xs font-display font-semibold uppercase tracking-[0.16em]">
+                    {comparison.label}
+                  </p>
+                  <div className="flex items-start gap-2">
+                    <DeepComparisonResultIcon side="service" />
+                    <p className="text-sm leading-relaxed">{row.service}</p>
+                  </div>
+                </div>
+                <div
+                  className={`rounded-[1rem] border p-3 ${getDeepComparisonCellClass("bitsocial")}`}
+                >
+                  <p className="mb-1 text-xs font-display font-semibold uppercase tracking-[0.16em]">
+                    {t("sanctuary.deepComparison.table.bitsocial")}
+                  </p>
+                  <div className="flex items-start gap-2">
+                    <DeepComparisonResultIcon side="bitsocial" />
+                    <p className="text-sm leading-relaxed">{row.bitsocial}</p>
+                  </div>
+                </div>
+                {expanded ? (
+                  <div
+                    id={detailId}
+                    className="rounded-[1rem] border border-blue-core/20 bg-blue-core/[0.06] p-3 dark:border-[var(--glass-border-subtle)] dark:bg-muted/45"
+                  >
+                    <p className="text-sm leading-relaxed text-foreground">{row.detail}</p>
+                    <DeepComparisonSourceLinks sources={row.sources} t={t} />
+                  </div>
+                ) : null}
+              </div>
+              <div className="px-4 pb-4">
+                <DeepComparisonExpandButton
+                  className=""
+                  controls={detailId}
+                  expanded={expanded}
+                  onClick={() => toggleExpandedRow(row.id)}
+                  t={t}
+                />
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      <div className="mt-6 hidden overflow-x-auto rounded-[1.25rem] border border-[var(--glass-border-subtle)] dark:bg-background/35 md:block">
+        <table className="w-full min-w-[720px] table-fixed border-collapse text-left">
+          <caption className="sr-only">
+            {t("sanctuary.deepComparison.tableCaption", { service: comparison.label })}
+          </caption>
+          <thead>
+            <tr className="bg-blue-core/10 dark:bg-muted/55">
+              <th
+                scope="col"
+                className="w-[24%] px-4 py-3 text-xs font-display font-semibold uppercase tracking-[0.16em] text-muted-foreground"
+              >
+                {t("sanctuary.deepComparison.table.topic")}
+              </th>
+              <th
+                scope="col"
+                className="w-[38%] px-4 py-3 text-xs font-display font-semibold uppercase tracking-[0.16em] text-foreground"
+              >
+                {comparison.label}
+              </th>
+              <th
+                scope="col"
+                className="w-[38%] px-4 py-3 text-xs font-display font-semibold uppercase tracking-[0.16em] text-blue-glow"
+              >
+                {t("sanctuary.deepComparison.table.bitsocial")}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparison.rows.map((row) => {
+              const detailId = `${comparison.id}-${row.id}-detail`;
+              const expanded = expandedRows.has(row.id);
+
+              return (
+                <Fragment key={row.id}>
+                  <tr className="border-t border-[var(--glass-border-subtle)] align-top">
+                    <th scope="row" className="px-4 py-4 text-sm font-display text-foreground">
+                      <div className="flex flex-col items-start gap-3">
+                        <span className="font-semibold">{row.label}</span>
+                        <div>
+                          <DeepComparisonExpandButton
+                            className=""
+                            controls={detailId}
+                            expanded={expanded}
+                            onClick={() => toggleExpandedRow(row.id)}
+                            t={t}
+                          />
+                        </div>
+                      </div>
+                    </th>
+                    <td className="px-4 py-4 text-sm leading-relaxed">
+                      <div
+                        className={`rounded-[1rem] border p-3 ${getDeepComparisonCellClass("service")}`}
+                      >
+                        <div className="flex items-start gap-2">
+                          <DeepComparisonResultIcon side="service" />
+                          <p>{row.service}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-sm leading-relaxed">
+                      <div
+                        className={`rounded-[1rem] border p-3 ${getDeepComparisonCellClass("bitsocial")}`}
+                      >
+                        <div className="flex items-start gap-2">
+                          <DeepComparisonResultIcon side="bitsocial" />
+                          <p>{row.bitsocial}</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  {expanded ? (
+                    <tr
+                      id={detailId}
+                      className="border-t border-blue-core/10 bg-blue-core/[0.035] dark:border-[var(--glass-border-subtle)] dark:bg-muted/45"
+                    >
+                      <td colSpan={3} className="px-4 py-4">
+                        <p className="text-sm leading-relaxed text-foreground">{row.detail}</p>
+                        <DeepComparisonSourceLinks sources={row.sources} t={t} />
+                      </td>
+                    </tr>
+                  ) : null}
+                </Fragment>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </EasterEggOverlay>
+  );
+}
+
+function DeepComparisonServiceSelect({
+  comparisons,
+  onServiceChange,
+  selectedService,
+}: {
+  comparisons: DeepComparison[];
+  onServiceChange: (serviceId: DeepComparisonServiceId) => void;
+  selectedService: DeepComparisonServiceId;
+}) {
+  const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const selectedIndex = Math.max(
+    0,
+    comparisons.findIndex(({ id }) => id === selectedService),
+  );
+  const activeComparison = comparisons[Math.min(activeIndex, comparisons.length - 1)];
+  const selectedComparison = comparisons[selectedIndex] ?? comparisons[0];
+  const listboxId = "sanctuary-deep-comparison-service-listbox";
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target;
+
+      if (target instanceof Node && rootRef.current?.contains(target)) {
+        return;
+      }
+
+      setOpen(false);
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, [open]);
+
+  const openListbox = () => {
+    setActiveIndex(selectedIndex);
+    setOpen(true);
+  };
+
+  const selectComparison = (serviceId: DeepComparisonServiceId) => {
+    onServiceChange(serviceId);
+    setOpen(false);
+    triggerRef.current?.focus();
+  };
+
+  const handleKeyDown = (event: ReactKeyboardEvent) => {
+    if (comparisons.length === 0) {
+      return;
+    }
+
+    if (!open) {
+      if (
+        event.key === "ArrowDown" ||
+        event.key === "ArrowUp" ||
+        event.key === "Enter" ||
+        event.key === " "
+      ) {
+        event.preventDefault();
+        openListbox();
+      }
+      return;
+    }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setOpen(false);
+      triggerRef.current?.focus();
+      return;
+    }
+
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      const direction = event.key === "ArrowDown" ? 1 : -1;
+      setActiveIndex((currentIndex) => {
+        const nextIndex = currentIndex + direction;
+
+        if (nextIndex < 0) {
+          return comparisons.length - 1;
+        }
+
+        if (nextIndex >= comparisons.length) {
+          return 0;
+        }
+
+        return nextIndex;
+      });
+      return;
+    }
+
+    if (event.key === "Home" || event.key === "End") {
+      event.preventDefault();
+      setActiveIndex(event.key === "Home" ? 0 : comparisons.length - 1);
+      return;
+    }
+
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      if (activeComparison) {
+        selectComparison(activeComparison.id);
+      }
+    }
+  };
+
+  return (
+    <div ref={rootRef} className="relative min-w-[10rem]">
+      <button
+        ref={triggerRef}
+        id="sanctuary-deep-comparison-service"
+        type="button"
+        role="combobox"
+        aria-controls={listboxId}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+        data-expanded={open ? "true" : undefined}
+        aria-activedescendant={
+          open && activeComparison
+            ? `sanctuary-deep-comparison-service-${activeComparison.id}`
+            : undefined
+        }
+        onKeyDown={handleKeyDown}
+        onClick={() => {
+          if (open) {
+            setOpen(false);
+            return;
+          }
+
+          openListbox();
+        }}
+        className="ring-glow cta-glow flex h-11 w-full min-w-[10rem] items-center justify-between gap-3 rounded-full border border-blue-core/30 bg-blue-core/10 py-0 pl-4 pr-3 text-left text-sm font-display font-semibold text-foreground shadow-[inset_0_0_0_1px_rgba(37,99,235,0.08)] hover:border-blue-glow hover:bg-blue-core/15 active:border-blue-core/45 active:bg-blue-core/[0.12] data-[expanded=true]:border-blue-glow data-[expanded=true]:bg-blue-core/[0.12] data-[expanded=true]:hover:border-blue-glow data-[expanded=true]:hover:bg-blue-core/15 [&:focus:not(:focus-visible)]:border-blue-glow focus-visible:border-blue-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:hover:border-blue-glow dark:hover:bg-blue-core/[0.24] dark:active:border-blue-core/45 dark:active:bg-blue-core/[0.12] dark:data-[expanded=true]:border-blue-glow dark:data-[expanded=true]:bg-blue-glow/[0.08] dark:data-[expanded=true]:hover:border-blue-glow dark:data-[expanded=true]:hover:bg-blue-core/[0.24] dark:[&:focus:not(:focus-visible)]:border-blue-glow motion-reduce:transition-none sm:w-auto"
+      >
+        <span className="truncate">{selectedComparison?.label}</span>
+        <ChevronDown
+          className={`h-4 w-4 shrink-0 text-blue-glow transition-transform duration-300 motion-reduce:transition-none ${
+            open ? "rotate-180" : ""
+          }`}
+          aria-hidden
+        />
+      </button>
+
+      {open ? (
+        <div
+          id={listboxId}
+          role="listbox"
+          aria-labelledby="sanctuary-deep-comparison-service"
+          className="absolute left-0 right-0 top-full z-30 mt-2 flex max-h-72 flex-col gap-2 overflow-y-auto rounded-[1.25rem] border border-blue-core/25 bg-background/95 p-2 text-left shadow-[0_16px_40px_rgba(0,0,0,0.24),0_0_24px_rgba(37,99,235,0.14)] [scrollbar-width:none] backdrop-blur-md dark:border-[var(--glass-border-subtle)] dark:bg-card dark:shadow-[0_20px_45px_rgba(0,0,0,0.42)] sm:right-auto sm:min-w-full [&::-webkit-scrollbar]:hidden"
+        >
+          {comparisons.map((comparison, index) => {
+            const selected = comparison.id === selectedService;
+            const active = index === activeIndex;
+
+            return (
+              <button
+                key={comparison.id}
+                id={`sanctuary-deep-comparison-service-${comparison.id}`}
+                type="button"
+                role="option"
+                aria-selected={selected}
+                onClick={() => selectComparison(comparison.id)}
+                onMouseEnter={() => setActiveIndex(index)}
+                className={`flex w-full items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-left text-sm font-display font-semibold transition-all duration-200 motion-reduce:transition-none ${
+                  selected
+                    ? "border-blue-glow bg-blue-glow/[0.08] text-foreground hover:border-blue-glow hover:bg-blue-glow/[0.12]"
+                    : active
+                      ? "border-foreground/[0.16] bg-foreground/[0.08] text-foreground"
+                      : "border-foreground/[0.06] bg-foreground/[0.03] text-muted-foreground hover:border-foreground/[0.12] hover:bg-foreground/[0.07] hover:text-foreground"
+                }`}
+              >
+                <span>{comparison.label}</span>
+                {selected ? <Check className="h-4 w-4 shrink-0 text-blue-glow" /> : null}
+              </button>
+            );
+          })}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export default function SanctuaryCommunication() {
   const { t } = useTranslation();
   const { approaches, rows } = useSanctuaryComparisonData(t);
   const defaultApproachIndex = useDefaultApproachIndex(approaches);
+  const deepComparisons = getSanctuaryDeepComparisons(t);
+  const [deepComparisonState, setDeepComparisonState] = useState<{
+    open: boolean;
+    selectedService: DeepComparisonServiceId;
+  }>(() => ({ open: false, selectedService: "nostr" }));
+  const selectedDeepService = deepComparisonState.selectedService;
+  const deepComparisonOpen = deepComparisonState.open;
+  const selectedDeepComparison =
+    deepComparisons.find(({ id }) => id === selectedDeepService) ?? deepComparisons[0];
+  const openDeepComparison = useCallback((serviceId: DeepComparisonServiceId) => {
+    setDeepComparisonState({ open: true, selectedService: serviceId });
+    pushDeepComparisonHash(serviceId);
+  }, []);
+  const handleSelectedDeepServiceChange = useCallback((serviceId: DeepComparisonServiceId) => {
+    setDeepComparisonState((currentState) => ({
+      ...currentState,
+      selectedService: serviceId,
+    }));
+  }, []);
+  const handleDeepComparisonOpenChange = useCallback((nextOpen: boolean) => {
+    setDeepComparisonState((currentState) => ({ ...currentState, open: nextOpen }));
+
+    if (
+      !nextOpen &&
+      typeof window !== "undefined" &&
+      getDeepComparisonServiceFromHash(window.location.hash)
+    ) {
+      replaceDeepComparisonHash("#sanctuary-communication");
+    }
+  }, []);
   const noJsMobileApproaches = useMemo(() => {
     const bitsocialApproach = approaches.find(({ id }) => id === "bitsocial");
     const otherApproaches = approaches.filter(({ id }) => id !== "bitsocial");
 
     return bitsocialApproach ? [bitsocialApproach, ...otherApproaches] : approaches;
   }, [approaches]);
+  useEffect(() => {
+    const syncDeepComparisonHash = () => {
+      const serviceId = getDeepComparisonServiceFromHash(window.location.hash);
+
+      if (!serviceId) {
+        setDeepComparisonState((currentState) =>
+          currentState.open ? { ...currentState, open: false } : currentState,
+        );
+        return;
+      }
+
+      setDeepComparisonState((currentState) =>
+        currentState.open && currentState.selectedService === serviceId
+          ? currentState
+          : { open: true, selectedService: serviceId },
+      );
+    };
+
+    syncDeepComparisonHash();
+    window.addEventListener("hashchange", syncDeepComparisonHash);
+    window.addEventListener("popstate", syncDeepComparisonHash);
+
+    return () => {
+      window.removeEventListener("hashchange", syncDeepComparisonHash);
+      window.removeEventListener("popstate", syncDeepComparisonHash);
+    };
+  }, []);
 
   return (
     <section className="py-24 px-6">
@@ -734,6 +1751,55 @@ export default function SanctuaryCommunication() {
             </m.div>
           ))}
         </div>
+
+        {selectedDeepComparison ? (
+          <>
+            {deepComparisons.map((comparison) => (
+              <span
+                key={comparison.id}
+                id={DEEP_COMPARISON_HASH_BY_SERVICE[comparison.id]}
+                className="block scroll-mt-[99px] md:scroll-mt-[103px]"
+                aria-hidden="true"
+              />
+            ))}
+            <m.form
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+              className="glass-card mx-auto mt-10 flex w-fit max-w-[calc(100vw-3rem)] flex-col items-stretch justify-center gap-3 !rounded-[1.75rem] p-3 text-center sm:flex-row sm:items-center sm:!rounded-full sm:pl-5"
+              onSubmit={(event) => {
+                event.preventDefault();
+                openDeepComparison(selectedDeepService);
+              }}
+            >
+              <label
+                htmlFor="sanctuary-deep-comparison-service"
+                className="px-2 text-sm font-display font-semibold text-muted-foreground dark:text-foreground/80 sm:px-0"
+              >
+                {t("sanctuary.deepComparison.prompt")}
+              </label>
+              <DeepComparisonServiceSelect
+                comparisons={deepComparisons}
+                selectedService={selectedDeepService}
+                onServiceChange={handleSelectedDeepServiceChange}
+              />
+              <button
+                type="submit"
+                className="ring-glow cta-glow inline-flex h-11 items-center justify-center gap-2 rounded-full border border-blue-core/30 bg-blue-core/[0.08] px-5 text-sm font-display font-semibold text-foreground/90 transition-[box-shadow,border-color,background-color,color,opacity] duration-300 hover:border-blue-glow hover:bg-blue-core/[0.14] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:hover:bg-blue-core/[0.24] motion-reduce:transition-none"
+              >
+                {t("sanctuary.deepComparison.go")}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </button>
+            </m.form>
+            <DeepComparisonOverlay
+              comparison={selectedDeepComparison}
+              open={deepComparisonOpen}
+              onOpenChange={handleDeepComparisonOpenChange}
+              t={t}
+            />
+          </>
+        ) : null}
 
         {/* Founder attribution */}
         <m.blockquote
