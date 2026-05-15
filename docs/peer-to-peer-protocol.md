@@ -357,6 +357,43 @@ Bitsocial's peer-to-peer approach removes the server from the equation entirely.
 can run on a laptop, a Raspberry Pi, or a cheap VPS. The operator controls moderation policy but
 cannot seize user identities, because identities are keypair-controlled, not server-granted.
 
+## What about Nostr?
+
+Nostr does not fit cleanly into either bucket. It is not ActivityPub-style federation, because users
+are not issued accounts by instances and identity is not tied to one server. It is not blockchain
+social media either, because there is no chain, consensus, gas, or global transaction order.
+
+Nostr is better described as **relay-based social media**. In the base protocol
+([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)), users hold keypairs, sign
+events, and publish those events to WebSocket relays. Clients subscribe to relays with filters,
+fetch matching events, and verify signatures locally. Users can also publish relay-list metadata
+([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)) that tells clients which
+relays they normally write to and which relays they prefer for reading mentions.
+
+That puts Nostr closer to Bitsocial than federated or blockchain systems in one important way:
+identity is cryptographic and portable. The main difference is the data layer. In Nostr, relays are
+the normal storage and delivery layer. In Bitsocial, HTTP routers only help clients find peers. The
+routers do not store posts, profiles, community metadata, or moderation state; they return provider
+peer addresses, then clients fetch content from peers.
+
+Communities show the same split. Nostr has optional patterns for
+[relay-based groups](https://github.com/nostr-protocol/nips/blob/master/29.md) and
+[moderator-approved communities](https://github.com/nostr-protocol/nips/blob/master/72.md), but
+they still depend on relay policy, relay-hosted group state, or client choices about which
+approvals to honor. Bitsocial treats communities as first-class cryptographic objects whose
+operator node validates posts, runs the community's challenge policy, and publishes the latest
+accepted state into the peer-to-peer network.
+
+| Question            | Nostr                                                                              | Bitsocial                                                         |
+| ------------------- | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Category            | Relay-based protocol                                                               | Peer-to-peer community network                                    |
+| Identity            | User public key                                                                    | User and community keypairs                                       |
+| Data path           | Signed events published to relays                                                  | Public-key address resolves to peers; content fetched from peers  |
+| Who keeps it online | Relays chosen by users and clients                                                 | Community owner node plus helper seeders                          |
+| Communities         | Optional relay-based groups or moderator-approved communities                      | First-class community objects with operator-controlled moderation |
+| Anti-spam           | Relay policy, auth, payment, proof-of-work, client filters, or moderator approvals | Community-defined challenge logic before inclusion                |
+| Main tradeoff       | Portable identity, but relay-dependent availability and policy                     | Less relay dependence, but old content is not guaranteed forever  |
+
 ---
 
 ## Summary
