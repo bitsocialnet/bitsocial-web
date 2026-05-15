@@ -139,14 +139,14 @@
     "quote": "Về cơ bản, cộng đồng của bạn không thể bị bất kỳ ai cấm hoặc chặn, kể cả chính phủ. Chúng tôi giải quyết vấn đề đó.",
     "quoteAttribution": "— Esteban Abaroa, nhà sáng lập Bitsocial",
     "deepComparison": {
-      "prompt": "See deep comparison with:",
-      "go": "Go",
-      "modalEyebrow": "Deep comparison",
-      "modalTitle": "{{service}} vs Bitsocial",
-      "close": "Close deep comparison",
-      "tableCaption": "Concise sourced comparison table for {{service}} vs Bitsocial",
+      "prompt": "Xem so sánh sâu với:",
+      "go": "Đi",
+      "modalEyebrow": "So sánh sâu",
+      "modalTitle": "{{service}} so với Bitsocial",
+      "close": "Đóng so sánh sâu",
+      "tableCaption": "Bảng so sánh ngắn gọn, có nguồn, cho {{service}} và Bitsocial",
       "table": {
-        "topic": "Topic",
+        "topic": "Chủ đề",
         "bitsocial": "Bitsocial"
       },
       "services": {
@@ -161,81 +161,81 @@
       },
       "rows": {
         "identity": {
-          "label": "Human names",
-          "nostr": "Your account is a long public key; readable names need extra providers.",
-          "bitsocial": "Keys are automatic, and .bso names can point to users and communities.",
-          "detail": "Nostr's base identity is a public key, which is portable but hard to remember. Readable names are useful, but they are added through separate conventions and providers. Bitsocial also uses public keys while adding .bso names, so a person or community can have a readable identity without a central account provider.",
-          "bluesky": "Readable handles are DNS names; the DID document points apps to the account's current server.",
-          "detailBluesky": "Bluesky has a real improvement over raw public keys: DIDs plus readable handles. The tradeoff is that handles are DNS names and the DID document still advertises the user's current PDS. Bitsocial keeps cryptographic ownership while adding .bso names for people and communities."
+          "label": "Tên người",
+          "nostr": "Tài khoản của bạn là một khóa công khai dài; để có tên dễ đọc cần thêm nhà cung cấp.",
+          "bluesky": "Handle dễ đọc là tên DNS; tài liệu DID chỉ ứng dụng đến máy chủ hiện tại của tài khoản.",
+          "bitsocial": "Khóa được tạo tự động, và tên .bso có thể trỏ tới người dùng và cộng đồng.",
+          "detail": "Danh tính cơ bản của Nostr là một khóa công khai, vừa di động vừa khó nhớ. Tên dễ đọc có ích, nhưng chúng được thêm qua các quy ước và nhà cung cấp riêng. Bitsocial cũng dùng khóa công khai nhưng thêm tên .bso, nên một người hoặc cộng đồng có thể có danh tính dễ đọc mà không cần nhà cung cấp tài khoản trung tâm.",
+          "detailBluesky": "Bluesky thực sự tốt hơn khóa công khai thô: DIDs và handle dễ đọc. Đổi lại, handle là tên DNS và tài liệu DID vẫn cho ứng dụng biết PDS hiện tại của người dùng. Bitsocial giữ quyền sở hữu mật mã và thêm tên .bso cho người và cộng đồng."
         },
         "dataLayer": {
-          "label": "Data hosting",
-          "nostr": "Relays keep posts online and deliver them to readers.",
-          "bitsocial": "Users can fetch and share posts directly with each other.",
-          "detail": "Nostr posts are portable because users control their keys, but a server still has to keep the posts online. In normal Nostr use, that job belongs to relays. Bitsocial separates finding people from carrying the data: small lookup services can help find peers, then users fetch and share the content directly.",
-          "bluesky": "Public posts live on a Personal Data Server, then relays and AppViews index them.",
-          "detailBluesky": "Bluesky's repo design is one of its strongest parts: public records are signed, portable, and exportable. But the authoritative host is still the current PDS, and the normal app experience depends on relays and AppViews. Bitsocial starts with peer-to-peer content sharing instead of server-hosted account repos."
+          "label": "Lưu trữ dữ liệu",
+          "nostr": "Relay giữ bài viết trực tuyến và chuyển chúng tới người đọc.",
+          "bluesky": "Bài đăng công khai nằm trên Personal Data Server, rồi relay và AppView lập chỉ mục chúng.",
+          "bitsocial": "Người dùng có thể lấy và chia sẻ bài đăng trực tiếp với nhau.",
+          "detail": "Bài đăng Nostr có tính di động vì người dùng kiểm soát khóa của mình, nhưng vẫn cần một máy chủ giữ bài viết trực tuyến. Trong cách dùng Nostr thông thường, việc đó thuộc về relay. Bitsocial tách việc tìm người khỏi việc mang dữ liệu: các dịch vụ tra cứu nhỏ có thể giúp tìm peers, rồi người dùng lấy và chia sẻ nội dung trực tiếp.",
+          "detailBluesky": "Thiết kế repo của Bluesky là một trong những điểm mạnh nhất: bản ghi công khai được ký, di động và có thể xuất. Nhưng máy chủ có thẩm quyền vẫn là PDS hiện tại, và trải nghiệm ứng dụng bình thường phụ thuộc vào relay và AppView. Bitsocial bắt đầu bằng chia sẻ nội dung ngang hàng thay vì repo tài khoản do máy chủ lưu trữ."
         },
         "communityModel": {
-          "label": "Community ownership",
-          "nostr": "A group depends on relays and apps agreeing which posts count.",
-          "bitsocial": "The community itself decides what belongs in the thread.",
-          "detail": "Nostr can build group features, but the group still depends on relays and apps agreeing on what belongs there. That is fragile for forum-style communities. Bitsocial lets the community accept posts directly, which fits forums, imageboards, and subreddit-style spaces better.",
-          "bluesky": "Community-like spaces are built through feeds, lexicons, or app features, not P2P objects with their own gate.",
-          "detailBluesky": "Bluesky can build groups, forums, and community feeds through lexicons, AppViews, and feed generators. That still leaves the community dependent on services that index and interpret records. Bitsocial treats the community as the addressed object: its node validates posts and publishes the accepted state."
+          "label": "Quyền sở hữu cộng đồng",
+          "nostr": "Một nhóm phụ thuộc vào việc relay và ứng dụng đồng ý bài nào được tính.",
+          "bluesky": "Các không gian kiểu cộng đồng được xây bằng feed, lexicon hoặc tính năng ứng dụng, chứ không phải các đối tượng P2P có cổng riêng.",
+          "bitsocial": "Chính cộng đồng quyết định nội dung nào thuộc về chủ đề.",
+          "detail": "Nostr có thể xây tính năng nhóm, nhưng nhóm vẫn phụ thuộc vào relay và ứng dụng đồng ý nội dung nào thuộc về đó. Điều này dễ vỡ với các cộng đồng kiểu diễn đàn. Bitsocial cho cộng đồng nhận bài đăng trực tiếp, phù hợp hơn với forum, imageboard và các không gian kiểu subreddit.",
+          "detailBluesky": "Bluesky có thể xây nhóm, forum và feed cộng đồng qua lexicon, AppView và feed generator. Nhưng cộng đồng vẫn phụ thuộc vào các dịch vụ lập chỉ mục và diễn giải bản ghi. Bitsocial xem cộng đồng là đối tượng được địa chỉ hóa: nút của nó xác thực bài đăng và công bố trạng thái đã chấp nhận."
         },
         "moderation": {
-          "label": "Censorship points",
-          "nostr": "If major relays stop carrying you, many users may never find your posts.",
-          "bitsocial": "A community can stay reachable while peers keep sharing it.",
-          "detail": "A Nostr key can survive a relay ban, but visibility still depends on the relays, search services, and apps people actually use. If those places stop carrying you, the account exists but the audience may not see it. Bitsocial removes the relay as the center of power: users can keep sharing a community through different discovery paths as long as peers keep it online.",
-          "bluesky": "The account host, relay, or AppView can block the normal path to your audience.",
-          "detailBluesky": "Bluesky separates account hosting, relay distribution, and AppView indexing. That helps portability, but it also creates several visibility gates that ordinary users rarely change. A PDS can refuse service, relays can stop carrying data, and AppViews can hide or ignore records. Bitsocial keeps reach closer to the community and its peers."
+          "label": "Điểm kiểm duyệt",
+          "nostr": "Nếu các relay lớn ngừng mang bài của bạn, nhiều người dùng có thể không bao giờ tìm thấy nó.",
+          "bluesky": "Máy chủ tài khoản, relay hoặc AppView có thể chặn đường bình thường tới khán giả của bạn.",
+          "bitsocial": "Một cộng đồng vẫn có thể được truy cập khi peers tiếp tục chia sẻ nó.",
+          "detail": "Một khóa Nostr có thể sống sót sau lệnh cấm relay, nhưng khả năng hiển thị vẫn phụ thuộc vào các relay, dịch vụ tìm kiếm và ứng dụng mà mọi người thực sự dùng. Nếu những nơi đó ngừng mang bài của bạn, tài khoản vẫn tồn tại nhưng khán giả có thể không thấy. Bitsocial loại relay khỏi trung tâm quyền lực: người dùng có thể tiếp tục chia sẻ cộng đồng qua các đường khám phá khác nhau miễn là peers giữ nó trực tuyến.",
+          "detailBluesky": "Bluesky tách lưu trữ tài khoản, phân phối relay và lập chỉ mục AppView. Điều đó giúp tính di động, nhưng cũng tạo ra nhiều cổng hiển thị mà người dùng bình thường hiếm khi thay đổi. PDS có thể từ chối phục vụ, relay có thể ngừng mang dữ liệu và AppView có thể ẩn hoặc bỏ qua bản ghi. Bitsocial giữ phạm vi tiếp cận gần hơn với cộng đồng và các peers của nó."
         },
         "contentDiscovery": {
-          "label": "Finding content",
-          "nostr": "Discovery often follows the relays and search services with the most data.",
-          "bitsocial": "Discovery connects you to peers; users still share the posts.",
-          "detail": "Nostr discovery works best when popular relays, search relays, and apps already have the data. That gives the best-connected services extra power over what people find. Bitsocial discovery only helps find peers. It does not need to host the content, own the community, or become the place everyone must trust.",
-          "bluesky": "Discovery depends on AppViews, search indexes, feeds, and client defaults.",
-          "detailBluesky": "Bluesky's own architecture puts feeds, search, and aggregate views in AppViews and related services. That makes discovery powerful, but visibility follows whichever aggregators the app uses. Bitsocial discovery services only return peer addresses. They do not need to host the content, own the community, or decide what everyone sees."
+          "label": "Tìm nội dung",
+          "nostr": "Khám phá thường đi theo các relay và dịch vụ tìm kiếm có nhiều dữ liệu nhất.",
+          "bluesky": "Khám phá phụ thuộc vào AppView, chỉ mục tìm kiếm, feed và mặc định của máy khách.",
+          "bitsocial": "Khám phá kết nối bạn với peers; người dùng vẫn chia sẻ bài viết.",
+          "detail": "Khám phá trong Nostr hoạt động tốt nhất khi các relay phổ biến, relay tìm kiếm và ứng dụng đã có sẵn dữ liệu. Điều đó trao thêm quyền cho các dịch vụ kết nối tốt nhất về những gì mọi người tìm thấy. Khám phá của Bitsocial chỉ giúp tìm peers. Nó không cần lưu trữ nội dung, sở hữu cộng đồng hoặc trở thành nơi mọi người phải tin cậy.",
+          "detailBluesky": "Kiến trúc của Bluesky đặt feed, tìm kiếm và chế độ xem tổng hợp vào AppView và các dịch vụ liên quan. Điều đó làm khám phá mạnh hơn, nhưng khả năng hiển thị đi theo các bộ tổng hợp mà ứng dụng dùng. Dịch vụ khám phá của Bitsocial chỉ trả về địa chỉ peers. Chúng không cần lưu trữ nội dung, sở hữu cộng đồng hoặc quyết định mọi người thấy gì."
         },
         "replies": {
-          "label": "Spam replies",
-          "nostr": "Spam can reach the thread first. Cleanup usually happens after.",
-          "bitsocial": "A community can challenge posters first and reject spam before it appears.",
-          "detail": "Nostr can show which key wrote a reply, but publishing and moderation are separate. A relay or app can hide junk after it arrives. Bitsocial gives the community a front door: complete the challenge, or the reply is never accepted into the thread.",
-          "bluesky": "Spam is limited by servers, then handled by labels and AppView moderation.",
-          "detailBluesky": "Bluesky uses PDS limits, moderation labels, and AppView choices to reduce abuse. Those defenses are useful, but they are server and indexing-layer defenses. Bitsocial gives the community a front door: complete the challenge, or the reply is never accepted into the thread."
+          "label": "Phản hồi spam",
+          "nostr": "Spam có thể đến chủ đề trước. Dọn dẹp thường diễn ra sau.",
+          "bluesky": "Spam bị giới hạn bởi máy chủ, rồi được xử lý bằng nhãn và kiểm duyệt AppView.",
+          "bitsocial": "Một cộng đồng có thể thử thách người đăng trước và chặn spam trước khi nó xuất hiện.",
+          "detail": "Nostr có thể cho biết khóa nào đã viết một phản hồi, nhưng việc công bố và kiểm duyệt là hai chuyện khác nhau. Relay hoặc ứng dụng có thể ẩn rác sau khi nó đã đến. Bitsocial cho cộng đồng một cửa trước: hoàn thành thử thách, hoặc phản hồi sẽ không bao giờ được chấp nhận vào chủ đề.",
+          "detailBluesky": "Bluesky dùng giới hạn PDS, nhãn kiểm duyệt và lựa chọn AppView để giảm lạm dụng. Những biện pháp đó hữu ích, nhưng chúng là phòng thủ ở tầng máy chủ và lập chỉ mục. Bitsocial cho cộng đồng một cửa trước: hoàn thành thử thách, hoặc phản hồi sẽ không bao giờ được chấp nhận vào chủ đề."
         },
         "antiSpam": {
-          "label": "Community rules",
-          "nostr": "Rules depend on the relay or app people happen to use.",
-          "bitsocial": "Rules belong to the community, so accepted posts pass the same gate.",
-          "detail": "On Nostr, a relay can set rules for that relay, and an app can filter what that app shows. Those rules do not truly belong to the community. Bitsocial lets each community choose the gate for posting, such as account age, reputation, captcha, whitelist, payment, or another challenge.",
-          "bluesky": "The app can filter content, but the community cannot require its own challenge first.",
-          "detailBluesky": "Bluesky moderation is built around labels, AppViews, and service rules. That can hide, rank, or limit content, but it is not the same as a community-owned pre-post gate. Bitsocial lets each community choose the gate for posting, such as account age, reputation, captcha, whitelist, payment, or another challenge."
+          "label": "Quy tắc cộng đồng",
+          "nostr": "Quy tắc phụ thuộc vào relay hoặc ứng dụng mà mọi người tình cờ dùng.",
+          "bluesky": "Ứng dụng có thể lọc nội dung, nhưng cộng đồng không thể bắt buộc thử thách riêng trước.",
+          "bitsocial": "Quy tắc thuộc về cộng đồng, nên bài viết được chấp nhận đi qua cùng một cổng.",
+          "detail": "Trên Nostr, một relay có thể đặt quy tắc cho chính relay đó, và ứng dụng có thể lọc nội dung mà nó hiển thị. Những quy tắc đó thực sự không thuộc về cộng đồng. Bitsocial cho mỗi cộng đồng chọn cổng đăng bài, như tuổi tài khoản, uy tín, captcha, whitelist, thanh toán hoặc một thử thách khác.",
+          "detailBluesky": "Kiểm duyệt của Bluesky xoay quanh nhãn, AppView và quy tắc dịch vụ. Nó có thể ẩn, xếp hạng hoặc giới hạn nội dung, nhưng không giống một cổng trước đăng bài do cộng đồng sở hữu. Bitsocial cho mỗi cộng đồng chọn cổng đăng bài, như tuổi tài khoản, uy tín, captcha, whitelist, thanh toán hoặc một thử thách khác."
         },
         "scalingEconomics": {
-          "label": "Scaling costs",
-          "nostr": "High traffic pushes more server and bandwidth cost onto relays.",
-          "bitsocial": "More readers can also mean more people helping share the content.",
-          "detail": "In Nostr, relays are still the servers keeping posts online and sending them to readers. A popular post can be great for users while becoming expensive for relay operators. In Bitsocial, readers can also help distribute the content they read, so popularity can add capacity instead of only adding server cost.",
-          "bluesky": "Growth pushes load onto account servers, relays, AppViews, and feed services.",
-          "detailBluesky": "ATProto deliberately uses servers for convenience and availability. Relays aggregate firehoses, AppViews index the network, and custom feeds often consume the firehose. Official docs describe relays and AppViews as resource intensive, and relay operations have already needed scaling work. Bitsocial uses routers only to find peers; readers can help carry the content."
+          "label": "Chi phí mở rộng",
+          "nostr": "Lưu lượng cao đẩy thêm chi phí máy chủ và băng thông lên relay.",
+          "bluesky": "Tăng trưởng đẩy tải lên máy chủ tài khoản, relay, AppView và dịch vụ feed.",
+          "bitsocial": "Nhiều người đọc hơn cũng có thể nghĩa là có thêm người giúp chia sẻ nội dung.",
+          "detail": "Trong Nostr, relay vẫn là máy chủ giữ bài viết trực tuyến và gửi chúng cho người đọc. Một bài nổi tiếng có thể tốt cho người dùng nhưng tốn kém cho người vận hành relay. Trong Bitsocial, người đọc cũng có thể giúp phân phối nội dung họ đọc, nên mức độ phổ biến có thể tăng năng lực thay vì chỉ tăng chi phí máy chủ.",
+          "detailBluesky": "ATProto cố ý dùng máy chủ để thuận tiện và sẵn sàng. Relay tổng hợp firehose, AppView lập chỉ mục mạng và feed tùy biến thường tiêu thụ firehose. Tài liệu chính thức mô tả relay và AppView là tốn tài nguyên, và vận hành relay đã từng phải mở rộng. Bitsocial chỉ dùng router để tìm peers; người đọc có thể giúp mang nội dung."
         },
         "browserMobile": {
-          "label": "First post",
-          "nostr": "A web client feels simple only while its relay choices work.",
-          "bitsocial": "Open the app and post; your key can be created automatically.",
-          "detail": "Nostr can feel easy when a good web client has good relays already configured. The hidden dependency remains: those relays must accept, store, and serve the activity. Bitsocial can create the user's key locally and let the app choose direct peer-to-peer or hosted access without making an account server own the identity.",
-          "bluesky": "The easy path is a hosted account with that provider's limits and rules.",
-          "detailBluesky": "Bluesky is easy when bsky.social or another PDS handles accounts, sessions, writes, and hosting. That convenience is server-based, and hosted services apply their own API limits and policies. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity."
+          "label": "Bài đầu tiên",
+          "nostr": "Một máy khách web chỉ có vẻ đơn giản khi lựa chọn relay của nó hoạt động.",
+          "bluesky": "Con đường dễ nhất là một tài khoản được lưu trữ với giới hạn và quy tắc của nhà cung cấp đó.",
+          "bitsocial": "Mở ứng dụng và đăng; khóa của bạn có thể được tạo tự động.",
+          "detail": "Nostr có thể thấy dễ khi một máy khách web tốt đã được cấu hình sẵn relay tốt. Phụ thuộc ngầm vẫn còn: những relay đó phải chấp nhận, lưu trữ và phục vụ hoạt động. Bitsocial có thể tạo khóa người dùng cục bộ và để ứng dụng chọn trực tiếp P2P hoặc truy cập được lưu trữ mà không để máy chủ tài khoản sở hữu danh tính.",
+          "detailBluesky": "Bluesky dễ khi bsky.social hoặc một PDS khác xử lý tài khoản, phiên làm việc, ghi và lưu trữ. Sự tiện lợi đó là dựa trên máy chủ, và các dịch vụ được lưu trữ áp dụng giới hạn API và chính sách của riêng họ. Bitsocial có thể tạo khóa người dùng cục bộ và cho phép người dùng đăng qua P2P trực tiếp hoặc truy cập được lưu trữ tùy chọn mà không để tài khoản nền tảng sở hữu danh tính."
         }
       },
-      "expand": "Learn more",
-      "collapse": "Hide explanation",
-      "sourcesLabel": "Sources:",
+      "expand": "Tìm hiểu thêm",
+      "collapse": "Ẩn giải thích",
+      "sourcesLabel": "Nguồn:",
       "placeholder": {
         "service": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "bitsocial": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

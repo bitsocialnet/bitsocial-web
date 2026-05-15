@@ -139,14 +139,14 @@
     "quote": "Twoja społeczność dosłownie nie może zostać zbanowana ani zablokowana przez nikogo, nawet przez rząd. Rozwiązujemy ten problem.",
     "quoteAttribution": "— Esteban Abaroa, założyciel Bitsocial",
     "deepComparison": {
-      "prompt": "See deep comparison with:",
-      "go": "Go",
-      "modalEyebrow": "Deep comparison",
-      "modalTitle": "{{service}} vs Bitsocial",
-      "close": "Close deep comparison",
-      "tableCaption": "Concise sourced comparison table for {{service}} vs Bitsocial",
+      "prompt": "Zobacz dogłębne porównanie z:",
+      "go": "Pokaż",
+      "modalEyebrow": "Dogłębne porównanie",
+      "modalTitle": "{{service}} kontra Bitsocial",
+      "close": "Zamknij dogłębne porównanie",
+      "tableCaption": "Zwięzła, oparta na źródłach tabela porównawcza {{service}} kontra Bitsocial",
       "table": {
-        "topic": "Topic",
+        "topic": "Temat",
         "bitsocial": "Bitsocial"
       },
       "services": {
@@ -161,81 +161,81 @@
       },
       "rows": {
         "identity": {
-          "label": "Human names",
-          "nostr": "Your account is a long public key; readable names need extra providers.",
-          "bitsocial": "Keys are automatic, and .bso names can point to users and communities.",
-          "detail": "Nostr's base identity is a public key, which is portable but hard to remember. Readable names are useful, but they are added through separate conventions and providers. Bitsocial also uses public keys while adding .bso names, so a person or community can have a readable identity without a central account provider.",
-          "bluesky": "Readable handles are DNS names; the DID document points apps to the account's current server.",
-          "detailBluesky": "Bluesky has a real improvement over raw public keys: DIDs plus readable handles. The tradeoff is that handles are DNS names and the DID document still advertises the user's current PDS. Bitsocial keeps cryptographic ownership while adding .bso names for people and communities."
+          "label": "Nazwy ludzkie",
+          "nostr": "Twoje konto to długi klucz publiczny; czytelne nazwy wymagają dodatkowych dostawców.",
+          "bluesky": "Czytelne uchwyty to nazwy DNS; dokument DID wskazuje aplikacjom bieżący serwer konta.",
+          "bitsocial": "Klucze są tworzone automatycznie, a nazwy .bso mogą wskazywać użytkowników i społeczności.",
+          "detail": "Podstawowa tożsamość Nostr to klucz publiczny, który jest przenośny, ale trudny do zapamiętania. Czytelne nazwy są przydatne, ale dodaje się je przez osobne konwencje i dostawców. Bitsocial też używa kluczy publicznych i dodaje nazwy .bso, więc osoba lub społeczność może mieć czytelną tożsamość bez centralnego dostawcy kont.",
+          "detailBluesky": "Bluesky ma realną poprawę względem surowych kluczy publicznych: DID-y plus czytelne uchwyty. Kompromisem jest to, że uchwyty są nazwami DNS, a dokument DID nadal wskazuje na obecny PDS użytkownika. Bitsocial zachowuje własność kryptograficzną, dodając nazwy .bso dla ludzi i społeczności."
         },
         "dataLayer": {
-          "label": "Data hosting",
-          "nostr": "Relays keep posts online and deliver them to readers.",
-          "bitsocial": "Users can fetch and share posts directly with each other.",
-          "detail": "Nostr posts are portable because users control their keys, but a server still has to keep the posts online. In normal Nostr use, that job belongs to relays. Bitsocial separates finding people from carrying the data: small lookup services can help find peers, then users fetch and share the content directly.",
-          "bluesky": "Public posts live on a Personal Data Server, then relays and AppViews index them.",
-          "detailBluesky": "Bluesky's repo design is one of its strongest parts: public records are signed, portable, and exportable. But the authoritative host is still the current PDS, and the normal app experience depends on relays and AppViews. Bitsocial starts with peer-to-peer content sharing instead of server-hosted account repos."
+          "label": "Hostowanie danych",
+          "nostr": "Relaye utrzymują posty online i dostarczają je czytelnikom.",
+          "bluesky": "Publiczne posty znajdują się na Personal Data Server, a następnie relaye i AppViews je indeksują.",
+          "bitsocial": "Użytkownicy mogą pobierać i udostępniać posty bezpośrednio między sobą.",
+          "detail": "Posty Nostr są przenośne, bo użytkownicy kontrolują swoje klucze, ale serwer nadal musi utrzymywać je online. W zwykłym użyciu Nostr to zadanie należy do relayów. Bitsocial rozdziela znajdowanie ludzi od przenoszenia danych: małe usługi wyszukiwania mogą pomagać w znajdowaniu peerów, a użytkownicy pobierają i udostępniają treść bezpośrednio.",
+          "detailBluesky": "Projekt repo Bluesky to jedna z jego najmocniejszych stron: publiczne rekordy są podpisane, przenośne i eksportowalne. Ale autorytatywnym hostem nadal jest bieżący PDS, a normalne doświadczenie aplikacji zależy od relayów i AppViews. Bitsocial zaczyna od udostępniania treści peer-to-peer zamiast od serwerowo hostowanych repo kont."
         },
         "communityModel": {
-          "label": "Community ownership",
-          "nostr": "A group depends on relays and apps agreeing which posts count.",
-          "bitsocial": "The community itself decides what belongs in the thread.",
-          "detail": "Nostr can build group features, but the group still depends on relays and apps agreeing on what belongs there. That is fragile for forum-style communities. Bitsocial lets the community accept posts directly, which fits forums, imageboards, and subreddit-style spaces better.",
-          "bluesky": "Community-like spaces are built through feeds, lexicons, or app features, not P2P objects with their own gate.",
-          "detailBluesky": "Bluesky can build groups, forums, and community feeds through lexicons, AppViews, and feed generators. That still leaves the community dependent on services that index and interpret records. Bitsocial treats the community as the addressed object: its node validates posts and publishes the accepted state."
+          "label": "Własność społeczności",
+          "nostr": "Grupa zależy od tego, czy relaye i aplikacje zgadzają się, które posty się liczą.",
+          "bluesky": "Przestrzenie podobne do społeczności są budowane przez feedy, leksykony lub funkcje aplikacji, a nie przez obiekty P2P z własną bramką.",
+          "bitsocial": "To społeczność sama decyduje, co należy do wątku.",
+          "detail": "Nostr może budować funkcje grupowe, ale grupa nadal zależy od tego, czy relaye i aplikacje zgadzają się, co do niej należy. To kruche dla społeczności forumowych. Bitsocial pozwala społeczności akceptować posty bezpośrednio, co lepiej pasuje do forów, imageboardów i przestrzeni w stylu subreddita.",
+          "detailBluesky": "Bluesky może budować grupy, fora i feedy społecznościowe przez leksykony, AppViews i generatory feedów. To jednak nadal pozostawia społeczność zależną od usług indeksujących i interpretujących rekordy. Bitsocial traktuje społeczność jako obiekt adresowany: jej węzeł waliduje posty i publikuje zaakceptowany stan."
         },
         "moderation": {
-          "label": "Censorship points",
-          "nostr": "If major relays stop carrying you, many users may never find your posts.",
-          "bitsocial": "A community can stay reachable while peers keep sharing it.",
-          "detail": "A Nostr key can survive a relay ban, but visibility still depends on the relays, search services, and apps people actually use. If those places stop carrying you, the account exists but the audience may not see it. Bitsocial removes the relay as the center of power: users can keep sharing a community through different discovery paths as long as peers keep it online.",
-          "bluesky": "The account host, relay, or AppView can block the normal path to your audience.",
-          "detailBluesky": "Bluesky separates account hosting, relay distribution, and AppView indexing. That helps portability, but it also creates several visibility gates that ordinary users rarely change. A PDS can refuse service, relays can stop carrying data, and AppViews can hide or ignore records. Bitsocial keeps reach closer to the community and its peers."
+          "label": "Punkty cenzury",
+          "nostr": "Jeśli główne relaye przestaną cię obsługiwać, wielu użytkowników może nigdy nie znaleźć twoich postów.",
+          "bluesky": "Host konta, relay lub AppView mogą zablokować normalną drogę do twojej publiczności.",
+          "bitsocial": "Społeczność może pozostać osiągalna, jeśli peerzy nadal ją udostępniają.",
+          "detail": "Klucz Nostr może przetrwać bana na relayu, ale widoczność nadal zależy od relayów, usług wyszukiwania i aplikacji, których ludzie rzeczywiście używają. Jeśli te miejsca przestaną cię obsługiwać, konto istnieje, ale odbiorcy mogą go nie zobaczyć. Bitsocial usuwa relay jako centrum władzy: użytkownicy mogą dalej udostępniać społeczność przez różne ścieżki odkrywania, dopóki peerzy utrzymują ją online.",
+          "detailBluesky": "Bluesky rozdziela hosting kont, dystrybucję relay i indeksowanie AppView. To pomaga w przenośności, ale tworzy też kilka bramek widoczności, których zwykli użytkownicy rzadko zmieniają. PDS może odmówić usługi, relaye mogą przestać przenosić dane, a AppViews mogą ukrywać lub ignorować rekordy. Bitsocial trzyma zasięg bliżej społeczności i jej peerów."
         },
         "contentDiscovery": {
-          "label": "Finding content",
-          "nostr": "Discovery often follows the relays and search services with the most data.",
-          "bitsocial": "Discovery connects you to peers; users still share the posts.",
-          "detail": "Nostr discovery works best when popular relays, search relays, and apps already have the data. That gives the best-connected services extra power over what people find. Bitsocial discovery only helps find peers. It does not need to host the content, own the community, or become the place everyone must trust.",
-          "bluesky": "Discovery depends on AppViews, search indexes, feeds, and client defaults.",
-          "detailBluesky": "Bluesky's own architecture puts feeds, search, and aggregate views in AppViews and related services. That makes discovery powerful, but visibility follows whichever aggregators the app uses. Bitsocial discovery services only return peer addresses. They do not need to host the content, own the community, or decide what everyone sees."
+          "label": "Odnajdywanie treści",
+          "nostr": "Odkrywanie często podąża za relayami i usługami wyszukiwania z największą ilością danych.",
+          "bluesky": "Odkrywanie zależy od AppViews, indeksów wyszukiwania, feedów i domyślnych ustawień klienta.",
+          "bitsocial": "Odkrywanie łączy cię z peerami; użytkownicy nadal udostępniają posty.",
+          "detail": "Odkrywanie w Nostr działa najlepiej, gdy popularne relaye, relaye wyszukiwania i aplikacje mają już dane. To daje najlepiej połączonym usługom większą władzę nad tym, co ludzie znajdują. Odkrywanie Bitsocial pomaga tylko znaleźć peerów. Nie musi hostować treści, posiadać społeczności ani stać się miejscem, któremu wszyscy muszą ufać.",
+          "detailBluesky": "Własna architektura Bluesky umieszcza feedy, wyszukiwanie i widoki zbiorcze w AppViews i powiązanych usługach. To sprawia, że odkrywanie jest mocne, ale widoczność podąża za agregatorami, których używa aplikacja. Usługi odkrywania Bitsocial zwracają tylko adresy peerów. Nie muszą hostować treści, posiadać społeczności ani decydować, co każdy widzi."
         },
         "replies": {
-          "label": "Spam replies",
-          "nostr": "Spam can reach the thread first. Cleanup usually happens after.",
-          "bitsocial": "A community can challenge posters first and reject spam before it appears.",
-          "detail": "Nostr can show which key wrote a reply, but publishing and moderation are separate. A relay or app can hide junk after it arrives. Bitsocial gives the community a front door: complete the challenge, or the reply is never accepted into the thread.",
-          "bluesky": "Spam is limited by servers, then handled by labels and AppView moderation.",
-          "detailBluesky": "Bluesky uses PDS limits, moderation labels, and AppView choices to reduce abuse. Those defenses are useful, but they are server and indexing-layer defenses. Bitsocial gives the community a front door: complete the challenge, or the reply is never accepted into the thread."
+          "label": "Spamowe odpowiedzi",
+          "nostr": "Spam może dotrzeć do wątku pierwszy. Sprzątanie zwykle dzieje się później.",
+          "bluesky": "Spam jest ograniczany przez serwery, a potem obsługiwany przez etykiety i moderację AppView.",
+          "bitsocial": "Społeczność może najpierw rzucić wyzwanie autorom i odrzucić spam, zanim się pojawi.",
+          "detail": "Nostr może pokazać, który klucz napisał odpowiedź, ale publikowanie i moderacja są oddzielne. Relay lub aplikacja mogą ukryć śmieci po ich nadejściu. Bitsocial daje społeczności przednie drzwi: wykonaj wyzwanie, inaczej odpowiedź nigdy nie zostanie zaakceptowana do wątku.",
+          "detailBluesky": "Bluesky używa limitów PDS, etykiet moderacyjnych i wyborów AppView, by ograniczać nadużycia. Te zabezpieczenia są użyteczne, ale są zabezpieczeniami na poziomie serwera i indeksowania. Bitsocial daje społeczności przednie drzwi: wykonaj wyzwanie, inaczej odpowiedź nigdy nie zostanie zaakceptowana do wątku."
         },
         "antiSpam": {
-          "label": "Community rules",
-          "nostr": "Rules depend on the relay or app people happen to use.",
-          "bitsocial": "Rules belong to the community, so accepted posts pass the same gate.",
-          "detail": "On Nostr, a relay can set rules for that relay, and an app can filter what that app shows. Those rules do not truly belong to the community. Bitsocial lets each community choose the gate for posting, such as account age, reputation, captcha, whitelist, payment, or another challenge.",
-          "bluesky": "The app can filter content, but the community cannot require its own challenge first.",
-          "detailBluesky": "Bluesky moderation is built around labels, AppViews, and service rules. That can hide, rank, or limit content, but it is not the same as a community-owned pre-post gate. Bitsocial lets each community choose the gate for posting, such as account age, reputation, captcha, whitelist, payment, or another challenge."
+          "label": "Zasady społeczności",
+          "nostr": "Zasady zależą od relaya lub aplikacji, z której ludzie akurat korzystają.",
+          "bluesky": "Aplikacja może filtrować treści, ale społeczność nie może wymagać najpierw własnego wyzwania.",
+          "bitsocial": "Zasady należą do społeczności, więc zaakceptowane posty przechodzą przez tę samą bramkę.",
+          "detail": "W Nostr relay może ustawić zasady dla tego relaya, a aplikacja może filtrować to, co pokazuje. Te zasady naprawdę nie należą do społeczności. Bitsocial pozwala każdej społeczności wybrać bramkę publikacji, taką jak wiek konta, reputacja, captcha, whitelist, płatność albo inne wyzwanie.",
+          "detailBluesky": "Moderacja Bluesky jest zbudowana wokół etykiet, AppViews i reguł usług. To może ukrywać, rangować lub ograniczać treści, ale nie jest tym samym co należąca do społeczności bramka przed publikacją. Bitsocial pozwala każdej społeczności wybrać bramkę publikacji, taką jak wiek konta, reputacja, captcha, whitelist, płatność albo inne wyzwanie."
         },
         "scalingEconomics": {
-          "label": "Scaling costs",
-          "nostr": "High traffic pushes more server and bandwidth cost onto relays.",
-          "bitsocial": "More readers can also mean more people helping share the content.",
-          "detail": "In Nostr, relays are still the servers keeping posts online and sending them to readers. A popular post can be great for users while becoming expensive for relay operators. In Bitsocial, readers can also help distribute the content they read, so popularity can add capacity instead of only adding server cost.",
-          "bluesky": "Growth pushes load onto account servers, relays, AppViews, and feed services.",
-          "detailBluesky": "ATProto deliberately uses servers for convenience and availability. Relays aggregate firehoses, AppViews index the network, and custom feeds often consume the firehose. Official docs describe relays and AppViews as resource intensive, and relay operations have already needed scaling work. Bitsocial uses routers only to find peers; readers can help carry the content."
+          "label": "Koszty skalowania",
+          "nostr": "Duży ruch przerzuca więcej kosztów serwera i pasma na relaye.",
+          "bluesky": "Wzrost przerzuca obciążenie na serwery kont, relaye, AppViews i usługi feedów.",
+          "bitsocial": "Więcej czytelników może też oznaczać więcej osób pomagających udostępniać treść.",
+          "detail": "W Nostr relaye nadal są serwerami, które utrzymują posty online i wysyłają je do czytelników. Popularny post może być świetny dla użytkowników, ale drogi dla operatorów relayów. W Bitsocial czytelnicy mogą też pomagać w dystrybucji treści, którą czytają, więc popularność może dodawać pojemność zamiast tylko kosztu serwera.",
+          "detailBluesky": "ATProto celowo używa serwerów dla wygody i dostępności. Relaye agregują firehose’y, AppViews indeksują sieć, a niestandardowe feedy często konsumują firehose. Oficjalne dokumenty opisują relaye i AppViews jako zasobożerne, a operacje relayów już wymagały prac nad skalowaniem. Bitsocial używa routerów tylko do znajdowania peerów; czytelnicy mogą pomagać w niesieniu treści."
         },
         "browserMobile": {
-          "label": "First post",
-          "nostr": "A web client feels simple only while its relay choices work.",
-          "bitsocial": "Open the app and post; your key can be created automatically.",
-          "detail": "Nostr can feel easy when a good web client has good relays already configured. The hidden dependency remains: those relays must accept, store, and serve the activity. Bitsocial can create the user's key locally and let the app choose direct peer-to-peer or hosted access without making an account server own the identity.",
-          "bluesky": "The easy path is a hosted account with that provider's limits and rules.",
-          "detailBluesky": "Bluesky is easy when bsky.social or another PDS handles accounts, sessions, writes, and hosting. That convenience is server-based, and hosted services apply their own API limits and policies. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity."
+          "label": "Pierwszy post",
+          "nostr": "Klient webowy wydaje się prosty tylko wtedy, gdy działają jego wybory relayów.",
+          "bluesky": "Łatwa ścieżka to hostowane konto z limitami i zasadami tego dostawcy.",
+          "bitsocial": "Otwórz aplikację i publikuj; twój klucz może zostać utworzony automatycznie.",
+          "detail": "Nostr może wydawać się łatwy, gdy dobry klient webowy ma już dobrze skonfigurowane relaye. Ukryta zależność pozostaje: te relaye muszą akceptować, przechowywać i obsługiwać aktywność. Bitsocial może tworzyć klucz użytkownika lokalnie i pozwalać aplikacji wybrać bezpośredni P2P albo hostowany dostęp bez oddawania tożsamości serwerowi konta.",
+          "detailBluesky": "Bluesky jest łatwy, gdy bsky.social lub inny PDS obsługuje konta, sesje, zapisy i hosting. Ta wygoda jest oparta na serwerze, a hostowane usługi stosują własne limity API i polityki. Bitsocial może tworzyć klucz użytkownika lokalnie i pozwalać użytkownikowi publikować przez bezpośredni P2P lub opcjonalny hostowany dostęp bez oddawania tożsamości platformowemu kontu."
         }
       },
-      "expand": "Learn more",
-      "collapse": "Hide explanation",
-      "sourcesLabel": "Sources:",
+      "expand": "Dowiedz się więcej",
+      "collapse": "Ukryj wyjaśnienie",
+      "sourcesLabel": "Źródła:",
       "placeholder": {
         "service": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "bitsocial": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
