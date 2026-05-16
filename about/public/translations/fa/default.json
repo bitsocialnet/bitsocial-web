@@ -152,7 +152,7 @@
       "services": {
         "nostr": "Nostr",
         "bluesky": "Bluesky",
-        "mastodon": "Mastodon",
+        "mastodon": "ActivityPub / Fediverse",
         "lemmy": "Lemmy",
         "farcaster": "Farcaster",
         "lens": "Lens",
@@ -164,9 +164,11 @@
           "label": "نام‌های انسانی",
           "nostr": "حساب شما یک کلید عمومیِ بلند است؛ نام‌های خوانا به ارائه‌دهنده‌های اضافی نیاز دارند.",
           "bluesky": "هَندل‌های خوانا نام‌های DNS هستند؛ سند DID به برنامه‌ها سرور فعلی حساب را نشان می‌دهد.",
-          "bitsocial": "کلیدها به‌طور خودکار ساخته می‌شوند و نام‌های .bso می‌توانند به کاربران و جوامع اشاره کنند.",
+          "bitsocial": "Keys stay yours, and .bso names can point to people or communities.",
           "detail": "هویت پایه در Nostr یک کلید عمومی است که قابل حمل است اما به‌سختی به خاطر سپرده می‌شود. نام‌های خوانا مفیدند، اما از طریق قراردادها و ارائه‌دهنده‌های جداگانه اضافه می‌شوند. Bitsocial هم از کلیدهای عمومی استفاده می‌کند و نام‌های .bso را اضافه می‌کند، بنابراین یک فرد یا جامعه می‌تواند بدون ارائه‌دهندهٔ مرکزی حساب، هویتی خوانا داشته باشد.",
-          "detailBluesky": "Bluesky نسبت به کلیدهای عمومی خام یک بهبود واقعی دارد: DIDها به‌همراه هَندل‌های خوانا. اما بهایش این است که هَندل‌ها نام‌های DNS هستند و سند DID هنوز PDS فعلی کاربر را اعلام می‌کند. Bitsocial مالکیت رمزنگاری‌شده را حفظ می‌کند و برای افراد و جوامع نام‌های .bso اضافه می‌کند."
+          "detailBluesky": "Bluesky نسبت به کلیدهای عمومی خام یک بهبود واقعی دارد: DIDها به‌همراه هَندل‌های خوانا. اما بهایش این است که هَندل‌ها نام‌های DNS هستند و سند DID هنوز PDS فعلی کاربر را اعلام می‌کند. Bitsocial مالکیت رمزنگاری‌شده را حفظ می‌کند و برای افراد و جوامع نام‌های .bso اضافه می‌کند.",
+          "mastodon": "Your readable handle includes a server, so moving servers can change your address.",
+          "detailMastodon": "Mastodon handles are readable because WebFinger turns @user@domain into an ActivityPub actor URI. The domain matters: the same username on another server is a different account. Mastodon can redirect or move followers to a new account, but posts and media do not move. Bitsocial keeps cryptographic ownership and adds .bso names for people and communities."
         },
         "dataLayer": {
           "label": "میزبانی داده",
@@ -174,15 +176,19 @@
           "bluesky": "پست‌های عمومی روی یک Personal Data Server زندگی می‌کنند و بعد relayها و AppViewها آن‌ها را ایندکس می‌کنند.",
           "bitsocial": "کاربران می‌توانند پست‌ها را مستقیماً از هم دریافت و با هم به‌اشتراک بگذارند.",
           "detail": "پست‌های Nostr قابل حمل‌اند چون کاربران کلیدهایشان را کنترل می‌کنند، اما یک سرور همچنان باید پست‌ها را آنلاین نگه دارد. در استفادهٔ معمول Nostr، این کار بر عهدهٔ relayهاست. Bitsocial پیدا کردن افراد را از حمل داده جدا می‌کند: سرویس‌های جست‌وجوی کوچک می‌توانند به پیدا کردن peerها کمک کنند، و بعد کاربران محتوا را مستقیم دریافت و به‌اشتراک می‌گذارند.",
-          "detailBluesky": "طراحی repo در Bluesky یکی از نقاط قوت اصلی آن است: رکوردهای عمومی امضا شده‌اند، قابل حمل‌اند و می‌توان آن‌ها را صادر کرد. اما میزبانِ مرجع همچنان PDS فعلی است و تجربهٔ عادی برنامه به relayها و AppViewها وابسته است. Bitsocial با اشتراک‌گذاری محتوای peer-to-peer شروع می‌کند، نه repoهای حسابِ میزبانی‌شده روی سرور."
+          "detailBluesky": "طراحی repo در Bluesky یکی از نقاط قوت اصلی آن است: رکوردهای عمومی امضا شده‌اند، قابل حمل‌اند و می‌توان آن‌ها را صادر کرد. اما میزبانِ مرجع همچنان PDS فعلی است و تجربهٔ عادی برنامه به relayها و AppViewها وابسته است. Bitsocial با اشتراک‌گذاری محتوای peer-to-peer شروع می‌کند، نه repoهای حسابِ میزبانی‌شده روی سرور.",
+          "mastodon": "Posts are hosted by an instance, then federated as ActivityPub objects.",
+          "detailMastodon": "ActivityPub actors live on servers with inboxes and outboxes. In Mastodon, ActivityPub Notes and Questions become statuses and polls that the instance stores, serves, and delivers to other servers. That is much more open than one central platform, but the normal data host is still an always-online server. Bitsocial starts with peer-to-peer content sharing instead."
         },
         "communityModel": {
-          "label": "مالکیت جامعه",
+          "label": "Who accepts posts?",
           "nostr": "یک گروه به این وابسته است که relayها و برنامه‌ها روی اینکه کدام پست‌ها حساب می‌شوند توافق کنند.",
           "bluesky": "فضاهای شبیه جامعه از طریق feedها، lexiconها یا قابلیت‌های برنامه ساخته می‌شوند، نه با اشیای P2P که دروازهٔ خودشان را دارند.",
-          "bitsocial": "خودِ جامعه تصمیم می‌گیرد چه چیزی به نخ تعلق دارد.",
+          "bitsocial": "The community is the thing you post to; it accepts or rejects posts itself.",
           "detail": "Nostr می‌تواند قابلیت‌های گروهی بسازد، اما گروه همچنان به توافق relayها و برنامه‌ها دربارهٔ اینکه چه چیزی به آن تعلق دارد وابسته است. این برای جامعه‌های شبیه فروم شکننده است. Bitsocial به جامعه اجازه می‌دهد پست‌ها را مستقیم بپذیرد، که برای فروم‌ها، imageboardها و فضاهای شبیه subreddit مناسب‌تر است.",
-          "detailBluesky": "Bluesky می‌تواند گروه‌ها، فروم‌ها و feedهای اجتماعی را از طریق lexiconها، AppViewها و feed generatorها بسازد. اما این کار همچنان جامعه را وابسته به سرویس‌هایی می‌گذارد که رکوردها را ایندکس و تفسیر می‌کنند. Bitsocial جامعه را به‌عنوان شیء آدرس‌پذیر در نظر می‌گیرد: گرهٔ آن پست‌ها را اعتبارسنجی می‌کند و وضعیت پذیرفته‌شده را منتشر می‌کند."
+          "detailBluesky": "Bluesky می‌تواند گروه‌ها، فروم‌ها و feedهای اجتماعی را از طریق lexiconها، AppViewها و feed generatorها بسازد. اما این کار همچنان جامعه را وابسته به سرویس‌هایی می‌گذارد که رکوردها را ایندکس و تفسیر می‌کنند. Bitsocial جامعه را به‌عنوان شیء آدرس‌پذیر در نظر می‌گیرد: گرهٔ آن پست‌ها را اعتبارسنجی می‌کند و وضعیت پذیرفته‌شده را منتشر می‌کند.",
+          "mastodon": "A Fediverse community is still defined by the app or instance that accepts and announces its posts.",
+          "detailMastodon": "ActivityPub lets different apps interoperate, but the server software still decides what a community means. Mastodon is mostly profile and timeline based. Lemmy adds ActivityPub Groups for forum communities, but the Lemmy instance still accepts, stores, and announces the posts. In Bitsocial, the community is the object you post to: its node checks the posting gate and publishes the accepted thread state. That is the difference: the rule belongs to the community, not just the app or instance hosting it."
         },
         "moderation": {
           "label": "نقاط سانسور",
@@ -190,15 +196,19 @@
           "bluesky": "میزبان حساب، relay یا AppView می‌تواند مسیر عادی رسیدن به مخاطب شما را ببندد.",
           "bitsocial": "یک جامعه می‌تواند در دسترس بماند، در حالی که peerها همچنان آن را به‌اشتراک می‌گذارند.",
           "detail": "یک کلید Nostr می‌تواند از بن شدن در یک relay جان سالم به در ببرد، اما دیده‌شدن هنوز به relayها، سرویس‌های جست‌وجو و برنامه‌هایی که مردم واقعاً استفاده می‌کنند وابسته است. اگر آنجاها دیگر شما را حمل نکنند، حساب وجود دارد اما مخاطب شاید آن را نبیند. Bitsocial relay را از مرکز قدرت حذف می‌کند: کاربران می‌توانند یک جامعه را از مسیرهای مختلف کشف همچنان به‌اشتراک بگذارند، تا وقتی peerها آن را آنلاین نگه دارند.",
-          "detailBluesky": "Bluesky میزبانی حساب، توزیع relay و ایندکس‌گذاری AppView را از هم جدا می‌کند. این کار به portability کمک می‌کند، اما چندین دروازهٔ دیده‌شدن هم ایجاد می‌کند که کاربران عادی به‌ندرت آن‌ها را تغییر می‌دهند. یک PDS می‌تواند خدمت را رد کند، relayها می‌توانند حمل داده را متوقف کنند، و AppViewها می‌توانند رکوردها را پنهان یا نادیده بگیرند. Bitsocial دسترسی را به جامعه و peerهایش نزدیک‌تر نگه می‌دارد."
+          "detailBluesky": "Bluesky میزبانی حساب، توزیع relay و ایندکس‌گذاری AppView را از هم جدا می‌کند. این کار به portability کمک می‌کند، اما چندین دروازهٔ دیده‌شدن هم ایجاد می‌کند که کاربران عادی به‌ندرت آن‌ها را تغییر می‌دهند. یک PDS می‌تواند خدمت را رد کند، relayها می‌توانند حمل داده را متوقف کنند، و AppViewها می‌توانند رکوردها را پنهان یا نادیده بگیرند. Bitsocial دسترسی را به جامعه و peerهایش نزدیک‌تر نگه می‌دارد.",
+          "mastodon": "Instance admins can limit local accounts or block whole remote servers.",
+          "detailMastodon": "Mastodon moderation is local to each server: one admin cannot delete a remote account globally, but they can hide, limit, suspend, or domain-block what their own users see. If influential servers block an instance, reach can collapse for many users. Bitsocial keeps reach closer to the community and the peers still sharing it."
         },
         "contentDiscovery": {
           "label": "پیدا کردن محتوا",
           "nostr": "کشف معمولاً از relayها و سرویس‌های جست‌وجویی پیروی می‌کند که بیشترین داده را دارند.",
           "bluesky": "کشف به AppViewها، فهرست‌های جست‌وجو، feedها و پیش‌فرض‌های کلاینت وابسته است.",
-          "bitsocial": "کشف شما را به peerها وصل می‌کند؛ کاربران همچنان پست‌ها را به‌اشتراک می‌گذارند.",
+          "bitsocial": "Discovery finds peers; it does not become the place that owns the content.",
           "detail": "کشف در Nostr وقتی بهترین کارایی را دارد که relayهای محبوب، relayهای جست‌وجو و برنامه‌ها از قبل داده را داشته باشند. این موضوع به سرویس‌های به‌هم‌پیوسته‌تر قدرت بیشتری روی اینکه مردم چه چیزی پیدا کنند می‌دهد. کشف در Bitsocial فقط به پیدا کردن peerها کمک می‌کند. نیازی ندارد محتوا را میزبانی کند، صاحب جامعه باشد یا به جایی تبدیل شود که همه باید به آن اعتماد کنند.",
-          "detailBluesky": "معماری خود Bluesky feedها، جست‌وجو و نماهای تجمیعی را داخل AppViewها و سرویس‌های مرتبط می‌گذارد. این کار کشف را قدرتمند می‌کند، اما دیده‌شدن از هر تجمیع‌گری که برنامه استفاده می‌کند پیروی می‌کند. سرویس‌های کشف Bitsocial فقط آدرس peerها را برمی‌گردانند. آن‌ها لازم نیست محتوا را میزبانی کنند، صاحب جامعه باشند یا تصمیم بگیرند همه چه چیزی ببینند."
+          "detailBluesky": "معماری خود Bluesky feedها، جست‌وجو و نماهای تجمیعی را داخل AppViewها و سرویس‌های مرتبط می‌گذارد. این کار کشف را قدرتمند می‌کند، اما دیده‌شدن از هر تجمیع‌گری که برنامه استفاده می‌کند پیروی می‌کند. سرویس‌های کشف Bitsocial فقط آدرس peerها را برمی‌گردانند. آن‌ها لازم نیست محتوا را میزبانی کنند، صاحب جامعه باشند یا تصمیم بگیرند همه چه چیزی ببینند.",
+          "mastodon": "Search and timelines depend on what your instance has seen, cached, and chosen to show.",
+          "detailMastodon": "ActivityPub delivers activities to actor inboxes and shared inboxes, so discovery naturally depends on what servers receive, cache, index, and choose to show. Mastodon users can also filter users, keywords, and whole domains. Bitsocial discovery services only return peer addresses; they do not need to host content or decide what everyone sees."
         },
         "replies": {
           "label": "پاسخ‌های اسپم",
@@ -206,7 +216,9 @@
           "bluesky": "اسپم با سرورها محدود می‌شود و بعد با برچسب‌ها و moderation در AppView رسیدگی می‌شود.",
           "bitsocial": "یک جامعه می‌تواند ابتدا پست‌کنندگان را به چالش بکشد و اسپم را قبل از ظاهر شدن رد کند.",
           "detail": "Nostr می‌تواند نشان دهد کدام کلید یک پاسخ را نوشته است، اما انتشار و moderation جدا هستند. یک relay یا برنامه می‌تواند آشغال را بعد از رسیدن پنهان کند. Bitsocial به جامعه یک درِ ورودی می‌دهد: challenge را کامل کنید، وگرنه پاسخ هرگز در نخ پذیرفته نمی‌شود.",
-          "detailBluesky": "Bluesky برای کاهش سوءاستفاده از محدودیت‌های PDS، برچسب‌های moderation و انتخاب‌های AppView استفاده می‌کند. این دفاع‌ها مفیدند، اما دفاع‌های لایهٔ سرور و ایندکس‌گذاری هستند. Bitsocial به جامعه یک درِ ورودی می‌دهد: challenge را کامل کنید، وگرنه پاسخ هرگز در نخ پذیرفته نمی‌شود."
+          "detailBluesky": "Bluesky برای کاهش سوءاستفاده از محدودیت‌های PDS، برچسب‌های moderation و انتخاب‌های AppView استفاده می‌کند. این دفاع‌ها مفیدند، اما دفاع‌های لایهٔ سرور و ایندکس‌گذاری هستند. Bitsocial به جامعه یک درِ ورودی می‌دهد: challenge را کامل کنید، وگرنه پاسخ هرگز در نخ پذیرفته نمی‌شود.",
+          "mastodon": "Spam reaches servers first, then filters, reports, and moderators respond.",
+          "detailMastodon": "ActivityPub does not define a universal anti-spam gate. The spec recommends server-side filtering, and Mastodon adds signup limits, email confirmation, reports, blocks, filters, and domain moderation. Those tools help, but they usually work at the server or visibility layer. Bitsocial lets a community challenge a poster before the reply is accepted."
         },
         "antiSpam": {
           "label": "قواعد جامعه",
@@ -214,7 +226,9 @@
           "bluesky": "برنامه می‌تواند محتوا را فیلتر کند، اما جامعه نمی‌تواند اول challenge خودش را الزامی کند.",
           "bitsocial": "قواعد متعلق به جامعه‌اند، پس پست‌های پذیرفته‌شده از همان دروازه عبور می‌کنند.",
           "detail": "در Nostr، یک relay می‌تواند برای همان relay قانون بگذارد و یک برنامه می‌تواند آنچه را نشان می‌دهد فیلتر کند. این قواعد واقعاً متعلق به جامعه نیستند. Bitsocial به هر جامعه اجازه می‌دهد دروازهٔ ارسال را انتخاب کند، مثل سن حساب، اعتبار، captcha، whitelist، پرداخت یا یک challenge دیگر.",
-          "detailBluesky": "moderation در Bluesky حول برچسب‌ها، AppViewها و قوانین سرویس ساخته شده است. این می‌تواند محتوا را پنهان، رتبه‌بندی یا محدود کند، اما با یک دروازهٔ قبل از انتشارِ متعلق به جامعه یکسان نیست. Bitsocial به هر جامعه اجازه می‌دهد دروازهٔ ارسال را انتخاب کند، مثل سن حساب، اعتبار، captcha، whitelist، پرداخت یا یک challenge دیگر."
+          "detailBluesky": "moderation در Bluesky حول برچسب‌ها، AppViewها و قوانین سرویس ساخته شده است. این می‌تواند محتوا را پنهان، رتبه‌بندی یا محدود کند، اما با یک دروازهٔ قبل از انتشارِ متعلق به جامعه یکسان نیست. Bitsocial به هر جامعه اجازه می‌دهد دروازهٔ ارسال را انتخاب کند، مثل سن حساب، اعتبار، captcha، whitelist، پرداخت یا یک challenge دیگر.",
+          "mastodon": "Rules belong to the instance, the user, or a domain blocklist.",
+          "detailMastodon": "Mastodon gives instance admins, moderators, and users many controls: filters, mutes, blocks, reports, server-wide limits, and suspensions. They are powerful federation controls, but they are not a portable community-owned pre-post gate. Bitsocial lets each community choose its posting challenge, so accepted posts pass the same rule before entering the thread."
         },
         "scalingEconomics": {
           "label": "هزینه‌های مقیاس‌پذیری",
@@ -222,15 +236,19 @@
           "bluesky": "رشد بار را روی سرورهای حساب، relayها، AppViewها و سرویس‌های feed می‌گذارد.",
           "bitsocial": "خوانندگان بیشتر می‌تواند به معنی آدم‌های بیشتری باشد که در به‌اشتراک‌گذاری محتوا کمک می‌کنند.",
           "detail": "در Nostr، relayها هنوز همان سرورها هستند که پست‌ها را آنلاین نگه می‌دارند و به خوانندگان می‌فرستند. یک پست محبوب ممکن است برای کاربران عالی باشد اما برای operatorهای relay پرهزینه شود. در Bitsocial، خوانندگان هم می‌توانند به توزیع محتوایی که می‌خوانند کمک کنند، بنابراین محبوبیت می‌تواند به‌جای فقط افزودن هزینهٔ سرور، ظرفیت هم اضافه کند.",
-          "detailBluesky": "ATProto عمداً برای راحتی و دسترس‌پذیری از سرورها استفاده می‌کند. relayها firehoseها را تجمیع می‌کنند، AppViewها شبکه را ایندکس می‌کنند و feedهای سفارشی اغلب firehose را مصرف می‌کنند. مستندات رسمی relayها و AppViewها را پرمصرف از نظر منابع توصیف می‌کنند و عملیات relayها از قبل هم به کار مقیاس‌پذیری نیاز داشته است. Bitsocial از routerها فقط برای پیدا کردن peerها استفاده می‌کند؛ خوانندگان می‌توانند در حمل محتوا کمک کنند."
+          "detailBluesky": "ATProto عمداً برای راحتی و دسترس‌پذیری از سرورها استفاده می‌کند. relayها firehoseها را تجمیع می‌کنند، AppViewها شبکه را ایندکس می‌کنند و feedهای سفارشی اغلب firehose را مصرف می‌کنند. مستندات رسمی relayها و AppViewها را پرمصرف از نظر منابع توصیف می‌کنند و عملیات relayها از قبل هم به کار مقیاس‌پذیری نیاز داشته است. Bitsocial از routerها فقط برای پیدا کردن peerها استفاده می‌کند؛ خوانندگان می‌توانند در حمل محتوا کمک کنند.",
+          "mastodon": "Growth pushes storage, federation, streaming, and moderation cost onto instances.",
+          "detailMastodon": "A Mastodon server needs a domain, always-online hosting, email, database, Redis, background workers, streaming, and often object storage. Mastodon can scale horizontally, but that means operating more app servers, workers, databases, queues, and moderation capacity. Bitsocial uses routers only to find peers; readers can help carry the content they read."
         },
         "browserMobile": {
           "label": "اولین پست",
           "nostr": "یک کلاینت وب فقط تا وقتی انتخاب‌های relay آن کار کنند ساده به نظر می‌رسد.",
           "bluesky": "راه ساده یک حساب میزبانی‌شده با محدودیت‌ها و قوانین همان ارائه‌دهنده است.",
-          "bitsocial": "برنامه را باز کنید و پست بگذارید؛ کلید شما می‌تواند خودکار ساخته شود.",
+          "bitsocial": "You can start with a local key, without making a server own your identity.",
           "detail": "Nostr وقتی ساده به نظر می‌رسد که یک کلاینت وب خوب از قبل relayهای خوبی داشته باشد. اما وابستگی پنهان باقی می‌ماند: آن relayها باید فعالیت را بپذیرند، ذخیره کنند و ارائه دهند. Bitsocial می‌تواند کلید کاربر را به‌صورت محلی بسازد و به برنامه اجازه دهد دسترسی مستقیم peer-to-peer یا میزبانی‌شده را انتخاب کند، بدون اینکه یک سرور حساب صاحب هویت باشد.",
-          "detailBluesky": "Bluesky وقتی ساده است که bsky.social یا یک PDS دیگر حساب‌ها، نشست‌ها، نوشتن و میزبانی را مدیریت کند. این راحتی مبتنی بر سرور است و سرویس‌های میزبانی‌شده محدودیت‌ها و سیاست‌های API خودشان را اعمال می‌کنند. Bitsocial می‌تواند کلید کاربر را به‌صورت محلی بسازد و به کاربر اجازه دهد از طریق P2P مستقیم یا میزبانی اختیاری پست بگذارد، بدون اینکه یک حساب پلتفرم صاحب هویت باشد."
+          "detailBluesky": "Bluesky وقتی ساده است که bsky.social یا یک PDS دیگر حساب‌ها، نشست‌ها، نوشتن و میزبانی را مدیریت کند. این راحتی مبتنی بر سرور است و سرویس‌های میزبانی‌شده محدودیت‌ها و سیاست‌های API خودشان را اعمال می‌کنند. Bitsocial می‌تواند کلید کاربر را به‌صورت محلی بسازد و به کاربر اجازه دهد از طریق P2P مستقیم یا میزبانی اختیاری پست بگذارد، بدون اینکه یک حساب پلتفرم صاحب هویت باشد.",
+          "mastodon": "You post through the server account you chose.",
+          "detailMastodon": "Mastodon is easy once a user chooses an instance and creates an account. The server handles sessions, posts, media, federation, and rules. Self-hosting gives more control, but requires operating the stack. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity."
         }
       },
       "expand": "بیشتر بدانید",

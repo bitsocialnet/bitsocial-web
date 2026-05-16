@@ -152,7 +152,7 @@
       "services": {
         "nostr": "Nostr",
         "bluesky": "Bluesky",
-        "mastodon": "Mastodon",
+        "mastodon": "ActivityPub / Fediverse",
         "lemmy": "Lemmy",
         "farcaster": "Farcaster",
         "lens": "Lens",
@@ -164,9 +164,11 @@
           "label": "Tên người",
           "nostr": "Tài khoản của bạn là một khóa công khai dài; để có tên dễ đọc cần thêm nhà cung cấp.",
           "bluesky": "Handle dễ đọc là tên DNS; tài liệu DID chỉ ứng dụng đến máy chủ hiện tại của tài khoản.",
-          "bitsocial": "Khóa được tạo tự động, và tên .bso có thể trỏ tới người dùng và cộng đồng.",
+          "bitsocial": "Keys stay yours, and .bso names can point to people or communities.",
           "detail": "Danh tính cơ bản của Nostr là một khóa công khai, vừa di động vừa khó nhớ. Tên dễ đọc có ích, nhưng chúng được thêm qua các quy ước và nhà cung cấp riêng. Bitsocial cũng dùng khóa công khai nhưng thêm tên .bso, nên một người hoặc cộng đồng có thể có danh tính dễ đọc mà không cần nhà cung cấp tài khoản trung tâm.",
-          "detailBluesky": "Bluesky thực sự tốt hơn khóa công khai thô: DIDs và handle dễ đọc. Đổi lại, handle là tên DNS và tài liệu DID vẫn cho ứng dụng biết PDS hiện tại của người dùng. Bitsocial giữ quyền sở hữu mật mã và thêm tên .bso cho người và cộng đồng."
+          "detailBluesky": "Bluesky thực sự tốt hơn khóa công khai thô: DIDs và handle dễ đọc. Đổi lại, handle là tên DNS và tài liệu DID vẫn cho ứng dụng biết PDS hiện tại của người dùng. Bitsocial giữ quyền sở hữu mật mã và thêm tên .bso cho người và cộng đồng.",
+          "mastodon": "Your readable handle includes a server, so moving servers can change your address.",
+          "detailMastodon": "Mastodon handles are readable because WebFinger turns @user@domain into an ActivityPub actor URI. The domain matters: the same username on another server is a different account. Mastodon can redirect or move followers to a new account, but posts and media do not move. Bitsocial keeps cryptographic ownership and adds .bso names for people and communities."
         },
         "dataLayer": {
           "label": "Lưu trữ dữ liệu",
@@ -174,15 +176,19 @@
           "bluesky": "Bài đăng công khai nằm trên Personal Data Server, rồi relay và AppView lập chỉ mục chúng.",
           "bitsocial": "Người dùng có thể lấy và chia sẻ bài đăng trực tiếp với nhau.",
           "detail": "Bài đăng Nostr có tính di động vì người dùng kiểm soát khóa của mình, nhưng vẫn cần một máy chủ giữ bài viết trực tuyến. Trong cách dùng Nostr thông thường, việc đó thuộc về relay. Bitsocial tách việc tìm người khỏi việc mang dữ liệu: các dịch vụ tra cứu nhỏ có thể giúp tìm peers, rồi người dùng lấy và chia sẻ nội dung trực tiếp.",
-          "detailBluesky": "Thiết kế repo của Bluesky là một trong những điểm mạnh nhất: bản ghi công khai được ký, di động và có thể xuất. Nhưng máy chủ có thẩm quyền vẫn là PDS hiện tại, và trải nghiệm ứng dụng bình thường phụ thuộc vào relay và AppView. Bitsocial bắt đầu bằng chia sẻ nội dung ngang hàng thay vì repo tài khoản do máy chủ lưu trữ."
+          "detailBluesky": "Thiết kế repo của Bluesky là một trong những điểm mạnh nhất: bản ghi công khai được ký, di động và có thể xuất. Nhưng máy chủ có thẩm quyền vẫn là PDS hiện tại, và trải nghiệm ứng dụng bình thường phụ thuộc vào relay và AppView. Bitsocial bắt đầu bằng chia sẻ nội dung ngang hàng thay vì repo tài khoản do máy chủ lưu trữ.",
+          "mastodon": "Posts are hosted by an instance, then federated as ActivityPub objects.",
+          "detailMastodon": "ActivityPub actors live on servers with inboxes and outboxes. In Mastodon, ActivityPub Notes and Questions become statuses and polls that the instance stores, serves, and delivers to other servers. That is much more open than one central platform, but the normal data host is still an always-online server. Bitsocial starts with peer-to-peer content sharing instead."
         },
         "communityModel": {
-          "label": "Quyền sở hữu cộng đồng",
+          "label": "Who accepts posts?",
           "nostr": "Một nhóm phụ thuộc vào việc relay và ứng dụng đồng ý bài nào được tính.",
           "bluesky": "Các không gian kiểu cộng đồng được xây bằng feed, lexicon hoặc tính năng ứng dụng, chứ không phải các đối tượng P2P có cổng riêng.",
-          "bitsocial": "Chính cộng đồng quyết định nội dung nào thuộc về chủ đề.",
+          "bitsocial": "The community is the thing you post to; it accepts or rejects posts itself.",
           "detail": "Nostr có thể xây tính năng nhóm, nhưng nhóm vẫn phụ thuộc vào relay và ứng dụng đồng ý nội dung nào thuộc về đó. Điều này dễ vỡ với các cộng đồng kiểu diễn đàn. Bitsocial cho cộng đồng nhận bài đăng trực tiếp, phù hợp hơn với forum, imageboard và các không gian kiểu subreddit.",
-          "detailBluesky": "Bluesky có thể xây nhóm, forum và feed cộng đồng qua lexicon, AppView và feed generator. Nhưng cộng đồng vẫn phụ thuộc vào các dịch vụ lập chỉ mục và diễn giải bản ghi. Bitsocial xem cộng đồng là đối tượng được địa chỉ hóa: nút của nó xác thực bài đăng và công bố trạng thái đã chấp nhận."
+          "detailBluesky": "Bluesky có thể xây nhóm, forum và feed cộng đồng qua lexicon, AppView và feed generator. Nhưng cộng đồng vẫn phụ thuộc vào các dịch vụ lập chỉ mục và diễn giải bản ghi. Bitsocial xem cộng đồng là đối tượng được địa chỉ hóa: nút của nó xác thực bài đăng và công bố trạng thái đã chấp nhận.",
+          "mastodon": "A Fediverse community is still defined by the app or instance that accepts and announces its posts.",
+          "detailMastodon": "ActivityPub lets different apps interoperate, but the server software still decides what a community means. Mastodon is mostly profile and timeline based. Lemmy adds ActivityPub Groups for forum communities, but the Lemmy instance still accepts, stores, and announces the posts. In Bitsocial, the community is the object you post to: its node checks the posting gate and publishes the accepted thread state. That is the difference: the rule belongs to the community, not just the app or instance hosting it."
         },
         "moderation": {
           "label": "Điểm kiểm duyệt",
@@ -190,15 +196,19 @@
           "bluesky": "Máy chủ tài khoản, relay hoặc AppView có thể chặn đường bình thường tới khán giả của bạn.",
           "bitsocial": "Một cộng đồng vẫn có thể được truy cập khi peers tiếp tục chia sẻ nó.",
           "detail": "Một khóa Nostr có thể sống sót sau lệnh cấm relay, nhưng khả năng hiển thị vẫn phụ thuộc vào các relay, dịch vụ tìm kiếm và ứng dụng mà mọi người thực sự dùng. Nếu những nơi đó ngừng mang bài của bạn, tài khoản vẫn tồn tại nhưng khán giả có thể không thấy. Bitsocial loại relay khỏi trung tâm quyền lực: người dùng có thể tiếp tục chia sẻ cộng đồng qua các đường khám phá khác nhau miễn là peers giữ nó trực tuyến.",
-          "detailBluesky": "Bluesky tách lưu trữ tài khoản, phân phối relay và lập chỉ mục AppView. Điều đó giúp tính di động, nhưng cũng tạo ra nhiều cổng hiển thị mà người dùng bình thường hiếm khi thay đổi. PDS có thể từ chối phục vụ, relay có thể ngừng mang dữ liệu và AppView có thể ẩn hoặc bỏ qua bản ghi. Bitsocial giữ phạm vi tiếp cận gần hơn với cộng đồng và các peers của nó."
+          "detailBluesky": "Bluesky tách lưu trữ tài khoản, phân phối relay và lập chỉ mục AppView. Điều đó giúp tính di động, nhưng cũng tạo ra nhiều cổng hiển thị mà người dùng bình thường hiếm khi thay đổi. PDS có thể từ chối phục vụ, relay có thể ngừng mang dữ liệu và AppView có thể ẩn hoặc bỏ qua bản ghi. Bitsocial giữ phạm vi tiếp cận gần hơn với cộng đồng và các peers của nó.",
+          "mastodon": "Instance admins can limit local accounts or block whole remote servers.",
+          "detailMastodon": "Mastodon moderation is local to each server: one admin cannot delete a remote account globally, but they can hide, limit, suspend, or domain-block what their own users see. If influential servers block an instance, reach can collapse for many users. Bitsocial keeps reach closer to the community and the peers still sharing it."
         },
         "contentDiscovery": {
           "label": "Tìm nội dung",
           "nostr": "Khám phá thường đi theo các relay và dịch vụ tìm kiếm có nhiều dữ liệu nhất.",
           "bluesky": "Khám phá phụ thuộc vào AppView, chỉ mục tìm kiếm, feed và mặc định của máy khách.",
-          "bitsocial": "Khám phá kết nối bạn với peers; người dùng vẫn chia sẻ bài viết.",
+          "bitsocial": "Discovery finds peers; it does not become the place that owns the content.",
           "detail": "Khám phá trong Nostr hoạt động tốt nhất khi các relay phổ biến, relay tìm kiếm và ứng dụng đã có sẵn dữ liệu. Điều đó trao thêm quyền cho các dịch vụ kết nối tốt nhất về những gì mọi người tìm thấy. Khám phá của Bitsocial chỉ giúp tìm peers. Nó không cần lưu trữ nội dung, sở hữu cộng đồng hoặc trở thành nơi mọi người phải tin cậy.",
-          "detailBluesky": "Kiến trúc của Bluesky đặt feed, tìm kiếm và chế độ xem tổng hợp vào AppView và các dịch vụ liên quan. Điều đó làm khám phá mạnh hơn, nhưng khả năng hiển thị đi theo các bộ tổng hợp mà ứng dụng dùng. Dịch vụ khám phá của Bitsocial chỉ trả về địa chỉ peers. Chúng không cần lưu trữ nội dung, sở hữu cộng đồng hoặc quyết định mọi người thấy gì."
+          "detailBluesky": "Kiến trúc của Bluesky đặt feed, tìm kiếm và chế độ xem tổng hợp vào AppView và các dịch vụ liên quan. Điều đó làm khám phá mạnh hơn, nhưng khả năng hiển thị đi theo các bộ tổng hợp mà ứng dụng dùng. Dịch vụ khám phá của Bitsocial chỉ trả về địa chỉ peers. Chúng không cần lưu trữ nội dung, sở hữu cộng đồng hoặc quyết định mọi người thấy gì.",
+          "mastodon": "Search and timelines depend on what your instance has seen, cached, and chosen to show.",
+          "detailMastodon": "ActivityPub delivers activities to actor inboxes and shared inboxes, so discovery naturally depends on what servers receive, cache, index, and choose to show. Mastodon users can also filter users, keywords, and whole domains. Bitsocial discovery services only return peer addresses; they do not need to host content or decide what everyone sees."
         },
         "replies": {
           "label": "Phản hồi spam",
@@ -206,7 +216,9 @@
           "bluesky": "Spam bị giới hạn bởi máy chủ, rồi được xử lý bằng nhãn và kiểm duyệt AppView.",
           "bitsocial": "Một cộng đồng có thể thử thách người đăng trước và chặn spam trước khi nó xuất hiện.",
           "detail": "Nostr có thể cho biết khóa nào đã viết một phản hồi, nhưng việc công bố và kiểm duyệt là hai chuyện khác nhau. Relay hoặc ứng dụng có thể ẩn rác sau khi nó đã đến. Bitsocial cho cộng đồng một cửa trước: hoàn thành thử thách, hoặc phản hồi sẽ không bao giờ được chấp nhận vào chủ đề.",
-          "detailBluesky": "Bluesky dùng giới hạn PDS, nhãn kiểm duyệt và lựa chọn AppView để giảm lạm dụng. Những biện pháp đó hữu ích, nhưng chúng là phòng thủ ở tầng máy chủ và lập chỉ mục. Bitsocial cho cộng đồng một cửa trước: hoàn thành thử thách, hoặc phản hồi sẽ không bao giờ được chấp nhận vào chủ đề."
+          "detailBluesky": "Bluesky dùng giới hạn PDS, nhãn kiểm duyệt và lựa chọn AppView để giảm lạm dụng. Những biện pháp đó hữu ích, nhưng chúng là phòng thủ ở tầng máy chủ và lập chỉ mục. Bitsocial cho cộng đồng một cửa trước: hoàn thành thử thách, hoặc phản hồi sẽ không bao giờ được chấp nhận vào chủ đề.",
+          "mastodon": "Spam reaches servers first, then filters, reports, and moderators respond.",
+          "detailMastodon": "ActivityPub does not define a universal anti-spam gate. The spec recommends server-side filtering, and Mastodon adds signup limits, email confirmation, reports, blocks, filters, and domain moderation. Those tools help, but they usually work at the server or visibility layer. Bitsocial lets a community challenge a poster before the reply is accepted."
         },
         "antiSpam": {
           "label": "Quy tắc cộng đồng",
@@ -214,7 +226,9 @@
           "bluesky": "Ứng dụng có thể lọc nội dung, nhưng cộng đồng không thể bắt buộc thử thách riêng trước.",
           "bitsocial": "Quy tắc thuộc về cộng đồng, nên bài viết được chấp nhận đi qua cùng một cổng.",
           "detail": "Trên Nostr, một relay có thể đặt quy tắc cho chính relay đó, và ứng dụng có thể lọc nội dung mà nó hiển thị. Những quy tắc đó thực sự không thuộc về cộng đồng. Bitsocial cho mỗi cộng đồng chọn cổng đăng bài, như tuổi tài khoản, uy tín, captcha, whitelist, thanh toán hoặc một thử thách khác.",
-          "detailBluesky": "Kiểm duyệt của Bluesky xoay quanh nhãn, AppView và quy tắc dịch vụ. Nó có thể ẩn, xếp hạng hoặc giới hạn nội dung, nhưng không giống một cổng trước đăng bài do cộng đồng sở hữu. Bitsocial cho mỗi cộng đồng chọn cổng đăng bài, như tuổi tài khoản, uy tín, captcha, whitelist, thanh toán hoặc một thử thách khác."
+          "detailBluesky": "Kiểm duyệt của Bluesky xoay quanh nhãn, AppView và quy tắc dịch vụ. Nó có thể ẩn, xếp hạng hoặc giới hạn nội dung, nhưng không giống một cổng trước đăng bài do cộng đồng sở hữu. Bitsocial cho mỗi cộng đồng chọn cổng đăng bài, như tuổi tài khoản, uy tín, captcha, whitelist, thanh toán hoặc một thử thách khác.",
+          "mastodon": "Rules belong to the instance, the user, or a domain blocklist.",
+          "detailMastodon": "Mastodon gives instance admins, moderators, and users many controls: filters, mutes, blocks, reports, server-wide limits, and suspensions. They are powerful federation controls, but they are not a portable community-owned pre-post gate. Bitsocial lets each community choose its posting challenge, so accepted posts pass the same rule before entering the thread."
         },
         "scalingEconomics": {
           "label": "Chi phí mở rộng",
@@ -222,15 +236,19 @@
           "bluesky": "Tăng trưởng đẩy tải lên máy chủ tài khoản, relay, AppView và dịch vụ feed.",
           "bitsocial": "Nhiều người đọc hơn cũng có thể nghĩa là có thêm người giúp chia sẻ nội dung.",
           "detail": "Trong Nostr, relay vẫn là máy chủ giữ bài viết trực tuyến và gửi chúng cho người đọc. Một bài nổi tiếng có thể tốt cho người dùng nhưng tốn kém cho người vận hành relay. Trong Bitsocial, người đọc cũng có thể giúp phân phối nội dung họ đọc, nên mức độ phổ biến có thể tăng năng lực thay vì chỉ tăng chi phí máy chủ.",
-          "detailBluesky": "ATProto cố ý dùng máy chủ để thuận tiện và sẵn sàng. Relay tổng hợp firehose, AppView lập chỉ mục mạng và feed tùy biến thường tiêu thụ firehose. Tài liệu chính thức mô tả relay và AppView là tốn tài nguyên, và vận hành relay đã từng phải mở rộng. Bitsocial chỉ dùng router để tìm peers; người đọc có thể giúp mang nội dung."
+          "detailBluesky": "ATProto cố ý dùng máy chủ để thuận tiện và sẵn sàng. Relay tổng hợp firehose, AppView lập chỉ mục mạng và feed tùy biến thường tiêu thụ firehose. Tài liệu chính thức mô tả relay và AppView là tốn tài nguyên, và vận hành relay đã từng phải mở rộng. Bitsocial chỉ dùng router để tìm peers; người đọc có thể giúp mang nội dung.",
+          "mastodon": "Growth pushes storage, federation, streaming, and moderation cost onto instances.",
+          "detailMastodon": "A Mastodon server needs a domain, always-online hosting, email, database, Redis, background workers, streaming, and often object storage. Mastodon can scale horizontally, but that means operating more app servers, workers, databases, queues, and moderation capacity. Bitsocial uses routers only to find peers; readers can help carry the content they read."
         },
         "browserMobile": {
           "label": "Bài đầu tiên",
           "nostr": "Một máy khách web chỉ có vẻ đơn giản khi lựa chọn relay của nó hoạt động.",
           "bluesky": "Con đường dễ nhất là một tài khoản được lưu trữ với giới hạn và quy tắc của nhà cung cấp đó.",
-          "bitsocial": "Mở ứng dụng và đăng; khóa của bạn có thể được tạo tự động.",
+          "bitsocial": "You can start with a local key, without making a server own your identity.",
           "detail": "Nostr có thể thấy dễ khi một máy khách web tốt đã được cấu hình sẵn relay tốt. Phụ thuộc ngầm vẫn còn: những relay đó phải chấp nhận, lưu trữ và phục vụ hoạt động. Bitsocial có thể tạo khóa người dùng cục bộ và để ứng dụng chọn trực tiếp P2P hoặc truy cập được lưu trữ mà không để máy chủ tài khoản sở hữu danh tính.",
-          "detailBluesky": "Bluesky dễ khi bsky.social hoặc một PDS khác xử lý tài khoản, phiên làm việc, ghi và lưu trữ. Sự tiện lợi đó là dựa trên máy chủ, và các dịch vụ được lưu trữ áp dụng giới hạn API và chính sách của riêng họ. Bitsocial có thể tạo khóa người dùng cục bộ và cho phép người dùng đăng qua P2P trực tiếp hoặc truy cập được lưu trữ tùy chọn mà không để tài khoản nền tảng sở hữu danh tính."
+          "detailBluesky": "Bluesky dễ khi bsky.social hoặc một PDS khác xử lý tài khoản, phiên làm việc, ghi và lưu trữ. Sự tiện lợi đó là dựa trên máy chủ, và các dịch vụ được lưu trữ áp dụng giới hạn API và chính sách của riêng họ. Bitsocial có thể tạo khóa người dùng cục bộ và cho phép người dùng đăng qua P2P trực tiếp hoặc truy cập được lưu trữ tùy chọn mà không để tài khoản nền tảng sở hữu danh tính.",
+          "mastodon": "You post through the server account you chose.",
+          "detailMastodon": "Mastodon is easy once a user chooses an instance and creates an account. The server handles sessions, posts, media, federation, and rules. Self-hosting gives more control, but requires operating the stack. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity."
         }
       },
       "expand": "Tìm hiểu thêm",

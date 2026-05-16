@@ -152,7 +152,7 @@
       "services": {
         "nostr": "Nostr",
         "bluesky": "Bluesky",
-        "mastodon": "Mastodon",
+        "mastodon": "ActivityPub / Fediverse",
         "lemmy": "Lemmy",
         "farcaster": "Farcaster",
         "lens": "Lens",
@@ -164,9 +164,11 @@
           "label": "మనుషుల పేర్లు",
           "nostr": "మీ ఖాతా ఒక పొడవైన public key; చదవగల పేర్లకు అదనపు providers అవసరం.",
           "bluesky": "చదవగల handles DNS names; DID document apps‌ను ఖాతా యొక్క ప్రస్తుత server‌కు సూచిస్తుంది.",
-          "bitsocial": "Keys స్వయంచాలకంగా తయారవుతాయి, మరియు .bso names users మరియు communities‌కు సూచించగలవు.",
+          "bitsocial": "Keys stay yours, and .bso names can point to people or communities.",
           "detail": "Nostr యొక్క ప్రాథమిక identity ఒక public key; అది portable కానీ గుర్తుపెట్టుకోవడం కష్టం. చదవగల పేర్లు ఉపయోగకరమే, కానీ అవి వేరు conventions మరియు providers ద్వారా వస్తాయి. Bitsocial కూడా public keys ఉపయోగించి .bso names జోడిస్తుంది, కాబట్టి ఒక వ్యక్తి లేదా community central account provider లేకుండా readable identity కలిగి ఉండగలదు.",
-          "detailBluesky": "Bluesky raw public keys కంటే నిజంగా మెరుగ్గా ఉంటుంది: DIDs మరియు చదవగల handles. కానీ handles DNS names, మరియు DID document ఇంకా user యొక్క current PDS‌ను చూపుతుంది. Bitsocial cryptographic ownership‌ను కొనసాగిస్తూ people మరియు communities కోసం .bso names జోడిస్తుంది."
+          "detailBluesky": "Bluesky raw public keys కంటే నిజంగా మెరుగ్గా ఉంటుంది: DIDs మరియు చదవగల handles. కానీ handles DNS names, మరియు DID document ఇంకా user యొక్క current PDS‌ను చూపుతుంది. Bitsocial cryptographic ownership‌ను కొనసాగిస్తూ people మరియు communities కోసం .bso names జోడిస్తుంది.",
+          "mastodon": "Your readable handle includes a server, so moving servers can change your address.",
+          "detailMastodon": "Mastodon handles are readable because WebFinger turns @user@domain into an ActivityPub actor URI. The domain matters: the same username on another server is a different account. Mastodon can redirect or move followers to a new account, but posts and media do not move. Bitsocial keeps cryptographic ownership and adds .bso names for people and communities."
         },
         "dataLayer": {
           "label": "డేటా హోస్టింగ్",
@@ -174,15 +176,19 @@
           "bluesky": "Public posts Personal Data Server మీద ఉంటాయి, తర్వాత relay‌లు మరియు AppView‌లు వాటిని index చేస్తాయి.",
           "bitsocial": "Users posts‌ను ఒకరినొకరు నుండి direct‌గా fetch చేసి share చేయగలరు.",
           "detail": "Nostr posts portable, ఎందుకంటే users తమ keys‌ను నియంత్రిస్తారు, కానీ posts‌ను online‌లో ఉంచడానికి ఇంకా ఒక server అవసరం. సాధారణ Nostr వాడకంలో ఆ పని relay‌లదే. Bitsocial people‌ను కనుగొనడం మరియు data‌ను మోయడం రెండింటిని వేరు చేస్తుంది: చిన్న lookup services peers‌ను కనుగొనడంలో సహాయపడతాయి, ఆపై users content‌ను direct‌గా fetch చేసి share చేస్తారు.",
-          "detailBluesky": "Bluesky యొక్క repo design దాని బలమైన అంశాలలో ఒకటి: public records signed, portable, మరియు exportable. కానీ authoritative host ఇంకా current PDSనే, మరియు normal app experience relay‌లు మరియు AppView‌లపై ఆధారపడుతుంది. Bitsocial server-hosted account repos బదులు peer-to-peer content sharing‌తో మొదలవుతుంది."
+          "detailBluesky": "Bluesky యొక్క repo design దాని బలమైన అంశాలలో ఒకటి: public records signed, portable, మరియు exportable. కానీ authoritative host ఇంకా current PDSనే, మరియు normal app experience relay‌లు మరియు AppView‌లపై ఆధారపడుతుంది. Bitsocial server-hosted account repos బదులు peer-to-peer content sharing‌తో మొదలవుతుంది.",
+          "mastodon": "Posts are hosted by an instance, then federated as ActivityPub objects.",
+          "detailMastodon": "ActivityPub actors live on servers with inboxes and outboxes. In Mastodon, ActivityPub Notes and Questions become statuses and polls that the instance stores, serves, and delivers to other servers. That is much more open than one central platform, but the normal data host is still an always-online server. Bitsocial starts with peer-to-peer content sharing instead."
         },
         "communityModel": {
-          "label": "కమ్యూనిటీ యాజమాన్యం",
+          "label": "Who accepts posts?",
           "nostr": "ఒక group ఏ posts లెక్కించాలనే విషయంలో relay‌లు మరియు apps ఒకే అభిప్రాయానికి రావడంపై ఆధారపడుతుంది.",
           "bluesky": "Community-like spaces feeds, lexicons, లేదా app features ద్వారా తయారవుతాయి, తమ స్వంత gate ఉన్న P2P objects ద్వారా కాదు.",
-          "bitsocial": "Thread‌లో ఏమి ఉండాలో community స్వయంగా నిర్ణయిస్తుంది.",
+          "bitsocial": "The community is the thing you post to; it accepts or rejects posts itself.",
           "detail": "Nostr group features‌ను నిర్మించగలదు, కానీ group ఇంకా relay‌లు మరియు apps ఏది అక్కడి కంటెంట్‌గా పరిగణించాలో ఒప్పుకోవడంపై ఆధారపడుతుంది. ఇది forum-style communities‌కు బలహీనమైనది. Bitsocial communityకి posts‌ను direct‌గా accept చేయనిస్తుంది, ఇది forums, imageboards, మరియు subreddit-style spaces‌కు బాగా సరిపోతుంది.",
-          "detailBluesky": "Bluesky lexicons, AppViews, మరియు feed generators ద్వారా groups, forums, మరియు community feeds‌ను నిర్మించగలదు. అయినా community records‌ను index చేసి interpret చేసే services‌పై ఆధారపడుతుంది. Bitsocial communityని addressed object‌గా చూస్తుంది: దాని node posts‌ను validate చేసి accepted state‌ను publish చేస్తుంది."
+          "detailBluesky": "Bluesky lexicons, AppViews, మరియు feed generators ద్వారా groups, forums, మరియు community feeds‌ను నిర్మించగలదు. అయినా community records‌ను index చేసి interpret చేసే services‌పై ఆధారపడుతుంది. Bitsocial communityని addressed object‌గా చూస్తుంది: దాని node posts‌ను validate చేసి accepted state‌ను publish చేస్తుంది.",
+          "mastodon": "A Fediverse community is still defined by the app or instance that accepts and announces its posts.",
+          "detailMastodon": "ActivityPub lets different apps interoperate, but the server software still decides what a community means. Mastodon is mostly profile and timeline based. Lemmy adds ActivityPub Groups for forum communities, but the Lemmy instance still accepts, stores, and announces the posts. In Bitsocial, the community is the object you post to: its node checks the posting gate and publishes the accepted thread state. That is the difference: the rule belongs to the community, not just the app or instance hosting it."
         },
         "moderation": {
           "label": "సెన్సార్ బిందువులు",
@@ -190,15 +196,19 @@
           "bluesky": "Account host, relay, లేదా AppView మీ audience‌కు వెళ్లే normal path‌ను block చేయగలవు.",
           "bitsocial": "Peers దాన్ని share చేస్తూనే ఉన్నంత వరకు community reachable‌గా ఉండగలదు.",
           "detail": "Nostr key ఒక relay ban‌ను తట్టుకోగలదు, కానీ visibility ఇంకా people నిజంగా ఉపయోగించే relay‌లు, search services, మరియు apps‌పై ఆధారపడుతుంది. ఆ చోట్లు మిమ్మల్ని carry చేయడం ఆపేస్తే account ఉంటుంది కానీ audience అది చూడకపోవచ్చు. Bitsocial relay‌ను power center‌గా ఉండకుండా చేస్తుంది: peers community‌ను online‌లో ఉంచుతున్నంత వరకు users దాన్ని వేర్వేరు discovery paths ద్వారా share చేయగలరు.",
-          "detailBluesky": "Bluesky account hosting, relay distribution, మరియు AppView indexing‌ను వేరు చేస్తుంది. ఇది portabilityకి సహాయపడుతుంది, కానీ సాధారణ users అరుదుగా మార్చే అనేక visibility gates‌ను కూడా సృష్టిస్తుంది. PDS సేవ ఇవ్వకపోవచ్చు, relay‌లు data carry చేయడం ఆపేయవచ్చు, మరియు AppView‌లు records‌ను దాచవచ్చు లేదా పట్టించుకోకపోవచ్చు. Bitsocial reach‌ను community మరియు దాని peers‌కు దగ్గరగా ఉంచుతుంది."
+          "detailBluesky": "Bluesky account hosting, relay distribution, మరియు AppView indexing‌ను వేరు చేస్తుంది. ఇది portabilityకి సహాయపడుతుంది, కానీ సాధారణ users అరుదుగా మార్చే అనేక visibility gates‌ను కూడా సృష్టిస్తుంది. PDS సేవ ఇవ్వకపోవచ్చు, relay‌లు data carry చేయడం ఆపేయవచ్చు, మరియు AppView‌లు records‌ను దాచవచ్చు లేదా పట్టించుకోకపోవచ్చు. Bitsocial reach‌ను community మరియు దాని peers‌కు దగ్గరగా ఉంచుతుంది.",
+          "mastodon": "Instance admins can limit local accounts or block whole remote servers.",
+          "detailMastodon": "Mastodon moderation is local to each server: one admin cannot delete a remote account globally, but they can hide, limit, suspend, or domain-block what their own users see. If influential servers block an instance, reach can collapse for many users. Bitsocial keeps reach closer to the community and the peers still sharing it."
         },
         "contentDiscovery": {
           "label": "Content కనుగొనడం",
           "nostr": "Discovery ఎక్కువ data ఉన్న relay‌లు మరియు search services‌ను అనుసరిస్తుంది.",
           "bluesky": "Discovery AppView‌లు, search indexes, feeds, మరియు client defaults‌పై ఆధారపడుతుంది.",
-          "bitsocial": "Discovery మిమ్మల్ని peers‌తో కలుపుతుంది; users ఇంకా posts‌ను share చేస్తారు.",
+          "bitsocial": "Discovery finds peers; it does not become the place that owns the content.",
           "detail": "ప్రముఖ relay‌లు, search relay‌లు, మరియు apps‌కు data ఇప్పటికే ఉన్నప్పుడు Nostr discovery ఉత్తమంగా పనిచేస్తుంది. అప్పుడు అత్యంత connected services‌కు ప్రజలు ఏమి కనుగొంటారన్నదానిపై అదనపు శక్తి వస్తుంది. Bitsocial discovery కేవలం peers‌ను కనుగొనడంలో సహాయపడుతుంది. దీనికి content‌ను host చేయడం, community‌ను own చేయడం, లేదా అందరూ నమ్మాల్సిన ప్రదేశంగా మారడం అవసరం లేదు.",
-          "detailBluesky": "Bluesky యొక్క architecture feeds, search, మరియు aggregate views‌ను AppView‌లు మరియు సంబంధిత services‌లో ఉంచుతుంది. ఇది discovery‌ను శక్తివంతం చేస్తుంది, కానీ visibility app ఉపయోగించే aggregators‌ను అనుసరిస్తుంది. Bitsocial discovery services కేవలం peer addresses‌ను తిరిగి ఇస్తాయి. వాటికి content‌ను host చేయడం, community‌ను own చేయడం, లేదా అందరూ ఏమి చూస్తారో నిర్ణయించడం అవసరం లేదు."
+          "detailBluesky": "Bluesky యొక్క architecture feeds, search, మరియు aggregate views‌ను AppView‌లు మరియు సంబంధిత services‌లో ఉంచుతుంది. ఇది discovery‌ను శక్తివంతం చేస్తుంది, కానీ visibility app ఉపయోగించే aggregators‌ను అనుసరిస్తుంది. Bitsocial discovery services కేవలం peer addresses‌ను తిరిగి ఇస్తాయి. వాటికి content‌ను host చేయడం, community‌ను own చేయడం, లేదా అందరూ ఏమి చూస్తారో నిర్ణయించడం అవసరం లేదు.",
+          "mastodon": "Search and timelines depend on what your instance has seen, cached, and chosen to show.",
+          "detailMastodon": "ActivityPub delivers activities to actor inboxes and shared inboxes, so discovery naturally depends on what servers receive, cache, index, and choose to show. Mastodon users can also filter users, keywords, and whole domains. Bitsocial discovery services only return peer addresses; they do not need to host content or decide what everyone sees."
         },
         "replies": {
           "label": "స్పామ్ ప్రత్యుత్తరాలు",
@@ -206,7 +216,9 @@
           "bluesky": "Spam servers ద్వారా పరిమితం చేయబడుతుంది, తర్వాత labels మరియు AppView moderation ద్వారా నిర్వహించబడుతుంది.",
           "bitsocial": "Community posters‌ను ముందుగా challenge చేసి, కనిపించే ముందు spam‌ను తిరస్కరించగలదు.",
           "detail": "Nostr ఏ key reply వ్రాసిందో చూపగలదు, కానీ publishing మరియు moderation వేరు. ఒక relay లేదా app junk వచ్చిన తర్వాత దాన్ని దాచగలదు. Bitsocial communityకి front door ఇస్తుంది: challenge‌ను పూర్తి చేయండి, లేకపోతే reply thread‌లో ఎప్పటికీ accept కాదు.",
-          "detailBluesky": "Bluesky PDS limits, moderation labels, మరియు AppView choices‌ను ఉపయోగించి abuse‌ను తగ్గిస్తుంది. అవి ఉపయోగకరమైనవే, కానీ అవి server మరియు indexing-layer defenses. Bitsocial communityకి front door ఇస్తుంది: challenge‌ను పూర్తి చేయండి, లేకపోతే reply thread‌లో ఎప్పటికీ accept కాదు."
+          "detailBluesky": "Bluesky PDS limits, moderation labels, మరియు AppView choices‌ను ఉపయోగించి abuse‌ను తగ్గిస్తుంది. అవి ఉపయోగకరమైనవే, కానీ అవి server మరియు indexing-layer defenses. Bitsocial communityకి front door ఇస్తుంది: challenge‌ను పూర్తి చేయండి, లేకపోతే reply thread‌లో ఎప్పటికీ accept కాదు.",
+          "mastodon": "Spam reaches servers first, then filters, reports, and moderators respond.",
+          "detailMastodon": "ActivityPub does not define a universal anti-spam gate. The spec recommends server-side filtering, and Mastodon adds signup limits, email confirmation, reports, blocks, filters, and domain moderation. Those tools help, but they usually work at the server or visibility layer. Bitsocial lets a community challenge a poster before the reply is accepted."
         },
         "antiSpam": {
           "label": "కమ్యూనిటీ నియమాలు",
@@ -214,7 +226,9 @@
           "bluesky": "App content‌ను filter చేయగలదు, కానీ community తన challenge‌ను ముందుగా తప్పనిసరి చేయలేను.",
           "bitsocial": "Rules communityకి చెందినవి, కాబట్టి accepted posts అదే gate ద్వారా వెళ్తాయి.",
           "detail": "Nostr‌లో ఒక relay దానికి సంబంధించిన rules‌ను పెట్టగలదు, మరియు ఒక app అది చూపే content‌ను filter చేయగలదు. ఆ rules నిజంగా communityకి చెందినవి కావు. Bitsocial ప్రతి communityకి posting gate‌ను ఎంచుకునే అవకాశం ఇస్తుంది, ఉదాహరణకు account age, reputation, captcha, whitelist, payment, లేదా మరొక challenge.",
-          "detailBluesky": "Bluesky moderation labels, AppView‌లు, మరియు service rules చుట్టూ నిర్మించబడింది. ఇది content‌ను hide, rank, లేదా limit చేయగలదు, కానీ అది community-owned pre-post gate లాంటిది కాదు. Bitsocial ప్రతి communityకి posting gate‌ను ఎంచుకునే అవకాశం ఇస్తుంది, ఉదాహరణకు account age, reputation, captcha, whitelist, payment, లేదా మరొక challenge."
+          "detailBluesky": "Bluesky moderation labels, AppView‌లు, మరియు service rules చుట్టూ నిర్మించబడింది. ఇది content‌ను hide, rank, లేదా limit చేయగలదు, కానీ అది community-owned pre-post gate లాంటిది కాదు. Bitsocial ప్రతి communityకి posting gate‌ను ఎంచుకునే అవకాశం ఇస్తుంది, ఉదాహరణకు account age, reputation, captcha, whitelist, payment, లేదా మరొక challenge.",
+          "mastodon": "Rules belong to the instance, the user, or a domain blocklist.",
+          "detailMastodon": "Mastodon gives instance admins, moderators, and users many controls: filters, mutes, blocks, reports, server-wide limits, and suspensions. They are powerful federation controls, but they are not a portable community-owned pre-post gate. Bitsocial lets each community choose its posting challenge, so accepted posts pass the same rule before entering the thread."
         },
         "scalingEconomics": {
           "label": "విస్తరణ ఖర్చులు",
@@ -222,15 +236,19 @@
           "bluesky": "Growth load‌ను account servers, relay‌లు, AppView‌లు, మరియు feed services‌పై పెడుతుంది.",
           "bitsocial": "More readers అంటే content share చేయడంలో సహాయపడే మరిన్ని people కూడా కావచ్చు.",
           "detail": "Nostr‌లో relay‌లు ఇంకా posts‌ను online‌లో ఉంచి readers‌కు పంపే servers. Popular post users‌కు మంచిదై ఉండొచ్చు, కానీ relay operators‌కు ఖరీదైనది. Bitsocial‌లో readers తాము చదివిన content‌ను distribute చేయడంలో కూడా సహాయపడగలరు, కాబట్టి popularity server cost‌ను మాత్రమే పెంచకుండా capacityను కూడా జోడించగలదు.",
-          "detailBluesky": "ATProto convenience మరియు availability కోసం servers‌ను ఉద్దేశపూర్వకంగా ఉపయోగిస్తుంది. Relay‌లు firehoses‌ను aggregate చేస్తాయి, AppView‌లు network‌ను index చేస్తాయి, మరియు custom feeds తరచుగా firehose‌ను consume చేస్తాయి. Official docs relay‌లు మరియు AppView‌లను resource intensive‌గా వివరిస్తాయి, మరియు relay operations‌కు ఇప్పటికే scaling work అవసరమైంది. Bitsocial peers‌ను కనుగొనడానికి మాత్రమే routers‌ను ఉపయోగిస్తుంది; readers content‌ను carry చేయడంలో సహాయపడగలరు."
+          "detailBluesky": "ATProto convenience మరియు availability కోసం servers‌ను ఉద్దేశపూర్వకంగా ఉపయోగిస్తుంది. Relay‌లు firehoses‌ను aggregate చేస్తాయి, AppView‌లు network‌ను index చేస్తాయి, మరియు custom feeds తరచుగా firehose‌ను consume చేస్తాయి. Official docs relay‌లు మరియు AppView‌లను resource intensive‌గా వివరిస్తాయి, మరియు relay operations‌కు ఇప్పటికే scaling work అవసరమైంది. Bitsocial peers‌ను కనుగొనడానికి మాత్రమే routers‌ను ఉపయోగిస్తుంది; readers content‌ను carry చేయడంలో సహాయపడగలరు.",
+          "mastodon": "Growth pushes storage, federation, streaming, and moderation cost onto instances.",
+          "detailMastodon": "A Mastodon server needs a domain, always-online hosting, email, database, Redis, background workers, streaming, and often object storage. Mastodon can scale horizontally, but that means operating more app servers, workers, databases, queues, and moderation capacity. Bitsocial uses routers only to find peers; readers can help carry the content they read."
         },
         "browserMobile": {
           "label": "మొదటి పోస్ట్",
           "nostr": "దాని relay choices పనిచేసినప్పుడు మాత్రమే web client సింపుల్‌గా అనిపిస్తుంది.",
           "bluesky": "సులభమైన మార్గం ఆ provider పరిమితులు మరియు rules ఉన్న hosted account.",
-          "bitsocial": "App‌ను తెరిచి post చేయండి; మీ key స్వయంచాలకంగా తయారవచ్చు.",
+          "bitsocial": "You can start with a local key, without making a server own your identity.",
           "detail": "మంచి web client‌కు ముందే మంచి relay‌లు configured‌గా ఉన్నప్పుడు Nostr సులభంగా అనిపించగలదు. Hidden dependency అలాగే ఉంటుంది: ఆ relay‌లు activity‌ను accept, store, మరియు serve చేయాలి. Bitsocial user key‌ను local‌గా సృష్టించి, account server identity‌కు owner కాకుండా app‌కు direct P2P లేదా hosted access ఎంచుకునే అవకాశం ఇవ్వగలదు.",
-          "detailBluesky": "bsky.social లేదా మరొక PDS accounts, sessions, writes, మరియు hostingను నిర్వహించినప్పుడు Bluesky సులభంగా ఉంటుంది. ఆ సౌలభ్యం server-based, మరియు hosted services తమ స్వంత API limits మరియు policies‌ను వర్తింపజేస్తాయి. Bitsocial user key‌ను local‌గా సృష్టించి, platform account identity‌కు owner కాకుండా direct P2P లేదా optional hosted access ద్వారా user post చేయడానికి అనుమతించగలదు."
+          "detailBluesky": "bsky.social లేదా మరొక PDS accounts, sessions, writes, మరియు hostingను నిర్వహించినప్పుడు Bluesky సులభంగా ఉంటుంది. ఆ సౌలభ్యం server-based, మరియు hosted services తమ స్వంత API limits మరియు policies‌ను వర్తింపజేస్తాయి. Bitsocial user key‌ను local‌గా సృష్టించి, platform account identity‌కు owner కాకుండా direct P2P లేదా optional hosted access ద్వారా user post చేయడానికి అనుమతించగలదు.",
+          "mastodon": "You post through the server account you chose.",
+          "detailMastodon": "Mastodon is easy once a user chooses an instance and creates an account. The server handles sessions, posts, media, federation, and rules. Self-hosting gives more control, but requires operating the stack. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity."
         }
       },
       "expand": "మరింత తెలుసుకోండి",

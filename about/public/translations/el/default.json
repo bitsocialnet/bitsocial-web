@@ -152,7 +152,7 @@
       "services": {
         "nostr": "Nostr",
         "bluesky": "Bluesky",
-        "mastodon": "Mastodon",
+        "mastodon": "ActivityPub / Fediverse",
         "lemmy": "Lemmy",
         "farcaster": "Farcaster",
         "lens": "Lens",
@@ -164,9 +164,11 @@
           "label": "Ανθρώπινα ονόματα",
           "nostr": "Ο λογαριασμός σας είναι ένα μακρύ δημόσιο κλειδί· τα ευανάγνωστα ονόματα χρειάζονται επιπλέον παρόχους.",
           "bluesky": "Τα ευανάγνωστα handles είναι ονόματα DNS· το DID document δείχνει στις εφαρμογές τον τρέχοντα διακομιστή του λογαριασμού.",
-          "bitsocial": "Τα κλειδιά δημιουργούνται αυτόματα και τα ονόματα .bso μπορούν να δείχνουν σε χρήστες και κοινότητες.",
+          "bitsocial": "Keys stay yours, and .bso names can point to people or communities.",
           "detail": "Η βασική ταυτότητα στο Nostr είναι ένα δημόσιο κλειδί, που είναι φορητό αλλά δύσκολο να θυμάσαι. Τα ευανάγνωστα ονόματα είναι χρήσιμα, αλλά προστίθενται μέσω ξεχωριστών συμβάσεων και παρόχων. Το Bitsocial χρησιμοποιεί επίσης δημόσια κλειδιά και προσθέτει ονόματα .bso, ώστε ένα άτομο ή μια κοινότητα να μπορεί να έχει ευανάγνωστη ταυτότητα χωρίς κεντρικό πάροχο λογαριασμού.",
-          "detailBluesky": "Το Bluesky προσφέρει ουσιαστική βελτίωση σε σχέση με τα ακατέργαστα δημόσια κλειδιά: DIDs μαζί με ευανάγνωστα handles. Το τίμημα είναι ότι τα handles είναι ονόματα DNS και το DID document εξακολουθεί να δηλώνει τον τρέχοντα PDS του χρήστη. Το Bitsocial διατηρεί την κρυπτογραφική ιδιοκτησία και προσθέτει ονόματα .bso για άτομα και κοινότητες."
+          "detailBluesky": "Το Bluesky προσφέρει ουσιαστική βελτίωση σε σχέση με τα ακατέργαστα δημόσια κλειδιά: DIDs μαζί με ευανάγνωστα handles. Το τίμημα είναι ότι τα handles είναι ονόματα DNS και το DID document εξακολουθεί να δηλώνει τον τρέχοντα PDS του χρήστη. Το Bitsocial διατηρεί την κρυπτογραφική ιδιοκτησία και προσθέτει ονόματα .bso για άτομα και κοινότητες.",
+          "mastodon": "Your readable handle includes a server, so moving servers can change your address.",
+          "detailMastodon": "Mastodon handles are readable because WebFinger turns @user@domain into an ActivityPub actor URI. The domain matters: the same username on another server is a different account. Mastodon can redirect or move followers to a new account, but posts and media do not move. Bitsocial keeps cryptographic ownership and adds .bso names for people and communities."
         },
         "dataLayer": {
           "label": "Φιλοξενία δεδομένων",
@@ -174,15 +176,19 @@
           "bluesky": "Οι δημόσιες δημοσιεύσεις ζουν σε Personal Data Server και μετά τα relays και τα AppViews τις ευρετηριάζουν.",
           "bitsocial": "Οι χρήστες μπορούν να λαμβάνουν και να μοιράζονται δημοσιεύσεις απευθείας μεταξύ τους.",
           "detail": "Οι δημοσιεύσεις στο Nostr είναι φορητές, επειδή οι χρήστες ελέγχουν τα κλειδιά τους, αλλά ένας διακομιστής πρέπει ακόμη να τις κρατά online. Στη συνηθισμένη χρήση του Nostr, αυτή η δουλειά ανήκει στα relays. Το Bitsocial χωρίζει την εύρεση ανθρώπων από τη μεταφορά των δεδομένων: μικρές υπηρεσίες αναζήτησης μπορούν να βοηθήσουν στην εύρεση peers και μετά οι χρήστες λαμβάνουν και μοιράζονται το περιεχόμενο απευθείας.",
-          "detailBluesky": "Ο σχεδιασμός του repo στο Bluesky είναι ένα από τα πιο δυνατά του σημεία: τα δημόσια records είναι υπογεγραμμένα, φορητά και εξαγώγιμα. Όμως ο εξουσιοδοτημένος host είναι ακόμη ο τρέχων PDS, και η συνηθισμένη εμπειρία της εφαρμογής εξαρτάται από τα relays και τα AppViews. Το Bitsocial ξεκινά με διαμοιρασμό περιεχομένου peer-to-peer αντί για repos λογαριασμών που φιλοξενούνται σε διακομιστές."
+          "detailBluesky": "Ο σχεδιασμός του repo στο Bluesky είναι ένα από τα πιο δυνατά του σημεία: τα δημόσια records είναι υπογεγραμμένα, φορητά και εξαγώγιμα. Όμως ο εξουσιοδοτημένος host είναι ακόμη ο τρέχων PDS, και η συνηθισμένη εμπειρία της εφαρμογής εξαρτάται από τα relays και τα AppViews. Το Bitsocial ξεκινά με διαμοιρασμό περιεχομένου peer-to-peer αντί για repos λογαριασμών που φιλοξενούνται σε διακομιστές.",
+          "mastodon": "Posts are hosted by an instance, then federated as ActivityPub objects.",
+          "detailMastodon": "ActivityPub actors live on servers with inboxes and outboxes. In Mastodon, ActivityPub Notes and Questions become statuses and polls that the instance stores, serves, and delivers to other servers. That is much more open than one central platform, but the normal data host is still an always-online server. Bitsocial starts with peer-to-peer content sharing instead."
         },
         "communityModel": {
-          "label": "Ιδιοκτησία κοινότητας",
+          "label": "Who accepts posts?",
           "nostr": "Μια ομάδα εξαρτάται από το αν τα relays και οι εφαρμογές συμφωνούν ποια posts μετράνε.",
           "bluesky": "Χώροι που μοιάζουν με κοινότητες χτίζονται μέσω feeds, lexicons ή λειτουργιών της εφαρμογής, όχι με P2P αντικείμενα με δική τους πύλη.",
-          "bitsocial": "Η ίδια η κοινότητα αποφασίζει τι ανήκει στο νήμα.",
+          "bitsocial": "The community is the thing you post to; it accepts or rejects posts itself.",
           "detail": "Το Nostr μπορεί να χτίσει λειτουργίες ομάδας, αλλά η ομάδα εξακολουθεί να εξαρτάται από το αν τα relays και οι εφαρμογές συμφωνούν τι ανήκει εκεί. Αυτό είναι εύθραυστο για κοινότητες τύπου φόρουμ. Το Bitsocial επιτρέπει στην κοινότητα να δέχεται δημοσιεύσεις απευθείας, κάτι που ταιριάζει καλύτερα σε φόρουμ, imageboards και χώρους τύπου subreddit.",
-          "detailBluesky": "Το Bluesky μπορεί να χτίσει ομάδες, φόρουμ και community feeds μέσω lexicons, AppViews και feed generators. Αυτό όμως αφήνει την κοινότητα εξαρτημένη από υπηρεσίες που ευρετηριάζουν και ερμηνεύουν records. Το Bitsocial αντιμετωπίζει την κοινότητα ως το αντικείμενο που δέχεται διεύθυνση: ο κόμβος της επαληθεύει δημοσιεύσεις και δημοσιεύει την αποδεκτή κατάσταση."
+          "detailBluesky": "Το Bluesky μπορεί να χτίσει ομάδες, φόρουμ και community feeds μέσω lexicons, AppViews και feed generators. Αυτό όμως αφήνει την κοινότητα εξαρτημένη από υπηρεσίες που ευρετηριάζουν και ερμηνεύουν records. Το Bitsocial αντιμετωπίζει την κοινότητα ως το αντικείμενο που δέχεται διεύθυνση: ο κόμβος της επαληθεύει δημοσιεύσεις και δημοσιεύει την αποδεκτή κατάσταση.",
+          "mastodon": "A Fediverse community is still defined by the app or instance that accepts and announces its posts.",
+          "detailMastodon": "ActivityPub lets different apps interoperate, but the server software still decides what a community means. Mastodon is mostly profile and timeline based. Lemmy adds ActivityPub Groups for forum communities, but the Lemmy instance still accepts, stores, and announces the posts. In Bitsocial, the community is the object you post to: its node checks the posting gate and publishes the accepted thread state. That is the difference: the rule belongs to the community, not just the app or instance hosting it."
         },
         "moderation": {
           "label": "Σημεία λογοκρισίας",
@@ -190,15 +196,19 @@
           "bluesky": "Ο host του λογαριασμού, το relay ή το AppView μπορούν να μπλοκάρουν τη συνήθη διαδρομή προς το κοινό σου.",
           "bitsocial": "Μια κοινότητα μπορεί να παραμένει προσβάσιμη ενώ οι peers συνεχίζουν να τη μοιράζονται.",
           "detail": "Ένα κλειδί Nostr μπορεί να επιβιώσει από ban σε relay, αλλά η ορατότητα εξακολουθεί να εξαρτάται από τα relays, τις υπηρεσίες αναζήτησης και τις εφαρμογές που χρησιμοποιούν πραγματικά οι άνθρωποι. Αν αυτοί οι χώροι σταματήσουν να σε μεταφέρουν, ο λογαριασμός υπάρχει αλλά το κοινό ίσως να μην τον δει. Το Bitsocial αφαιρεί το relay από το κέντρο ισχύος: οι χρήστες μπορούν να συνεχίσουν να μοιράζονται μια κοινότητα μέσω διαφορετικών διαδρομών ανακάλυψης, όσο οι peers τη διατηρούν online.",
-          "detailBluesky": "Το Bluesky διαχωρίζει τη φιλοξενία λογαριασμού, τη διανομή μέσω relays και την ευρετηρίαση AppView. Αυτό βοηθά τη φορητότητα, αλλά δημιουργεί και αρκετές πύλες ορατότητας που οι συνηθισμένοι χρήστες σπάνια αλλάζουν. Ένα PDS μπορεί να αρνηθεί την υπηρεσία, τα relays να σταματήσουν να μεταφέρουν δεδομένα και τα AppViews να κρύψουν ή να αγνοήσουν records. Το Bitsocial κρατά την εμβέλεια πιο κοντά στην κοινότητα και στους peers της."
+          "detailBluesky": "Το Bluesky διαχωρίζει τη φιλοξενία λογαριασμού, τη διανομή μέσω relays και την ευρετηρίαση AppView. Αυτό βοηθά τη φορητότητα, αλλά δημιουργεί και αρκετές πύλες ορατότητας που οι συνηθισμένοι χρήστες σπάνια αλλάζουν. Ένα PDS μπορεί να αρνηθεί την υπηρεσία, τα relays να σταματήσουν να μεταφέρουν δεδομένα και τα AppViews να κρύψουν ή να αγνοήσουν records. Το Bitsocial κρατά την εμβέλεια πιο κοντά στην κοινότητα και στους peers της.",
+          "mastodon": "Instance admins can limit local accounts or block whole remote servers.",
+          "detailMastodon": "Mastodon moderation is local to each server: one admin cannot delete a remote account globally, but they can hide, limit, suspend, or domain-block what their own users see. If influential servers block an instance, reach can collapse for many users. Bitsocial keeps reach closer to the community and the peers still sharing it."
         },
         "contentDiscovery": {
           "label": "Εύρεση περιεχομένου",
           "nostr": "Η ανακάλυψη συχνά ακολουθεί τα relays και τις υπηρεσίες αναζήτησης με τα περισσότερα δεδομένα.",
           "bluesky": "Η ανακάλυψη εξαρτάται από AppViews, ευρετήρια αναζήτησης, feeds και τις προεπιλογές του client.",
-          "bitsocial": "Η ανακάλυψη σε συνδέει με peers· οι χρήστες συνεχίζουν να μοιράζονται τις δημοσιεύσεις.",
+          "bitsocial": "Discovery finds peers; it does not become the place that owns the content.",
           "detail": "Η ανακάλυψη στο Nostr λειτουργεί καλύτερα όταν τα δημοφιλή relays, τα relays αναζήτησης και οι εφαρμογές έχουν ήδη τα δεδομένα. Αυτό δίνει στις πιο συνδεδεμένες υπηρεσίες μεγαλύτερη δύναμη πάνω σε ό,τι βρίσκουν οι άνθρωποι. Η ανακάλυψη στο Bitsocial βοηθά μόνο να βρεις peers. Δεν χρειάζεται να φιλοξενεί το περιεχόμενο, να κατέχει την κοινότητα ή να γίνει το μέρος στο οποίο όλοι πρέπει να εμπιστεύονται.",
-          "detailBluesky": "Η ίδια η αρχιτεκτονική του Bluesky βάζει τα feeds, την αναζήτηση και τις συγκεντρωτικές προβολές στα AppViews και στις σχετικές υπηρεσίες. Αυτό κάνει την ανακάλυψη ισχυρή, αλλά η ορατότητα ακολουθεί όποια aggregators χρησιμοποιεί η εφαρμογή. Οι υπηρεσίες ανακάλυψης του Bitsocial επιστρέφουν μόνο διευθύνσεις peers. Δεν χρειάζεται να φιλοξενούν το περιεχόμενο, να κατέχουν την κοινότητα ή να αποφασίζουν τι βλέπουν όλοι."
+          "detailBluesky": "Η ίδια η αρχιτεκτονική του Bluesky βάζει τα feeds, την αναζήτηση και τις συγκεντρωτικές προβολές στα AppViews και στις σχετικές υπηρεσίες. Αυτό κάνει την ανακάλυψη ισχυρή, αλλά η ορατότητα ακολουθεί όποια aggregators χρησιμοποιεί η εφαρμογή. Οι υπηρεσίες ανακάλυψης του Bitsocial επιστρέφουν μόνο διευθύνσεις peers. Δεν χρειάζεται να φιλοξενούν το περιεχόμενο, να κατέχουν την κοινότητα ή να αποφασίζουν τι βλέπουν όλοι.",
+          "mastodon": "Search and timelines depend on what your instance has seen, cached, and chosen to show.",
+          "detailMastodon": "ActivityPub delivers activities to actor inboxes and shared inboxes, so discovery naturally depends on what servers receive, cache, index, and choose to show. Mastodon users can also filter users, keywords, and whole domains. Bitsocial discovery services only return peer addresses; they do not need to host content or decide what everyone sees."
         },
         "replies": {
           "label": "Απαντήσεις spam",
@@ -206,7 +216,9 @@
           "bluesky": "Το spam περιορίζεται από τους servers και μετά αντιμετωπίζεται από labels και moderation του AppView.",
           "bitsocial": "Μια κοινότητα μπορεί να ελέγχει πρώτα τους συντάκτες και να απορρίπτει το spam πριν εμφανιστεί.",
           "detail": "Το Nostr μπορεί να δείξει ποιο κλειδί έγραψε μια απάντηση, αλλά η δημοσίευση και η moderation είναι ξεχωριστές. Ένα relay ή μια εφαρμογή μπορεί να κρύψει τα σκουπίδια αφού φτάσουν. Το Bitsocial δίνει στην κοινότητα μια μπροστινή πόρτα: ολοκλήρωσε το challenge, αλλιώς η απάντηση δεν γίνεται ποτέ δεκτή στο νήμα.",
-          "detailBluesky": "Το Bluesky χρησιμοποιεί όρια PDS, ετικέτες moderation και επιλογές του AppView για να μειώσει την κακοποίηση. Αυτές οι άμυνες είναι χρήσιμες, αλλά είναι άμυνες σε επίπεδο διακομιστή και ευρετηρίασης. Το Bitsocial δίνει στην κοινότητα μια μπροστινή πόρτα: ολοκλήρωσε το challenge, αλλιώς η απάντηση δεν γίνεται ποτέ δεκτή στο νήμα."
+          "detailBluesky": "Το Bluesky χρησιμοποιεί όρια PDS, ετικέτες moderation και επιλογές του AppView για να μειώσει την κακοποίηση. Αυτές οι άμυνες είναι χρήσιμες, αλλά είναι άμυνες σε επίπεδο διακομιστή και ευρετηρίασης. Το Bitsocial δίνει στην κοινότητα μια μπροστινή πόρτα: ολοκλήρωσε το challenge, αλλιώς η απάντηση δεν γίνεται ποτέ δεκτή στο νήμα.",
+          "mastodon": "Spam reaches servers first, then filters, reports, and moderators respond.",
+          "detailMastodon": "ActivityPub does not define a universal anti-spam gate. The spec recommends server-side filtering, and Mastodon adds signup limits, email confirmation, reports, blocks, filters, and domain moderation. Those tools help, but they usually work at the server or visibility layer. Bitsocial lets a community challenge a poster before the reply is accepted."
         },
         "antiSpam": {
           "label": "Κανόνες κοινότητας",
@@ -214,7 +226,9 @@
           "bluesky": "Η εφαρμογή μπορεί να φιλτράρει περιεχόμενο, αλλά η κοινότητα δεν μπορεί να απαιτήσει πρώτα το δικό της challenge.",
           "bitsocial": "Οι κανόνες ανήκουν στην κοινότητα, οπότε οι αποδεκτές δημοσιεύσεις περνούν από την ίδια πύλη.",
           "detail": "Στο Nostr, ένα relay μπορεί να ορίσει τους κανόνες του και μια εφαρμογή μπορεί να φιλτράρει ό,τι δείχνει. Αυτοί οι κανόνες όμως δεν ανήκουν πραγματικά στην κοινότητα. Το Bitsocial αφήνει κάθε κοινότητα να διαλέξει την πύλη δημοσίευσης, όπως ηλικία λογαριασμού, φήμη, captcha, whitelist, πληρωμή ή κάποιο άλλο challenge.",
-          "detailBluesky": "Η moderation στο Bluesky βασίζεται σε labels, AppViews και κανόνες υπηρεσίας. Αυτό μπορεί να κρύψει, να κατατάξει ή να περιορίσει περιεχόμενο, αλλά δεν είναι το ίδιο με μια κοινόκτητα-owned πύλη πριν τη δημοσίευση. Το Bitsocial αφήνει κάθε κοινότητα να διαλέξει την πύλη δημοσίευσης, όπως ηλικία λογαριασμού, φήμη, captcha, whitelist, πληρωμή ή κάποιο άλλο challenge."
+          "detailBluesky": "Η moderation στο Bluesky βασίζεται σε labels, AppViews και κανόνες υπηρεσίας. Αυτό μπορεί να κρύψει, να κατατάξει ή να περιορίσει περιεχόμενο, αλλά δεν είναι το ίδιο με μια κοινόκτητα-owned πύλη πριν τη δημοσίευση. Το Bitsocial αφήνει κάθε κοινότητα να διαλέξει την πύλη δημοσίευσης, όπως ηλικία λογαριασμού, φήμη, captcha, whitelist, πληρωμή ή κάποιο άλλο challenge.",
+          "mastodon": "Rules belong to the instance, the user, or a domain blocklist.",
+          "detailMastodon": "Mastodon gives instance admins, moderators, and users many controls: filters, mutes, blocks, reports, server-wide limits, and suspensions. They are powerful federation controls, but they are not a portable community-owned pre-post gate. Bitsocial lets each community choose its posting challenge, so accepted posts pass the same rule before entering the thread."
         },
         "scalingEconomics": {
           "label": "Κόστη κλιμάκωσης",
@@ -222,15 +236,19 @@
           "bluesky": "Η ανάπτυξη μεταφέρει φόρτο στους servers λογαριασμών, στα relays, στα AppViews και στις feed υπηρεσίες.",
           "bitsocial": "Περισσότεροι αναγνώστες μπορεί επίσης να σημαίνουν περισσότερους ανθρώπους που βοηθούν να μοιραστεί το περιεχόμενο.",
           "detail": "Στο Nostr, τα relays είναι ακόμη οι servers που κρατούν τις δημοσιεύσεις online και τις στέλνουν στους αναγνώστες. Μια δημοφιλής δημοσίευση μπορεί να είναι εξαιρετική για τους χρήστες, αλλά ακριβή για τους operator των relay. Στο Bitsocial, οι αναγνώστες μπορούν επίσης να βοηθήσουν στη διανομή του περιεχομένου που διαβάζουν, άρα η δημοφιλία μπορεί να προσθέσει χωρητικότητα αντί να προσθέτει μόνο κόστος server.",
-          "detailBluesky": "Το ATProto χρησιμοποιεί συνειδητά servers για ευκολία και διαθεσιμότητα. Τα relays συγκεντρώνουν firehoses, τα AppViews ευρετηριάζουν το δίκτυο και τα προσαρμοσμένα feeds συχνά καταναλώνουν το firehose. Τα επίσημα docs περιγράφουν τα relays και τα AppViews ως απαιτητικά σε πόρους, και η λειτουργία των relays έχει ήδη χρειαστεί εργασία κλιμάκωσης. Το Bitsocial χρησιμοποιεί routers μόνο για να βρει peers· οι αναγνώστες μπορούν να βοηθήσουν να μεταφερθεί το περιεχόμενο."
+          "detailBluesky": "Το ATProto χρησιμοποιεί συνειδητά servers για ευκολία και διαθεσιμότητα. Τα relays συγκεντρώνουν firehoses, τα AppViews ευρετηριάζουν το δίκτυο και τα προσαρμοσμένα feeds συχνά καταναλώνουν το firehose. Τα επίσημα docs περιγράφουν τα relays και τα AppViews ως απαιτητικά σε πόρους, και η λειτουργία των relays έχει ήδη χρειαστεί εργασία κλιμάκωσης. Το Bitsocial χρησιμοποιεί routers μόνο για να βρει peers· οι αναγνώστες μπορούν να βοηθήσουν να μεταφερθεί το περιεχόμενο.",
+          "mastodon": "Growth pushes storage, federation, streaming, and moderation cost onto instances.",
+          "detailMastodon": "A Mastodon server needs a domain, always-online hosting, email, database, Redis, background workers, streaming, and often object storage. Mastodon can scale horizontally, but that means operating more app servers, workers, databases, queues, and moderation capacity. Bitsocial uses routers only to find peers; readers can help carry the content they read."
         },
         "browserMobile": {
           "label": "Πρώτη δημοσίευση",
           "nostr": "Ένας web client φαίνεται απλός μόνο όσο λειτουργούν οι επιλογές relay του.",
           "bluesky": "Ο εύκολος δρόμος είναι ένας hosted λογαριασμός με τα όρια και τους κανόνες αυτού του παρόχου.",
-          "bitsocial": "Άνοιξε την εφαρμογή και δημοσίευσε· το κλειδί σου μπορεί να δημιουργηθεί αυτόματα.",
+          "bitsocial": "You can start with a local key, without making a server own your identity.",
           "detail": "Το Nostr μπορεί να φαίνεται εύκολο όταν ένας καλός web client έχει ήδη καλά relays ρυθμισμένα. Η κρυφή εξάρτηση όμως παραμένει: αυτά τα relays πρέπει να δέχονται, να αποθηκεύουν και να σερβίρουν τη δραστηριότητα. Το Bitsocial μπορεί να δημιουργήσει το κλειδί του χρήστη τοπικά και να αφήσει την εφαρμογή να επιλέξει άμεσο peer-to-peer ή hosted access χωρίς να κάνει έναν account server ιδιοκτήτη της ταυτότητας.",
-          "detailBluesky": "Το Bluesky είναι εύκολο όταν το bsky.social ή άλλο PDS χειρίζεται λογαριασμούς, συνεδρίες, εγγραφές και hosting. Αυτή η ευκολία βασίζεται σε server και οι hosted υπηρεσίες επιβάλλουν τα δικά τους όρια API και πολιτικές. Το Bitsocial μπορεί να δημιουργήσει το κλειδί του χρήστη τοπικά και να αφήσει τον χρήστη να δημοσιεύσει μέσω άμεσου P2P ή προαιρετικού hosted access χωρίς να κατέχει την ταυτότητα ένας platform account."
+          "detailBluesky": "Το Bluesky είναι εύκολο όταν το bsky.social ή άλλο PDS χειρίζεται λογαριασμούς, συνεδρίες, εγγραφές και hosting. Αυτή η ευκολία βασίζεται σε server και οι hosted υπηρεσίες επιβάλλουν τα δικά τους όρια API και πολιτικές. Το Bitsocial μπορεί να δημιουργήσει το κλειδί του χρήστη τοπικά και να αφήσει τον χρήστη να δημοσιεύσει μέσω άμεσου P2P ή προαιρετικού hosted access χωρίς να κατέχει την ταυτότητα ένας platform account.",
+          "mastodon": "You post through the server account you chose.",
+          "detailMastodon": "Mastodon is easy once a user chooses an instance and creates an account. The server handles sessions, posts, media, federation, and rules. Self-hosting gives more control, but requires operating the stack. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity."
         }
       },
       "expand": "Μάθε περισσότερα",

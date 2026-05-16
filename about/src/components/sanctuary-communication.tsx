@@ -93,6 +93,7 @@ type DeepComparisonRowKey =
   | "scalingEconomics"
   | "moderation";
 type DeepComparisonSourceId =
+  | "activityPubSpec"
   | "atprotoDataRepos"
   | "atprotoFeeds"
   | "atprotoFederation"
@@ -104,6 +105,14 @@ type DeepComparisonSourceId =
   | "atprotoSelfHosting"
   | "atprotoSync"
   | "bitsocialBsoDocs"
+  | "lemmyFederation"
+  | "mastodonActivityPub"
+  | "mastodonAccountMigration"
+  | "mastodonModeration"
+  | "mastodonRunServer"
+  | "mastodonScaling"
+  | "mastodonUserModeration"
+  | "mastodonWebFinger"
   | "nip01"
   | "nip10"
   | "nip11"
@@ -138,15 +147,19 @@ type DeepComparison = {
 const DEEP_COMPARISON_SERVICE_IDS: DeepComparisonServiceId[] = [
   "nostr",
   "bluesky",
+  "mastodon",
   // TODO: re-enable these after their deep comparisons are researched.
-  // "mastodon",
   // "lemmy",
   // "farcaster",
   // "lens",
   // "deso",
   // "steemit",
 ];
-const DEEP_COMPARISON_CONTENT_SERVICE_IDS: DeepComparisonServiceId[] = ["nostr", "bluesky"];
+const DEEP_COMPARISON_CONTENT_SERVICE_IDS: DeepComparisonServiceId[] = [
+  "nostr",
+  "bluesky",
+  "mastodon",
+];
 const DEEP_COMPARISON_SERVICE_I18N: Record<DeepComparisonServiceId, { label: string }> = {
   nostr: { label: "sanctuary.deepComparison.services.nostr" },
   bluesky: { label: "sanctuary.deepComparison.services.bluesky" },
@@ -196,15 +209,18 @@ const DEEP_COMPARISON_ROW_I18N: Record<
     services: {
       nostr: "sanctuary.deepComparison.rows.dataLayer.nostr",
       bluesky: "sanctuary.deepComparison.rows.dataLayer.bluesky",
+      mastodon: "sanctuary.deepComparison.rows.dataLayer.mastodon",
     },
     bitsocial: "sanctuary.deepComparison.rows.dataLayer.bitsocial",
     detail: "sanctuary.deepComparison.rows.dataLayer.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.dataLayer.detailBluesky",
+      mastodon: "sanctuary.deepComparison.rows.dataLayer.detailMastodon",
     },
     sources: ["nip01", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoRepository", "atprotoSync", "atprotoOverview", "bitsocialDocs"],
+      mastodon: ["activityPubSpec", "mastodonActivityPub", "bitsocialDocs"],
     },
   },
   browserMobile: {
@@ -212,15 +228,18 @@ const DEEP_COMPARISON_ROW_I18N: Record<
     services: {
       nostr: "sanctuary.deepComparison.rows.browserMobile.nostr",
       bluesky: "sanctuary.deepComparison.rows.browserMobile.bluesky",
+      mastodon: "sanctuary.deepComparison.rows.browserMobile.mastodon",
     },
     bitsocial: "sanctuary.deepComparison.rows.browserMobile.bitsocial",
     detail: "sanctuary.deepComparison.rows.browserMobile.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.browserMobile.detailBluesky",
+      mastodon: "sanctuary.deepComparison.rows.browserMobile.detailMastodon",
     },
     sources: ["nip01", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoFederation", "blueskyRateLimits", "bitsocialDocs"],
+      mastodon: ["mastodonRunServer", "mastodonScaling", "bitsocialDocs"],
     },
   },
   identity: {
@@ -228,15 +247,18 @@ const DEEP_COMPARISON_ROW_I18N: Record<
     services: {
       nostr: "sanctuary.deepComparison.rows.identity.nostr",
       bluesky: "sanctuary.deepComparison.rows.identity.bluesky",
+      mastodon: "sanctuary.deepComparison.rows.identity.mastodon",
     },
     bitsocial: "sanctuary.deepComparison.rows.identity.bitsocial",
     detail: "sanctuary.deepComparison.rows.identity.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.identity.detailBluesky",
+      mastodon: "sanctuary.deepComparison.rows.identity.detailMastodon",
     },
     sources: ["nip01", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoIdentity", "atprotoOverview", "bitsocialBsoDocs"],
+      mastodon: ["mastodonWebFinger", "mastodonAccountMigration", "bitsocialBsoDocs"],
     },
   },
   communityModel: {
@@ -244,15 +266,18 @@ const DEEP_COMPARISON_ROW_I18N: Record<
     services: {
       nostr: "sanctuary.deepComparison.rows.communityModel.nostr",
       bluesky: "sanctuary.deepComparison.rows.communityModel.bluesky",
+      mastodon: "sanctuary.deepComparison.rows.communityModel.mastodon",
     },
     bitsocial: "sanctuary.deepComparison.rows.communityModel.bitsocial",
     detail: "sanctuary.deepComparison.rows.communityModel.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.communityModel.detailBluesky",
+      mastodon: "sanctuary.deepComparison.rows.communityModel.detailMastodon",
     },
     sources: ["nip29", "nip72", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoFederation", "atprotoFeeds", "bitsocialDocs"],
+      mastodon: ["mastodonActivityPub", "lemmyFederation", "bitsocialDocs"],
     },
   },
   antiSpam: {
@@ -260,15 +285,23 @@ const DEEP_COMPARISON_ROW_I18N: Record<
     services: {
       nostr: "sanctuary.deepComparison.rows.antiSpam.nostr",
       bluesky: "sanctuary.deepComparison.rows.antiSpam.bluesky",
+      mastodon: "sanctuary.deepComparison.rows.antiSpam.mastodon",
     },
     bitsocial: "sanctuary.deepComparison.rows.antiSpam.bitsocial",
     detail: "sanctuary.deepComparison.rows.antiSpam.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.antiSpam.detailBluesky",
+      mastodon: "sanctuary.deepComparison.rows.antiSpam.detailMastodon",
     },
     sources: ["nip13", "nip42", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoModeration", "blueskyRateLimits", "bitsocialDocs"],
+      mastodon: [
+        "mastodonModeration",
+        "mastodonUserModeration",
+        "activityPubSpec",
+        "bitsocialDocs",
+      ],
     },
   },
   replies: {
@@ -276,15 +309,18 @@ const DEEP_COMPARISON_ROW_I18N: Record<
     services: {
       nostr: "sanctuary.deepComparison.rows.replies.nostr",
       bluesky: "sanctuary.deepComparison.rows.replies.bluesky",
+      mastodon: "sanctuary.deepComparison.rows.replies.mastodon",
     },
     bitsocial: "sanctuary.deepComparison.rows.replies.bitsocial",
     detail: "sanctuary.deepComparison.rows.replies.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.replies.detailBluesky",
+      mastodon: "sanctuary.deepComparison.rows.replies.detailMastodon",
     },
     sources: ["nip10", "nip72", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["blueskyRateLimits", "atprotoModeration", "bitsocialDocs"],
+      mastodon: ["activityPubSpec", "mastodonModeration", "bitsocialDocs"],
     },
   },
   contentDiscovery: {
@@ -292,15 +328,18 @@ const DEEP_COMPARISON_ROW_I18N: Record<
     services: {
       nostr: "sanctuary.deepComparison.rows.contentDiscovery.nostr",
       bluesky: "sanctuary.deepComparison.rows.contentDiscovery.bluesky",
+      mastodon: "sanctuary.deepComparison.rows.contentDiscovery.mastodon",
     },
     bitsocial: "sanctuary.deepComparison.rows.contentDiscovery.bitsocial",
     detail: "sanctuary.deepComparison.rows.contentDiscovery.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.contentDiscovery.detailBluesky",
+      mastodon: "sanctuary.deepComparison.rows.contentDiscovery.detailMastodon",
     },
     sources: ["nip65", "nip50", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoOverview", "atprotoFederation", "atprotoFeeds", "bitsocialDocs"],
+      mastodon: ["activityPubSpec", "mastodonUserModeration", "bitsocialDocs"],
     },
   },
   scalingEconomics: {
@@ -308,15 +347,18 @@ const DEEP_COMPARISON_ROW_I18N: Record<
     services: {
       nostr: "sanctuary.deepComparison.rows.scalingEconomics.nostr",
       bluesky: "sanctuary.deepComparison.rows.scalingEconomics.bluesky",
+      mastodon: "sanctuary.deepComparison.rows.scalingEconomics.mastodon",
     },
     bitsocial: "sanctuary.deepComparison.rows.scalingEconomics.bitsocial",
     detail: "sanctuary.deepComparison.rows.scalingEconomics.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.scalingEconomics.detailBluesky",
+      mastodon: "sanctuary.deepComparison.rows.scalingEconomics.detailMastodon",
     },
     sources: ["nip11", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoSelfHosting", "atprotoRelayOps", "atprotoFeeds", "bitsocialDocs"],
+      mastodon: ["mastodonRunServer", "mastodonScaling", "bitsocialDocs"],
     },
   },
   moderation: {
@@ -324,19 +366,28 @@ const DEEP_COMPARISON_ROW_I18N: Record<
     services: {
       nostr: "sanctuary.deepComparison.rows.moderation.nostr",
       bluesky: "sanctuary.deepComparison.rows.moderation.bluesky",
+      mastodon: "sanctuary.deepComparison.rows.moderation.mastodon",
     },
     bitsocial: "sanctuary.deepComparison.rows.moderation.bitsocial",
     detail: "sanctuary.deepComparison.rows.moderation.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.moderation.detailBluesky",
+      mastodon: "sanctuary.deepComparison.rows.moderation.detailMastodon",
     },
     sources: ["nip01", "nip29", "nip72", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoOverview", "atprotoFederation", "atprotoSelfHosting", "bitsocialDocs"],
+      mastodon: ["mastodonModeration", "mastodonUserModeration", "bitsocialDocs"],
     },
   },
 };
 const DEEP_COMPARISON_SOURCE_LINKS: DeepComparisonSource[] = [
+  {
+    id: "activityPubSpec",
+    label: "W3C ActivityPub specification",
+    shortLabel: "ActivityPub",
+    href: "https://www.w3.org/TR/activitypub/",
+  },
   {
     id: "atprotoOverview",
     label: "AT Protocol overview",
@@ -468,6 +519,54 @@ const DEEP_COMPARISON_SOURCE_LINKS: DeepComparisonSource[] = [
     label: "Bitsocial Docs: BSO Resolver",
     shortLabel: "Bitsocial Docs",
     href: "/docs/infrastructure/bso-resolver/",
+  },
+  {
+    id: "mastodonActivityPub",
+    label: "Mastodon ActivityPub documentation",
+    shortLabel: "Mastodon ActivityPub",
+    href: "https://docs.joinmastodon.org/spec/activitypub/",
+  },
+  {
+    id: "mastodonWebFinger",
+    label: "Mastodon WebFinger documentation",
+    shortLabel: "Mastodon WebFinger",
+    href: "https://docs.joinmastodon.org/spec/webfinger/",
+  },
+  {
+    id: "mastodonAccountMigration",
+    label: "Mastodon account migration guide",
+    shortLabel: "Mastodon Migration",
+    href: "https://docs.joinmastodon.org/user/moving/",
+  },
+  {
+    id: "mastodonModeration",
+    label: "Mastodon moderation actions",
+    shortLabel: "Mastodon Moderation",
+    href: "https://docs.joinmastodon.org/admin/moderation/",
+  },
+  {
+    id: "mastodonUserModeration",
+    label: "Mastodon user moderation controls",
+    shortLabel: "Mastodon Controls",
+    href: "https://docs.joinmastodon.org/user/moderating/",
+  },
+  {
+    id: "mastodonRunServer",
+    label: "Mastodon running your own server guide",
+    shortLabel: "Mastodon Hosting",
+    href: "https://docs.joinmastodon.org/user/run-your-own/",
+  },
+  {
+    id: "mastodonScaling",
+    label: "Mastodon scaling documentation",
+    shortLabel: "Mastodon Scaling",
+    href: "https://docs.joinmastodon.org/admin/scaling/",
+  },
+  {
+    id: "lemmyFederation",
+    label: "Lemmy federation documentation",
+    shortLabel: "Lemmy Federation",
+    href: "https://join-lemmy.org/docs/contributors/05-federation.html",
   },
 ];
 const DEEP_COMPARISON_SOURCE_BY_ID = DEEP_COMPARISON_SOURCE_LINKS.reduce(

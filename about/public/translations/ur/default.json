@@ -152,7 +152,7 @@
       "services": {
         "nostr": "Nostr",
         "bluesky": "Bluesky",
-        "mastodon": "Mastodon",
+        "mastodon": "ActivityPub / Fediverse",
         "lemmy": "Lemmy",
         "farcaster": "Farcaster",
         "lens": "Lens",
@@ -164,9 +164,11 @@
           "label": "انسانی نام",
           "nostr": "آپ کا اکاؤنٹ ایک لمبی public key ہے؛ پڑھنے کے قابل ناموں کے لیے اضافی providers درکار ہیں.",
           "bluesky": "پڑھنے کے قابل handles DNS names ہیں؛ DID document apps کو اکاؤنٹ کے موجودہ server کی طرف بھیجتا ہے.",
-          "bitsocial": "Keys خود بخود بنتی ہیں، اور .bso names users اور communities کی طرف اشارہ کر سکتے ہیں.",
+          "bitsocial": "Keys stay yours, and .bso names can point to people or communities.",
           "detail": "Nostr کی بنیادی identity ایک public key ہے، جو portable تو ہے مگر یاد رکھنا مشکل ہے. پڑھنے کے قابل نام مفید ہیں، لیکن وہ الگ conventions اور providers کے ذریعے شامل ہوتے ہیں. Bitsocial بھی public keys استعمال کرتا ہے اور .bso names شامل کرتا ہے، اس لیے ایک شخص یا community مرکزی account provider کے بغیر readable identity رکھ سکتی ہے.",
-          "detailBluesky": "Bluesky raw public keys کے مقابلے میں واقعی بہتر ہے: DIDs اور readable handles. لیکن tradeoff یہ ہے کہ handles DNS names ہیں اور DID document پھر بھی user کے current PDS کی نشاندہی کرتا ہے. Bitsocial cryptographic ownership برقرار رکھتا ہے اور people اور communities کے لیے .bso names شامل کرتا ہے."
+          "detailBluesky": "Bluesky raw public keys کے مقابلے میں واقعی بہتر ہے: DIDs اور readable handles. لیکن tradeoff یہ ہے کہ handles DNS names ہیں اور DID document پھر بھی user کے current PDS کی نشاندہی کرتا ہے. Bitsocial cryptographic ownership برقرار رکھتا ہے اور people اور communities کے لیے .bso names شامل کرتا ہے.",
+          "mastodon": "Your readable handle includes a server, so moving servers can change your address.",
+          "detailMastodon": "Mastodon handles are readable because WebFinger turns @user@domain into an ActivityPub actor URI. The domain matters: the same username on another server is a different account. Mastodon can redirect or move followers to a new account, but posts and media do not move. Bitsocial keeps cryptographic ownership and adds .bso names for people and communities."
         },
         "dataLayer": {
           "label": "ڈیٹا ہوسٹنگ",
@@ -174,15 +176,19 @@
           "bluesky": "Public posts Personal Data Server پر رہتے ہیں، پھر relay اور AppView انہیں index کرتے ہیں.",
           "bitsocial": "Users posts کو ایک دوسرے کے ساتھ direct طور پر fetch اور share کر سکتے ہیں.",
           "detail": "Nostr posts portable ہیں کیونکہ users اپنی keys کنٹرول کرتے ہیں، لیکن posts کو online رکھنے کے لیے پھر بھی کسی server کی ضرورت ہوتی ہے. عام Nostr استعمال میں یہ کام relay کرتے ہیں. Bitsocial لوگوں کو ڈھونڈنے اور data اٹھانے کو الگ کرتا ہے: چھوٹی lookup services peers ڈھونڈنے میں مدد کر سکتی ہیں، پھر users content براہِ راست fetch اور share کرتے ہیں.",
-          "detailBluesky": "Bluesky کا repo design اس کی سب سے مضبوط باتوں میں سے ایک ہے: public records signed، portable، اور exportable ہیں. لیکن authoritative host پھر بھی current PDS ہے، اور normal app experience relay اور AppView پر منحصر ہے. Bitsocial server-hosted account repos کے بجائے peer-to-peer content sharing سے شروع ہوتا ہے."
+          "detailBluesky": "Bluesky کا repo design اس کی سب سے مضبوط باتوں میں سے ایک ہے: public records signed، portable، اور exportable ہیں. لیکن authoritative host پھر بھی current PDS ہے، اور normal app experience relay اور AppView پر منحصر ہے. Bitsocial server-hosted account repos کے بجائے peer-to-peer content sharing سے شروع ہوتا ہے.",
+          "mastodon": "Posts are hosted by an instance, then federated as ActivityPub objects.",
+          "detailMastodon": "ActivityPub actors live on servers with inboxes and outboxes. In Mastodon, ActivityPub Notes and Questions become statuses and polls that the instance stores, serves, and delivers to other servers. That is much more open than one central platform, but the normal data host is still an always-online server. Bitsocial starts with peer-to-peer content sharing instead."
         },
         "communityModel": {
-          "label": "کمیونٹی کی ملکیت",
+          "label": "Who accepts posts?",
           "nostr": "ایک group اس بات پر relay اور apps کی agreement پر منحصر ہوتا ہے کہ کون سی posts شمار ہوں گی.",
           "bluesky": "Community-like spaces feeds، lexicons، یا app features کے ذریعے بنتے ہیں، P2P objects کے ذریعے نہیں جن کا اپنا gate ہو.",
-          "bitsocial": "Community خود طے کرتی ہے کہ thread میں کیا شامل ہے.",
+          "bitsocial": "The community is the thing you post to; it accepts or rejects posts itself.",
           "detail": "Nostr group features بنا سکتا ہے، لیکن group پھر بھی relay اور apps کے اس بات پر منحصر رہتا ہے کہ وہاں کیا شمار ہوگا. یہ forum-style communities کے لیے نازک ہے. Bitsocial community کو posts براہِ راست accept کرنے دیتا ہے، جو forums، imageboards، اور subreddit-style spaces کے لیے بہتر ہے.",
-          "detailBluesky": "Bluesky lexicons، AppViews، اور feed generators کے ذریعے groups، forums، اور community feeds بنا سکتا ہے. پھر بھی community ان services پر منحصر رہتی ہے جو records کو index اور interpret کرتی ہیں. Bitsocial community کو addressed object سمجھتا ہے: اس کا node posts validate کرتا ہے اور accepted state publish کرتا ہے."
+          "detailBluesky": "Bluesky lexicons، AppViews، اور feed generators کے ذریعے groups، forums، اور community feeds بنا سکتا ہے. پھر بھی community ان services پر منحصر رہتی ہے جو records کو index اور interpret کرتی ہیں. Bitsocial community کو addressed object سمجھتا ہے: اس کا node posts validate کرتا ہے اور accepted state publish کرتا ہے.",
+          "mastodon": "A Fediverse community is still defined by the app or instance that accepts and announces its posts.",
+          "detailMastodon": "ActivityPub lets different apps interoperate, but the server software still decides what a community means. Mastodon is mostly profile and timeline based. Lemmy adds ActivityPub Groups for forum communities, but the Lemmy instance still accepts, stores, and announces the posts. In Bitsocial, the community is the object you post to: its node checks the posting gate and publishes the accepted thread state. That is the difference: the rule belongs to the community, not just the app or instance hosting it."
         },
         "moderation": {
           "label": "سنسرشپ کے مقامات",
@@ -190,15 +196,19 @@
           "bluesky": "Account host، relay، یا AppView آپ کے audience تک جانے کے normal path کو block کر سکتے ہیں.",
           "bitsocial": "Peers کے share کرتے رہنے تک ایک community reachable رہ سکتی ہے.",
           "detail": "Nostr key کسی relay ban سے بچ سکتی ہے، لیکن visibility پھر بھی relay، search services، اور ان apps پر منحصر رہتی ہے جو لوگ واقعی استعمال کرتے ہیں. اگر یہ جگہیں آپ کو carry کرنا چھوڑ دیں تو account موجود رہتا ہے مگر audience شاید اسے نہ دیکھے. Bitsocial relay کو power center سے ہٹا دیتا ہے: users مختلف discovery paths کے ذریعے community share کرتے رہ سکتے ہیں جب تک peers اسے online رکھیں.",
-          "detailBluesky": "Bluesky account hosting، relay distribution، اور AppView indexing کو الگ کرتا ہے. یہ portability میں مدد کرتا ہے، لیکن اس سے visibility کے کئی gates بھی بنتے ہیں جنہیں عام users کم ہی بدلتے ہیں. ایک PDS service دینے سے انکار کر سکتا ہے، relay data carry کرنا چھوڑ سکتے ہیں، اور AppViews records چھپا یا ignore کر سکتے ہیں. Bitsocial reach کو community اور اس کے peers کے قریب رکھتا ہے."
+          "detailBluesky": "Bluesky account hosting، relay distribution، اور AppView indexing کو الگ کرتا ہے. یہ portability میں مدد کرتا ہے، لیکن اس سے visibility کے کئی gates بھی بنتے ہیں جنہیں عام users کم ہی بدلتے ہیں. ایک PDS service دینے سے انکار کر سکتا ہے، relay data carry کرنا چھوڑ سکتے ہیں، اور AppViews records چھپا یا ignore کر سکتے ہیں. Bitsocial reach کو community اور اس کے peers کے قریب رکھتا ہے.",
+          "mastodon": "Instance admins can limit local accounts or block whole remote servers.",
+          "detailMastodon": "Mastodon moderation is local to each server: one admin cannot delete a remote account globally, but they can hide, limit, suspend, or domain-block what their own users see. If influential servers block an instance, reach can collapse for many users. Bitsocial keeps reach closer to the community and the peers still sharing it."
         },
         "contentDiscovery": {
           "label": "Content ڈھونڈنا",
           "nostr": "Discovery اکثر ان relay اور search services کے پیچھے چلتی ہے جن کے پاس سب سے زیادہ data ہو.",
           "bluesky": "Discovery AppViews، search indexes، feeds، اور client defaults پر منحصر ہے.",
-          "bitsocial": "Discovery آپ کو peers سے جوڑتی ہے؛ users پھر بھی posts share کرتے ہیں.",
+          "bitsocial": "Discovery finds peers; it does not become the place that owns the content.",
           "detail": "Nostr discovery تب بہتر کام کرتی ہے جب popular relay، search relay، اور apps کے پاس پہلے ہی data ہو. اس سے بہترین connected services کو لوگوں کی تلاش پر اضافی طاقت ملتی ہے. Bitsocial کی discovery صرف peers ڈھونڈنے میں مدد دیتی ہے. اسے content host کرنے، community own کرنے، یا وہ جگہ بننے کی ضرورت نہیں جہاں ہر کسی کو trust کرنا پڑے.",
-          "detailBluesky": "Bluesky کی اپنی architecture feeds، search، اور aggregate views کو AppView اور متعلقہ services میں رکھتی ہے. یہ discovery کو طاقتور بناتی ہے، مگر visibility انہی aggregators کے پیچھے چلتی ہے. Bitsocial کی discovery services صرف peer addresses واپس کرتی ہیں. انہیں content host کرنے، community own کرنے، یا یہ طے کرنے کی ضرورت نہیں کہ سب کیا دیکھیں."
+          "detailBluesky": "Bluesky کی اپنی architecture feeds، search، اور aggregate views کو AppView اور متعلقہ services میں رکھتی ہے. یہ discovery کو طاقتور بناتی ہے، مگر visibility انہی aggregators کے پیچھے چلتی ہے. Bitsocial کی discovery services صرف peer addresses واپس کرتی ہیں. انہیں content host کرنے، community own کرنے، یا یہ طے کرنے کی ضرورت نہیں کہ سب کیا دیکھیں.",
+          "mastodon": "Search and timelines depend on what your instance has seen, cached, and chosen to show.",
+          "detailMastodon": "ActivityPub delivers activities to actor inboxes and shared inboxes, so discovery naturally depends on what servers receive, cache, index, and choose to show. Mastodon users can also filter users, keywords, and whole domains. Bitsocial discovery services only return peer addresses; they do not need to host content or decide what everyone sees."
         },
         "replies": {
           "label": "اسپام جوابات",
@@ -206,7 +216,9 @@
           "bluesky": "Spam servers کے ذریعے محدود ہوتا ہے، پھر labels اور AppView moderation سے نمٹا جاتا ہے.",
           "bitsocial": "ایک community posters کو پہلے challenge کر سکتی ہے اور spam کو ظاہر ہونے سے پہلے reject کر سکتی ہے.",
           "detail": "Nostr دکھا سکتا ہے کہ کس key نے reply لکھی، لیکن publishing اور moderation الگ چیزیں ہیں. Relay یا app junk کو آنے کے بعد چھپا سکتے ہیں. Bitsocial community کو ایک front door دیتا ہے: challenge مکمل کریں، ورنہ reply کبھی thread میں accept نہیں ہوتی.",
-          "detailBluesky": "Bluesky abuse کم کرنے کے لیے PDS limits، moderation labels، اور AppView choices استعمال کرتا ہے. یہ defenses مفید ہیں، مگر یہ server اور indexing-layer defenses ہیں. Bitsocial community کو ایک front door دیتا ہے: challenge مکمل کریں، ورنہ reply کبھی thread میں accept نہیں ہوتی."
+          "detailBluesky": "Bluesky abuse کم کرنے کے لیے PDS limits، moderation labels، اور AppView choices استعمال کرتا ہے. یہ defenses مفید ہیں، مگر یہ server اور indexing-layer defenses ہیں. Bitsocial community کو ایک front door دیتا ہے: challenge مکمل کریں، ورنہ reply کبھی thread میں accept نہیں ہوتی.",
+          "mastodon": "Spam reaches servers first, then filters, reports, and moderators respond.",
+          "detailMastodon": "ActivityPub does not define a universal anti-spam gate. The spec recommends server-side filtering, and Mastodon adds signup limits, email confirmation, reports, blocks, filters, and domain moderation. Those tools help, but they usually work at the server or visibility layer. Bitsocial lets a community challenge a poster before the reply is accepted."
         },
         "antiSpam": {
           "label": "کمیونٹی کے اصول",
@@ -214,7 +226,9 @@
           "bluesky": "App content filter کر سکتا ہے، لیکن community اپنی challenge کو پہلے لازمی نہیں بنا سکتی.",
           "bitsocial": "Rules community کی ہوتی ہیں، اس لیے accepted posts ایک ہی gate سے گزرتی ہیں.",
           "detail": "Nostr میں relay اپنے لیے rules رکھ سکتا ہے، اور app وہی دکھا سکتی ہے جو اسے مناسب لگے. وہ rules واقعی community کی نہیں ہوتیں. Bitsocial ہر community کو posting gate چننے دیتا ہے، جیسے account age، reputation، captcha، whitelist، payment، یا کوئی اور challenge.",
-          "detailBluesky": "Bluesky moderation labels، AppViews، اور service rules کے گرد بنی ہے. یہ content کو hide، rank، یا limit کر سکتی ہے، مگر یہ community-owned pre-post gate جیسی چیز نہیں ہے. Bitsocial ہر community کو posting gate چننے دیتا ہے، جیسے account age، reputation، captcha، whitelist، payment، یا کوئی اور challenge."
+          "detailBluesky": "Bluesky moderation labels، AppViews، اور service rules کے گرد بنی ہے. یہ content کو hide، rank، یا limit کر سکتی ہے، مگر یہ community-owned pre-post gate جیسی چیز نہیں ہے. Bitsocial ہر community کو posting gate چننے دیتا ہے، جیسے account age، reputation، captcha، whitelist، payment، یا کوئی اور challenge.",
+          "mastodon": "Rules belong to the instance, the user, or a domain blocklist.",
+          "detailMastodon": "Mastodon gives instance admins, moderators, and users many controls: filters, mutes, blocks, reports, server-wide limits, and suspensions. They are powerful federation controls, but they are not a portable community-owned pre-post gate. Bitsocial lets each community choose its posting challenge, so accepted posts pass the same rule before entering the thread."
         },
         "scalingEconomics": {
           "label": "اسکیلنگ کے اخراجات",
@@ -222,15 +236,19 @@
           "bluesky": "Growth load کو account servers، relay، AppViews، اور feed services پر ڈالتی ہے.",
           "bitsocial": "More readers کا مطلب content share کرنے میں مدد کرنے والے مزید لوگ بھی ہو سکتے ہیں.",
           "detail": "Nostr میں relay اب بھی وہ servers ہیں جو posts کو online رکھتے اور readers تک پہنچاتے ہیں. ایک popular post users کے لیے اچھا ہو سکتا ہے مگر relay operators کے لیے مہنگا. Bitsocial میں readers بھی پڑھے گئے content کو distribute کرنے میں مدد کر سکتے ہیں، اس لیے popularity صرف server cost نہیں بڑھاتی بلکہ capacity بھی بڑھا سکتی ہے.",
-          "detailBluesky": "ATProto سہولت اور availability کے لیے جان بوجھ کر servers استعمال کرتا ہے. Relay firehoses aggregate کرتے ہیں، AppViews network index کرتے ہیں، اور custom feeds اکثر firehose consume کرتی ہیں. Official docs relay اور AppViews کو resource intensive بیان کرتے ہیں، اور relay operations کو پہلے ہی scaling work کی ضرورت پڑی ہے. Bitsocial peers ڈھونڈنے کے لیے صرف routers استعمال کرتا ہے؛ readers content carry کرنے میں مدد کر سکتے ہیں."
+          "detailBluesky": "ATProto سہولت اور availability کے لیے جان بوجھ کر servers استعمال کرتا ہے. Relay firehoses aggregate کرتے ہیں، AppViews network index کرتے ہیں، اور custom feeds اکثر firehose consume کرتی ہیں. Official docs relay اور AppViews کو resource intensive بیان کرتے ہیں، اور relay operations کو پہلے ہی scaling work کی ضرورت پڑی ہے. Bitsocial peers ڈھونڈنے کے لیے صرف routers استعمال کرتا ہے؛ readers content carry کرنے میں مدد کر سکتے ہیں.",
+          "mastodon": "Growth pushes storage, federation, streaming, and moderation cost onto instances.",
+          "detailMastodon": "A Mastodon server needs a domain, always-online hosting, email, database, Redis, background workers, streaming, and often object storage. Mastodon can scale horizontally, but that means operating more app servers, workers, databases, queues, and moderation capacity. Bitsocial uses routers only to find peers; readers can help carry the content they read."
         },
         "browserMobile": {
           "label": "پہلی پوسٹ",
           "nostr": "Web client صرف تب سادہ لگتا ہے جب relay choices کام کر رہی ہوں.",
           "bluesky": "آسان راستہ وہ hosted account ہے جس پر اس provider کی حدود اور rules لاگو ہوں.",
-          "bitsocial": "App کھولیں اور post کریں؛ آپ کی key خود بخود بن سکتی ہے.",
+          "bitsocial": "You can start with a local key, without making a server own your identity.",
           "detail": "Nostr تب آسان لگ سکتا ہے جب اچھے web client میں پہلے سے اچھے relay configured ہوں. Hidden dependency پھر بھی رہتی ہے: ان relay کو activity accept، store، اور serve کرنی ہوتی ہے. Bitsocial user key کو local طور پر بنا سکتا ہے اور app کو direct P2P یا hosted access چننے دے سکتا ہے، بغیر اس کے کہ account server identity کا مالک بنے.",
-          "detailBluesky": "Bluesky تب آسان ہے جب bsky.social یا کوئی اور PDS accounts، sessions، writes، اور hosting سنبھالے. یہ سہولت server-based ہے، اور hosted services اپنی API limits اور policies لگاتی ہیں. Bitsocial user key کو local طور پر بنا سکتا ہے اور platform account کو identity کا مالک بنائے بغیر user کو direct P2P یا optional hosted access کے ذریعے post کرنے دے سکتا ہے."
+          "detailBluesky": "Bluesky تب آسان ہے جب bsky.social یا کوئی اور PDS accounts، sessions، writes، اور hosting سنبھالے. یہ سہولت server-based ہے، اور hosted services اپنی API limits اور policies لگاتی ہیں. Bitsocial user key کو local طور پر بنا سکتا ہے اور platform account کو identity کا مالک بنائے بغیر user کو direct P2P یا optional hosted access کے ذریعے post کرنے دے سکتا ہے.",
+          "mastodon": "You post through the server account you chose.",
+          "detailMastodon": "Mastodon is easy once a user chooses an instance and creates an account. The server handles sessions, posts, media, federation, and rules. Self-hosting gives more control, but requires operating the stack. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity."
         }
       },
       "expand": "مزید جانیں",

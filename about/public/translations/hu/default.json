@@ -152,7 +152,7 @@
       "services": {
         "nostr": "Nostr",
         "bluesky": "Bluesky",
-        "mastodon": "Mastodon",
+        "mastodon": "ActivityPub / Fediverse",
         "lemmy": "Lemmy",
         "farcaster": "Farcaster",
         "lens": "Lens",
@@ -164,9 +164,11 @@
           "label": "Emberi nevek",
           "nostr": "A fiókod egy hosszú nyilvános kulcs; olvasható nevekhez további szolgáltatók kellenek.",
           "bluesky": "Az olvasható kezelőnevek DNS-nevek; a DID-dokumentum az appokat a fiók aktuális kiszolgálójára mutatja.",
-          "bitsocial": "A kulcsok automatikusan jönnek létre, és a .bso nevek felhasználókra és közösségekre mutathatnak.",
+          "bitsocial": "Keys stay yours, and .bso names can point to people or communities.",
           "detail": "A Nostr alapidentitása egy nyilvános kulcs, amely hordozható, de nehéz megjegyezni. Az olvasható nevek hasznosak, de külön szabályok és szolgáltatók adják hozzá őket. A Bitsocial szintén nyilvános kulcsokat használ, miközben .bso neveket is hozzáad, így egy személy vagy közösség olvasható identitást kaphat központi fiókszolgáltató nélkül.",
-          "detailBluesky": "A Bluesky valódi előrelépés a nyers nyilvános kulcsokhoz képest: DID-ek és olvasható kezelőnevek. Az ára az, hogy a kezelőnevek DNS-nevek, és a DID-dokumentum még mindig a felhasználó aktuális PDS-ét hirdeti. A Bitsocial megőrzi a kriptográfiai tulajdont, miközben .bso neveket ad az embereknek és közösségeknek."
+          "detailBluesky": "A Bluesky valódi előrelépés a nyers nyilvános kulcsokhoz képest: DID-ek és olvasható kezelőnevek. Az ára az, hogy a kezelőnevek DNS-nevek, és a DID-dokumentum még mindig a felhasználó aktuális PDS-ét hirdeti. A Bitsocial megőrzi a kriptográfiai tulajdont, miközben .bso neveket ad az embereknek és közösségeknek.",
+          "mastodon": "Your readable handle includes a server, so moving servers can change your address.",
+          "detailMastodon": "Mastodon handles are readable because WebFinger turns @user@domain into an ActivityPub actor URI. The domain matters: the same username on another server is a different account. Mastodon can redirect or move followers to a new account, but posts and media do not move. Bitsocial keeps cryptographic ownership and adds .bso names for people and communities."
         },
         "dataLayer": {
           "label": "Adattárolás",
@@ -174,15 +176,19 @@
           "bluesky": "A publikus posztok egy Personal Data Serveren élnek, majd relay-ek és AppView-k indexelik őket.",
           "bitsocial": "A felhasználók közvetlenül egymástól is lekérhetik és megoszthatják a posztokat.",
           "detail": "A Nostr-posztok hordozhatók, mert a felhasználók kontrollálják a kulcsaikat, de egy szervernek akkor is online kell tartania a posztokat. A normál Nostr-használatban ez a feladat a relay-eké. A Bitsocial elválasztja az emberek megtalálását az adatok hordozásától: kis lookup service-ek segíthetnek megtalálni a peer-eket, majd a felhasználók közvetlenül lekérik és megosztják a tartalmat.",
-          "detailBluesky": "A Bluesky repo-dizájnja az egyik legerősebb pontja: a publikus rekordok aláírtak, hordozhatók és exportálhatók. De a hiteles host továbbra is az aktuális PDS, a normál appélmény pedig relay-ekre és AppView-kre támaszkodik. A Bitsocial a szerveren tárolt fiók-repok helyett peer-to-peer tartalommegosztással indul."
+          "detailBluesky": "A Bluesky repo-dizájnja az egyik legerősebb pontja: a publikus rekordok aláírtak, hordozhatók és exportálhatók. De a hiteles host továbbra is az aktuális PDS, a normál appélmény pedig relay-ekre és AppView-kre támaszkodik. A Bitsocial a szerveren tárolt fiók-repok helyett peer-to-peer tartalommegosztással indul.",
+          "mastodon": "Posts are hosted by an instance, then federated as ActivityPub objects.",
+          "detailMastodon": "ActivityPub actors live on servers with inboxes and outboxes. In Mastodon, ActivityPub Notes and Questions become statuses and polls that the instance stores, serves, and delivers to other servers. That is much more open than one central platform, but the normal data host is still an always-online server. Bitsocial starts with peer-to-peer content sharing instead."
         },
         "communityModel": {
-          "label": "Közösségi tulajdon",
+          "label": "Who accepts posts?",
           "nostr": "Egy csoport attól függ, hogy a relay-ek és az appok egyetértenek-e abban, mely posztok számítanak.",
           "bluesky": "A közösségszerű terek feedekből, lexiconokból vagy appfunkciókból épülnek, nem saját gate-tel rendelkező P2P objektumokból.",
-          "bitsocial": "Maga a közösség dönti el, mi tartozik a threadbe.",
+          "bitsocial": "The community is the thing you post to; it accepts or rejects posts itself.",
           "detail": "Nostrban lehet csoportfunkciókat építeni, de a csoport továbbra is attól függ, hogy a relay-ek és az appok mit tekintenek odatartozónak. Ez törékeny a fórumtípusú közösségeknek. A Bitsocial közvetlenül engedi a közösségnek elfogadni a posztokat, ami jobban illik fórumokhoz, imageboardokhoz és subreddit-szerű terekhez.",
-          "detailBluesky": "A Bluesky csoportokat, fórumokat és közösségi feedeket lexiconokkal, AppView-kel és feedgenerátorokkal tud építeni. Ettől még a közösség olyan szolgáltatásoktól függ, amelyek indexelik és értelmezik a rekordokat. A Bitsocial a közösséget címezhető objektumként kezeli: a node-ja ellenőrzi a posztokat, és közzéteszi az elfogadott állapotot."
+          "detailBluesky": "A Bluesky csoportokat, fórumokat és közösségi feedeket lexiconokkal, AppView-kel és feedgenerátorokkal tud építeni. Ettől még a közösség olyan szolgáltatásoktól függ, amelyek indexelik és értelmezik a rekordokat. A Bitsocial a közösséget címezhető objektumként kezeli: a node-ja ellenőrzi a posztokat, és közzéteszi az elfogadott állapotot.",
+          "mastodon": "A Fediverse community is still defined by the app or instance that accepts and announces its posts.",
+          "detailMastodon": "ActivityPub lets different apps interoperate, but the server software still decides what a community means. Mastodon is mostly profile and timeline based. Lemmy adds ActivityPub Groups for forum communities, but the Lemmy instance still accepts, stores, and announces the posts. In Bitsocial, the community is the object you post to: its node checks the posting gate and publishes the accepted thread state. That is the difference: the rule belongs to the community, not just the app or instance hosting it."
         },
         "moderation": {
           "label": "Cenzúrapontok",
@@ -190,15 +196,19 @@
           "bluesky": "A fiók hostja, egy relay vagy az AppView blokkolhatja a közönségedhez vezető normál utat.",
           "bitsocial": "Egy közösség elérhető maradhat, amíg a peer-ek tovább osztják.",
           "detail": "Egy Nostr-kulcs túlélhet egy relay-tiltást, de a láthatóság továbbra is a relay-ektől, keresőszolgáltatásoktól és a ténylegesen használt appoktól függ. Ha ezek abbahagyják a továbbításodat, a fiók létezik, de a közönség talán nem látja. A Bitsocial kiveszi a relay-t a hatalom középpontjából: a felhasználók különböző felfedezési útvonalakon tovább oszthatják a közösséget, amíg a peer-ek online tartják.",
-          "detailBluesky": "A Bluesky elkülöníti a fiókhosztolást, a relay-terjesztést és az AppView-indexelést. Ez segíti a hordozhatóságot, de több láthatósági kaput is létrehoz, amelyeket az átlagfelhasználók ritkán változtatnak. Egy PDS megtagadhatja a szolgáltatást, a relay-ek leállíthatják az adatok továbbítását, az AppView-k pedig elrejthetik vagy figyelmen kívül hagyhatják a rekordokat. A Bitsocial a hatótávot közelebb tartja a közösséghez és a peer-eihez."
+          "detailBluesky": "A Bluesky elkülöníti a fiókhosztolást, a relay-terjesztést és az AppView-indexelést. Ez segíti a hordozhatóságot, de több láthatósági kaput is létrehoz, amelyeket az átlagfelhasználók ritkán változtatnak. Egy PDS megtagadhatja a szolgáltatást, a relay-ek leállíthatják az adatok továbbítását, az AppView-k pedig elrejthetik vagy figyelmen kívül hagyhatják a rekordokat. A Bitsocial a hatótávot közelebb tartja a közösséghez és a peer-eihez.",
+          "mastodon": "Instance admins can limit local accounts or block whole remote servers.",
+          "detailMastodon": "Mastodon moderation is local to each server: one admin cannot delete a remote account globally, but they can hide, limit, suspend, or domain-block what their own users see. If influential servers block an instance, reach can collapse for many users. Bitsocial keeps reach closer to the community and the peers still sharing it."
         },
         "contentDiscovery": {
           "label": "Tartalomfelfedezés",
           "nostr": "A felfedezés gyakran a legtöbb adattal rendelkező relay-eket és keresőszolgáltatásokat követi.",
           "bluesky": "A felfedezés az AppView-ektől, keresőindexektől, feedektől és az ügyfél alapértelmezéseitől függ.",
-          "bitsocial": "A felfedezés peer-ekhez kapcsol; a felhasználók továbbra is megosztják a posztokat.",
+          "bitsocial": "Discovery finds peers; it does not become the place that owns the content.",
           "detail": "A Nostr-felfedezés akkor működik a legjobban, ha a népszerű relay-ek, keresőrelay-ek és appok már rendelkeznek az adatokkal. Ez a legjobban összekapcsolt szolgáltatásoknak extra erőt ad abban, hogy mit találnak meg az emberek. A Bitsocial-felfedezés csak a peer-ek megtalálását segíti. Nem kell tartalmat hosztolnia, közösséget birtokolnia, vagy olyan hellyé válnia, amelyben mindenkinek bíznia kell.",
-          "detailBluesky": "A Bluesky saját architektúrája a feedeket, a keresést és az összesített nézeteket az AppView-kbe és a kapcsolódó szolgáltatásokba teszi. Ettől erős a felfedezés, de a láthatóság azt az aggregátort követi, amelyet az app használ. A Bitsocial felfedezési szolgáltatásai csak peer-címeket adnak vissza. Nem kell tartalmat hosztolniuk, közösséget birtokolniuk vagy eldönteniük, mit lát mindenki."
+          "detailBluesky": "A Bluesky saját architektúrája a feedeket, a keresést és az összesített nézeteket az AppView-kbe és a kapcsolódó szolgáltatásokba teszi. Ettől erős a felfedezés, de a láthatóság azt az aggregátort követi, amelyet az app használ. A Bitsocial felfedezési szolgáltatásai csak peer-címeket adnak vissza. Nem kell tartalmat hosztolniuk, közösséget birtokolniuk vagy eldönteniük, mit lát mindenki.",
+          "mastodon": "Search and timelines depend on what your instance has seen, cached, and chosen to show.",
+          "detailMastodon": "ActivityPub delivers activities to actor inboxes and shared inboxes, so discovery naturally depends on what servers receive, cache, index, and choose to show. Mastodon users can also filter users, keywords, and whole domains. Bitsocial discovery services only return peer addresses; they do not need to host content or decide what everyone sees."
         },
         "replies": {
           "label": "Spam válaszok",
@@ -206,7 +216,9 @@
           "bluesky": "A spamet a szerverek korlátozzák, majd címkék és AppView moderáció kezeli.",
           "bitsocial": "Egy közösség előbb kihívhatja a posztolókat, és a spamet még megjelenés előtt elutasíthatja.",
           "detail": "A Nostr meg tudja mutatni, melyik kulcs írta a választ, de a közzététel és a moderáció külön van. Egy relay vagy app el tudja rejteni a szemét tartalmat, miután megérkezik. A Bitsocial előkaput ad a közösségnek: teljesítsd a kihívást, különben a válasz soha nem kerül be a threadbe.",
-          "detailBluesky": "A Bluesky PDS-korlátokat, moderációs címkéket és AppView-döntéseket használ a visszaélés csökkentésére. Ezek hasznosak, de szerver- és indexelési szintű védekezések. A Bitsocial előkaput ad a közösségnek: teljesítsd a kihívást, különben a válasz soha nem kerül be a threadbe."
+          "detailBluesky": "A Bluesky PDS-korlátokat, moderációs címkéket és AppView-döntéseket használ a visszaélés csökkentésére. Ezek hasznosak, de szerver- és indexelési szintű védekezések. A Bitsocial előkaput ad a közösségnek: teljesítsd a kihívást, különben a válasz soha nem kerül be a threadbe.",
+          "mastodon": "Spam reaches servers first, then filters, reports, and moderators respond.",
+          "detailMastodon": "ActivityPub does not define a universal anti-spam gate. The spec recommends server-side filtering, and Mastodon adds signup limits, email confirmation, reports, blocks, filters, and domain moderation. Those tools help, but they usually work at the server or visibility layer. Bitsocial lets a community challenge a poster before the reply is accepted."
         },
         "antiSpam": {
           "label": "Közösségi szabályok",
@@ -214,7 +226,9 @@
           "bluesky": "Az app szűrheti a tartalmat, de a közösség nem követelheti meg a saját kihívását először.",
           "bitsocial": "A szabályok a közösségé, ezért az elfogadott posztok ugyanazon a kapun mennek át.",
           "detail": "Nostrban egy relay szabályokat állíthat fel arra a relay-re, és az app szűrheti, mit mutat. Ezek a szabályok nem igazán a közösségé. A Bitsocial minden közösségnek lehetővé teszi, hogy kiválassza a posztolási kaput, például fiókkor, reputáció, captcha, whitelist, fizetés vagy más kihívás alapján.",
-          "detailBluesky": "A Bluesky moderációja címkék, AppView-k és szolgáltatási szabályok köré épül. Ez elrejtheti, rangsorolhatja vagy korlátozhatja a tartalmat, de nem ugyanaz, mint egy közösségi tulajdonú, közzététel előtti kapu. A Bitsocial minden közösségnek lehetővé teszi, hogy kiválassza a posztolási kaput, például fiókkor, reputáció, captcha, whitelist, fizetés vagy más kihívás alapján."
+          "detailBluesky": "A Bluesky moderációja címkék, AppView-k és szolgáltatási szabályok köré épül. Ez elrejtheti, rangsorolhatja vagy korlátozhatja a tartalmat, de nem ugyanaz, mint egy közösségi tulajdonú, közzététel előtti kapu. A Bitsocial minden közösségnek lehetővé teszi, hogy kiválassza a posztolási kaput, például fiókkor, reputáció, captcha, whitelist, fizetés vagy más kihívás alapján.",
+          "mastodon": "Rules belong to the instance, the user, or a domain blocklist.",
+          "detailMastodon": "Mastodon gives instance admins, moderators, and users many controls: filters, mutes, blocks, reports, server-wide limits, and suspensions. They are powerful federation controls, but they are not a portable community-owned pre-post gate. Bitsocial lets each community choose its posting challenge, so accepted posts pass the same rule before entering the thread."
         },
         "scalingEconomics": {
           "label": "Skálázási költségek",
@@ -222,15 +236,19 @@
           "bluesky": "A növekedés a terhelést a fiókszerverekre, relay-ekre, AppView-kre és feedszolgáltatásokra tolja.",
           "bitsocial": "Több olvasó több olyan embert is jelenthet, akik segítenek megosztani a tartalmat.",
           "detail": "Nostrban a relay-ek továbbra is azok a szerverek, amelyek online tartják a posztokat és elküldik őket az olvasóknak. Egy népszerű poszt jó lehet a felhasználóknak, miközben drágává válik a relay-üzemeltetőknek. A Bitsocialban az olvasók is segíthetik a látott tartalom terjesztését, így a népszerűség kapacitást is adhat, nem csak szerverköltséget.",
-          "detailBluesky": "Az ATProto szándékosan szervereket használ a kényelem és a rendelkezésre állás miatt. A relay-ek összegyűjtik a firehose-t, az AppView-k indexelik a hálózatot, az egyéni feedek pedig gyakran fogyasztják a firehose-t. A hivatalos dokumentáció erőforrás-igényesnek írja le a relay-eket és az AppView-ket, és a relay-üzemeltetés már eddig is skálázási munkát igényelt. A Bitsocial a routereket csak a peer-ek megtalálására használja; az olvasók segíthetnek a tartalom hordozásában."
+          "detailBluesky": "Az ATProto szándékosan szervereket használ a kényelem és a rendelkezésre állás miatt. A relay-ek összegyűjtik a firehose-t, az AppView-k indexelik a hálózatot, az egyéni feedek pedig gyakran fogyasztják a firehose-t. A hivatalos dokumentáció erőforrás-igényesnek írja le a relay-eket és az AppView-ket, és a relay-üzemeltetés már eddig is skálázási munkát igényelt. A Bitsocial a routereket csak a peer-ek megtalálására használja; az olvasók segíthetnek a tartalom hordozásában.",
+          "mastodon": "Growth pushes storage, federation, streaming, and moderation cost onto instances.",
+          "detailMastodon": "A Mastodon server needs a domain, always-online hosting, email, database, Redis, background workers, streaming, and often object storage. Mastodon can scale horizontally, but that means operating more app servers, workers, databases, queues, and moderation capacity. Bitsocial uses routers only to find peers; readers can help carry the content they read."
         },
         "browserMobile": {
           "label": "Első poszt",
           "nostr": "A webes kliens csak addig tűnik egyszerűnek, amíg a relay-választásai működnek.",
           "bluesky": "A legkönnyebb út egy hosztolt fiók az adott szolgáltató korlátaival és szabályaival.",
-          "bitsocial": "Nyissa meg az appot és posztoljon; a kulcsa automatikusan létrejöhet.",
+          "bitsocial": "You can start with a local key, without making a server own your identity.",
           "detail": "A Nostr könnyűnek tűnhet, ha egy jó webes klienshez már jó relay-ek vannak beállítva. A rejtett függőség azonban megmarad: ezeknek a relay-eknek el kell fogadniuk, tárolniuk és kiszolgálniuk a tevékenységet. A Bitsocial helyben létrehozhatja a felhasználó kulcsát, és az appra bízhatja a közvetlen peer-to-peer vagy a hosztolt hozzáférés választását anélkül, hogy egy fiókszerver birtokolná az identitást.",
-          "detailBluesky": "A Bluesky akkor egyszerű, ha a bsky.social vagy egy másik PDS kezeli a fiókokat, a munkameneteket, az írásokat és a hosztolást. Ez a kényelem szerveralapú, és a hosztolt szolgáltatások a saját API-korlátaikat és szabályaikat alkalmazzák. A Bitsocial helyben létrehozhatja a felhasználó kulcsát, és lehetővé teheti a közvetlen P2P vagy az opcionális hosztolt hozzáférésen keresztüli posztolást anélkül, hogy egy platformfiók birtokolná az identitást."
+          "detailBluesky": "A Bluesky akkor egyszerű, ha a bsky.social vagy egy másik PDS kezeli a fiókokat, a munkameneteket, az írásokat és a hosztolást. Ez a kényelem szerveralapú, és a hosztolt szolgáltatások a saját API-korlátaikat és szabályaikat alkalmazzák. A Bitsocial helyben létrehozhatja a felhasználó kulcsát, és lehetővé teheti a közvetlen P2P vagy az opcionális hosztolt hozzáférésen keresztüli posztolást anélkül, hogy egy platformfiók birtokolná az identitást.",
+          "mastodon": "You post through the server account you chose.",
+          "detailMastodon": "Mastodon is easy once a user chooses an instance and creates an account. The server handles sessions, posts, media, federation, and rules. Self-hosting gives more control, but requires operating the stack. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity."
         }
       },
       "expand": "Tudj meg többet",

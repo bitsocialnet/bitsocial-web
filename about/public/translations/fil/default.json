@@ -152,7 +152,7 @@
       "services": {
         "nostr": "Nostr",
         "bluesky": "Bluesky",
-        "mastodon": "Mastodon",
+        "mastodon": "ActivityPub / Fediverse",
         "lemmy": "Lemmy",
         "farcaster": "Farcaster",
         "lens": "Lens",
@@ -164,9 +164,11 @@
           "label": "Pangalan ng tao",
           "nostr": "Mahabang pampublikong susi ang account mo; kailangan ng dagdag na provider para sa nababasang pangalan.",
           "bluesky": "Ang nababasang handle ay mga DNS name; itinuturo ng DID document ang app sa kasalukuyang server ng account.",
-          "bitsocial": "Awtomatiko ang mga susi, at puwedeng tumuro ang mga .bso name sa mga user at komunidad.",
+          "bitsocial": "Keys stay yours, and .bso names can point to people or communities.",
           "detail": "Ang batayang pagkakakilanlan ng Nostr ay isang pampublikong susi, na portable pero mahirap tandaan. Kapaki-pakinabang ang mga nababasang pangalan, pero idinadagdag ang mga ito sa hiwalay na mga kumbensyon at provider. Gumagamit din ang Bitsocial ng mga pampublikong susi habang nagdaragdag ng mga .bso name, kaya puwedeng magkaroon ng nababasang pagkakakilanlan ang isang tao o komunidad nang walang sentral na account provider.",
-          "detailBluesky": "May totoong pagbuti ang Bluesky kumpara sa hilaw na pampublikong susi: mga DID at nababasang handle. Ang kapalit ay ang mga handle ay mga DNS name at ipinapakita pa rin ng DID document ang kasalukuyang PDS ng user. Pinapanatili ng Bitsocial ang cryptographic ownership habang nagdaragdag ng mga .bso name para sa mga tao at komunidad."
+          "detailBluesky": "May totoong pagbuti ang Bluesky kumpara sa hilaw na pampublikong susi: mga DID at nababasang handle. Ang kapalit ay ang mga handle ay mga DNS name at ipinapakita pa rin ng DID document ang kasalukuyang PDS ng user. Pinapanatili ng Bitsocial ang cryptographic ownership habang nagdaragdag ng mga .bso name para sa mga tao at komunidad.",
+          "mastodon": "Your readable handle includes a server, so moving servers can change your address.",
+          "detailMastodon": "Mastodon handles are readable because WebFinger turns @user@domain into an ActivityPub actor URI. The domain matters: the same username on another server is a different account. Mastodon can redirect or move followers to a new account, but posts and media do not move. Bitsocial keeps cryptographic ownership and adds .bso names for people and communities."
         },
         "dataLayer": {
           "label": "Pagho-host ng data",
@@ -174,15 +176,19 @@
           "bluesky": "Nasa Personal Data Server ang mga pampublikong post, pagkatapos ay iniindex ang mga ito ng mga relay at AppView.",
           "bitsocial": "Maaaring direktang kunin at ibahagi ng mga user ang mga post sa isa't isa.",
           "detail": "Portable ang mga post sa Nostr dahil kontrolado ng mga user ang kanilang mga susi, pero kailangan pa ring panatilihing online ng isang server ang mga post. Sa normal na paggamit ng Nostr, trabaho iyan ng mga relay. Hinihiwalay ng Bitsocial ang paghahanap ng mga tao sa pagdadala ng data: puwedeng tumulong ang maliliit na lookup service sa paghahanap ng mga peer, tapos direktang kinukuha at ibinabahagi ng mga user ang content.",
-          "detailBluesky": "Isa sa pinakamalakas na bahagi ng Bluesky ang disenyo nitong repo: ang mga pampublikong record ay nilagdaan, portable, at nai-export. Pero ang awtoritatibong host ay ang kasalukuyang PDS, at umaasa ang normal na karanasan sa app sa mga relay at AppView. Nagsisimula ang Bitsocial sa peer-to-peer na pagbabahagi ng content sa halip na mga account repo na naka-host sa server."
+          "detailBluesky": "Isa sa pinakamalakas na bahagi ng Bluesky ang disenyo nitong repo: ang mga pampublikong record ay nilagdaan, portable, at nai-export. Pero ang awtoritatibong host ay ang kasalukuyang PDS, at umaasa ang normal na karanasan sa app sa mga relay at AppView. Nagsisimula ang Bitsocial sa peer-to-peer na pagbabahagi ng content sa halip na mga account repo na naka-host sa server.",
+          "mastodon": "Posts are hosted by an instance, then federated as ActivityPub objects.",
+          "detailMastodon": "ActivityPub actors live on servers with inboxes and outboxes. In Mastodon, ActivityPub Notes and Questions become statuses and polls that the instance stores, serves, and delivers to other servers. That is much more open than one central platform, but the normal data host is still an always-online server. Bitsocial starts with peer-to-peer content sharing instead."
         },
         "communityModel": {
-          "label": "Pagmamay-ari ng komunidad",
+          "label": "Who accepts posts?",
           "nostr": "Umaasa ang isang grupo sa pagsang-ayon ng mga relay at app kung aling mga post ang binibilang.",
           "bluesky": "Binubuo ang mga espasyong parang komunidad sa pamamagitan ng mga feed, lexicon, o feature ng app, hindi ng mga P2P object na may sariling gate.",
-          "bitsocial": "Ang komunidad mismo ang nagdedesisyon kung ano ang kabilang sa thread.",
+          "bitsocial": "The community is the thing you post to; it accepts or rejects posts itself.",
           "detail": "Sa Nostr, puwedeng bumuo ng mga feature ng grupo, pero umaasa pa rin ang grupo sa mga relay at app na magkasundo kung ano ang kabilang doon. Marupok iyon para sa mga komunidad na parang forum. Hinahayaan ng Bitsocial ang komunidad na tumanggap ng mga post nang direkta, na mas bagay sa mga forum, imageboard, at subreddit-style na espasyo.",
-          "detailBluesky": "Puwedeng bumuo ang Bluesky ng mga grupo, forum, at community feed sa pamamagitan ng mga lexicon, AppView, at feed generator. Pero iniiwan pa rin nito ang komunidad na umaasa sa mga service na nag-iindex at nagbibigay-kahulugan sa mga record. Itinuturing ng Bitsocial ang komunidad bilang adresadong object: binaberipika ng node nito ang mga post at inilalathala ang tinanggap na estado."
+          "detailBluesky": "Puwedeng bumuo ang Bluesky ng mga grupo, forum, at community feed sa pamamagitan ng mga lexicon, AppView, at feed generator. Pero iniiwan pa rin nito ang komunidad na umaasa sa mga service na nag-iindex at nagbibigay-kahulugan sa mga record. Itinuturing ng Bitsocial ang komunidad bilang adresadong object: binaberipika ng node nito ang mga post at inilalathala ang tinanggap na estado.",
+          "mastodon": "A Fediverse community is still defined by the app or instance that accepts and announces its posts.",
+          "detailMastodon": "ActivityPub lets different apps interoperate, but the server software still decides what a community means. Mastodon is mostly profile and timeline based. Lemmy adds ActivityPub Groups for forum communities, but the Lemmy instance still accepts, stores, and announces the posts. In Bitsocial, the community is the object you post to: its node checks the posting gate and publishes the accepted thread state. That is the difference: the rule belongs to the community, not just the app or instance hosting it."
         },
         "moderation": {
           "label": "Mga punto ng sensura",
@@ -190,15 +196,19 @@
           "bluesky": "Maaaring harangan ng host ng account, relay, o AppView ang normal na daan papunta sa audience mo.",
           "bitsocial": "Puwedeng manatiling naaabot ang isang komunidad habang patuloy itong ibinabahagi ng mga peer.",
           "detail": "Maaaring mabuhay ang isang Nostr key kahit ma-ban ang relay, pero nakasalalay pa rin ang visibility sa mga relay, search service, at app na aktuwal na ginagamit ng mga tao. Kung tumigil ang mga iyon sa pagdadala sa iyo, umiiral ang account pero maaaring hindi ito makita ng audience. Inaalis ng Bitsocial ang relay bilang sentro ng kapangyarihan: puwedeng patuloy na ibahagi ng mga user ang isang komunidad sa iba't ibang discovery path hangga't online ito ng mga peer.",
-          "detailBluesky": "Hinihiwalay ng Bluesky ang account hosting, relay distribution, at AppView indexing. Nakakatulong iyon sa portability, pero lumilikha rin ito ng ilang visibility gate na bihirang baguhin ng ordinaryong user. Puwedeng tumanggi ang isang PDS sa serbisyo, puwedeng tumigil ang mga relay sa pagdadala ng data, at puwedeng itago o balewalain ng AppView ang mga record. Pinapanatili ng Bitsocial na mas malapit sa komunidad at mga peer ang abot."
+          "detailBluesky": "Hinihiwalay ng Bluesky ang account hosting, relay distribution, at AppView indexing. Nakakatulong iyon sa portability, pero lumilikha rin ito ng ilang visibility gate na bihirang baguhin ng ordinaryong user. Puwedeng tumanggi ang isang PDS sa serbisyo, puwedeng tumigil ang mga relay sa pagdadala ng data, at puwedeng itago o balewalain ng AppView ang mga record. Pinapanatili ng Bitsocial na mas malapit sa komunidad at mga peer ang abot.",
+          "mastodon": "Instance admins can limit local accounts or block whole remote servers.",
+          "detailMastodon": "Mastodon moderation is local to each server: one admin cannot delete a remote account globally, but they can hide, limit, suspend, or domain-block what their own users see. If influential servers block an instance, reach can collapse for many users. Bitsocial keeps reach closer to the community and the peers still sharing it."
         },
         "contentDiscovery": {
           "label": "Paghahanap ng content",
           "nostr": "Madaling sumunod ang discovery sa mga relay at search service na may pinakamaraming data.",
           "bluesky": "Nakasalalay ang discovery sa AppView, search index, feed, at default ng client.",
-          "bitsocial": "Ikinokonekta ka ng discovery sa mga peer; ang mga user pa rin ang nagbabahagi ng mga post.",
+          "bitsocial": "Discovery finds peers; it does not become the place that owns the content.",
           "detail": "Pinakamahusay gumagana ang discovery sa Nostr kapag ang mga sikat na relay, search relay, at app ay mayroon nang data. Nagbibigay iyon ng dagdag na kapangyarihan sa mga pinakakonektadong serbisyo kung ano ang mahahanap ng mga tao. Tinutulungan lang ng Bitsocial discovery na makahanap ng mga peer. Hindi nito kailangang mag-host ng content, magmay-ari ng komunidad, o maging lugar na kailangang pagkatiwalaan ng lahat.",
-          "detailBluesky": "Ipinapwesto ng sariling arkitektura ng Bluesky ang mga feed, search, at pinagsamang view sa AppView at mga kaugnay na service. Ginagawa nitong malakas ang discovery, pero sumusunod ang visibility sa alinmang aggregator ang ginagamit ng app. Tanging mga address ng peer lang ang ibinabalik ng mga serbisyo ng discovery ng Bitsocial. Hindi nila kailangang mag-host ng content, magmay-ari ng komunidad, o magdesisyon kung ano ang makikita ng lahat."
+          "detailBluesky": "Ipinapwesto ng sariling arkitektura ng Bluesky ang mga feed, search, at pinagsamang view sa AppView at mga kaugnay na service. Ginagawa nitong malakas ang discovery, pero sumusunod ang visibility sa alinmang aggregator ang ginagamit ng app. Tanging mga address ng peer lang ang ibinabalik ng mga serbisyo ng discovery ng Bitsocial. Hindi nila kailangang mag-host ng content, magmay-ari ng komunidad, o magdesisyon kung ano ang makikita ng lahat.",
+          "mastodon": "Search and timelines depend on what your instance has seen, cached, and chosen to show.",
+          "detailMastodon": "ActivityPub delivers activities to actor inboxes and shared inboxes, so discovery naturally depends on what servers receive, cache, index, and choose to show. Mastodon users can also filter users, keywords, and whole domains. Bitsocial discovery services only return peer addresses; they do not need to host content or decide what everyone sees."
         },
         "replies": {
           "label": "Mga spam na tugon",
@@ -206,7 +216,9 @@
           "bluesky": "Nililimitahan ng mga server ang spam, tapos pinapangasiwaan ito ng mga label at AppView moderation.",
           "bitsocial": "Puwedeng hamunin muna ng komunidad ang mga nagpo-post at tanggihan ang spam bago pa ito lumabas.",
           "detail": "Puwedeng ipakita ng Nostr kung aling susi ang sumulat ng tugon, pero hiwalay ang paglalathala at moderasyon. Puwedeng itago ng relay o app ang kalat pagkatapos dumating. Binibigyan ng Bitsocial ang komunidad ng front door: tapusin ang challenge, o hindi kailanman tinatanggap ang tugon sa thread.",
-          "detailBluesky": "Gumagamit ang Bluesky ng mga limit ng PDS, moderation label, at mga pagpili ng AppView para bawasan ang abuso. Kapaki-pakinabang ang mga depensang iyon, pero depensa sila sa antas ng server at indexing. Binibigyan ng Bitsocial ang komunidad ng front door: tapusin ang challenge, o hindi kailanman tinatanggap ang tugon sa thread."
+          "detailBluesky": "Gumagamit ang Bluesky ng mga limit ng PDS, moderation label, at mga pagpili ng AppView para bawasan ang abuso. Kapaki-pakinabang ang mga depensang iyon, pero depensa sila sa antas ng server at indexing. Binibigyan ng Bitsocial ang komunidad ng front door: tapusin ang challenge, o hindi kailanman tinatanggap ang tugon sa thread.",
+          "mastodon": "Spam reaches servers first, then filters, reports, and moderators respond.",
+          "detailMastodon": "ActivityPub does not define a universal anti-spam gate. The spec recommends server-side filtering, and Mastodon adds signup limits, email confirmation, reports, blocks, filters, and domain moderation. Those tools help, but they usually work at the server or visibility layer. Bitsocial lets a community challenge a poster before the reply is accepted."
         },
         "antiSpam": {
           "label": "Mga patakaran ng komunidad",
@@ -214,7 +226,9 @@
           "bluesky": "Puwedeng salain ng app ang content, pero hindi maaring hingin ng komunidad ang sarili nitong challenge muna.",
           "bitsocial": "Pag-aari ng komunidad ang mga patakaran, kaya ang mga tinanggap na post ay dumaraan sa iisang gate.",
           "detail": "Sa Nostr, puwedeng magtakda ng mga patakaran ang isang relay para sa relay na iyon, at puwedeng salain ng app ang ipinapakita nito. Hindi talaga pag-aari ng komunidad ang mga patakarang iyon. Hinahayaan ng Bitsocial ang bawat komunidad na pumili ng gate sa pagpo-post, tulad ng edad ng account, reputasyon, captcha, whitelist, bayad, o iba pang challenge.",
-          "detailBluesky": "Nakatayo ang moderation ng Bluesky sa mga label, AppView, at patakaran ng serbisyo. Puwede nitong itago, i-rank, o limitahan ang content, pero hindi iyon kapareho ng pre-post gate na pag-aari ng komunidad. Hinahayaan ng Bitsocial ang bawat komunidad na pumili ng gate sa pagpo-post, tulad ng edad ng account, reputasyon, captcha, whitelist, bayad, o iba pang challenge."
+          "detailBluesky": "Nakatayo ang moderation ng Bluesky sa mga label, AppView, at patakaran ng serbisyo. Puwede nitong itago, i-rank, o limitahan ang content, pero hindi iyon kapareho ng pre-post gate na pag-aari ng komunidad. Hinahayaan ng Bitsocial ang bawat komunidad na pumili ng gate sa pagpo-post, tulad ng edad ng account, reputasyon, captcha, whitelist, bayad, o iba pang challenge.",
+          "mastodon": "Rules belong to the instance, the user, or a domain blocklist.",
+          "detailMastodon": "Mastodon gives instance admins, moderators, and users many controls: filters, mutes, blocks, reports, server-wide limits, and suspensions. They are powerful federation controls, but they are not a portable community-owned pre-post gate. Bitsocial lets each community choose its posting challenge, so accepted posts pass the same rule before entering the thread."
         },
         "scalingEconomics": {
           "label": "Mga gastos sa scale",
@@ -222,15 +236,19 @@
           "bluesky": "Ang paglago ay nagtutulak ng load sa account server, relay, AppView, at feed service.",
           "bitsocial": "Mas maraming mambabasa ay puwede ring mangahulugang mas maraming tumutulong magbahagi ng content.",
           "detail": "Sa Nostr, ang mga relay ay mga server pa rin na nagpapanatiling online ng mga post at nagpapadala nito sa mga mambabasa. Puwedeng maganda sa user ang isang sikat na post habang nagiging mahal ito para sa mga operator ng relay. Sa Bitsocial, puwedeng tumulong ang mga mambabasa sa pamamahagi ng content na binabasa nila, kaya ang kasikatan ay puwedeng magdagdag ng kapasidad sa halip na puro gastos sa server.",
-          "detailBluesky": "Sadyang gumagamit ang ATProto ng mga server para sa kaginhawaan at availability. Nag-aaggregate ng firehose ang mga relay, nag-iindex ng network ang AppView, at madalas kumokonsumo ng firehose ang custom feed. Inilalarawan ng opisyal na docs ang mga relay at AppView bilang masinsin sa resources, at nangangailangan na ng scaling work ang operasyon ng relay. Ginagamit ng Bitsocial ang mga router para lang makahanap ng peer; puwedeng tumulong ang mga mambabasa sa pagdadala ng content."
+          "detailBluesky": "Sadyang gumagamit ang ATProto ng mga server para sa kaginhawaan at availability. Nag-aaggregate ng firehose ang mga relay, nag-iindex ng network ang AppView, at madalas kumokonsumo ng firehose ang custom feed. Inilalarawan ng opisyal na docs ang mga relay at AppView bilang masinsin sa resources, at nangangailangan na ng scaling work ang operasyon ng relay. Ginagamit ng Bitsocial ang mga router para lang makahanap ng peer; puwedeng tumulong ang mga mambabasa sa pagdadala ng content.",
+          "mastodon": "Growth pushes storage, federation, streaming, and moderation cost onto instances.",
+          "detailMastodon": "A Mastodon server needs a domain, always-online hosting, email, database, Redis, background workers, streaming, and often object storage. Mastodon can scale horizontally, but that means operating more app servers, workers, databases, queues, and moderation capacity. Bitsocial uses routers only to find peers; readers can help carry the content they read."
         },
         "browserMobile": {
           "label": "Unang post",
           "nostr": "Mukhang simple ang web client basta gumagana ang napili nitong mga relay.",
           "bluesky": "Ang madaling daan ay naka-host na account na may mga limit at patakaran ng provider na iyon.",
-          "bitsocial": "Buksan ang app at mag-post; puwedeng awtomatikong likhain ang susi mo.",
+          "bitsocial": "You can start with a local key, without making a server own your identity.",
           "detail": "Puwedeng magmukhang madali ang Nostr kapag ang isang magandang web client ay may magagandang relay na nakaayos na. Nananatili ang nakatagong dependency: kailangang tanggapin, iimbak, at ihatid ng mga relay na iyon ang aktibidad. Puwedeng likhain ng Bitsocial ang susi ng user nang lokal at hayaan ang app na pumili ng direktang peer-to-peer o hosted na access nang hindi pinapagawa sa account server ang pagmamay-ari ng identidad.",
-          "detailBluesky": "Madali ang Bluesky kapag ang bsky.social o ibang PDS ang humahawak ng mga account, session, write, at hosting. Nakasalalay sa server ang ginhawang iyon, at ang mga hosted service ay may sarili nilang API limit at patakaran. Puwedeng likhain ng Bitsocial ang susi ng user nang lokal at hayaang mag-post ang user sa direktang P2P o opsyonal na hosted access nang hindi pag-aari ng platform account ang identidad."
+          "detailBluesky": "Madali ang Bluesky kapag ang bsky.social o ibang PDS ang humahawak ng mga account, session, write, at hosting. Nakasalalay sa server ang ginhawang iyon, at ang mga hosted service ay may sarili nilang API limit at patakaran. Puwedeng likhain ng Bitsocial ang susi ng user nang lokal at hayaang mag-post ang user sa direktang P2P o opsyonal na hosted access nang hindi pag-aari ng platform account ang identidad.",
+          "mastodon": "You post through the server account you chose.",
+          "detailMastodon": "Mastodon is easy once a user chooses an instance and creates an account. The server handles sessions, posts, media, federation, and rules. Self-hosting gives more control, but requires operating the stack. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity."
         }
       },
       "expand": "Matuto pa",
