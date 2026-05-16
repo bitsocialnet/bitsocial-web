@@ -123,6 +123,27 @@ type DeepComparisonSourceId =
   | "nip65"
   | "nip72"
   | "blueskyRateLimits"
+  | "desoFeeds"
+  | "desoIdentity"
+  | "desoModeration"
+  | "desoNodeArchitecture"
+  | "desoNodeFaq"
+  | "desoOnChainData"
+  | "desoSocialTransactions"
+  | "desoTokenomics"
+  | "desoVision"
+  | "farcasterArchitecture"
+  | "farcasterDocs"
+  | "farcasterProtocol"
+  | "farcasterStorage"
+  | "lensFaq"
+  | "lensNews"
+  | "lensTerms"
+  | "lensV3"
+  | "steemDeveloperCommunities"
+  | "steemGithub"
+  | "steemHome"
+  | "steemWhitepaper"
   | "bitsocialDocs";
 type DeepComparisonRow = {
   bitsocial: string;
@@ -148,17 +169,20 @@ const DEEP_COMPARISON_SERVICE_IDS: DeepComparisonServiceId[] = [
   "nostr",
   "bluesky",
   "mastodon",
-  // TODO: re-enable these after their deep comparisons are researched.
   // "lemmy",
-  // "farcaster",
-  // "lens",
-  // "deso",
-  // "steemit",
+  "farcaster",
+  "lens",
+  "deso",
+  "steemit",
 ];
 const DEEP_COMPARISON_CONTENT_SERVICE_IDS: DeepComparisonServiceId[] = [
   "nostr",
   "bluesky",
   "mastodon",
+  "farcaster",
+  "lens",
+  "deso",
+  "steemit",
 ];
 const DEEP_COMPARISON_SERVICE_I18N: Record<DeepComparisonServiceId, { label: string }> = {
   nostr: { label: "sanctuary.deepComparison.services.nostr" },
@@ -210,17 +234,29 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       nostr: "sanctuary.deepComparison.rows.dataLayer.nostr",
       bluesky: "sanctuary.deepComparison.rows.dataLayer.bluesky",
       mastodon: "sanctuary.deepComparison.rows.dataLayer.mastodon",
+      farcaster: "sanctuary.deepComparison.rows.dataLayer.farcaster",
+      lens: "sanctuary.deepComparison.rows.dataLayer.lens",
+      deso: "sanctuary.deepComparison.rows.dataLayer.deso",
+      steemit: "sanctuary.deepComparison.rows.dataLayer.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.dataLayer.bitsocial",
     detail: "sanctuary.deepComparison.rows.dataLayer.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.dataLayer.detailBluesky",
       mastodon: "sanctuary.deepComparison.rows.dataLayer.detailMastodon",
+      farcaster: "sanctuary.deepComparison.rows.dataLayer.detailFarcaster",
+      lens: "sanctuary.deepComparison.rows.dataLayer.detailLens",
+      deso: "sanctuary.deepComparison.rows.dataLayer.detailDeso",
+      steemit: "sanctuary.deepComparison.rows.dataLayer.detailSteemit",
     },
     sources: ["nip01", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoRepository", "atprotoSync", "atprotoOverview", "bitsocialDocs"],
       mastodon: ["activityPubSpec", "mastodonActivityPub", "bitsocialDocs"],
+      farcaster: ["farcasterProtocol", "farcasterArchitecture", "bitsocialDocs"],
+      lens: ["lensV3", "lensFaq", "bitsocialDocs"],
+      deso: ["desoOnChainData", "desoSocialTransactions", "bitsocialDocs"],
+      steemit: ["steemHome", "steemGithub", "bitsocialDocs"],
     },
   },
   browserMobile: {
@@ -229,17 +265,29 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       nostr: "sanctuary.deepComparison.rows.browserMobile.nostr",
       bluesky: "sanctuary.deepComparison.rows.browserMobile.bluesky",
       mastodon: "sanctuary.deepComparison.rows.browserMobile.mastodon",
+      farcaster: "sanctuary.deepComparison.rows.browserMobile.farcaster",
+      lens: "sanctuary.deepComparison.rows.browserMobile.lens",
+      deso: "sanctuary.deepComparison.rows.browserMobile.deso",
+      steemit: "sanctuary.deepComparison.rows.browserMobile.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.browserMobile.bitsocial",
     detail: "sanctuary.deepComparison.rows.browserMobile.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.browserMobile.detailBluesky",
       mastodon: "sanctuary.deepComparison.rows.browserMobile.detailMastodon",
+      farcaster: "sanctuary.deepComparison.rows.browserMobile.detailFarcaster",
+      lens: "sanctuary.deepComparison.rows.browserMobile.detailLens",
+      deso: "sanctuary.deepComparison.rows.browserMobile.detailDeso",
+      steemit: "sanctuary.deepComparison.rows.browserMobile.detailSteemit",
     },
     sources: ["nip01", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoFederation", "blueskyRateLimits", "bitsocialDocs"],
       mastodon: ["mastodonRunServer", "mastodonScaling", "bitsocialDocs"],
+      farcaster: ["farcasterDocs", "farcasterStorage", "bitsocialDocs"],
+      lens: ["lensFaq", "lensNews", "bitsocialDocs"],
+      deso: ["desoIdentity", "desoSocialTransactions", "bitsocialDocs"],
+      steemit: ["steemDeveloperCommunities", "steemGithub", "bitsocialDocs"],
     },
   },
   identity: {
@@ -248,17 +296,29 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       nostr: "sanctuary.deepComparison.rows.identity.nostr",
       bluesky: "sanctuary.deepComparison.rows.identity.bluesky",
       mastodon: "sanctuary.deepComparison.rows.identity.mastodon",
+      farcaster: "sanctuary.deepComparison.rows.identity.farcaster",
+      lens: "sanctuary.deepComparison.rows.identity.lens",
+      deso: "sanctuary.deepComparison.rows.identity.deso",
+      steemit: "sanctuary.deepComparison.rows.identity.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.identity.bitsocial",
     detail: "sanctuary.deepComparison.rows.identity.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.identity.detailBluesky",
       mastodon: "sanctuary.deepComparison.rows.identity.detailMastodon",
+      farcaster: "sanctuary.deepComparison.rows.identity.detailFarcaster",
+      lens: "sanctuary.deepComparison.rows.identity.detailLens",
+      deso: "sanctuary.deepComparison.rows.identity.detailDeso",
+      steemit: "sanctuary.deepComparison.rows.identity.detailSteemit",
     },
     sources: ["nip01", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoIdentity", "atprotoOverview", "bitsocialBsoDocs"],
       mastodon: ["mastodonWebFinger", "mastodonAccountMigration", "bitsocialBsoDocs"],
+      farcaster: ["farcasterProtocol", "farcasterArchitecture", "bitsocialBsoDocs"],
+      lens: ["lensFaq", "lensV3", "bitsocialBsoDocs"],
+      deso: ["desoIdentity", "desoOnChainData", "bitsocialBsoDocs"],
+      steemit: ["steemGithub", "steemWhitepaper", "bitsocialBsoDocs"],
     },
   },
   communityModel: {
@@ -267,17 +327,29 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       nostr: "sanctuary.deepComparison.rows.communityModel.nostr",
       bluesky: "sanctuary.deepComparison.rows.communityModel.bluesky",
       mastodon: "sanctuary.deepComparison.rows.communityModel.mastodon",
+      farcaster: "sanctuary.deepComparison.rows.communityModel.farcaster",
+      lens: "sanctuary.deepComparison.rows.communityModel.lens",
+      deso: "sanctuary.deepComparison.rows.communityModel.deso",
+      steemit: "sanctuary.deepComparison.rows.communityModel.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.communityModel.bitsocial",
     detail: "sanctuary.deepComparison.rows.communityModel.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.communityModel.detailBluesky",
       mastodon: "sanctuary.deepComparison.rows.communityModel.detailMastodon",
+      farcaster: "sanctuary.deepComparison.rows.communityModel.detailFarcaster",
+      lens: "sanctuary.deepComparison.rows.communityModel.detailLens",
+      deso: "sanctuary.deepComparison.rows.communityModel.detailDeso",
+      steemit: "sanctuary.deepComparison.rows.communityModel.detailSteemit",
     },
     sources: ["nip29", "nip72", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoFederation", "atprotoFeeds", "bitsocialDocs"],
       mastodon: ["mastodonActivityPub", "lemmyFederation", "bitsocialDocs"],
+      farcaster: ["farcasterProtocol", "farcasterDocs", "bitsocialDocs"],
+      lens: ["lensV3", "lensNews", "bitsocialDocs"],
+      deso: ["desoFeeds", "desoOnChainData", "bitsocialDocs"],
+      steemit: ["steemDeveloperCommunities", "steemHome", "bitsocialDocs"],
     },
   },
   antiSpam: {
@@ -286,12 +358,20 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       nostr: "sanctuary.deepComparison.rows.antiSpam.nostr",
       bluesky: "sanctuary.deepComparison.rows.antiSpam.bluesky",
       mastodon: "sanctuary.deepComparison.rows.antiSpam.mastodon",
+      farcaster: "sanctuary.deepComparison.rows.antiSpam.farcaster",
+      lens: "sanctuary.deepComparison.rows.antiSpam.lens",
+      deso: "sanctuary.deepComparison.rows.antiSpam.deso",
+      steemit: "sanctuary.deepComparison.rows.antiSpam.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.antiSpam.bitsocial",
     detail: "sanctuary.deepComparison.rows.antiSpam.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.antiSpam.detailBluesky",
       mastodon: "sanctuary.deepComparison.rows.antiSpam.detailMastodon",
+      farcaster: "sanctuary.deepComparison.rows.antiSpam.detailFarcaster",
+      lens: "sanctuary.deepComparison.rows.antiSpam.detailLens",
+      deso: "sanctuary.deepComparison.rows.antiSpam.detailDeso",
+      steemit: "sanctuary.deepComparison.rows.antiSpam.detailSteemit",
     },
     sources: ["nip13", "nip42", "bitsocialDocs"],
     sourcesByService: {
@@ -302,6 +382,10 @@ const DEEP_COMPARISON_ROW_I18N: Record<
         "activityPubSpec",
         "bitsocialDocs",
       ],
+      farcaster: ["farcasterStorage", "farcasterArchitecture", "bitsocialDocs"],
+      lens: ["lensV3", "lensFaq", "bitsocialDocs"],
+      deso: ["desoModeration", "desoOnChainData", "bitsocialDocs"],
+      steemit: ["steemDeveloperCommunities", "steemWhitepaper", "bitsocialDocs"],
     },
   },
   replies: {
@@ -310,17 +394,29 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       nostr: "sanctuary.deepComparison.rows.replies.nostr",
       bluesky: "sanctuary.deepComparison.rows.replies.bluesky",
       mastodon: "sanctuary.deepComparison.rows.replies.mastodon",
+      farcaster: "sanctuary.deepComparison.rows.replies.farcaster",
+      lens: "sanctuary.deepComparison.rows.replies.lens",
+      deso: "sanctuary.deepComparison.rows.replies.deso",
+      steemit: "sanctuary.deepComparison.rows.replies.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.replies.bitsocial",
     detail: "sanctuary.deepComparison.rows.replies.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.replies.detailBluesky",
       mastodon: "sanctuary.deepComparison.rows.replies.detailMastodon",
+      farcaster: "sanctuary.deepComparison.rows.replies.detailFarcaster",
+      lens: "sanctuary.deepComparison.rows.replies.detailLens",
+      deso: "sanctuary.deepComparison.rows.replies.detailDeso",
+      steemit: "sanctuary.deepComparison.rows.replies.detailSteemit",
     },
     sources: ["nip10", "nip72", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["blueskyRateLimits", "atprotoModeration", "bitsocialDocs"],
       mastodon: ["activityPubSpec", "mastodonModeration", "bitsocialDocs"],
+      farcaster: ["farcasterStorage", "farcasterArchitecture", "bitsocialDocs"],
+      lens: ["lensV3", "lensFaq", "bitsocialDocs"],
+      deso: ["desoOnChainData", "desoSocialTransactions", "bitsocialDocs"],
+      steemit: ["steemDeveloperCommunities", "steemWhitepaper", "bitsocialDocs"],
     },
   },
   contentDiscovery: {
@@ -329,17 +425,29 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       nostr: "sanctuary.deepComparison.rows.contentDiscovery.nostr",
       bluesky: "sanctuary.deepComparison.rows.contentDiscovery.bluesky",
       mastodon: "sanctuary.deepComparison.rows.contentDiscovery.mastodon",
+      farcaster: "sanctuary.deepComparison.rows.contentDiscovery.farcaster",
+      lens: "sanctuary.deepComparison.rows.contentDiscovery.lens",
+      deso: "sanctuary.deepComparison.rows.contentDiscovery.deso",
+      steemit: "sanctuary.deepComparison.rows.contentDiscovery.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.contentDiscovery.bitsocial",
     detail: "sanctuary.deepComparison.rows.contentDiscovery.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.contentDiscovery.detailBluesky",
       mastodon: "sanctuary.deepComparison.rows.contentDiscovery.detailMastodon",
+      farcaster: "sanctuary.deepComparison.rows.contentDiscovery.detailFarcaster",
+      lens: "sanctuary.deepComparison.rows.contentDiscovery.detailLens",
+      deso: "sanctuary.deepComparison.rows.contentDiscovery.detailDeso",
+      steemit: "sanctuary.deepComparison.rows.contentDiscovery.detailSteemit",
     },
     sources: ["nip65", "nip50", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoOverview", "atprotoFederation", "atprotoFeeds", "bitsocialDocs"],
       mastodon: ["activityPubSpec", "mastodonUserModeration", "bitsocialDocs"],
+      farcaster: ["farcasterDocs", "farcasterArchitecture", "bitsocialDocs"],
+      lens: ["lensFaq", "lensV3", "bitsocialDocs"],
+      deso: ["desoFeeds", "desoNodeFaq", "bitsocialDocs"],
+      steemit: ["steemHome", "steemDeveloperCommunities", "bitsocialDocs"],
     },
   },
   scalingEconomics: {
@@ -348,17 +456,29 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       nostr: "sanctuary.deepComparison.rows.scalingEconomics.nostr",
       bluesky: "sanctuary.deepComparison.rows.scalingEconomics.bluesky",
       mastodon: "sanctuary.deepComparison.rows.scalingEconomics.mastodon",
+      farcaster: "sanctuary.deepComparison.rows.scalingEconomics.farcaster",
+      lens: "sanctuary.deepComparison.rows.scalingEconomics.lens",
+      deso: "sanctuary.deepComparison.rows.scalingEconomics.deso",
+      steemit: "sanctuary.deepComparison.rows.scalingEconomics.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.scalingEconomics.bitsocial",
     detail: "sanctuary.deepComparison.rows.scalingEconomics.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.scalingEconomics.detailBluesky",
       mastodon: "sanctuary.deepComparison.rows.scalingEconomics.detailMastodon",
+      farcaster: "sanctuary.deepComparison.rows.scalingEconomics.detailFarcaster",
+      lens: "sanctuary.deepComparison.rows.scalingEconomics.detailLens",
+      deso: "sanctuary.deepComparison.rows.scalingEconomics.detailDeso",
+      steemit: "sanctuary.deepComparison.rows.scalingEconomics.detailSteemit",
     },
     sources: ["nip11", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoSelfHosting", "atprotoRelayOps", "atprotoFeeds", "bitsocialDocs"],
       mastodon: ["mastodonRunServer", "mastodonScaling", "bitsocialDocs"],
+      farcaster: ["farcasterArchitecture", "farcasterStorage", "bitsocialDocs"],
+      lens: ["lensFaq", "lensV3", "bitsocialDocs"],
+      deso: ["desoNodeFaq", "desoSocialTransactions", "desoTokenomics", "bitsocialDocs"],
+      steemit: ["steemGithub", "steemWhitepaper", "bitsocialDocs"],
     },
   },
   moderation: {
@@ -367,17 +487,29 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       nostr: "sanctuary.deepComparison.rows.moderation.nostr",
       bluesky: "sanctuary.deepComparison.rows.moderation.bluesky",
       mastodon: "sanctuary.deepComparison.rows.moderation.mastodon",
+      farcaster: "sanctuary.deepComparison.rows.moderation.farcaster",
+      lens: "sanctuary.deepComparison.rows.moderation.lens",
+      deso: "sanctuary.deepComparison.rows.moderation.deso",
+      steemit: "sanctuary.deepComparison.rows.moderation.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.moderation.bitsocial",
     detail: "sanctuary.deepComparison.rows.moderation.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.moderation.detailBluesky",
       mastodon: "sanctuary.deepComparison.rows.moderation.detailMastodon",
+      farcaster: "sanctuary.deepComparison.rows.moderation.detailFarcaster",
+      lens: "sanctuary.deepComparison.rows.moderation.detailLens",
+      deso: "sanctuary.deepComparison.rows.moderation.detailDeso",
+      steemit: "sanctuary.deepComparison.rows.moderation.detailSteemit",
     },
     sources: ["nip01", "nip29", "nip72", "bitsocialDocs"],
     sourcesByService: {
       bluesky: ["atprotoOverview", "atprotoFederation", "atprotoSelfHosting", "bitsocialDocs"],
       mastodon: ["mastodonModeration", "mastodonUserModeration", "bitsocialDocs"],
+      farcaster: ["farcasterDocs", "farcasterArchitecture", "bitsocialDocs"],
+      lens: ["lensTerms", "lensV3", "bitsocialDocs"],
+      deso: ["desoModeration", "desoFeeds", "bitsocialDocs"],
+      steemit: ["steemDeveloperCommunities", "steemHome", "bitsocialDocs"],
     },
   },
 };
@@ -567,6 +699,132 @@ const DEEP_COMPARISON_SOURCE_LINKS: DeepComparisonSource[] = [
     label: "Lemmy federation documentation",
     shortLabel: "Lemmy Federation",
     href: "https://join-lemmy.org/docs/contributors/05-federation.html",
+  },
+  {
+    id: "farcasterDocs",
+    label: "Farcaster developer documentation",
+    shortLabel: "Farcaster Docs",
+    href: "https://docs.farcaster.xyz/",
+  },
+  {
+    id: "farcasterProtocol",
+    label: "Farcaster protocol specification",
+    shortLabel: "Farcaster Spec",
+    href: "https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md",
+  },
+  {
+    id: "farcasterArchitecture",
+    label: "Farcaster architecture overview",
+    shortLabel: "Farcaster Architecture",
+    href: "https://docs.farcaster.xyz/learn/architecture/overview",
+  },
+  {
+    id: "farcasterStorage",
+    label: "Farcaster storage registry documentation",
+    shortLabel: "Farcaster Storage",
+    href: "https://docs.farcaster.xyz/reference/contracts/reference/storage-registry",
+  },
+  {
+    id: "lensV3",
+    label: "Lens Protocol V3 repository",
+    shortLabel: "Lens V3",
+    href: "https://github.com/lens-protocol/lens-v3",
+  },
+  {
+    id: "lensFaq",
+    label: "Lens FAQ",
+    shortLabel: "Lens FAQ",
+    href: "https://lens.xyz/faq",
+  },
+  {
+    id: "lensNews",
+    label: "Introducing the New Lens",
+    shortLabel: "Lens V3 Intro",
+    href: "https://lens.xyz/news/introducing-the-new-lens",
+  },
+  {
+    id: "lensTerms",
+    label: "Lens terms on application-specific interfaces",
+    shortLabel: "Lens Terms",
+    href: "https://lens.xyz/terms",
+  },
+  {
+    id: "desoVision",
+    label: "DeSo vision documentation",
+    shortLabel: "DeSo Vision",
+    href: "https://docs.deso.org/",
+  },
+  {
+    id: "desoOnChainData",
+    label: "DeSo on-chain data documentation",
+    shortLabel: "DeSo On-chain Data",
+    href: "https://docs.deso.org/deso-blockchain/on-chain-data",
+  },
+  {
+    id: "desoNodeArchitecture",
+    label: "DeSo node architecture overview",
+    shortLabel: "DeSo Nodes",
+    href: "https://docs.deso.org/deso-repos/architecture-overview",
+  },
+  {
+    id: "desoNodeFaq",
+    label: "DeSo node FAQ",
+    shortLabel: "DeSo Node FAQ",
+    href: "https://docs.deso.org/deso-nodes/running-a-node",
+  },
+  {
+    id: "desoModeration",
+    label: "DeSo content moderation documentation",
+    shortLabel: "DeSo Moderation",
+    href: "https://docs.deso.org/deso-blockchain/content-moderation",
+  },
+  {
+    id: "desoFeeds",
+    label: "DeSo feeds and moderation documentation",
+    shortLabel: "DeSo Feeds",
+    href: "https://docs.deso.org/deso-features/feeds-and-moderation",
+  },
+  {
+    id: "desoIdentity",
+    label: "DeSo identity documentation",
+    shortLabel: "DeSo Identity",
+    href: "https://docs.deso.org/deso-identity/identity",
+  },
+  {
+    id: "desoSocialTransactions",
+    label: "DeSo Social Transactions API",
+    shortLabel: "DeSo Social Tx",
+    href: "https://docs.deso.org/deso-backend/construct-transactions/social-transactions-api",
+  },
+  {
+    id: "desoTokenomics",
+    label: "DeSo tokenomics documentation",
+    shortLabel: "DeSo Tokenomics",
+    href: "https://docs.deso.org/deso-tokenomics",
+  },
+  {
+    id: "steemHome",
+    label: "Steem overview",
+    shortLabel: "Steem",
+    href: "https://steem.com/",
+  },
+  {
+    id: "steemGithub",
+    label: "Steem blockchain repository",
+    shortLabel: "Steem GitHub",
+    href: "https://github.com/steemit/steem",
+  },
+  {
+    id: "steemDeveloperCommunities",
+    label: "Steem developer community operations",
+    shortLabel: "Steem Communities",
+    href: "https://developers.steem.io/apidefinitions/broadcast-ops-communities",
+  },
+  {
+    id: "steemWhitepaper",
+    label: "Steem whitepaper",
+    shortLabel: "Steem Whitepaper",
+    href: "https://steem.com/wp-content/uploads/2025/07/whitepaper20250704.pdf",
   },
 ];
 const DEEP_COMPARISON_SOURCE_BY_ID = DEEP_COMPARISON_SOURCE_LINKS.reduce(
