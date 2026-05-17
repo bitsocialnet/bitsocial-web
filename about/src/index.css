@@ -151,12 +151,11 @@
   }
   a:focus-visible {
     outline: none;
-    border-radius: 0.25rem;
     box-shadow: var(--focus-app-ring);
   }
-  /* Match `.glass-card` corners (1.5rem); base `a:focus-visible` would otherwise shrink radius to 0.25rem. */
-  a.glass-card:focus-visible {
-    border-radius: 1.5rem;
+  /* Default focus radius for plain anchors with no shape utility. `:where()` keeps specificity at 0 so any utility (`.rounded-full`, `.rounded-3xl`, etc.) wins. */
+  :where(a:focus-visible) {
+    border-radius: 0.25rem;
   }
   /* Mobile-specific: suppress focus rings for touch but preserve for keyboard */
   @media (hover: none) and (pointer: coarse) {
