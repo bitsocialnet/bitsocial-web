@@ -1933,7 +1933,7 @@ function DeepComparisonServiceSelect({
           id={listboxId}
           role="listbox"
           aria-labelledby="sanctuary-deep-comparison-service"
-          className="absolute left-0 right-0 top-full z-30 mt-2 flex max-h-72 flex-col gap-2 overflow-y-auto rounded-[1.25rem] border border-blue-core/25 bg-background/95 p-2 text-left shadow-[0_16px_40px_rgba(0,0,0,0.24),0_0_24px_rgba(37,99,235,0.14)] [scrollbar-width:none] backdrop-blur-md dark:border-[var(--glass-border-subtle)] dark:bg-card dark:shadow-[0_20px_45px_rgba(0,0,0,0.42)] sm:right-auto sm:min-w-full [&::-webkit-scrollbar]:hidden"
+          className="absolute left-0 top-full z-30 mt-2 flex w-max min-w-full max-w-[calc(100vw-2rem)] max-h-[min(80vh,28rem)] flex-col gap-1 overflow-y-auto rounded-[1.25rem] border border-blue-core/25 bg-background/95 p-1.5 text-left shadow-[0_16px_40px_rgba(0,0,0,0.24),0_0_24px_rgba(37,99,235,0.14)] [scrollbar-width:none] backdrop-blur-md dark:border-[var(--glass-border-subtle)] dark:bg-card dark:shadow-[0_20px_45px_rgba(0,0,0,0.42)] [&::-webkit-scrollbar]:hidden"
         >
           {comparisons.map((comparison, index) => {
             const selected = comparison.id === selectedService;
@@ -1948,7 +1948,7 @@ function DeepComparisonServiceSelect({
                 aria-selected={selected}
                 onClick={() => selectComparison(comparison.id)}
                 onMouseEnter={() => setActiveIndex(index)}
-                className={`flex w-full items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-left text-sm font-display font-semibold transition-all duration-200 motion-reduce:transition-none ${
+                className={`flex w-full items-center justify-between gap-2 rounded-xl border px-3 py-2 text-left text-sm font-display font-semibold transition-all duration-200 motion-reduce:transition-none ${
                   selected
                     ? "border-blue-glow bg-blue-glow/[0.08] text-foreground hover:border-blue-glow hover:bg-blue-glow/[0.12]"
                     : active
@@ -1956,7 +1956,7 @@ function DeepComparisonServiceSelect({
                       : "border-foreground/[0.06] bg-foreground/[0.03] text-muted-foreground hover:border-foreground/[0.12] hover:bg-foreground/[0.07] hover:text-foreground"
                 }`}
               >
-                <span>{comparison.label}</span>
+                <span className="truncate whitespace-nowrap">{comparison.label}</span>
                 {selected ? <Check className="h-4 w-4 shrink-0 text-blue-glow" /> : null}
               </button>
             );
@@ -1984,12 +1984,15 @@ export default function SanctuaryCommunication() {
     setDeepComparisonState({ open: true, selectedService: serviceId });
     pushDeepComparisonHash(serviceId);
   }, []);
-  const handleSelectedDeepServiceChange = useCallback((serviceId: DeepComparisonServiceId) => {
-    setDeepComparisonState((currentState) => ({
-      ...currentState,
-      selectedService: serviceId,
-    }));
-  }, []);
+  const handleSelectedDeepServiceChange = useCallback(
+    (serviceId: DeepComparisonServiceId) => {
+      if (serviceId === selectedDeepService) {
+        return;
+      }
+      openDeepComparison(serviceId);
+    },
+    [openDeepComparison, selectedDeepService],
+  );
   const handleDeepComparisonOpenChange = useCallback((nextOpen: boolean) => {
     setDeepComparisonState((currentState) => ({ ...currentState, open: nextOpen }));
 
@@ -2136,18 +2139,20 @@ export default function SanctuaryCommunication() {
               >
                 {t("sanctuary.deepComparison.prompt")}
               </label>
-              <DeepComparisonServiceSelect
-                comparisons={deepComparisons}
-                selectedService={selectedDeepService}
-                onServiceChange={handleSelectedDeepServiceChange}
-              />
-              <button
-                type="submit"
-                className="ring-glow cta-glow inline-flex h-11 items-center justify-center gap-2 rounded-full border border-blue-core/30 bg-blue-core/[0.08] px-5 text-sm font-display font-semibold text-foreground/90 transition-[box-shadow,border-color,background-color,color,opacity] duration-300 hover:border-blue-glow hover:bg-blue-core/[0.14] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:hover:bg-blue-core/[0.24] motion-reduce:transition-none"
-              >
-                {t("sanctuary.deepComparison.go")}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </button>
+              <div className="flex flex-row items-center gap-3 sm:contents">
+                <DeepComparisonServiceSelect
+                  comparisons={deepComparisons}
+                  selectedService={selectedDeepService}
+                  onServiceChange={handleSelectedDeepServiceChange}
+                />
+                <button
+                  type="submit"
+                  className="ring-glow cta-glow inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-blue-core/30 bg-blue-core/[0.08] px-5 text-sm font-display font-semibold text-foreground/90 transition-[box-shadow,border-color,background-color,color,opacity] duration-300 hover:border-blue-glow hover:bg-blue-core/[0.14] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:hover:bg-blue-core/[0.24] motion-reduce:transition-none"
+                >
+                  {t("sanctuary.deepComparison.go")}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </button>
+              </div>
             </m.form>
             <DeepComparisonOverlay
               comparison={selectedDeepComparison}
