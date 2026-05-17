@@ -1933,7 +1933,7 @@ function DeepComparisonServiceSelect({
           id={listboxId}
           role="listbox"
           aria-labelledby="sanctuary-deep-comparison-service"
-          className="absolute left-0 right-0 top-full z-30 mt-2 flex max-h-72 flex-col gap-2 overflow-y-auto rounded-[1.25rem] border border-blue-core/25 bg-background/95 p-2 text-left shadow-[0_16px_40px_rgba(0,0,0,0.24),0_0_24px_rgba(37,99,235,0.14)] [scrollbar-width:none] backdrop-blur-md dark:border-[var(--glass-border-subtle)] dark:bg-card dark:shadow-[0_20px_45px_rgba(0,0,0,0.42)] sm:right-auto sm:min-w-full [&::-webkit-scrollbar]:hidden"
+          className="absolute left-0 top-full z-30 mt-2 flex w-max min-w-full max-w-[calc(100vw-2rem)] max-h-[min(80vh,28rem)] flex-col gap-1 overflow-y-auto rounded-[1.25rem] border border-blue-core/25 bg-background/95 p-1.5 text-left shadow-[0_16px_40px_rgba(0,0,0,0.24),0_0_24px_rgba(37,99,235,0.14)] [scrollbar-width:none] backdrop-blur-md dark:border-[var(--glass-border-subtle)] dark:bg-card dark:shadow-[0_20px_45px_rgba(0,0,0,0.42)] [&::-webkit-scrollbar]:hidden"
         >
           {comparisons.map((comparison, index) => {
             const selected = comparison.id === selectedService;
@@ -1948,7 +1948,7 @@ function DeepComparisonServiceSelect({
                 aria-selected={selected}
                 onClick={() => selectComparison(comparison.id)}
                 onMouseEnter={() => setActiveIndex(index)}
-                className={`flex w-full items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-left text-sm font-display font-semibold transition-all duration-200 motion-reduce:transition-none ${
+                className={`flex w-full items-center justify-between gap-2 rounded-xl border px-3 py-2 text-left text-sm font-display font-semibold transition-all duration-200 motion-reduce:transition-none ${
                   selected
                     ? "border-blue-glow bg-blue-glow/[0.08] text-foreground hover:border-blue-glow hover:bg-blue-glow/[0.12]"
                     : active
@@ -1956,7 +1956,7 @@ function DeepComparisonServiceSelect({
                       : "border-foreground/[0.06] bg-foreground/[0.03] text-muted-foreground hover:border-foreground/[0.12] hover:bg-foreground/[0.07] hover:text-foreground"
                 }`}
               >
-                <span>{comparison.label}</span>
+                <span className="truncate whitespace-nowrap">{comparison.label}</span>
                 {selected ? <Check className="h-4 w-4 shrink-0 text-blue-glow" /> : null}
               </button>
             );
