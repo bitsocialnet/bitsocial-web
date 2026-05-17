@@ -1984,12 +1984,15 @@ export default function SanctuaryCommunication() {
     setDeepComparisonState({ open: true, selectedService: serviceId });
     pushDeepComparisonHash(serviceId);
   }, []);
-  const handleSelectedDeepServiceChange = useCallback((serviceId: DeepComparisonServiceId) => {
-    setDeepComparisonState((currentState) => ({
-      ...currentState,
-      selectedService: serviceId,
-    }));
-  }, []);
+  const handleSelectedDeepServiceChange = useCallback(
+    (serviceId: DeepComparisonServiceId) => {
+      if (serviceId === selectedDeepService) {
+        return;
+      }
+      openDeepComparison(serviceId);
+    },
+    [openDeepComparison, selectedDeepService],
+  );
   const handleDeepComparisonOpenChange = useCallback((nextOpen: boolean) => {
     setDeepComparisonState((currentState) => ({ ...currentState, open: nextOpen }));
 
@@ -2136,18 +2139,20 @@ export default function SanctuaryCommunication() {
               >
                 {t("sanctuary.deepComparison.prompt")}
               </label>
-              <DeepComparisonServiceSelect
-                comparisons={deepComparisons}
-                selectedService={selectedDeepService}
-                onServiceChange={handleSelectedDeepServiceChange}
-              />
-              <button
-                type="submit"
-                className="ring-glow cta-glow inline-flex h-11 items-center justify-center gap-2 rounded-full border border-blue-core/30 bg-blue-core/[0.08] px-5 text-sm font-display font-semibold text-foreground/90 transition-[box-shadow,border-color,background-color,color,opacity] duration-300 hover:border-blue-glow hover:bg-blue-core/[0.14] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:hover:bg-blue-core/[0.24] motion-reduce:transition-none"
-              >
-                {t("sanctuary.deepComparison.go")}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </button>
+              <div className="flex flex-row items-center gap-3 sm:contents">
+                <DeepComparisonServiceSelect
+                  comparisons={deepComparisons}
+                  selectedService={selectedDeepService}
+                  onServiceChange={handleSelectedDeepServiceChange}
+                />
+                <button
+                  type="submit"
+                  className="ring-glow cta-glow inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-blue-core/30 bg-blue-core/[0.08] px-5 text-sm font-display font-semibold text-foreground/90 transition-[box-shadow,border-color,background-color,color,opacity] duration-300 hover:border-blue-glow hover:bg-blue-core/[0.14] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:hover:bg-blue-core/[0.24] motion-reduce:transition-none"
+                >
+                  {t("sanctuary.deepComparison.go")}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </button>
+              </div>
             </m.form>
             <DeepComparisonOverlay
               comparison={selectedDeepComparison}
