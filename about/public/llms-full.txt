@@ -22,6 +22,15 @@ Two interpretation notes matter:
 - [Docs llms.txt](https://bitsocial.net/docs/llms.txt): Curated docs-specific routing index.
 - [Docs llms-full.txt](https://bitsocial.net/docs/llms-full.txt): Docs-scoped full inline corpus.
 
+## Landing page highlights
+
+- [Home](https://bitsocial.net/): Bitsocial is an open-source peer-to-peer network for social apps, with no servers, no global bans, where users and communities are cryptographic property.
+- [Core features](https://bitsocial.net/): Bitsocial is open source, peer-to-peer via IPFS/libp2p, app-oriented, serverless by default, locally moderated with no protocol-level global bans, and built around key-controlled identities and communities.
+- [Sanctuary comparison](https://bitsocial.net/#sanctuary-communication): Compares Federated (Bluesky, Mastodon, Lemmy); Chain / Hub (Farcaster, Lens, DeSo, Steemit); Bitsocial (Pure P2P with arbitrary anti-spam challenges) across self-hosting cost, who keeps content online, scaling, custom anti-spam logic, and takedown choke points.
+- [Deep comparison tables](https://bitsocial.net/#nostr-comparison): Sourced modal tables compare Bitsocial with Nostr, Bluesky, ActivityPub / Fediverse, Farcaster, Lens, DeSo, Steemit across Spam replies, Community rules, Scaling costs, Data hosting, Censorship points, Who accepts posts?, First post, Human names, Finding content.
+- [Arbitrary Challenges](https://bitsocial.net/#arbitrary-challenges): Each node runs its own anti-spam challenge, exchanged purely peer-to-peer with the user. When spam evolves, nodes adapt without changing the protocol. Example modules include any code, AI-powered moderation, SMS OTP, whatever comes next.
+- [Master Plan](https://bitsocial.net/#master-plan): Bitsocial wins by attracting as many builders as possible. Run your own unstoppable community, develop your own decentralized social app, or even launch your own business on top of Bitsocial. The tide rises with every builder.
+
 ## Public apps and tools
 
 - [5chan](https://bitsocial.net/apps/5chan): Decentralized imageboard client with web, Android, and desktop distribution.
@@ -30,6 +39,265 @@ Two interpretation notes matter:
 - [Spam Blocker](https://bitsocial.net/apps/spam-blocker): Risk-scoring service for filtering abusive publications.
 - [Bitsocial CLI](https://bitsocial.net/apps/bitsocial-cli): Command-line interface for nodes, publishing, and automation workflows.
 - [Telegram Bots](https://bitsocial.net/apps/telegram-bots): Feed bots that relay Bitsocial posts into Telegram channels.
+
+## Landing page corpus
+
+### Hero
+
+Source: https://bitsocial.net/
+
+Bitsocial is an open-source peer-to-peer network for social apps, with no servers, no global bans, where users and communities are cryptographic property.
+
+### Core features
+
+- Open Source: Bitsocial is free and open source software: the protocol and clients are public, forkable, and open to outside contributions. Anyone can inspect the code, ship improvements, or build a compatible app without asking permission from a company.
+- Peer To Peer: Bitsocial is neither federated nor on-chain. Each community is a peer-to-peer swarm using IPFS, closer to BitTorrent than a hosted website: users seed effortlessly, nodes run on cheap hardware, and each community is fully independent and sovereign.
+- Social Apps: Anyone can build a Bitsocial app with its own interface, discovery model, or defaults. Apps compete on product quality instead of locking users into a private database, because compatible clients can share the same communities, identities, and network.
+- No Servers: Bitsocial does not require every community to rent a datacenter box, buy a domain, or manage SSL just to stay online. A community node can run from home on consumer hardware, and there is no single company-run backend that can take the whole network down.
+- No Global Bans: Moderation still exists, but it stays local. Community owners set rules for their own spaces and apps can choose what they index or show, yet there is no protocol-level super-admin who can erase a profile or seize a community from the network itself.
+- Cryptographic Property: Profiles and communities are controlled by private keys, not by revocable platform accounts. You can delegate hosting without giving away ownership, so your identity and community behave more like wallet-controlled property than a username rented from a company.
+
+### Sanctuary comparison
+
+Source: https://bitsocial.net/#sanctuary-communication
+
+No servers to rent. No domains to buy. No chains to sync. A Bitsocial node runs on a Raspberry Pi. And each community can enforce its own anti-spam challenge: captchas, reputation, SMS, payments, tokens, IP checks, or anything else that can be coded.
+
+| Topic | Federated | Chain / Hub | Bitsocial |
+| --- | --- | --- | --- |
+| Self-hosting cost | Server + domain + SSL | Expensive node, hub, or RPC | Extremely cheap, runs on Raspberry Pi |
+| Who keeps it online | Service / instance operator | Chain, hub, or RPC infrastructure | Community owners + helper seeders |
+| Scaling model | Bigger instances, higher bills | More state, heavier infra | More peers, more bandwidth |
+| Custom anti-spam logic | Not built into the protocol | Tied to chains, hubs, or fees | Built in: challenge can be anything |
+| Takedown choke points | Host, registrar, SSL, DDoS provider | Validators, hubs, RPCs | No single choke point |
+
+### Arbitrary Challenges
+
+Source: https://bitsocial.net/#arbitrary-challenges
+
+Anti-spam? Future-proof.
+
+Each node runs its own anti-spam challenge, exchanged purely peer-to-peer with the user. When spam evolves, nodes adapt without changing the protocol.
+
+Plug-in examples: any code, AI-powered moderation, SMS OTP, whatever comes next.
+
+Founder note: The only Bitsocial innovation is solving spam and DDoS using arbitrary challenges like captchas over p2p.
+
+### Master Plan
+
+Source: https://bitsocial.net/#master-plan
+
+A Call to Action
+
+Bitsocial wins by attracting as many builders as possible. Run your own unstoppable community, develop your own decentralized social app, or even launch your own business on top of Bitsocial. The tide rises with every builder.
+
+- Phase 1 - Decentralize imageboards and forums: Imageboards are the simplest form of social media to decentralize: anonymous posting, few default boards, and no profile graph. 5chan proves Bitsocial can replace centralized imageboards while removing global admins from the equation.
+- Phase 2 - Launch Bitsocial Network: In order to decentralize all social media, Bitsocial apps will need killer features and strong network effects: unstoppable financial structures, decentralized Bitsocial domains (.bso), awards and tipping, common liquidity, and practical monetization. All of this will be powered by Bitsocial Network, a decentralized appchain solution for Bitsocial apps.
+- Phase 3 - Launch the flagship Bitsocial app: The flagship Bitsocial app should be the first profile-based client: posts, replies, follows, real-time public conversation, and communities that can pull network effects from every Bitsocial client. By default, it can feel as familiar as a modern For You social app, while still letting users switch RPCs, feeds, instances, algorithms, ads, or remove ranking entirely.
+- Phase 4 - Scale Bitsocial economies: The next layer is ecosystem funding and infrastructure pluralism. Bitsocial Forge's RPC should not be the only successful RPC: many businesses, independent teams, anonymous operators, and community entities should build RPCs, media hosting, discovery, moderation, and other services on top of Bitsocial. Funding should push that decentralization forward, so developers and operators can compete to make the network faster, cheaper, more reliable, and harder to capture.
+- Phase 5 - Decentralize all social media: With the core apps, public RPCs, profile nodes, discovery, and monetization in place, Bitsocial can fund and build the long tail of social clients: blogging, crowdfunding, creator video and a credible YouTube alternative, niche experiments, and every format too early for the first four phases. Bitsocial Forge can build some of them, centralized clients can compete too, they do not all have to be FOSS, and decentralized community grants can fund as many developers as possible.
+
+The end state is not one app. It is a market of clients, nodes, services, and communities that can replace platform ownership with protocol competition.
+
+Social media finally finds its equilibrium: a fully decentralized, peer-to-peer social network that nobody owns; Bitsocial.
+
+## Landing page deep comparison tables
+
+### Nostr vs Bitsocial
+
+Source: https://bitsocial.net/#nostr-comparison
+
+| Topic | Nostr | Bitsocial |
+| --- | --- | --- |
+| Spam replies | Spam can reach the thread first. Cleanup usually happens after. | A community can challenge posters first and reject spam before it appears. |
+| Community rules | Rules depend on the relay or app people happen to use. | Rules belong to the community, so accepted posts pass the same gate. |
+| Scaling costs | High traffic pushes more server and bandwidth cost onto relays. | More readers can also mean more people helping share the content. |
+| Data hosting | Relays keep posts online and deliver them to readers. | Users can fetch and share posts directly with each other. |
+| Censorship points | If major relays stop carrying you, many users may never find your posts. | A community can stay reachable while peers keep sharing it. |
+| Who accepts posts? | A group depends on relays and apps agreeing which posts count. | The community is the thing you post to; it accepts or rejects posts itself. |
+| First post | A web client feels simple only while its relay choices work. | You can start with a local key, without making a server own your identity. |
+| Human names | Your account is a long public key; readable names need extra providers. | Keys stay yours, and .bso names can point to people or communities. |
+| Finding content | Discovery often follows the relays and search services with the most data. | Discovery finds peers; it does not become the place that owns the content. |
+
+Details:
+
+- Spam replies: Nostr can show which key wrote a reply, but publishing and moderation are separate. A relay or app can hide junk after it arrives. Bitsocial gives the community a front door: complete the challenge, or the reply is never accepted into the thread.
+- Community rules: On Nostr, a relay can set rules for that relay, and an app can filter what that app shows. Those rules do not truly belong to the community. Bitsocial lets each community choose the gate for posting, such as account age, reputation, captcha, whitelist, payment, or another challenge.
+- Scaling costs: In Nostr, relays are still the servers keeping posts online and sending them to readers. A popular post can be great for users while becoming expensive for relay operators. In Bitsocial, readers can also help distribute the content they read, so popularity can add capacity instead of only adding server cost.
+- Data hosting: Nostr posts are portable because users control their keys, but a server still has to keep the posts online. In normal Nostr use, that job belongs to relays. Bitsocial separates finding people from carrying the data: small lookup services can help find peers, then users fetch and share the content directly.
+- Censorship points: A Nostr key can survive a relay ban, but visibility still depends on the relays, search services, and apps people actually use. If those places stop carrying you, the account exists but the audience may not see it. Bitsocial removes the relay as the center of power: users can keep sharing a community through different discovery paths as long as peers keep it online.
+- Who accepts posts?: Nostr can build group features, but the group still depends on relays and apps agreeing on what belongs there. That is fragile for forum-style communities. Bitsocial lets the community accept posts directly, which fits forums, imageboards, and subreddit-style spaces better.
+- First post: Nostr can feel easy when a good web client has good relays already configured. The hidden dependency remains: those relays must accept, store, and serve the activity. Bitsocial can create the user's key locally and let the app choose direct peer-to-peer or hosted access without making an account server own the identity.
+- Human names: Nostr's base identity is a public key, which is portable but hard to remember. Readable names are useful, but they are added through separate conventions and providers. Bitsocial also uses public keys while adding .bso names, so a person or community can have a readable identity without a central account provider.
+- Finding content: Nostr discovery works best when popular relays, search relays, and apps already have the data. That gives the best-connected services extra power over what people find. Bitsocial discovery only helps find peers. It does not need to host the content, own the community, or become the place everyone must trust.
+
+### Bluesky vs Bitsocial
+
+Source: https://bitsocial.net/#bluesky-comparison
+
+| Topic | Bluesky | Bitsocial |
+| --- | --- | --- |
+| Spam replies | Spam is limited by servers, then handled by labels and AppView moderation. | A community can challenge posters first and reject spam before it appears. |
+| Community rules | The app can filter content, but the community cannot require its own challenge first. | Rules belong to the community, so accepted posts pass the same gate. |
+| Scaling costs | Growth pushes load onto account servers, relays, AppViews, and feed services. | More readers can also mean more people helping share the content. |
+| Data hosting | Public posts live on a Personal Data Server, then relays and AppViews index them. | Users can fetch and share posts directly with each other. |
+| Censorship points | The account host, relay, or AppView can block the normal path to your audience. | A community can stay reachable while peers keep sharing it. |
+| Who accepts posts? | Community-like spaces are built through feeds, lexicons, or app features, not P2P objects with their own gate. | The community is the thing you post to; it accepts or rejects posts itself. |
+| First post | The easy path is a hosted account with that provider's limits and rules. | You can start with a local key, without making a server own your identity. |
+| Human names | Readable handles are DNS names; the DID document points apps to the account's current server. | Keys stay yours, and .bso names can point to people or communities. |
+| Finding content | Discovery depends on AppViews, search indexes, feeds, and client defaults. | Discovery finds peers; it does not become the place that owns the content. |
+
+Details:
+
+- Spam replies: Bluesky uses PDS limits, moderation labels, and AppView choices to reduce abuse. Those defenses are useful, but they are server and indexing-layer defenses. Bitsocial gives the community a front door: complete the challenge, or the reply is never accepted into the thread.
+- Community rules: Bluesky moderation is built around labels, AppViews, and service rules. That can hide, rank, or limit content, but it is not the same as a community-owned pre-post gate. Bitsocial lets each community choose the gate for posting, such as account age, reputation, captcha, whitelist, payment, or another challenge.
+- Scaling costs: ATProto deliberately uses servers for convenience and availability. Relays aggregate firehoses, AppViews index the network, and custom feeds often consume the firehose. Official docs describe relays and AppViews as resource intensive, and relay operations have already needed scaling work. Bitsocial uses routers only to find peers; readers can help carry the content.
+- Data hosting: Bluesky's repo design is one of its strongest parts: public records are signed, portable, and exportable. But the authoritative host is still the current PDS, and the normal app experience depends on relays and AppViews. Bitsocial starts with peer-to-peer content sharing instead of server-hosted account repos.
+- Censorship points: Bluesky separates account hosting, relay distribution, and AppView indexing. That helps portability, but it also creates several visibility gates that ordinary users rarely change. A PDS can refuse service, relays can stop carrying data, and AppViews can hide or ignore records. Bitsocial keeps reach closer to the community and its peers.
+- Who accepts posts?: Bluesky can build groups, forums, and community feeds through lexicons, AppViews, and feed generators. That still leaves the community dependent on services that index and interpret records. Bitsocial treats the community as the addressed object: its node validates posts and publishes the accepted state.
+- First post: Bluesky is easy when bsky.social or another PDS handles accounts, sessions, writes, and hosting. That convenience is server-based, and hosted services apply their own API limits and policies. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity.
+- Human names: Bluesky has a real improvement over raw public keys: DIDs plus readable handles. The tradeoff is that handles are DNS names and the DID document still advertises the user's current PDS. Bitsocial keeps cryptographic ownership while adding .bso names for people and communities.
+- Finding content: Bluesky's own architecture puts feeds, search, and aggregate views in AppViews and related services. That makes discovery powerful, but visibility follows whichever aggregators the app uses. Bitsocial discovery services only return peer addresses. They do not need to host the content, own the community, or decide what everyone sees.
+
+### ActivityPub / Fediverse vs Bitsocial
+
+Source: https://bitsocial.net/#mastodon-comparison
+
+| Topic | ActivityPub / Fediverse | Bitsocial |
+| --- | --- | --- |
+| Spam replies | Spam reaches servers first, then filters, reports, and moderators respond. | A community can challenge posters first and reject spam before it appears. |
+| Community rules | Rules belong to the instance, the user, or a domain blocklist. | Rules belong to the community, so accepted posts pass the same gate. |
+| Scaling costs | Growth pushes storage, federation, streaming, and moderation cost onto instances. | More readers can also mean more people helping share the content. |
+| Data hosting | Posts are hosted by an instance, then federated as ActivityPub objects. | Users can fetch and share posts directly with each other. |
+| Censorship points | Instance admins can limit local accounts or block whole remote servers. | A community can stay reachable while peers keep sharing it. |
+| Who accepts posts? | A Fediverse community is still defined by the app or instance that accepts and announces its posts. | The community is the thing you post to; it accepts or rejects posts itself. |
+| First post | You post through the server account you chose. | You can start with a local key, without making a server own your identity. |
+| Human names | Your readable handle includes a server, so moving servers can change your address. | Keys stay yours, and .bso names can point to people or communities. |
+| Finding content | Search and timelines depend on what your instance has seen, cached, and chosen to show. | Discovery finds peers; it does not become the place that owns the content. |
+
+Details:
+
+- Spam replies: ActivityPub does not define a universal anti-spam gate. The spec recommends server-side filtering, and Mastodon adds signup limits, email confirmation, reports, blocks, filters, and domain moderation. Those tools help, but they usually work at the server or visibility layer. Bitsocial lets a community challenge a poster before the reply is accepted.
+- Community rules: Mastodon gives instance admins, moderators, and users many controls: filters, mutes, blocks, reports, server-wide limits, and suspensions. They are powerful federation controls, but they are not a portable community-owned pre-post gate. Bitsocial lets each community choose its posting challenge, so accepted posts pass the same rule before entering the thread.
+- Scaling costs: A Mastodon server needs a domain, always-online hosting, email, database, Redis, background workers, streaming, and often object storage. Mastodon can scale horizontally, but that means operating more app servers, workers, databases, queues, and moderation capacity. Bitsocial uses routers only to find peers; readers can help carry the content they read.
+- Data hosting: ActivityPub actors live on servers with inboxes and outboxes. In Mastodon, ActivityPub Notes and Questions become statuses and polls that the instance stores, serves, and delivers to other servers. That is much more open than one central platform, but the normal data host is still an always-online server. Bitsocial starts with peer-to-peer content sharing instead.
+- Censorship points: Mastodon moderation is local to each server: one admin cannot delete a remote account globally, but they can hide, limit, suspend, or domain-block what their own users see. If influential servers block an instance, reach can collapse for many users. Bitsocial keeps reach closer to the community and the peers still sharing it.
+- Who accepts posts?: ActivityPub lets different apps interoperate, but the server software still decides what a community means. Mastodon is mostly profile and timeline based. Lemmy adds ActivityPub Groups for forum communities, but the Lemmy instance still accepts, stores, and announces the posts. In Bitsocial, the community is the object you post to: its node checks the posting gate and publishes the accepted thread state. That is the difference: the rule belongs to the community, not just the app or instance hosting it.
+- First post: Mastodon is easy once a user chooses an instance and creates an account. The server handles sessions, posts, media, federation, and rules. Self-hosting gives more control, but requires operating the stack. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity.
+- Human names: Mastodon handles are readable because WebFinger turns @user@domain into an ActivityPub actor URI. The domain matters: the same username on another server is a different account. Mastodon can redirect or move followers to a new account, but posts and media do not move. Bitsocial keeps cryptographic ownership and adds .bso names for people and communities.
+- Finding content: ActivityPub delivers activities to actor inboxes and shared inboxes, so discovery naturally depends on what servers receive, cache, index, and choose to show. Mastodon users can also filter users, keywords, and whole domains. Bitsocial discovery services only return peer addresses; they do not need to host content or decide what everyone sees.
+
+### Farcaster vs Bitsocial
+
+Source: https://bitsocial.net/#farcaster-comparison
+
+| Topic | Farcaster | Bitsocial |
+| --- | --- | --- |
+| Spam replies | Valid signed casts can enter hubs; apps moderate visibility after the fact. | A community can challenge posters first and reject spam before it appears. |
+| Community rules | Storage rent raises spam cost, but community gates are app or channel policy. | Rules belong to the community, so accepted posts pass the same gate. |
+| Scaling costs | Growth pushes load onto hubs, storage rent, APIs, and indexers. | More readers can also mean more people helping share the content. |
+| Data hosting | Identity is onchain, while casts and social messages are stored by hubs or Snapchain. | Users can fetch and share posts directly with each other. |
+| Censorship points | Clients, APIs, channels, and hub/index access can shape what users actually see. | A community can stay reachable while peers keep sharing it. |
+| Who accepts posts? | Channels are app/client layers, not communities that accept posts themselves. | The community is the thing you post to; it accepts or rejects posts itself. |
+| First post | First post usually starts through an app that manages signers, storage, and hubs. | You can start with a local key, without making a server own your identity. |
+| Human names | Farcaster usernames are protocol registrations with app signer keys. | Keys stay yours, and .bso names can point to people or communities. |
+| Finding content | Discovery depends on clients, channels, APIs, and indexers built over hub data. | Discovery finds peers; it does not become the place that owns the content. |
+
+Details:
+
+- Spam replies: A Farcaster reply is a signed message accepted when the FID, signer, and storage rules check out. Storage rent limits volume, but it is not a community-owned challenge before each reply. Bitsocial gives the community a front door: complete the challenge, or the reply is never accepted into the thread.
+- Community rules: Farcaster's storage registry makes spam more costly and clients can filter or moderate channels, but the rule is not owned by each forum-style community as a pre-post gate. Bitsocial lets each community choose the gate for posting, such as account age, reputation, captcha, whitelist, payment, or another challenge.
+- Scaling costs: Farcaster avoids putting every social action onchain, but hub or Snapchain nodes, storage accounting, APIs, and indexers still need to replicate and serve a large public social graph. Popularity increases those operator costs. Bitsocial uses routers only to find peers; readers can help carry the content they read.
+- Data hosting: Farcaster keeps the account identity and storage accounting on OP Mainnet, while casts, follows, reactions, and profile updates are signed messages stored and replicated by hubs or Snapchain. That makes it lighter than a fully onchain social network, but the normal data layer is still a server network. Bitsocial starts with peer-to-peer content sharing instead of hub-hosted social state.
+- Censorship points: Farcaster messages are valid if they satisfy protocol rules, but what users actually see is shaped by clients, APIs, channels, indexers, and moderation systems around the protocol. That reduces global deletion risk, but visibility still follows the popular surfaces. Bitsocial keeps reach closer to the community and the peers still sharing it.
+- Who accepts posts?: Farcaster's base protocol stores user messages and relationships. Channels and community-like spaces are client or app conventions layered on top, so the posting gate depends on the app and indexing path users choose. Bitsocial treats the community as the addressed object: its node validates posts and publishes the accepted state.
+- First post: Farcaster's user experience is easiest through a client that manages account setup, app signers, storage, and hub or Snapchain connectivity. Running your own data path is possible, but not the first-post path for normal users. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without routing the first post through app-managed signer and storage infrastructure.
+- Human names: Farcaster IDs, custody addresses, signer keys, storage registration, and usernames are anchored onchain. That gives accounts cryptographic portability, but the identity is still a protocol registration with app-managed signer paths and paid storage. Bitsocial keeps cryptographic ownership while adding .bso names for people and communities.
+- Finding content: Farcaster discovery usually happens through clients, channels, recommendation systems, APIs, and indexed hub or Snapchain data. The protocol data can be open, but the practical discovery layer is still whichever app and indexer the user uses. Bitsocial discovery services only return peer addresses; they do not need to host content or decide what everyone sees.
+
+### Lens vs Bitsocial
+
+Source: https://bitsocial.net/#lens-comparison
+
+| Topic | Lens | Bitsocial |
+| --- | --- | --- |
+| Spam replies | Replies are protocol interactions; app and rule choices determine visibility. | A community can challenge posters first and reject spam before it appears. |
+| Community rules | Rules can be programmable, but the gate lives in Lens contracts and apps. | Rules belong to the community, so accepted posts pass the same gate. |
+| Scaling costs | Growth pushes load onto Lens Chain, storage, indexers, RPCs, and app backends. | More readers can also mean more people helping share the content. |
+| Data hosting | Profiles, graph, feeds, groups, and rules live in Lens smart-contract primitives. | Users can fetch and share posts directly with each other. |
+| Censorship points | Apps can filter, contracts can enforce rules, and interfaces still decide what users see. | A community can stay reachable while peers keep sharing it. |
+| Who accepts posts? | Groups and feeds can have rules, but acceptance runs through Lens infrastructure. | The community is the thing you post to; it accepts or rejects posts itself. |
+| First post | First post usually starts through a Lens app, wallet, RPC, and indexer path. | You can start with a local key, without making a server own your identity. |
+| Human names | Lens names follow wallet, app, and chain infrastructure. | Keys stay yours, and .bso names can point to people or communities. |
+| Finding content | Discovery depends on Lens apps, APIs, indexers, graphs, feeds, and app defaults. | Discovery finds peers; it does not become the place that owns the content. |
+
+Details:
+
+- Spam replies: Lens can attach rules to feeds, groups, accounts, and posts, so it can block or restrict some interactions. That is useful, but it is still smart-contract and app rule execution, not a P2P community challenge chosen and run by the community node itself. Bitsocial gives the community a front door: complete the challenge, or the reply is never accepted into the thread.
+- Community rules: Lens rules are powerful and programmable, but they live as protocol and app primitives on Lens Chain. For a forum-style community, that still means depending on the chain, app, and indexer path to enforce and display the rule. Bitsocial lets each community choose the gate for posting, such as account age, reputation, captcha, whitelist, payment, or another challenge.
+- Scaling costs: Lens is built for scalable SocialFi with Lens Chain, ZK infrastructure, storage, APIs, and indexers. That is more scalable than posting everything to a general L1, but growth still concentrates load in chain, RPC, indexing, storage, and app infrastructure. Bitsocial uses routers only to find peers; readers can help carry the content they read.
+- Data hosting: Lens has moved toward Lens Chain and a V3 model with account, feed, graph, group, namespace, action, and rule primitives. That gives developers powerful shared infrastructure, but social state still goes through chain and protocol primitives plus their indexers. Bitsocial starts with peer-to-peer content sharing instead of chain-hosted social state.
+- Censorship points: Lens can enforce rules in protocol primitives, and each interface can also apply its own terms, filters, and ranking. That gives flexibility, but users still depend on apps, indexers, RPCs, and protocol governance for visibility. Bitsocial keeps reach closer to the community and the peers still sharing it.
+- Who accepts posts?: Lens is stronger than many social protocols here: V3 includes groups, feeds, namespaces, and rules that can restrict interactions. The tradeoff is that acceptance still runs through Lens chain/protocol primitives, apps, and indexers. Bitsocial treats the community as the addressed object: its node validates posts and publishes the accepted state.
+- First post: Lens focuses on a web2-like flow with gasless or signless transactions and embedded wallet support. That improves onboarding, but a user is still entering through a Lens app, wallet, RPC, indexer, and chain path. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without routing the first post through wallet, RPC, indexer, and chain infrastructure.
+- Human names: Lens accounts live on Lens Chain, and V3 treats every EVM account as a profile with usernames and social primitives available through apps. That is much friendlier than raw public keys, but the readable identity still follows wallet, chain, app, and indexer infrastructure. Bitsocial keeps cryptographic ownership while adding .bso names for people and communities.
+- Finding content: Lens gives developers shared graphs, feeds, groups, APIs, and indexers, which is useful for building social apps. But discovery still follows the Lens app, API, indexer, feed, and graph choices users enter through. Bitsocial discovery services only return peer addresses; they do not need to host content or decide what everyone sees.
+
+### DeSo vs Bitsocial
+
+Source: https://bitsocial.net/#deso-comparison
+
+| Topic | DeSo | Bitsocial |
+| --- | --- | --- |
+| Spam replies | A spam comment can become an onchain transaction before filters hide it. | A community can challenge posters first and reject spam before it appears. |
+| Community rules | Rules mostly filter chain data after transactions already exist. | Rules belong to the community, so accepted posts pass the same gate. |
+| Scaling costs | Each social action is a transaction, so node and index costs keep climbing. | More readers can also mean more people helping share the content. |
+| Data hosting | Profiles, posts, comments, follows, and reactions are written as DeSo transactions. | Users can fetch and share posts directly with each other. |
+| Censorship points | The chain keeps public data; node operators pay to index and filter what users see. | A community can stay reachable while peers keep sharing it. |
+| Who accepts posts? | A node can curate a feed, but communities are views over global transaction data. | The community is the thing you post to; it accepts or rejects posts itself. |
+| First post | The easy path signs a social transaction through DeSo Identity and a hosted node API. | You can start with a local key, without making a server own your identity. |
+| Human names | A DeSo profile follows a public key, but the social history lives on the DeSo chain. | Keys stay yours, and .bso names can point to people or communities. |
+| Finding content | Discovery depends on nodes and feeds that can afford to index the growing chain. | Discovery finds peers; it does not become the place that owns the content. |
+
+Details:
+
+- Spam replies: A DeSo comment is an onchain transaction. Nodes and moderation services can filter what they show, but junk can still become part of the shared ledger, adding cost and data that future nodes and indexers have to carry. Bitsocial gives the community a front door: complete the challenge, or the reply is never accepted into the thread.
+- Community rules: DeSo moderation is intentionally open: every node can choose the subset of public chain data it exposes, and external labelers can participate. That helps filtering, but it usually happens after a signed transaction has entered the shared chain. Bitsocial lets each community choose its posting challenge, so accepted posts pass the same rule before entering the thread.
+- Scaling costs: DeSo optimizes a blockchain for social storage, but that means posts, comments, likes, follows, and other social actions become transactions. The official node FAQ already describes a large node baseline and database plus transaction-index growth, so popularity raises the hardware and indexing bar for operators. Bitsocial uses routers only to find peers; readers can help carry the content they read.
+- Data hosting: DeSo's strongest claim is that identities, profiles, posts, comments, likes, follows, and related social data are stored directly on its purpose-built blockchain. That removes a single app database, but it also means each social action becomes transaction-shaped data that nodes and indexers have to keep carrying. Bitsocial starts with peer-to-peer content sharing instead of writing every social action to a global ledger.
+- Censorship points: DeSo's public chain can keep content from disappearing from every node at once, but node operators still need to run and index the growing ledger before deciding what to expose, hide, rank, or make compliant. Bitsocial keeps reach closer to the community and the peers still sharing it.
+- Who accepts posts?: DeSo nodes can create their own feeds over the shared firehose, which helps discovery and curation. But the community is still a curated view over global chain transactions, not a P2P object that owns its own acceptance gate before new posts enter. Bitsocial treats the community as the addressed object: its node validates posts and publishes the accepted state.
+- First post: DeSo web apps commonly rely on DeSo Identity for signing and on a node API for constructing and submitting social transactions. That is easier than running a node, but the post still enters through hosted identity, node, and transaction infrastructure. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity.
+- Human names: DeSo identity is controlled by a public key, and apps can sign actions through DeSo Identity. That gives portability across DeSo apps, but the human profile and social history are still DeSo-chain objects that every serious node or indexer has to carry. Bitsocial keeps cryptographic ownership while adding .bso names for people and communities.
+- Finding content: DeSo nodes can expose different feeds over the same open chain data. That makes curation competitive, but discovery still follows the node or feed view that can keep indexing and serving the growing transaction history. Bitsocial discovery services only return peer addresses; they do not need to host content or decide what everyone sees.
+
+### Steemit vs Bitsocial
+
+Source: https://bitsocial.net/#steemit-comparison
+
+| Topic | Steemit | Bitsocial |
+| --- | --- | --- |
+| Spam replies | A valid comment can enter the chain; voting and moderation happen after. | A community can challenge posters first and reject spam before it appears. |
+| Community rules | Rules mostly rely on chain resources, voting, reputation, and later moderation. | Rules belong to the community, so accepted posts pass the same gate. |
+| Scaling costs | Growth pushes more posts, votes, rewards, API load, and moderation work onto Steem infrastructure. | More readers can also mean more people helping share the content. |
+| Data hosting | Posts, votes, rewards, and account actions are written to the Steem blockchain. | Users can fetch and share posts directly with each other. |
+| Censorship points | The chain keeps the record, but front ends, votes, witnesses, and communities shape reach. | A community can stay reachable while peers keep sharing it. |
+| Who accepts posts? | Communities can organize posts, but Steem accounts and chain rules accept them. | The community is the thing you post to; it accepts or rejects posts itself. |
+| First post | First post starts with Steem account keys and a Steem front end or API node. | You can start with a local key, without making a server own your identity. |
+| Human names | A Steem username is readable, but tied to Steem's account system. | Keys stay yours, and .bso names can point to people or communities. |
+| Finding content | Discovery depends on front-end feeds, tags, communities, rewards, and ranking. | Discovery finds peers; it does not become the place that owns the content. |
+
+Details:
+
+- Spam replies: A Steem comment can enter the chain if the account has resources and signs the operation. Communities and votes can suppress it afterward, but the anti-spam path is mostly post-acceptance. Bitsocial gives the community a front door: complete the challenge, or the reply is never accepted into the thread.
+- Community rules: Steem has account resources, voting, reputation, muting, and community moderation. Those tools can discourage or hide spam, but they usually work through chain economics and post-acceptance curation rather than a community-owned pre-post gate. Bitsocial lets each community choose its posting challenge, so accepted posts pass the same rule before entering the thread.
+- Scaling costs: Steem offers fast blocks and resource-based free transactions, but scaling still means more chain history, more API node work, more witness infrastructure, and more front-end moderation and ranking load. Bitsocial uses routers only to find peers; readers can help carry the content they read.
+- Data hosting: Steemit runs on Steem, so posts, comments, votes, rewards, and account operations are blockchain actions served through Steem nodes and front ends. That makes the record public and portable across Steem apps, but the normal data layer is still the Steem chain plus API nodes. Bitsocial starts with peer-to-peer content sharing instead.
+- Censorship points: Steem makes the chain record hard to erase, but front ends, witnesses, community moderators, downvotes, reputation, and reward rules shape what people find and trust. Bitsocial keeps reach closer to the community and the peers still sharing it.
+- Who accepts posts?: Steem communities can organize posts and mute content through community operations, and front ends can choose what to show. The underlying post is still accepted as a Steem account and chain operation, not by a P2P community object with its own gate. Bitsocial treats the community as the addressed object: its node validates posts and publishes the accepted state.
+- First post: Steemit is straightforward once a user has a Steem account and posting key, but that account belongs to the Steem permission model and the post enters through a Steem front end or API node. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity.
+- Human names: Steem accounts are readable names with hierarchical keys, including posting, active, owner, and memo permissions. That is practical for a blockchain app, but the identity is still a Steem account rather than a portable person or community name. Bitsocial keeps cryptographic ownership while adding .bso names for people and communities.
+- Finding content: Steemit discovery is driven by front-end feeds, tags, communities, rewards, votes, and ranking. Those mechanisms are useful, but they make visibility depend on Steem-specific economics and interfaces. Bitsocial discovery services only return peer addresses; they do not need to host content or decide what everyone sees.
 
 ## Documentation map
 
@@ -579,6 +847,43 @@ have structural limitations:
 Bitsocial's peer-to-peer approach removes the server from the equation entirely. A community node
 can run on a laptop, a Raspberry Pi, or a cheap VPS. The operator controls moderation policy but
 cannot seize user identities, because identities are keypair-controlled, not server-granted.
+
+## What about Nostr?
+
+Nostr does not fit cleanly into either bucket. It is not ActivityPub-style federation, because users
+are not issued accounts by instances and identity is not tied to one server. It is not blockchain
+social media either, because there is no chain, consensus, gas, or global transaction order.
+
+Nostr is better described as **relay-based social media**. In the base protocol
+([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)), users hold keypairs, sign
+events, and publish those events to WebSocket relays. Clients subscribe to relays with filters,
+fetch matching events, and verify signatures locally. Users can also publish relay-list metadata
+([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)) that tells clients which
+relays they normally write to and which relays they prefer for reading mentions.
+
+That puts Nostr closer to Bitsocial than federated or blockchain systems in one important way:
+identity is cryptographic and portable. The main difference is the data layer. In Nostr, relays are
+the normal storage and delivery layer. In Bitsocial, HTTP routers only help clients find peers. The
+routers do not store posts, profiles, community metadata, or moderation state; they return provider
+peer addresses, then clients fetch content from peers.
+
+Communities show the same split. Nostr has optional patterns for
+[relay-based groups](https://github.com/nostr-protocol/nips/blob/master/29.md) and
+[moderator-approved communities](https://github.com/nostr-protocol/nips/blob/master/72.md), but
+they still depend on relay policy, relay-hosted group state, or client choices about which
+approvals to honor. Bitsocial treats communities as first-class cryptographic objects whose
+operator node validates posts, runs the community's challenge policy, and publishes the latest
+accepted state into the peer-to-peer network.
+
+| Question            | Nostr                                                                              | Bitsocial                                                         |
+| ------------------- | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Category            | Relay-based protocol                                                               | Peer-to-peer community network                                    |
+| Identity            | User public key                                                                    | User and community keypairs                                       |
+| Data path           | Signed events published to relays                                                  | Public-key address resolves to peers; content fetched from peers  |
+| Who keeps it online | Relays chosen by users and clients                                                 | Community owner node plus helper seeders                          |
+| Communities         | Optional relay-based groups or moderator-approved communities                      | First-class community objects with operator-controlled moderation |
+| Anti-spam           | Relay policy, auth, payment, proof-of-work, client filters, or moderator approvals | Community-defined challenge logic before inclusion                |
+| Main tradeoff       | Portable identity, but relay-dependent availability and policy                     | Less relay dependence, but old content is not guaranteed forever  |
 
 ---
 
@@ -4424,7 +4729,7 @@ Description: <p align="left"
 
 ## What is Bitsocial?
 
-Bitsocial is p2p and decentralized social media protocol built completely with IPFS/IPNS/pubsub. It doesn't use any central server, central database, public HTTP endpoint or DNS, it is pure peer to peer and fully content addressable. It will allow community owners to retain full ownership over their community. Whitepaper [here](https://github.com/plebbit/whitepaper/discussions/2)
+Bitsocial is p2p and decentralized social media protocol built completely with IPFS/IPNS/pubsub. It doesn't use any central server, central database, public HTTP endpoint or DNS, it is pure peer to peer and fully content addressable. It will allow community owners to retain full ownership over their community. Learn more [here](https://bitsocial.net).
 
 ## What is bitsocial-cli?
 
@@ -4749,7 +5054,7 @@ EXAMPLES
   $ bitsocial challenge install ./my-local-challenge
 ```
 
-_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/challenge/install.ts)_
+_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/challenge/install.ts)_
 
 ## `bitsocial challenge list`
 
@@ -4772,7 +5077,7 @@ EXAMPLES
   $ bitsocial challenge list -q
 ```
 
-_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/challenge/list.ts)_
+_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/challenge/list.ts)_
 
 ## `bitsocial challenge remove NAME`
 
@@ -4797,7 +5102,7 @@ EXAMPLES
   $ bitsocial challenge remove @scope/my-challenge
 ```
 
-_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/challenge/remove.ts)_
+_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/challenge/remove.ts)_
 
 ## `bitsocial community create`
 
@@ -4827,7 +5132,7 @@ EXAMPLES
     $ bitsocial community create --jsonFile ./create-options.json
 ```
 
-_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/create.ts)_
+_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/community/create.ts)_
 
 ## `bitsocial community delete ADDRESSES`
 
@@ -4852,7 +5157,7 @@ EXAMPLES
   $ bitsocial community delete 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/delete.ts)_
+_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/community/delete.ts)_
 
 ## `bitsocial community edit ADDRESS`
 
@@ -4922,7 +5227,7 @@ EXAMPLES
     $ bitsocial community edit bitsocial.bso --jsonFile ./edit-options.json
 ```
 
-_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/edit.ts)_
+_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/community/edit.ts)_
 
 ## `bitsocial community get [ADDRESS]`
 
@@ -4953,7 +5258,7 @@ EXAMPLES
   $ bitsocial community get --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/get.ts)_
+_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/community/get.ts)_
 
 ## `bitsocial community list`
 
@@ -4976,7 +5281,7 @@ EXAMPLES
   $ bitsocial community list
 ```
 
-_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/list.ts)_
+_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/community/list.ts)_
 
 ## `bitsocial community start ADDRESSES`
 
@@ -5010,7 +5315,7 @@ EXAMPLES
     $ bitsocial community start $(bitsocial community list -q) --concurrency 1
 ```
 
-_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/start.ts)_
+_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/community/start.ts)_
 
 ## `bitsocial community stop ADDRESSES`
 
@@ -5035,7 +5340,7 @@ EXAMPLES
   $ bitsocial community stop Qmb99crTbSUfKXamXwZBe829Vf6w5w5TktPkb6WstC9RFW
 ```
 
-_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/community/stop.ts)_
+_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/community/stop.ts)_
 
 ## `bitsocial daemon`
 
@@ -5075,7 +5380,7 @@ EXAMPLES
   $ bitsocial daemon --chainProviderUrls https://mainnet.infura.io/v3/YOUR_KEY
 ```
 
-_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/daemon.ts)_
+_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/daemon.ts)_
 
 ## `bitsocial help [COMMAND]`
 
@@ -5141,7 +5446,7 @@ EXAMPLES
   $ bitsocial logs --stdout -f
 ```
 
-_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/logs.ts)_
+_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/logs.ts)_
 
 ## `bitsocial update check`
 
@@ -5158,7 +5463,7 @@ EXAMPLES
   $ bitsocial update check
 ```
 
-_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/update/check.ts)_
+_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/update/check.ts)_
 
 ## `bitsocial update install [VERSION]`
 
@@ -5190,7 +5495,7 @@ EXAMPLES
   $ bitsocial update install --no-restart-daemons
 ```
 
-_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/update/install.ts)_
+_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/update/install.ts)_
 
 ## `bitsocial update versions`
 
@@ -5212,7 +5517,7 @@ EXAMPLES
   $ bitsocial update versions --limit 5
 ```
 
-_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.55/src/cli/commands/update/versions.ts)_
+_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.57/src/cli/commands/update/versions.ts)_
 <!-- commandsstop -->
 
 ## Contribution

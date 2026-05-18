@@ -10,6 +10,14 @@ const aboutPublicDir = path.join(repoRoot, "about", "public");
 const docsRoot = path.join(repoRoot, "docs");
 const docsStaticDir = path.join(docsRoot, "static");
 const appsDataPath = path.join(repoRoot, "about", "src", "lib", "apps-data.ts");
+const aboutEnglishTranslationsPath = path.join(
+  repoRoot,
+  "about",
+  "public",
+  "translations",
+  "en",
+  "default.json",
+);
 const rootReadmePath = path.join(repoRoot, "README.md");
 
 const excludedDocDirs = new Set([
@@ -66,6 +74,28 @@ const siteAppEntries = [
     url: `${siteOrigin}/apps/telegram-bots`,
     description: "Feed bots that relay Bitsocial posts into Telegram channels.",
   },
+];
+
+const landingDeepComparisonServices = [
+  { id: "nostr", anchor: "nostr-comparison" },
+  { id: "bluesky", anchor: "bluesky-comparison" },
+  { id: "mastodon", anchor: "mastodon-comparison" },
+  { id: "farcaster", anchor: "farcaster-comparison" },
+  { id: "lens", anchor: "lens-comparison" },
+  { id: "deso", anchor: "deso-comparison" },
+  { id: "steemit", anchor: "steemit-comparison" },
+];
+
+const landingDeepComparisonRows = [
+  "replies",
+  "antiSpam",
+  "scalingEconomics",
+  "dataLayer",
+  "moderation",
+  "communityModel",
+  "browserMobile",
+  "identity",
+  "contentDiscovery",
 ];
 
 function log(message) {
@@ -138,6 +168,29 @@ function markdownToSingleLine(value) {
     .replace(/[*_>#-]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function translationToSingleLine(value) {
+  if (typeof value !== "string") return "";
+
+  return collapseBlankLines(value.replace(/<[^>]+>/g, " "))
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1")
+    .replace(/[*_>#]/g, " ")
+    .replace(/\s+/g, " ")
+    .replace(/\s+([,;:!?])/g, "$1")
+    .replace(/\s+\.(\s|$)/g, ".$1")
+    .trim();
+}
+
+function tableCell(value) {
+  return translationToSingleLine(value).replaceAll("|", "\\|");
+}
+
+function sentenceList(values) {
+  return values.map(translationToSingleLine).filter(Boolean).join(" ");
 }
 
 function extractFirstHeading(content) {
@@ -320,6 +373,11 @@ async function collectRepoReadmes() {
   return readmes;
 }
 
+async function readAboutTranslations() {
+  const raw = await readFile(aboutEnglishTranslationsPath, "utf8");
+  return JSON.parse(raw);
+}
+
 function renderBulletList(entries) {
   return entries
     .map((entry) => `- [${entry.title || entry.name}](${entry.url}): ${entry.description}`)
@@ -367,7 +425,246 @@ function renderReadmeCorpus(readmes) {
     .join("\n\n");
 }
 
-function buildSiteLlms(docs) {
+function titleFromId(id) {
+  return id
+    .split(/[-_]/u)
+    .map((part) => `${part.charAt(0).toUpperCase()}${part.slice(1)}`)
+    .join(" ");
+}
+
+function serviceDetailKey(serviceId) {
+  return `detail${serviceId.charAt(0).toUpperCase()}${serviceId.slice(1)}`;
+}
+
+function buildLandingData(translations) {
+  const heroSegments = translations.hero?.taglineSegments ?? {};
+  const features = translations.features?.items ?? {};
+  const sanctuary = translations.sanctuary ?? {};
+  const deepComparison = sanctuary.deepComparison ?? {};
+  const arbitraryChallenges = translations.arbitraryChallenges ?? {};
+  const masterPlan = translations.masterPlan ?? {};
+
+  const deepServices = landingDeepComparisonServices
+    .map(({ id, anchor }) => ({
+      id,
+      anchor,
+      label: translationToSingleLine(deepComparison.services?.[id]) || titleFromId(id),
+    }))
+    .filter((service) => service.label);
+  const deepRows = landingDeepComparisonRows
+    .map((id) => ({
+      id,
+      label: translationToSingleLine(deepComparison.rows?.[id]?.label) || titleFromId(id),
+    }))
+    .filter((row) => row.label);
+
+  return {
+    arbitraryChallenges: {
+      quote: translationToSingleLine(arbitraryChallenges.quote),
+      options: Object.values(arbitraryChallenges.options ?? {})
+        .map(translationToSingleLine)
+        .filter(Boolean),
+      supporting: translationToSingleLine(arbitraryChallenges.supporting),
+      title: translationToSingleLine(arbitraryChallenges.title),
+    },
+    comparison: {
+      approaches: Object.values(sanctuary.approaches ?? {})
+        .map((approach) => {
+          const label = translationToSingleLine(approach.label);
+          const subtitle = translationToSingleLine(approach.subtitle);
+          return subtitle ? `${label} (${subtitle})` : label;
+        })
+        .filter(Boolean),
+      rows: Object.values(sanctuary.rows ?? {})
+        .map((row) => ({
+          bitsocial: translationToSingleLine(row.bitsocial),
+          blockchain: translationToSingleLine(row.blockchain),
+          federated: translationToSingleLine(row.federated),
+          label: translationToSingleLine(row.label),
+        }))
+        .filter((row) => row.label),
+      supporting: translationToSingleLine(sanctuary.supporting),
+    },
+    deepComparison: {
+      rows: deepRows,
+      services: deepServices,
+      rawRows: deepComparison.rows ?? {},
+    },
+    features: Object.entries(features)
+      .map(([id, feature]) => ({
+        title: titleFromId(id),
+        description: translationToSingleLine(feature.description),
+      }))
+      .filter((feature) => feature.description),
+    hero:
+      translationToSingleLine(translations.hero?.tagline) ||
+      sentenceList(Object.values(heroSegments)),
+    masterPlan: {
+      epilogue: translationToSingleLine(masterPlan.epilogue),
+      epilogueFinal: translationToSingleLine(masterPlan.epilogueFinal),
+      phases: Object.values(masterPlan.phases ?? {})
+        .map((phase) => ({
+          description: translationToSingleLine(phase.description),
+          phase: translationToSingleLine(phase.phase),
+          title: translationToSingleLine(phase.title),
+        }))
+        .filter((phase) => phase.title),
+      subtitle: translationToSingleLine(masterPlan.subtitle),
+      title: translationToSingleLine(masterPlan.title),
+    },
+  };
+}
+
+function renderLandingShortIndex(landing, heading = "Landing page highlights") {
+  const deepServices = landing.deepComparison.services.map((service) => service.label).join(", ");
+  const deepRows = landing.deepComparison.rows.map((row) => row.label).join(", ");
+  const challengeOptions = landing.arbitraryChallenges.options.join(", ");
+
+  return collapseBlankLines(`
+## ${heading}
+
+- [Home](${siteOrigin}/): ${landing.hero}
+- [Core features](${siteOrigin}/): Bitsocial is open source, peer-to-peer via IPFS/libp2p, app-oriented, serverless by default, locally moderated with no protocol-level global bans, and built around key-controlled identities and communities.
+- [Sanctuary comparison](${siteOrigin}/#sanctuary-communication): Compares ${landing.comparison.approaches.join("; ")} across self-hosting cost, who keeps content online, scaling, custom anti-spam logic, and takedown choke points.
+- [Deep comparison tables](${siteOrigin}/#nostr-comparison): Sourced modal tables compare Bitsocial with ${deepServices} across ${deepRows}.
+- [Arbitrary Challenges](${siteOrigin}/#arbitrary-challenges): ${landing.arbitraryChallenges.supporting} Example modules include ${challengeOptions}.
+- [Master Plan](${siteOrigin}/#master-plan): ${landing.masterPlan.subtitle}
+`);
+}
+
+function renderLandingComparisonTable(landing) {
+  const rows = landing.comparison.rows
+    .map(
+      (row) =>
+        `| ${tableCell(row.label)} | ${tableCell(row.federated)} | ${tableCell(row.blockchain)} | ${tableCell(row.bitsocial)} |`,
+    )
+    .join("\n");
+
+  if (!rows) return "";
+
+  return collapseBlankLines(`
+### Sanctuary comparison
+
+Source: ${siteOrigin}/#sanctuary-communication
+
+${landing.comparison.supporting}
+
+| Topic | Federated | Chain / Hub | Bitsocial |
+| --- | --- | --- | --- |
+${rows}
+`);
+}
+
+function renderLandingDeepComparisonCorpus(landing) {
+  const sections = landing.deepComparison.services
+    .map((service) => {
+      const rows = landingDeepComparisonRows
+        .map((rowId) => {
+          const row = landing.deepComparison.rawRows[rowId];
+          if (!row?.[service.id]) return null;
+
+          return {
+            bitsocial: row.bitsocial,
+            detail: row[serviceDetailKey(service.id)] || row.detail,
+            label: row.label,
+            service: row[service.id],
+          };
+        })
+        .filter(Boolean);
+
+      if (rows.length === 0) return "";
+
+      const tableRows = rows
+        .map(
+          (row) =>
+            `| ${tableCell(row.label)} | ${tableCell(row.service)} | ${tableCell(row.bitsocial)} |`,
+        )
+        .join("\n");
+      const detailRows = rows
+        .map(
+          (row) =>
+            `- ${translationToSingleLine(row.label)}: ${translationToSingleLine(row.detail)}`,
+        )
+        .join("\n");
+
+      return collapseBlankLines(`
+### ${service.label} vs Bitsocial
+
+Source: ${siteOrigin}/#${service.anchor}
+
+| Topic | ${tableCell(service.label)} | Bitsocial |
+| --- | --- | --- |
+${tableRows}
+
+Details:
+
+${detailRows}
+`);
+    })
+    .filter(Boolean)
+    .join("\n\n");
+
+  return collapseBlankLines(`
+## Landing page deep comparison tables
+
+${sections}
+`);
+}
+
+function renderLandingFullCorpus(landing) {
+  const featureRows = landing.features
+    .map((feature) => `- ${feature.title}: ${feature.description}`)
+    .join("\n");
+  const masterPlanRows = landing.masterPlan.phases
+    .map((phase) => `- ${phase.phase} - ${phase.title}: ${phase.description}`)
+    .join("\n");
+
+  return collapseBlankLines(`
+## Landing page corpus
+
+### Hero
+
+Source: ${siteOrigin}/
+
+${landing.hero}
+
+### Core features
+
+${featureRows}
+
+${renderLandingComparisonTable(landing)}
+
+### Arbitrary Challenges
+
+Source: ${siteOrigin}/#arbitrary-challenges
+
+${landing.arbitraryChallenges.title}
+
+${landing.arbitraryChallenges.supporting}
+
+Plug-in examples: ${landing.arbitraryChallenges.options.join(", ")}.
+
+Founder note: ${landing.arbitraryChallenges.quote}
+
+### Master Plan
+
+Source: ${siteOrigin}/#master-plan
+
+${landing.masterPlan.title}
+
+${landing.masterPlan.subtitle}
+
+${masterPlanRows}
+
+${landing.masterPlan.epilogue}
+
+${landing.masterPlan.epilogueFinal}
+
+${renderLandingDeepComparisonCorpus(landing)}
+`);
+}
+
+function buildSiteLlms(docs, landing) {
   return collapseBlankLines(`
 # Bitsocial
 
@@ -380,6 +677,8 @@ Use \`${siteOrigin}/\` for the public product overview and \`${siteOrigin}/docs/
 - [Home](${siteOrigin}/): High-level explanation of Bitsocial and why it is built around peer-to-peer social apps instead of a centralized platform.
 - [Apps](${siteOrigin}/apps): Directory of Bitsocial clients, anti-spam modules, and operator tools.
 - [Privacy](${siteOrigin}/privacy): Privacy notice for the about site, docs, analytics, and newsletter flows.
+
+${renderLandingShortIndex(landing)}
 
 ## Apps and tools
 
@@ -404,13 +703,15 @@ ${renderBulletList(siteAppEntries)}
 `);
 }
 
-function buildDocsLlms(docs) {
+function buildDocsLlms(docs, landing) {
   return collapseBlankLines(`
 # Bitsocial Docs
 
 > Bitsocial Docs is the technical documentation surface for the Bitsocial protocol, roadmap, apps, anti-spam modules, infrastructure, and contributor workflows.
 
 Use this file as the short routing index for \`${siteOrigin}/docs/\`. Use \`${siteOrigin}/docs/llms-full.txt\` when you want the full inline documentation corpus instead of the curated map.
+
+${renderLandingShortIndex(landing, "Related landing page context")}
 
 ${renderDocsSections(docs)}
 
@@ -422,13 +723,13 @@ ${renderDocsSections(docs)}
 `);
 }
 
-function buildDocsLlmsFull(docs, readmes) {
+function buildDocsLlmsFull(docs, readmes, landing) {
   return collapseBlankLines(`
 # Bitsocial Docs
 
 > Bitsocial Docs is the technical documentation surface for the Bitsocial protocol, roadmap, apps, anti-spam modules, infrastructure, and contributor workflows.
 
-This file expands \`${siteOrigin}/docs/llms.txt\` into a single inline corpus. It includes the public English docs source plus companion project READMEs pulled from GitHub where available.
+This file expands \`${siteOrigin}/docs/llms.txt\` into a single inline corpus. It includes the public English docs source, key landing-page context, and companion project READMEs pulled from GitHub where available.
 
 ## How to use this file
 
@@ -436,7 +737,11 @@ Use this file when you want direct inline context instead of following per-page 
 
 The content is biased toward inference-time lookup, not formal API reference generation. Bitsocial's strongest public material today is protocol explanation, roadmap context, app notes, anti-spam design, and contributor workflow documentation.
 
+${renderLandingShortIndex(landing, "Related landing page context")}
+
 ${renderDocsSections(docs)}
+
+${renderLandingFullCorpus(landing)}
 
 ## Full docs corpus
 
@@ -448,7 +753,7 @@ ${renderReadmeCorpus(readmes)}
 `);
 }
 
-function buildSiteLlmsFull(docs, readmes) {
+function buildSiteLlmsFull(docs, readmes, landing) {
   return collapseBlankLines(`
 # Bitsocial
 
@@ -474,9 +779,13 @@ Two interpretation notes matter:
 - [Docs llms.txt](${siteOrigin}/docs/llms.txt): Curated docs-specific routing index.
 - [Docs llms-full.txt](${siteOrigin}/docs/llms-full.txt): Docs-scoped full inline corpus.
 
+${renderLandingShortIndex(landing)}
+
 ## Public apps and tools
 
 ${renderBulletList(siteAppEntries)}
+
+${renderLandingFullCorpus(landing)}
 
 ## Documentation map
 
@@ -511,15 +820,23 @@ async function main() {
     throw new Error(`missing expected file: ${path.relative(repoRoot, rootReadmePath)}`);
   }
 
+  if (!existsSync(aboutEnglishTranslationsPath)) {
+    throw new Error(
+      `missing expected file: ${path.relative(repoRoot, aboutEnglishTranslationsPath)}`,
+    );
+  }
+
+  const aboutTranslations = await readAboutTranslations();
+  const landing = buildLandingData(aboutTranslations);
   const docs = (await collectDocs()).sort((left, right) =>
     left.sortKey.localeCompare(right.sortKey),
   );
   const readmes = await collectRepoReadmes();
 
-  await writeOutput("about/public/llms.txt", buildSiteLlms(docs));
-  await writeOutput("about/public/llms-full.txt", buildSiteLlmsFull(docs, readmes));
-  await writeOutput("docs/static/llms.txt", buildDocsLlms(docs));
-  await writeOutput("docs/static/llms-full.txt", buildDocsLlmsFull(docs, readmes));
+  await writeOutput("about/public/llms.txt", buildSiteLlms(docs, landing));
+  await writeOutput("about/public/llms-full.txt", buildSiteLlmsFull(docs, readmes, landing));
+  await writeOutput("docs/static/llms.txt", buildDocsLlms(docs, landing));
+  await writeOutput("docs/static/llms-full.txt", buildDocsLlmsFull(docs, readmes, landing));
 }
 
 main().catch((error) => {

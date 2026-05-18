@@ -43,6 +43,7 @@ Bitsocial Web is a small monorepo for the public Bitsocial web surface:
 | `package.json` changed | Run `yarn install` to keep `yarn.lock` in sync |
 | Dependencies or import graph changed | Run `yarn knip` as an advisory manifest/import audit |
 | Translation key/value changed | Use `docs/agent-playbooks/translations.md` |
+| Public-facing English content changed (`about/public/translations/en/default.json`, docs pages, app directory data, public README text, or `scripts/generate-llms-files.mjs`) | Run `yarn llms:generate`; inspect and commit any resulting changes to `about/public/llms*.txt` and `docs/static/llms*.txt` so LLM indexes stay current |
 | Bug report in a specific file/line | Start with git history scan from `docs/agent-playbooks/bug-investigation.md` before editing |
 | UI or visual behavior changed | Verify in browser with `playwright-cli` across Chrome/Blink, Firefox/Gecko, and WebKit/Safari; check desktop and mobile behavior when relevant |
 | Frontend UI design, redesign, critique, audit, polish, layout, typography, color, motion, or visual hierarchy work | Use the `impeccable` skill (one entry point with 23 design subcommands under `/impeccable`) |
