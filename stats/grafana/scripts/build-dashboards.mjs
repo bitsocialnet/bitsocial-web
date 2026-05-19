@@ -6,6 +6,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const grafanaRoot = path.resolve(__dirname, "..");
 const repoRoot = path.resolve(grafanaRoot, "..", "..");
 const upstreamStatusPath = path.join(grafanaRoot, "upstream", "plebbit-status.json");
+const fiveChanDirectoriesSourceUrl =
+  "https://raw.githubusercontent.com/bitsocialnet/lists/master/5chan-directories.json";
 const directoriesSnapshotPath = path.join(
   repoRoot,
   "stats",
@@ -96,6 +98,34 @@ const clone = (value) => JSON.parse(JSON.stringify(value));
 
 const replaceAll = (value, replacements) =>
   replacements.reduce((result, [from, to]) => result.replaceAll(from, to), value);
+
+const fetchJson = async (url) => {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
+  }
+
+  return response.json();
+};
+
+const getDirectoryEntries = (directoryList, sourceLabel) => {
+  if (Array.isArray(directoryList?.directories)) {
+    return directoryList.directories;
+  }
+
+  throw new Error(`${sourceLabel} is missing a directories array`);
+};
+
+const getDirectoryAddress = (directory) => directory.communityAddress || directory.name;
+
+const loadFiveChanDirectories = async () => {
+  const directoryList = await fetchJson(fiveChanDirectoriesSourceUrl);
+  const directories = getDirectoryEntries(directoryList, fiveChanDirectoriesSourceUrl);
+
+  await fs.writeFile(directoriesSnapshotPath, `${JSON.stringify(directoryList, null, 2)}\n`);
+
+  return directories;
+};
 
 const isCommunityMetric = (metricName) =>
   communityMetricPrefixes.some((prefix) => metricName.startsWith(prefix));
@@ -599,16 +629,23 @@ const buildDashboard = ({ upstreamDashboard, communities, title, uid }) => {
 
 const main = async () => {
   const upstreamStatus = JSON.parse(await fs.readFile(upstreamStatusPath, "utf8"));
-  const directoriesSnapshot = JSON.parse(await fs.readFile(directoriesSnapshotPath, "utf8"));
+  const directories = await loadFiveChanDirectories();
   const communities =
-    directoriesSnapshot?.directories?.map((directory) => ({
-      address: directory.communityAddress,
+    directories?.map((directory) => ({
+      address: getDirectoryAddress(directory),
       title: directory.title,
       directoryCode: directory.directoryCode,
     })) || [];
 
+  const missingAddress = communities.find((community) => typeof community.address !== "string");
+  if (missingAddress) {
+    throw new Error(
+      `5chan directory '${missingAddress.directoryCode || missingAddress.title}' is missing name/communityAddress`,
+    );
+  }
+
   if (communities.length === 0) {
-    throw new Error("No 5chan communities found in the directories snapshot");
+    throw new Error(`No 5chan communities found in ${fiveChanDirectoriesSourceUrl}`);
   }
 
   const summaryDashboard = buildDashboard({

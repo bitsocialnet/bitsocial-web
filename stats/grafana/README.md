@@ -8,11 +8,13 @@ The `upstream/` directory stores the exported public and internal reference dash
 
 ### Regenerating dashboards
 
-The checked-in Bitsocial dashboards are generated from the upstream reference dashboard plus the official 5chan directory snapshot:
+The checked-in Bitsocial dashboards are generated from the upstream reference dashboard plus the current official 5chan directory list:
 
 ```bash
 yarn build:stats-dashboards
 ```
+
+The generation step fetches `https://raw.githubusercontent.com/bitsocialnet/lists/master/5chan-directories.json`, refreshes the monitor snapshot from that response, and rebuilds the dashboard JSON so the per-community Grafana sections stay aligned with the main 5chan directory list.
 
 That generation step keeps the panel layout close to the upstream reference dashboards while:
 

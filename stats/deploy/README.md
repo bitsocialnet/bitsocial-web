@@ -13,7 +13,11 @@ This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current
 
 ### Syncing a release
 
-From a local checkout, sync the repo:
+From a local checkout, regenerate the stats dashboards from the main 5chan directory list and sync the repo:
+
+```bash
+yarn build:stats-dashboards
+```
 
 ```bash
 rsync -az --delete \
