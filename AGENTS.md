@@ -34,6 +34,21 @@ Bitsocial Web is a small monorepo for the public Bitsocial web surface:
 - Clean up only artifacts created by the current change, such as newly unused imports or dead helper code.
 - For non-trivial work, define success criteria and verify them with the narrowest reliable checks before marking the task complete.
 
+## LLM Knowledge Base Policy
+
+Use compiled context for orientation, not as source of truth.
+
+Source of truth:
+
+- Code, tests, package manifests, docs, and runtime/live evidence when relevant.
+
+Compiled context:
+
+- `AGENTS.md`, directory-specific `AGENTS.md` files, `CLAUDE.md`, and repo-managed `.codex/`, `.cursor/`, and `.claude/` workflow files.
+- `docs/agent-playbooks/**`, `docs/agent-runs/**`, `docs/agent-playbooks/known-surprises.md`, `about/public/llms*.txt`, and `docs/static/llms*.txt`.
+
+Agents may use compiled context to navigate quickly, but must verify against source files before making behavioral claims or edits. External code graph, RAG, MCP, or wiki tools are optional local accelerators unless the developer explicitly asks to make one part of the committed workflow.
+
 ## Task Router (Read First)
 
 | Situation | Required action |
