@@ -6,8 +6,17 @@ type TestWindow = Window & {
 };
 
 const DELAYED_PLANET_MODULE_MS = 2_800;
+const APPS_CARD_SELECTOR = ".apps-js-results .glass-card";
 const PLANET_CANVAS_SELECTOR =
   "div.relative.pointer-events-none.w-full.overflow-hidden.overscroll-none canvas";
+
+function getAppsUrl(baseURL: string | undefined) {
+  if (!baseURL) {
+    throw new Error("Playwright baseURL is required for apps graphics tests.");
+  }
+
+  return new URL("/apps", baseURL).toString();
+}
 
 function getHomeUrl(baseURL: string | undefined) {
   if (!baseURL) {
@@ -36,6 +45,28 @@ async function delayPlanetGraphicModule(page: Page) {
 
   return () => delayedModuleRequest;
 }
+
+test("apps cards do not use fallback surfaces while graphics mode is pending", async ({
+  baseURL,
+  page,
+}) => {
+  await prepareGraphicsTestWindow(page);
+  await page.route(/\/src\/entry-client\.tsx(?:\?|$)/, (route) => route.abort());
+  await page.goto(getAppsUrl(baseURL), { waitUntil: "domcontentloaded" });
+  await page.waitForSelector(APPS_CARD_SELECTOR);
+
+  await expect(page.locator(".apps-page")).toHaveAttribute("data-surface-mode", "default");
+  await expect
+    .poll(() =>
+      page
+        .locator(APPS_CARD_SELECTOR)
+        .first()
+        .evaluate((element) => {
+          return getComputedStyle(element).background;
+        }),
+    )
+    .toContain("linear-gradient");
+});
 
 test("slow first-load hero graphics chunks do not force the static fallback on capable desktops", async ({
   baseURL,
