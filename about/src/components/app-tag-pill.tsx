@@ -15,7 +15,7 @@ export default function AppTagPill({ active = false, href, label, onClick }: App
   const className = cn(
     baseClassName,
     active
-      ? "border-blue-core/30 text-foreground ring-glow dark:border-blue-core/55"
+      ? "border-blue-core/30 text-foreground ring-glow hover:border-blue-glow dark:border-blue-core/55 dark:hover:border-blue-glow"
       : "border-border/60 bg-transparent text-muted-foreground hover:border-blue-glow hover:text-foreground",
   );
 

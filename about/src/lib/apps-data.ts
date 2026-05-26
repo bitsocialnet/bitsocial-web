@@ -215,6 +215,7 @@ const PLATFORM_TRANSLATION_KEYS: Record<
 
 const APP_TAG_TRANSLATION_KEYS: Record<string, string> = {
   "Access control": "apps.catalog.tags.accessControl",
+  AI: "apps.catalog.tags.ai",
   Automation: "apps.catalog.tags.automation",
   "Board admin": "apps.catalog.tags.boardAdmin",
   Bots: "apps.catalog.tags.bots",
@@ -410,6 +411,10 @@ export function getAppTagline(app: AppData, t: TFunction) {
 export function getAppDescription(app: AppData, t: TFunction) {
   const key = APP_COPY_TRANSLATION_KEYS[app.slug]?.description;
   return key ? translateCatalogValue(t, key, app.description) : app.description;
+}
+
+export function getAppDescriptionKey(app: AppData): string | undefined {
+  return APP_COPY_TRANSLATION_KEYS[app.slug]?.description;
 }
 
 // Native release downloads go through the same-origin release API so they can track latest assets.
@@ -631,9 +636,9 @@ export const APPS: AppData[] = [
     name: "AI Moderation Challenge",
     tagline: "OpenAI-compatible moderation checks against each community's rules.",
     description:
-      "AI Moderation Challenge evaluates Bitsocial comment content against community.rules with an OpenAI-compatible model endpoint. Communities can route risky posts to review while keeping provider keys and prompts in private node settings.",
+      "AI Moderation Challenge evaluates Bitsocial comment content against <code>community.rules</code> with an OpenAI-compatible model endpoint. Communities can route risky posts to review while keeping provider keys and prompts in private node settings.",
     category: "anti-spam",
-    tags: ["Moderation", "Risk scores"],
+    tags: ["AI", "Moderation", "Risk scores"],
     icon: "sparkles",
     githubRepo: "bitsocialnet/ai-moderation-challenge",
     links: [

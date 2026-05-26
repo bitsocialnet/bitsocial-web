@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, Download, Github, Package } from "lucide-react";
 import AppLinksSection from "@/components/app-links-section";
@@ -14,6 +14,7 @@ import RelatedApps from "@/components/related-apps";
 import Topbar from "@/components/topbar";
 import {
   getAppDescription,
+  getAppDescriptionKey,
   getAppLinkLabel,
   getAppBySlug,
   getAppPlatforms,
@@ -74,6 +75,7 @@ export default function AppDetail() {
   const githubUrl = getGithubUrl(app);
   const tagline = getAppTagline(app, t);
   const description = getAppDescription(app, t);
+  const descriptionKey = getAppDescriptionKey(app);
 
   return (
     <div className="min-h-screen overflow-x-hidden">
@@ -127,7 +129,15 @@ export default function AppDetail() {
                   </h1>
                   <p className="mt-3 text-lg font-medium leading-7 text-foreground/70">{tagline}</p>
                   <p className="mt-4 max-w-3xl text-sm leading-7 text-muted-foreground">
-                    {description}
+                    {descriptionKey ? (
+                      <Trans
+                        i18nKey={descriptionKey}
+                        defaults={app.description}
+                        components={descriptionRichTextComponents}
+                      />
+                    ) : (
+                      description
+                    )}
                   </p>
                 </div>
               </div>
@@ -217,6 +227,12 @@ export default function AppDetail() {
     </div>
   );
 }
+
+const descriptionRichTextComponents = {
+  code: (
+    <code className="rounded bg-foreground/10 px-1 py-0.5 font-mono text-[0.85em] text-foreground" />
+  ),
+};
 
 function getStatusClassName(status: "ready" | "experimental") {
   return cn(

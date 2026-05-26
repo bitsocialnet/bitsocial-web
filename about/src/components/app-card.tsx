@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Download, Github, Globe, Monitor, Package, Smartphone } from "lucide-react";
 import AppMirrorLinkCta from "@/components/app-mirror-link-cta";
@@ -14,6 +14,7 @@ import {
   type AppLink,
   type AppPlatformSlug,
   getAppDescription,
+  getAppDescriptionKey,
   getAppLinkLabel,
   getAppPlatforms,
   getAppTagLabel,
@@ -73,6 +74,7 @@ export default function AppCard({
   const sourceUrl = getGithubUrl(app);
   const tagline = getAppTagline(app, t);
   const description = getAppDescription(app, t);
+  const descriptionKey = getAppDescriptionKey(app);
   const resolvedDetailHref = detailHref ?? `/apps/${app.slug}`;
 
   return (
@@ -118,7 +120,19 @@ export default function AppCard({
         </div>
       </div>
 
-      {!compact ? <p className="text-sm leading-6 text-muted-foreground">{description}</p> : null}
+      {!compact ? (
+        <p className="text-sm leading-6 text-muted-foreground">
+          {descriptionKey ? (
+            <Trans
+              i18nKey={descriptionKey}
+              defaults={app.description}
+              components={descriptionRichTextComponents}
+            />
+          ) : (
+            description
+          )}
+        </p>
+      ) : null}
 
       <div className="flex flex-wrap gap-2">
         {category ? (
@@ -257,6 +271,12 @@ export default function AppCard({
     </article>
   );
 }
+
+const descriptionRichTextComponents = {
+  code: (
+    <code className="rounded bg-foreground/10 px-1 py-0.5 font-mono text-[0.85em] text-foreground" />
+  ),
+};
 
 function getStatusClassName(status: NonNullable<AppData["status"]>) {
   return cn(
