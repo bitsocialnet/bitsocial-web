@@ -521,6 +521,7 @@ export default function Apps() {
                     allDescription={t("apps.allProjectsDescription")}
                     directoryLabel={t("apps.directoryLabel")}
                     hideHeader
+                    isAtFilterCap={isAtFilterCap}
                     totalCount={appsForCategoryCounts.length}
                   />
                 </div>
@@ -534,6 +535,7 @@ export default function Apps() {
                   allLabel={t("apps.allProjects")}
                   allDescription={t("apps.allProjectsDescription")}
                   directoryLabel={t("apps.directoryLabel")}
+                  isAtFilterCap={isAtFilterCap}
                   totalCount={appsForCategoryCounts.length}
                 />
               </div>
@@ -560,6 +562,7 @@ export default function Apps() {
                     directoryLabel={t("apps.directoryLabel")}
                     getCategoryHref={(category) => buildAppsHref(searchParams, { category })}
                     hideHeader
+                    isAtFilterCap={isAtFilterCap}
                     totalCount={appsForCategoryCounts.length}
                   />
                 </div>
@@ -572,6 +575,7 @@ export default function Apps() {
                   allDescription={t("apps.allProjectsDescription")}
                   directoryLabel={t("apps.directoryLabel")}
                   getCategoryHref={(category) => buildAppsHref(searchParams, { category })}
+                  isAtFilterCap={isAtFilterCap}
                   totalCount={appsForCategoryCounts.length}
                 />
               </div>
