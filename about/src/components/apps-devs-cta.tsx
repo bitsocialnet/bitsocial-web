@@ -1,10 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Code2, Github } from "lucide-react";
 import CardInlineCta, { cardInlineCtaClassName } from "@/components/card-inline-cta";
-
-const BITSOCIAL_TOPIC_URL = "https://github.com/topics/bitsocial";
-const SUBMIT_APP_URL =
-  "https://github.com/bitsocialnet/bitsocial-web/issues/new?title=%5BApp+Submission%5D+&labels=app-submission&template=app-submission.md";
+import { BITSOCIAL_TOPIC_URL, SUBMIT_APP_URL } from "@/lib/apps-urls";
 
 const compactCtaClassName = `${cardInlineCtaClassName} !px-3 !py-1.5 !text-xs`;
 

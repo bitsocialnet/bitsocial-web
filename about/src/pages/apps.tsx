@@ -27,12 +27,10 @@ import {
   type AppCategorySlug,
   type AppPlatformSlug,
 } from "@/lib/apps-data";
+import { SUBMIT_APP_URL } from "@/lib/apps-urls";
 import { useGraphicsMode } from "@/lib/graphics-mode";
 import { useMediaQuery } from "@/lib/use-media-query";
 import { cn } from "@/lib/utils";
-
-const SUBMIT_APP_URL =
-  "https://github.com/bitsocialnet/bitsocial-web/issues/new?title=%5BApp+Submission%5D+&labels=app-submission&template=app-submission.md";
 
 /** Cap on simultaneously active tag + category + platform filters. Mobile drops to 2
  *  because three chips don't fit inside the search bar at narrow widths. */

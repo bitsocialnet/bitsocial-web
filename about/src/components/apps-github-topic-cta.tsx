@@ -1,8 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Github, Lightbulb } from "lucide-react";
 import CardInlineCta, { cardInlineCtaClassName } from "@/components/card-inline-cta";
-
-const BITSOCIAL_TOPIC_URL = "https://github.com/topics/bitsocial";
+import { BITSOCIAL_TOPIC_URL } from "@/lib/apps-urls";
 
 /** Desktop-only context card explaining the GitHub topic with the lightbulb + description. */
 export default function AppsGithubTopicCta() {
