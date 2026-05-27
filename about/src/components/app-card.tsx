@@ -37,13 +37,15 @@ import { cn } from "@/lib/utils";
 interface AppCardProps {
   activeCategory?: AppCategorySlug | null;
   activePlatform?: AppPlatformSlug | null;
-  activeTag?: string | null;
+  activeTags?: string[];
   app: AppData;
   buildAppsHref?: (
     updates: Partial<Record<"category" | "platform" | "tag", string | null>>,
   ) => string;
   compact?: boolean;
   detailHref?: string;
+  /** True when the page is at the tag+category filter cap; disables pills that would add another. */
+  isAtFilterCap?: boolean;
   onCategorySelect?: (slug: AppCategorySlug) => void;
   onPlatformSelect?: (platform: AppPlatformSlug) => void;
   onTagSelect?: (tag: string) => void;
@@ -53,9 +55,10 @@ interface AppCardProps {
 export default function AppCard({
   activeCategory = null,
   activePlatform = null,
-  activeTag = null,
+  activeTags = [],
   app,
   buildAppsHref,
+  isAtFilterCap = false,
   onCategorySelect,
   onPlatformSelect,
   onTagSelect,
@@ -138,6 +141,7 @@ export default function AppCard({
         {category ? (
           <AppTagPill
             active={activeCategory === category.slug}
+            disabled={isAtFilterCap && !activeCategory}
             href={
               onCategorySelect
                 ? undefined
@@ -149,25 +153,30 @@ export default function AppCard({
             onClick={onCategorySelect ? () => onCategorySelect(category.slug) : undefined}
           />
         ) : null}
-        {app.tags.map((tag) => (
-          <AppTagPill
-            key={tag}
-            active={tagsMatchFilter(activeTag, tag)}
-            href={
-              onTagSelect
-                ? undefined
-                : buildAppsHref
-                  ? buildAppsHref({ tag })
-                  : `/apps?tag=${encodeURIComponent(tag)}`
-            }
-            label={getAppTagLabel(tag, t)}
-            onClick={onTagSelect ? () => onTagSelect(tag) : undefined}
-          />
-        ))}
+        {app.tags.map((tag) => {
+          const tagIsActive = tagsMatchFilter(activeTags, tag);
+          return (
+            <AppTagPill
+              key={tag}
+              active={tagIsActive}
+              disabled={isAtFilterCap && !tagIsActive}
+              href={
+                onTagSelect
+                  ? undefined
+                  : buildAppsHref
+                    ? buildAppsHref({ tag })
+                    : `/apps?tag=${encodeURIComponent(tag)}`
+              }
+              label={getAppTagLabel(tag, t)}
+              onClick={onTagSelect ? () => onTagSelect(tag) : undefined}
+            />
+          );
+        })}
         {platformTags.map((platform) => (
           <AppTagPill
             key={platform}
             active={activePlatform === platform}
+            disabled={isAtFilterCap && !activePlatform}
             href={
               onPlatformSelect
                 ? undefined

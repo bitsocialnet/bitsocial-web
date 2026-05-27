@@ -114,6 +114,29 @@
   .dark .category-filter-button[data-active="true"]:focus-within:not(:focus-visible) {
     border-color: rgb(37 99 235 / 0.55);
   }
+  /* Keep the active border on `AppTagPill` after a mouse click. The global
+     `button:focus:not(:focus-visible)` rule above resets `border-color: inherit`,
+     which would hide the active blue border on the most recently clicked pill. */
+  .app-tag-pill[data-active="true"]:focus:not(:focus-visible),
+  .app-tag-pill[data-active="true"]:active,
+  .app-tag-pill[data-active="true"]:focus-within:not(:focus-visible) {
+    border-color: rgb(26 79 208 / 0.3);
+  }
+  .dark .app-tag-pill[data-active="true"]:focus:not(:focus-visible),
+  .dark .app-tag-pill[data-active="true"]:active,
+  .dark .app-tag-pill[data-active="true"]:focus-within:not(:focus-visible) {
+    border-color: rgb(26 79 208 / 0.55);
+  }
+  /* The focus-no-focus-visible selector also wins over Tailwind's `hover:border-blue-glow`,
+     so when the focused active pill is hovered it still needs to brighten to blue-glow. */
+  .app-tag-pill[data-active="true"]:focus:not(:focus-visible):hover,
+  .app-tag-pill[data-active="true"]:active:hover,
+  .app-tag-pill[data-active="true"]:focus-within:not(:focus-visible):hover,
+  .dark .app-tag-pill[data-active="true"]:focus:not(:focus-visible):hover,
+  .dark .app-tag-pill[data-active="true"]:active:hover,
+  .dark .app-tag-pill[data-active="true"]:focus-within:not(:focus-visible):hover {
+    border-color: rgb(37 99 235);
+  }
   input[type="text"],
   input[type="search"],
   input[type="email"],

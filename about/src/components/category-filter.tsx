@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { BadgeCheck, LayoutGrid, Shield, Wrench } from "lucide-react";
 import type { AppCategorySlug, CategoryData } from "@/lib/apps-data";
@@ -11,6 +12,10 @@ interface CategoryFilterProps {
   allLabel: string;
   directoryLabel: string;
   getCategoryHref?: (category: AppCategorySlug | null) => string;
+  /** Skip the section header (used when the parent supplies its own label, e.g. a mobile disclosure). */
+  hideHeader?: boolean;
+  /** When true and no category is currently active, individual category buttons render as disabled (the cap would be exceeded). */
+  isAtFilterCap?: boolean;
   onCategoryChange?: (category: AppCategorySlug | null) => void;
   totalCount: number;
 }
@@ -30,17 +35,22 @@ export default function CategoryFilter({
   allDescription,
   directoryLabel,
   getCategoryHref,
+  hideHeader = false,
+  isAtFilterCap = false,
   totalCount,
 }: CategoryFilterProps) {
   return (
     <aside className="h-fit lg:sticky lg:top-28">
-      <div className="mb-3 px-1 pt-1">
-        <h2 className="text-xs font-display uppercase tracking-[0.2em] text-foreground/50">
-          {directoryLabel}
-        </h2>
-      </div>
+      {hideHeader ? null : (
+        <div className="mb-3 px-1 pt-1">
+          <h2 className="text-xs font-display uppercase tracking-[0.2em] text-foreground/50">
+            {directoryLabel}
+          </h2>
+        </div>
+      )}
 
       <div className="space-y-2">
+        {/* "All Projects" only clears the category; never blocked by the cap. */}
         <CategoryButton
           active={activeCategory === null}
           count={totalCount}
@@ -53,13 +63,15 @@ export default function CategoryFilter({
 
         {categories.map((category) => {
           const Icon = categoryIconMap[category.icon];
+          const isActive = activeCategory === category.slug;
 
           return (
             <CategoryButton
               key={category.slug}
-              active={activeCategory === category.slug}
+              active={isActive}
               count={category.count}
               description={category.description}
+              disabled={!isActive && isAtFilterCap && !activeCategory}
               href={getCategoryHref ? getCategoryHref(category.slug) : undefined}
               icon={<Icon className="h-4 w-4" aria-hidden="true" />}
               label={category.label}
@@ -76,6 +88,7 @@ function CategoryButton({
   active,
   count,
   description,
+  disabled = false,
   href,
   icon,
   label,
@@ -84,16 +97,19 @@ function CategoryButton({
   active: boolean;
   count: number;
   description: string;
+  disabled?: boolean;
   href?: string;
   icon: ReactNode;
   label: string;
   onClick?: () => void;
 }) {
+  const { t } = useTranslation();
   const className = cn(
     "category-filter-button glass-card group flex w-full items-start justify-between rounded-[1.4rem] px-5 py-4 text-left transition-all duration-300",
     active
       ? "border-blue-core/30 text-foreground hover:border-blue-core/30 shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55 dark:hover:border-blue-core/55"
       : "hover:border-blue-glow",
+    disabled && "cursor-not-allowed opacity-40 hover:!border-border/60",
   );
   const content = (
     <>
@@ -122,6 +138,18 @@ function CategoryButton({
       </span>
     </>
   );
+
+  if (disabled) {
+    return (
+      <div
+        className={className}
+        aria-disabled="true"
+        title={t("apps.filterLimitReached", { defaultValue: "Filter limit reached" })}
+      >
+        {content}
+      </div>
+    );
+  }
 
   if (href) {
     return (

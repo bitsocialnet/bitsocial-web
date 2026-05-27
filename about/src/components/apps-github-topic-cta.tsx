@@ -1,14 +1,14 @@
 import { useTranslation } from "react-i18next";
 import { Github, Lightbulb } from "lucide-react";
 import CardInlineCta, { cardInlineCtaClassName } from "@/components/card-inline-cta";
+import { BITSOCIAL_TOPIC_URL } from "@/lib/apps-urls";
 
-const BITSOCIAL_TOPIC_URL = "https://github.com/topics/bitsocial";
-
+/** Desktop-only context card explaining the GitHub topic with the lightbulb + description. */
 export default function AppsGithubTopicCta() {
   const { t } = useTranslation();
 
   return (
-    <div className="glass-card mb-6 px-4 py-3 md:px-5">
+    <div className="glass-card mb-6 hidden px-4 py-3 md:block md:px-5">
       <div className="flex flex-col gap-3 text-sm leading-6 text-muted-foreground md:flex-row md:items-center md:justify-between">
         <div className="flex min-w-0 items-center gap-3">
           <span
@@ -17,7 +17,7 @@ export default function AppsGithubTopicCta() {
           >
             <Lightbulb className="h-3.5 w-3.5" />
           </span>
-          <p>{t("apps.githubTopic.description")}</p>
+          <p className="min-w-0">{t("apps.githubTopic.description")}</p>
         </div>
 
         <CardInlineCta
