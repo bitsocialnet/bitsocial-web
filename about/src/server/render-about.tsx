@@ -87,6 +87,7 @@ async function createServerI18n(payload: BootstrapPayload) {
     fallbackLng: payload.locale,
     lng: payload.locale,
     debug: false,
+    showSupportNotice: false,
     resources: {
       [payload.locale]: {
         translation: payload.i18n.resources,

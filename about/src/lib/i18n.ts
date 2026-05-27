@@ -70,6 +70,7 @@ function createBaseConfig(bootstrapPayload?: BootstrapPayload | null) {
     fallbackLng: DEFAULT_LANGUAGE_CODE,
     lng: bootstrapPayload?.locale,
     debug: import.meta.env.DEV,
+    showSupportNotice: false,
     supportedLngs: SUPPORTED_LANGUAGE_CODES,
     cleanCode: true,
     load: "languageOnly" as const,
