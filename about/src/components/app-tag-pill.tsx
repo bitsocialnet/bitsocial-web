@@ -38,7 +38,7 @@ export default function AppTagPill({
         className={className}
         data-active={activeAttr}
         aria-disabled="true"
-        title={t("apps.filterLimitReached", { defaultValue: "Filter limit reached (max 3)" })}
+        title={t("apps.filterLimitReached", { defaultValue: "Filter limit reached" })}
       >
         {label}
       </span>

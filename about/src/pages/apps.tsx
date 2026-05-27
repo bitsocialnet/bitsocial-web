@@ -336,7 +336,7 @@ export default function Apps() {
                         className={baseClass}
                         aria-disabled="true"
                         title={t("apps.filterLimitReached", {
-                          defaultValue: "Filter limit reached (max 3)",
+                          defaultValue: "Filter limit reached",
                         })}
                       >
                         {inner}
