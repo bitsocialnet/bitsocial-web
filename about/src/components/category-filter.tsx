@@ -11,6 +11,8 @@ interface CategoryFilterProps {
   allLabel: string;
   directoryLabel: string;
   getCategoryHref?: (category: AppCategorySlug | null) => string;
+  /** Skip the section header (used when the parent supplies its own label, e.g. a mobile disclosure). */
+  hideHeader?: boolean;
   onCategoryChange?: (category: AppCategorySlug | null) => void;
   totalCount: number;
 }
@@ -30,15 +32,18 @@ export default function CategoryFilter({
   allDescription,
   directoryLabel,
   getCategoryHref,
+  hideHeader = false,
   totalCount,
 }: CategoryFilterProps) {
   return (
     <aside className="h-fit lg:sticky lg:top-28">
-      <div className="mb-3 px-1 pt-1">
-        <h2 className="text-xs font-display uppercase tracking-[0.2em] text-foreground/50">
-          {directoryLabel}
-        </h2>
-      </div>
+      {hideHeader ? null : (
+        <div className="mb-3 px-1 pt-1">
+          <h2 className="text-xs font-display uppercase tracking-[0.2em] text-foreground/50">
+            {directoryLabel}
+          </h2>
+        </div>
+      )}
 
       <div className="space-y-2">
         <CategoryButton

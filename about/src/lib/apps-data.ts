@@ -938,17 +938,50 @@ function isActionLink(link: AppLink): boolean {
   return link.kind === "launch" || link.kind === "download" || link.kind === "package";
 }
 
-/** Compares active filter tag from the URL to a tag string from app data (trim + case-insensitive). */
-export function tagsMatchFilter(active: string | null | undefined, candidate: string): boolean {
-  if (active == null || active === "") return false;
-  return normalizeTagForFilter(active) === normalizeTagForFilter(candidate);
+/** Parses a comma-separated tag URL param into a deduped list, preserving original casing. */
+export function parseTagFilter(value: string | null | undefined): string[] {
+  if (!value) return [];
+  const seen = new Set<string>();
+  const result: string[] = [];
+  for (const raw of value.split(",")) {
+    const trimmed = raw.trim();
+    if (!trimmed) continue;
+    const normalized = normalizeTagForFilter(trimmed);
+    if (seen.has(normalized)) continue;
+    seen.add(normalized);
+    result.push(trimmed);
+  }
+  return result;
 }
 
-export function appMatchesTag(app: AppData, tag: string | null): boolean {
-  if (!tag) return true;
+/** Serializes a tag list into the comma-separated URL param value, or null when empty. */
+export function serializeTagFilter(activeTags: string[]): string | null {
+  return activeTags.length > 0 ? activeTags.join(",") : null;
+}
 
+/** Adds `tag` to `activeTags` if absent, or removes it if present (case-insensitive). */
+export function toggleTagInList(activeTags: string[], tag: string): string[] {
   const normalized = normalizeTagForFilter(tag);
-  return app.tags.some((appTag) => normalizeTagForFilter(appTag) === normalized);
+  const existingIndex = activeTags.findIndex((t) => normalizeTagForFilter(t) === normalized);
+  if (existingIndex >= 0) {
+    return [...activeTags.slice(0, existingIndex), ...activeTags.slice(existingIndex + 1)];
+  }
+  return [...activeTags, tag];
+}
+
+/** True when `candidate` is in the active tag list (trim + case-insensitive). */
+export function tagsMatchFilter(activeTags: string[], candidate: string): boolean {
+  if (activeTags.length === 0) return false;
+  const normalizedCandidate = normalizeTagForFilter(candidate);
+  return activeTags.some((tag) => normalizeTagForFilter(tag) === normalizedCandidate);
+}
+
+/** True when the app has ALL active tags (AND filter; empty list always matches). */
+export function appMatchesTag(app: AppData, activeTags: string[]): boolean {
+  if (activeTags.length === 0) return true;
+
+  const appTagsNormalized = app.tags.map(normalizeTagForFilter);
+  return activeTags.every((tag) => appTagsNormalized.includes(normalizeTagForFilter(tag)));
 }
 
 function sortAppLinks(links: AppLink[], preferredPlatform?: AppPlatformSlug): AppLink[] {
