@@ -151,77 +151,75 @@ export default function Blog() {
             <p className="text-xs font-display uppercase tracking-[0.2em] text-foreground/45">
               {t("blog.sectionLabel")}
             </p>
-            <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-2xl">
-                <h1 className="optical-display-start text-4xl font-display font-semibold leading-[1.1] text-balance text-muted-foreground md:text-6xl lg:text-7xl">
-                  {t("blog.title")}
-                </h1>
-                <p className="mt-3 max-w-2xl text-base md:text-lg text-balance leading-relaxed text-muted-foreground">
-                  <Trans
-                    i18nKey="blog.subtitle"
-                    values={{ address: BLOG_COMMUNITY_ADDRESS }}
-                    components={{
-                      devs: (
-                        <Link
-                          to="/about"
-                          className="font-medium text-foreground/85 underline decoration-blue-glow/40 decoration-2 underline-offset-4 transition-colors hover:text-foreground hover:decoration-blue-glow"
-                        />
-                      ),
-                      address: <em className={ADDRESS_CLASSNAME} />,
-                    }}
-                  />
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-2">
-                {activeFlair ? (
-                  <AppTagPill
-                    active
-                    label={activeFlair}
-                    onClick={() => handleFlairSelect(activeFlair)}
-                  />
-                ) : null}
-                {isFiltered ? (
-                  <button
-                    type="button"
-                    onClick={clearFilters}
-                    className="inline-flex items-center gap-2 rounded-full border border-border/70 px-4 py-2 text-sm font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
-                  >
-                    <X className="h-4 w-4" />
-                    <span>{t("blog.clearFilters")}</span>
-                  </button>
-                ) : null}
-              </div>
+            <div className="mt-4 max-w-2xl">
+              <h1 className="optical-display-start text-4xl font-display font-semibold leading-[1.1] text-balance text-muted-foreground md:text-6xl lg:text-7xl">
+                {t("blog.title")}
+              </h1>
+              <p className="mt-3 max-w-2xl text-base md:text-lg text-balance leading-relaxed text-muted-foreground">
+                <Trans
+                  i18nKey="blog.subtitle"
+                  values={{ address: BLOG_COMMUNITY_ADDRESS }}
+                  components={{
+                    devs: (
+                      <Link
+                        to="/about"
+                        className="font-medium text-foreground/85 underline decoration-blue-glow/40 decoration-2 underline-offset-4 transition-colors hover:text-foreground hover:decoration-blue-glow"
+                      />
+                    ),
+                    address: <em className={ADDRESS_CLASSNAME} />,
+                  }}
+                />
+              </p>
             </div>
           </section>
 
           <section className="glass-card mb-6 p-4 md:p-5">
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <label className="relative block flex-1">
-                  <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <div className="flex h-12 flex-1 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
+                  <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                   <input
                     type="search"
                     value={query}
                     onChange={(event) => updateSearchParams({ q: event.target.value || null })}
                     placeholder={t("blog.searchPlaceholder")}
-                    className="h-12 w-full rounded-full border border-border/70 bg-background/70 px-11 pr-11 text-sm text-foreground shadow-[0_12px_28px_rgba(15,23,42,0.05)] placeholder:text-muted-foreground/80"
+                    className="apps-search-input min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground/80"
+                    aria-label={t("blog.searchPlaceholder")}
                   />
                   {query ? (
                     <button
                       type="button"
                       onClick={() => updateSearchParams({ q: null })}
-                      className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
                       aria-label={t("blog.clearSearch")}
                     >
                       <X className="h-4 w-4" />
                     </button>
                   ) : null}
-                </label>
+                  {activeFlair ? (
+                    <AppTagPill
+                      active
+                      label={activeFlair}
+                      onClick={() => handleFlairSelect(activeFlair)}
+                    />
+                  ) : null}
+                  {isFiltered ? (
+                    <button
+                      type="button"
+                      onClick={clearFilters}
+                      aria-label={t("blog.clearFilters")}
+                      className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/70 px-3 py-1 text-xs font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
+                    >
+                      <X className="h-3.5 w-3.5" />
+                      <span className="hidden sm:inline">{t("blog.clearFilters")}</span>
+                    </button>
+                  ) : null}
+                </div>
+
                 <button
                   type="button"
                   onClick={() => setP2pModalOpen(true)}
-                  className="inline-flex items-center gap-2 rounded-full border border-border/70 px-4 py-2 text-sm font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
+                  className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full border border-border/70 px-4 text-sm font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
                   aria-label={t("blog.p2p.button")}
                 >
                   <Radio className="h-4 w-4" />
@@ -230,7 +228,7 @@ export default function Blog() {
               </div>
 
               {flairs.length > 0 ? (
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {flairs.map((flair) => {
                     const isActive = activeFlair?.toLowerCase() === flair.text.toLowerCase();
                     const count = flairCounts.get(flair.text) ?? 0;
@@ -240,7 +238,7 @@ export default function Blog() {
                         type="button"
                         onClick={() => handleFlairSelect(flair.text)}
                         className={cn(
-                          "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-300",
+                          "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 sm:gap-2 sm:px-4 sm:py-2 sm:text-sm",
                           isActive
                             ? "border-blue-core/30 text-foreground ring-glow shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55"
                             : "border-border/70 text-foreground/80 hover:border-blue-glow hover:text-foreground",
@@ -254,7 +252,7 @@ export default function Blog() {
                         <span>{flair.text}</span>
                         <span
                           className={cn(
-                            "rounded-full border px-2 py-0.5 text-[11px]",
+                            "hidden rounded-full border px-2 py-0.5 text-[11px] sm:inline",
                             isActive
                               ? "border-blue-core/20 text-foreground"
                               : "border-border/60 text-foreground/65",

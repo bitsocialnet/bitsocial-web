@@ -118,6 +118,7 @@ export default function BlogPostCard({
           href={post.link}
           target="_blank"
           rel="noreferrer"
+          aria-label={title}
           className="block overflow-hidden rounded-2xl border border-border/50 bg-foreground/[0.02]"
         >
           <img
