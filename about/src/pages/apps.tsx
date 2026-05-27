@@ -383,8 +383,8 @@ export default function Apps() {
                 {activePlatform ? (
                   <input type="hidden" name="platform" value={activePlatform} />
                 ) : null}
-                {activeTags.length > 0 ? (
-                  <input type="hidden" name="tag" value={serializeTagFilter(activeTags) ?? ""} />
+                {tagParam && tagParam.trim().length > 0 ? (
+                  <input type="hidden" name="tag" value={tagParam} />
                 ) : null}
                 <div className="flex h-12 flex-1 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
                   <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
@@ -508,7 +508,7 @@ export default function Apps() {
                     <span>{t("apps.directoryLabel")}</span>
                   </span>
                   <ChevronDown
-                    className="h-4 w-4 transition-transform duration-200 group-open:rotate-180"
+                    className="h-4 w-4 transition-transform duration-200 motion-reduce:transition-none motion-reduce:duration-0 group-open:rotate-180"
                     aria-hidden="true"
                   />
                 </summary>
@@ -547,7 +547,7 @@ export default function Apps() {
                     <span>{t("apps.directoryLabel")}</span>
                   </span>
                   <ChevronDown
-                    className="h-4 w-4 transition-transform duration-200 group-open:rotate-180"
+                    className="h-4 w-4 transition-transform duration-200 motion-reduce:transition-none motion-reduce:duration-0 group-open:rotate-180"
                     aria-hidden="true"
                   />
                 </summary>
