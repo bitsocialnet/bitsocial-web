@@ -178,7 +178,11 @@ export default function Apps() {
   function handleTagSelect(tag: string) {
     // Removing an active tag is always allowed; only block fresh adds at cap.
     if (!tagsMatchFilter(activeTags, tag) && isAtFilterCap) return;
-    updateSearchParams({ tag: serializeTagFilter(toggleTagInList(activeTags, tag)) });
+    // Toggle against the full URL tag list (not the cap-truncated `activeTags`)
+    // so tags that were silently excluded by the cap aren't lost when the user
+    // removes one of the visible chips. Mirrors the noscript path in `buildAppsHref`.
+    const allCurrentTags = parseTagFilter(searchParams.get("tag"));
+    updateSearchParams({ tag: serializeTagFilter(toggleTagInList(allCurrentTags, tag)) });
   }
 
   function clearFilters() {
