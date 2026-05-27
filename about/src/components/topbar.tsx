@@ -6,7 +6,6 @@ import { DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-lin
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { cn } from "@/lib/utils";
 import { goHomeScrollTop, goRouteScrollTop } from "@/lib/home-nav";
-import { goToMailingListSection } from "@/lib/mailing-list-nav";
 import { NoJsThemeToggle, ThemeToggle } from "./theme-toggle";
 import HamburgerButton from "./hamburger-button";
 import LanguageSelector, { NoJsLanguageSelector } from "./language-selector";
@@ -81,17 +80,13 @@ function NavLink({
 
 function TopbarLinks({
   sourceCodeLabel,
-  newsletterLabel,
   onNavClick,
   onAppsClick,
-  onNewsletterClick,
   routeLinks,
 }: {
   sourceCodeLabel: string;
-  newsletterLabel: string;
   onNavClick: () => void;
   onAppsClick: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
-  onNewsletterClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   routeLinks: Array<{ label: string; to: string }>;
 }) {
   return (
@@ -114,27 +109,20 @@ function TopbarLinks({
       >
         {sourceCodeLabel}
       </NavLink>
-      <a href="/#mailing-list" className={navLinkClassName} onClick={onNewsletterClick}>
-        {newsletterLabel}
-      </a>
     </div>
   );
 }
 
 function DesktopNavigation({
   sourceCodeLabel,
-  newsletterLabel,
   onNavClick,
   onAppsClick,
-  onNewsletterClick,
   routeLinks,
   includeNoJsControls = true,
 }: {
   sourceCodeLabel: string;
-  newsletterLabel: string;
   onNavClick: () => void;
   onAppsClick: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
-  onNewsletterClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   routeLinks: Array<{ label: string; to: string }>;
   includeNoJsControls?: boolean;
 }) {
@@ -142,10 +130,8 @@ function DesktopNavigation({
     <div className="topbar-desktop-nav flex items-center">
       <TopbarLinks
         sourceCodeLabel={sourceCodeLabel}
-        newsletterLabel={newsletterLabel}
         onNavClick={onNavClick}
         onAppsClick={onAppsClick}
-        onNewsletterClick={onNewsletterClick}
         routeLinks={routeLinks}
       />
       {routeLinks.length > 0 ? <div className="h-4 w-px bg-border mx-4" /> : null}
@@ -170,11 +156,9 @@ function DesktopNavigation({
 }
 
 function NoJsMobileMenu({
-  newsletterLabel,
   routeLinks,
   sourceCodeLabel,
 }: {
-  newsletterLabel: string;
   routeLinks: Array<{ label: string; to: string }>;
   sourceCodeLabel: string;
 }) {
@@ -203,9 +187,6 @@ function NoJsMobileMenu({
             className={`${navLinkClassName} capitalize`}
           >
             {sourceCodeLabel}
-          </a>
-          <a href="/#mailing-list" className={navLinkClassName}>
-            {newsletterLabel}
           </a>
         </nav>
 
@@ -333,11 +314,6 @@ export default function Topbar() {
     });
   };
 
-  const handleNewsletterClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    goToMailingListSection(location.pathname, location.hash, navigate, handleNavClick);
-  };
-
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
@@ -353,12 +329,13 @@ export default function Topbar() {
   };
 
   const appsLabel = t("nav.apps");
+  const blogLabel = t("nav.blog");
   const docsLabel = t("nav.docs");
   const statsLabel = t("nav.status");
   const sourceCodeLabel = t("nav.sourceCode");
-  const newsletterLabel = t("nav.newsletter");
   const routeLinks = [
     { label: appsLabel, to: "/apps" },
+    { label: blogLabel, to: "/blog" },
     { label: docsLabel, to: DOCS_LINKS.home },
     { label: statsLabel, to: STATS_LINKS.home },
   ].filter((link) => isRouteAccessible(link.to));
@@ -389,10 +366,8 @@ export default function Topbar() {
             >
               <DesktopNavigation
                 sourceCodeLabel={sourceCodeLabel}
-                newsletterLabel={newsletterLabel}
                 onNavClick={handleNavClick}
                 onAppsClick={handleAppsClick}
-                onNewsletterClick={handleNewsletterClick}
                 routeLinks={routeLinks}
                 includeNoJsControls={false}
               />
@@ -425,20 +400,14 @@ export default function Topbar() {
               ) : (
                 <DesktopNavigation
                   sourceCodeLabel={sourceCodeLabel}
-                  newsletterLabel={newsletterLabel}
                   onNavClick={handleNavClick}
                   onAppsClick={handleAppsClick}
-                  onNewsletterClick={handleNewsletterClick}
                   routeLinks={routeLinks}
                 />
               )}
 
               <noscript>
-                <NoJsMobileMenu
-                  newsletterLabel={newsletterLabel}
-                  routeLinks={routeLinks}
-                  sourceCodeLabel={sourceCodeLabel}
-                />
+                <NoJsMobileMenu routeLinks={routeLinks} sourceCodeLabel={sourceCodeLabel} />
               </noscript>
             </div>
           </div>
@@ -465,9 +434,6 @@ export default function Topbar() {
               >
                 {sourceCodeLabel}
               </NavLink>
-              <a href="/#mailing-list" className={navLinkClassName} onClick={handleNewsletterClick}>
-                {newsletterLabel}
-              </a>
             </div>
 
             <div className="mt-2 flex flex-row gap-2 border-t border-border/30 pt-4">

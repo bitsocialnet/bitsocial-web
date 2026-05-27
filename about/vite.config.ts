@@ -185,10 +185,41 @@ export default defineConfig(({ command }) => {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
+        // Node-builtin polyfills required by @pkcprotocol/pkc-js and its libp2p
+        // transitive deps when running pure-P2P in the browser. Matches 5chan's
+        // browser-libp2p setup (vite.config.js in bitsocialnet/5chan).
+        "node-fetch": "isomorphic-fetch",
+        assert: "assert",
+        stream: "stream-browserify",
+        crypto: "crypto-browserify",
+        buffer: "buffer",
+        events: "events",
+        process: "process",
+        "node:buffer": "buffer",
+        "node:crypto": "crypto-browserify",
+        "node:events": "events",
+        "node:process": "process",
+        "node:stream": "stream-browserify",
+        "node:util": "util/",
+        "util/": "util/",
+        util: "util/",
       },
     },
     optimizeDeps: {
-      include: ["three"],
+      include: [
+        "three",
+        "assert",
+        "buffer",
+        "process",
+        "util",
+        "stream-browserify",
+        "isomorphic-fetch",
+      ],
+    },
+    define: {
+      "process.version": JSON.stringify(""),
+      global: "globalThis",
+      __dirname: '""',
     },
   };
 });
