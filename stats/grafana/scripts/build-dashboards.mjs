@@ -33,6 +33,7 @@ const SERVICE_SECTION_HEIGHT = 9;
 const GENERATED_PANEL_ID_START = 2000000000;
 const PROMETHEUS_DATASOURCE = { type: "prometheus", uid: "prometheus" };
 const FIVE_CHAN_DIRECTORY_FILE_NAME_PATTERN = /^5chan-(.+)-directory\.json$/;
+const FETCH_TIMEOUT_MS = 30_000;
 
 const exprReplacements = [
   [
@@ -104,17 +105,31 @@ const replaceAll = (value, replacements) =>
   replacements.reduce((result, [from, to]) => result.replaceAll(from, to), value);
 
 const fetchJson = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      Accept: "application/vnd.github+json, application/json",
-      "User-Agent": "bitsocial-stats-dashboard-builder",
-    },
-  });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
-  }
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
-  return response.json();
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Accept: "application/vnd.github+json, application/json",
+        "User-Agent": "bitsocial-stats-dashboard-builder",
+      },
+      signal: controller.signal,
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    if (error?.name === "AbortError") {
+      throw new Error(`Timed out fetching ${url} after ${FETCH_TIMEOUT_MS}ms`);
+    }
+
+    throw error;
+  } finally {
+    clearTimeout(timeoutId);
+  }
 };
 
 const getDirectoryDefaults = (directoryDefaults, sourceLabel) => {
@@ -250,11 +265,7 @@ const loadFiveChanDirectories = async () => {
     fetchJson(fiveChanDirectoryDefaultsSourceUrl),
     loadFiveChanDirectoryRecords(),
   ]);
-  const directoryList = buildResolvedDirectoryList({ directoryDefaults, directoryRecords });
-
-  await fs.writeFile(directoriesSnapshotPath, `${JSON.stringify(directoryList, null, 2)}\n`);
-
-  return directoryList.directories;
+  return buildResolvedDirectoryList({ directoryDefaults, directoryRecords });
 };
 
 const isCommunityMetric = (metricName) =>
@@ -759,9 +770,9 @@ const buildDashboard = ({ upstreamDashboard, communities, title, uid }) => {
 
 const main = async () => {
   const upstreamStatus = JSON.parse(await fs.readFile(upstreamStatusPath, "utf8"));
-  const directories = await loadFiveChanDirectories();
+  const directoryList = await loadFiveChanDirectories();
   const communities =
-    directories?.map((directory) => ({
+    directoryList.directories?.map((directory) => ({
       address: getDirectoryAddress(directory),
       title: directory.title,
       directoryCode: directory.directoryCode,
@@ -800,6 +811,7 @@ const main = async () => {
     path.join(dashboardsOutputDir, "5chan-stats.json"),
     `${JSON.stringify(fiveChanDashboard, null, 2)}\n`,
   );
+  await fs.writeFile(directoriesSnapshotPath, `${JSON.stringify(directoryList, null, 2)}\n`);
 };
 
 main().catch((error) => {
