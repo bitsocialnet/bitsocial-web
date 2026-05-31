@@ -1,3 +1,13 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const monitorRoot = path.dirname(fileURLToPath(import.meta.url));
+const fiveChanDirectoriesSnapshotPath = path.join(
+  monitorRoot,
+  "data",
+  "5chan-directories.snapshot.json",
+);
+
 const parseCsvEnv = (value) =>
   value
     ?.split(",")
@@ -16,10 +26,7 @@ export default {
       {
         id: "5chan",
         label: "5chan",
-        sources: [
-          "https://raw.githubusercontent.com/bitsocialnet/lists/master/5chan-directories.json",
-          "./data/5chan-directories.snapshot.json",
-        ],
+        sources: [fiveChanDirectoriesSnapshotPath],
       },
     ],
     ipfsGatewayUrls: [

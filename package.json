@@ -23,7 +23,7 @@
     "build:verify": "node scripts/verify-build.mjs",
     "build:about": "tsgo --noEmit --project about/tsconfig.json && vite build --config about/vite.config.ts",
     "build:stats-monitor": "node scripts/build-stats-monitor.mjs",
-    "build:stats-dashboards": "yarn workspace bitsocial-stats build:dashboards && oxfmt stats/grafana/dashboards/5chan-stats.json stats/grafana/dashboards/bitsocial-stats.json",
+    "build:stats-dashboards": "yarn workspace bitsocial-stats build:dashboards && oxfmt stats/grafana/dashboards/5chan-stats.json stats/grafana/dashboards/bitsocial-stats.json stats/monitor/data/5chan-directories.snapshot.json",
     "stats:up": "yarn workspace bitsocial-stats up",
     "stats:down": "yarn workspace bitsocial-stats down",
     "stats:logs": "yarn workspace bitsocial-stats logs",

@@ -6,8 +6,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const grafanaRoot = path.resolve(__dirname, "..");
 const repoRoot = path.resolve(grafanaRoot, "..", "..");
 const upstreamStatusPath = path.join(grafanaRoot, "upstream", "plebbit-status.json");
-const fiveChanDirectoriesSourceUrl =
-  "https://raw.githubusercontent.com/bitsocialnet/lists/master/5chan-directories.json";
+const fiveChanDirectoriesBaseUrl =
+  "https://raw.githubusercontent.com/bitsocialnet/lists/master/5chan-directories";
+const fiveChanDirectoriesIndexUrl =
+  "https://api.github.com/repos/bitsocialnet/lists/contents/5chan-directories?ref=master";
+const fiveChanDirectoryDefaultsSourceUrl = `${fiveChanDirectoriesBaseUrl}/5chan-directories-defaults.json`;
 const directoriesSnapshotPath = path.join(
   repoRoot,
   "stats",
@@ -29,6 +32,8 @@ const COMMUNITY_GROUP_HEIGHT = 4;
 const SERVICE_SECTION_HEIGHT = 9;
 const GENERATED_PANEL_ID_START = 2000000000;
 const PROMETHEUS_DATASOURCE = { type: "prometheus", uid: "prometheus" };
+const FIVE_CHAN_DIRECTORY_FILE_NAME_PATTERN = /^5chan-(.+)-directory\.json$/;
+const FETCH_TIMEOUT_MS = 30_000;
 
 const exprReplacements = [
   [
@@ -100,31 +105,167 @@ const replaceAll = (value, replacements) =>
   replacements.reduce((result, [from, to]) => result.replaceAll(from, to), value);
 
 const fetchJson = async (url) => {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
-  }
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
-  return response.json();
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Accept: "application/vnd.github+json, application/json",
+        "User-Agent": "bitsocial-stats-dashboard-builder",
+      },
+      signal: controller.signal,
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    if (error?.name === "AbortError") {
+      throw new Error(`Timed out fetching ${url} after ${FETCH_TIMEOUT_MS}ms`);
+    }
+
+    throw error;
+  } finally {
+    clearTimeout(timeoutId);
+  }
 };
 
-const getDirectoryEntries = (directoryList, sourceLabel) => {
-  if (Array.isArray(directoryList?.directories)) {
-    return directoryList.directories;
+const getDirectoryDefaults = (directoryDefaults, sourceLabel) => {
+  if (
+    directoryDefaults?.directories &&
+    typeof directoryDefaults.directories === "object" &&
+    !Array.isArray(directoryDefaults.directories)
+  ) {
+    return directoryDefaults.directories;
   }
 
-  throw new Error(`${sourceLabel} is missing a directories array`);
+  throw new Error(`${sourceLabel} is missing a directories object`);
+};
+
+const getDirectoryFileCode = (entry) => {
+  if (typeof entry?.name !== "string") {
+    return undefined;
+  }
+
+  return entry.name.match(FIVE_CHAN_DIRECTORY_FILE_NAME_PATTERN)?.[1];
+};
+
+const getDirectoryFileUrl = (entry, directoryCode) => {
+  if (typeof entry?.download_url === "string") {
+    return entry.download_url;
+  }
+
+  return `${fiveChanDirectoriesBaseUrl}/5chan-${directoryCode}-directory.json`;
+};
+
+const getDirectoryBoards = (directoryFile, sourceLabel) => {
+  if (Array.isArray(directoryFile?.boards)) {
+    return directoryFile.boards;
+  }
+
+  throw new Error(`${sourceLabel} is missing a boards array`);
+};
+
+const getPrimaryDirectoryBoard = (directoryFile, sourceLabel) => {
+  const [primaryBoard] = getDirectoryBoards(directoryFile, sourceLabel);
+  if (!primaryBoard) {
+    throw new Error(`${sourceLabel} does not define any boards`);
+  }
+
+  const address = primaryBoard.address || primaryBoard.communityAddress || primaryBoard.name;
+  if (typeof address !== "string") {
+    throw new Error(`${sourceLabel} primary board is missing address/communityAddress/name`);
+  }
+
+  return { ...primaryBoard, address };
+};
+
+const getDirectoryUpdatedAt = (directoryList, directoryRecords) =>
+  Math.max(
+    directoryList.updatedAt || 0,
+    ...directoryRecords.map(({ directoryFile }) => directoryFile.updatedAt || 0),
+  );
+
+const loadFiveChanDirectoryRecords = async () => {
+  const directoryIndex = await fetchJson(fiveChanDirectoriesIndexUrl);
+  if (!Array.isArray(directoryIndex)) {
+    throw new Error(`${fiveChanDirectoriesIndexUrl} is missing a GitHub contents array`);
+  }
+
+  const directoryFiles = directoryIndex
+    .map((entry) => ({ entry, directoryCode: getDirectoryFileCode(entry) }))
+    .filter(({ entry, directoryCode }) => entry?.type === "file" && directoryCode)
+    .sort((left, right) => left.directoryCode.localeCompare(right.directoryCode));
+
+  if (directoryFiles.length === 0) {
+    throw new Error(`${fiveChanDirectoriesIndexUrl} does not contain 5chan directory files`);
+  }
+
+  return Promise.all(
+    directoryFiles.map(async ({ entry, directoryCode }) => {
+      const sourceUrl = getDirectoryFileUrl(entry, directoryCode);
+      return {
+        directoryCode,
+        directoryFile: await fetchJson(sourceUrl),
+        sourceUrl,
+      };
+    }),
+  );
+};
+
+const buildResolvedDirectoryList = ({ directoryDefaults, directoryRecords }) => {
+  const defaultsByCode = getDirectoryDefaults(
+    directoryDefaults,
+    fiveChanDirectoryDefaultsSourceUrl,
+  );
+  const recordsByCode = new Map(directoryRecords.map((record) => [record.directoryCode, record]));
+  const activeDirectoryCodes = [...recordsByCode.keys()];
+  const missingDefaults = activeDirectoryCodes.filter(
+    (directoryCode) => !defaultsByCode[directoryCode],
+  );
+
+  if (missingDefaults.length > 0) {
+    throw new Error(
+      `${fiveChanDirectoryDefaultsSourceUrl} is missing defaults for ${missingDefaults.join(", ")}`,
+    );
+  }
+
+  const orderedDirectoryCodes = Object.keys(defaultsByCode).filter((directoryCode) =>
+    recordsByCode.has(directoryCode),
+  );
+  const directories = orderedDirectoryCodes.map((directoryCode) => {
+    const defaults = defaultsByCode[directoryCode];
+    const record = recordsByCode.get(directoryCode);
+    const primaryBoard = getPrimaryDirectoryBoard(record.directoryFile, record.sourceUrl);
+
+    return {
+      ...defaults,
+      directoryCode: defaults.directoryCode || directoryCode,
+      name: primaryBoard.address,
+      publicKey: primaryBoard.publicKey,
+    };
+  });
+
+  return {
+    title: "/all/ - All 5chan Directories",
+    description:
+      "Resolved from the active 5chan directory files and defaults in bitsocialnet/lists.\n\nhttps://github.com/bitsocialnet/lists/tree/master/5chan-directories",
+    createdAt: directoryDefaults.createdAt,
+    updatedAt: getDirectoryUpdatedAt(directoryDefaults, directoryRecords),
+    directories,
+  };
 };
 
 const getDirectoryAddress = (directory) => directory.communityAddress || directory.name;
 
 const loadFiveChanDirectories = async () => {
-  const directoryList = await fetchJson(fiveChanDirectoriesSourceUrl);
-  const directories = getDirectoryEntries(directoryList, fiveChanDirectoriesSourceUrl);
-
-  await fs.writeFile(directoriesSnapshotPath, `${JSON.stringify(directoryList, null, 2)}\n`);
-
-  return directories;
+  const [directoryDefaults, directoryRecords] = await Promise.all([
+    fetchJson(fiveChanDirectoryDefaultsSourceUrl),
+    loadFiveChanDirectoryRecords(),
+  ]);
+  return buildResolvedDirectoryList({ directoryDefaults, directoryRecords });
 };
 
 const isCommunityMetric = (metricName) =>
@@ -629,9 +770,9 @@ const buildDashboard = ({ upstreamDashboard, communities, title, uid }) => {
 
 const main = async () => {
   const upstreamStatus = JSON.parse(await fs.readFile(upstreamStatusPath, "utf8"));
-  const directories = await loadFiveChanDirectories();
+  const directoryList = await loadFiveChanDirectories();
   const communities =
-    directories?.map((directory) => ({
+    directoryList.directories?.map((directory) => ({
       address: getDirectoryAddress(directory),
       title: directory.title,
       directoryCode: directory.directoryCode,
@@ -645,7 +786,7 @@ const main = async () => {
   }
 
   if (communities.length === 0) {
-    throw new Error(`No 5chan communities found in ${fiveChanDirectoriesSourceUrl}`);
+    throw new Error(`No 5chan communities found in ${fiveChanDirectoriesIndexUrl}`);
   }
 
   const summaryDashboard = buildDashboard({
@@ -670,6 +811,7 @@ const main = async () => {
     path.join(dashboardsOutputDir, "5chan-stats.json"),
     `${JSON.stringify(fiveChanDashboard, null, 2)}\n`,
   );
+  await fs.writeFile(directoriesSnapshotPath, `${JSON.stringify(directoryList, null, 2)}\n`);
 };
 
 main().catch((error) => {
