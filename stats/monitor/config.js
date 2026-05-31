@@ -16,10 +16,7 @@ export default {
       {
         id: "5chan",
         label: "5chan",
-        sources: [
-          "https://raw.githubusercontent.com/bitsocialnet/lists/master/5chan-directories.json",
-          "./data/5chan-directories.snapshot.json",
-        ],
+        sources: ["./data/5chan-directories.snapshot.json"],
       },
     ],
     ipfsGatewayUrls: [
