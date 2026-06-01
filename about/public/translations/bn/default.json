@@ -479,7 +479,8 @@
         "riskScores": "ঝুঁকির স্কোর",
         "telegram": "Telegram",
         "verification": "যাচাইকরণ",
-        "ai": "এআই"
+        "ai": "এআই",
+        "antiRepost": "পুনঃপোস্ট-বিরোধী"
       },
       "linkLabels": {
         "androidApk": "অ্যান্ড্রয়েড APK",
@@ -545,6 +546,10 @@
         "ai-moderation-challenge": {
           "tagline": "প্রতিটি কমিউনিটির নিয়মের বিরুদ্ধে OpenAI-সামঞ্জস্যপূর্ণ মডারেশন পরীক্ষা।",
           "description": "AI Moderation Challenge OpenAI-compatible model endpoint দিয়ে Bitsocial মন্তব্যের বিষয়বস্তুকে <code>community.rules</code>-এর বিরুদ্ধে মূল্যায়ন করে। communities ঝুঁকিপূর্ণ পোস্টগুলো review-তে পাঠাতে পারে, আর provider keys ও prompts private node settings-এ রাখতে পারে।"
+        },
+        "r9k-challenge": {
+          "tagline": "যেসব কমিউনিটি anti-repost পোস্টিং অভিজ্ঞতা চায়, তাদের জন্য Robot9000-ধাঁচের মৌলিকতা gate।",
+          "description": "R9K Challenge একটি Bitsocial community node-এ চলে এবং normalized পোস্টের টেক্সটকে মালিক node-এর local comments database-এর সঙ্গে মিলিয়ে দেখে। এটি community-গুলোকে <robot9000>Robot9000</robot9000>-ধাঁচের posting experience দেয়: exact repost acceptance-এর আগে fail করে, backlinks উপেক্ষা করা হয়, repeated failures escalating temporary bans চালু করে, এবং raw post text সংরক্ষণ না করে accepted-text hashes private local state-এ থাকে. এই challenge-এ কোনো AI ব্যবহার করা হয় না।"
         }
       }
     },

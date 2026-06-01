@@ -479,7 +479,8 @@
         "riskScores": "Kockázati pontszámok",
         "telegram": "Telegram",
         "verification": "Ellenőrzés",
-        "ai": "MI"
+        "ai": "MI",
+        "antiRepost": "Újraküldés elleni"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -545,6 +546,10 @@
         "ai-moderation-challenge": {
           "tagline": "OpenAI-kompatibilis moderációs ellenőrzések minden közösség szabályai alapján.",
           "description": "Az AI Moderation Challenge a Bitsocial kommenttartalmát a <code>community.rules</code> alapján értékeli egy OpenAI-kompatibilis model endpoint segítségével. A közösségek a kockázatos bejegyzéseket ellenőrzésre irányíthatják, miközben a provider kulcsokat és promptokat privát node beállításokban tartják."
+        },
+        "r9k-challenge": {
+          "tagline": "Robot9000-stílusú eredetiségkapu olyan közösségeknek, amelyek anti-repost posztolási élményt szeretnének.",
+          "description": "Az R9K Challenge egy Bitsocial közösségi node-on fut, és a normalizált posztszöveget összeveti a tulajdonos node helyi kommentadatbázisával. <robot9000>Robot9000</robot9000>-stílusú posztolási élményt ad a közösségeknek: a pontos repostok elfogadás előtt elbuknak, a backlinkek figyelmen kívül maradnak, az ismételt hibák fokozódó ideiglenes banokat indítanak, az elfogadott szöveg hash-ei pedig nyers posztszöveg tárolása helyett privát helyi állapotban maradnak. Ez a challenge nem használ AI-t."
         }
       }
     },

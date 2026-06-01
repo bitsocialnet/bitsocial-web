@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import {
+  Bot,
   Blocks,
   Clipboard,
   Flag,
@@ -17,6 +18,7 @@ import { cn } from "@/lib/utils";
 import type { AppIconKey } from "@/lib/apps-data";
 
 const iconMap = {
+  bot: Bot,
   blocks: Blocks,
   clipboard: Clipboard,
   flag: Flag,

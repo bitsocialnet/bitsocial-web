@@ -479,7 +479,8 @@
         "riskScores": "위험 점수",
         "telegram": "Telegram",
         "verification": "검증",
-        "ai": "AI"
+        "ai": "AI",
+        "antiRepost": "재게시 방지"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -545,6 +546,10 @@
         "ai-moderation-challenge": {
           "tagline": "OpenAI 호환 조정 검사로 각 커뮤니티 규칙을 검증합니다.",
           "description": "AI Moderation Challenge는 OpenAI-compatible model endpoint로 Bitsocial comment content를 <code>community.rules</code>에 맞춰 평가합니다. community는 provider keys와 prompts를 private node settings에 유지하면서 risky posts를 review로 보낼 수 있습니다."
+        },
+        "r9k-challenge": {
+          "tagline": "반복 게시를 막는 게시 경험을 원하는 커뮤니티를 위한 Robot9000 스타일 독창성 게이트.",
+          "description": "R9K Challenge는 Bitsocial 커뮤니티 노드에서 실행되며 정규화된 게시글 텍스트를 소유자 노드의 로컬 댓글 데이터베이스와 비교합니다. 커뮤니티에 <robot9000>Robot9000</robot9000> 스타일 게시 경험을 제공합니다. 정확히 같은 재게시글은 승인 전에 실패하고, 백링크는 무시되며, 반복 실패는 단계적으로 길어지는 임시 차단을 유발하고, 승인된 텍스트 해시는 원문 게시글 텍스트를 저장하는 대신 비공개 로컬 상태에 남습니다. 이 챌린지는 AI를 사용하지 않습니다."
         }
       }
     },

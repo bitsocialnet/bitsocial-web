@@ -479,7 +479,8 @@
         "riskScores": "ציוני סיכון",
         "telegram": "Telegram",
         "verification": "אימות",
-        "ai": "בינה מלאכותית"
+        "ai": "בינה מלאכותית",
+        "antiRepost": "נגד פרסום חוזר"
       },
       "linkLabels": {
         "androidApk": "קובץ APK לאנדרואיד",
@@ -545,6 +546,10 @@
         "ai-moderation-challenge": {
           "tagline": "בדיקות ניהול תואמות OpenAI מול כללי כל קהילה.",
           "description": "AI Moderation Challenge מעריך את תוכן התגובות של Bitsocial מול <code>community.rules</code> באמצעות model endpoint שתואם ל-OpenAI. קהילות יכולות לנתב פוסטים מסוכנים לבדיקה תוך שמירה על provider keys ו-prompts בהגדרות node פרטיות."
+        },
+        "r9k-challenge": {
+          "tagline": "שער מקוריות בסגנון Robot9000 לקהילות שרוצות חוויית פרסום שמונעת פרסומים חוזרים.",
+          "description": "R9K Challenge רץ על צומת קהילה של Bitsocial ומשווה טקסט פוסט מנורמל מול מסד התגובות המקומי של צומת הבעלים. הוא נותן לקהילות חוויית פרסום בסגנון <robot9000>Robot9000</robot9000>: פרסומים חוזרים זהים נכשלים לפני קבלה, backlinks מתעלמים מהם, כישלונות חוזרים מפעילים חסימות זמניות מדורגות, ו-hashes של טקסט שהתקבל נשארים במצב מקומי פרטי במקום לשמור את טקסט הפוסט הגולמי. האתגר הזה לא משתמש ב-AI."
         }
       }
     },

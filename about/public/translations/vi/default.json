@@ -479,7 +479,8 @@
         "riskScores": "Điểm rủi ro",
         "telegram": "Telegram",
         "verification": "Xác minh",
-        "ai": "AI"
+        "ai": "AI",
+        "antiRepost": "Chống đăng lại"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -545,6 +546,10 @@
         "ai-moderation-challenge": {
           "tagline": "Kiểm tra kiểm duyệt tương thích OpenAI theo quy tắc của từng cộng đồng.",
           "description": "AI Moderation Challenge đánh giá nội dung bình luận Bitsocial so với <code>community.rules</code> bằng một model endpoint tương thích OpenAI. Các cộng đồng có thể chuyển các bài đăng rủi ro đi review trong khi giữ provider keys và prompts trong cài đặt node riêng tư."
+        },
+        "r9k-challenge": {
+          "tagline": "Cổng kiểm tra tính nguyên bản kiểu Robot9000 cho cộng đồng muốn trải nghiệm đăng bài chống đăng lại.",
+          "description": "R9K Challenge chạy trên một node cộng đồng Bitsocial và so sánh văn bản bài đăng đã chuẩn hóa với cơ sở dữ liệu bình luận cục bộ của node chủ sở hữu. Nó đem lại cho cộng đồng trải nghiệm đăng bài kiểu <robot9000>Robot9000</robot9000>: repost trùng khớp sẽ thất bại trước khi được chấp nhận, backlinks bị bỏ qua, các lần thất bại lặp lại kích hoạt lệnh cấm tạm thời tăng dần, và hash của văn bản đã được chấp nhận được giữ trong state cục bộ riêng tư thay vì lưu văn bản thô của bài đăng. Challenge này không dùng AI."
         }
       }
     },

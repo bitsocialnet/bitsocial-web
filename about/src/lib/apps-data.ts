@@ -26,6 +26,7 @@ export interface AppReleaseIntegrityProbe {
 }
 
 export type AppIconKey =
+  | "bot"
   | "image"
   | "message-square"
   | "send"
@@ -216,6 +217,7 @@ const PLATFORM_TRANSLATION_KEYS: Record<
 const APP_TAG_TRANSLATION_KEYS: Record<string, string> = {
   "Access control": "apps.catalog.tags.accessControl",
   AI: "apps.catalog.tags.ai",
+  "Anti-repost": "apps.catalog.tags.antiRepost",
   Automation: "apps.catalog.tags.automation",
   "Board admin": "apps.catalog.tags.boardAdmin",
   Bots: "apps.catalog.tags.bots",
@@ -265,6 +267,10 @@ const APP_COPY_TRANSLATION_KEYS: Record<string, { tagline: string; description: 
   "spam-blocker": {
     tagline: "apps.catalog.items.spam-blocker.tagline",
     description: "apps.catalog.items.spam-blocker.description",
+  },
+  "r9k-challenge": {
+    tagline: "apps.catalog.items.r9k-challenge.tagline",
+    description: "apps.catalog.items.r9k-challenge.description",
   },
   "captcha-canvas-challenge": {
     tagline: "apps.catalog.items.captcha-canvas-challenge.tagline",
@@ -652,7 +658,12 @@ export const APPS: AppData[] = [
         kind: "package",
       },
     ],
-    relatedSlugs: ["spam-blocker", "captcha-canvas-challenge", "voucher-challenge"],
+    relatedSlugs: [
+      "spam-blocker",
+      "r9k-challenge",
+      "captcha-canvas-challenge",
+      "voucher-challenge",
+    ],
     searchTerms: ["ai", "openai", "llm", "rules", "review", "moderation"],
   },
   {
@@ -672,8 +683,46 @@ export const APPS: AppData[] = [
         kind: "package",
       },
     ],
-    relatedSlugs: ["ai-moderation-challenge", "mintpass", "captcha-canvas-challenge"],
+    relatedSlugs: [
+      "ai-moderation-challenge",
+      "r9k-challenge",
+      "mintpass",
+      "captcha-canvas-challenge",
+    ],
     searchTerms: ["filtering", "risk", "moderation"],
+  },
+  {
+    slug: "r9k-challenge",
+    name: "R9K Challenge",
+    tagline: "Robot9000-style originality gate for communities that want anti-repost posting UX.",
+    description:
+      "R9K Challenge runs on a Bitsocial community node and compares normalized post text against the owner node's local comments database. It gives communities a <robot9000>Robot9000</robot9000>-style posting experience without using AI: exact reposts fail before acceptance, backlinks are ignored, repeated failures trigger escalating temporary bans, and accepted-text hashes stay in private local state instead of storing raw post text.",
+    category: "anti-spam",
+    tags: ["Anti-repost", "Moderation"],
+    icon: "bot",
+    githubRepo: "bitsocialnet/r9k-challenge",
+    links: [
+      {
+        label: "@bitsocial/r9k-challenge",
+        url: "https://www.npmjs.com/package/@bitsocial/r9k-challenge",
+        kind: "package",
+      },
+    ],
+    relatedSlugs: [
+      "spam-blocker",
+      "ai-moderation-challenge",
+      "captcha-canvas-challenge",
+      "flags-challenge",
+    ],
+    searchTerms: [
+      "r9k",
+      "robot9000",
+      "robot9002",
+      "anti-repost",
+      "duplicates",
+      "originality",
+      "5chan",
+    ],
   },
   {
     slug: "captcha-canvas-challenge",
@@ -692,7 +741,13 @@ export const APPS: AppData[] = [
         kind: "package",
       },
     ],
-    relatedSlugs: ["ai-moderation-challenge", "mintpass", "voucher-challenge", "evm-contract-call"],
+    relatedSlugs: [
+      "ai-moderation-challenge",
+      "r9k-challenge",
+      "mintpass",
+      "voucher-challenge",
+      "evm-contract-call",
+    ],
     searchTerms: ["captcha", "verification", "images"],
   },
   {

@@ -479,7 +479,8 @@
         "riskScores": "风险分数",
         "telegram": "Telegram",
         "verification": "验证",
-        "ai": "AI"
+        "ai": "AI",
+        "antiRepost": "反重复发布"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -544,6 +545,10 @@
         "ai-moderation-challenge": {
           "tagline": "基于 OpenAI 兼容接口的审核检查，对照各社区规则。",
           "description": "AI Moderation Challenge 通过 OpenAI-compatible model endpoint，对照 <code>community.rules</code> 评估 Bitsocial 评论内容。community 可以将 risky posts 路由到 review，同时将 provider keys 和 prompts 保留在 private node settings 中。"
+        },
+        "r9k-challenge": {
+          "tagline": "面向希望获得反重复发布体验的社区的 Robot9000 风格原创性门槛。",
+          "description": "R9K Challenge 在 Bitsocial 社区节点上运行，并将规范化后的帖子文本与所有者节点的本地评论数据库进行比对。它为社区提供 <robot9000>Robot9000</robot9000> 风格的发帖体验：完全重复的 repost 会在被接受前失败，backlink 会被忽略，反复失败会触发逐步升级的临时 ban，已接受文本的哈希会保留在私有本地状态中，而不是保存原始帖子文本。 这个 challenge 不使用 AI。"
         }
       }
     },

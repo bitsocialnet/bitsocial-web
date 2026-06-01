@@ -479,7 +479,8 @@
         "riskScores": "Riziková skóre",
         "telegram": "Telegram",
         "verification": "Ověření",
-        "ai": "AI"
+        "ai": "AI",
+        "antiRepost": "Proti repostům"
       },
       "linkLabels": {
         "androidApk": "APK pro Android",
@@ -511,6 +512,10 @@
         "ai-moderation-challenge": {
           "tagline": "Kontroly moderace kompatibilní s OpenAI podle pravidel každé komunity.",
           "description": "AI Moderation Challenge vyhodnocuje obsah komentářů Bitsocial podle <code>community.rules</code> pomocí OpenAI-kompatibilního endpointu modelu. Komunity mohou rizikové příspěvky posílat ke kontrole a zároveň udržovat klíče poskytovatele a prompty v soukromém nastavení uzlu."
+        },
+        "r9k-challenge": {
+          "tagline": "Brána originality ve stylu Robot9000 pro komunity, které chtějí publikační UX proti repostům.",
+          "description": "R9K Challenge běží na komunitním uzlu Bitsocial a porovnává normalizovaný text příspěvku s lokální databází komentářů uzlu vlastníka. Komunitám dává publikační zkušenost ve stylu <robot9000>Robot9000</robot9000>: přesné reposty selžou před přijetím, backlinks se ignorují, opakovaná selhání spouštějí stupňující se dočasné bany a hashe přijatého textu zůstávají v soukromém lokálním stavu místo ukládání surového textu příspěvku. Tato challenge nepoužívá AI."
         }
       }
     },

@@ -232,6 +232,14 @@ const descriptionRichTextComponents = {
   code: (
     <code className="rounded bg-foreground/10 px-1 py-0.5 font-mono text-[0.85em] text-foreground" />
   ),
+  robot9000: (
+    <a
+      href="https://blog.xkcd.com/2008/01/14/robot9000-and-xkcd-signal-attacking-noise-in-chat/"
+      target="_blank"
+      rel="noreferrer"
+      className="text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors hover:text-blue-core"
+    />
+  ),
 };
 
 function getStatusClassName(status: "ready" | "experimental") {

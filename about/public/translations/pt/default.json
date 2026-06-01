@@ -479,7 +479,8 @@
         "riskScores": "Pontuações de risco",
         "telegram": "Telegram",
         "verification": "Verificação",
-        "ai": "IA"
+        "ai": "IA",
+        "antiRepost": "Anti-repost"
       },
       "linkLabels": {
         "androidApk": "APK do Android",
@@ -545,6 +546,10 @@
         "ai-moderation-challenge": {
           "tagline": "Verificações de moderação compatíveis com OpenAI conforme as regras de cada comunidade.",
           "description": "AI Moderation Challenge avalia o conteúdo de comentários do Bitsocial em relação a <code>community.rules</code> com um endpoint de modelo compatível com OpenAI. As comunidades podem encaminhar publicações arriscadas para revisão mantendo chaves do provedor e prompts em configurações privadas do nó."
+        },
+        "r9k-challenge": {
+          "tagline": "Gate de originalidade no estilo Robot9000 para comunidades que querem uma experiência de publicação anti-repost.",
+          "description": "R9K Challenge roda em um nó de comunidade Bitsocial e compara o texto normalizado do post com o banco local de comentários do nó proprietário. Ele dá às comunidades uma experiência de publicação no estilo <robot9000>Robot9000</robot9000>: reposts exatos falham antes da aceitação, backlinks são ignorados, falhas repetidas acionam bans temporários crescentes e hashes do texto aceito ficam em estado local privado em vez de armazenar o texto bruto do post. Este challenge não usa IA."
         }
       }
     },

@@ -479,7 +479,8 @@
         "riskScores": "Risk puanları",
         "telegram": "Telegram",
         "verification": "Doğrulama",
-        "ai": "AI"
+        "ai": "AI",
+        "antiRepost": "Yeniden paylaşım karşıtı"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -545,6 +546,10 @@
         "ai-moderation-challenge": {
           "tagline": "Her topluluğun kurallarına göre OpenAI uyumlu moderasyon kontrolleri.",
           "description": "AI Moderation Challenge, OpenAI uyumlu bir model endpoint'i kullanarak Bitsocial yorum içeriğini <code>community.rules</code> karşısında değerlendirir. Topluluklar, provider anahtarlarını ve prompt'ları private node ayarlarında tutarken riskli gönderileri incelemeye yönlendirebilir."
+        },
+        "r9k-challenge": {
+          "tagline": "Anti-repost gönderi deneyimi isteyen topluluklar için Robot9000 tarzı özgünlük kapısı.",
+          "description": "R9K Challenge bir Bitsocial topluluk node'unda çalışır ve normalize edilmiş gönderi metnini sahip node'un yerel yorum veritabanıyla karşılaştırır. Topluluklara <robot9000>Robot9000</robot9000> tarzı bir gönderi deneyimi verir: birebir repostlar kabul edilmeden önce başarısız olur, backlinks yok sayılır, tekrarlanan başarısızlıklar artan geçici banları tetikler ve kabul edilen metin hash'leri ham gönderi metnini saklamak yerine private local state içinde kalır. Bu challenge AI kullanmaz."
         }
       }
     },

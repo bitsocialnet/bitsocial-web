@@ -479,7 +479,8 @@
         "riskScores": "リスクスコア",
         "telegram": "Telegram",
         "verification": "本人確認",
-        "ai": "AI"
+        "ai": "AI",
+        "antiRepost": "再投稿防止"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -545,6 +546,10 @@
         "ai-moderation-challenge": {
           "tagline": "OpenAI互換のモデレーションチェックで、各コミュニティのルールに照合。",
           "description": "AI Moderation Challengeは、OpenAI互換のモデルエンドポイントを使ってBitsocialのコメント内容を<code>community.rules</code>に照らして評価します。コミュニティは、providerキーとpromptをプライベートなnode設定に保ちながら、リスクの高い投稿をreviewに回せます。"
+        },
+        "r9k-challenge": {
+          "tagline": "再投稿を防ぐ投稿体験がほしいコミュニティ向けの、Robot9000風オリジナリティゲート。",
+          "description": "R9K Challenge は Bitsocial コミュニティノードで動作し、正規化された投稿テキストをオーナーノードのローカルコメントデータベースと照合します。コミュニティに <robot9000>Robot9000</robot9000> 風の投稿体験を提供し、完全一致の再投稿は承認前に失敗し、バックリンクは無視され、失敗を繰り返すと段階的な一時BANが発生し、生の投稿テキストではなく承認済みテキストのハッシュだけがプライベートなローカル状態に残ります。 このチャレンジではAIを使用しません。"
         }
       }
     },

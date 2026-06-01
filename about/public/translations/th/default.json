@@ -479,7 +479,8 @@
         "riskScores": "คะแนนความเสี่ยง",
         "telegram": "Telegram",
         "verification": "การยืนยัน",
-        "ai": "AI"
+        "ai": "AI",
+        "antiRepost": "ป้องกันการรีโพสต์"
       },
       "linkLabels": {
         "androidApk": "APK สำหรับ Android",
@@ -545,6 +546,10 @@
         "ai-moderation-challenge": {
           "tagline": "การตรวจสอบการกลั่นกรองที่รองรับ OpenAI ตามกฎของแต่ละชุมชน.",
           "description": "AI Moderation Challenge ประเมินเนื้อหาคอมเมนต์ของ Bitsocial เทียบกับ <code>community.rules</code> ด้วย OpenAI-compatible model endpoint Communities สามารถส่งโพสต์ที่เสี่ยงไป review ได้ ในขณะที่เก็บ provider keys และ prompts ไว้ใน private node settings"
+        },
+        "r9k-challenge": {
+          "tagline": "ด่านความเป็นต้นฉบับสไตล์ Robot9000 สำหรับชุมชนที่ต้องการประสบการณ์โพสต์แบบกันรีโพสต์.",
+          "description": "R9K Challenge ทำงานบนโหนดชุมชน Bitsocial และเปรียบเทียบข้อความโพสต์ที่ normalize แล้วกับฐานข้อมูลคอมเมนต์ภายในของโหนดเจ้าของ มันให้ประสบการณ์โพสต์สไตล์ <robot9000>Robot9000</robot9000> กับชุมชน: รีโพสต์ที่ซ้ำแบบตรงตัวจะ fail ก่อนถูกยอมรับ, backlinks จะถูกมองข้าม, ความล้มเหลวซ้ำ ๆ จะ trigger temporary bans ที่เพิ่มระดับขึ้น และ hashes ของข้อความที่ยอมรับแล้วจะอยู่ใน private local state แทนการเก็บ raw post text. challenge นี้ไม่ใช้ AI."
         }
       }
     },
