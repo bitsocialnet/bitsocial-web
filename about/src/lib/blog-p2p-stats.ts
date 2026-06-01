@@ -242,9 +242,22 @@ function getConnectionAddress(connection: unknown): string {
   return getStringField(connection, ["address", "addr"], "");
 }
 
+// Verbatim port of 5chan's getTransportLabel: prefer the application-layer
+// transport (WebTransport/WebRTC/WebSocket/QUIC) over the underlying tcp/udp,
+// and flag relayed connections.
 function getConnectionTransport(address: string): string {
-  const match = /\/(?:tcp|webrtc(?:-direct)?|webtransport|ws|wss|p2p-circuit)/i.exec(address);
-  return match?.[0]?.replace(/^\//, "") ?? "unknown";
+  const normalized = address.toLowerCase();
+  let transport = "Unknown transport";
+  if (normalized.includes("/webtransport")) transport = "WebTransport";
+  else if (normalized.includes("/webrtc-direct")) transport = "WebRTC direct";
+  else if (normalized.includes("/webrtc")) transport = "WebRTC";
+  else if (normalized.includes("/wss")) transport = "Secure WebSocket";
+  else if (normalized.includes("/tls/ws") || normalized.includes("/ws"))
+    transport = normalized.includes("/tls") ? "Secure WebSocket" : "WebSocket";
+  else if (normalized.includes("/quic")) transport = "QUIC";
+  else if (normalized.includes("/tcp")) transport = "TCP";
+  else if (normalized.includes("/udp")) transport = "UDP";
+  return normalized.includes("/p2p-circuit") ? `${transport} through relay` : transport;
 }
 
 function extractConnectedPeers(
@@ -354,9 +367,11 @@ export async function getBlogP2PStats(account: unknown, signal?: AbortSignal): P
     return [{ name: "Mode", value: "Browser libp2p (initializing)" }];
   }
 
+  // NOTE: getPeers / getConnections must be called as methods so `this` stays
+  // bound to the libp2p node — passing the bare reference makes them throw.
   const [peers, connections, ownEndpoint] = await Promise.all([
-    getSafeArray(libp2p.getPeers),
-    getSafeArray(libp2p.getConnections),
+    getSafeArray(() => libp2p.getPeers?.()),
+    getSafeArray(() => libp2p.getConnections?.()),
     fetchOwnPublicEndpoint(signal).catch(() => undefined),
   ]);
 

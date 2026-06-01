@@ -103,9 +103,7 @@ export default function BlogP2PModal({ open, onOpenChange }: BlogP2PModalProps) 
       <div className="flex flex-wrap items-center justify-between gap-2 border-y border-border/40 py-3">
         <span className="text-xs text-muted-foreground">
           {state.lastUpdated
-            ? t("blog.p2p.updated", {
-                seconds: Math.max(0, Math.round((Date.now() - state.lastUpdated) / 1000)),
-              })
+            ? t("blog.p2p.updated", { time: new Date(state.lastUpdated).toLocaleTimeString() })
             : t("blog.p2p.loading")}
         </span>
         <button
