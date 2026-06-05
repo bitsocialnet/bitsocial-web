@@ -29,7 +29,7 @@ const LOWER_SECTIONS_START = 384;
 const NFT_ROW_INDEX = 432;
 const COMMUNITY_PANEL_COUNT_PER_GROUP = 5;
 const COMMUNITY_GROUP_HEIGHT = 4;
-const SERVICE_SECTION_HEIGHT = 9;
+const SERVICE_SECTION_HEIGHT = 17;
 const GENERATED_PANEL_ID_START = 2000000000;
 const PROMETHEUS_DATASOURCE = { type: "prometheus", uid: "prometheus" };
 const FIVE_CHAN_DIRECTORY_FILE_NAME_PATTERN = /^5chan-(.+)-directory\.json$/;
@@ -669,6 +669,42 @@ const buildServicePanels = (startY) => [
     x: 12,
     y: startY + 5,
     w: 12,
+    h: 4,
+    unit: "bool",
+  }),
+  makeStatPanel({
+    title: "Spam Blocker",
+    expr: 'bitsocial_stats_service_probe_last_success{service_probe_id="spam_blocker_server"}',
+    x: 0,
+    y: startY + 9,
+    w: 8,
+    h: 4,
+    mappings: serviceStatusMappings,
+  }),
+  makeStatPanel({
+    title: "AI Moderation Challenge",
+    expr: 'bitsocial_stats_service_probe_last_success{service_probe_id="ai_moderation_challenge_server"}',
+    x: 8,
+    y: startY + 9,
+    w: 8,
+    h: 4,
+    mappings: serviceStatusMappings,
+  }),
+  makeStatPanel({
+    title: "Flags Challenge",
+    expr: 'bitsocial_stats_service_probe_last_success{service_probe_id="flags_challenge_server"}',
+    x: 16,
+    y: startY + 9,
+    w: 8,
+    h: 4,
+    mappings: serviceStatusMappings,
+  }),
+  makeTimeseriesPanel({
+    title: "Challenge Services Availability",
+    expr: 'min(bitsocial_stats_service_probe_last_success{service_probe_id=~"spam_blocker_server|ai_moderation_challenge_server|flags_challenge_server"}) by (service_probe_label)',
+    x: 0,
+    y: startY + 13,
+    w: 24,
     h: 4,
     unit: "bool",
   }),
