@@ -3139,6 +3139,17 @@ Directory voting pages are planned for each slot on 5chan. These pages will list
 - **Desktop version** (full P2P bitsocial node, seeds automatically): Available for Mac/Windows/Linux, [download from the release page](https://github.com/bitsocialnet/5chan/releases/latest)
 - **Mobile version**: Available for Android, [download from the release page](https://github.com/bitsocialnet/5chan/releases/latest)
 
+## Run 5chan in Your Browser With a Local Node
+
+If you want the full P2P node but prefer opening 5chan in your normal browser instead of using the desktop app, use [bitsocial-cli](https://github.com/bitsocialnet/bitsocial-cli). It runs the Bitsocial/IPFS node and serves the bundled 5chan Web UI locally, so you do not need to run this repository separately.
+
+```sh-session
+npm install -g @bitsocial/bitsocial-cli
+bitsocial daemon
+```
+
+When the daemon starts, it prints a `WebUI (5chan - Imageboard-style UI)` URL. Open that URL in your browser to use 5chan through your local node. See the [bitsocial-cli daemon docs](https://github.com/bitsocialnet/bitsocial-cli#running-daemon) for details.
+
 ## Creating a Board
 
 In the bitsocial protocol, a 5chan board is called a _community_. To deliver the expected 5chan imageboard UX, a board should run on a bitsocial node together with [5chan Board Manager](https://github.com/bitsocialnet/5chan-board-manager). The board manager applies imageboard-style lifecycle rules that bitsocial communities do not enforce by themselves: thread limits, bump limits, archived-thread retention, and purging of author-deleted content.
@@ -3234,21 +3245,21 @@ Seedit is a serverless, adminless, decentralized and open-source (old)reddit alt
 - Seedit web version: https://seedit.app — or, using Brave/IPFS Companion: https://seedit.eth
 
 ### Downloads
-- Seedit desktop version (full p2p bitsocial node, seeds automatically): available for Mac/Windows/Linux, [download link in the release page](https://github.com/bitsocialhq/seedit/releases/latest)
-- Seedit mobile version: available for Android, [download link in the release page](https://github.com/bitsocialhq/seedit/releases/latest)
+- Seedit desktop version (full p2p bitsocial node, seeds automatically): available for Mac/Windows/Linux, [download link in the release page](https://github.com/bitsocialnet/seedit/releases/latest)
+- Seedit mobile version: available for Android, [download link in the release page](https://github.com/bitsocialnet/seedit/releases/latest)
 
 <br />
 
 ## How to create a community
 To run a community, you can choose between two options:
 
-1. If you prefer to use a **GUI**, download the desktop version of the Seedit client, available for Windows, MacOS and Linux: [latest release](https://github.com/bitsocialhq/seedit/releases/latest). Create a community using using the familiar old.reddit-like UI, and modify its settings to your liking. The app runs an IPFS node, meaning you have to keep it running to have your board online.
-2. If you prefer to use a **command line interface**, install bitsocial-cli, available for Windows, MacOS and Linux: [latest release](https://github.com/bitsocialhq/bitsocial-cli/releases/latest). Follow the instructions in the readme of the repo. When running the daemon for the first time, it will output WebUI links you can use to manage your community with the ease of the GUI.
+1. If you prefer to use a **GUI**, download the desktop version of the Seedit client, available for Windows, MacOS and Linux: [latest release](https://github.com/bitsocialnet/seedit/releases/latest). Create a community using using the familiar old.reddit-like UI, and modify its settings to your liking. The app runs an IPFS node, meaning you have to keep it running to have your board online.
+2. If you prefer to use a **command line interface**, install bitsocial-cli, available for Windows, MacOS and Linux: [latest release](https://github.com/bitsocialnet/bitsocial-cli/releases/latest). Follow the instructions in the readme of the repo. When running the daemon for the first time, it will output WebUI links you can use to manage your community with the ease of the GUI.
 
-Peers can connect to your bitsocial community using any bitsocial client, such as Seedit or [5chan](https://github.com/bitsocialhq/5chan). They only need the community address, which is not stored in any central database, as bitsocial is a pure peer-to-peer protocol.
+Peers can connect to your bitsocial community using any bitsocial client, such as Seedit or [5chan](https://github.com/bitsocialnet/5chan). They only need the community address, which is not stored in any central database, as bitsocial is a pure peer-to-peer protocol.
 
 ### How to add a community to the default list (s/all)
-The default list of communities, used on s/all on Seedit, is bitsocial's [default-multisub.json list](https://github.com/bitsocialhq/lists/blob/master/default-multisub.json). You can open a pull request in that repo to add your community to the list.
+The default list of communities, used on s/all on Seedit, is bitsocial's [seedit-default-subscriptions.json list](https://github.com/bitsocialnet/lists/blob/master/seedit-default-subscriptions.json). You can open a pull request in that repo to add your community to the list.
 
 ## Contributor setup
 
@@ -3273,7 +3284,7 @@ The default web dev server runs at `https://seedit.localhost` via [Portless](htt
 
 ### Build:
 
-The linux/windows/mac/android build scripts are in https://github.com/bitsocialhq/seedit/blob/master/.github/workflows/release.yml
+The linux/windows/mac/android build scripts are in https://github.com/bitsocialnet/seedit/blob/master/.github/workflows/release.yml
 
 ### MintPass - NFT Authentication Middleware for Bitsocial
 
@@ -3575,7 +3586,7 @@ OpenAI-compatible APIs are a practical compatibility convention, not a formal op
 - Content edits with verdict `review` are rejected until PKC supports pending approval for edits.
 - Content edits are rejected if the model API is unavailable.
 - Delete-only edits and non-comment publication types bypass AI moderation.
-- The challenge sends text, title, link URL/domain/path, flags, flairs, community address/title/description, `community.rules`, and a bounded activity-relative list of recent top-level posts for duplicate-thread checks when the local community database is available.
+- The challenge sends text, title, submission time, link URL/domain/path, URL-path date hints, flags, flairs, community address/title/description, `community.rules`, and a bounded activity-relative list of recent top-level posts for duplicate-thread checks when the local community database is available.
 - The model payload explicitly labels publication fields as untrusted user content, not instructions.
 - The challenge does not fetch linked publication media or user-submitted URLs. `promptUrl` is an operator-configured private prompt source, not publication content.
 - Remote prompts are fetched without following redirects, with a 5 second timeout, capped at 64 KiB, cached in memory for 5 minutes, and reused from the last in-memory copy if a refresh fails. If the first remote prompt fetch fails, moderation fails closed for the allow branch.
@@ -4806,12 +4817,14 @@ Description: Verified flag issuer challenge for Bitsocial communities and client
 
 Verified flag issuer challenge for Bitsocial communities and clients.
 
-This package runs on a Bitsocial community owner node as a challenge. It is not specific to 5chan: any Bitsocial client can use the same challenge pattern with its own issuer service, namespace, and flag profile. The first bundled profile is the 5chan profile, issued by `flags.5chan.app`, for country flags, `/pol/` memeflags, and `/mlp/` pony flags.
+This package runs on a Bitsocial community owner node as a challenge. It is not specific to 5chan: any Bitsocial client can use the same challenge pattern with its own issuer service, namespace, and flag profile. The first bundled profile is the 5chan profile. Country flags are issued by `flags.5chan.app`; `/pol/` memeflags and `/mlp/` pony flags are validated as board-choice flairs without an issuer iframe.
 
-The challenge writes two pieces of data when a flag is verified:
+For issuer-verified country flags, the challenge writes two pieces of data:
 
 - immutable comment data under a client namespace such as `comment["5chan"]`;
 - a compatibility mirror under `commentUpdate.author.community.flairs`, so clients that already render author flairs can show the same flag.
+
+For `/pol/` memeflags and `/mlp/` pony flags, clients should publish the selected flag as normal comment flair data. The challenge validates that the requested family is allowed and that the code is known, then accepts the publication without contacting the issuer service.
 
 The namespace is configurable. For example, a future Seedit profile could write to `comment["seedit"]` while using its own issuer and flag metadata.
 
@@ -4885,7 +4898,7 @@ Supported 5chan request strings:
 - `flag:pol:AC`
 - `flag:pony:AJ`
 
-Country flags use `auto` because the issuer service must derive the country from the challenge iframe request IP. The challenge does not trust a client-provided country code as proof of location.
+Country flags use `auto` because the issuer service must derive the country from the challenge iframe request IP. The challenge does not trust a client-provided country code as proof of location. `/pol/` memeflags and `/mlp/` pony flags are free user choices, so they do not require the iframe flow.
 
 ## Verified Comment Shape
 
@@ -4922,7 +4935,7 @@ For a country flag, the challenge returns a result like:
 }
 ```
 
-For `/pol/` memeflags and `/mlp/` pony flags, `comment["5chan"].flag` carries the selected flag and `comment["5chan"].memeflag` or `comment["5chan"].pony` carries the short code.
+For `/pol/` memeflags and `/mlp/` pony flags, clients render the selected flag from the comment flair fields they publish. The challenge does not add a signed `comment["5chan"]` assertion for those board-choice flags.
 
 ## Issuer Service Contract
 
@@ -5316,12 +5329,19 @@ $ bitsocial community edit mysub.bso '--roles["author-address.bso"]' null
 ## Commands
 
 <!-- commands -->
+* [`bitsocial challenge add PACKAGE`](#bitsocial-challenge-add-package)
+* [`bitsocial challenge i PACKAGE`](#bitsocial-challenge-i-package)
 * [`bitsocial challenge install PACKAGE`](#bitsocial-challenge-install-package)
 * [`bitsocial challenge list`](#bitsocial-challenge-list)
+* [`bitsocial challenge ls`](#bitsocial-challenge-ls)
 * [`bitsocial challenge remove NAME`](#bitsocial-challenge-remove-name)
+* [`bitsocial challenge rm NAME`](#bitsocial-challenge-rm-name)
+* [`bitsocial challenge un NAME`](#bitsocial-challenge-un-name)
+* [`bitsocial challenge uninstall NAME`](#bitsocial-challenge-uninstall-name)
 * [`bitsocial community create`](#bitsocial-community-create)
 * [`bitsocial community delete ADDRESSES`](#bitsocial-community-delete-addresses)
 * [`bitsocial community edit ADDRESS`](#bitsocial-community-edit-address)
+* [`bitsocial community export [ADDRESS]`](#bitsocial-community-export-address)
 * [`bitsocial community get [ADDRESS]`](#bitsocial-community-get-address)
 * [`bitsocial community list`](#bitsocial-community-list)
 * [`bitsocial community start ADDRESSES`](#bitsocial-community-start-addresses)
@@ -5332,6 +5352,72 @@ $ bitsocial community edit mysub.bso '--roles["author-address.bso"]' null
 * [`bitsocial update check`](#bitsocial-update-check)
 * [`bitsocial update install [VERSION]`](#bitsocial-update-install-version)
 * [`bitsocial update versions`](#bitsocial-update-versions)
+
+## `bitsocial challenge add PACKAGE`
+
+Install a challenge package (npm package name, git URL, tarball URL, or local path)
+
+```
+USAGE
+  $ bitsocial challenge add PACKAGE [--pkcOptions.dataPath <value>]
+
+ARGUMENTS
+  PACKAGE  Package specifier — anything npm can install (name, name@version, git URL, tarball URL, local path)
+
+FLAGS
+  --pkcOptions.dataPath=<value>  Data path to install the challenge into
+
+DESCRIPTION
+  Install a challenge package (npm package name, git URL, tarball URL, or local path)
+
+ALIASES
+  $ bitsocial challenge i
+  $ bitsocial challenge add
+
+EXAMPLES
+  $ bitsocial challenge install @bitsocial/mintpass-challenge
+
+  $ bitsocial challenge install @bitsocial/mintpass-challenge@1.0.0
+
+  $ bitsocial challenge install github:user/repo
+
+  $ bitsocial challenge install https://example.com/my-challenge-1.0.0.tar.gz
+
+  $ bitsocial challenge install ./my-local-challenge
+```
+
+## `bitsocial challenge i PACKAGE`
+
+Install a challenge package (npm package name, git URL, tarball URL, or local path)
+
+```
+USAGE
+  $ bitsocial challenge i PACKAGE [--pkcOptions.dataPath <value>]
+
+ARGUMENTS
+  PACKAGE  Package specifier — anything npm can install (name, name@version, git URL, tarball URL, local path)
+
+FLAGS
+  --pkcOptions.dataPath=<value>  Data path to install the challenge into
+
+DESCRIPTION
+  Install a challenge package (npm package name, git URL, tarball URL, or local path)
+
+ALIASES
+  $ bitsocial challenge i
+  $ bitsocial challenge add
+
+EXAMPLES
+  $ bitsocial challenge install @bitsocial/mintpass-challenge
+
+  $ bitsocial challenge install @bitsocial/mintpass-challenge@1.0.0
+
+  $ bitsocial challenge install github:user/repo
+
+  $ bitsocial challenge install https://example.com/my-challenge-1.0.0.tar.gz
+
+  $ bitsocial challenge install ./my-local-challenge
+```
 
 ## `bitsocial challenge install PACKAGE`
 
@@ -5350,6 +5436,10 @@ FLAGS
 DESCRIPTION
   Install a challenge package (npm package name, git URL, tarball URL, or local path)
 
+ALIASES
+  $ bitsocial challenge i
+  $ bitsocial challenge add
+
 EXAMPLES
   $ bitsocial challenge install @bitsocial/mintpass-challenge
 
@@ -5362,7 +5452,7 @@ EXAMPLES
   $ bitsocial challenge install ./my-local-challenge
 ```
 
-_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/challenge/install.ts)_
+_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/challenge/install.ts)_
 
 ## `bitsocial challenge list`
 
@@ -5379,13 +5469,40 @@ FLAGS
 DESCRIPTION
   List installed challenge packages
 
+ALIASES
+  $ bitsocial challenge ls
+
 EXAMPLES
   $ bitsocial challenge list
 
   $ bitsocial challenge list -q
 ```
 
-_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/challenge/list.ts)_
+_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/challenge/list.ts)_
+
+## `bitsocial challenge ls`
+
+List installed challenge packages
+
+```
+USAGE
+  $ bitsocial challenge ls [-q] [--pkcOptions.dataPath <value>]
+
+FLAGS
+  -q, --quiet                        Only display challenge names
+      --pkcOptions.dataPath=<value>  Data path where challenges are installed
+
+DESCRIPTION
+  List installed challenge packages
+
+ALIASES
+  $ bitsocial challenge ls
+
+EXAMPLES
+  $ bitsocial challenge list
+
+  $ bitsocial challenge list -q
+```
 
 ## `bitsocial challenge remove NAME`
 
@@ -5404,13 +5521,102 @@ FLAGS
 DESCRIPTION
   Remove an installed challenge package
 
+ALIASES
+  $ bitsocial challenge uninstall
+  $ bitsocial challenge rm
+  $ bitsocial challenge un
+
 EXAMPLES
   $ bitsocial challenge remove my-challenge
 
   $ bitsocial challenge remove @scope/my-challenge
 ```
 
-_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/challenge/remove.ts)_
+_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/challenge/remove.ts)_
+
+## `bitsocial challenge rm NAME`
+
+Remove an installed challenge package
+
+```
+USAGE
+  $ bitsocial challenge rm NAME [--pkcOptions.dataPath <value>]
+
+ARGUMENTS
+  NAME  The challenge package name (e.g., my-challenge or @scope/my-challenge)
+
+FLAGS
+  --pkcOptions.dataPath=<value>  Data path where challenges are installed
+
+DESCRIPTION
+  Remove an installed challenge package
+
+ALIASES
+  $ bitsocial challenge uninstall
+  $ bitsocial challenge rm
+  $ bitsocial challenge un
+
+EXAMPLES
+  $ bitsocial challenge remove my-challenge
+
+  $ bitsocial challenge remove @scope/my-challenge
+```
+
+## `bitsocial challenge un NAME`
+
+Remove an installed challenge package
+
+```
+USAGE
+  $ bitsocial challenge un NAME [--pkcOptions.dataPath <value>]
+
+ARGUMENTS
+  NAME  The challenge package name (e.g., my-challenge or @scope/my-challenge)
+
+FLAGS
+  --pkcOptions.dataPath=<value>  Data path where challenges are installed
+
+DESCRIPTION
+  Remove an installed challenge package
+
+ALIASES
+  $ bitsocial challenge uninstall
+  $ bitsocial challenge rm
+  $ bitsocial challenge un
+
+EXAMPLES
+  $ bitsocial challenge remove my-challenge
+
+  $ bitsocial challenge remove @scope/my-challenge
+```
+
+## `bitsocial challenge uninstall NAME`
+
+Remove an installed challenge package
+
+```
+USAGE
+  $ bitsocial challenge uninstall NAME [--pkcOptions.dataPath <value>]
+
+ARGUMENTS
+  NAME  The challenge package name (e.g., my-challenge or @scope/my-challenge)
+
+FLAGS
+  --pkcOptions.dataPath=<value>  Data path where challenges are installed
+
+DESCRIPTION
+  Remove an installed challenge package
+
+ALIASES
+  $ bitsocial challenge uninstall
+  $ bitsocial challenge rm
+  $ bitsocial challenge un
+
+EXAMPLES
+  $ bitsocial challenge remove my-challenge
+
+  $ bitsocial challenge remove @scope/my-challenge
+```
 
 ## `bitsocial community create`
 
@@ -5440,7 +5646,7 @@ EXAMPLES
     $ bitsocial community create --jsonFile ./create-options.json
 ```
 
-_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/community/create.ts)_
+_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/community/create.ts)_
 
 ## `bitsocial community delete ADDRESSES`
 
@@ -5465,7 +5671,7 @@ EXAMPLES
   $ bitsocial community delete 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/community/delete.ts)_
+_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/community/delete.ts)_
 
 ## `bitsocial community edit ADDRESS`
 
@@ -5535,7 +5741,48 @@ EXAMPLES
     $ bitsocial community edit bitsocial.bso --jsonFile ./edit-options.json
 ```
 
-_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/community/edit.ts)_
+_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/community/edit.ts)_
+
+## `bitsocial community export [ADDRESS]`
+
+Export a local community to a SQLite snapshot file. The export runs on the RPC server (daemon); once finished the snapshot is downloaded and its sha256 checksum is verified. Pass --includePrivateKey to produce a restorable backup that keeps the community's address.
+
+```
+USAGE
+  $ bitsocial community export [ADDRESS] --pkcRpcUrl <value> [--name <value>] [--publicKey <value>] [-o <value>]
+    [--includePrivateKey] [--force] [-q]
+
+ARGUMENTS
+  [ADDRESS]  Address of the community to export
+
+FLAGS
+  -o, --path=<value>       Destination file for the downloaded snapshot (default:
+                           <dataPath>/exports/<address>_<datetime>.sqlite)
+  -q, --quiet              Suppress progress output; only print the path of the downloaded snapshot
+      --force              Overwrite the destination file if it already exists
+      --includePrivateKey  Ask the RPC server to include the community signer's private key in the export. Required for
+                           a restorable backup that keeps the same community address. The daemon may refuse (see
+                           `bitsocial daemon --no-allowPrivateKeyExport`)
+      --name=<value>       Name of the community to export
+      --pkcRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to PKC RPC
+      --publicKey=<value>  Public key of the community to export
+
+DESCRIPTION
+  Export a local community to a SQLite snapshot file. The export runs on the RPC server (daemon); once finished the
+  snapshot is downloaded and its sha256 checksum is verified. Pass --includePrivateKey to produce a restorable backup
+  that keeps the community's address.
+
+EXAMPLES
+  $ bitsocial community export plebmusic.bso
+
+  $ bitsocial community export plebmusic.bso --includePrivateKey -o ./backups/plebmusic.sqlite
+
+  $ bitsocial community export --name my-community
+
+  $ bitsocial community export --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
+```
+
+_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/community/export.ts)_
 
 ## `bitsocial community get [ADDRESS]`
 
@@ -5566,7 +5813,7 @@ EXAMPLES
   $ bitsocial community get --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/community/get.ts)_
+_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/community/get.ts)_
 
 ## `bitsocial community list`
 
@@ -5577,7 +5824,7 @@ USAGE
   $ bitsocial community list --pkcRpcUrl <value> [-q]
 
 FLAGS
-  -q, --quiet              Only display community addresses
+  -q, --quiet              Only display community addresses (much faster: skips the per-community 'started' lookup)
       --pkcRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to PKC RPC
 
 DESCRIPTION
@@ -5589,7 +5836,7 @@ EXAMPLES
   $ bitsocial community list
 ```
 
-_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/community/list.ts)_
+_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/community/list.ts)_
 
 ## `bitsocial community start ADDRESSES`
 
@@ -5623,7 +5870,7 @@ EXAMPLES
     $ bitsocial community start $(bitsocial community list -q) --concurrency 1
 ```
 
-_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/community/start.ts)_
+_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/community/start.ts)_
 
 ## `bitsocial community stop ADDRESSES`
 
@@ -5648,7 +5895,7 @@ EXAMPLES
   $ bitsocial community stop Qmb99crTbSUfKXamXwZBe829Vf6w5w5TktPkb6WstC9RFW
 ```
 
-_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/community/stop.ts)_
+_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/community/stop.ts)_
 
 ## `bitsocial daemon`
 
@@ -5657,8 +5904,12 @@ Run a network-connected Bitsocial node. Once the daemon is running you can creat
 ```
 USAGE
   $ bitsocial daemon --pkcRpcUrl <value> --logPath <value> [--chainProviderUrls <value>...]
+    [--allowPrivateKeyExport]
 
 FLAGS
+  --[no-]allowPrivateKeyExport    Allow RPC clients to request community exports that include the community signer's
+                                  private key (`bitsocial community export --includePrivateKey`). Disable with
+                                  --no-allowPrivateKeyExport when exposing the RPC to untrusted clients
   --chainProviderUrls=<value>...  [default:
                                   https://eth.drpc.org,https://ethereum.publicnode.com,https://ethereum-rpc.publicnode.c
                                   om,https://rpc.mevblocker.io,https://1rpc.io/eth,https://eth-pokt.nodies.app] RPC
@@ -5686,9 +5937,11 @@ EXAMPLES
   $ bitsocial daemon --pkcOptions.kuboRpcClientsOptions[0] https://remoteipfsnode.com
 
   $ bitsocial daemon --chainProviderUrls https://mainnet.infura.io/v3/YOUR_KEY
+
+  $ bitsocial daemon --no-allowPrivateKeyExport
 ```
 
-_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/daemon.ts)_
+_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/daemon.ts)_
 
 ## `bitsocial help [COMMAND]`
 
@@ -5754,7 +6007,7 @@ EXAMPLES
   $ bitsocial logs --stdout -f
 ```
 
-_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/logs.ts)_
+_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/logs.ts)_
 
 ## `bitsocial update check`
 
@@ -5771,7 +6024,7 @@ EXAMPLES
   $ bitsocial update check
 ```
 
-_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/update/check.ts)_
+_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/update/check.ts)_
 
 ## `bitsocial update install [VERSION]`
 
@@ -5803,7 +6056,7 @@ EXAMPLES
   $ bitsocial update install --no-restart-daemons
 ```
 
-_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/update/install.ts)_
+_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/update/install.ts)_
 
 ## `bitsocial update versions`
 
@@ -5825,7 +6078,7 @@ EXAMPLES
   $ bitsocial update versions --limit 5
 ```
 
-_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.63/src/cli/commands/update/versions.ts)_
+_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.73/src/cli/commands/update/versions.ts)_
 <!-- commandsstop -->
 
 ## Contribution
