@@ -36,6 +36,7 @@ The defaults are chosen so Pubsub Provider can run next to [Bitsocial Seeder](/a
 ```bash
 git clone https://github.com/bitsocialnet/pubsub-provider.git
 cd pubsub-provider
+docker compose pull
 docker compose up -d
 ```
 
@@ -50,6 +51,27 @@ Test the proxy:
 ```bash
 curl http://127.0.0.1/commit-hash
 ```
+
+## Upgrading
+
+If you previously ran the old `latest` image, force Compose to recreate the container from the pinned published image:
+
+```bash
+git pull
+docker compose down
+docker compose pull
+docker compose up -d --force-recreate
+```
+
+Verify the fixed image is running:
+
+```bash
+docker inspect pubsub-provider --format 'image={{.Image}} restarts={{.RestartCount}}'
+docker exec pubsub-provider /app/bin/ipfs version
+curl http://127.0.0.1/commit-hash
+```
+
+The logs should include `using Kubo binary at /app/bin/ipfs` and should not include `downloading ipfs`.
 
 ## Running With Bitsocial Seeder
 
