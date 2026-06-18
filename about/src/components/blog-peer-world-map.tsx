@@ -67,13 +67,13 @@ export default function BlogPeerWorldMap({ peers }: BlogPeerWorldMapProps) {
   if (plotted.length === 0) return null;
 
   return (
-    <figure className="overflow-hidden rounded-2xl border border-border/40 bg-background/40 text-muted-foreground">
+    <figure className="overflow-hidden rounded-xl border border-border/40 bg-background/40 text-muted-foreground">
       <svg
         viewBox="0 8 360 140"
         shapeRendering="crispEdges"
         role="img"
         aria-label="Approximate peer locations"
-        className="block h-auto w-full"
+        className="block h-36 w-full sm:h-40"
       >
         <path d={LAND_PATH} fill="currentColor" opacity="0.28" />
         {plotted.map((peer) => (
@@ -90,7 +90,7 @@ export default function BlogPeerWorldMap({ peers }: BlogPeerWorldMapProps) {
           </rect>
         ))}
       </svg>
-      <figcaption className="px-3 py-1.5 text-[11px] italic opacity-60">
+      <figcaption className="px-3 py-1 text-[10px] italic opacity-60">
         approximate peer locations
       </figcaption>
     </figure>

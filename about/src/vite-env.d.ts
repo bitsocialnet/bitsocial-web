@@ -10,6 +10,13 @@ interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
 
+interface Window {
+  BITSOCIAL_REACT_HOOKS_ACCOUNTS_STORE_INITIALIZING?: boolean;
+  defaultPkcOptions?: Record<string, unknown>;
+  electronApi?: { isElectron?: boolean };
+  isElectron?: boolean;
+}
+
 declare module "*.png" {
   const value: string;
   export default value;

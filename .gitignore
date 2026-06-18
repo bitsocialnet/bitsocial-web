@@ -7,7 +7,9 @@ dist
 docs/.docusaurus
 about/playwright-report
 about/test-results
-.yarn
+.yarn/*
+!.yarn/patches/
+!.yarn/patches/**
 *.local
 .DS_Store
 bun.lock

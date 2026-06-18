@@ -16,6 +16,7 @@ import {
   type BlogFlair,
 } from "@/lib/blog-community";
 import { useBlogLoadingState } from "@/lib/blog-state-string";
+import { useBrowserPureP2PAccountUpgrade } from "@/lib/use-browser-pure-p2p-account-upgrade";
 import { cn } from "@/lib/utils";
 
 function buildBlogHref(currentParams: URLSearchParams, updates: Record<string, string | null>) {
@@ -70,6 +71,7 @@ export default function Blog() {
   const query = searchParams.get("q") ?? "";
   const activeFlair = searchParams.get("tag");
   const [p2pModalOpen, setP2pModalOpen] = useState(false);
+  useBrowserPureP2PAccountUpgrade();
 
   // CommunityIdentifier: pass both name and publicKey so hooks can resolve
   // even when the .bso address hasn't propagated through name routers yet.
@@ -175,8 +177,8 @@ export default function Blog() {
 
           <section className="glass-card mb-6 p-4 md:p-5">
             <div className="flex flex-col gap-4">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <div className="flex h-12 flex-1 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="flex h-11 min-w-0 flex-1 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-3 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)] sm:h-12 sm:pl-4">
                   <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                   <input
                     type="search"
@@ -219,11 +221,12 @@ export default function Blog() {
                 <button
                   type="button"
                   onClick={() => setP2pModalOpen(true)}
-                  className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-full border border-border/70 px-4 text-sm font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
+                  className="inline-flex h-11 shrink-0 items-center justify-center gap-1.5 rounded-full border border-border/70 px-3 text-sm font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground sm:h-12 sm:gap-2 sm:px-4"
                   aria-label={t("blog.p2p.button")}
                 >
                   <Radio className="h-4 w-4" />
-                  <span>{t("blog.p2p.button")}</span>
+                  <span className="sm:hidden">P2P</span>
+                  <span className="hidden sm:inline">{t("blog.p2p.button")}</span>
                 </button>
               </div>
 

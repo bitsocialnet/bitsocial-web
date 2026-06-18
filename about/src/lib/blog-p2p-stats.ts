@@ -1,17 +1,15 @@
-// Browser-libp2p P2P stats reader, mirroring exactly the fields 5chan's
-// settings panel displays (`5chan/src/components/settings-modal/p2p-stats-settings/p2p-stats-settings.tsx`,
-// `getBrowserLibp2pStats`). Restyled on the consumer side — the data shape and
-// every field name here matches 5chan so the modal can render the same rows.
+// Browser-libp2p P2P stats reader, adapted from 5chan's
+// `getBrowserLibp2pStats`. Restyled on the consumer side; row names and shapes
+// stay aligned so the modal can render the same browser P2P details.
 
 import {
   fetchOwnPublicEndpoint,
   fetchPeerMapLocation,
-  getApproximateCountryCode,
-  getCountryConsistentLocation,
   getFirstPublicIpFromAddresses,
   type PeerMapLocation,
   type PublicEndpoint,
 } from "@/lib/peer-geo";
+import { dialBlogSeederPeers } from "@/lib/p2p-seeder-dial";
 
 // ---------- Public types (1:1 with 5chan StatRow union) ----------
 
@@ -33,6 +31,19 @@ export type PeerConnectionRole = "leecher" | "seeder";
 export type TransferStats = {
   downloadedBytes?: number;
   uploadedBytes?: number;
+};
+
+type TransferStatsSnapshot = {
+  peers: Map<string, TransferStats>;
+  totals: TransferStats;
+};
+
+type ObservedTransferStats = {
+  connections: WeakSet<object>;
+  downloadedBytes: number;
+  peers: Map<string, TransferStats>;
+  streams: WeakSet<object>;
+  uploadedBytes: number;
 };
 
 export type ConnectedPeerEntry = {
@@ -147,7 +158,16 @@ type Libp2pHandle = {
 };
 
 type Libp2pClientShape = {
-  _helia?: { libp2p?: Libp2pHandle; metrics?: unknown };
+  _helia?: {
+    libp2p?: Libp2pHandle;
+    metrics?: unknown;
+    routing?: {
+      routers?: unknown[];
+    };
+  };
+  heliaWithKuboRpcClientFunctions?: {
+    add?: unknown;
+  };
   key?: string;
 };
 
@@ -157,33 +177,147 @@ type AccountShape = {
       libp2pJsClients?: Record<string, Libp2pClientShape>;
     };
   };
+  pkcOptions?: Record<string, unknown>;
 };
 
-// ---------- Transfer-stats walker (helia metrics + per-connection counters) ----------
+// ---------- Transfer-stats walker (ported from 5chan's browser P2P stats) ----------
 
-const MAX_DEPTH = 10;
-const MAX_OBJECTS = 400;
+const MAX_TRANSFER_COUNTER_DEPTH = 10;
+const MAX_TRANSFER_COUNTER_OBJECTS = 400;
+const observedBrowserTransferStats = new WeakMap<object, ObservedTransferStats>();
 
-function addBytes(stats: TransferStats, direction: keyof TransferStats, value: unknown) {
-  const numeric = getFiniteNumber(value);
-  if (numeric === undefined) return;
-  stats[direction] = (stats[direction] ?? 0) + numeric;
+function addTransferStats(stats: TransferStats, direction: keyof TransferStats, value: unknown) {
+  const numericValue = getFiniteNumber(value);
+  if (numericValue === undefined) return;
+  stats[direction] = (stats[direction] ?? 0) + numericValue;
 }
 
-function walkHeliaMetrics(root: unknown): TransferStats {
-  const totals: TransferStats = {};
+function mergeTransferStats(primary: TransferStats, fallback: TransferStats): TransferStats {
+  return {
+    downloadedBytes: primary.downloadedBytes ?? fallback.downloadedBytes,
+    uploadedBytes: primary.uploadedBytes ?? fallback.uploadedBytes,
+  };
+}
+
+function createTransferStatsSnapshot(): TransferStatsSnapshot {
+  return { peers: new Map(), totals: {} };
+}
+
+function hasTransferStats(stats?: TransferStats) {
+  return stats?.downloadedBytes !== undefined || stats?.uploadedBytes !== undefined;
+}
+
+function getPeerTransferKey(value: unknown) {
+  const key = getStringValue(value, "").trim();
+  if (!key) return undefined;
+  const normalizedKey = key.toLowerCase();
+  if (
+    /^\d+$/.test(key) ||
+    ["global", "value", "total", "sum", "count"].includes(normalizedKey) ||
+    normalizedKey.includes("bytes") ||
+    normalizedKey.includes("rate")
+  ) {
+    return undefined;
+  }
+  return key;
+}
+
+function addPeerTransferStats(
+  peers: Map<string, TransferStats>,
+  peerKey: unknown,
+  direction: keyof TransferStats,
+  value: unknown,
+) {
+  const key = getPeerTransferKey(peerKey);
+  if (!key) return;
+  const stats = peers.get(key) ?? {};
+  addTransferStats(stats, direction, value);
+  if (hasTransferStats(stats)) peers.set(key, stats);
+}
+
+function addTransferSnapshotStats(
+  snapshot: TransferStatsSnapshot,
+  direction: keyof TransferStats,
+  value: unknown,
+  peerKey?: unknown,
+) {
+  addTransferStats(snapshot.totals, direction, value);
+  if (peerKey !== undefined) addPeerTransferStats(snapshot.peers, peerKey, direction, value);
+}
+
+function mergeTransferSnapshots(
+  primary: TransferStatsSnapshot,
+  fallback: TransferStatsSnapshot,
+): TransferStatsSnapshot {
+  const peers = new Map<string, TransferStats>();
+  for (const [peerKey, stats] of fallback.peers) peers.set(peerKey, stats);
+  for (const [peerKey, stats] of primary.peers) {
+    peers.set(peerKey, mergeTransferStats(stats, peers.get(peerKey) ?? {}));
+  }
+  return {
+    peers,
+    totals: mergeTransferStats(primary.totals, fallback.totals),
+  };
+}
+
+function getEntries(value: unknown): [string, unknown][] {
+  try {
+    if (value instanceof Map)
+      return Array.from(value.entries()).map(([key, entry]) => [String(key), entry]);
+    if (Array.isArray(value)) return value.map((entry, index) => [String(index), entry]);
+    if (isRecord(value)) return Object.entries(value);
+    return [];
+  } catch {
+    return [];
+  }
+}
+
+function getByteLength(value: unknown): number | undefined {
+  if (value === null || value === undefined) return undefined;
+  if (typeof value === "string") return new TextEncoder().encode(value).byteLength;
+  if (value instanceof ArrayBuffer) return value.byteLength;
+  if (ArrayBuffer.isView(value)) return value.byteLength;
+  if (isRecord(value)) {
+    const directByteLength = getFiniteNumber(value.byteLength);
+    if (directByteLength !== undefined) return directByteLength;
+    const dataByteLength = getByteLength(value.data);
+    if (dataByteLength !== undefined) return dataByteLength;
+  }
+  if (Array.isArray(value)) {
+    const total = value.reduce((sum, entry) => sum + (getByteLength(entry) ?? 0), 0);
+    return total > 0 ? total : undefined;
+  }
+  return undefined;
+}
+
+function getTransferStatsFromHeliaCounters(helia: unknown): TransferStatsSnapshot {
+  const snapshot = createTransferStatsSnapshot();
   const visited = new WeakSet<object>();
-  let objects = 0;
-  const visit = (value: unknown, depth: number) => {
+  let objectsVisited = 0;
+
+  const visit = (value: unknown, depth: number, peerKey?: string) => {
     try {
-      if (!isRecord(value) || visited.has(value) || depth > MAX_DEPTH || objects > MAX_OBJECTS) {
+      if (
+        !isRecord(value) ||
+        visited.has(value) ||
+        depth > MAX_TRANSFER_COUNTER_DEPTH ||
+        objectsVisited > MAX_TRANSFER_COUNTER_OBJECTS
+      ) {
         return;
       }
       visited.add(value);
-      objects++;
-      if ("bytesReceived" in value) addBytes(totals, "downloadedBytes", value.bytesReceived);
-      if ("bytesSent" in value) addBytes(totals, "uploadedBytes", value.bytesSent);
-      for (const [key, entry] of Object.entries(value)) {
+      objectsVisited++;
+
+      if ("bytesReceived" in value || "bytesSent" in value) {
+        const directPeerKey =
+          getPeerTransferKey(
+            getRecordField(value, ["peerId", "peer", "Peer", "id", "remotePeer"]),
+          ) ?? peerKey;
+        addTransferSnapshotStats(snapshot, "downloadedBytes", value.bytesReceived, directPeerKey);
+        addTransferSnapshotStats(snapshot, "uploadedBytes", value.bytesSent, directPeerKey);
+      }
+
+      for (const [key, entry] of getEntries(value)) {
         if (
           typeof entry === "function" ||
           key === "logger" ||
@@ -194,27 +328,324 @@ function walkHeliaMetrics(root: unknown): TransferStats {
         ) {
           continue;
         }
-        visit(entry, depth + 1);
+        const nextPeerKey =
+          peerKey ??
+          (isRecord(entry) && ("bytesReceived" in entry || "bytesSent" in entry)
+            ? getPeerTransferKey(key)
+            : undefined);
+        visit(entry, depth + 1, nextPeerKey);
       }
     } catch {
-      // ignore — best-effort introspection
+      return;
     }
   };
-  visit(root, 0);
-  return totals;
+
+  visit(helia, 0);
+  return snapshot;
 }
 
-function readConnectionTransferStats(connection: unknown): TransferStats {
-  const stats: TransferStats = {};
-  if (!isRecord(connection)) return stats;
-  addBytes(stats, "downloadedBytes", getRecordField(connection, ["bytesReceived"]));
-  addBytes(stats, "uploadedBytes", getRecordField(connection, ["bytesSent"]));
-  const metrics = getRecordField(connection, ["metrics", "stats"]);
-  if (isRecord(metrics)) {
-    addBytes(stats, "downloadedBytes", getRecordField(metrics, ["bytesReceived", "downloaded"]));
-    addBytes(stats, "uploadedBytes", getRecordField(metrics, ["bytesSent", "uploaded"]));
+function classifyTransferMetricPath(path: string[]) {
+  const normalizedPath = path
+    .join("_")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+  if (normalizedPath.includes("rate")) return undefined;
+  if (
+    normalizedPath.includes("totalin") ||
+    normalizedPath.includes("bytesreceived") ||
+    normalizedPath.includes("receivedbytes") ||
+    normalizedPath.includes("datareceivedbytes")
+  ) {
+    return "downloadedBytes" as const;
+  }
+  if (
+    normalizedPath.includes("totalout") ||
+    normalizedPath.includes("bytessent") ||
+    normalizedPath.includes("sentbytes") ||
+    normalizedPath.includes("datasentbytes") ||
+    normalizedPath.includes("sentdatabytes")
+  ) {
+    return "uploadedBytes" as const;
+  }
+  return undefined;
+}
+
+async function getMetricSnapshot(source: unknown) {
+  if (!isRecord(source)) return source;
+  const snapshots = await Promise.all(
+    ["getMetrics", "getMetricValues", "toJSON"].map(async (method) => {
+      const candidate = source[method];
+      if (typeof candidate !== "function") return undefined;
+      try {
+        return await candidate.call(source);
+      } catch {
+        return undefined;
+      }
+    }),
+  );
+  return snapshots.find((snapshot) => snapshot !== undefined) ?? source;
+}
+
+function getTransferStatsFromMetricSnapshot(metricSnapshot: unknown): TransferStatsSnapshot {
+  const snapshot = createTransferStatsSnapshot();
+  const visited = new WeakSet<object>();
+
+  const visit = (value: unknown, path: string[], depth: number) => {
+    const direction = classifyTransferMetricPath(path);
+    const numericValue = getFiniteNumber(value);
+    if (direction && numericValue !== undefined) {
+      addTransferStats(snapshot.totals, direction, numericValue);
+      return;
+    }
+
+    if (!isRecord(value) || visited.has(value) || depth > MAX_TRANSFER_COUNTER_DEPTH) return;
+    visited.add(value);
+
+    if (direction) {
+      const totalValue =
+        "global" in value ? value.global : "value" in value ? value.value : undefined;
+      const hasTotalValue = getFiniteNumber(totalValue) !== undefined;
+      if (hasTotalValue) addTransferStats(snapshot.totals, direction, totalValue);
+
+      let foundPeerValue = false;
+      for (const [key, entry] of getEntries(value)) {
+        const peerKey = getPeerTransferKey(key);
+        const peerValue = getFiniteNumber(entry);
+        if (!peerKey || peerValue === undefined) continue;
+        addPeerTransferStats(snapshot.peers, peerKey, direction, peerValue);
+        if (!hasTotalValue) addTransferStats(snapshot.totals, direction, peerValue);
+        foundPeerValue = true;
+      }
+
+      if (hasTotalValue || foundPeerValue) return;
+    }
+
+    for (const [key, entry] of getEntries(value)) visit(entry, [...path, key], depth + 1);
+  };
+
+  visit(metricSnapshot, [], 0);
+  return snapshot;
+}
+
+function getTransferStatsFromSources(sources: unknown[]): TransferStats {
+  return sources.reduce<TransferStats>((stats, source) => {
+    if (!isRecord(source)) return stats;
+    const downloadedBytes =
+      source.totalIn ??
+      source.TotalIn ??
+      source.downloadedBytes ??
+      source.bytesReceived ??
+      source.receivedBytes ??
+      source.dataReceivedBytes;
+    const uploadedBytes =
+      source.totalOut ??
+      source.TotalOut ??
+      source.uploadedBytes ??
+      source.bytesSent ??
+      source.sentBytes ??
+      source.dataSentBytes;
+    addTransferStats(stats, "downloadedBytes", downloadedBytes);
+    addTransferStats(stats, "uploadedBytes", uploadedBytes);
+    return stats;
+  }, {});
+}
+
+function getNestedTransferStats(source: unknown): TransferStats {
+  if (!isRecord(source)) return {};
+  return getTransferStatsFromSources([
+    source,
+    source.stat,
+    source.stats,
+    source.sessionStats,
+    source.bandwidth,
+    source.Bandwidth,
+    source.bandwidthStats,
+    source.transferStats,
+  ]);
+}
+
+function getTransferStatsFromClientShape(client?: Libp2pClientShape): TransferStats {
+  const clientRecord = isRecord(client) ? (client as Record<string, unknown>) : undefined;
+  return getNestedTransferStats(clientRecord);
+}
+
+function getObservedTransferStats(client?: Libp2pClientShape): ObservedTransferStats | undefined {
+  if (!isRecord(client)) return undefined;
+  let stats = observedBrowserTransferStats.get(client);
+  if (!stats) {
+    stats = {
+      connections: new WeakSet<object>(),
+      downloadedBytes: 0,
+      peers: new Map(),
+      streams: new WeakSet<object>(),
+      uploadedBytes: 0,
+    };
+    observedBrowserTransferStats.set(client, stats);
   }
   return stats;
+}
+
+function addObservedTransferStats(
+  stats: ObservedTransferStats,
+  direction: keyof TransferStats,
+  value: unknown,
+  peerKey?: unknown,
+) {
+  addTransferStats(stats, direction, value);
+  addPeerTransferStats(stats.peers, peerKey, direction, value);
+}
+
+function getObservedTransferSnapshot(stats?: ObservedTransferStats): TransferStatsSnapshot {
+  const snapshot = createTransferStatsSnapshot();
+  if (!stats) return snapshot;
+  snapshot.totals = {
+    downloadedBytes: stats.downloadedBytes,
+    uploadedBytes: stats.uploadedBytes,
+  };
+  for (const [peerKey, peerStats] of stats.peers) snapshot.peers.set(peerKey, peerStats);
+  return snapshot;
+}
+
+function instrumentStreamTransferStats(
+  stream: unknown,
+  stats: ObservedTransferStats,
+  peerKey?: unknown,
+) {
+  if (!isRecord(stream) || stats.streams.has(stream)) return;
+  stats.streams.add(stream);
+
+  const send = stream.send;
+  if (typeof send === "function") {
+    try {
+      stream.send = function sendWithTransferStats(
+        this: unknown,
+        data: unknown,
+        ...args: unknown[]
+      ) {
+        addObservedTransferStats(stats, "uploadedBytes", getByteLength(data), peerKey);
+        return send.call(this, data, ...args);
+      };
+    } catch {
+      // Some stream implementations expose read-only methods.
+    }
+  }
+
+  const addEventListener = stream.addEventListener;
+  if (typeof addEventListener === "function") {
+    try {
+      addEventListener.call(stream, "message", (event: unknown) => {
+        const data = isRecord(event) ? (event.data ?? event.detail) : undefined;
+        addObservedTransferStats(stats, "downloadedBytes", getByteLength(data), peerKey);
+      });
+    } catch {
+      return;
+    }
+  }
+}
+
+function instrumentConnectionTransferStats(connection: unknown, stats: ObservedTransferStats) {
+  if (!isRecord(connection)) return;
+  const peerKey = getStringValue(connection.remotePeer);
+
+  if (!stats.connections.has(connection)) {
+    stats.connections.add(connection);
+    const newStream = connection.newStream;
+    if (typeof newStream === "function") {
+      try {
+        connection.newStream = async function newStreamWithTransferStats(
+          this: unknown,
+          ...args: unknown[]
+        ) {
+          const stream = await newStream.apply(this, args);
+          instrumentStreamTransferStats(stream, stats, peerKey);
+          return stream;
+        };
+      } catch {
+        // Some connection implementations expose read-only methods.
+      }
+    }
+  }
+
+  for (const stream of toArray(connection.streams))
+    instrumentStreamTransferStats(stream, stats, peerKey);
+}
+
+async function getBrowserTransferStats(
+  client?: Libp2pClientShape,
+  connections: unknown[] = [],
+): Promise<TransferStatsSnapshot> {
+  try {
+    const helia = client?._helia;
+    const observedStats = getObservedTransferStats(client);
+    if (observedStats) {
+      connections.forEach((connection) =>
+        instrumentConnectionTransferStats(connection, observedStats),
+      );
+    }
+
+    const clientStats = {
+      peers: new Map<string, TransferStats>(),
+      totals: getTransferStatsFromClientShape(client),
+    };
+    const counterStats = getTransferStatsFromHeliaCounters(helia);
+    const metricSources = [helia?.metrics, helia?.libp2p?.metrics].filter(Boolean);
+    const metricSnapshots = await Promise.all(
+      metricSources.map((source) => getMetricSnapshot(source)),
+    );
+    const metricStats = metricSnapshots
+      .map((snapshot) => getTransferStatsFromMetricSnapshot(snapshot))
+      .reduce<TransferStatsSnapshot>(
+        (stats, nextStats) => mergeTransferSnapshots(stats, nextStats),
+        createTransferStatsSnapshot(),
+      );
+
+    return mergeTransferSnapshots(
+      mergeTransferSnapshots(mergeTransferSnapshots(clientStats, counterStats), metricStats),
+      getObservedTransferSnapshot(observedStats),
+    );
+  } catch {
+    return createTransferStatsSnapshot();
+  }
+}
+
+function getFunctionSource(value: unknown) {
+  if (typeof value !== "function") return undefined;
+  try {
+    return Function.prototype.toString.call(value).toLowerCase();
+  } catch {
+    return undefined;
+  }
+}
+
+function hasSupportedAdd(client?: Libp2pClientShape) {
+  const add = client?.heliaWithKuboRpcClientFunctions?.add;
+  const source = getFunctionSource(add);
+  return (
+    typeof add === "function" &&
+    !source?.includes("not supported") &&
+    !source?.includes("unsupported")
+  );
+}
+
+function isKnownNoopProvide(provide: unknown) {
+  const source = getFunctionSource(provide);
+  if (typeof provide !== "function") return true;
+  return Boolean(source?.includes("noop") || source?.replace(/\s/g, "") === "asyncprovide(){}");
+}
+
+function hasProviderPublishingRouter(client?: Libp2pClientShape) {
+  return (client?._helia?.routing?.routers ?? []).some(
+    (router) => isRecord(router) && !isKnownNoopProvide(router.provide),
+  );
+}
+
+function getBrowserMode(client?: Libp2pClientShape) {
+  if (!client) return "Unknown";
+  return hasSupportedAdd(client) && hasProviderPublishingRouter(client) ? "Seeding" : "Leeching";
+}
+
+function getEndpointAddress(ip: string) {
+  return ip.includes(":") ? `/ip6/${ip}/tcp/0` : `/ip4/${ip}/tcp/0`;
 }
 
 // ---------- Connection extraction ----------
@@ -260,9 +691,43 @@ function getConnectionTransport(address: string): string {
   return normalized.includes("/p2p-circuit") ? `${transport} through relay` : transport;
 }
 
+function getPeerIdFromAddress(address: string) {
+  const parts = address.split("/p2p/");
+  return parts.length > 1 ? parts[parts.length - 1]?.split("/")[0] : undefined;
+}
+
+function getPeerTransferStats(
+  peerStats: Map<string, TransferStats>,
+  peerId: string,
+  address: string,
+) {
+  const addressPeerId = getPeerIdFromAddress(address);
+  return (
+    peerStats.get(peerId) ??
+    (addressPeerId ? peerStats.get(addressPeerId) : undefined) ??
+    peerStats.get(address)
+  );
+}
+
+function getBrowserPeerTransferStats(
+  connection: unknown,
+  peerId: string,
+  address: string,
+  peerStats: Map<string, TransferStats>,
+) {
+  return mergeTransferStats(
+    getPeerTransferStats(peerStats, peerId, address) ?? {},
+    mergeTransferStats(getNestedTransferStats(connection), {
+      downloadedBytes: 0,
+      uploadedBytes: 0,
+    }),
+  );
+}
+
 function extractConnectedPeers(
   connections: unknown[],
   knownPeers: unknown[],
+  peerTransferStats: Map<string, TransferStats>,
 ): ConnectedPeersStatRow {
   const entries: ConnectedPeerEntry[] = connections.map((connection, index) => {
     const peerId = getConnectionPeerId(connection);
@@ -274,7 +739,6 @@ function extractConnectedPeers(
     const status = isRecord(connection)
       ? getStringField(connection, ["status", "state"], "") || undefined
       : undefined;
-    const transfer = readConnectionTransferStats(connection);
     return {
       id: `${peerId}-${address || index}`,
       peerId,
@@ -282,10 +746,7 @@ function extractConnectedPeers(
       transport,
       direction,
       status,
-      transferStats:
-        transfer.downloadedBytes !== undefined || transfer.uploadedBytes !== undefined
-          ? transfer
-          : undefined,
+      transferStats: getBrowserPeerTransferStats(connection, peerId, address, peerTransferStats),
     };
   });
 
@@ -315,33 +776,41 @@ async function resolvePeerLocations(
   row: ConnectedPeersStatRow,
   signal?: AbortSignal,
 ): Promise<ConnectedPeersStatRow> {
-  const lookups = row.entries.map(async (entry) => {
-    if (!entry.address) return entry;
-    const onlineLocation = await fetchPeerMapLocation(entry.address, signal).catch(() => undefined);
-    const approximateCountry = getApproximateCountryCode(entry.address);
-    const location = getCountryConsistentLocation(approximateCountry, onlineLocation);
-    return {
-      ...entry,
-      countryCode: location?.countryCode ?? approximateCountry,
-      location,
-    };
-  });
-  const entries = await Promise.all(lookups);
+  if (!row.entries.length) return row;
+  const lookups = new Map<string, Promise<PeerMapLocation | undefined>>();
+  const entries = await Promise.all(
+    row.entries.map(async (entry) => {
+      if (!entry.address) return entry;
+      let lookup = lookups.get(entry.address);
+      if (!lookup) {
+        lookup = fetchPeerMapLocation(entry.address, signal).catch(() => undefined);
+        lookups.set(entry.address, lookup);
+      }
+      const location = await lookup;
+      if (!location) return entry;
+      return {
+        ...entry,
+        countryCode: location.countryCode ?? entry.countryCode,
+        location,
+      };
+    }),
+  );
   return { ...row, entries };
 }
 
 function buildMapEntries(
   ownEndpoint: PublicEndpoint | undefined,
   row: ConnectedPeersStatRow,
+  mode: string,
 ): PeerMapEntry[] {
   const map: PeerMapEntry[] = [];
   if (ownEndpoint?.location) {
     map.push({
-      address: ownEndpoint.ip,
+      address: getEndpointAddress(ownEndpoint.ip),
       id: "self",
       location: ownEndpoint.location,
       peerId: "Your node",
-      role: "seeder",
+      role: mode === "Leeching" ? "leecher" : "seeder",
     });
   }
   for (const entry of row.entries) {
@@ -351,7 +820,7 @@ function buildMapEntries(
       id: entry.id,
       location: entry.location,
       peerId: entry.peerId,
-      role: entry.role,
+      role: entry.role ?? "seeder",
     });
   }
   return map;
@@ -363,9 +832,14 @@ export async function getBlogP2PStats(account: unknown, signal?: AbortSignal): P
   const accountShape = account as AccountShape | undefined;
   const client = getFirstObjectValue(accountShape?.pkc?.clients?.libp2pJsClients);
   const libp2p = client?._helia?.libp2p;
+
   if (!libp2p) {
     return [{ name: "Mode", value: "Browser libp2p (initializing)" }];
   }
+
+  const mode = getBrowserMode(client);
+
+  await dialBlogSeederPeers(accountShape, signal).catch(() => undefined);
 
   // NOTE: getPeers / getConnections must be called as methods so `this` stays
   // bound to the libp2p node — passing the bare reference makes them throw.
@@ -375,26 +849,7 @@ export async function getBlogP2PStats(account: unknown, signal?: AbortSignal): P
     fetchOwnPublicEndpoint(signal).catch(() => undefined),
   ]);
 
-  // Walk helia metrics for global transfer totals if the runtime exposes them,
-  // and fall back to summing per-connection counters when missing.
-  const heliaTotals = walkHeliaMetrics(client?._helia ?? libp2p);
-  let downloadedSum = 0;
-  let uploadedSum = 0;
-  let sawConnectionStats = false;
-  for (const connection of connections) {
-    const t = readConnectionTransferStats(connection);
-    if (t.downloadedBytes !== undefined) {
-      downloadedSum += t.downloadedBytes;
-      sawConnectionStats = true;
-    }
-    if (t.uploadedBytes !== undefined) {
-      uploadedSum += t.uploadedBytes;
-      sawConnectionStats = true;
-    }
-  }
-  const totalDownloaded =
-    heliaTotals.downloadedBytes ?? (sawConnectionStats ? downloadedSum : undefined);
-  const totalUploaded = heliaTotals.uploadedBytes ?? (sawConnectionStats ? uploadedSum : undefined);
+  const transferStats = await getBrowserTransferStats(client, connections);
 
   // Use peer-side IPs as a fallback for the map when own endpoint lookup fails.
   let endpointForMap = ownEndpoint;
@@ -404,13 +859,13 @@ export async function getBlogP2PStats(account: unknown, signal?: AbortSignal): P
   }
 
   const connectedPeersRow = await resolvePeerLocations(
-    extractConnectedPeers(connections, peers),
+    extractConnectedPeers(connections, peers, transferStats.peers),
     signal,
   );
-  const mapEntries = buildMapEntries(endpointForMap, connectedPeersRow);
+  const mapEntries = buildMapEntries(endpointForMap, connectedPeersRow, mode);
 
   return [
-    { name: "Mode", value: "Browser libp2p" },
+    { name: "Mode", value: mode },
     { name: "Peer ID", value: libp2p.peerId?.toString() ?? "unknown" },
     ownEndpoint
       ? {
@@ -422,11 +877,11 @@ export async function getBlogP2PStats(account: unknown, signal?: AbortSignal): P
       : { name: "Your IP", value: "unavailable" },
     {
       name: "Data received",
-      value: totalDownloaded === undefined ? "unknown" : formatBytes(totalDownloaded),
+      value: formatBytes(transferStats.totals.downloadedBytes),
     },
     {
       name: "Data sent",
-      value: totalUploaded === undefined ? "unknown" : formatBytes(totalUploaded),
+      value: formatBytes(transferStats.totals.uploadedBytes),
     },
     { ...connectedPeersRow, mapEntries },
   ];

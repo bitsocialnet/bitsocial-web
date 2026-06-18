@@ -129,8 +129,6 @@ const fetchPublicEndpoint = async (
   }
 };
 
-const getIpLookupAddress = (ip: string) => `/ip${ip.includes(":") ? "6" : "4"}/${ip}/tcp/0`;
-
 const parsePeerLocation = (data: unknown): PeerMapLocation | undefined => {
   if (!data || typeof data !== "object") return undefined;
   const lat = getFiniteCoordinate((data as { latitude?: unknown }).latitude, -85, 85);
@@ -160,11 +158,10 @@ const resolveOwnPublicEndpointLocation = async (
       : fetchOwnIpCountryCode(endpoint.ip, signal),
     fetchIpMapLocation(endpoint.ip, signal),
   ]);
-  const resolvedCountryCode =
-    endpoint.countryCode ??
-    countryCode ??
-    location?.countryCode ??
-    getApproximateCountryCode(getIpLookupAddress(endpoint.ip));
+  // This country is shown next to the user's own public IP, so only use lookup
+  // services that actually identify that IP. The coarse peer hash can be very
+  // wrong for nearby APNIC countries (for example Vietnam resolving to HK).
+  const resolvedCountryCode = endpoint.countryCode ?? countryCode ?? location?.countryCode;
   return {
     ...endpoint,
     countryCode: resolvedCountryCode,
@@ -303,7 +300,7 @@ const REGION_BY_OCTET: Region[] = (() => {
   return table;
 })();
 
-export const extractIpv4FromAddress = (address: string): string | null => {
+const extractIpv4FromAddress = (address: string): string | null => {
   const direct = /\/ip4\/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/.exec(address);
   if (direct) return direct[1];
   // Some peers are reached via a DNS name that embeds the IPv4 with dashes, e.g.
@@ -315,9 +312,19 @@ export const extractIpv4FromAddress = (address: string): string | null => {
   return null;
 };
 
-export const extractIpv6FromAddress = (address: string): string | null => {
+const extractIpv6FromAddress = (address: string): string | null => {
   const direct = /\/ip6\/([^/]+)/.exec(address);
-  return direct ? direct[1] : null;
+  if (direct) return direct[1];
+  const dns = /\/dns6\/([^/]+)/i.exec(address);
+  const firstLabel = dns?.[1]?.split(".")[0];
+  if (!firstLabel || !firstLabel.includes("-") || !/^[0-9a-f-]+$/i.test(firstLabel)) return null;
+  const candidate = firstLabel.replace(/-/g, ":").toLowerCase();
+  try {
+    new URL(`http://[${candidate}]/`);
+    return candidate;
+  } catch {
+    return null;
+  }
 };
 
 const parseOctets = (ip: string): number[] | null => {
