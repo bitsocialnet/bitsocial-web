@@ -2,6 +2,7 @@ import {
   canUsePureP2PBrowser,
   getBrowserGatewayPkcOptions,
   getBrowserPureP2PPkcOptions,
+  getPureP2PBrowserPreference,
   isElectronRuntime,
   shouldUsePureP2PBrowser,
   type P2PBrowserConfigWindow,
@@ -74,6 +75,7 @@ export const isBrowserPureP2PEnabled = (
   targetWindow?: P2PBrowserConfigWindow,
 ) => {
   if (!canConfigureBrowserPureP2P(targetWindow)) return false;
+  if (getPureP2PBrowserPreference(targetWindow) === false) return false;
   if (getP2PRuntimeMode(account, targetWindow) === "browser-libp2p") return true;
   return shouldUsePureP2PBrowser(targetWindow);
 };
@@ -103,6 +105,16 @@ export const shouldUpgradeBrowserPureP2PAccount = (
     hasMixedBrowserPureP2POptions(protocolOptions)
   );
 };
+
+export const shouldDowngradeBrowserPureP2PAccount = (
+  account?: unknown,
+  targetWindow?: P2PBrowserConfigWindow,
+) =>
+  !!account &&
+  typeof account === "object" &&
+  canConfigureBrowserPureP2P(targetWindow) &&
+  getPureP2PBrowserPreference(targetWindow) === false &&
+  getP2PRuntimeMode(account, targetWindow) === "browser-libp2p";
 
 export const getBrowserGatewayAccountOptions = (account?: unknown) => {
   const protocolOptions = toAccountShape(account)?.pkcOptions;

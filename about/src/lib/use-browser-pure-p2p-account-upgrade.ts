@@ -6,8 +6,10 @@ import {
   useAccounts,
 } from "@bitsocial/bitsocial-react-hooks";
 import {
+  getBrowserGatewayAccountOptions,
   getBrowserPureP2PAccountOptions,
   getP2PRuntimeMode,
+  shouldDowngradeBrowserPureP2PAccount,
   shouldUpgradeBrowserPureP2PAccount,
 } from "@/lib/p2p-runtime";
 import { dialBlogSeederPeers } from "@/lib/p2p-seeder-dial";
@@ -51,22 +53,25 @@ export function useBrowserPureP2PAccountUpgrade() {
 
   useEffect(() => {
     const shouldUpgrade = shouldUpgradeBrowserPureP2PAccount(account);
+    const shouldDowngrade = shouldDowngradeBrowserPureP2PAccount(account);
 
-    if (!account?.id || !shouldUpgrade) return;
+    if (!account?.id || (!shouldUpgrade && !shouldDowngrade)) return;
     if (upgradeAccountIdRef.current === account.id) return;
 
     upgradeAccountIdRef.current = account.id;
 
     void persistAccount({
       ...account,
-      pkcOptions: getBrowserPureP2PAccountOptions(account),
+      pkcOptions: shouldDowngrade
+        ? getBrowserGatewayAccountOptions(account)
+        : getBrowserPureP2PAccountOptions(account),
     })
       .then(() => {
         window.location.reload();
       })
       .catch((error: unknown) => {
         upgradeAccountIdRef.current = undefined;
-        console.error("Failed to upgrade browser account to pure P2P options", error);
+        console.error("Failed to update browser account P2P options", error);
       });
   }, [account]);
 

@@ -13,6 +13,7 @@ import {
   getBrowserPureP2PAccountOptions,
   getP2PRuntimeMode,
   isBrowserPureP2PEnabled,
+  shouldDowngradeBrowserPureP2PAccount,
   shouldUpgradeBrowserPureP2PAccount,
 } from "../src/lib/p2p-runtime";
 import {
@@ -159,6 +160,33 @@ test.describe("browser P2P runtime", () => {
     expect(shouldUpgradeBrowserPureP2PAccount(fullNodeAccount, browserWindow)).toBe(false);
     expect(shouldUpgradeBrowserPureP2PAccount(gatewayAccount, disabledBrowserWindow)).toBe(false);
     expect(shouldUpgradeBrowserPureP2PAccount(gatewayAccount, electronWindow)).toBe(false);
+  });
+
+  test("downgrades browser accounts when pure P2P is explicitly disabled", ({ browserName }) => {
+    test.skip(browserName !== "chromium", "one project is enough for this module test");
+
+    const gatewayAccount = { pkcOptions: { ipfsGatewayUrls: ["https://gateway.example"] } };
+    const browserAccount = { pkcOptions: { libp2pJsClientsOptions: [{ key: "libp2pjs" }] } };
+
+    expect(isBrowserPureP2PEnabled(browserAccount, disabledBrowserWindow)).toBe(false);
+    expect(shouldUpgradeBrowserPureP2PAccount(browserAccount, disabledBrowserWindow)).toBe(false);
+    expect(shouldDowngradeBrowserPureP2PAccount(browserAccount, disabledBrowserWindow)).toBe(true);
+    expect(shouldDowngradeBrowserPureP2PAccount(gatewayAccount, disabledBrowserWindow)).toBe(false);
+    expect(shouldDowngradeBrowserPureP2PAccount(browserAccount, browserWindow)).toBe(false);
+
+    expect(getBrowserGatewayAccountOptions(browserAccount)).toMatchObject({
+      ipfsGatewayUrls: [
+        "https://ipfsgateway.xyz",
+        "https://gateway.plebpubsub.xyz",
+        "https://gateway.forumindex.com",
+      ],
+      libp2pJsClientsOptions: undefined,
+      pubsubKuboRpcClientsOptions: [
+        "https://pubsubprovider.xyz/api/v0",
+        "https://plebpubsub.xyz/api/v0",
+        "https://rannithepleb.com/api/v0",
+      ],
+    });
   });
 
   test("builds pure P2P and gateway account options from an existing account", ({
