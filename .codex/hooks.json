@@ -1,32 +1,17 @@
 {
-  "version": 1,
+  "description": "Impeccable design detector: runs after Edit/Write/apply_patch on UI files and surfaces findings as system reminders.",
   "hooks": {
-    "afterFileEdit": [
+    "PostToolUse": [
       {
-        "command": ".codex/hooks/format.sh",
-        "timeout": 10
-      },
-      {
-        "command": ".codex/hooks/yarn-install.sh",
-        "timeout": 120
-      },
-      {
-        "command": ".codex/hooks/react-pattern-review.sh",
-        "timeout": 10
-      }
-    ],
-    "stop": [
-      {
-        "command": ".codex/hooks/sync-git-branches.sh",
-        "timeout": 60
-      },
-      {
-        "command": ".codex/hooks/react-pattern-review.sh",
-        "timeout": 10
-      },
-      {
-        "command": ".codex/hooks/verify.sh",
-        "timeout": 120
+        "matcher": "Edit|Write|apply_patch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.agents/skills/impeccable/scripts/hook.mjs\"",
+            "timeout": 5,
+            "statusMessage": "Checking UI changes"
+          }
+        ]
       }
     ]
   }
