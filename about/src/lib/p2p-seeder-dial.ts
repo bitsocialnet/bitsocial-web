@@ -73,7 +73,11 @@ function createTimeoutSignal(parentSignal: AbortSignal | undefined, timeoutMs: n
   const controller = new AbortController();
   const timeoutId = globalThis.setTimeout(() => controller.abort(), timeoutMs);
   const abort = () => controller.abort();
-  parentSignal?.addEventListener("abort", abort, { once: true });
+  if (parentSignal?.aborted) {
+    controller.abort();
+  } else {
+    parentSignal?.addEventListener("abort", abort, { once: true });
+  }
 
   return {
     cleanup: () => {

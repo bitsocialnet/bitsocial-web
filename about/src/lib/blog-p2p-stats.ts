@@ -121,9 +121,6 @@ const getStringField = (record: unknown, fields: string[], fallback = "") => {
   return getStringValue(value, fallback);
 };
 
-const getFirstObjectValue = <T>(value?: Record<string, T>) =>
-  value ? Object.values(value)[0] : undefined;
-
 const getSafeArray = async (
   reader?: () => unknown[] | Promise<unknown[]> | undefined,
 ): Promise<unknown[]> => {
@@ -179,6 +176,12 @@ type AccountShape = {
   };
   pkcOptions?: Record<string, unknown>;
 };
+
+function getBlogLibp2pClientFromAccount(accountShape: AccountShape | undefined) {
+  const clients = accountShape?.pkc?.clients?.libp2pJsClients;
+  if (!clients) return undefined;
+  return Object.values(clients).find((client) => client?._helia?.libp2p);
+}
 
 // ---------- Transfer-stats walker (ported from 5chan's browser P2P stats) ----------
 
@@ -830,7 +833,7 @@ function buildMapEntries(
 
 export async function getBlogP2PStats(account: unknown, signal?: AbortSignal): Promise<StatRow[]> {
   const accountShape = account as AccountShape | undefined;
-  const client = getFirstObjectValue(accountShape?.pkc?.clients?.libp2pJsClients);
+  const client = getBlogLibp2pClientFromAccount(accountShape);
   const libp2p = client?._helia?.libp2p;
 
   if (!libp2p) {
@@ -839,7 +842,7 @@ export async function getBlogP2PStats(account: unknown, signal?: AbortSignal): P
 
   const mode = getBrowserMode(client);
 
-  await dialBlogSeederPeers(accountShape, signal).catch(() => undefined);
+  void dialBlogSeederPeers(accountShape, signal).catch(() => undefined);
 
   // NOTE: getPeers / getConnections must be called as methods so `this` stays
   // bound to the libp2p node — passing the bare reference makes them throw.

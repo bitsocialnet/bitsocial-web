@@ -21,6 +21,14 @@ const createBrowserAccount = (client: unknown) => ({
   },
 });
 
+const createBrowserAccountWithClients = (clients: Record<string, unknown>) => ({
+  pkc: {
+    clients: {
+      libp2pJsClients: clients,
+    },
+  },
+});
+
 const getTextRowValue = (rows: StatRow[], name: string) => {
   const row = rows.find((entry) => entry.name === name && entry.type !== "connectedPeers");
   return row && "value" in row ? row.value : undefined;
@@ -108,5 +116,63 @@ test.describe("blog P2P stats", () => {
       downloadedBytes: 0,
       uploadedBytes: 0,
     });
+  });
+
+  test("uses the first live libp2p client instead of the first client entry", async ({
+    browserName,
+  }) => {
+    test.skip(browserName !== "chromium", "one project is enough for this module test");
+
+    const peerId = "12D3KooWLiveClientPeer";
+    const liveClient = {
+      _helia: {
+        libp2p: {
+          peerId: { toString: () => peerId },
+          getPeers: () => [],
+          getConnections: () => [],
+        },
+      },
+    };
+
+    const rows = await getBlogP2PStats(
+      createBrowserAccountWithClients({
+        stale: {},
+        live: liveClient,
+      }),
+      createAbortedSignal(),
+    );
+
+    expect(getTextRowValue(rows, "Peer ID")).toBe(peerId);
+  });
+
+  test("does not wait for seeder dials before reading stats", async ({ browserName }) => {
+    test.skip(browserName !== "chromium", "one project is enough for this module test");
+
+    let dialStarted = false;
+    const client = {
+      _helia: {
+        libp2p: {
+          peerId: { toString: () => "12D3KooWSelf" },
+          getPeers: () => [],
+          getConnections: () => [],
+          dial: () =>
+            new Promise((resolve) => {
+              dialStarted = true;
+              setTimeout(resolve, 250);
+            }),
+        },
+      },
+    };
+
+    const result = await Promise.race([
+      getBlogP2PStats(createBrowserAccount(client), createAbortedSignal()),
+      new Promise<"timeout">((resolve) => {
+        setTimeout(() => resolve("timeout"), 50);
+      }),
+    ]);
+
+    expect(result).not.toBe("timeout");
+    expect(dialStarted).toBe(true);
+    expect(getTextRowValue(result as StatRow[], "Peer ID")).toBe("12D3KooWSelf");
   });
 });

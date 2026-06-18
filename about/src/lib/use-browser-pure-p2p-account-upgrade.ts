@@ -29,24 +29,27 @@ export function useBrowserPureP2PAccountUpgrade() {
   const upgradeAccountIdRef = useRef<string | undefined>(undefined);
 
   useEffect(() => {
-    if (account?.id || accounts.length > 0 || recoveryStartedRef.current) return;
+    if (account?.id || accounts.length > 0) return;
+
+    let disposed = false;
 
     const intervalId = window.setInterval(() => {
+      if (recoveryStartedRef.current) return;
       if (window.BITSOCIAL_REACT_HOOKS_ACCOUNTS_STORE_INITIALIZING) return;
 
       recoveryStartedRef.current = true;
-      window.clearInterval(intervalId);
       void createAccount()
         .then(() => {
           window.location.reload();
         })
         .catch((error: unknown) => {
-          recoveryStartedRef.current = false;
+          if (!disposed) recoveryStartedRef.current = false;
           console.error("Failed to recover missing browser account", error);
         });
     }, ACCOUNT_RECOVERY_CHECK_MS);
 
     return () => {
+      disposed = true;
       window.clearInterval(intervalId);
     };
   }, [account?.id, accounts.length]);
