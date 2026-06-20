@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import { X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
+import AdoptionThesis from "@/components/adoption-thesis";
 import ArbitraryChallenges from "@/components/arbitrary-challenges";
 import BackToTop from "@/components/back-to-top";
 import Footer from "@/components/footer";
@@ -19,6 +20,7 @@ const HOME_SECTION_HASHES = new Set([
   "#sanctuary-communication",
   "#arbitrary-challenges",
   "#text-only-protocol",
+  "#adoption-thesis",
   "#master-plan",
 ]);
 const HOME_SECTION_LAYOUT_DELTA_PX = 1;
@@ -205,6 +207,7 @@ export default function Home() {
             <SanctuaryCommunication />
             <ArbitraryChallenges />
             <TextOnlyProtocol />
+            <AdoptionThesis />
             <MasterPlan />
             <MailingList />
             <BackToTop />
