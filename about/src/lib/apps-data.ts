@@ -790,7 +790,7 @@ export const APPS: AppData[] = [
     category: "identity",
     tags: ["On-chain", "Contracts"],
     icon: "link-2",
-    githubRepo: "bitsocialnet/evm-contract-call",
+    githubRepo: "bitsocialnet/evm-contract-challenge",
     links: [
       {
         label: "@bitsocial/evm-contract-challenge",

@@ -344,14 +344,14 @@ Details:
 
 ## Anti-spam challenges
 
-- [Captcha Canvas Challenge](https://bitsocial.net/docs/anti-spam/captcha-canvas-challenge/): Standalone image-based captcha generator with configurable characters, dimensions, and colors.
+- [Captcha Canvas Challenge](https://bitsocial.net/docs/anti-spam/captcha-canvas-challenge/): Standalone image-based captcha challenge for Bitsocial communities.
 - [EVM Contract Call Challenge](https://bitsocial.net/docs/anti-spam/evm-contract-call/): Anti-spam challenge that verifies on-chain conditions by calling an EVM smart contract.
 - [Spam Blocker](https://bitsocial.net/docs/anti-spam/spam-blocker/): Centralized spam detection service with risk scoring, OAuth challenges, and configurable tier thresholds.
 - [Voucher Challenge](https://bitsocial.net/docs/anti-spam/voucher-challenge/): Anti-spam challenge that gates publishing behind unique voucher codes distributed by community owners.
 
 ## Infrastructure
 
-- [BSO Resolver](https://bitsocial.net/docs/infrastructure/bso-resolver/): Resolve .bso domain names to public keys via Bitsocial TXT records, with built-in caching and cross-platform support.
+- [BSO Resolver](https://bitsocial.net/docs/infrastructure/bso-resolver/): Resolve .bso domain names to public keys via Bitsocial TXT records.
 - [Mintpass](https://bitsocial.net/docs/infrastructure/mintpass/): NFT-based authentication system that helps Bitsocial communities verify users and reduce sybil attacks.
 - [Pubsub Provider](https://bitsocial.net/docs/infrastructure/pubsub-provider/): Fallback pubsub relay and delegated routing provider for Bitsocial operators.
 - [Telegram Bots](https://bitsocial.net/docs/infrastructure/telegram-bots/): Feed bots that monitor Bitsocial community lists and forward posts to Telegram channels.
@@ -1775,18 +1775,14 @@ Refer to the repository README for test and build commands.
 
 Source: https://bitsocial.net/docs/anti-spam/captcha-canvas-challenge/
 Path: docs/anti-spam/captcha-canvas-challenge.md
-Description: Standalone image-based captcha generator with configurable characters, dimensions, and colors.
+Description: Standalone image-based captcha challenge for Bitsocial communities.
 
 # Captcha Canvas Challenge
 
-Captcha Canvas Challenge is a standalone image captcha generator. It renders randomized text onto an HTML canvas and returns the resulting image, which communities can present to authors as a spam challenge.
+Captcha Canvas Challenge is a standalone image captcha package for Bitsocial communities. It renders randomized text onto a canvas and lets a community ask authors to solve the image before a publication is accepted.
 
-**Source code:** [github.com/bitsocialnet/captcha-canvas-challenge](https://github.com/bitsocialnet/captcha-canvas-challenge)
-
-## Requirements
-
-- **Node.js** >= 22
-- **ESM-only** -- this package does not ship CommonJS builds.
+- **Source code and current README:** [github.com/bitsocialnet/captcha-canvas-challenge](https://github.com/bitsocialnet/captcha-canvas-challenge#readme)
+- **npm package:** [`@bitsocial/captcha-canvas-challenge`](https://www.npmjs.com/package/@bitsocial/captcha-canvas-challenge)
 
 ## Installation
 
@@ -1794,22 +1790,19 @@ Captcha Canvas Challenge is a standalone image captcha generator. It renders ran
 npm install @bitsocial/captcha-canvas-challenge
 ```
 
-## Configuration Options
+## Where It Fits
 
-| Option       | Type     | Default   | Description                                                |
-| ------------ | -------- | --------- | ---------------------------------------------------------- |
-| `characters` | `number` | `6`       | Number of random characters rendered in the captcha image. |
-| `height`     | `number` | `100`     | Height of the generated image in pixels.                   |
-| `width`      | `number` | `300`     | Width of the generated image in pixels.                    |
-| `colors`     | `string` | `#32cf7e` | Primary color used for the captcha text.                   |
+Captcha challenges are useful when a community wants a simple interactive gate for low-stakes spam resistance. This package is intentionally narrow: it provides the challenge implementation, while the community or Bitsocial node decides when and how to present it.
 
-## How It Works
+For stronger protection, combine it with broader moderation or risk-scoring systems instead of treating a captcha as a complete anti-spam strategy.
 
-1. The generator picks a random string of the configured length.
-2. The string is rendered onto a canvas with visual noise to resist OCR.
-3. The resulting image (and the expected answer) are returned so the calling application can present the challenge and later verify the response.
+## Current Package Reference
 
-Because the package is a pure image generator, it does not handle networking or session management on its own. It is intended to be integrated into a larger challenge flow -- for example, as one of the challenge types supported by [Spam Blocker](./spam-blocker.md).
+This page is intentionally an overview, not a mirrored setup guide. The package README is the source of truth for current challenge names, registration examples, CLI examples, supported options, requirements, and security notes:
+
+- [Captcha Canvas Challenge README](https://github.com/bitsocialnet/captcha-canvas-challenge#readme)
+
+Prefer the upstream README when configuring a live community, because package options and install flows are versioned with that package rather than this website.
 
 ### EVM Contract Call Challenge
 
@@ -1819,14 +1812,10 @@ Description: Anti-spam challenge that verifies on-chain conditions by calling an
 
 # EVM Contract Call Challenge
 
-EVM Contract Call Challenge is an anti-spam mechanism that verifies on-chain conditions before allowing a publication. It lets community owners require authors to meet smart-contract-defined criteria -- for example, holding a minimum token balance -- in order to post.
+EVM Contract Call Challenge verifies an author's on-chain state before allowing a publication. Community owners can require a wallet or resolved identity to satisfy a read-only smart-contract condition, such as holding a minimum token balance, before posting.
 
-**Source code:** [github.com/bitsocialnet/evm-contract-call](https://github.com/bitsocialnet/evm-contract-call)
-
-## Requirements
-
-- **Node.js** >= 22
-- **ESM-only** -- this package does not ship CommonJS builds.
+- **Source code and current README:** [github.com/bitsocialnet/evm-contract-challenge](https://github.com/bitsocialnet/evm-contract-challenge#readme)
+- **npm package:** [`@bitsocial/evm-contract-challenge`](https://www.npmjs.com/package/@bitsocial/evm-contract-challenge)
 
 ## Installation
 
@@ -1834,28 +1823,19 @@ EVM Contract Call Challenge is an anti-spam mechanism that verifies on-chain con
 npm install @bitsocial/evm-contract-challenge
 ```
 
-## Configuration Options
+## Where It Fits
 
-| Option        | Type     | Description                                                                                                       |
-| ------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| `chainTicker` | `string` | The chain to query (e.g., `eth`, `matic`, `avax`).                                                                |
-| `rpcUrls`     | `string` | Optional comma-separated JSON-RPC URLs for the chain (e.g., `https://eth.llamarpc.com,https://rpc.ankr.com/eth`). |
-| `address`     | `string` | The smart contract address to call.                                                                               |
-| `abi`         | `string` | The ABI fragment for the function being called.                                                                   |
-| `condition`   | `string` | A comparison expression evaluated against the contract return value (e.g., `> 1000`).                             |
-| `error`       | `string` | The error message shown to authors who do not meet the condition.                                                 |
+Use this challenge for communities where participation should depend on an external EVM signal: token ownership, NFT ownership, proof-of-personhood scores, governance membership, or another contract-readable condition.
 
-## Example
+The challenge is automatic from the author's perspective once configured. It checks eligible wallet or identity sources, calls the configured contract method, and compares the returned value against the community's condition.
 
-A community owner who wants to restrict posting to authors holding more than 1,000 of a particular ERC-20 token would configure the challenge with:
+## Current Package Reference
 
-- `chainTicker`: `"eth"`
-- `address`: the token contract address
-- `abi`: the ABI for `balanceOf(address)`
-- `condition`: `"> 1000"`
-- `error`: `"You must hold more than 1,000 tokens to post in this community."`
+This page is intentionally an overview, not a mirrored configuration reference. The package README is the source of truth for challenge names, Bitsocial CLI examples, pkc-js registration, option defaults, ABI examples, RPC behavior, and supported wallet sources:
 
-When an author attempts to publish, the challenge calls `balanceOf` with the author's address and checks whether the returned value satisfies the condition. If it does, the publication proceeds; otherwise, the configured error message is returned.
+- [EVM Contract Challenge README](https://github.com/bitsocialnet/evm-contract-challenge#readme)
+
+Prefer the upstream README when configuring a live community, because contract options and examples are versioned with that package rather than this website.
 
 ## When to Use It
 
@@ -1955,9 +1935,16 @@ Description: Anti-spam challenge that gates publishing behind unique voucher cod
 
 # Voucher Challenge
 
-Voucher Challenge is an anti-spam mechanism that gates content publication behind unique voucher codes. Rather than relying on automated detection, it shifts trust to the community owner, who manually distributes codes to people they trust.
+Voucher Challenge gates content publication behind unique voucher codes distributed by the community owner. Rather than relying on automated scoring, it shifts trust to a manual invite flow where known people receive codes through a channel the owner controls.
 
-**Source code:** [github.com/bitsocialnet/voucher-challenge](https://github.com/bitsocialnet/voucher-challenge)
+- **Source code and current README:** [github.com/bitsocialnet/voucher-challenge](https://github.com/bitsocialnet/voucher-challenge#readme)
+- **npm package:** [`@bitsocial/voucher-challenge`](https://www.npmjs.com/package/@bitsocial/voucher-challenge)
+
+## Installation
+
+```bash
+npm install @bitsocial/voucher-challenge
+```
 
 ## How It Works
 
@@ -1967,6 +1954,14 @@ Voucher Challenge is an anti-spam mechanism that gates content publication behin
 4. The code is validated -- if it is genuine and has not already been used, the publication is accepted.
 
 Each voucher code is tied to a specific author once redeemed, preventing reuse by others.
+
+## Current Package Reference
+
+This page is intentionally an overview, not a mirrored setup guide. The package README is the source of truth for current challenge names, Bitsocial CLI examples, pkc-js registration, supported options, and redemption behavior:
+
+- [Voucher Challenge README](https://github.com/bitsocialnet/voucher-challenge#readme)
+
+Prefer the upstream README when configuring a live community, because voucher options and install flows are versioned with that package rather than this website.
 
 ## When to Use It
 
@@ -1978,22 +1973,18 @@ Voucher Challenge is best suited for:
 
 Because it requires manual code distribution, it does not scale to large open communities. For those scenarios, consider [Spam Blocker](./spam-blocker.md) or [EVM Contract Call Challenge](./evm-contract-call.md) instead.
 
-## Integration
-
-Voucher Challenge plugs into the same challenge interface used by other anti-spam packages in the Bitsocial ecosystem. Community owners enable it through their community settings, and the challenge is presented to authors automatically when they attempt to post.
-
 ### BSO Resolver
 
 Source: https://bitsocial.net/docs/infrastructure/bso-resolver/
 Path: docs/infrastructure/bso-resolver.md
-Description: Resolve .bso domain names to public keys via Bitsocial TXT records, with built-in caching and cross-platform support.
+Description: Resolve .bso domain names to public keys via Bitsocial TXT records.
 
 # BSO Resolver
 
-The BSO Resolver translates `.bso` domain names into their corresponding public keys by reading Bitsocial TXT records. It provides a shared viem client, persistent caching, and works in both Node.js and browser environments.
+BSO Resolver translates `.bso` domain names into their corresponding public keys by reading Bitsocial TXT records. It is the resolver package used by Bitsocial tooling when a user-facing `.bso` name needs to become the key material understood by the peer-to-peer stack.
 
-- **GitHub**: [bitsocialnet/bso-resolver](https://github.com/bitsocialnet/bso-resolver)
-- **License**: GPL-3.0
+- **Source code and current README:** [github.com/bitsocialnet/bso-resolver](https://github.com/bitsocialnet/bso-resolver#readme)
+- **npm package:** [`@bitsocial/bso-resolver`](https://www.npmjs.com/package/@bitsocial/bso-resolver)
 
 ## Installation
 
@@ -2001,77 +1992,19 @@ The BSO Resolver translates `.bso` domain names into their corresponding public 
 npm install @bitsocial/bso-resolver
 ```
 
-## Creating a Resolver
+## Where It Fits
 
-Instantiate the resolver by passing a configuration object to the constructor:
+Bitsocial names are meant to be human-readable entry points for communities and authors. The resolver keeps that naming layer separate from application code, so clients can ask whether a name is supported and then resolve it through the package's runtime-specific entry point.
 
-```js
-const resolver = new BsoResolver({ key, provider, dataPath });
-```
+Use it when you are integrating a Bitsocial-aware client, command-line tool, or service that needs to accept `.bso` names instead of only raw public keys.
 
-| Parameter  | Required | Description                                         |
-| ---------- | -------- | --------------------------------------------------- |
-| `key`      | Yes      | Identifier for the resolver instance.               |
-| `provider` | Yes      | Transport configuration (see below).                |
-| `dataPath` | No       | Directory for the SQLite cache file (Node.js only). |
+## Current Package Reference
 
-### Provider Options
+This page is intentionally an overview, not a mirrored API reference. The package README is the source of truth for constructor options, return types, caching behavior, entry points, provider examples, and supported shutdown semantics:
 
-The `provider` parameter accepts three formats:
+- [BSO Resolver README](https://github.com/bitsocialnet/bso-resolver#readme)
 
-- **`"viem"`** -- Uses the default public transport provided by viem.
-- **HTTP(S) URL** -- Connects through a JSON-RPC endpoint (e.g., `https://mainnet.infura.io/v3/YOUR_KEY`).
-- **WebSocket URL** -- Connects through a WebSocket RPC endpoint (e.g., `wss://mainnet.infura.io/ws/v3/YOUR_KEY`).
-
-## Methods
-
-### `resolve({ name, abortSignal? })`
-
-Looks up a `.bso` name and returns a result object containing the associated `publicKey` (plus any other parsed TXT-record fields), or `undefined` if the name does not resolve. An optional `AbortSignal` can be passed to cancel long-running requests.
-
-### `canResolve({ name })`
-
-Returns a boolean indicating whether the resolver is able to handle the given name. Use this to check support before attempting a full resolution.
-
-### `destroy()`
-
-Tears down the resolver, closing database connections and releasing resources. Call this when the resolver is no longer needed.
-
-## Caching
-
-Resolved names are cached automatically to reduce redundant network lookups. The caching backend is chosen based on the runtime environment:
-
-| Environment | Backend         | Notes                                                      |
-| ----------- | --------------- | ---------------------------------------------------------- |
-| Node.js     | SQLite          | Stored at `dataPath`. Uses WAL mode for concurrent access. |
-| Browser     | IndexedDB       | Uses native IndexedDB transactions.                        |
-| Fallback    | In-memory `Map` | Used when neither SQLite nor IndexedDB is available.       |
-
-All cache entries have a **one-hour TTL** and are automatically evicted after expiration.
-
-## Integration with pkc-js
-
-The resolver can be plugged directly into pkc-js through the `nameResolvers` option, enabling transparent `.bso` name resolution during key lookups. `pkc-js` exposes its entry as an async factory, not a constructor:
-
-```js
-
-const pkc = await PKC({
-  nameResolvers: [resolver],
-  // ...other options
-});
-```
-
-## Concurrency
-
-The resolver is designed to be safe under concurrent use:
-
-- A single shared viem client avoids redundant connections.
-- SQLite operates in WAL (Write-Ahead Logging) mode, allowing concurrent reads without blocking.
-- Browser caching relies on native IndexedDB transactions for isolation.
-
-## Platform Entry Points
-
-The package ships separate entry points for Node.js and browser builds. Bundlers that support the `exports` field in `package.json` will automatically select the correct one.
+Prefer the upstream README when copying code into a project, because resolver behavior is versioned with that package rather than this website.
 
 ### Mintpass
 
@@ -4973,8 +4906,8 @@ npm test
 
 ### @bitsocial/evm-contract-challenge
 
-Repository: bitsocialnet/evm-contract-call
-Source: https://github.com/bitsocialnet/evm-contract-call#readme
+Repository: bitsocialnet/evm-contract-challenge
+Source: https://github.com/bitsocialnet/evm-contract-challenge#readme
 Description: An automatic challenge for @pkcprotocol/pkc js communities that verifies an author's EVM wallet address meets a condition from a smart contract call.
 
 # @bitsocial/evm-contract-challenge

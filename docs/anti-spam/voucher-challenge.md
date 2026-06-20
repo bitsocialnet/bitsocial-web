@@ -6,9 +6,16 @@ sidebar_position: 3
 
 # Voucher Challenge
 
-Voucher Challenge is an anti-spam mechanism that gates content publication behind unique voucher codes. Rather than relying on automated detection, it shifts trust to the community owner, who manually distributes codes to people they trust.
+Voucher Challenge gates content publication behind unique voucher codes distributed by the community owner. Rather than relying on automated scoring, it shifts trust to a manual invite flow where known people receive codes through a channel the owner controls.
 
-**Source code:** [github.com/bitsocialnet/voucher-challenge](https://github.com/bitsocialnet/voucher-challenge)
+- **Source code and current README:** [github.com/bitsocialnet/voucher-challenge](https://github.com/bitsocialnet/voucher-challenge#readme)
+- **npm package:** [`@bitsocial/voucher-challenge`](https://www.npmjs.com/package/@bitsocial/voucher-challenge)
+
+## Installation
+
+```bash
+npm install @bitsocial/voucher-challenge
+```
 
 ## How It Works
 
@@ -19,6 +26,14 @@ Voucher Challenge is an anti-spam mechanism that gates content publication behin
 
 Each voucher code is tied to a specific author once redeemed, preventing reuse by others.
 
+## Current Package Reference
+
+This page is intentionally an overview, not a mirrored setup guide. The package README is the source of truth for current challenge names, Bitsocial CLI examples, pkc-js registration, supported options, and redemption behavior:
+
+- [Voucher Challenge README](https://github.com/bitsocialnet/voucher-challenge#readme)
+
+Prefer the upstream README when configuring a live community, because voucher options and install flows are versioned with that package rather than this website.
+
 ## When to Use It
 
 Voucher Challenge is best suited for:
@@ -28,7 +43,3 @@ Voucher Challenge is best suited for:
 - **High-trust environments** where automated spam scoring is unnecessary or undesirable.
 
 Because it requires manual code distribution, it does not scale to large open communities. For those scenarios, consider [Spam Blocker](./spam-blocker.md) or [EVM Contract Call Challenge](./evm-contract-call.md) instead.
-
-## Integration
-
-Voucher Challenge plugs into the same challenge interface used by other anti-spam packages in the Bitsocial ecosystem. Community owners enable it through their community settings, and the challenge is presented to authors automatically when they attempt to post.
