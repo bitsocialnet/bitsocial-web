@@ -42,14 +42,14 @@ Use this file as the short routing index for `https://bitsocial.net/docs/`. Use 
 
 ## Anti-spam challenges
 
-- [Captcha Canvas Challenge](https://bitsocial.net/docs/anti-spam/captcha-canvas-challenge/): Standalone image-based captcha generator with configurable characters, dimensions, and colors.
+- [Captcha Canvas Challenge](https://bitsocial.net/docs/anti-spam/captcha-canvas-challenge/): Standalone image-based captcha challenge for Bitsocial communities.
 - [EVM Contract Call Challenge](https://bitsocial.net/docs/anti-spam/evm-contract-call/): Anti-spam challenge that verifies on-chain conditions by calling an EVM smart contract.
 - [Spam Blocker](https://bitsocial.net/docs/anti-spam/spam-blocker/): Centralized spam detection service with risk scoring, OAuth challenges, and configurable tier thresholds.
 - [Voucher Challenge](https://bitsocial.net/docs/anti-spam/voucher-challenge/): Anti-spam challenge that gates publishing behind unique voucher codes distributed by community owners.
 
 ## Infrastructure
 
-- [BSO Resolver](https://bitsocial.net/docs/infrastructure/bso-resolver/): Resolve .bso domain names to public keys via Bitsocial TXT records, with built-in caching and cross-platform support.
+- [BSO Resolver](https://bitsocial.net/docs/infrastructure/bso-resolver/): Resolve .bso domain names to public keys via Bitsocial TXT records.
 - [Mintpass](https://bitsocial.net/docs/infrastructure/mintpass/): NFT-based authentication system that helps Bitsocial communities verify users and reduce sybil attacks.
 - [Pubsub Provider](https://bitsocial.net/docs/infrastructure/pubsub-provider/): Fallback pubsub relay and delegated routing provider for Bitsocial operators.
 - [Telegram Bots](https://bitsocial.net/docs/infrastructure/telegram-bots/): Feed bots that monitor Bitsocial community lists and forward posts to Telegram channels.

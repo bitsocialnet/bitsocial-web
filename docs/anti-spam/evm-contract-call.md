@@ -6,14 +6,10 @@ sidebar_position: 4
 
 # EVM Contract Call Challenge
 
-EVM Contract Call Challenge is an anti-spam mechanism that verifies on-chain conditions before allowing a publication. It lets community owners require authors to meet smart-contract-defined criteria -- for example, holding a minimum token balance -- in order to post.
+EVM Contract Call Challenge verifies an author's on-chain state before allowing a publication. Community owners can require a wallet or resolved identity to satisfy a read-only smart-contract condition, such as holding a minimum token balance, before posting.
 
-**Source code:** [github.com/bitsocialnet/evm-contract-call](https://github.com/bitsocialnet/evm-contract-call)
-
-## Requirements
-
-- **Node.js** >= 22
-- **ESM-only** -- this package does not ship CommonJS builds.
+- **Source code and current README:** [github.com/bitsocialnet/evm-contract-challenge](https://github.com/bitsocialnet/evm-contract-challenge#readme)
+- **npm package:** [`@bitsocial/evm-contract-challenge`](https://www.npmjs.com/package/@bitsocial/evm-contract-challenge)
 
 ## Installation
 
@@ -21,28 +17,19 @@ EVM Contract Call Challenge is an anti-spam mechanism that verifies on-chain con
 npm install @bitsocial/evm-contract-challenge
 ```
 
-## Configuration Options
+## Where It Fits
 
-| Option        | Type     | Description                                                                                                       |
-| ------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| `chainTicker` | `string` | The chain to query (e.g., `eth`, `matic`, `avax`).                                                                |
-| `rpcUrls`     | `string` | Optional comma-separated JSON-RPC URLs for the chain (e.g., `https://eth.llamarpc.com,https://rpc.ankr.com/eth`). |
-| `address`     | `string` | The smart contract address to call.                                                                               |
-| `abi`         | `string` | The ABI fragment for the function being called.                                                                   |
-| `condition`   | `string` | A comparison expression evaluated against the contract return value (e.g., `> 1000`).                             |
-| `error`       | `string` | The error message shown to authors who do not meet the condition.                                                 |
+Use this challenge for communities where participation should depend on an external EVM signal: token ownership, NFT ownership, proof-of-personhood scores, governance membership, or another contract-readable condition.
 
-## Example
+The challenge is automatic from the author's perspective once configured. It checks eligible wallet or identity sources, calls the configured contract method, and compares the returned value against the community's condition.
 
-A community owner who wants to restrict posting to authors holding more than 1,000 of a particular ERC-20 token would configure the challenge with:
+## Current Package Reference
 
-- `chainTicker`: `"eth"`
-- `address`: the token contract address
-- `abi`: the ABI for `balanceOf(address)`
-- `condition`: `"> 1000"`
-- `error`: `"You must hold more than 1,000 tokens to post in this community."`
+This page is intentionally an overview, not a mirrored configuration reference. The package README is the source of truth for challenge names, Bitsocial CLI examples, pkc-js registration, option defaults, ABI examples, RPC behavior, and supported wallet sources:
 
-When an author attempts to publish, the challenge calls `balanceOf` with the author's address and checks whether the returned value satisfies the condition. If it does, the publication proceeds; otherwise, the configured error message is returned.
+- [EVM Contract Challenge README](https://github.com/bitsocialnet/evm-contract-challenge#readme)
+
+Prefer the upstream README when configuring a live community, because contract options and examples are versioned with that package rather than this website.
 
 ## When to Use It
 
