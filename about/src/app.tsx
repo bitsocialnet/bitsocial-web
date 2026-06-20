@@ -79,7 +79,7 @@ function AppFrame({
         <div className="relative z-10">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/apps" element={<Apps />} />
+            <Route path="/projects" element={<Apps />} />
             <Route path="/apps/:slug" element={<AppDetail />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/about" element={<About />} />

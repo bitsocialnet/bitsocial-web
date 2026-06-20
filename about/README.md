@@ -11,8 +11,8 @@ This subproject contains the public Bitsocial landing/about site served from `ht
 ## Important Notes
 
 - This folder is intentionally named `about`, not `landing-page`.
-- Its long-term role is the Bitsocial landing/about site, not the permanent home for the app catalog or the blog.
-- `/apps` already exists here as the public app catalog and app detail surface, but it should still be treated as a future separate subproject.
+- Its long-term role is the Bitsocial landing/about site, not the permanent home for the project catalog or the blog.
+- `/projects` already exists here as the public project catalog, and `/apps/:slug` handles app detail pages, but both should still be treated as a future separate subproject.
 - `/blog` may exist in the current web app during the transition, but it should also be treated as a future separate subproject.
 - The repo root orchestrates installs and top-level quality checks. Use the root `README.md` for the canonical command list.
 - For source-tree rules, read [`about/src/AGENTS.md`](./src/AGENTS.md).

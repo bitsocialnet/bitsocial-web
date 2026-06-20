@@ -9,6 +9,7 @@ import { goHomeScrollTop, goRouteScrollTop } from "@/lib/home-nav";
 import { goToMailingListSection } from "@/lib/mailing-list-nav";
 
 const linkClassName = "text-muted-foreground hover:text-foreground transition-colors text-sm";
+const APPS_DIRECTORY_HREF = "/projects?category=apps";
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -24,7 +25,7 @@ export default function Footer() {
   const navigate = useNavigate();
   const [showDominoEffect, setShowDominoEffect] = useState(false);
   const exploreLinks = [
-    { label: t("footer.apps"), to: "/apps" },
+    { label: t("footer.apps"), to: APPS_DIRECTORY_HREF },
     { label: t("footer.docs"), to: DOCS_LINKS.home },
     { label: t("footer.status"), to: STATS_LINKS.home },
   ].filter((link) => isRouteAccessible(link.to));

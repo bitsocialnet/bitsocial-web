@@ -417,7 +417,7 @@ export default function Hero() {
         >
           {t("nav.newsletter")}
         </a>
-        <Link to="/apps" className={`${highlightedCtaClassName} md:text-start`}>
+        <Link to="/projects?category=apps" className={`${highlightedCtaClassName} md:text-start`}>
           {t("hero.exploreApps")}
         </Link>
       </m.div>

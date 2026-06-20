@@ -316,6 +316,11 @@ function sanitizeReadme(raw) {
 
   return collapseBlankLines(
     trimmed
+      .replaceAll(
+        "https://bitsocial.net/apps?category=",
+        "https://bitsocial.net/projects?category=",
+      )
+      .replaceAll("Bitsocial app directory", "Bitsocial project directory")
       .replace(/^<img\b[^>]*>\s*$/gm, "")
       .replace(/^!\[[^\]]*]\([^)]+\)\s*$/gm, "")
       .replace(/^\[!\[[^\]]*]\([^)]+\)\]\([^)]+\)\s*$/gm, ""),
@@ -700,14 +705,14 @@ function buildSiteLlms(docs, landing) {
   return collapseBlankLines(`
 # Bitsocial
 
-> Bitsocial is an open-source peer-to-peer social network and app ecosystem. This site is the public entry point for the network overview, app directory, privacy notice, and documentation covering protocol notes, apps, anti-spam modules, infrastructure, and contributor workflows.
+> Bitsocial is an open-source peer-to-peer social network and app ecosystem. This site is the public entry point for the network overview, project directory, privacy notice, and documentation covering protocol notes, apps, anti-spam modules, infrastructure, and contributor workflows.
 
 Use \`${siteOrigin}/\` for the public product overview and \`${siteOrigin}/docs/\` for deeper technical documentation. Ignore \`/about\` and \`/blog\` if they appear in source code or local builds; those routes exist in the web app but are currently development-only, not public production surfaces.
 
 ## Main site
 
 - [Home](${siteOrigin}/): High-level explanation of Bitsocial and why it is built around peer-to-peer social apps instead of a centralized platform.
-- [Apps](${siteOrigin}/apps): Directory of Bitsocial clients, anti-spam modules, and operator tools.
+- [Projects](${siteOrigin}/projects): Directory of Bitsocial clients, anti-spam modules, and operator tools.
 - [Privacy](${siteOrigin}/privacy): Privacy notice for the about site, docs, analytics, and newsletter flows.
 
 ${renderLandingShortIndex(landing)}
@@ -789,9 +794,9 @@ function buildSiteLlmsFull(docs, readmes, landing) {
   return collapseBlankLines(`
 # Bitsocial
 
-> Bitsocial is an open-source peer-to-peer social network and app ecosystem. Bitsocial.net is the public web surface for the network overview, app catalog, privacy notice, and technical documentation.
+> Bitsocial is an open-source peer-to-peer social network and app ecosystem. Bitsocial.net is the public web surface for the network overview, project catalog, privacy notice, and technical documentation.
 
-This file expands \`${siteOrigin}/llms.txt\` into a large inline corpus. It includes public-site routing notes, the full English docs corpus, and companion project READMEs for the main Bitsocial repos linked from the app directory.
+This file expands \`${siteOrigin}/llms.txt\` into a large inline corpus. It includes public-site routing notes, the full English docs corpus, and companion project READMEs for the main Bitsocial repos linked from the project directory.
 
 ## How to use this file
 
@@ -805,7 +810,7 @@ Two interpretation notes matter:
 ## Public site surfaces
 
 - [Home](${siteOrigin}/): Public overview of Bitsocial, its decentralized positioning, and the main paths for trying apps or reading docs.
-- [Apps](${siteOrigin}/apps): Catalog page grouping public clients, anti-spam modules, and operator tools.
+- [Projects](${siteOrigin}/projects): Catalog page grouping public clients, anti-spam modules, and operator tools.
 - [Privacy](${siteOrigin}/privacy): Privacy notice for the about site, docs, analytics, and newsletter handling.
 - [Docs home](${siteOrigin}/docs/): Technical docs covering protocol notes, roadmap material, app notes, infrastructure docs, and contributor playbooks.
 - [Docs llms.txt](${siteOrigin}/docs/llms.txt): Curated docs-specific routing index.

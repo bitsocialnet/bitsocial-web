@@ -101,16 +101,16 @@ corepack yarn llms:generate
 ```
 
 This keeps `about/public/llms*.txt` and `docs/static/llms*.txt` aligned with the landing page,
-docs pages, app directory data, public README text, and the generator itself.
+docs pages, project directory data, public README text, and the generator itself.
 
 ## Subproject Notes
 
 ### `about/`
 
 - Contains the Bitsocial landing/about site
-- Currently also contains the public `/apps` catalog and app detail routes
+- Currently also contains the public `/projects` catalog and `/apps/:slug` app detail routes
 - Keeps static assets and translations in `about/public/`
-- Should not be treated as the long-term home for the apps catalog or the blog
+- Should not be treated as the long-term home for the project catalog or the blog
 
 ### `docs/`
 
@@ -126,7 +126,7 @@ docs pages, app directory data, public README text, and the generator itself.
 
 ### Future Splits
 
-- The existing app catalog at `/apps` is expected to be extracted from `about/` into its own subproject, and later may move to `apps.bitsocial.net`.
+- The existing project catalog at `/projects` is expected to be extracted from `about/` into its own subproject, and later may move to `apps.bitsocial.net`.
 - The blog is also expected to become its own subproject rather than continue to live under `about/`.
 - `about/` should stay focused on explaining Bitsocial as a whole.
 

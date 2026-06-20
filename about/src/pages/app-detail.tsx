@@ -55,10 +55,10 @@ export default function AppDetail() {
                 {t("apps.notFoundDescription")}
               </p>
               <CardInlineCta
-                href="/apps"
+                href="/projects"
                 className={`${highlightedCtaClassName} mt-6 !px-6 !py-3 text-sm`}
               >
-                {t("apps.notFoundBack")}
+                {t("apps.allProjects")}
               </CardInlineCta>
             </div>
           </div>
@@ -83,11 +83,11 @@ export default function AppDetail() {
       <main className="px-6 pb-14 pt-28">
         <div className="mx-auto max-w-5xl">
           <Link
-            to="/apps"
+            to="/projects"
             className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            {t("apps.backToApps")}
+            {t("apps.allProjects")}
           </Link>
 
           <section className="glass-card overflow-hidden p-6 md:p-8">
@@ -147,7 +147,7 @@ export default function AppDetail() {
               {app.tags.map((tag) => (
                 <AppTagPill
                   key={tag}
-                  href={`/apps?tag=${encodeURIComponent(tag)}`}
+                  href={`/projects?tag=${encodeURIComponent(tag)}`}
                   label={getAppTagLabel(tag, t)}
                 />
               ))}

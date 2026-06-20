@@ -15,6 +15,7 @@ const navLinkClassName =
   "text-muted-foreground hover:text-foreground transition-colors relative group text-lg md:text-base font-display leading-none py-2 px-2 block";
 const compactNavigationTriggerBufferPx = 160;
 const MOBILE_MENU_INTERACTION_GUARD_ATTRIBUTE = "data-mobile-menu-interaction-guard";
+const APPS_DIRECTORY_HREF = "/projects?category=apps";
 
 function NavLink({
   to,
@@ -95,7 +96,7 @@ function TopbarLinks({
         <NavLink
           key={link.to}
           to={link.to}
-          onClick={link.to === "/apps" ? onAppsClick : onNavClick}
+          onClick={link.to === APPS_DIRECTORY_HREF ? onAppsClick : onNavClick}
           noUnderline
         >
           {link.label}
@@ -325,7 +326,7 @@ export default function Topbar() {
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     handleNavClick();
-    goRouteScrollTop(location.pathname, "/apps", navigate);
+    goRouteScrollTop(location.pathname, APPS_DIRECTORY_HREF, navigate);
   };
 
   const appsLabel = t("nav.apps");
@@ -334,7 +335,7 @@ export default function Topbar() {
   const statsLabel = t("nav.status");
   const sourceCodeLabel = t("nav.sourceCode");
   const routeLinks = [
-    { label: appsLabel, to: "/apps" },
+    { label: appsLabel, to: APPS_DIRECTORY_HREF },
     { label: blogLabel, to: "/blog" },
     { label: docsLabel, to: DOCS_LINKS.home },
     { label: statsLabel, to: STATS_LINKS.home },
@@ -420,7 +421,7 @@ export default function Topbar() {
                 <NavLink
                   key={link.to}
                   to={link.to}
-                  onClick={link.to === "/apps" ? handleAppsClick : handleNavClick}
+                  onClick={link.to === APPS_DIRECTORY_HREF ? handleAppsClick : handleNavClick}
                   noUnderline
                 >
                   {link.label}

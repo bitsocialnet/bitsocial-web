@@ -147,7 +147,7 @@ export default function AppCard({
                 ? undefined
                 : buildAppsHref
                   ? buildAppsHref({ category: category.slug })
-                  : `/apps?category=${encodeURIComponent(category.slug)}`
+                  : `/projects?category=${encodeURIComponent(category.slug)}`
             }
             label={getCategoryLabel(category, t)}
             onClick={onCategorySelect ? () => onCategorySelect(category.slug) : undefined}
@@ -165,7 +165,7 @@ export default function AppCard({
                   ? undefined
                   : buildAppsHref
                     ? buildAppsHref({ tag })
-                    : `/apps?tag=${encodeURIComponent(tag)}`
+                    : `/projects?tag=${encodeURIComponent(tag)}`
               }
               label={getAppTagLabel(tag, t)}
               onClick={onTagSelect ? () => onTagSelect(tag) : undefined}
@@ -182,7 +182,7 @@ export default function AppCard({
                 ? undefined
                 : buildAppsHref
                   ? buildAppsHref({ platform })
-                  : `/apps?platform=${encodeURIComponent(platform)}`
+                  : `/projects?platform=${encodeURIComponent(platform)}`
             }
             label={getPlatformShortLabel(platform, t)}
             onClick={onPlatformSelect ? () => onPlatformSelect(platform) : undefined}

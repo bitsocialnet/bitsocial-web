@@ -86,7 +86,7 @@ function buildAppsHref(
   });
 
   const query = nextSearchParams.toString();
-  return query ? `/apps?${query}` : "/apps";
+  return query ? `/projects?${query}` : "/projects";
 }
 
 export default function Apps() {
@@ -371,7 +371,7 @@ export default function Apps() {
           <noscript>
             <section className="glass-card mb-6 p-4 md:p-5">
               <form
-                action="/apps"
+                action="/projects"
                 method="get"
                 className="flex flex-col gap-4 xl:flex-row xl:items-center"
               >

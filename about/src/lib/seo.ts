@@ -48,7 +48,7 @@ const HOME_SEO_FEATURES = [
     title: "Apps can share one open network",
     description:
       "Different Bitsocial apps can compete on product quality while sharing the same communities, identities, and underlying network.",
-    href: "/apps",
+    href: "/projects?category=apps",
     cta: "Explore Bitsocial apps",
   },
 ] as const;
@@ -145,7 +145,7 @@ function buildWebsiteSchema(): StructuredDataValue {
     },
     potentialAction: {
       "@type": "SearchAction",
-      target: `${SITE_ORIGIN}/apps?q={search_term_string}`,
+      target: `${SITE_ORIGIN}/projects?q={search_term_string}`,
       "query-input": "required name=search_term_string",
     },
   };
@@ -226,14 +226,14 @@ function buildHomeSeoMetadata(search: string): SeoMetadata {
   };
 }
 
-function buildAppsCollectionPageSchema(): StructuredDataValue {
-  const appsUrl = toAbsoluteUrl("/apps");
+function buildProjectsCollectionPageSchema(): StructuredDataValue {
+  const projectsUrl = toAbsoluteUrl("/projects");
 
   return {
     "@type": "CollectionPage",
-    "@id": `${appsUrl}#webpage`,
-    url: appsUrl,
-    name: "Bitsocial Apps",
+    "@id": `${projectsUrl}#webpage`,
+    url: projectsUrl,
+    name: "Bitsocial Projects",
     description:
       "Explore Bitsocial apps, anti-spam modules, and CLI tools across web, Android, iOS, and desktop.",
     isPartOf: {
@@ -256,26 +256,26 @@ function buildAppsCollectionPageSchema(): StructuredDataValue {
   };
 }
 
-function buildAppsSeoMetadata(search: string): SeoMetadata {
+function buildProjectsSeoMetadata(search: string): SeoMetadata {
   const hasSearchParams = new URLSearchParams(search).size > 0;
 
   return {
-    title: "Bitsocial Apps | P2P Social Apps and Tools",
+    title: "Bitsocial Projects | P2P Social Apps and Tools",
     description: truncateDescription(
       "Explore Bitsocial apps, anti-spam modules, and CLI tools, including live web apps, Android APKs, desktop builds, and developer utilities.",
     ),
-    canonicalUrl: toAbsoluteUrl("/apps"),
+    canonicalUrl: toAbsoluteUrl("/projects"),
     robots: hasSearchParams ? NOINDEX_ROBOTS : DEFAULT_ROBOTS,
     ogType: "website",
     imageUrl: toAbsoluteUrl(DEFAULT_IMAGE_PATH),
-    imageAlt: "Bitsocial app directory preview",
+    imageAlt: "Bitsocial project directory preview",
     structuredData: createStructuredData([
       buildOrganizationSchema(),
       buildWebsiteSchema(),
-      buildAppsCollectionPageSchema(),
+      buildProjectsCollectionPageSchema(),
       buildBreadcrumbSchema([
         { name: SITE_NAME, url: toAbsoluteUrl("/") },
-        { name: "Apps", url: toAbsoluteUrl("/apps") },
+        { name: "Projects", url: toAbsoluteUrl("/projects") },
       ]),
     ]),
   };
@@ -441,7 +441,7 @@ function buildAppDetailSeoMetadata(search: string, app: AppData): SeoMetadata {
   const canonicalUrl = toAbsoluteUrl(`/apps/${app.slug}`);
 
   return {
-    title: `${app.name} | Bitsocial App Directory`,
+    title: `${app.name} | Bitsocial Project Directory`,
     description: truncateDescription(`${app.tagline} ${app.description}`),
     canonicalUrl,
     robots: hasSearchParams ? NOINDEX_ROBOTS : DEFAULT_ROBOTS,
@@ -461,7 +461,7 @@ function buildAppDetailSeoMetadata(search: string, app: AppData): SeoMetadata {
       {
         ...buildBreadcrumbSchema([
           { name: SITE_NAME, url: toAbsoluteUrl("/") },
-          { name: "Apps", url: toAbsoluteUrl("/apps") },
+          { name: "Projects", url: toAbsoluteUrl("/projects") },
           { name: app.name, url: canonicalUrl },
         ]),
         "@id": `${canonicalUrl}#breadcrumb`,
@@ -491,8 +491,8 @@ export function getSeoMetadata(pathname: string, search = ""): SeoMetadata {
     return buildHomeSeoMetadata(search);
   }
 
-  if (normalizedPath === "/apps") {
-    return buildAppsSeoMetadata(search);
+  if (normalizedPath === "/projects") {
+    return buildProjectsSeoMetadata(search);
   }
 
   if (normalizedPath === "/privacy") {
@@ -515,10 +515,12 @@ export function getSeoMetadata(pathname: string, search = ""): SeoMetadata {
 }
 
 export function getStaticSeoRoutes(): StaticSeoRoute[] {
-  return ["/", "/apps", "/privacy", ...APPS.map((app) => `/apps/${app.slug}`)].map((pathname) => ({
-    pathname,
-    seo: getSeoMetadata(pathname),
-  }));
+  return ["/", "/projects", "/privacy", ...APPS.map((app) => `/apps/${app.slug}`)].map(
+    (pathname) => ({
+      pathname,
+      seo: getSeoMetadata(pathname),
+    }),
+  );
 }
 
 function escapeHtml(value: string) {
@@ -574,7 +576,7 @@ function renderStaticShell(content: string) {
     '  <div class="mx-auto max-w-6xl px-6 pb-16 pt-8 md:px-8">',
     '    <nav aria-label="Primary" class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">',
     '      <a href="/" class="font-display font-semibold text-foreground transition-colors hover:text-blue-glow">Bitsocial</a>',
-    '      <a href="/apps" class="transition-colors hover:text-foreground">Apps</a>',
+    '      <a href="/projects?category=apps" class="transition-colors hover:text-foreground">Apps</a>',
     '      <a href="/docs/" class="transition-colors hover:text-foreground">Docs</a>',
     '      <a href="https://github.com/bitsocialnet" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-foreground">Source code</a>',
     "    </nav>",
@@ -616,7 +618,7 @@ function renderHomeStaticBody() {
         <h1 class="mt-4 max-w-4xl text-4xl font-display font-semibold leading-[1.05] text-balance text-foreground md:text-6xl">${escapeHtml(SITE_DESCRIPTION)}</h1>
         <p class="mt-5 max-w-3xl text-lg leading-8 text-muted-foreground">${escapeHtml(SITE_DESCRIPTION)}</p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/apps" class="rounded-full border border-border/70 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-blue-glow hover:text-blue-glow">Explore Bitsocial apps</a>
+          <a href="/projects?category=apps" class="rounded-full border border-border/70 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-blue-glow hover:text-blue-glow">Explore Bitsocial apps</a>
           <a href="/docs/" class="rounded-full border border-border/70 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-blue-glow hover:text-blue-glow">Read the docs</a>
           <a href="https://github.com/bitsocialnet" target="_blank" rel="noopener noreferrer" class="rounded-full border border-border/70 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-blue-glow hover:text-blue-glow">Browse the source code</a>
         </div>
@@ -639,7 +641,7 @@ ${featuredAppsMarkup}
     </main>`);
 }
 
-function renderAppsStaticBody() {
+function renderProjectsStaticBody() {
   const appsMarkup = APPS.map(
     (app) => `            <li class="rounded-[1.5rem] border border-border/60 bg-background/80 p-5">
               <h2 class="text-xl font-display font-semibold text-foreground">
@@ -653,8 +655,8 @@ function renderAppsStaticBody() {
   return renderStaticShell(`
     <main class="pt-14">
       <section class="max-w-4xl">
-        <p class="text-xs font-display uppercase tracking-[0.24em] text-foreground/45">Bitsocial app directory</p>
-        <h1 class="mt-4 text-4xl font-display font-semibold leading-[1.05] text-balance text-foreground md:text-6xl">Bitsocial Apps</h1>
+        <p class="text-xs font-display uppercase tracking-[0.24em] text-foreground/45">Projects Directory</p>
+        <h1 class="mt-4 text-4xl font-display font-semibold leading-[1.05] text-balance text-foreground md:text-6xl">Bitsocial Projects</h1>
         <p class="mt-5 max-w-3xl text-lg leading-8 text-muted-foreground">Explore user-facing Bitsocial clients, anti-spam modules, and developer tools that run on the open peer-to-peer Bitsocial network.</p>
       </section>
 
@@ -681,7 +683,7 @@ function renderAppDetailStaticBody(app: AppData) {
 
   return renderStaticShell(`
     <main class="pt-14">
-      <a href="/apps" class="text-sm text-muted-foreground transition-colors hover:text-foreground">All apps</a>
+      <a href="/projects" class="text-sm text-muted-foreground transition-colors hover:text-foreground">All projects</a>
       <section class="mt-6 max-w-4xl rounded-[2rem] border border-border/60 bg-background/80 p-6 md:p-8">
         <p class="text-xs font-display uppercase tracking-[0.24em] text-foreground/45">${escapeHtml(getApplicationCategory(app.category))}</p>
         <h1 class="mt-4 text-4xl font-display font-semibold leading-[1.05] text-balance text-foreground md:text-5xl">${escapeHtml(app.name)}</h1>
@@ -704,8 +706,8 @@ function renderStaticSeoBody(pathname: string) {
     return renderHomeStaticBody();
   }
 
-  if (pathname === "/apps") {
-    return renderAppsStaticBody();
+  if (pathname === "/projects") {
+    return renderProjectsStaticBody();
   }
 
   const appSlugMatch = pathname.match(/^\/apps\/([^/]+)$/);
@@ -734,14 +736,14 @@ function getRouteLastModified() {
 
 function getRouteChangeFrequency(pathname: string) {
   if (pathname === "/") return "weekly";
-  if (pathname === "/apps") return "weekly";
+  if (pathname === "/projects") return "weekly";
   if (pathname.startsWith("/apps/")) return "monthly";
   return "yearly";
 }
 
 function getRoutePriority(pathname: string) {
   if (pathname === "/") return "1.0";
-  if (pathname === "/apps") return "0.9";
+  if (pathname === "/projects") return "0.9";
   if (pathname.startsWith("/apps/")) return "0.7";
   return "0.3";
 }

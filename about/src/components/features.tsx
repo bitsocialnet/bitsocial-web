@@ -70,7 +70,7 @@ function buildFeatures(t: (key: string) => string): Feature[] {
   const hrefs: Record<FeatureId, { ctaHref: string; external?: boolean }> = {
     "open-source": { ctaHref: "https://github.com/bitsocialnet", external: true },
     "peer-to-peer": { ctaHref: DOCS_LINKS.peerToPeerProtocol },
-    "social-apps": { ctaHref: "/apps" },
+    "social-apps": { ctaHref: "/projects?category=apps" },
     "no-servers": { ctaHref: STATS_LINKS.home },
     "no-global-bans": { ctaHref: DOCS_LINKS.localModeration },
     "cryptographic-property": { ctaHref: DOCS_LINKS.identityAndOwnership },
