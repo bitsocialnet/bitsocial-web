@@ -11,6 +11,17 @@ const SITE_ORIGIN = "https://bitsocial.net";
 const SITE_TITLE = "Bitsocial - Open Source P2P Network for Social Apps";
 const SITE_DESCRIPTION =
   "Bitsocial is an open-source IPFS-backed peer-to-peer network for social apps, with no servers, no global bans, where users and communities are cryptographic property.";
+const SITE_DISAMBIGUATING_DESCRIPTION =
+  "Bitsocial is the open-source peer-to-peer social-app network at bitsocial.net, not the similarly named WordPress social media scheduler plugin.";
+const SITE_KEYWORDS = [
+  "Bitsocial",
+  "peer-to-peer social network",
+  "IPFS social apps",
+  "decentralized social apps",
+  "serverless social network",
+  "local moderation",
+  "anti-spam challenges",
+];
 const DEFAULT_IMAGE_PATH = "/hero-fallback-desktop-light.png";
 const DEFAULT_IMAGE_ALT = "Bitsocial network preview";
 const DEFAULT_ROBOTS =
@@ -117,19 +128,36 @@ function compactObject<T extends StructuredDataValue>(value: T): T {
   ) as T;
 }
 
+function buildPrimaryCitationUrls() {
+  return [
+    toAbsoluteUrl("/docs/peer-to-peer-protocol/"),
+    toAbsoluteUrl("/docs/custom-challenges/"),
+    toAbsoluteUrl("/docs/local-moderation/"),
+    toAbsoluteUrl("/docs/identity-and-ownership/"),
+    "https://github.com/bitsocialnet",
+  ];
+}
+
 function buildOrganizationSchema(): StructuredDataValue {
   return {
     "@type": "Organization",
     "@id": `${SITE_ORIGIN}/#organization`,
     name: SITE_NAME,
+    legalName: "Bitsocial Forge, Inc.",
     alternateName: "Bitsocial Protocol",
     url: SITE_ORIGIN,
     description: SITE_DESCRIPTION,
+    disambiguatingDescription: SITE_DISAMBIGUATING_DESCRIPTION,
     foundingDate: "2022",
     image: toAbsoluteUrl(DEFAULT_IMAGE_PATH),
     logo: toAbsoluteUrl("/logo.png"),
     slogan: "Decentralize all social media",
-    sameAs: ["https://github.com/bitsocialnet", "https://twitter.com/bitsocialnet"],
+    knowsAbout: SITE_KEYWORDS,
+    sameAs: [
+      "https://github.com/bitsocialnet",
+      "https://twitter.com/bitsocialnet",
+      "https://bsky.app/profile/bitsocialnet.bsky.social",
+    ],
   };
 }
 
@@ -140,6 +168,8 @@ function buildWebsiteSchema(): StructuredDataValue {
     url: SITE_ORIGIN,
     name: SITE_NAME,
     description: SITE_DESCRIPTION,
+    disambiguatingDescription: SITE_DISAMBIGUATING_DESCRIPTION,
+    keywords: SITE_KEYWORDS.join(", "),
     publisher: {
       "@id": `${SITE_ORIGIN}/#organization`,
     },
@@ -189,6 +219,9 @@ function buildHomeWebPageSchema(): StructuredDataValue {
     url: SITE_ORIGIN,
     name: SITE_TITLE,
     description: SITE_DESCRIPTION,
+    disambiguatingDescription: SITE_DISAMBIGUATING_DESCRIPTION,
+    keywords: SITE_KEYWORDS.join(", "),
+    citation: buildPrimaryCitationUrls(),
     isPartOf: {
       "@id": `${SITE_ORIGIN}/#website`,
     },

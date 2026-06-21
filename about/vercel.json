@@ -15,6 +15,13 @@
       "continue": true
     },
     {
+      "src": "^/apps/?$",
+      "status": 308,
+      "headers": {
+        "Location": "/projects?category=apps"
+      }
+    },
+    {
       "src": "^/stats/?$",
       "dest": "http://91.234.199.189:8080/stats/"
     },

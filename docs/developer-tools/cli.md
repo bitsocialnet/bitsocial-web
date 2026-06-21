@@ -1,10 +1,10 @@
 ---
-title: CLI
+title: Bitsocial CLI
 description: Command-line interface for running a Bitsocial node, creating communities, and managing protocol operations.
 sidebar_position: 2
 ---
 
-# CLI
+# Bitsocial CLI
 
 The `bitsocial-cli` is a command-line tool for interacting with the Bitsocial protocol backend. It lets you run a local P2P daemon, create and configure communities, and publish content -- all from the terminal.
 

@@ -1,0 +1,121 @@
+{
+  "task": "seo-geo-audit",
+  "last_updated": "2026-06-21",
+  "items": [
+    {
+      "id": "F001",
+      "priority": 1,
+      "status": "completed",
+      "description": "Run the baseline SEO/GEO audit across crawlability, indexation, page intent, titles, internal links, structured data, source citations, and answer-first content, then rank gaps by expected impact.",
+      "verification": [
+        "Record crawl evidence for local and live public surfaces.",
+        "Record target-query benchmark evidence across available search engines and AI answer engines.",
+        "Write a ranked gap list with priority queries mapped to answer-ready pages or missing-page gaps."
+      ],
+      "files": [
+        "docs/agent-runs/seo-geo-audit/feature-list.json",
+        "docs/agent-runs/seo-geo-audit/progress.md",
+        "docs/agent-runs/seo-geo-audit/audit.md"
+      ],
+      "notes": "Baseline found one critical build/crawl blocker and one high-impact stale indexed URL issue. See audit.md."
+    },
+    {
+      "id": "F002",
+      "priority": 2,
+      "status": "completed",
+      "description": "Fix the highest-leverage critical or high-impact SEO/GEO issue identified by F001.",
+      "verification": [
+        "Run the narrowest relevant local checks for touched files.",
+        "Rerun the same crawl checks that exposed the issue."
+      ],
+      "files": ["package.json", "yarn.lock", "about/vercel.json"],
+      "notes": "Fixed the docs build blocker by restoring js-yaml v3 compatibility for gray-matter, and fixed the stale /apps catalog URL with a Vercel 308 route redirect."
+    },
+    {
+      "id": "F003",
+      "priority": 3,
+      "status": "completed",
+      "description": "Rerun the baseline crawl and target-query benchmark after F002, compare before/after results, and decide whether another critical or high-impact issue remains.",
+      "verification": [
+        "Record before/after benchmark deltas.",
+        "Confirm no critical technical issue remains or open the next fix slice."
+      ],
+      "files": ["docs/agent-runs/seo-geo-audit/audit.md"],
+      "notes": "Local build/crawl and Vercel route smoke now pass. Live search result cleanup requires deployment and search engine recrawl; remaining items are non-critical content/structured-data opportunities."
+    },
+    {
+      "id": "F004",
+      "priority": 4,
+      "status": "completed",
+      "description": "Fix the highest-leverage remaining answer-engine opportunity by adding docs structured data and tightening priority docs titles/H1s.",
+      "verification": [
+        "Build docs and confirm generated priority pages include parseable TechArticle JSON-LD.",
+        "Confirm JSON-LD URLs match canonical URLs.",
+        "Regenerate LLM routing indexes after public docs content changes."
+      ],
+      "files": [
+        "docs/src/theme/DocItem/Metadata/index.tsx",
+        "docs/build-your-own-client.md",
+        "docs/developer-tools/cli.md",
+        "about/public/llms.txt",
+        "about/public/llms-full.txt",
+        "docs/static/llms.txt",
+        "docs/static/llms-full.txt"
+      ],
+      "notes": "Priority docs now expose TechArticle JSON-LD. Builder and CLI page titles/H1s now include Bitsocial-specific target terms."
+    },
+    {
+      "id": "F005",
+      "priority": 5,
+      "status": "completed",
+      "description": "Rerun the crawl and benchmark after F004, fix any newly surfaced technical issue, and record remaining live-only gaps.",
+      "verification": [
+        "Run local HTML crawl over built about/docs pages.",
+        "Rerun priority-query web benchmark.",
+        "Check live robots and docs sitemap for priority target URLs."
+      ],
+      "files": [
+        "docs/search.mdx",
+        "docs/agent-runs/seo-geo-audit/audit.md",
+        "docs/agent-runs/seo-geo-audit/feature-list.json",
+        "docs/agent-runs/seo-geo-audit/progress.md"
+      ],
+      "notes": "Local crawl has 0 scoped failures after adding a docs search H1. Live benchmark still reflects the undeployed /apps redirect and requires deployment plus recrawl before cleanup can be observed."
+    },
+    {
+      "id": "F006",
+      "priority": 6,
+      "status": "completed",
+      "description": "Extend the AI answer-engine benchmark and improve local entity disambiguation/source-citation metadata for brand and GEO queries.",
+      "verification": [
+        "Attempt direct Perplexity and You.com browser benchmarks with playwright-cli.",
+        "Build and parse the SSR homepage structured data.",
+        "Serve the about app on a direct local port and confirm the response contains the disambiguation and citation fields."
+      ],
+      "files": [
+        "about/src/lib/seo.ts",
+        "docs/agent-runs/seo-geo-audit/audit.md",
+        "docs/agent-runs/seo-geo-audit/feature-list.json",
+        "docs/agent-runs/seo-geo-audit/progress.md"
+      ],
+      "notes": "Perplexity blocks headless browser access with Cloudflare verification and You.com now requires login for answers. Local homepage JSON-LD now disambiguates Bitsocial from similarly named surfaces and cites source docs/GitHub."
+    },
+    {
+      "id": "F007",
+      "priority": 7,
+      "status": "completed",
+      "description": "Tighten remaining high-value internal link anchor text for priority docs pages after the advisory quality pass.",
+      "verification": [
+        "Confirm Docusaurus footer links use Bitsocial-specific target terms.",
+        "Run targeted formatting and docs/build verification after the config change."
+      ],
+      "files": [
+        "docs/docusaurus.config.ts",
+        "docs/agent-runs/seo-geo-audit/audit.md",
+        "docs/agent-runs/seo-geo-audit/feature-list.json",
+        "docs/agent-runs/seo-geo-audit/progress.md"
+      ],
+      "notes": "The docs footer now links to the builder and CLI pages with the same target wording used by their titles and H1s."
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 ---
-title: Build your own client
+title: Build your own Bitsocial client
 description: Builder guide for shipping independent Bitsocial clients, from imageboards and forums to niche social apps.
 ---
 
-# Build your own client
+# Build your own Bitsocial client
 
 Bitsocial does not win by having one official app for every use case. It wins when many clients can
 share the same protocol while competing on interface, culture, discovery, defaults, and business

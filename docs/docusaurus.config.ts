@@ -155,9 +155,9 @@ const config: Config = {
           items: [
             { label: "5chan", to: "/apps/5chan/" },
             { label: "Seedit", to: "/apps/seedit/" },
-            { label: "Build your own client", to: "/build-your-own-client/" },
+            { label: "Build your own Bitsocial client", to: "/build-your-own-client/" },
             { label: "React Hooks", to: "/developer-tools/react-hooks/" },
-            { label: "CLI", to: "/developer-tools/cli/" },
+            { label: "Bitsocial CLI", to: "/developer-tools/cli/" },
           ],
         },
         {
