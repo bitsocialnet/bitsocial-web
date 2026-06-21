@@ -101,6 +101,16 @@ function ConcernCard({ concern }: { concern: Concern }) {
   );
 }
 
+// Subtle scale (not opacity) de-emphasizes inactive panels. The cards paint
+// their background with a backdrop-filter, which the browser suppresses while an
+// ancestor is at opacity < 1 — so fading a panel would drop its glass surface.
+const CARD_FOCUS_TRANSITION = {
+  type: "spring" as const,
+  stiffness: 280,
+  damping: 30,
+  mass: 0.9,
+};
+
 function MobileConcernCarousel({ prefersReducedMotion }: { prefersReducedMotion: boolean }) {
   const { t } = useTranslation();
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -153,15 +163,15 @@ function MobileConcernCarousel({ prefersReducedMotion }: { prefersReducedMotion:
           <div className="flex items-stretch gap-3">
             <div aria-hidden className="w-9 shrink-0" />
             {CONCERNS.map((concern, index) => (
-              <div
+              <m.div
                 key={concern.id}
                 data-concern-panel
-                className={`w-[calc(100vw-4.5rem)] shrink-0 snap-center px-2 transition-opacity duration-300 ${
-                  activeIndex === index ? "opacity-100" : "opacity-60"
-                }`}
+                animate={{ scale: activeIndex === index ? 1 : 0.985 }}
+                transition={prefersReducedMotion ? { duration: 0 } : CARD_FOCUS_TRANSITION}
+                className="w-[calc(100vw-4.5rem)] shrink-0 snap-center px-2 transform-gpu"
               >
                 <ConcernCard concern={concern} />
-              </div>
+              </m.div>
             ))}
             <div aria-hidden className="w-9 shrink-0" />
           </div>
@@ -197,6 +207,17 @@ export default function TextOnlyProtocol() {
       : {
           initial: { opacity: 0, y },
           whileInView: { opacity: 1, y: 0 },
+          viewport: { once: true },
+          transition: { duration, delay },
+        };
+  // Cards reveal with translateY only. A backdrop-filter is suppressed while an
+  // ancestor animates opacity, which would blank the glass surface mid-reveal.
+  const revealCard = (y: number, delay = 0, duration = 0.6) =>
+    prefersReducedMotion
+      ? {}
+      : {
+          initial: { y },
+          whileInView: { y: 0 },
           viewport: { once: true },
           transition: { duration, delay },
         };
@@ -238,7 +259,7 @@ export default function TextOnlyProtocol() {
         </m.p>
 
         {/* Mobile: swipeable carousel (JS only) */}
-        <m.div {...reveal(20, 0.25)} className="js-only md:hidden">
+        <m.div {...revealCard(20, 0.25)} className="js-only md:hidden">
           <MobileConcernCarousel prefersReducedMotion={prefersReducedMotion} />
         </m.div>
 
@@ -254,7 +275,7 @@ export default function TextOnlyProtocol() {
         {/* Desktop: three-column grid */}
         <div className="hidden gap-4 md:grid md:grid-cols-3 lg:gap-5">
           {CONCERNS.map((concern, index) => (
-            <m.div key={concern.id} {...reveal(20, 0.3 + index * 0.08)}>
+            <m.div key={concern.id} {...revealCard(20, 0.3 + index * 0.08)}>
               <ConcernCard concern={concern} />
             </m.div>
           ))}
