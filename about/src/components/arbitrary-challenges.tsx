@@ -9,7 +9,8 @@ import {
   User,
   type LucideIcon,
 } from "lucide-react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 type OptionId = "code" | "service" | "proof" | "next";
 
@@ -344,9 +345,19 @@ export default function ArbitraryChallenges() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-base md:text-lg text-center text-muted-foreground max-w-xl mx-auto mb-12 text-balance leading-relaxed"
+          className="mx-auto mb-12 max-w-xl text-balance text-center text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          {t("arbitraryChallenges.supporting")}
+          <Trans
+            i18nKey="arbitraryChallenges.supporting"
+            components={{
+              antiSpamChallenge: (
+                <Link
+                  to="/projects?category=anti-spam"
+                  className="font-semibold text-foreground underline decoration-blue-core/35 underline-offset-4 transition-colors hover:text-blue-glow hover:decoration-blue-glow"
+                />
+              ),
+            }}
+          />
         </m.p>
 
         <m.div
