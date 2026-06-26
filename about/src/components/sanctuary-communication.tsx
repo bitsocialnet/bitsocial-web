@@ -105,6 +105,10 @@ type DeepComparisonSourceId =
   | "atprotoSelfHosting"
   | "atprotoSync"
   | "bitsocialBsoDocs"
+  | "bsip02"
+  | "bsip03"
+  | "bsip04"
+  | "bsip05"
   | "lemmyFederation"
   | "mastodonActivityPub"
   | "mastodonAccountMigration"
@@ -219,6 +223,7 @@ const DEEP_COMPARISON_ROW_I18N: Record<
   DeepComparisonRowKey,
   {
     bitsocial: string;
+    bitsocialSources?: DeepComparisonSourceId[];
     detail: string;
     bitsocialByService?: Partial<Record<DeepComparisonServiceId, string>>;
     detailByService?: Partial<Record<DeepComparisonServiceId, string>>;
@@ -240,6 +245,7 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       steemit: "sanctuary.deepComparison.rows.dataLayer.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.dataLayer.bitsocial",
+    bitsocialSources: ["bsip02", "bsip03"],
     detail: "sanctuary.deepComparison.rows.dataLayer.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.dataLayer.detailBluesky",
@@ -271,6 +277,7 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       steemit: "sanctuary.deepComparison.rows.browserMobile.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.browserMobile.bitsocial",
+    bitsocialSources: ["bsip02", "bsip04"],
     detail: "sanctuary.deepComparison.rows.browserMobile.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.browserMobile.detailBluesky",
@@ -302,6 +309,7 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       steemit: "sanctuary.deepComparison.rows.identity.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.identity.bitsocial",
+    bitsocialSources: ["bsip02", "bsip03"],
     detail: "sanctuary.deepComparison.rows.identity.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.identity.detailBluesky",
@@ -333,6 +341,7 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       steemit: "sanctuary.deepComparison.rows.communityModel.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.communityModel.bitsocial",
+    bitsocialSources: ["bsip03", "bsip04"],
     detail: "sanctuary.deepComparison.rows.communityModel.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.communityModel.detailBluesky",
@@ -364,6 +373,7 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       steemit: "sanctuary.deepComparison.rows.antiSpam.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.antiSpam.bitsocial",
+    bitsocialSources: ["bsip03", "bsip04"],
     detail: "sanctuary.deepComparison.rows.antiSpam.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.antiSpam.detailBluesky",
@@ -400,6 +410,7 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       steemit: "sanctuary.deepComparison.rows.replies.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.replies.bitsocial",
+    bitsocialSources: ["bsip02", "bsip04", "bsip05"],
     detail: "sanctuary.deepComparison.rows.replies.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.replies.detailBluesky",
@@ -493,6 +504,7 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       steemit: "sanctuary.deepComparison.rows.moderation.steemit",
     },
     bitsocial: "sanctuary.deepComparison.rows.moderation.bitsocial",
+    bitsocialSources: ["bsip03", "bsip05"],
     detail: "sanctuary.deepComparison.rows.moderation.detail",
     detailByService: {
       bluesky: "sanctuary.deepComparison.rows.moderation.detailBluesky",
@@ -651,6 +663,30 @@ const DEEP_COMPARISON_SOURCE_LINKS: DeepComparisonSource[] = [
     label: "Bitsocial Docs: BSO Resolver",
     shortLabel: "Bitsocial Docs",
     href: "/docs/infrastructure/bso-resolver/",
+  },
+  {
+    id: "bsip02",
+    label: "BSIP-2: Comments",
+    shortLabel: "BSIP-2",
+    href: "https://bsips.bitsocial.net/bsip-2",
+  },
+  {
+    id: "bsip03",
+    label: "BSIP-3: Communities and Pages",
+    shortLabel: "BSIP-3",
+    href: "https://bsips.bitsocial.net/bsip-3",
+  },
+  {
+    id: "bsip04",
+    label: "BSIP-4: Publishing and Challenges",
+    shortLabel: "BSIP-4",
+    href: "https://bsips.bitsocial.net/bsip-4",
+  },
+  {
+    id: "bsip05",
+    label: "BSIP-5: Comment Updates",
+    shortLabel: "BSIP-5",
+    href: "https://bsips.bitsocial.net/bsip-5",
   },
   {
     id: "mastodonActivityPub",
@@ -881,7 +917,10 @@ function getSanctuaryDeepComparisons(t: TFunction): DeepComparison[] {
       const hasComparisonContent = DEEP_COMPARISON_CONTENT_SERVICE_IDS.includes(serviceId);
       const bitsocialKey = keys.bitsocialByService?.[serviceId] ?? keys.bitsocial;
       const detailKey = keys.detailByService?.[serviceId] ?? keys.detail;
-      const sourceIds = keys.sourcesByService?.[serviceId] ?? keys.sources;
+      const sourceIds = [
+        ...(keys.sourcesByService?.[serviceId] ?? keys.sources),
+        ...(keys.bitsocialSources ?? []),
+      ];
 
       return {
         id: rowKey,
