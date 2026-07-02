@@ -24,7 +24,7 @@ const GENS: Gen[] = [
     addr: "0x625f…bee9",
     href: "https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9",
     statuses: [
-      { icon: "origin", label: "origin" },
+      { icon: "origin", label: "origin · 100% airdropped" },
       { icon: "proxy", label: "upgradeable proxy" },
     ],
     badge: "past",

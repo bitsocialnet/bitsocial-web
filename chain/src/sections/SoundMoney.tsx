@@ -12,8 +12,8 @@ export default function SoundMoney() {
   return (
     <Section
       id="sound-money"
-      eyebrow="Sound money"
-      question="Money you can’t print, pause, or rug."
+      eyebrow="tokenomics"
+      question="Sound money."
       supporting="BSO is a fixed-supply ERC-20: 210 million, no inflation, deflationary by design. Its final contract is immutable and adminless, so the rules are fixed forever."
       quote="There are only two ways to be valuable: make money, or be money."
     >

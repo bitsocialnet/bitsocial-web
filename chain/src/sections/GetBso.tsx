@@ -23,7 +23,7 @@ export default function GetBso() {
   return (
     <Section
       id="get-bso"
-      eyebrow="Get BSO"
+      eyebrow="how to buy"
       question="How to get BSO, safely."
       supporting="The immutable BSO contract is live on Ethereum. Always verify the full address yourself before sending anything."
     >
