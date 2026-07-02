@@ -59,7 +59,7 @@
 
 .section-artifact {
   width: 100%;
-  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+  margin-top: calc(clamp(1.75rem, 4vw, 2.5rem) + 5px);
 }
 
 .section-quote {
