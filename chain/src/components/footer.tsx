@@ -1,6 +1,7 @@
 import { Github } from "lucide-react";
 import {
   BITSOCIAL_URL,
+  CONTRIBUTE_URL,
   DOCS_URL,
   FOOTER_TOKEN_LINKS,
   GITHUB_URL,
@@ -73,7 +74,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               <li>
                 <a href={BITSOCIAL_URL} className={linkClassName}>
-                  Bitsocial
+                  Main Site
                 </a>
               </li>
               <li>
@@ -112,7 +113,8 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className={`${linkClassName} inline-flex items-center gap-2`}
                 >
-                  <XIcon className="h-3.5 w-3.5" />X / Twitter
+                  <XIcon className="h-3.5 w-3.5" />
+                  Twitter
                 </a>
               </li>
             </ul>
@@ -123,12 +125,12 @@ export default function Footer() {
           <p className="font-display tracking-wide">Decentralize all social media</p>
           <div className="flex items-center gap-3 text-xs">
             <a
-              href="https://github.com/bitsocialnet/bitsocial-web"
+              href={CONTRIBUTE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-foreground transition-colors"
             >
-              Contribute
+              Improve this page
             </a>
             <span className="text-border/50">&bull;</span>
             <a

@@ -17,6 +17,9 @@ export const GITHUB_URL = "https://github.com/bitsocialnet" as const;
 
 export const TWITTER_URL = "https://twitter.com/bitsocialnet" as const;
 
+export const CONTRIBUTE_URL =
+  "https://github.com/bitsocialnet/bitsocial-web/tree/master/chain" as const;
+
 export type ExternalLink = {
   label: string;
   href: string;
@@ -24,10 +27,10 @@ export type ExternalLink = {
 };
 
 export const TOPBAR_LINKS: ExternalLink[] = [
-  { label: "Etherscan", href: ETHERSCAN_TOKEN_URL, icon: "etherscan" },
-  { label: "CoinGecko", href: COINGECKO_URL, icon: "coingecko" },
-  { label: "Uniswap", href: UNISWAP_TOKEN_URL, icon: "uniswap" },
-  { label: "Bitsocial", href: BITSOCIAL_URL },
+  { label: "Etherscan", href: ETHERSCAN_TOKEN_URL },
+  { label: "CoinGecko", href: COINGECKO_URL },
+  { label: "Uniswap", href: UNISWAP_TOKEN_URL },
+  { label: "Main Site", href: BITSOCIAL_URL },
 ];
 
 export const FOOTER_TOKEN_LINKS: ExternalLink[] = [

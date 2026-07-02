@@ -1,4 +1,5 @@
 import MissingLayer from "./MissingLayer";
+import BackToTop from "@/components/back-to-top";
 import Footer from "@/components/footer";
 import MailingList from "@/components/mailing-list";
 import Topbar, { TopbarSpacer } from "@/components/topbar";
@@ -49,6 +50,7 @@ export default function App() {
             <Sections />
           </div>
           <MailingList />
+          <BackToTop />
           <Footer />
         </div>
       </main>

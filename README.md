@@ -8,6 +8,7 @@ Bitsocial Web is the public web monorepo for Bitsocial.
 It currently serves:
 
 - `https://bitsocial.net/` for the public Bitsocial landing/about site
+- `https://bitsocial.net/chain/` for the Bitsocial Chain landing site (BSO token and L2)
 - `https://bitsocial.net/docs/` for Docusaurus docs
 - `https://bitsocial.net/stats/` for the Grafana-backed stats dashboard
 
@@ -17,6 +18,7 @@ The public URL strategy is route-first, not subdomain-first. Until the flagship 
 
 ```text
 about/   Public Bitsocial landing/about site
+chain/   Bitsocial Chain landing site (BSO token and L2)
 docs/    Docusaurus docs, i18n files, and contributor playbooks
 stats/   Grafana, Prometheus, Docker Compose, deploy config, and monitor package
 scripts/ Shared repo scripts and agent hooks
@@ -27,6 +29,8 @@ Each top-level subproject has its own local documentation:
 - [`about/README.md`](./about/README.md)
 - [`docs/README.md`](./docs/README.md)
 - [`stats/README.md`](./stats/README.md)
+
+The `chain/` workspace is a standalone Vite app for the Bitsocial Chain marketing site. Run it with `corepack yarn start:chain` or build it with `corepack yarn build:chain`.
 
 The repo root remains the orchestration layer for installs, verification, and cross-project commands.
 
@@ -104,6 +108,12 @@ This keeps `about/public/llms*.txt` and `docs/static/llms*.txt` aligned with the
 docs pages, project directory data, public README text, and the generator itself.
 
 ## Subproject Notes
+
+### `chain/`
+
+- Contains the Bitsocial Chain landing site for BSO and the proposed L2
+- Standalone Vite app under `chain/`; served at `https://bitsocial.net/chain/`
+- Shares visual language with the about site but has no i18n layer
 
 ### `about/`
 

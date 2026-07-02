@@ -1,25 +1,11 @@
 import { Moon, Sun } from "lucide-react";
 import { useRef } from "react";
-import { CoinGeckoIcon, EtherscanIcon, UniswapIcon } from "@/components/icons";
-import { TOPBAR_LINKS, type ExternalLink } from "@/lib/site";
+import { TOPBAR_LINKS } from "@/lib/site";
 import { useTheme } from "@/lib/useTheme";
 import { cn } from "@/lib/utils";
 
 const navLinkClassName =
   "text-muted-foreground hover:text-foreground transition-colors relative group text-lg md:text-base font-display leading-none py-2 px-2 inline-flex items-center gap-1.5";
-
-function LinkIcon({ icon }: { icon: ExternalLink["icon"] }) {
-  if (icon === "coingecko") {
-    return <CoinGeckoIcon className="h-3.5 w-3.5 shrink-0 opacity-80" />;
-  }
-  if (icon === "uniswap") {
-    return <UniswapIcon className="h-3.5 w-3.5 shrink-0 opacity-80" />;
-  }
-  if (icon === "etherscan") {
-    return <EtherscanIcon className="h-3.5 w-3.5 shrink-0 opacity-80" />;
-  }
-  return null;
-}
 
 function ThemeToggle() {
   const { theme, toggle } = useTheme();
@@ -80,7 +66,6 @@ export default function Topbar() {
                     rel="noopener noreferrer"
                     className={cn(navLinkClassName, "text-sm sm:text-base whitespace-nowrap")}
                   >
-                    {link.icon ? <LinkIcon icon={link.icon} /> : null}
                     {link.label}
                   </a>
                 ))}
