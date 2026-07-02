@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { ArrowUpRight, ListTree, ShieldAlert } from "lucide-react";
+import { ArrowUpRight, ShieldAlert } from "lucide-react";
 import { BSO_TOKEN_ADDRESS, UNISWAP_TOKEN_URL } from "@/lib/site";
 import Section from "./Section";
 
@@ -68,10 +68,6 @@ export default function GetBso() {
           >
             Trade on Uniswap
             <ArrowUpRight aria-hidden size={14} strokeWidth={1.85} />
-          </a>
-          <a className="verify-link" href="#immutable-upgrade">
-            <ListTree aria-hidden size={14} strokeWidth={1.85} />
-            View the on-chain lineage
           </a>
         </div>
       </div>

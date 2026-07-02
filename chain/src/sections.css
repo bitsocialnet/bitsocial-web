@@ -800,28 +800,36 @@ a.gen-addr:hover {
 
 .verify-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
+  justify-content: center;
+  margin-top: clamp(0.4rem, 1.5vw, 0.75rem);
 }
 
 .verify-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.6rem 1rem;
-  font-size: 0.85rem;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.85rem 1.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
   font-weight: 600;
-  color: var(--ink-muted);
-  border: 1px solid var(--line);
+  color: var(--ink);
+  border: 1px solid var(--signal);
   border-radius: 999px;
+  background: var(--signal-soft);
+  box-shadow: var(--glow-box);
   transition:
     color 160ms ease,
-    border-color 160ms ease;
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .verify-link:hover {
   color: var(--ink);
-  border-color: var(--signal);
+  border-color: var(--signal-strong);
+  background: color-mix(in oklab, var(--signal) 22%, var(--surface-raised));
+  box-shadow: 0 0 24px rgba(37, 99, 235, 0.35);
 }
 
 /* ============================================================
