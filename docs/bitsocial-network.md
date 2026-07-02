@@ -1,11 +1,11 @@
 ---
 title: Bitsocial Chain
-description: Phase 2 of the master plan, covering the proposed Ethereum L2 economic layer for Bitsocial apps.
+description: Phase 2 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
 ---
 
 # Bitsocial Chain
 
-Bitsocial Chain is the proposed Ethereum L2 economic layer for Bitsocial apps. The current
+Bitsocial Chain is the proposed Ethereum L2 appchain economic layer for Bitsocial apps. The current
 chain-specific site is [chain.bitsocial.net](https://chain.bitsocial.net).
 
 The peer-to-peer social layer lets communities, identities, and content move outside a central

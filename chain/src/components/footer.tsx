@@ -41,8 +41,8 @@ export default function Footer() {
               </span>
             </a>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              The token of Bitsocial Chain — the unstoppable Ethereum L2 built to turn crypto from a
-              casino into an economy.
+              The token of Bitsocial Chain — the unstoppable Ethereum L2 appchain built to turn
+              crypto from a casino into an economy.
             </p>
           </div>
 

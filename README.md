@@ -8,7 +8,7 @@ Bitsocial Web is the public web monorepo for Bitsocial.
 It currently serves:
 
 - `https://bitsocial.net/` for the public Bitsocial landing/about site
-- `https://bitsocial.net/chain/` for the Bitsocial Chain landing site (BSO token and L2)
+- `https://bitsocial.net/chain/` for the Bitsocial Chain landing site (BSO token and L2 appchain)
 - `https://bitsocial.net/docs/` for Docusaurus docs
 - `https://bitsocial.net/stats/` for the Grafana-backed stats dashboard
 
@@ -18,7 +18,7 @@ The public URL strategy is route-first, not subdomain-first. Until the flagship 
 
 ```text
 about/   Public Bitsocial landing/about site
-chain/   Bitsocial Chain landing site (BSO token and L2)
+chain/   Bitsocial Chain landing site (BSO token and L2 appchain)
 docs/    Docusaurus docs, i18n files, and contributor playbooks
 stats/   Grafana, Prometheus, Docker Compose, deploy config, and monitor package
 scripts/ Shared repo scripts and agent hooks
@@ -111,7 +111,7 @@ docs pages, project directory data, public README text, and the generator itself
 
 ### `chain/`
 
-- Contains the Bitsocial Chain landing site for BSO and the proposed L2
+- Contains the Bitsocial Chain landing site for BSO and the proposed L2 appchain
 - Standalone Vite app under `chain/`; served at `https://bitsocial.net/chain/`
 - Shares visual language with the about site but has no i18n layer
 

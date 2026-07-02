@@ -92,7 +92,7 @@ const roadmapCards = [
     ),
     body: tr(
       "docs.home.roadmap.card.network.body",
-      "The proposed Ethereum L2 economic layer for .bso names, awards, tipping, monetization, and shared app network effects.",
+      "The proposed Ethereum L2 appchain economic layer for .bso names, awards, tipping, monetization, and shared app network effects.",
       "Roadmap card description for Bitsocial Chain.",
     ),
   },

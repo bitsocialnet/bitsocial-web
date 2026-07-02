@@ -107,7 +107,7 @@ A Call to Action
 Bitsocial wins by attracting as many builders as possible. Run your own unstoppable community, develop your own decentralized social app, or even launch your own business on top of Bitsocial. The tide rises with every builder.
 
 - Phase 1 - Decentralize imageboards and forums: Imageboards are the simplest form of social media to decentralize: anonymous posting, few default boards, and no profile graph. 5chan proves Bitsocial can replace centralized imageboards while removing global admins from the equation.
-- Phase 2 - Launch Bitsocial Chain: In order to decentralize all social media, Bitsocial apps will need killer features and strong network effects: unstoppable financial structures, decentralized Bitsocial domains (.bso), awards and tipping, common liquidity, and practical monetization. All of this will be powered by Bitsocial Chain, the proposed Ethereum L2 economic layer for Bitsocial apps.
+- Phase 2 - Launch Bitsocial Chain: In order to decentralize all social media, Bitsocial apps will need killer features and strong network effects: unstoppable financial structures, decentralized Bitsocial domains (.bso), awards and tipping, common liquidity, and practical monetization. All of this will be powered by Bitsocial Chain, the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
 - Phase 3 - Launch the flagship Bitsocial app: The flagship Bitsocial app should be the first profile-based client: posts, replies, follows, real-time public conversation, and communities that can pull network effects from every Bitsocial client. By default, it can feel as familiar as a modern For You social app, while still letting users switch RPCs, feeds, instances, algorithms, ads, or remove ranking entirely.
 - Phase 4 - Scale Bitsocial economies: The next layer is ecosystem funding and infrastructure pluralism. Bitsocial Forge's RPC should not be the only successful RPC: many businesses, independent teams, anonymous operators, and community entities should build RPCs, media hosting, discovery, moderation, and other services on top of Bitsocial. Funding should push that decentralization forward, so developers and operators can compete to make the network faster, cheaper, more reliable, and harder to capture.
 - Phase 5 - Decentralize all social media: With the core apps, public RPCs, profile nodes, discovery, and monetization in place, Bitsocial can fund and build the long tail of social clients: blogging, crowdfunding, creator video and a credible YouTube alternative, niche experiments, and every format too early for the first four phases. Bitsocial Forge can build some of them, centralized clients can compete too, they do not all have to be FOSS, and decentralized community grants can fund as many developers as possible.
@@ -325,7 +325,7 @@ Details:
 
 ## Master plan
 
-- [Bitsocial Chain](https://bitsocial.net/docs/bitsocial-network/): Phase 2 of the master plan, covering the proposed Ethereum L2 economic layer for Bitsocial apps.
+- [Bitsocial Chain](https://bitsocial.net/docs/bitsocial-network/): Phase 2 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
 - [Build your own Bitsocial client](https://bitsocial.net/docs/build-your-own-client/): Builder guide for shipping independent Bitsocial clients, from imageboards and forums to niche social apps.
 - [Decentralize All Social Media](https://bitsocial.net/docs/decentralize-all-social-media/): Phase 5 of the master plan, focused on funding and building the long tail of Bitsocial social clients.
 - [Flagship Bitsocial App](https://bitsocial.net/docs/flagship-bitsocial-app/): The proposed profile-based Bitsocial client: familiar like X/Twitter by default, but with replaceable RPCs, feeds, algorithms, ads, and communities.
@@ -929,11 +929,11 @@ peer-to-peer pubsub for real-time communication. Together they produce a social 
 
 Source: https://bitsocial.net/docs/bitsocial-network/
 Path: docs/bitsocial-network.md
-Description: Phase 2 of the master plan, covering the proposed Ethereum L2 economic layer for Bitsocial apps.
+Description: Phase 2 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
 
 # Bitsocial Chain
 
-Bitsocial Chain is the proposed Ethereum L2 economic layer for Bitsocial apps. The current
+Bitsocial Chain is the proposed Ethereum L2 appchain economic layer for Bitsocial apps. The current
 chain-specific site is [chain.bitsocial.net](https://chain.bitsocial.net).
 
 The peer-to-peer social layer lets communities, identities, and content move outside a central
@@ -3159,6 +3159,7 @@ Bitsocial Web is the public web monorepo for Bitsocial.
 It currently serves:
 
 - `https://bitsocial.net/` for the public Bitsocial landing/about site
+- `https://bitsocial.net/chain/` for the Bitsocial Chain landing site (BSO token and L2 appchain)
 - `https://bitsocial.net/docs/` for Docusaurus docs
 - `https://bitsocial.net/stats/` for the Grafana-backed stats dashboard
 
@@ -3168,6 +3169,7 @@ The public URL strategy is route-first, not subdomain-first. Until the flagship 
 
 ```text
 about/   Public Bitsocial landing/about site
+chain/   Bitsocial Chain landing site (BSO token and L2 appchain)
 docs/    Docusaurus docs, i18n files, and contributor playbooks
 stats/   Grafana, Prometheus, Docker Compose, deploy config, and monitor package
 scripts/ Shared repo scripts and agent hooks
@@ -3178,6 +3180,8 @@ Each top-level subproject has its own local documentation:
 - [`about/README.md`](./about/README.md)
 - [`docs/README.md`](./docs/README.md)
 - [`stats/README.md`](./stats/README.md)
+
+The `chain/` workspace is a standalone Vite app for the Bitsocial Chain marketing site. Run it with `corepack yarn start:chain` or build it with `corepack yarn build:chain`.
 
 The repo root remains the orchestration layer for installs, verification, and cross-project commands.
 
@@ -3255,6 +3259,12 @@ This keeps `about/public/llms*.txt` and `docs/static/llms*.txt` aligned with the
 docs pages, project directory data, public README text, and the generator itself.
 
 ## Subproject Notes
+
+### `chain/`
+
+- Contains the Bitsocial Chain landing site for BSO and the proposed L2 appchain
+- Standalone Vite app under `chain/`; served at `https://bitsocial.net/chain/`
+- Shares visual language with the about site but has no i18n layer
 
 ### `about/`
 

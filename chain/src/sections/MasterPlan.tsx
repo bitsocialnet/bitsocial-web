@@ -13,7 +13,7 @@ const PHASES = [
     icon: Network,
     label: "Phase 02 · Proposed",
     title: "Bitsocial Chain",
-    desc: "The Ethereum L2 whose state derives from L1, and the settlement home for BSO.",
+    desc: "The Ethereum L2 appchain whose state derives from L1, and the settlement home for BSO.",
     active: false,
   },
   {

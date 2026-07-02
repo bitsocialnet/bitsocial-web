@@ -1,4 +1,4 @@
-// Isometric "missing layer" reactor. The BSO L2 plate ignites as a glowing
+// Isometric "missing layer" reactor. The BSO L2 appchain plate ignites as a glowing
 // power core that slots into the gap between the social layer and Ethereum L1,
 // with an energy spine threading the stack. SVG only; honors reduced motion.
 
@@ -17,7 +17,7 @@ type Plate = {
 
 const PLATES: readonly Plate[] = [
   { id: "social", cy: 92, title: "SOCIAL", sub: "COMMUNITIES & APPS" },
-  { id: "bso", cy: 262, title: "BITSOCIAL CHAIN", sub: "L2 · BSO", active: true },
+  { id: "bso", cy: 262, title: "BITSOCIAL CHAIN", sub: "L2 appchain · BSO", active: true },
   { id: "eth", cy: 432, title: "ETHEREUM", sub: "L1 SETTLEMENT" },
 ];
 
@@ -93,7 +93,7 @@ export default function MissingLayer() {
       className="ml"
       viewBox="0 0 520 556"
       role="img"
-      aria-label="Three stacked layers of crypto: social communities and apps on top, Ethereum L1 settlement at the base, and Bitsocial Chain, the Ethereum L2 powered by BSO, igniting as the glowing missing layer that slots into the gap between them, threaded by an energy spine."
+      aria-label="Three stacked layers of crypto: social communities and apps on top, Ethereum L1 settlement at the base, and Bitsocial Chain, the Ethereum L2 appchain powered by BSO, igniting as the glowing missing layer that slots into the gap between them, threaded by an energy spine."
     >
       <defs>
         <radialGradient id="ml-core" cx="50%" cy="50%" r="50%">
