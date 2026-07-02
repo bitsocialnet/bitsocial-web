@@ -8,7 +8,10 @@ type Gen = {
   when: string;
   addr: string;
   href: string | null;
-  status: string;
+  statuses: Array<{
+    icon: "origin" | "proxy" | "immutable";
+    label: string;
+  }>;
   badge: "past" | "now" | "next";
   badgeLabel: string;
 };
@@ -20,7 +23,10 @@ const GENS: Gen[] = [
     when: "2021",
     addr: "0x625f…bee9",
     href: "https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9",
-    status: "origin",
+    statuses: [
+      { icon: "origin", label: "origin" },
+      { icon: "proxy", label: "upgradeable proxy" },
+    ],
     badge: "past",
     badgeLabel: "Origin",
   },
@@ -30,7 +36,7 @@ const GENS: Gen[] = [
     when: "2024",
     addr: "0xEA81…Bd8f",
     href: "https://etherscan.io/token/0xEA81DaB2e0EcBc6B5c4172DE4c22B6Ef6E55Bd8f",
-    status: "upgradeable proxy",
+    statuses: [{ icon: "proxy", label: "upgradeable proxy" }],
     badge: "past",
     badgeLabel: "Previous",
   },
@@ -40,11 +46,17 @@ const GENS: Gen[] = [
     when: "2025",
     addr: BSO_TOKEN_ADDRESS_SHORT,
     href: ETHERSCAN_TOKEN_URL,
-    status: "immutable · adminless",
+    statuses: [{ icon: "immutable", label: "immutable · adminless" }],
     badge: "now",
     badgeLabel: "Current",
   },
 ];
+
+function StatusIcon({ icon }: { icon: Gen["statuses"][number]["icon"] }) {
+  if (icon === "proxy") return <TriangleAlert aria-hidden size={13} strokeWidth={1.9} />;
+  if (icon === "immutable") return <ShieldCheck aria-hidden size={13} strokeWidth={1.9} />;
+  return <BadgeCheck aria-hidden size={13} strokeWidth={1.9} />;
+}
 
 export default function ImmutableUpgrade() {
   return (
@@ -73,15 +85,13 @@ export default function ImmutableUpgrade() {
               ) : (
                 <span className="gen-addr gen-addr-pending">{g.addr}</span>
               )}
-              <span className="gen-status">
-                {g.badge === "past" && g.status === "upgradeable proxy" ? (
-                  <TriangleAlert aria-hidden size={13} strokeWidth={1.9} />
-                ) : g.badge === "now" ? (
-                  <ShieldCheck aria-hidden size={13} strokeWidth={1.9} />
-                ) : (
-                  <BadgeCheck aria-hidden size={13} strokeWidth={1.9} />
-                )}
-                {g.status}
+              <span className="gen-statuses">
+                {g.statuses.map((status) => (
+                  <span className="gen-status" key={status.label}>
+                    <StatusIcon icon={status.icon} />
+                    {status.label}
+                  </span>
+                ))}
               </span>
             </li>
           ))}

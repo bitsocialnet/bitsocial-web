@@ -547,6 +547,12 @@ a.gen-addr:hover {
   color: var(--ink-faint);
 }
 
+.gen-statuses {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
 .gen-status {
   display: flex;
   align-items: center;
