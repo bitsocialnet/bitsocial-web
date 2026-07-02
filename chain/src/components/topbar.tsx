@@ -264,7 +264,7 @@ export default function Topbar() {
                 aria-hidden="true"
                 className="h-8 w-8 transition-[filter] group-hover:brightness-110"
               />
-              <span className="text-xl font-display font-regular text-muted-foreground group-hover:text-foreground transition-colors hidden sm:inline">
+              <span className="text-xl font-display font-regular text-muted-foreground group-hover:text-foreground transition-colors">
                 Bitsocial Chain
               </span>
             </a>
