@@ -40,8 +40,8 @@ export default function Footer() {
               </span>
             </a>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              The token powering Bitsocial Chain — an unstoppable, fully decentralized Ethereum L2
-              for sovereign communities.
+              The token of Bitsocial Chain — the unstoppable Ethereum L2 built to turn crypto from a
+              casino into an economy.
             </p>
           </div>
 
@@ -120,7 +120,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-border/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-muted-foreground/70 text-xs">
-          <p className="font-display tracking-wide">Decentralize all social media</p>
+          <p className="font-display tracking-wide">Fix all of crypto</p>
           <div className="flex items-center gap-3 text-xs">
             <a
               href="https://github.com/bitsocialnet/bitsocial-web"
