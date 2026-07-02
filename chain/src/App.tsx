@@ -1,3 +1,4 @@
+import ChainStatusCta from "@/components/chain-status-cta";
 import MissingLayer from "./MissingLayer";
 import BackToTop from "@/components/back-to-top";
 import Footer from "@/components/footer";
@@ -16,6 +17,7 @@ export default function App() {
       <main className="shell-main">
         <div className="hero-panel">
           <div className="hero">
+            <ChainStatusCta />
             <div className="copy">
               <h1 className="title">
                 The missing <span className="mark">layer</span> of crypto

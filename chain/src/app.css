@@ -89,6 +89,13 @@
   padding: clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 4vw, 3.5rem) clamp(4rem, 8vh, 6rem);
 }
 
+.hero-status {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin-bottom: calc(-1 * clamp(1rem, 3vw, 2.75rem));
+}
+
 /* Mirrors bitsocial.net's hero: Exo regular (400), mid-size, deliberately quiet.
    The dominant Exo 600 display scale is reserved for section question headlines. */
 .shell .title {
