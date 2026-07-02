@@ -67,8 +67,8 @@ export default function MailingList() {
           </h2>
 
           <p className="text-sm md:text-base mb-8 max-w-md mx-auto leading-relaxed text-muted-foreground">
-            Get notified about BSO token milestones, the Bitsocial Chain L2 appchain, and ecosystem
-            news. Low frequency, high signal.
+            Get notified about BSO token milestones, Bitsocial Chain, and ecosystem news. Low
+            frequency, high signal.
           </p>
 
           {formState === "success" ? (
