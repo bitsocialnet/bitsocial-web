@@ -50,7 +50,7 @@
 
 .section-supporting {
   max-width: 42rem;
-  margin: clamp(1.25rem, 3vw, 1.5rem) 0 clamp(3rem, 7vw, 4rem);
+  margin: clamp(1.25rem, 3vw, 1.5rem) 0 0;
   font-size: clamp(1rem, 1.35vw, 1.125rem);
   line-height: 1.65;
   color: var(--ink-muted);
@@ -59,7 +59,7 @@
 
 .section-artifact {
   width: 100%;
-  margin-top: clamp(2.2rem, 5vw, 3.4rem);
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
 }
 
 .section-quote {
