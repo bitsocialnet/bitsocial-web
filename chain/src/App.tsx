@@ -25,7 +25,8 @@ export default function App() {
                 The missing <span className="mark">layer</span> of crypto
               </h1>
               <p className="sub">
-                The token powering Bitsocial Chain: an unstoppable, fully decentralized{" "}
+                Crypto became a casino because web2 owns its distribution. BSO powers the fix: an
+                unstoppable, fully decentralized{" "}
                 <a
                   className="sub-link"
                   href="https://ethereum.org/en/layer-2/"
@@ -33,8 +34,8 @@ export default function App() {
                   rel="noopener noreferrer"
                 >
                   Ethereum L2
-                </a>
-                .
+                </a>{" "}
+                where communities own their networks, their tokens and their revenue.
               </p>
             </div>
             <div className="stage">

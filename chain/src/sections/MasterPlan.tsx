@@ -53,6 +53,7 @@ export default function MasterPlan() {
       eyebrow="The master plan"
       question="One token, then a whole economy on top."
       supporting="The token ships first; the network is the vision it unlocks. Everything past Phase 1 is proposed infrastructure, built in the open."
+      quote="All or nothing: almost every other altcoin is just nothing."
     >
       <ol className="roadmap">
         {PHASES.map((phase) => {
