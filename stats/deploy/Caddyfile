@@ -1,24 +1,22 @@
-http://:8080 {
+stats.bitsocial.net {
 	encode gzip
 	header {
 		X-Robots-Tag "noindex, nofollow, noarchive"
 	}
 
-	@stats5chan path /stats/5chan
-	redir @stats5chan /stats/public-dashboards/fa6f2225e0ea98e116fb6f85d84e0186 302
+	@stats5chan path /5chan
+	redir @stats5chan /public-dashboards/fa6f2225e0ea98e116fb6f85d84e0186 302
 
-	@statsRoot path /stats /stats/
-	redir @statsRoot /stats/public-dashboards/e9277bcc0c421ddcacd29f591466678c 302
+	@statsRoot path /
+	redir @statsRoot /public-dashboards/e9277bcc0c421ddcacd29f591466678c 302
 
-	handle /stats/api/health {
+	handle /api/health {
 		respond 404
 	}
 
-	handle /stats/* {
+	handle {
 		reverse_proxy 127.0.0.1:3300
 	}
-
-	respond 404
 }
 
 newsletter.bitsocial.net {

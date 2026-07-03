@@ -1,6 +1,6 @@
 ## Bitsocial Stats Monitor
 
-This service powers the Prometheus metrics and JSON API used by the Grafana dashboards under `bitsocial.net/stats`.
+This service powers the Prometheus metrics and JSON API used by the Grafana dashboards on `stats.bitsocial.net`.
 
 ### Running locally
 

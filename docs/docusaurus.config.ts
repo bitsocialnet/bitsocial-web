@@ -11,7 +11,8 @@ const repoEditUrl = "https://github.com/bitsocialnet/bitsocial-web/tree/master";
 const showDocsGitMetadata = process.env.VERCEL !== "1";
 const docsPreviewMode = process.env.DOCS_START_MODE === "live" ? "live" : "multilocale";
 
-/** Docs live under /docs/; logo + title must link to the main site root, not useBaseUrl("/"). */
+/** Docs live at docs.bitsocial.net; logo + title must link to the main site root, not useBaseUrl("/"). */
+const docsSiteOrigin = "https://docs.bitsocial.net";
 const mainSiteOrigin = "https://bitsocial.net";
 const navbarBrandTitle = "Bitsocial";
 const localeConfigs = Object.fromEntries(
@@ -37,8 +38,8 @@ const config: Config = {
     docsPreviewMode,
     navbarBrandTitle,
   },
-  url: mainSiteOrigin,
-  baseUrl: "/docs/",
+  url: docsSiteOrigin,
+  baseUrl: "/",
   onBrokenLinks: "throw",
   trailingSlash: true,
   markdown: {
@@ -109,7 +110,7 @@ const config: Config = {
           to: "/",
           label: "Overview",
           position: "left",
-          activeBaseRegex: "^/docs/$",
+          activeBaseRegex: "^/$",
         },
         { to: "/search/", label: "Search", position: "left" },
         { to: "/agent-playbooks/", label: "Contributor", position: "left" },

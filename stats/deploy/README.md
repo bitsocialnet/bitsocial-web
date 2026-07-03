@@ -1,6 +1,6 @@
 ## Bitsocial VPS Deploy
 
-This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current` on the VPS. The VPS hosts the Grafana/Prometheus stack only; the public apex site and docs stay on Vercel.
+This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current` on the VPS. The VPS hosts the Grafana/Prometheus stack and serves `stats.bitsocial.net` directly; the public apex site and docs stay on Vercel.
 
 ### Expected host layout
 
@@ -8,8 +8,9 @@ This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current
 - host Caddy config: `/etc/caddy/Caddyfile`
 - newsletter/listmonk remains on `newsletter.bitsocial.net` via `127.0.0.1:9000`
 - newsletter gateway API traffic under `/api/bitsocial/*` goes to `127.0.0.1:9011`
-- Vercel owns `bitsocial.net` and proxies `/stats` to this VPS origin at `http://91.234.199.189:8080/stats`
-- the VPS entrypoint redirects `/stats` and `/stats/5chan` to Grafana shared-dashboard URLs so visitors land on the public view without anonymous access to the full Grafana app
+- `stats.bitsocial.net` is served directly by VPS Caddy with automatic HTTPS (A record → this host)
+- Caddy redirects `/` and `/5chan` on `stats.bitsocial.net` to Grafana shared-dashboard URLs so visitors land on the public view without anonymous access to the full Grafana app
+- legacy `bitsocial.net/stats/*` URLs are 308-redirected by Vercel to `stats.bitsocial.net/*`; the old `:8080` origin is retired
 
 ### Syncing a release
 
@@ -56,17 +57,16 @@ systemctl reload caddy
 
 ### Smoke checks
 
-Before or after Vercel cutover, verify the VPS origin directly:
+Verify the public stats subdomain:
 
 ```bash
-curl -I http://91.234.199.189:8080/stats
-curl -I http://91.234.199.189:8080/stats/
-curl -I http://91.234.199.189:8080/stats/5chan
+curl -I https://stats.bitsocial.net/
+curl -I https://stats.bitsocial.net/5chan
 curl -fsS http://127.0.0.1:9091/api/v1/targets
 curl -fsS http://127.0.0.1:3301/metrics/prometheus | grep bitsocial_stats_service_probe_last_success
 ```
 
-The `curl -I` checks for `/stats` and `/stats/5chan` should now return `302` redirects to the corresponding public dashboard URLs.
+The `curl -I` checks for `/` and `/5chan` should return `302` redirects to the corresponding public dashboard URLs.
 
 Once the stack is up, verify Grafana bootstrapped the public dashboards and left the login-protected app closed off:
 
@@ -79,11 +79,12 @@ curl -i http://127.0.0.1:3300/api/ds/query
 
 The shared dashboard URLs should return `200`, while direct Grafana API access without a login should return `401`.
 
-After Vercel deploy:
+After Vercel deploy (legacy path redirects):
 
 ```bash
 curl -I https://bitsocial.net/
-curl -I https://bitsocial.net/docs/
 curl -I https://bitsocial.net/stats/
 curl -I https://bitsocial.net/stats/5chan
 ```
+
+The legacy `/stats` paths on `bitsocial.net` should return `308` redirects to the matching URLs on `stats.bitsocial.net`.

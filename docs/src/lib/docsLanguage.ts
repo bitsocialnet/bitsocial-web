@@ -13,7 +13,6 @@ import {
 export { SUPPORTED_LANGUAGES, type SupportedLanguage, type SupportedLanguageCode };
 export { LANGUAGE_QUERY_PARAM };
 
-const DOCS_BASE_PATH = "/docs";
 export type DocsPreviewMode = "live" | "multilocale";
 
 function canUseDom() {
@@ -130,30 +129,25 @@ export function stripLanguageQueryParam(search: string): string {
 }
 
 export function isDocsNotFoundPath(pathname: string): boolean {
-  return /^\/docs(?:\/[a-z]{2,3})?\/404(?:\.html|\/)?$/.test(pathname);
+  return /^\/(?:[a-z]{2,3}\/)?404(?:\.html|\/)?$/.test(pathname);
 }
 
 export function getDocsBasePath(pathname: string): string {
-  if (pathname === DOCS_BASE_PATH || pathname === `${DOCS_BASE_PATH}/`) {
-    return `${DOCS_BASE_PATH}/`;
-  }
-
-  if (!pathname.startsWith(`${DOCS_BASE_PATH}/`)) {
-    return pathname;
+  if (pathname === "/" || pathname === "") {
+    return "/";
   }
 
   const hasTrailingSlash = pathname.endsWith("/");
   const segments = pathname.replace(/^\/+|\/+$/g, "").split("/");
-  const maybeLocale = segments[1];
+  const maybeLocale = segments[0];
   const restSegments =
-    maybeLocale && resolveSupportedLanguageCode(maybeLocale)
-      ? segments.slice(2)
-      : segments.slice(1);
-  const rebuiltPath = `/${["docs", ...restSegments].join("/")}`;
+    maybeLocale && resolveSupportedLanguageCode(maybeLocale) ? segments.slice(1) : segments;
 
-  if (rebuiltPath === DOCS_BASE_PATH) {
-    return `${DOCS_BASE_PATH}/`;
+  if (restSegments.length === 0) {
+    return "/";
   }
+
+  const rebuiltPath = `/${restSegments.join("/")}`;
 
   return hasTrailingSlash ? `${rebuiltPath}/` : rebuiltPath;
 }
@@ -162,19 +156,17 @@ export function getLocalizedDocsPath(pathname: string, language: SupportedLangua
   const docsBasePath = getDocsBasePath(pathname);
 
   if (isDocsNotFoundPath(pathname)) {
-    return language === DEFAULT_LANGUAGE_CODE
-      ? `${DOCS_BASE_PATH}/`
-      : `${DOCS_BASE_PATH}/${language}/`;
-  }
-
-  if (!docsBasePath.startsWith(DOCS_BASE_PATH)) {
-    return docsBasePath;
+    return language === DEFAULT_LANGUAGE_CODE ? "/" : `/${language}/`;
   }
 
   if (language === DEFAULT_LANGUAGE_CODE) {
     return docsBasePath;
   }
 
-  const pathSuffix = docsBasePath.slice(DOCS_BASE_PATH.length);
-  return `${DOCS_BASE_PATH}/${language}${pathSuffix.startsWith("/") ? "" : "/"}${pathSuffix}`;
+  if (docsBasePath === "/") {
+    return `/${language}/`;
+  }
+
+  const pathSuffix = docsBasePath.startsWith("/") ? docsBasePath : `/${docsBasePath}`;
+  return `/${language}${pathSuffix}`;
 }

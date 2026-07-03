@@ -129,7 +129,7 @@ export default function LocaleDropdownNavbarItem({ mobile, className }: Props): 
     return availableLanguages.map((language) => ({
       ...language,
       href: `${getLocalizedDocsPath(
-        isDocsNotFoundPath(location.pathname) ? "/docs/404/" : location.pathname,
+        isDocsNotFoundPath(location.pathname) ? "/404/" : location.pathname,
         language.code,
       )}${nextSearch}${location.hash}`,
     }));

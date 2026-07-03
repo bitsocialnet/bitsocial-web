@@ -1,6 +1,6 @@
 ## Bitsocial Grafana
 
-This directory contains the Grafana dashboards and provisioning files for `bitsocial.net/stats`.
+This directory contains the Grafana dashboards and provisioning files for `stats.bitsocial.net`.
 
 ### Sources
 

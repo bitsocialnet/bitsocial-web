@@ -1,6 +1,6 @@
 # Docs Site
 
-This subproject contains the Docusaurus documentation site served from `https://bitsocial.net/docs/`.
+This subproject contains the Docusaurus documentation site served from `https://docs.bitsocial.net/`.
 
 ## What Lives Here
 

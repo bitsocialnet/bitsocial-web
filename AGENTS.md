@@ -17,8 +17,8 @@ Only record items that are repo-specific, likely to recur, and have a concrete m
 Bitsocial Web is a small monorepo for the public Bitsocial web surface:
 
 - `about/` for the Bitsocial landing/about site served at `bitsocial.net`
-- `docs/` for the Docusaurus docs served at `bitsocial.net/docs`
-- `stats/` for Grafana, Prometheus, and deployment assets behind `bitsocial.net/stats`
+- `docs/` for the Docusaurus docs served at `docs.bitsocial.net`
+- `stats/` for Grafana, Prometheus, and deployment assets behind `stats.bitsocial.net`
 
 ## Instruction Priority
 

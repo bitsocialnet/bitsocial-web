@@ -15,6 +15,7 @@ import {
 import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import EasterEggOverlay from "@/components/easter-egg-overlay";
+import { DOCS_LINKS } from "@/lib/docs-links";
 import { loadGsap, type TweenLike } from "@/lib/motion-runtime";
 
 type ApproachId = "federated" | "blockchain" | "bitsocial";
@@ -656,13 +657,13 @@ const DEEP_COMPARISON_SOURCE_LINKS: DeepComparisonSource[] = [
     id: "bitsocialDocs",
     label: "Bitsocial Docs",
     shortLabel: "Bitsocial Docs",
-    href: "/docs/peer-to-peer-protocol/",
+    href: DOCS_LINKS.peerToPeerProtocol,
   },
   {
     id: "bitsocialBsoDocs",
     label: "Bitsocial Docs: BSO Resolver",
     shortLabel: "Bitsocial Docs",
-    href: "/docs/infrastructure/bso-resolver/",
+    href: DOCS_LINKS.bsoResolver,
   },
   {
     id: "bsip02",

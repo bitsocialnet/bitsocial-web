@@ -1,8 +1,7 @@
-import { build, defineConfig } from "vite";
+import { build, defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import autoprefixer from "autoprefixer";
 import fs from "node:fs/promises";
-import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import tailwindcss from "tailwindcss";
@@ -11,6 +10,7 @@ import { renderRobotsTxt, renderSitemapXml, getStaticSeoRoutes } from "./src/lib
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const previewOpenUrl = "https://bitsocial.localhost/";
 const isPreviewCommand = process.argv.includes("preview");
+const statsDevRedirectOrigin = "https://stats.bitsocial.net";
 
 /** Docusaurus dev server when `yarn start:docs` runs under Portless (`docs.bitsocial.localhost`). */
 const docsDevProxyDefaultPortless = "https://docs.bitsocial.localhost";
@@ -19,9 +19,9 @@ const docsDevProxyDefaultPortless = "https://docs.bitsocial.localhost";
  * When Portless is on, the real port is random (4000–4999); proxy via the public URL instead.
  * Override for worktrees where the docs host is prefixed (see Portless git worktree behavior).
  */
-function docsDevProxyTarget() {
+function docsDevRedirectOrigin() {
   if (process.env.DOCS_DEV_PROXY_TARGET) {
-    return process.env.DOCS_DEV_PROXY_TARGET;
+    return process.env.DOCS_DEV_PROXY_TARGET.replace(/\/$/, "");
   }
   if (process.env.PORTLESS === "0") {
     const port = process.env.DOCS_PORT ?? "3001";
@@ -30,27 +30,47 @@ function docsDevProxyTarget() {
   return docsDevProxyDefaultPortless;
 }
 
-function statsDevProxyTarget() {
-  if (process.env.STATS_DEV_PROXY_TARGET) {
-    return process.env.STATS_DEV_PROXY_TARGET;
+function redirectToSubdomain(origin: string, subpath: string) {
+  if (!subpath || subpath === "/") {
+    return `${origin}/`;
   }
 
-  try {
-    const vercelConfig = JSON.parse(
-      readFileSync(path.resolve(__dirname, "vercel.json"), "utf8"),
-    ) as {
-      routes?: Array<{ src?: string; dest?: string }>;
-    };
-    const statsRoute = vercelConfig.routes?.find((route) => route.src === "^/stats/?$");
+  return `${origin}${subpath.startsWith("/") ? subpath : `/${subpath}`}`;
+}
 
-    if (!statsRoute?.dest) {
-      return undefined;
-    }
+function subdomainRedirectPlugin(): Plugin {
+  return {
+    name: "bitsocial-subdomain-redirects",
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        if (req.method !== "GET" && req.method !== "HEAD") {
+          next();
+          return;
+        }
 
-    return new URL(statsRoute.dest).origin;
-  } catch {
-    return undefined;
-  }
+        const requestUrl = req.url ?? "/";
+        const pathname = requestUrl.split(/[?#]/, 1)[0] ?? "/";
+
+        const docsMatch = pathname.match(/^\/docs(\/.*)?$/);
+        if (docsMatch) {
+          const location = redirectToSubdomain(docsDevRedirectOrigin(), docsMatch[1] ?? "/");
+          res.writeHead(308, { Location: location });
+          res.end();
+          return;
+        }
+
+        const statsMatch = pathname.match(/^\/stats(\/.*)?$/);
+        if (statsMatch) {
+          const location = redirectToSubdomain(statsDevRedirectOrigin, statsMatch[1] ?? "/");
+          res.writeHead(308, { Location: location });
+          res.end();
+          return;
+        }
+
+        next();
+      });
+    },
+  };
 }
 
 function staticMetadataPlugin() {
@@ -136,33 +156,17 @@ function ssrServerBuildPlugin() {
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
-  const statsProxyTarget = statsDevProxyTarget();
-
   return {
     root: __dirname,
-    plugins: [react(), staticMetadataPlugin(), ssrServerBuildPlugin()],
+    plugins: [
+      react(),
+      staticMetadataPlugin(),
+      ssrServerBuildPlugin(),
+      ...(command === "serve" && !isPreviewCommand ? [subdomainRedirectPlugin()] : []),
+    ],
     server: {
       // Portless serves the app at a stable hostname; open that URL, not the internal Vite port.
       open: process.env.PORTLESS_URL || (process.env.PORTLESS === "0" ? true : previewOpenUrl),
-      proxy:
-        command === "serve" && !isPreviewCommand
-          ? {
-              "^/docs(?:/.*)?$": {
-                target: docsDevProxyTarget(),
-                changeOrigin: true,
-                ws: true,
-              },
-              ...(statsProxyTarget
-                ? {
-                    "^/stats(?:/.*)?$": {
-                      target: statsProxyTarget,
-                      changeOrigin: true,
-                      ws: true,
-                    },
-                  }
-                : {}),
-            }
-          : undefined,
     },
     preview: {
       open: process.env.PORTLESS_URL || (process.env.PORTLESS === "0" ? true : previewOpenUrl),

@@ -2,7 +2,7 @@
 
 > Bitsocial Docs is the technical documentation surface for the Bitsocial protocol, roadmap, apps, anti-spam modules, infrastructure, and contributor workflows.
 
-Use this file as the short routing index for `https://bitsocial.net/docs/`. Use `https://bitsocial.net/docs/llms-full.txt` when you want the full inline documentation corpus instead of the curated map.
+Use this file as the short routing index for `https://docs.bitsocial.net/`. Use `https://docs.bitsocial.net/llms-full.txt` when you want the full inline documentation corpus instead of the curated map.
 
 ## Related landing page context
 
@@ -16,64 +16,64 @@ Use this file as the short routing index for `https://bitsocial.net/docs/`. Use 
 
 ## Protocol notes
 
-- [Custom Anti-Spam Challenges](https://bitsocial.net/docs/custom-challenges/): Why Bitsocial lets each community define its own anti-spam policy.
-- [Identity and Community Ownership](https://bitsocial.net/docs/identity-and-ownership/): How Bitsocial treats profiles and communities as key-controlled property instead of revocable platform accounts.
-- [Local Moderation, Not Global Bans](https://bitsocial.net/docs/local-moderation/): What Bitsocial means when it says moderation stays local.
-- [Peer-to-Peer Protocol](https://bitsocial.net/docs/peer-to-peer-protocol/): How Bitsocial uses IPFS/libp2p, public-key addressing, peer-to-peer pubsub, and browser P2P nodes to deliver serverless social media.
+- [Custom Anti-Spam Challenges](https://docs.bitsocial.net/custom-challenges/): Why Bitsocial lets each community define its own anti-spam policy.
+- [Identity and Community Ownership](https://docs.bitsocial.net/identity-and-ownership/): How Bitsocial treats profiles and communities as key-controlled property instead of revocable platform accounts.
+- [Local Moderation, Not Global Bans](https://docs.bitsocial.net/local-moderation/): What Bitsocial means when it says moderation stays local.
+- [Peer-to-Peer Protocol](https://docs.bitsocial.net/peer-to-peer-protocol/): How Bitsocial uses IPFS/libp2p, public-key addressing, peer-to-peer pubsub, and browser P2P nodes to deliver serverless social media.
 
 ## Master plan
 
-- [Bitsocial Chain](https://bitsocial.net/docs/bitsocial-network/): Phase 2 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
-- [Build your own Bitsocial client](https://bitsocial.net/docs/build-your-own-client/): Builder guide for shipping independent Bitsocial clients, from imageboards and forums to niche social apps.
-- [Decentralize All Social Media](https://bitsocial.net/docs/decentralize-all-social-media/): Phase 5 of the master plan, focused on funding and building the long tail of Bitsocial social clients.
-- [Flagship Bitsocial App](https://bitsocial.net/docs/flagship-bitsocial-app/): The proposed profile-based Bitsocial client: familiar like X/Twitter by default, but with replaceable RPCs, feeds, algorithms, ads, and communities.
-- [Permissionless Public RPC](https://bitsocial.net/docs/permissionless-public-rpc/): Proposed design for a public Bitsocial RPC service with isolated users, scoped permissions, and community ownership.
-- [Scale Bitsocial Economies](https://bitsocial.net/docs/scale-bitsocial-economies/): Phase 4 of the master plan, focused on funding, infrastructure pluralism, and competing services around Bitsocial.
+- [Bitsocial Chain](https://docs.bitsocial.net/bitsocial-network/): Phase 2 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
+- [Build your own Bitsocial client](https://docs.bitsocial.net/build-your-own-client/): Builder guide for shipping independent Bitsocial clients, from imageboards and forums to niche social apps.
+- [Decentralize All Social Media](https://docs.bitsocial.net/decentralize-all-social-media/): Phase 5 of the master plan, focused on funding and building the long tail of Bitsocial social clients.
+- [Flagship Bitsocial App](https://docs.bitsocial.net/flagship-bitsocial-app/): The proposed profile-based Bitsocial client: familiar like X/Twitter by default, but with replaceable RPCs, feeds, algorithms, ads, and communities.
+- [Permissionless Public RPC](https://docs.bitsocial.net/permissionless-public-rpc/): Proposed design for a public Bitsocial RPC service with isolated users, scoped permissions, and community ownership.
+- [Scale Bitsocial Economies](https://docs.bitsocial.net/scale-bitsocial-economies/): Phase 4 of the master plan, focused on funding, infrastructure pluralism, and competing services around Bitsocial.
 
 ## Apps
 
-- [5chan](https://bitsocial.net/docs/apps/5chan/): A serverless, decentralized imageboard built on the Bitsocial protocol where anyone can create and own boards.
-- [Seedit](https://bitsocial.net/docs/apps/seedit/): A serverless, decentralized Reddit-style forum built on the Bitsocial protocol where anyone can create and own communities.
+- [5chan](https://docs.bitsocial.net/apps/5chan/): A serverless, decentralized imageboard built on the Bitsocial protocol where anyone can create and own boards.
+- [Seedit](https://docs.bitsocial.net/apps/seedit/): A serverless, decentralized Reddit-style forum built on the Bitsocial protocol where anyone can create and own communities.
 
 ## Developer tools
 
-- [Bitsocial CLI](https://bitsocial.net/docs/developer-tools/cli/): Command-line interface for running a Bitsocial node, creating communities, and managing protocol operations.
-- [React Hooks](https://bitsocial.net/docs/developer-tools/react-hooks/): React hooks library for building decentralized social applications on the Bitsocial protocol.
+- [Bitsocial CLI](https://docs.bitsocial.net/developer-tools/cli/): Command-line interface for running a Bitsocial node, creating communities, and managing protocol operations.
+- [React Hooks](https://docs.bitsocial.net/developer-tools/react-hooks/): React hooks library for building decentralized social applications on the Bitsocial protocol.
 
 ## Anti-spam challenges
 
-- [Captcha Canvas Challenge](https://bitsocial.net/docs/anti-spam/captcha-canvas-challenge/): Standalone image-based captcha challenge for Bitsocial communities.
-- [EVM Contract Call Challenge](https://bitsocial.net/docs/anti-spam/evm-contract-call/): Anti-spam challenge that verifies on-chain conditions by calling an EVM smart contract.
-- [Spam Blocker](https://bitsocial.net/docs/anti-spam/spam-blocker/): Centralized spam detection service with risk scoring, OAuth challenges, and configurable tier thresholds.
-- [Voucher Challenge](https://bitsocial.net/docs/anti-spam/voucher-challenge/): Anti-spam challenge that gates publishing behind unique voucher codes distributed by community owners.
+- [Captcha Canvas Challenge](https://docs.bitsocial.net/anti-spam/captcha-canvas-challenge/): Standalone image-based captcha challenge for Bitsocial communities.
+- [EVM Contract Call Challenge](https://docs.bitsocial.net/anti-spam/evm-contract-call/): Anti-spam challenge that verifies on-chain conditions by calling an EVM smart contract.
+- [Spam Blocker](https://docs.bitsocial.net/anti-spam/spam-blocker/): Centralized spam detection service with risk scoring, OAuth challenges, and configurable tier thresholds.
+- [Voucher Challenge](https://docs.bitsocial.net/anti-spam/voucher-challenge/): Anti-spam challenge that gates publishing behind unique voucher codes distributed by community owners.
 
 ## Infrastructure
 
-- [BSO Resolver](https://bitsocial.net/docs/infrastructure/bso-resolver/): Resolve .bso domain names to public keys via Bitsocial TXT records.
-- [Mintpass](https://bitsocial.net/docs/infrastructure/mintpass/): NFT-based authentication system that helps Bitsocial communities verify users and reduce sybil attacks.
-- [Pubsub Provider](https://bitsocial.net/docs/infrastructure/pubsub-provider/): Fallback pubsub relay and delegated routing provider for Bitsocial operators.
-- [Telegram Bots](https://bitsocial.net/docs/infrastructure/telegram-bots/): Feed bots that monitor Bitsocial community lists and forward posts to Telegram channels.
+- [BSO Resolver](https://docs.bitsocial.net/infrastructure/bso-resolver/): Resolve .bso domain names to public keys via Bitsocial TXT records.
+- [Mintpass](https://docs.bitsocial.net/infrastructure/mintpass/): NFT-based authentication system that helps Bitsocial communities verify users and reduce sybil attacks.
+- [Pubsub Provider](https://docs.bitsocial.net/infrastructure/pubsub-provider/): Fallback pubsub relay and delegated routing provider for Bitsocial operators.
+- [Telegram Bots](https://docs.bitsocial.net/infrastructure/telegram-bots/): Feed bots that monitor Bitsocial community lists and forward posts to Telegram channels.
 
 ## Contributor playbooks
 
-- [Bug Investigation Workflow](https://bitsocial.net/docs/agent-playbooks/bug-investigation/): Use this when a bug is reported in a specific file/line/code block.
-- [Commit and Issue Format](https://bitsocial.net/docs/agent-playbooks/commit-issue-format/): Use this when proposing or implementing meaningful code changes.
-- [Agent Hooks Setup](https://bitsocial.net/docs/agent-playbooks/hooks-setup/): If your AI coding assistant supports lifecycle hooks, configure these for this repo.
-- [Known Surprises](https://bitsocial.net/docs/agent-playbooks/known-surprises/): This file tracks repository specific confusion points that caused agent mistakes.
-- [Long-Running Agent Workflow](https://bitsocial.net/docs/agent-playbooks/long-running-agent-workflow/): Use this playbook when a task is likely to span multiple sessions, handoffs, or spawned agents.
-- [Skills and Tools](https://bitsocial.net/docs/agent-playbooks/skills-and-tools/): Use this playbook when setting up/adjusting skills and external tooling.
-- [Feature List Template](https://bitsocial.net/docs/agent-playbooks/templates/feature-list-template/): Machine-readable template used for long-running multi-session task tracking.
-- [Progress Log](https://bitsocial.net/docs/agent-playbooks/templates/progress.template/): Append one entry per session.
-- [Translations Workflow](https://bitsocial.net/docs/agent-playbooks/translations/): This project uses i18next translation files in public/translations/{lang}/default.json.
+- [Bug Investigation Workflow](https://docs.bitsocial.net/agent-playbooks/bug-investigation/): Use this when a bug is reported in a specific file/line/code block.
+- [Commit and Issue Format](https://docs.bitsocial.net/agent-playbooks/commit-issue-format/): Use this when proposing or implementing meaningful code changes.
+- [Agent Hooks Setup](https://docs.bitsocial.net/agent-playbooks/hooks-setup/): If your AI coding assistant supports lifecycle hooks, configure these for this repo.
+- [Known Surprises](https://docs.bitsocial.net/agent-playbooks/known-surprises/): This file tracks repository specific confusion points that caused agent mistakes.
+- [Long-Running Agent Workflow](https://docs.bitsocial.net/agent-playbooks/long-running-agent-workflow/): Use this playbook when a task is likely to span multiple sessions, handoffs, or spawned agents.
+- [Skills and Tools](https://docs.bitsocial.net/agent-playbooks/skills-and-tools/): Use this playbook when setting up/adjusting skills and external tooling.
+- [Feature List Template](https://docs.bitsocial.net/agent-playbooks/templates/feature-list-template/): Machine-readable template used for long-running multi-session task tracking.
+- [Progress Log](https://docs.bitsocial.net/agent-playbooks/templates/progress.template/): Append one entry per session.
+- [Translations Workflow](https://docs.bitsocial.net/agent-playbooks/translations/): This project uses i18next translation files in public/translations/{lang}/default.json.
 
 ## Other
 
-- [Content Discovery](https://bitsocial.net/docs/content-discovery/): How Bitsocial separates peer discovery from app-level curation.
-- [i18n Default Language Policy](https://bitsocial.net/docs/i18n-default-language-policy/): Anonymous visitors resolve language in this order:
-- [A complete layman explanation of the Bitsocial protocol](https://bitsocial.net/docs/layman-protocol-explanation/): A plain-English walkthrough of Bitsocial communities, peer lookup, publishing, anti-spam challenges, moderation, and apps.
+- [Content Discovery](https://docs.bitsocial.net/content-discovery/): How Bitsocial separates peer discovery from app-level curation.
+- [i18n Default Language Policy](https://docs.bitsocial.net/i18n-default-language-policy/): Anonymous visitors resolve language in this order:
+- [A complete layman explanation of the Bitsocial protocol](https://docs.bitsocial.net/layman-protocol-explanation/): A plain-English walkthrough of Bitsocial communities, peer lookup, publishing, anti-spam challenges, moderation, and apps.
 
 ## Optional
 
-- [llms-full.txt](https://bitsocial.net/docs/llms-full.txt): Full inline markdown aggregation of the public Bitsocial docs plus companion project READMEs.
+- [llms-full.txt](https://docs.bitsocial.net/llms-full.txt): Full inline markdown aggregation of the public Bitsocial docs plus companion project READMEs.
 - [Main site llms.txt](https://bitsocial.net/llms.txt): Site-wide entry point covering the public web surfaces outside the docs app.
 - [Main site llms-full.txt](https://bitsocial.net/llms-full.txt): Site-wide full corpus that includes the public docs and the app/project README appendix.

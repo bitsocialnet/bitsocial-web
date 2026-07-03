@@ -94,7 +94,7 @@ services:
       GF_AUTH_ANONYMOUS_ENABLED: "false"
       GF_AUTH_DISABLE_LOGIN_FORM: "false"
       GF_SERVER_ROOT_URL: ${BITSOCIAL_STATS_GRAFANA_ROOT_URL}
-      GF_SERVER_SERVE_FROM_SUB_PATH: "true"
+      GF_SERVER_SERVE_FROM_SUB_PATH: "false"
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/bitsocial-stats.json
     ports:
       - "127.0.0.1:${BITSOCIAL_STATS_GRAFANA_PORT:-3300}:3000"

@@ -55,8 +55,8 @@ export default {
     },
     webpages: [
       { url: "https://bitsocial.net", match: "Bitsocial" },
-      { url: "https://bitsocial.net/docs", match: "Bitsocial Docs|Bitsocial" },
-      { url: "https://bitsocial.net/stats", match: "Grafana|Stats" },
+      { url: "https://docs.bitsocial.net/", match: "Bitsocial Docs|Bitsocial" },
+      { url: "https://stats.bitsocial.net/", match: "Grafana|Stats" },
       { url: "https://newsletter.bitsocial.net", match: "listmonk|Bitsocial Newsletter" },
       { url: "https://5chan.app", match: "5chan|4chan alternative" },
       { url: "https://seedit.app", match: "Seedit|reddit alternative" },

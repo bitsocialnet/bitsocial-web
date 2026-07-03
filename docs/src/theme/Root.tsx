@@ -51,7 +51,7 @@ function DocsLanguageSync() {
     const targetLanguage =
       queryLanguage ?? (currentLanguage !== defaultLocale ? currentLanguage : fallbackLanguage);
     const targetPathname = isDocsNotFoundPath(location.pathname)
-      ? getLocalizedDocsPath("/docs/404/", targetLanguage)
+      ? getLocalizedDocsPath("/404/", targetLanguage)
       : getLocalizedDocsPath(location.pathname, targetLanguage);
     const targetUrl = `${targetPathname}${nextSearch}${location.hash}`;
     const currentUrl = `${location.pathname}${location.search}${location.hash}`;

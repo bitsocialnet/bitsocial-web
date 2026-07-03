@@ -627,7 +627,7 @@ export default function DocsHome() {
               "The existing docs under",
               "Prefix text for the contributor reference section description.",
             )}{" "}
-            <code>/docs/agent-playbooks</code>{" "}
+            <code>/agent-playbooks</code>{" "}
             {tr(
               "docs.home.contributor.body.suffix",
               "are preserved and published here for transparency. They are primarily contributor-facing, but they now live inside the docs UI like the public-facing pages do.",

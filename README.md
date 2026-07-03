@@ -9,10 +9,10 @@ It currently serves:
 
 - `https://bitsocial.net/` for the public Bitsocial landing/about site
 - `https://bitsocial.net/chain/` for the Bitsocial Chain landing site (BSO token and L2 appchain)
-- `https://bitsocial.net/docs/` for Docusaurus docs
-- `https://bitsocial.net/stats/` for the Grafana-backed stats dashboard
+- `https://docs.bitsocial.net/` for Docusaurus docs
+- `https://stats.bitsocial.net/` for the Grafana-backed stats dashboard
 
-The public URL strategy is route-first, not subdomain-first. Until the flagship web client takes over `bitsocial.net`, docs and stats stay under the main domain for SEO and brand consolidation.
+Docs and stats are served on their own subdomains, like `chain.bitsocial.net`, while remaining in this monorepo. Legacy `/docs` and `/stats` paths on `bitsocial.net` redirect permanently to those subdomains.
 
 ## Repo Layout
 
@@ -132,7 +132,7 @@ docs pages, project directory data, public README text, and the generator itself
 
 - Contains the Grafana/Prometheus stack and deployment files
 - The executable monitor service lives in `stats/monitor/`
-- Public traffic still lands on `bitsocial.net/stats/`, with Vercel proxying to the VPS-hosted Grafana origin
+- Public traffic is served at `stats.bitsocial.net`, with Grafana hosted on the VPS origin
 
 ### Future Splits
 
@@ -167,8 +167,9 @@ Relevant local rules also live in:
 ## Deployment Shape
 
 - `bitsocial.net` is served by Vercel
-- `/docs` is served from the docs build
-- `/stats` is routed through Vercel to the VPS-hosted Grafana stack
+- `docs.bitsocial.net` is served from the docs build
+- `stats.bitsocial.net` routes to the VPS-hosted Grafana stack
+- Legacy `/docs` and `/stats` paths on `bitsocial.net` return permanent redirects to those subdomains
 - `newsletter.bitsocial.net` remains separate
 
 ### Verified App Mirror Deployments

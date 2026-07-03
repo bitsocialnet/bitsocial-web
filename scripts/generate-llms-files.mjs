@@ -6,6 +6,8 @@ import { fileURLToPath } from "node:url";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const siteOrigin = "https://bitsocial.net";
+const docsOrigin = "https://docs.bitsocial.net";
+const statsOrigin = "https://stats.bitsocial.net";
 const aboutPublicDir = path.join(repoRoot, "about", "public");
 const docsRoot = path.join(repoRoot, "docs");
 const docsStaticDir = path.join(docsRoot, "static");
@@ -219,7 +221,7 @@ function docSlugFromRelativePath(relativePath) {
 }
 
 function docsUrlFromRelativePath(relativePath) {
-  return `${siteOrigin}/docs/${docSlugFromRelativePath(relativePath)}/`;
+  return `${docsOrigin}/${docSlugFromRelativePath(relativePath)}/`;
 }
 
 function categorizeDoc(relativePath) {
@@ -707,7 +709,7 @@ function buildSiteLlms(docs, landing) {
 
 > Bitsocial is an open-source peer-to-peer social network and app ecosystem. This site is the public entry point for the network overview, project directory, privacy notice, and documentation covering protocol notes, apps, anti-spam modules, infrastructure, and contributor workflows.
 
-Use \`${siteOrigin}/\` for the public product overview and \`${siteOrigin}/docs/\` for deeper technical documentation. Ignore \`/about\` and \`/blog\` if they appear in source code or local builds; those routes exist in the web app but are currently development-only, not public production surfaces.
+Use \`${siteOrigin}/\` for the public product overview and \`${docsOrigin}/\` for deeper technical documentation. Ignore \`/about\` and \`/blog\` if they appear in source code or local builds; those routes exist in the web app but are currently development-only, not public production surfaces.
 
 ## Main site
 
@@ -723,20 +725,20 @@ ${renderBulletList(siteAppEntries)}
 
 ## Docs
 
-- [Docs home](${siteOrigin}/docs/): Entry point for protocol notes, roadmap material, app docs, and contributor playbooks.
-- [Docs llms.txt](${siteOrigin}/docs/llms.txt): Curated docs-specific index for LLMs.
-- [Peer-to-Peer Protocol](${siteOrigin}/docs/peer-to-peer-protocol/): Core explanation of the serverless social model and pubsub-based protocol.
-- [Bitsocial Chain](${siteOrigin}/docs/bitsocial-network/): Master-plan overview of the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
-- [Build your own client](${siteOrigin}/docs/build-your-own-client/): Builder guide for shipping independent Bitsocial clients.
-- [CLI](${siteOrigin}/docs/developer-tools/cli/): Command-line documentation for the Bitsocial protocol tooling.
-- [Spam Blocker](${siteOrigin}/docs/anti-spam/spam-blocker/): Technical documentation for the centralized risk-scoring anti-spam service.
+- [Docs home](${docsOrigin}/): Entry point for protocol notes, roadmap material, app docs, and contributor playbooks.
+- [Docs llms.txt](${docsOrigin}/llms.txt): Curated docs-specific index for LLMs.
+- [Peer-to-Peer Protocol](${docsOrigin}/peer-to-peer-protocol/): Core explanation of the serverless social model and pubsub-based protocol.
+- [Bitsocial Chain](${docsOrigin}/bitsocial-network/): Master-plan overview of the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
+- [Build your own client](${docsOrigin}/build-your-own-client/): Builder guide for shipping independent Bitsocial clients.
+- [CLI](${docsOrigin}/developer-tools/cli/): Command-line documentation for the Bitsocial protocol tooling.
+- [Spam Blocker](${docsOrigin}/anti-spam/spam-blocker/): Technical documentation for the centralized risk-scoring anti-spam service.
 
 ## Optional
 
 - [llms-full.txt](${siteOrigin}/llms-full.txt): Expanded inline corpus covering the public docs plus companion project READMEs.
-- [Docs llms-full.txt](${siteOrigin}/docs/llms-full.txt): Docs-scoped full inline corpus if only the documentation surface is needed.
-- [Contributor playbooks](${siteOrigin}/docs/agent-playbooks/): Public workflow docs for contributors and AI agents; useful for repo and process questions, but usually unnecessary for end-user product questions.
-- [All public docs pages](${siteOrigin}/docs/llms.txt): ${docs.length} curated public docs entries from the Bitsocial docs site.
+- [Docs llms-full.txt](${docsOrigin}/llms-full.txt): Docs-scoped full inline corpus if only the documentation surface is needed.
+- [Contributor playbooks](${docsOrigin}/agent-playbooks/): Public workflow docs for contributors and AI agents; useful for repo and process questions, but usually unnecessary for end-user product questions.
+- [All public docs pages](${docsOrigin}/llms.txt): ${docs.length} curated public docs entries from the Bitsocial docs site.
 `);
 }
 
@@ -746,7 +748,7 @@ function buildDocsLlms(docs, landing) {
 
 > Bitsocial Docs is the technical documentation surface for the Bitsocial protocol, roadmap, apps, anti-spam modules, infrastructure, and contributor workflows.
 
-Use this file as the short routing index for \`${siteOrigin}/docs/\`. Use \`${siteOrigin}/docs/llms-full.txt\` when you want the full inline documentation corpus instead of the curated map.
+Use this file as the short routing index for \`${docsOrigin}/\`. Use \`${docsOrigin}/llms-full.txt\` when you want the full inline documentation corpus instead of the curated map.
 
 ${renderLandingShortIndex(landing, "Related landing page context")}
 
@@ -754,7 +756,7 @@ ${renderDocsSections(docs)}
 
 ## Optional
 
-- [llms-full.txt](${siteOrigin}/docs/llms-full.txt): Full inline markdown aggregation of the public Bitsocial docs plus companion project READMEs.
+- [llms-full.txt](${docsOrigin}/llms-full.txt): Full inline markdown aggregation of the public Bitsocial docs plus companion project READMEs.
 - [Main site llms.txt](${siteOrigin}/llms.txt): Site-wide entry point covering the public web surfaces outside the docs app.
 - [Main site llms-full.txt](${siteOrigin}/llms-full.txt): Site-wide full corpus that includes the public docs and the app/project README appendix.
 `);
@@ -766,7 +768,7 @@ function buildDocsLlmsFull(docs, readmes, landing) {
 
 > Bitsocial Docs is the technical documentation surface for the Bitsocial protocol, roadmap, apps, anti-spam modules, infrastructure, and contributor workflows.
 
-This file expands \`${siteOrigin}/docs/llms.txt\` into a single inline corpus. It includes the public English docs source, key landing-page context, and companion project READMEs pulled from GitHub where available.
+This file expands \`${docsOrigin}/llms.txt\` into a single inline corpus. It includes the public English docs source, key landing-page context, and companion project READMEs pulled from GitHub where available.
 
 ## How to use this file
 
@@ -812,9 +814,10 @@ Two interpretation notes matter:
 - [Home](${siteOrigin}/): Public overview of Bitsocial, its decentralized positioning, and the main paths for trying apps or reading docs.
 - [Projects](${siteOrigin}/projects): Catalog page grouping public clients, anti-spam modules, and operator tools.
 - [Privacy](${siteOrigin}/privacy): Privacy notice for the about site, docs, analytics, and newsletter handling.
-- [Docs home](${siteOrigin}/docs/): Technical docs covering protocol notes, roadmap material, app notes, infrastructure docs, and contributor playbooks.
-- [Docs llms.txt](${siteOrigin}/docs/llms.txt): Curated docs-specific routing index.
-- [Docs llms-full.txt](${siteOrigin}/docs/llms-full.txt): Docs-scoped full inline corpus.
+- [Docs home](${docsOrigin}/): Technical docs covering protocol notes, roadmap material, app notes, infrastructure docs, and contributor playbooks.
+- [Docs llms.txt](${docsOrigin}/llms.txt): Curated docs-specific routing index.
+- [Docs llms-full.txt](${docsOrigin}/llms-full.txt): Docs-scoped full inline corpus.
+- [Stats dashboard](${statsOrigin}/): Grafana-backed public stats surface for Bitsocial apps and infrastructure.
 
 ${renderLandingShortIndex(landing)}
 

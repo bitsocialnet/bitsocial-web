@@ -22,22 +22,32 @@
       }
     },
     {
-      "src": "^/stats/?$",
-      "dest": "http://91.234.199.189:8080/stats/"
-    },
-    {
-      "src": "^/stats/(.*)$",
-      "dest": "http://91.234.199.189:8080/stats/$1"
-    },
-    {
       "src": "^/docs/?$",
-      "dest": "${DOCS_ORIGIN}/",
-      "env": ["DOCS_ORIGIN"]
+      "status": 308,
+      "headers": {
+        "Location": "https://docs.bitsocial.net/"
+      }
     },
     {
       "src": "^/docs/(.*)$",
-      "dest": "${DOCS_ORIGIN}/$1",
-      "env": ["DOCS_ORIGIN"]
+      "status": 308,
+      "headers": {
+        "Location": "https://docs.bitsocial.net/$1"
+      }
+    },
+    {
+      "src": "^/stats/?$",
+      "status": 308,
+      "headers": {
+        "Location": "https://stats.bitsocial.net/"
+      }
+    },
+    {
+      "src": "^/stats/(.*)$",
+      "status": 308,
+      "headers": {
+        "Location": "https://stats.bitsocial.net/$1"
+      }
     },
     {
       "src": "^/$",

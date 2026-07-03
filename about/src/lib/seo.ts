@@ -5,6 +5,7 @@ import {
   type AppCategorySlug,
   type AppData,
 } from "./apps-data";
+import { DOCS_LINKS, DOCS_SITE_URL } from "./docs-links";
 
 const SITE_NAME = "Bitsocial";
 const SITE_ORIGIN = "https://bitsocial.net";
@@ -38,21 +39,21 @@ const HOME_SEO_FEATURES = [
     title: "IPFS-backed peer-to-peer communities",
     description:
       "Bitsocial communities use IPFS/libp2p primitives for public-key-addressed records, gossipsub pubsub, and content transfer instead of company-controlled servers.",
-    href: "/docs/peer-to-peer-protocol/",
+    href: DOCS_LINKS.peerToPeerProtocol,
     cta: "Read the peer-to-peer protocol",
   },
   {
     title: "Local moderation instead of global bans",
     description:
       "Community owners decide how their own spaces work, without a protocol-wide super-admin who can erase every identity or forum at once.",
-    href: "/docs/local-moderation/",
+    href: DOCS_LINKS.localModeration,
     cta: "Read the moderation notes",
   },
   {
     title: "User-owned identities and communities",
     description:
       "Profiles and communities are controlled by keys, so ownership behaves more like property than a revocable account on a company platform.",
-    href: "/docs/identity-and-ownership/",
+    href: DOCS_LINKS.identityAndOwnership,
     cta: "Read the ownership notes",
   },
   {
@@ -130,10 +131,10 @@ function compactObject<T extends StructuredDataValue>(value: T): T {
 
 function buildPrimaryCitationUrls() {
   return [
-    toAbsoluteUrl("/docs/peer-to-peer-protocol/"),
-    toAbsoluteUrl("/docs/custom-challenges/"),
-    toAbsoluteUrl("/docs/local-moderation/"),
-    toAbsoluteUrl("/docs/identity-and-ownership/"),
+    DOCS_LINKS.peerToPeerProtocol,
+    DOCS_LINKS.customChallenges,
+    DOCS_LINKS.localModeration,
+    DOCS_LINKS.identityAndOwnership,
     "https://github.com/bitsocialnet",
   ];
 }
@@ -653,7 +654,9 @@ function renderStaticShell(content: string) {
     '    <nav aria-label="Primary" class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">',
     '      <a href="/" class="font-display font-semibold text-foreground transition-colors hover:text-blue-glow">Bitsocial</a>',
     '      <a href="/projects?category=apps" class="transition-colors hover:text-foreground">Apps</a>',
-    '      <a href="/docs/" class="transition-colors hover:text-foreground">Docs</a>',
+    '      <a href="' +
+      DOCS_LINKS.home +
+      '" class="transition-colors hover:text-foreground">Docs</a>',
     '      <a href="https://github.com/bitsocialnet" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-foreground">Source code</a>',
     "    </nav>",
     content,
@@ -695,7 +698,7 @@ function renderHomeStaticBody() {
         <p class="mt-5 max-w-3xl text-lg leading-8 text-muted-foreground">${escapeHtml(SITE_DESCRIPTION)}</p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a href="/projects?category=apps" class="rounded-full border border-border/70 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-blue-glow hover:text-blue-glow">Explore Bitsocial apps</a>
-          <a href="/docs/" class="rounded-full border border-border/70 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-blue-glow hover:text-blue-glow">Read the docs</a>
+          <a href="${escapeHtml(DOCS_LINKS.home)}" class="rounded-full border border-border/70 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-blue-glow hover:text-blue-glow">Read the docs</a>
           <a href="https://github.com/bitsocialnet" target="_blank" rel="noopener noreferrer" class="rounded-full border border-border/70 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-blue-glow hover:text-blue-glow">Browse the source code</a>
         </div>
       </section>
@@ -852,9 +855,8 @@ export function renderRobotsTxt() {
     "User-agent: *",
     "Allow: /",
     "Disallow: /api/",
-    "Disallow: /stats",
     `Sitemap: ${SITE_ORIGIN}/sitemap.xml`,
-    `Sitemap: ${SITE_ORIGIN}/docs/sitemap.xml`,
+    `Sitemap: ${DOCS_SITE_URL}/sitemap.xml`,
     "",
   ].join("\n");
 }
