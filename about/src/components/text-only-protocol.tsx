@@ -232,11 +232,11 @@ export default function TextOnlyProtocol() {
         >
           <m.div
             {...reveal(14, 0, 0.5)}
-            className="mb-6 block text-center text-xs font-display uppercase tracking-[0.2em] text-muted-foreground/50 md:text-sm"
+            className="mb-6 block text-center text-xs font-display uppercase tracking-[0.2em] text-muted-foreground/75 dark:text-muted-foreground/70 md:text-sm"
           >
             <a
               href="#text-only-protocol"
-              className="rounded-md transition-[color,box-shadow] duration-300 hover:text-muted-foreground/70"
+              className="rounded-md transition-[color,box-shadow] duration-300 dark:hover:text-muted-foreground/82"
             >
               {t("textOnlyProtocol.sectionLabel")}
             </a>
@@ -283,7 +283,7 @@ export default function TextOnlyProtocol() {
 
         <m.blockquote
           {...reveal(0, 0.5, 0.8)}
-          className="mx-auto mt-14 block max-w-lg text-center text-xs italic text-muted-foreground/40 md:text-sm"
+          className="mx-auto mt-14 block max-w-lg text-center text-xs italic text-muted-foreground/75 dark:text-muted-foreground/70 md:text-sm"
         >
           &ldquo;{t("textOnlyProtocol.quote")}&rdquo;
           <span className="mt-1 block not-italic">{t("textOnlyProtocol.quoteAttribution")}</span>

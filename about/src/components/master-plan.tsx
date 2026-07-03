@@ -234,11 +234,11 @@ function MasterPlanIntro({ subtitle, t }: { subtitle: string; t: TFunction }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="block text-xs md:text-sm font-display tracking-[0.2em] uppercase text-center mb-6 text-muted-foreground/50"
+          className="block text-xs md:text-sm font-display tracking-[0.2em] uppercase text-center mb-6 text-muted-foreground/75 dark:text-muted-foreground/70"
         >
           <a
             href="#master-plan"
-            className="rounded-md transition-[color,box-shadow] duration-300 hover:text-muted-foreground/70"
+            className="rounded-md transition-[color,box-shadow] duration-300 dark:hover:text-muted-foreground/82"
           >
             {t("masterPlan.sectionLabel")}
           </a>

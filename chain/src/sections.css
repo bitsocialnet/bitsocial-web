@@ -25,15 +25,19 @@
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: color-mix(in oklab, var(--ink-faint) 50%, transparent);
+  color: color-mix(in oklab, var(--ink-muted) 75%, transparent);
+}
+
+.dark .section-eyebrow {
+  color: color-mix(in oklab, var(--ink-faint) 66%, transparent);
 }
 
 .section-eyebrow a {
   transition: color 160ms ease;
 }
 
-.section-eyebrow a:hover {
-  color: color-mix(in oklab, var(--ink-muted) 70%, transparent);
+.dark .section-eyebrow a:hover {
+  color: color-mix(in oklab, var(--ink-muted) 82%, transparent);
 }
 
 .section-title {
@@ -68,8 +72,12 @@
   font-size: 0.9rem;
   font-style: italic;
   line-height: 1.5;
-  color: var(--ink-faint);
+  color: color-mix(in oklab, var(--ink-muted) 75%, transparent);
   text-wrap: balance;
+}
+
+.dark .section-quote {
+  color: color-mix(in oklab, var(--ink-faint) 66%, transparent);
 }
 
 /* ---------- Scroll reveal ---------- */

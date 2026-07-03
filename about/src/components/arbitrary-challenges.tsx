@@ -318,11 +318,11 @@ export default function ArbitraryChallenges() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="block text-xs md:text-sm font-display tracking-[0.2em] uppercase text-center mb-6 text-muted-foreground/50"
+            className="block text-xs md:text-sm font-display tracking-[0.2em] uppercase text-center mb-6 text-muted-foreground/75 dark:text-muted-foreground/70"
           >
             <a
               href="#arbitrary-challenges"
-              className="rounded-md transition-[color,box-shadow] duration-300 hover:text-muted-foreground/70"
+              className="rounded-md transition-[color,box-shadow] duration-300 dark:hover:text-muted-foreground/82"
             >
               {t("arbitraryChallenges.sectionLabel")}
             </a>
@@ -379,7 +379,7 @@ export default function ArbitraryChallenges() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mx-auto mt-14 block max-w-lg text-center text-xs italic text-muted-foreground/40 md:text-sm"
+          className="mx-auto mt-14 block max-w-lg text-center text-xs italic text-muted-foreground/75 dark:text-muted-foreground/70 md:text-sm"
         >
           &ldquo;{t("arbitraryChallenges.quote")}&rdquo;
           <span className="mt-1 block not-italic">{t("arbitraryChallenges.quoteAttribution")}</span>

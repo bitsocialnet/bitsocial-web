@@ -2091,12 +2091,12 @@ export default function SanctuaryCommunication() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="block text-xs md:text-sm font-display tracking-[0.2em] uppercase text-center mb-6 text-muted-foreground/50"
+            className="block text-xs md:text-sm font-display tracking-[0.2em] uppercase text-center mb-6 text-muted-foreground/75 dark:text-muted-foreground/70"
           >
             <a
               data-sanctuary-label
               href="#decentralized"
-              className="rounded-md transition-[color,box-shadow] duration-300 hover:text-muted-foreground/70"
+              className="rounded-md transition-[color,box-shadow] duration-300 dark:hover:text-muted-foreground/82"
             >
               {t("sanctuary.sectionLabel")}
             </a>
@@ -2208,7 +2208,7 @@ export default function SanctuaryCommunication() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="block text-center text-xs md:text-sm text-muted-foreground/40 mt-14 italic max-w-lg mx-auto"
+          className="block text-center text-xs md:text-sm text-muted-foreground/75 dark:text-muted-foreground/70 mt-14 italic max-w-lg mx-auto"
         >
           &ldquo;{t("sanctuary.quote")}&rdquo;
           <span className="not-italic block mt-1">{t("sanctuary.quoteAttribution")}</span>
