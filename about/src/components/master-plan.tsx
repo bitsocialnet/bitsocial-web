@@ -26,6 +26,14 @@ const richTextComponents = {
       className="font-medium underline decoration-current/35 underline-offset-4 transition-colors hover:text-blue-glow hover:decoration-blue-glow"
     />
   ),
+  wetubeLink: (
+    <a
+      href="https://github.com/bitsocialnet/wetube"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-medium underline decoration-current/35 underline-offset-4 transition-colors hover:text-blue-glow hover:decoration-blue-glow"
+    />
+  ),
   strong: <strong className="font-semibold" />,
 };
 
