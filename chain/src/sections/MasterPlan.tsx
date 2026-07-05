@@ -34,7 +34,7 @@ const PHASES = [
     icon: ArrowLeftRight,
     label: "Phase 05 · Proposed",
     title: "AgoraSwap",
-    desc: "The community DEX where those tokens find liquidity, each one paired with BSO.",
+    desc: "The community DEX where every community token trades against BSO — keeping the economy's liquidity on-chain instead of on custodial dollar exchanges.",
     active: false,
   },
   {

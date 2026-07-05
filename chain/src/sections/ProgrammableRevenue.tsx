@@ -14,7 +14,7 @@ export default function ProgrammableRevenue() {
       id="programmable-revenue"
       eyebrow="Programmable revenue"
       question="How does ad revenue burn a community's token?"
-      supporting="Because the ad marketplace is a contract, not a sales team. Communities auction their ad slots on-chain, bids are denominated in their own token, and settlement burns a share. Advertisers create the buy pressure, the contract does the burning: no treasury, no buyback bot, no trusted middleman."
+      supporting="Because the ad marketplace is a contract, not a sales team. Communities auction their ad slots on-chain, bids are denominated in their own token, and settlement burns a share. Advertisers create the buy pressure, the contract does the burning: no treasury, no buyback bot, no trusted middleman. Revenue lives in an immutable contract instead of a founder's promise — community tokens become productive, rug-resistant assets, not memecoins."
       quote="Burn at the point of revenue, not buyback from a treasury."
     >
       <div className="flywheel">

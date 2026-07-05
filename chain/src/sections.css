@@ -391,6 +391,11 @@
   list-style: none;
 }
 
+/* Endgame's three-pillar variant of the flywheel step grid. */
+.flow-steps-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .flow-step {
   position: relative;
   display: flex;
@@ -846,6 +851,10 @@ a.gen-addr:hover {
 @media (max-width: 720px) {
   .flow-steps {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .flow-steps-3 {
+    grid-template-columns: 1fr;
   }
 
   .flow-arrow {

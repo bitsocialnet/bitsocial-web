@@ -13,7 +13,7 @@ export default function SettlementLayer() {
       id="settlement-layer"
       eyebrow="The settlement layer"
       question="Why would a social network need its own money?"
-      supporting="Bitsocial Chain is the proposed Ethereum L2 appchain for Bitsocial. Communities run their own L3s, tokens and DAOs, yet they settle, stake and pay rent in BSO, so value across the whole economy accrues to a single token."
+      supporting="Bitsocial Chain is the proposed Ethereum L2 appchain for Bitsocial. Communities run their own L3s, tokens and DAOs, yet they settle, stake and pay rent in BSO — and every community token trades against BSO. One asset sits under the whole economy, the way ETH sits under DeFi: the reserve currency of social."
       quote="Replacing on-chain TVL with social capital."
     >
       <div className="stack-tree">
