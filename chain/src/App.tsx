@@ -22,7 +22,7 @@ export default function App() {
             <ChainStatusCta />
             <div className="copy">
               <h1 className="title">
-                The missing <span className="mark">layer</span> of crypto
+                The missing <span className="mark">social layer</span> of crypto
               </h1>
               <p className="sub">
                 Crypto became a casino because web2 owns its distribution. Bitsocial Chain fixes

@@ -53,7 +53,7 @@ export default function Footer() {
               </span>
             </a>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              The Missing Layer of Crypto
+              The Missing Social Layer of Crypto
             </p>
           </div>
 
