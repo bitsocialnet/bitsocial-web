@@ -4,6 +4,8 @@ export const BSO_TOKEN_ADDRESS_SHORT = "0xB50c…DaB5A";
 
 export const ETHERSCAN_TOKEN_URL = `https://etherscan.io/token/${BSO_TOKEN_ADDRESS}` as const;
 
+export const DOCS_TOKEN_HISTORY_URL = "https://docs.bitsocial.net/token-history" as const;
+
 export const UNISWAP_TOKEN_URL =
   `https://app.uniswap.org/explore/tokens/ethereum/${BSO_TOKEN_ADDRESS}` as const;
 

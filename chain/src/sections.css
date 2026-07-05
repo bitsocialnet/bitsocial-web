@@ -21,23 +21,21 @@
 .section-eyebrow {
   margin: 0 0 clamp(1.25rem, 3vw, 1.5rem);
   font-family: var(--font-display);
-  font-size: clamp(0.75rem, 1.1vw, 0.875rem);
+  font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: color-mix(in oklab, var(--ink-muted) 75%, transparent);
+  color: hsl(var(--muted-foreground) / 0.75);
 }
 
 .dark .section-eyebrow {
-  color: color-mix(in oklab, var(--ink-faint) 66%, transparent);
+  color: hsl(var(--muted-foreground) / 0.7);
 }
 
-.section-eyebrow a {
-  transition: color 160ms ease;
-}
-
-.dark .section-eyebrow a:hover {
-  color: color-mix(in oklab, var(--ink-muted) 82%, transparent);
+@media (min-width: 768px) {
+  .section-eyebrow {
+    font-size: 0.875rem;
+  }
 }
 
 .section-title {
@@ -61,6 +59,22 @@
   text-wrap: pretty;
 }
 
+.section-link {
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--signal-strong) 35%, transparent);
+  text-underline-offset: 4px;
+  transition:
+    color 160ms ease,
+    text-decoration-color 160ms ease;
+}
+
+.section-link:hover {
+  color: var(--signal);
+  text-decoration-color: var(--signal);
+}
+
 .section-artifact {
   width: 100%;
   margin-top: calc(clamp(1.75rem, 4vw, 2.5rem) + 5px);
@@ -69,11 +83,21 @@
 .section-quote {
   max-width: 42ch;
   margin: clamp(2rem, 4vw, 3rem) 0 0;
+  font-family: var(--font-display);
   font-size: 0.9rem;
-  font-style: italic;
+  font-weight: 500;
   line-height: 1.5;
   color: color-mix(in oklab, var(--ink-muted) 75%, transparent);
   text-wrap: balance;
+}
+
+.section-quote::before {
+  content: "";
+  display: block;
+  width: 2.25rem;
+  height: 1px;
+  margin: 0 auto 0.95rem;
+  background: var(--line);
 }
 
 .dark .section-quote {
@@ -582,25 +606,29 @@ a.gen-addr:hover {
   flex: none;
 }
 
-.lineage-note {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  max-width: 48rem;
-  margin: clamp(1.4rem, 3vw, 2rem) auto 0;
-  padding: 0.9rem 1.2rem;
-  text-align: left;
-  font-size: 0.85rem;
-  color: var(--ink-muted);
+.lineage-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin: 1.6rem auto 0;
+  padding: 0.85rem 1.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  font-weight: 600;
+  color: var(--ink);
   border: 1px solid var(--line);
-  border-radius: 0.9rem;
+  border-radius: 999px;
   background: var(--surface-raised);
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
 }
 
-.lineage-note svg {
-  flex: none;
-  margin-top: 0.1rem;
-  color: var(--signal);
+.lineage-link:hover {
+  border-color: var(--signal);
+  background: var(--signal-soft);
 }
 
 /* ============================================================
@@ -665,8 +693,9 @@ a.gen-addr:hover {
   padding-top: 0.3rem;
 }
 
-.phase-label {
+.phase-num {
   display: inline-block;
+  margin-right: 0.5rem;
   margin-bottom: 0.32rem;
   font-family: var(--font-display);
   font-size: 0.66rem;
@@ -675,14 +704,37 @@ a.gen-addr:hover {
   color: var(--ink-faint);
 }
 
-.phase-active .phase-label {
+.phase-status {
+  display: inline-block;
+  margin-bottom: 0.32rem;
+  padding: 0.16rem 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.phase-status-now {
   color: var(--signal);
+  border-color: var(--signal);
+}
+
+.phase-status-proposed {
+  color: var(--ink-faint);
+  border-color: var(--line);
+}
+
+.phase-status-frontier {
+  color: var(--warning);
+  border-color: color-mix(in oklab, var(--warning) 50%, transparent);
 }
 
 .phase-title {
   margin: 0 0 0.3rem;
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
   font-weight: 600;
   color: var(--ink);
 }
@@ -690,7 +742,7 @@ a.gen-addr:hover {
 .phase-desc {
   max-width: 44ch;
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   line-height: 1.55;
   color: var(--ink-muted);
 }

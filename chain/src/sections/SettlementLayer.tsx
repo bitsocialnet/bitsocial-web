@@ -1,4 +1,5 @@
 import { Boxes, Layers, Users } from "lucide-react";
+import { BITSOCIAL_URL } from "@/lib/site";
 import Section from "./Section";
 
 const COMMUNITIES = [
@@ -13,7 +14,22 @@ export default function SettlementLayer() {
       id="settlement-layer"
       eyebrow="The settlement layer"
       question="Why would a social network need its own money?"
-      supporting="Bitsocial Chain is the proposed Ethereum L2 appchain for Bitsocial. Communities run their own L3s, tokens and DAOs, yet they settle, stake and pay rent in BSO — and every community token trades against BSO. One asset sits under the whole economy, the way ETH sits under DeFi: the reserve currency of social."
+      supporting={
+        <>
+          Bitsocial Chain is the proposed Ethereum L2 appchain for{" "}
+          <a
+            className="section-link"
+            href={BITSOCIAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Bitsocial
+          </a>
+          . Communities run their own L3s, tokens and DAOs, yet they settle, stake and pay rent in
+          BSO, and every community token trades against BSO. One asset sits under the whole economy,
+          the way ETH sits under DeFi: the reserve currency of social.
+        </>
+      }
       quote="Replacing on-chain TVL with social capital."
     >
       <div className="stack-tree">

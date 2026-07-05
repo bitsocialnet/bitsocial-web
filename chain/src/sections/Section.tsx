@@ -38,7 +38,7 @@ export default function Section({
         </h2>
         <p className="section-supporting reveal">{supporting}</p>
         <div className="section-artifact reveal">{children}</div>
-        {quote ? <p className="section-quote reveal">{`“${quote}”`}</p> : null}
+        {quote ? <p className="section-quote reveal">{quote}</p> : null}
       </div>
     </section>
   );

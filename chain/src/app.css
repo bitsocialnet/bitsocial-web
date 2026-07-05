@@ -79,28 +79,35 @@
 }
 /* ---------- Hero ---------- */
 .shell .hero {
-  display: grid;
-  min-height: min(46rem, calc(100svh - 6rem));
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: clamp(2rem, 5vw, 5rem);
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: clamp(2.5rem, 6vw, 4rem);
   width: min(100%, 92rem);
   margin: 0 auto;
   padding: clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 4vw, 3.5rem) clamp(4rem, 8vh, 6rem);
 }
 
 .hero-status {
-  grid-column: 1 / -1;
   display: flex;
   justify-content: center;
   margin-bottom: calc(-1 * clamp(1rem, 3vw, 2.75rem));
+}
+
+.shell .copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 46rem;
+  margin: 0 auto;
+  text-align: center;
 }
 
 /* Mirrors bitsocial.net's hero: Exo regular (400), mid-size, deliberately quiet.
    The dominant Exo 600 display scale is reserved for section question headlines. */
 .shell .title {
   max-width: 16ch;
-  margin: 0;
+  margin: 0 auto;
   font-family: var(--font-display);
   font-size: clamp(2rem, 3.4vw, 3rem);
   font-weight: 400;
@@ -126,7 +133,7 @@
 
 .shell .sub {
   max-width: 42ch;
-  margin: clamp(1.5rem, 3vw, 2.2rem) 0 0;
+  margin: clamp(1.5rem, 3vw, 2.2rem) auto 0;
   font-size: clamp(1rem, 1.3vw, 1.12rem);
   line-height: 1.6;
   color: var(--ink-muted);
@@ -152,294 +159,25 @@
 .shell .stage {
   display: flex;
   justify-content: center;
-}
-
-.shell .ml {
   width: 100%;
-  max-width: 33rem;
+}
+
+/* Dark instrument-panel frame: the artwork is intrinsically dark, so it is
+   presented deliberately rather than left to clash with the light theme. */
+.shell .stage-frame {
+  width: 100%;
+  max-width: 64rem;
+  overflow: hidden;
+  background: #0c0c10;
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+}
+
+.shell .stage-image {
+  display: block;
+  width: 100%;
   height: auto;
-}
-
-/* Gradient stops (themed via CSS so they track light/dark). */
-.ml .ml-core-in {
-  stop-color: var(--signal);
-  stop-opacity: 0.55;
-}
-.ml .ml-core-mid {
-  stop-color: var(--signal);
-  stop-opacity: 0.18;
-}
-.ml .ml-core-out {
-  stop-color: var(--signal);
-  stop-opacity: 0;
-}
-.ml .ml-spine-mid {
-  stop-color: var(--signal);
-  stop-opacity: 0.5;
-}
-.ml .ml-spine-end {
-  stop-color: var(--signal);
-  stop-opacity: 0;
-}
-
-.ml .plate-skirt {
-  fill: var(--surface-sunk);
-  stroke: var(--line);
-  stroke-width: 1;
-  stroke-linejoin: round;
-}
-
-.ml .plate-top {
-  fill: var(--surface-raised);
-  stroke: none;
-}
-
-.ml .plate-grid {
-  stroke: var(--line);
-  stroke-width: 0.75;
-  opacity: 0.55;
-}
-
-.ml .plate-tint {
-  fill: transparent;
-}
-
-.ml .plate-rim {
-  fill: none;
-  stroke: var(--line-strong);
-  stroke-width: 1;
-  stroke-linejoin: round;
-}
-
-.ml .ml-title {
-  fill: var(--ink-muted);
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-.ml .ml-sub {
-  fill: var(--ink-faint);
-  font-family: var(--font-display);
-  font-size: 8.5px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-}
-
-.ml .ml-spine-col {
-  opacity: 0.75;
-}
-
-/* The BSO plate ignites — rim light, charged grid, reactor core. */
-.ml .plate-active .plate-skirt {
-  fill: var(--signal-strong);
-  stroke: var(--signal);
-}
-
-.ml .plate-active .plate-grid {
-  stroke: var(--signal);
-  opacity: 0.45;
-}
-
-.ml .plate-active .plate-tint {
-  fill: var(--signal-soft);
-}
-
-.ml .plate-active .plate-rim {
-  stroke: var(--signal);
-  stroke-width: 1.5;
-  filter: drop-shadow(0 0 5px var(--signal)) drop-shadow(0 0 13px var(--signal-soft));
-}
-
-.ml .plate-active .ml-title {
-  fill: var(--ink);
-}
-
-.ml .plate-active .ml-sub {
-  fill: var(--signal);
-  letter-spacing: 0.26em;
-}
-
-.ml .ml-ring {
-  fill: none;
-  stroke: var(--signal);
-  stroke-width: 1;
-  stroke-linejoin: round;
-}
-
-.ml .ml-ring-static {
-  opacity: 0.32;
-}
-
-.ml .ml-ring-pulse {
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.ml .ml-node {
-  fill: var(--signal);
-  stroke: var(--surface);
-  stroke-width: 1;
-  filter: drop-shadow(0 0 4px var(--signal));
-}
-
-.ml .ml-flow {
-  fill: none;
-  stroke: var(--signal);
-  stroke-width: 2;
-  stroke-linecap: round;
-  filter: drop-shadow(0 0 4px var(--signal));
-}
-
-.ml .ml-mote {
-  fill: var(--signal);
-  opacity: 0;
-}
-
-/* ---------- Motion ---------- */
-@keyframes bso-flow {
-  to {
-    stroke-dashoffset: -40;
-  }
-}
-
-.ml .ml-flow.flow {
-  stroke-dasharray: 3 6;
-  animation: bso-flow 1.1s linear infinite;
-}
-
-/* Entrance: outer plates settle, the BSO layer slots into the gap and locks. */
-.ml .plate {
-  animation: bso-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-.ml .plate-social {
-  animation-delay: 0.1s;
-}
-
-.ml .plate-eth {
-  animation-delay: 0.2s;
-}
-
-.ml .plate-bso {
-  animation: ml-slot 0.9s cubic-bezier(0.16, 0.84, 0.3, 1) both;
-  animation-delay: 0.5s;
-}
-
-/* Spine + gap flows light up once the core has landed. */
-.ml .ml-spine-col,
-.ml .ml-links {
-  animation: ml-fade 0.8s ease-out both;
-  animation-delay: 1.3s;
-}
-
-/* Continuous life: float, breathing core, expanding pulse ring, drifting motes. */
-.ml .ml-stack {
-  animation: ml-float 7s ease-in-out 1.5s infinite;
-}
-
-.ml .ml-coreglow {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: ml-breathe 4.5s ease-in-out 1.4s infinite;
-}
-
-.ml .ml-ring-pulse {
-  animation: ml-pulse 3.2s ease-out 1.6s infinite;
-}
-
-.ml .ml-mote {
-  animation-name: ml-mote;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-@keyframes ml-slot {
-  from {
-    opacity: 0;
-    transform: translate(44px, -58px);
-  }
-
-  60% {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
-}
-
-@keyframes ml-fade {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes ml-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-@keyframes ml-breathe {
-  0%,
-  100% {
-    opacity: 0.55;
-    transform: scale(0.96);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-}
-
-@keyframes ml-pulse {
-  0% {
-    opacity: 0;
-    transform: scale(0.55);
-  }
-
-  20% {
-    opacity: 0.55;
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(1.5);
-  }
-}
-
-@keyframes ml-mote {
-  0% {
-    opacity: 0;
-    transform: translateY(7px);
-  }
-
-  30% {
-    opacity: 0.7;
-  }
-
-  70% {
-    opacity: 0.45;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-22px);
-  }
+  aspect-ratio: 16 / 9;
 }
 
 .shell .copy > * {
@@ -469,23 +207,11 @@
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .shell .hero {
-    grid-template-columns: 1fr;
     gap: clamp(2.5rem, 7vw, 3.5rem);
-    align-items: start;
     padding-top: clamp(1rem, 4vw, 2rem);
   }
 
-  .shell .stage {
-    order: 2;
-  }
-
-  .shell .ml {
-    max-width: 26rem;
-  }
-}
-
-@media (max-width: 520px) {
-  .shell .ml {
-    max-width: 21rem;
+  .shell .stage-frame {
+    border-radius: 1rem;
   }
 }

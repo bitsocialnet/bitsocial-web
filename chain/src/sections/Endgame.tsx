@@ -25,7 +25,7 @@ export default function Endgame() {
       id="endgame"
       eyebrow="the endgame"
       question="How big does this get?"
-      supporting="Social networks are the largest distribution machines ever built: their attention prints hundreds of billions of dollars a year, and today every one of those dollars is captured off-chain — by ad platforms, by custodial exchanges, by whoever stands in the middle. Bitsocial Chain routes that same economy through one immutable asset."
+      supporting="Social networks are the largest distribution machines ever built: their attention prints hundreds of billions of dollars a year, and today every one of those dollars is captured off-chain: by ad platforms, by custodial exchanges, by whoever stands in the middle. Bitsocial Chain routes that same economy through one immutable asset."
       quote="Whoever owns distribution owns the economy."
     >
       <div className="flywheel">
