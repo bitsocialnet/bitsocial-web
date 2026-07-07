@@ -104,7 +104,7 @@ export default function ImmutableUpgrade() {
           rel="noopener noreferrer"
         >
           The full token history
-          <ArrowUpRight aria-hidden size={14} strokeWidth={1.85} />
+          <ArrowUpRight aria-hidden size={15} strokeWidth={1.85} />
         </a>
       </div>
     </Section>

@@ -25,7 +25,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  height: clamp(10rem, 18vw, 16rem);
+  height: clamp(4rem, 8vw, 6rem);
   pointer-events: none;
   background: linear-gradient(
     to bottom,
@@ -80,20 +80,20 @@
 /* ---------- Hero ---------- */
 .shell .hero {
   display: grid;
-  min-height: min(46rem, calc(100svh - 6rem));
+  min-height: min(32rem, calc(100svh - 10rem));
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: clamp(2rem, 5vw, 5rem);
+  column-gap: clamp(2rem, 5vw, 5rem);
+  row-gap: clamp(0.75rem, 2vw, 1.25rem);
   align-items: center;
   width: min(100%, 92rem);
   margin: 0 auto;
-  padding: clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 4vw, 3.5rem) clamp(4rem, 8vh, 6rem);
+  padding: clamp(1rem, 3vw, 1.75rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2.25rem, 5vh, 3.5rem);
 }
 
 .hero-status {
   grid-column: 1 / -1;
   display: flex;
-  justify-content: center;
-  margin-bottom: calc(-1 * clamp(1rem, 3vw, 2.75rem));
+  justify-content: flex-start;
 }
 
 /* Mirrors bitsocial.net's hero: Exo regular (400), mid-size, deliberately quiet.
@@ -198,6 +198,26 @@
   width: 100%;
   height: auto;
   overflow: visible;
+  /* Light theme: the raw --surface-raised/--line-strong pair is nearly
+     white-on-white here (unlike solid UI chrome, this diagram has no page
+     background behind it to lean on), so definition is pulled from --ink
+     instead. Dark theme already reads as a crisp schematic, so it keeps the
+     original token pair unchanged via the .dark overrides below. */
+  --hd-fill-face: color-mix(in oklab, var(--surface-raised) 88%, var(--ink) 12%);
+  --hd-fill-right: color-mix(in oklab, var(--surface-raised) 52%, var(--ink) 32%);
+  --hd-edge: color-mix(in oklab, var(--ink) 55%, var(--line-strong) 45%);
+  --hd-trace: color-mix(in oklab, var(--ink) 42%, var(--line-strong) 58%);
+  --hd-trace-opacity: 0.8;
+  --hd-label: var(--ink-muted);
+}
+
+.dark .hero-diagram {
+  --hd-fill-face: var(--surface-raised);
+  --hd-fill-right: color-mix(in oklab, var(--surface-raised) 72%, var(--ink) 12%);
+  --hd-edge: var(--line-strong);
+  --hd-trace: var(--line-strong);
+  --hd-trace-opacity: 0.6;
+  --hd-label: var(--ink-faint);
 }
 
 .hd-face {
@@ -206,13 +226,13 @@
 
 .hd-face-front,
 .hd-face-top {
-  fill: var(--surface-raised);
-  stroke: var(--line-strong);
+  fill: var(--hd-fill-face);
+  stroke: var(--hd-edge);
 }
 
 .hd-face-right {
-  fill: color-mix(in oklab, var(--surface-raised) 72%, var(--ink) 12%);
-  stroke: var(--line-strong);
+  fill: var(--hd-fill-right);
+  stroke: var(--hd-edge);
 }
 
 .hd-face-front-signal {
@@ -246,19 +266,19 @@
 
 .hd-traces {
   fill: none;
-  stroke: var(--line-strong);
+  stroke: var(--hd-trace);
   stroke-width: 1;
-  opacity: 0.6;
+  opacity: var(--hd-trace-opacity);
 }
 
 .hd-stubs line {
-  stroke: var(--line-strong);
+  stroke: var(--hd-edge);
   stroke-width: 1;
 }
 
 .hd-token {
   fill: var(--surface);
-  stroke: var(--line-strong);
+  stroke: var(--hd-edge);
   stroke-width: 1;
 }
 
@@ -267,7 +287,7 @@
 }
 
 .hd-plate-line {
-  stroke: var(--line-strong);
+  stroke: var(--hd-edge);
   stroke-width: 1;
 }
 
@@ -286,14 +306,14 @@
 }
 
 .hd-dash {
-  stroke: var(--line-strong);
+  stroke: var(--hd-edge);
   stroke-width: 1;
   stroke-dasharray: 4 5;
 }
 
 .hd-annotations polyline {
   fill: none;
-  stroke: var(--line-strong);
+  stroke: var(--hd-edge);
   stroke-width: 1;
 }
 
@@ -302,7 +322,7 @@
   font-size: 17px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  fill: var(--ink-faint);
+  fill: var(--hd-label);
 }
 
 .hd-annotation-signal polyline {

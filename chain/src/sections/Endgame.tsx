@@ -5,7 +5,7 @@ const PILLARS = [
   {
     icon: Landmark,
     label: "The reserve asset of social",
-    note: "Every community token pairs with BSO, settles in BSO, pays rent in BSO. ETH ran this playbook for DeFi, SOL for on-chain trading. Social is the bigger economy — and it is still off-chain.",
+    note: "Every community token pairs with BSO, settles in BSO, pays rent in BSO. ETH ran this playbook for DeFi, SOL for on-chain trading. Social is the bigger economy, and it is still off-chain.",
   },
   {
     icon: Banknote,
@@ -23,7 +23,7 @@ export default function Endgame() {
   return (
     <Section
       id="endgame"
-      eyebrow="the endgame"
+      eyebrow="The endgame"
       question="How big does this get?"
       supporting="Social networks are the largest distribution machines ever built: their attention prints hundreds of billions of dollars a year, and today every one of those dollars is captured off-chain: by ad platforms, by custodial exchanges, by whoever stands in the middle. Bitsocial Chain routes that same economy through one immutable asset."
       quote="Whoever owns distribution owns the economy."

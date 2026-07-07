@@ -33,7 +33,7 @@ const PHASES = [
     num: "Phase 04",
     status: "proposed" as PhaseStatus,
     title: "Community L3s and tokens",
-    desc: "Sovereign communities launch their own tokens and DAOs, all settling down to BSO.",
+    desc: "Sovereign communities launch their own tokens and DAOs, all settling down to BSO. Assets scale with real communities, not with hype cycles.",
     active: false,
   },
   {
