@@ -33,6 +33,8 @@ export const TELEGRAM_URL = "https://t.me/bitsocialnet" as const;
 export const CONTRIBUTE_URL =
   "https://github.com/bitsocialnet/bitsocial-web/tree/master/chain" as const;
 
+export const BSO_RESOLVER_URL = "https://github.com/bitsocialnet/bso-resolver" as const;
+
 export type ExternalLink = {
   label: string;
   href: string;

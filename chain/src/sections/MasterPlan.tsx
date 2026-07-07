@@ -25,7 +25,7 @@ const PHASES = [
     num: "Phase 03",
     status: "proposed" as PhaseStatus,
     title: ".bso namespace",
-    desc: "Names and identity on the chain, registered and renewed in BSO.",
+    desc: "Names and identity on the chain, registered and renewed in BSO; names already in use through ENS airdrop to their owners.",
     active: false,
   },
   {
