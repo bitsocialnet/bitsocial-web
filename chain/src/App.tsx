@@ -1,12 +1,11 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import ChainStatusCta from "@/components/chain-status-cta";
-import heroImage from "./assets/hero-l2-slot.webp";
-import heroImage800 from "./assets/hero-l2-slot-800.webp";
 import BackToTop from "@/components/back-to-top";
 import Footer from "@/components/footer";
 import MailingList from "@/components/mailing-list";
 import Topbar, { TopbarSpacer } from "@/components/topbar";
+import HeroDiagram from "./HeroDiagram";
 import PolygonMeshBackground from "./PolygonMeshBackground";
 import Sections from "./sections";
 
@@ -49,20 +48,7 @@ export default function App() {
               </p>
             </div>
             <div className="stage">
-              <div className="stage-frame">
-                <img
-                  className="stage-image"
-                  src={heroImage}
-                  srcSet={`${heroImage800} 800w, ${heroImage} 1600w`}
-                  sizes="(max-width: 860px) 100vw, min(64rem, 100vw)"
-                  width={1600}
-                  height={900}
-                  alt="Cross-section of a layered protocol stack: the social layer on top, Ethereum at the base, and the missing Bitsocial Chain layer sliding into place, lit in blue"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                />
-              </div>
+              <HeroDiagram />
             </div>
           </div>
           <div className="hero-bottom-fade" aria-hidden="true" />

@@ -79,35 +79,28 @@
 }
 /* ---------- Hero ---------- */
 .shell .hero {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  min-height: min(46rem, calc(100svh - 6rem));
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(2rem, 5vw, 5rem);
   align-items: center;
-  gap: clamp(2.5rem, 6vw, 4rem);
   width: min(100%, 92rem);
   margin: 0 auto;
   padding: clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 4vw, 3.5rem) clamp(4rem, 8vh, 6rem);
 }
 
 .hero-status {
+  grid-column: 1 / -1;
   display: flex;
   justify-content: center;
   margin-bottom: calc(-1 * clamp(1rem, 3vw, 2.75rem));
-}
-
-.shell .copy {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 46rem;
-  margin: 0 auto;
-  text-align: center;
 }
 
 /* Mirrors bitsocial.net's hero: Exo regular (400), mid-size, deliberately quiet.
    The dominant Exo 600 display scale is reserved for section question headlines. */
 .shell .title {
   max-width: 16ch;
-  margin: 0 auto;
+  margin: 0;
   font-family: var(--font-display);
   font-size: clamp(2rem, 3.4vw, 3rem);
   font-weight: 400;
@@ -133,7 +126,7 @@
 
 .shell .sub {
   max-width: 42ch;
-  margin: clamp(1.5rem, 3vw, 2.2rem) auto 0;
+  margin: clamp(1.5rem, 3vw, 2.2rem) 0 0;
   font-size: clamp(1rem, 1.3vw, 1.12rem);
   line-height: 1.6;
   color: var(--ink-muted);
@@ -159,25 +152,6 @@
 .shell .stage {
   display: flex;
   justify-content: center;
-  width: 100%;
-}
-
-/* Dark instrument-panel frame: the artwork is intrinsically dark, so it is
-   presented deliberately rather than left to clash with the light theme. */
-.shell .stage-frame {
-  width: 100%;
-  max-width: 64rem;
-  overflow: hidden;
-  background: #0c0c10;
-  border: 1px solid var(--line);
-  border-radius: 1.5rem;
-}
-
-.shell .stage-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
 }
 
 .shell .copy > * {
@@ -207,11 +181,277 @@
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .shell .hero {
+    grid-template-columns: 1fr;
     gap: clamp(2.5rem, 7vw, 3.5rem);
+    align-items: start;
     padding-top: clamp(1rem, 4vw, 2rem);
   }
 
-  .shell .stage-frame {
-    border-radius: 1rem;
+  .shell .stage {
+    order: 2;
+  }
+}
+
+/* ---------- Hero diagram: engineering-schematic stack ---------- */
+.hero-diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.hd-face {
+  stroke-width: 1.25;
+}
+
+.hd-face-front,
+.hd-face-top {
+  fill: var(--surface-raised);
+  stroke: var(--line-strong);
+}
+
+.hd-face-right {
+  fill: color-mix(in oklab, var(--surface-raised) 72%, var(--ink) 12%);
+  stroke: var(--line-strong);
+}
+
+.hd-face-front-signal {
+  stroke: var(--signal);
+  stroke-width: 1.5;
+}
+
+.hd-l2-glow-shape {
+  fill: color-mix(in oklab, var(--signal) 55%, transparent);
+}
+
+.hd-face-top-signal {
+  fill: color-mix(in oklab, var(--signal) 30%, var(--surface-raised));
+  stroke: var(--signal);
+  stroke-width: 1.5;
+}
+
+.hd-face-right-signal {
+  fill: color-mix(in oklab, var(--signal) 46%, var(--surface-raised) 30%);
+  stroke: var(--signal);
+  stroke-width: 1.5;
+}
+
+.hd-l2-grad-a {
+  stop-color: color-mix(in oklab, var(--signal) 82%, var(--surface-raised) 5%);
+}
+
+.hd-l2-grad-b {
+  stop-color: color-mix(in oklab, var(--signal) 32%, var(--surface-raised) 20%);
+}
+
+.hd-traces {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 1;
+  opacity: 0.6;
+}
+
+.hd-stubs line {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+
+.hd-token {
+  fill: var(--surface);
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+
+.hd-token-dot {
+  fill: var(--signal);
+}
+
+.hd-plate-line {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+
+.hd-social-edges line {
+  stroke: var(--ink-faint);
+  stroke-width: 1;
+  opacity: 0.35;
+}
+
+.hd-node {
+  fill: var(--ink-faint);
+}
+
+.hd-node-signal {
+  fill: var(--signal);
+}
+
+.hd-dash {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+  stroke-dasharray: 4 5;
+}
+
+.hd-annotations polyline {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+
+.hd-annotations text {
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  fill: var(--ink-faint);
+}
+
+.hd-annotation-signal polyline {
+  stroke: var(--signal);
+}
+
+.hd-annotation-signal text {
+  fill: var(--signal);
+}
+
+/* ---------- Entrance: layers fade + rise, staggered top-to-bottom ---------- */
+.hd-layer {
+  animation: hd-rise 0.5s ease-out both;
+}
+
+.hd-layer-social {
+  animation-delay: 0s;
+}
+
+.hd-layer-connectors {
+  animation-delay: 0.08s;
+}
+
+.hd-layer-l3 {
+  animation-delay: 0.16s;
+}
+
+.hd-stubs {
+  animation: hd-rise 0.5s ease-out both;
+  animation-delay: 0.24s;
+}
+
+.hd-annotations {
+  animation: hd-rise 0.5s ease-out both;
+  animation-delay: 0.32s;
+}
+
+@keyframes hd-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* L2 slab: fades in with the stack, then slides in from the right to dock. */
+.hd-layer-l2 {
+  opacity: 0;
+  animation: hd-l2-dock 900ms cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+@keyframes hd-l2-dock {
+  from {
+    opacity: 0;
+    transform: translateX(340px);
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Glow ramps up as the slab docks, then breathes gently at idle. */
+.hd-l2-glow-shape {
+  opacity: 0;
+  animation:
+    hd-glow-ramp 900ms ease-out 0.4s both,
+    hd-glow-breathe 7s ease-in-out 1.3s infinite;
+}
+
+@keyframes hd-glow-ramp {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hd-glow-breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.85;
+  }
+}
+
+/* Dash flow: dashes drift slowly downward. */
+.hd-dash {
+  animation: hd-dash-flow 6s linear infinite;
+}
+
+@keyframes hd-dash-flow {
+  from {
+    stroke-dashoffset: 36;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Gentle pulse on the signal-colored social nodes. */
+.hd-node-signal {
+  animation: hd-node-pulse 4.5s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+@keyframes hd-node-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+@media (max-width: 560px) {
+  .hd-annotations {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hd-layer,
+  .hd-stubs,
+  .hd-annotations,
+  .hd-layer-l2,
+  .hd-l2-glow-shape,
+  .hd-dash,
+  .hd-node-signal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
