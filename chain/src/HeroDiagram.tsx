@@ -5,14 +5,18 @@
 // Architecture, bottom to top:
 //  1. Bitsocial Network (P2P) — the foundation. Not a chain: a peer-to-peer social
 //     protocol, rendered as a wide base plane carrying a mesh of tiny logo nodes.
-//  2. Ethereum L1 settlement — a slab carrying a horizontal chain of linked ETH glyphs.
+//  2. Ethereum L1 settlement — a slab carrying a horizontal chain of linked, official
+//     Ethereum diamond marks.
 //  3. Bitsocial Chain L2 — docks onto the stack (edge-lit slab + entrance dock),
-//     carrying its own chain of linked Bitsocial logos.
+//     carrying its own chain of linked, full-color Bitsocial logos.
 //  4. Bitsocial economy — a deliberately uneven row of what different communities/users
 //     get: a mini L3, tokens, a ".bso" name tag, a creator stamp, a creator-coin profile.
 //
 // The viewBox is authored tight around the content (no large empty margins) so the
-// artwork reads big once scaled into the hero's stage column.
+// artwork reads big once scaled into the hero's stage column. Layer-to-layer gaps are
+// generous on purpose — the levitating-parts feel needs real daylight between slabs.
+
+import HeroDiagramMarks from "./HeroDiagramMarks";
 
 const DEPTH_DX = 38; // shared depth-skew for every top/right face
 const DEPTH_DY = -20;
@@ -40,22 +44,21 @@ function rightFace({ right, top, bottom }: SlabGeometry): string {
 }
 
 // ---------- Stack geometry, top to bottom in the drawing (economy sits highest,
-// network is the widest/lowest foundation) ----------
+// network is the widest/lowest foundation). Gaps between slabs are wide on purpose
+// (50 units, 2.5x the previous pass's 20) so each layer reads as its own levitating
+// part instead of a welded block. ----------
 
-// Bitsocial Chain L2 — same shape/style as the earlier pass, tightened vertically
-// (and repositioned) so the whole stack clears the hero-bottom-fade at wide viewports.
-const L2: SlabGeometry = { left: 74.6, right: 550.2, top: 140, bottom: 202 };
+// Bitsocial Chain L2 — same footprint as the previous pass, shifted down to open up
+// real air between it and the economy row above.
+const L2: SlabGeometry = { left: 74.6, right: 550.2, top: 160, bottom: 222 };
 
-// Ethereum L1 settlement — now inside the stack, between L2 and the network. Slightly
-// wider than L2, narrower than the network plane below (a gentle taper toward the base).
-// Shorter than the earlier pass so the air gaps around it (below) can be wider without
-// growing the diagram's total height — the layers read as separated, floating parts
-// rather than a welded block.
-const ETH: SlabGeometry = { left: 64, right: 560.8, top: 222, bottom: 250 };
+// Ethereum L1 settlement — now with a much wider gap above and below it than the
+// previous pass, so the stack reads as separated, floating parts.
+const ETH: SlabGeometry = { left: 64, right: 560.8, top: 272, bottom: 300 };
 
 // Base plane: the Bitsocial Network (P2P). Widest layer — the foundation everything else
 // sits on.
-const NETWORK: SlabGeometry = { left: 50, right: 574.8, top: 270, bottom: 341 };
+const NETWORK: SlabGeometry = { left: 50, right: 574.8, top: 350, bottom: 421 };
 
 // Structural stubs bridging each consecutive slab pair (L2→ETH, ETH→network).
 const STUB_XS = [140.2, 492.8];
@@ -144,26 +147,20 @@ function chainPositions(left: number, right: number, count: number, pad: number)
   return Array.from({ length: count }, (_, i) => usableLeft + i * step);
 }
 
-// Canonical two-part Ethereum diamond: a faceted upper octahedron half over a flatter
-// lower half, sharing the middle vertex. halfW alone determines all proportions.
-function ethGlyphPath(cx: number, cy: number, halfW: number): string {
-  const top = cy - 1.5 * halfW;
-  const mid = top + halfW;
-  const mainBottom = top + 2 * halfW;
-  const lowerBottom = top + 3 * halfW;
-  const lowerHalfW = halfW * 1.15;
-  const lowerMid = (mainBottom + lowerBottom) / 2;
-  return `M ${cx} ${top} L ${cx + halfW} ${mid} L ${cx} ${mainBottom} L ${cx - halfW} ${mid} Z M ${cx} ${top} L ${cx} ${mainBottom} M ${cx - halfW} ${mid} L ${cx + halfW} ${mid} M ${cx} ${mainBottom} L ${cx + lowerHalfW} ${lowerMid} L ${cx} ${lowerBottom} L ${cx - lowerHalfW} ${lowerMid} Z`;
-}
-
-const ETH_GLYPH_HALF_W = 6;
-const ETH_GLYPH_CY = (ETH.top + ETH.bottom) / 2;
-const ETH_GLYPH_XS = chainPositions(ETH.left, ETH.right, 5, 50);
-const ETH_LINK_HALF_GAP = ETH_GLYPH_HALF_W * 1.15;
-
 const L2_LOGO_SIZE = 22;
 const L2_LOGO_CY = (L2.top + L2.bottom) / 2;
 const L2_LOGO_XS = chainPositions(L2.left, L2.right, 5, 50);
+// The full-color mark sits on the L2 slab's saturated blue fill, so each instance gets a
+// soft light backing disc (see .hd-logo-backing) — slightly larger than the mark's own
+// footprint — to keep it legible instead of blending into the on-color surface.
+const L2_LOGO_BACKING_R = (L2_LOGO_SIZE / 2) * 1.15;
+
+// Official Ethereum diamond mark (ethereum.org brand assets, "purple" variant), rendered at
+// roughly the same visual weight as the Bitsocial logo chain above it.
+const ETH_LOGO_SIZE = 20;
+const ETH_LOGO_CY = (ETH.top + ETH.bottom) / 2;
+const ETH_LOGO_XS = chainPositions(ETH.left, ETH.right, 5, 50);
+const ETH_LOGO_HALF_GAP = ETH_LOGO_SIZE / 2;
 
 interface AnnotationDef {
   lines: string[];
@@ -198,21 +195,23 @@ const L2_HALO = {
 };
 
 // Drifting energy motes rising through the two inter-layer air gaps (master's ml-mote
-// pattern), varied delay/duration so they never move in lockstep.
+// pattern), varied delay/duration so they never move in lockstep. Positions and travel
+// distance (see the hd-mote-drift keyframe in app.css) are tuned to the wider 50-unit
+// gaps above/below the Ethereum slab.
 const MOTES = [
-  { x: 180, y: 212, delay: "0s", duration: "5.5s" },
-  { x: 340, y: 207, delay: "1.6s", duration: "6.3s" },
-  { x: 470, y: 216, delay: "3s", duration: "5s" },
-  { x: 150, y: 262, delay: "0.8s", duration: "6.8s" },
-  { x: 330, y: 257, delay: "3.7s", duration: "5.9s" },
-  { x: 470, y: 265, delay: "2.2s", duration: "6.4s" },
+  { x: 180, y: 231, delay: "0s", duration: "6.6s" },
+  { x: 340, y: 247, delay: "1.6s", duration: "7.6s" },
+  { x: 470, y: 263, delay: "3s", duration: "6s" },
+  { x: 150, y: 309, delay: "0.8s", duration: "8.2s" },
+  { x: 330, y: 325, delay: "3.7s", duration: "7.1s" },
+  { x: 470, y: 341, delay: "2.2s", duration: "7.7s" },
 ];
 
 export default function HeroDiagram() {
   return (
     <svg
       className="hero-diagram"
-      viewBox="0 62 960 291"
+      viewBox="0 62 960 375"
       width="100%"
       role="img"
       aria-label="Diagram of the Bitsocial Chain architecture, bottom to top: the Bitsocial Network peer-to-peer protocol as the foundation, Ethereum L1 settlement above it, the Bitsocial Chain L2 docking above that, and a varied Bitsocial economy row of L3s, tokens, .bso names, creator stamps, and creator coins on top"
@@ -229,14 +228,7 @@ export default function HeroDiagram() {
           <stop offset="0%" className="hd-halo-in" />
           <stop offset="100%" className="hd-halo-out" />
         </radialGradient>
-        {/* Simplified Bitsocial mark (disc + ribbon) for tiny mesh-node and chain-of-logo instances. */}
-        <symbol id="hd-logo-mark" viewBox="0 0 2000 2000">
-          <circle className="hd-logo-disc" cx="1001.7" cy="1006.6" r="444" />
-          <path
-            className="hd-logo-ribbon"
-            d="M1699.9,1026.2c-2.9,30.6-33.6,57.5-91.2,80c-45.7,17.9-108.4,33.1-186.4,45.2c-0.3,0-0.5,0.1-0.8,0.1 c-124.6,19.3-248.9,24.6-263.1,25.1c-7.6,98.5-17.5,184.4-29.5,255.5c0,0.2-0.1,0.5-0.1,0.7c-45.4,268-110.4,268-138.1,268 c-30.8,0-46.5-18-48.2-20.1c-29.7-20.5-50.1-79.4-59.6-112.7c-13.9-48.9-22.2-103.6-21.1-139.5c0-0.1,0-0.3,0.1-0.4 c24.4,8.1,49.8,14.2,76,17.9c2.5,20.2,15.7,117,39.2,153.1c0,0,0,0.1,0.1,0.1c5.8,8.8,11.8,13.3,17.8,13.3 c6.1,0,15.9-8.3,27.8-47.8c8.4-27.5,16.7-66.7,24.8-116.5c0-0.1,0-0.3,0.1-0.4c17.5-107,28-223.9,30.7-257.2v0 c0.3-3.6,0.6-7.1,0.9-10.5c-284.2-0.4-441.6-19-496.9-27.2c-0.3,0-0.5-0.1-0.8-0.1c-13-1.9-19.5-3.2-19.6-3.2 c-150.3-24.6-213.9-61.5-240.8-88.1c-11.3-11.2-17.8-26.8-17.8-42.9v-25.1c0-17.3,6.9-28.2,8-29.9c15.2-36.4,82.7-64.6,121.6-78.2 c53.7-18.8,116-32,151.3-32.3h0c0.2,0,0.3,0,0.5,0.1c-9.3,25.3-16.4,51.8-21,79c-96.2,13.2-142.1,32.3-163.7,46.1 c-21.8,13.9-23.7,25.1-23.8,26.7c7.6,25.2,71.9,48.3,186.1,66.9c0.2,0,0.3,0.1,0.5,0.1c144.3,23.4,325.7,29.6,373.5,29.6l151.1,0.2 c0.9-23.6,13.1-323.8-18.4-532.2l-0.2-1.6c0-0.1,0-0.3-0.1-0.5c-11.3-77.1-25.2-131-41.5-160c-8.3-14.7-16.7-22.2-25.1-22.2 c-3.9,0-7.9,1.7-11.8,5.2c-29.7,26.2-48.6,142-49.5,176.1c-26.8,3.6-52.8,9.7-77.8,17.9c0-0.1-0.1-0.3-0.1-0.4 c-1.8-78.9,32.3-195.1,71.6-243.8c1.4-2.4,23.4-37.4,71.5-37.4c37.4,0,69.4,26.1,95,77.5c24.2,48.6,42.4,118.8,54,208.7 c0,0.3,0.1,0.5,0.1,0.8c9.6,74.9,14.5,162,14.5,258.8c0,116.5-4.8,226.4-6,251.1c2,0,4,0,6.1,0c85.4-0.5,183.9-9.7,270.1-25.3 c0.2,0,0.3-0.1,0.5-0.1c90.5-16.3,156.1-37.8,180.2-58.8c0.2-0.2,5.5-5.2,5.5-13.7c0-14.8-22.6-30-65.2-43.9 c-39.7-13-88.1-22.3-121.9-27.9c-4.8-27.9-12.3-54.9-22.1-80.8c0.2-0.1,0.3-0.1,0.5-0.1c0.1,0,0.1,0,0.2,0 c63.5,9.9,117.2,22,159.8,35.7c54.2,17.5,90.1,38,106.7,60.7C1686.5,947.4,1705.1,964.4,1699.9,1026.2z"
-          />
-        </symbol>
+        <HeroDiagramMarks />
       </defs>
 
       {/* ---------- Base: Bitsocial Network (P2P), a mesh of tiny logo nodes ---------- */}
@@ -269,7 +261,7 @@ export default function HeroDiagram() {
               return (
                 <use
                   key={i}
-                  href="#hd-logo-mark"
+                  href="#hd-bso-logo-mark"
                   x={cx - n.size / 2}
                   y={cy - n.size / 2}
                   width={n.size}
@@ -304,36 +296,40 @@ export default function HeroDiagram() {
         ))}
       </g>
 
-      {/* ---------- Ethereum L1 settlement: a chain of linked ETH glyphs ---------- */}
+      {/* ---------- Ethereum L1 settlement: a chain of linked, official ETH diamond marks ---------- */}
       <g className="hd-layer hd-layer-eth">
         <g className="hd-float hd-float-c">
           <path d={rightFace(ETH)} className="hd-face hd-face-right" />
           <path d={topFace(ETH)} className="hd-face hd-face-top" />
           <path d={frontFace(ETH)} className="hd-face hd-face-front" />
           <g className="hd-chain-links">
-            {ETH_GLYPH_XS.slice(0, -1).map((x, i) => (
+            {ETH_LOGO_XS.slice(0, -1).map((x, i) => (
               <line
                 key={x}
-                x1={x + ETH_LINK_HALF_GAP}
-                y1={ETH_GLYPH_CY}
-                x2={ETH_GLYPH_XS[i + 1] - ETH_LINK_HALF_GAP}
-                y2={ETH_GLYPH_CY}
+                x1={x + ETH_LOGO_HALF_GAP}
+                y1={ETH_LOGO_CY}
+                x2={ETH_LOGO_XS[i + 1] - ETH_LOGO_HALF_GAP}
+                y2={ETH_LOGO_CY}
                 className="hd-chain-link"
               />
             ))}
           </g>
-          {ETH_GLYPH_XS.map((x) => (
-            <path
+          {ETH_LOGO_XS.map((x) => (
+            <use
               key={x}
-              d={ethGlyphPath(x, ETH_GLYPH_CY, ETH_GLYPH_HALF_W)}
-              className="hd-eth-glyph"
+              href="#hd-eth-mark"
+              x={x - ETH_LOGO_SIZE / 2}
+              y={ETH_LOGO_CY - ETH_LOGO_SIZE / 2}
+              width={ETH_LOGO_SIZE}
+              height={ETH_LOGO_SIZE}
             />
           ))}
         </g>
       </g>
 
       {/* ---------- Bitsocial Chain L2 slab (docks in via CSS animation), a chain of
-           linked Bitsocial logos rendered in on-color (light) tones ---------- */}
+           linked, full-color Bitsocial logos, each on a soft backing disc so the mark
+           stays legible against the slab's saturated blue fill ---------- */}
       <g className="hd-layer hd-layer-l2">
         <g className="hd-float hd-float-b">
           <ellipse
@@ -365,15 +361,17 @@ export default function HeroDiagram() {
             ))}
           </g>
           {L2_LOGO_XS.map((x) => (
-            <use
-              key={x}
-              href="#hd-logo-mark"
-              x={x - L2_LOGO_SIZE / 2}
-              y={L2_LOGO_CY - L2_LOGO_SIZE / 2}
-              width={L2_LOGO_SIZE}
-              height={L2_LOGO_SIZE}
-              className="hd-chain-logo-oncolor"
-            />
+            <g key={x}>
+              <circle cx={x} cy={L2_LOGO_CY} r={L2_LOGO_BACKING_R} className="hd-logo-backing" />
+              <use
+                href="#hd-bso-logo-mark"
+                x={x - L2_LOGO_SIZE / 2}
+                y={L2_LOGO_CY - L2_LOGO_SIZE / 2}
+                width={L2_LOGO_SIZE}
+                height={L2_LOGO_SIZE}
+                className="hd-chain-logo-oncolor"
+              />
+            </g>
           ))}
         </g>
       </g>

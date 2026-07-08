@@ -80,7 +80,11 @@
 /* ---------- Hero ---------- */
 .shell .hero {
   display: grid;
-  min-height: min(46rem, calc(100svh - 6rem));
+  /* Taller than the previous 46rem cap: the diagram's wider inter-layer air gaps grow
+     its rendered height, and the stage column (align-self: start below) needs the
+     extra row height as headroom so it clears .hero-bottom-fade instead of eating
+     into it. */
+  min-height: min(58rem, calc(100svh - 1rem));
   /* Favors the stage column so the diagram renders bigger (was 1.05fr/0.95fr). */
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: clamp(2rem, 5vw, 5rem);
@@ -215,6 +219,9 @@
   --hd-trace: color-mix(in oklab, var(--ink) 42%, var(--line-strong) 58%);
   --hd-trace-opacity: 0.8;
   --hd-label: var(--ink-muted);
+  /* --signal (the L2 slab's fill) doesn't flip between themes, so this backing disc
+     doesn't need a .dark override either — same soft light disc works in both. */
+  --hd-logo-backing: rgba(255, 255, 255, 0.9);
 }
 
 .dark .hero-diagram {
@@ -358,13 +365,6 @@
   stroke-dasharray: 4 5;
 }
 
-.hd-eth-glyph {
-  fill: none;
-  stroke: var(--hd-edge);
-  stroke-width: 1.25;
-  stroke-linejoin: round;
-}
-
 /* Chain-link segments joining consecutive glyphs/logos within a layer. */
 .hd-chain-link {
   stroke: var(--hd-edge);
@@ -380,8 +380,16 @@
   stroke-linecap: round;
 }
 
+/* Soft light backing disc behind each full-color logo instance on the L2 slab's
+   saturated blue fill — the mark keeps its own intrinsic colors (never recolored),
+   this just gives it a legible surface to sit on in both themes. */
+.hd-logo-backing {
+  fill: var(--hd-logo-backing);
+  opacity: 0.94;
+}
+
 .hd-chain-logo-oncolor {
-  --hd-logo-fill: rgba(255, 255, 255, 0.95);
+  filter: drop-shadow(0 1px 1px rgba(15, 23, 42, 0.35));
 }
 
 /* Creator-coin profile: circle head + shoulders silhouette, star at its corner. */
@@ -407,20 +415,15 @@
   opacity: 0.3;
 }
 
-/* At 10-14px both shapes collapse into one silhouette, so disc and ring share a
-   single ink fill rather than a two-tone blend that would just blur together. */
-.hd-logo-disc,
-.hd-logo-ribbon {
-  fill: var(--hd-logo-fill, var(--hd-edge));
-}
-
 .hd-mesh-node {
   transform-box: fill-box;
   transform-origin: center;
 }
 
+/* A few mesh nodes are called out as "active" — since the mark keeps its own intrinsic
+   colors, the highlight is a signal-colored glow around the node rather than a recolor. */
 .hd-mesh-node-signal {
-  --hd-logo-fill: var(--signal);
+  filter: drop-shadow(0 0 2.5px var(--signal));
 }
 
 .hd-annotations polyline {
@@ -677,10 +680,13 @@
   animation-iteration-count: infinite;
 }
 
+/* Travel distance is tuned to the 50-unit inter-layer gaps (was 14 units total across
+   the previous ~20-unit gaps) so motes still read as rising through the air, not just
+   twitching in place. */
 @keyframes hd-mote-drift {
   0% {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(7px);
   }
 
   30% {
@@ -693,7 +699,7 @@
 
   100% {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-28px);
   }
 }
 
