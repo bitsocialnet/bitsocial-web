@@ -93,11 +93,11 @@
     "supporting": "Kiralayacak sunucu yok. Alınacak alan adı yok. Eşitlenecek zincir yok. Bir Bitsocial düğümü bir Raspberry Pi üzerinde çalışır. Ve her topluluk kendi spam önleme sınamasını uygulayabilir: captcha, itibar, SMS, ödeme, token, IP kontrolleri ya da kodlanabilen başka herhangi bir şey.",
     "approaches": {
       "federated": {
-        "label": "Federatif",
+        "label": "Sunucu Tabanlı",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Zincir / Hub",
+        "label": "Blockchain tabanlı",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Kim çevrim içi tutar",
-        "federated": "Servis / örnek işletmecisi",
+        "federated": "Sunucu operatörleri ve paylaşılan dizinleyiciler",
         "blockchain": "Zincir, hub veya RPC altyapısı",
         "bitsocial": "Topluluk sahipleri + yardımcı seed'ler"
       },
       "scalingModel": {
         "label": "Ölçekleme modeli",
-        "federated": "Daha büyük örnekler, daha yüksek faturalar",
+        "federated": "Daha büyük sunucular ve indeksleyiciler, daha yüksek faturalar",
         "blockchain": "Daha fazla durum, daha ağır altyapı",
         "bitsocial": "Daha fazla eş, daha fazla bant genişliği"
       },

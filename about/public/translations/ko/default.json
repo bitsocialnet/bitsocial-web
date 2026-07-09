@@ -93,11 +93,11 @@
     "supporting": "서버를 임대할 필요도, 도메인을 살 필요도, 체인을 동기화할 필요도 없습니다. Bitsocial 노드는 Raspberry Pi에서 실행됩니다. 그리고 각 커뮤니티는 captcha, 평판, SMS, 결제, 토큰, IP 검사, 또는 코드로 구현할 수 있는 어떤 방식이든 자체 스팸 방지 챌린지를 강제할 수 있습니다.",
     "approaches": {
       "federated": {
-        "label": "연합형",
+        "label": "서버 기반",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "체인 / 허브",
+        "label": "블록체인 기반",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "누가 온라인을 유지하나",
-        "federated": "서비스 / 인스턴스 운영자",
+        "federated": "서버 운영자와 공유 인덱서",
         "blockchain": "체인, 허브 또는 RPC 인프라",
         "bitsocial": "커뮤니티 소유자 + 도우미 시더"
       },
       "scalingModel": {
         "label": "확장 모델",
-        "federated": "인스턴스가 커질수록 요금도 커짐",
+        "federated": "더 큰 서버와 인덱서, 더 높은 청구",
         "blockchain": "상태가 늘수록 인프라도 무거워짐",
         "bitsocial": "피어가 늘수록 대역폭도 늘어남"
       },

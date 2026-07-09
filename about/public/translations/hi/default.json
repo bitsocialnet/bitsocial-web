@@ -93,11 +93,11 @@
     "supporting": "कोई सर्वर किराए पर लेने की ज़रूरत नहीं। कोई डोमेन खरीदने की ज़रूरत नहीं। कोई चेन सिंक करने की ज़रूरत नहीं। एक Bitsocial नोड Raspberry Pi पर चलता है। और हर समुदाय अपना एंटी-स्पैम चैलेंज लागू कर सकता है: captchas, प्रतिष्ठा, SMS, भुगतान, टोकन, IP जाँच, या कुछ भी और जिसे कोड किया जा सके.",
     "approaches": {
       "federated": {
-        "label": "फ़ेडरेटेड",
+        "label": "सर्वर-आधारित",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "चेन / हब",
+        "label": "ब्लॉकचेन-आधारित",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "इसे ऑनलाइन कौन रखता है",
-        "federated": "सेवा / इंस्टेंस ऑपरेटर",
+        "federated": "सर्वर ऑपरेटर और साझा इंडेक्सर",
         "blockchain": "चेन, हब, या RPC इन्फ्रास्ट्रक्चर",
         "bitsocial": "समुदाय मालिक + सहायक सीडर"
       },
       "scalingModel": {
         "label": "स्केलिंग मॉडल",
-        "federated": "बड़े इंस्टेंस, ज़्यादा बिल",
+        "federated": "बड़े सर्वर और इंडेक्सर, अधिक बिल",
         "blockchain": "ज़्यादा state, भारी इन्फ्रास्ट्रक्चर",
         "bitsocial": "ज़्यादा peers, ज़्यादा bandwidth"
       },

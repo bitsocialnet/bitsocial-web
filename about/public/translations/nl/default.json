@@ -93,11 +93,11 @@
     "supporting": "Geen servers om te huren. Geen domeinen om te kopen. Geen chains om te synchroniseren. Een Bitsocial-node draait op een Raspberry Pi. En elke community kan zijn eigen anti-spamuitdaging afdwingen: captchas, reputatie, sms, betalingen, tokens, IP-controles of alles wat je maar kunt programmeren.",
     "approaches": {
       "federated": {
-        "label": "Gefedereerd",
+        "label": "Servergebaseerd",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Chain / hub",
+        "label": "Op blockchain gebaseerd",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Wie houdt het online",
-        "federated": "Dienst- / instantiebeheerder",
+        "federated": "Serverbeheerders en gedeelde indexeerders",
         "blockchain": "Chain-, hub- of RPC-infrastructuur",
         "bitsocial": "Community-eigenaren + behulpzame seeders"
       },
       "scalingModel": {
         "label": "Schaalmodel",
-        "federated": "Grotere instanties, hogere rekeningen",
+        "federated": "Grotere servers en indexeertalen, hogere facturen",
         "blockchain": "Meer state, zwaardere infrastructuur",
         "bitsocial": "Meer peers, meer bandbreedte"
       },

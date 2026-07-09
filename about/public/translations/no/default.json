@@ -93,11 +93,11 @@
     "supporting": "Ingen server å leie. Ingen domene å kjøpe. Ingen kjeder å synkronisere. En Bitsocial-node kjører på en Raspberry Pi. Og hvert fellesskap kan håndheve sin egen antispam-utfordring: captchas, omdømme, SMS, betalinger, tokens, IP-sjekker eller hva som helst annet som kan kodes.",
     "approaches": {
       "federated": {
-        "label": "Federert",
+        "label": "Serverbasert",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Kjede / Hub",
+        "label": "Blockchain-basert",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Hvem holder det online",
-        "federated": "Tjeneste- / instansoperatør",
+        "federated": "Serveroperatører og delte indekserere",
         "blockchain": "Kjede-, hub- eller RPC-infrastruktur",
         "bitsocial": "Fellesskapseiere + hjelpeseedere"
       },
       "scalingModel": {
         "label": "Skaleringsmodell",
-        "federated": "Større instanser, høyere regninger",
+        "federated": "Større servere og indeksering, høyere regninger",
         "blockchain": "Mer state, tyngre infrastruktur",
         "bitsocial": "Flere peers, mer båndbredde"
       },

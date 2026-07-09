@@ -93,11 +93,11 @@
     "supporting": "No cal llogar servidors. No cal comprar dominis. No cal sincronitzar cadenes. Un node Bitsocial funciona en un Raspberry Pi. I cada comunitat pot fer complir el seu propi repte anti-spam: captchas, reputació, SMS, pagaments, tokens, comprovacions d'IP o qualsevol altra cosa que es pugui programar.",
     "approaches": {
       "federated": {
-        "label": "Federat",
+        "label": "Basat en servidor",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Cadena / hub",
+        "label": "Basat en blockchain",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Qui el manté en línia",
-        "federated": "Operador del servei / la instància",
+        "federated": "Operadors de servidors i indexadors compartits",
         "blockchain": "Infraestructura de la cadena, del hub o de l'RPC",
         "bitsocial": "Propietaris de la comunitat + seedders de suport"
       },
       "scalingModel": {
         "label": "Model d'escalat",
-        "federated": "Instàncies més grans, factures més altes",
+        "federated": "Servidors més grans i indexadors, factures més altes",
         "blockchain": "Més estat, infraestructura més pesada",
         "bitsocial": "Més peers, més ample de banda"
       },

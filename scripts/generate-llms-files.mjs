@@ -498,6 +498,12 @@ function buildLandingData(translations) {
           return subtitle ? `${label} (${subtitle})` : label;
         })
         .filter(Boolean),
+      approachLabels: Object.fromEntries(
+        Object.entries(sanctuary.approaches ?? {}).map(([id, approach]) => [
+          id,
+          translationToSingleLine(approach.label),
+        ]),
+      ),
       rows: Object.values(sanctuary.rows ?? {})
         .map((row) => ({
           bitsocial: translationToSingleLine(row.bitsocial),
@@ -557,6 +563,7 @@ function renderLandingShortIndex(landing, heading = "Landing page highlights") {
 }
 
 function renderLandingComparisonTable(landing) {
+  const { approachLabels } = landing.comparison;
   const rows = landing.comparison.rows
     .map(
       (row) =>
@@ -573,7 +580,7 @@ Source: ${siteOrigin}/#decentralized
 
 ${landing.comparison.supporting}
 
-| Topic | Federated | Chain / Hub | Bitsocial |
+| Topic | ${tableCell(approachLabels.federated) || "Federated"} | ${tableCell(approachLabels.blockchain) || "Blockchain-based"} | ${tableCell(approachLabels.bitsocial) || "Bitsocial"} |
 | --- | --- | --- | --- |
 ${rows}
 `);

@@ -93,11 +93,11 @@
     "supporting": "Bez serwerów do wynajęcia. Bez domen do kupienia. Bez łańcuchów do synchronizacji. Węzeł Bitsocial działa na Raspberry Pi. A każda społeczność może egzekwować własne wyzwanie antyspamowe: captche, reputację, SMS, płatności, tokeny, sprawdzanie IP albo cokolwiek innego, co da się zakodować.",
     "approaches": {
       "federated": {
-        "label": "Federacyjny",
+        "label": "Oparte na serwerze",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Łańcuch / hub",
+        "label": "Oparte na blockchain",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Kto utrzymuje to online",
-        "federated": "Operator usługi / instancji",
+        "federated": "Operatorzy serwerów i wspólne indeksatory",
         "blockchain": "Infrastruktura łańcucha, hubu lub RPC",
         "bitsocial": "Właściciele społeczności + wspomagający seedujący"
       },
       "scalingModel": {
         "label": "Model skalowania",
-        "federated": "Większe instancje, wyższe rachunki",
+        "federated": "Większe serwery i indeksatory, wyższe rachunki",
         "blockchain": "Więcej stanu, cięższa infrastruktura",
         "bitsocial": "Więcej peerów, większa przepustowość"
       },

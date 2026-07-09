@@ -93,11 +93,11 @@
     "supporting": "Žádný server k pronájmu. Žádná doména ke koupi. Žádné blockchainy k synchronizaci. Uzel Bitsocial běží na Raspberry Pi. A každá komunita si může prosadit vlastní anti-spamovou výzvu: captchy, reputaci, SMS, platby, tokeny, kontrolu IP nebo cokoli jiného, co lze naprogramovat.",
     "approaches": {
       "federated": {
-        "label": "Federované",
+        "label": "Serverové",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Řetězec / Hub",
+        "label": "Založeno na blockchainu",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Kdo to udržuje online",
-        "federated": "Provozovatel služby / instance",
+        "federated": "Operátoři serverů a sdílené indexery",
         "blockchain": "Infrastruktura chainu, hubu nebo RPC",
         "bitsocial": "Vlastníci komunit + pomocní seedeři"
       },
       "scalingModel": {
         "label": "Model škálování",
-        "federated": "Větší instance, vyšší účty",
+        "federated": "Větší servery a indexery, vyšší faktury",
         "blockchain": "Více stavu, těžší infrastruktura",
         "bitsocial": "Více peerů, více šířky pásma"
       },

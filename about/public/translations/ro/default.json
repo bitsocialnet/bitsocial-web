@@ -93,11 +93,11 @@
     "supporting": "Nu trebuie să închiriezi servere. Nu trebuie să cumperi domenii. Nu trebuie să sincronizezi lanțuri. Un nod Bitsocial rulează pe un Raspberry Pi. Iar fiecare comunitate își poate aplica propria provocare anti-spam: captchas, reputație, SMS, plăți, tokenuri, verificări IP sau orice altceva poate fi programat.",
     "approaches": {
       "federated": {
-        "label": "Federat",
+        "label": "Bazat pe server",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Lanț / hub",
+        "label": "Bazat pe blockchain",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Cine îl ține online",
-        "federated": "Operatorul serviciului / instanței",
+        "federated": "Operatori de servere și indexatori partajați",
         "blockchain": "Infrastructura lanțului, hubului sau RPC-ului",
         "bitsocial": "Proprietarii comunității + seeders ajutători"
       },
       "scalingModel": {
         "label": "Model de scalare",
-        "federated": "Instanțe mai mari, facturi mai mari",
+        "federated": "Servere și indexeri mai mari, facturi mai mari",
         "blockchain": "Mai mult state, infrastructură mai grea",
         "bitsocial": "Mai mulți peeri, mai multă lățime de bandă"
       },

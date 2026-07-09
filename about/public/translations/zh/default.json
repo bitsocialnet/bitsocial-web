@@ -93,11 +93,11 @@
     "supporting": "无需租服务器。无需购买域名。无需同步链。Bitsocial 节点可以在 Raspberry Pi 上运行。而且每个社区都可以执行自己的反垃圾验证：验证码、信誉分、短信、支付、代币、IP 检查，或者任何可以编写出来的其他方式。",
     "approaches": {
       "federated": {
-        "label": "联邦式",
+        "label": "基于服务器",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "链 / 枢纽",
+        "label": "基于区块链",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "谁来维持在线",
-        "federated": "服务 / 实例运营方",
+        "federated": "服务器运营商和共享索引器",
         "blockchain": "链、枢纽或 RPC 基础设施",
         "bitsocial": "社区所有者 + 协助做种者"
       },
       "scalingModel": {
         "label": "扩展模式",
-        "federated": "实例越大，账单越高",
+        "federated": "更大的服务器和索引器，更高的账单",
         "blockchain": "状态越多，基础设施越重",
         "bitsocial": "节点越多，带宽越多"
       },

@@ -93,11 +93,11 @@
     "supporting": "Walang serbong uupahan. Walang domain na bibilhin. Walang chain na isi-sync. Ang isang Bitsocial node ay tumatakbo sa isang Raspberry Pi. At maaaring ipatupad ng bawat komunidad ang sarili nitong anti-spam challenge: captcha, reputation, SMS, bayad, token, pagsusuri ng IP, o anumang maikokodigo.",
     "approaches": {
       "federated": {
-        "label": "Federated",
+        "label": "Batay sa server",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Chain / Hub",
+        "label": "Batay sa blockchain",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Sino ang nagpapanatiling online",
-        "federated": "Operator ng serbisyo / instance",
+        "federated": "Mga operator ng server at mga ibinahaging indexer",
         "blockchain": "Imprastraktura ng chain, hub, o RPC",
         "bitsocial": "Mga may-ari ng komunidad + helper seeder"
       },
       "scalingModel": {
         "label": "Modelo ng pag-scale",
-        "federated": "Mas malalaking instance, mas mataas na bayarin",
+        "federated": "Mas malalaking mga server at indexer, mas mataas na mga bayad",
         "blockchain": "Mas maraming state, mas mabigat na imprastraktura",
         "bitsocial": "Mas maraming peer, mas maraming bandwidth"
       },

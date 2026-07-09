@@ -93,11 +93,11 @@
     "supporting": "Nuk ka serverë për t'u marrë me qira. Nuk ka domain-e për t'u blerë. Nuk ka zinxhirë për t'u sinkronizuar. Një nyje Bitsocial funksionon në një Raspberry Pi. Dhe çdo komunitet mund të zbatojë sfidën e vet kundër spam-it: captcha, reputacion, SMS, pagesa, tokenë, kontrolle IP ose çdo gjë tjetër që mund të kodifikohet.",
     "approaches": {
       "federated": {
-        "label": "I federuar",
+        "label": "I bazuar në server",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Zinxhir / Hub",
+        "label": "I bazuar në blockchain",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Kush e mban online",
-        "federated": "Operatori i shërbimit / instancës",
+        "federated": "Operatorë të serverëve dhe indeksator të ndarë",
         "blockchain": "Infrastruktura e zinxhirit, hub-it ose RPC-së",
         "bitsocial": "Pronarët e komunitetit + seeders ndihmës"
       },
       "scalingModel": {
         "label": "Modeli i shkallëzimit",
-        "federated": "Instanca më të mëdha, fatura më të larta",
+        "federated": "Serverë më të mëdhenj dhe indeksatorë, fatura më të larta",
         "blockchain": "Më shumë gjendje, infrastrukturë më e rëndë",
         "bitsocial": "Më shumë peer-a, më shumë bandwidth"
       },

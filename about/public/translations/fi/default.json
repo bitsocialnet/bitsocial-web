@@ -93,11 +93,11 @@
     "supporting": "Ei vuokrattavia palvelimia. Ei ostettavia domaineja. Ei ketjuja synkronoitavaksi. Bitsocial-solmu toimii Raspberry Pi:llä. Ja jokainen yhteisö voi ottaa käyttöön oman roskapostin vastaisen haasteensa: captcha, maine, SMS, maksut, tokenit, IP-tarkistukset tai mitä tahansa muuta, mikä voidaan koodata.",
     "approaches": {
       "federated": {
-        "label": "Federoitu",
+        "label": "Palvelimenpohjainen",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Ketju / Hubi",
+        "label": "Blockchain-pohjainen",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Kuka pitää sen verkossa",
-        "federated": "Palvelun / instanssin ylläpitäjä",
+        "federated": "Palvelinten ylläpitäjät ja jaetut indeksit",
         "blockchain": "Ketju-, hubi- tai RPC-infrastruktuuri",
         "bitsocial": "Yhteisön omistajat + apuseedaajat"
       },
       "scalingModel": {
         "label": "Skaalausmalli",
-        "federated": "Isommat instanssit, suuremmat laskut",
+        "federated": "Suuremmat palvelimet ja indeksit, korkeammat laskut",
         "blockchain": "Enemmän tilaa, raskaampi infra",
         "bitsocial": "Enemmän vertaisia, enemmän kaistanleveyttä"
       },

@@ -93,11 +93,11 @@
     "supporting": "भाड्याने घेण्यासाठी कोणताही server नाही. विकत घेण्यासाठी कोणताही domain नाही. सिंक करण्यासाठी कोणतीही chain नाही. एक Bitsocial node Raspberry Pi वर चालतो. आणि प्रत्येक community आपला anti-spam challenge लागू करू शकते: captcha, reputation, SMS, payments, tokens, IP checks, किंवा code करता येईल अशी कुठलीही गोष्ट.",
     "approaches": {
       "federated": {
-        "label": "Federated",
+        "label": "सर्वर-आधारित",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Chain / Hub",
+        "label": "ब्लॉकचेन-आधारित",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "कोण ते online ठेवतं",
-        "federated": "Service / instance operator",
+        "federated": "सर्व्हर ऑपरेटर आणि साझा इंडेक्सर",
         "blockchain": "Chain, hub, किंवा RPC infrastructure",
         "bitsocial": "Community owners + helper seeders"
       },
       "scalingModel": {
         "label": "Scaling model",
-        "federated": "मोठे instances, जास्त bills",
+        "federated": "मोठ्या सर्व्हर आणि इंडेक्सर, उच्च बिले",
         "blockchain": "अधिक state, जड infrastructure",
         "bitsocial": "अधिक peers, अधिक bandwidth"
       },

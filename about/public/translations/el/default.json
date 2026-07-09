@@ -93,11 +93,11 @@
     "supporting": "Δεν υπάρχει server να νοικιάσεις. Δεν υπάρχει domain να αγοράσεις. Δεν υπάρχουν chains να συγχρονίσεις. Ένας κόμβος Bitsocial τρέχει σε Raspberry Pi. Και κάθε κοινότητα μπορεί να επιβάλλει το δικό της αντικατασπικό challenge: captchas, φήμη, SMS, πληρωμές, tokens, ελέγχους IP ή οτιδήποτε άλλο μπορεί να προγραμματιστεί.",
     "approaches": {
       "federated": {
-        "label": "Ομοσπονδιακό",
+        "label": "Βασισμένο σε διακομιστή",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Chain / Hub",
+        "label": "Βασισμένο σε blockchain",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Ποιος το κρατά online",
-        "federated": "Χειριστής υπηρεσίας / instance",
+        "federated": "Διαχειριστές διακομιστών και κοινόχρηστες ευρετήρια",
         "blockchain": "Υποδομή chain, hub ή RPC",
         "bitsocial": "Ιδιοκτήτες κοινότητας + βοηθητικοί seeders"
       },
       "scalingModel": {
         "label": "Μοντέλο κλιμάκωσης",
-        "federated": "Μεγαλύτερα instances, υψηλότεροι λογαριασμοί",
+        "federated": "Μεγαλύτεροι διακομιστές και ευρετήρια, υψηλότερα έξοδα",
         "blockchain": "Περισσότερη κατάσταση, βαρύτερη υποδομή",
         "bitsocial": "Περισσότεροι peers, περισσότερο bandwidth"
       },

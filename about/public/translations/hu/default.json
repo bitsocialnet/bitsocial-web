@@ -93,11 +93,11 @@
     "supporting": "Nincs kibérelendő szerver. Nincs megvásárolandó domain. Nincsenek szinkronizálandó láncok. Egy Bitsocial csomópont fut Raspberry Pi-n. És minden közösség saját spamellenes kihívást érvényesíthet: captcha, reputáció, SMS, fizetések, tokenek, IP-ellenőrzések vagy bármi más, ami kódolható.",
     "approaches": {
       "federated": {
-        "label": "Föderált",
+        "label": "Szerveralapú",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Lánc / hub",
+        "label": "Blockchain-alapú",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Ki tartja online",
-        "federated": "Szolgáltatás / példány üzemeltetője",
+        "federated": "Szerverüzemeltetők és megosztott indexelők",
         "blockchain": "Lánc-, hub- vagy RPC-infrastruktúra",
         "bitsocial": "Közösségtulajdonosok + segítő seedelők"
       },
       "scalingModel": {
         "label": "Skálázási modell",
-        "federated": "Nagyobb példányok, magasabb számlák",
+        "federated": "Nagyobb szerverek és indexerek, magasabb számlák",
         "blockchain": "Több állapot, nehezebb infrastruktúra",
         "bitsocial": "Több peer, nagyobb sávszélesség"
       },

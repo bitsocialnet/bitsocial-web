@@ -93,11 +93,11 @@
     "supporting": "Pas de serveur à louer. Pas de domaine à acheter. Pas de chaînes à synchroniser. Un nœud Bitsocial tourne sur un Raspberry Pi. Et chaque communauté peut imposer son propre défi anti-spam : captchas, réputation, SMS, paiements, tokens, vérifications IP, ou tout autre mécanisme qu’on peut coder.",
     "approaches": {
       "federated": {
-        "label": "Fédéré",
+        "label": "Basé sur serveur",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Chaîne / hub",
+        "label": "Basé sur blockchain",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Qui le maintient en ligne",
-        "federated": "Opérateur du service / de l’instance",
+        "federated": "Opérateurs de serveurs et indexeurs partagés",
         "blockchain": "Infrastructure de chaîne, hub ou RPC",
         "bitsocial": "Propriétaires de communautés + seeders bénévoles"
       },
       "scalingModel": {
         "label": "Modèle de montée en charge",
-        "federated": "Instances plus grandes, factures plus élevées",
+        "federated": "Serveurs plus grands et indexeurs, factures plus élevées",
         "blockchain": "Plus d’état, une infra plus lourde",
         "bitsocial": "Plus de pairs, plus de bande passante"
       },

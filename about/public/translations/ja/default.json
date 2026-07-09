@@ -93,11 +93,11 @@
     "supporting": "サーバーを借りる必要も、ドメインを買う必要も、チェーンを同期する必要もありません。Bitsocial ノードは Raspberry Pi で動きます。しかも各コミュニティは、captcha、レピュテーション、SMS、支払い、トークン、IP チェック、あるいは実装可能なあらゆる方法で、独自のスパム対策チャレンジを課せます。",
     "approaches": {
       "federated": {
-        "label": "連合型",
+        "label": "サーバーベース",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "チェーン / ハブ",
+        "label": "ブロックチェーン基盤",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "誰がオンラインを維持するか",
-        "federated": "サービス / インスタンス運営者",
+        "federated": "サーバーオペレーターと共有インデクサー",
         "blockchain": "チェーン、ハブ、または RPC 基盤",
         "bitsocial": "コミュニティ所有者 + 支援シーダー"
       },
       "scalingModel": {
         "label": "スケーリングモデル",
-        "federated": "インスタンスが大きくなるほど請求も増える",
+        "federated": "より大きなサーバーとインデックス、より高い請求",
         "blockchain": "状態が増え、インフラが重くなる",
         "bitsocial": "ピアが増えれば帯域も増える"
       },

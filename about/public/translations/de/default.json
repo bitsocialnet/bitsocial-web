@@ -93,11 +93,11 @@
     "supporting": "Keine Server zu mieten. Keine Domains zu kaufen. Keine Chains zu synchronisieren. Ein Bitsocial-Knoten läuft auf einem Raspberry Pi. Und jede Community kann ihre eigene Anti-Spam-Herausforderung durchsetzen: Captchas, Reputation, SMS, Zahlungen, Tokens, IP-Prüfungen oder alles andere, was man programmieren kann.",
     "approaches": {
       "federated": {
-        "label": "Föderiert",
+        "label": "Serverbasiert",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Chain / Hub",
+        "label": "Blockchain-basiert",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Wer es online hält",
-        "federated": "Dienst- / Instanzbetreiber",
+        "federated": "Serverbetreiber und gemeinsame Indexer",
         "blockchain": "Chain-, Hub- oder RPC-Infrastruktur",
         "bitsocial": "Community-Besitzer + helfende Seeder"
       },
       "scalingModel": {
         "label": "Skalierungsmodell",
-        "federated": "Größere Instanzen, höhere Rechnungen",
+        "federated": "Größere Server und Indexer, höhere Rechnungen",
         "blockchain": "Mehr Zustand, schwerere Infrastruktur",
         "bitsocial": "Mehr Peers, mehr Bandbreite"
       },

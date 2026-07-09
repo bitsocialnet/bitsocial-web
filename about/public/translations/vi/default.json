@@ -93,11 +93,11 @@
     "supporting": "Không cần thuê máy chủ. Không cần mua tên miền. Không cần đồng bộ chuỗi. Một node Bitsocial có thể chạy trên Raspberry Pi. Và mỗi cộng đồng có thể áp dụng cơ chế chống spam riêng: captcha, điểm uy tín, SMS, thanh toán, token, kiểm tra IP, hoặc bất kỳ thứ gì có thể lập trình được.",
     "approaches": {
       "federated": {
-        "label": "Liên bang",
+        "label": "Dựa trên máy chủ",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Chuỗi / hub",
+        "label": "Dựa trên blockchain",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Ai duy trì trực tuyến",
-        "federated": "Nhà vận hành dịch vụ / instance",
+        "federated": "Các nhà khai thác máy chủ và trình lập chỉ mục được chia sẻ",
         "blockchain": "Cơ sở hạ tầng chuỗi, hub hoặc RPC",
         "bitsocial": "Chủ sở hữu cộng đồng + seeder hỗ trợ"
       },
       "scalingModel": {
         "label": "Mô hình mở rộng",
-        "federated": "Instance càng lớn, hóa đơn càng cao",
+        "federated": "Máy chủ và bộ lập chỉ mục lớn hơn, hóa đơn cao hơn",
         "blockchain": "Càng nhiều trạng thái, hạ tầng càng nặng",
         "bitsocial": "Càng nhiều peer, băng thông càng tăng"
       },

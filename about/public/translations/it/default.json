@@ -93,11 +93,11 @@
     "supporting": "Nessun server da affittare. Nessun dominio da comprare. Nessuna chain da sincronizzare. Un nodo Bitsocial gira su un Raspberry Pi. E ogni community può far rispettare il proprio controllo anti-spam: captcha, reputazione, SMS, pagamenti, token, controlli IP o qualsiasi altra cosa si possa programmare.",
     "approaches": {
       "federated": {
-        "label": "Federato",
+        "label": "Basato su server",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "Chain / hub",
+        "label": "Basato su blockchain",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "Chi lo mantiene online",
-        "federated": "Operatore del servizio / dell'istanza",
+        "federated": "Operatori di server e indicizzatori condivisi",
         "blockchain": "Infrastruttura chain, hub o RPC",
         "bitsocial": "Proprietari della community + seeder di supporto"
       },
       "scalingModel": {
         "label": "Modello di scalabilità",
-        "federated": "Istanze più grandi, bollette più alte",
+        "federated": "Server e indicizzatori più grandi, bollette più alte",
         "blockchain": "Più stato, infrastruttura più pesante",
         "bitsocial": "Più peer, più larghezza di banda"
       },

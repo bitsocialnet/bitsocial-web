@@ -14,7 +14,7 @@ The content is biased toward inference-time lookup, not formal API reference gen
 
 - [Home](https://bitsocial.net/): Bitsocial is an open-source peer-to-peer network for social apps, with no servers, no global bans, where users and communities are cryptographic property.
 - [Core features](https://bitsocial.net/): Bitsocial is open source, peer-to-peer via IPFS/libp2p, app-oriented, serverless by default, locally moderated with no protocol-level global bans, and built around key-controlled identities and communities.
-- [Sanctuary comparison](https://bitsocial.net/#decentralized): Compares Federated (Bluesky, Mastodon, Lemmy); Chain / Hub (Farcaster, Lens, DeSo, Steemit); Bitsocial (Pure P2P with arbitrary anti-spam challenges) across self-hosting cost, who keeps content online, scaling, custom anti-spam logic, and takedown choke points.
+- [Sanctuary comparison](https://bitsocial.net/#decentralized): Compares Server-based (Bluesky, Mastodon, Lemmy); Blockchain-based (Farcaster, Lens, DeSo, Steemit); Bitsocial (Pure P2P with arbitrary anti-spam challenges) across self-hosting cost, who keeps content online, scaling, custom anti-spam logic, and takedown choke points.
 - [Deep comparison tables](https://bitsocial.net/#nostr-comparison): Sourced modal tables compare Bitsocial with Nostr, Bluesky, ActivityPub / Fediverse, Farcaster, Lens, DeSo, Steemit across Spam replies, Community rules, Scaling costs, Data hosting, Censorship points, Who accepts posts?, First post, Human names, Finding content.
 - [Arbitrary Challenges](https://bitsocial.net/#arbitrary-challenges): Each node runs its own anti-spam challenge, exchanged purely peer-to-peer with the user. When spam evolves, nodes adapt without changing the protocol. Example modules include any code, AI-powered moderation, SMS OTP, whatever comes next.
 - [Text-only Protocol](https://bitsocial.net/#text-only-protocol): There's no global admin and no server to seize, so nobody can ban you from the whole network. Moderation just moves closer to you.
@@ -101,11 +101,11 @@ Source: https://bitsocial.net/#decentralized
 
 No servers to rent. No domains to buy. No chains to sync. A Bitsocial node runs on a Raspberry Pi. And each community can enforce its own anti-spam challenge: captchas, reputation, SMS, payments, tokens, IP checks, or anything else that can be coded.
 
-| Topic | Federated | Chain / Hub | Bitsocial |
+| Topic | Server-based | Blockchain-based | Bitsocial |
 | --- | --- | --- | --- |
 | Self-hosting cost | Server + domain + SSL | Expensive node, hub, or RPC | Extremely cheap, runs on Raspberry Pi |
-| Who keeps it online | Service / instance operator | Chain, hub, or RPC infrastructure | Community owners + helper seeders |
-| Scaling model | Bigger instances, higher bills | More state, heavier infra | More peers, more bandwidth |
+| Who keeps it online | Server operators and shared indexers | Chain, hub, or RPC infrastructure | Community owners + helper seeders |
+| Scaling model | Bigger servers and indexers, higher bills | More state, heavier infra | More peers, more bandwidth |
 | Custom anti-spam logic | Not built into the protocol | Tied to chains, hubs, or fees | Built in: challenge can be anything |
 | Takedown choke points | Host, registrar, SSL, DDoS provider | Validators, hubs, RPCs | No single choke point |
 
@@ -2575,6 +2575,16 @@ If uncertain, ask the developer before adding an entry.
 - **What was surprising:** A standalone SSR preview can look healthy while the actual branch-scoped Portless route is still serving the wrong app shell or an older process. In this repo, the real local contract is the Portless hostname from `yarn start`, not an ad hoc preview server.
 - **Impact:** Agents can incorrectly claim no-JS support works, or miss regressions that only show up on `*.bitsocial.localhost`.
 - **Mitigation:** For `about/` browser verification, always start the real local server with `yarn start` or `yarn start:about` and test the branch-scoped Portless URL first. If a Portless hostname looks stale, inspect and stop the old process before retesting.
+- **Status:** confirmed
+
+### `chain/` was invisible to `yarn build:verify` and `yarn doctor`
+
+- **Date:** 2026-07-05
+- **Observed by:** Codex
+- **Context:** Verifying a chain/-only diff after the `chain/` workspace (standalone Vite app for `chain.bitsocial.net`) was added to the monorepo.
+- **What was surprising:** `scripts/verify-build.mjs` only recognized `about/`, `docs/`, and `stats/` path prefixes, so a chain/-only diff printed "No targeted build checks matched the current diff" and ran no build at all, even though `build:chain` already existed in the root `package.json`. Separately, `yarn doctor` was hard-coded to `react-doctor about -y`, so React changes under `chain/src` got zero React Doctor coverage.
+- **Impact:** Agents verifying chain changes had to know to call `yarn build:chain` directly instead of trusting `yarn build:verify`, and React issues in `chain/src` (effects, hooks, dead code) went undetected by `yarn doctor`.
+- **Mitigation:** `scripts/verify-build.mjs` now has a `chain/` branch mirroring the `about/` one, and `doctor` / `doctor:verbose` now run `react-doctor --project about,chain -y` in a single invocation. `doctor:score` stays `about`-only because `--score` silently prints nothing when combined with `--project` for more than one project; use `yarn react-doctor --project about,chain --verbose -y` (or `--json`) if a chain score is needed.
 - **Status:** confirmed
 
 ### Long-Running Agent Workflow
@@ -6385,7 +6395,7 @@ some-community.bso queueing pubsub routing provide bafkrei...
 some-community.bso pinned Qm... in 1.2s
 ```
 
-That's it — you're seeding. The container bundles its own Bitsocial daemon (Kubo IPFS + PKC), discovers communities from the [default 5chan directories](https://github.com/bitsocialnet/lists/tree/master/5chan-directories), and pins their content.
+That's it — you're seeding. The container bundles its own Bitsocial daemon (Kubo IPFS + PKC), discovers communities from the [default 5chan directory source](https://github.com/bitsocialnet/lists/tree/master/5chan-directories), and pins their content.
 
 **3. (Optional) Cap the workload on small VPSes:**
 
@@ -6451,7 +6461,7 @@ The default config expects:
 
 - PKC RPC: `ws://127.0.0.1:9138`
 - Kubo RPC: `http://127.0.0.1:50019/api/v0`
-- community lists: `bitsocialnet/lists` 5chan directory files
+- community lists: `bitsocialnet/lists` 5chan directory files plus seeder-only compatibility lists in the same folder
 - daemon data: `/data/bitsocial`
 
 On Linux hosts the compose file uses `network_mode: host`, so the container can reach the host daemon through `127.0.0.1`.
@@ -6475,6 +6485,24 @@ SEEDER_UPDATE_CHECK_ENABLED=true
 SEEDER_UPDATE_CHECK_INTERVAL_MS=86400000
 SEEDER_UPDATE_CHECK_TIMEOUT_MS=5000
 ```
+
+### Public seeder defaults
+
+`COMMUNITY_LIST_SOURCES` intentionally points at the GitHub contents API for
+`bitsocialnet/lists/5chan-directories`. Released Docker Compose files set this
+environment variable explicitly, so changing `config.js` in a later image is not
+enough to make existing Docker operators seed a new public community.
+
+For compatibility, urgent public seed targets can be published in
+`bitsocialnet/lists/5chan-directories/bitsocial-seeder-communities.json`.
+Existing seeders fetch every JSON file in that folder except `*-defaults.json`,
+while 5chan clients and stats tooling only treat files named
+`5chan-<code>-directory.json` as real 5chan directories.
+
+A future `bitsocial-seeder` release may add a cleaner top-level
+`https://raw.githubusercontent.com/bitsocialnet/lists/master/bitsocial-seeder-communities.json`
+source as the canonical public seeder list. Keep the compatibility file until
+old Compose installs have moved off the folder-only source.
 
 ## State
 
@@ -6509,7 +6537,10 @@ Recommended starting point:
 - Network: stable public IPv4 or IPv6 with unrestricted outbound TCP/UDP. Allow inbound Kubo swarm traffic if possible, usually TCP/UDP 4001 with the default Kubo config, but keep PKC and Kubo RPC ports private to the host.
 - Transfer: avoid tiny metered bandwidth caps. Start with at least 1 TB/month included transfer and monitor provider-level bandwidth, not only `ipfs stats bw`.
 
-The default 5chan directory source is dozens of small communities, not full media archiving.
+The compose file ships with memory guardrails: `NODE_OPTIONS: "--max-old-space-size=1024"` caps the seeder's V8 heap (Node's default limit scales with host RAM, and lazy GC otherwise lets a long-running seeder balloon toward ~4 GiB on an 8 GiB host), and `mem_limit: 2g` is a hard container backstop that also covers native/buffer memory.
+Raise both if you seed many more communities than the defaults and the seeder gets memory-starved; on tighter hosts, lower `MAX_COMMUNITIES` before lowering the caps.
+
+The default community sources are dozens of small directory communities plus a short supplemental seeder list, not full media archiving.
 Disk and bandwidth mostly scale with `MAX_COMMUNITIES`, pinned page/update size, pubsub activity, and Kubo/libp2p overhead.
 On small VPSes, lower `MAX_COMMUNITIES` and keep `PIN_CONCURRENCY=1`.
 
@@ -6768,7 +6799,7 @@ To add a bot for a different Bitsocial client:
 
 ## License
 
-GPL-2.0
+GPL-3.0-or-later
 
 ### 5chan Board Manager
 
@@ -7088,7 +7119,7 @@ EXAMPLES
   $ 5chan board add my-board.bso --apply-defaults --defaults-preset ./my-preset.json
 ```
 
-_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.17/src/commands/board/add.ts)_
+_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/board/add.ts)_
 
 ## `5chan board edit ADDRESS`
 
@@ -7135,7 +7166,7 @@ EXAMPLES
   $ 5chan board edit random.bso -i
 ```
 
-_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.17/src/commands/board/edit.ts)_
+_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/board/edit.ts)_
 
 ## `5chan board list`
 
@@ -7152,7 +7183,7 @@ EXAMPLES
   $ 5chan board list
 ```
 
-_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.17/src/commands/board/list.ts)_
+_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/board/list.ts)_
 
 ## `5chan board remove ADDRESS`
 
@@ -7172,7 +7203,7 @@ EXAMPLES
   $ 5chan board remove random.bso
 ```
 
-_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.17/src/commands/board/remove.ts)_
+_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/board/remove.ts)_
 
 ## `5chan defaults set`
 
@@ -7212,7 +7243,7 @@ EXAMPLES
   $ 5chan defaults set -i
 ```
 
-_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.17/src/commands/defaults/set.ts)_
+_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/defaults/set.ts)_
 
 ## `5chan help [COMMAND]`
 
@@ -7278,7 +7309,7 @@ EXAMPLES
   $ 5chan logs --stdout -f
 ```
 
-_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.17/src/commands/logs.ts)_
+_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/logs.ts)_
 
 ## `5chan start`
 
@@ -7316,12 +7347,12 @@ EXAMPLES
   $ 5chan start --log-path /var/log/5chan
 ```
 
-_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.17/src/commands/start.ts)_
+_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/start.ts)_
 <!-- commandsstop -->
 
 ## Config Hot-Reload
 
-`5chan start` watches the config directory (`boards/` and `global.json`) using `fs.watch()` with a 200ms debounce. When any config file changes:
+`5chan start` watches the config directory (`boards/` and `global.json`) using chokidar with a 200ms debounce, plus a periodic reconcile (every 2s) that guarantees changes are picked up even if the OS watcher drops events (e.g. inotify queue overflow). Changes that arrive while a reload is already running are queued and applied right after it. When any config file changes:
 
 1. Loads and validates the new config
 2. Diffs old vs new boards

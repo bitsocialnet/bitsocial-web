@@ -93,11 +93,11 @@
     "supporting": "אין צורך לשכור שרתים. אין צורך לקנות דומיינים. אין צורך לסנכרן שרשראות. צומת Bitsocial רץ על Raspberry Pi. וכל קהילה יכולה לאכוף את אתגרי הנגד-ספאם שלה: captchas, מוניטין, SMS, תשלומים, טוקנים, בדיקות IP, או כל דבר אחר שאפשר לקודד.",
     "approaches": {
       "federated": {
-        "label": "פדרטיבי",
+        "label": "מבוסס על שרת",
         "subtitle": "Bluesky, Mastodon, Lemmy"
       },
       "blockchain": {
-        "label": "שרשרת / רכזת",
+        "label": "מבוסס על בלוקצ'ין",
         "subtitle": "Farcaster, Lens, DeSo, Steemit"
       },
       "bitsocial": {
@@ -114,13 +114,13 @@
       },
       "whoKeepsOnline": {
         "label": "מי מחזיק את זה אונליין",
-        "federated": "מפעיל השירות / המופע",
+        "federated": "מפעילי שרתים ואינדקסרים משותפים",
         "blockchain": "התשתית של השרשרת, הרכזת או ה-RPC",
         "bitsocial": "בעלי הקהילה + זורעי-עזר"
       },
       "scalingModel": {
         "label": "מודל הרחבה",
-        "federated": "מופעים גדולים יותר, חשבונות גבוהים יותר",
+        "federated": "שרתים וערוצי אינדקסציה גדולים יותר, חשבונות גבוהים יותר",
         "blockchain": "יותר מצב, תשתית כבדה יותר",
         "bitsocial": "יותר עמיתים, יותר רוחב פס"
       },
