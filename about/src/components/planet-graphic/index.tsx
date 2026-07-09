@@ -2,9 +2,10 @@ import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { useTheme } from "next-themes";
 import {
-  getHeroGraphicMaxPixelRatio,
-  getHeroGraphicShouldAntialias,
+  getIsHighFidelityMobilePlanetDevice,
   getIsMobileHeroGraphicLayout,
+  getPlanetGraphicMaxPixelRatio,
+  getPlanetGraphicShouldAntialias,
 } from "@/lib/hero-graphic-performance";
 import { getPlanetRingRotationDelaySeconds } from "@/lib/hero-intro-timing";
 import { getHeroGraphicViewportProgress } from "@/lib/hero-graphic-layout";
@@ -212,7 +213,12 @@ function getPlanetCameraLayout(width: number) {
 }
 
 function getPlanetGeometrySegments(isMobileLayout: boolean) {
-  return isMobileLayout ? MOBILE_PLANET_GEOMETRY_SEGMENTS : DESKTOP_PLANET_GEOMETRY_SEGMENTS;
+  // Native-DPR rendering makes 48-segment silhouettes visibly faceted.
+  if (isMobileLayout && !getIsHighFidelityMobilePlanetDevice()) {
+    return MOBILE_PLANET_GEOMETRY_SEGMENTS;
+  }
+
+  return DESKTOP_PLANET_GEOMETRY_SEGMENTS;
 }
 
 function getViewportResizeKey(container: HTMLDivElement) {
@@ -354,7 +360,7 @@ export default function PlanetGraphic({
         renderer = new THREE.WebGLRenderer({
           canvas,
           alpha: true,
-          antialias: getHeroGraphicShouldAntialias(initialIsMobile),
+          antialias: getPlanetGraphicShouldAntialias(initialIsMobile),
           premultipliedAlpha: false,
           powerPreference: initialIsMobile ? "low-power" : "default",
         });
@@ -364,7 +370,7 @@ export default function PlanetGraphic({
       }
       renderer.setSize(container.clientWidth, container.clientHeight, false);
       renderer.setPixelRatio(
-        Math.min(window.devicePixelRatio, getHeroGraphicMaxPixelRatio(initialIsMobile)),
+        Math.min(window.devicePixelRatio, getPlanetGraphicMaxPixelRatio(initialIsMobile)),
       );
       renderer.setClearColor(0x000000, 0);
       const handleContextLost = (event: Event) => {
@@ -744,7 +750,7 @@ export default function PlanetGraphic({
         camera.position.set(0, 1, nextCameraLayout.cameraZ);
         camera.updateProjectionMatrix();
         renderer.setPixelRatio(
-          Math.min(window.devicePixelRatio, getHeroGraphicMaxPixelRatio(isMobileNow)),
+          Math.min(window.devicePixelRatio, getPlanetGraphicMaxPixelRatio(isMobileNow)),
         );
         renderer.setSize(width, height, false);
 
