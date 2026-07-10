@@ -9,7 +9,6 @@ import {
   type PeerMapLocation,
   type PublicEndpoint,
 } from "@/lib/peer-geo";
-import { dialBlogSeederPeers } from "@/lib/p2p-seeder-dial";
 
 // ---------- Public types (1:1 with 5chan StatRow union) ----------
 
@@ -841,8 +840,6 @@ export async function getBlogP2PStats(account: unknown, signal?: AbortSignal): P
   }
 
   const mode = getBrowserMode(client);
-
-  void dialBlogSeederPeers(accountShape, signal).catch(() => undefined);
 
   // NOTE: getPeers / getConnections must be called as methods so `this` stays
   // bound to the libp2p node — passing the bare reference makes them throw.
