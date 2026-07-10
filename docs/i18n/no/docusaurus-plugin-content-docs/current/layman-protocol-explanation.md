@@ -152,8 +152,6 @@ Skillet er viktig:
 - RPC skal ikke bli permanent varetekt
 - eierforholdet skal forbli knyttet til nøkler, ikke til én leverandørs database
 
-For foreslått tjenestedesign, les [Tillatelsesløs offentlig RPC](./permissionless-public-rpc.md).
-
 ## Hva Bitsocial ikke er
 
 Bitsocial er ikke et sosialt blokkjedenettverk. Sosiale medier trenger ikke hvert innlegg for å bli en transaksjon i én global hovedbok.

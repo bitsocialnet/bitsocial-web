@@ -152,8 +152,6 @@ Mahalaga ang pagkakaiba:
 - Ang RPC ay hindi dapat maging permanenteng kustodiya
 - ang relasyon ng may-ari ay dapat manatiling nakatali sa mga susi, hindi sa database ng isang provider
 
-Para sa iminungkahing disenyo ng serbisyo, basahin ang [Walang pahintulot na Pampublikong RPC](./permissionless-public-rpc.md).
-
 ## Ano ang hindi Bitsocial
 
 Ang Bitsocial ay hindi isang blockchain social network. Hindi kailangan ng social media ang bawat post para maging isang transaksyon sa isang global ledger.

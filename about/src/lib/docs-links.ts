@@ -8,7 +8,6 @@ export const DOCS_LINKS = {
   localModeration: `${DOCS_SITE_URL}/local-moderation/`,
   identityAndOwnership: `${DOCS_SITE_URL}/identity-and-ownership/`,
   buildYourOwnClient: `${DOCS_SITE_URL}/build-your-own-client/`,
-  permissionlessPublicRpc: `${DOCS_SITE_URL}/permissionless-public-rpc/`,
   flagshipBitsocialApp: `${DOCS_SITE_URL}/flagship-bitsocial-app/`,
   scaleBitsocialEconomies: `${DOCS_SITE_URL}/scale-bitsocial-economies/`,
   decentralizeAllSocialMedia: `${DOCS_SITE_URL}/decentralize-all-social-media/`,

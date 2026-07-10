@@ -152,8 +152,6 @@ Forskellen er vigtig:
 - RPC bør ikke blive permanent forældremyndighed
 - ejerforholdet skal forblive bundet til nøgler, ikke til én udbyders database
 
-For det foreslåede servicedesign, læs [Tilladelsesløs offentlig RPC](./permissionless-public-rpc.md).
-
 ## Hvad Bitsocial ikke er
 
 Bitsocial er ikke et socialt blockchain-netværk. Sociale medier behøver ikke hvert indlæg for at blive en transaktion i én global hovedbog.

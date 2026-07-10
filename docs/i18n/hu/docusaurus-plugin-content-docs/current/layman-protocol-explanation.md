@@ -152,8 +152,6 @@ A megkülönböztetés számít:
 - Az RPC nem válhat állandó őrizetbe
 - a tulajdonosi viszonynak kulcsokhoz kell kötődnie, nem pedig egyetlen szolgáltató adatbázisához
 
-A javasolt szolgáltatástervhez olvassa el az [Engedély nélküli nyilvános RPC](./permissionless-public-rpc.md) részt.
-
 ## Ami a Bitsocial nem az
 
 A Bitsocial nem egy blockchain közösségi hálózat. A közösségi médiának nincs szüksége minden bejegyzésre ahhoz, hogy tranzakcióvá váljon egy globális főkönyvben.

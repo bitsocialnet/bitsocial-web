@@ -152,8 +152,6 @@ Erotuksella on merkitystä:
 - RPC:stä ei pitäisi tulla pysyvää huoltajuutta
 - omistajasuhteen tulee pysyä sidottuina avaimiin, ei yhden palveluntarjoajan tietokantaan
 
-Lue ehdotettu palvelusuunnitelma [Luvaton julkinen RPC](./permissionless-public-rpc.md).
-
 ## Mitä Bitsocial ei ole
 
 Bitsocial ei ole blockchain-sosiaalinen verkosto. Sosiaalinen media ei tarvitse jokaista viestiä tullakseen tapahtumaksi yhdessä globaalissa kirjanpidossa.

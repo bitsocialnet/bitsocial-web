@@ -152,8 +152,6 @@ Dallimi ka rëndësi:
 - RPC nuk duhet të bëhet kujdestari i përhershëm
 - marrëdhënia e pronarit duhet të mbetet e lidhur me çelësat, jo me bazën e të dhënave të një ofruesi
 
-Për dizajnin e propozuar të shërbimit, lexoni [RPC publike pa leje](./permissionless-public-rpc.md).
-
 ## Çfarë nuk është Bitsocial
 
 Bitsocial nuk është një rrjet social blockchain. Mediat sociale nuk kanë nevojë për çdo postim për t'u bërë një transaksion në një libër global.

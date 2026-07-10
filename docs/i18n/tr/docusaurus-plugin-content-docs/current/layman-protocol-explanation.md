@@ -152,8 +152,6 @@ Ayrım önemlidir:
 - RPC kalıcı velayet haline gelmemeli
 - sahip ilişkisi tek bir sağlayıcının veritabanına değil, anahtarlara bağlı kalmalıdır
 
-Önerilen hizmet tasarımı için [İzinsiz Genel RPC](./permissionless-public-rpc.md) dosyasını okuyun.
-
 ## Bitsocial ne değildir?
 
 Bitsocial bir blockchain sosyal ağı değildir. Sosyal medyanın her gönderinin tek bir küresel defterde işlem haline gelmesine ihtiyacı yok.

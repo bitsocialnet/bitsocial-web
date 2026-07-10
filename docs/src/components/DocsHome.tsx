@@ -65,24 +65,6 @@ const protocolCards = [
 
 const roadmapCards = [
   {
-    to: "/permissionless-public-rpc/",
-    eyebrow: tr(
-      "docs.home.roadmap.card.rpc.eyebrow",
-      "Infrastructure",
-      "Roadmap card eyebrow for permissionless public RPC.",
-    ),
-    title: tr(
-      "docs.home.roadmap.card.rpc.title",
-      "Permissionless public RPC",
-      "Roadmap card title for permissionless public RPC.",
-    ),
-    body: tr(
-      "docs.home.roadmap.card.rpc.body",
-      "Multi-user Bitsocial RPC infrastructure with isolated users, scoped permissions, and durable ownership.",
-      "Roadmap card description for permissionless public RPC.",
-    ),
-  },
-  {
     to: "/bitsocial-network/",
     eyebrow: tr("docs.home.roadmap.card.network.eyebrow", "Phase 2", "Roadmap card eyebrow."),
     title: tr(
@@ -417,18 +399,11 @@ export default function DocsHome() {
           )}
         </p>
         <div className="docs-home__actions">
-          <Link className="docs-button docs-button--glass" to="/local-moderation/">
+          <Link className="docs-button docs-button--solid" to="/local-moderation/">
             {tr(
               "docs.home.hero.action.localModeration",
               "Local moderation",
               "Primary docs home CTA linking to the local moderation doc.",
-            )}
-          </Link>
-          <Link className="docs-button docs-button--solid" to="/permissionless-public-rpc/">
-            {tr(
-              "docs.home.hero.action.permissionlessPublicRpc",
-              "Permissionless public RPC",
-              "Primary docs home CTA linking to the permissionless public RPC doc.",
             )}
           </Link>
           <Link className="docs-button docs-button--ghost" to="/search/">

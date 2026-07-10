@@ -152,8 +152,6 @@ Auf die Unterscheidung kommt es an:
 - RPC sollte nicht zur dauerhaften Verwahrung werden
 - Die Eigentümerbeziehung sollte an Schlüssel gebunden bleiben und nicht an die Datenbank eines Anbieters
 
-Informationen zum vorgeschlagenen Service-Design finden Sie unter [Erlaubnisloser öffentlicher RPC](./permissionless-public-rpc.md).
-
 ## Was Bitsocial nicht ist
 
 Bitsocial ist kein soziales Blockchain-Netzwerk. In den sozialen Medien muss nicht jeder Beitrag zu einer Transaktion in einem globalen Hauptbuch werden.
