@@ -152,8 +152,6 @@ A distinção é importante:
 - RPC não deve se tornar custódia permanente
 - o relacionamento do proprietário deve permanecer vinculado às chaves, não ao banco de dados de um provedor
 
-Para o design de serviço proposto, leia [RPC público sem permissão](./permissionless-public-rpc.md).
-
 ## O que o Bitsocial não é
 
 Bitsocial não é uma rede social blockchain. A mídia social não precisa que cada postagem se torne uma transação em um livro-razão global.

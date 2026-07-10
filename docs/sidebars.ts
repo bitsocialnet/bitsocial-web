@@ -20,7 +20,6 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "Master plan",
       items: [
-        "permissionless-public-rpc",
         "bitsocial-network",
         "flagship-bitsocial-app",
         "scale-bitsocial-economies",

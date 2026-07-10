@@ -152,8 +152,6 @@ Perbedaan itu penting:
 - RPC tidak boleh menjadi hak asuh permanen
 - hubungan pemilik harus tetap terikat pada kunci, bukan pada database satu penyedia
 
-Untuk usulan desain layanan, baca [RPC Publik Tanpa Izin](./permissionless-public-rpc.md).
-
 ## Apa yang bukan Bitsocial
 
 Bitsocial bukanlah jaringan sosial blockchain. Media sosial tidak memerlukan setiap postingan untuk menjadi transaksi dalam satu buku besar global.

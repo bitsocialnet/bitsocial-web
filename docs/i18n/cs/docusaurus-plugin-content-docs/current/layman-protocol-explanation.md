@@ -152,8 +152,6 @@ Na rozlišení záleží:
 - RPC by se nemělo stát trvalou vazbou
 - vztah vlastníka by měl zůstat vázán na klíče, nikoli na databázi jednoho poskytovatele
 
-Pro návrh služby si přečtěte [Veřejné RPC bez povolení](./permissionless-public-rpc.md).
-
 ## Co Bitsocial není
 
 Bitsocial není blockchainová sociální síť. Sociální média nepotřebují, aby se každý příspěvek stal transakcí v jedné globální účetní knize.

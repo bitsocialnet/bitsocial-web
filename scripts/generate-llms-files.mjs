@@ -244,7 +244,6 @@ function categorizeDoc(relativePath) {
 
   if (
     [
-      "permissionless-public-rpc.md",
       "bitsocial-network.md",
       "flagship-bitsocial-app.md",
       "scale-bitsocial-economies.md",

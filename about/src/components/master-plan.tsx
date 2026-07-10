@@ -22,7 +22,9 @@ const richTextComponents = {
   ),
   rpcLink: (
     <a
-      href={DOCS_LINKS.permissionlessPublicRpc}
+      href="https://bitsocialforge.com/#forge-rpc"
+      target="_blank"
+      rel="noopener noreferrer"
       className="font-medium underline decoration-current/35 underline-offset-4 transition-colors hover:text-blue-glow hover:decoration-blue-glow"
     />
   ),

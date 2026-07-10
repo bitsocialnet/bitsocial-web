@@ -152,8 +152,6 @@ Distinktionen spelar roll:
 - RPC ska inte bli permanent vårdnad
 - Ägarförhållandet bör förbli knutet till nycklar, inte till en leverantörs databas
 
-För den föreslagna tjänstedesignen, läs [Tillståndslös offentlig RPC](./permissionless-public-rpc.md).
-
 ## Vad Bitsocial inte är
 
 Bitsocial är inte ett socialt blockchain-nätverk. Sociala medier behöver inte varje inlägg för att bli en transaktion i en global reskontra.

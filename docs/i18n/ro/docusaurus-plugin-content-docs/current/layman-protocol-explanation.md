@@ -152,8 +152,6 @@ Distincția contează:
 - RPC nu ar trebui să devină custodia permanentă
 - relația cu proprietarul ar trebui să rămână legată de chei, nu de baza de date a unui singur furnizor
 
-Pentru proiectul de serviciu propus, citiți [RPC public fără permisiune](./permissionless-public-rpc.md).
-
 ## Ce nu este Bitsocial
 
 Bitsocial nu este o rețea socială blockchain. Rețelele sociale nu au nevoie de fiecare postare pentru a deveni o tranzacție într-un singur registru global.

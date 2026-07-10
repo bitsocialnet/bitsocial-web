@@ -188,7 +188,7 @@ The distinction matters:
 - RPC should not become permanent custody
 - the owner relationship should remain tied to keys, not to one provider's database
 
-For the proposed service design, read [Permissionless Public RPC](./permissionless-public-rpc.md).
+The first service built on this model is Forge RPC by [Bitsocial Forge](https://bitsocialforge.com/#forge-rpc), which builds on the [Delegated IPNS](https://github.com/pkcprotocol/pkc-js/blob/master/docs/protocol/delegated-ipns.md) protocol design.
 
 ## What Bitsocial is not
 

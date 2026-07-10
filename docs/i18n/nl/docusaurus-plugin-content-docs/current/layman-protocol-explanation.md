@@ -152,8 +152,6 @@ Het onderscheid is belangrijk:
 - RPC mag geen permanente hechtenis worden
 - de eigenaarrelatie moet gebonden blijven aan sleutels, niet aan de database van één provider
 
-Voor het voorgestelde serviceontwerp leest u [Toestemmingsloze openbare RPC](./permissionless-public-rpc.md).
-
 ## Wat Bitsocial niet is
 
 Bitsocial is geen sociaal blockchain-netwerk. Sociale media hebben niet elke post nodig om een ​​transactie in één wereldwijd grootboek te worden.

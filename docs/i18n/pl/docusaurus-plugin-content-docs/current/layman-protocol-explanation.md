@@ -152,8 +152,6 @@ Rozróżnienie ma znaczenie:
 - RPC nie powinno stać się opieką stałą
 - relacja właściciela powinna pozostać powiązana z kluczami, a nie z bazą danych jednego dostawcy
 
-Informacje na temat proponowanego projektu usługi można znaleźć w artykule [Bez zezwolenia publiczne RPC](./permissionless-public-rpc.md).
-
 ## Czym Bitsocial nie jest
 
 Bitsocial nie jest siecią społecznościową typu blockchain. Media społecznościowe nie potrzebują, aby każdy post stał się transakcją w jednym globalnym rejestrze.

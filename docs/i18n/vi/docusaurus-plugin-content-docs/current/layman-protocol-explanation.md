@@ -152,8 +152,6 @@ Sự khác biệt quan trọng:
 - RPC không nên trở thành quyền giám hộ vĩnh viễn
 - mối quan hệ chủ sở hữu phải được gắn với các khóa chứ không phải với cơ sở dữ liệu của một nhà cung cấp
 
-Đối với thiết kế dịch vụ được đề xuất, hãy đọc [RPC công cộng không được phép](./permissionless-public-rpc.md).
-
 ## Bitsocial không phải là gì
 
 Bitsocial không phải là mạng xã hội blockchain. Phương tiện truyền thông xã hội không cần mọi bài đăng đều trở thành giao dịch trong một sổ cái toàn cầu.

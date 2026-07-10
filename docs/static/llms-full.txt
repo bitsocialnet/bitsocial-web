@@ -33,7 +33,6 @@ The content is biased toward inference-time lookup, not formal API reference gen
 - [Build your own Bitsocial client](https://docs.bitsocial.net/build-your-own-client/): Builder guide for shipping independent Bitsocial clients, from imageboards and forums to niche social apps.
 - [Decentralize All Social Media](https://docs.bitsocial.net/decentralize-all-social-media/): Phase 5 of the master plan, focused on funding and building the long tail of Bitsocial social clients.
 - [Decentralize Twitter/X](https://docs.bitsocial.net/flagship-bitsocial-app/): Phase 3 of the master plan: a focused, decentralized Twitter/X alternative for text-first public conversation with replaceable infrastructure.
-- [Permissionless Public RPC](https://docs.bitsocial.net/permissionless-public-rpc/): Proposed design for a public Bitsocial RPC service with isolated users, scoped permissions, and community ownership.
 - [Scale Bitsocial Economies](https://docs.bitsocial.net/scale-bitsocial-economies/): Phase 4 of the master plan, focused on funding, infrastructure pluralism, and competing services around Bitsocial.
 
 ## Apps
@@ -1246,209 +1245,6 @@ directly into public conversation.
 
 The Phase 3 client stays centered on posts, text, sharing ideas, and real-time discussion while
 sharing communities and network effects with other Bitsocial clients.
-
-### Permissionless Public RPC
-
-Source: https://docs.bitsocial.net/permissionless-public-rpc/
-Path: docs/permissionless-public-rpc.md
-Description: Proposed design for a public Bitsocial RPC service with isolated users, scoped permissions, and community ownership.
-
-# Permissionless Public RPC
-
-This page frames public RPC as a product-level Bitsocial proposal instead of a wall of
-implementation detail.
-
-## Plain-language goal
-
-[Bitsocial Forge](https://bitsocialforge.com) can run a public RPC service that lets many users manage their own Bitsocial
-communities remotely, without turning the operator into a custodian of those communities.
-
-The service should make mobile and lightweight clients practical while preserving three constraints:
-
-1. Users stay isolated from one another by default.
-2. Permissions stay explicit and granular.
-3. Compatibility with the current RPC request and response shape can be preserved during rollout.
-
-## What problem it solves
-
-Today, the simplest RPC model is usually all-or-nothing: one auth key, one authority domain, full
-access. That works for a single operator but not for a public multi-user service.
-
-A permissionless public RPC needs a stronger model:
-
-- one service can host many users
-- each user gets their own communities and limits
-- operator-defined policies can prevent abuse
-- the user can still move away or self-host later
-
-## Core model
-
-### Users
-
-Each user gets an auth credential plus a permission bundle.
-
-### Communities
-
-Communities created through the service are assigned to an owner record. Ownership is tracked
-explicitly so that management methods can be scoped to the right user.
-
-### Permissions
-
-Permissions are capability-based. Instead of one boolean for “can use the RPC,” the server can
-control:
-
-- how many communities a user can create
-- which management methods are available
-- what publish operations are allowed
-- what rate limits apply
-- what admin surfaces are visible
-
-### Admin surface
-
-The public RPC itself should stay focused on user-facing RPC behavior. Administrative tasks such as
-user creation, ownership transfer, and audit review belong in a separate operator API and dashboard.
-
-## Compatibility stance
-
-User-facing documentation should use Bitsocial terms such as **community** and **profile**.
-
-At the wire level, the first rollout can still preserve the current JSON-RPC transport and payload
-shape where that is useful for compatibility. In other words: the docs can stay Bitsocial-native
-even if the transition period keeps some compatibility-oriented method names or request shapes
-behind the scenes.
-
-## Proposed permission bundle
-
-```ts
-type PermissionBundle = {
-  maxCommunities: number; // 0 = unlimited
-  methods: {
-    createCommunity: boolean;
-    startCommunity: boolean;
-    stopCommunity: boolean;
-    editCommunity: boolean;
-    deleteCommunity: boolean;
-    publishComment: boolean;
-    publishVote: boolean;
-    publishCommentEdit: boolean;
-    publishCommentModeration: boolean;
-    publishCommunityEdit: boolean;
-    getComment: boolean;
-    getCommentPage: boolean;
-    getCommunityPage: boolean;
-    fetchCid: boolean;
-    resolveAuthorName: boolean;
-    commentUpdateSubscribe: boolean;
-    communityUpdateSubscribe: boolean;
-    communitiesSubscribe: boolean;
-    settingsSubscribe: boolean;
-  };
-  rateLimits: {
-    requestsPerMinute: number;
-    publishesPerHour: number;
-  };
-  storage: {
-    maxTotalSize: number;
-  };
-  scope: {
-    canPublishExternal: boolean;
-    canReadExternal: boolean;
-  };
-  admin: {
-    canTransferOwnership: boolean;
-    canManageUsers: boolean;
-    canViewAuditLogs: boolean;
-    canViewAllCommunities: boolean;
-  };
-};
-```
-
-The exact method names are illustrative. The important part is the shape of the policy: individual
-capabilities are independently controlled instead of bundled into one superuser token.
-
-## Connection flow
-
-```text
-client connects with auth credential
--> server validates the credential
--> server loads the user's permission bundle
--> server returns a permissions notification
--> client proceeds with the subset of actions it is allowed to use
-```
-
-Permission awareness should stay optional. A client that ignores the notification can still behave
-correctly by handling standard authorization failures from the server.
-
-## Ownership enforcement
-
-When the service creates a community, it should automatically assign ownership to the calling user.
-From there:
-
-- community start, stop, edit, and delete actions are owner-scoped
-- list and subscription responses default to the caller’s own communities
-- broader visibility is an explicit admin permission, not a default
-
-One edge case matters a lot: if a user subscribes to a community they do **not** own, the server
-must only expose the public state that any outside observer should see. Owner-only configuration or
-internal runtime data should never leak through a subscription API.
-
-## Suggested operator surface
-
-The admin API can stay boring and explicit:
-
-- list users
-- inspect one user
-- create or update users
-- delete users
-- transfer community ownership
-- inspect audit logs
-
-Authentication for this operator API should be completely separate from end-user RPC auth.
-
-## Implementation milestones
-
-### Milestone 1
-
-- establish the public RPC project structure
-- add user records and ownership tracking
-- fork or extend the current RPC server
-
-### Milestone 2
-
-- implement permission bundles
-- enforce them at the RPC method layer
-- return permissions metadata on connect
-
-### Milestone 3
-
-- add the operator API
-- add audit logging
-- add admin authentication
-
-### Milestone 4
-
-- ship the admin dashboard
-- test abuse controls
-- tighten rate limiting and storage quotas
-
-## Open questions
-
-### Auth credential spam
-
-If auth creation is cheap, public services may need a challenge layer before issuing credentials.
-One possible route is to reuse the community challenge model itself so credential issuance inherits
-the same anti-abuse philosophy as the rest of the network.
-
-### Migration details
-
-Some early implementations may still expose compatibility-oriented method names internally. That
-should be treated as a migration detail, not as the permanent public vocabulary of Bitsocial docs.
-
-## Summary
-
-This proposal is really about one thing: making public RPC infrastructure useful without making it
-custodial. A good public Bitsocial RPC should feel like optional assistance for running communities,
-not like a new central platform that reclaims ownership through the back door.
 
 ### Scale Bitsocial Economies
 
@@ -3104,7 +2900,7 @@ The distinction matters:
 - RPC should not become permanent custody
 - the owner relationship should remain tied to keys, not to one provider's database
 
-For the proposed service design, read [Permissionless Public RPC](./permissionless-public-rpc.md).
+The first service built on this model is Forge RPC by [Bitsocial Forge](https://bitsocialforge.com/#forge-rpc), which builds on the [Delegated IPNS](https://github.com/pkcprotocol/pkc-js/blob/master/docs/protocol/delegated-ipns.md) protocol design.
 
 ## What Bitsocial is not
 
@@ -6394,7 +6190,7 @@ some-community.bso queueing pubsub routing provide bafkrei...
 some-community.bso pinned Qm... in 1.2s
 ```
 
-That's it — you're seeding. The container bundles its own Bitsocial daemon (Kubo IPFS + PKC), discovers communities from the [default 5chan directory source](https://github.com/bitsocialnet/lists/tree/master/5chan-directories), and pins their content.
+That's it — you're seeding. The container bundles its own Bitsocial daemon (Kubo IPFS + PKC), discovers communities from the official [5chan](https://github.com/bitsocialnet/lists/tree/master/5chan-directories) and [Seedit](https://github.com/bitsocialnet/lists/tree/master/seedit-directories) directory sources, and pins their content. It re-reads both sources on the normal discovery interval, so communities added to either directory are seeded without another `bitsocial-seeder` upgrade.
 
 **3. (Optional) Cap the workload on small VPSes:**
 
@@ -6460,7 +6256,7 @@ The default config expects:
 
 - PKC RPC: `ws://127.0.0.1:9138`
 - Kubo RPC: `http://127.0.0.1:50019/api/v0`
-- community lists: `bitsocialnet/lists` 5chan directory files plus seeder-only compatibility lists in the same folder
+- community lists: official `bitsocialnet/lists` 5chan and Seedit directory files
 - daemon data: `/data/bitsocial`
 
 On Linux hosts the compose file uses `network_mode: host`, so the container can reach the host daemon through `127.0.0.1`.
@@ -6472,7 +6268,7 @@ Useful environment overrides:
 PKC_RPC_URL=ws://127.0.0.1:9138
 KUBO_RPC_URL=http://127.0.0.1:50019/api/v0
 IPFS_GATEWAY_URL=http://127.0.0.1:6473
-COMMUNITY_LIST_SOURCES=https://api.github.com/repos/bitsocialnet/lists/contents/5chan-directories?ref=master
+COMMUNITY_LIST_SOURCES=https://api.github.com/repos/bitsocialnet/lists/contents/5chan-directories?ref=master,https://api.github.com/repos/bitsocialnet/lists/contents/seedit-directories?ref=master
 COMMUNITY_EXTRA_LIST_SOURCES=/data/extra-communities.json
 SEEDER_DAEMON_AUTOSTART=true
 SEEDER_DAEMON_DATA_PATH=/data/bitsocial
@@ -6487,21 +6283,24 @@ SEEDER_UPDATE_CHECK_TIMEOUT_MS=5000
 
 ### Public seeder defaults
 
-`COMMUNITY_LIST_SOURCES` intentionally points at the GitHub contents API for
-`bitsocialnet/lists/5chan-directories`. Released Docker Compose files set this
-environment variable explicitly, so changing `config.js` in a later image is not
-enough to make existing Docker operators seed a new public community.
+`COMMUNITY_LIST_SOURCES` points at the GitHub contents APIs for both
+`bitsocialnet/lists/5chan-directories` and `bitsocialnet/lists/seedit-directories`.
+The seeder re-reads every non-default JSON file from both folders on the normal
+discovery interval. New directory files and changes to existing files therefore
+reach current seeders without another package release or restart.
 
-For compatibility, urgent public seed targets can be published in
+Older releases and old Docker Compose files only poll `5chan-directories`,
+because Compose sets this environment variable explicitly. For compatibility,
+public seed targets that those installs must see can temporarily be mirrored in
 `bitsocialnet/lists/5chan-directories/bitsocial-seeder-communities.json`.
 Existing seeders fetch every JSON file in that folder except `*-defaults.json`,
 while 5chan clients and stats tooling only treat files named
 `5chan-<code>-directory.json` as real 5chan directories.
 
-A future `bitsocial-seeder` release may add a cleaner top-level
-`https://raw.githubusercontent.com/bitsocialnet/lists/master/bitsocial-seeder-communities.json`
-source as the canonical public seeder list. Keep the compatibility file until
-old Compose installs have moved off the folder-only source.
+Keep that compatibility mirror until old folder-only installs have had time to
+upgrade. Current installs use the two directory folders themselves as the
+canonical public sources, avoiding a generated aggregate that could drift from
+the client directory lists.
 
 ## State
 
