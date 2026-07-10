@@ -12,9 +12,27 @@ This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current
 - Caddy redirects `/` and `/5chan` on `stats.bitsocial.net` to Grafana shared-dashboard URLs so visitors land on the public view without anonymous access to the full Grafana app
 - legacy `bitsocial.net/stats/*` URLs are 308-redirected by Vercel to `stats.bitsocial.net/*`; the old `:8080` origin is retired
 
-### Syncing a release
+### Automatic GitHub deployment
 
-From a local checkout, regenerate the stats dashboards from the active 5chan directory files and sync the repo:
+Every push to `master` runs [`.github/workflows/deploy-stats.yml`](../../.github/workflows/deploy-stats.yml). The workflow uses the protected `stats-production` environment and a forced-command SSH key that can only request deployment of an exact commit SHA.
+
+The server-side receiver is installed at `/usr/local/sbin/bitsocial-stats-deploy` from [`deploy-from-github.sh`](./deploy-from-github.sh). It downloads the matching public GitHub archive, synchronizes it to `/srv/bitsocial-web/current`, preserves `stats/deploy/.env`, rebuilds the Docker Compose stack, refreshes the shared Grafana dashboards, runs health checks, and writes the deployed SHA to `/srv/bitsocial-web/current/.deploy-revision`.
+
+Required `stats-production` environment configuration:
+
+- variable: `STATS_DEPLOY_HOST`
+- secret: `STATS_DEPLOY_SSH_KEY`
+- secret: `STATS_DEPLOY_KNOWN_HOSTS`
+
+The SSH public key on the server must use this forced command and restrictions:
+
+```text
+command="/usr/local/sbin/bitsocial-stats-deploy",no-port-forwarding,no-agent-forwarding,no-X11-forwarding,no-pty,no-user-rc ssh-ed25519 ... github-actions:bitsocial-web-stats-production
+```
+
+### Manual sync fallback
+
+If GitHub Actions is unavailable, regenerate the stats dashboards from the active 5chan directory files and sync the repo from a local checkout:
 
 ```bash
 yarn build:stats-dashboards

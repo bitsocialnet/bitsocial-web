@@ -1,0 +1,57 @@
+name: Deploy stats
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stats-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy stats.bitsocial.net
+    runs-on: ubuntu-24.04
+    environment: stats-production
+    timeout-minutes: 20
+    env:
+      DEPLOY_HOST: ${{ vars.STATS_DEPLOY_HOST }}
+
+    steps:
+      - name: Configure restricted deploy key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.STATS_DEPLOY_SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.STATS_DEPLOY_KNOWN_HOSTS }}
+        run: |
+          test -n "$DEPLOY_HOST"
+          test -n "$SSH_PRIVATE_KEY"
+          test -n "$SSH_KNOWN_HOSTS"
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/stats_deploy
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/stats_deploy ~/.ssh/known_hosts
+
+      - name: Deploy exact revision
+        run: |
+          ssh \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -i ~/.ssh/stats_deploy \
+            root@"$DEPLOY_HOST" \
+            "deploy $GITHUB_SHA"
+
+      - name: Verify public dashboard
+        run: |
+          dashboard_url="https://stats.bitsocial.net/api/public/dashboards/e9277bcc0c421ddcacd29f591466678c"
+          dashboard=$(curl --fail --silent --show-error --retry 12 --retry-delay 5 "$dashboard_url")
+          grep -q '"type":"markers"' <<< "$dashboard"
+          grep -q '"mode":"coords"' <<< "$dashboard"
+
+      - name: Remove deploy key
+        if: always()
+        run: rm -f ~/.ssh/stats_deploy
