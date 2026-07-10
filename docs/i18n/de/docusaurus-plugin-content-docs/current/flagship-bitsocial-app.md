@@ -1,73 +1,73 @@
 ---
-title: Flaggschiff-Bitsocial-App
-description: "Der vorgeschlagene profilbasierte Bitsocial-Client: standardmäßig vertraut mit X/Twitter, aber mit austauschbaren RPCs, Feeds, Algorithmen, Anzeigen und Communities."
+title: Twitter/X dezentralisieren
+description: "Phase 3 des Masterplans: eine fokussierte, dezentrale Alternative zu Twitter/X für textorientierte öffentliche Gespräche, mit austauschbarer Infrastruktur."
 ---
 
-# Flaggschiff-Bitsocial-App
+# Twitter/X dezentralisieren
 
-Die Flaggschiff-App Bitsocial ist der vorgeschlagene erste profilbasierte Client für das Netzwerk. Der einfachste Vergleich ist: standardmäßig wie X/Twitter, aber mit aufgebrochener Plattformschicht.
+Phase 3 sieht den Aufbau einer fokussierten, dezentralen Alternative zu Twitter/X vor. Im Mittelpunkt stehen textorientierte öffentliche Gespräche: kurze Beiträge, Antworten, Reposts, Follows, Diskussionen in Echtzeit und Communities, wobei die Plattformebene aufgebrochen wird.
 
-Es würde Profile, Follower, Antworten, Feeds, Communities, Benachrichtigungen und öffentliche Konversationen in Echtzeit hinzufügen und gleichzeitig die zugrunde liegenden Dienste austauschbar halten. 5chan beweist, dass anonyme Communities funktionieren können. Seedit strebt eine anhaltende Diskussion an. Die Flaggschiff-App würde diese Netzwerkeffekte in einen Mainstream-Social-Feed übertragen, ohne dass ein Unternehmen zum Eigentümer des Diagramms wird.
+Twitter/X wird noch immer durch Beiträge, Text und den Austausch von Ideen bestimmt. Der Phase-3-Client sollte bei diesem Kernerlebnis konkurrieren und es außergewöhnlich gut umsetzen.
 
-Diese Seite beschreibt die Produktrichtung, keine gesperrte Release-Spezifikation. Die genaue Schnittstelle, der Standard-Feed, das Anzeigenmodell, die KI-Funktionen und der RPC-Marktplatz können sich ändern, wenn das Protokoll und die ersten Apps ausgereift sind.
+Diese Seite beschreibt die Produktrichtung, keine festgeschriebene Veröffentlichungsspezifikation. Die genaue Oberfläche, der Standard-Feed, das Anzeigenmodell, die AI-Funktionen und der RPC-Marktplatz können sich ändern, während das Protokoll und die ersten Apps reifen.
 
-## Was es beweisen sollte
+## Was der Client beweisen sollte
 
-Die App soll beweisen, dass ein profilbasiertes soziales Netzwerk nicht zur Depotplattform werden kann:
+Der Client sollte beweisen, dass ein profilbasiertes soziales Netzwerk vermeiden kann, zu einer verwahrenden Plattform zu werden:
 
-- Benutzer können Identitäten und Profile besitzen
-- Communities und Profilknoten können Peer-to-Peer bleiben
-- Communities können Netzwerkeffekte über Bitsocial-Clients hinweg übertragen
-- RPC-Anbieter können die App komfortabel gestalten, ohne das Sorgerecht zu übernehmen
-- Feed-Algorithmen können optionale Dienste anstelle von Plattformgesetzen sein
-- Andere Kunden können weiterhin um dasselbe Netzwerk konkurrieren
+- Nutzer können ihre Identitäten und Profile besitzen
+- Communities und Profilknoten können peer-to-peer bleiben
+- Communities können Netzwerkeffekte über Bitsocial-Clients hinweg tragen
+- RPC-Anbieter können den Client bequem nutzbar machen, ohne die Verwahrung zu übernehmen
+- Feed-Algorithmen können optionale Dienste statt von der Plattform vorgegebener Regeln sein
+- andere Clients können weiterhin um dasselbe Netzwerk konkurrieren
 
-Es geht nicht darum, den einzigen Bitsocial-Kunden zu machen. Es geht darum, den ersten breiten Client zu erstellen, der zeigt, wie weit das Protokoll reichen kann.
+Ziel ist es, den stärksten möglichen Client für öffentliche Gespräche zu bauen und zu zeigen, wie weit das Protokoll reichen kann.
 
-## Standardmäßig vertraut, konstruktiv austauschbar
+## Im Zweck vertraut, im Design austauschbar
 
-Das Standarderlebnis sollte mit gängigen öffentlichen Konversations-Apps konkurrenzfähig sein: ein schneller Home-Feed, Follower, Antworten, Verteilung im Repost-Stil, Communities, Benachrichtigungen, Suche und eine Rangliste für Sie, die sofort funktioniert.
+Das Standarderlebnis sollte mit dem Kern von Twitter/X konkurrieren: ein schneller Startseiten-Feed, Textbeiträge, Follows, Antworten, Verbreitung über Reposts, Communities, Benachrichtigungen, Suche und eine gerankte For You-Ansicht, die sofort funktioniert.
 
-Bitsocial Forge kann den ersten Standard-RPC- und Feed-Dienst ausführen. Diese Standardeinstellung kann einen Rangfolge-Feed und Anzeigen umfassen, sodass sich die App vom ersten Tag an vollständig anfühlt, anstatt dass Mainstream-Benutzer den gesamten Stapel selbst zusammenstellen müssen.
+Bitsocial Forge kann den ersten Standard-RPC und Feed-Dienst betreiben. Dieser Standard kann einen gerankten Feed und Anzeigen enthalten, damit sich der Client vom ersten Tag an vollständig anfühlt, anstatt von gewöhnlichen Nutzern zu verlangen, den gesamten Stack selbst zusammenzustellen.
 
-Der Unterschied besteht darin, dass die Zahlungsunfähigkeit nicht zum Gefängnis werden sollte. Ein Benutzer sollte in der Lage sein, RPCs, Feeds, Instanzen, Ranking-Systeme, Anzeigen und Discovery-Anbieter zu wechseln oder das Ranking vollständig zu entfernen. Die App kann beim ersten Start angepasst werden, während alle wichtigen Dienste austauschbar bleiben.
+Der Unterschied ist, dass der Standard nicht zum Gefängnis werden darf. Nutzer sollten RPCs, Feeds, Instanzen, Ranking-Systeme, Anzeigen und Discovery-Anbieter wechseln oder das Ranking vollständig entfernen können. Der Client kann beim ersten Start klare Vorgaben machen und dennoch jeden wichtigen Dienst austauschbar halten.
 
-Dadurch ist die App anpassbarer als eine herkömmliche Plattform. Ein Nutzer behält möglicherweise den Standard-Ranking-Feed mit Anzeigen bei. Ein anderer verwendet möglicherweise einen chronologischen Feed ohne Rangfolge. Ein anderer könnte sich für einen datenschutzorientierten RPC, einen von der Community betriebenen Discovery-Dienst, einen kostenpflichtigen, werbefreien Feed oder einen Nischenalgorithmus entscheiden, der für eine bestimmte Subkultur entwickelt wurde.
+Dadurch lässt sich der Client stärker anpassen als eine herkömmliche Plattform. Ein Nutzer könnte beim gerankten Standard-Feed mit Anzeigen bleiben. Ein anderer könnte einen chronologischen Feed ohne Ranking nutzen. Ein weiterer könnte einen datenschutzorientierten RPC, einen von der Community betriebenen Discovery-Dienst, einen kostenpflichtigen werbefreien Feed oder einen Nischenalgorithmus für eine bestimmte Subkultur wählen.
 
-## Kundenübergreifende Communities
+## Clientübergreifende Communities
 
-Communities sollten viel wichtiger sein als isolierte Gruppen innerhalb einer App.
+Communities sollten wesentlich wichtiger sein als isolierte Gruppen innerhalb einer einzelnen App.
 
-Auf X/Twitter sind Communities auf X beschränkt. Sie können nützlich sein, erben jedoch die Grenzen einer Plattform, eines Kontosystems, eines Empfehlungsstapels und einer Produktoberfläche.
+Auf X/Twitter sind Communities auf X beschränkt. Sie können nützlich sein, erben aber die Grenzen einer Plattform, eines Kontosystems, eines Empfehlungs-Stacks und einer Produktoberfläche.
 
-Eine Bitsocial-Community kann über verschiedene Clients erstellt, gehostet, entdeckt und genutzt werden. Das bedeutet, dass die Flaggschiff-App Communities und Beiträge aus dem breiteren Bitsocial-Netzwerk anzeigen kann, nicht nur von Benutzern, die in der Flaggschiff-App gestartet sind. Eine Community könnte gleichzeitig Aktivitäten von einem Imageboard-Client, einem Diskussions-Client im Reddit-Stil, einem Nischenforum-Client, einer mobilen App und der Flaggschiff-App haben.
+Eine Bitsocial-Community kann über verschiedene Clients erstellt, gehostet, entdeckt und genutzt werden. Der Phase-3-Client kann dadurch Communities und Beiträge aus dem weiteren Bitsocial-Netzwerk anzeigen, nicht nur von Nutzern, die in diesem Client begonnen haben. Eine Community könnte gleichzeitig Aktivitäten aus einem Imageboard-Client, einem Diskussionsclient im Reddit-Stil, einem spezialisierten Forum-Client, einer mobilen App und dem Phase-3-Client enthalten.
 
-Das ist der Kernvorteil des Netzwerkeffekts: Ein Client kann sich den Mainstream-Benutzern vertraut anfühlen und dennoch von vielen Clients, Community-Knoten, RPC-Anbietern und unabhängigen Diensten profitieren.
+Das ist der entscheidende Netzwerkeffekt: Ein Client kann sich für gewöhnliche Nutzer vertraut anfühlen und zugleich aus vielen Clients, Community-Knoten, RPC-Anbietern und unabhängigen Diensten Nutzen ziehen.
 
 ## Optionale Feed-Algorithmen
 
-Die Flaggschiff-App sollte nicht jedem ein globales Ranking-System aufzwingen.
+Der Phase-3-Client sollte nicht allen ein einziges globales Ranking-System aufzwingen.
 
-Feed-Algorithmen sollten Opt-in sein. Ein Benutzer könnte einen Algorithmus von einem Marktplatz auswählen, den Anbieter wechseln, einen Algorithmus eines Unternehmens verwenden, einen von einem anonymen Betreiber ausgeführten verwenden, einen von einer Community erstellten verwenden, einen persönlichen verwenden oder überhaupt keinen Algorithmus verwenden.
+Feed-Algorithmen sollten aktiv gewählt werden. Nutzer könnten einen Algorithmus auf einem Marktplatz auswählen, den Anbieter wechseln, den Algorithmus eines Unternehmens, eines anonymen Betreibers oder einer Community verwenden, einen eigenen betreiben oder ganz auf einen Algorithmus verzichten.
 
-Öffentliche RPC-Anbieter sind ein natürlicher Ort für den Wettbewerb dieser Dienste. Sie können Inhalte indizieren, bewerten und empfehlen, sollten aber weder Eigentümer des Benutzers noch des Profils sein.
+Öffentliche RPC-Anbieter sind ein natürlicher Wettbewerbsort für diese Dienste. Sie können Inhalte indexieren, ranken und empfehlen, sollten aber weder den Nutzer noch das Profil besitzen.
 
-Diese Dienste können auch hinsichtlich der Form der App selbst konkurrieren. Ein RPC könnte einen Rangfolge-Feed mit Anzeigen bereitstellen. Ein anderer könnte einen chronologischen Feed ohne Rangfolge bereitstellen. Ein anderer könnte sich auf Datenschutz, Übersetzung, Moderation, Community Discovery oder einen Nischen-Social-Graph spezialisieren.
+Diese Dienste können auch bei der Form des Clients selbst konkurrieren. Ein RPC könnte einen gerankten Feed mit Anzeigen bereitstellen. Ein anderer könnte einen ungerankten chronologischen Feed anbieten. Ein weiterer könnte sich auf Datenschutz, Übersetzung, Moderation, Community-Discovery oder einen sozialen Nischengraphen spezialisieren.
 
-Wenn die Wirtschaftlichkeit funktioniert, könnten RPC-gestützte Feed-Dienste KI-Funktionen hinzufügen, die denen ähneln, die Mainstream-Plattformen in ihre Feeds integrieren wollen: automatische Übersetzungen, Zusammenfassungen, Bot-gestützte Antworten, Suchantworten, Moderationsunterstützung oder Kontext im Community-Notiz-Stil.
+Wenn das wirtschaftliche Modell funktioniert, könnten RPC-gestützte Feed-Dienste AI-Funktionen hinzufügen, die den Funktionen ähneln, welche etablierte Plattformen in ihre Feeds integrieren wollen: automatische Übersetzungen, Zusammenfassungen, botgestützte Antworten, Suchantworten, Moderationshilfe oder Kontext nach Art von Community Notes.
 
-Bei diesen Funktionen sollte es sich um Dienstoptionen und nicht um Protokollanforderungen handeln. Ein Standard-RPC kann mit einem reichhaltigeren Feed konkurrieren, aber Benutzer und konkurrierende Kunden sollten dennoch die Möglichkeit haben, einfachere, private, chronologische, werbefreie oder Community-spezifische Alternativen zu wählen.
+Diese Funktionen sollten wählbare Dienste und keine Protokollanforderungen sein. Ein Standard-RPC kann mit einem reichhaltigeren Feed konkurrieren, aber Nutzer und konkurrierende Clients sollten weiterhin einfachere, private, chronologische, werbefreie oder communityspezifische Alternativen wählen können.
 
-## RPC ohne Verwahrung
+## Nicht verwahrender RPC
 
-Jeder Benutzer sollte über RPC als vollständiger Peer-to-Peer-Knoten teilnehmen können, ohne dem RPC-Anbieter das Eigentum an seiner Identität oder seinem Profil zu übertragen.
+Jeder Nutzer sollte über RPC als vollständiger Peer-to-Peer-Knoten teilnehmen können, ohne dem RPC-Anbieter das Eigentum an seiner Identität oder seinem Profil zu übertragen.
 
-Der gehostete Pfad ist wichtig, da die meisten Benutzer zunächst keinen Server ausführen. Ebenso wichtig ist der Exit-Pfad: Ein Benutzer sollte in der Lage sein, jederzeit zu seinem eigenen Profilknoten auf Hardware mit geringer Spezifikation, einschließlich eines Raspberry Pi, zu wechseln.
+Der gehostete Weg ist wichtig, weil die meisten Nutzer nicht damit beginnen werden, einen Server zu betreiben. Der Ausstieg ist ebenso wichtig: Nutzer sollten jederzeit auf einen eigenen Profilknoten mit einfacher Hardware, einschließlich eines Raspberry Pi, wechseln können.
 
-Das ist der Unterschied zwischen Bequemlichkeit und Sorgerecht.
+Das ist der Unterschied zwischen Bequemlichkeit und Verwahrung.
 
-## Warum daraus eine Alles-App werden kann
+## Öffentliche Gespräche, gestärkt durch Bitsocial Chain
 
-Wenn Bitsocial Chain Apps dauerhafte Namen, Zahlungen, Trinkgelder, Auszeichnungen und andere Finanzschienen bietet, könnte die Flaggschiff-App viel mehr als nur ein Feed-Client werden.
+Bitsocial Chain kann dauerhafte Namen, Zahlungen, Trinkgelder, Auszeichnungen und weitere finanzielle Möglichkeiten direkt in öffentliche Gespräche bringen.
 
-Die wichtige Einschränkung besteht darin, dass die App nicht der neue Eigentümer des Netzwerks werden darf. Es kann sich um einen großen Client handeln, vielleicht sogar um den beliebtesten Client, der dennoch Platz für konkurrierende Apps, konkurrierende RPCs, konkurrierende Feed-Algorithmen und selbst gehostete Profilknoten lässt.
+Der Phase-3-Client bleibt auf Beiträge, Text, Ideenaustausch und Diskussionen in Echtzeit ausgerichtet und teilt zugleich Communities und Netzwerkeffekte mit anderen Bitsocial-Clients.

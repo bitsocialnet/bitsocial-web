@@ -71,5 +71,5 @@ non-custodial RPC provider, then move to self-hosting or a competing provider la
 
 ## Design principle
 
-Do not wait for one flagship app to solve every category. Build the client that should exist for
-your community, then let compatible clients compete in public.
+Build the client that should exist for your community, then let compatible clients compete in
+public.

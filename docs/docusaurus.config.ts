@@ -143,7 +143,7 @@ const config: Config = {
           items: [
             { label: "Permissionless public RPC", to: "/permissionless-public-rpc/" },
             { label: "Bitsocial Chain", to: "/bitsocial-network/" },
-            { label: "Flagship Bitsocial app", to: "/flagship-bitsocial-app/" },
+            { label: "Decentralize Twitter/X", to: "/flagship-bitsocial-app/" },
             { label: "Scale Bitsocial economies", to: "/scale-bitsocial-economies/" },
             {
               label: "Decentralize all social media",

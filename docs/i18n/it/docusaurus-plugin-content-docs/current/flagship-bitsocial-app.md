@@ -1,73 +1,73 @@
 ---
-title: Applicazione BitSocial di punta
-description: "Il client Bitsocial proposto basato sul profilo: familiare come X/Twitter per impostazione predefinita, ma con RPC, feed, algoritmi, annunci e comunità sostituibili."
+title: Decentralizzare Twitter/X
+description: "Fase 3 del piano generale: un'alternativa a Twitter/X focalizzata e decentralizzata, pensata per la conversazione pubblica incentrata sul testo, con infrastruttura sostituibile."
 ---
 
-# Applicazione BitSocial di punta
+# Decentralizzare Twitter/X
 
-L'app Bitsocial di punta è il primo client basato sul profilo proposto per la rete. Il paragone più semplice è: familiare come X/Twitter per impostazione predefinita, ma con il livello della piattaforma aperto.
+La Fase 3 prevede di costruire un'alternativa a Twitter/X focalizzata e decentralizzata. Al centro c'è la conversazione pubblica incentrata sul testo: post brevi, risposte, repost, follow, discussioni in tempo reale e comunità, con il livello della piattaforma reso aperto.
 
-Aggiungerebbe profili, follower, risposte, feed, comunità, notifiche e conversazioni pubbliche in tempo reale mantenendo i servizi sottostanti sostituibili. 5chan dimostra che le comunità anonime possono funzionare. Seedit si muove verso una discussione persistente. L’app di punta porterebbe questi effetti di rete in un feed sociale tradizionale senza rendere un’azienda proprietaria del grafico.
+Twitter/X è ancora definito dai post, dal testo e dalla condivisione di idee. Il client della Fase 3 dovrebbe competere su questa esperienza centrale e farla funzionare eccezionalmente bene.
 
-Questa pagina descrive la direzione del prodotto, non una specifica di rilascio bloccato. L'interfaccia esatta, il feed predefinito, il modello di annunci, le funzionalità AI e il marketplace RPC possono cambiare man mano che il protocollo e le prime app maturano.
+Questa pagina descrive la direzione del prodotto, non una specifica di rilascio definitiva. L'interfaccia esatta, il feed predefinito, il modello pubblicitario, le funzionalità AI e il marketplace RPC possono cambiare man mano che il protocollo e le prime app maturano.
 
 ## Cosa dovrebbe dimostrare
 
-L'app dovrebbe dimostrare che un social network basato sui profili può evitare di diventare una piattaforma di custodia:
+Il client dovrebbe dimostrare che un social network basato sui profili può evitare di diventare una piattaforma custodial:
 
 - gli utenti possono possedere identità e profili
-- le comunità e i nodi del profilo possono rimanere peer-to-peer
+- le comunità e i nodi dei profili possono rimanere peer-to-peer
 - le comunità possono portare effetti di rete tra i client Bitsocial
-- I fornitori RPC possono rendere l'app conveniente senza assumerne la custodia
-- gli algoritmi di feed possono essere servizi opzionali anziché la legge della piattaforma
-- altri clienti possono ancora competere per la stessa rete
+- i provider RPC possono rendere il client comodo senza assumerne la custodia
+- gli algoritmi dei feed possono essere servizi facoltativi anziché regole imposte dalla piattaforma
+- altri client possono comunque competere sulla stessa rete
 
-Il punto non è rendere l'unico client Bitsocial. Il punto è creare il primo client ampio che mostri fino a che punto il protocollo può estendersi.
+L'obiettivo è costruire il client più solido possibile per la conversazione pubblica e dimostrare fin dove può arrivare il protocollo.
 
-## Familiare per impostazione predefinita, sostituibile per progettazione
+## Familiare nello scopo, sostituibile per progettazione
 
-L'esperienza predefinita dovrebbe essere competitiva con le principali app di conversazione pubblica: un feed home veloce, follower, risposte, distribuzione in stile repost, community, notifiche, ricerca e una visualizzazione classificata Per te che funzioni immediatamente.
+L'esperienza predefinita dovrebbe competere con il cuore di Twitter/X: un feed principale veloce, post di testo, follow, risposte, distribuzione in stile repost, comunità, notifiche, ricerca e una vista classificata For You che funzioni subito.
 
-Bitsocial Forge può eseguire il primo servizio RPC e feed predefinito. Questa impostazione predefinita può includere un feed classificato e annunci pubblicitari in modo che l'app sembri completa fin dal primo giorno invece di chiedere agli utenti tradizionali di assemblare l'intero stack da soli.
+Bitsocial Forge può gestire il primo servizio RPC e il primo servizio di feed predefiniti. Questa configurazione può includere un feed classificato e annunci, così il client risulta completo fin dal primo giorno senza chiedere agli utenti comuni di assemblare da soli l'intero stack.
 
-La differenza è che il default non deve diventare la prigione. Un utente dovrebbe essere in grado di cambiare RPC, feed, istanze, sistemi di classificazione, annunci e provider di rilevamento o rimuovere completamente la classificazione. L'app può essere supponente al primo avvio mantenendo sostituibili tutti i servizi principali.
+La differenza è che la configurazione predefinita non deve diventare una prigione. Un utente dovrebbe poter cambiare RPC, feed, istanze, sistemi di classificazione, annunci e provider di scoperta, oppure eliminare del tutto la classificazione. Il client può proporre scelte precise al primo avvio, mantenendo sostituibili tutti i servizi principali.
 
-Ciò rende l'app più personalizzabile rispetto a una piattaforma convenzionale. Un utente potrebbe mantenere il feed classificato predefinito con gli annunci. Un altro potrebbe utilizzare un feed cronologico senza classificazione. Un altro potrebbe scegliere un RPC incentrato sulla privacy, un servizio di scoperta gestito dalla comunità, un feed senza pubblicità a pagamento o un algoritmo di nicchia creato per una sottocultura specifica.
+Ciò rende il client più personalizzabile di una piattaforma convenzionale. Un utente potrebbe mantenere il feed classificato predefinito con gli annunci. Un altro potrebbe usare un feed cronologico senza classificazione. Un altro ancora potrebbe scegliere un RPC orientato alla privacy, un servizio di scoperta gestito dalla comunità, un feed a pagamento senza annunci o un algoritmo di nicchia creato per una specifica sottocultura.
 
-## Comunità tra clienti
+## Comunità tra client
 
-Le comunità dovrebbero essere molto più importanti dei gruppi isolati all'interno di un'app.
+Le comunità dovrebbero essere molto più importanti di gruppi isolati all'interno di una sola app.
 
-Su X/Twitter, le comunità sono confinate all'interno di X. Possono essere utili, ma ereditano i limiti di una piattaforma, un sistema di account, uno stack di raccomandazioni e una superficie di prodotto.
+Su X/Twitter, le comunità sono confinate dentro X. Possono essere utili, ma ereditano i limiti di un'unica piattaforma, un unico sistema di account, un unico stack di raccomandazioni e un'unica superficie di prodotto.
 
-Una comunità Bitsocial può essere creata, ospitata, scoperta e utilizzata attraverso diversi client. Ciò significa che l'app di punta può mostrare community e post dal più ampio network Bitsocial, non solo dagli utenti che hanno iniziato all'interno dell'app di punta. Una comunità potrebbe avere attività da un client di imageboard, un client di discussione in stile Reddit, un client di forum di nicchia, un'app mobile e l'app di punta allo stesso tempo.
+Una comunità Bitsocial può essere creata, ospitata, scoperta e usata attraverso client diversi. Ciò significa che il client della Fase 3 può mostrare comunità e post provenienti dalla rete Bitsocial più ampia, non soltanto dagli utenti che hanno iniziato al suo interno. Una comunità potrebbe ricevere contemporaneamente attività da un client imageboard, un client di discussione in stile Reddit, un client per forum di nicchia, un'app mobile e il client della Fase 3.
 
-Questo è il vantaggio principale dell'effetto rete: un client può sembrare familiare agli utenti tradizionali pur continuando a trarre valore da molti client, nodi di comunità, fornitori RPC e servizi indipendenti.
+Questo è il principale vantaggio dell'effetto rete: un client può risultare familiare agli utenti comuni continuando a trarre valore da molti client, nodi di comunità, provider RPC e servizi indipendenti.
 
-## Algoritmi di feed opzionali
+## Algoritmi dei feed facoltativi
 
-L’app di punta non dovrebbe imporre a tutti un sistema di classificazione globale.
+Il client della Fase 3 non dovrebbe imporre a tutti un unico sistema globale di classificazione.
 
-Gli algoritmi dei feed dovrebbero essere attivabili. Un utente può scegliere un algoritmo da un mercato, cambiare fornitore, utilizzare un algoritmo di un’azienda, utilizzarne uno gestito da un operatore anonimo, utilizzarne uno creato da una comunità, eseguirne uno personale o non utilizzare alcun algoritmo.
+Gli algoritmi dei feed dovrebbero essere attivati su scelta dell'utente. Un utente potrebbe scegliere un algoritmo da un marketplace, cambiare provider, usare l'algoritmo di un'azienda, uno gestito da un operatore anonimo, uno creato da una comunità, eseguirne uno personale oppure non usare alcun algoritmo.
 
-I fornitori di RPC pubblici rappresentano il luogo naturale in cui questi servizi possono competere. Possono indicizzare, classificare e consigliare contenuti, ma non dovrebbero possedere l'utente o il profilo.
+I provider RPC pubblici sono un luogo naturale in cui questi servizi possono competere. Possono indicizzare, classificare e consigliare contenuti, ma non dovrebbero possedere l'utente o il profilo.
 
-Tali servizi possono anche competere sulla forma dell’app stessa. Un RPC potrebbe fornire un feed classificato con annunci. Un altro potrebbe fornire un feed cronologico non classificato. Un altro potrebbe specializzarsi in privacy, traduzione, moderazione, scoperta della comunità o un grafico sociale di nicchia.
+Questi servizi possono competere anche sulla forma stessa del client. Un RPC potrebbe offrire un feed classificato con annunci. Un altro potrebbe offrire un feed cronologico non classificato. Un altro ancora potrebbe specializzarsi in privacy, traduzione, moderazione, scoperta delle comunità o in un grafo sociale di nicchia.
 
-Se l’economia funziona, i servizi di feed supportati da RPC potrebbero aggiungere funzionalità di intelligenza artificiale simili a quelle che le piattaforme tradizionali stanno cercando di inserire nei loro feed: traduzioni automatiche, riepiloghi, risposte assistite da bot, risposte di ricerca, assistenza alla moderazione o contesto in stile nota della comunità.
+Se il modello economico funziona, i servizi di feed basati su RPC potrebbero aggiungere funzionalità AI simili a quelle che le piattaforme tradizionali stanno cercando di inserire nei loro feed: traduzioni automatiche, riepiloghi, risposte assistite da bot, risposte alle ricerche, assistenza alla moderazione o contesto in stile note della comunità.
 
-Tali funzionalità dovrebbero essere scelte di servizio, non requisiti di protocollo. Una RPC predefinita può competere offrendo un feed più ricco, ma gli utenti e i clienti concorrenti dovrebbero comunque essere in grado di scegliere alternative più semplici, private, cronologiche, senza pubblicità o specifiche della comunità.
+Queste funzionalità dovrebbero essere scelte di servizio, non requisiti del protocollo. Un RPC predefinito può competere offrendo un feed più ricco, ma utenti e client concorrenti dovrebbero comunque poter scegliere alternative più semplici, private, cronologiche, senza annunci o specifiche per una comunità.
 
-## RPC non detentivo
+## RPC non custodiale
 
-Ogni utente dovrebbe essere in grado di partecipare come nodo peer-to-peer completo tramite RPC senza conferire al provider RPC la proprietà della propria identità o profilo.
+Ogni utente dovrebbe poter partecipare come nodo peer-to-peer completo tramite RPC senza concedere al provider RPC la proprietà della propria identità o del proprio profilo.
 
-Il percorso ospitato è importante perché la maggior parte degli utenti non inizierà eseguendo un server. Il percorso di uscita è altrettanto importante: un utente dovrebbe essere in grado di spostarsi sul proprio nodo del profilo su hardware con specifiche ridotte, incluso un Raspberry Pi, ogni volta che lo desidera.
+Il percorso gestito da un provider è importante perché la maggior parte degli utenti non inizierà eseguendo un server. Il percorso di uscita è altrettanto importante: un utente dovrebbe poter passare al proprio nodo di profilo su hardware con specifiche modeste, incluso un Raspberry Pi, quando vuole.
 
-Questa è la differenza tra convenienza e custodia.
+Questa è la differenza tra comodità e custodia.
 
-## Perché può diventare un'app tutto
+## Conversazione pubblica, rafforzata da Bitsocial Chain
 
-Se Bitsocial Chain offrisse alle app nomi durevoli, pagamenti, mance, premi e altri strumenti finanziari, l'app di punta potrebbe diventare molto più di un semplice client di feed.
+Bitsocial Chain può portare nomi durevoli, pagamenti, mance, premi e altri strumenti finanziari direttamente nella conversazione pubblica.
 
-Il vincolo importante è che l’app non diventi il ​​nuovo proprietario della rete. Può essere un client di grandi dimensioni, forse anche il client più popolare, lasciando comunque spazio ad app concorrenti, RPC concorrenti, algoritmi di feed concorrenti e nodi di profilo self-hosted.
+Il client della Fase 3 rimane incentrato su post, testo, condivisione di idee e discussioni in tempo reale, condividendo comunità ed effetti di rete con gli altri client Bitsocial.

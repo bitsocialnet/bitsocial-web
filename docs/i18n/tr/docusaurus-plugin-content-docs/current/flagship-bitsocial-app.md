@@ -1,73 +1,73 @@
 ---
-title: Amiral Gemisi Bitsocial Uygulaması
-description: "Önerilen profil tabanlı Bitsocial istemcisi: Varsayılan olarak X/Twitter'a benzer, ancak değiştirilebilir RPC'ler, yayınlar, algoritmalar, reklamlar ve topluluklar içerir."
+title: Twitter/X'i merkeziyetsizleştirmek
+description: "Ana planın 3. Aşaması: metin öncelikli kamusal konuşma için odaklı, merkeziyetsiz bir Twitter/X alternatifi; altyapısı değiştirilebilir."
 ---
 
-# Amiral Gemisi Bitsocial Uygulaması
+# Twitter/X'i merkeziyetsizleştirmek
 
-Amiral gemisi Bitsocial uygulaması, ağ için önerilen ilk profil tabanlı istemcidir. En basit karşılaştırma şudur: varsayılan olarak X/Twitter gibi tanıdık, ancak platform katmanı kırılmış durumda.
+3. Aşama, Twitter/X'e odaklı ve merkeziyetsiz bir alternatif oluşturma planıdır. Merkezinde metin öncelikli kamusal konuşma vardır: kısa gönderiler, yanıtlar, yeniden paylaşımlar, takipler, gerçek zamanlı tartışmalar ve topluluklar; platform katmanı ise açık hâle getirilir.
 
-Temel hizmetleri değiştirilebilir tutarken profiller, takipler, yanıtlar, yayınlar, topluluklar, bildirimler ve gerçek zamanlı halka açık konuşmalar ekleyecektir. 5chan, anonim toplulukların çalışabileceğini kanıtlıyor. Seedit kalıcı tartışmaya doğru ilerliyor. Amiral gemisi uygulaması, bir şirketi grafiğin sahibi yapmadan bu ağ etkilerini ana akım sosyal beslemeye taşıyacak.
+Twitter/X hâlâ gönderiler, metin ve fikir paylaşımıyla tanımlanıyor. 3. Aşama istemcisi bu temel deneyimde rekabet etmeli ve onu olağanüstü iyi hâle getirmelidir.
 
-Bu sayfada kilitli sürüm spesifikasyonu değil, ürün yönü açıklanmaktadır. Protokol ve ilk uygulamalar olgunlaştıkça tam arayüz, varsayılan yayın, reklam modeli, yapay zeka özellikleri ve RPC pazarı değişebilir.
+Bu sayfa sabitlenmiş bir sürüm tanımını değil, ürün yönünü açıklar. Kesin arayüz, varsayılan akış, reklam modeli, AI özellikleri ve RPC pazarı; protokol ve ilk uygulamalar olgunlaştıkça değişebilir.
 
 ## Neyi kanıtlaması gerektiği
 
-Uygulama, profil tabanlı bir sosyal ağın saklama platformu olmaktan kaçınabileceğini kanıtlamalıdır:
+İstemci, profil tabanlı bir sosyal ağın kullanıcı kimlikleri ve profilleri üzerinde kontrol kuran bir platforma dönüşmekten kaçınabileceğini kanıtlamalıdır:
 
 - kullanıcılar kimliklere ve profillere sahip olabilir
 - topluluklar ve profil düğümleri eşler arası kalabilir
 - topluluklar Bitsocial istemcileri arasında ağ efektleri taşıyabilir
-- RPC sağlayıcıları uygulamayı gözetim altına almadan kullanışlı hale getirebilir
+- RPC sağlayıcıları, kullanıcının kimliği veya profili üzerinde kontrol sahibi olmadan uygulamayı kullanışlı hâle getirebilir
 - besleme algoritmaları platform yasası yerine isteğe bağlı hizmetler olabilir
 - diğer istemciler hala aynı ağ için rekabet edebilir
 
-Önemli olan tek Bitsocial müşterisi olmak değil. Önemli olan, protokolün ne kadar genişleyebileceğini gösteren ilk geniş istemciyi oluşturmaktır.
+Amaç, mümkün olan en güçlü kamusal konuşma istemcisini oluşturmak ve protokolün ne kadar genişleyebileceğini göstermektir.
 
-## Varsayılan olarak tanıdık, tasarım gereği değiştirilebilir
+## Amacı tanıdık, tasarımı değiştirilebilir
 
-Varsayılan deneyim, ana akım genel konuşma uygulamalarıyla rekabet edebilecek düzeyde olmalıdır: hızlı ana sayfa akışı, takipler, yanıtlar, yeniden yayınlama tarzı dağıtım, topluluklar, bildirimler, arama ve anında çalışan, sıralanmış Sizin İçin görünümü.
+Varsayılan deneyim Twitter/X'in özüyle rekabet etmelidir: hızlı bir ana akış, metin gönderileri, takipler, yanıtlar, yeniden paylaşım yoluyla dağıtım, topluluklar, bildirimler, arama ve hemen çalışan sıralanmış bir For You görünümü.
 
 Bitsocial Forge, ilk varsayılan RPC'yi ve yayın hizmetini çalıştırabilir. Bu varsayılan, sıralı bir yayın ve reklamlar içerebilir, böylece ana kullanıcılardan tüm yığını kendilerinin oluşturmasını istemek yerine uygulamanın ilk günde tamamlanmış hissetmesi sağlanır.
 
-Aradaki fark, temerrüdün hapishaneye dönüşmemesidir. Kullanıcının RPC'leri, yayınları, örnekleri, sıralama sistemlerini, reklamları ve keşif sağlayıcılarını değiştirebilmesi veya sıralamayı tamamen kaldırabilmesi gerekir. Uygulama, her büyük hizmetin değiştirilebilir olmasını sağlarken, ilk açılışta değerlendirilebilir.
+Fark, varsayılanın bir hapishaneye dönüşmemesidir. Kullanıcı RPC'leri, akışları, örnekleri, sıralama sistemlerini, reklamları ve keşif sağlayıcılarını değiştirebilmeli ya da sıralamayı tamamen kaldırabilmelidir. İstemci, her önemli hizmeti değiştirilebilir tutarken ilk açılışta net varsayılan tercihler sunabilir.
 
-Bu, uygulamayı geleneksel bir platforma göre daha özelleştirilebilir hale getirir. Bir kullanıcı, reklamların yer aldığı varsayılan sıralı feed'i koruyabilir. Bir diğeri sıralaması olmayan kronolojik bir yayın kullanabilir. Bir diğeri gizlilik odaklı bir RPC'yi, topluluk tarafından işletilen bir keşif hizmetini, ücretli, reklamsız bir akışı veya belirli bir alt kültür için oluşturulmuş bir niş algoritmayı seçebilir.
+Bu, istemciyi geleneksel bir platformdan daha özelleştirilebilir kılar. Bir kullanıcı reklamlı varsayılan sıralanmış akışı koruyabilir. Bir başkası sıralamasız kronolojik akış kullanabilir. Bir diğeri gizlilik odaklı bir RPC, topluluğun işlettiği keşif hizmeti, ücretli ve reklamsız bir akış veya belirli bir alt kültüre yönelik niş bir algoritma seçebilir.
 
-## Müşteriler arası topluluklar
+## İstemciler arası topluluklar
 
 Topluluklar, tek bir uygulama içindeki izole gruplardan çok daha önemli olmalıdır.
 
 X/Twitter'da topluluklar X'in içinde hapsolmuştur. Yararlı olabilirler ancak tek bir platformun, tek hesap sisteminin, tek öneri yığınının ve tek ürün yüzeyinin sınırlarını miras alırlar.
 
-Bir Bitsocial topluluğu farklı istemciler aracılığıyla oluşturulabilir, barındırılabilir, keşfedilebilir ve kullanılabilir. Bu, amiral gemisi uygulamasının yalnızca amiral gemisi uygulamasında başlayan kullanıcılardan değil, daha geniş Bitsocial ağındaki toplulukları ve gönderileri gösterebileceği anlamına geliyor. Bir topluluk, aynı anda bir görüntü panosu istemcisinden, Reddit tarzı bir tartışma istemcisinden, bir niş forum istemcisinden, bir mobil uygulamadan ve amiral gemisi uygulamasından etkinliğe sahip olabilir.
+Bir Bitsocial topluluğu farklı istemciler üzerinden oluşturulabilir, barındırılabilir, keşfedilebilir ve kullanılabilir. Böylece 3. Aşama istemcisi yalnızca kendi içinde başlayan kullanıcıların değil, daha geniş Bitsocial ağındaki toplulukları ve gönderileri gösterebilir. Bir toplulukta aynı anda bir imageboard istemcisinden, Reddit tarzı tartışma istemcisinden, niş forum istemcisinden, mobil uygulamadan ve 3. Aşama istemcisinden etkinlik bulunabilir.
 
 Temel ağ etkisi avantajı budur: Bir istemci, birçok istemciden, topluluk düğümünden, RPC sağlayıcısından ve bağımsız hizmetlerden değer alırken, ana kullanıcılara tanıdık gelebilir.
 
 ## İsteğe bağlı besleme algoritmaları
 
-Amiral gemisi uygulaması herkese tek bir küresel sıralama sistemi dayatmamalı.
+3. Aşama istemcisi herkese tek bir küresel sıralama sistemi dayatmamalıdır.
 
-Feed algoritmaları etkinleştirilmelidir. Bir kullanıcı bir pazaryerinden bir algoritma seçebilir, sağlayıcıları değiştirebilir, bir şirketteki algoritmayı kullanabilir, anonim bir operatör tarafından çalıştırılan bir algoritmayı kullanabilir, bir topluluk tarafından oluşturulan bir algoritmayı kullanabilir, kişisel bir algoritma çalıştırabilir veya hiçbir algoritma kullanmayabilir.
+Akış algoritmaları isteğe bağlı olmalı ve yalnızca kullanıcı seçtiğinde etkinleştirilmelidir. Bir kullanıcı bir pazaryerinden bir algoritma seçebilir, sağlayıcıları değiştirebilir, bir şirketteki algoritmayı kullanabilir, anonim bir operatör tarafından çalıştırılan bir algoritmayı kullanabilir, bir topluluk tarafından oluşturulan bir algoritmayı kullanabilir, kişisel bir algoritma çalıştırabilir veya hiçbir algoritma kullanmayabilir.
 
-Kamu RPC sağlayıcıları bu hizmetlerin rekabet edebileceği doğal bir yerdir. İçeriği dizine ekleyebilir, sıralayabilir ve önerebilirler ancak kullanıcının veya profilin sahibi olmamalıdırlar.
+Kamu RPC sağlayıcıları bu hizmetlerin rekabet edebileceği doğal bir yerdir. İçeriği dizine ekleyebilir, sıralayabilir ve önerebilirler ancak kullanıcının kimliğini veya profilini kontrol etmemelidirler.
 
 Bu hizmetler aynı zamanda uygulamanın şekli konusunda da rekabet edebilir. Bir RPC, reklamların yer aldığı sıralı bir yayın sağlayabilir. Bir diğeri sıralanmamış bir kronolojik bilgi sağlayabilir. Bir diğeri gizlilik, çeviri, denetleme, topluluk keşfi veya niş bir sosyal grafik konusunda uzmanlaşabilir.
 
 Ekonomi işe yararsa, RPC destekli yayın hizmetleri, ana akım platformların yayınlarına koymaya çalıştığına benzer yapay zeka özellikleri ekleyebilir: otomatik çeviriler, özetler, bot destekli yanıtlar, arama yanıtları, denetleme yardımı veya topluluk notu stili bağlamı.
 
-Bu özellikler protokol gereklilikleri değil, hizmet seçimleri olmalıdır. Varsayılan bir RPC, daha zengin bir yayın sunarak rekabet edebilir, ancak kullanıcılar ve rakip müşteriler yine de daha basit, özel, kronolojik, reklamsız veya topluluğa özgü alternatifleri seçebilmelidir.
+Bu özellikler protokol gereklilikleri değil, hizmet seçimleri olmalıdır. Varsayılan bir RPC, daha zengin bir yayın sunarak rekabet edebilir, ancak kullanıcılar ve rakip istemciler yine de daha basit, özel, kronolojik, reklamsız veya topluluğa özgü alternatifleri seçebilmelidir.
 
-## Gözaltına alınmayan RPC
+## Kullanıcı kontrolünü devralmayan RPC
 
 Her kullanıcı, RPC sağlayıcısına kendi kimliğinin veya profilinin sahipliğini vermeden, RPC aracılığıyla tam eşler arası düğüm olarak katılabilmelidir.
 
 Barındırılan yol önemlidir çünkü çoğu kullanıcı bir sunucu çalıştırarak başlamayacaktır. Çıkış yolu da aynı derecede önemlidir: Bir kullanıcı, Raspberry Pi de dahil olmak üzere düşük özellikli donanımda, istediği zaman kendi profil düğümüne geçebilmelidir.
 
-Kolaylık ve velayet arasındaki fark budur.
+Kolaylık ile kontrolü devretmek arasındaki fark budur.
 
-## Neden her şeyi kapsayan bir uygulama haline gelebilir?
+## Bitsocial Chain ile güçlendirilen kamusal konuşma
 
-Bitsocial Chain, uygulamalara kalıcı isimlendirme, ödemeler, bahşişler, ödüller ve diğer finansal kolaylıklar sağlarsa, amiral gemisi uygulaması bir yayın istemcisinden çok daha fazlası haline gelebilir.
+Bitsocial Chain kalıcı adlandırmayı, ödemeleri, bahşişleri, ödülleri ve diğer finansal olanakları doğrudan kamusal konuşmaya taşıyabilir.
 
-Önemli kısıtlama, uygulamanın ağın yeni sahibi olmamasıdır. Büyük bir istemci, hatta belki de en popüler istemci olabilir, ancak yine de rakip uygulamalara, rakip RPC'lere, rakip feed algoritmalarına ve kendi kendine barındırılan profil düğümlerine yer bırakır.
+3. Aşama istemcisi gönderilere, metne, fikir paylaşımına ve gerçek zamanlı tartışmalara odaklanmayı sürdürürken diğer Bitsocial istemcileriyle toplulukları ve ağ etkilerini paylaşır.

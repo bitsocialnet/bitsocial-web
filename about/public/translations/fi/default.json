@@ -356,10 +356,10 @@
       },
       "phase3": {
         "phase": "Vaihe 3",
-        "title": "Käynnistä lippulaiva Bitsocial-sovellus",
-        "description": "Lippulaiva Bitsocial-sovelluksen tulisi olla ensimmäinen profiilipohjainen asiakas: viestit, vastaukset, seuraajat, reaaliaikainen julkinen keskustelu ja yhteisöt, jotka voivat saada verkkotehosteita jokaisesta Bitsocial-asiakkaasta. <strong>Oletusarvoisesti se voi tuntua yhtä tutulta kuin moderni For You -sosiaalinen sovellus</strong>, samalla kun käyttäjät voivat vaihtaa RPC:itä, syötteitä, esiintymiä, algoritmeja, mainoksia tai poistaa sijoituksen kokonaan.",
-        "rpcNodes": "Ei-vapauden RPC:n avulla jokainen käyttäjä voi silti toimia täysimääräisenä p2p-solmuna luottamatta RPC:n omistukseen. Jokaisen pitäisi pystyä siirtymään omaan profiilisolmuunsa matalan tason koneella, mukaan lukien Raspberry Pi, milloin tahansa.",
-        "everythingApp": "Koska vaihe 2 antaa sovellukselle pysäyttämättömän kryptotalouden kerroksen, lippulaivaasiakkaasta voi mahdollisesti tulla<strong>kaikki-sovellus</strong> muuttumatta vankeusalustaksi."
+        "title": "Twitter/X:n hajauttaminen",
+        "description": "Vaiheessa 3 pitäisi julkaista tarkkaan rajattu, hajautettu vaihtoehto Twitter/X:lle: julkaisut, vastaukset, uudelleenjulkaisut, seuraaminen, reaaliaikainen julkinen keskustelu ja yhteisöt, jotka voivat hyödyntää kaikkien Bitsocial-asiakasohjelmien verkostovaikutuksia. <strong>Sen pitäisi saada tekstilähtöinen julkinen keskustelu toimimaan poikkeuksellisen hyvin</strong>, samalla kun RPC:t, syötteet, instanssit, algoritmit, mainokset ja sijoitusjärjestys pysyvät vaihdettavina.",
+        "rpcNodes": "Sellaisen RPC-palvelun kautta, joka ei koskaan saa omistus- tai hallintaoikeutta käyttäjän identiteettiin, profiiliin tai avaimiin, jokainen käyttäjä voi edelleen toimia täysimittaisena p2p-solmuna luovuttamatta omistajuutta RPC-palveluntarjoajalle. Kenen tahansa pitäisi voida milloin tahansa siirtyä omaan profiilisolmuunsa vaatimattomalla laitteella, myös Raspberry Pi -laitteella.",
+        "everythingApp": "Bitsocial Chain voi tuoda pysyvät nimet, maksut, tipit, tunnustukset ja ansaintamahdollisuudet suoraan julkiseen keskusteluun."
       },
       "phase4": {
         "phase": "Vaihe 4",

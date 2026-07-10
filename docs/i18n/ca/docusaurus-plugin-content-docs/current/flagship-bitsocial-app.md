@@ -1,73 +1,73 @@
 ---
-title: Aplicació emblemàtica Bitsocial
-description: "El client Bitsocial proposat basat en el perfil: familiar com X/Twitter per defecte, però amb RPC, fonts, algorismes, anuncis i comunitats substituïbles."
+title: Descentralitzar Twitter/X
+description: "Fase 3 del pla mestre: una alternativa a Twitter/X enfocada i descentralitzada per a la conversa pública centrada en el text, amb infraestructura substituïble."
 ---
 
-# Aplicació emblemàtica Bitsocial
+# Descentralitzar Twitter/X
 
-L'aplicació insígnia Bitsocial és el primer client basat en perfils proposat per a la xarxa. La comparació més senzilla és: familiar com X/Twitter per defecte, però amb la capa de plataforma oberta.
+La fase 3 planteja construir una alternativa a Twitter/X enfocada i descentralitzada. El seu centre és la conversa pública centrada en el text: publicacions curtes, respostes, republicacions, seguiments, debat en temps real i comunitats, amb la capa de plataforma oberta.
 
-Afegiria perfils, seguiments, respostes, fonts, comunitats, notificacions i converses públiques en temps real, mantenint els serveis subjacents substituïbles. 5chan demostra que les comunitats anònimes poden funcionar. Seedit avança cap a una discussió persistent. L'aplicació insígnia portaria aquests efectes de xarxa a un canal social principal sense convertir una empresa en propietari del gràfic.
+Twitter/X continua definit per les publicacions, el text i l'intercanvi d'idees. El client de la fase 3 hauria de competir en aquesta experiència essencial i fer que funcioni excepcionalment bé.
 
-Aquesta pàgina descriu la direcció del producte, no una especificació de llançament bloquejada. La interfície exacta, el feed predeterminat, el model d'anunci, les funcions d'IA i el mercat RPC poden canviar a mesura que el protocol i les primeres aplicacions maduren.
+Aquesta pàgina descriu la direcció del producte, no una especificació de llançament tancada. La interfície exacta, el feed predeterminat, el model publicitari, les funcions AI i el mercat RPC poden canviar a mesura que madurin el protocol i les primeres aplicacions.
 
-## El que hauria de demostrar
+## Què hauria de demostrar
 
-L'aplicació hauria de demostrar que una xarxa social basada en perfils pot evitar convertir-se en una plataforma de custòdia:
+El client hauria de demostrar que una xarxa social basada en perfils pot evitar convertir-se en una plataforma de custòdia:
 
-- els usuaris poden posseir identitats i perfils
-- les comunitats i els nodes de perfil poden mantenir-se peer-to-peer
-- les comunitats poden tenir efectes de xarxa entre els clients de Bitsocial
-- Els proveïdors de RPC poden fer que l'aplicació sigui convenient sense tenir-ne la custòdia
-- els algorismes d'alimentació poden ser serveis opcionals en lloc de la llei de la plataforma
-- altres clients encara poden competir per la mateixa xarxa
+- els usuaris poden ser propietaris de les seves identitats i perfils
+- les comunitats i els nodes de perfil poden continuar sent peer-to-peer
+- les comunitats poden traslladar els efectes de xarxa entre clients Bitsocial
+- els proveïdors RPC poden fer que el client sigui còmode sense assumir-ne la custòdia
+- els algorismes dels feeds poden ser serveis opcionals en lloc de normes imposades per la plataforma
+- altres clients poden continuar competint per la mateixa xarxa
 
-La qüestió no és fer l'únic client de Bitsocial. La qüestió és fer el primer client ampli que mostri fins a quin punt es pot estendre el protocol.
+L'objectiu és construir el client més potent possible per a la conversa pública i demostrar fins on pot arribar el protocol.
 
-## Conegut per defecte, reemplaçable pel disseny
+## Familiar en el propòsit, substituïble per disseny
 
-L'experiència predeterminada hauria de ser competitiva amb les aplicacions de converses públiques principals: una alimentació ràpida a casa, seguiments, respostes, distribució a l'estil de republicació, comunitats, notificacions, cerca i una visualització classificada per a tu que funciona immediatament.
+L'experiència predeterminada hauria de competir amb el nucli de Twitter/X: un feed d'inici ràpid, publicacions de text, seguiments, respostes, distribució en forma de republicació, comunitats, notificacions, cerca i una vista ordenada For You que funcioni immediatament.
 
-Bitsocial Forge pot executar el primer servei de feed i RPC predeterminat. Aquesta predeterminada pot incloure un feed i anuncis classificats perquè l'aplicació se senti completa el primer dia en lloc de demanar als usuaris principals que muntin ells mateixos tota la pila.
+Bitsocial Forge pot gestionar el primer servei RPC i de feed predeterminat. Aquesta opció predeterminada pot incloure un feed ordenat i anuncis perquè el client sembli complet des del primer dia, en lloc de demanar als usuaris generalistes que muntin tota la pila pel seu compte.
 
-La diferència és que el predeterminat no s'ha de convertir en la presó. Un usuari hauria de poder canviar els RPC, els feeds, les instàncies, els sistemes de classificació, els anuncis i els proveïdors de descobriment, o eliminar la classificació completament. L'aplicació es pot opinar en el primer llançament, alhora que es pot substituir tots els serveis principals.
+La diferència és que l'opció predeterminada no s'ha de convertir en una presó. Un usuari hauria de poder canviar d'RPC, feeds, instàncies, sistemes d'ordenació, anuncis i proveïdors de descoberta, o bé eliminar completament l'ordenació. El client pot prendre decisions clares al primer inici i mantenir substituïbles tots els serveis principals.
 
-Això fa que l'aplicació sigui més personalitzable que una plataforma convencional. Un usuari pot mantenir el feed classificat predeterminat amb anuncis. Un altre podria utilitzar un canal cronològic sense classificació. Un altre podria triar un RPC centrat en la privadesa, un servei de descobriment gestionat per la comunitat, un feed sense anuncis de pagament o un algorisme de nínxol creat per a una subcultura específica.
+Això fa que el client sigui més personalitzable que una plataforma convencional. Un usuari podria mantenir el feed ordenat predeterminat amb anuncis. Un altre podria fer servir un feed cronològic sense ordenació. Un altre podria triar un RPC centrat en la privadesa, un servei de descoberta gestionat per la comunitat, un feed de pagament sense anuncis o un algorisme de nínxol creat per a una subcultura concreta.
 
-## Comunitats interclient
+## Comunitats entre clients
 
-Les comunitats haurien de ser molt més importants que els grups aïllats dins d'una aplicació.
+Les comunitats haurien de ser molt més importants que els grups aïllats dins d'una sola aplicació.
 
-A X/Twitter, les comunitats es limiten a X. Poden ser útils, però hereten els límits d'una plataforma, un sistema de comptes, una pila de recomanacions i una superfície de producte.
+A X/Twitter, les comunitats estan confinades dins d'X. Poden ser útils, però hereten els límits d'una plataforma, un sistema de comptes, una pila de recomanacions i una superfície de producte.
 
-Es pot crear, allotjar, descobrir i utilitzar una comunitat Bitsocial a través de diferents clients. Això vol dir que l'aplicació insígnia pot mostrar comunitats i publicacions de la xarxa més àmplia Bitsocial, no només dels usuaris que van començar dins de l'aplicació insígnia. Una comunitat podria tenir activitat d'un client de tauler d'imatges, un client de discussió a l'estil Reddit, un client de fòrums de nínxol, una aplicació mòbil i l'aplicació emblemàtica alhora.
+Una comunitat Bitsocial es pot crear, allotjar, descobrir i utilitzar des de clients diferents. Això vol dir que el client de la fase 3 pot mostrar comunitats i publicacions de la xarxa Bitsocial més àmplia, no només d'usuaris que hi hagin començat. Una comunitat podria tenir alhora activitat d'un client d'imageboard, un client de debat a l'estil de Reddit, un client de fòrum de nínxol, una aplicació mòbil i el client de la fase 3.
 
-Aquest és l'avantatge bàsic de l'efecte de la xarxa: un client pot sentir-se familiar per als usuaris generals tot i que encara treu valor de molts clients, nodes de la comunitat, proveïdors de RPC i serveis independents.
+Aquest és l'avantatge essencial de l'efecte de xarxa: un client pot resultar familiar als usuaris generalistes i continuar obtenint valor de molts clients, nodes de comunitat, proveïdors RPC i serveis independents.
 
-## Algoritmes d'alimentació opcionals
+## Algorismes de feed opcionals
 
-L'aplicació insígnia no hauria d'obligar un sistema de classificació global a tothom.
+El client de la fase 3 no hauria d'imposar a tothom un únic sistema global d'ordenació.
 
-Els algorismes de canals haurien d'estar activats. Un usuari podria triar un algorisme d'un mercat, canviar de proveïdor, utilitzar un algorisme d'una empresa, utilitzar un algorisme gestionat per un operador anònim, utilitzar un algorisme creat per una comunitat, executar-ne un de personal o no utilitzar cap algorisme.
+Els algorismes dels feeds haurien de ser opcionals. Un usuari podria triar un algorisme en un mercat, canviar de proveïdor, utilitzar l'algorisme d'una empresa, un de gestionat per un operador anònim, un de creat per una comunitat, executar-ne un de propi o no utilitzar-ne cap.
 
-Els proveïdors públics de RPC són un lloc natural per competir aquests serveis. Poden indexar, classificar i recomanar contingut, però no haurien de ser propietaris de l'usuari ni del perfil.
+Els proveïdors RPC públics són un lloc natural perquè aquests serveis competeixin. Poden indexar, ordenar i recomanar contingut, però no haurien de ser propietaris de l'usuari ni del perfil.
 
-Aquests serveis també poden competir amb la forma de l'aplicació. Un RPC pot proporcionar un feed classificat amb anuncis. Un altre podria proporcionar un feed cronològic sense classificar. Un altre podria especialitzar-se en privadesa, traducció, moderació, descobriment de comunitats o un gràfic social de nínxol.
+Aquests serveis també poden competir en la forma del client mateix. Un RPC podria oferir un feed ordenat amb anuncis. Un altre podria oferir un feed cronològic sense ordenar. Un altre podria especialitzar-se en privadesa, traducció, moderació, descoberta de comunitats o un graf social de nínxol.
 
-Si l'economia funciona, els serveis de feeds recolzats per RPC podrien afegir funcions d'IA similars a les que les plataformes convencionals intenten incloure als seus feeds: traduccions automàtiques, resums, respostes assistides per bot, respostes de cerca, assistència a la moderació o context d'estil de notes de la comunitat.
+Si el model econòmic funciona, els serveis de feed basats en RPC podrien afegir funcions AI semblants a les que les plataformes generalistes intenten introduir als seus feeds: traduccions automàtiques, resums, respostes assistides per bots, respostes de cerca, ajuda a la moderació o context a l'estil de les notes de la comunitat.
 
-Aquestes característiques haurien de ser opcions de servei, no requisits de protocol. Un RPC predeterminat pot competir oferint un feed més ric, però els usuaris i els clients competidors encara haurien de poder triar alternatives més senzilles, privades, cronològiques, sense anuncis o específiques de la comunitat.
+Aquestes funcions haurien de ser opcions de servei, no requisits del protocol. Un RPC predeterminat pot competir oferint un feed més ric, però els usuaris i els clients competidors haurien de poder continuar triant alternatives més simples, privades, cronològiques, sense anuncis o específiques d'una comunitat.
 
-## RPC no custodial
+## RPC sense custòdia
 
-Cada usuari hauria de poder participar com un node peer-to-peer complet mitjançant RPC sense donar al proveïdor RPC la propietat de la seva identitat o perfil.
+Cada usuari hauria de poder participar com un node peer-to-peer complet mitjançant RPC sense donar al proveïdor RPC la propietat de la seva identitat o del seu perfil.
 
-El camí allotjat és important perquè la majoria dels usuaris no començaran executant un servidor. El camí de sortida és igual de important: un usuari hauria de poder moure's al seu propi node de perfil amb un maquinari de baixes especificacions, inclòs un Raspberry Pi, sempre que vulgui.
+La via allotjada és important perquè la majoria d'usuaris no començaran executant un servidor. La via de sortida és igual d'important: un usuari hauria de poder passar al seu propi node de perfil en maquinari modest, inclòs un Raspberry Pi, sempre que vulgui.
 
-Aquesta és la diferència entre la comoditat i la custòdia.
+Aquesta és la diferència entre comoditat i custòdia.
 
-## Per què es pot convertir en una aplicació de tot
+## Conversa pública, reforçada per Bitsocial Chain
 
-Si Bitsocial Chain ofereix a les aplicacions noms duradors, pagaments, propina, premis i altres vies financeres, l'aplicació insígnia podria convertir-se en molt més que un client d'alimentació.
+Bitsocial Chain pot incorporar noms duradors, pagaments, propines, premis i altres vies financeres directament a la conversa pública.
 
-La limitació important és que l'aplicació no s'ha de convertir en el nou propietari de la xarxa. Pot ser un client gran, potser fins i tot el client més popular, tot deixant espai per a aplicacions competidores, RPC competidors, algorismes de feeds competidors i nodes de perfil autoallotjats.
+El client de la fase 3 es manté centrat en les publicacions, el text, l'intercanvi d'idees i el debat en temps real, alhora que comparteix comunitats i efectes de xarxa amb altres clients Bitsocial.

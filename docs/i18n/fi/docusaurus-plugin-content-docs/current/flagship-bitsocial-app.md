@@ -1,73 +1,73 @@
 ---
-title: Lippulaiva Bitsocial-sovellus
-description: "Ehdotettu profiilipohjainen Bitsocial-asiakas: tuttu, kuten X/Twitter oletuksena, mutta jossa on vaihdettavat RPC:t, syötteet, algoritmit, mainokset ja yhteisöt."
+title: Twitter/X:n hajauttaminen
+description: "Yleissuunnitelman vaihe 3: tarkasti rajattu, hajautettu vaihtoehto Twitter/X:lle tekstipainotteiseen julkiseen keskusteluun, vaihdettavalla infrastruktuurilla."
 ---
 
-# Lippulaiva Bitsocial-sovellus
+# Twitter/X:n hajauttaminen
 
-Lippulaiva Bitsocial-sovellus on verkon ensimmäinen profiilipohjainen asiakas. Yksinkertaisin vertailu on: tuttu kuten X/Twitter oletuksena, mutta alustakerros on rikki.
+Vaiheessa 3 on tarkoitus rakentaa tarkasti rajattu, hajautettu vaihtoehto Twitter/X:lle. Sen ytimessä on tekstipainotteinen julkinen keskustelu: lyhyet julkaisut, vastaukset, uudelleenjulkaisut, seuraamiset, reaaliaikainen keskustelu ja yhteisöt, ja samalla alustakerros avataan.
 
-Se lisäisi profiileja, seuraajia, vastauksia, syötteitä, yhteisöjä, ilmoituksia ja reaaliaikaista julkista keskustelua samalla, kun taustalla olevat palvelut säilyvät korvattavissa. 5chan todistaa, että nimettömät yhteisöt voivat toimia. Seedit siirtyy kohti jatkuvaa keskustelua. Lippulaivasovellus toisi nämä verkkovaikutukset yleiseen sosiaaliseen syötteeseen tekemättä yhdestä yrityksestä kaavion omistajaa.
+Twitter/X määrittyy edelleen julkaisujen, tekstin ja ajatusten jakamisen kautta. Vaiheen 3 asiakasohjelman pitäisi kilpailla tällä ydinkokemuksella ja tehdä siitä poikkeuksellisen toimiva.
 
-Tällä sivulla kuvataan tuotteen suunta, ei lukitun julkaisun tiedot. Tarkka käyttöliittymä, oletussyöte, mainosmalli, tekoälyominaisuudet ja RPC-markkinapaikka voivat muuttua protokollan ja varhaisten sovellusten kypsyessä.
+Tämä sivu kuvaa tuotteen suuntaa, ei lukittua julkaisuvaatimusta. Tarkka käyttöliittymä, oletussyöte, mainosmalli, AI-ominaisuudet ja RPC-markkinapaikka voivat muuttua protokollan ja ensimmäisten sovellusten kypsyessä.
 
-## Mitä sen pitäisi todistaa
+## Mitä sen pitäisi osoittaa
 
-Sovelluksen tulee todistaa, että profiilipohjainen sosiaalinen verkosto voi välttää muuttumasta vankeusalustaksi:
+Asiakasohjelman pitäisi osoittaa, että profiileihin perustuva sosiaalinen verkosto voi välttää muuttumisen käyttäjien identiteettejä hallinnoivaksi säilytysalustaksi:
 
-- käyttäjät voivat omistaa identiteettejä ja profiileja
-- yhteisöt ja profiilisolmut voivat pysyä peer-to-peer
-- yhteisöt voivat kuljettaa verkkovaikutuksia Bitsocial-asiakkaiden välillä
-- RPC-palveluntarjoajat voivat tehdä sovelluksesta kätevän ilman huoltajuutta
-- syötealgoritmit voivat olla valinnaisia ​​palveluita alustalain sijaan
-- muut asiakkaat voivat silti kilpailla samasta verkosta
+- käyttäjät voivat omistaa identiteettinsä ja profiilinsa
+- yhteisöt ja profiilisolmut voivat pysyä peer-to-peer-muodossa
+- yhteisöt voivat välittää verkostovaikutuksia Bitsocial-asiakasohjelmien välillä
+- RPC-palveluntarjoajat voivat tehdä asiakasohjelmasta helppokäyttöisen ottamatta tietoja säilytykseensä
+- syötealgoritmit voivat olla valinnaisia palveluita alustan sanelemien sääntöjen sijaan
+- muut asiakasohjelmat voivat edelleen kilpailla samasta verkostosta
 
-Tarkoitus ei ole tehdä ainoaa Bitsocial-asiakasta. Tarkoituksena on tehdä ensimmäinen laaja asiakas, joka näyttää kuinka pitkälle protokolla voi venyä.
+Tarkoitus on rakentaa mahdollisimman vahva asiakasohjelma julkiseen keskusteluun ja osoittaa, kuinka pitkälle protokolla voi ulottua.
 
-## Oletuksena tuttu, korvattavissa suunnittelulla
+## Tarkoitukseltaan tuttu, rakenteeltaan vaihdettava
 
-Oletuskokemuksen tulisi olla kilpailukykyinen yleisten julkisten keskustelusovellusten kanssa: nopea kotisyöte, seurannat, vastaukset, uudelleenlähetystyylinen jakelu, yhteisöt, ilmoitukset, haku ja sinulle sijoitettu näkymä, joka toimii välittömästi.
+Oletuskokemuksen pitäisi kilpailla Twitter/X:n ytimen kanssa: nopea etusivun syöte, tekstijulkaisut, seuraamiset, vastaukset, uudelleenjulkaisujen kaltainen jakelu, yhteisöt, ilmoitukset, haku ja heti toimiva, järjestetty For You -näkymä.
 
-Bitsocial Forge voi käyttää ensimmäistä oletusarvoista RPC- ja syötepalvelua. Tämä oletusarvo voi sisältää paremmuusjärjestyksen ja mainokset, jotta sovellus tuntuu täydelliseltä ensimmäisenä päivänä sen sijaan, että se pyytäisi yleisiä käyttäjiä kokoamaan koko pinon itse.
+Bitsocial Forge voi ylläpitää ensimmäistä oletusarvoista RPC- ja syötepalvelua. Oletukseen voi kuulua järjestetty syöte ja mainoksia, jotta asiakasohjelma tuntuu valmiilta ensimmäisestä päivästä lähtien eikä tavallisia käyttäjiä pyydetä kokoamaan koko pinoa itse.
 
-Erona on, että oletuksena ei pitäisi tulla vankilaksi. Käyttäjän pitäisi pystyä vaihtamaan RPC:itä, syötteitä, esiintymiä, sijoitusjärjestelmiä, mainoksia ja hakupalveluntarjoajia tai poistamaan sijoitus kokonaan. Sovellusta voidaan arvioida ensimmäisellä käynnistyskerralla samalla, kun kaikki tärkeät palvelut ovat vaihdettavissa.
+Erona on, ettei oletuksesta saa tulla vankilaa. Käyttäjän pitäisi voida vaihtaa RPC:tä, syötettä, instanssia, järjestysjärjestelmää, mainoksia ja löytämispalvelun tarjoajaa tai poistaa järjestäminen kokonaan. Asiakasohjelma voi tehdä ensikäynnistyksessä selkeitä oletusvalintoja ja pitää silti kaikki keskeiset palvelut vaihdettavina.
 
-Tämä tekee sovelluksesta muokattavamman kuin perinteinen alusta. Yksi käyttäjä saattaa säilyttää oletusarvoisen sijoitetun syötteen mainoksilla. Toinen saattaa käyttää kronologista syötettä ilman sijoitusta. Toinen voisi valita yksityisyyteen keskittyvän RPC:n, yhteisön ylläpitämän etsintäpalvelun, maksullisen mainoksettoman syötteen tai tietylle alakulttuurille rakennetun kapean algoritmin.
+Tämä tekee asiakasohjelmasta perinteistä alustaa muokattavamman. Yksi käyttäjä voi pitää oletusarvoisen järjestetyn syötteen mainoksineen. Toinen voi käyttää kronologista syötettä ilman järjestämistä. Kolmas voi valita yksityisyyteen keskittyvän RPC:n, yhteisön ylläpitämän löytämispalvelun, maksullisen mainoksettoman syötteen tai tietylle alakulttuurille rakennetun erikoisalgoritmin.
 
-## Asiakkaiden väliset yhteisöt
+## Asiakasohjelmien väliset yhteisöt
 
-Yhteisöjen pitäisi olla paljon tärkeämpiä kuin yksittäiset ryhmät yhden sovelluksen sisällä.
+Yhteisöjen pitäisi olla paljon tärkeämpiä kuin yhden sovelluksen sisäiset erilliset ryhmät.
 
-X/Twitterissä yhteisöt rajoittuvat X:n sisään. Ne voivat olla hyödyllisiä, mutta ne perivät yhden alustan, yhden tilijärjestelmän, yhden suosituspinon ja yhden tuotepinnan rajat.
+X/Twitterissä yhteisöt on rajattu X:n sisään. Ne voivat olla hyödyllisiä, mutta niihin periytyvät yhden alustan, yhden tilijärjestelmän, yhden suosituspinon ja yhden tuotenäkymän rajoitukset.
 
-Bitsocial-yhteisöä voidaan luoda, isännöidä, löytää ja käyttää eri asiakkaiden kautta. Tämä tarkoittaa, että lippulaivasovellus voi näyttää yhteisöjä ja viestejä laajemmasta Bitsocial-verkostosta, ei vain käyttäjiltä, ​​jotka aloittivat lippulaivasovelluksen sisällä. Yhteisöllä voi olla samanaikaisesti toimintaa kuvatauluasiakkaalta, Reddit-tyyliseltä keskusteluasiakkaalta, niche-foorumiasiakkaalta, mobiilisovellukselta ja lippulaivasovellukselta.
+Bitsocial-yhteisö voidaan luoda, ylläpitää, löytää ja ottaa käyttöön eri asiakasohjelmissa. Siksi vaiheen 3 asiakasohjelma voi näyttää yhteisöjä ja julkaisuja laajemmasta Bitsocial-verkostosta eikä vain käyttäjiltä, jotka aloittivat sen sisällä. Samassa yhteisössä voisi olla samanaikaisesti toimintaa imageboard-asiakasohjelmasta, Reddit-tyylisestä keskusteluohjelmasta, erikoistuneesta foorumiohjelmasta, mobiilisovelluksesta ja vaiheen 3 asiakasohjelmasta.
 
-Tämä on ydinverkkovaikutusten etu: yksi asiakas voi tuntea olonsa tutulta valtavirran käyttäjille, mutta silti vetää arvoa monilta asiakkailta, yhteisön solmuilta, RPC-palveluntarjoajilta ja riippumattomilta palveluilta.
+Tämä on verkostovaikutuksen keskeinen etu: yksi asiakasohjelma voi tuntua tavallisille käyttäjille tutulta ja saada samalla arvoa monista asiakasohjelmista, yhteisösolmuista, RPC-palveluntarjoajista ja riippumattomista palveluista.
 
-## Valinnaiset syöttöalgoritmit
+## Valinnaiset syötealgoritmit
 
-Lippulaivasovelluksen ei pitäisi pakottaa yhtä globaalia luokitusjärjestelmää kaikille.
+Vaiheen 3 asiakasohjelman ei pitäisi pakottaa yhtä maailmanlaajuista järjestysjärjestelmää kaikille.
 
-Syötealgoritmien tulee olla valinnaisia. Käyttäjä voi valita algoritmin markkinapaikalta, vaihtaa palveluntarjoajaa, käyttää yrityksen algoritmia, käyttää anonyymin operaattorin suorittamaa algoritmia, käyttää yhteisön rakentamaa algoritmia, käyttää henkilökohtaista algoritmia tai olla käyttämättä algoritmia ollenkaan.
+Syötealgoritmien pitäisi olla valinnaisia. Käyttäjä voisi valita algoritmin markkinapaikalta, vaihtaa palveluntarjoajaa, käyttää yrityksen, nimettömän ylläpitäjän tai yhteisön algoritmia, ajaa omaa algoritmiaan tai olla käyttämättä algoritmia lainkaan.
 
-Julkiset RPC-palveluntarjoajat ovat näille palveluille luonnollinen kilpailupaikka. He voivat indeksoida, luokitella ja suositella sisältöä, mutta he eivät saa omistaa käyttäjää tai profiilia.
+Julkiset RPC-palveluntarjoajat ovat luonteva paikka näiden palveluiden kilpailulle. Ne voivat indeksoida, järjestää ja suositella sisältöä, mutta niiden ei pitäisi omistaa käyttäjää tai profiilia.
 
-Nämä palvelut voivat kilpailla myös itse sovelluksen muodosta. Yksi RPC voi tarjota sijoitetun syötteen mainoksilla. Toinen saattaa tarjota rankaisemattoman kronologisen syötteen. Toinen voi erikoistua yksityisyyteen, kääntämiseen, moderointiin, yhteisön löytämiseen tai kapeaan sosiaaliseen kaavioon.
+Palvelut voivat kilpailla myös itse asiakasohjelman muodosta. Yksi RPC voi tarjota järjestetyn syötteen mainoksineen. Toinen voi tarjota järjestämättömän kronologisen syötteen. Kolmas voi erikoistua yksityisyyteen, käännöksiin, moderointiin, yhteisöjen löytämiseen tai rajatun alan sosiaaliseen graafiin.
 
-Jos talous toimii, RPC:n tukemat syötepalvelut voisivat lisätä tekoälyominaisuuksia, jotka ovat samankaltaisia ​​kuin mitä valtavirran alustat yrittävät lisätä syötteihinsä: automaattisia käännöksiä, tiivistelmiä, bot-avusteisia vastauksia, hakuvastauksia, moderointiapua tai yhteisön muistiinpanotyylistä kontekstia.
+Jos taloudellinen malli toimii, RPC-pohjaiset syötepalvelut voisivat lisätä AI-ominaisuuksia, jotka muistuttavat valtavirran alustojen syötteisiinsä tuomia toimintoja: automaattisia käännöksiä, yhteenvetoja, bottiavusteisia vastauksia, hakuvastauksia, moderointiapua tai yhteisömuistiinpanojen kaltaista kontekstia.
 
-Näiden ominaisuuksien tulisi olla palveluvalintoja, ei protokollavaatimuksia. Oletus-RPC voi kilpailla tarjoamalla monipuolisemman syötteen, mutta käyttäjien ja kilpailevien asiakkaiden pitäisi silti voida valita yksinkertaisempia, yksityisiä, kronologisia, mainoksia sisältämättömiä tai yhteisökohtaisia ​​vaihtoehtoja.
+Näiden ominaisuuksien pitäisi olla palveluvalintoja, ei protokollavaatimuksia. Oletusarvoinen RPC voi kilpailla tarjoamalla monipuolisemman syötteen, mutta käyttäjien ja kilpailevien asiakasohjelmien pitäisi voida valita myös yksinkertaisempia, yksityisiä, kronologisia, mainoksettomia tai yhteisökohtaisia vaihtoehtoja.
 
-## Ei-vapaudenmukainen RPC
+## RPC ilman säilytysoikeutta
 
-Jokaisen käyttäjän pitäisi voida osallistua täydellisenä vertaissolmuna RPC:n kautta antamatta RPC-palveluntarjoajalle identiteettinsä tai profiilinsa omistusta.
+Jokaisen käyttäjän pitäisi voida osallistua täydellisenä peer-to-peer-solmuna RPC:n kautta luovuttamatta RPC-palveluntarjoajalle identiteettinsä tai profiilinsa omistajuutta.
 
-Isännöity polku on tärkeä, koska useimmat käyttäjät eivät aloita suorittamalla palvelinta. Poistumispolulla on aivan yhtä suuri merkitys: käyttäjän tulisi voida siirtyä omaan profiilisolmuunsa heikossa laitteistossa, mukaan lukien Raspberry Pi, milloin tahansa.
+Palveluntarjoajan ylläpitämä reitti on tärkeä, koska useimmat käyttäjät eivät aloita oman palvelimen ajamisesta. Poistumisreitti on yhtä tärkeä: käyttäjän pitäisi voida siirtyä omaan profiilisolmuunsa vaatimattomalla laitteistolla, myös Raspberry Pi:llä, milloin tahansa.
 
-Tämä on ero mukavuuden ja huoltajuuden välillä.
+Tämä on helppokäyttöisyyden ja säilytysvallan ero.
 
-## Miksi siitä voi tulla kaikenlainen sovellus
+## Bitsocial Chainin vahvistama julkinen keskustelu
 
-Jos Bitsocial Chain antaa sovelluksille kestävän nimeämisen, maksut, juomarahat, palkinnot ja muut taloudelliset rajoitukset, lippulaivasovelluksesta voi tulla paljon enemmän kuin syöteasiakas.
+Bitsocial Chain voi tuoda pysyvät nimet, maksut, tipit, palkinnot ja muita taloudellisia väyliä suoraan julkiseen keskusteluun.
 
-Tärkeä rajoitus on, että sovelluksesta ei tule verkon uutta omistajaa. Se voi olla suuri asiakas, ehkä jopa suosituin asiakas, mutta jättää silti tilaa kilpaileville sovelluksille, kilpaileville RPC:ille, kilpaileville syötealgoritmeille ja itseisännöityille profiilisolmuille.
+Vaiheen 3 asiakasohjelma pysyy keskittyneenä julkaisuihin, tekstiin, ajatusten jakamiseen ja reaaliaikaiseen keskusteluun sekä jakaa yhteisöjä ja verkostovaikutuksia muiden Bitsocial-asiakasohjelmien kanssa.

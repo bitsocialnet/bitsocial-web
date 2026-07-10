@@ -101,13 +101,13 @@ const roadmapCards = [
     eyebrow: tr("docs.home.roadmap.card.flagship.eyebrow", "Phase 3", "Roadmap card eyebrow."),
     title: tr(
       "docs.home.roadmap.card.flagship.title",
-      "Flagship Bitsocial app",
-      "Roadmap card title for the flagship Bitsocial app page.",
+      "Decentralize Twitter/X",
+      "Roadmap card title for the Phase 3 Twitter/X alternative page.",
     ),
     body: tr(
       "docs.home.roadmap.card.flagship.body",
-      "The profile-based client with optional feed algorithms, non-custodial RPC, and self-hostable profile nodes.",
-      "Roadmap card description for the flagship Bitsocial app page.",
+      "A focused, text-first public conversation client with replaceable feeds, algorithms, RPCs, and self-hostable profile nodes.",
+      "Roadmap card description for the Phase 3 Twitter/X alternative page.",
     ),
   },
   {

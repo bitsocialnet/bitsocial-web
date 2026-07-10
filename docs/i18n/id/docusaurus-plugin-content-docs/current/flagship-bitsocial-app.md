@@ -1,73 +1,73 @@
 ---
-title: Aplikasi Bitsocial andalan
-description: "Klien Bitsocial berbasis profil yang diusulkan: familiar seperti X/Twitter secara default, tetapi dengan RPC, feed, algoritma, iklan, dan komunitas yang dapat diganti."
+title: Mendesentralisasikan Twitter/X
+description: "Tahap 3 rencana induk: alternatif Twitter/X yang fokus dan terdesentralisasi untuk percakapan publik yang mengutamakan teks, dengan infrastruktur yang dapat diganti."
 ---
 
-# Aplikasi Bitsocial andalan
+# Mendesentralisasikan Twitter/X
 
-Aplikasi unggulan Bitsocial adalah klien berbasis profil pertama yang diusulkan untuk jaringan tersebut. Perbandingan paling sederhana adalah: familiar seperti X/Twitter secara default, tetapi dengan lapisan platform terbuka.
+Tahap 3 adalah rencana untuk membangun alternatif Twitter/X yang fokus dan terdesentralisasi. Pusatnya adalah percakapan publik yang mengutamakan teks: posting singkat, balasan, repost, mengikuti akun, diskusi real-time, dan komunitas, dengan lapisan platform yang dibuka.
 
-Ini akan menambahkan profil, mengikuti, balasan, feed, komunitas, notifikasi, dan percakapan publik real-time sambil menjaga layanan dasar tetap dapat diganti. 5chan membuktikan komunitas anonim dapat berfungsi. Seedit bergerak menuju diskusi yang gigih. Aplikasi andalan ini akan menghadirkan efek jaringan tersebut ke dalam media sosial arus utama tanpa menjadikan satu perusahaan sebagai pemilik grafiknya.
+Twitter/X masih ditentukan oleh posting, teks, dan berbagi gagasan. Klien Tahap 3 seharusnya bersaing pada pengalaman inti tersebut dan membuatnya bekerja dengan sangat baik.
 
-Halaman ini menjelaskan arah produk, bukan spesifikasi rilis yang terkunci. Antarmuka yang tepat, feed default, model iklan, fitur AI, dan pasar RPC dapat berubah seiring dengan semakin matangnya protokol dan aplikasi awal.
+Halaman ini menjelaskan arah produk, bukan spesifikasi rilis yang dikunci. Antarmuka yang tepat, feed bawaan, model iklan, fitur AI, dan marketplace RPC dapat berubah seiring dengan berkembangnya protokol dan aplikasi-aplikasi awal.
 
-## Apa yang harus dibuktikan
+## Hal yang harus dibuktikan
 
-Aplikasi ini harus membuktikan bahwa jejaring sosial berbasis profil dapat menghindari menjadi platform kustodian:
+Klien seharusnya membuktikan bahwa jejaring sosial berbasis profil dapat menghindari menjadi platform kustodial:
 
-- pengguna dapat memiliki identitas dan profil
-- komunitas dan node profil dapat tetap bersifat peer-to-peer
-- komunitas dapat membawa efek jaringan ke seluruh klien Bitsocial
-- Penyedia RPC dapat membuat aplikasi nyaman tanpa mengambil hak asuh
-- algoritme umpan dapat menjadi layanan opsional, bukan hukum platform
-- klien lain masih dapat bersaing untuk jaringan yang sama
+- pengguna dapat memiliki identitas dan profil mereka
+- komunitas dan node profil dapat tetap peer-to-peer
+- komunitas dapat membawa efek jaringan di antara klien Bitsocial
+- penyedia RPC dapat membuat klien nyaman digunakan tanpa mengambil alih kustodi
+- algoritma feed dapat menjadi layanan opsional, bukan aturan yang dipaksakan platform
+- klien lain tetap dapat bersaing untuk jaringan yang sama
 
-Intinya bukan menjadikan satu-satunya klien Bitsocial. Intinya adalah membuat klien luas pertama yang menunjukkan sejauh mana protokol dapat diperluas.
+Tujuannya adalah membangun klien percakapan publik sekuat mungkin dan menunjukkan sejauh mana protokol dapat berkembang.
 
-## Familiar secara default, dapat diganti berdasarkan desain
+## Akrab dalam tujuan, dapat diganti sejak desain
 
-Pengalaman default harus bersaing dengan aplikasi percakapan publik arus utama: feed beranda cepat, mengikuti, membalas, distribusi gaya posting ulang, komunitas, notifikasi, pencarian, dan tampilan peringkat Untuk Anda yang langsung berfungsi.
+Pengalaman bawaan seharusnya bersaing dengan inti Twitter/X: feed beranda yang cepat, posting teks, mengikuti akun, balasan, distribusi melalui repost, komunitas, notifikasi, pencarian, dan tampilan For You berperingkat yang langsung berfungsi.
 
-Bitsocial Forge dapat menjalankan RPC dan layanan feed default pertama. Default tersebut dapat mencakup feed berperingkat dan iklan sehingga aplikasi terasa lengkap pada hari pertama daripada meminta pengguna umum untuk merakit sendiri seluruh tumpukannya.
+Bitsocial Forge dapat menjalankan layanan RPC dan feed bawaan pertama. Layanan bawaan itu dapat menyertakan feed berperingkat dan iklan agar klien terasa lengkap sejak hari pertama, alih-alih meminta pengguna umum merakit seluruh stack sendiri.
 
-Bedanya, defaultnya tidak boleh jadi penjara. Pengguna harus dapat mengganti RPC, feed, instance, sistem peringkat, iklan, dan penyedia penemuan, atau menghapus peringkat seluruhnya. Aplikasi ini dapat diberi opini pada peluncuran pertama sambil menjaga setiap layanan utama tetap dapat diganti.
+Perbedaannya adalah pilihan bawaan tidak boleh menjadi penjara. Pengguna seharusnya dapat mengganti RPC, feed, instance, sistem peringkat, iklan, dan penyedia penemuan, atau menghapus pemeringkatan sepenuhnya. Klien dapat membuat pilihan bawaan yang tegas saat pertama kali dibuka sambil menjaga agar setiap layanan utama tetap dapat diganti.
 
-Hal ini membuat aplikasi lebih dapat disesuaikan dibandingkan platform konvensional. Satu pengguna mungkin mempertahankan feed peringkat default dengan iklan. Yang lain mungkin menggunakan feed kronologis tanpa peringkat. Yang lain mungkin memilih RPC yang berfokus pada privasi, layanan penemuan yang dijalankan komunitas, feed bebas iklan berbayar, atau algoritma khusus yang dibuat untuk subkultur tertentu.
+Hal itu membuat klien lebih mudah disesuaikan dibandingkan platform konvensional. Seorang pengguna mungkin mempertahankan feed bawaan berperingkat dengan iklan. Pengguna lain mungkin memakai feed kronologis tanpa pemeringkatan. Yang lain dapat memilih RPC yang berfokus pada privasi, layanan penemuan yang dijalankan komunitas, feed berbayar tanpa iklan, atau algoritma khusus untuk subkultur tertentu.
 
 ## Komunitas lintas klien
 
-Komunitas harus menjadi lebih penting daripada kelompok terisolasi dalam satu aplikasi.
+Komunitas seharusnya jauh lebih penting daripada kelompok terisolasi di dalam satu aplikasi.
 
-Di X/Twitter, komunitas dibatasi di dalam X. Komunitas mungkin berguna, namun mereka mewarisi batasan dari satu platform, satu sistem akun, satu tumpukan rekomendasi, dan satu permukaan produk.
+Di X/Twitter, komunitas terbatas di dalam X. Komunitas dapat berguna, tetapi mewarisi batasan satu platform, satu sistem akun, satu stack rekomendasi, dan satu permukaan produk.
 
-Komunitas Bitsocial dapat dibuat, dihosting, ditemukan, dan digunakan melalui klien yang berbeda. Artinya, aplikasi unggulan dapat menampilkan komunitas dan postingan dari jaringan Bitsocial yang lebih luas, tidak hanya dari pengguna yang memulai di dalam aplikasi unggulan. Komunitas dapat memiliki aktivitas dari klien imageboard, klien diskusi bergaya Reddit, klien forum khusus, aplikasi seluler, dan aplikasi andalan secara bersamaan.
+Komunitas Bitsocial dapat dibuat, di-host, ditemukan, dan digunakan melalui klien yang berbeda. Artinya, klien Tahap 3 dapat menampilkan komunitas dan posting dari jaringan Bitsocial yang lebih luas, bukan hanya dari pengguna yang memulai di dalamnya. Sebuah komunitas dapat memperoleh aktivitas secara bersamaan dari klien imageboard, klien diskusi bergaya Reddit, klien forum khusus, aplikasi seluler, dan klien Tahap 3.
 
-Itulah keunggulan efek jaringan inti: satu klien dapat merasa akrab dengan pengguna arus utama sambil tetap mendapatkan manfaat dari banyak klien, node komunitas, penyedia RPC, dan layanan independen.
+Itulah keunggulan utama efek jaringan: satu klien dapat terasa akrab bagi pengguna umum sambil tetap memperoleh nilai dari banyak klien, node komunitas, penyedia RPC, dan layanan independen.
 
-## Algoritme umpan opsional
+## Algoritma feed opsional
 
-Aplikasi unggulan tidak boleh memaksakan satu sistem peringkat global pada semua orang.
+Klien Tahap 3 tidak seharusnya memaksakan satu sistem pemeringkatan global kepada semua orang.
 
-Algoritme umpan harus ikut serta. Pengguna dapat memilih algoritme dari pasar, berpindah penyedia, menggunakan algoritme dari perusahaan, menggunakan algoritme yang dijalankan oleh operator anonim, menggunakan algoritme yang dibuat oleh komunitas, menjalankan algoritme pribadi, atau tidak menggunakan algoritme sama sekali.
+Algoritma feed seharusnya dipilih secara aktif. Pengguna dapat memilih algoritma dari marketplace, berganti penyedia, menggunakan algoritma dari perusahaan, operator anonim, atau komunitas, menjalankan algoritma pribadi, atau tidak menggunakan algoritma sama sekali.
 
-Penyedia RPC publik adalah tempat alami bagi layanan ini untuk bersaing. Mereka dapat mengindeks, memberi peringkat, dan merekomendasikan konten, tetapi mereka tidak boleh memiliki pengguna atau profil tersebut.
+Penyedia RPC publik adalah tempat alami bagi layanan ini untuk bersaing. Mereka dapat mengindeks, memberi peringkat, dan merekomendasikan konten, tetapi tidak seharusnya memiliki pengguna atau profil.
 
-Layanan-layanan tersebut juga dapat bersaing dalam bentuk aplikasi itu sendiri. Satu RPC mungkin menyediakan feed berperingkat dengan iklan. Yang lain mungkin memberikan umpan kronologis yang tidak diberi peringkat. Yang lain mungkin berspesialisasi dalam privasi, terjemahan, moderasi, penemuan komunitas, atau grafik sosial khusus.
+Layanan tersebut juga dapat bersaing dalam bentuk klien itu sendiri. Satu RPC mungkin menyediakan feed berperingkat dengan iklan. RPC lain mungkin menyediakan feed kronologis tanpa peringkat. Yang lain lagi mungkin berfokus pada privasi, penerjemahan, moderasi, penemuan komunitas, atau graf sosial khusus.
 
-Jika ekonominya berhasil, layanan feed yang didukung RPC dapat menambahkan fitur AI serupa dengan apa yang coba dimasukkan oleh platform arus utama ke dalam feed mereka: terjemahan otomatis, ringkasan, balasan yang dibantu bot, jawaban pencarian, bantuan moderasi, atau konteks gaya catatan komunitas.
+Jika model ekonominya berjalan, layanan feed berbasis RPC dapat menambahkan fitur AI serupa dengan yang sedang dicoba oleh platform arus utama di feed mereka: terjemahan otomatis, ringkasan, balasan dengan bantuan bot, jawaban pencarian, bantuan moderasi, atau konteks bergaya catatan komunitas.
 
-Fitur-fitur tersebut harus menjadi pilihan layanan, bukan persyaratan protokol. RPC default dapat bersaing dengan menawarkan feed yang lebih kaya, namun pengguna dan klien yang bersaing tetap dapat memilih alternatif yang lebih sederhana, pribadi, kronologis, bebas iklan, atau spesifik komunitas.
+Fitur tersebut seharusnya menjadi pilihan layanan, bukan persyaratan protokol. RPC bawaan dapat bersaing dengan menawarkan feed yang lebih kaya, tetapi pengguna dan klien pesaing tetap harus dapat memilih alternatif yang lebih sederhana, privat, kronologis, bebas iklan, atau khusus komunitas.
 
-## RPC non-penahanan
+## RPC nonkustodial
 
-Setiap pengguna harus dapat berpartisipasi sebagai node peer-to-peer penuh melalui RPC tanpa memberikan kepemilikan kepada penyedia RPC atas identitas atau profil mereka.
+Setiap pengguna seharusnya dapat berpartisipasi sebagai node peer-to-peer penuh melalui RPC tanpa memberikan kepemilikan identitas atau profil mereka kepada penyedia RPC.
 
-Jalur yang dihosting penting karena sebagian besar pengguna tidak akan memulai dengan menjalankan server. Jalur keluar juga penting: pengguna harus dapat berpindah ke node profil mereka sendiri pada perangkat keras berspesifikasi rendah, termasuk Raspberry Pi, kapan pun mereka mau.
+Jalur yang di-host penting karena sebagian besar pengguna tidak akan memulai dengan menjalankan server. Jalur keluar sama pentingnya: pengguna seharusnya dapat berpindah ke node profil mereka sendiri pada perangkat berspesifikasi rendah, termasuk Raspberry Pi, kapan pun mereka mau.
 
-Itulah perbedaan antara kenyamanan dan hak asuh.
+Itulah perbedaan antara kemudahan dan kustodi.
 
-## Mengapa ini bisa menjadi aplikasi segalanya
+## Percakapan publik, diperkuat oleh Bitsocial Chain
 
-Jika Bitsocial Chain memberi aplikasi penamaan, pembayaran, pemberian tip, penghargaan, dan jalur finansial lainnya yang tahan lama pada aplikasi, aplikasi andalan bisa menjadi lebih dari sekadar klien feed.
+Bitsocial Chain dapat menghadirkan penamaan permanen, pembayaran, tip, penghargaan, dan sarana finansial lainnya langsung ke dalam percakapan publik.
 
-Kendala pentingnya adalah aplikasi tidak boleh menjadi pemilik baru jaringan. Ini bisa berupa klien besar, bahkan mungkin klien paling populer, namun tetap menyisakan ruang untuk aplikasi pesaing, RPC pesaing, algoritme umpan pesaing, dan node profil yang dihosting sendiri.
+Klien Tahap 3 tetap berpusat pada posting, teks, berbagi gagasan, dan diskusi real-time sambil berbagi komunitas dan efek jaringan dengan klien Bitsocial lainnya.

@@ -32,7 +32,7 @@ The content is biased toward inference-time lookup, not formal API reference gen
 - [Bitsocial Chain](https://docs.bitsocial.net/bitsocial-network/): Phase 2 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
 - [Build your own Bitsocial client](https://docs.bitsocial.net/build-your-own-client/): Builder guide for shipping independent Bitsocial clients, from imageboards and forums to niche social apps.
 - [Decentralize All Social Media](https://docs.bitsocial.net/decentralize-all-social-media/): Phase 5 of the master plan, focused on funding and building the long tail of Bitsocial social clients.
-- [Flagship Bitsocial App](https://docs.bitsocial.net/flagship-bitsocial-app/): The proposed profile-based Bitsocial client: familiar like X/Twitter by default, but with replaceable RPCs, feeds, algorithms, ads, and communities.
+- [Decentralize Twitter/X](https://docs.bitsocial.net/flagship-bitsocial-app/): Phase 3 of the master plan: a focused, decentralized Twitter/X alternative for text-first public conversation with replaceable infrastructure.
 - [Permissionless Public RPC](https://docs.bitsocial.net/permissionless-public-rpc/): Proposed design for a public Bitsocial RPC service with isolated users, scoped permissions, and community ownership.
 - [Scale Bitsocial Economies](https://docs.bitsocial.net/scale-bitsocial-economies/): Phase 4 of the master plan, focused on funding, infrastructure pluralism, and competing services around Bitsocial.
 
@@ -145,7 +145,7 @@ Bitsocial wins by attracting as many builders as possible. Run your own unstoppa
 
 - Phase 1 - Decentralize imageboards and forums: Imageboards are the simplest form of social media to decentralize: anonymous posting, few default boards, and no profile graph. 5chan proves Bitsocial can replace centralized imageboards while removing global admins from the equation.
 - Phase 2 - Launch Bitsocial Chain: In order to decentralize all social media, Bitsocial apps will need killer features and strong network effects: unstoppable financial structures, decentralized Bitsocial domains (.bso), awards and tipping, common liquidity, and practical monetization. All of this will be powered by Bitsocial Chain, the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
-- Phase 3 - Launch the flagship Bitsocial app: The flagship Bitsocial app should be the first profile-based client: posts, replies, follows, real-time public conversation, and communities that can pull network effects from every Bitsocial client. By default, it can feel as familiar as a modern For You social app, while still letting users switch RPCs, feeds, instances, algorithms, ads, or remove ranking entirely.
+- Phase 3 - Decentralize Twitter/X: Phase 3 should launch a focused, decentralized alternative to Twitter/X: posts, replies, reposts, follows, real-time public conversation, and communities that can pull network effects from every Bitsocial client. It should make text-first public conversation work exceptionally well, while keeping RPCs, feeds, instances, algorithms, ads, and ranking replaceable.
 - Phase 4 - Scale Bitsocial economies: The next layer is ecosystem funding and infrastructure pluralism. Bitsocial Forge's RPC should not be the only successful RPC: many businesses, independent teams, anonymous operators, and community entities should build RPCs, media hosting, discovery, moderation, and other services on top of Bitsocial. Funding should push that decentralization forward, so developers and operators can compete to make the network faster, cheaper, more reliable, and harder to capture.
 - Phase 5 - Decentralize all social media: With the core apps, public RPCs, profile nodes, discovery, and monetization in place, Bitsocial can fund and build the long tail of social clients: blogging, crowdfunding, creator video and a credible YouTube alternative, niche experiments, and every format too early for the first four phases. Bitsocial Forge can build some of them, centralized clients can compete too, they do not all have to be FOSS, and decentralized community grants can fund as many developers as possible.
 
@@ -1065,8 +1065,8 @@ non-custodial RPC provider, then move to self-hosting or a competing provider la
 
 ## Design principle
 
-Do not wait for one flagship app to solve every category. Build the client that should exist for
-your community, then let compatible clients compete in public.
+Build the client that should exist for your community, then let compatible clients compete in
+public.
 
 ### Decentralize All Social Media
 
@@ -1085,7 +1085,8 @@ social formats as possible.
 ## What still needs to be built
 
 The first phases focus on the highest-leverage categories: imageboards, forums, public RPC,
-Bitsocial Chain, profile nodes, the flagship app, and the service economy around them.
+Bitsocial Chain, profile nodes, the Phase 3 Twitter/X alternative, and the service economy around
+them.
 
 After that, the network should expand into the long tail:
 
@@ -1137,28 +1138,27 @@ experiments.
 Social media finally finds its equilibrium: a fully decentralized, peer-to-peer social network that
 nobody owns; Bitsocial.
 
-### Flagship Bitsocial App
+### Decentralize Twitter/X
 
 Source: https://docs.bitsocial.net/flagship-bitsocial-app/
 Path: docs/flagship-bitsocial-app.md
-Description: The proposed profile-based Bitsocial client: familiar like X/Twitter by default, but with replaceable RPCs, feeds, algorithms, ads, and communities.
+Description: Phase 3 of the master plan: a focused, decentralized Twitter/X alternative for text-first public conversation with replaceable infrastructure.
 
-# Flagship Bitsocial App
+# Decentralize Twitter/X
 
-The flagship Bitsocial app is the proposed first profile-based client for the network. The simplest
-comparison is: familiar like X/Twitter by default, but with the platform layer broken open.
+Phase 3 is a plan to build a focused, decentralized alternative to Twitter/X. Its center is
+text-first public conversation: short posts, replies, reposts, follows, real-time discussion, and
+communities, with the platform layer broken open.
 
-It would add profiles, follows, replies, feeds, communities, notifications, and real-time public
-conversation while keeping the underlying services replaceable. 5chan proves anonymous communities
-can work. Seedit moves toward persistent discussion. The flagship app would bring those network
-effects into a mainstream social feed without making one company the owner of the graph.
+Twitter/X is still defined by posts, text, and sharing ideas. The Phase 3 client should compete on
+that core experience and make it work exceptionally well.
 
 This page describes product direction, not a locked release spec. The exact interface, default feed,
 ad model, AI features, and RPC marketplace can change as the protocol and early apps mature.
 
 ## What it should prove
 
-The app should prove that a profile-based social network can avoid becoming a custodial platform:
+The client should prove that a profile-based social network can avoid becoming a custodial platform:
 
 - users can own identities and profiles
 - communities and profile nodes can stay peer-to-peer
@@ -1167,13 +1167,13 @@ The app should prove that a profile-based social network can avoid becoming a cu
 - feed algorithms can be optional services instead of platform law
 - other clients can still compete for the same network
 
-The point is not to make the only Bitsocial client. The point is to make the first broad client that
-shows how far the protocol can stretch.
+The goal is to build the strongest public-conversation client possible and show how far the protocol
+can stretch.
 
-## Familiar by default, replaceable by design
+## Familiar in purpose, replaceable by design
 
-The default experience should be competitive with mainstream public conversation apps: a fast home
-feed, follows, replies, repost-style distribution, communities, notifications, search, and a ranked
+The default experience should be competitive with Twitter/X at its core: a fast home feed, text
+posts, follows, replies, repost-style distribution, communities, notifications, search, and a ranked
 For You view that works immediately.
 
 Bitsocial Forge can run the first default RPC and feed service. That default can include a ranked
@@ -1182,9 +1182,9 @@ whole stack themselves.
 
 The difference is that the default should not become the prison. A user should be able to switch
 RPCs, feeds, instances, ranking systems, ads, and discovery providers, or remove ranking entirely.
-The app can be opinionated at first launch while keeping every major service replaceable.
+The client can be opinionated at first launch while keeping every major service replaceable.
 
-That makes the app more customizable than a conventional platform. One user might keep the default
+That makes the client more customizable than a conventional platform. One user might keep the default
 ranked feed with ads. Another might use a chronological feed with no ranking. Another might choose a
 privacy-focused RPC, a community-run discovery service, a paid ad-free feed, or a niche algorithm
 built for a specific subculture.
@@ -1193,21 +1193,21 @@ built for a specific subculture.
 
 Communities should be much more important than isolated groups inside one app.
 
-On X/Twitter, communities are confined inside X. They can be useful, but they inherit the limits of
-one platform, one account system, one recommendation stack, and one product surface.
+On Twitter/X, communities are confined to the product. They can be useful, but they inherit the
+limits of one platform, one account system, one recommendation stack, and one product surface.
 
 A Bitsocial community can be created, hosted, discovered, and used through different clients. That
-means the flagship app can show communities and posts from the wider Bitsocial network, not only from
-users who started inside the flagship app. A community could have activity from an imageboard client,
-a Reddit-style discussion client, a niche forum client, a mobile app, and the flagship app at the same
-time.
+means the Phase 3 client can show communities and posts from the wider Bitsocial network, not only
+from users who started inside it. A community could have activity from an imageboard client, a
+Reddit-style discussion client, a niche forum client, a mobile app, and the Phase 3 client at the
+same time.
 
 That is the core network-effect advantage: one client can feel familiar to mainstream users while
 still pulling value from many clients, community nodes, RPC providers, and independent services.
 
 ## Optional feed algorithms
 
-The flagship app should not force one global ranking system on everyone.
+The Phase 3 client should not force one global ranking system on everyone.
 
 Feed algorithms should be opt-in. A user could choose an algorithm from a marketplace, switch
 providers, use an algorithm from a company, use one run by an anonymous operator, use one built by a
@@ -1239,14 +1239,13 @@ a Raspberry Pi, whenever they want.
 
 That is the difference between convenience and custody.
 
-## Why it can become an everything-app
+## Public conversation, strengthened by Bitsocial Chain
 
-If Bitsocial Chain gives apps durable naming, payments, tipping, awards, and other financial
-rails, the flagship app could become much more than a feed client.
+Bitsocial Chain can bring durable naming, payments, tipping, awards, and other financial rails
+directly into public conversation.
 
-The important constraint is that the app should not become the new owner of the network. It can be a
-large client, maybe even the most popular client, while still leaving room for competing apps,
-competing RPCs, competing feed algorithms, and self-hosted profile nodes.
+The Phase 3 client stays centered on posts, text, sharing ideas, and real-time discussion while
+sharing communities and network effects with other Bitsocial clients.
 
 ### Permissionless Public RPC
 

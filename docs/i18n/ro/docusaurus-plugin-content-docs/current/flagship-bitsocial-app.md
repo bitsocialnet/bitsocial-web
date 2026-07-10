@@ -1,19 +1,19 @@
 ---
-title: Aplicația emblematică Bitsocial
-description: "Clientul Bitsocial propus pe bază de profil: familiar ca X/Twitter în mod implicit, dar cu RPC-uri, fluxuri, algoritmi, anunțuri și comunități înlocuibile."
+title: Descentralizarea Twitter/X
+description: "Faza 3 a planului principal: o alternativă descentralizată și bine focalizată la Twitter/X pentru conversații publice axate pe text, cu infrastructură înlocuibilă."
 ---
 
-# Aplicația emblematică Bitsocial
+# Descentralizarea Twitter/X
 
-Aplicația emblematică Bitsocial este primul client bazat pe profil propus pentru rețea. Cea mai simplă comparație este: familiar ca X/Twitter în mod implicit, dar cu stratul platformei rupt deschis.
+Faza 3 este un plan de a construi o alternativă descentralizată și bine focalizată la Twitter/X. În centru se află conversația publică axată pe text: postări scurte, răspunsuri, redistribuiri, urmărirea profilurilor, discuții în timp real și comunități, cu stratul de platformă deschis.
 
-Ar adăuga profiluri, urmăriri, răspunsuri, fluxuri, comunități, notificări și conversații publice în timp real, păstrând în același timp serviciile de bază înlocuibile. 5chan demonstrează că comunitățile anonime pot funcționa. Seedit se îndreaptă către discuții persistente. Aplicația emblematică ar aduce acele efecte de rețea într-un flux social de masă fără a face o companie proprietara graficului.
+Twitter/X este definit în continuare de postări, text și schimbul de idei. Clientul din Faza 3 ar trebui să concureze prin această experiență de bază și să o facă să funcționeze excepțional de bine.
 
-Această pagină descrie direcția produsului, nu o specificație de lansare blocată. Interfața exactă, feedul implicit, modelul de anunț, funcțiile AI și piața RPC se pot schimba pe măsură ce protocolul și aplicațiile timpurii se maturizează.
+Această pagină descrie direcția produsului, nu o specificație de lansare definitivă. Interfața exactă, fluxul implicit, modelul de publicitate, funcțiile AI și piața RPC se pot schimba pe măsură ce protocolul și primele aplicații se maturizează.
 
 ## Ce ar trebui să demonstreze
 
-Aplicația ar trebui să demonstreze că o rețea socială bazată pe profil poate evita să devină o platformă de custodie:
+Clientul ar trebui să demonstreze că o rețea socială bazată pe profiluri poate evita să devină o platformă custodiană:
 
 - utilizatorii pot deține identități și profiluri
 - comunitățile și nodurile de profil pot rămâne peer-to-peer
@@ -22,17 +22,17 @@ Aplicația ar trebui să demonstreze că o rețea socială bazată pe profil poa
 - algoritmii de alimentare pot fi servicii opționale în loc de legea platformei
 - alți clienți pot concura în continuare pentru aceeași rețea
 
-Ideea este să nu faci singurul client Bitsocial. Ideea este să facem primul client larg care să arate cât de departe se poate întinde protocolul.
+Scopul este construirea celui mai bun client posibil pentru conversații publice și demonstrarea capacității de extindere a protocolului.
 
-## Familiar în mod implicit, înlocuibil prin design
+## Familiar ca scop, înlocuibil prin design
 
-Experiența implicită ar trebui să fie competitivă cu aplicațiile obișnuite de conversație publică: un flux de acasă rapid, urmăriri, răspunsuri, distribuție în stil repost, comunități, notificări, căutare și o vizualizare clasată pentru tine care funcționează imediat.
+Experiența implicită ar trebui să concureze cu funcția de bază a Twitter/X: un flux principal rapid, postări text, urmăriri, răspunsuri, distribuire prin republicări, comunități, notificări, căutare și o vizualizare For You ordonată care funcționează imediat.
 
 Bitsocial Forge poate rula primul serviciu RPC și feed implicit. Această prestație implicită poate include un feed clasat și reclame, astfel încât aplicația să se simtă completă în prima zi, în loc să ceară utilizatorilor mainstream să adune ei înșiși întreaga stivă.
 
-Diferența este că implicit nu ar trebui să devină închisoarea. Un utilizator ar trebui să poată schimba RPC-uri, fluxuri, instanțe, sisteme de clasare, anunțuri și furnizori de descoperire sau să elimine complet clasarea. Aplicația poate fi obișnuită la prima lansare, păstrând în același timp orice serviciu major înlocuibil.
+Diferența este că opțiunea implicită nu trebuie să devină o închisoare. Utilizatorul ar trebui să poată schimba RPC-urile, fluxurile, instanțele, sistemele de clasificare, reclamele și furnizorii de descoperire sau să elimine complet clasificarea. Clientul poate avea opțiuni inițiale clare, păstrând în același timp fiecare serviciu important înlocuibil.
 
-Acest lucru face aplicația mai personalizabilă decât o platformă convențională. Un utilizator poate păstra feedul clasat implicit cu anunțuri. Altul ar putea folosi un flux cronologic fără clasare. Altul ar putea alege un RPC axat pe confidențialitate, un serviciu de descoperire administrat de comunitate, un feed plătit fără anunțuri sau un algoritm de nișă construit pentru o anumită subcultură.
+Astfel, clientul este mai personalizabil decât o platformă convențională. Un utilizator poate păstra fluxul implicit clasificat cu reclame. Altul poate folosi un flux cronologic fără clasificare. Altul poate alege un RPC axat pe confidențialitate, un serviciu de descoperire administrat de comunitate, un flux plătit fără reclame sau un algoritm de nișă creat pentru o anumită subcultură.
 
 ## Comunități cross-client
 
@@ -40,15 +40,15 @@ Comunitățile ar trebui să fie mult mai importante decât grupurile izolate di
 
 Pe X/Twitter, comunitățile sunt limitate în interiorul X. Ele pot fi utile, dar moștenesc limitele unei platforme, unui sistem de cont, a unei stive de recomandări și a unei suprafețe de produs.
 
-O comunitate Bitsocial poate fi creată, găzduită, descoperită și utilizată prin diferiți clienți. Aceasta înseamnă că aplicația emblematică poate afișa comunități și postări din rețeaua mai largă Bitsocial, nu numai de la utilizatorii care au început în cadrul aplicației emblematice. O comunitate ar putea avea activitate de la un client imageboard, un client de discuții în stil Reddit, un client de forum de nișă, o aplicație mobilă și aplicația emblematică în același timp.
+O comunitate Bitsocial poate fi creată, găzduită, descoperită și utilizată prin clienți diferiți. Astfel, clientul din Faza 3 poate afișa comunități și postări din rețeaua Bitsocial mai largă, nu doar de la utilizatorii care au început în el. O comunitate poate avea simultan activitate dintr-un client imageboard, un client de discuții în stil Reddit, un client de forum de nișă, o aplicație mobilă și clientul din Faza 3.
 
 Acesta este avantajul principal al efectului de rețea: un client se poate simți familiar pentru utilizatorii mainstream, în timp ce atrage valoare de la mulți clienți, noduri comunitare, furnizori RPC și servicii independente.
 
 ## Algoritmi opționali de alimentare
 
-Aplicația emblematică nu ar trebui să forțeze un singur sistem de clasare global asupra tuturor.
+Clientul din Faza 3 nu ar trebui să impună tuturor un singur sistem global de clasificare.
 
-Algoritmii de feed ar trebui să fie activați. Un utilizator ar putea alege un algoritm dintr-o piață, să schimbe furnizorii, să folosească un algoritm de la o companie, să folosească unul condus de un operator anonim, să folosească unul creat de o comunitate, să ruleze unul personal sau să nu folosească deloc un algoritm.
+Algoritmii de feed ar trebui să fie opționali și activați numai la alegerea utilizatorului. Un utilizator ar putea alege un algoritm dintr-o piață, să schimbe furnizorii, să folosească un algoritm de la o companie, să folosească unul condus de un operator anonim, să folosească unul creat de o comunitate, să ruleze unul personal sau să nu folosească deloc un algoritm.
 
 Furnizorii publici RPC sunt un loc firesc pentru ca aceste servicii să concureze. Ei pot indexa, clasa și recomanda conținut, dar nu ar trebui să dețină utilizatorul sau profilul.
 
@@ -66,8 +66,8 @@ Calea găzduită contează deoarece majoritatea utilizatorilor nu vor începe pr
 
 Aceasta este diferența dintre comoditate și custodie.
 
-## De ce poate deveni o aplicație totul
+## Conversația publică, consolidată de Bitsocial Chain
 
-Dacă Bitsocial Chain oferă aplicațiilor denumire durabilă, plăți, bacșișuri, premii și alte linii financiare, aplicația emblematică ar putea deveni mult mai mult decât un client de feed.
+Bitsocial Chain poate aduce nume persistente, plăți, bacșișuri, premii și alte mecanisme financiare direct în conversația publică.
 
-Constrângerea importantă este că aplicația nu ar trebui să devină noul proprietar al rețelei. Poate fi un client mare, poate chiar cel mai popular client, lăsând totuși loc pentru aplicații concurente, RPC-uri concurente, algoritmi de feed concurenți și noduri de profil auto-găzduite.
+Clientul din Faza 3 rămâne centrat pe postări, text, schimb de idei și discuții în timp real, împărtășind în același timp comunități și efecte de rețea cu alți clienți Bitsocial.

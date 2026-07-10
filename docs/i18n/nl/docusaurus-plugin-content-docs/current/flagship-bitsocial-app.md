@@ -1,52 +1,52 @@
 ---
-title: Vlaggenschip Bitsocial-app
-description: "De voorgestelde profielgebaseerde Bitsocial-client: standaard bekend als X/Twitter, maar met vervangbare RPC's, feeds, algoritmen, advertenties en communities."
+title: Twitter/X decentraliseren
+description: "Fase 3 van het masterplan: een gerichte, gedecentraliseerde vervanger voor Twitter/X voor openbare gesprekken waarin tekst centraal staat, met vervangbare infrastructuur."
 ---
 
-# Vlaggenschip Bitsocial-app
+# Twitter/X decentraliseren
 
-De vlaggenschip Bitsocial-app is de voorgestelde eerste profielgebaseerde client voor het netwerk. De eenvoudigste vergelijking is: standaard bekend als X/Twitter, maar dan met de platformlaag opengebroken.
+Fase 3 is een plan om een gerichte, gedecentraliseerde vervanger voor Twitter/X te bouwen. Openbare gesprekken waarin tekst centraal staat vormen de kern: korte berichten, antwoorden, reposts, volgen, realtime discussies en communities, met een opengebroken platformlaag.
 
-Het zou profielen, volgers, antwoorden, feeds, communities, meldingen en realtime openbare gesprekken toevoegen, terwijl de onderliggende services vervangbaar blijven. 5chan bewijst dat anonieme communities kunnen werken. Seedit beweegt zich in de richting van een aanhoudende discussie. De vlaggenschip-app zou deze netwerkeffecten in een reguliere sociale feed brengen zonder één bedrijf de eigenaar van de grafiek te maken.
+Twitter/X draait nog steeds om berichten, tekst en het delen van ideeën. De client van fase 3 moet op die kernervaring concurreren en die uitzonderlijk goed laten werken.
 
-Deze pagina beschrijft de productrichting, niet een specificatie voor vergrendelde vrijgave. De exacte interface, standaardfeed, advertentiemodel, AI-functies en RPC-marktplaats kunnen veranderen naarmate het protocol en de vroege apps volwassener worden.
+Deze pagina beschrijft de productrichting, niet een vastgelegde releasespecificatie. De precieze interface, standaardfeed, het advertentiemodel, AI-functies en de RPC-marktplaats kunnen veranderen naarmate het protocol en de eerste apps volwassen worden.
 
 ## Wat het zou moeten bewijzen
 
-De app moet bewijzen dat een op profielen gebaseerd sociaal netwerk kan voorkomen dat het een bewaarplatform wordt:
+De client moet bewijzen dat een profielgebaseerd sociaal netwerk kan voorkomen dat het een custodiaal platform wordt:
 
 - gebruikers kunnen identiteiten en profielen bezitten
 - community's en profielknooppunten kunnen peer-to-peer blijven
 - gemeenschappen kunnen netwerkeffecten overbrengen op Bitsocial-clients
 - RPC-aanbieders kunnen de app gemakkelijk maken zonder de voogdij over te nemen
 - feedalgoritmen kunnen optionele diensten zijn in plaats van platformwetgeving
-- andere klanten kunnen nog steeds concurreren om hetzelfde netwerk
+- andere clients kunnen nog steeds concurreren om hetzelfde netwerk
 
-Het gaat er niet om de enige Bitsocial-client te maken. Het punt is om de eerste brede client te maken die laat zien hoe ver het protocol kan reiken.
+Het doel is om de sterkst mogelijke client voor openbare gesprekken te bouwen en te laten zien hoe ver het protocol kan reiken.
 
-## Standaard vertrouwd, vervangbaar door ontwerp
+## Vertrouwd in doel, vervangbaar door ontwerp
 
-De standaardervaring moet concurrerend zijn met reguliere apps voor openbare gesprekken: een snelle homefeed, volgers, antwoorden, distributie in repost-stijl, communities, meldingen, zoeken en een gerangschikte For You-weergave die onmiddellijk werkt.
+De standaardervaring moet op de kern van Twitter/X kunnen concurreren: een snelle thuisfeed, tekstberichten, volgen, antwoorden, verspreiding via reposts, communities, meldingen, zoeken en een gerangschikte For You-weergave die meteen werkt.
 
 Bitsocial Forge kan de eerste standaard RPC- en feedservice uitvoeren. Die standaard kan een gerangschikte feed en advertenties bevatten, zodat de app op de eerste dag compleet aanvoelt in plaats van reguliere gebruikers te vragen de hele stapel zelf samen te stellen.
 
-Het verschil is dat de standaard niet de gevangenis mag worden. Een gebruiker moet RPC's, feeds, instanties, classificatiesystemen, advertenties en ontdekkingsproviders kunnen wisselen, of de classificatie volledig kunnen verwijderen. De app kan bij de eerste lancering een eigen mening geven, terwijl elke belangrijke service vervangbaar blijft.
+Het verschil is dat de standaard geen gevangenis mag worden. Een gebruiker moet kunnen wisselen van RPC, feed, instantie, rangschikkingssysteem, advertenties en ontdekkingsprovider, of rangschikking helemaal kunnen verwijderen. De client mag bij de eerste start duidelijke keuzes maken en tegelijk elke belangrijke dienst vervangbaar houden.
 
-Dat maakt de app beter aanpasbaar dan een conventioneel platform. Eén gebruiker kan de standaard gerangschikte feed met advertenties behouden. Een ander zou een chronologische feed zonder rangschikking kunnen gebruiken. Een ander zou kunnen kiezen voor een op privacy gerichte RPC, een door de gemeenschap gerunde ontdekkingsservice, een betaalde advertentievrije feed of een niche-algoritme dat is gebouwd voor een specifieke subcultuur.
+Daardoor is de client beter aanpasbaar dan een traditioneel platform. De ene gebruiker houdt misschien de standaard gerangschikte feed met advertenties. Een ander gebruikt een chronologische feed zonder rangschikking. Weer een ander kiest misschien een privacygerichte RPC, een door de community beheerde ontdekkingsdienst, een betaalde advertentievrije feed of een niche-algoritme voor een specifieke subcultuur.
 
-## Community's tussen verschillende klanten
+## Community's tussen verschillende clients
 
 Gemeenschappen zouden veel belangrijker moeten zijn dan geïsoleerde groepen binnen één app.
 
 Op X/Twitter zijn communities beperkt tot X. Ze kunnen nuttig zijn, maar ze nemen de beperkingen over van één platform, één accountsysteem, één aanbevelingenstapel en één productoppervlak.
 
-Een Bitsocial-community kan worden gemaakt, gehost, ontdekt en gebruikt via verschillende klanten. Dat betekent dat de vlaggenschip-app communities en berichten van het bredere Bitsocial-netwerk kan tonen, niet alleen van gebruikers die in de vlaggenschip-app zijn begonnen. Een community kan tegelijkertijd activiteiten hebben van een imageboard-client, een discussieclient in Reddit-stijl, een nicheforumclient, een mobiele app en de vlaggenschip-app.
+Een Bitsocial-community kan via verschillende clients worden gemaakt, gehost, ontdekt en gebruikt. Daardoor kan de client van fase 3 communities en berichten uit het bredere Bitsocial-netwerk tonen, niet alleen van gebruikers die erbinnen zijn begonnen. Een community kan tegelijk activiteit bevatten vanuit een imageboardclient, een Reddit-achtige discussieclient, een nicheforumclient, een mobiele app en de client van fase 3.
 
 Dat is het kernvoordeel van het netwerkeffect: één client kan zich vertrouwd voelen bij reguliere gebruikers, terwijl hij toch waarde kan onttrekken aan veel clients, gemeenschapsknooppunten, RPC-providers en onafhankelijke diensten.
 
 ## Optionele feedalgoritmen
 
-De vlaggenschip-app mag niet iedereen één mondiaal classificatiesysteem opdringen.
+De client van fase 3 mag niet één wereldwijd rangschikkingssysteem aan iedereen opleggen.
 
 Feedalgoritmen moeten opt-in zijn. Een gebruiker kan een algoritme van een marktplaats kiezen, van provider wisselen, een algoritme van een bedrijf gebruiken, een algoritme van een anonieme operator gebruiken, een algoritme gebruiken dat door een gemeenschap is gebouwd, een persoonlijk algoritme gebruiken of helemaal geen algoritme gebruiken.
 
@@ -56,7 +56,7 @@ Die diensten kunnen ook concurreren op de vorm van de app zelf. Eén RPC kan een
 
 Als de economie werkt, zouden door RPC ondersteunde feeddiensten AI-functies kunnen toevoegen die vergelijkbaar zijn met wat reguliere platforms in hun feeds proberen te stoppen: automatische vertalingen, samenvattingen, botondersteunde antwoorden, zoekantwoorden, hulp bij moderatie of context in de stijl van gemeenschapsnotities.
 
-Deze functies moeten servicekeuzes zijn, geen protocolvereisten. Een standaard-RPC kan concurreren door een rijkere feed aan te bieden, maar gebruikers en concurrerende klanten moeten nog steeds eenvoudigere, privé-, chronologische, advertentievrije of gemeenschapsspecifieke alternatieven kunnen kiezen.
+Deze functies moeten servicekeuzes zijn, geen protocolvereisten. Een standaard-RPC kan concurreren door een rijkere feed aan te bieden, maar gebruikers en concurrerende clients moeten nog steeds eenvoudigere, privé-, chronologische, advertentievrije of gemeenschapsspecifieke alternatieven kunnen kiezen.
 
 ## Niet-bewarende RPC
 
@@ -66,8 +66,8 @@ Het gehoste pad is van belang omdat de meeste gebruikers niet beginnen met het d
 
 Dat is het verschil tussen gemak en bewaring.
 
-## Waarom het een alles-app kan worden
+## Openbare gesprekken, versterkt door Bitsocial Chain
 
-Als Bitsocial Chain apps duurzame naamgeving, betalingen, fooien, beloningen en andere financiële rails geeft, zou de vlaggenschipapp veel meer kunnen worden dan een feedclient.
+Bitsocial Chain kan duurzame naamgeving, betalingen, fooien, onderscheidingen en andere financiële voorzieningen rechtstreeks in openbare gesprekken integreren.
 
-De belangrijke beperking is dat de app niet de nieuwe eigenaar van het netwerk mag worden. Het kan een grote klant zijn, misschien zelfs de meest populaire klant, terwijl er nog steeds ruimte overblijft voor concurrerende apps, concurrerende RPC's, concurrerende feedalgoritmen en zelfgehoste profielknooppunten.
+De client van fase 3 blijft gericht op berichten, tekst, het delen van ideeën en realtime discussies, terwijl hij communities en netwerkeffecten deelt met andere Bitsocial-clients.

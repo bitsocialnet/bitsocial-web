@@ -1,73 +1,73 @@
 ---
-title: Application Bitsocial phare
-description: "Le client Bitsocial proposé basé sur le profil : familier comme X/Twitter par défaut, mais avec des RPC, des flux, des algorithmes, des publicités et des communautés remplaçables."
+title: Décentraliser Twitter/X
+description: "Phase 3 du plan directeur : une alternative ciblée et décentralisée à Twitter/X pour la conversation publique centrée sur le texte, avec une infrastructure remplaçable."
 ---
 
-# Application Bitsocial phare
+# Décentraliser Twitter/X
 
-L'application phare Bitsocial est le premier client proposé basé sur le profil pour le réseau. La comparaison la plus simple est la suivante : familier comme X/Twitter par défaut, mais avec la couche plate-forme ouverte.
+La phase 3 prévoit de construire une alternative ciblée et décentralisée à Twitter/X. Elle est centrée sur la conversation publique textuelle : publications courtes, réponses, republications, abonnements, échanges en temps réel et communautés, avec une couche de plateforme ouverte.
 
-Il ajouterait des profils, des suivis, des réponses, des flux, des communautés, des notifications et des conversations publiques en temps réel tout en gardant les services sous-jacents remplaçables. 5chan prouve que les communautés anonymes peuvent fonctionner. Seedit s’oriente vers une discussion persistante. L'application phare intégrerait ces effets de réseau dans un flux social grand public sans qu'une seule entreprise soit propriétaire du graphique.
+Twitter/X reste défini par les publications, le texte et le partage d'idées. Le client de la phase 3 devrait rivaliser sur cette expérience essentielle et la rendre exceptionnellement efficace.
 
-Cette page décrit l'orientation du produit, et non une spécification de version verrouillée. L'interface exacte, le flux par défaut, le modèle publicitaire, les fonctionnalités d'IA et le marché RPC peuvent changer à mesure que le protocole et les premières applications évoluent.
+Cette page décrit l'orientation du produit, pas une spécification de lancement figée. L'interface exacte, le flux par défaut, le modèle publicitaire, les fonctionnalités AI et le marché des RPC peuvent évoluer à mesure que le protocole et les premières applications mûrissent.
 
-## Ce que cela devrait prouver
+## Ce qu'il devrait démontrer
 
-L’application devrait prouver qu’un réseau social basé sur un profil peut éviter de devenir une plateforme dépositaire :
+Le client devrait démontrer qu'un réseau social fondé sur des profils peut éviter de devenir une plateforme dépositaire :
 
-- les utilisateurs peuvent posséder des identités et des profils
+- les utilisateurs peuvent posséder leurs identités et leurs profils
 - les communautés et les nœuds de profil peuvent rester peer-to-peer
-- les communautés peuvent avoir des effets de réseau sur les clients Bitsocial
-- Les fournisseurs RPC peuvent rendre l'application pratique sans en prendre la garde
-- les algorithmes de flux peuvent être des services facultatifs au lieu de la loi sur les plateformes
-- d'autres clients peuvent toujours rivaliser pour le même réseau
+- les communautés peuvent transmettre les effets de réseau entre les clients Bitsocial
+- les fournisseurs RPC peuvent rendre le client pratique sans en prendre la garde
+- les algorithmes de flux peuvent être des services facultatifs plutôt qu'une règle imposée par la plateforme
+- d'autres clients peuvent continuer à rivaliser sur le même réseau
 
-Il ne s’agit pas de créer le seul client Bitsocial. Le but est de créer le premier client large qui montre jusqu'où le protocole peut s'étendre.
+L'objectif est de construire le client le plus solide possible pour la conversation publique et de montrer jusqu'où le protocole peut aller.
 
-## Familier par défaut, remplaçable par conception
+## Familier dans sa vocation, remplaçable par conception
 
-L'expérience par défaut doit être compétitive par rapport aux applications de conversation publique grand public : un flux d'accueil rapide, des suivis, des réponses, une distribution de type republication, des communautés, des notifications, une recherche et une vue classée Pour vous qui fonctionne immédiatement.
+L'expérience par défaut devrait rivaliser avec le cœur de Twitter/X : un flux d'accueil rapide, des publications textuelles, des abonnements, des réponses, une diffusion par republication, des communautés, des notifications, une recherche et une vue classée For You qui fonctionne immédiatement.
 
-Bitsocial Forge peut exécuter le premier service RPC et flux par défaut. Cette valeur par défaut peut inclure un flux classé et des publicités afin que l'application semble complète dès le premier jour au lieu de demander aux utilisateurs grand public d'assembler eux-mêmes l'ensemble de la pile.
+Bitsocial Forge peut exploiter le premier service RPC et de flux par défaut. Cette configuration peut inclure un flux classé et des publicités afin que le client paraisse complet dès le premier jour, plutôt que de demander au grand public d'assembler lui-même toute la pile.
 
-La différence est que le défaut ne doit pas devenir la prison. Un utilisateur doit pouvoir changer de RPC, de flux, d'instances, de systèmes de classement, d'annonces et de fournisseurs de découverte, ou supprimer complètement le classement. L'application peut faire l'objet d'une opinion dès le premier lancement tout en gardant tous les services majeurs remplaçables.
+La différence est que la configuration par défaut ne doit pas devenir une prison. Un utilisateur devrait pouvoir changer de RPC, de flux, d'instance, de système de classement, de publicités et de fournisseur de découverte, ou supprimer entièrement le classement. Le client peut proposer des choix affirmés au premier lancement tout en gardant chaque service majeur remplaçable.
 
-Cela rend l'application plus personnalisable qu'une plateforme conventionnelle. Un utilisateur peut conserver le flux classé par défaut avec des annonces. Un autre pourrait utiliser un flux chronologique sans classement. Un autre pourrait choisir un RPC axé sur la confidentialité, un service de découverte géré par la communauté, un flux payant sans publicité ou un algorithme de niche conçu pour une sous-culture spécifique.
+Le client est ainsi plus personnalisable qu'une plateforme conventionnelle. Un utilisateur peut conserver le flux classé par défaut avec des publicités. Un autre peut utiliser un flux chronologique sans classement. Un autre encore peut choisir un RPC axé sur la confidentialité, un service de découverte géré par une communauté, un flux payant sans publicité ou un algorithme de niche conçu pour une sous-culture précise.
 
-## Communautés inter-clients
+## Communautés interclients
 
-Les communautés devraient être bien plus importantes que les groupes isolés au sein d’une seule application.
+Les communautés devraient être bien plus importantes que des groupes isolés au sein d'une seule application.
 
-Sur X/Twitter, les communautés sont confinées à l'intérieur de X. Elles peuvent être utiles, mais elles héritent des limites d'une seule plateforme, d'un seul système de compte, d'une seule pile de recommandations et d'une seule surface de produit.
+Sur X/Twitter, les communautés sont confinées dans X. Elles peuvent être utiles, mais elles héritent des limites d'une seule plateforme, d'un seul système de comptes, d'une seule pile de recommandations et d'une seule surface produit.
 
-Une communauté Bitsocial peut être créée, hébergée, découverte et utilisée via différents clients. Cela signifie que l'application phare peut afficher les communautés et les publications du réseau Bitsocial plus large, et pas seulement celles des utilisateurs qui ont commencé dans l'application phare. Une communauté peut avoir à la fois l'activité d'un client imageboard, d'un client de discussion de style Reddit, d'un client de forum de niche, d'une application mobile et de l'application phare.
+Une communauté Bitsocial peut être créée, hébergée, découverte et utilisée depuis différents clients. Le client de la phase 3 peut donc afficher des communautés et des publications issues de l'ensemble du réseau Bitsocial, et pas seulement des utilisateurs qui ont commencé sur ce client. Une communauté pourrait recevoir simultanément l'activité d'un client d'imageboard, d'un client de discussion de type Reddit, d'un client de forum spécialisé, d'une application mobile et du client de la phase 3.
 
-C'est là le principal avantage de l'effet réseau : un client peut se sentir familier aux utilisateurs grand public tout en tirant de la valeur de nombreux clients, nœuds communautaires, fournisseurs RPC et services indépendants.
+C'est le principal avantage de l'effet de réseau : un client peut sembler familier au grand public tout en tirant parti de nombreux clients, nœuds communautaires, fournisseurs RPC et services indépendants.
 
 ## Algorithmes de flux facultatifs
 
-L’application phare ne devrait pas imposer un système de classement mondial à tout le monde.
+Le client de la phase 3 ne devrait pas imposer un seul système de classement mondial à tout le monde.
 
-Les algorithmes de flux doivent être opt-in. Un utilisateur peut choisir un algorithme sur un marché, changer de fournisseur, utiliser un algorithme d'une entreprise, en utiliser un géré par un opérateur anonyme, en utiliser un créé par une communauté, en exécuter un personnel ou n'utiliser aucun algorithme du tout.
+Les algorithmes de flux devraient être activés au choix. Un utilisateur pourrait sélectionner un algorithme sur une place de marché, changer de fournisseur, utiliser l'algorithme d'une entreprise, celui d'un opérateur anonyme, celui créé par une communauté, exécuter son propre algorithme ou n'en utiliser aucun.
 
-Les fournisseurs publics de RPC constituent un lieu naturel de concurrence pour ces services. Ils peuvent indexer, classer et recommander du contenu, mais ils ne doivent pas être propriétaires de l’utilisateur ou du profil.
+Les fournisseurs RPC publics sont un espace naturel de concurrence pour ces services. Ils peuvent indexer, classer et recommander du contenu, mais ne devraient posséder ni l'utilisateur ni son profil.
 
-Ces services peuvent également rivaliser sur la forme de l’application elle-même. Un RPC peut fournir un flux classé avec des publicités. Un autre pourrait fournir un flux chronologique non classé. Un autre pourrait se spécialiser dans la confidentialité, la traduction, la modération, la découverte de communauté ou un graphe social de niche.
+Ces services peuvent aussi rivaliser sur la forme même du client. Un RPC pourrait fournir un flux classé avec des publicités. Un autre pourrait fournir un flux chronologique non classé. Un autre encore pourrait se spécialiser dans la confidentialité, la traduction, la modération, la découverte de communautés ou un graphe social de niche.
 
-Si les conditions économiques fonctionnent, les services de flux soutenus par RPC pourraient ajouter des fonctionnalités d'IA similaires à celles que les plateformes grand public tentent d'intégrer dans leurs flux : traductions automatiques, résumés, réponses assistées par des robots, réponses à la recherche, aide à la modération ou contexte de style note de la communauté.
+Si le modèle économique fonctionne, les services de flux adossés à des RPC pourraient ajouter des fonctionnalités AI semblables à celles que les plateformes grand public essaient d'intégrer à leurs flux : traductions automatiques, résumés, réponses assistées par des robots, réponses de recherche, aide à la modération ou contexte de type notes de la communauté.
 
-Ces fonctionnalités doivent être des choix de service et non des exigences de protocole. Un RPC par défaut peut rivaliser en offrant un flux plus riche, mais les utilisateurs et les clients concurrents devraient toujours pouvoir choisir des alternatives plus simples, privées, chronologiques, sans publicité ou spécifiques à la communauté.
+Ces fonctionnalités devraient relever du choix des services, et non des exigences du protocole. Un RPC par défaut peut rivaliser en proposant un flux plus riche, mais les utilisateurs et les clients concurrents devraient toujours pouvoir choisir des solutions plus simples, privées, chronologiques, sans publicité ou propres à une communauté.
 
 ## RPC non dépositaire
 
-Chaque utilisateur doit pouvoir participer en tant que nœud peer-to-peer complet via RPC sans donner au fournisseur RPC la propriété de son identité ou de son profil.
+Chaque utilisateur devrait pouvoir participer en tant que nœud peer-to-peer complet par l'intermédiaire d'un RPC sans donner au fournisseur RPC la propriété de son identité ou de son profil.
 
-Le chemin hébergé est important car la plupart des utilisateurs ne commenceront pas par exécuter un serveur. Le chemin de sortie est tout aussi important : un utilisateur doit pouvoir accéder à son propre nœud de profil sur du matériel peu performant, y compris un Raspberry Pi, quand il le souhaite.
+La voie hébergée est importante, car la plupart des utilisateurs ne commenceront pas par exploiter un serveur. La voie de sortie l'est tout autant : un utilisateur devrait pouvoir migrer vers son propre nœud de profil sur du matériel modeste, y compris un Raspberry Pi, quand il le souhaite.
 
-C'est la différence entre la commodité et la garde.
+C'est la différence entre commodité et garde.
 
-## Pourquoi cela peut devenir une application polyvalente
+## La conversation publique, renforcée par Bitsocial Chain
 
-Si Bitsocial Chain donne aux applications des noms durables, des paiements, des pourboires, des récompenses et d'autres rails financiers, l'application phare pourrait devenir bien plus qu'un client de flux.
+Bitsocial Chain peut intégrer des noms durables, des paiements, des pourboires, des récompenses et d'autres services financiers directement dans la conversation publique.
 
-La contrainte importante est que l’application ne devienne pas le nouveau propriétaire du réseau. Il peut s'agir d'un gros client, peut-être même du client le plus populaire, tout en laissant de la place aux applications concurrentes, aux RPC concurrents, aux algorithmes de flux concurrents et aux nœuds de profil auto-hébergés.
+Le client de la phase 3 reste centré sur les publications, le texte, le partage d'idées et les échanges en temps réel, tout en partageant des communautés et des effets de réseau avec les autres clients Bitsocial.
