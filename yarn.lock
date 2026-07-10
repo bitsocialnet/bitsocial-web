@@ -1555,12 +1555,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bitsocial/bitsocial-react-hooks@npm:0.1.26":
-  version: 0.1.26
-  resolution: "@bitsocial/bitsocial-react-hooks@npm:0.1.26"
+"@bitsocial/bitsocial-react-hooks@npm:0.1.28":
+  version: 0.1.28
+  resolution: "@bitsocial/bitsocial-react-hooks@npm:0.1.28"
   dependencies:
     "@bitsocial/bso-resolver": "npm:0.0.8"
-    "@pkcprotocol/pkc-js": "npm:0.0.62"
+    "@pkcprotocol/pkc-js": "npm:0.0.68"
     "@pkcprotocol/pkc-logger": "npm:0.1.0"
     assert: "npm:2.0.0"
     ethers: "npm:5.8.0"
@@ -1576,7 +1576,7 @@ __metadata:
     zustand: "npm:4.0.0"
   peerDependencies:
     react: ">=16.8"
-  checksum: 10c0/d6b2d08e4815e49c17775a4ff4a2850af1daea8da638f5d88408e5e168ea9dc27bbdd4f71712c70149073c05eef1a0e577faeae6b068e784cf88f191dce97cff
+  checksum: 10c0/ce0ca8a8858103a61c791102efeb547e6a37a2e1bc380c22d6f30dfb4928e4aac0305757f475469fa7a383df72d9bf2b134074e85685b91fe5cc3b47c4432e46
   languageName: node
   linkType: hard
 
@@ -6341,7 +6341,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@multiformats/multiaddr@npm:12.5.1, @multiformats/multiaddr@npm:^12.0.0, @multiformats/multiaddr@npm:^12.1.14, @multiformats/multiaddr@npm:^12.2.1, @multiformats/multiaddr@npm:^12.2.3, @multiformats/multiaddr@npm:^12.3.0, @multiformats/multiaddr@npm:^12.3.1, @multiformats/multiaddr@npm:^12.3.3, @multiformats/multiaddr@npm:^12.4.0, @multiformats/multiaddr@npm:^12.4.4":
+"@multiformats/multiaddr@npm:13.0.3, @multiformats/multiaddr@npm:^13.0.0, @multiformats/multiaddr@npm:^13.0.1, @multiformats/multiaddr@npm:^13.0.3":
+  version: 13.0.3
+  resolution: "@multiformats/multiaddr@npm:13.0.3"
+  dependencies:
+    "@chainsafe/is-ip": "npm:^2.0.1"
+    multiformats: "npm:^14.0.0"
+    uint8-varint: "npm:^3.0.0"
+    uint8arrays: "npm:^6.1.1"
+  checksum: 10c0/00266178623c4b98a6ce9e25e4a657c6c17a70e3111b337a91762aa756ad9ce905670024ac3f1fa46533792ff1d95e2c95dc7739ae916263daa8b5a344c2cd80
+  languageName: node
+  linkType: hard
+
+"@multiformats/multiaddr@npm:^12.0.0, @multiformats/multiaddr@npm:^12.1.14, @multiformats/multiaddr@npm:^12.2.1, @multiformats/multiaddr@npm:^12.2.3, @multiformats/multiaddr@npm:^12.3.0, @multiformats/multiaddr@npm:^12.3.1, @multiformats/multiaddr@npm:^12.3.3, @multiformats/multiaddr@npm:^12.4.0, @multiformats/multiaddr@npm:^12.4.4":
   version: 12.5.1
   resolution: "@multiformats/multiaddr@npm:12.5.1"
   dependencies:
@@ -6353,18 +6365,6 @@ __metadata:
     uint8-varint: "npm:^2.0.1"
     uint8arrays: "npm:^5.0.0"
   checksum: 10c0/61df1d9d50f3b228c5a8c8c33170a23eff4cb2ea4686e9dc89f640edc2d865907736a18043ec4a05d368911c3f5eaa65643b367b10e529e543629225a7bb9dae
-  languageName: node
-  linkType: hard
-
-"@multiformats/multiaddr@npm:13.0.3, @multiformats/multiaddr@npm:^13.0.0, @multiformats/multiaddr@npm:^13.0.1, @multiformats/multiaddr@npm:^13.0.3":
-  version: 13.0.3
-  resolution: "@multiformats/multiaddr@npm:13.0.3"
-  dependencies:
-    "@chainsafe/is-ip": "npm:^2.0.1"
-    multiformats: "npm:^14.0.0"
-    uint8-varint: "npm:^3.0.0"
-    uint8arrays: "npm:^6.1.1"
-  checksum: 10c0/00266178623c4b98a6ce9e25e4a657c6c17a70e3111b337a91762aa756ad9ce905670024ac3f1fa46533792ff1d95e2c95dc7739ae916263daa8b5a344c2cd80
   languageName: node
   linkType: hard
 
@@ -7633,9 +7633,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pkcprotocol/pkc-js@npm:0.0.62":
-  version: 0.0.62
-  resolution: "@pkcprotocol/pkc-js@npm:0.0.62"
+"@pkcprotocol/pkc-js@npm:0.0.68":
+  version: 0.0.68
+  resolution: "@pkcprotocol/pkc-js@npm:0.0.68"
   dependencies:
     "@enhances/with-resolvers": "npm:0.0.5"
     "@helia/block-brokers": "npm:5.2.4"
@@ -7682,7 +7682,7 @@ __metadata:
     p-timeout: "npm:7.0.1"
     probe-image-size: "npm:7.2.3"
     quick-lru: "npm:5.1.1"
-    remeda: "npm:1.57.0"
+    remeda: "npm:2.39.0"
     retry: "npm:0.13.1"
     rpc-websockets: "npm:9.3.8"
     safe-stable-stringify: "npm:2.4.3"
@@ -7696,7 +7696,7 @@ __metadata:
     uuid: "npm:13.0.0"
     ws: "npm:8.20.0"
     zod: "npm:4.3.6"
-  checksum: 10c0/c55f2b5e3d52a4716124228bf9fc51cb949aff44a8d9404b4bd870367ef5c27d4cc98a2521054f2d8d008fc90977ac9a74d44e6cc619d4c4280c12128dabce9a
+  checksum: 10c0/e2922b0ecdcda37bec50e646c4547fb4c75932dd00659ffab63588d5551c5841caa47b95b534cdd925d72e5b7d64a641d473dd8962247f9ad1a63bcd80086bf8
   languageName: node
   linkType: hard
 
@@ -11249,9 +11249,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "bitsocial-about@workspace:about"
   dependencies:
-    "@bitsocial/bitsocial-react-hooks": "npm:0.1.26"
-    "@multiformats/multiaddr": "npm:12.5.1"
-    "@pkcprotocol/pkc-js": "npm:0.0.62"
+    "@bitsocial/bitsocial-react-hooks": "npm:0.1.28"
+    "@pkcprotocol/pkc-js": "npm:0.0.68"
     "@radix-ui/react-dialog": "npm:1.1.15"
     "@radix-ui/react-slot": "npm:1.2.4"
     "@vercel/analytics": "npm:2.0.1"
@@ -25175,6 +25174,13 @@ __metadata:
   version: 1.57.0
   resolution: "remeda@npm:1.57.0"
   checksum: 10c0/d5b455ee854ddf83dbf30fff279edf6c1e5a89885bfdf89a383ec003a9ecf6076be8d9d784d8ad0689bc129ba7480b308ae0cd8acfc85666d7df6d441dcca9ab
+  languageName: node
+  linkType: hard
+
+"remeda@npm:2.39.0":
+  version: 2.39.0
+  resolution: "remeda@npm:2.39.0"
+  checksum: 10c0/5891871c93b47c501937d6e4a1c05d0b199b4402a8eb3a7a08653e81acc4ce45ae3cff4c90785d867f5e9b5f75e27b5120f0240e8ce490fbf2ab8c48013cc8af
   languageName: node
   linkType: hard
 

@@ -8,19 +8,15 @@ import {
 import {
   getBrowserGatewayAccountOptions,
   getBrowserPureP2PAccountOptions,
-  getP2PRuntimeMode,
   shouldDowngradeBrowserPureP2PAccount,
   shouldUpgradeBrowserPureP2PAccount,
 } from "@/lib/p2p-runtime";
-import { dialBlogSeederPeers } from "@/lib/p2p-seeder-dial";
 
 type AccountShape = Record<string, unknown> & {
   id?: string;
 };
 
 const ACCOUNT_RECOVERY_CHECK_MS = 1000;
-const SEEDER_DIAL_MAX_ATTEMPTS = 6;
-const SEEDER_DIAL_RETRY_MS = 5000;
 
 export function useBrowserPureP2PAccountUpgrade() {
   const account = useAccount() as AccountShape | undefined;
@@ -76,43 +72,5 @@ export function useBrowserPureP2PAccountUpgrade() {
         upgradeAccountIdRef.current = undefined;
         console.error("Failed to update browser account P2P options", error);
       });
-  }, [account]);
-
-  useEffect(() => {
-    if (!account?.id || getP2PRuntimeMode(account) !== "browser-libp2p") return;
-
-    const controller = new AbortController();
-    let attempts = 0;
-    let finished = false;
-    let intervalId: number | undefined;
-
-    const attemptDial = () => {
-      if (finished || controller.signal.aborted) return;
-      attempts += 1;
-
-      void dialBlogSeederPeers(account, controller.signal)
-        .then((connected) => {
-          if (!connected) return;
-          finished = true;
-          if (intervalId !== undefined) window.clearInterval(intervalId);
-        })
-        .catch(() => {
-          // The delegated-router path still runs if the fixed seeder is unreachable.
-        });
-
-      if (attempts >= SEEDER_DIAL_MAX_ATTEMPTS) {
-        finished = true;
-        if (intervalId !== undefined) window.clearInterval(intervalId);
-      }
-    };
-
-    intervalId = window.setInterval(attemptDial, SEEDER_DIAL_RETRY_MS);
-    attemptDial();
-
-    return () => {
-      finished = true;
-      controller.abort();
-      window.clearInterval(intervalId);
-    };
   }, [account]);
 }

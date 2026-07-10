@@ -18,11 +18,6 @@ import {
   shouldDowngradeBrowserPureP2PAccount,
   shouldUpgradeBrowserPureP2PAccount,
 } from "../src/lib/p2p-runtime";
-import {
-  BLOG_BITSOCIAL_SEEDER_MULTIADDRS,
-  BLOG_BITSOCIAL_SEEDER_PEER_ID,
-} from "../src/lib/p2p-seeder-dial";
-
 const createStorage = (values: Record<string, string | undefined> = {}) => ({
   getItem: (key: string) => values[key] ?? null,
   setItem: (key: string, value: string) => {
@@ -61,14 +56,6 @@ test.describe("browser P2P config", () => {
       libp2pJsClientsOptions: [{ key: "libp2pjs" }],
       pubsubKuboRpcClientsOptions: undefined,
     });
-  });
-
-  test("defines direct-dial addresses for the blog seeder", ({ browserName }) => {
-    test.skip(browserName !== "chromium", "one project is enough for this module test");
-
-    expect(BLOG_BITSOCIAL_SEEDER_MULTIADDRS).toEqual(
-      expect.arrayContaining([expect.stringContaining(`/p2p/${BLOG_BITSOCIAL_SEEDER_PEER_ID}`)]),
-    );
   });
 
   test("configures gateway options when pure P2P is disabled", ({ browserName }) => {
