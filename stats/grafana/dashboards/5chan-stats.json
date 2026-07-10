@@ -41,7 +41,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "",
+      "description": "Approximate city-level locations derived from public peer IP addresses. Each marker represents a reported location and its current peer count.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -70,7 +70,40 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Latitude"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": true,
+                  "viz": false
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Longitude"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": true,
+                  "viz": false
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 16,
@@ -96,13 +129,38 @@
         "layers": [
           {
             "config": {
-              "blur": 3,
-              "radius": 6,
-              "weight": {
-                "field": "Value",
-                "fixed": 1,
-                "max": 1,
-                "min": 0
+              "showLegend": false,
+              "style": {
+                "color": {
+                  "fixed": "green"
+                },
+                "opacity": 0.85,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 6,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "symbolAlign": {
+                  "horizontal": "center",
+                  "vertical": "center"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
               }
             },
             "filterData": {
@@ -110,13 +168,13 @@
               "options": "A"
             },
             "location": {
-              "lookup": "country",
-              "mode": "lookup"
+              "latitude": "Latitude",
+              "longitude": "Longitude",
+              "mode": "coords"
             },
             "name": "Peers",
-            "opacity": 0.75,
             "tooltip": true,
-            "type": "heatmap"
+            "type": "markers"
           }
         ],
         "tooltip": {
@@ -138,11 +196,11 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_network_ipns_http_routers_peer_count)",
+          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_network_ipns_http_routers_peer_location_count)",
           "format": "table",
-          "instant": false,
+          "instant": true,
           "legendFormat": "Communities IPNS HTTP Routers",
-          "range": true,
+          "range": false,
           "refId": "A"
         },
         {
@@ -151,12 +209,12 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_network_pubsub_http_routers_peer_count)",
+          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_network_pubsub_http_routers_peer_location_count)",
           "format": "table",
           "hide": true,
-          "instant": false,
+          "instant": true,
           "legendFormat": "Communities Pubsub HTTP Routers",
-          "range": true,
+          "range": false,
           "refId": "B"
         },
         {
@@ -165,17 +223,33 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_network_pubsub_peer_count)",
+          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_network_pubsub_peer_location_count)",
           "format": "table",
           "hide": true,
-          "instant": false,
+          "instant": true,
           "legendFormat": "Communities Pubsub",
-          "range": true,
+          "range": false,
           "refId": "C"
         }
       ],
       "title": "Peers Map",
       "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "number",
+                "targetField": "latitude"
+              },
+              {
+                "destinationType": "number",
+                "targetField": "longitude"
+              }
+            ],
+            "fields": {}
+          }
+        },
         {
           "id": "organize",
           "options": {
@@ -197,7 +271,11 @@
             "indexByName": {},
             "renameByName": {
               "Value": "Peers",
-              "country": "Country"
+              "city": "City",
+              "country": "Country",
+              "latitude": "Latitude",
+              "longitude": "Longitude",
+              "region": "Region"
             }
           }
         }

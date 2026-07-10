@@ -60,7 +60,7 @@
       },
       {
         "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
-        "description": "",
+        "description": "Approximate city-level locations derived from public peer IP addresses. Each marker represents a reported location and its current peer count.",
         "fieldConfig": {
           "defaults": {
             "color": { "mode": "continuous-greens" },
@@ -75,7 +75,26 @@
               ]
             }
           },
-          "overrides": []
+          "overrides": [
+            {
+              "matcher": { "id": "byName", "options": "Latitude" },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": { "legend": false, "tooltip": true, "viz": false }
+                }
+              ]
+            },
+            {
+              "matcher": { "id": "byName", "options": "Longitude" },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": { "legend": false, "tooltip": true, "viz": false }
+                }
+              ]
+            }
+          ]
         },
         "gridPos": { "h": 16, "w": 15, "x": 0, "y": 1 },
         "id": 998904553,
@@ -92,16 +111,32 @@
           "layers": [
             {
               "config": {
-                "blur": 3,
-                "radius": 6,
-                "weight": { "field": "Value", "fixed": 1, "max": 1, "min": 0 }
+                "showLegend": false,
+                "style": {
+                  "color": { "fixed": "green" },
+                  "opacity": 0.85,
+                  "rotation": { "fixed": 0, "max": 360, "min": -360, "mode": "mod" },
+                  "size": { "fixed": 6, "max": 15, "min": 2 },
+                  "symbol": { "fixed": "img/icons/marker/circle.svg", "mode": "fixed" },
+                  "symbolAlign": { "horizontal": "center", "vertical": "center" },
+                  "textConfig": {
+                    "fontSize": 12,
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "textAlign": "center",
+                    "textBaseline": "middle"
+                  }
+                }
               },
               "filterData": { "id": "byRefId", "options": "A" },
-              "location": { "lookup": "country", "mode": "lookup" },
+              "location": {
+                "latitude": "Latitude",
+                "longitude": "Longitude",
+                "mode": "coords"
+              },
               "name": "Peers",
-              "opacity": 0.75,
               "tooltip": true,
-              "type": "heatmap"
+              "type": "markers"
             }
           ],
           "tooltip": { "mode": "details" },
@@ -118,38 +153,48 @@
           {
             "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
             "editorMode": "code",
-            "expr": "plebbit_uptime_monitor_plebbit_ipns_http_routers_peer_count",
+            "expr": "plebbit_uptime_monitor_plebbit_ipns_http_routers_peer_location_count",
             "format": "table",
-            "instant": false,
+            "instant": true,
             "legendFormat": "Subplebbits IPNS HTTP Routers",
-            "range": true,
+            "range": false,
             "refId": "A"
           },
           {
             "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
             "editorMode": "code",
-            "expr": "plebbit_uptime_monitor_plebbit_pubsub_http_routers_peer_count",
+            "expr": "plebbit_uptime_monitor_plebbit_pubsub_http_routers_peer_location_count",
             "format": "table",
             "hide": true,
-            "instant": false,
+            "instant": true,
             "legendFormat": "Subplebbits Pubsub HTTP Routers",
-            "range": true,
+            "range": false,
             "refId": "B"
           },
           {
             "datasource": { "type": "prometheus", "uid": "cdtg82qo3uj9cb" },
             "editorMode": "code",
-            "expr": "plebbit_uptime_monitor_plebbit_pubsub_peer_count",
+            "expr": "plebbit_uptime_monitor_plebbit_pubsub_peer_location_count",
             "format": "table",
             "hide": true,
-            "instant": false,
+            "instant": true,
             "legendFormat": "Subplebbits Pubsub",
-            "range": true,
+            "range": false,
             "refId": "C"
           }
         ],
         "title": "Peers Map",
         "transformations": [
+          {
+            "id": "convertFieldType",
+            "options": {
+              "conversions": [
+                { "destinationType": "number", "targetField": "latitude" },
+                { "destinationType": "number", "targetField": "longitude" }
+              ],
+              "fields": {}
+            }
+          },
           {
             "id": "organize",
             "options": {
@@ -162,7 +207,14 @@
               },
               "includeByName": {},
               "indexByName": {},
-              "renameByName": { "Value": "Peers", "country": "Country" }
+              "renameByName": {
+                "Value": "Peers",
+                "city": "City",
+                "country": "Country",
+                "latitude": "Latitude",
+                "longitude": "Longitude",
+                "region": "Region"
+              }
             }
           }
         ],

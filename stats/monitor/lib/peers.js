@@ -4,6 +4,7 @@ import fs from "fs-extra";
 import { Address4, Address6 } from "ip-address";
 import { multiaddr } from "@multiformats/multiaddr";
 import { fetchJson } from "./utils.js";
+import { countPeerLocations, parsePeerLocation } from "./peer-location.js";
 import Debug from "debug";
 const debug = Debug("bitsocial-stats-monitor:peers");
 
@@ -45,7 +46,8 @@ const getCountriesPeerCount = (peersName) => {
 };
 
 // prometheus
-const labelNames = ["country"];
+const countryLabelNames = ["country"];
+const locationLabelNames = ["country", "city", "region", "latitude", "longitude"];
 const counters = {};
 const gauges = {};
 const toSnakeCase = (string) => string.replace(/([a-zA-Z])(?=[A-Z])/g, "$1_").toLowerCase();
@@ -53,13 +55,28 @@ for (const peersName of peersNames) {
   const peerCountName = `${peersName.replace(/s$/, "")}Count`;
   gauges[`network${peerCountName}`] = new prometheus.promClient.Gauge({
     name: `${prometheus.prefix}network_${toSnakeCase(peerCountName)}`,
-    help: `gauge of network ${toSnakeCase(peerCountName).replaceAll("_", " ")} labeled with: ${labelNames.join(", ")}`,
-    labelNames,
+    help: `gauge of network ${toSnakeCase(peerCountName).replaceAll("_", " ")} labeled with: ${countryLabelNames.join(", ")}`,
+    labelNames: countryLabelNames,
     registers: [prometheus.promClient.register],
     collect() {
+      this.reset();
       const countriesPeerCount = getCountriesPeerCount(peersName);
       for (const country in countriesPeerCount) {
         this.set({ country }, countriesPeerCount[country]);
+      }
+    },
+  });
+
+  const peerLocationCountName = `${peersName.replace(/s$/, "")}LocationCount`;
+  gauges[`network${peerLocationCountName}`] = new prometheus.promClient.Gauge({
+    name: `${prometheus.prefix}network_${toSnakeCase(peerLocationCountName)}`,
+    help: `gauge of network ${toSnakeCase(peerLocationCountName).replaceAll("_", " ")} labeled with: ${locationLabelNames.join(", ")}`,
+    labelNames: locationLabelNames,
+    registers: [prometheus.promClient.register],
+    collect() {
+      this.reset();
+      for (const { count, ...labels } of getLocationsPeerCount(peersName)) {
+        this.set(labels, count);
       }
     },
   });
@@ -117,25 +134,70 @@ try {
   peerCountries = JSON.parse(fs.readFileSync("peerCountries.json", "utf8"));
 } catch (e) {}
 
-const _fetchPeerCountry = async (peerId, peerIp) => {
-  const { country } = await fetchJson(`https://api.country.is/${peerIp}`);
-  if (typeof country !== "string" || country.length !== 2) {
-    throw Error(`failed fetching ip country from ip api`);
-  }
-  peerCountries[peerId] = country;
-  peerCountries[peerIp] = country;
+let peerLocations = {};
+try {
+  peerLocations = JSON.parse(fs.readFileSync("peerLocations.json", "utf8"));
+} catch {}
+
+const peerLocationLookupUrl = "https://free.freeipapi.com/api/json";
+const failedPeerLocationLookups = new Map();
+const pendingPeerLocationLookups = new Map();
+const peerLocationFailureCacheMs = 10 * 60 * 1000;
+
+const writePeerLocationCaches = () => {
   fs.writeFileSync("peerCountries.json", JSON.stringify(peerCountries, null, 2));
-  return country;
+  fs.writeFileSync("peerLocations.json", JSON.stringify(peerLocations, null, 2));
+};
+
+const _fetchPeerLocation = async (peerId, peerIp) => {
+  const location = parsePeerLocation(
+    await fetchJson(`${peerLocationLookupUrl}/${encodeURIComponent(peerIp)}`),
+  );
+  if (!location) {
+    throw Error(`failed fetching ip location from ip api`);
+  }
+
+  if (peerId) {
+    peerLocations[peerId] = location;
+    peerCountries[peerId] = location.country;
+  }
+  peerLocations[peerIp] = location;
+  peerCountries[peerIp] = location.country;
+  writePeerLocationCaches();
+  return location;
 };
 
 // only fetch 1 at a time to not get limited
 import PQueue from "p-queue";
 const queue = new PQueue({ concurrency: 1 });
-const fetchPeerCountry = (peerId, peerIp) => queue.add(() => _fetchPeerCountry(peerId, peerIp));
+
+const fetchPeerLocation = (peerId, peerIp) => {
+  const failedAt = failedPeerLocationLookups.get(peerIp);
+  if (failedAt && Date.now() - failedAt < peerLocationFailureCacheMs) {
+    return;
+  }
+
+  if (pendingPeerLocationLookups.has(peerIp)) {
+    return pendingPeerLocationLookups.get(peerIp);
+  }
+
+  const lookup = queue
+    .add(() => _fetchPeerLocation(peerId, peerIp))
+    .catch((error) => {
+      failedPeerLocationLookups.set(peerIp, Date.now());
+      debug(error.message);
+    })
+    .finally(() => pendingPeerLocationLookups.delete(peerIp));
+  pendingPeerLocationLookups.set(peerIp, lookup);
+  return lookup;
+};
 
 const missingCountryCode = "ZZ";
 const getPeerCountry = (peer) => {
   if (typeof peer === "string") {
+    if (peerLocations[peer]?.country) {
+      return peerLocations[peer].country;
+    }
     if (!peerCountries[peer]) {
       return missingCountryCode;
     }
@@ -146,14 +208,48 @@ const getPeerCountry = (peer) => {
   if (!peerIp) {
     return missingCountryCode;
   }
+  if (peerLocations[peerIp]?.country) {
+    return peerLocations[peerIp].country;
+  }
   if (peerCountries[peerIp]) {
     return peerCountries[peerIp];
   }
 
-  // fetch country code async to not slow down metrics
-  fetchPeerCountry(peer.ID, peerIp).catch((e) => debug(e.message));
+  // Fetch city-level data asynchronously so metric collection is never blocked.
+  fetchPeerLocation(peer.ID, peerIp);
 
   return missingCountryCode;
+};
+
+const getPeerLocation = (peer) => {
+  if (typeof peer === "string") {
+    return peerLocations[peer];
+  }
+
+  const peerIp = getIpFromPeer(peer);
+  if (!peerIp) {
+    return peerLocations[peer.ID];
+  }
+  const cachedLocation = peerLocations[peerIp];
+  if (cachedLocation) {
+    return cachedLocation;
+  }
+  fetchPeerLocation(peer.ID, peerIp);
+};
+
+const getLocationsPeerCount = (peersName) => {
+  const peersMap = new Map();
+  for (const { address: communityAddress } of monitorState.communitiesMonitoring || []) {
+    for (const peer of monitorState.communities[communityAddress][peersName] || []) {
+      peersMap.set(peer.ID || peer, peer);
+    }
+  }
+
+  return countPeerLocations([...peersMap.values()].map(getPeerLocation)).map((location) => ({
+    ...location,
+    latitude: String(location.latitude),
+    longitude: String(location.longitude),
+  }));
 };
 
 const getPeerCounts = () => {
