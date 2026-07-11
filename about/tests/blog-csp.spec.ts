@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { expect, test } from "@playwright/test";
+import { DEFAULT_HTTP_ROUTER_URLS } from "../src/lib/p2p-browser-config";
 
 type VercelHeaderRoute = {
   headers?: Record<string, string>;
@@ -10,10 +11,6 @@ const requiredBlogConnectSources = [
   "https://pubsubprovider.xyz",
   "https://plebpubsub.xyz",
   "https://rannithepleb.com",
-  "https://peers.plebpubsub.xyz",
-  "https://routing.lol",
-  "https://peers.pleb.bot",
-  "https://peers.forumindex.com",
   "https://ipfsgateway.xyz",
   "https://gateway.plebpubsub.xyz",
   "https://gateway.forumindex.com",
@@ -26,8 +23,13 @@ const requiredBlogConnectSources = [
   "https://api.ipify.org",
   "https://api.country.is",
   "https://free.freeipapi.com",
-  "https://91.234.199.189:54667",
-  "wss://*.libp2p.direct:45169",
+  // Every tracker pkc-js queries for provider records must be reachable, or
+  // seeder discovery silently loses redundancy.
+  ...DEFAULT_HTTP_ROUTER_URLS,
+  // Seeders advertise AutoTLS WebSocket addresses under libp2p.direct, but
+  // their port rotates when the seeder daemon restarts — the CSP must not pin
+  // it (a pinned :45169 once blocked every seeder dial in production).
+  "wss://*.libp2p.direct:*",
 ];
 
 const getConnectSources = () => {
@@ -57,6 +59,22 @@ test.describe("blog CSP", () => {
     const connectSources = getConnectSources();
     for (const source of requiredBlogConnectSources) {
       expect(connectSources.has(source), `${source} must be allowed by connect-src`).toBe(true);
+    }
+  });
+
+  test("does not pin seeder ports or addresses that rotate on restart", ({ browserName }) => {
+    test.skip(browserName !== "chromium", "one project is enough for this config test");
+
+    const connectSources = getConnectSources();
+    for (const source of connectSources) {
+      expect(
+        /^wss:\/\/.*:\d+$/.test(source),
+        `${source} must not pin a seeder WebSocket port`,
+      ).toBe(false);
+      expect(
+        /^https:\/\/\d+\.\d+\.\d+\.\d+/.test(source),
+        `${source} must not pin a seeder IP address`,
+      ).toBe(false);
     }
   });
 });
