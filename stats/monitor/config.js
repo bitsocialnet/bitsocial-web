@@ -99,21 +99,25 @@ export default {
       {
         id: "spam_blocker_server",
         label: "Spam Blocker server",
-        url: "https://spamblocker.bitsocial.net/",
+        // Service only answers on /health; root returns 404.
+        url: "https://spamblocker.bitsocial.net/health",
         expectedStatus: 200,
-        expectedBodyMatch: "spam.?blocker|Spam Blocker|@bitsocial",
+        expectedBodyMatch: '"status":"ok"',
       },
       {
         id: "ai_moderation_challenge_server",
         label: "AI Moderation Challenge server",
-        url: "https://ai.bitsocialforge.com/",
-        expectedStatus: 200,
-        expectedBodyMatch: "ai.?moderation|AI Moderation|bitsocialforge|@bitsocial",
+        // ai.bitsocialforge.com only serves the token-gated moderation prompt
+        // and returns 404 elsewhere. Probe the prompt path without a token: a
+        // healthy host enforces auth with 401 (never embed the token here).
+        url: "https://ai.bitsocialforge.com/v1/prompts/ai-moderation.md",
+        expectedStatus: 401,
       },
       {
         id: "flags_challenge_server",
         label: "Flags Challenge server",
-        url: "https://flags.5chan.app/",
+        // Service only answers on /health; root returns 404.
+        url: "https://flags.5chan.app/health",
         expectedStatus: 200,
         expectedBodyMatch: "flag|5chan|Flags Challenge|@bitsocial",
       },
