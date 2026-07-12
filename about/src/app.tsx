@@ -1,4 +1,4 @@
-import { lazy, Suspense, useLayoutEffect, useRef, type ReactNode } from "react";
+import { useLayoutEffect, useRef, type ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
@@ -7,16 +7,11 @@ import Apps from "@/pages/apps";
 import About from "@/pages/about";
 import Privacy from "@/pages/privacy";
 import AppDetail from "@/pages/app-detail";
+import Blog from "@/pages/blog";
 import PolygonMeshBackground from "@/components/polygon-mesh-background";
 import SeoHead from "@/components/seo-head";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { normalizeInitialHomeScrollPosition } from "@/lib/initial-scroll";
-
-// Blog is a browser-only Bitsocial client (libp2p, helia, ed25519 signers); the
-// module reaches for `window` on import, so it can't be evaluated during SSR.
-// React.lazy + Suspense lets the server render an empty shell while the client
-// hydrates the full page after polyfills load.
-const Blog = lazy(() => import("@/pages/blog"));
 
 function InitialHomeScrollGuard() {
   const location = useLocation();
@@ -90,9 +85,7 @@ function AppFrame({
               path="/blog"
               element={
                 <DevelopmentOnlyRoute>
-                  <Suspense fallback={null}>
-                    <Blog />
-                  </Suspense>
+                  <Blog />
                 </DevelopmentOnlyRoute>
               }
             />
