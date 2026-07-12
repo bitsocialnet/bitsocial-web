@@ -19,6 +19,14 @@ const pubsubKuboRpcUrl = process.env.BITSOCIAL_STATS_PUBSUB_KUBO_RPC_URL || kubo
 const delegatedRoutingUrls = parseCsvEnv(process.env.BITSOCIAL_STATS_DELEGATED_ROUTING_URLS) || [
   "https://delegated-ipfs.dev",
 ];
+const bsoResolverProviders = [
+  "https://ethereum-rpc.publicnode.com",
+  "https://eth.drpc.org",
+  "https://ethereum.publicnode.com",
+  "https://rpc.mevblocker.io",
+  "https://1rpc.io/eth",
+  "https://eth-pokt.nodies.app",
+];
 
 export default {
   monitoring: {
@@ -125,6 +133,7 @@ export default {
     nfts: [],
   },
   delegatedRoutingUrls,
+  bsoResolverProviders,
   kuboRpcUrl,
   pubsubKuboRpcUrl,
   pkcOptions: {

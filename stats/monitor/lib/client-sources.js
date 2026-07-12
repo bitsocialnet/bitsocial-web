@@ -12,16 +12,26 @@ const readJsonSource = async (source) => {
   return JSON.parse(fs.readFileSync(sourcePath, "utf8"));
 };
 
-const normalizeDirectory = async (clientId, directory) => {
+export const normalizeDirectory = async (
+  clientId,
+  directory,
+  resolveAddress = resolveCommunityTargetAddress,
+) => {
   const communityAddress = directory?.communityAddress || directory?.name;
   if (typeof communityAddress !== "string") {
     throw Error(`client '${clientId}' directory is missing communityAddress/name`);
   }
 
-  let targetAddress = communityAddress;
+  let publicKey = directory.publicKey;
   let resolutionError;
   try {
-    targetAddress = await resolveCommunityTargetAddress(communityAddress);
+    const resolvedAddress = await resolveAddress(communityAddress);
+    if (directory.publicKey && resolvedAddress !== directory.publicKey) {
+      throw Error(
+        `resolved to '${resolvedAddress}' but the community source lists '${directory.publicKey}'`,
+      );
+    }
+    publicKey = resolvedAddress;
   } catch (error) {
     resolutionError = error?.message || String(error);
   }
@@ -29,7 +39,8 @@ const normalizeDirectory = async (clientId, directory) => {
   return {
     address: communityAddress,
     communityAddress,
-    targetAddress,
+    name: communityAddress,
+    publicKey,
     title: directory.title,
     directoryCode: directory.directoryCode,
     clientId,

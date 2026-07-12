@@ -1,19 +1,31 @@
-const targetAddressCache = new Map();
-const COMMUNITY_ALIAS_SUFFIX = ".bso";
-const COMMUNITY_TARGET_SUFFIX = ".eth";
+import { BsoResolver } from "@bitsocial/bso-resolver";
+import PQueue from "p-queue";
+import config from "../config.js";
 
-export const resolveCommunityTargetAddress = async (communityAddress) => {
-  const cachedTargetAddress = targetAddressCache.get(communityAddress);
-  if (cachedTargetAddress) {
-    return cachedTargetAddress;
+const bsoResolvers = config.bsoResolverProviders.map(
+  (provider) => new BsoResolver({ key: `bso-${provider}`, provider }),
+);
+const resolutionQueue = new PQueue({ concurrency: 6 });
+
+export const resolveCommunityTargetAddress = async (communityAddress, resolvers = bsoResolvers) => {
+  if (!communityAddress?.toLowerCase().endsWith(".bso")) {
+    return communityAddress;
   }
 
-  let targetAddress = communityAddress;
-  if (communityAddress?.endsWith(COMMUNITY_ALIAS_SUFFIX)) {
-    targetAddress =
-      communityAddress.slice(0, -COMMUNITY_ALIAS_SUFFIX.length) + COMMUNITY_TARGET_SUFFIX;
-  }
+  return resolutionQueue.add(async () => {
+    const errors = [];
+    for (const resolver of resolvers) {
+      try {
+        const record = await resolver.resolve({ name: communityAddress });
+        if (record?.publicKey) {
+          return record.publicKey;
+        }
+        errors.push(`${resolver.provider}: bitsocial text record not found`);
+      } catch (error) {
+        errors.push(`${resolver.provider}: ${error?.message || String(error)}`);
+      }
+    }
 
-  targetAddressCache.set(communityAddress, targetAddress);
-  return targetAddress;
+    throw Error(`all BSO resolvers failed (${errors.join("; ")})`);
+  });
 };

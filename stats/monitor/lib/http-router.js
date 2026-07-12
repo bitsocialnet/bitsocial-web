@@ -3,7 +3,6 @@ import monitorState from "./monitor-state.js";
 import { getCommunityMetricLabelNames, getCommunityMetricLabels } from "./community-metrics.js";
 import {
   fetchJson,
-  getCommunityIpnsNameFromPublicKey,
   stringToCid,
   getOwnIp,
   ipnsNameToIpnsOverPubsubTopic,
@@ -165,7 +164,7 @@ const getCommunityIpnsGetProvidersFetchStats = async (
       `can't monitor http router '${httpRouterUrl}' community ipns providers for '${communityAddress}' no community public key found yet`,
     );
   }
-  const communityIpnsName = getCommunityIpnsNameFromPublicKey(community.publicKey);
+  const communityIpnsName = community.publicKey;
   const ipnsOverPubsubTopic = ipnsNameToIpnsOverPubsubTopic(communityIpnsName);
   const dhtKey = await pubsubTopicToDhtKey(ipnsOverPubsubTopic);
 

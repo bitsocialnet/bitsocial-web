@@ -22,20 +22,20 @@ const pubsubPeersIntervalMs = 1000 * 10;
 export const monitorCommunitiesPubsub = async () => {
   for (const community of monitorState.communitiesMonitoring) {
     const pubsubTopic = monitorState.communities[community?.address]?.pubsubTopic;
-    const communityPublicKey = monitorState.communities[community?.address]?.publicKey;
-    monitorCommunityPubsub(community, pubsubTopic, communityPublicKey).catch((e) =>
+    const signaturePublicKey = monitorState.communities[community?.address]?.signaturePublicKey;
+    monitorCommunityPubsub(community, pubsubTopic, signaturePublicKey).catch((e) =>
       debug(e.message),
     );
   }
 };
 
-const monitorCommunityPubsub = async (community, pubsubTopic, communityPublicKey) => {
+const monitorCommunityPubsub = async (community, pubsubTopic, signaturePublicKey) => {
   if (!pubsubTopic) {
     throw Error(`can't monitor pubsub for '${community?.address}' no pubsub topic found yet`);
   }
-  if (!communityPublicKey) {
+  if (!signaturePublicKey) {
     throw Error(
-      `can't monitor pubsub for '${community?.address}' no community public key found yet`,
+      `can't monitor pubsub for '${community?.address}' no community signature public key found yet`,
     );
   }
 
@@ -84,7 +84,7 @@ const monitorCommunityPubsub = async (community, pubsubTopic, communityPublicKey
       prometheusObserveCommunityPubsubPeers(community.address, "HttpRouters");
     });
 
-  startListeningToPubsubMessages(community, pubsubTopic, communityPublicKey).catch((e) =>
+  startListeningToPubsubMessages(community, pubsubTopic, signaturePublicKey).catch((e) =>
     debug(`failed start listening to pubsub message for '${community.address}': ${e.message}`),
   );
 
@@ -141,7 +141,7 @@ const startFetchingPubsubPeers = (community, pubsubTopic) => {
 
 const countPubsubMessage = createCounter();
 const isListeningToPubsubMessages = {};
-const startListeningToPubsubMessages = async (community, pubsubTopic, communityPublicKey) => {
+const startListeningToPubsubMessages = async (community, pubsubTopic, signaturePublicKey) => {
   if (isListeningToPubsubMessages[pubsubTopic]) {
     return;
   }
@@ -159,7 +159,7 @@ const startListeningToPubsubMessages = async (community, pubsubTopic, communityP
       stats.lastPubsubMessageTimestamp = Math.round(Date.now() / 1000);
 
       // TODO: this can be exploited by republishing old community messages, needs more validation
-      if (communityPublicKey === pubsubMessagePublicKeyBase64) {
+      if (signaturePublicKey === pubsubMessagePublicKeyBase64) {
         stats.lastCommunityPubsubMessageTimestamp = stats.lastPubsubMessageTimestamp;
         debug(`got pubsub message from community '${community?.address}'`);
       } else {
@@ -233,7 +233,7 @@ const publishFakeChallengeRequest = async (community) => {
     lastPublishErrorCount: 0,
   };
   const beforeTimestamp = Date.now();
-  const publishCommunityAddress = community.targetAddress || community.address;
+  const publishCommunityAddress = community.publicKey || community.name;
 
   const signer = await pkcPubsubKuboRpc.createSigner();
   const getRandomString = () => (Math.random() + 1).toString(36).replace(".", "");

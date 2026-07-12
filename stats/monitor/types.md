@@ -14,6 +14,9 @@ network: NetworkStatus
 CommunityStatus {
 address: string
 communityAddress: string
+name: string
+publicKey: string
+signaturePublicKey: string
 clientId: string
 title: string
 directoryCode: string

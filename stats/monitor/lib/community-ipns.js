@@ -48,17 +48,19 @@ const getCidFromIpfsPath = (ipfsPath) => {
   return cid || undefined;
 };
 
-// Resolve the public `.eth` alias first, then fetch the canonical `.bso` record via Kubo.
-const fetchCommunityUpdate = async (communityAddress, targetAddress) => {
+const fetchCommunityUpdate = async (communityName, publicKey) => {
   const resolvedIpnsName =
-    await pkcKuboRpc._clientsManager.resolveSubplebbitAddressIfNeeded(targetAddress);
+    await pkcKuboRpc._clientsManager.resolveSubplebbitAddressIfNeeded(publicKey);
+  if (!resolvedIpnsName) {
+    throw Error(`failed resolving public key '${publicKey}' for '${communityName}'`);
+  }
   const resolvedUpdatePath = await resolveIpnsPath(resolvedIpnsName);
   const resolvedUpdateCid = getCidFromIpfsPath(resolvedUpdatePath);
   const communityUpdate = await readJsonFromKubo(resolvedUpdatePath);
 
-  if (communityUpdate?.address && communityUpdate.address !== communityAddress) {
+  if (communityUpdate?.address && communityUpdate.address !== communityName) {
     throw Error(
-      `resolved '${targetAddress}' to '${resolvedIpnsName}' but fetched '${communityUpdate?.address}'`,
+      `resolved '${communityName}' to '${resolvedIpnsName}' but fetched '${communityUpdate?.address}'`,
     );
   }
 
@@ -67,13 +69,12 @@ const fetchCommunityUpdate = async (communityAddress, targetAddress) => {
 
 export const monitorCommunitiesIpns = async () => {
   for (const community of monitorState.communitiesMonitoring) {
-    const targetAddress = community?.targetAddress || community?.address;
-    debug(`fetching community '${community?.address}' ipns via '${targetAddress}'`);
+    debug(`fetching community '${community?.name}' via IPNS public key '${community?.publicKey}'`);
     (async () => {
       try {
         const { resolvedIpnsName, resolvedUpdateCid, communityUpdate } = await fetchCommunityUpdate(
-          community.address,
-          targetAddress,
+          community.name,
+          community.publicKey,
         );
         const lastUpdateCid = communityUpdate.updateCid || resolvedUpdateCid;
         debug(
@@ -84,7 +85,7 @@ export const monitorCommunitiesIpns = async () => {
           getCommunityCount: countGetCommunity(community.address),
           lastCommunityUpdateTimestamp: communityUpdate.updatedAt,
           pubsubTopic: communityUpdate.pubsubTopic, // needed for pubsub monitoring
-          publicKey: communityUpdate.signature.publicKey, // needed for pubsub monitoring
+          signaturePublicKey: communityUpdate.signature.publicKey,
           ipnsName:
             resolvedIpnsName ||
             getCommunityIpnsNameFromPublicKey(communityUpdate.signature.publicKey), // useful for debugging

@@ -2,7 +2,7 @@ import config from "../config.js";
 import monitorState from "./monitor-state.js";
 import { getCommunityMetricLabelNames, getCommunityMetricLabels } from "./community-metrics.js";
 import { kubo } from "./pkc-js/pkc-js.js";
-import { fetchJson, getCommunityIpnsNameFromPublicKey, createCounter } from "./utils.js";
+import { fetchJson, createCounter } from "./utils.js";
 import prometheus from "./prometheus.js";
 import pTimeout from "p-timeout";
 import Debug from "debug";
@@ -156,7 +156,12 @@ const getCommunityIpnsFetchStats = async (ipfsGatewayUrl, communityAddress, comm
       `can't monitor ipfs gateway '${ipfsGatewayUrl}' community ipns for '${communityAddress}' no community public key found yet`,
     );
   }
-  const communityIpnsName = getCommunityIpnsNameFromPublicKey(community.publicKey);
+  if (!community?.signaturePublicKey) {
+    throw Error(
+      `can't monitor ipfs gateway '${ipfsGatewayUrl}' community ipns for '${communityAddress}' no community signature public key found yet`,
+    );
+  }
+  const communityIpnsName = community.publicKey;
 
   debug(
     `fetching community '${community.address}' ipns '${communityIpnsName}' from '${ipfsGatewayUrl}'`,
@@ -173,7 +178,7 @@ const getCommunityIpnsFetchStats = async (ipfsGatewayUrl, communityAddress, comm
   try {
     const beforeTimestamp = Date.now();
     const fetchedCommunity = await fetchJsonRetry(fetchJsonRetryOptions);
-    if (fetchedCommunity.signature.publicKey !== community.publicKey) {
+    if (fetchedCommunity.signature.publicKey !== community.signaturePublicKey) {
       throw Error(
         `failed fetching got response '${JSON.stringify(fetchedCommunity).substring(0, 300)}'`,
       );
