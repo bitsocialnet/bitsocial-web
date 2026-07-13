@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type MouseEv
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { m } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
+import { CHAIN_SITE_URL, DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { cn } from "@/lib/utils";
 import { goHomeScrollTop, goRouteScrollTop } from "@/lib/home-nav";
@@ -59,7 +59,13 @@ function NavLink({
   if (to) {
     if (isDocsPath(to) || isStatsPath(to)) {
       return (
-        <a href={to} className={className} onClick={onClick}>
+        <a
+          href={to}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={className}
+          onClick={onClick}
+        >
           {content}
         </a>
       );
@@ -80,12 +86,12 @@ function NavLink({
 }
 
 function TopbarLinks({
-  sourceCodeLabel,
+  chainLabel,
   onNavClick,
   onAppsClick,
   routeLinks,
 }: {
-  sourceCodeLabel: string;
+  chainLabel: string;
   onNavClick: () => void;
   onAppsClick: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
   routeLinks: Array<{ label: string; to: string }>;
@@ -102,26 +108,21 @@ function TopbarLinks({
           {link.label}
         </NavLink>
       ))}
-      <NavLink
-        href="https://github.com/bitsocialnet"
-        onClick={onNavClick}
-        noUnderline
-        className="capitalize"
-      >
-        {sourceCodeLabel}
+      <NavLink href={CHAIN_SITE_URL} onClick={onNavClick} noUnderline>
+        {chainLabel}
       </NavLink>
     </div>
   );
 }
 
 function DesktopNavigation({
-  sourceCodeLabel,
+  chainLabel,
   onNavClick,
   onAppsClick,
   routeLinks,
   includeNoJsControls = true,
 }: {
-  sourceCodeLabel: string;
+  chainLabel: string;
   onNavClick: () => void;
   onAppsClick: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
   routeLinks: Array<{ label: string; to: string }>;
@@ -130,7 +131,7 @@ function DesktopNavigation({
   return (
     <div className="topbar-desktop-nav flex items-center">
       <TopbarLinks
-        sourceCodeLabel={sourceCodeLabel}
+        chainLabel={chainLabel}
         onNavClick={onNavClick}
         onAppsClick={onAppsClick}
         routeLinks={routeLinks}
@@ -158,10 +159,10 @@ function DesktopNavigation({
 
 function NoJsMobileMenu({
   routeLinks,
-  sourceCodeLabel,
+  chainLabel,
 }: {
   routeLinks: Array<{ label: string; to: string }>;
-  sourceCodeLabel: string;
+  chainLabel: string;
 }) {
   return (
     <details className="nojs-mobile-menu">
@@ -176,18 +177,27 @@ function NoJsMobileMenu({
 
       <div className="nojs-mobile-panel px-4 py-6">
         <nav className="flex flex-col gap-1">
-          {routeLinks.map((link) => (
-            <a key={link.to} href={link.to} className={navLinkClassName}>
-              {link.label}
-            </a>
-          ))}
+          {routeLinks.map((link) => {
+            const opensInNewTab = isDocsPath(link.to) || isStatsPath(link.to);
+
+            return (
+              <a
+                key={link.to}
+                href={link.to}
+                className={navLinkClassName}
+                {...(opensInNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
+                {link.label}
+              </a>
+            );
+          })}
           <a
-            href="https://github.com/bitsocialnet"
+            href={CHAIN_SITE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${navLinkClassName} capitalize`}
+            className={navLinkClassName}
           >
-            {sourceCodeLabel}
+            {chainLabel}
           </a>
         </nav>
 
@@ -333,7 +343,7 @@ export default function Topbar() {
   const blogLabel = t("nav.blog");
   const docsLabel = t("nav.docs");
   const statsLabel = t("nav.status");
-  const sourceCodeLabel = t("nav.sourceCode");
+  const chainLabel = t("nav.chain");
   const routeLinks = [
     { label: appsLabel, to: APPS_DIRECTORY_HREF },
     { label: blogLabel, to: "/blog" },
@@ -366,7 +376,7 @@ export default function Topbar() {
               className="pointer-events-none invisible absolute left-0 top-0 whitespace-nowrap"
             >
               <DesktopNavigation
-                sourceCodeLabel={sourceCodeLabel}
+                chainLabel={chainLabel}
                 onNavClick={handleNavClick}
                 onAppsClick={handleAppsClick}
                 routeLinks={routeLinks}
@@ -400,7 +410,7 @@ export default function Topbar() {
                 </div>
               ) : (
                 <DesktopNavigation
-                  sourceCodeLabel={sourceCodeLabel}
+                  chainLabel={chainLabel}
                   onNavClick={handleNavClick}
                   onAppsClick={handleAppsClick}
                   routeLinks={routeLinks}
@@ -408,7 +418,7 @@ export default function Topbar() {
               )}
 
               <noscript>
-                <NoJsMobileMenu routeLinks={routeLinks} sourceCodeLabel={sourceCodeLabel} />
+                <NoJsMobileMenu routeLinks={routeLinks} chainLabel={chainLabel} />
               </noscript>
             </div>
           </div>
@@ -427,13 +437,8 @@ export default function Topbar() {
                   {link.label}
                 </NavLink>
               ))}
-              <NavLink
-                href="https://github.com/bitsocialnet"
-                onClick={handleNavClick}
-                noUnderline
-                className="capitalize"
-              >
-                {sourceCodeLabel}
+              <NavLink href={CHAIN_SITE_URL} onClick={handleNavClick} noUnderline>
+                {chainLabel}
               </NavLink>
             </div>
 
