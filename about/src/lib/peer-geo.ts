@@ -156,7 +156,7 @@ const resolveOwnPublicEndpointLocation = async (
     endpoint.countryCode
       ? Promise.resolve(endpoint.countryCode)
       : fetchOwnIpCountryCode(endpoint.ip, signal),
-    fetchIpMapLocation(endpoint.ip, signal),
+    fetchIpMapLocation(endpoint.ip, signal, false),
   ]);
   // This country is shown next to the user's own public IP, so only use lookup
   // services that actually identify that IP. The coarse peer hash can be very
@@ -176,27 +176,29 @@ const resolveOwnPublicEndpointLocation = async (
 export const fetchOwnPublicEndpoint = async (
   signal?: AbortSignal,
 ): Promise<PublicEndpoint | undefined> => {
-  if (cachedOwnPublicEndpoint && Date.now() < cachedOwnPublicEndpoint.expiresAt)
+  if (cachedOwnPublicEndpoint && Date.now() < cachedOwnPublicEndpoint.expiresAt) {
     return cachedOwnPublicEndpoint.value;
+  }
 
   const ipv4Endpoint = await fetchPublicEndpoint(PUBLIC_IPV4_LOOKUP_URL, signal);
   if (ipv4Endpoint) {
     const value = await resolveOwnPublicEndpointLocation(ipv4Endpoint, signal);
-    cachedOwnPublicEndpoint = { expiresAt: Date.now() + 60_000, value };
+    if (value.countryCode && value.location) {
+      cachedOwnPublicEndpoint = { expiresAt: Date.now() + 60_000, value };
+    }
     return value;
   }
 
   const endpoint = await fetchPublicEndpoint(COUNTRY_LOOKUP_URL, signal);
   if (endpoint) {
     const value = await resolveOwnPublicEndpointLocation(endpoint, signal);
-    cachedOwnPublicEndpoint = { expiresAt: Date.now() + 60_000, value };
+    if (value.countryCode && value.location) {
+      cachedOwnPublicEndpoint = { expiresAt: Date.now() + 60_000, value };
+    }
     return value;
   }
-  // Don't cache an empty result produced by an aborted lookup (e.g. the panel was
-  // closed mid-request): that is cancellation, not a real failure, so a later
-  // reopen should retry instead of being served a cached blank for 30s.
-  if (!signal?.aborted)
-    cachedOwnPublicEndpoint = { expiresAt: Date.now() + 30_000, value: undefined };
+  // Leave incomplete results uncached so the panel's normal refresh can recover
+  // from transient endpoint or GeoIP failures without requiring a page reload.
   return undefined;
 };
 
@@ -213,9 +215,11 @@ export const fetchOwnIpCountryCode = async (
   if (cached && Date.now() < cached.expiresAt) return cached.value;
   const endpoint = await fetchPublicEndpoint(`${COUNTRY_LOOKUP_URL}/${ip}`, signal);
   const value = endpoint?.countryCode;
-  // See fetchOwnPublicEndpoint: skip caching when the lookup was aborted so a
-  // cancelled request does not blank the flag for 60s on the next open.
-  if (!signal?.aborted) ownIpCountryCache.set(ip, { expiresAt: Date.now() + 60_000, value });
+  // Failed enrichment must remain retryable so a transient outage cannot blank
+  // the user's flag until the page is reloaded.
+  if (!signal?.aborted && value) {
+    ownIpCountryCache.set(ip, { expiresAt: Date.now() + 60_000, value });
+  }
   return value;
 };
 
@@ -440,9 +444,12 @@ export const getApproximateCountryCode = (address: string): string | undefined =
 export const fetchIpMapLocation = async (
   ip: string,
   signal?: AbortSignal,
+  cacheFailure = true,
 ): Promise<PeerMapLocation | undefined> => {
   const cached = peerLocationCache.get(ip);
-  if (cached && Date.now() < cached.expiresAt) return cached.value;
+  if (cached && Date.now() < cached.expiresAt && (cached.value || cacheFailure)) {
+    return cached.value;
+  }
 
   let value: PeerMapLocation | undefined;
   try {
@@ -454,8 +461,8 @@ export const fetchIpMapLocation = async (
     value = undefined;
   }
 
-  // See fetchOwnPublicEndpoint: a cancelled request should not poison the cache.
-  if (!signal?.aborted) {
+  // Cancelled requests and retryable own-endpoint failures should not poison the cache.
+  if (!signal?.aborted && (value || cacheFailure)) {
     peerLocationCache.set(ip, {
       expiresAt: Date.now() + (value ? PEER_LOCATION_CACHE_MS : PEER_LOCATION_FAILURE_CACHE_MS),
       value,
