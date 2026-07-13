@@ -171,6 +171,7 @@ function StatCard({
 
 function TextRow({ row }: { row: TextStatRow }) {
   const isMono = row.name === "Peer ID";
+  const isLeechingMode = row.name === "Mode" && row.value === "Leeching";
   const className = row.name === "Peer ID" ? "sm:col-span-2" : undefined;
   return (
     <StatCard label={row.name} className={className}>
@@ -181,6 +182,19 @@ function TextRow({ row }: { row: TextStatRow }) {
         )}
       >
         {row.value}
+        {isLeechingMode ? (
+          <>
+            {" "}
+            <a
+              href="https://github.com/bitsocialnet/bitsocial-seeder"
+              target="_blank"
+              rel="noreferrer"
+              className="font-bold text-foreground/85 underline decoration-blue-glow/40 decoration-2 underline-offset-4 transition-colors hover:text-foreground hover:decoration-blue-glow"
+            >
+              (want to seed?)
+            </a>
+          </>
+        ) : null}
       </span>
     </StatCard>
   );
