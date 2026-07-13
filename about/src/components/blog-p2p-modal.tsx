@@ -7,6 +7,7 @@ import EasterEggOverlay from "@/components/easter-egg-overlay";
 import {
   COUNTRY_FLAG_HEIGHT,
   COUNTRY_FLAG_WIDTH,
+  getCountryFlagEmoji,
   getCountryFlagPosition,
   getCountryLabel,
 } from "@/lib/country-flags";
@@ -186,15 +187,20 @@ function TextRow({ row }: { row: TextStatRow }) {
 }
 
 function CountryFlag({ countryCode, className }: { countryCode?: string; className?: string }) {
+  const emoji = getCountryFlagEmoji(countryCode);
   const position = getCountryFlagPosition(countryCode);
-  if (!position) return null;
+  if (!emoji || !position) return null;
   const label = getCountryLabel(countryCode);
   return (
-    <>
+    <span
+      role="img"
+      aria-label={label ?? countryCode ?? "flag"}
+      title={label}
+      className={cn("inline-flex h-4 w-4 shrink-0 items-center justify-center", className)}
+    >
       <span
         aria-hidden="true"
-        title={label}
-        className={cn("inline-block shrink-0", className)}
+        className="country-flag-sprite"
         style={{
           backgroundImage: "url('/assets/icons/flags-1.png')",
           backgroundPosition: `-${position.x}px -${position.y}px`,
@@ -204,8 +210,10 @@ function CountryFlag({ countryCode, className }: { countryCode?: string; classNa
           imageRendering: "pixelated",
         }}
       />
-      <span className="sr-only">{label ?? countryCode ?? "flag"}</span>
-    </>
+      <span aria-hidden="true" className="country-flag-emoji text-base leading-none">
+        {emoji}
+      </span>
+    </span>
   );
 }
 

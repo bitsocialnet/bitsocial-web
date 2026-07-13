@@ -42,6 +42,24 @@
   .optical-display-start {
     margin-left: -0.035em;
   }
+
+  .country-flag-sprite {
+    display: inline-block;
+  }
+
+  .country-flag-emoji {
+    display: none;
+  }
+
+  @media (min-resolution: 2dppx) {
+    .country-flag-sprite {
+      display: none;
+    }
+
+    .country-flag-emoji {
+      display: inline-block;
+    }
+  }
 }
 
 @layer base {

@@ -8,6 +8,7 @@
 export const COUNTRY_FLAG_WIDTH = 16;
 export const COUNTRY_FLAG_HEIGHT = 11;
 const COUNTRY_FLAG_COLUMNS = 16;
+const REGIONAL_INDICATOR_OFFSET = 0x1f1a5;
 
 const COUNTRY_FLAG_CODES = [
   "ad",
@@ -297,6 +298,14 @@ export const getCountryFlagPosition = (
     x: (index % COUNTRY_FLAG_COLUMNS) * COUNTRY_FLAG_WIDTH,
     y: Math.floor(index / COUNTRY_FLAG_COLUMNS) * COUNTRY_FLAG_HEIGHT,
   };
+};
+
+export const getCountryFlagEmoji = (value: string | undefined) => {
+  const code = normalizeCountryCode(value);
+  if (!code) return undefined;
+  return String.fromCodePoint(
+    ...[...code.toUpperCase()].map((letter) => letter.charCodeAt(0) + REGIONAL_INDICATOR_OFFSET),
+  );
 };
 
 export const getCountryLabel = (value: string | undefined) => {
