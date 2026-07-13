@@ -60,7 +60,7 @@ Agents may use compiled context to navigate quickly, but must verify against sou
 | Dependencies or import graph changed | Run `yarn knip` as an advisory manifest/import audit |
 | Translation key/value changed | Use `docs/agent-playbooks/translations.md` |
 | Public-facing English content changed (`about/public/translations/en/default.json`, docs pages, app directory data, public README text, or `scripts/generate-llms-files.mjs`) | Run `yarn llms:generate`; inspect and commit any resulting changes to `about/public/llms*.txt` and `docs/static/llms*.txt` so LLM indexes stay current |
-| Bug report in a specific file/line | Start with git history scan from `docs/agent-playbooks/bug-investigation.md` before editing |
+| Bug report | Reproduce the reported behavior or establish the defect from conclusive source/runtime evidence before editing; for a specific file/line, also start with the git history scan in `docs/agent-playbooks/bug-investigation.md` |
 | UI or visual behavior changed | Verify in browser with `playwright-cli` across Chrome/Blink, Firefox/Gecko, and WebKit/Safari; check desktop and mobile behavior when relevant |
 | Frontend UI design, redesign, critique, audit, polish, layout, typography, color, motion, or visual hierarchy work | Use the `impeccable` skill (one entry point with 23 design subcommands under `/impeccable`) |
 | Browsing performance regression, rerender hotspot, or route jank needs investigation | Use the `profile-browsing` skill |
@@ -150,6 +150,9 @@ stats/                # Monitoring, Grafana, Prometheus, and deployment assets
 
 ### Bug Investigation Rules
 
+- A bug fix requires either a reproduction of the reported behavior or conclusive source/runtime evidence that identifies both the defect and the correct fix with equivalent certainty.
+- If the bug cannot be reproduced and the evidence is not conclusive, do not guess or make speculative changes. Report what was checked, say that the bug was not reproduced, and ask for the missing reproduction details when useful.
+- When proceeding from conclusive evidence without a reproduction, explain why the evidence is sufficient and add a targeted regression test when practical.
 - For bug reports tied to a specific file or line, check relevant git history before any fix.
 - Minimum sequence: `git log --oneline` or `git blame` first, then scoped `git show` for relevant commits.
 - Full workflow: `docs/agent-playbooks/bug-investigation.md`.
