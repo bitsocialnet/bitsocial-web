@@ -148,7 +148,7 @@ export default function About() {
   return (
     <div className="min-h-screen">
       <Topbar />
-      <main className="px-6 pb-12 pt-24">
+      <main className="px-6 pb-12 pt-28">
         <div className="mx-auto max-w-4xl space-y-8">
           <section aria-labelledby="about-heading" className="space-y-6">
             <div className="max-w-2xl">
