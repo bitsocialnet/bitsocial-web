@@ -6,10 +6,13 @@ import BackToTop from "@/components/back-to-top";
 import Footer from "@/components/footer";
 import MailingList from "@/components/mailing-list";
 import Topbar, { TopbarSpacer } from "@/components/topbar";
+import { useHashScroll } from "@/lib/use-hash-scroll";
 import PolygonMeshBackground from "./PolygonMeshBackground";
 import Sections from "./sections";
 
 export default function App() {
+  useHashScroll();
+
   return (
     <div className="shell">
       <PolygonMeshBackground />
