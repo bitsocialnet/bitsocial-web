@@ -58,8 +58,36 @@
     "searchPlaceholder": "搜索语言...",
     "noResults": "没有语言符合您的搜索。"
   },
+  "problem": {
+    "sectionLabel": "问题",
+    "title": "网络的社交层有一个所有者。",
+    "supporting": "不是阴谋，而是架构。每个主流社交平台都是私有服务器上的私有数据库，现在生计、商业和社区都运行在其上，因此一小撮公司内部的决策直接影响到物理世界。这个设计有三个后果，无论谁来运营它。",
+    "items": {
+      "rented-identity": {
+        "title": "你的身份是租来的。",
+        "description": "你的账户、你的粉丝和你的社区仅仅因为一家公司的数据库这样说而存在。你在那里建立的一切都不是你的。",
+        "answer": "加密资产"
+      },
+      "single-owner": {
+        "title": "一个所有者就是一个故障点。",
+        "description": "公司可能受到压力、被出售、被关闭，或者只是改变主意。依赖它的一切都会随之改变。",
+        "answer": "没有服务器"
+      },
+      "one-rulebook": {
+        "title": "一套规则管理所有人。",
+        "description": "一套单一的规则，以私密方式制定并在全球范围内实施，决定了数十亿人彼此之间可以说什么。",
+        "answer": "没有全网封禁"
+      }
+    },
+    "answerLabel": "Bitsocial的解决方案",
+    "carouselLabel": "私人拥有社交层的三个后果",
+    "quote": "如果中心化的社交媒体应用可以直接封禁你，然后你就再也无法接触到你的客户了，那为了让世界变得更好而创建公司或产品还有什么意义？",
+    "quoteAttribution": "— Esteban Abaroa，Bitsocial 创始人"
+  },
   "features": {
-    "title": "核心功能",
+    "sectionLabel": "核心功能",
+    "title": "Bitsocial是什么?",
+    "supporting": "社交媒体应用的不断扩展的生态，都在使用相同的底层去中心化社交网络——一个任何公司都不拥有、任何人都无法从你手中夺走的网络。",
     "items": {
       "open-source": {
         "description": "Bitsocial 是<strong>免费和开源</strong>软件：协议和客户端是公开的、可分叉的，并对外部贡献开放。 <strong>任何人都可以检查代码</strong>、发布改进或构建兼容的应用程序，而无需征求公司的许可。",
@@ -726,8 +754,6 @@
         "label": "后期采用者",
         "reason": "当他们的圈子已经在那里，而且切换不再让人觉得有风险时，他们就会加入。"
       }
-    },
-    "quote": "如果中心化的社交媒体应用可以直接封禁你，然后你就再也无法接触到你的客户了，那为了让世界变得更好而创建公司或产品还有什么意义？",
-    "quoteAttribution": "— Esteban Abaroa，Bitsocial 创始人"
+    }
   }
 }

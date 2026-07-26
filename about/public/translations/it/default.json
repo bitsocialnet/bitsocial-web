@@ -58,8 +58,36 @@
     "searchPlaceholder": "Cerca lingue...",
     "noResults": "Nessuna lingua corrisponde alla tua ricerca."
   },
+  "problem": {
+    "sectionLabel": "Problema",
+    "title": "Lo strato sociale del web ha un proprietario.",
+    "supporting": "Non è una cospirazione — è un'architettura. Ogni grande piattaforma di social media è un database privato su server privati, e ora i mezzi di sostentamento, i commerci e le comunità vivono su di essa, quindi le decisioni prese all'interno di una manciata di aziende raggiungono direttamente il mondo fisico. Questo design ha tre conseguenze, indipendentemente da chi lo gestisce.",
+    "items": {
+      "rented-identity": {
+        "title": "La tua identità è affittata.",
+        "description": "Il tuo account, il tuo pubblico e la tua comunità esistono solo perché un database aziendale lo dice. Niente di ciò che hai costruito lì è tuo.",
+        "answer": "Proprietà crittografica"
+      },
+      "single-owner": {
+        "title": "Un proprietario è un punto di guasto.",
+        "description": "Un'azienda può essere messa sotto pressione, venduta, chiusa o semplicemente cambiare idea. Tutto ciò che dipende da essa cambia con essa.",
+        "answer": "Senza server"
+      },
+      "one-rulebook": {
+        "title": "Un codice di regole governa tutti.",
+        "description": "Un unico insieme di regole, scritto privatamente e applicato globalmente, decide cosa miliardi di persone possono dirsi l'una con l'altra.",
+        "answer": "Senza ban globali"
+      }
+    },
+    "answerLabel": "La soluzione di Bitsocial",
+    "carouselLabel": "Le tre conseguenze di uno strato sociale di proprietà privata",
+    "quote": "Che senso ha creare un'azienda o un prodotto per migliorare il mondo, se le app di social media centralizzate possono semplicemente bannarti e poi non puoi più raggiungere i tuoi clienti?",
+    "quoteAttribution": "— Esteban Abaroa, fondatore di Bitsocial"
+  },
   "features": {
-    "title": "Funzionalità principali",
+    "sectionLabel": "Funzionalità principali",
+    "title": "Cos'è Bitsocial?",
+    "supporting": "Un universo in continua espansione di app di social media, che utilizzano tutti la stessa rete sociale decentralizzata sottostante — una che nessuna azienda possiede, e nessuna può portarti via.",
     "items": {
       "open-source": {
         "description": "Bitsocial è un software <strong>gratuito e open source</strong>: il protocollo e i client sono pubblici, diramabili e aperti a contributi esterni. <strong>Chiunque può controllare il codice</strong>, fornire miglioramenti o creare un'app compatibile senza chiedere l'autorizzazione a un'azienda.",
@@ -727,8 +755,6 @@
         "label": "Adottanti tardivi",
         "reason": "Si uniscono quando la loro gente è già lì e cambiare smette di sembrare rischioso."
       }
-    },
-    "quote": "Che senso ha creare un'azienda o un prodotto per migliorare il mondo, se le app di social media centralizzate possono semplicemente bannarti e poi non puoi più raggiungere i tuoi clienti?",
-    "quoteAttribution": "— Esteban Abaroa, fondatore di Bitsocial"
+    }
   }
 }

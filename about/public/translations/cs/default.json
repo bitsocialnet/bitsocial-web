@@ -58,8 +58,36 @@
     "searchPlaceholder": "Hledat jazyky...",
     "noResults": "Vašemu vyhledávání neodpovídají žádné jazyky."
   },
+  "problem": {
+    "sectionLabel": "Problém",
+    "title": "Sociální vrstva webu má majitele.",
+    "supporting": "Není to spiknutí — je to architektura. Každá hlavní platforma sociálních médií je soukromou databází na soukromých serverech, a livelihoods, podniky a komunity na ní nyní žijí, takže rozhodnutí učiněná v hrstce společností dosahují přímo do fyzického světa. Tento design má tři důsledky, bez ohledu na to, kdo jej provozuje.",
+    "items": {
+      "rented-identity": {
+        "title": "Vaše identita je pronajatá.",
+        "description": "Váš účet, vaše publikum a vaše komunita existují, protože to říká databáze některé společnosti. Nic z toho, co jste si tam postavili, není vaše.",
+        "answer": "Kryptografický majetek"
+      },
+      "single-owner": {
+        "title": "Jeden vlastník je jeden bod selhání.",
+        "description": "Společnost může být pod tlakem, prodána, uzavřena, nebo jednoduše změní názor. Vše, co na ní závisí, se změní s ní.",
+        "answer": "Bez serverů"
+      },
+      "one-rulebook": {
+        "title": "Jeden řád platí pro všechny.",
+        "description": "Jediná sada pravidel, psaná soukromě a aplikovaná globálně, určuje, co si mohou říci miliardy lidí.",
+        "answer": "Bez globálních zákazů"
+      }
+    },
+    "answerLabel": "Řešení Bitsocial",
+    "carouselLabel": "Tři důsledky soukromě vlastněné sociální vrstvy",
+    "quote": "Jaký má smysl zakládat firmu nebo produkt, aby byl svět lepší, když vás centralizované sociální sítě mohou prostě zablokovat a vy pak už nedosáhnete na své zákazníky?",
+    "quoteAttribution": "— Esteban Abaroa, zakladatel Bitsocial"
+  },
   "features": {
-    "title": "Klíčové funkce",
+    "sectionLabel": "Klíčové funkce",
+    "title": "Co je Bitsocial?",
+    "supporting": "Stále se rozšiřující vesmír aplikací sociálních médií, které všechny používají stejnou základní decentralizovanou sociální síť — jednu, kterou nevlastní žádná společnost, a žádná vám ji nemůže odebrat.",
     "items": {
       "open-source": {
         "description": "Bitsocial je <strong>svobodný a open source</strong> software: protokol a klienti jsou veřejné, rozšiřitelné a otevřené pro vnější příspěvky. <strong>Kdokoli může zkontrolovat kód</strong>, odeslat vylepšení nebo vytvořit kompatibilní aplikaci, aniž by si vyžádal povolení od společnosti.",
@@ -693,8 +721,6 @@
         "label": "Pozdní osvojitelé",
         "reason": "Přidají se, až tam už jsou jejich lidé a přechod přestane působit rizikově."
       }
-    },
-    "quote": "Jaký má smysl zakládat firmu nebo produkt, aby byl svět lepší, když vás centralizované sociální sítě mohou prostě zablokovat a vy pak už nedosáhnete na své zákazníky?",
-    "quoteAttribution": "— Esteban Abaroa, zakladatel Bitsocial"
+    }
   }
 }

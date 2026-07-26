@@ -58,8 +58,36 @@
     "searchPlaceholder": "Maghanap ng mga wika...",
     "noResults": "Walang mga wikang tumutugma sa iyong paghahanap."
   },
+  "problem": {
+    "sectionLabel": "Ang Problema",
+    "title": "Ang social layer ng web ay may may-ari.",
+    "supporting": "Hindi ito isang konspirasi — ito ay arkitektura. Bawat pangunahing social media platform ay isang pribadong database sa mga pribadong server, at ang kita, negosyo, at komunidad ay buhay na dito, kaya ang mga desisyon na ginawa sa loob ng iilan pang kumpanya ay direktang umaabot sa pisikal na mundo. Ang disenyo na ito ay may tatlong kinahinatnan, anuman ang gumagabay dito.",
+    "items": {
+      "rented-identity": {
+        "title": "Ang iyong pagkakakilanlan ay inuupa.",
+        "description": "Ang iyong account, ang iyong audience, at ang iyong komunidad ay umiiral dahil ito ay sinasabi ng database ng isang kumpanya. Walang kahit anuman sa iyong binuo doon na sa iyo.",
+        "answer": "Kriptograpikong Ari-arian"
+      },
+      "single-owner": {
+        "title": "Isang may-ari ay isang punto ng pagkabigo.",
+        "description": "Ang isang kumpanya ay maaaring mapigilan, mabenta, masarahan, o simpleng baguhin ang isip. Lahat ng nakadepende dito ay nagbabago kasama nito.",
+        "answer": "Walang mga server"
+      },
+      "one-rulebook": {
+        "title": "Isang patakaran ang nangingibabaw sa lahat.",
+        "description": "Isang iisang hanay ng mga patakaran, isinulat nang pribado at inilapat sa pandaigdig, ay tumutukoy kung ano ang maaaring sabihin ng milyun-milyong tao sa isa't isa.",
+        "answer": "Walang pandaigdigang pagbabawal"
+      }
+    },
+    "answerLabel": "Solusyon ng Bitsocial",
+    "carouselLabel": "Ang tatlong kahihinatnan ng isang pribadong pag-aari na social layer",
+    "quote": "Ano'ng saysay ng paglikha ng isang kumpanya o produkto para pagandahin ang mundo, kung puwede ka lang basta i-ban ng mga sentralisadong social media app, at hindi mo na maaabot ang mga customer mo?",
+    "quoteAttribution": "— Esteban Abaroa, tagapagtatag ng Bitsocial"
+  },
   "features": {
-    "title": "Mga Pangunahing Tampok",
+    "sectionLabel": "Mga Pangunahing Tampok",
+    "title": "Ano ang Bitsocial?",
+    "supporting": "Isang patuloy na lumalaking uniberso ng mga social media app, lahat ay gumagamit ng parehong pinagbabatayan na desentralisadong social network — isang hindi pag-aari ng anumang kumpanya, at walang sinuman ang maaaring kunin mula sa iyo.",
     "items": {
       "open-source": {
         "description": "Ang Bitsocial ay <strong>libre at open source</strong> na software: ang protocol at mga kliyente ay pampubliko, forkable, at bukas sa mga kontribusyon sa labas. <strong>Maaaring suriin ng sinuman ang code</strong>, mga pagpapahusay sa barko, o bumuo ng isang katugmang app nang hindi humihingi ng pahintulot mula sa isang kumpanya.",
@@ -727,8 +755,6 @@
         "label": "Mga huling nag-a-adopt",
         "reason": "Sasali sila kapag nandiyan na ang kanilang mga tao at hindi na nakakabahalang lumipat."
       }
-    },
-    "quote": "Ano'ng saysay ng paglikha ng isang kumpanya o produkto para pagandahin ang mundo, kung puwede ka lang basta i-ban ng mga sentralisadong social media app, at hindi mo na maaabot ang mga customer mo?",
-    "quoteAttribution": "— Esteban Abaroa, tagapagtatag ng Bitsocial"
+    }
   }
 }

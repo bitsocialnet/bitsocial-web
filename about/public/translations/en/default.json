@@ -59,8 +59,36 @@
     "contribute": "Improve this page",
     "privacy": "Privacy"
   },
+  "problem": {
+    "sectionLabel": "The Problem",
+    "title": "The social layer of the web has an owner.",
+    "supporting": "Not a conspiracy — an architecture. Every mainstream social platform is a private database on private servers, and livelihoods, businesses, and communities now live on it, so decisions made inside a handful of companies reach directly into the physical world. That design has three consequences, no matter who is running it.",
+    "items": {
+      "rented-identity": {
+        "title": "Your identity is rented.",
+        "description": "Your account, your audience, and your community exist because a company's database says so. Nothing you built there is yours.",
+        "answer": "Cryptographic property"
+      },
+      "single-owner": {
+        "title": "One owner is one point of failure.",
+        "description": "A company can be pressured, sold, shut down, or simply change its mind. Everything downstream of it changes with it.",
+        "answer": "No servers"
+      },
+      "one-rulebook": {
+        "title": "One rulebook governs everyone.",
+        "description": "A single ruleset, written privately and applied globally, decides what billions of people can say to each other.",
+        "answer": "No global bans"
+      }
+    },
+    "answerLabel": "Bitsocial's solution",
+    "carouselLabel": "The three consequences of a privately owned social layer",
+    "quote": "What's the point of creating a company or product to make the world better, if centralized social media apps can just ban you, and then you can no longer reach your customers?",
+    "quoteAttribution": "— Esteban Abaroa, Bitsocial founder"
+  },
   "features": {
-    "title": "Core Features",
+    "sectionLabel": "Core Features",
+    "title": "What is Bitsocial?",
+    "supporting": "An ever-expanding universe of social media apps, all using the same underlying decentralized social network — one that no company owns, and none can take away from you.",
     "items": {
       "open-source": {
         "description": "Bitsocial is <strong>free and open source</strong> software: the protocol and clients are public, forkable, and open to outside contributions. <strong>Anyone can inspect the code</strong>, ship improvements, or build a compatible app without asking permission from a company.",
@@ -429,9 +457,7 @@
         "label": "Laggards",
         "reason": "They join once their people are already there and switching stops feeling risky."
       }
-    },
-    "quote": "What's the point of creating a company or product to make the world better, if centralized social media apps can just ban you, and then you can no longer reach your customers?",
-    "quoteAttribution": "— Esteban Abaroa, Bitsocial founder"
+    }
   },
   "masterPlan": {
     "title": "A Call to Action",

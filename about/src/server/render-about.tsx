@@ -14,7 +14,11 @@ import {
   renderBootstrapPayload,
   type BootstrapPayload,
 } from "@/lib/bootstrap";
-import { createLanguageCookieValue, resolveRequestLanguage } from "@/lib/locales";
+import {
+  DEFAULT_LANGUAGE_CODE,
+  createLanguageCookieValue,
+  resolveRequestLanguage,
+} from "@/lib/locales";
 import { getSeoMetadata, injectSeoHead } from "@/lib/seo";
 import { resolveRequestTheme } from "@/lib/theme";
 import { GraphicsModeProvider } from "@/lib/graphics-mode";
@@ -83,12 +87,22 @@ async function readLocaleResources(language: string) {
 async function createServerI18n(payload: BootstrapPayload) {
   const instance = createInstance();
 
+  // Keys a locale has not translated yet must render English, not the raw key. The client gets
+  // this from its http-backend fallback; the server only holds the requested locale, so the
+  // English bundle is added here. It stays out of the hydration payload to keep the HTML small.
+  const defaultResources = TRANSLATION_RESOURCES[DEFAULT_LANGUAGE_CODE];
+  const fallbackResources =
+    payload.locale === DEFAULT_LANGUAGE_CODE || !defaultResources
+      ? {}
+      : { [DEFAULT_LANGUAGE_CODE]: { translation: defaultResources } };
+
   await instance.use(initReactI18next).init({
-    fallbackLng: payload.locale,
+    fallbackLng: DEFAULT_LANGUAGE_CODE,
     lng: payload.locale,
     debug: false,
     showSupportNotice: false,
     resources: {
+      ...fallbackResources,
       [payload.locale]: {
         translation: payload.i18n.resources,
       },

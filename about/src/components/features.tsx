@@ -246,6 +246,15 @@ export default function Features() {
   const featureCardRefs = useRef<Partial<Record<FeatureId, HTMLDivElement | null>>>({});
   const scheduleConnectorMeasurementRef = useRef<() => void>(() => {});
   const [connectors, setConnectors] = useState<FeatureConnectorLayout[]>([]);
+  const sectionReveal = (y: number, delay = 0, duration = 0.6) =>
+    prefersReducedMotion
+      ? {}
+      : {
+          initial: { opacity: 0, y },
+          whileInView: { opacity: 1, y: 0 },
+          viewport: { once: true },
+          transition: { duration, delay },
+        };
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -430,17 +439,40 @@ export default function Features() {
   };
 
   return (
-    <section className="px-6 py-24 -mt-[clamp(2.5rem,5vh,4rem)] pt-[clamp(2.5rem,5vh,4rem)] md:-mt-[clamp(3rem,5vh,4.5rem)] md:pt-[clamp(6rem,9vh,7.5rem)]">
+    <section className="px-6 py-24" aria-labelledby="core-features-title">
       <div className="max-w-7xl mx-auto">
+        <div
+          id="core-features"
+          data-home-section-label
+          className="scroll-mt-[99px] md:scroll-mt-[103px]"
+        >
+          <m.div
+            {...sectionReveal(14, 0, 0.5)}
+            className="mb-6 block text-center text-xs font-display uppercase tracking-[0.2em] text-muted-foreground/75 dark:text-muted-foreground/70 md:text-sm"
+          >
+            <a
+              href="#core-features"
+              className="rounded-md transition-[color,box-shadow] duration-300 dark:hover:text-muted-foreground/82"
+            >
+              {t("features.sectionLabel")}
+            </a>
+          </m.div>
+        </div>
+
         <m.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-display font-normal text-center mb-16 text-muted-foreground text-balance"
+          id="core-features-title"
+          {...sectionReveal(20, 0.1)}
+          className="mb-6 text-center text-4xl font-display font-semibold leading-[1.1] text-balance text-muted-foreground md:text-6xl lg:text-7xl"
         >
           {t("features.title")}
         </m.h2>
+
+        <m.p
+          {...sectionReveal(20, 0.2)}
+          className="mx-auto mb-16 max-w-2xl text-center text-base leading-relaxed text-balance text-muted-foreground md:text-lg"
+        >
+          {t("features.supporting")}
+        </m.p>
 
         <div ref={featureListRef} className="relative">
           {features.map((feature, index) => {

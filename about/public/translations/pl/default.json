@@ -58,8 +58,36 @@
     "searchPlaceholder": "Szukaj języków...",
     "noResults": "Żaden język nie pasuje do Twojego wyszukiwania."
   },
+  "problem": {
+    "sectionLabel": "Problem",
+    "title": "Warstwa społeczna sieci ma właściciela.",
+    "supporting": "Nie to spisek — to architektura. Każda główna platforma mediów społecznych to prywatna baza danych na prywatnych serwerach, a teraz źródła utrzymania, biznes i społeczności żyją na niej, więc decyzje podejmowane w garści firm docierają bezpośrednio do świata fizycznego. Ten projekt ma trzy konsekwencje, bez względu na to, kto go prowadzi.",
+    "items": {
+      "rented-identity": {
+        "title": "Twoja tożsamość jest wynajęta.",
+        "description": "Twoje konto, twoja publiczność i twoja społeczność istnieją, ponieważ baza danych firmy to mówi. Nic z tego, co tam zbudowałeś, nie jest twoje.",
+        "answer": "Własność kryptograficzna"
+      },
+      "single-owner": {
+        "title": "Jeden właściciel to jeden punkt awarii.",
+        "description": "Firma może być pod presją, sprzedana, zamknięta lub po prostu zmienić zdanie. Wszystko, co od niej zależy, zmienia się z nią.",
+        "answer": "Bez serwerów"
+      },
+      "one-rulebook": {
+        "title": "Jeden kodeks reguł rządzi wszystkimi.",
+        "description": "Jeden zestaw reguł, napisany w tajemnicy i stosowany na całym świecie, decyduje o tym, co mogą sobie powiedzieć miliardy ludzi.",
+        "answer": "Bez globalnych banów"
+      }
+    },
+    "answerLabel": "Rozwiązanie Bitsocial",
+    "carouselLabel": "Trzy konsekwencje prywatnie posiadanej warstwy społecznej",
+    "quote": "Jaki jest sens tworzenia firmy albo produktu, żeby uczynić świat lepszym, jeśli scentralizowane aplikacje społecznościowe mogą po prostu cię zablokować, a wtedy nie możesz już dotrzeć do swoich klientów?",
+    "quoteAttribution": "— Esteban Abaroa, założyciel Bitsocial"
+  },
   "features": {
-    "title": "Kluczowe funkcje",
+    "sectionLabel": "Kluczowe funkcje",
+    "title": "Co to jest Bitsocial?",
+    "supporting": "Stale rozszerzający się wszechświat aplikacji mediów społecznościowych, które wszystkie wykorzystują tę samą podstawową zdecentralizowaną sieć społecznościową — taką, której nie posiada żadne przedsiębiorstwo i której żadne nie może ci odebrać.",
     "items": {
       "open-source": {
         "description": "Bitsocial jest oprogramowaniem <strong>bezpłatnym i otwartym</strong>: protokół i klienci są publiczni, można je rozwidlać i są otwarci na wkład z zewnątrz. <strong>Każdy może sprawdzić kod</strong>, dostarczać ulepszenia lub tworzyć zgodną aplikację bez pytania firmy o pozwolenie.",
@@ -727,8 +755,6 @@
         "label": "Późni użytkownicy",
         "reason": "Dołączają, gdy ich ludzie są już na miejscu, a przejście przestaje wydawać się ryzykowne."
       }
-    },
-    "quote": "Jaki jest sens tworzenia firmy albo produktu, żeby uczynić świat lepszym, jeśli scentralizowane aplikacje społecznościowe mogą po prostu cię zablokować, a wtedy nie możesz już dotrzeć do swoich klientów?",
-    "quoteAttribution": "— Esteban Abaroa, założyciel Bitsocial"
+    }
   }
 }

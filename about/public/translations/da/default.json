@@ -58,8 +58,36 @@
     "searchPlaceholder": "Søg efter sprog...",
     "noResults": "Ingen sprog matcher din søgning."
   },
+  "problem": {
+    "sectionLabel": "Problem",
+    "title": "Webs sociale lag har en ejer.",
+    "supporting": "Det er ikke en sammensværgelse — det er en arkitektur. Hver større sociale medier-platform er en privat database på private servere, og levebrød, virksomheder og samfund lever nu på det, så beslutninger truffet inden for en håndfuld virksomheder når direkte ud i den fysiske verden. Dette design har tre konsekvenser, uanset hvem der kører det.",
+    "items": {
+      "rented-identity": {
+        "title": "Din identitet er lejet.",
+        "description": "Din konto, dit publikum og dit fællesskab eksisterer, fordi en virksomheds database siger det. Intet af det, du byggede der, er dit.",
+        "answer": "Kryptografisk ejendom"
+      },
+      "single-owner": {
+        "title": "En ejer er et kritisk fejlpunkt.",
+        "description": "En virksomhed kan blive presset, solgt, lukket ned eller simpelthen ændre mening. Alt, hvad der afhænger af den, ændres med den.",
+        "answer": "Uden servere"
+      },
+      "one-rulebook": {
+        "title": "En regelbok styrer alle.",
+        "description": "Et enkelt regelsæt, skrevet privat og anvendt globalt, afgør hvad milliarder mennesker kan sige til hinanden.",
+        "answer": "Uden globale udelukkelser"
+      }
+    },
+    "answerLabel": "Bitsocials løsning",
+    "carouselLabel": "De tre konsekvenser af et privat socialt lag",
+    "quote": "Hvad er pointen i at skabe en virksomhed eller et produkt for at gøre verden bedre, hvis centraliserede sociale medieapps bare kan blokere dig, og så kan du ikke længere nå ud til dine kunder?",
+    "quoteAttribution": "— Esteban Abaroa, grundlægger af Bitsocial"
+  },
   "features": {
-    "title": "Kernefunktioner",
+    "sectionLabel": "Kernefunktioner",
+    "title": "Hvad er Bitsocial?",
+    "supporting": "Et stadigt voksende univers af sociale medieapps, der alle bruger det samme underliggende decentraliserede sociale netværk — et som ingen virksomhed ejer, og ingen kan tage fra dig.",
     "items": {
       "open-source": {
         "description": "Bitsocial er <strong>gratis og open source</strong>-software: protokollen og klienterne er offentlige, forkable og åbne for eksterne bidrag. <strong>Alle kan inspicere koden</strong>, sende forbedringer eller bygge en kompatibel app uden at bede om tilladelse fra en virksomhed.",
@@ -693,8 +721,6 @@
         "label": "Sene brugere",
         "reason": "De kommer med, når deres folk allerede er der, og det ikke længere føles risikabelt at skifte."
       }
-    },
-    "quote": "Hvad er pointen i at skabe en virksomhed eller et produkt for at gøre verden bedre, hvis centraliserede sociale medieapps bare kan blokere dig, og så kan du ikke længere nå ud til dine kunder?",
-    "quoteAttribution": "— Esteban Abaroa, grundlægger af Bitsocial"
+    }
   }
 }

@@ -58,8 +58,36 @@
     "searchPlaceholder": "Dil ara...",
     "noResults": "Aramanızla eşleşen dil yok."
   },
+  "problem": {
+    "sectionLabel": "Sorun",
+    "title": "Web'in sosyal katmanının bir sahibi var.",
+    "supporting": "Bir komplo değil — bir mimaridir. Her büyük sosyal medya platformu özel sunucular üzerinde özel bir veritabanıdır ve artık geçim kaynakları, işletmeler ve topluluklar bunda yaşamaktadır, bu nedenle bir avuç şirket içinde alınan kararlar doğrudan fiziksel dünyaya ulaşır. Bu tasarımın üç sonucu vardır, kim tarafından yönetilirse yönetilsin.",
+    "items": {
+      "rented-identity": {
+        "title": "Kimliğin kiraya verilmiş.",
+        "description": "Hesabınız, izleyicileriniz ve topluluğunuz yalnızca bir şirketin veritabanı öyle dediği için var. Orada inşa ettiğiniz hiçbir şey sizin değildir.",
+        "answer": "Kriptografik mülkiyet"
+      },
+      "single-owner": {
+        "title": "Bir sahip bir hata noktasıdır.",
+        "description": "Bir şirket baskı altında olabilir, satılabilir, kapatılabilir veya basitçe fikrini değiştirebilir. Buna bağlı her şey onunla birlikte değişir.",
+        "answer": "Sunucusu yok"
+      },
+      "one-rulebook": {
+        "title": "Bir kurallar kitabı herkesi yönetir.",
+        "description": "Özel olarak yazılmış ve dünya çapında uygulanmış tek bir kural seti, milyarlarca insanın birbirlerine neler söyleyebileceğini belirler.",
+        "answer": "Küresel yasak yok"
+      }
+    },
+    "answerLabel": "Bitsocial'ın çözümü",
+    "carouselLabel": "Özel olarak sahip olunan sosyal katmanın üç sonucu",
+    "quote": "Dünyayı daha iyi hale getirmek için bir şirket ya da ürün yaratmanın ne anlamı var, merkezi sosyal medya uygulamaları sizi kolayca banlayabiliyorsa ve sonra müşterilerinize artık ulaşamıyorsanız?",
+    "quoteAttribution": "— Esteban Abaroa, Bitsocial kurucusu"
+  },
   "features": {
-    "title": "Temel Özellikler",
+    "sectionLabel": "Temel Özellikler",
+    "title": "Bitsocial nedir?",
+    "supporting": "Sosyal medya uygulamalarının sürekli genişleyen bir evreni, hepsi aynı temel merkezi olmayan sosyal ağı kullanıyor — hiçbir şirketin sahip olmadığı ve hiç kimse size alıp götüremeyeceği bir ağ.",
     "items": {
       "open-source": {
         "description": "Bitsocial <strong>ücretsiz ve açık kaynaklı</strong> bir yazılımdır: protokol ve istemciler halka açıktır, çatallanabilir ve dış katkılara açıktır. <strong>Herkes, bir şirketten izin istemeden kodu inceleyebilir</strong>, iyileştirmeler gönderebilir veya uyumlu bir uygulama geliştirebilir.",
@@ -727,8 +755,6 @@
         "label": "Geç benimseyenler",
         "reason": "İnsanları zaten oradayken ve geçiş artık riskli hissettirmediğinde katılırlar."
       }
-    },
-    "quote": "Dünyayı daha iyi hale getirmek için bir şirket ya da ürün yaratmanın ne anlamı var, merkezi sosyal medya uygulamaları sizi kolayca banlayabiliyorsa ve sonra müşterilerinize artık ulaşamıyorsanız?",
-    "quoteAttribution": "— Esteban Abaroa, Bitsocial kurucusu"
+    }
   }
 }

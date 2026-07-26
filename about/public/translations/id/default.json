@@ -58,8 +58,36 @@
     "searchPlaceholder": "Cari bahasa...",
     "noResults": "Tidak ada bahasa yang cocok dengan penelusuran Anda."
   },
+  "problem": {
+    "sectionLabel": "Masalah",
+    "title": "Lapisan sosial web memiliki pemilik.",
+    "supporting": "Bukan konspirasi — tapi arsitektur. Setiap platform media sosial utama adalah basis data pribadi di server pribadi, dan sekarang mata pencaharian, bisnis, dan komunitas hidup di atasnya, jadi keputusan yang dibuat di dalam segelintir perusahaan mencapai langsung ke dunia fisik. Desain ini memiliki tiga konsekuensi, tidak peduli siapa yang menjalankannya.",
+    "items": {
+      "rented-identity": {
+        "title": "Identitasmu disewa.",
+        "description": "Akun Anda, audiens Anda, dan komunitas Anda ada hanya karena database perusahaan mengatakannya. Tidak ada yang Anda bangun di sana yang milik Anda.",
+        "answer": "Properti kriptografis"
+      },
+      "single-owner": {
+        "title": "Satu pemilik adalah satu titik kegagalan.",
+        "description": "Sebuah perusahaan dapat mendapat tekanan, dijual, ditutup, atau sekadar mengubah pikirannya. Segala yang bergantung padanya berubah bersama dengannya.",
+        "answer": "Tanpa server"
+      },
+      "one-rulebook": {
+        "title": "Satu peraturan menguasai semua orang.",
+        "description": "Satu set aturan tunggal, ditulis secara pribadi dan diterapkan secara global, menentukan apa yang dapat dikatakan miliaran orang satu sama lain.",
+        "answer": "Tanpa larangan global"
+      }
+    },
+    "answerLabel": "Solusi Bitsocial",
+    "carouselLabel": "Tiga konsekuensi dari lapisan sosial yang dimiliki secara pribadi",
+    "quote": "Apa gunanya membangun perusahaan atau produk untuk membuat dunia lebih baik, kalau aplikasi media sosial terpusat bisa begitu saja memblokirmu, lalu kamu tidak bisa lagi menjangkau pelangganmu?",
+    "quoteAttribution": "— Esteban Abaroa, pendiri Bitsocial"
+  },
   "features": {
-    "title": "Fitur Inti",
+    "sectionLabel": "Fitur Inti",
+    "title": "Apa itu Bitsocial?",
+    "supporting": "Sebuah alam semesta aplikasi media sosial yang terus berkembang, semua menggunakan jaringan sosial terdesentralisasi yang sama — satu yang tidak dimiliki oleh perusahaan mana pun, dan tidak ada yang bisa mengambilnya dari Anda.",
     "items": {
       "open-source": {
         "description": "Bitsocial adalah perangkat lunak <strong>gratis dan sumber terbuka</strong>: protokol dan kliennya bersifat publik, dapat di-fork, dan terbuka terhadap kontribusi dari luar. <strong>Siapa pun dapat memeriksa kode</strong>, mengirimkan penyempurnaan, atau membuat aplikasi yang kompatibel tanpa meminta izin dari perusahaan.",
@@ -727,8 +755,6 @@
         "label": "Pengadopsi akhir",
         "reason": "Mereka baru bergabung saat orang-orang mereka sudah ada di sana dan berpindah tak lagi terasa berisiko."
       }
-    },
-    "quote": "Apa gunanya membangun perusahaan atau produk untuk membuat dunia lebih baik, kalau aplikasi media sosial terpusat bisa begitu saja memblokirmu, lalu kamu tidak bisa lagi menjangkau pelangganmu?",
-    "quoteAttribution": "— Esteban Abaroa, pendiri Bitsocial"
+    }
   }
 }

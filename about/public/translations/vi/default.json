@@ -58,8 +58,36 @@
     "searchPlaceholder": "Tìm kiếm ngôn ngữ...",
     "noResults": "Không có ngôn ngữ phù hợp với tìm kiếm của bạn."
   },
+  "problem": {
+    "sectionLabel": "Vấn Đề",
+    "title": "Lớp xã hội của web có chủ nhân.",
+    "supporting": "Không phải âm mưu — mà là kiến trúc. Mỗi nền tảng truyền thông xã hội lớn đều là cơ sở dữ liệu riêng tư trên máy chủ riêng tư, và bây giờ sinh kế, doanh nghiệp và cộng đồng đang sống trên nó, vì vậy những quyết định được đưa ra trong một nhóm công ty lại tiếp cận trực tiếp với thế giới vật lý. Thiết kế này có ba hậu quả, bất kể ai đang điều hành nó.",
+    "items": {
+      "rented-identity": {
+        "title": "Danh tính của bạn được cho thuê.",
+        "description": "Tài khoản của bạn, lượng người theo dõi và cộng đồng của bạn tồn tại chỉ vì một cơ sở dữ liệu của công ty nói như vậy. Không có gì trong những gì bạn xây dựng ở đó là của bạn.",
+        "answer": "Tài sản mã hóa"
+      },
+      "single-owner": {
+        "title": "Một chủ là một điểm lỗi duy nhất.",
+        "description": "Một công ty có thể bị áp lực, bán đi, đóng cửa hoặc đơn giản là thay đổi ý kiến. Mọi thứ phụ thuộc vào nó đều thay đổi theo nó.",
+        "answer": "Không có máy chủ"
+      },
+      "one-rulebook": {
+        "title": "Một bộ quy tắc quản lý mọi người.",
+        "description": "Một bộ quy tắc duy nhất, được viết kín đáo và áp dụng toàn cầu, quyết định những gì hàng tỷ người có thể nói với nhau.",
+        "answer": "Không có lệnh cấm toàn cầu"
+      }
+    },
+    "answerLabel": "Giải pháp của Bitsocial",
+    "carouselLabel": "Ba hệ quả của lớp xã hội sở hữu tư nhân",
+    "quote": "Tạo ra một công ty hay sản phẩm để làm cho thế giới tốt đẹp hơn thì có ý nghĩa gì, nếu các ứng dụng mạng xã hội tập trung chỉ cần cấm bạn là xong, rồi sau đó bạn không còn tiếp cận được khách hàng của mình nữa?",
+    "quoteAttribution": "— Esteban Abaroa, nhà sáng lập Bitsocial"
+  },
   "features": {
-    "title": "Tính năng cốt lõi",
+    "sectionLabel": "Tính năng cốt lõi",
+    "title": "Bitsocial là gì?",
+    "supporting": "Một vũ trụ không ngừng mở rộng của các ứng dụng phương tiện truyền thông xã hội, tất cả đều sử dụng cùng một mạng xã hội phi tập trung cơ bản — một mạng mà không công ty nào sở hữu, và không ai có thể lấy nó từ bạn.",
     "items": {
       "open-source": {
         "description": "Bitsocial là phần mềm <strong>miễn phí và mã nguồn mở</strong>: giao thức và ứng dụng khách là công khai, có thể phân nhánh và mở cho sự đóng góp từ bên ngoài. <strong>Bất kỳ ai cũng có thể kiểm tra mã</strong>, đưa ra các cải tiến hoặc xây dựng ứng dụng tương thích mà không cần xin phép công ty.",
@@ -727,8 +755,6 @@
         "label": "Những người áp dụng muộn",
         "reason": "Họ tham gia khi nhóm của họ đã ở đó sẵn và việc chuyển sang không còn thấy mạo hiểm nữa."
       }
-    },
-    "quote": "Tạo ra một công ty hay sản phẩm để làm cho thế giới tốt đẹp hơn thì có ý nghĩa gì, nếu các ứng dụng mạng xã hội tập trung chỉ cần cấm bạn là xong, rồi sau đó bạn không còn tiếp cận được khách hàng của mình nữa?",
-    "quoteAttribution": "— Esteban Abaroa, nhà sáng lập Bitsocial"
+    }
   }
 }
