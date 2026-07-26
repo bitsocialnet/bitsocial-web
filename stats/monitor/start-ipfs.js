@@ -5,7 +5,7 @@ import fs from "fs-extra";
 import ps from "node:process";
 import ProgressBar from "progress";
 import https from "https";
-import decompress from "decompress";
+import decompress from "@xhmikosr/decompress";
 import http from "http";
 import tcpPortUsed from "tcp-port-used";
 import { arch } from "os";
