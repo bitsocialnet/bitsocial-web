@@ -3,7 +3,7 @@ import { renderToString } from "react-dom/server";
 import { createInstance, type i18n as I18nInstance } from "i18next";
 import { I18nextProvider, initReactI18next } from "react-i18next";
 import { domAnimation, LazyMotion, MotionConfig } from "framer-motion";
-import { StaticRouter } from "react-router-dom/server";
+import { StaticRouter } from "react-router";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AppShell } from "@/app";
 import {
