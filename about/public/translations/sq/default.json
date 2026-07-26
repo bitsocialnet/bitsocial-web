@@ -58,8 +58,36 @@
     "searchPlaceholder": "Kërko gjuhë...",
     "noResults": "Asnjë gjuhë nuk përputhet me kërkimin tuaj."
   },
+  "problem": {
+    "sectionLabel": "Problemi",
+    "title": "Shtresa shoqërore e webit ka një pronar.",
+    "supporting": "Jo një konspiracë — një arkitekturë. Çdo platformë kryesore e mediave sociale është një bazë të dhënash private në servera private, dhe tani jetesa, bizneset dhe komunitetit jetojnë në të, kështu që vendimet e marra brenda një dore të komanive arrijnë drejtpërdrejt në botën fizike. Ky dizajn ka tre pasoja, pavarësisht se kush e drejton atë.",
+    "items": {
+      "rented-identity": {
+        "title": "Identiteti yt është me qira.",
+        "description": "Llogaria juaj, publikimi juaj dhe komuniteti juaj ekzistojnë sepse një bazë e dhënash e kompanisë thotë kështu. Asgjë nga ato që ndërtuam atje nuk është juaja.",
+        "answer": "Pronë kriptografike"
+      },
+      "single-owner": {
+        "title": "Një pronar = një pikë dështimi.",
+        "description": "Një kompani mund të presiohet, të shitet, të mbyllet ose thjesht të ndryshojë mend. Çdo gjë që varet nga ajo ndryshon me të.",
+        "answer": "Pa serverë"
+      },
+      "one-rulebook": {
+        "title": "Një kodeks qeveris të gjithëve.",
+        "description": "Një grup i vetëm rregullash, i shkruar privatisht dhe i aplikuar globalisht, vendos se çfarë mund t'i thonë njëri-tjetrit miliarda njerëzish.",
+        "answer": "Pa ndalime globale"
+      }
+    },
+    "answerLabel": "Zgjidhja e Bitsocial",
+    "carouselLabel": "Tre pasoja të një shtrese shoqërore në pronësi private",
+    "quote": "Çfarë kuptimi ka të krijosh një kompani ose produkt për ta bërë botën më të mirë, nëse aplikacionet e centralizuara të rrjeteve sociale mund thjesht të të bllokojnë, dhe pastaj nuk arrin më te klientët e tu?",
+    "quoteAttribution": "— Esteban Abaroa, themeluesi i Bitsocial"
+  },
   "features": {
-    "title": "Karakteristikat Kryesore",
+    "sectionLabel": "Karakteristikat Kryesore",
+    "title": "Çfarë është Bitsocial?",
+    "supporting": "Një univers gjithnjë i zgjeruar i aplikacioneve të mediave shoqerore, të gjitha duke përdorur të njëjtën rrjet shoqeror të decentralizuar themelor — një që nuk zotërohet nga asnjë kompani, dhe asnjë nuk mund ta të marrë atë.",
     "items": {
       "open-source": {
         "description": "Bitsocial është softuer <strong>pa pagesë dhe me burim të hapur</strong>: protokolli dhe klientët janë publikë, të mundshëm dhe të hapur për kontributet e jashtme. <strong>Çdokush mund të inspektojë kodin</strong>, të dërgojë përmirësime ose të ndërtojë një aplikacion të përputhshëm pa kërkuar leje nga një kompani.",
@@ -727,8 +755,6 @@
         "label": "Adoptues të vonshëm",
         "reason": "Bashkohen kur njerëzit e tyre janë tashmë aty dhe kalimi nuk duket më i rrezikshëm."
       }
-    },
-    "quote": "Çfarë kuptimi ka të krijosh një kompani ose produkt për ta bërë botën më të mirë, nëse aplikacionet e centralizuara të rrjeteve sociale mund thjesht të të bllokojnë, dhe pastaj nuk arrin më te klientët e tu?",
-    "quoteAttribution": "— Esteban Abaroa, themeluesi i Bitsocial"
+    }
   }
 }

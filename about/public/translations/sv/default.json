@@ -58,8 +58,36 @@
     "searchPlaceholder": "Sök språk...",
     "noResults": "Inga språk matchar din sökning."
   },
+  "problem": {
+    "sectionLabel": "Problem",
+    "title": "Webs sociala lager har en ägare.",
+    "supporting": "Inte en konspiration — en arkitektur. Varje stor plattform för sociala medier är en privat databas på privata servrar, och nu lever försörjning, företag och samhällen på den, så beslut tagna inom en handfull företag når direkt in i den fysiska världen. Denna design har tre konsekvenser, oavsett vem som driver den.",
+    "items": {
+      "rented-identity": {
+        "title": "Din identitet är hyrd.",
+        "description": "Ditt konto, din publik och din community existerar bara för att en företagsdatabas säger det. Inget av det du byggde där är ditt.",
+        "answer": "Kryptografisk egendom"
+      },
+      "single-owner": {
+        "title": "En ägare är en enda felkälla.",
+        "description": "Ett företag kan pressas, säljas, stängas eller helt enkelt ändra åsikt. Allt som beror på det förändras med det.",
+        "answer": "Utan servrar"
+      },
+      "one-rulebook": {
+        "title": "En regelbok styr alla.",
+        "description": "En enda regeluppsättning, skriven privat och tillämpas globalt, avgör vad miljarder människor kan säga till varandra.",
+        "answer": "Utan globala avstängningar"
+      }
+    },
+    "answerLabel": "Bitsocials lösning",
+    "carouselLabel": "De tre konsekvenserna av ett privat ägt socialt lager",
+    "quote": "Vad är poängen med att skapa ett företag eller en produkt för att göra världen bättre, om centraliserade sociala medieappar bara kan spärra dig, och sedan kan du inte längre nå dina kunder?",
+    "quoteAttribution": "— Esteban Abaroa, grundare av Bitsocial"
+  },
   "features": {
-    "title": "Kärnfunktioner",
+    "sectionLabel": "Kärnfunktioner",
+    "title": "Vad är Bitsocial?",
+    "supporting": "Ett ständigt växande universum av sociala medieappar, som alla använder samma underliggande decentraliserade sociala nätverk — ett som ingen företag äger, och ingen kan ta ifrån dig.",
     "items": {
       "open-source": {
         "description": "Bitsocial är en <strong>fri och öppen källkod</strong>-programvara: protokollet och klienterna är offentliga, förklädda och öppna för externa bidrag. <strong>Vem som helst kan inspektera koden</strong>, skicka förbättringar eller bygga en kompatibel app utan att fråga om tillstånd från ett företag.",
@@ -727,8 +755,6 @@
         "label": "Sena användare",
         "reason": "De ansluter när deras krets redan finns där och det inte längre känns riskabelt att byta."
       }
-    },
-    "quote": "Vad är poängen med att skapa ett företag eller en produkt för att göra världen bättre, om centraliserade sociala medieappar bara kan spärra dig, och sedan kan du inte längre nå dina kunder?",
-    "quoteAttribution": "— Esteban Abaroa, grundare av Bitsocial"
+    }
   }
 }

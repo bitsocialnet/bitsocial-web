@@ -9,6 +9,7 @@ import Footer from "@/components/footer";
 import Hero from "@/components/hero";
 import MailingList from "@/components/mailing-list";
 import MasterPlan from "@/components/master-plan";
+import ProblemSection from "@/components/problem";
 import SanctuaryCommunication from "@/components/sanctuary-communication";
 import TextOnlyProtocol from "@/components/text-only-protocol";
 import Topbar from "@/components/topbar";
@@ -17,6 +18,8 @@ import { MAILING_LIST_HASH, scheduleMailingListHashScroll } from "@/lib/mailing-
 import { getScrollBehavior } from "@/lib/utils";
 
 const HOME_SECTION_HASHES = new Set([
+  "#problem",
+  "#core-features",
   "#decentralized",
   "#arbitrary-challenges",
   "#text-only-protocol",
@@ -203,6 +206,7 @@ export default function Home() {
             />
           </div>
           <div className="relative z-10">
+            <ProblemSection />
             <Features />
             <SanctuaryCommunication />
             <ArbitraryChallenges />

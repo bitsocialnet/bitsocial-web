@@ -58,8 +58,36 @@
     "searchPlaceholder": "Caută limbi...",
     "noResults": "Nicio limbă nu corespunde căutării dvs."
   },
+  "problem": {
+    "sectionLabel": "Problema",
+    "title": "Stratul social al internetului are proprietar.",
+    "supporting": "Nu este o conspirație — este o arhitectură. Fiecare platformă majoră de social media este o bază de date privată pe servere private, iar acum mijloacele de trai, afacerile și comunitățile trăiesc pe aceasta, deci deciziile luate în cadrul unui mânar de companii ajung direct în lumea fizică. Acest design are trei consecințe, indiferent cine o administrează.",
+    "items": {
+      "rented-identity": {
+        "title": "Identitatea ta este închiriată.",
+        "description": "Contul tău, publicul tău și comunitatea ta exista doar pentru că o bază de date a unei companii o spune. Nimic din ceea ce ai construit acolo nu este al tău.",
+        "answer": "Proprietate criptografică"
+      },
+      "single-owner": {
+        "title": "Un singur proprietar este un punct de defecțiune.",
+        "description": "O companie poate fi sub presiune, vândută, închisă sau pur și simplu să-și schimbe părerea. Tot ceea ce depinde de ea se schimbă cu ea.",
+        "answer": "Fără servere"
+      },
+      "one-rulebook": {
+        "title": "Un cod de reguli guvernează pe toți.",
+        "description": "Un singur set de reguli, scris în privat și aplicat la nivel global, decide ce pot spune între ele miliarde de oameni.",
+        "answer": "Fără interdicții globale"
+      }
+    },
+    "answerLabel": "Soluția Bitsocial",
+    "carouselLabel": "Cele trei consecințe ale unui strat social deținut în proprietate privată",
+    "quote": "Ce rost are să creezi o companie sau un produs ca să faci lumea mai bună, dacă aplicațiile centralizate de social media te pot interzice pur și simplu și apoi nu-ți mai poți contacta clienții?",
+    "quoteAttribution": "— Esteban Abaroa, fondatorul Bitsocial"
+  },
   "features": {
-    "title": "Funcționalități de bază",
+    "sectionLabel": "Funcționalități de bază",
+    "title": "Ce este Bitsocial?",
+    "supporting": "Un univers în continuă expansiune de aplicații de rețele sociale, toate utilizând aceeași rețea socială descentralizată de bază — una pe care nicio companie nu o deține, și nicio nu ți-o poate lua.",
     "items": {
       "open-source": {
         "description": "Bitsocial este un software <strong>gratuit și cu sursă deschisă</strong>: protocolul și clienții sunt publici, se pot obține și sunt deschiși contribuțiilor externe. <strong>Oricine poate inspecta codul</strong>, poate livra îmbunătățiri sau poate crea o aplicație compatibilă fără a cere permisiunea unei companii.",
@@ -727,8 +755,6 @@
         "label": "Adoptatori târzii",
         "reason": "Se alătură când oamenii lor sunt deja acolo și schimbarea nu mai pare riscantă."
       }
-    },
-    "quote": "Ce rost are să creezi o companie sau un produs ca să faci lumea mai bună, dacă aplicațiile centralizate de social media te pot interzice pur și simplu și apoi nu-ți mai poți contacta clienții?",
-    "quoteAttribution": "— Esteban Abaroa, fondatorul Bitsocial"
+    }
   }
 }

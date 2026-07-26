@@ -400,14 +400,6 @@ export default function AdoptionThesis() {
             t={t}
           />
         </m.div>
-
-        <m.blockquote
-          {...reveal(0, 0.6, 0.8)}
-          className="mx-auto mt-14 block max-w-lg text-center text-xs italic text-muted-foreground/75 dark:text-muted-foreground/70 md:text-sm"
-        >
-          &ldquo;{t("adoptionThesis.quote")}&rdquo;
-          <span className="mt-1 block not-italic">{t("adoptionThesis.quoteAttribution")}</span>
-        </m.blockquote>
       </div>
     </section>
   );

@@ -58,8 +58,36 @@
     "searchPlaceholder": "Zoek talen...",
     "noResults": "Er zijn geen talen die overeenkomen met uw zoekopdracht."
   },
+  "problem": {
+    "sectionLabel": "Probleem",
+    "title": "De sociale laag van het web heeft een eigenaar.",
+    "supporting": "Geen samenzwering — een architectuur. Elk belangrijk sociale-mediaplatform is een particuliere database op particuliere servers, en nu leven bestaansmiddelen, bedrijven en gemeenschappen daarop, dus beslissingen genomen binnen een handvol bedrijven bereiken rechtstreeks de fysieke wereld. Dit ontwerp heeft drie gevolgen, ongeacht wie het beheert.",
+    "items": {
+      "rented-identity": {
+        "title": "Je identiteit is gehuurd.",
+        "description": "Je account, je publiek en je community bestaan alleen omdat een bedrijfsdatabase het zegt. Niets van wat je daar hebt opgebouwd is van jou.",
+        "answer": "Cryptografisch eigendom"
+      },
+      "single-owner": {
+        "title": "Eén eigenaar is één foutpunt.",
+        "description": "Een bedrijf kan onder druk worden gezet, verkocht, gesloten of simpelweg van gedachten veranderen. Alles wat ervan afhangt, verandert mee.",
+        "answer": "Zonder servers"
+      },
+      "one-rulebook": {
+        "title": "Eén regelboek beheerst iedereen.",
+        "description": "Een enkel regelset, privé geschreven en globaal toegepast, bepaalt wat miljarden mensen tegen elkaar kunnen zeggen.",
+        "answer": "Zonder wereldwijde bans"
+      }
+    },
+    "answerLabel": "Bitsocials oplossing",
+    "carouselLabel": "De drie gevolgen van een privaat bezeten sociale laag",
+    "quote": "Wat heeft het voor zin om een bedrijf of product te creëren om de wereld beter te maken, als gecentraliseerde socialmedia-apps je gewoon kunnen verbannen en je daarna je klanten niet meer kunt bereiken?",
+    "quoteAttribution": "— Esteban Abaroa, oprichter van Bitsocial"
+  },
   "features": {
-    "title": "Kernfuncties",
+    "sectionLabel": "Kernfuncties",
+    "title": "Wat is Bitsocial?",
+    "supporting": "Een voortdurend uitbreidend universum van social media-apps, die allemaal hetzelfde onderliggende gedecentraliseerde sociale netwerk gebruiken — er een dat geen bedrijf bezit, en niemand kan van je afnemen.",
     "items": {
       "open-source": {
         "description": "Bitsocial is <strong>gratis en open source</strong> software: het protocol en de clients zijn openbaar, afsplitsbaar en staan ​​open voor bijdragen van buitenaf. <strong>Iedereen kan de code inspecteren</strong>, verbeteringen aandragen of een compatibele app bouwen zonder toestemming te vragen aan een bedrijf.",
@@ -727,8 +755,6 @@
         "label": "Late volgers",
         "reason": "Ze stappen in zodra hun mensen er al zijn en overstappen niet meer riskant voelt."
       }
-    },
-    "quote": "Wat heeft het voor zin om een bedrijf of product te creëren om de wereld beter te maken, als gecentraliseerde socialmedia-apps je gewoon kunnen verbannen en je daarna je klanten niet meer kunt bereiken?",
-    "quoteAttribution": "— Esteban Abaroa, oprichter van Bitsocial"
+    }
   }
 }

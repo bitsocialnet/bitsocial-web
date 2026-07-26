@@ -58,8 +58,36 @@
     "searchPlaceholder": "Etsi kieliä...",
     "noResults": "Mikään kieli ei vastaa hakuasi."
   },
+  "problem": {
+    "sectionLabel": "Ongelma",
+    "title": "Webin sosiaalisella kerroksella on omistaja.",
+    "supporting": "Ei salaliitto — arkkitehtuuri. Jokainen pääasiallinen sosiaalisen median alusta on yksityinen tietokanta yksityisillä palvelimilla, ja toimeentulo, liiketoiminta ja yhteisöt elävät nyt sillä, joten pienen kourallisen yrityksen sisällä tehdyt päätökset ulottuvat suoraan fyysiseen maailmaan. Tällä suunnittelulla on kolme seurausta, riippumatta siitä, kuka sitä hallinnoi.",
+    "items": {
+      "rented-identity": {
+        "title": "Identiteettisi on vuokrattu.",
+        "description": "Tilisi, yleisösi ja yhteisösi ovat olemassa, koska yrityksen tietokanta sen sanoo. Mitään siitä, mitä rakensit siellä, ei ole sinun.",
+        "answer": "Kryptografista omaisuutta"
+      },
+      "single-owner": {
+        "title": "Yksi omistaja on yksi vikapiste.",
+        "description": "Yritystä voidaan painostaa, myydä, sulkea tai se voi yksinkertaisesti muuttaa mieltään. Kaikki, mikä siitä riippuu, muuttuu sen mukaan.",
+        "answer": "Ilman palvelimia"
+      },
+      "one-rulebook": {
+        "title": "Yksi säännöstö hallitsee kaikkia.",
+        "description": "Yksi sääntöjoukko, joka on kirjoitettu yksityisesti ja sovellettu globaalisti, päättää mitä miljardeja ihmisiä voi sanoa toisilleen.",
+        "answer": "Ilman maailmanlaajuisia porttikieltoja"
+      }
+    },
+    "answerLabel": "Bitsocialin ratkaisu",
+    "carouselLabel": "Yksityisessä omistuksessa olevan sosiaalisen kerroksen kolme seurausta",
+    "quote": "Mitä järkeä on perustaa yritys tai tuote tekemään maailmasta parempi, jos keskitetyt sosiaalisen median sovellukset voivat vain estää sinut, etkä sen jälkeen enää tavoita asiakkaitasi?",
+    "quoteAttribution": "— Esteban Abaroa, perustaja Bitsocial"
+  },
   "features": {
-    "title": "Ydintoiminnot",
+    "sectionLabel": "Ydintoiminnot",
+    "title": "Mikä on Bitsocial?",
+    "supporting": "Jatkuvasti laajeneva universumi sosiaalisen median sovelluksia, jotka kaikki käyttävät samaa taustalla olevaa hajautettua sosiaalista verkostoa — sellaista, jota mikään yritys ei omista, eikä kukaan voi ottaa sinulta.",
     "items": {
       "open-source": {
         "description": "Bitsocial on <strong>ilmainen ja avoimen lähdekoodin</strong> ohjelmisto: protokolla ja asiakkaat ovat julkisia, forkoitavia ja avoimia ulkopuolisille lahjoituksille. <strong>Kuka tahansa voi tarkistaa koodin</strong>, toimittaa parannuksia tai rakentaa yhteensopivan sovelluksen ilman lupaa yritykseltä.",
@@ -727,8 +755,6 @@
         "label": "Myöhäiset omaksujat",
         "reason": "He liittyvät mukaan silloin, kun heidän omat ihmisensä ovat jo siellä ja vaihtaminen ei enää tunnu riskiltä."
       }
-    },
-    "quote": "Mitä järkeä on perustaa yritys tai tuote tekemään maailmasta parempi, jos keskitetyt sosiaalisen median sovellukset voivat vain estää sinut, etkä sen jälkeen enää tavoita asiakkaitasi?",
-    "quoteAttribution": "— Esteban Abaroa, perustaja Bitsocial"
+    }
   }
 }

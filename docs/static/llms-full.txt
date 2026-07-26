@@ -3282,11 +3282,11 @@ The Linux/Windows/macOS/Android build scripts are in [.github/workflows/release.
 
 Repository: bitsocialnet/seedit
 Source: https://github.com/bitsocialnet/seedit#readme
-Description: Seedit is a serverless, adminless, decentralized and open source (old)reddit alternative built on the Bitsocial protocol. Like reddit, anyone can create a seedit community, It features a similar homepage structure as reddit, but with a crucial difference: anyone can create and own communities, and multiple communities can compete for each default community slot .
+Description: Seedit is a serverless, adminless, decentralized and open source (old)reddit alternative built on the Bitsocial protocol. Like reddit, anyone can create a seedit community. Unlike reddit, communities are independently owned, subscriptions point directly to community addresses, and Seedit's default communities can evolve with the network.
 
 # Seedit
 
-Seedit is a serverless, adminless, decentralized and open-source (old)reddit alternative built on the [Bitsocial protocol](https://bitsocial.net). Like reddit, anyone can create a seedit community, It features a similar homepage structure as reddit, but with a crucial difference: **anyone can create and own communities, and multiple communities can compete for each default community slot**.
+Seedit is a serverless, adminless, decentralized and open-source (old)reddit alternative built on the [Bitsocial protocol](https://bitsocial.net). Like reddit, anyone can create a seedit community. Unlike reddit, communities are independently owned, subscriptions point directly to community addresses, and Seedit's default communities can evolve with the network.
 
 - Seedit web version: https://seedit.app — or, using Brave/IPFS Companion: https://seedit.eth
 
@@ -3304,8 +3304,15 @@ To run a community, you can choose between two options:
 
 Peers can connect to your bitsocial community using any bitsocial client, such as Seedit or [5chan](https://github.com/bitsocialnet/5chan). They only need the community address, which is not stored in any central database, as bitsocial is a pure peer-to-peer protocol.
 
-### How to add a community to the default list (s/all)
-The default list of communities, used on s/all on Seedit, is bitsocial's [seedit-default-subscriptions.json list](https://github.com/bitsocialnet/lists/blob/master/seedit-default-subscriptions.json). You can open a pull request in that repo to add your community to the list.
+### How to add a default community
+
+Seedit's versioned default communities are published in Bitsocial's [seedit-default-subscriptions.json list](https://github.com/bitsocialnet/lists/blob/master/seedit-default-subscriptions.json). New accounts subscribe to these communities by default. When the list changes, existing users can review the update and choose which additions to join; Seedit never removes a manually chosen subscription. You can open a pull request in that repository to propose a community for the list.
+
+### How directory routes work
+
+Seedit separates short discovery routes from subscriptions. A route such as `/s/pics` always opens the finalized winner of the `pics` directory, so valuable short routes are not permanently controlled by squatters or global administrators. The topbar therefore displays `pics`, regardless of the winner's exact address. The directory model is designed for decentralized voting; during bootstrap, finalized snapshots are published through [bitsocialnet/lists](https://github.com/bitsocialnet/lists).
+
+Joining still subscribes to that winner's exact community address, and the home feed reads those exact subscriptions directly. Directory winner changes never silently replace a subscription unless the user explicitly enabled automatic switching; otherwise Seedit lets the user switch, keep both communities, or keep the current one. Post permalinks also use exact community addresses so shared links remain durable. See the [directory-routes architecture decision](docs/architecture/directory-routes.md) for the complete model.
 
 ## Contributor setup
 
@@ -5502,7 +5509,7 @@ EXAMPLES
   $ bitsocial challenge install ./my-local-challenge
 ```
 
-_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/challenge/install.ts)_
+_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/challenge/install.ts)_
 
 ## `bitsocial challenge list`
 
@@ -5528,7 +5535,7 @@ EXAMPLES
   $ bitsocial challenge list -q
 ```
 
-_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/challenge/list.ts)_
+_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/challenge/list.ts)_
 
 ## `bitsocial challenge ls`
 
@@ -5582,7 +5589,7 @@ EXAMPLES
   $ bitsocial challenge remove @scope/my-challenge
 ```
 
-_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/challenge/remove.ts)_
+_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/challenge/remove.ts)_
 
 ## `bitsocial challenge rm NAME`
 
@@ -5696,7 +5703,7 @@ EXAMPLES
     $ bitsocial community create --jsonFile ./create-options.json
 ```
 
-_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/community/create.ts)_
+_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/community/create.ts)_
 
 ## `bitsocial community delete ADDRESSES`
 
@@ -5721,7 +5728,7 @@ EXAMPLES
   $ bitsocial community delete 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/community/delete.ts)_
+_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/community/delete.ts)_
 
 ## `bitsocial community edit ADDRESS`
 
@@ -5791,7 +5798,7 @@ EXAMPLES
     $ bitsocial community edit bitsocial.bso --jsonFile ./edit-options.json
 ```
 
-_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/community/edit.ts)_
+_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/community/edit.ts)_
 
 ## `bitsocial community export [ADDRESS]`
 
@@ -5832,7 +5839,7 @@ EXAMPLES
   $ bitsocial community export --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/community/export.ts)_
+_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/community/export.ts)_
 
 ## `bitsocial community get [ADDRESS]`
 
@@ -5863,7 +5870,7 @@ EXAMPLES
   $ bitsocial community get --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/community/get.ts)_
+_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/community/get.ts)_
 
 ## `bitsocial community list`
 
@@ -5886,7 +5893,7 @@ EXAMPLES
   $ bitsocial community list
 ```
 
-_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/community/list.ts)_
+_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/community/list.ts)_
 
 ## `bitsocial community start ADDRESSES`
 
@@ -5920,7 +5927,7 @@ EXAMPLES
     $ bitsocial community start $(bitsocial community list -q) --concurrency 1
 ```
 
-_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/community/start.ts)_
+_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/community/start.ts)_
 
 ## `bitsocial community stop ADDRESSES`
 
@@ -5945,7 +5952,7 @@ EXAMPLES
   $ bitsocial community stop Qmb99crTbSUfKXamXwZBe829Vf6w5w5TktPkb6WstC9RFW
 ```
 
-_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/community/stop.ts)_
+_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/community/stop.ts)_
 
 ## `bitsocial daemon`
 
@@ -5991,7 +5998,7 @@ EXAMPLES
   $ bitsocial daemon --no-allowPrivateKeyExport
 ```
 
-_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/daemon.ts)_
+_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/daemon.ts)_
 
 ## `bitsocial help [COMMAND]`
 
@@ -6057,7 +6064,7 @@ EXAMPLES
   $ bitsocial logs --stdout -f
 ```
 
-_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/logs.ts)_
+_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/logs.ts)_
 
 ## `bitsocial update check`
 
@@ -6074,7 +6081,7 @@ EXAMPLES
   $ bitsocial update check
 ```
 
-_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/update/check.ts)_
+_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/update/check.ts)_
 
 ## `bitsocial update install [VERSION]`
 
@@ -6106,7 +6113,7 @@ EXAMPLES
   $ bitsocial update install --no-restart-daemons
 ```
 
-_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/update/install.ts)_
+_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/update/install.ts)_
 
 ## `bitsocial update versions`
 
@@ -6128,7 +6135,7 @@ EXAMPLES
   $ bitsocial update versions --limit 5
 ```
 
-_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.84/src/cli/commands/update/versions.ts)_
+_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.85/src/cli/commands/update/versions.ts)_
 <!-- commandsstop -->
 
 ## Contribution
@@ -6194,13 +6201,15 @@ That's it — you're seeding. The container bundles its own Bitsocial daemon (Ku
 
 **3. (Optional) Cap the workload on small VPSes:**
 
+By default there is no cap — the seeder seeds every community in the configured public lists:
+
 ```sh
 MAX_COMMUNITIES=10 PIN_CONCURRENCY=1 docker compose up -d
 ```
 
 See [VPS Sizing](#vps-sizing) for capacity guidance.
 
-Compose pulls `ghcr.io/bitsocialnet/bitsocial-seeder:latest` by default. To pin a specific version, edit `docker-compose.yml` and set `image: ghcr.io/bitsocialnet/bitsocial-seeder:0.2.0`.
+Compose pulls `ghcr.io/bitsocialnet/bitsocial-seeder:latest` by default. To pin a specific version, edit `docker-compose.yml` and set `image: ghcr.io/bitsocialnet/bitsocial-seeder:0.5.0`.
 
 ### Run without Docker (npm)
 
@@ -6271,6 +6280,28 @@ docker compose exec bitsocial-seeder sqlite3 /data/seeder.db \
 
 See [State](#state) for the schema and other tables you can query.
 
+### Seed pubsub votes (directory contests)
+
+The seeder can also seed [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting) directory contests (e.g. 5chan's board-slot voting). Point it at one or more directory manifests (`{ defaults, contests }` JSONC/JSON, one derived criteria document per slot):
+
+```sh
+VOTES_MANIFEST_SOURCES=https://raw.githubusercontent.com/bitsocialnet/lists/master/5chan-directory-criteria.jsonc
+```
+
+With a manifest configured the seeder starts an embedded libp2p/Helia node for the votes mesh — the daemon's Kubo cannot fill this role over RPC (no topic validators, no peer scoring, no libp2p-fetch registration), so votes seeding is **Helia-only**: verified vote bundles and checkpoint chunks persist in the node's own on-disk blockstore (`VOTES_BLOCKSTORE_PATH`), and each contest's checkpoint snapshot persists under `VOTES_DATA_PATH` so a restart keeps the tally, with no Kubo involvement. The seeder then:
+
+- joins every derived contest read-only (no signer, no voting) and keeps the set reconciled against the manifests every `VOTES_RECONCILE_INTERVAL_MS`,
+- serves checkpoint root records over libp2p-fetch to cold-joining voters (this registration is automatic on join),
+- announces its votes peer as the provider of each contest's criteria CID, checkpoint root, and chunk CIDs on the Routing V1 HTTP routers (`VOTES_HTTP_ROUTER_URLS`), which is how voters' `findProviders()` discovers it — the library's built-in announcer re-announces hourly and debounces on joins and checkpoint changes.
+
+Browser voters can only dial **WSS** (and browsers cannot dial each other — the gossipsub mesh forms through publicly dialable seeders), so the node runs **AutoTLS** ([libp2p.direct](https://libp2p.direct)): the node learns its public address the same way the daemon's Kubo does (identify observed-addresses from the bootstrap connections, confirmed by AutoNAT dial-backs), then the ACME broker issues a real TLS certificate and the node announces a browser-dialable `/dns4/<peerid>.libp2p.direct/.../tls/ws` address — no reverse proxy, no manual multiaddr config. The certificate takes a few minutes on first run (ACME + DNS propagation) and persists in `VOTES_DATASTORE_PATH` across restarts; watch the log for `AutoTLS certificate provisioned` and the announced addrs. Open `VOTES_LIBP2P_TCP_PORT` and `VOTES_LIBP2P_WS_PORT` in the firewall.
+
+The votes peer identity persists in `VOTES_PEER_KEY_PATH` so announced provider records (and the AutoTLS domain, which embeds the peer id) stay valid across restarts — treat that key file and the `votes-keychain.pass` next to it as part of the seeder's state.
+
+Chain verification reads each contest's gate rule on-chain. Since pubsub-voting 0.1.x the criteria document names chains by ticker + chainId only — RPC endpoints are each client's own setting (so operators can swap endpoints without forking topics). Multiple URLs per chain are queried **in parallel** (every request races all endpoints, first success wins — a dead RPC costs nothing); ETH mainnet defaults to the same six public RPCs bitsocial-cli hardcodes for pkc-js, other chains default to their viem chain's public RPC, and a busy public seeder should point `VOTES_CHAIN_RPC_URLS` (JSON, per chain ticker, e.g. `'{"base":["https://my-base-rpc"]}'`) at its own. Votes carry community names whose claims are verified through `.bso` resolution (an ETH mainnet read) — `VOTES_ETH_RPC_URLS` sets the ETH mainnet RPCs used for both name resolution and eth-gated contest verification (an explicit `VOTES_CHAIN_RPC_URLS` `"eth"` entry still wins for verification), defaulting to the same resolver providers bitsocial-cli gives pkc-js; a seeder whose resolvers are down counts (and therefore serves) almost nothing.
+
+The log answers the questions production debugging asks — did a voter ever connect (`votes conn open`), join a topic (`votes topic subscribe`), pull the checkpoint (`votes fetch serve`, with the decoded bundle count — a root record is constant-size whether the contest is empty or not, so only the decoded `count` distinguishes "no votes" from "checkpoint didn't load"), or publish a vote (`votes gossip ... live vote bundle`)?
+
 ## Configuration
 
 The default config expects:
@@ -6288,18 +6319,50 @@ Useful environment overrides:
 ```sh
 PKC_RPC_URL=ws://127.0.0.1:9138
 KUBO_RPC_URL=http://127.0.0.1:50019/api/v0
+# Kubo RPC used for pubsub subscriptions; defaults to KUBO_RPC_URL
+PUBSUB_KUBO_RPC_URL=http://127.0.0.1:50019/api/v0
 IPFS_GATEWAY_URL=http://127.0.0.1:6473
 COMMUNITY_LIST_SOURCES=https://api.github.com/repos/bitsocialnet/lists/contents/5chan-directories?ref=master,https://api.github.com/repos/bitsocialnet/lists/contents/seedit-directories?ref=master
 COMMUNITY_EXTRA_LIST_SOURCES=/data/extra-communities.json
+# How often the community list sources are re-read ("the discovery interval"); default 10 minutes
+DISCOVER_INTERVAL_MS=600000
+# Minimum time between re-providing a community's pubsub routing CIDs; default 6 hours
+PUBSUB_ROUTING_PROVIDE_INTERVAL_MS=21600000
 SEEDER_DAEMON_AUTOSTART=true
 SEEDER_DAEMON_DATA_PATH=/data/bitsocial
 SEEDER_DAEMON_LOG_PATH=/data/logs
+# How long to wait for an autostarted daemon's RPCs to come up, and how long they must
+# stay up before the daemon counts as ready
+SEEDER_DAEMON_READY_TIMEOUT_MS=120000
+SEEDER_DAEMON_READY_STABLE_MS=2500
 SEEDER_DB_PATH=/data/seeder.db
-MAX_COMMUNITIES=20
+# Legacy JSON state file migrated into the database on first start; the mirror write can
+# be disabled with SEEDER_STATE_WRITE_FILE=false
+SEEDER_STATE_PATH=/data/seederState.json
+SEEDER_STATE_WRITE_FILE=true
+# No default cap — all discovered public-list communities are seeded unless this is set
+MAX_COMMUNITIES=
+# Default 2; the Docker image and compose file set 1
 PIN_CONCURRENCY=2
 SEEDER_UPDATE_CHECK_ENABLED=true
 SEEDER_UPDATE_CHECK_INTERVAL_MS=86400000
 SEEDER_UPDATE_CHECK_TIMEOUT_MS=5000
+VOTES_MANIFEST_SOURCES=/data/5chan-directory-criteria.jsonc
+VOTES_HTTP_ROUTER_URLS=https://peers.pleb.bot,https://routing.lol,https://peers.forumindex.com,https://peers.plebpubsub.xyz,https://routerofbitsocial.xyz,https://bsotracker.online
+VOTES_LIBP2P_HOST=0.0.0.0
+VOTES_LIBP2P_TCP_PORT=6742
+VOTES_LIBP2P_WS_PORT=6743
+VOTES_RECONCILE_INTERVAL_MS=600000
+VOTES_CHAIN_RPC_URLS='{"base":["https://mainnet.base.org"]}'
+VOTES_ETH_RPC_URLS=https://eth.drpc.org,https://ethereum-rpc.publicnode.com
+VOTES_PEER_KEY_PATH=/data/votes-peer.key
+VOTES_BLOCKSTORE_PATH=/data/votes-blockstore
+VOTES_DATASTORE_PATH=/data/votes-datastore
+VOTES_DATA_PATH=/data/votes-cache
+VOTES_FETCH_MAX_STREAMS=256
+VOTES_UPDATE_CONCURRENCY=8
+# util.inspect depth for object logging (unset = Node's util.inspect default)
+DEBUG_DEPTH=6
 ```
 
 ### Public seeder defaults
@@ -6361,7 +6424,7 @@ Raise both if you seed many more communities than the defaults and the seeder ge
 
 The default community sources are dozens of small directory communities plus a short supplemental seeder list, not full media archiving.
 Disk and bandwidth mostly scale with `MAX_COMMUNITIES`, pinned page/update size, pubsub activity, and Kubo/libp2p overhead.
-On small VPSes, lower `MAX_COMMUNITIES` and keep `PIN_CONCURRENCY=1`.
+On small VPSes, set `MAX_COMMUNITIES` (unset = no cap) and keep `PIN_CONCURRENCY=1` (the Docker default).
 
 Bitsocial configures delegated HTTP routing/tracker endpoints for provider lookups, so it should be lighter than an untuned Kubo node doing full DHT provider sweeps.
 It still runs Kubo and joins pubsub topics, so treat it as Kubo-class infrastructure rather than a static HTTP service.
@@ -6843,6 +6906,10 @@ docker run -d -v /path/to/data:/data 5chan-board-manager
 
 If you are not using the Docker quick usage flow above, create the board with `bitsocial community create` first, then add it to 5chan with `5chan board add`.
 
+> **Media rendering:** Keep `settings.fetchThumbnailUrls` enabled for 5chan boards. Bitsocial publications store media links, not uploaded media files, so clients need the thumbnail metadata fetched by the community node to know image and video dimensions before rendering. Without it, clients must fall back to generic containers that can size media poorly or cause layout shifts.
+>
+> The bundled preset enables this setting for new boards. By default, the community node fetches media links directly, which exposes the node's IP address to those hosts. Operators who need to hide the node's IP should also configure `settings.fetchThumbnailUrlsProxyUrl`.
+
 Run `5chan board add --help` for full details on preset defaults flags (`--apply-defaults`, `--skip-apply-defaults`, `--interactive-apply-defaults`). In interactive terminals, defaults are shown with an `[A]ccept / [M]odify / [S]kip` prompt; choosing Modify opens the preset in `$EDITOR` as an annotated JSONC file with `//` comments explaining each field.
 
 Preset JSONC is validated with Zod. Both plain JSON and JSONC (with `//` comments) are accepted as preset files.
@@ -6938,7 +7005,7 @@ EXAMPLES
   $ 5chan board add my-board.bso --apply-defaults --defaults-preset ./my-preset.json
 ```
 
-_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/board/add.ts)_
+_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.21/src/commands/board/add.ts)_
 
 ## `5chan board edit ADDRESS`
 
@@ -6985,7 +7052,7 @@ EXAMPLES
   $ 5chan board edit random.bso -i
 ```
 
-_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/board/edit.ts)_
+_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.21/src/commands/board/edit.ts)_
 
 ## `5chan board list`
 
@@ -7002,7 +7069,7 @@ EXAMPLES
   $ 5chan board list
 ```
 
-_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/board/list.ts)_
+_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.21/src/commands/board/list.ts)_
 
 ## `5chan board remove ADDRESS`
 
@@ -7022,7 +7089,7 @@ EXAMPLES
   $ 5chan board remove random.bso
 ```
 
-_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/board/remove.ts)_
+_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.21/src/commands/board/remove.ts)_
 
 ## `5chan defaults set`
 
@@ -7062,7 +7129,7 @@ EXAMPLES
   $ 5chan defaults set -i
 ```
 
-_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/defaults/set.ts)_
+_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.21/src/commands/defaults/set.ts)_
 
 ## `5chan help [COMMAND]`
 
@@ -7128,7 +7195,7 @@ EXAMPLES
   $ 5chan logs --stdout -f
 ```
 
-_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/logs.ts)_
+_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.21/src/commands/logs.ts)_
 
 ## `5chan start`
 
@@ -7166,7 +7233,7 @@ EXAMPLES
   $ 5chan start --log-path /var/log/5chan
 ```
 
-_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.19/src/commands/start.ts)_
+_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.21/src/commands/start.ts)_
 <!-- commandsstop -->
 
 ## Config Hot-Reload

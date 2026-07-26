@@ -58,8 +58,36 @@
     "searchPlaceholder": "Cerca idiomes...",
     "noResults": "No hi ha cap idioma que coincideixi amb la vostra cerca."
   },
+  "problem": {
+    "sectionLabel": "El Problema",
+    "title": "La capa social del web té dueño.",
+    "supporting": "No és una conspiració — és una arquitectura. Cada plataforma de xarxes socials principal és una base de dades privada en servidors privats, i ara s'hi viuen mitjans de vida, negocis i comunitats, de manera que les decisions preses dins d'un grapat d'empreses arriben directament al món físic. Aquest disseny té tres conseqüències, independentment de qui el gestioni.",
+    "items": {
+      "rented-identity": {
+        "title": "La teva identitat està de lloguer.",
+        "description": "El teu compte, la teva audiència i la teva comunitat existeixen perquè una base de dades d'una empresa ho diu. Res del que vas construir allà no és teu.",
+        "answer": "Propietat criptogràfica"
+      },
+      "single-owner": {
+        "title": "Un propietari és un punt de falla.",
+        "description": "Una empresa pot ser pressjonada, venuda, clausurada o simplement canviar d'opinió. Tot el que en depèn canvia amb ella.",
+        "answer": "Sense servidors"
+      },
+      "one-rulebook": {
+        "title": "Un únic codi de normes governa tots.",
+        "description": "Un únic conjunt de regles, escrit en privat i aplicat globalment, decideix què els miliards de persones es poden dir les unes a les altres.",
+        "answer": "Sense vetos globals"
+      }
+    },
+    "answerLabel": "Solució de Bitsocial",
+    "carouselLabel": "Les tres conseqüències d'una capa social privada",
+    "quote": "Quin sentit té crear una empresa o un producte per fer el món millor, si les aplicacions centralitzades de xarxes socials poden simplement vetar-te i després ja no pots arribar als teus clients?",
+    "quoteAttribution": "— Esteban Abaroa, fundador de Bitsocial"
+  },
   "features": {
-    "title": "Característiques principals",
+    "sectionLabel": "Característiques principals",
+    "title": "Què és Bitsocial?",
+    "supporting": "Un univers cada vegada més gran d'aplicacions de mitjans socials, que utilitzen la mateixa xarxa social descentralitzada subjacent — una que cap empresa és propietària, i cap pot arrebatar-te.",
     "items": {
       "open-source": {
         "description": "Bitsocial és programari <strong>gratuït i de codi obert</strong>: el protocol i els clients són públics, es poden fornir i estan oberts a contribucions externes. <strong>Qualsevol persona pot inspeccionar el codi</strong>, enviar millores o crear una aplicació compatible sense demanar permís a una empresa.",
@@ -727,8 +755,6 @@
         "label": "Adoptants tardans",
         "reason": "S'hi afegeixen quan la seva gent ja hi és i canviar deixa de semblar arriscat."
       }
-    },
-    "quote": "Quin sentit té crear una empresa o un producte per fer el món millor, si les aplicacions centralitzades de xarxes socials poden simplement vetar-te i després ja no pots arribar als teus clients?",
-    "quoteAttribution": "— Esteban Abaroa, fundador de Bitsocial"
+    }
   }
 }

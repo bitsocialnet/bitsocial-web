@@ -58,8 +58,36 @@
     "searchPlaceholder": "Nyelvek keresése...",
     "noResults": "Egyetlen nyelv sem felel meg a keresésnek."
   },
+  "problem": {
+    "sectionLabel": "Probléma",
+    "title": "Az internetes szociális rétegnek van tulajdonosa.",
+    "supporting": "Nem összeesküvés — hanem architektúra. Minden jelentős közösségi média platform egy magánjellegű adatbázis magánjellegű szerveren, és mostanra a megélhetés, az üzletek és a közösségek ezen élnek, így a maroknyi vállalat által hozott döntések közvetlenül a fizikai világba érnek. Ennek a tervnek három következménye van, függetlenül attól, hogy ki működteti.",
+    "items": {
+      "rented-identity": {
+        "title": "Az identitásod bérelt.",
+        "description": "Az ön fiókja, közönsége és közössége azért létezik, mert egy vállalat adatbázisa azt mondja. Semmi sem az öné abból, amit ott felépített.",
+        "answer": "Kriptográfiai tulajdon"
+      },
+      "single-owner": {
+        "title": "Egy tulajdonos egy hibapontot jelent.",
+        "description": "Egy vállalat alatt nyomás lehet, eladható, bezárható, vagy egyszerűen megváltoztathatja véleményét. Minden, ami tőle függ, vele együtt változik.",
+        "answer": "Szerverek nélkül"
+      },
+      "one-rulebook": {
+        "title": "Egy szabályrendszer irányít mindenkit.",
+        "description": "Egy egyetlen szabálykészlet, amely magánul van megírva és globálisan alkalmazva, eldönti, hogy milliárd ember mit mondhat egymásnak.",
+        "answer": "Globális kitiltások nélkül"
+      }
+    },
+    "answerLabel": "Bitsocial megoldása",
+    "carouselLabel": "A magántulajdonban lévő szociális réteg három következménye",
+    "quote": "Mi értelme céget vagy terméket létrehozni azért, hogy jobbá tegyük a világot, ha a centralizált közösségimédia-alkalmazások egyszerűen kitilthatnak, és utána már nem éred el az ügyfeleidet?",
+    "quoteAttribution": "— Esteban Abaroa, a Bitsocial alapítója"
+  },
   "features": {
-    "title": "Alapfunkciók",
+    "sectionLabel": "Alapfunkciók",
+    "title": "Mi az a Bitsocial?",
+    "supporting": "Egy folyamatosan bővülő szociális médiaapplikációk univerzuma, amely mind ugyanazt az alapul szolgáló decentralizált közösségi hálózatot használja — egy olyan hálózatot, amelyet nem birtokol semmilyen vállalat, és senki nem veheti el tőled.",
     "items": {
       "open-source": {
         "description": "A Bitsocial egy <strong>ingyenes és nyílt forráskódú</strong> szoftver: a protokoll és a kliensek nyilvánosak, forkerhetőek, és nyitottak a külső hozzájárulásokra. <strong>Bárki ellenőrizheti a kódot</strong>, fejlesztéseket szállíthat, vagy kompatibilis alkalmazást készíthet anélkül, hogy engedélyt kérne egy vállalattól.",
@@ -727,8 +755,6 @@
         "label": "Késői alkalmazók",
         "reason": "Akkor csatlakoznak, amikor az embereik már ott vannak, és a váltás többé nem tűnik kockázatosnak."
       }
-    },
-    "quote": "Mi értelme céget vagy terméket létrehozni azért, hogy jobbá tegyük a világot, ha a centralizált közösségimédia-alkalmazások egyszerűen kitilthatnak, és utána már nem éred el az ügyfeleidet?",
-    "quoteAttribution": "— Esteban Abaroa, a Bitsocial alapítója"
+    }
   }
 }
