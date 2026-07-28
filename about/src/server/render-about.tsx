@@ -19,7 +19,7 @@ import {
   createLanguageCookieValue,
   resolveRequestLanguage,
 } from "@/lib/locales";
-import { getSeoMetadata, injectSeoHead } from "@/lib/seo";
+import { getSeoMetadata, injectSeoHead, isKnownRoute } from "@/lib/seo";
 import { resolveRequestTheme } from "@/lib/theme";
 import { GraphicsModeProvider } from "@/lib/graphics-mode";
 import sourceClientTemplateHtml from "../../index.html?raw";
@@ -183,7 +183,7 @@ export async function renderAboutRequest(request: RenderRequest) {
   const languageCookie = createLanguageCookieValue(queryLanguage);
 
   return {
-    status: 200,
+    status: isKnownRoute(requestUrl.pathname) ? 200 : 404,
     headers: {
       "Content-Type": "text/html; charset=utf-8",
       Vary: "Accept-Language, Cookie",

@@ -359,7 +359,7 @@ function buildAboutSeoMetadata(): SeoMetadata {
       "Meet the Bitsocial core team and learn about the peer-to-peer social protocol they have been building since early 2022.",
     ),
     canonicalUrl,
-    robots: NOINDEX_ROBOTS,
+    robots: DEFAULT_ROBOTS,
     ogType: "website",
     imageUrl: toAbsoluteUrl(DEFAULT_IMAGE_PATH),
     imageAlt: "Bitsocial core team page",
@@ -557,9 +557,7 @@ function buildFallbackSeoMetadata(pathname: string): SeoMetadata {
   };
 }
 
-export function getSeoMetadata(pathname: string, search = ""): SeoMetadata {
-  const normalizedPath = normalizePathname(pathname);
-
+function resolveKnownSeoMetadata(normalizedPath: string, search: string): SeoMetadata | null {
   if (normalizedPath === "/") {
     return buildHomeSeoMetadata(search);
   }
@@ -588,16 +586,35 @@ export function getSeoMetadata(pathname: string, search = ""): SeoMetadata {
     }
   }
 
-  return buildFallbackSeoMetadata(normalizedPath);
+  return null;
+}
+
+export function getSeoMetadata(pathname: string, search = ""): SeoMetadata {
+  const normalizedPath = normalizePathname(pathname);
+
+  return (
+    resolveKnownSeoMetadata(normalizedPath, search) ?? buildFallbackSeoMetadata(normalizedPath)
+  );
+}
+
+// Unknown paths must answer 404 rather than 200, otherwise every probed URL becomes a
+// crawlable soft 404 that search engines file as an indexable page.
+export function isKnownRoute(pathname: string): boolean {
+  return resolveKnownSeoMetadata(normalizePathname(pathname), "") !== null;
 }
 
 export function getStaticSeoRoutes(): StaticSeoRoute[] {
-  return ["/", "/projects", "/privacy", "/blog", ...APPS.map((app) => `/apps/${app.slug}`)].map(
-    (pathname) => ({
-      pathname,
-      seo: getSeoMetadata(pathname),
-    }),
-  );
+  return [
+    "/",
+    "/projects",
+    "/privacy",
+    "/about",
+    "/blog",
+    ...APPS.map((app) => `/apps/${app.slug}`),
+  ].map((pathname) => ({
+    pathname,
+    seo: getSeoMetadata(pathname),
+  }));
 }
 
 function escapeHtml(value: string) {
