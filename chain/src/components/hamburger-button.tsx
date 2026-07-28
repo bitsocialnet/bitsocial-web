@@ -22,7 +22,7 @@ export default function HamburgerButton({ isOpen, onClick }: HamburgerButtonProp
       ref={buttonRef}
       variant="ghost"
       size="icon"
-      className="h-9 w-9 rounded-none hover:bg-transparent focus:bg-transparent active:bg-transparent"
+      className="relative h-9 w-9 rounded-none after:absolute after:-inset-1 after:content-[''] hover:bg-transparent focus:bg-transparent active:bg-transparent"
       onClick={handleClick}
       aria-label={isOpen ? "Close menu" : "Open menu"}
       aria-expanded={isOpen}

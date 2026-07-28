@@ -4,6 +4,8 @@ export const BSO_TOKEN_ADDRESS_SHORT = "0xB50c…DaB5A";
 
 export const ETHERSCAN_TOKEN_URL = `https://etherscan.io/token/${BSO_TOKEN_ADDRESS}` as const;
 
+export const DOCS_TOKEN_HISTORY_URL = "https://docs.bitsocial.net/token-history" as const;
+
 export const UNISWAP_TOKEN_URL =
   `https://app.uniswap.org/explore/tokens/ethereum/${BSO_TOKEN_ADDRESS}` as const;
 
@@ -30,6 +32,8 @@ export const TELEGRAM_URL = "https://t.me/bitsocialnet" as const;
 
 export const CONTRIBUTE_URL =
   "https://github.com/bitsocialnet/bitsocial-web/tree/master/chain" as const;
+
+export const BSO_RESOLVER_URL = "https://github.com/bitsocialnet/bso-resolver" as const;
 
 export type ExternalLink = {
   label: string;

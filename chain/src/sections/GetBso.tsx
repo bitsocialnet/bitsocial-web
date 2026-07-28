@@ -23,7 +23,7 @@ export default function GetBso() {
   return (
     <Section
       id="get-bso"
-      eyebrow="how to buy"
+      eyebrow="How to buy"
       question="How to get BSO, safely."
       supporting="The immutable BSO contract is live on Ethereum. Always verify the full address yourself before sending anything."
     >
@@ -67,7 +67,7 @@ export default function GetBso() {
             rel="noopener noreferrer"
           >
             Trade on Uniswap
-            <ArrowUpRight aria-hidden size={14} strokeWidth={1.85} />
+            <ArrowUpRight aria-hidden size={15} strokeWidth={1.85} />
           </a>
         </div>
       </div>

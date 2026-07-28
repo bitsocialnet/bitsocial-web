@@ -25,6 +25,7 @@ const sidebars: SidebarsConfig = {
         "scale-bitsocial-economies",
         "build-your-own-client",
         "decentralize-all-social-media",
+        "token-history",
       ],
     },
     {

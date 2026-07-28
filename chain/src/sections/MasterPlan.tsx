@@ -1,50 +1,64 @@
 import { ArrowLeftRight, AtSign, Boxes, Coins, Network, Sparkles } from "lucide-react";
 import Section from "./Section";
 
+type PhaseStatus = "now" | "proposed" | "frontier";
+
 const PHASES = [
   {
     icon: Coins,
-    label: "Phase 01 · Now",
+    num: "Phase 01",
+    status: "now" as PhaseStatus,
     title: "Immutable BSO",
     desc: "The fixed-supply token migrates to its final immutable, adminless contract. The sound-money base layer.",
     active: true,
   },
   {
     icon: Network,
-    label: "Phase 02 · Proposed",
+    num: "Phase 02",
+    status: "proposed" as PhaseStatus,
     title: "Bitsocial Chain",
     desc: "The Ethereum L2 appchain whose state derives from L1, and the settlement home for BSO.",
     active: false,
   },
   {
     icon: AtSign,
-    label: "Phase 03 · Proposed",
+    num: "Phase 03",
+    status: "proposed" as PhaseStatus,
     title: ".bso namespace",
-    desc: "Names and identity on the chain, registered and renewed in BSO.",
+    desc: "Names and identity on the chain, registered and renewed in BSO; names already in use through ENS airdrop to their owners.",
     active: false,
   },
   {
     icon: Boxes,
-    label: "Phase 04 · Proposed",
+    num: "Phase 04",
+    status: "proposed" as PhaseStatus,
     title: "Community L3s and tokens",
-    desc: "Sovereign communities launch their own tokens and DAOs, all settling down to BSO.",
+    desc: "Sovereign communities launch their own tokens and DAOs, all settling down to BSO. Assets scale with real communities, not with hype cycles.",
     active: false,
   },
   {
     icon: ArrowLeftRight,
-    label: "Phase 05 · Proposed",
+    num: "Phase 05",
+    status: "proposed" as PhaseStatus,
     title: "AgoraSwap",
-    desc: "The community DEX where every community token trades against BSO — keeping the economy's liquidity on-chain instead of on custodial dollar exchanges.",
+    desc: "The community DEX where every community token trades against BSO, keeping the economy's liquidity on-chain instead of on custodial dollar exchanges.",
     active: false,
   },
   {
     icon: Sparkles,
-    label: "Phase 06 · Frontier",
+    num: "Phase 06",
+    status: "frontier" as PhaseStatus,
     title: "The open frontier",
     desc: "Creator collectibles, client tokens and decentralized sequencing: the long roadmap.",
     active: false,
   },
 ];
+
+const STATUS_LABEL: Record<PhaseStatus, string> = {
+  now: "Now",
+  proposed: "Proposed",
+  frontier: "Frontier",
+};
 
 export default function MasterPlan() {
   return (
@@ -53,7 +67,6 @@ export default function MasterPlan() {
       eyebrow="The master plan"
       question="One token, then a whole economy on top."
       supporting="The token ships first; the network is the vision it unlocks. Everything past Phase 1 is proposed infrastructure, built in the open."
-      quote="All or nothing: almost every other altcoin is just nothing."
     >
       <ol className="roadmap">
         {PHASES.map((phase) => {
@@ -67,7 +80,10 @@ export default function MasterPlan() {
                 <span className="phase-line" />
               </span>
               <span className="phase-body">
-                <span className="phase-label">{phase.label}</span>
+                <span className="phase-num">{phase.num}</span>
+                <span className={`phase-status phase-status-${phase.status}`}>
+                  {STATUS_LABEL[phase.status]}
+                </span>
                 <h3 className="phase-title">{phase.title}</h3>
                 <p className="phase-desc">{phase.desc}</p>
               </span>

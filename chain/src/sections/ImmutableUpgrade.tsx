@@ -1,5 +1,5 @@
-import { BadgeCheck, Gift, ShieldCheck, TriangleAlert } from "lucide-react";
-import { BSO_TOKEN_ADDRESS_SHORT, ETHERSCAN_TOKEN_URL } from "@/lib/site";
+import { ArrowUpRight, BadgeCheck, ShieldCheck, TriangleAlert } from "lucide-react";
+import { BSO_TOKEN_ADDRESS_SHORT, DOCS_TOKEN_HISTORY_URL, ETHERSCAN_TOKEN_URL } from "@/lib/site";
 import Section from "./Section";
 
 type Gen = {
@@ -64,7 +64,7 @@ export default function ImmutableUpgrade() {
       id="immutable-upgrade"
       eyebrow="An immutable upgrade"
       question="Where BSO came from, and what’s changing."
-      supporting="Three generations, each migrated 1:1 and verifiable on-chain. The current token is fully immutable and adminless. Holders received the final token through a passive 1:1 airdrop."
+      supporting="Three generations, each migrated 1:1 and verifiable on-chain, ending in today's fully immutable, adminless contract. The protocol is open and the chain is optional by design; what no fork can copy is provenance: the official Bitsocial token since day one."
       quote="For a provenance coin, the history is the point."
     >
       <div className="lineage">
@@ -97,11 +97,15 @@ export default function ImmutableUpgrade() {
           ))}
         </ol>
 
-        <p className="lineage-note">
-          <Gift aria-hidden size={16} strokeWidth={1.8} />
-          The migration was a passive 1:1 airdrop. You keep the same tokens and do nothing; the new
-          immutable contract shows the correct Bitsocial branding everywhere.
-        </p>
+        <a
+          className="lineage-link"
+          href={DOCS_TOKEN_HISTORY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          The full token history
+          <ArrowUpRight aria-hidden size={15} strokeWidth={1.85} />
+        </a>
       </div>
     </Section>
   );

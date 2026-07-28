@@ -18,26 +18,48 @@
   text-align: center;
 }
 
+/* Matches the about-site section label (`problem.sectionLabel` on the landing
+   page) exactly: same family, sizes, tracking, 1.5rem gap, muted-foreground at
+   0.75 alpha in light / 0.70 in dark, and the same dark-only hover lift. */
 .section-eyebrow {
-  margin: 0 0 clamp(1.25rem, 3vw, 1.5rem);
+  margin: 0 0 1.5rem;
   font-family: var(--font-display);
-  font-size: clamp(0.75rem, 1.1vw, 0.875rem);
+  font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: color-mix(in oklab, var(--ink-muted) 75%, transparent);
+  color: hsl(var(--muted-foreground) / 0.75);
 }
 
 .dark .section-eyebrow {
-  color: color-mix(in oklab, var(--ink-faint) 66%, transparent);
+  color: hsl(var(--muted-foreground) / 0.7);
+}
+
+@media (min-width: 768px) {
+  .section-eyebrow {
+    font-size: 0.875rem;
+  }
 }
 
 .section-eyebrow a {
-  transition: color 160ms ease;
+  position: relative;
+  border-radius: 0.375rem;
+  transition:
+    color 300ms,
+    box-shadow 300ms;
 }
 
+/* The about-site label only shifts on hover in dark mode; light mode holds. */
 .dark .section-eyebrow a:hover {
-  color: color-mix(in oklab, var(--ink-muted) 82%, transparent);
+  color: hsl(var(--muted-foreground) / 0.82);
+}
+
+/* Invisible hit-area: keeps the small jump-link's visual size but gives it a
+   ~44px effective mobile touch target. */
+.section-eyebrow a::after {
+  position: absolute;
+  inset: -14px -8px;
+  content: "";
 }
 
 .section-title {
@@ -61,23 +83,51 @@
   text-wrap: pretty;
 }
 
+.section-link {
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--signal-strong) 35%, transparent);
+  text-underline-offset: 4px;
+  transition:
+    color 160ms ease,
+    text-decoration-color 160ms ease;
+}
+
+.section-link:hover {
+  color: var(--signal);
+  text-decoration-color: var(--signal);
+}
+
 .section-artifact {
   width: 100%;
-  margin-top: calc(clamp(1.75rem, 4vw, 2.5rem) + 5px);
+  margin-top: clamp(2rem, 4.2vw, 2.75rem);
 }
 
 .section-quote {
   max-width: 42ch;
   margin: clamp(2rem, 4vw, 3rem) 0 0;
+  font-family: var(--font-display);
   font-size: 0.9rem;
-  font-style: italic;
+  font-weight: 500;
   line-height: 1.5;
-  color: color-mix(in oklab, var(--ink-muted) 75%, transparent);
+  /* Diluting var(--ink-muted) toward transparent dropped light-mode contrast
+     below 4.5:1; var(--ink-muted) alone still reads as the quietest tier. */
+  color: var(--ink-muted);
   text-wrap: balance;
 }
 
+.section-quote::before {
+  content: "";
+  display: block;
+  width: 2.25rem;
+  height: 1px;
+  margin: 0 auto 0.95rem;
+  background: var(--line);
+}
+
 .dark .section-quote {
-  color: color-mix(in oklab, var(--ink-faint) 66%, transparent);
+  color: color-mix(in oklab, var(--ink-faint) 85%, transparent);
 }
 
 /* ---------- Scroll reveal ---------- */
@@ -233,6 +283,113 @@
 .spec-foot svg {
   flex: none;
   color: var(--signal);
+}
+
+/* ============================================================
+   The premise — two ownerless halves, joined by one brand
+   ============================================================ */
+.premise {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  gap: clamp(0.7rem, 2.4vw, 1.4rem);
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.premise-half {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: clamp(1.1rem, 2.6vw, 1.5rem);
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface-raised);
+}
+
+.premise-half-next {
+  border-color: var(--signal);
+  box-shadow: var(--glow-box);
+}
+
+.premise-badge {
+  align-self: flex-start;
+  padding: 0.16rem 0.5rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.premise-badge-next {
+  color: var(--signal);
+  border-color: var(--signal);
+}
+
+.premise-name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.premise-name-next {
+  color: var(--signal);
+}
+
+.premise-note {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+.premise-traits {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: 0.15rem 0 0;
+  padding: 0;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  list-style: none;
+}
+
+/* Every trait is an absence, so the marker is a minus rather than a bullet. */
+.premise-traits li::before {
+  margin-right: 0.45rem;
+  color: var(--ink-faint);
+  content: "–";
+}
+
+.premise-joint {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.premise-joint-icon {
+  color: var(--ink-faint);
+}
+
+/* Spans both halves rather than riding the narrow joint column: the label is the
+   claim about the pair, and a pill centered on the joint would overlap the cards. */
+.premise-caption {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin: 0.15rem 0 0;
+  padding: 0.2rem 0.7rem;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
 }
 
 /* ============================================================
@@ -546,6 +703,7 @@
 }
 
 .gen-addr {
+  position: relative;
   font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
   font-size: 0.78rem;
   color: var(--ink-muted);
@@ -554,6 +712,14 @@
 
 a.gen-addr:hover {
   color: var(--signal);
+}
+
+/* Invisible hit-area: the text stays compact but the link's effective mobile
+   touch target grows to ~44px tall. */
+a.gen-addr::after {
+  position: absolute;
+  inset: -15px 0;
+  content: "";
 }
 
 .gen-addr-pending {
@@ -582,25 +748,152 @@ a.gen-addr:hover {
   flex: none;
 }
 
-.lineage-note {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  max-width: 48rem;
-  margin: clamp(1.4rem, 3vw, 2rem) auto 0;
-  padding: 0.9rem 1.2rem;
-  text-align: left;
-  font-size: 0.85rem;
-  color: var(--ink-muted);
+.lineage-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin: 1.6rem auto 0;
+  padding: 0.85rem 1.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  font-weight: 600;
+  color: var(--ink);
   border: 1px solid var(--line);
-  border-radius: 0.9rem;
+  border-radius: 999px;
+  background: var(--surface-raised);
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.lineage-link:hover {
+  border-color: var(--signal);
+  background: var(--signal-soft);
+}
+
+/* ============================================================
+   .bso namespace — ENS-to-native name mapping
+   ============================================================ */
+.bso-map {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  gap: clamp(0.7rem, 2.4vw, 1.4rem);
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.bso-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: clamp(1.1rem, 2.6vw, 1.5rem);
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
   background: var(--surface-raised);
 }
 
-.lineage-note svg {
-  flex: none;
-  margin-top: 0.1rem;
+.bso-card-next {
+  border-color: var(--signal);
+  box-shadow: var(--glow-box);
+}
+
+.bso-card-badge {
+  align-self: flex-start;
+  padding: 0.16rem 0.5rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.bso-card-badge-next {
   color: var(--signal);
+  border-color: var(--signal);
+}
+
+.bso-row-name {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.bso-row-name-next {
+  color: var(--signal);
+}
+
+.bso-row-record {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: 100%;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+.bso-row-record svg {
+  flex: none;
+  color: var(--ink-faint);
+}
+
+.bso-row-key {
+  flex: none;
+  color: var(--ink-faint);
+}
+
+.bso-row-value {
+  min-width: 0;
+  overflow: hidden;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bso-row-value-next {
+  overflow-wrap: anywhere;
+  font-family: var(--font-body);
+  color: var(--ink);
+  white-space: normal;
+}
+
+.bso-connector {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bso-connector-arrow {
+  color: var(--ink-faint);
+}
+
+.bso-connector-arrow-column {
+  display: none;
+}
+
+.bso-connector-pill {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  padding: 0.16rem 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--ink-faint);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transform: translate(-50%, calc(-50% - 1.15rem));
 }
 
 /* ============================================================
@@ -665,8 +958,9 @@ a.gen-addr:hover {
   padding-top: 0.3rem;
 }
 
-.phase-label {
+.phase-num {
   display: inline-block;
+  margin-right: 0.5rem;
   margin-bottom: 0.32rem;
   font-family: var(--font-display);
   font-size: 0.66rem;
@@ -675,14 +969,37 @@ a.gen-addr:hover {
   color: var(--ink-faint);
 }
 
-.phase-active .phase-label {
+.phase-status {
+  display: inline-block;
+  margin-bottom: 0.32rem;
+  padding: 0.16rem 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.phase-status-now {
   color: var(--signal);
+  border-color: var(--signal);
+}
+
+.phase-status-proposed {
+  color: var(--ink-faint);
+  border-color: var(--line);
+}
+
+.phase-status-frontier {
+  color: var(--warning);
+  border-color: color-mix(in oklab, var(--warning) 50%, transparent);
 }
 
 .phase-title {
   margin: 0 0 0.3rem;
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
   font-weight: 600;
   color: var(--ink);
 }
@@ -690,7 +1007,7 @@ a.gen-addr:hover {
 .phase-desc {
   max-width: 44ch;
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   line-height: 1.55;
   color: var(--ink-muted);
 }
@@ -739,6 +1056,7 @@ a.gen-addr:hover {
 }
 
 .verify-addr-value {
+  position: relative;
   display: block;
   width: 100%;
   padding: 0;
@@ -755,6 +1073,14 @@ a.gen-addr:hover {
 
 .verify-addr-value.is-copied {
   opacity: 0;
+}
+
+/* Invisible hit-area: the copy control keeps its compact text size but its
+   effective mobile touch target grows to ~44px tall. */
+.verify-addr-value::after {
+  position: absolute;
+  inset: -12px 0;
+  content: "";
 }
 
 .verify-addr-copied {
@@ -867,6 +1193,34 @@ a.gen-addr:hover {
 
   .gen + .gen::before {
     display: none;
+  }
+
+  .premise,
+  .bso-map {
+    grid-template-columns: 1fr;
+  }
+
+  .premise-joint {
+    padding: 0.2rem 0;
+  }
+
+  .bso-connector {
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.2rem 0;
+  }
+
+  .bso-connector-arrow-row {
+    display: none;
+  }
+
+  .bso-connector-arrow-column {
+    display: block;
+  }
+
+  .bso-connector-pill {
+    position: static;
+    transform: none;
   }
 }
 

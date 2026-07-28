@@ -489,3 +489,25 @@
     max-width: 21rem;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  /* Entrance animations settle at their resting state; the idle loops (float,
+     breathe, pulse ring, gap flow, motes) simply stop. Motes have no resting
+     look — they only exist mid-drift — so they stay hidden. */
+  .ml .plate,
+  .ml .ml-spine-col,
+  .ml .ml-links,
+  .ml .ml-stack,
+  .ml .ml-coreglow,
+  .ml .ml-flow.flow {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .ml .ml-ring-pulse,
+  .ml .ml-mote {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}

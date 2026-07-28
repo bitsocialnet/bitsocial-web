@@ -5,7 +5,10 @@
   --surface-sunk: hsl(var(--secondary));
   --ink: hsl(var(--foreground));
   --ink-muted: hsl(var(--muted-foreground));
-  --ink-faint: hsl(var(--muted-foreground) / 0.72);
+  /* 0.72 alpha measured under 4.5:1 against the light surface for the many
+     small meta/label uses of this token (spec caps, lock notes, badges); 0.93
+     is the minimum alpha that clears WCAG AA at those sizes. */
+  --ink-faint: hsl(var(--muted-foreground) / 0.93);
   --line: hsl(var(--border) / 0.55);
   --line-strong: hsl(var(--border));
   --signal: #2563eb;

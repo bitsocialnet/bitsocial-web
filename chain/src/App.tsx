@@ -1,12 +1,12 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import ChainStatusCta from "@/components/chain-status-cta";
-import MissingLayer from "./MissingLayer";
 import BackToTop from "@/components/back-to-top";
 import Footer from "@/components/footer";
 import MailingList from "@/components/mailing-list";
 import Topbar, { TopbarSpacer } from "@/components/topbar";
 import { useHashScroll } from "@/lib/use-hash-scroll";
+import MissingLayer from "./MissingLayer";
 import PolygonMeshBackground from "./PolygonMeshBackground";
 import Sections from "./sections";
 
