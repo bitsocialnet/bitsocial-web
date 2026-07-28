@@ -13,7 +13,7 @@ export default function SettlementLayer() {
     <Section
       id="settlement-layer"
       eyebrow="The settlement layer"
-      question="Why would a social network need its own money?"
+      question="How does every community share one economy?"
       supporting={
         <>
           Bitsocial Chain is the proposed Ethereum L2 appchain for{" "}

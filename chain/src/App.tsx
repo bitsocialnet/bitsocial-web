@@ -5,7 +5,7 @@ import BackToTop from "@/components/back-to-top";
 import Footer from "@/components/footer";
 import MailingList from "@/components/mailing-list";
 import Topbar, { TopbarSpacer } from "@/components/topbar";
-import HeroDiagram from "./HeroDiagram";
+import MissingLayer from "./MissingLayer";
 import PolygonMeshBackground from "./PolygonMeshBackground";
 import Sections from "./sections";
 
@@ -48,7 +48,7 @@ export default function App() {
               </p>
             </div>
             <div className="stage">
-              <HeroDiagram />
+              <MissingLayer />
             </div>
           </div>
           <div className="hero-bottom-fade" aria-hidden="true" />

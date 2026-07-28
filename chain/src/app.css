@@ -80,13 +80,8 @@
 /* ---------- Hero ---------- */
 .shell .hero {
   display: grid;
-  /* Taller than the previous 46rem cap: the diagram's wider inter-layer air gaps grow
-     its rendered height, and the stage column (align-self: start below) needs the
-     extra row height as headroom so it clears .hero-bottom-fade instead of eating
-     into it. */
-  min-height: min(58rem, calc(100svh - 1rem));
-  /* Favors the stage column so the diagram renders bigger (was 1.05fr/0.95fr). */
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  min-height: min(46rem, calc(100svh - 6rem));
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: clamp(2rem, 5vw, 5rem);
   align-items: center;
   width: min(100%, 92rem);
@@ -157,11 +152,294 @@
 .shell .stage {
   display: flex;
   justify-content: center;
-  /* The copy column is taller than the diagram, so grid-level `align-items: center`
-     would center the stage against copy's full height and push the diagram's bottom
-     edge down into the hero-bottom-fade band. Hug the row's top instead so the whole
-     diagram clears the fade at 1280px and wider. */
-  align-self: start;
+}
+
+.shell .ml {
+  width: 100%;
+  max-width: 33rem;
+  height: auto;
+}
+
+/* Gradient stops (themed via CSS so they track light/dark). */
+.ml .ml-core-in {
+  stop-color: var(--signal);
+  stop-opacity: 0.55;
+}
+.ml .ml-core-mid {
+  stop-color: var(--signal);
+  stop-opacity: 0.18;
+}
+.ml .ml-core-out {
+  stop-color: var(--signal);
+  stop-opacity: 0;
+}
+.ml .ml-spine-mid {
+  stop-color: var(--signal);
+  stop-opacity: 0.5;
+}
+.ml .ml-spine-end {
+  stop-color: var(--signal);
+  stop-opacity: 0;
+}
+
+.ml .plate-skirt {
+  fill: var(--surface-sunk);
+  stroke: var(--line);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+.ml .plate-top {
+  fill: var(--surface-raised);
+  stroke: none;
+}
+
+.ml .plate-grid {
+  stroke: var(--line);
+  stroke-width: 0.75;
+  opacity: 0.55;
+}
+
+.ml .plate-tint {
+  fill: transparent;
+}
+
+.ml .plate-rim {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+.ml .ml-title {
+  fill: var(--ink-muted);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.ml .ml-sub {
+  fill: var(--ink-faint);
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.ml .ml-spine-col {
+  opacity: 0.75;
+}
+
+/* The BSO plate ignites — rim light, charged grid, reactor core. */
+.ml .plate-active .plate-skirt {
+  fill: var(--signal-strong);
+  stroke: var(--signal);
+}
+
+.ml .plate-active .plate-grid {
+  stroke: var(--signal);
+  opacity: 0.45;
+}
+
+.ml .plate-active .plate-tint {
+  fill: var(--signal-soft);
+}
+
+.ml .plate-active .plate-rim {
+  stroke: var(--signal);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 5px var(--signal)) drop-shadow(0 0 13px var(--signal-soft));
+}
+
+.ml .plate-active .ml-title {
+  fill: var(--ink);
+}
+
+.ml .plate-active .ml-sub {
+  fill: var(--signal);
+  letter-spacing: 0.26em;
+}
+
+.ml .ml-ring {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+.ml .ml-ring-static {
+  opacity: 0.32;
+}
+
+.ml .ml-ring-pulse {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.ml .ml-node {
+  fill: var(--signal);
+  stroke: var(--surface);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 4px var(--signal));
+}
+
+.ml .ml-flow {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 2;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 4px var(--signal));
+}
+
+.ml .ml-mote {
+  fill: var(--signal);
+  opacity: 0;
+}
+
+/* ---------- Motion ---------- */
+@keyframes bso-flow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.ml .ml-flow.flow {
+  stroke-dasharray: 3 6;
+  animation: bso-flow 1.1s linear infinite;
+}
+
+/* Entrance: outer plates settle, the BSO layer slots into the gap and locks. */
+.ml .plate {
+  animation: bso-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.ml .plate-social {
+  animation-delay: 0.1s;
+}
+
+.ml .plate-eth {
+  animation-delay: 0.2s;
+}
+
+.ml .plate-bso {
+  animation: ml-slot 0.9s cubic-bezier(0.16, 0.84, 0.3, 1) both;
+  animation-delay: 0.5s;
+}
+
+/* Spine + gap flows light up once the core has landed. */
+.ml .ml-spine-col,
+.ml .ml-links {
+  animation: ml-fade 0.8s ease-out both;
+  animation-delay: 1.3s;
+}
+
+/* Continuous life: float, breathing core, expanding pulse ring, drifting motes. */
+.ml .ml-stack {
+  animation: ml-float 7s ease-in-out 1.5s infinite;
+}
+
+.ml .ml-coreglow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ml-breathe 4.5s ease-in-out 1.4s infinite;
+}
+
+.ml .ml-ring-pulse {
+  animation: ml-pulse 3.2s ease-out 1.6s infinite;
+}
+
+.ml .ml-mote {
+  animation-name: ml-mote;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes ml-slot {
+  from {
+    opacity: 0;
+    transform: translate(44px, -58px);
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes ml-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ml-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes ml-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes ml-pulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+
+  20% {
+    opacity: 0.55;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes ml-mote {
+  0% {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+
+  30% {
+    opacity: 0.7;
+  }
+
+  70% {
+    opacity: 0.45;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-22px);
+  }
 }
 
 .shell .copy > * {
@@ -200,553 +478,35 @@
   .shell .stage {
     order: 2;
   }
-}
 
-/* ---------- Hero diagram: engineering-schematic stack ---------- */
-.hero-diagram {
-  display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-  /* Light theme: the raw --surface-raised/--line-strong pair is nearly
-     white-on-white here (unlike solid UI chrome, this diagram has no page
-     background behind it to lean on), so definition is pulled from --ink
-     instead. Dark theme already reads as a crisp schematic, so it keeps the
-     original token pair unchanged via the .dark overrides below. */
-  --hd-fill-face: color-mix(in oklab, var(--surface-raised) 88%, var(--ink) 12%);
-  --hd-fill-right: color-mix(in oklab, var(--surface-raised) 52%, var(--ink) 32%);
-  --hd-edge: color-mix(in oklab, var(--ink) 55%, var(--line-strong) 45%);
-  --hd-trace: color-mix(in oklab, var(--ink) 42%, var(--line-strong) 58%);
-  --hd-trace-opacity: 0.8;
-  --hd-label: var(--ink-muted);
-  /* --signal (the L2 slab's fill) doesn't flip between themes, so this backing disc
-     doesn't need a .dark override either — same soft light disc works in both. */
-  --hd-logo-backing: rgba(255, 255, 255, 0.9);
-}
-
-.dark .hero-diagram {
-  --hd-fill-face: var(--surface-raised);
-  --hd-fill-right: color-mix(in oklab, var(--surface-raised) 72%, var(--ink) 12%);
-  --hd-edge: var(--line-strong);
-  --hd-trace: var(--line-strong);
-  --hd-trace-opacity: 0.6;
-  --hd-label: var(--ink-faint);
-}
-
-.hd-face {
-  stroke-width: 1.25;
-}
-
-.hd-face-front,
-.hd-face-top {
-  fill: var(--hd-fill-face);
-  stroke: var(--hd-edge);
-}
-
-.hd-face-right {
-  fill: var(--hd-fill-right);
-  stroke: var(--hd-edge);
-}
-
-.hd-face-front-signal {
-  stroke: var(--signal);
-  stroke-width: 1.5;
-}
-
-.hd-l2-glow-shape {
-  fill: color-mix(in oklab, var(--signal) 55%, transparent);
-}
-
-.hd-face-top-signal {
-  fill: color-mix(in oklab, var(--signal) 30%, var(--surface-raised));
-  stroke: var(--signal);
-  stroke-width: 1.5;
-}
-
-.hd-face-right-signal {
-  fill: color-mix(in oklab, var(--signal) 46%, var(--surface-raised) 30%);
-  stroke: var(--signal);
-  stroke-width: 1.5;
-}
-
-.hd-l2-grad-a {
-  stop-color: color-mix(in oklab, var(--signal) 82%, var(--surface-raised) 5%);
-}
-
-.hd-l2-grad-b {
-  stop-color: color-mix(in oklab, var(--signal) 32%, var(--surface-raised) 20%);
-}
-
-/* Soft ambient halo bleeding past the L2 slab's own footprint (master's
-   MissingLayer had the same idea: a breathing radial glow behind the active plate). */
-.hd-halo-in {
-  stop-color: var(--signal);
-  stop-opacity: 0.5;
-}
-
-.hd-halo-out {
-  stop-color: var(--signal);
-  stop-opacity: 0;
-}
-
-.hd-l2-halo {
-  opacity: 0.55;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: hd-halo-breathe 5s ease-in-out 1.6s infinite;
-}
-
-@keyframes hd-halo-breathe {
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: scale(0.94);
-  }
-
-  50% {
-    opacity: 0.7;
-    transform: scale(1.06);
+  .shell .ml {
+    max-width: 26rem;
   }
 }
 
-.hd-stubs line {
-  stroke: var(--hd-edge);
-  stroke-width: 1;
-}
-
-.hd-token {
-  fill: var(--surface);
-  stroke: var(--hd-edge);
-  stroke-width: 1;
-}
-
-.hd-token-dot {
-  fill: var(--signal);
-}
-
-.hd-mini-label {
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-anchor: middle;
-  fill: var(--hd-label);
-}
-
-.hd-tag-shape {
-  fill: var(--hd-fill-face);
-  stroke: var(--hd-edge);
-  stroke-width: 1.25;
-  stroke-linejoin: round;
-}
-
-.hd-tag-text {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 600;
-  text-anchor: middle;
-  fill: var(--hd-label);
-}
-
-.hd-stamp-ring {
-  fill: none;
-  stroke: var(--hd-edge);
-  stroke-width: 1.25;
-  stroke-dasharray: 3 3;
-}
-
-.hd-stamp-mark {
-  fill: color-mix(in oklab, var(--signal) 70%, var(--hd-edge) 30%);
-}
-
-.hd-dash {
-  stroke: var(--hd-edge);
-  stroke-width: 1;
-  stroke-dasharray: 4 5;
-}
-
-/* Chain-link segments joining consecutive glyphs/logos within a layer. */
-.hd-chain-link {
-  stroke: var(--hd-edge);
-  stroke-width: 2;
-  stroke-linecap: round;
-}
-
-/* Bitsocial-logo chain inside the L2 slab needs to read against the blue fill, so
-   these use fixed light ink tones rather than the theme-flipping surface token. */
-.hd-chain-link-oncolor {
-  stroke: rgba(255, 255, 255, 0.85);
-  stroke-width: 2;
-  stroke-linecap: round;
-}
-
-/* Soft light backing disc behind each full-color logo instance on the L2 slab's
-   saturated blue fill — the mark keeps its own intrinsic colors (never recolored),
-   this just gives it a legible surface to sit on in both themes. */
-.hd-logo-backing {
-  fill: var(--hd-logo-backing);
-  opacity: 0.94;
-}
-
-.hd-chain-logo-oncolor {
-  filter: drop-shadow(0 1px 1px rgba(15, 23, 42, 0.35));
-}
-
-/* Creator-coin profile: circle head + shoulders silhouette, star at its corner. */
-.hd-profile-ring {
-  fill: var(--surface);
-  stroke: var(--hd-edge);
-  stroke-width: 1;
-}
-
-.hd-profile-head,
-.hd-profile-shoulders {
-  fill: var(--hd-edge);
-}
-
-.hd-profile-star {
-  fill: var(--signal);
-}
-
-/* ---------- Network mesh: tiny logo nodes + connecting lines ---------- */
-.hd-mesh-edges line {
-  stroke: var(--ink-faint);
-  stroke-width: 1;
-  opacity: 0.3;
-}
-
-.hd-mesh-node {
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-/* A few mesh nodes are called out as "active" — since the mark keeps its own intrinsic
-   colors, the highlight is a signal-colored glow around the node rather than a recolor. */
-.hd-mesh-node-signal {
-  filter: drop-shadow(0 0 2.5px var(--signal));
-}
-
-.hd-annotations polyline {
-  fill: none;
-  stroke: var(--hd-edge);
-  stroke-width: 1;
-}
-
-.hd-annotations text {
-  font-family: var(--font-display);
-  font-size: 17px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  fill: var(--hd-label);
-}
-
-/* Specificity must beat `.hd-annotations text` (class+type) to actually shrink these
-   and drop the uppercase transform — this line is authored in real case (e.g. "L3s"). */
-.hd-annotations text.hd-annotation-detail {
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  text-transform: none;
-}
-
-.hd-annotation-signal polyline {
-  stroke: var(--signal);
-}
-
-.hd-annotation-signal text {
-  fill: var(--signal);
-}
-
-/* ---------- Entrance: layers fade + rise, staggered top-to-bottom ---------- */
-.hd-layer {
-  animation: hd-rise 0.5s ease-out both;
-}
-
-.hd-layer-network {
-  animation-delay: 0s;
-}
-
-.hd-layer-eth {
-  animation-delay: 0.12s;
-}
-
-.hd-layer-economy {
-  animation-delay: 0.2s;
-}
-
-.hd-layer-connectors {
-  animation-delay: 0.28s;
-}
-
-.hd-stubs {
-  animation: hd-rise 0.5s ease-out both;
-  animation-delay: 0.24s;
-}
-
-.hd-annotations {
-  animation: hd-rise 0.5s ease-out both;
-  animation-delay: 0.32s;
-}
-
-@keyframes hd-rise {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* L2 slab: fades in with the stack, then slides in from the right to dock. */
-.hd-layer-l2 {
-  opacity: 0;
-  animation: hd-l2-dock 900ms cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
-}
-
-@keyframes hd-l2-dock {
-  from {
-    opacity: 0;
-    transform: translateX(340px);
-  }
-
-  60% {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Glow ramps up as the slab docks, then breathes gently at idle. */
-.hd-l2-glow-shape {
-  opacity: 0;
-  animation:
-    hd-glow-ramp 900ms ease-out 0.4s both,
-    hd-glow-breathe 7s ease-in-out 1.3s infinite;
-}
-
-@keyframes hd-glow-ramp {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes hd-glow-breathe {
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.85;
-  }
-}
-
-/* Dash flow: dashes drift slowly downward. */
-.hd-dash {
-  animation: hd-dash-flow 6s linear infinite;
-}
-
-@keyframes hd-dash-flow {
-  from {
-    stroke-dashoffset: 36;
-  }
-
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-/* Mesh idle motion: nodes drift subtly, a few connecting lines shimmer. */
-.hd-mesh-drift-a {
-  animation: hd-mesh-drift-a 7s ease-in-out infinite alternate;
-}
-
-.hd-mesh-drift-b {
-  animation: hd-mesh-drift-b 8.5s ease-in-out infinite alternate;
-}
-
-.hd-mesh-drift-c {
-  animation: hd-mesh-drift-c 6.5s ease-in-out infinite alternate;
-}
-
-.hd-mesh-drift-d {
-  animation: hd-mesh-drift-d 10s ease-in-out infinite alternate;
-}
-
-@keyframes hd-mesh-drift-a {
-  from {
-    transform: translate(0, 0);
-  }
-
-  to {
-    transform: translate(2px, -2px);
-  }
-}
-
-@keyframes hd-mesh-drift-b {
-  from {
-    transform: translate(0, 0);
-  }
-
-  to {
-    transform: translate(-2px, 2px);
-  }
-}
-
-@keyframes hd-mesh-drift-c {
-  from {
-    transform: translate(0, 0);
-  }
-
-  to {
-    transform: translate(2px, 2px);
-  }
-}
-
-@keyframes hd-mesh-drift-d {
-  from {
-    transform: translate(0, 0);
-  }
-
-  to {
-    transform: translate(-2px, -2px);
-  }
-}
-
-.hd-mesh-edge-shimmer {
-  animation: hd-mesh-shimmer 5s ease-in-out infinite;
-}
-
-@keyframes hd-mesh-shimmer {
-  0%,
-  100% {
-    opacity: 0.15;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-}
-
-/* Layer float: each layer bobs gently, out of phase with its neighbors, so the
-   stack reads as separated, levitating parts rather than a welded block (master's
-   MissingLayer floated the whole assembly as one rigid unit; here every layer gets
-   its own phase/duration for a looser, more alive read). Applied to an inner wrapper
-   so it never fights the outer layer's one-time entrance animation on `transform`. */
-.hd-float-a {
-  animation: hd-float 8s ease-in-out 0.6s infinite;
-}
-
-.hd-float-b {
-  animation: hd-float 9.5s ease-in-out 1.2s infinite;
-}
-
-.hd-float-c {
-  animation: hd-float 7s ease-in-out 2.1s infinite;
-}
-
-.hd-float-d {
-  animation: hd-float 10s ease-in-out 0s infinite;
-}
-
-@keyframes hd-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-/* Drifting energy motes rising through the gaps between layers. */
-.hd-mote {
-  fill: var(--signal);
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation-name: hd-mote-drift;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-/* Travel distance is tuned to the 50-unit inter-layer gaps (was 14 units total across
-   the previous ~20-unit gaps) so motes still read as rising through the air, not just
-   twitching in place. */
-@keyframes hd-mote-drift {
-  0% {
-    opacity: 0;
-    transform: translateY(7px);
-  }
-
-  30% {
-    opacity: 0.7;
-  }
-
-  70% {
-    opacity: 0.4;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-28px);
-  }
-}
-
-@media (max-width: 560px) {
-  .hd-annotations {
-    display: none;
+@media (max-width: 520px) {
+  .shell .ml {
+    max-width: 21rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hd-layer,
-  .hd-stubs,
-  .hd-annotations,
-  .hd-layer-l2,
-  .hd-l2-glow-shape,
-  .hd-dash {
+  /* Entrance animations settle at their resting state; the idle loops (float,
+     breathe, pulse ring, gap flow, motes) simply stop. Motes have no resting
+     look — they only exist mid-drift — so they stay hidden. */
+  .ml .plate,
+  .ml .ml-spine-col,
+  .ml .ml-links,
+  .ml .ml-stack,
+  .ml .ml-coreglow,
+  .ml .ml-flow.flow {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
 
-  /* These don't start hidden — only stop the idle motion, keep their resting look. */
-  .hd-mesh-drift-a,
-  .hd-mesh-drift-b,
-  .hd-mesh-drift-c,
-  .hd-mesh-drift-d,
-  .hd-float-a,
-  .hd-float-b,
-  .hd-float-c,
-  .hd-float-d {
-    animation: none !important;
-    transform: none !important;
-  }
-
-  .hd-mesh-edge-shimmer {
-    animation: none !important;
-  }
-
-  /* Halo freezes at a static mid-breathe look; motes are a transient drift effect,
-     so freezing them mid-fade would leave stray dots — resting state is simply off. */
-  .hd-l2-halo {
-    animation: none !important;
-    opacity: 0.55 !important;
-    transform: none !important;
-  }
-
-  .hd-mote {
+  .ml .ml-ring-pulse,
+  .ml .ml-mote {
     animation: none !important;
     opacity: 0 !important;
   }

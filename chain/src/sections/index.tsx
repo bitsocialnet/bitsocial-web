@@ -1,3 +1,4 @@
+import Premise from "./Premise";
 import SettlementLayer from "./SettlementLayer";
 import ValueAccrual from "./ValueAccrual";
 import ProgrammableRevenue from "./ProgrammableRevenue";
@@ -11,6 +12,7 @@ import GetBso from "./GetBso";
 export default function Sections() {
   return (
     <>
+      <Premise />
       <SettlementLayer />
       <ValueAccrual />
       <ProgrammableRevenue />
