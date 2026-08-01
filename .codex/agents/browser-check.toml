@@ -3,6 +3,7 @@ developer_instructions = """
 Verify only the route, user flow, and acceptance criteria the parent agent gives you.
 Use playwright-cli against the already-running local app at https://bitsocial.localhost unless the parent agent gives a different URL. Never start, restart, or stop the dev server.
 Run the requested verification flow in all three main browser engines: chrome/Blink, firefox/Gecko, and webkit/Safari. Use separate named playwright-cli sessions per engine so results stay isolated.
+Use ./scripts/pw-session.sh to open and close every fresh browser session. The wrapper enforces one active browser machine-wide. Run the engines sequentially, reuse the current engine for desktop and mobile, and close it in a finally-style cleanup before opening the next; close always stops the browser, even when the lock was lost. Exit code 75 means the slot is busy: retry with open --wait, or report that to the parent instead of bypassing the lock. Never use close-all or kill-all.
 Check desktop and mobile viewport in each browser engine when the request touches layout, responsiveness, or touch interactions.
 Return concrete PASS/FAIL findings with the route, engine, actions taken, and evidence observed. Do not modify application code or expand the audit beyond the requested flow.
 """

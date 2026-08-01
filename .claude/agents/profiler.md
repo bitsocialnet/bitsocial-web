@@ -82,7 +82,7 @@ playwright-cli -s=SESSION console error
 playwright-cli -s=SESSION console warning
 playwright-cli -s=SESSION network
 playwright-cli -s=SESSION tracing-stop
-playwright-cli -s=SESSION close
+./scripts/pw-session.sh close SESSION
 ```
 
 ### Step 4: Analyze and Report

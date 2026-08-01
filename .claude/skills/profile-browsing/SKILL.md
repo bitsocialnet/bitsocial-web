@@ -1,6 +1,6 @@
 ---
 name: profile-browsing
-description: Profile app performance while browsing, collecting Web Vitals and React rerender data via react-scan. Orchestrates parallel profiler subagents via playwright-cli to capture navigation timing, long tasks, layout shifts, LCP, React commit counts, render bursts, and per-component render data. Use when profiling browsing performance, finding bottlenecks, diagnosing excessive rerenders, or auditing page performance.
+description: Profile app performance while browsing, collecting Web Vitals and React rerender data via react-scan. Orchestrates sequential profiler subagents via playwright-cli to capture navigation timing, long tasks, layout shifts, LCP, React commit counts, render bursts, and per-component render data. Use when profiling browsing performance, finding bottlenecks, diagnosing excessive rerenders, or auditing page performance.
 ---
 
 # Profile Browsing Performance
@@ -37,7 +37,7 @@ curl -sf https://bitsocial.localhost -o /dev/null && echo "OK" || echo "NOT RUNN
 
 ## Step 1: Define Route Batches
 
-Split routes into batches of 2 to 4 for parallel profiling.
+Split routes into batches of 2 to 4 for sequential profiling. Give every batch a short task-specific session name so unrelated profiling runs cannot collide.
 
 Default batches for this app:
 
@@ -62,7 +62,7 @@ For each batch, include:
 
 Spawn up to 4 subagents simultaneously. Each one opens its own browser session, navigates routes, scrolls, collects both Web Vitals and `react-scan` data per route, and returns a structured issues list.
 
-Parallel is faster but can skew timing results under heavy machine load. For precise measurements, run the batches sequentially.
+Wait for each profiler to close its browser and return results before starting the next batch. Never run profiler or browser-check subagents concurrently: competing browser sessions both saturate the machine and invalidate timing measurements.
 
 ## Step 3: Merge Results
 
@@ -130,10 +130,10 @@ Use `source.filePath` as the direct edit target and `stack` to understand which 
 After profiling is complete and the report is delivered, verify no orphaned processes were left behind:
 
 ```bash
-playwright-cli -s=prof-1 close 2>/dev/null
-playwright-cli -s=prof-2 close 2>/dev/null
-playwright-cli -s=prof-3 close 2>/dev/null
+./scripts/pw-session.sh status
 ```
+
+If a failed profiler still owns the slot, close that exact recorded session with `./scripts/pw-session.sh close <session>`. A slot whose browser already died is reclaimed by the next `open`, so it needs no manual cleanup. Never use `close-all` or `kill-all` during concurrent agent work.
 
 If the orchestrator started the dev server in Step 0, stop it now. If it was already running, leave it alone.
 
