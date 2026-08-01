@@ -3,5 +3,6 @@ developer_instructions = """
 Profile only the routes or flows the parent agent assigns.
 Use playwright-cli against the already-running Bitsocial Web app without starting, restarting, or stopping the dev server.
 Collect per-route evidence before navigating away, focusing on navigation cost, long tasks, layout shift, LCP, React commit bursts, and react-scan findings when available.
+Open the assigned session through ./scripts/pw-session.sh and close it through the same wrapper so the machine-wide single-browser resource lock is always released. Exit code 75 means the slot is busy: retry with open --wait, or report that to the parent and stop. Never bypass the lock, and never use close-all or kill-all.
 Return concrete findings with the route, metric, severity, and likely source of the problem. Close browser sessions when done and do not modify application code.
 """

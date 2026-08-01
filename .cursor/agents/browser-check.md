@@ -23,17 +23,25 @@ Use the already-running Portless dev server at `https://bitsocial.localhost` unl
 
 Do not start, restart, or stop the dev server yourself. If the app is unreachable, report the failure and stop.
 
-### Step 2: Navigate and Snapshot
+### Step 2: Navigate and Snapshot Sequentially
 
-Use `playwright-cli` to check the relevant page in all three browser engines with separate sessions:
+Choose short task-specific session names. Use the shared wrapper to check the relevant page in all three browser engines one at a time:
 
 ```bash
-playwright-cli -s=verify-chrome open https://bitsocial.localhost --browser=chrome
-playwright-cli -s=verify-firefox open https://bitsocial.localhost --browser=firefox
-playwright-cli -s=verify-webkit open https://bitsocial.localhost --browser=webkit
+./scripts/pw-session.sh open verify-chrome https://bitsocial.localhost --browser=chrome
+# Complete the Chrome desktop/mobile flow.
+./scripts/pw-session.sh close verify-chrome
+
+./scripts/pw-session.sh open verify-firefox https://bitsocial.localhost --browser=firefox
+# Complete the Firefox desktop/mobile flow.
+./scripts/pw-session.sh close verify-firefox
+
+./scripts/pw-session.sh open verify-webkit https://bitsocial.localhost --browser=webkit
+# Complete the WebKit desktop/mobile flow.
+./scripts/pw-session.sh close verify-webkit
 ```
 
-Navigate each engine session to the specific page or route where the change should be visible.
+Navigate the current engine session to the specific page or route where the change should be visible. Always close that session in a finally-style cleanup, even when a check fails, before opening the next engine. If the wrapper exits 75 the slot is busy: retry with `./scripts/pw-session.sh open --wait <session> ...`, or report it to the parent so the check can be rescheduled. Never bypass the lock.
 
 ### Step 3: Verify the Changes
 
@@ -45,13 +53,11 @@ Based on what the parent agent asked you to check:
 - When the request involves responsive or touch behavior, verify a mobile viewport flow in each engine:
 
 ```bash
-playwright-cli -s=verify-chrome resize 375 812
-playwright-cli -s=verify-chrome snapshot
-playwright-cli -s=verify-firefox resize 375 812
-playwright-cli -s=verify-firefox snapshot
-playwright-cli -s=verify-webkit resize 375 812
-playwright-cli -s=verify-webkit snapshot
+playwright-cli -s=SESSION resize 375 812
+playwright-cli -s=SESSION snapshot
 ```
+
+Replace `SESSION` with the currently open engine session. Finish its mobile check before closing it and moving to the next engine.
 
 ### Step 4: Report Back
 
@@ -80,4 +86,5 @@ playwright-cli -s=verify-webkit snapshot
 - Only check what the parent agent asked you to verify. Do not audit the entire app.
 - If `playwright-cli` is not installed, report it immediately and stop.
 - If the dev server is unreachable, report the error and stop.
+- Never run multiple browser engines at once, and never use `playwright-cli close-all` or `kill-all`.
 - Do not modify code. You are read-only verification only.

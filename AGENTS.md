@@ -61,7 +61,7 @@ Agents may use compiled context to navigate quickly, but must verify against sou
 | Translation key/value changed | Use `docs/agent-playbooks/translations.md` |
 | Public-facing English content changed (`about/public/translations/en/default.json`, docs pages, app directory data, public README text, or `scripts/generate-llms-files.mjs`) | Run `yarn llms:generate`; inspect and commit any resulting changes to `about/public/llms*.txt` and `docs/static/llms*.txt` so LLM indexes stay current |
 | Bug report | Reproduce the reported behavior or establish the defect from conclusive source/runtime evidence before editing; for a specific file/line, also start with the git history scan in `docs/agent-playbooks/bug-investigation.md` |
-| UI or visual behavior changed | Verify in browser with `playwright-cli` across Chrome/Blink, Firefox/Gecko, and WebKit/Safari; check desktop and mobile behavior when relevant |
+| UI or visual behavior changed | Verify in browser with `playwright-cli` across Chrome/Blink, Firefox/Gecko, and WebKit/Safari; use `./scripts/pw-session.sh` so only one browser is active machine-wide, run engines sequentially, reuse each session for desktop/mobile, and close it before opening the next; check desktop and mobile behavior when relevant |
 | Frontend UI design, redesign, critique, audit, polish, layout, typography, color, motion, or visual hierarchy work | Use the `impeccable` skill (one entry point with 23 design subcommands under `/impeccable`) |
 | Browsing performance regression, rerender hotspot, or route jank needs investigation | Use the `profile-browsing` skill |
 | Need to map a rendered DOM node back to the React file that produced it | Use the `inspect-elements` skill |
@@ -167,7 +167,11 @@ stats/                # Monitoring, Grafana, Prometheus, and deployment assets
 - Before handing off a PR or commit, also run `yarn format:check`.
 - After React UI logic changes, run `yarn doctor`.
 - Treat React Doctor output as actionable guidance; prioritize `error` then `warning`.
-- For UI or visual changes, verify with `playwright-cli` on the local dev URL across Chrome/Blink, Firefox/Gecko, and WebKit/Safari.
+- For UI or visual changes, use Chrome/Blink for iterative checks on the local dev URL, then perform final verification across Chrome/Blink, Firefox/Gecko, and WebKit/Safari.
+- Browser automation has a machine-wide resource budget of one active Playwright browser session, shared by every worktree and by the other Bitsocial checkouts that ship this wrapper. Use `./scripts/pw-session.sh open <session> ...` to acquire the slot, reuse that session for desktop and mobile, then run `./scripts/pw-session.sh close <session>` in a finally-style cleanup before opening another engine.
+- Run browser engines and profiler batches sequentially. Do not spawn browser-driving agents in parallel. When `open` exits 75 the slot is busy: finish non-browser checks first, or block on `./scripts/pw-session.sh open --wait[=SECONDS] <session> ...`, rather than bypassing the lock.
+- Use short, task-specific session names. Close the exact named session even when verification fails; `close` stops the browser even if the lock was already lost. Do not use `playwright-cli close-all` or `kill-all` while concurrent agents may own other sessions.
+- A lock left behind by an interrupted workflow is reclaimed automatically by the next `open` once its browser is gone. Run `./scripts/pw-session.sh status` before assuming the slot is stuck; it reports whether the holder's browser is still alive.
 - Cover a mobile viewport flow in each browser engine when the change affects layout, touch behavior, or responsiveness.
 - The shared hook verification path is strict by default. Only set `AGENT_VERIFY_MODE=advisory` when you intentionally need signal from a broken tree without blocking the session.
 - If verification fails, fix and re-run until passing or until you hit a real blocker you can explain concretely.
@@ -203,7 +207,7 @@ stats/                # Monitoring, Grafana, Prometheus, and deployment assets
 ## Core SHOULD Rules
 
 - Keep context lean: delegate heavy or verbose tasks when possible.
-- For complex work, parallelize independent checks.
+- For complex work, parallelize independent checks, except browser-driving checks, which must respect the machine-wide single-session resource budget.
 - When touching already-covered logic, prefer extending nearby tests or clearly call out the missing coverage if the repo area has no existing test harness.
 - Use `yarn knip` when adding/removing dependencies or introducing new direct imports; treat findings as advisory, but resolve real issues before finishing.
 - When proposing or implementing meaningful code changes, include both:
@@ -236,6 +240,7 @@ yarn knip:full
 yarn lint
 yarn typecheck
 yarn format:check
+./scripts/pw-session.sh status
 yarn doctor
 yarn doctor:score
 yarn doctor:verbose
