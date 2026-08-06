@@ -95,7 +95,7 @@
         "cta": "Browse source code"
       },
       "peer-to-peer": {
-        "description": "Bitsocial is <strong>neither federated nor on-chain</strong>. Each community is a peer-to-peer swarm using <ipfs>IPFS</ipfs>, <strong>closer to BitTorrent</strong> than a hosted website: users seed effortlessly, nodes run on cheap hardware, and each community is fully independent and sovereign.",
+        "description": "Bitsocial is <strong>neither federated nor on-chain</strong>. Each community is a peer-to-peer swarm using <ipfs>IPFS</ipfs>, <strong>closer to BitTorrent</strong> than a hosted website: users seed effortlessly, nodes run on cheap hardware, and each community is fully independent and sovereign. A browser tab can join that swarm as a peer, so the web app is not a client of someone else's server.",
         "cta": "Learn how p2p works"
       },
       "social-apps": {
@@ -115,6 +115,23 @@
         "cta": "Read ownership notes"
       }
     }
+  },
+  "browserPeer": {
+    "sectionLabel": "Browser P2P",
+    "title": "Your browser is a peer.",
+    "supporting": "Open a Bitsocial web app in a normal tab and it joins the network itself, fetching posts from other peers and publishing your own. Every other decentralized social network still keeps a server in the middle.",
+    "cards": {
+      "node": {
+        "title": "The tab runs a node",
+        "description": "The page boots a <helia>Helia</helia> node and speaks the same protocol as desktop and CLI nodes, reaching peers over the same kind of encrypted connection any website uses. Publishing from a browser became reliable in <gossipsub>2026</gossipsub>, once the last upstream fix landed."
+      },
+      "unstoppable": {
+        "title": "Nothing to shut down",
+        "description": "The page is only a client: any copy of it, on any domain or as a desktop build, reaches the same network. <strong>Your identity and your community are keys you hold</strong>, not rows in a company's database, so there is no account to lose and no host to seize."
+      }
+    },
+    "liveCta": "Watch it happen on the blog",
+    "docsCta": "How browser P2P works"
   },
   "sanctuary": {
     "sectionLabel": "Decentralized",
@@ -351,6 +368,24 @@
           "detailLens": "Lens focuses on a web2-like flow with gasless or signless transactions and embedded wallet support. That improves onboarding, but a user is still entering through a Lens app, wallet, RPC, indexer, and chain path. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without routing the first post through wallet, RPC, indexer, and chain infrastructure.",
           "detailDeso": "DeSo web apps commonly rely on DeSo Identity for signing and on a node API for constructing and submitting social transactions. That is easier than running a node, but the post still enters through hosted identity, node, and transaction infrastructure. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity.",
           "detailSteemit": "Steemit is straightforward once a user has a Steem account and posting key, but that account belongs to the Steem permission model and the post enters through a Steem front end or API node. Bitsocial can create the user's key locally and let the user post through direct P2P or optional hosted access without a platform account owning the identity."
+        },
+        "browserRuntime": {
+          "label": "What your browser is",
+          "nostr": "A client of whichever relays it is configured to use.",
+          "bluesky": "A client of a PDS and an AppView.",
+          "mastodon": "A client of the server you signed up to.",
+          "farcaster": "A client of an app, its hubs, and its indexers.",
+          "lens": "A client of a Lens app, an RPC, and an indexer.",
+          "deso": "A client of a node API and DeSo Identity.",
+          "steemit": "A client of a front end and an API node.",
+          "bitsocial": "A peer. It runs a node and fetches from other peers.",
+          "detail": "A Nostr web client holds websocket connections to relays, and those relays have to accept, store, and serve the content it reads and writes. Bitsocial browser clients run a Helia node in the page: they ask HTTP routers which peers hold a community, then fetch and publish over libp2p directly. Browser peers dial over secure WebSockets, and the gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is what stopped posts published from a tab being discarded by the rest of the network.",
+          "detailBluesky": "A Bluesky web app talks to a PDS for writes and an AppView for reads, so the browser is always a client of services that hold and interpret the data. Bitsocial browser clients run a Helia node in the page: they ask HTTP routers which peers hold a community, then fetch and publish over libp2p directly. Browser peers dial over secure WebSockets, and the gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is what stopped posts published from a tab being discarded by the rest of the network.",
+          "detailMastodon": "A Mastodon web client is a front end for the instance that stores your account, your posts, and your timeline. Bitsocial browser clients run a Helia node in the page: they ask HTTP routers which peers hold a community, then fetch and publish over libp2p directly. Browser peers dial over secure WebSockets, and the gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is what stopped posts published from a tab being discarded by the rest of the network.",
+          "detailFarcaster": "A Farcaster client reads through APIs and indexers over hub or Snapchain data, and writes through app-managed signers, so the browser never touches the network itself. Bitsocial browser clients run a Helia node in the page: they ask HTTP routers which peers hold a community, then fetch and publish over libp2p directly. Browser peers dial over secure WebSockets, and the gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is what stopped posts published from a tab being discarded by the rest of the network.",
+          "detailLens": "A Lens app in the browser reads through indexers and writes through wallets, RPCs, and chain infrastructure. Bitsocial browser clients run a Helia node in the page: they ask HTTP routers which peers hold a community, then fetch and publish over libp2p directly. Browser peers dial over secure WebSockets, and the gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is what stopped posts published from a tab being discarded by the rest of the network.",
+          "detailDeso": "A DeSo web app signs through DeSo Identity and submits through a node API, so the browser depends on hosted identity and node infrastructure. Bitsocial browser clients run a Helia node in the page: they ask HTTP routers which peers hold a community, then fetch and publish over libp2p directly. Browser peers dial over secure WebSockets, and the gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is what stopped posts published from a tab being discarded by the rest of the network.",
+          "detailSteemit": "A Steem front end reads and writes through API nodes that carry the chain, so the browser is a client of whichever node it points at. Bitsocial browser clients run a Helia node in the page: they ask HTTP routers which peers hold a community, then fetch and publish over libp2p directly. Browser peers dial over secure WebSockets, and the gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is what stopped posts published from a tab being discarded by the rest of the network."
         }
       },
       "expand": "Learn more",

@@ -94,7 +94,7 @@
         "cta": "Jelajahi kode sumber"
       },
       "peer-to-peer": {
-        "description": "Bitsocial <strong>bukan federasi dan bukan on-chain</strong>. Setiap komunitas adalah swarm peer-to-peer yang memakai <strong>primitive <ipfs>IPFS</ipfs>/libp2p</strong>: rekaman beralamat kunci publik, gossipsub pubsub, dan transfer konten yang lebih dekat ke BitTorrent daripada situs web terhosting. Pengguna men-seed apa yang mereka baca, node dapat berjalan di perangkat murah, dan setiap komunitas menerapkan tantangan anti-spamnya sendiri alih-alih bergantung pada kebijakan platform global.",
+        "description": "Bitsocial bukan <strong>federated maupun on-chain</strong>. Setiap komunitas adalah swarm peer-to-peer yang menggunakan <ipfs>IPFS</ipfs>, <strong>lebih dekat ke BitTorrent</strong> daripada situs web yang dihosting: pengguna berbagi dengan mudah, node berjalan pada hardware murah, dan setiap komunitas sepenuhnya independen dan berdaulat. Tab browser dapat bergabung dengan swarm sebagai peer, jadi aplikasi web bukan klien server orang lain.",
         "cta": "Pelajari cara kerja p2p"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "Aplikasi web DeSo biasanya mengandalkan DeSo Identity untuk penandatanganan dan API node untuk membangun dan mengirimkan transaksi sosial. Itu lebih mudah daripada menjalankan node, tetapi posting masih memasuki infrastruktur identitas yang dihosting, node, dan transaksi. Bitsocial dapat membuat kunci pengguna secara lokal dan memungkinkan pengguna untuk memposting melalui P2P langsung atau akses hosted opsional tanpa akun platform yang memiliki identitas.",
           "steemit": "Posting pertama dimulai dengan kunci akun Steem dan front-end Steem atau node API.",
           "detailSteemit": "Steemit mudah setelah pengguna memiliki akun Steem dan kunci posting, tetapi akun itu milik model izin Steem dan posting memasuki front-end Steem atau node API. Bitsocial dapat membuat kunci pengguna secara lokal dan memungkinkan pengguna untuk memposting melalui P2P langsung atau akses hosted opsional tanpa akun platform yang memiliki identitas."
+        },
+        "browserRuntime": {
+          "bitsocial": "Sebuah peer. Menjalankan sebuah node dan mengambil data dari peer lainnya.",
+          "bluesky": "Klien dari PDS dan AppView",
+          "deso": "Klien dari node API dan DeSo Identity",
+          "detail": "Klien web Nostr mempertahankan koneksi websocket ke relai, dan relai tersebut harus menerima, menyimpan, dan melayani konten yang dibacanya dan diterbitkan. Klien browser Bitsocial menjalankan node Helia di halaman: mereka menanyakan router HTTP peer mana yang memegang komunitas, kemudian mengambil dan menerbitkan secara langsung melalui libp2p. Peer browser menghubung melalui WebSocket aman, dan perbaikan nomor urut gossipsub di @libp2p/gossipsub 15.0.21 adalah apa yang menghentikan posting yang diterbitkan dari tab agar tidak dibuang oleh sisa jaringan.",
+          "detailBluesky": "Aplikasi web Bluesky berbicara dengan PDS untuk penulisan dan AppView untuk pembacaan, sehingga browser selalu menjadi klien layanan yang menahan dan menafsirkan data. Klien browser Bitsocial menjalankan node Helia di halaman: mereka menanyakan router HTTP peer mana yang memegang komunitas, kemudian mengambil dan menerbitkan secara langsung melalui libp2p. Peer browser menghubung melalui WebSocket aman, dan perbaikan nomor urut gossipsub di @libp2p/gossipsub 15.0.21 adalah apa yang menghentikan posting yang diterbitkan dari tab agar tidak dibuang oleh sisa jaringan.",
+          "detailDeso": "Aplikasi web DeSo menandatangani melalui DeSo Identity dan mengirim melalui API node, sehingga browser bergantung pada identitas yang dihosting dan infrastruktur node. Klien browser Bitsocial menjalankan node Helia di halaman: mereka menanyakan router HTTP peer mana yang memegang komunitas, kemudian mengambil dan menerbitkan secara langsung melalui libp2p. Peer browser menghubung melalui WebSocket aman, dan perbaikan nomor urut gossipsub di @libp2p/gossipsub 15.0.21 adalah apa yang menghentikan posting yang diterbitkan dari tab agar tidak dibuang oleh sisa jaringan.",
+          "detailFarcaster": "Klien Farcaster membaca melalui API dan indexer di atas data hub atau Snapchain, dan menulis melalui penandatangan yang dikelola aplikasi, sehingga browser tidak pernah menyentuh jaringan itu sendiri. Klien browser Bitsocial menjalankan node Helia di halaman: mereka menanyakan router HTTP peer mana yang memegang komunitas, kemudian mengambil dan menerbitkan secara langsung melalui libp2p. Peer browser menghubung melalui WebSocket aman, dan perbaikan nomor urut gossipsub di @libp2p/gossipsub 15.0.21 adalah apa yang menghentikan posting yang diterbitkan dari tab agar tidak dibuang oleh sisa jaringan.",
+          "detailLens": "Aplikasi Lens di browser membaca melalui indexer dan menulis melalui dompet, RPC, dan infrastruktur rantai. Klien browser Bitsocial menjalankan node Helia di halaman: mereka menanyakan router HTTP peer mana yang memegang komunitas, kemudian mengambil dan menerbitkan secara langsung melalui libp2p. Peer browser menghubung melalui WebSocket aman, dan perbaikan nomor urut gossipsub di @libp2p/gossipsub 15.0.21 adalah apa yang menghentikan posting yang diterbitkan dari tab agar tidak dibuang oleh sisa jaringan.",
+          "detailMastodon": "Klien web Mastodon adalah frontend untuk instans yang menyimpan akun, posting, dan timeline Anda. Klien browser Bitsocial menjalankan node Helia di halaman: mereka menanyakan router HTTP peer mana yang memegang komunitas, kemudian mengambil dan menerbitkan secara langsung melalui libp2p. Peer browser menghubung melalui WebSocket aman, dan perbaikan nomor urut gossipsub di @libp2p/gossipsub 15.0.21 adalah apa yang menghentikan posting yang diterbitkan dari tab agar tidak dibuang oleh sisa jaringan.",
+          "detailSteemit": "Frontend Steem membaca dan menulis melalui node API yang membawa chain, sehingga browser adalah klien dari node mana pun yang ditunjuknya. Klien browser Bitsocial menjalankan node Helia di halaman: mereka menanyakan router HTTP peer mana yang memegang komunitas, kemudian mengambil dan menerbitkan secara langsung melalui libp2p. Peer browser menghubung melalui WebSocket aman, dan perbaikan nomor urut gossipsub di @libp2p/gossipsub 15.0.21 adalah apa yang menghentikan posting yang diterbitkan dari tab agar tidak dibuang oleh sisa jaringan.",
+          "farcaster": "Klien dari app, hub dan indeksernya",
+          "label": "Apa yang ada di browser Anda",
+          "lens": "Klien dari Lens app, RPC dan indexer",
+          "mastodon": "Klien dari server tempat Anda mendaftar",
+          "nostr": "Klien dari relay yang dikonfigurasi untuk digunakan",
+          "steemit": "Klien dari front-end dan node API"
         }
       },
       "expand": "Pelajari lebih lanjut",
@@ -756,5 +774,22 @@
         "reason": "Mereka baru bergabung saat orang-orang mereka sudah ada di sana dan berpindah tak lagi terasa berisiko."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "Halaman mem-boot node <helia>Helia</helia> dan berbicara protokol yang sama seperti node desktop dan CLI, mencapai peer melalui jenis koneksi terenkripsi yang sama yang digunakan situs web mana pun. Penerbitan dari browser menjadi andal di <gossipsub>2026</gossipsub>, setelah perbaikan upstream terakhir mendarat.",
+        "title": "Tab menjalankan sebuah node"
+      },
+      "unstoppable": {
+        "description": "Halaman ini hanya klien: salinan apa pun, di domain apa pun atau sebagai aplikasi desktop, mencapai jaringan yang sama. <strong>Identitas Anda dan komunitas Anda adalah kunci yang Anda pegang</strong>, bukan baris dalam database perusahaan, jadi tidak ada akun yang dapat Anda hilangkan dan tidak ada host yang dapat dirampas.",
+        "title": "Tidak ada yang bisa dimatikan"
+      }
+    },
+    "docsCta": "Cara kerja P2P di browser",
+    "liveCta": "Lihat di blog",
+    "sectionLabel": "Peramban P2P",
+    "supporting": "Buka aplikasi web Bitsocial di tab normal dan bergabung dengan jaringan sendiri, mengambil postingan dari peer lain dan memublikasikan milik Anda. Setiap jaringan sosial terdesentralisasi lainnya masih menyimpan server di tengah.",
+    "title": "Peramban Anda adalah peer"
   }
 }

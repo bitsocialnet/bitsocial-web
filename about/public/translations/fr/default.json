@@ -94,7 +94,7 @@
         "cta": "Parcourir le code source"
       },
       "peer-to-peer": {
-        "description": "Bitsocial n'est <strong>ni fédéré ni on-chain</strong>. Chaque communauté est un essaim peer-to-peer qui utilise des <strong>primitives <ipfs>IPFS</ipfs>/libp2p</strong>: des enregistrements adressés par clé publique, le pubsub gossipsub et un transfert de contenu plus proche de BitTorrent que d'un site web hébergé. Les utilisateurs seedent ce qu'ils lisent, les nœuds peuvent tourner sur du matériel peu coûteux, et chaque communauté applique son propre défi anti-spam au lieu de dépendre d'une politique globale de plateforme.",
+        "description": "Bitsocial n'est <strong>ni fédéré ni on-chain</strong>. Chaque communauté est un essaim pair-à-pair utilisant <ipfs>IPFS</ipfs>, <strong>plus proche de BitTorrent</strong> qu'un site web hébergé: les utilisateurs partagent sans effort, les nœuds fonctionnent sur du matériel bon marché, et chaque communité est totalement indépendante et souveraine. Un onglet du navigateur peut rejoindre l'essaim en tant que pair, de sorte que l'application web n'est pas un client du serveur de quelqu'un d'autre.",
         "cta": "Découvrez comment fonctionne p2p"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "Les applications web DeSo s'appuient généralement sur DeSo Identity pour la signature et sur une API de noeud pour construire et soumettre des transactions sociales. C'est plus facile que de gérer un noeud, mais le post entre toujours par identité hébergée, infrastructure de noeud et de transaction. Bitsocial peut créer la clé de l'utilisateur localement et permettre à l'utilisateur de publier via P2P direct ou accès hébergé optionnel sans qu'un compte de plateforme ne possède l'identité.",
           "steemit": "Le premier post commence par des clés de compte Steem et une interface Steem ou un noeud API.",
           "detailSteemit": "Steemit est simple une fois qu'un utilisateur a un compte Steem et une clé de publication, mais ce compte appartient au modèle de permission Steem et le post entre par un front end Steem ou un node API. Bitsocial peut créer la clé de l'utilisateur localement et permettre à l'utilisateur de publier via P2P direct ou accès hébergé optionnel sans qu'un compte de plateforme ne possède l'identité."
+        },
+        "browserRuntime": {
+          "bitsocial": "Un peer. Il exécute un nœud et récupère les données d'autres pairs.",
+          "bluesky": "Un client d'un PDS et d'une AppView",
+          "deso": "Un client d'une API de nœud et de DeSo Identity",
+          "detail": "Un client web Nostr maintient des connexions websocket à des relais, et ces relais doivent accepter, stocker et servir le contenu qu'il lit et publie. Les clients de navigateur Bitsocial exécutent un nœud Helia sur la page : ils interrogent les routeurs HTTP pour savoir quels pairs détiennent une communauté, puis récupèrent et publient directement via libp2p. Les pairs de navigateur se composent via des WebSockets sécurisés, et la correction du numéro de séquence gossipsub dans @libp2p/gossipsub 15.0.21 est ce qui a empêché les publications publiées à partir d'un onglet d'être rejetées par le reste du réseau.",
+          "detailBluesky": "Une application Bluesky web communique avec un PDS pour les écritures et une AppView pour les lectures, de sorte que le navigateur est toujours un client des services qui détiennent et interprètent les données. Les clients de navigateur Bitsocial exécutent un nœud Helia sur la page : ils interrogent les routeurs HTTP pour savoir quels pairs détiennent une communauté, puis récupèrent et publient directement via libp2p. Les pairs de navigateur se composent via des WebSockets sécurisés, et la correction du numéro de séquence gossipsub dans @libp2p/gossipsub 15.0.21 est ce qui a empêché les publications publiées à partir d'un onglet d'être rejetées par le reste du réseau.",
+          "detailDeso": "Une application web DeSo signe via DeSo Identity et soumet via une API de nœud, de sorte que le navigateur dépend de l'identité hébergée et de l'infrastructure du nœud. Les clients de navigateur Bitsocial exécutent un nœud Helia sur la page : ils interrogent les routeurs HTTP pour savoir quels pairs détiennent une communauté, puis récupèrent et publient directement via libp2p. Les pairs de navigateur se composent via des WebSockets sécurisés, et la correction du numéro de séquence gossipsub dans @libp2p/gossipsub 15.0.21 est ce qui a empêché les publications publiées à partir d'un onglet d'être rejetées par le reste du réseau.",
+          "detailFarcaster": "Un client Farcaster lit via les API et les indexeurs via les données hub ou Snapchain, et écrit via les signataires gérés par l'application, de sorte que le navigateur ne touche jamais le réseau lui-même. Les clients de navigateur Bitsocial exécutent un nœud Helia sur la page : ils interrogent les routeurs HTTP pour savoir quels pairs détiennent une communauté, puis récupèrent et publient directement via libp2p. Les pairs de navigateur se composent via des WebSockets sécurisés, et la correction du numéro de séquence gossipsub dans @libp2p/gossipsub 15.0.21 est ce qui a empêché les publications publiées à partir d'un onglet d'être rejetées par le reste du réseau.",
+          "detailLens": "Une application Lens dans le navigateur lit via les indexeurs et écrit via les portefeuilles, les RPC et l'infrastructure de la chaîne. Les clients de navigateur Bitsocial exécutent un nœud Helia sur la page : ils interrogent les routeurs HTTP pour savoir quels pairs détiennent une communauté, puis récupèrent et publient directement via libp2p. Les pairs de navigateur se composent via des WebSockets sécurisés, et la correction du numéro de séquence gossipsub dans @libp2p/gossipsub 15.0.21 est ce qui a empêché les publications publiées à partir d'un onglet d'être rejetées par le reste du réseau.",
+          "detailMastodon": "Un client web Mastodon est une interface pour l'instance qui stocke votre compte, vos publications et votre chronologie. Les clients de navigateur Bitsocial exécutent un nœud Helia sur la page : ils interrogent les routeurs HTTP pour savoir quels pairs détiennent une communauté, puis récupèrent et publient directement via libp2p. Les pairs de navigateur se composent via des WebSockets sécurisés, et la correction du numéro de séquence gossipsub dans @libp2p/gossipsub 15.0.21 est ce qui a empêché les publications publiées à partir d'un onglet d'être rejetées par le reste du réseau.",
+          "detailSteemit": "Un frontend Steem lit et écrit via les nœuds API qui portent la chaîne, de sorte que le navigateur est un client de n'importe quel nœud sur lequel il pointe. Les clients de navigateur Bitsocial exécutent un nœud Helia sur la page : ils interrogent les routeurs HTTP pour savoir quels pairs détiennent une communauté, puis récupèrent et publient directement via libp2p. Les pairs de navigateur se composent via des WebSockets sécurisés, et la correction du numéro de séquence gossipsub dans @libp2p/gossipsub 15.0.21 est ce qui a empêché les publications publiées à partir d'un onglet d'être rejetées par le reste du réseau.",
+          "farcaster": "Un client d'une app, ses hubs et indexeurs",
+          "label": "Ce qu'est votre navigateur",
+          "lens": "Un client d'une app Lens, un RPC et un indexeur",
+          "mastodon": "Un client du serveur sur lequel vous vous êtes inscrit",
+          "nostr": "Un client des relais qu'il est configuré pour utiliser",
+          "steemit": "Un client d'un front-end et d'un nœud API"
         }
       },
       "expand": "En savoir plus",
@@ -756,5 +774,22 @@
         "reason": "Ils rejoignent quand leurs proches y sont déjà et que changer ne semble plus risqué."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "La page démarre un nœud <helia>Helia</helia> et parle le même protocole que les nœuds desktop et CLI, atteignant les pairs via le même type de connexion chiffrée qu'utilise n'importe quel site web. La publication depuis un navigateur est devenue fiable en <gossipsub>2026</gossipsub>, une fois que le dernier correctif en amont a été livré.",
+        "title": "L'onglet exécute un nœud"
+      },
+      "unstoppable": {
+        "description": "La page n'est qu'un client: toute copie de celle-ci, sur n'importe quel domaine ou en tant qu'application de bureau, accède au même réseau. <strong>Votre identité et votre communauté sont des clés que vous possédez</strong>, pas des lignes dans une base de données d'entreprise, il n'y a donc pas de compte à perdre et aucun serveur à saisir.",
+        "title": "Rien à arrêter"
+      }
+    },
+    "docsCta": "Comment fonctionne P2P dans le navigateur",
+    "liveCta": "Regarder sur le blog",
+    "sectionLabel": "Navigateur P2P",
+    "supporting": "Ouvrez une application web Bitsocial dans un onglet normal et elle rejoint le réseau d'elle-même, récupérant les publications des autres pairs et publiant les vôtres. Chaque autre réseau social décentralisé maintient toujours un serveur au milieu.",
+    "title": "Votre navigateur est un pair"
   }
 }

@@ -167,3 +167,33 @@ If uncertain, ask the developer before adding an entry.
 - **Impact:** Agents verifying chain changes had to know to call `yarn build:chain` directly instead of trusting `yarn build:verify`, and React issues in `chain/src` (effects, hooks, dead code) went undetected by `yarn doctor`.
 - **Mitigation:** `scripts/verify-build.mjs` now has a `chain/` branch mirroring the `about/` one, and `doctor` / `doctor:verbose` now run `react-doctor --project about,chain -y` in a single invocation. `doctor:score` stays `about`-only because `--score` silently prints nothing when combined with `--project` for more than one project; use `yarn react-doctor --project about,chain --verbose -y` (or `--json`) if a chain score is needed.
 - **Status:** confirmed
+
+### Browser P2P runs on secure WebSockets; pkc-js denies WebRTC and WebTransport by default
+
+- **Date:** 2026-08-02
+- **Observed by:** Claude
+- **Context:** Writing landing-page and docs copy about how Bitsocial browser P2P works
+- **What was surprising:** `@pkcprotocol/pkc-js` ships a default connection gater that rejects WebRTC and WebTransport dials in the browser — `dist/browser/helia/dial-transport-filter.js` exports `DENIED_DIAL_TRANSPORTS_BY_DEFAULT = ["webrtc", "webrtc-direct", "webtransport"]`. Its source comment gives the reason: in the browser those transports add long, often-failing connection-establishment paths (STUN/ICE, certhash rotation) that slow loads, while WebSocket is direct and reliable. Every live peer on the blog's P2P status panel shows "Secure WebSocket". The gater lives in `node_modules`, so nothing in the repo hints at it.
+- **Impact:** It is very easy to write technically plausible but false public copy — for example crediting WebTransport reaching browser Baseline in March 2026 for making Bitsocial browser P2P possible. That claim shipped into the landing page, the comparison table, and two docs pages before the developer caught it. Wrong architecture claims on public pages are checked by exactly the developer audience the site targets.
+- **Mitigation:** Never infer which transports Bitsocial uses from what libp2p or the browser platform supports in principle. Check `node_modules/@pkcprotocol/pkc-js/dist/browser/helia/dial-transport-filter.js` for the current deny list, confirm no `connectionGater` override exists under `about/src/`, and read the live transport labels in the blog's "P2P status" panel before making any public claim. The upstream change that actually unblocked browser publishing was the gossipsub monotonic-seqno fix in `@libp2p/gossipsub` 15.0.21 (May 2026); pkc-js currently ships 16.0.4.
+- **Status:** confirmed
+
+### Relative `./page.md` links from an untranslated docs page break every localized build
+
+- **Date:** 2026-08-02
+- **Observed by:** Claude
+- **Context:** Adding a new English-only page, `docs/browser-p2p.md`, that linked to existing docs with `./peer-to-peer-protocol.md` and `./apps/5chan.md`
+- **What was surprising:** Each locale under `docs/i18n/<lang>/docusaurus-plugin-content-docs/current/` mirrors the docs tree. A new page absent from those mirrors still renders in every locale via English fallback, but its relative markdown links no longer resolve — Docusaurus emits `/ar/browser-p2p/peer-to-peer-protocol.md/` and fails the build with "Docusaurus found broken links!". Crucially, `yarn build:verify` and `yarn docs:build:verify` build only `en` and pass cleanly; only a full `yarn docs:build` surfaces it, and it aborts on the first locale alphabetically (`ar`).
+- **Impact:** A docs change can pass every fast local check and still break the production multilocale build. The failure also looks unrelated to the change, since the error names a locale path the author never touched.
+- **Mitigation:** In any docs page that is not mirrored into `docs/i18n/**`, use root-relative links (`/peer-to-peer-protocol/`, `/apps/5chan/`) instead of relative `.md` links; Docusaurus prefixes them with the locale automatically. `docs/build-your-own-client.md` is the existing example. Run a full `yarn docs:build` — not just `build:verify` — before handing off any change that adds or links a docs page.
+- **Status:** confirmed
+
+### `update-translations.js` must be run from `about/`, and concurrent runs silently lose keys
+
+- **Date:** 2026-08-02
+- **Observed by:** Claude
+- **Context:** Applying 26 translated i18next keys across all 36 locales via the `translate` skill
+- **What was surprising:** Two separate traps in the same script. First, `scripts/update-translations.js` resolves its target as `path.join(process.cwd(), "public", "translations")`, but this repo keeps translations at `about/public/translations`. Running the documented command from the repo root fails every invocation with "Translations directory not found" — `docs/agent-playbooks/translations.md` shows `node scripts/update-translations.js ...`, which reads as a repo-root command. Second, each invocation is a read-modify-write over all 36 locale files, so two invocations running at once clobber each other and one key vanishes with no error. The `translate` skill explicitly instructs spawning up to 4 subagents concurrently, each of which would call the script.
+- **Impact:** The repo-root form fails loudly and wastes a full pass. The concurrency issue fails silently: keys go missing from arbitrary locales, and the diff still looks plausible.
+- **Mitigation:** Run it as `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Never let translator subagents write locale files concurrently — have them emit dictionary JSON files only, then apply every key serially from the parent agent. After applying, verify programmatically that each key exists in all 35 non-English locales and that no value is byte-identical to the English source.
+- **Status:** confirmed

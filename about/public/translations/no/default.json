@@ -94,7 +94,7 @@
         "cta": "Utforsk kildekoden"
       },
       "peer-to-peer": {
-        "description": "Bitsocial er <strong>verken føderert eller on-chain</strong>. Hvert fellesskap er en peer-to-peer-sverm som bruker <strong><ipfs>IPFS</ipfs>/libp2p-primitiver</strong>: poster adressert med offentlige nøkler, gossipsub pubsub og innholdsoverføring nærmere BitTorrent enn et hostet nettsted. Brukere seeder det de leser, noder kan kjøre på billig maskinvare, og hvert fellesskap håndhever sin egen anti-spam-utfordring i stedet for å avhenge av en global plattformpolicy.",
+        "description": "Bitsocial er <strong>verken federert eller on-chain</strong>. Hver community er en peer-to-peer sverm som bruker <ipfs>IPFS</ipfs>, <strong>nærmere BitTorrent</strong> enn et hostede nettsted: brukere seedet uten anstrengelse, noder kjører på billig maskinvare, og hver community er fullstendig uavhengig og suveren. En nettleserfane kan slutte seg til sverma som en peer, så nettappen er ikke en klient på en annens server.",
         "cta": "Lær hvordan p2p fungerer"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "DeSo-webapplikasjoner er vanligvis avhengige av DeSo Identity for signering og av en node-API for å konstruere og sende sosiale transaksjoner. Det er lettere enn å kjøre en node, men innlegget går fortsatt gjennom hosted identitet, node- og transaksjoninfrastruktur. Bitsocial kan opprette brukerens nøkkel lokalt og la brukeren poste gjennom direkte P2P eller valgfritt hosted tilgang uten at en plattformkonto eier identiteten.",
           "steemit": "Første innlegg starter med Steem-kontoskjøler og en Steem front-end eller API-node.",
           "detailSteemit": "Steemit er unkomplisert når en bruker har en Steem-konto og posting-nøkkel, men den kontoen tilhører Steems tillatelsemodell og innlegget går gjennom Steem front-end eller API-node. Bitsocial kan opprette brukerens nøkkel lokalt og la brukeren poste gjennom direkte P2P eller valgfritt hosted tilgang uten at en plattformkonto eier identiteten."
+        },
+        "browserRuntime": {
+          "bitsocial": "En peer. Den kjører en node og henter data fra andre peers.",
+          "bluesky": "En klient av en PDS og en AppView",
+          "deso": "En klient av en node API og DeSo Identity",
+          "detail": "En Nostr-webklient opprettholder websocket-forbindelser til releer, og disse releene må godta, lagre og betjene innholdet det leser og publiserer. Bitsocial-browserklienter kjører en Helia-node på siden: de spør HTTP-rutere hvilke jevnaldrende som holder et community, deretter henter og publiserer direkte via libp2p. Browser-peers kobler seg til via sikre WebSockets, og gossipsub sequence-number-rettingen i @libp2p/gossipsub 15.0.21 er det som hindret innlegg publisert fra en fane fra å bli kastet av resten av nettverket.",
+          "detailBluesky": "En Bluesky-webapplikasjon kommuniserer med en PDS for skrivinger og en AppView for lesinger, så browseren er alltid en klient av tjenester som holder og tolker dataene. Bitsocial-browserklienter kjører en Helia-node på siden: de spør HTTP-rutere hvilke jevnaldrende som holder et community, deretter henter og publiserer direkte via libp2p. Browser-peers kobler seg til via sikre WebSockets, og gossipsub sequence-number-rettingen i @libp2p/gossipsub 15.0.21 er det som hindret innlegg publisert fra en fane fra å bli kastet av resten av nettverket.",
+          "detailDeso": "En DeSo-webapp signerer via DeSo Identity og sender via en node-API, så browseren avhenger av hosteret identitet og node-infrastruktur. Bitsocial-browserklienter kjører en Helia-node på siden: de spør HTTP-rutere hvilke jevnaldrende som holder et community, deretter henter og publiserer direkte via libp2p. Browser-peers kobler seg til via sikre WebSockets, og gossipsub sequence-number-rettingen i @libp2p/gossipsub 15.0.21 er det som hindret innlegg publisert fra en fane fra å bli kastet av resten av nettverket.",
+          "detailFarcaster": "En Farcaster-klient leser gjennom APIer og indekserer over hub- eller Snapchain-data og skriver gjennom app-administrerte undertegnere, slik at browseren aldri rører nettverket selv. Bitsocial-browserklienter kjører en Helia-node på siden: de spør HTTP-rutere hvilke jevnaldrende som holder et community, deretter henter og publiserer direkte via libp2p. Browser-peers kobler seg til via sikre WebSockets, og gossipsub sequence-number-rettingen i @libp2p/gossipsub 15.0.21 er det som hindret innlegg publisert fra en fane fra å bli kastet av resten av nettverket.",
+          "detailLens": "En Lens-app i browseren leser gjennom indekserer og skriver gjennom lommebøker, RPC-er og chain-infrastruktur. Bitsocial-browserklienter kjører en Helia-node på siden: de spør HTTP-rutere hvilke jevnaldrende som holder et community, deretter henter og publiserer direkte via libp2p. Browser-peers kobler seg til via sikre WebSockets, og gossipsub sequence-number-rettingen i @libp2p/gossipsub 15.0.21 er det som hindret innlegg publisert fra en fane fra å bli kastet av resten av nettverket.",
+          "detailMastodon": "En Mastodon-webklient er en frontend til instansen som lagrer kontoen din, innleggene dine og tidslinjen din. Bitsocial-browserklienter kjører en Helia-node på siden: de spør HTTP-rutere hvilke jevnaldrende som holder et community, deretter henter og publiserer direkte via libp2p. Browser-peers kobler seg til via sikre WebSockets, og gossipsub sequence-number-rettingen i @libp2p/gossipsub 15.0.21 er det som hindret innlegg publisert fra en fane fra å bli kastet av resten av nettverket.",
+          "detailSteemit": "En Steem-frontend leser og skriver gjennom API-noder som bærer kjeden, så browseren er en klient av en hvilken som helst node den peker på. Bitsocial-browserklienter kjører en Helia-node på siden: de spør HTTP-rutere hvilke jevnaldrende som holder et community, deretter henter og publiserer direkte via libp2p. Browser-peers kobler seg til via sikre WebSockets, og gossipsub sequence-number-rettingen i @libp2p/gossipsub 15.0.21 er det som hindret innlegg publisert fra en fane fra å bli kastet av resten av nettverket.",
+          "farcaster": "En klient av en app, dens hubs og indeksering",
+          "label": "Hva nettleseren din er",
+          "lens": "En klient av en Lens app, en RPC og en indexer",
+          "mastodon": "En klient av serveren du registrerte deg på",
+          "nostr": "En klient av relayene den er konfigurert til å bruke",
+          "steemit": "En klient av et front-end og en API node"
         }
       },
       "expand": "Lær mer",
@@ -756,5 +774,22 @@
         "reason": "De blir med når folkene deres allerede er der, og det ikke lenger føles risikabelt å bytte."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "Siden starter en <helia>Helia</helia> node og snakker samme protokoll som desktop- og CLI-noder, når peers via samme type kryptert tilkobling som hvilket som helst nettsted bruker. Publisering fra en nettleser ble pålitelig i <gossipsub>2026</gossipsub>, når den siste oppstrøms-rettelsen landet.",
+        "title": "Fanen kjører en node"
+      },
+      "unstoppable": {
+        "description": "Siden er bare en klient: enhver kopi av den, på et hvilket som helst domene eller som et stasjonærprogram, når det samme nettverket. <strong>Din identitet og ditt fellesskap er nøkler som du holder</strong>, ikke rader i en bedriftsdatabase, så det er ingen konto å miste og ingen vert å kapre.",
+        "title": "Ingenting å stenge ned"
+      }
+    },
+    "docsCta": "Hvordan P2P fungerer i nettleseren",
+    "liveCta": "Se på bloggen",
+    "sectionLabel": "Nettleser P2P",
+    "supporting": "Åpne en Bitsocial-webapp i en normal fane og den slutter seg selv til nettverket, henter innlegg fra andre jevnaldrende og publiserer dine egne. Ethvert annet desentralisert sosialt nettverk opprettholder fortsatt en server i midten.",
+    "title": "Nettleseren din er en peer"
   }
 }

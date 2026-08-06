@@ -94,7 +94,7 @@
         "cta": "소스 코드 둘러보기"
       },
       "peer-to-peer": {
-        "description": "Bitsocial은 <strong>연합형도 아니고 온체인도 아닙니다</strong>. 각 커뮤니티는 <strong><ipfs>IPFS</ipfs>/libp2p primitives</strong>를 사용하는 P2P 스웜입니다. 공개키로 주소가 지정된 레코드, gossipsub pubsub, 그리고 호스팅된 웹사이트보다 BitTorrent에 가까운 콘텐츠 전송을 사용합니다. 사용자는 읽은 콘텐츠를 시드하고, 노드는 저렴한 하드웨어에서 실행될 수 있으며, 각 커뮤니티는 전역 플랫폼 정책에 의존하지 않고 자체 anti-spam challenge를 적용합니다.",
+        "description": "Bitsocial은 <strong>페더레이션도 아니고 온체인도 아닙니다</strong>. 각 커뮤니티는 <ipfs>IPFS</ipfs>를 사용하는 피어-투-피어 스웜으로, <strong>호스트된 웹사이트보다 BitTorrent에 가깝습니다</strong>: 사용자는 쉽게 시드하고, 노드는 저렴한 하드웨어에서 실행되며, 각 커뮤니티는 완전히 독립적이고 주권이 있습니다. 브라우저 탭은 스웜에 피어로 참여할 수 있으므로 웹 앱은 다른 사람의 서버의 클라이언트가 아닙니다.",
         "cta": "p2p 작동 방식 알아보기"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "DeSo 웹 앱은 일반적으로 서명을 위해 DeSo Identity에, 소셜 거래를 구성하고 제출하기 위해 노드 API에 의존합니다. 이것은 노드를 실행하는 것보다 쉽지만, 게시물은 여전히 호스팅된 ID, 노드 및 거래 인프라를 통해 들어갑니다. Bitsocial은 사용자의 키를 로컬로 만들 수 있으며, 사용자가 직접 P2P 또는 선택적 호스팅 액세스를 통해 게시하도록 허용할 수 있습니다. 플랫폼 계정이 ID를 소유하지 않으면서.",
           "steemit": "첫 번째 게시물은 Steem 계정 키와 Steem 프론트엔드 또는 API 노드로 시작됩니다.",
           "detailSteemit": "Steemit은 사용자가 Steem 계정과 게시 키를 가진 후에는 간단하지만, 그 계정은 Steem 권한 모델에 속하고 게시물은 Steem 프론트엔드 또는 API 노드를 통해 들어갑니다. Bitsocial은 사용자의 키를 로컬로 만들 수 있으며, 사용자가 직접 P2P 또는 선택적 호스팅 액세스를 통해 게시하도록 허용할 수 있습니다. 플랫폼 계정이 ID를 소유하지 않으면서."
+        },
+        "browserRuntime": {
+          "bitsocial": "피어입니다. 노드를 실행하고 다른 피어에서 데이터를 가져옵니다.",
+          "bluesky": "PDS 및 AppView의 클라이언트",
+          "deso": "노드 API 및 DeSo Identity의 클라이언트",
+          "detail": "Nostr 웹 클라이언트는 릴레이에 대한 websocket 연결을 유지하며, 이러한 릴레이는 읽고 게시하는 콘텐츠를 수락하고 저장하고 제공해야 합니다. Bitsocial 브라우저 클라이언트는 페이지에서 Helia 노드를 실행합니다. HTTP 라우터에 어떤 피어가 커뮤니티를 보유하고 있는지 묻고 libp2p를 통해 직접 가져오고 게시합니다. 브라우저 피어는 보안 WebSocket을 통해 연결되며, @libp2p/gossipsub 15.0.21의 gossipsub sequence-number fix는 탭에서 게시된 게시물이 네트워크의 나머지 부분에서 폐기되는 것을 방지한 것입니다.",
+          "detailBluesky": "Bluesky 웹 앱은 쓰기를 위해 PDS와 읽기를 위해 AppView와 통신하므로 브라우저는 항상 데이터를 보유하고 해석하는 서비스의 클라이언트입니다. Bitsocial 브라우저 클라이언트는 페이지에서 Helia 노드를 실행합니다. HTTP 라우터에 어떤 피어가 커뮤니티를 보유하고 있는지 묻고 libp2p를 통해 직접 가져오고 게시합니다. 브라우저 피어는 보안 WebSocket을 통해 연결되며, @libp2p/gossipsub 15.0.21의 gossipsub sequence-number fix는 탭에서 게시된 게시물이 네트워크의 나머지 부분에서 폐기되는 것을 방지한 것입니다.",
+          "detailDeso": "DeSo 웹 앱은 DeSo Identity를 통해 서명하고 노드 API를 통해 제출하므로 브라우저는 호스팅된 식별 및 노드 인프라에 따라 달라집니다. Bitsocial 브라우저 클라이언트는 페이지에서 Helia 노드를 실행합니다. HTTP 라우터에 어떤 피어가 커뮤니티를 보유하고 있는지 묻고 libp2p를 통해 직접 가져오고 게시합니다. 브라우저 피어는 보안 WebSocket을 통해 연결되며, @libp2p/gossipsub 15.0.21의 gossipsub sequence-number fix는 탭에서 게시된 게시물이 네트워크의 나머지 부분에서 폐기되는 것을 방지한 것입니다.",
+          "detailFarcaster": "Farcaster 클라이언트는 hub 또는 Snapchain 데이터를 통해 API와 인덱서를 읽고 앱 관리 서명자를 통해 쓰므로 브라우저는 네트워크 자체에 접하지 않습니다. Bitsocial 브라우저 클라이언트는 페이지에서 Helia 노드를 실행합니다. HTTP 라우터에 어떤 피어가 커뮤니티를 보유하고 있는지 묻고 libp2p를 통해 직접 가져오고 게시합니다. 브라우저 피어는 보안 WebSocket을 통해 연결되며, @libp2p/gossipsub 15.0.21의 gossipsub sequence-number fix는 탭에서 게시된 게시물이 네트워크의 나머지 부분에서 폐기되는 것을 방지한 것입니다.",
+          "detailLens": "브라우저의 Lens 앱은 인덱서를 통해 읽고 지갑, RPC 및 체인 인프라를 통해 씁니다. Bitsocial 브라우저 클라이언트는 페이지에서 Helia 노드를 실행합니다. HTTP 라우터에 어떤 피어가 커뮤니티를 보유하고 있는지 묻고 libp2p를 통해 직접 가져오고 게시합니다. 브라우저 피어는 보안 WebSocket을 통해 연결되며, @libp2p/gossipsub 15.0.21의 gossipsub sequence-number fix는 탭에서 게시된 게시물이 네트워크의 나머지 부분에서 폐기되는 것을 방지한 것입니다.",
+          "detailMastodon": "Mastodon 웹 클라이언트는 계정, 게시물 및 타임라인을 저장하는 인스턴스의 프론트엔드입니다. Bitsocial 브라우저 클라이언트는 페이지에서 Helia 노드를 실행합니다. HTTP 라우터에 어떤 피어가 커뮤니티를 보유하고 있는지 묻고 libp2p를 통해 직접 가져오고 게시합니다. 브라우저 피어는 보안 WebSocket을 통해 연결되며, @libp2p/gossipsub 15.0.21의 gossipsub sequence-number fix는 탭에서 게시된 게시물이 네트워크의 나머지 부분에서 폐기되는 것을 방지한 것입니다.",
+          "detailSteemit": "Steem 프론트엔드는 체인을 운반하는 API 노드를 통해 읽고 쓰므로 브라우저는 가리키는 노드의 클라이언트입니다. Bitsocial 브라우저 클라이언트는 페이지에서 Helia 노드를 실행합니다. HTTP 라우터에 어떤 피어가 커뮤니티를 보유하고 있는지 묻고 libp2p를 통해 직접 가져오고 게시합니다. 브라우저 피어는 보안 WebSocket을 통해 연결되며, @libp2p/gossipsub 15.0.21의 gossipsub sequence-number fix는 탭에서 게시된 게시물이 네트워크의 나머지 부분에서 폐기되는 것을 방지한 것입니다.",
+          "farcaster": "앱, 해당 허브 및 인덱서의 클라이언트",
+          "label": "당신의 브라우저는 무엇인가",
+          "lens": "Lens 앱, RPC 및 인덱서의 클라이언트",
+          "mastodon": "가입한 서버의 클라이언트",
+          "nostr": "구성된 릴레이의 클라이언트",
+          "steemit": "프론트엔드 및 API 노드의 클라이언트"
         }
       },
       "expand": "더 알아보기",
@@ -756,5 +774,22 @@
         "reason": "그들은 자기 사람들이 이미 그곳에 있고, 옮겨 가는 일이 더 이상 위험하게 느껴지지 않을 때 합류한다."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "페이지는 <helia>Helia</helia> 노드를 부팅하고 데스크톱 및 CLI 노드와 동일한 프로토콜을 사용하며, 모든 웹사이트가 사용하는 것과 같은 종류의 암호화된 연결을 통해 피어에 도달합니다. 브라우저에서의 게시는 <gossipsub>2026</gossipsub> 년에 안정적이 되었으며, 마지막 업스트림 수정이 도입되었습니다.",
+        "title": "탭이 노드를 실행합니다"
+      },
+      "unstoppable": {
+        "description": "이 페이지는 단순한 클라이언트입니다. 어떤 도메인에서든 또는 데스크톱 애플리케이션으로 실행되는 모든 복사본이 동일한 네트워크에 접속합니다. <strong>당신의 정체성과 당신의 커뮤니티는 당신이 보유한 열쇠</strong>이지, 회사 데이터베이스의 행이 아닙니다. 따라서 잃을 계정도 없고 빼앗길 호스트도 없습니다.",
+        "title": "끌 것이 없다"
+      }
+    },
+    "docsCta": "브라우저에서 P2P 작동 방식",
+    "liveCta": "블로그에서 보기",
+    "sectionLabel": "브라우저 P2P",
+    "supporting": "일반 탭에서 Bitsocial 웹 앱을 열면 네트워크에 자동으로 참여하여 다른 피어로부터 게시물을 가져오고 자신의 게시물을 게시합니다. 다른 모든 분산형 소셜 네트워크는 여전히 중간에 서버를 유지합니다.",
+    "title": "당신의 브라우저는 피어입니다"
   }
 }

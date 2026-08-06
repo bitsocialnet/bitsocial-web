@@ -133,6 +133,7 @@ const config: Config = {
           title: "Protocol",
           items: [
             { label: "Peer-to-peer protocol", to: "/peer-to-peer-protocol/" },
+            { label: "Browser peer-to-peer", to: "/browser-p2p/" },
             { label: "Custom challenges", to: "/custom-challenges/" },
             { label: "Local moderation", to: "/local-moderation/" },
             { label: "Identity and ownership", to: "/identity-and-ownership/" },

@@ -234,6 +234,7 @@ function categorizeDoc(relativePath) {
   if (
     [
       "peer-to-peer-protocol.md",
+      "browser-p2p.md",
       "custom-challenges.md",
       "local-moderation.md",
       "identity-and-ownership.md",
@@ -734,6 +735,7 @@ ${renderBulletList(siteAppEntries)}
 - [Docs home](${docsOrigin}/): Entry point for protocol notes, roadmap material, app docs, and contributor playbooks.
 - [Docs llms.txt](${docsOrigin}/llms.txt): Curated docs-specific index for LLMs.
 - [Peer-to-Peer Protocol](${docsOrigin}/peer-to-peer-protocol/): Core explanation of the serverless social model and pubsub-based protocol.
+- [Browser Peer-to-Peer](${docsOrigin}/browser-p2p/): How a Bitsocial web app runs a libp2p node in the browser tab, and the 2026 upstream changes that made it work on desktop and mobile.
 - [Bitsocial Chain](${docsOrigin}/bitsocial-network/): Master-plan overview of the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
 - [Build your own client](${docsOrigin}/build-your-own-client/): Builder guide for shipping independent Bitsocial clients.
 - [CLI](${docsOrigin}/developer-tools/cli/): Command-line documentation for the Bitsocial protocol tooling.

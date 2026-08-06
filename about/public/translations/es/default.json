@@ -94,7 +94,7 @@
         "cta": "Ver el código fuente"
       },
       "peer-to-peer": {
-        "description": "Bitsocial no es <strong>ni federado ni on-chain</strong>. Cada comunidad es un enjambre peer-to-peer que usa <strong>primitivas <ipfs>IPFS</ipfs>/libp2p</strong>: registros direccionados por clave pública, pubsub gossipsub y transferencia de contenido más cercana a BitTorrent que a un sitio web alojado. Los usuarios siembran lo que leen, los nodos pueden ejecutarse en hardware barato y cada comunidad aplica su propio desafío antispam en lugar de depender de una política global de plataforma.",
+        "description": "Bitsocial no es <strong>ni federado ni on-chain</strong>. Cada comunidad es un enjambre peer-to-peer que usa <ipfs>IPFS</ipfs>, <strong>más cercano a BitTorrent</strong> que a un sitio web alojado: los usuarios comparten sin esfuerzo, los nodos se ejecutan en hardware barato, y cada comunidad es completamente independiente y soberana. Una pestaña del navegador puede unirse al enjambre como peer, por lo que la aplicación web no es un cliente del servidor de otro.",
         "cta": "Aprende cómo funciona p2p"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "Las aplicaciones web de DeSo se basan comúnmente en DeSo Identity para firmar y en una API de nodo para construir y enviar transacciones sociales. Eso es más fácil que ejecutar un nodo, pero el post sigue entrando a través de identidad alojada, infraestructura de nodo y transacción. Bitsocial puede crear la clave del usuario localmente y permitir que el usuario publique a través de P2P directo o acceso alojado opcional sin una cuenta de plataforma que posea la identidad.",
           "steemit": "El primer post comienza con claves de cuenta Steem y una interfaz frontal Steem o nodo API.",
           "detailSteemit": "Steemit es directo una vez que un usuario tiene una cuenta de Steem y una clave de publicación, pero esa cuenta pertenece al modelo de permisos de Steem y la publicación entra a través de un front end de Steem o nodo API. Bitsocial puede crear la clave del usuario localmente y permitir que el usuario publique a través de P2P directo o acceso alojado opcional sin una cuenta de plataforma que posea la identidad."
+        },
+        "browserRuntime": {
+          "bitsocial": "Un peer. Ejecuta un nodo y obtiene datos de otros peers.",
+          "bluesky": "Un cliente de un PDS y una AppView",
+          "deso": "Un cliente de un node API y DeSo Identity",
+          "detail": "Un cliente web de Nostr mantiene conexiones websocket a relés, y esos relés deben aceptar, almacenar y servir el contenido que lee y publica. Los clientes del navegador de Bitsocial ejecutan un nodo Helia en la página: preguntan a los enrutadores HTTP qué pares contienen una comunidad, luego obtienen y publican directamente a través de libp2p. Los pares del navegador se conectan a través de WebSockets seguros, y la corrección del número de secuencia de gossipsub en @libp2p/gossipsub 15.0.21 es lo que evitó que los publicaciones publicadas desde una pestaña fueran descartadas por el resto de la red.",
+          "detailBluesky": "Una aplicación web de Bluesky se comunica con un PDS para escrituras y una AppView para lecturas, por lo que el navegador es siempre un cliente de servicios que contienen e interpretan los datos. Los clientes del navegador de Bitsocial ejecutan un nodo Helia en la página: preguntan a los enrutadores HTTP qué pares contienen una comunidad, luego obtienen y publican directamente a través de libp2p. Los pares del navegador se conectan a través de WebSockets seguros, y la corrección del número de secuencia de gossipsub en @libp2p/gossipsub 15.0.21 es lo que evitó que los publicaciones publicadas desde una pestaña fueran descartadas por el resto de la red.",
+          "detailDeso": "Una aplicación web DeSo firma a través de DeSo Identity y envía a través de una API de nodo, por lo que el navegador depende de la identidad alojada y la infraestructura del nodo. Los clientes del navegador de Bitsocial ejecutan un nodo Helia en la página: preguntan a los enrutadores HTTP qué pares contienen una comunidad, luego obtienen y publican directamente a través de libp2p. Los pares del navegador se conectan a través de WebSockets seguros, y la corrección del número de secuencia de gossipsub en @libp2p/gossipsub 15.0.21 es lo que evitó que los publicaciones publicadas desde una pestaña fueran descartadas por el resto de la red.",
+          "detailFarcaster": "Un cliente de Farcaster lee a través de APIs e indexadores sobre datos de hub o Snapchain, y escribe a través de firmantes gestionados por la aplicación, de modo que el navegador nunca toca la red misma. Los clientes del navegador de Bitsocial ejecutan un nodo Helia en la página: preguntan a los enrutadores HTTP qué pares contienen una comunidad, luego obtienen y publican directamente a través de libp2p. Los pares del navegador se conectan a través de WebSockets seguros, y la corrección del número de secuencia de gossipsub en @libp2p/gossipsub 15.0.21 es lo que evitó que los publicaciones publicadas desde una pestaña fueran descartadas por el resto de la red.",
+          "detailLens": "Una aplicación Lens en el navegador lee a través de indexadores y escribe a través de billeteras, RPC e infraestructura de cadena. Los clientes del navegador de Bitsocial ejecutan un nodo Helia en la página: preguntan a los enrutadores HTTP qué pares contienen una comunidad, luego obtienen y publican directamente a través de libp2p. Los pares del navegador se conectan a través de WebSockets seguros, y la corrección del número de secuencia de gossipsub en @libp2p/gossipsub 15.0.21 es lo que evitó que los publicaciones publicadas desde una pestaña fueran descartadas por el resto de la red.",
+          "detailMastodon": "Un cliente web de Mastodon es una interfaz frontal para la instancia que almacena su cuenta, sus publicaciones y su línea de tiempo. Los clientes del navegador de Bitsocial ejecutan un nodo Helia en la página: preguntan a los enrutadores HTTP qué pares contienen una comunidad, luego obtienen y publican directamente a través de libp2p. Los pares del navegador se conectan a través de WebSockets seguros, y la corrección del número de secuencia de gossipsub en @libp2p/gossipsub 15.0.21 es lo que evitó que los publicaciones publicadas desde una pestaña fueran descartadas por el resto de la red.",
+          "detailSteemit": "Una interfaz Steem lee y escribe a través de nodos API que transportan la cadena, por lo que el navegador es un cliente de cualquier nodo al que apunta. Los clientes del navegador de Bitsocial ejecutan un nodo Helia en la página: preguntan a los enrutadores HTTP qué pares contienen una comunidad, luego obtienen y publican directamente a través de libp2p. Los pares del navegador se conectan a través de WebSockets seguros, y la corrección del número de secuencia de gossipsub en @libp2p/gossipsub 15.0.21 es lo que evitó que los publicaciones publicadas desde una pestaña fueran descartadas por el resto de la red.",
+          "farcaster": "Un cliente de una app, sus hubs e indexadores",
+          "label": "Lo que tu navegador es",
+          "lens": "Un cliente de una app Lens, un RPC e un indexador",
+          "mastodon": "Un cliente del servidor en el que te registraste",
+          "nostr": "Un cliente de los relays configurados que utiliza",
+          "steemit": "Un cliente de un front-end y un node API"
         }
       },
       "expand": "Saber más",
@@ -756,5 +774,22 @@
         "reason": "Se unen cuando su gente ya está allí y cambiar deja de sentirse arriesgado."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "La página inicia un nodo <helia>Helia</helia> y habla el mismo protocolo que los nodos de escritorio y CLI, llegando a los pares a través del mismo tipo de conexión cifrada que usa cualquier sitio web. La publicación desde un navegador se volvió confiable en <gossipsub>2026</gossipsub>, una vez que llegó la última corrección ascendente.",
+        "title": "La pestaña ejecuta un nodo"
+      },
+      "unstoppable": {
+        "description": "La página es solo un cliente: cualquier copia de ella, en cualquier dominio o como aplicación de escritorio, accede a la misma red. <strong>Tu identidad y tu comunidad son claves que tú posees</strong>, no filas en una base de datos de una empresa, por lo que no hay cuenta que perder ni servidor que apoderar.",
+        "title": "Nada que apagar"
+      }
+    },
+    "docsCta": "Cómo funciona P2P en el navegador",
+    "liveCta": "Míralo en el blog",
+    "sectionLabel": "Navegador P2P",
+    "supporting": "Abre una aplicación web de Bitsocial en una pestaña normal y se une a la red por sí sola, obteniendo publicaciones de otros pares y publicando las tuyas. Cualquier otra red social descentralizada todavía mantiene un servidor en el medio.",
+    "title": "Tu navegador es un par"
   }
 }

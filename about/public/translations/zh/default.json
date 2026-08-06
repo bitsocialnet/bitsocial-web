@@ -94,7 +94,7 @@
         "cta": "浏览源代码"
       },
       "peer-to-peer": {
-        "description": "Bitsocial <strong>既不是联邦式，也不是链上系统</strong>。每个社区都是使用 <strong><ipfs>IPFS</ipfs>/libp2p primitives</strong> 的点对点 swarm：通过公钥寻址的记录、gossipsub pubsub，以及比托管网站更接近 BitTorrent 的内容传输。用户会 seed 自己阅读的内容，节点可以运行在廉价硬件上，每个社区也会执行自己的反垃圾挑战，而不是依赖全局平台政策。",
+        "description": "Bitsocial <strong>既不是联合型也不是链上型</strong>。每个社区都是一个使用 <ipfs>IPFS</ipfs> 的点对点网络，<strong>更接近 BitTorrent</strong> 而不是托管网站：用户轻松共享数据，节点在廉价硬件上运行，每个社区都完全独立和自主。浏览器选项卡可以作为对等方加入网络，因此网络应用不是其他人服务器的客户端。",
         "cta": "了解p2p如何工作"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "DeSo 网络应用通常依靠 DeSo Identity 进行签名，依靠节点 API 来构建和提交社交交易。这比运行节点更容易，但帖子仍然通过托管身份、节点和交易基础设施进入。Bitsocial 可以在本地创建用户的密钥，让用户通过直接 P2P 或可选的托管访问进行发布，而无需平台账户拥有身份。",
           "steemit": "第一个帖子从 Steem 账户密钥和 Steem 前端或 API 节点开始。",
           "detailSteemit": "Steemit 一旦用户拥有 Steem 账户和发布密钥就很简单，但该账户属于 Steem 权限模型，帖子通过 Steem 前端或 API 节点进入。Bitsocial 可以在本地创建用户的密钥，让用户通过直接 P2P 或可选的托管访问进行发布，而无需平台账户拥有身份。"
+        },
+        "browserRuntime": {
+          "bitsocial": "一个 peer。它运行一个节点并从其他 peer 获取数据。",
+          "bluesky": "PDS 和 AppView 的客户端",
+          "deso": "节点 API 和 DeSo Identity 的客户端",
+          "detail": "一个Nostr网络客户端维护与中继的websocket连接，这些中继必须接受、存储和提供它读取和发布的内容。 Bitsocial浏览器客户端在页面上运行Helia节点：它们询问HTTP路由器哪些对等方持有一个社区，然后直接通过libp2p获取和发布。浏览器对等方通过安全的WebSocket连接，@libp2p/gossipsub 15.0.21中的gossipsub序列号修复是防止从标签页发布的帖子被网络其余部分丢弃的原因。",
+          "detailBluesky": "一个Bluesky网络应用与PDS进行写入交互，与AppView进行读取交互，因此浏览器总是持有和解释数据的服务的客户端。 Bitsocial浏览器客户端在页面上运行Helia节点：它们询问HTTP路由器哪些对等方持有一个社区，然后直接通过libp2p获取和发布。浏览器对等方通过安全的WebSocket连接，@libp2p/gossipsub 15.0.21中的gossipsub序列号修复是防止从标签页发布的帖子被网络其余部分丢弃的原因。",
+          "detailDeso": "一个DeSo网络应用通过DeSo Identity签名并通过节点API提交，因此浏览器取决于托管身份和节点基础设施。 Bitsocial浏览器客户端在页面上运行Helia节点：它们询问HTTP路由器哪些对等方持有一个社区，然后直接通过libp2p获取和发布。浏览器对等方通过安全的WebSocket连接，@libp2p/gossipsub 15.0.21中的gossipsub序列号修复是防止从标签页发布的帖子被网络其余部分丢弃的原因。",
+          "detailFarcaster": "一个Farcaster客户端通过hub或Snapchain数据上的API和索引器读取，通过应用程序管理的签名者写入，因此浏览器永远不会接触网络本身。 Bitsocial浏览器客户端在页面上运行Helia节点：它们询问HTTP路由器哪些对等方持有一个社区，然后直接通过libp2p获取和发布。浏览器对等方通过安全的WebSocket连接，@libp2p/gossipsub 15.0.21中的gossipsub序列号修复是防止从标签页发布的帖子被网络其余部分丢弃的原因。",
+          "detailLens": "浏览器中的Lens应用通过索引器读取，通过钱包、RPC和链基础设施写入。 Bitsocial浏览器客户端在页面上运行Helia节点：它们询问HTTP路由器哪些对等方持有一个社区，然后直接通过libp2p获取和发布。浏览器对等方通过安全的WebSocket连接，@libp2p/gossipsub 15.0.21中的gossipsub序列号修复是防止从标签页发布的帖子被网络其余部分丢弃的原因。",
+          "detailMastodon": "一个Mastodon网络客户端是存储您的账户、帖子和时间线的实例的前端。 Bitsocial浏览器客户端在页面上运行Helia节点：它们询问HTTP路由器哪些对等方持有一个社区，然后直接通过libp2p获取和发布。浏览器对等方通过安全的WebSocket连接，@libp2p/gossipsub 15.0.21中的gossipsub序列号修复是防止从标签页发布的帖子被网络其余部分丢弃的原因。",
+          "detailSteemit": "一个Steem前端通过承载链的API节点进行读写，因此浏览器是它指向的任何节点的客户端。 Bitsocial浏览器客户端在页面上运行Helia节点：它们询问HTTP路由器哪些对等方持有一个社区，然后直接通过libp2p获取和发布。浏览器对等方通过安全的WebSocket连接，@libp2p/gossipsub 15.0.21中的gossipsub序列号修复是防止从标签页发布的帖子被网络其余部分丢弃的原因。",
+          "farcaster": "应用及其集线器和索引器的客户端",
+          "label": "你的浏览器是什么",
+          "lens": "Lens 应用、RPC 和索引器的客户端",
+          "mastodon": "您注册的服务器的客户端",
+          "nostr": "其配置使用的中继的客户端",
+          "steemit": "前端和 API 节点的客户端"
         }
       },
       "expand": "了解更多",
@@ -755,5 +773,22 @@
         "reason": "当他们的圈子已经在那里，而且切换不再让人觉得有风险时，他们就会加入。"
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "该页面启动一个 <helia>Helia</helia> 节点，并使用与桌面和 CLI 节点相同的协议，通过任何网站使用的相同类型的加密连接到达对等节点。从浏览器进行发布在 <gossipsub>2026</gossipsub> 年变得可靠，当最后一个上游修复被推送时。",
+        "title": "标签页运行一个节点"
+      },
+      "unstoppable": {
+        "description": "这个页面只是一个客户端：它的任何副本，在任何域名上或作为桌面应用，都连接到同一个网络。<strong>你的身份和你的社区是你持有的密钥</strong>，而不是公司数据库中的行，所以没有账户可以丢失，也没有服务器可以被夺取。",
+        "title": "无可关停"
+      }
+    },
+    "docsCta": "浏览器中的P2P如何工作",
+    "liveCta": "在博客上查看",
+    "sectionLabel": "浏览器 P2P",
+    "supporting": "在普通标签页中打开 Bitsocial 网络应用，它自身就加入网络，从其他对等节点获取帖子并发布您的帖子。每个其他去中心化社交网络仍然在中间保持一个服务器。",
+    "title": "你的浏览器是一个对等体"
   }
 }

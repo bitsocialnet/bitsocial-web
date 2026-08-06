@@ -94,7 +94,7 @@
         "cta": "Procházet zdrojový kód"
       },
       "peer-to-peer": {
-        "description": "Bitsocial <strong>není federovaný ani on-chain</strong>. Každá komunita je peer-to-peer roj využívající <strong>primitiva <ipfs>IPFS</ipfs>/libp2p</strong>: záznamy adresované veřejným klíčem, gossipsub pubsub a přenos obsahu bližší BitTorrentu než hostovanému webu. Uživatelé seedují to, co čtou, uzly mohou běžet na levném hardwaru a každá komunita vynucuje vlastní antispamovou výzvu místo závislosti na globální politice platformy.",
+        "description": "Bitsocial není <strong>ani federovaný ani on-chain</strong>. Každá komunita je peer-to-peer roj používající <ipfs>IPFS</ipfs>, <strong>bližší BitTorrentu</strong> než hostované webové stránce: uživatelé bez námahy sdílí, uzly běží na levném hardwaru a každá komunita je zcela nezávislá a suverénní. Karta prohlížeče se může připojit k roji jako peer, takže webová aplikace není klientem něčího cizího serveru.",
         "cta": "Zjistěte, jak p2p funguje"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "Webové aplikace DeSo se běžně spoléhají na DeSo Identity k podepisování a na API uzlu pro vytváření a podávání sociálních transakcí. To je jednodušší než spouštění uzlu, ale příspěvek stále vstupuje prostřednictvím infrastruktury hostované identity, uzlu a transakce. Bitsocial může vytvořit klíč uživatele lokálně a nechat uživatele psát příspěvky prostřednictvím přímého P2P nebo volitelného hostovaného přístupu bez účtu platformy vlastnícího identitu.",
           "steemit": "Első příspěvek začíná klíči účtu Steem a front-endem Steem nebo uzlem API.",
           "detailSteemit": "Steemit je přímočarý, jakmile má uživatel účet Steem a klíč na příspěvek, ale tento účet patří modelu oprávnění Steem a příspěvek vstupuje prostřednictvím front-endu Steem nebo API uzlu. Bitsocial může vytvořit klíč uživatele lokálně a nechat uživatele psát příspěvky prostřednictvím přímého P2P nebo volitelného hostovaného přístupu bez účtu platformy vlastnícího identitu."
+        },
+        "browserRuntime": {
+          "bitsocial": "Peer. Spouští uzel a načítá data z jiných peerů.",
+          "bluesky": "Klient PDS a AppView",
+          "deso": "Klient API nódy a DeSo Identity",
+          "detail": "Webový klient Nostr udržuje připojení websocket k přenosiči, a tyto přenosiče musí přijmout, uložit a poskytnout obsah, který čte a publikuje. Klienti prohlížeče Bitsocial spouštějí uzel Helia na stránce: ptají se HTTP routerů, které peer node drží komunitu, pak přímo načítají a publikují přes libp2p. Peer nody prohlížeče se připojují přes bezpečné WebSockets, a oprava sekvenčního čísla gossipsub v @libp2p/gossipsub 15.0.21 je to, co zabránilo tomu, aby příspěvky zveřejněné z karty byly vyřazeny zbytkem sítě.",
+          "detailBluesky": "Webová aplikace Bluesky komunikuje s PDS pro zápisy a s AppView pro čtení, takže prohlížeč je vždy klientem služeb, které uchovávají a interpretují data. Klienti prohlížeče Bitsocial spouštějí uzel Helia na stránce: ptají se HTTP routerů, které peer node drží komunitu, pak přímo načítají a publikují přes libp2p. Peer nody prohlížeče se připojují přes bezpečné WebSockets, a oprava sekvenčního čísla gossipsub v @libp2p/gossipsub 15.0.21 je to, co zabránilo tomu, aby příspěvky zveřejněné z karty byly vyřazeny zbytkem sítě.",
+          "detailDeso": "Webová aplikace DeSo se podepisuje prostřednictvím DeSo Identity a odesílá prostřednictvím API uzlu, takže prohlížeč závisí na hostované identitě a infrastruktuře uzlu. Klienti prohlížeče Bitsocial spouštějí uzel Helia na stránce: ptají se HTTP routerů, které peer node drží komunitu, pak přímo načítají a publikují přes libp2p. Peer nody prohlížeče se připojují přes bezpečné WebSockets, a oprava sekvenčního čísla gossipsub v @libp2p/gossipsub 15.0.21 je to, co zabránilo tomu, aby příspěvky zveřejněné z karty byly vyřazeny zbytkem sítě.",
+          "detailFarcaster": "Klient Farcaster čte přes API a indexery přes data hub nebo Snapchain a piše přes podepsané aplikace, takže prohlížeč nikdy nedotkne sít samotnou. Klienti prohlížeče Bitsocial spouštějí uzel Helia na stránce: ptají se HTTP routerů, které peer node drží komunitu, pak přímo načítají a publikují přes libp2p. Peer nody prohlížeče se připojují přes bezpečné WebSockets, a oprava sekvenčního čísla gossipsub v @libp2p/gossipsub 15.0.21 je to, co zabránilo tomu, aby příspěvky zveřejněné z karty byly vyřazeny zbytkem sítě.",
+          "detailLens": "Aplikace Lens v prohlížeči čte přes indexery a piše přes peněženky, RPC a infrastrukturu řetězce. Klienti prohlížeče Bitsocial spouštějí uzel Helia na stránce: ptají se HTTP routerů, které peer node drží komunitu, pak přímo načítají a publikují přes libp2p. Peer nody prohlížeče se připojují přes bezpečné WebSockets, a oprava sekvenčního čísla gossipsub v @libp2p/gossipsub 15.0.21 je to, co zabránilo tomu, aby příspěvky zveřejněné z karty byly vyřazeny zbytkem sítě.",
+          "detailMastodon": "Webový klient Mastodon je front-end pro instanci, která ukládá váš účet, vaše příspěvky a vaši časovou linii. Klienti prohlížeče Bitsocial spouštějí uzel Helia na stránce: ptají se HTTP routerů, které peer node drží komunitu, pak přímo načítají a publikují přes libp2p. Peer nody prohlížeče se připojují přes bezpečné WebSockets, a oprava sekvenčního čísla gossipsub v @libp2p/gossipsub 15.0.21 je to, co zabránilo tomu, aby příspěvky zveřejněné z karty byly vyřazeny zbytkem sítě.",
+          "detailSteemit": "Frontend Steem čte a piše přes API uzly, které nesou řetězec, takže prohlížeč je klientem jakéhokoli uzlu, na který ukazuje. Klienti prohlížeče Bitsocial spouštějí uzel Helia na stránce: ptají se HTTP routerů, které peer node drží komunitu, pak přímo načítají a publikují přes libp2p. Peer nody prohlížeče se připojují přes bezpečné WebSockets, a oprava sekvenčního čísla gossipsub v @libp2p/gossipsub 15.0.21 je to, co zabránilo tomu, aby příspěvky zveřejněné z karty byly vyřazeny zbytkem sítě.",
+          "farcaster": "Klient aplikace, jejích hubů a indexerů",
+          "label": "Co je váš prohlížeč",
+          "lens": "Klient aplikace Lens, RPC a indexeru",
+          "mastodon": "Klient serveru, na kterém jste se zaregistrovali",
+          "nostr": "Klient jakýchkoli přesměrovacích služeb, pro které je nakonfigurován",
+          "steemit": "Klient front-end a API nódy"
         }
       },
       "expand": "Zjistit víc",
@@ -722,5 +740,22 @@
         "reason": "Přidají se, až tam už jsou jejich lidé a přechod přestane působit rizikově."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "Stránka spustí uzel <helia>Helia</helia> a komunikuje stejným protokolem jako desktopové a CLI uzly, dosahuje partnerů prostřednictvím stejného typu šifrovaného připojení, které používá jakýkoli web. Zveřejňování z prohlížeče se stalo spolehlivým v <gossipsub>2026</gossipsub>, jakmile dorazila poslední upstream oprava.",
+        "title": "Karta spouští uzel"
+      },
+      "unstoppable": {
+        "description": "Stránka je pouze klient: jakákoli její kopie, na jakékoli doméně nebo jako desktopová aplikace, dosáhne stejné sítě. <strong>Tvoje identita a tvoje komunita jsou klíče, které držíš</strong>, ne řádky v databázi společnosti, takže neexistuje žádný účet ke ztrátě a žádný hostitel k převzetí.",
+        "title": "Nic k vypnutí"
+      }
+    },
+    "docsCta": "Jak funguje P2P v prohlížeči",
+    "liveCta": "Sledujte na blogu",
+    "sectionLabel": "Prohlížeč P2P",
+    "supporting": "Otevřete webovou aplikaci Bitsocial v normální kartě a připojí se k síti sama, načítá příspěvky od dalších partnerů a publikuje vaše. Každá jiná decentralizovaná sociální síť stále udržuje server uprostřed.",
+    "title": "Tvůj prohlížeč je peer"
   }
 }

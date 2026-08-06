@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AdoptionThesis from "@/components/adoption-thesis";
 import ArbitraryChallenges from "@/components/arbitrary-challenges";
 import BackToTop from "@/components/back-to-top";
+import BrowserPeer from "@/components/browser-peer";
 import Footer from "@/components/footer";
 import Hero from "@/components/hero";
 import MailingList from "@/components/mailing-list";
@@ -208,6 +209,7 @@ export default function Home() {
           <div className="relative z-10">
             <ProblemSection />
             <Features />
+            <BrowserPeer />
             <SanctuaryCommunication />
             <ArbitraryChallenges />
             <TextOnlyProtocol />

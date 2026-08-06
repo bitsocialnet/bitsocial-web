@@ -94,7 +94,7 @@
         "cta": "Explora el codi font"
       },
       "peer-to-peer": {
-        "description": "Bitsocial no és <strong>ni federat ni on-chain</strong>. Cada comunitat és un eixam peer-to-peer que utilitza <strong>primitives <ipfs>IPFS</ipfs>/libp2p</strong>: registres adreçats per clau pública, pubsub gossipsub i transferència de contingut més propera a BitTorrent que a un lloc web allotjat. Els usuaris sembren allò que llegeixen, els nodes poden funcionar en maquinari barat i cada comunitat imposa el seu propi repte antispam en lloc de dependre d'una política global de plataforma.",
+        "description": "Bitsocial no és <strong>ni federat ni en cadena</strong>. Cada comunitat és un eixam d'igual a igual que utilitza <ipfs>IPFS</ipfs>, <strong>més proper a BitTorrent</strong> que a un lloc web allotjat: els usuaris comparteixen sense esforç, els nodes s'executen en maquinari barato, i cada comunitat és completament independent i sobirà. Una pestanya del navegador pot unir-se a l'eixam com a igual, de manera que l'aplicació web no és un client del servidor de ningú més.",
         "cta": "Apreneu com funciona p2p"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "Les aplicacions web de DeSo s'apoien comunament en DeSo Identity per signar i en una API de node per construir i enviar transaccions socials. Això és més fàcil que executar un node, però el post segueix entrant a través d'identitat allotjada, infraestructura de node i transaccional. Bitsocial pot crear la clau de l'usuari localment i permetre que l'usuari publiqui directament P2P o accés allotjat opcional sense un compte de plataforma posseint la identitat.",
           "steemit": "El primer post comença amb claus de compte Steem i una interfície frontal Steem o node API.",
           "detailSteemit": "Steemit és directe una vegada que un usuari té un compte Steem i una clau de publicació, però aquest compte pertany al model de permisos Steem i la publicació entra a través d'una interfície frontal Steem o node API. Bitsocial pot crear la clau de l'usuari localment i permetre que l'usuari publiqui directament P2P o accés allotjat opcional sense un compte de plataforma posseint la identitat."
+        },
+        "browserRuntime": {
+          "bitsocial": "Un peer. Executa un node i obté dades d'altres peers.",
+          "bluesky": "Un client d'un PDS i una AppView",
+          "deso": "Un client d'una API de nodes i DeSo Identity",
+          "detail": "Un client web de Nostr manté connexions websocket a relats, i aquests relats han d'acceptar, emmagatzemar i servir el contingut que llegeix i publica. Els clients del navegador Bitsocial executen un node Helia a la pàgina: pregunten als encaminadors HTTP quins homòlegs contenen una comunitat, després obtenen i publiquen directament via libp2p. Els homòlegs del navegador es connecten per WebSockets segurs, i la correcció del número de seqüència gossipsub en @libp2p/gossipsub 15.0.21 va ser el que va impedir que les publicacions publicades des d'una pestanya fossin descartades pel reste de la xarxa.",
+          "detailBluesky": "Una aplicació web de Bluesky parla amb un PDS per a escriptures i un AppView per a lectures, de manera que el navegador és sempre un client de serveis que contenen i interpreten les dades. Els clients del navegador Bitsocial executen un node Helia a la pàgina: pregunten als encaminadors HTTP quins homòlegs contenen una comunitat, després obtenen i publiquen directament via libp2p. Els homòlegs del navegador es connecten per WebSockets segurs, i la correcció del número de seqüència gossipsub en @libp2p/gossipsub 15.0.21 va ser el que va impedir que les publicacions publicades des d'una pestanya fossin descartades pel reste de la xarxa.",
+          "detailDeso": "Una aplicació web DeSo signa a través de DeSo Identity i envia a través d'una API de node, de manera que el navegador depèn de la identitat allotjada i de la infraestructura de node. Els clients del navegador Bitsocial executen un node Helia a la pàgina: pregunten als encaminadors HTTP quins homòlegs contenen una comunitat, després obtenen i publiquen directament via libp2p. Els homòlegs del navegador es connecten per WebSockets segurs, i la correcció del número de seqüència gossipsub en @libp2p/gossipsub 15.0.21 va ser el que va impedir que les publicacions publicades des d'una pestanya fossin descartades pel reste de la xarxa.",
+          "detailFarcaster": "Un client Farcaster llegeix a través d'APIs i indexadors sobre dades de hub o Snapchain, i escriu a través de signataris gestionats per l'aplicació, de manera que el navegador mai toca la xarxa mateixa. Els clients del navegador Bitsocial executen un node Helia a la pàgina: pregunten als encaminadors HTTP quins homòlegs contenen una comunitat, després obtenen i publiquen directament via libp2p. Els homòlegs del navegador es connecten per WebSockets segurs, i la correcció del número de seqüència gossipsub en @libp2p/gossipsub 15.0.21 va ser el que va impedir que les publicacions publicades des d'una pestanya fossin descartades pel reste de la xarxa.",
+          "detailLens": "Una aplicació Lens al navegador llegeix a través d'indexadors i escriu a través de carteres, RPCs i infraestructura de cadena. Els clients del navegador Bitsocial executen un node Helia a la pàgina: pregunten als encaminadors HTTP quins homòlegs contenen una comunitat, després obtenen i publiquen directament via libp2p. Els homòlegs del navegador es connecten per WebSockets segurs, i la correcció del número de seqüència gossipsub en @libp2p/gossipsub 15.0.21 va ser el que va impedir que les publicacions publicades des d'una pestanya fossin descartades pel reste de la xarxa.",
+          "detailMastodon": "Un client web de Mastodon és una interfície frontal per a la instància que emmagatzema el vostre compte, els vostres publicacions i la vostra cronologia. Els clients del navegador Bitsocial executen un node Helia a la pàgina: pregunten als encaminadors HTTP quins homòlegs contenen una comunitat, després obtenen i publiquen directament via libp2p. Els homòlegs del navegador es connecten per WebSockets segurs, i la correcció del número de seqüència gossipsub en @libp2p/gossipsub 15.0.21 va ser el que va impedir que les publicacions publicades des d'una pestanya fossin descartades pel reste de la xarxa.",
+          "detailSteemit": "Una interfície frontal de Steem llegeix i escriu a través de nodes API que porten la cadena, de manera que el navegador és un client de qualsevol node al qual apunta. Els clients del navegador Bitsocial executen un node Helia a la pàgina: pregunten als encaminadors HTTP quins homòlegs contenen una comunitat, després obtenen i publiquen directament via libp2p. Els homòlegs del navegador es connecten per WebSockets segurs, i la correcció del número de seqüència gossipsub en @libp2p/gossipsub 15.0.21 va ser el que va impedir que les publicacions publicades des d'una pestanya fossin descartades pel reste de la xarxa.",
+          "farcaster": "Un client d'una app, dels seus hubs i indexadors",
+          "label": "Què és el teu navegador",
+          "lens": "Un client d'una app Lens, un RPC i un indexador",
+          "mastodon": "Un client del servidor on et vas registrar",
+          "nostr": "Un client dels relays configurats per a ús",
+          "steemit": "Un client d'un front end i un node API"
         }
       },
       "expand": "Més informació",
@@ -756,5 +774,22 @@
         "reason": "S'hi afegeixen quan la seva gent ja hi és i canviar deixa de semblar arriscat."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "La pàgina arrenca un node <helia>Helia</helia> i parla el mateix protocol que els nodes d'escriptori i CLI, arribant als peers a través del mateix tipus de connexió encriptada que utilitza qualsevol lloc web. La publicació des d'un navegador es va fer fiable en <gossipsub>2026</gossipsub>, quan es va llançar l'última correcció ascendent.",
+        "title": "La pestanya executa un node"
+      },
+      "unstoppable": {
+        "description": "La pàgina és només un client: qualsevol còpia seva, en qualsevol domini o com a compilació d'escriptori, arriba a la mateixa xarxa. <strong>La teva identitat i la teva comunitat són claus que tu posseïxes</strong>, no files en la base de dades d'una empresa, per tant no hi ha cap compte a perdre ni cap servidor a apoderar-se.",
+        "title": "Res per apagar"
+      }
+    },
+    "docsCta": "Com funciona P2P al navegador",
+    "liveCta": "Veu-ho al blog",
+    "sectionLabel": "Navegador P2P",
+    "supporting": "Obriu una aplicació web de Bitsocial en una pestanya normal i s'uneix a la xarxa per si mateixa, obtenint missatges d'altres iguals i publicant els vostres. Cada altra xarxa social descentralitzada encara manté un servidor al mig.",
+    "title": "El teu navegador és un par"
   }
 }

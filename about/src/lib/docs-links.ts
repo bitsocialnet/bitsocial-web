@@ -4,6 +4,7 @@ export const DOCS_LINKS = {
   home: `${DOCS_SITE_URL}/`,
   search: `${DOCS_SITE_URL}/search/`,
   peerToPeerProtocol: `${DOCS_SITE_URL}/peer-to-peer-protocol/`,
+  browserP2P: `${DOCS_SITE_URL}/browser-p2p/`,
   customChallenges: `${DOCS_SITE_URL}/custom-challenges/`,
   localModeration: `${DOCS_SITE_URL}/local-moderation/`,
   identityAndOwnership: `${DOCS_SITE_URL}/identity-and-ownership/`,
