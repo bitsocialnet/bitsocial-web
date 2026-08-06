@@ -31,9 +31,10 @@ Directory slot assignments (which board appears at which path) are currently man
 ## Internals
 
 Under the hood, 5chan uses the shared Bitsocial protocol client layer for its network interactions.
-The web app at 5chan.app can also run a Helia node in the browser when browser P2P is enabled from
-Advanced Settings, so readers can load from peers without a centralized IPFS gateway. See the
-browser P2P section in the peer-to-peer protocol notes.
+The web app at 5chan.app runs a Helia node in the browser by default, so a normal tab joins the
+network as a peer: it loads boards from other peers and publishes over pubsub, with no centralized
+IPFS gateway in the content path. See [Browser Peer-to-Peer](/browser-p2p/) for what that
+involves and what a browser node still cannot do.
 
 ## Links
 

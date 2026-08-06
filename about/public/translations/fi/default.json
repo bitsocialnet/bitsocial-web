@@ -94,7 +94,7 @@
         "cta": "Selaa lähdekoodia"
       },
       "peer-to-peer": {
-        "description": "Bitsocial <strong>ei ole federoitu eikä on-chain</strong>. Jokainen yhteisö on vertaisverkko-swarm, joka käyttää <strong><ipfs>IPFS</ipfs>/libp2p-primitiivejä</strong>: julkisella avaimella osoitettuja tietueita, gossipsub-pubsubia ja sisällönsiirtoa, joka on lähempänä BitTorrentia kuin hostattua verkkosivua. Käyttäjät seedaavat lukemansa, noodit voivat pyöriä halvalla raudalla, ja jokainen yhteisö valvoo omaa roskapostinestohastettaan globaalin alustapolitiikan sijaan.",
+        "description": "Bitsocial ei ole <strong>liittoutunut eikä ketjussa</strong>. Jokainen yhteisö on vertaisverkko, joka käyttää <ipfs>IPFS</ipfs>-ohjelmistoa, <strong>lähempänä BitTorrenttia</strong> kuin isännöityä verkkosivustoa: käyttäjät jakavat vaivattomasti, solmut toimivat halvalla laitteistolla, ja jokainen yhteisö on täysin riippumaton ja suvereeni. Selaimen välilehti voi liittyä parveen vertaisena, joten verkkosovellus ei ole jonkun muun palvelimen asiakas.",
         "cta": "Opi kuinka p2p toimii"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "DeSo-verkkosovellukset luottavat yleensä DeSo Identity -palveluun allekirjoittamista varten ja node-API:iin sosiaalisten tapahtumien muodostamiseksi ja lähettämiseksi. Se on helpompaa kuin solmun ajaminen, mutta viesti saapuu edelleen isännöidyn identiteetin, solmun ja tapahtuman infrastruktuurin kautta. Bitsocial voi luoda käyttäjän avaimen paikallisesti ja antaa käyttäjän lähettää suoran P2P:n tai valinnaisen isännöidyn pääsyn kautta ilman alustatilin omistamista identiteetistä.",
           "steemit": "Ensimmäinen viesti alkaa Steem-tiliavaimilla ja Steem-käyttöliittymällä tai API-solmulla.",
           "detailSteemit": "Steemit on suoraviivainen, kun käyttäjällä on Steem-tili ja julkaisun avain, mutta tämä tili kuuluu Steeminvaltuutusmalliin ja viesti saapuu Steem-käyttöliittymän tai node-API:n kautta. Bitsocial voi luoda käyttäjän avaimen paikallisesti ja antaa käyttäjän lähettää suoran P2P:n tai valinnaisen isännöidyn pääsyn kautta ilman alustatilin omistamista identiteetistä."
+        },
+        "browserRuntime": {
+          "bitsocial": "Vertaiskayttäjä. Se ajaa solmua ja hakee tietoja muista vertaiskayttäjistä.",
+          "bluesky": "PDS:n ja AppViewn asiakasta",
+          "deso": "Node API:n ja DeSo Identityn asiakasta",
+          "detail": "Nostr-verkkoklienti ylläpitää websocket-yhteyksiä välittäjille, ja näiden välittäjien on hyväksyttävä, tallennettava ja palveltava sisältöä, jota se lukee ja julkaisee. Bitsocial-selaimen asiakkaat suorittavat Helia-solmua sivulla: ne kysyvät HTTP-reitittimet, mitkä vertaisverkko-solmut omistaa yhteisöä, sitten hakevat ja julkaisevat suoraan libp2p:n yli. Selaimen vertaisverkko-solmut muodostuvat yhteyden suojattujen WebSocketien yli, ja gossipsub-sekvenssipäiväyksen korjaus @libp2p/gossipsub 15.0.21:ssä on se, joka esti välilehdellä julkaistuista viesteistä heittää pois loput verkko.",
+          "detailBluesky": "Bluesky-verkkosovellus kommunikoi PDS:n kanssa kirjoitusten osalta ja AppView:n kanssa lukemisen osalta, joten selain on aina palveluiden asiakas, jotka säilyttävät ja tulkitsevat tietoja. Bitsocial-selaimen asiakkaat suorittavat Helia-solmua sivulla: ne kysyvät HTTP-reitittimet, mitkä vertaisverkko-solmut omistaa yhteisöä, sitten hakevat ja julkaisevat suoraan libp2p:n yli. Selaimen vertaisverkko-solmut muodostuvat yhteyden suojattujen WebSocketien yli, ja gossipsub-sekvenssipäiväyksen korjaus @libp2p/gossipsub 15.0.21:ssä on se, joka esti välilehdellä julkaistuista viesteistä heittää pois loput verkko.",
+          "detailDeso": "DeSo-verkkosovellus allekirjoittaa DeSo Identity:n kautta ja lähettää node-ohjelmointirajapinnan kautta, joten selain riippuu isännöidystä identiteetistä ja solmun infrastruktuurista. Bitsocial-selaimen asiakkaat suorittavat Helia-solmua sivulla: ne kysyvät HTTP-reitittimet, mitkä vertaisverkko-solmut omistaa yhteisöä, sitten hakevat ja julkaisevat suoraan libp2p:n yli. Selaimen vertaisverkko-solmut muodostuvat yhteyden suojattujen WebSocketien yli, ja gossipsub-sekvenssipäiväyksen korjaus @libp2p/gossipsub 15.0.21:ssä on se, joka esti välilehdellä julkaistuista viesteistä heittää pois loput verkko.",
+          "detailFarcaster": "Farcaster-klient lukee API:iden ja indeksointien kautta hub- tai Snapchain-dataa ja kirjoittaa sovellushallinnoitujen allekirjoittajien kautta, joten selain ei koskaan kosketa itse verkkoa. Bitsocial-selaimen asiakkaat suorittavat Helia-solmua sivulla: ne kysyvät HTTP-reitittimet, mitkä vertaisverkko-solmut omistaa yhteisöä, sitten hakevat ja julkaisevat suoraan libp2p:n yli. Selaimen vertaisverkko-solmut muodostuvat yhteyden suojattujen WebSocketien yli, ja gossipsub-sekvenssipäiväyksen korjaus @libp2p/gossipsub 15.0.21:ssä on se, joka esti välilehdellä julkaistuista viesteistä heittää pois loput verkko.",
+          "detailLens": "Lens-sovellus selaimessa lukee indeksointien kautta ja kirjoittaa lompakkojen, RPC:n ja chain-infrastruktuurin kautta. Bitsocial-selaimen asiakkaat suorittavat Helia-solmua sivulla: ne kysyvät HTTP-reitittimet, mitkä vertaisverkko-solmut omistaa yhteisöä, sitten hakevat ja julkaisevat suoraan libp2p:n yli. Selaimen vertaisverkko-solmut muodostuvat yhteyden suojattujen WebSocketien yli, ja gossipsub-sekvenssipäiväyksen korjaus @libp2p/gossipsub 15.0.21:ssä on se, joka esti välilehdellä julkaistuista viesteistä heittää pois loput verkko.",
+          "detailMastodon": "Mastodon-verkkoklienti on frontend-käyttöliittymä instanssille, joka tallentaa tilisi, viestejäsi ja aikajanaasi. Bitsocial-selaimen asiakkaat suorittavat Helia-solmua sivulla: ne kysyvät HTTP-reitittimet, mitkä vertaisverkko-solmut omistaa yhteisöä, sitten hakevat ja julkaisevat suoraan libp2p:n yli. Selaimen vertaisverkko-solmut muodostuvat yhteyden suojattujen WebSocketien yli, ja gossipsub-sekvenssipäiväyksen korjaus @libp2p/gossipsub 15.0.21:ssä on se, joka esti välilehdellä julkaistuista viesteistä heittää pois loput verkko.",
+          "detailSteemit": "Steem-frontend lukee ja kirjoittaa API-solmujen kautta, jotka kantavat ketjua, joten selain on asiakkaana mihin tahansa solmuun, johon se osoittaa. Bitsocial-selaimen asiakkaat suorittavat Helia-solmua sivulla: ne kysyvät HTTP-reitittimet, mitkä vertaisverkko-solmut omistaa yhteisöä, sitten hakevat ja julkaisevat suoraan libp2p:n yli. Selaimen vertaisverkko-solmut muodostuvat yhteyden suojattujen WebSocketien yli, ja gossipsub-sekvenssipäiväyksen korjaus @libp2p/gossipsub 15.0.21:ssä on se, joka esti välilehdellä julkaistuista viesteistä heittää pois loput verkko.",
+          "farcaster": "Sovelluksen, sen keskitinten ja indeksointitoimintojen asiakasta",
+          "label": "Mitä selaimesi on",
+          "lens": "Lens-sovelluksen, RPC:n ja indeksointipalvelun asiakasta",
+          "mastodon": "Palvelimen asiakas, jolle olet rekisteröitynyt",
+          "nostr": "Asiakkaan välittäjistä, joille se on määritetty",
+          "steemit": "Front-endin ja API-solmun asiakasta"
         }
       },
       "expand": "Lisätietoja",
@@ -756,5 +774,22 @@
         "reason": "He liittyvät mukaan silloin, kun heidän omat ihmisensä ovat jo siellä ja vaihtaminen ei enää tunnu riskiltä."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "Sivu käynnistää <helia>Helia</helia>-solmun ja puhuu samaa protokollaa kuin työpöytä- ja CLI-solmut, saavuttaa vertaiset samanlaisen salatun yhteyden kautta, jota mikä tahansa verkkosivusto käyttää. Julkaiseminen selaimesta tuli luotettavaksi vuonna <gossipsub>2026</gossipsub>, kun viimeinen ylävirran korjaus saapui.",
+        "title": "Välilehti suorittaa solmun"
+      },
+      "unstoppable": {
+        "description": "Sivu on vain asiakas: mikä tahansa sen kopio, millä tahansa verkkotunnuksella tai työpöytäsovelluksena, saavuttaa saman verkon. <strong>Henkilöllisyytesi ja yhteisösi ovat avaimet, joita sinulla on</strong>, eivät rivit yrityksen tietokannassa, joten ei ole tiliä menetettäväksi eikä palvelinta haltuunotettavaksi.",
+        "title": "Ei mitään sammutettavaa"
+      }
+    },
+    "docsCta": "Kuinka P2P toimii selaimessa",
+    "liveCta": "Näe blogissa",
+    "sectionLabel": "Selain P2P",
+    "supporting": "Avaa Bitsocial-verkkosovellus tavallisella välilehdellä ja se liittyy verkkoon itsestään, noutaa viestejä muilta vertaisilta ja julkaisee omat viestisi. Jokainen muu hajautettu sosiaalinen verkko säilyttää edelleen palvelimen keskellä.",
+    "title": "Selaimesi on peer"
   }
 }

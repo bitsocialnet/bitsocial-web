@@ -94,7 +94,7 @@
         "cta": "Forráskód böngészése"
       },
       "peer-to-peer": {
-        "description": "A Bitsocial <strong>nem föderált és nem is on-chain</strong>. Minden közösség egy peer-to-peer raj, amely <strong><ipfs>IPFS</ipfs>/libp2p primitíveket</strong> használ: nyilvános kulccsal címzett rekordokat, gossipsub pubsubot és a BitTorrenthez közelebb álló tartalomátvitelt egy hosztolt webhely helyett. A felhasználók seedelik, amit olvasnak, a node-ok olcsó hardveren is futhatnak, és minden közösség a saját spamellenes kihívását kényszeríti ki globális platformszabályzat helyett.",
+        "description": "A Bitsocial <strong>sem föderatív, sem on-chain</strong>. Minden közösség egy olyan peer-to-peer raj, amely <ipfs>IPFS</ipfs>-t használ, <strong>közelebb a BitTorrenthez</strong>, mint egy üzemeltetett webhelyhez: a felhasználók erőfeszítés nélkül osztanak meg, a csomópontok olcsó hardveren futnak, és minden közösség teljesen független és szuvereén. Egy böngészőlap peer-ként csatlakozhat a rajhoz, így a webalkalmazás nem más szervere kliense.",
         "cta": "Tudjon meg többet a p2p működéséről"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "A DeSo webalkalmazások általában a DeSo Identity-re támaszkodnak az aláíráshoz, és egy csomópont API-ra a szociális tranzakciók létrehozásához és benyújtásához. Ez egyszerűbb, mint egy csomópont futtatása, de a poszt továbbra is az üzemeltetett identitás, csomópont és tranzakció infrastruktúra révén lép be. A Bitsocial helyileg létrehozhatja a felhasználó kulcsát, és lehetővé teheti a felhasználó számára, hogy közvetlen P2P-n vagy opcionális üzemeltetett hozzáférésen keresztül posztoljon, anélkül, hogy egy platformfiók lenne az identitás tulajdonosa.",
           "steemit": "Az első poszt Steem-fiók kulcsokkal és egy Steem front-end vagy API csomóponttal kezdődik.",
           "detailSteemit": "A Steemit egyszerű, ha egy felhasználónak van egy Steem-fiók és egy posting kulcs, de ez a fiók a Steem engedélymodellhez tartozik, és a poszt a Steem front-end vagy node API-n keresztül lép be. A Bitsocial helyileg létrehozhatja a felhasználó kulcsát, és lehetővé teheti a felhasználó számára, hogy közvetlen P2P-n vagy opcionális üzemeltetett hozzáférésen keresztül posztoljon, anélkül, hogy egy platformfiók lenne az identitás tulajdonosa."
+        },
+        "browserRuntime": {
+          "bitsocial": "Egy peer. Futtat egy csomópontot és adatokat kér le más peersektől.",
+          "bluesky": "A PDS és az AppView ügyfele",
+          "deso": "A Node API és DeSo Identity ügyfele",
+          "detail": "Egy Nostr webkliens websocket-kapcsolatokat tart fenn a relékkal, és ezeknek a reléknak el kell fogadniuk, tárolniuk és kiszolgálniuk az általa olvasott és közzétett tartalmat. A Bitsocial böngészőkliensek egy Helia csomópontot futtatnak az oldalon: HTTP útválasztókat kérdeznek meg arról, hogy mely egyenrangúak tartanak közösséget, majd közvetlenül libp2p-n keresztül letöltik és teszik közzé. A böngésző egyenrangúak biztonságos WebSocketokon keresztül csatlakoznak, és a gossipsub sorszám-javítás a @libp2p/gossipsub 15.0.21-ben az, amely megakadályozta, hogy egy lapról közzétett bejegyzéseket a hálózat többi része elvetesse.",
+          "detailBluesky": "Egy Bluesky webalkalmazás egy PDS-sel kommunikál az írásokhoz és egy AppView-val az olvasásokhoz, így a böngésző az adatokat tárolt és értelmezet szolgáltatások kliense. A Bitsocial böngészőkliensek egy Helia csomópontot futtatnak az oldalon: HTTP útválasztókat kérdeznek meg arról, hogy mely egyenrangúak tartanak közösséget, majd közvetlenül libp2p-n keresztül letöltik és teszik közzé. A böngésző egyenrangúak biztonságos WebSocketokon keresztül csatlakoznak, és a gossipsub sorszám-javítás a @libp2p/gossipsub 15.0.21-ben az, amely megakadályozta, hogy egy lapról közzétett bejegyzéseket a hálózat többi része elvetesse.",
+          "detailDeso": "Egy DeSo webalkalmazás DeSo Identity-n keresztül aláír és node API-n keresztül küld be, így a böngésző az üzemeltetett identitásra és csomópont-infrastruktúrára függ. A Bitsocial böngészőkliensek egy Helia csomópontot futtatnak az oldalon: HTTP útválasztókat kérdeznek meg arról, hogy mely egyenrangúak tartanak közösséget, majd közvetlenül libp2p-n keresztül letöltik és teszik közzé. A böngésző egyenrangúak biztonságos WebSocketokon keresztül csatlakoznak, és a gossipsub sorszám-javítás a @libp2p/gossipsub 15.0.21-ben az, amely megakadályozta, hogy egy lapról közzétett bejegyzéseket a hálózat többi része elvetesse.",
+          "detailFarcaster": "Egy Farcaster kliens API-kon és indexeken keresztül olvas hub vagy Snapchain adatokból, és alkalmazás által felügyelt aláírók által ír, így a böngésző soha nem érinti az olyan hálózatot. A Bitsocial böngészőkliensek egy Helia csomópontot futtatnak az oldalon: HTTP útválasztókat kérdeznek meg arról, hogy mely egyenrangúak tartanak közösséget, majd közvetlenül libp2p-n keresztül letöltik és teszik közzé. A böngésző egyenrangúak biztonságos WebSocketokon keresztül csatlakoznak, és a gossipsub sorszám-javítás a @libp2p/gossipsub 15.0.21-ben az, amely megakadályozta, hogy egy lapról közzétett bejegyzéseket a hálózat többi része elvetesse.",
+          "detailLens": "Egy Lens alkalmazás a böngészőben indexek keresztül olvas és pénztárcák, RPC-k és chain-infrastruktúra keresztül ír. A Bitsocial böngészőkliensek egy Helia csomópontot futtatnak az oldalon: HTTP útválasztókat kérdeznek meg arról, hogy mely egyenrangúak tartanak közösséget, majd közvetlenül libp2p-n keresztül letöltik és teszik közzé. A böngésző egyenrangúak biztonságos WebSocketokon keresztül csatlakoznak, és a gossipsub sorszám-javítás a @libp2p/gossipsub 15.0.21-ben az, amely megakadályozta, hogy egy lapról közzétett bejegyzéseket a hálózat többi része elvetesse.",
+          "detailMastodon": "Egy Mastodon webkliens egy frontend a fiókod, a bejegyzéseid és az idősorod tárolt instanciához. A Bitsocial böngészőkliensek egy Helia csomópontot futtatnak az oldalon: HTTP útválasztókat kérdeznek meg arról, hogy mely egyenrangúak tartanak közösséget, majd közvetlenül libp2p-n keresztül letöltik és teszik közzé. A böngésző egyenrangúak biztonságos WebSocketokon keresztül csatlakoznak, és a gossipsub sorszám-javítás a @libp2p/gossipsub 15.0.21-ben az, amely megakadályozta, hogy egy lapról közzétett bejegyzéseket a hálózat többi része elvetesse.",
+          "detailSteemit": "Egy Steem frontend olvasás és írás API-n keresztül áll, amely a láncot hordozza, így a böngésző bármely csomópont kliense, amelyre mutat. A Bitsocial böngészőkliensek egy Helia csomópontot futtatnak az oldalon: HTTP útválasztókat kérdeznek meg arról, hogy mely egyenrangúak tartanak közösséget, majd közvetlenül libp2p-n keresztül letöltik és teszik közzé. A böngésző egyenrangúak biztonságos WebSocketokon keresztül csatlakoznak, és a gossipsub sorszám-javítás a @libp2p/gossipsub 15.0.21-ben az, amely megakadályozta, hogy egy lapról közzétett bejegyzéseket a hálózat többi része elvetesse.",
+          "farcaster": "Egy alkalmazás ügyfele, annak központjai és indexelői",
+          "label": "Mi az a böngészője",
+          "lens": "A Lens app, RPC és indexer ügyfele",
+          "mastodon": "A kiszolgáló ügyfele, amelyre regisztrálta",
+          "nostr": "Az ügyfél azoknak a reléknak, amelyekre be van állítva",
+          "steemit": "Egy front-end és API-csomópont ügyfele"
         }
       },
       "expand": "Tudj meg többet",
@@ -756,5 +774,22 @@
         "reason": "Akkor csatlakoznak, amikor az embereik már ott vannak, és a váltás többé nem tűnik kockázatosnak."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "Az oldal elindít egy <helia>Helia</helia> csomópontot és ugyanazt a protokollt beszéli, mint az asztali és CLI csomópontok, az azonos típusú titkosított kapcsolaton keresztül éri el a társakat, amelyet bármely weboldal használ. A böngészőből történő közzététel <gossipsub>2026</gossipsub>-ben vált megbízhatóvá, amikor az utolsó upstream javítás megérkezett.",
+        "title": "A fül egy csomópontot futtat"
+      },
+      "unstoppable": {
+        "description": "Az oldal csak egy kliens: bármely másolata, bármely doménen vagy asztali alkalmazásként, ugyanahhoz a hálózathoz fér hozzá. <strong>Az identitásod és közösséged olyan kulcsok, amelyeket te tartasz</strong>, nem sorok egy vállalati adatbázisban, ezért nincs elvesztendő fiók és nincs átvehető kiszolgáló.",
+        "title": "Semmi bezárni való"
+      }
+    },
+    "docsCta": "Hogyan működik a P2P a böngészőben",
+    "liveCta": "Lásd a blogon",
+    "sectionLabel": "Böngésző P2P",
+    "supporting": "Nyiss meg egy Bitsocial webalkalmazást egy normál lapon, és önmagában csatlakozik a hálózathoz, lekéri a bejegyzéseket más társaktól, és közzéteszi a sajátaidat. Minden más decentralizált közösségi hálózat továbbra is tart egy szervert a közepén.",
+    "title": "A böngésződ egy peer"
   }
 }

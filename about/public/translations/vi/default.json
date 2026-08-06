@@ -94,7 +94,7 @@
         "cta": "Xem mã nguồn"
       },
       "peer-to-peer": {
-        "description": "Bitsocial <strong>không liên bang và cũng không on-chain</strong>. Mỗi cộng đồng là một swarm ngang hàng dùng <strong>các primitive <ipfs>IPFS</ipfs>/libp2p</strong>: bản ghi được định địa chỉ bằng khóa công khai, gossipsub pubsub và truyền nội dung gần với BitTorrent hơn là một website được lưu trữ. Người dùng seed những gì họ đọc, node có thể chạy trên phần cứng rẻ, và mỗi cộng đồng tự áp dụng anti-spam challenge của mình thay vì phụ thuộc vào chính sách nền tảng toàn cầu.",
+        "description": "Bitsocial <strong>không phải là liên bang cũng không phải on-chain</strong>. Mỗi cộng đồng là một đàn peer-to-peer sử dụng <ipfs>IPFS</ipfs>, <strong>gần hơn với BitTorrent</strong> so với một trang web được lưu trữ: người dùng chia sẻ một cách dễ dàng, các node chạy trên phần cứng rẻ, và mỗi cộng đồng hoàn toàn độc lập và có chủ quyền. Một tab trình duyệt có thể tham gia đàn như một peer, vì vậy ứng dụng web không phải là client của máy chủ của người khác.",
         "cta": "Tìm hiểu cách p2p hoạt động"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "Các ứng dụng web DeSo thường dựa vào DeSo Identity để ký và một API nút để xây dựng và gửi các giao dịch xã hội. Điều đó dễ hơn là chạy một nút, nhưng bài đăng vẫn đi vào qua cơ sở hạ tầng nhận dạng được lưu trữ, nút và giao dịch. Bitsocial có thể tạo khóa của người dùng tại chỗ và cho phép người dùng đăng bài thông qua P2P trực tiếp hoặc quyền truy cập được lưu trữ tùy chọn mà không cần tài khoản nền tảng sở hữu nhận dạng.",
           "steemit": "Bài đăng đầu tiên bắt đầu bằng khóa tài khoản Steem và giao diện front-end Steem hoặc nút API.",
           "detailSteemit": "Steemit đơn giản sau khi người dùng có tài khoản Steem và khóa đăng bài, nhưng tài khoản đó thuộc mô hình quyền Steem và bài đăng đi vào qua giao diện front-end Steem hoặc nút API. Bitsocial có thể tạo khóa của người dùng tại chỗ và cho phép người dùng đăng bài thông qua P2P trực tiếp hoặc quyền truy cập được lưu trữ tùy chọn mà không cần tài khoản nền tảng sở hữu nhận dạng."
+        },
+        "browserRuntime": {
+          "bitsocial": "Một peer. Nó chạy một nút và lấy dữ liệu từ các peer khác.",
+          "bluesky": "Một khách hàng của PDS và AppView",
+          "deso": "Một khách hàng của node API và DeSo Identity",
+          "detail": "Một client web Nostr duy trì các kết nối websocket với các rele, và các rele đó phải chấp nhận, lưu trữ và phục vụ nội dung mà nó đọc và xuất bản. Các client trình duyệt Bitsocial chạy một nút Helia trên trang: chúng hỏi các bộ định tuyến HTTP peer nào nắm giữ một cộng đồng, sau đó trực tiếp tìm nạp và xuất bản qua libp2p. Các peer trình duyệt kết nối qua WebSocket an toàn, và bản sửa lỗi số thứ tự gossipsub trong @libp2p/gossipsub 15.0.21 là điều ngăn chặn các bài viết được xuất bản từ một tab bị loại bỏ bởi phần còn lại của mạng.",
+          "detailBluesky": "Một ứng dụng web Bluesky nói chuyện với một PDS cho các lần ghi và một AppView cho các lần đọc, vì vậy trình duyệt luôn là khách hàng của các dịch vụ chứa và diễn giải dữ liệu. Các client trình duyệt Bitsocial chạy một nút Helia trên trang: chúng hỏi các bộ định tuyến HTTP peer nào nắm giữ một cộng đồng, sau đó trực tiếp tìm nạp và xuất bản qua libp2p. Các peer trình duyệt kết nối qua WebSocket an toàn, và bản sửa lỗi số thứ tự gossipsub trong @libp2p/gossipsub 15.0.21 là điều ngăn chặn các bài viết được xuất bản từ một tab bị loại bỏ bởi phần còn lại của mạng.",
+          "detailDeso": "Một ứng dụng web DeSo ký qua DeSo Identity và gửi qua một API node, vì vậy trình duyệt phụ thuộc vào danh tính được lưu trữ và cơ sở hạ tầng node. Các client trình duyệt Bitsocial chạy một nút Helia trên trang: chúng hỏi các bộ định tuyến HTTP peer nào nắm giữ một cộng đồng, sau đó trực tiếp tìm nạp và xuất bản qua libp2p. Các peer trình duyệt kết nối qua WebSocket an toàn, và bản sửa lỗi số thứ tự gossipsub trong @libp2p/gossipsub 15.0.21 là điều ngăn chặn các bài viết được xuất bản từ một tab bị loại bỏ bởi phần còn lại của mạng.",
+          "detailFarcaster": "Một client Farcaster đọc qua các API và indexer trên dữ liệu hub hoặc Snapchain, và ghi qua những người ký được quản lý bởi ứng dụng, vì vậy trình duyệt không bao giờ chạm vào chính mạng. Các client trình duyệt Bitsocial chạy một nút Helia trên trang: chúng hỏi các bộ định tuyến HTTP peer nào nắm giữ một cộng đồng, sau đó trực tiếp tìm nạp và xuất bản qua libp2p. Các peer trình duyệt kết nối qua WebSocket an toàn, và bản sửa lỗi số thứ tự gossipsub trong @libp2p/gossipsub 15.0.21 là điều ngăn chặn các bài viết được xuất bản từ một tab bị loại bỏ bởi phần còn lại của mạng.",
+          "detailLens": "Một ứng dụng Lens trong trình duyệt đọc qua các indexer và ghi qua ví, RPC và cơ sở hạ tầng chuỗi. Các client trình duyệt Bitsocial chạy một nút Helia trên trang: chúng hỏi các bộ định tuyến HTTP peer nào nắm giữ một cộng đồng, sau đó trực tiếp tìm nạp và xuất bản qua libp2p. Các peer trình duyệt kết nối qua WebSocket an toàn, và bản sửa lỗi số thứ tự gossipsub trong @libp2p/gossipsub 15.0.21 là điều ngăn chặn các bài viết được xuất bản từ một tab bị loại bỏ bởi phần còn lại của mạng.",
+          "detailMastodon": "Một client web Mastodon là một giao diện trước cho phiên bản lưu trữ tài khoản, bài viết và dòng thời gian của bạn. Các client trình duyệt Bitsocial chạy một nút Helia trên trang: chúng hỏi các bộ định tuyến HTTP peer nào nắm giữ một cộng đồng, sau đó trực tiếp tìm nạp và xuất bản qua libp2p. Các peer trình duyệt kết nối qua WebSocket an toàn, và bản sửa lỗi số thứ tự gossipsub trong @libp2p/gossipsub 15.0.21 là điều ngăn chặn các bài viết được xuất bản từ một tab bị loại bỏ bởi phần còn lại của mạng.",
+          "detailSteemit": "Một frontend Steem đọc và ghi qua các nút API mang theo chuỗi, vì vậy trình duyệt là khách hàng của bất kỳ nút nào nó trỏ tới. Các client trình duyệt Bitsocial chạy một nút Helia trên trang: chúng hỏi các bộ định tuyến HTTP peer nào nắm giữ một cộng đồng, sau đó trực tiếp tìm nạp và xuất bản qua libp2p. Các peer trình duyệt kết nối qua WebSocket an toàn, và bản sửa lỗi số thứ tự gossipsub trong @libp2p/gossipsub 15.0.21 là điều ngăn chặn các bài viết được xuất bản từ một tab bị loại bỏ bởi phần còn lại của mạng.",
+          "farcaster": "Một khách hàng của ứng dụng, hub và bộ lập chỉ mục của nó",
+          "label": "Trình duyệt của bạn là gì",
+          "lens": "Một khách hàng của Lens app, RPC và bộ lập chỉ mục",
+          "mastodon": "Một khách hàng của máy chủ mà bạn đã đăng ký",
+          "nostr": "Một khách hàng của các relay được cấu hình để sử dụng",
+          "steemit": "Một khách hàng của front-end và node API"
         }
       },
       "expand": "Tìm hiểu thêm",
@@ -756,5 +774,22 @@
         "reason": "Họ tham gia khi nhóm của họ đã ở đó sẵn và việc chuyển sang không còn thấy mạo hiểm nữa."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "Trang này khởi động một nút <helia>Helia</helia> và nói cùng giao thức như các nút desktop và CLI, tiếp cận các nút ngang hàng qua cùng loại kết nối được mã hóa mà bất kỳ trang web nào sử dụng. Xuất bản từ trình duyệt trở nên đáng tin cậy vào <gossipsub>2026</gossipsub>, khi bản vá hạ lưu cuối cùng được phát hành.",
+        "title": "Tab chạy một nút"
+      },
+      "unstoppable": {
+        "description": "Trang này chỉ là một máy khách: bất kỳ bản sao nào của nó, trên bất kỳ tên miền nào hoặc như ứng dụng máy tính để bàn, đều truy cập cùng một mạng. <strong>Danh tính của bạn và cộng đồng của bạn là những khóa mà bạn nắm giữ</strong>, không phải những hàng trong cơ sở dữ liệu của công ty, vì vậy không có tài khoản nào để mất và không có máy chủ nào để chiếm.",
+        "title": "Không có gì để tắt"
+      }
+    },
+    "docsCta": "P2P hoạt động như thế nào trong trình duyệt",
+    "liveCta": "Xem trên blog",
+    "sectionLabel": "Trình duyệt P2P",
+    "supporting": "Mở ứng dụng web Bitsocial trong một tab bình thường và nó tự kết nối với mạng, lấy bài viết từ các peer khác và đăng bài của bạn. Mỗi mạng xã hội phi tập trung khác vẫn giữ một máy chủ ở giữa.",
+    "title": "Trình duyệt của bạn là một peer"
   }
 }

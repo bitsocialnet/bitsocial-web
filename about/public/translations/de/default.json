@@ -94,7 +94,7 @@
         "cta": "Quellcode durchsuchen"
       },
       "peer-to-peer": {
-        "description": "Bitsocial ist <strong>weder föderiert noch on-chain</strong>. Jede Community ist ein Peer-to-Peer-Schwarm, der <strong><ipfs>IPFS</ipfs>/libp2p-Primitiven</strong> nutzt: per öffentlichem Schlüssel adressierte Records, gossipsub Pubsub und Content-Transfer, der eher BitTorrent als einer gehosteten Website ähnelt. Nutzer seeden, was sie lesen, Nodes können auf günstiger Hardware laufen, und jede Community erzwingt ihre eigene Anti-Spam-Challenge statt von einer globalen Plattformrichtlinie abhängig zu sein.",
+        "description": "Bitsocial ist <strong>weder föderiert noch on-chain</strong>. Jede Community ist ein Peer-to-Peer-Schwarm, der <ipfs>IPFS</ipfs> nutzt, <strong>näher an BitTorrent</strong> als an einer gehosteten Website: Nutzer seedern mühelos, Knoten laufen auf günstiger Hardware, und jede Community ist vollständig unabhängig und souverän. Ein Browser-Tab kann dem Schwarm als Peer beitreten, daher ist die Web-App nicht der Client eines fremden Servers.",
         "cta": "Erfahren Sie, wie p2p funktioniert"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "DeSo-Web-Apps verlassen sich normalerweise auf DeSo Identity zum Signieren und auf eine Node-API zum Erstellen und Einreichen sozialer Transaktionen. Das ist einfacher als das Ausführen eines Knotens, aber der Post wird immer noch über gehostete Identität, Knoten- und Transaktionsinfrastruktur eingegeben. Bitsocial kann den Schlüssel des Benutzers lokal erstellen und dem Benutzer ermöglichen, über direkte P2P oder optionalen gehosteten Zugriff zu posten, ohne dass ein Plattformkonto die Identität besitzt.",
           "steemit": "Der erste Post beginnt mit Steem-Kontoschlüsseln und einem Steem-Front-End oder API-Knoten.",
           "detailSteemit": "Steemit ist unkompliziert, sobald ein Benutzer ein Steem-Konto und einen Posting-Schlüssel hat, aber dieses Konto gehört zum Steem-Berechtigungsmodell und der Beitrag wird über ein Steem-Front-End oder API-Knoten eingegeben. Bitsocial kann den Schlüssel des Benutzers lokal erstellen und dem Benutzer ermöglichen, über direkte P2P oder optionalen gehosteten Zugriff zu posten, ohne dass ein Plattformkonto die Identität besitzt."
+        },
+        "browserRuntime": {
+          "bitsocial": "Ein Peer. Er führt einen Knoten aus und ruft Daten von anderen Peers ab.",
+          "bluesky": "Ein Client eines PDS und einer AppView",
+          "deso": "Ein Client einer Node-API und DeSo Identity",
+          "detail": "Ein Nostr-Web-Client verwaltet WebSocket-Verbindungen zu Relays, und diese Relays müssen den Inhalt, den er liest und veröffentlicht, akzeptieren, speichern und bereitstellen. Bitsocial-Browser-Clients führen einen Helia-Knoten auf der Seite aus: Sie fragen HTTP-Router, welche Peers ein Community halten, rufen dann Inhalte ab und veröffentlichen sie direkt über libp2p. Browser-Peers verbinden sich über sichere WebSockets, und die Gossipsub-Sequenznummernkorrektur in @libp2p/gossipsub 15.0.21 verhinderte, dass von einem Tab aus veröffentlichte Beiträge vom Rest des Netzwerks verworfen wurden.",
+          "detailBluesky": "Eine Bluesky-Web-App kommuniziert mit einem PDS für Schreibzugriff und einem AppView für Lesezugriff, sodass der Browser immer ein Client von Services ist, die die Daten halten und interpretieren. Bitsocial-Browser-Clients führen einen Helia-Knoten auf der Seite aus: Sie fragen HTTP-Router, welche Peers ein Community halten, rufen dann Inhalte ab und veröffentlichen sie direkt über libp2p. Browser-Peers verbinden sich über sichere WebSockets, und die Gossipsub-Sequenznummernkorrektur in @libp2p/gossipsub 15.0.21 verhinderte, dass von einem Tab aus veröffentlichte Beiträge vom Rest des Netzwerks verworfen wurden.",
+          "detailDeso": "Eine DeSo-Web-App signiert über DeSo Identity und sendet über eine Node-API, daher hängt der Browser von gehosteter Identität und Node-Infrastruktur ab. Bitsocial-Browser-Clients führen einen Helia-Knoten auf der Seite aus: Sie fragen HTTP-Router, welche Peers ein Community halten, rufen dann Inhalte ab und veröffentlichen sie direkt über libp2p. Browser-Peers verbinden sich über sichere WebSockets, und die Gossipsub-Sequenznummernkorrektur in @libp2p/gossipsub 15.0.21 verhinderte, dass von einem Tab aus veröffentlichte Beiträge vom Rest des Netzwerks verworfen wurden.",
+          "detailFarcaster": "Ein Farcaster-Client liest über APIs und Indexer über Hub- oder Snapchain-Daten und schreibt über von der App verwaltete Unterzeichner, sodass der Browser das Netzwerk selbst nie berührt. Bitsocial-Browser-Clients führen einen Helia-Knoten auf der Seite aus: Sie fragen HTTP-Router, welche Peers ein Community halten, rufen dann Inhalte ab und veröffentlichen sie direkt über libp2p. Browser-Peers verbinden sich über sichere WebSockets, und die Gossipsub-Sequenznummernkorrektur in @libp2p/gossipsub 15.0.21 verhinderte, dass von einem Tab aus veröffentlichte Beiträge vom Rest des Netzwerks verworfen wurden.",
+          "detailLens": "Eine Lens-App im Browser liest über Indexer und schreibt über Wallets, RPCs und Chain-Infrastruktur. Bitsocial-Browser-Clients führen einen Helia-Knoten auf der Seite aus: Sie fragen HTTP-Router, welche Peers ein Community halten, rufen dann Inhalte ab und veröffentlichen sie direkt über libp2p. Browser-Peers verbinden sich über sichere WebSockets, und die Gossipsub-Sequenznummernkorrektur in @libp2p/gossipsub 15.0.21 verhinderte, dass von einem Tab aus veröffentlichte Beiträge vom Rest des Netzwerks verworfen wurden.",
+          "detailMastodon": "Ein Mastodon-Web-Client ist ein Frontend für die Instanz, die Ihr Konto, Ihre Beiträge und Ihre Timeline speichert. Bitsocial-Browser-Clients führen einen Helia-Knoten auf der Seite aus: Sie fragen HTTP-Router, welche Peers ein Community halten, rufen dann Inhalte ab und veröffentlichen sie direkt über libp2p. Browser-Peers verbinden sich über sichere WebSockets, und die Gossipsub-Sequenznummernkorrektur in @libp2p/gossipsub 15.0.21 verhinderte, dass von einem Tab aus veröffentlichte Beiträge vom Rest des Netzwerks verworfen wurden.",
+          "detailSteemit": "Ein Steem-Frontend liest und schreibt durch API-Knoten, die die Kette tragen, daher ist der Browser ein Client eines beliebigen Knotens, auf den er verweist. Bitsocial-Browser-Clients führen einen Helia-Knoten auf der Seite aus: Sie fragen HTTP-Router, welche Peers ein Community halten, rufen dann Inhalte ab und veröffentlichen sie direkt über libp2p. Browser-Peers verbinden sich über sichere WebSockets, und die Gossipsub-Sequenznummernkorrektur in @libp2p/gossipsub 15.0.21 verhinderte, dass von einem Tab aus veröffentlichte Beiträge vom Rest des Netzwerks verworfen wurden.",
+          "farcaster": "Ein Client einer App, ihre Hubs und Indexer",
+          "label": "Was dein Browser ist",
+          "lens": "Ein Client einer Lens-App, eines RPC und eines Indexers",
+          "mastodon": "Ein Client des Servers, auf dem Sie registriert sind",
+          "nostr": "Ein Client der Relays, für die er konfiguriert ist",
+          "steemit": "Ein Client eines Front-End und eines API-Knotens"
         }
       },
       "expand": "Mehr erfahren",
@@ -756,5 +774,22 @@
         "reason": "Sie steigen ein, wenn ihre Leute schon dort sind und der Wechsel nicht mehr riskant wirkt."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "Die Seite startet einen <helia>Helia</helia>-Knoten und spricht das gleiche Protokoll wie Desktop- und CLI-Knoten, erreicht Peers über die gleiche Art verschlüsselter Verbindung, die jede Website nutzt. Das Veröffentlichen aus einem Browser wurde in <gossipsub>2026</gossipsub> zuverlässig, nachdem der letzte Upstream-Fix landete.",
+        "title": "Der Tab führt einen Node aus"
+      },
+      "unstoppable": {
+        "description": "Die Seite ist nur ein Client: Jede Kopie davon, auf jeder Domain oder als Desktop-Anwendung, erreicht dasselbe Netzwerk. <strong>Deine Identität und deine Gemeinschaft sind Schlüssel, die du hältst</strong>, keine Zeilen in einer Unternehmensdatenbank, also gibt es kein Konto zu verlieren und keinen Server zu übernehmen.",
+        "title": "Nichts zum Abschalten"
+      }
+    },
+    "docsCta": "Wie P2P im Browser funktioniert",
+    "liveCta": "Auf dem Blog ansehen",
+    "sectionLabel": "Browser P2P",
+    "supporting": "Öffne eine Bitsocial-Web-App in einem normalen Tab und sie tritt selbst dem Netzwerk bei, ruft Beiträge von anderen Peers ab und veröffentlicht deine. Jedes andere dezentralisierte soziale Netzwerk unterhält immer noch einen Server in der Mitte.",
+    "title": "Dein Browser ist ein Peer"
   }
 }

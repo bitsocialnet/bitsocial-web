@@ -10,6 +10,7 @@ const sidebars: SidebarsConfig = {
       items: [
         "layman-protocol-explanation",
         "peer-to-peer-protocol",
+        "browser-p2p",
         "content-discovery",
         "custom-challenges",
         "local-moderation",

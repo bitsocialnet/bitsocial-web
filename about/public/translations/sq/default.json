@@ -94,7 +94,7 @@
         "cta": "Shfleto kodin burimor"
       },
       "peer-to-peer": {
-        "description": "Bitsocial <strong>nuk është as i federuar, as on-chain</strong>. Çdo komunitet është një swarm peer-to-peer që përdor <strong>primitive <ipfs>IPFS</ipfs>/libp2p</strong>: regjistra të adresuar me çelës publik, gossipsub pubsub dhe transferim përmbajtjeje më afër BitTorrent sesa një faqeje të hostuar. Përdoruesit seed-ojnë atë që lexojnë, nyjet mund të funksionojnë në pajisje të lira dhe çdo komunitet zbaton sfidën e vet anti-spam në vend që të varet nga një politikë globale platforme.",
+        "description": "Bitsocial nuk është <strong>as i federuar as on-chain</strong>. Çdo komunitet është një rrjet peer-to-peer që përdor <ipfs>IPFS</ipfs>, <strong>më afër BitTorrent</strong> sesa një uebfaqe e hostuar: përdoruesit ndajnë pa përpjekje, nyjet ekzekutohen në pajisje të lira, dhe çdo komunitet është plotësisht i pavarur dhe sovran. Një skedë shfletuesi mund të hyjë në rrjetin peer si peer, kështu që aplikacioni web nuk është klient i serverit të dikujt tjetër.",
         "cta": "Mësoni se si funksionon p2p"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "Aplikacionet e internetit DeSo zakonisht mbështeten në DeSo Identity për nënshkrim dhe në një API nyje për ndërtimin dhe dorëzimin e transaksioneve shoqërore. Kjo është më e lehtë se drejtimi i një nyje, por postimi ende hyn përmes infrastrukturës së identitetit të hostuar, nyjes dhe transaksionit. Bitsocial mund të krijojë kyçin e përdoruesit në nivel lokal dhe të lejojë përdoruesin të postojë përmes P2P të drejtpërdrejtë ose qasjes të hostuar opsionale pa një konto platforme që zotëron identitetin.",
           "steemit": "Postimi i parë fillon me çelësat e llogarisë Steem dhe një përfaqësim përpara Steem ose nyje API.",
           "detailSteemit": "Steemit është i drejtpërdrejtë pasi një përdorues ka një llogari Steem dhe çelës postimi, por ajo llogari i përket modelit të lejeve të Steem dhe postimi hyn përmes front-end Steem ose nyjes API. Bitsocial mund të krijojë kyçin e përdoruesit në nivel lokal dhe të lejojë përdoruesin të postojë përmes P2P të drejtpërdrejtë ose qasjes të hostuar opsionale pa një konto platforme që zotëron identitetin."
+        },
+        "browserRuntime": {
+          "bitsocial": "Një peer. Ekzekuton një nyje dhe merr të dhëna nga peers të tjerë.",
+          "bluesky": "Një klient i PDS dhe AppView",
+          "deso": "Një klient i node API dhe DeSo Identity",
+          "detail": "Një klient web Nostr mirëmban lidhje websocket me rele, dhe këto rele duhet të pranojnë, ruajnë dhe shërbejnë përmbajtjen që lexon dhe publikon. Klientët e shfletuesit Bitsocial ekzekutojnë një nyje Helia në faqe: ata pyesin ruterat HTTP cilat kolegë mbajnë një komunitet, më pas marrin dhe publikojnë drejtpërdrejt përmes libp2p. Kolegët e shfletuesit lidhen përmes WebSocketeve të sigurta, dhe ndreqja e numrit të sekuencës gossipsub në @libp2p/gossipsub 15.0.21 është ajo që ndaloi mesazhet e publikuara nga një skedë nga të përjashtanat nga pjesa tjetër e rrjetit.",
+          "detailBluesky": "Një aplikacion Bluesky web flet me një PDS për shkrime dhe një AppView për lexime, pra shfletuesi është gjithmonë një klient i shërbimeve që ruajnë dhe interpretojnë të dhënat. Klientët e shfletuesit Bitsocial ekzekutojnë një nyje Helia në faqe: ata pyesin ruterat HTTP cilat kolegë mbajnë një komunitet, më pas marrin dhe publikojnë drejtpërdrejt përmes libp2p. Kolegët e shfletuesit lidhen përmes WebSocketeve të sigurta, dhe ndreqja e numrit të sekuencës gossipsub në @libp2p/gossipsub 15.0.21 është ajo që ndaloi mesazhet e publikuara nga një skedë nga të përjashtanat nga pjesa tjetër e rrjetit.",
+          "detailDeso": "Një aplikacion web DeSo nënshkruhet përmes DeSo Identity dhe paraqitet përmes një API node, kështu që shfletuesi varet nga identiteti i hostuar dhe infrastruktura e node. Klientët e shfletuesit Bitsocial ekzekutojnë një nyje Helia në faqe: ata pyesin ruterat HTTP cilat kolegë mbajnë një komunitet, më pas marrin dhe publikojnë drejtpërdrejt përmes libp2p. Kolegët e shfletuesit lidhen përmes WebSocketeve të sigurta, dhe ndreqja e numrit të sekuencës gossipsub në @libp2p/gossipsub 15.0.21 është ajo që ndaloi mesazhet e publikuara nga një skedë nga të përjashtanat nga pjesa tjetër e rrjetit.",
+          "detailFarcaster": "Një klient Farcaster lexon përmes API-ve dhe indeksuesve mbi të dhënat hub ose Snapchain, dhe shkruan përmes nënshkruesve të administruar nga aplikacioni, kështu që shfletuesi nuk prek kurrë vetë rrjetin. Klientët e shfletuesit Bitsocial ekzekutojnë një nyje Helia në faqe: ata pyesin ruterat HTTP cilat kolegë mbajnë një komunitet, më pas marrin dhe publikojnë drejtpërdrejt përmes libp2p. Kolegët e shfletuesit lidhen përmes WebSocketeve të sigurta, dhe ndreqja e numrit të sekuencës gossipsub në @libp2p/gossipsub 15.0.21 është ajo që ndaloi mesazhet e publikuara nga një skedë nga të përjashtanat nga pjesa tjetër e rrjetit.",
+          "detailLens": "Një aplikacion Lens në browser lexon përmes indeksuesve dhe shkruan përmes xhepave, RPC-ve dhe infrastrukturës së zinxhirit. Klientët e shfletuesit Bitsocial ekzekutojnë një nyje Helia në faqe: ata pyesin ruterat HTTP cilat kolegë mbajnë një komunitet, më pas marrin dhe publikojnë drejtpërdrejt përmes libp2p. Kolegët e shfletuesit lidhen përmes WebSocketeve të sigurta, dhe ndreqja e numrit të sekuencës gossipsub në @libp2p/gossipsub 15.0.21 është ajo që ndaloi mesazhet e publikuara nga një skedë nga të përjashtanat nga pjesa tjetër e rrjetit.",
+          "detailMastodon": "Një klient web Mastodon është një front end për instancën që ruan llogarinë tuaj, postimet tuaja dhe kronologjinë tuaj. Klientët e shfletuesit Bitsocial ekzekutojnë një nyje Helia në faqe: ata pyesin ruterat HTTP cilat kolegë mbajnë një komunitet, më pas marrin dhe publikojnë drejtpërdrejt përmes libp2p. Kolegët e shfletuesit lidhen përmes WebSocketeve të sigurta, dhe ndreqja e numrit të sekuencës gossipsub në @libp2p/gossipsub 15.0.21 është ajo që ndaloi mesazhet e publikuara nga një skedë nga të përjashtanat nga pjesa tjetër e rrjetit.",
+          "detailSteemit": "Një frontend Steem lexon dhe shkruan përmes nyjeve API që mbartin zinxhirin, kështu që shfletuesi është një klient i çdo nyje në të cilën drejton. Klientët e shfletuesit Bitsocial ekzekutojnë një nyje Helia në faqe: ata pyesin ruterat HTTP cilat kolegë mbajnë një komunitet, më pas marrin dhe publikojnë drejtpërdrejt përmes libp2p. Kolegët e shfletuesit lidhen përmes WebSocketeve të sigurta, dhe ndreqja e numrit të sekuencës gossipsub në @libp2p/gossipsub 15.0.21 është ajo që ndaloi mesazhet e publikuara nga një skedë nga të përjashtanat nga pjesa tjetër e rrjetit.",
+          "farcaster": "Një klient i një aplikacioni, hubeve dhe indeksuesve të tij",
+          "label": "Çfarë është shfletuesi juaj",
+          "lens": "Një klient i një aplikacioni Lens, RPC dhe indeksues",
+          "mastodon": "Një klient i serverit në të cilin u regjistruat",
+          "nostr": "Një klient i releve që është konfiguruar për të përdorur",
+          "steemit": "Një klient i front-end dhe node API"
         }
       },
       "expand": "Mëso më shumë",
@@ -756,5 +774,22 @@
         "reason": "Bashkohen kur njerëzit e tyre janë tashmë aty dhe kalimi nuk duket më i rrezikshëm."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "Faqja ngarkon një nyje <helia>Helia</helia> dhe flet protokollin e njëjtë si nyjet e desktopit dhe CLI, arrin te homolozët përmes të njëjtit lloj lidhjeje të enkriptuar që përdor çdo faqe web. Publikimi nga një shfletues u bë i besueshëm në <gossipsub>2026</gossipsub>, sapo mbërriti korrigjimi i fundit nga burimet para.",
+        "title": "Shiriti ekzekuton një nyje"
+      },
+      "unstoppable": {
+        "description": "Faqja është vetëm një klient: ndonjë kopje e saj, në çdo domen ose si aplikacion desktop, arrin në të njëjtën rrjet. <strong>Identiteti juaj dhe komuniteti juaj janë çelësat që ju zotëroni</strong>, jo rreshta në një bazë të dhënash të kompanisë, prandaj nuk ka llogari për të humbur dhe asnjë host për të zënë.",
+        "title": "Asgjë për të mbyllur"
+      }
+    },
+    "docsCta": "Si funksionon P2P në shfletuesin",
+    "liveCta": "Shih në blog",
+    "sectionLabel": "Shfletues P2P",
+    "supporting": "Hap një aplikacion web Bitsocial në një skedul normal dhe ajo bashkohet në rrjetin vetë, duke marrë postime nga homologët e tjerë dhe duke publikuar tuajat. Çdo rrjet social i decentralizuar tjetër prapë mban një server në mes.",
+    "title": "Shfletuesi yt është një peer"
   }
 }

@@ -94,7 +94,7 @@
         "cta": "Tingnan ang source code"
       },
       "peer-to-peer": {
-        "description": "Ang Bitsocial ay <strong>hindi federated at hindi rin on-chain</strong>. Ang bawat komunidad ay isang peer-to-peer swarm na gumagamit ng <strong><ipfs>IPFS</ipfs>/libp2p primitives</strong>: mga record na naka-address sa public key, gossipsub pubsub, at content transfer na mas malapit sa BitTorrent kaysa sa hosted website. Sina-seed ng mga user ang binabasa nila, maaaring tumakbo ang mga node sa murang hardware, at ipinapatupad ng bawat komunidad ang sarili nitong anti-spam challenge sa halip na umasa sa pandaigdigang patakaran ng platform.",
+        "description": "Ang Bitsocial ay hindi <strong>ni federated o on-chain</strong>. Ang bawat komunidad ay isang peer-to-peer swarm na gumagamit ng <ipfs>IPFS</ipfs>, <strong>mas malapit sa BitTorrent</strong> kaysa sa isang hosted website: ang mga user ay madaling nagseseed, ang mga node ay tumatakbo sa murang hardware, at ang bawat komunidad ay ganap na independent at may kapangyarihan. Ang isang browser tab ay maaaring sumali sa swarm bilang peer, kaya ang web app ay hindi client ng server ng iba.",
         "cta": "Matuto kung paano gumagana ang p2p"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "Ang mga DeSo web apps ay karaniwang umaasa sa DeSo Identity para sa pagpapirma at sa isang node API para sa pagkakonstrukta at pagpapadala ng social transactions. Mas madali ito kaysa sa pagtakbo ng isang node, ngunit ang post ay pumapasok pa rin sa pamamagitan ng hosted identity, node, at transaction infrastructure. Ang Bitsocial ay maaaring lumikha ng susi ng user nang lokal at payagan ang user na mag-post sa pamamagitan ng direktang P2P o optional na hosted access nang walang platform account na nagmamay-ari ng identity.",
           "steemit": "Ang unang post ay nagsisimula sa mga susi ng Steem account at isang Steem front end o API node.",
           "detailSteemit": "Ang Steemit ay direkta kapag mayroon nang user ng Steem account at posting key, ngunit ang account na iyon ay pag-aari ng Steem permission model at ang post ay pumapasok sa pamamagitan ng Steem front end o API node. Ang Bitsocial ay maaaring lumikha ng susi ng user nang lokal at payagan ang user na mag-post sa pamamagitan ng direktang P2P o optional na hosted access nang walang platform account na nagmamay-ari ng identity."
+        },
+        "browserRuntime": {
+          "bitsocial": "Isang peer. Tumatakbo ng isang node at kumukunin ng data mula sa ibang peers.",
+          "bluesky": "Isang client ng PDS at AppView",
+          "deso": "Isang client ng node API at DeSo Identity",
+          "detail": "Ang isang Nostr web client ay nagpapanatili ng websocket connections sa mga relays, at ang mga relay na iyon ay dapat tumanggap, mag-ipon, at maglingkod sa nilalaman na binabasa at ino-publish nito. Ang mga kliyente sa browser ng Bitsocial ay tumatakbo ng Helia node sa pahina: tinatanong nila ang mga HTTP router kung aling mga peers ang nagtatag ng isang komunidad, pagkatapos ay direktang kunin at maglathala sa libp2p. Ang mga browser peers ay kumokonekta sa pamamagitan ng secure WebSockets, at ang gossipsub sequence-number fix sa @libp2p/gossipsub 15.0.21 ay kung ano ang huminto sa mga post na nai-publish mula sa isang tab na ihagis ng natitira sa network.",
+          "detailBluesky": "Ang isang Bluesky web app ay nakikipag-usap sa isang PDS para sa mga pagsusulat at isang AppView para sa mga pagbabasa, kaya ang browser ay laging isang client ng mga serbisyo na nagtatag at nag-interpret ng data. Ang mga kliyente sa browser ng Bitsocial ay tumatakbo ng Helia node sa pahina: tinatanong nila ang mga HTTP router kung aling mga peers ang nagtatag ng isang komunidad, pagkatapos ay direktang kunin at maglathala sa libp2p. Ang mga browser peers ay kumokonekta sa pamamagitan ng secure WebSockets, at ang gossipsub sequence-number fix sa @libp2p/gossipsub 15.0.21 ay kung ano ang huminto sa mga post na nai-publish mula sa isang tab na ihagis ng natitira sa network.",
+          "detailDeso": "Ang isang DeSo web app ay pumipirma sa pamamagitan ng DeSo Identity at nagsusumite sa pamamagitan ng isang node API, kaya ang browser ay nakadepende sa hosted identity at node infrastructure. Ang mga kliyente sa browser ng Bitsocial ay tumatakbo ng Helia node sa pahina: tinatanong nila ang mga HTTP router kung aling mga peers ang nagtatag ng isang komunidad, pagkatapos ay direktang kunin at maglathala sa libp2p. Ang mga browser peers ay kumokonekta sa pamamagitan ng secure WebSockets, at ang gossipsub sequence-number fix sa @libp2p/gossipsub 15.0.21 ay kung ano ang huminto sa mga post na nai-publish mula sa isang tab na ihagis ng natitira sa network.",
+          "detailFarcaster": "Ang isang Farcaster client ay nagbabasa sa pamamagitan ng mga API at mga indexer sa hub o Snapchain data, at nagsusulat sa pamamagitan ng app-managed signers, kaya ang browser ay hindi kailanman humihipo sa network mismo. Ang mga kliyente sa browser ng Bitsocial ay tumatakbo ng Helia node sa pahina: tinatanong nila ang mga HTTP router kung aling mga peers ang nagtatag ng isang komunidad, pagkatapos ay direktang kunin at maglathala sa libp2p. Ang mga browser peers ay kumokonekta sa pamamagitan ng secure WebSockets, at ang gossipsub sequence-number fix sa @libp2p/gossipsub 15.0.21 ay kung ano ang huminto sa mga post na nai-publish mula sa isang tab na ihagis ng natitira sa network.",
+          "detailLens": "Ang isang Lens app sa browser ay nagbabasa sa pamamagitan ng mga indexer at nagsusulat sa pamamagitan ng mga wallet, RPC, at chain infrastructure. Ang mga kliyente sa browser ng Bitsocial ay tumatakbo ng Helia node sa pahina: tinatanong nila ang mga HTTP router kung aling mga peers ang nagtatag ng isang komunidad, pagkatapos ay direktang kunin at maglathala sa libp2p. Ang mga browser peers ay kumokonekta sa pamamagitan ng secure WebSockets, at ang gossipsub sequence-number fix sa @libp2p/gossipsub 15.0.21 ay kung ano ang huminto sa mga post na nai-publish mula sa isang tab na ihagis ng natitira sa network.",
+          "detailMastodon": "Ang isang Mastodon web client ay isang front end para sa instance na nagsi-store ng iyong account, iyong mga post, at iyong timeline. Ang mga kliyente sa browser ng Bitsocial ay tumatakbo ng Helia node sa pahina: tinatanong nila ang mga HTTP router kung aling mga peers ang nagtatag ng isang komunidad, pagkatapos ay direktang kunin at maglathala sa libp2p. Ang mga browser peers ay kumokonekta sa pamamagitan ng secure WebSockets, at ang gossipsub sequence-number fix sa @libp2p/gossipsub 15.0.21 ay kung ano ang huminto sa mga post na nai-publish mula sa isang tab na ihagis ng natitira sa network.",
+          "detailSteemit": "Ang isang Steem front end ay nagbabasa at nagsusulat sa pamamagitan ng API nodes na nagdadala ng chain, kaya ang browser ay isang client ng anumang node na ipinapunta nito. Ang mga kliyente sa browser ng Bitsocial ay tumatakbo ng Helia node sa pahina: tinatanong nila ang mga HTTP router kung aling mga peers ang nagtatag ng isang komunidad, pagkatapos ay direktang kunin at maglathala sa libp2p. Ang mga browser peers ay kumokonekta sa pamamagitan ng secure WebSockets, at ang gossipsub sequence-number fix sa @libp2p/gossipsub 15.0.21 ay kung ano ang huminto sa mga post na nai-publish mula sa isang tab na ihagis ng natitira sa network.",
+          "farcaster": "Isang client ng app, ang mga hub at indexer nito",
+          "label": "Ano ang iyong browser",
+          "lens": "Isang client ng Lens app, isang RPC at indexer",
+          "mastodon": "Isang client ng server na kung saan ka nag-sign up",
+          "nostr": "Isang client ng mga relay na ito ay nakakonekta",
+          "steemit": "Isang client ng front-end at isang API node"
         }
       },
       "expand": "Matuto pa",
@@ -756,5 +774,22 @@
         "reason": "Sasali sila kapag nandiyan na ang kanilang mga tao at hindi na nakakabahalang lumipat."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "Ang pahina ay nagsisimula ng isang <helia>Helia</helia> node at nagsasalita ng parehong protokol tulad ng desktop at CLI nodes, umaabot sa mga peers sa pamamagitan ng parehong uri ng encrypted connection na ginagamit ng anumang website. Ang paglalathala mula sa isang browser ay naging maaasahan sa <gossipsub>2026</gossipsub>, sa sandaling dumating ang huling upstream fix.",
+        "title": "Ang tab ay tumatakbo ng isang node"
+      },
+      "unstoppable": {
+        "description": "Ang pahina ay isang kliyente lamang: anumang kopya nito, sa anumang domain o bilang desktop application, umabot sa parehong network. <strong>Ang iyong pagkakakilanlan at ang iyong komunidad ay mga susi na iyong pinagmamalayan</strong>, hindi mga hanay sa database ng isang kumpanya, kaya walang account na mawawalan at walang host na mapwedeng kunin.",
+        "title": "Walang mapapigilan"
+      }
+    },
+    "docsCta": "Paano gumagana ang P2P sa browser",
+    "liveCta": "Panoorin sa blog",
+    "sectionLabel": "Browser P2P",
+    "supporting": "Magbukas ng Bitsocial web app sa isang normal na tab at ito ay sumali sa network nang sarili nito, kumukuha ng mga post mula sa ibang peers at naglalathala ng iyong sarili. Bawat ibang decentralized social network ay nagpapanatili pa rin ng server sa gitna.",
+    "title": "Ang iyong browser ay isang peer"
   }
 }

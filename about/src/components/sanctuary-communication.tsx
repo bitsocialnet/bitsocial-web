@@ -86,6 +86,7 @@ type ComparisonRow = { label: string; values: Record<ApproachId, string> };
 type DeepComparisonRowKey =
   | "dataLayer"
   | "browserMobile"
+  | "browserRuntime"
   | "identity"
   | "communityModel"
   | "antiSpam"
@@ -149,6 +150,7 @@ type DeepComparisonSourceId =
   | "steemGithub"
   | "steemHome"
   | "steemWhitepaper"
+  | "gossipsubSeqno"
   | "bitsocialDocs";
 type DeepComparisonRow = {
   bitsocial: string;
@@ -217,6 +219,7 @@ const DEEP_COMPARISON_ROW_KEYS: DeepComparisonRowKey[] = [
   "moderation",
   "communityModel",
   "browserMobile",
+  "browserRuntime",
   "identity",
   "contentDiscovery",
 ];
@@ -296,6 +299,38 @@ const DEEP_COMPARISON_ROW_I18N: Record<
       lens: ["lensFaq", "lensNews", "bitsocialDocs"],
       deso: ["desoIdentity", "desoSocialTransactions", "bitsocialDocs"],
       steemit: ["steemDeveloperCommunities", "steemGithub", "bitsocialDocs"],
+    },
+  },
+  browserRuntime: {
+    label: "sanctuary.deepComparison.rows.browserRuntime.label",
+    services: {
+      nostr: "sanctuary.deepComparison.rows.browserRuntime.nostr",
+      bluesky: "sanctuary.deepComparison.rows.browserRuntime.bluesky",
+      mastodon: "sanctuary.deepComparison.rows.browserRuntime.mastodon",
+      farcaster: "sanctuary.deepComparison.rows.browserRuntime.farcaster",
+      lens: "sanctuary.deepComparison.rows.browserRuntime.lens",
+      deso: "sanctuary.deepComparison.rows.browserRuntime.deso",
+      steemit: "sanctuary.deepComparison.rows.browserRuntime.steemit",
+    },
+    bitsocial: "sanctuary.deepComparison.rows.browserRuntime.bitsocial",
+    bitsocialSources: ["gossipsubSeqno"],
+    detail: "sanctuary.deepComparison.rows.browserRuntime.detail",
+    detailByService: {
+      bluesky: "sanctuary.deepComparison.rows.browserRuntime.detailBluesky",
+      mastodon: "sanctuary.deepComparison.rows.browserRuntime.detailMastodon",
+      farcaster: "sanctuary.deepComparison.rows.browserRuntime.detailFarcaster",
+      lens: "sanctuary.deepComparison.rows.browserRuntime.detailLens",
+      deso: "sanctuary.deepComparison.rows.browserRuntime.detailDeso",
+      steemit: "sanctuary.deepComparison.rows.browserRuntime.detailSteemit",
+    },
+    sources: ["nip01", "bitsocialDocs"],
+    sourcesByService: {
+      bluesky: ["atprotoOverview", "atprotoFeeds", "bitsocialDocs"],
+      mastodon: ["mastodonActivityPub", "mastodonRunServer", "bitsocialDocs"],
+      farcaster: ["farcasterArchitecture", "farcasterDocs", "bitsocialDocs"],
+      lens: ["lensV3", "lensFaq", "bitsocialDocs"],
+      deso: ["desoIdentity", "desoNodeArchitecture", "bitsocialDocs"],
+      steemit: ["steemGithub", "steemHome", "bitsocialDocs"],
     },
   },
   identity: {
@@ -527,6 +562,12 @@ const DEEP_COMPARISON_ROW_I18N: Record<
   },
 };
 const DEEP_COMPARISON_SOURCE_LINKS: DeepComparisonSource[] = [
+  {
+    id: "gossipsubSeqno",
+    label: "js-libp2p gossipsub sequence-number interop fix",
+    shortLabel: "Gossipsub seqno fix",
+    href: "https://github.com/ChainSafe/js-libp2p-gossipsub/issues/545",
+  },
   {
     id: "activityPubSpec",
     label: "W3C ActivityPub specification",

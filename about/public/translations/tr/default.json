@@ -94,7 +94,7 @@
         "cta": "Kaynak koduna göz at"
       },
       "peer-to-peer": {
-        "description": "Bitsocial <strong>ne federe ne de on-chain</strong>. Her topluluk, <strong><ipfs>IPFS</ipfs>/libp2p primitive'lerini</strong> kullanan bir peer-to-peer swarm'dır: public-key-addressed kayıtlar, gossipsub pubsub ve barındırılan bir web sitesinden çok BitTorrent'e benzeyen içerik aktarımı. Kullanıcılar okuduklarını seed eder, node'lar ucuz donanımda çalışabilir ve her topluluk küresel bir platform politikasına bağlı kalmak yerine kendi anti-spam challenge'ını uygular.",
+        "description": "Bitsocial <strong>ne federe edilmiş ne de on-chain</strong>'dir. Her topluluk <ipfs>IPFS</ipfs> kullanan bir peer-to-peer sürüsüdür, <strong>barındırılan bir web sitesinden ziyade BitTorrent'e daha yakın</strong>: kullanıcılar zahmetsizce paylaşırlar, düğümler ucuz donanımda çalışır ve her topluluk tamamen bağımsız ve egemendir. Bir tarayıcı sekmesi sürüye eşit olarak katılabilir, bu nedenle web uygulaması başka birinin sunucusunun istemcisi değildir.",
         "cta": "p2p'nin nasıl çalıştığını öğrenin"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "DeSo web uygulamaları, imzalama için yaygın olarak DeSo Identity'ye ve sosyal işlemleri oluşturmak ve göndermek için bir node API'ye dayanır. Bu, bir node çalıştırmaktan daha kolaydır, ancak gönderi yine de barındırılan kimlik, node ve işlem altyapısı aracılığıyla girer. Bitsocial, kullanıcının anahtarını yerel olarak oluşturabilir ve kullanıcının doğrudan P2P veya isteğe bağlı barındırılan erişim yoluyla gönderi göndermesine izin verebilir; bir platform hesabı kimliğe sahip olmadan.",
           "steemit": "İlk gönderi Steem hesap anahtarları ve bir Steem ön ucu veya API düğümü ile başlar.",
           "detailSteemit": "Steemit basittir bir kullanıcı bir Steem hesabı ve posting anahtarı aldıktan sonra, ancak bu hesap Steem izin modeline aittir ve gönderi Steem ön ucu veya API düğümü aracılığıyla girer. Bitsocial, kullanıcının anahtarını yerel olarak oluşturabilir ve kullanıcının doğrudan P2P veya isteğe bağlı barındırılan erişim yoluyla gönderi göndermesine izin verebilir; bir platform hesabı kimliğe sahip olmadan."
+        },
+        "browserRuntime": {
+          "bitsocial": "Bir peer. Bir düğüm çalıştırır ve diğer peerlerden veri alır.",
+          "bluesky": "Bir PDS ve AppView istemcisi",
+          "deso": "Bir node API ve DeSo Identity istemcisi",
+          "detail": "Bir Nostr web istemcisi relaylar ile websocket bağlantılarını korur ve bu relaylar okuduğu ve yayınladığı içeriği kabul etmeli, depolamalı ve sunmalıdır. Bitsocial tarayıcı istemcileri sayfada bir Helia düğümü çalıştırır: HTTP yönlendiricilerine hangi eşlerin bir topluluğu tuttuğunu sorarlar, sonra libp2p üzerinden doğrudan alır ve yayınlarlar. Tarayıcı eşleri güvenli WebSocketler üzerinden bağlanır ve @libp2p/gossipsub 15.0.21 içindeki gossipsub sıra numarası düzeltmesi, bir sekmeden yayınlanan gönderilerin ağın geri kalanı tarafından atılmasını engellemiş olan şeydir.",
+          "detailBluesky": "Bir Bluesky web uygulaması yazılar için bir PDS ile ve okumalar için bir AppView ile iletişim kurar, bu nedenle tarayıcı her zaman veri tutan ve yorumlayan hizmetlerin bir istemcisidir. Bitsocial tarayıcı istemcileri sayfada bir Helia düğümü çalıştırır: HTTP yönlendiricilerine hangi eşlerin bir topluluğu tuttuğunu sorarlar, sonra libp2p üzerinden doğrudan alır ve yayınlarlar. Tarayıcı eşleri güvenli WebSocketler üzerinden bağlanır ve @libp2p/gossipsub 15.0.21 içindeki gossipsub sıra numarası düzeltmesi, bir sekmeden yayınlanan gönderilerin ağın geri kalanı tarafından atılmasını engellemiş olan şeydir.",
+          "detailDeso": "Bir DeSo web uygulaması DeSo Identity aracılığıyla imzalar ve bir node API aracılığıyla gönderir, bu nedenle tarayıcı barındırılan kimlik ve node altyapısına bağlıdır. Bitsocial tarayıcı istemcileri sayfada bir Helia düğümü çalıştırır: HTTP yönlendiricilerine hangi eşlerin bir topluluğu tuttuğunu sorarlar, sonra libp2p üzerinden doğrudan alır ve yayınlarlar. Tarayıcı eşleri güvenli WebSocketler üzerinden bağlanır ve @libp2p/gossipsub 15.0.21 içindeki gossipsub sıra numarası düzeltmesi, bir sekmeden yayınlanan gönderilerin ağın geri kalanı tarafından atılmasını engellemiş olan şeydir.",
+          "detailFarcaster": "Bir Farcaster istemcisi hub veya Snapchain verileri üzerindeki API'ler ve dizinleyiciler aracılığıyla okur ve uygulama tarafından yönetilen imzacılar aracılığıyla yazar, bu nedenle tarayıcı ağın kendisine asla dokunmaz. Bitsocial tarayıcı istemcileri sayfada bir Helia düğümü çalıştırır: HTTP yönlendiricilerine hangi eşlerin bir topluluğu tuttuğunu sorarlar, sonra libp2p üzerinden doğrudan alır ve yayınlarlar. Tarayıcı eşleri güvenli WebSocketler üzerinden bağlanır ve @libp2p/gossipsub 15.0.21 içindeki gossipsub sıra numarası düzeltmesi, bir sekmeden yayınlanan gönderilerin ağın geri kalanı tarafından atılmasını engellemiş olan şeydir.",
+          "detailLens": "Bir Lens uygulaması tarayıcıda indeksleyiciler aracılığıyla okur ve cüzdanlar, RPC'ler ve chain altyapısı aracılığıyla yazar. Bitsocial tarayıcı istemcileri sayfada bir Helia düğümü çalıştırır: HTTP yönlendiricilerine hangi eşlerin bir topluluğu tuttuğunu sorarlar, sonra libp2p üzerinden doğrudan alır ve yayınlarlar. Tarayıcı eşleri güvenli WebSocketler üzerinden bağlanır ve @libp2p/gossipsub 15.0.21 içindeki gossipsub sıra numarası düzeltmesi, bir sekmeden yayınlanan gönderilerin ağın geri kalanı tarafından atılmasını engellemiş olan şeydir.",
+          "detailMastodon": "Bir Mastodon web istemcisi, hesabınızı, gönderilerinizi ve zaman çizelgenizi saklayan örneğin bir arayüzüdür. Bitsocial tarayıcı istemcileri sayfada bir Helia düğümü çalıştırır: HTTP yönlendiricilerine hangi eşlerin bir topluluğu tuttuğunu sorarlar, sonra libp2p üzerinden doğrudan alır ve yayınlarlar. Tarayıcı eşleri güvenli WebSocketler üzerinden bağlanır ve @libp2p/gossipsub 15.0.21 içindeki gossipsub sıra numarası düzeltmesi, bir sekmeden yayınlanan gönderilerin ağın geri kalanı tarafından atılmasını engellemiş olan şeydir.",
+          "detailSteemit": "Bir Steem ön uç, zinciri taşıyan API düğümleri aracılığıyla okur ve yazar, bu nedenle tarayıcı işaret ettiği herhangi bir düğümün bir istemcisidir. Bitsocial tarayıcı istemcileri sayfada bir Helia düğümü çalıştırır: HTTP yönlendiricilerine hangi eşlerin bir topluluğu tuttuğunu sorarlar, sonra libp2p üzerinden doğrudan alır ve yayınlarlar. Tarayıcı eşleri güvenli WebSocketler üzerinden bağlanır ve @libp2p/gossipsub 15.0.21 içindeki gossipsub sıra numarası düzeltmesi, bir sekmeden yayınlanan gönderilerin ağın geri kalanı tarafından atılmasını engellemiş olan şeydir.",
+          "farcaster": "Bir uygulamanın, hub ve indeksleyicilerinin istemcisi",
+          "label": "Tarayıcınız nedir",
+          "lens": "Lens app, RPC ve indeksleyicisi istemcisi",
+          "mastodon": "Kaydolduğunuz sunucunun istemcisi",
+          "nostr": "Yapılandırılmış olduğu rölelerin bir istemcisi",
+          "steemit": "Bir front-end ve API node istemcisi"
         }
       },
       "expand": "Daha fazla bilgi",
@@ -756,5 +774,22 @@
         "reason": "İnsanları zaten oradayken ve geçiş artık riskli hissettirmediğinde katılırlar."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "Sayfa bir <helia>Helia</helia> düğümü önyükler ve masaüstü ve CLI düğümleriyle aynı protokolü konuşur, herhangi bir web sitesinin kullandığı aynı türden şifreli bağlantı üzerinden eşlere ulaşır. Tarayıcıdan yayınlama <gossipsub>2026</gossipsub> yılında güvenilir hale geldi, son yukarı akış düzeltmesi geliştiğinde.",
+        "title": "Sekme bir düğüm çalıştırır"
+      },
+      "unstoppable": {
+        "description": "Sayfa sadece bir istemcidir: herhangi bir kopyası, herhangi bir alan adında veya masaüstü uygulaması olarak, aynı ağa ulaşır. <strong>Kimliğiniz ve topluluğunuz sizin tuttuğunuz anahtarlardır</strong>, bir şirket veritabanındaki satırlar değildir, bu nedenle kaybedeceğiniz hesap yok ve ele geçirilebilecek ana bilgisayar yok.",
+        "title": "Kapatacak bir şey yok"
+      }
+    },
+    "docsCta": "Tarayıcıda P2P nasıl çalışır",
+    "liveCta": "Blogda görün",
+    "sectionLabel": "Tarayıcı P2P",
+    "supporting": "Bitsocial web uygulamasını normal bir sekmede açın ve kendisini ağa katılır, diğer eşlerden gönderiler alır ve kendi gönderilerinizi yayınlar. Diğer tüm merkezi olmayan sosyal ağlar hala ortada bir sunucu tutar.",
+    "title": "Tarayıcın bir peer'dir"
   }
 }

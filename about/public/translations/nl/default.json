@@ -94,7 +94,7 @@
         "cta": "Broncode bekijken"
       },
       "peer-to-peer": {
-        "description": "Bitsocial is <strong>niet gefedereerd en niet on-chain</strong>. Elke community is een peer-to-peer-zwerm die <strong><ipfs>IPFS</ipfs>/libp2p-primitieven</strong> gebruikt: records geadresseerd met publieke sleutels, gossipsub pubsub en contentoverdracht die dichter bij BitTorrent ligt dan bij een gehoste website. Gebruikers seeden wat ze lezen, nodes kunnen op goedkope hardware draaien, en elke community handhaaft haar eigen anti-spam-challenge in plaats van afhankelijk te zijn van wereldwijd platformbeleid.",
+        "description": "Bitsocial is <strong>noch gefedereerd noch on-chain</strong>. Elke gemeenschap is een peer-to-peer zwerm die <ipfs>IPFS</ipfs> gebruikt, <strong>dichter bij BitTorrent</strong> dan een gehoste website: gebruikers delen moeiteloos, knooppunten draaien op goedkope hardware, en elke gemeenschap is volledig onafhankelijk en soeverein. Een browsertabblad kan zich als peer bij de zwerm aansluiten, dus de web-app is geen client van iemand anders server.",
         "cta": "Lees hoe p2p werkt"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "DeSo web-apps vertrouwen gewoonlijk op DeSo Identity voor ondertekening en op een node-API voor het construeren en indienen van sociale transacties. Dit is gemakkelijker dan het beheren van een node, maar de post voert nog steeds in via gehoste identiteit, node- en transactie-infrastructuur. Bitsocial kan lokaal de sleutel van de gebruiker maken en de gebruiker toestaan via directe P2P of optionele hosted-toegang te posten zonder dat een platformaccount de identiteit bezit.",
           "steemit": "Het eerste bericht start met Steem-accountsleutels en een Steem front-end of API-knooppunt.",
           "detailSteemit": "Steemit is eenvoudig zodra een gebruiker een Steem-account en posting sleutel heeft, maar dat account behoort tot het Steem-machtigingsmodel en de post voert in via front-end Steem of API-knooppunt. Bitsocial kan lokaal de sleutel van de gebruiker maken en de gebruiker toestaan via directe P2P of optionele hosted-toegang te posten zonder dat een platformaccount de identiteit bezit."
+        },
+        "browserRuntime": {
+          "bitsocial": "Een peer. Het voert een node uit en haalt gegevens op van andere peers.",
+          "bluesky": "Een client van een PDS en een AppView",
+          "deso": "Een client van een node API en DeSo Identity",
+          "detail": "Een Nostr-webclient onderhoudt websocket-verbindingen met relays, en deze relays moeten de inhoud die het leest en publiceert accepteren, opslaan en serveren. Bitsocial-browserclients voeren een Helia-knooppunt uit op de pagina: zij vragen HTTP-routers welke peers een community bezitten, vervolgens halen en publiceren zij direct via libp2p. Browser-peers verbinden zich via beveiligde WebSockets, en de gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is wat voorkwam dat berichten die vanaf een tabblad werden gepubliceerd door de rest van het netwerk werden verworpen.",
+          "detailBluesky": "Een Bluesky web-app communiceert met een PDS voor schrijven en een AppView voor lezen, dus de browser is altijd een client van services die gegevens bevatten en interpreteren. Bitsocial-browserclients voeren een Helia-knooppunt uit op de pagina: zij vragen HTTP-routers welke peers een community bezitten, vervolgens halen en publiceren zij direct via libp2p. Browser-peers verbinden zich via beveiligde WebSockets, en de gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is wat voorkwam dat berichten die vanaf een tabblad werden gepubliceerd door de rest van het netwerk werden verworpen.",
+          "detailDeso": "Een DeSo-webapp ondertekent via DeSo Identity en dient in via een node-API, dus de browser hangt af van gehoste identiteit en node-infrastructuur. Bitsocial-browserclients voeren een Helia-knooppunt uit op de pagina: zij vragen HTTP-routers welke peers een community bezitten, vervolgens halen en publiceren zij direct via libp2p. Browser-peers verbinden zich via beveiligde WebSockets, en de gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is wat voorkwam dat berichten die vanaf een tabblad werden gepubliceerd door de rest van het netwerk werden verworpen.",
+          "detailFarcaster": "Een Farcaster-client leest via APIs en indexeerders via hub- of Snapchain-gegevens en schrijft via door de app beheerde ondertekenaars, dus de browser raakt het netwerk zelf nooit aan. Bitsocial-browserclients voeren een Helia-knooppunt uit op de pagina: zij vragen HTTP-routers welke peers een community bezitten, vervolgens halen en publiceren zij direct via libp2p. Browser-peers verbinden zich via beveiligde WebSockets, en de gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is wat voorkwam dat berichten die vanaf een tabblad werden gepubliceerd door de rest van het netwerk werden verworpen.",
+          "detailLens": "Een Lens-app in de browser leest via indexeerders en schrijft via portemonnees, RPC's en chain-infrastructuur. Bitsocial-browserclients voeren een Helia-knooppunt uit op de pagina: zij vragen HTTP-routers welke peers een community bezitten, vervolgens halen en publiceren zij direct via libp2p. Browser-peers verbinden zich via beveiligde WebSockets, en de gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is wat voorkwam dat berichten die vanaf een tabblad werden gepubliceerd door de rest van het netwerk werden verworpen.",
+          "detailMastodon": "Een Mastodon-webclient is een frontend voor de instantie die uw account, uw berichten en uw tijdlijn opslaat. Bitsocial-browserclients voeren een Helia-knooppunt uit op de pagina: zij vragen HTTP-routers welke peers een community bezitten, vervolgens halen en publiceren zij direct via libp2p. Browser-peers verbinden zich via beveiligde WebSockets, en de gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is wat voorkwam dat berichten die vanaf een tabblad werden gepubliceerd door de rest van het netwerk werden verworpen.",
+          "detailSteemit": "Een Steem-frontend leest en schrijft via API-nodes die de keten dragen, dus de browser is een client van een willekeurig knooppunt waarop het verwijst. Bitsocial-browserclients voeren een Helia-knooppunt uit op de pagina: zij vragen HTTP-routers welke peers een community bezitten, vervolgens halen en publiceren zij direct via libp2p. Browser-peers verbinden zich via beveiligde WebSockets, en de gossipsub sequence-number fix in @libp2p/gossipsub 15.0.21 is wat voorkwam dat berichten die vanaf een tabblad werden gepubliceerd door de rest van het netwerk werden verworpen.",
+          "farcaster": "Een client van een app, zijn hubs en indexeerders",
+          "label": "Wat je browser is",
+          "lens": "Een client van een Lens app, een RPC en een indexeerder",
+          "mastodon": "Een client van de server waarop je je hebt aangemeld",
+          "nostr": "Een client van de relays waarvoor het is geconfigureerd",
+          "steemit": "Een client van een front-end en een API node"
         }
       },
       "expand": "Meer lezen",
@@ -756,5 +774,22 @@
         "reason": "Ze stappen in zodra hun mensen er al zijn en overstappen niet meer riskant voelt."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "De pagina start een <helia>Helia</helia>-knooppunt op en spreekt hetzelfde protocol als desktop- en CLI-knooppunten, bereikt peers via hetzelfde soort versleutelde verbinding dat elke website gebruikt. Publiceren vanuit een browser werd betrouwbaar in <gossipsub>2026</gossipsub>, zodra de laatste upstream-fix was geïmplementeerd.",
+        "title": "Het tabblad voert een knooppunt uit"
+      },
+      "unstoppable": {
+        "description": "De pagina is slechts een client: elke kopie ervan, op elk domein of als desktoptoepassing, bereikt hetzelfde netwerk. <strong>Je identiteit en je gemeenschap zijn sleutels die jij bezit</strong>, geen rijen in een bedrijfsdatabase, dus er is geen account te verliezen en geen server in te nemen.",
+        "title": "Niets om uit te schakelen"
+      }
+    },
+    "docsCta": "Hoe P2P in de browser werkt",
+    "liveCta": "Bekijk op de blog",
+    "sectionLabel": "Browser P2P",
+    "supporting": "Open een Bitsocial web-app in een normaal tabblad en het voegt zich automatisch bij het netwerk, haalt berichten van andere peers op en publiceert de jouwe. Elk ander gedecentraliseerd sociaal netwerk behoudt nog steeds een server in het midden.",
+    "title": "Je browser is een peer"
   }
 }

@@ -303,11 +303,15 @@ HTTP routers still matter for content discovery: they return provider addresses 
 hash. They are not IPFS gateways, because they do not serve the content itself. After discovery, the
 browser client connects to peers and fetches the data through the P2P stack.
 
-5chan exposes this as an opt-in Advanced Settings switch in the normal 5chan.app web app. The latest
-`pkc-js` browser stack has become stable enough for public testing after upstream libp2p/gossipsub
-interop work addressed message delivery between Helia and Kubo peers. The setting keeps browser P2P
-controlled while it gets more real-world testing; once it has enough production confidence, it can
-become the default web path.
+Browser P2P is now the default web path, not an experiment behind a switch. 5chan runs pure browser
+P2P by default at 5chan.app, and the Bitsocial blog on bitsocial.net does the same. Browser peers
+dial over secure WebSockets; `pkc-js` denies WebRTC and WebTransport dials by default because their
+connection-establishment paths are slow and unreliable in the browser. The upstream change that made
+browser publishing practical in 2026 was the gossipsub sequence-number fix in `@libp2p/gossipsub`
+15.0.21, which stopped Kubo peers from discarding messages published by JavaScript nodes.
+
+For the full picture, including what a browser node still cannot do, see
+[Browser Peer-to-Peer](/browser-p2p/).
 
 ## Gateway fallback
 

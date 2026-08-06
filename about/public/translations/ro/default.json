@@ -94,7 +94,7 @@
         "cta": "Răsfoiește codul sursă"
       },
       "peer-to-peer": {
-        "description": "Bitsocial <strong>nu este nici federat, nici on-chain</strong>. Fiecare comunitate este un roi peer-to-peer care folosește <strong>primitive <ipfs>IPFS</ipfs>/libp2p</strong>: înregistrări adresate prin chei publice, gossipsub pubsub și transfer de conținut mai apropiat de BitTorrent decât de un site găzduit. Utilizatorii seed-uiesc ceea ce citesc, nodurile pot rula pe hardware ieftin, iar fiecare comunitate își aplică propria provocare anti-spam în loc să depindă de o politică globală de platformă.",
+        "description": "Bitsocial nu este <strong>nici federalizat nici on-chain</strong>. Fiecare comunitate este un roi peer-to-peer care utilizează <ipfs>IPFS</ipfs>, <strong>mai apropiat de BitTorrent</strong> decât de un site găzduit: utilizatorii partajează fără efort, nodurile rulează pe hardware ieftin, și fiecare comunitate este complet independentă și suverană. O filă a browserului poate intra în roi ca peer, deci aplicația web nu este un client al serverului cuiva altcuiva.",
         "cta": "Aflați cum funcționează p2p"
       },
       "social-apps": {
@@ -350,6 +350,24 @@
           "detailDeso": "Aplicațiile web DeSo se bazează de obicei pe DeSo Identity pentru semnare și pe un API de node pentru construirea și trimiterea tranzacțiilor sociale. Este mai ușor decât rularea unui node, dar postul intră încă prin infrastructură de identitate găzduită, node și tranzacție. Bitsocial poate crea cheia utilizatorului local și permite utilizatorului să posteze prin P2P direct sau acces hosted opțional fără un cont de platformă care să posede identitatea.",
           "steemit": "Primul post începe cu chei de cont Steem și o interfață frontală Steem sau nod API.",
           "detailSteemit": "Steemit este simplu o dată ce un utilizator are un cont Steem și o cheie de postare, dar acel cont aparține modelului de permisiuni Steem și postarea intră prin front-end Steem sau nod API. Bitsocial poate crea cheia utilizatorului local și permite utilizatorului să posteze prin P2P direct sau acces hosted opțional fără un cont de platformă care să posede identitatea."
+        },
+        "browserRuntime": {
+          "bitsocial": "Un peer. Rulează un nod și preia date de la alți peers.",
+          "bluesky": "Un client al PDS și al AppView",
+          "deso": "Un client al API nod și DeSo Identity",
+          "detail": "Un client web Nostr menține conexiuni websocket la relei, iar acești relei trebuie să accepte, să stocheze și să servească conținutul pe care îl citește și publică. Clienții de browser Bitsocial rulează un nod Helia pe pagină: ei întreabă rutele HTTP care peerul ține o comunitate, apoi preiau și publică direct prin libp2p. Peerurile de browser se conectează prin WebSockets securizate, iar corectarea numărului de secvență gossipsub din @libp2p/gossipsub 15.0.21 este ceea ce a oprit postările publicate dintr-o filă de a fi aruncate de restul rețelei.",
+          "detailBluesky": "O aplicație web Bluesky comunică cu un PDS pentru scrieri și o AppView pentru citiri, deci browserul este întotdeauna un client al serviciilor care dețin și interpretează datele. Clienții de browser Bitsocial rulează un nod Helia pe pagină: ei întreabă rutele HTTP care peerul ține o comunitate, apoi preiau și publică direct prin libp2p. Peerurile de browser se conectează prin WebSockets securizate, iar corectarea numărului de secvență gossipsub din @libp2p/gossipsub 15.0.21 este ceea ce a oprit postările publicate dintr-o filă de a fi aruncate de restul rețelei.",
+          "detailDeso": "O aplicație web DeSo semnează prin DeSo Identity și trimite prin API de node, deci browserul depinde de identitatea găzduită și infrastructura node. Clienții de browser Bitsocial rulează un nod Helia pe pagină: ei întreabă rutele HTTP care peerul ține o comunitate, apoi preiau și publică direct prin libp2p. Peerurile de browser se conectează prin WebSockets securizate, iar corectarea numărului de secvență gossipsub din @libp2p/gossipsub 15.0.21 este ceea ce a oprit postările publicate dintr-o filă de a fi aruncate de restul rețelei.",
+          "detailFarcaster": "Un client Farcaster citește prin API-uri și indexuri peste date hub sau Snapchain și scrie prin semnatari gestionați de aplicație, deci browserul nu atinge niciodată rețeaua în sine. Clienții de browser Bitsocial rulează un nod Helia pe pagină: ei întreabă rutele HTTP care peerul ține o comunitate, apoi preiau și publică direct prin libp2p. Peerurile de browser se conectează prin WebSockets securizate, iar corectarea numărului de secvență gossipsub din @libp2p/gossipsub 15.0.21 este ceea ce a oprit postările publicate dintr-o filă de a fi aruncate de restul rețelei.",
+          "detailLens": "O aplicație Lens în browser citește prin indexuri și scrie prin portofele, RPC și infrastrucțiune lanț. Clienții de browser Bitsocial rulează un nod Helia pe pagină: ei întreabă rutele HTTP care peerul ține o comunitate, apoi preiau și publică direct prin libp2p. Peerurile de browser se conectează prin WebSockets securizate, iar corectarea numărului de secvență gossipsub din @libp2p/gossipsub 15.0.21 este ceea ce a oprit postările publicate dintr-o filă de a fi aruncate de restul rețelei.",
+          "detailMastodon": "Un client web Mastodon este o interfață frontală pentru instanța care stochează contul tău, postările tale și cronologia ta. Clienții de browser Bitsocial rulează un nod Helia pe pagină: ei întreabă rutele HTTP care peerul ține o comunitate, apoi preiau și publică direct prin libp2p. Peerurile de browser se conectează prin WebSockets securizate, iar corectarea numărului de secvență gossipsub din @libp2p/gossipsub 15.0.21 este ceea ce a oprit postările publicate dintr-o filă de a fi aruncate de restul rețelei.",
+          "detailSteemit": "Un frontend Steem citește și scrie prin noduri API care poartă lanțul, deci browserul este un client al oricărui nod pe care îl indică. Clienții de browser Bitsocial rulează un nod Helia pe pagină: ei întreabă rutele HTTP care peerul ține o comunitate, apoi preiau și publică direct prin libp2p. Peerurile de browser se conectează prin WebSockets securizate, iar corectarea numărului de secvență gossipsub din @libp2p/gossipsub 15.0.21 este ceea ce a oprit postările publicate dintr-o filă de a fi aruncate de restul rețelei.",
+          "farcaster": "Un client al unei aplicații, ale ei hub și indexatori",
+          "label": "Ce este browserul tău",
+          "lens": "Un client al aplicației Lens, RPC și indexator",
+          "mastodon": "Un client al serverului pe care te-ai înregistrat",
+          "nostr": "Un client al relaieelor pentru care este configurat",
+          "steemit": "Un client al front-end și API node"
         }
       },
       "expand": "Află mai mult",
@@ -756,5 +774,22 @@
         "reason": "Se alătură când oamenii lor sunt deja acolo și schimbarea nu mai pare riscantă."
       }
     }
+  },
+  "browserPeer": {
+    "cards": {
+      "node": {
+        "description": "Pagina pornește un nod <helia>Helia</helia> și vorbește același protocol ca nodurile desktop și CLI, ajungând la colegi prin același tip de conexiune criptată pe care o folosește orice site web. Publicarea dintr-un browser a devenit fiabilă în <gossipsub>2026</gossipsub>, după ce ultima corecție din amonte a sosit.",
+        "title": "Fila execută un nod"
+      },
+      "unstoppable": {
+        "description": "Pagina este doar un client: orice copie a acesteia, pe orice domeniu sau ca aplicație de desktop, ajunge la aceeași rețea. <strong>Identitatea ta și comunitatea ta sunt chei pe care le ai</strong>, nu rânduri într-o bază de date a companiei, deci nu există niciun cont de pierdut și niciun server de capturat.",
+        "title": "Nimic de oprit"
+      }
+    },
+    "docsCta": "Cum funcționează P2P în browser",
+    "liveCta": "Vezi pe blog",
+    "sectionLabel": "Browser P2P",
+    "supporting": "Deschide o aplicație web Bitsocial într-o filă normală și se alătură rețelei singură, preluând postări de la alți pari și publicând-ți pe ale tale. Fiecare altă rețea socială descentralizată încă menține un server în mijloc.",
+    "title": "Browserul tău este un peer"
   }
 }
