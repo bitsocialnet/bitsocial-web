@@ -555,13 +555,17 @@ export default function Features() {
                 fill="none"
                 aria-hidden="true"
               >
+                {/* No `non-scaling-stroke` here: it makes the browser resolve the dash pattern in
+                    post-transform space while `pathLength` normalization stays in user space, so the
+                    drawn `pathLength` covers only 1/scale of the path once the CTM scale exceeds 1
+                    (exactly half at 2x, which reads as a connector cut off mid-run). The viewBox is
+                    authored 1:1 with the rendered box, so strokeWidth 2 is already 2 CSS px. */}
                 <m.path
                   className="feature-connector-path"
                   d={connector.d}
                   strokeWidth={2}
                   strokeLinecap="square"
                   strokeLinejoin="round"
-                  vectorEffect="non-scaling-stroke"
                   {...(prefersReducedMotion
                     ? {}
                     : {
