@@ -361,7 +361,10 @@ export default function Topbar() {
           duration: 0.5,
           ease: [0.4, 0, 0.2, 1],
         }}
-        className="fixed top-3 left-4 right-4 z-50 mx-auto max-w-7xl"
+        // Fixed elements resolve against the viewport, which widens when a dialog's scroll
+        // lock hides the scrollbar. Pulling the right anchor in by the removed scrollbar
+        // width keeps the bar aligned with the page instead of drifting with the viewport.
+        className="fixed top-3 left-4 right-[calc(1rem+var(--removed-body-scroll-bar-size,0px))] z-50 mx-auto max-w-7xl"
       >
         <div
           className={cn(

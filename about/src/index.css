@@ -66,10 +66,13 @@
   * {
     @apply border-border;
   }
+  /* Horizontal clipping lives on body only: a non-visible overflow on html
+     stops body's overflow from propagating to the viewport, which breaks
+     dialog scroll locking (the scrollbar stays while the lock's compensating
+     body margin still shifts the page sideways). */
   html {
     min-height: 100%;
     background-color: hsl(var(--background));
-    overflow-x: hidden;
   }
   body {
     @apply bg-background text-foreground font-body;
