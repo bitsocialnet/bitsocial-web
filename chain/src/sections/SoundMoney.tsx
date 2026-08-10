@@ -1,5 +1,16 @@
 import { Ban, Coins, Flame, ShieldCheck, Sparkles } from "lucide-react";
+import { ETHERSCAN_TOKEN_URL } from "@/lib/site";
 import Section from "./Section";
+
+/**
+ * Verbatim from the verified source, including the mint address, so the code shown here matches
+ * byte for byte what a reader finds on Etherscan. The brevity is the argument; do not paraphrase.
+ */
+const CONTRACT_SOURCE = `contract BitsocialToken is ERC20, ERC20Burnable {
+    constructor() ERC20("Bitsocial", "BSO") {
+        _mint(0x5Bc4FF33f86E0272be53Fa25861294489AB2FE2a, 210_000_000 * 1e18);
+    }
+}`;
 
 const LOCKS = [
   { label: "No mint", note: "supply can never grow" },
@@ -12,9 +23,9 @@ export default function SoundMoney() {
   return (
     <Section
       id="tokenomics"
-      eyebrow="The Supply"
-      question="No presale. No team allocation. No mint."
-      supporting="The whole supply was issued in 2022 and airdropped, with nothing carved out ahead of the community. What the code can do is now fixed: 210 million, and no function that can add more."
+      eyebrow="Tokenomics"
+      question="Sound money."
+      supporting="BSO is a fixed-supply ERC-20: 210 million, no inflation, deflationary by design. The whole supply was airdropped, with no presale and nothing carved out ahead of the community. Its contract is immutable and adminless, so the rules are fixed forever."
     >
       <div className="spec">
         <div className="spec-head">
@@ -47,6 +58,35 @@ export default function SoundMoney() {
               </span>
             </div>
           ))}
+        </div>
+
+        <div className="spec-code">
+          <span className="spec-code-label">The whole contract</span>
+          <pre className="spec-code-block" dir="ltr">
+            <code>{CONTRACT_SOURCE}</code>
+          </pre>
+          <p className="spec-code-note">
+            Everything else is{" "}
+            <a
+              className="section-link"
+              href="https://github.com/OpenZeppelin/openzeppelin-contracts"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              OpenZeppelin
+            </a>
+            , unmodified — the most used and most reviewed token code in Ethereum. Nothing custom,
+            nothing clever. Read it on{" "}
+            <a
+              className="section-link"
+              href={ETHERSCAN_TOKEN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Etherscan
+            </a>
+            .
+          </p>
         </div>
 
         <p className="spec-foot">

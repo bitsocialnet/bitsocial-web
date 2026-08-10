@@ -7,13 +7,13 @@ const COMMUNITIES = [
   { id: "gamma", name: "Community layer", meta: "its own token" },
 ];
 
-export default function SettlementLayer() {
+export default function CommunityMoney() {
   return (
     <Section
-      id="settlement-layer"
+      id="community-money"
       eyebrow="Community Money"
       question="One asset under many communities."
-      supporting="Each community would run its own layer, with its own token and its own shared pot of money. All of them would pay their fees in BSO, and their tokens would trade against it."
+      supporting="Each community would run its own layer — an L3 — with its own token and its own shared pot of money, while paying its fees in BSO. L3s already exist across crypto, but they mostly host the same trading as everything underneath them. On Bitsocial Chain one would arrive with a community already attached, which is the part crypto has never had."
     >
       <div className="stack-tree">
         <div className="tree-tier tree-l3">
@@ -36,7 +36,7 @@ export default function SettlementLayer() {
             <span className="tree-l2-name">Bitsocial Chain</span>
             <span className="tree-l2-meta">Ethereum layer · its state derives from Ethereum</span>
           </span>
-          <span className="phase-status phase-status-proposed tree-l2-badge">Proposed</span>
+          <span className="tier-badge tier-badge-proposed tree-l2-badge">Proposed</span>
         </div>
 
         <div className="tree-flow tree-flow-plain" aria-hidden="true" />

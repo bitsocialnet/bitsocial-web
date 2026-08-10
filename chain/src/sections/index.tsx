@@ -1,31 +1,27 @@
-import Problem from "./Problem";
-import WhatIsBso from "./WhatIsBso";
-import OffChainPosts from "./OffChainPosts";
+import WhyAChain from "./WhyAChain";
+import WhyAnL2 from "./WhyAnL2";
 import SoundMoney from "./SoundMoney";
-import ImmutableUpgrade from "./ImmutableUpgrade";
-import WhoBuildsIt from "./WhoBuildsIt";
-import SettlementLayer from "./SettlementLayer";
-import ProgrammableRevenue from "./ProgrammableRevenue";
+import TheAirdrop from "./TheAirdrop";
+import CommunityMoney from "./CommunityMoney";
+import AdsAndTips from "./AdsAndTips";
 import BsoNames from "./BsoNames";
 import FirstUsers from "./FirstUsers";
-import MasterPlan from "./MasterPlan";
-import GetBso from "./GetBso";
+import Possibilities from "./Possibilities";
+import Verify from "./Verify";
 
 export default function Sections() {
   return (
     <>
-      <Problem />
-      <WhatIsBso />
-      <OffChainPosts />
+      <WhyAChain />
+      <WhyAnL2 />
       <SoundMoney />
-      <ImmutableUpgrade />
-      <WhoBuildsIt />
-      <SettlementLayer />
-      <ProgrammableRevenue />
+      <TheAirdrop />
+      <CommunityMoney />
+      <AdsAndTips />
       <BsoNames />
       <FirstUsers />
-      <MasterPlan />
-      <GetBso />
+      <Possibilities />
+      <Verify />
     </>
   );
 }

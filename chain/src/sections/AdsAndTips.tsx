@@ -12,15 +12,13 @@ const STEPS = [
   { icon: Sparkles, label: "Scarcer token", note: "and the next auction" },
 ];
 
-export default function ProgrammableRevenue() {
+export default function AdsAndTips() {
   return (
     <Section
-      id="programmable-revenue"
+      id="ads-and-tips"
       eyebrow="Ads and Tips"
-      question="The marketplace is a contract."
-      supporting="Advertisers would bid for a community's ad slots, in that community's own token. When a sale clears, the contract destroys part of the payment and the rest goes to the community."
-      quote="Burn at the point of revenue, not buyback from a treasury."
-      quoteAttribution="— Esteban Abaroa, Bitsocial founder"
+      question="One idea of what it makes possible."
+      supporting="Nothing here is planned or committed. It is a sketch, included to show the kind of thing that becomes buildable once a social network has its own money: a community auctioning its ad slots on-chain, priced in its own token, with part of every sale destroyed automatically. Only revenue born on-chain can be programmed this way."
     >
       {/* The site's only flow diagram, and the one place the loop is drawn as a
           ring instead of a straight arrow chain captioned "it compounds". */}
@@ -46,7 +44,8 @@ export default function ProgrammableRevenue() {
         </div>
 
         <p className="loop-caption">
-          Tipping works the same way: the contract is the revenue endpoint.
+          Tipping could work the same way, with the contract as the revenue endpoint. Whether either
+          gets built, and how, is for the people building it to decide.
         </p>
       </div>
     </Section>

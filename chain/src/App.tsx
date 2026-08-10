@@ -1,6 +1,7 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import ChainStatusCta from "@/components/chain-status-cta";
+import HeroContractAddress from "@/components/hero-contract-address";
 import BackToTop from "@/components/back-to-top";
 import Footer from "@/components/footer";
 import MailingList from "@/components/mailing-list";
@@ -28,10 +29,28 @@ export default function App() {
                 The missing <span className="mark">social layer</span> of crypto
               </h1>
               <p className="sub">
-                BSO is the money of Bitsocial, the peer-to-peer social network that no company owns.
-                The token is live on Ethereum in a contract nobody can change. Bitsocial Chain, the
-                Ethereum layer that would put it to work, is a proposal — not live yet.
+                Crypto became a casino because Web2, TradFi, and centralized infrastructure own the
+                distribution rails and bend the incentives. Bitsocial Chain fixes this: an
+                unstoppable, fully decentralized{" "}
+                <a
+                  className="sub-link"
+                  href="https://ethereum.org/layer-2/learn/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ethereum L2
+                </a>{" "}
+                <a
+                  className="sub-link"
+                  href="https://l2beat.com/glossary#application-specific-rollup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  appchain
+                </a>{" "}
+                where communities own their networks, their tokens and their revenue.
               </p>
+              <HeroContractAddress />
             </div>
             <div className="stage">
               <MissingLayer />

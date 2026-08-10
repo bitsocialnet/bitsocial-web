@@ -20,7 +20,7 @@ export default function ChainStatusCta() {
   return (
     <div className="hero-status">
       <button type="button" className={chainStatusCtaClassName} onClick={scrollToNewsletter}>
-        Follow the build
+        Chain is not live yet, subscribe for updates
       </button>
     </div>
   );

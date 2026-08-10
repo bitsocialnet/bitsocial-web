@@ -495,3 +495,72 @@
     opacity: 0 !important;
   }
 }
+
+/* ============================================================
+   Hero contract address — the only thing that tells the real
+   token from an impersonator, so it sits above the fold.
+   ============================================================ */
+
+.hero-ca {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 0.7rem;
+  margin-top: clamp(1rem, 2.4vw, 1.4rem);
+}
+
+.hero-ca-label {
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.hero-ca-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  max-width: 100%;
+  padding: 0.35rem 0.7rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.74rem;
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.hero-ca-value:hover,
+.hero-ca-value:focus-visible {
+  color: var(--ink);
+  border-color: var(--ink-faint);
+}
+
+.hero-ca-value.is-copied {
+  color: var(--ink);
+}
+
+/* The address must stay readable rather than shrink the hero, so it truncates
+   on narrow viewports instead of wrapping or forcing a horizontal scrollbar. */
+.hero-ca-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hero-ca-status {
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-ca-value {
+    transition: none;
+  }
+}

@@ -1,14 +1,29 @@
 import { ArrowDown, ArrowRight } from "lucide-react";
+import { BSO_RESOLVER_URL } from "@/lib/site";
 import Section from "./Section";
 
 export default function BsoNames() {
   return (
     <Section
       id="bso-names"
-      eyebrow="The .bso Namespace"
-      question="Nothing to re-register. Nothing to buy."
-      supporting="A .bso name works today by borrowing ENS, the naming system Ethereum wallets use: mycommunity.bso is really mycommunity.eth. The proposed registry would airdrop every name already in use to the wallet that holds it."
-      quote="The namespace launches the way the token did: airdropped, never sold."
+      eyebrow="BSO Names"
+      question="Already using a .bso name? It stays yours."
+      supporting={
+        <>
+          Bitsocial apps{" "}
+          <a
+            className="section-link"
+            href={BSO_RESOLVER_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            resolve .bso names today
+          </a>{" "}
+          by borrowing ENS, the naming system Ethereum wallets use: mycommunity.bso is really
+          mycommunity.eth carrying a bitsocial record. A native registry would airdrop every name
+          already in use to the wallet that holds it — nothing to claim and nothing to re-register.
+        </>
+      }
     >
       <div className="bso-map">
         <div className="bso-card">

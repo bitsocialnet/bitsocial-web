@@ -1,6 +1,6 @@
 ---
 title: BSO Token History
-description: The full generation history of the BSO token, from its 2021 Avalanche origin to today's immutable, adminless Ethereum contract.
+description: The full generation history of the BSO token, from its 2022 Avalanche origin to today's immutable, adminless Ethereum contract.
 ---
 
 # BSO Token History
@@ -13,10 +13,10 @@ since day one, and every migration since then is verifiable on-chain.
 This page lists every generation of the token, in order, with full contract addresses so anyone can
 check the record independently.
 
-## Gen 1: the origin, Avalanche, 2021
+## Gen 1: the origin, Avalanche, 2022
 
 - **Chain**: Avalanche
-- **Year**: 2021
+- **Year**: 2022
 - **Address**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Explorer**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
@@ -24,10 +24,10 @@ This is where BSO started. The full supply was airdropped, with no presale and n
 carved out ahead of the community. The contract was an upgradeable proxy, which was standard
 practice at the time and let the team ship fixes during the token's early life.
 
-## Gen 2: the move to Ethereum, 2024
+## Gen 2: the move to Ethereum, 2023
 
 - **Chain**: Ethereum
-- **Year**: 2024
+- **Year**: 2023
 - **Address**: `0xEA81DaB2e0EcBc6B5c4172DE4c22B6Ef6E55Bd8f`
 - **Explorer**: [Etherscan](https://etherscan.io/token/0xEA81DaB2e0EcBc6B5c4172DE4c22B6Ef6E55Bd8f)
 
@@ -35,10 +35,10 @@ Gen 2 moved BSO from Avalanche to Ethereum, where the rest of the Bitsocial Chai
 Like Gen 1, this contract was still an upgradeable proxy, kept for one more generation while the
 final, permanent contract was prepared.
 
-## Gen 3: fully immutable, 2025
+## Gen 3: fully immutable, 2026
 
 - **Chain**: Ethereum
-- **Year**: 2025
+- **Year**: 2026
 - **Address**: `0xB50cea4c109dc223A10d44c14f521CaeD91DaB5A`
 - **Explorer**: [Etherscan](https://etherscan.io/token/0xB50cea4c109dc223A10d44c14f521CaeD91DaB5A)
 

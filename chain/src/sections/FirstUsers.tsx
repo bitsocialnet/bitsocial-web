@@ -36,14 +36,13 @@ const COHORTS = [
   },
 ];
 
-// id stays `endgame` so existing deep links survive the reframe.
 export default function FirstUsers() {
   return (
     <Section
-      id="endgame"
-      eyebrow="The First Users"
-      question="Whoever wants to keep what they earn."
-      supporting="Bitsocial's own adoption curve says monetization is what carries the network past the point where most networks die. That is the part Bitsocial Chain is proposed to supply. Here is who arrives first."
+      id="first-users"
+      eyebrow="First Users"
+      question="Who would use it first?"
+      supporting="Developers and community operators, before anyone else. Bitsocial's own adoption argument is that monetization is what carries a network past the point where most of them stall, and monetization is the part that does not exist yet."
     >
       <div className="cards">
         {COHORTS.map((cohort) => {
