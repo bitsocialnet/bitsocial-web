@@ -8,6 +8,8 @@ type SectionProps = {
   supporting: ReactNode;
   children: ReactNode;
   quote?: string;
+  /** Names the person who owns an absolute claim, so the site never makes one in its own voice. */
+  quoteAttribution?: string;
 };
 
 // The shared section rhythm, mirroring bitsocial.net: an eyebrow label, one big
@@ -19,6 +21,7 @@ export default function Section({
   supporting,
   children,
   quote,
+  quoteAttribution,
 }: SectionProps) {
   const { ref, revealed } = useReveal<HTMLElement>();
 
@@ -38,7 +41,14 @@ export default function Section({
         </h2>
         <p className="section-supporting reveal">{supporting}</p>
         <div className="section-artifact reveal">{children}</div>
-        {quote ? <p className="section-quote reveal">{quote}</p> : null}
+        {quote ? (
+          <p className="section-quote reveal">
+            {quote}
+            {quoteAttribution ? (
+              <span className="section-quote-attribution">{quoteAttribution}</span>
+            ) : null}
+          </p>
+        ) : null}
       </div>
     </section>
   );

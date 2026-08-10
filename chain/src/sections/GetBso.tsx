@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { ArrowUpRight, ShieldAlert } from "lucide-react";
-import { BSO_TOKEN_ADDRESS, UNISWAP_TOKEN_URL } from "@/lib/site";
+import { scrollToMailingListSection } from "@/lib/mailing-list-nav";
+import { BSO_TOKEN_ADDRESS, ETHERSCAN_TOKEN_URL, UNISWAP_TOKEN_URL } from "@/lib/site";
 import Section from "./Section";
 
 export default function GetBso() {
@@ -23,9 +24,9 @@ export default function GetBso() {
   return (
     <Section
       id="get-bso"
-      eyebrow="How to buy"
-      question="How to get BSO, safely."
-      supporting="The immutable BSO contract is live on Ethereum. Always verify the full address yourself before sending anything."
+      eyebrow="How to Buy"
+      question="Which address is the real one?"
+      supporting="Anyone can list a token called BSO, so the address is the only thing to trust. Match all 42 characters before sending anything. Today BSO is a token you hold, not a product you use."
     >
       <div className="verify">
         <div className="verify-addr">
@@ -47,6 +48,15 @@ export default function GetBso() {
                 </span>
               ) : null}
             </span>
+            <a
+              className="verify-addr-scan"
+              href={ETHERSCAN_TOKEN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Check it on Etherscan
+              <ArrowUpRight aria-hidden size={14} strokeWidth={1.85} />
+            </a>
           </span>
           <span className="verify-badge">Live on Ethereum</span>
         </div>
@@ -69,6 +79,16 @@ export default function GetBso() {
             Trade on Uniswap
             <ArrowUpRight aria-hidden size={15} strokeWidth={1.85} />
           </a>
+
+          {/* The quieter exit: the product is still a proposal, so buying cannot be
+              the only way to leave this page. */}
+          <button
+            type="button"
+            className="verify-link verify-link-quiet"
+            onClick={scrollToMailingListSection}
+          >
+            Follow the build
+          </button>
         </div>
       </div>
     </Section>

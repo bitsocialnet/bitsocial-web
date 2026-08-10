@@ -12,9 +12,9 @@ export default function SoundMoney() {
   return (
     <Section
       id="tokenomics"
-      eyebrow="Tokenomics"
-      question="Sound money."
-      supporting="BSO is a fixed-supply ERC-20: 210 million, no inflation, deflationary by design. Its final contract is immutable and adminless, so the rules are fixed forever."
+      eyebrow="The Supply"
+      question="No presale. No team allocation. No mint."
+      supporting="The whole supply was issued in 2022 and airdropped, with nothing carved out ahead of the community. What the code can do is now fixed: 210 million, and no function that can add more."
     >
       <div className="spec">
         <div className="spec-head">
@@ -22,16 +22,17 @@ export default function SoundMoney() {
             <span className="spec-figure">210,000,000</span>
             <span className="spec-cap">BSO max supply · fixed forever</span>
           </div>
+          {/* Airdrop first: the artifact has to open on the claim the headline makes. */}
           <ul className="spec-traits">
+            <li>
+              <Sparkles aria-hidden size={15} strokeWidth={1.8} /> 100% airdropped, no team or
+              presale
+            </li>
             <li>
               <Coins aria-hidden size={15} strokeWidth={1.8} /> Fixed cap, zero emissions
             </li>
             <li>
               <Flame aria-hidden size={15} strokeWidth={1.8} /> Deflationary: supply only falls
-            </li>
-            <li>
-              <Sparkles aria-hidden size={15} strokeWidth={1.8} /> 100% airdropped, no team or
-              presale
             </li>
           </ul>
         </div>
@@ -50,7 +51,8 @@ export default function SoundMoney() {
 
         <p className="spec-foot">
           <ShieldCheck aria-hidden size={15} strokeWidth={1.8} />
-          Immutable and adminless: nobody can change it, inflate it, or freeze it.
+          Immutable and adminless: there are no admin keys left to hold, so nobody can change it,
+          inflate it, or freeze it.
         </p>
       </div>
     </Section>

@@ -20,12 +20,12 @@ const GENS: Gen[] = [
   {
     gen: "Gen 1",
     chain: "Avalanche",
-    when: "2021",
+    when: "2022",
     addr: "0x625f…bee9",
     href: "https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9",
     statuses: [
       { icon: "origin", label: "origin · 100% airdropped" },
-      { icon: "proxy", label: "upgradeable proxy" },
+      { icon: "proxy", label: "upgradeable proxy · the code could still be changed" },
     ],
     badge: "past",
     badgeLabel: "Origin",
@@ -33,17 +33,17 @@ const GENS: Gen[] = [
   {
     gen: "Gen 2",
     chain: "Ethereum",
-    when: "2024",
+    when: "2023",
     addr: "0xEA81…Bd8f",
     href: "https://etherscan.io/token/0xEA81DaB2e0EcBc6B5c4172DE4c22B6Ef6E55Bd8f",
-    statuses: [{ icon: "proxy", label: "upgradeable proxy" }],
+    statuses: [{ icon: "proxy", label: "upgradeable proxy · the code could still be changed" }],
     badge: "past",
     badgeLabel: "Previous",
   },
   {
     gen: "Gen 3",
     chain: "Ethereum",
-    when: "2025",
+    when: "2026",
     addr: BSO_TOKEN_ADDRESS_SHORT,
     href: ETHERSCAN_TOKEN_URL,
     statuses: [{ icon: "immutable", label: "immutable · adminless" }],
@@ -62,10 +62,11 @@ export default function ImmutableUpgrade() {
   return (
     <Section
       id="immutable-upgrade"
-      eyebrow="An immutable upgrade"
-      question="Where BSO came from, and what’s changing."
-      supporting="Three generations, each migrated 1:1 and verifiable on-chain, ending in today's fully immutable, adminless contract. The protocol is open and the chain is optional by design; what no fork can copy is provenance: the official Bitsocial token since day one."
+      eyebrow="Three Generations"
+      question="Why are there three BSO addresses?"
+      supporting="The first two contracts were upgradeable proxies: whoever held the keys could swap the code. The third removed that key. Each move was a 1:1 airdrop, so holders signed nothing and claimed nothing."
       quote="For a provenance coin, the history is the point."
+      quoteAttribution="— Esteban Abaroa, Bitsocial founder"
     >
       <div className="lineage">
         <ol className="lineage-rail">
@@ -96,6 +97,14 @@ export default function ImmutableUpgrade() {
             </li>
           ))}
         </ol>
+
+        {/* The concession and its counterweight travel together, the way the token
+            history doc states them; splitting them is what made it self-harming. */}
+        <p className="lineage-note">
+          The protocol is open and the chain is optional by design: anyone can fork the code, run
+          their own client, or build their own economy on top of it. What cannot be forked away is
+          provenance. BSO has been the official Bitsocial token since day one.
+        </p>
 
         <a
           className="lineage-link"

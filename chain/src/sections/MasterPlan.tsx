@@ -41,7 +41,7 @@ const PHASES = [
     num: "Phase 05",
     status: "proposed" as PhaseStatus,
     title: "AgoraSwap",
-    desc: "The community DEX where every community token trades against BSO, keeping the economy's liquidity on-chain instead of on custodial dollar exchanges.",
+    desc: "The community exchange where every community token trades against BSO, keeping the economy's liquidity on-chain instead of on custodial dollar exchanges.",
     active: false,
   },
   {
@@ -64,33 +64,40 @@ export default function MasterPlan() {
   return (
     <Section
       id="master-plan"
-      eyebrow="The master plan"
-      question="One token, then a whole economy on top."
-      supporting="The token ships first; the network is the vision it unlocks. Everything past Phase 1 is proposed infrastructure, built in the open."
+      eyebrow="The Master Plan"
+      question="One of six phases is built."
+      supporting="Phase 1 is done: the token sits on its final contract, and no one can change it. The other five are proposals, built in the open, and none of them carries a date."
     >
-      <ol className="roadmap">
-        {PHASES.map((phase) => {
-          const Icon = phase.icon;
-          return (
-            <li key={phase.title} className={`phase${phase.active ? " phase-active" : ""}`}>
-              <span className="phase-rail">
-                <span className="phase-dot">
-                  <Icon aria-hidden size={18} strokeWidth={1.8} />
+      <>
+        <ol className="roadmap">
+          {PHASES.map((phase) => {
+            const Icon = phase.icon;
+            return (
+              <li key={phase.title} className={`phase${phase.active ? " phase-active" : ""}`}>
+                <span className="phase-rail">
+                  <span className="phase-dot">
+                    <Icon aria-hidden size={18} strokeWidth={1.8} />
+                  </span>
+                  <span className="phase-line" />
                 </span>
-                <span className="phase-line" />
-              </span>
-              <span className="phase-body">
-                <span className="phase-num">{phase.num}</span>
-                <span className={`phase-status phase-status-${phase.status}`}>
-                  {STATUS_LABEL[phase.status]}
+                <span className="phase-body">
+                  <span className="phase-num">{phase.num}</span>
+                  <span className={`phase-status phase-status-${phase.status}`}>
+                    {STATUS_LABEL[phase.status]}
+                  </span>
+                  <h3 className="phase-title">{phase.title}</h3>
+                  <p className="phase-desc">{phase.desc}</p>
                 </span>
-                <h3 className="phase-title">{phase.title}</h3>
-                <p className="phase-desc">{phase.desc}</p>
-              </span>
-            </li>
-          );
-        })}
-      </ol>
+              </li>
+            );
+          })}
+        </ol>
+
+        <p className="roadmap-note">
+          If nothing past Phase 1 ships, BSO stays exactly what it is today: a fixed-supply contract
+          with no admin keys, on Ethereum.
+        </p>
+      </>
     </Section>
   );
 }

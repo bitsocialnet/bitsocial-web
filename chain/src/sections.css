@@ -109,6 +109,7 @@
   margin: clamp(2rem, 4vw, 3rem) 0 0;
   font-family: var(--font-display);
   font-size: 0.9rem;
+  font-style: italic;
   font-weight: 500;
   line-height: 1.5;
   /* Diluting var(--ink-muted) toward transparent dropped light-mode contrast
@@ -127,6 +128,23 @@
 }
 
 .dark .section-quote {
+  color: color-mix(in oklab, var(--ink-faint) 85%, transparent);
+}
+
+/* Mirrors the about-site attribution: a not-italic line under the italic quote,
+   so an absolute claim is always owned by the person who made it. */
+.section-quote-attribution {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+/* The quote itself is already diluted in dark; matching it keeps the credit from
+   reading brighter than the line it credits. */
+.dark .section-quote-attribution {
   color: color-mix(in oklab, var(--ink-faint) 85%, transparent);
 }
 
@@ -166,6 +184,149 @@
     transform: none;
     transition: none;
   }
+}
+
+/* ============================================================
+   Card grid — the shared three-up grid behind #problem,
+   #who-builds-it and #endgame. Same panel rhythm as `.premise-half`.
+   ============================================================ */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.7rem, 2.4vw, 1.4rem);
+  max-width: 58rem;
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: clamp(1.1rem, 2.6vw, 1.5rem);
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface-raised);
+}
+
+.card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.card-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.card-body {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}
+
+/* The bolded phrase is the card's claim, so it steps up to `--ink` rather than
+   introducing a second accent colour inside the copy. */
+.card-body strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.card-people {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card-person-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.card-person-role {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+.card-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+}
+
+.card-foot-label {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.card-link {
+  position: relative;
+  align-self: flex-start;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--signal-strong) 35%, transparent);
+  text-underline-offset: 4px;
+  transition:
+    color 160ms ease,
+    text-decoration-color 160ms ease;
+}
+
+.card-link:hover {
+  color: var(--signal);
+  text-decoration-color: var(--signal);
+}
+
+/* Invisible hit-area: the CTA keeps its compact text size but its effective
+   mobile touch target grows to ~44px tall. Only the lone footer link gets it —
+   inside `.card-links` the boxes would overlap and steal each other's taps. */
+.card-foot > .card-link::after {
+  position: absolute;
+  inset: -13px -6px;
+  content: "";
+}
+
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.9rem;
+}
+
+/* Real padding instead of an overlay, so four wrapping links keep separate
+   touch targets. */
+.card-links .card-link {
+  padding: 0.3rem 0;
 }
 
 /* ============================================================
@@ -364,6 +525,17 @@
   content: "–";
 }
 
+/* The Live/Proposed ledger lists presences, not absences, so the minus marker is
+   dropped and the entries get room to wrap onto a second line. */
+.premise-traits-present {
+  gap: 0.5rem;
+  line-height: 1.45;
+}
+
+.premise-traits-present li::before {
+  content: none;
+}
+
 .premise-joint {
   position: relative;
   display: flex;
@@ -390,6 +562,114 @@
   color: var(--ink-faint);
   border: 1px solid var(--line);
   border-radius: 999px;
+}
+
+/* ============================================================
+   Off-chain posts — the on-chain social comparison table
+   ============================================================ */
+.compare {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+/* `table-layout: fixed` keeps the table inside its container at every width, so
+   this scroller never has to engage in practice. It is the guard-rail for the
+   cases percentages cannot cover: a very long unbroken cell, or large text zoom.
+   Either way the page body itself never scrolls sideways. */
+.compare-scroll {
+  overflow-x: auto;
+}
+
+.compare-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  /* The section is centre-aligned; a comparison only scans if the cells are not. */
+  text-align: left;
+}
+
+.compare-corner {
+  width: 26%;
+  border: none;
+}
+
+.compare-col {
+  width: 37%;
+  padding: 0 0.7rem 0.75rem;
+  vertical-align: bottom;
+  font-weight: 400;
+  text-align: left;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.compare-col-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.compare-col-us .compare-col-name {
+  color: var(--signal);
+}
+
+.compare-col-sub {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: var(--ink-faint);
+}
+
+.compare-label,
+.compare-them,
+.compare-us {
+  padding: 0.75rem 0.7rem;
+  overflow-wrap: break-word;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+
+.compare-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: left;
+  color: var(--ink-muted);
+}
+
+.compare-them {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+/* The Bitsocial column is the answer, so it reads one tier stronger than the
+   comparison column and carries the same signal tint as `.premise-half-next`. */
+.compare-us {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.compare-col-us,
+.compare-us {
+  background: color-mix(in oklab, var(--signal) 5%, transparent);
+}
+
+.dark .compare-col-us,
+.dark .compare-us {
+  background: color-mix(in oklab, var(--signal) 12%, transparent);
+}
+
+.compare-sources {
+  margin: clamp(0.9rem, 2vw, 1.2rem) 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: var(--ink-faint);
 }
 
 /* ============================================================
@@ -513,6 +793,14 @@
   color: var(--ink-muted);
 }
 
+/* The roadmap badge is sized for a stacked card body; on this flex row it drops
+   its block-level bottom margin and stops stretching. */
+.tree-l2-badge {
+  flex: none;
+  align-self: center;
+  margin-bottom: 0;
+}
+
 .tree-l1 {
   display: flex;
   align-items: center;
@@ -531,86 +819,133 @@
   color: var(--ink-faint);
 }
 
+.tree-caption {
+  max-width: 46ch;
+  margin: clamp(1.1rem, 2.6vw, 1.5rem) auto 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  text-align: center;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}
+
 /* ============================================================
-   Value accrual — the no-emissions flywheel
+   Programmable revenue — the closed ring. The site's only flow
+   diagram, and the one place the loop is actually drawn shut.
    ============================================================ */
-.flywheel {
+.loop {
   max-width: 52rem;
   margin: 0 auto;
 }
 
-.flow-steps {
+.loop-ring {
+  position: relative;
+  width: min(100%, 44rem);
+  margin: 0 auto;
+}
+
+/* The orbit the four steps sit on. The steps are opaque panels, so the ellipse
+   only shows through the diagonal gaps between them — which is the part that
+   reads as a ring. Sized off the ring box rather than the hub so the arcs land
+   in the empty corner cells whatever height the steps end up needing. */
+.loop-ring::before {
+  content: "";
+  position: absolute;
+  inset: 16% 20%;
+  pointer-events: none;
+  border: 1px dashed color-mix(in oklab, var(--signal) 35%, transparent);
+  border-radius: 50%;
+}
+
+.loop-steps {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.55rem;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: clamp(0.6rem, 2vw, 1rem);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* Endgame's three-pillar variant of the flywheel step grid. */
-.flow-steps-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.flow-step {
+.loop-step {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: clamp(1.1rem, 2.6vw, 1.6rem) 0.8rem;
+  padding: clamp(1rem, 2.4vw, 1.4rem) 0.8rem;
   text-align: center;
   border: 1px solid var(--line);
   border-radius: 1rem;
   background: var(--surface-raised);
 }
 
-.flow-icon {
+/* Compass placement: the middle column and middle row stay clear for the hub. */
+.loop-step-1 {
+  grid-area: 1 / 2;
+}
+
+.loop-step-2 {
+  grid-area: 2 / 3;
+}
+
+.loop-step-3 {
+  grid-area: 3 / 2;
+}
+
+.loop-step-4 {
+  grid-area: 2 / 1;
+}
+
+.loop-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.4rem;
-  height: 2.4rem;
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
   color: var(--signal);
-  background: var(--signal-soft);
+  border: 1px solid var(--line);
   border-radius: 999px;
+  background: var(--surface);
 }
 
-.flow-label {
+.loop-label {
   font-family: var(--font-display);
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--ink);
 }
 
-.flow-note {
-  font-size: 0.74rem;
-  color: var(--ink-faint);
-}
-
-.flow-arrow {
-  position: absolute;
-  top: 50%;
-  right: -0.5rem;
-  z-index: 1;
-  color: var(--ink-faint);
-  transform: translate(50%, -50%);
-}
-
-.flow-loop {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  max-width: 46ch;
-  margin: clamp(1.4rem, 3vw, 2rem) auto 0;
-  font-size: 0.88rem;
+.loop-note {
+  font-size: 0.75rem;
+  line-height: 1.45;
   color: var(--ink-muted);
 }
 
-.flow-loop svg {
-  flex: none;
+.loop-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
   color: var(--signal);
+  border: 1px solid var(--signal);
+  border-radius: 999px;
+  background: var(--signal-soft);
+  transform: translate(-50%, -50%);
+}
+
+.loop-caption {
+  max-width: 46ch;
+  margin: clamp(1.4rem, 3vw, 2rem) auto 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  text-wrap: pretty;
 }
 
 /* ============================================================
@@ -748,6 +1083,16 @@ a.gen-addr::after {
   flex: none;
 }
 
+.lineage-note {
+  max-width: 54ch;
+  margin: clamp(1.1rem, 2.6vw, 1.5rem) auto 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}
+
 .lineage-link {
   display: inline-flex;
   align-items: center;
@@ -815,6 +1160,15 @@ a.gen-addr::after {
 .bso-card-badge-next {
   color: var(--signal);
   border-color: var(--signal);
+}
+
+/* Second pill under the card badge: it drops the roadmap's block-level bottom
+   margin and pulls back most of the card's 0.7rem gap so the pair reads as one
+   stacked label rather than two separate rows. */
+.bso-card-status {
+  align-self: flex-start;
+  margin-top: -0.35rem;
+  margin-bottom: 0;
 }
 
 .bso-row-name {
@@ -1012,6 +1366,16 @@ a.gen-addr::after {
   color: var(--ink-muted);
 }
 
+.roadmap-note {
+  max-width: 48ch;
+  margin: clamp(1.4rem, 3vw, 2rem) auto 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}
+
 /* ============================================================
    Get BSO — verify-first contract card
    ============================================================ */
@@ -1099,6 +1463,29 @@ a.gen-addr::after {
   color: var(--signal);
 }
 
+/* Quieter than `.verify-link`: the address is the claim, this is just where to
+   check it. `position: relative` puts it in the same painting layer as the copy
+   button's invisible hit-area above, so it is not the one that loses taps. */
+.verify-addr-scan {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.3rem;
+  padding: 0.35rem 0;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  transition: color 160ms ease;
+}
+
+.verify-addr-scan:hover {
+  color: var(--signal);
+}
+
+.verify-addr-scan svg {
+  flex: none;
+}
+
 .verify-badge {
   padding: 0.3rem 0.7rem;
   font-family: var(--font-display);
@@ -1130,6 +1517,11 @@ a.gen-addr::after {
 
 .verify-warn code {
   padding: 0.05em 0.35em;
+  /* The 42-character address is one unbreakable token: without this its
+     min-content width sizes the whole `.verify` grid track and every child
+     overflows the section on a narrow viewport. Same treatment as
+     `.bso-row-name`. */
+  overflow-wrap: anywhere;
   font-size: 0.86em;
   color: var(--ink);
   background: var(--surface);
@@ -1139,7 +1531,9 @@ a.gen-addr::after {
 
 .verify-links {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: clamp(0.6rem, 2vw, 0.9rem);
   margin-top: clamp(0.4rem, 1.5vw, 0.75rem);
 }
 
@@ -1171,20 +1565,50 @@ a.gen-addr::after {
   box-shadow: 0 0 24px rgba(37, 99, 235, 0.35);
 }
 
+/* The low-commitment exit sits a tier below the buy link: same pill, no signal
+   border, no glow. Also resets the button chrome `.verify-link` assumes away. */
+.verify-link-quiet {
+  margin: 0;
+  color: var(--ink-muted);
+  border-color: var(--line);
+  background: var(--surface-raised);
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.verify-link-quiet:hover {
+  color: var(--ink);
+  border-color: var(--signal);
+  background: var(--signal-soft);
+  box-shadow: none;
+}
+
 /* ============================================================
    Responsive
    ============================================================ */
 @media (max-width: 720px) {
-  .flow-steps {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .flow-steps-3 {
+  .cards {
     grid-template-columns: 1fr;
   }
 
-  .flow-arrow {
+  /* Below the ring's usable width the four steps become a plain vertical stack,
+     the orbit is dropped, and the hub closes the sequence underneath. */
+  .loop-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.55rem;
+  }
+
+  .loop-ring::before {
     display: none;
+  }
+
+  .loop-hub {
+    position: static;
+    display: flex;
+    margin: clamp(0.7rem, 3vw, 1rem) auto 0;
+    transform: none;
   }
 
   .lineage-rail {
@@ -1225,11 +1649,30 @@ a.gen-addr::after {
 }
 
 @media (max-width: 460px) {
-  .flow-steps {
+  .spec-locks {
     grid-template-columns: 1fr;
   }
 
-  .spec-locks {
-    grid-template-columns: 1fr;
+  /* Three columns still fit at 375px once the gutters and type step down; the
+     alternative, a horizontal scroller, hides the Bitsocial column off-screen. */
+  .compare-col,
+  .compare-label,
+  .compare-them,
+  .compare-us {
+    padding-inline: 0.45rem;
+  }
+
+  .compare-col-name {
+    font-size: 0.85rem;
+  }
+
+  .compare-label,
+  .compare-them,
+  .compare-us {
+    font-size: 0.75rem;
+  }
+
+  .tree-l2 {
+    flex-wrap: wrap;
   }
 }

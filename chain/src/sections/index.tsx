@@ -1,25 +1,29 @@
-import Premise from "./Premise";
-import SettlementLayer from "./SettlementLayer";
-import ValueAccrual from "./ValueAccrual";
-import ProgrammableRevenue from "./ProgrammableRevenue";
+import Problem from "./Problem";
+import WhatIsBso from "./WhatIsBso";
+import OffChainPosts from "./OffChainPosts";
 import SoundMoney from "./SoundMoney";
 import ImmutableUpgrade from "./ImmutableUpgrade";
+import WhoBuildsIt from "./WhoBuildsIt";
+import SettlementLayer from "./SettlementLayer";
+import ProgrammableRevenue from "./ProgrammableRevenue";
 import BsoNames from "./BsoNames";
-import Endgame from "./Endgame";
+import FirstUsers from "./FirstUsers";
 import MasterPlan from "./MasterPlan";
 import GetBso from "./GetBso";
 
 export default function Sections() {
   return (
     <>
-      <Premise />
-      <SettlementLayer />
-      <ValueAccrual />
-      <ProgrammableRevenue />
+      <Problem />
+      <WhatIsBso />
+      <OffChainPosts />
       <SoundMoney />
       <ImmutableUpgrade />
+      <WhoBuildsIt />
+      <SettlementLayer />
+      <ProgrammableRevenue />
       <BsoNames />
-      <Endgame />
+      <FirstUsers />
       <MasterPlan />
       <GetBso />
     </>

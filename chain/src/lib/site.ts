@@ -22,6 +22,12 @@ export const ABOUT_URL = "https://bitsocial.net/about" as const;
 
 export const BLOG_URL = "https://bitsocial.net/blog" as const;
 
+export const FIVECHAN_URL = "https://5chan.app" as const;
+
+export const SEEDIT_URL = "https://seedit.app" as const;
+
+export const STATS_SITE_URL = "https://stats.bitsocial.net" as const;
+
 export const PROOF_OF_CONCEPT_URL = "https://github.com/bitsocialnet/bitsocial-chain" as const;
 
 export const GITHUB_URL = "https://github.com/bitsocialnet" as const;

@@ -1,36 +1,19 @@
 import { Boxes, Layers, Users } from "lucide-react";
-import { BITSOCIAL_URL } from "@/lib/site";
 import Section from "./Section";
 
 const COMMUNITIES = [
-  { id: "alpha", name: "Community L3", meta: "token · DAO" },
-  { id: "beta", name: "Community L3", meta: "token · DAO" },
-  { id: "gamma", name: "Community L3", meta: "token · DAO" },
+  { id: "alpha", name: "Community layer", meta: "its own token" },
+  { id: "beta", name: "Community layer", meta: "its own token" },
+  { id: "gamma", name: "Community layer", meta: "its own token" },
 ];
 
 export default function SettlementLayer() {
   return (
     <Section
       id="settlement-layer"
-      eyebrow="The settlement layer"
-      question="How does every community share one economy?"
-      supporting={
-        <>
-          Bitsocial Chain is the proposed Ethereum L2 appchain for{" "}
-          <a
-            className="section-link"
-            href={BITSOCIAL_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Bitsocial
-          </a>
-          . Communities run their own L3s, tokens and DAOs, yet they settle, stake and pay rent in
-          BSO, and every community token trades against BSO. One asset sits under the whole economy,
-          the way ETH sits under DeFi: the reserve currency of social.
-        </>
-      }
-      quote="Replacing on-chain TVL with social capital."
+      eyebrow="Community Money"
+      question="One asset under many communities."
+      supporting="Each community would run its own layer, with its own token and its own shared pot of money. All of them would pay their fees in BSO, and their tokens would trade against it."
     >
       <div className="stack-tree">
         <div className="tree-tier tree-l3">
@@ -44,15 +27,16 @@ export default function SettlementLayer() {
         </div>
 
         <div className="tree-flow">
-          <span>settle · stake · rent in BSO</span>
+          <span>fees, names and rent paid in BSO</span>
         </div>
 
         <div className="tree-tier tree-l2">
           <Layers aria-hidden size={18} strokeWidth={1.8} />
           <span className="tree-l2-text">
             <span className="tree-l2-name">Bitsocial Chain</span>
-            <span className="tree-l2-meta">Ethereum L2 appchain · BSO settlement</span>
+            <span className="tree-l2-meta">Ethereum layer · its state derives from Ethereum</span>
           </span>
+          <span className="phase-status phase-status-proposed tree-l2-badge">Proposed</span>
         </div>
 
         <div className="tree-flow tree-flow-plain" aria-hidden="true" />
@@ -61,6 +45,10 @@ export default function SettlementLayer() {
           <Boxes aria-hidden size={16} strokeWidth={1.8} />
           <span>Ethereum L1 · security and data</span>
         </div>
+
+        <p className="tree-caption">
+          A share of every fee is destroyed; the rest pays for the chain's security.
+        </p>
       </div>
     </Section>
   );
