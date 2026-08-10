@@ -40,7 +40,9 @@ export default function HeroContractAddress() {
           <Copy aria-hidden size={14} strokeWidth={1.9} />
         )}
       </button>
-      <span className="hero-ca-status" aria-live="polite">
+      {/* The icon swap is the visible confirmation; this only exists because that swap
+          is not announced to a screen reader. */}
+      <span className="sr-only" aria-live="polite">
         {copied ? "Copied to clipboard" : ""}
       </span>
     </div>
