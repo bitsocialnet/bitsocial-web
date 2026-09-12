@@ -51,7 +51,10 @@
     "doctor": "react-doctor --project about,chain -y",
     "doctor:score": "react-doctor about --score -y",
     "doctor:verbose": "react-doctor --project about,chain --verbose -y",
-    "commit": "cz"
+    "commit": "cz",
+    "ai-workflow:sync": "node scripts/sync-ai-workflow.mjs",
+    "ai-workflow:check": "node scripts/validate-ai-workflow.mjs",
+    "ai-workflow:test": "node --test scripts/__tests__/ai-workflow.node-test.mjs scripts/__tests__/agent-hooks.node-test.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.59.1",
@@ -63,9 +66,11 @@
     "autoprefixer": "10.4.27",
     "commitizen": "4.3.1",
     "concurrently": "9.2.1",
+    "cross-spawn": "7.0.6",
     "cz-conventional-changelog": "3.3.0",
     "element-source": "0.0.5",
     "husky": "4.3.8",
+    "js-yaml": "4.3.1",
     "knip": "6.17.0",
     "lint-staged": "16.4.0",
     "oxfmt": "0.20.0",
@@ -77,6 +82,7 @@
     "react-dom": "19.2.4",
     "react-grab": "0.1.48",
     "react-scan": "0.5.3",
+    "smol-toml": "1.6.1",
     "tailwindcss": "3.4.19",
     "typescript": "6.0.2",
     "vite": "8.0.16"
@@ -159,9 +165,9 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "oxlint --config oxlint.json --fix --react-plugin",
-      "oxfmt"
+      "oxfmt --no-error-on-unmatched-pattern"
     ],
-    "*.{json,css}": "oxfmt"
+    "*.{json,css}": "oxfmt --no-error-on-unmatched-pattern"
   },
   "config": {
     "commitizen": {

@@ -1,0 +1,23 @@
+---
+name: translate
+description: Add, update, or remove Bitsocial Web i18next translations when locale changes are requested.
+---
+
+# Translate
+
+1. Determine the requested keys and English values from the user or `about/public/translations/en/default.json`. Discover supported languages from `about/public/translations/`; do not rely on a stale language count.
+2. Translate each value naturally, preserving placeholders, brand names, technical terms, and HTML. Keep terminology consistent across related keys.
+3. For a small change, prepare the maps directly. For substantial batches, delegate independent translation generation to at most four `translator` agents. Give each child its keys and a unique temporary map path. Children generate maps only; they never update locale files.
+4. One writer validates and applies the maps, one key at a time. Include all supported languages and English. Review the dry-run diff before writing:
+
+```bash
+node scripts/update-translations.js --key <key> --map <unique-map.json> --include-en --dry
+node scripts/update-translations.js --key <key> --map <unique-map.json> --include-en --write
+```
+
+5. Keep locale writes serialized across this task and delegated agents; the updater has no writer lock. Re-read current values after another writer finishes.
+6. Verify every requested key/language and placeholder after applying all maps. Remove only this task's temporary maps and report any uncertain translation.
+
+Do not manually rewrite individual locale files. English fallback is allowed only for technical terms, brand names, or placeholders. Use `--delete` for an authorized key removal; use `--audit --dry` to inspect unused keys before an authorized `--audit --write`.
+
+For Docusaurus pages under `docs/i18n`, use `docs/agent-playbooks/translations.md`; the i18next updater does not translate docs pages.

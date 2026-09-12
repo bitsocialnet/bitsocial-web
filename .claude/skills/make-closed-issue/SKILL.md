@@ -1,131 +1,22 @@
 ---
 name: make-closed-issue
-description: Create a GitHub issue from recent changes, commit only relevant diffs, close the issue with the commit hash, and add it to the bitsocialnet project board as Done. Use when the user says "make closed issue", "close issue", or wants to create a tracked, already-resolved GitHub issue for completed work.
+description: Create an issue and linked PR for completed work when that tracking workflow is requested.
 ---
 
-# Make Closed Issue
+<!-- Generated from .agents/skills/make-closed-issue/SKILL.md; run yarn ai-workflow:sync. -->
 
-Creates a GitHub issue, commits relevant changes, closes the issue with the commit hash, and adds it to the project board — all in one workflow.
+# Track Completed Work
 
-## Inputs
+Determine whether the user wants proposed issue wording, an issue created, or the full issue/commit/PR workflow. Honor explicit limits such as no commit or no push. Closing an existing issue is not a request to create a replacement issue or publish code.
 
-- What changed and why (from prior conversation context)
-- Uncommitted or staged git changes in the working tree
+For wording only, use the requested diff/context and the `issue-format` guidance; stop with the proposed text. For the full workflow, inspect repository/branch identity and existing issues/PRs first so retries do not create duplicates.
 
-## Workflow
+Describe the original problem and use concise labels supported by the repository. Resolve the current contributor's login with `gh api user --jq '.login'` when assigning an issue; do not guess another account. If authentication is unavailable, prepare reviewable wording and report the unavailable operation.
 
-### 1. Determine label(s)
+Use a task branch into `master` when opening a PR. Preserve unrelated edits and staged changes, and include only the reviewed task hunks in an authorized commit. Reuse completed verification or select missing checks using `docs/agent-playbooks/verification.md`.
 
-Ask the user using AskQuestion (multi-select):
+When creation is authorized, use `gh issue create` with the verified repository, labels and assignee. Pass multiline bodies through `--body-file`, and retain the returned issue number. If only an issue was requested, finish after creating it.
 
-| Option                | When                                 |
-| --------------------- | ------------------------------------ |
-| `bug`                 | Bug fix                              |
-| `enhancement`         | New feature                          |
-| `bug` + `enhancement` | New feature that also fixes a bug    |
-| `documentation`       | README, AGENTS.md, docs-only changes |
+When the user authorized publishing the change, push only the intended branch and create a ready-for-review PR into `master` with `Closes #<issue>` in its body. A no-push instruction leaves publication pending even if issue creation or a local commit is authorized. Do not merge as part of issue/PR creation.
 
-### 2. Review diffs for relevance
-
-```bash
-git status
-git diff
-git diff --cached
-```
-
-Identify which files relate to the work done in this conversation. Only relevant changes get committed. Unrelated files must be excluded from staging.
-
-**Important**: `git add -p` and `git add -i` are not available (interactive mode unsupported). If a file has mixed relevant/irrelevant changes, include the entire file and note the caveat to the user.
-
-### 3. Generate issue title and description
-
-From the conversation context:
-
-- **Title**: Short, present-tense, describes the **problem** (not the solution). Use backticks for UI elements, code, or literal strings (e.g. Post page `` `Update` `` button disabled and `` `Auto` `` alert unclear).
-- **Description**: 2-3 sentences about the problem. Use backticks for UI element names (`Update`, `Auto`), function/code references (`useReplies().reset()`), and literal text strings. Write as if the issue hasn't been fixed yet.
-
-### 4. Create the issue
-
-```bash
-gh issue create \
-  --repo bitsocialnet/bitsocial-web \
-  --title "ISSUE_TITLE" \
-  --body "ISSUE_DESCRIPTION" \
-  --label "LABEL1,LABEL2" \
-  --assignee plebe1us
-```
-
-Capture the issue number from the output.
-
-### 5. Commit relevant changes
-
-Stage only the relevant files:
-
-```bash
-git add file1.ts file2.tsx ...
-```
-
-Commit using Conventional Commits with scope:
-
-```bash
-git commit -m "$(cat <<'EOF'
-type(scope): concise title
-
-Optional 1-sentence description only if the title isn't self-explanatory.
-EOF
-)"
-```
-
-- **Types**: `fix`, `feat`, `perf`, `refactor`, `docs`, `chore`
-- **Scope**: area of the codebase (e.g., `reply-modal`, `markdown`, `routing`)
-- Prefer title-only commits — skip description when the title is exhaustive
-
-### 6. Comment with commit hash and close
-
-Use the **full** (40-character) commit hash, not the short form.
-
-```bash
-COMMIT_HASH=$(git rev-parse HEAD)
-gh issue comment ISSUE_NUMBER --repo bitsocialnet/bitsocial-web --body "$COMMIT_HASH"
-gh issue close ISSUE_NUMBER --repo bitsocialnet/bitsocial-web
-```
-
-### 7. Add to project board
-
-Use the **GitHub MCP tools** (not gh CLI) for project operations.
-
-**Add the issue to the project:**
-
-```
-projects_write → add_project_item
-  owner: bitsocialnet
-  project_number: 1
-  item_type: issue
-  item_owner: bitsocialnet
-  item_repo: bitsocial-web
-  issue_number: <ISSUE_NUMBER>
-```
-
-**Set Status to "Done":**
-
-```
-projects_write → update_project_item
-  owner: bitsocialnet
-  project_number: 1
-  item_id: <from add response>
-  updated_field: { "id": 251829983, "value": "98236657" }
-```
-
-Assignees and labels are inherited from the issue (set in step 4) — no separate project update needed.
-
-### 8. Report summary
-
-Print a summary to the user:
-
-```
-Issue #NUMBER created, committed, closed, and added to project board.
-  Commit: HASH
-  Labels: label1, label2
-  Project: bitsocial-web → Done
-  URL: https://github.com/bitsocialnet/bitsocial-web/issues/NUMBER
-```
+Report the actual issue, commit and PR state, including partial completion after failures. An issue linked with `Closes` remains open until its PR merges. Keep an unmerged branch/worktree; run a later review or merge workflow only when requested.

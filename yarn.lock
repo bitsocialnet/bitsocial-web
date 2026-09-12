@@ -11764,9 +11764,11 @@ __metadata:
     autoprefixer: "npm:10.4.27"
     commitizen: "npm:4.3.1"
     concurrently: "npm:9.2.1"
+    cross-spawn: "npm:7.0.6"
     cz-conventional-changelog: "npm:3.3.0"
     element-source: "npm:0.0.5"
     husky: "npm:4.3.8"
+    js-yaml: "npm:4.3.1"
     knip: "npm:6.17.0"
     lint-staged: "npm:16.4.0"
     oxfmt: "npm:0.20.0"
@@ -11778,6 +11780,7 @@ __metadata:
     react-dom: "npm:19.2.4"
     react-grab: "npm:0.1.48"
     react-scan: "npm:0.5.3"
+    smol-toml: "npm:1.6.1"
     tailwindcss: "npm:3.4.19"
     typescript: "npm:6.0.2"
     vite: "npm:8.0.16"
@@ -13445,7 +13448,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-spawn@npm:^7.0.3":
+"cross-spawn@npm:7.0.6, cross-spawn@npm:^7.0.3":
   version: 7.0.6
   resolution: "cross-spawn@npm:7.0.6"
   dependencies:
@@ -26625,7 +26628,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"smol-toml@npm:^1.6.1":
+"smol-toml@npm:1.6.1, smol-toml@npm:^1.6.1":
   version: 1.6.1
   resolution: "smol-toml@npm:1.6.1"
   checksum: 10c0/511a78722f99c7616fdb46af708de3d7e81434b5a3d58061166da73f28bfc6cae4f0cd04683f60515b9c490cd10152fce72287c960b337419c0299cc1f0f2a22

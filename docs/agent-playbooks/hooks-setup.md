@@ -1,90 +1,17 @@
-# Agent Hooks Setup
+# Agent hooks
 
-If your AI coding assistant supports lifecycle hooks, configure these for this repo.
+The committed lifecycle hooks only format successfully edited JavaScript/TypeScript files through installed oxfmt. Shared logic lives in `scripts/agent-hooks/format.mjs`; each native wrapper delegates to it.
 
-## Recommended Hooks
+| App | Native configuration | Event |
+|---|---|---|
+| Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
+| Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
+| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
-| Hook            | Command                                       | Purpose                                                                                                                                                                                             |
-| --------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `afterFileEdit` | `scripts/agent-hooks/format.sh`               | Auto-format files after AI edits                                                                                                                                                                    |
-| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`         | Run `corepack yarn install` when `package.json` changes                                                                                                                                             |
-| `afterFileEdit` | `scripts/agent-hooks/react-pattern-review.sh` | When a diff adds `useEffect`/memo primitives in `about/src/`, remind the agent to reconsider with the React review skills                                                                           |
-| `stop`          | `scripts/agent-hooks/sync-git-branches.sh`    | Prune stale refs and delete integrated temporary task branches                                                                                                                                      |
-| `stop`          | `scripts/agent-hooks/react-pattern-review.sh` | Re-scan the current diff for new React effects/memos in `about/src/` before the final verify gate                                                                                                   |
-| `stop`          | `scripts/agent-hooks/verify.sh`               | Hard-gate targeted build verification, lint, typecheck, and format checks; keep `yarn npm audit` informational and run `yarn knip` separately as an advisory audit when dependencies/imports change |
+Claude does not read a standalone `.claude/hooks.json`. Each app still controls project trust and whether hooks are enabled; inspect its current settings rather than bypassing trust. `.codex/config.toml` is repository configuration, not a hook command registry.
 
-## Why
+The formatter validates event/payload, edit success, file extension, and repository containment including symlinks. Missing dependencies or irrelevant input do no work. Commands use an argument array with Corepack network access disabled; hooks do not install dependencies, run builds/reviews, or mutate Git.
 
-- Consistent formatting
-- Lockfile stays in sync
-- New `useEffect`/memo additions in the about site get an explicit second look before the agent finishes
-- Workspace-relevant build/lint/type issues caught early without forcing the full multi-locale docs build on every task
-- Security visibility via `yarn npm audit`
-- Dependency/import drift can be checked with `yarn knip` without turning it into a noisy global stop hook
-- One shared hook implementation for both Codex and Cursor
-- Temporary task branches stay aligned with the repo's worktree workflow
+Run checks explicitly according to [verification.md](verification.md). Run `yarn ai-workflow:sync`, `yarn ai-workflow:check`, and `yarn ai-workflow:test` after changing the workflow. Fixtures use disposable files and fake formatter invocations; they do not prove each app loaded its configuration. Reload and inspect the app catalog after upgrades.
 
-## Example Hook Scripts
-
-### Format Hook
-
-```bash
-#!/bin/bash
-# Auto-format JS/TS files after AI edits
-# Hook receives JSON via stdin with file_path
-
-input=$(cat)
-file_path=$(echo "$input" | grep -o '"file_path"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*:.*"\([^"]*\)"/\1/')
-
-case "$file_path" in
-  *.js|*.jsx|*.ts|*.tsx|*.mjs|*.cjs|*.json|*.css) corepack yarn exec oxfmt "$file_path" 2>/dev/null ;;
-esac
-exit 0
-```
-
-### Verify Hook
-
-```bash
-#!/bin/bash
-# Run targeted build verification, lint, typecheck, format check, and security audit when agent finishes
-
-cat > /dev/null  # consume stdin
-status=0
-corepack yarn build:verify || status=1
-corepack yarn lint || status=1
-corepack yarn typecheck || status=1
-corepack yarn format:check || status=1
-echo "=== yarn npm audit ===" && (corepack yarn npm audit || true)  # informational
-exit $status
-```
-
-By default, `scripts/agent-hooks/verify.sh` exits non-zero when a required check fails. Set `AGENT_VERIFY_MODE=advisory` only when you intentionally need signal from a broken tree without blocking the hook. Keep `yarn knip` out of the hard gate unless the repo explicitly decides to fail on advisory import/dependency issues.
-
-Lifecycle hooks do not replace manual browser verification. For UI or visual changes, still run `playwright-cli` checks across `chrome`, `firefox`, and `webkit`, plus a mobile viewport flow in each engine when responsiveness or touch behavior changed.
-
-### Yarn Install Hook
-
-```bash
-#!/bin/bash
-# Run corepack yarn install when package.json is changed
-# Hook receives JSON via stdin with file_path
-
-input=$(cat)
-file_path=$(echo "$input" | grep -o '"file_path"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*:.*"\([^"]*\)"/\1/')
-
-if [ -z "$file_path" ]; then
-  exit 0
-fi
-
-if [ "$file_path" = "package.json" ]; then
-  cd "$(dirname "$0")/../.." || exit 0
-  echo "package.json changed - running corepack yarn install to update yarn.lock..."
-  corepack yarn install
-fi
-
-exit 0
-```
-
-Configure hook wiring according to your agent tool docs (`hooks.json`, equivalent, etc.).
-
-In this repo, `.codex/hooks/*.sh` and `.cursor/hooks/*.sh` should stay as thin wrappers that delegate to the shared implementations under `scripts/agent-hooks/`.
+The Impeccable design skill and its executable helpers remain available on demand under `.agents/skills/impeccable`. Its former Codex hook pointed at a missing directory; the design workflow now runs when its skill is selected, with no always-on design hook. The skill must not reconfigure project hooks as an incidental design step.

@@ -1,43 +1,17 @@
-# Translations Workflow
+# Translations
 
-This project uses i18next translation files in `public/translations/{lang}/default.json`.
+The about site uses i18next JSON at `about/public/translations/{lang}/default.json`. Docusaurus source translations live separately in `docs/i18n/`.
 
-## Rule
+## About-site keys
 
-Do not manually edit every language file. Use `scripts/update-translations.js`.
+Use `.agents/skills/translate/SKILL.md`. Discover current locales from disk and preserve placeholders, markup, technical terms, and brand names. For larger requests, children can generate independent maps, but one parent applies every locale write serially; the updater has no writer lock.
 
-## Add or Update a Key
+Use a unique task-owned map path. Preview with `node scripts/update-translations.js --key <key> --map <map.json> --include-en --dry`, then apply with the same arguments and `--write`. Verify coverage/values after writing and remove only the temporary maps owned by this task.
 
-1. Create a temporary dictionary file, e.g. `translations-temp.json`:
+Use `--delete` for requested removals. Inspect `--audit --dry` findings before an authorized `--audit --write`; dynamic translation keys require manual source review. Copy English into every locale only for a technical term, brand, or placeholder.
 
-```json
-{
-  "en": "English text",
-  "es": "Spanish text",
-  "fr": "French text",
-  "de": "German text"
-}
-```
+## Docusaurus pages
 
-2. Apply the translation map:
+`scripts/translate-docs.py` is a bulk writer for all pages/locales and has no per-file filter; do not use it for a narrow translation edit. `scripts/check-docs-translations.py` is the read-only verifier and supports `--locales` and `--paths`.
 
-```bash
-node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
-```
-
-3. Delete the temporary dictionary file.
-
-## Other Useful Commands
-
-```bash
-# Copy a key from English to all languages (dry run then write)
-node scripts/update-translations.js --key some_key --from en --dry
-node scripts/update-translations.js --key some_key --from en --write
-
-# Delete a key from all languages
-node scripts/update-translations.js --key obsolete_key --delete --write
-
-# Audit for unused translation keys
-node scripts/update-translations.js --audit --dry
-node scripts/update-translations.js --audit --write
-```
+Keep code fences, links, inline code, contract addresses, headings, tables, and admonitions aligned with the English source. Resolve verifier errors; brand-name `frontmatter-untranslated` warnings can be expected. Follow `docs/AGENTS.md` and build through the root when changing docs theme or i18n behavior so static output and Pagefind stay aligned.
