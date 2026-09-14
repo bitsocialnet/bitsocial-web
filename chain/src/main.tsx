@@ -1,4 +1,4 @@
-import "./lib/react-scan";
+import "./lib/dev-tools";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { domAnimation, LazyMotion, MotionConfig } from "framer-motion";

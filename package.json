@@ -54,7 +54,8 @@
     "commit": "cz",
     "ai-workflow:sync": "node scripts/sync-ai-workflow.mjs",
     "ai-workflow:check": "node scripts/validate-ai-workflow.mjs",
-    "ai-workflow:test": "node --test scripts/__tests__/ai-workflow.node-test.mjs scripts/__tests__/agent-hooks.node-test.mjs"
+    "ai-workflow:test": "node --test scripts/__tests__/ai-workflow.node-test.mjs scripts/__tests__/agent-hooks.node-test.mjs",
+    "doctor:scan": "react-doctor scan"
   },
   "devDependencies": {
     "@playwright/test": "1.59.1",
@@ -63,6 +64,7 @@
     "@types/three": "0.182.0",
     "@typescript/native-preview": "7.0.0-dev.20260318.1",
     "@vitejs/plugin-react": "6.0.1",
+    "agentation": "3.0.2",
     "autoprefixer": "10.4.27",
     "commitizen": "4.3.1",
     "concurrently": "9.2.1",
@@ -78,10 +80,8 @@
     "portless": "0.11.1",
     "postcss": "8.5.23",
     "react": "19.2.4",
-    "react-doctor": "0.9.12",
+    "react-doctor": "0.9.14",
     "react-dom": "19.2.4",
-    "react-grab": "0.1.48",
-    "react-scan": "0.5.3",
     "smol-toml": "1.6.1",
     "tailwindcss": "3.4.19",
     "typescript": "6.0.2",

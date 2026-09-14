@@ -107,3 +107,7 @@ Canonical dev URL: `https://bitsocial.localhost`; worktrees may use branch-scope
 Use `yarn build:verify` for the affected workspace; `yarn build` is the full about/docs production build. Other checks: `yarn lint`, `yarn typecheck`, `yarn format:check`, `yarn doctor`, `yarn knip`. Preserve Yarn exact pins, hardening, and the existing age gate.
 
 Load details when needed: [hooks](docs/agent-playbooks/hooks-setup.md), [verification](docs/agent-playbooks/verification.md), [skills/tools](docs/agent-playbooks/skills-and-tools.md), [long-running work](docs/agent-playbooks/long-running-agent-workflow.md), [known surprises](docs/agent-playbooks/known-surprises.md).
+
+## React diagnostics and visual feedback
+
+Use the pinned `yarn doctor:verbose` for React source diagnostics and `yarn doctor:scan <url> --format json` for runtime traces when performance attribution is needed. Follow `.agents/skills/profile-browsing/references/measurement.md`; the scan owns isolated Chrome and must be serialized with other browsers. Treat findings as guidance for affected code, not an aggregate-score gate. Development builds expose the Agentation annotation toolbar, suppressed by the existing visual-testing, profiling, and no-toolbar flags. Use `.agents/skills/inspect-elements/SKILL.md` for visual context and independent source lookup.

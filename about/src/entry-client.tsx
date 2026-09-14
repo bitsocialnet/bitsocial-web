@@ -8,7 +8,7 @@ import { GraphicsModeProvider } from "@/lib/graphics-mode";
 import { getClientBootstrapPayload } from "@/lib/bootstrap";
 import { initializeClientI18n } from "@/lib/i18n";
 import { configureP2PBrowserPkcOptions } from "@/lib/p2p-browser-config";
-import "@/lib/react-scan";
+import "@/lib/dev-tools";
 
 // Configure pkc-js for pure browser-libp2p mode before any hooks lazily
 // construct their PKC client. Mirrors 5chan/src/index.tsx.

@@ -2584,15 +2584,10 @@ If uncertain, ask the developer before adding an entry.
 - **Status:** confirmed
 - **Update (2026-08-10):** The script used to also resolve its target as `path.join(process.cwd(), "public", "translations")`, so the documented repo-root command failed with "Translations directory not found" and had to be run from `about/`. It now resolves the workspace from the current directory or from its own location, and works from anywhere. The concurrency trap above is unchanged.
 
-### The dev react-scan toolbar swallows driven clicks in the bottom-right corner
+### Development annotation controls can intercept driven clicks
 
-- **Date:** 2026-08-10
-- **Observed by:** Claude
-- **Context:** Verifying the fixed scroll button on the about home page with `playwright-cli`
-- **What was surprising:** `playwright-cli click` on the fixed scroll button times out with `<div id="react-scan-root"></div> intercepts pointer events`. The host element is a zero-height `<div>` at the end of `<body>`, so it looks harmless in a DOM dump; the toolbar actually lives in its open shadow root and is fixed to the bottom-right corner — the same corner as the app's scroll button. `element.click()` from `eval` bypasses hit-testing and still works, so a scripted check can pass while every real pointer click fails.
-- **Impact:** A whole verification pass reads as a product bug in the control being tested. `navigator.webdriver` is `false` in playwright-cli sessions, so the app cannot detect automation on its own.
-- **Mitigation:** `scripts/pw-session.sh open` now registers `window.__NO_DEV_TOOLBAR__ = true` via `page.addInitScript` and reloads, so sessions opened through the wrapper never mount the toolbar. Only the toolbar is suppressed — `react-scan` itself stays enabled, so `__getReactScanReport` and `__ELEMENT_SOURCE__` keep working for the profiler and element-inspection skills. When driving `playwright-cli` directly, set the same flag before load, or expect corner clicks to be intercepted.
-- **Status:** confirmed
+- **Context:** The about and chain sites have fixed controls in the bottom-right corner, where the Agentation toolbar also appears in development.
+- **Mitigation:** `scripts/pw-session.sh open` registers `window.__NO_DEV_TOOLBAR__ = true` before reloading the page. The Agentation initializer also honors `__VISUAL_TESTING__` and `__PROFILING__`; source inspection remains available independently. Direct browser automation must set the same flag before loading the application.
 
 ### `skills add` installs Codex and Cursor copies into the gitignored `.agents/` directory
 
@@ -4167,13 +4162,13 @@ Repo-specific AI workflow guidance lives in:
 - [`docs/agent-playbooks/hooks-setup.md`](https://github.com/bitsocialnet/spam-blocker/blob/HEAD/docs/agent-playbooks/hooks-setup.md)
 - [`docs/agent-playbooks/skills-and-tools.md`](https://github.com/bitsocialnet/spam-blocker/blob/HEAD/docs/agent-playbooks/skills-and-tools.md)
 
-The repo is intended to be worked with Corepack-managed Yarn and repo-managed agent hooks. See the playbooks for the recommended setup and verification flow.
+Use Corepack-managed Yarn. Shared skills and role sources live under `.agents/`; the workflow generator maintains native Codex, Cursor, and Claude outputs. Automatic hooks only format edited source files. See the playbooks for setup and checks selected by the change.
 
 Quick setup for a fresh machine:
 
 1. `corepack enable`
 2. `corepack yarn install`
-3. `./scripts/install-default-agent-skills.sh`
+3. `corepack yarn ai-workflow:check`
 
 **Important:**
 

@@ -60,7 +60,7 @@ const config: Config = {
       type: "text/css",
     },
   ],
-  clientModules: ["./src/clientModules/reactGrab.js"],
+  clientModules: ["./src/clientModules/agentation.js"],
   presets: [
     [
       "classic",

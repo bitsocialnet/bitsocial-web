@@ -287,12 +287,9 @@ case "$command" in
       exit 1
     fi
 
-    # In dev the react-scan toolbar mounts over the bottom-right corner and swallows pointer
-    # events aimed at whatever sits under it, so a driven click on a fixed control there never
-    # lands. Every session opened through this wrapper is automation, so the toolbar is switched
-    # off for the whole session. Only the toolbar: the scanner stays on, and the profiler's own
-    # __PROFILING__ / __VISUAL_TESTING__ flags are untouched. An init script only applies to
-    # loads that follow it, hence the reload when a page is already open.
+    # Hide the dev-only Agentation toolbar so annotations cannot intercept driven clicks.
+    # Source inspection remains available; profiling/visual-testing flags stay untouched.
+    # Init scripts apply on later loads, hence the reload when a page is already open.
     if "$playwright_cli" -s="$session" run-code \
       "async page => await page.addInitScript(() => { window.__NO_DEV_TOOLBAR__ = true })" \
       >/dev/null 2>&1; then
