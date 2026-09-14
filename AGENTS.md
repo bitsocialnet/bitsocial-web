@@ -24,21 +24,21 @@ Record recurring repository surprises with concrete mitigation in [known-surpris
 
 ## Task router
 
-| Task | Guidance/check |
-|---|---|
-| Files in a directory with AGENTS.md | Read that directory's instructions |
-| Code or automation changed | Select checks by impact in [verification.md](docs/agent-playbooks/verification.md) |
-| React state/effects/data flow/performance changed | Read relevant React skill rules; use Doctor when diagnostics resolve a concern |
-| UI/layout changed | Verify affected flows; choose browsers/viewports using the verification playbook |
-| Translation keys/values | Use `translate`; one writer applies all locale changes |
-| `package.json` changed | Run `corepack yarn install` and keep `yarn.lock` synchronized |
-| Dependencies/imports changed | Run advisory `yarn knip`; resolve relevant new findings |
-| AI workflow files changed | Edit shared sources; run `yarn ai-workflow:sync`, `yarn ai-workflow:check`, `yarn ai-workflow:test` |
-| Public English docs or AI context changed | Run `yarn llms:generate` and include resulting tracked indexes |
-| Open PR feedback or merge readiness | Use `review-and-merge-pr` within the requested scope |
-| Durable handoff/resumption needed | Use [long-running-agent-workflow.md](docs/agent-playbooks/long-running-agent-workflow.md) |
-| Frontend design or visual review | Use `impeccable`; preserve the requested visual scope and existing product truth |
-| Dependency manifest/lock changed | Keep `deps:check-pinned` and `deps:check-hardened` passing |
+| Task                                              | Guidance/check                                                                                      |
+| ------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Files in a directory with AGENTS.md               | Read that directory's instructions                                                                  |
+| Code or automation changed                        | Select checks by impact in [verification.md](docs/agent-playbooks/verification.md)                  |
+| React state/effects/data flow/performance changed | Read relevant React skill rules; use Doctor when diagnostics resolve a concern                      |
+| UI/layout changed                                 | Verify affected flows; choose browsers/viewports using the verification playbook                    |
+| Translation keys/values                           | Use `translate`; one writer applies all locale changes                                              |
+| `package.json` changed                            | Run `corepack yarn install` and keep `yarn.lock` synchronized                                       |
+| Dependencies/imports changed                      | Run advisory `yarn knip`; resolve relevant new findings                                             |
+| AI workflow files changed                         | Edit shared sources; run `yarn ai-workflow:sync`, `yarn ai-workflow:check`, `yarn ai-workflow:test` |
+| Public English docs or AI context changed         | Run `yarn llms:generate` and include resulting tracked indexes                                      |
+| Open PR feedback or merge readiness               | Use `review-and-merge-pr` within the requested scope                                                |
+| Durable handoff/resumption needed                 | Use [long-running-agent-workflow.md](docs/agent-playbooks/long-running-agent-workflow.md)           |
+| Frontend design or visual review                  | Use `impeccable`; preserve the requested visual scope and existing product truth                    |
+| Dependency manifest/lock changed                  | Keep `deps:check-pinned` and `deps:check-hardened` passing                                          |
 
 ## Code and product constraints
 
@@ -110,4 +110,7 @@ Load details when needed: [hooks](docs/agent-playbooks/hooks-setup.md), [verific
 
 ## React diagnostics and visual feedback
 
-Use the pinned `yarn doctor:verbose` for React source diagnostics and `yarn doctor:scan <url> --format json` for runtime traces when performance attribution is needed. Follow `.agents/skills/profile-browsing/references/measurement.md`; the scan owns isolated Chrome and must be serialized with other browsers. Treat findings as guidance for affected code, not an aggregate-score gate. Development builds expose the Agentation annotation toolbar, suppressed by the existing visual-testing, profiling, and no-toolbar flags. Use `.agents/skills/inspect-elements/SKILL.md` for visual context and independent source lookup.
+- Run `yarn agent:verify` after React integration changes: affected builds, automatic `doctor:check`, then `perf:check`. CI runs Doctor and deterministic runtime checks on affected frontend/tooling changes. Formatting hooks remain lightweight.
+- Bippy is pinned and starts before React in development/profiling builds. Use `perf:record --target <about|chain|docs>` for committed render counts and official Profiler timings, and `perf:check` after React/Bippy/collector changes; its compatibility selftest runs automatically. Read `.agents/skills/profile-browsing/references/measurement.md`; missing instrumentation or dropped events is unavailable evidence, not a passing zero.
+- Use explicit `build:profile:about`, `build:profile:chain`, or `build:profile:docs` outputs for production React profiling. Ordinary production bundles omit the collector. Keep browser ownership serialized and preserve JSON/trace evidence under `.react-perf/`.
+- Doctor is a source diagnostic, with optional native tracing; its runtime JSON summary does not replace the committed-render collector. Agentation supplies visual feedback and is suppressed during profiling/automation. Use `inspect-elements` for independent source attribution.

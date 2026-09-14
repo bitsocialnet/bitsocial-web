@@ -121,7 +121,7 @@ function ssrServerBuildPlugin() {
         plugins: [react()],
         build: {
           ssr: path.resolve(configRoot, "src/entry-server.tsx"),
-          outDir: path.resolve(configRoot, "../dist/server"),
+          outDir: path.join(clientOutDir, "server"),
           emptyOutDir: false,
           rollupOptions: {
             output: {
@@ -155,7 +155,8 @@ function ssrServerBuildPlugin() {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => {
+export default defineConfig(({ command, mode }) => {
+  const profiling = mode === "profiling";
   return {
     root: __dirname,
     plugins: [
@@ -172,7 +173,9 @@ export default defineConfig(({ command }) => {
       open: process.env.PORTLESS_URL || (process.env.PORTLESS === "0" ? true : previewOpenUrl),
     },
     build: {
-      outDir: path.resolve(__dirname, "../dist"),
+      outDir: path.resolve(__dirname, profiling ? "../dist-profile/about" : "../dist"),
+      minify: profiling ? false : undefined,
+      sourcemap: profiling,
       emptyOutDir: true,
       ssrManifest: true,
     },
@@ -189,6 +192,7 @@ export default defineConfig(({ command }) => {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
+        ...(profiling ? { "react-dom/client": "react-dom/profiling" } : {}),
         // Node-builtin polyfills required by @pkcprotocol/pkc-js and its libp2p
         // transitive deps when running pure-P2P in the browser. Matches 5chan's
         // browser-libp2p setup (vite.config.js in bitsocialnet/5chan).

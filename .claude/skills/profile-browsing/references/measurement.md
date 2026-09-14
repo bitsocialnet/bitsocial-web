@@ -43,16 +43,24 @@ Use a [Playwright trace](../../playwright-cli/references/tracing.md) to correlat
 
 ## React evidence
 
-Use `yarn doctor:verbose` for source diagnostics and inspect findings against the affected code. Static findings and scores do not measure runtime cost.
+The pinned Bippy collector starts before React DOM in development and explicit profiling builds. `window.__REACT_PERF__.reset()` starts a measurement window; `snapshot()` returns committed mount/update/unmount events, component-instance IDs, commit IDs, dropped-event counters, and official React Profiler timing callbacks. Counts exclude StrictMode function replays and abandoned renders. Check collector readiness and dropped events; missing instrumentation must fail, never be interpreted as zero work. Profiler durations are inclusive subtree costs: never add parent and child durations as total CPU time.
 
-For runtime attribution, run the pinned CLI with an explicit app URL:
+Use the repeatable commands first:
 
 ```bash
-yarn doctor:scan <url> --format json --trace-out /tmp/doctor-profile.json.gz
+yarn doctor:check
+yarn perf:check
+yarn perf:record --target about --scenario apps-search
+yarn perf:record --target chain --scenario newsletter-input
+yarn perf:record --target docs --scenario language-search
 ```
 
-React Doctor launches isolated system Chrome and records until Enter or five minutes. Run it in an owned interactive terminal, reproduce only the assigned flow, stop recording with Enter, and retain its summary and local trace path. Prefer a production preview for representative timings; record capture overhead and dev-only toolbar state when profiling development.
+`doctor:check` runs pinned source diagnostics on the affected projects. These are static findings, not runtime counts. `perf:check` first runs collector compatibility and deliberate-regression selftests, then drives the real app scenarios in `scripts/react-perf/config.mjs` with three samples and 4× CPU throttling, enforcing per-phase component-update, commit, render-duration, and action-latency limits. `perf:record` defaults to one unthrottled sample and writes JSON plus a Chrome trace under `.react-perf/`. Use `--url <explicit-local-url>` to reuse a compatible server; otherwise the runner owns an isolated server on an available port. Its machine-wide browser lock must remain serialized with Playwright, Doctor scan, and other browser work. Report target/scenario, build mode, CPU/sample settings, per-instance counts, timing method, limits, dropped events, and evidence paths. Do not edit baselines simply to make a regression pass.
 
-This command owns a browser outside `pw-session.sh`: coordinate with the parent and verify no browser session is active before starting. Close any owned Playwright session first; never overlap the capture with another browser task or use a personal browser. If the browser slot cannot be reserved, defer the capture and report the limitation. An explicit `--cdp` connection requires an authorized dedicated debug profile with no nonblank tabs; Chrome tracing affects the entire browser.
+The initial scenarios cover controlled app search, newsletter typing without submission, and docs language filtering. They do not claim to cover feed, peer, animation, or network performance. Before broadening budgets or relying on a React/Bippy upgrade, run `yarn perf:check` for compatibility, deliberate-regression detection and affected real scenarios. `yarn perf:test` is available for a standalone compatibility-only investigation. Use source and traces to explain avoidable work before changing memoization or effects.
 
-Use the React trace for attribution and browser observers for load/interaction timing. Missing metrics mean unavailable evidence, not zero renders. Do not add an app-level collector or instrumentation just to populate a report. For visible-node attribution in a development build, the `inspect-elements` skill uses the independent `__ELEMENT_SOURCE__` helper. Agentation provides annotation context, not performance measurements.
+The about `apps-search` scenario exercises `/projects` as five committed query changes. It waits for both the URL and controlled input to reflect each character before sending the next one. This verifies committed-render budgets, not rapid-typing responsiveness: passing it does not establish that the input retains characters when keystrokes arrive before router navigation commits. Test rapid typing separately at the relevant CPU settings and preserve its evidence independently.
+
+Normal production output excludes the collector. For production React component timings, use a separate `build:profile:about`, `build:profile:chain`, or `build:profile:docs` build with the official `react-dom/profiling` renderer; outputs live in `dist-profile/` and preserve normal deployment artifacts. Serve the matching output and pass its URL to `perf:record`. A regular production preview can measure page timing but lacks this component instrumentation. Development and profiling-build baselines are distinct; never compare them as equivalent.
+
+Doctor's optional `doctor:scan <url>` can still record native Chrome traces. Its injected transient `__REACT_DOCTOR_RUNTIME_SCAN__` probe is not the repository collector and its JSON component summary is not a complete committed-render counter. Keep its browser isolated and preserve the trace path. Use native traces to investigate effects, cascading work and scheduler phases; Agentation only supplies visual annotation context. Source attribution remains available independently through `__ELEMENT_SOURCE__` in development.

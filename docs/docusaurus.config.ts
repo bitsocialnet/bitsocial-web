@@ -60,6 +60,7 @@ const config: Config = {
       type: "text/css",
     },
   ],
+  plugins: [require.resolve("./plugins/react-perf.cjs")],
   clientModules: ["./src/clientModules/agentation.js"],
   presets: [
     [

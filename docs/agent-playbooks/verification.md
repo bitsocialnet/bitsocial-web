@@ -2,14 +2,14 @@
 
 Select checks from the changed behavior and remaining uncertainty. Reuse successful evidence for the same final state; rerun after relevant edits or failures. Explicit CI/release/user requirements still apply.
 
-| Change | Appropriate checks |
-|---|---|
-| Prose/comments/formatting only | Diff, references, relevant generators; no app build |
-| AI workflow sources/configuration | `yarn ai-workflow:sync`, `yarn ai-workflow:check`, `yarn ai-workflow:test`; regenerate LLM indexes when context changed |
-| Isolated helper or script | Focused invocation/fixtures and syntax or type/lint checks for the affected code |
-| Shared runtime, dependency, build, integration change | Focused affected checks plus the relevant build/type/lint checks below |
-| CSS/theme/layout only | Affected routes/viewports/themes in selected browsers; build when imports, assets, or CSS processing changed |
-| React state/effects/performance | Affected behavior and applicable React guidance; Doctor when diagnostics resolve a concrete concern |
+| Change                                                | Appropriate checks                                                                                                      |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Prose/comments/formatting only                        | Diff, references, relevant generators; no app build                                                                     |
+| AI workflow sources/configuration                     | `yarn ai-workflow:sync`, `yarn ai-workflow:check`, `yarn ai-workflow:test`; regenerate LLM indexes when context changed |
+| Isolated helper or script                             | Focused invocation/fixtures and syntax or type/lint checks for the affected code                                        |
+| Shared runtime, dependency, build, integration change | Focused affected checks plus the relevant build/type/lint checks below                                                  |
+| CSS/theme/layout only                                 | Affected routes/viewports/themes in selected browsers; build when imports, assets, or CSS processing changed            |
+| React state/effects/performance                       | Affected behavior and applicable React guidance; Doctor when diagnostics resolve a concrete concern                     |
 
 ## Project checks
 
@@ -30,3 +30,9 @@ For performance work, compare the same flow with equivalent viewport, content, n
 ## Final evidence
 
 One agent owns heavy verification. Inspect active workloads and serialize installs, builds/full suites, Doctor, Android/Electron work, and browser profiling. Report commands/outcomes and specific limitations; missing data or a skipped engine is not a passing result. Tooling fixtures verify formats and mechanics, not end-to-end app discovery or model decision quality.
+
+## Automatic React checks
+
+`yarn agent:verify` runs the selected builds followed by `yarn doctor:check` and `yarn perf:check`. `perf:check` includes the collector compatibility and deliberate-regression selftest, so neither CI nor the agent verification path needs a separate `perf:test` pass. Install the pinned browser tooling once with `yarn perf:install` (`--with-deps` in Linux CI). Use target/scenario filters for focused reruns after the full relevant pass. Scenario budgets are explicit in `scripts/react-perf/config.mjs`; preserve evidence and fix a regression before considering a justified baseline change. Ordinary production builds omit Bippy; separate `build:profile:*` commands supply official React profiling instrumentation.
+
+The about `apps-search` scenario is paced by committed URL/input values for each character. Its passing result covers that committed-query sequence, not rapid-typing responsiveness. Use a separate fast-input reproduction when evaluating character loss or input responsiveness.
