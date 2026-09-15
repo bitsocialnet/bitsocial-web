@@ -9,6 +9,7 @@ on:
         "chain/**",
         "docs/**",
         "scripts/react-perf/**",
+        "scripts/__tests__/about-ssr.node-test.mjs",
         "scripts/pw-session.sh",
         "package.json",
         "yarn.lock",
@@ -22,6 +23,7 @@ on:
         "chain/**",
         "docs/**",
         "scripts/react-perf/**",
+        "scripts/__tests__/about-ssr.node-test.mjs",
         "scripts/pw-session.sh",
         "package.json",
         "yarn.lock",
@@ -46,6 +48,8 @@ jobs:
           node-version: 24
       - run: corepack enable
       - run: corepack yarn install --immutable
+      - name: Verify about SSR deployment output
+        run: node --test scripts/__tests__/about-ssr.node-test.mjs
       - run: corepack yarn doctor:check
       - run: corepack yarn perf:install --with-deps
       - run: corepack yarn perf:check --output .react-perf/ci

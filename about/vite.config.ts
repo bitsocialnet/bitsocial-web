@@ -92,7 +92,7 @@ function staticMetadataPlugin() {
   };
 }
 
-function ssrServerBuildPlugin() {
+function ssrServerBuildPlugin(profiling: boolean) {
   let configRoot = __dirname;
   let clientOutDir = path.resolve(__dirname, "../dist");
 
@@ -121,7 +121,11 @@ function ssrServerBuildPlugin() {
         plugins: [react()],
         build: {
           ssr: path.resolve(configRoot, "src/entry-server.tsx"),
-          outDir: path.join(clientOutDir, "server"),
+          // The production API handler resolves this fixed path even when
+          // Vercel overrides the client output directory to about/dist.
+          outDir: profiling
+            ? path.join(clientOutDir, "server")
+            : path.resolve(configRoot, "../dist/server"),
           emptyOutDir: false,
           rollupOptions: {
             output: {
@@ -162,7 +166,7 @@ export default defineConfig(({ command, mode }) => {
     plugins: [
       react(),
       staticMetadataPlugin(),
-      ssrServerBuildPlugin(),
+      ssrServerBuildPlugin(profiling),
       ...(command === "serve" && !isPreviewCommand ? [subdomainRedirectPlugin()] : []),
     ],
     server: {
