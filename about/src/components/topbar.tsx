@@ -12,8 +12,12 @@ import HamburgerButton from "./hamburger-button";
 import LanguageSelector, { NoJsLanguageSelector } from "./language-selector";
 import MobileMenu from "./mobile-menu";
 
+// Every topbar control is an explicit 44px flex-centred box on every pointer type. Relying on a
+// coarse-pointer minimum size instead grew the block links on touch devices without
+// re-centring their labels, so the bar looked different on an iPad than on a laptop.
 const navLinkClassName =
-  "text-muted-foreground hover:text-foreground transition-colors relative group text-lg md:text-base font-display leading-none py-2 px-2 block";
+  "text-muted-foreground hover:text-foreground transition-colors relative group flex min-h-11 items-center px-2 text-lg md:text-base font-display leading-none";
+const desktopNavLinkClassName = "h-11 min-w-11 justify-center";
 const compactNavigationTriggerBufferPx = 160;
 const MOBILE_MENU_INTERACTION_GUARD_ATTRIBUTE = "data-mobile-menu-interaction-guard";
 const APPS_DIRECTORY_HREF = "/projects?category=apps";
@@ -100,18 +104,24 @@ function TopbarLinks({
   routeLinks: Array<{ label: string; to: string }>;
 }) {
   return (
-    <div className="topbar-links flex items-center gap-5">
+    <div className="topbar-links flex items-center gap-5 whitespace-nowrap">
       {routeLinks.map((link) => (
         <NavLink
           key={link.to}
           to={link.to}
           onClick={link.to === APPS_DIRECTORY_HREF ? onAppsClick : onNavClick}
+          className={desktopNavLinkClassName}
           noUnderline
         >
           {link.label}
         </NavLink>
       ))}
-      <NavLink to={`/${FAQ_HASH}`} onClick={onFaqClick} noUnderline>
+      <NavLink
+        to={`/${FAQ_HASH}`}
+        onClick={onFaqClick}
+        className={desktopNavLinkClassName}
+        noUnderline
+      >
         {faqLabel}
       </NavLink>
     </div>
@@ -134,7 +144,7 @@ function DesktopNavigation({
   includeNoJsControls?: boolean;
 }) {
   return (
-    <div className="topbar-desktop-nav flex items-center">
+    <div className="topbar-desktop-nav flex h-11 items-center">
       <TopbarLinks
         faqLabel={faqLabel}
         onNavClick={onNavClick}
@@ -395,12 +405,12 @@ export default function Topbar() {
               />
             </div>
 
-            <div ref={topbarContentRef} className="flex items-center justify-between">
+            <div ref={topbarContentRef} className="flex h-11 items-center justify-between">
               <Link
                 ref={logoRef}
                 to="/"
                 onClick={handleLogoClick}
-                className="group inline-flex min-h-11 items-center gap-1 transition-colors"
+                className="group inline-flex h-11 items-center gap-1 transition-colors"
               >
                 <img
                   src="/logo-small.png"
@@ -416,7 +426,7 @@ export default function Topbar() {
               </Link>
 
               {usesCompactNavigation ? (
-                <div className="flex items-center gap-2">
+                <div className="flex h-11 items-center gap-2">
                   <HamburgerButton isOpen={isMobileMenuOpen} onClick={handleMenuToggle} />
                 </div>
               ) : (

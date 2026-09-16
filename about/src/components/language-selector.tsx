@@ -60,7 +60,7 @@ function NoJsLanguageLinks({
             lang={language.code}
             aria-current={isCurrentLanguage ? "true" : undefined}
             className={cn(
-              "rounded-2xl border px-3 py-2 text-sm font-display transition-colors",
+              "rounded-2xl border px-3 py-3 text-sm font-display transition-colors",
               isCurrentLanguage
                 ? "border-blue-glow bg-blue-glow/10 text-foreground"
                 : "border-border/60 bg-background/70 text-muted-foreground hover:border-muted-foreground/40 hover:text-foreground",
@@ -95,7 +95,7 @@ export function NoJsLanguageSelector({ mobile }: { mobile?: boolean }) {
 
   return (
     <details className="nojs-language-menu relative shrink-0">
-      <summary className="nojs-language-summary inline-flex list-none cursor-pointer items-center rounded-full border border-border/60 bg-background/90 px-3 py-2 text-muted-foreground transition-all hover:bg-border/70 hover:text-foreground [&::-webkit-details-marker]:hidden">
+      <summary className="nojs-language-summary inline-flex list-none cursor-pointer items-center rounded-full border border-border/60 bg-background/90 h-11 px-3 text-muted-foreground transition-all hover:bg-border/70 hover:text-foreground [&::-webkit-details-marker]:hidden">
         <span className="flex items-center gap-2">
           <Globe className="h-4 w-4 shrink-0" />
           <span className="min-w-[7rem] truncate text-sm font-display">
@@ -278,7 +278,7 @@ export default function LanguageSelector({
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-11 gap-2 px-3 text-sm text-muted-foreground hover:bg-border/70 hover:text-foreground focus-visible:bg-border/70 font-display"
+                className="h-11 min-w-11 gap-2 px-3 text-sm text-muted-foreground hover:bg-border/70 hover:text-foreground focus-visible:bg-border/70 font-display"
               >
                 <Globe className="h-4 w-4" />
                 <span className="hidden sm:inline">{currentLanguage.label}</span>
