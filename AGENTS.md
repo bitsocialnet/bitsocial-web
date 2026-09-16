@@ -34,6 +34,7 @@ Record recurring repository surprises with concrete mitigation in [known-surpris
 | `package.json` changed                            | Run `corepack yarn install` and keep `yarn.lock` synchronized                                       |
 | Dependencies/imports changed                      | Run advisory `yarn knip`; resolve relevant new findings                                             |
 | AI workflow files changed                         | Edit shared sources; run `yarn ai-workflow:sync`, `yarn ai-workflow:check`, `yarn ai-workflow:test` |
+| Bug fix or substantive review correction exposes a preventable mistake | Use [retro](.agents/skills/retro/SKILL.md) for the smallest worthwhile prevention |
 | Public English docs or AI context changed         | Run `yarn llms:generate` and include resulting tracked indexes                                      |
 | Open PR feedback or merge readiness               | Use `review-and-merge-pr` within the requested scope                                                |
 | Durable handoff/resumption needed                 | Use [long-running-agent-workflow.md](docs/agent-playbooks/long-running-agent-workflow.md)           |
