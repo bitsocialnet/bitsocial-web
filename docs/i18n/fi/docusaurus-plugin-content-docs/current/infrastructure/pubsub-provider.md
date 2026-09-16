@@ -22,7 +22,7 @@ Pubsub Provider on operaattoripalvelu, jolla ajetaan Bitsocial-yhteensopivaa pub
 
 ## Portit
 
-Oletusarvot on valittu niin, että Pubsub Provider voi toimia samalla VPS:llä [Bitsocial Seederin](https://bitsocial.net/apps/bitsocial-seeder/) rinnalla ilman swarm-porttien törmäystä.
+Oletusarvot on valittu niin, että Pubsub Provider voi toimia samalla VPS:llä [Bitsocial Seederin](https://bitsocial.net/projects/bitsocial-seeder/) rinnalla ilman swarm-porttien törmäystä.
 
 | Käyttötarkoitus               | Oletus                              | Huomiot                                                      |
 | ----------------------------- | ----------------------------------- | ------------------------------------------------------------ |

@@ -642,7 +642,7 @@ export default function Apps() {
                         activeTags={activeTags}
                         app={app}
                         buildAppsHref={buildCardFilterHref}
-                        detailHref={`/apps/${app.slug}`}
+                        detailHref={`/projects/${app.slug}`}
                         isAtFilterCap={isAtFilterCap}
                         preferredPlatform={activePlatform}
                       />

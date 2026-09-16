@@ -119,7 +119,7 @@ the generator itself.
 ### `about/`
 
 - Contains the Bitsocial landing/about site
-- Currently also contains the public `/projects` catalog and `/apps/:slug` app detail routes
+- Currently also contains the public `/projects` catalog and `/projects/:slug` app detail routes
 - Keeps static assets and translations in `about/public/`
 - Should not be treated as the long-term home for the project catalog or the blog
 

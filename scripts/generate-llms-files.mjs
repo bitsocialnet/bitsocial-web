@@ -353,7 +353,7 @@ function parseAppsFromAppsData(source, translations) {
     repo,
     slug,
     title: name,
-    url: `${siteOrigin}/apps/${slug}`,
+    url: `${siteOrigin}/projects/${slug}`,
   }));
 
   if (apps.length === 0) {
