@@ -22,7 +22,7 @@ Pubsub 提供方是一项运营者服务，用于运行与 Bitsocial 兼容的 p
 
 ## 端口
 
-默认值的选择使得 Pubsub 提供方可以与 [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) 运行在同一台 VPS 上，而不会发生 swarm 端口冲突。
+默认值的选择使得 Pubsub 提供方可以与 [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) 运行在同一台 VPS 上，而不会发生 swarm 端口冲突。
 
 | 用途           | 默认值                        | 说明                                              |
 | -------------- | ----------------------------- | ------------------------------------------------- |

@@ -208,7 +208,7 @@ function buildHomeItemListSchema(): StructuredDataValue {
       "@type": "ListItem",
       position: index + 1,
       name: app.name,
-      url: toAbsoluteUrl(`/apps/${app.slug}`),
+      url: toAbsoluteUrl(`/projects/${app.slug}`),
       description: app.description,
     })),
   };
@@ -285,7 +285,7 @@ function buildProjectsCollectionPageSchema(): StructuredDataValue {
         "@type": "ListItem",
         position: index + 1,
         name: app.name,
-        url: toAbsoluteUrl(`/apps/${app.slug}`),
+        url: toAbsoluteUrl(`/projects/${app.slug}`),
       })),
     },
   };
@@ -459,7 +459,7 @@ function getOperatingSystem(app: AppData) {
 }
 
 function buildSoftwareApplicationSchema(app: AppData): StructuredDataValue {
-  const canonicalUrl = toAbsoluteUrl(`/apps/${app.slug}`);
+  const canonicalUrl = toAbsoluteUrl(`/projects/${app.slug}`);
   const primaryLaunchUrl = app.links.find((link) => link.kind === "launch")?.url;
   const primaryDownloadUrl = app.links.find((link) => link.kind === "download")?.url;
   const sameAs = [primaryLaunchUrl, `https://github.com/${app.githubRepo}`].filter(Boolean);
@@ -487,7 +487,7 @@ function buildSoftwareApplicationSchema(app: AppData): StructuredDataValue {
 }
 
 function buildAppDetailPageSchema(app: AppData): StructuredDataValue {
-  const canonicalUrl = toAbsoluteUrl(`/apps/${app.slug}`);
+  const canonicalUrl = toAbsoluteUrl(`/projects/${app.slug}`);
 
   return {
     "@type": "WebPage",
@@ -512,7 +512,7 @@ function buildAppDetailPageSchema(app: AppData): StructuredDataValue {
 
 function buildAppDetailSeoMetadata(search: string, app: AppData): SeoMetadata {
   const hasSearchParams = new URLSearchParams(search).size > 0;
-  const canonicalUrl = toAbsoluteUrl(`/apps/${app.slug}`);
+  const canonicalUrl = toAbsoluteUrl(`/projects/${app.slug}`);
 
   return {
     title: `${app.name} | Bitsocial Project Directory`,
@@ -579,7 +579,7 @@ function resolveKnownSeoMetadata(normalizedPath: string, search: string): SeoMet
     return buildBlogSeoMetadata(search);
   }
 
-  const appSlugMatch = normalizedPath.match(/^\/apps\/([^/]+)$/);
+  const appSlugMatch = normalizedPath.match(/^\/projects\/([^/]+)$/);
   if (appSlugMatch?.[1]) {
     const app = getAppBySlug(appSlugMatch[1]);
     if (app) {
@@ -611,7 +611,7 @@ export function getStaticSeoRoutes(): StaticSeoRoute[] {
     "/privacy",
     "/about",
     "/blog",
-    ...APPS.map((app) => `/apps/${app.slug}`),
+    ...APPS.map((app) => `/projects/${app.slug}`),
   ].map((pathname) => ({
     pathname,
     seo: getSeoMetadata(pathname),
@@ -700,7 +700,7 @@ function renderHomeStaticBody() {
         app,
       ) => `            <li class="rounded-[1.5rem] border border-border/60 bg-background/80 p-5">
               <h3 class="text-lg font-display font-semibold text-foreground">
-                <a href="/apps/${escapeHtml(app.slug)}" class="transition-colors hover:text-blue-glow">${escapeHtml(app.name)}</a>
+                <a href="/projects/${escapeHtml(app.slug)}" class="transition-colors hover:text-blue-glow">${escapeHtml(app.name)}</a>
               </h3>
               <p class="mt-2 text-sm font-medium text-foreground/70">${escapeHtml(app.tagline)}</p>
               <p class="mt-3 leading-7 text-muted-foreground">${escapeHtml(app.description)}</p>
@@ -742,7 +742,7 @@ function renderProjectsStaticBody() {
   const appsMarkup = APPS.map(
     (app) => `            <li class="rounded-[1.5rem] border border-border/60 bg-background/80 p-5">
               <h2 class="text-xl font-display font-semibold text-foreground">
-                <a href="/apps/${escapeHtml(app.slug)}" class="transition-colors hover:text-blue-glow">${escapeHtml(app.name)}</a>
+                <a href="/projects/${escapeHtml(app.slug)}" class="transition-colors hover:text-blue-glow">${escapeHtml(app.name)}</a>
               </h2>
               <p class="mt-2 text-sm font-medium text-foreground/70">${escapeHtml(app.tagline)}</p>
               <p class="mt-3 leading-7 text-muted-foreground">${escapeHtml(app.description)}</p>
@@ -807,7 +807,7 @@ function renderStaticSeoBody(pathname: string) {
     return renderProjectsStaticBody();
   }
 
-  const appSlugMatch = pathname.match(/^\/apps\/([^/]+)$/);
+  const appSlugMatch = pathname.match(/^\/projects\/([^/]+)$/);
   if (appSlugMatch?.[1]) {
     const app = getAppBySlug(appSlugMatch[1]);
     if (app) {
@@ -834,14 +834,14 @@ function getRouteLastModified() {
 function getRouteChangeFrequency(pathname: string) {
   if (pathname === "/") return "weekly";
   if (pathname === "/projects") return "weekly";
-  if (pathname.startsWith("/apps/")) return "monthly";
+  if (pathname.startsWith("/projects/")) return "monthly";
   return "yearly";
 }
 
 function getRoutePriority(pathname: string) {
   if (pathname === "/") return "1.0";
   if (pathname === "/projects") return "0.9";
-  if (pathname.startsWith("/apps/")) return "0.7";
+  if (pathname.startsWith("/projects/")) return "0.7";
   return "0.3";
 }
 

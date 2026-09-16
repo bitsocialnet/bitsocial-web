@@ -22,7 +22,7 @@ Pubsub Provider คือบริการสำหรับผู้ดำเ�
 
 ## พอร์ต
 
-ค่าเริ่มต้นถูกเลือกมาเพื่อให้ Pubsub Provider รันอยู่ข้าง ๆ [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) บน VPS เครื่องเดียวกันได้โดยพอร์ต swarm ไม่ชนกัน
+ค่าเริ่มต้นถูกเลือกมาเพื่อให้ Pubsub Provider รันอยู่ข้าง ๆ [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) บน VPS เครื่องเดียวกันได้โดยพอร์ต swarm ไม่ชนกัน
 
 | วัตถุประสงค์         | ค่าเริ่มต้น                   | หมายเหตุ                                                           |
 | -------------------- | ----------------------------- | ------------------------------------------------------------------ |

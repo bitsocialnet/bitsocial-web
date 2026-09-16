@@ -22,7 +22,7 @@ Pubsub-Provider ist ein Betreiberdienst, mit dem sich ein Bitsocial-kompatibles 
 
 ## Ports
 
-Die Standardwerte sind so gewählt, dass Pubsub-Provider neben [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) auf demselben VPS laufen kann, ohne dass es zu einem Konflikt am Swarm-Port kommt.
+Die Standardwerte sind so gewählt, dass Pubsub-Provider neben [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) auf demselben VPS laufen kann, ohne dass es zu einem Konflikt am Swarm-Port kommt.
 
 | Zweck                   | Standard                     | Hinweise                                                        |
 | ----------------------- | ---------------------------- | --------------------------------------------------------------- |

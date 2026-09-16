@@ -22,7 +22,7 @@ Pubsub Provider es un servicio para operadores que ejecuta un relé de respaldo 
 
 ## Puertos
 
-Los valores predeterminados se han elegido para que Pubsub Provider pueda ejecutarse junto a [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) en el mismo VPS sin conflicto de puerto de swarm.
+Los valores predeterminados se han elegido para que Pubsub Provider pueda ejecutarse junto a [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) en el mismo VPS sin conflicto de puerto de swarm.
 
 | Propósito          | Predeterminado                  | Notas                                                                      |
 | ------------------ | ------------------------------- | -------------------------------------------------------------------------- |

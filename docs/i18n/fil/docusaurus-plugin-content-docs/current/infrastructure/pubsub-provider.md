@@ -22,7 +22,7 @@ Ang Pubsub Provider ay isang serbisyo para sa mga operator na nagpapatakbo ng Bi
 
 ## Mga Port
 
-Pinili ang mga default upang makatakbo ang Pubsub Provider katabi ng [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) sa iisang VPS nang walang banggaan sa swarm port.
+Pinili ang mga default upang makatakbo ang Pubsub Provider katabi ng [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) sa iisang VPS nang walang banggaan sa swarm port.
 
 | Layunin                 | Default                      | Mga Tala                                                           |
 | ----------------------- | ---------------------------- | ------------------------------------------------------------------ |

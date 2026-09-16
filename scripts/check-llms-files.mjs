@@ -97,7 +97,10 @@ assert(appRepos.length > 1, "could not parse app repositories from about/src/lib
 for (const outputPath of ["about/public/llms.txt", "about/public/llms-full.txt"]) {
   const contents = outputs.get(outputPath);
   for (const slug of appSlugs) {
-    assert(contents.includes(`https://bitsocial.net/apps/${slug}`), `${outputPath} omits ${slug}`);
+    assert(
+      contents.includes(`https://bitsocial.net/projects/${slug}`),
+      `${outputPath} omits ${slug}`,
+    );
   }
 }
 

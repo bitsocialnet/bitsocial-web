@@ -78,7 +78,7 @@ function AppFrame({
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Apps />} />
-            <Route path="/apps/:slug" element={<AppDetail />} />
+            <Route path="/projects/:slug" element={<AppDetail />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/about" element={<About />} />
             <Route
