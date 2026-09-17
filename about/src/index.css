@@ -397,6 +397,11 @@
     line-height: 1.08;
   }
 
+  .project-title {
+    font-size: clamp(2rem, 1.75rem + 1.1111vw, 2.5rem);
+    line-height: 1.2;
+  }
+
   .home-section-title {
     font-size: var(--text-section-title);
     line-height: 1.08;

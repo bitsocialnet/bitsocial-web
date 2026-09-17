@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, Download, Github, Globe, Monitor, Package, Smartphone } from "lucide-react";
 import AppMirrorLinkCta from "@/components/app-mirror-link-cta";
 import AppLogo from "@/components/app-logo";
+import AppStatusBadge from "@/components/app-status-badge";
 import AppTagPill from "@/components/app-tag-pill";
 import CardInlineCta, {
   cardInlineCtaClassName,
@@ -73,7 +74,7 @@ export default function AppCard({
   const platformTags = getAppPlatforms(app);
   const primaryLinks = getPrimaryLinks(app, preferredPlatform ?? undefined);
   const primaryActionLink = primaryLinks[0];
-  const quickLinks = primaryLinks.slice(1, compact ? 3 : app.featured ? 5 : 4);
+  const quickLinks = primaryLinks.slice(1, app.featured ? 5 : 4);
   const sourceUrl = getGithubUrl(app);
   const tagline = getAppTagline(app, t);
   const description = getAppDescription(app, t);
@@ -83,8 +84,8 @@ export default function AppCard({
   return (
     <article
       className={cn(
-        "glass-card flex h-full flex-col overflow-hidden p-5 md:p-6",
-        compact ? "gap-4" : "gap-5",
+        "glass-card flex h-full min-w-0 flex-col overflow-hidden",
+        compact ? "gap-4 p-5" : "gap-5 p-5 md:p-6",
         app.status === "ready" &&
           !compact &&
           "border-blue-core/20 shadow-[0_0_20px_rgba(37,99,235,0.14)]",
@@ -104,7 +105,7 @@ export default function AppCard({
 
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <h3 className="font-display text-2xl leading-none">
+            <h3 className="min-w-0 break-words font-display text-xl font-semibold leading-snug">
               <Link
                 to={resolvedDetailHref}
                 className="touch-target inline-flex items-center text-foreground transition-colors hover:text-blue-core"
@@ -112,11 +113,7 @@ export default function AppCard({
                 {app.name}
               </Link>
             </h3>
-            {app.status ? (
-              <span className={getStatusClassName(app.status)}>
-                {app.status === "ready" ? t("apps.readyToUse") : t("apps.experimental")}
-              </span>
-            ) : null}
+            {app.status ? <AppStatusBadge status={app.status} /> : null}
           </div>
 
           <p className="mt-2 text-sm font-medium leading-relaxed text-foreground/70">{tagline}</p>
@@ -191,11 +188,11 @@ export default function AppCard({
         ))}
       </div>
 
-      <div className="space-y-3">
+      <div className="mt-auto space-y-3">
         <div className="flex flex-wrap gap-2">
           <CardInlineCta
             href={resolvedDetailHref}
-            className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-5 !py-2 text-sm`}
+            className={`apps-frosted-cta ${cardInlineCtaClassName} !rounded-full !px-4 !py-2`}
           >
             <span className="inline-flex items-center gap-2">
               <ArrowUpRight className="h-4 w-4" />
@@ -203,17 +200,17 @@ export default function AppCard({
             </span>
           </CardInlineCta>
 
-          {primaryActionLink ? (
+          {!compact && primaryActionLink ? (
             linkHasVerifiableStatus(primaryActionLink) ? (
               <AppMirrorLinkCta
                 link={primaryActionLink}
                 icon={getLinkIcon(primaryActionLink)}
-                className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-5 !py-2 text-sm`}
+                className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-4 !py-2 text-sm`}
               />
             ) : (
               <CardInlineCta
                 href={primaryActionLink.url}
-                className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-5 !py-2 text-sm`}
+                className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-4 !py-2 text-sm`}
               >
                 <span className="inline-flex items-center gap-2">
                   {getLinkIcon(primaryActionLink)}
@@ -224,7 +221,7 @@ export default function AppCard({
           ) : null}
         </div>
 
-        {quickLinks.length > 0 ? (
+        {!compact && quickLinks.length > 0 ? (
           <div className="flex flex-wrap gap-2">
             {quickLinks.map((link) =>
               linkHasVerifiableStatus(link) ? (
@@ -250,13 +247,13 @@ export default function AppCard({
           </div>
         ) : null}
 
-        {mirrors.length > 0 ? (
+        {!compact && mirrors.length > 0 ? (
           <div className="rounded-[1.25rem] border border-border/60 p-3">
             <div className="text-micro-fluid mb-2 font-display uppercase tracking-[0.18em] text-foreground/45">
               {t("apps.mirrors")}
             </div>
             <div className="flex flex-wrap gap-2">
-              {mirrors.slice(0, compact ? 1 : 3).map((mirror) => (
+              {mirrors.slice(0, 3).map((mirror) => (
                 <AppMirrorLinkCta
                   key={mirror.url}
                   link={mirror}
@@ -295,15 +292,6 @@ const descriptionRichTextComponents = {
     />
   ),
 };
-
-function getStatusClassName(status: NonNullable<AppData["status"]>) {
-  return cn(
-    "rounded-full border px-2 py-0.5 text-[0.625rem] font-medium uppercase leading-4 tracking-[0.14em]",
-    status === "ready"
-      ? "border-emerald-500/30 text-emerald-700 dark:border-emerald-400/35 dark:text-emerald-200"
-      : "border-amber-500/25 text-amber-700 dark:border-amber-400/35 dark:text-amber-200",
-  );
-}
 
 function getLinkIcon(link: AppLink) {
   if (link.kind === "package") {

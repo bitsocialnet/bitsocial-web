@@ -33,8 +33,7 @@ import { useGraphicsMode } from "@/lib/graphics-mode";
 import { useMediaQuery } from "@/lib/use-media-query";
 import { cn } from "@/lib/utils";
 
-/** Cap on simultaneously active tag + category + platform filters. Mobile drops to 2
- *  because three chips don't fit inside the search bar at narrow widths. */
+/** Cap on simultaneously active tag + category + platform filters: three on desktop, two on mobile. */
 const MAX_FILTER_COUNT_DESKTOP = 3;
 const MAX_FILTER_COUNT_MOBILE = 2;
 const MOBILE_QUERY = "(max-width: 639px)";
@@ -243,62 +242,66 @@ export default function Apps() {
 
           <section className="apps-js-controls glass-card mb-6 p-4 md:p-5">
             <div className="flex flex-col gap-4 xl:flex-row xl:items-center">
-              <div className="flex h-12 flex-1 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
+              <div className="flex min-h-12 min-w-0 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)] xl:flex-1">
                 <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                 <input
                   type="search"
                   value={query}
                   onChange={(event) => updateSearchParams({ q: event.target.value || null })}
                   placeholder={t("apps.searchPlaceholder")}
-                  className="apps-search-input min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground/80"
+                  className="apps-search-input min-h-11 min-w-16 flex-1 sm:min-w-24 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground/80"
                   aria-label={t("apps.searchPlaceholder")}
                 />
                 {query ? (
                   <button
                     type="button"
                     onClick={() => updateSearchParams({ q: null })}
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
+                    className="touch-target flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
                     aria-label={t("apps.clearSearch")}
                   >
                     <X className="h-4 w-4" />
                   </button>
                 ) : null}
-                {activeTags.map((tag) => (
-                  <AppTagPill
-                    key={tag}
-                    active
-                    label={getAppTagLabel(tag, t)}
-                    onClick={() => handleTagSelect(tag)}
-                  />
-                ))}
-                {activePlatform ? (
-                  <AppTagPill
-                    active
-                    label={getPlatformShortLabel(activePlatform, t)}
-                    onClick={() => handlePlatformChange(null)}
-                  />
-                ) : null}
-                {activeCategory ? (
-                  <AppTagPill
-                    active
-                    label={
-                      CATEGORIES.find((category) => category.slug === activeCategory)
-                        ? getCategoryLabel(activeCategory, t)
-                        : activeCategory
-                    }
-                    onClick={() => handleCategoryChange(null)}
-                  />
-                ) : null}
                 {isFiltered ? (
-                  <button
-                    type="button"
-                    onClick={clearFilters}
-                    aria-label={t("apps.clearFilters")}
-                    className="touch-target inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/70 px-3 py-1 text-xs font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
-                  >
-                    <X className="h-3.5 w-3.5" />
-                    <span className="hidden sm:inline">{t("apps.clearFilters")}</span>
-                  </button>
+                  <div className="flex min-w-0 max-w-[60%] items-center gap-1.5">
+                    <div className="flex min-w-0 items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [&>*]:shrink-0 [&::-webkit-scrollbar]:hidden">
+                      {activeTags.map((tag) => (
+                        <AppTagPill
+                          key={tag}
+                          active
+                          label={getAppTagLabel(tag, t)}
+                          onClick={() => handleTagSelect(tag)}
+                        />
+                      ))}
+                      {activePlatform ? (
+                        <AppTagPill
+                          active
+                          label={getPlatformShortLabel(activePlatform, t)}
+                          onClick={() => handlePlatformChange(null)}
+                        />
+                      ) : null}
+                      {activeCategory ? (
+                        <AppTagPill
+                          active
+                          label={
+                            CATEGORIES.find((category) => category.slug === activeCategory)
+                              ? getCategoryLabel(activeCategory, t)
+                              : activeCategory
+                          }
+                          onClick={() => handleCategoryChange(null)}
+                        />
+                      ) : null}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={clearFilters}
+                      aria-label={t("apps.clearFilters")}
+                      className="touch-target inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/70 px-3 py-1 text-xs font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
+                    >
+                      <X className="h-3.5 w-3.5" />
+                      <span className="hidden sm:inline">{t("apps.clearFilters")}</span>
+                    </button>
+                  </div>
                 ) : null}
               </div>
 
@@ -385,60 +388,64 @@ export default function Apps() {
                 {tagParam && tagParam.trim().length > 0 ? (
                   <input type="hidden" name="tag" value={tagParam} />
                 ) : null}
-                <div className="flex h-12 flex-1 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
+                <div className="flex min-h-12 min-w-0 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)] xl:flex-1">
                   <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                   <input
                     type="search"
                     name="q"
                     defaultValue={query}
                     placeholder={t("apps.searchPlaceholder")}
-                    className="apps-search-input min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground/80"
+                    className="apps-search-input min-h-11 min-w-16 flex-1 sm:min-w-24 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground/80"
                     aria-label={t("apps.searchPlaceholder")}
                   />
                   {query ? (
                     <a
                       href={buildAppsHref(searchParams, { q: null })}
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
+                      className="touch-target flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
                       aria-label={t("apps.clearSearch")}
                     >
                       <X className="h-4 w-4" />
                     </a>
                   ) : null}
-                  {activeTags.map((tag) => (
-                    <AppTagPill
-                      key={tag}
-                      active
-                      href={buildAppsHref(searchParams, { tag })}
-                      label={getAppTagLabel(tag, t)}
-                    />
-                  ))}
-                  {activePlatform ? (
-                    <AppTagPill
-                      active
-                      href={buildAppsHref(searchParams, { platform: null })}
-                      label={getPlatformShortLabel(activePlatform, t)}
-                    />
-                  ) : null}
-                  {activeCategory ? (
-                    <AppTagPill
-                      active
-                      href={buildAppsHref(searchParams, { category: null })}
-                      label={
-                        CATEGORIES.find((category) => category.slug === activeCategory)
-                          ? getCategoryLabel(activeCategory, t)
-                          : activeCategory
-                      }
-                    />
-                  ) : null}
                   {isFiltered ? (
-                    <a
-                      href={clearFiltersHref}
-                      aria-label={t("apps.clearFilters")}
-                      className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/70 px-3 py-1 text-xs font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
-                    >
-                      <X className="h-3.5 w-3.5" />
-                      <span className="hidden sm:inline">{t("apps.clearFilters")}</span>
-                    </a>
+                    <div className="flex min-w-0 max-w-[60%] items-center gap-1.5">
+                      <div className="flex min-w-0 items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [&>*]:shrink-0 [&::-webkit-scrollbar]:hidden">
+                        {activeTags.map((tag) => (
+                          <AppTagPill
+                            key={tag}
+                            active
+                            href={buildAppsHref(searchParams, { tag })}
+                            label={getAppTagLabel(tag, t)}
+                          />
+                        ))}
+                        {activePlatform ? (
+                          <AppTagPill
+                            active
+                            href={buildAppsHref(searchParams, { platform: null })}
+                            label={getPlatformShortLabel(activePlatform, t)}
+                          />
+                        ) : null}
+                        {activeCategory ? (
+                          <AppTagPill
+                            active
+                            href={buildAppsHref(searchParams, { category: null })}
+                            label={
+                              CATEGORIES.find((category) => category.slug === activeCategory)
+                                ? getCategoryLabel(activeCategory, t)
+                                : activeCategory
+                            }
+                          />
+                        ) : null}
+                      </div>
+                      <a
+                        href={clearFiltersHref}
+                        aria-label={t("apps.clearFilters")}
+                        className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/70 px-3 py-1 text-xs font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
+                      >
+                        <X className="h-3.5 w-3.5" />
+                        <span className="hidden sm:inline">{t("apps.clearFilters")}</span>
+                      </a>
+                    </div>
                   ) : null}
                 </div>
 
@@ -497,7 +504,7 @@ export default function Apps() {
           <AppsDevsCta />
           <AppsGithubTopicCta />
 
-          <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
+          <div className="grid gap-6 lg:grid-cols-[16rem_minmax(0,1fr)]">
             <div className="apps-js-sidebar">
               {/* Mobile: collapsed under a disclosure to save vertical space. */}
               <details className="apps-mobile-categories group glass-card overflow-hidden lg:hidden">
