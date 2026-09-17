@@ -22,7 +22,7 @@ Pubsub Provider is een operatordienst waarmee je een Bitsocial-compatibele pubsu
 
 ## Poorten
 
-De standaardwaarden zijn zo gekozen dat Pubsub Provider naast [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) op dezelfde VPS kan draaien zonder conflict op de swarmpoort.
+De standaardwaarden zijn zo gekozen dat Pubsub Provider naast [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) op dezelfde VPS kan draaien zonder conflict op de swarmpoort.
 
 | Doel                | Standaard                    | Opmerkingen                                                      |
 | ------------------- | ---------------------------- | ---------------------------------------------------------------- |

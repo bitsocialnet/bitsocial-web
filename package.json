@@ -51,21 +51,40 @@
     "doctor": "react-doctor --project about,chain -y",
     "doctor:score": "react-doctor about --score -y",
     "doctor:verbose": "react-doctor --project about,chain --verbose -y",
-    "commit": "cz"
+    "commit": "cz",
+    "ai-workflow:sync": "node scripts/sync-ai-workflow.mjs",
+    "ai-workflow:check": "node scripts/validate-ai-workflow.mjs",
+    "ai-workflow:test": "node --test scripts/__tests__/ai-workflow.node-test.mjs scripts/__tests__/agent-hooks.node-test.mjs",
+    "doctor:scan": "react-doctor scan",
+    "perf:check": "node scripts/react-perf/runner.mjs check",
+    "perf:record": "node scripts/react-perf/runner.mjs record",
+    "perf:test": "node scripts/react-perf/runner.mjs selftest",
+    "perf:install": "node scripts/react-perf/install-browser.mjs",
+    "doctor:check": "node scripts/react-perf/doctor-check.mjs",
+    "build:profile:about": "vite build --config about/vite.config.ts --mode profiling",
+    "build:profile:chain": "vite build --config chain/vite.config.ts --mode profiling",
+    "build:profile:docs": "REACT_PERF_PROFILE=1 yarn workspace bitsocial-docs build:static --locale en --out-dir ../dist-profile/docs",
+    "agent:verify": "yarn build:verify && yarn doctor:check && yarn perf:check"
   },
   "devDependencies": {
+    "@playwright/cli": "0.1.19",
     "@playwright/test": "1.59.1",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/three": "0.182.0",
     "@typescript/native-preview": "7.0.0-dev.20260318.1",
     "@vitejs/plugin-react": "6.0.1",
+    "agentation": "3.0.2",
     "autoprefixer": "10.4.27",
+    "bippy": "0.7.3",
     "commitizen": "4.3.1",
     "concurrently": "9.2.1",
+    "cross-spawn": "7.0.6",
     "cz-conventional-changelog": "3.3.0",
     "element-source": "0.0.5",
+    "esbuild": "0.28.2",
     "husky": "4.3.8",
+    "js-yaml": "4.3.1",
     "knip": "6.17.0",
     "lint-staged": "16.4.0",
     "oxfmt": "0.20.0",
@@ -73,10 +92,9 @@
     "portless": "0.11.1",
     "postcss": "8.5.23",
     "react": "19.2.4",
-    "react-doctor": "0.9.12",
+    "react-doctor": "0.9.14",
     "react-dom": "19.2.4",
-    "react-grab": "0.1.48",
-    "react-scan": "0.5.3",
+    "smol-toml": "1.6.1",
     "tailwindcss": "3.4.19",
     "typescript": "6.0.2",
     "vite": "8.0.16"
@@ -159,9 +177,9 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "oxlint --config oxlint.json --fix --react-plugin",
-      "oxfmt"
+      "oxfmt --no-error-on-unmatched-pattern"
     ],
-    "*.{json,css}": "oxfmt"
+    "*.{json,css}": "oxfmt --no-error-on-unmatched-pattern"
   },
   "config": {
     "commitizen": {

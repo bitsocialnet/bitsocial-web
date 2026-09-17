@@ -60,7 +60,8 @@ const config: Config = {
       type: "text/css",
     },
   ],
-  clientModules: ["./src/clientModules/reactGrab.js"],
+  plugins: [require.resolve("./plugins/react-perf.cjs")],
+  clientModules: ["./src/clientModules/agentation.js"],
   presets: [
     [
       "classic",

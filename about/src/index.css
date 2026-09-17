@@ -732,11 +732,4 @@
     image-rendering: pixelated;
     image-rendering: crisp-edges;
   }
-
-  @media (pointer: coarse) {
-    .topbar-frosted :is(a, button, summary) {
-      min-width: 2.75rem;
-      min-height: 2.75rem;
-    }
-  }
 }

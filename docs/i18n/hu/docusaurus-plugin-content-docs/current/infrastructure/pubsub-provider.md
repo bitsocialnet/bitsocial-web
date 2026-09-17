@@ -22,7 +22,7 @@ A Pubsub Provider egy üzemeltetői szolgáltatás, amellyel Bitsocial-kompatibi
 
 ## Portok
 
-Az alapértelmezéseket úgy választottuk meg, hogy a Pubsub Provider a [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) mellett futhasson ugyanazon a VPS-en, swarm-portütközés nélkül.
+Az alapértelmezéseket úgy választottuk meg, hogy a Pubsub Provider a [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) mellett futhasson ugyanazon a VPS-en, swarm-portütközés nélkül.
 
 | Cél                  | Alapértelmezés                                | Megjegyzések                                                                |
 | -------------------- | --------------------------------------------- | --------------------------------------------------------------------------- |

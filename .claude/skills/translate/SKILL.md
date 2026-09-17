@@ -1,103 +1,25 @@
 ---
 name: translate
-description: Add or update i18next translation keys across all language files by spawning translator subagents. Use when the user asks to add a new translation, update existing translations, translate text, or work with i18n keys. Triggers on "translate", "add translation", "translation key", "i18n", "localization".
+description: Add, update, or remove Bitsocial Web i18next translations when locale changes are requested.
 ---
+
+<!-- Generated from .agents/skills/translate/SKILL.md; run yarn ai-workflow:sync. -->
 
 # Translate
 
-This skill orchestrates translation of i18next keys by spawning **translator** subagents. Each key gets its own subagent so multiple keys can be translated in parallel.
-
-## How It Works
-
-1. The user provides one or more translation keys (and optionally English values).
-2. This skill tells the parent agent to spawn one `translator` subagent per key.
-3. Each subagent independently translates its key into all 36 languages and applies the result using `scripts/update-translations.js`.
-
-## Workflow
-
-### Step 1 — Parse the keys
-
-Identify all translation keys from the user's request. Keys may be provided as:
-
-- A comma-separated list: `upload_failed, media_hosting, file`
-- A numbered/bulleted list
-- Inline in a sentence: "translate the key `upload_failed`"
-
-### Step 2 — Look up English values
-
-For each key, check if the English value already exists in `public/translations/en/default.json`. If the user provided new English text, use that instead.
-
-### Step 3 — Spawn translator subagents
-
-For **each key**, spawn a `translator` subagent (using the Task tool with `subagent_type: "generalPurpose"` and `model: "gpt-5.4-mini"`). The prompt for each subagent must include:
-
-- The key name
-- The English value
-- An instruction to follow the translator subagent's system prompt
-
-Example prompt for a subagent:
-
-```
-You are the translator subagent. Translate the following i18next key into all 36 supported languages and apply it using the project's translation script.
-
-Key: upload_failed
-English value: "Upload failed"
-
-Make each translation sound natural in its language. Preserve the English meaning, but do not mirror English wording so literally that the result sounds awkward or robotic.
-
-Follow your system prompt for the full workflow (create dictionary file, dry run, apply, clean up).
-```
-
-**Parallelism rules:**
-
-- Spawn up to 4 subagents concurrently (Task tool limit).
-- If there are more than 4 keys, batch them: spawn 4, wait for completion, then spawn the next batch.
-
-### Step 4 — Report results
-
-After all subagents complete, summarize:
-
-- Which keys were translated successfully
-- Any failures or issues
-
-## Other Operations (No Subagent Needed)
-
-For non-translation operations, run the script directly without spawning subagents:
-
-### Copy English value to all languages (fallback only)
-
-Use only when the string is a technical term, brand name, or placeholder.
+1. Determine the requested keys and English values from the user or `about/public/translations/en/default.json`. Discover supported languages from `about/public/translations/`; do not rely on a stale language count.
+2. Translate each value naturally, preserving placeholders, brand names, technical terms, and HTML. Keep terminology consistent across related keys.
+3. For a small change, prepare the maps directly. For substantial batches, delegate independent translation generation to at most four `translator` agents. Give each child its keys and a unique temporary map path. Children generate maps only; they never update locale files.
+4. One writer validates and applies the maps, one key at a time. Include all supported languages and English. Review the dry-run diff before writing:
 
 ```bash
-node scripts/update-translations.js --key some_key --from en --write
+node scripts/update-translations.js --key <key> --map <unique-map.json> --include-en --dry
+node scripts/update-translations.js --key <key> --map <unique-map.json> --include-en --write
 ```
 
-### Delete a key from all languages
+5. Keep locale writes serialized across this task and delegated agents; the updater has no writer lock. Re-read current values after another writer finishes.
+6. Verify every requested key/language and placeholder after applying all maps. Remove only this task's temporary maps and report any uncertain translation.
 
-```bash
-node scripts/update-translations.js --key obsolete_key --delete --write
-```
+Do not manually rewrite individual locale files. English fallback is allowed only for technical terms, brand names, or placeholders. Use `--delete` for an authorized key removal; use `--audit --dry` to inspect unused keys before an authorized `--audit --write`.
 
-### Audit for unused keys
-
-```bash
-node scripts/update-translations.js --audit --dry
-node scripts/update-translations.js --audit --write
-```
-
-## Important Flags
-
-| Flag            | Description                                              |
-| --------------- | -------------------------------------------------------- |
-| `--key <name>`  | Translation key to update/delete                         |
-| `--map <file>`  | JSON file with per-language values                       |
-| `--include-en`  | Include English in updates (required when using `--map`) |
-| `--from <lang>` | Source language to copy from (default: en)               |
-| `--dry`         | Preview changes without writing                          |
-| `--write`       | Actually write the files                                 |
-| `--delete`      | Delete the key from all languages                        |
-| `--audit`       | Find and remove unused translation keys                  |
-
-## Supported Languages
-
-ar, bn, ca, cs, da, de, el, en, es, fa, fi, fil, fr, he, hi, hu, id, it, ja, ko, mr, nl, no, pl, pt, ro, ru, sq, sv, te, th, tr, uk, ur, vi, zh
+For Docusaurus pages under `docs/i18n`, use `docs/agent-playbooks/translations.md`; the i18next updater does not translate docs pages.

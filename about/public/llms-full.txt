@@ -43,28 +43,28 @@ Two interpretation notes matter:
 
 ## Public apps and tools
 
-- [5chan](https://bitsocial.net/apps/5chan): Decentralized imageboards with direct web, APK, and desktop downloads.
-- [Seedit](https://bitsocial.net/apps/seedit): Forum-style Bitsocial client with web, APK, and desktop builds.
-- [bitbones](https://bitsocial.net/apps/bitbones): Bare-bones reference client where every view is a thin wrapper over one hook.
-- [HuggingSocial](https://bitsocial.net/apps/huggingsocial): Peer-to-peer hub for finding, discussing, and downloading open AI models.
-- [Mintpass](https://bitsocial.net/apps/mintpass): NFT-backed access control for communities that need stronger anti-spam gates.
-- [AI Moderation Challenge](https://bitsocial.net/apps/ai-moderation-challenge): OpenAI-compatible moderation checks against each community's rules.
-- [Spam Blocker](https://bitsocial.net/apps/spam-blocker): Centralized risk scoring layer for filtering abusive publications.
-- [R9K Challenge](https://bitsocial.net/apps/r9k-challenge): Robot9000-style originality gate for communities that want anti-repost posting UX.
-- [Wordfilter Challenge](https://bitsocial.net/apps/wordfilter-challenge): Community wordfilters enforced as a posting rule instead of a display filter.
-- [Captcha Canvas Challenge](https://bitsocial.net/apps/captcha-canvas-challenge): Custom image captchas for communities that want human verification.
-- [Voucher Challenge](https://bitsocial.net/apps/voucher-challenge): Invite-style voucher codes for communities that prefer controlled growth.
-- [EVM Contract Call](https://bitsocial.net/apps/evm-contract-call): On-chain gating for communities that want token or contract checks.
-- [Flags Challenge](https://bitsocial.net/apps/flags-challenge): Verified flag issuer challenge for country and board-specific flair.
-- [Bitsocial CLI](https://bitsocial.net/apps/bitsocial-cli): Command-line control for nodes, communities, and automation workflows.
-- [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder): Public seeder for Bitsocial communities, packaged for Docker and npm.
-- [Pubsub Provider](https://bitsocial.net/apps/pubsub-provider): Fallback pubsub relay and routing provider for Bitsocial operators.
-- [Bitsocial Indexer](https://bitsocial.net/apps/bitsocial-indexer): Self-hostable crawler, search index, and web UI for Bitsocial communities.
-- [Bitsocial Previewer](https://bitsocial.net/apps/bitsocial-previewer): Link-preview and redirect server that renders share cards for Bitsocial posts.
-- [Challenge Composer](https://bitsocial.net/apps/challenge-composer): Offline-first editor for a community's anti-spam challenge settings.
-- [Bitsocial Telegram Bots](https://bitsocial.net/apps/telegram-bots): Feed bots that relay new Bitsocial posts into Telegram channels or groups.
-- [Bitsocial GitHub Alerts](https://bitsocial.net/apps/bitsocial-github-alerts): Telegram bot that posts compact GitHub activity for Bitsocial repositories.
-- [5chan Board Manager](https://bitsocial.net/apps/5chan-board-manager): Board administration tooling for custom 5chan communities.
+- [5chan](https://bitsocial.net/projects/5chan): Decentralized imageboards with direct web, APK, and desktop downloads.
+- [Seedit](https://bitsocial.net/projects/seedit): Forum-style Bitsocial client with web, APK, and desktop builds.
+- [bitbones](https://bitsocial.net/projects/bitbones): Bare-bones reference client where every view is a thin wrapper over one hook.
+- [HuggingSocial](https://bitsocial.net/projects/huggingsocial): Peer-to-peer hub for finding, discussing, and downloading open AI models.
+- [Mintpass](https://bitsocial.net/projects/mintpass): NFT-backed access control for communities that need stronger anti-spam gates.
+- [AI Moderation Challenge](https://bitsocial.net/projects/ai-moderation-challenge): OpenAI-compatible moderation checks against each community's rules.
+- [Spam Blocker](https://bitsocial.net/projects/spam-blocker): Centralized risk scoring layer for filtering abusive publications.
+- [R9K Challenge](https://bitsocial.net/projects/r9k-challenge): Robot9000-style originality gate for communities that want anti-repost posting UX.
+- [Wordfilter Challenge](https://bitsocial.net/projects/wordfilter-challenge): Community wordfilters enforced as a posting rule instead of a display filter.
+- [Captcha Canvas Challenge](https://bitsocial.net/projects/captcha-canvas-challenge): Custom image captchas for communities that want human verification.
+- [Voucher Challenge](https://bitsocial.net/projects/voucher-challenge): Invite-style voucher codes for communities that prefer controlled growth.
+- [EVM Contract Call](https://bitsocial.net/projects/evm-contract-call): On-chain gating for communities that want token or contract checks.
+- [Flags Challenge](https://bitsocial.net/projects/flags-challenge): Verified flag issuer challenge for country and board-specific flair.
+- [Bitsocial CLI](https://bitsocial.net/projects/bitsocial-cli): Command-line control for nodes, communities, and automation workflows.
+- [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder): Public seeder for Bitsocial communities, packaged for Docker and npm.
+- [Pubsub Provider](https://bitsocial.net/projects/pubsub-provider): Fallback pubsub relay and routing provider for Bitsocial operators.
+- [Bitsocial Indexer](https://bitsocial.net/projects/bitsocial-indexer): Self-hostable crawler, search index, and web UI for Bitsocial communities.
+- [Bitsocial Previewer](https://bitsocial.net/projects/bitsocial-previewer): Link-preview and redirect server that renders share cards for Bitsocial posts.
+- [Challenge Composer](https://bitsocial.net/projects/challenge-composer): Offline-first editor for a community's anti-spam challenge settings.
+- [Bitsocial Telegram Bots](https://bitsocial.net/projects/telegram-bots): Feed bots that relay new Bitsocial posts into Telegram channels or groups.
+- [Bitsocial GitHub Alerts](https://bitsocial.net/projects/bitsocial-github-alerts): Telegram bot that posts compact GitHub activity for Bitsocial repositories.
+- [5chan Board Manager](https://bitsocial.net/projects/5chan-board-manager): Board administration tooling for custom 5chan communities.
 
 ## Landing page corpus
 
@@ -472,14 +472,15 @@ Details:
 ## Contributor playbooks
 
 - [Bug Investigation Workflow](https://docs.bitsocial.net/agent-playbooks/bug-investigation/): Use this when a bug is reported in a specific file/line/code block.
-- [Commit and Issue Format](https://docs.bitsocial.net/agent-playbooks/commit-issue-format/): Use this when proposing or implementing meaningful code changes.
-- [Agent Hooks Setup](https://docs.bitsocial.net/agent-playbooks/hooks-setup/): If your AI coding assistant supports lifecycle hooks, configure these for this repo.
+- [Commit and Issue Format](https://docs.bitsocial.net/agent-playbooks/commit-issue-format/): Use this when the user requests commit/issue wording or an authorized commit/issue is being created. Do not append suggestions to unrelated answers.
+- [Agent hooks](https://docs.bitsocial.net/agent-playbooks/hooks-setup/): The committed lifecycle hooks only format successfully edited JavaScript/TypeScript files through installed oxfmt. Shared logic lives in scripts/agent hooks/format.mjs; each native wrapper delegates to it.
 - [Known Surprises](https://docs.bitsocial.net/agent-playbooks/known-surprises/): This file tracks repository specific confusion points that caused agent mistakes.
-- [Long-Running Agent Workflow](https://docs.bitsocial.net/agent-playbooks/long-running-agent-workflow/): Use this playbook when a task is likely to span multiple sessions, handoffs, or spawned agents.
-- [Skills and Tools](https://docs.bitsocial.net/agent-playbooks/skills-and-tools/): Use this playbook when setting up/adjusting skills and external tooling.
+- [Long-running agent work](https://docs.bitsocial.net/agent-playbooks/long-running-agent-workflow/): Use durable task state when work needs resumption or a handoff. Small tasks do not need a board or progress file. For shared work, keep a concise feature list.json and progress.md in a task specific docs/agent runs/<slug /, using existing templates where helpful.
+- [Skills and Tools](https://docs.bitsocial.net/agent-playbooks/skills-and-tools/): Shared skills live in .agents/skills/. Edit these sources, then run yarn ai workflow:sync to generate .claude/skills/ for Claude Code. Codex and Cursor discover .agents/skills/ directly; do not restore the duplicate .codex/skills/ or .cursor/skills/ roots.
 - [Feature List Template](https://docs.bitsocial.net/agent-playbooks/templates/feature-list-template/): Machine-readable template used for long-running multi-session task tracking.
 - [Progress Log](https://docs.bitsocial.net/agent-playbooks/templates/progress.template/): Append one entry per session.
-- [Translations Workflow](https://docs.bitsocial.net/agent-playbooks/translations/): This project uses i18next translation files in public/translations/{lang}/default.json.
+- [Translations](https://docs.bitsocial.net/agent-playbooks/translations/): The about site uses i18next JSON at about/public/translations/{lang}/default.json. Docusaurus source translations live separately in docs/i18n/.
+- [Verification](https://docs.bitsocial.net/agent-playbooks/verification/): Select checks from the changed behavior and remaining uncertainty. Reuse successful evidence for the same final state; rerun after relevant edits or failures. Explicit CI/release/user requirements still apply.
 
 ## Other
 
@@ -2133,7 +2134,7 @@ Pubsub Provider is an operator service for running a Bitsocial-compatible pubsub
 
 ## Ports
 
-The defaults are chosen so Pubsub Provider can run next to [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) on the same VPS without a swarm-port conflict.
+The defaults are chosen so Pubsub Provider can run next to [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) on the same VPS without a swarm-port conflict.
 
 | Purpose           | Default                      | Notes                                                |
 | ----------------- | ---------------------------- | ---------------------------------------------------- |
@@ -2316,17 +2317,17 @@ git show <commit-hash> -- path/to/file.tsx
 
 ## Troubleshooting Rule
 
-When blocked, search the web for recent fixes/workarounds.
+Use current official documentation for a concrete dependency/platform uncertainty. Report missing private source or user-only reproduction details explicitly.
 
 ### Commit and Issue Format
 
 Source: https://docs.bitsocial.net/agent-playbooks/commit-issue-format/
 Path: docs/agent-playbooks/commit-issue-format.md
-Description: Use this when proposing or implementing meaningful code changes.
+Description: Use this when the user requests commit/issue wording or an authorized commit/issue is being created. Do not append suggestions to unrelated answers.
 
 # Commit and Issue Format
 
-Use this when proposing or implementing meaningful code changes.
+Use this when the user requests commit/issue wording or an authorized commit/issue is being created. Do not append suggestions to unrelated answers.
 
 ## Commit Suggestion Format
 
@@ -2352,102 +2353,29 @@ Example:
 > - **Title:** `Date formatting displays incorrect timezone`
 > - **Description:** Comment timestamps show incorrect timezones when users view posts from different regions. The `formatDate()` function doesn't account for user's local timezone settings.
 
-### Agent Hooks Setup
+### Agent hooks
 
 Source: https://docs.bitsocial.net/agent-playbooks/hooks-setup/
 Path: docs/agent-playbooks/hooks-setup.md
-Description: If your AI coding assistant supports lifecycle hooks, configure these for this repo.
+Description: The committed lifecycle hooks only format successfully edited JavaScript/TypeScript files through installed oxfmt. Shared logic lives in scripts/agent hooks/format.mjs; each native wrapper delegates to it.
 
-# Agent Hooks Setup
+# Agent hooks
 
-If your AI coding assistant supports lifecycle hooks, configure these for this repo.
+The committed lifecycle hooks only format successfully edited JavaScript/TypeScript files through installed oxfmt. Shared logic lives in `scripts/agent-hooks/format.mjs`; each native wrapper delegates to it.
 
-## Recommended Hooks
+| App | Native configuration | Event |
+|---|---|---|
+| Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
+| Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
+| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
-| Hook            | Command                                       | Purpose                                                                                                                                                                                             |
-| --------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `afterFileEdit` | `scripts/agent-hooks/format.sh`               | Auto-format files after AI edits                                                                                                                                                                    |
-| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`         | Run `corepack yarn install` when `package.json` changes                                                                                                                                             |
-| `afterFileEdit` | `scripts/agent-hooks/react-pattern-review.sh` | When a diff adds `useEffect`/memo primitives in `about/src/`, remind the agent to reconsider with the React review skills                                                                           |
-| `stop`          | `scripts/agent-hooks/sync-git-branches.sh`    | Prune stale refs and delete integrated temporary task branches                                                                                                                                      |
-| `stop`          | `scripts/agent-hooks/react-pattern-review.sh` | Re-scan the current diff for new React effects/memos in `about/src/` before the final verify gate                                                                                                   |
-| `stop`          | `scripts/agent-hooks/verify.sh`               | Hard-gate targeted build verification, lint, typecheck, and format checks; keep `yarn npm audit` informational and run `yarn knip` separately as an advisory audit when dependencies/imports change |
+Claude does not read a standalone `.claude/hooks.json`. Each app still controls project trust and whether hooks are enabled; inspect its current settings rather than bypassing trust. `.codex/config.toml` is repository configuration, not a hook command registry.
 
-## Why
+The formatter validates event/payload, edit success, file extension, and repository containment including symlinks. Missing dependencies or irrelevant input do no work. Commands use an argument array with Corepack network access disabled; hooks do not install dependencies, run builds/reviews, or mutate Git.
 
-- Consistent formatting
-- Lockfile stays in sync
-- New `useEffect`/memo additions in the about site get an explicit second look before the agent finishes
-- Workspace-relevant build/lint/type issues caught early without forcing the full multi-locale docs build on every task
-- Security visibility via `yarn npm audit`
-- Dependency/import drift can be checked with `yarn knip` without turning it into a noisy global stop hook
-- One shared hook implementation for both Codex and Cursor
-- Temporary task branches stay aligned with the repo's worktree workflow
+Run checks explicitly according to [verification.md](https://docs.bitsocial.net/agent-playbooks/verification/). Run `yarn ai-workflow:sync`, `yarn ai-workflow:check`, and `yarn ai-workflow:test` after changing the workflow. Fixtures use disposable files and fake formatter invocations; they do not prove each app loaded its configuration. Reload and inspect the app catalog after upgrades.
 
-## Example Hook Scripts
-
-### Format Hook
-
-```bash
-#!/bin/bash
-# Auto-format JS/TS files after AI edits
-# Hook receives JSON via stdin with file_path
-
-input=$(cat)
-file_path=$(echo "$input" | grep -o '"file_path"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*:.*"\([^"]*\)"/\1/')
-
-case "$file_path" in
-  *.js|*.jsx|*.ts|*.tsx|*.mjs|*.cjs|*.json|*.css) corepack yarn exec oxfmt "$file_path" 2>/dev/null ;;
-esac
-exit 0
-```
-
-### Verify Hook
-
-```bash
-#!/bin/bash
-# Run targeted build verification, lint, typecheck, format check, and security audit when agent finishes
-
-cat > /dev/null  # consume stdin
-status=0
-corepack yarn build:verify || status=1
-corepack yarn lint || status=1
-corepack yarn typecheck || status=1
-corepack yarn format:check || status=1
-echo "=== yarn npm audit ===" && (corepack yarn npm audit || true)  # informational
-exit $status
-```
-
-By default, `scripts/agent-hooks/verify.sh` exits non-zero when a required check fails. Set `AGENT_VERIFY_MODE=advisory` only when you intentionally need signal from a broken tree without blocking the hook. Keep `yarn knip` out of the hard gate unless the repo explicitly decides to fail on advisory import/dependency issues.
-
-Lifecycle hooks do not replace manual browser verification. For UI or visual changes, still run `playwright-cli` checks across `chrome`, `firefox`, and `webkit`, plus a mobile viewport flow in each engine when responsiveness or touch behavior changed.
-
-### Yarn Install Hook
-
-```bash
-#!/bin/bash
-# Run corepack yarn install when package.json is changed
-# Hook receives JSON via stdin with file_path
-
-input=$(cat)
-file_path=$(echo "$input" | grep -o '"file_path"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*:.*"\([^"]*\)"/\1/')
-
-if [ -z "$file_path" ]; then
-  exit 0
-fi
-
-if [ "$file_path" = "package.json" ]; then
-  cd "$(dirname "$0")/../.." || exit 0
-  echo "package.json changed - running corepack yarn install to update yarn.lock..."
-  corepack yarn install
-fi
-
-exit 0
-```
-
-Configure hook wiring according to your agent tool docs (`hooks.json`, equivalent, etc.).
-
-In this repo, `.codex/hooks/*.sh` and `.cursor/hooks/*.sh` should stay as thin wrappers that delegate to the shared implementations under `scripts/agent-hooks/`.
+The Impeccable design skill and its executable helpers remain available on demand under `.agents/skills/impeccable`. Its former Codex hook pointed at a missing directory; the design workflow now runs when its skill is selected, with no always-on design hook. The skill must not reconfigure project hooks as an incidental design step.
 
 ### Known Surprises
 
@@ -2656,15 +2584,10 @@ If uncertain, ask the developer before adding an entry.
 - **Status:** confirmed
 - **Update (2026-08-10):** The script used to also resolve its target as `path.join(process.cwd(), "public", "translations")`, so the documented repo-root command failed with "Translations directory not found" and had to be run from `about/`. It now resolves the workspace from the current directory or from its own location, and works from anywhere. The concurrency trap above is unchanged.
 
-### The dev react-scan toolbar swallows driven clicks in the bottom-right corner
+### Development annotation controls can intercept driven clicks
 
-- **Date:** 2026-08-10
-- **Observed by:** Claude
-- **Context:** Verifying the fixed scroll button on the about home page with `playwright-cli`
-- **What was surprising:** `playwright-cli click` on the fixed scroll button times out with `<div id="react-scan-root"></div> intercepts pointer events`. The host element is a zero-height `<div>` at the end of `<body>`, so it looks harmless in a DOM dump; the toolbar actually lives in its open shadow root and is fixed to the bottom-right corner — the same corner as the app's scroll button. `element.click()` from `eval` bypasses hit-testing and still works, so a scripted check can pass while every real pointer click fails.
-- **Impact:** A whole verification pass reads as a product bug in the control being tested. `navigator.webdriver` is `false` in playwright-cli sessions, so the app cannot detect automation on its own.
-- **Mitigation:** `scripts/pw-session.sh open` now registers `window.__NO_DEV_TOOLBAR__ = true` via `page.addInitScript` and reloads, so sessions opened through the wrapper never mount the toolbar. Only the toolbar is suppressed — `react-scan` itself stays enabled, so `__getReactScanReport` and `__ELEMENT_SOURCE__` keep working for the profiler and element-inspection skills. When driving `playwright-cli` directly, set the same flag before load, or expect corner clicks to be intercepted.
-- **Status:** confirmed
+- **Context:** The about and chain sites have fixed controls in the bottom-right corner, where the Agentation toolbar also appears in development.
+- **Mitigation:** `scripts/pw-session.sh open` registers `window.__NO_DEV_TOOLBAR__ = true` before reloading the page. The Agentation initializer also honors `__VISUAL_TESTING__` and `__PROFILING__`; source inspection remains available independently. Direct browser automation must set the same flag before loading the application.
 
 ### `skills add` installs Codex and Cursor copies into the gitignored `.agents/` directory
 
@@ -2673,162 +2596,114 @@ If uncertain, ask the developer before adding an entry.
 - **Context:** Installing the `improve-threejs` skill from `millionco/react-doctor` with the `skills` CLI (`vercel-labs/skills`).
 - **What was surprising:** `npx skills add <repo> --skill <name> --agent codex` and `--agent cursor` both write to `.agents/skills/<name>/`, not to `.codex/skills/` or `.cursor/skills/`. `AGENTS.md` forbids a repo-level `.agents/` directory and `.gitignore:29` ignores it, so both copies are silently untracked. Only `--agent claude-code` writes to the expected `.claude/skills/`. Separately, the documented comma-separated form (`--agent claude-code,codex,cursor`) fails with "Invalid agents" and installs nothing, even though each name is valid on its own.
 - **Impact:** The install reports success while two of the three toolchain copies land somewhere that will never be committed, so Codex and Cursor silently lack the skill after a fresh clone. The comma form can also produce a no-op install that reads as a success.
-- **Mitigation:** Run `skills add` once per agent with a single `--agent` value. Use `--agent claude-code` for the `.claude/skills/` copy, then `cp -R .claude/skills/<name> .codex/skills/<name>` and `cp -R .claude/skills/<name> .cursor/skills/<name>`, and `rm -rf .agents`. Confirm with `git status` that all three copies show as untracked additions before committing.
+- **Current mitigation:** The repository now tracks `.agents/skills` as its canonical source and generates Claude copies with `yarn ai-workflow:sync`. The former `.agents` prohibition and ignore rule have been removed. Do not copy new skills into three independent roots; check generated parity and the app catalog after adding a skill.
 - **Status:** confirmed
 
-### Long-Running Agent Workflow
+### Long-running agent work
 
 Source: https://docs.bitsocial.net/agent-playbooks/long-running-agent-workflow/
 Path: docs/agent-playbooks/long-running-agent-workflow.md
-Description: Use this playbook when a task is likely to span multiple sessions, handoffs, or spawned agents.
+Description: Use durable task state when work needs resumption or a handoff. Small tasks do not need a board or progress file. For shared work, keep a concise feature list.json and progress.md in a task specific docs/agent runs/<slug /, using existing templates where helpful.
 
-# Long-Running Agent Workflow
+# Long-running agent work
 
-Use this playbook when a task is likely to span multiple sessions, handoffs, or spawned agents.
+Use durable task state when work needs resumption or a handoff. Small tasks do not need a board or progress file. For shared work, keep a concise `feature-list.json` and `progress.md` in a task-specific `docs/agent-runs/<slug>/`, using existing templates where helpful.
 
-## Goals
+Record the requested outcome, current branch/worktree, file ownership, completed changes, checks with results, owned processes/sessions, and the next unresolved step. Do not store credentials or arbitrary source dumps. Mark a feature complete only when its acceptance criteria are verified.
 
-- Give each fresh session a fast way to regain context
-- Keep work incremental instead of one-shotting a large change
-- Catch a broken local baseline before adding more code
-- Leave durable artifacts that the next session can trust
+On resumption, inspect Git state, the latest progress, and relevant source before editing. Reuse compatible owned resources; start a dev server only when the next check needs one. Select checks by impact using [verification.md](https://docs.bitsocial.net/agent-playbooks/verification/), rather than repeating an unchanged full pass.
 
-## Where to Keep State
-
-- Use `docs/agent-runs/<slug>/` when humans, review bots, or multiple toolchains need the same task state.
-- Use a tool-local directory such as `.codex/runs/<slug>/` only when the task state is intentionally local to one workstation or one toolchain.
-- Do not hide multi-session shared state in a private scratch file if another contributor or agent will need it later.
-
-## Required Files
-
-Create these files at the start of the long-running task:
-
-- `feature-list.json`
-- `progress.md`
-
-Use the templates in `docs/agent-playbooks/templates/feature-list.template.json` and `docs/agent-playbooks/templates/progress.template.md`.
-
-Prefer JSON for the feature list so agents can update a small number of fields without rewriting the whole document.
-
-## Session Start Checklist
-
-1. Run `pwd`.
-2. Read `progress.md`.
-3. Read `feature-list.json`.
-4. Run `git log --oneline -20`.
-5. Run `./scripts/agent-init.sh --smoke`.
-6. Choose exactly one highest-priority item that is still `pending`, `in_progress`, or `blocked`.
-
-If the smoke step fails, fix the broken baseline before implementing a new feature slice.
-
-## Session Rules
-
-- Work on one feature or task slice at a time.
-- Keep the feature list machine-readable and stable. Update status, notes, files, and verification fields instead of rewriting unrelated items.
-- Only mark an item verified after running the command or user flow listed in that item.
-- Use spawned agents for bounded slices, not for overall task-state ownership.
-- When a child agent owns one item, give it the exact item id, acceptance criteria, and files it may touch.
-
-## Session End Checklist
-
-1. Append a short progress entry to `progress.md`.
-2. Update the touched item in `feature-list.json`.
-3. Record the exact commands run for verification.
-4. Capture blockers, follow-ups, and the next best item to resume.
-
-## Recommended Progress Entry Shape
-
-Use a short structure like:
-
-```markdown
-## 2026-03-17 14:30
-
-- Item: F003
-- Summary: Updated the browser-check flow to use the shared init/bootstrap path.
-- Files: `.cursor/agents/browser-check.md`, `.codex/agents/browser-check.toml`
-- Verification: `corepack yarn build:verify`, `corepack yarn lint`, `corepack yarn typecheck`
-- Next: Run the smoke flow and update the task-board status.
-```
+Keep related delegated work scoped and non-overlapping. One agent owns heavy checks and browser sessions. Update durable state when a completed slice, blocker, or handoff changes what the next contributor needs to know; do not mechanically log every command.
 
 ### Skills and Tools
 
 Source: https://docs.bitsocial.net/agent-playbooks/skills-and-tools/
 Path: docs/agent-playbooks/skills-and-tools.md
-Description: Use this playbook when setting up/adjusting skills and external tooling.
+Description: Shared skills live in .agents/skills/. Edit these sources, then run yarn ai workflow:sync to generate .claude/skills/ for Claude Code. Codex and Cursor discover .agents/skills/ directly; do not restore the duplicate .codex/skills/ or .cursor/skills/ roots.
 
 # Skills and Tools
 
-Use this playbook when setting up/adjusting skills and external tooling.
+Shared skills live in `.agents/skills/`. Edit these sources, then run `yarn ai-workflow:sync` to generate `.claude/skills/` for Claude Code. Codex and Cursor discover `.agents/skills/` directly; do not restore the duplicate `.codex/skills/` or `.cursor/skills/` roots.
 
-## Recommended Skills
+Shared role prompts live in `.agents/roles/*.md`. This is a repository-specific source format, not a native agent discovery path. `scripts/ai-workflow-files.mjs` converts these sources into the app-specific files below; `yarn ai-workflow:sync` writes them. Commit the generated files alongside their sources so a fresh checkout has the native configuration without running a generator first. After removing a source, remove its obsolete generated outputs explicitly; the validator reports them rather than silently deleting files.
 
-### Context7 (library docs)
+## Native discovery paths
 
-For up-to-date docs on libraries.
+Verified against official documentation on 2026-09-12:
 
-```bash
-npx skills add https://github.com/intellectronica/agent-skills --skill context7
-```
+| App | Project instructions | Skills used by this repository | Custom agents used by this repository |
+|---|---|---|---|
+| Codex | `AGENTS.md` | `.agents/skills/<name>/SKILL.md` | Generated `.codex/agents/<name>.toml` |
+| Cursor | `AGENTS.md`; `.cursor/rules/*.mdc` remains available for Cursor-specific conditional rules | `.agents/skills/<name>/SKILL.md` | Generated `.cursor/agents/<name>.md` |
+| Claude Code | `CLAUDE.md` imports `@AGENTS.md` | Generated `.claude/skills/<name>/SKILL.md` | Generated `.claude/agents/<name>.md` |
 
-### Playwright CLI
+Sources: [Codex skills](https://learn.chatgpt.com/docs/build-skills), [Codex subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Cursor rules](https://cursor.com/docs/rules), [Cursor skills](https://cursor.com/docs/skills), [Cursor subagents](https://cursor.com/docs/subagents), [Claude memory](https://code.claude.com/docs/en/memory), [Claude skills](https://code.claude.com/docs/en/skills), [Claude subagents](https://code.claude.com/docs/en/sub-agents).
 
-Use `playwright-cli` for browser automation (navigation, interaction, screenshots, tests, extraction).
+Do not replace the native agent directories with `.agents/roles` or assume Claude discovers `.agents/skills`. Claude can still read a referenced file there as ordinary project context. Cursor also discovers `.claude/skills` for compatibility; copies remain synchronized, but its published skills guide does not specify deduplication across these roots. Check the installed app's skill catalog rather than promising that duplicate entries cannot appear.
 
-When using `playwright-cli` for repo UI verification, do not stop after one engine. Run the relevant flow in all three main browser engines:
+The AI directories use LF line endings through `.gitattributes` so generated text stays identical across platforms. Supporting skill assets are copied as bytes.
 
-- `chrome` for Blink
-- `firefox` for Gecko
-- `webkit` for Safari/WebKit coverage
+## Skills
 
-Use separate named sessions per engine so evidence stays isolated, but run those sessions sequentially. Only one Playwright browser session may be active at a time, machine-wide, because the contended resource is machine RAM and CPU rather than the repository. Open and close sessions through `./scripts/pw-session.sh`; it holds that shared lock so concurrent agents defer and retry browser work instead of saturating the machine. If an engine is intentionally skipped, record why.
+| Skill | Purpose |
+|---|---|
+| `commit` | Create authorized, scoped local commits |
+| `commit-format`, `issue-format` | Format suggestions when requested |
+| `make-closed-issue` | Create an authorized issue, scoped commit and PR |
+| `review-and-merge-pr` | Triage PR feedback; fix/publish/merge only within the requested scope |
+| `fix-merge-conflicts` | Resolve conflicts and verify the merged result |
+| `release` | Prepare release wording and perform authorized release steps |
+| `code-quality-review` | Review non-trivial diffs or an explicitly requested quality concern |
+| `retro` | Turn demonstrated mistakes into focused checks or guidance that prevent recurrence |
+| `refactor-pass`, `deslop` | Requested cleanup of existing changes |
+| `debug-agent` | Evidence-based debugging, with instrumentation when needed |
+| `you-might-not-need-an-effect` | Focused effect/memo review |
+| `vercel-react-best-practices` | Applicable React performance guidance; skip Next.js/server-only rules for this Vite client |
+| `translate` | Generate translations, then apply maps through a single writer |
+| `playwright-cli`, `inspect-elements` | Browser verification and DOM-to-source mapping |
+| `profile-browsing` | Scoped browser and React profiling |
+| `test-apk` | Verify a supplied companion Android wrapper |
+| `impeccable`, `improve-threejs` | Scoped interface design and Three.js rendering review |
+| `implement-plan` | Execute a plan with optional bounded delegation |
+| `readme` | Maintain verified project documentation |
+| `context7` | Retrieve version-appropriate library documentation |
+| `find-skills` | Find additional skills when explicitly requested |
 
-During iteration, use Chrome/Blink only. Run the full Chrome, Firefox, and WebKit sequence once the change is ready for final verification. Reuse each engine session for desktop and mobile by resizing it, close it in a finally-style cleanup, and only then open the next engine.
+## Roles and models
 
-```bash
-./scripts/pw-session.sh open verify-chrome https://bitsocial.localhost --browser=chrome
-playwright-cli -s=verify-chrome snapshot
-./scripts/pw-session.sh close verify-chrome
-```
+Keep custom roles for `browser-check`, `profiler`, `test-apk`, `translator`, and `reviewer`. Use the harness's built-in worker/general-purpose or explorer role for ordinary implementation and code discovery. The parent assigns acceptance criteria and ownership; one owner runs heavyweight checks.
 
-When the slot is busy, `open` exits 75; block on `./scripts/pw-session.sh open --wait[=SECONDS] ...` (default 300s) instead of retrying by hand. A lock left behind by an interrupted workflow is reclaimed automatically, because `open` drops any slot whose recorded browser is no longer running. Inspect the holder with `./scripts/pw-session.sh status`; `release <session>` is a last resort for the rare case where `status` cannot verify the browser state.
+Codex agent files include `name`, `description`, and `developer_instructions`. `.codex/config.toml` caps concurrent children at four using `max_concurrent_threads_per_session`. Shared role metadata contains the name, description, and optional sandbox mode; it deliberately has no model fields.
 
-```bash
-npm install -g @playwright/cli@latest
-playwright-cli install --skills
-```
+Leave model and reasoning fields out of committed skills and custom agents in all three apps. This allows runtime invocation choices, user defaults, and parent inheritance according to each app’s documented precedence. Claude family aliases reduce version maintenance but still choose a family; a versioned Cursor model requires future updates. Keep such choices in user/session settings when needed. Inheritance does not promise an automatic choice of the best current model. Do not invent a `latest` alias or add model-catalog research to routine tasks. See [Codex selection](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Claude selection](https://code.claude.com/docs/en/sub-agents#choose-a-model), and [Cursor selection](https://cursor.com/docs/subagents#model-configuration).
 
-Skill install locations:
+`sandbox-mode: read-only` maps to Codex’s sandbox and Cursor’s `readonly`; Claude’s tool list and the role instructions restrict its review workflow, but Bash access is not an OS-level sandbox.
 
-- `.cursor/skills/playwright-cli/`
-- `.claude/skills/playwright-cli/`
+Shared skill frontmatter uses `disable-model-invocation: true` for user-invoked workflows where applicable. Codex's corresponding setting lives in `agents/openai.yaml` as `policy.allow_implicit_invocation: false`; the validator requires both. Invocation metadata supplements explicit authorization rules; a review request never authorizes publication merely because a skill includes publishing steps.
 
-### Vercel React Best Practices
+## Checks and discovery
 
-For deeper React/Next performance guidance.
+- `yarn ai-workflow:sync` regenerates compatibility outputs using installed `js-yaml` and `smol-toml`.
+- `yarn ai-workflow:check` parses source/frontmatter/configs, checks generated outputs, invocation metadata, model-field placement, and the formatter-only hook wiring. It does not resolve model identifiers against a provider catalog.
+- `yarn ai-workflow:test` runs isolated Node fixtures for hook payloads and workflow generation/validation.
+- After upgrading an agent application, verify skill/role discovery in that application. Syntax/parity checks do not replace a loader check. Reload the application if an existing session retains an old catalog.
+- Hooks require the harness's project trust and hook review; do not bypass trust to make a check pass. See [hooks-setup.md](https://docs.bitsocial.net/agent-playbooks/hooks-setup/).
 
-```bash
-npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-react-best-practices
-```
+## Maintaining useful instructions
 
-### Find Skills
+Follow [OpenAI’s skills and prompts guidance](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra) (reviewed 2026-09-12): keep descriptions precise, load details only when relevant, and preserve the user’s requested scope. Shared skills serve different models; retain project-specific invariants while allowing routine implementation choices.
 
-Discover/install skills from the open ecosystem.
+Keep a skill’s purpose, decision boundaries, and essential constraints in `SKILL.md`. Link substantial mode-specific commands or examples as optional references. Put trigger conditions early in short descriptions; a matching keyword alone should not expand the task. Preserve existing invocation metadata unless its behavior is intentionally being changed.
 
-```bash
-npx skills add https://github.com/vercel-labs/skills --skill find-skills
-```
+After a substantial instruction change, exercise a few representative small and large requests. Check which skills/references were selected, whether actions stayed within scope, whether verification matched the change, and whether authorized work completed. Schema and fixture tests establish tooling correctness, not agent decision quality.
 
-## MCP Policy Rationale
+## Tools and browser ownership
 
-Avoid GitHub MCP and browser MCP servers for this project because they add significant tool-schema/context overhead.
+Prefer the existing skill/tool catalog and installed project CLIs. Use `gh` for GitHub, `playwright-cli` for browser verification, and official/version-specific documentation when library behavior matters. Avoid installing duplicate skills or fetching an unpinned package merely to run an existing formatter.
 
-- GitHub operations: use `gh` CLI.
-- Browser operations: use `playwright-cli`.
+MCP overhead depends on the harness: deferred tool loading can avoid loading every schema upfront. Keep integrations relevant rather than treating MCP itself as obsolete. Existing CLI choices remain useful for reproducibility and resource control.
 
-## Model Availability
-
-- `composer-2` is available only in Cursor. Do not configure it under `.claude/` or `.codex/`.
-- Codex does not document a `latest` model alias. Committed custom-agent TOMLs under `.codex/**/agents/*.toml` omit both `model` and `model_reasoning_effort` so they inherit the current parent session settings.
+All browser sessions use `./scripts/pw-session.sh`, which enforces one active browser machine-wide. Default to a fresh isolated session. Current personal-browser access needs explicit authorization; reuse that authorization in subsequent steps. Choose browsers/viewports for the affected behavior, run selected engines sequentially, close the exact named session in cleanup, and never use `close-all`/`kill-all`. See the `playwright-cli` skill and [verification.md](https://docs.bitsocial.net/agent-playbooks/verification/).
 
 ### Feature List Template
 
@@ -2879,55 +2754,74 @@ Append one entry per session.
 - Blockers: none
 - Next: Replace this with the next best follow-up.
 
-### Translations Workflow
+### Translations
 
 Source: https://docs.bitsocial.net/agent-playbooks/translations/
 Path: docs/agent-playbooks/translations.md
-Description: This project uses i18next translation files in public/translations/{lang}/default.json.
+Description: The about site uses i18next JSON at about/public/translations/{lang}/default.json. Docusaurus source translations live separately in docs/i18n/.
 
-# Translations Workflow
+# Translations
 
-This project uses i18next translation files in `public/translations/{lang}/default.json`.
+The about site uses i18next JSON at `about/public/translations/{lang}/default.json`. Docusaurus source translations live separately in `docs/i18n/`.
 
-## Rule
+## About-site keys
 
-Do not manually edit every language file. Use `scripts/update-translations.js`.
+Use `.agents/skills/translate/SKILL.md`. Discover current locales from disk and preserve placeholders, markup, technical terms, and brand names. For larger requests, children can generate independent maps, but one parent applies every locale write serially; the updater has no writer lock.
 
-## Add or Update a Key
+Use a unique task-owned map path. Preview with `node scripts/update-translations.js --key <key> --map <map.json> --include-en --dry`, then apply with the same arguments and `--write`. Verify coverage/values after writing and remove only the temporary maps owned by this task.
 
-1. Create a temporary dictionary file, e.g. `translations-temp.json`:
+Use `--delete` for requested removals. Inspect `--audit --dry` findings before an authorized `--audit --write`; dynamic translation keys require manual source review. Copy English into every locale only for a technical term, brand, or placeholder.
 
-```json
-{
-  "en": "English text",
-  "es": "Spanish text",
-  "fr": "French text",
-  "de": "German text"
-}
-```
+## Docusaurus pages
 
-2. Apply the translation map:
+`scripts/translate-docs.py` is a bulk writer for all pages/locales and has no per-file filter; do not use it for a narrow translation edit. `scripts/check-docs-translations.py` is the read-only verifier and supports `--locales` and `--paths`.
 
-```bash
-node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
-```
+Keep code fences, links, inline code, contract addresses, headings, tables, and admonitions aligned with the English source. Resolve verifier errors; brand-name `frontmatter-untranslated` warnings can be expected. Follow `docs/AGENTS.md` and build through the root when changing docs theme or i18n behavior so static output and Pagefind stay aligned.
 
-3. Delete the temporary dictionary file.
+### Verification
 
-## Other Useful Commands
+Source: https://docs.bitsocial.net/agent-playbooks/verification/
+Path: docs/agent-playbooks/verification.md
+Description: Select checks from the changed behavior and remaining uncertainty. Reuse successful evidence for the same final state; rerun after relevant edits or failures. Explicit CI/release/user requirements still apply.
 
-```bash
-# Copy a key from English to all languages (dry run then write)
-node scripts/update-translations.js --key some_key --from en --dry
-node scripts/update-translations.js --key some_key --from en --write
+# Verification
 
-# Delete a key from all languages
-node scripts/update-translations.js --key obsolete_key --delete --write
+Select checks from the changed behavior and remaining uncertainty. Reuse successful evidence for the same final state; rerun after relevant edits or failures. Explicit CI/release/user requirements still apply.
 
-# Audit for unused translation keys
-node scripts/update-translations.js --audit --dry
-node scripts/update-translations.js --audit --write
-```
+| Change                                                | Appropriate checks                                                                                                      |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Prose/comments/formatting only                        | Diff, references, relevant generators; no app build                                                                     |
+| AI workflow sources/configuration                     | `yarn ai-workflow:sync`, `yarn ai-workflow:check`, `yarn ai-workflow:test`; regenerate LLM indexes when context changed |
+| Isolated helper or script                             | Focused invocation/fixtures and syntax or type/lint checks for the affected code                                        |
+| Shared runtime, dependency, build, integration change | Focused affected checks plus the relevant build/type/lint checks below                                                  |
+| CSS/theme/layout only                                 | Affected routes/viewports/themes in selected browsers; build when imports, assets, or CSS processing changed            |
+| React state/effects/performance                       | Affected behavior and applicable React guidance; Doctor when diagnostics resolve a concrete concern                     |
+
+## Project checks
+
+- `yarn build:verify` selects the affected workspace. For a known scope use `yarn build:about`, `yarn build:chain`, `yarn build:stats-monitor`, or `yarn docs:build:verify`.
+- `yarn build` intentionally runs the full production about/docs build, including all docs locales. Use it for release-wide validation or changes that warrant that scope.
+- `yarn lint`, `yarn typecheck`, and `yarn format:check` cover existing repository gates; for a narrow script edit use its focused syntax/fixture/format checks first.
+- Manifest/lock changes require `corepack yarn install`, `yarn deps:check-pinned`, and `yarn deps:check-hardened`. `yarn knip` is advisory for dependencies/imports.
+- Docs translation checks are in [translations.md](https://docs.bitsocial.net/agent-playbooks/translations/); do not run the bulk translation writer for a focused docs change.
+
+## Browser evidence and ownership
+
+Use Chrome for small isolated browser changes. Add Firefox and WebKit for shared CSS/layout/responsiveness, browser-sensitive APIs, broad interactions, releases, or explicit cross-browser criteria. Include affected mobile layouts/touch behavior. A viewport resize alone is not touch emulation. Choose actual routes and content from source rather than assuming examples are available.
+
+Use `playwright-cli` through `./scripts/pw-session.sh`. One browser is active machine-wide; selected engines run sequentially and each exact owned session closes even after failure. Reuse an authorized caller-owned session without closing it. Never use global browser cleanup or stop a server of unclear ownership. No browser/server is needed for documentation-only work.
+
+For performance work, compare the same flow with equivalent viewport, content, network/CPU settings, build mode, and measurement overhead. Distinguish observations from suspected causes. Use the profile skill when these measurements answer the actual request.
+
+## Final evidence
+
+One agent owns heavy verification. Inspect active workloads and serialize installs, builds/full suites, Doctor, Android/Electron work, and browser profiling. Report commands/outcomes and specific limitations; missing data or a skipped engine is not a passing result. Tooling fixtures verify formats and mechanics, not end-to-end app discovery or model decision quality.
+
+## Automatic React checks
+
+`yarn agent:verify` runs the selected builds followed by `yarn doctor:check` and `yarn perf:check`. `perf:check` includes the collector compatibility and deliberate-regression selftest, so neither CI nor the agent verification path needs a separate `perf:test` pass. Install the pinned browser tooling once with `yarn perf:install` (`--with-deps` in Linux CI). Use target/scenario filters for focused reruns after the full relevant pass. Scenario budgets are explicit in `scripts/react-perf/config.mjs`; preserve evidence and fix a regression before considering a justified baseline change. Ordinary production builds omit Bippy; separate `build:profile:*` commands supply official React profiling instrumentation.
+
+The about `apps-search` scenario is paced by committed URL/input values for each character. Its passing result covers that committed-query sequence, not rapid-typing responsiveness. Use a separate fast-input reproduction when evaluating character loss or input responsiveness.
 
 ### Content Discovery
 
@@ -3434,7 +3328,7 @@ the generator itself.
 ### `about/`
 
 - Contains the Bitsocial landing/about site
-- Currently also contains the public `/projects` catalog and `/apps/:slug` app detail routes
+- Currently also contains the public `/projects` catalog and `/projects/:slug` app detail routes
 - Keeps static assets and translations in `about/public/`
 - Should not be treated as the long-term home for the project catalog or the blog
 
@@ -3530,6 +3424,12 @@ This repo uses Commitizen for Conventional Commits.
 The Husky Commitizen hook may print a `/dev/tty` warning in non-interactive shells, but the commit
 can still succeed when the message is already provided. Use `--no-verify` only when you explicitly
 need to bypass local hooks.
+
+### React diagnostics and performance
+
+Run `yarn agent:verify` for affected builds, automatic Doctor diagnostics, and repeated real-app render budgets. `yarn perf:install` installs the pinned browser; `perf:check` includes the collector compatibility selftest, also available alone as `yarn perf:test`. `yarn perf:record --target about` (or `chain`/`docs`) saves JSON and Chrome trace evidence under `.react-perf/`. Scenarios live in `scripts/react-perf/config.mjs`. Development uses a bounded Bippy collector; normal production omits it. For production component timing, build with `yarn build:profile:about`, `build:profile:chain`, or `build:profile:docs` and record against that separate preview URL. See `.agents/skills/profile-browsing/references/measurement.md` for coverage and timing limits.
+
+The about `apps-search` scenario waits for each character to appear in both the `/projects` URL query and input before typing the next. It verifies a sequence of committed changes and does not test rapid-typing responsiveness or rule out lost characters during overlapping router navigation.
 
 ### 5chan
 
@@ -4179,7 +4079,7 @@ Every option is private by default. An owner can publish specific options by nam
 - New comments with verdict `review` are sent to pending approval with the redacted model reason attached for the author.
 - New comments are also sent to pending approval if the model API is unavailable.
 - When `triageModel` is configured, its `allow` verdict is final and avoids a primary-model call. A triage `review` verdict or triage-provider failure calls the primary reviewer, and only that reviewer's verdict can send content to pending approval.
-- Each provider request times out after 30 seconds. A triage timeout escalates to the primary reviewer; a primary-reviewer timeout follows the same fail-closed path as other provider failures.
+- Triage requests time out after 30 seconds and escalate to the primary reviewer. Reviewer requests have a separate 90-second deadline, including response-body reading, so reasoning models can finish decisions that take longer than the triage limit. Reviewer timeouts still fail closed, and audit errors identify the stage and deadline.
 - When `fallbackModel` is configured, an HTTP 429 from the primary model is retried once with the fallback model before the publication is sent to pending approval.
 - Comments sent to pending approval because moderation is unavailable include a generic moderator-visible reason; provider details remain in the private audit log.
 - Content edits with verdict `review` are rejected until PKC supports pending approval for edits.
@@ -4275,13 +4175,13 @@ Repo-specific AI workflow guidance lives in:
 - [`docs/agent-playbooks/hooks-setup.md`](https://github.com/bitsocialnet/spam-blocker/blob/HEAD/docs/agent-playbooks/hooks-setup.md)
 - [`docs/agent-playbooks/skills-and-tools.md`](https://github.com/bitsocialnet/spam-blocker/blob/HEAD/docs/agent-playbooks/skills-and-tools.md)
 
-The repo is intended to be worked with Corepack-managed Yarn and repo-managed agent hooks. See the playbooks for the recommended setup and verification flow.
+Use Corepack-managed Yarn. Shared skills and role sources live under `.agents/`; the workflow generator maintains native Codex, Cursor, and Claude outputs. Automatic hooks only format edited source files. See the playbooks for setup and checks selected by the change.
 
 Quick setup for a fresh machine:
 
 1. `corepack enable`
 2. `corepack yarn install`
-3. `./scripts/install-default-agent-skills.sh`
+3. `corepack yarn ai-workflow:check`
 
 **Important:**
 
@@ -6516,7 +6416,7 @@ EXAMPLES
   $ bitsocial challenge install ./my-local-challenge
 ```
 
-_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/challenge/install.ts)_
+_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/challenge/install.ts)_
 
 ## `bitsocial challenge list`
 
@@ -6542,7 +6442,7 @@ EXAMPLES
   $ bitsocial challenge list -q
 ```
 
-_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/challenge/list.ts)_
+_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/challenge/list.ts)_
 
 ## `bitsocial challenge ls`
 
@@ -6597,7 +6497,7 @@ EXAMPLES
   $ bitsocial challenge remove @scope/my-challenge
 ```
 
-_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/challenge/remove.ts)_
+_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/challenge/remove.ts)_
 
 ## `bitsocial challenge rm NAME`
 
@@ -6714,7 +6614,7 @@ EXAMPLES
     $ bitsocial community create --jsonFile ./create-options.json
 ```
 
-_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/community/create.ts)_
+_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/create.ts)_
 
 ## `bitsocial community delete ADDRESSES`
 
@@ -6739,7 +6639,7 @@ EXAMPLES
   $ bitsocial community delete 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/community/delete.ts)_
+_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/delete.ts)_
 
 ## `bitsocial community edit ADDRESS`
 
@@ -6809,7 +6709,7 @@ EXAMPLES
     $ bitsocial community edit bitsocial.bso --jsonFile ./edit-options.json
 ```
 
-_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/community/edit.ts)_
+_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/edit.ts)_
 
 ## `bitsocial community export [ADDRESS]`
 
@@ -6850,7 +6750,7 @@ EXAMPLES
   $ bitsocial community export --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/community/export.ts)_
+_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/export.ts)_
 
 ## `bitsocial community get [ADDRESS]`
 
@@ -6881,7 +6781,7 @@ EXAMPLES
   $ bitsocial community get --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/community/get.ts)_
+_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/get.ts)_
 
 ## `bitsocial community list`
 
@@ -6904,7 +6804,7 @@ EXAMPLES
   $ bitsocial community list
 ```
 
-_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/community/list.ts)_
+_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/list.ts)_
 
 ## `bitsocial community start ADDRESSES`
 
@@ -6938,7 +6838,7 @@ EXAMPLES
     $ bitsocial community start $(bitsocial community list -q) --concurrency 1
 ```
 
-_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/community/start.ts)_
+_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/start.ts)_
 
 ## `bitsocial community stop ADDRESSES`
 
@@ -6963,7 +6863,7 @@ EXAMPLES
   $ bitsocial community stop Qmb99crTbSUfKXamXwZBe829Vf6w5w5TktPkb6WstC9RFW
 ```
 
-_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/community/stop.ts)_
+_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/stop.ts)_
 
 ## `bitsocial daemon`
 
@@ -7013,7 +6913,7 @@ EXAMPLES
   $ bitsocial daemon --no-allowPrivateKeyExport
 ```
 
-_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/daemon.ts)_
+_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/daemon.ts)_
 
 ## `bitsocial help [COMMAND]`
 
@@ -7077,7 +6977,7 @@ EXAMPLES
   $ bitsocial logs --stdout -f
 ```
 
-_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/logs.ts)_
+_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/logs.ts)_
 
 ## `bitsocial update check`
 
@@ -7094,7 +6994,7 @@ EXAMPLES
   $ bitsocial update check
 ```
 
-_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/update/check.ts)_
+_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/update/check.ts)_
 
 ## `bitsocial update install [VERSION]`
 
@@ -7126,7 +7026,7 @@ EXAMPLES
   $ bitsocial update install --no-restart-daemons
 ```
 
-_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/update/install.ts)_
+_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/update/install.ts)_
 
 ## `bitsocial update versions`
 
@@ -7148,7 +7048,7 @@ EXAMPLES
   $ bitsocial update versions --limit 5
 ```
 
-_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.96/src/cli/commands/update/versions.ts)_
+_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/update/versions.ts)_
 
 ## Contribution
 
@@ -8243,6 +8143,8 @@ This is a fork of [mhkafadar/notifine](https://github.com/mhkafadar/notifine), s
 
 - **Compact messages** — pushes show at most 5 commits (first line of each commit message, truncated to 72 chars) plus an "… and N more" line
 - **Release notifications** — one-liner when a release is published, with tag link, release name, pre-release marker, and the first line of the release notes
+- **Dependabot suppression** — events from Dependabot and activity on `dependabot/*` branches are acknowledged without posting to Telegram
+- **Explicit push suppression** — include `[skip github-alerts]` in a commit message to acknowledge that push without posting to Telegram
 - **Supported events**: push (incl. branch create/delete and force-push), release, issues, pull requests, comments (issue/PR review/commit), check runs, workflow runs, wiki edits, ping
 - **Branch filtering** — `?branch=` / `?exclude_branch=` glob patterns on the webhook URL
 - **Forum topics** — run `/start` inside a Telegram topic to receive notifications there
@@ -8718,7 +8620,7 @@ EXAMPLES
   $ 5chan board add my-board.bso --apply-defaults --defaults-preset ./my-preset.json
 ```
 
-_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.27/src/commands/board/add.ts)_
+_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/board/add.ts)_
 
 ## `5chan board edit ADDRESS`
 
@@ -8765,7 +8667,7 @@ EXAMPLES
   $ 5chan board edit random.bso -i
 ```
 
-_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.27/src/commands/board/edit.ts)_
+_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/board/edit.ts)_
 
 ## `5chan board list`
 
@@ -8782,7 +8684,7 @@ EXAMPLES
   $ 5chan board list
 ```
 
-_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.27/src/commands/board/list.ts)_
+_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/board/list.ts)_
 
 ## `5chan board remove ADDRESS`
 
@@ -8802,7 +8704,7 @@ EXAMPLES
   $ 5chan board remove random.bso
 ```
 
-_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.27/src/commands/board/remove.ts)_
+_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/board/remove.ts)_
 
 ## `5chan defaults set`
 
@@ -8842,7 +8744,7 @@ EXAMPLES
   $ 5chan defaults set -i
 ```
 
-_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.27/src/commands/defaults/set.ts)_
+_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/defaults/set.ts)_
 
 ## `5chan help [COMMAND]`
 
@@ -8906,7 +8808,7 @@ EXAMPLES
   $ 5chan logs --stdout -f
 ```
 
-_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.27/src/commands/logs.ts)_
+_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/logs.ts)_
 
 ## `5chan start`
 
@@ -8944,7 +8846,7 @@ EXAMPLES
   $ 5chan start --log-path /var/log/5chan
 ```
 
-_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.27/src/commands/start.ts)_
+_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/start.ts)_
 
 ## Config Hot-Reload
 

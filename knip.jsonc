@@ -12,7 +12,5 @@
   "ignoreDependencies": [
     // Loaded from Tailwind config, but still misreported by Knip in this repo's config graph.
     "tailwindcss-animate",
-    // Imported from index.html for runtime instrumentation rather than from the source import graph.
-    "react-grab",
   ],
 }

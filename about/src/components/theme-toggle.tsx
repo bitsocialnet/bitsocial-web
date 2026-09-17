@@ -91,7 +91,7 @@ export function ThemeToggle({ mobile }: { mobile?: boolean }) {
       ref={buttonRef}
       variant="ghost"
       size="icon"
-      className="h-11 w-11 text-muted-foreground hover:bg-border/70 hover:text-foreground focus:bg-transparent focus-visible:bg-border/70 active:bg-transparent"
+      className="relative h-11 w-11 text-muted-foreground hover:bg-border/70 hover:text-foreground focus:bg-transparent focus-visible:bg-border/70 active:bg-transparent"
       onClick={toggleTheme}
     >
       <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />

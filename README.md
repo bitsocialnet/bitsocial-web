@@ -119,7 +119,7 @@ the generator itself.
 ### `about/`
 
 - Contains the Bitsocial landing/about site
-- Currently also contains the public `/projects` catalog and `/apps/:slug` app detail routes
+- Currently also contains the public `/projects` catalog and `/projects/:slug` app detail routes
 - Keeps static assets and translations in `about/public/`
 - Should not be treated as the long-term home for the project catalog or the blog
 
@@ -215,3 +215,9 @@ This repo uses Commitizen for Conventional Commits.
 The Husky Commitizen hook may print a `/dev/tty` warning in non-interactive shells, but the commit
 can still succeed when the message is already provided. Use `--no-verify` only when you explicitly
 need to bypass local hooks.
+
+### React diagnostics and performance
+
+Run `yarn agent:verify` for affected builds, automatic Doctor diagnostics, and repeated real-app render budgets. `yarn perf:install` installs the pinned browser; `perf:check` includes the collector compatibility selftest, also available alone as `yarn perf:test`. `yarn perf:record --target about` (or `chain`/`docs`) saves JSON and Chrome trace evidence under `.react-perf/`. Scenarios live in `scripts/react-perf/config.mjs`. Development uses a bounded Bippy collector; normal production omits it. For production component timing, build with `yarn build:profile:about`, `build:profile:chain`, or `build:profile:docs` and record against that separate preview URL. See `.agents/skills/profile-browsing/references/measurement.md` for coverage and timing limits.
+
+The about `apps-search` scenario waits for each character to appear in both the `/projects` URL query and input before typing the next. It verifies a sequence of committed changes and does not test rapid-typing responsiveness or rule out lost characters during overlapping router navigation.

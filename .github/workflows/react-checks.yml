@@ -1,0 +1,61 @@
+name: React diagnostics and runtime checks
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      [
+        "about/**",
+        "chain/**",
+        "docs/**",
+        "scripts/react-perf/**",
+        "scripts/__tests__/about-ssr.node-test.mjs",
+        "scripts/pw-session.sh",
+        "package.json",
+        "yarn.lock",
+        ".github/workflows/react-checks.yml",
+      ]
+  push:
+    branches: [master]
+    paths:
+      [
+        "about/**",
+        "chain/**",
+        "docs/**",
+        "scripts/react-perf/**",
+        "scripts/__tests__/about-ssr.node-test.mjs",
+        "scripts/pw-session.sh",
+        "package.json",
+        "yarn.lock",
+        ".github/workflows/react-checks.yml",
+      ]
+
+permissions:
+  contents: read
+
+jobs:
+  react:
+    env:
+      PERF_BASE: ${{ (github.event.pull_request.base.sha || github.event.before) != '0000000000000000000000000000000000000000' && (github.event.pull_request.base.sha || github.event.before) || '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable
+      - run: corepack yarn install --immutable
+      - name: Verify about SSR deployment output
+        run: node --test scripts/__tests__/about-ssr.node-test.mjs
+      - run: corepack yarn doctor:check
+      - run: corepack yarn perf:install --with-deps
+      - run: corepack yarn perf:check --output .react-perf/ci
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: react-performance-evidence
+          path: .react-perf/
+          if-no-files-found: ignore

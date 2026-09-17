@@ -25,14 +25,28 @@ const stalePatterns = [
   ["stale generated oclif source URL", /github\.com\/oclif\/plugin-help\/blob/u],
   ["non-resolving libp2p.direct apex link", /\]\(https:\/\/libp2p\.direct\)/u],
 ];
+const landingTranslations = JSON.parse(
+  await readFile(path.join(repoRoot, "about/public/translations/en/default.json"), "utf8"),
+);
+// Check the same semantic sections after copy edits without pinning old slogans.
 const requiredLandingCopy = [
-  "The social layer of the web has an owner.",
-  "Your browser is a peer.",
-  "Why would anyone use it?",
-  "What your browser is",
-  "Stay in the Loop",
-  "Common Questions",
-];
+  "problem",
+  "browserPeer",
+  "adoptionThesis",
+  "textOnlyProtocol",
+  "mailingList",
+  "faq",
+].map((section) => {
+  const title = landingTranslations[section]?.title;
+  assert(typeof title === "string" && title.trim(), `missing landing title: ${section}.title`);
+  const plainTitle = title
+    .replace(/<br\s*\/?>/giu, " ")
+    .replace(/<[^>]+>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  assert(plainTitle, `empty landing title: ${section}.title`);
+  return plainTitle;
+});
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -83,7 +97,10 @@ assert(appRepos.length > 1, "could not parse app repositories from about/src/lib
 for (const outputPath of ["about/public/llms.txt", "about/public/llms-full.txt"]) {
   const contents = outputs.get(outputPath);
   for (const slug of appSlugs) {
-    assert(contents.includes(`https://bitsocial.net/apps/${slug}`), `${outputPath} omits ${slug}`);
+    assert(
+      contents.includes(`https://bitsocial.net/projects/${slug}`),
+      `${outputPath} omits ${slug}`,
+    );
   }
 }
 

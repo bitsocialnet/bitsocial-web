@@ -79,7 +79,7 @@ export default function AppCard({
   const tagline = getAppTagline(app, t);
   const description = getAppDescription(app, t);
   const descriptionKey = getAppDescriptionKey(app);
-  const resolvedDetailHref = detailHref ?? `/apps/${app.slug}`;
+  const resolvedDetailHref = detailHref ?? `/projects/${app.slug}`;
 
   return (
     <article

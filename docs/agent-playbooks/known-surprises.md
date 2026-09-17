@@ -199,15 +199,10 @@ If uncertain, ask the developer before adding an entry.
 - **Status:** confirmed
 - **Update (2026-08-10):** The script used to also resolve its target as `path.join(process.cwd(), "public", "translations")`, so the documented repo-root command failed with "Translations directory not found" and had to be run from `about/`. It now resolves the workspace from the current directory or from its own location, and works from anywhere. The concurrency trap above is unchanged.
 
-### The dev react-scan toolbar swallows driven clicks in the bottom-right corner
+### Development annotation controls can intercept driven clicks
 
-- **Date:** 2026-08-10
-- **Observed by:** Claude
-- **Context:** Verifying the fixed scroll button on the about home page with `playwright-cli`
-- **What was surprising:** `playwright-cli click` on the fixed scroll button times out with `<div id="react-scan-root"></div> intercepts pointer events`. The host element is a zero-height `<div>` at the end of `<body>`, so it looks harmless in a DOM dump; the toolbar actually lives in its open shadow root and is fixed to the bottom-right corner — the same corner as the app's scroll button. `element.click()` from `eval` bypasses hit-testing and still works, so a scripted check can pass while every real pointer click fails.
-- **Impact:** A whole verification pass reads as a product bug in the control being tested. `navigator.webdriver` is `false` in playwright-cli sessions, so the app cannot detect automation on its own.
-- **Mitigation:** `scripts/pw-session.sh open` now registers `window.__NO_DEV_TOOLBAR__ = true` via `page.addInitScript` and reloads, so sessions opened through the wrapper never mount the toolbar. Only the toolbar is suppressed — `react-scan` itself stays enabled, so `__getReactScanReport` and `__ELEMENT_SOURCE__` keep working for the profiler and element-inspection skills. When driving `playwright-cli` directly, set the same flag before load, or expect corner clicks to be intercepted.
-- **Status:** confirmed
+- **Context:** The about and chain sites have fixed controls in the bottom-right corner, where the Agentation toolbar also appears in development.
+- **Mitigation:** `scripts/pw-session.sh open` registers `window.__NO_DEV_TOOLBAR__ = true` before reloading the page. The Agentation initializer also honors `__VISUAL_TESTING__` and `__PROFILING__`; source inspection remains available independently. Direct browser automation must set the same flag before loading the application.
 
 ### `skills add` installs Codex and Cursor copies into the gitignored `.agents/` directory
 
@@ -216,5 +211,5 @@ If uncertain, ask the developer before adding an entry.
 - **Context:** Installing the `improve-threejs` skill from `millionco/react-doctor` with the `skills` CLI (`vercel-labs/skills`).
 - **What was surprising:** `npx skills add <repo> --skill <name> --agent codex` and `--agent cursor` both write to `.agents/skills/<name>/`, not to `.codex/skills/` or `.cursor/skills/`. `AGENTS.md` forbids a repo-level `.agents/` directory and `.gitignore:29` ignores it, so both copies are silently untracked. Only `--agent claude-code` writes to the expected `.claude/skills/`. Separately, the documented comma-separated form (`--agent claude-code,codex,cursor`) fails with "Invalid agents" and installs nothing, even though each name is valid on its own.
 - **Impact:** The install reports success while two of the three toolchain copies land somewhere that will never be committed, so Codex and Cursor silently lack the skill after a fresh clone. The comma form can also produce a no-op install that reads as a success.
-- **Mitigation:** Run `skills add` once per agent with a single `--agent` value. Use `--agent claude-code` for the `.claude/skills/` copy, then `cp -R .claude/skills/<name> .codex/skills/<name>` and `cp -R .claude/skills/<name> .cursor/skills/<name>`, and `rm -rf .agents`. Confirm with `git status` that all three copies show as untracked additions before committing.
+- **Current mitigation:** The repository now tracks `.agents/skills` as its canonical source and generates Claude copies with `yarn ai-workflow:sync`. The former `.agents` prohibition and ignore rule have been removed. Do not copy new skills into three independent roots; check generated parity and the app catalog after adding a skill.
 - **Status:** confirmed

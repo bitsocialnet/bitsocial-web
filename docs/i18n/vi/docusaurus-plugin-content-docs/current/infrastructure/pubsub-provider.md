@@ -22,7 +22,7 @@ Pubsub Provider là dịch vụ dành cho nhà điều hành, dùng để chạy
 
 ## Cổng mạng
 
-Các giá trị mặc định được chọn sao cho Pubsub Provider chạy được cạnh [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) trên cùng một VPS mà không xung đột cổng swarm.
+Các giá trị mặc định được chọn sao cho Pubsub Provider chạy được cạnh [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) trên cùng một VPS mà không xung đột cổng swarm.
 
 | Mục đích             | Mặc định                                     | Ghi chú                                                   |
 | -------------------- | -------------------------------------------- | --------------------------------------------------------- |

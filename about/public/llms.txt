@@ -28,28 +28,28 @@ Use `https://bitsocial.net/` for the public product overview and `https://docs.b
 
 ## Apps and tools
 
-- [5chan](https://bitsocial.net/apps/5chan): Decentralized imageboards with direct web, APK, and desktop downloads.
-- [Seedit](https://bitsocial.net/apps/seedit): Forum-style Bitsocial client with web, APK, and desktop builds.
-- [bitbones](https://bitsocial.net/apps/bitbones): Bare-bones reference client where every view is a thin wrapper over one hook.
-- [HuggingSocial](https://bitsocial.net/apps/huggingsocial): Peer-to-peer hub for finding, discussing, and downloading open AI models.
-- [Mintpass](https://bitsocial.net/apps/mintpass): NFT-backed access control for communities that need stronger anti-spam gates.
-- [AI Moderation Challenge](https://bitsocial.net/apps/ai-moderation-challenge): OpenAI-compatible moderation checks against each community's rules.
-- [Spam Blocker](https://bitsocial.net/apps/spam-blocker): Centralized risk scoring layer for filtering abusive publications.
-- [R9K Challenge](https://bitsocial.net/apps/r9k-challenge): Robot9000-style originality gate for communities that want anti-repost posting UX.
-- [Wordfilter Challenge](https://bitsocial.net/apps/wordfilter-challenge): Community wordfilters enforced as a posting rule instead of a display filter.
-- [Captcha Canvas Challenge](https://bitsocial.net/apps/captcha-canvas-challenge): Custom image captchas for communities that want human verification.
-- [Voucher Challenge](https://bitsocial.net/apps/voucher-challenge): Invite-style voucher codes for communities that prefer controlled growth.
-- [EVM Contract Call](https://bitsocial.net/apps/evm-contract-call): On-chain gating for communities that want token or contract checks.
-- [Flags Challenge](https://bitsocial.net/apps/flags-challenge): Verified flag issuer challenge for country and board-specific flair.
-- [Bitsocial CLI](https://bitsocial.net/apps/bitsocial-cli): Command-line control for nodes, communities, and automation workflows.
-- [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder): Public seeder for Bitsocial communities, packaged for Docker and npm.
-- [Pubsub Provider](https://bitsocial.net/apps/pubsub-provider): Fallback pubsub relay and routing provider for Bitsocial operators.
-- [Bitsocial Indexer](https://bitsocial.net/apps/bitsocial-indexer): Self-hostable crawler, search index, and web UI for Bitsocial communities.
-- [Bitsocial Previewer](https://bitsocial.net/apps/bitsocial-previewer): Link-preview and redirect server that renders share cards for Bitsocial posts.
-- [Challenge Composer](https://bitsocial.net/apps/challenge-composer): Offline-first editor for a community's anti-spam challenge settings.
-- [Bitsocial Telegram Bots](https://bitsocial.net/apps/telegram-bots): Feed bots that relay new Bitsocial posts into Telegram channels or groups.
-- [Bitsocial GitHub Alerts](https://bitsocial.net/apps/bitsocial-github-alerts): Telegram bot that posts compact GitHub activity for Bitsocial repositories.
-- [5chan Board Manager](https://bitsocial.net/apps/5chan-board-manager): Board administration tooling for custom 5chan communities.
+- [5chan](https://bitsocial.net/projects/5chan): Decentralized imageboards with direct web, APK, and desktop downloads.
+- [Seedit](https://bitsocial.net/projects/seedit): Forum-style Bitsocial client with web, APK, and desktop builds.
+- [bitbones](https://bitsocial.net/projects/bitbones): Bare-bones reference client where every view is a thin wrapper over one hook.
+- [HuggingSocial](https://bitsocial.net/projects/huggingsocial): Peer-to-peer hub for finding, discussing, and downloading open AI models.
+- [Mintpass](https://bitsocial.net/projects/mintpass): NFT-backed access control for communities that need stronger anti-spam gates.
+- [AI Moderation Challenge](https://bitsocial.net/projects/ai-moderation-challenge): OpenAI-compatible moderation checks against each community's rules.
+- [Spam Blocker](https://bitsocial.net/projects/spam-blocker): Centralized risk scoring layer for filtering abusive publications.
+- [R9K Challenge](https://bitsocial.net/projects/r9k-challenge): Robot9000-style originality gate for communities that want anti-repost posting UX.
+- [Wordfilter Challenge](https://bitsocial.net/projects/wordfilter-challenge): Community wordfilters enforced as a posting rule instead of a display filter.
+- [Captcha Canvas Challenge](https://bitsocial.net/projects/captcha-canvas-challenge): Custom image captchas for communities that want human verification.
+- [Voucher Challenge](https://bitsocial.net/projects/voucher-challenge): Invite-style voucher codes for communities that prefer controlled growth.
+- [EVM Contract Call](https://bitsocial.net/projects/evm-contract-call): On-chain gating for communities that want token or contract checks.
+- [Flags Challenge](https://bitsocial.net/projects/flags-challenge): Verified flag issuer challenge for country and board-specific flair.
+- [Bitsocial CLI](https://bitsocial.net/projects/bitsocial-cli): Command-line control for nodes, communities, and automation workflows.
+- [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder): Public seeder for Bitsocial communities, packaged for Docker and npm.
+- [Pubsub Provider](https://bitsocial.net/projects/pubsub-provider): Fallback pubsub relay and routing provider for Bitsocial operators.
+- [Bitsocial Indexer](https://bitsocial.net/projects/bitsocial-indexer): Self-hostable crawler, search index, and web UI for Bitsocial communities.
+- [Bitsocial Previewer](https://bitsocial.net/projects/bitsocial-previewer): Link-preview and redirect server that renders share cards for Bitsocial posts.
+- [Challenge Composer](https://bitsocial.net/projects/challenge-composer): Offline-first editor for a community's anti-spam challenge settings.
+- [Bitsocial Telegram Bots](https://bitsocial.net/projects/telegram-bots): Feed bots that relay new Bitsocial posts into Telegram channels or groups.
+- [Bitsocial GitHub Alerts](https://bitsocial.net/projects/bitsocial-github-alerts): Telegram bot that posts compact GitHub activity for Bitsocial repositories.
+- [5chan Board Manager](https://bitsocial.net/projects/5chan-board-manager): Board administration tooling for custom 5chan communities.
 
 ## Docs
 
@@ -68,4 +68,4 @@ Use `https://bitsocial.net/` for the public product overview and `https://docs.b
 - [Docs llms-full.txt](https://docs.bitsocial.net/llms-full.txt): Docs-scoped full inline corpus if only the documentation surface is needed.
 - [Bitsocial Chain llms.txt](https://chain.bitsocial.net/llms.txt): Chain-specific routing index for BSO and the proposed L2 appchain.
 - [Contributor playbooks](https://docs.bitsocial.net/agent-playbooks/): Public workflow docs for contributors and AI agents; useful for repo and process questions, but usually unnecessary for end-user product questions.
-- [All public docs pages](https://docs.bitsocial.net/llms.txt): 35 curated public docs entries from the Bitsocial docs site.
+- [All public docs pages](https://docs.bitsocial.net/llms.txt): 36 curated public docs entries from the Bitsocial docs site.
