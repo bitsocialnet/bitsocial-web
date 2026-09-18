@@ -35,6 +35,12 @@ const samples = Number(options.samples || (command === "check" ? 3 : 1));
 if (![1, 4].includes(cpu)) throw new Error("--cpu must be 1 or 4");
 if (!Number.isInteger(samples) || samples < 1 || samples > 10)
   throw new Error("--samples must be an integer from 1 to 10");
+// Commit and component-update budgets are hardware independent and stay exact.
+// The wall-clock budgets were calibrated on developer hardware, so a slower
+// shared machine needs them scaled by its measured ratio rather than removed.
+const timeScale = Number(process.env.REACT_PERF_TIME_SCALE || 1);
+if (!Number.isFinite(timeScale) || timeScale < 1 || timeScale > 10)
+  throw new Error("REACT_PERF_TIME_SCALE must be a number from 1 to 10");
 const output = path.resolve(
   packageRoot,
   options.output || `.react-perf/${command}-${new Date().toISOString().replaceAll(":", "-")}`,
@@ -45,6 +51,7 @@ const report = {
   command,
   cpu,
   samples,
+  timeScale,
   viewport: { width: 1280, height: 900 },
   output,
   startedAt: new Date().toISOString(),
@@ -56,6 +63,15 @@ const interrupt = () => abort.abort(new Error("Profiling interrupted"));
 process.once("SIGINT", interrupt);
 process.once("SIGTERM", interrupt);
 const safeName = (name) => name.replace(/[^a-z0-9._-]/gi, "-");
+
+// Reported budgets are the enforced ones, so scaled evidence stays readable.
+function scaleBudgets(budgets, scale) {
+  if (scale === 1) return budgets;
+  const scaled = { ...budgets };
+  for (const key of ["maxRenderMs", "maxActionMs"])
+    if (scaled[key] !== undefined) scaled[key] = scaled[key] * scale;
+  return scaled;
+}
 
 async function runCase(browser, target, scenario, origin, sample) {
   abort.signal.throwIfAborted();
@@ -155,14 +171,15 @@ async function runCase(browser, target, scenario, origin, sample) {
       throw new Error(`${name}: collector reset during measurement`);
     await page.evaluate((name) => performance.mark(`react-perf:${name}:end`), name);
     const summary = summarize(data, actionMs);
-    const failures = checkBudgets(summary, budgets);
+    const enforced = scaleBudgets(budgets, timeScale);
+    const failures = checkBudgets(summary, enforced);
     const phase = {
       name,
       coverage: navigated
         ? "new-document hydration only; previous document excluded"
         : "committed updates during action",
       url: page.url(),
-      budgets,
+      budgets: enforced,
       summary,
       snapshot: data,
       failures,
