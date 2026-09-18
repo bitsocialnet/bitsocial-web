@@ -41,13 +41,26 @@ function positiveNumber(value, label, maximum = Infinity) {
   return number;
 }
 
-async function readJson(file) {
+export function gitRelativePath(repository, file, pathApi = path) {
+  return pathApi.relative(repository, file).split(pathApi.sep).join("/");
+}
+
+function inputPath(file, cwd = process.cwd()) {
+  let relative = gitRelativePath(cwd, path.resolve(file));
+  const token = process.env.TYPESAFE_API_KEY?.trim();
+  if (token) relative = relative.split(token).join("[redacted]");
+  relative = relative.replace(/[\x00-\x1f\x7f]/g, "?");
+  return relative.length > 180 ? `...${relative.slice(-177)}` : relative;
+}
+
+async function readJson(file, cwd) {
   const stat = await fs.stat(file);
-  if (stat.size > MAX_FILE_BYTES) throw new TranslationInputError("JSON input exceeds 4 MiB");
+  if (stat.size > MAX_FILE_BYTES)
+    throw new TranslationInputError(`JSON input exceeds 4 MiB: ${inputPath(file, cwd)}`);
   try {
     return JSON.parse(await fs.readFile(file, "utf8"));
   } catch {
-    throw new TranslationInputError("Unable to read valid JSON input");
+    throw new TranslationInputError(`Unable to read valid JSON input: ${inputPath(file, cwd)}`);
   }
 }
 
@@ -390,9 +403,9 @@ function git(root, args) {
   }
 }
 
-async function localeMap(file) {
+async function localeMap(file, cwd) {
   try {
-    return flattenTranslations(await readJson(file));
+    return flattenTranslations(await readJson(file, cwd));
   } catch (error) {
     if (error.code === "ENOENT") return Object.create(null);
     throw error;
@@ -425,7 +438,7 @@ export async function loadLocalePairs({
   const canonicalCwd = await fs.realpath(cwd);
   const root = await fs.realpath(path.resolve(canonicalCwd, translationsRoot));
   const sourceFile = path.join(root, "en/default.json");
-  const source = await localeMap(sourceFile);
+  const source = await localeMap(sourceFile, canonicalCwd);
   if (!Object.keys(source).length)
     throw new TranslationInputError("English source catalog is missing or empty");
   let repository;
@@ -443,7 +456,7 @@ export async function loadLocalePairs({
     ]).trim();
     changed = new Set(
       changedFiles.length
-        ? changedFiles.map((file) => path.relative(repository, path.resolve(canonicalCwd, file)))
+        ? changedFiles.map((file) => gitRelativePath(repository, path.resolve(canonicalCwd, file)))
         : [
             ...git(repository, [
               "diff",
@@ -452,7 +465,7 @@ export async function loadLocalePairs({
               "-z",
               revision,
               "--",
-              path.relative(repository, root),
+              gitRelativePath(repository, root),
             ]).split("\0"),
             ...git(repository, [
               "ls-files",
@@ -460,7 +473,7 @@ export async function loadLocalePairs({
               "--exclude-standard",
               "-z",
               "--",
-              path.relative(repository, root),
+              gitRelativePath(repository, root),
             ]).split("\0"),
           ].filter(Boolean),
     );
@@ -471,7 +484,7 @@ export async function loadLocalePairs({
   }
   const previous = (file) => {
     if (!revision) return Object.create(null);
-    const relative = path.relative(repository, file).split(path.sep).join("/");
+    const relative = gitRelativePath(repository, file);
     try {
       return flattenTranslations(
         JSON.parse(
@@ -493,22 +506,24 @@ export async function loadLocalePairs({
         relative,
       ]).trim();
       if (exists)
-        throw new TranslationInputError("Unable to parse locale JSON at requested Git base");
+        throw new TranslationInputError(
+          `Unable to parse locale JSON at requested Git base: ${inputPath(file, canonicalCwd)}`,
+        );
       return Object.create(null);
     }
   };
-  const sourceRelative = repository && path.relative(repository, sourceFile);
+  const sourceRelative = repository && gitRelativePath(repository, sourceFile);
   const sourceChanged = changed?.has(sourceRelative);
   const englishKeys = sourceChanged ? changedKeys(previous(sourceFile), source) : new Set();
   const pairs = [];
   for (const locale of locales) {
     const file = path.join(root, locale, "default.json");
-    const target = await localeMap(file);
+    const target = await localeMap(file, canonicalCwd);
     let selected = keys.length
       ? new Set(keys)
       : new Set([...Object.keys(source), ...Object.keys(target)]);
     if (changed) {
-      const targetChanged = changed.has(path.relative(repository, file));
+      const targetChanged = changed.has(gitRelativePath(repository, file));
       const filtered = new Set([
         ...englishKeys,
         ...(targetChanged ? changedKeys(previous(file), target) : []),

@@ -152,13 +152,16 @@ export function createJevClient({
       priceUsdPerMillionInputTokens: INPUT_USD_PER_MILLION,
     };
   }
-  async function ask({ state, questions }) {
+  function assertReady() {
     if (!live) fail("live_not_enabled");
     if (typeof apiKey !== "string" || !apiKey.trim()) fail("missing_api_key");
-    const token = apiKey.trim();
     // Explicit versions make evaluations reproducible; aliases cannot silently change underneath a cache.
     if (typeof model !== "string" || !/^jev-\d+\.\d+\.\d+$/.test(model))
       fail("pinned_model_required");
+  }
+  async function ask({ state, questions }) {
+    assertReady();
+    const token = apiKey.trim();
     validateQuestions(questions);
     let body;
     try {
@@ -210,5 +213,5 @@ export function createJevClient({
       );
     }
   }
-  return { ask, stats };
+  return { ask, stats, assertReady };
 }
