@@ -15,3 +15,9 @@ Use `--delete` for requested removals. Inspect `--audit --dry` findings before a
 `scripts/translate-docs.py` is a bulk writer for all pages/locales and has no per-file filter; do not use it for a narrow translation edit. `scripts/check-docs-translations.py` is the read-only verifier and supports `--locales` and `--paths`.
 
 Keep code fences, links, inline code, contract addresses, headings, tables, and admonitions aligned with the English source. Resolve verifier errors; brand-name `frontmatter-untranslated` warnings can be expected. Follow `docs/AGENTS.md` and build through the root when changing docs theme or i18n behavior so static output and Pagefind stay aligned.
+
+## Optional semantic review
+
+For selected i18next keys, use `scripts/jev/translation-README.md`. For documentation pages, run `node scripts/jev/docs-translations.mjs --locales it,de --paths browser-p2p.md` first. This requires an explicit locale/page selection, runs the structural verifier, and reports semantic review as unverified until live inference is enabled. Add `--live --model <pinned-model>` only with the task's provider credentials and budget. The command never edits translations.
+
+The page adapter preserves whole-page context and limits each page to 24 KB and each run to 30 pairs. For larger pages, prepare explicitly aligned source/translation paragraph pairs for `translations.mjs --pairs`; do not automatically pair paragraphs by index. Semantic results are advisory: inspect reported issues and uncertainty, and retain deterministic code/link/address checks.
