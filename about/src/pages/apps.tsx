@@ -305,70 +305,74 @@ export default function Apps() {
                 ) : null}
               </div>
 
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                {platformSummaries.map((platform) => {
-                  const Icon = platformIconMap[platform.slug];
-                  const active = activePlatform === platform.slug;
-                  const disabled = isAtFilterCap && !active && !activePlatform;
-                  const baseClass = cn(
-                    "touch-target inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 sm:gap-2 sm:px-4 sm:py-2 sm:text-sm",
-                    active
-                      ? "border-blue-core/30 text-foreground ring-glow shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55"
-                      : "border-border/70 text-foreground/80 hover:border-blue-glow hover:text-foreground",
-                    disabled &&
-                      "cursor-not-allowed opacity-40 hover:!border-border/70 hover:!text-foreground/80",
-                  );
-                  const inner = (
-                    <>
-                      <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                      <span>{getPlatformShortLabel(platform.slug, t)}</span>
-                      <span
-                        className={cn(
-                          "text-micro-fluid hidden rounded-full border px-2 py-0.5 sm:inline",
-                          active
-                            ? "border-blue-core/20 text-foreground"
-                            : "border-border/60 text-foreground/65",
-                        )}
-                      >
-                        {platform.count}
-                      </span>
-                    </>
-                  );
+              {/* Below xl the platform pills and Submit App share one line, so the CTA sits at
+                  the right edge instead of taking a row of its own. */}
+              <div className="flex flex-wrap items-center gap-2 xl:contents">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  {platformSummaries.map((platform) => {
+                    const Icon = platformIconMap[platform.slug];
+                    const active = activePlatform === platform.slug;
+                    const disabled = isAtFilterCap && !active && !activePlatform;
+                    const baseClass = cn(
+                      "touch-target inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 sm:gap-2 sm:px-4 sm:py-2 sm:text-sm",
+                      active
+                        ? "border-blue-core/30 text-foreground ring-glow shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55"
+                        : "border-border/70 text-foreground/80 hover:border-blue-glow hover:text-foreground",
+                      disabled &&
+                        "cursor-not-allowed opacity-40 hover:!border-border/70 hover:!text-foreground/80",
+                    );
+                    const inner = (
+                      <>
+                        <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                        <span>{getPlatformShortLabel(platform.slug, t)}</span>
+                        <span
+                          className={cn(
+                            "text-micro-fluid hidden rounded-full border px-2 py-0.5 sm:inline",
+                            active
+                              ? "border-blue-core/20 text-foreground"
+                              : "border-border/60 text-foreground/65",
+                          )}
+                        >
+                          {platform.count}
+                        </span>
+                      </>
+                    );
 
-                  if (disabled) {
+                    if (disabled) {
+                      return (
+                        <span
+                          key={platform.slug}
+                          className={baseClass}
+                          aria-disabled="true"
+                          title={t("apps.filterLimitReached", {
+                            defaultValue: "Filter limit reached",
+                          })}
+                        >
+                          {inner}
+                        </span>
+                      );
+                    }
+
                     return (
-                      <span
+                      <button
                         key={platform.slug}
+                        type="button"
+                        onClick={() => handlePlatformChange(active ? null : platform.slug)}
                         className={baseClass}
-                        aria-disabled="true"
-                        title={t("apps.filterLimitReached", {
-                          defaultValue: "Filter limit reached",
-                        })}
                       >
                         {inner}
-                      </span>
+                      </button>
                     );
-                  }
+                  })}
+                </div>
 
-                  return (
-                    <button
-                      key={platform.slug}
-                      type="button"
-                      onClick={() => handlePlatformChange(active ? null : platform.slug)}
-                      className={baseClass}
-                    >
-                      {inner}
-                    </button>
-                  );
-                })}
+                <CardInlineCta
+                  href={SUBMIT_APP_URL}
+                  className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} ml-auto hidden !px-5 !py-2.5 text-sm md:inline-flex xl:ml-0 xl:!px-6 xl:!py-3`}
+                >
+                  {t("apps.submitApp")}
+                </CardInlineCta>
               </div>
-
-              <CardInlineCta
-                href={SUBMIT_APP_URL}
-                className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} hidden !px-6 !py-3 text-sm md:inline-flex`}
-              >
-                {t("apps.submitApp")}
-              </CardInlineCta>
             </div>
           </section>
 
@@ -449,54 +453,56 @@ export default function Apps() {
                   ) : null}
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {platformSummaries.map((platform) => {
-                    const Icon = platformIconMap[platform.slug];
-                    const active = activePlatform === platform.slug;
+                <div className="flex flex-wrap items-center gap-2 xl:contents">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                    {platformSummaries.map((platform) => {
+                      const Icon = platformIconMap[platform.slug];
+                      const active = activePlatform === platform.slug;
 
-                    return (
-                      <a
-                        key={platform.slug}
-                        href={buildAppsHref(searchParams, {
-                          platform: active ? null : platform.slug,
-                        })}
-                        className={cn(
-                          "touch-target inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 sm:gap-2 sm:px-4 sm:py-2 sm:text-sm",
-                          active
-                            ? "border-blue-core/30 text-foreground ring-glow shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55"
-                            : "border-border/70 text-foreground/80 hover:border-blue-glow hover:text-foreground",
-                        )}
-                      >
-                        <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                        <span>{getPlatformShortLabel(platform.slug, t)}</span>
-                        <span
+                      return (
+                        <a
+                          key={platform.slug}
+                          href={buildAppsHref(searchParams, {
+                            platform: active ? null : platform.slug,
+                          })}
                           className={cn(
-                            "text-micro-fluid hidden rounded-full border px-2 py-0.5 sm:inline",
+                            "touch-target inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 sm:gap-2 sm:px-4 sm:py-2 sm:text-sm",
                             active
-                              ? "border-blue-core/20 text-foreground"
-                              : "border-border/60 text-foreground/65",
+                              ? "border-blue-core/30 text-foreground ring-glow shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55"
+                              : "border-border/70 text-foreground/80 hover:border-blue-glow hover:text-foreground",
                           )}
                         >
-                          {platform.count}
-                        </span>
-                      </a>
-                    );
-                  })}
+                          <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                          <span>{getPlatformShortLabel(platform.slug, t)}</span>
+                          <span
+                            className={cn(
+                              "text-micro-fluid hidden rounded-full border px-2 py-0.5 sm:inline",
+                              active
+                                ? "border-blue-core/20 text-foreground"
+                                : "border-border/60 text-foreground/65",
+                            )}
+                          >
+                            {platform.count}
+                          </span>
+                        </a>
+                      );
+                    })}
+                  </div>
+
+                  <button
+                    type="submit"
+                    className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} ml-auto !px-5 !py-2.5 text-sm xl:ml-0 xl:!px-6 xl:!py-3`}
+                  >
+                    {t("apps.searchPlaceholder")}
+                  </button>
+
+                  <CardInlineCta
+                    href={SUBMIT_APP_URL}
+                    className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} hidden !px-5 !py-2.5 text-sm md:inline-flex xl:!px-6 xl:!py-3`}
+                  >
+                    {t("apps.submitApp")}
+                  </CardInlineCta>
                 </div>
-
-                <button
-                  type="submit"
-                  className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-6 !py-3 text-sm`}
-                >
-                  {t("apps.searchPlaceholder")}
-                </button>
-
-                <CardInlineCta
-                  href={SUBMIT_APP_URL}
-                  className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} hidden !px-6 !py-3 text-sm md:inline-flex`}
-                >
-                  {t("apps.submitApp")}
-                </CardInlineCta>
               </form>
             </section>
           </noscript>
