@@ -17,8 +17,14 @@ const ASK_AI_PREAMBLE =
 const QUESTION_MAX_LENGTH = 700;
 
 /**
- * chatgpt.com silently drops a `prompt` parameter; `q` is the one it submits, and `hints=search`
- * is what makes it fetch the linked files instead of answering from memory.
+ * `q` is the parameter chatgpt.com submits; `prompt` only prefills the composer. `hints=search`
+ * selects Search mode so the linked files actually get fetched rather than answered from memory,
+ * and is independent of whether the prompt is sent.
+ *
+ * Whether it sends is decided server-side, and OpenAI gates that on `Sec-Fetch-Site` as a
+ * prompt-injection mitigation (Tenable TRA-2025-22), so a click from this page can land on a
+ * composed-but-unsent prompt that the reader submits themselves. No URL flag overrides it, and
+ * the header is browser-controlled by design, so there is nothing to fix here.
  */
 export function buildAskAiUrl(question: string): string | null {
   const trimmed = question.trim().slice(0, QUESTION_MAX_LENGTH);
