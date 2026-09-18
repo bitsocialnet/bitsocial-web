@@ -242,7 +242,7 @@ export default function Apps() {
 
           <section className="apps-js-controls glass-card mb-6 p-4 md:p-5">
             <div className="flex flex-col gap-4 xl:flex-row xl:items-center">
-              <div className="apps-search-bar flex min-h-12 min-w-0 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)] xl:flex-1">
+              <div className="apps-lean-touch flex min-h-12 min-w-0 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)] xl:flex-1">
                 <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                 <input
                   type="search"
@@ -308,13 +308,13 @@ export default function Apps() {
               {/* Below xl the platform pills and Submit App share one line, so the CTA sits at
                   the right edge instead of taking a row of its own. */}
               <div className="flex flex-wrap items-center gap-2 xl:contents">
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                <div className="apps-lean-touch flex flex-wrap gap-1.5 md:gap-2">
                   {platformSummaries.map((platform) => {
                     const Icon = platformIconMap[platform.slug];
                     const active = activePlatform === platform.slug;
                     const disabled = isAtFilterCap && !active && !activePlatform;
                     const baseClass = cn(
-                      "touch-target inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 sm:gap-2 sm:px-4 sm:py-2 sm:text-sm",
+                      "touch-target inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 md:gap-2 md:px-4 md:py-2 md:text-sm",
                       active
                         ? "border-blue-core/30 text-foreground ring-glow shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55"
                         : "border-border/70 text-foreground/80 hover:border-blue-glow hover:text-foreground",
@@ -323,11 +323,11 @@ export default function Apps() {
                     );
                     const inner = (
                       <>
-                        <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                        <Icon className="h-3.5 w-3.5 md:h-4 md:w-4" />
                         <span>{getPlatformShortLabel(platform.slug, t)}</span>
                         <span
                           className={cn(
-                            "text-micro-fluid hidden rounded-full border px-2 py-0.5 sm:inline",
+                            "text-micro-fluid hidden rounded-full border px-2 py-0.5 md:inline",
                             active
                               ? "border-blue-core/20 text-foreground"
                               : "border-border/60 text-foreground/65",
@@ -392,7 +392,7 @@ export default function Apps() {
                 {tagParam && tagParam.trim().length > 0 ? (
                   <input type="hidden" name="tag" value={tagParam} />
                 ) : null}
-                <div className="apps-search-bar flex min-h-12 min-w-0 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)] xl:flex-1">
+                <div className="apps-lean-touch flex min-h-12 min-w-0 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)] xl:flex-1">
                   <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                   <input
                     type="search"
@@ -454,7 +454,7 @@ export default function Apps() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-2 xl:contents">
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  <div className="apps-lean-touch flex flex-wrap gap-1.5 md:gap-2">
                     {platformSummaries.map((platform) => {
                       const Icon = platformIconMap[platform.slug];
                       const active = activePlatform === platform.slug;
@@ -466,17 +466,17 @@ export default function Apps() {
                             platform: active ? null : platform.slug,
                           })}
                           className={cn(
-                            "touch-target inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 sm:gap-2 sm:px-4 sm:py-2 sm:text-sm",
+                            "touch-target inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 md:gap-2 md:px-4 md:py-2 md:text-sm",
                             active
                               ? "border-blue-core/30 text-foreground ring-glow shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55"
                               : "border-border/70 text-foreground/80 hover:border-blue-glow hover:text-foreground",
                           )}
                         >
-                          <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                          <Icon className="h-3.5 w-3.5 md:h-4 md:w-4" />
                           <span>{getPlatformShortLabel(platform.slug, t)}</span>
                           <span
                             className={cn(
-                              "text-micro-fluid hidden rounded-full border px-2 py-0.5 sm:inline",
+                              "text-micro-fluid hidden rounded-full border px-2 py-0.5 md:inline",
                               active
                                 ? "border-blue-core/20 text-foreground"
                                 : "border-border/60 text-foreground/65",

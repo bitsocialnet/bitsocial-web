@@ -14,7 +14,7 @@ export default function AppsDevsCta() {
 
   return (
     <div className="glass-card mb-6 px-3 py-2.5 md:hidden">
-      <div className="flex flex-wrap items-center justify-center gap-1.5 text-xs text-muted-foreground">
+      <div className="apps-lean-touch flex flex-wrap items-center justify-center gap-1.5 text-xs text-muted-foreground">
         <span className="flex shrink-0 items-center gap-1.5 font-display font-semibold uppercase tracking-[0.16em] text-foreground/55">
           <Code2 className="h-3.5 w-3.5" aria-hidden="true" />
           <span>{t("apps.devsLabel", { defaultValue: "Devs:" })}</span>
