@@ -242,7 +242,7 @@ export default function Apps() {
 
           <section className="apps-js-controls glass-card mb-6 p-4 md:p-5">
             <div className="flex flex-col gap-4 xl:flex-row xl:items-center">
-              <div className="flex min-h-12 min-w-0 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)] xl:flex-1">
+              <div className="apps-search-bar flex min-h-12 min-w-0 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)] xl:flex-1">
                 <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                 <input
                   type="search"
@@ -392,7 +392,7 @@ export default function Apps() {
                 {tagParam && tagParam.trim().length > 0 ? (
                   <input type="hidden" name="tag" value={tagParam} />
                 ) : null}
-                <div className="flex min-h-12 min-w-0 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)] xl:flex-1">
+                <div className="apps-search-bar flex min-h-12 min-w-0 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)] xl:flex-1">
                   <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                   <input
                     type="search"

@@ -447,6 +447,14 @@
       min-height: 2.75rem;
     }
 
+    /* The controls sharing the 3rem search bar would otherwise fill it edge to edge on a
+       touch device. They stay tappable at 2rem and the sibling platform filters below the
+       bar keep the full target. */
+    .apps-search-bar .touch-target {
+      min-width: 2rem;
+      min-height: 2rem;
+    }
+
     .home-section-eyebrow > a {
       min-width: 2.75rem;
       min-height: 2.75rem;
