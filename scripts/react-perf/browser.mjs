@@ -66,6 +66,10 @@ export async function withBrowser(packageRoot, headed, run) {
     throw new Error("Profiling browser is missing. Run perf:install first.");
   const scratch = await mkdtemp(path.join(tmpdir(), "react-perf-"));
   const config = path.join(scratch, "browser.json");
+  // Hosted runners restrict unprivileged user namespaces, so Chromium's own
+  // sandbox cannot initialize there and the browser aborts before launching.
+  // The runner is already an isolated throwaway VM; local runs keep the sandbox.
+  const sandboxed = !process.env.CI;
   await writeFile(
     config,
     JSON.stringify({
@@ -74,6 +78,7 @@ export async function withBrowser(packageRoot, headed, run) {
         launchOptions: {
           ...(channel ? { channel } : { executablePath: driver.chromium.executablePath() }),
           headless: !headed,
+          chromiumSandbox: sandboxed,
           args: [`--remote-debugging-port=${port}`],
         },
         contextOptions: { viewport: { width: 1280, height: 900 } },
