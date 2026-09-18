@@ -209,6 +209,16 @@
     -webkit-box-shadow: none;
     -webkit-tap-highlight-color: transparent;
   }
+  /* Borderless ask input sitting directly in a FAQ card row. `input.` keeps the specificity level
+     with the typed selectors above, which a bare class would lose to. */
+  input.faq-ask-input:focus,
+  input.faq-ask-input:focus-visible {
+    outline: none;
+    border-color: transparent;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -webkit-tap-highlight-color: transparent;
+  }
   a:focus-visible {
     outline: none;
     box-shadow: var(--focus-app-ring);

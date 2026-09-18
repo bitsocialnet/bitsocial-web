@@ -2,6 +2,7 @@ import { m, useReducedMotion } from "framer-motion";
 import { ArrowUp, ArrowUpRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import FaqAsk from "@/components/faq-ask";
 import { scrollToHomeSectionHash } from "@/lib/home-section-nav";
 import { goToMailingListSection, MAILING_LIST_HASH } from "@/lib/mailing-list-nav";
 import { rememberScrollReturn } from "@/lib/scroll-return";
@@ -184,72 +185,78 @@ export default function Faq() {
           {t("faq.supporting")}
         </m.p>
 
-        <m.nav
+        {/* No `overflow-hidden`: the focus ring is an outset box-shadow and would be clipped. */}
+        <m.div
           {...revealCard(20, 0.25)}
-          aria-label={t("faq.navLabel")}
-          className="mx-auto max-w-3xl"
+          className="glass-card mx-auto max-w-3xl px-2 py-1 md:px-3 md:py-2"
         >
-          {/* No `overflow-hidden`: the focus ring is an outset box-shadow and would be clipped. */}
-          <ol className="glass-card divide-y divide-border/50 px-2 py-1 md:px-3 md:py-2">
-            {FAQ_IDS.map((id, index) => {
-              const keys = FAQ_I18N[id];
-              // The diagonal arrow is what tells the reader this row leaves the page instead of
-              // scrolling, so it also leans right on hover rather than straight up.
-              const ArrowIcon = keys.route ? ArrowUpRight : ArrowUp;
-              const arrowHoverClassName = keys.route
-                ? "group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                : "group-hover:-translate-y-0.5";
-              const rowClassName =
-                "group flex items-center gap-3.5 rounded-2xl px-4 py-3 md:gap-5 md:px-6 md:py-3.5";
-              const rowContent = (
-                <>
-                  {/* Reading order comes from the <ol>, so the painted ordinal is decoration. */}
-                  <span
-                    aria-hidden="true"
-                    className="shrink-0 font-display text-xs font-semibold tabular-nums text-muted-foreground/45 transition-colors duration-300 group-hover:text-blue-glow group-focus-visible:text-blue-glow motion-reduce:transition-none md:text-sm"
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-
-                  <span className="flex min-w-0 flex-1 flex-col gap-1 md:flex-row md:items-center md:justify-between md:gap-6">
-                    <span className="min-w-0 font-display text-sm font-semibold text-balance text-foreground/85 transition-colors duration-300 group-hover:text-foreground group-focus-visible:text-foreground motion-reduce:transition-none md:text-base">
-                      {t(keys.question)}
-                    </span>
-
-                    {/* `whitespace-nowrap` and no fixed width: a wrapped label would strand the
-                        vertically centred arrow at the far left of the box. */}
-                    <span className="text-micro-fluid flex shrink-0 items-center gap-1.5 whitespace-nowrap font-display uppercase tracking-[0.18em] text-muted-foreground/65 transition-colors duration-300 group-hover:text-blue-glow group-focus-visible:text-blue-glow motion-reduce:transition-none">
-                      <ArrowIcon
-                        className={`h-3.5 w-3.5 shrink-0 transition-transform duration-300 ${arrowHoverClassName} motion-reduce:transform-none motion-reduce:transition-none`}
-                        aria-hidden="true"
-                      />
-                      <span className="sr-only">{t("faq.answeredIn")} </span>
-                      {t(keys.sectionLabel)}
-                    </span>
-                  </span>
-                </>
-              );
-
-              return (
-                <li key={id}>
-                  {keys.route ? (
-                    <Link to={keys.route} className={rowClassName}>
-                      {rowContent}
-                    </Link>
-                  ) : (
-                    <a
-                      href={`#${id}`}
-                      onClick={(event) => handleQuestionClick(event, id)}
-                      className={rowClassName}
+          <nav aria-label={t("faq.navLabel")}>
+            <ol className="divide-y divide-border/50">
+              {FAQ_IDS.map((id, index) => {
+                const keys = FAQ_I18N[id];
+                // The diagonal arrow is what tells the reader this row leaves the page instead of
+                // scrolling, so it also leans right on hover rather than straight up.
+                const ArrowIcon = keys.route ? ArrowUpRight : ArrowUp;
+                const arrowHoverClassName = keys.route
+                  ? "group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  : "group-hover:-translate-y-0.5";
+                const rowClassName =
+                  "group flex items-center gap-3.5 rounded-2xl px-4 py-3 md:gap-5 md:px-6 md:py-3.5";
+                const rowContent = (
+                  <>
+                    {/* Reading order comes from the <ol>, so the painted ordinal is decoration. */}
+                    <span
+                      aria-hidden="true"
+                      className="shrink-0 font-display text-xs font-semibold tabular-nums text-muted-foreground/45 transition-colors duration-300 group-hover:text-blue-glow group-focus-visible:text-blue-glow motion-reduce:transition-none md:text-sm"
                     >
-                      {rowContent}
-                    </a>
-                  )}
-                </li>
-              );
-            })}
-          </ol>
-        </m.nav>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span className="flex min-w-0 flex-1 flex-col gap-1 md:flex-row md:items-center md:justify-between md:gap-6">
+                      <span className="min-w-0 font-display text-sm font-semibold text-balance text-foreground/85 transition-colors duration-300 group-hover:text-foreground group-focus-visible:text-foreground motion-reduce:transition-none md:text-base">
+                        {t(keys.question)}
+                      </span>
+
+                      {/* `whitespace-nowrap` and no fixed width: a wrapped label would strand the
+                          vertically centred arrow at the far left of the box. */}
+                      <span className="text-micro-fluid flex shrink-0 items-center gap-1.5 whitespace-nowrap font-display uppercase tracking-[0.18em] text-muted-foreground/65 transition-colors duration-300 group-hover:text-blue-glow group-focus-visible:text-blue-glow motion-reduce:transition-none">
+                        <ArrowIcon
+                          className={`h-3.5 w-3.5 shrink-0 transition-transform duration-300 ${arrowHoverClassName} motion-reduce:transform-none motion-reduce:transition-none`}
+                          aria-hidden="true"
+                        />
+                        <span className="sr-only">{t("faq.answeredIn")} </span>
+                        {t(keys.sectionLabel)}
+                      </span>
+                    </span>
+                  </>
+                );
+
+                return (
+                  <li key={id}>
+                    {keys.route ? (
+                      <Link to={keys.route} className={rowClassName}>
+                        {rowContent}
+                      </Link>
+                    ) : (
+                      <a
+                        href={`#${id}`}
+                        onClick={(event) => handleQuestionClick(event, id)}
+                        className={rowClassName}
+                      >
+                        {rowContent}
+                      </a>
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+
+          {/* Same divider weight as the rows above: the ask row is the list's last entry. */}
+          <div className="border-t border-border/50">
+            <FaqAsk />
+          </div>
+        </m.div>
       </div>
     </section>
   );
