@@ -82,7 +82,6 @@ The content is biased toward inference-time lookup, not formal API reference gen
 - [Feature List Template](https://docs.bitsocial.net/agent-playbooks/templates/feature-list-template/): Machine-readable template used for long-running multi-session task tracking.
 - [Progress Log](https://docs.bitsocial.net/agent-playbooks/templates/progress.template/): Append one entry per session.
 - [Translations](https://docs.bitsocial.net/agent-playbooks/translations/): The about site uses i18next JSON at about/public/translations/{lang}/default.json. Docusaurus source translations live separately in docs/i18n/.
-- [Verification](https://docs.bitsocial.net/agent-playbooks/verification/): Select checks from the changed behavior and remaining uncertainty. Reuse successful evidence for the same final state; rerun after relevant edits or failures. Explicit CI/release/user requirements still apply.
 
 ## Other
 
@@ -2336,7 +2335,7 @@ Claude does not read a standalone `.claude/hooks.json`. Each app still controls 
 
 The formatter validates event/payload, edit success, file extension, and repository containment including symlinks. Missing dependencies or irrelevant input do no work. Commands use an argument array with Corepack network access disabled; hooks do not install dependencies, run builds/reviews, or mutate Git.
 
-Run checks explicitly according to [verification.md](https://docs.bitsocial.net/agent-playbooks/verification/). Run `yarn ai-workflow:sync`, `yarn ai-workflow:check`, and `yarn ai-workflow:test` after changing the workflow. Fixtures use disposable files and fake formatter invocations; they do not prove each app loaded its configuration. Reload and inspect the app catalog after upgrades.
+Run checks explicitly according to [verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md). Run `yarn ai-workflow:sync`, `yarn ai-workflow:check`, and `yarn ai-workflow:test` after changing the workflow. Fixtures use disposable files and fake formatter invocations; they do not prove each app loaded its configuration. Reload and inspect the app catalog after upgrades.
 
 The Impeccable design skill and its executable helpers remain available on demand under `.agents/skills/impeccable`. Its former Codex hook pointed at a missing directory; the design workflow now runs when its skill is selected, with no always-on design hook. The skill must not reconfigure project hooks as an incidental design step.
 
@@ -2574,7 +2573,7 @@ Use durable task state when work needs resumption or a handoff. Small tasks do n
 
 Record the requested outcome, current branch/worktree, file ownership, completed changes, checks with results, owned processes/sessions, and the next unresolved step. Do not store credentials or arbitrary source dumps. Mark a feature complete only when its acceptance criteria are verified.
 
-On resumption, inspect Git state, the latest progress, and relevant source before editing. Reuse compatible owned resources; start a dev server only when the next check needs one. Select checks by impact using [verification.md](https://docs.bitsocial.net/agent-playbooks/verification/), rather than repeating an unchanged full pass.
+On resumption, inspect Git state, the latest progress, and relevant source before editing. Reuse compatible owned resources; start a dev server only when the next check needs one. Select checks by impact using [verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md), rather than repeating an unchanged full pass.
 
 Keep related delegated work scoped and non-overlapping. One agent owns heavy checks and browser sessions. Update durable state when a completed slice, blocker, or handoff changes what the next contributor needs to know; do not mechanically log every command.
 
@@ -2666,7 +2665,7 @@ Prefer the existing skill/tool catalog and installed project CLIs. Use `gh` for 
 
 MCP overhead depends on the harness: deferred tool loading can avoid loading every schema upfront. Keep integrations relevant rather than treating MCP itself as obsolete. Existing CLI choices remain useful for reproducibility and resource control.
 
-All browser sessions use `./scripts/pw-session.sh`, which enforces one active browser machine-wide. Default to a fresh isolated session. Current personal-browser access needs explicit authorization; reuse that authorization in subsequent steps. Choose browsers/viewports for the affected behavior, run selected engines sequentially, close the exact named session in cleanup, and never use `close-all`/`kill-all`. See the `playwright-cli` skill and [verification.md](https://docs.bitsocial.net/agent-playbooks/verification/).
+All browser sessions use `./scripts/pw-session.sh`, which enforces one active browser machine-wide. Default to a fresh isolated session. Current personal-browser access needs explicit authorization; reuse that authorization in subsequent steps. Choose browsers/viewports for the affected behavior, run selected engines sequentially, close the exact named session in cleanup, and never use `close-all`/`kill-all`. See the `playwright-cli` skill and [verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md).
 
 ### Feature List Template
 
@@ -2740,51 +2739,6 @@ Use `--delete` for requested removals. Inspect `--audit --dry` findings before a
 `scripts/translate-docs.py` is a bulk writer for all pages/locales and has no per-file filter; do not use it for a narrow translation edit. `scripts/check-docs-translations.py` is the read-only verifier and supports `--locales` and `--paths`.
 
 Keep code fences, links, inline code, contract addresses, headings, tables, and admonitions aligned with the English source. Resolve verifier errors; brand-name `frontmatter-untranslated` warnings can be expected. Follow `docs/AGENTS.md` and build through the root when changing docs theme or i18n behavior so static output and Pagefind stay aligned.
-
-### Verification
-
-Source: https://docs.bitsocial.net/agent-playbooks/verification/
-Path: docs/agent-playbooks/verification.md
-Description: Select checks from the changed behavior and remaining uncertainty. Reuse successful evidence for the same final state; rerun after relevant edits or failures. Explicit CI/release/user requirements still apply.
-
-# Verification
-
-Select checks from the changed behavior and remaining uncertainty. Reuse successful evidence for the same final state; rerun after relevant edits or failures. Explicit CI/release/user requirements still apply.
-
-| Change                                                | Appropriate checks                                                                                                      |
-| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| Prose/comments/formatting only                        | Diff, references, relevant generators; no app build                                                                     |
-| AI workflow sources/configuration                     | `yarn ai-workflow:sync`, `yarn ai-workflow:check`, `yarn ai-workflow:test`; regenerate LLM indexes when context changed |
-| Isolated helper or script                             | Focused invocation/fixtures and syntax or type/lint checks for the affected code                                        |
-| Shared runtime, dependency, build, integration change | Focused affected checks plus the relevant build/type/lint checks below                                                  |
-| CSS/theme/layout only                                 | Affected routes/viewports/themes in selected browsers; build when imports, assets, or CSS processing changed            |
-| React state/effects/performance                       | Affected behavior and applicable React guidance; Doctor when diagnostics resolve a concrete concern                     |
-
-## Project checks
-
-- `yarn build:verify` selects the affected workspace. For a known scope use `yarn build:about`, `yarn build:chain`, `yarn build:stats-monitor`, or `yarn docs:build:verify`.
-- `yarn build` intentionally runs the full production about/docs build, including all docs locales. Use it for release-wide validation or changes that warrant that scope.
-- `yarn lint`, `yarn typecheck`, and `yarn format:check` cover existing repository gates; for a narrow script edit use its focused syntax/fixture/format checks first.
-- Manifest/lock changes require `corepack yarn install`, `yarn deps:check-pinned`, and `yarn deps:check-hardened`. `yarn knip` is advisory for dependencies/imports.
-- Docs translation checks are in [translations.md](https://docs.bitsocial.net/agent-playbooks/translations/); do not run the bulk translation writer for a focused docs change.
-
-## Browser evidence and ownership
-
-Use Chrome for small isolated browser changes. Add Firefox and WebKit for shared CSS/layout/responsiveness, browser-sensitive APIs, broad interactions, releases, or explicit cross-browser criteria. Include affected mobile layouts/touch behavior. A viewport resize alone is not touch emulation. Choose actual routes and content from source rather than assuming examples are available.
-
-Use `playwright-cli` through `./scripts/pw-session.sh`. One browser is active machine-wide; selected engines run sequentially and each exact owned session closes even after failure. Reuse an authorized caller-owned session without closing it. Never use global browser cleanup or stop a server of unclear ownership. No browser/server is needed for documentation-only work.
-
-For performance work, compare the same flow with equivalent viewport, content, network/CPU settings, build mode, and measurement overhead. Distinguish observations from suspected causes. Use the profile skill when these measurements answer the actual request.
-
-## Final evidence
-
-One agent owns heavy verification. Inspect active workloads and serialize installs, builds/full suites, Doctor, Android/Electron work, and browser profiling. Report commands/outcomes and specific limitations; missing data or a skipped engine is not a passing result. Tooling fixtures verify formats and mechanics, not end-to-end app discovery or model decision quality.
-
-## Automatic React checks
-
-`yarn agent:verify` runs the selected builds followed by `yarn doctor:check` and `yarn perf:check`. `perf:check` includes the collector compatibility and deliberate-regression selftest, so neither CI nor the agent verification path needs a separate `perf:test` pass. Install the pinned browser tooling once with `yarn perf:install` (`--with-deps` in Linux CI). Use target/scenario filters for focused reruns after the full relevant pass. Scenario budgets are explicit in `scripts/react-perf/config.mjs`; preserve evidence and fix a regression before considering a justified baseline change. Ordinary production builds omit Bippy; separate `build:profile:*` commands supply official React profiling instrumentation.
-
-The about `apps-search` scenario is paced by committed URL/input values for each character. Its passing result covers that committed-query sequence, not rapid-typing responsiveness. Use a separate fast-input reproduction when evaluating character loss or input responsiveness.
 
 ### Content Discovery
 

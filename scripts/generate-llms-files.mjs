@@ -38,6 +38,9 @@ const excludedDocDirs = new Set([
   "static",
 ]);
 const excludedDocFiles = new Set(["AGENTS.md", "README.md", "index.mdx", "search.mdx"]);
+// Pages the docs site does not build; indexing them would publish links to
+// routes that do not exist. Keep this aligned with the Docusaurus exclude list.
+const excludedDocPaths = new Set(["agent-playbooks/verification.md"]);
 
 const docsCategoryOrder = [
   "Protocol notes",
@@ -313,6 +316,8 @@ async function collectDocs(dir = docsRoot, prefix = "") {
     if (excludedDocFiles.has(entry.name)) continue;
 
     const relativePath = path.join(prefix, entry.name).replaceAll(path.sep, "/");
+    if (excludedDocPaths.has(relativePath)) continue;
+
     const fullPath = path.join(dir, entry.name);
     const raw = await readFile(fullPath, "utf8");
     const content = sanitizeMdxContent(raw, relativePath);

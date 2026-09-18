@@ -85,6 +85,10 @@ const config: Config = {
             "agent-runs/**",
             "AGENTS.md",
             "README.md",
+            // Repository-only playbook: no sidebar entry and no locale copies, so
+            // every localized build fell back to this English page and could not
+            // resolve its relative link to the translated translations.md.
+            "agent-playbooks/verification.md",
             "**/*.template.json",
           ],
         },

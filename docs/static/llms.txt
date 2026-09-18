@@ -76,7 +76,6 @@ Use this file as the short routing index for `https://docs.bitsocial.net/`. Use 
 - [Feature List Template](https://docs.bitsocial.net/agent-playbooks/templates/feature-list-template/): Machine-readable template used for long-running multi-session task tracking.
 - [Progress Log](https://docs.bitsocial.net/agent-playbooks/templates/progress.template/): Append one entry per session.
 - [Translations](https://docs.bitsocial.net/agent-playbooks/translations/): The about site uses i18next JSON at about/public/translations/{lang}/default.json. Docusaurus source translations live separately in docs/i18n/.
-- [Verification](https://docs.bitsocial.net/agent-playbooks/verification/): Select checks from the changed behavior and remaining uncertainty. Reuse successful evidence for the same final state; rerun after relevant edits or failures. Explicit CI/release/user requirements still apply.
 
 ## Other
 

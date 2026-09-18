@@ -4,6 +4,6 @@ Use durable task state when work needs resumption or a handoff. Small tasks do n
 
 Record the requested outcome, current branch/worktree, file ownership, completed changes, checks with results, owned processes/sessions, and the next unresolved step. Do not store credentials or arbitrary source dumps. Mark a feature complete only when its acceptance criteria are verified.
 
-On resumption, inspect Git state, the latest progress, and relevant source before editing. Reuse compatible owned resources; start a dev server only when the next check needs one. Select checks by impact using [verification.md](verification.md), rather than repeating an unchanged full pass.
+On resumption, inspect Git state, the latest progress, and relevant source before editing. Reuse compatible owned resources; start a dev server only when the next check needs one. Select checks by impact using [verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md), rather than repeating an unchanged full pass.
 
 Keep related delegated work scoped and non-overlapping. One agent owns heavy checks and browser sessions. Update durable state when a completed slice, blocker, or handoff changes what the next contributor needs to know; do not mechanically log every command.
