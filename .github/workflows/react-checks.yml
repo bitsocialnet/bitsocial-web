@@ -64,4 +64,7 @@ jobs:
         with:
           name: react-performance-evidence
           path: .react-perf/
+          # The evidence directory is itself hidden, so the default exclusion
+          # dropped every report and trace this step exists to preserve.
+          include-hidden-files: true
           if-no-files-found: ignore
