@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Download, Github, Globe, Monitor, Package, Smartphone } from "lucide-react";
+import { ArrowUpRight, Download, Globe, Monitor, Package, Smartphone } from "lucide-react";
 import AppMirrorLinkCta from "@/components/app-mirror-link-cta";
 import AppLogo from "@/components/app-logo";
 import AppStatusBadge from "@/components/app-status-badge";
@@ -22,17 +22,11 @@ import {
   getAppTagline,
   getCategoryBySlug,
   getCategoryLabel,
-  getGithubUrl,
-  getMirrorLinks,
   linkHasVerifiableStatus,
   getPlatformShortLabel,
   getPrimaryLinks,
   tagsMatchFilter,
 } from "@/lib/apps-data";
-import {
-  filterCryptoWalletGatedLinks,
-  useHasCryptoWalletProvider,
-} from "@/lib/crypto-wallet-provider";
 import { cn } from "@/lib/utils";
 
 interface AppCardProps {
@@ -68,14 +62,11 @@ export default function AppCard({
   detailHref,
 }: AppCardProps) {
   const { t } = useTranslation();
-  const hasCryptoWalletProvider = useHasCryptoWalletProvider();
   const categories = app.categories.flatMap((slug) => getCategoryBySlug(slug) ?? []);
-  const mirrors = filterCryptoWalletGatedLinks(getMirrorLinks(app), hasCryptoWalletProvider);
   const platformTags = getAppPlatforms(app);
-  const primaryLinks = getPrimaryLinks(app, preferredPlatform ?? undefined);
-  const primaryActionLink = primaryLinks[0];
-  const quickLinks = primaryLinks.slice(1, app.featured ? 5 : 4);
-  const sourceUrl = getGithubUrl(app);
+  // Directory cards stay scannable: one primary action only. Every other link, mirror and
+  // the source repo live on the project detail page.
+  const primaryActionLink = getPrimaryLinks(app, preferredPlatform ?? undefined)[0];
   const tagline = getAppTagline(app, t);
   const description = getAppDescription(app, t);
   const descriptionKey = getAppDescriptionKey(app);
@@ -188,92 +179,36 @@ export default function AppCard({
         ))}
       </div>
 
-      <div className="mt-auto space-y-3">
-        <div className="flex flex-wrap gap-2">
-          <CardInlineCta
-            href={resolvedDetailHref}
-            className={`apps-frosted-cta ${cardInlineCtaClassName} !rounded-full !px-4 !py-2`}
-          >
-            <span className="inline-flex items-center gap-2">
-              <ArrowUpRight className="h-4 w-4" />
-              <span>{t("apps.viewDetails")}</span>
-            </span>
-          </CardInlineCta>
-
-          {!compact && primaryActionLink ? (
-            linkHasVerifiableStatus(primaryActionLink) ? (
-              <AppMirrorLinkCta
-                link={primaryActionLink}
-                icon={getLinkIcon(primaryActionLink)}
-                className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-4 !py-2 text-sm`}
-              />
-            ) : (
-              <CardInlineCta
-                href={primaryActionLink.url}
-                className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-4 !py-2 text-sm`}
-              >
-                <span className="inline-flex items-center gap-2">
-                  {getLinkIcon(primaryActionLink)}
-                  <span>{getAppLinkLabel(primaryActionLink, t)}</span>
-                </span>
-              </CardInlineCta>
-            )
-          ) : null}
-        </div>
-
-        {!compact && quickLinks.length > 0 ? (
-          <div className="flex flex-wrap gap-2">
-            {quickLinks.map((link) =>
-              linkHasVerifiableStatus(link) ? (
-                <AppMirrorLinkCta
-                  key={link.url}
-                  link={link}
-                  icon={getLinkIcon(link)}
-                  className={`apps-frosted-cta ${cardInlineCtaClassName} !rounded-full !px-4 !py-2`}
-                />
-              ) : (
-                <CardInlineCta
-                  key={link.url}
-                  href={link.url}
-                  className={`apps-frosted-cta ${cardInlineCtaClassName} !rounded-full !px-4 !py-2`}
-                >
-                  <span className="inline-flex items-center gap-2">
-                    {getLinkIcon(link)}
-                    <span>{getAppLinkLabel(link, t)}</span>
-                  </span>
-                </CardInlineCta>
-              ),
-            )}
-          </div>
-        ) : null}
-
-        {!compact && mirrors.length > 0 ? (
-          <div className="rounded-[1.25rem] border border-border/60 p-3">
-            <div className="text-micro-fluid mb-2 font-display uppercase tracking-[0.18em] text-foreground/45">
-              {t("apps.mirrors")}
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {mirrors.slice(0, 3).map((mirror) => (
-                <AppMirrorLinkCta
-                  key={mirror.url}
-                  link={mirror}
-                  className={`apps-frosted-cta ${cardInlineCtaClassName} !rounded-full !px-3 !py-1.5 !text-xs`}
-                  iconClassName="h-3.5 w-3.5"
-                />
-              ))}
-            </div>
-          </div>
-        ) : null}
-
-        <a
-          href={sourceUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="touch-target inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+      <div className="mt-auto flex flex-wrap gap-2">
+        <CardInlineCta
+          href={resolvedDetailHref}
+          className={`apps-frosted-cta ${cardInlineCtaClassName} !rounded-full !px-4 !py-2`}
         >
-          <Github className="h-3.5 w-3.5" />
-          <span>{t("apps.sourceCode")}</span>
-        </a>
+          <span className="inline-flex items-center gap-2">
+            <ArrowUpRight className="h-4 w-4" />
+            <span>{t("apps.viewDetails")}</span>
+          </span>
+        </CardInlineCta>
+
+        {!compact && primaryActionLink ? (
+          linkHasVerifiableStatus(primaryActionLink) ? (
+            <AppMirrorLinkCta
+              link={primaryActionLink}
+              icon={getLinkIcon(primaryActionLink)}
+              className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-4 !py-2 text-sm`}
+            />
+          ) : (
+            <CardInlineCta
+              href={primaryActionLink.url}
+              className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-4 !py-2 text-sm`}
+            >
+              <span className="inline-flex items-center gap-2">
+                {getLinkIcon(primaryActionLink)}
+                <span>{getAppLinkLabel(primaryActionLink, t)}</span>
+              </span>
+            </CardInlineCta>
+          )
+        ) : null}
       </div>
     </article>
   );
