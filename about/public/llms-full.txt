@@ -2779,7 +2779,7 @@ Keep code fences, links, inline code, contract addresses, headings, tables, and 
 
 ## Optional semantic review
 
-For selected i18next keys, use `scripts/jev/translation-README.md`. For documentation pages, run `node scripts/jev/docs-translations.mjs --locales it,de --paths browser-p2p.md` first. This requires an explicit locale/page selection, runs the structural verifier, and reports semantic review as unverified until live inference is enabled. Add `--live --model <pinned-model>` only with the task's provider credentials and budget. The command never edits translations.
+For selected i18next keys, use `scripts/jev/translation-README.md`. For documentation pages, run `node scripts/jev/docs-translations.mjs --locales it,de --paths browser-p2p.md` first. This requires an explicit locale/page selection, runs the structural verifier, and reports semantic review as unverified until live inference is enabled. Add `--live` only with the task's provider authorization and budget; the shared private machine configuration supplies credentials and a pinned model. Environment variables and `--model` can override that setup. The command never edits translations.
 
 The page adapter preserves whole-page context and limits each page to 24 KB and each run to 30 pairs. For larger pages, prepare explicitly aligned source/translation paragraph pairs for `translations.mjs --pairs`; do not automatically pair paragraphs by index. Semantic results are advisory: inspect reported issues and uncertainty, and retain deterministic code/link/address checks.
 
