@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { parseArgs } from "node:util";
-import { createJevClient } from "./client.mjs";
+import { createJevClient, JevError } from "./client.mjs";
 import {
   loadParagraphPairs,
   parseScopedCsv,
@@ -55,7 +55,7 @@ export async function main(argv = process.argv.slice(2)) {
         default: fileURLToPath(new URL("./fixtures/translations.json", import.meta.url)),
       },
       cases: { type: "string" },
-      model: { type: "string", default: process.env.JEV_MODEL || "" },
+      model: { type: "string" },
       "max-requests": { type: "string", default: "20" },
       "max-cost-usd": { type: "string", default: "0.01" },
     },
@@ -92,11 +92,8 @@ export async function main(argv = process.argv.slice(2)) {
   const client = values.live
     ? createJevClient({ live: true, model: values.model, maxRequests, maxCostUsd })
     : undefined;
-  const report = await reviewTranslations(pairs, {
-    client,
-    live: values.live,
-    model: values.model,
-  });
+  const model = client ? client.assertReady().model : values.model || process.env.JEV_MODEL || "";
+  const report = await reviewTranslations(pairs, { client, live: values.live, model });
   console.log(
     JSON.stringify(
       {
@@ -131,7 +128,9 @@ if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.ar
       console.error(
         error instanceof TranslationInputError
           ? error.message
-          : "Translation evaluation could not run. Check the corpus, pinned model, and limits; use --help.",
+          : error instanceof JevError
+            ? error.code
+            : "Translation evaluation could not run. Check the corpus, pinned model, and limits; use --help.",
       );
       process.exitCode = 2;
     });
