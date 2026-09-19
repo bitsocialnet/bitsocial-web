@@ -56,6 +56,20 @@ test("explicit options then environment override local defaults; complete overri
   );
 });
 
+test("explicit null settings are invalid and never select private defaults", (t) => {
+  const { home } = fixture(t);
+  for (const options of [{ apiKey: null }, { model: null }, { apiKey: null, model: null }]) {
+    assert.throws(() => resolveJevSettings({ env: {}, home, ...options }));
+    assert.throws(() =>
+      resolveJevSettings({
+        env: { TYPESAFE_API_KEY: "environment-key", JEV_MODEL: "jev-1.13.0" },
+        home,
+        ...options,
+      }),
+    );
+  }
+});
+
 test("XDG and explicit config paths are honored without repository-relative credential discovery", (t) => {
   const { home, configFile } = fixture(t);
   const result = resolveJevSettings({
