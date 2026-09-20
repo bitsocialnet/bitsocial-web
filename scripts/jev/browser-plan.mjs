@@ -319,9 +319,9 @@ export async function runBrowserPlan(
   const withinDeadline = () => {
     if (now() - started >= plan.limits.deadlineMs) fail("deadline_exceeded");
   };
-  async function observe() {
+  async function observe(assertions) {
     withinDeadline();
-    const observation = await driver.observe();
+    const observation = await driver.observe(assertions);
     withinDeadline();
     if (new URL(observation.url).origin !== plan.origin) fail("origin_changed");
     if (
@@ -329,13 +329,28 @@ export async function runBrowserPlan(
       Buffer.byteLength(observation.snapshot) > plan.limits.maxSnapshotBytes
     )
       fail("snapshot_too_large");
+    if (assertions) {
+      // Legacy/custom drivers can still expose assertions separately. A malformed
+      // combined result fails closed instead of being mistaken for missing support.
+      const results = Object.hasOwn(observation, "assertions")
+        ? observation.assertions
+        : await driver.assert(assertions);
+      if (
+        !Array.isArray(results) ||
+        results.length !== assertions.length ||
+        results.some((value) => typeof value !== "boolean")
+      )
+        fail("browser_assertions_invalid");
+      observation.assertions = results;
+      withinDeadline();
+    }
     return observation;
   }
   try {
     await driver.open(plan);
     for (let step = 0; step <= plan.limits.maxSteps; step++) {
-      const observation = await observe();
-      report.assertions = await driver.assert(plan.assertions);
+      const observation = await observe(plan.assertions);
+      report.assertions = observation.assertions;
       const required = plan.requiredActions.every((id) => history.includes(id));
       if (
         required &&
@@ -344,8 +359,7 @@ export async function runBrowserPlan(
       ) {
         if (plan.reloadBeforeFinal) {
           await driver.reload();
-          await observe();
-          report.assertions = await driver.assert(plan.assertions);
+          report.assertions = (await observe(plan.assertions)).assertions;
           if (
             report.assertions.length !== plan.assertions.length ||
             !report.assertions.every((a) => a === true)
@@ -473,5 +487,10 @@ export async function runBrowserPlan(
       report.reason = "cleanup_failed";
     }
   }
-  return { ...report, elapsedMs: now() - started, usage: client?.stats() || null };
+  return {
+    ...report,
+    adapterMode: driver.adapterMode || "separate-driver",
+    elapsedMs: now() - started,
+    usage: client?.stats() || null,
+  };
 }
