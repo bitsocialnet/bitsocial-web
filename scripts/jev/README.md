@@ -131,3 +131,5 @@ For changed-locale semantic review and its labeled evaluation fixtures, see [tra
 For explicitly selected code and documentation changes, use [advisory semantic diff review](review-README.md). It is opt-in and never runs as an automatic repair or approval hook.
 
 For transport modes and an explicit paired measurement runner, see [browser transport measurement](browser-benchmark-README.md).
+
+For bounded suggestions between existing English documentation pages, use [advisory missing documentation links](docs-links-README.md). It previews exact source spans and verified destinations; it never inserts links.
