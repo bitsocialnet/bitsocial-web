@@ -129,10 +129,11 @@ function applyPlanetTheme(
   isDark: boolean,
 ) {
   const s = refs;
-  s.sphereMat.uniforms.topColor.value.set(0x3876ce);
-  s.sphereMat.uniforms.bottomColor.value.set(isDark ? 0x112d61 : 0x153a78);
-  s.sphereMat.uniforms.glowColor.value.set(0x3876ce);
-  s.sphereMat.uniforms.fresnelIntensity.value = isDark ? 0.2 : 0.3;
+  // Dark colors follow the header's unfaded blue; light colors retain the logo palette.
+  // Interpolate in sRGB, then convert back for Three's output conversion.
+  s.sphereMat.uniforms.highlightColor.value.set(isDark ? 0x0b234c : 0x3876ce).convertLinearToSRGB();
+  s.sphereMat.uniforms.midColor.value.set(isDark ? 0x081d3c : 0x153a78).convertLinearToSRGB();
+  s.sphereMat.uniforms.shadowColor.value.set(isDark ? 0x081a37 : 0x112d61).convertLinearToSRGB();
 
   const ringColor = isDark ? 0xa4afc0 : 0xd0d8e4;
   for (const mat of [s.ringMat, s.ring2Mat]) {
@@ -423,46 +424,34 @@ export default function PlanetGraphic({
         transparent: false,
         depthWrite: true,
         uniforms: {
-          topColor: { value: new THREE.Color(0x3876ce) },
-          bottomColor: { value: new THREE.Color(isDark ? 0x112d61 : 0x153a78) },
-          glowColor: { value: new THREE.Color(0x3876ce) },
-          fresnelIntensity: { value: isDark ? 0.2 : 0.3 },
+          highlightColor: { value: new THREE.Color() },
+          midColor: { value: new THREE.Color() },
+          shadowColor: { value: new THREE.Color() },
         },
         vertexShader: `
         varying vec3 vNormal;
-        varying vec3 vPosition;
-        varying vec2 vUv;
-        
+
         void main() {
           vNormal = normalize(normalMatrix * normal);
-          vPosition = position;
-          vUv = uv;
           gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
         }
       `,
         fragmentShader: `
-        uniform vec3 topColor;
-        uniform vec3 bottomColor;
-        uniform vec3 glowColor;
-        uniform float fresnelIntensity;
-        
+        uniform vec3 highlightColor;
+        uniform vec3 midColor;
+        uniform vec3 shadowColor;
+
         varying vec3 vNormal;
-        varying vec3 vPosition;
-        varying vec2 vUv;
-        
+
         void main() {
-          float gradientFactor = (vPosition.y + 7.0) / 14.0;
-          gradientFactor = clamp(gradientFactor, 0.0, 1.0);
-          
-          vec3 baseColor = mix(bottomColor, topColor, gradientFactor);
-          
-          vec3 viewDirection = normalize(cameraPosition - vPosition);
-          float rim = 1.0 - abs(dot(vNormal, viewDirection));
-          float fresnel = rim * rim;
-          
-          vec3 finalColor = mix(baseColor, glowColor, fresnel * fresnelIntensity);
-          
-          gl_FragColor = vec4(finalColor, 1.0);
+          // logo.svg: circle (1001.7, 1006.6), radius 444;
+          // radial gradient (777.7559, 711.9921), radius 796.7305.
+          vec2 logoPosition = vec2(1001.7, 1006.6) + normalize(vNormal).xy * vec2(444.0, -444.0);
+          float gradientRadius = distance(logoPosition, vec2(777.7559, 711.9921)) / 796.7305;
+          vec3 color = mix(highlightColor, midColor, clamp((gradientRadius - 0.0324) / (0.7121 - 0.0324), 0.0, 1.0));
+          color = mix(color, shadowColor, clamp((gradientRadius - 0.7121) / (1.0 - 0.7121), 0.0, 1.0));
+
+          gl_FragColor = sRGBTransferEOTF(vec4(color, 1.0));
           #include <colorspace_fragment>
         }
       `,
