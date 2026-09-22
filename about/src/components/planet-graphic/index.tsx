@@ -129,12 +129,12 @@ function applyPlanetTheme(
   isDark: boolean,
 ) {
   const s = refs;
-  s.sphereMat.uniforms.topColor.value.set(isDark ? 0x2a4a80 : 0x1e4fd0);
-  s.sphereMat.uniforms.bottomColor.value.set(isDark ? 0x0f1f30 : 0x0a2440);
-  s.sphereMat.uniforms.glowColor.value.set(isDark ? 0x3a5a90 : 0x2d6ae0);
+  s.sphereMat.uniforms.topColor.value.set(0x3876ce);
+  s.sphereMat.uniforms.bottomColor.value.set(isDark ? 0x112d61 : 0x153a78);
+  s.sphereMat.uniforms.glowColor.value.set(0x3876ce);
   s.sphereMat.uniforms.fresnelIntensity.value = isDark ? 0.2 : 0.3;
 
-  const ringColor = isDark ? 0xa8aeb8 : 0xc0c0c0;
+  const ringColor = isDark ? 0xa4afc0 : 0xd0d8e4;
   for (const mat of [s.ringMat, s.ring2Mat]) {
     mat.color.set(ringColor);
     mat.metalness = isDark ? 0.9 : 0.95;
@@ -147,16 +147,16 @@ function applyPlanetTheme(
 
   s.edgeLightL.intensity = isDark ? 0.65 : 0.75;
   s.edgeLightR.intensity = isDark ? 0.65 : 0.75;
-  s.topLight.color.set(isDark ? 0x5a6a80 : 0x4a90d9);
+  s.topLight.color.set(isDark ? 0x919fb3 : 0x3876ce);
   s.topLight.intensity = isDark ? 0.5 : 0.7;
 
   const ctx = s.envCanvas.getContext("2d");
   if (ctx) {
     const g = ctx.createLinearGradient(0, 0, 0, 64);
-    g.addColorStop(0, isDark ? "#6a7a8c" : "#778899");
-    g.addColorStop(0.4, isDark ? "#9aabbc" : "#ffffff");
-    g.addColorStop(0.6, isDark ? "#9aabbc" : "#ffffff");
-    g.addColorStop(1, isDark ? "#2c3d52" : "#334455");
+    g.addColorStop(0, isDark ? "#919fb3" : "#a4afc0");
+    g.addColorStop(0.4, isDark ? "#d0d8e4" : "#f2f5fa");
+    g.addColorStop(0.6, isDark ? "#d0d8e4" : "#f2f5fa");
+    g.addColorStop(1, isDark ? "#49566b" : "#606f84");
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, 64, 64);
     s.envTex.needsUpdate = true;
@@ -389,7 +389,7 @@ export default function PlanetGraphic({
       keyLight.position.set(5, 8, 10);
       scene.add(keyLight);
 
-      const fillLight = new THREE.DirectionalLight(0x8899aa, 0.5);
+      const fillLight = new THREE.DirectionalLight(0xa4afc0, 0.5);
       fillLight.position.set(-8, 2, 5);
       scene.add(fillLight);
 
@@ -397,7 +397,7 @@ export default function PlanetGraphic({
       rimLight.position.set(0, -5, -10);
       scene.add(rimLight);
 
-      const edgeLightColor = 0xf5f7ff;
+      const edgeLightColor = 0xf2f5fa;
       const edgeLightLeft = new THREE.DirectionalLight(edgeLightColor, isDark ? 0.65 : 0.75);
       edgeLightLeft.position.set(-12, 0, 6);
       scene.add(edgeLightLeft);
@@ -406,7 +406,7 @@ export default function PlanetGraphic({
       edgeLightRight.position.set(12, 1, 6);
       scene.add(edgeLightRight);
 
-      const topLight = new THREE.DirectionalLight(isDark ? 0x5a6a80 : 0x4a90d9, isDark ? 0.5 : 0.7);
+      const topLight = new THREE.DirectionalLight(isDark ? 0x919fb3 : 0x3876ce, isDark ? 0.5 : 0.7);
       topLight.position.set(0, 15, 5);
       scene.add(topLight);
 
@@ -423,9 +423,9 @@ export default function PlanetGraphic({
         transparent: false,
         depthWrite: true,
         uniforms: {
-          topColor: { value: new THREE.Color(isDark ? 0x2a4a80 : 0x1e4fd0) },
-          bottomColor: { value: new THREE.Color(isDark ? 0x0f1f30 : 0x0a2440) },
-          glowColor: { value: new THREE.Color(isDark ? 0x3a5a90 : 0x2d6ae0) },
+          topColor: { value: new THREE.Color(0x3876ce) },
+          bottomColor: { value: new THREE.Color(isDark ? 0x112d61 : 0x153a78) },
+          glowColor: { value: new THREE.Color(0x3876ce) },
           fresnelIntensity: { value: isDark ? 0.2 : 0.3 },
         },
         vertexShader: `
@@ -463,6 +463,7 @@ export default function PlanetGraphic({
           vec3 finalColor = mix(baseColor, glowColor, fresnel * fresnelIntensity);
           
           gl_FragColor = vec4(finalColor, 1.0);
+          #include <colorspace_fragment>
         }
       `,
       });
@@ -483,7 +484,7 @@ export default function PlanetGraphic({
       let tubeWidth = getRingTubeWidth(initialIsMobile);
 
       const ringMaterial = new THREE.MeshPhysicalMaterial({
-        color: isDark ? 0xa8aeb8 : 0xc0c0c0,
+        color: isDark ? 0xa4afc0 : 0xd0d8e4,
         metalness: isDark ? 0.9 : 0.95,
         roughness: isDark ? 0.18 : 0.14,
         envMapIntensity: isDark ? 0.7 : 0.9,
@@ -503,10 +504,10 @@ export default function PlanetGraphic({
         return;
       }
       const gradient = envCtx.createLinearGradient(0, 0, 0, envMapSize);
-      gradient.addColorStop(0, isDark ? "#6a7a8c" : "#778899");
-      gradient.addColorStop(0.4, isDark ? "#9aabbc" : "#ffffff");
-      gradient.addColorStop(0.6, isDark ? "#9aabbc" : "#ffffff");
-      gradient.addColorStop(1, isDark ? "#2c3d52" : "#334455");
+      gradient.addColorStop(0, isDark ? "#919fb3" : "#a4afc0");
+      gradient.addColorStop(0.4, isDark ? "#d0d8e4" : "#f2f5fa");
+      gradient.addColorStop(0.6, isDark ? "#d0d8e4" : "#f2f5fa");
+      gradient.addColorStop(1, isDark ? "#49566b" : "#606f84");
       envCtx.fillStyle = gradient;
       envCtx.fillRect(0, 0, envMapSize, envMapSize);
       const envTexture = new THREE.CanvasTexture(envMapCanvas);
