@@ -269,10 +269,6 @@ const APP_COPY_TRANSLATION_KEYS: Record<string, { tagline: string; description: 
     tagline: "apps.catalog.items.seedit.tagline",
     description: "apps.catalog.items.seedit.description",
   },
-  mintpass: {
-    tagline: "apps.catalog.items.mintpass.tagline",
-    description: "apps.catalog.items.mintpass.description",
-  },
   "spam-blocker": {
     tagline: "apps.catalog.items.spam-blocker.tagline",
     description: "apps.catalog.items.spam-blocker.description",
@@ -702,33 +698,6 @@ export const APPS: AppData[] = [
     ],
   },
   {
-    slug: "mintpass",
-    name: "Mintpass",
-    tagline: "NFT-backed access control for communities that need stronger anti-spam gates.",
-    description:
-      "Mintpass is a flexible authentication layer for Bitsocial communities. It lets moderators mix NFT ownership, verification flows, and custom challenge modules without pushing everyone onto a central login system.",
-    categories: ["identity"],
-    tags: ["Verification", "Access control"],
-    icon: "ticket",
-    logoSrc: "https://mintpass.org/favicon.ico",
-    githubRepo: "bitsocialnet/mintpass",
-    links: [
-      { label: "Open website", url: "https://mintpass.org", kind: "launch", platform: "web" },
-      {
-        label: "@bitsocial/mintpass-challenge",
-        url: "https://www.npmjs.com/package/@bitsocial/mintpass-challenge",
-        kind: "package",
-      },
-    ],
-    relatedSlugs: [
-      "ai-moderation-challenge",
-      "spam-blocker",
-      "captcha-canvas-challenge",
-      "voucher-challenge",
-    ],
-    searchTerms: ["identity", "nft", "auth"],
-  },
-  {
     slug: "ai-moderation-challenge",
     name: "AI Moderation Challenge",
     tagline: "OpenAI-compatible moderation checks against each community's rules.",
@@ -770,12 +739,7 @@ export const APPS: AppData[] = [
         kind: "package",
       },
     ],
-    relatedSlugs: [
-      "ai-moderation-challenge",
-      "r9k-challenge",
-      "mintpass",
-      "captcha-canvas-challenge",
-    ],
+    relatedSlugs: ["ai-moderation-challenge", "r9k-challenge", "captcha-canvas-challenge"],
     searchTerms: ["filtering", "risk", "moderation", "sybil", "ban evasion", "signers", "accounts"],
   },
   {
@@ -852,7 +816,6 @@ export const APPS: AppData[] = [
     relatedSlugs: [
       "ai-moderation-challenge",
       "r9k-challenge",
-      "mintpass",
       "voucher-challenge",
       "evm-contract-call",
     ],
@@ -875,12 +838,7 @@ export const APPS: AppData[] = [
         kind: "package",
       },
     ],
-    relatedSlugs: [
-      "ai-moderation-challenge",
-      "captcha-canvas-challenge",
-      "evm-contract-call",
-      "mintpass",
-    ],
+    relatedSlugs: ["ai-moderation-challenge", "captcha-canvas-challenge", "evm-contract-call"],
     searchTerms: ["voucher", "invite", "codes"],
   },
   {
@@ -900,7 +858,7 @@ export const APPS: AppData[] = [
         kind: "package",
       },
     ],
-    relatedSlugs: ["voucher-challenge", "mintpass"],
+    relatedSlugs: ["voucher-challenge"],
     searchTerms: ["ethereum", "token gating", "smart contract"],
   },
   {
@@ -920,7 +878,7 @@ export const APPS: AppData[] = [
         kind: "package",
       },
     ],
-    relatedSlugs: ["5chan", "mintpass", "voucher-challenge", "ai-moderation-challenge"],
+    relatedSlugs: ["5chan", "voucher-challenge", "ai-moderation-challenge"],
     searchTerms: ["flags", "country", "memeflags", "pony", "flair", "5chan", "issuer"],
   },
   {
@@ -1047,7 +1005,7 @@ export const APPS: AppData[] = [
         platform: "web",
       },
     ],
-    relatedSlugs: ["bitsocial-cli", "mintpass", "captcha-canvas-challenge", "voucher-challenge"],
+    relatedSlugs: ["bitsocial-cli", "captcha-canvas-challenge", "voucher-challenge"],
     searchTerms: ["challenges", "settings", "editor", "composer", "offline", "anti-spam"],
   },
   {

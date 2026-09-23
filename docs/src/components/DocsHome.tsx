@@ -289,20 +289,6 @@ const infrastructureCards = [
     ),
   },
   {
-    to: "/infrastructure/mintpass/",
-    eyebrow: tr(
-      "docs.home.infrastructure.card.mintpass.eyebrow",
-      "Identity",
-      "Infrastructure card eyebrow for Mintpass.",
-    ),
-    title: "Mintpass",
-    body: tr(
-      "docs.home.infrastructure.card.mintpass.body",
-      "NFT-based proof-of-personhood via SMS verification, reducing sybil attacks like fake votes and ban evasion.",
-      "Infrastructure card description for Mintpass.",
-    ),
-  },
-  {
     to: "/infrastructure/telegram-bots/",
     eyebrow: tr(
       "docs.home.infrastructure.card.telegram.eyebrow",
