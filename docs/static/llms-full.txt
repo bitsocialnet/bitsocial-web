@@ -76,7 +76,7 @@ The content is biased toward inference-time lookup, not formal API reference gen
 - [Commit and Issue Format](https://docs.bitsocial.net/agent-playbooks/commit-issue-format/): Use this when the user requests commit/issue wording or an authorized commit/issue is being created. Do not append suggestions to unrelated answers.
 - [Agent hooks](https://docs.bitsocial.net/agent-playbooks/hooks-setup/): The committed lifecycle hooks only format successfully edited JavaScript/TypeScript files through installed oxfmt. Shared logic lives in scripts/agent hooks/format.mjs; each native wrapper delegates to it.
 - [Known Surprises](https://docs.bitsocial.net/agent-playbooks/known-surprises/): This file tracks repository specific confusion points that caused agent mistakes.
-- [Long-running agent work](https://docs.bitsocial.net/agent-playbooks/long-running-agent-workflow/): Use durable task state when work needs resumption or a handoff. Small tasks do not need a board or progress file. For shared work, keep a concise feature list.json and progress.md in a task specific docs/agent runs/<slug /, using existing templates where helpful.
+- [Long-running agent work](https://docs.bitsocial.net/agent-playbooks/long-running-agent-workflow/): Use durable task state when work needs resumption or a handoff, or when a single run is long enough that context compaction could lose track of the remaining work. Small tasks do not need a board or progress file. For shared work, keep a concise feature list.json and progress.md in a task specific docs/agent runs/<slug /, using existing templates where helpful.
 - [Skills and Tools](https://docs.bitsocial.net/agent-playbooks/skills-and-tools/): Shared skills live in .agents/skills/. Edit these sources, then run yarn ai workflow:sync to generate .claude/skills/ for Claude Code. Codex and Cursor discover .agents/skills/ directly; do not restore the duplicate .codex/skills/ or .cursor/skills/ roots.
 - [Feature List Template](https://docs.bitsocial.net/agent-playbooks/templates/feature-list-template/): Machine-readable template used for long-running multi-session task tracking.
 - [Progress Log](https://docs.bitsocial.net/agent-playbooks/templates/progress.template/): Append one entry per session.
@@ -2494,11 +2494,11 @@ If uncertain, ask the developer before adding an entry.
 
 Source: https://docs.bitsocial.net/agent-playbooks/long-running-agent-workflow/
 Path: docs/agent-playbooks/long-running-agent-workflow.md
-Description: Use durable task state when work needs resumption or a handoff. Small tasks do not need a board or progress file. For shared work, keep a concise feature list.json and progress.md in a task specific docs/agent runs/<slug /, using existing templates where helpful.
+Description: Use durable task state when work needs resumption or a handoff, or when a single run is long enough that context compaction could lose track of the remaining work. Small tasks do not need a board or progress file. For shared work, keep a concise feature list.json and progress.md in a task specific docs/agent runs/<slug /, using existing templates where helpful.
 
 # Long-running agent work
 
-Use durable task state when work needs resumption or a handoff. Small tasks do not need a board or progress file. For shared work, keep a concise `feature-list.json` and `progress.md` in a task-specific `docs/agent-runs/<slug>/`, using existing templates where helpful.
+Use durable task state when work needs resumption or a handoff, or when a single run is long enough that context compaction could lose track of the remaining work. Small tasks do not need a board or progress file. For shared work, keep a concise `feature-list.json` and `progress.md` in a task-specific `docs/agent-runs/<slug>/`, using existing templates where helpful.
 
 Record the requested outcome, current branch/worktree, file ownership, completed changes, checks with results, owned processes/sessions, and the next unresolved step. Do not store credentials or arbitrary source dumps. Mark a feature complete only when its acceptance criteria are verified.
 
