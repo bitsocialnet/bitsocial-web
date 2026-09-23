@@ -475,7 +475,7 @@ Details:
 - [Commit and Issue Format](https://docs.bitsocial.net/agent-playbooks/commit-issue-format/): Use this when the user requests commit/issue wording or an authorized commit/issue is being created. Do not append suggestions to unrelated answers.
 - [Agent hooks](https://docs.bitsocial.net/agent-playbooks/hooks-setup/): The committed lifecycle hooks only format successfully edited JavaScript/TypeScript files through installed oxfmt. Shared logic lives in scripts/agent hooks/format.mjs; each native wrapper delegates to it.
 - [Known Surprises](https://docs.bitsocial.net/agent-playbooks/known-surprises/): This file tracks repository specific confusion points that caused agent mistakes.
-- [Long-running agent work](https://docs.bitsocial.net/agent-playbooks/long-running-agent-workflow/): Use durable task state when work needs resumption or a handoff. Small tasks do not need a board or progress file. For shared work, keep a concise feature list.json and progress.md in a task specific docs/agent runs/<slug /, using existing templates where helpful.
+- [Long-running agent work](https://docs.bitsocial.net/agent-playbooks/long-running-agent-workflow/): Use durable task state when work needs resumption or a handoff, or when a single run is long enough that context compaction could lose track of the remaining work. Small tasks do not need a board or progress file. For shared work, keep a concise feature list.json and progress.md in a task specific docs/agent runs/<slug /, using existing templates where helpful.
 - [Skills and Tools](https://docs.bitsocial.net/agent-playbooks/skills-and-tools/): Shared skills live in .agents/skills/. Edit these sources, then run yarn ai workflow:sync to generate .claude/skills/ for Claude Code. Codex and Cursor discover .agents/skills/ directly; do not restore the duplicate .codex/skills/ or .cursor/skills/ roots.
 - [Feature List Template](https://docs.bitsocial.net/agent-playbooks/templates/feature-list-template/): Machine-readable template used for long-running multi-session task tracking.
 - [Progress Log](https://docs.bitsocial.net/agent-playbooks/templates/progress.template/): Append one entry per session.
@@ -2602,11 +2602,11 @@ If uncertain, ask the developer before adding an entry.
 
 Source: https://docs.bitsocial.net/agent-playbooks/long-running-agent-workflow/
 Path: docs/agent-playbooks/long-running-agent-workflow.md
-Description: Use durable task state when work needs resumption or a handoff. Small tasks do not need a board or progress file. For shared work, keep a concise feature list.json and progress.md in a task specific docs/agent runs/<slug /, using existing templates where helpful.
+Description: Use durable task state when work needs resumption or a handoff, or when a single run is long enough that context compaction could lose track of the remaining work. Small tasks do not need a board or progress file. For shared work, keep a concise feature list.json and progress.md in a task specific docs/agent runs/<slug /, using existing templates where helpful.
 
 # Long-running agent work
 
-Use durable task state when work needs resumption or a handoff. Small tasks do not need a board or progress file. For shared work, keep a concise `feature-list.json` and `progress.md` in a task-specific `docs/agent-runs/<slug>/`, using existing templates where helpful.
+Use durable task state when work needs resumption or a handoff, or when a single run is long enough that context compaction could lose track of the remaining work. Small tasks do not need a board or progress file. For shared work, keep a concise `feature-list.json` and `progress.md` in a task-specific `docs/agent-runs/<slug>/`, using existing templates where helpful.
 
 Record the requested outcome, current branch/worktree, file ownership, completed changes, checks with results, owned processes/sessions, and the next unresolved step. Do not store credentials or arbitrary source dumps. Mark a feature complete only when its acceptance criteria are verified.
 
@@ -3522,6 +3522,8 @@ Bitsocial communities can require users to solve one or more anti-spam challenge
 
 5chan also has an optional UX integration with [`@bitsocial/ai-moderation-challenge`](https://github.com/bitsocialnet/ai-moderation-challenge): when a failed verification contains the exact message `This media was already posted recently.`, 5chan abandons the rejected pending publication, returns to the originating post form, preserves the draft, and shows the message inline. This string is an intentionally small cross-package contract rather than a package dependency. Challenges that omit it, or return any other error, continue through the normal generic challenge-error flow.
 
+While waiting for a challenge or answer verification, unpublished posts explain that the board is checking the post or verifying its challenge answers. The AI moderation notice appears only after challenge answers have been submitted, while waiting for verification, so it does not appear before Spamblocker opens. It also requires the target board's cached public `community.challenges` to contain the package's exact description, `Moderate Bitsocial publications with AI.`, with type `text/plain`. Unknown or customized metadata gets no AI notice. This describes the board's configuration, not live AI progress or confirmation that its earlier checks passed; other publishing states and errors retain their existing messages.
+
 ### Build
 
 The Linux/Windows/macOS/Android build scripts are in [.github/workflows/release.yml](https://github.com/bitsocialnet/5chan/blob/master/.github/workflows/release.yml)
@@ -3534,60 +3536,119 @@ The Linux/Windows/macOS/Android build scripts are in [.github/workflows/release.
 
 Repository: bitsocialnet/seedit
 Source: https://github.com/bitsocialnet/seedit#readme
-Description: Seedit is a serverless, adminless, decentralized and open source (old)reddit alternative built on the Bitsocial protocol. Like reddit, anyone can create a seedit community. Unlike reddit, communities are independently owned, subscriptions point directly to community addresses, and Seedit's default communities can evolve with the network.
+Description: Seedit is a serverless, adminless, decentralized and open source (old)reddit alternative built on the Bitsocial protocol. Like reddit, anyone can create a community and browse a front page of the communities they joined. Unlike reddit, every community is independently owned and hosted by its own peer to peer node , and a subscription points directly at that community's address instead of at a platform account.
 
 # Seedit
 
-Seedit is a serverless, adminless, decentralized and open-source (old)reddit alternative built on the [Bitsocial protocol](https://bitsocial.net). Like reddit, anyone can create a seedit community. Unlike reddit, communities are independently owned, subscriptions point directly to community addresses, and Seedit's default communities can evolve with the network.
+Seedit is a serverless, adminless, decentralized and open-source (old)reddit alternative built on the [Bitsocial protocol](https://bitsocial.net). Like reddit, anyone can create a community and browse a front page of the communities they joined. Unlike reddit, **every community is independently owned and hosted by its own peer-to-peer node**, and a subscription points directly at that community's address instead of at a platform account.
 
-- Seedit web version: https://seedit.app — or, using Brave/IPFS Companion: https://seedit.eth
+## Key Features
 
-### Downloads
-- Seedit desktop version (full p2p bitsocial node, seeds automatically): available for Mac/Windows/Linux, [download link in the release page](https://github.com/bitsocialnet/seedit/releases/latest)
-- Seedit mobile version: available for Android, [download link in the release page](https://github.com/bitsocialnet/seedit/releases/latest)
+### Independently Owned Communities
 
-## How to create a community
-To run a community, you can choose between two options:
+Seedit has no global administrator and no backend to sign up to. A community is a Bitsocial community run by its owner's own node; the owner controls its content, moderation, rules, and anti-spam challenges. The web app is a static app shell: it loads from any host, and all community data arrives from peers.
 
-1. If you prefer to use a **GUI**, download the desktop version of the Seedit client, available for Windows, MacOS and Linux: [latest release](https://github.com/bitsocialnet/seedit/releases/latest). Create a community using using the familiar old.reddit-like UI, and modify its settings to your liking. The app runs an IPFS node, meaning you have to keep it running to have your board online.
-2. If you prefer to use a **command line interface**, install bitsocial-cli, available for Windows, MacOS and Linux: [latest release](https://github.com/bitsocialnet/bitsocial-cli/releases/latest). Follow the instructions in the readme of the repo. When running the daemon for the first time, it will output WebUI links you can use to manage your community with the ease of the GUI.
+Your identity is a local key pair, not an account on a server. Subscriptions, votes, and drafts live in your client and travel with you between Bitsocial clients.
 
-Peers can connect to your bitsocial community using any bitsocial client, such as Seedit or [5chan](https://github.com/bitsocialnet/5chan). They only need the community address, which is not stored in any central database, as bitsocial is a pure peer-to-peer protocol.
+### Contested Short Routes, Durable Subscriptions
 
-### How to add a default community
+Short discovery routes are separate from subscriptions. A route such as `/s/pics` always opens the finalized winner of the `pics` directory, so a valuable short name is not permanently owned by whoever registered it first, and no global administrator hands it out. The topbar therefore shows `pics` regardless of the winner's exact address.
 
-Seedit's versioned default communities are published in Bitsocial's [seedit-default-subscriptions.json list](https://github.com/bitsocialnet/lists/blob/master/seedit-default-subscriptions.json). New accounts subscribe to these communities by default. When the list changes, existing users can review the update and choose which additions to join; Seedit never removes a manually chosen subscription. You can open a pull request in that repository to propose a community for the list.
+Joining from that route subscribes to the winner's **exact** community address. A later winner change never silently replaces the subscription: Seedit offers to switch, keep both, or keep the current community, and automatic switching is an explicit per-directory preference that leaves an undoable notice. Post permalinks also use exact addresses, so shared links stay durable.
 
-### How directory routes work
+The directory model is designed for decentralized voting. During bootstrap, finalized snapshots are published through [bitsocialnet/lists](https://github.com/bitsocialnet/lists). See the [directory routes architecture decision](https://github.com/bitsocialnet/seedit/blob/HEAD/docs/architecture/directory-routes.md) for the complete model, including snapshot rules and rejected alternatives.
 
-Seedit separates short discovery routes from subscriptions. A route such as `/s/pics` always opens the finalized winner of the `pics` directory, so valuable short routes are not permanently controlled by squatters or global administrators. The topbar therefore displays `pics`, regardless of the winner's exact address. The directory model is designed for decentralized voting; during bootstrap, finalized snapshots are published through [bitsocialnet/lists](https://github.com/bitsocialnet/lists).
+### The old.reddit Interaction Language
 
-Joining still subscribes to that winner's exact community address, and the home feed reads those exact subscriptions directly. Directory winner changes never silently replace a subscription unless the user explicitly enabled automatic switching; otherwise Seedit lets the user switch, keep both communities, or keep the current one. Post permalinks also use exact community addresses so shared links remain durable. See the [directory-routes architecture decision](https://github.com/bitsocialnet/seedit/blob/HEAD/docs/architecture/directory-routes.md) for the complete model.
+Seedit keeps the interface it is named after: dense feed rows, the familiar voting and metadata order, square legacy controls, small browser-native typography, sort tabs and time filters, a practical sidebar, and light/dark themes built from the same token set. Feeds, comment trees, the inbox, user profiles, moderation queues, and community settings all follow that vocabulary rather than a crypto dashboard. The visual system is documented in [DESIGN.md](https://github.com/bitsocialnet/seedit/blob/HEAD/DESIGN.md), and the product intent in [PRODUCT.md](https://github.com/bitsocialnet/seedit/blob/HEAD/PRODUCT.md).
 
-## Contributor setup
+### Search
+
+The search box matches communities from the lists Seedit ships, from your own subscriptions, and from an archive indexer ([seeditarchive.org](https://seeditarchive.org)), merged and deduplicated; the same indexer supplies post and comment results. Old.reddit's advanced-search prefixes work in the query — `community:`, `author:`, `url:`, `site:`, `selftext:`, `nsfw:`, `self:` — and stay in the shareable URL. Indexed search is a convenience layer over a peer-to-peer network: browsing, posting, and voting do not depend on it.
+
+### Seedit Gold
+
+`seedit gold` is a planned yearly supporter subscription. It is **not available yet** — there is nothing to buy, activate, or renew today. When it launches, gold holders will publish without solving a challenge on communities that support the gold challenge, and will be eligible to vote on directory pages. The in-app `/gold` page is the maintained FAQ.
+
+## Downloads
+
+- **Web version**: https://seedit.app — or, using Brave/IPFS Companion: https://seedit.eth
+- **Desktop version** (full P2P bitsocial node, seeds automatically): available for Mac/Windows/Linux, [download from the release page](https://github.com/bitsocialnet/seedit/releases/latest)
+- **Mobile version**: available for Android, [download from the release page](https://github.com/bitsocialnet/seedit/releases/latest)
+
+## Run Seedit in Your Browser With a Local Node
+
+If you want the full P2P node but prefer opening Seedit in your normal browser instead of using the desktop app, use [bitsocial-cli](https://github.com/bitsocialnet/bitsocial-cli). It runs the Bitsocial/IPFS node and serves a bundled Seedit Web UI locally, so you do not need to run this repository separately.
+
+```sh-session
+npm install -g @bitsocial/bitsocial-cli
+bitsocial daemon
+```
+
+When the daemon starts, it prints a `WebUI (seedit - Similar to old reddit UI)` URL. Open that URL in your browser to use Seedit through your local node. See the [bitsocial-cli daemon docs](https://github.com/bitsocialnet/bitsocial-cli#running-daemon) for details.
+
+## Creating a Community
+
+A community must be created on a bitsocial node, because the node is what hosts and seeds it. There are two ways:
+
+1. **GUI** — download the [desktop version of Seedit](https://github.com/bitsocialnet/seedit/releases/latest) for Windows, macOS, or Linux. It runs its own IPFS node, so you can create a community from the familiar old.reddit-style UI and edit its settings, roles, and challenges in place. The app has to keep running for your community to stay online.
+2. **Command line** — install [bitsocial-cli](https://github.com/bitsocialnet/bitsocial-cli) and follow its readme. The daemon prints WebUI links on first run, so you can manage the community you created with the same GUI.
+
+Once created, peers can connect to your community from any bitsocial client, such as Seedit or [5chan](https://github.com/bitsocialnet/5chan), using only the community address. That address is not stored in any central database — bitsocial is a pure peer-to-peer protocol.
+
+## Getting Your Community Discovered
+
+Seedit's versioned default communities are published in Bitsocial's [seedit-default-subscriptions.json list](https://github.com/bitsocialnet/lists/blob/master/seedit-default-subscriptions.json). New accounts subscribe to that list by default; when it changes, existing users review the update and choose which additions to join, and Seedit never removes a manually chosen subscription.
+
+To propose a community, open a pull request in [bitsocialnet/lists](https://github.com/bitsocialnet/lists). A community is a realistic candidate when it is active, well moderated, and close to always reachable — a community is its own server, so its uptime is your node's uptime.
+
+Directory assignment only affects discovery. Even without it, anyone can reach your community at any time through its address, the search box, or a subscription.
+
+## Development
+
+### Prerequisites
+
+- Node.js 22.12.0, pinned in [`.nvmrc`](https://github.com/bitsocialnet/seedit/blob/HEAD/.nvmrc)
+- Corepack enabled once per machine: `corepack enable`
+
+### Contributor Setup
 
 1. `nvm install && nvm use`
-2. Run `corepack enable` once on your machine
-3. Use plain `yarn install`, `yarn build`, and `yarn test` from then on
+2. `corepack enable` (once per machine)
+3. Use plain `yarn install`, `yarn build`, and `yarn test` from then on — never npm, so `yarn.lock` stays valid
 
-## To run locally
+### Run Locally
 
 1. `yarn install` to install Seedit dependencies
 2. `yarn start` to run the web client
 
-The default web dev server runs at `https://seedit.localhost` via [Portless](https://github.com/vercel-labs/portless), so it can share the same proxy as other Bitsocial projects without colliding on raw Vite ports. On non-`master` branches, or when another legacy process is already holding the canonical route, `yarn start` automatically uses a branch-scoped `*.seedit.localhost` URL instead of failing, and repeated branch-scoped runs keep suffixing (`-2`, `-3`, ...) until they find a free route. To bypass Portless and use plain Vite directly, run `PORTLESS=0 yarn start`; it will probe from port `3000` unless you pin `PORT` yourself.
+The dev server runs at https://seedit.localhost via [Portless](https://github.com/vercel-labs/portless), which gives each Bitsocial project a stable, named URL instead of a random port, and serves it through an HTTPS proxy on port 443. On non-`master` branches, or when another process already holds the canonical route, `yarn start` automatically uses a branch-scoped `*.seedit.localhost` URL instead of failing, suffixing (`-2`, `-3`, ...) until it finds a free route. To bypass Portless and use plain Vite, run `PORTLESS=0 yarn start`; it probes from port `3000` unless you pin `PORT` yourself.
 
-### Scripts:
+### Scripts
 
-- Web client: `yarn start` (`https://seedit.localhost`)
-- Electron client (must start web client first): `yarn electron`
-- Electron client and don't delete data: `yarn electron:no-delete-data`
-- Web client and electron client: `yarn electron:start` (forces `PORTLESS=0 PORT=3000` and uses `http://localhost:3000`)
-- Web client and electron client and don't delete data: `yarn electron:start:no-delete-data` (forces `PORTLESS=0 PORT=3000` and uses `http://localhost:3000`)
+- **Web client**: `yarn start` (https://seedit.localhost)
+- **Electron client** (must start web client first): `yarn electron`
+- **Electron client** (don't delete data): `yarn electron:no-delete-data`
+- **Web client and electron client**: `yarn electron:start` (forces `PORTLESS=0 PORT=3000` and uses http://localhost:3000)
+- **Web client and electron client** (don't delete data): `yarn electron:start:no-delete-data`
+- **Android client** (builds, syncs Capacitor, runs on a device or emulator): `yarn android:build`
 
-### Build:
+### Checks
 
-The linux/windows/mac/android build scripts are in https://github.com/bitsocialnet/seedit/blob/master/.github/workflows/release.yml
+- **Tests**: `yarn test`
+- **Lint and module boundaries**: `yarn lint`
+- **Types**: `yarn type-check`
+- **Build, lint, types, React diagnostics, and runtime performance scenarios**: `yarn agent:verify` (run `yarn perf:install` once first)
+
+Module layering is enforced: `src/views` composes pages, `src/components` holds reusable UI, and `src/hooks`, `src/stores`, `src/lib`, and `src/data` sit below them, with imports flowing one way. `yarn boundaries` (part of `yarn lint`) fails on a violation. See [src/AGENTS.md](https://github.com/bitsocialnet/seedit/blob/HEAD/src/AGENTS.md) for the rules and [AGENTS.md](https://github.com/bitsocialnet/seedit/blob/HEAD/AGENTS.md) for the wider contributor workflow.
+
+### Build
+
+The Linux/Windows/macOS/Android build scripts are in [.github/workflows/release.yml](https://github.com/bitsocialnet/seedit/blob/master/.github/workflows/release.yml). Each release also publishes the static web build as `seedit-html-<version>.zip`, together with a signed release manifest that lets you verify the files you downloaded.
+
+## License
+
+Seedit is open-source software (GPL-3.0-or-later) with no owner — anyone can host their own instance on any domain. The operator of any domain is merely hosting the web app and does not own, create, moderate, or control Seedit or any community content, which is stored peer-to-peer and generated by community owners and users.
 
 ### bitbones
 
@@ -3903,11 +3964,11 @@ A hosted version is available at [mintpass.org](https://mintpass.org).
 
 Repository: bitsocialnet/ai-moderation-challenge
 Source: https://github.com/bitsocialnet/ai-moderation-challenge#readme
-Description: Automatic PKC challenge that evaluates Bitsocial comment content against community.rules with an OpenAI compatible model endpoint. The package runs on the community node and does not require a hosted Bitsocial moderation server.
+Description: Automatic PKC challenge that evaluates Bitsocial comment content against community.rules with an OpenAI compatible model endpoint and optional TypeSafe Jev triage. The package runs on the community node and does not require a hosted Bitsocial moderation server.
 
 # @bitsocial/ai-moderation-challenge
 
-Automatic PKC challenge that evaluates Bitsocial comment content against `community.rules` with an OpenAI-compatible model endpoint. The package runs on the community node and does not require a hosted Bitsocial moderation server.
+Automatic PKC challenge that evaluates Bitsocial comment content against `community.rules` with an OpenAI-compatible model endpoint and optional TypeSafe Jev triage. The package runs on the community node and does not require a hosted Bitsocial moderation server.
 
 ## Installation
 
@@ -3966,28 +4027,34 @@ Production operators should keep the real moderation prompt in a private node-lo
 
 ## Options
 
-| Option                  | Default                                  | Description                                                                                                    |
-| ----------------------- | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `apiUrl`                | `https://api.openai.com/v1/responses`    | Full OpenAI-compatible endpoint URL                                                                            |
-| `apiFormat`             | `responses`                              | Request/response format: `responses` or `chat-completions`                                                     |
-| `apiKey`                | none                                     | Private provider API key; leave empty for self-hosted endpoints that do not require one                        |
-| `model`                 | `gpt-5.4-nano`                           | Model name sent to the provider                                                                                |
-| `fallbackModel`         | none                                     | Secondary model used once when the primary model returns HTTP 429                                              |
-| `reasoningEffort`       | none                                     | Optional primary-model reasoning effort: `none`, `low`, `medium`, `high`, `xhigh`, or `max`                    |
-| `triageApiUrl`          | `https://api.openai.com/v1/responses`    | Full endpoint URL for the optional first-pass triage model                                                     |
-| `triageApiFormat`       | `responses`                              | Triage request/response format: `responses` or `chat-completions`                                              |
-| `triageApiKey`          | none                                     | Private triage-provider API key                                                                                |
-| `triageModel`           | none                                     | Optional first-pass model; setting it enables the two-stage cascade                                            |
-| `triageReasoningEffort` | none                                     | Optional triage-model reasoning effort: `none`, `low`, `medium`, `high`, `xhigh`, or `max`                     |
-| `branch`                | `allow`                                  | Branch mode: `allow` or `review`                                                                               |
-| `prompt`                | built-in prompt                          | Private inline system prompt text                                                                              |
-| `promptPath`            | none                                     | Private file path for a system prompt on the community node; `~` expands to the home directory                 |
-| `promptUrl`             | none                                     | Private HTTPS URL for a remotely hosted system prompt                                                          |
-| `promptBearerToken`     | none                                     | Private bearer token sent only when fetching `promptUrl`                                                       |
-| `cachePath`             | `~/.bitsocial-ai-moderation-cache.json`  | Private JSON verdict cache path; set to an empty string to disable persistent caching                          |
-| `auditLogPath`          | `~/.bitsocial-ai-moderation-audit.jsonl` | Private JSONL verdict audit log path; set to an empty string to disable audit logging                          |
-| `rejectDuplicateMedia`  | `false`                                  | Reject top-level posts that reuse an image, video, or audio URL from a non-archived post in the same community |
-| `error`                 | `Rejected by Bitsocial AI moderation.`   | Error shown when content edits are rejected or moderation is unavailable for an edit                           |
+| Option                    | Default                                  | Description                                                                                                    |
+| ------------------------- | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `apiUrl`                  | `https://api.openai.com/v1/responses`    | Full OpenAI-compatible endpoint URL                                                                            |
+| `apiFormat`               | `responses`                              | Request/response format: `responses` or `chat-completions`                                                     |
+| `apiKey`                  | none                                     | Private provider API key; leave empty for self-hosted endpoints that do not require one                        |
+| `model`                   | `gpt-5.4-nano`                           | Model name sent to the provider                                                                                |
+| `fallbackModel`           | none                                     | Secondary model used once when the primary model returns HTTP 429                                              |
+| `reasoningEffort`         | none                                     | Optional primary-model reasoning effort: `none`, `low`, `medium`, `high`, `xhigh`, or `max`                    |
+| `triageApiUrl`            | `https://api.openai.com/v1/responses`    | Full endpoint URL for the optional first-pass triage model                                                     |
+| `triageApiFormat`         | `responses`                              | Triage request/response format: `responses` or `chat-completions`                                              |
+| `triageApiKey`            | none                                     | Private triage-provider API key                                                                                |
+| `triageModel`             | none                                     | Optional first-pass model; setting it enables the two-stage cascade                                            |
+| `triageReasoningEffort`   | none                                     | Optional triage-model reasoning effort: `none`, `low`, `medium`, `high`, `xhigh`, or `max`                     |
+| `jevMode`                 | `off`                                    | `off`, non-blocking `shadow`, or confidence-gated `triage` before the existing cascade                         |
+| `jevApiUrl`               | `https://api.typesafe.ai/v1/systemone`   | HTTPS TypeSafe evaluation endpoint                                                                             |
+| `jevApiKey`               | none                                     | Private TypeSafe key; required when Jev is enabled                                                             |
+| `jevModel`                | `jev-1.13.0`                             | Pinned Jev model; an unexpected returned version falls back to the existing cascade                            |
+| `jevMaxReviewProbability` | `0.05`                                   | Maximum review probability for a Jev `allow` to finish triage; must be at least 0 and below 0.5                |
+| `branch`                  | `allow`                                  | Branch mode: `allow` or `review`                                                                               |
+| `prompt`                  | built-in prompt                          | Private inline system prompt text                                                                              |
+| `promptPath`              | none                                     | Private file path for a system prompt on the community node; `~` expands to the home directory                 |
+| `promptUrl`               | none                                     | Private HTTPS URL for a remotely hosted system prompt                                                          |
+| `promptBearerToken`       | none                                     | Private bearer token sent only when fetching `promptUrl`                                                       |
+| `cachePath`               | `~/.bitsocial-ai-moderation-cache.json`  | Private JSON verdict cache path; set to an empty string to disable persistent caching                          |
+| `auditLogPath`            | `~/.bitsocial-ai-moderation-audit.jsonl` | Private JSONL verdict audit log path; set to an empty string to disable audit logging                          |
+| `articleMaxAgeHours`      | disabled                                 | Optional deterministic age limit for top-level non-media links; uses URL-path day hints and submission time    |
+| `rejectDuplicateMedia`    | `false`                                  | Reject top-level posts that reuse an image, video, or audio URL from a non-archived post in the same community |
+| `error`                   | `Rejected by Bitsocial AI moderation.`   | Error shown when content edits are rejected or moderation is unavailable for an edit                           |
 
 Prompt source precedence is `prompt` > `promptPath` > `promptUrl` > built-in fallback. If multiple private prompt sources are configured, the challenge uses the highest-precedence source and emits a warning about the ignored source.
 
@@ -4014,16 +4081,43 @@ Provider API keys are only sent to HTTPS endpoints. Keyless HTTP endpoints remai
 
 To enable 5chan-style exact-media rejection, set `rejectDuplicateMedia: "true"` on both the `allow` and `review` challenge entries. PKC challenge option values are strings; leaving this option unset preserves the default and does not perform the deterministic hard-rejection check.
 
+## Optional Jev triage
+
+Keep the existing Luna and Grok configuration. Add the same Jev options to both AI challenge branches:
+
+```js
+{
+    jevMode: "shadow",
+    jevApiKey: "your-private-typesafe-key",
+    jevModel: "jev-1.13.0",
+    jevMaxReviewProbability: "0.05"
+}
+```
+
+`off` is the default and makes no Jev requests. `shadow` starts one Jev request alongside the existing cascade on each cache miss. Its result never changes publication or moderation outcomes, and the posting path does not wait for it. Shadow mode requires audit logging. A separate `${auditLogPath}.jev-shadow.jsonl` file records the Jev decision/probability, whether it would have allowed, the final baseline verdict or failure, correlation hashes, timing, and usage. These advisory entries never enter the normal mod-log publisher's input. Writes are best effort; a process stopped before the background comparison finishes can lose that observation. Cache hits issue no shadow request.
+
+After evaluating disagreements and cost on representative traffic, explicitly set `jevMode: "triage"` to enable early approvals. A schema-valid Jev `allow` with review probability at or below the threshold finishes moderation. Every other result, including a Jev `review`, uncertainty, invalid response, unexpected pinned model, or provider failure, continues through the existing Luna-to-Grok cascade. Jev never independently queues a publication or invents a free-text review reason. If Luna is not configured, these cases go directly to the configured reviewer. The existing branch, edit, and provider-failure rules still apply.
+
+Jev requests have a two-second deadline covering headers and body. The threshold is an experimental operating choice, not a guaranteed error rate. Start with shadow mode, adjudicate disagreements, and measure false approvals and escalation rates before enabling decisions. Pin a version while selecting a threshold; explicitly choosing `jev-latest` or `jev-preview` permits the provider alias to change versions. Jev mode, endpoint, model, and threshold participate in cache identity, so changing them cannot reuse a verdict under a different decision policy. Credentials never enter the cache.
+
+The [TypeSafe API](https://docs.typesafe.ai/api) receives the same normalized policy, user instructions, community context, and publication fields as the existing providers. Publication text remains untrusted data. No linked pages or media are fetched.
+
+### Provider usage and latency
+
+Fresh final audit entries include an `attempts` array for every actual decision-provider request, including first-pass reviews, invalid verdicts, timeouts, 429 attempts, and fallback retries. Each attempt records stage, requested/returned model when available, host, format, start time, elapsed milliseconds, status, and reported token usage. Jev triage attempts also record the review probability, confidence, configured threshold, and eligibility for early approval. Cache-hit entries omit attempts so they cannot be mistaken for new provider usage. Shadow Jev attempts appear only in the separate shadow file.
+
+Usage fields are `inputTokens`, `outputTokens`, `cachedInputTokens`, `cacheWriteInputTokens`, and `reasoningTokens` when the provider supplies valid values. Missing usage is unknown, not zero. Reasoning is preserved separately: providers differ in whether it is included in output/completion counts, so do not blindly add it or infer a dollar bill from these fields. Prices are not hardcoded. HTTP errors record the status without copying provider bodies that could echo private content. The mod-log publisher retains its existing public fields and does not publish attempt telemetry.
+
 ## Settings validation and public options
 
 `pkc-js` 0.0.85+ validates `community.settings.challenges[i]` on every community edit, creation, and start. For this challenge that means:
 
 - Option keys that are not listed in the table above are rejected as typos by `pkc-js` itself.
-- The challenge's `validateChallengeSettings` hook rejects the same option errors that would otherwise fail every publication: an `apiUrl` or `triageApiUrl` that is not `http`/`https`, a keyed provider URL that is not HTTPS, a `promptUrl` that is not `https`, an unknown API format, reasoning effort, or `branch`, or a `rejectDuplicateMedia` value other than `true`/`false`. The hook is synchronous and never contacts a provider, so a missing or wrong API key is only discovered when a publication is moderated (fail closed).
+- The challenge's `validateChallengeSettings` hook rejects the same option errors that would otherwise fail every publication: an `apiUrl` or `triageApiUrl` that is not `http`/`https`, a keyed provider URL that is not HTTPS, a `promptUrl` that is not `https`, an unknown API format, reasoning effort, or `branch`, or a `rejectDuplicateMedia` value other than `true`/`false`. The hook is synchronous and never contacts a provider, so wrong credentials are only discovered when a publication is moderated (fail closed). Enabling Jev also requires `jevApiKey`, a valid mode/threshold and an HTTPS endpoint; shadow mode requires `auditLogPath`.
 - If `promptPath` does not exist on the node, the hook logs it through `pkc-logger` but does not reject the settings, so a prompt file that is created later does not block the community.
 - Rejections fail the offending `community.edit()`; at start they surface as community `error` events with code `ERR_CHALLENGE_SETTINGS_VALIDATION_FAILED` and the community still starts. Existing settings that were silently broken start emitting these errors after upgrading.
 
-Every option is private by default. An owner can publish specific options by naming them in `publicOptions`, and `pkc-js` then copies their values into the public `community.challenges[i].publicOptions`. The hook refuses to publish `apiKey`, `triageApiKey`, and `promptBearerToken` because they are credentials. Everything else is the owner's call: publishing `prompt`, `promptUrl`, or `promptPath` is a transparency choice, but it lets users read the moderation prompt and try to game it, and publishing provider URLs, `cachePath`, or `auditLogPath` reveals private node details. Most communities should leave `publicOptions` unset.
+Every option is private by default. An owner can publish specific options by naming them in `publicOptions`, and `pkc-js` then copies their values into the public `community.challenges[i].publicOptions`. The hook refuses to publish `apiKey`, `triageApiKey`, `jevApiKey`, and `promptBearerToken` because they are credentials. Everything else is the owner's call: publishing `prompt`, `promptUrl`, or `promptPath` is a transparency choice, but it lets users read the moderation prompt and try to game it, and publishing provider URLs, `cachePath`, or `auditLogPath` reveals private node details. Most communities should leave `publicOptions` unset.
 
 ```js
 {
@@ -4051,8 +4145,24 @@ Every option is private by default. An owner can publish specific options by nam
 - The challenge does not fetch linked publication media or user-submitted URLs. `promptUrl` is an operator-configured private prompt source, not publication content.
 - Remote prompts are fetched without following redirects, with a 5 second timeout, capped at 64 KiB, cached in memory for 5 minutes, and reused from the last in-memory copy if a refresh fails. If the first remote prompt fetch fails, moderation fails closed for the allow branch.
 - Two branch invocations for the same publication reuse one in-process verdict promise.
-- Successful verdicts are cached in a private JSON file keyed by a SHA-256 hash over primary and triage model/provider config, community context including duplicate-check context, target content, and the final prompt hash. The cache does not store the raw prompt or API keys.
+- Successful verdicts are cached in a private JSON file keyed by a SHA-256 hash over primary, triage, and enabled Jev model/provider config, community context including duplicate-check context, target content, and the final prompt hash. The cache does not store the raw prompt or API keys.
 - Verdicts are written to a private JSONL audit log with the model stage, model reason, raw publication fields, and hashes/metadata for correlation. The audit log does not store the raw prompt, API keys, prompt URL, or prompt bearer token.
+
+## Article age checks
+
+Set `articleMaxAgeHours: "48"` on **both** branches only for communities whose intended policy is a 48-hour article-link window. This is an independent explicit operator setting: the package never extracts numbers from arbitrary rules or prompts. Empty or omitted leaves deterministic enforcement disabled.
+
+For top-level links, excluding known image/video/audio links, the node computes minimum and maximum possible article age from the existing URL-path date hint and submission timestamp. The existing hint convention spans the full UTC calendar day; a URL date is not a verified publication time. Review occurs only when **even the latest possible article time is strictly older** than the configured window. An exact boundary, a day straddling the boundary, a future day, a missing/invalid date, or missing submission time cannot establish an age violation. The model receives computed age bounds and is instructed not to re-enforce the configured window, while still enforcing any stricter explicit community age limit and all other rules. Replies and content edits retain their existing behavior; edits do not contain the original linked-article context.
+
+A proven age violation uses the existing allow/review branch semantics and does not call any provider. Its audit entry has `source: "rule"`, `rule: "article-recency"`, numeric bounds, and no provider or token usage. It uses the existing in-process deduplication; deterministic age verdicts are not written to the persistent model cache. Applicable age configuration participates in the verdict cache identity. The setting does not fetch articles or prove that an untrusted URL date is truthful; enable it only where that date convention is suitable.
+
+## Local usage reporting and evaluation
+
+Run `node scripts/moderation-usage.mjs --audit /private/moderation-audit.jsonl` to generate an offline aggregate report. It counts final provider stages, stages reached, audited disk-cache hits, deterministic decisions, request latency, throttling, timeouts, and reported tokens. It excludes publication text, prompts, reasons, credentials, and unknown audit fields. In-process cache reuse is not logged and cannot be counted from these files. Shadow logs can be reported separately; do not concatenate overlapping log copies.
+
+For cost estimates, pass `--rates /private/rates.json`. Rates are explicitly supplied per exact host/model; no prices are embedded or assumed current. Missing rates, usage, cache breakdowns, or separately billed reasoning counts leave total cost unknown. Known cost remains a subtotal. Provider-attempt latency is not end-to-end moderation latency, and the report cannot reconstruct unreported billing. See [operator tooling](https://github.com/bitsocialnet/ai-moderation-challenge/blob/HEAD/docs/moderation-tooling.md) for the rate format and examples.
+
+`node scripts/moderation-evaluate.mjs` validates the committed synthetic corpus **offline**. Saved predictions can be compared without network access. Deliberate live evaluation uses the built challenge, explicit credential environment references, and request/byte budgets; it prints only sanitized case IDs, labels, and aggregate telemetry. See [evaluation instructions](https://github.com/bitsocialnet/ai-moderation-challenge/blob/HEAD/docs/moderation-tooling.md#moderation-evaluation). Synthetic cases and independently reviewed real cases are labeled separately; the initial corpus is not evidence of real-world model accuracy.
 
 ## Moderation Audit Community
 
@@ -6376,7 +6486,7 @@ EXAMPLES
   $ bitsocial challenge install ./my-local-challenge
 ```
 
-_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/challenge/install.ts)_
+_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/challenge/install.ts)_
 
 ## `bitsocial challenge list`
 
@@ -6402,7 +6512,7 @@ EXAMPLES
   $ bitsocial challenge list -q
 ```
 
-_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/challenge/list.ts)_
+_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/challenge/list.ts)_
 
 ## `bitsocial challenge ls`
 
@@ -6457,7 +6567,7 @@ EXAMPLES
   $ bitsocial challenge remove @scope/my-challenge
 ```
 
-_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/challenge/remove.ts)_
+_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/challenge/remove.ts)_
 
 ## `bitsocial challenge rm NAME`
 
@@ -6574,7 +6684,7 @@ EXAMPLES
     $ bitsocial community create --jsonFile ./create-options.json
 ```
 
-_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/create.ts)_
+_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/community/create.ts)_
 
 ## `bitsocial community delete ADDRESSES`
 
@@ -6599,7 +6709,7 @@ EXAMPLES
   $ bitsocial community delete 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/delete.ts)_
+_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/community/delete.ts)_
 
 ## `bitsocial community edit ADDRESS`
 
@@ -6629,7 +6739,8 @@ DESCRIPTION
   - Arrays are replaced entirely (RFC 7396 JSON Merge Patch semantics).
   - When both --jsonFile and CLI flags are provided, CLI flags take priority.
 
-  For modifying complex settings like challenges, consider using a web UI instead: https://bitsocial.net/apps
+  For modifying complex settings like challenges, consider using a web UI instead:
+  https://bitsocial.net/projects?category=apps
 
 EXAMPLES
   Change the name of the community
@@ -6669,7 +6780,7 @@ EXAMPLES
     $ bitsocial community edit bitsocial.bso --jsonFile ./edit-options.json
 ```
 
-_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/edit.ts)_
+_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/community/edit.ts)_
 
 ## `bitsocial community export [ADDRESS]`
 
@@ -6710,7 +6821,7 @@ EXAMPLES
   $ bitsocial community export --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/export.ts)_
+_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/community/export.ts)_
 
 ## `bitsocial community get [ADDRESS]`
 
@@ -6741,7 +6852,7 @@ EXAMPLES
   $ bitsocial community get --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/get.ts)_
+_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/community/get.ts)_
 
 ## `bitsocial community list`
 
@@ -6764,7 +6875,7 @@ EXAMPLES
   $ bitsocial community list
 ```
 
-_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/list.ts)_
+_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/community/list.ts)_
 
 ## `bitsocial community start ADDRESSES`
 
@@ -6798,7 +6909,7 @@ EXAMPLES
     $ bitsocial community start $(bitsocial community list -q) --concurrency 1
 ```
 
-_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/start.ts)_
+_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/community/start.ts)_
 
 ## `bitsocial community stop ADDRESSES`
 
@@ -6823,7 +6934,7 @@ EXAMPLES
   $ bitsocial community stop Qmb99crTbSUfKXamXwZBe829Vf6w5w5TktPkb6WstC9RFW
 ```
 
-_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/community/stop.ts)_
+_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/community/stop.ts)_
 
 ## `bitsocial daemon`
 
@@ -6873,7 +6984,7 @@ EXAMPLES
   $ bitsocial daemon --no-allowPrivateKeyExport
 ```
 
-_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/daemon.ts)_
+_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/daemon.ts)_
 
 ## `bitsocial help [COMMAND]`
 
@@ -6937,7 +7048,7 @@ EXAMPLES
   $ bitsocial logs --stdout -f
 ```
 
-_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/logs.ts)_
+_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/logs.ts)_
 
 ## `bitsocial update check`
 
@@ -6954,7 +7065,7 @@ EXAMPLES
   $ bitsocial update check
 ```
 
-_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/update/check.ts)_
+_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/update/check.ts)_
 
 ## `bitsocial update install [VERSION]`
 
@@ -6986,7 +7097,7 @@ EXAMPLES
   $ bitsocial update install --no-restart-daemons
 ```
 
-_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/update/install.ts)_
+_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/update/install.ts)_
 
 ## `bitsocial update versions`
 
@@ -7008,7 +7119,7 @@ EXAMPLES
   $ bitsocial update versions --limit 5
 ```
 
-_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.97/src/cli/commands/update/versions.ts)_
+_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.98/src/cli/commands/update/versions.ts)_
 
 ## Contribution
 
@@ -7084,12 +7195,12 @@ Votes seeding starts an embedded libp2p node that wants two open ports (`6742`/`
 
 Directory voting is still on **testnet** — the contests are gated by the `5chan Pass` ERC-721 on Base Sepolia, so seeding them costs only the node and some testnet RPC reads.
 
-**3. (Optional) Cap the workload on small VPSes:**
+**3. (Optional) Adjust the workload on small VPSes:**
 
-By default there is no cap — the seeder seeds every community in the configured public lists:
+The default is 10 public communities. Lower the cap for a smaller machine, or raise it to contribute more capacity:
 
 ```sh
-MAX_COMMUNITIES=10 PIN_CONCURRENCY=1 docker compose up -d
+MAX_COMMUNITIES=5 PIN_CONCURRENCY=1 docker compose up -d
 ```
 
 See [VPS Sizing](#vps-sizing) for capacity guidance.
@@ -7098,13 +7209,13 @@ Compose pulls `ghcr.io/bitsocialnet/bitsocial-seeder:latest` by default. To pin 
 
 ### Run without Docker (npm)
 
-For local testing or Node-first operators (Node 24+ required):
+For local testing or Node-first operators (Node 24+ and npm 11 required):
 
 ```sh
 npx @bitsocial/bitsocial-seeder
 ```
 
-Or install globally:
+Or install globally with Node.js 24+ and npm 11:
 
 ```sh
 npm install -g @bitsocial/bitsocial-seeder
@@ -7112,6 +7223,11 @@ bitsocial-seeder
 ```
 
 Same environment variables as the Docker image. Reuses an already-running Bitsocial daemon when one is reachable, otherwise starts the bundled one.
+
+Use npm 11 for npm installs and local development. The published package includes
+`npm-shrinkwrap.json` to preserve its tested security fixes;
+[npm 12 no longer honors published shrinkwrap files](https://github.com/npm/cli/blob/latest/docs/lib/content/configuring-npm/package-lock-json.md#npm-shrinkwrapjson).
+Docker includes the supported npm version.
 
 ### Updating
 
@@ -7152,7 +7268,9 @@ Example `/data/extra-communities.json`:
 {"communities": [{"address": "my-community.bso", "publicKey": "12D3KooW..."}]}
 ```
 
-Extra sources use the same format as `COMMUNITY_LIST_SOURCES`, can be URLs, files, or directories of JSON files, and are re-read on the normal discovery interval. `MAX_COMMUNITIES` caps only the public list entries; explicitly configured extra communities are always included. If an extra entry has the same `publicKey` or address as a public entry, the extra entry wins.
+Extra sources use the same format as `COMMUNITY_LIST_SOURCES`, can be URLs, files, or directories of JSON files, and are re-read on the normal discovery interval. `MAX_COMMUNITIES` defaults to 10 and caps only the public list entries; explicitly configured extra communities are always included. If an extra entry has the same `publicKey` or address as a public entry, the extra entry wins.
+
+Set `MAX_COMMUNITIES=unlimited` to seed every public community, or `MAX_COMMUNITIES=0` to seed only extras. Unset or empty uses 10; invalid values fail startup. When the public list exceeds the cap, communities are ranked by a hash of their identity and a random seed persisted in `SEEDER_DB_PATH`. Selection survives restarts and list reordering, while independent nodes spread coverage across the list. Copying the database also copies this selection seed. Startup waits for successful discovery before subscribing, so an older uncapped selection is not restored before the new limit applies. Subscriptions to communities removed from selection stop on the next subscription tick. The cap does not limit votes contests or reclaim previously pinned community data.
 
 ### Verify what's being seeded
 
@@ -7271,8 +7389,8 @@ SEEDER_DB_PATH=/data/seeder.db
 # be disabled with SEEDER_STATE_WRITE_FILE=false
 SEEDER_STATE_PATH=/data/seederState.json
 SEEDER_STATE_WRITE_FILE=true
-# No default cap — all discovered public-list communities are seeded unless this is set
-MAX_COMMUNITIES=
+# Default 10 public communities; use "unlimited" to opt out or 0 for extras only
+MAX_COMMUNITIES=10
 # Default 2; the Docker image and compose file set 1
 PIN_CONCURRENCY=2
 SEEDER_UPDATE_CHECK_ENABLED=true
@@ -7290,6 +7408,8 @@ VOTES_CHAIN_RPC_URLS='{"84532":["https://sepolia.base.org"]}'
 VOTES_ETH_RPC_URLS=https://eth.drpc.org,https://ethereum-rpc.publicnode.com
 VOTES_PEER_KEY_PATH=/data/votes-peer.key
 VOTES_BLOCKSTORE_PATH=/data/votes-blockstore
+# Unreferenced and unused for 24 hours before deletion; 0 disables votes blockstore GC
+VOTES_BLOCKSTORE_GC_GRACE_MS=86400000
 VOTES_DATASTORE_PATH=/data/votes-datastore
 VOTES_DATA_PATH=/data/votes-cache
 VOTES_FETCH_MAX_STREAMS=256
@@ -7297,6 +7417,23 @@ VOTES_UPDATE_CONCURRENCY=8
 # util.inspect depth for object logging (unset = Node's util.inspect default)
 DEBUG_DEPTH=6
 ```
+
+### Votes blockstore garbage collection
+
+On each manifest reconcile, the seeder scans its dedicated votes blockstore. A block is
+eligible for deletion only after it stays unreferenced and unused for
+`VOTES_BLOCKSTORE_GC_GRACE_MS` (default 24 hours); set this to `0` to disable GC. Restarts
+reset the grace period. Live checkpoint roots/chunks and admitted bundles, including votes
+awaiting verification, are retained through the voting library's `retainsBlock()` API.
+References are checked again under a per-block lock immediately before deletion, and
+reads/writes reset eligibility. This reclaims old checkpoints, dropped contests' blocks,
+and unused fetched blocks without touching the separate checkpoint snapshots in `VOTES_DATA_PATH`.
+
+The bundled voting library exposes the live references used by GC. Keep
+`VOTES_BLOCKSTORE_PATH` dedicated to this seeder and
+never share it with another process or application: GC cannot account for their references.
+This is retention cleanup, not a disk quota; live state and blocks used within the grace
+period can still grow, so operators should monitor disk space.
 
 ### Public seeder defaults
 
@@ -7357,7 +7494,7 @@ Raise both if you seed many more communities than the defaults and the seeder ge
 
 The default community sources are dozens of small directory communities plus a short supplemental seeder list, not full media archiving.
 Disk and bandwidth mostly scale with `MAX_COMMUNITIES`, pinned page/update size, pubsub activity, and Kubo/libp2p overhead.
-On small VPSes, set `MAX_COMMUNITIES` (unset = no cap) and keep `PIN_CONCURRENCY=1` (the Docker default).
+On small VPSes, lower `MAX_COMMUNITIES` if needed (default 10) and keep `PIN_CONCURRENCY=1` (the Docker default).
 
 Bitsocial configures delegated HTTP routing/tracker endpoints for provider lookups, so it should be lighter than an untuned Kubo node doing full DHT provider sweeps.
 It still runs Kubo and joins pubsub topics, so treat it as Kubo-class infrastructure rather than a static HTTP service.
@@ -7724,8 +7861,29 @@ CORS-enabled so browser clients can call it directly.
 | `GET /api/communities` | Indexed communities + post counts + resolved `nsfw` flag + declared `safe_for_work` |
 | `GET /api/posts` | Browse posts — `?community=&sort=new\|top\|replies\|old&time=hour..all&page=&limit=&replies=true` |
 | `GET /api/posts/:cid` | A thread: original post + threaded replies |
-| `GET /api/search` | Full-text search — `?q=&community=&sort=&time=&page=&limit=&replies=&nsfw=`, plus the advanced filters below (NSFW excluded by default). A `q` that is a comment CID is looked up by CID instead (see below) |
+| `GET /api/search` | Full-text search — `?q=&community=&sort=&time=&page=&limit=&replies=&nsfw=&status=active\|archived\|all`, plus the advanced filters below (NSFW excluded by default; status defaults to `all`). A `q` that is a comment CID is looked up by CID instead (see below) |
 | `GET /sitemap.xml`, `/robots.txt` | SEO |
+
+### Active and archived search results
+
+`status=active`, `status=archived`, and `status=all` filter by the thread's
+archive state. Omitting `status` keeps the existing `all` behavior. Filtering
+happens before pagination and applies to `total`, text searches, advanced
+filters, and CID lookups. `status` alone is not a search query; unknown values
+return HTTP 400.
+
+Every served comment's `archived` field uses its root post's status. A thread
+is archived when the upstream root explicitly says so, or when it is absent
+from a later successful, exhaustive all-time post crawl. Bounded crawls,
+time-filtered pages, failed fetches, and omitted replies do not prove that a
+thread was archived. An explicit upstream `archived: false` reverses the flag;
+an omitted flag preserves the last known value. With no stored root, a reply
+uses only its own explicit flag. Unknown status falls into `active`.
+
+Existing databases gain a nullable `last_complete_posts_crawl_at` community
+column without inferring completeness from older crawls. Until a complete
+crawl succeeds, only explicit flags establish archival. The migration is
+additive and retains stored content.
 
 ### Advanced search filters
 
@@ -8105,7 +8263,8 @@ This is a fork of [mhkafadar/notifine](https://github.com/mhkafadar/notifine), s
 - **Release notifications** — one-liner when a release is published, with tag link, release name, pre-release marker, and the first line of the release notes
 - **Dependabot suppression** — events from Dependabot and activity on `dependabot/*` branches are acknowledged without posting to Telegram
 - **Explicit push suppression** — include `[skip github-alerts]` in a commit message to acknowledge that push without posting to Telegram
-- **Supported events**: push (incl. branch create/delete and force-push), release, issues, pull requests, comments (issue/PR review/commit), check runs, workflow runs, wiki edits, ping
+- **Supported events**: push (incl. branch create/delete and force-push), release, issues (incl. transfers), pull requests, comments (issue/PR review/commit), check runs, workflow runs, wiki edits, ping
+- **Issue transfers** — reported once, from the source repository, naming who moved the issue and where it landed; the destination repository's `opened` event is dropped because GitHub sends it with the original author as sender
 - **Branch filtering** — `?branch=` / `?exclude_branch=` glob patterns on the webhook URL
 - **Forum topics** — run `/start` inside a Telegram topic to receive notifications there
 - Built with Rust (actix-web + teloxide + diesel/Postgres)
@@ -8153,7 +8312,7 @@ A production compose file is provided in [`deploy/docker-compose.yml`](https://g
 
 ```bash
 mkdir bitsocial-github-alerts && cd bitsocial-github-alerts
-curl -fsSLO https://raw.githubusercontent.com/bitsocialnet/bitsocial-github-alerts/main/deploy/docker-compose.yml
+curl -fsSLO https://raw.githubusercontent.com/bitsocialnet/bitsocial-github-alerts/master/deploy/docker-compose.yml
 cat > .env <<'ENV'
 GITHUB_TELOXIDE_TOKEN=<bot token>
 WEBHOOK_BASE_URL=https://github.example.com
@@ -8174,7 +8333,7 @@ cargo run
 
 ## Docker image
 
-Images are published to GHCR on every push to `main` and on version tags:
+Images are published to GHCR on every push to `master` and on version tags:
 
 ```
 ghcr.io/bitsocialnet/bitsocial-github-alerts:latest
@@ -8580,7 +8739,7 @@ EXAMPLES
   $ 5chan board add my-board.bso --apply-defaults --defaults-preset ./my-preset.json
 ```
 
-_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/board/add.ts)_
+_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.29/src/commands/board/add.ts)_
 
 ## `5chan board edit ADDRESS`
 
@@ -8627,7 +8786,7 @@ EXAMPLES
   $ 5chan board edit random.bso -i
 ```
 
-_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/board/edit.ts)_
+_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.29/src/commands/board/edit.ts)_
 
 ## `5chan board list`
 
@@ -8644,7 +8803,7 @@ EXAMPLES
   $ 5chan board list
 ```
 
-_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/board/list.ts)_
+_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.29/src/commands/board/list.ts)_
 
 ## `5chan board remove ADDRESS`
 
@@ -8664,7 +8823,7 @@ EXAMPLES
   $ 5chan board remove random.bso
 ```
 
-_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/board/remove.ts)_
+_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.29/src/commands/board/remove.ts)_
 
 ## `5chan defaults set`
 
@@ -8704,7 +8863,7 @@ EXAMPLES
   $ 5chan defaults set -i
 ```
 
-_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/defaults/set.ts)_
+_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.29/src/commands/defaults/set.ts)_
 
 ## `5chan help [COMMAND]`
 
@@ -8768,7 +8927,7 @@ EXAMPLES
   $ 5chan logs --stdout -f
 ```
 
-_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/logs.ts)_
+_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.29/src/commands/logs.ts)_
 
 ## `5chan start`
 
@@ -8806,7 +8965,7 @@ EXAMPLES
   $ 5chan start --log-path /var/log/5chan
 ```
 
-_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.28/src/commands/start.ts)_
+_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.29/src/commands/start.ts)_
 
 ## Config Hot-Reload
 
@@ -8945,11 +9104,20 @@ environment:
 
 ## Heartbeat & Health Check
 
+`5chan start` exits with status 1 if an established RPC connection drops, even
+if the socket reconnects: the SDK's previous community subscriptions are no
+longer valid. The example Docker Compose files use `restart: unless-stopped`,
+so Docker starts a fresh daemon with fresh subscriptions and the existing
+signers/archive state. An unavailable RPC at startup also triggers this restart
+path. RPC startup is limited to 30 seconds, and shutdown is limited to 10 seconds
+if SDK work or cleanup is stuck. Deployments outside the example Compose files
+must provide an equivalent process restart policy.
+
 Each board manager runs a periodic heartbeat that:
 
 - Logs a line per tick at trace level (`[board <addr>] heartbeat — last update: <ISO> (<n>s ago)`) so you can confirm the daemon is alive even when a board is idle. Visible with the default `DEBUG='bitsocial:5chan-board-manager*'`.
 - Touches a shared heartbeat file (default `$XDG_STATE_HOME/5chan/heartbeat`, i.e. `/data/5chan/heartbeat` in Docker) for the Docker healthcheck to consume.
-- If `now - lastUpdateAt` exceeds `HEARTBEAT_STALE_UPDATE_SECONDS`, an error-level `[board <addr>] no update events for <n>s` line is logged each tick. The process is **not** restarted automatically — operators should monitor the log or rely on the file-mtime healthcheck below.
+- If `now - lastUpdateAt` exceeds `HEARTBEAT_STALE_UPDATE_SECONDS`, an error-level `[board <addr>] no update events for <n>s` line is logged each tick. An idle board alone does not trigger a restart.
 
 | Env var | Default | Purpose |
 |---|---|---|
@@ -8957,7 +9125,7 @@ Each board manager runs a periodic heartbeat that:
 | `HEARTBEAT_STALE_UPDATE_SECONDS` | `1800` | If no `community.update` event has fired within this window, a stale-update warning is logged each tick. |
 | `HEARTBEAT_FILE` | `<log-path>/heartbeat` | Override the heartbeat file path (e.g. for tests). |
 
-The example compose files include a healthcheck that reports `unhealthy` if the heartbeat file's mtime is older than 10 minutes — useful for `docker ps` and external watchdogs. Note this only catches "process completely dead" (the file's mtime stops advancing only when the interval timer stops firing); if the RPC connection is stuck but the process is alive, the heartbeat file keeps getting touched, so watch the log for the stale-update warning instead.
+The example compose files include a healthcheck that reports `unhealthy` if the heartbeat file's mtime is older than 10 minutes — useful for `docker ps` and external watchdogs. The heartbeat checks timer liveness; RPC disconnect recovery works independently of it. A connected server that stops delivering updates still requires investigation of the stale-update warning.
 
 ## 4chan Board Behavior Reference
 
