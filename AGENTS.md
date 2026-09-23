@@ -24,22 +24,22 @@ Record recurring repository surprises with concrete mitigation in [known-surpris
 
 ## Task router
 
-| Task                                              | Guidance/check                                                                                      |
-| ------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Files in a directory with AGENTS.md               | Read that directory's instructions                                                                  |
-| Code or automation changed                        | Select checks by impact in [verification.md](docs/agent-playbooks/verification.md)                  |
-| React state/effects/data flow/performance changed | Read relevant React skill rules; use Doctor when diagnostics resolve a concern                      |
-| UI/layout changed                                 | Verify affected flows; choose browsers/viewports using the verification playbook                    |
-| Translation keys/values                           | Use `translate`; one writer applies all locale changes                                              |
-| `package.json` changed                            | Run `corepack yarn install` and keep `yarn.lock` synchronized                                       |
-| Dependencies/imports changed                      | Run advisory `yarn knip`; resolve relevant new findings                                             |
-| AI workflow files changed                         | Edit shared sources; run `yarn ai-workflow:sync`, `yarn ai-workflow:check`, `yarn ai-workflow:test` |
-| Bug fix or substantive review correction exposes a preventable mistake | Use [retro](.agents/skills/retro/SKILL.md) for the smallest worthwhile prevention |
-| Public English docs or AI context changed         | Run `yarn llms:generate` and include resulting tracked indexes                                      |
-| Open PR feedback or merge readiness               | Use `review-and-merge-pr` within the requested scope                                                |
-| Durable handoff/resumption needed                 | Use [long-running-agent-workflow.md](docs/agent-playbooks/long-running-agent-workflow.md)           |
-| Frontend design or visual review                  | Use `impeccable`; preserve the requested visual scope and existing product truth                    |
-| Dependency manifest/lock changed                  | Keep `deps:check-pinned` and `deps:check-hardened` passing                                          |
+| Task                                                                       | Guidance/check                                                                                      |
+| -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Files in a directory with AGENTS.md                                        | Read that directory's instructions                                                                  |
+| Code or automation changed                                                 | Select checks by impact in [verification.md](docs/agent-playbooks/verification.md)                  |
+| React state/effects/data flow/performance changed                          | Read relevant React skill rules; use Doctor when diagnostics resolve a concern                      |
+| UI/layout changed                                                          | Verify affected flows; choose browsers/viewports using the verification playbook                    |
+| Translation keys/values                                                    | Use `translate`; one writer applies all locale changes                                              |
+| `package.json` changed                                                     | Run `corepack yarn install` and keep `yarn.lock` synchronized                                       |
+| Dependencies/imports changed                                               | Run advisory `yarn knip`; resolve relevant new findings                                             |
+| AI workflow files changed                                                  | Edit shared sources; run `yarn ai-workflow:sync`, `yarn ai-workflow:check`, `yarn ai-workflow:test` |
+| Bug fix or substantive review correction exposes a preventable mistake     | Use [retro](.agents/skills/retro/SKILL.md) for the smallest worthwhile prevention                   |
+| Public English docs or AI context changed                                  | Run `yarn llms:generate` and include resulting tracked indexes                                      |
+| Open PR feedback or merge readiness                                        | Use `review-and-merge-pr` within the requested scope                                                |
+| Durable handoff/resumption, or a run long enough to hit context compaction | Use [long-running-agent-workflow.md](docs/agent-playbooks/long-running-agent-workflow.md)           |
+| Frontend design or visual review                                           | Use `impeccable`; preserve the requested visual scope and existing product truth                    |
+| Dependency manifest/lock changed                                           | Keep `deps:check-pinned` and `deps:check-hardened` passing                                          |
 
 ## Code and product constraints
 
@@ -97,7 +97,7 @@ Record recurring repository surprises with concrete mitigation in [known-surpris
 - Shared skills live in `.agents/skills/`; `.agents/roles/` is the repository's generator source, not a native discovery path. Commit generated `.claude/skills/`, `.codex/agents/`, `.claude/agents/`, and `.cursor/agents/` alongside sources. See [skills-and-tools.md](docs/agent-playbooks/skills-and-tools.md).
 - Keep harness-specific hooks, permissions, and metadata explicit. Leave model and reasoning fields out of committed skills/custom agents so runtime invocation, user defaults, and inheritance control selection. Do not invent a `latest` model alias.
 - Use built-in worker/explorer roles for ordinary implementation/research; custom roles cover browser checks, profiling, translation, review, and applicable Android checks. Avoid compulsory specialist chains.
-- Delegate substantial independent work when it improves speed or context isolation. Give scope, acceptance criteria, context, ownership, and expected evidence. At most four workers by default; no overlapping writes or concurrent browser work.
+- Delegate substantial independent work when it improves speed or context isolation. Give scope, acceptance criteria, context, ownership, and expected evidence; check that evidence before accepting a child's result. At most four workers by default; no overlapping writes or concurrent browser work.
 - Use relevant React guidance for the changed state/effect/data flow; load `you-might-not-need-an-effect` for a focused uncertain effect/memo review. Do not apply Next.js/server rules indiscriminately to Vite clients.
 - Prefer installed tools and CLIs. Look up current external APIs when needed; do not install skills merely because a normal task mentions their domain. Keep tool catalogs relevant; unused integrations add choices even when schemas are deferred.
 

@@ -1,6 +1,6 @@
 # Long-running agent work
 
-Use durable task state when work needs resumption or a handoff. Small tasks do not need a board or progress file. For shared work, keep a concise `feature-list.json` and `progress.md` in a task-specific `docs/agent-runs/<slug>/`, using existing templates where helpful.
+Use durable task state when work needs resumption or a handoff, or when a single run is long enough that context compaction could lose track of the remaining work. Small tasks do not need a board or progress file. For shared work, keep a concise `feature-list.json` and `progress.md` in a task-specific `docs/agent-runs/<slug>/`, using existing templates where helpful.
 
 Record the requested outcome, current branch/worktree, file ownership, completed changes, checks with results, owned processes/sessions, and the next unresolved step. Do not store credentials or arbitrary source dumps. Mark a feature complete only when its acceptance criteria are verified.
 
