@@ -11,28 +11,26 @@ const fiveChanDirectoriesBaseUrl =
 const fiveChanDirectoriesIndexUrl =
   "https://api.github.com/repos/bitsocialnet/lists/contents/5chan-directories?ref=master";
 const fiveChanDirectoryDefaultsSourceUrl = `${fiveChanDirectoriesBaseUrl}/5chan-directories-defaults.json`;
-const directoriesSnapshotPath = path.join(
-  repoRoot,
-  "stats",
-  "monitor",
-  "data",
-  "5chan-directories.snapshot.json",
-);
+const seeditDefaultSubscriptionsUrl =
+  "https://raw.githubusercontent.com/bitsocialnet/lists/master/seedit-default-subscriptions.json";
+const monitorDataDir = path.join(repoRoot, "stats", "monitor", "data");
+const directoriesSnapshotPath = path.join(monitorDataDir, "5chan-directories.snapshot.json");
+const seeditSnapshotPath = path.join(monitorDataDir, "seedit-communities.snapshot.json");
 const dashboardsOutputDir = path.join(grafanaRoot, "dashboards");
 
-const FIVE_CHAN_CLIENT_ID = "5chan";
 const PROMETHEUS_DATASOURCE = { type: "prometheus", uid: "prometheus" };
 const FIVE_CHAN_DIRECTORY_FILE_NAME_PATTERN = /^5chan-(.+)-directory\.json$/;
 const FETCH_TIMEOUT_MS = 30_000;
 const GRID_WIDTH = 24;
-// A board counts as offline once its latest community update is older than this.
-const BOARD_OFFLINE_AFTER_SECONDS = 2 * 60 * 60;
+// A community counts as offline once its latest update is older than this.
+const COMMUNITY_OFFLINE_AFTER_SECONDS = 2 * 60 * 60;
 // Shared-dashboard paths; the access tokens must match ensure-shared-dashboards.mjs.
 const sharedDashboardPaths = {
   overview: "/public-dashboards/e9277bcc0c421ddcacd29f591466678c",
   fiveChan: "/public-dashboards/fa6f2225e0ea98e116fb6f85d84e0186",
+  seedit: "/public-dashboards/c770d7565c18df52dd26461c9191e05d",
 };
-const dedupeIgnoredLabels = ["client_id", "instance", "job", "service", "subplebbit_address"];
+const dedupeIgnoredLabels = ["instance", "job", "service", "subplebbit_address"];
 const palette = {
   blue: "#3b82f6",
   deepBlue: "#1d4ed8",
@@ -42,6 +40,7 @@ const palette = {
 };
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
+const capitalize = (text) => text[0].toUpperCase() + text.slice(1);
 
 const fetchJson = async (url) => {
   const controller = new AbortController();
@@ -212,90 +211,132 @@ const loadFiveChanDirectories = async () => {
   return buildResolvedDirectoryList({ directoryDefaults, directoryRecords });
 };
 
+const loadSeeditCommunities = async () => {
+  const defaultSubscriptions = await fetchJson(seeditDefaultSubscriptionsUrl);
+  if (!Array.isArray(defaultSubscriptions?.communities)) {
+    throw new Error(`${seeditDefaultSubscriptionsUrl} is missing a communities array`);
+  }
+
+  return {
+    title: "Seedit Default Communities",
+    description:
+      "Resolved from Seedit's default subscriptions in bitsocialnet/lists.\n\nhttps://github.com/bitsocialnet/lists/blob/master/seedit-default-subscriptions.json",
+    createdAt: defaultSubscriptions.createdAt,
+    updatedAt: defaultSubscriptions.updatedAt,
+    // The monitor reads every client source in the 5chan directory-list shape.
+    directories: defaultSubscriptions.communities.map(
+      ({ address, directoryCode, publicKey, title }) => ({
+        directoryCode,
+        title,
+        name: address,
+        publicKey,
+      }),
+    ),
+  };
+};
+
+// Clients
+
+const clients = [
+  {
+    id: "5chan",
+    label: "5chan",
+    color: palette.blue,
+    uid: "bitsocial-5chan",
+    title: "5chan Stats",
+    navKey: "fiveChan",
+    navLabel: "5chan boards",
+    source: "the official 5chan directories",
+    community: "board",
+    communities: "boards",
+    postLabel: "Threads",
+    replyLabel: "Replies",
+    communityUrl: "https://5chan.app/#/${__value.raw}",
+  },
+  {
+    id: "seedit",
+    label: "Seedit",
+    color: palette.violet,
+    uid: "bitsocial-seedit",
+    title: "Seedit Stats",
+    navKey: "seedit",
+    navLabel: "Seedit communities",
+    source: "Seedit's default subscriptions",
+    community: "community",
+    communities: "communities",
+    postLabel: "Posts",
+    replyLabel: "Comments",
+    communityUrl: "https://seedit.app/#/s/${__value.raw}",
+  },
+];
+
 // Queries
+
+// Escapes a value for a PromQL regex matcher inside a double-quoted string.
+const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\\\$&");
 
 const metric = (name, matchers = {}) => {
   const selector = Object.entries(matchers)
-    .map(([label, value]) => `${label}="${value}"`)
+    .map(([label, value]) =>
+      Array.isArray(value)
+        ? `${label}=~"${value.map(escapeRegex).join("|")}"`
+        : `${label}="${value}"`,
+    )
     .join(",");
   return `max without(${dedupeIgnoredLabels.join(", ")}) (bitsocial_stats_${name}${selector ? `{${selector}}` : ""})`;
 };
 
-const boardMetric = (name) => metric(name, { client_id: FIVE_CHAN_CLIENT_ID });
-const sumOrZero = (expr) => `(sum(${expr}) or vector(0))`;
 const whenSuccessful = (durationExpr, successExpr) => `${durationExpr} and (${successExpr} == 1)`;
 
-const boardUpdateAge = boardMetric("last_community_update_fetch_seconds_since_updated_at");
-const boardFetchSuccess = boardMetric("last_community_update_fetch_success");
-// 1 when the latest fetch succeeded and the update is fresh, 0 otherwise (including boards never fetched).
-const boardOnline = `((${boardUpdateAge} < bool ${BOARD_OFFLINE_AFTER_SECONDS}) * ${boardFetchSuccess}) or (${boardFetchSuccess} * 0)`;
-const boardStat = (window, name) => boardMetric(`community_stats_${window}_${name}_count`);
-// The monitor keeps a board's last values after a failed fetch; drop them where staleness misleads.
-const whenBoardFetched = (expr) => `${expr} and (${boardFetchSuccess} == 1)`;
+// Community queries for one client id, or for several when given an array.
+const communityQueries = (clientIds) => {
+  const communityMetric = (name) => metric(name, { client_id: clientIds });
+  const updateAge = communityMetric("last_community_update_fetch_seconds_since_updated_at");
+  const fetchSuccess = communityMetric("last_community_update_fetch_success");
+  // The monitor keeps a community's last values after a failed fetch; drop them where staleness misleads.
+  const whenFetched = (expr) => `${expr} and (${fetchSuccess} == 1)`;
+  const stat = (window, name) => communityMetric(`community_stats_${window}_${name}_count`);
+  const posts = (window, { freshOnly = false } = {}) =>
+    ["post", "reply"]
+      .map((name) => `sum(${freshOnly ? whenFetched(stat(window, name)) : stat(window, name)})`)
+      .join(" + ");
 
-const routerBoardProviders = metric(
-  "http_router_last_community_ipns_get_providers_fetch_provider_count",
-);
-const routerBoardLookupSuccess = metric(
-  "http_router_last_community_ipns_get_providers_fetch_success",
-);
+  return {
+    communityMetric,
+    stat,
+    whenFetched,
+    updateAge,
+    // 1 when the latest fetch succeeded and the update is fresh, 0 otherwise (including communities never fetched).
+    online: `((${updateAge} < bool ${COMMUNITY_OFFLINE_AFTER_SECONDS}) * ${fetchSuccess}) or (${fetchSuccess} * 0)`,
+    // Same definitions as the 5chan homepage: threads plus replies, and weekly active addresses.
+    totalPosts: posts("all"),
+    postsLastDay: posts("day", { freshOnly: true }),
+    currentUsers: `sum(${stat("week", "active_user")})`,
+  };
+};
 
 const serviceUp = metric("service_probe_last_success");
 const webpageUp = metric("webpage_last_webpage_fetch_success");
 
 const { monitoring } = monitorConfig;
-const byLabel = (label, values = []) => values.map((value) => ({ [label]: value }));
-// Reports 0 for configured providers whose check never recorded a result, so a hung or
-// throwing check still shows up as down instead of disappearing.
-const withConfiguredFallback = (expr, labelSets) =>
-  [
-    expr,
-    ...labelSets.map((labels) =>
-      Object.entries(labels).reduce(
-        (fallback, [label, value]) => `label_replace(${fallback}, "${label}", "${value}", "", "")`,
-        "vector(0)",
-      ),
-    ),
-  ].join(" or ");
-const providerHealth = [
-  {
-    legend: "Gateway · {{ipfs_gateway_url}}",
-    expr: metric("ipfs_gateway_last_comment_fetch_success"),
-    labelSets: byLabel("ipfs_gateway_url", monitoring.ipfsGatewayUrls),
-  },
-  {
-    legend: "Pubsub · {{pubsub_provider_url}}",
-    expr: 'min by (pubsub_provider_url) ({__name__=~"bitsocial_stats_pubsub_provider_last_(publish|subscribe)_success"})',
-    labelSets: byLabel("pubsub_provider_url", monitoring.pubsubProviderUrls),
-  },
-  {
-    legend: "Router · {{http_router_url}}",
-    expr: metric("http_router_last_get_providers_fetch_success"),
-    labelSets: byLabel("http_router_url", monitoring.httpRouterUrls),
-  },
-  {
-    legend: "Chain · {{chain_provider_url}} ({{chain_ticker}})",
-    expr: metric("chain_provider_last_resolve_address_success"),
-    labelSets: Object.entries(monitoring.chainProviders || {}).flatMap(([chainTicker, { urls }]) =>
-      (urls || []).map((url) => ({ chain_provider_url: url, chain_ticker: chainTicker })),
-    ),
-  },
-  {
-    legend: "Seeder · {{seeder_peer_id}}",
-    expr: metric("seeder_last_community_update_cid_fetch_success"),
-    labelSets: byLabel("seeder_peer_id", monitoring.seederPeerIds),
-  },
-  {
-    legend: "Previewer · {{previewer_url}}",
-    expr: metric("previewer_last_comment_preview_fetch_success"),
-    labelSets: byLabel("previewer_url", monitoring.previewerUrls),
-  },
-].map(({ expr, labelSets, legend }) => ({
-  count: labelSets.length,
-  expr: withConfiguredFallback(expr, labelSets),
-  legend,
-}));
-const providerTotal = providerHealth.reduce((total, { count }) => total + count, 0);
+const httpRouterUrls = monitoring.httpRouterUrls || [];
+const nameResolverUrls = monitoring.chainProviders?.eth?.urls || [];
+const gatewayUrls = monitoring.ipfsGatewayUrls || [];
+const pubsubProviderUrls = monitoring.pubsubProviderUrls || [];
+// Routers are judged by the provider lookups clients make for each community. The monitor's
+// separate write-then-read probe publishes an unsigned record that current routers reject.
+const routerLookupSuccess = metric("http_router_last_community_ipns_get_providers_fetch_success", {
+  http_router_url: httpRouterUrls,
+});
+const httpRouterUp = `max by (http_router_url) (${routerLookupSuccess})`;
+const nameResolverUp = metric("chain_provider_last_resolve_address_success", {
+  chain_provider_url: nameResolverUrls,
+  chain_ticker: "eth",
+});
+const gatewayUp = metric("ipfs_gateway_last_comment_fetch_success", {
+  ipfs_gateway_url: gatewayUrls,
+});
+const pubsubProviderUp = `min by (pubsub_provider_url) ({__name__=~"bitsocial_stats_pubsub_provider_last_(publish|subscribe)_success",pubsub_provider_url=~"${pubsubProviderUrls.map(escapeRegex).join("|")}"})`;
 const serviceTotal = (monitoring.serviceProbes?.length || 0) + (monitoring.webpages?.length || 0);
 
 // Panels
@@ -349,6 +390,11 @@ const colorOverride = (refId, color) => ({
   properties: [{ id: "color", value: { fixedColor: color, mode: "fixed" } }],
 });
 
+const byNameOverride = (name, properties) => ({
+  matcher: { id: "byName", options: name },
+  properties,
+});
+
 const makeRowPanel = ({ title, collapsed }) => ({
   collapsed,
   panels: [],
@@ -367,14 +413,8 @@ const makeTextPanel = ({ content }) => ({
   type: "text",
 });
 
-const makeStatPanel = ({
-  title,
-  description,
-  expr,
-  unit = "locale",
-  total,
-  sparkline = false,
-}) => ({
+// Instant queries, so a monitor outage reads "No data" instead of the last value before it.
+const makeStatPanel = ({ title, description, expr, total }) => ({
   datasource: clone(PROMETHEUS_DATASOURCE),
   description,
   fieldConfig: {
@@ -385,13 +425,13 @@ const makeStatPanel = ({
       thresholds: total
         ? countThresholds(total)
         : { mode: "absolute", steps: [{ color: palette.blue, value: null }] },
-      unit: total ? `suffix: / ${total}` : unit,
+      unit: total ? `suffix: / ${total}` : "locale",
     },
     overrides: [],
   },
   options: {
     colorMode: total ? "value" : "none",
-    graphMode: sparkline ? "area" : "none",
+    graphMode: "none",
     justifyMode: "auto",
     orientation: "auto",
     reduceOptions: { calcs: ["lastNotNull"], fields: "", values: false },
@@ -399,7 +439,7 @@ const makeStatPanel = ({
     textMode: "value",
     wideLayout: true,
   },
-  targets: [makeTarget({ expr })],
+  targets: [makeTarget({ expr, instant: true })],
   title,
   type: "stat",
 });
@@ -496,10 +536,13 @@ const makeStateTimelinePanel = ({
   type: "state-timeline",
 });
 
+// Grid height that fits a state timeline with this many rows.
+const timelineHeight = (rowCount) => Math.max(6, Math.ceil(rowCount * 0.75) + 2);
+
 const makePeersMapPanel = () => ({
   datasource: clone(PROMETHEUS_DATASOURCE),
   description:
-    "Approximate city-level locations of peers that provide board IPNS records through HTTP routers, derived from their public IP addresses. Larger dots mean more peers in that city.",
+    "Approximate city-level locations of peers that provide community IPNS records through HTTP routers, derived from their public IP addresses. Larger dots mean more peers in that city.",
   fieldConfig: {
     defaults: {
       color: { fixedColor: palette.blue, mode: "fixed" },
@@ -507,10 +550,11 @@ const makePeersMapPanel = () => ({
       decimals: 0,
       unit: "short",
     },
-    overrides: ["Latitude", "Longitude"].map((name) => ({
-      matcher: { id: "byName", options: name },
-      properties: [{ id: "custom.hideFrom", value: { legend: false, tooltip: true, viz: false } }],
-    })),
+    overrides: ["Latitude", "Longitude"].map((name) =>
+      byNameOverride(name, [
+        { id: "custom.hideFrom", value: { legend: false, tooltip: true, viz: false } },
+      ]),
+    ),
   },
   options: {
     // Grafana's default CARTO basemap now requires an API key, so draw countries from the
@@ -591,49 +635,45 @@ const makePeersMapPanel = () => ({
   type: "geomap",
 });
 
-// Listed in display order, between the board name and its address.
-const boardTableColumns = [
-  { name: "Status", expr: boardOnline, width: 90 },
-  { name: "Last update", expr: whenBoardFetched(boardUpdateAge), unit: "s", width: 110 },
-  { name: "Threads", expr: boardStat("all", "post"), width: 90 },
-  { name: "Replies", expr: boardStat("all", "reply"), width: 90 },
-  { name: "Unique addresses", expr: boardStat("all", "active_user"), width: 140 },
-  { name: "Monthly active", expr: boardStat("month", "active_user"), width: 130 },
-  {
-    name: "Pubsub peers",
-    expr: boardMetric("last_community_pubsub_pubsub_peer_count"),
-    width: 120,
-  },
-  {
-    name: "Last pubsub message",
-    expr: boardMetric("community_pubsub_seconds_since_last_community_pubsub_message"),
-    unit: "s",
-    width: 170,
-  },
-];
-
-const byNameOverride = (name, properties) => ({
-  matcher: { id: "byName", options: name },
-  properties,
-});
-
-const makeBoardsTablePanel = (boards) => {
-  const [firstColumn, ...otherColumns] = boardTableColumns;
-  const queries = [
-    // Copy the address into a "board" label so the table can show both the title and the address.
-    { expr: `label_replace(${firstColumn.expr}, "board", "$1", "community_address", "(.*)")` },
-    ...otherColumns.map(({ expr }) => ({ expr })),
+const makeCommunitiesTablePanel = (client) => {
+  const queries = communityQueries(client.id);
+  // Listed in display order, between the community name and its address.
+  const columns = [
+    { name: "Status", expr: queries.online, width: 90 },
+    {
+      name: "Last update",
+      expr: queries.whenFetched(queries.updateAge),
+      unit: "s",
+      width: 110,
+    },
+    { name: client.postLabel, expr: queries.stat("all", "post"), width: 100 },
+    { name: client.replyLabel, expr: queries.stat("all", "reply"), width: 100 },
+    { name: "Current users", expr: queries.stat("week", "active_user"), width: 120 },
+    { name: "Unique addresses", expr: queries.stat("all", "active_user"), width: 140 },
+    {
+      name: "Pubsub peers",
+      expr: queries.communityMetric("last_community_pubsub_pubsub_peer_count"),
+      width: 120,
+    },
+    {
+      name: "Last pubsub message",
+      expr: queries.communityMetric("community_pubsub_seconds_since_last_community_pubsub_message"),
+      unit: "s",
+      width: 170,
+    },
   ];
-  const renameByName = { board: "Board", community_address: "Address" };
-  const indexByName = { board: 0, community_address: boardTableColumns.length + 1 };
-  for (const [index, column] of boardTableColumns.entries()) {
+  const [firstColumn, ...otherColumns] = columns;
+  const nameColumn = capitalize(client.community);
+  const renameByName = { community_name: nameColumn, community_address: "Address" };
+  const indexByName = { community_name: 0, community_address: columns.length + 1 };
+  for (const [index, column] of columns.entries()) {
     renameByName[`Value #${refIdAt(index)}`] = column.name;
     indexByName[`Value #${refIdAt(index)}`] = index + 1;
   }
 
   return {
     datasource: clone(PROMETHEUS_DATASOURCE),
-    description: `Every board in the official 5chan directories. A board is offline when the monitor cannot fetch it or its latest update is more than ${BOARD_OFFLINE_AFTER_SECONDS / 3600} hours old. Click a column header to sort; click a board to open it on 5chan.`,
+    description: `Every ${client.community} in ${client.source}. A ${client.community} is offline when the monitor cannot fetch it or its latest update is more than ${COMMUNITY_OFFLINE_AFTER_SECONDS / 3600} hours old. Current users are addresses that posted in the last 7 days. Click a column header to sort; click a ${client.community} to open it on ${client.label}.`,
     fieldConfig: {
       defaults: {
         custom: { align: "auto", cellOptions: { type: "auto" }, filterable: false, inspect: false },
@@ -642,14 +682,17 @@ const makeBoardsTablePanel = (boards) => {
         unit: "short",
       },
       overrides: [
-        byNameOverride("Board", [
+        byNameOverride(nameColumn, [
           {
             id: "mappings",
             value: [
               {
                 type: "value",
                 options: Object.fromEntries(
-                  boards.map(({ address, title }, index) => [address, { index, text: title }]),
+                  client.communityList.map(({ address, title }, index) => [
+                    address,
+                    { index, text: title || address },
+                  ]),
                 ),
               },
             ],
@@ -657,11 +700,7 @@ const makeBoardsTablePanel = (boards) => {
           {
             id: "links",
             value: [
-              {
-                targetBlank: true,
-                title: "Open on 5chan",
-                url: "https://5chan.app/#/${__value.raw}",
-              },
+              { targetBlank: true, title: `Open on ${client.label}`, url: client.communityUrl },
             ],
           },
           { id: "custom.width", value: 230 },
@@ -670,28 +709,40 @@ const makeBoardsTablePanel = (boards) => {
           { id: "mappings", value: statusMappings("Online", "Offline") },
           { id: "custom.cellOptions", value: { type: "color-text" } },
         ]),
-        ...boardTableColumns
-          .filter(({ unit, width }) => unit || width)
-          .map(({ name, unit, width }) =>
-            byNameOverride(name, [
-              ...(unit ? [{ id: "unit", value: unit }] : []),
-              ...(width ? [{ id: "custom.width", value: width }] : []),
-            ]),
-          ),
+        ...columns.map(({ name, unit, width }) =>
+          byNameOverride(name, [
+            ...(unit ? [{ id: "unit", value: unit }] : []),
+            { id: "custom.width", value: width },
+          ]),
+        ),
       ],
     },
     options: {
       cellHeight: "sm",
       showHeader: true,
-      sortBy: [{ desc: true, displayName: "Threads" }],
+      sortBy: [{ desc: true, displayName: client.postLabel }],
     },
-    targets: makeTargets(queries, { instant: true, table: true }),
-    title: "Boards",
+    targets: makeTargets(
+      [
+        // Copy the address into another label so the table can show both the title and the address.
+        {
+          expr: `label_replace(${firstColumn.expr}, "community_name", "$1", "community_address", "(.*)")`,
+        },
+        ...otherColumns.map(({ expr }) => ({ expr })),
+      ],
+      { instant: true, table: true },
+    ),
+    title: capitalize(client.communities),
     transformations: [
       { id: "merge", options: {} },
       {
         id: "organize",
-        options: { excludeByName: { Time: true }, includeByName: {}, indexByName, renameByName },
+        options: {
+          excludeByName: { Time: true, client_id: true },
+          includeByName: {},
+          indexByName,
+          renameByName,
+        },
       },
     ],
     type: "table",
@@ -745,66 +796,33 @@ const createLayout = () => {
 
 const makeNavigationPanel = ({ current, intro }) => {
   const links = [
-    { key: "overview", label: "Network overview", path: sharedDashboardPaths.overview },
-    { key: "fiveChan", label: "5chan boards", path: sharedDashboardPaths.fiveChan },
+    { key: "overview", label: "Network overview" },
+    ...clients.map(({ navKey, navLabel }) => ({ key: navKey, label: navLabel })),
   ]
-    .map(({ key, label, path: linkPath }) =>
-      key === current ? `**${label}**` : `[${label}](${linkPath})`,
+    .map(({ key, label }) =>
+      key === current ? `**${label}**` : `[${label}](${sharedDashboardPaths[key]})`,
     )
     .join(" &nbsp;·&nbsp; ");
   return makeTextPanel({ content: `${links}\n\n${intro}` });
 };
 
+const addStatRow = (layout, panels) => {
+  const width = GRID_WIDTH / panels.length;
+  for (const panel of panels) {
+    layout.add(panel, { w: width, h: 4 });
+  }
+};
+
 // Dashboards
 
-const fiveChanActivityPanels = () => [
-  makeTimeseriesPanel({
-    title: "Posts per hour",
-    description:
-      "New threads and replies across all 5chan boards within each rolling hour, as reported by each board's own stats.",
-    queries: [
-      { expr: `sum(${whenBoardFetched(boardStat("hour", "post"))})`, legend: "Threads" },
-      { expr: `sum(${whenBoardFetched(boardStat("hour", "reply"))})`, legend: "Replies" },
-    ],
-    stacked: true,
-    colors: [palette.blue, palette.lightBlue],
-  }),
-  makeTimeseriesPanel({
-    title: "Active addresses",
-    description:
-      "Addresses that posted within the last 24 hours, 7 days and 30 days, summed per board: an address active on several boards is counted once per board.",
-    queries: [
-      { expr: `sum(${whenBoardFetched(boardStat("day", "active_user"))})`, legend: "24 hours" },
-      { expr: `sum(${boardStat("week", "active_user")})`, legend: "7 days" },
-      { expr: `sum(${boardStat("month", "active_user")})`, legend: "30 days" },
-    ],
-    fillOpacity: 0,
-    colors: [palette.lightBlue, palette.blue, palette.deepBlue],
-  }),
-  makeTimeseriesPanel({
-    title: "All-time totals",
-    description:
-      "Cumulative threads and replies across all 5chan boards, plus unique posting addresses summed per board.",
-    queries: [
-      { expr: `sum(${boardStat("all", "post")})`, legend: "Threads" },
-      { expr: `sum(${boardStat("all", "reply")})`, legend: "Replies" },
-      { expr: `sum(${boardStat("all", "active_user")})`, legend: "Unique addresses" },
-    ],
-    fillOpacity: 0,
-    colors: [palette.blue, palette.lightBlue, palette.violet],
-  }),
-];
-
-const boardsOnlineStat = (boards) =>
-  makeStatPanel({
-    title: "Boards online",
-    description: `Boards from the official 5chan directories whose latest fetch succeeded and whose latest update is less than ${BOARD_OFFLINE_AFTER_SECONDS / 3600} hours old.`,
-    expr: sumOrZero(boardOnline),
-    total: boards.length,
-  });
-
-const buildOverviewDashboard = ({ boards }) => {
+const buildOverviewDashboard = () => {
   const layout = createLayout();
+  const allClients = communityQueries(clients.map(({ id }) => id));
+  const communityTotal = clients.reduce((total, client) => total + client.communityList.length, 0);
+  const perClient = (build) =>
+    clients.map((client) => ({ expr: build(communityQueries(client.id)), legend: client.label }));
+  const clientColors = clients.map(({ color }) => color);
+  const clientNames = clients.map(({ label }) => label).join(" and ");
 
   layout.add(
     makeNavigationPanel({
@@ -815,34 +833,62 @@ const buildOverviewDashboard = ({ boards }) => {
     { w: GRID_WIDTH, h: 3 },
   );
 
-  for (const panel of [
+  addStatRow(layout, [
     makeStatPanel({
       title: "Services up",
       description:
         "Bitsocial websites plus the newsletter, spam blocker and challenge servers that respond as expected right now.",
-      expr: `${sumOrZero(serviceUp)} + ${sumOrZero(webpageUp)}`,
+      expr: `sum(${serviceUp}) + sum(${webpageUp})`,
       total: serviceTotal,
     }),
     makeStatPanel({
-      title: "Providers up",
-      description:
-        "IPFS gateways, pubsub providers, HTTP routers, chain providers, seeders and previewers that passed their latest check. Providers without a check result count as down.",
-      expr: providerHealth.map(({ expr }) => sumOrZero(expr)).join(" + "),
-      total: providerTotal,
+      title: "Communities online",
+      description: `${clientNames} communities whose latest fetch succeeded and whose latest update is less than ${COMMUNITY_OFFLINE_AFTER_SECONDS / 3600} hours old.`,
+      expr: `sum(${allClients.online})`,
+      total: communityTotal,
     }),
-    boardsOnlineStat(boards),
     makeStatPanel({
-      title: "5chan posts",
-      description: "All-time threads and replies across the official 5chan boards.",
-      expr: `sum(${boardStat("all", "post")}) + sum(${boardStat("all", "reply")})`,
-      sparkline: true,
+      title: "Total posts",
+      description: `All-time posts and replies across the default ${clientNames} communities, counted like the 5chan homepage.`,
+      expr: allClients.totalPosts,
+    }),
+    makeStatPanel({
+      title: "Current users",
+      description: `Addresses that posted in the last 7 days across the default ${clientNames} communities, counted like the 5chan homepage: summed per community, so an address active in several communities counts once for each.`,
+      expr: allClients.currentUsers,
+    }),
+  ]);
+
+  // Stacked per client, so the top edge of each chart matches the network-wide number.
+  layout.row("Activity");
+  for (const panel of [
+    makeTimeseriesPanel({
+      title: "Posts (24h)",
+      description:
+        "Posts and replies from the last 24 hours in communities the monitor can currently fetch, stacked per client.",
+      queries: perClient(({ postsLastDay }) => postsLastDay),
+      stacked: true,
+      fillOpacity: 35,
+      colors: clientColors,
+    }),
+    makeTimeseriesPanel({
+      title: "Current users",
+      description:
+        "Addresses that posted in the last 7 days, summed per community like the 5chan homepage, stacked per client.",
+      queries: perClient(({ currentUsers }) => currentUsers),
+      stacked: true,
+      fillOpacity: 35,
+      colors: clientColors,
+    }),
+    makeTimeseriesPanel({
+      title: "Total posts",
+      description: "All-time posts and replies, stacked per client.",
+      queries: perClient(({ totalPosts }) => totalPosts),
+      stacked: true,
+      fillOpacity: 35,
+      colors: clientColors,
     }),
   ]) {
-    layout.add(panel, { w: 6, h: 4 });
-  }
-
-  layout.row("5chan activity");
-  for (const panel of fiveChanActivityPanels()) {
     layout.add(panel, { w: 8, h: 8 });
   }
 
@@ -852,7 +898,7 @@ const buildOverviewDashboard = ({ boards }) => {
     makeTimeseriesPanel({
       title: "Peers over time",
       description:
-        "Unique peers across all 5chan boards: peers connected to board pubsub topics, and peers that HTTP routers list as providers of board pubsub topics and IPNS records.",
+        "Unique peers across all monitored communities: peers connected to community pubsub topics, and peers that HTTP routers list as providers of community pubsub topics and IPNS records.",
       queries: [
         { expr: `sum(${metric("network_pubsub_peer_count")})`, legend: "Pubsub peers" },
         {
@@ -870,10 +916,12 @@ const buildOverviewDashboard = ({ boards }) => {
     { w: 10, h: 13 },
   );
 
-  layout.row("Bitsocial services");
+  const infrastructureRows = httpRouterUrls.length + nameResolverUrls.length;
+  const statusHeight = timelineHeight(Math.max(serviceTotal, infrastructureRows));
+  layout.row("Services and infrastructure");
   layout.add(
     makeStateTimelinePanel({
-      title: "Service uptime",
+      title: "Bitsocial services",
       description:
         "Green while a website or service answers with the expected status and content; red while its check fails.",
       queries: [
@@ -882,13 +930,32 @@ const buildOverviewDashboard = ({ boards }) => {
       ],
       transformations: [shortenUrlsTransformation],
     }),
-    { w: GRID_WIDTH, h: Math.ceil(serviceTotal * 0.75) + 2 },
+    { w: GRID_WIDTH / 2, h: statusHeight },
+  );
+  layout.add(
+    makeStateTimelinePanel({
+      title: "Client infrastructure",
+      description:
+        "What 5chan and Seedit use by default in pure P2P mode: HTTP routers to find peers, and Ethereum RPCs to resolve community names. A router is green while it answers provider lookups for monitored communities; an RPC is green while it resolves a test name.",
+      queries: [
+        {
+          expr: httpRouterUp,
+          legend: "Router · {{http_router_url}}",
+        },
+        {
+          expr: nameResolverUp,
+          legend: "Name resolution · {{chain_provider_url}}",
+        },
+      ],
+      transformations: [shortenUrlsTransformation],
+    }),
+    { w: GRID_WIDTH / 2, h: statusHeight },
   );
 
-  layout.row("Service response times", { collapsed: true });
+  layout.row("Response times", { collapsed: true });
   layout.add(
     makeTimeseriesPanel({
-      title: "Response time",
+      title: "Bitsocial services",
       description: "How long each successful website and service check took.",
       queries: [
         {
@@ -905,104 +972,21 @@ const buildOverviewDashboard = ({ boards }) => {
       legendPlacement: "right",
       transformations: [shortenUrlsTransformation],
     }),
-    { w: GRID_WIDTH, h: 10 },
-  );
-
-  layout.row("Network providers");
-  layout.add(
-    makeStateTimelinePanel({
-      title: "Provider uptime",
-      description:
-        "Public infrastructure that Bitsocial clients rely on. Green while the provider passed its latest check: gateways and previewers serve content, pubsub providers publish and subscribe, HTTP routers answer provider lookups, chain providers resolve addresses, and seeders serve board updates.",
-      queries: providerHealth.map(({ expr, legend }) => ({ expr, legend })),
-      transformations: [
-        shortenUrlsTransformation,
-        {
-          id: "renameByRegex",
-          options: { regex: "^(Seeder · \\w{8})\\w+(\\w{4})$", renamePattern: "$1…$2" },
-        },
-      ],
-    }),
-    { w: GRID_WIDTH, h: Math.max(8, Math.ceil(providerTotal * 0.75) + 2) },
-  );
-
-  layout.row("IPFS gateways", { collapsed: true });
-  layout.add(
-    makeTimeseriesPanel({
-      title: "Comment fetch time",
-      description: "Time to fetch a comment through each gateway. Gaps mean the fetch failed.",
-      queries: [
-        {
-          expr: whenSuccessful(
-            metric("ipfs_gateway_last_comment_fetch_duration_seconds"),
-            metric("ipfs_gateway_last_comment_fetch_success"),
-          ),
-          legend: "{{ipfs_gateway_url}}",
-        },
-      ],
-      unit: "s",
-      fillOpacity: 0,
-      transformations: [shortenUrlsTransformation],
-    }),
-    { w: 12, h: 8 },
+    { w: GRID_WIDTH, h: 9 },
   );
   layout.add(
     makeTimeseriesPanel({
-      title: "Boards served",
+      title: "HTTP router lookup time",
       description:
-        "Share of 5chan boards whose IPNS record each gateway resolved on its latest check.",
+        "Average time for each HTTP router to answer the latest successful provider lookup for each community. Gaps mean every lookup failed.",
       queries: [
         {
-          expr: `avg by (ipfs_gateway_url) (${metric("ipfs_gateway_last_community_ipns_fetch_success")})`,
-          legend: "{{ipfs_gateway_url}}",
-        },
-      ],
-      unit: "percentunit",
-      max: 1,
-      fillOpacity: 0,
-      transformations: [shortenUrlsTransformation],
-    }),
-    { w: 12, h: 8 },
-  );
-
-  layout.row("Pubsub providers", { collapsed: true });
-  for (const [action, label] of [
-    ["publish", "Publish time"],
-    ["subscribe", "Subscribe time"],
-  ]) {
-    layout.add(
-      makeTimeseriesPanel({
-        title: label,
-        description: `Time for each pubsub provider to ${action} a test message. Gaps mean the check failed.`,
-        queries: [
-          {
-            expr: whenSuccessful(
-              metric(`pubsub_provider_last_${action}_duration_seconds`),
-              metric(`pubsub_provider_last_${action}_success`),
-            ),
-            legend: "{{pubsub_provider_url}}",
-          },
-        ],
-        unit: "s",
-        fillOpacity: 0,
-        transformations: [shortenUrlsTransformation],
-      }),
-      { w: 12, h: 8 },
-    );
-  }
-
-  layout.row("HTTP routers", { collapsed: true });
-  layout.add(
-    makeTimeseriesPanel({
-      title: "Provider lookup time",
-      description:
-        "Time for each HTTP router to answer a providers lookup. Gaps mean the lookup failed.",
-      queries: [
-        {
-          expr: whenSuccessful(
-            metric("http_router_last_get_providers_fetch_duration_seconds"),
-            metric("http_router_last_get_providers_fetch_success"),
-          ),
+          expr: `avg by (http_router_url) (${whenSuccessful(
+            metric("http_router_last_community_ipns_get_providers_fetch_duration_seconds", {
+              http_router_url: httpRouterUrls,
+            }),
+            routerLookupSuccess,
+          )})`,
           legend: "{{http_router_url}}",
         },
       ],
@@ -1014,12 +998,19 @@ const buildOverviewDashboard = ({ boards }) => {
   );
   layout.add(
     makeTimeseriesPanel({
-      title: "Boards with providers",
+      title: "Communities found by each router",
       description:
-        "Share of 5chan boards for which each HTTP router returned at least one IPNS record provider.",
+        "Share of monitored communities for which each HTTP router returned at least one IPNS record provider on its latest lookup. Failed lookups count as not found.",
       queries: [
         {
-          expr: `(count by (http_router_url) ((${routerBoardProviders} > 0) and (${routerBoardLookupSuccess} == 1)) or count by (http_router_url) (${routerBoardLookupSuccess}) * 0) / count by (http_router_url) (${routerBoardLookupSuccess})`,
+          expr: (() => {
+            const providers = metric(
+              "http_router_last_community_ipns_get_providers_fetch_provider_count",
+              { http_router_url: httpRouterUrls },
+            );
+            const lookups = routerLookupSuccess;
+            return `(count by (http_router_url) ((${providers} > 0) and (${lookups} == 1)) or count by (http_router_url) (${lookups}) * 0) / count by (http_router_url) (${lookups})`;
+          })(),
           legend: "{{http_router_url}}",
         },
       ],
@@ -1030,20 +1021,21 @@ const buildOverviewDashboard = ({ boards }) => {
     }),
     { w: 12, h: 8 },
   );
-
-  layout.row("Chain providers", { collapsed: true });
   layout.add(
     makeTimeseriesPanel({
-      title: "Address resolve time",
+      title: "Name resolution time",
       description:
-        "Time for each chain provider to resolve a test address. Gaps mean the resolution failed.",
+        "Time for each Ethereum RPC to resolve a test name. Gaps mean the resolution failed.",
       queries: [
         {
           expr: whenSuccessful(
-            metric("chain_provider_last_resolve_address_duration_seconds"),
-            metric("chain_provider_last_resolve_address_success"),
+            metric("chain_provider_last_resolve_address_duration_seconds", {
+              chain_provider_url: nameResolverUrls,
+              chain_ticker: "eth",
+            }),
+            nameResolverUp,
           ),
-          legend: "{{chain_provider_url}} ({{chain_ticker}})",
+          legend: "{{chain_provider_url}}",
         },
       ],
       unit: "s",
@@ -1053,112 +1045,184 @@ const buildOverviewDashboard = ({ boards }) => {
     { w: GRID_WIDTH, h: 8 },
   );
 
-  layout.row("Seeders and previewers", { collapsed: true });
+  const fallbackRows = gatewayUrls.length + pubsubProviderUrls.length;
+  layout.row("Gateway mode fallback", { collapsed: true });
   layout.add(
-    makeTimeseriesPanel({
-      title: "Seeder update fetch time",
-      description: "Time to fetch a board update from each seeder. Gaps mean the fetch failed.",
+    makeStateTimelinePanel({
+      title: "Gateway mode providers",
+      description:
+        "IPFS gateways and pubsub providers that 5chan and Seedit only use when pure P2P mode is turned off. Green while the provider passed its latest check.",
       queries: [
         {
-          expr: whenSuccessful(
-            metric("seeder_last_community_update_cid_fetch_duration_seconds"),
-            metric("seeder_last_community_update_cid_fetch_success"),
-          ),
-          legend: "{{seeder_peer_id}}",
+          expr: gatewayUp,
+          legend: "Gateway · {{ipfs_gateway_url}}",
+        },
+        {
+          expr: pubsubProviderUp,
+          legend: "Pubsub · {{pubsub_provider_url}}",
         },
       ],
-      unit: "s",
-      fillOpacity: 0,
+      transformations: [shortenUrlsTransformation],
     }),
-    { w: 12, h: 8 },
+    { w: GRID_WIDTH, h: timelineHeight(fallbackRows) },
   );
-  layout.add(
+  for (const panel of [
     makeTimeseriesPanel({
-      title: "Previewer fetch time",
-      description:
-        "Time to render a comment preview through each previewer. Gaps mean the fetch failed.",
+      title: "Gateway comment fetch time",
+      description: "Time to fetch a comment through each gateway. Gaps mean the fetch failed.",
       queries: [
         {
           expr: whenSuccessful(
-            metric("previewer_last_comment_preview_fetch_duration_seconds"),
-            metric("previewer_last_comment_preview_fetch_success"),
+            metric("ipfs_gateway_last_comment_fetch_duration_seconds", {
+              ipfs_gateway_url: gatewayUrls,
+            }),
+            gatewayUp,
           ),
-          legend: "{{previewer_url}}",
+          legend: "{{ipfs_gateway_url}}",
         },
       ],
       unit: "s",
       fillOpacity: 0,
       transformations: [shortenUrlsTransformation],
     }),
-    { w: 12, h: 8 },
-  );
+    ...["publish", "subscribe"].map((action) =>
+      makeTimeseriesPanel({
+        title: `Pubsub ${action} time`,
+        description: `Time for each pubsub provider to ${action} a test message. Gaps mean the check failed.`,
+        queries: [
+          {
+            expr: whenSuccessful(
+              metric(`pubsub_provider_last_${action}_duration_seconds`, {
+                pubsub_provider_url: pubsubProviderUrls,
+              }),
+              metric(`pubsub_provider_last_${action}_success`, {
+                pubsub_provider_url: pubsubProviderUrls,
+              }),
+            ),
+            legend: "{{pubsub_provider_url}}",
+          },
+        ],
+        unit: "s",
+        fillOpacity: 0,
+        transformations: [shortenUrlsTransformation],
+      }),
+    ),
+  ]) {
+    layout.add(panel, { w: 8, h: 8 });
+  }
 
   return layout.panels();
 };
 
-const buildFiveChanDashboard = ({ boards }) => {
+const buildClientDashboard = (client) => {
   const layout = createLayout();
+  const queries = communityQueries(client.id);
+  const communityCount = client.communityList.length;
+  const Communities = capitalize(client.communities);
 
   layout.add(
     makeNavigationPanel({
-      current: "fiveChan",
-      intro: `Activity and availability of the ${boards.length} boards in the official 5chan directories.`,
+      current: client.navKey,
+      intro: `Activity and availability of the ${communityCount} ${client.communities} in ${client.source}.`,
     }),
     { w: GRID_WIDTH, h: 3 },
   );
 
-  for (const panel of [
-    boardsOnlineStat(boards),
+  addStatRow(layout, [
     makeStatPanel({
-      title: "Threads",
-      description: "All-time threads across the official 5chan boards.",
-      expr: `sum(${boardStat("all", "post")})`,
-      sparkline: true,
+      title: `${Communities} online`,
+      description: `${Communities} whose latest fetch succeeded and whose latest update is less than ${COMMUNITY_OFFLINE_AFTER_SECONDS / 3600} hours old.`,
+      expr: `sum(${queries.online})`,
+      total: communityCount,
     }),
     makeStatPanel({
-      title: "Replies",
-      description: "All-time replies across the official 5chan boards.",
-      expr: `sum(${boardStat("all", "reply")})`,
-      sparkline: true,
+      title: "Total posts",
+      description: `All-time ${client.postLabel.toLowerCase()} and ${client.replyLabel.toLowerCase()}, counted like the 5chan homepage.`,
+      expr: queries.totalPosts,
     }),
     makeStatPanel({
-      title: "Monthly active",
-      description: "Addresses that posted in the last 30 days, summed per board.",
-      expr: `sum(${boardStat("month", "active_user")})`,
-      sparkline: true,
+      title: "Posts (24h)",
+      description: `${client.postLabel} and ${client.replyLabel.toLowerCase()} from the last 24 hours in ${client.communities} the monitor can currently fetch.`,
+      expr: queries.postsLastDay,
     }),
-  ]) {
-    layout.add(panel, { w: 6, h: 4 });
-  }
+    makeStatPanel({
+      title: "Current users",
+      description: `Addresses that posted in the last 7 days, counted like the 5chan homepage: summed per ${client.community}, so an address active in several ${client.communities} counts once for each.`,
+      expr: queries.currentUsers,
+    }),
+  ]);
 
   layout.row("Activity");
-  for (const panel of fiveChanActivityPanels()) {
+  for (const panel of [
+    makeTimeseriesPanel({
+      title: "Posts (24h)",
+      description: `${client.postLabel} and ${client.replyLabel.toLowerCase()} from the last 24 hours, as reported by each ${client.community}'s own stats.`,
+      queries: [
+        {
+          expr: `sum(${queries.whenFetched(queries.stat("day", "post"))})`,
+          legend: client.postLabel,
+        },
+        {
+          expr: `sum(${queries.whenFetched(queries.stat("day", "reply"))})`,
+          legend: client.replyLabel,
+        },
+      ],
+      stacked: true,
+      fillOpacity: 35,
+      colors: [palette.blue, palette.lightBlue],
+    }),
+    makeTimeseriesPanel({
+      title: "Active users",
+      description: `Addresses that posted within the last 24 hours, 7 days (current users) and 30 days, summed per ${client.community}.`,
+      queries: [
+        {
+          expr: `sum(${queries.whenFetched(queries.stat("day", "active_user"))})`,
+          legend: "24 hours",
+        },
+        { expr: queries.currentUsers, legend: "7 days" },
+        { expr: `sum(${queries.stat("month", "active_user")})`, legend: "30 days" },
+      ],
+      fillOpacity: 0,
+      colors: [palette.lightBlue, palette.blue, palette.deepBlue],
+    }),
+    makeTimeseriesPanel({
+      title: "All-time totals",
+      description: `Cumulative ${client.postLabel.toLowerCase()} and ${client.replyLabel.toLowerCase()}, plus unique posting addresses summed per ${client.community}.`,
+      queries: [
+        { expr: `sum(${queries.stat("all", "post")})`, legend: client.postLabel },
+        { expr: `sum(${queries.stat("all", "reply")})`, legend: client.replyLabel },
+        { expr: `sum(${queries.stat("all", "active_user")})`, legend: "Unique addresses" },
+      ],
+      fillOpacity: 0,
+      colors: [palette.blue, palette.lightBlue, palette.violet],
+    }),
+  ]) {
     layout.add(panel, { w: 8, h: 8 });
   }
 
-  layout.row("Boards");
-  // Tall enough to list every board without a nested scrollbar.
-  layout.add(makeBoardsTablePanel(boards), {
+  layout.row(Communities);
+  // Tall enough to list every community without a nested scrollbar.
+  layout.add(makeCommunitiesTablePanel(client), {
     w: GRID_WIDTH,
-    h: Math.ceil((boards.length + 2) * 0.95) + 2,
+    h: Math.ceil((communityCount + 1) * 0.95) + 2,
   });
 
-  layout.row("Board availability history", { collapsed: true });
+  layout.row(`${capitalize(client.community)} availability history`, { collapsed: true });
   layout.add(
     makeStateTimelinePanel({
-      title: "Board availability",
-      description: `Green while a board is online: fetched successfully with an update less than ${BOARD_OFFLINE_AFTER_SECONDS / 3600} hours old.`,
-      queries: [{ expr: boardOnline, legend: "{{community_address}}" }],
+      title: `${capitalize(client.community)} availability`,
+      description: `Green while a ${client.community} is online: fetched successfully with an update less than ${COMMUNITY_OFFLINE_AFTER_SECONDS / 3600} hours old.`,
+      queries: [{ expr: queries.online, legend: "{{community_address}}" }],
       upText: "Online",
       downText: "Offline",
     }),
-    { w: GRID_WIDTH, h: Math.ceil(boards.length * 0.6) + 2 },
+    { w: GRID_WIDTH, h: Math.ceil(communityCount * 0.6) + 2 },
   );
 
   return layout.panels();
 };
 
-const makeDashboard = ({ uid, title, description, panels }) => ({
+const makeDashboard = ({ uid, title, description, panels, tags }) => ({
   annotations: { list: [] },
   description,
   editable: false,
@@ -1169,7 +1233,7 @@ const makeDashboard = ({ uid, title, description, panels }) => ({
   panels,
   refresh: "1m",
   schemaVersion: 39,
-  tags: ["bitsocial", "stats", "5chan"],
+  tags: ["bitsocial", "stats", ...tags],
   templating: { list: [] },
   time: { from: "now-24h", to: "now" },
   timepicker: {
@@ -1183,49 +1247,79 @@ const makeDashboard = ({ uid, title, description, panels }) => ({
   weekStart: "",
 });
 
-const main = async () => {
-  const directoryList = await loadFiveChanDirectories();
-  const boards =
-    directoryList.directories?.map((directory) => ({
-      address: getDirectoryAddress(directory),
-      title: directory.title,
-      directoryCode: directory.directoryCode,
-    })) || [];
+const toCommunityList = (directoryList, sourceLabel) => {
+  const communityList = directoryList.directories.map((directory) => ({
+    address: getDirectoryAddress(directory),
+    title: directory.title,
+    directoryCode: directory.directoryCode,
+  }));
 
-  const missingAddress = boards.find((board) => typeof board.address !== "string");
+  const missingAddress = communityList.find((community) => typeof community.address !== "string");
   if (missingAddress) {
     throw new Error(
-      `5chan directory '${missingAddress.directoryCode || missingAddress.title}' is missing name/communityAddress`,
+      `${sourceLabel} entry '${missingAddress.directoryCode || missingAddress.title}' is missing an address`,
     );
   }
-
-  if (boards.length === 0) {
-    throw new Error(`No 5chan communities found in ${fiveChanDirectoriesIndexUrl}`);
+  if (communityList.length === 0) {
+    throw new Error(`No communities found in ${sourceLabel}`);
   }
 
-  const overviewDashboard = makeDashboard({
-    uid: "bitsocial-stats",
-    title: "Bitsocial Stats",
-    description: "Health and activity of the Bitsocial peer-to-peer network.",
-    panels: buildOverviewDashboard({ boards }),
-  });
-  const fiveChanDashboard = makeDashboard({
-    uid: "bitsocial-5chan",
-    title: "5chan Stats",
-    description: "Activity and availability of the official 5chan boards.",
-    panels: buildFiveChanDashboard({ boards }),
-  });
+  return communityList;
+};
+
+const writeJson = (filePath, value) =>
+  fs.writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
+
+const main = async () => {
+  const [fiveChanDirectories, seeditCommunities] = await Promise.all([
+    loadFiveChanDirectories(),
+    loadSeeditCommunities(),
+  ]);
+  const communityLists = {
+    "5chan": toCommunityList(fiveChanDirectories, fiveChanDirectoriesIndexUrl),
+    seedit: toCommunityList(seeditCommunities, seeditDefaultSubscriptionsUrl),
+  };
+  for (const client of clients) {
+    client.communityList = communityLists[client.id];
+  }
+  // The monitor attributes a shared address to one client only, which would skew both clients' totals.
+  const clientsByAddress = new Map();
+  for (const client of clients) {
+    for (const { address } of client.communityList) {
+      if (clientsByAddress.has(address)) {
+        throw new Error(
+          `'${address}' is listed by both ${clientsByAddress.get(address)} and ${client.label}`,
+        );
+      }
+      clientsByAddress.set(address, client.label);
+    }
+  }
 
   await fs.mkdir(dashboardsOutputDir, { recursive: true });
-  await fs.writeFile(
+  await writeJson(
     path.join(dashboardsOutputDir, "bitsocial-stats.json"),
-    `${JSON.stringify(overviewDashboard, null, 2)}\n`,
+    makeDashboard({
+      uid: "bitsocial-stats",
+      title: "Bitsocial Stats",
+      description: "Health and activity of the Bitsocial peer-to-peer network.",
+      panels: buildOverviewDashboard(),
+      tags: clients.map(({ id }) => id),
+    }),
   );
-  await fs.writeFile(
-    path.join(dashboardsOutputDir, "5chan-stats.json"),
-    `${JSON.stringify(fiveChanDashboard, null, 2)}\n`,
-  );
-  await fs.writeFile(directoriesSnapshotPath, `${JSON.stringify(directoryList, null, 2)}\n`);
+  for (const client of clients) {
+    await writeJson(
+      path.join(dashboardsOutputDir, `${client.id}-stats.json`),
+      makeDashboard({
+        uid: client.uid,
+        title: client.title,
+        description: `Activity and availability of the ${client.label} ${client.communities} monitored by Bitsocial.`,
+        panels: buildClientDashboard(client),
+        tags: [client.id],
+      }),
+    );
+  }
+  await writeJson(directoriesSnapshotPath, fiveChanDirectories);
+  await writeJson(seeditSnapshotPath, seeditCommunities);
 };
 
 main().catch((error) => {

@@ -16,7 +16,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "**Network overview** &nbsp;·&nbsp; [5chan boards](/public-dashboards/fa6f2225e0ea98e116fb6f85d84e0186)\n\nLive health and activity of the Bitsocial peer-to-peer network, measured continuously by the Bitsocial stats monitor.",
+        "content": "**Network overview** &nbsp;·&nbsp; [5chan boards](/public-dashboards/fa6f2225e0ea98e116fb6f85d84e0186) &nbsp;·&nbsp; [Seedit communities](/public-dashboards/c770d7565c18df52dd26461c9191e05d)\n\nLive health and activity of the Bitsocial peer-to-peer network, measured continuously by the Bitsocial stats monitor.",
         "mode": "markdown"
       },
       "title": "",
@@ -85,10 +85,10 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "(sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_service_probe_last_success)) or vector(0)) + (sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_webpage_last_webpage_fetch_success)) or vector(0))",
-          "instant": false,
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_service_probe_last_success)) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_webpage_last_webpage_fetch_success))",
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
@@ -107,7 +107,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "IPFS gateways, pubsub providers, HTTP routers, chain providers, seeders and previewers that passed their latest check. Providers without a check result count as down.",
+      "description": "5chan and Seedit communities whose latest fetch succeeded and whose latest update is less than 2 hours old.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -124,15 +124,15 @@
               },
               {
                 "color": "orange",
-                "value": 15
+                "value": 57
               },
               {
                 "color": "green",
-                "value": 19
+                "value": 75
               }
             ]
           },
-          "unit": "suffix: / 19"
+          "unit": "suffix: / 75"
         },
         "overrides": []
       },
@@ -157,14 +157,14 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "(sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_ipfs_gateway_last_comment_fetch_success) or label_replace(vector(0), \"ipfs_gateway_url\", \"https://gateway.forumindex.com\", \"\", \"\") or label_replace(vector(0), \"ipfs_gateway_url\", \"https://gateway.plebpubsub.xyz\", \"\", \"\") or label_replace(vector(0), \"ipfs_gateway_url\", \"https://ipfs.io\", \"\", \"\") or label_replace(vector(0), \"ipfs_gateway_url\", \"https://ipfsgateway.xyz\", \"\", \"\")) or vector(0)) + (sum(min by (pubsub_provider_url) ({__name__=~\"bitsocial_stats_pubsub_provider_last_(publish|subscribe)_success\"}) or label_replace(vector(0), \"pubsub_provider_url\", \"http://nocf.pubsubprovider.xyz/api/v0\", \"\", \"\") or label_replace(vector(0), \"pubsub_provider_url\", \"https://plebpubsub.xyz/api/v0\", \"\", \"\") or label_replace(vector(0), \"pubsub_provider_url\", \"https://pubsubprovider.xyz/api/v0\", \"\", \"\") or label_replace(vector(0), \"pubsub_provider_url\", \"https://rannithepleb.com/api/v0\", \"\", \"\")) or vector(0)) + (sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_get_providers_fetch_success) or label_replace(vector(0), \"http_router_url\", \"https://peers.forumindex.com\", \"\", \"\") or label_replace(vector(0), \"http_router_url\", \"https://peers.pleb.bot\", \"\", \"\") or label_replace(vector(0), \"http_router_url\", \"https://peers.plebpubsub.xyz\", \"\", \"\") or label_replace(vector(0), \"http_router_url\", \"https://routing.lol\", \"\", \"\")) or vector(0)) + (sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_chain_provider_last_resolve_address_success) or label_replace(label_replace(vector(0), \"chain_provider_url\", \"https://ethrpc.xyz\", \"\", \"\"), \"chain_ticker\", \"eth\", \"\", \"\") or label_replace(label_replace(vector(0), \"chain_provider_url\", \"ethers.js\", \"\", \"\"), \"chain_ticker\", \"eth\", \"\", \"\") or label_replace(label_replace(vector(0), \"chain_provider_url\", \"viem\", \"\", \"\"), \"chain_ticker\", \"eth\", \"\", \"\") or label_replace(label_replace(vector(0), \"chain_provider_url\", \"https://solrpc.xyz\", \"\", \"\"), \"chain_ticker\", \"sol\", \"\", \"\") or label_replace(label_replace(vector(0), \"chain_provider_url\", \"web3.js\", \"\", \"\"), \"chain_ticker\", \"sol\", \"\", \"\")) or vector(0)) + (sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_seeder_last_community_update_cid_fetch_success) or label_replace(vector(0), \"seeder_peer_id\", \"12D3KooWDfnXqdZfsoqKbcYEDKRttt3adumB5m6tw8YghPwMAz8V\", \"\", \"\")) or vector(0)) + (sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_previewer_last_comment_preview_fetch_success) or label_replace(vector(0), \"previewer_url\", \"https://pleb.bz\", \"\", \"\")) or vector(0))",
-          "instant": false,
+          "expr": "sum(((max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_seconds_since_updated_at{client_id=~\"5chan|seedit\"}) < bool 7200) * max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=~\"5chan|seedit\"})) or (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=~\"5chan|seedit\"}) * 0))",
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
-      "title": "Providers up",
+      "title": "Communities online",
       "type": "stat",
       "id": 3,
       "gridPos": {
@@ -179,79 +179,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "Boards from the official 5chan directories whose latest fetch succeeded and whose latest update is less than 2 hours old.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 0,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 49
-              },
-              {
-                "color": "green",
-                "value": 65
-              }
-            ]
-          },
-          "unit": "suffix: / 65"
-        },
-        "overrides": []
-      },
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": ["lastNotNull"],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "value",
-        "wideLayout": true
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "(sum(((max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_seconds_since_updated_at{client_id=\"5chan\"}) < bool 7200) * max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"})) or (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) * 0)) or vector(0))",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Boards online",
-      "type": "stat",
-      "id": 4,
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 12,
-        "y": 3
-      }
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "description": "All-time threads and replies across the official 5chan boards.",
+      "description": "All-time posts and replies across the default 5chan and Seedit communities, counted like the 5chan homepage.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -275,7 +203,7 @@
       },
       "options": {
         "colorMode": "none",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
@@ -294,14 +222,79 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"5chan\"})) + sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"5chan\"}))",
-          "instant": false,
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=~\"5chan|seedit\"})) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=~\"5chan|seedit\"}))",
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
-      "title": "5chan posts",
+      "title": "Total posts",
+      "type": "stat",
+      "id": 4,
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 3
+      }
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "description": "Addresses that posted in the last 7 days across the default 5chan and Seedit communities, counted like the 5chan homepage: summed per community, so an address active in several communities counts once for each.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#3b82f6",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#3b82f6",
+                "value": null
+              }
+            ]
+          },
+          "unit": "locale"
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=~\"5chan|seedit\"}))",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Current users",
       "type": "stat",
       "id": 5,
       "gridPos": {
@@ -314,7 +307,7 @@
     {
       "collapsed": false,
       "panels": [],
-      "title": "5chan activity",
+      "title": "Activity",
       "type": "row",
       "id": 6,
       "gridPos": {
@@ -329,7 +322,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "New threads and replies across all 5chan boards within each rolling hour, as reported by each board's own stats.",
+      "description": "Posts and replies from the last 24 hours in communities the monitor can currently fetch, stacked per client.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -339,7 +332,7 @@
             "axisBorderShow": false,
             "axisPlacement": "auto",
             "drawStyle": "line",
-            "fillOpacity": 12,
+            "fillOpacity": 35,
             "gradientMode": "opacity",
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -382,7 +375,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#93c5fd",
+                  "fixedColor": "#a78bfa",
                   "mode": "fixed"
                 }
               }
@@ -410,9 +403,9 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_hour_post_count{client_id=\"5chan\"}) and (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"5chan\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1)) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"5chan\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1))",
           "instant": false,
-          "legendFormat": "Threads",
+          "legendFormat": "5chan",
           "range": true,
           "refId": "A"
         },
@@ -422,14 +415,14 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_hour_reply_count{client_id=\"5chan\"}) and (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1)) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
           "instant": false,
-          "legendFormat": "Replies",
+          "legendFormat": "Seedit",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "Posts per hour",
+      "title": "Posts (24h)",
       "transformations": [],
       "type": "timeseries",
       "id": 7,
@@ -445,7 +438,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "Addresses that posted within the last 24 hours, 7 days and 30 days, summed per board: an address active on several boards is counted once per board.",
+      "description": "Addresses that posted in the last 7 days, summed per community like the 5chan homepage, stacked per client.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -455,7 +448,7 @@
             "axisBorderShow": false,
             "axisPlacement": "auto",
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 35,
             "gradientMode": "opacity",
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -464,150 +457,7 @@
             "spanNulls": false,
             "stacking": {
               "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "min": 0,
-          "unit": "short"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byFrameRefID",
-              "options": "A"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#93c5fd",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byFrameRefID",
-              "options": "B"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#3b82f6",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byFrameRefID",
-              "options": "C"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#1d4ed8",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"5chan\"}) and (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1))",
-          "instant": false,
-          "legendFormat": "24 hours",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"5chan\"}))",
-          "instant": false,
-          "legendFormat": "7 days",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"5chan\"}))",
-          "instant": false,
-          "legendFormat": "30 days",
-          "range": true,
-          "refId": "C"
-        }
-      ],
-      "title": "Active addresses",
-      "transformations": [],
-      "type": "timeseries",
-      "id": 8,
-      "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 8,
-        "y": 8
-      }
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "description": "Cumulative threads and replies across all 5chan boards, plus unique posting addresses summed per board.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisPlacement": "auto",
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "opacity",
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
-            "pointSize": 4,
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
+              "mode": "normal"
             },
             "thresholdsStyle": {
               "mode": "off"
@@ -636,21 +486,6 @@
             "matcher": {
               "id": "byFrameRefID",
               "options": "B"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#93c5fd",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byFrameRefID",
-              "options": "C"
             },
             "properties": [
               {
@@ -684,9 +519,9 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"5chan\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"5chan\"}))",
           "instant": false,
-          "legendFormat": "Threads",
+          "legendFormat": "5chan",
           "range": true,
           "refId": "A"
         },
@@ -696,11 +531,115 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"5chan\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\"}))",
           "instant": false,
-          "legendFormat": "Replies",
+          "legendFormat": "Seedit",
           "range": true,
           "refId": "B"
+        }
+      ],
+      "title": "Current users",
+      "transformations": [],
+      "type": "timeseries",
+      "id": 8,
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 8
+      }
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "description": "All-time posts and replies, stacked per client.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 35,
+            "gradientMode": "opacity",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 4,
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "min": 0,
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#3b82f6",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#a78bfa",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"5chan\"})) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"5chan\"}))",
+          "instant": false,
+          "legendFormat": "5chan",
+          "range": true,
+          "refId": "A"
         },
         {
           "datasource": {
@@ -708,14 +647,14 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_active_user_count{client_id=\"5chan\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"seedit\"})) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"seedit\"}))",
           "instant": false,
-          "legendFormat": "Unique addresses",
+          "legendFormat": "Seedit",
           "range": true,
-          "refId": "C"
+          "refId": "B"
         }
       ],
-      "title": "All-time totals",
+      "title": "Total posts",
       "transformations": [],
       "type": "timeseries",
       "id": 9,
@@ -744,7 +683,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "Approximate city-level locations of peers that provide board IPNS records through HTTP routers, derived from their public IP addresses. Larger dots mean more peers in that city.",
+      "description": "Approximate city-level locations of peers that provide community IPNS records through HTTP routers, derived from their public IP addresses. Larger dots mean more peers in that city.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -873,7 +812,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_network_ipns_http_routers_peer_location_count)",
+          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_network_ipns_http_routers_peer_location_count)",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -931,7 +870,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "Unique peers across all 5chan boards: peers connected to board pubsub topics, and peers that HTTP routers list as providers of board pubsub topics and IPNS records.",
+      "description": "Unique peers across all monitored communities: peers connected to community pubsub topics, and peers that HTTP routers list as providers of community pubsub topics and IPNS records.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1027,7 +966,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_network_pubsub_peer_count))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_network_pubsub_peer_count))",
           "instant": false,
           "legendFormat": "Pubsub peers",
           "range": true,
@@ -1039,7 +978,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_network_pubsub_http_routers_peer_count))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_network_pubsub_http_routers_peer_count))",
           "instant": false,
           "legendFormat": "Pubsub topic providers",
           "range": true,
@@ -1051,7 +990,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_network_ipns_http_routers_peer_count))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_network_ipns_http_routers_peer_count))",
           "instant": false,
           "legendFormat": "IPNS record providers",
           "range": true,
@@ -1072,7 +1011,7 @@
     {
       "collapsed": false,
       "panels": [],
-      "title": "Bitsocial services",
+      "title": "Services and infrastructure",
       "type": "row",
       "id": 13,
       "gridPos": {
@@ -1158,7 +1097,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_webpage_last_webpage_fetch_success)",
+          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_webpage_last_webpage_fetch_success)",
           "instant": false,
           "legendFormat": "{{webpage_url}}",
           "range": true,
@@ -1170,14 +1109,14 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_service_probe_last_success)",
+          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_service_probe_last_success)",
           "instant": false,
           "legendFormat": "{{service_probe_label}}",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "Service uptime",
+      "title": "Bitsocial services",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -1190,131 +1129,10 @@
       "type": "state-timeline",
       "id": 14,
       "gridPos": {
-        "h": 11,
-        "w": 24,
+        "h": 12,
+        "w": 12,
         "x": 0,
         "y": 31
-      }
-    },
-    {
-      "collapsed": true,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "description": "How long each successful website and service check took.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisPlacement": "auto",
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "opacity",
-                "lineInterpolation": "smooth",
-                "lineWidth": 2,
-                "pointSize": 4,
-                "showPoints": "never",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 1,
-              "min": 0,
-              "unit": "s"
-            },
-            "overrides": []
-          },
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
-              },
-              "editorMode": "code",
-              "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_webpage_last_webpage_fetch_duration_seconds) and (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_webpage_last_webpage_fetch_success) == 1)",
-              "instant": false,
-              "legendFormat": "{{webpage_url}}",
-              "range": true,
-              "refId": "A"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
-              },
-              "editorMode": "code",
-              "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_service_probe_last_duration_seconds) and (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_service_probe_last_success) == 1)",
-              "instant": false,
-              "legendFormat": "{{service_probe_label}}",
-              "range": true,
-              "refId": "B"
-            }
-          ],
-          "title": "Response time",
-          "transformations": [
-            {
-              "id": "renameByRegex",
-              "options": {
-                "regex": "^(.*?)https?://([^/\\s)]+)[^\\s)]*(.*)$",
-                "renamePattern": "$1$2$3"
-              }
-            }
-          ],
-          "type": "timeseries",
-          "id": 16,
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 43
-          }
-        }
-      ],
-      "title": "Service response times",
-      "type": "row",
-      "id": 15,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 42
-      }
-    },
-    {
-      "collapsed": false,
-      "panels": [],
-      "title": "Network providers",
-      "type": "row",
-      "id": 17,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 43
       }
     },
     {
@@ -1322,7 +1140,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "Public infrastructure that Bitsocial clients rely on. Green while the provider passed its latest check: gateways and previewers serve content, pubsub providers publish and subscribe, HTTP routers answer provider lookups, chain providers resolve addresses, and seeders serve board updates.",
+      "description": "What 5chan and Seedit use by default in pure P2P mode: HTTP routers to find peers, and Ethereum RPCs to resolve community names. A router is green while it answers provider lookups for monitored communities; an RPC is green while it resolves a test name.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1393,9 +1211,9 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_ipfs_gateway_last_comment_fetch_success) or label_replace(vector(0), \"ipfs_gateway_url\", \"https://gateway.forumindex.com\", \"\", \"\") or label_replace(vector(0), \"ipfs_gateway_url\", \"https://gateway.plebpubsub.xyz\", \"\", \"\") or label_replace(vector(0), \"ipfs_gateway_url\", \"https://ipfs.io\", \"\", \"\") or label_replace(vector(0), \"ipfs_gateway_url\", \"https://ipfsgateway.xyz\", \"\", \"\")",
+          "expr": "max by (http_router_url) (max without(instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_community_ipns_get_providers_fetch_success{http_router_url=~\"https://peers\\\\.pleb\\\\.bot|https://routing\\\\.lol|https://peers\\\\.forumindex\\\\.com|https://peers\\\\.plebpubsub\\\\.xyz|https://routerofbitsocial\\\\.xyz|https://bsotracker\\\\.online\"}))",
           "instant": false,
-          "legendFormat": "Gateway · {{ipfs_gateway_url}}",
+          "legendFormat": "Router · {{http_router_url}}",
           "range": true,
           "refId": "A"
         },
@@ -1405,62 +1223,14 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "min by (pubsub_provider_url) ({__name__=~\"bitsocial_stats_pubsub_provider_last_(publish|subscribe)_success\"}) or label_replace(vector(0), \"pubsub_provider_url\", \"http://nocf.pubsubprovider.xyz/api/v0\", \"\", \"\") or label_replace(vector(0), \"pubsub_provider_url\", \"https://plebpubsub.xyz/api/v0\", \"\", \"\") or label_replace(vector(0), \"pubsub_provider_url\", \"https://pubsubprovider.xyz/api/v0\", \"\", \"\") or label_replace(vector(0), \"pubsub_provider_url\", \"https://rannithepleb.com/api/v0\", \"\", \"\")",
+          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_chain_provider_last_resolve_address_success{chain_provider_url=~\"https://ethereum-rpc\\\\.publicnode\\\\.com|https://eth\\\\.drpc\\\\.org|https://ethereum\\\\.publicnode\\\\.com|https://rpc\\\\.mevblocker\\\\.io|https://1rpc\\\\.io/eth|https://eth-pokt\\\\.nodies\\\\.app|ethers\\\\.js\",chain_ticker=\"eth\"})",
           "instant": false,
-          "legendFormat": "Pubsub · {{pubsub_provider_url}}",
+          "legendFormat": "Name resolution · {{chain_provider_url}}",
           "range": true,
           "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_get_providers_fetch_success) or label_replace(vector(0), \"http_router_url\", \"https://peers.forumindex.com\", \"\", \"\") or label_replace(vector(0), \"http_router_url\", \"https://peers.pleb.bot\", \"\", \"\") or label_replace(vector(0), \"http_router_url\", \"https://peers.plebpubsub.xyz\", \"\", \"\") or label_replace(vector(0), \"http_router_url\", \"https://routing.lol\", \"\", \"\")",
-          "instant": false,
-          "legendFormat": "Router · {{http_router_url}}",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_chain_provider_last_resolve_address_success) or label_replace(label_replace(vector(0), \"chain_provider_url\", \"https://ethrpc.xyz\", \"\", \"\"), \"chain_ticker\", \"eth\", \"\", \"\") or label_replace(label_replace(vector(0), \"chain_provider_url\", \"ethers.js\", \"\", \"\"), \"chain_ticker\", \"eth\", \"\", \"\") or label_replace(label_replace(vector(0), \"chain_provider_url\", \"viem\", \"\", \"\"), \"chain_ticker\", \"eth\", \"\", \"\") or label_replace(label_replace(vector(0), \"chain_provider_url\", \"https://solrpc.xyz\", \"\", \"\"), \"chain_ticker\", \"sol\", \"\", \"\") or label_replace(label_replace(vector(0), \"chain_provider_url\", \"web3.js\", \"\", \"\"), \"chain_ticker\", \"sol\", \"\", \"\")",
-          "instant": false,
-          "legendFormat": "Chain · {{chain_provider_url}} ({{chain_ticker}})",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_seeder_last_community_update_cid_fetch_success) or label_replace(vector(0), \"seeder_peer_id\", \"12D3KooWDfnXqdZfsoqKbcYEDKRttt3adumB5m6tw8YghPwMAz8V\", \"\", \"\")",
-          "instant": false,
-          "legendFormat": "Seeder · {{seeder_peer_id}}",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_previewer_last_comment_preview_fetch_success) or label_replace(vector(0), \"previewer_url\", \"https://pleb.bz\", \"\", \"\")",
-          "instant": false,
-          "legendFormat": "Previewer · {{previewer_url}}",
-          "range": true,
-          "refId": "F"
         }
       ],
-      "title": "Provider uptime",
+      "title": "Client infrastructure",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -1468,27 +1238,488 @@
             "regex": "^(.*?)https?://([^/\\s)]+)[^\\s)]*(.*)$",
             "renamePattern": "$1$2$3"
           }
-        },
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "^(Seeder · \\w{8})\\w+(\\w{4})$",
-            "renamePattern": "$1…$2"
-          }
         }
       ],
       "type": "state-timeline",
-      "id": 18,
+      "id": 15,
       "gridPos": {
-        "h": 17,
-        "w": 24,
-        "x": 0,
-        "y": 44
+        "h": 12,
+        "w": 12,
+        "x": 12,
+        "y": 31
       }
     },
     {
       "collapsed": true,
       "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "description": "How long each successful website and service check took.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisPlacement": "auto",
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "opacity",
+                "lineInterpolation": "smooth",
+                "lineWidth": 2,
+                "pointSize": 4,
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 1,
+              "min": 0,
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              },
+              "editorMode": "code",
+              "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_webpage_last_webpage_fetch_duration_seconds) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_webpage_last_webpage_fetch_success) == 1)",
+              "instant": false,
+              "legendFormat": "{{webpage_url}}",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              },
+              "editorMode": "code",
+              "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_service_probe_last_duration_seconds) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_service_probe_last_success) == 1)",
+              "instant": false,
+              "legendFormat": "{{service_probe_label}}",
+              "range": true,
+              "refId": "B"
+            }
+          ],
+          "title": "Bitsocial services",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "^(.*?)https?://([^/\\s)]+)[^\\s)]*(.*)$",
+                "renamePattern": "$1$2$3"
+              }
+            }
+          ],
+          "type": "timeseries",
+          "id": 17,
+          "gridPos": {
+            "h": 9,
+            "w": 24,
+            "x": 0,
+            "y": 44
+          }
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "description": "Average time for each HTTP router to answer the latest successful provider lookup for each community. Gaps mean every lookup failed.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisPlacement": "auto",
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "opacity",
+                "lineInterpolation": "smooth",
+                "lineWidth": 2,
+                "pointSize": 4,
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 1,
+              "min": 0,
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              },
+              "editorMode": "code",
+              "expr": "avg by (http_router_url) (max without(instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_community_ipns_get_providers_fetch_duration_seconds{http_router_url=~\"https://peers\\\\.pleb\\\\.bot|https://routing\\\\.lol|https://peers\\\\.forumindex\\\\.com|https://peers\\\\.plebpubsub\\\\.xyz|https://routerofbitsocial\\\\.xyz|https://bsotracker\\\\.online\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_community_ipns_get_providers_fetch_success{http_router_url=~\"https://peers\\\\.pleb\\\\.bot|https://routing\\\\.lol|https://peers\\\\.forumindex\\\\.com|https://peers\\\\.plebpubsub\\\\.xyz|https://routerofbitsocial\\\\.xyz|https://bsotracker\\\\.online\"}) == 1))",
+              "instant": false,
+              "legendFormat": "{{http_router_url}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "HTTP router lookup time",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "^(.*?)https?://([^/\\s)]+)[^\\s)]*(.*)$",
+                "renamePattern": "$1$2$3"
+              }
+            }
+          ],
+          "type": "timeseries",
+          "id": 18,
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 53
+          }
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "description": "Share of monitored communities for which each HTTP router returned at least one IPNS record provider on its latest lookup. Failed lookups count as not found.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisPlacement": "auto",
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "opacity",
+                "lineInterpolation": "smooth",
+                "lineWidth": 2,
+                "pointSize": 4,
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "min": 0,
+              "max": 1,
+              "unit": "percentunit"
+            },
+            "overrides": []
+          },
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              },
+              "editorMode": "code",
+              "expr": "(count by (http_router_url) ((max without(instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_community_ipns_get_providers_fetch_provider_count{http_router_url=~\"https://peers\\\\.pleb\\\\.bot|https://routing\\\\.lol|https://peers\\\\.forumindex\\\\.com|https://peers\\\\.plebpubsub\\\\.xyz|https://routerofbitsocial\\\\.xyz|https://bsotracker\\\\.online\"}) > 0) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_community_ipns_get_providers_fetch_success{http_router_url=~\"https://peers\\\\.pleb\\\\.bot|https://routing\\\\.lol|https://peers\\\\.forumindex\\\\.com|https://peers\\\\.plebpubsub\\\\.xyz|https://routerofbitsocial\\\\.xyz|https://bsotracker\\\\.online\"}) == 1)) or count by (http_router_url) (max without(instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_community_ipns_get_providers_fetch_success{http_router_url=~\"https://peers\\\\.pleb\\\\.bot|https://routing\\\\.lol|https://peers\\\\.forumindex\\\\.com|https://peers\\\\.plebpubsub\\\\.xyz|https://routerofbitsocial\\\\.xyz|https://bsotracker\\\\.online\"})) * 0) / count by (http_router_url) (max without(instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_community_ipns_get_providers_fetch_success{http_router_url=~\"https://peers\\\\.pleb\\\\.bot|https://routing\\\\.lol|https://peers\\\\.forumindex\\\\.com|https://peers\\\\.plebpubsub\\\\.xyz|https://routerofbitsocial\\\\.xyz|https://bsotracker\\\\.online\"}))",
+              "instant": false,
+              "legendFormat": "{{http_router_url}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Communities found by each router",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "^(.*?)https?://([^/\\s)]+)[^\\s)]*(.*)$",
+                "renamePattern": "$1$2$3"
+              }
+            }
+          ],
+          "type": "timeseries",
+          "id": 19,
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 53
+          }
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "description": "Time for each Ethereum RPC to resolve a test name. Gaps mean the resolution failed.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisPlacement": "auto",
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "opacity",
+                "lineInterpolation": "smooth",
+                "lineWidth": 2,
+                "pointSize": 4,
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 1,
+              "min": 0,
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              },
+              "editorMode": "code",
+              "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_chain_provider_last_resolve_address_duration_seconds{chain_provider_url=~\"https://ethereum-rpc\\\\.publicnode\\\\.com|https://eth\\\\.drpc\\\\.org|https://ethereum\\\\.publicnode\\\\.com|https://rpc\\\\.mevblocker\\\\.io|https://1rpc\\\\.io/eth|https://eth-pokt\\\\.nodies\\\\.app|ethers\\\\.js\",chain_ticker=\"eth\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_chain_provider_last_resolve_address_success{chain_provider_url=~\"https://ethereum-rpc\\\\.publicnode\\\\.com|https://eth\\\\.drpc\\\\.org|https://ethereum\\\\.publicnode\\\\.com|https://rpc\\\\.mevblocker\\\\.io|https://1rpc\\\\.io/eth|https://eth-pokt\\\\.nodies\\\\.app|ethers\\\\.js\",chain_ticker=\"eth\"}) == 1)",
+              "instant": false,
+              "legendFormat": "{{chain_provider_url}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Name resolution time",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "^(.*?)https?://([^/\\s)]+)[^\\s)]*(.*)$",
+                "renamePattern": "$1$2$3"
+              }
+            }
+          ],
+          "type": "timeseries",
+          "id": 20,
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 61
+          }
+        }
+      ],
+      "title": "Response times",
+      "type": "row",
+      "id": 16,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 43
+      }
+    },
+    {
+      "collapsed": true,
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "description": "IPFS gateways and pubsub providers that 5chan and Seedit only use when pure P2P mode is turned off. Green while the provider passed its latest check.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "fillOpacity": 80,
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineWidth": 0
+              },
+              "mappings": [
+                {
+                  "type": "value",
+                  "options": {
+                    "0": {
+                      "color": "red",
+                      "index": 1,
+                      "text": "Down"
+                    },
+                    "1": {
+                      "color": "green",
+                      "index": 0,
+                      "text": "Up"
+                    }
+                  }
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "green",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "options": {
+            "alignValue": "left",
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "mergeValues": true,
+            "rowHeight": 0.8,
+            "showValue": "never",
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              },
+              "editorMode": "code",
+              "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_ipfs_gateway_last_comment_fetch_success{ipfs_gateway_url=~\"https://ipfsgateway\\\\.xyz|https://gateway\\\\.plebpubsub\\\\.xyz|https://gateway\\\\.forumindex\\\\.com\"})",
+              "instant": false,
+              "legendFormat": "Gateway · {{ipfs_gateway_url}}",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              },
+              "editorMode": "code",
+              "expr": "min by (pubsub_provider_url) ({__name__=~\"bitsocial_stats_pubsub_provider_last_(publish|subscribe)_success\",pubsub_provider_url=~\"https://pubsubprovider\\\\.xyz/api/v0|https://plebpubsub\\\\.xyz/api/v0|https://rannithepleb\\\\.com/api/v0\"})",
+              "instant": false,
+              "legendFormat": "Pubsub · {{pubsub_provider_url}}",
+              "range": true,
+              "refId": "B"
+            }
+          ],
+          "title": "Gateway mode providers",
+          "transformations": [
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "^(.*?)https?://([^/\\s)]+)[^\\s)]*(.*)$",
+                "renamePattern": "$1$2$3"
+              }
+            }
+          ],
+          "type": "state-timeline",
+          "id": 22,
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 45
+          }
+        },
         {
           "datasource": {
             "type": "prometheus",
@@ -1545,14 +1776,14 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_ipfs_gateway_last_comment_fetch_duration_seconds) and (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_ipfs_gateway_last_comment_fetch_success) == 1)",
+              "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_ipfs_gateway_last_comment_fetch_duration_seconds{ipfs_gateway_url=~\"https://ipfsgateway\\\\.xyz|https://gateway\\\\.plebpubsub\\\\.xyz|https://gateway\\\\.forumindex\\\\.com\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_ipfs_gateway_last_comment_fetch_success{ipfs_gateway_url=~\"https://ipfsgateway\\\\.xyz|https://gateway\\\\.plebpubsub\\\\.xyz|https://gateway\\\\.forumindex\\\\.com\"}) == 1)",
               "instant": false,
               "legendFormat": "{{ipfs_gateway_url}}",
               "range": true,
               "refId": "A"
             }
           ],
-          "title": "Comment fetch time",
+          "title": "Gateway comment fetch time",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -1563,110 +1794,14 @@
             }
           ],
           "type": "timeseries",
-          "id": 20,
+          "id": 23,
           "gridPos": {
             "h": 8,
-            "w": 12,
+            "w": 8,
             "x": 0,
-            "y": 62
+            "y": 52
           }
         },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "description": "Share of 5chan boards whose IPNS record each gateway resolved on its latest check.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisPlacement": "auto",
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "opacity",
-                "lineInterpolation": "smooth",
-                "lineWidth": 2,
-                "pointSize": 4,
-                "showPoints": "never",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "min": 0,
-              "max": 1,
-              "unit": "percentunit"
-            },
-            "overrides": []
-          },
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
-              },
-              "editorMode": "code",
-              "expr": "avg by (ipfs_gateway_url) (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_ipfs_gateway_last_community_ipns_fetch_success))",
-              "instant": false,
-              "legendFormat": "{{ipfs_gateway_url}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Boards served",
-          "transformations": [
-            {
-              "id": "renameByRegex",
-              "options": {
-                "regex": "^(.*?)https?://([^/\\s)]+)[^\\s)]*(.*)$",
-                "renamePattern": "$1$2$3"
-              }
-            }
-          ],
-          "type": "timeseries",
-          "id": 21,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 62
-          }
-        }
-      ],
-      "title": "IPFS gateways",
-      "type": "row",
-      "id": 19,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 61
-      }
-    },
-    {
-      "collapsed": true,
-      "panels": [
         {
           "datasource": {
             "type": "prometheus",
@@ -1723,14 +1858,14 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_pubsub_provider_last_publish_duration_seconds) and (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_pubsub_provider_last_publish_success) == 1)",
+              "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_pubsub_provider_last_publish_duration_seconds{pubsub_provider_url=~\"https://pubsubprovider\\\\.xyz/api/v0|https://plebpubsub\\\\.xyz/api/v0|https://rannithepleb\\\\.com/api/v0\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_pubsub_provider_last_publish_success{pubsub_provider_url=~\"https://pubsubprovider\\\\.xyz/api/v0|https://plebpubsub\\\\.xyz/api/v0|https://rannithepleb\\\\.com/api/v0\"}) == 1)",
               "instant": false,
               "legendFormat": "{{pubsub_provider_url}}",
               "range": true,
               "refId": "A"
             }
           ],
-          "title": "Publish time",
+          "title": "Pubsub publish time",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -1741,12 +1876,12 @@
             }
           ],
           "type": "timeseries",
-          "id": 23,
+          "id": 24,
           "gridPos": {
             "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 63
+            "w": 8,
+            "x": 8,
+            "y": 52
           }
         },
         {
@@ -1805,14 +1940,14 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_pubsub_provider_last_subscribe_duration_seconds) and (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_pubsub_provider_last_subscribe_success) == 1)",
+              "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_pubsub_provider_last_subscribe_duration_seconds{pubsub_provider_url=~\"https://pubsubprovider\\\\.xyz/api/v0|https://plebpubsub\\\\.xyz/api/v0|https://rannithepleb\\\\.com/api/v0\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_pubsub_provider_last_subscribe_success{pubsub_provider_url=~\"https://pubsubprovider\\\\.xyz/api/v0|https://plebpubsub\\\\.xyz/api/v0|https://rannithepleb\\\\.com/api/v0\"}) == 1)",
               "instant": false,
               "legendFormat": "{{pubsub_provider_url}}",
               "range": true,
               "refId": "A"
             }
           ],
-          "title": "Subscribe time",
+          "title": "Pubsub subscribe time",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -1823,473 +1958,29 @@
             }
           ],
           "type": "timeseries",
-          "id": 24,
+          "id": 25,
           "gridPos": {
             "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 63
+            "w": 8,
+            "x": 16,
+            "y": 52
           }
         }
       ],
-      "title": "Pubsub providers",
+      "title": "Gateway mode fallback",
       "type": "row",
-      "id": 22,
+      "id": 21,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 62
-      }
-    },
-    {
-      "collapsed": true,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "description": "Time for each HTTP router to answer a providers lookup. Gaps mean the lookup failed.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisPlacement": "auto",
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "opacity",
-                "lineInterpolation": "smooth",
-                "lineWidth": 2,
-                "pointSize": 4,
-                "showPoints": "never",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 1,
-              "min": 0,
-              "unit": "s"
-            },
-            "overrides": []
-          },
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
-              },
-              "editorMode": "code",
-              "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_get_providers_fetch_duration_seconds) and (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_get_providers_fetch_success) == 1)",
-              "instant": false,
-              "legendFormat": "{{http_router_url}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Provider lookup time",
-          "transformations": [
-            {
-              "id": "renameByRegex",
-              "options": {
-                "regex": "^(.*?)https?://([^/\\s)]+)[^\\s)]*(.*)$",
-                "renamePattern": "$1$2$3"
-              }
-            }
-          ],
-          "type": "timeseries",
-          "id": 26,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 64
-          }
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "description": "Share of 5chan boards for which each HTTP router returned at least one IPNS record provider.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisPlacement": "auto",
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "opacity",
-                "lineInterpolation": "smooth",
-                "lineWidth": 2,
-                "pointSize": 4,
-                "showPoints": "never",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "min": 0,
-              "max": 1,
-              "unit": "percentunit"
-            },
-            "overrides": []
-          },
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
-              },
-              "editorMode": "code",
-              "expr": "(count by (http_router_url) ((max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_community_ipns_get_providers_fetch_provider_count) > 0) and (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_community_ipns_get_providers_fetch_success) == 1)) or count by (http_router_url) (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_community_ipns_get_providers_fetch_success)) * 0) / count by (http_router_url) (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_http_router_last_community_ipns_get_providers_fetch_success))",
-              "instant": false,
-              "legendFormat": "{{http_router_url}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Boards with providers",
-          "transformations": [
-            {
-              "id": "renameByRegex",
-              "options": {
-                "regex": "^(.*?)https?://([^/\\s)]+)[^\\s)]*(.*)$",
-                "renamePattern": "$1$2$3"
-              }
-            }
-          ],
-          "type": "timeseries",
-          "id": 27,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 64
-          }
-        }
-      ],
-      "title": "HTTP routers",
-      "type": "row",
-      "id": 25,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 63
-      }
-    },
-    {
-      "collapsed": true,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "description": "Time for each chain provider to resolve a test address. Gaps mean the resolution failed.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisPlacement": "auto",
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "opacity",
-                "lineInterpolation": "smooth",
-                "lineWidth": 2,
-                "pointSize": 4,
-                "showPoints": "never",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 1,
-              "min": 0,
-              "unit": "s"
-            },
-            "overrides": []
-          },
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
-              },
-              "editorMode": "code",
-              "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_chain_provider_last_resolve_address_duration_seconds) and (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_chain_provider_last_resolve_address_success) == 1)",
-              "instant": false,
-              "legendFormat": "{{chain_provider_url}} ({{chain_ticker}})",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Address resolve time",
-          "transformations": [
-            {
-              "id": "renameByRegex",
-              "options": {
-                "regex": "^(.*?)https?://([^/\\s)]+)[^\\s)]*(.*)$",
-                "renamePattern": "$1$2$3"
-              }
-            }
-          ],
-          "type": "timeseries",
-          "id": 29,
-          "gridPos": {
-            "h": 8,
-            "w": 24,
-            "x": 0,
-            "y": 65
-          }
-        }
-      ],
-      "title": "Chain providers",
-      "type": "row",
-      "id": 28,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 64
-      }
-    },
-    {
-      "collapsed": true,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "description": "Time to fetch a board update from each seeder. Gaps mean the fetch failed.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisPlacement": "auto",
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "opacity",
-                "lineInterpolation": "smooth",
-                "lineWidth": 2,
-                "pointSize": 4,
-                "showPoints": "never",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 1,
-              "min": 0,
-              "unit": "s"
-            },
-            "overrides": []
-          },
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
-              },
-              "editorMode": "code",
-              "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_seeder_last_community_update_cid_fetch_duration_seconds) and (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_seeder_last_community_update_cid_fetch_success) == 1)",
-              "instant": false,
-              "legendFormat": "{{seeder_peer_id}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Seeder update fetch time",
-          "transformations": [],
-          "type": "timeseries",
-          "id": 31,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 66
-          }
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "description": "Time to render a comment preview through each previewer. Gaps mean the fetch failed.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisPlacement": "auto",
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "opacity",
-                "lineInterpolation": "smooth",
-                "lineWidth": 2,
-                "pointSize": 4,
-                "showPoints": "never",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 1,
-              "min": 0,
-              "unit": "s"
-            },
-            "overrides": []
-          },
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": true
-            },
-            "tooltip": {
-              "hideZeros": false,
-              "mode": "multi",
-              "sort": "desc"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
-              },
-              "editorMode": "code",
-              "expr": "max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_previewer_last_comment_preview_fetch_duration_seconds) and (max without(client_id, instance, job, service, subplebbit_address) (bitsocial_stats_previewer_last_comment_preview_fetch_success) == 1)",
-              "instant": false,
-              "legendFormat": "{{previewer_url}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Previewer fetch time",
-          "transformations": [
-            {
-              "id": "renameByRegex",
-              "options": {
-                "regex": "^(.*?)https?://([^/\\s)]+)[^\\s)]*(.*)$",
-                "renamePattern": "$1$2$3"
-              }
-            }
-          ],
-          "type": "timeseries",
-          "id": 32,
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 12,
-            "y": 66
-          }
-        }
-      ],
-      "title": "Seeders and previewers",
-      "type": "row",
-      "id": 30,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 65
+        "y": 44
       }
     }
   ],
   "refresh": "1m",
   "schemaVersion": 39,
-  "tags": ["bitsocial", "stats", "5chan"],
+  "tags": ["bitsocial", "stats", "5chan", "seedit"],
   "templating": {
     "list": []
   },

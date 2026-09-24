@@ -17,8 +17,9 @@ yarn stats:up
 
 The main configuration lives in [config.js](./config.js). Community monitoring is client-aware:
 
-- `5chan` is enabled now via the generated snapshot from the official `5chan-directories/` files
-- `5chan` community labels remain the public `.bso` aliases, but the monitor queries the matching `.eth` community internally because that is what current clients resolve against
+- `5chan` is enabled via the generated snapshot from the official `5chan-directories/` files
+- `seedit` is enabled via the generated snapshot from `seedit-default-subscriptions.json`
+- community labels are the public `.bso` addresses from those lists; the monitor resolves them to public keys with the BSO resolver
 - future clients can be added through `monitoring.clients`
 - container deployments can override the local Kubo RPC endpoints with `BITSOCIAL_STATS_KUBO_RPC_URL` and `BITSOCIAL_STATS_PUBSUB_KUBO_RPC_URL`
 

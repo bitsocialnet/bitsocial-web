@@ -2,7 +2,7 @@
   "annotations": {
     "list": []
   },
-  "description": "Activity and availability of the 5chan boards monitored by Bitsocial.",
+  "description": "Activity and availability of the Seedit communities monitored by Bitsocial.",
   "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
@@ -16,7 +16,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "[Network overview](/public-dashboards/e9277bcc0c421ddcacd29f591466678c) &nbsp;·&nbsp; **5chan boards** &nbsp;·&nbsp; [Seedit communities](/public-dashboards/c770d7565c18df52dd26461c9191e05d)\n\nActivity and availability of the 65 boards in the official 5chan directories.",
+        "content": "[Network overview](/public-dashboards/e9277bcc0c421ddcacd29f591466678c) &nbsp;·&nbsp; [5chan boards](/public-dashboards/fa6f2225e0ea98e116fb6f85d84e0186) &nbsp;·&nbsp; **Seedit communities**\n\nActivity and availability of the 10 communities in Seedit's default subscriptions.",
         "mode": "markdown"
       },
       "title": "",
@@ -35,7 +35,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "Boards whose latest fetch succeeded and whose latest update is less than 2 hours old.",
+      "description": "Communities whose latest fetch succeeded and whose latest update is less than 2 hours old.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -52,15 +52,15 @@
               },
               {
                 "color": "orange",
-                "value": 49
+                "value": 8
               },
               {
                 "color": "green",
-                "value": 65
+                "value": 10
               }
             ]
           },
-          "unit": "suffix: / 65"
+          "unit": "suffix: / 10"
         },
         "overrides": []
       },
@@ -85,14 +85,14 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(((max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_seconds_since_updated_at{client_id=\"5chan\"}) < bool 7200) * max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"})) or (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) * 0))",
+          "expr": "sum(((max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_seconds_since_updated_at{client_id=\"seedit\"}) < bool 7200) * max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"})) or (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) * 0))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
           "refId": "A"
         }
       ],
-      "title": "Boards online",
+      "title": "Communities online",
       "type": "stat",
       "id": 2,
       "gridPos": {
@@ -107,7 +107,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "All-time threads and replies, counted like the 5chan homepage.",
+      "description": "All-time posts and comments, counted like the 5chan homepage.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -150,7 +150,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"5chan\"})) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"5chan\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"seedit\"})) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"seedit\"}))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -172,7 +172,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "Threads and replies from the last 24 hours in boards the monitor can currently fetch.",
+      "description": "Posts and comments from the last 24 hours in communities the monitor can currently fetch.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -215,7 +215,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"5chan\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1)) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"5chan\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1)) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -237,7 +237,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "Addresses that posted in the last 7 days, counted like the 5chan homepage: summed per board, so an address active in several boards counts once for each.",
+      "description": "Addresses that posted in the last 7 days, counted like the 5chan homepage: summed per community, so an address active in several communities counts once for each.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -280,7 +280,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"5chan\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\"}))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -315,7 +315,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "Threads and replies from the last 24 hours, as reported by each board's own stats.",
+      "description": "Posts and comments from the last 24 hours, as reported by each community's own stats.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -396,9 +396,9 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"5chan\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
           "instant": false,
-          "legendFormat": "Threads",
+          "legendFormat": "Posts",
           "range": true,
           "refId": "A"
         },
@@ -408,9 +408,9 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"5chan\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
           "instant": false,
-          "legendFormat": "Replies",
+          "legendFormat": "Comments",
           "range": true,
           "refId": "B"
         }
@@ -431,7 +431,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "Addresses that posted within the last 24 hours, 7 days (current users) and 30 days, summed per board.",
+      "description": "Addresses that posted within the last 24 hours, 7 days (current users) and 30 days, summed per community.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -527,7 +527,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"5chan\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
           "instant": false,
           "legendFormat": "24 hours",
           "range": true,
@@ -539,7 +539,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"5chan\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\"}))",
           "instant": false,
           "legendFormat": "7 days",
           "range": true,
@@ -551,7 +551,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"5chan\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\"}))",
           "instant": false,
           "legendFormat": "30 days",
           "range": true,
@@ -574,7 +574,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "Cumulative threads and replies, plus unique posting addresses summed per board.",
+      "description": "Cumulative posts and comments, plus unique posting addresses summed per community.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -670,9 +670,9 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"5chan\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"seedit\"}))",
           "instant": false,
-          "legendFormat": "Threads",
+          "legendFormat": "Posts",
           "range": true,
           "refId": "A"
         },
@@ -682,9 +682,9 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"5chan\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"seedit\"}))",
           "instant": false,
-          "legendFormat": "Replies",
+          "legendFormat": "Comments",
           "range": true,
           "refId": "B"
         },
@@ -694,7 +694,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_active_user_count{client_id=\"5chan\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_active_user_count{client_id=\"seedit\"}))",
           "instant": false,
           "legendFormat": "Unique addresses",
           "range": true,
@@ -715,7 +715,7 @@
     {
       "collapsed": false,
       "panels": [],
-      "title": "Boards",
+      "title": "Communities",
       "type": "row",
       "id": 10,
       "gridPos": {
@@ -730,7 +730,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "Every board in the official 5chan directories. A board is offline when the monitor cannot fetch it or its latest update is more than 2 hours old. Current users are addresses that posted in the last 7 days. Click a column header to sort; click a board to open it on 5chan.",
+      "description": "Every community in Seedit's default subscriptions. A community is offline when the monitor cannot fetch it or its latest update is more than 2 hours old. Current users are addresses that posted in the last 7 days. Click a column header to sort; click a community to open it on Seedit.",
       "fieldConfig": {
         "defaults": {
           "custom": {
@@ -749,7 +749,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Board"
+              "options": "Community"
             },
             "properties": [
               {
@@ -758,265 +758,45 @@
                   {
                     "type": "value",
                     "options": {
-                      "3dcg-posting.bso": {
+                      "askseedit.bso": {
                         "index": 0,
-                        "text": "/3/ - 3DCG"
+                        "text": "AskSeedit"
                       },
-                      "anime-and-manga.bso": {
+                      "memes-posting.bso": {
                         "index": 1,
-                        "text": "/a/ - Anime & Manga"
+                        "text": "Memes"
                       },
-                      "flash-posting.bso": {
+                      "news-posting.bso": {
                         "index": 2,
-                        "text": "/f/ - Flash"
+                        "text": "News"
                       },
-                      "advice-posting.bso": {
+                      "pics-posting.bso": {
                         "index": 3,
-                        "text": "/adv/ - Advice"
+                        "text": "Pics"
                       },
-                      "animals-and-nature.bso": {
+                      "til-posting.bso": {
                         "index": 4,
-                        "text": "/an/ - Animals & Nature"
+                        "text": "Today I Learned"
                       },
-                      "random-nsfw.bso": {
+                      "interestingasfuck.bso": {
                         "index": 5,
-                        "text": "/b/ - Random"
+                        "text": "Interesting As Fuck"
                       },
-                      "international-nsfw.bso": {
+                      "gaming-posting.bso": {
                         "index": 6,
-                        "text": "/bant/ - International/Random"
+                        "text": "Gaming"
                       },
-                      "bizraelis.bso": {
+                      "videos-posting.bso": {
                         "index": 7,
-                        "text": "/biz/ - Business & Finance"
+                        "text": "Videos"
                       },
-                      "anime-cute.bso": {
+                      "funny-posting.bso": {
                         "index": 8,
-                        "text": "/c/ - Anime/Cute"
+                        "text": "Funny"
                       },
-                      "food-and-cooking.bso": {
+                      "aww-posting.bso": {
                         "index": 9,
-                        "text": "/ck/ - Food & Cooking"
-                      },
-                      "comics-and-cartoons.bso": {
-                        "index": 10,
-                        "text": "/co/ - Comics & Cartoons"
-                      },
-                      "do-it-yourself.bso": {
-                        "index": 11,
-                        "text": "/diy/ - Do It Yourself"
-                      },
-                      "fashion-posting.bso": {
-                        "index": 12,
-                        "text": "/fa/ - Fashion"
-                      },
-                      "fitness-posting.bso": {
-                        "index": 13,
-                        "text": "/fit/ - Fitness"
-                      },
-                      "technology-posting.bso": {
-                        "index": 14,
-                        "text": "/g/ - Technology"
-                      },
-                      "graphic-design.bso": {
-                        "index": 15,
-                        "text": "/gd/ - Graphic Design"
-                      },
-                      "adult-gif.bso": {
-                        "index": 16,
-                        "text": "/gif/ - Adult GIF"
-                      },
-                      "history-posting.bso": {
-                        "index": 17,
-                        "text": "/his/ - History & Humanities"
-                      },
-                      "oekaki-posting.bso": {
-                        "index": 18,
-                        "text": "/i/ - Oekaki"
-                      },
-                      "artwork-critique.bso": {
-                        "index": 19,
-                        "text": "/ic/ - Artwork/Critique"
-                      },
-                      "international-sfw.bso": {
-                        "index": 20,
-                        "text": "/int/ - International"
-                      },
-                      "otaku-culture.bso": {
-                        "index": 21,
-                        "text": "/jp/ - Otaku Culture"
-                      },
-                      "weapons-posting.bso": {
-                        "index": 22,
-                        "text": "/k/ - Weapons"
-                      },
-                      "literature-posting.bso": {
-                        "index": 23,
-                        "text": "/lit/ - Literature"
-                      },
-                      "mecha-posting.bso": {
-                        "index": 24,
-                        "text": "/m/ - Mecha"
-                      },
-                      "pony-posting.bso": {
-                        "index": 25,
-                        "text": "/mlp/ - Pony"
-                      },
-                      "music-posting.bso": {
-                        "index": 26,
-                        "text": "/mu/ - Music"
-                      },
-                      "transportation-posting.bso": {
-                        "index": 27,
-                        "text": "/n/ - Transportation"
-                      },
-                      "current-news.bso": {
-                        "index": 28,
-                        "text": "/news/ - Current News"
-                      },
-                      "auto-posting.bso": {
-                        "index": 29,
-                        "text": "/o/ - Auto"
-                      },
-                      "original-content.bso": {
-                        "index": 30,
-                        "text": "/oc/ - Original Content"
-                      },
-                      "outdoors-posting.bso": {
-                        "index": 31,
-                        "text": "/out/ - Outdoors"
-                      },
-                      "photography-posting.bso": {
-                        "index": 32,
-                        "text": "/p/ - Photography"
-                      },
-                      "papercraft-and-origami.bso": {
-                        "index": 33,
-                        "text": "/po/ - Papercraft & Origami"
-                      },
-                      "nothing-is-beyond-our-reach.bso": {
-                        "index": 34,
-                        "text": "/pol/ - Politically Incorrect"
-                      },
-                      "professional-wrestling.bso": {
-                        "index": 35,
-                        "text": "/pw/ - Professional Wrestling"
-                      },
-                      "5chan-feedback.bso": {
-                        "index": 36,
-                        "text": "/q/ - 5chan Feedback"
-                      },
-                      "quests-posting.bso": {
-                        "index": 37,
-                        "text": "/qst/ - Quests"
-                      },
-                      "adult-requests.bso": {
-                        "index": 38,
-                        "text": "/r/ - Adult Requests"
-                      },
-                      "robot9002.bso": {
-                        "index": 39,
-                        "text": "/r9k/ - ROBOT9002"
-                      },
-                      "shit-5chan-says.bso": {
-                        "index": 40,
-                        "text": "/s5s/ - Shit 5chan Says"
-                      },
-                      "science-and-math.bso": {
-                        "index": 41,
-                        "text": "/sci/ - Science & Math"
-                      },
-                      "cams-and-meetups.bso": {
-                        "index": 42,
-                        "text": "/soc/ - Cams & Meetups"
-                      },
-                      "sports-posting.bso": {
-                        "index": 43,
-                        "text": "/sp/ - Sports"
-                      },
-                      "torrentz.bso": {
-                        "index": 44,
-                        "text": "/t/ - Torrents"
-                      },
-                      "traditional-games.bso": {
-                        "index": 45,
-                        "text": "/tg/ - Traditional Games"
-                      },
-                      "toys-posting.bso": {
-                        "index": 46,
-                        "text": "/toy/ - Toys"
-                      },
-                      "travel-posting.bso": {
-                        "index": 47,
-                        "text": "/trv/ - Travel"
-                      },
-                      "television-and-film.bso": {
-                        "index": 48,
-                        "text": "/tv/ - Television & Film"
-                      },
-                      "videogames-posting.bso": {
-                        "index": 49,
-                        "text": "/v/ - Video Games"
-                      },
-                      "videogame-generals.bso": {
-                        "index": 50,
-                        "text": "/vg/ - Video Game Generals"
-                      },
-                      "very-important-posts.bso": {
-                        "index": 51,
-                        "text": "/vip/ - Very Important Posts"
-                      },
-                      "videogames-multiplayer.bso": {
-                        "index": 52,
-                        "text": "/vm/ - Video Games/Multiplayer"
-                      },
-                      "videogames-mobile.bso": {
-                        "index": 53,
-                        "text": "/vmg/ - Video Games/Mobile"
-                      },
-                      "pokemon-posting.bso": {
-                        "index": 54,
-                        "text": "/vp/ - Pokémon"
-                      },
-                      "retro-games.bso": {
-                        "index": 55,
-                        "text": "/vr/ - Retro Games"
-                      },
-                      "videogames-rpg.bso": {
-                        "index": 56,
-                        "text": "/vrpg/ - Video Games/RPG"
-                      },
-                      "videogames-strategy.bso": {
-                        "index": 57,
-                        "text": "/vst/ - Video Games/Strategy"
-                      },
-                      "virtual-youtubers.bso": {
-                        "index": 58,
-                        "text": "/vt/ - Virtual YouTubers"
-                      },
-                      "anime-wallpapers.bso": {
-                        "index": 59,
-                        "text": "/w/ - Anime/Wallpapers"
-                      },
-                      "wallpapers-general.bso": {
-                        "index": 60,
-                        "text": "/wg/ - Wallpapers/General"
-                      },
-                      "worksafe-gif.bso": {
-                        "index": 61,
-                        "text": "/wsg/ - Worksafe GIF"
-                      },
-                      "worksafe-requests.bso": {
-                        "index": 62,
-                        "text": "/wsr/ - Worksafe Requests"
-                      },
-                      "paranormal-posting.bso": {
-                        "index": 63,
-                        "text": "/x/ - Paranormal"
-                      },
-                      "extreme-sports.bso": {
-                        "index": 64,
-                        "text": "/xs/ - Extreme Sports"
+                        "text": "Aww"
                       }
                     }
                   }
@@ -1027,8 +807,8 @@
                 "value": [
                   {
                     "targetBlank": true,
-                    "title": "Open on 5chan",
-                    "url": "https://5chan.app/#/${__value.raw}"
+                    "title": "Open on Seedit",
+                    "url": "https://seedit.app/#/s/${__value.raw}"
                   }
                 ]
               },
@@ -1103,7 +883,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Threads"
+              "options": "Posts"
             },
             "properties": [
               {
@@ -1115,7 +895,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Replies"
+              "options": "Comments"
             },
             "properties": [
               {
@@ -1184,7 +964,7 @@
         "sortBy": [
           {
             "desc": true,
-            "displayName": "Threads"
+            "displayName": "Posts"
           }
         ]
       },
@@ -1195,7 +975,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "label_replace(((max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_seconds_since_updated_at{client_id=\"5chan\"}) < bool 7200) * max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"})) or (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) * 0), \"community_name\", \"$1\", \"community_address\", \"(.*)\")",
+          "expr": "label_replace(((max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_seconds_since_updated_at{client_id=\"seedit\"}) < bool 7200) * max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"})) or (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) * 0), \"community_name\", \"$1\", \"community_address\", \"(.*)\")",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1208,7 +988,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_seconds_since_updated_at{client_id=\"5chan\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1)",
+          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_seconds_since_updated_at{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1)",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1221,7 +1001,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"5chan\"})",
+          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"seedit\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1234,7 +1014,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"5chan\"})",
+          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"seedit\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1247,7 +1027,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"5chan\"})",
+          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1260,7 +1040,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_active_user_count{client_id=\"5chan\"})",
+          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_active_user_count{client_id=\"seedit\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1273,7 +1053,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_pubsub_pubsub_peer_count{client_id=\"5chan\"})",
+          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_pubsub_pubsub_peer_count{client_id=\"seedit\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1286,7 +1066,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_pubsub_seconds_since_last_community_pubsub_message{client_id=\"5chan\"})",
+          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_pubsub_seconds_since_last_community_pubsub_message{client_id=\"seedit\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1294,7 +1074,7 @@
           "refId": "H"
         }
       ],
-      "title": "Boards",
+      "title": "Communities",
       "transformations": [
         {
           "id": "merge",
@@ -1321,12 +1101,12 @@
               "Value #H": 8
             },
             "renameByName": {
-              "community_name": "Board",
+              "community_name": "Community",
               "community_address": "Address",
               "Value #A": "Status",
               "Value #B": "Last update",
-              "Value #C": "Threads",
-              "Value #D": "Replies",
+              "Value #C": "Posts",
+              "Value #D": "Comments",
               "Value #E": "Current users",
               "Value #F": "Unique addresses",
               "Value #G": "Pubsub peers",
@@ -1338,7 +1118,7 @@
       "type": "table",
       "id": 11,
       "gridPos": {
-        "h": 65,
+        "h": 13,
         "w": 24,
         "x": 0,
         "y": 17
@@ -1352,7 +1132,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "description": "Green while a board is online: fetched successfully with an update less than 2 hours old.",
+          "description": "Green while a community is online: fetched successfully with an update less than 2 hours old.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -1423,39 +1203,39 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "((max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_seconds_since_updated_at{client_id=\"5chan\"}) < bool 7200) * max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"})) or (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) * 0)",
+              "expr": "((max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_seconds_since_updated_at{client_id=\"seedit\"}) < bool 7200) * max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"})) or (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) * 0)",
               "instant": false,
               "legendFormat": "{{community_address}}",
               "range": true,
               "refId": "A"
             }
           ],
-          "title": "Board availability",
+          "title": "Community availability",
           "transformations": [],
           "type": "state-timeline",
           "id": 13,
           "gridPos": {
-            "h": 41,
+            "h": 8,
             "w": 24,
             "x": 0,
-            "y": 83
+            "y": 31
           }
         }
       ],
-      "title": "Board availability history",
+      "title": "Community availability history",
       "type": "row",
       "id": 12,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 82
+        "y": 30
       }
     }
   ],
   "refresh": "1m",
   "schemaVersion": 39,
-  "tags": ["bitsocial", "stats", "5chan"],
+  "tags": ["bitsocial", "stats", "seedit"],
   "templating": {
     "list": []
   },
@@ -1468,8 +1248,8 @@
     "time_options": ["1h", "6h", "24h", "7d", "30d"]
   },
   "timezone": "browser",
-  "title": "5chan Stats",
-  "uid": "bitsocial-5chan",
+  "title": "Seedit Stats",
+  "uid": "bitsocial-seedit",
   "version": 1,
   "weekStart": ""
 }

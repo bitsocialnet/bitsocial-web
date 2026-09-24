@@ -27,7 +27,7 @@
     "build:chain": "tsgo --noEmit --project chain/tsconfig.json && vite build --config chain/vite.config.ts",
     "start:chain": "node scripts/start-chain.mjs",
     "build:stats-monitor": "node scripts/build-stats-monitor.mjs",
-    "build:stats-dashboards": "yarn workspace bitsocial-stats build:dashboards && oxfmt stats/grafana/dashboards/5chan-stats.json stats/grafana/dashboards/bitsocial-stats.json stats/monitor/data/5chan-directories.snapshot.json",
+    "build:stats-dashboards": "yarn workspace bitsocial-stats build:dashboards && oxfmt stats/grafana/dashboards stats/monitor/data",
     "stats:up": "yarn workspace bitsocial-stats run up",
     "stats:down": "yarn workspace bitsocial-stats down",
     "stats:logs": "yarn workspace bitsocial-stats logs",
