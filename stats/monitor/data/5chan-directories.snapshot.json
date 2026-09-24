@@ -2,7 +2,7 @@
   "title": "/all/ - All 5chan Directories",
   "description": "Resolved from the active 5chan directory files and defaults in bitsocialnet/lists.\n\nhttps://github.com/bitsocialnet/lists/tree/master/5chan-directories",
   "createdAt": 1779262179,
-  "updatedAt": 1780129468,
+  "updatedAt": 1789572191,
   "directories": [
     {
       "directoryCode": "3",
@@ -172,8 +172,8 @@
         "Absolutely no advertising, soliciting, or promotion of any kind. You may not discuss projects you have an interest in without making that disclosure. We will remove anything that remotely breaks this rule.",
         "Begging/asking (including tipping) for cryptocurrencies or asking for money/capital is also strictly forbidden."
       ],
-      "name": "business-and-finance.bso",
-      "publicKey": "12D3KooWNMybS8JqELi38ZBX897PrjWbCrGoMKfw3bgoqzC2n1Dh"
+      "name": "bizraelis.bso",
+      "publicKey": "12D3KooWR7nTdKZqZ1twGWMfVsXYDGp1XAKUrnYznKP651jFrizE"
     },
     {
       "directoryCode": "c",
@@ -607,7 +607,7 @@
         "safeForWork": true,
         "hasFlags": false,
         "requirePostLink": false,
-        "requirePostLinkIsMedia": false,
+        "requirePostLinkIsMedia": true,
         "bumpLimit": 300,
         "noSpoilers": false,
         "noSpoilerReplies": false,
@@ -642,6 +642,30 @@
       ],
       "name": "auto-posting.bso",
       "publicKey": "12D3KooWBD4agW9pc73hBNXtXWTpZCukcFvigmkM8Z2MDKR72CCk"
+    },
+    {
+      "directoryCode": "oc",
+      "title": "/oc/ - Original Content",
+      "features": {
+        "pseudonymityMode": "per-reply",
+        "safeForWork": true,
+        "hasFlags": false,
+        "requirePostLink": true,
+        "requirePostLinkIsMedia": true,
+        "bumpLimit": 300,
+        "noSpoilers": true,
+        "noSpoilerReplies": true,
+        "postsPerPage": 15
+      },
+      "rules": [
+        "Threads must be started with original content: something you made or remixed yourself, in any medium (drawings, edits, comics, music, video, writing, exploitables, quests).",
+        "Do not claim authorship of works you did not create. For remixes and edits, say what you started from.",
+        "There is no minimum quality requirement, but high-effort OC is highly encouraged. Lazy edits and reposts dressed up as OC may be removed at moderator discretion.",
+        "Replies may discuss, critique, or build on the thread's content. Requests for free work belong on /wsr/.",
+        "Remember: This is a worksafe board! No adult content."
+      ],
+      "name": "original-content.bso",
+      "publicKey": "12D3KooWSYj8gyc4YVWLsqZ9rM3uixZ6zu5wgz99qHyZT93YLTgL"
     },
     {
       "directoryCode": "out",
@@ -725,8 +749,8 @@
         "You are free to speak your mind, but *do not attack other users.* You may challenge one another, but *keep it civil!*",
         "Posting pornography is not permitted. This is a politics board, not a porn board."
       ],
-      "name": "politically-incorrect.bso",
-      "publicKey": "12D3KooWMVob74DQoTLGZ4B8kWgPwDfbtiWqdJE4DrGtf2rmVw36"
+      "name": "nothing-is-beyond-our-reach.bso",
+      "publicKey": "12D3KooWDpiDmJCGKbXB3RJFfATmRMzmwTkjimBvf8xKZmUx2L1P"
     },
     {
       "directoryCode": "pw",
@@ -745,6 +769,31 @@
       "rules": ["All images and discussion should pertain to professional wrestling."],
       "name": "professional-wrestling.bso",
       "publicKey": "12D3KooWBMHPHSJhwKivg6KhbGScgau8xBBNqVQKZk24NZQo7beU"
+    },
+    {
+      "directoryCode": "q",
+      "title": "/q/ - 5chan Feedback",
+      "features": {
+        "pseudonymityMode": "per-reply",
+        "safeForWork": true,
+        "hasFlags": false,
+        "requirePostLink": false,
+        "requirePostLinkIsMedia": false,
+        "bumpLimit": 300,
+        "noSpoilers": false,
+        "noSpoilerReplies": false,
+        "postsPerPage": 15
+      },
+      "rules": [
+        "This board is for feedback, bug reports, feature requests, board proposals, governance, and other discussion about 5chan itself.",
+        "Keep threads focused on 5chan, Bitsocial, directory listings, board ownership, moderation policy, or site behavior.",
+        "Do not use this board for personal callouts, harassment, or drama about ordinary posters.",
+        "Do not post private information, credentials, node secrets, exploit details, or other security-sensitive material.",
+        "Ban appeals and moderation disputes belong on the relevant board unless they concern directory-wide policy.",
+        "Board proposals should explain the intended audience, rules, and why the board helps 5chan grow."
+      ],
+      "name": "5chan-feedback.bso",
+      "publicKey": "12D3KooWNmuwmBDAgxBNrPRvzvCLYD9U3etN9idguXZLTpRRgqVf"
     },
     {
       "directoryCode": "qst",
@@ -768,6 +817,32 @@
       ],
       "name": "quests-posting.bso",
       "publicKey": "12D3KooWBmh43DUBbqXAeJVxxu9qgWgMqn91UBECgP4aTuxS5uK2"
+    },
+    {
+      "directoryCode": "r",
+      "title": "/r/ - Adult Requests",
+      "features": {
+        "pseudonymityMode": "per-reply",
+        "safeForWork": false,
+        "hasFlags": false,
+        "requirePostLink": true,
+        "requirePostLinkIsMedia": true,
+        "bumpLimit": 300,
+        "noSpoilers": true,
+        "noSpoilerReplies": true,
+        "postsPerPage": 15
+      },
+      "rules": [
+        "This board is for asking for help in finding adult images or videos, their source, or more content of a certain kind.",
+        "This board is for adult photoshop and image-editing requests.",
+        "This board is for adult content recommendations and any other non-work-safe request.",
+        "Once you have posted your request, please check the catalog for requests that you can help others with.",
+        "All threads and images should pertain to adult material. For work-safe requests please use /wsr/ - Worksafe Requests and for help with personal matters please use /adv/ - Advice.",
+        "Do not post or request personal information (\"dox\") or calls to invasion (\"raids\").",
+        "Personal army requests of any form are strictly forbidden."
+      ],
+      "name": "adult-requests.bso",
+      "publicKey": "12D3KooWEETWYzkaYihyE2JyLVvnTqxP9121C7SoxRwp4qGP9Y2z"
     },
     {
       "directoryCode": "r9k",
@@ -896,8 +971,8 @@
         "postsPerPage": 15
       },
       "rules": ["No illegal stuff. Warez is allowed."],
-      "name": "torrents-posting.bso",
-      "publicKey": "12D3KooWFwieYtPDEd3UBK5qG6HFZ3Qu8cDd4B4RcY2HJ9CBkfaZ"
+      "name": "torrentz.bso",
+      "publicKey": "12D3KooWA3nWX92JwSSfCyo1pkQGez8Y8XpbeJrjMoBUyo991KJc"
     },
     {
       "directoryCode": "tg",
