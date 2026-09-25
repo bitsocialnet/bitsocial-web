@@ -23,13 +23,13 @@ The `upstream/` directory keeps the exported plebbit reference dashboards the or
 
 ### Running locally
 
-Boot the full local stack with:
+Start the full local stack with Docker running (on macOS it starts Docker Desktop if needed):
 
 ```bash
-cp stats/.env.example stats/.env
-$EDITOR stats/.env
-yarn stats:up
+yarn start:stats
 ```
+
+It creates `stats/.env` from `stats/.env.example` when missing, starts the containers, waits for Grafana to publish the shared dashboards, and opens `https://stats.bitsocial.localhost` (branch-scoped in worktrees) through Portless. That URL applies the same `/`, `/5chan`, and `/seedit` redirects as the production Caddyfile. Ctrl+C stops the containers; their data stays in the Docker volumes. Set `PORTLESS=0` to skip Portless, or use `yarn stats:up` / `yarn stats:down` to manage the Compose stack directly.
 
 Useful local URLs:
 
