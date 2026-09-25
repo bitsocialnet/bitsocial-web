@@ -288,9 +288,13 @@ const metric = (name, matchers = {}) => {
 
 const whenSuccessful = (durationExpr, successExpr) => `${durationExpr} and (${successExpr} == 1)`;
 
-// Community queries for one client id, or for several when given an array.
-const communityQueries = (clientIds) => {
-  const communityMetric = (name) => metric(name, { client_id: clientIds });
+// Community queries for one client id, or for several when given an array, optionally
+// narrowed to a single community address.
+const communityQueries = (clientIds, communityAddress) => {
+  const matchers = communityAddress
+    ? { client_id: clientIds, community_address: communityAddress }
+    : { client_id: clientIds };
+  const communityMetric = (name) => metric(name, matchers);
   const updateAge = communityMetric("last_community_update_fetch_seconds_since_updated_at");
   const fetchSuccess = communityMetric("last_community_update_fetch_success");
   // The monitor keeps a community's last values after a failed fetch; drop them where staleness misleads.
@@ -1222,6 +1226,71 @@ const buildClientDashboard = (client) => {
     }),
     { w: GRID_WIDTH, h: Math.ceil(communityCount * 0.6) + 2 },
   );
+
+  // One collapsed row per community; Grafana only queries a row's charts once it is expanded.
+  layout.row(`${capitalize(client.community)} details`);
+  for (const community of client.communityList) {
+    const title = community.title || community.address;
+    const single = communityQueries(client.id, community.address);
+    layout.row(title === community.address ? title : `${title} · ${community.address}`, {
+      collapsed: true,
+    });
+    for (const panel of [
+      makeStateTimelinePanel({
+        title: "Availability",
+        description: `Green while this ${client.community} is fetched successfully with an update less than ${COMMUNITY_OFFLINE_AFTER_SECONDS / 3600} hours old.`,
+        queries: [{ expr: single.online, legend: title }],
+        upText: "Online",
+        downText: "Offline",
+      }),
+      makeTimeseriesPanel({
+        title: "Posts (24h)",
+        description: `${client.postLabel} and ${client.replyLabel.toLowerCase()} from the last 24 hours.`,
+        queries: [
+          {
+            expr: `sum(${single.whenFetched(single.stat("day", "post"))})`,
+            legend: client.postLabel,
+          },
+          {
+            expr: `sum(${single.whenFetched(single.stat("day", "reply"))})`,
+            legend: client.replyLabel,
+          },
+        ],
+        stacked: true,
+        fillOpacity: 35,
+        colors: [palette.blue, palette.lightBlue],
+      }),
+      makeTimeseriesPanel({
+        title: "Active users",
+        description:
+          "Addresses that posted within the last 24 hours, 7 days (current users) and 30 days.",
+        queries: [
+          {
+            expr: `sum(${single.whenFetched(single.stat("day", "active_user"))})`,
+            legend: "24 hours",
+          },
+          { expr: single.currentUsers, legend: "7 days" },
+          { expr: `sum(${single.stat("month", "active_user")})`, legend: "30 days" },
+        ],
+        fillOpacity: 0,
+        colors: [palette.lightBlue, palette.blue, palette.deepBlue],
+      }),
+      makeTimeseriesPanel({
+        title: "Pubsub peers",
+        description: `Peers connected to this ${client.community}'s pubsub topic.`,
+        queries: [
+          {
+            expr: single.communityMetric("last_community_pubsub_pubsub_peer_count"),
+            legend: "Pubsub peers",
+          },
+        ],
+        fillOpacity: 0,
+        colors: [palette.cyan],
+      }),
+    ]) {
+      layout.add(panel, { w: GRID_WIDTH / 4, h: 7 });
+    }
+  }
 
   return layout.panels();
 };

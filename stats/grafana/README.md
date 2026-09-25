@@ -5,7 +5,7 @@ This directory contains the Grafana dashboards and provisioning files for `stats
 ### Dashboards
 
 - **Bitsocial Stats** (`bitsocial-stats.json`, served at `/`): network overview with headline numbers across 5chan and Seedit, activity per client, the peer map, Bitsocial service uptime, and the client infrastructure used in pure P2P mode (HTTP routers and Ethereum name-resolution RPCs). Response times and the gateway-mode fallback providers sit in collapsed rows.
-- **5chan Stats** (`5chan-stats.json`, served at `/5chan`) and **Seedit Stats** (`seedit-stats.json`, served at `/seedit`): per-client views with a sortable table of every default community, activity charts, and a collapsed availability history.
+- **5chan Stats** (`5chan-stats.json`, served at `/5chan`) and **Seedit Stats** (`seedit-stats.json`, served at `/seedit`): per-client views with a sortable table of every default community, activity charts, a collapsed availability history, and one collapsed row per community with its own availability, posts, active users, and pubsub peers.
 
 "Total posts" and "Current users" use the 5chan homepage definitions: posts plus replies, and addresses that posted in the last 7 days summed per community. A text panel at the top of each dashboard links the shared views. The peer map draws countries from the GeoJSON bundled with Grafana, so it needs no third-party map tiles or API key.
 
