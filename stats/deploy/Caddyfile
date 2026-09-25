@@ -7,6 +7,9 @@ stats.bitsocial.net {
 	@stats5chan path /5chan
 	redir @stats5chan /public-dashboards/fa6f2225e0ea98e116fb6f85d84e0186 302
 
+	@statsSeedit path /seedit
+	redir @statsSeedit /public-dashboards/c770d7565c18df52dd26461c9191e05d 302
+
 	@statsRoot path /
 	redir @statsRoot /public-dashboards/e9277bcc0c421ddcacd29f591466678c 302
 

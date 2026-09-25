@@ -54,6 +54,7 @@ Portless keeps a stable named local URL. On non-`master` branches, the repo can 
 
 ```bash
 corepack yarn start
+corepack yarn start:stats
 corepack yarn start:android-usb
 corepack yarn start:ios-sim
 corepack yarn llms:generate
