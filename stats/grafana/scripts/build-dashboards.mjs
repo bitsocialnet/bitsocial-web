@@ -404,9 +404,9 @@ const makeRowPanel = ({ title, collapsed }) => ({
 
 const makeTextPanel = ({ content }) => ({
   options: {
-    code: { language: "markdown", showLineNumbers: false, showMiniMap: false },
+    code: { language: "html", showLineNumbers: false, showMiniMap: false },
     content,
-    mode: "markdown",
+    mode: "html",
   },
   title: "",
   transparent: true,
@@ -799,11 +799,15 @@ const makeNavigationPanel = ({ current, intro }) => {
     { key: "overview", label: "Network overview" },
     ...clients.map(({ navKey, navLabel }) => ({ key: navKey, label: navLabel })),
   ]
+    // target="_self" makes Grafana load the page instead of routing in place: in-place routing
+    // between shared dashboards keeps querying the previous dashboard's panels.
     .map(({ key, label }) =>
-      key === current ? `**${label}**` : `[${label}](${sharedDashboardPaths[key]})`,
+      key === current
+        ? `<strong>${label}</strong>`
+        : `<a href="${sharedDashboardPaths[key]}" target="_self">${label}</a>`,
     )
     .join(" &nbsp;·&nbsp; ");
-  return makeTextPanel({ content: `${links}\n\n${intro}` });
+  return makeTextPanel({ content: `<p>${links}</p>\n<p>${intro}</p>` });
 };
 
 const addStatRow = (layout, panels) => {
