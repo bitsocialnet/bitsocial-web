@@ -49,10 +49,10 @@ function FaqNavLink({ onClick }: { onClick?: () => void }) {
 function TopbarLinks({ links, onNavClick }: { links: ExternalLink[]; onNavClick: () => void }) {
   return (
     <div className="topbar-links flex items-center gap-5">
-      <FaqNavLink onClick={onNavClick} />
       {links.map((link) => (
         <NavLink key={link.href} link={link} onClick={onNavClick} />
       ))}
+      <FaqNavLink onClick={onNavClick} />
     </div>
   );
 }
@@ -104,10 +104,10 @@ function NoJsMobileMenu({ links }: { links: ExternalLink[] }) {
 
       <div className="nojs-mobile-panel px-4 py-6">
         <nav className="flex flex-col gap-1">
-          <FaqNavLink />
           {links.map((link) => (
             <NavLink key={link.href} link={link} />
           ))}
+          <FaqNavLink />
         </nav>
 
         <div className="mt-2 flex flex-col gap-3 border-t border-border/30 pt-4">
@@ -299,10 +299,10 @@ export default function Topbar() {
           onExitComplete={() => setIsMenuExpanded(false)}
         >
           <div className="flex flex-col gap-1">
-            <FaqNavLink onClick={handleNavClick} />
             {TOPBAR_LINKS.map((link) => (
               <NavLink key={link.href} link={link} onClick={handleNavClick} />
             ))}
+            <FaqNavLink onClick={handleNavClick} />
           </div>
 
           <div className="mt-2 flex flex-row gap-2 border-t border-border/30 pt-4">
