@@ -39,8 +39,7 @@ export default function Possibilities() {
   return (
     <Section
       id="possibilities"
-      eyebrow="Possibilities"
-      question="What could be built on it."
+      title="What could be built on it."
       supporting="Not a roadmap. There is no order here and no dates, because none of this is scheduled: it is the set of things a social layer with its own money would make possible, proposed in the open. Some of it will get built, some of it will be replaced by better ideas, and some of it will be built by people who have not shown up yet."
     >
       <div className="flywheel">

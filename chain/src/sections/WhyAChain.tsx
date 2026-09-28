@@ -6,8 +6,7 @@ export default function WhyAChain() {
   return (
     <Section
       id="why-a-chain"
-      eyebrow="Why a Chain"
-      question="Bitsocial itself is not on a blockchain."
+      title="Bitsocial itself is not on a blockchain."
       supporting={
         <>
           Posts, profiles, communities and moderation on{" "}

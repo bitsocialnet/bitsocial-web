@@ -1,25 +1,26 @@
 import type { ReactNode } from "react";
+import { getSectionEyebrow, type SectionId } from "@/lib/faq";
 import { useReveal } from "../lib/useReveal";
 
-type SectionProps = {
+type SectionFrameProps = {
   id: string;
   eyebrow: string;
-  question: ReactNode;
+  title: ReactNode;
   supporting: ReactNode;
   children: ReactNode;
   quote?: string;
 };
 
 // The shared section rhythm, mirroring bitsocial.net: an eyebrow label, one big
-// question headline, a supporting line, a bespoke artifact, and a quiet quote.
-export default function Section({
+// headline, a supporting line, a bespoke artifact, and a quiet quote.
+export function SectionFrame({
   id,
   eyebrow,
-  question,
+  title,
   supporting,
   children,
   quote,
-}: SectionProps) {
+}: SectionFrameProps) {
   const { ref, revealed } = useReveal<HTMLElement>();
 
   return (
@@ -34,7 +35,7 @@ export default function Section({
           <a href={`#${id}`}>{eyebrow}</a>
         </p>
         <h2 id={`${id}-title`} className="section-title reveal">
-          {question}
+          {title}
         </h2>
         <p className="section-supporting reveal">{supporting}</p>
         <div className="section-artifact reveal">{children}</div>
@@ -42,4 +43,11 @@ export default function Section({
       </div>
     </section>
   );
+}
+
+type SectionProps = Omit<SectionFrameProps, "id" | "eyebrow"> & { id: SectionId };
+
+/** A page section that answers one FAQ question. Its eyebrow comes from the FAQ list. */
+export default function Section({ id, ...props }: SectionProps) {
+  return <SectionFrame id={id} eyebrow={getSectionEyebrow(id)} {...props} />;
 }

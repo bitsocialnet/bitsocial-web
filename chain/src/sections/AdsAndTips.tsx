@@ -16,8 +16,7 @@ export default function AdsAndTips() {
   return (
     <Section
       id="ads-and-tips"
-      eyebrow="Ads and Tips"
-      question="One idea of what it makes possible."
+      title="One idea of what it makes possible."
       supporting="Nothing here is planned or committed. It is a sketch, included to show the kind of thing that becomes buildable once a social network has its own money: a community auctioning its ad slots on-chain, priced in its own token, with part of every sale destroyed automatically. Only revenue born on-chain can be programmed this way."
     >
       {/* The site's only flow diagram, and the one place the loop is drawn as a

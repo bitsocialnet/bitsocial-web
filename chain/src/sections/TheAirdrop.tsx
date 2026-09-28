@@ -13,8 +13,7 @@ export default function TheAirdrop() {
   return (
     <Section
       id="the-airdrop"
-      eyebrow="The Airdrop"
-      question="Airdropped to whom?"
+      title="Airdropped to whom?"
       supporting="Around 600 people, in January 2022. They registered through a Telegram bot that gave each of them a referral code, and bringing in more people earned a larger allocation. Every recipient was then checked by hand, specifically so that no one could walk away with too much of the supply."
     >
       <div className="flywheel">

@@ -6,8 +6,7 @@ export default function BsoNames() {
   return (
     <Section
       id="bso-names"
-      eyebrow="BSO Names"
-      question="Already using a .bso name? It stays yours."
+      title="Already using a .bso name? It stays yours."
       supporting={
         <>
           Bitsocial apps{" "}

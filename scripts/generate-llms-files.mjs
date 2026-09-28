@@ -15,6 +15,7 @@ const chainPublicDir = path.join(chainRoot, "public");
 const chainIndexPath = path.join(chainRoot, "index.html");
 const chainAppPath = path.join(chainRoot, "src", "App.tsx");
 const chainSectionsIndexPath = path.join(chainRoot, "src", "sections", "index.tsx");
+const chainFaqPath = path.join(chainRoot, "src", "lib", "faq.ts");
 const docsRoot = path.join(repoRoot, "docs");
 const docsStaticDir = path.join(docsRoot, "static");
 const appsDataPath = path.join(repoRoot, "about", "src", "lib", "apps-data.ts");
@@ -491,23 +492,48 @@ async function readChainLandingData() {
     throw new Error("could not parse Chain sections from chain/src/sections/index.tsx");
   }
 
-  const sections = [];
+  // Each section's headline is the answer to one reader question; the question and the eyebrow live
+  // in the FAQ list, which also fixes page order.
+  const faqSource = await readFile(chainFaqPath, "utf8");
+  const faqEntries = [
+    ...faqSource.matchAll(
+      /\{\s*id:\s*"([^"]+)",\s*eyebrow:\s*"([^"]+)",\s*question:\s*"([^"]+)",?\s*\}/gu,
+    ),
+  ].map(([, id, eyebrow, question]) => ({ eyebrow, id, question }));
+  if (faqEntries.length === 0) {
+    throw new Error("could not parse the Chain FAQ list from chain/src/lib/faq.ts");
+  }
+
+  const answersById = new Map();
   for (const filename of sectionFiles) {
     const source = await readFile(path.join(chainRoot, "src", "sections", filename), "utf8");
     const id = extractJsxStringProp(source, "id");
-    const eyebrow = extractJsxStringProp(source, "eyebrow");
-    const question = extractJsxStringProp(source, "question");
+    const title = extractJsxStringProp(source, "title");
     const supporting =
       extractJsxStringProp(source, "supporting") || extractJsxFragmentProp(source, "supporting");
-    if (!id || !eyebrow || !question) {
+    if (!id || !title) {
       throw new Error(`could not parse Chain section metadata from chain/src/sections/${filename}`);
     }
+    answersById.set(id, { supporting, title });
+  }
 
-    sections.push({
-      description: supporting ? `${question} ${supporting}` : question,
+  const sections = faqEntries.map(({ eyebrow, id, question }) => {
+    const answer = answersById.get(id);
+    if (!answer) {
+      throw new Error(`Chain FAQ entry ${id} has no rendered section in chain/src/sections`);
+    }
+    answersById.delete(id);
+
+    return {
+      description: [question, answer.title, answer.supporting].filter(Boolean).join(" "),
       title: eyebrow,
       url: `${chainOrigin}/#${id}`,
-    });
+    };
+  });
+  if (answersById.size > 0) {
+    throw new Error(
+      `Chain sections missing from the FAQ list: ${[...answersById.keys()].join(", ")}`,
+    );
   }
 
   return { description, heroSupporting, heroTitle, sections };

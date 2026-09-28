@@ -24,8 +24,7 @@ export default function WhyAnL2() {
   return (
     <Section
       id="why-an-l2"
-      eyebrow="Why an L2"
-      question="Why not build a new blockchain?"
+      title="Why not build a new blockchain?"
       supporting="Because almost none of it would be needed. Ethereum already provides the security and the developer base; Bitsocial only needs a small set of on-chain functions on top. An appchain does those few things well, and keeps Ethereum underneath."
     >
       <div className="flywheel">

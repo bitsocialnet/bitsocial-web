@@ -11,8 +11,7 @@ export default function CommunityMoney() {
   return (
     <Section
       id="community-money"
-      eyebrow="Community Money"
-      question="One asset under many communities."
+      title="One asset under many communities."
       supporting="Each community would run its own layer — an L3 — with its own token and its own shared pot of money, while paying its fees in BSO. L3s already exist across crypto, but they mostly host the same trading as everything underneath them. On Bitsocial Chain one would arrive with a community already attached, which is the part crypto has never had."
     >
       <div className="stack-tree">

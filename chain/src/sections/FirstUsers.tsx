@@ -40,8 +40,7 @@ export default function FirstUsers() {
   return (
     <Section
       id="first-users"
-      eyebrow="First Users"
-      question="Who would use it first?"
+      title="Who would use it first?"
       supporting="Developers and community operators, before anyone else. Bitsocial's own adoption argument is that monetization is what carries a network past the point where most of them stall, and monetization is the part that does not exist yet."
     >
       <div className="cards">
