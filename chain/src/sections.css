@@ -9,6 +9,12 @@
   scroll-margin-top: 5.5rem;
 }
 
+/* The FAQ index follows the newsletter, which already carries its own vertical
+   padding, so it only needs a short lead-in like bitsocial.net's. */
+.shell .section-faq {
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
 .section-inner {
   display: flex;
   flex-direction: column;

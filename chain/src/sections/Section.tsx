@@ -4,6 +4,7 @@ import { useReveal } from "../lib/useReveal";
 
 type SectionFrameProps = {
   id: string;
+  className?: string;
   eyebrow: string;
   title: ReactNode;
   supporting: ReactNode;
@@ -15,6 +16,7 @@ type SectionFrameProps = {
 // headline, a supporting line, a bespoke artifact, and a quiet quote.
 export function SectionFrame({
   id,
+  className,
   eyebrow,
   title,
   supporting,
@@ -27,7 +29,7 @@ export function SectionFrame({
     <section
       ref={ref}
       id={id}
-      className={`section${revealed ? " is-visible" : ""}`}
+      className={`section${className ? ` ${className}` : ""}${revealed ? " is-visible" : ""}`}
       aria-labelledby={`${id}-title`}
     >
       <div className="section-inner">
@@ -45,7 +47,7 @@ export function SectionFrame({
   );
 }
 
-type SectionProps = Omit<SectionFrameProps, "id" | "eyebrow"> & { id: SectionId };
+type SectionProps = Omit<SectionFrameProps, "id" | "className" | "eyebrow"> & { id: SectionId };
 
 /** A page section that answers one FAQ question. Its eyebrow comes from the FAQ list. */
 export default function Section({ id, ...props }: SectionProps) {

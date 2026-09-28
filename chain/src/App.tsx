@@ -3,6 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import ChainStatusCta from "@/components/chain-status-cta";
 import HeroContractAddress from "@/components/hero-contract-address";
 import BackToTop from "@/components/back-to-top";
+import Faq from "@/components/faq";
 import Footer from "@/components/footer";
 import MailingList from "@/components/mailing-list";
 import Topbar, { TopbarSpacer } from "@/components/topbar";
@@ -65,6 +66,7 @@ export default function App() {
             <Sections />
           </div>
           <MailingList />
+          <Faq />
           <Footer />
         </div>
       </main>
