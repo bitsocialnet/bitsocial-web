@@ -52,7 +52,7 @@ export default function BsoNames() {
 
         <div className="bso-card bso-card-next">
           <span className="bso-card-badge bso-card-badge-next">.bso · Bitsocial Chain</span>
-          <span className="phase-status phase-status-proposed bso-card-status">Proposed</span>
+          <span className="tier-badge tier-badge-proposed bso-card-status">Proposed</span>
           <span className="bso-row-name bso-row-name-next">mycommunity.bso</span>
           <span className="bso-row-record">
             <span className="bso-row-key">owner</span>

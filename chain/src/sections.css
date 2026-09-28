@@ -611,8 +611,101 @@
 }
 
 /* ============================================================
-   Programmable revenue — the closed ring. The site's only flow
-   diagram, and the one place the loop is actually drawn shut.
+   Step grid — #the-airdrop's four-step sequence, and the
+   three-up variant behind #why-an-l2 and #possibilities
+   ============================================================ */
+.flywheel {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.flow-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow-steps-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.flow-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: clamp(1.1rem, 2.6vw, 1.6rem) 0.8rem;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface-raised);
+}
+
+.flow-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  color: var(--signal);
+  background: var(--signal-soft);
+  border-radius: 999px;
+}
+
+.flow-label {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.flow-note {
+  font-size: 0.74rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+
+/* Three-up notes run to full sentences, so they get body-copy size and contrast
+   instead of the four-step caption treatment. */
+.flow-steps-3 .flow-note {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}
+
+.flow-arrow {
+  position: absolute;
+  top: 50%;
+  right: -0.5rem;
+  z-index: 1;
+  color: var(--ink-faint);
+  transform: translate(50%, -50%);
+}
+
+.flow-loop {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  max-width: 46ch;
+  margin: clamp(1.4rem, 3vw, 2rem) auto 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+.flow-loop svg {
+  flex: none;
+  color: var(--signal);
+}
+
+/* ============================================================
+   Programmable revenue — the closed ring, the one place the
+   loop is actually drawn shut.
    ============================================================ */
 .loop {
   max-width: 52rem;
@@ -948,6 +1041,18 @@
     grid-template-columns: 1fr;
   }
 
+  .flow-steps {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .flow-steps-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-arrow {
+    display: none;
+  }
+
   /* Below the ring's usable width the four steps become a plain vertical stack,
      the orbit is dropped, and the hub closes the sequence underneath. */
   .loop-steps {
@@ -998,6 +1103,10 @@
 }
 
 @media (max-width: 460px) {
+  .flow-steps {
+    grid-template-columns: 1fr;
+  }
+
   .spec-locks {
     grid-template-columns: 1fr;
   }
