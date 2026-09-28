@@ -1142,9 +1142,10 @@
    The brevity is the argument, so it is shown, not described.
    ============================================================ */
 
+/* A band of the .spec card like .spec-head and .spec-foot, so it carries the
+   same inset instead of running into the card's edges. */
 .spec-code {
-  margin-top: clamp(1.1rem, 2.6vw, 1.5rem);
-  padding-top: clamp(1.1rem, 2.6vw, 1.5rem);
+  padding: clamp(1.1rem, 2.6vw, 1.5rem) clamp(1.1rem, 3vw, 1.6rem) 0;
   border-top: 1px solid var(--line);
 }
 
