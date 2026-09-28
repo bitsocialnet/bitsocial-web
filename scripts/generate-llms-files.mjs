@@ -503,8 +503,13 @@ async function readChainLandingData() {
       /\{\s*id:\s*"([^"]+)",\s*eyebrow:\s*"([^"]+)",\s*question:\s*"([^"]+)",?\s*\}/gu,
     ),
   ].map(([, id, eyebrow, question]) => ({ eyebrow, id, question }));
-  if (faqEntries.length === 0) {
-    throw new Error("could not parse the Chain FAQ list from chain/src/lib/faq.ts");
+  // Every entry declares an `id:`, so fewer parsed entries than ids means one was written in a shape
+  // the pattern does not accept (for example a single-quoted question), not that it is missing.
+  const declaredFaqIds = faqSource.match(/^\s*id:/gmu)?.length ?? 0;
+  if (faqEntries.length === 0 || faqEntries.length !== declaredFaqIds) {
+    throw new Error(
+      `could not parse every Chain FAQ entry in chain/src/lib/faq.ts (${faqEntries.length} of ${declaredFaqIds}); keep id, eyebrow and question as double-quoted strings in that order`,
+    );
   }
 
   const answersById = new Map();
