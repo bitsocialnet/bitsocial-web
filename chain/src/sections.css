@@ -866,13 +866,12 @@
   border-color: var(--signal);
 }
 
-/* Second pill under the card badge: it drops the roadmap's block-level bottom
-   margin and pulls back most of the card's 0.7rem gap so the pair reads as one
-   stacked label rather than two separate rows. */
-.bso-card-status {
-  align-self: flex-start;
-  margin-top: -0.35rem;
-  margin-bottom: 0;
+/* The proposed card carries two pills on one row, so its name and record lines
+   stay level with the single-pill card beside it. */
+.bso-card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
 .bso-row-name {
