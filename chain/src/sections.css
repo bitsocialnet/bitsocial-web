@@ -170,67 +170,6 @@
 }
 
 /* ============================================================
-   Card grid — the shared three-up grid behind #problem,
-   #who-builds-it and #endgame. Same panel rhythm as `.premise-half`.
-   ============================================================ */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(0.7rem, 2.4vw, 1.4rem);
-  max-width: 58rem;
-  margin: 0 auto;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  padding: clamp(1.1rem, 2.6vw, 1.5rem);
-  text-align: left;
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  background: var(--surface-raised);
-}
-
-.card-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-  width: 2.5rem;
-  height: 2.5rem;
-  color: var(--ink-muted);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--surface);
-}
-
-.card-title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--ink);
-  text-wrap: balance;
-}
-
-.card-body {
-  margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: var(--ink-muted);
-  text-wrap: pretty;
-}
-
-/* The bolded phrase is the card's claim, so it steps up to `--ink` rather than
-   introducing a second accent colour inside the copy. */
-.card-body strong {
-  font-weight: 600;
-  color: var(--ink);
-}
-
-/* ============================================================
    Sound money — the immutable contract spec
    ============================================================ */
 .spec {
@@ -608,6 +547,62 @@
   text-align: center;
   color: var(--ink-muted);
   text-wrap: pretty;
+}
+
+/* ============================================================
+   Privacy — what the chain shows on purpose, beside what it
+   never makes anyone show. One card split by a hairline, so it
+   does not read as a second copy of the #why-a-chain pair.
+   ============================================================ */
+.privacy-split {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  max-width: 40rem;
+  margin: 0 auto;
+  overflow: hidden;
+  text-align: left;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.privacy-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: clamp(1.1rem, 3vw, 1.6rem);
+  background: var(--surface-raised);
+}
+
+.privacy-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.privacy-col-private .privacy-head {
+  color: var(--signal);
+}
+
+.privacy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  list-style: none;
+}
+
+.privacy-col-private .privacy-list {
+  color: var(--ink);
 }
 
 /* ============================================================
@@ -1036,10 +1031,6 @@
    Responsive
    ============================================================ */
 @media (max-width: 720px) {
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
   .flow-steps {
     grid-template-columns: 1fr 1fr;
   }
@@ -1103,6 +1094,10 @@
 
 @media (max-width: 460px) {
   .flow-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .privacy-split {
     grid-template-columns: 1fr;
   }
 

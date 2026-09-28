@@ -6,7 +6,7 @@ export default function Verify() {
   return (
     <Section
       id="verify"
-      title="Which address is the real one?"
+      title="Only one address is BSO."
       supporting="Anyone can create a token and call it BSO, so the contract address is the only thing that tells the real one apart. Match all 42 characters against this site and Bitsocial's official channels before sending anything anywhere."
     >
       <div className="verify">

@@ -16,11 +16,11 @@ export default function AdsAndTips() {
   return (
     <Section
       id="ads-and-tips"
-      title="One idea of what it makes possible."
-      supporting="Nothing here is planned or committed. It is a sketch, included to show the kind of thing that becomes buildable once a social network has its own money: a community auctioning its ad slots on-chain, priced in its own token, with part of every sale destroyed automatically. Only revenue born on-chain can be programmed this way."
+      title="Revenue burns at the point of sale."
+      supporting="One way it could work: a community auctions its ad slots through a contract, advertisers bid in the community's own token, and part of every sale is destroyed on settlement while the rest goes to the community. No sales team, no treasury and no buyback bot, so there is no pot for anyone to capture. Only revenue born on-chain can be programmed like this, and none of it is scheduled."
     >
-      {/* The site's only flow diagram, and the one place the loop is drawn as a
-          ring instead of a straight arrow chain captioned "it compounds". */}
+      {/* The one place the loop is drawn as a ring instead of a straight arrow
+          chain captioned "it compounds". */}
       <div className="loop">
         <div className="loop-ring">
           <ol className="loop-steps">

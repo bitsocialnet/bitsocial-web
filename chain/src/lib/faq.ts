@@ -29,6 +29,16 @@ export const SECTION_FAQ = [
     question: "Who got BSO? Was there a presale?",
   },
   {
+    id: "unstoppable",
+    eyebrow: "Unstoppable",
+    question: "Who runs the chain? Can it be shut down?",
+  },
+  {
+    id: "bso-names",
+    eyebrow: "BSO Names",
+    question: "What happens to my .bso name?",
+  },
+  {
     id: "community-money",
     eyebrow: "Community Money",
     question: "What would communities do with it?",
@@ -39,19 +49,14 @@ export const SECTION_FAQ = [
     question: "How would communities make money?",
   },
   {
-    id: "bso-names",
-    eyebrow: "BSO Names",
-    question: "What happens to my .bso name?",
-  },
-  {
-    id: "first-users",
-    eyebrow: "First Users",
-    question: "Who would use it first?",
+    id: "privacy",
+    eyebrow: "Privacy",
+    question: "Will everyone see who I tip?",
   },
   {
     id: "possibilities",
     eyebrow: "Possibilities",
-    question: "What's planned?",
+    question: "Is it live? What's planned?",
   },
   {
     id: "verify",

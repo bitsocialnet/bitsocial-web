@@ -39,8 +39,8 @@ export default function Possibilities() {
   return (
     <Section
       id="possibilities"
-      title="What could be built on it."
-      supporting="Not a roadmap. There is no order here and no dates, because none of this is scheduled: it is the set of things a social layer with its own money would make possible, proposed in the open. Some of it will get built, some of it will be replaced by better ideas, and some of it will be built by people who have not shown up yet."
+      title="Proposed, in the open."
+      supporting="Not live yet. BSO is live on Ethereum today; Bitsocial Chain is a proposal, and its first proof of concept, native .bso names, runs on a test chain. Nothing below has a date. It is what a social layer with its own money would make possible: some of it will get built, some replaced by better ideas, and some built by people who have not shown up yet."
     >
       <div className="flywheel">
         <ol className="flow-steps flow-steps-3">
