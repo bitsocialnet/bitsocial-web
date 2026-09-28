@@ -24,7 +24,7 @@ export default function SoundMoney() {
     <Section
       id="tokenomics"
       title="Sound money."
-      supporting="BSO is a fixed-supply ERC-20: 210 million, no inflation, deflationary by design. The whole supply was airdropped, with no presale and nothing carved out ahead of the community. Its contract is immutable and adminless, so the rules are fixed forever."
+      supporting="BSO is a fixed-supply ERC-20: 210 million, no inflation, deflationary by design. The whole supply was airdropped to about 600 people in January 2022, with no presale and nothing carved out ahead of the community. Its contract is immutable and adminless, so the rules are fixed forever."
     >
       <div className="spec">
         <div className="spec-head">
