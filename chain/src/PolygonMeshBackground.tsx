@@ -215,12 +215,7 @@ function initMesh(
 
   function syncViewportClip() {
     const rootRect = root.getBoundingClientRect();
-    const topOverscrollGuard =
-      window.scrollY <= 1
-        ? Math.max(h, window.innerHeight, document.documentElement.clientHeight)
-        : 0;
-    const clipTop =
-      topOverscrollGuard > 0 ? topOverscrollGuard : Math.min(h, Math.max(0, rootRect.top));
+    const clipTop = Math.min(h, Math.max(0, rootRect.top));
     const clipBottom = Math.min(h, Math.max(0, h - rootRect.bottom));
     const clipValue = `inset(${clipTop}px 0px ${clipBottom}px 0px)`;
 
@@ -440,44 +435,8 @@ function supportsDynamicMesh() {
 }
 
 function StaticPolygonMeshBackground({ theme }: { theme: Theme }) {
-  const rootRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-
-    let af: number | null = null;
-    const syncClip = () => {
-      af = null;
-      const clipTop =
-        window.scrollY <= 1
-          ? Math.max(root.clientHeight, window.innerHeight, document.documentElement.clientHeight)
-          : 0;
-      const clipValue = `inset(${clipTop}px 0px 0px 0px)`;
-
-      root.style.clipPath = clipValue;
-      root.style.setProperty("-webkit-clip-path", clipValue);
-    };
-    const scheduleSync = () => {
-      if (af != null) return;
-      af = requestAnimationFrame(syncClip);
-    };
-
-    syncClip();
-    window.addEventListener("scroll", scheduleSync, { passive: true });
-    window.addEventListener("resize", scheduleSync);
-
-    return () => {
-      if (af != null) {
-        cancelAnimationFrame(af);
-      }
-      window.removeEventListener("scroll", scheduleSync);
-      window.removeEventListener("resize", scheduleSync);
-    };
-  }, []);
-
   return (
-    <div ref={rootRef} className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+    <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
       <div
         className="h-full w-full bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${STATIC_POLYGON_MESH_FALLBACK_SOURCES[theme]})` }}

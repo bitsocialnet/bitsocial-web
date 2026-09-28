@@ -57,11 +57,9 @@ export default function App() {
               <MissingLayer />
             </div>
           </div>
-          <div className="hero-bottom-fade" aria-hidden="true" />
         </div>
 
         <div className="content-panel">
-          <div className="content-panel-fade" aria-hidden="true" />
           <div className="sections">
             <Sections />
           </div>

@@ -13,62 +13,17 @@
   z-index: 1;
 }
 
-/* ---------- Hero panel (solid surface) ---------- */
+/* ---------- Hero and content panels ----------
+   Both are transparent so the fixed polygon mesh runs behind the hero and the
+   sections as one continuous background. */
 .hero-panel {
   position: relative;
   z-index: 2;
-  background: var(--surface);
 }
 
-.hero-bottom-fade {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: clamp(10rem, 18vw, 16rem);
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    color-mix(in oklab, var(--surface) 30%, transparent) 30%,
-    color-mix(in oklab, var(--surface) 70%, transparent) 60%,
-    var(--surface) 85%,
-    var(--surface) 100%
-  );
-}
-
-/* ---------- Content panel (mesh + sections) ---------- */
 .content-panel {
   position: relative;
   z-index: 1;
-}
-
-.content-panel-fade {
-  position: absolute;
-  inset-inline: 0;
-  top: 0;
-  z-index: 1;
-  height: clamp(8rem, calc(11rem - 2vw), 10rem);
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    var(--surface) 0%,
-    color-mix(in oklab, var(--surface) 90%, transparent) 24%,
-    color-mix(in oklab, var(--surface) 52%, transparent) 58%,
-    color-mix(in oklab, var(--surface) 14%, transparent) 82%,
-    transparent 100%
-  );
-}
-
-.content-panel-fade::before {
-  content: "";
-  position: absolute;
-  inset-inline: clamp(1.5rem, 4vw, 4rem);
-  top: -2.5rem;
-  height: 5rem;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--surface) 85%, transparent);
-  filter: blur(48px);
 }
 
 .content-panel > .sections,
