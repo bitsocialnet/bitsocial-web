@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const siteOrigin = "https://bitsocial.net";
 const chainOrigin = "https://chain.bitsocial.net";
+const chainProofOfConceptRepo = "bitsocialnet/bitsocial-chain";
 const docsOrigin = "https://docs.bitsocial.net";
 const statsOrigin = "https://stats.bitsocial.net";
 const aboutPublicDir = path.join(repoRoot, "about", "public");
@@ -414,27 +415,29 @@ function runGh(args) {
   return result.stdout;
 }
 
+async function readRepoReadme(repo) {
+  log(`fetching README for ${repo}`);
+  const raw =
+    repo === "bitsocialnet/bitsocial-web"
+      ? await readLocalRootReadme()
+      : runGh(["api", `repos/${repo}/readme`, "-H", "Accept: application/vnd.github.raw+json"]);
+  const content = sanitizeReadme(raw, repo);
+
+  return {
+    content,
+    description: extractSummary(content),
+    repo,
+    title: extractFirstHeading(content) || repo,
+    url: `https://github.com/${repo}#readme`,
+  };
+}
+
 async function collectRepoReadmes(apps) {
   const repos = ["bitsocialnet/bitsocial-web", ...new Set(apps.map((app) => app.repo))];
   const readmes = [];
 
   for (const repo of repos) {
-    log(`fetching README for ${repo}`);
-    const raw =
-      repo === "bitsocialnet/bitsocial-web"
-        ? await readLocalRootReadme()
-        : runGh(["api", `repos/${repo}/readme`, "-H", "Accept: application/vnd.github.raw+json"]);
-    const content = sanitizeReadme(raw, repo);
-    const title = extractFirstHeading(content) || repo;
-    const description = extractSummary(content);
-
-    readmes.push({
-      content,
-      description,
-      repo,
-      title,
-      url: `https://github.com/${repo}#readme`,
-    });
+    readmes.push(await readRepoReadme(repo));
   }
 
   return readmes;
@@ -1014,15 +1017,16 @@ ${renderBulletList(chain.sections)}
 
 - [Bitsocial Chain](${docsOrigin}/bitsocial-network/): Phase 2 architecture and economic-layer overview.
 - [BSO Token History](${docsOrigin}/token-history/): Verifiable history of BSO and its immutable Ethereum contract.
+- [Bitsocial Chain proof of concept](https://github.com/${chainProofOfConceptRepo}#readme): Working .bso name registry derived from Ethereum L1 history, with its stated limitations.
 
 ## Optional
 
-- [llms-full.txt](${chainOrigin}/llms-full.txt): Inline Chain-focused context plus the relevant official docs.
+- [llms-full.txt](${chainOrigin}/llms-full.txt): Inline Chain-focused context plus the relevant official docs and the proof-of-concept README.
 - [Main Bitsocial llms.txt](${siteOrigin}/llms.txt): Network-wide routing index for Bitsocial apps, docs, and public surfaces.
 `);
 }
 
-function buildChainLlmsFull(chain, docs) {
+function buildChainLlmsFull(chain, docs, proofOfConceptReadme) {
   const chainDocs = docs.filter((doc) =>
     ["bitsocial-network.md", "token-history.md"].includes(doc.relativePath),
   );
@@ -1032,7 +1036,7 @@ function buildChainLlmsFull(chain, docs) {
 
 > ${chain.description}
 
-This file expands \`${chainOrigin}/llms.txt\` with the Chain landing-page map and the related official Bitsocial Chain and BSO history docs.
+This file expands \`${chainOrigin}/llms.txt\` with the Chain landing-page map, the related official Bitsocial Chain and BSO history docs, and the Bitsocial Chain proof-of-concept README.
 
 Interpret roadmap status literally: the immutable BSO token is live on Ethereum, while Bitsocial Chain and later infrastructure remain proposed unless an official source explicitly marks them live.
 
@@ -1056,6 +1060,12 @@ ${renderBulletList(chainDocs)}
 ## Inline docs corpus
 
 ${renderFullDocsCorpus(chainDocs)}
+
+## Proof of concept README
+
+The first Bitsocial Chain artifact. It describes how the proposed chain derives state from Ethereum and what it does not prove yet.
+
+${renderReadmeCorpus([proofOfConceptReadme])}
 `);
 }
 
@@ -1257,11 +1267,15 @@ async function main() {
     left.sortKey.localeCompare(right.sortKey),
   );
   const readmes = await collectRepoReadmes(apps);
+  const chainProofOfConceptReadme = await readRepoReadme(chainProofOfConceptRepo);
 
   await writeOutput("about/public/llms.txt", buildSiteLlms(docs, landing, apps));
   await writeOutput("about/public/llms-full.txt", buildSiteLlmsFull(docs, readmes, landing, apps));
   await writeOutput("chain/public/llms.txt", buildChainLlms(chain));
-  await writeOutput("chain/public/llms-full.txt", buildChainLlmsFull(chain, docs));
+  await writeOutput(
+    "chain/public/llms-full.txt",
+    buildChainLlmsFull(chain, docs, chainProofOfConceptReadme),
+  );
   await writeOutput("docs/static/llms.txt", buildDocsLlms(docs, landing));
   await writeOutput("docs/static/llms-full.txt", buildDocsLlmsFull(docs, readmes, landing));
 }
