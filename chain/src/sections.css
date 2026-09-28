@@ -151,6 +151,13 @@
   transform: none;
 }
 
+/* The FAQ card is frosted glass, and a backdrop-filter is dropped while an
+   ancestor's opacity is below 1, so it reveals by translation only, as the
+   bitsocial.net FAQ card does. */
+.section-faq .section-artifact.reveal {
+  opacity: 1;
+}
+
 .section.is-visible .section-title {
   transition-delay: 0.06s;
 }
