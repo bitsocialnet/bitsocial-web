@@ -15,7 +15,7 @@ const IDEAS = [
   {
     icon: Boxes,
     label: "Community L3s and tokens",
-    note: "Communities with their own layer, their own token and their own treasury.",
+    note: "Communities with their own layer and their own token, settling in BSO.",
   },
   {
     icon: ArrowLeftRight,
@@ -39,7 +39,7 @@ export default function Possibilities() {
     <Section
       id="possibilities"
       title="Proposed, in the open."
-      supporting="Not live yet. BSO is live on Ethereum today; Bitsocial Chain is a proposal, and its first proof of concept, native .bso names, runs on a test chain. Nothing below has a date. It is what a social layer with its own money would make possible: some of it will get built, some replaced by better ideas, and some built by people who have not shown up yet."
+      supporting="Not live yet. BSO is live on Ethereum today; Bitsocial Chain is a proposal, and its first proof of concept, native .bso names, runs on a local dev chain. Nothing below has a date. It is what a social layer with its own money would make possible: some of it will get built, some replaced by better ideas, and some built by people who have not shown up yet."
     >
       <div className="flywheel">
         <ol className="flow-steps">

@@ -16,7 +16,7 @@ export default function Privacy() {
     <Section
       id="privacy"
       title="Tipping shouldn't dox you."
-      supporting="Bitsocial Chain is public by default, like Ethereum, and .bso names are meant to be seen. Money is different: a tip should never require putting your name, profile or post on-chain beside it, and a fresh wallet should be normal, not suspicious. The chain won't build its own privacy system. It is designed so existing ones can plug in without asking permission: shielded pools, stealth addresses, zero-knowledge proofs."
+      supporting="Bitsocial Chain is public by default, like Ethereum, and .bso names are meant to be seen. Money is different: a tip should never require putting your name, profile or post on-chain beside it, and a fresh wallet should be normal, not suspicious. The chain won't build its own privacy system. It is meant to let existing ones plug in without asking permission: shielded pools, stealth addresses, zero-knowledge proofs."
     >
       <div className="privacy-split">
         <div className="privacy-col">
