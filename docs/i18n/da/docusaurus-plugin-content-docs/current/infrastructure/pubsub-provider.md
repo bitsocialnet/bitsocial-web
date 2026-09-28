@@ -22,7 +22,7 @@ Pubsub Provider er en operatørtjeneste til at køre et Bitsocial-kompatibelt pu
 
 ## Porte
 
-Standardværdierne er valgt, så Pubsub Provider kan køre side om side med [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) på den samme VPS uden konflikt om swarm-porten.
+Standardværdierne er valgt, så Pubsub Provider kan køre side om side med [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) på den samme VPS uden konflikt om swarm-porten.
 
 | Formål               | Standard                     | Noter                                                     |
 | -------------------- | ---------------------------- | --------------------------------------------------------- |

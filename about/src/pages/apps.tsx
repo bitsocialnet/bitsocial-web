@@ -10,30 +10,30 @@ import CategoryFilter from "@/components/category-filter";
 import Footer from "@/components/footer";
 import Topbar from "@/components/topbar";
 import {
-  APPS,
-  CATEGORIES,
-  PLATFORM_ORDER,
+  type AppCategorySlug,
+  appHasCategory,
   appMatchesPlatform,
   appMatchesSearch,
   appMatchesTag,
+  type AppPlatformSlug,
+  APPS,
+  CATEGORIES,
   getAppTagLabel,
   getCategoryDescription,
   getCategoryLabel,
   getPlatformShortLabel,
   parseTagFilter,
+  PLATFORM_ORDER,
   serializeTagFilter,
   tagsMatchFilter,
   toggleTagInList,
-  type AppCategorySlug,
-  type AppPlatformSlug,
 } from "@/lib/apps-data";
 import { SUBMIT_APP_URL } from "@/lib/apps-urls";
 import { useGraphicsMode } from "@/lib/graphics-mode";
 import { useMediaQuery } from "@/lib/use-media-query";
 import { cn } from "@/lib/utils";
 
-/** Cap on simultaneously active tag + category + platform filters. Mobile drops to 2
- *  because three chips don't fit inside the search bar at narrow widths. */
+/** Cap on simultaneously active tag + category + platform filters: three on desktop, two on mobile. */
 const MAX_FILTER_COUNT_DESKTOP = 3;
 const MAX_FILTER_COUNT_MOBILE = 2;
 const MOBILE_QUERY = "(max-width: 639px)";
@@ -117,14 +117,14 @@ export default function Apps() {
     ? searchFilteredApps.filter((app) => appMatchesPlatform(app, activePlatform))
     : searchFilteredApps;
   const appsForPlatformCounts = activeCategory
-    ? searchFilteredApps.filter((app) => app.category === activeCategory)
+    ? searchFilteredApps.filter((app) => appHasCategory(app, activeCategory))
     : searchFilteredApps;
 
   const categorySummaries = CATEGORIES.map((category) => ({
     ...category,
     label: getCategoryLabel(category, t),
     description: getCategoryDescription(category, t),
-    count: appsForCategoryCounts.filter((app) => app.category === category.slug).length,
+    count: appsForCategoryCounts.filter((app) => appHasCategory(app, category.slug)).length,
   })).filter((category) => category.count > 0 || category.slug === activeCategory);
 
   const platformSummaries = PLATFORM_ORDER.map((platform) => ({
@@ -133,7 +133,7 @@ export default function Apps() {
   })).filter((platform) => platform.count > 0 || platform.slug === activePlatform);
 
   const filteredApps = searchFilteredApps
-    .filter((app) => (activeCategory ? app.category === activeCategory : true))
+    .filter((app) => (activeCategory ? appHasCategory(app, activeCategory) : true))
     .filter((app) => (activePlatform ? appMatchesPlatform(app, activePlatform) : true))
     .sort((left, right) => {
       if (left.featured !== right.featured) {
@@ -224,17 +224,17 @@ export default function Apps() {
         </style>
       </noscript>
       <Topbar />
-      <main className="px-4 pb-16 pt-28 sm:px-6">
+      <main className="page-main">
         <div className="mx-auto max-w-7xl">
           <section className="mb-6">
-            <p className="text-xs font-display uppercase tracking-[0.2em] text-foreground/45">
+            <p className="route-eyebrow font-display uppercase tracking-[0.2em] text-foreground/45">
               {t("apps.sectionLabel")}
             </p>
             <div className="mt-4 max-w-2xl">
-              <h1 className="optical-display-start text-4xl font-display font-semibold leading-[1.1] text-balance text-muted-foreground md:text-6xl lg:text-7xl">
+              <h1 className="route-title optical-display-start font-display font-semibold text-balance text-muted-foreground">
                 {t("apps.title")}
               </h1>
-              <p className="mt-3 max-w-2xl text-base md:text-lg text-balance leading-relaxed text-muted-foreground">
+              <p className="route-lede mt-3 text-balance text-muted-foreground">
                 {t("apps.subtitle")}
               </p>
             </div>
@@ -242,129 +242,137 @@ export default function Apps() {
 
           <section className="apps-js-controls glass-card mb-6 p-4 md:p-5">
             <div className="flex flex-col gap-4 xl:flex-row xl:items-center">
-              <div className="flex h-12 flex-1 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
+              <div className="apps-lean-touch flex min-h-12 min-w-0 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)] xl:flex-1">
                 <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                 <input
                   type="search"
                   value={query}
                   onChange={(event) => updateSearchParams({ q: event.target.value || null })}
                   placeholder={t("apps.searchPlaceholder")}
-                  className="apps-search-input min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground/80"
+                  className="apps-search-input min-h-11 min-w-16 flex-1 sm:min-w-24 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground/80"
                   aria-label={t("apps.searchPlaceholder")}
                 />
                 {query ? (
                   <button
                     type="button"
                     onClick={() => updateSearchParams({ q: null })}
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
+                    className="touch-target flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
                     aria-label={t("apps.clearSearch")}
                   >
                     <X className="h-4 w-4" />
                   </button>
                 ) : null}
-                {activeTags.map((tag) => (
-                  <AppTagPill
-                    key={tag}
-                    active
-                    label={getAppTagLabel(tag, t)}
-                    onClick={() => handleTagSelect(tag)}
-                  />
-                ))}
-                {activePlatform ? (
-                  <AppTagPill
-                    active
-                    label={getPlatformShortLabel(activePlatform, t)}
-                    onClick={() => handlePlatformChange(null)}
-                  />
-                ) : null}
-                {activeCategory ? (
-                  <AppTagPill
-                    active
-                    label={
-                      CATEGORIES.find((category) => category.slug === activeCategory)
-                        ? getCategoryLabel(activeCategory, t)
-                        : activeCategory
-                    }
-                    onClick={() => handleCategoryChange(null)}
-                  />
-                ) : null}
                 {isFiltered ? (
-                  <button
-                    type="button"
-                    onClick={clearFilters}
-                    aria-label={t("apps.clearFilters")}
-                    className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/70 px-3 py-1 text-xs font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
-                  >
-                    <X className="h-3.5 w-3.5" />
-                    <span className="hidden sm:inline">{t("apps.clearFilters")}</span>
-                  </button>
+                  <div className="flex min-w-0 max-w-[60%] items-center gap-1.5">
+                    <div className="flex min-w-0 items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [&>*]:shrink-0 [&::-webkit-scrollbar]:hidden">
+                      {activeTags.map((tag) => (
+                        <AppTagPill
+                          key={tag}
+                          active
+                          label={getAppTagLabel(tag, t)}
+                          onClick={() => handleTagSelect(tag)}
+                        />
+                      ))}
+                      {activePlatform ? (
+                        <AppTagPill
+                          active
+                          label={getPlatformShortLabel(activePlatform, t)}
+                          onClick={() => handlePlatformChange(null)}
+                        />
+                      ) : null}
+                      {activeCategory ? (
+                        <AppTagPill
+                          active
+                          label={
+                            CATEGORIES.find((category) => category.slug === activeCategory)
+                              ? getCategoryLabel(activeCategory, t)
+                              : activeCategory
+                          }
+                          onClick={() => handleCategoryChange(null)}
+                        />
+                      ) : null}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={clearFilters}
+                      aria-label={t("apps.clearFilters")}
+                      className="touch-target inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/70 px-3 py-1 text-xs font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
+                    >
+                      <X className="h-3.5 w-3.5" />
+                      <span className="hidden sm:inline">{t("apps.clearFilters")}</span>
+                    </button>
+                  </div>
                 ) : null}
               </div>
 
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                {platformSummaries.map((platform) => {
-                  const Icon = platformIconMap[platform.slug];
-                  const active = activePlatform === platform.slug;
-                  const disabled = isAtFilterCap && !active && !activePlatform;
-                  const baseClass = cn(
-                    "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 sm:gap-2 sm:px-4 sm:py-2 sm:text-sm",
-                    active
-                      ? "border-blue-core/30 text-foreground ring-glow shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55"
-                      : "border-border/70 text-foreground/80 hover:border-blue-glow hover:text-foreground",
-                    disabled &&
-                      "cursor-not-allowed opacity-40 hover:!border-border/70 hover:!text-foreground/80",
-                  );
-                  const inner = (
-                    <>
-                      <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                      <span>{getPlatformShortLabel(platform.slug, t)}</span>
-                      <span
-                        className={cn(
-                          "hidden rounded-full border px-2 py-0.5 text-[11px] sm:inline",
-                          active
-                            ? "border-blue-core/20 text-foreground"
-                            : "border-border/60 text-foreground/65",
-                        )}
-                      >
-                        {platform.count}
-                      </span>
-                    </>
-                  );
+              {/* Below xl the platform pills and Submit App share one line, so the CTA sits at
+                  the right edge instead of taking a row of its own. */}
+              <div className="flex flex-wrap items-center gap-2 xl:contents">
+                <div className="apps-lean-touch flex flex-wrap gap-1.5 md:gap-2">
+                  {platformSummaries.map((platform) => {
+                    const Icon = platformIconMap[platform.slug];
+                    const active = activePlatform === platform.slug;
+                    const disabled = isAtFilterCap && !active && !activePlatform;
+                    const baseClass = cn(
+                      "touch-target inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 md:gap-2 md:px-4 md:py-2 md:text-sm",
+                      active
+                        ? "border-blue-core/30 text-foreground ring-glow shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55"
+                        : "border-border/70 text-foreground/80 hover:border-blue-glow hover:text-foreground",
+                      disabled &&
+                        "cursor-not-allowed opacity-40 hover:!border-border/70 hover:!text-foreground/80",
+                    );
+                    const inner = (
+                      <>
+                        <Icon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                        <span>{getPlatformShortLabel(platform.slug, t)}</span>
+                        <span
+                          className={cn(
+                            "text-micro-fluid hidden rounded-full border px-2 py-0.5 md:inline",
+                            active
+                              ? "border-blue-core/20 text-foreground"
+                              : "border-border/60 text-foreground/65",
+                          )}
+                        >
+                          {platform.count}
+                        </span>
+                      </>
+                    );
 
-                  if (disabled) {
+                    if (disabled) {
+                      return (
+                        <span
+                          key={platform.slug}
+                          className={baseClass}
+                          aria-disabled="true"
+                          title={t("apps.filterLimitReached", {
+                            defaultValue: "Filter limit reached",
+                          })}
+                        >
+                          {inner}
+                        </span>
+                      );
+                    }
+
                     return (
-                      <span
+                      <button
                         key={platform.slug}
+                        type="button"
+                        onClick={() => handlePlatformChange(active ? null : platform.slug)}
                         className={baseClass}
-                        aria-disabled="true"
-                        title={t("apps.filterLimitReached", {
-                          defaultValue: "Filter limit reached",
-                        })}
                       >
                         {inner}
-                      </span>
+                      </button>
                     );
-                  }
+                  })}
+                </div>
 
-                  return (
-                    <button
-                      key={platform.slug}
-                      type="button"
-                      onClick={() => handlePlatformChange(active ? null : platform.slug)}
-                      className={baseClass}
-                    >
-                      {inner}
-                    </button>
-                  );
-                })}
+                <CardInlineCta
+                  href={SUBMIT_APP_URL}
+                  className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} ml-auto hidden !px-5 !py-2.5 text-sm md:inline-flex xl:ml-0 xl:!px-6 xl:!py-3`}
+                >
+                  {t("apps.submitApp")}
+                </CardInlineCta>
               </div>
-
-              <CardInlineCta
-                href={SUBMIT_APP_URL}
-                className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} hidden !px-6 !py-3 text-sm md:inline-flex`}
-              >
-                {t("apps.submitApp")}
-              </CardInlineCta>
             </div>
           </section>
 
@@ -384,111 +392,117 @@ export default function Apps() {
                 {tagParam && tagParam.trim().length > 0 ? (
                   <input type="hidden" name="tag" value={tagParam} />
                 ) : null}
-                <div className="flex h-12 flex-1 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
+                <div className="apps-lean-touch flex min-h-12 min-w-0 items-center gap-1.5 rounded-full border border-border/70 bg-background/70 pl-4 pr-1.5 shadow-[0_12px_28px_rgba(15,23,42,0.05)] xl:flex-1">
                   <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                   <input
                     type="search"
                     name="q"
                     defaultValue={query}
                     placeholder={t("apps.searchPlaceholder")}
-                    className="apps-search-input min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground/80"
+                    className="apps-search-input min-h-11 min-w-16 flex-1 sm:min-w-24 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground/80"
                     aria-label={t("apps.searchPlaceholder")}
                   />
                   {query ? (
                     <a
                       href={buildAppsHref(searchParams, { q: null })}
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
+                      className="touch-target flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
                       aria-label={t("apps.clearSearch")}
                     >
                       <X className="h-4 w-4" />
                     </a>
                   ) : null}
-                  {activeTags.map((tag) => (
-                    <AppTagPill
-                      key={tag}
-                      active
-                      href={buildAppsHref(searchParams, { tag })}
-                      label={getAppTagLabel(tag, t)}
-                    />
-                  ))}
-                  {activePlatform ? (
-                    <AppTagPill
-                      active
-                      href={buildAppsHref(searchParams, { platform: null })}
-                      label={getPlatformShortLabel(activePlatform, t)}
-                    />
-                  ) : null}
-                  {activeCategory ? (
-                    <AppTagPill
-                      active
-                      href={buildAppsHref(searchParams, { category: null })}
-                      label={
-                        CATEGORIES.find((category) => category.slug === activeCategory)
-                          ? getCategoryLabel(activeCategory, t)
-                          : activeCategory
-                      }
-                    />
-                  ) : null}
                   {isFiltered ? (
-                    <a
-                      href={clearFiltersHref}
-                      aria-label={t("apps.clearFilters")}
-                      className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/70 px-3 py-1 text-xs font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
-                    >
-                      <X className="h-3.5 w-3.5" />
-                      <span className="hidden sm:inline">{t("apps.clearFilters")}</span>
-                    </a>
+                    <div className="flex min-w-0 max-w-[60%] items-center gap-1.5">
+                      <div className="flex min-w-0 items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [&>*]:shrink-0 [&::-webkit-scrollbar]:hidden">
+                        {activeTags.map((tag) => (
+                          <AppTagPill
+                            key={tag}
+                            active
+                            href={buildAppsHref(searchParams, { tag })}
+                            label={getAppTagLabel(tag, t)}
+                          />
+                        ))}
+                        {activePlatform ? (
+                          <AppTagPill
+                            active
+                            href={buildAppsHref(searchParams, { platform: null })}
+                            label={getPlatformShortLabel(activePlatform, t)}
+                          />
+                        ) : null}
+                        {activeCategory ? (
+                          <AppTagPill
+                            active
+                            href={buildAppsHref(searchParams, { category: null })}
+                            label={
+                              CATEGORIES.find((category) => category.slug === activeCategory)
+                                ? getCategoryLabel(activeCategory, t)
+                                : activeCategory
+                            }
+                          />
+                        ) : null}
+                      </div>
+                      <a
+                        href={clearFiltersHref}
+                        aria-label={t("apps.clearFilters")}
+                        className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/70 px-3 py-1 text-xs font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
+                      >
+                        <X className="h-3.5 w-3.5" />
+                        <span className="hidden sm:inline">{t("apps.clearFilters")}</span>
+                      </a>
+                    </div>
                   ) : null}
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {platformSummaries.map((platform) => {
-                    const Icon = platformIconMap[platform.slug];
-                    const active = activePlatform === platform.slug;
+                <div className="flex flex-wrap items-center gap-2 xl:contents">
+                  <div className="apps-lean-touch flex flex-wrap gap-1.5 md:gap-2">
+                    {platformSummaries.map((platform) => {
+                      const Icon = platformIconMap[platform.slug];
+                      const active = activePlatform === platform.slug;
 
-                    return (
-                      <a
-                        key={platform.slug}
-                        href={buildAppsHref(searchParams, {
-                          platform: active ? null : platform.slug,
-                        })}
-                        className={cn(
-                          "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 sm:gap-2 sm:px-4 sm:py-2 sm:text-sm",
-                          active
-                            ? "border-blue-core/30 text-foreground ring-glow shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55"
-                            : "border-border/70 text-foreground/80 hover:border-blue-glow hover:text-foreground",
-                        )}
-                      >
-                        <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                        <span>{getPlatformShortLabel(platform.slug, t)}</span>
-                        <span
+                      return (
+                        <a
+                          key={platform.slug}
+                          href={buildAppsHref(searchParams, {
+                            platform: active ? null : platform.slug,
+                          })}
                           className={cn(
-                            "hidden rounded-full border px-2 py-0.5 text-[11px] sm:inline",
+                            "touch-target inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 md:gap-2 md:px-4 md:py-2 md:text-sm",
                             active
-                              ? "border-blue-core/20 text-foreground"
-                              : "border-border/60 text-foreground/65",
+                              ? "border-blue-core/30 text-foreground ring-glow shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55"
+                              : "border-border/70 text-foreground/80 hover:border-blue-glow hover:text-foreground",
                           )}
                         >
-                          {platform.count}
-                        </span>
-                      </a>
-                    );
-                  })}
+                          <Icon className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                          <span>{getPlatformShortLabel(platform.slug, t)}</span>
+                          <span
+                            className={cn(
+                              "text-micro-fluid hidden rounded-full border px-2 py-0.5 md:inline",
+                              active
+                                ? "border-blue-core/20 text-foreground"
+                                : "border-border/60 text-foreground/65",
+                            )}
+                          >
+                            {platform.count}
+                          </span>
+                        </a>
+                      );
+                    })}
+                  </div>
+
+                  <button
+                    type="submit"
+                    className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} ml-auto !px-5 !py-2.5 text-sm xl:ml-0 xl:!px-6 xl:!py-3`}
+                  >
+                    {t("apps.searchPlaceholder")}
+                  </button>
+
+                  <CardInlineCta
+                    href={SUBMIT_APP_URL}
+                    className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} hidden !px-5 !py-2.5 text-sm md:inline-flex xl:!px-6 xl:!py-3`}
+                  >
+                    {t("apps.submitApp")}
+                  </CardInlineCta>
                 </div>
-
-                <button
-                  type="submit"
-                  className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-6 !py-3 text-sm`}
-                >
-                  {t("apps.searchPlaceholder")}
-                </button>
-
-                <CardInlineCta
-                  href={SUBMIT_APP_URL}
-                  className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} hidden !px-6 !py-3 text-sm md:inline-flex`}
-                >
-                  {t("apps.submitApp")}
-                </CardInlineCta>
               </form>
             </section>
           </noscript>
@@ -496,11 +510,11 @@ export default function Apps() {
           <AppsDevsCta />
           <AppsGithubTopicCta />
 
-          <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
+          <div className="grid gap-6 lg:grid-cols-[16rem_minmax(0,1fr)]">
             <div className="apps-js-sidebar">
               {/* Mobile: collapsed under a disclosure to save vertical space. */}
               <details className="apps-mobile-categories group glass-card overflow-hidden lg:hidden">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-xs font-display font-semibold uppercase tracking-[0.2em] text-foreground/55 [&::-webkit-details-marker]:hidden">
+                <summary className="touch-target flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-xs font-display font-semibold uppercase tracking-[0.2em] text-foreground/55 [&::-webkit-details-marker]:hidden">
                   <span className="flex items-center gap-2">
                     <LayoutGrid className="h-3.5 w-3.5" aria-hidden="true" />
                     <span>{t("apps.directoryLabel")}</span>
@@ -541,7 +555,7 @@ export default function Apps() {
 
             <noscript>
               <details className="apps-mobile-categories group glass-card overflow-hidden lg:hidden">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-xs font-display font-semibold uppercase tracking-[0.2em] text-foreground/55 [&::-webkit-details-marker]:hidden">
+                <summary className="touch-target flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-xs font-display font-semibold uppercase tracking-[0.2em] text-foreground/55 [&::-webkit-details-marker]:hidden">
                   <span className="flex items-center gap-2">
                     <LayoutGrid className="h-3.5 w-3.5" aria-hidden="true" />
                     <span>{t("apps.directoryLabel")}</span>
@@ -641,7 +655,7 @@ export default function Apps() {
                         activeTags={activeTags}
                         app={app}
                         buildAppsHref={buildCardFilterHref}
-                        detailHref={`/apps/${app.slug}`}
+                        detailHref={`/projects/${app.slug}`}
                         isAtFilterCap={isAtFilterCap}
                         preferredPlatform={activePlatform}
                       />

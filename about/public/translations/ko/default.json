@@ -20,7 +20,9 @@
     "theme": "테마",
     "newsletter": "뉴스레터",
     "backToTop": "맨 위로",
-    "chain": "Chain"
+    "goToBottom": "맨 아래로",
+    "backToPrevious": "이전 위치로 돌아가기",
+    "faq": "자주 묻는 질문"
   },
   "footer": {
     "tagline": "소셜 앱을 위한 오픈소스 P2P 네트워크",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "핵심 기능",
-    "title": "Bitsocial은 무엇입니까?",
+    "title": "누구도 소유하지 않는 소셜 레이어.",
     "supporting": "지속적으로 확장되는 소셜 미디어 앱 생태계, 모두 동일한 기저 분산형 소셜 네트워크를 사용합니다 — 어떤 회사도 소유하지 않으며, 누구도 당신에게서 빼앗을 수 없는 네트워크입니다.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "행동 촉구",
+    "title": "만드는 사람들에게.",
     "logoAlt": "로고",
     "easterEggAlt": "스폰지밥",
     "epilogue": "최종 상태는 하나의 앱이 아닙니다. 플랫폼 소유권을 프로토콜 경쟁으로 대체할 수 있는 클라이언트, 노드, 서비스, 커뮤니티의 시장입니다.",
@@ -449,7 +451,7 @@
     "subtitle": "Bitsocial은 누구나 만들 수 있는 수천 개의 앱, 도구, 서비스로 성장하도록 설계되었습니다. 문지기의 승인을 받은 것만을 위한 곳이 아닙니다. 개발자라면, 직접 만든 앱을 제출해 보세요.",
     "experimental": "실험적",
     "sectionLabel": "프로젝트 디렉터리",
-    "directoryLabel": "프로젝트 디렉터리",
+    "directoryLabel": "프로젝트 카테고리",
     "notFoundDescription": "찾고 있는 앱은 디렉터리에 없습니다.",
     "emptyCategoryDescription": "이 카테고리에는 아직 앱이 없습니다. 첫 번째 앱을 만들어 보세요!",
     "emptyCategory": "곧 공개",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "검증",
         "ai": "AI",
-        "antiRepost": "재게시 방지"
+        "antiRepost": "재게시 방지",
+        "referenceClient": "레퍼런스 클라이언트",
+        "search": "검색"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -539,7 +543,8 @@
         "openWebApp": "웹 앱 열기",
         "openWebsite": "웹사이트 열기",
         "windows": "Windows",
-        "windowsPortable": "Windows 휴대용 버전"
+        "windowsPortable": "Windows 휴대용 버전",
+        "openTelegramBot": "Telegram 봇 열기"
       },
       "items": {
         "5chan": {
@@ -550,13 +555,9 @@
           "tagline": "web, APK, desktop build를 갖춘 forum 스타일 Bitsocial client.",
           "description": "Seedit는 Reddit 스타일의 토론을 Bitsocial로 가져오며 threads, identities, community management, 여러 distribution path를 제공합니다. browser, Android phone, desktop app에서 network의 forum 측면을 가장 빠르게 시험해 볼 수 있는 방법입니다."
         },
-        "mintpass": {
-          "tagline": "더 강한 anti-spam gate가 필요한 community를 위한 NFT 기반 access control.",
-          "description": "Mintpass는 Bitsocial community를 위한 유연한 authentication layer입니다. moderator가 NFT ownership, verification flow, custom challenge module을 섞어 쓸 수 있게 해 주며, 모두를 central login system으로 몰아넣지 않습니다."
-        },
         "spam-blocker": {
           "tagline": "악성 publication을 걸러내는 centralized risk scoring layer.",
-          "description": "Spam Blocker는 publication을 평가해 risk score를 반환하고, community는 이를 자체 moderation logic과 결합할 수 있습니다. 더 custom한 anti-spam rule을 만들기 전에 실용적인 추가 계층이 필요할 때 유용합니다."
+          "description": "Spam Blocker는 게시물을 평가하고 커뮤니티가 자체 조정 논리와 결합할 수 있는 위험 점수를 반환합니다. 호스팅되는 서비스는 동일한 IP에서 처음 발견된 서명자 키를 연결하므로, 커뮤니티 금지를 피하거나 대화를 만들기 위해 계속해서 새 계정을 생성하는 사용자는 위험 점수가 상승하는 것을 보는 반면, 일부 서명자는 정당한 다중 장치 사용을 위해 계속 허용됩니다."
         },
         "captcha-canvas-challenge": {
           "tagline": "사람 확인이 필요한 community를 위한 custom image captcha.",
@@ -597,6 +598,34 @@
         "r9k-challenge": {
           "tagline": "반복 게시를 막는 게시 경험을 원하는 커뮤니티를 위한 Robot9000 스타일 독창성 게이트.",
           "description": "R9K Challenge는 Bitsocial 커뮤니티 노드에서 실행되며 정규화된 게시글 텍스트를 소유자 노드의 로컬 댓글 데이터베이스와 비교합니다. 커뮤니티에 <robot9000>Robot9000</robot9000> 스타일 게시 경험을 제공합니다. 정확히 같은 재게시글은 승인 전에 실패하고, 백링크는 무시되며, 반복 실패는 단계적으로 길어지는 임시 차단을 유발하고, 승인된 텍스트 해시는 원문 게시글 텍스트를 저장하는 대신 비공개 로컬 상태에 남습니다. 이 챌린지는 AI를 사용하지 않습니다."
+        },
+        "wordfilter-challenge": {
+          "tagline": "커뮤니티의 단어 필터를 표시 필터가 아니라 게시 규칙으로 적용합니다.",
+          "description": "Wordfilter Challenge는 커뮤니티의 단어 치환을 구속력 있는 규칙으로 만듭니다. 게시 클라이언트가 서명 전에 치환을 적용하므로 서명된 댓글과 그 CID에는 이미 치환된 텍스트가 담기며, 커뮤니티 노드는 필터 대상 단어가 남아 있는 게시물을 모두 거부합니다. <code>wordfilter/v1</code> 계약을 구현하므로 해당 계약에 맞춰 작성된 클라이언트는 다른 구현에서도 계속 동작합니다."
+        },
+        "challenge-composer": {
+          "tagline": "커뮤니티의 스팸 방지 챌린지 설정을 위한 오프라인 우선 편집기입니다.",
+          "description": "Challenge Composer는 Bitsocial 커뮤니티 설정의 <code>challenges</code> 배열을 보여 주고 편집한 뒤, 바로 실행할 수 있는 CLI 스크립트로 내보냅니다. 자체 완결형 HTML 파일 하나로 배포되며 실행 중에 외부로 요청을 보내지 않으므로, 디스크나 USB 메모리에서 곧바로 열 수 있습니다."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Bitsocial 게시물의 공유 카드를 생성하는 링크 미리보기 및 리디렉션 서버.",
+          "description": "Bitsocial Previewer는 다른 플랫폼에 게시물 링크가 공유될 때 OpenGraph와 Twitter 카드를 생성하고, 실제 브라우저는 앱으로 리디렉션합니다. 인스턴스 하나가 호스트 이름 단위로 멀티테넌트로 동작하므로 한 번의 배포와 TLS 설정만으로 모든 클라이언트 및 미러 도메인을 처리할 수 있습니다."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Bitsocial 커뮤니티를 위한 자체 호스팅 가능한 크롤러, 검색 색인, 웹 UI입니다.",
+          "description": "Bitsocial Indexer는 RPC로 Bitsocial CLI 데몬에 연결해, 운영자가 설정한 커뮤니티를 로컬 SQLite 데이터베이스에 색인하고 REST 및 전문 검색 API로 제공합니다. 서버에서 렌더링하는 웹 UI도 선택적으로 함께 쓸 수 있습니다. 처음에는 비어 있는 상태로 배포되며, 무엇을 색인할지는 운영자가 정합니다."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Bitsocial 저장소의 GitHub 활동을 간결하게 전달하는 Telegram 봇.",
+          "description": "Bitsocial GitHub Alerts는 GitHub의 푸시, 릴리스, 이슈, 풀 리퀘스트를 Telegram의 채팅, 그룹, 포럼 주제 어디로든 전달합니다. Bitsocial 팀은 자체 저장소를 위해 이를 운영하며, 컨테이너 이미지가 공개되어 있어 누구나 자신의 저장소용으로 직접 호스팅할 수 있습니다."
+        },
+        "bitbones": {
+          "tagline": "모든 화면이 단일 훅을 감싼 얇은 래퍼일 뿐인 최소한의 레퍼런스 클라이언트.",
+          "description": "bitbones는 Bitsocial의 React 훅 위에 놓인 가장 작은 실용적 표면입니다. 스타일은 거의 없고 제품적 판단도 넣지 않았으며, 모든 화면 뒤에는 훅 하나만 있습니다. 버그를 재현하거나 훅 변경 사항을 실제 커뮤니티에 대고 시험해 보기에 가장 빠른 곳이며, 기본 피드는 Seedit과 5chan의 커뮤니티 목록 사이에서 전환할 수 있습니다."
+        },
+        "huggingsocial": {
+          "tagline": "오픈 AI 모델을 찾고, 토론하고, 다운로드할 수 있는 피어투피어 허브.",
+          "description": "HuggingSocial은 어떤 회사도 소유하지 않는 모델 허브입니다. 허브는 암호화 키로 제어되는 Bitsocial 커뮤니티이며, 각 모델 목록은 모델 카드, 체크섬 및 다운로드 소스가 있는 서명된 게시물이고, 가중치는 BitTorrent 또는 일반 HTTP 미러를 통해 이동하며 머신에서 검증됩니다. 클라이언트는 설계 및 초기 개발 중이며, 웹사이트는 대기 목록 가입을 허용합니다."
         }
       }
     },
@@ -706,7 +735,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "텍스트 전용 프로토콜",
     "title": "자유에도 모더레이션이 있습니다.",
-    "supporting": "전체를 관리하는 관리자도, 압류할 서버도 없기 때문에 누구도 네트워크 전체에서 당신을 차단할 수 없습니다. 모더레이션이 당신에게 더 가까이 옮겨질 뿐입니다.",
+    "supporting": "이 프로토콜은 텍스트만 전달하며, 숨겨진 네트워크도 아닙니다. 전체를 관리하는 관리자도, 압수할 서버도 없기 때문에 누구도 네트워크 전체에서 당신을 차단할 수 없습니다. 모더레이션이 그저 당신 가까이로 옮겨올 뿐입니다.",
     "carouselLabel": "흔한 우려에 답합니다",
     "communities": {
       "myth": "차단이 없다는 건 무법천지라는 뜻이다.",
@@ -731,7 +760,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "채택 가설",
-    "title": "대체 누가 이걸 쓰겠어요?",
+    "title": "빌리지 말고, 소유하세요.",
     "supporting": "검열할 수 없고, 절대 다운되지 않으며, 벌어들인 것은 전부 가져갈 수 있습니다. 누가 왜 나타나는지 보세요 — 그리고 이유도요.",
     "diagramLabel": "각 사용자 집단이 Bitsocial을 채택하는 이유를 보여주는 도입 곡선.",
     "curve": {
@@ -789,7 +818,51 @@
     "docsCta": "브라우저에서 P2P 작동 방식",
     "liveCta": "블로그에서 보기",
     "sectionLabel": "브라우저 P2P",
-    "supporting": "일반 탭에서 Bitsocial 웹 앱을 열면 네트워크에 자동으로 참여하여 다른 피어로부터 게시물을 가져오고 자신의 게시물을 게시합니다. 다른 모든 분산형 소셜 네트워크는 여전히 중간에 서버를 유지합니다.",
-    "title": "당신의 브라우저는 피어입니다"
+    "supporting": "평범한 탭에서 Bitsocial 웹 앱을 열면 그 탭이 곧바로 네트워크에 참여해 다른 피어에게서 게시물을 받아오고 여러분의 게시물을 퍼뜨립니다. 바로 이 부분이 가장 어려운 지점이며, 다른 탈중앙 소셜 네트워크가 여전히 중간에 서버를 두는 이유이기도 합니다.",
+    "title": "브라우저가 곧 돌파구입니다."
+  },
+  "faq": {
+    "sectionLabel": "자주 묻는 질문",
+    "title": "자주 묻는 질문",
+    "supporting": "이 사이트의 각 섹션이 질문 하나에 답합니다. 질문을 클릭해 해당 섹션으로 이동하세요.",
+    "navLabel": "이 페이지에서 답변하는 질문",
+    "answeredIn": "답변 섹션",
+    "items": {
+      "problem": {
+        "question": "Bitsocial은 어떤 문제를 해결하나요?"
+      },
+      "core-features": {
+        "question": "Bitsocial이란 무엇인가요? 어떻게 작동하나요?"
+      },
+      "browser-peer": {
+        "question": "왜 아직 아무도 만들지 않았을까요?"
+      },
+      "decentralized": {
+        "question": "이미 분산형 소셜 네트워크가 있지 않나요?"
+      },
+      "arbitrary-challenges": {
+        "question": "서버가 없는데, 무엇이 스팸을 막나요?"
+      },
+      "text-only-protocol": {
+        "question": "불법 콘텐츠는 어떻게 되나요?"
+      },
+      "adoption-thesis": {
+        "question": "사람들이 왜 Bitsocial로 갈아탈까요?"
+      },
+      "master-plan": {
+        "question": "앞으로의 계획은 무엇인가요? 제가 어떻게 도울 수 있나요?"
+      },
+      "about": {
+        "question": "Bitsocial은 누가 만드나요? 자금은 어떻게 조달했나요?"
+      },
+      "mailing-list": {
+        "question": "최신 소식을 어떻게 받을 수 있나요?"
+      }
+    },
+    "ask": {
+      "label": "무엇이든 더 물어보세요",
+      "placeholder": "무엇이든 더 물어보세요…",
+      "action": "ChatGPT에 질문하기"
+    }
   }
 }

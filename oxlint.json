@@ -5,5 +5,13 @@
     "react/rules-of-hooks": "error",
     "react/exhaustive-deps": "warn"
   },
-  "ignorePatterns": ["node_modules/**", "build/**", "dist/**", ".vite/**", "public/**"]
+  "ignorePatterns": [
+    "node_modules/**",
+    "build/**",
+    "dist/**",
+    ".vite/**",
+    "public/**",
+    ".agents/skills/**",
+    ".claude/skills/**"
+  ]
 }

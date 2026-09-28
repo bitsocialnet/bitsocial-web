@@ -128,18 +128,18 @@ export default function Privacy() {
   return (
     <div className="min-h-screen">
       <Topbar />
-      <main className="px-6 pb-16 pt-28 md:pb-20 md:pt-32">
+      <main className="page-main">
         <div className="mx-auto max-w-4xl">
           <div className="mb-8">
-            <p className="mb-3 text-xs font-display uppercase tracking-[0.2em] text-muted-foreground/65">
+            <p className="route-eyebrow mb-3 font-display uppercase tracking-[0.2em] text-muted-foreground/65">
               {privacy.eyebrow}
             </p>
-            <h1 className="optical-display-start max-w-3xl text-4xl font-display font-normal text-balance text-muted-foreground dark:text-foreground/90 md:text-5xl">
+            <h1 className="route-title optical-display-start max-w-3xl font-display font-normal text-balance text-muted-foreground dark:text-foreground/90">
               {privacy.title}
             </h1>
           </div>
 
-          <div className="glass-card space-y-8 p-6 md:p-10">
+          <div className="glass-card surface-pad space-y-8">
             {sections.map((section) => (
               <section key={section.title} className="space-y-3">
                 <h2 className="text-xl font-display font-semibold text-foreground/90 md:text-2xl">

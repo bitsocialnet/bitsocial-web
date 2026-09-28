@@ -22,7 +22,7 @@ Pubsub Provider je služba pro provozovatele, která spouští záložní pubsub
 
 ## Porty
 
-Výchozí hodnoty jsou zvolené tak, aby Pubsub Provider mohl běžet na stejném VPS vedle [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) bez konfliktu na swarm portu.
+Výchozí hodnoty jsou zvolené tak, aby Pubsub Provider mohl běžet na stejném VPS vedle [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) bez konfliktu na swarm portu.
 
 | Účel               | Výchozí                           | Poznámky                                                 |
 | ------------------ | --------------------------------- | -------------------------------------------------------- |

@@ -9,25 +9,46 @@ Use `https://bitsocial.net/` for the public product overview and `https://docs.b
 - [Home](https://bitsocial.net/): High-level explanation of Bitsocial and why it is built around peer-to-peer social apps instead of a centralized platform.
 - [Projects](https://bitsocial.net/projects): Directory of Bitsocial clients, anti-spam modules, and operator tools.
 - [Privacy](https://bitsocial.net/privacy): Privacy notice for the about site, docs, analytics, and newsletter flows.
+- [Bitsocial Chain](https://chain.bitsocial.net/): BSO token and proposed Ethereum L2 appchain landing page.
 
 ## Landing page highlights
 
 - [Home](https://bitsocial.net/): Bitsocial is an open-source peer-to-peer network for social apps, with no servers, no global bans, where users and communities are cryptographic property.
-- [Core features](https://bitsocial.net/): Bitsocial is open source, peer-to-peer via IPFS/libp2p, app-oriented, serverless by default, locally moderated with no protocol-level global bans, and built around key-controlled identities and communities.
+- [The problem](https://bitsocial.net/#problem): It's not a conspiracy, it's an architecture. Every mainstream social platform is a private database on private servers, and livelihoods, businesses, and communities now live on it, so decisions made inside a handful of companies reach directly into the physical world. That design has three consequences, no matter who runs it.
+- [Core features](https://bitsocial.net/#core-features): Bitsocial is open source, peer-to-peer via IPFS/libp2p, app-oriented, serverless by default, locally moderated with no protocol-level global bans, and built around key-controlled identities and communities.
+- [Browser P2P](https://bitsocial.net/#browser-peer): Open a Bitsocial web app in a normal tab and it joins the network itself, fetching posts from other peers and publishing your own. That's the hard part — and why every other decentralized social network still keeps a server in the middle.
 - [Sanctuary comparison](https://bitsocial.net/#decentralized): Compares Server-based (Bluesky, Mastodon, Lemmy); Blockchain-based (Farcaster, Lens, DeSo, Steemit); Bitsocial (Pure P2P with arbitrary anti-spam challenges) across self-hosting cost, who keeps content online, scaling, custom anti-spam logic, and takedown choke points.
-- [Deep comparison tables](https://bitsocial.net/#nostr-comparison): Sourced modal tables compare Bitsocial with Nostr, Bluesky, ActivityPub / Fediverse, Farcaster, Lens, DeSo, Steemit across Spam replies, Community rules, Scaling costs, Data hosting, Censorship points, Who accepts posts?, First post, Human names, Finding content.
+- [Deep comparison tables](https://bitsocial.net/#nostr-comparison): Sourced modal tables compare Bitsocial with Nostr, Bluesky, ActivityPub / Fediverse, Farcaster, Lens, DeSo, Steemit across Spam replies, Community rules, Scaling costs, Data hosting, Censorship points, Who accepts posts?, First post, What your browser is, Human names, Finding content.
 - [Arbitrary Challenges](https://bitsocial.net/#arbitrary-challenges): Each node runs its own anti-spam challenge, exchanged purely peer-to-peer with the user. When spam evolves, nodes adapt without changing the protocol. Example modules include any code, AI-powered moderation, SMS OTP, whatever comes next.
-- [Text-only Protocol](https://bitsocial.net/#text-only-protocol): There's no global admin and no server to seize, so nobody can ban you from the whole network. Moderation just moves closer to you.
+- [Text-only Protocol](https://bitsocial.net/#text-only-protocol): The protocol carries only text, and it's not a hidden network. There's no global admin and no server to seize, so nobody can ban you from the whole network. Moderation just moves closer to you.
+- [Adoption thesis](https://bitsocial.net/#adoption-thesis): It can't be censored, it never goes down, and you keep everything you earn. Here's who shows up — and why.
 - [Master Plan](https://bitsocial.net/#master-plan): Bitsocial wins by attracting as many builders as possible. Run your own unstoppable community, develop your own decentralized social app, or even launch your own business on top of Bitsocial. The tide rises with every builder.
+- [Newsletter](https://bitsocial.net/#mailing-list): Get notified about protocol milestones, new Bitsocial apps, and ecosystem updates. Low frequency, high signal.
+- [FAQ](https://bitsocial.net/#faq): Every section of this site answers one. Click a question to jump to it.
 
 ## Apps and tools
 
-- [5chan](https://bitsocial.net/apps/5chan): Decentralized imageboard client with web, Android, and desktop distribution.
-- [Seedit](https://bitsocial.net/apps/seedit): Forum-style client for Bitsocial with browser, Android, and desktop access.
-- [Mintpass](https://bitsocial.net/apps/mintpass): NFT-backed access control and anti-spam gateway for Bitsocial communities.
-- [Spam Blocker](https://bitsocial.net/apps/spam-blocker): Risk-scoring service for filtering abusive publications.
-- [Bitsocial CLI](https://bitsocial.net/apps/bitsocial-cli): Command-line interface for nodes, publishing, and automation workflows.
-- [Telegram Bots](https://bitsocial.net/apps/telegram-bots): Feed bots that relay Bitsocial posts into Telegram channels.
+- [5chan](https://bitsocial.net/projects/5chan): Decentralized imageboards with direct web, APK, and desktop downloads.
+- [Seedit](https://bitsocial.net/projects/seedit): Forum-style Bitsocial client with web, APK, and desktop builds.
+- [bitbones](https://bitsocial.net/projects/bitbones): Bare-bones reference client where every view is a thin wrapper over one hook.
+- [HuggingSocial](https://bitsocial.net/projects/huggingsocial): Peer-to-peer hub for finding, discussing, and downloading open AI models.
+- [AI Moderation Challenge](https://bitsocial.net/projects/ai-moderation-challenge): OpenAI-compatible moderation checks against each community's rules.
+- [Spam Blocker](https://bitsocial.net/projects/spam-blocker): Centralized risk scoring layer for filtering abusive publications.
+- [R9K Challenge](https://bitsocial.net/projects/r9k-challenge): Robot9000-style originality gate for communities that want anti-repost posting UX.
+- [Wordfilter Challenge](https://bitsocial.net/projects/wordfilter-challenge): Community wordfilters enforced as a posting rule instead of a display filter.
+- [Captcha Canvas Challenge](https://bitsocial.net/projects/captcha-canvas-challenge): Custom image captchas for communities that want human verification.
+- [Voucher Challenge](https://bitsocial.net/projects/voucher-challenge): Invite-style voucher codes for communities that prefer controlled growth.
+- [EVM Contract Call](https://bitsocial.net/projects/evm-contract-call): On-chain gating for communities that want token or contract checks.
+- [Flags Challenge](https://bitsocial.net/projects/flags-challenge): Verified flag issuer challenge for country and board-specific flair.
+- [Bitsocial CLI](https://bitsocial.net/projects/bitsocial-cli): Command-line control for nodes, communities, and automation workflows.
+- [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder): Public seeder for Bitsocial communities, packaged for Docker and npm.
+- [Pubsub Provider](https://bitsocial.net/projects/pubsub-provider): Fallback pubsub relay and routing provider for Bitsocial operators.
+- [Bitsocial Indexer](https://bitsocial.net/projects/bitsocial-indexer): Self-hostable crawler, search index, and web UI for Bitsocial communities.
+- [Bitsocial Previewer](https://bitsocial.net/projects/bitsocial-previewer): Link-preview and redirect server that renders share cards for Bitsocial posts.
+- [Challenge Composer](https://bitsocial.net/projects/challenge-composer): Offline-first editor for a community's anti-spam challenge settings.
+- [Bitsocial Telegram Bots](https://bitsocial.net/projects/telegram-bots): Feed bots that relay new Bitsocial posts into Telegram channels or groups.
+- [Bitsocial GitHub Alerts](https://bitsocial.net/projects/bitsocial-github-alerts): Telegram bot that posts compact GitHub activity for Bitsocial repositories.
+- [5chan Board Manager](https://bitsocial.net/projects/5chan-board-manager): Board administration tooling for custom 5chan communities.
 
 ## Docs
 
@@ -44,5 +65,6 @@ Use `https://bitsocial.net/` for the public product overview and `https://docs.b
 
 - [llms-full.txt](https://bitsocial.net/llms-full.txt): Expanded inline corpus covering the public docs plus companion project READMEs.
 - [Docs llms-full.txt](https://docs.bitsocial.net/llms-full.txt): Docs-scoped full inline corpus if only the documentation surface is needed.
+- [Bitsocial Chain llms.txt](https://chain.bitsocial.net/llms.txt): Chain-specific routing index for BSO and the proposed L2 appchain.
 - [Contributor playbooks](https://docs.bitsocial.net/agent-playbooks/): Public workflow docs for contributors and AI agents; useful for repo and process questions, but usually unnecessary for end-user product questions.
-- [All public docs pages](https://docs.bitsocial.net/llms.txt): 35 curated public docs entries from the Bitsocial docs site.
+- [All public docs pages](https://docs.bitsocial.net/llms.txt): 34 curated public docs entries from the Bitsocial docs site.

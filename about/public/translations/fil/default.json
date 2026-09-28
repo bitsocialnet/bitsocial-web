@@ -20,7 +20,9 @@
     "theme": "Tema",
     "newsletter": "Balitaan",
     "backToTop": "Bumalik sa itaas",
-    "chain": "Chain"
+    "goToBottom": "Pumunta sa ibaba",
+    "backToPrevious": "Bumalik sa dating posisyon",
+    "faq": "FAQ"
   },
   "footer": {
     "tagline": "Open Source na P2P Network para sa mga Social App",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "Mga Pangunahing Tampok",
-    "title": "Ano ang Bitsocial?",
+    "title": "Isang social layer na walang nagmamay-ari.",
     "supporting": "Isang patuloy na lumalaking uniberso ng mga social media app, lahat ay gumagamit ng parehong pinagbabatayan na desentralisadong social network — isang hindi pag-aari ng anumang kumpanya, at walang sinuman ang maaaring kunin mula sa iyo.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "Isang Tawag sa Pagkilos",
+    "title": "Isang panawagan sa mga tagabuo.",
     "logoAlt": "Logo",
     "easterEggAlt": "SpongeBob",
     "epilogue": "Ang end state ay hindi isang app. Ito ay isang merkado ng mga kliyente, node, serbisyo, at komunidad na maaaring palitan ang pagmamay-ari ng platform ng kumpetisyon sa protocol.",
@@ -449,7 +451,7 @@
     "subtitle": "Ang Bitsocial ay nakatakdang lumago sa libu-libong app, tool, at serbisyo na kayang buuin ng kahit sino, hindi lang yaong aprubado ng gatekeepers. Kung dev ka, isumite ang sarili mong app.",
     "experimental": "Pang-eksperimento",
     "sectionLabel": "Direktoryo ng mga proyekto",
-    "directoryLabel": "Direktoryo ng mga proyekto",
+    "directoryLabel": "Mga kategorya ng proyekto",
     "notFoundDescription": "Hindi umiiral sa direktoryo ang app na hinahanap mo.",
     "emptyCategoryDescription": "Wala pang app sa kategoryang ito. Ikaw ang mauna na bumuo ng isa!",
     "emptyCategory": "Malapit na",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "Beripikasyon",
         "ai": "AI",
-        "antiRepost": "Anti-repost"
+        "antiRepost": "Anti-repost",
+        "referenceClient": "Reference client",
+        "search": "Paghahanap"
       },
       "linkLabels": {
         "androidApk": "APK ng Android",
@@ -539,7 +543,8 @@
         "openWebApp": "Buksan ang web app",
         "openWebsite": "Buksan ang website",
         "windows": "Windows",
-        "windowsPortable": "Portable na Windows"
+        "windowsPortable": "Portable na Windows",
+        "openTelegramBot": "Buksan ang Telegram bot"
       },
       "items": {
         "5chan": {
@@ -550,13 +555,9 @@
           "tagline": "Bitsocial client na parang forum, may web, APK, at desktop builds.",
           "description": "Dinadala ng Seedit ang Reddit-style na diskusyon sa Bitsocial gamit ang threads, identities, community management, at maraming paraan ng distribusyon. Ito ang pinakamabilis na paraan para subukan ang forum side ng network mula sa browser, Android phone, o desktop app."
         },
-        "mintpass": {
-          "tagline": "NFT-backed na access control para sa mga komunidad na nangangailangan ng mas matibay na anti-spam gate.",
-          "description": "Ang Mintpass ay isang flexible authentication layer para sa mga Bitsocial community. Pinapahintulutan nito ang mga moderator na pagsamahin ang NFT ownership, verification flow, at custom challenge modules nang hindi inililipat ang lahat sa central login system."
-        },
         "spam-blocker": {
           "tagline": "Centralized na risk scoring layer para salain ang mapang-abusong publikasyon.",
-          "description": "Sinusuri ng Spam Blocker ang mga publikasyon at nagbabalik ng risk score na puwedeng iugnay ng mga komunidad sa sarili nilang moderation logic. Kapaki-pakinabang ito kapag gusto mo ng praktikal na dagdag na layer bago bumuo ng mas custom na anti-spam rules."
+          "description": "Sinusuri ng Spam Blocker ang mga publikasyon at nagbabalik ng risk score na maaaring gamitin ng mga komunidad na may kanilang sariling moderasyon logic. Ang naka-host na serbisyo nito ay nag-uugnay din ng mga signer keys na unang nakita mula sa parehong IP, kaya ang isang gumagamit na patuloy na lumilikha ng mga bagong account upang maiwasan ang ban ng komunidad o lumikha ng pag-uusap ay nakikita ang pagtaas ng kanilang risk score, habang ilang mga tagapirmang nananatiling pinapayagan para sa lehitimong multi-device na paggamit."
         },
         "captcha-canvas-challenge": {
           "tagline": "Custom na image captcha para sa mga komunidad na gusto ng human verification.",
@@ -597,6 +598,34 @@
         "r9k-challenge": {
           "tagline": "Robot9000-style na originality gate para sa mga komunidad na gusto ng anti-repost na karanasan sa pag-post.",
           "description": "Tumatakbo ang R9K Challenge sa isang Bitsocial community node at ikinukumpara ang normalized na post text sa lokal na comments database ng owner node. Binibigyan nito ang mga komunidad ng <robot9000>Robot9000</robot9000>-style na karanasan sa pag-post: bumabagsak ang eksaktong repost bago tanggapin, binabalewala ang backlinks, ang paulit-ulit na failure ay nagti-trigger ng papataas na temporary bans, at nananatili sa pribadong local state ang accepted-text hashes sa halip na i-store ang raw post text. Walang AI na ginagamit sa challenge na ito."
+        },
+        "wordfilter-challenge": {
+          "tagline": "Ang mga filter ng salita ng komunidad ay ipinapatupad bilang panuntunan sa pag-post sa halip na bilang filter sa pagpapakita.",
+          "description": "Ginagawang mandatory ng Wordfilter Challenge ang mga pagpapalit ng salita ng isang komunidad. Inilalapat ng mga publishing client ang mga pagpapalit bago pumirma, kaya ang nilagdaang komento at ang CID nito ay naglalaman na ng pamalit na teksto, at tinatanggihan ng node ng komunidad ang anumang publikasyong naglalaman pa rin ng isang na-filter na salita. Ipinapatupad nito ang kontratang <code>wordfilter/v1</code>, kaya ang isang client na isinulat ayon sa kontratang iyon ay patuloy na gumagana sa ibang mga implementasyon."
+        },
+        "challenge-composer": {
+          "tagline": "Offline-first na editor para sa mga setting ng anti-spam challenge ng isang komunidad.",
+          "description": "Ipinapakita at ini-edit ng Challenge Composer ang array na <code>challenges</code> sa mga setting ng isang komunidad sa Bitsocial, at pagkatapos ay nag-e-export ito ng CLI script na handa nang patakbuhin. Iisang self-contained na HTML file lamang ito na walang ipinapadalang anumang panlabas na request habang tumatakbo, kaya puwede itong buksan nang diretso mula sa disk o sa isang USB stick."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Server para sa link preview at redirect na gumagawa ng share card para sa mga post sa Bitsocial.",
+          "description": "Gumagawa ang Bitsocial Previewer ng mga OpenGraph at Twitter card kapag ibinahagi sa ibang plataporma ang link ng isang post, at pagkatapos ay idinideretso nito ang mga tunay na browser papunta sa app. Multi-tenant ang isang instance batay sa hostname, kaya sapat na ang iisang deployment at TLS setup para sa lahat ng domain ng kliyente at mirror."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Crawler, search index, at web UI para sa mga komunidad ng Bitsocial na kaya mong i-host mismo.",
+          "description": "Kumokonekta ang Bitsocial Indexer sa isang daemon ng Bitsocial CLI sa pamamagitan ng RPC, ini-index nito sa isang lokal na SQLite database ang mga komunidad na itinakda ng operator, at inihahain ang mga ito sa pamamagitan ng REST at full-text search API, kasama ang opsyonal na web UI na nire-render sa server. Walang laman ito sa simula: ang operator ang nagpapasya kung ano ang ii-index."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Telegram bot na nagpo-post ng maikling buod ng aktibidad sa GitHub para sa mga repository ng Bitsocial.",
+          "description": "Ipinapasa ng Bitsocial GitHub Alerts ang mga push, release, issue, at pull request mula sa GitHub papunta sa anumang chat, grupo, o forum topic sa Telegram. Pinapatakbo ito ng koponan ng Bitsocial para sa sarili nitong mga repository, at pampubliko ang container image kaya puwede itong i-self-host ng sinuman para sa kanila."
+        },
+        "bitbones": {
+          "tagline": "Napakasimpleng reference client kung saan ang bawat view ay manipis na balot lamang sa iisang hook.",
+          "description": "Ang bitbones ang pinakamaliit na kapaki-pakinabang na balat sa ibabaw ng React hooks ng Bitsocial: halos walang styling, walang opinyon sa produkto, at iisang hook lamang sa likod ng bawat view. Ito ang pinakamabilis na lugar para ulitin ang isang bug o subukan ang isang pagbabago sa hooks laban sa mga totoong komunidad, at maaaring palitan ang default na feed nito sa pagitan ng listahan ng komunidad ng Seedit at ng 5chan."
+        },
+        "huggingsocial": {
+          "tagline": "Peer-to-peer hub para sa paghahanap, pagdiskusyon, at pag-download ng bukas na mga modelong AI.",
+          "description": "Ang HuggingSocial ay isang model hub na walang sariling kumpanya. Ang mga hub ay mga komunidad ng Bitsocial na kinokontrol ng mga cryptographic key, bawat listing ng modelo ay isang signed post na may model card, checksums, at download sources, at ang mga timbang ay gumagalaw sa BitTorrent o simpleng HTTP mirrors at na-verify sa iyong machine. Ang client ay nasa disenyo at maagang development; ang website ay tumatanggap ng waitlist sign-ups."
         }
       }
     },
@@ -706,7 +735,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Protocol na Teksto Lamang",
     "title": "May moderation pa rin ang kalayaan.",
-    "supporting": "Walang global admin at walang server na puwedeng samsamin, kaya walang makakapag-ban sa iyo sa buong network. Lumalapit lang sa iyo ang moderation.",
+    "supporting": "Teksto lang ang dinadala ng protocol, at hindi ito isang nakatagong network. Walang pandaigdigang admin at walang server na puwedeng kumpiskahin, kaya walang makakapag-ban sa iyo sa buong network. Mas lumalapit lang sa iyo ang moderation.",
     "carouselLabel": "Mga karaniwang alalahanin, sinagot",
     "communities": {
       "myth": "Kapag walang ban, wala nang patakaran ang lahat.",
@@ -731,7 +760,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Tesis ng Pagtanggap",
-    "title": "Bakit nga ba gagamitin iyon ng sinuman?",
+    "title": "Mas mabuting magmay-ari kaysa umupa.",
     "supporting": "Hindi ito puwedeng i-censor, hindi ito bumabagsak, at sa'yo ang lahat ng kinikita mo. Narito kung sino ang lumalabas — at kung bakit.",
     "diagramLabel": "Kurba ng pag-adopt na nagpapakita kung bakit gumagamit ng Bitsocial ang bawat pangkat ng user.",
     "curve": {
@@ -789,7 +818,51 @@
     "docsCta": "Paano gumagana ang P2P sa browser",
     "liveCta": "Panoorin sa blog",
     "sectionLabel": "Browser P2P",
-    "supporting": "Magbukas ng Bitsocial web app sa isang normal na tab at ito ay sumali sa network nang sarili nito, kumukuha ng mga post mula sa ibang peers at naglalathala ng iyong sarili. Bawat ibang decentralized social network ay nagpapanatili pa rin ng server sa gitna.",
-    "title": "Ang iyong browser ay isang peer"
+    "supporting": "Buksan ang isang Bitsocial web app sa ordinaryong tab at kusa na itong sasali sa network: kinukuha nito ang mga post mula sa ibang peer at inilalathala ang sa iyo. Iyan ang mahirap na bahagi — at iyan din ang dahilan kung bakit bawat ibang desentralisadong social network ay may server pa rin sa gitna.",
+    "title": "Ang browser mismo ang breakthrough."
+  },
+  "faq": {
+    "sectionLabel": "FAQ",
+    "title": "Madalas na Tanong",
+    "supporting": "Sinasagot ng bawat seksyon ng site na ito ang isa sa mga ito. I-click ang isang tanong para dumiretso roon.",
+    "navLabel": "Mga tanong na sinasagot sa pahinang ito",
+    "answeredIn": "Nasagot sa seksyong",
+    "items": {
+      "problem": {
+        "question": "Anong problema ang nalulutas ng Bitsocial?"
+      },
+      "core-features": {
+        "question": "Ano ang Bitsocial? Paano ito gumagana?"
+      },
+      "browser-peer": {
+        "question": "Bakit wala pang gumawa nito?"
+      },
+      "decentralized": {
+        "question": "Hindi ba't may mga desentralisadong social network na?"
+      },
+      "arbitrary-challenges": {
+        "question": "Kung walang server, ano ang pipigil sa spam?"
+      },
+      "text-only-protocol": {
+        "question": "Paano naman ang ilegal na nilalaman?"
+      },
+      "adoption-thesis": {
+        "question": "Bakit lilipat ang mga tao sa Bitsocial?"
+      },
+      "master-plan": {
+        "question": "Ano ang susunod na plano? Paano ako makakatulong?"
+      },
+      "about": {
+        "question": "Sino ang nasa likod ng Bitsocial? Paano ito pinondohan?"
+      },
+      "mailing-list": {
+        "question": "Paano ko masusubaybayan ang mga update?"
+      }
+    },
+    "ask": {
+      "label": "Magtanong ng kahit ano pa",
+      "placeholder": "Magtanong ng kahit ano pa…",
+      "action": "Itanong sa ChatGPT"
+    }
   }
 }

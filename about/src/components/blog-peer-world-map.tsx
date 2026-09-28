@@ -90,7 +90,7 @@ export default function BlogPeerWorldMap({ peers }: BlogPeerWorldMapProps) {
           </rect>
         ))}
       </svg>
-      <figcaption className="px-3 py-1 text-[10px] italic opacity-60">
+      <figcaption className="text-micro-fluid px-3 py-1 italic opacity-60">
         approximate peer locations
       </figcaption>
     </figure>

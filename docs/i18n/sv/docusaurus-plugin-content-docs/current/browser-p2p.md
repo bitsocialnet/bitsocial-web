@@ -92,9 +92,6 @@ kostar dig en uppslagsväg, inte dina data. En IPFS-gateway ligger däremot mitt
 
 ## Var detta körs i dag
 
-- [Bitsocial-bloggen](https://bitsocial.net/blog) på den här webbplatsen körs som standard som en
-  webbläsar-P2P-klient. Dess panel "P2P status" visar den aktuella listan över peers, vilken
-  transport varje anslutning använder och var de peerna finns.
 - [5chan](/apps/5chan/) kör som standard ren webbläsar-P2P i webbappen på
   [5chan.app](https://5chan.app).
 

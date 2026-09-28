@@ -12,7 +12,7 @@ interface AppTagPillProps {
 }
 
 const baseClassName =
-  "app-tag-pill inline-flex items-center justify-center rounded-full border px-3 py-1 text-xs font-medium transition-all duration-300";
+  "app-tag-pill touch-target inline-flex items-center justify-center rounded-full border px-3 py-1 text-xs font-medium transition-all duration-300";
 
 export default function AppTagPill({
   active = false,

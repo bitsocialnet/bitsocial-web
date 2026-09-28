@@ -209,6 +209,16 @@
     -webkit-box-shadow: none;
     -webkit-tap-highlight-color: transparent;
   }
+  /* Borderless ask input sitting directly in a FAQ card row. `input.` keeps the specificity level
+     with the typed selectors above, which a bare class would lose to. */
+  input.faq-ask-input:focus,
+  input.faq-ask-input:focus-visible {
+    outline: none;
+    border-color: transparent;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -webkit-tap-highlight-color: transparent;
+  }
   a:focus-visible {
     outline: none;
     box-shadow: var(--focus-app-ring);
@@ -288,6 +298,26 @@
     --focus-app-blue: rgb(37 99 235);
     --focus-app-glow: 0 0 0 4px rgba(37, 99, 235, 0.18);
     --focus-app-ring: 0 0 0 2px rgb(37 99 235 / 0.92), 0 0 0 5px rgba(37, 99, 235, 0.16);
+    /* Fluid scales interpolate from a 360px reading viewport to a 1440px desktop.
+       The caps preserve readable line lengths and stop 4K screens from inflating the UI. */
+    --space-page-inline: clamp(1rem, 0.6667rem + 1.4815vw, 2rem);
+    --space-page-top: clamp(6.75rem, 6.5rem + 1.1111vw, 7.5rem);
+    --space-page-bottom: clamp(4rem, 3.6667rem + 1.4815vw, 5rem);
+    --space-hero-actions-gap: clamp(2rem, 4vw, 3rem);
+    --space-hero-top: clamp(
+      calc(max(0.75rem, env(safe-area-inset-top)) + 5rem + var(--space-hero-actions-gap)),
+      11vh,
+      9.5rem
+    );
+    --space-section-block: clamp(4rem, 3.1667rem + 3.7037vw, 6.5rem);
+    --space-surface: clamp(1.25rem, 1rem + 1.1111vw, 2rem);
+    --text-route-title: clamp(2.5rem, 2rem + 2.2222vw, 4rem);
+    --text-section-title: clamp(2.5rem, 1.9167rem + 2.5926vw, 4.25rem);
+    --text-hero: clamp(1.25rem, 1.0417rem + 0.9259vw, 1.875rem);
+    --text-lede: clamp(1rem, 0.9583rem + 0.1852vw, 1.125rem);
+    --text-card-title: clamp(1.25rem, 1.1667rem + 0.3704vw, 1.5rem);
+    --text-compact: clamp(0.8125rem, 0.7917rem + 0.0926vw, 0.875rem);
+    --text-micro: clamp(0.6875rem, 0.6667rem + 0.0926vw, 0.75rem);
   }
   .dark {
     color-scheme: dark;
@@ -333,6 +363,113 @@
       rgba(118, 128, 140, 0.072),
       rgba(52, 58, 68, 0.09)
     );
+  }
+}
+
+@layer components {
+  .page-main {
+    padding-block-start: var(--space-page-top);
+    padding-block-end: var(--space-page-bottom);
+    padding-inline: var(--space-page-inline);
+  }
+
+  .topbar-position {
+    top: max(0.75rem, env(safe-area-inset-top));
+    right: calc(
+      max(var(--space-page-inline), env(safe-area-inset-right)) +
+        var(--removed-body-scroll-bar-size, 0px)
+    );
+    left: max(var(--space-page-inline), env(safe-area-inset-left));
+  }
+
+  .home-section {
+    padding-block: var(--space-section-block);
+    padding-inline: var(--space-page-inline);
+  }
+
+  .hero-full-bleed {
+    width: calc(100% + var(--space-page-inline) + var(--space-page-inline));
+    margin-inline: calc(0px - var(--space-page-inline));
+  }
+
+  .route-eyebrow,
+  .home-section-eyebrow {
+    font-size: clamp(0.75rem, 0.7083rem + 0.1852vw, 0.875rem);
+  }
+
+  .home-section-eyebrow > a {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .route-title {
+    font-size: var(--text-route-title);
+    line-height: 1.08;
+  }
+
+  .project-title {
+    font-size: clamp(2rem, 1.75rem + 1.1111vw, 2.5rem);
+    line-height: 1.2;
+  }
+
+  .home-section-title {
+    font-size: var(--text-section-title);
+    line-height: 1.08;
+  }
+
+  .hero-copy {
+    max-width: 46rem;
+    font-size: var(--text-hero);
+    line-height: 1.45;
+  }
+
+  .route-lede,
+  .home-section-lede {
+    max-width: 68ch;
+    font-size: var(--text-lede);
+    line-height: 1.7;
+  }
+
+  .card-title-fluid {
+    font-size: var(--text-card-title);
+  }
+
+  .surface-pad {
+    padding: var(--space-surface);
+  }
+
+  .text-compact-fluid {
+    font-size: var(--text-compact);
+  }
+
+  .text-micro-fluid {
+    font-size: var(--text-micro);
+  }
+
+  .touch-target {
+    min-width: 0;
+    min-height: 0;
+  }
+
+  @media (pointer: coarse) {
+    .touch-target {
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+    }
+
+    /* The projects directory packs filters and CTAs into tight rows, where the full 2.75rem
+       target fills the 3rem search bar edge to edge and wastes vertical space on phones.
+       Marked rows keep a single lean 2rem height, still above the 24px minimum. */
+    .apps-lean-touch .touch-target {
+      min-width: 2rem;
+      min-height: 2rem;
+    }
+
+    .home-section-eyebrow > a {
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+      justify-content: center;
+    }
   }
 }
 

@@ -89,9 +89,6 @@ costs you a lookup path, not your data. An IPFS gateway, by contrast, is in the 
 
 ## Where this runs today
 
-- The [Bitsocial blog](https://bitsocial.net/blog) on this site runs as a browser P2P client by
-  default. Its "P2P status" panel shows the live peer list, the transport each connection uses, and
-  where those peers are.
 - [5chan](/apps/5chan/) runs pure browser P2P by default in the web app at
   [5chan.app](https://5chan.app).
 

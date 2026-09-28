@@ -95,9 +95,6 @@ inhoud zelf.
 
 ## Waar dit vandaag draait
 
-- De [Bitsocial-blog](https://bitsocial.net/blog) op deze site draait standaard als browser-P2P-client.
-  Het paneel "P2P-status" toont de actuele peerlijst, het transport dat elke verbinding gebruikt, en
-  waar die peers zich bevinden.
 - [5chan](/apps/5chan/) draait standaard pure browser-P2P in de webapp op
   [5chan.app](https://5chan.app).
 

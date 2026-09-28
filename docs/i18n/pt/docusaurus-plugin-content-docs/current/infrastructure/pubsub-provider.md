@@ -22,7 +22,7 @@ O Provedor de Pubsub é um serviço para operadores que querem rodar um relay de
 
 ## Portas
 
-Os padrões foram escolhidos para que o Provedor de Pubsub possa rodar ao lado do [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) no mesmo VPS sem conflito na porta de swarm.
+Os padrões foram escolhidos para que o Provedor de Pubsub possa rodar ao lado do [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) no mesmo VPS sem conflito na porta de swarm.
 
 | Finalidade         | Padrão                             | Notas                                                          |
 | ------------------ | ---------------------------------- | -------------------------------------------------------------- |

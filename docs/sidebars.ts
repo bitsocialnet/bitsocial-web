@@ -55,7 +55,6 @@ const sidebars: SidebarsConfig = {
       label: "Infrastructure",
       items: [
         "infrastructure/bso-resolver",
-        "infrastructure/mintpass",
         "infrastructure/pubsub-provider",
         "infrastructure/telegram-bots",
       ],

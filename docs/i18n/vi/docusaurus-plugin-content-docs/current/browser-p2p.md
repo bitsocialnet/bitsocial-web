@@ -93,9 +93,6 @@ lại, một cổng IPFS nằm ngay trên đường đi của nội dung.
 
 ## Nơi điều này đang chạy hôm nay
 
-- [Blog Bitsocial](https://bitsocial.net/blog) trên trang này mặc định chạy như một máy khách P2P
-  trong trình duyệt. Bảng "P2P status" của nó hiển thị danh sách máy ngang hàng đang hoạt động,
-  phương thức truyền tải của từng kết nối và vị trí của các máy ngang hàng đó.
 - [5chan](/apps/5chan/) mặc định chạy P2P thuần túy trong trình duyệt ở ứng dụng web tại
   [5chan.app](https://5chan.app).
 

@@ -91,9 +91,6 @@ kushton një rrugë kërkimi, jo të dhënat tuaja. Një portë IPFS, përkundra
 
 ## Ku funksionon kjo sot
 
-- [Blogu i Bitsocial](https://bitsocial.net/blog) në këtë sajt funksionon si parazgjedhje si klient P2P në
-  shfletues. Paneli i tij "P2P status" tregon listën e drejtpërdrejtë të homologëve, transportin që përdor secila
-  lidhje dhe se ku ndodhen ata homologë.
 - [5chan](/apps/5chan/) funksionon si parazgjedhje me P2P të pastër në shfletues te aplikacioni ueb në
   [5chan.app](https://5chan.app).
 

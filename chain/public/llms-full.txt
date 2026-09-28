@@ -1,0 +1,203 @@
+# Bitsocial Chain
+
+> BSO is the token of Bitsocial Chain, the Ethereum L2 appchain built to fix crypto: sovereign communities with their own tokens, programmable revenue, and one sound money underneath it all.
+
+This file expands `https://chain.bitsocial.net/llms.txt` with the Chain landing-page map and the related official Bitsocial Chain and BSO history docs.
+
+Interpret roadmap status literally: the immutable BSO token is live on Ethereum, while Bitsocial Chain and later infrastructure remain proposed unless an official source explicitly marks them live.
+
+## Hero
+
+Source: https://chain.bitsocial.net/
+
+The missing social layer of crypto
+
+Crypto became a casino because Web2, TradFi, and centralized infrastructure own the distribution rails and bend the incentives. Bitsocial Chain fixes this: an unstoppable, fully decentralized Ethereum L2 appchain where communities own their networks, their tokens and their revenue.
+
+## Landing page map
+
+- [Bitsocial Chain home](https://chain.bitsocial.net/): BSO is the token of Bitsocial Chain, the Ethereum L2 appchain built to fix crypto: sovereign communities with their own tokens, programmable revenue, and one sound money underneath it all.
+- [The premise](https://chain.bitsocial.net/#premise): Why does Bitsocial need its own money? Bitsocial is a peer-to-peer social protocol: no company, no servers, no owner. The money that moves through it should be held to the same standard, which is the one thing a cryptocurrency can actually do. So BSO is not a partner token or a payments integration bolted on the side. It carries the same name, so every community, token and user that joins Bitsocial Chain compounds one brand and one economy instead of bootstrapping its own from zero. And BSO was never anyone's to begin with: 100% airdropped, no team allocation, no presale.
+- [The settlement layer](https://chain.bitsocial.net/#settlement-layer): How does every community share one economy? Bitsocial Chain is the proposed Ethereum L2 appchain for Bitsocial. Communities run their own L3s, tokens and DAOs, yet they settle, stake and pay rent in BSO, and every community token trades against BSO. One asset sits under the whole economy, the way ETH sits under DeFi: the reserve currency of social.
+- [Value accrual](https://chain.bitsocial.net/#value-accrual): How does BSO grow with the network? Not through emissions or promises. Every layer of the network settles in BSO, a share of those fees is burned, and the rest pays for security. More usage means a scarcer, better-secured token.
+- [Programmable revenue](https://chain.bitsocial.net/#programmable-revenue): How does ad revenue burn a community's token? Because the ad marketplace is a contract, not a sales team. Communities auction their ad slots on-chain, bids are denominated in their own token, and settlement burns a share. Advertisers create the buy pressure, the contract does the burning: no treasury, no buyback bot, no trusted middleman. Revenue lives in an immutable contract instead of a founder's promise: community tokens become productive, rug-resistant assets, not memecoins.
+- [Tokenomics](https://chain.bitsocial.net/#tokenomics): Sound money. BSO is a fixed-supply ERC-20: 210 million, no inflation, deflationary by design. Its final contract is immutable and adminless, so the rules are fixed forever.
+- [An immutable upgrade](https://chain.bitsocial.net/#immutable-upgrade): Where BSO came from, and what’s changing. Three generations, each migrated 1:1 and verifiable on-chain, ending in today's fully immutable, adminless contract. The protocol is open and the chain is optional by design; what no fork can copy is provenance: the official Bitsocial token since day one.
+- [The .bso namespace](https://chain.bitsocial.net/#bso-names): Already using .bso names? They're already yours. Bitsocial apps resolve .bso names today through ENS: mycommunity.bso is mycommunity.eth carrying a bitsocial text record that points at the community's public key. When the native .bso registry launches on Bitsocial Chain, every name already in use migrates by airdrop: the wallet that owns the .eth name and its bitsocial record receives the real .bso name automatically. Nothing to re-register, nothing to buy.
+- [The endgame](https://chain.bitsocial.net/#endgame): How big does this get? Social networks are the largest distribution machines ever built: their attention prints hundreds of billions of dollars a year, and today every one of those dollars is captured off-chain: by ad platforms, by custodial exchanges, by whoever stands in the middle. Bitsocial Chain routes that same economy through one immutable asset.
+- [The master plan](https://chain.bitsocial.net/#master-plan): One token, then a whole economy on top. The token ships first; the network is the vision it unlocks. Everything past Phase 1 is proposed infrastructure, built in the open.
+- [How to buy](https://chain.bitsocial.net/#get-bso): How to get BSO, safely. The immutable BSO contract is live on Ethereum. Always verify the full address yourself before sending anything.
+
+## Related official docs
+
+- [Bitsocial Chain](https://docs.bitsocial.net/bitsocial-network/): Phase 2 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
+- [BSO Token History](https://docs.bitsocial.net/token-history/): The full generation history of the BSO token, from its 2021 Avalanche origin to today's immutable, adminless Ethereum contract.
+
+## Inline docs corpus
+
+### Bitsocial Chain
+
+Source: https://docs.bitsocial.net/bitsocial-network/
+Path: docs/bitsocial-network.md
+Description: Phase 2 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
+
+# Bitsocial Chain
+
+Bitsocial Chain is the proposed Ethereum L2 appchain economic layer for Bitsocial apps. The current
+chain-specific site is [chain.bitsocial.net](https://chain.bitsocial.net).
+
+The peer-to-peer social layer lets communities, identities, and content move outside a central
+platform database. Bitsocial Chain is meant to add the shared naming, monetization, and payment
+primitives that make those apps harder to starve financially.
+
+## What it is meant to power
+
+- decentralized Bitsocial domains such as `.bso`
+- awards and tipping
+- durable monetization rails
+- shared liquidity across apps
+- financial structures that are harder for banks or platforms to choke off
+- network effects that do not depend on one company owning the whole stack
+
+The goal is not to lead with token mechanics. The goal is to make useful social apps more durable,
+more fundable, and less dependent on centralized payment or naming providers.
+
+## Current proof of concept
+
+The first Bitsocial Chain proof of concept focuses on native `.bso` names. It proves that a name
+registry can be derived from Ethereum L1 history without placing social content on-chain:
+
+- users submit register, update, transfer, and revoke intents through plain Ethereum L1 transactions
+- anyone can run the derivation node and reconstruct the same `.bso` registry state
+- a resolver maps a `.bso` name to the Bitsocial public key that clients already use over the
+  peer-to-peer protocol
+- posts, votes, moderation, feeds, and community content stay off-chain and peer-to-peer
+
+That proof of concept is not a production Stage 2 launch. It has no proof system, challenge game,
+audited code, live deployment, final pricing, or final governance yet. Its long-term posture is
+transparent by default and privacy-compatible by design: the core chain is public, while future
+tipping, payments, awards, and liquidity should avoid forcing permanent links between social
+identity and wallet history.
+
+## Why it matters
+
+Decentralizing communities and identities is necessary, but it is not enough to decentralize all of
+social media.
+
+If social apps still depend on a few centralized economic rails, they remain easy to pressure,
+deplatform, or starve financially. Bitsocial Chain is the proposed answer to that second layer of
+dependency.
+
+## Relationship to apps
+
+Bitsocial Chain should sit under Bitsocial apps, not replace them.
+
+The public-facing result should be:
+
+- communities stay peer-to-peer
+- apps stay differentiated
+- users get practical naming and monetization features
+- creators and communities can receive support across clients
+- value can move across the ecosystem without recreating a centralized platform owner
+
+## Why this sits early
+
+The current master plan places Bitsocial Chain immediately after the first wedge categories:
+imageboards, forums, and the public RPC layer that makes those apps practical for more users.
+
+That timing matters because social apps need strong network effects. If naming, support, awards,
+tipping, and monetization arrive too late, centralized competitors keep their biggest advantage for
+too long.
+
+## Design principles
+
+Because Bitsocial Chain is still proposed infrastructure rather than a launched product, the plan
+should stay disciplined:
+
+- Apps and communities first. The network layer should make real social products stronger.
+- Practical features first. Names, awards, tipping, and payments are easier to explain than abstract
+  financial architecture.
+- Real contribution over hype. Economic primitives should reward participation, building, and
+  community support.
+- Curation is allowed. Apps can shape rankings, defaults, and discovery to favor durable
+  communities.
+- Exact mechanics are still open. This page explains the role of Bitsocial Chain, not a locked
+  promise about final economics.
+
+### BSO Token History
+
+Source: https://docs.bitsocial.net/token-history/
+Path: docs/token-history.md
+Description: The full generation history of the BSO token, from its 2021 Avalanche origin to today's immutable, adminless Ethereum contract.
+
+# BSO Token History
+
+BSO is a provenance coin. The protocol behind Bitsocial is open, and the token and chain are
+optional by design: anyone can fork the code, run their own client, or build their own economy on
+top of it. What cannot be forked away is provenance. BSO has been the official Bitsocial token
+since day one, and every migration since then is verifiable on-chain.
+
+This page lists every generation of the token, in order, with full contract addresses so anyone can
+check the record independently.
+
+## Gen 1: the origin, Avalanche, 2021
+
+- **Chain**: Avalanche
+- **Year**: 2021
+- **Address**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
+- **Explorer**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
+
+This is where BSO started. The full supply was airdropped, with no presale and no team allocation
+carved out ahead of the community. The contract was an upgradeable proxy, which was standard
+practice at the time and let the team ship fixes during the token's early life.
+
+## Gen 2: the move to Ethereum, 2024
+
+- **Chain**: Ethereum
+- **Year**: 2024
+- **Address**: `0xEA81DaB2e0EcBc6B5c4172DE4c22B6Ef6E55Bd8f`
+- **Explorer**: [Etherscan](https://etherscan.io/token/0xEA81DaB2e0EcBc6B5c4172DE4c22B6Ef6E55Bd8f)
+
+Gen 2 moved BSO from Avalanche to Ethereum, where the rest of the Bitsocial Chain roadmap is built.
+Like Gen 1, this contract was still an upgradeable proxy, kept for one more generation while the
+final, permanent contract was prepared.
+
+## Gen 3: fully immutable, 2025
+
+- **Chain**: Ethereum
+- **Year**: 2025
+- **Address**: `0xB50cea4c109dc223A10d44c14f521CaeD91DaB5A`
+- **Explorer**: [Etherscan](https://etherscan.io/token/0xB50cea4c109dc223A10d44c14f521CaeD91DaB5A)
+
+Gen 3 is the current and final BSO contract. It is fully immutable and adminless:
+
+- no mint function, so supply cannot be inflated
+- no owner address, so no one can unilaterally change contract behavior
+- no pause function, so transfers cannot be frozen
+- no proxy pattern, so the logic itself cannot be swapped out later
+
+This is the end state the first two generations were built toward: a token with no admin keys left
+to hold.
+
+## How the migrations worked
+
+Each migration, Gen 1 to Gen 2 and Gen 2 to Gen 3, was a passive 1:1 airdrop. Holders did not need
+to submit a claim, sign a message, or take any action at all. Balances on the old contract were
+read directly and mirrored 1:1 onto the new contract, so a holder's position was preserved exactly
+across the migration.
+
+Because both the old and new contracts remain public and on-chain, every step of this process is
+independently verifiable. Anyone can compare historical holder snapshots from Gen 1 or Gen 2 against
+current Gen 3 balances and confirm the migration matched what it claimed to do. No part of this
+history depends on trusting Bitsocial's word for it.
+
+## Verify everything
+
+Do not take any of this on faith. Check the record directly:
+
+- Gen 1 on [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
+- Gen 2 on [Etherscan](https://etherscan.io/token/0xEA81DaB2e0EcBc6B5c4172DE4c22B6Ef6E55Bd8f)
+- Gen 3 on [Etherscan](https://etherscan.io/token/0xB50cea4c109dc223A10d44c14f521CaeD91DaB5A)
+- the current chain site at [chain.bitsocial.net](https://chain.bitsocial.net)
+
+If an address does not match what is listed here, it is not the official BSO token.

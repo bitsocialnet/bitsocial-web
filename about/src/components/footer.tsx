@@ -8,7 +8,8 @@ import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { goHomeScrollTop, goRouteScrollTop } from "@/lib/home-nav";
 import { goToMailingListSection } from "@/lib/mailing-list-nav";
 
-const linkClassName = "text-muted-foreground hover:text-foreground transition-colors text-sm";
+const linkClassName =
+  "touch-target inline-flex items-center text-muted-foreground hover:text-foreground transition-colors text-sm";
 const APPS_DIRECTORY_HREF = "/projects?category=apps";
 
 function XIcon({ className }: { className?: string }) {
@@ -60,7 +61,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="footer-glass px-6 pt-6 mt-8 md:pt-14 md:mt-12"
+      className="footer-glass mt-8 px-[var(--space-page-inline)] pt-6 md:mt-12 md:pt-14"
       style={{ paddingBottom: "calc(3.5rem + env(safe-area-inset-bottom, 0px))" }}
     >
       <div className="max-w-7xl mx-auto">
@@ -69,7 +70,7 @@ export default function Footer() {
             <Link
               to="/"
               onClick={handleLogoClick}
-              className="inline-flex items-center gap-1.5 mb-4 group"
+              className="touch-target mb-4 inline-flex items-center gap-1.5 group"
             >
               <img src="/logo-small.png" alt="" aria-hidden="true" className="h-6 w-6" />
               <span className="text-lg font-display text-muted-foreground group-hover:text-foreground transition-colors">
@@ -183,7 +184,7 @@ export default function Footer() {
           <button
             type="button"
             onClick={() => setShowDominoEffect(true)}
-            className="js-only font-display tracking-wide rounded-md transition-colors duration-300 hover:text-muted-foreground/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="touch-target js-only rounded-md font-display tracking-wide transition-colors duration-300 hover:text-muted-foreground/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             {t("footer.bottomTagline")}
           </button>
@@ -192,7 +193,7 @@ export default function Footer() {
               href="/domino-effect-easter-egg.jpg"
               target="_blank"
               rel="noopener noreferrer"
-              className="nojs-inline font-display tracking-wide rounded-md transition-colors duration-300 hover:text-muted-foreground/95"
+              className="touch-target nojs-inline rounded-md font-display tracking-wide transition-colors duration-300 hover:text-muted-foreground/95"
             >
               {t("footer.bottomTagline")}
             </a>
@@ -202,7 +203,7 @@ export default function Footer() {
               href="https://github.com/bitsocialnet/bitsocial-web"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors"
+              className="touch-target inline-flex items-center transition-colors hover:text-foreground"
             >
               {t("footer.contribute")}
             </a>
@@ -212,7 +213,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               dir="ltr"
-              className="hover:text-foreground transition-colors"
+              className="touch-target inline-flex items-center transition-colors hover:text-foreground"
             >
               &copy; {new Date().getFullYear()} Bitsocial Forge, Inc.
             </a>

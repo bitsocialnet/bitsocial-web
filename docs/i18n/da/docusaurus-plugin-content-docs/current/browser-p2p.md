@@ -92,9 +92,6 @@ indholdsstien.
 
 ## Hvor det kører i dag
 
-- [Bitsocial-bloggen](https://bitsocial.net/blog) på dette websted kører som standard som en
-  browser-P2P-klient. Panelet »P2P-status« viser den aktuelle liste over peers, hvilken transport
-  hver forbindelse bruger, og hvor de peers befinder sig.
 - [5chan](/apps/5chan/) kører som standard ren browser-P2P i webappen på
   [5chan.app](https://5chan.app).
 

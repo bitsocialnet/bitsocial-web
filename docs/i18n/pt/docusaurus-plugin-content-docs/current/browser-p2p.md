@@ -94,9 +94,6 @@ está no caminho do conteúdo.
 
 ## Onde isso já roda hoje
 
-- O [blog do Bitsocial](https://bitsocial.net/blog) neste site funciona como cliente P2P de navegador
-  por padrão. Seu painel "P2P status" mostra a lista de peers ao vivo, o transporte usado por cada
-  conexão e onde esses peers estão.
 - O [5chan](/apps/5chan/) roda P2P puro no navegador por padrão no aplicativo web em
   [5chan.app](https://5chan.app).
 

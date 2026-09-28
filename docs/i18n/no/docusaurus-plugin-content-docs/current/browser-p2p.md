@@ -88,9 +88,6 @@ oppslagsvei, ikke dataene dine. En IPFS-gateway ligger derimot midt i innholdsst
 
 ## Hvor dette kjører i dag
 
-- [Bitsocial-bloggen](https://bitsocial.net/blog) på dette nettstedet kjører som standard som en
-  nettleser-P2P-klient. Panelet «P2P-status» viser den løpende peer-listen, transporten hver tilkobling bruker,
-  og hvor disse peerne befinner seg.
 - [5chan](/apps/5chan/) kjører ren nettleser-P2P som standard i nettappen på
   [5chan.app](https://5chan.app).
 

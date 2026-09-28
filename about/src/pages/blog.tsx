@@ -13,14 +13,14 @@ const BLOG_FEED_SKELETON_IDS = ["skeleton-a", "skeleton-b", "skeleton-c"];
 function BlogIntro() {
   return (
     <section className="mb-6">
-      <p className="text-xs font-display uppercase tracking-[0.2em] text-foreground/45">
+      <p className="route-eyebrow font-display uppercase tracking-[0.2em] text-foreground/45">
         <Trans i18nKey="blog.sectionLabel" />
       </p>
       <div className="mt-4 max-w-2xl">
-        <h1 className="optical-display-start text-4xl font-display font-semibold leading-[1.1] text-balance text-muted-foreground md:text-6xl lg:text-7xl">
+        <h1 className="route-title optical-display-start font-display font-semibold text-balance text-muted-foreground">
           <Trans i18nKey="blog.title" />
         </h1>
-        <p className="mt-3 max-w-2xl text-base md:text-lg text-balance leading-relaxed text-muted-foreground">
+        <p className="route-lede mt-3 text-balance text-muted-foreground">
           <Trans
             i18nKey="blog.subtitle"
             values={{ address: BLOG_COMMUNITY_ADDRESS }}
@@ -67,7 +67,7 @@ export default function Blog() {
   return (
     <div className="blog-page min-h-screen overflow-x-hidden">
       <Topbar />
-      <main className="px-4 pb-16 pt-28 sm:px-6">
+      <main className="page-main">
         <div className="mx-auto max-w-4xl">
           <BlogIntro />
           <Suspense fallback={<BlogFeedLoading />}>

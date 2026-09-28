@@ -92,9 +92,6 @@ reititin vie sinulta hakupolun, ei dataasi. IPFS-yhdyskäytävä sen sijaan on s
 
 ## Missä tämä on käytössä tänään
 
-- Tämän sivuston [Bitsocial-blogi](https://bitsocial.net/blog) toimii oletuksena selaimen
-  P2P-asiakkaana. Sen "P2P status" -paneeli näyttää reaaliaikaisen vertaislistan, kunkin yhteyden
-  käyttämän siirtotavan ja sen, missä nämä vertaiset sijaitsevat.
 - [5chan](/apps/5chan/) toimii oletuksena puhtaana selain-P2P:nä verkkosovelluksessa osoitteessa
   [5chan.app](https://5chan.app).
 

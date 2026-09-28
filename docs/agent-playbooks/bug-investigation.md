@@ -29,4 +29,4 @@ git show <commit-hash> -- path/to/file.tsx
 
 ## Troubleshooting Rule
 
-When blocked, search the web for recent fixes/workarounds.
+Use current official documentation for a concrete dependency/platform uncertainty. Report missing private source or user-only reproduction details explicitly.

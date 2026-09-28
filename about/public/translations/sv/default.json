@@ -20,7 +20,9 @@
     "theme": "Tema",
     "newsletter": "Nyhetsbrev",
     "backToTop": "Till toppen",
-    "chain": "Chain"
+    "goToBottom": "Till botten",
+    "backToPrevious": "Tillbaka till föregående plats",
+    "faq": "FAQ"
   },
   "footer": {
     "tagline": "Öppen källkod P2P-nätverk för sociala appar",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "Kärnfunktioner",
-    "title": "Vad är Bitsocial?",
+    "title": "Ett socialt lager som ingen äger.",
     "supporting": "Ett ständigt växande universum av sociala medieappar, som alla använder samma underliggande decentraliserade sociala nätverk — ett som ingen företag äger, och ingen kan ta ifrån dig.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "En uppmaning till handling",
+    "title": "En uppmaning till byggarna.",
     "logoAlt": "Logotyp",
     "easterEggAlt": "Svampbob",
     "epilogue": "Sluttillståndet är inte en app. Det är en marknad av kunder, noder, tjänster och gemenskaper som kan ersätta plattformsägande med protokollkonkurrens.",
@@ -449,7 +451,7 @@
     "subtitle": "Bitsocial är byggt för att växa till tusentals appar, verktyg och tjänster som vem som helst kan bygga, inte bara sådana som godkänts av grindväktare. Är du utvecklare, skicka in din egen app.",
     "experimental": "Experimentell",
     "sectionLabel": "Projektkatalog",
-    "directoryLabel": "Projektkatalog",
+    "directoryLabel": "Projektkategorier",
     "notFoundDescription": "Appen du letar efter finns inte i katalogen.",
     "emptyCategoryDescription": "Det finns inga appar i den här kategorin än. Var först med att bygga en!",
     "emptyCategory": "Kommer snart",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "Verifiering",
         "ai": "AI",
-        "antiRepost": "Anti-repost"
+        "antiRepost": "Anti-repost",
+        "referenceClient": "Referensklient",
+        "search": "Sökning"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -539,7 +543,8 @@
         "openWebApp": "Öppna webbappen",
         "openWebsite": "Öppna webbplatsen",
         "windows": "Windows",
-        "windowsPortable": "Bärbar version för Windows"
+        "windowsPortable": "Bärbar version för Windows",
+        "openTelegramBot": "Öppna Telegram-bot"
       },
       "items": {
         "5chan": {
@@ -550,13 +555,9 @@
           "tagline": "Bitsocial-klient i forumstil med webb-, APK- och desktopbyggen.",
           "description": "Seedit för in Reddit-liknande diskussion i Bitsocial med trådar, identiteter, communityhantering och flera distributionsvägar. Det är det snabbaste sättet att prova nätverkets forumsida från en webbläsare, Android-telefon eller desktopapp."
         },
-        "mintpass": {
-          "tagline": "NFT-baserad åtkomstkontroll för communities som behöver starkare anti-spam-gates.",
-          "description": "Mintpass är ett flexibelt autentiseringslager för Bitsocial-communities. Det låter moderatorer kombinera NFT-ägande, verifieringsflöden och anpassade challenge-moduler utan att tvinga alla in i ett centralt inloggningssystem."
-        },
         "spam-blocker": {
           "tagline": "Centraliserat riskpoängslager för filtrering av missbrukande publikationer.",
-          "description": "Spam Blocker utvärderar publikationer och returnerar ett riskpoäng som communities kan kombinera med sin egen modereringslogik. Det är användbart när du vill ha ett pragmatiskt extra lager innan du bygger mer anpassade anti-spam-regler."
+          "description": "Spam Blocker utvärderar publikationer och returnerar ett riskvärde som samhällen kan kombinera med sin egen modereringslogik. Den värdtjänsten länkar också undertecknarnycklar som först sågs från samma IP-adress, så en användare som fortsätter att skapa nya konton för att undvika ett samhällsförbud eller tillverka en konversation ser sitt riskvärde öka, medan några få undertecknare förblir tillåtna för legitim användning med flera enheter."
         },
         "captcha-canvas-challenge": {
           "tagline": "Anpassade bild-captcha för communities som vill ha mänsklig verifiering.",
@@ -597,6 +598,34 @@
         "r9k-challenge": {
           "tagline": "Originalitetsgrind i Robot9000-stil för communities som vill ha en anti-repost-upplevelse vid publicering.",
           "description": "R9K Challenge körs på en Bitsocial-communitynod och jämför normaliserad inläggstext mot ägarnodens lokala kommentarsdatabas. Den ger communities en publiceringsupplevelse i <robot9000>Robot9000</robot9000>-stil: exakta reposts fallerar före acceptans, backlinks ignoreras, upprepade misslyckanden utlöser eskalerande tillfälliga bans och hashar av accepterad text stannar i privat lokal state i stället för att lagra rå inläggstext. Den här challengen använder inte AI."
+        },
+        "wordfilter-challenge": {
+          "tagline": "Gemenskapens ordfilter tillämpas som en publiceringsregel i stället för som ett visningsfilter.",
+          "description": "Wordfilter Challenge gör en gemenskaps ordersättningar bindande. Publicerande klienter tillämpar ersättningarna före signeringen, så den signerade kommentaren och dess CID innehåller redan ersättningstexten, och gemenskapens nod avvisar varje publicering som fortfarande innehåller ett filtrerat ord. Det implementerar kontraktet <code>wordfilter/v1</code>, vilket gör att en klient som skrivits mot det kontraktet fortsätter att fungera med andra implementationer."
+        },
+        "challenge-composer": {
+          "tagline": "Offline-först-redigerare för en communitys inställningar för antispam-utmaningar.",
+          "description": "Challenge Composer visar och redigerar arrayen <code>challenges</code> i inställningarna för en Bitsocial-community och exporterar sedan ett körklart CLI-skript. Det levereras som en enda fristående HTML-fil som inte gör några anrop utåt när den körs, så den kan öppnas direkt från disk eller ett USB-minne."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Server för länkförhandsvisning och omdirigering som genererar delningskort för Bitsocial-inlägg.",
+          "description": "Bitsocial Previewer genererar OpenGraph- och Twitter-kort när en länk till ett inlägg delas på andra plattformar och skickar sedan vidare riktiga webbläsare till appen. En instans är flerklientsanpassad per värdnamn, så en enda driftsättning och TLS-konfiguration räcker för alla klient- och spegeldomäner."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Crawler, sökindex och webbgränssnitt för Bitsocial-communityer, som du kan hosta själv.",
+          "description": "Bitsocial Indexer ansluter via RPC till en daemon för Bitsocial CLI, indexerar de communityer som operatören konfigurerar i en lokal SQLite-databas och exponerar dem via ett REST- och fritextsök-API, med ett valfritt serverrenderat webbgränssnitt. Den levereras tom: operatören avgör vad som indexeras."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Telegram-bot som publicerar kortfattad GitHub-aktivitet för Bitsocial-repositorier.",
+          "description": "Bitsocial GitHub Alerts vidarebefordrar pushar, releaser, issues och pull requests från GitHub till valfri chatt, grupp eller forumtråd på Telegram. Bitsocial-teamet kör den för sina egna repositorier, och container-avbilden är öppen så att vem som helst kan köra den själv för sina."
+        },
+        "bitbones": {
+          "tagline": "Avskalad referensklient där varje vy bara är ett tunt hölje kring en enda hook.",
+          "description": "bitbones är den minsta användbara ytan ovanpå Bitsocials React-hooks: nästan ingen styling, inga produktbeslut och en enda hook bakom varje vy. Det är det snabbaste stället att återskapa en bugg eller pröva en hook-ändring mot riktiga gemenskaper, och standardflödet kan växlas mellan Seedits och 5chans gemenskapslistor."
+        },
+        "huggingsocial": {
+          "tagline": "Peer-to-peer-nav för att hitta, diskutera och ladda ner öppna AI-modeller.",
+          "description": "HuggingSocial är ett modellnav som ingen företag äger. Navarna är Bitsocial-gemenskaper kontrollerade av kryptografiska nycklar, varje modellangebot är ett signerat inlägg med ett modellkort, kontrollsummor och nedladdningsresurser, och vikterna rör sig via BitTorrent eller enkla HTTP-speglar och verifieras på din maskin. Klienten är i design och tidig utveckling; webbplatsen tar emot registreringar för väntelistan."
         }
       }
     },
@@ -706,7 +735,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Endast-text-protokoll",
     "title": "Frihet har moderering.",
-    "supporting": "Det finns ingen global admin och ingen server att beslagta, så ingen kan stänga av dig från hela nätverket. Moderering flyttar bara närmare dig.",
+    "supporting": "Protokollet överför bara text, och det här är inget dolt nätverk. Det finns ingen global administratör och ingen server att beslagta, så ingen kan stänga av dig från hela nätverket. Moderering flyttar helt enkelt närmare dig.",
     "carouselLabel": "Vanliga farhågor, besvarade",
     "communities": {
       "myth": "Inga avstängningar betyder att allt är tillåtet.",
@@ -731,7 +760,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Adoptionstes",
-    "title": "Varför skulle någon använda det?",
+    "title": "Bättre att äga än att hyra.",
     "supporting": "Det kan inte censureras, det går aldrig ner och du behåller allt du tjänar. Här är vilka som dyker upp — och varför.",
     "diagramLabel": "Adoptionskurva som visar varför varje användargrupp väljer Bitsocial.",
     "curve": {
@@ -789,7 +818,51 @@
     "docsCta": "Hur P2P fungerar i webbläsaren",
     "liveCta": "Se på bloggen",
     "sectionLabel": "Webbläsare P2P",
-    "supporting": "Öppna en Bitsocial-webbapp i en vanlig flik och den ansluter sig själv till nätverket, hämtar inlägg från andra peer och publicerar dina egna. Varje annat decentraliserat socialt nätverk har fortfarande en server i mitten.",
-    "title": "Din webbläsare är en peer"
+    "supporting": "Öppna en Bitsocial-webbapp i en helt vanlig flik, så ansluter den sig själv till nätverket – hämtar inlägg från andra peers och publicerar dina egna. Det är den svåra biten, och skälet till att alla andra decentraliserade sociala nätverk fortfarande har en server i mitten.",
+    "title": "Webbläsaren är genombrottet."
+  },
+  "faq": {
+    "sectionLabel": "FAQ",
+    "title": "Vanliga frågor",
+    "supporting": "Varje avsnitt på den här sidan svarar på en av dem. Klicka på en fråga för att hoppa dit.",
+    "navLabel": "Frågor som besvaras på den här sidan",
+    "answeredIn": "Besvaras i avsnittet",
+    "items": {
+      "problem": {
+        "question": "Vilket problem löser Bitsocial?"
+      },
+      "core-features": {
+        "question": "Vad är Bitsocial? Hur fungerar det?"
+      },
+      "browser-peer": {
+        "question": "Varför har ingen byggt det här tidigare?"
+      },
+      "decentralized": {
+        "question": "Finns det inte redan decentraliserade sociala nätverk?"
+      },
+      "arbitrary-challenges": {
+        "question": "Vad stoppar spam när det inte finns några servrar?"
+      },
+      "text-only-protocol": {
+        "question": "Hur är det med olagligt innehåll?"
+      },
+      "adoption-thesis": {
+        "question": "Varför skulle folk byta till Bitsocial?"
+      },
+      "master-plan": {
+        "question": "Vad är planen härifrån? Hur kan jag hjälpa till?"
+      },
+      "about": {
+        "question": "Vilka står bakom Bitsocial? Hur har det finansierats?"
+      },
+      "mailing-list": {
+        "question": "Hur håller jag mig uppdaterad?"
+      }
+    },
+    "ask": {
+      "label": "Fråga om något annat",
+      "placeholder": "Fråga om något annat…",
+      "action": "Fråga ChatGPT"
+    }
   }
 }

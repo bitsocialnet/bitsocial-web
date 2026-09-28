@@ -83,10 +83,19 @@ function DocsLanguageSync() {
 }
 
 export default function Root({ children }: { children: ReactNode }): ReactNode {
-  return (
+  const content = (
     <>
       <DocsLanguageSync />
       {children}
     </>
+  );
+  const profiler =
+    __REACT_PERF_ENABLED__ && typeof window !== "undefined" ? window.__REACT_PERF__ : undefined;
+  return profiler ? (
+    <React.Profiler id="docs" onRender={profiler.onProfilerRender}>
+      {content}
+    </React.Profiler>
+  ) : (
+    content
   );
 }

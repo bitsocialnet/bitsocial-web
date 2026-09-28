@@ -22,7 +22,7 @@ Pubsub Sağlayıcısı, paketlenmiş bir Kubo düğümüyle birlikte Bitsocial u
 
 ## Portlar
 
-Varsayılanlar, Pubsub Sağlayıcısı'nın aynı VPS üzerinde [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) ile yan yana çalışabilmesi ve swarm portu çakışması yaşanmaması için seçilmiştir.
+Varsayılanlar, Pubsub Sağlayıcısı'nın aynı VPS üzerinde [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) ile yan yana çalışabilmesi ve swarm portu çakışması yaşanmaması için seçilmiştir.
 
 | Amaç                | Varsayılan                              | Notlar                                                                     |
 | ------------------- | --------------------------------------- | -------------------------------------------------------------------------- |

@@ -95,9 +95,6 @@ conținutului.
 
 ## Unde rulează asta astăzi
 
-- [Blogul Bitsocial](https://bitsocial.net/blog) de pe acest site rulează implicit ca un client P2P
-  în browser. Panoul său „stare P2P” arată lista de peeri în timp real, transportul folosit de
-  fiecare conexiune și locul unde se află acei peeri.
 - [5chan](/apps/5chan/) rulează implicit P2P pur în browser, în aplicația web de la
   [5chan.app](https://5chan.app).
 

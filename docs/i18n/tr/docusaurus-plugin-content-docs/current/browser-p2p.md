@@ -93,9 +93,6 @@ içerik yolunun tam ortasında yer alır.
 
 ## Bugün bu nerede çalışıyor
 
-- Bu sitedeki [Bitsocial blogu](https://bitsocial.net/blog) varsayılan olarak bir tarayıcı P2P
-  istemcisi biçiminde çalışır. "P2P durumu" paneli canlı eş listesini, her bağlantının kullandığı
-  taşıma katmanını ve bu eşlerin nerede olduğunu gösterir.
 - [5chan](/apps/5chan/), [5chan.app](https://5chan.app) adresindeki web uygulamasında varsayılan
   olarak saf tarayıcı P2P çalıştırır.
 

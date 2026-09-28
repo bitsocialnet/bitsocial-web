@@ -20,7 +20,9 @@
     "theme": "Tema",
     "newsletter": "Buletin",
     "backToTop": "Kembali ke atas",
-    "chain": "Chain"
+    "goToBottom": "Ke bawah",
+    "backToPrevious": "Kembali ke posisi sebelumnya",
+    "faq": "FAQ"
   },
   "footer": {
     "tagline": "Jaringan P2P sumber terbuka untuk aplikasi sosial",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "Fitur Inti",
-    "title": "Apa itu Bitsocial?",
+    "title": "Lapisan sosial yang tak dimiliki siapa pun.",
     "supporting": "Sebuah alam semesta aplikasi media sosial yang terus berkembang, semua menggunakan jaringan sosial terdesentralisasi yang sama — satu yang tidak dimiliki oleh perusahaan mana pun, dan tidak ada yang bisa mengambilnya dari Anda.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "Panggilan untuk Bertindak",
+    "title": "Panggilan untuk para pembangun.",
     "logoAlt": "logo",
     "easterEggAlt": "SpongeBob",
     "epilogue": "Status akhir bukanlah satu aplikasi. Ini adalah pasar klien, node, layanan, dan komunitas yang dapat menggantikan kepemilikan platform dengan kompetisi protokol.",
@@ -449,7 +451,7 @@
     "subtitle": "Bitsocial dirancang untuk tumbuh menjadi ribuan aplikasi, alat, dan layanan yang bisa dibuat siapa saja, bukan hanya yang disetujui penjaga gerbang. Kalau kamu developer, kirim aplikasimu sendiri.",
     "experimental": "Eksperimental",
     "sectionLabel": "Direktori proyek",
-    "directoryLabel": "Direktori proyek",
+    "directoryLabel": "Kategori proyek",
     "notFoundDescription": "Aplikasi yang Anda cari tidak ada di direktori.",
     "emptyCategoryDescription": "Belum ada aplikasi di kategori ini. Jadi yang pertama membangunnya!",
     "emptyCategory": "Segera hadir",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "Verifikasi",
         "ai": "AI",
-        "antiRepost": "Anti-repost"
+        "antiRepost": "Anti-repost",
+        "referenceClient": "Klien referensi",
+        "search": "Pencarian"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -539,7 +543,8 @@
         "openWebApp": "Buka aplikasi web",
         "openWebsite": "Buka situs web",
         "windows": "Windows",
-        "windowsPortable": "Windows portabel"
+        "windowsPortable": "Windows portabel",
+        "openTelegramBot": "Buka bot Telegram"
       },
       "items": {
         "5chan": {
@@ -550,13 +555,9 @@
           "tagline": "Client Bitsocial bergaya forum dengan build web, APK, dan desktop.",
           "description": "Seedit membawa diskusi ala Reddit ke Bitsocial dengan thread, identitas, pengelolaan komunitas, dan banyak jalur distribusi. Ini cara tercepat untuk mencoba sisi forum jaringan dari browser, ponsel Android, atau aplikasi desktop."
         },
-        "mintpass": {
-          "tagline": "Kontrol akses berbasis NFT untuk komunitas yang butuh gerbang anti-spam lebih kuat.",
-          "description": "Mintpass adalah lapisan autentikasi fleksibel untuk komunitas Bitsocial. Ini memungkinkan moderator menggabungkan kepemilikan NFT, alur verifikasi, dan modul challenge kustom tanpa memaksa semua orang ke sistem login terpusat."
-        },
         "spam-blocker": {
           "tagline": "Lapisan penilaian risiko terpusat untuk menyaring publikasi abusif.",
-          "description": "Spam Blocker mengevaluasi publikasi dan mengembalikan risk score yang bisa dipadukan komunitas dengan logika moderasi mereka sendiri. Ini berguna saat Anda ingin lapisan tambahan yang praktis sebelum membangun aturan anti-spam yang lebih kustom."
+          "description": "Spam Blocker mengevaluasi publikasi dan mengembalikan skor risiko yang dapat dipadukan komunitas dengan logika moderasi mereka sendiri. Layanan tertempat menetapkan juga menghubungkan kunci penanda tangan yang pertama kali terlihat dari IP yang sama, sehingga pengguna yang terus membuat akun baru untuk menghindari larangan komunitas atau menciptakan percakapan melihat skor risiko mereka meningkat, sementara beberapa penanda tangan tetap diizinkan untuk penggunaan multi-perangkat yang sah."
         },
         "captcha-canvas-challenge": {
           "tagline": "Captcha gambar kustom untuk komunitas yang ingin verifikasi manusia.",
@@ -597,6 +598,34 @@
         "r9k-challenge": {
           "tagline": "Gerbang orisinalitas bergaya Robot9000 untuk komunitas yang menginginkan pengalaman posting anti-repost.",
           "description": "R9K Challenge berjalan di node komunitas Bitsocial dan membandingkan teks posting yang sudah dinormalisasi dengan database komentar lokal milik node pemilik. Ini memberi komunitas pengalaman posting bergaya <robot9000>Robot9000</robot9000>: repost persis gagal sebelum diterima, backlink diabaikan, kegagalan berulang memicu ban sementara yang meningkat, dan hash teks yang diterima tetap berada di state lokal privat alih-alih menyimpan teks posting mentah. Challenge ini tidak menggunakan AI."
+        },
+        "wordfilter-challenge": {
+          "tagline": "Filter kata komunitas diberlakukan sebagai aturan pengiriman, bukan sebagai filter tampilan.",
+          "description": "Wordfilter Challenge membuat penggantian kata milik sebuah komunitas bersifat mengikat. Klien penerbit menerapkan penggantian tersebut sebelum penandatanganan, sehingga komentar yang ditandatangani beserta CID-nya sudah berisi teks pengganti, dan node komunitas menolak setiap publikasi yang masih memuat kata terfilter. Proyek ini mengimplementasikan kontrak <code>wordfilter/v1</code>, sehingga klien yang ditulis mengikuti kontrak itu tetap dapat bekerja dengan implementasi lain."
+        },
+        "challenge-composer": {
+          "tagline": "Editor yang mengutamakan mode luring untuk pengaturan tantangan anti-spam sebuah komunitas.",
+          "description": "Challenge Composer menampilkan dan menyunting larik <code>challenges</code> pada pengaturan sebuah komunitas Bitsocial, lalu mengekspornya menjadi skrip CLI yang siap dijalankan. Alat ini berupa satu berkas HTML mandiri yang tidak mengirim permintaan keluar saat dijalankan, sehingga bisa dibuka langsung dari disk atau dari flash disk USB."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Server pratinjau tautan dan pengalihan yang membuat kartu berbagi untuk kiriman Bitsocial.",
+          "description": "Bitsocial Previewer membuat kartu OpenGraph dan Twitter saat tautan sebuah kiriman dibagikan di platform lain, lalu mengalihkan peramban sungguhan ke aplikasi. Satu instans bersifat multi-tenant berdasarkan hostname, sehingga satu penerapan dan satu pengaturan TLS sudah mencakup seluruh domain klien dan mirror."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Perayap, indeks pencarian, dan antarmuka web yang bisa di-hosting sendiri untuk komunitas Bitsocial.",
+          "description": "Bitsocial Indexer terhubung ke daemon Bitsocial CLI melalui RPC, mengindeks komunitas yang dikonfigurasi operator ke dalam basis data SQLite lokal, lalu menyajikannya lewat API REST dan pencarian teks lengkap, dengan antarmuka web hasil render di server sebagai opsi tambahan. Perangkat ini datang dalam keadaan kosong: operatorlah yang menentukan apa yang diindeks."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Bot Telegram yang mengirimkan ringkasan aktivitas GitHub untuk repositori Bitsocial.",
+          "description": "Bitsocial GitHub Alerts meneruskan push, rilis, isu, dan pull request dari GitHub ke obrolan, grup, atau topik forum mana pun di Telegram. Tim Bitsocial menjalankannya untuk repositorinya sendiri, dan image kontainernya publik sehingga siapa pun bisa meng-hosting sendiri untuk repositori miliknya."
+        },
+        "bitbones": {
+          "tagline": "Klien referensi paling sederhana, dengan setiap tampilan hanya berupa pembungkus tipis di atas satu hook.",
+          "description": "bitbones adalah lapisan berguna paling kecil di atas React hooks milik Bitsocial: nyaris tanpa styling, tanpa keputusan produk, dan hanya satu hook di balik setiap tampilan. Ini tempat tercepat untuk mereproduksi bug atau mencoba perubahan hooks terhadap komunitas sungguhan, dan feed bawaannya dapat diganti antara daftar komunitas Seedit dan 5chan."
+        },
+        "huggingsocial": {
+          "tagline": "Hub peer-to-peer untuk menemukan, mendiskusikan, dan mengunduh model AI terbuka.",
+          "description": "HuggingSocial adalah pusat model yang tidak dimiliki oleh perusahaan apa pun. Hub adalah komunitas Bitsocial yang dikontrol oleh kunci kriptografi, setiap daftar model adalah posting yang ditandatangani dengan kartu model, checksum, dan sumber unduhan, dan bobot bergerak melalui BitTorrent atau cermin HTTP sederhana dan diverifikasi pada mesin Anda. Klien berada dalam desain dan pengembangan awal; situs web menerima pendaftaran daftar tunggu."
         }
       }
     },
@@ -706,7 +735,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Protokol Teks Saja",
     "title": "Kebebasan tetap ada moderasinya.",
-    "supporting": "Tidak ada admin global dan tidak ada server yang bisa disita, jadi tak seorang pun bisa memblokir Anda dari seluruh jaringan. Moderasi hanya bergeser lebih dekat kepada Anda.",
+    "supporting": "Protokol ini hanya membawa teks, dan bukan jaringan tersembunyi. Tidak ada admin global dan tidak ada server yang bisa disita, jadi tidak ada yang bisa memblokir Anda dari seluruh jaringan. Moderasi hanya bergeser lebih dekat kepada Anda.",
     "carouselLabel": "Kekhawatiran umum, terjawab",
     "communities": {
       "myth": "Tanpa pemblokiran, semua jadi bebas tanpa aturan.",
@@ -731,7 +760,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Tesis adopsi",
-    "title": "Kenapa ada orang yang mau memakainya?",
+    "title": "Memiliki lebih baik daripada menyewa.",
     "supporting": "Ini tidak bisa disensor, tidak pernah down, dan kamu menyimpan semua yang kamu hasilkan. Inilah yang muncul — dan alasannya.",
     "diagramLabel": "Kurva adopsi yang menunjukkan mengapa setiap kelompok pengguna mengadopsi Bitsocial.",
     "curve": {
@@ -789,7 +818,51 @@
     "docsCta": "Cara kerja P2P di browser",
     "liveCta": "Lihat di blog",
     "sectionLabel": "Peramban P2P",
-    "supporting": "Buka aplikasi web Bitsocial di tab normal dan bergabung dengan jaringan sendiri, mengambil postingan dari peer lain dan memublikasikan milik Anda. Setiap jaringan sosial terdesentralisasi lainnya masih menyimpan server di tengah.",
-    "title": "Peramban Anda adalah peer"
+    "supporting": "Buka aplikasi web Bitsocial di tab biasa dan aplikasinya langsung bergabung ke jaringan: mengambil kiriman dari peer lain dan menerbitkan kiriman Anda. Itulah bagian yang sulit — dan alasan semua jejaring sosial terdesentralisasi lainnya masih menaruh server di tengah.",
+    "title": "Terobosannya ada di peramban."
+  },
+  "faq": {
+    "sectionLabel": "FAQ",
+    "title": "Pertanyaan umum",
+    "supporting": "Setiap bagian situs ini menjawab satu pertanyaan. Klik salah satu untuk langsung menuju ke sana.",
+    "navLabel": "Pertanyaan yang dijawab di halaman ini",
+    "answeredIn": "Dijawab di bagian",
+    "items": {
+      "problem": {
+        "question": "Masalah apa yang diselesaikan Bitsocial?"
+      },
+      "core-features": {
+        "question": "Apa itu Bitsocial? Bagaimana cara kerjanya?"
+      },
+      "browser-peer": {
+        "question": "Kenapa belum ada yang membuatnya?"
+      },
+      "decentralized": {
+        "question": "Bukankah sudah ada jaringan sosial terdesentralisasi?"
+      },
+      "arbitrary-challenges": {
+        "question": "Tanpa server, apa yang mencegah spam?"
+      },
+      "text-only-protocol": {
+        "question": "Bagaimana dengan konten ilegal?"
+      },
+      "adoption-thesis": {
+        "question": "Kenapa orang mau beralih ke Bitsocial?"
+      },
+      "master-plan": {
+        "question": "Apa rencana selanjutnya? Bagaimana saya bisa membantu?"
+      },
+      "about": {
+        "question": "Siapa di balik Bitsocial? Bagaimana pendanaannya?"
+      },
+      "mailing-list": {
+        "question": "Bagaimana saya bisa mengikuti perkembangannya?"
+      }
+    },
+    "ask": {
+      "label": "Tanyakan apa saja yang lain",
+      "placeholder": "Tanyakan apa saja yang lain…",
+      "action": "Tanya ChatGPT"
+    }
   }
 }

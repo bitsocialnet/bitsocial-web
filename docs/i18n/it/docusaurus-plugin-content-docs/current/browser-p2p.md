@@ -94,9 +94,6 @@ sta sul percorso dei contenuti.
 
 ## Dove è già in funzione
 
-- Il [blog Bitsocial](https://bitsocial.net/blog) su questo sito funziona per impostazione
-  predefinita come client P2P nel browser. Il suo pannello «Stato P2P» mostra l'elenco dei peer in
-  tempo reale, il trasporto usato da ciascuna connessione e dove si trovano quei peer.
 - [5chan](/apps/5chan/) usa per impostazione predefinita il P2P puro nel browser nella web app su
   [5chan.app](https://5chan.app).
 

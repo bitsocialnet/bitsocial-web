@@ -6,9 +6,15 @@ import { fileURLToPath } from "node:url";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const siteOrigin = "https://bitsocial.net";
+const chainOrigin = "https://chain.bitsocial.net";
 const docsOrigin = "https://docs.bitsocial.net";
 const statsOrigin = "https://stats.bitsocial.net";
 const aboutPublicDir = path.join(repoRoot, "about", "public");
+const chainRoot = path.join(repoRoot, "chain");
+const chainPublicDir = path.join(chainRoot, "public");
+const chainIndexPath = path.join(chainRoot, "index.html");
+const chainAppPath = path.join(chainRoot, "src", "App.tsx");
+const chainSectionsIndexPath = path.join(chainRoot, "src", "sections", "index.tsx");
 const docsRoot = path.join(repoRoot, "docs");
 const docsStaticDir = path.join(docsRoot, "static");
 const appsDataPath = path.join(repoRoot, "about", "src", "lib", "apps-data.ts");
@@ -21,7 +27,6 @@ const aboutEnglishTranslationsPath = path.join(
   "default.json",
 );
 const rootReadmePath = path.join(repoRoot, "README.md");
-
 const excludedDocDirs = new Set([
   ".docusaurus",
   "agent-runs",
@@ -33,6 +38,9 @@ const excludedDocDirs = new Set([
   "static",
 ]);
 const excludedDocFiles = new Set(["AGENTS.md", "README.md", "index.mdx", "search.mdx"]);
+// Pages the docs site does not build; indexing them would publish links to
+// routes that do not exist. Keep this aligned with the Docusaurus exclude list.
+const excludedDocPaths = new Set(["agent-playbooks/verification.md"]);
 
 const docsCategoryOrder = [
   "Protocol notes",
@@ -43,39 +51,6 @@ const docsCategoryOrder = [
   "Infrastructure",
   "Contributor playbooks",
   "Other",
-];
-
-const siteAppEntries = [
-  {
-    name: "5chan",
-    url: `${siteOrigin}/apps/5chan`,
-    description: "Decentralized imageboard client with web, Android, and desktop distribution.",
-  },
-  {
-    name: "Seedit",
-    url: `${siteOrigin}/apps/seedit`,
-    description: "Forum-style client for Bitsocial with browser, Android, and desktop access.",
-  },
-  {
-    name: "Mintpass",
-    url: `${siteOrigin}/apps/mintpass`,
-    description: "NFT-backed access control and anti-spam gateway for Bitsocial communities.",
-  },
-  {
-    name: "Spam Blocker",
-    url: `${siteOrigin}/apps/spam-blocker`,
-    description: "Risk-scoring service for filtering abusive publications.",
-  },
-  {
-    name: "Bitsocial CLI",
-    url: `${siteOrigin}/apps/bitsocial-cli`,
-    description: "Command-line interface for nodes, publishing, and automation workflows.",
-  },
-  {
-    name: "Telegram Bots",
-    url: `${siteOrigin}/apps/telegram-bots`,
-    description: "Feed bots that relay Bitsocial posts into Telegram channels.",
-  },
 ];
 
 const landingDeepComparisonServices = [
@@ -96,6 +71,7 @@ const landingDeepComparisonRows = [
   "moderation",
   "communityModel",
   "browserMobile",
+  "browserRuntime",
   "identity",
   "contentDiscovery",
 ];
@@ -151,13 +127,79 @@ function parseFrontmatter(raw) {
   return metadata;
 }
 
-function sanitizeMdxContent(raw) {
+function isAbsoluteOrLocalAnchor(value) {
+  return /^(?:[A-Za-z][A-Za-z0-9+.-]*:|#)/u.test(value);
+}
+
+function rewriteMarkdownLinks(value, resolveTarget) {
+  return value.replace(/(!?\[[^\]]*\]\()([^)]+)(\))/gu, (match, prefix, rawTarget, suffix) => {
+    const targetMatch = rawTarget.match(/^(\S+)([\s\S]*)$/u);
+    if (!targetMatch) return match;
+    const [, target, title] = targetMatch;
+    return `${prefix}${resolveTarget(target)}${title}${suffix}`;
+  });
+}
+
+function resolveDocsLink(target, relativePath) {
+  if (isAbsoluteOrLocalAnchor(target)) return target;
+
+  const match = target.match(/^([^?#]*)([?#].*)?$/u);
+  if (!match) return target;
+  const [, targetPath, suffix = ""] = match;
+  const sourceDir = path.posix.dirname(relativePath);
+  const resolvedPath = targetPath.startsWith("/")
+    ? targetPath.slice(1)
+    : path.posix.normalize(path.posix.join(sourceDir, targetPath));
+  const publicPath = /\.(?:md|mdx)$/u.test(resolvedPath)
+    ? `${docSlugFromRelativePath(resolvedPath)}/`
+    : resolvedPath;
+
+  return `${docsOrigin}/${publicPath}${suffix}`;
+}
+
+function resolveRepoLink(target, repo) {
+  if (isAbsoluteOrLocalAnchor(target)) return target;
+
+  const match = target.match(/^([^?#]*)([?#].*)?$/u);
+  if (!match) return target;
+  const [, targetPath, suffix = ""] = match;
+  const resolvedPath = path.posix.normalize(targetPath.replace(/^\.\//u, ""));
+  if (!resolvedPath || resolvedPath === "." || resolvedPath.startsWith("../")) {
+    return `https://github.com/${repo}${suffix}`;
+  }
+
+  return `https://github.com/${repo}/blob/HEAD/${resolvedPath}${suffix}`;
+}
+
+function stripMarkdownSection(value, heading) {
+  const escapedHeading = heading.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
+  return value.replace(
+    new RegExp(`^##\\s+${escapedHeading}\\s*$[\\s\\S]*?(?=^##\\s+|$(?![\\s\\S]))`, "gmu"),
+    "",
+  );
+}
+
+function redactSensitiveRuntimeExamples(value) {
+  return value
+    .replace(/(pkc rpc: listening on ws:\/\/localhost:9138\/)[A-Za-z0-9_-]{16,}/giu, "$1<auth-key>")
+    .replace(/(ws:\/\/localhost:9138\/)[A-Za-z0-9_-]{16,}/giu, "$1<auth-key>")
+    .replace(/(http:\/\/localhost:9138\/)[A-Za-z0-9_-]{16,}(?=\/)/giu, "$1<auth-key>")
+    .replace(
+      /(http:\/\/)(?:\d{1,3}\.){3}\d{1,3}(:9138\/)[A-Za-z0-9_-]{16,}(?=\/)/giu,
+      "$1<your-ip>$2<auth-key>",
+    );
+}
+
+function sanitizeMdxContent(raw, relativePath) {
+  const cleaned = stripFrontmatter(raw)
+    .replace(/^import\s.+$/gm, "")
+    .replace(/^export\s.+$/gm, "")
+    .replace(/^:::[A-Za-z0-9_-]*\s*$/gm, "")
+    .replace(/^<([A-Z][A-Za-z0-9_]*)\b[^>]*\/>\s*$/gm, "")
+    .replace(/^<([A-Z][A-Za-z0-9_]*)\b[^>]*>[\s\S]*?<\/\1>\s*$/gm, "");
+
   return collapseBlankLines(
-    stripFrontmatter(raw)
-      .replace(/^import\s.+$/gm, "")
-      .replace(/^export\s.+$/gm, "")
-      .replace(/^<([A-Z][A-Za-z0-9_]*)\b[^>]*\/>\s*$/gm, "")
-      .replace(/^<([A-Z][A-Za-z0-9_]*)\b[^>]*>[\s\S]*?<\/\1>\s*$/gm, ""),
+    rewriteMarkdownLinks(cleaned, (target) => resolveDocsLink(target, relativePath)),
   );
 }
 
@@ -175,7 +217,7 @@ function markdownToSingleLine(value) {
 function translationToSingleLine(value) {
   if (typeof value !== "string") return "";
 
-  return collapseBlankLines(value.replace(/<[^>]+>/g, " "))
+  return collapseBlankLines(value.replace(/<br\s*\/?>/giu, " ").replace(/<[^>]+>/g, ""))
     .replace(/```[\s\S]*?```/g, " ")
     .replace(/`([^`]+)`/g, "$1")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
@@ -274,9 +316,11 @@ async function collectDocs(dir = docsRoot, prefix = "") {
     if (excludedDocFiles.has(entry.name)) continue;
 
     const relativePath = path.join(prefix, entry.name).replaceAll(path.sep, "/");
+    if (excludedDocPaths.has(relativePath)) continue;
+
     const fullPath = path.join(dir, entry.name);
     const raw = await readFile(fullPath, "utf8");
-    const content = sanitizeMdxContent(raw);
+    const content = sanitizeMdxContent(raw, relativePath);
     const frontmatter = parseFrontmatter(raw);
     const title =
       frontmatter.title || extractFirstHeading(content) || entry.name.replace(/\.(md|mdx)$/u, "");
@@ -296,36 +340,58 @@ async function collectDocs(dir = docsRoot, prefix = "") {
   return docs;
 }
 
-function parseGithubReposFromAppsData(source) {
-  const repos = [];
-  const seen = new Set(["bitsocialnet/bitsocial-web"]);
-  repos.push("bitsocialnet/bitsocial-web");
-
-  for (const match of source.matchAll(/githubRepo:\s*"([^"]+)"/g)) {
-    const repo = match[1];
-    if (seen.has(repo)) continue;
-    seen.add(repo);
-    repos.push(repo);
+function parseAppsFromAppsData(source, translations) {
+  const appsSectionIndex = source.indexOf("export const APPS");
+  if (appsSectionIndex === -1) {
+    throw new Error("could not find APPS in about/src/lib/apps-data.ts");
   }
 
-  return repos;
+  const appsSection = source.slice(appsSectionIndex);
+  const apps = [
+    ...appsSection.matchAll(
+      /^\s{2}\{\n\s{4}slug:\s*"([^"]+)",\n\s{4}name:\s*"([^"]+)",\n\s{4}tagline:\s*"([^"]+)",[\s\S]*?^\s{4}githubRepo:\s*"([^"]+)",/gmu,
+    ),
+  ].map(([, slug, name, tagline, repo]) => ({
+    description:
+      translationToSingleLine(translations.apps?.catalog?.items?.[slug]?.tagline) || tagline,
+    name,
+    repo,
+    slug,
+    title: name,
+    url: `${siteOrigin}/projects/${slug}`,
+  }));
+
+  if (apps.length === 0) {
+    throw new Error("could not parse any public apps from about/src/lib/apps-data.ts");
+  }
+
+  return apps;
 }
 
-function sanitizeReadme(raw) {
+function sanitizeReadme(raw, repo) {
   const normalized = normalizeLineEndings(raw);
   const firstHeadingIndex = normalized.search(/^#\s+/m);
   const trimmed = firstHeadingIndex >= 0 ? normalized.slice(firstHeadingIndex) : normalized;
+  const withoutProjectBoilerplate =
+    repo === "bitsocialnet/bitsocial-web"
+      ? trimmed
+      : stripMarkdownSection(trimmed, "What is Bitsocial?");
+  const cleaned = redactSensitiveRuntimeExamples(withoutProjectBoilerplate)
+    .replaceAll("https://bitsocial.net/apps?category=", "https://bitsocial.net/projects?category=")
+    .replaceAll("Bitsocial app directory", "Bitsocial project directory")
+    .replaceAll("[libp2p.direct](https://libp2p.direct)", "`libp2p.direct`")
+    .replace(
+      /\[`5chan-directories\.json`\]\(https:\/\/github\.com\/bitsocialnet\/lists\/blob\/master\/5chan-directories\.json\)/gu,
+      "[`5chan-directories/`](https://github.com/bitsocialnet/lists/tree/master/5chan-directories)",
+    )
+    .replace(/^_See code: \[@oclif\/plugin-help]\([^)]+\)_\s*$/gm, "")
+    .replace(/^<img\b[^>]*>\s*$/gm, "")
+    .replace(/^!\[[^\]]*]\([^)]+\)\s*$/gm, "")
+    .replace(/^\[!\[[^\]]*]\([^)]+\)\]\([^)]+\)\s*$/gm, "")
+    .replace(/^\s*<[^>]+>\s*$/gm, "");
 
   return collapseBlankLines(
-    trimmed
-      .replaceAll(
-        "https://bitsocial.net/apps?category=",
-        "https://bitsocial.net/projects?category=",
-      )
-      .replaceAll("Bitsocial app directory", "Bitsocial project directory")
-      .replace(/^<img\b[^>]*>\s*$/gm, "")
-      .replace(/^!\[[^\]]*]\([^)]+\)\s*$/gm, "")
-      .replace(/^\[!\[[^\]]*]\([^)]+\)\]\([^)]+\)\s*$/gm, ""),
+    rewriteMarkdownLinks(cleaned, (target) => resolveRepoLink(target, repo)),
   );
 }
 
@@ -347,34 +413,27 @@ function runGh(args) {
   return result.stdout;
 }
 
-async function collectRepoReadmes() {
-  const appsData = await readFile(appsDataPath, "utf8");
-  const repos = parseGithubReposFromAppsData(appsData);
+async function collectRepoReadmes(apps) {
+  const repos = ["bitsocialnet/bitsocial-web", ...new Set(apps.map((app) => app.repo))];
   const readmes = [];
 
   for (const repo of repos) {
     log(`fetching README for ${repo}`);
+    const raw =
+      repo === "bitsocialnet/bitsocial-web"
+        ? await readLocalRootReadme()
+        : runGh(["api", `repos/${repo}/readme`, "-H", "Accept: application/vnd.github.raw+json"]);
+    const content = sanitizeReadme(raw, repo);
+    const title = extractFirstHeading(content) || repo;
+    const description = extractSummary(content);
 
-    try {
-      const raw =
-        repo === "bitsocialnet/bitsocial-web"
-          ? await readLocalRootReadme()
-          : runGh(["api", `repos/${repo}/readme`, "-H", "Accept: application/vnd.github.raw+json"]);
-      const content = sanitizeReadme(raw);
-      const title = extractFirstHeading(content) || repo;
-      const description = extractSummary(content);
-
-      readmes.push({
-        content,
-        description,
-        repo,
-        title,
-        url: `https://github.com/${repo}#readme`,
-      });
-    } catch (error) {
-      const detail = error instanceof Error ? error.message : String(error);
-      log(`warning: skipping ${repo} README (${detail})`);
-    }
+    readmes.push({
+      content,
+      description,
+      repo,
+      title,
+      url: `https://github.com/${repo}#readme`,
+    });
   }
 
   return readmes;
@@ -383,6 +442,75 @@ async function collectRepoReadmes() {
 async function readAboutTranslations() {
   const raw = await readFile(aboutEnglishTranslationsPath, "utf8");
   return JSON.parse(raw);
+}
+
+function extractJsxStringProp(source, prop) {
+  return source.match(new RegExp(`\\b${prop}="([^"]+)"`, "u"))?.[1] ?? "";
+}
+
+function jsxFragmentToSingleLine(fragment) {
+  return translationToSingleLine(fragment.replace(/\{[^{}]*\}/gu, " ").replace(/<[^>]+>/gu, " "));
+}
+
+function extractJsxFragmentProp(source, prop) {
+  const fragment = source.match(
+    new RegExp(`\\b${prop}=\\{\\s*<>\\s*([\\s\\S]*?)\\s*<\\/>\\s*\\}`, "u"),
+  )?.[1];
+  if (!fragment) return "";
+
+  return jsxFragmentToSingleLine(fragment);
+}
+
+function extractJsxElementText(source, tag, className) {
+  const contents = source.match(
+    new RegExp(`<${tag}\\s+className="${className}">([\\s\\S]*?)<\\/${tag}>`, "u"),
+  )?.[1];
+  return contents ? jsxFragmentToSingleLine(contents) : "";
+}
+
+async function readChainLandingData() {
+  const indexHtml = await readFile(chainIndexPath, "utf8");
+  const appSource = await readFile(chainAppPath, "utf8");
+  const sectionsIndexSource = await readFile(chainSectionsIndexPath, "utf8");
+  const description = indexHtml.match(
+    /<meta\s+name="description"\s+content="([^"]+)"\s*\/?>/u,
+  )?.[1];
+  if (!description) {
+    throw new Error("could not find the Chain landing description in chain/index.html");
+  }
+  const heroTitle = extractJsxElementText(appSource, "h1", "title");
+  const heroSupporting = extractJsxElementText(appSource, "p", "sub");
+  if (!heroTitle || !heroSupporting) {
+    throw new Error("could not parse the Chain hero from chain/src/App.tsx");
+  }
+
+  const sectionFiles = [
+    ...sectionsIndexSource.matchAll(/^import\s+\w+\s+from\s+"\.\/([^"]+)";$/gmu),
+  ].map((match) => `${match[1]}.tsx`);
+  if (sectionFiles.length === 0) {
+    throw new Error("could not parse Chain sections from chain/src/sections/index.tsx");
+  }
+
+  const sections = [];
+  for (const filename of sectionFiles) {
+    const source = await readFile(path.join(chainRoot, "src", "sections", filename), "utf8");
+    const id = extractJsxStringProp(source, "id");
+    const eyebrow = extractJsxStringProp(source, "eyebrow");
+    const question = extractJsxStringProp(source, "question");
+    const supporting =
+      extractJsxStringProp(source, "supporting") || extractJsxFragmentProp(source, "supporting");
+    if (!id || !eyebrow || !question) {
+      throw new Error(`could not parse Chain section metadata from chain/src/sections/${filename}`);
+    }
+
+    sections.push({
+      description: supporting ? `${question} ${supporting}` : question,
+      title: eyebrow,
+      url: `${chainOrigin}/#${id}`,
+    });
+  }
+
+  return { description, heroSupporting, heroTitle, sections };
 }
 
 function renderBulletList(entries) {
@@ -445,12 +573,17 @@ function serviceDetailKey(serviceId) {
 
 function buildLandingData(translations) {
   const heroSegments = translations.hero?.taglineSegments ?? {};
+  const problem = translations.problem ?? {};
   const features = translations.features?.items ?? {};
+  const browserPeer = translations.browserPeer ?? {};
   const sanctuary = translations.sanctuary ?? {};
   const deepComparison = sanctuary.deepComparison ?? {};
   const arbitraryChallenges = translations.arbitraryChallenges ?? {};
   const textOnlyProtocol = translations.textOnlyProtocol ?? {};
+  const adoptionThesis = translations.adoptionThesis ?? {};
   const masterPlan = translations.masterPlan ?? {};
+  const mailingList = translations.mailingList ?? {};
+  const faq = translations.faq ?? {};
 
   const deepServices = landingDeepComparisonServices
     .map(({ id, anchor }) => ({
@@ -467,6 +600,29 @@ function buildLandingData(translations) {
     .filter((row) => row.label);
 
   return {
+    problem: {
+      title: translationToSingleLine(problem.title),
+      supporting: translationToSingleLine(problem.supporting),
+      items: Object.values(problem.items ?? {})
+        .map((item) => ({
+          answer: translationToSingleLine(item.answer),
+          description: translationToSingleLine(item.description),
+          title: translationToSingleLine(item.title),
+        }))
+        .filter((item) => item.title),
+      quote: translationToSingleLine(problem.quote),
+      quoteAttribution: translationToSingleLine(problem.quoteAttribution),
+    },
+    browserPeer: {
+      title: translationToSingleLine(browserPeer.title),
+      supporting: translationToSingleLine(browserPeer.supporting),
+      cards: Object.values(browserPeer.cards ?? {})
+        .map((card) => ({
+          description: translationToSingleLine(card.description),
+          title: translationToSingleLine(card.title),
+        }))
+        .filter((card) => card.title),
+    },
     arbitraryChallenges: {
       quote: translationToSingleLine(arbitraryChallenges.quote),
       options: Object.values(arbitraryChallenges.options ?? {})
@@ -528,6 +684,22 @@ function buildLandingData(translations) {
     hero:
       translationToSingleLine(translations.hero?.tagline) ||
       sentenceList(Object.values(heroSegments)),
+    adoptionThesis: {
+      title: translationToSingleLine(adoptionThesis.title),
+      supporting: translationToSingleLine(adoptionThesis.supporting),
+      pillars: Object.values(adoptionThesis.pillars ?? {})
+        .map((pillar) => ({
+          description: translationToSingleLine(pillar.description),
+          label: translationToSingleLine(pillar.label),
+        }))
+        .filter((pillar) => pillar.label),
+      cohorts: Object.values(adoptionThesis.cohorts ?? {})
+        .map((cohort) => ({
+          label: translationToSingleLine(cohort.label),
+          reason: translationToSingleLine(cohort.reason),
+        }))
+        .filter((cohort) => cohort.label),
+    },
     masterPlan: {
       epilogue: translationToSingleLine(masterPlan.epilogue),
       epilogueFinal: translationToSingleLine(masterPlan.epilogueFinal),
@@ -541,6 +713,18 @@ function buildLandingData(translations) {
       subtitle: translationToSingleLine(masterPlan.subtitle),
       title: translationToSingleLine(masterPlan.title),
     },
+    mailingList: {
+      description: translationToSingleLine(mailingList.description),
+      privacy: translationToSingleLine(mailingList.privacy),
+      title: translationToSingleLine(mailingList.title),
+    },
+    faq: {
+      title: translationToSingleLine(faq.title),
+      supporting: translationToSingleLine(faq.supporting),
+      questions: Object.values(faq.items ?? {})
+        .map((item) => translationToSingleLine(item.question))
+        .filter(Boolean),
+    },
   };
 }
 
@@ -553,12 +737,17 @@ function renderLandingShortIndex(landing, heading = "Landing page highlights") {
 ## ${heading}
 
 - [Home](${siteOrigin}/): ${landing.hero}
-- [Core features](${siteOrigin}/): Bitsocial is open source, peer-to-peer via IPFS/libp2p, app-oriented, serverless by default, locally moderated with no protocol-level global bans, and built around key-controlled identities and communities.
+- [The problem](${siteOrigin}/#problem): ${landing.problem.supporting}
+- [Core features](${siteOrigin}/#core-features): Bitsocial is open source, peer-to-peer via IPFS/libp2p, app-oriented, serverless by default, locally moderated with no protocol-level global bans, and built around key-controlled identities and communities.
+- [Browser P2P](${siteOrigin}/#browser-peer): ${landing.browserPeer.supporting}
 - [Sanctuary comparison](${siteOrigin}/#decentralized): Compares ${landing.comparison.approaches.join("; ")} across self-hosting cost, who keeps content online, scaling, custom anti-spam logic, and takedown choke points.
 - [Deep comparison tables](${siteOrigin}/#nostr-comparison): Sourced modal tables compare Bitsocial with ${deepServices} across ${deepRows}.
 - [Arbitrary Challenges](${siteOrigin}/#arbitrary-challenges): ${landing.arbitraryChallenges.supporting} Example modules include ${challengeOptions}.
 - [Text-only Protocol](${siteOrigin}/#text-only-protocol): ${landing.textOnlyProtocol.supporting}
+- [Adoption thesis](${siteOrigin}/#adoption-thesis): ${landing.adoptionThesis.supporting}
 - [Master Plan](${siteOrigin}/#master-plan): ${landing.masterPlan.subtitle}
+- [Newsletter](${siteOrigin}/#mailing-list): ${landing.mailingList.description}
+- [FAQ](${siteOrigin}/#faq): ${landing.faq.supporting}
 `);
 }
 
@@ -643,15 +832,31 @@ ${sections}
 }
 
 function renderLandingFullCorpus(landing) {
+  const problemRows = landing.problem.items
+    .map(
+      (item) =>
+        `- ${item.title}: ${item.description}${item.answer ? ` Bitsocial's answer: ${item.answer}.` : ""}`,
+    )
+    .join("\n");
   const featureRows = landing.features
     .map((feature) => `- ${feature.title}: ${feature.description}`)
+    .join("\n");
+  const browserPeerRows = landing.browserPeer.cards
+    .map((card) => `- ${card.title}: ${card.description}`)
     .join("\n");
   const textOnlyCardRows = landing.textOnlyProtocol.cards
     .map((card) => `- ${card.reality} ${card.points.join(" ")}`.trim())
     .join("\n");
+  const adoptionPillarRows = landing.adoptionThesis.pillars
+    .map((pillar) => `- ${pillar.label}: ${pillar.description}`)
+    .join("\n");
+  const adoptionCohortRows = landing.adoptionThesis.cohorts
+    .map((cohort) => `- ${cohort.label}: ${cohort.reason}`)
+    .join("\n");
   const masterPlanRows = landing.masterPlan.phases
     .map((phase) => `- ${phase.phase} - ${phase.title}: ${phase.description}`)
     .join("\n");
+  const faqRows = landing.faq.questions.map((question) => `- ${question}`).join("\n");
 
   return collapseBlankLines(`
 ## Landing page corpus
@@ -662,9 +867,31 @@ Source: ${siteOrigin}/
 
 ${landing.hero}
 
+### The problem
+
+Source: ${siteOrigin}/#problem
+
+${landing.problem.title}
+
+${landing.problem.supporting}
+
+${problemRows}
+
+Founder note: ${landing.problem.quote} ${landing.problem.quoteAttribution}
+
 ### Core features
 
 ${featureRows}
+
+### Browser P2P
+
+Source: ${siteOrigin}/#browser-peer
+
+${landing.browserPeer.title}
+
+${landing.browserPeer.supporting}
+
+${browserPeerRows}
 
 ${renderLandingComparisonTable(landing)}
 
@@ -692,6 +919,22 @@ ${textOnlyCardRows}
 
 Founder note: ${landing.textOnlyProtocol.quote}
 
+### Adoption thesis
+
+Source: ${siteOrigin}/#adoption-thesis
+
+${landing.adoptionThesis.title}
+
+${landing.adoptionThesis.supporting}
+
+Reasons to adopt:
+
+${adoptionPillarRows}
+
+Adoption cohorts:
+
+${adoptionCohortRows}
+
 ### Master Plan
 
 Source: ${siteOrigin}/#master-plan
@@ -706,11 +949,91 @@ ${landing.masterPlan.epilogue}
 
 ${landing.masterPlan.epilogueFinal}
 
+### Newsletter
+
+Source: ${siteOrigin}/#mailing-list
+
+${landing.mailingList.title}
+
+${landing.mailingList.description} ${landing.mailingList.privacy}
+
+### FAQ
+
+Source: ${siteOrigin}/#faq
+
+${landing.faq.title}
+
+${landing.faq.supporting}
+
+${faqRows}
+
 ${renderLandingDeepComparisonCorpus(landing)}
 `);
 }
 
-function buildSiteLlms(docs, landing) {
+function buildChainLlms(chain) {
+  return collapseBlankLines(`
+# Bitsocial Chain
+
+> ${chain.description}
+
+Use \`${chainOrigin}/\` for the official BSO and Bitsocial Chain landing page. The current immutable BSO token is live on Ethereum; the Bitsocial Chain L2 and later roadmap phases are proposed infrastructure unless the page explicitly says otherwise.
+
+## Landing page
+
+- [Bitsocial Chain home](${chainOrigin}/): ${chain.heroTitle}. ${chain.heroSupporting}
+${renderBulletList(chain.sections)}
+
+## Official docs
+
+- [Bitsocial Chain](${docsOrigin}/bitsocial-network/): Phase 2 architecture and economic-layer overview.
+- [BSO Token History](${docsOrigin}/token-history/): Verifiable history of BSO and its immutable Ethereum contract.
+
+## Optional
+
+- [llms-full.txt](${chainOrigin}/llms-full.txt): Inline Chain-focused context plus the relevant official docs.
+- [Main Bitsocial llms.txt](${siteOrigin}/llms.txt): Network-wide routing index for Bitsocial apps, docs, and public surfaces.
+`);
+}
+
+function buildChainLlmsFull(chain, docs) {
+  const chainDocs = docs.filter((doc) =>
+    ["bitsocial-network.md", "token-history.md"].includes(doc.relativePath),
+  );
+
+  return collapseBlankLines(`
+# Bitsocial Chain
+
+> ${chain.description}
+
+This file expands \`${chainOrigin}/llms.txt\` with the Chain landing-page map and the related official Bitsocial Chain and BSO history docs.
+
+Interpret roadmap status literally: the immutable BSO token is live on Ethereum, while Bitsocial Chain and later infrastructure remain proposed unless an official source explicitly marks them live.
+
+## Hero
+
+Source: ${chainOrigin}/
+
+${chain.heroTitle}
+
+${chain.heroSupporting}
+
+## Landing page map
+
+- [Bitsocial Chain home](${chainOrigin}/): ${chain.description}
+${renderBulletList(chain.sections)}
+
+## Related official docs
+
+${renderBulletList(chainDocs)}
+
+## Inline docs corpus
+
+${renderFullDocsCorpus(chainDocs)}
+`);
+}
+
+function buildSiteLlms(docs, landing, apps) {
   return collapseBlankLines(`
 # Bitsocial
 
@@ -723,12 +1046,13 @@ Use \`${siteOrigin}/\` for the public product overview and \`${docsOrigin}/\` fo
 - [Home](${siteOrigin}/): High-level explanation of Bitsocial and why it is built around peer-to-peer social apps instead of a centralized platform.
 - [Projects](${siteOrigin}/projects): Directory of Bitsocial clients, anti-spam modules, and operator tools.
 - [Privacy](${siteOrigin}/privacy): Privacy notice for the about site, docs, analytics, and newsletter flows.
+- [Bitsocial Chain](${chainOrigin}/): BSO token and proposed Ethereum L2 appchain landing page.
 
 ${renderLandingShortIndex(landing)}
 
 ## Apps and tools
 
-${renderBulletList(siteAppEntries)}
+${renderBulletList(apps)}
 
 ## Docs
 
@@ -745,6 +1069,7 @@ ${renderBulletList(siteAppEntries)}
 
 - [llms-full.txt](${siteOrigin}/llms-full.txt): Expanded inline corpus covering the public docs plus companion project READMEs.
 - [Docs llms-full.txt](${docsOrigin}/llms-full.txt): Docs-scoped full inline corpus if only the documentation surface is needed.
+- [Bitsocial Chain llms.txt](${chainOrigin}/llms.txt): Chain-specific routing index for BSO and the proposed L2 appchain.
 - [Contributor playbooks](${docsOrigin}/agent-playbooks/): Public workflow docs for contributors and AI agents; useful for repo and process questions, but usually unnecessary for end-user product questions.
 - [All public docs pages](${docsOrigin}/llms.txt): ${docs.length} curated public docs entries from the Bitsocial docs site.
 `);
@@ -759,6 +1084,12 @@ function buildDocsLlms(docs, landing) {
 Use this file as the short routing index for \`${docsOrigin}/\`. Use \`${docsOrigin}/llms-full.txt\` when you want the full inline documentation corpus instead of the curated map.
 
 ${renderLandingShortIndex(landing, "Related landing page context")}
+
+## Related public surfaces
+
+- [Bitsocial home](${siteOrigin}/): Public network and ecosystem overview.
+- [Bitsocial Chain](${chainOrigin}/): BSO token and proposed Ethereum L2 appchain landing page.
+- [Bitsocial Chain llms.txt](${chainOrigin}/llms.txt): Chain-specific routing index.
 
 ${renderDocsSections(docs)}
 
@@ -786,6 +1117,12 @@ The content is biased toward inference-time lookup, not formal API reference gen
 
 ${renderLandingShortIndex(landing, "Related landing page context")}
 
+## Related public surfaces
+
+- [Bitsocial home](${siteOrigin}/): Public network and ecosystem overview.
+- [Bitsocial Chain](${chainOrigin}/): BSO token and proposed Ethereum L2 appchain landing page.
+- [Bitsocial Chain llms.txt](${chainOrigin}/llms.txt): Chain-specific routing index.
+
 ${renderDocsSections(docs)}
 
 ${renderLandingFullCorpus(landing)}
@@ -800,7 +1137,7 @@ ${renderReadmeCorpus(readmes)}
 `);
 }
 
-function buildSiteLlmsFull(docs, readmes, landing) {
+function buildSiteLlmsFull(docs, readmes, landing, apps) {
   return collapseBlankLines(`
 # Bitsocial
 
@@ -825,13 +1162,16 @@ Two interpretation notes matter:
 - [Docs home](${docsOrigin}/): Technical docs covering protocol notes, roadmap material, app notes, infrastructure docs, and contributor playbooks.
 - [Docs llms.txt](${docsOrigin}/llms.txt): Curated docs-specific routing index.
 - [Docs llms-full.txt](${docsOrigin}/llms-full.txt): Docs-scoped full inline corpus.
+- [Bitsocial Chain](${chainOrigin}/): BSO token and proposed Ethereum L2 appchain landing page.
+- [Bitsocial Chain llms.txt](${chainOrigin}/llms.txt): Chain-specific routing index.
+- [Bitsocial Chain llms-full.txt](${chainOrigin}/llms-full.txt): Chain-focused inline context.
 - [Stats dashboard](${statsOrigin}/): Grafana-backed public stats surface for Bitsocial apps and infrastructure.
 
 ${renderLandingShortIndex(landing)}
 
 ## Public apps and tools
 
-${renderBulletList(siteAppEntries)}
+${renderBulletList(apps)}
 
 ${renderLandingFullCorpus(landing)}
 
@@ -851,7 +1191,7 @@ ${renderReadmeCorpus(readmes)}
 
 async function writeOutput(relativePath, contents) {
   const outputPath = path.join(repoRoot, relativePath);
-  await writeFile(outputPath, `${contents}\n`);
+  await writeFile(outputPath, `${redactSensitiveRuntimeExamples(contents)}\n`);
   log(`wrote ${relativePath}`);
 }
 
@@ -862,6 +1202,14 @@ async function main() {
 
   if (!existsSync(docsStaticDir)) {
     throw new Error(`missing expected directory: ${path.relative(repoRoot, docsStaticDir)}`);
+  }
+
+  if (!existsSync(chainPublicDir)) {
+    throw new Error(`missing expected directory: ${path.relative(repoRoot, chainPublicDir)}`);
+  }
+
+  if (!existsSync(chainIndexPath)) {
+    throw new Error(`missing expected file: ${path.relative(repoRoot, chainIndexPath)}`);
   }
 
   if (!existsSync(rootReadmePath)) {
@@ -875,14 +1223,19 @@ async function main() {
   }
 
   const aboutTranslations = await readAboutTranslations();
+  const appsData = await readFile(appsDataPath, "utf8");
+  const apps = parseAppsFromAppsData(appsData, aboutTranslations);
   const landing = buildLandingData(aboutTranslations);
+  const chain = await readChainLandingData();
   const docs = (await collectDocs()).sort((left, right) =>
     left.sortKey.localeCompare(right.sortKey),
   );
-  const readmes = await collectRepoReadmes();
+  const readmes = await collectRepoReadmes(apps);
 
-  await writeOutput("about/public/llms.txt", buildSiteLlms(docs, landing));
-  await writeOutput("about/public/llms-full.txt", buildSiteLlmsFull(docs, readmes, landing));
+  await writeOutput("about/public/llms.txt", buildSiteLlms(docs, landing, apps));
+  await writeOutput("about/public/llms-full.txt", buildSiteLlmsFull(docs, readmes, landing, apps));
+  await writeOutput("chain/public/llms.txt", buildChainLlms(chain));
+  await writeOutput("chain/public/llms-full.txt", buildChainLlmsFull(chain, docs));
   await writeOutput("docs/static/llms.txt", buildDocsLlms(docs, landing));
   await writeOutput("docs/static/llms-full.txt", buildDocsLlmsFull(docs, readmes, landing));
 }

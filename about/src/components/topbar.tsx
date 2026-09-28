@@ -2,8 +2,9 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type MouseEv
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { m } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { CHAIN_SITE_URL, DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
+import { DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
+import { FAQ_HASH, goToHomeSectionHash } from "@/lib/home-section-nav";
 import { cn } from "@/lib/utils";
 import { goHomeScrollTop, goRouteScrollTop } from "@/lib/home-nav";
 import { NoJsThemeToggle, ThemeToggle } from "./theme-toggle";
@@ -11,8 +12,12 @@ import HamburgerButton from "./hamburger-button";
 import LanguageSelector, { NoJsLanguageSelector } from "./language-selector";
 import MobileMenu from "./mobile-menu";
 
+// Every topbar control is an explicit 44px flex-centred box on every pointer type. Relying on a
+// coarse-pointer minimum size instead grew the block links on touch devices without
+// re-centring their labels, so the bar looked different on an iPad than on a laptop.
 const navLinkClassName =
-  "text-muted-foreground hover:text-foreground transition-colors relative group text-lg md:text-base font-display leading-none py-2 px-2 block";
+  "text-muted-foreground hover:text-foreground transition-colors relative group flex min-h-11 items-center px-2 text-lg md:text-base font-display leading-none";
+const desktopNavLinkClassName = "h-11 min-w-11 justify-center";
 const compactNavigationTriggerBufferPx = 160;
 const MOBILE_MENU_INTERACTION_GUARD_ATTRIBUTE = "data-mobile-menu-interaction-guard";
 const APPS_DIRECTORY_HREF = "/projects?category=apps";
@@ -86,54 +91,65 @@ function NavLink({
 }
 
 function TopbarLinks({
-  chainLabel,
+  faqLabel,
   onNavClick,
   onAppsClick,
+  onFaqClick,
   routeLinks,
 }: {
-  chainLabel: string;
+  faqLabel: string;
   onNavClick: () => void;
   onAppsClick: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
+  onFaqClick: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
   routeLinks: Array<{ label: string; to: string }>;
 }) {
   return (
-    <div className="topbar-links flex items-center gap-5">
+    <div className="topbar-links flex items-center gap-5 whitespace-nowrap">
       {routeLinks.map((link) => (
         <NavLink
           key={link.to}
           to={link.to}
           onClick={link.to === APPS_DIRECTORY_HREF ? onAppsClick : onNavClick}
+          className={desktopNavLinkClassName}
           noUnderline
         >
           {link.label}
         </NavLink>
       ))}
-      <NavLink href={CHAIN_SITE_URL} onClick={onNavClick} noUnderline>
-        {chainLabel}
+      <NavLink
+        to={`/${FAQ_HASH}`}
+        onClick={onFaqClick}
+        className={desktopNavLinkClassName}
+        noUnderline
+      >
+        {faqLabel}
       </NavLink>
     </div>
   );
 }
 
 function DesktopNavigation({
-  chainLabel,
+  faqLabel,
   onNavClick,
   onAppsClick,
+  onFaqClick,
   routeLinks,
   includeNoJsControls = true,
 }: {
-  chainLabel: string;
+  faqLabel: string;
   onNavClick: () => void;
   onAppsClick: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
+  onFaqClick: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
   routeLinks: Array<{ label: string; to: string }>;
   includeNoJsControls?: boolean;
 }) {
   return (
-    <div className="topbar-desktop-nav flex items-center">
+    <div className="topbar-desktop-nav flex h-11 items-center">
       <TopbarLinks
-        chainLabel={chainLabel}
+        faqLabel={faqLabel}
         onNavClick={onNavClick}
         onAppsClick={onAppsClick}
+        onFaqClick={onFaqClick}
         routeLinks={routeLinks}
       />
       {routeLinks.length > 0 ? <div className="h-4 w-px bg-border mx-4" /> : null}
@@ -159,14 +175,14 @@ function DesktopNavigation({
 
 function NoJsMobileMenu({
   routeLinks,
-  chainLabel,
+  faqLabel,
 }: {
   routeLinks: Array<{ label: string; to: string }>;
-  chainLabel: string;
+  faqLabel: string;
 }) {
   return (
     <details className="nojs-mobile-menu">
-      <summary className="nojs-mobile-summary flex h-9 w-9 list-none cursor-pointer items-center justify-center rounded-full text-muted-foreground hover:text-foreground [&::-webkit-details-marker]:hidden">
+      <summary className="nojs-mobile-summary flex h-11 w-11 list-none cursor-pointer items-center justify-center rounded-full text-muted-foreground hover:text-foreground [&::-webkit-details-marker]:hidden">
         <span className="sr-only">Menu</span>
         <span className="relative h-5 w-5">
           <span className="absolute left-0 top-0.5 h-0.5 w-5 rounded-full bg-current" />
@@ -191,13 +207,8 @@ function NoJsMobileMenu({
               </a>
             );
           })}
-          <a
-            href={CHAIN_SITE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={navLinkClassName}
-          >
-            {chainLabel}
+          <a href={`/${FAQ_HASH}`} className={navLinkClassName}>
+            {faqLabel}
           </a>
         </nav>
 
@@ -339,11 +350,17 @@ export default function Topbar() {
     goRouteScrollTop(location.pathname, APPS_DIRECTORY_HREF, navigate);
   };
 
+  const handleFaqClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    goToHomeSectionHash(location.pathname, location.hash, FAQ_HASH, navigate, handleNavClick);
+  };
+
   const appsLabel = t("nav.apps");
   const blogLabel = t("nav.blog");
   const docsLabel = t("nav.docs");
   const statsLabel = t("nav.status");
-  const chainLabel = t("nav.chain");
+  const faqLabel = t("nav.faq");
   const routeLinks = [
     { label: appsLabel, to: APPS_DIRECTORY_HREF },
     { label: blogLabel, to: "/blog" },
@@ -364,7 +381,7 @@ export default function Topbar() {
         // Fixed elements resolve against the viewport, which widens when a dialog's scroll
         // lock hides the scrollbar. Pulling the right anchor in by the removed scrollbar
         // width keeps the bar aligned with the page instead of drifting with the viewport.
-        className="fixed top-3 left-4 right-[calc(1rem+var(--removed-body-scroll-bar-size,0px))] z-50 mx-auto max-w-7xl"
+        className="topbar-position fixed z-50 mx-auto max-w-7xl"
       >
         <div
           className={cn(
@@ -379,20 +396,21 @@ export default function Topbar() {
               className="pointer-events-none invisible absolute left-0 top-0 whitespace-nowrap"
             >
               <DesktopNavigation
-                chainLabel={chainLabel}
+                faqLabel={faqLabel}
                 onNavClick={handleNavClick}
                 onAppsClick={handleAppsClick}
+                onFaqClick={handleFaqClick}
                 routeLinks={routeLinks}
                 includeNoJsControls={false}
               />
             </div>
 
-            <div ref={topbarContentRef} className="flex items-center justify-between">
+            <div ref={topbarContentRef} className="flex h-11 items-center justify-between">
               <Link
                 ref={logoRef}
                 to="/"
                 onClick={handleLogoClick}
-                className="inline-flex items-center gap-1 group transition-colors"
+                className="group inline-flex h-11 items-center gap-1 transition-colors"
               >
                 <img
                   src="/logo-small.png"
@@ -408,20 +426,21 @@ export default function Topbar() {
               </Link>
 
               {usesCompactNavigation ? (
-                <div className="flex items-center gap-2">
+                <div className="flex h-11 items-center gap-2">
                   <HamburgerButton isOpen={isMobileMenuOpen} onClick={handleMenuToggle} />
                 </div>
               ) : (
                 <DesktopNavigation
-                  chainLabel={chainLabel}
+                  faqLabel={faqLabel}
                   onNavClick={handleNavClick}
                   onAppsClick={handleAppsClick}
+                  onFaqClick={handleFaqClick}
                   routeLinks={routeLinks}
                 />
               )}
 
               <noscript>
-                <NoJsMobileMenu routeLinks={routeLinks} chainLabel={chainLabel} />
+                <NoJsMobileMenu routeLinks={routeLinks} faqLabel={faqLabel} />
               </noscript>
             </div>
           </div>
@@ -440,8 +459,8 @@ export default function Topbar() {
                   {link.label}
                 </NavLink>
               ))}
-              <NavLink href={CHAIN_SITE_URL} onClick={handleNavClick} noUnderline>
-                {chainLabel}
+              <NavLink to={`/${FAQ_HASH}`} onClick={handleFaqClick} noUnderline>
+                {faqLabel}
               </NavLink>
             </div>
 

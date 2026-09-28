@@ -22,7 +22,7 @@ Pubsub Provider হলো একটি অপারেটর পরিষেব�
 
 ## পোর্ট
 
-ডিফল্ট মানগুলো এমনভাবে বেছে নেওয়া হয়েছে, যাতে Pubsub Provider একই VPS-এ [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/)-এর পাশাপাশি swarm-পোর্ট সংঘর্ষ ছাড়াই চলতে পারে।
+ডিফল্ট মানগুলো এমনভাবে বেছে নেওয়া হয়েছে, যাতে Pubsub Provider একই VPS-এ [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/)-এর পাশাপাশি swarm-পোর্ট সংঘর্ষ ছাড়াই চলতে পারে।
 
 | উদ্দেশ্য            | ডিফল্ট                          | মন্তব্য                                                  |
 | ------------------- | ------------------------------- | -------------------------------------------------------- |

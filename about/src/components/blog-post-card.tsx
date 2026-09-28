@@ -95,7 +95,7 @@ export default function BlogPostCard({
       <header className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
         {flairText ? (
           <span
-            className="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-medium"
+            className="text-micro-fluid inline-flex items-center rounded-full px-2.5 py-1 font-medium"
             style={{
               backgroundColor: flair?.backgroundColor ?? "rgba(37,99,235,0.16)",
               color: flair?.textColor ?? "var(--foreground)",

@@ -62,7 +62,7 @@ function ConcernCard({ concern }: { concern: Concern }) {
   const Icon = concern.icon;
 
   return (
-    <article className="glass-card flex h-full flex-col p-6 md:p-7">
+    <article className="glass-card surface-pad flex h-full flex-col">
       <span
         className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-blue-core/40 bg-blue-core/[0.08] text-blue-glow dark:border-blue-core/55 dark:bg-blue-core/[0.16]"
         aria-hidden
@@ -74,7 +74,7 @@ function ConcernCard({ concern }: { concern: Concern }) {
         &ldquo;{t(concern.mythKey)}&rdquo;
       </p>
 
-      <h3 className="mt-1.5 font-display text-xl font-semibold leading-snug text-foreground/90 md:text-2xl">
+      <h3 className="card-title-fluid mt-1.5 font-display font-semibold leading-snug text-foreground/90">
         {t(concern.realityKey)}
       </h3>
 
@@ -186,12 +186,17 @@ function MobileConcernCarousel({ prefersReducedMotion }: { prefersReducedMotion:
             aria-label={t(concern.realityKey)}
             aria-current={activeIndex === index}
             onClick={() => scrollToIndex(index)}
-            className={`h-1.5 w-6 origin-center transform-gpu rounded-full transition-[transform,background-color] duration-200 motion-reduce:transition-none ${
-              activeIndex === index
-                ? "scale-x-100 bg-blue-glow"
-                : "scale-x-[0.25] bg-muted-foreground/20 hover:bg-muted-foreground/40"
-            }`}
-          />
+            className="group touch-target flex items-center justify-center"
+          >
+            <span
+              aria-hidden="true"
+              className={`h-1.5 w-6 origin-center transform-gpu rounded-full transition-[transform,background-color] duration-200 motion-reduce:transition-none ${
+                activeIndex === index
+                  ? "scale-x-100 bg-blue-glow"
+                  : "scale-x-[0.25] bg-muted-foreground/20 group-hover:bg-muted-foreground/40"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </div>
@@ -223,7 +228,7 @@ export default function TextOnlyProtocol() {
         };
 
   return (
-    <section className="px-6 py-24" aria-labelledby="text-only-protocol-title">
+    <section className="home-section" aria-labelledby="text-only-protocol-title">
       <div className="mx-auto max-w-6xl">
         <div
           id="text-only-protocol"
@@ -232,7 +237,7 @@ export default function TextOnlyProtocol() {
         >
           <m.div
             {...reveal(14, 0, 0.5)}
-            className="mb-6 block text-center text-xs font-display uppercase tracking-[0.2em] text-muted-foreground/75 dark:text-muted-foreground/70 md:text-sm"
+            className="home-section-eyebrow mb-6 block text-center font-display uppercase tracking-[0.2em] text-muted-foreground/75 dark:text-muted-foreground/70"
           >
             <a
               href="#text-only-protocol"
@@ -246,14 +251,14 @@ export default function TextOnlyProtocol() {
         <m.h2
           id="text-only-protocol-title"
           {...reveal(20, 0.1)}
-          className="mb-6 text-center text-4xl font-display font-semibold leading-[1.1] text-balance text-muted-foreground md:text-6xl lg:text-7xl"
+          className="home-section-title mb-6 text-center font-display font-semibold text-balance text-muted-foreground"
         >
           {t("textOnlyProtocol.title")}
         </m.h2>
 
         <m.p
           {...reveal(20, 0.2)}
-          className="mx-auto mb-12 max-w-xl text-center text-base leading-relaxed text-balance text-muted-foreground md:text-lg"
+          className="home-section-lede mx-auto mb-12 text-center text-balance text-muted-foreground"
         >
           {t("textOnlyProtocol.supporting")}
         </m.p>

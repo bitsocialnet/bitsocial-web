@@ -188,12 +188,28 @@ If uncertain, ask the developer before adding an entry.
 - **Mitigation:** In any docs page that is not mirrored into `docs/i18n/**`, use root-relative links (`/peer-to-peer-protocol/`, `/apps/5chan/`) instead of relative `.md` links; Docusaurus prefixes them with the locale automatically. `docs/build-your-own-client.md` is the existing example. Run a full `yarn docs:build` — not just `build:verify` — before handing off any change that adds or links a docs page.
 - **Status:** confirmed
 
-### `update-translations.js` must be run from `about/`, and concurrent runs silently lose keys
+### Concurrent `update-translations.js` runs silently lose keys
 
 - **Date:** 2026-08-02
 - **Observed by:** Claude
 - **Context:** Applying 26 translated i18next keys across all 36 locales via the `translate` skill
-- **What was surprising:** Two separate traps in the same script. First, `scripts/update-translations.js` resolves its target as `path.join(process.cwd(), "public", "translations")`, but this repo keeps translations at `about/public/translations`. Running the documented command from the repo root fails every invocation with "Translations directory not found" — `docs/agent-playbooks/translations.md` shows `node scripts/update-translations.js ...`, which reads as a repo-root command. Second, each invocation is a read-modify-write over all 36 locale files, so two invocations running at once clobber each other and one key vanishes with no error. The `translate` skill explicitly instructs spawning up to 4 subagents concurrently, each of which would call the script.
-- **Impact:** The repo-root form fails loudly and wastes a full pass. The concurrency issue fails silently: keys go missing from arbitrary locales, and the diff still looks plausible.
-- **Mitigation:** Run it as `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Never let translator subagents write locale files concurrently — have them emit dictionary JSON files only, then apply every key serially from the parent agent. After applying, verify programmatically that each key exists in all 35 non-English locales and that no value is byte-identical to the English source.
+- **What was surprising:** Each invocation is a read-modify-write over all 36 locale files, so two invocations running at once clobber each other and one key vanishes with no error. The `translate` skill explicitly instructs spawning up to 4 subagents concurrently, each of which would call the script.
+- **Impact:** Fails silently: keys go missing from arbitrary locales, and the diff still looks plausible.
+- **Mitigation:** Never let translator subagents write locale files concurrently — have them emit dictionary JSON files only, then apply every key serially from the parent agent. After applying, verify programmatically that each key exists in all 35 non-English locales and that no value is byte-identical to the English source.
+- **Status:** confirmed
+- **Update (2026-08-10):** The script used to also resolve its target as `path.join(process.cwd(), "public", "translations")`, so the documented repo-root command failed with "Translations directory not found" and had to be run from `about/`. It now resolves the workspace from the current directory or from its own location, and works from anywhere. The concurrency trap above is unchanged.
+
+### Development annotation controls can intercept driven clicks
+
+- **Context:** The about and chain sites have fixed controls in the bottom-right corner, where the Agentation toolbar also appears in development.
+- **Mitigation:** `scripts/pw-session.sh open` registers `window.__NO_DEV_TOOLBAR__ = true` before reloading the page. The Agentation initializer also honors `__VISUAL_TESTING__` and `__PROFILING__`; source inspection remains available independently. Direct browser automation must set the same flag before loading the application.
+
+### `skills add` installs Codex and Cursor copies into the gitignored `.agents/` directory
+
+- **Date:** 2026-08-18
+- **Observed by:** Tommaso + Claude
+- **Context:** Installing the `improve-threejs` skill from `millionco/react-doctor` with the `skills` CLI (`vercel-labs/skills`).
+- **What was surprising:** `npx skills add <repo> --skill <name> --agent codex` and `--agent cursor` both write to `.agents/skills/<name>/`, not to `.codex/skills/` or `.cursor/skills/`. `AGENTS.md` forbids a repo-level `.agents/` directory and `.gitignore:29` ignores it, so both copies are silently untracked. Only `--agent claude-code` writes to the expected `.claude/skills/`. Separately, the documented comma-separated form (`--agent claude-code,codex,cursor`) fails with "Invalid agents" and installs nothing, even though each name is valid on its own.
+- **Impact:** The install reports success while two of the three toolchain copies land somewhere that will never be committed, so Codex and Cursor silently lack the skill after a fresh clone. The comma form can also produce a no-op install that reads as a success.
+- **Current mitigation:** The repository now tracks `.agents/skills` as its canonical source and generates Claude copies with `yarn ai-workflow:sync`. The former `.agents` prohibition and ignore rule have been removed. Do not copy new skills into three independent roots; check generated parity and the app catalog after adding a skill.
 - **Status:** confirmed

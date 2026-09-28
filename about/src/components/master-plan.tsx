@@ -244,7 +244,7 @@ function MasterPlanIntro({ subtitle, t }: { subtitle: string; t: TFunction }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="block text-xs md:text-sm font-display tracking-[0.2em] uppercase text-center mb-6 text-muted-foreground/75 dark:text-muted-foreground/70"
+          className="home-section-eyebrow mb-6 block text-center font-display uppercase tracking-[0.2em] text-muted-foreground/75 dark:text-muted-foreground/70"
         >
           <a
             href="#master-plan"
@@ -259,7 +259,7 @@ function MasterPlanIntro({ subtitle, t }: { subtitle: string; t: TFunction }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-4xl md:text-6xl lg:text-7xl font-display font-semibold text-center mb-6 text-balance leading-[1.1] text-muted-foreground"
+        className="home-section-title mb-6 text-center font-display font-semibold text-balance text-muted-foreground"
       >
         {t("masterPlan.title")}
       </m.h2>
@@ -268,7 +268,7 @@ function MasterPlanIntro({ subtitle, t }: { subtitle: string; t: TFunction }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-base md:text-lg text-center text-muted-foreground max-w-2xl mx-auto mb-16 text-balance leading-relaxed"
+        className="home-section-lede mx-auto mb-16 text-center text-balance text-muted-foreground"
       >
         {subtitle}
       </m.p>
@@ -320,7 +320,7 @@ function PhaseLabel({ item }: { item: PhaseItem }) {
       <a
         id={item.id}
         href={`#${item.id}`}
-        className="scroll-mt-[99px] rounded-md transition-[color,box-shadow] duration-300 hover:text-blue-glow md:scroll-mt-[103px]"
+        className="touch-target inline-flex scroll-mt-[99px] items-center rounded-md transition-[color,box-shadow] duration-300 hover:text-blue-glow md:scroll-mt-[103px]"
       >
         {item.phase}
       </a>
@@ -394,8 +394,8 @@ function PhaseStep({
       >
         {isLast ? (
           <>
-            <div className="glass-card p-7 md:p-8">{phaseCardBody}</div>
-            <div className="glass-card p-7 md:p-8">
+            <div className="glass-card surface-pad">{phaseCardBody}</div>
+            <div className="glass-card surface-pad">
               <p className="text-muted-foreground text-sm leading-relaxed">{epilogue}</p>
               <p className="mt-4 text-muted-foreground text-sm leading-relaxed">
                 <strong className="font-semibold text-foreground/90">{epilogueFinal}</strong>
@@ -403,7 +403,7 @@ function PhaseStep({
             </div>
           </>
         ) : (
-          <div className="glass-card p-7 md:p-8">{phaseCardBody}</div>
+          <div className="glass-card surface-pad">{phaseCardBody}</div>
         )}
       </div>
 
@@ -511,7 +511,7 @@ export default function MasterPlan() {
   const logoAlt = t("masterPlan.logoAlt");
 
   return (
-    <section className="py-24 px-6">
+    <section className="home-section">
       <div className="max-w-7xl mx-auto">
         <MasterPlanIntro subtitle={masterPlanSubtitle} t={t} />
         <PhaseTimeline

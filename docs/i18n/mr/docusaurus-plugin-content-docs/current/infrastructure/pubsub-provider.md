@@ -22,7 +22,7 @@ Pubsub Provider ही ऑपरेटरसाठीची सेवा अस�
 
 ## पोर्ट
 
-मूलभूत मूल्ये अशी निवडली आहेत की Pubsub Provider हा त्याच VPS वर [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) च्या शेजारी swarm-पोर्टच्या टकरीशिवाय चालू शकेल.
+मूलभूत मूल्ये अशी निवडली आहेत की Pubsub Provider हा त्याच VPS वर [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) च्या शेजारी swarm-पोर्टच्या टकरीशिवाय चालू शकेल.
 
 | उद्देश                  | मूलभूत                            | टिपा                                                         |
 | ----------------------- | --------------------------------- | ------------------------------------------------------------ |

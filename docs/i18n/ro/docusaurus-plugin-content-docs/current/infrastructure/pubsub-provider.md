@@ -22,7 +22,7 @@ Pubsub Provider este un serviciu pentru operatori, care rulează un releu pubsub
 
 ## Porturi
 
-Valorile implicite sunt alese astfel încât Pubsub Provider să poată rula alături de [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) pe același VPS, fără conflict de port swarm.
+Valorile implicite sunt alese astfel încât Pubsub Provider să poată rula alături de [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) pe același VPS, fără conflict de port swarm.
 
 | Scop              | Implicit                            | Note                                                               |
 | ----------------- | ----------------------------------- | ------------------------------------------------------------------ |

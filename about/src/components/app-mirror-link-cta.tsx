@@ -421,7 +421,7 @@ function SignedReleaseBadge({
   return (
     <span className="inline-flex shrink-0 items-center">
       <span
-        className="inline-flex shrink-0 items-center gap-1 rounded-full text-[10px] font-semibold leading-none text-emerald-700 dark:text-emerald-100"
+        className="text-micro-fluid inline-flex shrink-0 items-center gap-1 rounded-full font-semibold leading-none text-emerald-700 dark:text-emerald-100"
         title={`${title} ${version}`}
         onMouseEnter={showTooltip}
         onMouseLeave={scheduleHideTooltip}
@@ -453,7 +453,7 @@ function SignedReleaseBadge({
               <span className="mb-1 block font-display text-sm font-semibold">{title}</span>
               {tooltip}{" "}
               <span
-                className="mt-1 block text-[10px] uppercase tracking-[0.12em] text-popover-foreground/60"
+                className="text-micro-fluid mt-1 block uppercase tracking-[0.12em] text-popover-foreground/60"
                 translate="no"
               >
                 {tooltipMeta}
@@ -573,7 +573,7 @@ function MirrorVerifiedBadge({
         <span
           className={cn(
             "inline-flex items-center rounded-full border border-emerald-500/30 bg-emerald-500/10",
-            "px-1.5 py-0.5 text-[10px] font-semibold leading-none text-emerald-700",
+            "text-micro-fluid px-1.5 py-0.5 font-semibold leading-none text-emerald-700",
             "dark:border-emerald-300/30 dark:bg-emerald-300/10 dark:text-emerald-100",
           )}
           onMouseEnter={(event) => showTooltip(event, "web3")}
@@ -628,7 +628,7 @@ function MirrorVerifiedBadge({
                 <>
                   {tooltip}{" "}
                   <span
-                    className="mt-1 block text-[10px] uppercase tracking-[0.12em] text-popover-foreground/60"
+                    className="text-micro-fluid mt-1 block uppercase tracking-[0.12em] text-popover-foreground/60"
                     translate="no"
                   >
                     {tooltipMeta}

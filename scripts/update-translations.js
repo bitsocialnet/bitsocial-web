@@ -64,6 +64,23 @@
 
 import fs from "fs/promises";
 import path from "path";
+import { fileURLToPath } from "url";
+
+/**
+ * Translations live in the `about` workspace, not at the repo root, so running the documented
+ * command from the root used to fail on every invocation. The workspace is resolved from the
+ * current directory first (so `cd about && node ../scripts/...` keeps working), then from this
+ * script's own location.
+ */
+const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const WORKSPACE_CANDIDATES = [process.cwd(), path.join(REPO_ROOT, "about")];
+
+async function resolveWorkspaceDir() {
+  for (const dir of WORKSPACE_CANDIDATES) {
+    if (await fileExists(path.join(dir, "public", "translations"))) return dir;
+  }
+  return null;
+}
 
 function parseArgs(argv) {
   const out = { flags: new Set() };
@@ -572,10 +589,17 @@ async function main() {
   const argv = process.argv.slice(2);
   const args = parseArgs(argv);
 
-  const translationsRoot = path.join(process.cwd(), "public", "translations");
-  if (!(await fileExists(translationsRoot))) {
-    usage(1, `Translations directory not found: ${translationsRoot}`);
+  const workspaceDir = await resolveWorkspaceDir();
+  if (!workspaceDir) {
+    usage(
+      1,
+      `Translations directory not found. Looked in: ${WORKSPACE_CANDIDATES.map((dir) =>
+        path.join(dir, "public", "translations"),
+      ).join(", ")}`,
+    );
   }
+
+  const translationsRoot = path.join(workspaceDir, "public", "translations");
 
   const isAudit = args.flags.has("--audit");
   const isDelete = args.flags.has("--delete");
@@ -586,7 +610,7 @@ async function main() {
 
   if (isAudit) {
     // Audit mode: scan codebase and remove unused keys
-    const srcDir = path.join(process.cwd(), "src");
+    const srcDir = path.join(workspaceDir, "src");
     await handleAudit(translationsRoot, srcDir, dryRun, write, force);
     return;
   }

@@ -8,11 +8,11 @@ Bitsocial Web is the public web monorepo for Bitsocial.
 It currently serves:
 
 - `https://bitsocial.net/` for the public Bitsocial landing/about site
-- `https://bitsocial.net/chain/` for the Bitsocial Chain landing site (BSO token and L2 appchain)
+- `https://chain.bitsocial.net/` for the Bitsocial Chain landing site (BSO token and L2 appchain)
 - `https://docs.bitsocial.net/` for Docusaurus docs
 - `https://stats.bitsocial.net/` for the Grafana-backed stats dashboard
 
-Docs and stats are served on their own subdomains, like `chain.bitsocial.net`, while remaining in this monorepo. Legacy `/docs` and `/stats` paths on `bitsocial.net` redirect permanently to those subdomains.
+Chain, docs, and stats are served on their own subdomains while remaining in this monorepo. Legacy `/docs` and `/stats` paths on `bitsocial.net` redirect permanently to their dedicated subdomains.
 
 ## Repo Layout
 
@@ -54,6 +54,7 @@ Portless keeps a stable named local URL. On non-`master` branches, the repo can 
 
 ```bash
 corepack yarn start
+corepack yarn start:stats
 corepack yarn start:android-usb
 corepack yarn start:ios-sim
 corepack yarn llms:generate
@@ -104,21 +105,22 @@ If public-facing English content changed, regenerate the LLM indexes:
 corepack yarn llms:generate
 ```
 
-This keeps `about/public/llms*.txt` and `docs/static/llms*.txt` aligned with the landing page,
-docs pages, project directory data, public README text, and the generator itself.
+This keeps `about/public/llms*.txt`, `chain/public/llms*.txt`, and `docs/static/llms*.txt`
+aligned with the landing pages, docs pages, project directory data, public README text, and
+the generator itself.
 
 ## Subproject Notes
 
 ### `chain/`
 
 - Contains the Bitsocial Chain landing site for BSO and the proposed L2 appchain
-- Standalone Vite app under `chain/`; served at `https://bitsocial.net/chain/`
-- Shares visual language with the about site but has no i18n layer
+- Standalone Vite app under `chain/`; served at `https://chain.bitsocial.net/`
+- Has a translated language-selection shell, while the substantive Chain narrative is currently authored in English
 
 ### `about/`
 
 - Contains the Bitsocial landing/about site
-- Currently also contains the public `/projects` catalog and `/apps/:slug` app detail routes
+- Currently also contains the public `/projects` catalog and `/projects/:slug` app detail routes
 - Keeps static assets and translations in `about/public/`
 - Should not be treated as the long-term home for the project catalog or the blog
 
@@ -146,6 +148,12 @@ Landing-site translations live under:
 
 - `about/public/translations/{lang}/default.json`
 
+The Chain site's translated interface strings live under:
+
+- `chain/public/translations/{lang}/default.json`
+
+The Chain landing narrative is currently authored in English in `chain/src/sections/`.
+
 Docs translations live under:
 
 - `docs/i18n/{lang}/...`
@@ -167,6 +175,7 @@ Relevant local rules also live in:
 ## Deployment Shape
 
 - `bitsocial.net` is served by Vercel
+- `chain.bitsocial.net` is served from the standalone Chain app
 - `docs.bitsocial.net` is served from the docs build
 - `stats.bitsocial.net` routes to the VPS-hosted Grafana stack
 - Legacy `/docs` and `/stats` paths on `bitsocial.net` return permanent redirects to those subdomains
@@ -207,3 +216,9 @@ This repo uses Commitizen for Conventional Commits.
 The Husky Commitizen hook may print a `/dev/tty` warning in non-interactive shells, but the commit
 can still succeed when the message is already provided. Use `--no-verify` only when you explicitly
 need to bypass local hooks.
+
+### React diagnostics and performance
+
+Run `yarn agent:verify` for affected builds, automatic Doctor diagnostics, and repeated real-app render budgets. `yarn perf:install` installs the pinned browser; `perf:check` includes the collector compatibility selftest, also available alone as `yarn perf:test`. `yarn perf:record --target about` (or `chain`/`docs`) saves JSON and Chrome trace evidence under `.react-perf/`. Scenarios live in `scripts/react-perf/config.mjs`. Development uses a bounded Bippy collector; normal production omits it. For production component timing, build with `yarn build:profile:about`, `build:profile:chain`, or `build:profile:docs` and record against that separate preview URL. See `.agents/skills/profile-browsing/references/measurement.md` for coverage and timing limits.
+
+The about `apps-search` scenario waits for each character to appear in both the `/projects` URL query and input before typing the next. It verifies a sequence of committed changes and does not test rapid-typing responsiveness or rule out lost characters during overlapping router navigation.

@@ -22,7 +22,7 @@ Pubsub Provider는 Kubo 노드를 함께 묶어 Bitsocial 호환 pubsub 대체 �
 
 ## 포트
 
-기본값은 Pubsub Provider가 같은 VPS에서 [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/)와 나란히 돌아가면서도 swarm 포트가 충돌하지 않도록 정해졌습니다.
+기본값은 Pubsub Provider가 같은 VPS에서 [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/)와 나란히 돌아가면서도 swarm 포트가 충돌하지 않도록 정해졌습니다.
 
 | 용도             | 기본값                        | 참고                                                             |
 | ---------------- | ----------------------------- | ---------------------------------------------------------------- |

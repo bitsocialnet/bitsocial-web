@@ -20,7 +20,9 @@
     "theme": "Teema",
     "newsletter": "Uutiskirje",
     "backToTop": "Takaisin ylös",
-    "chain": "Chain"
+    "goToBottom": "Siirry alas",
+    "backToPrevious": "Takaisin edelliseen kohtaan",
+    "faq": "UKK"
   },
   "footer": {
     "tagline": "Avoimen lähdekoodin P2P-verkko sosiaalisille sovelluksille",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "Ydintoiminnot",
-    "title": "Mikä on Bitsocial?",
+    "title": "Sosiaalinen kerros, jota kukaan ei omista.",
     "supporting": "Jatkuvasti laajeneva universumi sosiaalisen median sovelluksia, jotka kaikki käyttävät samaa taustalla olevaa hajautettua sosiaalista verkostoa — sellaista, jota mikään yritys ei omista, eikä kukaan voi ottaa sinulta.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "Toimintakehotus",
+    "title": "Kutsu rakentajille.",
     "logoAlt": "Logo",
     "easterEggAlt": "Paavo Pesusieni",
     "epilogue": "Lopputila ei ole yksi sovellus. Se on asiakkaiden, solmujen, palveluiden ja yhteisöjen markkinat, jotka voivat korvata alustan omistamisen protokollakilpailulla.",
@@ -449,7 +451,7 @@
     "subtitle": "Bitsocial on tarkoitettu kasvamaan tuhansiksi appeiksi, työkaluiksi ja palveluiksi, joita kuka tahansa voi rakentaa, ei vain portinvartijoiden hyväksymiä. Jos olet kehittäjä, lähetä oma appisi.",
     "experimental": "Kokeellinen",
     "sectionLabel": "Projektihakemisto",
-    "directoryLabel": "Projektihakemisto",
+    "directoryLabel": "Projektiluokat",
     "notFoundDescription": "Etsimääsi sovellusta ei ole hakemistossa.",
     "emptyCategoryDescription": "Tässä kategoriassa ei ole vielä sovelluksia. Ole ensimmäinen, joka rakentaa sellaisen!",
     "emptyCategory": "Tulossa pian",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "Vahvistus",
         "ai": "AI",
-        "antiRepost": "Uudelleenjulkaisun esto"
+        "antiRepost": "Uudelleenjulkaisun esto",
+        "referenceClient": "Viiteasiakas",
+        "search": "Haku"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -539,7 +543,8 @@
         "openWebApp": "Avaa verkkosovellus",
         "openWebsite": "Avaa verkkosivusto",
         "windows": "Windows",
-        "windowsPortable": "Windowsin kannettava versio"
+        "windowsPortable": "Windowsin kannettava versio",
+        "openTelegramBot": "Avaa Telegram-botti"
       },
       "items": {
         "5chan": {
@@ -550,13 +555,9 @@
           "tagline": "Foorumityylinen Bitsocial-client web-, APK- ja desktop-versioina.",
           "description": "Seedit tuo Reddit-tyylisen keskustelun Bitsocialiin threadien, identiteettien, yhteisön hallinnan ja useiden jakelureittien kautta. Se on nopein tapa kokeilla verkon forum-puolta selaimesta, Android-puhelimesta tai työpöytäsovelluksesta."
         },
-        "mintpass": {
-          "tagline": "NFT-pohjainen pääsynhallinta yhteisöille, jotka tarvitsevat vahvempia anti-spam-portteja.",
-          "description": "Mintpass on joustava tunnistautumiskerros Bitsocial-yhteisöille. Sen avulla moderaattorit voivat yhdistää NFT-omistuksen, vahvistusvirrat ja omat challenge-moduulit ilman että kaikki pakotetaan keskitettyyn kirjautumisjärjestelmään."
-        },
         "spam-blocker": {
           "tagline": "Keskitetty riskipisteytyskerros haitallisten julkaisujen suodattamiseen.",
-          "description": "Spam Blocker arvioi julkaisuja ja palauttaa riskipisteen, jonka yhteisöt voivat yhdistää omaan moderointilogiikkaansa. Se on hyödyllinen, kun haluat käytännöllisen lisäkerroksen ennen kuin rakennat tarkempia anti-spam-sääntöjä."
+          "description": "Spam Blocker arvioi julkaisuja ja palauttaa riskipistemäärän, jonka yhteisöt voivat yhdistää omaan moderointilogiikkaansa. Sen palvelun mukainen palvelu myös linkittää allekirjoitusavaimia, jotka näkyvät ensimmäisen kerran samasta IP-osoitteesta, joten käyttäjä, joka jatkaa uusien tilien luomista yhteisön kiellon välttämiseksi tai keskustelun valmistamiseksi, näkee riskipistemääränsä kasvavan, kun taas muutamat allekirjoittajat pysyvät sallittuina lailliseen usean laitteen käyttöön."
         },
         "captcha-canvas-challenge": {
           "tagline": "Mukautetut kuvacaptcha:t yhteisöille, jotka haluavat ihmisen tekemän varmistuksen.",
@@ -597,6 +598,34 @@
         "r9k-challenge": {
           "tagline": "Robot9000-tyylinen omaperäisyysportti yhteisöille, jotka haluavat repostauksia estävän julkaisu-UX:n.",
           "description": "R9K Challenge toimii Bitsocial-yhteisön nodessa ja vertaa normalisoitua julkaisun tekstiä omistajan noden paikalliseen kommenttitietokantaan. Se antaa yhteisöille <robot9000>Robot9000</robot9000>-tyylisen julkaisukokemuksen: täsmälliset repostaukset hylätään ennen hyväksyntää, backlinkit ohitetaan, toistuvat epäonnistumiset laukaisevat kasvavia väliaikaisia banneja ja hyväksytyn tekstin hashit pysyvät yksityisessä paikallisessa tilassa raakatekstin tallentamisen sijaan. Tässä challengessa ei käytetä tekoälyä."
+        },
+        "wordfilter-challenge": {
+          "tagline": "Yhteisön sanasuodattimet pannaan täytäntöön julkaisusääntönä eikä näyttösuodattimena.",
+          "description": "Wordfilter Challenge tekee yhteisön sanankorvauksista sitovia. Julkaisevat asiakasohjelmat tekevät korvaukset ennen allekirjoitusta, joten allekirjoitettu kommentti ja sen CID sisältävät jo korvaavan tekstin, ja yhteisön solmu hylkää jokaisen julkaisun, jossa on yhä suodatettu sana. Se toteuttaa <code>wordfilter/v1</code>-sopimuksen, joten kyseisen sopimuksen mukaan kirjoitettu asiakasohjelma toimii edelleen muiden toteutusten kanssa."
+        },
+        "challenge-composer": {
+          "tagline": "Ensisijaisesti offline-tilassa toimiva editori yhteisön roskapostisuojauksen haasteasetuksille.",
+          "description": "Challenge Composer näyttää Bitsocial-yhteisön asetusten <code>challenges</code>-taulukon ja antaa muokata sitä, minkä jälkeen se vie sisällön suoraan ajettavaksi CLI-skriptiksi. Se toimitetaan yhtenä omavaraisena HTML-tiedostona, joka ei tee ajon aikana yhtään ulospäin suuntautuvaa pyyntöä, joten sen voi avata suoraan levyltä tai USB-tikulta."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Linkkien esikatselu- ja uudelleenohjauspalvelin, joka luo jakokortit Bitsocial-julkaisuille.",
+          "description": "Bitsocial Previewer luo OpenGraph- ja Twitter-kortit, kun julkaisun linkki jaetaan muilla alustoilla, ja ohjaa oikeat selaimet sen jälkeen sovellukseen. Yksi instanssi palvelee useita vuokralaisia isäntänimen perusteella, joten yksi käyttöönotto ja yksi TLS-määritys riittävät kaikille asiakas- ja peilidomaineille."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Itse ylläpidettävä indeksointirobotti, hakuhakemisto ja verkkokäyttöliittymä Bitsocial-yhteisöille.",
+          "description": "Bitsocial Indexer yhdistää RPC:n välityksellä Bitsocial CLI -taustaprosessiin, indeksoi ylläpitäjän määrittämät yhteisöt paikalliseen SQLite-tietokantaan ja tarjoaa ne REST- ja kokotekstihaku-API:n kautta sekä halutessa palvelimella renderöidyn verkkokäyttöliittymän kautta. Se toimitetaan tyhjänä: ylläpitäjä päättää, mitä indeksoidaan."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Telegram-botti, joka julkaisee tiiviisti Bitsocial-repositorioiden GitHub-tapahtumat.",
+          "description": "Bitsocial GitHub Alerts välittää pushit, julkaisut, issuet ja pull requestit GitHub-palvelusta mihin tahansa Telegram-keskusteluun, -ryhmään tai foorumin aiheeseen. Bitsocial-tiimi käyttää sitä omiin repositorioihinsa, ja konttikuva on julkinen, joten kuka tahansa voi ajaa sitä itse omilleen."
+        },
+        "bitbones": {
+          "tagline": "Riisuttu referenssiasiakas, jossa jokainen näkymä on ohut kuori yhden hookin ympärillä.",
+          "description": "bitbones on pienin hyödyllinen pinta Bitsocialin React-hookien päällä: tyylejä ei juuri ole, tuotepäätöksiä ei lainkaan, ja jokaisen näkymän takana on yksi hook. Se on nopein paikka toistaa bugi tai kokeilla hook-muutosta oikeita yhteisöjä vasten, ja sen oletussyötteen voi vaihtaa Seeditin ja 5chanin yhteisölistojen välillä."
+        },
+        "huggingsocial": {
+          "tagline": "Vertaisverkko-keskus avointen AI-mallien löytämiseen, keskusteluun ja lataamiseen.",
+          "description": "HuggingSocial on mallien yhdistelmä, jota mikään yritys ei omista. Hubit ovat Bitsocial-yhteisöjä, joita hallitsevat kryptografiset avaimet, jokainen mallin luettelo on allekirjoitettu viesti, jossa on mallipankki, tarkistussummat ja lataussäilyt, ja painot siirtyvät BitTorrent- tai tavallisten HTTP-peillauksien välityksellä ja vahvistetaan koneellasi. Asiakas on suunnittelussa ja alkuvaiheessa; verkkosivusto ottaa vastaan odotuslistalle ilmoittautumisia."
         }
       }
     },
@@ -706,7 +735,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Pelkkä teksti -protokolla",
     "title": "Vapaudella on moderointi.",
-    "supporting": "Globaalia ylläpitäjää ei ole eikä takavarikoitavaa palvelinta, joten kukaan ei voi estää sinua koko verkosta. Moderointi vain siirtyy lähemmäs sinua.",
+    "supporting": "Protokolla välittää vain tekstiä, eikä kyseessä ole piilotettu verkko. Yleistä ylläpitäjää ei ole eikä palvelinta, jonka voisi takavarikoida, joten kukaan ei voi porttikieltää sinua koko verkosta. Moderointi vain siirtyy lähemmäs sinua.",
     "carouselLabel": "Yleisiä huolia, vastattuina",
     "communities": {
       "myth": "Eston puute tarkoittaa, että kaikki on sallittua.",
@@ -731,7 +760,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Adoptioteesi",
-    "title": "Miksi kukaan käyttäisi sitä?",
+    "title": "Omistaminen voittaa vuokraamisen.",
     "supporting": "Sitä ei voi sensuroida, se ei koskaan kaadu, ja saat pitää kaiken mitä tienaat. Tässä on, ketkä ilmestyvät — ja miksi.",
     "diagramLabel": "Käyttöönoton käyrä, joka näyttää, miksi kukin käyttäjäjoukko ottaa Bitsocialin käyttöön.",
     "curve": {
@@ -789,7 +818,51 @@
     "docsCta": "Kuinka P2P toimii selaimessa",
     "liveCta": "Näe blogissa",
     "sectionLabel": "Selain P2P",
-    "supporting": "Avaa Bitsocial-verkkosovellus tavallisella välilehdellä ja se liittyy verkkoon itsestään, noutaa viestejä muilta vertaisilta ja julkaisee omat viestisi. Jokainen muu hajautettu sosiaalinen verkko säilyttää edelleen palvelimen keskellä.",
-    "title": "Selaimesi on peer"
+    "supporting": "Avaa Bitsocialin verkkosovellus tavallisessa välilehdessä, niin se liittyy verkkoon itse: hakee julkaisuja muilta vertaisilta ja julkaisee sinun omasi. Juuri tämä on se vaikea osuus – ja syy siihen, miksi jokainen muu hajautettu sosiaalinen verkosto pitää edelleen palvelimen välissä.",
+    "title": "Selain on läpimurto."
+  },
+  "faq": {
+    "sectionLabel": "UKK",
+    "title": "Usein kysytyt kysymykset",
+    "supporting": "Sivuston jokainen osio vastaa yhteen niistä. Klikkaa kysymystä, niin siirryt sen kohdalle.",
+    "navLabel": "Kysymykset, joihin tällä sivulla vastataan",
+    "answeredIn": "Vastattu osiossa",
+    "items": {
+      "problem": {
+        "question": "Minkä ongelman Bitsocial ratkaisee?"
+      },
+      "core-features": {
+        "question": "Mikä on Bitsocial? Miten se toimii?"
+      },
+      "browser-peer": {
+        "question": "Miksi tätä ei ole rakennettu jo aiemmin?"
+      },
+      "decentralized": {
+        "question": "Eikö hajautettuja sosiaalisia verkostoja ole jo olemassa?"
+      },
+      "arbitrary-challenges": {
+        "question": "Mikä estää roskapostin, kun palvelimia ei ole?"
+      },
+      "text-only-protocol": {
+        "question": "Entä laiton sisältö?"
+      },
+      "adoption-thesis": {
+        "question": "Miksi ihmiset vaihtaisivat Bitsocialiin?"
+      },
+      "master-plan": {
+        "question": "Mikä on suunnitelma tästä eteenpäin? Miten voin auttaa?"
+      },
+      "about": {
+        "question": "Ketkä ovat Bitsocialin takana? Miten se on rahoitettu?"
+      },
+      "mailing-list": {
+        "question": "Miten pysyn ajan tasalla?"
+      }
+    },
+    "ask": {
+      "label": "Kysy mitä tahansa muuta",
+      "placeholder": "Kysy mitä tahansa muuta…",
+      "action": "Kysy ChatGPT:ltä"
+    }
   }
 }

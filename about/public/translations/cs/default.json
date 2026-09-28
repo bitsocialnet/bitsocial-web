@@ -20,7 +20,9 @@
     "theme": "Téma",
     "newsletter": "Zpravodaj",
     "backToTop": "Zpět nahoru",
-    "chain": "Chain"
+    "goToBottom": "Přejít dolů",
+    "backToPrevious": "Zpět na předchozí místo",
+    "faq": "Časté dotazy"
   },
   "footer": {
     "tagline": "Síť P2P s otevřeným zdrojovým kódem pro sociální aplikace",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "Klíčové funkce",
-    "title": "Co je Bitsocial?",
+    "title": "Sociální vrstva, kterou nikdo nevlastní.",
     "supporting": "Stále se rozšiřující vesmír aplikací sociálních médií, které všechny používají stejnou základní decentralizovanou sociální síť — jednu, kterou nevlastní žádná společnost, a žádná vám ji nemůže odebrat.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "Výzva k akci",
+    "title": "Výzva pro tvůrce.",
     "logoAlt": "Logo",
     "easterEggAlt": "SpongeBob",
     "epilogue": "Koncový stav není jedna aplikace. Je to trh klientů, uzlů, služeb a komunit, které mohou nahradit vlastnictví platformy konkurencí protokolů.",
@@ -449,7 +451,7 @@
     "subtitle": "Bitsocial je navržen tak, aby mohl vyrůst v tisíce aplikací, nástrojů a služeb, které může vytvořit kdokoli, ne jen ty, které schválí strážci bran. Pokud jsi vývojář, přidej vlastní aplikaci.",
     "experimental": "Experimentální",
     "sectionLabel": "Adresář projektů",
-    "directoryLabel": "Adresář projektů",
+    "directoryLabel": "Kategorie projektů",
     "notFoundDescription": "Aplikace, kterou hledáte, v adresáři neexistuje.",
     "emptyCategoryDescription": "V této kategorii zatím nejsou žádné aplikace. Buďte první, kdo jednu vytvoří!",
     "emptyCategory": "Již brzy",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "Ověření",
         "ai": "AI",
-        "antiRepost": "Proti repostům"
+        "antiRepost": "Proti repostům",
+        "referenceClient": "Referenční klient",
+        "search": "Vyhledávání"
       },
       "linkLabels": {
         "androidApk": "APK pro Android",
@@ -539,7 +543,8 @@
         "openWebApp": "Otevřít webovou aplikaci",
         "openWebsite": "Otevřít web",
         "windows": "Windows",
-        "windowsPortable": "Přenosná verze pro Windows"
+        "windowsPortable": "Přenosná verze pro Windows",
+        "openTelegramBot": "Otevřít bota Telegram"
       },
       "items": {
         "5chan-board-manager": {
@@ -563,6 +568,37 @@
         "r9k-challenge": {
           "tagline": "Brána originality ve stylu Robot9000 pro komunity, které chtějí publikační UX proti repostům.",
           "description": "R9K Challenge běží na komunitním uzlu Bitsocial a porovnává normalizovaný text příspěvku s lokální databází komentářů uzlu vlastníka. Komunitám dává publikační zkušenost ve stylu <robot9000>Robot9000</robot9000>: přesné reposty selžou před přijetím, backlinks se ignorují, opakovaná selhání spouštějí stupňující se dočasné bany a hashe přijatého textu zůstávají v soukromém lokálním stavu místo ukládání surového textu příspěvku. Tato challenge nepoužívá AI."
+        },
+        "wordfilter-challenge": {
+          "tagline": "Slovní filtry komunity se vynucují jako pravidlo pro publikování, ne jako filtr zobrazení.",
+          "description": "Wordfilter Challenge činí náhrady slov v komunitě závaznými. Publikující klienti provedou náhrady ještě před podpisem, takže podepsaný komentář i jeho CID už obsahují nahrazený text, a uzel komunity odmítne každou publikaci, která stále obsahuje filtrované slovo. Implementuje kontrakt <code>wordfilter/v1</code>, takže klient napsaný podle tohoto kontraktu funguje i s jinými implementacemi."
+        },
+        "challenge-composer": {
+          "tagline": "Editor pracující primárně offline pro nastavení antispamových výzev komunity.",
+          "description": "Challenge Composer zobrazuje a upravuje pole <code>challenges</code> v nastavení komunity na Bitsocial a následně exportuje CLI skript připravený ke spuštění. Dodává se jako jediný soběstačný HTML soubor, který za běhu neodesílá žádné požadavky ven, takže jej lze otevřít přímo z disku nebo z USB flash disku."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Server pro náhledy odkazů a přesměrování, který vykresluje karty pro sdílení příspěvků z Bitsocial.",
+          "description": "Bitsocial Previewer vykreslí karty OpenGraph a Twitter, když někdo sdílí odkaz na příspěvek na jiné platformě, a skutečné prohlížeče poté přesměruje do aplikace. Jedna instance je víceklientská podle názvu hostitele, takže jediné nasazení a jediné nastavení TLS pokryje všechny klientské i zrcadlové domény."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Crawler, vyhledávací index a webové rozhraní pro komunity na Bitsocial, které si můžete hostovat sami.",
+          "description": "Bitsocial Indexer se přes RPC připojí k démonovi Bitsocial CLI, zaindexuje komunity nastavené provozovatelem do lokální databáze SQLite a zpřístupní je přes REST API a API pro fulltextové vyhledávání, volitelně i přes webové rozhraní vykreslované na serveru. Dodává se prázdný: co se bude indexovat, určuje provozovatel."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Telegram bot, který stručně oznamuje aktivitu na GitHub v repozitářích Bitsocial.",
+          "description": "Bitsocial GitHub Alerts přeposílá pushe, releasy, issues a pull requesty z GitHub do libovolného chatu, skupiny nebo tématu fóra na Telegram. Tým Bitsocial jej provozuje pro vlastní repozitáře a image kontejneru je veřejný, takže si jej kdokoli může nasadit pro ty své."
+        },
+        "bitbones": {
+          "tagline": "Zcela minimalistický referenční klient, v němž je každé zobrazení jen tenkou obálkou nad jedním hookem.",
+          "description": "bitbones je nejmenší užitečná vrstva nad React hooky Bitsocialu: téměř žádné styly, žádná produktová rozhodnutí a za každým zobrazením jediný hook. Je to nejrychlejší místo, kde reprodukovat chybu nebo vyzkoušet změnu hooků proti skutečným komunitám, a jeho výchozí feed lze přepínat mezi seznamy komunit Seedit a 5chan."
+        },
+        "huggingsocial": {
+          "tagline": "Peer-to-peer centrum pro vyhledávání, diskusi a stahování otevřených modelů AI.",
+          "description": "HuggingSocial je centrum modelů, které nevlastní žádná společnost. Rozbočovače jsou komunity Bitsocial řízené kryptografickými klíči, každý výpis modelu je podepsaný příspěvek s kartou modelu, kontrolními součty a zdroji stahování, a váhy se přesouvají přes BitTorrent nebo jednoduché zrcadla HTTP a jsou ověřovány na vašem počítači. Klient je v designu a raném vývoji; web přijímá registrace na čekací listinu."
+        },
+        "spam-blocker": {
+          "description": "Spam Blocker vyhodnocuje příspěvky a vrací skóre rizika, které mohou komunity kombinovat se svou vlastní logikou moderace. Její hostovaná služba také propojuje podpisové klíče poprvé viditelné ze stejné IP adresy, takže uživatel, který stále vytváří nové účty, aby se vyhnul zákazu komunity nebo vytvořil konverzaci, vidí nárůst svého skóre rizika, zatímco několik podepisovatelů zůstane povoleno pro legitimní použití více zařízení."
         }
       }
     },
@@ -672,7 +708,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Pouze textový protokol",
     "title": "Svoboda má moderaci.",
-    "supporting": "Neexistuje žádný globální administrátor ani server, který by šlo zabavit, takže nikdo vás nemůže vykázat z celé sítě. Moderace se jen přesouvá blíž k vám.",
+    "supporting": "Protokol přenáší pouze text a nejde o skrytou síť. Neexistuje žádný globální správce ani server, který by šlo zabavit, takže vás nikdo nemůže vykázat z celé sítě. Moderování se jen posouvá blíž k vám.",
     "carouselLabel": "Odpovědi na časté obavy",
     "communities": {
       "myth": "Žádné bany znamenají, že tu vládne naprostá libovůle.",
@@ -697,7 +733,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Teze adopce",
-    "title": "Proč by to vůbec někdo používal?",
+    "title": "Vlastnit je lepší než si pronajímat.",
     "supporting": "Nejde cenzurovat, nikdy nevypadne a všechno, co vyděláte, zůstane vám. Tady je, kdo se objeví — a proč.",
     "diagramLabel": "Křivka přijetí ukazující, proč každá uživatelská kohorta přijímá Bitsocial.",
     "curve": {
@@ -755,7 +791,51 @@
     "docsCta": "Jak funguje P2P v prohlížeči",
     "liveCta": "Sledujte na blogu",
     "sectionLabel": "Prohlížeč P2P",
-    "supporting": "Otevřete webovou aplikaci Bitsocial v normální kartě a připojí se k síti sama, načítá příspěvky od dalších partnerů a publikuje vaše. Každá jiná decentralizovaná sociální síť stále udržuje server uprostřed.",
-    "title": "Tvůj prohlížeč je peer"
+    "supporting": "Otevřete webovou aplikaci Bitsocial v běžné záložce a sama se připojí k síti – načítá příspěvky od ostatních peerů a publikuje ty vaše. Právě tohle je ta těžká část a důvod, proč každá jiná decentralizovaná sociální síť pořád drží uprostřed server.",
+    "title": "Průlom je samotný prohlížeč."
+  },
+  "faq": {
+    "sectionLabel": "Časté dotazy",
+    "title": "Často kladené otázky",
+    "supporting": "Každá sekce tohoto webu odpovídá na jednu z nich. Klikněte na otázku a přejdete k odpovědi.",
+    "navLabel": "Otázky zodpovězené na této stránce",
+    "answeredIn": "Odpověď v sekci",
+    "items": {
+      "problem": {
+        "question": "Jaký problém řeší Bitsocial?"
+      },
+      "core-features": {
+        "question": "Co je Bitsocial? Jak funguje?"
+      },
+      "browser-peer": {
+        "question": "Proč to ještě nikdo neudělal?"
+      },
+      "decentralized": {
+        "question": "Decentralizované sociální sítě přece už existují, ne?"
+      },
+      "arbitrary-challenges": {
+        "question": "Když nejsou servery, co zastaví spam?"
+      },
+      "text-only-protocol": {
+        "question": "A co nelegální obsah?"
+      },
+      "adoption-thesis": {
+        "question": "Proč by lidé přecházeli na Bitsocial?"
+      },
+      "master-plan": {
+        "question": "Jaké jsou další plány? Jak mohu pomoci?"
+      },
+      "about": {
+        "question": "Kdo stojí za Bitsocial? Jak byl financován?"
+      },
+      "mailing-list": {
+        "question": "Jak mohu zůstat v obraze?"
+      }
+    },
+    "ask": {
+      "label": "Zeptejte se na cokoli dalšího",
+      "placeholder": "Zeptejte se na cokoli dalšího…",
+      "action": "Zeptat se ChatGPT"
+    }
   }
 }

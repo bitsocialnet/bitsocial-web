@@ -22,7 +22,7 @@ Pubsub Provider è un servizio per operatori che permette di eseguire un relay p
 
 ## Porte
 
-I valori predefiniti sono scelti in modo che Pubsub Provider possa girare accanto a [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) sullo stesso VPS senza conflitti sulla porta swarm.
+I valori predefiniti sono scelti in modo che Pubsub Provider possa girare accanto a [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) sullo stesso VPS senza conflitti sulla porta swarm.
 
 | Scopo               | Predefinito                  | Note                                                         |
 | ------------------- | ---------------------------- | ------------------------------------------------------------ |

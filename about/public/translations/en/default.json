@@ -19,9 +19,11 @@
     "status": "Stats",
     "language": "Language",
     "theme": "Theme",
-    "chain": "Chain",
     "newsletter": "Newsletter",
-    "backToTop": "Back to top"
+    "backToTop": "Back to top",
+    "goToBottom": "Go to bottom",
+    "backToPrevious": "Back to where you were",
+    "faq": "FAQ"
   },
   "languageSelector": {
     "title": "Select Language",
@@ -87,7 +89,7 @@
   },
   "features": {
     "sectionLabel": "Core Features",
-    "title": "What is Bitsocial?",
+    "title": "A social layer nobody owns.",
     "supporting": "An ever-expanding universe of social media apps, all using the same underlying decentralized social network — one that no company owns, and none can take away from you.",
     "items": {
       "open-source": {
@@ -118,8 +120,8 @@
   },
   "browserPeer": {
     "sectionLabel": "Browser P2P",
-    "title": "Your browser is a peer.",
-    "supporting": "Open a Bitsocial web app in a normal tab and it joins the network itself, fetching posts from other peers and publishing your own. Every other decentralized social network still keeps a server in the middle.",
+    "title": "The browser is the breakthrough.",
+    "supporting": "Open a Bitsocial web app in a normal tab and it joins the network itself, fetching posts from other peers and publishing your own. That's the hard part — and why every other decentralized social network still keeps a server in the middle.",
     "cards": {
       "node": {
         "title": "The tab runs a node",
@@ -425,7 +427,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Text-only Protocol",
     "title": "Freedom has moderation.",
-    "supporting": "There's no global admin and no server to seize, so nobody can ban you from the whole network. Moderation just moves closer to you.",
+    "supporting": "The protocol carries only text, and it's not a hidden network. There's no global admin and no server to seize, so nobody can ban you from the whole network. Moderation just moves closer to you.",
     "carouselLabel": "Common concerns, answered",
     "communities": {
       "myth": "No bans means it's a free-for-all.",
@@ -450,7 +452,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Adoption Thesis",
-    "title": "Why would anyone use it?",
+    "title": "Owning beats renting.",
     "supporting": "It can't be censored, it never goes down, and you keep everything you earn. Here's who shows up — and why.",
     "diagramLabel": "Adoption curve showing why each user cohort adopts Bitsocial.",
     "curve": {
@@ -495,7 +497,7 @@
     }
   },
   "masterPlan": {
-    "title": "A Call to Action",
+    "title": "A call to builders.",
     "logoAlt": "Logo",
     "easterEggAlt": "SpongeBob",
     "epilogue": "The end state is not one app. It is a market of clients, nodes, services, and communities that can replace platform ownership with protocol competition.",
@@ -540,6 +542,50 @@
     },
     "subtitle": "Bitsocial wins by attracting as many builders as possible. Run your own unstoppable community, develop your own decentralized social app, or even launch your own business on top of Bitsocial. The tide rises with every builder.",
     "sectionLabel": "Master Plan"
+  },
+  "faq": {
+    "sectionLabel": "FAQ",
+    "title": "Common Questions",
+    "supporting": "Every section of this site answers one. Click a question to jump to it.",
+    "navLabel": "Questions answered on this page",
+    "answeredIn": "Answered in",
+    "ask": {
+      "label": "Ask anything else",
+      "placeholder": "Ask anything else…",
+      "action": "Ask ChatGPT"
+    },
+    "items": {
+      "problem": {
+        "question": "What problem does Bitsocial solve?"
+      },
+      "core-features": {
+        "question": "What is Bitsocial? How does it work?"
+      },
+      "browser-peer": {
+        "question": "Why hasn't someone built this already?"
+      },
+      "decentralized": {
+        "question": "Aren't there decentralized social networks already?"
+      },
+      "arbitrary-challenges": {
+        "question": "With no servers, what stops spam?"
+      },
+      "text-only-protocol": {
+        "question": "What about illegal content?"
+      },
+      "adoption-thesis": {
+        "question": "Why would people switch to Bitsocial?"
+      },
+      "master-plan": {
+        "question": "What's the plan from here? How can I help?"
+      },
+      "about": {
+        "question": "Who is behind Bitsocial? How was it funded?"
+      },
+      "mailing-list": {
+        "question": "How do I follow along?"
+      }
+    }
   },
   "blog": {
     "title": "Bitsocial Updates",
@@ -629,7 +675,7 @@
     "desktopDownloads": "Desktop downloads",
     "extraDownloads": "Extra builds",
     "sectionLabel": "Projects Directory",
-    "directoryLabel": "Projects Directory",
+    "directoryLabel": "Project Categories",
     "catalog": {
       "categories": {
         "apps": {
@@ -694,7 +740,9 @@
         "riskScores": "Risk scores",
         "telegram": "Telegram",
         "verification": "Verification",
-        "antiRepost": "Anti-repost"
+        "antiRepost": "Anti-repost",
+        "referenceClient": "Reference client",
+        "search": "Search"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -706,7 +754,8 @@
         "openWebApp": "Open web app",
         "openWebsite": "Open website",
         "windows": "Windows",
-        "windowsPortable": "Windows Portable"
+        "windowsPortable": "Windows Portable",
+        "openTelegramBot": "Open Telegram bot"
       },
       "items": {
         "5chan": {
@@ -717,13 +766,9 @@
           "tagline": "Forum-style Bitsocial client with web, APK, and desktop builds.",
           "description": "Seedit brings Reddit-style discussion to Bitsocial with threads, identities, community management, and multiple distribution paths. It is the fastest way to try the forum side of the network from a browser, Android phone, or desktop app."
         },
-        "mintpass": {
-          "tagline": "NFT-backed access control for communities that need stronger anti-spam gates.",
-          "description": "Mintpass is a flexible authentication layer for Bitsocial communities. It lets moderators mix NFT ownership, verification flows, and custom challenge modules without pushing everyone onto a central login system."
-        },
         "spam-blocker": {
           "tagline": "Centralized risk scoring layer for filtering abusive publications.",
-          "description": "Spam Blocker evaluates publications and returns a risk score that communities can combine with their own moderation logic. It is useful when you want a pragmatic extra layer before building more custom anti-spam rules."
+          "description": "Spam Blocker evaluates publications and returns a risk score that communities can combine with their own moderation logic. Its hosted service also links signer keys first seen from the same IP, so a user who keeps generating new accounts to dodge a community ban or manufacture a conversation sees their risk score rise, while a few signers stay allowed for legitimate multi-device use."
         },
         "captcha-canvas-challenge": {
           "tagline": "Custom image captchas for communities that want human verification.",
@@ -768,6 +813,34 @@
         "r9k-challenge": {
           "tagline": "Robot9000-style originality gate for communities that want anti-repost posting UX.",
           "description": "R9K Challenge runs on a Bitsocial community node and compares normalized post text against the owner node's local comments database. It gives communities a <robot9000>Robot9000</robot9000>-style posting experience without using AI: exact reposts fail before acceptance, backlinks are ignored, repeated failures trigger escalating temporary bans, and accepted-text hashes stay in private local state instead of storing raw post text."
+        },
+        "wordfilter-challenge": {
+          "tagline": "Community wordfilters enforced as a posting rule instead of a display filter.",
+          "description": "Wordfilter Challenge makes a community's word replacements binding. Publishing clients apply the replacements before signing, so the signed comment and its CID already contain the replacement text, and the community node rejects any publication that still contains a filtered word. It implements the <code>wordfilter/v1</code> contract, so a client written against that contract keeps working with other implementations."
+        },
+        "challenge-composer": {
+          "tagline": "Offline-first editor for a community's anti-spam challenge settings.",
+          "description": "Challenge Composer visualizes and edits the <code>challenges</code> array of a Bitsocial community's settings, then exports a ready-to-run CLI script. It ships as a single self-contained HTML file that makes no outward requests at runtime, so it can be opened straight from disk or a USB stick."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Link-preview and redirect server that renders share cards for Bitsocial posts.",
+          "description": "Bitsocial Previewer renders OpenGraph and Twitter cards when a post link is shared on other platforms, then redirects real browsers into the app. One instance is multi-tenant by hostname, so a single deployment and TLS setup covers every client and mirror domain."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Self-hostable crawler, search index, and web UI for Bitsocial communities.",
+          "description": "Bitsocial Indexer connects to a Bitsocial CLI daemon over RPC, indexes the communities an operator configures into a local SQLite database, and serves them through a REST and full-text search API with an optional server-rendered web UI. It ships empty: the operator decides what gets indexed."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Telegram bot that posts compact GitHub activity for Bitsocial repositories.",
+          "description": "Bitsocial GitHub Alerts forwards pushes, releases, issues, and pull requests from GitHub into any Telegram chat, group, or forum topic. The Bitsocial team runs it for its own repositories, and the container image is public so anyone can self-host it for theirs."
+        },
+        "bitbones": {
+          "tagline": "Bare-bones reference client where every view is a thin wrapper over one hook.",
+          "description": "bitbones is the smallest useful surface over the Bitsocial React hooks: almost no styling, no product opinions, and a single hook behind every view. It is the fastest place to reproduce a bug or try a hooks change against real communities, and its default feed can be switched between the Seedit and 5chan community lists."
+        },
+        "huggingsocial": {
+          "tagline": "Peer-to-peer hub for finding, discussing, and downloading open AI models.",
+          "description": "HuggingSocial is a model hub that no company owns. Hubs are Bitsocial communities controlled by cryptographic keys, each model listing is a signed post with a model card, checksums, and download sources, and the weights move over BitTorrent or plain HTTP mirrors and are verified on your machine. The client is in design and early development; the website takes waitlist sign-ups."
         }
       }
     },

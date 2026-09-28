@@ -24,6 +24,7 @@ import {
   useGraphicsMode,
 } from "@/lib/graphics-mode";
 import { goToMailingListSection } from "@/lib/mailing-list-nav";
+import { rememberScrollReturn } from "@/lib/scroll-return";
 import { highlightedCtaClassName } from "@/components/card-inline-cta";
 import { cn, triggerFeatureGlow } from "@/lib/utils";
 
@@ -245,7 +246,7 @@ function HeroFallbackGraphic({ className, preferPng }: { className?: string; pre
 function NoScriptHeroFallbackGraphic() {
   return (
     <noscript>
-      <div className="nojs-flex mt-10 sm:mt-12 md:mt-10 relative -mx-6 w-[calc(100%+3rem)] justify-center">
+      <div className="hero-full-bleed nojs-flex mt-10 sm:mt-12 md:mt-10 relative justify-center">
         <HeroFallbackGraphic className="relative overflow-visible" preferPng />
       </div>
     </noscript>
@@ -254,7 +255,7 @@ function NoScriptHeroFallbackGraphic() {
 
 function HeroGraphicLoadSpace() {
   return (
-    <div className="relative pointer-events-none w-full overflow-hidden overscroll-none h-[clamp(22rem,42vh,28rem)] md:h-[clamp(34rem,calc(46rem-6vw),40rem)]" />
+    <div className="relative h-[clamp(22rem,42vh,28rem)] w-full overflow-hidden overscroll-none pointer-events-none md:h-[clamp(28rem,54vh,38rem)]" />
   );
 }
 
@@ -321,6 +322,7 @@ export default function Hero() {
   const navigateToFeatureFromTagline = useCallback(
     (hash: string) => {
       resetIntro();
+      rememberScrollReturn();
       window.history.replaceState(null, "", `#${hash}`);
       requestAnimationFrame(() => triggerFeatureGlow(hash));
     },
@@ -340,17 +342,17 @@ export default function Hero() {
   );
 
   return (
-    <section className="min-h-[min(100svh,58rem)] md:min-h-[min(100svh,clamp(55rem,calc(64rem-7vw),60rem))] flex flex-col items-center justify-start pt-28 md:pt-40 px-6 relative overflow-x-clip">
+    <section className="relative flex min-h-[min(100svh,58rem)] flex-col items-center justify-start overflow-x-clip px-[var(--space-page-inline)] pt-[var(--space-hero-top)] md:min-h-[min(100svh,60rem)]">
       <m.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: -20 }}
         transition={{ delay: 0.3, duration: 0.6 }}
-        className="max-w-3xl text-center mb-12 px-4 relative z-10"
+        className="relative z-10 mb-[var(--space-hero-actions-gap)] px-2 text-center sm:px-4"
       >
         <h1
           id="hero-tagline"
           data-hero-tagline
-          className="m-0 text-xl md:text-2xl lg:text-3xl text-muted-foreground leading-relaxed font-display font-normal text-balance"
+          className="hero-copy m-0 text-balance font-display font-normal text-muted-foreground"
         >
           <HighlightIndexCtx.Provider value={highlightedIndex}>
             <Trans
@@ -413,7 +415,7 @@ export default function Hero() {
         <a
           href="/#mailing-list"
           onClick={handleNewsletterClick}
-          className="px-8 py-3 rounded-full glass-card text-foreground/82 hover:text-foreground font-display font-semibold hover:border-blue-glow ring-glow cta-glow text-center md:text-start"
+          className="glass-card ring-glow cta-glow min-h-11 rounded-full px-8 py-3 text-center font-display font-semibold text-foreground/82 hover:border-blue-glow hover:text-foreground md:text-start"
         >
           {t("nav.newsletter")}
         </a>
@@ -424,7 +426,7 @@ export default function Hero() {
 
       {/* Planet and Mesh graphics */}
       {showGraphics ? (
-        <div className="mt-10 sm:mt-12 md:mt-6 relative -mx-6 w-[calc(100%+3rem)] pointer-events-none overscroll-none">
+        <div className="hero-full-bleed mt-10 sm:mt-12 md:mt-6 relative pointer-events-none overscroll-none">
           <HeroGraphicErrorBoundary onError={handleGraphicsInitError}>
             {/* P2P Mesh Network - behind the planet */}
             <m.div
@@ -452,7 +454,7 @@ export default function Hero() {
           </HeroGraphicErrorBoundary>
         </div>
       ) : showFallbackGraphic ? (
-        <div className="mt-10 sm:mt-12 md:mt-10 relative -mx-6 flex w-[calc(100%+3rem)] justify-center">
+        <div className="hero-full-bleed mt-10 sm:mt-12 md:mt-10 relative flex justify-center">
           <HeroFallbackGraphic
             className="relative overflow-visible"
             preferPng={preferPngFallback}
@@ -460,7 +462,7 @@ export default function Hero() {
         </div>
       ) : (
         <>
-          <div className="js-only mt-10 sm:mt-12 md:mt-6 relative -mx-6 w-[calc(100%+3rem)] pointer-events-none overscroll-none">
+          <div className="hero-full-bleed js-only mt-10 sm:mt-12 md:mt-6 relative pointer-events-none overscroll-none">
             <div className="relative z-30 pt-24 -mt-24 pointer-events-none">
               <HeroGraphicLoadSpace />
             </div>

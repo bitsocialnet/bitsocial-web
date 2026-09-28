@@ -96,9 +96,6 @@ passarel·la IPFS, en canvi, forma part del camí del contingut.
 
 ## On s'executa avui
 
-- El [blog de Bitsocial](https://bitsocial.net/blog) d'aquest lloc funciona per defecte com a client
-  P2P de navegador. El seu panell d'estat P2P mostra la llista de parells en directe, el transport que
-  fa servir cada connexió i on són aquests parells.
 - [5chan](/apps/5chan/) funciona per defecte amb P2P de navegador pur a l'aplicació web de
   [5chan.app](https://5chan.app).
 

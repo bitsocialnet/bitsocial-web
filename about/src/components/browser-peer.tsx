@@ -51,7 +51,7 @@ function ReceiptCard({ receipt }: { receipt: Receipt }) {
   const Icon = receipt.icon;
 
   return (
-    <article className="glass-card flex h-full flex-col p-6 md:p-7">
+    <article className="glass-card surface-pad flex h-full flex-col">
       <span
         className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-blue-core/40 bg-blue-core/[0.08] text-blue-glow dark:border-blue-core/55 dark:bg-blue-core/[0.16]"
         aria-hidden
@@ -59,7 +59,7 @@ function ReceiptCard({ receipt }: { receipt: Receipt }) {
         <Icon className="h-4 w-4" />
       </span>
 
-      <h3 className="mt-4 font-display text-xl font-semibold leading-snug text-foreground/90 md:text-2xl">
+      <h3 className="card-title-fluid mt-4 font-display font-semibold leading-snug text-foreground/90">
         {t(receipt.titleKey)}
       </h3>
 
@@ -95,7 +95,7 @@ export default function BrowserPeer() {
         };
 
   return (
-    <section className="px-6 py-24" aria-labelledby="browser-peer-title">
+    <section className="home-section" aria-labelledby="browser-peer-title">
       <div className="mx-auto max-w-6xl">
         <div
           id="browser-peer"
@@ -104,7 +104,7 @@ export default function BrowserPeer() {
         >
           <m.div
             {...reveal(14, 0, 0.5)}
-            className="mb-6 block text-center text-xs font-display uppercase tracking-[0.2em] text-muted-foreground/75 dark:text-muted-foreground/70 md:text-sm"
+            className="home-section-eyebrow mb-6 block text-center font-display uppercase tracking-[0.2em] text-muted-foreground/75 dark:text-muted-foreground/70"
           >
             <a
               href="#browser-peer"
@@ -118,14 +118,14 @@ export default function BrowserPeer() {
         <m.h2
           id="browser-peer-title"
           {...reveal(20, 0.1)}
-          className="mb-6 text-center text-4xl font-display font-semibold leading-[1.1] text-balance text-muted-foreground md:text-6xl lg:text-7xl"
+          className="home-section-title mb-6 text-center font-display font-semibold text-balance text-muted-foreground"
         >
           {t("browserPeer.title")}
         </m.h2>
 
         <m.p
           {...reveal(20, 0.2)}
-          className="mx-auto mb-12 max-w-xl text-center text-base leading-relaxed text-balance text-muted-foreground md:text-lg"
+          className="home-section-lede mx-auto mb-12 text-center text-balance text-muted-foreground"
         >
           {t("browserPeer.supporting")}
         </m.p>

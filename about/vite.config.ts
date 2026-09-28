@@ -92,7 +92,7 @@ function staticMetadataPlugin() {
   };
 }
 
-function ssrServerBuildPlugin() {
+function ssrServerBuildPlugin(profiling: boolean) {
   let configRoot = __dirname;
   let clientOutDir = path.resolve(__dirname, "../dist");
 
@@ -121,7 +121,11 @@ function ssrServerBuildPlugin() {
         plugins: [react()],
         build: {
           ssr: path.resolve(configRoot, "src/entry-server.tsx"),
-          outDir: path.resolve(configRoot, "../dist/server"),
+          // The production API handler resolves this fixed path even when
+          // Vercel overrides the client output directory to about/dist.
+          outDir: profiling
+            ? path.join(clientOutDir, "server")
+            : path.resolve(configRoot, "../dist/server"),
           emptyOutDir: false,
           rollupOptions: {
             output: {
@@ -155,13 +159,14 @@ function ssrServerBuildPlugin() {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => {
+export default defineConfig(({ command, mode }) => {
+  const profiling = mode === "profiling";
   return {
     root: __dirname,
     plugins: [
       react(),
       staticMetadataPlugin(),
-      ssrServerBuildPlugin(),
+      ssrServerBuildPlugin(profiling),
       ...(command === "serve" && !isPreviewCommand ? [subdomainRedirectPlugin()] : []),
     ],
     server: {
@@ -172,7 +177,9 @@ export default defineConfig(({ command }) => {
       open: process.env.PORTLESS_URL || (process.env.PORTLESS === "0" ? true : previewOpenUrl),
     },
     build: {
-      outDir: path.resolve(__dirname, "../dist"),
+      outDir: path.resolve(__dirname, profiling ? "../dist-profile/about" : "../dist"),
+      minify: profiling ? false : undefined,
+      sourcemap: profiling,
       emptyOutDir: true,
       ssrManifest: true,
     },
@@ -189,6 +196,7 @@ export default defineConfig(({ command }) => {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
+        ...(profiling ? { "react-dom/client": "react-dom/profiling" } : {}),
         // Node-builtin polyfills required by @pkcprotocol/pkc-js and its libp2p
         // transitive deps when running pure-P2P in the browser. Matches 5chan's
         // browser-libp2p setup (vite.config.js in bitsocialnet/5chan).

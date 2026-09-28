@@ -94,9 +94,6 @@ IPFS justru berada di jalur konten.
 
 ## Di mana ini sudah berjalan hari ini
 
-- [Blog Bitsocial](https://bitsocial.net/blog) di situs ini berjalan sebagai klien P2P browser secara
-  bawaan. Panel "status P2P" miliknya menampilkan daftar peer secara langsung, transport yang dipakai
-  setiap koneksi, dan lokasi peer tersebut.
 - [5chan](/apps/5chan/) menjalankan P2P browser murni secara bawaan pada aplikasi webnya di
   [5chan.app](https://5chan.app).
 

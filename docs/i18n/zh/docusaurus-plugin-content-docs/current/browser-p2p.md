@@ -64,7 +64,6 @@ libp2p pubsub 规范要求消息的 `seqno` 必须是线性递增的 64 位大�
 
 ## 目前哪些地方已经这样运行
 
-- 本站的 [Bitsocial 博客](https://bitsocial.net/blog)默认以浏览器 P2P 客户端的方式运行。它的“P2P 状态”面板会显示实时的对等节点列表、每条连接使用的传输方式，以及这些对等节点所在的位置。
 - [5chan](/apps/5chan/) 在 [5chan.app](https://5chan.app) 上的网页应用中默认运行纯浏览器 P2P。
 
 ## 网关回退

@@ -20,7 +20,9 @@
     "theme": "Téma",
     "newsletter": "Hírlevél",
     "backToTop": "Vissza a tetejére",
-    "chain": "Chain"
+    "goToBottom": "Ugrás az aljára",
+    "backToPrevious": "Vissza az előző helyre",
+    "faq": "GYIK"
   },
   "footer": {
     "tagline": "Nyílt forráskódú P2P hálózat közösségi alkalmazásokhoz",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "Alapfunkciók",
-    "title": "Mi az a Bitsocial?",
+    "title": "Egy közösségi réteg, amely senkié.",
     "supporting": "Egy folyamatosan bővülő szociális médiaapplikációk univerzuma, amely mind ugyanazt az alapul szolgáló decentralizált közösségi hálózatot használja — egy olyan hálózatot, amelyet nem birtokol semmilyen vállalat, és senki nem veheti el tőled.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "Felhívás a cselekvésre",
+    "title": "Felhívás az építőkhöz.",
     "logoAlt": "Logó",
     "easterEggAlt": "Spongyabob",
     "epilogue": "A végállapot nem egy alkalmazás. Ez egy olyan ügyfelek, csomópontok, szolgáltatások és közösségek piaca, amelyek a platform tulajdonjogát protokollversenyre cserélhetik.",
@@ -449,7 +451,7 @@
     "subtitle": "A Bitsocialt úgy tervezték, hogy több ezer appá, eszközzé és szolgáltatássá nőjön, amelyeket bárki létrehozhat, nem csak a kapuőrök által jóváhagyottakat. Ha fejlesztő vagy, küldd be a saját appodat.",
     "experimental": "Kísérleti",
     "sectionLabel": "Projektkönyvtár",
-    "directoryLabel": "Projektkönyvtár",
+    "directoryLabel": "Projektkategóriák",
     "notFoundDescription": "A keresett app nem létezik a könyvtárban.",
     "emptyCategoryDescription": "Ebben a kategóriában még nincsenek appok. Légy te az első, aki készít egyet!",
     "emptyCategory": "Hamarosan",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "Ellenőrzés",
         "ai": "MI",
-        "antiRepost": "Újraküldés elleni"
+        "antiRepost": "Újraküldés elleni",
+        "referenceClient": "Referenciakliens",
+        "search": "Keresés"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -539,7 +543,8 @@
         "openWebApp": "Webalkalmazás megnyitása",
         "openWebsite": "Webhely megnyitása",
         "windows": "Windows",
-        "windowsPortable": "Hordozható Windows-verzió"
+        "windowsPortable": "Hordozható Windows-verzió",
+        "openTelegramBot": "Telegram bot megnyitása"
       },
       "items": {
         "5chan": {
@@ -550,13 +555,9 @@
           "tagline": "Forum-stílusú Bitsocial client webes, APK-s és desktop buildekkel.",
           "description": "A Seedit Reddit-szerű beszélgetést hoz a Bitsocialba threadekkel, identitásokkal, közösségkezeléssel és több terjesztési úttal. Ez a leggyorsabb módja annak, hogy a hálózat fórum oldalát böngészőből, Android telefonról vagy desktop appból kipróbáld."
         },
-        "mintpass": {
-          "tagline": "NFT-alapú hozzáférés-vezérlés azoknak a közösségeknek, amelyek erősebb anti-spam kapukra szorulnak.",
-          "description": "A Mintpass egy rugalmas hitelesítési réteg a Bitsocial közösségek számára. Lehetővé teszi a moderátoroknak, hogy NFT tulajdonlást, ellenőrzési folyamatokat és egyedi challenge modulokat kombináljanak anélkül, hogy mindenkit központi bejelentkezési rendszerre kényszerítenének."
-        },
         "spam-blocker": {
           "tagline": "Központosított kockázati pontozási réteg a visszaélésszerű publikációk szűrésére.",
-          "description": "A Spam Blocker értékeli a publikációkat, és kockázati pontszámot ad vissza, amelyet a közösségek a saját moderálási logikájukkal kombinálhatnak. Hasznos, ha egy pragmatikus extra rétegre van szükséged, mielőtt még több egyedi anti-spam szabályt építenél."
+          "description": "A Spam Blocker kiértékeli a publikációkat és egy kockázati pontszámot ad vissza, amelyet a közösségek saját moderációs logikájukkal kombinálhatnak. Az üzemeltetett szolgáltatása az ugyanarról az IP-címről először látott aláíró kulcsokat is összekapcsolja, így az a felhasználó, aki folyamatosan új fiókokat hoz létre, hogy elkerülje a közösségi tilalmat vagy beszélgetést fabrikáljon, a kockázati pontszáma emelkedését látja, míg néhány aláíró marad megengedett az össze-, legális többeszköz-használatra."
         },
         "captcha-canvas-challenge": {
           "tagline": "Egyedi képes captcha-k azoknak a közösségeknek, amelyek emberi ellenőrzést akarnak.",
@@ -597,6 +598,34 @@
         "r9k-challenge": {
           "tagline": "Robot9000-stílusú eredetiségkapu olyan közösségeknek, amelyek anti-repost posztolási élményt szeretnének.",
           "description": "Az R9K Challenge egy Bitsocial közösségi node-on fut, és a normalizált posztszöveget összeveti a tulajdonos node helyi kommentadatbázisával. <robot9000>Robot9000</robot9000>-stílusú posztolási élményt ad a közösségeknek: a pontos repostok elfogadás előtt elbuknak, a backlinkek figyelmen kívül maradnak, az ismételt hibák fokozódó ideiglenes banokat indítanak, az elfogadott szöveg hash-ei pedig nyers posztszöveg tárolása helyett privát helyi állapotban maradnak. Ez a challenge nem használ AI-t."
+        },
+        "wordfilter-challenge": {
+          "tagline": "A közösség szószűrői közzétételi szabályként érvényesülnek, nem megjelenítési szűrőként.",
+          "description": "A Wordfilter Challenge kötelező érvényűvé teszi a közösség szócseréit. A publikáló kliensek már aláírás előtt elvégzik a cseréket, így az aláírt hozzászólás és annak CID-je eleve a helyettesítő szöveget tartalmazza, a közösség csomópontja pedig elutasít minden olyan közzétételt, amely még mindig tartalmaz szűrt szót. Megvalósítja a <code>wordfilter/v1</code> szerződést, így az e szerződés alapján írt kliens más megvalósításokkal is tovább működik."
+        },
+        "challenge-composer": {
+          "tagline": "Offline-first szerkesztő egy közösség spamvédelmi kihívásainak beállításaihoz.",
+          "description": "A Challenge Composer megjeleníti és szerkeszthetővé teszi egy Bitsocial-közösség beállításaiban szereplő <code>challenges</code> tömböt, majd futtatásra kész CLI-szkriptet exportál belőle. Egyetlen önálló HTML-fájlként érkezik, amely futás közben semmilyen kifelé irányuló kérést nem indít, így közvetlenül lemezről vagy USB-kulcsról is megnyitható."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Hivatkozás-előnézeti és átirányító kiszolgáló, amely megosztási kártyákat állít elő a Bitsocial-bejegyzésekhez.",
+          "description": "A Bitsocial Previewer OpenGraph- és Twitter-kártyákat állít elő, amikor egy bejegyzés hivatkozását más platformon osztják meg, a valódi böngészőket pedig továbbirányítja az alkalmazásba. Egyetlen példány gazdagépnév szerint több bérlőt szolgál ki, így egyetlen telepítés és TLS-beállítás minden kliens- és tükördomaint lefed."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Saját üzemeltetésű bejáró, keresési index és webes felület Bitsocial-közösségekhez.",
+          "description": "A Bitsocial Indexer RPC-n keresztül csatlakozik egy Bitsocial CLI démonhoz, az üzemeltető által beállított közösségeket helyi SQLite-adatbázisba indexeli, majd REST és teljes szöveges keresésre szolgáló API-n át szolgálja ki őket, opcionálisan kiszolgálóoldalon renderelt webes felülettel. Üresen érkezik: az üzemeltető dönti el, mi kerül az indexbe."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Telegram-bot, amely tömören közzéteszi a Bitsocial-tárolók GitHub-eseményeit.",
+          "description": "A Bitsocial GitHub Alerts a GitHub push-, kiadás-, issue- és pull request-eseményeit továbbítja bármelyik Telegram-csevegésbe, -csoportba vagy fórumtémába. A Bitsocial csapata a saját tárolóihoz üzemelteti, a konténerkép pedig nyilvános, így bárki futtathatja a sajátjaihoz."
+        },
+        "bitbones": {
+          "tagline": "Minimalista referenciakliens, amelyben minden nézet csupán vékony burok egyetlen hook körül.",
+          "description": "A bitbones a legkisebb használható felület a Bitsocial React hookjai fölött: alig van benne stílus, nincsenek termékdöntések, és minden nézet mögött egyetlen hook áll. Itt lehet a leggyorsabban reprodukálni egy hibát vagy kipróbálni egy hookmódosítást valódi közösségeken, az alapértelmezett hírfolyama pedig átkapcsolható a Seedit és az 5chan közösséglistája között."
+        },
+        "huggingsocial": {
+          "tagline": "Peer-to-peer központ nyitott AI-modellek keresésére, megbeszélésére és letöltésére.",
+          "description": "A HuggingSocial egy modellközpont, amelyet egyetlen vállalat sem birtokol. A hubok a Bitsocial-közösségek, amelyeket kriptográfiai kulcsok vezérelnek, minden modelllista egy aláírt bejegyzés, amely modellkártyát, ellenőrzőösszegeket és letöltési forrásokat tartalmaz, és a súlyok BitTorrent vagy egyszerű HTTP-tükrök keresztül mozognak, és a gépen ellenőrizhetők. Az ügyfél tervezés és korai fejlesztés alatt áll; a webhely elfogad várólistára való feliratkozásokat."
         }
       }
     },
@@ -706,7 +735,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Csak szöveges protokoll",
     "title": "A szabadságnak van moderációja.",
-    "supporting": "Nincs globális adminisztrátor és nincs lefoglalható szerver, így senki sem tilthat ki az egész hálózatról. A moderáció csak közelebb kerül hozzád.",
+    "supporting": "A protokoll csak szöveget továbbít, és nem rejtett hálózat. Nincs globális adminisztrátor, és nincs lefoglalható szerver sem, így senki sem tilthat ki a teljes hálózatból. A moderálás egyszerűen közelebb kerül hozzád.",
     "carouselLabel": "Válaszok a gyakori aggályokra",
     "communities": {
       "myth": "Ha nincs tiltás, akkor itt bármit szabad.",
@@ -731,7 +760,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Elfogadási tézis",
-    "title": "Miért használná ezt bárki?",
+    "title": "Birtokolni jobb, mint bérelni.",
     "supporting": "Nem lehet cenzúrázni, soha nem áll le, és megtarthatod, amit megkeresel. Íme, kik jelennek meg — és miért.",
     "diagramLabel": "Elterjedési görbe, amely megmutatja, miért használja a Bitsocialt minden felhasználói csoport.",
     "curve": {
@@ -789,7 +818,51 @@
     "docsCta": "Hogyan működik a P2P a böngészőben",
     "liveCta": "Lásd a blogon",
     "sectionLabel": "Böngésző P2P",
-    "supporting": "Nyiss meg egy Bitsocial webalkalmazást egy normál lapon, és önmagában csatlakozik a hálózathoz, lekéri a bejegyzéseket más társaktól, és közzéteszi a sajátaidat. Minden más decentralizált közösségi hálózat továbbra is tart egy szervert a közepén.",
-    "title": "A böngésződ egy peer"
+    "supporting": "Nyiss meg egy Bitsocial webalkalmazást egy hétköznapi lapon, és magától csatlakozik a hálózathoz: bejegyzéseket tölt le a többi peertől, a tieidet pedig közzéteszi. Pontosan ez a nehéz rész – és ezért tart még mindig szervert középen az összes többi decentralizált közösségi hálózat.",
+    "title": "Maga a böngésző az áttörés."
+  },
+  "faq": {
+    "sectionLabel": "GYIK",
+    "title": "Gyakran ismételt kérdések",
+    "supporting": "Az oldal minden szakasza egy-egy kérdésre válaszol. Kattints egy kérdésre, és odaugrasz.",
+    "navLabel": "Ezen az oldalon megválaszolt kérdések",
+    "answeredIn": "Megválaszolva ebben a szakaszban:",
+    "items": {
+      "problem": {
+        "question": "Milyen problémát old meg a Bitsocial?"
+      },
+      "core-features": {
+        "question": "Mi az a Bitsocial? Hogyan működik?"
+      },
+      "browser-peer": {
+        "question": "Miért nem építette meg ezt eddig senki?"
+      },
+      "decentralized": {
+        "question": "Nem léteznek már decentralizált közösségi hálózatok?"
+      },
+      "arbitrary-challenges": {
+        "question": "Ha nincsenek szerverek, mi állítja meg a spamet?"
+      },
+      "text-only-protocol": {
+        "question": "Mi a helyzet az illegális tartalommal?"
+      },
+      "adoption-thesis": {
+        "question": "Miért váltanának át az emberek a Bitsocialra?"
+      },
+      "master-plan": {
+        "question": "Mi a terv innentől? Hogyan segíthetek?"
+      },
+      "about": {
+        "question": "Kik állnak a Bitsocial mögött? Hogyan finanszírozták?"
+      },
+      "mailing-list": {
+        "question": "Hogyan maradok naprakész?"
+      }
+    },
+    "ask": {
+      "label": "Kérdezz bármi mást",
+      "placeholder": "Kérdezz bármi mást…",
+      "action": "Kérdezd a ChatGPT-t"
+    }
   }
 }

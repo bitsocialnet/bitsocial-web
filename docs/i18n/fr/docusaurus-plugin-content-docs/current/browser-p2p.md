@@ -95,9 +95,6 @@ passerelle IPFS, à l'inverse, se trouve sur le chemin du contenu.
 
 ## Où cela fonctionne aujourd'hui
 
-- Le [blog Bitsocial](https://bitsocial.net/blog) de ce site fonctionne par défaut comme un client
-  P2P navigateur. Son panneau « P2P status » affiche la liste des pairs en direct, le transport
-  utilisé par chaque connexion et l'emplacement de ces pairs.
 - [5chan](/apps/5chan/) fonctionne par défaut en P2P navigateur pur dans l'application web sur
   [5chan.app](https://5chan.app).
 

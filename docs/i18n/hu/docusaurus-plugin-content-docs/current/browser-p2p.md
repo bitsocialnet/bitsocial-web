@@ -95,9 +95,6 @@ helyezkedik el.
 
 ## Hol fut ez ma
 
-- Az ezen az oldalon található [Bitsocial blog](https://bitsocial.net/blog) alapértelmezés szerint
-  böngészős P2P kliensként fut. A „P2P státusz” panelje mutatja az élő peer-listát, az egyes
-  kapcsolatok transzportját és azt, hogy hol vannak ezek a peerek.
 - Az [5chan](/apps/5chan/) alapértelmezés szerint tiszta böngészős P2P-vel fut az
   [5chan.app](https://5chan.app) webalkalmazásban.
 

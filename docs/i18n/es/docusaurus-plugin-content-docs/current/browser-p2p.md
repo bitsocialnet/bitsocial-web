@@ -95,9 +95,6 @@ está dentro de la ruta del contenido.
 
 ## Dónde se ejecuta hoy
 
-- El [blog de Bitsocial](https://bitsocial.net/blog) de este sitio funciona de forma predeterminada
-  como cliente P2P de navegador. Su panel de "estado P2P" muestra la lista de pares en vivo, el
-  transporte que usa cada conexión y dónde están esos pares.
 - [5chan](/apps/5chan/) funciona con P2P puro en el navegador de forma predeterminada en la
   aplicación web de [5chan.app](https://5chan.app).
 

@@ -1,10 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { ArrowUpRight, Download, Github, Globe, Package, Smartphone } from "lucide-react";
 import AppMirrorLinkCta from "@/components/app-mirror-link-cta";
-import CardInlineCta, {
-  cardInlineCtaClassName,
-  highlightedCtaClassName,
-} from "@/components/card-inline-cta";
+import CardInlineCta, { cardInlineCtaClassName } from "@/components/card-inline-cta";
 import {
   getAppLinkLabel,
   getGithubUrl,
@@ -44,19 +41,17 @@ export default function AppLinksSection({ app }: AppLinksSectionProps) {
   const githubUrl = getGithubUrl(app);
 
   return (
-    <section className="glass-card p-6 md:p-7">
-      <div className="mb-6 flex items-center justify-between gap-4">
-        <div>
-          <h2 className="text-xl font-display font-normal text-muted-foreground">
-            {t("apps.linksAndMirrors")}
-          </h2>
-          <p className="mt-2 text-sm leading-6 text-muted-foreground">
-            {t("apps.linksSectionDescription")}
-          </p>
-        </div>
+    <section className="glass-card surface-pad">
+      <div className="mb-5">
+        <h2 className="text-xl font-display font-semibold text-foreground">
+          {t("apps.linksAndMirrors")}
+        </h2>
+        <p className="mt-2 text-sm leading-6 text-muted-foreground">
+          {t("apps.linksSectionDescription")}
+        </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="divide-y divide-border/60">
         {webLinks.length > 0 ? (
           <LinkGroup title={t("apps.webLinks")} links={webLinks} t={t} />
         ) : null}
@@ -80,17 +75,19 @@ export default function AppLinksSection({ app }: AppLinksSectionProps) {
           <LinkGroup title={t("apps.mirrors")} links={mirrorLinks} t={t} />
         ) : null}
 
-        <div className="rounded-[1.4rem] border border-border/60 p-4">
-          <div className="mb-3 flex items-center justify-between gap-3">
-            <h3 className="font-display text-lg text-foreground">{t("apps.sourceCode")}</h3>
+        <div className="grid gap-3 py-4 first:pt-0 last:pb-0 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-5">
+          <div className="sm:pt-2">
+            <h3 className="font-display text-sm font-semibold leading-5 text-foreground">
+              {t("apps.sourceCode")}
+            </h3>
           </div>
           <CardInlineCta
             href={githubUrl}
-            className={`${cardInlineCtaClassName} !rounded-full !px-4 !py-2`}
+            className={`${cardInlineCtaClassName} max-w-full justify-self-start !rounded-full !px-4 !py-2`}
           >
-            <span className="inline-flex items-center gap-2">
-              <Github className="h-4 w-4" />
-              <span>{githubUrl.replace("https://github.com/", "")}</span>
+            <span className="inline-flex min-w-0 items-center gap-2">
+              <Github className="h-4 w-4 shrink-0" />
+              <span className="break-all">{githubUrl.replace("https://github.com/", "")}</span>
             </span>
           </CardInlineCta>
         </div>
@@ -109,33 +106,27 @@ function LinkGroup({
   t: ReturnType<typeof useTranslation>["t"];
 }) {
   return (
-    <div className="rounded-[1.4rem] border border-border/60 p-4">
-      <h3 className="mb-3 font-display text-lg text-foreground">{title}</h3>
-      <div className="flex flex-wrap gap-2.5">
+    <div className="grid gap-3 py-4 first:pt-0 last:pb-0 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-5">
+      <h3 className="font-display text-sm font-semibold leading-5 text-foreground sm:pt-2">
+        {title}
+      </h3>
+      <div className="flex min-w-0 flex-wrap items-start gap-2">
         {links.map((link) =>
           linkHasVerifiableStatus(link) ? (
             <AppMirrorLinkCta
               key={link.url}
               link={link}
               icon={link.kind === "mirror" ? undefined : getLinkIcon(link)}
-              className={
-                link.kind === "mirror"
-                  ? `${cardInlineCtaClassName} !rounded-full !px-4 !py-2`
-                  : `${highlightedCtaClassName} !px-4 !py-2 text-sm`
-              }
+              className={`${cardInlineCtaClassName} max-w-full !rounded-full !px-4 !py-2`}
               showVerifiedLabel={link.kind === "mirror"}
             />
           ) : (
             <CardInlineCta
               key={link.url}
               href={link.url}
-              className={
-                link.kind === "mirror"
-                  ? `${cardInlineCtaClassName} !rounded-full !px-4 !py-2`
-                  : `${highlightedCtaClassName} !px-4 !py-2 text-sm`
-              }
+              className={`${cardInlineCtaClassName} max-w-full !rounded-full !px-4 !py-2`}
             >
-              <span className="inline-flex items-center gap-2">
+              <span className="inline-flex min-w-0 items-center gap-2">
                 {getLinkIcon(link)}
                 <span>{getAppLinkLabel(link, t)}</span>
               </span>

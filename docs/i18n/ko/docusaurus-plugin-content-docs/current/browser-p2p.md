@@ -85,9 +85,6 @@ libp2p pubsub 사양은 메시지 `seqno`가 선형적으로 증가하는 64비�
 
 ## 현재 이 방식이 동작하는 곳
 
-- 이 사이트의 [Bitsocial 블로그](https://bitsocial.net/blog)는 기본적으로 브라우저 P2P 클라이언트로
-  동작합니다. "P2P status" 패널에는 실시간 피어 목록, 각 연결이 사용하는 전송 방식, 그리고 그 피어들이 어디에
-  있는지가 표시됩니다.
 - [5chan](/apps/5chan/)은 [5chan.app](https://5chan.app)의 웹 앱에서 기본적으로 순수 브라우저 P2P로
   동작합니다.
 

@@ -20,7 +20,9 @@
     "theme": "Tema",
     "newsletter": "Bülten",
     "backToTop": "Başa dön",
-    "chain": "Chain"
+    "goToBottom": "Sona git",
+    "backToPrevious": "Önceki konuma dön",
+    "faq": "SSS"
   },
   "footer": {
     "tagline": "Sosyal uygulamalar için açık kaynak P2P ağı",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "Temel Özellikler",
-    "title": "Bitsocial nedir?",
+    "title": "Kimsenin sahibi olmadığı bir sosyal katman.",
     "supporting": "Sosyal medya uygulamalarının sürekli genişleyen bir evreni, hepsi aynı temel merkezi olmayan sosyal ağı kullanıyor — hiçbir şirketin sahip olmadığı ve hiç kimse size alıp götüremeyeceği bir ağ.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "Bir Eylem Çağrısı",
+    "title": "İnşa edenlere bir çağrı.",
     "logoAlt": "logo",
     "easterEggAlt": "Sünger Bob",
     "epilogue": "Son durum tek bir uygulama değil. Platform mülkiyetini protokol rekabetiyle değiştirebilecek müşteriler, düğümler, hizmetler ve topluluklardan oluşan bir pazardır.",
@@ -449,7 +451,7 @@
     "subtitle": "Bitsocial, herkesin inşa edebileceği, kapı bekçilerinin onayladıklarıyla sınırlı olmayan binlerce uygulama, araç ve hizmete dönüşmek için tasarlandı. Geliştiriciysen kendi uygulamanı gönder.",
     "experimental": "Deneysel",
     "sectionLabel": "Proje dizini",
-    "directoryLabel": "Proje dizini",
+    "directoryLabel": "Proje kategorileri",
     "notFoundDescription": "Aradığınız uygulama dizinde yok.",
     "emptyCategoryDescription": "Bu kategoride henüz uygulama yok. İlkini siz oluşturun!",
     "emptyCategory": "Yakında",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "Doğrulama",
         "ai": "AI",
-        "antiRepost": "Yeniden paylaşım karşıtı"
+        "antiRepost": "Yeniden paylaşım karşıtı",
+        "referenceClient": "Referans istemci",
+        "search": "Arama"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -539,7 +543,8 @@
         "openWebApp": "Web uygulamasını aç",
         "openWebsite": "Web sitesini aç",
         "windows": "Windows",
-        "windowsPortable": "Windows taşınabilir sürüm"
+        "windowsPortable": "Windows taşınabilir sürüm",
+        "openTelegramBot": "Telegram botunu aç"
       },
       "items": {
         "5chan": {
@@ -550,13 +555,9 @@
           "tagline": "web, APK ve desktop build'leri olan forum tarzı Bitsocial client'ı.",
           "description": "Seedit, Reddit tarzı tartışmayı thread'ler, kimlikler, topluluk yönetimi ve birden fazla dağıtım yolu ile Bitsocial'a getirir. Ağın forum tarafını bir tarayıcıdan, Android telefondan veya desktop uygulamasından denemenin en hızlı yoludur."
         },
-        "mintpass": {
-          "tagline": "Daha güçlü anti-spam kapılarına ihtiyaç duyan topluluklar için NFT destekli erişim kontrolü.",
-          "description": "Mintpass, Bitsocial toplulukları için esnek bir authentication katmanıdır. Moderatörlerin NFT ownership, verification akışları ve özel challenge modüllerini birleştirmesine izin verir; herkesi merkezi bir login system'e zorlamaz."
-        },
         "spam-blocker": {
           "tagline": "Kötüye kullanılan yayınları filtrelemek için merkezi risk puanlama katmanı.",
-          "description": "Spam Blocker yayınları değerlendirir ve toplulukların kendi moderasyon logic'leri ile birleştirebileceği bir risk score döndürür. Daha özel anti-spam kuralları oluşturmadan önce pratik bir ek katman istediğinizde kullanışlıdır."
+          "description": "Spam Blocker yayınları değerlendirir ve toplulukların kendi ılımlılık mantığıyla birleştirebileceği bir risk puanı döndürür. Barındırılan hizmeti, aynı IP'den ilk kez görülen imzalayan anahtarları da bağlantılandırır, bu nedenle topluluk yasakından kaçınmak veya konuşma üretmek için yeni hesaplar oluşturmaya devam eden bir kullanıcı, risk puanının arttığını görürken, birkaç imzalayan, yasal çok cihazlı kullanım için izin verilmiş kalır."
         },
         "captcha-canvas-challenge": {
           "tagline": "İnsan doğrulaması isteyen topluluklar için özel görsel captcha'lar.",
@@ -597,6 +598,34 @@
         "r9k-challenge": {
           "tagline": "Anti-repost gönderi deneyimi isteyen topluluklar için Robot9000 tarzı özgünlük kapısı.",
           "description": "R9K Challenge bir Bitsocial topluluk node'unda çalışır ve normalize edilmiş gönderi metnini sahip node'un yerel yorum veritabanıyla karşılaştırır. Topluluklara <robot9000>Robot9000</robot9000> tarzı bir gönderi deneyimi verir: birebir repostlar kabul edilmeden önce başarısız olur, backlinks yok sayılır, tekrarlanan başarısızlıklar artan geçici banları tetikler ve kabul edilen metin hash'leri ham gönderi metnini saklamak yerine private local state içinde kalır. Bu challenge AI kullanmaz."
+        },
+        "wordfilter-challenge": {
+          "tagline": "Topluluğun kelime filtreleri, görüntüleme filtresi olarak değil gönderi kuralı olarak uygulanır.",
+          "description": "Wordfilter Challenge, bir topluluğun kelime değiştirmelerini bağlayıcı hale getirir. Yayımlayan istemciler değiştirmeleri imzalamadan önce uygular; böylece imzalanmış yorum ve onun CID'si baştan değiştirilmiş metni içerir ve topluluk düğümü, hâlâ filtrelenen bir kelime içeren her yayımı reddeder. <code>wordfilter/v1</code> sözleşmesini uyguladığı için bu sözleşmeye göre yazılmış bir istemci diğer uygulamalarla da çalışmayı sürdürür."
+        },
+        "challenge-composer": {
+          "tagline": "Bir topluluğun spam önleme sınaması ayarları için çevrimdışı öncelikli düzenleyici.",
+          "description": "Challenge Composer, bir Bitsocial topluluğunun ayarlarındaki <code>challenges</code> dizisini görselleştirip düzenlemenizi sağlar ve ardından doğrudan çalıştırılabilir bir CLI betiği dışa aktarır. Kendi kendine yeten tek bir HTML dosyası olarak dağıtılır ve çalışırken dışarıya hiçbir istek göndermez; bu sayede diskten ya da bir USB bellekten doğrudan açılabilir."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Bitsocial gönderileri için paylaşım kartları oluşturan bağlantı önizleme ve yönlendirme sunucusu.",
+          "description": "Bitsocial Previewer, bir gönderi bağlantısı başka platformlarda paylaşıldığında OpenGraph ve Twitter kartlarını oluşturur, ardından gerçek tarayıcıları uygulamaya yönlendirir. Tek bir örnek ana bilgisayar adına göre çok kiracılı çalışır; böylece tek bir dağıtım ve TLS yapılandırması tüm istemci ve ayna alan adlarını kapsar."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Bitsocial toplulukları için kendi sunucunuzda barındırabileceğiniz crawler, arama dizini ve web arayüzü.",
+          "description": "Bitsocial Indexer, RPC üzerinden bir Bitsocial CLI arka plan sürecine bağlanır, işletmecinin tanımladığı toplulukları yerel bir SQLite veritabanına indeksler ve bunları REST ile tam metin arama API'si üzerinden sunar; isteğe bağlı olarak sunucuda oluşturulan bir web arayüzü de gelir. Boş olarak dağıtılır: neyin indeksleneceğine işletmeci karar verir."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Bitsocial depolarındaki GitHub etkinliklerini derli toplu biçimde paylaşan Telegram botu.",
+          "description": "Bitsocial GitHub Alerts; GitHub üzerindeki push'ları, sürümleri, issue'ları ve pull request'leri Telegram'daki herhangi bir sohbete, gruba veya forum konusuna iletir. Bitsocial ekibi botu kendi depoları için çalıştırır; konteyner imajı herkese açık olduğundan isteyen kendi depoları için kendi sunucusunda barındırabilir."
+        },
+        "bitbones": {
+          "tagline": "Her görünümün tek bir hook üzerindeki ince bir sarmalayıcıdan ibaret olduğu, en yalın referans istemci.",
+          "description": "bitbones, Bitsocial'ın React hook'ları üzerindeki en küçük kullanışlı katmandır: neredeyse hiç biçimlendirme yok, ürün kararları yok ve her görünümün arkasında tek bir hook var. Bir hatayı yeniden üretmek ya da hook'lardaki bir değişikliği gerçek topluluklar üzerinde denemek için en hızlı yer burasıdır; varsayılan akışı da Seedit ile 5chan topluluk listeleri arasında değiştirilebilir."
+        },
+        "huggingsocial": {
+          "tagline": "Açık AI modellerini bulmak, tartışmak ve indirmek için eşler arası hub.",
+          "description": "HuggingSocial, hiçbir şirketin sahip olmadığı bir model merkezidir. Merkezler, şifreleme anahtarları tarafından kontrol edilen Bitsocial toplulukları, her model listesi bir model kartı, sağlama toplamları ve indirme kaynakları içeren imzalı bir gönderi ve ağırlıklar BitTorrent veya sade HTTP aynalarından hareket ederek makinenizde doğrulanır. İstemci tasarım ve erken geliştirme aşamasındadır; web sitesi bekleme listesi kaydını kabul eder."
         }
       }
     },
@@ -706,7 +735,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Yalnızca Metin Protokolü",
     "title": "Özgürlüğün de bir denetimi var.",
-    "supporting": "Genel bir yönetici ya da ele geçirilecek bir sunucu yok, dolayısıyla kimse seni tüm ağdan yasaklayamaz. Denetim yalnızca sana yaklaşır.",
+    "supporting": "Protokol yalnızca metin taşır ve bu gizli bir ağ değildir. Ne genel bir yönetici ne de el konulabilecek bir sunucu var; bu yüzden kimse seni ağın tamamından yasaklayamaz. Moderasyon yalnızca sana daha yakın bir yere taşınır.",
     "carouselLabel": "Sık duyulan kaygılar, yanıtlarıyla",
     "communities": {
       "myth": "Yasak yoksa her şey serbesttir.",
@@ -731,7 +760,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Benimsenme Tezi",
-    "title": "Bunu neden biri kullansın?",
+    "title": "Kiralamak yerine sahip olmak.",
     "supporting": "Sansürlenemez, asla çökmez ve kazandığınız her şey sizde kalır. İşte kimlerin ortaya çıktığı — ve neden.",
     "diagramLabel": "Her kullanıcı kohortunun Bitsocial'ı neden benimsediğini gösteren benimseme eğrisi.",
     "curve": {
@@ -789,7 +818,51 @@
     "docsCta": "Tarayıcıda P2P nasıl çalışır",
     "liveCta": "Blogda görün",
     "sectionLabel": "Tarayıcı P2P",
-    "supporting": "Bitsocial web uygulamasını normal bir sekmede açın ve kendisini ağa katılır, diğer eşlerden gönderiler alır ve kendi gönderilerinizi yayınlar. Diğer tüm merkezi olmayan sosyal ağlar hala ortada bir sunucu tutar.",
-    "title": "Tarayıcın bir peer'dir"
+    "supporting": "Bitsocial web uygulamasını sıradan bir sekmede açın; sekme ağa kendi başına katılır, diğer eşlerden gönderileri çeker ve sizinkileri yayımlar. İşin zor kısmı tam olarak budur; diğer bütün merkeziyetsiz sosyal ağların hâlâ ortada bir sunucu tutmasının nedeni de budur.",
+    "title": "Asıl atılım tarayıcının kendisi."
+  },
+  "faq": {
+    "sectionLabel": "SSS",
+    "title": "Sık sorulan sorular",
+    "supporting": "Bu sitedeki her bölüm bunlardan birini yanıtlıyor. İlgili bölüme atlamak için bir soruya tıklayın.",
+    "navLabel": "Bu sayfada yanıtlanan sorular",
+    "answeredIn": "Yanıtın bulunduğu bölüm",
+    "items": {
+      "problem": {
+        "question": "Bitsocial hangi sorunu çözer?"
+      },
+      "core-features": {
+        "question": "Bitsocial nedir? Nasıl çalışır?"
+      },
+      "browser-peer": {
+        "question": "Bunu neden kimse daha önce yapmadı?"
+      },
+      "decentralized": {
+        "question": "Zaten merkeziyetsiz sosyal ağlar yok mu?"
+      },
+      "arbitrary-challenges": {
+        "question": "Sunucu olmadan spam nasıl engellenir?"
+      },
+      "text-only-protocol": {
+        "question": "Peki ya yasa dışı içerik?"
+      },
+      "adoption-thesis": {
+        "question": "İnsanlar neden Bitsocial'a geçsin?"
+      },
+      "master-plan": {
+        "question": "Bundan sonraki plan nedir? Nasıl yardımcı olabilirim?"
+      },
+      "about": {
+        "question": "Bitsocial'ın arkasında kim var? Nasıl finanse edildi?"
+      },
+      "mailing-list": {
+        "question": "Nasıl haberdar olabilirim?"
+      }
+    },
+    "ask": {
+      "label": "Başka bir şey sorun",
+      "placeholder": "Başka bir şey sorun…",
+      "action": "ChatGPT'ye sorun"
+    }
   }
 }

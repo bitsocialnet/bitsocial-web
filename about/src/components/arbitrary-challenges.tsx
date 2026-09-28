@@ -81,7 +81,7 @@ function ExchangeConnector({
     <div className="relative flex w-full items-center justify-center md:w-auto">
       {/* Mobile vertical */}
       <div className="flex w-full flex-col items-center gap-1.5 md:hidden">
-        <span className="font-display text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
+        <span className="text-micro-fluid font-display font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
           {requestLabel}
         </span>
         <svg
@@ -125,14 +125,14 @@ function ExchangeConnector({
           />
           <path d="M20 14 L26 6 L32 14" stroke="currentColor" strokeWidth="1.4" fill="none" />
         </svg>
-        <span className="font-display text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
+        <span className="text-micro-fluid font-display font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
           {challengeLabel}
         </span>
       </div>
 
       {/* Desktop horizontal */}
       <div className="hidden flex-col items-center md:flex">
-        <span className="mb-1 font-display text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
+        <span className="text-micro-fluid mb-1 font-display font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
           {requestLabel}
         </span>
         <svg
@@ -176,7 +176,7 @@ function ExchangeConnector({
           />
           <path d="M16 24 L8 30 L16 36" stroke="currentColor" strokeWidth="1.4" fill="none" />
         </svg>
-        <span className="mt-1 font-display text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
+        <span className="text-micro-fluid mt-1 font-display font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
           {challengeLabel}
         </span>
       </div>
@@ -279,7 +279,7 @@ function ChallengeModule({ t }: { t: (key: string) => string }) {
         </div>
       </div>
 
-      <p className="mb-2.5 mt-5 font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
+      <p className="text-micro-fluid mb-2.5 mt-5 font-display font-semibold uppercase tracking-[0.18em] text-muted-foreground/70">
         {t("arbitraryChallenges.optionsLabel")}
       </p>
       <ul className="flex flex-wrap gap-2">
@@ -306,7 +306,7 @@ export default function ArbitraryChallenges() {
   const prefersReducedMotion = useReducedMotion() ?? false;
 
   return (
-    <section className="py-24 px-6" aria-labelledby="arbitrary-challenges-title">
+    <section className="home-section" aria-labelledby="arbitrary-challenges-title">
       <div className="max-w-7xl mx-auto">
         <div
           id="arbitrary-challenges"
@@ -318,7 +318,7 @@ export default function ArbitraryChallenges() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="block text-xs md:text-sm font-display tracking-[0.2em] uppercase text-center mb-6 text-muted-foreground/75 dark:text-muted-foreground/70"
+            className="home-section-eyebrow mb-6 block text-center font-display uppercase tracking-[0.2em] text-muted-foreground/75 dark:text-muted-foreground/70"
           >
             <a
               href="#arbitrary-challenges"
@@ -335,7 +335,7 @@ export default function ArbitraryChallenges() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-display font-semibold text-center mb-6 text-balance leading-[1.1] text-muted-foreground"
+          className="home-section-title mb-6 text-center font-display font-semibold text-balance text-muted-foreground"
         >
           {t("arbitraryChallenges.title")}
         </m.h2>
@@ -345,7 +345,7 @@ export default function ArbitraryChallenges() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mb-12 max-w-xl text-balance text-center text-base leading-relaxed text-muted-foreground md:text-lg"
+          className="home-section-lede mx-auto mb-12 text-balance text-center text-muted-foreground"
         >
           <Trans
             i18nKey="arbitraryChallenges.supporting"
@@ -365,7 +365,7 @@ export default function ArbitraryChallenges() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="glass-card mx-auto max-w-3xl p-6 md:p-8"
+          className="glass-card surface-pad mx-auto max-w-3xl"
         >
           <ProtocolDiagram t={t} prefersReducedMotion={prefersReducedMotion} />
 

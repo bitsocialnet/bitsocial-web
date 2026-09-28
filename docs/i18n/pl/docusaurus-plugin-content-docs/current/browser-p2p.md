@@ -92,9 +92,6 @@ kosztuje cię ścieżkę wyszukiwania, a nie dane. Brama IPFS leży natomiast na
 
 ## Gdzie działa to dzisiaj
 
-- [Blog Bitsocial](https://bitsocial.net/blog) na tej stronie domyślnie działa jako klient P2P w
-  przeglądarce. Jego panel „P2P status” pokazuje aktualną listę peerów, transport używany przez
-  każde połączenie oraz to, gdzie te peery się znajdują.
 - [5chan](/apps/5chan/) domyślnie działa w trybie czystego P2P w przeglądarce w aplikacji
   internetowej pod adresem [5chan.app](https://5chan.app).
 

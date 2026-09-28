@@ -22,7 +22,7 @@ Pubsub Provider është një shërbim për operatorë që drejton një rele reze
 
 ## Portat
 
-Parazgjedhjet janë zgjedhur në mënyrë që Pubsub Provider të mund të punojë krah [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) në të njëjtin VPS pa konflikt në portin e swarm-it.
+Parazgjedhjet janë zgjedhur në mënyrë që Pubsub Provider të mund të punojë krah [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) në të njëjtin VPS pa konflikt në portin e swarm-it.
 
 | Qëllimi           | Parazgjedhja                 | Shënime                                                                |
 | ----------------- | ---------------------------- | ---------------------------------------------------------------------- |

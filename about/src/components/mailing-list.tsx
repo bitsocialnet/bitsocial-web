@@ -58,14 +58,14 @@ export default function MailingList() {
     : t("mailingList.success");
 
   return (
-    <section id="mailing-list" className="nojs-target-highlight py-20 md:py-28 px-6 scroll-mt-24">
+    <section id="mailing-list" className="nojs-target-highlight home-section scroll-mt-24">
       <div className="max-w-2xl mx-auto">
         <m.div
           initial={{ y: 24 }}
           whileInView={{ y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="glass-card p-8 md:p-12 text-center"
+          className="glass-card surface-pad text-center"
         >
           <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full border border-blue-core/20 bg-blue-core/[0.07] dark:border-blue-core/35 dark:bg-blue-core/[0.14]">
             <Mail

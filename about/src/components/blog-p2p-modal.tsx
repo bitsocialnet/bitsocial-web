@@ -81,7 +81,7 @@ export default function BlogP2PModal({ open, onOpenChange }: BlogP2PModalProps) 
     >
       <header className="flex items-start justify-between gap-3 border-b border-border/40 pb-3">
         <div className="min-w-0">
-          <p className="text-[10px] font-display uppercase tracking-[0.16em] text-foreground/45">
+          <p className="text-micro-fluid font-display uppercase tracking-[0.16em] text-foreground/45">
             {t("blog.p2p.eyebrow")}
           </p>
           <h2 className="mt-1 truncate font-display text-xl leading-tight text-foreground sm:text-2xl">
@@ -161,7 +161,7 @@ function StatCard({
         className,
       )}
     >
-      <dt className="text-[10px] font-display uppercase tracking-[0.14em] text-foreground/45">
+      <dt className="text-micro-fluid font-display uppercase tracking-[0.14em] text-foreground/45">
         {label}
       </dt>
       <dd className="mt-1 text-sm leading-5 text-foreground/85">{children}</dd>
@@ -281,9 +281,11 @@ function PeerListItem({ entry }: { entry: ConnectedPeerEntry }) {
           Received {formatBytes(downloaded ?? 0)} · Sent {formatBytes(uploaded ?? 0)}
         </span>
       </div>
-      <p className="mt-2 truncate font-mono text-[11px] text-foreground/70">{entry.peerId}</p>
+      <p className="text-micro-fluid mt-2 truncate font-mono text-foreground/70">{entry.peerId}</p>
       {entry.address ? (
-        <p className="mt-1 truncate font-mono text-[11px] text-muted-foreground">{entry.address}</p>
+        <p className="text-micro-fluid mt-1 truncate font-mono text-muted-foreground">
+          {entry.address}
+        </p>
       ) : null}
     </li>
   );

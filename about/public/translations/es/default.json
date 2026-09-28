@@ -20,7 +20,9 @@
     "theme": "Tema",
     "newsletter": "Boletín",
     "backToTop": "Volver arriba",
-    "chain": "Chain"
+    "goToBottom": "Ir abajo",
+    "backToPrevious": "Volver al punto anterior",
+    "faq": "FAQ"
   },
   "footer": {
     "tagline": "Red P2P de código abierto para aplicaciones sociales",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "Funciones principales",
-    "title": "¿Qué es Bitsocial?",
+    "title": "Una capa social que no es de nadie.",
     "supporting": "Un universo en constante expansión de aplicaciones de redes sociales, todas utilizando la misma red social descentralizada subyacente — una que ninguna empresa posee, y ninguna puede quitarte.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "Un llamado a la acción",
+    "title": "Un llamado a los creadores.",
     "logoAlt": "Logotipo",
     "easterEggAlt": "Bob Esponja",
     "epilogue": "El estado final no es una sola aplicación. Es un mercado de clientes, nodos, servicios y comunidades que pueden reemplazar la propiedad de la plataforma con competencia de protocolos.",
@@ -449,7 +451,7 @@
     "subtitle": "Bitsocial está pensado para crecer hasta convertirse en miles de apps, herramientas y servicios creados por cualquiera, sin aprobación de guardianes. Si eres dev, envía tu propia app.",
     "experimental": "En pruebas",
     "sectionLabel": "Directorio de proyectos",
-    "directoryLabel": "Directorio de proyectos",
+    "directoryLabel": "Categorías de proyectos",
     "notFoundDescription": "La app que buscas no existe en el directorio.",
     "emptyCategoryDescription": "Todavía no hay apps en esta categoría. ¡Sé el primero en crear una!",
     "emptyCategory": "Próximamente",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "Verificación",
         "ai": "IA",
-        "antiRepost": "Anti-repost"
+        "antiRepost": "Anti-repost",
+        "referenceClient": "Cliente de referencia",
+        "search": "Búsqueda"
       },
       "linkLabels": {
         "androidApk": "APK de Android",
@@ -539,7 +543,8 @@
         "openWebApp": "Abrir la app web",
         "openWebsite": "Abrir el sitio web",
         "windows": "Windows",
-        "windowsPortable": "Versión portátil para Windows"
+        "windowsPortable": "Versión portátil para Windows",
+        "openTelegramBot": "Abrir bot de Telegram"
       },
       "items": {
         "5chan": {
@@ -550,13 +555,9 @@
           "tagline": "Cliente de Bitsocial con estilo de foro y versiones para web, APK y escritorio.",
           "description": "Seedit lleva la conversación al estilo Reddit a Bitsocial con hilos, identidades, gestión de comunidades y múltiples vías de distribución. Es la forma más rápida de probar la parte de foro de la red desde un navegador, un teléfono Android o una app de escritorio."
         },
-        "mintpass": {
-          "tagline": "Control de acceso respaldado por NFT para comunidades que necesitan barreras anti-spam más fuertes.",
-          "description": "Mintpass es una capa de autenticación flexible para comunidades de Bitsocial. Permite a los moderadores combinar propiedad de NFT, flujos de verificación y módulos de reto personalizados sin empujar a todo el mundo a un sistema de inicio de sesión centralizado."
-        },
         "spam-blocker": {
           "tagline": "Capa centralizada de puntuación de riesgo para filtrar publicaciones abusivas.",
-          "description": "Spam Blocker evalúa publicaciones y devuelve una puntuación de riesgo que las comunidades pueden combinar con su propia lógica de moderación. Es útil cuando quieres una capa extra práctica antes de crear reglas anti-spam más personalizadas."
+          "description": "Spam Blocker evalúa publicaciones y devuelve una puntuación de riesgo que las comunidades pueden combinar con su propia lógica de moderación. Su servicio alojado también vincula claves de firmantes detectadas por primera vez desde la misma IP, de modo que un usuario que sigue creando nuevas cuentas para evadir una prohibición comunitaria o fabricar una conversación ve aumentar su puntuación de riesgo, mientras que algunos pocos firmantes permanecen permitidos para uso legítimo multidispositivo."
         },
         "captcha-canvas-challenge": {
           "tagline": "CAPTCHA de imagen personalizadas para comunidades que quieren verificación humana.",
@@ -597,6 +598,34 @@
         "r9k-challenge": {
           "tagline": "Gate de originalidad al estilo Robot9000 para comunidades que quieren una experiencia de publicación anti-repost.",
           "description": "R9K Challenge se ejecuta en un nodo comunitario de Bitsocial y compara el texto normalizado del post con la base de datos local de comentarios del nodo propietario. Da a las comunidades una experiencia de publicación al estilo <robot9000>Robot9000</robot9000>: los reposts exactos fallan antes de aceptarse, los backlinks se ignoran, los fallos repetidos activan bloqueos temporales crecientes y los hashes del texto aceptado permanecen en estado local privado en vez de guardar el texto bruto del post. Este challenge no usa IA."
+        },
+        "wordfilter-challenge": {
+          "tagline": "Los filtros de palabras de la comunidad se aplican como regla de publicación en lugar de como filtro de visualización.",
+          "description": "Wordfilter Challenge hace que las sustituciones de palabras de una comunidad sean vinculantes. Los clientes de publicación aplican las sustituciones antes de firmar, de modo que el comentario firmado y su CID ya contienen el texto sustituido, y el nodo de la comunidad rechaza cualquier publicación que todavía contenga una palabra filtrada. Implementa el contrato <code>wordfilter/v1</code>, así que un cliente escrito conforme a ese contrato sigue funcionando con otras implementaciones."
+        },
+        "challenge-composer": {
+          "tagline": "Editor con prioridad sin conexión para la configuración de los retos antispam de una comunidad.",
+          "description": "Challenge Composer muestra y permite editar el array <code>challenges</code> de la configuración de una comunidad de Bitsocial y exporta un script de CLI listo para ejecutar. Se distribuye como un único archivo HTML autónomo que no realiza ninguna petición externa en tiempo de ejecución, por lo que puede abrirse directamente desde el disco o desde una memoria USB."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Servidor de vista previa de enlaces y redirección que genera tarjetas para compartir publicaciones de Bitsocial.",
+          "description": "Bitsocial Previewer genera tarjetas de OpenGraph y Twitter cuando se comparte el enlace de una publicación en otras plataformas y, a continuación, redirige los navegadores reales a la aplicación. Una misma instancia es multiinquilino por nombre de host, así que un único despliegue y una única configuración de TLS cubren todos los dominios de clientes y réplicas."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Rastreador, índice de búsqueda e interfaz web autoalojables para comunidades de Bitsocial.",
+          "description": "Bitsocial Indexer se conecta por RPC a un demonio de Bitsocial CLI, indexa en una base de datos SQLite local las comunidades que configura el operador y las expone mediante una API REST y de búsqueda de texto completo, con una interfaz web renderizada en el servidor opcional. Se distribuye vacío: el operador decide qué se indexa."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Bot de Telegram que publica de forma compacta la actividad de GitHub en los repositorios de Bitsocial.",
+          "description": "Bitsocial GitHub Alerts reenvía pushes, versiones, incidencias y pull requests de GitHub a cualquier chat, grupo o tema de foro de Telegram. El equipo de Bitsocial lo usa para sus propios repositorios y la imagen del contenedor es pública, así que cualquiera puede alojarlo por su cuenta para los suyos."
+        },
+        "bitbones": {
+          "tagline": "Cliente de referencia mínimo en el que cada vista es una envoltura delgada sobre un único hook.",
+          "description": "bitbones es la superficie útil más pequeña sobre los hooks de React de Bitsocial: casi sin estilos, sin decisiones de producto y con un único hook detrás de cada vista. Es el sitio más rápido para reproducir un error o probar un cambio en los hooks contra comunidades reales, y su feed predeterminado se puede alternar entre las listas de comunidades de Seedit y de 5chan."
+        },
+        "huggingsocial": {
+          "tagline": "Centro peer-to-peer para encontrar, discutir y descargar modelos de IA abiertos.",
+          "description": "HuggingSocial es un centro de modelos que ninguna empresa posee. Los hubs son comunidades de Bitsocial controladas por claves criptográficas, cada listado de modelo es un mensaje firmado con una tarjeta de modelo, sumas de verificación y fuentes de descarga, y los pesos se mueven a través de BitTorrent o espejos HTTP simples y se verifican en tu máquina. El cliente está en diseño y desarrollo temprano; el sitio web acepta inscripciones en lista de espera."
         }
       }
     },
@@ -706,7 +735,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Protocolo solo de texto",
     "title": "La libertad tiene moderación.",
-    "supporting": "No hay un administrador global ni un servidor que confiscar, así que nadie puede expulsarte de toda la red. La moderación simplemente se acerca a ti.",
+    "supporting": "El protocolo solo transporta texto y no es una red oculta. No hay un administrador global ni un servidor que se pueda incautar, así que nadie puede expulsarte de toda la red. La moderación simplemente se acerca más a ti.",
     "carouselLabel": "Dudas habituales, resueltas",
     "communities": {
       "myth": "Sin baneos, esto es una jungla.",
@@ -731,7 +760,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Tesis de adopción",
-    "title": "¿Por qué lo usaría alguien?",
+    "title": "Mejor poseer que alquilar.",
     "supporting": "No se puede censurar, nunca se cae y te quedas con todo lo que ganas. Aquí está quién aparece — y por qué.",
     "diagramLabel": "Curva de adopción que muestra por qué cada cohorte de usuarios adopta Bitsocial.",
     "curve": {
@@ -789,7 +818,51 @@
     "docsCta": "Cómo funciona P2P en el navegador",
     "liveCta": "Míralo en el blog",
     "sectionLabel": "Navegador P2P",
-    "supporting": "Abre una aplicación web de Bitsocial en una pestaña normal y se une a la red por sí sola, obteniendo publicaciones de otros pares y publicando las tuyas. Cualquier otra red social descentralizada todavía mantiene un servidor en el medio.",
-    "title": "Tu navegador es un par"
+    "supporting": "Abre una aplicación web de Bitsocial en una pestaña normal y se une a la red por sí sola: obtiene publicaciones de otros pares y publica las tuyas. Esa es la parte difícil, y el motivo por el que todas las demás redes sociales descentralizadas siguen manteniendo un servidor en medio.",
+    "title": "El navegador es el avance decisivo."
+  },
+  "faq": {
+    "sectionLabel": "FAQ",
+    "title": "Preguntas frecuentes",
+    "supporting": "Cada sección de este sitio responde a una. Haz clic en una pregunta para ir a ella.",
+    "navLabel": "Preguntas respondidas en esta página",
+    "answeredIn": "Respuesta en la sección",
+    "items": {
+      "problem": {
+        "question": "¿Qué problema resuelve Bitsocial?"
+      },
+      "core-features": {
+        "question": "¿Qué es Bitsocial? ¿Cómo funciona?"
+      },
+      "browser-peer": {
+        "question": "¿Por qué nadie ha creado esto antes?"
+      },
+      "decentralized": {
+        "question": "¿No existen ya redes sociales descentralizadas?"
+      },
+      "arbitrary-challenges": {
+        "question": "Sin servidores, ¿qué detiene el spam?"
+      },
+      "text-only-protocol": {
+        "question": "¿Y el contenido ilegal?"
+      },
+      "adoption-thesis": {
+        "question": "¿Por qué la gente cambiaría a Bitsocial?"
+      },
+      "master-plan": {
+        "question": "¿Cuál es el plan a partir de aquí? ¿Cómo puedo ayudar?"
+      },
+      "about": {
+        "question": "¿Quién está detrás de Bitsocial? ¿Cómo se ha financiado?"
+      },
+      "mailing-list": {
+        "question": "¿Cómo me mantengo al día?"
+      }
+    },
+    "ask": {
+      "label": "Pregunta cualquier otra cosa",
+      "placeholder": "Pregunta cualquier otra cosa…",
+      "action": "Preguntar a ChatGPT"
+    }
   }
 }

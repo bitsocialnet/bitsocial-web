@@ -20,7 +20,9 @@
     "theme": "Thema",
     "newsletter": "Nieuwsbrief",
     "backToTop": "Terug naar boven",
-    "chain": "Chain"
+    "goToBottom": "Naar beneden",
+    "backToPrevious": "Terug naar de vorige plek",
+    "faq": "FAQ"
   },
   "footer": {
     "tagline": "Open Source P2P-netwerk voor sociale apps",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "Kernfuncties",
-    "title": "Wat is Bitsocial?",
+    "title": "Een sociale laag die van niemand is.",
     "supporting": "Een voortdurend uitbreidend universum van social media-apps, die allemaal hetzelfde onderliggende gedecentraliseerde sociale netwerk gebruiken — er een dat geen bedrijf bezit, en niemand kan van je afnemen.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "Een oproep tot actie",
+    "title": "Een oproep aan bouwers.",
     "logoAlt": "Logo",
     "easterEggAlt": "SpongeBob",
     "epilogue": "De eindstatus is niet één app. Het is een markt van klanten, knooppunten, diensten en gemeenschappen die platformeigendom kunnen vervangen door protocolconcurrentie.",
@@ -449,7 +451,7 @@
     "subtitle": "Bitsocial is bedoeld om uit te groeien tot duizenden apps, tools en diensten die door iedereen gebouwd kunnen worden, niet alleen door gatekeepers goedgekeurde. Ben je een dev, dien dan je eigen app in.",
     "experimental": "Experimenteel",
     "sectionLabel": "Projectdirectory",
-    "directoryLabel": "Projectdirectory",
+    "directoryLabel": "Projectcategorieën",
     "notFoundDescription": "De app die je zoekt bestaat niet in de directory.",
     "emptyCategoryDescription": "Er zijn nog geen apps in deze categorie. Wees de eerste die er een bouwt!",
     "emptyCategory": "Binnenkort",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "Verificatie",
         "ai": "AI",
-        "antiRepost": "Anti-repost"
+        "antiRepost": "Anti-repost",
+        "referenceClient": "Referentieclient",
+        "search": "Zoeken"
       },
       "linkLabels": {
         "androidApk": "Android-APK",
@@ -539,7 +543,8 @@
         "openWebApp": "Webapp openen",
         "openWebsite": "Website openen",
         "windows": "Windows",
-        "windowsPortable": "Draagbare versie voor Windows"
+        "windowsPortable": "Draagbare versie voor Windows",
+        "openTelegramBot": "Telegram-bot openen"
       },
       "items": {
         "5chan": {
@@ -550,13 +555,9 @@
           "tagline": "Bitsocial-client in forumstijl met web-, APK- en desktopbuilds.",
           "description": "Seedit brengt Reddit-achtige discussies naar Bitsocial met threads, identiteiten, communitybeheer en meerdere distributiepaden. Het is de snelste manier om de forumkant van het netwerk te proberen vanuit een browser, Android-telefoon of desktopapp."
         },
-        "mintpass": {
-          "tagline": "NFT-ondersteunde toegangscontrole voor communities die sterkere anti-spam poorten nodig hebben.",
-          "description": "Mintpass is een flexibele authenticatielaag voor Bitsocial-communities. Het laat moderators NFT-eigendom, verificatieflows en aangepaste challenge-modules combineren zonder iedereen naar een centraal inlogsysteem te duwen."
-        },
         "spam-blocker": {
           "tagline": "Gecentraliseerde risicoscorelaag voor het filteren van misbruikte publicaties.",
-          "description": "Spam Blocker beoordeelt publicaties en geeft een risicoscore terug die communities kunnen combineren met hun eigen moderatielogica. Het is handig wanneer je een pragmatische extra laag wilt voordat je meer aangepaste anti-spamregels bouwt."
+          "description": "Spam Blocker beoordeelt publicaties en retourneert een risicoscore die gemeenschappen kunnen combineren met hun eigen moderatielogica. De gehoste service koppelt ook ondertekeningssleutels die voor het eerst van hetzelfde IP-adres zijn gezien, zodat een gebruiker die voortdurend nieuwe accounts aanmaakt om een communityverbod te omzeilen of een gesprek te fabriceren, zijn risicoscore ziet stijgen, terwijl enkele ondertekenaars voor legitiem multi-device-gebruik toegestaan blijven."
         },
         "captcha-canvas-challenge": {
           "tagline": "Aangepaste afbeeldings-captcha's voor communities die menselijke verificatie willen.",
@@ -597,6 +598,34 @@
         "r9k-challenge": {
           "tagline": "Robot9000-achtige originaliteitsgate voor communities die een anti-repost plaatsingservaring willen.",
           "description": "R9K Challenge draait op een Bitsocial-communitynode en vergelijkt genormaliseerde posttekst met de lokale commentdatabank van de owner node. Het geeft communities een <robot9000>Robot9000</robot9000>-achtige plaatsingservaring: exacte reposts falen vóór acceptatie, backlinks worden genegeerd, herhaalde mislukkingen veroorzaken oplopende tijdelijke bans en hashes van geaccepteerde tekst blijven in private lokale state in plaats van ruwe posttekst op te slaan. Deze challenge gebruikt geen AI."
+        },
+        "wordfilter-challenge": {
+          "tagline": "Woordfilters van de community worden afgedwongen als plaatsingsregel in plaats van als weergavefilter.",
+          "description": "Wordfilter Challenge maakt de woordvervangingen van een community bindend. Publicerende clients passen de vervangingen toe vóór het ondertekenen, zodat de ondertekende reactie en de bijbehorende CID de vervangende tekst al bevatten, en de node van de community weigert elke publicatie waarin nog een gefilterd woord staat. Het implementeert het <code>wordfilter/v1</code>-contract, waardoor een client die op dat contract is geschreven blijft werken met andere implementaties."
+        },
+        "challenge-composer": {
+          "tagline": "Offline-first editor voor de antispam-challenge-instellingen van een community.",
+          "description": "Challenge Composer toont de array <code>challenges</code> in de instellingen van een Bitsocial-community, laat je die bewerken en exporteert er vervolgens een direct uitvoerbaar CLI-script uit. Het bestaat uit één op zichzelf staand HTML-bestand dat tijdens het uitvoeren geen enkel verzoek naar buiten stuurt, waardoor het rechtstreeks vanaf schijf of een USB-stick geopend kan worden."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Server voor linkvoorbeelden en doorverwijzingen die deelkaarten voor Bitsocial-berichten genereert.",
+          "description": "Bitsocial Previewer genereert OpenGraph- en Twitter-kaarten wanneer een berichtlink op andere platforms wordt gedeeld en stuurt echte browsers daarna door naar de app. Eén instantie is multitenant op basis van hostnaam, zodat één deployment en één TLS-configuratie alle client- en mirrordomeinen dekken."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Zelf te hosten crawler, zoekindex en webinterface voor Bitsocial-community's.",
+          "description": "Bitsocial Indexer maakt via RPC verbinding met een daemon van Bitsocial CLI, indexeert de community's die de beheerder instelt in een lokale SQLite-database en ontsluit ze via een REST- en fulltextzoek-API, met optioneel een op de server gerenderde webinterface. Hij wordt leeg geleverd: de beheerder bepaalt wat er geïndexeerd wordt."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Telegram-bot die GitHub-activiteit uit Bitsocial-repository's beknopt plaatst.",
+          "description": "Bitsocial GitHub Alerts stuurt pushes, releases, issues en pull requests van GitHub door naar elke chat, groep of forumtopic op Telegram. Het Bitsocial-team draait de bot voor de eigen repository's, en de container-image is openbaar, zodat iedereen hem zelf kan hosten voor de zijne."
+        },
+        "bitbones": {
+          "tagline": "Uitgeklede referentieclient waarin elke weergave slechts een dunne wikkel om één hook is.",
+          "description": "bitbones is het kleinste bruikbare oppervlak boven op de React-hooks van Bitsocial: nauwelijks styling, geen productkeuzes en één enkele hook achter elke weergave. Het is de snelste plek om een bug te reproduceren of een hookwijziging tegen echte communities uit te proberen, en de standaardfeed kan worden gewisseld tussen de communitylijsten van Seedit en 5chan."
+        },
+        "huggingsocial": {
+          "tagline": "Peer-to-peer hub voor het vinden, bespreken en downloaden van open AI-modellen.",
+          "description": "HuggingSocial is een modelhub dat geen eigendom van een bedrijf is. Hubs zijn Bitsocial-gemeenschappen beheerd door cryptografische sleutels, elk modellijst is een ondertekend bericht met een modelkaart, controlesommen en downloadbronnen, en gewichten worden verplaatst via BitTorrent of gewone HTTP-spiegels en geverifieerd op uw machine. De client bevindt zich in ontwerp en vroege ontwikkeling; de website accepteert inschrijvingen op de wachtlijst."
         }
       }
     },
@@ -706,7 +735,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Alleen-tekstprotocol",
     "title": "Vrijheid heeft moderatie.",
-    "supporting": "Er is geen wereldwijde beheerder en geen server om in beslag te nemen, dus niemand kan je uit het hele netwerk verbannen. Moderatie komt gewoon dichter bij jou.",
+    "supporting": "Het protocol vervoert alleen tekst en het is geen verborgen netwerk. Er is geen globale beheerder en geen server die in beslag genomen kan worden, dus niemand kan je van het hele netwerk verbannen. Moderatie komt gewoon dichter bij jou te liggen.",
     "carouselLabel": "Veelvoorkomende zorgen, beantwoord",
     "communities": {
       "myth": "Geen verbanningen betekent dat het een vrijbrief is.",
@@ -731,7 +760,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Adoptiethese",
-    "title": "Waarom zou iemand het gebruiken?",
+    "title": "Bezitten is beter dan huren.",
     "supporting": "Het kan niet worden gecensureerd, het valt nooit uit en je houdt alles wat je verdient. Hier is wie er opduikt — en waarom.",
     "diagramLabel": "Adoptiecurve die laat zien waarom elke gebruikersgroep Bitsocial omarmt.",
     "curve": {
@@ -789,7 +818,51 @@
     "docsCta": "Hoe P2P in de browser werkt",
     "liveCta": "Bekijk op de blog",
     "sectionLabel": "Browser P2P",
-    "supporting": "Open een Bitsocial web-app in een normaal tabblad en het voegt zich automatisch bij het netwerk, haalt berichten van andere peers op en publiceert de jouwe. Elk ander gedecentraliseerd sociaal netwerk behoudt nog steeds een server in het midden.",
-    "title": "Je browser is een peer"
+    "supporting": "Open een Bitsocial-webapp in een gewoon tabblad en hij sluit zichzelf aan op het netwerk: hij haalt berichten op bij andere peers en publiceert die van jou. Dat is het moeilijke deel — en de reden dat elk ander gedecentraliseerd sociaal netwerk nog altijd een server in het midden houdt.",
+    "title": "De browser is de doorbraak."
+  },
+  "faq": {
+    "sectionLabel": "FAQ",
+    "title": "Veelgestelde vragen",
+    "supporting": "Elk onderdeel van deze site beantwoordt er een. Klik op een vraag om er naartoe te gaan.",
+    "navLabel": "Vragen die op deze pagina worden beantwoord",
+    "answeredIn": "Beantwoord in het onderdeel",
+    "items": {
+      "problem": {
+        "question": "Welk probleem lost Bitsocial op?"
+      },
+      "core-features": {
+        "question": "Wat is Bitsocial? Hoe werkt het?"
+      },
+      "browser-peer": {
+        "question": "Waarom heeft niemand dit eerder gebouwd?"
+      },
+      "decentralized": {
+        "question": "Zijn er niet al gedecentraliseerde sociale netwerken?"
+      },
+      "arbitrary-challenges": {
+        "question": "Wat houdt spam tegen als er geen servers zijn?"
+      },
+      "text-only-protocol": {
+        "question": "Hoe zit het met illegale inhoud?"
+      },
+      "adoption-thesis": {
+        "question": "Waarom zouden mensen naar Bitsocial overstappen?"
+      },
+      "master-plan": {
+        "question": "Hoe gaat het nu verder? Hoe kan ik helpen?"
+      },
+      "about": {
+        "question": "Wie zit er achter Bitsocial? Hoe is het gefinancierd?"
+      },
+      "mailing-list": {
+        "question": "Hoe blijf ik op de hoogte?"
+      }
+    },
+    "ask": {
+      "label": "Vraag gerust iets anders",
+      "placeholder": "Vraag gerust iets anders…",
+      "action": "Vraag het ChatGPT"
+    }
   }
 }

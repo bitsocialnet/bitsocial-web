@@ -7,12 +7,23 @@ Use this file as the short routing index for `https://docs.bitsocial.net/`. Use 
 ## Related landing page context
 
 - [Home](https://bitsocial.net/): Bitsocial is an open-source peer-to-peer network for social apps, with no servers, no global bans, where users and communities are cryptographic property.
-- [Core features](https://bitsocial.net/): Bitsocial is open source, peer-to-peer via IPFS/libp2p, app-oriented, serverless by default, locally moderated with no protocol-level global bans, and built around key-controlled identities and communities.
+- [The problem](https://bitsocial.net/#problem): It's not a conspiracy, it's an architecture. Every mainstream social platform is a private database on private servers, and livelihoods, businesses, and communities now live on it, so decisions made inside a handful of companies reach directly into the physical world. That design has three consequences, no matter who runs it.
+- [Core features](https://bitsocial.net/#core-features): Bitsocial is open source, peer-to-peer via IPFS/libp2p, app-oriented, serverless by default, locally moderated with no protocol-level global bans, and built around key-controlled identities and communities.
+- [Browser P2P](https://bitsocial.net/#browser-peer): Open a Bitsocial web app in a normal tab and it joins the network itself, fetching posts from other peers and publishing your own. That's the hard part — and why every other decentralized social network still keeps a server in the middle.
 - [Sanctuary comparison](https://bitsocial.net/#decentralized): Compares Server-based (Bluesky, Mastodon, Lemmy); Blockchain-based (Farcaster, Lens, DeSo, Steemit); Bitsocial (Pure P2P with arbitrary anti-spam challenges) across self-hosting cost, who keeps content online, scaling, custom anti-spam logic, and takedown choke points.
-- [Deep comparison tables](https://bitsocial.net/#nostr-comparison): Sourced modal tables compare Bitsocial with Nostr, Bluesky, ActivityPub / Fediverse, Farcaster, Lens, DeSo, Steemit across Spam replies, Community rules, Scaling costs, Data hosting, Censorship points, Who accepts posts?, First post, Human names, Finding content.
+- [Deep comparison tables](https://bitsocial.net/#nostr-comparison): Sourced modal tables compare Bitsocial with Nostr, Bluesky, ActivityPub / Fediverse, Farcaster, Lens, DeSo, Steemit across Spam replies, Community rules, Scaling costs, Data hosting, Censorship points, Who accepts posts?, First post, What your browser is, Human names, Finding content.
 - [Arbitrary Challenges](https://bitsocial.net/#arbitrary-challenges): Each node runs its own anti-spam challenge, exchanged purely peer-to-peer with the user. When spam evolves, nodes adapt without changing the protocol. Example modules include any code, AI-powered moderation, SMS OTP, whatever comes next.
-- [Text-only Protocol](https://bitsocial.net/#text-only-protocol): There's no global admin and no server to seize, so nobody can ban you from the whole network. Moderation just moves closer to you.
+- [Text-only Protocol](https://bitsocial.net/#text-only-protocol): The protocol carries only text, and it's not a hidden network. There's no global admin and no server to seize, so nobody can ban you from the whole network. Moderation just moves closer to you.
+- [Adoption thesis](https://bitsocial.net/#adoption-thesis): It can't be censored, it never goes down, and you keep everything you earn. Here's who shows up — and why.
 - [Master Plan](https://bitsocial.net/#master-plan): Bitsocial wins by attracting as many builders as possible. Run your own unstoppable community, develop your own decentralized social app, or even launch your own business on top of Bitsocial. The tide rises with every builder.
+- [Newsletter](https://bitsocial.net/#mailing-list): Get notified about protocol milestones, new Bitsocial apps, and ecosystem updates. Low frequency, high signal.
+- [FAQ](https://bitsocial.net/#faq): Every section of this site answers one. Click a question to jump to it.
+
+## Related public surfaces
+
+- [Bitsocial home](https://bitsocial.net/): Public network and ecosystem overview.
+- [Bitsocial Chain](https://chain.bitsocial.net/): BSO token and proposed Ethereum L2 appchain landing page.
+- [Bitsocial Chain llms.txt](https://chain.bitsocial.net/llms.txt): Chain-specific routing index.
 
 ## Protocol notes
 
@@ -50,21 +61,20 @@ Use this file as the short routing index for `https://docs.bitsocial.net/`. Use 
 ## Infrastructure
 
 - [BSO Resolver](https://docs.bitsocial.net/infrastructure/bso-resolver/): Resolve .bso domain names to public keys via Bitsocial TXT records.
-- [Mintpass](https://docs.bitsocial.net/infrastructure/mintpass/): NFT-based authentication system that helps Bitsocial communities verify users and reduce sybil attacks.
 - [Pubsub Provider](https://docs.bitsocial.net/infrastructure/pubsub-provider/): Fallback pubsub relay and delegated routing provider for Bitsocial operators.
 - [Telegram Bots](https://docs.bitsocial.net/infrastructure/telegram-bots/): Feed bots that monitor Bitsocial community lists and forward posts to Telegram channels.
 
 ## Contributor playbooks
 
 - [Bug Investigation Workflow](https://docs.bitsocial.net/agent-playbooks/bug-investigation/): Use this when a bug is reported in a specific file/line/code block.
-- [Commit and Issue Format](https://docs.bitsocial.net/agent-playbooks/commit-issue-format/): Use this when proposing or implementing meaningful code changes.
-- [Agent Hooks Setup](https://docs.bitsocial.net/agent-playbooks/hooks-setup/): If your AI coding assistant supports lifecycle hooks, configure these for this repo.
+- [Commit and Issue Format](https://docs.bitsocial.net/agent-playbooks/commit-issue-format/): Use this when the user requests commit/issue wording or an authorized commit/issue is being created. Do not append suggestions to unrelated answers.
+- [Agent hooks](https://docs.bitsocial.net/agent-playbooks/hooks-setup/): The committed lifecycle hooks only format successfully edited JavaScript/TypeScript files through installed oxfmt. Shared logic lives in scripts/agent hooks/format.mjs; each native wrapper delegates to it.
 - [Known Surprises](https://docs.bitsocial.net/agent-playbooks/known-surprises/): This file tracks repository specific confusion points that caused agent mistakes.
-- [Long-Running Agent Workflow](https://docs.bitsocial.net/agent-playbooks/long-running-agent-workflow/): Use this playbook when a task is likely to span multiple sessions, handoffs, or spawned agents.
-- [Skills and Tools](https://docs.bitsocial.net/agent-playbooks/skills-and-tools/): Use this playbook when setting up/adjusting skills and external tooling.
+- [Long-running agent work](https://docs.bitsocial.net/agent-playbooks/long-running-agent-workflow/): Use durable task state when work needs resumption or a handoff, or when a single run is long enough that context compaction could lose track of the remaining work. Small tasks do not need a board or progress file. For shared work, keep a concise feature list.json and progress.md in a task specific docs/agent runs/<slug /, using existing templates where helpful.
+- [Skills and Tools](https://docs.bitsocial.net/agent-playbooks/skills-and-tools/): Shared skills live in .agents/skills/. Edit these sources, then run yarn ai workflow:sync to generate .claude/skills/ for Claude Code. Codex and Cursor discover .agents/skills/ directly; do not restore the duplicate .codex/skills/ or .cursor/skills/ roots.
 - [Feature List Template](https://docs.bitsocial.net/agent-playbooks/templates/feature-list-template/): Machine-readable template used for long-running multi-session task tracking.
 - [Progress Log](https://docs.bitsocial.net/agent-playbooks/templates/progress.template/): Append one entry per session.
-- [Translations Workflow](https://docs.bitsocial.net/agent-playbooks/translations/): This project uses i18next translation files in public/translations/{lang}/default.json.
+- [Translations](https://docs.bitsocial.net/agent-playbooks/translations/): The about site uses i18next JSON at about/public/translations/{lang}/default.json. Docusaurus source translations live separately in docs/i18n/.
 
 ## Other
 

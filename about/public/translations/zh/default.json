@@ -20,7 +20,9 @@
     "theme": "主题",
     "newsletter": "简报",
     "backToTop": "返回顶部",
-    "chain": "Chain"
+    "goToBottom": "前往底部",
+    "backToPrevious": "返回之前的位置",
+    "faq": "常见问题"
   },
   "footer": {
     "tagline": "面向社交应用的开放源码 P2P 网络",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "核心功能",
-    "title": "Bitsocial是什么?",
+    "title": "无人拥有的社交层。",
     "supporting": "社交媒体应用的不断扩展的生态，都在使用相同的底层去中心化社交网络——一个任何公司都不拥有、任何人都无法从你手中夺走的网络。",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "号召性用语",
+    "title": "致建设者的号召。",
     "logoAlt": "标志",
     "easterEggAlt": "海绵宝宝",
     "epilogue": "最终状态不是一个应用程序。这是一个由客户端、节点、服务和社区组成的市场，可以用协议竞争取代平台所有权。",
@@ -449,7 +451,7 @@
     "subtitle": "Bitsocial 旨在成长为由任何人都能创建的成千上万款应用、工具和服务，而不是只经过守门人批准的那些。如果你是开发者，提交你自己的应用。",
     "experimental": "实验性",
     "sectionLabel": "项目目录",
-    "directoryLabel": "项目目录",
+    "directoryLabel": "项目分类",
     "notFoundDescription": "你要找的应用在目录中不存在。",
     "emptyCategoryDescription": "这个分类里还没有应用。成为第一个构建一个的人吧！",
     "emptyCategory": "即将推出",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "验证",
         "ai": "AI",
-        "antiRepost": "反重复发布"
+        "antiRepost": "反重复发布",
+        "referenceClient": "参考客户端",
+        "search": "搜索"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -539,7 +543,8 @@
         "openWebApp": "打开网页应用",
         "openWebsite": "打开网站",
         "windows": "Windows",
-        "windowsPortable": "Windows 便携版"
+        "windowsPortable": "Windows 便携版",
+        "openTelegramBot": "打开 Telegram 机器人"
       },
       "items": {
         "5chan": {
@@ -550,13 +555,9 @@
           "tagline": "论坛风格的 Bitsocial client，提供 web、APK 和 desktop 构建。",
           "description": "Seedit 把 Reddit 风格的讨论带到 Bitsocial，包含 threads、identities、community management 和多种分发路径。它是从浏览器、Android phone 或 desktop app 试用网络 forum 侧的最快方式。"
         },
-        "mintpass": {
-          "tagline": "面向需要更强 anti-spam gate 的社区的 NFT 驱动访问控制。",
-          "description": "Mintpass 是 Bitsocial 社区的灵活 authentication layer。它允许 moderators 组合 NFT ownership、verification flows 和 custom challenge modules，而不用把所有人推向一个中心 login system。"
-        },
         "spam-blocker": {
           "tagline": "用于过滤 abusive publications 的集中式风险评分层。",
-          "description": "Spam Blocker 会评估 publications 并返回一个 risk score，社区可以把它和自己的 moderation logic 结合起来使用。当你想在构建更自定义的 anti-spam rules 之前先加一层实用的额外保护时，它很有用。"
+          "description": "Spam Blocker评估发布内容并返回风险评分，社区可以将其与自己的内容审核逻辑相结合。其托管服务还关联首次从相同IP地址看到的签名者密钥，因此一个不断创建新账户以躲避社区禁令或制造对话的用户会看到其风险评分上升，而少数签名者仍然被允许合法的多设备使用。"
         },
         "captcha-canvas-challenge": {
           "tagline": "面向希望进行人工 verification 的社区的自定义图片验证码。",
@@ -596,6 +597,34 @@
         "r9k-challenge": {
           "tagline": "面向希望获得反重复发布体验的社区的 Robot9000 风格原创性门槛。",
           "description": "R9K Challenge 在 Bitsocial 社区节点上运行，并将规范化后的帖子文本与所有者节点的本地评论数据库进行比对。它为社区提供 <robot9000>Robot9000</robot9000> 风格的发帖体验：完全重复的 repost 会在被接受前失败，backlink 会被忽略，反复失败会触发逐步升级的临时 ban，已接受文本的哈希会保留在私有本地状态中，而不是保存原始帖子文本。 这个 challenge 不使用 AI。"
+        },
+        "wordfilter-challenge": {
+          "tagline": "社区的词语过滤作为发布规则强制执行，而不是仅在显示时过滤。",
+          "description": "Wordfilter Challenge 让社区设定的词语替换具有强制力。发布端客户端会在签名前完成替换，因此签名后的评论及其 CID 中本身就是替换后的文本；社区节点会拒绝任何仍包含被过滤词的发布。它实现了 <code>wordfilter/v1</code> 契约，因此按该契约编写的客户端也能继续与其他实现协同工作。"
+        },
+        "challenge-composer": {
+          "tagline": "面向社区反垃圾内容挑战设置的离线优先编辑器。",
+          "description": "Challenge Composer 可视化并编辑 Bitsocial 社区设置中的 <code>challenges</code> 数组，然后导出可直接运行的 CLI 脚本。它以单个自包含的 HTML 文件形式发布，运行时不发起任何对外请求，因此可以直接从磁盘或 USB 存储中打开。"
+        },
+        "bitsocial-previewer": {
+          "tagline": "链接预览与跳转服务器，为 Bitsocial 帖子生成分享卡片。",
+          "description": "当帖子链接被分享到其他平台时，Bitsocial Previewer 会生成 OpenGraph 和 Twitter 卡片，并把真实浏览器重定向回应用。单个实例按主机名实现多租户，因此一次部署和一次 TLS 配置即可覆盖所有客户端与镜像域名。"
+        },
+        "bitsocial-indexer": {
+          "tagline": "面向 Bitsocial 社区的可自托管爬虫、搜索索引和 Web 界面。",
+          "description": "Bitsocial Indexer 通过 RPC 连接到 Bitsocial CLI 守护进程，将运营者配置的社区索引到本地 SQLite 数据库，并通过 REST 和全文搜索 API 对外提供，同时可选配服务端渲染的 Web 界面。它初始为空：索引哪些内容由运营者决定。"
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "在 Telegram 上简洁推送 Bitsocial 仓库 GitHub 动态的机器人。",
+          "description": "Bitsocial GitHub Alerts 会把 GitHub 上的推送、发布、issue 和 pull request 转发到任意 Telegram 聊天、群组或论坛话题中。Bitsocial 团队用它来跟踪自己的仓库，容器镜像也已公开，任何人都可以为自己的仓库自行部署。"
+        },
+        "bitbones": {
+          "tagline": "极简参考客户端，每个视图都只是单个 hook 之上的一层薄封装。",
+          "description": "bitbones 是 Bitsocial React hooks 之上最小的可用外壳：几乎没有样式，不带任何产品取舍，每个视图背后只有一个 hook。要在真实社区上复现 bug 或试验 hooks 的改动，这里是最快的落脚点；它的默认信息流可以在 Seedit 与 5chan 的社区列表之间切换。"
+        },
+        "huggingsocial": {
+          "tagline": "用于查找、讨论和下载开放AI模型的对等网络中心。",
+          "description": "HuggingSocial是一个不被任何公司拥有的模型中心。中心是由密码密钥控制的Bitsocial社区，每个模型列表是一个带有模型卡、校验和和下载来源的签名帖子，权重通过BitTorrent或普通HTTP镜像移动，并在您的机器上进行验证。客户端处于设计和早期开发阶段；网站接受候选名单注册。"
         }
       }
     },
@@ -705,7 +734,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "纯文本协议",
     "title": "自由也有约束。",
-    "supporting": "没有全局管理员，也没有可被查封的服务器，所以没人能把你从整个网络中封禁。约束只是离你更近了。",
+    "supporting": "该协议只传输文本，也不是一个隐匿的网络。没有全局管理员，也没有可以被查封的服务器，因此没有人能把你从整个网络中封禁。审核只是离你更近了一步。",
     "carouselLabel": "常见疑虑，逐一解答",
     "communities": {
       "myth": "不封号就意味着毫无秩序。",
@@ -730,7 +759,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "采用假说",
-    "title": "为什么会有人用它？",
+    "title": "拥有胜过租用。",
     "supporting": "它无法被审查，永远不会宕机，而且你能保留自己赚到的全部收入。下面是会出现的人，以及原因。",
     "diagramLabel": "展示每个用户群为何采用 Bitsocial 的采用曲线。",
     "curve": {
@@ -788,7 +817,51 @@
     "docsCta": "浏览器中的P2P如何工作",
     "liveCta": "在博客上查看",
     "sectionLabel": "浏览器 P2P",
-    "supporting": "在普通标签页中打开 Bitsocial 网络应用，它自身就加入网络，从其他对等节点获取帖子并发布您的帖子。每个其他去中心化社交网络仍然在中间保持一个服务器。",
-    "title": "你的浏览器是一个对等体"
+    "supporting": "在普通标签页里打开 Bitsocial 网页应用，它自己就成了网络的一部分：从其他节点获取帖子，也把你的帖子发布出去。这才是最难的一步，也是其他去中心化社交网络至今仍要在中间放一台服务器的原因。",
+    "title": "浏览器本身就是突破。"
+  },
+  "faq": {
+    "sectionLabel": "常见问题",
+    "title": "常见问题",
+    "supporting": "本站的每个板块都回答其中一个问题。点击问题，跳转到对应板块。",
+    "navLabel": "本页解答的问题",
+    "answeredIn": "答案在",
+    "items": {
+      "problem": {
+        "question": "Bitsocial解决什么问题？"
+      },
+      "core-features": {
+        "question": "Bitsocial是什么？它如何运作？"
+      },
+      "browser-peer": {
+        "question": "为什么以前没人做出来？"
+      },
+      "decentralized": {
+        "question": "去中心化社交网络不是早就有了吗？"
+      },
+      "arbitrary-challenges": {
+        "question": "没有服务器，靠什么挡住垃圾信息？"
+      },
+      "text-only-protocol": {
+        "question": "那违法内容呢？"
+      },
+      "adoption-thesis": {
+        "question": "人们为什么会转向Bitsocial？"
+      },
+      "master-plan": {
+        "question": "接下来的计划是什么？我能帮上什么忙？"
+      },
+      "about": {
+        "question": "Bitsocial背后是谁？资金从哪里来？"
+      },
+      "mailing-list": {
+        "question": "我怎么持续关注进展？"
+      }
+    },
+    "ask": {
+      "label": "问点别的",
+      "placeholder": "问点别的…",
+      "action": "问 ChatGPT"
+    }
   }
 }

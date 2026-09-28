@@ -22,7 +22,7 @@ Pubsub Provider adalah layanan operator untuk menjalankan relai pubsub cadangan 
 
 ## Port
 
-Nilai bawaannya dipilih agar Pubsub Provider bisa berjalan berdampingan dengan [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) pada VPS yang sama tanpa konflik port swarm.
+Nilai bawaannya dipilih agar Pubsub Provider bisa berjalan berdampingan dengan [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) pada VPS yang sama tanpa konflik port swarm.
 
 | Keperluan         | Bawaan                            | Catatan                                                     |
 | ----------------- | --------------------------------- | ----------------------------------------------------------- |

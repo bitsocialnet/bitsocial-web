@@ -210,7 +210,7 @@ export default function BlogFeed() {
                     type="button"
                     onClick={() => handleFlairSelect(flair.text)}
                     className={cn(
-                      "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 sm:gap-2 sm:px-4 sm:py-2 sm:text-sm",
+                      "touch-target inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-300 sm:gap-2 sm:px-4 sm:py-2 sm:text-sm",
                       isActive
                         ? "border-blue-core/30 text-foreground ring-glow shadow-[0_0_24px_rgba(37,99,235,0.12)] dark:border-blue-core/55"
                         : "border-border/70 text-foreground/80 hover:border-blue-glow hover:text-foreground",
@@ -224,7 +224,7 @@ export default function BlogFeed() {
                     <span>{flair.text}</span>
                     <span
                       className={cn(
-                        "hidden rounded-full border px-2 py-0.5 text-[11px] sm:inline",
+                        "text-micro-fluid hidden rounded-full border px-2 py-0.5 sm:inline",
                         isActive
                           ? "border-blue-core/20 text-foreground"
                           : "border-border/60 text-foreground/65",

@@ -151,7 +151,7 @@ function PillarStrip({ pillars }: { pillars: Pillar[] }) {
                 <Icon className="h-3.5 w-3.5" />
               </span>
               <div className="min-w-0">
-                <p className="font-display text-[13px] font-semibold leading-tight text-foreground/88">
+                <p className="text-compact-fluid font-display font-semibold leading-tight text-foreground/88">
                   {pillar.label}
                 </p>
                 <p className="mt-1 text-xs leading-snug text-muted-foreground/78">
@@ -357,7 +357,7 @@ export default function AdoptionThesis() {
         };
 
   return (
-    <section className="px-6 py-24" aria-labelledby="adoption-thesis-title">
+    <section className="home-section" aria-labelledby="adoption-thesis-title">
       <div className="mx-auto max-w-7xl">
         <div
           id="adoption-thesis"
@@ -366,7 +366,7 @@ export default function AdoptionThesis() {
         >
           <m.div
             {...reveal(14, 0, 0.5)}
-            className="mb-6 block text-center text-xs font-display uppercase tracking-[0.2em] text-muted-foreground/75 dark:text-muted-foreground/70 md:text-sm"
+            className="home-section-eyebrow mb-6 block text-center font-display uppercase tracking-[0.2em] text-muted-foreground/75 dark:text-muted-foreground/70"
           >
             <a
               href="#adoption-thesis"
@@ -380,14 +380,14 @@ export default function AdoptionThesis() {
         <m.h2
           id="adoption-thesis-title"
           {...reveal(20, 0.1)}
-          className="mb-6 text-center text-4xl font-display font-semibold leading-[1.1] text-balance text-muted-foreground md:text-6xl lg:text-7xl"
+          className="home-section-title mb-6 text-center font-display font-semibold text-balance text-muted-foreground"
         >
           {t("adoptionThesis.title")}
         </m.h2>
 
         <m.p
           {...reveal(20, 0.2)}
-          className="mx-auto mb-10 max-w-2xl text-center text-base leading-relaxed text-balance text-muted-foreground md:text-lg"
+          className="home-section-lede mx-auto mb-10 text-center text-balance text-muted-foreground"
         >
           {t("adoptionThesis.supporting")}
         </m.p>

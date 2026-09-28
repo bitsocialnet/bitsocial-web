@@ -7,6 +7,11 @@ const fiveChanDirectoriesSnapshotPath = path.join(
   "data",
   "5chan-directories.snapshot.json",
 );
+const seeditCommunitiesSnapshotPath = path.join(
+  monitorRoot,
+  "data",
+  "seedit-communities.snapshot.json",
+);
 
 const parseCsvEnv = (value) =>
   value
@@ -36,30 +41,36 @@ export default {
         label: "5chan",
         sources: [fiveChanDirectoriesSnapshotPath],
       },
+      {
+        id: "seedit",
+        label: "Seedit",
+        sources: [seeditCommunitiesSnapshotPath],
+      },
     ],
+    // The provider lists below mirror the 5chan and Seedit browser defaults
+    // (src/lib/p2p-browser-config.ts and bitsocial-react-hooks' account generator).
+    // Gateways and pubsub providers are only used when pure P2P mode is turned off.
     ipfsGatewayUrls: [
-      "https://gateway.forumindex.com",
-      "https://gateway.plebpubsub.xyz",
-      "https://ipfs.io",
       "https://ipfsgateway.xyz",
+      "https://gateway.plebpubsub.xyz",
+      "https://gateway.forumindex.com",
     ],
     pubsubProviderUrls: [
-      "http://nocf.pubsubprovider.xyz/api/v0",
-      "https://plebpubsub.xyz/api/v0",
       "https://pubsubprovider.xyz/api/v0",
+      "https://plebpubsub.xyz/api/v0",
       "https://rannithepleb.com/api/v0",
     ],
     httpRouterUrls: [
-      "https://peers.forumindex.com",
       "https://peers.pleb.bot",
-      "https://peers.plebpubsub.xyz",
       "https://routing.lol",
+      "https://peers.forumindex.com",
+      "https://peers.plebpubsub.xyz",
+      "https://routerofbitsocial.xyz",
+      "https://bsotracker.online",
     ],
-    previewerUrls: ["https://pleb.bz"],
-    seederPeerIds: ["12D3KooWDfnXqdZfsoqKbcYEDKRttt3adumB5m6tw8YghPwMAz8V"],
+    // Ethereum RPCs the clients use to resolve community names.
     chainProviders: {
-      eth: { urls: ["https://ethrpc.xyz", "ethers.js", "viem"], chainId: 1 },
-      sol: { urls: ["https://solrpc.xyz", "web3.js"] },
+      eth: { urls: [...bsoResolverProviders, "ethers.js"], chainId: 1 },
     },
     webpages: [
       { url: "https://bitsocial.net", match: "Bitsocial" },

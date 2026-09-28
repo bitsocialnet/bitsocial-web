@@ -1,12 +1,15 @@
 import type { ComponentType } from "react";
 import {
+  Bell,
   Bot,
   Blocks,
   Clipboard,
+  Filter,
   Flag,
   Image as ImageIcon,
   Link2,
   MessageSquare,
+  Search,
   Send,
   Share2,
   Shield,
@@ -18,13 +21,16 @@ import { cn } from "@/lib/utils";
 import type { AppIconKey } from "@/lib/apps-data";
 
 const iconMap = {
+  bell: Bell,
   bot: Bot,
   blocks: Blocks,
   clipboard: Clipboard,
+  filter: Filter,
   flag: Flag,
   image: ImageIcon,
   "link-2": Link2,
   "message-square": MessageSquare,
+  search: Search,
   send: Send,
   "share-2": Share2,
   shield: Shield,

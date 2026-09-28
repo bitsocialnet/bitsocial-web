@@ -20,7 +20,9 @@
     "theme": "Tema",
     "newsletter": "Butlletí",
     "backToTop": "Tornar a dalt",
-    "chain": "Chain"
+    "goToBottom": "Anar a baix",
+    "backToPrevious": "Torna al punt anterior",
+    "faq": "FAQ"
   },
   "footer": {
     "tagline": "Xarxa P2P de codi obert per a aplicacions socials",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "Característiques principals",
-    "title": "Què és Bitsocial?",
+    "title": "Una capa social que no és de ningú.",
     "supporting": "Un univers cada vegada més gran d'aplicacions de mitjans socials, que utilitzen la mateixa xarxa social descentralitzada subjacent — una que cap empresa és propietària, i cap pot arrebatar-te.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "Una crida a l'acció",
+    "title": "Una crida als creadors.",
     "logoAlt": "Logotip",
     "easterEggAlt": "Bob Esponja",
     "epilogue": "L'estat final no és una aplicació. És un mercat de clients, nodes, serveis i comunitats que poden substituir la propietat de la plataforma per la competència de protocols.",
@@ -449,7 +451,7 @@
     "subtitle": "Bitsocial està pensat per créixer fins a milers d'aplicacions, eines i serveis creats per qualsevol persona, sense l'aprovació dels guardians de l'accés. Si ets dev, envia la teva pròpia app.",
     "experimental": "En proves",
     "sectionLabel": "Directori de projectes",
-    "directoryLabel": "Directori de projectes",
+    "directoryLabel": "Categories de projectes",
     "notFoundDescription": "L'app que busques no existeix al directori.",
     "emptyCategoryDescription": "Encara no hi ha cap app en aquesta categoria. Sigues el primer a crear-ne una!",
     "emptyCategory": "Properament",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "Verificació",
         "ai": "IA",
-        "antiRepost": "Antirepublicació"
+        "antiRepost": "Antirepublicació",
+        "referenceClient": "Client de referència",
+        "search": "Cerca"
       },
       "linkLabels": {
         "androidApk": "APK d'Android",
@@ -539,7 +543,8 @@
         "openWebApp": "Obre l'aplicació web",
         "openWebsite": "Obre el lloc web",
         "windows": "Windows",
-        "windowsPortable": "Windows portable"
+        "windowsPortable": "Windows portable",
+        "openTelegramBot": "Obre el bot de Telegram"
       },
       "items": {
         "5chan": {
@@ -550,13 +555,9 @@
           "tagline": "Client de Bitsocial d’estil fòrum amb versions per a web, APK i escriptori.",
           "description": "Seedit porta a Bitsocial la conversa a l’estil Reddit amb fils, identitats, gestió de comunitats i múltiples vies de distribució. És la manera més ràpida de provar la cara més de fòrum de la xarxa des d’un navegador, un mòbil Android o una app d’escriptori."
         },
-        "mintpass": {
-          "tagline": "Control d’accés recolzat per NFT per a comunitats que necessiten defenses més fortes contra l’spam.",
-          "description": "Mintpass és una capa d’autenticació flexible per a comunitats de Bitsocial. Permet als moderadors combinar la propietat d’NFT, fluxos de verificació i mòduls de repte personalitzats sense portar tothom a un sistema d’inici de sessió centralitzat."
-        },
         "spam-blocker": {
           "tagline": "Capa centralitzada de puntuació de risc per filtrar publicacions abusives.",
-          "description": "Spam Blocker avalua publicacions i retorna una puntuació de risc que les comunitats poden combinar amb la seva pròpia lògica de moderació. És útil quan vols una capa extra pràctica abans de crear regles anti-spam més personalitzades."
+          "description": "Spam Blocker avalua les publicacions i retorna una puntuació de risc que les comunitats poden combinar amb la seva pròpia lògica de moderació. El seu servei allotjat també enllaça les claus de signant detectades per primera vegada des de la mateixa IP, de manera que un usuari que segueix creant nous comptes per esquivar una prohibició comunitària o fabricar una conversa veu augmentar la seva puntuació de risc, mentre que alguns signants es mantenen autoritzats per a ús legítim multi-dispositiu."
         },
         "captcha-canvas-challenge": {
           "tagline": "CAPTCHA d’imatge personalitzats per a comunitats que volen verificació humana.",
@@ -597,6 +598,34 @@
         "r9k-challenge": {
           "tagline": "Porta d'originalitat a l'estil Robot9000 per a comunitats que volen una experiència de publicació anti-repost.",
           "description": "R9K Challenge s'executa en un node de comunitat de Bitsocial i compara el text normalitzat de la publicació amb la base de dades local de comentaris del node propietari. Dona a les comunitats una experiència de publicació a l'estil <robot9000>Robot9000</robot9000>: els reposts exactes fallen abans de ser acceptats, els backlinks s'ignoren, els errors repetits activen bans temporals creixents i els hashes del text acceptat es mantenen en estat local privat en lloc de desar el text cru de la publicació. Aquest challenge no utilitza IA."
+        },
+        "wordfilter-challenge": {
+          "tagline": "Els filtres de paraules de la comunitat s'apliquen com a norma de publicació, no com a filtre de visualització.",
+          "description": "Wordfilter Challenge fa que les substitucions de paraules d'una comunitat siguin vinculants. Els clients de publicació apliquen les substitucions abans de signar, de manera que el comentari signat i el seu CID ja contenen el text substituït, i el node de la comunitat rebutja qualsevol publicació que encara contingui una paraula filtrada. Implementa el contracte <code>wordfilter/v1</code>, de manera que un client escrit segons aquest contracte continua funcionant amb altres implementacions."
+        },
+        "challenge-composer": {
+          "tagline": "Editor amb prioritat fora de línia per a la configuració dels reptes antispam d'una comunitat.",
+          "description": "Challenge Composer mostra i permet editar la matriu <code>challenges</code> de la configuració d'una comunitat de Bitsocial i n'exporta un script de CLI llest per executar. Es distribueix com un únic fitxer HTML autocontingut que no fa cap petició externa en temps d'execució, de manera que es pot obrir directament des del disc o des d'una memòria USB."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Servidor de previsualització d'enllaços i de redirecció que genera targetes per compartir publicacions de Bitsocial.",
+          "description": "Bitsocial Previewer genera targetes d'OpenGraph i de Twitter quan l'enllaç d'una publicació es comparteix en altres plataformes i, tot seguit, redirigeix els navegadors reals cap a l'aplicació. Una sola instància és multitenant per nom d'amfitrió, de manera que un únic desplegament i una única configuració de TLS cobreixen tots els dominis de clients i de rèpliques."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Rastrejador, índex de cerca i interfície web autoallotjables per a comunitats de Bitsocial.",
+          "description": "Bitsocial Indexer es connecta mitjançant RPC a un dimoni de Bitsocial CLI, indexa en una base de dades SQLite local les comunitats que hi configura l'operador i les serveix a través d'una API REST i de cerca de text complet, amb una interfície web renderitzada al servidor opcional. Es distribueix buit: és l'operador qui decideix què s'indexa."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Bot de Telegram que publica de manera compacta l'activitat de GitHub dels repositoris de Bitsocial.",
+          "description": "Bitsocial GitHub Alerts reenvia pushes, llançaments, incidències i pull requests de GitHub a qualsevol xat, grup o tema de fòrum de Telegram. L'equip de Bitsocial el fa servir per als seus propis repositoris i la imatge del contenidor és pública, de manera que qualsevol pot allotjar-lo pel seu compte per als seus."
+        },
+        "bitbones": {
+          "tagline": "Client de referència mínim en què cada vista és un embolcall prim sobre un únic hook.",
+          "description": "bitbones és la superfície útil més petita sobre els hooks de React de Bitsocial: gairebé sense estils, sense decisions de producte i amb un únic hook darrere de cada vista. És el lloc més ràpid per reproduir un error o provar un canvi als hooks contra comunitats reals, i el seu canal per defecte es pot canviar entre les llistes de comunitats de Seedit i de 5chan."
+        },
+        "huggingsocial": {
+          "tagline": "Plataforma entre parells per trobar, discutir i descarregar models d'IA oberts.",
+          "description": "HuggingSocial és un centre de models que no és propietat de cap empresa. Els concentradors són comunitats de Bitsocial controlades per claus criptogràfiques, cada llistat de model és un missatge signat amb una fitxa de model, sumes de verificació i fonts de descàrrega, i els pesos es mouen per BitTorrent o miralls HTTP simples i es verifiquen a la vostra màquina. El client està en disseny i desenvolupament inicial; el lloc web accepta inscripcions a la llista d'espera."
         }
       }
     },
@@ -706,7 +735,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Protocol només de text",
     "title": "La llibertat té moderació.",
-    "supporting": "No hi ha cap administrador global ni cap servidor per confiscar, així que ningú no pot expulsar-te de tota la xarxa. La moderació simplement s'acosta a tu.",
+    "supporting": "El protocol només transporta text i no és una xarxa oculta. No hi ha cap administrador global ni cap servidor que es pugui confiscar, així que ningú no et pot expulsar de tota la xarxa. La moderació simplement s'acosta més a tu.",
     "carouselLabel": "Dubtes habituals, resolts",
     "communities": {
       "myth": "Sense expulsions, això és una selva.",
@@ -731,7 +760,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Tesi d'adopció",
-    "title": "Per què el faria servir algú?",
+    "title": "Millor ser propietari que llogater.",
     "supporting": "No es pot censurar, mai no cau i et quedes amb tot el que guanyes. Aquí ve qui hi apareix — i per què.",
     "diagramLabel": "Corba d'adopció que mostra per què cada cohort d'usuaris adopta Bitsocial.",
     "curve": {
@@ -789,7 +818,51 @@
     "docsCta": "Com funciona P2P al navegador",
     "liveCta": "Veu-ho al blog",
     "sectionLabel": "Navegador P2P",
-    "supporting": "Obriu una aplicació web de Bitsocial en una pestanya normal i s'uneix a la xarxa per si mateixa, obtenint missatges d'altres iguals i publicant els vostres. Cada altra xarxa social descentralitzada encara manté un servidor al mig.",
-    "title": "El teu navegador és un par"
+    "supporting": "Obre una aplicació web de Bitsocial en una pestanya normal i s'uneix a la xarxa pel seu compte: recupera publicacions d'altres parells i publica les teves. Aquesta és la part difícil, i el motiu pel qual qualsevol altra xarxa social descentralitzada encara manté un servidor pel mig.",
+    "title": "El navegador és la clau de tot."
+  },
+  "faq": {
+    "sectionLabel": "FAQ",
+    "title": "Preguntes freqüents",
+    "supporting": "Cada secció d'aquest lloc web en respon una. Clica una pregunta per anar-hi.",
+    "navLabel": "Preguntes contestades en aquesta pàgina",
+    "answeredIn": "Resposta a la secció",
+    "items": {
+      "problem": {
+        "question": "Quin problema resol Bitsocial?"
+      },
+      "core-features": {
+        "question": "Què és Bitsocial? Com funciona?"
+      },
+      "browser-peer": {
+        "question": "Per què ningú no ho ha fet abans?"
+      },
+      "decentralized": {
+        "question": "No hi ha ja xarxes socials descentralitzades?"
+      },
+      "arbitrary-challenges": {
+        "question": "Sense servidors, què atura el spam?"
+      },
+      "text-only-protocol": {
+        "question": "I el contingut il·legal?"
+      },
+      "adoption-thesis": {
+        "question": "Per què la gent passaria a Bitsocial?"
+      },
+      "master-plan": {
+        "question": "Quin és el pla d'ara endavant? Com puc ajudar?"
+      },
+      "about": {
+        "question": "Qui hi ha darrere de Bitsocial? Com s'ha finançat?"
+      },
+      "mailing-list": {
+        "question": "Com puc estar al dia?"
+      }
+    },
+    "ask": {
+      "label": "Pregunta qualsevol altra cosa",
+      "placeholder": "Pregunta qualsevol altra cosa…",
+      "action": "Pregunta a ChatGPT"
+    }
   }
 }

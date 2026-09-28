@@ -22,7 +22,7 @@ Pubsub Provider est un service destiné aux opérateurs, qui permet de faire tou
 
 ## Ports
 
-Les valeurs par défaut sont choisies pour que Pubsub Provider puisse tourner à côté de [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) sur le même VPS sans conflit de port swarm.
+Les valeurs par défaut sont choisies pour que Pubsub Provider puisse tourner à côté de [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) sur le même VPS sans conflit de port swarm.
 
 | Rôle              | Défaut                       | Remarques                                                         |
 | ----------------- | ---------------------------- | ----------------------------------------------------------------- |

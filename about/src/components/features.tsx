@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 import CardInlineCta, { prominentCtaClassName } from "@/components/card-inline-cta";
 import { DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
-import { getScrollBehavior, triggerFeatureGlow, triggerTaglineGlow } from "@/lib/utils";
+import { rememberScrollReturn } from "@/lib/scroll-return";
+import { triggerFeatureGlow, triggerTaglineGlow } from "@/lib/utils";
 
 type FeatureId =
   | "open-source"
@@ -101,12 +102,10 @@ const richTextComponents = {
 interface FeatureCtaProps {
   className: string;
   feature: Feature;
-  onSanctuaryClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 interface MobileFeatureCtaProps {
   feature: Feature;
-  onSanctuaryClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 /** Matches original feature-card framing: excerpt from the hero line with ellipses and commas. */
@@ -197,7 +196,7 @@ function areConnectorLayoutsEqual(
   });
 }
 
-function FeatureCta({ className, feature, onSanctuaryClick }: FeatureCtaProps) {
+function FeatureCta({ className, feature }: FeatureCtaProps) {
   if (feature.external) {
     return (
       <a href={feature.ctaHref} target="_blank" rel="noreferrer" className={className}>
@@ -214,14 +213,6 @@ function FeatureCta({ className, feature, onSanctuaryClick }: FeatureCtaProps) {
     );
   }
 
-  if (feature.ctaHref.startsWith("#")) {
-    return (
-      <a href={feature.ctaHref} onClick={onSanctuaryClick} className={className}>
-        {feature.ctaLabel}
-      </a>
-    );
-  }
-
   return (
     <Link to={feature.ctaHref} className={className}>
       {feature.ctaLabel}
@@ -229,12 +220,8 @@ function FeatureCta({ className, feature, onSanctuaryClick }: FeatureCtaProps) {
   );
 }
 
-function MobileFeatureCta({ feature, onSanctuaryClick }: MobileFeatureCtaProps) {
-  return (
-    <CardInlineCta href={feature.ctaHref} onClick={onSanctuaryClick}>
-      {feature.ctaLabel}
-    </CardInlineCta>
-  );
+function MobileFeatureCta({ feature }: MobileFeatureCtaProps) {
+  return <CardInlineCta href={feature.ctaHref}>{feature.ctaLabel}</CardInlineCta>;
 }
 
 export default function Features() {
@@ -422,24 +409,13 @@ export default function Features() {
   };
 
   const handleTitleClick = (id: string) => {
+    rememberScrollReturn();
     window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
     triggerTaglineGlow(id);
   };
 
-  const handleSanctuaryClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    const sanctuaryTarget = document.getElementById("decentralized");
-    if (!sanctuaryTarget) return;
-    window.history.pushState(
-      null,
-      "",
-      `${window.location.pathname}${window.location.search}#decentralized`,
-    );
-    sanctuaryTarget.scrollIntoView({ behavior: getScrollBehavior(), block: "start" });
-  };
-
   return (
-    <section className="px-6 py-24" aria-labelledby="core-features-title">
+    <section className="home-section" aria-labelledby="core-features-title">
       <div className="max-w-7xl mx-auto">
         <div
           id="core-features"
@@ -448,7 +424,7 @@ export default function Features() {
         >
           <m.div
             {...sectionReveal(14, 0, 0.5)}
-            className="mb-6 block text-center text-xs font-display uppercase tracking-[0.2em] text-muted-foreground/75 dark:text-muted-foreground/70 md:text-sm"
+            className="home-section-eyebrow mb-6 block text-center font-display uppercase tracking-[0.2em] text-muted-foreground/75 dark:text-muted-foreground/70"
           >
             <a
               href="#core-features"
@@ -462,14 +438,14 @@ export default function Features() {
         <m.h2
           id="core-features-title"
           {...sectionReveal(20, 0.1)}
-          className="mb-6 text-center text-4xl font-display font-semibold leading-[1.1] text-balance text-muted-foreground md:text-6xl lg:text-7xl"
+          className="home-section-title mb-6 text-center font-display font-semibold text-balance text-muted-foreground"
         >
           {t("features.title")}
         </m.h2>
 
         <m.p
           {...sectionReveal(20, 0.2)}
-          className="mx-auto mb-16 max-w-2xl text-center text-base leading-relaxed text-balance text-muted-foreground md:text-lg"
+          className="home-section-lede mx-auto mb-16 text-center text-balance text-muted-foreground"
         >
           {t("features.supporting")}
         </m.p>
@@ -500,20 +476,20 @@ export default function Features() {
                   <div className="flex-1 w-full md:w-1/2">
                     <div
                       ref={setFeatureCardRef(feature.id)}
-                      className="glass-card flex h-full flex-col p-6 md:p-8"
+                      className="glass-card surface-pad flex h-full flex-col"
                     >
                       <h3 className="mb-4">
                         <button
                           type="button"
                           onClick={() => handleTitleClick(feature.id)}
-                          className="js-only interactive-feature-link w-full text-start text-xl md:text-2xl font-display font-normal italic text-foreground/85 focus-visible:outline-none"
+                          className="touch-target js-only interactive-feature-link card-title-fluid w-full text-start font-display font-normal italic text-foreground/85 focus-visible:outline-none"
                         >
                           {featureTitleFromTaglineSegments(t, feature.id)}
                         </button>
                         <noscript>
                           <a
                             href="#hero-tagline"
-                            className="nojs-inline interactive-feature-link w-full text-start text-xl md:text-2xl font-display font-normal italic text-foreground/85 focus-visible:outline-none"
+                            className="touch-target nojs-inline interactive-feature-link card-title-fluid w-full text-start font-display font-normal italic text-foreground/85 focus-visible:outline-none"
                           >
                             {featureTitleFromTaglineSegments(t, feature.id)}
                           </a>
@@ -523,21 +499,14 @@ export default function Features() {
                         {feature.description}
                       </p>
                       <div className="mt-4 flex justify-end rtl:justify-start md:hidden -mb-2 -mr-2 rtl:-ml-2 rtl:mr-0">
-                        <MobileFeatureCta
-                          feature={feature}
-                          onSanctuaryClick={handleSanctuaryClick}
-                        />
+                        <MobileFeatureCta feature={feature} />
                       </div>
                     </div>
                   </div>
 
                   {/* Feature CTA */}
                   <div className="hidden md:flex flex-1 w-full md:w-1/2 items-center justify-center">
-                    <FeatureCta
-                      feature={feature}
-                      className={featureCtaClassName}
-                      onSanctuaryClick={handleSanctuaryClick}
-                    />
+                    <FeatureCta feature={feature} className={featureCtaClassName} />
                   </div>
                 </m.div>
               </div>

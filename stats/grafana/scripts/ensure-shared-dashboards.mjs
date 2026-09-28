@@ -13,6 +13,11 @@ const dashboards = [
     publicDashboardUid: "decaef09-6d48-4ea0-9e28-1d462aaa17b5",
     accessToken: "fa6f2225e0ea98e116fb6f85d84e0186",
   },
+  {
+    dashboardUid: "bitsocial-seedit",
+    publicDashboardUid: "e777aab1-6c13-4ad1-8c65-6788ed6e6f80",
+    accessToken: "c770d7565c18df52dd26461c9191e05d",
+  },
 ];
 
 const publicDashboardConfig = {

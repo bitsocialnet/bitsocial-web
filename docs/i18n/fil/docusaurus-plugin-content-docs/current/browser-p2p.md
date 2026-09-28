@@ -89,9 +89,6 @@ nagkakahalaga sa iyo ng isang lookup path, hindi ng iyong data. Ang isang IPFS g
 
 ## Saan ito tumatakbo ngayon
 
-- Ang [Bitsocial blog](https://bitsocial.net/blog) sa site na ito ay tumatakbo bilang browser P2P client bilang
-  default. Ipinapakita ng "P2P status" panel nito ang live na listahan ng peer, ang transport na ginagamit ng bawat koneksyon, at
-  kung saan naroon ang mga peer na iyon.
 - Ang [5chan](/apps/5chan/) ay nagpapatakbo ng purong browser P2P bilang default sa web app sa
   [5chan.app](https://5chan.app).
 

@@ -22,7 +22,7 @@ Pubsub Provider は、Kubo ノードを同梱した Bitsocial 互換の pubsub �
 
 ## ポート
 
-既定値は、Pubsub Provider が同じ VPS 上で [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) と並んで動けるよう、swarm ポートが衝突しないように選ばれています。
+既定値は、Pubsub Provider が同じ VPS 上で [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) と並んで動けるよう、swarm ポートが衝突しないように選ばれています。
 
 | 用途               | 既定値                            | 備考                                                                    |
 | ------------------ | --------------------------------- | ----------------------------------------------------------------------- |

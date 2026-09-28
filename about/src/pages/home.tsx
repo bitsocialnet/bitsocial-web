@@ -6,6 +6,7 @@ import AdoptionThesis from "@/components/adoption-thesis";
 import ArbitraryChallenges from "@/components/arbitrary-challenges";
 import BackToTop from "@/components/back-to-top";
 import BrowserPeer from "@/components/browser-peer";
+import Faq from "@/components/faq";
 import Footer from "@/components/footer";
 import Hero from "@/components/hero";
 import MailingList from "@/components/mailing-list";
@@ -15,31 +16,12 @@ import SanctuaryCommunication from "@/components/sanctuary-communication";
 import TextOnlyProtocol from "@/components/text-only-protocol";
 import Topbar from "@/components/topbar";
 import Features from "@/components/features";
+import { HOME_SECTION_HASHES, scrollToHomeSectionHash } from "@/lib/home-section-nav";
 import { MAILING_LIST_HASH, scheduleMailingListHashScroll } from "@/lib/mailing-list-nav";
-import { getScrollBehavior } from "@/lib/utils";
 
-const HOME_SECTION_HASHES = new Set([
-  "#problem",
-  "#core-features",
-  "#decentralized",
-  "#arbitrary-challenges",
-  "#text-only-protocol",
-  "#adoption-thesis",
-  "#master-plan",
-]);
 const HOME_SECTION_LAYOUT_DELTA_PX = 1;
 const HOME_SECTION_LAYOUT_STABLE_FRAMES = 2;
 const HOME_SECTION_SCROLL_MAX_WAIT_MS = 1400;
-
-function scrollToHomeSectionHash(hash: string) {
-  const sectionId = hash.slice(1);
-  if (!sectionId) return;
-
-  document.getElementById(sectionId)?.scrollIntoView({
-    behavior: getScrollBehavior(),
-    block: "start",
-  });
-}
 
 function getHomeSectionScrollSample(hash: string) {
   const sectionId = hash.slice(1);
@@ -177,7 +159,7 @@ export default function Home() {
       <main>
         <div className="bg-background">
           {unavailablePath ? (
-            <div className="px-6 pt-28 md:pt-32">
+            <div className="px-[var(--space-page-inline)] pt-[var(--space-page-top)]">
               <div className="mx-auto flex max-w-4xl items-start justify-between gap-4 rounded-3xl border border-border/60 bg-background/85 px-5 py-4 text-sm text-muted-foreground shadow-lg backdrop-blur">
                 <p className="leading-relaxed">
                   {t("home.devOnlyRouteNotice", { path: unavailablePath })}
@@ -216,11 +198,12 @@ export default function Home() {
             <AdoptionThesis />
             <MasterPlan />
             <MailingList />
-            <BackToTop />
+            <Faq />
             <Footer />
           </div>
         </div>
       </main>
+      <BackToTop />
     </div>
   );
 }

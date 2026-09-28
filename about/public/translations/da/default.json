@@ -20,7 +20,9 @@
     "theme": "Tema",
     "newsletter": "Nyhedsbrev",
     "backToTop": "Tilbage til toppen",
-    "chain": "Chain"
+    "goToBottom": "Gå til bunden",
+    "backToPrevious": "Tilbage til forrige sted",
+    "faq": "FAQ"
   },
   "footer": {
     "tagline": "Open Source P2P-netværk til sociale apps",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "Kernefunktioner",
-    "title": "Hvad er Bitsocial?",
+    "title": "Et socialt lag, ingen ejer.",
     "supporting": "Et stadigt voksende univers af sociale medieapps, der alle bruger det samme underliggende decentraliserede sociale netværk — et som ingen virksomhed ejer, og ingen kan tage fra dig.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "En opfordring til handling",
+    "title": "Et opråb til byggerne.",
     "logoAlt": "Logo",
     "easterEggAlt": "SvampeBob",
     "epilogue": "Sluttilstanden er ikke én app. Det er et marked af kunder, noder, tjenester og fællesskaber, der kan erstatte platformsejerskab med protokolkonkurrence.",
@@ -449,7 +451,7 @@
     "subtitle": "Bitsocial er bygget til at vokse til tusindvis af apps, værktøjer og tjenester, som alle kan bygge, ikke kun dem gatekeepere godkender. Er du udvikler, så indsend din egen app.",
     "experimental": "Eksperimentel",
     "sectionLabel": "Projektoversigt",
-    "directoryLabel": "Projektoversigt",
+    "directoryLabel": "Projektkategorier",
     "notFoundDescription": "Appen, du leder efter, findes ikke i kataloget.",
     "emptyCategoryDescription": "Der er ingen apps i denne kategori endnu. Vær den første til at bygge en!",
     "emptyCategory": "Kommer snart",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "Verificering",
         "ai": "AI",
-        "antiRepost": "Anti-genopslag"
+        "antiRepost": "Anti-genopslag",
+        "referenceClient": "Referenceklient",
+        "search": "Søgning"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -539,7 +543,8 @@
         "openWebApp": "Åbn webappen",
         "openWebsite": "Åbn webstedet",
         "windows": "Windows",
-        "windowsPortable": "Bærbar version til Windows"
+        "windowsPortable": "Bærbar version til Windows",
+        "openTelegramBot": "Åbn Telegram-bot"
       },
       "items": {
         "5chan-board-manager": {
@@ -563,6 +568,37 @@
         "r9k-challenge": {
           "tagline": "Robot9000-inspireret originalitetsgate til fællesskaber, der vil have en anti-repost-oplevelse ved opslag.",
           "description": "R9K Challenge kører på en Bitsocial-communitynode og sammenligner normaliseret opslagstekst med ejernodens lokale kommentardatabase. Den giver communities en <robot9000>Robot9000</robot9000>-lignende opslagserfaring: eksakte genopslag fejler før accept, backlinks ignoreres, gentagne fejl udløser eskalerende midlertidige bans, og hashes af accepteret tekst bliver i privat lokal tilstand i stedet for at gemme rå opslagstekst. Denne challenge bruger ikke AI."
+        },
+        "wordfilter-challenge": {
+          "tagline": "Fællesskabets ordfiltre håndhæves som en regel for opslag i stedet for som et visningsfilter.",
+          "description": "Wordfilter Challenge gør et fællesskabs ordudskiftninger bindende. Udgivende klienter anvender udskiftningerne, før der signeres, så den signerede kommentar og dens CID allerede indeholder erstatningsteksten, og fællesskabets node afviser enhver udgivelse, der stadig indeholder et filtreret ord. Den implementerer kontrakten <code>wordfilter/v1</code>, så en klient skrevet efter den kontrakt fortsat virker med andre implementeringer."
+        },
+        "challenge-composer": {
+          "tagline": "Offline-først-editor til en communitys indstillinger for antispam-udfordringer.",
+          "description": "Challenge Composer viser og redigerer arrayet <code>challenges</code> i indstillingerne for et Bitsocial-community og eksporterer derefter et CLI-script, der er klar til at køre. Det leveres som en enkelt selvstændig HTML-fil, der ikke sender forespørgsler ud under kørslen, så den kan åbnes direkte fra disken eller en USB-nøgle."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Server til linkforhåndsvisning og omdirigering, der genererer delingskort til Bitsocial-indlæg.",
+          "description": "Bitsocial Previewer genererer OpenGraph- og Twitter-kort, når et link til et indlæg deles på andre platforme, og sender derefter rigtige browsere videre til appen. Én instans er multi-tenant efter værtsnavn, så en enkelt udrulning og TLS-opsætning dækker alle klient- og spejldomæner."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Crawler, søgeindeks og webgrænseflade til Bitsocial-communities, som du selv kan hoste.",
+          "description": "Bitsocial Indexer forbinder til en Bitsocial CLI-dæmon over RPC, indekserer de communities, operatøren konfigurerer, i en lokal SQLite-database og udstiller dem via et REST- og fritekstsøgnings-API med en valgfri servergengivet webgrænseflade. Den leveres tom: operatøren bestemmer, hvad der bliver indekseret."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Telegram-bot, der poster kompakte opdateringer om GitHub-aktivitet i Bitsocial-repositories.",
+          "description": "Bitsocial GitHub Alerts videresender pushes, releases, issues og pull requests fra GitHub til enhver chat, gruppe eller forumtråd på Telegram. Bitsocial-teamet kører den til sine egne repositories, og container-imaget er offentligt, så alle kan hoste den selv til deres."
+        },
+        "bitbones": {
+          "tagline": "Ultrasimpel referenceklient, hvor hver visning blot er en tynd indpakning om ét hook.",
+          "description": "bitbones er den mindste brugbare flade oven på Bitsocials React-hooks: næsten ingen styling, ingen produktholdninger og ét enkelt hook bag hver visning. Det er det hurtigste sted at reproducere en fejl eller afprøve en hook-ændring mod rigtige fællesskaber, og standardfeedet kan skiftes mellem fællesskabslisterne fra Seedit og 5chan."
+        },
+        "huggingsocial": {
+          "tagline": "Peer-to-peer-hub til at finde, diskutere og downloade åbne AI-modeller.",
+          "description": "HuggingSocial er en modelpulje, som ingen virksomhed ejer. Hubs er Bitsocial-samfund kontrolleret af kryptografiske nøgler, hver modelangivelse er et signeret indlæg med et modelkort, kontrolsummer og downloadkilder, og vægtene flyttes via BitTorrent eller almindelige HTTP-spejle og verificeres på din maskine. Klienten er i design og tidlig udvikling; webstedet tager påmeldinger til venteliste."
+        },
+        "spam-blocker": {
+          "description": "Spam Blocker evaluerer publikationer og returnerer en risikoscore, som fællesskaber kan kombinere med deres egen moderationslogik. Dens hostede tjeneste forbinder også signeringsnøgler første gang set fra samme IP, så en bruger, der fortsætter med at oprette nye konti for at undgå et fællesskabsforbud eller fremstille en samtale, ser sin risikoscore stige, mens nogle få signaturværdier forbliver tilladt til legitim brug på flere enheder."
         }
       }
     },
@@ -672,7 +708,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Kun-tekst-protokol",
     "title": "Frihed har moderation.",
-    "supporting": "Der er ingen global admin og ingen server at beslaglægge, så ingen kan udelukke dig fra hele netværket. Moderation rykker bare tættere på dig.",
+    "supporting": "Protokollen sender kun tekst, og det er ikke et skjult netværk. Der er ingen global administrator og ingen server, der kan beslaglægges, så ingen kan udelukke dig fra hele netværket. Moderation rykker bare tættere på dig.",
     "carouselLabel": "Almindelige bekymringer, besvaret",
     "communities": {
       "myth": "Ingen udelukkelser betyder, at alt er tilladt.",
@@ -697,7 +733,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Adoptionstesen",
-    "title": "Hvorfor skulle nogen bruge det?",
+    "title": "Bedre at eje end at leje.",
     "supporting": "Det kan ikke censureres, det går aldrig ned, og du beholder alt, hvad du tjener. Her er, hvem der dukker op — og hvorfor.",
     "diagramLabel": "Adoptionskurve, der viser, hvorfor hvert brugersegment tager Bitsocial til sig.",
     "curve": {
@@ -755,7 +791,51 @@
     "docsCta": "Sådan fungerer P2P i browseren",
     "liveCta": "Se på bloggen",
     "sectionLabel": "Browser P2P",
-    "supporting": "Åbn en Bitsocial web-app i en normal fane og den tilslutter sig selv netværket, henter indlæg fra andre jævnaldrende og udgiver dine egne. Ethvert andet decentraliseret socialt netværk holder stadig en server i midten.",
-    "title": "Din browser er en peer"
+    "supporting": "Åbn en Bitsocial-webapp i en helt almindelig fane, og den kobler sig selv på netværket – henter opslag fra andre peers og udgiver dine egne. Det er den svære del, og grunden til at alle andre decentrale sociale netværk stadig har en server i midten.",
+    "title": "Browseren er gennembruddet."
+  },
+  "faq": {
+    "sectionLabel": "FAQ",
+    "title": "Hyppigt stillede spørgsmål",
+    "supporting": "Hvert afsnit på denne side besvarer ét af dem. Klik på et spørgsmål for at hoppe derhen.",
+    "navLabel": "Spørgsmål der besvares på denne side",
+    "answeredIn": "Besvaret i afsnittet",
+    "items": {
+      "problem": {
+        "question": "Hvilket problem løser Bitsocial?"
+      },
+      "core-features": {
+        "question": "Hvad er Bitsocial? Hvordan fungerer det?"
+      },
+      "browser-peer": {
+        "question": "Hvorfor har ingen bygget det her før?"
+      },
+      "decentralized": {
+        "question": "Er der ikke allerede decentraliserede sociale netværk?"
+      },
+      "arbitrary-challenges": {
+        "question": "Hvad stopper spam, når der ingen servere er?"
+      },
+      "text-only-protocol": {
+        "question": "Hvad med ulovligt indhold?"
+      },
+      "adoption-thesis": {
+        "question": "Hvorfor skulle folk skifte til Bitsocial?"
+      },
+      "master-plan": {
+        "question": "Hvad er planen herfra? Hvordan kan jeg hjælpe?"
+      },
+      "about": {
+        "question": "Hvem står bag Bitsocial? Hvordan er det finansieret?"
+      },
+      "mailing-list": {
+        "question": "Hvordan holder jeg mig opdateret?"
+      }
+    },
+    "ask": {
+      "label": "Spørg om noget andet",
+      "placeholder": "Spørg om noget andet…",
+      "action": "Spørg ChatGPT"
+    }
   }
 }

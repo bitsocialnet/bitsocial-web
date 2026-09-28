@@ -94,9 +94,6 @@ selbst.
 
 ## Wo das heute läuft
 
-- Der [Bitsocial-Blog](https://bitsocial.net/blog) auf dieser Website läuft standardmäßig als
-  Browser-P2P-Client. Sein Panel „P2P-Status“ zeigt die aktuelle Peer-Liste, den Transport jeder
-  einzelnen Verbindung und wo sich diese Peers befinden.
 - [5chan](/apps/5chan/) läuft in der Web-App unter [5chan.app](https://5chan.app) standardmäßig als
   reines Browser-P2P.
 

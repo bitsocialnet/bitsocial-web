@@ -22,7 +22,7 @@ Pubsub Provider ایک آپریٹر سروس ہے جو بنڈل شدہ Kubo نو
 
 ## پورٹس
 
-ڈیفالٹ اقدار اس طرح چنی گئی ہیں کہ Pubsub Provider اسی VPS پر [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) کے ساتھ swarm پورٹ کے ٹکراؤ کے بغیر چل سکے۔
+ڈیفالٹ اقدار اس طرح چنی گئی ہیں کہ Pubsub Provider اسی VPS پر [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) کے ساتھ swarm پورٹ کے ٹکراؤ کے بغیر چل سکے۔
 
 | مقصد              | ڈیفالٹ                       | نوٹس                                                         |
 | ----------------- | ---------------------------- | ------------------------------------------------------------ |

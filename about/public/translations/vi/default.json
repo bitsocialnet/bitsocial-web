@@ -20,7 +20,9 @@
     "theme": "Giao diện",
     "newsletter": "Bản tin",
     "backToTop": "Lên đầu trang",
-    "chain": "Chain"
+    "goToBottom": "Xuống cuối trang",
+    "backToPrevious": "Quay lại vị trí trước đó",
+    "faq": "Câu hỏi thường gặp"
   },
   "footer": {
     "tagline": "Mạng P2P mã nguồn mở cho ứng dụng xã hội",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "Tính năng cốt lõi",
-    "title": "Bitsocial là gì?",
+    "title": "Một tầng xã hội không thuộc về ai.",
     "supporting": "Một vũ trụ không ngừng mở rộng của các ứng dụng phương tiện truyền thông xã hội, tất cả đều sử dụng cùng một mạng xã hội phi tập trung cơ bản — một mạng mà không công ty nào sở hữu, và không ai có thể lấy nó từ bạn.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "Kêu gọi hành động",
+    "title": "Lời hiệu triệu tới những người kiến tạo.",
     "logoAlt": "biểu tượng",
     "easterEggAlt": "SpongeBob",
     "epilogue": "Trạng thái kết thúc không phải là một ứng dụng. Đó là thị trường của khách hàng, nút, dịch vụ và cộng đồng có thể thay thế quyền sở hữu nền tảng bằng sự cạnh tranh về giao thức.",
@@ -449,7 +451,7 @@
     "subtitle": "Bitsocial được xây dựng để phát triển thành hàng nghìn ứng dụng, công cụ và dịch vụ mà bất kỳ ai cũng có thể tạo ra, không chỉ những thứ được gatekeeper chấp thuận. Nếu bạn là dev, hãy gửi ứng dụng của riêng bạn.",
     "experimental": "Thử nghiệm",
     "sectionLabel": "Thư mục dự án",
-    "directoryLabel": "Thư mục dự án",
+    "directoryLabel": "Danh mục dự án",
     "notFoundDescription": "Ứng dụng bạn đang tìm không tồn tại trong danh mục.",
     "emptyCategoryDescription": "Danh mục này hiện chưa có ứng dụng nào. Hãy là người đầu tiên tạo ra một!",
     "emptyCategory": "Sắp ra mắt",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "Xác minh",
         "ai": "AI",
-        "antiRepost": "Chống đăng lại"
+        "antiRepost": "Chống đăng lại",
+        "referenceClient": "Client tham chiếu",
+        "search": "Tìm kiếm"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -539,7 +543,8 @@
         "openWebApp": "Mở ứng dụng web",
         "openWebsite": "Mở trang web",
         "windows": "Windows",
-        "windowsPortable": "Phiên bản di động cho Windows"
+        "windowsPortable": "Phiên bản di động cho Windows",
+        "openTelegramBot": "Mở bot Telegram"
       },
       "items": {
         "5chan": {
@@ -550,13 +555,9 @@
           "tagline": "Bitsocial client kiểu forum với bản web, APK và desktop.",
           "description": "Seedit mang thảo luận kiểu Reddit đến Bitsocial với threads, identities, quản lý cộng đồng và nhiều đường phân phối. Đây là cách nhanh nhất để thử phần forum của mạng từ trình duyệt, điện thoại Android hoặc desktop app."
         },
-        "mintpass": {
-          "tagline": "Kiểm soát truy cập dựa trên NFT cho các cộng đồng cần hàng rào anti-spam mạnh hơn.",
-          "description": "Mintpass là một lớp xác thực linh hoạt cho cộng đồng Bitsocial. Nó cho phép moderator kết hợp quyền sở hữu NFT, luồng verification và custom challenge modules mà không ép mọi người vào một hệ thống login trung tâm."
-        },
         "spam-blocker": {
           "tagline": "Lớp chấm điểm rủi ro tập trung để lọc các publication gây hại.",
-          "description": "Spam Blocker đánh giá các publication và trả về risk score mà cộng đồng có thể kết hợp với logic moderation của riêng mình. Nó hữu ích khi bạn muốn thêm một lớp thực dụng trước khi xây dựng các quy tắc anti-spam custom hơn."
+          "description": "Spam Blocker đánh giá các bài đăng và trả về điểm rủi ro mà các cộng đồng có thể kết hợp với logic kiểm duyệt của riêng họ. Dịch vụ được lưu trữ của nó cũng liên kết các khóa ký được nhìn thấy lần đầu tiên từ cùng một IP, do đó người dùng tiếp tục tạo các tài khoản mới để tránh lệnh cấm cộng đồng hoặc tạo ra một cuộc trò chuyện sẽ thấy điểm rủi ro của họ tăng lên, trong khi một số ký hiệu vẫn được phép sử dụng hợp pháp trên nhiều thiết bị."
         },
         "captcha-canvas-challenge": {
           "tagline": "image captcha tùy chỉnh cho các cộng đồng muốn verification từ con người.",
@@ -597,6 +598,34 @@
         "r9k-challenge": {
           "tagline": "Cổng kiểm tra tính nguyên bản kiểu Robot9000 cho cộng đồng muốn trải nghiệm đăng bài chống đăng lại.",
           "description": "R9K Challenge chạy trên một node cộng đồng Bitsocial và so sánh văn bản bài đăng đã chuẩn hóa với cơ sở dữ liệu bình luận cục bộ của node chủ sở hữu. Nó đem lại cho cộng đồng trải nghiệm đăng bài kiểu <robot9000>Robot9000</robot9000>: repost trùng khớp sẽ thất bại trước khi được chấp nhận, backlinks bị bỏ qua, các lần thất bại lặp lại kích hoạt lệnh cấm tạm thời tăng dần, và hash của văn bản đã được chấp nhận được giữ trong state cục bộ riêng tư thay vì lưu văn bản thô của bài đăng. Challenge này không dùng AI."
+        },
+        "wordfilter-challenge": {
+          "tagline": "Bộ lọc từ của cộng đồng được áp dụng như một quy tắc đăng bài thay vì một bộ lọc hiển thị.",
+          "description": "Wordfilter Challenge biến các quy tắc thay thế từ của cộng đồng thành ràng buộc bắt buộc. Các client đăng bài áp dụng phần thay thế trước khi ký, nên bình luận đã ký và CID của nó vốn đã chứa văn bản thay thế, còn node của cộng đồng sẽ từ chối mọi bản đăng vẫn còn chứa từ bị lọc. Dự án hiện thực hợp đồng <code>wordfilter/v1</code>, nhờ vậy một client viết theo hợp đồng đó vẫn hoạt động được với các bản hiện thực khác."
+        },
+        "challenge-composer": {
+          "tagline": "Trình chỉnh sửa ưu tiên ngoại tuyến cho các thiết lập thử thách chống spam của một cộng đồng.",
+          "description": "Challenge Composer hiển thị và cho phép chỉnh sửa mảng <code>challenges</code> trong thiết lập của một cộng đồng Bitsocial, rồi xuất ra một tập lệnh CLI sẵn sàng chạy. Công cụ này gói gọn trong một tệp HTML độc lập duy nhất, không gửi bất kỳ yêu cầu nào ra ngoài khi chạy, nên có thể mở trực tiếp từ ổ đĩa hoặc từ một USB."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Máy chủ xem trước liên kết và chuyển hướng, tạo thẻ chia sẻ cho bài đăng trên Bitsocial.",
+          "description": "Bitsocial Previewer tạo thẻ OpenGraph và Twitter khi liên kết của một bài đăng được chia sẻ trên nền tảng khác, rồi chuyển hướng các trình duyệt thật vào ứng dụng. Một phiên bản chạy đa người thuê theo tên máy chủ, nên chỉ cần một lần triển khai và một lần cấu hình TLS là đủ cho mọi tên miền của ứng dụng khách và bản sao."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Trình thu thập dữ liệu, chỉ mục tìm kiếm và giao diện web tự lưu trữ được cho các cộng đồng Bitsocial.",
+          "description": "Bitsocial Indexer kết nối tới một daemon Bitsocial CLI qua RPC, lập chỉ mục các cộng đồng do người vận hành cấu hình vào một cơ sở dữ liệu SQLite cục bộ, rồi cung cấp chúng qua API REST và tìm kiếm toàn văn, kèm theo giao diện web kết xuất phía máy chủ tùy chọn. Công cụ này khởi đầu rỗng: người vận hành quyết định những gì được lập chỉ mục."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Bot Telegram đăng tóm tắt gọn hoạt động GitHub của các kho mã Bitsocial.",
+          "description": "Bitsocial GitHub Alerts chuyển tiếp các lượt push, bản phát hành, issue và pull request từ GitHub tới bất kỳ cuộc trò chuyện, nhóm hay chủ đề diễn đàn nào trên Telegram. Nhóm Bitsocial dùng nó cho kho mã của mình, và image container được công khai nên ai cũng có thể tự vận hành cho kho mã riêng."
+        },
+        "bitbones": {
+          "tagline": "Client tham chiếu tối giản, trong đó mỗi màn hình chỉ là một lớp bọc mỏng quanh đúng một hook.",
+          "description": "bitbones là lớp hữu ích nhỏ nhất đặt trên các React hook của Bitsocial: gần như không có phần tạo kiểu, không có quyết định sản phẩm, và mỗi màn hình chỉ đứng sau đúng một hook. Đây là nơi nhanh nhất để tái hiện một lỗi hoặc thử một thay đổi trong hooks trên các cộng đồng thật, và bảng tin mặc định của nó có thể chuyển giữa danh sách cộng đồng của Seedit và 5chan."
+        },
+        "huggingsocial": {
+          "tagline": "Trung tâm peer-to-peer để tìm kiếm, thảo luận và tải xuống các mô hình AI mở.",
+          "description": "HuggingSocial là một hub mô hình không được sở hữu bởi bất kỳ công ty nào. Các hub là các cộng đồng Bitsocial được kiểm soát bởi các khóa mã hóa, mỗi danh sách mô hình là một bài đăng được ký kết với một thẻ mô hình, tổng kiểm tra và nguồn tải xuống, và các trọng số di chuyển qua BitTorrent hoặc các gương HTTP đơn giản và được xác minh trên máy của bạn. Máy khách đang được thiết kế và phát triển sớm; trang web chấp nhận đăng ký danh sách chờ."
         }
       }
     },
@@ -706,7 +735,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Giao thức chỉ văn bản",
     "title": "Tự do vẫn có kiểm duyệt.",
-    "supporting": "Không có quản trị viên toàn cục và không có máy chủ nào để tịch thu, nên không ai có thể cấm bạn khỏi toàn bộ mạng lưới. Việc kiểm duyệt chỉ đến gần bạn hơn mà thôi.",
+    "supporting": "Giao thức chỉ truyền văn bản, và đây không phải là một mạng ngầm. Không có quản trị viên toàn cục và cũng không có máy chủ nào để tịch thu, nên không ai có thể cấm bạn khỏi toàn bộ mạng lưới. Việc kiểm duyệt chỉ đơn giản là đến gần bạn hơn.",
     "carouselLabel": "Giải đáp những lo ngại thường gặp",
     "communities": {
       "myth": "Không cấm đoán nghĩa là loạn lạc, ai muốn làm gì thì làm.",
@@ -731,7 +760,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Luận điểm về tiếp nhận",
-    "title": "Tại sao ai đó lại dùng nó?",
+    "title": "Sở hữu tốt hơn đi thuê.",
     "supporting": "Nó không thể bị kiểm duyệt, không bao giờ sập, và bạn giữ lại tất cả những gì mình kiếm được. Đây là những ai xuất hiện — và vì sao.",
     "diagramLabel": "Đường cong chấp nhận cho thấy vì sao từng nhóm người dùng sử dụng Bitsocial.",
     "curve": {
@@ -789,7 +818,51 @@
     "docsCta": "P2P hoạt động như thế nào trong trình duyệt",
     "liveCta": "Xem trên blog",
     "sectionLabel": "Trình duyệt P2P",
-    "supporting": "Mở ứng dụng web Bitsocial trong một tab bình thường và nó tự kết nối với mạng, lấy bài viết từ các peer khác và đăng bài của bạn. Mỗi mạng xã hội phi tập trung khác vẫn giữ một máy chủ ở giữa.",
-    "title": "Trình duyệt của bạn là một peer"
+    "supporting": "Mở ứng dụng web Bitsocial trong một thẻ trình duyệt bình thường và nó tự tham gia mạng lưới: lấy bài đăng từ các peer khác và phát bài của bạn đi. Đó mới là phần khó — và là lý do mọi mạng xã hội phi tập trung khác vẫn phải đặt một máy chủ ở giữa.",
+    "title": "Chính trình duyệt là bước đột phá."
+  },
+  "faq": {
+    "sectionLabel": "Câu hỏi thường gặp",
+    "title": "Câu hỏi thường gặp",
+    "supporting": "Mỗi phần của trang này trả lời một câu hỏi. Nhấp vào câu hỏi để chuyển đến phần đó.",
+    "navLabel": "Các câu hỏi được trả lời trên trang này",
+    "answeredIn": "Được trả lời trong",
+    "items": {
+      "problem": {
+        "question": "Bitsocial giải quyết vấn đề gì?"
+      },
+      "core-features": {
+        "question": "Bitsocial là gì? Nó hoạt động như thế nào?"
+      },
+      "browser-peer": {
+        "question": "Tại sao trước giờ chưa ai làm điều này?"
+      },
+      "decentralized": {
+        "question": "Chẳng phải đã có mạng xã hội phi tập trung rồi sao?"
+      },
+      "arbitrary-challenges": {
+        "question": "Không có máy chủ thì lấy gì chặn spam?"
+      },
+      "text-only-protocol": {
+        "question": "Còn nội dung bất hợp pháp thì sao?"
+      },
+      "adoption-thesis": {
+        "question": "Tại sao mọi người lại chuyển sang Bitsocial?"
+      },
+      "master-plan": {
+        "question": "Kế hoạch sắp tới là gì? Tôi có thể giúp gì?"
+      },
+      "about": {
+        "question": "Ai đứng sau Bitsocial? Dự án được tài trợ thế nào?"
+      },
+      "mailing-list": {
+        "question": "Làm sao để tôi luôn cập nhật?"
+      }
+    },
+    "ask": {
+      "label": "Hỏi bất cứ điều gì khác",
+      "placeholder": "Hỏi bất cứ điều gì khác…",
+      "action": "Hỏi ChatGPT"
+    }
   }
 }

@@ -1,108 +1,46 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import monitorConfig from "../../monitor/config.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const grafanaRoot = path.resolve(__dirname, "..");
 const repoRoot = path.resolve(grafanaRoot, "..", "..");
-const upstreamStatusPath = path.join(grafanaRoot, "upstream", "plebbit-status.json");
 const fiveChanDirectoriesBaseUrl =
   "https://raw.githubusercontent.com/bitsocialnet/lists/master/5chan-directories";
 const fiveChanDirectoriesIndexUrl =
   "https://api.github.com/repos/bitsocialnet/lists/contents/5chan-directories?ref=master";
 const fiveChanDirectoryDefaultsSourceUrl = `${fiveChanDirectoriesBaseUrl}/5chan-directories-defaults.json`;
-const directoriesSnapshotPath = path.join(
-  repoRoot,
-  "stats",
-  "monitor",
-  "data",
-  "5chan-directories.snapshot.json",
-);
+const seeditDefaultSubscriptionsUrl =
+  "https://raw.githubusercontent.com/bitsocialnet/lists/master/seedit-default-subscriptions.json";
+const monitorDataDir = path.join(repoRoot, "stats", "monitor", "data");
+const directoriesSnapshotPath = path.join(monitorDataDir, "5chan-directories.snapshot.json");
+const seeditSnapshotPath = path.join(monitorDataDir, "seedit-communities.snapshot.json");
 const dashboardsOutputDir = path.join(grafanaRoot, "dashboards");
 
-const COMMUNITY_FILTER = "5chan";
-const COMMUNITY_SECTION_START = 12;
-const COMMUNITY_PANEL_START = 13;
-const PUBSUB_ROW_INDEX = 198;
-const PUBSUB_PANEL_START = 199;
-const LOWER_SECTIONS_START = 384;
-const NFT_ROW_INDEX = 432;
-const COMMUNITY_PANEL_COUNT_PER_GROUP = 5;
-const COMMUNITY_GROUP_HEIGHT = 4;
-const SERVICE_SECTION_HEIGHT = 17;
-const GENERATED_PANEL_ID_START = 2000000000;
 const PROMETHEUS_DATASOURCE = { type: "prometheus", uid: "prometheus" };
 const FIVE_CHAN_DIRECTORY_FILE_NAME_PATTERN = /^5chan-(.+)-directory\.json$/;
 const FETCH_TIMEOUT_MS = 30_000;
-
-const exprReplacements = [
-  [
-    "plebbit_uptime_monitor_http_router_last_subplebbit_ipns_",
-    "bitsocial_stats_http_router_last_community_ipns_",
-  ],
-  [
-    "plebbit_uptime_monitor_http_router_subplebbit_ipns_",
-    "bitsocial_stats_http_router_community_ipns_",
-  ],
-  [
-    "plebbit_uptime_monitor_ipfs_gateway_last_subplebbit_ipns_",
-    "bitsocial_stats_ipfs_gateway_last_community_ipns_",
-  ],
-  [
-    "plebbit_uptime_monitor_ipfs_gateway_subplebbit_ipns_",
-    "bitsocial_stats_ipfs_gateway_community_ipns_",
-  ],
-  ["plebbit_uptime_monitor_last_subplebbit_pubsub_", "bitsocial_stats_last_community_pubsub_"],
-  ["plebbit_uptime_monitor_last_subplebbit_update_", "bitsocial_stats_last_community_update_"],
-  [
-    "plebbit_uptime_monitor_subplebbit_pubsub_seconds_since_last_subplebbit_pubsub_message",
-    "bitsocial_stats_community_pubsub_seconds_since_last_community_pubsub_message",
-  ],
-  ["plebbit_uptime_monitor_subplebbit_pubsub_", "bitsocial_stats_community_pubsub_"],
-  ["plebbit_uptime_monitor_subplebbit_stats_", "bitsocial_stats_community_stats_"],
-  [
-    "plebbit_uptime_monitor_plebbit_seeder_last_subplebbit_update_cid_",
-    "bitsocial_stats_seeder_last_community_update_cid_",
-  ],
-  [
-    "plebbit_uptime_monitor_plebbit_seeder_subplebbit_update_cid_",
-    "bitsocial_stats_seeder_community_update_cid_",
-  ],
-  ["plebbit_uptime_monitor_plebbit_previewer_", "bitsocial_stats_previewer_"],
-  ["plebbit_uptime_monitor_plebbit_ipns_", "bitsocial_stats_network_ipns_"],
-  ["plebbit_uptime_monitor_plebbit_pubsub_", "bitsocial_stats_network_pubsub_"],
-  ["plebbit_uptime_monitor_", "bitsocial_stats_"],
-];
-
-const displayReplacements = [
-  ["subplebbit_address", "community_address"],
-  ["Plebbit Peers", "Bitsocial P2P Peers"],
-  ["Plebbit Seeders", "Bitsocial Seeders"],
-  ["Plebbit Seeder", "Bitsocial Seeder"],
-  ["Plebbit Previewers", "Bitsocial Previewers"],
-  ["Plebbit Previewer", "Bitsocial Previewer"],
-  ["Subplebbits", "Communities"],
-  ["Subplebbit", "Community"],
-  ["Plebbit", "Bitsocial"],
-];
-
-const communityMetricPrefixes = [
-  "bitsocial_stats_community_",
-  "bitsocial_stats_last_community_",
-  "bitsocial_stats_http_router_community_",
-  "bitsocial_stats_http_router_last_community_",
-  "bitsocial_stats_ipfs_gateway_community_",
-  "bitsocial_stats_ipfs_gateway_last_community_",
-];
-
-const dedupeIgnoredLabels = ["client_id", "instance", "job", "service", "subplebbit_address"];
-
-let nextGeneratedPanelId = GENERATED_PANEL_ID_START;
+const GRID_WIDTH = 24;
+// A community counts as offline once its latest update is older than this.
+const COMMUNITY_OFFLINE_AFTER_SECONDS = 2 * 60 * 60;
+// Shared-dashboard paths; the access tokens must match ensure-shared-dashboards.mjs.
+const sharedDashboardPaths = {
+  overview: "/public-dashboards/e9277bcc0c421ddcacd29f591466678c",
+  fiveChan: "/public-dashboards/fa6f2225e0ea98e116fb6f85d84e0186",
+  seedit: "/public-dashboards/c770d7565c18df52dd26461c9191e05d",
+};
+const dedupeIgnoredLabels = ["instance", "job", "service", "subplebbit_address"];
+const palette = {
+  blue: "#3b82f6",
+  deepBlue: "#1d4ed8",
+  lightBlue: "#93c5fd",
+  cyan: "#22d3ee",
+  violet: "#a78bfa",
+};
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
-
-const replaceAll = (value, replacements) =>
-  replacements.reduce((result, [from, to]) => result.replaceAll(from, to), value);
+const capitalize = (text) => text[0].toUpperCase() + text.slice(1);
 
 const fetchJson = async (url) => {
   const controller = new AbortController();
@@ -220,7 +158,12 @@ const buildResolvedDirectoryList = ({ directoryDefaults, directoryRecords }) => 
     directoryDefaults,
     fiveChanDirectoryDefaultsSourceUrl,
   );
-  const recordsByCode = new Map(directoryRecords.map((record) => [record.directoryCode, record]));
+  // Hidden directory files (e.g. /trash/) exist only for seeder discovery and have no defaults.
+  const recordsByCode = new Map(
+    directoryRecords
+      .filter((record) => record.directoryFile.hidden !== true)
+      .map((record) => [record.directoryCode, record]),
+  );
   const activeDirectoryCodes = [...recordsByCode.keys()];
   const missingDefaults = activeDirectoryCodes.filter(
     (directoryCode) => !defaultsByCode[directoryCode],
@@ -268,586 +211,1188 @@ const loadFiveChanDirectories = async () => {
   return buildResolvedDirectoryList({ directoryDefaults, directoryRecords });
 };
 
-const isCommunityMetric = (metricName) =>
-  communityMetricPrefixes.some((prefix) => metricName.startsWith(prefix));
-
-const addClientFilter = (metricName, selector, clientId) => {
-  if (!clientId || !isCommunityMetric(metricName)) {
-    return selector;
+const loadSeeditCommunities = async () => {
+  const defaultSubscriptions = await fetchJson(seeditDefaultSubscriptionsUrl);
+  if (!Array.isArray(defaultSubscriptions?.communities)) {
+    throw new Error(`${seeditDefaultSubscriptionsUrl} is missing a communities array`);
   }
 
-  if (!selector) {
-    return `{client_id="${clientId}"}`;
-  }
-
-  if (selector.includes("client_id=")) {
-    return selector;
-  }
-
-  const selectorBody = selector.slice(1, -1).trim();
-  const nextSelector = selectorBody
-    ? `${selectorBody},client_id="${clientId}"`
-    : `client_id="${clientId}"`;
-
-  return `{${nextSelector}}`;
+  return {
+    title: "Seedit Default Communities",
+    description:
+      "Resolved from Seedit's default subscriptions in bitsocialnet/lists.\n\nhttps://github.com/bitsocialnet/lists/blob/master/seedit-default-subscriptions.json",
+    createdAt: defaultSubscriptions.createdAt,
+    updatedAt: defaultSubscriptions.updatedAt,
+    // The monitor reads every client source in the 5chan directory-list shape.
+    directories: defaultSubscriptions.communities.map(
+      ({ address, directoryCode, publicKey, title }) => ({
+        directoryCode,
+        title,
+        name: address,
+        publicKey,
+      }),
+    ),
+  };
 };
 
-const normalizeMetricSelectors = (expr, { clientId } = {}) =>
-  expr.replace(
-    /\b(bitsocial_stats_[a-z0-9_]+)(\{[^{}]*\})?/g,
-    (match, metricName, selector = "") => {
-      const nextSelector = addClientFilter(metricName, selector, clientId);
-      return `max without(${dedupeIgnoredLabels.join(", ")}) (${metricName}${nextSelector})`;
+// Clients
+
+const clients = [
+  {
+    id: "5chan",
+    label: "5chan",
+    color: palette.blue,
+    uid: "bitsocial-5chan",
+    title: "5chan Stats",
+    navKey: "fiveChan",
+    navLabel: "5chan boards",
+    source: "the official 5chan directories",
+    community: "board",
+    communities: "boards",
+    postLabel: "Threads",
+    replyLabel: "Replies",
+    communityUrl: "https://5chan.app/#/${__value.raw}",
+  },
+  {
+    id: "seedit",
+    label: "Seedit",
+    color: palette.violet,
+    uid: "bitsocial-seedit",
+    title: "Seedit Stats",
+    navKey: "seedit",
+    navLabel: "Seedit communities",
+    source: "Seedit's default subscriptions",
+    community: "community",
+    communities: "communities",
+    postLabel: "Posts",
+    replyLabel: "Comments",
+    communityUrl: "https://seedit.app/#/s/${__value.raw}",
+  },
+];
+
+// Queries
+
+// Escapes a value for a PromQL regex matcher inside a double-quoted string.
+const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\\\$&");
+
+const metric = (name, matchers = {}) => {
+  const selector = Object.entries(matchers)
+    .map(([label, value]) =>
+      Array.isArray(value)
+        ? `${label}=~"${value.map(escapeRegex).join("|")}"`
+        : `${label}="${value}"`,
+    )
+    .join(",");
+  return `max without(${dedupeIgnoredLabels.join(", ")}) (bitsocial_stats_${name}${selector ? `{${selector}}` : ""})`;
+};
+
+const whenSuccessful = (durationExpr, successExpr) => `${durationExpr} and (${successExpr} == 1)`;
+
+// Community queries for one client id, or for several when given an array, optionally
+// narrowed to a single community address.
+const communityQueries = (clientIds, communityAddress) => {
+  const matchers = communityAddress
+    ? { client_id: clientIds, community_address: communityAddress }
+    : { client_id: clientIds };
+  const communityMetric = (name) => metric(name, matchers);
+  const updateAge = communityMetric("last_community_update_fetch_seconds_since_updated_at");
+  const fetchSuccess = communityMetric("last_community_update_fetch_success");
+  // The monitor keeps a community's last values after a failed fetch; drop them where staleness misleads.
+  const whenFetched = (expr) => `${expr} and (${fetchSuccess} == 1)`;
+  const stat = (window, name) => communityMetric(`community_stats_${window}_${name}_count`);
+  const posts = (window, { freshOnly = false } = {}) =>
+    ["post", "reply"]
+      .map((name) => `sum(${freshOnly ? whenFetched(stat(window, name)) : stat(window, name)})`)
+      .join(" + ");
+
+  return {
+    communityMetric,
+    stat,
+    whenFetched,
+    updateAge,
+    // 1 when the latest fetch succeeded and the update is fresh, 0 otherwise (including communities never fetched).
+    online: `((${updateAge} < bool ${COMMUNITY_OFFLINE_AFTER_SECONDS}) * ${fetchSuccess}) or (${fetchSuccess} * 0)`,
+    // Same definitions as the 5chan homepage: threads plus replies, and weekly active addresses.
+    totalPosts: posts("all"),
+    postsLastDay: posts("day", { freshOnly: true }),
+    currentUsers: `sum(${stat("week", "active_user")})`,
+  };
+};
+
+const serviceUp = metric("service_probe_last_success");
+const webpageUp = metric("webpage_last_webpage_fetch_success");
+
+const { monitoring } = monitorConfig;
+const httpRouterUrls = monitoring.httpRouterUrls || [];
+const nameResolverUrls = monitoring.chainProviders?.eth?.urls || [];
+const gatewayUrls = monitoring.ipfsGatewayUrls || [];
+const pubsubProviderUrls = monitoring.pubsubProviderUrls || [];
+// Routers are judged by the provider lookups clients make for each community. The monitor's
+// separate write-then-read probe publishes an unsigned record that current routers reject.
+const routerLookupSuccess = metric("http_router_last_community_ipns_get_providers_fetch_success", {
+  http_router_url: httpRouterUrls,
+});
+const httpRouterUp = `max by (http_router_url) (${routerLookupSuccess})`;
+const nameResolverUp = metric("chain_provider_last_resolve_address_success", {
+  chain_provider_url: nameResolverUrls,
+  chain_ticker: "eth",
+});
+const gatewayUp = metric("ipfs_gateway_last_comment_fetch_success", {
+  ipfs_gateway_url: gatewayUrls,
+});
+const pubsubProviderUp = `min by (pubsub_provider_url) ({__name__=~"bitsocial_stats_pubsub_provider_last_(publish|subscribe)_success",pubsub_provider_url=~"${pubsubProviderUrls.map(escapeRegex).join("|")}"})`;
+const serviceTotal = (monitoring.serviceProbes?.length || 0) + (monitoring.webpages?.length || 0);
+
+// Panels
+
+const refIdAt = (index) => String.fromCharCode(65 + index);
+
+const makeTarget = ({ expr, legend = "__auto", refId = "A", instant = false, table = false }) => ({
+  datasource: clone(PROMETHEUS_DATASOURCE),
+  editorMode: "code",
+  expr,
+  ...(table ? { format: "table" } : {}),
+  instant,
+  legendFormat: legend,
+  range: !instant,
+  refId,
+});
+
+const makeTargets = (queries, options = {}) =>
+  queries.map((query, index) => makeTarget({ refId: refIdAt(index), ...options, ...query }));
+
+// Strips URL schemes and paths from series names, e.g. "https://ipfs.io/api/v0" -> "ipfs.io".
+const shortenUrlsTransformation = {
+  id: "renameByRegex",
+  options: {
+    regex: "^(.*?)https?://([^/\\s)]+)[^\\s)]*(.*)$",
+    renamePattern: "$1$2$3",
+  },
+};
+
+const statusMappings = (upText = "Up", downText = "Down") => [
+  {
+    type: "value",
+    options: {
+      0: { color: "red", index: 1, text: downText },
+      1: { color: "green", index: 0, text: upText },
     },
-  );
+  },
+];
 
-const transformExpr = (expr, { clientId } = {}) => {
-  if (typeof expr !== "string") {
-    return expr;
-  }
+const countThresholds = (total) => ({
+  mode: "absolute",
+  steps: [
+    { color: "red", value: null },
+    { color: "orange", value: Math.max(1, Math.ceil(total * 0.75)) },
+    { color: "green", value: total },
+  ],
+});
 
-  let transformed = replaceAll(expr, exprReplacements);
-  transformed = transformed.replaceAll("subplebbit_address", "community_address");
-  return normalizeMetricSelectors(transformed, { clientId });
-};
+const colorOverride = (refId, color) => ({
+  matcher: { id: "byFrameRefID", options: refId },
+  properties: [{ id: "color", value: { fixedColor: color, mode: "fixed" } }],
+});
 
-const transformDisplayText = (value) => replaceAll(value, displayReplacements);
+const byNameOverride = (name, properties) => ({
+  matcher: { id: "byName", options: name },
+  properties,
+});
 
-const transformObjectStrings = (value, key = "") => {
-  if (Array.isArray(value)) {
-    return value.map((item) => transformObjectStrings(item));
-  }
-
-  if (value && typeof value === "object") {
-    return Object.fromEntries(
-      Object.entries(value).map(([entryKey, entryValue]) => [
-        entryKey,
-        transformObjectStrings(entryValue, entryKey),
-      ]),
-    );
-  }
-
-  if (typeof value === "string" && key !== "expr") {
-    return transformDisplayText(value);
-  }
-
-  return value;
-};
-
-const normalizeDatasource = (panel) => {
-  if (panel?.datasource?.type === "prometheus") {
-    panel.datasource = clone(PROMETHEUS_DATASOURCE);
-  }
-
-  for (const target of panel.targets || []) {
-    if (target?.datasource?.type === "prometheus") {
-      target.datasource = clone(PROMETHEUS_DATASOURCE);
-    }
-  }
-
-  return panel;
-};
-
-const moveLegacyFieldMapping = (mapping, fromKey, toKey) => {
-  if (!mapping || typeof mapping !== "object" || !(fromKey in mapping)) {
-    return;
-  }
-
-  if (!(toKey in mapping)) {
-    mapping[toKey] = mapping[fromKey];
-  }
-
-  delete mapping[fromKey];
-};
-
-const normalizeTransformations = (panel) => {
-  for (const transformation of panel.transformations || []) {
-    if (transformation?.id !== "organize") {
-      continue;
-    }
-
-    transformation.options = transformation.options || {};
-    transformation.options.excludeByName = transformation.options.excludeByName || {};
-    transformation.options.indexByName = transformation.options.indexByName || {};
-    transformation.options.renameByName = transformation.options.renameByName || {};
-
-    moveLegacyFieldMapping(
-      transformation.options.indexByName,
-      "subplebbit_address",
-      "community_address",
-    );
-    moveLegacyFieldMapping(
-      transformation.options.renameByName,
-      "subplebbit_address",
-      "community_address",
-    );
-    for (const hiddenFieldName of [
-      "client_id",
-      "client_id 1",
-      "client_id 2",
-      "client_id 3",
-      "subplebbit_address",
-      "subplebbit_address 1",
-      "subplebbit_address 2",
-      "subplebbit_address 3",
-    ]) {
-      transformation.options.excludeByName[hiddenFieldName] = true;
-      delete transformation.options.indexByName[hiddenFieldName];
-      delete transformation.options.renameByName[hiddenFieldName];
-    }
-    delete transformation.options.excludeByName.subplebbit_address;
-  }
-
-  return panel;
-};
-
-const transformPanel = (panel, { clientId } = {}) => {
-  const transformedPanel = transformObjectStrings(clone(panel));
-  normalizeDatasource(transformedPanel);
-  normalizeTransformations(transformedPanel);
-
-  for (const target of transformedPanel.targets || []) {
-    target.expr = transformExpr(target.expr, { clientId });
-  }
-
-  return transformedPanel;
-};
-
-const makeGeneratedPanelId = () => {
-  nextGeneratedPanelId += 1;
-  return nextGeneratedPanelId;
-};
-
-const setPanelGridY = (panel, y) => {
-  panel.gridPos = { ...panel.gridPos, y };
-  return panel;
-};
-
-const replaceCommunityAddressInPanel = (panel, address) => {
-  for (const target of panel.targets || []) {
-    if (typeof target.expr === "string") {
-      target.expr = target.expr.replaceAll("plebtoken.eth", address);
-    }
-  }
-
-  panel.fieldConfig = panel.fieldConfig || {};
-  panel.fieldConfig.overrides = [];
-  return panel;
-};
-
-const buildCommunitySectionPanels = ({ templatePanels, communities, startY, clientId }) => {
-  const panels = [];
-
-  for (const [index, community] of communities.entries()) {
-    const groupY = startY + index * COMMUNITY_GROUP_HEIGHT;
-    for (const templatePanel of templatePanels) {
-      const panel = transformPanel(templatePanel, { clientId });
-      panel.id = makeGeneratedPanelId();
-      delete panel.repeat;
-      delete panel.repeatDirection;
-      delete panel.repeatPanelId;
-      delete panel.scopedVars;
-
-      replaceCommunityAddressInPanel(panel, community.address);
-      setPanelGridY(panel, groupY);
-      panels.push(panel);
-    }
-  }
-
-  return panels;
-};
-
-const shiftPanelsY = (panels, deltaY, { clientId } = {}) =>
-  panels.map((panel) => {
-    const transformedPanel = transformPanel(panel, { clientId });
-    setPanelGridY(transformedPanel, transformedPanel.gridPos.y + deltaY);
-    return transformedPanel;
-  });
-
-const makeRowPanel = ({ title, y }) => ({
-  collapsed: false,
-  gridPos: { h: 1, w: 24, x: 0, y },
-  id: makeGeneratedPanelId(),
+const makeRowPanel = ({ title, collapsed }) => ({
+  collapsed,
   panels: [],
   title,
   type: "row",
 });
 
-const makeStatPanel = ({ title, expr, x, y, w, h, unit = "none", mappings, thresholds }) => ({
+const makeTextPanel = ({ content }) => ({
+  options: {
+    code: { language: "html", showLineNumbers: false, showMiniMap: false },
+    content,
+    mode: "html",
+  },
+  title: "",
+  transparent: true,
+  type: "text",
+});
+
+// Instant queries, so a monitor outage reads "No data" instead of the last value before it.
+const makeStatPanel = ({ title, description, expr, total }) => ({
   datasource: clone(PROMETHEUS_DATASOURCE),
+  description,
   fieldConfig: {
     defaults: {
-      color: {
-        mode: "thresholds",
+      color: total ? { mode: "thresholds" } : { fixedColor: palette.blue, mode: "fixed" },
+      decimals: 0,
+      mappings: [],
+      thresholds: total
+        ? countThresholds(total)
+        : { mode: "absolute", steps: [{ color: palette.blue, value: null }] },
+      unit: total ? `suffix: / ${total}` : "locale",
+    },
+    overrides: [],
+  },
+  options: {
+    colorMode: total ? "value" : "none",
+    graphMode: "none",
+    justifyMode: "auto",
+    orientation: "auto",
+    reduceOptions: { calcs: ["lastNotNull"], fields: "", values: false },
+    showPercentChange: false,
+    textMode: "value",
+    wideLayout: true,
+  },
+  targets: [makeTarget({ expr, instant: true })],
+  title,
+  type: "stat",
+});
+
+const makeTimeseriesPanel = ({
+  title,
+  description,
+  queries,
+  unit = "short",
+  min = 0,
+  max,
+  stacked = false,
+  fillOpacity = 12,
+  colors = [],
+  legendPlacement = "bottom",
+  transformations = [],
+}) => ({
+  datasource: clone(PROMETHEUS_DATASOURCE),
+  description,
+  fieldConfig: {
+    defaults: {
+      color: { mode: "palette-classic" },
+      custom: {
+        axisBorderShow: false,
+        axisPlacement: "auto",
+        drawStyle: "line",
+        fillOpacity,
+        gradientMode: "opacity",
+        lineInterpolation: "smooth",
+        lineWidth: 2,
+        pointSize: 4,
+        showPoints: "never",
+        spanNulls: false,
+        stacking: { group: "A", mode: stacked ? "normal" : "none" },
+        thresholdsStyle: { mode: "off" },
       },
-      mappings: mappings || [],
-      thresholds: thresholds || {
+      decimals: unit === "s" ? 1 : undefined,
+      min,
+      max,
+      unit,
+    },
+    overrides: colors.map((color, index) => colorOverride(refIdAt(index), color)),
+  },
+  options: {
+    legend: { calcs: [], displayMode: "list", placement: legendPlacement, showLegend: true },
+    tooltip: { hideZeros: false, mode: "multi", sort: "desc" },
+  },
+  targets: makeTargets(queries),
+  title,
+  transformations,
+  type: "timeseries",
+});
+
+const makeStateTimelinePanel = ({
+  title,
+  description,
+  queries,
+  upText,
+  downText,
+  transformations = [],
+}) => ({
+  datasource: clone(PROMETHEUS_DATASOURCE),
+  description,
+  fieldConfig: {
+    defaults: {
+      color: { mode: "thresholds" },
+      custom: {
+        fillOpacity: 80,
+        hideFrom: { legend: false, tooltip: false, viz: false },
+        lineWidth: 0,
+      },
+      mappings: statusMappings(upText, downText),
+      thresholds: {
         mode: "absolute",
         steps: [
           { color: "red", value: null },
           { color: "green", value: 1 },
         ],
       },
-      unit,
     },
     overrides: [],
   },
-  gridPos: { h, w, x, y },
-  id: makeGeneratedPanelId(),
   options: {
-    colorMode: "background",
-    graphMode: "area",
-    justifyMode: "auto",
-    orientation: "auto",
-    percentChangeColorMode: "standard",
-    reduceOptions: {
-      calcs: ["lastNotNull"],
-      fields: "",
-      values: false,
-    },
-    showPercentChange: false,
-    textMode: "auto",
-    wideLayout: true,
+    alignValue: "left",
+    legend: { displayMode: "list", placement: "bottom", showLegend: false },
+    mergeValues: true,
+    rowHeight: 0.8,
+    showValue: "never",
+    tooltip: { hideZeros: false, mode: "single", sort: "none" },
   },
-  targets: [
-    {
-      datasource: clone(PROMETHEUS_DATASOURCE),
-      editorMode: "code",
-      expr,
-      legendFormat: "__auto",
-      range: true,
-      refId: "A",
-    },
-  ],
+  targets: makeTargets(queries),
   title,
-  type: "stat",
+  transformations,
+  type: "state-timeline",
 });
 
-const makeTimeseriesPanel = ({ title, expr, x, y, w, h, unit = "s" }) => ({
+// Grid height that fits a state timeline with this many rows.
+const timelineHeight = (rowCount) => Math.max(6, Math.ceil(rowCount * 0.75) + 2);
+
+const makePeersMapPanel = () => ({
   datasource: clone(PROMETHEUS_DATASOURCE),
+  description:
+    "Approximate city-level locations of peers that provide community IPNS records through HTTP routers, derived from their public IP addresses. Larger dots mean more peers in that city.",
   fieldConfig: {
     defaults: {
-      color: {
-        mode: "palette-classic",
-      },
-      custom: {
-        axisBorderShow: false,
-        axisCenteredZero: false,
-        axisColorMode: "text",
-        axisLabel: "",
-        axisPlacement: "auto",
-        barAlignment: 0,
-        drawStyle: "line",
-        fillOpacity: 0,
-        gradientMode: "none",
-        hideFrom: {
-          legend: false,
-          tooltip: false,
-          viz: false,
-        },
-        insertNulls: false,
-        lineInterpolation: "linear",
-        lineWidth: 1,
-        pointSize: 5,
-        scaleDistribution: {
-          type: "linear",
-        },
-        showPoints: "never",
-        spanNulls: false,
-        stacking: {
-          group: "A",
-          mode: "none",
-        },
-        thresholdsStyle: {
-          mode: "off",
-        },
-      },
-      thresholds: {
-        mode: "absolute",
-        steps: [{ color: "green", value: null }],
-      },
-      unit,
+      color: { fixedColor: palette.blue, mode: "fixed" },
+      custom: { hideFrom: { legend: false, tooltip: false, viz: false } },
+      decimals: 0,
+      unit: "short",
     },
-    overrides: [],
+    overrides: ["Latitude", "Longitude"].map((name) =>
+      byNameOverride(name, [
+        { id: "custom.hideFrom", value: { legend: false, tooltip: true, viz: false } },
+      ]),
+    ),
   },
-  gridPos: { h, w, x, y },
-  id: makeGeneratedPanelId(),
   options: {
-    legend: {
-      calcs: ["lastNotNull"],
-      displayMode: "list",
-      placement: "bottom",
-      showLegend: true,
+    // Grafana's default CARTO basemap now requires an API key, so draw countries from the
+    // GeoJSON bundled with Grafana instead of loading third-party tiles.
+    basemap: {
+      config: {
+        rules: [],
+        src: "public/maps/countries.geojson",
+        style: { color: { fixed: "#475569" }, lineWidth: 1, opacity: 0.35 },
+      },
+      name: "Countries",
+      type: "geojson",
     },
-    tooltip: {
-      hideZeros: false,
-      mode: "single",
-      sort: "none",
+    controls: {
+      mouseWheelZoom: false,
+      showAttribution: false,
+      showDebug: false,
+      showMeasure: false,
+      showScale: false,
+      showZoom: true,
     },
+    layers: [
+      {
+        config: {
+          showLegend: false,
+          style: {
+            color: { fixed: palette.blue },
+            opacity: 0.75,
+            size: { field: "Peers", fixed: 6, max: 16, min: 5 },
+            symbol: { fixed: "img/icons/marker/circle.svg", mode: "fixed" },
+            symbolAlign: { horizontal: "center", vertical: "center" },
+          },
+        },
+        location: { latitude: "Latitude", longitude: "Longitude", mode: "coords" },
+        name: "Peers",
+        tooltip: true,
+        type: "markers",
+      },
+    ],
+    tooltip: { mode: "details" },
+    view: { allLayers: true, id: "coords", lat: 28, lon: 10, zoom: 1.3 },
   },
   targets: [
+    makeTarget({
+      expr: metric("network_ipns_http_routers_peer_location_count"),
+      instant: true,
+      table: true,
+    }),
+  ],
+  title: "Where peers are",
+  transformations: [
     {
-      datasource: clone(PROMETHEUS_DATASOURCE),
-      editorMode: "code",
-      expr,
-      legendFormat: "__auto",
-      range: true,
-      refId: "A",
+      id: "convertFieldType",
+      options: {
+        conversions: [
+          { destinationType: "number", targetField: "latitude" },
+          { destinationType: "number", targetField: "longitude" },
+        ],
+        fields: {},
+      },
+    },
+    {
+      id: "organize",
+      options: {
+        excludeByName: { Time: true },
+        indexByName: {},
+        renameByName: {
+          Value: "Peers",
+          city: "City",
+          country: "Country",
+          latitude: "Latitude",
+          longitude: "Longitude",
+          region: "Region",
+        },
+      },
     },
   ],
-  title,
-  type: "timeseries",
+  type: "geomap",
 });
 
-const serviceStatusMappings = [
-  {
-    options: {
-      0: { color: "red", text: "Down" },
-      1: { color: "green", text: "Up" },
+const makeCommunitiesTablePanel = (client) => {
+  const queries = communityQueries(client.id);
+  // Listed in display order, between the community name and its address.
+  const columns = [
+    { name: "Status", expr: queries.online, width: 90 },
+    {
+      name: "Last update",
+      expr: queries.whenFetched(queries.updateAge),
+      unit: "s",
+      width: 110,
     },
-    type: "value",
-  },
-];
+    { name: client.postLabel, expr: queries.stat("all", "post"), width: 100 },
+    { name: client.replyLabel, expr: queries.stat("all", "reply"), width: 100 },
+    { name: "Current users", expr: queries.stat("week", "active_user"), width: 120 },
+    { name: "Unique addresses", expr: queries.stat("all", "active_user"), width: 140 },
+    {
+      name: "Pubsub peers",
+      expr: queries.communityMetric("last_community_pubsub_pubsub_peer_count"),
+      width: 120,
+    },
+    {
+      name: "Last pubsub message",
+      expr: queries.communityMetric("community_pubsub_seconds_since_last_community_pubsub_message"),
+      unit: "s",
+      width: 170,
+    },
+  ];
+  const [firstColumn, ...otherColumns] = columns;
+  const nameColumn = capitalize(client.community);
+  const renameByName = { community_name: nameColumn, community_address: "Address" };
+  const indexByName = { community_name: 0, community_address: columns.length + 1 };
+  for (const [index, column] of columns.entries()) {
+    renameByName[`Value #${refIdAt(index)}`] = column.name;
+    indexByName[`Value #${refIdAt(index)}`] = index + 1;
+  }
 
-const buildServicePanels = (startY) => [
-  makeRowPanel({ title: "Bitsocial Services", y: startY }),
-  makeStatPanel({
-    title: "Newsletter Gateway",
-    expr: 'bitsocial_stats_service_probe_last_success{service_probe_id="newsletter_subscribe_gateway"}',
-    x: 0,
-    y: startY + 1,
-    w: 6,
-    h: 4,
-    mappings: serviceStatusMappings,
-  }),
-  makeStatPanel({
-    title: "Newsletter CORS",
-    expr: 'bitsocial_stats_service_probe_last_success{service_probe_id="newsletter_subscribe_preflight"}',
-    x: 6,
-    y: startY + 1,
-    w: 6,
-    h: 4,
-    mappings: serviceStatusMappings,
-  }),
-  makeStatPanel({
-    title: "Newsletter Site",
-    expr: 'bitsocial_stats_service_probe_last_success{service_probe_id="newsletter_site_root"}',
-    x: 12,
-    y: startY + 1,
-    w: 6,
-    h: 4,
-    mappings: serviceStatusMappings,
-  }),
-  makeStatPanel({
-    title: "Newsletter API Latency",
-    expr: 'bitsocial_stats_service_probe_last_duration_seconds{service_probe_id="newsletter_subscribe_gateway"}',
-    x: 18,
-    y: startY + 1,
-    w: 6,
-    h: 4,
-    unit: "s",
-    thresholds: {
-      mode: "absolute",
-      steps: [
-        { color: "green", value: null },
-        { color: "orange", value: 3 },
-        { color: "red", value: 10 },
+  return {
+    datasource: clone(PROMETHEUS_DATASOURCE),
+    description: `Every ${client.community} in ${client.source}. A ${client.community} is offline when the monitor cannot fetch it or its latest update is more than ${COMMUNITY_OFFLINE_AFTER_SECONDS / 3600} hours old. Current users are addresses that posted in the last 7 days. Click a column header to sort; click a ${client.community} to open it on ${client.label}.`,
+    fieldConfig: {
+      defaults: {
+        custom: { align: "auto", cellOptions: { type: "auto" }, filterable: false, inspect: false },
+        decimals: 0,
+        mappings: [],
+        unit: "short",
+      },
+      overrides: [
+        byNameOverride(nameColumn, [
+          {
+            id: "mappings",
+            value: [
+              {
+                type: "value",
+                options: Object.fromEntries(
+                  client.communityList.map(({ address, title }, index) => [
+                    address,
+                    { index, text: title || address },
+                  ]),
+                ),
+              },
+            ],
+          },
+          {
+            id: "links",
+            value: [
+              { targetBlank: true, title: `Open on ${client.label}`, url: client.communityUrl },
+            ],
+          },
+          { id: "custom.width", value: 230 },
+        ]),
+        byNameOverride("Status", [
+          { id: "mappings", value: statusMappings("Online", "Offline") },
+          { id: "custom.cellOptions", value: { type: "color-text" } },
+        ]),
+        ...columns.map(({ name, unit, width }) =>
+          byNameOverride(name, [
+            ...(unit ? [{ id: "unit", value: unit }] : []),
+            { id: "custom.width", value: width },
+          ]),
+        ),
       ],
     },
-  }),
-  makeTimeseriesPanel({
-    title: "Newsletter API Latency",
-    expr: 'bitsocial_stats_service_probe_last_duration_seconds{service_probe_id="newsletter_subscribe_gateway"}',
-    x: 0,
-    y: startY + 5,
-    w: 12,
-    h: 4,
-  }),
-  makeTimeseriesPanel({
-    title: "Newsletter Availability",
-    expr: 'min(bitsocial_stats_service_probe_last_success{service_probe_id=~"newsletter_site_root|newsletter_subscribe_gateway|newsletter_subscribe_preflight"})',
-    x: 12,
-    y: startY + 5,
-    w: 12,
-    h: 4,
-    unit: "bool",
-  }),
-  makeStatPanel({
-    title: "Spam Blocker",
-    expr: 'bitsocial_stats_service_probe_last_success{service_probe_id="spam_blocker_server"}',
-    x: 0,
-    y: startY + 9,
-    w: 8,
-    h: 4,
-    mappings: serviceStatusMappings,
-  }),
-  makeStatPanel({
-    title: "AI Moderation Challenge",
-    expr: 'bitsocial_stats_service_probe_last_success{service_probe_id="ai_moderation_challenge_server"}',
-    x: 8,
-    y: startY + 9,
-    w: 8,
-    h: 4,
-    mappings: serviceStatusMappings,
-  }),
-  makeStatPanel({
-    title: "Flags Challenge",
-    expr: 'bitsocial_stats_service_probe_last_success{service_probe_id="flags_challenge_server"}',
-    x: 16,
-    y: startY + 9,
-    w: 8,
-    h: 4,
-    mappings: serviceStatusMappings,
-  }),
-  makeTimeseriesPanel({
-    title: "Challenge Services Availability",
-    expr: 'min(bitsocial_stats_service_probe_last_success{service_probe_id=~"spam_blocker_server|ai_moderation_challenge_server|flags_challenge_server"}) by (service_probe_label)',
-    x: 0,
-    y: startY + 13,
-    w: 24,
-    h: 4,
-    unit: "bool",
-  }),
-];
+    options: {
+      cellHeight: "sm",
+      showHeader: true,
+      sortBy: [{ desc: true, displayName: client.postLabel }],
+    },
+    targets: makeTargets(
+      [
+        // Copy the address into another label so the table can show both the title and the address.
+        {
+          expr: `label_replace(${firstColumn.expr}, "community_name", "$1", "community_address", "(.*)")`,
+        },
+        ...otherColumns.map(({ expr }) => ({ expr })),
+      ],
+      { instant: true, table: true },
+    ),
+    title: capitalize(client.communities),
+    transformations: [
+      { id: "merge", options: {} },
+      {
+        id: "organize",
+        options: {
+          excludeByName: { Time: true, client_id: true },
+          includeByName: {},
+          indexByName,
+          renameByName,
+        },
+      },
+    ],
+    type: "table",
+  };
+};
 
-const applyPanelTitleOverrides = (dashboard) => {
-  const panelsById = new Map(dashboard.panels.map((panel) => [panel.id, panel]));
+// Layout
 
-  const titleOverrides = new Map([
-    [941089908, "5chan Communities Summary"],
-    [941089901, "5chan Communities"],
-    [998904550, "5chan Community Pubsub"],
-    [997284785, "Popular 5chan Communities"],
-    [997284786, "5chan Unique Addresses"],
-    [997284787, "5chan Posts"],
-    [997284788, "5chan Monthly Active Addresses"],
-    [997284789, "5chan Weekly Active Addresses"],
+const createLayout = () => {
+  const panels = [];
+  let nextId = 1;
+  let x = 0;
+  let y = 0;
+  let lineHeight = 0;
+  let collapsedRow = null;
+
+  const newLine = () => {
+    y += lineHeight;
+    x = 0;
+    lineHeight = 0;
+  };
+
+  return {
+    add(panel, { w, h }) {
+      if (x + w > GRID_WIDTH) {
+        newLine();
+      }
+      panel.id = nextId++;
+      panel.gridPos = { h, w, x, y };
+      x += w;
+      lineHeight = Math.max(lineHeight, h);
+      (collapsedRow ? collapsedRow.panels : panels).push(panel);
+    },
+    row(title, { collapsed = false } = {}) {
+      newLine();
+      if (collapsedRow) {
+        // Panels inside a collapsed row take no space until it is expanded.
+        y = collapsedRow.gridPos.y + 1;
+        collapsedRow = null;
+      }
+      const row = makeRowPanel({ title, collapsed });
+      row.id = nextId++;
+      row.gridPos = { h: 1, w: GRID_WIDTH, x: 0, y };
+      panels.push(row);
+      y += 1;
+      collapsedRow = collapsed ? row : null;
+    },
+    panels: () => panels,
+  };
+};
+
+const makeNavigationPanel = ({ current, intro }) => {
+  const links = [
+    { key: "overview", label: "Network overview" },
+    ...clients.map(({ navKey, navLabel }) => ({ key: navKey, label: navLabel })),
+  ]
+    // target="_self" makes Grafana load the page instead of routing in place: in-place routing
+    // between shared dashboards keeps querying the previous dashboard's panels.
+    .map(({ key, label }) =>
+      key === current
+        ? `<strong>${label}</strong>`
+        : `<a href="${sharedDashboardPaths[key]}" target="_self">${label}</a>`,
+    )
+    .join(" &nbsp;·&nbsp; ");
+  return makeTextPanel({ content: `<p>${links}</p>\n<p>${intro}</p>` });
+};
+
+const addStatRow = (layout, panels) => {
+  const width = GRID_WIDTH / panels.length;
+  for (const panel of panels) {
+    layout.add(panel, { w: width, h: 4 });
+  }
+};
+
+// Dashboards
+
+const buildOverviewDashboard = () => {
+  const layout = createLayout();
+  const allClients = communityQueries(clients.map(({ id }) => id));
+  const communityTotal = clients.reduce((total, client) => total + client.communityList.length, 0);
+  const perClient = (build) =>
+    clients.map((client) => ({ expr: build(communityQueries(client.id)), legend: client.label }));
+  const clientColors = clients.map(({ color }) => color);
+  const clientNames = clients.map(({ label }) => label).join(" and ");
+
+  layout.add(
+    makeNavigationPanel({
+      current: "overview",
+      intro:
+        "Live health and activity of the Bitsocial peer-to-peer network, measured continuously by the Bitsocial stats monitor.",
+    }),
+    { w: GRID_WIDTH, h: 3 },
+  );
+
+  addStatRow(layout, [
+    makeStatPanel({
+      title: "Services up",
+      description:
+        "Bitsocial websites plus the newsletter, spam blocker and challenge servers that respond as expected right now.",
+      expr: `sum(${serviceUp}) + sum(${webpageUp})`,
+      total: serviceTotal,
+    }),
+    makeStatPanel({
+      title: "Communities online",
+      description: `${clientNames} communities whose latest fetch succeeded and whose latest update is less than ${COMMUNITY_OFFLINE_AFTER_SECONDS / 3600} hours old.`,
+      expr: `sum(${allClients.online})`,
+      total: communityTotal,
+    }),
+    makeStatPanel({
+      title: "Total posts",
+      description: `All-time posts and replies across the default ${clientNames} communities, counted like the 5chan homepage.`,
+      expr: allClients.totalPosts,
+    }),
+    makeStatPanel({
+      title: "Current users",
+      description: `Addresses that posted in the last 7 days across the default ${clientNames} communities, counted like the 5chan homepage: summed per community, so an address active in several communities counts once for each.`,
+      expr: allClients.currentUsers,
+    }),
   ]);
 
-  for (const [panelId, title] of titleOverrides) {
-    const panel = panelsById.get(panelId);
-    if (panel) {
-      panel.title = title;
+  // Stacked per client, so the top edge of each chart matches the network-wide number.
+  layout.row("Activity");
+  for (const panel of [
+    makeTimeseriesPanel({
+      title: "Posts (24h)",
+      description:
+        "Posts and replies from the last 24 hours in communities the monitor can currently fetch, stacked per client.",
+      queries: perClient(({ postsLastDay }) => postsLastDay),
+      stacked: true,
+      fillOpacity: 35,
+      colors: clientColors,
+    }),
+    makeTimeseriesPanel({
+      title: "Current users",
+      description:
+        "Addresses that posted in the last 7 days, summed per community like the 5chan homepage, stacked per client.",
+      queries: perClient(({ currentUsers }) => currentUsers),
+      stacked: true,
+      fillOpacity: 35,
+      colors: clientColors,
+    }),
+    makeTimeseriesPanel({
+      title: "Total posts",
+      description: "All-time posts and replies, stacked per client.",
+      queries: perClient(({ totalPosts }) => totalPosts),
+      stacked: true,
+      fillOpacity: 35,
+      colors: clientColors,
+    }),
+  ]) {
+    layout.add(panel, { w: 8, h: 8 });
+  }
+
+  layout.row("Peer-to-peer network");
+  layout.add(makePeersMapPanel(), { w: 14, h: 13 });
+  layout.add(
+    makeTimeseriesPanel({
+      title: "Peers over time",
+      description:
+        "Unique peers across all monitored communities: peers connected to community pubsub topics, and peers that HTTP routers list as providers of community pubsub topics and IPNS records.",
+      queries: [
+        { expr: `sum(${metric("network_pubsub_peer_count")})`, legend: "Pubsub peers" },
+        {
+          expr: `sum(${metric("network_pubsub_http_routers_peer_count")})`,
+          legend: "Pubsub topic providers",
+        },
+        {
+          expr: `sum(${metric("network_ipns_http_routers_peer_count")})`,
+          legend: "IPNS record providers",
+        },
+      ],
+      fillOpacity: 0,
+      colors: [palette.blue, palette.cyan, palette.violet],
+    }),
+    { w: 10, h: 13 },
+  );
+
+  const infrastructureRows = httpRouterUrls.length + nameResolverUrls.length;
+  const statusHeight = timelineHeight(Math.max(serviceTotal, infrastructureRows));
+  layout.row("Services and infrastructure");
+  layout.add(
+    makeStateTimelinePanel({
+      title: "Bitsocial services",
+      description:
+        "Green while a website or service answers with the expected status and content; red while its check fails.",
+      queries: [
+        { expr: webpageUp, legend: "{{webpage_url}}" },
+        { expr: serviceUp, legend: "{{service_probe_label}}" },
+      ],
+      transformations: [shortenUrlsTransformation],
+    }),
+    { w: GRID_WIDTH / 2, h: statusHeight },
+  );
+  layout.add(
+    makeStateTimelinePanel({
+      title: "Client infrastructure",
+      description:
+        "What 5chan and Seedit use by default in pure P2P mode: HTTP routers to find peers, and Ethereum RPCs to resolve community names. A router is green while it answers provider lookups for monitored communities; an RPC is green while it resolves a test name.",
+      queries: [
+        {
+          expr: httpRouterUp,
+          legend: "Router · {{http_router_url}}",
+        },
+        {
+          expr: nameResolverUp,
+          legend: "Name resolution · {{chain_provider_url}}",
+        },
+      ],
+      transformations: [shortenUrlsTransformation],
+    }),
+    { w: GRID_WIDTH / 2, h: statusHeight },
+  );
+
+  layout.row("Response times", { collapsed: true });
+  layout.add(
+    makeTimeseriesPanel({
+      title: "Bitsocial services",
+      description: "How long each successful website and service check took.",
+      queries: [
+        {
+          expr: whenSuccessful(metric("webpage_last_webpage_fetch_duration_seconds"), webpageUp),
+          legend: "{{webpage_url}}",
+        },
+        {
+          expr: whenSuccessful(metric("service_probe_last_duration_seconds"), serviceUp),
+          legend: "{{service_probe_label}}",
+        },
+      ],
+      unit: "s",
+      fillOpacity: 0,
+      legendPlacement: "right",
+      transformations: [shortenUrlsTransformation],
+    }),
+    { w: GRID_WIDTH, h: 9 },
+  );
+  layout.add(
+    makeTimeseriesPanel({
+      title: "HTTP router lookup time",
+      description:
+        "Average time for each HTTP router to answer the latest successful provider lookup for each community. Gaps mean every lookup failed.",
+      queries: [
+        {
+          expr: `avg by (http_router_url) (${whenSuccessful(
+            metric("http_router_last_community_ipns_get_providers_fetch_duration_seconds", {
+              http_router_url: httpRouterUrls,
+            }),
+            routerLookupSuccess,
+          )})`,
+          legend: "{{http_router_url}}",
+        },
+      ],
+      unit: "s",
+      fillOpacity: 0,
+      transformations: [shortenUrlsTransformation],
+    }),
+    { w: 12, h: 8 },
+  );
+  layout.add(
+    makeTimeseriesPanel({
+      title: "Communities found by each router",
+      description:
+        "Share of monitored communities for which each HTTP router returned at least one IPNS record provider on its latest lookup. Failed lookups count as not found.",
+      queries: [
+        {
+          expr: (() => {
+            const providers = metric(
+              "http_router_last_community_ipns_get_providers_fetch_provider_count",
+              { http_router_url: httpRouterUrls },
+            );
+            const lookups = routerLookupSuccess;
+            return `(count by (http_router_url) ((${providers} > 0) and (${lookups} == 1)) or count by (http_router_url) (${lookups}) * 0) / count by (http_router_url) (${lookups})`;
+          })(),
+          legend: "{{http_router_url}}",
+        },
+      ],
+      unit: "percentunit",
+      max: 1,
+      fillOpacity: 0,
+      transformations: [shortenUrlsTransformation],
+    }),
+    { w: 12, h: 8 },
+  );
+  layout.add(
+    makeTimeseriesPanel({
+      title: "Name resolution time",
+      description:
+        "Time for each Ethereum RPC to resolve a test name. Gaps mean the resolution failed.",
+      queries: [
+        {
+          expr: whenSuccessful(
+            metric("chain_provider_last_resolve_address_duration_seconds", {
+              chain_provider_url: nameResolverUrls,
+              chain_ticker: "eth",
+            }),
+            nameResolverUp,
+          ),
+          legend: "{{chain_provider_url}}",
+        },
+      ],
+      unit: "s",
+      fillOpacity: 0,
+      transformations: [shortenUrlsTransformation],
+    }),
+    { w: GRID_WIDTH, h: 8 },
+  );
+
+  const fallbackRows = gatewayUrls.length + pubsubProviderUrls.length;
+  layout.row("Gateway mode fallback", { collapsed: true });
+  layout.add(
+    makeStateTimelinePanel({
+      title: "Gateway mode providers",
+      description:
+        "IPFS gateways and pubsub providers that 5chan and Seedit only use when pure P2P mode is turned off. Green while the provider passed its latest check.",
+      queries: [
+        {
+          expr: gatewayUp,
+          legend: "Gateway · {{ipfs_gateway_url}}",
+        },
+        {
+          expr: pubsubProviderUp,
+          legend: "Pubsub · {{pubsub_provider_url}}",
+        },
+      ],
+      transformations: [shortenUrlsTransformation],
+    }),
+    { w: GRID_WIDTH, h: timelineHeight(fallbackRows) },
+  );
+  for (const panel of [
+    makeTimeseriesPanel({
+      title: "Gateway comment fetch time",
+      description: "Time to fetch a comment through each gateway. Gaps mean the fetch failed.",
+      queries: [
+        {
+          expr: whenSuccessful(
+            metric("ipfs_gateway_last_comment_fetch_duration_seconds", {
+              ipfs_gateway_url: gatewayUrls,
+            }),
+            gatewayUp,
+          ),
+          legend: "{{ipfs_gateway_url}}",
+        },
+      ],
+      unit: "s",
+      fillOpacity: 0,
+      transformations: [shortenUrlsTransformation],
+    }),
+    ...["publish", "subscribe"].map((action) =>
+      makeTimeseriesPanel({
+        title: `Pubsub ${action} time`,
+        description: `Time for each pubsub provider to ${action} a test message. Gaps mean the check failed.`,
+        queries: [
+          {
+            expr: whenSuccessful(
+              metric(`pubsub_provider_last_${action}_duration_seconds`, {
+                pubsub_provider_url: pubsubProviderUrls,
+              }),
+              metric(`pubsub_provider_last_${action}_success`, {
+                pubsub_provider_url: pubsubProviderUrls,
+              }),
+            ),
+            legend: "{{pubsub_provider_url}}",
+          },
+        ],
+        unit: "s",
+        fillOpacity: 0,
+        transformations: [shortenUrlsTransformation],
+      }),
+    ),
+  ]) {
+    layout.add(panel, { w: 8, h: 8 });
+  }
+
+  return layout.panels();
+};
+
+const buildClientDashboard = (client) => {
+  const layout = createLayout();
+  const queries = communityQueries(client.id);
+  const communityCount = client.communityList.length;
+  const Communities = capitalize(client.communities);
+
+  layout.add(
+    makeNavigationPanel({
+      current: client.navKey,
+      intro: `Activity and availability of the ${communityCount} ${client.communities} in ${client.source}.`,
+    }),
+    { w: GRID_WIDTH, h: 3 },
+  );
+
+  addStatRow(layout, [
+    makeStatPanel({
+      title: `${Communities} online`,
+      description: `${Communities} whose latest fetch succeeded and whose latest update is less than ${COMMUNITY_OFFLINE_AFTER_SECONDS / 3600} hours old.`,
+      expr: `sum(${queries.online})`,
+      total: communityCount,
+    }),
+    makeStatPanel({
+      title: "Total posts",
+      description: `All-time ${client.postLabel.toLowerCase()} and ${client.replyLabel.toLowerCase()}, counted like the 5chan homepage.`,
+      expr: queries.totalPosts,
+    }),
+    makeStatPanel({
+      title: "Posts (24h)",
+      description: `${client.postLabel} and ${client.replyLabel.toLowerCase()} from the last 24 hours in ${client.communities} the monitor can currently fetch.`,
+      expr: queries.postsLastDay,
+    }),
+    makeStatPanel({
+      title: "Current users",
+      description: `Addresses that posted in the last 7 days, counted like the 5chan homepage: summed per ${client.community}, so an address active in several ${client.communities} counts once for each.`,
+      expr: queries.currentUsers,
+    }),
+  ]);
+
+  layout.row("Activity");
+  for (const panel of [
+    makeTimeseriesPanel({
+      title: "Posts (24h)",
+      description: `${client.postLabel} and ${client.replyLabel.toLowerCase()} from the last 24 hours, as reported by each ${client.community}'s own stats.`,
+      queries: [
+        {
+          expr: `sum(${queries.whenFetched(queries.stat("day", "post"))})`,
+          legend: client.postLabel,
+        },
+        {
+          expr: `sum(${queries.whenFetched(queries.stat("day", "reply"))})`,
+          legend: client.replyLabel,
+        },
+      ],
+      stacked: true,
+      fillOpacity: 35,
+      colors: [palette.blue, palette.lightBlue],
+    }),
+    makeTimeseriesPanel({
+      title: "Active users",
+      description: `Addresses that posted within the last 24 hours, 7 days (current users) and 30 days, summed per ${client.community}.`,
+      queries: [
+        {
+          expr: `sum(${queries.whenFetched(queries.stat("day", "active_user"))})`,
+          legend: "24 hours",
+        },
+        { expr: queries.currentUsers, legend: "7 days" },
+        { expr: `sum(${queries.stat("month", "active_user")})`, legend: "30 days" },
+      ],
+      fillOpacity: 0,
+      colors: [palette.lightBlue, palette.blue, palette.deepBlue],
+    }),
+    makeTimeseriesPanel({
+      title: "All-time totals",
+      description: `Cumulative ${client.postLabel.toLowerCase()} and ${client.replyLabel.toLowerCase()}, plus unique posting addresses summed per ${client.community}.`,
+      queries: [
+        { expr: `sum(${queries.stat("all", "post")})`, legend: client.postLabel },
+        { expr: `sum(${queries.stat("all", "reply")})`, legend: client.replyLabel },
+        { expr: `sum(${queries.stat("all", "active_user")})`, legend: "Unique addresses" },
+      ],
+      fillOpacity: 0,
+      colors: [palette.blue, palette.lightBlue, palette.violet],
+    }),
+  ]) {
+    layout.add(panel, { w: 8, h: 8 });
+  }
+
+  layout.row(Communities);
+  // Tall enough to list every community without a nested scrollbar.
+  layout.add(makeCommunitiesTablePanel(client), {
+    w: GRID_WIDTH,
+    h: Math.ceil((communityCount + 1) * 0.95) + 2,
+  });
+
+  layout.row(`${capitalize(client.community)} availability history`, { collapsed: true });
+  layout.add(
+    makeStateTimelinePanel({
+      title: `${capitalize(client.community)} availability`,
+      description: `Green while a ${client.community} is online: fetched successfully with an update less than ${COMMUNITY_OFFLINE_AFTER_SECONDS / 3600} hours old.`,
+      queries: [{ expr: queries.online, legend: "{{community_address}}" }],
+      upText: "Online",
+      downText: "Offline",
+    }),
+    { w: GRID_WIDTH, h: Math.ceil(communityCount * 0.6) + 2 },
+  );
+
+  // One collapsed row per community; Grafana only queries a row's charts once it is expanded.
+  layout.row(`${capitalize(client.community)} details`);
+  for (const community of client.communityList) {
+    const title = community.title || community.address;
+    const single = communityQueries(client.id, community.address);
+    layout.row(title === community.address ? title : `${title} · ${community.address}`, {
+      collapsed: true,
+    });
+    for (const panel of [
+      makeStateTimelinePanel({
+        title: "Availability",
+        description: `Green while this ${client.community} is fetched successfully with an update less than ${COMMUNITY_OFFLINE_AFTER_SECONDS / 3600} hours old.`,
+        queries: [{ expr: single.online, legend: title }],
+        upText: "Online",
+        downText: "Offline",
+      }),
+      makeTimeseriesPanel({
+        title: "Posts (24h)",
+        description: `${client.postLabel} and ${client.replyLabel.toLowerCase()} from the last 24 hours.`,
+        queries: [
+          {
+            expr: `sum(${single.whenFetched(single.stat("day", "post"))})`,
+            legend: client.postLabel,
+          },
+          {
+            expr: `sum(${single.whenFetched(single.stat("day", "reply"))})`,
+            legend: client.replyLabel,
+          },
+        ],
+        stacked: true,
+        fillOpacity: 35,
+        colors: [palette.blue, palette.lightBlue],
+      }),
+      makeTimeseriesPanel({
+        title: "Active users",
+        description:
+          "Addresses that posted within the last 24 hours, 7 days (current users) and 30 days.",
+        queries: [
+          {
+            expr: `sum(${single.whenFetched(single.stat("day", "active_user"))})`,
+            legend: "24 hours",
+          },
+          { expr: single.currentUsers, legend: "7 days" },
+          { expr: `sum(${single.stat("month", "active_user")})`, legend: "30 days" },
+        ],
+        fillOpacity: 0,
+        colors: [palette.lightBlue, palette.blue, palette.deepBlue],
+      }),
+      makeTimeseriesPanel({
+        title: "Pubsub peers",
+        description: `Peers connected to this ${client.community}'s pubsub topic.`,
+        queries: [
+          {
+            expr: single.communityMetric("last_community_pubsub_pubsub_peer_count"),
+            legend: "Pubsub peers",
+          },
+        ],
+        fillOpacity: 0,
+        colors: [palette.cyan],
+      }),
+    ]) {
+      layout.add(panel, { w: GRID_WIDTH / 4, h: 7 });
     }
   }
 
-  return dashboard;
+  return layout.panels();
 };
 
-const buildDashboard = ({ upstreamDashboard, communities, title, uid }) => {
-  const basePanels = upstreamDashboard.panels;
-  const topPanels = basePanels
-    .slice(0, COMMUNITY_SECTION_START)
-    .map((panel) => transformPanel(panel, { clientId: COMMUNITY_FILTER }));
-  const communityRow = transformPanel(basePanels[COMMUNITY_SECTION_START], {
-    clientId: COMMUNITY_FILTER,
-  });
+const makeDashboard = ({ uid, title, description, panels, tags }) => ({
+  annotations: { list: [] },
+  description,
+  editable: false,
+  fiscalYearStartMonth: 0,
+  graphTooltip: 1,
+  id: null,
+  links: [],
+  panels,
+  refresh: "1m",
+  schemaVersion: 39,
+  tags: ["bitsocial", "stats", ...tags],
+  templating: { list: [] },
+  time: { from: "now-24h", to: "now" },
+  timepicker: {
+    refresh_intervals: ["1m", "5m", "15m", "1h"],
+    time_options: ["1h", "6h", "24h", "7d", "30d"],
+  },
+  timezone: "browser",
+  title,
+  uid,
+  version: 1,
+  weekStart: "",
+});
 
-  const originalCommunityCount =
-    (PUBSUB_ROW_INDEX - COMMUNITY_PANEL_START) / COMMUNITY_PANEL_COUNT_PER_GROUP;
-  const originalPubsubCount =
-    (LOWER_SECTIONS_START - PUBSUB_PANEL_START) / COMMUNITY_PANEL_COUNT_PER_GROUP;
-  const communitySectionDelta =
-    (originalCommunityCount - communities.length) * COMMUNITY_GROUP_HEIGHT;
-  const pubsubSectionDelta = (originalPubsubCount - communities.length) * COMMUNITY_GROUP_HEIGHT;
+const toCommunityList = (directoryList, sourceLabel) => {
+  const communityList = directoryList.directories.map((directory) => ({
+    address: getDirectoryAddress(directory),
+    title: directory.title,
+    directoryCode: directory.directoryCode,
+  }));
 
-  const communityTemplatePanels = basePanels.slice(
-    COMMUNITY_PANEL_START,
-    COMMUNITY_PANEL_START + COMMUNITY_PANEL_COUNT_PER_GROUP,
-  );
-  const pubsubRow = transformPanel(basePanels[PUBSUB_ROW_INDEX], { clientId: COMMUNITY_FILTER });
-  const pubsubTemplatePanels = basePanels.slice(
-    PUBSUB_PANEL_START,
-    PUBSUB_PANEL_START + COMMUNITY_PANEL_COUNT_PER_GROUP,
-  );
-
-  const servicePanels = buildServicePanels(communityRow.gridPos.y);
-
-  setPanelGridY(communityRow, communityRow.gridPos.y + SERVICE_SECTION_HEIGHT);
-  setPanelGridY(pubsubRow, pubsubRow.gridPos.y - communitySectionDelta + SERVICE_SECTION_HEIGHT);
-
-  const communityPanels = buildCommunitySectionPanels({
-    templatePanels: communityTemplatePanels,
-    communities,
-    startY: communityTemplatePanels[0].gridPos.y + SERVICE_SECTION_HEIGHT,
-    clientId: COMMUNITY_FILTER,
-  });
-  const pubsubPanels = buildCommunitySectionPanels({
-    templatePanels: pubsubTemplatePanels,
-    communities,
-    startY: pubsubTemplatePanels[0].gridPos.y - communitySectionDelta + SERVICE_SECTION_HEIGHT,
-    clientId: COMMUNITY_FILTER,
-  });
-  const lowerPanels = shiftPanelsY(
-    basePanels.slice(LOWER_SECTIONS_START, NFT_ROW_INDEX),
-    -(communitySectionDelta + pubsubSectionDelta) + SERVICE_SECTION_HEIGHT,
-  );
-
-  const dashboard = clone(upstreamDashboard);
-  dashboard.id = null;
-  dashboard.uid = uid;
-  dashboard.title = title;
-  dashboard.version = 1;
-  dashboard.tags = ["bitsocial", "stats", "5chan"];
-  dashboard.editable = false;
-  dashboard.panels = [
-    ...topPanels,
-    ...servicePanels,
-    communityRow,
-    ...communityPanels,
-    pubsubRow,
-    ...pubsubPanels,
-    ...lowerPanels,
-  ];
-
-  applyPanelTitleOverrides(dashboard);
-  return dashboard;
-};
-
-const main = async () => {
-  const upstreamStatus = JSON.parse(await fs.readFile(upstreamStatusPath, "utf8"));
-  const directoryList = await loadFiveChanDirectories();
-  const communities =
-    directoryList.directories?.map((directory) => ({
-      address: getDirectoryAddress(directory),
-      title: directory.title,
-      directoryCode: directory.directoryCode,
-    })) || [];
-
-  const missingAddress = communities.find((community) => typeof community.address !== "string");
+  const missingAddress = communityList.find((community) => typeof community.address !== "string");
   if (missingAddress) {
     throw new Error(
-      `5chan directory '${missingAddress.directoryCode || missingAddress.title}' is missing name/communityAddress`,
+      `${sourceLabel} entry '${missingAddress.directoryCode || missingAddress.title}' is missing an address`,
     );
   }
-
-  if (communities.length === 0) {
-    throw new Error(`No 5chan communities found in ${fiveChanDirectoriesIndexUrl}`);
+  if (communityList.length === 0) {
+    throw new Error(`No communities found in ${sourceLabel}`);
   }
 
-  const summaryDashboard = buildDashboard({
-    upstreamDashboard: upstreamStatus.dashboard,
-    communities,
-    title: "Bitsocial Stats",
-    uid: "bitsocial-stats",
-  });
-  const fiveChanDashboard = buildDashboard({
-    upstreamDashboard: upstreamStatus.dashboard,
-    communities,
-    title: "5chan Stats",
-    uid: "bitsocial-5chan",
-  });
+  return communityList;
+};
+
+const writeJson = (filePath, value) =>
+  fs.writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
+
+const main = async () => {
+  const [fiveChanDirectories, seeditCommunities] = await Promise.all([
+    loadFiveChanDirectories(),
+    loadSeeditCommunities(),
+  ]);
+  const communityLists = {
+    "5chan": toCommunityList(fiveChanDirectories, fiveChanDirectoriesIndexUrl),
+    seedit: toCommunityList(seeditCommunities, seeditDefaultSubscriptionsUrl),
+  };
+  for (const client of clients) {
+    client.communityList = communityLists[client.id];
+  }
+  // The monitor attributes a shared address to one client only, which would skew both clients' totals.
+  const clientsByAddress = new Map();
+  for (const client of clients) {
+    for (const { address } of client.communityList) {
+      if (clientsByAddress.has(address)) {
+        throw new Error(
+          `'${address}' is listed by both ${clientsByAddress.get(address)} and ${client.label}`,
+        );
+      }
+      clientsByAddress.set(address, client.label);
+    }
+  }
 
   await fs.mkdir(dashboardsOutputDir, { recursive: true });
-  await fs.writeFile(
+  await writeJson(
     path.join(dashboardsOutputDir, "bitsocial-stats.json"),
-    `${JSON.stringify(summaryDashboard, null, 2)}\n`,
+    makeDashboard({
+      uid: "bitsocial-stats",
+      title: "Bitsocial Stats",
+      description: "Health and activity of the Bitsocial peer-to-peer network.",
+      panels: buildOverviewDashboard(),
+      tags: clients.map(({ id }) => id),
+    }),
   );
-  await fs.writeFile(
-    path.join(dashboardsOutputDir, "5chan-stats.json"),
-    `${JSON.stringify(fiveChanDashboard, null, 2)}\n`,
-  );
-  await fs.writeFile(directoriesSnapshotPath, `${JSON.stringify(directoryList, null, 2)}\n`);
+  for (const client of clients) {
+    await writeJson(
+      path.join(dashboardsOutputDir, `${client.id}-stats.json`),
+      makeDashboard({
+        uid: client.uid,
+        title: client.title,
+        description: `Activity and availability of the ${client.label} ${client.communities} monitored by Bitsocial.`,
+        panels: buildClientDashboard(client),
+        tags: [client.id],
+      }),
+    );
+  }
+  await writeJson(directoriesSnapshotPath, fiveChanDirectories);
+  await writeJson(seeditSnapshotPath, seeditCommunities);
 };
 
 main().catch((error) => {

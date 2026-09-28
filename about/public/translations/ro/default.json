@@ -20,7 +20,9 @@
     "theme": "Temă",
     "newsletter": "Buletin",
     "backToTop": "Înapoi sus",
-    "chain": "Chain"
+    "goToBottom": "Mergi jos",
+    "backToPrevious": "Înapoi la locul anterior",
+    "faq": "FAQ"
   },
   "footer": {
     "tagline": "Rețea P2P open source pentru aplicații sociale",
@@ -86,7 +88,7 @@
   },
   "features": {
     "sectionLabel": "Funcționalități de bază",
-    "title": "Ce este Bitsocial?",
+    "title": "Un strat social care nu aparține nimănui.",
     "supporting": "Un univers în continuă expansiune de aplicații de rețele sociale, toate utilizând aceeași rețea socială descentralizată de bază — una pe care nicio companie nu o deține, și nicio nu ți-o poate lua.",
     "items": {
       "open-source": {
@@ -381,7 +383,7 @@
     }
   },
   "masterPlan": {
-    "title": "Un apel la acțiune",
+    "title": "Un apel către constructori.",
     "logoAlt": "Logo",
     "easterEggAlt": "SpongeBob",
     "epilogue": "Starea finală nu este o singură aplicație. Este o piață de clienți, noduri, servicii și comunități care pot înlocui proprietatea platformei cu competiția de protocol.",
@@ -449,7 +451,7 @@
     "subtitle": "Bitsocial este conceput să crească până la mii de aplicații, instrumente și servicii construite de oricine, nu doar cele aprobate de paznicii porții. Dacă ești dev, trimite-ți propria aplicație.",
     "experimental": "În testare",
     "sectionLabel": "Director de proiecte",
-    "directoryLabel": "Director de proiecte",
+    "directoryLabel": "Categorii de proiecte",
     "notFoundDescription": "Aplicația pe care o cauți nu există în director.",
     "emptyCategoryDescription": "Nu există încă aplicații în această categorie. Fii primul care construiește una!",
     "emptyCategory": "În curând",
@@ -527,7 +529,9 @@
         "telegram": "Telegram",
         "verification": "Verificare",
         "ai": "IA",
-        "antiRepost": "Anti-repost"
+        "antiRepost": "Anti-repost",
+        "referenceClient": "Client de referință",
+        "search": "Căutare"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -539,7 +543,8 @@
         "openWebApp": "Deschide aplicația web",
         "openWebsite": "Deschide site-ul",
         "windows": "Windows",
-        "windowsPortable": "Versiune portabilă pentru Windows"
+        "windowsPortable": "Versiune portabilă pentru Windows",
+        "openTelegramBot": "Deschide botul Telegram"
       },
       "items": {
         "5chan": {
@@ -550,13 +555,9 @@
           "tagline": "Client Bitsocial în stil forum, cu build-uri pentru web, APK și desktop.",
           "description": "Seedit aduce discuția în stil Reddit în Bitsocial, cu thread-uri, identități, administrarea comunității și mai multe căi de distribuție. Este cea mai rapidă metodă de a încerca partea de forum a rețelei din browser, telefon Android sau aplicație desktop."
         },
-        "mintpass": {
-          "tagline": "Control al accesului susținut de NFT pentru comunități care au nevoie de porți anti-spam mai puternice.",
-          "description": "Mintpass este un strat de autentificare flexibil pentru comunitățile Bitsocial. Le permite moderatorilor să combine deținerea de NFT, fluxuri de verificare și module de challenge personalizate fără să împingă pe toată lumea către un sistem central de login."
-        },
         "spam-blocker": {
           "tagline": "Strat centralizat de scorare a riscului pentru filtrarea publicațiilor abuzive.",
-          "description": "Spam Blocker evaluează publicațiile și returnează un risk score pe care comunitățile îl pot combina cu propria logică de moderare. Este util când vrei un strat suplimentar pragmatic înainte de a construi reguli anti-spam mai personalizate."
+          "description": "Spam Blocker evaluează publicațiile și returnează un scor de risc pe care comunităţile îl pot combina cu propria logică de moderare. Serviciul găzduit al acestuia leagă de asemenea cheile semnaturii văzute pentru prima dată din aceeași adresă IP, astfel încât un utilizator care continuă să creeze conturi noi pentru a evita o interzicere din comunitate sau pentru a fabrica o conversație vede scorul de risc al acestuia crescând, în timp ce câțiva semnatori rămân autorizați pentru utilizare legitimă multi-dispozitiv."
         },
         "captcha-canvas-challenge": {
           "tagline": "Captcha-uri cu imagine personalizată pentru comunități care vor verificare umană.",
@@ -597,6 +598,34 @@
         "r9k-challenge": {
           "tagline": "Poartă de originalitate în stil Robot9000 pentru comunități care vor o experiență de postare anti-repost.",
           "description": "R9K Challenge rulează pe un nod de comunitate Bitsocial și compară textul normalizat al postării cu baza locală de comentarii a nodului proprietar. Oferă comunităților o experiență de postare în stil <robot9000>Robot9000</robot9000>: repostările exacte eșuează înainte de acceptare, backlinkurile sunt ignorate, eșecurile repetate declanșează banuri temporare crescătoare, iar hashurile textului acceptat rămân în stare locală privată în loc să stocheze textul brut al postării. Acest challenge nu folosește AI."
+        },
+        "wordfilter-challenge": {
+          "tagline": "Filtrele de cuvinte ale comunității sunt aplicate ca regulă de publicare, nu ca filtru de afișare.",
+          "description": "Wordfilter Challenge face obligatorii înlocuirile de cuvinte stabilite de o comunitate. Clienții care publică aplică înlocuirile înainte de semnare, astfel încât comentariul semnat și CID-ul său conțin deja textul de înlocuire, iar nodul comunității respinge orice publicare care mai conține un cuvânt filtrat. Implementează contractul <code>wordfilter/v1</code>, așa că un client scris după acest contract continuă să funcționeze cu alte implementări."
+        },
+        "challenge-composer": {
+          "tagline": "Editor care funcționează în primul rând offline pentru setările provocărilor antispam ale unei comunități.",
+          "description": "Challenge Composer afișează și permite editarea tabloului <code>challenges</code> din setările unei comunități Bitsocial, apoi exportă un script CLI gata de rulat. Este livrat ca un singur fișier HTML de sine stătător, care nu face nicio cerere către exterior în timpul execuției, așa că poate fi deschis direct de pe disc sau de pe un stick USB."
+        },
+        "bitsocial-previewer": {
+          "tagline": "Server de previzualizare a linkurilor și de redirecționare care generează carduri de partajare pentru postările Bitsocial.",
+          "description": "Bitsocial Previewer generează carduri OpenGraph și Twitter atunci când linkul unei postări este distribuit pe alte platforme, apoi redirecționează browserele reale către aplicație. O singură instanță este multi-tenant în funcție de numele de gazdă, așa că o singură implementare și o singură configurare TLS acoperă toate domeniile clienților și ale oglinzilor."
+        },
+        "bitsocial-indexer": {
+          "tagline": "Crawler, index de căutare și interfață web pentru comunitățile Bitsocial, pe care le poți găzdui singur.",
+          "description": "Bitsocial Indexer se conectează prin RPC la un daemon Bitsocial CLI, indexează într-o bază de date SQLite locală comunitățile pe care le configurează operatorul și le pune la dispoziție printr-un API REST și de căutare full-text, cu o interfață web randată pe server, opțională. Este livrat gol: operatorul decide ce se indexează."
+        },
+        "bitsocial-github-alerts": {
+          "tagline": "Bot Telegram care publică pe scurt activitatea de pe GitHub din depozitele Bitsocial.",
+          "description": "Bitsocial GitHub Alerts trimite push-uri, versiuni, issue-uri și pull request-uri de pe GitHub în orice conversație, grup sau subiect de forum de pe Telegram. Echipa Bitsocial îl folosește pentru propriile depozite, iar imaginea de container este publică, așa că oricine îl poate găzdui singur pentru ale sale."
+        },
+        "bitbones": {
+          "tagline": "Client de referință minimalist, în care fiecare vizualizare este doar un înveliș subțire peste un singur hook.",
+          "description": "bitbones este cea mai mică suprafață utilă peste hook-urile React ale Bitsocial: aproape fără stilizare, fără decizii de produs și cu un singur hook în spatele fiecărei vizualizări. Este locul cel mai rapid pentru a reproduce o eroare sau a încerca o modificare a hook-urilor pe comunități reale, iar fluxul său implicit poate fi comutat între listele de comunități Seedit și 5chan."
+        },
+        "huggingsocial": {
+          "tagline": "Hub peer-to-peer pentru găsire, discuție și descărcare de modele AI deschise.",
+          "description": "HuggingSocial este un hub de modele care nu este deținut de nicio companie. Huburile sunt comunități Bitsocial controlate de chei criptografice, fiecare listare de model este un post semnat cu o hartă de model, sume de verificare și surse de descărcare, iar ponderile se deplasează prin BitTorrent sau oglinzi HTTP simple și sunt verificate pe mașina dvs. Clientul se află în proiectare și dezvoltare timpurie; site-ul web acceptă înregistrări pe lista de așteptare."
         }
       }
     },
@@ -706,7 +735,7 @@
   "textOnlyProtocol": {
     "sectionLabel": "Protocol doar text",
     "title": "Libertatea are moderare.",
-    "supporting": "Nu există un administrator global și niciun server de confiscat, așa că nimeni nu te poate exclude din întreaga rețea. Moderarea pur și simplu se apropie de tine.",
+    "supporting": "Protocolul transportă doar text și nu este o rețea ascunsă. Nu există un administrator global și niciun server care să poată fi confiscat, așa că nimeni nu te poate exclude din întreaga rețea. Moderarea se apropie pur și simplu de tine.",
     "carouselLabel": "Întrebări frecvente, lămurite",
     "communities": {
       "myth": "Fără excluderi, e haos total.",
@@ -731,7 +760,7 @@
   },
   "adoptionThesis": {
     "sectionLabel": "Teza adoptării",
-    "title": "De ce ar folosi cineva asta?",
+    "title": "Mai bine să deții decât să închiriezi.",
     "supporting": "Nu poate fi cenzurat, nu cade niciodată și păstrezi tot ce câștigi. Iată cine apare — și de ce.",
     "diagramLabel": "Curba de adopție care arată de ce fiecare cohortă de utilizatori adoptă Bitsocial.",
     "curve": {
@@ -789,7 +818,51 @@
     "docsCta": "Cum funcționează P2P în browser",
     "liveCta": "Vezi pe blog",
     "sectionLabel": "Browser P2P",
-    "supporting": "Deschide o aplicație web Bitsocial într-o filă normală și se alătură rețelei singură, preluând postări de la alți pari și publicând-ți pe ale tale. Fiecare altă rețea socială descentralizată încă menține un server în mijloc.",
-    "title": "Browserul tău este un peer"
+    "supporting": "Deschide o aplicație web Bitsocial într-o filă obișnuită și se conectează singură la rețea: aduce postări de la ceilalți peers și le publică pe ale tale. Aceasta e partea grea — și motivul pentru care orice altă rețea socială descentralizată ține în continuare un server la mijloc.",
+    "title": "Browserul este saltul decisiv."
+  },
+  "faq": {
+    "sectionLabel": "FAQ",
+    "title": "Întrebări frecvente",
+    "supporting": "Fiecare secțiune a acestui site răspunde la una. Dă clic pe o întrebare ca să ajungi la ea.",
+    "navLabel": "Întrebări la care răspunde această pagină",
+    "answeredIn": "Răspuns în secțiunea",
+    "items": {
+      "problem": {
+        "question": "Ce problemă rezolvă Bitsocial?"
+      },
+      "core-features": {
+        "question": "Ce este Bitsocial? Cum funcționează?"
+      },
+      "browser-peer": {
+        "question": "De ce nu a făcut nimeni asta până acum?"
+      },
+      "decentralized": {
+        "question": "Nu există deja rețele sociale descentralizate?"
+      },
+      "arbitrary-challenges": {
+        "question": "Fără servere, ce oprește spam-ul?"
+      },
+      "text-only-protocol": {
+        "question": "Dar conținutul ilegal?"
+      },
+      "adoption-thesis": {
+        "question": "De ce ar trece oamenii la Bitsocial?"
+      },
+      "master-plan": {
+        "question": "Care e planul de aici înainte? Cum pot ajuta?"
+      },
+      "about": {
+        "question": "Cine se află în spatele Bitsocial? Cum a fost finanțat?"
+      },
+      "mailing-list": {
+        "question": "Cum mă pot ține la curent?"
+      }
+    },
+    "ask": {
+      "label": "Întreabă orice altceva",
+      "placeholder": "Întreabă orice altceva…",
+      "action": "Întreabă ChatGPT"
+    }
   }
 }

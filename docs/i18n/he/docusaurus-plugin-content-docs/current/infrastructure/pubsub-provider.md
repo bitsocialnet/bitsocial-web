@@ -22,7 +22,7 @@ Pubsub Provider הוא שירות למפעילים שמריץ ממסר pubsub ת
 
 ## פורטים
 
-ברירות המחדל נבחרו כך ש-Pubsub Provider יוכל לרוץ לצד [Bitsocial Seeder](https://bitsocial.net/apps/bitsocial-seeder/) על אותו VPS בלי התנגשות בפורט ה-swarm.
+ברירות המחדל נבחרו כך ש-Pubsub Provider יוכל לרוץ לצד [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder/) על אותו VPS בלי התנגשות בפורט ה-swarm.
 
 | ייעוד              | ברירת מחדל                          | הערות                                                 |
 | ------------------ | ----------------------------------- | ----------------------------------------------------- |

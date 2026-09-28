@@ -1496,7 +1496,7 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel({
             aria-controls={`panel-${approach.id}`}
             id={`tab-${approach.id}`}
             onClick={() => setPage(index)}
-            className={`px-4 py-2 rounded-full border border-transparent text-xs font-display font-medium transition-colors duration-200 motion-reduce:transition-none ${
+            className={`touch-target rounded-full border border-transparent px-4 py-2 text-xs font-display font-medium transition-colors duration-200 motion-reduce:transition-none ${
               (pendingIndex ?? highlightedIndex) === index
                 ? approach.id === "bitsocial"
                   ? "bg-blue-core text-white shadow-[0_0_12px_rgba(37,99,235,0.4)]"
@@ -1555,12 +1555,17 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel({
             tabIndex={-1}
             aria-label={approach.label}
             onClick={() => setPage(index)}
-            className={`h-1.5 w-6 origin-center rounded-full transform-gpu transition-[transform,background-color,opacity] duration-200 motion-reduce:transition-none ${
-              index === highlightedIndex
-                ? "scale-x-100 bg-blue-glow"
-                : "scale-x-[0.25] bg-muted-foreground/20 hover:bg-muted-foreground/40"
-            }`}
-          />
+            className="group touch-target flex items-center justify-center"
+          >
+            <span
+              aria-hidden="true"
+              className={`h-1.5 w-6 origin-center transform-gpu rounded-full transition-[transform,background-color,opacity] duration-200 motion-reduce:transition-none ${
+                index === highlightedIndex
+                  ? "scale-x-100 bg-blue-glow"
+                  : "scale-x-[0.25] bg-muted-foreground/20 group-hover:bg-muted-foreground/40"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </m.div>
@@ -1598,7 +1603,7 @@ function DeepComparisonSourceLinks({
 
   return (
     <div className="mt-3 flex flex-wrap items-center gap-1.5">
-      <span className="font-display text-[0.68rem] font-normal leading-none text-foreground/75">
+      <span className="text-micro-fluid font-display font-normal leading-none text-foreground/75">
         {t("sanctuary.deepComparison.sourcesLabel")}
       </span>
       {sources.map((source) => {
@@ -1611,7 +1616,7 @@ function DeepComparisonSourceLinks({
             target={isExternal ? "_blank" : undefined}
             rel={isExternal ? "noreferrer" : undefined}
             title={source.label}
-            className="ring-glow cta-glow rounded-full border border-blue-core/20 bg-blue-core/[0.06] px-2 py-1 text-[0.68rem] font-display font-semibold leading-none text-foreground/75 hover:border-blue-glow hover:bg-blue-core/[0.12] hover:text-foreground dark:border-blue-core/35 dark:bg-blue-core/[0.14] dark:text-foreground/80 dark:hover:border-blue-glow dark:hover:bg-blue-core/[0.2] motion-reduce:transition-none"
+            className="text-micro-fluid ring-glow cta-glow rounded-full border border-blue-core/20 bg-blue-core/[0.06] px-2 py-1 font-display font-semibold leading-none text-foreground/75 hover:border-blue-glow hover:bg-blue-core/[0.12] hover:text-foreground dark:border-blue-core/35 dark:bg-blue-core/[0.14] dark:text-foreground/80 dark:hover:border-blue-glow dark:hover:bg-blue-core/[0.2] motion-reduce:transition-none"
           >
             {source.shortLabel}
           </a>
@@ -1641,7 +1646,7 @@ function DeepComparisonExpandButton({
       aria-expanded={expanded}
       data-expanded={expanded ? "true" : undefined}
       onClick={onClick}
-      className={`${className} ring-glow cta-glow flex w-fit items-center gap-1.5 rounded-full border border-blue-core/30 bg-blue-core/[0.07] px-3 py-1.5 text-[0.72rem] font-display font-semibold text-foreground/80 hover:border-blue-glow hover:bg-blue-core/[0.13] hover:text-foreground active:border-blue-core/45 active:bg-blue-core/[0.12] data-[expanded=true]:border-blue-core/45 data-[expanded=true]:bg-blue-core/[0.12] data-[expanded=true]:hover:border-blue-glow data-[expanded=true]:hover:bg-blue-core/[0.13] dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:text-foreground/85 dark:hover:border-blue-glow dark:hover:bg-blue-core/[0.24] dark:data-[expanded=true]:border-blue-core/45 dark:data-[expanded=true]:bg-blue-glow/[0.08] dark:data-[expanded=true]:hover:border-blue-glow dark:data-[expanded=true]:hover:bg-blue-core/[0.24] [&:focus-within:not(:focus-visible)]:border-blue-core/40 [&:focus:not(:focus-visible)]:border-blue-core/40 [&:focus-within:not(:focus-visible):hover]:border-blue-glow [&:focus:not(:focus-visible):hover]:border-blue-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transition-none`}
+      className={`${className} text-micro-fluid ring-glow cta-glow flex w-fit items-center gap-1.5 rounded-full border border-blue-core/30 bg-blue-core/[0.07] px-3 py-1.5 font-display font-semibold text-foreground/80 hover:border-blue-glow hover:bg-blue-core/[0.13] hover:text-foreground active:border-blue-core/45 active:bg-blue-core/[0.12] data-[expanded=true]:border-blue-core/45 data-[expanded=true]:bg-blue-core/[0.12] data-[expanded=true]:hover:border-blue-glow data-[expanded=true]:hover:bg-blue-core/[0.13] dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:text-foreground/85 dark:hover:border-blue-glow dark:hover:bg-blue-core/[0.24] dark:data-[expanded=true]:border-blue-core/45 dark:data-[expanded=true]:bg-blue-glow/[0.08] dark:data-[expanded=true]:hover:border-blue-glow dark:data-[expanded=true]:hover:bg-blue-core/[0.24] [&:focus-within:not(:focus-visible)]:border-blue-core/40 [&:focus:not(:focus-visible)]:border-blue-core/40 [&:focus-within:not(:focus-visible):hover]:border-blue-glow [&:focus:not(:focus-visible):hover]:border-blue-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transition-none`}
     >
       {expanded ? t("sanctuary.deepComparison.collapse") : t("sanctuary.deepComparison.expand")}
       <ChevronDown
@@ -2120,7 +2125,7 @@ export default function SanctuaryCommunication() {
   }, []);
 
   return (
-    <section className="py-24 px-6">
+    <section className="home-section">
       <div className="max-w-7xl mx-auto">
         {/* Section label — reads last (smallest, muted) per visual hierarchy principle */}
         <div
@@ -2133,7 +2138,7 @@ export default function SanctuaryCommunication() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="block text-xs md:text-sm font-display tracking-[0.2em] uppercase text-center mb-6 text-muted-foreground/75 dark:text-muted-foreground/70"
+            className="home-section-eyebrow mb-6 block text-center font-display uppercase tracking-[0.2em] text-muted-foreground/75 dark:text-muted-foreground/70"
           >
             <a
               data-sanctuary-label
@@ -2151,7 +2156,7 @@ export default function SanctuaryCommunication() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-display font-semibold text-center mb-6 text-balance leading-[1.1] text-muted-foreground"
+          className="home-section-title mb-6 text-center font-display font-semibold text-balance text-muted-foreground"
         >
           {t("sanctuary.headline")}
         </m.h2>
@@ -2162,7 +2167,7 @@ export default function SanctuaryCommunication() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-base md:text-lg text-center text-muted-foreground max-w-2xl mx-auto mb-16 text-balance leading-relaxed"
+          className="home-section-lede mx-auto mb-16 text-center text-balance text-muted-foreground"
         >
           {t("sanctuary.supporting")}
         </m.p>

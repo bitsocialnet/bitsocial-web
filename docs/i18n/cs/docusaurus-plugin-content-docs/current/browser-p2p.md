@@ -90,9 +90,6 @@ připraví o jednu vyhledávací cestu, ne o data. IPFS gateway naproti tomu le�
 
 ## Kde to dnes běží
 
-- [Blog Bitsocial](https://bitsocial.net/blog) na tomto webu běží ve výchozím nastavení jako P2P
-  klient v prohlížeči. Jeho panel „P2P status“ ukazuje živý seznam peerů, transport každého spojení
-  a odkud tito peeři jsou.
 - [5chan](/apps/5chan/) běží ve výchozím nastavení jako čisté P2P v prohlížeči ve webové aplikaci na
   [5chan.app](https://5chan.app).
 
