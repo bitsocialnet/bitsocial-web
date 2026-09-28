@@ -19,7 +19,8 @@ import {
   XIcon,
 } from "@/components/icons";
 
-const linkClassName = "text-muted-foreground hover:text-foreground transition-colors text-sm";
+const linkClassName =
+  "touch-target inline-flex items-center text-muted-foreground hover:text-foreground transition-colors text-sm";
 
 function FooterLinkIcon({ icon }: { icon: ExternalLink["icon"] }) {
   if (icon === "coingecko") {
@@ -40,13 +41,13 @@ function FooterLinkIcon({ icon }: { icon: ExternalLink["icon"] }) {
 export default function Footer() {
   return (
     <footer
-      className="footer-glass px-6 pt-6 mt-8 md:pt-14 md:mt-12"
+      className="footer-glass mt-8 px-[var(--space-page-inline)] pt-6 md:mt-12 md:pt-14"
       style={{ paddingBottom: "calc(3.5rem + env(safe-area-inset-bottom, 0px))" }}
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-10">
           <div className="col-span-2 md:col-span-1">
-            <a href="/" className="inline-flex items-center gap-1.5 mb-4 group">
+            <a href="/" className="touch-target mb-4 inline-flex items-center gap-1.5 group">
               <img src="/logo-small.png" alt="" aria-hidden="true" className="h-6 w-6" />
               <span className="text-lg font-display text-muted-foreground group-hover:text-foreground transition-colors">
                 Bitsocial Chain
@@ -160,7 +161,7 @@ export default function Footer() {
               href={CONTRIBUTE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors"
+              className="touch-target inline-flex items-center transition-colors hover:text-foreground"
             >
               Improve this page
             </a>
@@ -170,7 +171,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               dir="ltr"
-              className="hover:text-foreground transition-colors"
+              className="touch-target inline-flex items-center transition-colors hover:text-foreground"
             >
               &copy; {new Date().getFullYear()} Bitsocial Forge, Inc.
             </a>

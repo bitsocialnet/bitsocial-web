@@ -7,8 +7,12 @@ import { NoJsThemeToggle, ThemeToggle } from "@/components/theme-toggle";
 import { TOPBAR_LINKS, type ExternalLink } from "@/lib/site";
 import { cn, getScrollBehavior } from "@/lib/utils";
 
+// Every topbar control is an explicit 44px flex-centred box on every pointer type, matching the
+// about site. Relying on a coarse-pointer minimum size instead grows the links on touch devices
+// without re-centring their labels, so the bar looks different on an iPad than on a laptop.
 const navLinkClassName =
-  "text-muted-foreground hover:text-foreground transition-colors relative group text-lg md:text-base font-display leading-none py-2 px-2 block";
+  "text-muted-foreground hover:text-foreground transition-colors relative group flex min-h-11 items-center px-2 text-lg md:text-base font-display leading-none";
+const desktopNavLinkClassName = "h-11 min-w-11 justify-center";
 const compactNavigationTriggerBufferPx = 160;
 const MOBILE_MENU_INTERACTION_GUARD_ATTRIBUTE = "data-mobile-menu-interaction-guard";
 
@@ -41,7 +45,7 @@ const FAQ_ID = "faq";
 // The one in-page link. The href keeps it working without JavaScript; with it, the click scrolls
 // smoothly (unless reduced motion is on) like bitsocial.net's topbar FAQ instead of the anchor's
 // instant jump, and replaces the hash so the jump does not stack history entries.
-function FaqNavLink({ onClick }: { onClick?: () => void }) {
+function FaqNavLink({ onClick, className }: { onClick?: () => void; className?: string }) {
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     onClick?.();
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
@@ -67,7 +71,7 @@ function FaqNavLink({ onClick }: { onClick?: () => void }) {
   };
 
   return (
-    <a href={`#${FAQ_ID}`} className={navLinkClassName} onClick={handleClick}>
+    <a href={`#${FAQ_ID}`} className={cn(navLinkClassName, className)} onClick={handleClick}>
       FAQ
     </a>
   );
@@ -75,11 +79,16 @@ function FaqNavLink({ onClick }: { onClick?: () => void }) {
 
 function TopbarLinks({ links, onNavClick }: { links: ExternalLink[]; onNavClick: () => void }) {
   return (
-    <div className="topbar-links flex items-center gap-5">
+    <div className="topbar-links flex items-center gap-5 whitespace-nowrap">
       {links.map((link) => (
-        <NavLink key={link.href} link={link} onClick={onNavClick} />
+        <NavLink
+          key={link.href}
+          link={link}
+          onClick={onNavClick}
+          className={desktopNavLinkClassName}
+        />
       ))}
-      <FaqNavLink onClick={onNavClick} />
+      <FaqNavLink onClick={onNavClick} className={desktopNavLinkClassName} />
     </div>
   );
 }
@@ -94,7 +103,7 @@ function DesktopNavigation({
   includeNoJsControls?: boolean;
 }) {
   return (
-    <div className="topbar-desktop-nav flex items-center">
+    <div className="topbar-desktop-nav flex h-11 items-center">
       <TopbarLinks links={links} onNavClick={onNavClick} />
       {links.length > 0 ? <div className="h-4 w-px bg-border mx-4" /> : null}
       <div className="topbar-controls flex items-center gap-2">
@@ -120,7 +129,7 @@ function DesktopNavigation({
 function NoJsMobileMenu({ links }: { links: ExternalLink[] }) {
   return (
     <details className="nojs-mobile-menu">
-      <summary className="nojs-mobile-summary flex h-9 w-9 list-none cursor-pointer items-center justify-center rounded-full text-muted-foreground hover:text-foreground [&::-webkit-details-marker]:hidden">
+      <summary className="nojs-mobile-summary flex h-11 w-11 list-none cursor-pointer items-center justify-center rounded-full text-muted-foreground hover:text-foreground [&::-webkit-details-marker]:hidden">
         <span className="sr-only">Menu</span>
         <span className="relative h-5 w-5">
           <span className="absolute left-0 top-0.5 h-0.5 w-5 rounded-full bg-current" />
@@ -268,7 +277,7 @@ export default function Topbar() {
         ease: [0.4, 0, 0.2, 1],
       }}
       aria-label="Bitsocial Chain site navigation"
-      className="fixed top-3 left-4 right-4 z-50 mx-auto max-w-7xl"
+      className="topbar-position fixed z-50 mx-auto max-w-7xl"
     >
       <div
         className={cn(
@@ -289,11 +298,11 @@ export default function Topbar() {
             />
           </div>
 
-          <div ref={topbarContentRef} className="flex items-center justify-between">
+          <div ref={topbarContentRef} className="flex h-11 items-center justify-between">
             <a
               ref={logoRef}
               href="/"
-              className="inline-flex items-center gap-1 group transition-colors shrink-0"
+              className="group inline-flex h-11 shrink-0 items-center gap-1 transition-colors"
             >
               <img
                 src="/logo-small.png"
@@ -309,7 +318,7 @@ export default function Topbar() {
             </a>
 
             {usesCompactNavigation ? (
-              <div className="flex items-center gap-2">
+              <div className="flex h-11 items-center gap-2">
                 <HamburgerButton isOpen={isMobileMenuOpen} onClick={handleMenuToggle} />
               </div>
             ) : (
@@ -350,5 +359,5 @@ export default function Topbar() {
 }
 
 export function TopbarSpacer({ className }: { className?: string }) {
-  return <div className={cn("h-[4.25rem] shrink-0", className)} aria-hidden="true" />;
+  return <div className={cn("h-[4.75rem] shrink-0", className)} aria-hidden="true" />;
 }
