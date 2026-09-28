@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { type MouseEvent, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { m } from "framer-motion";
 import HamburgerButton from "@/components/hamburger-button";
 import LanguageSelector, { NoJsLanguageSelector } from "@/components/language-selector";
 import MobileMenu from "@/components/mobile-menu";
 import { NoJsThemeToggle, ThemeToggle } from "@/components/theme-toggle";
 import { TOPBAR_LINKS, type ExternalLink } from "@/lib/site";
-import { cn } from "@/lib/utils";
+import { cn, getScrollBehavior } from "@/lib/utils";
 
 const navLinkClassName =
   "text-muted-foreground hover:text-foreground transition-colors relative group text-lg md:text-base font-display leading-none py-2 px-2 block";
@@ -36,11 +36,38 @@ function NavLink({
   );
 }
 
-// The one in-page link: a plain hash anchor, like the section eyebrows, so it also works without
-// JavaScript and the deep-link scroll in `useHashScroll` settles it.
+const FAQ_ID = "faq";
+
+// The one in-page link. The href keeps it working without JavaScript; with it, the click scrolls
+// smoothly (unless reduced motion is on) like bitsocial.net's topbar FAQ instead of the anchor's
+// instant jump, and replaces the hash so the jump does not stack history entries.
 function FaqNavLink({ onClick }: { onClick?: () => void }) {
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    onClick?.();
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return;
+    }
+    event.preventDefault();
+
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}${window.location.search}#${FAQ_ID}`,
+    );
+    // Closing the mobile menu animates `height: auto`, and framer-motion restores the window scroll
+    // after measuring it on the next frame, which cancels a smooth scroll started now. Two frames
+    // puts the scroll after that measurement.
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() =>
+        document
+          .getElementById(FAQ_ID)
+          ?.scrollIntoView({ behavior: getScrollBehavior(), block: "start" }),
+      ),
+    );
+  };
+
   return (
-    <a href="#faq" className={navLinkClassName} onClick={onClick}>
+    <a href={`#${FAQ_ID}`} className={navLinkClassName} onClick={handleClick}>
       FAQ
     </a>
   );
