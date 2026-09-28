@@ -16,8 +16,8 @@ export default function Unstoppable() {
   return (
     <Section
       id="unstoppable"
-      title="No operator, no off switch."
-      supporting="Every action on Bitsocial Chain is a plain Ethereum transaction, sent to an address nobody controls. Nodes read Ethereum's history and apply the same open rules, so every node arrives at the same state, and anyone could rebuild it from Ethereum alone. No company sits in the middle to pressure, and there is nothing to switch off."
+      title="Built on Ethereum. Run by nobody."
+      supporting="A new blockchain would rebuild the security and developer base Ethereum already has, and would need a new token when BSO is already fully distributed. So Bitsocial Chain is an Ethereum L2 with no operator: every action is a plain Ethereum transaction sent to an address nobody controls, and every node derives the same state from Ethereum's history. Nothing sits in the middle to pressure or switch off."
     >
       <div className="spec">
         <div className="spec-locks">

@@ -14,24 +14,14 @@ export const SECTION_FAQ = [
     question: "Why does a peer-to-peer social network need a chain?",
   },
   {
-    id: "why-an-l2",
-    eyebrow: "Why an L2",
-    question: "Why an Ethereum L2 instead of a new blockchain?",
-  },
-  {
     id: "tokenomics",
     eyebrow: "Tokenomics",
-    question: "What are BSO's tokenomics?",
-  },
-  {
-    id: "the-airdrop",
-    eyebrow: "The Airdrop",
-    question: "Who got BSO? Was there a presale?",
+    question: "What are BSO's tokenomics? Who got it?",
   },
   {
     id: "unstoppable",
     eyebrow: "Unstoppable",
-    question: "Who runs the chain? Can it be shut down?",
+    question: "Why an Ethereum L2? Who runs it?",
   },
   {
     id: "bso-names",
@@ -41,12 +31,7 @@ export const SECTION_FAQ = [
   {
     id: "community-money",
     eyebrow: "Community Money",
-    question: "What would communities do with it?",
-  },
-  {
-    id: "ads-and-tips",
-    eyebrow: "Ads and Tips",
-    question: "How would communities make money?",
+    question: "What would BSO be used for?",
   },
   {
     id: "privacy",

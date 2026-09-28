@@ -1,5 +1,4 @@
 import { ArrowLeftRight, AtSign, Boxes, Layers, Palette, Puzzle } from "lucide-react";
-import FlowStep from "./FlowStep";
 import Section from "./Section";
 
 const IDEAS = [
@@ -43,10 +42,19 @@ export default function Possibilities() {
       supporting="Not live yet. BSO is live on Ethereum today; Bitsocial Chain is a proposal, and its first proof of concept, native .bso names, runs on a test chain. Nothing below has a date. It is what a social layer with its own money would make possible: some of it will get built, some replaced by better ideas, and some built by people who have not shown up yet."
     >
       <div className="flywheel">
-        <ol className="flow-steps flow-steps-3">
-          {IDEAS.map((idea) => (
-            <FlowStep key={idea.label} {...idea} />
-          ))}
+        <ol className="flow-steps">
+          {IDEAS.map((idea) => {
+            const Icon = idea.icon;
+            return (
+              <li key={idea.label} className="flow-step">
+                <span className="flow-icon">
+                  <Icon aria-hidden size={18} strokeWidth={1.8} />
+                </span>
+                <span className="flow-label">{idea.label}</span>
+                <span className="flow-note">{idea.note}</span>
+              </li>
+            );
+          })}
         </ol>
       </div>
     </Section>

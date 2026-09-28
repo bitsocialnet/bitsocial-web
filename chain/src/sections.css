@@ -612,8 +612,7 @@
 }
 
 /* ============================================================
-   Step grid — #the-airdrop's four-step sequence, and the
-   three-up variant behind #why-an-l2 and #possibilities
+   Step grid — the three-up idea cards behind #possibilities
    ============================================================ */
 .flywheel {
   max-width: 52rem;
@@ -622,19 +621,14 @@
 
 .flow-steps {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.55rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.flow-steps-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
 .flow-step {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -665,159 +659,7 @@
 }
 
 .flow-note {
-  font-size: 0.74rem;
-  line-height: 1.5;
-  color: var(--ink-faint);
-}
-
-/* Three-up notes run to full sentences, so they get body-copy size and contrast
-   instead of the four-step caption treatment. */
-.flow-steps-3 .flow-note {
   font-size: 0.82rem;
-  line-height: 1.55;
-  color: var(--ink-muted);
-  text-wrap: pretty;
-}
-
-.flow-arrow {
-  position: absolute;
-  top: 50%;
-  right: -0.5rem;
-  z-index: 1;
-  color: var(--ink-faint);
-  transform: translate(50%, -50%);
-}
-
-.flow-loop {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  max-width: 46ch;
-  margin: clamp(1.4rem, 3vw, 2rem) auto 0;
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: var(--ink-muted);
-}
-
-.flow-loop svg {
-  flex: none;
-  color: var(--signal);
-}
-
-/* ============================================================
-   Programmable revenue — the closed ring, the one place the
-   loop is actually drawn shut.
-   ============================================================ */
-.loop {
-  max-width: 52rem;
-  margin: 0 auto;
-}
-
-.loop-ring {
-  position: relative;
-  width: min(100%, 44rem);
-  margin: 0 auto;
-}
-
-/* The orbit the four steps sit on. The steps are opaque panels, so the ellipse
-   only shows through the diagonal gaps between them — which is the part that
-   reads as a ring. Sized off the ring box rather than the hub so the arcs land
-   in the empty corner cells whatever height the steps end up needing. */
-.loop-ring::before {
-  content: "";
-  position: absolute;
-  inset: 16% 20%;
-  pointer-events: none;
-  border: 1px dashed color-mix(in oklab, var(--signal) 35%, transparent);
-  border-radius: 50%;
-}
-
-.loop-steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  gap: clamp(0.6rem, 2vw, 1rem);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.loop-step {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: clamp(1rem, 2.4vw, 1.4rem) 0.8rem;
-  text-align: center;
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  background: var(--surface-raised);
-}
-
-/* Compass placement: the middle column and middle row stay clear for the hub. */
-.loop-step-1 {
-  grid-area: 1 / 2;
-}
-
-.loop-step-2 {
-  grid-area: 2 / 3;
-}
-
-.loop-step-3 {
-  grid-area: 3 / 2;
-}
-
-.loop-step-4 {
-  grid-area: 2 / 1;
-}
-
-.loop-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-  width: 2.5rem;
-  height: 2.5rem;
-  color: var(--signal);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--surface);
-}
-
-.loop-label {
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.loop-note {
-  font-size: 0.75rem;
-  line-height: 1.45;
-  color: var(--ink-muted);
-}
-
-.loop-hub {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.6rem;
-  height: 2.6rem;
-  color: var(--signal);
-  border: 1px solid var(--signal);
-  border-radius: 999px;
-  background: var(--signal-soft);
-  transform: translate(-50%, -50%);
-}
-
-.loop-caption {
-  max-width: 46ch;
-  margin: clamp(1.4rem, 3vw, 2rem) auto 0;
-  font-size: 0.88rem;
   line-height: 1.55;
   color: var(--ink-muted);
   text-wrap: pretty;
@@ -1038,35 +880,7 @@
    ============================================================ */
 @media (max-width: 720px) {
   .flow-steps {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .flow-steps-3 {
     grid-template-columns: 1fr;
-  }
-
-  .flow-arrow {
-    display: none;
-  }
-
-  /* Below the ring's usable width the four steps become a plain vertical stack,
-     the orbit is dropped, and the hub closes the sequence underneath. */
-  .loop-steps {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.55rem;
-  }
-
-  .loop-ring::before {
-    display: none;
-  }
-
-  .loop-hub {
-    position: static;
-    display: flex;
-    margin: clamp(0.7rem, 3vw, 1rem) auto 0;
-    transform: none;
   }
 
   .premise,
@@ -1099,10 +913,6 @@
 }
 
 @media (max-width: 460px) {
-  .flow-steps {
-    grid-template-columns: 1fr;
-  }
-
   .privacy-split {
     grid-template-columns: 1fr;
   }
@@ -1138,18 +948,24 @@
 }
 
 /* ============================================================
-   Contract source — the five lines the project actually wrote.
-   The brevity is the argument, so it is shown, not described.
+   Tokenomics bands — the airdrop, then the contract source: the
+   five lines the project actually wrote. The brevity is the
+   argument, so it is shown, not described.
    ============================================================ */
 
 /* A band of the .spec card like .spec-head and .spec-foot, so it carries the
    same inset instead of running into the card's edges. */
-.spec-code {
-  padding: clamp(1.1rem, 2.6vw, 1.5rem) clamp(1.1rem, 3vw, 1.6rem) 0;
+.spec-band {
+  padding: clamp(1.1rem, 2.6vw, 1.5rem) clamp(1.1rem, 3vw, 1.6rem);
   border-top: 1px solid var(--line);
 }
 
-.spec-code-label {
+/* The foot under the last band brings its own top padding. */
+.spec-band:last-of-type {
+  padding-bottom: 0;
+}
+
+.spec-band-label {
   display: block;
   margin-bottom: 0.6rem;
   font-family: var(--font-display);
@@ -1179,7 +995,7 @@
   white-space: pre;
 }
 
-.spec-code-note {
+.spec-band-note {
   max-width: 62ch;
   margin: 0.75rem 0 0;
   font-size: 0.85rem;

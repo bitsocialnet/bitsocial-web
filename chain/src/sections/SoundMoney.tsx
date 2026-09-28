@@ -59,13 +59,24 @@ export default function SoundMoney() {
           ))}
         </div>
 
-        <div className="spec-code">
-          <span className="spec-code-label">The whole contract</span>
+        <div className="spec-band">
+          <span className="spec-band-label">The airdrop</span>
+          <p className="spec-band-note">
+            About 600 people, in January 2022. They signed up through a Telegram bot, referral codes
+            earned larger shares, and every recipient was checked by hand so no one could walk away
+            with too much of the supply. No presale, no team allocation, nothing sold.
+          </p>
+        </div>
+
+        <div className="spec-band">
+          <span className="spec-band-label">The whole contract</span>
           <pre className="spec-code-block" dir="ltr">
             <code>{CONTRACT_SOURCE}</code>
           </pre>
-          <p className="spec-code-note">
-            Everything else is{" "}
+          <p className="spec-band-note">
+            The full supply mints to one address because that is how the migration works: balances
+            were mirrored one-for-one onto it and paid back out by transfer, every one of them
+            on-chain. Everything else is{" "}
             <a
               className="section-link"
               href="https://github.com/OpenZeppelin/openzeppelin-contracts"
