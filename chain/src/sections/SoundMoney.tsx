@@ -1,5 +1,6 @@
-import { Ban, Coins, Flame, ShieldCheck, Sparkles } from "lucide-react";
+import { Coins, Flame, ShieldCheck, Sparkles } from "lucide-react";
 import { ETHERSCAN_TOKEN_URL } from "@/lib/site";
+import Locks from "./Locks";
 import Section from "./Section";
 
 /**
@@ -47,17 +48,7 @@ export default function SoundMoney() {
           </ul>
         </div>
 
-        <div className="spec-locks">
-          {LOCKS.map((lock) => (
-            <div key={lock.label} className="lock">
-              <Ban aria-hidden size={16} strokeWidth={1.9} className="lock-icon" />
-              <span className="lock-text">
-                <span className="lock-label">{lock.label}</span>
-                <span className="lock-note">{lock.note}</span>
-              </span>
-            </div>
-          ))}
-        </div>
+        <Locks locks={LOCKS} />
 
         <div className="spec-band">
           <span className="spec-band-label">The airdrop</span>

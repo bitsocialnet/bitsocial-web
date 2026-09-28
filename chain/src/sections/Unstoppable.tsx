@@ -1,5 +1,6 @@
-import { Ban, FlaskConical } from "lucide-react";
+import { FlaskConical } from "lucide-react";
 import { PROOF_OF_CONCEPT_URL } from "@/lib/site";
+import Locks from "./Locks";
 import Section from "./Section";
 
 // The chain-level counterpart of the token's locks in #tokenomics, limited to what
@@ -21,17 +22,7 @@ export default function Unstoppable() {
       supporting="A new blockchain would rebuild the security and developer base Ethereum already has, and would need a new token when BSO is already fully distributed. So Bitsocial Chain is designed as an Ethereum L2 with no operator: every action is a plain Ethereum transaction sent to an address nobody controls, and anyone can run a node that derives the same state from Ethereum's history. There is no company to pressure and no switch to flip."
     >
       <div className="spec">
-        <div className="spec-locks">
-          {LOCKS.map((lock) => (
-            <div key={lock.label} className="lock">
-              <Ban aria-hidden size={16} strokeWidth={1.9} className="lock-icon" />
-              <span className="lock-text">
-                <span className="lock-label">{lock.label}</span>
-                <span className="lock-note">{lock.note}</span>
-              </span>
-            </div>
-          ))}
-        </div>
+        <Locks locks={LOCKS} />
 
         <p className="spec-foot">
           <FlaskConical aria-hidden size={15} strokeWidth={1.8} />
