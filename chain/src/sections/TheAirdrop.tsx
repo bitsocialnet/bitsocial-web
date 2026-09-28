@@ -1,4 +1,5 @@
 import { ArrowRight, ScanEye, Send, Share2, Wallet } from "lucide-react";
+import FlowStep from "./FlowStep";
 import Section from "./Section";
 
 const STEPS = [
@@ -18,21 +19,13 @@ export default function TheAirdrop() {
     >
       <div className="flywheel">
         <ol className="flow-steps">
-          {STEPS.map((step, i) => {
-            const Icon = step.icon;
-            return (
-              <li key={step.label} className="flow-step">
-                <span className="flow-icon">
-                  <Icon aria-hidden size={18} strokeWidth={1.8} />
-                </span>
-                <span className="flow-label">{step.label}</span>
-                <span className="flow-note">{step.note}</span>
-                {i < STEPS.length - 1 ? (
-                  <ArrowRight aria-hidden size={16} strokeWidth={1.8} className="flow-arrow" />
-                ) : null}
-              </li>
-            );
-          })}
+          {STEPS.map((step, i) => (
+            <FlowStep key={step.label} {...step}>
+              {i < STEPS.length - 1 ? (
+                <ArrowRight aria-hidden size={16} strokeWidth={1.8} className="flow-arrow" />
+              ) : null}
+            </FlowStep>
+          ))}
         </ol>
         <p className="flow-loop">
           <ArrowRight aria-hidden size={15} strokeWidth={1.8} />

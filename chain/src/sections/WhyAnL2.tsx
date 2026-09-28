@@ -1,4 +1,5 @@
 import { ArrowRight, Boxes, Coins, ShieldCheck } from "lucide-react";
+import FlowStep from "./FlowStep";
 import Section from "./Section";
 
 const REASONS = [
@@ -29,18 +30,9 @@ export default function WhyAnL2() {
     >
       <div className="flywheel">
         <ol className="flow-steps flow-steps-3">
-          {REASONS.map((reason) => {
-            const Icon = reason.icon;
-            return (
-              <li key={reason.label} className="flow-step">
-                <span className="flow-icon">
-                  <Icon aria-hidden size={18} strokeWidth={1.8} />
-                </span>
-                <span className="flow-label">{reason.label}</span>
-                <span className="flow-note">{reason.note}</span>
-              </li>
-            );
-          })}
+          {REASONS.map((reason) => (
+            <FlowStep key={reason.label} {...reason} />
+          ))}
         </ol>
         <p className="flow-loop">
           <ArrowRight aria-hidden size={15} strokeWidth={1.8} />

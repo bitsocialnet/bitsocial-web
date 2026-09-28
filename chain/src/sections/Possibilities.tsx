@@ -1,4 +1,5 @@
 import { ArrowLeftRight, AtSign, Boxes, Layers, Palette, Puzzle } from "lucide-react";
+import FlowStep from "./FlowStep";
 import Section from "./Section";
 
 const IDEAS = [
@@ -44,18 +45,9 @@ export default function Possibilities() {
     >
       <div className="flywheel">
         <ol className="flow-steps flow-steps-3">
-          {IDEAS.map((idea) => {
-            const Icon = idea.icon;
-            return (
-              <li key={idea.label} className="flow-step">
-                <span className="flow-icon">
-                  <Icon aria-hidden size={18} strokeWidth={1.8} />
-                </span>
-                <span className="flow-label">{idea.label}</span>
-                <span className="flow-note">{idea.note}</span>
-              </li>
-            );
-          })}
+          {IDEAS.map((idea) => (
+            <FlowStep key={idea.label} {...idea} />
+          ))}
         </ol>
       </div>
     </Section>
