@@ -133,3 +133,5 @@ For explicitly selected code and documentation changes, use [advisory semantic d
 For transport modes and an explicit paired measurement runner, see [browser transport measurement](browser-benchmark-README.md).
 
 For bounded suggestions between existing English documentation pages, use [advisory missing documentation links](docs-links-README.md). It previews exact source spans and verified destinations; it never inserts links.
+
+For task-specific questions over a bounded source shortlist, see [file questions](ask-README.md). Ordinary text/symbol search remains the first step; reports are advisory and never execute commands.
