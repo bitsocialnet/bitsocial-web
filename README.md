@@ -27,6 +27,7 @@ scripts/ Shared repo scripts and agent hooks
 Each top-level subproject has its own local documentation:
 
 - [`about/README.md`](./about/README.md)
+- [`chain/README.md`](./chain/README.md)
 - [`docs/README.md`](./docs/README.md)
 - [`stats/README.md`](./stats/README.md)
 
