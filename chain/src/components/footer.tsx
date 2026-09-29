@@ -41,7 +41,9 @@ function FooterLinkIcon({ icon }: { icon: ExternalLink["icon"] }) {
 export default function Footer() {
   return (
     <footer
-      className="footer-glass mt-8 px-[var(--space-page-inline)] pt-6 md:mt-12 md:pt-14"
+      // The footer is a bordered card with 2rem top corners, so phones keep a 1.5rem inset
+      // instead of the 1rem page gutter, which pushed the links against the border.
+      className="footer-glass mt-8 px-[max(1.5rem,var(--space-page-inline))] pt-6 md:mt-12 md:pt-14"
       style={{ paddingBottom: "calc(3.5rem + env(safe-area-inset-bottom, 0px))" }}
     >
       <div className="max-w-7xl mx-auto">
