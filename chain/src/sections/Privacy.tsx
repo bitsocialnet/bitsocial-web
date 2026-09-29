@@ -24,7 +24,7 @@ export default function Privacy() {
       title={t("sections.privacy.title")}
       supporting={t("sections.privacy.supporting")}
     >
-      <div className="privacy-split">
+      <div className="glass-card privacy-split">
         <div className="privacy-col">
           <span className="privacy-head">
             <Eye aria-hidden size={16} strokeWidth={1.8} />

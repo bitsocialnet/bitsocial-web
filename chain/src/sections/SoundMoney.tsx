@@ -61,7 +61,7 @@ export default function SoundMoney() {
       title={t("sections.tokenomics.title")}
       supporting={t("sections.tokenomics.supporting")}
     >
-      <div className="spec">
+      <div className="glass-card spec">
         <div className="spec-head">
           <div className="spec-supply">
             <span className="spec-figure">210,000,000</span>

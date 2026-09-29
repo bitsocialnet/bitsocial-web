@@ -55,7 +55,7 @@ export default function Possibilities() {
           {ideas.map((idea) => {
             const Icon = idea.icon;
             return (
-              <li key={idea.id} className="flow-step">
+              <li key={idea.id} className="glass-card flow-step">
                 <span className="flow-icon">
                   <Icon aria-hidden size={18} strokeWidth={1.8} />
                 </span>

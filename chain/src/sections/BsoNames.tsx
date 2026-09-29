@@ -27,7 +27,7 @@ export default function BsoNames() {
       }
     >
       <div className="bso-map">
-        <div className="bso-card">
+        <div className="glass-card bso-card">
           <span className="bso-card-badge">{t("sections.bsoNames.ensBadge")}</span>
           <span className="bso-row-name">mycommunity.eth</span>
           <span className="bso-row-record">
@@ -51,7 +51,7 @@ export default function BsoNames() {
           <span className="bso-connector-pill">{t("sections.bsoNames.airdropAtLaunch")}</span>
         </div>
 
-        <div className="bso-card bso-card-next">
+        <div className="glass-card bso-card bso-card-next">
           <span className="bso-card-badges">
             <span className="bso-card-badge bso-card-badge-next">
               {t("sections.bsoNames.bsoBadge")}

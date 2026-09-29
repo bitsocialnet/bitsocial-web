@@ -16,7 +16,7 @@ export default function CommunityMoney() {
       <div className="stack-tree">
         <div className="tree-tier tree-l3">
           {COMMUNITY_IDS.map((id) => (
-            <div key={id} className="tree-node">
+            <div key={id} className="glass-card tree-node">
               <Users aria-hidden size={16} strokeWidth={1.8} />
               <span className="tree-node-name">{t("sections.communityMoney.communityLayer")}</span>
               <span className="tree-node-meta">{t("sections.communityMoney.ownToken")}</span>
@@ -28,7 +28,7 @@ export default function CommunityMoney() {
           <span>{t("sections.communityMoney.feesFlow")}</span>
         </div>
 
-        <div className="tree-tier tree-l2">
+        <div className="glass-card tree-tier tree-l2">
           <Layers aria-hidden size={18} strokeWidth={1.8} />
           <span className="tree-l2-text">
             <span className="tree-l2-name">Bitsocial Chain</span>
@@ -41,7 +41,7 @@ export default function CommunityMoney() {
 
         <div className="tree-flow tree-flow-plain" aria-hidden="true" />
 
-        <div className="tree-tier tree-l1">
+        <div className="glass-card tree-tier tree-l1">
           <Boxes aria-hidden size={16} strokeWidth={1.8} />
           <span>{t("sections.communityMoney.ethereumMeta")}</span>
         </div>

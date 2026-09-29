@@ -13,7 +13,7 @@ export default function Verify() {
       supporting={t("sections.verify.supporting")}
     >
       <div className="verify">
-        <p className="verify-warn">
+        <p className="glass-card verify-warn">
           <ShieldAlert aria-hidden size={18} strokeWidth={1.85} />
           <span>
             <Trans

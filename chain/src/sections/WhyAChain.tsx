@@ -22,7 +22,7 @@ export default function WhyAChain() {
       quote={t("sections.whyAChain.quote")}
     >
       <div className="premise">
-        <div className="premise-half">
+        <div className="glass-card premise-half">
           <span className="premise-badge">{t("sections.whyAChain.peerToPeer.badge")}</span>
           <span className="premise-name">Bitsocial</span>
           <span className="premise-note">{t("sections.whyAChain.peerToPeer.note")}</span>
@@ -37,7 +37,7 @@ export default function WhyAChain() {
           <Link2 size={18} strokeWidth={1.8} className="premise-joint-icon" />
         </div>
 
-        <div className="premise-half premise-half-next">
+        <div className="glass-card premise-half premise-half-next">
           <span className="premise-badge premise-badge-next">
             {t("sections.whyAChain.onChain.badge")}
           </span>

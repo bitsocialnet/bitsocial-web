@@ -36,7 +36,7 @@ export default function Unstoppable() {
       title={t("sections.unstoppable.title")}
       supporting={t("sections.unstoppable.supporting")}
     >
-      <div className="spec">
+      <div className="glass-card spec">
         <Locks locks={locks} />
 
         <p className="spec-foot">
