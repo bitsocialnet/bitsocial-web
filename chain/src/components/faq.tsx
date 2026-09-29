@@ -1,7 +1,8 @@
 import { ArrowUp, ArrowUpRight } from "lucide-react";
 import type { MouseEvent } from "react";
+import { useTranslation } from "react-i18next";
 import FaqAsk from "@/components/faq-ask";
-import { SECTION_FAQ } from "@/lib/faq";
+import { useSectionFaq } from "@/lib/faq";
 import { scrollToMailingListSection } from "@/lib/mailing-list-nav";
 import { rememberScrollReturn } from "@/lib/scroll-return";
 import { ABOUT_URL } from "@/lib/site";
@@ -18,18 +19,6 @@ type FaqRow = {
   /** Set when the answer is on another site rather than a section of this page. */
   externalHref?: string;
 };
-
-const FAQ_ROWS: FaqRow[] = [
-  ...SECTION_FAQ.map(({ id, eyebrow, question }) => ({ id, label: eyebrow, question })),
-  {
-    id: "about",
-    label: "About Us",
-    question: "Who is behind Bitsocial Chain?",
-    externalHref: ABOUT_URL,
-  },
-  // The newsletter section renders no eyebrow, so this label is its own.
-  { id: MAILING_LIST_ID, label: "Newsletter", question: "How do I follow along?" },
-];
 
 /**
  * `preventDefault()` suppresses the browser's native focus move, so without this a keyboard user is
@@ -77,19 +66,37 @@ const rowClassName =
  * already answers it, so the sections stay the single source of answers.
  */
 export default function Faq() {
+  const { t } = useTranslation();
+  const sectionFaq = useSectionFaq();
+  const faqRows: FaqRow[] = [
+    ...sectionFaq.map(({ id, eyebrow, question }) => ({ id, label: eyebrow, question })),
+    {
+      id: "about",
+      label: t("faq.rows.about.label"),
+      question: t("faq.rows.about.question"),
+      externalHref: ABOUT_URL,
+    },
+    // The newsletter section renders no eyebrow, so this label is its own.
+    {
+      id: MAILING_LIST_ID,
+      label: t("faq.rows.mailingList.label"),
+      question: t("faq.rows.mailingList.question"),
+    },
+  ];
+
   return (
     <SectionFrame
       id="faq"
       className="section-faq"
-      eyebrow="FAQ"
-      title="Common questions."
-      supporting="Every section of this page answers one. Click a question to jump to it."
+      eyebrow={t("faq.eyebrow")}
+      title={t("faq.title")}
+      supporting={t("faq.supporting")}
     >
       {/* No `overflow-hidden`: the focus ring is an outset box-shadow and would be clipped. */}
       <div className="glass-card mx-auto max-w-3xl px-2 py-1 text-left md:px-3 md:py-2">
-        <nav aria-label="Questions answered on this page">
+        <nav aria-label={t("faq.navLabel")}>
           <ol className="divide-y divide-border/50">
-            {FAQ_ROWS.map((row, index) => {
+            {faqRows.map((row, index) => {
               const ArrowIcon = row.externalHref ? ArrowUpRight : ArrowUp;
               // The diagonal arrow is what tells the reader this row leaves the page instead of
               // scrolling, so it also leans right on hover rather than straight up.
@@ -119,8 +126,11 @@ export default function Faq() {
                         className={`h-3.5 w-3.5 shrink-0 transition-transform duration-300 ${arrowHoverClassName} motion-reduce:transform-none motion-reduce:transition-none`}
                         aria-hidden="true"
                       />
-                      <span className="sr-only">Answered in </span>
-                      {row.label}
+                      {/* One sentence with the label inside, so a language that puts the verb or
+                          preposition after the noun can phrase it. The painted label is the same
+                          text, hidden from assistive tech so it is not read twice. */}
+                      <span className="sr-only">{t("faq.answeredIn", { label: row.label })}</span>
+                      <span aria-hidden="true">{row.label}</span>
                     </span>
                   </span>
                 </>

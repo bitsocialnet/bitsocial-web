@@ -1,0 +1,297 @@
+{
+  "nav": {
+    "language": "Ngôn ngữ",
+    "theme": "Giao diện",
+    "mainSite": "Trang chính",
+    "faq": "Câu hỏi thường gặp"
+  },
+  "languageSelector": {
+    "title": "Chọn ngôn ngữ",
+    "searchPlaceholder": "Tìm kiếm ngôn ngữ...",
+    "noResults": "Không có ngôn ngữ phù hợp với tìm kiếm của bạn."
+  },
+  "meta": {
+    "title": "BSO - Lớp xã hội còn thiếu của crypto",
+    "description": "BSO là tiền của Bitsocial, mạng xã hội peer-to-peer không công ty nào sở hữu. Một appchain Ethereum L2 nơi các cộng đồng sở hữu mạng, token và doanh thu của chính mình."
+  },
+  "topbar": {
+    "navLabel": "Điều hướng trang Bitsocial Chain",
+    "menu": "Menu",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu"
+  },
+  "theme": {
+    "toggle": "Đổi giao diện"
+  },
+  "hero": {
+    "statusCta": "Chain chưa hoạt động, đăng ký để nhận cập nhật",
+    "title": "<mark>Lớp xã hội</mark> còn thiếu của crypto",
+    "supporting": "Crypto trở thành sòng bạc vì Web2, TradFi và hạ tầng tập trung nắm giữ các kênh phân phối và bóp méo cơ chế khuyến khích. Bitsocial Chain khắc phục điều đó: một <appchainLink>appchain</appchainLink> <l2Link>Ethereum L2</l2Link> không thể ngăn chặn, hoàn toàn phi tập trung, nơi các cộng đồng sở hữu mạng, token và doanh thu của mình."
+  },
+  "layers": {
+    "ariaLabel": "Ba lớp xếp chồng của crypto: các ứng dụng xã hội trên mạng Bitsocial ở trên cùng, lớp quyết toán Ethereum L1 ở nền móng, và Bitsocial Chain, appchain Ethereum L2 chạy bằng BSO, bừng sáng như lớp còn thiếu phát sáng, khớp vào khoảng trống giữa hai lớp kia, được một trục năng lượng xuyên qua.",
+    "social": {
+      "title": "ỨNG DỤNG XÃ HỘI",
+      "subtitle": "MẠNG BITSOCIAL"
+    },
+    "bso": {
+      "title": "BITSOCIAL CHAIN",
+      "subtitle": "APPCHAIN L2 · BSO"
+    },
+    "eth": {
+      "title": "ETHEREUM",
+      "subtitle": "QUYẾT TOÁN L1"
+    }
+  },
+  "contract": {
+    "label": "Hợp đồng BSO",
+    "copyAriaLabel": "Sao chép địa chỉ hợp đồng BSO {{address}}",
+    "copied": "Đã sao chép vào bộ nhớ tạm"
+  },
+  "sections": {
+    "whyAChain": {
+      "title": "Bản thân Bitsocial không nằm trên blockchain.",
+      "supporting": "Bài đăng, hồ sơ, cộng đồng và kiểm duyệt trên <bitsocialLink>Bitsocial</bitsocialLink> đều là peer-to-peer. Không blockchain, không phí, không ví: bạn có thể dùng toàn bộ mạng mà không cần chạm vào crypto, và hầu hết mọi người sẽ như vậy. Nhưng có một vài thứ thực sự cần đến blockchain — những cái tên thuộc về bạn, tiền chuyển giữa những người xa lạ, token mà một cộng đồng thực sự sở hữu. Bitsocial Chain chỉ dành cho đúng những thứ đó, không gì khác.",
+      "peerToPeer": {
+        "badge": "Peer-to-peer",
+        "note": "Mạng xã hội. Không có blockchain nào tham gia.",
+        "posts": "Bài đăng và bình luận",
+        "profiles": "Hồ sơ và cộng đồng",
+        "moderation": "Kiểm duyệt và chống spam"
+      },
+      "onChain": {
+        "badge": "On-chain",
+        "note": "Vài phần cần đến blockchain.",
+        "names": "Tên .bso",
+        "tipping": "Tip và giải thưởng",
+        "tokens": "Token cộng đồng"
+      },
+      "caption": "Chain là tùy chọn. Mạng xã hội thì không.",
+      "quote": "Một mạng xã hội phi tập trung cần một loại tiền phi tập trung."
+    },
+    "tokenomics": {
+      "title": "Tiền vững chắc.",
+      "supporting": "BSO là một ERC-20 có nguồn cung cố định: 210 triệu, không lạm phát, giảm phát theo thiết kế. Toàn bộ nguồn cung đã được airdrop cho khoảng 600 người vào đầu năm 2022, không bán trước và không có phần nào được tách riêng trước cộng đồng. Hợp đồng của nó là bất biến và không có admin, nên các quy tắc được cố định mãi mãi.",
+      "supply": {
+        "cap": "Nguồn cung tối đa BSO · cố định mãi mãi"
+      },
+      "traits": {
+        "airdropped": "100% được airdrop, không đội ngũ, không bán trước",
+        "fixedCap": "Giới hạn cố định, không phát hành thêm",
+        "deflationary": "Giảm phát: nguồn cung chỉ giảm"
+      },
+      "locks": {
+        "noMint": {
+          "label": "Không mint",
+          "note": "nguồn cung không bao giờ tăng"
+        },
+        "noOwner": {
+          "label": "Không chủ sở hữu",
+          "note": "không bao giờ có khóa admin"
+        },
+        "noPause": {
+          "label": "Không tạm dừng",
+          "note": "việc chuyển token không thể bị đóng băng"
+        },
+        "noProxy": {
+          "label": "Không proxy",
+          "note": "mã không thể bị thay thế"
+        }
+      },
+      "airdrop": {
+        "label": "Đợt airdrop",
+        "note": "Khoảng 600 người, trong ba đợt nhận từ tháng 1 đến tháng 2 năm 2022. Họ đăng ký qua một bot Telegram, mã giới thiệu mang lại phần lớn hơn, và mọi người nhận đều được kiểm tra thủ công để không ai có thể ôm quá nhiều nguồn cung. Không bán trước, không phân bổ cho đội ngũ, không bán gì cả."
+      },
+      "contract": {
+        "label": "Toàn bộ hợp đồng",
+        "note": "Toàn bộ nguồn cung được mint về một địa chỉ vì đó là cách quá trình migration hoạt động: số dư được sao chép một-một vào địa chỉ đó rồi trả lại bằng cách chuyển token, tất cả đều on-chain. Mọi thứ còn lại là <openZeppelinLink>OpenZeppelin</openZeppelinLink>, không chỉnh sửa — mã token được dùng nhiều nhất và được rà soát kỹ nhất trên Ethereum. Không có gì tùy biến, không có gì mánh khóe. Đọc nó trên <etherscanLink>Etherscan</etherscanLink>."
+      },
+      "foot": "Bất biến và không có admin: không còn khóa admin nào để nắm giữ, nên không ai có thể thay đổi nó, phát hành thêm hay đóng băng nó."
+    },
+    "unstoppable": {
+      "title": "Xây trên Ethereum. Không ai vận hành.",
+      "supporting": "Một blockchain mới sẽ phải xây lại nền tảng bảo mật và cộng đồng nhà phát triển mà Ethereum đã có, và sẽ cần một token mới trong khi BSO đã được phân phối hoàn toàn. Vì vậy Bitsocial Chain được thiết kế như một Ethereum L2 không có nhà vận hành: mọi hành động là một giao dịch Ethereum thông thường gửi đến một địa chỉ không ai kiểm soát, và bất kỳ ai cũng có thể chạy một node để tự tính ra cùng một trạng thái từ lịch sử của Ethereum. Không có công ty nào để gây áp lực và không có công tắc nào để gạt.",
+      "locks": {
+        "noSequencer": {
+          "label": "Không cần sequencer",
+          "note": "Ethereum sắp xếp thứ tự mọi giao dịch"
+        },
+        "noAdminKeys": {
+          "label": "Không có khóa admin",
+          "note": "không ai đổi luật chơi thay bạn"
+        },
+        "noUpgradeableContract": {
+          "label": "Không có hợp đồng nâng cấp được",
+          "note": "không có gì trên Ethereum để tịch thu"
+        },
+        "noPrivilegedNode": {
+          "label": "Không có node đặc quyền",
+          "note": "ai cũng có thể tự tính ra cùng trạng thái"
+        }
+      },
+      "proofOfConcept": "Bản chứng minh khái niệm đã tính ra tên .bso theo cách này, trên một dev chain cục bộ. Để ra mắt chính thức vẫn cần một hệ thống chứng minh, một cuộc kiểm toán và mô hình kinh tế cuối cùng. <proofLink>Đọc bản chứng minh khái niệm</proofLink>."
+    },
+    "bsoNames": {
+      "title": "Tên .bso của bạn vẫn là của bạn.",
+      "supporting": "Các ứng dụng Bitsocial <resolverLink>hiện đã phân giải tên .bso</resolverLink> bằng cách mượn ENS, hệ thống đặt tên mà các ví Ethereum sử dụng: mycommunity.bso thực chất là mycommunity.eth mang một bản ghi bitsocial. Một sổ đăng ký gốc sẽ airdrop mọi tên đang được dùng cho ví đang nắm giữ nó — không có gì để nhận và không phải đăng ký lại.",
+      "ensBadge": "ENS · hiện nay",
+      "pointsTo": "trỏ đến",
+      "communityKey": "khóa của cộng đồng",
+      "airdropAtLaunch": "airdrop khi ra mắt",
+      "bsoBadge": ".bso · Bitsocial Chain",
+      "owner": "chủ sở hữu",
+      "sameWallet": "cùng một ví"
+    },
+    "communityMoney": {
+      "title": "Một tài sản cho nhiều cộng đồng.",
+      "supporting": "Mỗi cộng đồng có thể chạy lớp riêng của mình, một L3 với token riêng, và trả phí, tên và tiền thuê bằng BSO. L3 đã có mặt khắp crypto; trên Bitsocial Chain, mỗi L3 sẽ đến cùng một cộng đồng có sẵn. Doanh thu của nó có thể tự quyết toán: các vị trí quảng cáo được đấu giá bằng hợp đồng, một phần của mỗi lần bán bị hủy ngay tại chỗ và phần còn lại trả cho cộng đồng, không có kho quỹ mua lại nào để ai đó chiếm giữ.",
+      "communityLayer": "Lớp cộng đồng",
+      "ownToken": "token riêng của nó",
+      "feesFlow": "phí, tên và tiền thuê trả bằng BSO",
+      "chainMeta": "Lớp Ethereum · trạng thái được tính ra từ Ethereum",
+      "ethereumMeta": "Ethereum L1 · bảo mật và dữ liệu",
+      "caption": "Một phần của mỗi khoản phí bị hủy; phần còn lại chi trả cho bảo mật của Chain."
+    },
+    "privacy": {
+      "title": "Việc tip không nên làm lộ danh tính bạn.",
+      "supporting": "Bitsocial Chain công khai theo mặc định, giống như Ethereum, và tên .bso sinh ra để được nhìn thấy. Tiền thì khác: một lần tip không bao giờ nên đòi hỏi phải đặt tên, hồ sơ hay bài đăng của bạn lên on-chain bên cạnh nó, và một ví mới nên là chuyện bình thường, không đáng ngờ. Chain sẽ không xây hệ thống riêng tư của riêng mình. Nó được dự định để các hệ thống sẵn có có thể tích hợp mà không cần xin phép: shielded pool, địa chỉ stealth, bằng chứng zero-knowledge.",
+      "publicOnPurpose": {
+        "heading": "Công khai có chủ đích",
+        "names": "Tên .bso và ai sở hữu chúng",
+        "rules": "Mọi quy tắc và mọi thay đổi trạng thái"
+      },
+      "neverRequired": {
+        "heading": "Không bao giờ bắt buộc",
+        "profile": "Tên hoặc hồ sơ của bạn kèm theo khoản tip",
+        "wallet": "Mỗi người một ví",
+        "app": "Một ví hoặc ứng dụng chính thức"
+      }
+    },
+    "possibilities": {
+      "title": "Đề xuất công khai.",
+      "supporting": "Chưa hoạt động. BSO hiện đã hoạt động trên Ethereum; Bitsocial Chain là một đề xuất, và bản chứng minh khái niệm đầu tiên của nó, tên .bso gốc, chạy trên một dev chain cục bộ. Không mục nào bên dưới có ngày cụ thể. Đó là những gì một lớp xã hội có tiền riêng có thể làm nên: một số sẽ được xây dựng, một số bị thay bằng ý tưởng tốt hơn, và một số do những người chưa xuất hiện xây dựng.",
+      "ideas": {
+        "chain": {
+          "note": "Chính appchain Ethereum L2 này, và là nơi quyết toán của BSO."
+        },
+        "registry": {
+          "label": "Sổ đăng ký .bso gốc",
+          "note": "Tên và danh tính được đăng ký trên Chain, thay vì mượn từ ENS."
+        },
+        "l3s": {
+          "label": "L3 và token của cộng đồng",
+          "note": "Các cộng đồng có lớp riêng và token riêng, quyết toán bằng BSO."
+        },
+        "agoraswap": {
+          "note": "Một DEX cộng đồng nơi token cộng đồng được giao dịch với BSO, giữ thanh khoản on-chain."
+        },
+        "collectibles": {
+          "label": "Đồ sưu tầm của nhà sáng tạo",
+          "note": "Cách để nhà sáng tạo bán trực tiếp một thứ gì đó, không có nền tảng nào trích phần trăm."
+        },
+        "other": {
+          "label": "Bất kỳ điều gì khác phù hợp",
+          "note": "Token của client, sequencing phi tập trung, và những ý tưởng chưa ai đề xuất."
+        }
+      }
+    },
+    "verify": {
+      "title": "Chỉ có một địa chỉ là BSO.",
+      "supporting": "Ai cũng có thể tạo một token và gọi nó là BSO, nên địa chỉ hợp đồng là thứ duy nhất giúp phân biệt bản thật. Hãy đối chiếu cả 42 ký tự với trang này và các kênh chính thức của Bitsocial trước khi gửi bất cứ thứ gì đến bất cứ đâu.",
+      "warning": "Hợp đồng BSO chính thức là <contract>{{address}}</contract>. Bất kỳ thứ gì khác đều không phải BSO, dù nó được gọi là gì và được niêm yết ở đâu.",
+      "tradeOnUniswap": "Giao dịch trên Uniswap",
+      "provideLiquidity": "Cung cấp thanh khoản",
+      "note": "Thanh khoản trên Uniswap do những người độc lập cung cấp, và ai cũng có thể góp thêm. Đây không phải là tài khoản tiết kiệm: giá trị của một vị thế thanh khoản có thể giảm, kể cả xuống dưới số tiền đã bỏ vào."
+    }
+  },
+  "common": {
+    "proposed": "Đề xuất",
+    "close": "Đóng"
+  },
+  "mailingList": {
+    "chainTitle": "Luôn cập nhật",
+    "chainDescription": "Nhận thông báo về các mốc của token BSO, Bitsocial Chain và tin tức hệ sinh thái. Ít gửi, nhiều giá trị.",
+    "placeholder": "you@example.com",
+    "inputLabel": "Địa chỉ email",
+    "subscribe": "Đăng ký",
+    "subscribing": "Đang đăng ký…",
+    "chainSuccess": "Bạn đã có trong danh sách.",
+    "confirmationSent": "Kiểm tra email để xác nhận đăng ký của bạn.",
+    "chainError": "Đã xảy ra lỗi. Vui lòng thử lại.",
+    "unavailable": "Đăng ký nhận bản tin tạm thời không khả dụng.",
+    "privacy": "Không bao giờ có spam. Bạn có thể hủy đăng ký bất cứ lúc nào."
+  },
+  "faq": {
+    "eyebrow": "Câu hỏi thường gặp",
+    "title": "Câu hỏi thường gặp.",
+    "supporting": "Mỗi phần của trang này trả lời một câu hỏi. Nhấp vào câu hỏi để chuyển đến phần đó.",
+    "navLabel": "Các câu hỏi được trả lời trên trang này",
+    "answeredIn": "Được trả lời trong {{label}}",
+    "entries": {
+      "whyAChain": {
+        "eyebrow": "Vì sao cần Chain",
+        "question": "Vì sao một mạng xã hội peer-to-peer lại cần một blockchain?"
+      },
+      "tokenomics": {
+        "eyebrow": "Tokenomics",
+        "question": "Tokenomics của BSO là gì? Ai đã nhận được BSO?"
+      },
+      "unstoppable": {
+        "eyebrow": "Không thể ngăn chặn",
+        "question": "Vì sao là Ethereum L2? Ai vận hành nó?"
+      },
+      "bsoNames": {
+        "eyebrow": "Tên BSO",
+        "question": "Tên .bso của tôi sẽ ra sao?"
+      },
+      "communityMoney": {
+        "eyebrow": "Tiền cộng đồng",
+        "question": "BSO sẽ được dùng để làm gì?"
+      },
+      "privacy": {
+        "eyebrow": "Quyền riêng tư",
+        "question": "Mọi người có nhìn thấy tôi tip ai không?"
+      },
+      "possibilities": {
+        "eyebrow": "Khả năng",
+        "question": "Đã hoạt động chưa? Có kế hoạch gì?"
+      },
+      "verify": {
+        "eyebrow": "Xác minh",
+        "question": "Làm thế nào để có BSO một cách an toàn?"
+      }
+    },
+    "rows": {
+      "about": {
+        "label": "Về chúng tôi",
+        "question": "Ai đứng sau Bitsocial Chain?"
+      },
+      "mailingList": {
+        "label": "Bản tin",
+        "question": "Làm sao để tôi luôn cập nhật?"
+      }
+    },
+    "ask": {
+      "placeholder": "Hỏi bất cứ điều gì khác…",
+      "label": "Hỏi bất cứ điều gì khác",
+      "action": "Hỏi ChatGPT"
+    }
+  },
+  "footer": {
+    "chainTagline": "Lớp xã hội còn thiếu của crypto",
+    "token": "Token",
+    "resources": "Tài nguyên",
+    "blog": "Blog",
+    "proofOfConcept": "Chứng minh khái niệm",
+    "about": "Về chúng tôi",
+    "mainSite": "Trang chính",
+    "community": "Cộng đồng",
+    "chainBottomTagline": "Sửa chữa lớp xã hội của crypto",
+    "contribute": "Cải thiện trang này"
+  },
+  "backToTop": {
+    "returnToOrigin": "Quay lại vị trí trước đó",
+    "toTop": "Lên đầu trang",
+    "toBottom": "Xuống cuối trang"
+  }
+}

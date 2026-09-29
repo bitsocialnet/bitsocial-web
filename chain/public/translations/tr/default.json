@@ -1,0 +1,297 @@
+{
+  "nav": {
+    "language": "Dil",
+    "theme": "Tema",
+    "mainSite": "Ana Site",
+    "faq": "SSS"
+  },
+  "languageSelector": {
+    "title": "Dil seçin",
+    "searchPlaceholder": "Dil ara...",
+    "noResults": "Aramanızla eşleşen dil yok."
+  },
+  "meta": {
+    "title": "BSO - Kriptonun Eksik Sosyal Katmanı",
+    "description": "BSO, hiçbir şirketin sahip olmadığı peer-to-peer sosyal ağ Bitsocial'ın parasıdır. Toplulukların kendi ağlarına, token'larına ve gelirlerine sahip olduğu bir Ethereum L2 uygulama zinciri."
+  },
+  "topbar": {
+    "navLabel": "Bitsocial Chain sitesi gezinti menüsü",
+    "menu": "Menü",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat"
+  },
+  "theme": {
+    "toggle": "Temayı değiştir"
+  },
+  "hero": {
+    "statusCta": "Zincir henüz yayında değil, güncellemeler için abone olun",
+    "title": "Kriptonun eksik <mark>sosyal katmanı</mark>",
+    "supporting": "Kripto bir kumarhaneye dönüştü, çünkü Web2, TradFi ve merkezi altyapı dağıtım raylarına sahip ve teşvikleri çarpıtıyor. Bitsocial Chain bunu düzeltir: toplulukların kendi ağlarına, token'larına ve gelirlerine sahip olduğu, durdurulamaz ve tamamen merkezi olmayan bir <l2Link>Ethereum L2</l2Link> <appchainLink>uygulama zinciri</appchainLink>."
+  },
+  "layers": {
+    "ariaLabel": "Kriptonun üst üste dizilmiş üç katmanı: en üstte Bitsocial ağındaki sosyal uygulamalar, en altta Ethereum L1 mutabakatı ve ikisinin arasındaki boşluğa oturan, parlayan eksik katman olarak alevlenen, BSO ile çalışan Ethereum L2 uygulama zinciri Bitsocial Chain. Katmanların içinden bir enerji omurgası geçiyor.",
+    "social": {
+      "title": "SOSYAL UYGULAMALAR",
+      "subtitle": "BITSOCIAL AĞI"
+    },
+    "bso": {
+      "title": "BITSOCIAL CHAIN",
+      "subtitle": "L2 UYGULAMA ZİNCİRİ · BSO"
+    },
+    "eth": {
+      "title": "ETHEREUM",
+      "subtitle": "L1 MUTABAKAT"
+    }
+  },
+  "contract": {
+    "label": "BSO sözleşmesi",
+    "copyAriaLabel": "BSO sözleşme adresini kopyala: {{address}}",
+    "copied": "Panoya kopyalandı"
+  },
+  "sections": {
+    "whyAChain": {
+      "title": "Bitsocial'ın kendisi bir blockchain üzerinde değil.",
+      "supporting": "<bitsocialLink>Bitsocial</bitsocialLink>'daki gönderiler, profiller, topluluklar ve moderasyon peer-to-peer'dir. Zincir yok, ücret yok, cüzdan yok: tüm ağı kriptoya hiç dokunmadan kullanabilirsiniz ve çoğu insan da öyle yapacak. Ama birkaç şey gerçekten bir zincire ihtiyaç duyar — size ait adlar, yabancılar arasında el değiştiren para, bir topluluğun gerçekten sahip olduğu token'lar. Bitsocial Chain tam olarak bunlar içindir, başka hiçbir şey için değil.",
+      "peerToPeer": {
+        "badge": "Peer-to-peer",
+        "note": "Sosyal ağ. Zincir devrede değil.",
+        "posts": "Gönderiler ve yorumlar",
+        "profiles": "Profiller ve topluluklar",
+        "moderation": "Moderasyon ve spam önleme"
+      },
+      "onChain": {
+        "badge": "On-chain",
+        "note": "Zincire ihtiyaç duyan birkaç parça.",
+        "names": ".bso adları",
+        "tipping": "Bahşiş ve ödüller",
+        "tokens": "Topluluk token'ları"
+      },
+      "caption": "Zincir isteğe bağlıdır. Sosyal ağ ise değil.",
+      "quote": "Merkezi olmayan bir sosyal ağ, merkezi olmayan bir paraya ihtiyaç duyar."
+    },
+    "tokenomics": {
+      "title": "Sağlam para.",
+      "supporting": "BSO, sabit arzlı bir ERC-20'dir: 210 milyon, enflasyon yok, tasarım gereği deflasyonist. Tüm arz, 2022'nin başında yaklaşık 600 kişiye airdrop ile dağıtıldı; ön satış yapılmadı ve topluluktan önce ayrılan hiçbir pay olmadı. Sözleşmesi değiştirilemez ve yöneticisizdir, dolayısıyla kurallar sonsuza dek sabittir.",
+      "supply": {
+        "cap": "BSO maksimum arz · sonsuza dek sabit"
+      },
+      "traits": {
+        "airdropped": "%100 airdrop, ekip payı veya ön satış yok",
+        "fixedCap": "Sabit üst sınır, sıfır emisyon",
+        "deflationary": "Deflasyonist: arz yalnızca azalır"
+      },
+      "locks": {
+        "noMint": {
+          "label": "Mint yok",
+          "note": "arz asla artamaz"
+        },
+        "noOwner": {
+          "label": "Sahip yok",
+          "note": "asla yönetici anahtarı yok"
+        },
+        "noPause": {
+          "label": "Duraklatma yok",
+          "note": "transferler dondurulamaz"
+        },
+        "noProxy": {
+          "label": "Proxy yok",
+          "note": "kod başka bir kodla değiştirilemez"
+        }
+      },
+      "airdrop": {
+        "label": "Airdrop",
+        "note": "Ocak ve Şubat 2022 arasında, üç talep turunda yaklaşık 600 kişi. Bir Telegram botu üzerinden kaydoldular, referans kodları daha büyük paylar kazandırdı ve hiç kimse arzın fazla bir kısmını götüremesin diye her alıcı elle kontrol edildi. Ön satış yok, ekip tahsisi yok, hiçbir şey satılmadı."
+      },
+      "contract": {
+        "label": "Sözleşmenin tamamı",
+        "note": "Tüm arz tek bir adrese mint edilir, çünkü geçiş bu şekilde işler: bakiyeler bire bir bu adrese yansıtıldı ve transferle geri ödendi, hem de hepsi on-chain. Geri kalan her şey değiştirilmemiş <openZeppelinLink>OpenZeppelin</openZeppelinLink> kodudur — Ethereum'da en çok kullanılan ve en çok incelenen token kodu. Özel hiçbir şey yok, kurnazca hiçbir numara yok. <etherscanLink>Etherscan</etherscanLink>'de okuyun."
+      },
+      "foot": "Değiştirilemez ve yöneticisiz: elde tutulacak yönetici anahtarı kalmadı, bu yüzden kimse onu değiştiremez, arzını artıramaz ya da donduramaz."
+    },
+    "unstoppable": {
+      "title": "Ethereum üzerine kurulu. Kimse tarafından işletilmiyor.",
+      "supporting": "Yeni bir blockchain, Ethereum'un zaten sahip olduğu güvenliği ve geliştirici tabanını yeniden inşa ederdi ve BSO zaten tamamen dağıtılmışken yeni bir token'a ihtiyaç duyardı. Bu yüzden Bitsocial Chain, operatörü olmayan bir Ethereum L2 olarak tasarlandı: her eylem, kimsenin kontrol etmediği bir adrese gönderilen sade bir Ethereum işlemidir ve herkes, aynı durumu Ethereum'un geçmişinden türeten bir düğüm çalıştırabilir. Baskı uygulanacak bir şirket ve kapatılacak bir şalter yok.",
+      "locks": {
+        "noSequencer": {
+          "label": "Sequencer gerekmez",
+          "note": "her işlemi Ethereum sıralar"
+        },
+        "noAdminKeys": {
+          "label": "Yönetici anahtarı yok",
+          "note": "kuralları sizin için kimse değiştirmez"
+        },
+        "noUpgradeableContract": {
+          "label": "Yükseltilebilir sözleşme yok",
+          "note": "Ethereum'da el konulacak hiçbir şey yok"
+        },
+        "noPrivilegedNode": {
+          "label": "Ayrıcalıklı düğüm yok",
+          "note": "herkes aynı durumu türetebilir"
+        }
+      },
+      "proofOfConcept": "Kavram kanıtı .bso adlarını şimdiden bu şekilde türetiyor, yerel bir geliştirme zincirinde. Üretim lansmanı için hâlâ bir kanıt sistemi, bir denetim ve nihai ekonomi gerekiyor. <proofLink>Kavram kanıtını okuyun</proofLink>."
+    },
+    "bsoNames": {
+      "title": ".bso adınız sizin kalır.",
+      "supporting": "Bitsocial uygulamaları, Ethereum cüzdanlarının kullandığı adlandırma sistemi ENS'yi ödünç alarak <resolverLink>.bso adlarını bugün çözümler</resolverLink>: mycommunity.bso aslında bir bitsocial kaydı taşıyan mycommunity.eth adıdır. Yerleşik bir kayıt defteri, kullanımda olan her adı onu elinde tutan cüzdana airdrop ile dağıtırdı — talep edilecek bir şey ve yeniden kaydedilecek bir şey yok.",
+      "ensBadge": "ENS · bugün",
+      "pointsTo": "işaret eder",
+      "communityKey": "topluluğun anahtarı",
+      "airdropAtLaunch": "lansmanda airdrop",
+      "bsoBadge": ".bso · Bitsocial Chain",
+      "owner": "sahip",
+      "sameWallet": "aynı cüzdan"
+    },
+    "communityMoney": {
+      "title": "Birçok topluluğun altında tek bir varlık.",
+      "supporting": "Her topluluk kendi katmanını, yani kendi token'ına sahip bir L3'ü çalıştırabilir; ücretlerini, adlarını ve kirasını BSO ile ödeyebilir. L3'ler kripto dünyasında zaten var; Bitsocial Chain'de ise biri, hazır bir toplulukla birlikte gelirdi. Geliri kendi kendine işleyebilir: sözleşmeyle açık artırmaya çıkarılan reklam alanları, her satışın bir kısmı anında yakılır, geri kalanı topluluğa ödenir; kimsenin ele geçirebileceği bir geri alım hazinesi olmadan.",
+      "communityLayer": "Topluluk katmanı",
+      "ownToken": "kendi token'ı",
+      "feesFlow": "ücretler, adlar ve kira BSO ile ödenir",
+      "chainMeta": "Ethereum katmanı · durumu Ethereum'dan türetilir",
+      "ethereumMeta": "Ethereum L1 · güvenlik ve veri",
+      "caption": "Her ücretin bir kısmı yakılır; kalanı zincirin güvenliği için ödenir."
+    },
+    "privacy": {
+      "title": "Bahşiş vermek kimliğinizi ifşa etmemeli.",
+      "supporting": "Bitsocial Chain, Ethereum gibi varsayılan olarak herkese açıktır ve .bso adlarının görülmesi amaçlanır. Para farklıdır: bir bahşiş, yanına adınızı, profilinizi veya gönderinizi on-chain koymayı asla gerektirmemeli; yeni bir cüzdan da şüpheli değil, normal olmalı. Zincir kendi gizlilik sistemini kurmayacak. Mevcut sistemlerin izin istemeden bağlanabilmesine olanak tanıması amaçlanıyor: korumalı havuzlar, gizli (stealth) adresler, sıfır bilgi kanıtları.",
+      "publicOnPurpose": {
+        "heading": "Bilerek herkese açık",
+        "names": ".bso adları ve sahipleri",
+        "rules": "Her kural ve her durum değişikliği"
+      },
+      "neverRequired": {
+        "heading": "Asla gerekmez",
+        "profile": "Bahşişte adınız veya profiliniz",
+        "wallet": "Kişi başına tek cüzdan",
+        "app": "Resmi bir cüzdan veya uygulama"
+      }
+    },
+    "possibilities": {
+      "title": "Herkesin gözü önünde önerildi.",
+      "supporting": "Henüz yayında değil. BSO bugün Ethereum'da yayında; Bitsocial Chain bir öneridir ve ilk kavram kanıtı olan yerleşik .bso adları yerel bir geliştirme zincirinde çalışıyor. Aşağıdakilerin hiçbirinin tarihi yok. Kendi parası olan bir sosyal katmanın mümkün kılacağı şeyler bunlar: bir kısmı inşa edilecek, bir kısmının yerini daha iyi fikirler alacak, bir kısmını da henüz ortaya çıkmamış insanlar inşa edecek.",
+      "ideas": {
+        "chain": {
+          "note": "Ethereum L2 uygulama zincirinin kendisi ve BSO'nun mutabakat merkezi."
+        },
+        "registry": {
+          "label": "Yerleşik bir .bso kayıt defteri",
+          "note": "ENS'den ödünç alınmak yerine zincirde kaydedilen adlar ve kimlik."
+        },
+        "l3s": {
+          "label": "Topluluk L3'leri ve token'ları",
+          "note": "Kendi katmanı ve kendi token'ı olan, BSO üzerinden mutabakat sağlayan topluluklar."
+        },
+        "agoraswap": {
+          "note": "Topluluk token'larının BSO karşısında işlem gördüğü, likiditeyi on-chain tutan bir topluluk DEX'i."
+        },
+        "collectibles": {
+          "label": "İçerik üreticisi koleksiyonları",
+          "note": "İçerik üreticilerinin, bir platform komisyon almadan doğrudan bir şey satabilmesinin yolları."
+        },
+        "other": {
+          "label": "Uygun olan diğer her şey",
+          "note": "İstemci token'ları, merkezi olmayan sıralama ve henüz kimsenin önermediği fikirler."
+        }
+      }
+    },
+    "verify": {
+      "title": "Yalnızca tek bir adres BSO'dur.",
+      "supporting": "Herkes bir token oluşturup adına BSO diyebilir, bu yüzden gerçeğini ayırt eden tek şey sözleşme adresidir. Herhangi bir yere herhangi bir şey göndermeden önce 42 karakterin tamamını bu siteyle ve Bitsocial'ın resmi kanallarıyla karşılaştırın.",
+      "warning": "Resmi BSO sözleşmesi şudur: <contract>{{address}}</contract>. Bunun dışındaki hiçbir şey, adı ne olursa olsun ve nerede listelenirse listelensin, BSO değildir.",
+      "tradeOnUniswap": "Uniswap'ta işlem yap",
+      "provideLiquidity": "Likidite sağla",
+      "note": "Uniswap'taki likiditeyi bağımsız kişiler sağlar ve herkes buna katkıda bulunabilir. Bu bir tasarruf hesabı değildir: bir likidite pozisyonunun değeri düşebilir, yatırılan miktarın altına inmesi de dahil."
+    }
+  },
+  "common": {
+    "proposed": "Öneri",
+    "close": "Kapat"
+  },
+  "mailingList": {
+    "chainTitle": "Haberdar olun",
+    "chainDescription": "BSO token kilometre taşlarından, Bitsocial Chain'den ve ekosistem haberlerinden haberdar olun. Az sıklık, yüksek sinyal.",
+    "placeholder": "you@example.com",
+    "inputLabel": "E-posta adresi",
+    "subscribe": "Abone ol",
+    "subscribing": "Abone olunuyor…",
+    "chainSuccess": "Listedesiniz.",
+    "confirmationSent": "Aboneliğinizi onaylamak için e-postanızı kontrol edin.",
+    "chainError": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
+    "unavailable": "Bülten kaydı geçici olarak kullanılamıyor.",
+    "privacy": "Asla spam yok. İstediğiniz zaman abonelikten çıkabilirsiniz."
+  },
+  "faq": {
+    "eyebrow": "SSS",
+    "title": "Sık sorulan sorular.",
+    "supporting": "Bu sayfadaki her bölüm bunlardan birini yanıtlar. İlgili bölüme atlamak için bir soruya tıklayın.",
+    "navLabel": "Bu sayfada yanıtlanan sorular",
+    "answeredIn": "Yanıtlandığı bölüm: {{label}}",
+    "entries": {
+      "whyAChain": {
+        "eyebrow": "Neden Bir Zincir",
+        "question": "Peer-to-peer bir sosyal ağın neden bir zincire ihtiyacı var?"
+      },
+      "tokenomics": {
+        "eyebrow": "Tokenomi",
+        "question": "BSO'nun tokenomisi nedir? Kimler aldı?"
+      },
+      "unstoppable": {
+        "eyebrow": "Durdurulamaz",
+        "question": "Neden bir Ethereum L2? Onu kim işletiyor?"
+      },
+      "bsoNames": {
+        "eyebrow": "BSO Adları",
+        "question": ".bso adıma ne olur?"
+      },
+      "communityMoney": {
+        "eyebrow": "Topluluk Parası",
+        "question": "BSO ne için kullanılabilir?"
+      },
+      "privacy": {
+        "eyebrow": "Gizlilik",
+        "question": "Kime bahşiş verdiğimi herkes görecek mi?"
+      },
+      "possibilities": {
+        "eyebrow": "Olanaklar",
+        "question": "Yayında mı? Neler planlanıyor?"
+      },
+      "verify": {
+        "eyebrow": "Doğrula",
+        "question": "BSO'yu güvenli şekilde nasıl edinirim?"
+      }
+    },
+    "rows": {
+      "about": {
+        "label": "Hakkımızda",
+        "question": "Bitsocial Chain'in arkasında kim var?"
+      },
+      "mailingList": {
+        "label": "Bülten",
+        "question": "Nasıl haberdar olabilirim?"
+      }
+    },
+    "ask": {
+      "placeholder": "Başka bir şey sorun…",
+      "label": "Başka bir şey sorun",
+      "action": "ChatGPT'ye sorun"
+    }
+  },
+  "footer": {
+    "chainTagline": "Kriptonun Eksik Sosyal Katmanı",
+    "token": "Token",
+    "resources": "Kaynaklar",
+    "blog": "Blog",
+    "proofOfConcept": "Kavram Kanıtı",
+    "about": "Hakkımızda",
+    "mainSite": "Ana Site",
+    "community": "Topluluk",
+    "chainBottomTagline": "Kriptonun Sosyal Katmanını Onarın",
+    "contribute": "Bu sayfayı iyileştir"
+  },
+  "backToTop": {
+    "returnToOrigin": "Önceki konuma dön",
+    "toTop": "Başa dön",
+    "toBottom": "Sona git"
+  }
+}

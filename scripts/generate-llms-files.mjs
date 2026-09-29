@@ -17,6 +17,13 @@ const chainIndexPath = path.join(chainRoot, "index.html");
 const chainAppPath = path.join(chainRoot, "src", "App.tsx");
 const chainSectionsIndexPath = path.join(chainRoot, "src", "sections", "index.tsx");
 const chainFaqPath = path.join(chainRoot, "src", "lib", "faq.ts");
+const chainEnglishTranslationsPath = path.join(
+  chainRoot,
+  "public",
+  "translations",
+  "en",
+  "default.json",
+);
 const docsRoot = path.join(repoRoot, "docs");
 const docsStaticDir = path.join(docsRoot, "static");
 const appsDataPath = path.join(repoRoot, "about", "src", "lib", "apps-data.ts");
@@ -452,24 +459,36 @@ function extractJsxStringProp(source, prop) {
   return source.match(new RegExp(`\\b${prop}="([^"]+)"`, "u"))?.[1] ?? "";
 }
 
-function jsxFragmentToSingleLine(fragment) {
-  return translationToSingleLine(fragment.replace(/\{[^{}]*\}/gu, " ").replace(/<[^>]+>/gu, " "));
+/**
+ * Chain copy lives in `chain/public/translations/en/default.json`; components reference it through
+ * literal keys, either `prop={t("key")}` or `prop={<Trans i18nKey="key" ... />}`. These helpers read
+ * the key a component uses and resolve it there, so the llms files always carry the English copy the
+ * page renders.
+ */
+function readChainCopy(translations, key) {
+  const value = key.split(".").reduce((node, part) => node?.[part], translations);
+  if (typeof value !== "string") {
+    throw new Error(`missing English copy for ${key} in chain/public/translations/en/default.json`);
+  }
+
+  // Trans tags such as <l2Link> only style or link a phrase; a space keeps words apart where the
+  // markup sat between them, and `translationToSingleLine` then collapses the whitespace.
+  return translationToSingleLine(value.replace(/<[^>]+>/gu, " "));
 }
 
-function extractJsxFragmentProp(source, prop) {
-  const fragment = source.match(
-    new RegExp(`\\b${prop}=\\{\\s*<>\\s*([\\s\\S]*?)\\s*<\\/>\\s*\\}`, "u"),
-  )?.[1];
-  if (!fragment) return "";
-
-  return jsxFragmentToSingleLine(fragment);
+function extractJsxPropTranslationKey(source, prop) {
+  const match = source.match(
+    new RegExp(`\\b${prop}=\\{\\s*(?:t\\(\\s*"([^"]+)"\\s*[,)]|<Trans\\s+i18nKey="([^"]+)")`, "u"),
+  );
+  return match?.[1] ?? match?.[2] ?? "";
 }
 
-function extractJsxElementText(source, tag, className) {
-  const contents = source.match(
-    new RegExp(`<${tag}\\s+className="${className}">([\\s\\S]*?)<\\/${tag}>`, "u"),
-  )?.[1];
-  return contents ? jsxFragmentToSingleLine(contents) : "";
+function extractJsxElementTranslationKey(source, tag, className) {
+  return (
+    source.match(
+      new RegExp(`<${tag}\\s+className="${className}">\\s*<Trans\\s+i18nKey="([^"]+)"`, "u"),
+    )?.[1] ?? ""
+  );
 }
 
 async function readChainLandingData() {
@@ -482,11 +501,29 @@ async function readChainLandingData() {
   if (!description) {
     throw new Error("could not find the Chain landing description in chain/index.html");
   }
-  const heroTitle = extractJsxElementText(appSource, "h1", "title");
-  const heroSupporting = extractJsxElementText(appSource, "p", "sub");
-  if (!heroTitle || !heroSupporting) {
+  const translations = JSON.parse(await readFile(chainEnglishTranslationsPath, "utf8"));
+  // index.html is static and cannot read translations, so the document head keeps its own English
+  // copy; the runtime swaps it per language from `meta.*`. Keep the two from drifting apart.
+  const htmlTitle = indexHtml.match(/<title>([^<]+)<\/title>/u)?.[1];
+  if (readChainCopy(translations, "meta.description") !== translationToSingleLine(description)) {
+    throw new Error(
+      "chain/index.html description differs from meta.description in the English copy",
+    );
+  }
+  if (
+    !htmlTitle ||
+    readChainCopy(translations, "meta.title") !== translationToSingleLine(htmlTitle)
+  ) {
+    throw new Error("chain/index.html <title> differs from meta.title in the English copy");
+  }
+
+  const heroTitleKey = extractJsxElementTranslationKey(appSource, "h1", "title");
+  const heroSupportingKey = extractJsxElementTranslationKey(appSource, "p", "sub");
+  if (!heroTitleKey || !heroSupportingKey) {
     throw new Error("could not parse the Chain hero from chain/src/App.tsx");
   }
+  const heroTitle = readChainCopy(translations, heroTitleKey);
+  const heroSupporting = readChainCopy(translations, heroSupportingKey);
 
   const sectionFiles = [
     ...sectionsIndexSource.matchAll(/^import\s+\w+\s+from\s+"\.\/([^"]+)";$/gmu),
@@ -498,31 +535,50 @@ async function readChainLandingData() {
   // Each section's headline is the answer to one reader question; the question and the eyebrow live
   // in the FAQ list, which also fixes page order.
   const faqSource = await readFile(chainFaqPath, "utf8");
-  const faqEntries = [
-    ...faqSource.matchAll(
-      /\{\s*id:\s*"([^"]+)",\s*eyebrow:\s*"([^"]+)",\s*question:\s*"([^"]+)",?\s*\}/gu,
-    ),
-  ].map(([, id, eyebrow, question]) => ({ eyebrow, id, question }));
-  // Every entry declares an `id:`, so fewer parsed entries than ids means one was written in a shape
-  // the pattern does not accept (for example a single-quoted question), not that it is missing.
-  const declaredFaqIds = faqSource.match(/^\s*id:/gmu)?.length ?? 0;
-  if (faqEntries.length === 0 || faqEntries.length !== declaredFaqIds) {
+  const declaredFaqIds = [
+    ...(faqSource
+      .match(/export const SECTION_IDS = \[([\s\S]*?)\] as const;/u)?.[1]
+      .matchAll(/"([^"]+)"/gu) ?? []),
+  ].map((match) => match[1]);
+  const faqKeysById = new Map(
+    [
+      ...faqSource.matchAll(
+        /(?:"([^"]+)"|([A-Za-z]\w*)):\s*\{\s*eyebrow:\s*t\("([^"]+)"\),\s*question:\s*t\("([^"]+)"\),?\s*\}/gu,
+      ),
+    ].map(([, quotedId, bareId, eyebrowKey, questionKey]) => [
+      quotedId ?? bareId,
+      { eyebrowKey, questionKey },
+    ]),
+  );
+  // Each id in SECTION_IDS needs an entry in `useSectionCopy` written as `id: { eyebrow: t("..."),
+  // question: t("...") }` with literal keys, or the copy cannot be resolved here.
+  const missingFaqIds = declaredFaqIds.filter((id) => !faqKeysById.has(id));
+  if (declaredFaqIds.length === 0 || missingFaqIds.length > 0) {
     throw new Error(
-      `could not parse every Chain FAQ entry in chain/src/lib/faq.ts (${faqEntries.length} of ${declaredFaqIds}); keep id, eyebrow and question as double-quoted strings in that order`,
+      `could not parse every Chain FAQ entry in chain/src/lib/faq.ts (${declaredFaqIds.length - missingFaqIds.length} of ${declaredFaqIds.length}); keep SECTION_IDS as double-quoted ids and each useSectionCopy entry as { eyebrow: t("key"), question: t("key") }`,
     );
   }
+  const faqEntries = declaredFaqIds.map((id) => ({
+    eyebrow: readChainCopy(translations, faqKeysById.get(id).eyebrowKey),
+    id,
+    question: readChainCopy(translations, faqKeysById.get(id).questionKey),
+  }));
 
   const answersById = new Map();
   for (const filename of sectionFiles) {
     const source = await readFile(path.join(chainRoot, "src", "sections", filename), "utf8");
     const id = extractJsxStringProp(source, "id");
-    const title = extractJsxStringProp(source, "title");
-    const supporting =
-      extractJsxStringProp(source, "supporting") || extractJsxFragmentProp(source, "supporting");
-    if (!id || !title) {
+    const titleKey = extractJsxPropTranslationKey(source, "title");
+    const supportingKey = extractJsxPropTranslationKey(source, "supporting");
+    // `supporting` is a required Section prop, so a missing key means the source was written in a
+    // shape the parser does not accept, not that the section has none.
+    if (!id || !titleKey || !supportingKey) {
       throw new Error(`could not parse Chain section metadata from chain/src/sections/${filename}`);
     }
-    answersById.set(id, { supporting, title });
+    answersById.set(id, {
+      supporting: readChainCopy(translations, supportingKey),
+      title: readChainCopy(translations, titleKey),
+    });
   }
 
   const sections = faqEntries.map(({ eyebrow, id, question }) => {

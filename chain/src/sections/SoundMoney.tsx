@@ -1,4 +1,5 @@
 import { Coins, Flame, ShieldCheck, Sparkles } from "lucide-react";
+import { Trans, useTranslation } from "react-i18next";
 import { ETHERSCAN_TOKEN_URL } from "@/lib/site";
 import Locks from "./Locks";
 import Section from "./Section";
@@ -13,88 +14,99 @@ const CONTRACT_SOURCE = `contract BitsocialToken is ERC20, ERC20Burnable {
     }
 }`;
 
-const LOCKS = [
-  { label: "No mint", note: "supply can never grow" },
-  { label: "No owner", note: "no admin keys, ever" },
-  { label: "No pause", note: "transfers can’t be frozen" },
-  { label: "No proxy", note: "the code can’t be swapped" },
-];
+const contractNoteComponents = {
+  openZeppelinLink: (
+    <a
+      className="section-link"
+      href="https://github.com/OpenZeppelin/openzeppelin-contracts"
+      target="_blank"
+      rel="noopener noreferrer"
+    />
+  ),
+  etherscanLink: (
+    <a
+      className="section-link"
+      href={ETHERSCAN_TOKEN_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+    />
+  ),
+};
 
 export default function SoundMoney() {
+  const { t } = useTranslation();
+
+  const locks = [
+    {
+      label: t("sections.tokenomics.locks.noMint.label"),
+      note: t("sections.tokenomics.locks.noMint.note"),
+    },
+    {
+      label: t("sections.tokenomics.locks.noOwner.label"),
+      note: t("sections.tokenomics.locks.noOwner.note"),
+    },
+    {
+      label: t("sections.tokenomics.locks.noPause.label"),
+      note: t("sections.tokenomics.locks.noPause.note"),
+    },
+    {
+      label: t("sections.tokenomics.locks.noProxy.label"),
+      note: t("sections.tokenomics.locks.noProxy.note"),
+    },
+  ];
+
   return (
     <Section
       id="tokenomics"
-      title="Sound money."
-      supporting="BSO is a fixed-supply ERC-20: 210 million, no inflation, deflationary by design. The whole supply was airdropped to about 600 people in early 2022, with no presale and nothing carved out ahead of the community. Its contract is immutable and adminless, so the rules are fixed forever."
+      title={t("sections.tokenomics.title")}
+      supporting={t("sections.tokenomics.supporting")}
     >
       <div className="spec">
         <div className="spec-head">
           <div className="spec-supply">
             <span className="spec-figure">210,000,000</span>
-            <span className="spec-cap">BSO max supply · fixed forever</span>
+            <span className="spec-cap">{t("sections.tokenomics.supply.cap")}</span>
           </div>
           {/* Airdrop first: the artifact has to open on the claim the headline makes. */}
           <ul className="spec-traits">
             <li>
-              <Sparkles aria-hidden size={15} strokeWidth={1.8} /> 100% airdropped, no team or
-              presale
+              <Sparkles aria-hidden size={15} strokeWidth={1.8} />{" "}
+              {t("sections.tokenomics.traits.airdropped")}
             </li>
             <li>
-              <Coins aria-hidden size={15} strokeWidth={1.8} /> Fixed cap, zero emissions
+              <Coins aria-hidden size={15} strokeWidth={1.8} />{" "}
+              {t("sections.tokenomics.traits.fixedCap")}
             </li>
             <li>
-              <Flame aria-hidden size={15} strokeWidth={1.8} /> Deflationary: supply only falls
+              <Flame aria-hidden size={15} strokeWidth={1.8} />{" "}
+              {t("sections.tokenomics.traits.deflationary")}
             </li>
           </ul>
         </div>
 
-        <Locks locks={LOCKS} />
+        <Locks locks={locks} />
 
         <div className="spec-band">
-          <span className="spec-band-label">The airdrop</span>
-          <p className="spec-band-note">
-            About 600 people, in three claim rounds between January and February 2022. They signed
-            up through a Telegram bot, referral codes earned larger shares, and every recipient was
-            checked by hand so no one could walk away with too much of the supply. No presale, no
-            team allocation, nothing sold.
-          </p>
+          <span className="spec-band-label">{t("sections.tokenomics.airdrop.label")}</span>
+          <p className="spec-band-note">{t("sections.tokenomics.airdrop.note")}</p>
         </div>
 
         <div className="spec-band">
-          <span className="spec-band-label">The whole contract</span>
+          <span className="spec-band-label">{t("sections.tokenomics.contract.label")}</span>
           <pre className="spec-code-block" dir="ltr">
             <code>{CONTRACT_SOURCE}</code>
           </pre>
           <p className="spec-band-note">
-            The full supply mints to one address because that is how the migration works: balances
-            were mirrored one-for-one onto it and paid back out by transfer, every one of them
-            on-chain. Everything else is{" "}
-            <a
-              className="section-link"
-              href="https://github.com/OpenZeppelin/openzeppelin-contracts"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              OpenZeppelin
-            </a>
-            , unmodified — the most used and most reviewed token code in Ethereum. Nothing custom,
-            nothing clever. Read it on{" "}
-            <a
-              className="section-link"
-              href={ETHERSCAN_TOKEN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Etherscan
-            </a>
-            .
+            <Trans
+              i18nKey="sections.tokenomics.contract.note"
+              components={contractNoteComponents}
+            />
           </p>
         </div>
 
         <p className="spec-foot">
           <ShieldCheck aria-hidden size={15} strokeWidth={1.8} />
-          Immutable and adminless: there are no admin keys left to hold, so nobody can change it,
-          inflate it, or freeze it.
+          {t("sections.tokenomics.foot")}
         </p>
       </div>
     </Section>

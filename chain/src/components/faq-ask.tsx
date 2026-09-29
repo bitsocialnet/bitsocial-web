@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArrowUpRight, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { buildAskAiUrl } from "@/lib/ask-ai";
 
 /**
@@ -8,6 +9,7 @@ import { buildAskAiUrl } from "@/lib/ask-ai";
  * rather than whatever the model already believes about the name.
  */
 export default function FaqAsk() {
+  const { t } = useTranslation();
   const [question, setQuestion] = useState("");
   const askUrl = buildAskAiUrl(question);
 
@@ -34,8 +36,8 @@ export default function FaqAsk() {
         type="text"
         value={question}
         onChange={(event) => setQuestion(event.target.value)}
-        placeholder="Ask anything else…"
-        aria-label="Ask anything else"
+        placeholder={t("faq.ask.placeholder")}
+        aria-label={t("faq.ask.label")}
         enterKeyHint="go"
         autoComplete="off"
         // `faq-ask-input` clears the global text-input focus ring, which would otherwise paint a
@@ -49,9 +51,9 @@ export default function FaqAsk() {
         disabled={!askUrl}
         className="inline-flex shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-blue-core/25 bg-blue-core/[0.07] px-3.5 py-2 font-display text-[0.6875rem] uppercase tracking-[0.18em] text-muted-foreground/75 transition-[color,background-color,border-color,opacity] duration-300 hover:border-blue-glow hover:bg-blue-core/[0.13] hover:text-foreground disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:border-blue-core/25 disabled:hover:bg-blue-core/[0.07] disabled:hover:text-muted-foreground/75 motion-reduce:transition-none dark:border-blue-core/40 dark:bg-blue-core/[0.15] dark:hover:border-blue-glow dark:hover:bg-blue-core/[0.22] dark:disabled:hover:border-blue-core/40 dark:disabled:hover:bg-blue-core/[0.15] md:text-xs [@media(pointer:coarse)]:min-h-11 [@media(pointer:coarse)]:min-w-11"
       >
-        <span className="hidden sm:inline">Ask ChatGPT</span>
+        <span className="hidden sm:inline">{t("faq.ask.action")}</span>
         <ArrowUpRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-        <span className="sr-only sm:hidden">Ask ChatGPT</span>
+        <span className="sr-only sm:hidden">{t("faq.ask.action")}</span>
       </button>
     </form>
   );

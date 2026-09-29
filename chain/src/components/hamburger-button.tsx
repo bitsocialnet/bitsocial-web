@@ -1,5 +1,6 @@
 import { m } from "framer-motion";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 
 interface HamburgerButtonProps {
@@ -8,6 +9,7 @@ interface HamburgerButtonProps {
 }
 
 export default function HamburgerButton({ isOpen, onClick }: HamburgerButtonProps) {
+  const { t } = useTranslation();
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleClick = () => {
@@ -24,7 +26,7 @@ export default function HamburgerButton({ isOpen, onClick }: HamburgerButtonProp
       size="icon"
       className="h-11 w-11 rounded-none hover:bg-transparent focus:bg-transparent active:bg-transparent"
       onClick={handleClick}
-      aria-label={isOpen ? "Close menu" : "Open menu"}
+      aria-label={isOpen ? t("topbar.closeMenu") : t("topbar.openMenu")}
       aria-expanded={isOpen}
     >
       <div className="relative h-5 w-5 flex items-center justify-center">

@@ -189,7 +189,7 @@
   max-width: 40rem;
   margin: 0 auto;
   overflow: hidden;
-  text-align: left;
+  text-align: start;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface-raised);
@@ -315,7 +315,7 @@
   flex-direction: column;
   gap: 0.7rem;
   padding: clamp(1.1rem, 2.6vw, 1.5rem);
-  text-align: left;
+  text-align: start;
   border: 1px solid var(--line);
   border-radius: 1rem;
   background: var(--surface-raised);
@@ -420,9 +420,11 @@
   width: 100%;
 }
 
+/* `minmax(0, 1fr)` and `min-width: 0` let a long translated word wrap inside its node instead of
+   stretching the track past the phone's edge. */
 .tree-l3 {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(0.6rem, 2vw, 1rem);
 }
 
@@ -430,6 +432,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 0;
   gap: 0.3rem;
   padding: 1rem 0.6rem;
   text-align: center;
@@ -443,6 +446,9 @@
 }
 
 .tree-node-name {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  hyphens: auto;
   font-family: var(--font-display);
   font-size: 0.82rem;
   font-weight: 600;
@@ -450,6 +456,9 @@
 }
 
 .tree-node-meta {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  hyphens: auto;
   font-size: 0.7rem;
   letter-spacing: 0.04em;
   color: var(--ink-faint);
@@ -512,7 +521,7 @@
 .tree-l2-text {
   display: flex;
   flex-direction: column;
-  text-align: left;
+  text-align: start;
 }
 
 .tree-l2-name {
@@ -574,7 +583,7 @@
   max-width: 40rem;
   margin: 0 auto;
   overflow: hidden;
-  text-align: left;
+  text-align: start;
   background: var(--line);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -689,7 +698,7 @@
   flex-direction: column;
   gap: 0.7rem;
   padding: clamp(1.1rem, 2.6vw, 1.5rem);
-  text-align: left;
+  text-align: start;
   border: 1px solid var(--line);
   border-radius: 1rem;
   background: var(--surface-raised);
@@ -755,12 +764,12 @@
   color: var(--ink-faint);
 }
 
+/* Wraps instead of truncating with an ellipsis: this holds translated prose, and a cut-off
+   translation reads as broken. */
 .bso-row-value {
   min-width: 0;
-  overflow: hidden;
+  overflow-wrap: anywhere;
   font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .bso-row-value-next {
@@ -811,7 +820,7 @@
   gap: clamp(0.8rem, 2vw, 1.1rem);
   max-width: 40rem;
   margin: 0 auto;
-  text-align: left;
+  text-align: start;
 }
 
 .verify-warn {

@@ -1,0 +1,297 @@
+{
+  "nav": {
+    "language": "Nyelv",
+    "theme": "Téma",
+    "mainSite": "Főoldal",
+    "faq": "GYIK"
+  },
+  "languageSelector": {
+    "title": "Nyelv kiválasztása",
+    "searchPlaceholder": "Nyelvek keresése...",
+    "noResults": "Egyetlen nyelv sem felel meg a keresésnek."
+  },
+  "meta": {
+    "title": "BSO – A kriptovilág hiányzó közösségi rétege",
+    "description": "A BSO a Bitsocial pénze, annak a peer-to-peer közösségi hálózatnak, amelyet egyetlen cég sem birtokol. Egy Ethereum L2 appchain, ahol a közösségek birtokolják a hálózataikat, a tokenjeiket és a bevételeiket."
+  },
+  "topbar": {
+    "navLabel": "A Bitsocial Chain oldal navigációja",
+    "menu": "Menü",
+    "openMenu": "Menü megnyitása",
+    "closeMenu": "Menü bezárása"
+  },
+  "theme": {
+    "toggle": "Téma váltása"
+  },
+  "hero": {
+    "statusCta": "A Chain még nincs élesben, iratkozz fel a frissítésekért",
+    "title": "A kriptovilág hiányzó <mark>közösségi rétege</mark>",
+    "supporting": "A kriptovilág kaszinóvá vált, mert a Web2, a TradFi és a központosított infrastruktúra birtokolja a terjesztési csatornákat, és elferdíti az ösztönzőket. A Bitsocial Chain ezt orvosolja: egy megállíthatatlan, teljesen decentralizált <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink>, ahol a közösségek birtokolják a hálózataikat, a tokenjeiket és a bevételeiket."
+  },
+  "layers": {
+    "ariaLabel": "A kriptovilág három egymásra épülő rétege: felül a Bitsocial hálózat közösségi alkalmazásai, alul az Ethereum L1 elszámolási rétege, és a kettő közötti résbe illeszkedve, izzó hiányzó rétegként lobban fel a Bitsocial Chain, a BSO által hajtott Ethereum L2 appchain, amelyet egy energiagerinc fon át.",
+    "social": {
+      "title": "KÖZÖSSÉGI APPOK",
+      "subtitle": "BITSOCIAL HÁLÓZAT"
+    },
+    "bso": {
+      "title": "BITSOCIAL CHAIN",
+      "subtitle": "L2 APPCHAIN · BSO"
+    },
+    "eth": {
+      "title": "ETHEREUM",
+      "subtitle": "L1 ELSZÁMOLÁS"
+    }
+  },
+  "contract": {
+    "label": "BSO-szerződés",
+    "copyAriaLabel": "A BSO-szerződés címének másolása: {{address}}",
+    "copied": "Vágólapra másolva"
+  },
+  "sections": {
+    "whyAChain": {
+      "title": "Maga a Bitsocial nincs blokkláncon.",
+      "supporting": "A <bitsocialLink>Bitsocial</bitsocialLink> bejegyzései, profiljai, közösségei és moderálása peer-to-peer alapon működnek. Nincs lánc, nincsenek díjak, nincs tárca: az egész hálózatot használhatod anélkül, hogy valaha is kriptovalutához nyúlnál, és a legtöbben így is tesznek. De van néhány dolog, amihez valóban kell egy lánc – a te tulajdonodban lévő nevek, idegenek között mozgó pénz és olyan tokenek, amelyeknek egy közösség tényleg a tulajdonosa. A Bitsocial Chain pontosan ezekre való, és semmi másra.",
+      "peerToPeer": {
+        "badge": "Peer-to-peer",
+        "note": "A közösségi hálózat. Lánc nélkül.",
+        "posts": "Bejegyzések és hozzászólások",
+        "profiles": "Profilok és közösségek",
+        "moderation": "Moderálás és spamellenes védelem"
+      },
+      "onChain": {
+        "badge": "On-chain",
+        "note": "Az a néhány rész, amelyhez kell lánc.",
+        "names": ".bso nevek",
+        "tipping": "Borravalók és elismerések",
+        "tokens": "Közösségi tokenek"
+      },
+      "caption": "A lánc opcionális. A közösségi hálózat nem az.",
+      "quote": "Egy decentralizált közösségi hálózatnak decentralizált pénzre van szüksége."
+    },
+    "tokenomics": {
+      "title": "Szilárd pénz.",
+      "supporting": "A BSO egy fix kínálatú ERC-20: 210 millió, nincs infláció, tervezésénél fogva deflációs. A teljes kínálatot 2022 elején osztották szét airdroppal körülbelül 600 ember között, presale nélkül, és semmit sem különítettek el előre a közösség elől. A szerződése megváltoztathatatlan és admin nélküli, ezért a szabályok örökre rögzítettek.",
+      "supply": {
+        "cap": "BSO maximális kínálat · örökre rögzítve"
+      },
+      "traits": {
+        "airdropped": "100%-ban airdroppal kiosztva, csapat és presale nélkül",
+        "fixedCap": "Fix felső korlát, nulla kibocsátás",
+        "deflationary": "Deflációs: a kínálat csak csökken"
+      },
+      "locks": {
+        "noMint": {
+          "label": "Nincs új kibocsátás",
+          "note": "a kínálat soha nem nőhet"
+        },
+        "noOwner": {
+          "label": "Nincs tulajdonos",
+          "note": "soha nincsenek admin kulcsok"
+        },
+        "noPause": {
+          "label": "Nincs szüneteltetés",
+          "note": "az átutalások nem fagyaszthatók be"
+        },
+        "noProxy": {
+          "label": "Nincs proxy",
+          "note": "a kód nem cserélhető le"
+        }
+      },
+      "airdrop": {
+        "label": "Az airdrop",
+        "note": "Körülbelül 600 ember, három igénylési körben 2022 januárja és februárja között. Egy Telegram-boton keresztül regisztráltak, az ajánlókódok nagyobb részt hoztak, és minden címzettet kézzel ellenőriztek, hogy senki se vihessen el túl nagy részt a kínálatból. Nincs presale, nincs csapatnak félretett rész, semmit nem adtak el."
+      },
+      "contract": {
+        "label": "A teljes szerződés",
+        "note": "A teljes kínálat egyetlen címre kerül kibocsátásra, mert a migráció így működik: az egyenlegeket egy az egyben tükrözték rá, majd átutalással fizették vissza, mindegyiket on-chain. Minden más <openZeppelinLink>OpenZeppelin</openZeppelinLink>, módosítás nélkül – az Ethereum legszélesebb körben használt és legtöbbet vizsgált tokenkódja. Semmi egyedi, semmi trükkös. Olvasd el az <etherscanLink>Etherscan</etherscanLink> oldalán."
+      },
+      "foot": "Megváltoztathatatlan és admin nélküli: nem maradt admin kulcs, amelyet bárki kézben tarthatna, így senki sem változtathatja meg, senki sem inflálhatja, és senki sem fagyaszthatja be."
+    },
+    "unstoppable": {
+      "title": "Az Ethereumra épül. Senki sem üzemelteti.",
+      "supporting": "Egy új blokklánc újraépítené azt a biztonságot és fejlesztői bázist, amellyel az Ethereum már rendelkezik, és új tokenre lenne szüksége, miközben a BSO már teljesen szétosztott. Ezért a Bitsocial Chain úgy van megtervezve, hogy üzemeltető nélküli Ethereum L2 legyen: minden művelet egyszerű Ethereum-tranzakció, amelyet egy olyan címre küldenek, amelyet senki sem irányít, és bárki futtathat csomópontot, amely az Ethereum előzményeiből ugyanazt az állapotot vezeti le. Nincs cég, amelyre nyomást lehetne gyakorolni, és nincs kapcsoló, amelyet le lehetne kapcsolni.",
+      "locks": {
+        "noSequencer": {
+          "label": "Nincs szükség sequencerre",
+          "note": "az Ethereum sorrendbe rendez minden tranzakciót"
+        },
+        "noAdminKeys": {
+          "label": "Nincsenek admin kulcsok",
+          "note": "senki sem változtatja meg helyetted a szabályokat"
+        },
+        "noUpgradeableContract": {
+          "label": "Nincs frissíthető szerződés",
+          "note": "nincs mit elkobozni az Ethereumon"
+        },
+        "noPrivilegedNode": {
+          "label": "Nincs kiváltságos csomópont",
+          "note": "bárki levezetheti ugyanazt az állapotot"
+        }
+      },
+      "proofOfConcept": "A koncepcióbizonyítás már így vezeti le a .bso neveket, egy helyi fejlesztői láncon. Egy éles indításhoz még kell egy bizonyítási rendszer, egy audit és a végleges gazdasági modell. <proofLink>Olvasd el a koncepcióbizonyítást</proofLink>."
+    },
+    "bsoNames": {
+      "title": "A .bso neved a tiéd marad.",
+      "supporting": "A Bitsocial alkalmazások <resolverLink>már ma feloldják a .bso neveket</resolverLink> az ENS kölcsönvételével, azzal a névrendszerrel, amelyet az Ethereum-tárcák használnak: a mycommunity.bso valójában egy mycommunity.eth, amely egy bitsocial rekordot hordoz. Egy natív registry airdroppal osztaná ki minden már használt nevet annak a tárcának, amely birtokolja – semmit sem kell igényelni, és semmit sem kell újra regisztrálni.",
+      "ensBadge": "ENS · ma",
+      "pointsTo": "erre mutat",
+      "communityKey": "a közösség kulcsa",
+      "airdropAtLaunch": "airdrop induláskor",
+      "bsoBadge": ".bso · Bitsocial Chain",
+      "owner": "tulajdonos",
+      "sameWallet": "ugyanaz a tárca"
+    },
+    "communityMoney": {
+      "title": "Egy eszköz sok közösség alatt.",
+      "supporting": "Minden közösség működtethetné a saját rétegét, egy L3-at a saját tokenjével, és BSO-ban fizethetné ki a díjait, a neveit és a bérleti díjait. Az L3-ak már léteznek a kriptovilágban; a Bitsocial Chain esetén egy ilyen eleve egy közösséggel együtt érkezne. A bevétele magától rendeződhetne: szerződés által elárverezett hirdetési helyek, minden eladás egy része azonnal megsemmisülne, a többit a közösségnek fizetnék ki, visszavásárlási kincstár nélkül, amelyet bárki megszerezhetne.",
+      "communityLayer": "Közösségi réteg",
+      "ownToken": "saját token",
+      "feesFlow": "BSO-ban fizetett díjak, nevek és bérleti díjak",
+      "chainMeta": "Ethereum-réteg · az állapota az Ethereumból vezethető le",
+      "ethereumMeta": "Ethereum L1 · biztonság és adatok",
+      "caption": "Minden díj egy része megsemmisül; a többi a lánc biztonságát fizeti."
+    },
+    "privacy": {
+      "title": "A borravaló ne fedje fel a kilétedet.",
+      "supporting": "A Bitsocial Chain alapértelmezetten nyilvános, akárcsak az Ethereum, és a .bso nevek arra valók, hogy lássák őket. A pénz más: egy borravalóhoz soha nem szabad megkövetelni, hogy a neved, a profilod vagy a bejegyzésed mellette on-chain szerepeljen, és egy vadonatúj tárca legyen természetes, ne gyanús. A lánc nem épít saját adatvédelmi rendszert. Arra szánták, hogy a már létezőket engedélykérés nélkül lehessen csatlakoztatni: shielded poolokat, stealth címeket, zéró tudású bizonyításokat.",
+      "publicOnPurpose": {
+        "heading": "Szándékosan nyilvános",
+        "names": ".bso nevek és tulajdonosaik",
+        "rules": "Minden szabály és minden állapotváltozás"
+      },
+      "neverRequired": {
+        "heading": "Soha nem kötelező",
+        "profile": "A neved vagy a profilod egy borravalón",
+        "wallet": "Személyenként egy tárca",
+        "app": "Hivatalos tárca vagy alkalmazás"
+      }
+    },
+    "possibilities": {
+      "title": "Javasolt, nyíltan.",
+      "supporting": "Még nincs élesben. A BSO ma már élesben van az Ethereumon; a Bitsocial Chain egy javaslat, és az első koncepcióbizonyítása, a natív .bso nevek, egy helyi fejlesztői láncon fut. Az alábbiak egyikének sincs dátuma. Ez az, amit egy saját pénzzel rendelkező közösségi réteg lehetővé tenne: egy részük megépül, egy részüket jobb ötletek váltják fel, más részüket pedig olyanok építik meg, akik még meg sem jelentek.",
+      "ideas": {
+        "chain": {
+          "note": "Maga az Ethereum L2 appchain, és a BSO elszámolási otthona."
+        },
+        "registry": {
+          "label": "Natív .bso registry",
+          "note": "Nevek és identitás a láncon regisztrálva, az ENS-ből kölcsönzött helyett."
+        },
+        "l3s": {
+          "label": "Közösségi L3-ak és tokenek",
+          "note": "Saját réteggel és saját tokennel rendelkező közösségek, BSO-ban elszámolva."
+        },
+        "agoraswap": {
+          "note": "Egy közösségi DEX, ahol a közösségi tokenekkel BSO ellenében lehet kereskedni, és a likviditás on-chain marad."
+        },
+        "collectibles": {
+          "label": "Alkotói gyűjthető tárgyak",
+          "note": "Módok arra, hogy az alkotók közvetlenül adjanak el valamit, anélkül, hogy egy platform részt vonna le belőle."
+        },
+        "other": {
+          "label": "Bármi más, ami belefér",
+          "note": "Kliens tokenek, decentralizált sequencing és olyan ötletek, amelyeket még senki sem javasolt."
+        }
+      }
+    },
+    "verify": {
+      "title": "Csak egyetlen cím a BSO.",
+      "supporting": "Bárki létrehozhat egy tokent, és elnevezheti BSO-nak, ezért a szerződéscím az egyetlen, ami megkülönbözteti az eredetit. Mind a 42 karaktert hasonlítsd össze ezzel az oldallal és a Bitsocial hivatalos csatornáival, mielőtt bárhová bármit elküldenél.",
+      "warning": "A hivatalos BSO-szerződés a <contract>{{address}}</contract>. Minden más nem BSO, bárhogyan hívják, és bárhol is listázzák.",
+      "tradeOnUniswap": "Kereskedés az Uniswapon",
+      "provideLiquidity": "Likviditás biztosítása",
+      "note": "Az Uniswapon a likviditást független emberek biztosítják, és bárki hozzátehet. Ez nem megtakarítási számla: egy likviditási pozíció értéke csökkenhet, akár a befektetett összeg alá is."
+    }
+  },
+  "common": {
+    "proposed": "Javasolt",
+    "close": "Bezárás"
+  },
+  "mailingList": {
+    "chainTitle": "Maradj naprakész",
+    "chainDescription": "Kapj értesítést a BSO token mérföldköveiről, a Bitsocial Chain fejleményeiről és az ökoszisztéma híreiről. Ritka üzenetek, sok tartalom.",
+    "placeholder": "you@example.com",
+    "inputLabel": "E-mail cím",
+    "subscribe": "Feliratkozás",
+    "subscribing": "Feliratkozás folyamatban…",
+    "chainSuccess": "Rajta vagy a listán.",
+    "confirmationSent": "Nézd meg az e-mailedet az előfizetés megerősítéséhez.",
+    "chainError": "Valami hiba történt. Kérjük, próbáld újra.",
+    "unavailable": "A hírlevél feliratkozás átmenetileg nem érhető el.",
+    "privacy": "Soha nem küldünk kéretlen leveleket. Bármikor leiratkozhatsz."
+  },
+  "faq": {
+    "eyebrow": "GYIK",
+    "title": "Gyakran ismételt kérdések.",
+    "supporting": "Az oldal minden szakasza egy-egy kérdésre válaszol. Kattints egy kérdésre, és odaugrasz.",
+    "navLabel": "Ezen az oldalon megválaszolt kérdések",
+    "answeredIn": "Megválaszolva ebben a szakaszban: {{label}}",
+    "entries": {
+      "whyAChain": {
+        "eyebrow": "Miért egy lánc",
+        "question": "Miért kell egy peer-to-peer közösségi hálózatnak lánc?"
+      },
+      "tokenomics": {
+        "eyebrow": "Tokenomika",
+        "question": "Milyen a BSO tokenomikája? Ki kapott belőle?"
+      },
+      "unstoppable": {
+        "eyebrow": "Megállíthatatlan",
+        "question": "Miért Ethereum L2? Ki üzemelteti?"
+      },
+      "bsoNames": {
+        "eyebrow": "BSO nevek",
+        "question": "Mi lesz a .bso nevemmel?"
+      },
+      "communityMoney": {
+        "eyebrow": "Közösségi pénz",
+        "question": "Mire lehetne használni a BSO-t?"
+      },
+      "privacy": {
+        "eyebrow": "Adatvédelem",
+        "question": "Mindenki látni fogja, kinek adok borravalót?"
+      },
+      "possibilities": {
+        "eyebrow": "Lehetőségek",
+        "question": "Már élesben van? Mi van tervben?"
+      },
+      "verify": {
+        "eyebrow": "Ellenőrzés",
+        "question": "Hogyan szerezhetek BSO-t biztonságosan?"
+      }
+    },
+    "rows": {
+      "about": {
+        "label": "Rólunk",
+        "question": "Ki áll a Bitsocial Chain mögött?"
+      },
+      "mailingList": {
+        "label": "Hírlevél",
+        "question": "Hogyan maradok naprakész?"
+      }
+    },
+    "ask": {
+      "placeholder": "Kérdezz bármi mást…",
+      "label": "Kérdezz bármi mást",
+      "action": "Kérdezd a ChatGPT-t"
+    }
+  },
+  "footer": {
+    "chainTagline": "A kriptovilág hiányzó közösségi rétege",
+    "token": "Token",
+    "resources": "Erőforrások",
+    "blog": "Blog",
+    "proofOfConcept": "Koncepcióbizonyítás",
+    "about": "Rólunk",
+    "mainSite": "Főoldal",
+    "community": "Közösség",
+    "chainBottomTagline": "Javítsuk meg a kriptovilág közösségi rétegét",
+    "contribute": "Tedd jobbá ezt az oldalt"
+  },
+  "backToTop": {
+    "returnToOrigin": "Vissza az előző helyre",
+    "toTop": "Vissza a tetejére",
+    "toBottom": "Ugrás az aljára"
+  }
+}

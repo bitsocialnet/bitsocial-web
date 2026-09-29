@@ -1,5 +1,5 @@
 import type { ComponentType } from "react";
-import { SECTION_FAQ, type SectionId } from "@/lib/faq";
+import { SECTION_IDS, type SectionId } from "@/lib/faq";
 import WhyAChain from "./WhyAChain";
 import SoundMoney from "./SoundMoney";
 import CommunityMoney from "./CommunityMoney";
@@ -25,7 +25,7 @@ const SECTION_COMPONENTS: Record<SectionId, ComponentType> = {
 export default function Sections() {
   return (
     <>
-      {SECTION_FAQ.map(({ id }) => {
+      {SECTION_IDS.map((id) => {
         const SectionComponent = SECTION_COMPONENTS[id];
         return <SectionComponent key={id} />;
       })}

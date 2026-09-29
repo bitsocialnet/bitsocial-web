@@ -1,0 +1,297 @@
+{
+  "nav": {
+    "language": "Limbă",
+    "theme": "Temă",
+    "mainSite": "Site-ul principal",
+    "faq": "FAQ"
+  },
+  "languageSelector": {
+    "title": "Selectează limba",
+    "searchPlaceholder": "Caută limbi...",
+    "noResults": "Nicio limbă nu corespunde căutării dvs."
+  },
+  "meta": {
+    "title": "BSO - Stratul social care lipsește din lumea cripto",
+    "description": "BSO este moneda Bitsocial, rețeaua socială peer-to-peer pe care nicio companie nu o deține. Un appchain Ethereum L2 în care comunitățile își dețin rețelele, tokenurile și veniturile."
+  },
+  "topbar": {
+    "navLabel": "Navigarea site-ului Bitsocial Chain",
+    "menu": "Meniu",
+    "openMenu": "Deschide meniul",
+    "closeMenu": "Închide meniul"
+  },
+  "theme": {
+    "toggle": "Schimbă tema"
+  },
+  "hero": {
+    "statusCta": "Lanțul nu este încă activ, abonează-te pentru actualizări",
+    "title": "<mark>Stratul social</mark> care lipsește din lumea cripto",
+    "supporting": "Lumea cripto a devenit un cazinou pentru că Web2, TradFi și infrastructura centralizată dețin canalele de distribuție și distorsionează stimulentele. Bitsocial Chain rezolvă această problemă: un <appchainLink>appchain</appchainLink> <l2Link>Ethereum L2</l2Link> de neoprit, complet descentralizat, în care comunitățile își dețin rețelele, tokenurile și veniturile."
+  },
+  "layers": {
+    "ariaLabel": "Trei straturi suprapuse ale lumii cripto: aplicațiile sociale din rețeaua Bitsocial deasupra, decontarea Ethereum L1 la bază și Bitsocial Chain, appchain-ul Ethereum L2 alimentat de BSO, care se aprinde ca stratul luminos lipsă și se potrivește în golul dintre ele, străbătut de o coloană de energie.",
+    "social": {
+      "title": "APLICAȚII SOCIALE",
+      "subtitle": "REȚEAUA BITSOCIAL"
+    },
+    "bso": {
+      "title": "BITSOCIAL CHAIN",
+      "subtitle": "L2 APPCHAIN · BSO"
+    },
+    "eth": {
+      "title": "ETHEREUM",
+      "subtitle": "DECONTARE L1"
+    }
+  },
+  "contract": {
+    "label": "Contractul BSO",
+    "copyAriaLabel": "Copiază adresa contractului BSO {{address}}",
+    "copied": "Copiat în clipboard"
+  },
+  "sections": {
+    "whyAChain": {
+      "title": "Bitsocial în sine nu se află pe un blockchain.",
+      "supporting": "Postările, profilurile, comunitățile și moderarea de pe <bitsocialLink>Bitsocial</bitsocialLink> sunt peer-to-peer. Fără lanț, fără comisioane, fără portofel: poți folosi întreaga rețea fără să atingi vreodată cripto, iar majoritatea oamenilor așa vor face. Dar câteva lucruri au cu adevărat nevoie de un lanț — nume care sunt ale tale, bani care circulă între necunoscuți, tokenuri pe care o comunitate le deține cu adevărat. Bitsocial Chain există exact pentru acestea și pentru nimic altceva.",
+      "peerToPeer": {
+        "badge": "Peer-to-peer",
+        "note": "Rețeaua socială. Fără lanț implicat.",
+        "posts": "Postări și comentarii",
+        "profiles": "Profiluri și comunități",
+        "moderation": "Moderare și anti-spam"
+      },
+      "onChain": {
+        "badge": "On-chain",
+        "note": "Puținele părți care au nevoie de unul.",
+        "names": "Nume .bso",
+        "tipping": "Bacșișuri și premii",
+        "tokens": "Tokenuri comunitare"
+      },
+      "caption": "Lanțul este opțional. Rețeaua socială nu este.",
+      "quote": "O rețea socială descentralizată are nevoie de bani descentralizați."
+    },
+    "tokenomics": {
+      "title": "Bani sănătoși.",
+      "supporting": "BSO este un ERC-20 cu ofertă fixă: 210 milioane, fără inflație, deflaționist prin design. Întreaga ofertă a fost distribuită prin airdrop către aproximativ 600 de persoane la începutul anului 2022, fără presale și fără nimic rezervat înaintea comunității. Contractul său este imuabil și fără administrator, deci regulile sunt fixe pentru totdeauna.",
+      "supply": {
+        "cap": "Oferta maximă BSO · fixă pentru totdeauna"
+      },
+      "traits": {
+        "airdropped": "100% distribuit prin airdrop, fără echipă sau presale",
+        "fixedCap": "Plafon fix, zero emisii",
+        "deflationary": "Deflaționist: oferta doar scade"
+      },
+      "locks": {
+        "noMint": {
+          "label": "Fără mint",
+          "note": "oferta nu poate crește niciodată"
+        },
+        "noOwner": {
+          "label": "Fără proprietar",
+          "note": "nicio cheie de administrator, niciodată"
+        },
+        "noPause": {
+          "label": "Fără pauză",
+          "note": "transferurile nu pot fi înghețate"
+        },
+        "noProxy": {
+          "label": "Fără proxy",
+          "note": "codul nu poate fi înlocuit"
+        }
+      },
+      "airdrop": {
+        "label": "Airdrop-ul",
+        "note": "Aproximativ 600 de persoane, în trei runde de revendicare între ianuarie și februarie 2022. S-au înscris printr-un bot Telegram, codurile de recomandare au adus părți mai mari, iar fiecare destinatar a fost verificat manual, ca nimeni să nu plece cu prea mult din ofertă. Fără presale, fără alocare pentru echipă, nimic vândut."
+      },
+      "contract": {
+        "label": "Întregul contract",
+        "note": "Întreaga ofertă este emisă pe o singură adresă, pentru că așa funcționează migrarea: soldurile au fost oglindite unu la unu pe ea și plătite înapoi prin transfer, fiecare dintre ele on-chain. Tot restul este <openZeppelinLink>OpenZeppelin</openZeppelinLink>, nemodificat — cel mai folosit și cel mai revizuit cod de token din Ethereum. Nimic personalizat, nimic ingenios. Citește-l pe <etherscanLink>Etherscan</etherscanLink>."
+      },
+      "foot": "Imuabil și fără administrator: nu a mai rămas nicio cheie de administrator pe care s-o dețină cineva, deci nimeni nu poate să-l modifice, să-l inflaționeze sau să-l înghețe."
+    },
+    "unstoppable": {
+      "title": "Construit pe Ethereum. Condus de nimeni.",
+      "supporting": "Un blockchain nou ar reconstrui securitatea și baza de dezvoltatori pe care Ethereum le are deja și ar avea nevoie de un token nou, când BSO este deja distribuit integral. Așadar, Bitsocial Chain este conceput ca un Ethereum L2 fără operator: fiecare acțiune este o simplă tranzacție Ethereum trimisă către o adresă pe care nu o controlează nimeni, iar oricine poate rula un nod care derivă aceeași stare din istoricul Ethereum. Nu există nicio companie asupra căreia să se poată face presiuni și niciun întrerupător de acționat.",
+      "locks": {
+        "noSequencer": {
+          "label": "Nu e nevoie de sequencer",
+          "note": "Ethereum ordonează fiecare tranzacție"
+        },
+        "noAdminKeys": {
+          "label": "Fără chei de administrator",
+          "note": "nimeni nu îți schimbă regulile"
+        },
+        "noUpgradeableContract": {
+          "label": "Fără contract actualizabil",
+          "note": "nimic pe Ethereum de confiscat"
+        },
+        "noPrivilegedNode": {
+          "label": "Fără nod privilegiat",
+          "note": "oricine poate deriva aceeași stare"
+        }
+      },
+      "proofOfConcept": "Proof of concept-ul derivă deja numele .bso în acest fel, pe un lanț local de dezvoltare. O lansare în producție are încă nevoie de un sistem de dovezi, de un audit și de un model economic final. <proofLink>Citește proof of concept-ul</proofLink>."
+    },
+    "bsoNames": {
+      "title": "Numele tău .bso rămâne al tău.",
+      "supporting": "Aplicațiile Bitsocial <resolverLink>rezolvă astăzi numele .bso</resolverLink> împrumutând ENS, sistemul de nume pe care îl folosesc portofelele Ethereum: mycommunity.bso este de fapt mycommunity.eth cu o înregistrare bitsocial. Un registru nativ ar distribui prin airdrop fiecare nume deja folosit către portofelul care îl deține — nimic de revendicat și nimic de reînregistrat.",
+      "ensBadge": "ENS · astăzi",
+      "pointsTo": "indică spre",
+      "communityKey": "cheia comunității",
+      "airdropAtLaunch": "airdrop la lansare",
+      "bsoBadge": ".bso · Bitsocial Chain",
+      "owner": "proprietar",
+      "sameWallet": "același portofel"
+    },
+    "communityMoney": {
+      "title": "Un activ la baza multor comunități.",
+      "supporting": "Fiecare comunitate ar putea rula propriul strat, un L3 cu propriul token, și și-ar putea plăti comisioanele, numele și chiria în BSO. L3-urile există deja în lumea cripto; pe Bitsocial Chain, unul ar veni cu o comunitate deja atașată. Veniturile sale s-ar putea deconta singure: sloturi de reclame licitate prin contract, o parte din fiecare vânzare distrusă pe loc, iar restul plătit comunității, fără o trezorerie de răscumpărare pe care să o poată acapara cineva.",
+      "communityLayer": "Stratul comunității",
+      "ownToken": "propriul token",
+      "feesFlow": "comisioane, nume și chirie plătite în BSO",
+      "chainMeta": "Strat Ethereum · starea sa derivă din Ethereum",
+      "ethereumMeta": "Ethereum L1 · securitate și date",
+      "caption": "O parte din fiecare comision este distrusă; restul plătește pentru securitatea lanțului."
+    },
+    "privacy": {
+      "title": "Bacșișurile nu ar trebui să te deconspire.",
+      "supporting": "Bitsocial Chain este public în mod implicit, ca Ethereum, iar numele .bso sunt făcute ca să fie văzute. Banii sunt diferiți: un bacșiș nu ar trebui să ceară niciodată ca numele, profilul sau postarea ta să fie puse on-chain lângă el, iar un portofel nou ar trebui să fie ceva normal, nu suspect. Lanțul nu își va construi propriul sistem de confidențialitate. Este menit să permită celor existente să se conecteze fără a cere permisiunea nimănui: shielded pools, adrese stealth, dovezi zero-knowledge.",
+      "publicOnPurpose": {
+        "heading": "Public intenționat",
+        "names": "Numele .bso și cine le deține",
+        "rules": "Fiecare regulă și fiecare schimbare de stare"
+      },
+      "neverRequired": {
+        "heading": "Niciodată obligatoriu",
+        "profile": "Numele sau profilul tău pe un bacșiș",
+        "wallet": "Un portofel per persoană",
+        "app": "Un portofel sau o aplicație oficială"
+      }
+    },
+    "possibilities": {
+      "title": "Propus, în mod deschis.",
+      "supporting": "Încă nu este activ. BSO este activ astăzi pe Ethereum; Bitsocial Chain este o propunere, iar primul său proof of concept, numele .bso native, rulează pe un lanț local de dezvoltare. Nimic de mai jos nu are o dată. Este ceea ce ar face posibil un strat social cu propriii bani: o parte va fi construită, o parte înlocuită de idei mai bune, iar o parte construită de oameni care nu au apărut încă.",
+      "ideas": {
+        "chain": {
+          "note": "Appchain-ul Ethereum L2 în sine și locul de decontare pentru BSO."
+        },
+        "registry": {
+          "label": "Un registru .bso nativ",
+          "note": "Nume și identitate înregistrate pe lanț, în loc să fie împrumutate de la ENS."
+        },
+        "l3s": {
+          "label": "L3-uri și tokenuri comunitare",
+          "note": "Comunități cu propriul strat și propriul token, care se decontează în BSO."
+        },
+        "agoraswap": {
+          "note": "Un DEX comunitar în care tokenurile comunitare se tranzacționează contra BSO, păstrând lichiditatea on-chain."
+        },
+        "collectibles": {
+          "label": "Obiecte de colecție pentru creatori",
+          "note": "Modalități prin care creatorii pot vinde ceva direct, fără ca o platformă să ia un comision."
+        },
+        "other": {
+          "label": "Orice altceva care se potrivește",
+          "note": "Tokenuri de client, sequencing descentralizat și idei pe care nu le-a propus nimeni încă."
+        }
+      }
+    },
+    "verify": {
+      "title": "Doar o singură adresă este BSO.",
+      "supporting": "Oricine poate crea un token și îl poate numi BSO, așa că adresa contractului este singurul lucru care îl deosebește pe cel real. Compară toate cele 42 de caractere cu acest site și cu canalele oficiale ale Bitsocial înainte de a trimite ceva oriunde.",
+      "warning": "Contractul oficial BSO este <contract>{{address}}</contract>. Orice altceva nu este BSO, indiferent cum se numește și oriunde este listat.",
+      "tradeOnUniswap": "Tranzacționează pe Uniswap",
+      "provideLiquidity": "Oferă lichiditate",
+      "note": "Lichiditatea de pe Uniswap este oferită de persoane independente, iar oricine poate contribui la ea. Nu este un cont de economii: valoarea unei poziții de lichiditate poate scădea, inclusiv sub suma depusă."
+    }
+  },
+  "common": {
+    "proposed": "Propus",
+    "close": "Închide"
+  },
+  "mailingList": {
+    "chainTitle": "Rămâi la curent",
+    "chainDescription": "Primești notificări despre reperele tokenului BSO, despre Bitsocial Chain și noutăți din ecosistem. Rare, dar utile.",
+    "placeholder": "you@example.com",
+    "inputLabel": "Adresă de e-mail",
+    "subscribe": "Abonează-te",
+    "subscribing": "Se abonează…",
+    "chainSuccess": "Ești pe listă.",
+    "confirmationSent": "Verifică e-mailul pentru a confirma abonamentul.",
+    "chainError": "Ceva nu a mers bine. Încearcă din nou.",
+    "unavailable": "Înscrierea la newsletter este temporar indisponibilă.",
+    "privacy": "Fără spam, niciodată. Te poți dezabona oricând."
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Întrebări frecvente.",
+    "supporting": "Fiecare secțiune a acestei pagini răspunde la una. Dă clic pe o întrebare ca să ajungi la ea.",
+    "navLabel": "Întrebări la care răspunde această pagină",
+    "answeredIn": "Răspuns în secțiunea {{label}}",
+    "entries": {
+      "whyAChain": {
+        "eyebrow": "De ce un lanț",
+        "question": "De ce are nevoie o rețea socială peer-to-peer de un lanț?"
+      },
+      "tokenomics": {
+        "eyebrow": "Tokenomics",
+        "question": "Care este tokenomics-ul BSO? Cine l-a primit?"
+      },
+      "unstoppable": {
+        "eyebrow": "De neoprit",
+        "question": "De ce un Ethereum L2? Cine îl rulează?"
+      },
+      "bsoNames": {
+        "eyebrow": "Nume BSO",
+        "question": "Ce se întâmplă cu numele meu .bso?"
+      },
+      "communityMoney": {
+        "eyebrow": "Banii comunității",
+        "question": "Pentru ce ar fi folosit BSO?"
+      },
+      "privacy": {
+        "eyebrow": "Confidențialitate",
+        "question": "Va vedea toată lumea cui dau bacșiș?"
+      },
+      "possibilities": {
+        "eyebrow": "Posibilități",
+        "question": "Este activ? Ce este planificat?"
+      },
+      "verify": {
+        "eyebrow": "Verificare",
+        "question": "Cum obțin BSO în siguranță?"
+      }
+    },
+    "rows": {
+      "about": {
+        "label": "Despre noi",
+        "question": "Cine se află în spatele Bitsocial Chain?"
+      },
+      "mailingList": {
+        "label": "Buletin",
+        "question": "Cum mă pot ține la curent?"
+      }
+    },
+    "ask": {
+      "placeholder": "Întreabă orice altceva…",
+      "label": "Întreabă orice altceva",
+      "action": "Întreabă ChatGPT"
+    }
+  },
+  "footer": {
+    "chainTagline": "Stratul social care lipsește din lumea cripto",
+    "token": "Token",
+    "resources": "Resurse",
+    "blog": "Blog",
+    "proofOfConcept": "Proof of concept",
+    "about": "Despre noi",
+    "mainSite": "Site-ul principal",
+    "community": "Comunitate",
+    "chainBottomTagline": "Reparăm stratul social al lumii cripto",
+    "contribute": "Îmbunătățește această pagină"
+  },
+  "backToTop": {
+    "returnToOrigin": "Înapoi la locul anterior",
+    "toTop": "Înapoi sus",
+    "toBottom": "Mergi jos"
+  }
+}

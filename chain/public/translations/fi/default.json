@@ -1,0 +1,297 @@
+{
+  "nav": {
+    "language": "Kieli",
+    "theme": "Teema",
+    "mainSite": "Pääsivusto",
+    "faq": "UKK"
+  },
+  "languageSelector": {
+    "title": "Valitse kieli",
+    "searchPlaceholder": "Etsi kieliä...",
+    "noResults": "Mikään kieli ei vastaa hakuasi."
+  },
+  "meta": {
+    "title": "BSO – kryptomaailman puuttuva sosiaalinen kerros",
+    "description": "BSO on Bitsocialin raha. Bitsocial on peer-to-peer-sosiaalinen verkosto, jota mikään yritys ei omista. Ethereum L2 -appchain, jossa yhteisöt omistavat verkkonsa, tokeninsa ja tulonsa."
+  },
+  "topbar": {
+    "navLabel": "Bitsocial Chain -sivuston navigointi",
+    "menu": "Valikko",
+    "openMenu": "Avaa valikko",
+    "closeMenu": "Sulje valikko"
+  },
+  "theme": {
+    "toggle": "Vaihda teemaa"
+  },
+  "hero": {
+    "statusCta": "Ketju ei ole vielä käytössä, tilaa päivitykset",
+    "title": "Kryptomaailman puuttuva <mark>sosiaalinen kerros</mark>",
+    "supporting": "Krypto muuttui kasinoksi, koska Web2, TradFi ja keskitetty infrastruktuuri omistavat jakeluväylät ja vääristävät kannustimet. Bitsocial Chain korjaa tämän: pysäyttämätön, täysin hajautettu <l2Link>Ethereum L2</l2Link> -<appchainLink>appchain</appchainLink>, jossa yhteisöt omistavat verkkonsa, tokeninsa ja tulonsa."
+  },
+  "layers": {
+    "ariaLabel": "Kryptomaailman kolme päällekkäistä kerrosta: ylhäällä sosiaaliset sovellukset Bitsocial-verkossa, alhaalla Ethereum L1 -selvityskerros, ja niiden välisen aukon täyttävänä hehkuvana puuttuvana kerroksena syttyy Bitsocial Chain, BSO:n voimalla toimiva Ethereum L2 -appchain, jota energiaselkäranka yhdistää läpi kerrosten.",
+    "social": {
+      "title": "SOSIAALISET APPIT",
+      "subtitle": "BITSOCIAL-VERKKO"
+    },
+    "bso": {
+      "title": "BITSOCIAL CHAIN",
+      "subtitle": "L2-APPCHAIN · BSO"
+    },
+    "eth": {
+      "title": "ETHEREUM",
+      "subtitle": "L1-SELVITYS"
+    }
+  },
+  "contract": {
+    "label": "BSO-älysopimus",
+    "copyAriaLabel": "Kopioi BSO-älysopimuksen osoite {{address}}",
+    "copied": "Kopioitu leikepöydälle"
+  },
+  "sections": {
+    "whyAChain": {
+      "title": "Bitsocial itse ei ole lohkoketjussa.",
+      "supporting": "Julkaisut, profiilit, yhteisöt ja moderointi <bitsocialLink>Bitsocialissa</bitsocialLink> ovat peer-to-peer-pohjaisia. Ei ketjua, ei maksuja, ei lompakkoa: voit käyttää koko verkkoa koskaan koskematta kryptoon, ja useimmat tekevätkin niin. Mutta muutama asia tarvitsee aidosti ketjun – nimet, jotka ovat sinun, raha, joka liikkuu tuntemattomien välillä, tokenit, jotka yhteisö todella omistaa. Bitsocial Chain on tarkoitettu juuri niitä varten, eikä mihinkään muuhun.",
+      "peerToPeer": {
+        "badge": "Peer-to-peer",
+        "note": "Sosiaalinen verkosto. Ei ketjua mukana.",
+        "posts": "Julkaisut ja kommentit",
+        "profiles": "Profiilit ja yhteisöt",
+        "moderation": "Moderointi ja roskapostin torjunta"
+      },
+      "onChain": {
+        "badge": "On-chain",
+        "note": "Ne harvat osat, jotka tarvitsevat ketjun.",
+        "names": ".bso-nimet",
+        "tipping": "Tippaaminen ja palkinnot",
+        "tokens": "Yhteisötokenit"
+      },
+      "caption": "Ketju on valinnainen. Sosiaalinen verkosto ei ole.",
+      "quote": "Hajautettu sosiaalinen verkosto tarvitsee hajautettua rahaa."
+    },
+    "tokenomics": {
+      "title": "Vankkaa rahaa.",
+      "supporting": "BSO on kiinteän tarjonnan ERC-20-token: 210 miljoonaa, ei inflaatiota, suunnitellusti deflatorinen. Koko tarjonta jaettiin airdropilla noin 600 ihmiselle alkuvuonna 2022, ilman ennakkomyyntiä ja ilman yhteisön edelle varattuja osuuksia. Sen älysopimus on muuttumaton ja ylläpitäjätön, joten säännöt ovat lukitut ikuisesti.",
+      "supply": {
+        "cap": "BSO:n enimmäistarjonta · lukittu ikuisesti"
+      },
+      "traits": {
+        "airdropped": "100 % jaettu airdropilla, ei tiimiä eikä ennakkomyyntiä",
+        "fixedCap": "Kiinteä yläraja, nolla emissiota",
+        "deflationary": "Deflatorinen: tarjonta vain pienenee"
+      },
+      "locks": {
+        "noMint": {
+          "label": "Ei mintausta",
+          "note": "tarjonta ei voi koskaan kasvaa"
+        },
+        "noOwner": {
+          "label": "Ei omistajaa",
+          "note": "ei ylläpitäjän avaimia, koskaan"
+        },
+        "noPause": {
+          "label": "Ei keskeytystä",
+          "note": "siirtoja ei voi jäädyttää"
+        },
+        "noProxy": {
+          "label": "Ei proxya",
+          "note": "koodia ei voi vaihtaa"
+        }
+      },
+      "airdrop": {
+        "label": "Airdrop",
+        "note": "Noin 600 ihmistä, kolmessa lunastuskierroksessa tammikuun ja helmikuun 2022 välillä. He ilmoittautuivat Telegram-botin kautta, suosituskoodit ansaitsivat suurempia osuuksia, ja jokainen saaja tarkistettiin käsin, jottei kukaan voisi kahmia liian suurta osaa tarjonnasta. Ei ennakkomyyntiä, ei tiimille varattua osuutta, mitään ei myyty."
+      },
+      "contract": {
+        "label": "Koko älysopimus",
+        "note": "Koko tarjonta mintataan yhteen osoitteeseen, koska migraatio toimii niin: saldot peilattiin siihen yksi yhteen ja maksettiin takaisin siirroilla, kaikki on-chain. Kaikki muu on <openZeppelinLink>OpenZeppelinin</openZeppelinLink> koodia muokkaamattomana – Ethereumin eniten käytettyä ja eniten tarkastettua tokenkoodia. Ei mitään räätälöityä, ei mitään nokkelaa. Lue se <etherscanLink>Etherscanissa</etherscanLink>."
+      },
+      "foot": "Muuttumaton ja ylläpitäjätön: ylläpitäjän avaimia, joita kukaan voisi pitää hallussaan, ei ole olemassa, joten kukaan ei voi muuttaa sitä, inflatoida sitä tai jäädyttää sitä."
+    },
+    "unstoppable": {
+      "title": "Rakennettu Ethereumin päälle. Ei kenenkään ylläpitämä.",
+      "supporting": "Uusi lohkoketju rakentaisi uudelleen sen tietoturvan ja kehittäjäkannan, joka Ethereumilla jo on, ja tarvitsisi uuden tokenin, vaikka BSO on jo kokonaan jaettu. Siksi Bitsocial Chain on suunniteltu Ethereum L2:ksi ilman operaattoria: jokainen toiminto on tavallinen Ethereum-transaktio, joka lähetetään osoitteeseen, jota kukaan ei hallitse, ja kuka tahansa voi ajaa solmua, joka johtaa saman tilan Ethereumin historiasta. Ei ole yritystä, johon voisi kohdistaa painetta, eikä kytkintä, jota voisi kääntää.",
+      "locks": {
+        "noSequencer": {
+          "label": "Sequenceria ei tarvita",
+          "note": "Ethereum järjestää jokaisen transaktion"
+        },
+        "noAdminKeys": {
+          "label": "Ei ylläpitäjän avaimia",
+          "note": "kukaan ei muuta sääntöjä puolestasi"
+        },
+        "noUpgradeableContract": {
+          "label": "Ei päivitettävää älysopimusta",
+          "note": "ei mitään takavarikoitavaa Ethereumissa"
+        },
+        "noPrivilegedNode": {
+          "label": "Ei etuoikeutettua solmua",
+          "note": "kuka tahansa voi johtaa saman tilan"
+        }
+      },
+      "proofOfConcept": "Konseptitodiste johtaa .bso-nimet jo näin, paikallisella kehitysketjulla. Tuotantokäyttöönotto vaatii vielä todistusjärjestelmän, auditoinnin ja lopullisen talousmallin. <proofLink>Lue konseptitodiste</proofLink>."
+    },
+    "bsoNames": {
+      "title": ".bso-nimesi pysyy sinun.",
+      "supporting": "Bitsocial-sovellukset <resolverLink>selvittävät .bso-nimet jo nyt</resolverLink> lainaamalla ENS:ää, nimijärjestelmää, jota Ethereum-lompakot käyttävät: mycommunity.bso on oikeasti mycommunity.eth, jossa on bitsocial-tietue. Natiivi rekisteri jakaisi jokaisen jo käytössä olevan nimen airdropilla sille lompakolle, joka sen omistaa – ei mitään lunastettavaa eikä mitään uudelleenrekisteröitävää.",
+      "ensBadge": "ENS · nyt",
+      "pointsTo": "osoittaa kohteeseen",
+      "communityKey": "yhteisön avain",
+      "airdropAtLaunch": "airdrop käynnistyessä",
+      "bsoBadge": ".bso · Bitsocial Chain",
+      "owner": "omistaja",
+      "sameWallet": "sama lompakko"
+    },
+    "communityMoney": {
+      "title": "Yksi omaisuuserä monen yhteisön alla.",
+      "supporting": "Jokainen yhteisö voisi ylläpitää omaa kerrostaan, L3:a omalla tokenillaan, ja maksaa maksunsa, nimensä ja vuokransa BSO:lla. L3:ja on jo eri puolilla kryptomaailmaa; Bitsocial Chainissa sellainen tulisi valmiiksi yhteisön kanssa. Sen tulot voisivat hoitua itsestään: mainospaikat huutokaupattaisiin älysopimuksella, osa jokaisesta myynnistä poltettaisiin heti ja loput maksettaisiin yhteisölle, ilman takaisinostokassaa, jonka kukaan voisi kaapata.",
+      "communityLayer": "Yhteisökerros",
+      "ownToken": "oma token",
+      "feesFlow": "maksut, nimet ja vuokrat maksetaan BSO:lla",
+      "chainMeta": "Ethereum-kerros · sen tila johdetaan Ethereumista",
+      "ethereumMeta": "Ethereum L1 · turvallisuus ja data",
+      "caption": "Osa jokaisesta maksusta poltetaan; loput maksavat ketjun turvallisuudesta."
+    },
+    "privacy": {
+      "title": "Tippaamisen ei pitäisi paljastaa henkilöllisyyttäsi.",
+      "supporting": "Bitsocial Chain on oletuksena julkinen, kuten Ethereum, ja .bso-nimet on tarkoitettu näkyviksi. Raha on eri asia: tipin ei pitäisi koskaan vaatia nimesi, profiilisi tai julkaisusi laittamista on-chain sen viereen, ja uuden lompakon pitäisi olla normaali, ei epäilyttävä. Ketju ei rakenna omaa yksityisyysjärjestelmää. Sen on tarkoitus antaa olemassa olevien liittyä mukaan kysymättä lupaa: suojatut poolit, stealth-osoitteet, nollatietotodistukset.",
+      "publicOnPurpose": {
+        "heading": "Tarkoituksella julkista",
+        "names": ".bso-nimet ja niiden omistajat",
+        "rules": "Jokainen sääntö ja jokainen tilanmuutos"
+      },
+      "neverRequired": {
+        "heading": "Ei koskaan pakollista",
+        "profile": "Nimesi tai profiilisi tipissä",
+        "wallet": "Yksi lompakko henkilöä kohden",
+        "app": "Virallinen lompakko tai sovellus"
+      }
+    },
+    "possibilities": {
+      "title": "Ehdotettu avoimesti.",
+      "supporting": "Ei vielä käytössä. BSO on käytössä Ethereumissa jo nyt; Bitsocial Chain on ehdotus, ja sen ensimmäinen konseptitodiste, natiivit .bso-nimet, toimii paikallisella kehitysketjulla. Millään alla olevalla ei ole päivämäärää. Se on sitä, mitä sosiaalinen kerros omalla rahallaan mahdollistaisi: osa rakennetaan, osa korvataan paremmilla ideoilla, ja osan rakentavat ihmiset, jotka eivät ole vielä ilmestyneet paikalle.",
+      "ideas": {
+        "chain": {
+          "note": "Itse Ethereum L2 -appchain ja paikka, jossa BSO selvitetään."
+        },
+        "registry": {
+          "label": "Natiivi .bso-rekisteri",
+          "note": "Nimet ja identiteetti rekisteröidään ketjuun sen sijaan, että ne lainattaisiin ENS:stä."
+        },
+        "l3s": {
+          "label": "Yhteisöjen L3:t ja tokenit",
+          "note": "Yhteisöt, joilla on oma kerros ja oma token ja joiden selvitys tapahtuu BSO:lla."
+        },
+        "agoraswap": {
+          "note": "Yhteisön DEX, jossa yhteisötokeneilla käydään kauppaa BSO:ta vastaan ja likviditeetti pysyy on-chain."
+        },
+        "collectibles": {
+          "label": "Sisällöntuottajien keräilykohteet",
+          "note": "Tapoja sisällöntuottajille myydä jotain suoraan ilman, että alusta ottaa siivunsa."
+        },
+        "other": {
+          "label": "Kaikki muu, mikä sopii",
+          "note": "Asiakasohjelmien tokenit, hajautettu sequencing ja ideat, joita kukaan ei ole vielä ehdottanut."
+        }
+      }
+    },
+    "verify": {
+      "title": "Vain yksi osoite on BSO.",
+      "supporting": "Kuka tahansa voi luoda tokenin ja nimetä sen BSO:ksi, joten älysopimuksen osoite on ainoa asia, joka erottaa oikean muista. Vertaa kaikkia 42 merkkiä tähän sivustoon ja Bitsocialin virallisiin kanaviin ennen kuin lähetät mitään minnekään.",
+      "warning": "Virallinen BSO-älysopimus on <contract>{{address}}</contract>. Mikään muu ei ole BSO, oli sen nimi mikä tahansa ja oli se listattu missä tahansa.",
+      "tradeOnUniswap": "Käy kauppaa Uniswapissa",
+      "provideLiquidity": "Tarjoa likviditeettiä",
+      "note": "Uniswapin likviditeetin tarjoavat riippumattomat ihmiset, ja kuka tahansa voi lisätä siihen. Se ei ole säästötili: likviditeettiposition arvo voi laskea, myös alle sen, mitä siihen pantiin."
+    }
+  },
+  "common": {
+    "proposed": "Ehdotettu",
+    "close": "Sulje"
+  },
+  "mailingList": {
+    "chainTitle": "Pysy kärryillä",
+    "chainDescription": "Saat ilmoituksia BSO-tokenin virstanpylväistä, Bitsocial Chainista ja ekosysteemin uutisista. Vähän viestejä, paljon asiaa.",
+    "placeholder": "you@example.com",
+    "inputLabel": "Sähköpostiosoite",
+    "subscribe": "Tilaa",
+    "subscribing": "Tilataan…",
+    "chainSuccess": "Olet listalla.",
+    "confirmationSent": "Tarkista sähköpostisi vahvistaaksesi tilauksesi.",
+    "chainError": "Jokin meni pieleen. Yritä uudelleen.",
+    "unavailable": "Uutiskirjeen tilaus ei ole tilapäisesti käytettävissä.",
+    "privacy": "Ei koskaan roskapostia. Voit perua tilauksen milloin tahansa."
+  },
+  "faq": {
+    "eyebrow": "UKK",
+    "title": "Usein kysytyt kysymykset.",
+    "supporting": "Jokainen tämän sivun osio vastaa yhteen niistä. Klikkaa kysymystä, niin siirryt sen kohdalle.",
+    "navLabel": "Kysymykset, joihin tällä sivulla vastataan",
+    "answeredIn": "Vastattu osiossa {{label}}",
+    "entries": {
+      "whyAChain": {
+        "eyebrow": "Miksi ketju",
+        "question": "Miksi peer-to-peer-sosiaalinen verkosto tarvitsee ketjun?"
+      },
+      "tokenomics": {
+        "eyebrow": "Tokenomiikka",
+        "question": "Mikä on BSO:n tokenomiikka? Kuka sen sai?"
+      },
+      "unstoppable": {
+        "eyebrow": "Pysäyttämätön",
+        "question": "Miksi Ethereum L2? Kuka sitä ylläpitää?"
+      },
+      "bsoNames": {
+        "eyebrow": "BSO-nimet",
+        "question": "Mitä .bso-nimelleni tapahtuu?"
+      },
+      "communityMoney": {
+        "eyebrow": "Yhteisön raha",
+        "question": "Mihin BSO:ta käytettäisiin?"
+      },
+      "privacy": {
+        "eyebrow": "Tietosuoja",
+        "question": "Näkevätkö kaikki, kenelle tippaan?"
+      },
+      "possibilities": {
+        "eyebrow": "Mahdollisuudet",
+        "question": "Onko se käytössä? Mitä on suunnitteilla?"
+      },
+      "verify": {
+        "eyebrow": "Tarkista",
+        "question": "Miten saan BSO:ta turvallisesti?"
+      }
+    },
+    "rows": {
+      "about": {
+        "label": "Tietoja meistä",
+        "question": "Ketkä ovat Bitsocial Chainin takana?"
+      },
+      "mailingList": {
+        "label": "Uutiskirje",
+        "question": "Miten pysyn ajan tasalla?"
+      }
+    },
+    "ask": {
+      "placeholder": "Kysy mitä tahansa muuta…",
+      "label": "Kysy mitä tahansa muuta",
+      "action": "Kysy ChatGPT:ltä"
+    }
+  },
+  "footer": {
+    "chainTagline": "Kryptomaailman puuttuva sosiaalinen kerros",
+    "token": "Token",
+    "resources": "Resurssit",
+    "blog": "Blogi",
+    "proofOfConcept": "Konseptitodiste",
+    "about": "Tietoja meistä",
+    "mainSite": "Pääsivusto",
+    "community": "Yhteisö",
+    "chainBottomTagline": "Korjataan kryptomaailman sosiaalinen kerros",
+    "contribute": "Paranna tätä sivua"
+  },
+  "backToTop": {
+    "returnToOrigin": "Takaisin edelliseen kohtaan",
+    "toTop": "Takaisin ylös",
+    "toBottom": "Siirry alas"
+  }
+}

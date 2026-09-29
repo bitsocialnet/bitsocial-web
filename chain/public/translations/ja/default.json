@@ -1,0 +1,297 @@
+{
+  "nav": {
+    "language": "言語",
+    "theme": "テーマ",
+    "mainSite": "メインサイト",
+    "faq": "よくある質問"
+  },
+  "languageSelector": {
+    "title": "言語を選択",
+    "searchPlaceholder": "言語を検索...",
+    "noResults": "検索に一致する言語はありません。"
+  },
+  "meta": {
+    "title": "BSO - クリプトに欠けているソーシャルレイヤー",
+    "description": "BSOは、どの企業も所有しないpeer-to-peerのソーシャルネットワーク、Bitsocialのお金です。コミュニティが自分たちのネットワーク、トークン、収益を所有する、Ethereum L2のアプリチェーンです。"
+  },
+  "topbar": {
+    "navLabel": "Bitsocial Chainサイトのナビゲーション",
+    "menu": "メニュー",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる"
+  },
+  "theme": {
+    "toggle": "テーマを切り替え"
+  },
+  "hero": {
+    "statusCta": "チェーンはまだ稼働していません。購読して最新情報を受け取りましょう",
+    "title": "クリプトに欠けている<mark>ソーシャルレイヤー</mark>",
+    "supporting": "クリプトがカジノになったのは、Web2、TradFi、中央集権的なインフラが流通の経路を握り、インセンティブをゆがめているからです。Bitsocial Chainはこの問題を解決します。コミュニティが自分たちのネットワーク、トークン、収益を所有する、止められない完全分散型の<l2Link>Ethereum L2</l2Link> <appchainLink>アプリチェーン</appchainLink>です。"
+  },
+  "layers": {
+    "ariaLabel": "クリプトを構成する三つの積み重なったレイヤー。上にはBitsocialネットワーク上のソーシャルアプリ、下にはEthereum L1の決済レイヤー、その間の隙間には、欠けていたレイヤーとして光を放ちながら収まる、BSOで動くEthereum L2アプリチェーンのBitsocial Chain。これらがエネルギーの軸でつながっています。",
+    "social": {
+      "title": "ソーシャルアプリ",
+      "subtitle": "BITSOCIAL ネットワーク"
+    },
+    "bso": {
+      "title": "BITSOCIAL CHAIN",
+      "subtitle": "L2 アプリチェーン · BSO"
+    },
+    "eth": {
+      "title": "ETHEREUM",
+      "subtitle": "L1 決済"
+    }
+  },
+  "contract": {
+    "label": "BSOコントラクト",
+    "copyAriaLabel": "BSOコントラクトアドレス {{address}} をコピー",
+    "copied": "クリップボードにコピーしました"
+  },
+  "sections": {
+    "whyAChain": {
+      "title": "Bitsocial自体はブロックチェーン上にありません。",
+      "supporting": "<bitsocialLink>Bitsocial</bitsocialLink>の投稿、プロフィール、コミュニティ、モデレーションはpeer-to-peerで行われます。チェーンも手数料もウォレットも不要です。クリプトに一切触れることなくネットワーク全体を使えますし、ほとんどの人はそうするでしょう。ただ、本当にチェーンが必要なものがいくつかあります。自分のものと言える名前、見知らぬ人同士でやり取りされるお金、コミュニティが実際に所有するトークンです。Bitsocial Chainは、まさにそれらのためのものであり、それ以外のためのものではありません。",
+      "peerToPeer": {
+        "badge": "peer-to-peer",
+        "note": "ソーシャルネットワーク本体です。チェーンは関わりません。",
+        "posts": "投稿とコメント",
+        "profiles": "プロフィールとコミュニティ",
+        "moderation": "モデレーションとスパム対策"
+      },
+      "onChain": {
+        "badge": "オンチェーン",
+        "note": "チェーンが必要な、ごく一部です。",
+        "names": ".bso名",
+        "tipping": "投げ銭とアワード",
+        "tokens": "コミュニティトークン"
+      },
+      "caption": "チェーンは任意です。ソーシャルネットワークは任意ではありません。",
+      "quote": "分散型ソーシャルネットワークには、分散型のお金が必要です。"
+    },
+    "tokenomics": {
+      "title": "健全なお金。",
+      "supporting": "BSOは供給量が固定されたERC-20で、総量は2億1000万です。インフレはなく、設計上デフレ型です。全供給量は2022年初めに約600人へエアドロップされ、プレセールはなく、コミュニティより先に取り分が確保されることもありませんでした。コントラクトは変更不可で管理者もいないため、ルールは永久に固定されています。",
+      "supply": {
+        "cap": "BSOの最大供給量 · 永久に固定"
+      },
+      "traits": {
+        "airdropped": "100%エアドロップ、チームもプレセールもなし",
+        "fixedCap": "上限固定、新規発行ゼロ",
+        "deflationary": "デフレ型：供給量は減るだけ"
+      },
+      "locks": {
+        "noMint": {
+          "label": "ミントなし",
+          "note": "供給量は決して増えません"
+        },
+        "noOwner": {
+          "label": "オーナーなし",
+          "note": "管理者キーは永久にありません"
+        },
+        "noPause": {
+          "label": "一時停止なし",
+          "note": "送金を凍結できません"
+        },
+        "noProxy": {
+          "label": "プロキシなし",
+          "note": "コードを差し替えられません"
+        }
+      },
+      "airdrop": {
+        "label": "エアドロップ",
+        "note": "約600人が、2022年1月から2月にかけての3回のクレームラウンドで受け取りました。参加者はTelegramボットで登録しました。紹介コードを使うとより大きな取り分を得られ、供給量の過大な分を誰も手にできないよう、受取人は全員が手作業で確認されました。プレセールも、チームへの割り当ても、売却されたものもありません。"
+      },
+      "contract": {
+        "label": "コントラクトのすべて",
+        "note": "全供給量が一つのアドレスにミントされるのは、移行の仕組みがそうなっているからです。残高はそこに一対一でミラーされ、送金で払い戻されました。そのすべてがオンチェーンで行われています。それ以外はすべて、変更を加えていない<openZeppelinLink>OpenZeppelin</openZeppelinLink>で、Ethereumで最も広く使われ、最も多くレビューされたトークンコードです。独自のものも、凝ったものもありません。<etherscanLink>Etherscan</etherscanLink>で読めます。"
+      },
+      "foot": "変更不可で管理者なし：保持されている管理者キーはもう残っていないため、誰もこれを変更することも、インフレさせることも、凍結することもできません。"
+    },
+    "unstoppable": {
+      "title": "Ethereumの上に構築。誰にも運営されない。",
+      "supporting": "新しいブロックチェーンを作れば、Ethereumがすでに持っているセキュリティと開発者基盤をゼロから作り直すことになり、BSOがすでに完全に配布されているのに新しいトークンも必要になります。そこでBitsocial Chainは、運営者のいないEthereum L2として設計されています。すべての操作は、誰も管理していないアドレスに送られる通常のEthereumトランザクションで、誰でもノードを動かし、Ethereumの履歴から同じ状態を導き出せます。圧力をかける相手の企業も、切り替えるスイッチもありません。",
+      "locks": {
+        "noSequencer": {
+          "label": "シーケンサー不要",
+          "note": "Ethereumがすべてのトランザクションを順序付けます"
+        },
+        "noAdminKeys": {
+          "label": "管理者キーなし",
+          "note": "誰もルールを勝手に変えられません"
+        },
+        "noUpgradeableContract": {
+          "label": "アップグレード可能なコントラクトなし",
+          "note": "Ethereum上に差し押さえられるものはありません"
+        },
+        "noPrivilegedNode": {
+          "label": "特権ノードなし",
+          "note": "誰でも同じ状態を導き出せます"
+        }
+      },
+      "proofOfConcept": "概念実証はすでに、ローカルの開発用チェーン上で、この方法で.bso名を導出しています。本番ローンチには、まだ証明システム、監査、最終的な経済設計が必要です。<proofLink>概念実証を読む</proofLink>。"
+    },
+    "bsoNames": {
+      "title": ".bso名はあなたのものであり続けます。",
+      "supporting": "Bitsocialのアプリは、Ethereumウォレットが使うネーミングシステムのENSを借りることで、今日すでに<resolverLink>.bso名を解決しています</resolverLink>。mycommunity.bsoは、実際にはbitsocialレコードを持つmycommunity.ethです。ネイティブのレジストリなら、すでに使われているすべての名前を、それを保有するウォレットにエアドロップすることになります。クレームするものも、再登録するものもありません。",
+      "ensBadge": "ENS · 現在",
+      "pointsTo": "指し示す",
+      "communityKey": "コミュニティの鍵",
+      "airdropAtLaunch": "ローンチ時にエアドロップ",
+      "bsoBadge": ".bso · Bitsocial Chain",
+      "owner": "所有者",
+      "sameWallet": "同じウォレット"
+    },
+    "communityMoney": {
+      "title": "多くのコミュニティの下に、一つの資産。",
+      "supporting": "各コミュニティは、独自のトークンを持つL3として自分たちのレイヤーを運用し、手数料、名前、使用料をBSOで支払えるでしょう。L3はすでにクリプト全体に存在しますが、Bitsocial Chainなら、最初からコミュニティが付いた状態で登場することになります。収益も自ら精算されるでしょう。広告枠はコントラクトでオークションにかけられ、売上の一部はその場で焼却され、残りはコミュニティに支払われます。誰かに握られる買い戻し用のトレジャリーはありません。",
+      "communityLayer": "コミュニティレイヤー",
+      "ownToken": "独自のトークン",
+      "feesFlow": "手数料、名前、使用料はBSOで支払い",
+      "chainMeta": "Ethereumのレイヤー · 状態はEthereumから導出",
+      "ethereumMeta": "Ethereum L1 · セキュリティとデータ",
+      "caption": "すべての手数料の一部が焼却され、残りはチェーンのセキュリティに充てられます。"
+    },
+    "privacy": {
+      "title": "投げ銭で身元が特定されるべきではない。",
+      "supporting": "Bitsocial Chainは、Ethereumと同じくデフォルトで公開されており、.bso名は見られることを前提としています。お金は別です。投げ銭のために、あなたの名前やプロフィール、投稿を同じオンチェーンの記録に載せる必要があってはなりませんし、新しいウォレットを使うのは、怪しまれることではなく当たり前であるべきです。チェーンが独自のプライバシーシステムを作ることはありません。既存のものが許可を求めることなく組み込めるようにすることを目指しています：シールドプール、ステルスアドレス、ゼロ知識証明。",
+      "publicOnPurpose": {
+        "heading": "意図的に公開",
+        "names": ".bso名とその所有者",
+        "rules": "すべてのルールとすべての状態変更"
+      },
+      "neverRequired": {
+        "heading": "決して必須ではないもの",
+        "profile": "投げ銭に付ける名前やプロフィール",
+        "wallet": "一人に一つのウォレット",
+        "app": "公式のウォレットやアプリ"
+      }
+    },
+    "possibilities": {
+      "title": "オープンな場で提案中。",
+      "supporting": "まだ稼働していません。BSOは今日Ethereum上で稼働していますが、Bitsocial Chainは提案の段階で、最初の概念実証であるネイティブな.bso名は、ローカルの開発用チェーン上で動いています。以下のいずれにも日付はありません。これは、独自のお金を持つソーシャルレイヤーが可能にするであろうことです。一部は実際に作られ、一部はより良いアイデアに置き換わり、一部はまだ現れていない人たちによって作られるでしょう。",
+      "ideas": {
+        "chain": {
+          "note": "Ethereum L2のアプリチェーンそのものであり、BSOの決済の拠点です。"
+        },
+        "registry": {
+          "label": "ネイティブな.bsoレジストリ",
+          "note": "名前とアイデンティティは、ENSから借りるのではなく、チェーン上で登録されます。"
+        },
+        "l3s": {
+          "label": "コミュニティL3とトークン",
+          "note": "独自のレイヤーと独自のトークンを持ち、BSOで決済するコミュニティ。"
+        },
+        "agoraswap": {
+          "note": "コミュニティトークンがBSOと取引されるコミュニティ向けDEXで、流動性をオンチェーンに保ちます。"
+        },
+        "collectibles": {
+          "label": "クリエイターのコレクティブル",
+          "note": "プラットフォームに取り分を取られることなく、クリエイターが直接何かを販売できる方法。"
+        },
+        "other": {
+          "label": "その他、合うものなら何でも",
+          "note": "クライアントトークン、分散型シーケンシング、まだ誰も提案していないアイデア。"
+        }
+      }
+    },
+    "verify": {
+      "title": "BSOと呼べるアドレスは一つだけ。",
+      "supporting": "誰でもトークンを作って「BSO」と名付けられるため、本物を見分けられるのはコントラクトアドレスだけです。何かをどこかへ送る前に、42文字すべてをこのサイトとBitsocialの公式チャンネルと照合してください。",
+      "warning": "公式のBSOコントラクトは<contract>{{address}}</contract>です。それ以外はBSOではありません。名前が何であれ、どこに掲載されていても同じです。",
+      "tradeOnUniswap": "Uniswapで取引",
+      "provideLiquidity": "流動性を提供",
+      "note": "Uniswapの流動性は独立した人々によって提供されており、誰でも追加できます。貯蓄口座ではありません。流動性ポジションの価値は下がることがあり、預け入れた額を下回ることもあります。"
+    }
+  },
+  "common": {
+    "proposed": "提案中",
+    "close": "閉じる"
+  },
+  "mailingList": {
+    "chainTitle": "最新情報を受け取る",
+    "chainDescription": "BSOトークンのマイルストーン、Bitsocial Chain、エコシステムのニュースをお知らせします。配信は控えめ、情報は濃いです。",
+    "placeholder": "you@example.com",
+    "inputLabel": "メールアドレス",
+    "subscribe": "購読する",
+    "subscribing": "購読中…",
+    "chainSuccess": "リストに登録されました。",
+    "confirmationSent": "登録を確認するメールをご確認ください。",
+    "chainError": "問題が発生しました。もう一度お試しください。",
+    "unavailable": "ニュースレターへの登録は一時的に利用できません。",
+    "privacy": "スパムは一切ありません。いつでも配信停止できます。"
+  },
+  "faq": {
+    "eyebrow": "よくある質問",
+    "title": "よくある質問",
+    "supporting": "このページの各セクションが、それぞれ一つの質問に答えます。質問をクリックして、その答えへジャンプしてください。",
+    "navLabel": "このページで回答している質問",
+    "answeredIn": "「{{label}}」で回答しています",
+    "entries": {
+      "whyAChain": {
+        "eyebrow": "なぜチェーンか",
+        "question": "peer-to-peerのソーシャルネットワークに、なぜチェーンが必要なのですか？"
+      },
+      "tokenomics": {
+        "eyebrow": "トークノミクス",
+        "question": "BSOのトークノミクスは？誰が受け取ったのですか？"
+      },
+      "unstoppable": {
+        "eyebrow": "止められない",
+        "question": "なぜEthereum L2なのですか？誰が運営するのですか？"
+      },
+      "bsoNames": {
+        "eyebrow": "BSO名",
+        "question": "自分の.bso名はどうなりますか？"
+      },
+      "communityMoney": {
+        "eyebrow": "コミュニティのお金",
+        "question": "BSOは何に使われるのでしょうか？"
+      },
+      "privacy": {
+        "eyebrow": "プライバシー",
+        "question": "誰に投げ銭したか、全員に見られますか？"
+      },
+      "possibilities": {
+        "eyebrow": "可能性",
+        "question": "もう稼働していますか？何が計画されていますか？"
+      },
+      "verify": {
+        "eyebrow": "検証",
+        "question": "BSOを安全に手に入れるにはどうすればいいですか？"
+      }
+    },
+    "rows": {
+      "about": {
+        "label": "私たちについて",
+        "question": "Bitsocial Chainは誰が作っているのですか？"
+      },
+      "mailingList": {
+        "label": "ニュースレター",
+        "question": "最新情報を受け取るにはどうすればいいですか？"
+      }
+    },
+    "ask": {
+      "placeholder": "ほかに何でも質問してください…",
+      "label": "ほかに何でも質問してください",
+      "action": "ChatGPTに質問"
+    }
+  },
+  "footer": {
+    "chainTagline": "クリプトに欠けているソーシャルレイヤー",
+    "token": "トークン",
+    "resources": "リソース",
+    "blog": "ブログ",
+    "proofOfConcept": "概念実証",
+    "about": "私たちについて",
+    "mainSite": "メインサイト",
+    "community": "コミュニティ",
+    "chainBottomTagline": "クリプトのソーシャルレイヤーを直そう",
+    "contribute": "このページを改善する"
+  },
+  "backToTop": {
+    "returnToOrigin": "元の位置に戻る",
+    "toTop": "トップに戻る",
+    "toBottom": "一番下へ移動"
+  }
+}

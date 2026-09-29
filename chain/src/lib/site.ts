@@ -46,11 +46,12 @@ export type ExternalLink = {
   icon?: "etherscan" | "coingecko" | "uniswap" | "dexscreener";
 };
 
+// Brand-name links only: these labels are never translated. The topbar adds the translated
+// main-site link after them.
 export const TOPBAR_LINKS: ExternalLink[] = [
   { label: "Etherscan", href: ETHERSCAN_TOKEN_URL },
   { label: "CoinGecko", href: COINGECKO_URL },
   { label: "Uniswap", href: UNISWAP_TOKEN_URL },
-  { label: "Main Site", href: BITSOCIAL_URL },
 ];
 
 export const FOOTER_TOKEN_LINKS: ExternalLink[] = [

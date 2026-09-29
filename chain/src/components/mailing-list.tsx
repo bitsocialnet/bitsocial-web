@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, Check, Mail } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import {
   configuredNewsletterListUuids,
   isNewsletterConfigured,
@@ -13,6 +14,7 @@ import { cn } from "@/lib/utils";
 type FormState = "idle" | "submitting" | "success" | "error";
 
 export default function MailingList() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [formState, setFormState] = useState<FormState>("idle");
   const normalizedEmail = email.trim();
@@ -43,13 +45,13 @@ export default function MailingList() {
 
   const statusMessage =
     formState === "error"
-      ? "Something went wrong. Please try again."
+      ? t("mailingList.chainError")
       : !isNewsletterConfigured
-        ? "Newsletter signup is temporarily unavailable."
+        ? t("mailingList.unavailable")
         : null;
   const successMessage = newsletterRequiresConfirmation
-    ? "Check your email to confirm your subscription."
-    : "You're on the list.";
+    ? t("mailingList.confirmationSent")
+    : t("mailingList.chainSuccess");
 
   return (
     <section id="mailing-list" className="nojs-target-highlight py-20 md:py-28 px-6 scroll-mt-24">
@@ -63,12 +65,11 @@ export default function MailingList() {
           </div>
 
           <h2 className="text-2xl md:text-3xl font-display font-normal mb-3 text-balance text-muted-foreground dark:text-foreground/85">
-            Stay in the loop
+            {t("mailingList.chainTitle")}
           </h2>
 
           <p className="text-sm md:text-base mb-8 max-w-md mx-auto leading-relaxed text-muted-foreground">
-            Get notified about BSO token milestones, Bitsocial Chain, and ecosystem news. Low
-            frequency, high signal.
+            {t("mailingList.chainDescription")}
           </p>
 
           {formState === "success" ? (
@@ -101,8 +102,8 @@ export default function MailingList() {
                       setFormState("idle");
                     }
                   }}
-                  placeholder="you@example.com"
-                  aria-label="Email address"
+                  placeholder={t("mailingList.placeholder")}
+                  aria-label={t("mailingList.inputLabel")}
                   className={cn(
                     "w-full rounded-full bg-foreground/[0.04] border border-foreground/[0.08] px-5 py-3 text-sm font-display",
                     "placeholder:text-muted-foreground/50",
@@ -130,12 +131,12 @@ export default function MailingList() {
                       className="h-4 w-4 border-2 border-current border-t-transparent rounded-full animate-spin"
                       aria-hidden="true"
                     />
-                    Subscribing…
+                    {t("mailingList.subscribing")}
                   </span>
                 ) : (
                   <>
-                    Subscribe
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    {t("mailingList.subscribe")}
+                    <ArrowRight className="h-4 w-4 rtl:-scale-x-100" aria-hidden="true" />
                   </>
                 )}
               </button>
@@ -155,7 +156,7 @@ export default function MailingList() {
           ) : null}
 
           <p className="text-xs mt-5 font-display text-muted-foreground">
-            No spam, ever. Unsubscribe anytime.
+            {t("mailingList.privacy")}
           </p>
         </div>
       </div>

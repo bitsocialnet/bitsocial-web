@@ -1,0 +1,297 @@
+{
+  "nav": {
+    "language": "Bahasa",
+    "theme": "Tema",
+    "mainSite": "Situs Utama",
+    "faq": "FAQ"
+  },
+  "languageSelector": {
+    "title": "Pilih bahasa",
+    "searchPlaceholder": "Cari bahasa...",
+    "noResults": "Tidak ada bahasa yang cocok dengan penelusuran Anda."
+  },
+  "meta": {
+    "title": "BSO - Lapisan Sosial yang Hilang dari Kripto",
+    "description": "BSO adalah uang Bitsocial, jaringan sosial peer-to-peer yang tidak dimiliki perusahaan mana pun. Appchain Ethereum L2 tempat komunitas memiliki jaringan, token, dan pendapatan mereka."
+  },
+  "topbar": {
+    "navLabel": "Navigasi situs Bitsocial Chain",
+    "menu": "Menu",
+    "openMenu": "Buka menu",
+    "closeMenu": "Tutup menu"
+  },
+  "theme": {
+    "toggle": "Ganti tema"
+  },
+  "hero": {
+    "statusCta": "Chain belum aktif, berlangganan untuk mendapat pembaruan",
+    "title": "<mark>Lapisan sosial</mark> yang hilang dari kripto",
+    "supporting": "Kripto menjadi kasino karena Web2, TradFi, dan infrastruktur terpusat menguasai jalur distribusi dan membelokkan insentif. Bitsocial Chain memperbaikinya: <appchainLink>appchain</appchainLink> <l2Link>Ethereum L2</l2Link> yang tak terhentikan dan sepenuhnya terdesentralisasi, tempat komunitas memiliki jaringan, token, dan pendapatan mereka."
+  },
+  "layers": {
+    "ariaLabel": "Tiga lapisan kripto yang bertumpuk: aplikasi sosial di jaringan Bitsocial di puncak, settlement Ethereum L1 di dasar, dan Bitsocial Chain, appchain Ethereum L2 yang ditenagai BSO, menyala sebagai lapisan hilang yang berpendar dan mengisi celah di antara keduanya, dijalin oleh tulang punggung energi.",
+    "social": {
+      "title": "APLIKASI SOSIAL",
+      "subtitle": "JARINGAN BITSOCIAL"
+    },
+    "bso": {
+      "title": "BITSOCIAL CHAIN",
+      "subtitle": "APPCHAIN L2 · BSO"
+    },
+    "eth": {
+      "title": "ETHEREUM",
+      "subtitle": "SETTLEMENT L1"
+    }
+  },
+  "contract": {
+    "label": "Kontrak BSO",
+    "copyAriaLabel": "Salin alamat kontrak BSO {{address}}",
+    "copied": "Disalin ke papan klip"
+  },
+  "sections": {
+    "whyAChain": {
+      "title": "Bitsocial sendiri tidak berada di blockchain.",
+      "supporting": "Postingan, profil, komunitas, dan moderasi di <bitsocialLink>Bitsocial</bitsocialLink> bersifat peer-to-peer. Tanpa chain, tanpa biaya, tanpa dompet: kamu bisa memakai seluruh jaringan tanpa pernah menyentuh kripto, dan kebanyakan orang akan begitu. Tetapi beberapa hal memang benar-benar membutuhkan chain — nama yang menjadi milikmu, uang yang berpindah antarorang asing, token yang sungguh dimiliki komunitas. Bitsocial Chain ada untuk hal-hal itu, dan tidak untuk yang lain.",
+      "peerToPeer": {
+        "badge": "Peer-to-peer",
+        "note": "Jaringan sosialnya. Tidak melibatkan chain.",
+        "posts": "Postingan dan komentar",
+        "profiles": "Profil dan komunitas",
+        "moderation": "Moderasi dan anti-spam"
+      },
+      "onChain": {
+        "badge": "On-chain",
+        "note": "Sedikit bagian yang membutuhkannya.",
+        "names": "Nama .bso",
+        "tipping": "Tip dan penghargaan",
+        "tokens": "Token komunitas"
+      },
+      "caption": "Chain itu opsional. Jaringan sosialnya tidak.",
+      "quote": "Jaringan sosial terdesentralisasi membutuhkan uang terdesentralisasi."
+    },
+    "tokenomics": {
+      "title": "Uang yang sehat.",
+      "supporting": "BSO adalah ERC-20 dengan suplai tetap: 210 juta, tanpa inflasi, dirancang bersifat deflasi. Seluruh suplainya dibagikan lewat airdrop ke sekitar 600 orang pada awal 2022, tanpa presale dan tanpa jatah yang disisihkan lebih dulu sebelum komunitas. Kontraknya tidak dapat diubah dan tanpa admin, sehingga aturannya tetap sama selamanya.",
+      "supply": {
+        "cap": "Suplai maksimum BSO · tetap selamanya"
+      },
+      "traits": {
+        "airdropped": "100% airdrop, tanpa tim atau presale",
+        "fixedCap": "Batas tetap, nol emisi",
+        "deflationary": "Deflasi: suplai hanya menurun"
+      },
+      "locks": {
+        "noMint": {
+          "label": "Tanpa mint",
+          "note": "suplai tak akan pernah bertambah"
+        },
+        "noOwner": {
+          "label": "Tanpa pemilik",
+          "note": "tanpa kunci admin, selamanya"
+        },
+        "noPause": {
+          "label": "Tanpa pause",
+          "note": "transfer tak bisa dibekukan"
+        },
+        "noProxy": {
+          "label": "Tanpa proxy",
+          "note": "kodenya tak bisa diganti"
+        }
+      },
+      "airdrop": {
+        "label": "Airdrop",
+        "note": "Sekitar 600 orang, dalam tiga putaran klaim antara Januari dan Februari 2022. Mereka mendaftar lewat bot Telegram, kode referral memberi bagian yang lebih besar, dan setiap penerima diperiksa secara manual agar tak ada yang membawa pergi terlalu banyak suplai. Tanpa presale, tanpa alokasi tim, tidak ada yang dijual."
+      },
+      "contract": {
+        "label": "Seluruh kontrak",
+        "note": "Seluruh suplai di-mint ke satu alamat karena begitulah cara kerja migrasinya: saldo dicerminkan satu banding satu ke alamat itu lalu dibayarkan kembali lewat transfer, semuanya on-chain. Selebihnya adalah <openZeppelinLink>OpenZeppelin</openZeppelinLink> tanpa modifikasi — kode token yang paling banyak digunakan dan paling banyak ditinjau di Ethereum. Tidak ada yang kustom, tidak ada trik cerdik. Baca di <etherscanLink>Etherscan</etherscanLink>."
+      },
+      "foot": "Tidak dapat diubah dan tanpa admin: tidak tersisa kunci admin untuk dipegang, sehingga tak ada yang bisa mengubahnya, menambah suplainya, atau membekukannya."
+    },
+    "unstoppable": {
+      "title": "Dibangun di atas Ethereum. Tak dijalankan siapa pun.",
+      "supporting": "Blockchain baru harus membangun ulang keamanan dan basis pengembang yang sudah dimiliki Ethereum, dan akan membutuhkan token baru padahal BSO sudah terdistribusi sepenuhnya. Karena itu Bitsocial Chain dirancang sebagai L2 Ethereum tanpa operator: setiap aksi adalah transaksi Ethereum biasa yang dikirim ke alamat yang tidak dikendalikan siapa pun, dan siapa saja bisa menjalankan node yang menurunkan state yang sama dari riwayat Ethereum. Tidak ada perusahaan yang bisa ditekan dan tidak ada saklar yang bisa dimatikan.",
+      "locks": {
+        "noSequencer": {
+          "label": "Tak perlu sequencer",
+          "note": "Ethereum mengurutkan setiap transaksi"
+        },
+        "noAdminKeys": {
+          "label": "Tanpa kunci admin",
+          "note": "tak ada yang mengubah aturan sepihak"
+        },
+        "noUpgradeableContract": {
+          "label": "Tanpa kontrak upgradeable",
+          "note": "tak ada apa pun di Ethereum yang bisa disita"
+        },
+        "noPrivilegedNode": {
+          "label": "Tanpa node istimewa",
+          "note": "siapa saja bisa menurunkan state yang sama"
+        }
+      },
+      "proofOfConcept": "Proof of concept sudah menurunkan nama .bso dengan cara ini, di chain dev lokal. Peluncuran produksi masih membutuhkan sistem bukti, audit, dan ekonomi final. <proofLink>Baca proof of concept</proofLink>."
+    },
+    "bsoNames": {
+      "title": "Nama .bso tetap milikmu.",
+      "supporting": "Aplikasi Bitsocial <resolverLink>me-resolve nama .bso saat ini</resolverLink> dengan meminjam ENS, sistem penamaan yang dipakai dompet Ethereum: mycommunity.bso sebenarnya adalah mycommunity.eth yang membawa catatan bitsocial. Registry native akan meng-airdrop setiap nama yang sudah dipakai ke dompet yang memegangnya — tidak ada yang perlu diklaim dan tidak ada yang perlu didaftarkan ulang.",
+      "ensBadge": "ENS · saat ini",
+      "pointsTo": "menunjuk ke",
+      "communityKey": "kunci komunitas",
+      "airdropAtLaunch": "airdrop saat peluncuran",
+      "bsoBadge": ".bso · Bitsocial Chain",
+      "owner": "pemilik",
+      "sameWallet": "dompet yang sama"
+    },
+    "communityMoney": {
+      "title": "Satu aset di bawah banyak komunitas.",
+      "supporting": "Setiap komunitas bisa menjalankan lapisannya sendiri, sebuah L3 dengan token sendiri, dan membayar biaya, nama, dan sewa dalam BSO. L3 sudah ada di berbagai penjuru kripto; di Bitsocial Chain, sebuah L3 akan hadir dengan komunitas yang sudah menyertainya. Pendapatannya bisa terselesaikan dengan sendirinya: slot iklan dilelang oleh kontrak, sebagian dari setiap penjualan dimusnahkan seketika dan sisanya dibayarkan ke komunitas, tanpa kas buyback yang bisa direbut siapa pun.",
+      "communityLayer": "Lapisan komunitas",
+      "ownToken": "token sendiri",
+      "feesFlow": "biaya, nama, dan sewa dibayar dalam BSO",
+      "chainMeta": "Lapisan Ethereum · state-nya diturunkan dari Ethereum",
+      "ethereumMeta": "Ethereum L1 · keamanan dan data",
+      "caption": "Sebagian dari setiap biaya dimusnahkan; sisanya membayar keamanan chain."
+    },
+    "privacy": {
+      "title": "Memberi tip tidak seharusnya membongkar identitasmu.",
+      "supporting": "Bitsocial Chain bersifat publik secara default, seperti Ethereum, dan nama .bso memang dimaksudkan untuk dilihat. Uang berbeda: sebuah tip seharusnya tidak pernah mengharuskan nama, profil, atau postinganmu ditaruh on-chain di sebelahnya, dan dompet baru seharusnya dianggap normal, bukan mencurigakan. Chain ini tidak akan membangun sistem privasinya sendiri. Ia dimaksudkan agar sistem yang sudah ada bisa dipasang tanpa meminta izin: shielded pool, stealth address, bukti zero-knowledge.",
+      "publicOnPurpose": {
+        "heading": "Publik dengan sengaja",
+        "names": "Nama .bso dan siapa pemiliknya",
+        "rules": "Setiap aturan dan setiap perubahan state"
+      },
+      "neverRequired": {
+        "heading": "Tidak pernah diwajibkan",
+        "profile": "Namamu atau profilmu pada sebuah tip",
+        "wallet": "Satu dompet per orang",
+        "app": "Dompet atau aplikasi resmi"
+      }
+    },
+    "possibilities": {
+      "title": "Diusulkan, secara terbuka.",
+      "supporting": "Belum aktif. BSO sudah aktif di Ethereum hari ini; Bitsocial Chain baru berupa usulan, dan proof of concept pertamanya, nama .bso native, berjalan di chain dev lokal. Tidak ada yang di bawah ini punya tanggal. Ini adalah hal-hal yang akan dimungkinkan oleh lapisan sosial dengan uangnya sendiri: sebagian akan dibangun, sebagian digantikan oleh ide yang lebih baik, dan sebagian dibangun oleh orang yang belum muncul.",
+      "ideas": {
+        "chain": {
+          "note": "Appchain Ethereum L2 itu sendiri, dan rumah settlement bagi BSO."
+        },
+        "registry": {
+          "label": "Registry .bso native",
+          "note": "Nama dan identitas didaftarkan di chain, bukan dipinjam dari ENS."
+        },
+        "l3s": {
+          "label": "L3 dan token komunitas",
+          "note": "Komunitas dengan lapisan sendiri dan token sendiri, dengan settlement dalam BSO."
+        },
+        "agoraswap": {
+          "note": "DEX komunitas tempat token komunitas diperdagangkan terhadap BSO, menjaga likuiditas tetap on-chain."
+        },
+        "collectibles": {
+          "label": "Koleksi kreator",
+          "note": "Cara bagi kreator untuk menjual sesuatu secara langsung, tanpa platform yang mengambil potongan."
+        },
+        "other": {
+          "label": "Apa pun yang cocok",
+          "note": "Token klien, sequencing terdesentralisasi, dan ide yang belum diusulkan siapa pun."
+        }
+      }
+    },
+    "verify": {
+      "title": "Hanya satu alamat yang merupakan BSO.",
+      "supporting": "Siapa pun bisa membuat token dan menamainya BSO, jadi alamat kontrak adalah satu-satunya hal yang membedakan yang asli. Cocokkan seluruh 42 karakternya dengan situs ini dan kanal resmi Bitsocial sebelum mengirim apa pun ke mana pun.",
+      "warning": "Kontrak BSO resmi adalah <contract>{{address}}</contract>. Selain itu bukan BSO, apa pun namanya dan di mana pun dicantumkan.",
+      "tradeOnUniswap": "Perdagangkan di Uniswap",
+      "provideLiquidity": "Sediakan likuiditas",
+      "note": "Likuiditas di Uniswap disediakan oleh orang-orang independen, dan siapa pun bisa menambahkannya. Ini bukan rekening tabungan: nilai posisi likuiditas bisa turun, termasuk di bawah jumlah yang disetorkan."
+    }
+  },
+  "common": {
+    "proposed": "Diusulkan",
+    "close": "Tutup"
+  },
+  "mailingList": {
+    "chainTitle": "Tetap ikuti perkembangan",
+    "chainDescription": "Dapatkan pemberitahuan tentang pencapaian token BSO, Bitsocial Chain, dan berita ekosistem. Jarang, tapi bermakna.",
+    "placeholder": "you@example.com",
+    "inputLabel": "Alamat email",
+    "subscribe": "Berlangganan",
+    "subscribing": "Sedang berlangganan…",
+    "chainSuccess": "Kamu sudah masuk daftar.",
+    "confirmationSent": "Periksa email Anda untuk mengonfirmasi langganan Anda.",
+    "chainError": "Terjadi kesalahan. Silakan coba lagi.",
+    "unavailable": "Pendaftaran newsletter sementara tidak tersedia.",
+    "privacy": "Tak ada spam, selamanya. Berhenti berlangganan kapan saja."
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Pertanyaan umum.",
+    "supporting": "Setiap bagian halaman ini menjawab satu pertanyaan. Klik salah satu untuk langsung menuju ke sana.",
+    "navLabel": "Pertanyaan yang dijawab di halaman ini",
+    "answeredIn": "Dijawab di bagian {{label}}",
+    "entries": {
+      "whyAChain": {
+        "eyebrow": "Kenapa Chain",
+        "question": "Kenapa jaringan sosial peer-to-peer membutuhkan chain?"
+      },
+      "tokenomics": {
+        "eyebrow": "Tokenomics",
+        "question": "Bagaimana tokenomics BSO? Siapa yang mendapatkannya?"
+      },
+      "unstoppable": {
+        "eyebrow": "Tak Terhentikan",
+        "question": "Kenapa L2 Ethereum? Siapa yang menjalankannya?"
+      },
+      "bsoNames": {
+        "eyebrow": "Nama BSO",
+        "question": "Apa yang terjadi pada nama .bso saya?"
+      },
+      "communityMoney": {
+        "eyebrow": "Uang Komunitas",
+        "question": "BSO akan dipakai untuk apa?"
+      },
+      "privacy": {
+        "eyebrow": "Privasi",
+        "question": "Apakah semua orang akan melihat siapa yang saya beri tip?"
+      },
+      "possibilities": {
+        "eyebrow": "Kemungkinan",
+        "question": "Apakah sudah aktif? Apa yang direncanakan?"
+      },
+      "verify": {
+        "eyebrow": "Verifikasi",
+        "question": "Bagaimana cara mendapatkan BSO dengan aman?"
+      }
+    },
+    "rows": {
+      "about": {
+        "label": "Tentang Kami",
+        "question": "Siapa di balik Bitsocial Chain?"
+      },
+      "mailingList": {
+        "label": "Buletin",
+        "question": "Bagaimana saya bisa mengikuti perkembangannya?"
+      }
+    },
+    "ask": {
+      "placeholder": "Tanyakan apa saja yang lain…",
+      "label": "Tanyakan apa saja yang lain",
+      "action": "Tanya ChatGPT"
+    }
+  },
+  "footer": {
+    "chainTagline": "Lapisan Sosial yang Hilang dari Kripto",
+    "token": "Token",
+    "resources": "Sumber Daya",
+    "blog": "Blog",
+    "proofOfConcept": "Proof of Concept",
+    "about": "Tentang Kami",
+    "mainSite": "Situs Utama",
+    "community": "Komunitas",
+    "chainBottomTagline": "Perbaiki Lapisan Sosial Kripto",
+    "contribute": "Tingkatkan halaman ini"
+  },
+  "backToTop": {
+    "returnToOrigin": "Kembali ke posisi sebelumnya",
+    "toTop": "Kembali ke atas",
+    "toBottom": "Ke bawah"
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "nav": {
+    "language": "Jazyk",
+    "theme": "Téma",
+    "mainSite": "Hlavní web",
+    "faq": "Časté dotazy"
+  },
+  "languageSelector": {
+    "title": "Vyberte jazyk",
+    "searchPlaceholder": "Hledat jazyky...",
+    "noResults": "Vašemu vyhledávání neodpovídají žádné jazyky."
+  },
+  "meta": {
+    "title": "BSO – chybějící sociální vrstva kryptoměn",
+    "description": "BSO je měna Bitsocial, peer-to-peer sociální sítě, kterou nevlastní žádná společnost. Ethereum L2 appchain, kde komunity vlastní své sítě, své tokeny a své příjmy."
+  },
+  "topbar": {
+    "navLabel": "Navigace webu Bitsocial Chain",
+    "menu": "Menu",
+    "openMenu": "Otevřít menu",
+    "closeMenu": "Zavřít menu"
+  },
+  "theme": {
+    "toggle": "Přepnout téma"
+  },
+  "hero": {
+    "statusCta": "Blockchain zatím není spuštěn, přihlaste se k odběru novinek",
+    "title": "Chybějící <mark>sociální vrstva</mark> kryptoměn",
+    "supporting": "Kryptoměny se staly kasinem, protože Web2, TradFi a centralizovaná infrastruktura vlastní distribuční kanály a deformují pobídky. Bitsocial Chain to napravuje: nezastavitelný, plně decentralizovaný <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink>, kde komunity vlastní své sítě, své tokeny a své příjmy."
+  },
+  "layers": {
+    "ariaLabel": "Tři vrstvy kryptoměn nad sebou: sociální aplikace v síti Bitsocial nahoře, vypořádání na Ethereum L1 dole a Bitsocial Chain, Ethereum L2 appchain poháněný BSO, který se rozsvěcuje jako zářící chybějící vrstva zapadající do mezery mezi nimi a je provázán energetickou páteří.",
+    "social": {
+      "title": "SOCIÁLNÍ APLIKACE",
+      "subtitle": "SÍŤ BITSOCIAL"
+    },
+    "bso": {
+      "title": "BITSOCIAL CHAIN",
+      "subtitle": "L2 APPCHAIN · BSO"
+    },
+    "eth": {
+      "title": "ETHEREUM",
+      "subtitle": "VYPOŘÁDÁNÍ L1"
+    }
+  },
+  "contract": {
+    "label": "Kontrakt BSO",
+    "copyAriaLabel": "Zkopírovat adresu kontraktu BSO {{address}}",
+    "copied": "Zkopírováno do schránky"
+  },
+  "sections": {
+    "whyAChain": {
+      "title": "Samotný Bitsocial není na blockchainu.",
+      "supporting": "Příspěvky, profily, komunity a moderace na <bitsocialLink>Bitsocial</bitsocialLink> jsou peer-to-peer. Žádný blockchain, žádné poplatky, žádná peněženka: celou síť můžete používat, aniž byste se kdy dotkli kryptoměn, a většina lidí to tak bude dělat. Několik věcí ale blockchain skutečně potřebuje — jména, která jsou vaše, peníze putující mezi cizími lidmi, tokeny, které komunita skutečně vlastní. Bitsocial Chain je právě pro ně a pro nic jiného.",
+      "peerToPeer": {
+        "badge": "Peer-to-peer",
+        "note": "Sociální síť. Bez blockchainu.",
+        "posts": "Příspěvky a komentáře",
+        "profiles": "Profily a komunity",
+        "moderation": "Moderace a anti-spam"
+      },
+      "onChain": {
+        "badge": "On-chain",
+        "note": "Těch pár částí, které ho potřebují.",
+        "names": "Jména .bso",
+        "tipping": "Spropitné a ocenění",
+        "tokens": "Komunitní tokeny"
+      },
+      "caption": "Blockchain je volitelný. Sociální síť ne.",
+      "quote": "Decentralizovaná sociální síť potřebuje decentralizované peníze."
+    },
+    "tokenomics": {
+      "title": "Zdravé peníze.",
+      "supporting": "BSO je ERC-20 s pevnou nabídkou: 210 milionů, žádná inflace, záměrně deflační. Celá nabídka byla na počátku roku 2022 rozdána airdropem zhruba 600 lidem, bez předprodeje a bez čehokoli odděleného stranou ještě před komunitou. Jeho kontrakt je neměnný a bez správce, takže pravidla jsou navždy pevná.",
+      "supply": {
+        "cap": "Maximální nabídka BSO · pevná navždy"
+      },
+      "traits": {
+        "airdropped": "100 % rozdáno airdropem, bez týmu a předprodeje",
+        "fixedCap": "Pevný strop, žádná emise",
+        "deflationary": "Deflační: nabídka jen klesá"
+      },
+      "locks": {
+        "noMint": {
+          "label": "Žádný mint",
+          "note": "nabídka nikdy nemůže vzrůst"
+        },
+        "noOwner": {
+          "label": "Žádný vlastník",
+          "note": "žádné administrátorské klíče, nikdy"
+        },
+        "noPause": {
+          "label": "Žádné pozastavení",
+          "note": "převody nelze zmrazit"
+        },
+        "noProxy": {
+          "label": "Žádné proxy",
+          "note": "kód nelze vyměnit"
+        }
+      },
+      "airdrop": {
+        "label": "Airdrop",
+        "note": "Zhruba 600 lidí ve třech kolech vyzvedávání mezi lednem a únorem 2022. Přihlásili se přes bota na Telegramu, doporučující kódy přinášely větší podíly a každý příjemce byl zkontrolován ručně, aby nikdo neodnesl příliš velký díl nabídky. Žádný předprodej, žádný podíl pro tým, nic se neprodalo."
+      },
+      "contract": {
+        "label": "Celý kontrakt",
+        "note": "Celá nabídka se mintuje na jednu adresu, protože tak funguje migrace: zůstatky byly na ni zkopírovány jedna ku jedné a poté vyplaceny zpět převodem, každý z nich on-chain. Vše ostatní je <openZeppelinLink>OpenZeppelin</openZeppelinLink> beze změn — nejpoužívanější a nejvíce prověřovaný kód tokenů v síti Ethereum. Nic na míru, nic vychytralého. Přečtěte si ho na <etherscanLink>Etherscan</etherscanLink>."
+      },
+      "foot": "Neměnný a bez správce: nezbyly žádné administrátorské klíče, které by někdo držel, takže ho nikdo nemůže změnit, inflovat ani zmrazit."
+    },
+    "unstoppable": {
+      "title": "Postaveno na Ethereum. Nikým neřízeno.",
+      "supporting": "Nový blockchain by musel znovu budovat bezpečnost a základnu vývojářů, které Ethereum už má, a potřeboval by nový token, přestože BSO je už plně distribuován. Proto je Bitsocial Chain navržen jako Ethereum L2 bez provozovatele: každá akce je obyčejná transakce na Ethereum odeslaná na adresu, kterou nikdo neovládá, a kdokoli může spustit uzel, který odvodí stejný stav z historie Ethereum. Není tu žádná společnost, na kterou by šlo tlačit, a žádný vypínač, který by šlo přepnout.",
+      "locks": {
+        "noSequencer": {
+          "label": "Sequencer není potřeba",
+          "note": "Ethereum řadí každou transakci"
+        },
+        "noAdminKeys": {
+          "label": "Žádné administrátorské klíče",
+          "note": "pravidla za vás nikdo nezmění"
+        },
+        "noUpgradeableContract": {
+          "label": "Žádný upgradovatelný kontrakt",
+          "note": "na Ethereum není co zabavit"
+        },
+        "noPrivilegedNode": {
+          "label": "Žádný privilegovaný uzel",
+          "note": "kdokoli může odvodit stejný stav"
+        }
+      },
+      "proofOfConcept": "Ověření konceptu už takto odvozuje jména .bso, na lokálním vývojovém blockchainu. Ostré spuštění stále potřebuje systém důkazů, audit a finální ekonomiku. <proofLink>Přečtěte si ověření konceptu</proofLink>."
+    },
+    "bsoNames": {
+      "title": "Vaše jméno .bso zůstane vaše.",
+      "supporting": "Aplikace Bitsocial <resolverLink>překládají jména .bso už dnes</resolverLink> tak, že si půjčují ENS, systém jmen, který používají peněženky Ethereum: mycommunity.bso je ve skutečnosti mycommunity.eth se záznamem bitsocial. Nativní registr by každé už používané jméno rozdal airdropem peněžence, která ho drží — není co vyzvedávat a není co znovu registrovat.",
+      "ensBadge": "ENS · dnes",
+      "pointsTo": "ukazuje na",
+      "communityKey": "klíč komunity",
+      "airdropAtLaunch": "airdrop při spuštění",
+      "bsoBadge": ".bso · Bitsocial Chain",
+      "owner": "vlastník",
+      "sameWallet": "stejná peněženka"
+    },
+    "communityMoney": {
+      "title": "Jedno aktivum pod mnoha komunitami.",
+      "supporting": "Každá komunita by mohla provozovat vlastní vrstvu, L3 s vlastním tokenem, a platit poplatky, jména i nájem v BSO. L3 už existují napříč světem kryptoměn; na Bitsocial Chain by se objevila rovnou s komunitou, která k ní už patří. Její příjmy by se mohly vypořádávat samy: reklamní místa vydražená kontraktem, část každého prodeje na místě spálená a zbytek vyplacený komunitě, bez pokladny na zpětné odkupy, které by se mohl někdo zmocnit.",
+      "communityLayer": "Vrstva komunity",
+      "ownToken": "vlastní token",
+      "feesFlow": "poplatky, jména a nájem placené v BSO",
+      "chainMeta": "Vrstva Ethereum · její stav se odvozuje z Ethereum",
+      "ethereumMeta": "Ethereum L1 · bezpečnost a data",
+      "caption": "Část každého poplatku se spálí; zbytek platí za bezpečnost blockchainu."
+    },
+    "privacy": {
+      "title": "Spropitné by vás nemělo odhalit.",
+      "supporting": "Bitsocial Chain je ve výchozím stavu veřejný, stejně jako Ethereum, a jména .bso jsou určena k tomu, aby byla vidět. S penězi je to jiné: spropitné by nikdy nemělo vyžadovat, aby vedle něj on-chain stálo vaše jméno, profil nebo příspěvek, a nová peněženka by měla být normální, ne podezřelá. Blockchain si nebude budovat vlastní systém soukromí. Má umožnit, aby se do něj bez povolení mohly zapojit ty existující: stíněné fondy, stealth adresy, důkazy s nulovou znalostí.",
+      "publicOnPurpose": {
+        "heading": "Veřejné záměrně",
+        "names": "Jména .bso a jejich vlastníci",
+        "rules": "Každé pravidlo a každá změna stavu"
+      },
+      "neverRequired": {
+        "heading": "Nikdy nevyžadováno",
+        "profile": "Vaše jméno nebo profil u spropitného",
+        "wallet": "Jedna peněženka na osobu",
+        "app": "Oficiální peněženka nebo aplikace"
+      }
+    },
+    "possibilities": {
+      "title": "Navrženo veřejně.",
+      "supporting": "Zatím nespuštěno. BSO už dnes běží na Ethereum; Bitsocial Chain je návrh a jeho první ověření konceptu, nativní jména .bso, běží na lokálním vývojovém blockchainu. Nic z uvedeného níže nemá datum. Je to to, co by sociální vrstva s vlastními penězi umožnila: něco z toho vznikne, něco nahradí lepší nápady a něco postaví lidé, kteří se zatím neobjevili.",
+      "ideas": {
+        "chain": {
+          "note": "Samotný Ethereum L2 appchain a domov pro vypořádání BSO."
+        },
+        "registry": {
+          "label": "Nativní registr .bso",
+          "note": "Jména a identita registrované na blockchainu místo vypůjčení z ENS."
+        },
+        "l3s": {
+          "label": "Komunitní L3 a tokeny",
+          "note": "Komunity s vlastní vrstvou a vlastním tokenem, které se vypořádávají v BSO."
+        },
+        "agoraswap": {
+          "note": "Komunitní DEX, kde se komunitní tokeny obchodují proti BSO a likvidita zůstává on-chain."
+        },
+        "collectibles": {
+          "label": "Sběratelské předměty od tvůrců",
+          "note": "Způsoby, jak mohou tvůrci prodávat přímo, bez platformy, která by si brala svůj podíl."
+        },
+        "other": {
+          "label": "Cokoli dalšího, co se hodí",
+          "note": "Klientské tokeny, decentralizovaný sequencing a nápady, které zatím nikdo nenavrhl."
+        }
+      }
+    },
+    "verify": {
+      "title": "Jen jedna adresa je BSO.",
+      "supporting": "Kdokoli může vytvořit token a nazvat ho BSO, takže jediné, co ten pravý odliší, je adresa kontraktu. Než někam cokoli pošlete, porovnejte všech 42 znaků s tímto webem a s oficiálními kanály Bitsocial.",
+      "warning": "Oficiální kontrakt BSO je <contract>{{address}}</contract>. Cokoli jiného není BSO, ať se tomu říká jakkoli a ať je to uvedeno kdekoli.",
+      "tradeOnUniswap": "Obchodovat na Uniswap",
+      "provideLiquidity": "Poskytnout likviditu",
+      "note": "Likviditu na Uniswap poskytují nezávislí lidé a kdokoli k ní může přispět. Není to spořicí účet: hodnota likviditní pozice může klesnout, i pod to, co bylo vloženo."
+    }
+  },
+  "common": {
+    "proposed": "Navrženo",
+    "close": "Zavřít"
+  },
+  "mailingList": {
+    "chainTitle": "Buďte v obraze",
+    "chainDescription": "Dostávejte upozornění na milníky tokenu BSO, Bitsocial Chain a novinky z ekosystému. Nízká frekvence, vysoká hodnota informace.",
+    "placeholder": "you@example.com",
+    "inputLabel": "E-mailová adresa",
+    "subscribe": "Přihlásit se",
+    "subscribing": "Probíhá přihlašování…",
+    "chainSuccess": "Jste na seznamu.",
+    "confirmationSent": "Zkontrolujte svůj e-mail a potvrďte přihlášení k odběru.",
+    "chainError": "Něco se pokazilo. Zkuste to prosím znovu.",
+    "unavailable": "Přihlášení k odběru novinek je dočasně nedostupné.",
+    "privacy": "Žádný spam, nikdy. Odhlásit se můžete kdykoli."
+  },
+  "faq": {
+    "eyebrow": "Časté dotazy",
+    "title": "Často kladené otázky.",
+    "supporting": "Každá sekce této stránky odpovídá na jednu z nich. Klikněte na otázku a přejdete k odpovědi.",
+    "navLabel": "Otázky zodpovězené na této stránce",
+    "answeredIn": "Odpověď v sekci {{label}}",
+    "entries": {
+      "whyAChain": {
+        "eyebrow": "Proč blockchain",
+        "question": "Proč peer-to-peer sociální síť potřebuje blockchain?"
+      },
+      "tokenomics": {
+        "eyebrow": "Tokenomika",
+        "question": "Jaká je tokenomika BSO? Kdo ho dostal?"
+      },
+      "unstoppable": {
+        "eyebrow": "Nezastavitelné",
+        "question": "Proč Ethereum L2? Kdo ho provozuje?"
+      },
+      "bsoNames": {
+        "eyebrow": "Jména BSO",
+        "question": "Co se stane s mým jménem .bso?"
+      },
+      "communityMoney": {
+        "eyebrow": "Komunitní peníze",
+        "question": "K čemu by se BSO používal?"
+      },
+      "privacy": {
+        "eyebrow": "Soukromí",
+        "question": "Uvidí každý, komu dávám spropitné?"
+      },
+      "possibilities": {
+        "eyebrow": "Možnosti",
+        "question": "Je to spuštěné? Co je v plánu?"
+      },
+      "verify": {
+        "eyebrow": "Ověření",
+        "question": "Jak získat BSO bezpečně?"
+      }
+    },
+    "rows": {
+      "about": {
+        "label": "O nás",
+        "question": "Kdo stojí za Bitsocial Chain?"
+      },
+      "mailingList": {
+        "label": "Zpravodaj",
+        "question": "Jak mohu zůstat v obraze?"
+      }
+    },
+    "ask": {
+      "placeholder": "Zeptejte se na cokoli dalšího…",
+      "label": "Zeptejte se na cokoli dalšího",
+      "action": "Zeptat se ChatGPT"
+    }
+  },
+  "footer": {
+    "chainTagline": "Chybějící sociální vrstva kryptoměn",
+    "token": "Token",
+    "resources": "Zdroje",
+    "blog": "Blog",
+    "proofOfConcept": "Ověření konceptu",
+    "about": "O nás",
+    "mainSite": "Hlavní web",
+    "community": "Komunita",
+    "chainBottomTagline": "Opravme sociální vrstvu kryptoměn",
+    "contribute": "Vylepšit tuto stránku"
+  },
+  "backToTop": {
+    "returnToOrigin": "Zpět na předchozí místo",
+    "toTop": "Zpět nahoru",
+    "toBottom": "Přejít dolů"
+  }
+}

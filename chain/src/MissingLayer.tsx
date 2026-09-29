@@ -2,23 +2,25 @@
 // power core that slots into the gap between the social layer and Ethereum L1,
 // with an energy spine threading the stack. SVG only; honors reduced motion.
 
+import { useTranslation } from "react-i18next";
+
 const CX = 260;
 const RX = 148; // top-face horizontal radius
 const RY = 63; // top-face vertical radius (≈2:1 isometric)
 const TH = 22; // plate side height (extruded skirt)
 
+type PlateId = "social" | "bso" | "eth";
+
 type Plate = {
-  id: string;
+  id: PlateId;
   cy: number;
-  title: string;
-  sub: string;
   active?: boolean;
 };
 
 const PLATES: readonly Plate[] = [
-  { id: "social", cy: 92, title: "SOCIAL APPS", sub: "BITSOCIAL NETWORK" },
-  { id: "bso", cy: 262, title: "BITSOCIAL CHAIN", sub: "L2 APPCHAIN · BSO", active: true },
-  { id: "eth", cy: 432, title: "ETHEREUM", sub: "L1 SETTLEMENT" },
+  { id: "social", cy: 92 },
+  { id: "bso", cy: 262, active: true },
+  { id: "eth", cy: 432 },
 ];
 
 type Pt = { x: number; y: number };
@@ -84,17 +86,18 @@ const MOTES = [
 ];
 
 export default function MissingLayer() {
+  const { t } = useTranslation();
+  const labels: Record<PlateId, { title: string; sub: string }> = {
+    social: { title: t("layers.social.title"), sub: t("layers.social.subtitle") },
+    bso: { title: t("layers.bso.title"), sub: t("layers.bso.subtitle") },
+    eth: { title: t("layers.eth.title"), sub: t("layers.eth.subtitle") },
+  };
   const bso = PLATES[1];
   const c = corners(bso.cy);
   const nodes = [c.L, c.T, c.R, c.B];
 
   return (
-    <svg
-      className="ml"
-      viewBox="0 0 520 556"
-      role="img"
-      aria-label="Three stacked layers of crypto: social apps on the Bitsocial network on top, Ethereum L1 settlement at the base, and Bitsocial Chain, the Ethereum L2 appchain powered by BSO, igniting as the glowing missing layer that slots into the gap between them, threaded by an energy spine."
-    >
+    <svg className="ml" viewBox="0 0 520 556" role="img" aria-label={t("layers.ariaLabel")}>
       <defs>
         <radialGradient id="ml-core" cx="50%" cy="50%" r="50%">
           <stop offset="0%" className="ml-core-in" />
@@ -121,6 +124,7 @@ export default function MissingLayer() {
 
         {PLATES.map((plate) => {
           const isBso = plate.active;
+          const label = labels[plate.id];
           return (
             <g key={plate.id} className={`plate plate-${plate.id}${isBso ? " plate-active" : ""}`}>
               {/* Halo bleeding past the plate edges. */}
@@ -159,10 +163,10 @@ export default function MissingLayer() {
               <path d={diamond(plate.cy)} className="plate-rim" />
 
               <text x={CX} y={plate.cy - 1} className="ml-title" textAnchor="middle">
-                {plate.title}
+                {label.title}
               </text>
               <text x={CX} y={plate.cy + 14} className="ml-sub" textAnchor="middle">
-                {plate.sub}
+                {label.sub}
               </text>
 
               {isBso &&

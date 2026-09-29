@@ -1,0 +1,297 @@
+{
+  "nav": {
+    "language": "Sprog",
+    "theme": "Tema",
+    "mainSite": "Hovedsitet",
+    "faq": "FAQ"
+  },
+  "languageSelector": {
+    "title": "Vælg sprog",
+    "searchPlaceholder": "Søg efter sprog...",
+    "noResults": "Ingen sprog matcher din søgning."
+  },
+  "meta": {
+    "title": "BSO - Kryptoens manglende sociale lag",
+    "description": "BSO er pengene i Bitsocial, det sociale peer-to-peer-netværk, som ingen virksomhed ejer. En Ethereum L2-appchain, hvor fællesskaber ejer deres netværk, deres tokens og deres indtægter."
+  },
+  "topbar": {
+    "navLabel": "Navigation på Bitsocial Chain-sitet",
+    "menu": "Menu",
+    "openMenu": "Åbn menu",
+    "closeMenu": "Luk menu"
+  },
+  "theme": {
+    "toggle": "Skift tema"
+  },
+  "hero": {
+    "statusCta": "Chainen er ikke live endnu, tilmeld dig for at få opdateringer",
+    "title": "Kryptoens manglende <mark>sociale lag</mark>",
+    "supporting": "Krypto blev et kasino, fordi Web2, TradFi og centraliseret infrastruktur ejer distributionskanalerne og forvrider incitamenterne. Bitsocial Chain retter op på det: en ustoppelig, fuldt decentraliseret <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink>, hvor fællesskaber ejer deres netværk, deres tokens og deres indtægter."
+  },
+  "layers": {
+    "ariaLabel": "Tre stablede lag i krypto: sociale apps på Bitsocial-netværket øverst, Ethereum L1-afvikling i bunden og Bitsocial Chain, Ethereum L2-appchainen drevet af BSO, der tænder som det glødende manglende lag, der passer ind i mellemrummet imellem dem, sammenvævet af en rygrad af energi.",
+    "social": {
+      "title": "SOCIALE APPS",
+      "subtitle": "BITSOCIAL-NETVÆRK"
+    },
+    "bso": {
+      "title": "BITSOCIAL CHAIN",
+      "subtitle": "L2 APPCHAIN · BSO"
+    },
+    "eth": {
+      "title": "ETHEREUM",
+      "subtitle": "L1-AFVIKLING"
+    }
+  },
+  "contract": {
+    "label": "BSO-kontrakt",
+    "copyAriaLabel": "Kopiér BSO-kontraktadressen {{address}}",
+    "copied": "Kopieret til udklipsholderen"
+  },
+  "sections": {
+    "whyAChain": {
+      "title": "Selve Bitsocial ligger ikke på en blockchain.",
+      "supporting": "Opslag, profiler, fællesskaber og moderation på <bitsocialLink>Bitsocial</bitsocialLink> er peer-to-peer. Ingen chain, ingen gebyrer, ingen wallet: du kan bruge hele netværket uden nogensinde at røre ved krypto, og det vil de fleste gøre. Men nogle få ting har reelt brug for en chain – navne, der er dine, penge, der bevæger sig mellem fremmede, tokens, som et fællesskab faktisk ejer. Bitsocial Chain er til netop dem og til intet andet.",
+      "peerToPeer": {
+        "badge": "Peer-to-peer",
+        "note": "Det sociale netværk. Ingen chain involveret.",
+        "posts": "Opslag og kommentarer",
+        "profiles": "Profiler og fællesskaber",
+        "moderation": "Moderation og antispam"
+      },
+      "onChain": {
+        "badge": "On-chain",
+        "note": "De få dele, der har brug for en.",
+        "names": ".bso-navne",
+        "tipping": "Drikkepenge og priser",
+        "tokens": "Fællesskabstokens"
+      },
+      "caption": "Chainen er valgfri. Det sociale netværk er det ikke.",
+      "quote": "Et decentraliseret socialt netværk har brug for decentraliserede penge."
+    },
+    "tokenomics": {
+      "title": "Sunde penge.",
+      "supporting": "BSO er en ERC-20 med fast udbud: 210 millioner, ingen inflation, deflationær af design. Hele udbuddet blev airdroppet til omkring 600 personer i begyndelsen af 2022, uden presale og uden at noget blev sat til side, før fællesskabet fik sit. Kontrakten er uforanderlig og uden admin, så reglerne er faste for evigt.",
+      "supply": {
+        "cap": "BSO's maksimale udbud · fast for evigt"
+      },
+      "traits": {
+        "airdropped": "100% airdroppet, intet team eller presale",
+        "fixedCap": "Fast loft, nul emissioner",
+        "deflationary": "Deflationær: udbuddet kan kun falde"
+      },
+      "locks": {
+        "noMint": {
+          "label": "Ingen mint",
+          "note": "udbuddet kan aldrig vokse"
+        },
+        "noOwner": {
+          "label": "Ingen ejer",
+          "note": "ingen adminnøgler, nogensinde"
+        },
+        "noPause": {
+          "label": "Ingen pause",
+          "note": "overførsler kan ikke fryses"
+        },
+        "noProxy": {
+          "label": "Ingen proxy",
+          "note": "koden kan ikke udskiftes"
+        }
+      },
+      "airdrop": {
+        "label": "Airdroppet",
+        "note": "Omkring 600 personer, fordelt på tre claim-runder mellem januar og februar 2022. De tilmeldte sig via en Telegram-bot, henvisningskoder gav større andele, og hver modtager blev gennemgået manuelt, så ingen kunne slippe af sted med for stor en del af udbuddet. Ingen presale, ingen teamallokering, intet solgt."
+      },
+      "contract": {
+        "label": "Hele kontrakten",
+        "note": "Hele udbuddet bliver mintet til én adresse, fordi det er sådan, migreringen fungerer: saldi blev spejlet én til én over på den og betalt ud igen via overførsel, hver eneste on-chain. Alt andet er <openZeppelinLink>OpenZeppelin</openZeppelinLink>, uændret – den mest brugte og mest gennemgåede tokenkode på Ethereum. Intet skræddersyet, intet smart. Læs den på <etherscanLink>Etherscan</etherscanLink>."
+      },
+      "foot": "Uforanderlig og uden admin: der er ingen adminnøgler tilbage at besidde, så ingen kan ændre den, inflatere den eller fryse den."
+    },
+    "unstoppable": {
+      "title": "Bygget på Ethereum. Drevet af ingen.",
+      "supporting": "En ny blockchain ville skulle genopbygge den sikkerhed og udviklerbase, som Ethereum allerede har, og ville kræve en ny token, selvom BSO allerede er fuldt distribueret. Derfor er Bitsocial Chain designet som en Ethereum L2 uden operatør: Hver handling er en almindelig Ethereum-transaktion sendt til en adresse, som ingen kontrollerer, og alle kan køre en node, der udleder den samme tilstand ud fra Ethereums historik. Der er ingen virksomhed at lægge pres på og ingen kontakt at slå fra.",
+      "locks": {
+        "noSequencer": {
+          "label": "Ingen sequencer nødvendig",
+          "note": "Ethereum sætter alle transaktioner i rækkefølge"
+        },
+        "noAdminKeys": {
+          "label": "Ingen adminnøgler",
+          "note": "ingen ændrer reglerne for dig"
+        },
+        "noUpgradeableContract": {
+          "label": "Ingen opgraderbar kontrakt",
+          "note": "intet på Ethereum at beslaglægge"
+        },
+        "noPrivilegedNode": {
+          "label": "Ingen privilegeret node",
+          "note": "alle kan udlede den samme tilstand"
+        }
+      },
+      "proofOfConcept": "Konceptbeviset udleder allerede .bso-navne på denne måde, på en lokal dev-chain. En produktionslancering kræver stadig et bevissystem, en audit og en endelig økonomisk model. <proofLink>Læs konceptbeviset</proofLink>."
+    },
+    "bsoNames": {
+      "title": "Dit .bso-navn forbliver dit.",
+      "supporting": "Bitsocial-apps <resolverLink>slår .bso-navne op i dag</resolverLink> ved at låne ENS, det navnesystem, som Ethereum-wallets bruger: mycommunity.bso er i virkeligheden mycommunity.eth med en bitsocial-record. Et indbygget register ville airdroppe hvert navn, der allerede er i brug, til den wallet, der ejer det – intet at claime og intet at registrere igen.",
+      "ensBadge": "ENS · i dag",
+      "pointsTo": "peger på",
+      "communityKey": "fællesskabets nøgle",
+      "airdropAtLaunch": "airdrop ved lancering",
+      "bsoBadge": ".bso · Bitsocial Chain",
+      "owner": "ejer",
+      "sameWallet": "den samme wallet"
+    },
+    "communityMoney": {
+      "title": "Ét aktiv under mange fællesskaber.",
+      "supporting": "Hvert fællesskab kunne køre sit eget lag, en L3 med sin egen token, og betale sine gebyrer, navne og leje i BSO. L3'er findes allerede i hele krypto; på Bitsocial Chain ville en sådan komme med et fællesskab allerede tilknyttet. Dens indtægter kunne afvikle sig selv: annonceplaceringer auktioneret af en kontrakt, en del af hvert salg brændt på stedet og resten betalt til fællesskabet, uden en tilbagekøbskasse, som nogen kan overtage.",
+      "communityLayer": "Fællesskabslag",
+      "ownToken": "sin egen token",
+      "feesFlow": "gebyrer, navne og leje betalt i BSO",
+      "chainMeta": "Ethereum-lag · tilstanden udledes fra Ethereum",
+      "ethereumMeta": "Ethereum L1 · sikkerhed og data",
+      "caption": "En del af hvert gebyr brændes; resten betaler for chainens sikkerhed."
+    },
+    "privacy": {
+      "title": "Drikkepenge bør ikke afsløre din identitet.",
+      "supporting": "Bitsocial Chain er offentlig som standard, ligesom Ethereum, og .bso-navne er beregnet til at blive set. Penge er anderledes: drikkepenge bør aldrig kræve, at dit navn, din profil eller dit opslag lægges on-chain ved siden af, og en ny wallet bør være normal, ikke mistænkelig. Chainen vil ikke bygge sit eget privatlivssystem. Den er beregnet til at lade eksisterende systemer kobles på uden at bede om tilladelse: shielded pools, stealth-adresser, zero-knowledge-beviser.",
+      "publicOnPurpose": {
+        "heading": "Offentligt med vilje",
+        "names": ".bso-navne og hvem der ejer dem",
+        "rules": "Hver regel og hver tilstandsændring"
+      },
+      "neverRequired": {
+        "heading": "Aldrig påkrævet",
+        "profile": "Dit navn eller din profil på drikkepenge",
+        "wallet": "Én wallet pr. person",
+        "app": "En officiel wallet eller app"
+      }
+    },
+    "possibilities": {
+      "title": "Foreslået, åbent.",
+      "supporting": "Ikke live endnu. BSO er live på Ethereum i dag; Bitsocial Chain er et forslag, og dets første konceptbevis, indbyggede .bso-navne, kører på en lokal dev-chain. Intet nedenfor har en dato. Det er, hvad et socialt lag med sine egne penge ville gøre muligt: noget af det bliver bygget, noget bliver erstattet af bedre idéer, og noget bliver bygget af folk, der endnu ikke er dukket op.",
+      "ideas": {
+        "chain": {
+          "note": "Selve Ethereum L2-appchainen og BSO's afviklingshjem."
+        },
+        "registry": {
+          "label": "Et indbygget .bso-register",
+          "note": "Navne og identitet registreret på chainen i stedet for lånt fra ENS."
+        },
+        "l3s": {
+          "label": "Fællesskabs-L3'er og tokens",
+          "note": "Fællesskaber med deres eget lag og deres egen token, der afvikles i BSO."
+        },
+        "agoraswap": {
+          "note": "En DEX for fællesskaber, hvor fællesskabstokens handles mod BSO, så likviditeten forbliver on-chain."
+        },
+        "collectibles": {
+          "label": "Skaberes samleobjekter",
+          "note": "Måder, hvorpå skabere kan sælge noget direkte, uden at en platform tager sin del."
+        },
+        "other": {
+          "label": "Alt andet, der passer",
+          "note": "Klienttokens, decentraliseret sequencing og idéer, som ingen har foreslået endnu."
+        }
+      }
+    },
+    "verify": {
+      "title": "Kun én adresse er BSO.",
+      "supporting": "Alle kan oprette en token og kalde den BSO, så kontraktadressen er det eneste, der skiller den ægte fra de andre. Sammenlign alle 42 tegn med dette websted og Bitsocials officielle kanaler, før du sender noget nogen steder.",
+      "warning": "Den officielle BSO-kontrakt er <contract>{{address}}</contract>. Alt andet er ikke BSO, uanset hvad det hedder, og uanset hvor det er noteret.",
+      "tradeOnUniswap": "Handl på Uniswap",
+      "provideLiquidity": "Tilføj likviditet",
+      "note": "Likviditeten på Uniswap stilles til rådighed af uafhængige personer, og alle kan bidrage til den. Det er ikke en sparekonto: værdien af en likviditetsposition kan falde, også til under det, der blev sat ind."
+    }
+  },
+  "common": {
+    "proposed": "Foreslået",
+    "close": "Luk"
+  },
+  "mailingList": {
+    "chainTitle": "Hold dig opdateret",
+    "chainDescription": "Få besked om milepæle for BSO-tokenen, Bitsocial Chain og nyheder fra økosystemet. Lav frekvens, højt signal.",
+    "placeholder": "you@example.com",
+    "inputLabel": "E-mailadresse",
+    "subscribe": "Tilmeld",
+    "subscribing": "Abonnerer…",
+    "chainSuccess": "Du er på listen.",
+    "confirmationSent": "Tjek din e-mail for at bekræfte dit abonnement.",
+    "chainError": "Noget gik galt. Prøv venligst igen.",
+    "unavailable": "Tilmelding til nyhedsbrevet er midlertidigt utilgængelig.",
+    "privacy": "Ingen spam, nogensinde. Du kan afmelde dig når som helst."
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Hyppigt stillede spørgsmål.",
+    "supporting": "Hvert afsnit på denne side besvarer ét af dem. Klik på et spørgsmål for at hoppe derhen.",
+    "navLabel": "Spørgsmål der besvares på denne side",
+    "answeredIn": "Besvaret i afsnittet {{label}}",
+    "entries": {
+      "whyAChain": {
+        "eyebrow": "Hvorfor en chain",
+        "question": "Hvorfor har et socialt peer-to-peer-netværk brug for en chain?"
+      },
+      "tokenomics": {
+        "eyebrow": "Tokenomics",
+        "question": "Hvad er BSO's tokenomics? Hvem fik BSO?"
+      },
+      "unstoppable": {
+        "eyebrow": "Ustoppelig",
+        "question": "Hvorfor en Ethereum L2? Hvem driver den?"
+      },
+      "bsoNames": {
+        "eyebrow": "BSO-navne",
+        "question": "Hvad sker der med mit .bso-navn?"
+      },
+      "communityMoney": {
+        "eyebrow": "Fællesskabspenge",
+        "question": "Hvad ville BSO blive brugt til?"
+      },
+      "privacy": {
+        "eyebrow": "Privatliv",
+        "question": "Vil alle kunne se, hvem jeg giver drikkepenge til?"
+      },
+      "possibilities": {
+        "eyebrow": "Muligheder",
+        "question": "Er den live? Hvad er planlagt?"
+      },
+      "verify": {
+        "eyebrow": "Verificér",
+        "question": "Hvordan får jeg BSO på en sikker måde?"
+      }
+    },
+    "rows": {
+      "about": {
+        "label": "Om os",
+        "question": "Hvem står bag Bitsocial Chain?"
+      },
+      "mailingList": {
+        "label": "Nyhedsbrev",
+        "question": "Hvordan holder jeg mig opdateret?"
+      }
+    },
+    "ask": {
+      "placeholder": "Spørg om noget andet…",
+      "label": "Spørg om noget andet",
+      "action": "Spørg ChatGPT"
+    }
+  },
+  "footer": {
+    "chainTagline": "Kryptoens manglende sociale lag",
+    "token": "Token",
+    "resources": "Ressourcer",
+    "blog": "Blog",
+    "proofOfConcept": "Konceptbevis",
+    "about": "Om os",
+    "mainSite": "Hovedsitet",
+    "community": "Fællesskab",
+    "chainBottomTagline": "Ret op på kryptoens sociale lag",
+    "contribute": "Forbedr denne side"
+  },
+  "backToTop": {
+    "returnToOrigin": "Tilbage til forrige sted",
+    "toTop": "Tilbage til toppen",
+    "toBottom": "Gå til bunden"
+  }
+}

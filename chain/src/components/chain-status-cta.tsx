@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { scrollToMailingListSection } from "@/lib/mailing-list-nav";
 import { cn } from "@/lib/utils";
 
@@ -17,10 +18,12 @@ function scrollToNewsletter() {
 }
 
 export default function ChainStatusCta() {
+  const { t } = useTranslation();
+
   return (
     <div className="hero-status">
       <button type="button" className={chainStatusCtaClassName} onClick={scrollToNewsletter}>
-        Chain is not live yet, subscribe for updates
+        {t("hero.statusCta")}
       </button>
     </div>
   );

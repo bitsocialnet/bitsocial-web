@@ -1,0 +1,297 @@
+{
+  "nav": {
+    "language": "Sprache",
+    "theme": "Design",
+    "mainSite": "Hauptseite",
+    "faq": "FAQ"
+  },
+  "languageSelector": {
+    "title": "Sprache auswählen",
+    "searchPlaceholder": "Sprachen suchen...",
+    "noResults": "Zu Ihrer Suche passen keine Sprachen."
+  },
+  "meta": {
+    "title": "BSO - Die fehlende soziale Schicht der Kryptowelt",
+    "description": "BSO ist das Geld von Bitsocial, dem sozialen Peer-to-Peer-Netzwerk, das keinem Unternehmen gehört. Eine Ethereum-L2-Appchain, in der Communities ihre Netzwerke, ihre Tokens und ihre Einnahmen besitzen."
+  },
+  "topbar": {
+    "navLabel": "Navigation der Website von Bitsocial Chain",
+    "menu": "Menü",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen"
+  },
+  "theme": {
+    "toggle": "Design wechseln"
+  },
+  "hero": {
+    "statusCta": "Die Chain ist noch nicht live, abonniere Updates",
+    "title": "Die fehlende <mark>soziale Schicht</mark> der Kryptowelt",
+    "supporting": "Krypto wurde zum Casino, weil Web2, TradFi und zentralisierte Infrastruktur die Vertriebskanäle besitzen und die Anreize verbiegen. Bitsocial Chain löst das: eine unaufhaltsame, vollständig dezentralisierte <l2Link>Ethereum-L2</l2Link>-<appchainLink>Appchain</appchainLink>, in der Communities ihre Netzwerke, ihre Tokens und ihre Einnahmen besitzen."
+  },
+  "layers": {
+    "ariaLabel": "Drei gestapelte Schichten der Kryptowelt: soziale Apps im Bitsocial-Netzwerk oben, Ethereum-L1-Settlement an der Basis und dazwischen Bitsocial Chain, die von BSO angetriebene Ethereum-L2-Appchain, die als leuchtende fehlende Schicht aufflammt, in die Lücke zwischen den beiden passt und von einem Energiestrang durchzogen wird.",
+    "social": {
+      "title": "SOZIALE APPS",
+      "subtitle": "BITSOCIAL-NETZWERK"
+    },
+    "bso": {
+      "title": "BITSOCIAL CHAIN",
+      "subtitle": "L2-APPCHAIN · BSO"
+    },
+    "eth": {
+      "title": "ETHEREUM",
+      "subtitle": "L1-SETTLEMENT"
+    }
+  },
+  "contract": {
+    "label": "BSO-Contract",
+    "copyAriaLabel": "BSO-Contract-Adresse {{address}} kopieren",
+    "copied": "In die Zwischenablage kopiert"
+  },
+  "sections": {
+    "whyAChain": {
+      "title": "Bitsocial selbst läuft nicht auf einer Blockchain.",
+      "supporting": "Beiträge, Profile, Communities und Moderation sind bei <bitsocialLink>Bitsocial</bitsocialLink> Peer-to-Peer. Keine Chain, keine Gebühren, keine Wallet: Du kannst das gesamte Netzwerk nutzen, ohne je mit Krypto in Berührung zu kommen, und die meisten werden das auch tun. Aber ein paar Dinge brauchen wirklich eine Chain — Namen, die dir gehören, Geld, das zwischen Fremden fließt, Tokens, die einer Community wirklich gehören. Bitsocial Chain ist genau dafür da, und für nichts anderes.",
+      "peerToPeer": {
+        "badge": "Peer-to-Peer",
+        "note": "Das soziale Netzwerk. Keine Chain beteiligt.",
+        "posts": "Beiträge und Kommentare",
+        "profiles": "Profile und Communities",
+        "moderation": "Moderation und Anti-Spam"
+      },
+      "onChain": {
+        "badge": "On-Chain",
+        "note": "Die wenigen Teile, die eine brauchen.",
+        "names": ".bso-Namen",
+        "tipping": "Trinkgelder und Auszeichnungen",
+        "tokens": "Community-Tokens"
+      },
+      "caption": "Die Chain ist optional. Das soziale Netzwerk ist es nicht.",
+      "quote": "Ein dezentralisiertes soziales Netzwerk braucht dezentralisiertes Geld."
+    },
+    "tokenomics": {
+      "title": "Solides Geld.",
+      "supporting": "BSO ist ein ERC-20 mit fester Gesamtmenge: 210 Millionen, keine Inflation, von Grund auf deflationär. Die gesamte Menge wurde Anfang 2022 per Airdrop an rund 600 Personen verteilt, ohne Presale und ohne Anteile, die vor der Community beiseitegelegt wurden. Der Contract ist unveränderlich und adminlos, daher stehen die Regeln für immer fest.",
+      "supply": {
+        "cap": "BSO-Maximalmenge · für immer fest"
+      },
+      "traits": {
+        "airdropped": "100% per Airdrop, ohne Team-Anteil und Presale",
+        "fixedCap": "Feste Obergrenze, null Emissionen",
+        "deflationary": "Deflationär: Die Menge kann nur sinken"
+      },
+      "locks": {
+        "noMint": {
+          "label": "Kein Mint",
+          "note": "die Menge kann nie wachsen"
+        },
+        "noOwner": {
+          "label": "Kein Owner",
+          "note": "keine Admin-Schlüssel, nie"
+        },
+        "noPause": {
+          "label": "Keine Pause-Funktion",
+          "note": "Transfers lassen sich nicht einfrieren"
+        },
+        "noProxy": {
+          "label": "Kein Proxy",
+          "note": "der Code lässt sich nicht austauschen"
+        }
+      },
+      "airdrop": {
+        "label": "Der Airdrop",
+        "note": "Rund 600 Personen, in drei Claim-Runden zwischen Januar und Februar 2022. Sie meldeten sich über einen Telegram-Bot an, Empfehlungscodes brachten größere Anteile, und jeder Empfänger wurde von Hand geprüft, damit niemand mit einem zu großen Teil der Gesamtmenge davonkommen konnte. Kein Presale, keine Zuteilung fürs Team, nichts verkauft."
+      },
+      "contract": {
+        "label": "Der ganze Contract",
+        "note": "Die gesamte Menge wird auf eine einzige Adresse gemintet, weil die Migration so funktioniert: Guthaben wurden eins zu eins darauf gespiegelt und per Transfer wieder ausgezahlt, jedes einzelne on-chain. Alles andere ist <openZeppelinLink>OpenZeppelin</openZeppelinLink>, unverändert — der am meisten genutzte und am gründlichsten geprüfte Token-Code in Ethereum. Nichts Eigenes, nichts Raffiniertes. Lies ihn auf <etherscanLink>Etherscan</etherscanLink>."
+      },
+      "foot": "Unveränderlich und adminlos: Es gibt keine Admin-Schlüssel mehr, die jemand halten könnte, also kann niemand den Contract ändern, die Menge aufblähen oder Transfers einfrieren."
+    },
+    "unstoppable": {
+      "title": "Auf Ethereum gebaut. Von niemandem betrieben.",
+      "supporting": "Eine neue Blockchain müsste die Sicherheit und die Entwicklerbasis, die Ethereum schon hat, neu aufbauen und bräuchte einen neuen Token, obwohl BSO bereits vollständig verteilt ist. Deshalb ist Bitsocial Chain als Ethereum-L2 ohne Betreiber konzipiert: Jede Aktion ist eine gewöhnliche Ethereum-Transaktion an eine Adresse, die niemand kontrolliert, und jeder kann einen Knoten betreiben, der denselben Zustand aus der Ethereum-Historie ableitet. Es gibt kein Unternehmen, das man unter Druck setzen kann, und keinen Schalter, den man umlegen kann.",
+      "locks": {
+        "noSequencer": {
+          "label": "Kein Sequencer nötig",
+          "note": "Ethereum legt die Reihenfolge jeder Transaktion fest"
+        },
+        "noAdminKeys": {
+          "label": "Keine Admin-Schlüssel",
+          "note": "niemand ändert die Regeln für dich"
+        },
+        "noUpgradeableContract": {
+          "label": "Kein upgradefähiger Contract",
+          "note": "auf Ethereum gibt es nichts zu beschlagnahmen"
+        },
+        "noPrivilegedNode": {
+          "label": "Kein privilegierter Knoten",
+          "note": "jeder kann denselben Zustand ableiten"
+        }
+      },
+      "proofOfConcept": "Der Proof of Concept leitet .bso-Namen bereits auf diese Weise ab, auf einer lokalen Dev-Chain. Ein Produktivstart braucht noch ein Proof-System, ein Audit und ein endgültiges Wirtschaftsmodell. <proofLink>Den Proof of Concept lesen</proofLink>."
+    },
+    "bsoNames": {
+      "title": "Dein .bso-Name bleibt deiner.",
+      "supporting": "Bitsocial-Apps <resolverLink>lösen .bso-Namen heute auf</resolverLink>, indem sie ENS ausleihen, das Namenssystem, das Ethereum-Wallets nutzen: mycommunity.bso ist in Wahrheit mycommunity.eth mit einem bitsocial-Eintrag. Eine native Registry würde jeden bereits genutzten Namen per Airdrop an die Wallet verteilen, die ihn hält — nichts zu claimen und nichts neu zu registrieren.",
+      "ensBadge": "ENS · heute",
+      "pointsTo": "verweist auf",
+      "communityKey": "der Schlüssel der Community",
+      "airdropAtLaunch": "Airdrop zum Start",
+      "bsoBadge": ".bso · Bitsocial Chain",
+      "owner": "Besitzer",
+      "sameWallet": "dieselbe Wallet"
+    },
+    "communityMoney": {
+      "title": "Ein Asset für viele Communities.",
+      "supporting": "Jede Community könnte ihren eigenen Layer betreiben, einen L3 mit eigenem Token, und ihre Gebühren, Namen und Miete in BSO bezahlen. L3s gibt es in der Kryptowelt bereits; auf Bitsocial Chain käme einer mit einer bereits angeschlossenen Community. Ihre Einnahmen könnten sich selbst abwickeln: Werbeplätze würden per Contract versteigert, ein Teil jedes Verkaufs würde sofort vernichtet und der Rest an die Community gezahlt, ohne Rückkauf-Treasury, die sich jemand aneignen könnte.",
+      "communityLayer": "Community-Layer",
+      "ownToken": "eigener Token",
+      "feesFlow": "Gebühren, Namen und Miete in BSO bezahlt",
+      "chainMeta": "Ethereum-Layer · sein Zustand leitet sich von Ethereum ab",
+      "ethereumMeta": "Ethereum L1 · Sicherheit und Daten",
+      "caption": "Ein Anteil jeder Gebühr wird vernichtet; der Rest bezahlt die Sicherheit der Chain."
+    },
+    "privacy": {
+      "title": "Trinkgelder sollten dich nicht doxxen.",
+      "supporting": "Bitsocial Chain ist standardmäßig öffentlich, wie Ethereum, und .bso-Namen sind dafür gedacht, gesehen zu werden. Bei Geld ist das anders: Ein Trinkgeld sollte nie verlangen, dass dein Name, dein Profil oder dein Beitrag on-chain danebenstehen, und eine frische Wallet sollte normal sein, nicht verdächtig. Die Chain baut kein eigenes Privatsphäre-System. Sie soll es bestehenden erlauben, sich ohne Erlaubnis einzuklinken: Shielded Pools, Stealth-Adressen, Zero-Knowledge-Proofs.",
+      "publicOnPurpose": {
+        "heading": "Absichtlich öffentlich",
+        "names": ".bso-Namen und wem sie gehören",
+        "rules": "Jede Regel und jede Zustandsänderung"
+      },
+      "neverRequired": {
+        "heading": "Nie erforderlich",
+        "profile": "Dein Name oder Profil bei einem Trinkgeld",
+        "wallet": "Eine Wallet pro Person",
+        "app": "Eine offizielle Wallet oder App"
+      }
+    },
+    "possibilities": {
+      "title": "Vorgeschlagen, in aller Offenheit.",
+      "supporting": "Noch nicht live. BSO ist heute auf Ethereum live; Bitsocial Chain ist ein Vorschlag, und ihr erster Proof of Concept, native .bso-Namen, läuft auf einer lokalen Dev-Chain. Nichts weiter unten hat ein Datum. Es ist das, was eine soziale Schicht mit eigenem Geld möglich machen würde: Einiges davon wird gebaut werden, einiges durch bessere Ideen ersetzt, und einiges von Leuten gebaut, die noch nicht aufgetaucht sind.",
+      "ideas": {
+        "chain": {
+          "note": "Die Ethereum-L2-Appchain selbst und die Settlement-Heimat von BSO."
+        },
+        "registry": {
+          "label": "Eine native .bso-Registry",
+          "note": "Namen und Identität werden auf der Chain registriert, statt von ENS geliehen."
+        },
+        "l3s": {
+          "label": "Community-L3s und -Tokens",
+          "note": "Communities mit eigenem Layer und eigenem Token, die in BSO abrechnen."
+        },
+        "agoraswap": {
+          "note": "Eine Community-DEX, auf der Community-Tokens gegen BSO gehandelt werden, damit die Liquidität on-chain bleibt."
+        },
+        "collectibles": {
+          "label": "Creator-Collectibles",
+          "note": "Möglichkeiten für Creator, etwas direkt zu verkaufen, ohne dass eine Plattform einen Anteil abzweigt."
+        },
+        "other": {
+          "label": "Alles, was sonst passt",
+          "note": "Client-Tokens, dezentralisiertes Sequencing und Ideen, die noch niemand vorgeschlagen hat."
+        }
+      }
+    },
+    "verify": {
+      "title": "Nur eine Adresse ist BSO.",
+      "supporting": "Jeder kann einen Token erstellen und ihn BSO nennen, deshalb unterscheidet nur die Contract-Adresse den echten von den anderen. Gleiche alle 42 Zeichen mit dieser Website und den offiziellen Kanälen von Bitsocial ab, bevor du irgendetwas irgendwohin sendest.",
+      "warning": "Der offizielle BSO-Contract ist <contract>{{address}}</contract>. Alles andere ist nicht BSO, egal wie es heißt und wo es gelistet ist.",
+      "tradeOnUniswap": "Auf Uniswap handeln",
+      "provideLiquidity": "Liquidität bereitstellen",
+      "note": "Die Liquidität auf Uniswap wird von unabhängigen Personen bereitgestellt, und jeder kann etwas hinzufügen. Es ist kein Sparkonto: Der Wert einer Liquiditätsposition kann fallen, auch unter das, was eingezahlt wurde."
+    }
+  },
+  "common": {
+    "proposed": "Vorgeschlagen",
+    "close": "Schließen"
+  },
+  "mailingList": {
+    "chainTitle": "Bleib auf dem Laufenden",
+    "chainDescription": "Erhalte Benachrichtigungen zu BSO-Token-Meilensteinen, Bitsocial Chain und Ökosystem-Updates. Geringe Häufigkeit, hoher Informationsgehalt.",
+    "placeholder": "you@example.com",
+    "inputLabel": "E-Mail-Adresse",
+    "subscribe": "Abonnieren",
+    "subscribing": "Wird abonniert…",
+    "chainSuccess": "Du bist auf der Liste.",
+    "confirmationSent": "Prüfen Sie Ihre E-Mails, um Ihr Abonnement zu bestätigen.",
+    "chainError": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "unavailable": "Die Newsletter-Anmeldung ist vorübergehend nicht verfügbar.",
+    "privacy": "Kein Spam, versprochen. Jederzeit abmelden."
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Häufig gestellte Fragen.",
+    "supporting": "Jeder Abschnitt dieser Seite beantwortet eine davon. Klick auf eine Frage, um dorthin zu springen.",
+    "navLabel": "Auf dieser Seite beantwortete Fragen",
+    "answeredIn": "Beantwortet im Abschnitt {{label}}",
+    "entries": {
+      "whyAChain": {
+        "eyebrow": "Warum eine Chain",
+        "question": "Warum braucht ein soziales Peer-to-Peer-Netzwerk eine Chain?"
+      },
+      "tokenomics": {
+        "eyebrow": "Tokenomics",
+        "question": "Wie sind die Tokenomics von BSO? Wer hat BSO bekommen?"
+      },
+      "unstoppable": {
+        "eyebrow": "Unaufhaltsam",
+        "question": "Warum ein Ethereum-L2? Wer betreibt es?"
+      },
+      "bsoNames": {
+        "eyebrow": "BSO-Namen",
+        "question": "Was passiert mit meinem .bso-Namen?"
+      },
+      "communityMoney": {
+        "eyebrow": "Community-Geld",
+        "question": "Wofür würde BSO genutzt werden?"
+      },
+      "privacy": {
+        "eyebrow": "Datenschutz",
+        "question": "Sieht jeder, wem ich Trinkgeld gebe?"
+      },
+      "possibilities": {
+        "eyebrow": "Möglichkeiten",
+        "question": "Ist es schon live? Was ist geplant?"
+      },
+      "verify": {
+        "eyebrow": "Verifizieren",
+        "question": "Wie bekomme ich BSO sicher?"
+      }
+    },
+    "rows": {
+      "about": {
+        "label": "Über uns",
+        "question": "Wer steckt hinter Bitsocial Chain?"
+      },
+      "mailingList": {
+        "label": "Newsletter",
+        "question": "Wie bleibe ich auf dem Laufenden?"
+      }
+    },
+    "ask": {
+      "placeholder": "Frag etwas anderes…",
+      "label": "Frag etwas anderes",
+      "action": "ChatGPT fragen"
+    }
+  },
+  "footer": {
+    "chainTagline": "Die fehlende soziale Schicht der Kryptowelt",
+    "token": "Token",
+    "resources": "Ressourcen",
+    "blog": "Blog",
+    "proofOfConcept": "Proof of Concept",
+    "about": "Über uns",
+    "mainSite": "Hauptseite",
+    "community": "Gemeinschaft",
+    "chainBottomTagline": "Reparieren wir die soziale Schicht der Kryptowelt",
+    "contribute": "Diese Seite verbessern"
+  },
+  "backToTop": {
+    "returnToOrigin": "Zurück zur vorherigen Stelle",
+    "toTop": "Nach oben",
+    "toBottom": "Nach unten"
+  }
+}

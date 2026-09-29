@@ -1,4 +1,5 @@
 import { Github, Send } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import {
   ABOUT_URL,
   BITSOCIAL_URL,
@@ -39,6 +40,8 @@ function FooterLinkIcon({ icon }: { icon: ExternalLink["icon"] }) {
 }
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer
       // The footer is a bordered card with 2rem top corners, so phones keep a 1.5rem inset
@@ -56,13 +59,13 @@ export default function Footer() {
               </span>
             </a>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              The Missing Social Layer of Crypto
+              {t("footer.chainTagline")}
             </p>
           </div>
 
           <div>
             <h3 className="text-xs font-display font-semibold uppercase tracking-widest text-foreground/70 mb-5">
-              Token
+              {t("footer.token")}
             </h3>
             <ul className="space-y-2.5">
               {FOOTER_TOKEN_LINKS.map((link) => (
@@ -83,12 +86,12 @@ export default function Footer() {
 
           <div>
             <h3 className="text-xs font-display font-semibold uppercase tracking-widest text-foreground/70 mb-5">
-              Resources
+              {t("footer.resources")}
             </h3>
             <ul className="space-y-2.5">
               <li>
                 <a href={BLOG_URL} className={linkClassName}>
-                  Blog
+                  {t("footer.blog")}
                 </a>
               </li>
               <li>
@@ -98,17 +101,17 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className={linkClassName}
                 >
-                  Proof of Concept
+                  {t("footer.proofOfConcept")}
                 </a>
               </li>
               <li>
                 <a href={ABOUT_URL} className={linkClassName}>
-                  About Us
+                  {t("footer.about")}
                 </a>
               </li>
               <li>
                 <a href={BITSOCIAL_URL} className={linkClassName}>
-                  Main Site
+                  {t("footer.mainSite")}
                 </a>
               </li>
             </ul>
@@ -116,7 +119,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-xs font-display font-semibold uppercase tracking-widest text-foreground/70 mb-5">
-              Community
+              {t("footer.community")}
             </h3>
             <ul className="space-y-2.5">
               <li>
@@ -157,7 +160,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-border/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-muted-foreground/70 text-xs">
-          <p className="font-display tracking-wide">Fix Crypto's Social Layer</p>
+          <p className="font-display tracking-wide">{t("footer.chainBottomTagline")}</p>
           <div className="flex items-center gap-3 text-xs">
             <a
               href={CONTRIBUTE_URL}
@@ -165,7 +168,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="touch-target inline-flex items-center transition-colors hover:text-foreground"
             >
-              Improve this page
+              {t("footer.contribute")}
             </a>
             <span className="text-border/50">&bull;</span>
             <a

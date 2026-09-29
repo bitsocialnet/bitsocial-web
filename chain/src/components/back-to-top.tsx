@@ -1,5 +1,6 @@
 import { ArrowUp } from "lucide-react";
 import { type MouseEvent, useSyncExternalStore } from "react";
+import { useTranslation } from "react-i18next";
 import { getScrollReturnY, scrollToReturnOrigin, subscribeScrollReturn } from "@/lib/scroll-return";
 import { getScrollBehavior } from "@/lib/utils";
 
@@ -85,6 +86,7 @@ const buttonClassName =
   "js-only fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-blue-core/30 bg-blue-core/[0.08] backdrop-blur-[10px] text-foreground/90 shadow-[0_8px_24px_rgba(15,23,42,0.1)] ring-glow cta-glow hover:border-blue-glow hover:bg-blue-core/[0.14] hover:text-foreground dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:shadow-[0_10px_28px_rgba(2,6,23,0.34)] dark:hover:border-blue-glow dark:hover:bg-blue-core/[0.24]";
 
 export default function BackToTop() {
+  const { t } = useTranslation();
   const { isReturn, pointsUp: showsUpArrow } = useSyncExternalStore(
     subscribe,
     getSnapshot,
@@ -109,7 +111,11 @@ export default function BackToTop() {
       type="button"
       onClick={handleClick}
       aria-label={
-        isReturn ? "Back to where you were" : showsUpArrow ? "Back to top" : "Go to bottom"
+        isReturn
+          ? t("backToTop.returnToOrigin")
+          : showsUpArrow
+            ? t("backToTop.toTop")
+            : t("backToTop.toBottom")
       }
       className={buttonClassName}
     >

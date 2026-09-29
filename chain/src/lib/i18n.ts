@@ -59,6 +59,20 @@ function updateDocumentDirection(language: string | null | undefined) {
   document.documentElement.lang = normalizedLanguage;
 }
 
+// Keeps the tab title and search snippet in the active language. The static English values in
+// index.html remain the fallback until translations load (or if they fail to load).
+function updateDocumentMeta() {
+  // `languageChanged` also fires while `init` is still running, before resources are usable.
+  if (!i18n.isInitialized || !i18n.exists("meta.title")) {
+    return;
+  }
+
+  document.title = i18n.t("meta.title");
+  document
+    .querySelector<HTMLMetaElement>('meta[name="description"]')
+    ?.setAttribute("content", i18n.t("meta.description"));
+}
+
 let i18nReadyPromise: Promise<typeof i18n> | null = null;
 
 export function initializeClientI18n() {
@@ -93,6 +107,7 @@ export function initializeClientI18n() {
       })
       .then(() => {
         updateDocumentDirection(i18n.resolvedLanguage ?? i18n.language);
+        updateDocumentMeta();
         return i18n;
       })
       .catch((error) => {
@@ -108,6 +123,7 @@ export function initializeClientI18n() {
 export const i18nReady = initializeClientI18n();
 
 i18n.on("languageChanged", updateDocumentDirection);
+i18n.on("languageChanged", updateDocumentMeta);
 i18n.on("languageChanged", (language) => {
   const normalizedLanguage = normalizeLanguageCode(language);
 

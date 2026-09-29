@@ -1,10 +1,11 @@
 import { type MouseEvent, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { m } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import HamburgerButton from "@/components/hamburger-button";
 import LanguageSelector, { NoJsLanguageSelector } from "@/components/language-selector";
 import MobileMenu from "@/components/mobile-menu";
 import { NoJsThemeToggle, ThemeToggle } from "@/components/theme-toggle";
-import { TOPBAR_LINKS, type ExternalLink } from "@/lib/site";
+import { BITSOCIAL_URL, TOPBAR_LINKS, type ExternalLink } from "@/lib/site";
 import { cn, getScrollBehavior } from "@/lib/utils";
 
 // Every topbar control is an explicit 44px flex-centred box on every pointer type, matching the
@@ -15,6 +16,14 @@ const navLinkClassName =
 const desktopNavLinkClassName = "h-11 min-w-11 justify-center";
 const compactNavigationTriggerBufferPx = 160;
 const MOBILE_MENU_INTERACTION_GUARD_ATTRIBUTE = "data-mobile-menu-interaction-guard";
+
+// TOPBAR_LINKS holds the brand-name links, which are never translated. The main-site link is
+// appended here so its label is translated.
+function useTopbarLinks(): ExternalLink[] {
+  const { t } = useTranslation();
+
+  return [...TOPBAR_LINKS, { label: t("nav.mainSite"), href: BITSOCIAL_URL }];
+}
 
 function NavLink({
   link,
@@ -46,6 +55,7 @@ const FAQ_ID = "faq";
 // smoothly (unless reduced motion is on) like bitsocial.net's topbar FAQ instead of the anchor's
 // instant jump, and replaces the hash so the jump does not stack history entries.
 function FaqNavLink({ onClick, className }: { onClick?: () => void; className?: string }) {
+  const { t } = useTranslation();
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     onClick?.();
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
@@ -72,7 +82,7 @@ function FaqNavLink({ onClick, className }: { onClick?: () => void; className?: 
 
   return (
     <a href={`#${FAQ_ID}`} className={cn(navLinkClassName, className)} onClick={handleClick}>
-      FAQ
+      {t("nav.faq")}
     </a>
   );
 }
@@ -127,10 +137,12 @@ function DesktopNavigation({
 }
 
 function NoJsMobileMenu({ links }: { links: ExternalLink[] }) {
+  const { t } = useTranslation();
+
   return (
     <details className="nojs-mobile-menu">
       <summary className="nojs-mobile-summary flex h-11 w-11 list-none cursor-pointer items-center justify-center rounded-full text-muted-foreground hover:text-foreground [&::-webkit-details-marker]:hidden">
-        <span className="sr-only">Menu</span>
+        <span className="sr-only">{t("topbar.menu")}</span>
         <span className="relative h-5 w-5">
           <span className="absolute left-0 top-0.5 h-0.5 w-5 rounded-full bg-current" />
           <span className="absolute left-0 top-[9px] h-0.5 w-5 rounded-full bg-current" />
@@ -160,6 +172,8 @@ function NoJsMobileMenu({ links }: { links: ExternalLink[] }) {
 }
 
 export default function Topbar() {
+  const { t } = useTranslation();
+  const links = useTopbarLinks();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
   const [usesCompactNavigation, setUsesCompactNavigation] = useState(
@@ -276,7 +290,7 @@ export default function Topbar() {
         duration: 0.5,
         ease: [0.4, 0, 0.2, 1],
       }}
-      aria-label="Bitsocial Chain site navigation"
+      aria-label={t("topbar.navLabel")}
       className="topbar-position fixed z-50 mx-auto max-w-7xl"
     >
       <div
@@ -292,7 +306,7 @@ export default function Topbar() {
             className="pointer-events-none invisible absolute left-0 top-0 whitespace-nowrap"
           >
             <DesktopNavigation
-              links={TOPBAR_LINKS}
+              links={links}
               onNavClick={handleNavClick}
               includeNoJsControls={false}
             />
@@ -322,11 +336,11 @@ export default function Topbar() {
                 <HamburgerButton isOpen={isMobileMenuOpen} onClick={handleMenuToggle} />
               </div>
             ) : (
-              <DesktopNavigation links={TOPBAR_LINKS} onNavClick={handleNavClick} />
+              <DesktopNavigation links={links} onNavClick={handleNavClick} />
             )}
 
             <noscript>
-              <NoJsMobileMenu links={TOPBAR_LINKS} />
+              <NoJsMobileMenu links={links} />
             </noscript>
           </div>
         </div>
@@ -335,7 +349,7 @@ export default function Topbar() {
           onExitComplete={() => setIsMenuExpanded(false)}
         >
           <div className="flex flex-col gap-1">
-            {TOPBAR_LINKS.map((link) => (
+            {links.map((link) => (
               <NavLink key={link.href} link={link} onClick={handleNavClick} />
             ))}
             <FaqNavLink onClick={handleNavClick} />

@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { Check, Copy } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { BSO_TOKEN_ADDRESS } from "@/lib/site";
 
 /**
@@ -7,6 +8,7 @@ import { BSO_TOKEN_ADDRESS } from "@/lib/site";
  * so it sits in the hero rather than in a section a reader has to scroll to find.
  */
 export default function HeroContractAddress() {
+  const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
   const resetCopiedTimeoutRef = useRef<number | undefined>(undefined);
 
@@ -25,12 +27,12 @@ export default function HeroContractAddress() {
 
   return (
     <div className="hero-ca">
-      <span className="hero-ca-label">BSO contract</span>
+      <span className="hero-ca-label">{t("contract.label")}</span>
       <button
         type="button"
         className={`hero-ca-value${copied ? " is-copied" : ""}`}
         onClick={() => void handleCopyAddress()}
-        aria-label={`Copy BSO contract address ${BSO_TOKEN_ADDRESS}`}
+        aria-label={t("contract.copyAriaLabel", { address: BSO_TOKEN_ADDRESS })}
         dir="ltr"
       >
         <span className="hero-ca-text">{BSO_TOKEN_ADDRESS}</span>
@@ -43,7 +45,7 @@ export default function HeroContractAddress() {
       {/* The icon swap is the visible confirmation; this only exists because that swap
           is not announced to a screen reader. */}
       <span className="sr-only" aria-live="polite">
-        {copied ? "Copied to clipboard" : ""}
+        {copied ? t("contract.copied") : ""}
       </span>
     </div>
   );

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { getSectionEyebrow, type SectionId } from "@/lib/faq";
+import { type SectionId, useSectionCopy } from "@/lib/faq";
 import { useReveal } from "../lib/useReveal";
 
 type SectionFrameProps = {
@@ -51,5 +51,7 @@ type SectionProps = Omit<SectionFrameProps, "id" | "className" | "eyebrow"> & { 
 
 /** A page section that answers one FAQ question. Its eyebrow comes from the FAQ list. */
 export default function Section({ id, ...props }: SectionProps) {
-  return <SectionFrame id={id} eyebrow={getSectionEyebrow(id)} {...props} />;
+  const { eyebrow } = useSectionCopy()[id];
+
+  return <SectionFrame id={id} eyebrow={eyebrow} {...props} />;
 }

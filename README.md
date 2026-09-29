@@ -115,7 +115,7 @@ the generator itself.
 
 - Contains the Bitsocial Chain landing site for BSO and the proposed L2 appchain
 - Standalone Vite app under `chain/`; served at `https://chain.bitsocial.net/`
-- Has a translated language-selection shell, while the substantive Chain narrative is currently authored in English
+- Is translated into every supported language, including the Chain narrative and FAQ
 
 ### `about/`
 
@@ -148,11 +148,11 @@ Landing-site translations live under:
 
 - `about/public/translations/{lang}/default.json`
 
-The Chain site's translated interface strings live under:
+The Chain site's strings, including its landing narrative and FAQ, live under:
 
 - `chain/public/translations/{lang}/default.json`
 
-The Chain landing narrative is currently authored in English in `chain/src/sections/`.
+English (`en`) is the source: the Chain components read it through i18next keys, and `scripts/generate-llms-files.mjs` builds the Chain `llms.txt` files from it.
 
 Docs translations live under:
 

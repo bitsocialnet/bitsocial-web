@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Trans, useTranslation } from "react-i18next";
 import ChainStatusCta from "@/components/chain-status-cta";
 import HeroContractAddress from "@/components/hero-contract-address";
 import BackToTop from "@/components/back-to-top";
@@ -14,6 +15,8 @@ import Sections from "./sections";
 
 export default function App() {
   useHashScroll();
+  // Trans does not subscribe to language changes, so App re-renders the hero copy itself.
+  useTranslation();
 
   return (
     <div className="shell">
@@ -27,29 +30,30 @@ export default function App() {
             <ChainStatusCta />
             <div className="copy">
               <h1 className="title">
-                The missing <span className="mark">social layer</span> of crypto
+                <Trans i18nKey="hero.title" components={{ mark: <span className="mark" /> }} />
               </h1>
               <p className="sub">
-                Crypto became a casino because Web2, TradFi, and centralized infrastructure own the
-                distribution rails and bend the incentives. Bitsocial Chain fixes this: an
-                unstoppable, fully decentralized{" "}
-                <a
-                  className="sub-link"
-                  href="https://ethereum.org/layer-2/learn/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Ethereum L2
-                </a>{" "}
-                <a
-                  className="sub-link"
-                  href="https://l2beat.com/glossary#application-specific-rollup"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  appchain
-                </a>{" "}
-                where communities own their networks, their tokens and their revenue.
+                <Trans
+                  i18nKey="hero.supporting"
+                  components={{
+                    l2Link: (
+                      <a
+                        className="sub-link"
+                        href="https://ethereum.org/layer-2/learn/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />
+                    ),
+                    appchainLink: (
+                      <a
+                        className="sub-link"
+                        href="https://l2beat.com/glossary#application-specific-rollup"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />
+                    ),
+                  }}
+                />
               </p>
               <HeroContractAddress />
             </div>

@@ -1,0 +1,297 @@
+{
+  "nav": {
+    "language": "语言",
+    "theme": "主题",
+    "mainSite": "主站",
+    "faq": "常见问题"
+  },
+  "languageSelector": {
+    "title": "选择语言",
+    "searchPlaceholder": "搜索语言...",
+    "noResults": "没有语言符合您的搜索。"
+  },
+  "meta": {
+    "title": "BSO - 加密世界缺失的社交层",
+    "description": "BSO 是 Bitsocial 的货币，而 Bitsocial 是一个不被任何公司拥有的点对点社交网络。一条 Ethereum L2 应用链，社区在其上拥有自己的网络、代币和收益。"
+  },
+  "topbar": {
+    "navLabel": "Bitsocial Chain 站点导航",
+    "menu": "菜单",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单"
+  },
+  "theme": {
+    "toggle": "切换主题"
+  },
+  "hero": {
+    "statusCta": "链尚未上线，订阅以获取更新",
+    "title": "加密世界缺失的<mark>社交层</mark>",
+    "supporting": "加密世界之所以变成赌场，是因为 Web2、TradFi 和中心化基础设施掌控着分发渠道，并扭曲了激励机制。Bitsocial Chain 要解决这个问题：一条不可阻挡、完全去中心化的 <l2Link>Ethereum L2</l2Link> <appchainLink>应用链</appchainLink>，社区在其上拥有自己的网络、代币和收益。"
+  },
+  "layers": {
+    "ariaLabel": "加密世界的三个堆叠层：顶部是 Bitsocial 网络上的社交应用，底部是 Ethereum L1 结算层，而由 BSO 驱动的 Ethereum L2 应用链 Bitsocial Chain，作为发光的缺失层被点亮，嵌入两者之间的空隙，并由一条能量主干贯穿其间。",
+    "social": {
+      "title": "社交应用",
+      "subtitle": "BITSOCIAL 网络"
+    },
+    "bso": {
+      "title": "BITSOCIAL CHAIN",
+      "subtitle": "L2 应用链 · BSO"
+    },
+    "eth": {
+      "title": "ETHEREUM",
+      "subtitle": "L1 结算层"
+    }
+  },
+  "contract": {
+    "label": "BSO 合约",
+    "copyAriaLabel": "复制 BSO 合约地址 {{address}}",
+    "copied": "已复制到剪贴板"
+  },
+  "sections": {
+    "whyAChain": {
+      "title": "Bitsocial 本身不在区块链上。",
+      "supporting": "<bitsocialLink>Bitsocial</bitsocialLink> 上的帖子、个人资料、社区和审核都是点对点的。没有链，没有手续费，也不需要钱包：你完全可以不接触加密货币就使用整个网络，大多数人也会这样。但有几样东西确实需要一条链——属于你的名称、在陌生人之间流转的资金、社区真正拥有的代币。Bitsocial Chain 正是为这些而生，仅此而已。",
+      "peerToPeer": {
+        "badge": "点对点",
+        "note": "社交网络。不涉及链。",
+        "posts": "帖子和评论",
+        "profiles": "个人资料和社区",
+        "moderation": "审核和反垃圾"
+      },
+      "onChain": {
+        "badge": "链上",
+        "note": "少数需要链的部分。",
+        "names": ".bso 名称",
+        "tipping": "打赏和奖励",
+        "tokens": "社区代币"
+      },
+      "caption": "链是可选的，社交网络却不是。",
+      "quote": "去中心化的社交网络需要去中心化的货币。"
+    },
+    "tokenomics": {
+      "title": "健全货币。",
+      "supporting": "BSO 是固定供应量的 ERC-20 代币：2.1 亿枚，没有通胀，设计上即为通缩。全部供应量于 2022 年初空投给约 600 人，没有预售，也没有在社区之前预留任何份额。其合约不可变且没有管理员，因此规则永远固定。",
+      "supply": {
+        "cap": "BSO 最大供应量 · 永久固定"
+      },
+      "traits": {
+        "airdropped": "100% 空投，无团队份额，无预售",
+        "fixedCap": "固定上限，零增发",
+        "deflationary": "通缩：供应量只会减少"
+      },
+      "locks": {
+        "noMint": {
+          "label": "无铸造",
+          "note": "供应量永远不会增加"
+        },
+        "noOwner": {
+          "label": "无所有者",
+          "note": "永远没有管理员密钥"
+        },
+        "noPause": {
+          "label": "无暂停",
+          "note": "转账无法被冻结"
+        },
+        "noProxy": {
+          "label": "无代理",
+          "note": "代码无法被替换"
+        }
+      },
+      "airdrop": {
+        "label": "空投",
+        "note": "约 600 人，分三轮领取，时间在 2022 年 1 月至 2 月之间。他们通过 Telegram 机器人注册，推荐码可获得更大的份额，每位领取者都经过人工核查，以免有人拿走过多的供应量。没有预售，没有团队分配，没有任何出售。"
+      },
+      "contract": {
+        "label": "完整合约",
+        "note": "全部供应量铸造到同一个地址，因为迁移就是这样运作的：余额被一对一镜像到该地址，再通过转账发放回去，每一笔都在链上。其余部分都是未经修改的 <openZeppelinLink>OpenZeppelin</openZeppelinLink>，是 Ethereum 上使用最广泛、审查最多的代币代码。没有自定义，没有取巧。可在 <etherscanLink>Etherscan</etherscanLink> 上查看。"
+      },
+      "foot": "不可变且无管理员：已经没有管理员密钥可持有，因此没有人能更改、增发或冻结它。"
+    },
+    "unstoppable": {
+      "title": "建在 Ethereum 上，无人运营。",
+      "supporting": "一条新的区块链需要重建 Ethereum 已有的安全性和开发者基础，而且在 BSO 已经完全分发的情况下，还需要一种新代币。因此，Bitsocial Chain 被设计为没有运营者的 Ethereum L2：每一个操作都是一笔普通的 Ethereum 交易，发送到一个无人控制的地址，任何人都可以运行节点，从 Ethereum 的历史中推导出相同的状态。没有可以施压的公司，也没有可以拨动的开关。",
+      "locks": {
+        "noSequencer": {
+          "label": "无需排序器",
+          "note": "Ethereum 为每笔交易排序"
+        },
+        "noAdminKeys": {
+          "label": "无管理员密钥",
+          "note": "无人能改变规则"
+        },
+        "noUpgradeableContract": {
+          "label": "无可升级合约",
+          "note": "Ethereum 上没有可供夺取的东西"
+        },
+        "noPrivilegedNode": {
+          "label": "无特权节点",
+          "note": "任何人都能推导出相同的状态"
+        }
+      },
+      "proofOfConcept": "概念验证已经以这种方式推导出 .bso 名称，运行在本地开发链上。正式上线仍需要证明系统、审计和最终的经济模型。<proofLink>阅读概念验证</proofLink>。"
+    },
+    "bsoNames": {
+      "title": "你的 .bso 名称始终归你所有。",
+      "supporting": "Bitsocial 应用目前通过借用 ENS 来<resolverLink>解析 .bso 名称</resolverLink>。ENS 是 Ethereum 钱包使用的命名系统：mycommunity.bso 实际上是携带 bitsocial 记录的 mycommunity.eth。原生注册表会把每个已在使用的名称空投给持有它的钱包——无需领取，也无需重新注册。",
+      "ensBadge": "ENS · 目前",
+      "pointsTo": "指向",
+      "communityKey": "社区的密钥",
+      "airdropAtLaunch": "上线时空投",
+      "bsoBadge": ".bso · Bitsocial Chain",
+      "owner": "所有者",
+      "sameWallet": "同一个钱包"
+    },
+    "communityMoney": {
+      "title": "一种资产，支撑众多社区。",
+      "supporting": "每个社区都可以运行自己的一层，即拥有自己代币的 L3，并用 BSO 支付手续费、名称和租金。L3 在加密领域已经存在；在 Bitsocial Chain 上，L3 出现时就会自带一个社区。其收入可以自行结算：广告位由合约拍卖，每笔销售的一部分当场销毁，其余支付给社区，没有可供任何人攫取的回购资金库。",
+      "communityLayer": "社区层",
+      "ownToken": "自己的代币",
+      "feesFlow": "手续费、名称和租金以 BSO 支付",
+      "chainMeta": "Ethereum 层 · 其状态源自 Ethereum",
+      "ethereumMeta": "Ethereum L1 · 安全性与数据",
+      "caption": "每笔手续费的一部分会被销毁，其余用于为链的安全付费。"
+    },
+    "privacy": {
+      "title": "打赏不该暴露你的身份。",
+      "supporting": "Bitsocial Chain 和 Ethereum 一样默认公开，而 .bso 名称本来就是要被看到的。资金则不同：打赏绝不应要求把你的姓名、个人资料或帖子与之一同放到链上，使用全新的钱包应当是正常的，而不是可疑的。这条链不会自建隐私系统。它的目标是让现有的隐私系统无需许可即可接入：屏蔽池、隐身地址、零知识证明。",
+      "publicOnPurpose": {
+        "heading": "有意公开",
+        "names": ".bso 名称及其所有者",
+        "rules": "每条规则和每次状态变更"
+      },
+      "neverRequired": {
+        "heading": "绝不要求",
+        "profile": "打赏时提供你的姓名或个人资料",
+        "wallet": "每人一个钱包",
+        "app": "官方钱包或应用"
+      }
+    },
+    "possibilities": {
+      "title": "拟议中，公开进行。",
+      "supporting": "尚未上线。BSO 目前已在 Ethereum 上线；Bitsocial Chain 是一个提案，其第一个概念验证，即原生 .bso 名称，运行在本地开发链上。下面的任何内容都没有日期。这是一个拥有自己货币的社交层所能带来的可能：其中一些会被建成，一些会被更好的想法取代，还有一些将由尚未现身的人来建造。",
+      "ideas": {
+        "chain": {
+          "note": "Ethereum L2 应用链本身，也是 BSO 的结算落脚点。"
+        },
+        "registry": {
+          "label": "原生 .bso 注册表",
+          "note": "名称和身份直接在链上注册，而不是借用 ENS。"
+        },
+        "l3s": {
+          "label": "社区 L3 与代币",
+          "note": "社区拥有自己的一层和自己的代币，以 BSO 结算。"
+        },
+        "agoraswap": {
+          "note": "一个社区 DEX，社区代币在其中与 BSO 交易，让流动性留在链上。"
+        },
+        "collectibles": {
+          "label": "创作者收藏品",
+          "note": "创作者无需平台抽成、直接出售作品的方式。"
+        },
+        "other": {
+          "label": "其他任何合适的东西",
+          "note": "客户端代币、去中心化排序，以及尚无人提出的想法。"
+        }
+      }
+    },
+    "verify": {
+      "title": "只有一个地址是 BSO。",
+      "supporting": "任何人都可以创建一个代币并称之为 BSO，所以合约地址是分辨真假的唯一依据。在向任何地方发送任何东西之前，请把全部 42 个字符与本站和 Bitsocial 的官方渠道逐一核对。",
+      "warning": "官方 BSO 合约是 <contract>{{address}}</contract>。其他任何地址都不是 BSO，无论它叫什么名字，也无论它被列在何处。",
+      "tradeOnUniswap": "在 Uniswap 上交易",
+      "provideLiquidity": "提供流动性",
+      "note": "Uniswap 上的流动性由独立的个人提供，任何人都可以加入。它不是储蓄账户：流动性头寸的价值可能下跌，包括跌到低于投入的金额。"
+    }
+  },
+  "common": {
+    "proposed": "拟议中",
+    "close": "关闭"
+  },
+  "mailingList": {
+    "chainTitle": "保持关注",
+    "chainDescription": "及时了解 BSO 代币里程碑、Bitsocial Chain 和生态动态。少而精。",
+    "placeholder": "you@example.com",
+    "inputLabel": "电子邮件地址",
+    "subscribe": "订阅",
+    "subscribing": "正在订阅…",
+    "chainSuccess": "你已在名单中。",
+    "confirmationSent": "请查看邮件以确认订阅。",
+    "chainError": "出错了。请重试。",
+    "unavailable": "暂时无法订阅通讯。",
+    "privacy": "绝不发垃圾邮件。可随时取消订阅。"
+  },
+  "faq": {
+    "eyebrow": "常见问题",
+    "title": "常见问题。",
+    "supporting": "本页的每个板块都回答一个问题。点击问题即可跳转到对应板块。",
+    "navLabel": "本页解答的问题",
+    "answeredIn": "答案在{{label}}板块",
+    "entries": {
+      "whyAChain": {
+        "eyebrow": "为什么需要链",
+        "question": "点对点社交网络为什么需要一条链？"
+      },
+      "tokenomics": {
+        "eyebrow": "代币经济学",
+        "question": "BSO 的代币经济学是怎样的？谁得到了它？"
+      },
+      "unstoppable": {
+        "eyebrow": "不可阻挡",
+        "question": "为什么是 Ethereum L2？谁来运营它？"
+      },
+      "bsoNames": {
+        "eyebrow": "BSO 名称",
+        "question": "我的 .bso 名称会怎么样？"
+      },
+      "communityMoney": {
+        "eyebrow": "社区货币",
+        "question": "BSO 会被用来做什么？"
+      },
+      "privacy": {
+        "eyebrow": "隐私",
+        "question": "所有人都能看到我给谁打赏吗？"
+      },
+      "possibilities": {
+        "eyebrow": "可能性",
+        "question": "上线了吗？有哪些计划？"
+      },
+      "verify": {
+        "eyebrow": "验证",
+        "question": "我如何安全地获得 BSO？"
+      }
+    },
+    "rows": {
+      "about": {
+        "label": "关于我们",
+        "question": "Bitsocial Chain 背后是谁？"
+      },
+      "mailingList": {
+        "label": "简报",
+        "question": "我怎么持续关注进展？"
+      }
+    },
+    "ask": {
+      "placeholder": "问点别的…",
+      "label": "问点别的",
+      "action": "问 ChatGPT"
+    }
+  },
+  "footer": {
+    "chainTagline": "加密世界缺失的社交层",
+    "token": "代币",
+    "resources": "资源",
+    "blog": "博客",
+    "proofOfConcept": "概念验证",
+    "about": "关于我们",
+    "mainSite": "主站",
+    "community": "社区",
+    "chainBottomTagline": "修复加密世界的社交层",
+    "contribute": "改进此页面"
+  },
+  "backToTop": {
+    "returnToOrigin": "返回之前的位置",
+    "toTop": "返回顶部",
+    "toBottom": "前往底部"
+  }
+}

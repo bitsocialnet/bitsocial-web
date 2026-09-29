@@ -1,43 +1,60 @@
 import { FlaskConical } from "lucide-react";
+import { Trans, useTranslation } from "react-i18next";
 import { PROOF_OF_CONCEPT_URL } from "@/lib/site";
 import Locks from "./Locks";
 import Section from "./Section";
 
-// The chain-level counterpart of the token's locks in #tokenomics, limited to what
-// the proof of concept's design commits to: intents are plain L1 transactions to a
-// keyless inbox, state is re-derived from Ethereum history by anyone, and any L1
-// artifact stays immutable and admin-free.
-const LOCKS = [
-  { label: "No sequencer needed", note: "Ethereum orders every transaction" },
-  { label: "No admin keys", note: "nobody changes the rules for you" },
-  { label: "No upgradeable contract", note: "nothing on Ethereum to seize" },
-  { label: "No privileged node", note: "anyone can derive the same state" },
-];
-
 export default function Unstoppable() {
+  const { t } = useTranslation();
+
+  // The chain-level counterpart of the token's locks in #tokenomics, limited to what
+  // the proof of concept's design commits to: intents are plain L1 transactions to a
+  // keyless inbox, state is re-derived from Ethereum history by anyone, and any L1
+  // artifact stays immutable and admin-free.
+  const locks = [
+    {
+      label: t("sections.unstoppable.locks.noSequencer.label"),
+      note: t("sections.unstoppable.locks.noSequencer.note"),
+    },
+    {
+      label: t("sections.unstoppable.locks.noAdminKeys.label"),
+      note: t("sections.unstoppable.locks.noAdminKeys.note"),
+    },
+    {
+      label: t("sections.unstoppable.locks.noUpgradeableContract.label"),
+      note: t("sections.unstoppable.locks.noUpgradeableContract.note"),
+    },
+    {
+      label: t("sections.unstoppable.locks.noPrivilegedNode.label"),
+      note: t("sections.unstoppable.locks.noPrivilegedNode.note"),
+    },
+  ];
+
   return (
     <Section
       id="unstoppable"
-      title="Built on Ethereum. Run by nobody."
-      supporting="A new blockchain would rebuild the security and developer base Ethereum already has, and would need a new token when BSO is already fully distributed. So Bitsocial Chain is designed as an Ethereum L2 with no operator: every action is a plain Ethereum transaction sent to an address nobody controls, and anyone can run a node that derives the same state from Ethereum's history. There is no company to pressure and no switch to flip."
+      title={t("sections.unstoppable.title")}
+      supporting={t("sections.unstoppable.supporting")}
     >
       <div className="spec">
-        <Locks locks={LOCKS} />
+        <Locks locks={locks} />
 
         <p className="spec-foot">
           <FlaskConical aria-hidden size={15} strokeWidth={1.8} />
           <span>
-            The proof of concept already derives .bso names this way, on a local dev chain. A
-            production launch still needs a proof system, an audit and final economics.{" "}
-            <a
-              className="section-link"
-              href={PROOF_OF_CONCEPT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Read the proof of concept
-            </a>
-            .
+            <Trans
+              i18nKey="sections.unstoppable.proofOfConcept"
+              components={{
+                proofLink: (
+                  <a
+                    className="section-link"
+                    href={PROOF_OF_CONCEPT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  />
+                ),
+              }}
+            />
           </span>
         </p>
       </div>

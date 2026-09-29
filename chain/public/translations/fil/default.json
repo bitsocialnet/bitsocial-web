@@ -1,0 +1,297 @@
+{
+  "nav": {
+    "language": "Wika",
+    "theme": "Tema",
+    "mainSite": "Pangunahing Site",
+    "faq": "FAQ"
+  },
+  "languageSelector": {
+    "title": "Pumili ng wika",
+    "searchPlaceholder": "Maghanap ng mga wika...",
+    "noResults": "Walang mga wikang tumutugma sa iyong paghahanap."
+  },
+  "meta": {
+    "title": "BSO - Ang Nawawalang Social Layer ng Crypto",
+    "description": "Ang BSO ay ang pera ng Bitsocial, ang peer-to-peer na social network na walang kumpanyang nagmamay-ari. Isang Ethereum L2 appchain kung saan pagmamay-ari ng mga komunidad ang kanilang mga network, token at kita."
+  },
+  "topbar": {
+    "navLabel": "Nabigasyon ng site ng Bitsocial Chain",
+    "menu": "Menu",
+    "openMenu": "Buksan ang menu",
+    "closeMenu": "Isara ang menu"
+  },
+  "theme": {
+    "toggle": "Palitan ang tema"
+  },
+  "hero": {
+    "statusCta": "Hindi pa live ang Chain, mag-subscribe para sa mga update",
+    "title": "Ang nawawalang <mark>social layer</mark> ng crypto",
+    "supporting": "Naging casino ang crypto dahil ang Web2, TradFi, at sentralisadong imprastraktura ang nagmamay-ari ng mga distribution rail at binabaluktot ang mga insentibo. Inaayos ito ng Bitsocial Chain: isang hindi mapipigilan at ganap na desentralisadong <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink> kung saan pagmamay-ari ng mga komunidad ang kanilang mga network, token at kita."
+  },
+  "layers": {
+    "ariaLabel": "Tatlong nakapatong na layer ng crypto: mga social app sa Bitsocial network sa itaas, ang settlement ng Ethereum L1 sa base, at ang Bitsocial Chain, ang Ethereum L2 appchain na pinapagana ng BSO, na umiilaw bilang kumikinang na nawawalang layer na pumapasok sa puwang sa pagitan ng dalawa, at tinutuhog ng isang energy spine.",
+    "social": {
+      "title": "MGA SOCIAL APP",
+      "subtitle": "NETWORK NG BITSOCIAL"
+    },
+    "bso": {
+      "title": "BITSOCIAL CHAIN",
+      "subtitle": "L2 APPCHAIN · BSO"
+    },
+    "eth": {
+      "title": "ETHEREUM",
+      "subtitle": "SETTLEMENT NG L1"
+    }
+  },
+  "contract": {
+    "label": "Kontrata ng BSO",
+    "copyAriaLabel": "Kopyahin ang address ng kontrata ng BSO na {{address}}",
+    "copied": "Nakopya sa clipboard"
+  },
+  "sections": {
+    "whyAChain": {
+      "title": "Wala sa blockchain ang Bitsocial mismo.",
+      "supporting": "Ang mga post, profile, komunidad at moderasyon sa <bitsocialLink>Bitsocial</bitsocialLink> ay peer-to-peer. Walang chain, walang bayarin, walang wallet: magagamit mo ang buong network nang hindi kailanman humahawak ng crypto, at iyon ang gagawin ng karamihan. Pero may ilang bagay na talagang nangangailangan ng chain — mga pangalang sa iyo, perang gumagalaw sa pagitan ng mga estranghero, mga token na tunay na pag-aari ng isang komunidad. Para lang sa mga iyon ang Bitsocial Chain, at wala nang iba.",
+      "peerToPeer": {
+        "badge": "Peer-to-peer",
+        "note": "Ang social network. Walang chain na kasangkot.",
+        "posts": "Mga post at komento",
+        "profiles": "Mga profile at komunidad",
+        "moderation": "Moderasyon at anti-spam"
+      },
+      "onChain": {
+        "badge": "On-chain",
+        "note": "Ang ilang bahaging nangangailangan nito.",
+        "names": "Mga .bso name",
+        "tipping": "Tipping at mga parangal",
+        "tokens": "Mga token ng komunidad"
+      },
+      "caption": "Opsyonal ang chain. Hindi ang social network.",
+      "quote": "Kailangan ng isang desentralisadong social network ng desentralisadong pera."
+    },
+    "tokenomics": {
+      "title": "Matatag na pera.",
+      "supporting": "Ang BSO ay isang ERC-20 na may nakapirming supply: 210 milyon, walang inflation, deflationary ayon sa disenyo. Ang buong supply ay na-airdrop sa humigit-kumulang 600 katao noong unang bahagi ng 2022, nang walang presale at walang anumang itinabi nang una bago ang komunidad. Immutable at walang admin ang kontrata nito, kaya nakapirmi na magpakailanman ang mga patakaran.",
+      "supply": {
+        "cap": "Max supply ng BSO · nakapirmi magpakailanman"
+      },
+      "traits": {
+        "airdropped": "100% na-airdrop, walang team o presale",
+        "fixedCap": "Nakapirming cap, zero emission",
+        "deflationary": "Deflationary: bumababa lang ang supply"
+      },
+      "locks": {
+        "noMint": {
+          "label": "Walang mint",
+          "note": "hindi kailanman madadagdagan ang supply"
+        },
+        "noOwner": {
+          "label": "Walang owner",
+          "note": "walang admin key, kailanman"
+        },
+        "noPause": {
+          "label": "Walang pause",
+          "note": "hindi puwedeng i-freeze ang mga transfer"
+        },
+        "noProxy": {
+          "label": "Walang proxy",
+          "note": "hindi puwedeng palitan ang code"
+        }
+      },
+      "airdrop": {
+        "label": "Ang airdrop",
+        "note": "Humigit-kumulang 600 katao, sa tatlong claim round sa pagitan ng Enero at Pebrero 2022. Nag-sign up sila sa pamamagitan ng isang Telegram bot, mas malalaking bahagi ang naibigay ng mga referral code, at bawat tumanggap ay manu-manong sinuri para walang makaalis na may masyadong malaking bahagi ng supply. Walang presale, walang alokasyon para sa team, walang naibenta."
+      },
+      "contract": {
+        "label": "Ang buong kontrata",
+        "note": "Sa iisang address nagmi-mint ang buong supply dahil iyon ang paraan ng migration: ang mga balanse ay ni-mirror dito nang isa-sa-isa at ibinalik sa pamamagitan ng transfer, bawat isa ay on-chain. Ang lahat ng iba pa ay <openZeppelinLink>OpenZeppelin</openZeppelinLink>, hindi binago — ang pinakaginagamit at pinakamasusing nasuring token code sa Ethereum. Walang custom, walang pakulo. Basahin ito sa <etherscanLink>Etherscan</etherscanLink>."
+      },
+      "foot": "Immutable at walang admin: wala nang natirang admin key na hahawakan, kaya walang makakapagbago nito, makakapag-inflate nito, o makakapag-freeze nito."
+    },
+    "unstoppable": {
+      "title": "Itinayo sa Ethereum. Walang nagpapatakbo.",
+      "supporting": "Ang isang bagong blockchain ay muling bubuo ng seguridad at developer base na mayroon na ang Ethereum, at mangangailangan ng bagong token gayong ganap nang naipamahagi ang BSO. Kaya idinisenyo ang Bitsocial Chain bilang isang Ethereum L2 na walang operator: bawat aksyon ay isang simpleng Ethereum transaction na ipinapadala sa isang address na walang kumokontrol, at kahit sino ay puwedeng magpatakbo ng node na naghahango ng parehong state mula sa kasaysayan ng Ethereum. Walang kumpanyang mapipilit at walang switch na ii-flip.",
+      "locks": {
+        "noSequencer": {
+          "label": "Walang kailangang sequencer",
+          "note": "Ethereum ang nagtatakda ng pagkakasunod-sunod ng bawat transaction"
+        },
+        "noAdminKeys": {
+          "label": "Walang admin key",
+          "note": "walang nagbabago ng mga patakaran para sa iyo"
+        },
+        "noUpgradeableContract": {
+          "label": "Walang upgradeable na kontrata",
+          "note": "walang aagawin sa Ethereum"
+        },
+        "noPrivilegedNode": {
+          "label": "Walang privileged na node",
+          "note": "kahit sino ay makakapaghango ng parehong state"
+        }
+      },
+      "proofOfConcept": "Naghahango na ng mga .bso name sa ganitong paraan ang patunay ng konsepto, sa isang local dev chain. Kailangan pa rin ng isang production launch ng proof system, audit at pinal na economics. <proofLink>Basahin ang patunay ng konsepto</proofLink>."
+    },
+    "bsoNames": {
+      "title": "Mananatiling iyo ang .bso name mo.",
+      "supporting": "Ang mga Bitsocial app ay <resolverLink>nagre-resolve ng mga .bso name ngayon</resolverLink> sa pamamagitan ng paghiram sa ENS, ang naming system na ginagamit ng mga Ethereum wallet: ang mycommunity.bso ay talagang mycommunity.eth na may dalang bitsocial record. Kung magkakaroon ng native registry, ia-airdrop nito ang bawat pangalang ginagamit na sa wallet na may hawak nito — walang kailangang i-claim at walang kailangang muling i-register.",
+      "ensBadge": "ENS · ngayon",
+      "pointsTo": "tumuturo sa",
+      "communityKey": "ang susi ng komunidad",
+      "airdropAtLaunch": "airdrop sa paglulunsad",
+      "bsoBadge": ".bso · Bitsocial Chain",
+      "owner": "may-ari",
+      "sameWallet": "ang parehong wallet"
+    },
+    "communityMoney": {
+      "title": "Isang asset sa ilalim ng maraming komunidad.",
+      "supporting": "Puwedeng magpatakbo ang bawat komunidad ng sarili nitong layer, isang L3 na may sariling token, at magbayad ng mga bayarin, pangalan at renta nito sa BSO. May mga L3 na sa buong crypto; sa Bitsocial Chain, darating ang bawat isa na may kasamang komunidad na. Puwedeng mag-settle nang kusa ang kita nito: mga ad slot na ina-auction ng kontrata, bahagi ng bawat benta ay agad na sinisira at ang natitira ay ibinabayad sa komunidad, nang walang buyback treasury na puwedeng masamsam ninuman.",
+      "communityLayer": "Layer ng komunidad",
+      "ownToken": "sariling token nito",
+      "feesFlow": "mga bayarin, pangalan at renta na binabayaran sa BSO",
+      "chainMeta": "Ethereum layer · hinango ang state nito mula sa Ethereum",
+      "ethereumMeta": "Ethereum L1 · seguridad at data",
+      "caption": "Sinisira ang bahagi ng bawat bayarin; ang natitira ay pambayad sa seguridad ng chain."
+    },
+    "privacy": {
+      "title": "Hindi ka dapat ma-dox dahil sa pag-tip.",
+      "supporting": "Pampubliko ang Bitsocial Chain bilang default, tulad ng Ethereum, at ang mga .bso name ay ginawa para makita. Iba ang pera: hindi kailanman dapat mangailangan ang isang tip na ilagay ang pangalan, profile o post mo on-chain sa tabi nito, at dapat maging normal ang bagong wallet, hindi kahina-hinala. Hindi gagawa ang chain ng sarili nitong privacy system. Ang layunin nito ay hayaang makapag-plug in ang mga umiiral na nang hindi humihingi ng pahintulot: shielded pool, stealth address, zero-knowledge proof.",
+      "publicOnPurpose": {
+        "heading": "Sadyang pampubliko",
+        "names": "Ang mga .bso name at kung sino ang may-ari ng mga ito",
+        "rules": "Bawat patakaran at bawat pagbabago ng state"
+      },
+      "neverRequired": {
+        "heading": "Hindi kailanman kinakailangan",
+        "profile": "Ang pangalan o profile mo sa isang tip",
+        "wallet": "Isang wallet bawat tao",
+        "app": "Isang opisyal na wallet o app"
+      }
+    },
+    "possibilities": {
+      "title": "Iminumungkahi, nang hayagan.",
+      "supporting": "Hindi pa live. Live na ang BSO sa Ethereum ngayon; ang Bitsocial Chain ay isang panukala, at ang unang patunay ng konsepto nito, ang mga native na .bso name, ay tumatakbo sa isang local dev chain. Walang petsa ang anumang nasa ibaba. Ito ang magiging posible sa isang social layer na may sariling pera: may ilang mabubuo, may ilang mapapalitan ng mas magagandang ideya, at may ilang bubuuin ng mga taong hindi pa dumarating.",
+      "ideas": {
+        "chain": {
+          "note": "Ang Ethereum L2 appchain mismo, at ang tahanan ng settlement para sa BSO."
+        },
+        "registry": {
+          "label": "Isang native na .bso registry",
+          "note": "Mga pangalan at identidad na nakarehistro sa chain, sa halip na hiniram mula sa ENS."
+        },
+        "l3s": {
+          "label": "Mga L3 at token ng komunidad",
+          "note": "Mga komunidad na may sariling layer at sariling token, na nagse-settle sa BSO."
+        },
+        "agoraswap": {
+          "note": "Isang DEX ng komunidad kung saan ipinagpapalit ang mga token ng komunidad laban sa BSO, na pinananatiling on-chain ang liquidity."
+        },
+        "collectibles": {
+          "label": "Mga collectible ng creator",
+          "note": "Mga paraan para direktang makapagbenta ang mga creator ng isang bagay, nang walang platform na kumukuha ng parte."
+        },
+        "other": {
+          "label": "Anumang iba pang babagay",
+          "note": "Mga client token, desentralisadong sequencing, at mga ideyang wala pang nagmumungkahi."
+        }
+      }
+    },
+    "verify": {
+      "title": "Isang address lang ang BSO.",
+      "supporting": "Kahit sino ay puwedeng gumawa ng token at tawaging BSO, kaya ang address ng kontrata ang tanging nagpapakilala sa totoo. Itugma ang lahat ng 42 character sa site na ito at sa mga opisyal na channel ng Bitsocial bago magpadala ng anuman kahit saan.",
+      "warning": "Ang opisyal na kontrata ng BSO ay <contract>{{address}}</contract>. Ang anumang iba pa ay hindi BSO, anuman ang tawag dito at saanman ito nakalista.",
+      "tradeOnUniswap": "Mag-trade sa Uniswap",
+      "provideLiquidity": "Magbigay ng liquidity",
+      "note": "Ang liquidity sa Uniswap ay ibinibigay ng mga independiyenteng tao, at kahit sino ay puwedeng magdagdag dito. Hindi ito savings account: puwedeng bumaba ang halaga ng isang liquidity position, kabilang ang mas mababa pa sa inilagay."
+    }
+  },
+  "common": {
+    "proposed": "Iminungkahi",
+    "close": "Isara"
+  },
+  "mailingList": {
+    "chainTitle": "Manatiling naka-antabay",
+    "chainDescription": "Makatanggap ng abiso tungkol sa mga milestone ng BSO token, Bitsocial Chain, at balita sa ecosystem. Mababa ang dalas, mataas ang halaga.",
+    "placeholder": "you@example.com",
+    "inputLabel": "Email address",
+    "subscribe": "Mag-subscribe",
+    "subscribing": "Nagsu-subscribe…",
+    "chainSuccess": "Nasa listahan ka na.",
+    "confirmationSent": "Tingnan ang email mo para kumpirmahin ang subscription mo.",
+    "chainError": "May nangyaring mali. Pakisubukang muli.",
+    "unavailable": "Pansamantalang hindi available ang pag-sign up sa newsletter.",
+    "privacy": "Walang spam, kailanman. Maaari kang mag-unsubscribe anumang oras."
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Madalas na Tanong.",
+    "supporting": "Sinasagot ng bawat seksyon ng pahinang ito ang isa. I-click ang isang tanong para dumiretso roon.",
+    "navLabel": "Mga tanong na sinasagot sa pahinang ito",
+    "answeredIn": "Nasagot sa {{label}}",
+    "entries": {
+      "whyAChain": {
+        "eyebrow": "Bakit Chain",
+        "question": "Bakit kailangan ng chain ng isang peer-to-peer na social network?"
+      },
+      "tokenomics": {
+        "eyebrow": "Tokenomics",
+        "question": "Ano ang tokenomics ng BSO? Sino ang nakakuha nito?"
+      },
+      "unstoppable": {
+        "eyebrow": "Hindi Mapipigilan",
+        "question": "Bakit isang Ethereum L2? Sino ang nagpapatakbo nito?"
+      },
+      "bsoNames": {
+        "eyebrow": "Mga BSO Name",
+        "question": "Ano ang mangyayari sa .bso name ko?"
+      },
+      "communityMoney": {
+        "eyebrow": "Pera ng Komunidad",
+        "question": "Para saan magagamit ang BSO?"
+      },
+      "privacy": {
+        "eyebrow": "Privacy",
+        "question": "Makikita ba ng lahat kung sino ang binibigyan ko ng tip?"
+      },
+      "possibilities": {
+        "eyebrow": "Mga Posibilidad",
+        "question": "Live na ba ito? Ano ang planado?"
+      },
+      "verify": {
+        "eyebrow": "I-verify",
+        "question": "Paano ako makakakuha ng BSO nang ligtas?"
+      }
+    },
+    "rows": {
+      "about": {
+        "label": "Tungkol sa Amin",
+        "question": "Sino ang nasa likod ng Bitsocial Chain?"
+      },
+      "mailingList": {
+        "label": "Balitaan",
+        "question": "Paano ko masusubaybayan ang mga update?"
+      }
+    },
+    "ask": {
+      "placeholder": "Magtanong ng kahit ano pa…",
+      "label": "Magtanong ng kahit ano pa",
+      "action": "Itanong sa ChatGPT"
+    }
+  },
+  "footer": {
+    "chainTagline": "Ang Nawawalang Social Layer ng Crypto",
+    "token": "Token",
+    "resources": "Mga Mapagkukunan",
+    "blog": "Blog",
+    "proofOfConcept": "Patunay ng Konsepto",
+    "about": "Tungkol sa Amin",
+    "mainSite": "Pangunahing Site",
+    "community": "Komunidad",
+    "chainBottomTagline": "Ayusin ang Social Layer ng Crypto",
+    "contribute": "Pagbutihin ang pahinang ito"
+  },
+  "backToTop": {
+    "returnToOrigin": "Bumalik sa dating posisyon",
+    "toTop": "Bumalik sa itaas",
+    "toBottom": "Pumunta sa ibaba"
+  }
+}

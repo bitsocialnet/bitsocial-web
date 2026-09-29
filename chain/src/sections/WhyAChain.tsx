@@ -1,40 +1,35 @@
 import { Link2 } from "lucide-react";
+import { Trans, useTranslation } from "react-i18next";
 import { BITSOCIAL_URL } from "@/lib/site";
 import Section from "./Section";
 
+const supportingComponents = {
+  bitsocialLink: (
+    <a className="section-link" href={BITSOCIAL_URL} target="_blank" rel="noopener noreferrer" />
+  ),
+};
+
 export default function WhyAChain() {
+  const { t } = useTranslation();
+
   return (
     <Section
       id="why-a-chain"
-      title="Bitsocial itself is not on a blockchain."
+      title={t("sections.whyAChain.title")}
       supporting={
-        <>
-          Posts, profiles, communities and moderation on{" "}
-          <a
-            className="section-link"
-            href={BITSOCIAL_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Bitsocial
-          </a>{" "}
-          are peer-to-peer. No chain, no fees, no wallet: you can use the whole network without ever
-          touching crypto, and most people will. But a few things genuinely need a chain — names
-          that are yours, money that moves between strangers, tokens a community actually owns.
-          Bitsocial Chain is for exactly those, and nothing else.
-        </>
+        <Trans i18nKey="sections.whyAChain.supporting" components={supportingComponents} />
       }
-      quote="A decentralized social network needs decentralized money."
+      quote={t("sections.whyAChain.quote")}
     >
       <div className="premise">
         <div className="premise-half">
-          <span className="premise-badge">Peer-to-peer</span>
+          <span className="premise-badge">{t("sections.whyAChain.peerToPeer.badge")}</span>
           <span className="premise-name">Bitsocial</span>
-          <span className="premise-note">The social network. No chain involved.</span>
+          <span className="premise-note">{t("sections.whyAChain.peerToPeer.note")}</span>
           <ul className="premise-traits">
-            <li>Posts and comments</li>
-            <li>Profiles and communities</li>
-            <li>Moderation and anti-spam</li>
+            <li>{t("sections.whyAChain.peerToPeer.posts")}</li>
+            <li>{t("sections.whyAChain.peerToPeer.profiles")}</li>
+            <li>{t("sections.whyAChain.peerToPeer.moderation")}</li>
           </ul>
         </div>
 
@@ -43,17 +38,19 @@ export default function WhyAChain() {
         </div>
 
         <div className="premise-half premise-half-next">
-          <span className="premise-badge premise-badge-next">On-chain</span>
+          <span className="premise-badge premise-badge-next">
+            {t("sections.whyAChain.onChain.badge")}
+          </span>
           <span className="premise-name premise-name-next">Bitsocial Chain</span>
-          <span className="premise-note">The few parts that need one.</span>
+          <span className="premise-note">{t("sections.whyAChain.onChain.note")}</span>
           <ul className="premise-traits">
-            <li>.bso names</li>
-            <li>Tipping and awards</li>
-            <li>Community tokens</li>
+            <li>{t("sections.whyAChain.onChain.names")}</li>
+            <li>{t("sections.whyAChain.onChain.tipping")}</li>
+            <li>{t("sections.whyAChain.onChain.tokens")}</li>
           </ul>
         </div>
 
-        <p className="premise-caption">The chain is optional. The social network is not.</p>
+        <p className="premise-caption">{t("sections.whyAChain.caption")}</p>
       </div>
     </Section>
   );
