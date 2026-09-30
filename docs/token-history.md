@@ -21,8 +21,9 @@ check the record independently.
 - **Explorer**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
 This is where BSO started. The supply was given away through three airdrops and liquidity-mining
-rewards, with no presale and no team allocation carved out ahead of the community. The contract was an upgradeable proxy, which was standard
-practice at the time and let the team ship fixes during the token's early life.
+rewards, with no presale and no team allocation carved out ahead of the community. The contract
+was an upgradeable proxy, which was standard practice at the time and let the team ship fixes
+during the token's early life.
 
 ## Gen 2: the move to Ethereum, 2023
 
