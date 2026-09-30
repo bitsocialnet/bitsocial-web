@@ -100,7 +100,7 @@ export default function HoldersTable() {
         </label>
       </div>
 
-      <div className="rl-table-scroll">
+      <div className="rl-table-scroll glass-card">
         <table className="rl-table">
           <caption className="sr-only">{t("richList.table.caption")}</caption>
           <thead>

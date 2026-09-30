@@ -88,7 +88,7 @@ export default function Airdrops() {
       title={t("richList.airdrops.title")}
       lead={t("richList.airdrops.lead")}
     >
-      <div className="rl-table-scroll">
+      <div className="rl-table-scroll glass-card">
         <table className="rl-table rl-airdrops">
           <caption className="sr-only">{t("richList.airdrops.caption")}</caption>
           <thead>

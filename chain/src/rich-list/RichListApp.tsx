@@ -5,6 +5,7 @@ import BackToTop from "@/components/back-to-top";
 import Footer from "@/components/footer";
 import Topbar, { TopbarSpacer } from "@/components/topbar";
 import { useHashScroll } from "@/lib/use-hash-scroll";
+import PolygonMeshBackground from "@/PolygonMeshBackground";
 import Airdrops from "./Airdrops";
 import HoldersTable from "./HoldersTable";
 import History from "./History";
@@ -32,6 +33,7 @@ function RichListPage() {
 
   return (
     <div className="shell rl-page">
+      <PolygonMeshBackground />
       <Topbar page="rich-list" />
       <TopbarSpacer />
 

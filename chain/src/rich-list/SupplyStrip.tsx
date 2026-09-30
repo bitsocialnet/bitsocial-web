@@ -1,46 +1,70 @@
 import { useTranslation } from "react-i18next";
 import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
-import { type Category, entityCategory } from "@/lib/rich-list/data";
 
-type Segment = { key: string; label: string; share: number; category: Category; href?: string };
+type Segment = { key: string; label: string; share: number; fill: string; href?: string };
 
-/** The whole 210M supply as one bar: linked groups, the team, the pool, then everyone else. */
+/**
+ * Each linked holder keeps one hue wherever it sorts, so two segments never share a colour
+ * unless they are the same holder. A categorical palette stays distinguishable up to about
+ * eight hues, so the smallest groups share one labelled segment instead of borrowing a hue.
+ * Holder hues are defined in rich-list.css and validated against both theme surfaces.
+ */
+const HOLDER_FILLS: Record<string, string> = {
+  holderA: "rl-fill-holder-a",
+  holderB: "rl-fill-holder-b",
+  holderC: "rl-fill-holder-c",
+  holderD: "rl-fill-holder-d",
+  holderE: "rl-fill-holder-e",
+  holderF: "rl-fill-holder-f",
+};
+const SMALLER_HOLDER_FILL = "rl-fill-holder-rest";
+
+/** The whole 210M supply as one bar: linked holders, the team, the pool, then everyone else. */
 export default function SupplyStrip() {
   const { t } = useTranslation();
   const format = useFormatters();
   const { entityRows, snapshot, shareOfSupply } = useRichList();
 
-  const linked: Segment[] = entityRows
+  const linkedRows = entityRows
     .filter((row) => row.entity.kind === "linked" && row.balance > 0)
-    .sort((a, b) => b.balance - a.balance)
-    .map((row) => ({
+    .sort((a, b) => b.balance - a.balance);
+  const ownHue = linkedRows.filter((row) => row.entity.id in HOLDER_FILLS);
+  const sharedHue = linkedRows.filter((row) => !(row.entity.id in HOLDER_FILLS));
+  const balanceOf = (kind: string) =>
+    entityRows.filter((row) => row.entity.kind === kind).reduce((sum, row) => sum + row.balance, 0);
+
+  const labelled: Segment[] = [
+    ...ownHue.map((row) => ({
       key: row.entity.id,
       label: t(`richList.entities.${row.entity.id}.name`),
       share: shareOfSupply(row.balance),
-      category: entityCategory(row.entity),
+      fill: HOLDER_FILLS[row.entity.id],
       href: `#entity-${row.entity.id}`,
-    }));
-  const teamBalance = entityRows
-    .filter((row) => row.entity.kind === "team")
-    .reduce((sum, row) => sum + row.balance, 0);
-  const poolBalance = entityRows
-    .filter((row) => row.entity.kind === "pool")
-    .reduce((sum, row) => sum + row.balance, 0);
-  const labelled = [
-    ...linked,
+    })),
+    ...(sharedHue.length
+      ? [
+          {
+            key: "smaller-holders",
+            label: sharedHue.map((row) => t(`richList.entities.${row.entity.id}.name`)).join(", "),
+            share: shareOfSupply(sharedHue.reduce((sum, row) => sum + row.balance, 0)),
+            fill: SMALLER_HOLDER_FILL,
+            href: "#linked-wallets",
+          },
+        ]
+      : []),
     {
       key: "team",
       label: t("richList.strip.team"),
-      share: shareOfSupply(teamBalance),
-      category: "team" as const,
+      share: shareOfSupply(balanceOf("team")),
+      fill: "rl-fill-team",
       href: "#team",
     },
     {
       key: "pool",
       label: t("richList.strip.pool"),
-      share: shareOfSupply(poolBalance),
-      category: "pool" as const,
+      share: shareOfSupply(balanceOf("pool")),
+      fill: "rl-fill-pool",
     },
   ];
   const labelledShare = labelled.reduce((sum, segment) => sum + segment.share, 0);
@@ -54,7 +78,7 @@ export default function SupplyStrip() {
           entityRows.reduce((sum, row) => sum + row.wallets.filter((w) => w.balance > 0).length, 0),
       }),
       share: 1 - labelledShare,
-      category: "other",
+      fill: "rl-fill-other",
     },
   ];
 
@@ -64,7 +88,7 @@ export default function SupplyStrip() {
         {segments.map((segment) => (
           <span
             key={segment.key}
-            className={`rl-strip-segment rl-fill-${segment.category}`}
+            className={`rl-strip-segment ${segment.fill}`}
             style={{ flexGrow: segment.share }}
             title={`${segment.label}: ${format.percent(segment.share)}`}
           />
@@ -74,7 +98,7 @@ export default function SupplyStrip() {
         <ul className="rl-strip-legend">
           {segments.map((segment) => (
             <li key={segment.key}>
-              <span className={`rl-swatch rl-fill-${segment.category}`} aria-hidden />
+              <span className={`rl-swatch ${segment.fill}`} aria-hidden />
               {segment.href ? (
                 <a className="rl-strip-name" href={segment.href}>
                   {segment.label}

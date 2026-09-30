@@ -1,28 +1,36 @@
 /* ============================================================
    Rich list page (chain/rich-list/index.html). A denser, reading
    surface than the landing page: left-aligned, tabular numbers,
-   one shared width. Amber marks linked holders (strongest when
-   confirmed), blue is kept for the team, everything else stays
-   neutral.
+   one shared width. Each linked holder gets its own hue, blue is
+   kept for the team, and the pool and everyone else stay neutral.
+   Confidence is carried by the badges, never by colour.
    ============================================================ */
 
 .rl-page {
   --rl-width: min(100% - 2 * var(--space-page-inline), 72rem);
-  /* Confirmed carries the most contrast against the page in both themes. */
-  --rl-confirmed: #b45309;
-  --rl-likely: #f59e0b;
-  --rl-possible: #fcd34d;
+  /* Holder hues: one categorical palette in fixed order, stepped per theme and validated for
+     colour-blind separation between neighbouring segments. The team keeps the brand blue. */
+  --rl-holder-a: #eb6834;
+  --rl-holder-b: #1baf7a;
+  --rl-holder-c: #eda100;
+  --rl-holder-d: #e87ba4;
+  --rl-holder-e: #008300;
+  --rl-holder-f: #4a3aa7;
+  --rl-holder-rest: #e34948;
   --rl-team: var(--signal);
   --rl-pool: hsl(var(--muted-foreground) / 0.6);
   --rl-other: hsl(var(--border));
   --rl-mono: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
-  background: var(--surface);
 }
 
 .dark .rl-page {
-  --rl-confirmed: #fcd34d;
-  --rl-likely: #f59e0b;
-  --rl-possible: #b45309;
+  --rl-holder-a: #d95926;
+  --rl-holder-b: #199e70;
+  --rl-holder-c: #c98500;
+  --rl-holder-d: #d55181;
+  --rl-holder-e: #008300;
+  --rl-holder-f: #9085e9;
+  --rl-holder-rest: #e66767;
 }
 
 .rl-page ::selection {
@@ -118,14 +126,26 @@
 .rl-origin-liquiditySeed {
   background: var(--rl-team);
 }
-.rl-fill-confirmed {
-  background: var(--rl-confirmed);
+.rl-fill-holder-a {
+  background: var(--rl-holder-a);
 }
-.rl-fill-likely {
-  background: var(--rl-likely);
+.rl-fill-holder-b {
+  background: var(--rl-holder-b);
 }
-.rl-fill-possible {
-  background: var(--rl-possible);
+.rl-fill-holder-c {
+  background: var(--rl-holder-c);
+}
+.rl-fill-holder-d {
+  background: var(--rl-holder-d);
+}
+.rl-fill-holder-e {
+  background: var(--rl-holder-e);
+}
+.rl-fill-holder-f {
+  background: var(--rl-holder-f);
+}
+.rl-fill-holder-rest {
+  background: var(--rl-holder-rest);
 }
 .rl-origin-airdropClaims {
   background: hsl(var(--foreground) / 0.72);
@@ -268,21 +288,21 @@ a.rl-strip-name:hover {
   color: var(--ink);
 }
 
+/* Confidence steps down from a filled, solid badge to a dashed outline, in neutral ink so a
+   badge never looks like a holder's colour. */
 .rl-badge-confirmed {
-  border-color: var(--rl-confirmed);
-  background: color-mix(in oklab, var(--rl-confirmed) 16%, transparent);
+  border-color: var(--ink-muted);
+  background: hsl(var(--foreground) / 0.12);
   color: var(--ink);
 }
 
 .rl-badge-likely {
-  border-color: var(--rl-likely);
-  background: color-mix(in oklab, var(--rl-likely) 12%, transparent);
+  border-color: var(--ink-muted);
   color: var(--ink);
 }
 
 .rl-badge-possible {
   border-style: dashed;
-  border-color: var(--rl-likely);
 }
 
 .rl-tag {
@@ -345,7 +365,8 @@ a.rl-strip-name:hover {
 
 /* ---------- Holders table ---------- */
 
-.rl-holders {
+.rl-holders,
+.rl-section > .rl-table-scroll {
   margin-top: 2rem;
 }
 
@@ -421,11 +442,9 @@ a.rl-strip-name:hover {
   color: var(--ink-faint);
 }
 
+/* The wrapper also carries .glass-card, so tables share the cards' surface, border and blur. */
 .rl-table-scroll {
   overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  background: var(--glass-card-fill);
 }
 
 .rl-table {
@@ -629,7 +648,7 @@ a.rl-holder-label:hover {
 }
 
 .rl-evidence:target {
-  border-color: var(--rl-likely);
+  border-color: var(--signal);
 }
 
 .rl-evidence-head {

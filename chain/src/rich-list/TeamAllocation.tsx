@@ -122,7 +122,7 @@ export default function TeamAllocation() {
 
       <div className="rl-team-wallets">
         <h3 className="rl-subtitle">{t("richList.team.walletsTitle")}</h3>
-        <div className="rl-table-scroll">
+        <div className="rl-table-scroll glass-card">
           <table className="rl-table">
             <caption className="sr-only">{t("richList.team.walletsTitle")}</caption>
             <thead>
