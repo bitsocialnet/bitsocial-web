@@ -13,7 +13,11 @@ export default function History() {
         {HISTORY.map((event) => (
           <li key={event.id} className="rl-timeline-item">
             <time className="rl-timeline-date" dateTime={event.date}>
-              {event.precision === "year" ? format.year(event.date) : format.day(event.date)}
+              {event.precision === "year"
+                ? format.year(event.date)
+                : event.precision === "month"
+                  ? format.month(event.date)
+                  : format.day(event.date)}
             </time>
             <div className="rl-timeline-body">
               <h3 className="rl-timeline-title">

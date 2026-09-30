@@ -303,7 +303,7 @@ export const AIRDROP_ROUNDS: AirdropRound[] = [
     plebClaimed: 769_913_229_550,
     medianClaimPleb: 14_505_377,
     largestClaimPleb: 20_700_000_000,
-    sourceMessageIds: [13, 697, 8398],
+    sourceMessageIds: [697, 8398],
   },
   {
     id: "twitter",
@@ -348,9 +348,9 @@ export const TEAM_STATEMENT_MESSAGE_IDS = [253, 294332, 331576] as const;
 
 export type HistoryEvent = {
   id: string;
-  /** ISO date; `precision: "year"` shows only the year. */
+  /** ISO date; `precision` limits what is shown when the exact day is not known. */
   date: string;
-  precision?: "day" | "year";
+  precision?: "day" | "month" | "year";
   txs?: TxRef[];
   messageIds?: number[];
   link?: string;
@@ -358,7 +358,7 @@ export type HistoryEvent = {
 
 export const HISTORY: HistoryEvent[] = [
   { id: "groupOpens", date: "2021-12-25" },
-  { id: "telegramRound", date: "2022-01-07", messageIds: [13, 8398] },
+  { id: "telegramRound", date: "2022-01-07", messageIds: [697, 8398] },
   { id: "launch", date: "2022-01-14", txs: LIQUIDITY_SEED_TXS, messageIds: [9374] },
   { id: "twitterRound", date: "2022-02-02", messageIds: [48111] },
   {
@@ -370,7 +370,7 @@ export const HISTORY: HistoryEvent[] = [
   { id: "claimsClose", date: "2022-02-21", messageIds: [77224] },
   { id: "farm", date: "2022-02-28", messageIds: [94366] },
   { id: "ethereum", date: "2023-05-17", messageIds: [363424, 372233] },
-  { id: "rebrand", date: "2026-01-01", precision: "year" },
+  { id: "rebrand", date: "2026-03-01", precision: "month" },
   { id: "rebase", date: "2026-05-02" },
   {
     id: "immutable",

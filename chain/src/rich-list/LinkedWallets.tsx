@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { ENTITY_ROWS, shareOfSupply } from "@/lib/rich-list/holders";
+import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
 import { AddressLink, CategoryBadge, RichSection, TxLinks, entityCategory } from "./primitives";
 
@@ -9,7 +9,8 @@ const CONFIDENCE_ORDER = { confirmed: 0, likely: 1, possible: 2 } as const;
 export default function LinkedWallets() {
   const { t } = useTranslation();
   const format = useFormatters();
-  const groups = ENTITY_ROWS.filter((row) => row.entity.kind === "linked").sort(
+  const { entityRows, shareOfSupply } = useRichList();
+  const groups = entityRows.filter((row) => row.entity.kind === "linked").sort(
     (a, b) =>
       CONFIDENCE_ORDER[a.entity.confidence ?? "possible"] -
         CONFIDENCE_ORDER[b.entity.confidence ?? "possible"] || b.balance - a.balance,

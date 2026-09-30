@@ -39,6 +39,8 @@ export function useFormatters() {
       maximumFractionDigits: 5,
     });
     const day = new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeZone: "UTC" });
+    const month = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric", timeZone: "UTC" });
+    const relative = new Intl.RelativeTimeFormat(locale, { numeric: "auto" });
     const year = new Intl.DateTimeFormat(locale, { year: "numeric", timeZone: "UTC" });
 
     return {
@@ -50,6 +52,21 @@ export function useFormatters() {
         value === null ? "—" : value < 100 ? smallUsd.format(value) : usd.format(value),
       price: (value: number | null) => (value === null ? "—" : price.format(value)),
       day: (iso: string) => day.format(new Date(iso)),
+      month: (iso: string) => month.format(new Date(iso)),
+      /** "now", "3 minutes ago", "2 hours ago", "5 days ago" */
+      ago: (iso: string, now: number) => {
+        const seconds = Math.round((new Date(iso).getTime() - now) / 1000);
+        if (seconds > -60) {
+          return relative.format(0, "second");
+        }
+        if (seconds > -3600) {
+          return relative.format(Math.round(seconds / 60), "minute");
+        }
+        if (seconds > -86400) {
+          return relative.format(Math.round(seconds / 3600), "hour");
+        }
+        return relative.format(Math.round(seconds / 86400), "day");
+      },
       year: (iso: string) => year.format(new Date(iso)),
     };
   }, [locale]);

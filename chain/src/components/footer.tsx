@@ -8,6 +8,7 @@ import {
   FOOTER_TOKEN_LINKS,
   GITHUB_URL,
   PROOF_OF_CONCEPT_URL,
+  RICH_LIST_PATH,
   TELEGRAM_URL,
   TWITTER_URL,
   type ExternalLink,
@@ -81,6 +82,11 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a href={RICH_LIST_PATH} className={linkClassName}>
+                  {t("nav.richList")}
+                </a>
+              </li>
             </ul>
           </div>
 

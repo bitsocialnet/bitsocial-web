@@ -72,12 +72,12 @@
     },
     "tokenomics": {
       "title": "Sound money.",
-      "supporting": "BSO is a fixed-supply ERC-20: 210 million, no inflation, deflationary by design. The whole supply was airdropped to about 600 people in early 2022, with no presale and nothing carved out ahead of the community. Its contract is immutable and adminless, so the rules are fixed forever.",
+      "supporting": "BSO is a fixed-supply ERC-20: 210 million, no inflation, deflationary by design. It was given away in 2022 through three airdrops and liquidity-mining rewards, with no presale and no team allocation. Its contract is immutable and adminless, so the rules are fixed forever.",
       "supply": {
         "cap": "BSO max supply · fixed forever"
       },
       "traits": {
-        "airdropped": "100% airdropped, no team or presale",
+        "airdropped": "No team allocation or presale",
         "fixedCap": "Fixed cap, zero emissions",
         "deflationary": "Deflationary: supply only falls"
       },
@@ -100,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "The airdrop",
-        "note": "About 600 people, in three claim rounds between January and February 2022. They signed up through a Telegram bot, referral codes earned larger shares, and every recipient was checked by hand so no one could walk away with too much of the supply. No presale, no team allocation, nothing sold."
+        "label": "The distribution",
+        "note": "Three airdrop rounds in January and February 2022, claimed by 1,510 addresses: first a Telegram bot with referral bonuses, which Esteban reviewed by hand for abuse, then rounds on Twitter and Reddit. About 63% of the supply went out that way and 34% as rewards to people who provided liquidity; the rest seeded the launch pools. No presale, no team allocation, nothing sold.",
+        "richListLink": "See every holder and all three rounds"
       },
       "contract": {
         "label": "The whole contract",
@@ -303,8 +304,12 @@
     "hero": {
       "title": "Who holds BSO",
       "lead": "Every BSO wallet, with wallets that belong to the same holder grouped together and the team's wallets marked. Each link lists the transactions behind it, so you can check it yourself.",
-      "snapshot": "Snapshot of {{date}}: {{count}} wallets, BSO at {{price}}.",
-      "jumpLabel": "Sections"
+      "jumpLabel": "Sections",
+      "status": {
+        "live": "Live from the chain: {{count}} wallets, BSO at {{price}}. Updated {{ago}}.",
+        "loading": "Snapshot of {{date}}: {{count}} wallets, BSO at {{price}}. Loading live data…",
+        "unavailable": "Live data is unavailable right now, so this is the snapshot of {{date}}: {{count}} wallets, BSO at {{price}}."
+      }
     },
     "jump": {
       "holders": "Holders",
@@ -477,7 +482,7 @@
       },
       "facts": {
         "liquiditySeed": "The only mint to a team wallet outside the airdrop was the launch liquidity: 50B PLEB, added to the Trader Joe pool (40.1B) and the Pangolin pool (10B) within seven minutes on January 14, 2022.",
-        "foundersClaim": "Esteban claimed 5B PLEB in round 1, 0.55% of all airdrop claims.",
+        "teamClaims": "Two team members claimed in round 1: Esteban 5B PLEB, and Tom 13.2B PLEB, the third-largest of 767 claims. Together that is 2% of all airdrop claims.",
         "noFarmRewards": "No team wallet received liquidity-mining rewards. The 433B paid out went to 208 other addresses.",
         "migrationMintedNothing": "The 2026 migration created no new tokens for anyone: all 210M BSO went out in one transaction, in proportion to old balances."
       },
@@ -566,7 +571,7 @@
         },
         "rebrand": {
           "title": "plebbit becomes Bitsocial",
-          "body": "The project and its token take the Bitsocial name."
+          "body": "Over March 2026, the project and its token gradually take the Bitsocial name."
         },
         "rebase": {
           "title": "Supply set to 210 million",
@@ -593,14 +598,14 @@
         "exchangeOnly": "A holder who funds every wallet through an exchange and never moves tokens between them leaves no on-chain link. Some groups may still hide more wallets.",
         "sales": "A transfer between two wallets can be a sale or a gift. Groups marked Possible rest on a single link like that.",
         "contracts": "Tokens held by contracts other than the Uniswap pool and the Safe are listed as they are.",
-        "snapshot": "Balances are a snapshot and change as people trade. The links between wallets do not."
+        "snapshot": "Balances and the price refresh from the chain every five minutes while this page is open. The links between wallets are researched by hand and do not update on their own."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB on Avalanche",
         "gen2": "Gen 2: old BSO on Ethereum",
         "gen3": "Gen 3: BSO today"
       },
-      "snapshot": "Snapshot taken {{date}} across {{count}} wallets. Found a wrong link or a missing one? <contributeLink>Improve this page</contributeLink>."
+      "snapshot": "Balances and price from Blockscout: {{count}} wallets as of {{date}}. Found a wrong link or a missing one? <contributeLink>Improve this page</contributeLink>."
     }
   }
 }

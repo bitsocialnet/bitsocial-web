@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { LIQUIDITY_SEED_TXS, PLEB_MINTS, type TxRef } from "@/lib/rich-list/data";
-import { ENTITY_ROWS, shareOfSupply, usdValue } from "@/lib/rich-list/holders";
+import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
 import { AddressLink, RichSection, TelegramLinks, TxLinks } from "./primitives";
 
@@ -26,11 +26,15 @@ const STATEMENTS = [
 const FACTS: { id: string; txs?: TxRef[] }[] = [
   { id: "liquiditySeed", txs: LIQUIDITY_SEED_TXS },
   {
-    id: "foundersClaim",
+    id: "teamClaims",
     txs: [
       {
         chain: "avalanche",
         hash: "0xb2f293a791ce2b21824fd921b2095c3fcf6ae70a8bfe00a274accfc699d4dac1",
+      },
+      {
+        chain: "avalanche",
+        hash: "0x8da58b4813203baf0b49db5586b6b9fe9f3afefa0b8913c4a48827074a2e15a6",
       },
     ],
   },
@@ -49,7 +53,8 @@ const FACTS: { id: string; txs?: TxRef[] }[] = [
 export default function TeamAllocation() {
   const { t } = useTranslation();
   const format = useFormatters();
-  const teamRows = ENTITY_ROWS.filter((row) => row.entity.kind === "team");
+  const { entityRows, shareOfSupply, usdValue } = useRichList();
+  const teamRows = entityRows.filter((row) => row.entity.kind === "team");
   const teamTotal = teamRows.reduce((sum, row) => sum + row.balance, 0);
   const minted = PLEB_MINTS.airdropClaims + PLEB_MINTS.liquidityMining + PLEB_MINTS.liquiditySeed;
   const origins = (["airdropClaims", "liquidityMining", "liquiditySeed"] as const).map((key) => ({

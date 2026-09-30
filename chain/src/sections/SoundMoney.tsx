@@ -1,6 +1,6 @@
 import { Coins, Flame, ShieldCheck, Sparkles } from "lucide-react";
 import { Trans, useTranslation } from "react-i18next";
-import { ETHERSCAN_TOKEN_URL } from "@/lib/site";
+import { ETHERSCAN_TOKEN_URL, RICH_LIST_PATH } from "@/lib/site";
 import Locks from "./Locks";
 import Section from "./Section";
 
@@ -89,6 +89,11 @@ export default function SoundMoney() {
         <div className="spec-band">
           <span className="spec-band-label">{t("sections.tokenomics.airdrop.label")}</span>
           <p className="spec-band-note">{t("sections.tokenomics.airdrop.note")}</p>
+          <p className="spec-band-note">
+            <a className="section-link" href={RICH_LIST_PATH}>
+              {t("sections.tokenomics.airdrop.richListLink")}
+            </a>
+          </p>
         </div>
 
         <div className="spec-band">

@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from "react-i18next";
 import { GEN1_TOKEN_ADDRESS, GEN2_TOKEN_ADDRESS } from "@/lib/rich-list/data";
-import { SNAPSHOT } from "@/lib/rich-list/holders";
+import { useRichList } from "./data-context";
 import { BSO_TOKEN_ADDRESS, CONTRIBUTE_URL } from "@/lib/site";
 import { useFormatters } from "./format";
 import { AddressLink, RichSection } from "./primitives";
@@ -10,6 +10,7 @@ const LIMITS = ["exchangeOnly", "sales", "contracts", "snapshot"] as const;
 export default function Method() {
   const { t } = useTranslation();
   const format = useFormatters();
+  const { snapshot } = useRichList();
 
   return (
     <RichSection id="method" title={t("richList.method.title")} lead={t("richList.method.lead")}>
@@ -78,7 +79,7 @@ export default function Method() {
       <p className="rl-note">
         <Trans
           i18nKey="richList.method.snapshot"
-          values={{ date: format.day(SNAPSHOT.generatedAt), count: SNAPSHOT.holderCount }}
+          values={{ date: format.day(snapshot.generatedAt), count: snapshot.holderCount }}
           components={{
             contributeLink: (
               <a

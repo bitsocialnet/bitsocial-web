@@ -1,15 +1,8 @@
 import { useId, useState } from "react";
 import { ChevronDown, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import {
-  ENTITY_ROW_BY_ID,
-  GROUPED_ROWS,
-  type RichListRow,
-  WALLET_ROWS,
-  getEntityIdForAddress,
-  shareOfSupply,
-  usdValue,
-} from "@/lib/rich-list/holders";
+import { type RichListRow, getEntityIdForAddress } from "@/lib/rich-list/holders";
+import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
 import { AddressLink, CategoryBadge, entityCategory } from "./primitives";
 
@@ -19,7 +12,7 @@ type View = "grouped" | "wallets";
 
 function EntityName({ entityId }: { entityId: string }) {
   const { t } = useTranslation();
-  const row = ENTITY_ROW_BY_ID.get(entityId);
+  const row = useRichList().entityRowById.get(entityId);
 
   if (!row) {
     return null;
@@ -39,14 +32,15 @@ function EntityName({ entityId }: { entityId: string }) {
 export default function HoldersTable() {
   const { t } = useTranslation();
   const format = useFormatters();
+  const { groupedRows, walletRows, shareOfSupply, usdValue } = useRichList();
   const searchId = useId();
   const [view, setView] = useState<View>("grouped");
   const [query, setQuery] = useState("");
   const [showAll, setShowAll] = useState(false);
-  const [expanded, setExpanded] = useState<ReadonlySet<string>>(() => new Set(["holderA"]));
+  const [expanded, setExpanded] = useState<ReadonlySet<string>>(() => new Set());
 
   const normalizedQuery = query.trim().toLowerCase();
-  const rows = view === "grouped" ? GROUPED_ROWS : WALLET_ROWS;
+  const rows = view === "grouped" ? groupedRows : walletRows;
   const matchesQuery = (row: RichListRow) => {
     if (!normalizedQuery) {
       return true;
@@ -216,6 +210,7 @@ function GroupRows({
   toggleLabel: string;
 }) {
   const format = useFormatters();
+  const { shareOfSupply, usdValue } = useRichList();
   const expandable = wallets.length > 1;
 
   return (

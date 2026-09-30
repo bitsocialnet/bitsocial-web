@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { ENTITY_ROWS, SNAPSHOT, shareOfSupply } from "@/lib/rich-list/holders";
+import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
 import { type Category, entityCategory } from "./primitives";
 
@@ -9,8 +9,9 @@ type Segment = { key: string; label: string; share: number; category: Category; 
 export default function SupplyStrip() {
   const { t } = useTranslation();
   const format = useFormatters();
+  const { entityRows, snapshot, shareOfSupply } = useRichList();
 
-  const linked: Segment[] = ENTITY_ROWS.filter(
+  const linked: Segment[] = entityRows.filter(
     (row) => row.entity.kind === "linked" && row.balance > 0,
   )
     .sort((a, b) => b.balance - a.balance)
@@ -21,11 +22,11 @@ export default function SupplyStrip() {
       category: entityCategory(row.entity),
       href: `#entity-${row.entity.id}`,
     }));
-  const teamBalance = ENTITY_ROWS.filter((row) => row.entity.kind === "team").reduce(
+  const teamBalance = entityRows.filter((row) => row.entity.kind === "team").reduce(
     (sum, row) => sum + row.balance,
     0,
   );
-  const poolBalance = ENTITY_ROWS.filter((row) => row.entity.kind === "pool").reduce(
+  const poolBalance = entityRows.filter((row) => row.entity.kind === "pool").reduce(
     (sum, row) => sum + row.balance,
     0,
   );
@@ -52,8 +53,8 @@ export default function SupplyStrip() {
       key: "other",
       label: t("richList.strip.everyoneElse", {
         count:
-          SNAPSHOT.holderCount -
-          ENTITY_ROWS.reduce(
+          snapshot.holderCount -
+          entityRows.reduce(
             (sum, row) => sum + row.wallets.filter((w) => w.balance > 0).length,
             0,
           ),

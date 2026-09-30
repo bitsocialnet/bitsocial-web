@@ -8,10 +8,10 @@
 
 .rl-page {
   --rl-width: min(100% - 2 * var(--space-page-inline), 72rem);
-  --rl-linked: #d97706;
-  --rl-confirmed: var(--rl-linked);
-  --rl-likely: color-mix(in oklab, var(--rl-linked) 62%, var(--surface));
-  --rl-possible: color-mix(in oklab, var(--rl-linked) 34%, var(--surface));
+  /* Confirmed carries the most contrast against the page in both themes. */
+  --rl-confirmed: #b45309;
+  --rl-likely: #f59e0b;
+  --rl-possible: #fcd34d;
   --rl-team: var(--signal);
   --rl-pool: hsl(var(--muted-foreground) / 0.6);
   --rl-other: hsl(var(--border));
@@ -20,7 +20,9 @@
 }
 
 .dark .rl-page {
-  --rl-linked: #f59e0b;
+  --rl-confirmed: #fcd34d;
+  --rl-likely: #f59e0b;
+  --rl-possible: #b45309;
 }
 
 .rl-page ::selection {
@@ -116,16 +118,20 @@
 .rl-origin-liquiditySeed {
   background: var(--rl-team);
 }
-.rl-fill-confirmed,
-.rl-origin-airdropClaims {
+.rl-fill-confirmed {
   background: var(--rl-confirmed);
 }
 .rl-fill-likely {
   background: var(--rl-likely);
 }
-.rl-fill-possible,
-.rl-origin-liquidityMining {
+.rl-fill-possible {
   background: var(--rl-possible);
+}
+.rl-origin-airdropClaims {
+  background: hsl(var(--foreground) / 0.72);
+}
+.rl-origin-liquidityMining {
+  background: hsl(var(--foreground) / 0.32);
 }
 .rl-fill-pool {
   background: var(--rl-pool);
@@ -568,8 +574,13 @@ a.rl-holder-label:hover {
 }
 
 @media (max-width: 640px) {
-  .rl-col-usd {
+  .rl-col-usd,
+  .rl-holders .rl-col-rank {
     display: none;
+  }
+
+  .rl-subrow td:nth-child(2) {
+    padding-inline-start: 1rem;
   }
 
   .rl-table th,
@@ -612,7 +623,7 @@ a.rl-holder-label:hover {
 }
 
 .rl-evidence:target {
-  border-color: var(--rl-linked);
+  border-color: var(--rl-likely);
 }
 
 .rl-evidence-head {
@@ -958,4 +969,32 @@ a.rl-holder-label:hover {
   border-radius: 0.5rem;
   outline: none;
   box-shadow: var(--focus-ring);
+}
+
+/* ---------- Live status ---------- */
+
+.rl-live-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-inline-end: 0.5rem;
+  border-radius: 999px;
+  background: #16a34a;
+  vertical-align: 0.05em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rl-live-dot {
+    animation: rl-live-pulse 2.4s ease-out infinite;
+  }
+}
+
+@keyframes rl-live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.45);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 0.45rem rgba(22, 163, 74, 0);
+  }
 }

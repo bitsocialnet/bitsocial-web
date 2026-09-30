@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import BackToTop from "@/components/back-to-top";
 import Footer from "@/components/footer";
 import Topbar, { TopbarSpacer } from "@/components/topbar";
-import { SNAPSHOT } from "@/lib/rich-list/holders";
 import { useHashScroll } from "@/lib/use-hash-scroll";
 import Airdrops from "./Airdrops";
 import HoldersTable from "./HoldersTable";
@@ -13,15 +12,23 @@ import LinkedWallets from "./LinkedWallets";
 import Method from "./Method";
 import SupplyStrip from "./SupplyStrip";
 import TeamAllocation from "./TeamAllocation";
-import { useFormatters } from "./format";
+import { RichListDataProvider } from "./data-context";
+import LiveStatus from "./LiveStatus";
 import { RichSection } from "./primitives";
 
 const JUMP_LINKS = ["holders", "linked-wallets", "team", "airdrops", "history", "method"] as const;
 
 export default function RichListApp() {
+  return (
+    <RichListDataProvider>
+      <RichListPage />
+    </RichListDataProvider>
+  );
+}
+
+function RichListPage() {
   useHashScroll();
   const { t } = useTranslation();
-  const format = useFormatters();
 
   return (
     <div className="shell rl-page">
@@ -33,13 +40,7 @@ export default function RichListApp() {
           <header className="rl-hero">
             <h1 className="rl-title">{t("richList.hero.title")}</h1>
             <p className="rl-lead">{t("richList.hero.lead")}</p>
-            <p className="rl-snapshot">
-              {t("richList.hero.snapshot", {
-                date: format.day(SNAPSHOT.generatedAt),
-                count: SNAPSHOT.holderCount,
-                price: format.price(SNAPSHOT.priceUsd),
-              })}
-            </p>
+            <LiveStatus />
             <SupplyStrip />
             <nav className="rl-jump" aria-label={t("richList.hero.jumpLabel")}>
               {JUMP_LINKS.map((id) => (

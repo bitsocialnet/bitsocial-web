@@ -1,12 +1,20 @@
-import snapshot from "@/data/bso-holders.json";
+import committedSnapshot from "@/data/bso-holders.json";
 import { BSO_TOKEN_ADDRESS } from "@/lib/site";
 import { ENTITIES, PLEB_PER_BSO, type Chain, type Entity } from "./data";
 
 export type Holder = { address: string; balance: number; isContract: boolean };
 
+export type Snapshot = {
+  generatedAt: string;
+  priceUsd: number | null;
+  totalSupply: number;
+  holderCount: number;
+  holders: Holder[];
+};
+
 export type EntityRow = {
   entity: Entity;
-  /** Every wallet of the entity, with its snapshot balance (0 when it no longer holds BSO). */
+  /** Every wallet of the entity, with its balance (0 when it no longer holds BSO). */
   wallets: { address: string; balance: number; role?: string; patternOnly?: boolean }[];
   balance: number;
 };
@@ -16,29 +24,20 @@ export type RichListRow =
   | { type: "entity"; row: EntityRow; rank: number }
   | { type: "wallet"; holder: Holder; rank: number };
 
-export const SNAPSHOT = snapshot as {
-  generatedAt: string;
-  priceUsd: number | null;
-  totalSupply: number;
-  holderCount: number;
-  holders: Holder[];
+export type RichListData = {
+  snapshot: Snapshot;
+  entityRows: EntityRow[];
+  entityRowById: Map<string, EntityRow>;
+  /** Holders with linked wallets merged into one row per entity, largest first. */
+  groupedRows: RichListRow[];
+  /** Every wallet on its own, as a block explorer lists them. */
+  walletRows: RichListRow[];
+  shareOfSupply: (balance: number) => number;
+  usdValue: (bso: number) => number | null;
 };
 
-const holderByAddress = new Map(
-  SNAPSHOT.holders.map((holder) => [holder.address.toLowerCase(), holder]),
-);
-
-function toEntityRow(entity: Entity): EntityRow {
-  const wallets = entity.wallets.map((wallet) => {
-    const holder = holderByAddress.get(wallet.address);
-    return { ...wallet, address: holder?.address ?? wallet.address, balance: holder?.balance ?? 0 };
-  });
-  return { entity, wallets, balance: wallets.reduce((sum, wallet) => sum + wallet.balance, 0) };
-}
-
-export const ENTITY_ROWS: EntityRow[] = ENTITIES.map(toEntityRow);
-
-export const ENTITY_ROW_BY_ID = new Map(ENTITY_ROWS.map((row) => [row.entity.id, row]));
+/** The snapshot committed with the site (`yarn rich-list:snapshot`): first paint and fallback. */
+export const COMMITTED_SNAPSHOT = committedSnapshot as Snapshot;
 
 const entityIdByAddress = new Map(
   ENTITIES.flatMap((entity) =>
@@ -50,42 +49,51 @@ export function getEntityIdForAddress(address: string): string | undefined {
   return entityIdByAddress.get(address.toLowerCase());
 }
 
-/** Holders with linked wallets merged into one row per entity, largest first. */
-export const GROUPED_ROWS: RichListRow[] = (() => {
+export function buildRichListData(snapshot: Snapshot): RichListData {
+  const holderByAddress = new Map(
+    snapshot.holders.map((holder) => [holder.address.toLowerCase(), holder]),
+  );
+
+  const entityRows = ENTITIES.map((entity): EntityRow => {
+    const wallets = entity.wallets.map((wallet) => {
+      const holder = holderByAddress.get(wallet.address);
+      return {
+        ...wallet,
+        address: holder?.address ?? wallet.address,
+        balance: holder?.balance ?? 0,
+      };
+    });
+    return { entity, wallets, balance: wallets.reduce((sum, wallet) => sum + wallet.balance, 0) };
+  });
+
   const entries: ({ type: "entity"; row: EntityRow } | { type: "wallet"; holder: Holder })[] = [
-    ...ENTITY_ROWS.filter((row) => row.balance > 0).map((row) => ({
-      type: "entity" as const,
-      row,
-    })),
-    ...SNAPSHOT.holders
+    ...entityRows.filter((row) => row.balance > 0).map((row) => ({ type: "entity" as const, row })),
+    ...snapshot.holders
       .filter((holder) => !entityIdByAddress.has(holder.address.toLowerCase()))
       .map((holder) => ({ type: "wallet" as const, holder })),
   ];
   const balanceOf = (entry: (typeof entries)[number]) =>
     entry.type === "entity" ? entry.row.balance : entry.holder.balance;
 
-  return entries
-    .sort((a, b) => balanceOf(b) - balanceOf(a))
-    .map((entry, index) => ({ ...entry, rank: index + 1 }));
-})();
-
-/** Every wallet on its own, as a block explorer lists them. */
-export const WALLET_ROWS: RichListRow[] = SNAPSHOT.holders.map((holder, index) => ({
-  type: "wallet",
-  holder,
-  rank: index + 1,
-}));
-
-export function shareOfSupply(balance: number) {
-  return balance / SNAPSHOT.totalSupply;
+  return {
+    snapshot,
+    entityRows,
+    entityRowById: new Map(entityRows.map((row) => [row.entity.id, row])),
+    groupedRows: entries
+      .sort((a, b) => balanceOf(b) - balanceOf(a))
+      .map((entry, index) => ({ ...entry, rank: index + 1 })),
+    walletRows: snapshot.holders.map((holder, index) => ({
+      type: "wallet",
+      holder,
+      rank: index + 1,
+    })),
+    shareOfSupply: (balance) => balance / snapshot.totalSupply,
+    usdValue: (bso) => (snapshot.priceUsd === null ? null : bso * snapshot.priceUsd),
+  };
 }
 
 export function plebToBso(pleb: number) {
   return pleb / PLEB_PER_BSO;
-}
-
-export function usdValue(bso: number) {
-  return SNAPSHOT.priceUsd === null ? null : bso * SNAPSHOT.priceUsd;
 }
 
 export function explorerAddressUrl(chain: Chain, address: string) {

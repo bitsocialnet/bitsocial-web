@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { AIRDROP_ROUNDS, DISTINCT_CLAIMERS } from "@/lib/rich-list/data";
-import { SNAPSHOT, plebToBso, usdValue } from "@/lib/rich-list/holders";
+import { plebToBso } from "@/lib/rich-list/holders";
+import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
 import { ExternalLink, RichSection, TelegramLinks } from "./primitives";
 
@@ -14,6 +15,7 @@ const SIGNUP_WINDOWS = {
 export default function Airdrops() {
   const { t } = useTranslation();
   const format = useFormatters();
+  const { snapshot, usdValue } = useRichList();
   const totalPleb = AIRDROP_ROUNDS.reduce((sum, round) => sum + round.plebClaimed, 0);
 
   const metricRows: { key: string; cells: ReactNode[]; total?: ReactNode }[] = [
@@ -116,8 +118,8 @@ export default function Airdrops() {
       </div>
       <p className="rl-note">
         {t("richList.airdrops.note", {
-          price: format.price(SNAPSHOT.priceUsd),
-          date: format.day(SNAPSHOT.generatedAt),
+          price: format.price(snapshot.priceUsd),
+          date: format.day(snapshot.generatedAt),
         })}
       </p>
     </RichSection>
