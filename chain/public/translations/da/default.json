@@ -3,7 +3,8 @@
     "language": "Sprog",
     "theme": "Tema",
     "mainSite": "Hovedsitet",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "richList": "Indehaverliste"
   },
   "languageSelector": {
     "title": "Vælg sprog",
@@ -71,12 +72,12 @@
     },
     "tokenomics": {
       "title": "Sunde penge.",
-      "supporting": "BSO er en ERC-20 med fast udbud: 210 millioner, ingen inflation, deflationær af design. Hele udbuddet blev airdroppet til omkring 600 personer i begyndelsen af 2022, uden presale og uden at noget blev sat til side, før fællesskabet fik sit. Kontrakten er uforanderlig og uden admin, så reglerne er faste for evigt.",
+      "supporting": "BSO er en ERC-20 med fast udbud: 210 millioner, ingen inflation, deflationær af design. Den blev givet væk i 2022 gennem tre airdrops og belønninger fra likviditetsmining, uden presale og uden teamallokering. Kontrakten er uforanderlig og uden admin, så reglerne er faste for evigt.",
       "supply": {
         "cap": "BSO's maksimale udbud · fast for evigt"
       },
       "traits": {
-        "airdropped": "100% airdroppet, intet team eller presale",
+        "airdropped": "Ingen teamallokering eller presale",
         "fixedCap": "Fast loft, nul emissioner",
         "deflationary": "Deflationær: udbuddet kan kun falde"
       },
@@ -99,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "Airdroppet",
-        "note": "Omkring 600 personer, fordelt på tre claim-runder mellem januar og februar 2022. De tilmeldte sig via en Telegram-bot, henvisningskoder gav større andele, og hver modtager blev gennemgået manuelt, så ingen kunne slippe af sted med for stor en del af udbuddet. Ingen presale, ingen teamallokering, intet solgt."
+        "label": "Fordelingen",
+        "note": "Tre airdrop-runder i januar og februar 2022, claimet af 1.510 adresser. Runde 1 brugte en Telegram-bot med henvisningsbonusser, og Esteban gennemgik dens henvisninger manuelt for misbrug; runde 2 og 3 foregik på Twitter og Reddit. Omkring 63% af udbuddet blev fordelt gennem airdroppene og 34% som belønninger til folk, der stillede likviditet til rådighed; resten blev startlikviditet i lanceringspoolene. Ingen presale, ingen teamallokering, intet solgt.",
+        "richListLink": "Se alle indehavere og alle tre runder"
       },
       "contract": {
         "label": "Hele kontrakten",
@@ -293,5 +295,317 @@
     "returnToOrigin": "Tilbage til forrige sted",
     "toTop": "Tilbage til toppen",
     "toBottom": "Gå til bunden"
+  },
+  "richList": {
+    "meta": {
+      "title": "BSO-indehaverliste - Hvem ejer BSO",
+      "description": "Alle BSO-indehavere, med forbundne wallets samlet i grupper, teamets wallets markeret og on-chain-beviserne bag hver forbindelse. Plus historien om de tre airdrops i 2022."
+    },
+    "hero": {
+      "title": "Hvem ejer BSO",
+      "lead": "Alle BSO-wallets, hvor wallets, der tilhører samme indehaver, er samlet i grupper, og teamets wallets er markeret. Hver forbindelse viser transaktionerne bag den, så du selv kan tjekke den.",
+      "jumpLabel": "Afsnit",
+      "status": {
+        "live": "Live fra chainen: {{count}} wallets, BSO til {{price}}. Opdateret {{ago}}.",
+        "loading": "Snapshot fra {{date}}: {{count}} wallets, BSO til {{price}}. Indlæser live-data…",
+        "unavailable": "Live-data er ikke tilgængelige lige nu, så dette er snapshottet fra {{date}}: {{count}} wallets, BSO til {{price}}."
+      }
+    },
+    "jump": {
+      "holders": "Indehavere",
+      "linked-wallets": "Forbundne wallets",
+      "team": "Team",
+      "airdrops": "Airdrops",
+      "history": "Historie",
+      "method": "Metode"
+    },
+    "strip": {
+      "label": "Andel af det samlede udbud på 210 millioner BSO, som hver gruppe ejer",
+      "team": "Team",
+      "pool": "Uniswap-pool",
+      "everyoneElse_one": "Alle andre ({{count}} wallet)",
+      "everyoneElse_other": "Alle andre ({{count}} wallets)"
+    },
+    "categories": {
+      "team": "Team",
+      "pool": "Likviditetspool",
+      "confirmed": "Bekræftet",
+      "likely": "Sandsynlig",
+      "possible": "Mulig",
+      "other": "Ikke forbundet"
+    },
+    "table": {
+      "title": "Indehavere",
+      "lead": "Forbundne wallets er slået sammen i én række. Skift til »Pr. wallet« for at se hver adresse, som Etherscan viser den.",
+      "viewLabel": "Vis indehavere",
+      "view": {
+        "grouped": "Grupperet",
+        "wallets": "Pr. wallet"
+      },
+      "searchLabel": "Søg efter adresse eller indehavernavn",
+      "searchPlaceholder": "Søg efter en adresse",
+      "caption": "BSO-indehavere efter saldo",
+      "holder": "Indehaver",
+      "balance": "BSO",
+      "share": "Andel",
+      "value": "Værdi",
+      "contract": "Kontrakt",
+      "walletCount_one": "{{count}} wallet",
+      "walletCount_other": "{{count}} wallets",
+      "noMatch": "Ingen indehaver matcher denne søgning.",
+      "showAll_one": "Vis {{count}} række",
+      "showAll_other": "Vis alle {{count}} rækker"
+    },
+    "evidenceLinks": "Transaktioner som bevis",
+    "telegramSources": "Telegram-kilder",
+    "linked": {
+      "title": "Forbundne wallets",
+      "lead": "Wallets grupperes kun, når chainen viser en forbindelse: tokens eller gas, der flyttes mellem dem, en fælles privat finansieringskilde, en multisig-ejer eller et identisk købsmønster. Hver gruppe viser transaktionerne bag den.",
+      "confidence": {
+        "confirmed": "Disse wallets foretager transaktioner med hinanden, deler en privat finansieringskilde eller kontrollerer hinanden.",
+        "likely": "Flere overførsler fra én kilde, som er svære at forklare på anden vis.",
+        "possible": "En enkelt forbindelse, som også kunne være et salg eller en gave."
+      },
+      "holds_one": "{{amount}} BSO, {{share}} af udbuddet, i {{count}} wallet",
+      "holds_other": "{{amount}} BSO, {{share}} af udbuddet, fordelt på {{count}} wallets",
+      "walletList_one": "{{count}} wallet",
+      "walletList_other": "Alle {{count}} wallets",
+      "patternOnly": "forbundet via købsmønster"
+    },
+    "walletRoles": {
+      "deployer": "deployer",
+      "estebanEns": "estebanabaroa.eth",
+      "safe": "Safe-multisig",
+      "safeOwner": "Safe-ejer"
+    },
+    "entities": {
+      "esteban": {
+        "name": "Esteban (grundlægger)"
+      },
+      "rinse12": {
+        "name": "rinse12 (kerneudvikler)"
+      },
+      "tom": {
+        "name": "Tom (Tommaso Casaburi)"
+      },
+      "pool": {
+        "name": "Uniswap-pool for BSO/ETH"
+      },
+      "holderA": {
+        "name": "Indehaver A",
+        "summary": "Tolv wallets, der købte PLEB på Avalanche mellem 22. februar og 8. april 2022 og aldrig har solgt. Fem er forbundet med hinanden on-chain; de andre syv matcher den samme købers mønster.",
+        "evidence": {
+          "transfersToLpWallet": "To af de købende wallets sendte PLEB og AVAX til en tredje wallet, som brugte dem til likviditet og farming på Trader Joe: 1 mia. PLEB og 5 AVAX den 27. februar 2022, derefter 7,2 mia. PLEB og 34 AVAX mellem 28. februar og 2. marts. Den tredje wallet sendte 0,013 AVAX tilbage.",
+          "sharedFunder": "Én privat wallet finansierede tre af de købende wallets og intet andet. Hver eneste transaktion, den nogensinde har sendt, gik til dem, i rækkefølge: nonce 0 til 4 til den første, 5 til 7 til den anden, 8 til den tredje.",
+          "buyingPattern": "Syv andre wallets var alle nye, finansieret med én eller to udbetalinger fra en børs på omkring 2.000 til 3.400 dollar via Binance eller ChangeNOW (de samme tjenester, som de forbundne wallets brugte), vekslet helt til PLEB og aldrig brugt igen. De købte én efter én mellem 28. februar og 31. marts 2022 og overlappede aldrig tidsmæssigt med de forbundne wallets. Af alle 292 PLEB-købere fra februar til april 2022 passer ingen anden wallet til dette mønster.",
+          "neverSold": "Ingen af de tolv wallets har solgt eller flyttet sine tokens siden. Deres saldi kom uændrede gennem begge migreringer."
+        }
+      },
+      "holderB": {
+        "name": "Indehaver B",
+        "summary": "En 2-af-4 Safe-multisig, der samlede gamle BSO fra 14 wallets på én eftermiddag, plus en af dens ejere.",
+        "evidence": {
+          "owners": "Safen kræver underskrift fra 2 af sine 4 ejere. En af ejerne har også BSO direkte. Fire ejere kan være én person med flere nøgler eller en lille gruppe.",
+          "consolidation": "Den 1. juni 2024 mellem kl. 16:08 og 17:51 UTC modtog Safen 120,5 mia. gamle BSO fra 14 wallets. Den første overførsel var en test på 10 tokens, som Safen straks sendte tilbage.",
+          "vesting": "Den 12. august 2024 flyttede Safen 60,5 mia. gamle BSO over i en Sablier-vestingstream. Migreringen i 2026 krediterede den stream tilbage til Safen, og derfor modtog Safen to migreringsoverførsler.",
+          "commonSender": "Den samme wallet sendte gamle BSO både til Safe-ejeren (13,7 mia. den 8. marts 2024) og til Safen (1,5 mia. den 1. juni 2024)."
+        }
+      },
+      "holderC": {
+        "name": "Indehaver C",
+        "summary": "To wallets, der modtog gamle BSO fra den samme afsender.",
+        "evidence": {
+          "commonSender": "Én wallet sendte 4,7 mia. gamle BSO til den første den 19. august 2024 og 15,4 mia. til den anden den 14. november 2025. En fælles afsender kan også være én sælger, der betjener to købere."
+        }
+      },
+      "holderD": {
+        "name": "Indehaver D",
+        "summary": "Tre wallets forbundet gennem én af dem.",
+        "evidence": {
+          "sharedRecipient": "Den midterste wallet modtog en testoverførsel og derefter 5 mia. PLEB fra den første den 18. november 2022 og 8,2 mia. PLEB fra den tredje den 1. december 2022. Det kunne også være én køber, der betaler to sælgere."
+        }
+      },
+      "holderE": {
+        "name": "Indehaver E",
+        "summary": "To wallets fyldt op fra samme kilde.",
+        "evidence": {
+          "commonSender": "Én wallet sendte den første 39,4 mia. gamle BSO i syv overførsler mellem oktober 2024 og januar 2025 og den anden 2,0 mia. den 22. november 2025."
+        }
+      },
+      "holderF": {
+        "name": "Indehaver F",
+        "summary": "Én wallet, der delte sine tokens ud på tre nye wallets og betalte deres gas.",
+        "evidence": {
+          "split": "Den 10. marts 2024 sendte én wallet inden for syv minutter runde beløb af gamle BSO (12 mia., 8 mia. og 4 mia.) til tre nye wallets og sendte samme dag ETH til gas til to af dem. Den har stadig selv BSO."
+        }
+      },
+      "holderG": {
+        "name": "Indehaver G",
+        "summary": "To wallets finansieret af den samme afsender med tre års mellemrum.",
+        "evidence": {
+          "commonSender": "Én wallet sendte den anden 4,7 mia. PLEB i april 2022 og den første 6 mia. gamle BSO i januar 2025."
+        }
+      },
+      "holderH": {
+        "name": "Indehaver H",
+        "summary": "To wallets med én overførsel imellem sig.",
+        "evidence": {
+          "directTransfer": "Den første wallet sendte den anden 420 mio. PLEB den 24. april 2022."
+        }
+      },
+      "holderI": {
+        "name": "Indehaver I",
+        "summary": "To wallets med gentagne overførsler imellem sig.",
+        "evidence": {
+          "directTransfers": "Den anden wallet sendte den første 13,2 mia. gamle BSO den 30. oktober 2023 og 5 mia. den 8. november 2023."
+        }
+      }
+    },
+    "team": {
+      "title": "Ingen teamallokering",
+      "lead": "Der blev ikke reserveret tokens til teamet, investorer eller et presale. Her kan du se, hvor hver eneste PLEB kom fra, hvad teamets wallets har i dag, og hvad grundlæggeren sagde dengang.",
+      "origin": {
+        "caption": "Alle {{amount}} PLEB, der nogensinde er mintet, fordelt efter hvordan de blev mintet",
+        "label": "Mintede PLEB efter kilde",
+        "airdropClaims": {
+          "label": "Airdrop-claims",
+          "note": "{{amount}} PLEB claimet af 1.510 adresser i tre runder. Allokeringer, som ingen claimede, blev aldrig mintet."
+        },
+        "liquidityMining": {
+          "label": "Likviditetsmining",
+          "note": "{{amount}} PLEB udbetalt til folk, der stakede likviditet på Trader Joe, fra februar 2022 til maj 2023."
+        },
+        "liquiditySeed": {
+          "label": "Lanceringslikviditet",
+          "note": "{{amount}} PLEB mintet til deployeren og tilføjet de to lanceringspools sammen med 7 AVAX."
+        }
+      },
+      "facts": {
+        "liquiditySeed": "Den eneste mint til en team-wallet uden for airdroppet var lanceringslikviditeten: 50 mia. PLEB, tilføjet Trader Joe-poolen (40,1 mia.) og Pangolin-poolen (10 mia.) inden for syv minutter den 14. januar 2022.",
+        "teamClaims": "To teammedlemmer claimede i runde 1: Esteban 5 mia. PLEB og Tom 13,2 mia. PLEB, det tredjestørste af 767 claims. Tilsammen er det 2% af alle PLEB, der blev claimet i airdroppene.",
+        "noFarmRewards": "Ingen team-wallet modtog belønninger fra likviditetsmining. De 433 mia., der blev udbetalt, gik til 208 andre adresser.",
+        "migrationMintedNothing": "Migreringen i 2026 skabte ingen nye tokens til nogen: alle 210 mio. BSO blev sendt ud i én transaktion, i forhold til de gamle saldi."
+      },
+      "statementsTitle": "Hvad grundlæggeren sagde dengang",
+      "statementBy": "Esteban Abaroa, grundlægger, {{date}}",
+      "walletsTitle": "Teamets wallets i dag",
+      "person": "Person",
+      "wallet": "Wallet",
+      "total": "Team i alt",
+      "walletsNote": "Værd {{value}} til snapshot-prisen. Hver wallets fulde historik er offentlig på Etherscan.",
+      "poolNote": "Uniswap-poolens likviditetstokens ejes 79,1% af Estebans deployer-wallet og 7,4% af estebanabaroa.eth. De er ikke låst."
+    },
+    "airdrops": {
+      "title": "Tre airdrops, 2022",
+      "lead": "PLEB, den første generation af BSO, blev lanceret på Avalanche uden noget salg. Den blev givet væk i tre runder, og hvert claim blev overført til BSO med samme kurs: 7.114,6 PLEB for 1 BSO.",
+      "caption": "De tre PLEB-airdroprunder og hvad de claimede tokens er værd i dag",
+      "round": "Runde {{number}}",
+      "total": "I alt",
+      "rounds": {
+        "telegram": {
+          "name": "Telegram-bot",
+          "how": "Send en Avalanche-adresse til @plebbitbot, med bonusser for henvisninger"
+        },
+        "twitter": {
+          "name": "Twitter",
+          "how": "Synes godt om, retweet og tag tre venner i opslaget fra @getplebbit"
+        },
+        "reddit": {
+          "name": "Reddit",
+          "how": "Kommentér i tråden på r/plebbitairdrop; en bot tjekkede kontohistorikken"
+        }
+      },
+      "metrics": {
+        "how": "Sådan deltog man",
+        "window": "Tilmeldingsperiode",
+        "signups": "Annoncerede tilmeldinger",
+        "claimers": "Adresser, der claimede",
+        "plebClaimed": "Claimede PLEB",
+        "bsoToday": "BSO i dag",
+        "worthToday": "Værdi i dag",
+        "medianClaim": "Median-claim i dag",
+        "largestClaim": "Største claim i dag",
+        "sources": "Kilder"
+      },
+      "dateRange": "{{start}} – {{end}}",
+      "overCount": "over {{amount}}",
+      "distinct": "{{amount}} unikke",
+      "note": "Værdierne forudsætter, at alle claimede tokens stadig ejes, til {{price}} pr. BSO den {{date}}. Mange tilmeldinger var bots. Claims lukkede den 21. februar 2022, og allokeringer, som ingen claimede, blev aldrig mintet."
+    },
+    "history": {
+      "title": "Historie",
+      "lead": "Fra en Telegram-gruppe i 2021 til en uforanderlig ERC-20 i 2026.",
+      "redditThread": "Reddit-tråden",
+      "events": {
+        "groupOpens": {
+          "title": "Telegram-gruppen for plebbit åbner",
+          "body": "Gruppen, der i dag er t.me/bitsocialnet, starter juledag 2021."
+        },
+        "telegramRound": {
+          "title": "Runde 1: Telegram-botten",
+          "body": "I en uge tilmelder folk sig hos @plebbitbot. Udbuddet deles ligeligt mellem deltagerne, med bonusser for henvisninger. 3.312 adresser registrerer sig, før botten lukker den 14. januar."
+        },
+        "launch": {
+          "title": "Først likviditet, så claims",
+          "body": "Kl. 18:00 UTC tilføjer deployeren PLEB og 7 AVAX til Trader Joe og Pangolin. Claim-siden åbner omkring 30 minutter senere, så alle allokeringer lå fast, før nogen kunne handle."
+        },
+        "twitterRound": {
+          "title": "Runde 2: Twitter",
+          "body": "Et airdrop, der udelukkende foregik på Twitter: synes godt om, retweet og tag tre venner. Over 1.500 personer registrerer sig inden 6. februar."
+        },
+        "redditRound": {
+          "title": "Runde 3: Reddit",
+          "body": "Et eksperimentelt airdrop på r/plebbitairdrop, hvor en bot tjekkede, at dem, der kommenterede, havde ældre Reddit-aktivitet. Over 2.200 registrerer sig inden 12. februar, mange af dem bots."
+        },
+        "claimsClose": {
+          "title": "Claims lukker",
+          "body": "Ingen af de tre airdrops kan længere claimes. Tokens, som ingen claimede, bliver aldrig mintet."
+        },
+        "farm": {
+          "title": "Likviditetsmining starter",
+          "body": "Folk, der staker PLEB/AVAX-likviditet, tjener nyligt mintede PLEB. Farmen udbetaler frem til flytningen til Ethereum."
+        },
+        "ethereum": {
+          "title": "Flytningen til Ethereum",
+          "body": "Efter en afstemning på Snapshot fryses PLEB, og hver saldo, inklusive låste tokens, likviditetspositioner og ikke-udbetalte farm-belønninger, udstedes igen på Ethereum som andengenerationstokenet. Indehaverne skal ikke gøre noget."
+        },
+        "rebrand": {
+          "title": "plebbit bliver til Bitsocial",
+          "body": "I løbet af marts 2026 tager projektet og dets token gradvist navnet Bitsocial."
+        },
+        "rebase": {
+          "title": "Udbuddet sat til 210 millioner",
+          "body": "Andengenerationstokenet rebases, så det samlede udbud er præcis 210 millioner: 7.114,6 gamle tokens bliver til 1."
+        },
+        "immutable": {
+          "title": "BSO bliver uforanderlig",
+          "body": "Den endelige BSO-kontrakt går live uden mint, ejer, pause eller proxy. Alle 210 mio. sendes ud i én transaktion, i forhold til de rebasede saldi."
+        }
+      }
+    },
+    "method": {
+      "title": "Metode og begrænsninger",
+      "lead": "Hvordan grupperne blev fundet, og hvad denne side ikke kan se.",
+      "howTitle": "Sådan blev wallets forbundet",
+      "how": {
+        "transfers": "Hver overførsel af PLEB, gamle BSO og BSO mellem to almindelige wallets blev sporet, uden børser, routere, pools og andre kontrakter. Safe-multisigs blev forbundet med deres ejere.",
+        "funders": "Den første wallet, der sendte AVAX eller ETH til hver af de største indehavere, blev sammenlignet. Børser finansierer tusindvis af wallets, så kun private finansieringskilder tæller som en forbindelse.",
+        "pattern": "For wallets uden direkte forbindelse blev købsadfærden sammenlignet med alle PLEB-købere i samme periode.",
+        "migrations": "Saldi blev fulgt gennem begge migreringer med 7.114,6 PLEB pr. BSO."
+      },
+      "limitsTitle": "Begrænsninger",
+      "limits": {
+        "exchangeOnly": "En indehaver, der finansierer hver wallet via en børs og aldrig flytter tokens mellem dem, efterlader ingen forbindelse on-chain. Nogle grupper kan stadig skjule flere wallets.",
+        "sales": "En overførsel mellem to wallets kan være et salg eller en gave. Grupper markeret som Mulig hviler på én sådan forbindelse.",
+        "contracts": "Tokens i andre kontrakter end Uniswap-poolen og Safen vises, som de er.",
+        "snapshot": "Saldi og pris opdateres fra chainen hvert femte minut, mens denne side er åben. Forbindelserne mellem wallets er undersøgt manuelt og opdateres ikke af sig selv."
+      },
+      "contracts": {
+        "gen1": "Gen 1: PLEB på Avalanche",
+        "gen2": "Gen 2: gamle BSO på Ethereum",
+        "gen3": "Gen 3: BSO i dag"
+      },
+      "snapshot": "Saldi og pris fra Blockscout: {{count}} wallets pr. {{date}}. Har du fundet en forkert eller manglende forbindelse? <contributeLink>Forbedr denne side</contributeLink>."
+    }
   }
 }

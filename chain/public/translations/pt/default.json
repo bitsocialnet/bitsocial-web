@@ -3,7 +3,8 @@
     "language": "Idioma",
     "theme": "Tema",
     "mainSite": "Site principal",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "richList": "Lista de detentores"
   },
   "languageSelector": {
     "title": "Selecionar idioma",
@@ -71,12 +72,12 @@
     },
     "tokenomics": {
       "title": "Dinheiro sólido.",
-      "supporting": "O BSO é um ERC-20 de oferta fixa: 210 milhões, sem inflação, deflacionário por design. Toda a oferta foi distribuída por airdrop a cerca de 600 pessoas no início de 2022, sem pré-venda e sem nada reservado antes da comunidade. O contrato é imutável e sem administrador, então as regras estão fixadas para sempre.",
+      "supporting": "O BSO é um ERC-20 de oferta fixa: 210 milhões, sem inflação, deflacionário por design. Ele foi distribuído em 2022 por meio de três airdrops e recompensas de mineração de liquidez, sem pré-venda e sem alocação para a equipe. O contrato é imutável e sem administrador, então as regras estão fixadas para sempre.",
       "supply": {
         "cap": "Oferta máxima de BSO · fixa para sempre"
       },
       "traits": {
-        "airdropped": "100% em airdrop, sem equipe nem pré-venda",
+        "airdropped": "Sem alocação para a equipe nem pré-venda",
         "fixedCap": "Limite fixo, zero emissões",
         "deflationary": "Deflacionário: a oferta só diminui"
       },
@@ -99,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "O airdrop",
-        "note": "Cerca de 600 pessoas, em três rodadas de resgate entre janeiro e fevereiro de 2022. Elas se cadastraram por meio de um bot do Telegram, códigos de indicação garantiam cotas maiores, e cada destinatário foi verificado manualmente para que ninguém ficasse com uma fatia grande demais da oferta. Sem pré-venda, sem alocação para a equipe, nada vendido."
+        "label": "A distribuição",
+        "note": "Três rodadas de airdrop em janeiro e fevereiro de 2022, resgatadas por 1.510 endereços. A rodada 1 usou um bot do Telegram com bônus por indicação, e o Esteban revisou as indicações manualmente em busca de abusos; as rodadas 2 e 3 aconteceram no Twitter e no Reddit. Cerca de 63% da oferta saiu pelos airdrops e 34% como recompensa para quem forneceu liquidez; o restante formou a liquidez inicial dos pools de lançamento. Sem pré-venda, sem alocação para a equipe, nada vendido.",
+        "richListLink": "Veja todos os detentores e as três rodadas"
       },
       "contract": {
         "label": "O contrato inteiro",
@@ -293,5 +295,322 @@
     "returnToOrigin": "Voltar ao ponto anterior",
     "toTop": "Voltar ao topo",
     "toBottom": "Ir para o final"
+  },
+  "richList": {
+    "meta": {
+      "title": "Lista de detentores de BSO - Quem tem BSO",
+      "description": "Todos os detentores de BSO, com as carteiras vinculadas agrupadas, as carteiras da equipe destacadas e as evidências on-chain por trás de cada vínculo. Além da história dos três airdrops de 2022."
+    },
+    "hero": {
+      "title": "Quem tem BSO",
+      "lead": "Todas as carteiras de BSO, com as carteiras do mesmo detentor agrupadas e as carteiras da equipe destacadas. Cada vínculo lista as transações que o sustentam, para que você possa conferir por conta própria.",
+      "jumpLabel": "Seções",
+      "status": {
+        "live": "Ao vivo da cadeia: {{count}} carteiras, BSO a {{price}}. Atualizado {{ago}}.",
+        "loading": "Snapshot de {{date}}: {{count}} carteiras, BSO a {{price}}. Carregando dados ao vivo…",
+        "unavailable": "Os dados ao vivo estão indisponíveis agora, então este é o snapshot de {{date}}: {{count}} carteiras, BSO a {{price}}."
+      }
+    },
+    "jump": {
+      "holders": "Detentores",
+      "linked-wallets": "Carteiras vinculadas",
+      "team": "Equipe",
+      "airdrops": "Airdrops",
+      "history": "História",
+      "method": "Método"
+    },
+    "strip": {
+      "label": "Fatia da oferta de 210 milhões de BSO em poder de cada grupo",
+      "team": "Equipe",
+      "pool": "Pool da Uniswap",
+      "everyoneElse_one": "Todos os demais ({{count}} carteira)",
+      "everyoneElse_many": "Todos os demais ({{count}} carteiras)",
+      "everyoneElse_other": "Todos os demais ({{count}} carteiras)"
+    },
+    "categories": {
+      "team": "Equipe",
+      "pool": "Pool de liquidez",
+      "confirmed": "Confirmado",
+      "likely": "Provável",
+      "possible": "Possível",
+      "other": "Não vinculado"
+    },
+    "table": {
+      "title": "Detentores",
+      "lead": "As carteiras vinculadas são unidas em uma única linha. Mude para Por carteira para ver cada endereço do jeito que o Etherscan lista.",
+      "viewLabel": "Mostrar detentores",
+      "view": {
+        "grouped": "Agrupado",
+        "wallets": "Por carteira"
+      },
+      "searchLabel": "Buscar por endereço ou nome do detentor",
+      "searchPlaceholder": "Buscar um endereço",
+      "caption": "Detentores de BSO por saldo",
+      "holder": "Detentor",
+      "balance": "BSO",
+      "share": "Participação",
+      "value": "Valor",
+      "contract": "Contrato",
+      "walletCount_one": "{{count}} carteira",
+      "walletCount_many": "{{count}} carteiras",
+      "walletCount_other": "{{count}} carteiras",
+      "noMatch": "Nenhum detentor corresponde a esta busca.",
+      "showAll_one": "Mostrar {{count}} linha",
+      "showAll_many": "Mostrar todas as {{count}} linhas",
+      "showAll_other": "Mostrar todas as {{count}} linhas"
+    },
+    "evidenceLinks": "Transações de evidência",
+    "telegramSources": "Fontes no Telegram",
+    "linked": {
+      "title": "Carteiras vinculadas",
+      "lead": "As carteiras só são agrupadas quando a cadeia mostra um vínculo: tokens ou gás circulando entre elas, um financiador privado em comum, um dono de multisig ou um padrão de compra idêntico. Cada grupo lista as transações que o sustentam.",
+      "confidence": {
+        "confirmed": "As carteiras fazem transações entre si, têm um financiador privado em comum ou controlam umas às outras.",
+        "likely": "Várias transferências de uma mesma origem, difíceis de explicar de outra forma.",
+        "possible": "Um único vínculo, que também pode ser uma venda ou um presente."
+      },
+      "holds_one": "{{amount}} BSO, {{share}} da oferta, em {{count}} carteira",
+      "holds_many": "{{amount}} BSO, {{share}} da oferta, distribuídos em {{count}} carteiras",
+      "holds_other": "{{amount}} BSO, {{share}} da oferta, distribuídos em {{count}} carteiras",
+      "walletList_one": "{{count}} carteira",
+      "walletList_many": "Todas as {{count}} carteiras",
+      "walletList_other": "Todas as {{count}} carteiras",
+      "patternOnly": "vinculada pelo padrão de compra"
+    },
+    "walletRoles": {
+      "deployer": "deployer",
+      "estebanEns": "estebanabaroa.eth",
+      "safe": "Multisig Safe",
+      "safeOwner": "Dono do Safe"
+    },
+    "entities": {
+      "esteban": {
+        "name": "Esteban (fundador)"
+      },
+      "rinse12": {
+        "name": "rinse12 (desenvolvedor principal)"
+      },
+      "tom": {
+        "name": "Tom (Tommaso Casaburi)"
+      },
+      "pool": {
+        "name": "Pool BSO/ETH da Uniswap"
+      },
+      "holderA": {
+        "name": "Detentor A",
+        "summary": "Doze carteiras que compraram PLEB na Avalanche entre 22 de fevereiro e 8 de abril de 2022 e nunca venderam. Cinco estão ligadas entre si on-chain; as outras sete seguem o padrão do mesmo comprador.",
+        "evidence": {
+          "transfersToLpWallet": "Duas das carteiras compradoras enviaram PLEB e AVAX para uma terceira carteira, que os usou para liquidez e farming na Trader Joe: 1 bilhão de PLEB e 5 AVAX em 27 de fevereiro de 2022, depois 7,2 bilhões de PLEB e 34 AVAX entre 28 de fevereiro e 2 de março. A terceira carteira devolveu 0,013 AVAX.",
+          "sharedFunder": "Uma carteira privada financiou três das carteiras compradoras e nada mais. Todas as transações que ela já enviou foram para elas, em ordem: nonces 0 a 4 para a primeira, 5 a 7 para a segunda, 8 para a terceira.",
+          "buyingPattern": "Outras sete carteiras eram todas novas: cada uma foi financiada por um ou dois saques de corretora de cerca de US$ 2.000 a US$ 3.400 via Binance ou ChangeNOW (os mesmos serviços usados pelas carteiras vinculadas), trocou tudo por PLEB e nunca mais foi usada. Elas compraram uma após a outra entre 28 de fevereiro e 31 de março de 2022, sem nunca se sobrepor às carteiras vinculadas. Entre todos os 292 compradores de PLEB de fevereiro a abril de 2022, nenhuma outra carteira se encaixa nesse padrão.",
+          "neverSold": "Nenhuma das doze carteiras vendeu ou moveu seus tokens desde então. Os saldos passaram pelas duas migrações sem alteração."
+        }
+      },
+      "holderB": {
+        "name": "Detentor B",
+        "summary": "Uma multisig Safe 2 de 4 que reuniu BSO antigo de 14 carteiras em uma só tarde, mais um de seus donos.",
+        "evidence": {
+          "owners": "O Safe precisa da assinatura de 2 de seus 4 donos. Um dos donos também tem BSO diretamente. Quatro donos podem significar uma pessoa com várias chaves ou um grupo pequeno.",
+          "consolidation": "Em 1º de junho de 2024, entre 16:08 e 17:51 UTC, o Safe recebeu 120,5 bilhões de BSO antigo de 14 carteiras. A primeira transferência foi um teste de 10 tokens que o Safe devolveu na hora.",
+          "vesting": "Em 12 de agosto de 2024, o Safe moveu 60,5 bilhões de BSO antigo para um stream de vesting na Sablier. A migração de 2026 creditou esse stream de volta ao Safe, e é por isso que o Safe recebeu duas transferências da migração.",
+          "commonSender": "A mesma carteira enviou BSO antigo tanto para o dono do Safe (13,7 bilhões em 8 de março de 2024) quanto para o Safe (1,5 bilhão em 1º de junho de 2024)."
+        }
+      },
+      "holderC": {
+        "name": "Detentor C",
+        "summary": "Duas carteiras que receberam BSO antigo do mesmo remetente.",
+        "evidence": {
+          "commonSender": "Uma carteira enviou 4,7 bilhões de BSO antigo para a primeira em 19 de agosto de 2024 e 15,4 bilhões para a segunda em 14 de novembro de 2025. Um remetente em comum também pode ser um único vendedor atendendo dois compradores."
+        }
+      },
+      "holderD": {
+        "name": "Detentor D",
+        "summary": "Três carteiras ligadas por meio de uma delas.",
+        "evidence": {
+          "sharedRecipient": "A carteira do meio recebeu uma transferência de teste e depois 5 bilhões de PLEB da primeira em 18 de novembro de 2022, e 8,2 bilhões de PLEB da terceira em 1º de dezembro de 2022. Também pode ser um único comprador pagando dois vendedores."
+        }
+      },
+      "holderE": {
+        "name": "Detentor E",
+        "summary": "Duas carteiras abastecidas pela mesma origem.",
+        "evidence": {
+          "commonSender": "Uma carteira enviou à primeira 39,4 bilhões de BSO antigo em sete transferências entre outubro de 2024 e janeiro de 2025, e à segunda 2,0 bilhões em 22 de novembro de 2025."
+        }
+      },
+      "holderF": {
+        "name": "Detentor F",
+        "summary": "Uma carteira que dividiu seus tokens entre três carteiras novas e pagou o gás delas.",
+        "evidence": {
+          "split": "Em 10 de março de 2024, em sete minutos, uma carteira enviou valores redondos de BSO antigo (12 bilhões, 8 bilhões e 4 bilhões) para três carteiras novas e, no mesmo dia, mandou ETH para gás a duas delas. Ela mesma ainda tem BSO."
+        }
+      },
+      "holderG": {
+        "name": "Detentor G",
+        "summary": "Duas carteiras financiadas pelo mesmo remetente, com três anos de diferença.",
+        "evidence": {
+          "commonSender": "Uma carteira enviou à segunda 4,7 bilhões de PLEB em abril de 2022 e à primeira 6 bilhões de BSO antigo em janeiro de 2025."
+        }
+      },
+      "holderH": {
+        "name": "Detentor H",
+        "summary": "Duas carteiras com uma transferência entre elas.",
+        "evidence": {
+          "directTransfer": "A primeira carteira enviou à segunda 420 milhões de PLEB em 24 de abril de 2022."
+        }
+      },
+      "holderI": {
+        "name": "Detentor I",
+        "summary": "Duas carteiras com transferências repetidas entre elas.",
+        "evidence": {
+          "directTransfers": "A segunda carteira enviou à primeira 13,2 bilhões de BSO antigo em 30 de outubro de 2023 e 5 bilhões em 8 de novembro de 2023."
+        }
+      }
+    },
+    "team": {
+      "title": "Sem alocação para a equipe",
+      "lead": "Nenhum token foi reservado para a equipe, investidores ou pré-venda. Veja aqui de onde veio cada PLEB, o que as carteiras da equipe têm hoje e o que o fundador disse na época.",
+      "origin": {
+        "caption": "Todos os {{amount}} de PLEB já cunhados, por forma de cunhagem",
+        "label": "PLEB cunhado por origem",
+        "airdropClaims": {
+          "label": "Resgates do airdrop",
+          "note": "{{amount}} de PLEB resgatados por 1.510 endereços em três rodadas. As alocações que ninguém resgatou nunca foram cunhadas."
+        },
+        "liquidityMining": {
+          "label": "Mineração de liquidez",
+          "note": "{{amount}} de PLEB pagos a quem fez staking de liquidez na Trader Joe, de fevereiro de 2022 a maio de 2023."
+        },
+        "liquiditySeed": {
+          "label": "Liquidez de lançamento",
+          "note": "{{amount}} de PLEB cunhados para o deployer e adicionados aos dois pools de lançamento com 7 AVAX."
+        }
+      },
+      "facts": {
+        "liquiditySeed": "A única cunhagem para uma carteira da equipe fora do airdrop foi a liquidez de lançamento: 50 bilhões de PLEB, adicionados ao pool da Trader Joe (40,1 bilhões) e ao pool da Pangolin (10 bilhões) em sete minutos, em 14 de janeiro de 2022.",
+        "teamClaims": "Dois membros da equipe resgataram na rodada 1: Esteban, 5 bilhões de PLEB, e Tom, 13,2 bilhões de PLEB, o terceiro maior de 767 resgates. Juntos, isso é 2% de todo o PLEB resgatado nos airdrops.",
+        "noFarmRewards": "Nenhuma carteira da equipe recebeu recompensas de mineração de liquidez. Os 433 bilhões pagos foram para 208 outros endereços.",
+        "migrationMintedNothing": "A migração de 2026 não criou tokens novos para ninguém: todos os 210 milhões de BSO saíram em uma única transação, na proporção dos saldos antigos."
+      },
+      "statementsTitle": "O que o fundador disse na época",
+      "statementBy": "Esteban Abaroa, fundador, {{date}}",
+      "walletsTitle": "Carteiras da equipe hoje",
+      "person": "Pessoa",
+      "wallet": "Carteira",
+      "total": "Total da equipe",
+      "walletsNote": "Valem {{value}} ao preço do snapshot. O histórico completo de cada carteira é público no Etherscan.",
+      "poolNote": "Os tokens de liquidez do pool da Uniswap estão 79,1% com a carteira deployer do Esteban e 7,4% com estebanabaroa.eth. Eles não estão bloqueados."
+    },
+    "airdrops": {
+      "title": "Três airdrops, 2022",
+      "lead": "O PLEB, a primeira geração do BSO, foi lançado na Avalanche sem nenhuma venda. Ele foi distribuído de graça em três rodadas, e cada resgate passou para o BSO na mesma taxa: 7.114,6 PLEB por 1 BSO.",
+      "caption": "As três rodadas do airdrop de PLEB e quanto valem hoje os tokens resgatados",
+      "round": "Rodada {{number}}",
+      "total": "Total",
+      "rounds": {
+        "telegram": {
+          "name": "Bot do Telegram",
+          "how": "Enviar um endereço da Avalanche para @plebbitbot, com bônus por indicações"
+        },
+        "twitter": {
+          "name": "Twitter",
+          "how": "Curtir, retuitar e marcar três amigos no post de @getplebbit"
+        },
+        "reddit": {
+          "name": "Reddit",
+          "how": "Comentar no tópico de r/plebbitairdrop; um bot verificava o histórico da conta"
+        }
+      },
+      "metrics": {
+        "how": "Como participar",
+        "window": "Inscrições",
+        "signups": "Inscrições anunciadas",
+        "claimers": "Endereços que resgataram",
+        "plebClaimed": "PLEB resgatado",
+        "bsoToday": "BSO hoje",
+        "worthToday": "Valor hoje",
+        "medianClaim": "Resgate mediano hoje",
+        "largestClaim": "Maior resgate hoje",
+        "sources": "Fontes"
+      },
+      "dateRange": "{{start}} – {{end}}",
+      "overCount": "mais de {{amount}}",
+      "distinct": "{{amount}} distintos",
+      "note": "Os valores supõem que cada token resgatado ainda está em carteira, a {{price}} por BSO em {{date}}. Muitas inscrições eram bots. Os resgates foram encerrados em 21 de fevereiro de 2022, e as alocações que ninguém resgatou nunca foram cunhadas."
+    },
+    "history": {
+      "title": "História",
+      "lead": "De um grupo no Telegram em 2021 a um ERC-20 imutável em 2026.",
+      "redditThread": "O tópico no Reddit",
+      "events": {
+        "groupOpens": {
+          "title": "Abre o grupo do plebbit no Telegram",
+          "body": "O grupo que hoje é t.me/bitsocialnet começa no dia de Natal de 2021."
+        },
+        "telegramRound": {
+          "title": "Rodada 1: o bot do Telegram",
+          "body": "Durante uma semana, as pessoas se inscrevem pelo @plebbitbot. A oferta é dividida igualmente entre os participantes, com bônus por indicações. 3.312 endereços se registram antes de o bot fechar, em 14 de janeiro."
+        },
+        "launch": {
+          "title": "Primeiro a liquidez, depois os resgates",
+          "body": "Às 18:00 UTC, o deployer adiciona PLEB e 7 AVAX à Trader Joe e à Pangolin. A página de resgate abre cerca de 30 minutos depois, então todas as alocações já estavam definidas antes que alguém pudesse negociar."
+        },
+        "twitterRound": {
+          "title": "Rodada 2: Twitter",
+          "body": "Um airdrop feito inteiramente no Twitter: curtir, retuitar e marcar três amigos. Mais de 1.500 pessoas se registram até 6 de fevereiro."
+        },
+        "redditRound": {
+          "title": "Rodada 3: Reddit",
+          "body": "Um airdrop experimental em r/plebbitairdrop, em que um bot verificava se quem comentava tinha atividade antiga no Reddit. Mais de 2.200 se registram até 12 de fevereiro, muitos deles bots."
+        },
+        "claimsClose": {
+          "title": "Fim dos resgates",
+          "body": "Nenhum dos três airdrops pode mais ser resgatado. Os tokens que ninguém resgatou nunca são cunhados."
+        },
+        "farm": {
+          "title": "Começa a mineração de liquidez",
+          "body": "Quem faz staking de liquidez PLEB/AVAX ganha PLEB recém-cunhado. O farm paga recompensas até a mudança para o Ethereum."
+        },
+        "ethereum": {
+          "title": "A mudança para o Ethereum",
+          "body": "Após uma votação no Snapshot, o PLEB é congelado e todos os saldos, incluindo tokens bloqueados, posições de liquidez e recompensas de farm não pagas, são reemitidos no Ethereum como o token de segunda geração. Os detentores não precisam fazer nada."
+        },
+        "rebrand": {
+          "title": "plebbit vira Bitsocial",
+          "body": "Ao longo de março de 2026, o projeto e seu token adotam gradualmente o nome Bitsocial."
+        },
+        "rebase": {
+          "title": "Oferta fixada em 210 milhões",
+          "body": "O token de segunda geração passa por um rebase para que a oferta total seja exatamente 210 milhões: 7.114,6 tokens antigos viram 1."
+        },
+        "immutable": {
+          "title": "O BSO se torna imutável",
+          "body": "O contrato final do BSO entra no ar sem cunhagem, dono, pausa ou proxy. Todos os 210 milhões saem em uma única transação, na proporção dos saldos após o rebase."
+        }
+      }
+    },
+    "method": {
+      "title": "Método e limites",
+      "lead": "Como os grupos foram encontrados e o que esta página não consegue ver.",
+      "howTitle": "Como as carteiras foram vinculadas",
+      "how": {
+        "transfers": "Toda transferência de PLEB, BSO antigo e BSO entre duas carteiras comuns foi rastreada, deixando de fora corretoras, roteadores, pools e outros contratos. As multisigs Safe foram vinculadas aos seus donos.",
+        "funders": "Foi comparada a primeira carteira a enviar AVAX ou ETH a cada grande detentor. Corretoras financiam milhares de carteiras, então só financiadores privados contam como vínculo.",
+        "pattern": "Para carteiras sem vínculo direto, o comportamento de compra foi comparado com o de todos os compradores de PLEB do mesmo período.",
+        "migrations": "Os saldos foram acompanhados pelas duas migrações a 7.114,6 PLEB por BSO."
+      },
+      "limitsTitle": "Limites",
+      "limits": {
+        "exchangeOnly": "Um detentor que financia todas as carteiras por meio de uma corretora e nunca move tokens entre elas não deixa nenhum vínculo on-chain. Alguns grupos ainda podem esconder mais carteiras.",
+        "sales": "Uma transferência entre duas carteiras pode ser uma venda ou um presente. Os grupos marcados como Possível se baseiam em um único vínculo desse tipo.",
+        "contracts": "Tokens mantidos por contratos que não sejam o pool da Uniswap e o Safe são listados como estão.",
+        "snapshot": "Os saldos e o preço são atualizados a partir da cadeia a cada cinco minutos enquanto esta página estiver aberta. Os vínculos entre carteiras são pesquisados manualmente e não se atualizam sozinhos."
+      },
+      "contracts": {
+        "gen1": "Gen 1: PLEB na Avalanche",
+        "gen2": "Gen 2: BSO antigo no Ethereum",
+        "gen3": "Gen 3: BSO hoje"
+      },
+      "snapshot": "Saldos e preço do Blockscout: {{count}} carteiras em {{date}}. Encontrou um vínculo errado ou faltando? <contributeLink>Melhore esta página</contributeLink>."
+    }
   }
 }

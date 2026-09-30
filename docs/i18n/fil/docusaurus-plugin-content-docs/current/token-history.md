@@ -21,8 +21,9 @@ buong contract address upang masuri ng sinuman ang tala nang nakapag-iisa.
 - **Address**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Explorer**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Dito nagsimula ang BSO. Ini-airdrop ang buong supply, nang walang presale at walang alokasyon para
-sa team na inuna kaysa sa komunidad. Ang contract ay isang upgradeable proxy, na karaniwang gawi
+Dito nagsimula ang BSO. Ipinamigay ang supply sa pamamagitan ng tatlong airdrop at mga reward mula
+sa liquidity mining, nang walang presale at walang alokasyon para sa team na inuna kaysa sa
+komunidad. Ang contract ay isang upgradeable proxy, na karaniwang gawi
 noong panahong iyon at nagpahintulot sa team na maglabas ng mga pag-aayos sa maagang yugto ng
 token.
 

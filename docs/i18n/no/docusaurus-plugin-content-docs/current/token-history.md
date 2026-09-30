@@ -20,8 +20,8 @@ slik at hvem som helst kan kontrollere historikken på egen hånd.
 - **Adresse**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Blokkutforsker**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Her startet BSO. Hele beholdningen ble delt ut via airdrop, uten forhåndssalg og uten en andel til
-teamet satt av foran fellesskapet. Kontrakten var en oppgraderbar proxy, som var vanlig praksis den
+Her startet BSO. Beholdningen ble delt ut gjennom tre airdrops og belønninger fra likviditetsmining,
+uten forhåndssalg og uten en andel til teamet satt av foran fellesskapet. Kontrakten var en oppgraderbar proxy, som var vanlig praksis den
 gangen og lot teamet levere rettelser i tokenets tidlige levetid.
 
 ## Gen 2: overgangen til Ethereum, 2024

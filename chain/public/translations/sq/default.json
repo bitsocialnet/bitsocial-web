@@ -3,7 +3,8 @@
     "language": "Gjuha",
     "theme": "Tema",
     "mainSite": "Faqja kryesore",
-    "faq": "Pyetje të shpeshta"
+    "faq": "Pyetje të shpeshta",
+    "richList": "Lista e mbajtësve"
   },
   "languageSelector": {
     "title": "Zgjidh gjuhën",
@@ -71,12 +72,12 @@
     },
     "tokenomics": {
       "title": "Para të shëndosha.",
-      "supporting": "BSO është një ERC-20 me furnizim të fiksuar: 210 milionë, pa inflacion, deflacionist nga dizajni. I gjithë furnizimi u shpërnda me airdrop te rreth 600 njerëz në fillim të vitit 2022, pa presale dhe pa asnjë pjesë të rezervuar përpara komunitetit. Kontrata e tij është e pandryshueshme dhe pa administrator, prandaj rregullat janë të fiksuara përgjithmonë.",
+      "supporting": "BSO është një ERC-20 me furnizim të fiksuar: 210 milionë, pa inflacion, deflacionist nga dizajni. U shpërnda falas në vitin 2022 përmes tre airdrop-eve dhe shpërblimeve nga liquidity mining, pa presale dhe pa alokim për ekipin. Kontrata e tij është e pandryshueshme dhe pa administrator, prandaj rregullat janë të fiksuara përgjithmonë.",
       "supply": {
         "cap": "Furnizimi maksimal i BSO · i fiksuar përgjithmonë"
       },
       "traits": {
-        "airdropped": "100% me airdrop, pa ekip e pa presale",
+        "airdropped": "Pa alokim për ekipin, pa presale",
         "fixedCap": "Kufi i fiksuar, zero emetime",
         "deflationary": "Deflacionist: furnizimi vetëm zvogëlohet"
       },
@@ -99,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "Airdrop-i",
-        "note": "Rreth 600 njerëz, në tre raunde marrjeje midis janarit dhe shkurtit 2022. U regjistruan përmes një boti në Telegram, kodet e referimit sollën pjesë më të mëdha, dhe çdo marrës u kontrollua me dorë që askush të mos merrte një pjesë shumë të madhe të furnizimit. Pa presale, pa alokim për ekipin, asgjë e shitur."
+        "label": "Shpërndarja",
+        "note": "Tre raunde airdrop-i në janar dhe shkurt 2022, të marra nga 1510 adresa. Raundi 1 përdori një bot në Telegram me bonuse për referime, dhe Esteban i kontrolloi me dorë referimet për abuzime; raundet 2 dhe 3 u zhvilluan në Twitter dhe Reddit. Rreth 63% e furnizimit u shpërnda përmes airdrop-eve dhe 34% si shpërblime për njerëzit që ofruan likuiditet; pjesa tjetër shërbeu si likuiditet fillestar për pool-et e nisjes. Pa presale, pa alokim për ekipin, asgjë e shitur.",
+        "richListLink": "Shiko çdo mbajtës dhe të tre raundet"
       },
       "contract": {
         "label": "E gjithë kontrata",
@@ -293,5 +295,317 @@
     "returnToOrigin": "Kthehu te vendi i mëparshëm",
     "toTop": "Kthehu lart",
     "toBottom": "Shko poshtë"
+  },
+  "richList": {
+    "meta": {
+      "title": "Lista e mbajtësve të BSO - Kush mban BSO",
+      "description": "Çdo mbajtës i BSO, me portofolet e lidhura të grupuara, portofolet e ekipit të shënuara dhe provat on-chain pas çdo lidhjeje. Plus historia e tre airdrop-eve të vitit 2022."
+    },
+    "hero": {
+      "title": "Kush mban BSO",
+      "lead": "Çdo portofol BSO, me portofolet që i përkasin të njëjtit mbajtës të grupuara bashkë dhe portofolet e ekipit të shënuara. Për çdo lidhje renditen transaksionet ku ajo mbështetet, që ta kontrollosh vetë.",
+      "jumpLabel": "Seksionet",
+      "status": {
+        "live": "Drejtpërdrejt nga zinxhiri: {{count}} portofole, BSO me çmim {{price}}. Përditësuar {{ago}}.",
+        "loading": "Snapshot-i i {{date}}: {{count}} portofole, BSO me çmim {{price}}. Po ngarkohen të dhënat e drejtpërdrejta…",
+        "unavailable": "Të dhënat e drejtpërdrejta nuk janë të disponueshme tani, prandaj ky është snapshot-i i {{date}}: {{count}} portofole, BSO me çmim {{price}}."
+      }
+    },
+    "jump": {
+      "holders": "Mbajtësit",
+      "linked-wallets": "Portofolet e lidhura",
+      "team": "Ekipi",
+      "airdrops": "Airdrop-et",
+      "history": "Historia",
+      "method": "Metoda"
+    },
+    "strip": {
+      "label": "Pjesa e furnizimit prej 210 milionë BSO që mban secili grup",
+      "team": "Ekipi",
+      "pool": "Pool-i i Uniswap",
+      "everyoneElse_one": "Të gjithë të tjerët ({{count}} portofol)",
+      "everyoneElse_other": "Të gjithë të tjerët ({{count}} portofole)"
+    },
+    "categories": {
+      "team": "Ekipi",
+      "pool": "Pool likuiditeti",
+      "confirmed": "E konfirmuar",
+      "likely": "E gjasshme",
+      "possible": "E mundshme",
+      "other": "Pa lidhje"
+    },
+    "table": {
+      "title": "Mbajtësit",
+      "lead": "Portofolet e lidhura bashkohen në një rresht. Kalo te Sipas portofolit për të parë çdo adresë ashtu siç e liston Etherscan.",
+      "viewLabel": "Shfaq mbajtësit",
+      "view": {
+        "grouped": "Të grupuar",
+        "wallets": "Sipas portofolit"
+      },
+      "searchLabel": "Kërko sipas adresës ose emrit të mbajtësit",
+      "searchPlaceholder": "Kërko një adresë",
+      "caption": "Mbajtësit e BSO sipas bilancit",
+      "holder": "Mbajtësi",
+      "balance": "BSO",
+      "share": "Pjesa",
+      "value": "Vlera",
+      "contract": "Kontratë",
+      "walletCount_one": "{{count}} portofol",
+      "walletCount_other": "{{count}} portofole",
+      "noMatch": "Asnjë mbajtës nuk përputhet me këtë kërkim.",
+      "showAll_one": "Shfaq {{count}} rresht",
+      "showAll_other": "Shfaq të {{count}} rreshtat"
+    },
+    "evidenceLinks": "Transaksionet provë",
+    "telegramSources": "Burimet në Telegram",
+    "linked": {
+      "title": "Portofolet e lidhura",
+      "lead": "Portofolet grupohen vetëm kur zinxhiri tregon një lidhje: tokenë ose gas që lëvizin mes tyre, një financues privat i përbashkët, një pronar multisig-u ose një model blerjeje identik. Për çdo grup renditen transaksionet ku ai mbështetet.",
+      "confidence": {
+        "confirmed": "Portofolet kryejnë transaksione me njëri-tjetrin, kanë një financues privat të përbashkët ose kontrollojnë njëri-tjetrin.",
+        "likely": "Disa transferime nga një burim i vetëm, që është e vështirë t'i shpjegosh ndryshe.",
+        "possible": "Një lidhje e vetme, që mund të jetë edhe shitje ose dhuratë."
+      },
+      "holds_one": "{{amount}} BSO, {{share}} e furnizimit, në {{count}} portofol",
+      "holds_other": "{{amount}} BSO, {{share}} e furnizimit, në {{count}} portofole",
+      "walletList_one": "{{count}} portofol",
+      "walletList_other": "Të {{count}} portofolet",
+      "patternOnly": "i lidhur nga modeli i blerjeve"
+    },
+    "walletRoles": {
+      "deployer": "deployer",
+      "estebanEns": "estebanabaroa.eth",
+      "safe": "Multisig Safe",
+      "safeOwner": "Pronar i Safe"
+    },
+    "entities": {
+      "esteban": {
+        "name": "Esteban (themeluesi)"
+      },
+      "rinse12": {
+        "name": "rinse12 (zhvilluesi kryesor)"
+      },
+      "tom": {
+        "name": "Tom (Tommaso Casaburi)"
+      },
+      "pool": {
+        "name": "Pool-i BSO/ETH i Uniswap"
+      },
+      "holderA": {
+        "name": "Mbajtësi A",
+        "summary": "Dymbëdhjetë portofole që blenë PLEB në Avalanche midis 22 shkurtit dhe 8 prillit 2022 dhe nuk kanë shitur kurrë. Pesë janë të lidhura mes tyre on-chain; shtatë të tjerat përputhen me modelin e të njëjtit blerës.",
+        "evidence": {
+          "transfersToLpWallet": "Dy nga portofolet blerëse i dërguan PLEB dhe AVAX një portofoli të tretë, i cili i përdori për likuiditet dhe farming në Trader Joe: 1 mld PLEB dhe 5 AVAX më 27 shkurt 2022, pastaj 7,2 mld PLEB dhe 34 AVAX midis 28 shkurtit dhe 2 marsit. Portofoli i tretë ktheu 0,013 AVAX.",
+          "sharedFunder": "Një portofol privat financoi tre nga portofolet blerëse dhe asgjë tjetër. Çdo transaksion që ka dërguar ndonjëherë shkoi te to, me radhë: nonce 0 deri 4 te i pari, 5 deri 7 te i dyti, 8 te i treti.",
+          "buyingPattern": "Shtatë portofole të tjera ishin të gjitha të reja: secili u financua me një ose dy tërheqje nga një exchange prej rreth $2000 deri $3400 përmes Binance ose ChangeNOW (të njëjtat shërbime që përdorën portofolet e lidhura), i shkëmbeu të gjitha në PLEB dhe nuk u përdor më kurrë. Ato blenë njëri pas tjetrit midis 28 shkurtit dhe 31 marsit 2022, pa u mbivendosur kurrë me portofolet e lidhura. Nga të gjithë 292 blerësit e PLEB nga shkurti deri në prill 2022, asnjë portofol tjetër nuk i përshtatet këtij modeli.",
+          "neverSold": "Asnjë nga dymbëdhjetë portofolet nuk i ka shitur apo lëvizur tokenët e vet që atëherë. Bilancet e tyre kaluan të pandryshuara nëpër të dy migrimet."
+        }
+      },
+      "holderB": {
+        "name": "Mbajtësi B",
+        "summary": "Një multisig Safe 2-nga-4 që mblodhi BSO të vjetër nga 14 portofole brenda një pasditeje, plus një nga pronarët e tij.",
+        "evidence": {
+          "owners": "Safe-i kërkon nënshkrimin e 2 nga 4 pronarët e tij. Një pronar mban edhe BSO drejtpërdrejt. Katër pronarë mund të nënkuptojnë një person me disa çelësa ose një grup të vogël.",
+          "consolidation": "Më 1 qershor 2024, midis orës 16:08 dhe 17:51 UTC, Safe-i mori 120,5 mld BSO të vjetër nga 14 portofole. Transferimi i parë ishte një provë me 10 tokenë, të cilën Safe-i e ktheu menjëherë.",
+          "vesting": "Më 12 gusht 2024, Safe-i zhvendosi 60,5 mld BSO të vjetër në një rrjedhë vesting në Sablier. Migrimi i vitit 2026 e kreditoi atë rrjedhë përsëri te Safe-i, prandaj Safe-i mori dy transferime migrimi.",
+          "commonSender": "I njëjti portofol i dërgoi BSO të vjetër si pronarit të Safe-it (13,7 mld më 8 mars 2024), ashtu edhe Safe-it (1,5 mld më 1 qershor 2024)."
+        }
+      },
+      "holderC": {
+        "name": "Mbajtësi C",
+        "summary": "Dy portofole që morën BSO të vjetër nga i njëjti dërgues.",
+        "evidence": {
+          "commonSender": "Një portofol i dërgoi të parit 4,7 mld BSO të vjetër më 19 gusht 2024 dhe të dytit 15,4 mld më 14 nëntor 2025. Një dërgues i përbashkët mund të jetë edhe një shitës i vetëm që u shërben dy blerësve."
+        }
+      },
+      "holderD": {
+        "name": "Mbajtësi D",
+        "summary": "Tre portofole të lidhura përmes njërit prej tyre.",
+        "evidence": {
+          "sharedRecipient": "Portofoli i mesit mori nga i pari një transferim prove dhe pastaj 5 mld PLEB më 18 nëntor 2022, dhe nga i treti 8,2 mld PLEB më 1 dhjetor 2022. Mund të jetë edhe një blerës i vetëm që paguan dy shitës."
+        }
+      },
+      "holderE": {
+        "name": "Mbajtësi E",
+        "summary": "Dy portofole të mbushura nga i njëjti burim.",
+        "evidence": {
+          "commonSender": "Një portofol i dërgoi të parit 39,4 mld BSO të vjetër në shtatë transferime midis tetorit 2024 dhe janarit 2025, dhe të dytit 2,0 mld më 22 nëntor 2025."
+        }
+      },
+      "holderF": {
+        "name": "Mbajtësi F",
+        "summary": "Një portofol që i ndau tokenët e vet në tre portofole të reja dhe u pagoi gas-in.",
+        "evidence": {
+          "split": "Më 10 mars 2024, brenda shtatë minutave, një portofol u dërgoi tre portofoleve të reja shuma të rrumbullakëta BSO të vjetër (12 mld, 8 mld dhe 4 mld) dhe po atë ditë u dërgoi dyve prej tyre ETH për gas. Ai vetë mban ende BSO."
+        }
+      },
+      "holderG": {
+        "name": "Mbajtësi G",
+        "summary": "Dy portofole të financuara nga i njëjti dërgues, me tre vjet diferencë.",
+        "evidence": {
+          "commonSender": "Një portofol i dërgoi të dytit 4,7 mld PLEB në prill 2022 dhe të parit 6 mld BSO të vjetër në janar 2025."
+        }
+      },
+      "holderH": {
+        "name": "Mbajtësi H",
+        "summary": "Dy portofole me një transferim mes tyre.",
+        "evidence": {
+          "directTransfer": "Portofoli i parë i dërgoi të dytit 420 mln PLEB më 24 prill 2022."
+        }
+      },
+      "holderI": {
+        "name": "Mbajtësi I",
+        "summary": "Dy portofole me transferime të përsëritura mes tyre.",
+        "evidence": {
+          "directTransfers": "Portofoli i dytë i dërgoi të parit 13,2 mld BSO të vjetër më 30 tetor 2023 dhe 5 mld më 8 nëntor 2023."
+        }
+      }
+    },
+    "team": {
+      "title": "Pa alokim për ekipin",
+      "lead": "Asnjë token nuk u rezervua për ekipin, investitorët apo për ndonjë presale. Ja nga erdhi çdo PLEB, çfarë mbajnë sot portofolet e ekipit dhe çfarë tha themeluesi në atë kohë.",
+      "origin": {
+        "caption": "Të gjithë {{amount}} PLEB të bërë mint ndonjëherë, sipas mënyrës së mint-it",
+        "label": "PLEB të bërë mint sipas burimit",
+        "airdropClaims": {
+          "label": "Marrjet nga airdrop-i",
+          "note": "{{amount}} PLEB të marra nga 1510 adresa në tre raunde. Alokimet që nuk i mori askush nuk u bënë kurrë mint."
+        },
+        "liquidityMining": {
+          "label": "Liquidity mining",
+          "note": "{{amount}} PLEB të paguara njerëzve që bënë staking likuiditeti në Trader Joe, nga shkurti 2022 deri në maj 2023."
+        },
+        "liquiditySeed": {
+          "label": "Likuiditeti i nisjes",
+          "note": "{{amount}} PLEB të bërë mint te deployer-i dhe të shtuara në dy pool-et e nisjes bashkë me 7 AVAX."
+        }
+      },
+      "facts": {
+        "liquiditySeed": "I vetmi mint te një portofol i ekipit jashtë airdrop-it ishte likuiditeti i nisjes: 50 mld PLEB, të shtuara në pool-in e Trader Joe (40,1 mld) dhe në pool-in e Pangolin (10 mld) brenda shtatë minutave më 14 janar 2022.",
+        "teamClaims": "Dy anëtarë të ekipit morën tokenë në raundin 1: Esteban 5 mld PLEB dhe Tom 13,2 mld PLEB, marrja e tretë më e madhe nga 767. Së bashku kjo është 2% e totalit të PLEB të marra në airdrop-e.",
+        "noFarmRewards": "Asnjë portofol i ekipit nuk mori shpërblime nga liquidity mining. 433 mld e paguara shkuan te 208 adresa të tjera.",
+        "migrationMintedNothing": "Migrimi i vitit 2026 nuk krijoi tokenë të rinj për askënd: të gjitha 210 mln BSO dolën në një transaksion të vetëm, në përpjesëtim me bilancet e vjetra."
+      },
+      "statementsTitle": "Çfarë tha themeluesi në atë kohë",
+      "statementBy": "Esteban Abaroa, themeluesi, {{date}}",
+      "walletsTitle": "Portofolet e ekipit sot",
+      "person": "Personi",
+      "wallet": "Portofoli",
+      "total": "Totali i ekipit",
+      "walletsNote": "Me vlerë {{value}} me çmimin e snapshot-it. Historia e plotë e çdo portofoli është publike në Etherscan.",
+      "poolNote": "Tokenët e likuiditetit të pool-it të Uniswap mbahen 79,1% nga portofoli deployer i Esteban dhe 7,4% nga estebanabaroa.eth. Ata nuk janë të bllokuar."
+    },
+    "airdrops": {
+      "title": "Tre airdrop-e, 2022",
+      "lead": "PLEB, brezi i parë i BSO, u nis në Avalanche pa asnjë shitje. U shpërnda falas në tre raunde dhe çdo marrje kaloi në BSO me të njëjtin kurs: 7114,6 PLEB për 1 BSO.",
+      "caption": "Tre raundet e airdrop-it të PLEB dhe sa vlejnë sot tokenët e marrë",
+      "round": "Raundi {{number}}",
+      "total": "Totali",
+      "rounds": {
+        "telegram": {
+          "name": "Boti në Telegram",
+          "how": "Dërgo një adresë Avalanche te @plebbitbot, me bonuse për referime"
+        },
+        "twitter": {
+          "name": "Twitter",
+          "how": "Pëlqe, ritwito dhe shëno tre miq te postimi i @getplebbit"
+        },
+        "reddit": {
+          "name": "Reddit",
+          "how": "Komento në temën e r/plebbitairdrop; një bot kontrollonte historikun e llogarisë"
+        }
+      },
+      "metrics": {
+        "how": "Si të merrje pjesë",
+        "window": "Periudha e regjistrimit",
+        "signups": "Regjistrime të njoftuara",
+        "claimers": "Adresa që morën",
+        "plebClaimed": "PLEB të marra",
+        "bsoToday": "BSO sot",
+        "worthToday": "Vlera sot",
+        "medianClaim": "Mediana e marrjeve sot",
+        "largestClaim": "Marrja më e madhe sot",
+        "sources": "Burimet"
+      },
+      "dateRange": "{{start}} – {{end}}",
+      "overCount": "mbi {{amount}}",
+      "distinct": "{{amount}} të veçanta",
+      "note": "Vlerat supozojnë se çdo token i marrë mbahet ende, me {{price}} për BSO më {{date}}. Shumë regjistrime ishin bote. Marrjet u mbyllën më 21 shkurt 2022 dhe alokimet që nuk i mori askush nuk u bënë kurrë mint."
+    },
+    "history": {
+      "title": "Historia",
+      "lead": "Nga një grup në Telegram në vitin 2021 te një ERC-20 i pandryshueshëm në vitin 2026.",
+      "redditThread": "Tema në Reddit",
+      "events": {
+        "groupOpens": {
+          "title": "Hapet grupi i plebbit në Telegram",
+          "body": "Grupi që sot është t.me/bitsocialnet nis ditën e Krishtlindjes së vitit 2021."
+        },
+        "telegramRound": {
+          "title": "Raundi 1: boti në Telegram",
+          "body": "Për një javë, njerëzit regjistrohen te @plebbitbot. Furnizimi ndahet në mënyrë të barabartë mes pjesëmarrësve, me bonuse për referime. 3312 adresa regjistrohen para se boti të mbyllet më 14 janar."
+        },
+        "launch": {
+          "title": "Fillimisht likuiditeti, pastaj marrjet",
+          "body": "Në orën 18:00 UTC, deployer-i shton PLEB dhe 7 AVAX në Trader Joe dhe Pangolin. Faqja e marrjes hapet rreth 30 minuta më vonë, kështu që çdo alokim ishte i fiksuar para se dikush të mund të tregtonte."
+        },
+        "twitterRound": {
+          "title": "Raundi 2: Twitter",
+          "body": "Një airdrop i zhvilluar tërësisht në Twitter: pëlqim, ritwitim dhe shënimi i tre miqve. Mbi 1500 njerëz regjistrohen deri më 6 shkurt."
+        },
+        "redditRound": {
+          "title": "Raundi 3: Reddit",
+          "body": "Një airdrop eksperimental në r/plebbitairdrop, ku një bot kontrollonte nëse komentuesit kishin aktivitet më të vjetër në Reddit. Mbi 2200 regjistrohen deri më 12 shkurt, shumë prej tyre bote."
+        },
+        "claimsClose": {
+          "title": "Marrjet mbyllen",
+          "body": "Asnjë nga tre airdrop-et nuk mund të merret më. Tokenët që nuk i mori askush nuk bëhen kurrë mint."
+        },
+        "farm": {
+          "title": "Nis liquidity mining",
+          "body": "Ata që bëjnë staking likuiditeti PLEB/AVAX fitojnë PLEB të sapobërë mint. Ferma paguan shpërblime deri në kalimin te Ethereum."
+        },
+        "ethereum": {
+          "title": "Kalimi te Ethereum",
+          "body": "Pas një votimi në Snapshot, PLEB ngrin dhe çdo bilanc, përfshirë tokenët e bllokuar, pozicionet e likuiditetit dhe shpërblimet e papaguara të fermës, rilëshohet në Ethereum si tokeni i brezit të dytë. Mbajtësit nuk duhet të bëjnë asgjë."
+        },
+        "rebrand": {
+          "title": "plebbit bëhet Bitsocial",
+          "body": "Gjatë marsit 2026, projekti dhe tokeni i tij marrin gradualisht emrin Bitsocial."
+        },
+        "rebase": {
+          "title": "Furnizimi vendoset në 210 milionë",
+          "body": "Tokeni i brezit të dytë kalon një rebase, që furnizimi total të jetë saktësisht 210 milionë: 7114,6 tokenë të vjetër bëhen 1."
+        },
+        "immutable": {
+          "title": "BSO bëhet i pandryshueshëm",
+          "body": "Kontrata përfundimtare e BSO del live pa mint, pronar, pauzë apo proxy. Të gjitha 210 mln dalin në një transaksion të vetëm, në përpjesëtim me bilancet pas rebase-it."
+        }
+      }
+    },
+    "method": {
+      "title": "Metoda dhe kufizimet",
+      "lead": "Si u gjetën grupet dhe çfarë nuk mund të shohë kjo faqe.",
+      "howTitle": "Si u lidhën portofolet",
+      "how": {
+        "transfers": "U gjurmua çdo transferim PLEB, BSO të vjetër dhe BSO mes dy portofoleve të zakonshme, duke lënë jashtë exchange-t, router-at, pool-et dhe kontratat e tjera. Multisig-ët Safe u lidhën me pronarët e tyre.",
+        "funders": "U krahasua portofoli i parë që i dërgoi AVAX ose ETH secilit mbajtës të madh. Exchange-t financojnë mijëra portofole, prandaj vetëm financuesit privatë llogariten si lidhje.",
+        "pattern": "Për portofolet pa lidhje të drejtpërdrejtë, sjellja e blerjeve u krahasua me atë të çdo blerësi të PLEB në të njëjtën periudhë.",
+        "migrations": "Bilancet u ndoqën nëpër të dy migrimet me 7114,6 PLEB për BSO."
+      },
+      "limitsTitle": "Kufizimet",
+      "limits": {
+        "exchangeOnly": "Një mbajtës që e financon çdo portofol përmes një exchange dhe nuk lëviz kurrë tokenë mes tyre nuk lë asnjë lidhje on-chain. Disa grupe mund të fshehin ende më shumë portofole.",
+        "sales": "Një transferim mes dy portofoleve mund të jetë shitje ose dhuratë. Grupet e shënuara si “E mundshme” mbështeten në një lidhje të vetme të tillë.",
+        "contracts": "Tokenët që mbahen nga kontrata të tjera përveç pool-it të Uniswap dhe Safe-it renditen ashtu siç janë.",
+        "snapshot": "Bilancet dhe çmimi rifreskohen nga zinxhiri çdo pesë minuta ndërsa kjo faqe është e hapur. Lidhjet mes portofoleve janë hulumtuar me dorë dhe nuk përditësohen vetë."
+      },
+      "contracts": {
+        "gen1": "Gen 1: PLEB në Avalanche",
+        "gen2": "Gen 2: BSO i vjetër në Ethereum",
+        "gen3": "Gen 3: BSO sot"
+      },
+      "snapshot": "Bilancet dhe çmimi nga Blockscout: {{count}} portofole më {{date}}. Gjete një lidhje të gabuar ose që mungon? <contributeLink>Përmirëso këtë faqe</contributeLink>."
+    }
   }
 }

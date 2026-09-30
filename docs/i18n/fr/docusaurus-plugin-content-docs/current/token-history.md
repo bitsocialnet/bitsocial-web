@@ -21,8 +21,9 @@ afin que chacun puisse contrôler ces informations de façon indépendante.
 - **Adresse** : `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Explorateur** : [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-C'est là que BSO a commencé. La totalité de l'offre a été distribuée par airdrop, sans prévente ni
-allocation réservée à l'équipe avant la communauté. Le contrat était un proxy évolutif, ce qui
+C'est là que BSO a commencé. L'offre a été distribuée au moyen de trois airdrops et de récompenses
+de minage de liquidité, sans prévente ni allocation réservée à l'équipe avant la
+communauté. Le contrat était un proxy évolutif, ce qui
 correspondait à la pratique courante de l'époque et permettait à l'équipe de livrer des correctifs
 pendant les premiers temps du token.
 

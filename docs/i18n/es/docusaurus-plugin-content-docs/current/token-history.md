@@ -21,8 +21,7 @@ contratos para que cualquiera pueda comprobar el registro por su cuenta.
 - **Dirección**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Explorador**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Aquí es donde empezó BSO. Todo el suministro se repartió mediante airdrop, sin preventa y sin ninguna
-asignación al equipo apartada por delante de la comunidad. El contrato era un proxy actualizable, la
+Aquí es donde empezó BSO. El suministro se regaló mediante tres airdrops y recompensas de minería de liquidez, sin preventa y sin ninguna asignación al equipo apartada por delante de la comunidad. El contrato era un proxy actualizable, la
 práctica habitual en aquel momento, que permitió al equipo publicar correcciones durante los primeros
 tiempos del token.
 

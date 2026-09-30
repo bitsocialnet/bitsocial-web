@@ -21,8 +21,7 @@ completes perquè qualsevol pugui comprovar-ne el registre pel seu compte.
 - **Adreça**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Explorador**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Aquí és on va començar BSO. Tot el subministrament es va repartir per airdrop, sense preventa ni cap
-assignació per a l'equip reservada per davant de la comunitat. El contracte era un proxy
+Aquí és on va començar BSO. El subministrament es va regalar mitjançant tres airdrops i recompenses de mineria de liquiditat, sense preventa ni cap assignació per a l'equip reservada per davant de la comunitat. El contracte era un proxy
 actualitzable, cosa que llavors era pràctica habitual i que va permetre a l'equip publicar
 correccions durant els primers temps del token.
 

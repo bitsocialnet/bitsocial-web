@@ -3,7 +3,8 @@
     "language": "Kieli",
     "theme": "Teema",
     "mainSite": "Pääsivusto",
-    "faq": "UKK"
+    "faq": "UKK",
+    "richList": "Haltijalista"
   },
   "languageSelector": {
     "title": "Valitse kieli",
@@ -71,12 +72,12 @@
     },
     "tokenomics": {
       "title": "Vankkaa rahaa.",
-      "supporting": "BSO on kiinteän tarjonnan ERC-20-token: 210 miljoonaa, ei inflaatiota, suunnitellusti deflatorinen. Koko tarjonta jaettiin airdropilla noin 600 ihmiselle alkuvuonna 2022, ilman ennakkomyyntiä ja ilman yhteisön edelle varattuja osuuksia. Sen älysopimus on muuttumaton ja ylläpitäjätön, joten säännöt ovat lukitut ikuisesti.",
+      "supporting": "BSO on kiinteän tarjonnan ERC-20-token: 210 miljoonaa, ei inflaatiota, suunnitellusti deflatorinen. Se jaettiin vuonna 2022 kolmella airdropilla ja likviditeettilouhinnan palkkioina, ilman ennakkomyyntiä ja ilman tiimin osuutta. Sen älysopimus on muuttumaton ja ylläpitäjätön, joten säännöt ovat lukitut ikuisesti.",
       "supply": {
         "cap": "BSO:n enimmäistarjonta · lukittu ikuisesti"
       },
       "traits": {
-        "airdropped": "100 % jaettu airdropilla, ei tiimiä eikä ennakkomyyntiä",
+        "airdropped": "Ei tiimin osuutta eikä ennakkomyyntiä",
         "fixedCap": "Kiinteä yläraja, nolla emissiota",
         "deflationary": "Deflatorinen: tarjonta vain pienenee"
       },
@@ -99,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "Airdrop",
-        "note": "Noin 600 ihmistä, kolmessa lunastuskierroksessa tammikuun ja helmikuun 2022 välillä. He ilmoittautuivat Telegram-botin kautta, suosituskoodit ansaitsivat suurempia osuuksia, ja jokainen saaja tarkistettiin käsin, jottei kukaan voisi kahmia liian suurta osaa tarjonnasta. Ei ennakkomyyntiä, ei tiimille varattua osuutta, mitään ei myyty."
+        "label": "Jakelu",
+        "note": "Kolme airdrop-kierrosta tammi- ja helmikuussa 2022, ja lunastajia oli 1 510 osoitetta. Kierroksella 1 käytettiin Telegram-bottia suosittelubonuksineen, ja Esteban tarkisti sen suosittelut käsin väärinkäytösten varalta; kierrokset 2 ja 3 järjestettiin Twitterissä ja Redditissä. Noin 63 % tarjonnasta jaettiin airdropeissa ja 34 % palkkioina likviditeettiä tarjonneille; loput käytettiin lanseerauspoolien alkulikviditeetiksi. Ei ennakkomyyntiä, ei tiimin osuutta, mitään ei myyty.",
+        "richListLink": "Katso jokainen haltija ja kaikki kolme kierrosta"
       },
       "contract": {
         "label": "Koko älysopimus",
@@ -293,5 +295,317 @@
     "returnToOrigin": "Takaisin edelliseen kohtaan",
     "toTop": "Takaisin ylös",
     "toBottom": "Siirry alas"
+  },
+  "richList": {
+    "meta": {
+      "title": "BSO:n haltijalista – kenellä BSO:ta on",
+      "description": "Jokainen BSO:n haltija: toisiinsa linkitetyt lompakot ryhmiteltyinä, tiimin lompakot merkittyinä ja jokaisen linkin taustalla oleva on-chain-näyttö. Lisäksi vuoden 2022 kolmen airdropin historia."
+    },
+    "hero": {
+      "title": "Kenellä BSO:ta on",
+      "lead": "Jokainen BSO-lompakko niin, että saman haltijan lompakot on ryhmitelty yhteen ja tiimin lompakot merkitty. Jokaisen linkin kohdalla luetellaan sen taustalla olevat transaktiot, joten voit tarkistaa sen itse.",
+      "jumpLabel": "Osiot",
+      "status": {
+        "live": "Suoraan ketjusta: {{count}} lompakkoa, BSO {{price}}. Päivitetty {{ago}}.",
+        "loading": "Tilannekuva päivältä {{date}}: {{count}} lompakkoa, BSO {{price}}. Ladataan reaaliaikaisia tietoja…",
+        "unavailable": "Reaaliaikaiset tiedot eivät ole juuri nyt saatavilla, joten tämä on tilannekuva päivältä {{date}}: {{count}} lompakkoa, BSO {{price}}."
+      }
+    },
+    "jump": {
+      "holders": "Haltijat",
+      "linked-wallets": "Linkitetyt lompakot",
+      "team": "Tiimi",
+      "airdrops": "Airdropit",
+      "history": "Historia",
+      "method": "Menetelmä"
+    },
+    "strip": {
+      "label": "Kunkin ryhmän osuus 210 miljoonan BSO:n tarjonnasta",
+      "team": "Tiimi",
+      "pool": "Uniswap-pooli",
+      "everyoneElse_one": "Kaikki muut ({{count}} lompakko)",
+      "everyoneElse_other": "Kaikki muut ({{count}} lompakkoa)"
+    },
+    "categories": {
+      "team": "Tiimi",
+      "pool": "Likviditeettipooli",
+      "confirmed": "Vahvistettu",
+      "likely": "Todennäköinen",
+      "possible": "Mahdollinen",
+      "other": "Ei linkitetty"
+    },
+    "table": {
+      "title": "Haltijat",
+      "lead": "Linkitetyt lompakot on yhdistetty yhdeksi riviksi. Valitse Lompakoittain nähdäksesi jokaisen osoitteen niin kuin Etherscan sen listaa.",
+      "viewLabel": "Näytä haltijat",
+      "view": {
+        "grouped": "Ryhmiteltynä",
+        "wallets": "Lompakoittain"
+      },
+      "searchLabel": "Hae osoitteella tai haltijan nimellä",
+      "searchPlaceholder": "Hae osoitetta",
+      "caption": "BSO:n haltijat saldon mukaan",
+      "holder": "Haltija",
+      "balance": "BSO",
+      "share": "Osuus tarjonnasta",
+      "value": "Arvo",
+      "contract": "Älysopimus",
+      "walletCount_one": "{{count}} lompakko",
+      "walletCount_other": "{{count}} lompakkoa",
+      "noMatch": "Yksikään haltija ei vastaa tätä hakua.",
+      "showAll_one": "Näytä {{count}} rivi",
+      "showAll_other": "Näytä kaikki {{count}} riviä"
+    },
+    "evidenceLinks": "Todisteena olevat transaktiot",
+    "telegramSources": "Telegram-lähteet",
+    "linked": {
+      "title": "Linkitetyt lompakot",
+      "lead": "Lompakot ryhmitellään vain, kun ketju osoittaa yhteyden: niiden välillä liikkuu tokeneita tai gas-varoja, niillä on yhteinen yksityinen rahoittaja tai multisig-omistaja, tai niiden ostokäyttäytyminen on identtinen. Jokaisen ryhmän kohdalla luetellaan sen taustalla olevat transaktiot.",
+      "confidence": {
+        "confirmed": "Lompakot tekevät transaktioita keskenään, niillä on yhteinen yksityinen rahoittaja tai ne hallitsevat toisiaan.",
+        "likely": "Useita siirtoja samasta lähteestä, joita on vaikea selittää muulla tavoin.",
+        "possible": "Yksittäinen yhteys, joka voi olla myös myynti tai lahja."
+      },
+      "holds_one": "{{amount}} BSO, {{share}} tarjonnasta, {{count}} lompakossa",
+      "holds_other": "{{amount}} BSO, {{share}} tarjonnasta, yhteensä {{count}} lompakossa",
+      "walletList_one": "{{count}} lompakko",
+      "walletList_other": "Kaikki {{count}} lompakkoa",
+      "patternOnly": "linkitetty ostokäyttäytymisen perusteella"
+    },
+    "walletRoles": {
+      "deployer": "deployer",
+      "estebanEns": "estebanabaroa.eth",
+      "safe": "Safe-multisig",
+      "safeOwner": "Safen omistaja"
+    },
+    "entities": {
+      "esteban": {
+        "name": "Esteban (perustaja)"
+      },
+      "rinse12": {
+        "name": "rinse12 (ydinkehittäjä)"
+      },
+      "tom": {
+        "name": "Tom (Tommaso Casaburi)"
+      },
+      "pool": {
+        "name": "Uniswapin BSO/ETH-pooli"
+      },
+      "holderA": {
+        "name": "Haltija A",
+        "summary": "Kaksitoista lompakkoa, jotka ostivat PLEBiä Avalanchella 22. helmikuuta ja 8. huhtikuuta 2022 välillä eivätkä ole koskaan myyneet. Viisi niistä on sidottu toisiinsa on-chain; loput seitsemän vastaavat saman ostajan toimintamallia.",
+        "evidence": {
+          "transfersToLpWallet": "Kaksi ostavista lompakoista lähetti PLEBiä ja AVAXia kolmannelle lompakolle, joka käytti ne Trader Joen likviditeettiin ja farmaukseen: 1 miljardi PLEBiä ja 5 AVAXia 27. helmikuuta 2022, sitten 7,2 miljardia PLEBiä ja 34 AVAXia 28. helmikuuta ja 2. maaliskuuta välillä. Kolmas lompakko lähetti takaisin 0,013 AVAXia.",
+          "sharedFunder": "Yksi yksityinen lompakko rahoitti kolmea ostavista lompakoista eikä mitään muuta. Jokainen sen koskaan lähettämä transaktio meni niille, järjestyksessä: noncet 0–4 ensimmäiselle, 5–7 toiselle ja 8 kolmannelle.",
+          "buyingPattern": "Seitsemän muuta lompakkoa olivat kukin uusia: ne rahoitettiin yhdellä tai kahdella noin 2 000–3 400 dollarin nostolla pörssistä Binancen tai ChangeNOW:n kautta (samat palvelut, joita linkitetyt lompakot käyttivät), vaihdettiin kokonaan PLEBiksi eikä niitä käytetty enää koskaan. Ne ostivat vuorotellen 28. helmikuuta ja 31. maaliskuuta 2022 välillä, eivätkä koskaan samaan aikaan linkitettyjen lompakoiden kanssa. Kaikista 292 PLEBin ostajasta helmi–huhtikuussa 2022 yksikään muu lompakko ei sovi tähän malliin.",
+          "neverSold": "Yksikään kahdestatoista lompakosta ei ole sen jälkeen myynyt tai siirtänyt tokeneitaan. Niiden saldot säilyivät muuttumattomina molempien migraatioiden läpi."
+        }
+      },
+      "holderB": {
+        "name": "Haltija B",
+        "summary": "2/4-Safe-multisig, joka keräsi vanhaa BSO:ta 14 lompakosta yhden iltapäivän aikana, sekä yksi sen omistajista.",
+        "evidence": {
+          "owners": "Safen 4 omistajasta 2:n on allekirjoitettava. Yksi omistajista pitää hallussaan myös BSO:ta suoraan. Neljä omistajaa voi tarkoittaa yhtä henkilöä, jolla on useita avaimia, tai pientä ryhmää.",
+          "consolidation": "1. kesäkuuta 2024 klo 16:08–17:51 UTC Safe vastaanotti 120,5 miljardia vanhaa BSO:ta 14 lompakosta. Ensimmäinen siirto oli 10 tokenin testi, jonka Safe lähetti heti takaisin.",
+          "vesting": "12. elokuuta 2024 Safe siirsi 60,5 miljardia vanhaa BSO:ta Sablierin vesting-virtaan. Vuoden 2026 migraatio hyvitti tämän virran takaisin Safelle, minkä vuoksi Safe sai kaksi migraatiosiirtoa.",
+          "commonSender": "Sama lompakko lähetti vanhaa BSO:ta sekä Safen omistajalle (13,7 miljardia 8. maaliskuuta 2024) että Safelle (1,5 miljardia 1. kesäkuuta 2024)."
+        }
+      },
+      "holderC": {
+        "name": "Haltija C",
+        "summary": "Kaksi lompakkoa, jotka saivat vanhaa BSO:ta samalta lähettäjältä.",
+        "evidence": {
+          "commonSender": "Yksi lompakko lähetti ensimmäiselle 4,7 miljardia vanhaa BSO:ta 19. elokuuta 2024 ja toiselle 15,4 miljardia 14. marraskuuta 2025. Yhteinen lähettäjä voi olla myös yksi myyjä, joka palvelee kahta ostajaa."
+        }
+      },
+      "holderD": {
+        "name": "Haltija D",
+        "summary": "Kolme lompakkoa, jotka yhdistyvät yhden niistä kautta.",
+        "evidence": {
+          "sharedRecipient": "Keskimmäinen lompakko sai ensimmäiseltä testisiirron ja sitten 5 miljardia PLEBiä 18. marraskuuta 2022 sekä kolmannelta 8,2 miljardia PLEBiä 1. joulukuuta 2022. Kyse voi olla myös yhdestä ostajasta, joka maksaa kahdelle myyjälle."
+        }
+      },
+      "holderE": {
+        "name": "Haltija E",
+        "summary": "Kaksi lompakkoa, jotka täytettiin samasta lähteestä.",
+        "evidence": {
+          "commonSender": "Yksi lompakko lähetti ensimmäiselle 39,4 miljardia vanhaa BSO:ta seitsemässä siirrossa lokakuun 2024 ja tammikuun 2025 välillä sekä toiselle 2,0 miljardia 22. marraskuuta 2025."
+        }
+      },
+      "holderF": {
+        "name": "Haltija F",
+        "summary": "Yksi lompakko, joka jakoi tokeninsa kolmeen uuteen lompakkoon ja maksoi niiden gas-kulut.",
+        "evidence": {
+          "split": "10. maaliskuuta 2024 yksi lompakko lähetti seitsemän minuutin sisällä tasasummia vanhaa BSO:ta (12, 8 ja 4 miljardia) kolmeen uuteen lompakkoon ja lähetti samana päivänä kahdelle niistä ETH:ta gas-kuluihin. Sillä itsellään on yhä BSO:ta."
+        }
+      },
+      "holderG": {
+        "name": "Haltija G",
+        "summary": "Kaksi lompakkoa, jotka sama lähettäjä rahoitti kolmen vuoden erolla.",
+        "evidence": {
+          "commonSender": "Yksi lompakko lähetti toiselle 4,7 miljardia PLEBiä huhtikuussa 2022 ja ensimmäiselle 6 miljardia vanhaa BSO:ta tammikuussa 2025."
+        }
+      },
+      "holderH": {
+        "name": "Haltija H",
+        "summary": "Kaksi lompakkoa, joiden välillä on yksi siirto.",
+        "evidence": {
+          "directTransfer": "Ensimmäinen lompakko lähetti toiselle 420 miljoonaa PLEBiä 24. huhtikuuta 2022."
+        }
+      },
+      "holderI": {
+        "name": "Haltija I",
+        "summary": "Kaksi lompakkoa, joiden välillä on toistuvia siirtoja.",
+        "evidence": {
+          "directTransfers": "Toinen lompakko lähetti ensimmäiselle 13,2 miljardia vanhaa BSO:ta 30. lokakuuta 2023 ja 5 miljardia 8. marraskuuta 2023."
+        }
+      }
+    },
+    "team": {
+      "title": "Ei tiimin osuutta",
+      "lead": "Tokeneita ei varattu tiimille, sijoittajille eikä ennakkomyyntiin. Tässä näet, mistä jokainen PLEB tuli, mitä tiimin lompakoissa on tänään ja mitä perustaja sanoi silloin.",
+      "origin": {
+        "caption": "Kaikki koskaan mintatut {{amount}} PLEBiä mintaustavan mukaan",
+        "label": "Mintatut PLEBit lähteen mukaan",
+        "airdropClaims": {
+          "label": "Airdrop-lunastukset",
+          "note": "1 510 osoitetta lunasti {{amount}} PLEBiä kolmella kierroksella. Osuuksia, joita kukaan ei lunastanut, ei koskaan mintattu."
+        },
+        "liquidityMining": {
+          "label": "Likviditeettilouhinta",
+          "note": "{{amount}} PLEBiä maksettiin Trader Joen likviditeettiä stakanneille helmikuusta 2022 toukokuuhun 2023."
+        },
+        "liquiditySeed": {
+          "label": "Lanseerauslikviditeetti",
+          "note": "{{amount}} PLEBiä mintattiin deployerille ja lisättiin kahteen lanseerauspooliin 7 AVAXin kanssa."
+        }
+      },
+      "facts": {
+        "liquiditySeed": "Ainoa mintaus tiimin lompakkoon airdropin ulkopuolella oli lanseerauslikviditeetti: 50 miljardia PLEBiä, jotka lisättiin Trader Joe -pooliin (40,1 miljardia) ja Pangolin-pooliin (10 miljardia) seitsemän minuutin sisällä 14. tammikuuta 2022.",
+        "teamClaims": "Kaksi tiimin jäsentä lunasti kierroksella 1: Esteban 5 miljardia PLEBiä ja Tom 13,2 miljardia PLEBiä, mikä oli 767 lunastuksesta kolmanneksi suurin. Yhteensä se on 2 % kaikista airdropeissa lunastetuista PLEBeistä.",
+        "noFarmRewards": "Yksikään tiimin lompakko ei saanut likviditeettilouhinnan palkkioita. Maksetut 433 miljardia menivät 208 muulle osoitteelle.",
+        "migrationMintedNothing": "Vuoden 2026 migraatio ei luonut uusia tokeneita kenellekään: kaikki 210 miljoonaa BSO:ta jaettiin yhdessä transaktiossa suhteessa vanhoihin saldoihin."
+      },
+      "statementsTitle": "Mitä perustaja sanoi silloin",
+      "statementBy": "Esteban Abaroa, perustaja, {{date}}",
+      "walletsTitle": "Tiimin lompakot tänään",
+      "person": "Henkilö",
+      "wallet": "Lompakko",
+      "total": "Tiimi yhteensä",
+      "walletsNote": "Arvo {{value}} tilannekuvan hinnalla. Jokaisen lompakon koko historia on julkisesti nähtävissä Etherscanissa.",
+      "poolNote": "Uniswap-poolin likviditeettitokeneista 79,1 % on Estebanin deployer-lompakolla ja 7,4 % osoitteella estebanabaroa.eth. Niitä ei ole lukittu."
+    },
+    "airdrops": {
+      "title": "Kolme airdropia, 2022",
+      "lead": "PLEB, BSO:n ensimmäinen sukupolvi, lanseerattiin Avalanchella ilman myyntiä. Se jaettiin ilmaiseksi kolmella kierroksella, ja jokainen lunastus siirtyi BSO:ksi samalla kurssilla: 7 114,6 PLEBiä 1 BSO:ta kohden.",
+      "caption": "PLEB-airdropin kolme kierrosta ja lunastettujen tokenien arvo tänään",
+      "round": "Kierros {{number}}",
+      "total": "Yhteensä",
+      "rounds": {
+        "telegram": {
+          "name": "Telegram-botti",
+          "how": "Lähetä Avalanche-osoite botille @plebbitbot; suosituksista sai bonuksia"
+        },
+        "twitter": {
+          "name": "Twitter",
+          "how": "Tykkää tilin @getplebbit julkaisusta, retweettaa se ja merkitse kolme kaveria"
+        },
+        "reddit": {
+          "name": "Reddit",
+          "how": "Kommentoi r/plebbitairdrop-ketjuun; botti tarkisti tilin historian"
+        }
+      },
+      "metrics": {
+        "how": "Osallistuminen",
+        "window": "Ilmoittautuminen",
+        "signups": "Ilmoitetut ilmoittautumiset",
+        "claimers": "Lunastaneet osoitteet",
+        "plebClaimed": "Lunastetut PLEBit",
+        "bsoToday": "BSO tänään",
+        "worthToday": "Arvo tänään",
+        "medianClaim": "Lunastusten mediaani tänään",
+        "largestClaim": "Suurin lunastus tänään",
+        "sources": "Lähteet"
+      },
+      "dateRange": "{{start}} – {{end}}",
+      "overCount": "yli {{amount}}",
+      "distinct": "{{amount}} eri osoitetta",
+      "note": "Arvoissa oletetaan, että jokainen lunastettu token on yhä hallussa, hinnalla {{price}} per BSO ({{date}}). Monet ilmoittautumiset olivat botteja. Lunastukset päättyivät 21. helmikuuta 2022, eikä osuuksia, joita kukaan ei lunastanut, koskaan mintattu."
+    },
+    "history": {
+      "title": "Historia",
+      "lead": "Telegram-ryhmästä vuonna 2021 muuttumattomaksi ERC-20-tokeniksi vuonna 2026.",
+      "redditThread": "Reddit-ketju",
+      "events": {
+        "groupOpens": {
+          "title": "plebbitin Telegram-ryhmä avautuu",
+          "body": "Ryhmä, joka on nykyään t.me/bitsocialnet, aloittaa joulupäivänä 2021."
+        },
+        "telegramRound": {
+          "title": "Kierros 1: Telegram-botti",
+          "body": "Viikon ajan ihmiset ilmoittautuvat botilla @plebbitbot. Tarjonta jaetaan tasan osallistujien kesken, ja suosituksista saa bonuksia. 3 312 osoitetta rekisteröityy ennen kuin botti sulkeutuu 14. tammikuuta."
+        },
+        "launch": {
+          "title": "Ensin likviditeetti, sitten lunastukset",
+          "body": "Klo 18:00 UTC deployer lisää PLEBiä ja 7 AVAXia Trader Joehin ja Pangoliniin. Lunastussivu avautuu noin 30 minuuttia myöhemmin, joten jokainen osuus oli lukittu ennen kuin kukaan pystyi käymään kauppaa."
+        },
+        "twitterRound": {
+          "title": "Kierros 2: Twitter",
+          "body": "Kokonaan Twitterissä järjestetty airdrop: tykkää, retweettaa ja merkitse kolme kaveria. Yli 1 500 ihmistä rekisteröityy 6. helmikuuta mennessä."
+        },
+        "redditRound": {
+          "title": "Kierros 3: Reddit",
+          "body": "Kokeellinen airdrop r/plebbitairdrop-yhteisössä, jossa botti tarkisti, että kommentoijilla oli vanhempaa Reddit-aktiivisuutta. Yli 2 200 rekisteröityy 12. helmikuuta mennessä, monet heistä botteja."
+        },
+        "claimsClose": {
+          "title": "Lunastukset päättyvät",
+          "body": "Yhtäkään kolmesta airdropista ei voi enää lunastaa. Tokeneita, joita kukaan ei lunastanut, ei koskaan mintata."
+        },
+        "farm": {
+          "title": "Likviditeettilouhinta alkaa",
+          "body": "PLEB/AVAX-likviditeettiä stakaavat ansaitsevat vasta mintattua PLEBiä. Farmi maksaa palkkioita siirtymään Ethereumiin asti."
+        },
+        "ethereum": {
+          "title": "Siirtymä Ethereumiin",
+          "body": "Snapshot-äänestyksen jälkeen PLEB jäädytetään, ja jokainen saldo, mukaan lukien lukitut tokenit, likviditeettipositiot ja maksamattomat farmipalkkiot, lasketaan uudelleen liikkeeseen Ethereumissa toisen sukupolven tokenina. Haltijoiden ei tarvitse tehdä mitään."
+        },
+        "rebrand": {
+          "title": "plebbitistä tulee Bitsocial",
+          "body": "Maaliskuun 2026 aikana projekti ja sen token ottavat vähitellen käyttöön Bitsocial-nimen."
+        },
+        "rebase": {
+          "title": "Tarjonnaksi 210 miljoonaa",
+          "body": "Toisen sukupolven tokenille tehdään rebase, jotta kokonaistarjonta on tasan 210 miljoonaa: 7 114,6 vanhasta tokenista tulee 1."
+        },
+        "immutable": {
+          "title": "BSO:sta tulee muuttumaton",
+          "body": "Lopullinen BSO-älysopimus otetaan käyttöön ilman mintausta, omistajaa, keskeytystä tai proxya. Kaikki 210 miljoonaa jaetaan yhdessä transaktiossa suhteessa rebasen jälkeisiin saldoihin."
+        }
+      }
+    },
+    "method": {
+      "title": "Menetelmä ja rajoitukset",
+      "lead": "Miten ryhmät löydettiin ja mitä tämä sivu ei näe.",
+      "howTitle": "Miten lompakot linkitettiin",
+      "how": {
+        "transfers": "Jokainen PLEBin, vanhan BSO:n ja BSO:n siirto kahden tavallisen lompakon välillä jäljitettiin, pois lukien pörssit, reitittimet, poolit ja muut älysopimukset. Safe-multisigit linkitettiin omistajiinsa.",
+        "funders": "Kunkin suuren haltijan kohdalla verrattiin lompakkoa, joka lähetti sille ensimmäisenä AVAXia tai ETH:ta. Pörssit rahoittavat tuhansia lompakoita, joten vain yksityiset rahoittajat lasketaan yhteydeksi.",
+        "pattern": "Lompakoiden, joilla ei ole suoraa yhteyttä, ostokäyttäytymistä verrattiin saman ajanjakson jokaiseen PLEBin ostajaan.",
+        "migrations": "Saldoja seurattiin molempien migraatioiden läpi kurssilla 7 114,6 PLEBiä BSO:ta kohden."
+      },
+      "limitsTitle": "Rajoitukset",
+      "limits": {
+        "exchangeOnly": "Haltija, joka rahoittaa jokaisen lompakkonsa pörssin kautta eikä koskaan siirrä tokeneita niiden välillä, ei jätä on-chain-yhteyttä. Jotkin ryhmät voivat yhä kätkeä muitakin lompakoita.",
+        "sales": "Siirto kahden lompakon välillä voi olla myynti tai lahja. Mahdollinen-merkityt ryhmät perustuvat yhteen tällaiseen yhteyteen.",
+        "contracts": "Muiden älysopimusten kuin Uniswap-poolin ja Safen hallussa olevat tokenit on listattu sellaisinaan.",
+        "snapshot": "Saldot ja hinta päivittyvät ketjusta viiden minuutin välein, kun tämä sivu on auki. Lompakoiden väliset yhteydet on selvitetty käsin, eivätkä ne päivity itsestään."
+      },
+      "contracts": {
+        "gen1": "Gen 1: PLEB Avalanchella",
+        "gen2": "Gen 2: vanha BSO Ethereumissa",
+        "gen3": "Gen 3: BSO nykyään"
+      },
+      "snapshot": "Saldot ja hinta Blockscoutista: {{count}} lompakkoa, tilanne {{date}}. Löysitkö väärän tai puuttuvan yhteyden? <contributeLink>Paranna tätä sivua</contributeLink>."
+    }
   }
 }

@@ -21,8 +21,9 @@ così che chiunque possa controllare la documentazione in modo indipendente.
 - **Indirizzo**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Explorer**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-È qui che BSO è nato. L'intera offerta è stata distribuita tramite airdrop, senza prevendita e senza
-una quota riservata al team prima della comunità. Il contratto era un proxy aggiornabile, prassi
+È qui che BSO è nato. L'offerta è stata distribuita tramite tre airdrop e ricompense di liquidity
+mining, senza prevendita e senza una quota riservata al team prima della
+comunità. Il contratto era un proxy aggiornabile, prassi
 standard all'epoca, che permetteva al team di distribuire correzioni nella prima fase di vita del
 token.
 

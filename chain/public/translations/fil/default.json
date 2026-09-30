@@ -3,7 +3,8 @@
     "language": "Wika",
     "theme": "Tema",
     "mainSite": "Pangunahing Site",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "richList": "Rich list"
   },
   "languageSelector": {
     "title": "Pumili ng wika",
@@ -71,12 +72,12 @@
     },
     "tokenomics": {
       "title": "Matatag na pera.",
-      "supporting": "Ang BSO ay isang ERC-20 na may nakapirming supply: 210 milyon, walang inflation, deflationary ayon sa disenyo. Ang buong supply ay na-airdrop sa humigit-kumulang 600 katao noong unang bahagi ng 2022, nang walang presale at walang anumang itinabi nang una bago ang komunidad. Immutable at walang admin ang kontrata nito, kaya nakapirmi na magpakailanman ang mga patakaran.",
+      "supporting": "Ang BSO ay isang ERC-20 na may nakapirming supply: 210 milyon, walang inflation, deflationary ayon sa disenyo. Ipinamigay ito noong 2022 sa pamamagitan ng tatlong airdrop at mga liquidity-mining reward, nang walang presale at walang alokasyon para sa team. Immutable at walang admin ang kontrata nito, kaya nakapirmi na magpakailanman ang mga patakaran.",
       "supply": {
         "cap": "Max supply ng BSO · nakapirmi magpakailanman"
       },
       "traits": {
-        "airdropped": "100% na-airdrop, walang team o presale",
+        "airdropped": "Walang alokasyon para sa team o presale",
         "fixedCap": "Nakapirming cap, zero emission",
         "deflationary": "Deflationary: bumababa lang ang supply"
       },
@@ -99,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "Ang airdrop",
-        "note": "Humigit-kumulang 600 katao, sa tatlong claim round sa pagitan ng Enero at Pebrero 2022. Nag-sign up sila sa pamamagitan ng isang Telegram bot, mas malalaking bahagi ang naibigay ng mga referral code, at bawat tumanggap ay manu-manong sinuri para walang makaalis na may masyadong malaking bahagi ng supply. Walang presale, walang alokasyon para sa team, walang naibenta."
+        "label": "Ang distribusyon",
+        "note": "Tatlong airdrop round noong Enero at Pebrero 2022, na na-claim ng 1,510 address. Gumamit ang round 1 ng isang Telegram bot na may referral bonus, at manu-manong sinuri ni Esteban ang mga referral nito para sa pang-aabuso; ang round 2 at 3 ay ginanap sa Twitter at Reddit. Humigit-kumulang 63% ng supply ang lumabas sa pamamagitan ng mga airdrop at 34% bilang reward sa mga taong nagbigay ng liquidity; ang natitira ay ginamit na panimulang liquidity ng mga launch pool. Walang presale, walang alokasyon para sa team, walang naibenta.",
+        "richListLink": "Tingnan ang bawat may-hawak at ang tatlong round"
       },
       "contract": {
         "label": "Ang buong kontrata",
@@ -293,5 +295,317 @@
     "returnToOrigin": "Bumalik sa dating posisyon",
     "toTop": "Bumalik sa itaas",
     "toBottom": "Pumunta sa ibaba"
+  },
+  "richList": {
+    "meta": {
+      "title": "BSO Rich List - Sino ang May Hawak ng BSO",
+      "description": "Bawat may-hawak ng BSO, na naka-grupo ang mga naka-link na wallet, may marka ang mga wallet ng team, at kasama ang on-chain na ebidensya sa likod ng bawat link. Kasama rin ang kasaysayan ng tatlong airdrop noong 2022."
+    },
+    "hero": {
+      "title": "Sino ang may hawak ng BSO",
+      "lead": "Bawat BSO wallet, kung saan magkakasama ang mga wallet na pag-aari ng iisang may-hawak at may marka ang mga wallet ng team. Nakalista sa bawat link ang mga transaction sa likod nito, kaya ikaw mismo ang makakapagsuri.",
+      "jumpLabel": "Mga seksyon",
+      "status": {
+        "live": "Live mula sa chain: {{count}} wallet, BSO sa {{price}}. Na-update {{ago}}.",
+        "loading": "Snapshot noong {{date}}: {{count}} wallet, BSO sa {{price}}. Nilo-load ang live na data…",
+        "unavailable": "Hindi available ang live na data ngayon, kaya ito ang snapshot noong {{date}}: {{count}} wallet, BSO sa {{price}}."
+      }
+    },
+    "jump": {
+      "holders": "Mga may-hawak",
+      "linked-wallets": "Mga naka-link na wallet",
+      "team": "Team",
+      "airdrops": "Mga airdrop",
+      "history": "Kasaysayan",
+      "method": "Paraan"
+    },
+    "strip": {
+      "label": "Bahagi ng 210 milyong BSO supply na hawak ng bawat grupo",
+      "team": "Team",
+      "pool": "Uniswap pool",
+      "everyoneElse_one": "Lahat ng iba pa ({{count}} wallet)",
+      "everyoneElse_other": "Lahat ng iba pa ({{count}} wallet)"
+    },
+    "categories": {
+      "team": "Team",
+      "pool": "Liquidity pool",
+      "confirmed": "Kumpirmado",
+      "likely": "Malamang",
+      "possible": "Posible",
+      "other": "Hindi naka-link"
+    },
+    "table": {
+      "title": "Mga may-hawak",
+      "lead": "Pinagsasama sa iisang row ang mga naka-link na wallet. Lumipat sa Bawat wallet para makita ang bawat address gaya ng paglista ng Etherscan.",
+      "viewLabel": "Ipakita ang mga may-hawak",
+      "view": {
+        "grouped": "Naka-grupo",
+        "wallets": "Bawat wallet"
+      },
+      "searchLabel": "Maghanap ayon sa address o pangalan ng may-hawak",
+      "searchPlaceholder": "Maghanap ng address",
+      "caption": "Mga may-hawak ng BSO ayon sa balanse",
+      "holder": "May-hawak",
+      "balance": "BSO",
+      "share": "Supply",
+      "value": "Halaga",
+      "contract": "Kontrata",
+      "walletCount_one": "{{count}} wallet",
+      "walletCount_other": "{{count}} wallet",
+      "noMatch": "Walang may-hawak na tumutugma sa paghahanap na ito.",
+      "showAll_one": "Ipakita ang lahat ng {{count}} row",
+      "showAll_other": "Ipakita ang lahat ng {{count}} row"
+    },
+    "evidenceLinks": "Mga transaction na ebidensya",
+    "telegramSources": "Mga source sa Telegram",
+    "linked": {
+      "title": "Mga naka-link na wallet",
+      "lead": "Pinagsasama lang ang mga wallet kapag may ipinapakitang link ang chain: mga token o gas na gumagalaw sa pagitan nila, iisang pribadong funder, isang may-ari ng multisig, o magkaparehong pattern ng pagbili. Nakalista sa bawat grupo ang mga transaction sa likod nito.",
+      "confidence": {
+        "confirmed": "Nagta-transact ang mga wallet sa isa't isa, may iisang pribadong funder, o kinokontrol ang isa't isa.",
+        "likely": "Ilang transfer mula sa iisang source na mahirap ipaliwanag sa ibang paraan.",
+        "possible": "Iisang link na puwede ring isang bentahan o regalo."
+      },
+      "holds_one": "{{amount}} BSO, {{share}} ng supply, sa {{count}} wallet",
+      "holds_other": "{{amount}} BSO, {{share}} ng supply, sa {{count}} wallet",
+      "walletList_one": "{{count}} wallet",
+      "walletList_other": "Lahat ng {{count}} wallet",
+      "patternOnly": "naka-link dahil sa pattern ng pagbili"
+    },
+    "walletRoles": {
+      "deployer": "deployer",
+      "estebanEns": "estebanabaroa.eth",
+      "safe": "Safe multisig",
+      "safeOwner": "may-ari ng Safe"
+    },
+    "entities": {
+      "esteban": {
+        "name": "Esteban (tagapagtatag)"
+      },
+      "rinse12": {
+        "name": "rinse12 (core developer)"
+      },
+      "tom": {
+        "name": "Tom (Tommaso Casaburi)"
+      },
+      "pool": {
+        "name": "Uniswap BSO/ETH pool"
+      },
+      "holderA": {
+        "name": "May-hawak A",
+        "summary": "Labindalawang wallet na bumili ng PLEB sa Avalanche mula Pebrero 22 hanggang Abril 8, 2022, at hindi kailanman nagbenta. Lima ang magkakaugnay on-chain; tugma naman ang pito pa sa pattern ng iisang mamimili.",
+        "evidence": {
+          "transfersToLpWallet": "Nagpadala ang dalawa sa mga bumibiling wallet ng PLEB at AVAX sa ikatlong wallet, na ginamit ang mga ito para sa liquidity at farming sa Trader Joe: 1B PLEB at 5 AVAX noong Pebrero 27, 2022, at pagkatapos ay 7.2B PLEB at 34 AVAX mula Pebrero 28 hanggang Marso 2. Nagpadala pabalik ang ikatlong wallet ng 0.013 AVAX.",
+          "sharedFunder": "Isang pribadong wallet ang nagpondo sa tatlo sa mga bumibiling wallet at wala nang iba. Lahat ng transaction na naipadala nito ay napunta sa kanila, nang sunod-sunod: nonce 0 hanggang 4 sa una, 5 hanggang 7 sa ikalawa, 8 sa ikatlo.",
+          "buyingPattern": "Pito pang wallet ang bawat isa ay bago, pinondohan ng isa o dalawang withdrawal mula sa exchange na humigit-kumulang $2,000 hanggang $3,400 sa pamamagitan ng Binance o ChangeNOW (ang parehong serbisyong ginamit ng mga naka-link na wallet), ipinalit nang buo sa PLEB, at hindi na muling ginamit. Sunod-sunod silang bumili mula Pebrero 28 hanggang Marso 31, 2022, nang hindi kailanman nagsasabay sa mga naka-link na wallet. Sa lahat ng 292 bumili ng PLEB mula Pebrero hanggang Abril 2022, walang ibang wallet na tugma sa pattern na ito.",
+          "neverSold": "Wala sa labindalawang wallet ang nagbenta o naglipat ng mga token nito mula noon. Hindi nagbago ang kanilang mga balanse sa parehong migration."
+        }
+      },
+      "holderB": {
+        "name": "May-hawak B",
+        "summary": "Isang 2-of-4 Safe multisig na nag-ipon ng lumang BSO mula sa 14 na wallet sa loob ng isang hapon, kasama ang isa sa mga may-ari nito.",
+        "evidence": {
+          "owners": "Kailangan ng Safe ang pirma ng 2 sa 4 na may-ari nito. May hawak ding BSO nang direkta ang isang may-ari. Ang apat na may-ari ay puwedeng iisang tao na may ilang key o isang maliit na grupo.",
+          "consolidation": "Noong Hunyo 1, 2024, mula 16:08 hanggang 17:51 UTC, nakatanggap ang Safe ng 120.5B lumang BSO mula sa 14 na wallet. Ang unang transfer ay isang 10-token na test na agad ibinalik ng Safe.",
+          "vesting": "Noong Agosto 12, 2024, inilipat ng Safe ang 60.5B lumang BSO sa isang Sablier vesting stream. Ibinalik ng 2026 migration ang stream na iyon sa Safe, kaya dalawang migration transfer ang natanggap ng Safe.",
+          "commonSender": "Iisang wallet ang nagpadala ng lumang BSO sa may-ari ng Safe (13.7B noong Marso 8, 2024) at sa Safe mismo (1.5B noong Hunyo 1, 2024)."
+        }
+      },
+      "holderC": {
+        "name": "May-hawak C",
+        "summary": "Dalawang wallet na nakatanggap ng lumang BSO mula sa iisang sender.",
+        "evidence": {
+          "commonSender": "Nagpadala ang isang wallet ng 4.7B lumang BSO sa una noong Agosto 19, 2024 at ng 15.4B sa ikalawa noong Nobyembre 14, 2025. Ang iisang sender ay puwede ring iisang nagbebenta na nagsisilbi sa dalawang mamimili."
+        }
+      },
+      "holderD": {
+        "name": "May-hawak D",
+        "summary": "Tatlong wallet na pinagdugtong ng isa sa kanila.",
+        "evidence": {
+          "sharedRecipient": "Nakatanggap ang gitnang wallet ng test transfer at pagkatapos ay 5B PLEB mula sa una noong Nobyembre 18, 2022, at 8.2B PLEB mula sa ikatlo noong Disyembre 1, 2022. Puwede rin itong iisang mamimili na nagbabayad sa dalawang nagbebenta."
+        }
+      },
+      "holderE": {
+        "name": "May-hawak E",
+        "summary": "Dalawang wallet na pinunan mula sa iisang source.",
+        "evidence": {
+          "commonSender": "Nagpadala ang isang wallet sa una ng 39.4B lumang BSO sa pitong transfer mula Oktubre 2024 hanggang Enero 2025, at sa ikalawa ng 2.0B noong Nobyembre 22, 2025."
+        }
+      },
+      "holderF": {
+        "name": "May-hawak F",
+        "summary": "Isang wallet na hinati ang mga token nito sa tatlong bagong wallet at binayaran ang gas ng mga ito.",
+        "evidence": {
+          "split": "Noong Marso 10, 2024, sa loob ng pitong minuto, nagpadala ang isang wallet ng mga buong halaga ng lumang BSO (12B, 8B at 4B) sa tatlong bagong wallet at pinadalhan ang dalawa sa mga ito ng ETH para sa gas sa parehong araw. May hawak pa rin itong BSO mismo."
+        }
+      },
+      "holderG": {
+        "name": "May-hawak G",
+        "summary": "Dalawang wallet na pinondohan ng iisang sender, tatlong taon ang pagitan.",
+        "evidence": {
+          "commonSender": "Nagpadala ang isang wallet sa ikalawa ng 4.7B PLEB noong Abril 2022 at sa una ng 6B lumang BSO noong Enero 2025."
+        }
+      },
+      "holderH": {
+        "name": "May-hawak H",
+        "summary": "Dalawang wallet na may isang transfer sa pagitan nila.",
+        "evidence": {
+          "directTransfer": "Nagpadala ang unang wallet sa ikalawa ng 420M PLEB noong Abril 24, 2022."
+        }
+      },
+      "holderI": {
+        "name": "May-hawak I",
+        "summary": "Dalawang wallet na may paulit-ulit na transfer sa pagitan nila.",
+        "evidence": {
+          "directTransfers": "Nagpadala ang ikalawang wallet sa una ng 13.2B lumang BSO noong Oktubre 30, 2023 at 5B noong Nobyembre 8, 2023."
+        }
+      }
+    },
+    "team": {
+      "title": "Walang alokasyon para sa team",
+      "lead": "Walang token na itinabi para sa team, mga investor o presale. Narito kung saan nagmula ang bawat PLEB, kung ano ang hawak ng mga wallet ng team ngayon, at kung ano ang sinabi ng tagapagtatag noon.",
+      "origin": {
+        "caption": "Lahat ng {{amount}} PLEB na na-mint kailanman, ayon sa paraan ng pag-mint",
+        "label": "Na-mint na PLEB ayon sa source",
+        "airdropClaims": {
+          "label": "Mga airdrop claim",
+          "note": "{{amount}} PLEB na na-claim ng 1,510 address sa tatlong round. Hindi kailanman na-mint ang mga alokasyong walang nag-claim."
+        },
+        "liquidityMining": {
+          "label": "Liquidity mining",
+          "note": "{{amount}} PLEB na ibinayad sa mga taong nag-stake ng liquidity sa Trader Joe, mula Pebrero 2022 hanggang Mayo 2023."
+        },
+        "liquiditySeed": {
+          "label": "Liquidity sa launch",
+          "note": "{{amount}} PLEB na na-mint sa deployer at idinagdag sa dalawang launch pool kasama ang 7 AVAX."
+        }
+      },
+      "facts": {
+        "liquiditySeed": "Ang tanging mint sa isang wallet ng team bukod sa airdrop ay ang liquidity sa launch: 50B PLEB, na idinagdag sa Trader Joe pool (40.1B) at sa Pangolin pool (10B) sa loob ng pitong minuto noong Enero 14, 2022.",
+        "teamClaims": "Dalawang miyembro ng team ang nag-claim sa round 1: si Esteban ng 5B PLEB, at si Tom ng 13.2B PLEB, ang ikatlong pinakamalaki sa 767 claim. Magkasama, 2% iyon ng lahat ng PLEB na na-claim sa mga airdrop.",
+        "noFarmRewards": "Walang wallet ng team ang nakatanggap ng liquidity-mining reward. Napunta ang 433B na naibayad sa 208 ibang address.",
+        "migrationMintedNothing": "Walang ginawang bagong token ang 2026 migration para kaninuman: lumabas ang lahat ng 210M BSO sa iisang transaction, ayon sa proporsyon ng mga lumang balanse."
+      },
+      "statementsTitle": "Ang sinabi ng tagapagtatag noon",
+      "statementBy": "Esteban Abaroa, tagapagtatag, {{date}}",
+      "walletsTitle": "Mga wallet ng team ngayon",
+      "person": "Tao",
+      "wallet": "Wallet",
+      "total": "Kabuuan ng team",
+      "walletsNote": "Nagkakahalaga ng {{value}} sa presyo ng snapshot. Pampubliko sa Etherscan ang buong kasaysayan ng bawat wallet.",
+      "poolNote": "Ang mga liquidity token ng Uniswap pool ay hawak nang 79.1% ng deployer wallet ni Esteban at 7.4% ng estebanabaroa.eth. Hindi naka-lock ang mga ito."
+    },
+    "airdrops": {
+      "title": "Tatlong airdrop, 2022",
+      "lead": "Ang PLEB, ang unang henerasyon ng BSO, ay inilunsad sa Avalanche nang walang anumang benta. Ipinamigay ito sa tatlong round, at bawat claim ay nailipat sa BSO sa parehong rate: 7,114.6 PLEB para sa 1 BSO.",
+      "caption": "Ang tatlong PLEB airdrop round at ang halaga ngayon ng mga na-claim na token",
+      "round": "Round {{number}}",
+      "total": "Kabuuan",
+      "rounds": {
+        "telegram": {
+          "name": "Telegram bot",
+          "how": "Magpadala ng Avalanche address sa @plebbitbot, may bonus para sa mga referral"
+        },
+        "twitter": {
+          "name": "Twitter",
+          "how": "I-like, i-retweet at i-tag ang tatlong kaibigan sa post ng @getplebbit"
+        },
+        "reddit": {
+          "name": "Reddit",
+          "how": "Mag-comment sa thread ng r/plebbitairdrop; sinuri ng isang bot ang history ng account"
+        }
+      },
+      "metrics": {
+        "how": "Paano sumali",
+        "window": "Mga sign-up",
+        "signups": "Inanunsyong sign-up",
+        "claimers": "Mga address na nag-claim",
+        "plebClaimed": "Na-claim na PLEB",
+        "bsoToday": "BSO ngayon",
+        "worthToday": "Halaga ngayon",
+        "medianClaim": "Median na claim ngayon",
+        "largestClaim": "Pinakamalaking claim ngayon",
+        "sources": "Mga source"
+      },
+      "dateRange": "{{start}} – {{end}}",
+      "overCount": "mahigit {{amount}}",
+      "distinct": "{{amount}} na natatangi",
+      "note": "Ipinapalagay ng mga halaga na hawak pa rin ang bawat na-claim na token, sa {{price}} bawat BSO noong {{date}}. Mga bot ang marami sa mga sign-up. Nagsara ang mga claim noong Pebrero 21, 2022, at hindi kailanman na-mint ang mga alokasyong walang nag-claim."
+    },
+    "history": {
+      "title": "Kasaysayan",
+      "lead": "Mula sa isang Telegram group noong 2021 hanggang sa isang immutable na ERC-20 noong 2026.",
+      "redditThread": "Ang Reddit thread",
+      "events": {
+        "groupOpens": {
+          "title": "Nagbukas ang plebbit Telegram group",
+          "body": "Nagsimula noong Araw ng Pasko 2021 ang grupong ngayon ay t.me/bitsocialnet."
+        },
+        "telegramRound": {
+          "title": "Round 1: ang Telegram bot",
+          "body": "Sa loob ng isang linggo, nag-sign up ang mga tao sa @plebbitbot. Hinati nang pantay ang supply sa mga kalahok, may bonus para sa mga referral. 3,312 address ang nagparehistro bago nagsara ang bot noong Enero 14."
+        },
+        "launch": {
+          "title": "Liquidity muna, saka mga claim",
+          "body": "Sa 18:00 UTC, nagdagdag ang deployer ng PLEB at 7 AVAX sa Trader Joe at Pangolin. Nagbukas ang claim page mga 30 minuto pagkatapos, kaya nakapirmi na ang bawat alokasyon bago pa makapag-trade ang sinuman."
+        },
+        "twitterRound": {
+          "title": "Round 2: Twitter",
+          "body": "Isang airdrop na ginawa nang buo sa Twitter: i-like, i-retweet at i-tag ang tatlong kaibigan. Mahigit 1,500 tao ang nagparehistro pagsapit ng Pebrero 6."
+        },
+        "redditRound": {
+          "title": "Round 3: Reddit",
+          "body": "Isang eksperimental na airdrop sa r/plebbitairdrop, kung saan sinuri ng isang bot kung may mas lumang aktibidad sa Reddit ang mga nag-comment. Mahigit 2,200 ang nagparehistro pagsapit ng Pebrero 12, marami sa kanila ay bot."
+        },
+        "claimsClose": {
+          "title": "Nagsara ang mga claim",
+          "body": "Hindi na mai-claim ang alinman sa tatlong airdrop. Hindi kailanman nami-mint ang mga token na walang nag-claim."
+        },
+        "farm": {
+          "title": "Nagsimula ang liquidity mining",
+          "body": "Kumikita ng bagong na-mint na PLEB ang mga taong nag-i-stake ng PLEB/AVAX liquidity. Nagbabayad ang farm hanggang sa paglipat sa Ethereum."
+        },
+        "ethereum": {
+          "title": "Ang paglipat sa Ethereum",
+          "body": "Pagkatapos ng isang Snapshot vote, na-freeze ang PLEB at ang bawat balanse, kasama ang mga naka-lock na token, liquidity position at hindi pa naibabayad na farm reward, ay muling inisyu sa Ethereum bilang ikalawang henerasyong token. Walang kailangang gawin ang mga may-hawak."
+        },
+        "rebrand": {
+          "title": "Naging Bitsocial ang plebbit",
+          "body": "Sa buong Marso 2026, unti-unting ginamit ng proyekto at ng token nito ang pangalang Bitsocial."
+        },
+        "rebase": {
+          "title": "Itinakda sa 210 milyon ang supply",
+          "body": "Ni-rebase ang ikalawang henerasyong token para eksaktong 210 milyon ang kabuuang supply: ang 7,114.6 lumang token ay naging 1."
+        },
+        "immutable": {
+          "title": "Naging immutable ang BSO",
+          "body": "Naging live ang huling kontrata ng BSO nang walang mint, owner, pause o proxy. Lumabas ang lahat ng 210M sa iisang transaction, ayon sa proporsyon ng mga na-rebase na balanse."
+        }
+      }
+    },
+    "method": {
+      "title": "Paraan at mga limitasyon",
+      "lead": "Kung paano natukoy ang mga grupo, at kung ano ang hindi nakikita ng pahinang ito.",
+      "howTitle": "Paano na-link ang mga wallet",
+      "how": {
+        "transfers": "Tinunton ang bawat transfer ng PLEB, lumang BSO at BSO sa pagitan ng dalawang karaniwang wallet, maliban sa mga exchange, router, pool at iba pang kontrata. Na-link ang mga Safe multisig sa kanilang mga may-ari.",
+        "funders": "Pinaghambing ang unang wallet na nagpadala ng AVAX o ETH sa bawat nangungunang may-hawak. Libo-libong wallet ang pinopondohan ng mga exchange, kaya ang mga pribadong funder lang ang itinuturing na link.",
+        "pattern": "Para sa mga wallet na walang direktang link, inihambing ang gawi sa pagbili sa bawat bumili ng PLEB sa parehong panahon.",
+        "migrations": "Sinundan ang mga balanse sa parehong migration sa 7,114.6 PLEB bawat BSO."
+      },
+      "limitsTitle": "Mga limitasyon",
+      "limits": {
+        "exchangeOnly": "Ang isang may-hawak na nagpopondo sa bawat wallet sa pamamagitan ng exchange at hindi kailanman naglilipat ng token sa pagitan ng mga ito ay walang iniiwang on-chain na link. Maaaring may ilang grupo pa ring nagtatago ng mas maraming wallet.",
+        "sales": "Ang transfer sa pagitan ng dalawang wallet ay puwedeng bentahan o regalo. Ang mga grupong may markang Posible ay nakasalalay sa iisang ganoong link.",
+        "contracts": "Ang mga token na hawak ng mga kontrata maliban sa Uniswap pool at sa Safe ay nakalista kung ano sila.",
+        "snapshot": "Nire-refresh mula sa chain ang mga balanse at presyo bawat limang minuto habang bukas ang pahinang ito. Mano-manong sinaliksik ang mga link sa pagitan ng mga wallet at hindi kusang nag-a-update."
+      },
+      "contracts": {
+        "gen1": "Gen 1: PLEB sa Avalanche",
+        "gen2": "Gen 2: lumang BSO sa Ethereum",
+        "gen3": "Gen 3: BSO ngayon"
+      },
+      "snapshot": "Mga balanse at presyo mula sa Blockscout: {{count}} wallet noong {{date}}. May nakitang maling link o kulang na link? <contributeLink>Pagbutihin ang pahinang ito</contributeLink>."
+    }
   }
 }

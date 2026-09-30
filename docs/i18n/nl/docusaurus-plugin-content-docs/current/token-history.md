@@ -20,8 +20,8 @@ iedereen het verhaal zelfstandig kan controleren.
 - **Adres**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Explorer**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Hier begon BSO. De volledige voorraad werd via een airdrop verspreid, zonder presale en zonder
-teamallocatie die vóór de community werd afgesplitst. Het contract was een upgradebare proxy, wat
+Hier begon BSO. De voorraad werd verspreid via drie airdrops en beloningen voor liquidity mining,
+zonder presale en zonder teamallocatie die vóór de community werd afgesplitst. Het contract was een upgradebare proxy, wat
 destijds gangbaar was en het team in staat stelde om in de begintijd van de token fixes uit te
 brengen.
 

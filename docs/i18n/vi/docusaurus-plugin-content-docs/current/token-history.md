@@ -16,7 +16,7 @@ Trang này liệt kê từng thế hệ của token theo thứ tự, kèm địa
 - **Địa chỉ**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Trình khám phá**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Đây là nơi BSO bắt đầu. Toàn bộ nguồn cung được airdrop, không có đợt bán trước và không có phần phân bổ nào dành riêng cho đội ngũ được cắt ra trước cộng đồng. Hợp đồng khi đó là một proxy có thể nâng cấp, vốn là thông lệ phổ biến ở thời điểm ấy và cho phép đội ngũ phát hành các bản sửa lỗi trong giai đoạn đầu đời của token.
+Đây là nơi BSO bắt đầu. Nguồn cung được phát miễn phí qua ba đợt airdrop và phần thưởng khai thác thanh khoản, không có đợt bán trước và không có phần phân bổ nào dành riêng cho đội ngũ được cắt ra trước cộng đồng. Hợp đồng khi đó là một proxy có thể nâng cấp, vốn là thông lệ phổ biến ở thời điểm ấy và cho phép đội ngũ phát hành các bản sửa lỗi trong giai đoạn đầu đời của token.
 
 ## Gen 2: chuyển sang Ethereum, 2024
 

@@ -3,7 +3,8 @@
     "language": "Jazyk",
     "theme": "Téma",
     "mainSite": "Hlavní web",
-    "faq": "Časté dotazy"
+    "faq": "Časté dotazy",
+    "richList": "Seznam držitelů"
   },
   "languageSelector": {
     "title": "Vyberte jazyk",
@@ -71,12 +72,12 @@
     },
     "tokenomics": {
       "title": "Zdravé peníze.",
-      "supporting": "BSO je ERC-20 s pevnou nabídkou: 210 milionů, žádná inflace, záměrně deflační. Celá nabídka byla na počátku roku 2022 rozdána airdropem zhruba 600 lidem, bez předprodeje a bez čehokoli odděleného stranou ještě před komunitou. Jeho kontrakt je neměnný a bez správce, takže pravidla jsou navždy pevná.",
+      "supporting": "BSO je ERC-20 s pevnou nabídkou: 210 milionů, žádná inflace, záměrně deflační. V roce 2022 byl rozdán prostřednictvím tří airdropů a odměn z liquidity miningu, bez předprodeje a bez podílu pro tým. Jeho kontrakt je neměnný a bez správce, takže pravidla jsou navždy pevná.",
       "supply": {
         "cap": "Maximální nabídka BSO · pevná navždy"
       },
       "traits": {
-        "airdropped": "100 % rozdáno airdropem, bez týmu a předprodeje",
+        "airdropped": "Žádný podíl pro tým ani předprodej",
         "fixedCap": "Pevný strop, žádná emise",
         "deflationary": "Deflační: nabídka jen klesá"
       },
@@ -99,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "Airdrop",
-        "note": "Zhruba 600 lidí ve třech kolech vyzvedávání mezi lednem a únorem 2022. Přihlásili se přes bota na Telegramu, doporučující kódy přinášely větší podíly a každý příjemce byl zkontrolován ručně, aby nikdo neodnesl příliš velký díl nabídky. Žádný předprodej, žádný podíl pro tým, nic se neprodalo."
+        "label": "Distribuce",
+        "note": "Tři kola airdropu v lednu a únoru 2022, ve kterých si tokeny vyzvedlo 1 510 adres. V 1. kole se používal bot na Telegramu s bonusy za doporučení a Esteban jeho doporučení ručně prověřoval kvůli zneužití; kola 2 a 3 proběhla na Twitteru a Redditu. Zhruba 63 % nabídky se rozdalo prostřednictvím airdropů a 34 % jako odměny lidem, kteří poskytli likviditu; zbytek tvořil počáteční likviditu startovních poolů. Žádný předprodej, žádný podíl pro tým, nic se neprodalo.",
+        "richListLink": "Zobrazit všechny držitele a všechna tři kola"
       },
       "contract": {
         "label": "Celý kontrakt",
@@ -293,5 +295,327 @@
     "returnToOrigin": "Zpět na předchozí místo",
     "toTop": "Zpět nahoru",
     "toBottom": "Přejít dolů"
+  },
+  "richList": {
+    "meta": {
+      "title": "Seznam držitelů BSO - Kdo drží BSO",
+      "description": "Všichni držitelé BSO, se seskupenými propojenými peněženkami, označenými peněženkami týmu a on-chain důkazy za každým propojením. K tomu historie tří airdropů z roku 2022."
+    },
+    "hero": {
+      "title": "Kdo drží BSO",
+      "lead": "Všechny peněženky BSO, přičemž peněženky patřící stejnému držiteli jsou seskupené a peněženky týmu označené. U každého propojení jsou uvedeny transakce, na kterých stojí, takže si ho můžete sami ověřit.",
+      "jumpLabel": "Sekce",
+      "status": {
+        "live": "Živě z blockchainu: {{count}} peněženek, BSO za {{price}}. Aktualizováno {{ago}}.",
+        "loading": "Snímek ze dne {{date}}: {{count}} peněženek, BSO za {{price}}. Načítají se živá data…",
+        "unavailable": "Živá data teď nejsou k dispozici, proto vidíte snímek ze dne {{date}}: {{count}} peněženek, BSO za {{price}}."
+      }
+    },
+    "jump": {
+      "holders": "Držitelé",
+      "linked-wallets": "Propojené peněženky",
+      "team": "Tým",
+      "airdrops": "Airdropy",
+      "history": "Historie",
+      "method": "Metodika"
+    },
+    "strip": {
+      "label": "Podíl na nabídce 210 milionů BSO, který drží jednotlivé skupiny",
+      "team": "Tým",
+      "pool": "Pool na Uniswapu",
+      "everyoneElse_one": "Všichni ostatní ({{count}} peněženka)",
+      "everyoneElse_few": "Všichni ostatní ({{count}} peněženky)",
+      "everyoneElse_many": "Všichni ostatní ({{count}} peněženky)",
+      "everyoneElse_other": "Všichni ostatní ({{count}} peněženek)"
+    },
+    "categories": {
+      "team": "Tým",
+      "pool": "Pool likvidity",
+      "confirmed": "Potvrzené",
+      "likely": "Pravděpodobné",
+      "possible": "Možné",
+      "other": "Nepropojené"
+    },
+    "table": {
+      "title": "Držitelé",
+      "lead": "Propojené peněženky jsou sloučené do jednoho řádku. Přepněte na „Podle peněženky“ a uvidíte každou adresu tak, jak ji uvádí Etherscan.",
+      "viewLabel": "Zobrazit držitele",
+      "view": {
+        "grouped": "Seskupeně",
+        "wallets": "Podle peněženky"
+      },
+      "searchLabel": "Hledat podle adresy nebo jména držitele",
+      "searchPlaceholder": "Hledat adresu",
+      "caption": "Držitelé BSO podle zůstatku",
+      "holder": "Držitel",
+      "balance": "BSO",
+      "share": "Podíl",
+      "value": "Hodnota",
+      "contract": "Kontrakt",
+      "walletCount_one": "{{count}} peněženka",
+      "walletCount_few": "{{count}} peněženky",
+      "walletCount_many": "{{count}} peněženky",
+      "walletCount_other": "{{count}} peněženek",
+      "noMatch": "Tomuto hledání neodpovídá žádný držitel.",
+      "showAll_one": "Zobrazit {{count}} řádek",
+      "showAll_few": "Zobrazit všechny {{count}} řádky",
+      "showAll_many": "Zobrazit všech {{count}} řádku",
+      "showAll_other": "Zobrazit všech {{count}} řádků"
+    },
+    "evidenceLinks": "Transakce jako důkaz",
+    "telegramSources": "Zdroje na Telegramu",
+    "linked": {
+      "title": "Propojené peněženky",
+      "lead": "Peněženky se seskupují jen tehdy, když blockchain ukazuje propojení: tokeny nebo gas, které mezi nimi putují, společného soukromého financovatele, vlastníka multisigu nebo shodný nákupní vzorec. U každé skupiny jsou uvedeny transakce, na kterých stojí.",
+      "confidence": {
+        "confirmed": "Peněženky spolu provádějí transakce, sdílejí soukromého financovatele nebo se navzájem ovládají.",
+        "likely": "Několik převodů z jednoho zdroje, které se jinak dají vysvětlit jen stěží.",
+        "possible": "Jediné propojení, které by mohlo být i prodejem nebo darem."
+      },
+      "holds_one": "{{amount}} BSO, {{share}} nabídky, v {{count}} peněžence",
+      "holds_few": "{{amount}} BSO, {{share}} nabídky, rozděleno do {{count}} peněženek",
+      "holds_many": "{{amount}} BSO, {{share}} nabídky, rozděleno do {{count}} peněženek",
+      "holds_other": "{{amount}} BSO, {{share}} nabídky, rozděleno do {{count}} peněženek",
+      "walletList_one": "{{count}} peněženka",
+      "walletList_few": "Všechny {{count}} peněženky",
+      "walletList_many": "Všech {{count}} peněženky",
+      "walletList_other": "Všech {{count}} peněženek",
+      "patternOnly": "propojeno nákupním vzorcem"
+    },
+    "walletRoles": {
+      "deployer": "deployer",
+      "estebanEns": "estebanabaroa.eth",
+      "safe": "multisig Safe",
+      "safeOwner": "vlastník Safe"
+    },
+    "entities": {
+      "esteban": {
+        "name": "Esteban (zakladatel)"
+      },
+      "rinse12": {
+        "name": "rinse12 (hlavní vývojář)"
+      },
+      "tom": {
+        "name": "Tom (Tommaso Casaburi)"
+      },
+      "pool": {
+        "name": "Pool BSO/ETH na Uniswapu"
+      },
+      "holderA": {
+        "name": "Držitel A",
+        "summary": "Dvanáct peněženek, které mezi 22. únorem a 8. dubnem 2022 koupily PLEB na Avalanche a nikdy neprodaly. Pět z nich je propojeno on-chain; zbylých sedm odpovídá vzorci stejného kupce.",
+        "evidence": {
+          "transfersToLpWallet": "Dvě z nakupujících peněženek poslaly PLEB a AVAX třetí peněžence, která je použila na likviditu a farming na Trader Joe: 1 mld. PLEB a 5 AVAX dne 27. února 2022, pak 7,2 mld. PLEB a 34 AVAX mezi 28. únorem a 2. březnem. Třetí peněženka poslala zpět 0,013 AVAX.",
+          "sharedFunder": "Jedna soukromá peněženka financovala tři z nakupujících peněženek a nic jiného. Každá transakce, kterou kdy odeslala, šla jim, a to postupně: nonce 0 až 4 první, 5 až 7 druhé, 8 třetí.",
+          "buyingPattern": "Dalších sedm peněženek bylo vždy nových, financovaných jedním nebo dvěma výběry z burzy ve výši zhruba 2 000 až 3 400 dolarů přes Binance nebo ChangeNOW (stejné služby, jaké používaly propojené peněženky), celých směněných za PLEB a už nikdy nepoužitých. Nakupovaly jedna po druhé mezi 28. únorem a 31. březnem 2022 a nikdy se časově nepřekrývaly s propojenými peněženkami. Ze všech 292 kupců PLEB od února do dubna 2022 tomuto vzorci neodpovídá žádná jiná peněženka.",
+          "neverSold": "Žádná z dvanácti peněženek od té doby své tokeny neprodala ani nepřesunula. Jejich zůstatky prošly oběma migracemi beze změny."
+        }
+      },
+      "holderB": {
+        "name": "Držitel B",
+        "summary": "Multisig Safe typu 2 ze 4, který během jednoho odpoledne shromáždil starý BSO ze 14 peněženek, plus jeden z jeho vlastníků.",
+        "evidence": {
+          "owners": "Safe potřebuje podpis 2 ze svých 4 vlastníků. Jeden vlastník drží BSO i přímo. Čtyři vlastníci mohou být jeden člověk s několika klíči, nebo malá skupina.",
+          "consolidation": "1. června 2024 mezi 16:08 a 17:51 UTC přijal Safe 120,5 mld. starých BSO ze 14 peněženek. Prvním převodem byl test o 10 tokenech, který Safe hned poslal zpět.",
+          "vesting": "12. srpna 2024 přesunul Safe 60,5 mld. starých BSO do vestingového streamu Sablier. Migrace v roce 2026 připsala tento stream zpět Safe, a proto Safe dostal dva migrační převody.",
+          "commonSender": "Stejná peněženka poslala starý BSO jak vlastníkovi Safe (13,7 mld. dne 8. března 2024), tak samotnému Safe (1,5 mld. dne 1. června 2024)."
+        }
+      },
+      "holderC": {
+        "name": "Držitel C",
+        "summary": "Dvě peněženky, které dostaly starý BSO od stejného odesílatele.",
+        "evidence": {
+          "commonSender": "Jedna peněženka poslala 19. srpna 2024 první z nich 4,7 mld. starých BSO a 14. listopadu 2025 druhé 15,4 mld. Společný odesílatel může být i jeden prodejce, který obsluhuje dva kupce."
+        }
+      },
+      "holderD": {
+        "name": "Držitel D",
+        "summary": "Tři peněženky spojené přes jednu z nich.",
+        "evidence": {
+          "sharedRecipient": "Prostřední peněženka dostala 18. listopadu 2022 od první testovací převod a pak 5 mld. PLEB a 1. prosince 2022 od třetí 8,2 mld. PLEB. Mohl by to být i jeden kupec, který platí dvěma prodejcům."
+        }
+      },
+      "holderE": {
+        "name": "Držitel E",
+        "summary": "Dvě peněženky naplněné ze stejného zdroje.",
+        "evidence": {
+          "commonSender": "Jedna peněženka poslala první z nich 39,4 mld. starých BSO v sedmi převodech mezi říjnem 2024 a lednem 2025 a druhé 2,0 mld. dne 22. listopadu 2025."
+        }
+      },
+      "holderF": {
+        "name": "Držitel F",
+        "summary": "Jedna peněženka, která rozdělila své tokeny do tří nových peněženek a zaplatila jim gas.",
+        "evidence": {
+          "split": "10. března 2024 poslala jedna peněženka během sedmi minut kulaté částky starého BSO (12 mld., 8 mld. a 4 mld.) na tři nové peněženky a téhož dne dvěma z nich poslala ETH na gas. Sama BSO stále drží."
+        }
+      },
+      "holderG": {
+        "name": "Držitel G",
+        "summary": "Dvě peněženky financované stejným odesílatelem, s odstupem tří let.",
+        "evidence": {
+          "commonSender": "Jedna peněženka poslala druhé 4,7 mld. PLEB v dubnu 2022 a první 6 mld. starých BSO v lednu 2025."
+        }
+      },
+      "holderH": {
+        "name": "Držitel H",
+        "summary": "Dvě peněženky s jedním převodem mezi sebou.",
+        "evidence": {
+          "directTransfer": "První peněženka poslala druhé 420 mil. PLEB dne 24. dubna 2022."
+        }
+      },
+      "holderI": {
+        "name": "Držitel I",
+        "summary": "Dvě peněženky s opakovanými převody mezi sebou.",
+        "evidence": {
+          "directTransfers": "Druhá peněženka poslala první 13,2 mld. starých BSO dne 30. října 2023 a 5 mld. dne 8. listopadu 2023."
+        }
+      }
+    },
+    "team": {
+      "title": "Žádný podíl pro tým",
+      "lead": "Pro tým, investory ani předprodej nebyly vyhrazeny žádné tokeny. Tady je, odkud pochází každý PLEB, co dnes drží peněženky týmu a co tehdy řekl zakladatel.",
+      "origin": {
+        "caption": "Všech {{amount}} kdy vymintovaných PLEB podle způsobu mintování",
+        "label": "Vymintované PLEB podle zdroje",
+        "airdropClaims": {
+          "label": "Vyzvednutí z airdropu",
+          "note": "{{amount}} PLEB vyzvedlo 1 510 adres ve třech kolech. Přidělené tokeny, které si nikdo nevyzvedl, nebyly nikdy vymintovány."
+        },
+        "liquidityMining": {
+          "label": "Liquidity mining",
+          "note": "{{amount}} PLEB vyplacených lidem, kteří od února 2022 do května 2023 stakovali likviditu na Trader Joe."
+        },
+        "liquiditySeed": {
+          "label": "Počáteční likvidita",
+          "note": "{{amount}} PLEB vymintovaných na deployer a vložených spolu se 7 AVAX do dvou startovních poolů."
+        }
+      },
+      "facts": {
+        "liquiditySeed": "Jediným mintem na peněženku týmu mimo airdrop byla počáteční likvidita: 50 mld. PLEB, vložených 14. ledna 2022 během sedmi minut do poolu na Trader Joe (40,1 mld.) a poolu na Pangolin (10 mld.).",
+        "teamClaims": "V 1. kole si vyzvedli dva členové týmu: Esteban 5 mld. PLEB a Tom 13,2 mld. PLEB, což bylo třetí největší ze 767 vyzvednutí. Dohromady to jsou 2 % všech PLEB vyzvednutých v airdropech.",
+        "noFarmRewards": "Žádná peněženka týmu nedostala odměny z liquidity miningu. Vyplacených 433 mld. šlo na 208 jiných adres.",
+        "migrationMintedNothing": "Migrace v roce 2026 nikomu nevytvořila žádné nové tokeny: všech 210 mil. BSO odešlo v jedné transakci, v poměru ke starým zůstatkům."
+      },
+      "statementsTitle": "Co tehdy řekl zakladatel",
+      "statementBy": "Esteban Abaroa, zakladatel, {{date}}",
+      "walletsTitle": "Peněženky týmu dnes",
+      "person": "Osoba",
+      "wallet": "Peněženka",
+      "total": "Tým celkem",
+      "walletsNote": "V hodnotě {{value}} při ceně ze snímku. Celá historie každé peněženky je veřejně dostupná na Etherscanu.",
+      "poolNote": "Tokeny likvidity poolu na Uniswapu drží ze 79,1 % Estebanova deployer peněženka a ze 7,4 % estebanabaroa.eth. Nejsou uzamčené."
+    },
+    "airdrops": {
+      "title": "Tři airdropy, 2022",
+      "lead": "PLEB, první generace BSO, vznikl na Avalanche bez jakéhokoli prodeje. Rozdal se ve třech kolech a každé vyzvednutí přešlo na BSO ve stejném poměru: 7 114,6 PLEB za 1 BSO.",
+      "caption": "Tři kola airdropu PLEB a jakou hodnotu mají vyzvednuté tokeny dnes",
+      "round": "Kolo {{number}}",
+      "total": "Celkem",
+      "rounds": {
+        "telegram": {
+          "name": "Bot na Telegramu",
+          "how": "Poslat adresu na Avalanche botovi @plebbitbot, s bonusy za doporučení"
+        },
+        "twitter": {
+          "name": "Twitter",
+          "how": "Dát like, retweetnout a označit tři přátele u příspěvku @getplebbit"
+        },
+        "reddit": {
+          "name": "Reddit",
+          "how": "Napsat komentář do vlákna na r/plebbitairdrop; bot kontroloval historii účtu"
+        }
+      },
+      "metrics": {
+        "how": "Jak se zapojit",
+        "window": "Období registrace",
+        "signups": "Oznámené registrace",
+        "claimers": "Adresy, které vyzvedly",
+        "plebClaimed": "Vyzvednuté PLEB",
+        "bsoToday": "BSO dnes",
+        "worthToday": "Hodnota dnes",
+        "medianClaim": "Medián vyzvednutí dnes",
+        "largestClaim": "Největší vyzvednutí dnes",
+        "sources": "Zdroje"
+      },
+      "dateRange": "{{start}} – {{end}}",
+      "overCount": "přes {{amount}}",
+      "distinct": "{{amount}} unikátních",
+      "note": "Hodnoty předpokládají, že se všechny vyzvednuté tokeny stále drží, při ceně {{price}} za BSO ke dni {{date}}. Mnoho registrací byli boti. Vyzvedávání skončilo 21. února 2022 a přidělené tokeny, které si nikdo nevyzvedl, nebyly nikdy vymintovány."
+    },
+    "history": {
+      "title": "Historie",
+      "lead": "Od skupiny na Telegramu v roce 2021 k neměnnému ERC-20 v roce 2026.",
+      "redditThread": "Vlákno na Redditu",
+      "events": {
+        "groupOpens": {
+          "title": "Vzniká telegramová skupina plebbit",
+          "body": "Skupina, ze které je dnes t.me/bitsocialnet, začíná na Boží hod vánoční 2021."
+        },
+        "telegramRound": {
+          "title": "1. kolo: bot na Telegramu",
+          "body": "Týden se lidé registrují přes @plebbitbot. Nabídka se dělí rovným dílem mezi účastníky, s bonusy za doporučení. Než bot 14. ledna skončí, zaregistruje se 3 312 adres."
+        },
+        "launch": {
+          "title": "Nejdřív likvidita, pak vyzvedávání",
+          "body": "V 18:00 UTC vloží deployer PLEB a 7 AVAX na Trader Joe a Pangolin. Stránka pro vyzvednutí se otevře asi o 30 minut později, takže všechna přidělení byla pevně daná dřív, než mohl kdokoli obchodovat."
+        },
+        "twitterRound": {
+          "title": "2. kolo: Twitter",
+          "body": "Airdrop, který celý probíhal na Twitteru: dát like, retweetnout a označit tři přátele. Do 6. února se zaregistruje přes 1 500 lidí."
+        },
+        "redditRound": {
+          "title": "3. kolo: Reddit",
+          "body": "Experimentální airdrop na r/plebbitairdrop, kde bot kontroloval, že komentující mají starší aktivitu na Redditu. Do 12. února se zaregistruje přes 2 200 účtů, z nichž mnohé jsou boti."
+        },
+        "claimsClose": {
+          "title": "Vyzvedávání končí",
+          "body": "Ze všech tří airdropů už nelze nic vyzvednout. Tokeny, které si nikdo nevyzvedl, se nikdy nevymintují."
+        },
+        "farm": {
+          "title": "Začíná liquidity mining",
+          "body": "Kdo stakuje likviditu PLEB/AVAX, získává nově vymintované PLEB. Farma vyplácí až do přechodu na Ethereum."
+        },
+        "ethereum": {
+          "title": "Přechod na Ethereum",
+          "body": "Po hlasování na Snapshotu je PLEB zmrazen a každý zůstatek, včetně uzamčených tokenů, pozic likvidity a nevyplacených odměn z farmy, je znovu vydán na Ethereu jako token druhé generace. Držitelé nemusejí nic dělat."
+        },
+        "rebrand": {
+          "title": "Z plebbit se stává Bitsocial",
+          "body": "Během března 2026 projekt i jeho token postupně přebírají jméno Bitsocial."
+        },
+        "rebase": {
+          "title": "Nabídka nastavena na 210 milionů",
+          "body": "Token druhé generace projde rebasem, aby celková nabídka byla přesně 210 milionů: ze 7 114,6 starých tokenů se stane 1."
+        },
+        "immutable": {
+          "title": "BSO se stává neměnným",
+          "body": "Finální kontrakt BSO se spouští bez mintu, vlastníka, pozastavení i proxy. Všech 210 mil. odchází v jedné transakci, v poměru k zůstatkům po rebasu."
+        }
+      }
+    },
+    "method": {
+      "title": "Metodika a omezení",
+      "lead": "Jak se skupiny našly a co tato stránka nevidí.",
+      "howTitle": "Jak se peněženky propojovaly",
+      "how": {
+        "transfers": "Byl dohledán každý převod PLEB, starého BSO a BSO mezi dvěma běžnými peněženkami, bez burz, routerů, poolů a jiných kontraktů. Multisigy Safe byly propojeny se svými vlastníky.",
+        "funders": "Porovnávalo se, která peněženka jako první poslala každému z největších držitelů AVAX nebo ETH. Burzy financují tisíce peněženek, takže jako propojení se počítají jen soukromí financovatelé.",
+        "pattern": "U peněženek bez přímého propojení se nákupní chování porovnalo se všemi kupci PLEB ze stejného období.",
+        "migrations": "Zůstatky byly sledovány přes obě migrace v poměru 7 114,6 PLEB za BSO."
+      },
+      "limitsTitle": "Omezení",
+      "limits": {
+        "exchangeOnly": "Držitel, který financuje každou peněženku přes burzu a nikdy mezi nimi nepřesouvá tokeny, nezanechá žádné on-chain propojení. Některé skupiny tak mohou skrývat další peněženky.",
+        "sales": "Převod mezi dvěma peněženkami může být prodej nebo dar. Skupiny označené jako Možné stojí na jediném takovém propojení.",
+        "contracts": "Tokeny držené jinými kontrakty než poolem na Uniswapu a Safe jsou uvedeny tak, jak jsou.",
+        "snapshot": "Zůstatky a cena se z blockchainu obnovují každých pět minut, dokud je tato stránka otevřená. Propojení mezi peněženkami se dohledávají ručně a sama se neaktualizují."
+      },
+      "contracts": {
+        "gen1": "Gen 1: PLEB na Avalanche",
+        "gen2": "Gen 2: starý BSO na Ethereu",
+        "gen3": "Gen 3: dnešní BSO"
+      },
+      "snapshot": "Zůstatky a cena z Blockscoutu: {{count}} peněženek ke dni {{date}}. Našli jste chybné nebo chybějící propojení? <contributeLink>Vylepšit tuto stránku</contributeLink>."
+    }
   }
 }

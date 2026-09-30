@@ -20,8 +20,8 @@ que qualquer pessoa possa conferir o registro de forma independente.
 - **Endereço**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Explorador**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Foi aqui que o BSO começou. Todo o fornecimento foi distribuído por airdrop, sem pré-venda e sem
-alocação reservada para a equipe antes da comunidade. O contrato era um proxy atualizável, prática
+Foi aqui que o BSO começou. O fornecimento foi distribuído por meio de três airdrops e recompensas de
+mineração de liquidez, sem pré-venda e sem alocação reservada para a equipe antes da comunidade. O contrato era um proxy atualizável, prática
 padrão na época, que permitia à equipe publicar correções durante a fase inicial do token.
 
 ## Geração 2: a mudança para o Ethereum, 2024

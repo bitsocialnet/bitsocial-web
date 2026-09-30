@@ -3,7 +3,8 @@
     "language": "Dil",
     "theme": "Tema",
     "mainSite": "Ana Site",
-    "faq": "SSS"
+    "faq": "SSS",
+    "richList": "Zengin listesi"
   },
   "languageSelector": {
     "title": "Dil seçin",
@@ -71,12 +72,12 @@
     },
     "tokenomics": {
       "title": "Sağlam para.",
-      "supporting": "BSO, sabit arzlı bir ERC-20'dir: 210 milyon, enflasyon yok, tasarım gereği deflasyonist. Tüm arz, 2022'nin başında yaklaşık 600 kişiye airdrop ile dağıtıldı; ön satış yapılmadı ve topluluktan önce ayrılan hiçbir pay olmadı. Sözleşmesi değiştirilemez ve yöneticisizdir, dolayısıyla kurallar sonsuza dek sabittir.",
+      "supporting": "BSO, sabit arzlı bir ERC-20'dir: 210 milyon, enflasyon yok, tasarım gereği deflasyonist. 2022'de üç airdrop ve likidite madenciliği ödülleriyle ücretsiz dağıtıldı; ön satış ve ekip tahsisi olmadı. Sözleşmesi değiştirilemez ve yöneticisizdir, dolayısıyla kurallar sonsuza dek sabittir.",
       "supply": {
         "cap": "BSO maksimum arz · sonsuza dek sabit"
       },
       "traits": {
-        "airdropped": "%100 airdrop, ekip payı veya ön satış yok",
+        "airdropped": "Ekip tahsisi veya ön satış yok",
         "fixedCap": "Sabit üst sınır, sıfır emisyon",
         "deflationary": "Deflasyonist: arz yalnızca azalır"
       },
@@ -99,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "Airdrop",
-        "note": "Ocak ve Şubat 2022 arasında, üç talep turunda yaklaşık 600 kişi. Bir Telegram botu üzerinden kaydoldular, referans kodları daha büyük paylar kazandırdı ve hiç kimse arzın fazla bir kısmını götüremesin diye her alıcı elle kontrol edildi. Ön satış yok, ekip tahsisi yok, hiçbir şey satılmadı."
+        "label": "Dağıtım",
+        "note": "Ocak ve Şubat 2022'de, 1.510 adresin talep ettiği üç airdrop turu. 1. turda referans bonuslu bir Telegram botu kullanıldı ve Esteban bu turdaki referansları kötüye kullanıma karşı elle inceledi; 2. ve 3. turlar Twitter ve Reddit'te yapıldı. Arzın yaklaşık %63'ü airdrop'larla, %34'ü ise likidite sağlayanlara ödül olarak dağıtıldı; geri kalanı lansman havuzlarının başlangıç likiditesi oldu. Ön satış yok, ekip tahsisi yok, hiçbir şey satılmadı.",
+        "richListLink": "Tüm sahipleri ve üç turun hepsini görün"
       },
       "contract": {
         "label": "Sözleşmenin tamamı",
@@ -293,5 +295,317 @@
     "returnToOrigin": "Önceki konuma dön",
     "toTop": "Başa dön",
     "toBottom": "Sona git"
+  },
+  "richList": {
+    "meta": {
+      "title": "BSO Zengin Listesi - BSO Kimde",
+      "description": "Tüm BSO sahipleri; bağlantılı cüzdanlar gruplanmış, ekibin cüzdanları işaretlenmiş ve her bağlantının arkasındaki on-chain kanıtlarla birlikte. Ayrıca 2022'deki üç airdrop'un geçmişi."
+    },
+    "hero": {
+      "title": "BSO kimde",
+      "lead": "Tüm BSO cüzdanları: aynı sahibe ait cüzdanlar bir arada gruplanmış, ekibin cüzdanları işaretlenmiştir. Her bağlantı, arkasındaki işlemleri listeler; böylece kendiniz kontrol edebilirsiniz.",
+      "jumpLabel": "Bölümler",
+      "status": {
+        "live": "Zincirden canlı: {{count}} cüzdan, BSO fiyatı {{price}}. Güncelleme: {{ago}}.",
+        "loading": "{{date}} tarihli anlık görüntü: {{count}} cüzdan, BSO fiyatı {{price}}. Canlı veriler yükleniyor…",
+        "unavailable": "Canlı veriler şu anda kullanılamıyor, bu yüzden bu {{date}} tarihli anlık görüntüdür: {{count}} cüzdan, BSO fiyatı {{price}}."
+      }
+    },
+    "jump": {
+      "holders": "Sahipler",
+      "linked-wallets": "Bağlantılı cüzdanlar",
+      "team": "Ekip",
+      "airdrops": "Airdrop'lar",
+      "history": "Geçmiş",
+      "method": "Yöntem"
+    },
+    "strip": {
+      "label": "210 milyonluk BSO arzında her grubun elindeki pay",
+      "team": "Ekip",
+      "pool": "Uniswap havuzu",
+      "everyoneElse_one": "Diğer herkes ({{count}} cüzdan)",
+      "everyoneElse_other": "Diğer herkes ({{count}} cüzdan)"
+    },
+    "categories": {
+      "team": "Ekip",
+      "pool": "Likidite havuzu",
+      "confirmed": "Doğrulanmış",
+      "likely": "Muhtemel",
+      "possible": "Olası",
+      "other": "Bağlantısız"
+    },
+    "table": {
+      "title": "Sahipler",
+      "lead": "Bağlantılı cüzdanlar tek bir satırda birleştirilir. Her adresi Etherscan'in listelediği şekilde görmek için Cüzdana göre görünümüne geçin.",
+      "viewLabel": "Sahipleri göster",
+      "view": {
+        "grouped": "Gruplanmış",
+        "wallets": "Cüzdana göre"
+      },
+      "searchLabel": "Adrese veya sahip adına göre ara",
+      "searchPlaceholder": "Bir adres arayın",
+      "caption": "Bakiyeye göre BSO sahipleri",
+      "holder": "Sahip",
+      "balance": "BSO",
+      "share": "Arz payı",
+      "value": "Değer",
+      "contract": "Sözleşme",
+      "walletCount_one": "{{count}} cüzdan",
+      "walletCount_other": "{{count}} cüzdan",
+      "noMatch": "Bu aramayla eşleşen sahip yok.",
+      "showAll_one": "{{count}} satırın tümünü göster",
+      "showAll_other": "{{count}} satırın tümünü göster"
+    },
+    "evidenceLinks": "Kanıt işlemleri",
+    "telegramSources": "Telegram kaynakları",
+    "linked": {
+      "title": "Bağlantılı cüzdanlar",
+      "lead": "Cüzdanlar yalnızca zincir bir bağlantı gösterdiğinde gruplanır: aralarında token veya gas hareketi, ortak bir özel fon sağlayıcı, bir multisig sahibi ya da birebir aynı alım örüntüsü. Her grup, arkasındaki işlemleri listeler.",
+      "confidence": {
+        "confirmed": "Cüzdanlar birbirleriyle işlem yapar, ortak bir özel fon sağlayıcıyı paylaşır veya birbirlerini kontrol eder.",
+        "likely": "Tek bir kaynaktan gelen ve başka bir şekilde açıklanması zor olan birden fazla transfer.",
+        "possible": "Bir satış ya da hediye de olabilecek tek bir bağlantı."
+      },
+      "holds_one": "{{amount}} BSO, arz payı {{share}}, {{count}} cüzdanda",
+      "holds_other": "{{amount}} BSO, arz payı {{share}}, {{count}} cüzdana dağılmış",
+      "walletList_one": "{{count}} cüzdan",
+      "walletList_other": "{{count}} cüzdanın tümü",
+      "patternOnly": "alım örüntüsüyle bağlantılı"
+    },
+    "walletRoles": {
+      "deployer": "deployer",
+      "estebanEns": "estebanabaroa.eth",
+      "safe": "Safe multisig",
+      "safeOwner": "Safe sahibi"
+    },
+    "entities": {
+      "esteban": {
+        "name": "Esteban (kurucu)"
+      },
+      "rinse12": {
+        "name": "rinse12 (çekirdek geliştirici)"
+      },
+      "tom": {
+        "name": "Tom (Tommaso Casaburi)"
+      },
+      "pool": {
+        "name": "Uniswap BSO/ETH havuzu"
+      },
+      "holderA": {
+        "name": "Sahip A",
+        "summary": "22 Şubat ile 8 Nisan 2022 arasında Avalanche'ta PLEB satın alan ve o günden beri hiç satmayan on iki cüzdan. Beşi zincir üzerinde birbirine bağlı; diğer yedisi aynı alıcının örüntüsüyle eşleşiyor.",
+        "evidence": {
+          "transfersToLpWallet": "Alım yapan cüzdanlardan ikisi PLEB ve AVAX'ı üçüncü bir cüzdana gönderdi; bu cüzdan onları Trader Joe'da likidite ve farming için kullandı: 27 Şubat 2022'de 1 milyar PLEB ve 5 AVAX, ardından 28 Şubat ile 2 Mart arasında 7,2 milyar PLEB ve 34 AVAX. Üçüncü cüzdan 0,013 AVAX'ı geri gönderdi.",
+          "sharedFunder": "Özel bir cüzdan, alım yapan cüzdanlardan üçüne fon sağladı ve başka hiçbir şey yapmadı. Gönderdiği her işlem sırayla onlara gitti: 0'dan 4'e kadar nonce'lar birincisine, 5'ten 7'ye kadar ikincisine, 8 ise üçüncüsüne.",
+          "buyingPattern": "Yedi cüzdan daha vardı; her biri yeniydi, Binance veya ChangeNOW üzerinden (bağlantılı cüzdanların kullandığı hizmetlerin aynısı) yaklaşık 2.000 ile 3.400 dolar arasındaki bir veya iki borsa çekimiyle fonlandı, tamamen PLEB'e çevrildi ve bir daha hiç kullanılmadı. 28 Şubat ile 31 Mart 2022 arasında, bağlantılı cüzdanlarla hiç çakışmadan birbiri ardına alım yaptılar. Şubat ile Nisan 2022 arasındaki toplam 292 PLEB alıcısı içinde bu örüntüye uyan başka cüzdan yok.",
+          "neverSold": "On iki cüzdanın hiçbiri o zamandan beri token'larını satmadı veya taşımadı. Bakiyeleri her iki geçişten de değişmeden geçti."
+        }
+      },
+      "holderB": {
+        "name": "Sahip B",
+        "summary": "4 sahibinden 2'sinin imzasını gerektiren, tek bir öğleden sonra 14 cüzdandan eski BSO toplayan bir Safe multisig ve sahiplerinden biri.",
+        "evidence": {
+          "owners": "Safe, 4 sahibinden 2'sinin imzalamasını gerektirir. Sahiplerden biri doğrudan da BSO tutuyor. Dört sahip, birden fazla anahtarı olan tek bir kişi ya da küçük bir grup anlamına gelebilir.",
+          "consolidation": "1 Haziran 2024'te, 16:08 ile 17:51 UTC arasında Safe, 14 cüzdandan 120,5 milyar eski BSO aldı. İlk transfer, Safe'in hemen geri gönderdiği 10 token'lık bir testti.",
+          "vesting": "12 Ağustos 2024'te Safe, 60,5 milyar eski BSO'yu bir Sablier vesting akışına taşıdı. 2026 geçişi bu akışı yeniden Safe'e yazdı; Safe'in iki geçiş transferi almasının nedeni budur.",
+          "commonSender": "Aynı cüzdan hem Safe sahibine (8 Mart 2024'te 13,7 milyar) hem de Safe'e (1 Haziran 2024'te 1,5 milyar) eski BSO gönderdi."
+        }
+      },
+      "holderC": {
+        "name": "Sahip C",
+        "summary": "Aynı göndericiden eski BSO alan iki cüzdan.",
+        "evidence": {
+          "commonSender": "Bir cüzdan 19 Ağustos 2024'te birincisine 4,7 milyar eski BSO, 14 Kasım 2025'te ikincisine 15,4 milyar gönderdi. Ortak bir gönderici, iki alıcıya satış yapan tek bir satıcı da olabilir."
+        }
+      },
+      "holderD": {
+        "name": "Sahip D",
+        "summary": "İçlerinden biri üzerinden birbirine bağlanan üç cüzdan.",
+        "evidence": {
+          "sharedRecipient": "Ortadaki cüzdan, 18 Kasım 2022'de birincisinden bir test transferi ve ardından 5 milyar PLEB, 1 Aralık 2022'de ise üçüncüsünden 8,2 milyar PLEB aldı. Bu, iki satıcıya ödeme yapan tek bir alıcı da olabilir."
+        }
+      },
+      "holderE": {
+        "name": "Sahip E",
+        "summary": "Aynı kaynaktan doldurulan iki cüzdan.",
+        "evidence": {
+          "commonSender": "Bir cüzdan, Ekim 2024 ile Ocak 2025 arasında yedi transferle birincisine 39,4 milyar eski BSO, 22 Kasım 2025'te ikincisine 2,0 milyar gönderdi."
+        }
+      },
+      "holderF": {
+        "name": "Sahip F",
+        "summary": "Token'larını üç yeni cüzdana bölen ve onların gas ücretini ödeyen bir cüzdan.",
+        "evidence": {
+          "split": "10 Mart 2024'te, yedi dakika içinde, bir cüzdan üç yeni cüzdana yuvarlak miktarlarda eski BSO (12 milyar, 8 milyar ve 4 milyar) gönderdi ve aynı gün ikisine gas için ETH gönderdi. Kendisi hâlâ BSO tutuyor."
+        }
+      },
+      "holderG": {
+        "name": "Sahip G",
+        "summary": "Aynı gönderici tarafından, üç yıl arayla fonlanan iki cüzdan.",
+        "evidence": {
+          "commonSender": "Bir cüzdan, Nisan 2022'de ikincisine 4,7 milyar PLEB, Ocak 2025'te birincisine 6 milyar eski BSO gönderdi."
+        }
+      },
+      "holderH": {
+        "name": "Sahip H",
+        "summary": "Aralarında tek bir transfer bulunan iki cüzdan.",
+        "evidence": {
+          "directTransfer": "Birinci cüzdan, 24 Nisan 2022'de ikincisine 420 milyon PLEB gönderdi."
+        }
+      },
+      "holderI": {
+        "name": "Sahip I",
+        "summary": "Aralarında tekrarlanan transferler bulunan iki cüzdan.",
+        "evidence": {
+          "directTransfers": "İkinci cüzdan, 30 Ekim 2023'te birincisine 13,2 milyar eski BSO, 8 Kasım 2023'te de 5 milyar gönderdi."
+        }
+      }
+    },
+    "team": {
+      "title": "Ekip tahsisi yok",
+      "lead": "Ekip, yatırımcılar veya ön satış için hiçbir token ayrılmadı. Her PLEB'in nereden geldiği, ekibin cüzdanlarının bugün ne tuttuğu ve kurucunun o dönemde ne söylediği burada.",
+      "origin": {
+        "caption": "Şimdiye kadar mint edilen {{amount}} PLEB'in tamamı, mint edilme şekline göre",
+        "label": "Kaynağa göre mint edilen PLEB",
+        "airdropClaims": {
+          "label": "Airdrop talepleri",
+          "note": "1.510 adresin üç turda talep ettiği {{amount}} PLEB. Kimsenin talep etmediği tahsisler hiçbir zaman mint edilmedi."
+        },
+        "liquidityMining": {
+          "label": "Likidite madenciliği",
+          "note": "Şubat 2022'den Mayıs 2023'e kadar Trader Joe'da likidite stake eden kişilere ödenen {{amount}} PLEB."
+        },
+        "liquiditySeed": {
+          "label": "Lansman likiditesi",
+          "note": "Deployer'a mint edilen ve 7 AVAX ile birlikte iki lansman havuzuna eklenen {{amount}} PLEB."
+        }
+      },
+      "facts": {
+        "liquiditySeed": "Airdrop dışında bir ekip cüzdanına yapılan tek mint, lansman likiditesiydi: 14 Ocak 2022'de yedi dakika içinde Trader Joe havuzuna (40,1 milyar) ve Pangolin havuzuna (10 milyar) eklenen 50 milyar PLEB.",
+        "teamClaims": "İki ekip üyesi 1. turda talepte bulundu: Esteban 5 milyar PLEB, Tom ise 767 talep arasında üçüncü en büyük olan 13,2 milyar PLEB. İkisi birlikte airdrop'larda talep edilen tüm PLEB'in %2'sini oluşturuyor.",
+        "noFarmRewards": "Hiçbir ekip cüzdanı likidite madenciliği ödülü almadı. Ödenen 433 milyar, 208 başka adrese gitti.",
+        "migrationMintedNothing": "2026 geçişi kimse için yeni token oluşturmadı: 210 milyon BSO'nun tamamı, eski bakiyelerle orantılı olarak tek bir işlemde dağıtıldı."
+      },
+      "statementsTitle": "Kurucunun o dönemde söyledikleri",
+      "statementBy": "Esteban Abaroa, kurucu, {{date}}",
+      "walletsTitle": "Bugün ekip cüzdanları",
+      "person": "Kişi",
+      "wallet": "Cüzdan",
+      "total": "Ekip toplamı",
+      "walletsNote": "Anlık görüntü fiyatıyla değeri {{value}}. Her cüzdanın tüm geçmişi Etherscan'de herkese açıktır.",
+      "poolNote": "Uniswap havuzunun likidite token'larının %79,1'i Esteban'ın deployer cüzdanında, %7,4'ü estebanabaroa.eth'te bulunuyor. Kilitli değiller."
+    },
+    "airdrops": {
+      "title": "Üç airdrop, 2022",
+      "lead": "BSO'nun ilk nesli olan PLEB, Avalanche'ta hiçbir satış yapılmadan piyasaya çıktı. Üç turda ücretsiz dağıtıldı ve her talep aynı oranla BSO'ya aktarıldı: 1 BSO için 7.114,6 PLEB.",
+      "caption": "Üç PLEB airdrop turu ve talep edilen token'ların bugünkü değeri",
+      "round": "{{number}}. tur",
+      "total": "Toplam",
+      "rounds": {
+        "telegram": {
+          "name": "Telegram botu",
+          "how": "@plebbitbot'a bir Avalanche adresi gönderin; referanslar için bonus var"
+        },
+        "twitter": {
+          "name": "Twitter",
+          "how": "@getplebbit'in gönderisini beğenin, retweetleyin ve üç arkadaşınızı etiketleyin"
+        },
+        "reddit": {
+          "name": "Reddit",
+          "how": "r/plebbitairdrop başlığına yorum yapın; bir bot hesap geçmişini kontrol etti"
+        }
+      },
+      "metrics": {
+        "how": "Nasıl katılınır",
+        "window": "Kayıt dönemi",
+        "signups": "Duyurulan kayıtlar",
+        "claimers": "Talepte bulunan adresler",
+        "plebClaimed": "Talep edilen PLEB",
+        "bsoToday": "Bugün BSO",
+        "worthToday": "Bugünkü değer",
+        "medianClaim": "Bugün medyan talep",
+        "largestClaim": "Bugün en büyük talep",
+        "sources": "Kaynaklar"
+      },
+      "dateRange": "{{start}} – {{end}}",
+      "overCount": "{{amount}} üzeri",
+      "distinct": "{{amount}} benzersiz",
+      "note": "Değerler, talep edilen her token'ın hâlâ tutulduğunu varsayar ve {{date}} tarihindeki BSO başına {{price}} fiyatını esas alır. Kayıtların birçoğu bottu. Talepler 21 Şubat 2022'de kapandı ve kimsenin talep etmediği tahsisler hiçbir zaman mint edilmedi."
+    },
+    "history": {
+      "title": "Geçmiş",
+      "lead": "2021'deki bir Telegram grubundan 2026'daki değiştirilemez bir ERC-20'ye.",
+      "redditThread": "Reddit başlığı",
+      "events": {
+        "groupOpens": {
+          "title": "plebbit Telegram grubu açılıyor",
+          "body": "Bugün t.me/bitsocialnet olan grup, 2021 Noel Günü'nde başlıyor."
+        },
+        "telegramRound": {
+          "title": "1. tur: Telegram botu",
+          "body": "Bir hafta boyunca insanlar @plebbitbot ile kaydoluyor. Arz, referanslar için bonuslarla birlikte katılımcılar arasında eşit olarak paylaştırılıyor. Bot 14 Ocak'ta kapanmadan önce 3.312 adres kaydoluyor."
+        },
+        "launch": {
+          "title": "Önce likidite, sonra talepler",
+          "body": "Saat 18:00 UTC'de deployer, Trader Joe ve Pangolin'e PLEB ve 7 AVAX ekliyor. Talep sayfası yaklaşık 30 dakika sonra açılıyor; böylece her tahsis, kimse işlem yapamadan önce sabitlenmiş oluyor."
+        },
+        "twitterRound": {
+          "title": "2. tur: Twitter",
+          "body": "Tamamen Twitter'da yürütülen bir airdrop: beğen, retweetle ve üç arkadaşını etiketle. 6 Şubat'a kadar 1.500'den fazla kişi kaydoluyor."
+        },
+        "redditRound": {
+          "title": "3. tur: Reddit",
+          "body": "r/plebbitairdrop üzerinde deneysel bir airdrop; burada bir bot, yorum yapanların eskiye dayanan Reddit etkinliği olup olmadığını kontrol etti. 12 Şubat'a kadar 2.200'den fazla kişi kaydoluyor, bunların çoğu bot."
+        },
+        "claimsClose": {
+          "title": "Talepler kapanıyor",
+          "body": "Üç airdrop'un hiçbiri artık talep edilemiyor. Kimsenin talep etmediği token'lar hiçbir zaman mint edilmiyor."
+        },
+        "farm": {
+          "title": "Likidite madenciliği başlıyor",
+          "body": "PLEB/AVAX likiditesi stake edenler yeni mint edilen PLEB kazanıyor. Farm, Ethereum'a geçişe kadar ödeme yapıyor."
+        },
+        "ethereum": {
+          "title": "Ethereum'a geçiş",
+          "body": "Bir Snapshot oylamasının ardından PLEB donduruluyor ve kilitli token'lar, likidite pozisyonları ve ödenmemiş farm ödülleri dahil her bakiye, ikinci nesil token olarak Ethereum'da yeniden çıkarılıyor. Sahiplerin hiçbir şey yapması gerekmiyor."
+        },
+        "rebrand": {
+          "title": "plebbit, Bitsocial oluyor",
+          "body": "Mart 2026 boyunca proje ve token'ı kademeli olarak Bitsocial adını alıyor."
+        },
+        "rebase": {
+          "title": "Arz 210 milyona ayarlanıyor",
+          "body": "İkinci nesil token, toplam arz tam olarak 210 milyon olacak şekilde rebase ediliyor: 7.114,6 eski token 1 oluyor."
+        },
+        "immutable": {
+          "title": "BSO değiştirilemez hâle geliyor",
+          "body": "Nihai BSO sözleşmesi mint, sahip, duraklatma veya proxy olmadan yayına giriyor. 210 milyonun tamamı, rebase edilmiş bakiyelerle orantılı olarak tek bir işlemde dağıtılıyor."
+        }
+      }
+    },
+    "method": {
+      "title": "Yöntem ve sınırlar",
+      "lead": "Grupların nasıl bulunduğu ve bu sayfanın neleri göremediği.",
+      "howTitle": "Cüzdanlar nasıl bağlandı",
+      "how": {
+        "transfers": "İki sıradan cüzdan arasındaki her PLEB, eski BSO ve BSO transferi izlendi; borsalar, router'lar, havuzlar ve diğer sözleşmeler hariç tutuldu. Safe multisig'ler sahiplerine bağlandı.",
+        "funders": "Her büyük sahibe ilk kez AVAX veya ETH gönderen cüzdan karşılaştırıldı. Borsalar binlerce cüzdanı fonladığı için yalnızca özel fon sağlayıcılar bağlantı sayılır.",
+        "pattern": "Doğrudan bağlantısı olmayan cüzdanlar için alım davranışı, aynı dönemdeki tüm PLEB alıcılarıyla karşılaştırıldı.",
+        "migrations": "Bakiyeler, BSO başına 7.114,6 PLEB oranıyla her iki geçiş boyunca takip edildi."
+      },
+      "limitsTitle": "Sınırlar",
+      "limits": {
+        "exchangeOnly": "Her cüzdanını bir borsa üzerinden fonlayan ve aralarında hiç token taşımayan bir sahip, zincir üzerinde hiçbir bağlantı bırakmaz. Bazı gruplar hâlâ başka cüzdanlar gizliyor olabilir.",
+        "sales": "İki cüzdan arasındaki bir transfer, bir satış ya da hediye olabilir. Olası olarak işaretlenen gruplar, bu türden tek bir bağlantıya dayanır.",
+        "contracts": "Uniswap havuzu ve Safe dışındaki sözleşmelerin tuttuğu token'lar olduğu gibi listelenir.",
+        "snapshot": "Bu sayfa açıkken bakiyeler ve fiyat her beş dakikada bir zincirden yenilenir. Cüzdanlar arasındaki bağlantılar elle araştırılır ve kendiliğinden güncellenmez."
+      },
+      "contracts": {
+        "gen1": "Gen 1: Avalanche'ta PLEB",
+        "gen2": "Gen 2: Ethereum'da eski BSO",
+        "gen3": "Gen 3: Bugünkü BSO"
+      },
+      "snapshot": "Bakiyeler ve fiyat Blockscout'tan: {{date}} itibarıyla {{count}} cüzdan. Yanlış ya da eksik bir bağlantı mı buldunuz? <contributeLink>Bu sayfayı iyileştir</contributeLink>."
+    }
   }
 }

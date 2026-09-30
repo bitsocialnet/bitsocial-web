@@ -3,7 +3,8 @@
     "language": "Langue",
     "theme": "Thème",
     "mainSite": "Site principal",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "richList": "Rich list"
   },
   "languageSelector": {
     "title": "Sélectionner la langue",
@@ -71,12 +72,12 @@
     },
     "tokenomics": {
       "title": "Une monnaie saine.",
-      "supporting": "BSO est un ERC-20 à offre fixe : 210 millions, aucune inflation, déflationniste par conception. Toute l’offre a été distribuée par airdrop à environ 600 personnes début 2022, sans prévente et sans aucune part réservée avant la communauté. Son contrat est immuable et sans administrateur : les règles sont donc figées pour toujours.",
+      "supporting": "BSO est un ERC-20 à offre fixe : 210 millions, aucune inflation, déflationniste par conception. Il a été distribué en 2022 via trois airdrops et des récompenses de minage de liquidité, sans prévente et sans allocation pour l’équipe. Son contrat est immuable et sans administrateur : les règles sont donc figées pour toujours.",
       "supply": {
         "cap": "Offre maximale de BSO · fixe pour toujours"
       },
       "traits": {
-        "airdropped": "100 % en airdrop, sans part d’équipe ni prévente",
+        "airdropped": "Ni part d’équipe ni prévente",
         "fixedCap": "Plafond fixe, zéro émission",
         "deflationary": "Déflationniste : l’offre ne fait que baisser"
       },
@@ -99,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "L’airdrop",
-        "note": "Environ 600 personnes, en trois phases de réclamation entre janvier et février 2022. Elles se sont inscrites via un bot Telegram, les codes de parrainage rapportaient des parts plus importantes, et chaque bénéficiaire a été vérifié à la main pour que personne ne puisse repartir avec une trop grande part de l’offre. Pas de prévente, pas d’allocation pour l’équipe, rien de vendu."
+        "label": "La distribution",
+        "note": "Trois phases d’airdrop en janvier et février 2022, réclamées par 1 510 adresses. La phase 1 passait par un bot Telegram avec des bonus de parrainage, dont Esteban a vérifié les parrainages à la main pour repérer les abus ; les phases 2 et 3 se sont déroulées sur Twitter et Reddit. Environ 63 % de l’offre a été distribuée via les airdrops et 34 % sous forme de récompenses aux personnes ayant fourni de la liquidité ; le reste a amorcé les pools de lancement. Pas de prévente, pas d’allocation pour l’équipe, rien de vendu.",
+        "richListLink": "Voir chaque détenteur et les trois phases"
       },
       "contract": {
         "label": "Le contrat en entier",
@@ -293,5 +295,322 @@
     "returnToOrigin": "Revenir au point précédent",
     "toTop": "Retour en haut",
     "toBottom": "Aller en bas"
+  },
+  "richList": {
+    "meta": {
+      "title": "Rich list de BSO - Qui détient du BSO",
+      "description": "Chaque détenteur de BSO, avec les portefeuilles liés regroupés, les portefeuilles de l’équipe signalés et les preuves on-chain derrière chaque lien. Et l’histoire des trois airdrops de 2022."
+    },
+    "hero": {
+      "title": "Qui détient du BSO",
+      "lead": "Chaque portefeuille BSO, avec les portefeuilles d’un même détenteur regroupés et ceux de l’équipe signalés. Chaque lien indique les transactions sur lesquelles il repose, pour que vous puissiez le vérifier vous-même.",
+      "jumpLabel": "Sections",
+      "status": {
+        "live": "En direct depuis la chaîne : {{count}} portefeuilles, BSO à {{price}}. Mis à jour {{ago}}.",
+        "loading": "Instantané du {{date}} : {{count}} portefeuilles, BSO à {{price}}. Chargement des données en direct…",
+        "unavailable": "Les données en direct sont indisponibles pour le moment ; voici donc l’instantané du {{date}} : {{count}} portefeuilles, BSO à {{price}}."
+      }
+    },
+    "jump": {
+      "holders": "Détenteurs",
+      "linked-wallets": "Portefeuilles liés",
+      "team": "Équipe",
+      "airdrops": "Airdrops",
+      "history": "Historique",
+      "method": "Méthode"
+    },
+    "strip": {
+      "label": "Part de l’offre de 210 millions de BSO détenue par chaque groupe",
+      "team": "Équipe",
+      "pool": "Pool Uniswap",
+      "everyoneElse_one": "Tous les autres ({{count}} portefeuille)",
+      "everyoneElse_many": "Tous les autres ({{count}} portefeuilles)",
+      "everyoneElse_other": "Tous les autres ({{count}} portefeuilles)"
+    },
+    "categories": {
+      "team": "Équipe",
+      "pool": "Pool de liquidité",
+      "confirmed": "Confirmé",
+      "likely": "Probable",
+      "possible": "Possible",
+      "other": "Non lié"
+    },
+    "table": {
+      "title": "Détenteurs",
+      "lead": "Les portefeuilles liés sont fusionnés en une seule ligne. Passez à « Par portefeuille » pour voir chaque adresse telle qu’Etherscan la liste.",
+      "viewLabel": "Afficher les détenteurs",
+      "view": {
+        "grouped": "Regroupés",
+        "wallets": "Par portefeuille"
+      },
+      "searchLabel": "Rechercher par adresse ou par nom de détenteur",
+      "searchPlaceholder": "Rechercher une adresse",
+      "caption": "Détenteurs de BSO par solde",
+      "holder": "Détenteur",
+      "balance": "BSO",
+      "share": "Part de l’offre",
+      "value": "Valeur",
+      "contract": "Contrat",
+      "walletCount_one": "{{count}} portefeuille",
+      "walletCount_many": "{{count}} portefeuilles",
+      "walletCount_other": "{{count}} portefeuilles",
+      "noMatch": "Aucun détenteur ne correspond à cette recherche.",
+      "showAll_one": "Afficher {{count}} ligne",
+      "showAll_many": "Afficher les {{count}} lignes",
+      "showAll_other": "Afficher les {{count}} lignes"
+    },
+    "evidenceLinks": "Transactions servant de preuve",
+    "telegramSources": "Sources Telegram",
+    "linked": {
+      "title": "Portefeuilles liés",
+      "lead": "Les portefeuilles ne sont regroupés que lorsque la chaîne montre un lien : des tokens ou du gas qui circulent entre eux, un même financeur privé, un propriétaire de multisig ou un schéma d’achat identique. Chaque groupe indique les transactions sur lesquelles il repose.",
+      "confidence": {
+        "confirmed": "Les portefeuilles effectuent des transactions entre eux, partagent un financeur privé ou se contrôlent les uns les autres.",
+        "likely": "Plusieurs transferts depuis une même source, difficiles à expliquer autrement.",
+        "possible": "Un seul lien, qui pourrait aussi être une vente ou un don."
+      },
+      "holds_one": "{{amount}} BSO, {{share}} de l’offre, dans {{count}} portefeuille",
+      "holds_many": "{{amount}} BSO, {{share}} de l’offre, répartis sur {{count}} portefeuilles",
+      "holds_other": "{{amount}} BSO, {{share}} de l’offre, répartis sur {{count}} portefeuilles",
+      "walletList_one": "{{count}} portefeuille",
+      "walletList_many": "Les {{count}} portefeuilles",
+      "walletList_other": "Les {{count}} portefeuilles",
+      "patternOnly": "lié par le schéma d’achat"
+    },
+    "walletRoles": {
+      "deployer": "déployeur",
+      "estebanEns": "estebanabaroa.eth",
+      "safe": "multisig Safe",
+      "safeOwner": "propriétaire du Safe"
+    },
+    "entities": {
+      "esteban": {
+        "name": "Esteban (fondateur)"
+      },
+      "rinse12": {
+        "name": "rinse12 (développeur principal)"
+      },
+      "tom": {
+        "name": "Tom (Tommaso Casaburi)"
+      },
+      "pool": {
+        "name": "Pool BSO/ETH d’Uniswap"
+      },
+      "holderA": {
+        "name": "Détenteur A",
+        "summary": "Douze portefeuilles qui ont acheté du PLEB sur Avalanche entre le 22 février et le 8 avril 2022 et n’ont jamais vendu. Cinq sont reliés entre eux on-chain ; les sept autres correspondent au schéma du même acheteur.",
+        "evidence": {
+          "transfersToLpWallet": "Deux des portefeuilles acheteurs ont envoyé des PLEB et des AVAX à un troisième portefeuille, qui s’en est servi pour fournir de la liquidité et faire du farming sur Trader Joe : 1 milliard de PLEB et 5 AVAX le 27 février 2022, puis 7,2 milliards de PLEB et 34 AVAX entre le 28 février et le 2 mars. Le troisième portefeuille a renvoyé 0,013 AVAX.",
+          "sharedFunder": "Un portefeuille privé a financé trois des portefeuilles acheteurs, et rien d’autre. Chaque transaction qu’il a jamais envoyée leur était destinée, dans l’ordre : nonces 0 à 4 vers le premier, 5 à 7 vers le deuxième, 8 vers le troisième.",
+          "buyingPattern": "Sept autres portefeuilles étaient chacun tout neufs, financés par un ou deux retraits depuis une plateforme d’échange d’environ 2 000 à 3 400 $ via Binance ou ChangeNOW (les mêmes services que ceux utilisés par les portefeuilles liés), entièrement convertis en PLEB, puis plus jamais utilisés. Ils ont acheté l’un après l’autre entre le 28 février et le 31 mars 2022, sans jamais se chevaucher avec les portefeuilles liés. Parmi les 292 acheteurs de PLEB de février à avril 2022, aucun autre portefeuille ne correspond à ce schéma.",
+          "neverSold": "Aucun des douze portefeuilles n’a vendu ni déplacé ses tokens depuis. Leurs soldes ont traversé les deux migrations sans changement."
+        }
+      },
+      "holderB": {
+        "name": "Détenteur B",
+        "summary": "Un multisig Safe 2 sur 4 qui a rassemblé de l’ancien BSO provenant de 14 portefeuilles en un seul après-midi, plus l’un de ses propriétaires.",
+        "evidence": {
+          "owners": "Le Safe exige la signature de 2 de ses 4 propriétaires. L’un d’eux détient aussi du BSO directement. Quatre propriétaires peuvent correspondre à une seule personne disposant de plusieurs clés, ou à un petit groupe.",
+          "consolidation": "Le 1er juin 2024, entre 16:08 et 17:51 UTC, le Safe a reçu 120,5 milliards d’anciens BSO provenant de 14 portefeuilles. Le premier transfert était un test de 10 tokens que le Safe a immédiatement renvoyé.",
+          "vesting": "Le 12 août 2024, le Safe a placé 60,5 milliards d’anciens BSO dans un flux de vesting Sablier. La migration de 2026 a recrédité ce flux au Safe, ce qui explique pourquoi le Safe a reçu deux transferts de migration.",
+          "commonSender": "Le même portefeuille a envoyé de l’ancien BSO à la fois au propriétaire du Safe (13,7 milliards le 8 mars 2024) et au Safe (1,5 milliard le 1er juin 2024)."
+        }
+      },
+      "holderC": {
+        "name": "Détenteur C",
+        "summary": "Deux portefeuilles qui ont reçu de l’ancien BSO du même expéditeur.",
+        "evidence": {
+          "commonSender": "Un portefeuille a envoyé 4,7 milliards d’anciens BSO au premier le 19 août 2024 et 15,4 milliards au second le 14 novembre 2025. Un expéditeur commun peut aussi être un seul vendeur servant deux acheteurs."
+        }
+      },
+      "holderD": {
+        "name": "Détenteur D",
+        "summary": "Trois portefeuilles reliés par l’un d’entre eux.",
+        "evidence": {
+          "sharedRecipient": "Le portefeuille du milieu a reçu un transfert de test puis 5 milliards de PLEB du premier le 18 novembre 2022, et 8,2 milliards de PLEB du troisième le 1er décembre 2022. Il pourrait aussi s’agir d’un seul acheteur payant deux vendeurs."
+        }
+      },
+      "holderE": {
+        "name": "Détenteur E",
+        "summary": "Deux portefeuilles alimentés par la même source.",
+        "evidence": {
+          "commonSender": "Un portefeuille a envoyé au premier 39,4 milliards d’anciens BSO en sept transferts entre octobre 2024 et janvier 2025, et au second 2,0 milliards le 22 novembre 2025."
+        }
+      },
+      "holderF": {
+        "name": "Détenteur F",
+        "summary": "Un portefeuille qui a réparti ses tokens sur trois nouveaux portefeuilles et payé leur gas.",
+        "evidence": {
+          "split": "Le 10 mars 2024, en l’espace de sept minutes, un portefeuille a envoyé des montants ronds d’ancien BSO (12, 8 et 4 milliards) à trois nouveaux portefeuilles, puis a envoyé le même jour de l’ETH pour le gas à deux d’entre eux. Il détient toujours lui-même du BSO."
+        }
+      },
+      "holderG": {
+        "name": "Détenteur G",
+        "summary": "Deux portefeuilles financés par le même expéditeur, à trois ans d’intervalle.",
+        "evidence": {
+          "commonSender": "Un portefeuille a envoyé au second 4,7 milliards de PLEB en avril 2022 et au premier 6 milliards d’anciens BSO en janvier 2025."
+        }
+      },
+      "holderH": {
+        "name": "Détenteur H",
+        "summary": "Deux portefeuilles avec un transfert entre eux.",
+        "evidence": {
+          "directTransfer": "Le premier portefeuille a envoyé au second 420 millions de PLEB le 24 avril 2022."
+        }
+      },
+      "holderI": {
+        "name": "Détenteur I",
+        "summary": "Deux portefeuilles avec des transferts répétés entre eux.",
+        "evidence": {
+          "directTransfers": "Le second portefeuille a envoyé au premier 13,2 milliards d’anciens BSO le 30 octobre 2023 et 5 milliards le 8 novembre 2023."
+        }
+      }
+    },
+    "team": {
+      "title": "Aucune allocation pour l’équipe",
+      "lead": "Aucun token n’a été réservé à l’équipe, à des investisseurs ou à une prévente. Voici d’où vient chaque PLEB, ce que détiennent aujourd’hui les portefeuilles de l’équipe, et ce que disait le fondateur à l’époque.",
+      "origin": {
+        "caption": "La totalité des {{amount}} PLEB jamais mintés, selon leur mode de mint",
+        "label": "PLEB mintés par source",
+        "airdropClaims": {
+          "label": "Réclamations de l’airdrop",
+          "note": "{{amount}} PLEB réclamés par 1 510 adresses en trois phases. Les allocations que personne n’a réclamées n’ont jamais été mintées."
+        },
+        "liquidityMining": {
+          "label": "Minage de liquidité",
+          "note": "{{amount}} PLEB versés aux personnes qui ont staké de la liquidité sur Trader Joe, de février 2022 à mai 2023."
+        },
+        "liquiditySeed": {
+          "label": "Liquidité de lancement",
+          "note": "{{amount}} PLEB mintés vers le déployeur et ajoutés aux deux pools de lancement avec 7 AVAX."
+        }
+      },
+      "facts": {
+        "liquiditySeed": "Le seul mint vers un portefeuille de l’équipe en dehors de l’airdrop a été la liquidité de lancement : 50 milliards de PLEB, ajoutés au pool Trader Joe (40,1 milliards) et au pool Pangolin (10 milliards) en sept minutes, le 14 janvier 2022.",
+        "teamClaims": "Deux membres de l’équipe ont réclamé lors de la phase 1 : Esteban 5 milliards de PLEB, et Tom 13,2 milliards de PLEB, la troisième plus grosse des 767 réclamations. Ensemble, cela représente 2 % de tous les PLEB réclamés lors des airdrops.",
+        "noFarmRewards": "Aucun portefeuille de l’équipe n’a reçu de récompenses de minage de liquidité. Les 433 milliards distribués sont allés à 208 autres adresses.",
+        "migrationMintedNothing": "La migration de 2026 n’a créé aucun nouveau token pour personne : les 210 millions de BSO sont tous partis en une seule transaction, proportionnellement aux anciens soldes."
+      },
+      "statementsTitle": "Ce que disait le fondateur à l’époque",
+      "statementBy": "Esteban Abaroa, fondateur, {{date}}",
+      "walletsTitle": "Les portefeuilles de l’équipe aujourd’hui",
+      "person": "Personne",
+      "wallet": "Portefeuille",
+      "total": "Total de l’équipe",
+      "walletsNote": "Valeur de {{value}} au prix de l’instantané. L’historique complet de chaque portefeuille est public sur Etherscan.",
+      "poolNote": "Les tokens de liquidité du pool Uniswap sont détenus à 79,1 % par le portefeuille déployeur d’Esteban et à 7,4 % par estebanabaroa.eth. Ils ne sont pas verrouillés."
+    },
+    "airdrops": {
+      "title": "Trois airdrops, 2022",
+      "lead": "PLEB, la première génération de BSO, a été lancé sur Avalanche sans aucune vente. Il a été distribué gratuitement en trois phases, et chaque réclamation a été reportée sur BSO au même taux : 7 114,6 PLEB pour 1 BSO.",
+      "caption": "Les trois phases de l’airdrop PLEB et la valeur actuelle des tokens réclamés",
+      "round": "Phase {{number}}",
+      "total": "Total",
+      "rounds": {
+        "telegram": {
+          "name": "Bot Telegram",
+          "how": "Envoyer une adresse Avalanche à @plebbitbot, avec des bonus de parrainage"
+        },
+        "twitter": {
+          "name": "Twitter",
+          "how": "Liker, retweeter et taguer trois amis sous le post de @getplebbit"
+        },
+        "reddit": {
+          "name": "Reddit",
+          "how": "Commenter le fil r/plebbitairdrop ; un bot vérifiait l’historique du compte"
+        }
+      },
+      "metrics": {
+        "how": "Comment participer",
+        "window": "Inscriptions",
+        "signups": "Inscriptions annoncées",
+        "claimers": "Adresses ayant réclamé",
+        "plebClaimed": "PLEB réclamés",
+        "bsoToday": "BSO aujourd’hui",
+        "worthToday": "Valeur aujourd’hui",
+        "medianClaim": "Réclamation médiane aujourd’hui",
+        "largestClaim": "Plus grosse réclamation aujourd’hui",
+        "sources": "Sources"
+      },
+      "dateRange": "{{start}} – {{end}}",
+      "overCount": "plus de {{amount}}",
+      "distinct": "{{amount}} distinctes",
+      "note": "Les valeurs supposent que chaque token réclamé est toujours détenu, à {{price}} par BSO le {{date}}. Beaucoup d’inscriptions provenaient de bots. Les réclamations ont fermé le 21 février 2022, et les allocations que personne n’a réclamées n’ont jamais été mintées."
+    },
+    "history": {
+      "title": "Historique",
+      "lead": "D’un groupe Telegram en 2021 à un ERC-20 immuable en 2026.",
+      "redditThread": "Le fil Reddit",
+      "events": {
+        "groupOpens": {
+          "title": "Ouverture du groupe Telegram de plebbit",
+          "body": "Le groupe qui est aujourd’hui t.me/bitsocialnet démarre le jour de Noël 2021."
+        },
+        "telegramRound": {
+          "title": "Phase 1 : le bot Telegram",
+          "body": "Pendant une semaine, les participants s’inscrivent auprès de @plebbitbot. L’offre est répartie à parts égales entre eux, avec des bonus de parrainage. 3 312 adresses s’enregistrent avant la fermeture du bot le 14 janvier."
+        },
+        "launch": {
+          "title": "D’abord la liquidité, ensuite les réclamations",
+          "body": "À 18:00 UTC, le déployeur ajoute des PLEB et 7 AVAX sur Trader Joe et Pangolin. La page de réclamation ouvre environ 30 minutes plus tard, si bien que chaque allocation était fixée avant que quiconque puisse trader."
+        },
+        "twitterRound": {
+          "title": "Phase 2 : Twitter",
+          "body": "Un airdrop mené entièrement sur Twitter : liker, retweeter et taguer trois amis. Plus de 1 500 personnes s’inscrivent avant le 6 février."
+        },
+        "redditRound": {
+          "title": "Phase 3 : Reddit",
+          "body": "Un airdrop expérimental sur r/plebbitairdrop, où un bot vérifiait que les commentateurs avaient une activité Reddit plus ancienne. Plus de 2 200 inscriptions avant le 12 février, dont beaucoup de bots."
+        },
+        "claimsClose": {
+          "title": "Fin des réclamations",
+          "body": "Les trois airdrops ne peuvent plus être réclamés. Les tokens que personne n’a réclamés ne sont jamais mintés."
+        },
+        "farm": {
+          "title": "Début du minage de liquidité",
+          "body": "Les personnes qui stakent de la liquidité PLEB/AVAX gagnent des PLEB nouvellement mintés. La farm verse des récompenses jusqu’au passage à Ethereum."
+        },
+        "ethereum": {
+          "title": "Le passage à Ethereum",
+          "body": "Après un vote Snapshot, PLEB est gelé et chaque solde, y compris les tokens verrouillés, les positions de liquidité et les récompenses de farm non versées, est réémis sur Ethereum sous la forme du token de deuxième génération. Les détenteurs n’ont rien à faire."
+        },
+        "rebrand": {
+          "title": "plebbit devient Bitsocial",
+          "body": "Au cours du mois de mars 2026, le projet et son token adoptent progressivement le nom Bitsocial."
+        },
+        "rebase": {
+          "title": "Offre fixée à 210 millions",
+          "body": "Le token de deuxième génération fait l’objet d’un rebase pour que l’offre totale soit exactement de 210 millions : 7 114,6 anciens tokens en deviennent 1."
+        },
+        "immutable": {
+          "title": "BSO devient immuable",
+          "body": "Le contrat BSO définitif est mis en ligne sans mint, propriétaire, pause ni proxy. Les 210 millions partent tous en une seule transaction, proportionnellement aux soldes après rebase."
+        }
+      }
+    },
+    "method": {
+      "title": "Méthode et limites",
+      "lead": "Comment les groupes ont été identifiés, et ce que cette page ne peut pas voir.",
+      "howTitle": "Comment les portefeuilles ont été liés",
+      "how": {
+        "transfers": "Chaque transfert de PLEB, d’ancien BSO et de BSO entre deux portefeuilles ordinaires a été tracé, en excluant les plateformes d’échange, les routeurs, les pools et les autres contrats. Les multisigs Safe ont été reliés à leurs propriétaires.",
+        "funders": "Pour chaque gros détenteur, on a comparé le premier portefeuille à lui avoir envoyé de l’AVAX ou de l’ETH. Les plateformes d’échange financent des milliers de portefeuilles, donc seuls les financeurs privés comptent comme un lien.",
+        "pattern": "Pour les portefeuilles sans lien direct, le comportement d’achat a été comparé à celui de chaque acheteur de PLEB de la même période.",
+        "migrations": "Les soldes ont été suivis à travers les deux migrations, à raison de 7 114,6 PLEB par BSO."
+      },
+      "limitsTitle": "Limites",
+      "limits": {
+        "exchangeOnly": "Un détenteur qui finance chaque portefeuille via une plateforme d’échange et ne déplace jamais de tokens entre eux ne laisse aucun lien on-chain. Certains groupes peuvent encore cacher d’autres portefeuilles.",
+        "sales": "Un transfert entre deux portefeuilles peut être une vente ou un don. Les groupes marqués « Possible » reposent sur un seul lien de ce type.",
+        "contracts": "Les tokens détenus par des contrats autres que le pool Uniswap et le Safe sont listés tels quels.",
+        "snapshot": "Les soldes et le prix sont actualisés depuis la chaîne toutes les cinq minutes tant que cette page est ouverte. Les liens entre portefeuilles sont établis à la main et ne se mettent pas à jour d’eux-mêmes."
+      },
+      "contracts": {
+        "gen1": "Gen 1 : PLEB sur Avalanche",
+        "gen2": "Gen 2 : ancien BSO sur Ethereum",
+        "gen3": "Gen 3 : BSO aujourd’hui"
+      },
+      "snapshot": "Soldes et prix issus de Blockscout : {{count}} portefeuilles au {{date}}. Vous avez trouvé un lien erroné ou manquant ? <contributeLink>Améliorer cette page</contributeLink>."
+    }
   }
 }

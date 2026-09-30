@@ -21,8 +21,8 @@ kaydı bağımsız olarak inceleyebilir.
 - **Adres**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Gezgin**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-BSO burada başladı. Arzın tamamı airdrop ile dağıtıldı; ön satış yapılmadı ve topluluğun önüne geçen
-bir ekip payı ayrılmadı. Sözleşme, o dönemin standart uygulaması olan yükseltilebilir bir proxy'ydi
+BSO burada başladı. Arz, üç airdrop ve likidite madenciliği ödülleriyle dağıtıldı; ön satış yapılmadı ve
+topluluğun önüne geçen bir ekip payı ayrılmadı. Sözleşme, o dönemin standart uygulaması olan yükseltilebilir bir proxy'ydi
 ve ekibin tokenin ilk döneminde düzeltmeler yayınlamasına imkân tanıdı.
 
 ## 2. Nesil: Ethereum'a geçiş, 2024

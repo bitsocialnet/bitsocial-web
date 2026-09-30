@@ -3,7 +3,8 @@
     "language": "Ngôn ngữ",
     "theme": "Giao diện",
     "mainSite": "Trang chính",
-    "faq": "Câu hỏi thường gặp"
+    "faq": "Câu hỏi thường gặp",
+    "richList": "Bảng xếp hạng ví"
   },
   "languageSelector": {
     "title": "Chọn ngôn ngữ",
@@ -71,12 +72,12 @@
     },
     "tokenomics": {
       "title": "Tiền vững chắc.",
-      "supporting": "BSO là một ERC-20 có nguồn cung cố định: 210 triệu, không lạm phát, giảm phát theo thiết kế. Toàn bộ nguồn cung đã được airdrop cho khoảng 600 người vào đầu năm 2022, không bán trước và không có phần nào được tách riêng trước cộng đồng. Hợp đồng của nó là bất biến và không có admin, nên các quy tắc được cố định mãi mãi.",
+      "supporting": "BSO là một ERC-20 có nguồn cung cố định: 210 triệu, không lạm phát, giảm phát theo thiết kế. Nó được phát miễn phí vào năm 2022 qua ba đợt airdrop và phần thưởng khai thác thanh khoản, không bán trước và không phân bổ cho đội ngũ. Hợp đồng của nó là bất biến và không có admin, nên các quy tắc được cố định mãi mãi.",
       "supply": {
         "cap": "Nguồn cung tối đa BSO · cố định mãi mãi"
       },
       "traits": {
-        "airdropped": "100% được airdrop, không đội ngũ, không bán trước",
+        "airdropped": "Không phân bổ cho đội ngũ, không bán trước",
         "fixedCap": "Giới hạn cố định, không phát hành thêm",
         "deflationary": "Giảm phát: nguồn cung chỉ giảm"
       },
@@ -99,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "Đợt airdrop",
-        "note": "Khoảng 600 người, trong ba đợt nhận từ tháng 1 đến tháng 2 năm 2022. Họ đăng ký qua một bot Telegram, mã giới thiệu mang lại phần lớn hơn, và mọi người nhận đều được kiểm tra thủ công để không ai có thể ôm quá nhiều nguồn cung. Không bán trước, không phân bổ cho đội ngũ, không bán gì cả."
+        "label": "Đợt phân phối",
+        "note": "Ba đợt airdrop vào tháng 1 và tháng 2 năm 2022, được 1.510 địa chỉ nhận. Đợt 1 dùng một bot Telegram có thưởng giới thiệu, và Esteban đã rà soát thủ công các lượt giới thiệu của đợt này để chống lạm dụng; đợt 2 và 3 diễn ra trên Twitter và Reddit. Khoảng 63% nguồn cung được phân phối qua các đợt airdrop và 34% là phần thưởng cho những người cung cấp thanh khoản; phần còn lại làm thanh khoản khởi đầu cho các pool ra mắt. Không bán trước, không phân bổ cho đội ngũ, không bán gì cả.",
+        "richListLink": "Xem mọi người nắm giữ và cả ba đợt"
       },
       "contract": {
         "label": "Toàn bộ hợp đồng",
@@ -293,5 +295,312 @@
     "returnToOrigin": "Quay lại vị trí trước đó",
     "toTop": "Lên đầu trang",
     "toBottom": "Xuống cuối trang"
+  },
+  "richList": {
+    "meta": {
+      "title": "Bảng xếp hạng ví BSO - Ai đang nắm giữ BSO",
+      "description": "Mọi người nắm giữ BSO, với các ví liên kết được gộp nhóm, các ví của đội ngũ được đánh dấu, cùng bằng chứng on-chain đằng sau mỗi liên kết. Kèm theo lịch sử của ba đợt airdrop năm 2022."
+    },
+    "hero": {
+      "title": "Ai đang nắm giữ BSO",
+      "lead": "Mọi ví BSO, trong đó các ví thuộc cùng một người nắm giữ được gộp lại với nhau và các ví của đội ngũ được đánh dấu. Mỗi liên kết đều liệt kê các giao dịch đằng sau nó, để bạn có thể tự kiểm tra.",
+      "jumpLabel": "Mục",
+      "status": {
+        "live": "Trực tiếp từ chuỗi: {{count}} ví, giá BSO {{price}}. Đã cập nhật {{ago}}.",
+        "loading": "Ảnh chụp dữ liệu ngày {{date}}: {{count}} ví, giá BSO {{price}}. Đang tải dữ liệu trực tiếp…",
+        "unavailable": "Hiện không có dữ liệu trực tiếp, nên đây là ảnh chụp dữ liệu ngày {{date}}: {{count}} ví, giá BSO {{price}}."
+      }
+    },
+    "jump": {
+      "holders": "Người nắm giữ",
+      "linked-wallets": "Ví liên kết",
+      "team": "Đội ngũ",
+      "airdrops": "Airdrop",
+      "history": "Lịch sử",
+      "method": "Phương pháp"
+    },
+    "strip": {
+      "label": "Tỷ lệ trong tổng nguồn cung 210 triệu BSO do mỗi nhóm nắm giữ",
+      "team": "Đội ngũ",
+      "pool": "Pool Uniswap",
+      "everyoneElse_other": "Tất cả những người khác ({{count}} ví)"
+    },
+    "categories": {
+      "team": "Đội ngũ",
+      "pool": "Pool thanh khoản",
+      "confirmed": "Đã xác nhận",
+      "likely": "Nhiều khả năng",
+      "possible": "Có thể",
+      "other": "Không liên kết"
+    },
+    "table": {
+      "title": "Người nắm giữ",
+      "lead": "Các ví liên kết được gộp thành một hàng. Chuyển sang “Theo ví” để xem từng địa chỉ giống như cách Etherscan liệt kê.",
+      "viewLabel": "Hiển thị người nắm giữ",
+      "view": {
+        "grouped": "Theo nhóm",
+        "wallets": "Theo ví"
+      },
+      "searchLabel": "Tìm theo địa chỉ hoặc tên người nắm giữ",
+      "searchPlaceholder": "Tìm một địa chỉ",
+      "caption": "Người nắm giữ BSO theo số dư",
+      "holder": "Người nắm giữ",
+      "balance": "BSO",
+      "share": "Tỷ lệ nguồn cung",
+      "value": "Giá trị",
+      "contract": "Hợp đồng",
+      "walletCount_other": "{{count}} ví",
+      "noMatch": "Không có người nắm giữ nào khớp với tìm kiếm này.",
+      "showAll_other": "Hiển thị tất cả {{count}} hàng"
+    },
+    "evidenceLinks": "Giao dịch làm bằng chứng",
+    "telegramSources": "Nguồn Telegram",
+    "linked": {
+      "title": "Ví liên kết",
+      "lead": "Các ví chỉ được gộp nhóm khi chuỗi cho thấy có liên kết: token hoặc gas di chuyển giữa chúng, một nguồn cấp vốn riêng chung, một chủ sở hữu multisig, hoặc một mô thức mua giống hệt nhau. Mỗi nhóm đều liệt kê các giao dịch đằng sau nó.",
+      "confidence": {
+        "confirmed": "Các ví giao dịch với nhau, có chung một nguồn cấp vốn riêng, hoặc kiểm soát lẫn nhau.",
+        "likely": "Nhiều lần chuyển từ một nguồn mà khó giải thích theo cách nào khác.",
+        "possible": "Chỉ một liên kết duy nhất, cũng có thể là một giao dịch bán hoặc một món quà."
+      },
+      "holds_other": "{{amount}} BSO, {{share}} nguồn cung, trong {{count}} ví",
+      "walletList_other": "Tất cả {{count}} ví",
+      "patternOnly": "liên kết qua mô thức mua"
+    },
+    "walletRoles": {
+      "deployer": "deployer",
+      "estebanEns": "estebanabaroa.eth",
+      "safe": "multisig Safe",
+      "safeOwner": "chủ sở hữu Safe"
+    },
+    "entities": {
+      "esteban": {
+        "name": "Esteban (nhà sáng lập)"
+      },
+      "rinse12": {
+        "name": "rinse12 (nhà phát triển cốt lõi)"
+      },
+      "tom": {
+        "name": "Tom (Tommaso Casaburi)"
+      },
+      "pool": {
+        "name": "Pool BSO/ETH trên Uniswap"
+      },
+      "holderA": {
+        "name": "Người nắm giữ A",
+        "summary": "Mười hai ví đã mua PLEB trên Avalanche từ ngày 22 tháng 2 đến ngày 8 tháng 4 năm 2022 và chưa bao giờ bán. Năm ví liên kết với nhau on-chain; bảy ví còn lại khớp với mô thức của cùng một người mua.",
+        "evidence": {
+          "transfersToLpWallet": "Hai trong số các ví mua đã gửi PLEB và AVAX sang một ví thứ ba, ví này dùng chúng để cung cấp thanh khoản và farm trên Trader Joe: 1 tỷ PLEB và 5 AVAX vào ngày 27 tháng 2 năm 2022, sau đó 7,2 tỷ PLEB và 34 AVAX từ ngày 28 tháng 2 đến ngày 2 tháng 3. Ví thứ ba đã gửi lại 0,013 AVAX.",
+          "sharedFunder": "Một ví riêng đã cấp vốn cho ba trong số các ví mua và không làm gì khác. Mọi giao dịch nó từng gửi đều đi đến các ví này, theo thứ tự: nonce 0 đến 4 cho ví thứ nhất, 5 đến 7 cho ví thứ hai, 8 cho ví thứ ba.",
+          "buyingPattern": "Bảy ví nữa đều là ví mới, được cấp vốn bằng một hoặc hai lần rút tiền từ sàn khoảng 2.000 đến 3.400 USD qua Binance hoặc ChangeNOW (cũng là các dịch vụ mà các ví liên kết đã dùng), đổi toàn bộ sang PLEB và không bao giờ được dùng lại. Chúng lần lượt mua từng ví một từ ngày 28 tháng 2 đến ngày 31 tháng 3 năm 2022, không bao giờ trùng thời gian với các ví liên kết. Trong tất cả 292 người mua PLEB từ tháng 2 đến tháng 4 năm 2022, không có ví nào khác khớp với mô thức này.",
+          "neverSold": "Không ví nào trong số mười hai ví đã bán hay chuyển token của mình kể từ đó. Số dư của chúng đi qua cả hai đợt migration mà không thay đổi."
+        }
+      },
+      "holderB": {
+        "name": "Người nắm giữ B",
+        "summary": "Một multisig Safe cần 2 trên 4 chữ ký, đã gom BSO cũ từ 14 ví chỉ trong một buổi chiều, cùng với một trong các chủ sở hữu của nó.",
+        "evidence": {
+          "owners": "Safe cần 2 trong 4 chủ sở hữu ký. Một chủ sở hữu cũng nắm giữ BSO trực tiếp. Bốn chủ sở hữu có thể là một người với nhiều khóa hoặc một nhóm nhỏ.",
+          "consolidation": "Ngày 1 tháng 6 năm 2024, từ 16:08 đến 17:51 UTC, Safe đã nhận 120,5 tỷ BSO cũ từ 14 ví. Lần chuyển đầu tiên là một giao dịch thử 10 token mà Safe gửi trả lại ngay.",
+          "vesting": "Ngày 12 tháng 8 năm 2024, Safe chuyển 60,5 tỷ BSO cũ vào một luồng vesting trên Sablier. Đợt migration năm 2026 đã ghi có luồng đó trở lại cho Safe, đó là lý do Safe nhận được hai lần chuyển từ migration.",
+          "commonSender": "Cùng một ví đã gửi BSO cũ cho cả chủ sở hữu Safe (13,7 tỷ vào ngày 8 tháng 3 năm 2024) lẫn Safe (1,5 tỷ vào ngày 1 tháng 6 năm 2024)."
+        }
+      },
+      "holderC": {
+        "name": "Người nắm giữ C",
+        "summary": "Hai ví nhận BSO cũ từ cùng một người gửi.",
+        "evidence": {
+          "commonSender": "Một ví đã gửi 4,7 tỷ BSO cũ cho ví thứ nhất vào ngày 19 tháng 8 năm 2024 và 15,4 tỷ cho ví thứ hai vào ngày 14 tháng 11 năm 2025. Một người gửi chung cũng có thể là một người bán phục vụ hai người mua."
+        }
+      },
+      "holderD": {
+        "name": "Người nắm giữ D",
+        "summary": "Ba ví được nối với nhau qua một ví trong số đó.",
+        "evidence": {
+          "sharedRecipient": "Ví ở giữa đã nhận một giao dịch thử rồi 5 tỷ PLEB từ ví thứ nhất vào ngày 18 tháng 11 năm 2022, và 8,2 tỷ PLEB từ ví thứ ba vào ngày 1 tháng 12 năm 2022. Đây cũng có thể là một người mua trả tiền cho hai người bán."
+        }
+      },
+      "holderE": {
+        "name": "Người nắm giữ E",
+        "summary": "Hai ví được nạp từ cùng một nguồn.",
+        "evidence": {
+          "commonSender": "Một ví đã gửi cho ví thứ nhất 39,4 tỷ BSO cũ qua bảy lần chuyển từ tháng 10 năm 2024 đến tháng 1 năm 2025, và gửi cho ví thứ hai 2,0 tỷ vào ngày 22 tháng 11 năm 2025."
+        }
+      },
+      "holderF": {
+        "name": "Người nắm giữ F",
+        "summary": "Một ví đã chia token của mình sang ba ví mới và trả phí gas cho chúng.",
+        "evidence": {
+          "split": "Ngày 10 tháng 3 năm 2024, trong vòng bảy phút, một ví đã gửi các khoản BSO cũ tròn số (12 tỷ, 8 tỷ và 4 tỷ) đến ba ví mới và trong cùng ngày gửi ETH cho hai trong số đó để trả phí gas. Bản thân ví này vẫn còn nắm giữ BSO."
+        }
+      },
+      "holderG": {
+        "name": "Người nắm giữ G",
+        "summary": "Hai ví được cùng một người gửi cấp vốn, cách nhau ba năm.",
+        "evidence": {
+          "commonSender": "Một ví đã gửi cho ví thứ hai 4,7 tỷ PLEB vào tháng 4 năm 2022 và gửi cho ví thứ nhất 6 tỷ BSO cũ vào tháng 1 năm 2025."
+        }
+      },
+      "holderH": {
+        "name": "Người nắm giữ H",
+        "summary": "Hai ví có một lần chuyển giữa chúng.",
+        "evidence": {
+          "directTransfer": "Ví thứ nhất đã gửi cho ví thứ hai 420 triệu PLEB vào ngày 24 tháng 4 năm 2022."
+        }
+      },
+      "holderI": {
+        "name": "Người nắm giữ I",
+        "summary": "Hai ví có nhiều lần chuyển giữa chúng.",
+        "evidence": {
+          "directTransfers": "Ví thứ hai đã gửi cho ví thứ nhất 13,2 tỷ BSO cũ vào ngày 30 tháng 10 năm 2023 và 5 tỷ vào ngày 8 tháng 11 năm 2023."
+        }
+      }
+    },
+    "team": {
+      "title": "Không phân bổ cho đội ngũ",
+      "lead": "Không có token nào được dành riêng cho đội ngũ, nhà đầu tư hay đợt bán trước. Dưới đây là nguồn gốc của từng PLEB, những gì các ví của đội ngũ đang nắm giữ hôm nay, và những gì nhà sáng lập đã nói vào thời điểm đó.",
+      "origin": {
+        "caption": "Toàn bộ {{amount}} PLEB từng được mint, theo cách được mint",
+        "label": "PLEB được mint theo nguồn",
+        "airdropClaims": {
+          "label": "Nhận airdrop",
+          "note": "{{amount}} PLEB được 1.510 địa chỉ nhận trong ba đợt. Những phần phân bổ không ai nhận chưa bao giờ được mint."
+        },
+        "liquidityMining": {
+          "label": "Khai thác thanh khoản",
+          "note": "{{amount}} PLEB được trả cho những người stake thanh khoản trên Trader Joe, từ tháng 2 năm 2022 đến tháng 5 năm 2023."
+        },
+        "liquiditySeed": {
+          "label": "Thanh khoản khởi đầu",
+          "note": "{{amount}} PLEB được mint cho deployer và thêm vào hai pool ra mắt cùng với 7 AVAX."
+        }
+      },
+      "facts": {
+        "liquiditySeed": "Lần mint duy nhất cho một ví của đội ngũ ngoài airdrop là thanh khoản khởi đầu: 50 tỷ PLEB, được thêm vào pool Trader Joe (40,1 tỷ) và pool Pangolin (10 tỷ) trong vòng bảy phút vào ngày 14 tháng 1 năm 2022.",
+        "teamClaims": "Hai thành viên đội ngũ đã nhận trong đợt 1: Esteban 5 tỷ PLEB, và Tom 13,2 tỷ PLEB, lượt nhận lớn thứ ba trong 767 lượt. Cộng lại là 2% tổng số PLEB đã được nhận trong các đợt airdrop.",
+        "noFarmRewards": "Không ví nào của đội ngũ nhận phần thưởng khai thác thanh khoản. 433 tỷ đã được trả ra đều đến 208 địa chỉ khác.",
+        "migrationMintedNothing": "Đợt migration năm 2026 không tạo ra token mới cho bất kỳ ai: toàn bộ 210 triệu BSO được phát ra trong một giao dịch, theo tỷ lệ số dư cũ."
+      },
+      "statementsTitle": "Những gì nhà sáng lập đã nói vào thời điểm đó",
+      "statementBy": "Esteban Abaroa, nhà sáng lập, {{date}}",
+      "walletsTitle": "Ví của đội ngũ hôm nay",
+      "person": "Người",
+      "wallet": "Ví",
+      "total": "Tổng của đội ngũ",
+      "walletsNote": "Trị giá {{value}} theo giá tại thời điểm chụp dữ liệu. Toàn bộ lịch sử của từng ví đều công khai trên Etherscan.",
+      "poolNote": "Token thanh khoản của pool Uniswap được nắm giữ 79,1% bởi ví deployer của Esteban và 7,4% bởi estebanabaroa.eth. Chúng không bị khóa."
+    },
+    "airdrops": {
+      "title": "Ba đợt airdrop, 2022",
+      "lead": "PLEB, thế hệ đầu tiên của BSO, ra mắt trên Avalanche mà không có đợt bán nào. Nó được phát miễn phí trong ba đợt, và mọi lượt nhận đều được chuyển sang BSO theo cùng một tỷ lệ: 7.114,6 PLEB đổi 1 BSO.",
+      "caption": "Ba đợt airdrop PLEB và giá trị hôm nay của số token đã được nhận",
+      "round": "Đợt {{number}}",
+      "total": "Tổng",
+      "rounds": {
+        "telegram": {
+          "name": "Bot Telegram",
+          "how": "Gửi một địa chỉ Avalanche đến @plebbitbot, có thưởng cho người giới thiệu"
+        },
+        "twitter": {
+          "name": "Twitter",
+          "how": "Thích, retweet và gắn thẻ ba người bạn trong bài đăng của @getplebbit"
+        },
+        "reddit": {
+          "name": "Reddit",
+          "how": "Bình luận trong chủ đề r/plebbitairdrop; một bot kiểm tra lịch sử tài khoản"
+        }
+      },
+      "metrics": {
+        "how": "Cách tham gia",
+        "window": "Thời gian đăng ký",
+        "signups": "Số đăng ký được công bố",
+        "claimers": "Địa chỉ đã nhận",
+        "plebClaimed": "PLEB đã nhận",
+        "bsoToday": "BSO hôm nay",
+        "worthToday": "Giá trị hôm nay",
+        "medianClaim": "Lượt nhận trung vị hôm nay",
+        "largestClaim": "Lượt nhận lớn nhất hôm nay",
+        "sources": "Nguồn"
+      },
+      "dateRange": "{{start}} – {{end}}",
+      "overCount": "hơn {{amount}}",
+      "distinct": "{{amount}} địa chỉ riêng biệt",
+      "note": "Các giá trị giả định rằng mọi token đã nhận vẫn còn được nắm giữ, với giá {{price}} mỗi BSO vào ngày {{date}}. Nhiều lượt đăng ký là bot. Việc nhận đã đóng vào ngày 21 tháng 2 năm 2022, và những phần phân bổ không ai nhận chưa bao giờ được mint."
+    },
+    "history": {
+      "title": "Lịch sử",
+      "lead": "Từ một nhóm Telegram năm 2021 đến một ERC-20 bất biến năm 2026.",
+      "redditThread": "Chủ đề trên Reddit",
+      "events": {
+        "groupOpens": {
+          "title": "Nhóm Telegram của plebbit ra đời",
+          "body": "Nhóm mà nay là t.me/bitsocialnet bắt đầu vào ngày Giáng sinh năm 2021."
+        },
+        "telegramRound": {
+          "title": "Đợt 1: bot Telegram",
+          "body": "Trong một tuần, mọi người đăng ký với @plebbitbot. Nguồn cung được chia đều cho những người tham gia, có thưởng cho người giới thiệu. 3.312 địa chỉ đăng ký trước khi bot đóng vào ngày 14 tháng 1."
+        },
+        "launch": {
+          "title": "Thanh khoản trước, nhận sau",
+          "body": "Lúc 18:00 UTC, deployer thêm PLEB và 7 AVAX vào Trader Joe và Pangolin. Trang nhận mở khoảng 30 phút sau đó, nên mọi phần phân bổ đều đã được chốt trước khi bất kỳ ai có thể giao dịch."
+        },
+        "twitterRound": {
+          "title": "Đợt 2: Twitter",
+          "body": "Một đợt airdrop diễn ra hoàn toàn trên Twitter: thích, retweet và gắn thẻ ba người bạn. Hơn 1.500 người đăng ký trước ngày 6 tháng 2."
+        },
+        "redditRound": {
+          "title": "Đợt 3: Reddit",
+          "body": "Một đợt airdrop thử nghiệm trên r/plebbitairdrop, nơi một bot kiểm tra xem người bình luận có hoạt động Reddit từ trước hay không. Hơn 2.200 người đăng ký trước ngày 12 tháng 2, nhiều người trong số đó là bot."
+        },
+        "claimsClose": {
+          "title": "Đóng nhận",
+          "body": "Cả ba đợt airdrop đều không còn nhận được nữa. Token không ai nhận sẽ không bao giờ được mint."
+        },
+        "farm": {
+          "title": "Bắt đầu khai thác thanh khoản",
+          "body": "Những người stake thanh khoản PLEB/AVAX nhận được PLEB mới được mint. Farm trả thưởng cho đến khi chuyển sang Ethereum."
+        },
+        "ethereum": {
+          "title": "Chuyển sang Ethereum",
+          "body": "Sau một cuộc bỏ phiếu trên Snapshot, PLEB bị đóng băng và mọi số dư, bao gồm token bị khóa, vị thế thanh khoản và phần thưởng farm chưa trả, được phát hành lại trên Ethereum dưới dạng token thế hệ thứ hai. Người nắm giữ không cần làm gì cả."
+        },
+        "rebrand": {
+          "title": "plebbit trở thành Bitsocial",
+          "body": "Trong suốt tháng 3 năm 2026, dự án và token của nó dần chuyển sang tên Bitsocial."
+        },
+        "rebase": {
+          "title": "Nguồn cung được đặt ở mức 210 triệu",
+          "body": "Token thế hệ thứ hai được rebase để tổng nguồn cung đúng bằng 210 triệu: 7.114,6 token cũ trở thành 1."
+        },
+        "immutable": {
+          "title": "BSO trở nên bất biến",
+          "body": "Hợp đồng BSO cuối cùng đi vào hoạt động mà không có mint, chủ sở hữu, tạm dừng hay proxy. Toàn bộ 210 triệu được phát ra trong một giao dịch, theo tỷ lệ số dư sau rebase."
+        }
+      }
+    },
+    "method": {
+      "title": "Phương pháp và giới hạn",
+      "lead": "Các nhóm được tìm ra như thế nào, và những gì trang này không thể thấy.",
+      "howTitle": "Cách liên kết các ví",
+      "how": {
+        "transfers": "Mọi lần chuyển PLEB, BSO cũ và BSO giữa hai ví thông thường đều được truy vết, loại trừ các sàn giao dịch, router, pool và các hợp đồng khác. Các multisig Safe được liên kết với chủ sở hữu của chúng.",
+        "funders": "Ví đầu tiên gửi AVAX hoặc ETH cho mỗi người nắm giữ lớn đều được so sánh. Các sàn giao dịch cấp vốn cho hàng nghìn ví, nên chỉ các nguồn cấp vốn riêng mới được tính là liên kết.",
+        "pattern": "Với các ví không có liên kết trực tiếp, hành vi mua được so sánh với mọi người mua PLEB trong cùng giai đoạn.",
+        "migrations": "Số dư được theo dõi qua cả hai đợt migration với tỷ lệ 7.114,6 PLEB mỗi BSO."
+      },
+      "limitsTitle": "Giới hạn",
+      "limits": {
+        "exchangeOnly": "Một người nắm giữ cấp vốn cho mọi ví qua sàn giao dịch và không bao giờ chuyển token giữa chúng sẽ không để lại liên kết on-chain nào. Một số nhóm vẫn có thể đang ẩn thêm ví.",
+        "sales": "Một lần chuyển giữa hai ví có thể là một giao dịch bán hoặc một món quà. Các nhóm được đánh dấu “Có thể” dựa trên một liên kết duy nhất như vậy.",
+        "contracts": "Token do các hợp đồng khác ngoài pool Uniswap và Safe nắm giữ được liệt kê nguyên trạng.",
+        "snapshot": "Số dư và giá được làm mới từ chuỗi mỗi năm phút khi trang này đang mở. Các liên kết giữa các ví được nghiên cứu thủ công và không tự cập nhật."
+      },
+      "contracts": {
+        "gen1": "Gen 1: PLEB trên Avalanche",
+        "gen2": "Gen 2: BSO cũ trên Ethereum",
+        "gen3": "Gen 3: BSO hiện nay"
+      },
+      "snapshot": "Số dư và giá từ Blockscout: {{count}} ví tính đến {{date}}. Bạn thấy một liên kết sai hoặc bị thiếu? <contributeLink>Cải thiện trang này</contributeLink>."
+    }
   }
 }

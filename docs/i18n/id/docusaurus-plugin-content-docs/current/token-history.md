@@ -21,8 +21,9 @@ sehingga siapa pun dapat memeriksa catatannya secara mandiri.
 - **Alamat**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Explorer**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Di sinilah BSO bermula. Seluruh pasokan dibagikan lewat airdrop, tanpa presale dan tanpa alokasi tim
-yang disisihkan lebih dulu di depan komunitas. Kontraknya berupa proxy yang dapat diupgrade, praktik
+Di sinilah BSO bermula. Pasokan dibagikan melalui tiga airdrop dan imbalan liquidity mining, tanpa
+presale dan tanpa alokasi tim yang disisihkan lebih dulu di depan
+komunitas. Kontraknya berupa proxy yang dapat diupgrade, praktik
 yang lazim pada masa itu dan memungkinkan tim mengirimkan perbaikan pada masa awal token.
 
 ## Gen 2: pindah ke Ethereum, 2024

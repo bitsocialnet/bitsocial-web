@@ -3,7 +3,8 @@
     "language": "Sprache",
     "theme": "Design",
     "mainSite": "Hauptseite",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "richList": "Rich List"
   },
   "languageSelector": {
     "title": "Sprache auswählen",
@@ -71,12 +72,12 @@
     },
     "tokenomics": {
       "title": "Solides Geld.",
-      "supporting": "BSO ist ein ERC-20 mit fester Gesamtmenge: 210 Millionen, keine Inflation, von Grund auf deflationär. Die gesamte Menge wurde Anfang 2022 per Airdrop an rund 600 Personen verteilt, ohne Presale und ohne Anteile, die vor der Community beiseitegelegt wurden. Der Contract ist unveränderlich und adminlos, daher stehen die Regeln für immer fest.",
+      "supporting": "BSO ist ein ERC-20 mit fester Gesamtmenge: 210 Millionen, keine Inflation, von Grund auf deflationär. Die Tokens wurden 2022 über drei Airdrops und Liquidity-Mining-Belohnungen verschenkt, ohne Presale und ohne Team-Anteil. Der Contract ist unveränderlich und adminlos, daher stehen die Regeln für immer fest.",
       "supply": {
         "cap": "BSO-Maximalmenge · für immer fest"
       },
       "traits": {
-        "airdropped": "100% per Airdrop, ohne Team-Anteil und Presale",
+        "airdropped": "Kein Team-Anteil und kein Presale",
         "fixedCap": "Feste Obergrenze, null Emissionen",
         "deflationary": "Deflationär: Die Menge kann nur sinken"
       },
@@ -99,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "Der Airdrop",
-        "note": "Rund 600 Personen, in drei Claim-Runden zwischen Januar und Februar 2022. Sie meldeten sich über einen Telegram-Bot an, Empfehlungscodes brachten größere Anteile, und jeder Empfänger wurde von Hand geprüft, damit niemand mit einem zu großen Teil der Gesamtmenge davonkommen konnte. Kein Presale, keine Zuteilung fürs Team, nichts verkauft."
+        "label": "Die Verteilung",
+        "note": "Drei Airdrop-Runden im Januar und Februar 2022, geclaimt von 1.510 Adressen. Runde 1 lief über einen Telegram-Bot mit Empfehlungsboni, und Esteban prüfte dessen Empfehlungen von Hand auf Missbrauch; die Runden 2 und 3 liefen auf Twitter und Reddit. Rund 63% der Gesamtmenge wurden über die Airdrops verteilt und 34% als Belohnungen an Leute, die Liquidität bereitgestellt haben; der Rest bildete die Anfangsliquidität der Start-Pools. Kein Presale, kein Team-Anteil, nichts verkauft.",
+        "richListLink": "Alle Halter und alle drei Runden ansehen"
       },
       "contract": {
         "label": "Der ganze Contract",
@@ -293,5 +295,317 @@
     "returnToOrigin": "Zurück zur vorherigen Stelle",
     "toTop": "Nach oben",
     "toBottom": "Nach unten"
+  },
+  "richList": {
+    "meta": {
+      "title": "BSO Rich List - Wer BSO hält",
+      "description": "Alle BSO-Halter, mit gruppierten verknüpften Wallets, markierten Team-Wallets und den On-Chain-Belegen hinter jeder Verknüpfung. Dazu die Geschichte der drei Airdrops von 2022."
+    },
+    "hero": {
+      "title": "Wer BSO hält",
+      "lead": "Jede BSO-Wallet, wobei Wallets desselben Halters zusammengefasst und die Wallets des Teams markiert sind. Zu jeder Verknüpfung stehen die Transaktionen dahinter, damit du sie selbst prüfen kannst.",
+      "jumpLabel": "Abschnitte",
+      "status": {
+        "live": "Live aus der Chain: {{count}} Wallets, BSO bei {{price}}. Aktualisiert {{ago}}.",
+        "loading": "Snapshot vom {{date}}: {{count}} Wallets, BSO bei {{price}}. Live-Daten werden geladen…",
+        "unavailable": "Live-Daten sind gerade nicht verfügbar, daher siehst du den Snapshot vom {{date}}: {{count}} Wallets, BSO bei {{price}}."
+      }
+    },
+    "jump": {
+      "holders": "Halter",
+      "linked-wallets": "Verknüpfte Wallets",
+      "team": "Team",
+      "airdrops": "Airdrops",
+      "history": "Geschichte",
+      "method": "Methode"
+    },
+    "strip": {
+      "label": "Anteil jeder Gruppe an der Gesamtmenge von 210 Millionen BSO",
+      "team": "Team",
+      "pool": "Uniswap-Pool",
+      "everyoneElse_one": "Alle anderen ({{count}} Wallet)",
+      "everyoneElse_other": "Alle anderen ({{count}} Wallets)"
+    },
+    "categories": {
+      "team": "Team",
+      "pool": "Liquiditätspool",
+      "confirmed": "Bestätigt",
+      "likely": "Wahrscheinlich",
+      "possible": "Möglich",
+      "other": "Nicht verknüpft"
+    },
+    "table": {
+      "title": "Halter",
+      "lead": "Verknüpfte Wallets sind in einer Zeile zusammengefasst. Wechsle zu „Nach Wallet“, um jede Adresse so zu sehen, wie Etherscan sie auflistet.",
+      "viewLabel": "Halter anzeigen",
+      "view": {
+        "grouped": "Gruppiert",
+        "wallets": "Nach Wallet"
+      },
+      "searchLabel": "Nach Adresse oder Haltername suchen",
+      "searchPlaceholder": "Adresse suchen",
+      "caption": "BSO-Halter nach Guthaben",
+      "holder": "Halter",
+      "balance": "BSO",
+      "share": "Anteil",
+      "value": "Wert",
+      "contract": "Contract",
+      "walletCount_one": "{{count}} Wallet",
+      "walletCount_other": "{{count}} Wallets",
+      "noMatch": "Kein Halter passt zu dieser Suche.",
+      "showAll_one": "{{count}} Zeile anzeigen",
+      "showAll_other": "Alle {{count}} Zeilen anzeigen"
+    },
+    "evidenceLinks": "Belegtransaktionen",
+    "telegramSources": "Telegram-Quellen",
+    "linked": {
+      "title": "Verknüpfte Wallets",
+      "lead": "Wallets werden nur gruppiert, wenn die Chain eine Verknüpfung zeigt: Tokens oder Gas, die zwischen ihnen fließen, ein gemeinsamer privater Geldgeber, ein Multisig-Owner oder ein identisches Kaufmuster. Jede Gruppe listet die Transaktionen dahinter auf.",
+      "confidence": {
+        "confirmed": "Die Wallets tätigen Transaktionen untereinander, haben einen gemeinsamen privaten Geldgeber oder kontrollieren einander.",
+        "likely": "Mehrere Transfers aus einer Quelle, die sich kaum anders erklären lassen.",
+        "possible": "Eine einzelne Verknüpfung, die auch ein Verkauf oder ein Geschenk sein könnte."
+      },
+      "holds_one": "{{amount}} BSO, {{share}} der Gesamtmenge, in {{count}} Wallet",
+      "holds_other": "{{amount}} BSO, {{share}} der Gesamtmenge, verteilt auf {{count}} Wallets",
+      "walletList_one": "{{count}} Wallet",
+      "walletList_other": "Alle {{count}} Wallets",
+      "patternOnly": "über Kaufmuster verknüpft"
+    },
+    "walletRoles": {
+      "deployer": "Deployer",
+      "estebanEns": "estebanabaroa.eth",
+      "safe": "Safe-Multisig",
+      "safeOwner": "Safe-Owner"
+    },
+    "entities": {
+      "esteban": {
+        "name": "Esteban (Gründer)"
+      },
+      "rinse12": {
+        "name": "rinse12 (Core-Entwickler)"
+      },
+      "tom": {
+        "name": "Tom (Tommaso Casaburi)"
+      },
+      "pool": {
+        "name": "Uniswap-Pool BSO/ETH"
+      },
+      "holderA": {
+        "name": "Halter A",
+        "summary": "Zwölf Wallets, die zwischen dem 22. Februar und dem 8. April 2022 PLEB auf Avalanche gekauft und nie verkauft haben. Fünf sind on-chain miteinander verbunden; die anderen sieben passen zum Muster desselben Käufers.",
+        "evidence": {
+          "transfersToLpWallet": "Zwei der kaufenden Wallets schickten PLEB und AVAX an eine dritte Wallet, die damit Liquidität und Farming auf Trader Joe betrieb: 1 Mrd. PLEB und 5 AVAX am 27. Februar 2022, dann 7,2 Mrd. PLEB und 34 AVAX zwischen dem 28. Februar und dem 2. März. Die dritte Wallet schickte 0,013 AVAX zurück.",
+          "sharedFunder": "Eine private Wallet finanzierte drei der kaufenden Wallets und sonst nichts. Jede Transaktion, die sie je gesendet hat, ging an diese drei, der Reihe nach: Nonces 0 bis 4 an die erste, 5 bis 7 an die zweite, 8 an die dritte.",
+          "buyingPattern": "Sieben weitere Wallets waren jeweils neu, wurden mit einer oder zwei Börsenauszahlungen von etwa 2.000 bis 3.400 $ über Binance oder ChangeNOW finanziert (dieselben Dienste, die auch die verknüpften Wallets nutzten), vollständig in PLEB getauscht und danach nie wieder genutzt. Sie kauften zwischen dem 28. Februar und dem 31. März 2022 eine nach der anderen, ohne sich je zeitlich mit den verknüpften Wallets zu überschneiden. Von allen 292 PLEB-Käufern zwischen Februar und April 2022 passt keine andere Wallet zu diesem Muster.",
+          "neverSold": "Keine der zwölf Wallets hat ihre Tokens seitdem verkauft oder bewegt. Ihre Guthaben haben beide Migrationen unverändert überstanden."
+        }
+      },
+      "holderB": {
+        "name": "Halter B",
+        "summary": "Ein 2-von-4-Safe-Multisig, das an einem einzigen Nachmittag alte BSO aus 14 Wallets eingesammelt hat, dazu einer seiner Owner.",
+        "evidence": {
+          "owners": "Für den Safe müssen 2 seiner 4 Owner signieren. Ein Owner hält BSO auch direkt. Vier Owner können eine Person mit mehreren Schlüsseln sein oder eine kleine Gruppe.",
+          "consolidation": "Am 1. Juni 2024 erhielt der Safe zwischen 16:08 und 17:51 UTC 120,5 Mrd. alte BSO von 14 Wallets. Der erste Transfer war ein Test über 10 Tokens, den der Safe sofort zurückschickte.",
+          "vesting": "Am 12. August 2024 verschob der Safe 60,5 Mrd. alte BSO in einen Sablier-Vesting-Stream. Die Migration 2026 schrieb diesen Stream wieder dem Safe gut, deshalb erhielt der Safe zwei Migrationstransfers.",
+          "commonSender": "Dieselbe Wallet schickte alte BSO sowohl an den Safe-Owner (13,7 Mrd. am 8. März 2024) als auch an den Safe (1,5 Mrd. am 1. Juni 2024)."
+        }
+      },
+      "holderC": {
+        "name": "Halter C",
+        "summary": "Zwei Wallets, die alte BSO vom selben Absender erhalten haben.",
+        "evidence": {
+          "commonSender": "Eine Wallet schickte 4,7 Mrd. alte BSO am 19. August 2024 an die erste und 15,4 Mrd. am 14. November 2025 an die zweite. Ein gemeinsamer Absender kann auch ein Verkäufer sein, der zwei Käufer bedient."
+        }
+      },
+      "holderD": {
+        "name": "Halter D",
+        "summary": "Drei Wallets, verbunden über eine von ihnen.",
+        "evidence": {
+          "sharedRecipient": "Die mittlere Wallet erhielt am 18. November 2022 von der ersten einen Testtransfer und dann 5 Mrd. PLEB, und am 1. Dezember 2022 von der dritten 8,2 Mrd. PLEB. Es könnte auch ein Käufer sein, der zwei Verkäufer bezahlt."
+        }
+      },
+      "holderE": {
+        "name": "Halter E",
+        "summary": "Zwei Wallets, die aus derselben Quelle gefüllt wurden.",
+        "evidence": {
+          "commonSender": "Eine Wallet schickte der ersten zwischen Oktober 2024 und Januar 2025 in sieben Transfers 39,4 Mrd. alte BSO und der zweiten 2,0 Mrd. am 22. November 2025."
+        }
+      },
+      "holderF": {
+        "name": "Halter F",
+        "summary": "Eine Wallet, die ihre Tokens auf drei neue Wallets aufgeteilt und deren Gas bezahlt hat.",
+        "evidence": {
+          "split": "Am 10. März 2024 schickte eine Wallet innerhalb von sieben Minuten runde Beträge alter BSO (12 Mrd., 8 Mrd. und 4 Mrd.) an drei neue Wallets und schickte zwei davon am selben Tag ETH für Gas. Sie hält selbst noch BSO."
+        }
+      },
+      "holderG": {
+        "name": "Halter G",
+        "summary": "Zwei Wallets, finanziert vom selben Absender, im Abstand von drei Jahren.",
+        "evidence": {
+          "commonSender": "Eine Wallet schickte der zweiten 4,7 Mrd. PLEB im April 2022 und der ersten 6 Mrd. alte BSO im Januar 2025."
+        }
+      },
+      "holderH": {
+        "name": "Halter H",
+        "summary": "Zwei Wallets mit einem Transfer zwischen ihnen.",
+        "evidence": {
+          "directTransfer": "Die erste Wallet schickte der zweiten 420 Mio. PLEB am 24. April 2022."
+        }
+      },
+      "holderI": {
+        "name": "Halter I",
+        "summary": "Zwei Wallets mit wiederholten Transfers zwischen ihnen.",
+        "evidence": {
+          "directTransfers": "Die zweite Wallet schickte der ersten 13,2 Mrd. alte BSO am 30. Oktober 2023 und 5 Mrd. am 8. November 2023."
+        }
+      }
+    },
+    "team": {
+      "title": "Keine Zuteilung fürs Team",
+      "lead": "Für das Team, Investoren oder einen Presale wurden keine Tokens reserviert. Hier siehst du, woher jeder PLEB stammt, was die Wallets des Teams heute halten und was der Gründer damals gesagt hat.",
+      "origin": {
+        "caption": "Alle {{amount}} jemals geminteten PLEB, nach Art des Mints",
+        "label": "Gemintete PLEB nach Quelle",
+        "airdropClaims": {
+          "label": "Airdrop-Claims",
+          "note": "{{amount}} PLEB, geclaimt von 1.510 Adressen in drei Runden. Zuteilungen, die niemand geclaimt hat, wurden nie gemintet."
+        },
+        "liquidityMining": {
+          "label": "Liquidity Mining",
+          "note": "{{amount}} PLEB, ausgezahlt an Leute, die von Februar 2022 bis Mai 2023 Liquidität auf Trader Joe gestakt haben."
+        },
+        "liquiditySeed": {
+          "label": "Start-Liquidität",
+          "note": "{{amount}} PLEB, an den Deployer gemintet und zusammen mit 7 AVAX in die beiden Start-Pools eingezahlt."
+        }
+      },
+      "facts": {
+        "liquiditySeed": "Der einzige Mint an eine Team-Wallet außerhalb des Airdrops war die Start-Liquidität: 50 Mrd. PLEB, am 14. Januar 2022 innerhalb von sieben Minuten in den Trader-Joe-Pool (40,1 Mrd.) und den Pangolin-Pool (10 Mrd.) eingezahlt.",
+        "teamClaims": "Zwei Teammitglieder haben in Runde 1 geclaimt: Esteban 5 Mrd. PLEB und Tom 13,2 Mrd. PLEB, der drittgrößte von 767 Claims. Zusammen sind das 2% aller in den Airdrops geclaimten PLEB.",
+        "noFarmRewards": "Keine Team-Wallet hat Liquidity-Mining-Belohnungen erhalten. Die ausgezahlten 433 Mrd. gingen an 208 andere Adressen.",
+        "migrationMintedNothing": "Die Migration 2026 hat für niemanden neue Tokens erzeugt: Alle 210 Mio. BSO wurden in einer einzigen Transaktion verteilt, im Verhältnis zu den alten Guthaben."
+      },
+      "statementsTitle": "Was der Gründer damals gesagt hat",
+      "statementBy": "Esteban Abaroa, Gründer, {{date}}",
+      "walletsTitle": "Team-Wallets heute",
+      "person": "Person",
+      "wallet": "Wallet",
+      "total": "Team gesamt",
+      "walletsNote": "Wert: {{value}} zum Snapshot-Preis. Die vollständige Historie jeder Wallet ist öffentlich auf Etherscan einsehbar.",
+      "poolNote": "Die Liquiditäts-Tokens des Uniswap-Pools liegen zu 79,1% bei Estebans Deployer-Wallet und zu 7,4% bei estebanabaroa.eth. Sie sind nicht gesperrt."
+    },
+    "airdrops": {
+      "title": "Drei Airdrops, 2022",
+      "lead": "PLEB, die erste Generation von BSO, startete auf Avalanche ohne Verkauf. Es wurde in drei Runden verschenkt, und jeder Claim ging zum selben Kurs in BSO über: 7.114,6 PLEB für 1 BSO.",
+      "caption": "Die drei PLEB-Airdrop-Runden und was die geclaimten Tokens heute wert sind",
+      "round": "Runde {{number}}",
+      "total": "Gesamt",
+      "rounds": {
+        "telegram": {
+          "name": "Telegram-Bot",
+          "how": "Eine Avalanche-Adresse an @plebbitbot senden, mit Boni für Empfehlungen"
+        },
+        "twitter": {
+          "name": "Twitter",
+          "how": "Den Post von @getplebbit liken, retweeten und drei Freunde markieren"
+        },
+        "reddit": {
+          "name": "Reddit",
+          "how": "Im Thread auf r/plebbitairdrop kommentieren; ein Bot prüfte die Kontohistorie"
+        }
+      },
+      "metrics": {
+        "how": "Teilnahme",
+        "window": "Anmeldezeitraum",
+        "signups": "Angekündigte Anmeldungen",
+        "claimers": "Adressen mit Claim",
+        "plebClaimed": "Geclaimte PLEB",
+        "bsoToday": "BSO heute",
+        "worthToday": "Wert heute",
+        "medianClaim": "Median-Claim heute",
+        "largestClaim": "Größter Claim heute",
+        "sources": "Quellen"
+      },
+      "dateRange": "{{start}} – {{end}}",
+      "overCount": "über {{amount}}",
+      "distinct": "{{amount}} verschiedene",
+      "note": "Die Werte setzen voraus, dass jeder geclaimte Token noch gehalten wird, zu {{price}} pro BSO am {{date}}. Viele Anmeldungen waren Bots. Die Claims endeten am 21. Februar 2022, und Zuteilungen, die niemand geclaimt hat, wurden nie gemintet."
+    },
+    "history": {
+      "title": "Geschichte",
+      "lead": "Von einer Telegram-Gruppe 2021 zu einem unveränderlichen ERC-20 2026.",
+      "redditThread": "Der Reddit-Thread",
+      "events": {
+        "groupOpens": {
+          "title": "Die plebbit-Telegram-Gruppe öffnet",
+          "body": "Die Gruppe, die heute t.me/bitsocialnet ist, startet am ersten Weihnachtstag 2021."
+        },
+        "telegramRound": {
+          "title": "Runde 1: der Telegram-Bot",
+          "body": "Eine Woche lang melden sich Leute bei @plebbitbot an. Die Menge wird gleichmäßig unter den Teilnehmern aufgeteilt, mit Boni für Empfehlungen. 3.312 Adressen registrieren sich, bevor der Bot am 14. Januar schließt."
+        },
+        "launch": {
+          "title": "Erst Liquidität, dann Claims",
+          "body": "Um 18:00 UTC zahlt der Deployer PLEB und 7 AVAX bei Trader Joe und Pangolin ein. Die Claim-Seite öffnet etwa 30 Minuten später, sodass jede Zuteilung feststand, bevor irgendjemand handeln konnte."
+        },
+        "twitterRound": {
+          "title": "Runde 2: Twitter",
+          "body": "Ein Airdrop komplett auf Twitter: liken, retweeten und drei Freunde markieren. Bis zum 6. Februar registrieren sich über 1.500 Personen."
+        },
+        "redditRound": {
+          "title": "Runde 3: Reddit",
+          "body": "Ein experimenteller Airdrop auf r/plebbitairdrop, bei dem ein Bot prüfte, ob die Kommentierenden ältere Reddit-Aktivität hatten. Bis zum 12. Februar registrieren sich über 2.200, viele davon Bots."
+        },
+        "claimsClose": {
+          "title": "Claims enden",
+          "body": "Keiner der drei Airdrops kann mehr geclaimt werden. Tokens, die niemand geclaimt hat, werden nie gemintet."
+        },
+        "farm": {
+          "title": "Liquidity Mining beginnt",
+          "body": "Wer PLEB/AVAX-Liquidität stakt, verdient neu gemintete PLEB. Die Farm zahlt bis zum Wechsel zu Ethereum aus."
+        },
+        "ethereum": {
+          "title": "Der Wechsel zu Ethereum",
+          "body": "Nach einer Snapshot-Abstimmung wird PLEB eingefroren, und jedes Guthaben, einschließlich gesperrter Tokens, Liquiditätspositionen und nicht ausgezahlter Farm-Belohnungen, wird auf Ethereum als Token der zweiten Generation neu ausgegeben. Halter müssen nichts tun."
+        },
+        "rebrand": {
+          "title": "Aus plebbit wird Bitsocial",
+          "body": "Im Laufe des März 2026 übernehmen das Projekt und sein Token nach und nach den Namen Bitsocial."
+        },
+        "rebase": {
+          "title": "Gesamtmenge auf 210 Millionen festgelegt",
+          "body": "Der Token der zweiten Generation wird per Rebase so angepasst, dass die Gesamtmenge genau 210 Millionen beträgt: Aus 7.114,6 alten Tokens wird 1."
+        },
+        "immutable": {
+          "title": "BSO wird unveränderlich",
+          "body": "Der endgültige BSO-Contract geht live, ohne Mint, Owner, Pause oder Proxy. Alle 210 Mio. werden in einer einzigen Transaktion verteilt, im Verhältnis zu den per Rebase angepassten Guthaben."
+        }
+      }
+    },
+    "method": {
+      "title": "Methode und Grenzen",
+      "lead": "Wie die Gruppen gefunden wurden und was diese Seite nicht sehen kann.",
+      "howTitle": "Wie Wallets verknüpft wurden",
+      "how": {
+        "transfers": "Jeder Transfer von PLEB, altem BSO und BSO zwischen zwei gewöhnlichen Wallets wurde nachverfolgt, ohne Börsen, Router, Pools und andere Contracts. Safe-Multisigs wurden mit ihren Ownern verknüpft.",
+        "funders": "Verglichen wurde, welche Wallet jedem Top-Halter als erste AVAX oder ETH geschickt hat. Börsen finanzieren Tausende Wallets, daher zählen nur private Geldgeber als Verknüpfung.",
+        "pattern": "Bei Wallets ohne direkte Verknüpfung wurde das Kaufverhalten mit allen PLEB-Käufern desselben Zeitraums verglichen.",
+        "migrations": "Die Guthaben wurden durch beide Migrationen hindurch verfolgt, zu 7.114,6 PLEB pro BSO."
+      },
+      "limitsTitle": "Grenzen",
+      "limits": {
+        "exchangeOnly": "Ein Halter, der jede Wallet über eine Börse finanziert und nie Tokens zwischen ihnen bewegt, hinterlässt keine On-Chain-Verknüpfung. Manche Gruppen könnten noch weitere Wallets verbergen.",
+        "sales": "Ein Transfer zwischen zwei Wallets kann ein Verkauf oder ein Geschenk sein. Als „Möglich“ markierte Gruppen beruhen auf einer einzigen solchen Verknüpfung.",
+        "contracts": "Tokens in anderen Contracts als dem Uniswap-Pool und dem Safe werden so aufgeführt, wie sie sind.",
+        "snapshot": "Guthaben und Preis werden alle fünf Minuten aus der Chain aktualisiert, solange diese Seite geöffnet ist. Die Verknüpfungen zwischen Wallets werden von Hand recherchiert und aktualisieren sich nicht von selbst."
+      },
+      "contracts": {
+        "gen1": "Gen 1: PLEB auf Avalanche",
+        "gen2": "Gen 2: alter BSO-Token auf Ethereum",
+        "gen3": "Gen 3: BSO heute"
+      },
+      "snapshot": "Guthaben und Preis von Blockscout: {{count}} Wallets, Stand {{date}}. Eine falsche oder fehlende Verknüpfung gefunden? <contributeLink>Diese Seite verbessern</contributeLink>."
+    }
   }
 }

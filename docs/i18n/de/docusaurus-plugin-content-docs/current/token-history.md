@@ -21,8 +21,7 @@ Vertragsadressen, damit jeder die Belege unabhängig prüfen kann.
 - **Adresse**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Explorer**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Hier hat BSO angefangen. Das gesamte Angebot wurde per Airdrop verteilt, ohne Presale und ohne
-Team-Anteil, der vor der Community abgezweigt wurde. Der Vertrag war ein aktualisierbarer Proxy, was
+Hier hat BSO angefangen. Das Angebot wurde über drei Airdrops und Liquidity-Mining-Belohnungen verschenkt, ohne Presale und ohne Team-Anteil, der vor der Community abgezweigt wurde. Der Vertrag war ein aktualisierbarer Proxy, was
 damals gängige Praxis war und dem Team erlaubte, in der Frühphase des Tokens Korrekturen
 auszuliefern.
 

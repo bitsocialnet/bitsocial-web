@@ -3,7 +3,8 @@
     "language": "Bahasa",
     "theme": "Tema",
     "mainSite": "Situs Utama",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "richList": "Rich list"
   },
   "languageSelector": {
     "title": "Pilih bahasa",
@@ -71,12 +72,12 @@
     },
     "tokenomics": {
       "title": "Uang yang sehat.",
-      "supporting": "BSO adalah ERC-20 dengan suplai tetap: 210 juta, tanpa inflasi, dirancang bersifat deflasi. Seluruh suplainya dibagikan lewat airdrop ke sekitar 600 orang pada awal 2022, tanpa presale dan tanpa jatah yang disisihkan lebih dulu sebelum komunitas. Kontraknya tidak dapat diubah dan tanpa admin, sehingga aturannya tetap sama selamanya.",
+      "supporting": "BSO adalah ERC-20 dengan suplai tetap: 210 juta, tanpa inflasi, dirancang bersifat deflasi. BSO dibagikan pada 2022 melalui tiga airdrop dan imbalan liquidity mining, tanpa presale dan tanpa alokasi tim. Kontraknya tidak dapat diubah dan tanpa admin, sehingga aturannya tetap sama selamanya.",
       "supply": {
         "cap": "Suplai maksimum BSO · tetap selamanya"
       },
       "traits": {
-        "airdropped": "100% airdrop, tanpa tim atau presale",
+        "airdropped": "Tanpa alokasi tim atau presale",
         "fixedCap": "Batas tetap, nol emisi",
         "deflationary": "Deflasi: suplai hanya menurun"
       },
@@ -99,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "Airdrop",
-        "note": "Sekitar 600 orang, dalam tiga putaran klaim antara Januari dan Februari 2022. Mereka mendaftar lewat bot Telegram, kode referral memberi bagian yang lebih besar, dan setiap penerima diperiksa secara manual agar tak ada yang membawa pergi terlalu banyak suplai. Tanpa presale, tanpa alokasi tim, tidak ada yang dijual."
+        "label": "Distribusi",
+        "note": "Tiga putaran airdrop pada Januari dan Februari 2022, diklaim oleh 1.510 alamat. Putaran 1 memakai bot Telegram dengan bonus referral, dan Esteban memeriksa referral-nya secara manual untuk mencegah penyalahgunaan; putaran 2 dan 3 berlangsung di Twitter dan Reddit. Sekitar 63% suplai dibagikan melalui airdrop dan 34% sebagai imbalan bagi orang yang menyediakan likuiditas; sisanya menjadi likuiditas awal pool peluncuran. Tanpa presale, tanpa alokasi tim, tidak ada yang dijual.",
+        "richListLink": "Lihat setiap pemegang dan ketiga putaran"
       },
       "contract": {
         "label": "Seluruh kontrak",
@@ -293,5 +295,312 @@
     "returnToOrigin": "Kembali ke posisi sebelumnya",
     "toTop": "Kembali ke atas",
     "toBottom": "Ke bawah"
+  },
+  "richList": {
+    "meta": {
+      "title": "Rich List BSO - Siapa yang Memegang BSO",
+      "description": "Setiap pemegang BSO, dengan dompet yang tertaut dikelompokkan, dompet tim ditandai, dan bukti on-chain di balik setiap tautan. Ditambah riwayat tiga airdrop tahun 2022."
+    },
+    "hero": {
+      "title": "Siapa yang memegang BSO",
+      "lead": "Setiap dompet BSO, dengan dompet milik pemegang yang sama dikelompokkan bersama dan dompet tim ditandai. Setiap tautan mencantumkan transaksi di baliknya, jadi kamu bisa memeriksanya sendiri.",
+      "jumpLabel": "Bagian",
+      "status": {
+        "live": "Langsung dari chain: {{count}} dompet, BSO di {{price}}. Diperbarui {{ago}}.",
+        "loading": "Snapshot {{date}}: {{count}} dompet, BSO di {{price}}. Memuat data langsung…",
+        "unavailable": "Data langsung sedang tidak tersedia, jadi ini snapshot {{date}}: {{count}} dompet, BSO di {{price}}."
+      }
+    },
+    "jump": {
+      "holders": "Pemegang",
+      "linked-wallets": "Dompet tertaut",
+      "team": "Tim",
+      "airdrops": "Airdrop",
+      "history": "Riwayat",
+      "method": "Metode"
+    },
+    "strip": {
+      "label": "Porsi dari suplai 210 juta BSO yang dipegang setiap kelompok",
+      "team": "Tim",
+      "pool": "Pool Uniswap",
+      "everyoneElse_other": "Semua yang lain ({{count}} dompet)"
+    },
+    "categories": {
+      "team": "Tim",
+      "pool": "Pool likuiditas",
+      "confirmed": "Terkonfirmasi",
+      "likely": "Kemungkinan besar",
+      "possible": "Mungkin",
+      "other": "Tidak tertaut"
+    },
+    "table": {
+      "title": "Pemegang",
+      "lead": "Dompet yang tertaut digabung menjadi satu baris. Beralih ke Per dompet untuk melihat setiap alamat seperti yang dicantumkan Etherscan.",
+      "viewLabel": "Tampilkan pemegang",
+      "view": {
+        "grouped": "Dikelompokkan",
+        "wallets": "Per dompet"
+      },
+      "searchLabel": "Cari berdasarkan alamat atau nama pemegang",
+      "searchPlaceholder": "Cari alamat",
+      "caption": "Pemegang BSO berdasarkan saldo",
+      "holder": "Pemegang",
+      "balance": "BSO",
+      "share": "Porsi suplai",
+      "value": "Nilai",
+      "contract": "Kontrak",
+      "walletCount_other": "{{count}} dompet",
+      "noMatch": "Tidak ada pemegang yang cocok dengan pencarian ini.",
+      "showAll_other": "Tampilkan semua {{count}} baris"
+    },
+    "evidenceLinks": "Transaksi bukti",
+    "telegramSources": "Sumber Telegram",
+    "linked": {
+      "title": "Dompet tertaut",
+      "lead": "Dompet hanya dikelompokkan jika chain menunjukkan tautan: token atau gas yang berpindah di antara mereka, penyandang dana pribadi yang sama, pemilik multisig, atau pola pembelian yang identik. Setiap kelompok mencantumkan transaksi di baliknya.",
+      "confidence": {
+        "confirmed": "Dompet-dompet ini bertransaksi satu sama lain, memiliki penyandang dana pribadi yang sama, atau saling mengendalikan.",
+        "likely": "Beberapa transfer dari satu sumber yang sulit dijelaskan dengan cara lain.",
+        "possible": "Satu tautan saja, yang bisa juga berupa penjualan atau hadiah."
+      },
+      "holds_other": "{{amount}} BSO, {{share}} dari suplai, tersebar di {{count}} dompet",
+      "walletList_other": "Semua {{count}} dompet",
+      "patternOnly": "tertaut karena pola pembelian"
+    },
+    "walletRoles": {
+      "deployer": "deployer",
+      "estebanEns": "estebanabaroa.eth",
+      "safe": "multisig Safe",
+      "safeOwner": "pemilik Safe"
+    },
+    "entities": {
+      "esteban": {
+        "name": "Esteban (pendiri)"
+      },
+      "rinse12": {
+        "name": "rinse12 (pengembang inti)"
+      },
+      "tom": {
+        "name": "Tom (Tommaso Casaburi)"
+      },
+      "pool": {
+        "name": "Pool BSO/ETH Uniswap"
+      },
+      "holderA": {
+        "name": "Pemegang A",
+        "summary": "Dua belas dompet yang membeli PLEB di Avalanche antara 22 Februari dan 8 April 2022, dan tidak pernah menjual. Lima di antaranya terhubung satu sama lain on-chain; tujuh lainnya cocok dengan pola pembeli yang sama.",
+        "evidence": {
+          "transfersToLpWallet": "Dua dompet pembeli mengirim PLEB dan AVAX ke dompet ketiga, yang menggunakannya untuk likuiditas dan farming di Trader Joe: 1 miliar PLEB dan 5 AVAX pada 27 Februari 2022, lalu 7,2 miliar PLEB dan 34 AVAX antara 28 Februari dan 2 Maret. Dompet ketiga mengirim balik 0,013 AVAX.",
+          "sharedFunder": "Satu dompet pribadi mendanai tiga dompet pembeli dan tidak ada yang lain. Setiap transaksi yang pernah dikirimnya ditujukan ke mereka, secara berurutan: nonce 0 sampai 4 ke yang pertama, 5 sampai 7 ke yang kedua, 8 ke yang ketiga.",
+          "buyingPattern": "Tujuh dompet lainnya masing-masing baru, didanai oleh satu atau dua penarikan dari exchange sekitar $2.000 hingga $3.400 melalui Binance atau ChangeNOW (layanan yang sama yang dipakai dompet-dompet tertaut), ditukar seluruhnya ke PLEB, dan tidak pernah dipakai lagi. Mereka membeli satu per satu antara 28 Februari dan 31 Maret 2022, tanpa pernah tumpang tindih dengan dompet-dompet tertaut. Dari seluruh 292 pembeli PLEB dari Februari hingga April 2022, tidak ada dompet lain yang cocok dengan pola ini.",
+          "neverSold": "Tidak satu pun dari dua belas dompet itu yang menjual atau memindahkan tokennya sejak saat itu. Saldo mereka melewati kedua migrasi tanpa perubahan."
+        }
+      },
+      "holderB": {
+        "name": "Pemegang B",
+        "summary": "Multisig Safe 2-dari-4 yang mengumpulkan BSO lama dari 14 dompet dalam satu sore, ditambah salah satu pemiliknya.",
+        "evidence": {
+          "owners": "Safe ini membutuhkan tanda tangan 2 dari 4 pemiliknya. Salah satu pemilik juga memegang BSO secara langsung. Empat pemilik bisa berarti satu orang dengan beberapa kunci atau sekelompok kecil orang.",
+          "consolidation": "Pada 1 Juni 2024, antara pukul 16:08 dan 17:51 UTC, Safe menerima 120,5 miliar BSO lama dari 14 dompet. Transfer pertama adalah uji coba 10 token yang langsung dikirim balik oleh Safe.",
+          "vesting": "Pada 12 Agustus 2024, Safe memindahkan 60,5 miliar BSO lama ke stream vesting Sablier. Migrasi 2026 mengkreditkan stream itu kembali ke Safe, itulah sebabnya Safe menerima dua transfer migrasi.",
+          "commonSender": "Dompet yang sama mengirim BSO lama ke pemilik Safe (13,7 miliar pada 8 Maret 2024) dan ke Safe itu sendiri (1,5 miliar pada 1 Juni 2024)."
+        }
+      },
+      "holderC": {
+        "name": "Pemegang C",
+        "summary": "Dua dompet yang menerima BSO lama dari pengirim yang sama.",
+        "evidence": {
+          "commonSender": "Satu dompet mengirim 4,7 miliar BSO lama ke dompet pertama pada 19 Agustus 2024 dan 15,4 miliar ke dompet kedua pada 14 November 2025. Pengirim yang sama bisa juga berarti satu penjual yang melayani dua pembeli."
+        }
+      },
+      "holderD": {
+        "name": "Pemegang D",
+        "summary": "Tiga dompet yang terhubung melalui salah satunya.",
+        "evidence": {
+          "sharedRecipient": "Dompet tengah menerima transfer uji coba lalu 5 miliar PLEB dari dompet pertama pada 18 November 2022, dan 8,2 miliar PLEB dari dompet ketiga pada 1 Desember 2022. Bisa juga ini satu pembeli yang membayar dua penjual."
+        }
+      },
+      "holderE": {
+        "name": "Pemegang E",
+        "summary": "Dua dompet yang diisi dari sumber yang sama.",
+        "evidence": {
+          "commonSender": "Satu dompet mengirim 39,4 miliar BSO lama ke dompet pertama dalam tujuh transfer antara Oktober 2024 dan Januari 2025, dan 2,0 miliar ke dompet kedua pada 22 November 2025."
+        }
+      },
+      "holderF": {
+        "name": "Pemegang F",
+        "summary": "Satu dompet yang membagi tokennya ke tiga dompet baru dan membayar gas mereka.",
+        "evidence": {
+          "split": "Pada 10 Maret 2024, dalam tujuh menit, satu dompet mengirim BSO lama dalam jumlah bulat (12 miliar, 8 miliar, dan 4 miliar) ke tiga dompet baru dan pada hari yang sama mengirim ETH untuk gas ke dua di antaranya. Dompet itu sendiri masih memegang BSO."
+        }
+      },
+      "holderG": {
+        "name": "Pemegang G",
+        "summary": "Dua dompet yang didanai oleh pengirim yang sama, dengan selang tiga tahun.",
+        "evidence": {
+          "commonSender": "Satu dompet mengirim 4,7 miliar PLEB ke dompet kedua pada April 2022 dan 6 miliar BSO lama ke dompet pertama pada Januari 2025."
+        }
+      },
+      "holderH": {
+        "name": "Pemegang H",
+        "summary": "Dua dompet dengan satu transfer di antara mereka.",
+        "evidence": {
+          "directTransfer": "Dompet pertama mengirim 420 juta PLEB ke dompet kedua pada 24 April 2022."
+        }
+      },
+      "holderI": {
+        "name": "Pemegang I",
+        "summary": "Dua dompet dengan transfer berulang di antara mereka.",
+        "evidence": {
+          "directTransfers": "Dompet kedua mengirim 13,2 miliar BSO lama ke dompet pertama pada 30 Oktober 2023 dan 5 miliar pada 8 November 2023."
+        }
+      }
+    },
+    "team": {
+      "title": "Tanpa alokasi tim",
+      "lead": "Tidak ada token yang dicadangkan untuk tim, investor, atau presale. Berikut asal setiap PLEB, apa yang dipegang dompet tim saat ini, dan apa yang dikatakan pendiri saat itu.",
+      "origin": {
+        "caption": "Seluruh {{amount}} PLEB yang pernah di-mint, berdasarkan cara di-mint-nya",
+        "label": "PLEB yang di-mint menurut sumber",
+        "airdropClaims": {
+          "label": "Klaim airdrop",
+          "note": "{{amount}} PLEB diklaim oleh 1.510 alamat dalam tiga putaran. Alokasi yang tidak diklaim siapa pun tidak pernah di-mint."
+        },
+        "liquidityMining": {
+          "label": "Liquidity mining",
+          "note": "{{amount}} PLEB dibayarkan kepada orang-orang yang men-stake likuiditas di Trader Joe, dari Februari 2022 hingga Mei 2023."
+        },
+        "liquiditySeed": {
+          "label": "Likuiditas peluncuran",
+          "note": "{{amount}} PLEB di-mint ke deployer dan ditambahkan ke dua pool peluncuran bersama 7 AVAX."
+        }
+      },
+      "facts": {
+        "liquiditySeed": "Satu-satunya mint ke dompet tim di luar airdrop adalah likuiditas peluncuran: 50 miliar PLEB, yang ditambahkan ke pool Trader Joe (40,1 miliar) dan pool Pangolin (10 miliar) dalam tujuh menit pada 14 Januari 2022.",
+        "teamClaims": "Dua anggota tim mengklaim di putaran 1: Esteban 5 miliar PLEB, dan Tom 13,2 miliar PLEB, klaim terbesar ketiga dari 767 klaim. Jika digabung, itu 2% dari seluruh PLEB yang diklaim dalam airdrop.",
+        "noFarmRewards": "Tidak ada dompet tim yang menerima imbalan liquidity mining. 433 miliar yang dibayarkan jatuh ke 208 alamat lain.",
+        "migrationMintedNothing": "Migrasi 2026 tidak membuat token baru untuk siapa pun: seluruh 210 juta BSO keluar dalam satu transaksi, sebanding dengan saldo lama."
+      },
+      "statementsTitle": "Apa yang dikatakan pendiri saat itu",
+      "statementBy": "Esteban Abaroa, pendiri, {{date}}",
+      "walletsTitle": "Dompet tim saat ini",
+      "person": "Orang",
+      "wallet": "Dompet",
+      "total": "Total tim",
+      "walletsNote": "Bernilai {{value}} pada harga snapshot. Riwayat lengkap setiap dompet bersifat publik di Etherscan.",
+      "poolNote": "Token likuiditas pool Uniswap dipegang 79,1% oleh dompet deployer milik Esteban dan 7,4% oleh estebanabaroa.eth. Token tersebut tidak dikunci."
+    },
+    "airdrops": {
+      "title": "Tiga airdrop, 2022",
+      "lead": "PLEB, generasi pertama BSO, diluncurkan di Avalanche tanpa penjualan apa pun. PLEB dibagikan dalam tiga putaran, dan setiap klaim dibawa ke BSO dengan rasio yang sama: 7.114,6 PLEB untuk 1 BSO.",
+      "caption": "Tiga putaran airdrop PLEB dan nilai token yang diklaim saat ini",
+      "round": "Putaran {{number}}",
+      "total": "Total",
+      "rounds": {
+        "telegram": {
+          "name": "Bot Telegram",
+          "how": "Kirim alamat Avalanche ke @plebbitbot, dengan bonus untuk referral"
+        },
+        "twitter": {
+          "name": "Twitter",
+          "how": "Like, retweet, dan tag tiga teman di postingan @getplebbit"
+        },
+        "reddit": {
+          "name": "Reddit",
+          "how": "Berkomentar di thread r/plebbitairdrop; bot memeriksa riwayat akun"
+        }
+      },
+      "metrics": {
+        "how": "Cara ikut",
+        "window": "Pendaftaran",
+        "signups": "Pendaftaran yang diumumkan",
+        "claimers": "Alamat yang mengklaim",
+        "plebClaimed": "PLEB yang diklaim",
+        "bsoToday": "BSO saat ini",
+        "worthToday": "Nilai saat ini",
+        "medianClaim": "Median klaim saat ini",
+        "largestClaim": "Klaim terbesar saat ini",
+        "sources": "Sumber"
+      },
+      "dateRange": "{{start}} – {{end}}",
+      "overCount": "lebih dari {{amount}}",
+      "distinct": "{{amount}} unik",
+      "note": "Nilai-nilai ini mengasumsikan setiap token yang diklaim masih dipegang, pada harga {{price}} per BSO tanggal {{date}}. Banyak pendaftar adalah bot. Klaim ditutup pada 21 Februari 2022, dan alokasi yang tidak diklaim siapa pun tidak pernah di-mint."
+    },
+    "history": {
+      "title": "Riwayat",
+      "lead": "Dari grup Telegram pada 2021 hingga ERC-20 yang tidak dapat diubah pada 2026.",
+      "redditThread": "Thread Reddit",
+      "events": {
+        "groupOpens": {
+          "title": "Grup Telegram plebbit dibuka",
+          "body": "Grup yang kini menjadi t.me/bitsocialnet dimulai pada Hari Natal 2021."
+        },
+        "telegramRound": {
+          "title": "Putaran 1: bot Telegram",
+          "body": "Selama seminggu, orang-orang mendaftar lewat @plebbitbot. Suplai dibagi rata di antara peserta, dengan bonus untuk referral. 3.312 alamat mendaftar sebelum bot ditutup pada 14 Januari."
+        },
+        "launch": {
+          "title": "Likuiditas dulu, baru klaim",
+          "body": "Pukul 18:00 UTC, deployer menambahkan PLEB dan 7 AVAX ke Trader Joe dan Pangolin. Halaman klaim dibuka sekitar 30 menit kemudian, sehingga setiap alokasi sudah tetap sebelum siapa pun bisa trading."
+        },
+        "twitterRound": {
+          "title": "Putaran 2: Twitter",
+          "body": "Airdrop yang dijalankan sepenuhnya di Twitter: like, retweet, dan tag tiga teman. Lebih dari 1.500 orang mendaftar hingga 6 Februari."
+        },
+        "redditRound": {
+          "title": "Putaran 3: Reddit",
+          "body": "Airdrop eksperimental di r/plebbitairdrop, tempat bot memeriksa bahwa para komentator punya aktivitas Reddit yang lebih lama. Lebih dari 2.200 orang mendaftar hingga 12 Februari, banyak di antaranya bot."
+        },
+        "claimsClose": {
+          "title": "Klaim ditutup",
+          "body": "Ketiga airdrop tidak bisa diklaim lagi. Token yang tidak diklaim siapa pun tidak pernah di-mint."
+        },
+        "farm": {
+          "title": "Liquidity mining dimulai",
+          "body": "Orang yang men-stake likuiditas PLEB/AVAX mendapatkan PLEB yang baru di-mint. Farm ini membayar hingga perpindahan ke Ethereum."
+        },
+        "ethereum": {
+          "title": "Perpindahan ke Ethereum",
+          "body": "Setelah voting Snapshot, PLEB dibekukan dan setiap saldo, termasuk token yang dikunci, posisi likuiditas, dan imbalan farm yang belum dibayar, diterbitkan ulang di Ethereum sebagai token generasi kedua. Pemegang tidak perlu melakukan apa pun."
+        },
+        "rebrand": {
+          "title": "plebbit menjadi Bitsocial",
+          "body": "Sepanjang Maret 2026, proyek ini dan tokennya secara bertahap memakai nama Bitsocial."
+        },
+        "rebase": {
+          "title": "Suplai ditetapkan 210 juta",
+          "body": "Token generasi kedua di-rebase agar total suplai tepat 210 juta: 7.114,6 token lama menjadi 1."
+        },
+        "immutable": {
+          "title": "BSO menjadi tidak dapat diubah",
+          "body": "Kontrak BSO final diluncurkan tanpa mint, pemilik, pause, atau proxy. Seluruh 210 juta keluar dalam satu transaksi, sebanding dengan saldo setelah rebase."
+        }
+      }
+    },
+    "method": {
+      "title": "Metode dan batasan",
+      "lead": "Bagaimana kelompok-kelompok ini ditemukan, dan apa yang tidak bisa dilihat halaman ini.",
+      "howTitle": "Bagaimana dompet ditautkan",
+      "how": {
+        "transfers": "Setiap transfer PLEB, BSO lama, dan BSO antara dua dompet biasa ditelusuri, tidak termasuk exchange, router, pool, dan kontrak lainnya. Multisig Safe ditautkan ke pemiliknya.",
+        "funders": "Untuk setiap pemegang besar, dompet pertama yang mengirim AVAX atau ETH kepadanya dibandingkan. Exchange mendanai ribuan dompet, jadi hanya penyandang dana pribadi yang dihitung sebagai tautan.",
+        "pattern": "Untuk dompet tanpa tautan langsung, perilaku pembelian dibandingkan dengan setiap pembeli PLEB pada periode yang sama.",
+        "migrations": "Saldo diikuti melalui kedua migrasi dengan rasio 7.114,6 PLEB per BSO."
+      },
+      "limitsTitle": "Batasan",
+      "limits": {
+        "exchangeOnly": "Pemegang yang mendanai setiap dompet melalui exchange dan tidak pernah memindahkan token di antara dompet-dompet itu tidak meninggalkan tautan on-chain. Beberapa kelompok mungkin masih menyembunyikan dompet lain.",
+        "sales": "Transfer antara dua dompet bisa berupa penjualan atau hadiah. Kelompok yang ditandai Mungkin bertumpu pada satu tautan seperti itu.",
+        "contracts": "Token yang dipegang kontrak selain pool Uniswap dan Safe dicantumkan apa adanya.",
+        "snapshot": "Saldo dan harga diperbarui dari chain setiap lima menit selama halaman ini terbuka. Tautan antardompet diteliti secara manual dan tidak diperbarui dengan sendirinya."
+      },
+      "contracts": {
+        "gen1": "Gen 1: PLEB di Avalanche",
+        "gen2": "Gen 2: BSO lama di Ethereum",
+        "gen3": "Gen 3: BSO saat ini"
+      },
+      "snapshot": "Saldo dan harga dari Blockscout: {{count}} dompet per {{date}}. Menemukan tautan yang salah atau terlewat? <contributeLink>Tingkatkan halaman ini</contributeLink>."
+    }
   }
 }

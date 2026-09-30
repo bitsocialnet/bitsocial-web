@@ -3,7 +3,8 @@
     "language": "Idioma",
     "theme": "Tema",
     "mainSite": "Web principal",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "richList": "Llista de posseïdors"
   },
   "languageSelector": {
     "title": "Selecciona l'idioma",
@@ -71,12 +72,12 @@
     },
     "tokenomics": {
       "title": "Diner sòlid.",
-      "supporting": "BSO és un ERC-20 d'oferta fixa: 210 milions, sense inflació, deflacionari per disseny. Tota l'oferta es va repartir en un airdrop a unes 600 persones a principis del 2022, sense preventa i sense res apartat per davant de la comunitat. El seu contracte és immutable i sense administrador, de manera que les regles queden fixades per sempre.",
+      "supporting": "BSO és un ERC-20 d'oferta fixa: 210 milions, sense inflació, deflacionari per disseny. Es va regalar el 2022 mitjançant tres airdrops i recompenses de mineria de liquiditat, sense preventa i sense assignació per a l'equip. El seu contracte és immutable i sense administrador, de manera que les regles queden fixades per sempre.",
       "supply": {
         "cap": "Oferta màxima de BSO · fixa per sempre"
       },
       "traits": {
-        "airdropped": "100% en airdrop, sense equip ni preventa",
+        "airdropped": "Sense assignació per a l'equip ni preventa",
         "fixedCap": "Límit fix, zero emissions",
         "deflationary": "Deflacionari: l'oferta només baixa"
       },
@@ -99,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "L'airdrop",
-        "note": "Unes 600 persones, en tres rondes de reclamació entre gener i febrer del 2022. Es van registrar mitjançant un bot de Telegram, els codis de recomanació donaven parts més grans, i cada destinatari es va revisar a mà perquè ningú se n'emportés una part excessiva de l'oferta. Sense preventa, sense assignació per a l'equip, res venut."
+        "label": "La distribució",
+        "note": "Tres rondes d'airdrop el gener i el febrer de 2022, reclamades per 1.510 adreces. La ronda 1 va fer servir un bot de Telegram amb bonificacions per recomanacions, i Esteban en va revisar les recomanacions a mà per detectar abusos; les rondes 2 i 3 es van fer a Twitter i Reddit. Aproximadament el 63% de l'oferta va sortir a través dels airdrops i el 34% com a recompenses per a qui va aportar liquiditat; la resta va servir de liquiditat inicial per als pools de llançament. Sense preventa, sense assignació per a l'equip, res venut.",
+        "richListLink": "Mira tots els posseïdors i les tres rondes"
       },
       "contract": {
         "label": "Tot el contracte",
@@ -293,5 +295,322 @@
     "returnToOrigin": "Torna al punt anterior",
     "toTop": "Tornar a dalt",
     "toBottom": "Anar a baix"
+  },
+  "richList": {
+    "meta": {
+      "title": "Llista de posseïdors de BSO - Qui té BSO",
+      "description": "Tots els posseïdors de BSO, amb les carteres vinculades agrupades, les carteres de l'equip marcades i les proves on-chain darrere de cada vincle. A més, la història dels tres airdrops del 2022."
+    },
+    "hero": {
+      "title": "Qui té BSO",
+      "lead": "Totes les carteres de BSO, amb les que pertanyen al mateix posseïdor agrupades i les de l'equip marcades. Cada vincle mostra les transaccions que el sustenten, perquè ho puguis comprovar tu mateix.",
+      "jumpLabel": "Seccions",
+      "status": {
+        "live": "En directe des de la cadena: {{count}} carteres, BSO a {{price}}. Actualitzat {{ago}}.",
+        "loading": "Instantània del {{date}}: {{count}} carteres, BSO a {{price}}. S'estan carregant les dades en directe…",
+        "unavailable": "Ara mateix les dades en directe no estan disponibles, així que aquesta és la instantània del {{date}}: {{count}} carteres, BSO a {{price}}."
+      }
+    },
+    "jump": {
+      "holders": "Posseïdors",
+      "linked-wallets": "Carteres vinculades",
+      "team": "Equip",
+      "airdrops": "Airdrops",
+      "history": "Història",
+      "method": "Mètode"
+    },
+    "strip": {
+      "label": "Part de l'oferta de 210 milions de BSO que té cada grup",
+      "team": "Equip",
+      "pool": "Pool d'Uniswap",
+      "everyoneElse_one": "Tots els altres ({{count}} cartera)",
+      "everyoneElse_many": "Tots els altres ({{count}} carteres)",
+      "everyoneElse_other": "Tots els altres ({{count}} carteres)"
+    },
+    "categories": {
+      "team": "Equip",
+      "pool": "Pool de liquiditat",
+      "confirmed": "Confirmat",
+      "likely": "Probable",
+      "possible": "Possible",
+      "other": "No vinculat"
+    },
+    "table": {
+      "title": "Posseïdors",
+      "lead": "Les carteres vinculades es combinen en una sola fila. Canvia a «Per cartera» per veure cada adreça tal com la mostra Etherscan.",
+      "viewLabel": "Mostra els posseïdors",
+      "view": {
+        "grouped": "Agrupat",
+        "wallets": "Per cartera"
+      },
+      "searchLabel": "Cerca per adreça o nom del posseïdor",
+      "searchPlaceholder": "Cerca una adreça",
+      "caption": "Posseïdors de BSO per saldo",
+      "holder": "Posseïdor",
+      "balance": "BSO",
+      "share": "Oferta",
+      "value": "Valor",
+      "contract": "Contracte",
+      "walletCount_one": "{{count}} cartera",
+      "walletCount_many": "{{count}} carteres",
+      "walletCount_other": "{{count}} carteres",
+      "noMatch": "Cap posseïdor no coincideix amb aquesta cerca.",
+      "showAll_one": "Mostra {{count}} fila",
+      "showAll_many": "Mostra les {{count}} files",
+      "showAll_other": "Mostra les {{count}} files"
+    },
+    "evidenceLinks": "Transaccions que ho proven",
+    "telegramSources": "Fonts de Telegram",
+    "linked": {
+      "title": "Carteres vinculades",
+      "lead": "Les carteres només s'agrupen quan la cadena mostra un vincle: tokens o gas que es mouen entre elles, un finançador privat compartit, un propietari d'una multisig o un patró de compra idèntic. Cada grup mostra les transaccions que el sustenten.",
+      "confidence": {
+        "confirmed": "Les carteres fan transaccions entre elles, comparteixen un finançador privat o es controlen l'una a l'altra.",
+        "likely": "Diverses transferències des d'una mateixa font que costa explicar d'una altra manera.",
+        "possible": "Un sol vincle que també podria ser una venda o un regal."
+      },
+      "holds_one": "{{amount}} BSO, {{share}} de l'oferta, en {{count}} cartera",
+      "holds_many": "{{amount}} BSO, {{share}} de l'oferta, repartits en {{count}} carteres",
+      "holds_other": "{{amount}} BSO, {{share}} de l'oferta, repartits en {{count}} carteres",
+      "walletList_one": "{{count}} cartera",
+      "walletList_many": "Les {{count}} carteres",
+      "walletList_other": "Les {{count}} carteres",
+      "patternOnly": "vinculada pel patró de compra"
+    },
+    "walletRoles": {
+      "deployer": "desplegador",
+      "estebanEns": "estebanabaroa.eth",
+      "safe": "multisig Safe",
+      "safeOwner": "propietari del Safe"
+    },
+    "entities": {
+      "esteban": {
+        "name": "Esteban (fundador)"
+      },
+      "rinse12": {
+        "name": "rinse12 (desenvolupador principal)"
+      },
+      "tom": {
+        "name": "Tom (Tommaso Casaburi)"
+      },
+      "pool": {
+        "name": "Pool BSO/ETH d'Uniswap"
+      },
+      "holderA": {
+        "name": "Posseïdor A",
+        "summary": "Dotze carteres que van comprar PLEB a Avalanche entre el 22 de febrer i el 8 d'abril de 2022 i no han venut mai. Cinc estan connectades entre elles on-chain; les altres set encaixen amb el patró del mateix comprador.",
+        "evidence": {
+          "transfersToLpWallet": "Dues de les carteres compradores van enviar PLEB i AVAX a una tercera cartera, que els va fer servir per aportar liquiditat i fer farming a Trader Joe: 1.000 milions de PLEB i 5 AVAX el 27 de febrer de 2022, i després 7.200 milions de PLEB i 34 AVAX entre el 28 de febrer i el 2 de març. La tercera cartera en va retornar 0,013 AVAX.",
+          "sharedFunder": "Una cartera privada va finançar tres de les carteres compradores i res més. Totes les transaccions que ha enviat mai van anar a elles, per ordre: els nonces del 0 al 4 a la primera, del 5 al 7 a la segona i el 8 a la tercera.",
+          "buyingPattern": "Set carteres més eren noves, es van finançar amb una o dues retirades d'exchange d'uns 2.000 a 3.400 dòlars a través de Binance o ChangeNOW (els mateixos serveis que van fer servir les carteres vinculades), es van canviar íntegrament a PLEB i no es van tornar a fer servir mai. Van comprar una rere l'altra entre el 28 de febrer i el 31 de març de 2022, sense coincidir mai en el temps amb les carteres vinculades. De tots els 292 compradors de PLEB entre febrer i abril de 2022, cap altra cartera no encaixa amb aquest patró.",
+          "neverSold": "Cap de les dotze carteres no ha venut ni mogut els seus tokens des d'aleshores. Els seus saldos van passar per les dues migracions sense canvis."
+        }
+      },
+      "holderB": {
+        "name": "Posseïdor B",
+        "summary": "Una multisig Safe 2 de 4 que va reunir BSO antic de 14 carteres en una sola tarda, més un dels seus propietaris.",
+        "evidence": {
+          "owners": "El Safe necessita la signatura de 2 dels seus 4 propietaris. Un propietari també té BSO directament. Quatre propietaris poden ser una persona amb diverses claus o un grup petit.",
+          "consolidation": "L'1 de juny de 2024, entre les 16:08 i les 17:51 UTC, el Safe va rebre 120.500 milions de BSO antics de 14 carteres. La primera transferència va ser una prova de 10 tokens que el Safe va retornar immediatament.",
+          "vesting": "El 12 d'agost de 2024, el Safe va moure 60.500 milions de BSO antics a un stream de vesting de Sablier. La migració del 2026 va abonar aquest stream de nou al Safe, i per això el Safe va rebre dues transferències de migració.",
+          "commonSender": "La mateixa cartera va enviar BSO antic tant al propietari del Safe (13.700 milions el 8 de març de 2024) com al Safe (1.500 milions l'1 de juny de 2024)."
+        }
+      },
+      "holderC": {
+        "name": "Posseïdor C",
+        "summary": "Dues carteres que van rebre BSO antic del mateix remitent.",
+        "evidence": {
+          "commonSender": "Una cartera va enviar 4.700 milions de BSO antics a la primera el 19 d'agost de 2024 i 15.400 milions a la segona el 14 de novembre de 2025. Un remitent comú també pot ser un venedor que serveix dos compradors."
+        }
+      },
+      "holderD": {
+        "name": "Posseïdor D",
+        "summary": "Tres carteres unides a través d'una d'elles.",
+        "evidence": {
+          "sharedRecipient": "La cartera del mig va rebre una transferència de prova i després 5.000 milions de PLEB de la primera el 18 de novembre de 2022, i 8.200 milions de PLEB de la tercera l'1 de desembre de 2022. També podria ser un comprador que paga dos venedors."
+        }
+      },
+      "holderE": {
+        "name": "Posseïdor E",
+        "summary": "Dues carteres alimentades des de la mateixa font.",
+        "evidence": {
+          "commonSender": "Una cartera va enviar a la primera 39.400 milions de BSO antics en set transferències entre l'octubre de 2024 i el gener de 2025, i a la segona 2.000 milions el 22 de novembre de 2025."
+        }
+      },
+      "holderF": {
+        "name": "Posseïdor F",
+        "summary": "Una cartera que va repartir els seus tokens entre tres carteres noves i en va pagar el gas.",
+        "evidence": {
+          "split": "El 10 de març de 2024, en set minuts, una cartera va enviar quantitats rodones de BSO antic (12.000, 8.000 i 4.000 milions) a tres carteres noves i el mateix dia va enviar ETH a dues d'elles per al gas. Encara té BSO."
+        }
+      },
+      "holderG": {
+        "name": "Posseïdor G",
+        "summary": "Dues carteres finançades pel mateix remitent, amb tres anys de diferència.",
+        "evidence": {
+          "commonSender": "Una cartera va enviar a la segona 4.700 milions de PLEB l'abril de 2022 i a la primera 6.000 milions de BSO antics el gener de 2025."
+        }
+      },
+      "holderH": {
+        "name": "Posseïdor H",
+        "summary": "Dues carteres amb una transferència entre elles.",
+        "evidence": {
+          "directTransfer": "La primera cartera va enviar a la segona 420 milions de PLEB el 24 d'abril de 2022."
+        }
+      },
+      "holderI": {
+        "name": "Posseïdor I",
+        "summary": "Dues carteres amb transferències repetides entre elles.",
+        "evidence": {
+          "directTransfers": "La segona cartera va enviar a la primera 13.200 milions de BSO antics el 30 d'octubre de 2023 i 5.000 milions el 8 de novembre de 2023."
+        }
+      }
+    },
+    "team": {
+      "title": "Sense assignació per a l'equip",
+      "lead": "No es van reservar tokens per a l'equip, inversors ni cap preventa. Aquí tens d'on va sortir cada PLEB, què tenen avui les carteres de l'equip i què va dir el fundador en aquell moment.",
+      "origin": {
+        "caption": "Tots els {{amount}} PLEB que s'han encunyat mai, segons com es van encunyar",
+        "label": "PLEB encunyats per origen",
+        "airdropClaims": {
+          "label": "Reclamacions de l'airdrop",
+          "note": "{{amount}} PLEB reclamats per 1.510 adreces en tres rondes. Les assignacions que ningú no va reclamar no es van encunyar mai."
+        },
+        "liquidityMining": {
+          "label": "Mineria de liquiditat",
+          "note": "{{amount}} PLEB pagats a qui va fer staking de liquiditat a Trader Joe, de febrer de 2022 a maig de 2023."
+        },
+        "liquiditySeed": {
+          "label": "Liquiditat de llançament",
+          "note": "{{amount}} PLEB encunyats al desplegador i afegits als dos pools de llançament juntament amb 7 AVAX."
+        }
+      },
+      "facts": {
+        "liquiditySeed": "L'única encunyació a una cartera de l'equip fora de l'airdrop va ser la liquiditat de llançament: 50.000 milions de PLEB, afegits al pool de Trader Joe (40.100 milions) i al de Pangolin (10.000 milions) en set minuts el 14 de gener de 2022.",
+        "teamClaims": "Dos membres de l'equip van reclamar a la ronda 1: Esteban, 5.000 milions de PLEB, i Tom, 13.200 milions de PLEB, la tercera reclamació més gran de 767. En conjunt, això és el 2% de tots els PLEB reclamats als airdrops.",
+        "noFarmRewards": "Cap cartera de l'equip no va rebre recompenses de mineria de liquiditat. Els 433.000 milions pagats van anar a 208 altres adreces.",
+        "migrationMintedNothing": "La migració del 2026 no va crear tokens nous per a ningú: tots els 210 milions de BSO van sortir en una sola transacció, en proporció als saldos anteriors."
+      },
+      "statementsTitle": "Què va dir el fundador en aquell moment",
+      "statementBy": "Esteban Abaroa, fundador, {{date}}",
+      "walletsTitle": "Carteres de l'equip avui",
+      "person": "Persona",
+      "wallet": "Cartera",
+      "total": "Total de l'equip",
+      "walletsNote": "Valen {{value}} al preu de la instantània. L'historial complet de cada cartera és públic a Etherscan.",
+      "poolNote": "Els tokens de liquiditat del pool d'Uniswap els té en un 79,1% la cartera desplegadora d'Esteban i en un 7,4% estebanabaroa.eth. No estan bloquejats."
+    },
+    "airdrops": {
+      "title": "Tres airdrops, 2022",
+      "lead": "PLEB, la primera generació de BSO, es va llançar a Avalanche sense cap venda. Es va regalar en tres rondes, i cada reclamació va passar a BSO a la mateixa taxa: 7.114,6 PLEB per 1 BSO.",
+      "caption": "Les tres rondes de l'airdrop de PLEB i el que valen avui els tokens reclamats",
+      "round": "Ronda {{number}}",
+      "total": "Total",
+      "rounds": {
+        "telegram": {
+          "name": "Bot de Telegram",
+          "how": "Enviar una adreça d'Avalanche a @plebbitbot, amb bonificacions per recomanacions"
+        },
+        "twitter": {
+          "name": "Twitter",
+          "how": "Fer m'agrada, fer retuit i etiquetar tres amics a la publicació de @getplebbit"
+        },
+        "reddit": {
+          "name": "Reddit",
+          "how": "Comentar al fil de r/plebbitairdrop; un bot comprovava l'historial del compte"
+        }
+      },
+      "metrics": {
+        "how": "Com participar",
+        "window": "Període d'inscripció",
+        "signups": "Inscripcions anunciades",
+        "claimers": "Adreces que van reclamar",
+        "plebClaimed": "PLEB reclamats",
+        "bsoToday": "BSO avui",
+        "worthToday": "Valor avui",
+        "medianClaim": "Reclamació mediana avui",
+        "largestClaim": "Reclamació més gran avui",
+        "sources": "Fonts"
+      },
+      "dateRange": "{{start}} – {{end}}",
+      "overCount": "més de {{amount}}",
+      "distinct": "{{amount}} diferents",
+      "note": "Els valors suposen que tots els tokens reclamats encara es conserven, a {{price}} per BSO el {{date}}. Moltes inscripcions eren bots. Les reclamacions es van tancar el 21 de febrer de 2022, i les assignacions que ningú no va reclamar no es van encunyar mai."
+    },
+    "history": {
+      "title": "Història",
+      "lead": "D'un grup de Telegram el 2021 a un ERC-20 immutable el 2026.",
+      "redditThread": "El fil de Reddit",
+      "events": {
+        "groupOpens": {
+          "title": "S'obre el grup de Telegram de plebbit",
+          "body": "El grup que avui és t.me/bitsocialnet comença el dia de Nadal del 2021."
+        },
+        "telegramRound": {
+          "title": "Ronda 1: el bot de Telegram",
+          "body": "Durant una setmana, la gent s'inscriu amb @plebbitbot. L'oferta es reparteix a parts iguals entre els participants, amb bonificacions per recomanacions. 3.312 adreces s'hi registren abans que el bot tanqui el 14 de gener."
+        },
+        "launch": {
+          "title": "Primer la liquiditat, després les reclamacions",
+          "body": "A les 18:00 UTC, el desplegador afegeix PLEB i 7 AVAX a Trader Joe i Pangolin. La pàgina de reclamació s'obre uns 30 minuts després, de manera que totes les assignacions van quedar fixades abans que ningú pogués operar."
+        },
+        "twitterRound": {
+          "title": "Ronda 2: Twitter",
+          "body": "Un airdrop fet íntegrament a Twitter: fer m'agrada, fer retuit i etiquetar tres amics. Més de 1.500 persones s'hi registren abans del 6 de febrer."
+        },
+        "redditRound": {
+          "title": "Ronda 3: Reddit",
+          "body": "Un airdrop experimental a r/plebbitairdrop, on un bot comprovava que els qui comentaven tinguessin activitat anterior a Reddit. Més de 2.200 s'hi registren abans del 12 de febrer, molts d'ells bots."
+        },
+        "claimsClose": {
+          "title": "Es tanquen les reclamacions",
+          "body": "Els tres airdrops deixen de poder-se reclamar. Els tokens que ningú no va reclamar no s'encunyen mai."
+        },
+        "farm": {
+          "title": "Comença la mineria de liquiditat",
+          "body": "Qui fa staking de liquiditat PLEB/AVAX guanya PLEB acabats d'encunyar. La granja paga fins al pas a Ethereum."
+        },
+        "ethereum": {
+          "title": "El pas a Ethereum",
+          "body": "Després d'una votació a Snapshot, PLEB es congela i cada saldo, inclosos els tokens bloquejats, les posicions de liquiditat i les recompenses de farming pendents, es torna a emetre a Ethereum com el token de segona generació. Els posseïdors no han de fer res."
+        },
+        "rebrand": {
+          "title": "plebbit es converteix en Bitsocial",
+          "body": "Al llarg de març de 2026, el projecte i el seu token adopten a poc a poc el nom Bitsocial."
+        },
+        "rebase": {
+          "title": "Oferta fixada en 210 milions",
+          "body": "Al token de segona generació se li aplica un rebase perquè l'oferta total sigui exactament de 210 milions: 7.114,6 tokens antics passen a ser 1."
+        },
+        "immutable": {
+          "title": "BSO esdevé immutable",
+          "body": "El contracte final de BSO entra en funcionament sense mint, propietari, pausa ni proxy. Els 210 milions surten en una sola transacció, en proporció als saldos després del rebase."
+        }
+      }
+    },
+    "method": {
+      "title": "Mètode i límits",
+      "lead": "Com es van trobar els grups i què no pot veure aquesta pàgina.",
+      "howTitle": "Com es van vincular les carteres",
+      "how": {
+        "transfers": "Es va rastrejar cada transferència de PLEB, BSO antic i BSO entre dues carteres normals, deixant fora exchanges, routers, pools i altres contractes. Les multisig Safe es van vincular amb els seus propietaris.",
+        "funders": "Es va comparar la primera cartera que va enviar AVAX o ETH a cada gran posseïdor. Els exchanges financen milers de carteres, així que només els finançadors privats compten com a vincle.",
+        "pattern": "Per a les carteres sense vincle directe, es va comparar el comportament de compra amb el de tots els compradors de PLEB del mateix període.",
+        "migrations": "Els saldos es van seguir a través de les dues migracions a 7.114,6 PLEB per BSO."
+      },
+      "limitsTitle": "Límits",
+      "limits": {
+        "exchangeOnly": "Un posseïdor que finança cada cartera a través d'un exchange i no mou mai tokens entre elles no deixa cap vincle on-chain. Alguns grups encara podrien amagar més carteres.",
+        "sales": "Una transferència entre dues carteres pot ser una venda o un regal. Els grups marcats com a Possible es basen en un sol vincle d'aquest tipus.",
+        "contracts": "Els tokens en mans de contractes que no siguin el pool d'Uniswap i el Safe es mostren tal com són.",
+        "snapshot": "Els saldos i el preu s'actualitzen des de la cadena cada cinc minuts mentre aquesta pàgina està oberta. Els vincles entre carteres s'investiguen a mà i no s'actualitzen sols."
+      },
+      "contracts": {
+        "gen1": "Gen 1: PLEB a Avalanche",
+        "gen2": "Gen 2: BSO antic a Ethereum",
+        "gen3": "Gen 3: BSO actual"
+      },
+      "snapshot": "Saldos i preu de Blockscout: {{count}} carteres a data de {{date}}. Has trobat un vincle erroni o un que hi falta? <contributeLink>Millora aquesta pàgina</contributeLink>."
+    }
   }
 }

@@ -20,8 +20,7 @@ mohl kdokoli nezávisle ověřit.
 - **Adresa**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Průzkumník**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Tady BSO začal. Celá zásoba byla rozdána airdropem, bez presale a bez podílu vyčleněného pro tým
-před komunitou. Kontrakt byl upgradovatelný proxy, což byla tehdy běžná praxe a týmu to umožňovalo
+Tady BSO začal. Zásoba byla rozdána prostřednictvím tří airdropů a odměn z liquidity miningu, bez presale a bez podílu vyčleněného pro tým před komunitou. Kontrakt byl upgradovatelný proxy, což byla tehdy běžná praxe a týmu to umožňovalo
 dodávat opravy v raném období tokenu.
 
 ## Gen 2: přechod na Ethereum, 2024

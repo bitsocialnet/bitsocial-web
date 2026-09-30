@@ -21,8 +21,9 @@ jotta kuka tahansa voi tarkistaa tiedot itsenäisesti.
 - **Osoite**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Lohkoketjuselain**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Tästä BSO sai alkunsa. Koko liikkeeseen laskettu määrä jaettiin airdropina, ilman ennakkomyyntiä ja
-ilman tiimille yhteisön edeltä lohkaistua osuutta. Sopimus oli päivitettävä proxy, mikä oli tuolloin
+Tästä BSO sai alkunsa. Liikkeeseen laskettu määrä jaettiin kolmella airdropilla ja
+likviditeettilouhinnan palkkioina, ilman ennakkomyyntiä ja ilman tiimille yhteisön edeltä lohkaistua
+osuutta. Sopimus oli päivitettävä proxy, mikä oli tuolloin
 vakiokäytäntö ja antoi tiimin julkaista korjauksia tokenin alkuvaiheessa.
 
 ## 2. sukupolvi: siirtymä Ethereumiin, 2024

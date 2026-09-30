@@ -3,7 +3,8 @@
     "language": "语言",
     "theme": "主题",
     "mainSite": "主站",
-    "faq": "常见问题"
+    "faq": "常见问题",
+    "richList": "富豪榜"
   },
   "languageSelector": {
     "title": "选择语言",
@@ -71,12 +72,12 @@
     },
     "tokenomics": {
       "title": "健全货币。",
-      "supporting": "BSO 是固定供应量的 ERC-20 代币：2.1 亿枚，没有通胀，设计上即为通缩。全部供应量于 2022 年初空投给约 600 人，没有预售，也没有在社区之前预留任何份额。其合约不可变且没有管理员，因此规则永远固定。",
+      "supporting": "BSO 是固定供应量的 ERC-20 代币：2.1 亿枚，没有通胀，设计上即为通缩。它于 2022 年通过三轮空投和流动性挖矿奖励免费分发，没有预售，也没有团队分配。其合约不可变且没有管理员，因此规则永远固定。",
       "supply": {
         "cap": "BSO 最大供应量 · 永久固定"
       },
       "traits": {
-        "airdropped": "100% 空投，无团队份额，无预售",
+        "airdropped": "无团队分配，无预售",
         "fixedCap": "固定上限，零增发",
         "deflationary": "通缩：供应量只会减少"
       },
@@ -99,8 +100,9 @@
         }
       },
       "airdrop": {
-        "label": "空投",
-        "note": "约 600 人，分三轮领取，时间在 2022 年 1 月至 2 月之间。他们通过 Telegram 机器人注册，推荐码可获得更大的份额，每位领取者都经过人工核查，以免有人拿走过多的供应量。没有预售，没有团队分配，没有任何出售。"
+        "label": "分发",
+        "note": "2022 年 1 月和 2 月的三轮空投，由 1,510 个地址领取。第 1 轮使用带推荐奖励的 Telegram 机器人，Esteban 人工审核了该轮的推荐以防滥用；第 2 轮和第 3 轮在 Twitter 和 Reddit 上进行。约 63% 的供应量通过空投发出，34% 作为奖励发给提供流动性的人；其余部分作为启动池的初始流动性。没有预售，没有团队分配，没有任何出售。",
+        "richListLink": "查看所有持有者和全部三轮空投"
       },
       "contract": {
         "label": "完整合约",
@@ -293,5 +295,312 @@
     "returnToOrigin": "返回之前的位置",
     "toTop": "返回顶部",
     "toBottom": "前往底部"
+  },
+  "richList": {
+    "meta": {
+      "title": "BSO 富豪榜 - 谁持有 BSO",
+      "description": "每一位 BSO 持有者，关联钱包已归组，团队钱包已标注，并附上每条关联背后的链上证据。另有 2022 年三轮空投的历史。"
+    },
+    "hero": {
+      "title": "谁持有 BSO",
+      "lead": "所有 BSO 钱包：属于同一持有者的钱包归为一组，团队钱包已标注。每条关联都列出其背后的交易，你可以自行核查。",
+      "jumpLabel": "章节",
+      "status": {
+        "live": "链上实时数据：{{count}} 个钱包，BSO 价格 {{price}}。最后更新：{{ago}}。",
+        "loading": "{{date}} 的快照：{{count}} 个钱包，BSO 价格 {{price}}。正在加载实时数据…",
+        "unavailable": "实时数据暂时不可用，以下为 {{date}} 的快照：{{count}} 个钱包，BSO 价格 {{price}}。"
+      }
+    },
+    "jump": {
+      "holders": "持有者",
+      "linked-wallets": "关联钱包",
+      "team": "团队",
+      "airdrops": "空投",
+      "history": "历史",
+      "method": "方法"
+    },
+    "strip": {
+      "label": "各群体持有的 BSO 占 2.1 亿总供应量的份额",
+      "team": "团队",
+      "pool": "Uniswap 池",
+      "everyoneElse_other": "其他所有人（{{count}} 个钱包）"
+    },
+    "categories": {
+      "team": "团队",
+      "pool": "流动性池",
+      "confirmed": "已确认",
+      "likely": "很可能",
+      "possible": "有可能",
+      "other": "未关联"
+    },
+    "table": {
+      "title": "持有者",
+      "lead": "关联钱包合并为一行。切换到“按钱包”即可像 Etherscan 那样查看每个地址。",
+      "viewLabel": "显示持有者",
+      "view": {
+        "grouped": "按分组",
+        "wallets": "按钱包"
+      },
+      "searchLabel": "按地址或持有者名称搜索",
+      "searchPlaceholder": "搜索地址",
+      "caption": "按余额排列的 BSO 持有者",
+      "holder": "持有者",
+      "balance": "BSO",
+      "share": "供应占比",
+      "value": "价值",
+      "contract": "合约",
+      "walletCount_other": "{{count}} 个钱包",
+      "noMatch": "没有与此搜索匹配的持有者。",
+      "showAll_other": "显示全部 {{count}} 行"
+    },
+    "evidenceLinks": "证据交易",
+    "telegramSources": "Telegram 来源",
+    "linked": {
+      "title": "关联钱包",
+      "lead": "只有当链上数据显示存在关联时，钱包才会被归为一组：它们之间有代币或 gas 往来、共同的私人资金来源、同一个多签所有者，或完全相同的买入模式。每个分组都列出其背后的交易。",
+      "confidence": {
+        "confirmed": "这些钱包彼此交易、有共同的私人资金来源，或相互控制。",
+        "likely": "来自同一来源的多笔转账，很难用其他方式解释。",
+        "possible": "仅有一条关联，也可能是一次出售或赠送。"
+      },
+      "holds_other": "{{amount}} BSO，占供应量的 {{share}}，分布在 {{count}} 个钱包中",
+      "walletList_other": "全部 {{count}} 个钱包",
+      "patternOnly": "通过买入模式关联"
+    },
+    "walletRoles": {
+      "deployer": "部署者",
+      "estebanEns": "estebanabaroa.eth",
+      "safe": "Safe 多签",
+      "safeOwner": "Safe 所有者"
+    },
+    "entities": {
+      "esteban": {
+        "name": "Esteban（创始人）"
+      },
+      "rinse12": {
+        "name": "rinse12（核心开发者）"
+      },
+      "tom": {
+        "name": "Tom（Tommaso Casaburi）"
+      },
+      "pool": {
+        "name": "Uniswap BSO/ETH 池"
+      },
+      "holderA": {
+        "name": "持有者 A",
+        "summary": "十二个钱包在 2022 年 2 月 22 日至 4 月 8 日期间于 Avalanche 上买入 PLEB，此后从未卖出。其中五个在链上相互关联；另外七个符合同一买家的模式。",
+        "evidence": {
+          "transfersToLpWallet": "其中两个买入钱包把 PLEB 和 AVAX 转给第三个钱包，后者用它们在 Trader Joe 上提供流动性和挖矿：2022 年 2 月 27 日转入 10 亿 PLEB 和 5 AVAX，随后在 2 月 28 日至 3 月 2 日期间转入 72 亿 PLEB 和 34 AVAX。第三个钱包回转了 0.013 AVAX。",
+          "sharedFunder": "一个私人钱包为其中三个买入钱包提供了资金，此外没有任何其他活动。它发出的每一笔交易都依次发给了这三个钱包：nonce 0 到 4 发给第一个，5 到 7 发给第二个，8 发给第三个。",
+          "buyingPattern": "另有七个钱包，每个都是新钱包，通过 Binance 或 ChangeNOW（与关联钱包使用的服务相同）的一到两笔交易所提现获得约 2,000 至 3,400 美元资金，全部兑换成 PLEB，之后再未使用。它们在 2022 年 2 月 28 日至 3 月 31 日期间一个接一个地买入，从未与关联钱包的时间重叠。在 2022 年 2 月至 4 月的全部 292 个 PLEB 买家中，没有其他钱包符合这一模式。",
+          "neverSold": "这十二个钱包此后都没有卖出或转移过代币。它们的余额在两次迁移中都保持不变。"
+        }
+      },
+      "holderB": {
+        "name": "持有者 B",
+        "summary": "一个 2/4 的 Safe 多签，在一个下午内从 14 个钱包归集了旧 BSO，另加它的一位所有者。",
+        "evidence": {
+          "owners": "该 Safe 需要其 4 名所有者中的 2 名签名。其中一名所有者也直接持有 BSO。四名所有者可能是持有多把密钥的一个人，也可能是一个小团体。",
+          "consolidation": "2024 年 6 月 1 日 16:08 至 17:51 UTC 之间，该 Safe 从 14 个钱包收到 1205 亿旧 BSO。第一笔转账是 10 枚代币的测试，Safe 随即将其退回。",
+          "vesting": "2024 年 8 月 12 日，该 Safe 将 605 亿旧 BSO 转入一个 Sablier 归属流。2026 年的迁移把这笔流记回 Safe，因此 Safe 收到了两笔迁移转账。",
+          "commonSender": "同一个钱包曾向 Safe 所有者（2024 年 3 月 8 日，137 亿）和 Safe（2024 年 6 月 1 日，15 亿）转入旧 BSO。"
+        }
+      },
+      "holderC": {
+        "name": "持有者 C",
+        "summary": "两个从同一发送方收到旧 BSO 的钱包。",
+        "evidence": {
+          "commonSender": "一个钱包于 2024 年 8 月 19 日向第一个钱包转入 47 亿旧 BSO，并于 2025 年 11 月 14 日向第二个钱包转入 154 亿。共同的发送方也可能是同一个卖家在向两个买家出售。"
+        }
+      },
+      "holderD": {
+        "name": "持有者 D",
+        "summary": "通过其中一个钱包相连的三个钱包。",
+        "evidence": {
+          "sharedRecipient": "中间的钱包在 2022 年 11 月 18 日先从第一个钱包收到一笔测试转账，随后收到 50 亿 PLEB；又在 2022 年 12 月 1 日从第三个钱包收到 82 亿 PLEB。这也可能是同一个买家在向两个卖家付款。"
+        }
+      },
+      "holderE": {
+        "name": "持有者 E",
+        "summary": "由同一来源注资的两个钱包。",
+        "evidence": {
+          "commonSender": "一个钱包在 2024 年 10 月至 2025 年 1 月期间分七笔向第一个钱包转入 394 亿旧 BSO，并于 2025 年 11 月 22 日向第二个钱包转入 20 亿。"
+        }
+      },
+      "holderF": {
+        "name": "持有者 F",
+        "summary": "一个钱包把自己的代币拆分到三个新钱包，并为它们支付了 gas。",
+        "evidence": {
+          "split": "2024 年 3 月 10 日，一个钱包在七分钟内向三个新钱包分别转入整数金额的旧 BSO（120 亿、80 亿和 40 亿），并在同一天向其中两个钱包转入 ETH 作为 gas。它自己仍持有 BSO。"
+        }
+      },
+      "holderG": {
+        "name": "持有者 G",
+        "summary": "由同一发送方注资、相隔三年的两个钱包。",
+        "evidence": {
+          "commonSender": "一个钱包于 2022 年 4 月向第二个钱包转入 47 亿 PLEB，又于 2025 年 1 月向第一个钱包转入 60 亿旧 BSO。"
+        }
+      },
+      "holderH": {
+        "name": "持有者 H",
+        "summary": "两个钱包之间有一笔转账。",
+        "evidence": {
+          "directTransfer": "第一个钱包于 2022 年 4 月 24 日向第二个钱包转入 4.2 亿 PLEB。"
+        }
+      },
+      "holderI": {
+        "name": "持有者 I",
+        "summary": "两个钱包之间有多次转账。",
+        "evidence": {
+          "directTransfers": "第二个钱包于 2023 年 10 月 30 日向第一个钱包转入 132 亿旧 BSO，又于 2023 年 11 月 8 日转入 50 亿。"
+        }
+      }
+    },
+    "team": {
+      "title": "没有团队分配",
+      "lead": "没有为团队、投资人或预售预留任何代币。以下是每一枚 PLEB 的来源、团队钱包如今持有多少，以及创始人当时说了什么。",
+      "origin": {
+        "caption": "有史以来铸造的全部 {{amount}} PLEB，按铸造方式划分",
+        "label": "按来源划分的已铸造 PLEB",
+        "airdropClaims": {
+          "label": "空投领取",
+          "note": "1,510 个地址分三轮领取了 {{amount}} PLEB。无人领取的份额从未被铸造。"
+        },
+        "liquidityMining": {
+          "label": "流动性挖矿",
+          "note": "2022 年 2 月至 2023 年 5 月期间支付给在 Trader Joe 上质押流动性的人的 {{amount}} PLEB。"
+        },
+        "liquiditySeed": {
+          "label": "启动流动性",
+          "note": "铸造给部署者、并与 7 AVAX 一起注入两个启动池的 {{amount}} PLEB。"
+        }
+      },
+      "facts": {
+        "liquiditySeed": "空投之外唯一一次铸造到团队钱包的是启动流动性：500 亿 PLEB，于 2022 年 1 月 14 日在七分钟内注入 Trader Joe 池（401 亿）和 Pangolin 池（100 亿）。",
+        "teamClaims": "两名团队成员在第 1 轮领取：Esteban 领取 50 亿 PLEB，Tom 领取 132 亿 PLEB，在 767 笔领取中排名第三。两者合计占空投中全部已领取 PLEB 的 2%。",
+        "noFarmRewards": "没有任何团队钱包获得流动性挖矿奖励。发放的 4330 亿全部流向了其他 208 个地址。",
+        "migrationMintedNothing": "2026 年的迁移没有为任何人创造新代币：全部 2.1 亿 BSO 在一笔交易中按旧余额的比例发出。"
+      },
+      "statementsTitle": "创始人当时说了什么",
+      "statementBy": "Esteban Abaroa，创始人，{{date}}",
+      "walletsTitle": "团队钱包现状",
+      "person": "成员",
+      "wallet": "钱包",
+      "total": "团队合计",
+      "walletsNote": "按快照价格计算价值 {{value}}。每个钱包的完整历史都在 Etherscan 上公开可查。",
+      "poolNote": "Uniswap 池的流动性代币有 79.1% 由 Esteban 的部署者钱包持有，7.4% 由 estebanabaroa.eth 持有。它们没有被锁定。"
+    },
+    "airdrops": {
+      "title": "三轮空投，2022",
+      "lead": "PLEB 是 BSO 的第一代，在 Avalanche 上发行，没有任何销售。它分三轮免费发放，每一笔领取都以同样的比率转换为 BSO：7,114.6 PLEB 兑 1 BSO。",
+      "caption": "三轮 PLEB 空投，以及已领取代币如今的价值",
+      "round": "第 {{number}} 轮",
+      "total": "合计",
+      "rounds": {
+        "telegram": {
+          "name": "Telegram 机器人",
+          "how": "向 @plebbitbot 发送一个 Avalanche 地址，推荐他人可获奖励"
+        },
+        "twitter": {
+          "name": "Twitter",
+          "how": "点赞、转推 @getplebbit 的帖子并标记三位好友"
+        },
+        "reddit": {
+          "name": "Reddit",
+          "how": "在 r/plebbitairdrop 帖子下评论；由机器人检查账号历史"
+        }
+      },
+      "metrics": {
+        "how": "参与方式",
+        "window": "报名时间",
+        "signups": "公布的报名人数",
+        "claimers": "领取地址数",
+        "plebClaimed": "已领取 PLEB",
+        "bsoToday": "如今的 BSO",
+        "worthToday": "如今的价值",
+        "medianClaim": "领取中位数（今日价值）",
+        "largestClaim": "最大领取（今日价值）",
+        "sources": "来源"
+      },
+      "dateRange": "{{start}} – {{end}}",
+      "overCount": "超过 {{amount}}",
+      "distinct": "去重后 {{amount}}",
+      "note": "以上数值假设每一枚已领取的代币仍被持有，按 {{date}} 每枚 BSO {{price}} 的价格计算。许多报名者是机器人。领取已于 2022 年 2 月 21 日截止，无人领取的份额从未被铸造。"
+    },
+    "history": {
+      "title": "历史",
+      "lead": "从 2021 年的一个 Telegram 群组，到 2026 年不可变的 ERC-20。",
+      "redditThread": "Reddit 帖子",
+      "events": {
+        "groupOpens": {
+          "title": "plebbit Telegram 群组成立",
+          "body": "如今的 t.me/bitsocialnet 群组始于 2021 年圣诞节。"
+        },
+        "telegramRound": {
+          "title": "第 1 轮：Telegram 机器人",
+          "body": "在一周时间里，人们通过 @plebbitbot 报名。供应量在参与者之间平均分配，推荐他人可获奖励。到 1 月 14 日机器人关闭前，共有 3,312 个地址登记。"
+        },
+        "launch": {
+          "title": "先有流动性，再开放领取",
+          "body": "18:00 UTC，部署者向 Trader Joe 和 Pangolin 注入 PLEB 和 7 AVAX。约 30 分钟后领取页面开放，因此每一份分配都在任何人能够交易之前就已确定。"
+        },
+        "twitterRound": {
+          "title": "第 2 轮：Twitter",
+          "body": "一次完全在 Twitter 上进行的空投：点赞、转推并标记三位好友。到 2 月 6 日，超过 1,500 人登记。"
+        },
+        "redditRound": {
+          "title": "第 3 轮：Reddit",
+          "body": "在 r/plebbitairdrop 上进行的一次实验性空投，由机器人检查评论者是否有较早的 Reddit 活动。到 2 月 12 日，超过 2,200 人登记，其中许多是机器人。"
+        },
+        "claimsClose": {
+          "title": "领取截止",
+          "body": "三轮空投都无法再领取。无人领取的代币永远不会被铸造。"
+        },
+        "farm": {
+          "title": "流动性挖矿开始",
+          "body": "质押 PLEB/AVAX 流动性的人可以赚取新铸造的 PLEB。该农场一直发放奖励，直到迁移至 Ethereum。"
+        },
+        "ethereum": {
+          "title": "迁移至 Ethereum",
+          "body": "经过一次 Snapshot 投票后，PLEB 被冻结，每一笔余额，包括锁定的代币、流动性头寸和未发放的农场奖励，都作为第二代代币在 Ethereum 上重新发行。持有者无需任何操作。"
+        },
+        "rebrand": {
+          "title": "plebbit 更名为 Bitsocial",
+          "body": "在 2026 年 3 月期间，项目及其代币逐步改用 Bitsocial 这个名称。"
+        },
+        "rebase": {
+          "title": "供应量定为 2.1 亿",
+          "body": "第二代代币进行 rebase，使总供应量恰好为 2.1 亿：7,114.6 枚旧代币变为 1 枚。"
+        },
+        "immutable": {
+          "title": "BSO 变为不可变",
+          "body": "最终的 BSO 合约上线，没有铸造、所有者、暂停或代理功能。全部 2.1 亿枚在一笔交易中按 rebase 后的余额比例发出。"
+        }
+      }
+    },
+    "method": {
+      "title": "方法与局限",
+      "lead": "这些分组是如何找到的，以及本页看不到什么。",
+      "howTitle": "钱包是如何关联的",
+      "how": {
+        "transfers": "追踪了两个普通钱包之间每一笔 PLEB、旧 BSO 和 BSO 的转账，排除交易所、路由合约、流动性池和其他合约。Safe 多签与其所有者相关联。",
+        "funders": "比较了向每个大户首次发送 AVAX 或 ETH 的钱包。交易所为成千上万个钱包提供资金，因此只有私人资金来源才算作关联。",
+        "pattern": "对于没有直接关联的钱包，将其买入行为与同一时期的所有 PLEB 买家进行比较。",
+        "migrations": "按每 BSO 7,114.6 PLEB 的比率，在两次迁移中追踪余额。"
+      },
+      "limitsTitle": "局限",
+      "limits": {
+        "exchangeOnly": "如果持有者通过交易所为每个钱包注资，且从不在这些钱包之间转移代币，就不会留下任何链上关联。某些分组可能仍隐藏着更多钱包。",
+        "sales": "两个钱包之间的一笔转账可能是出售，也可能是赠送。标记为“有可能”的分组仅依赖一条这样的关联。",
+        "contracts": "由 Uniswap 池和 Safe 以外的合约持有的代币按原样列出。",
+        "snapshot": "页面打开期间，余额和价格每五分钟从链上刷新一次。钱包之间的关联由人工调查得出，不会自动更新。"
+      },
+      "contracts": {
+        "gen1": "Gen 1：Avalanche 上的 PLEB",
+        "gen2": "Gen 2：Ethereum 上的旧 BSO",
+        "gen3": "Gen 3：如今的 BSO"
+      },
+      "snapshot": "余额和价格来自 Blockscout：截至 {{date}} 共 {{count}} 个钱包。发现错误或遗漏的关联？<contributeLink>改进此页面</contributeLink>。"
+    }
   }
 }

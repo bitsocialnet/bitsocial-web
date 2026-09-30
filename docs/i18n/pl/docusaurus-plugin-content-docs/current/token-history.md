@@ -21,8 +21,8 @@ każdy mógł niezależnie sprawdzić ten zapis.
 - **Adres**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Eksplorator**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Tutaj zaczął się BSO. Cała podaż została rozdana w airdropie, bez presale i bez puli dla zespołu
-wydzielonej przed społecznością. Kontrakt był aktualizowalnym proxy, co było wtedy standardową
+Tutaj zaczął się BSO. Podaż została rozdana w trzech airdropach i w nagrodach za liquidity mining,
+bez presale i bez puli dla zespołu wydzielonej przed społecznością. Kontrakt był aktualizowalnym proxy, co było wtedy standardową
 praktyką i pozwalało zespołowi wydawać poprawki we wczesnym okresie życia tokena.
 
 ## Gen 2: przejście na Ethereum, 2024

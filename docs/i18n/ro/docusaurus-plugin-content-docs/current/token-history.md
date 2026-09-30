@@ -21,8 +21,8 @@ contractelor, astfel încât oricine să poată verifica istoricul în mod indep
 - **Adresă**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Explorator**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Aici a început BSO. Întreaga ofertă a fost distribuită prin airdrop, fără prevânzare și fără o
-alocare pentru echipă pusă deoparte înaintea comunității. Contractul era un proxy actualizabil,
+Aici a început BSO. Oferta a fost distribuită prin trei airdrop-uri și recompense din liquidity mining,
+fără prevânzare și fără o alocare pentru echipă pusă deoparte înaintea comunității. Contractul era un proxy actualizabil,
 practica standard la acel moment, care permitea echipei să livreze remedieri în perioada de început
 a tokenului.
 

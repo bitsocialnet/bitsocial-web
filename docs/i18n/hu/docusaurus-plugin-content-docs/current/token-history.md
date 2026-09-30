@@ -20,8 +20,9 @@ hogy bárki önállóan ellenőrizhesse a nyilvántartást.
 - **Cím**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Blokkböngésző**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Itt indult a BSO. A teljes kínálatot airdrop formájában osztották szét: nem volt előértékesítés, és
-nem különítettek el a közösség elől csapatnak szánt részt sem. A szerződés frissíthető proxy volt,
+Itt indult a BSO. A kínálatot három airdroppal és likviditásbányászati jutalmakkal osztották szét:
+nem volt előértékesítés, és nem különítettek el a közösség elől csapatnak
+szánt részt sem. A szerződés frissíthető proxy volt,
 ami akkoriban bevett gyakorlatnak számított, és lehetővé tette a csapatnak, hogy a token korai
 szakaszában javításokat adjon ki.
 

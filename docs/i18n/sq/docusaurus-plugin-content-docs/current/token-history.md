@@ -20,8 +20,8 @@ ta kontrollojë të dhënën në mënyrë të pavarur.
 - **Adresa**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Eksploruesi**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Këtu nisi BSO. E gjithë oferta u shpërnda me airdrop, pa parashitje dhe pa një ndarje për ekipin të
-veçuar përpara komunitetit. Kontrata ishte një proxy i përmirësueshëm, praktikë standarde në atë kohë,
+Këtu nisi BSO. Oferta u shpërnda përmes tre airdrop-eve dhe shpërblimeve nga liquidity mining, pa
+parashitje dhe pa një ndarje për ekipin të veçuar përpara komunitetit. Kontrata ishte një proxy i përmirësueshëm, praktikë standarde në atë kohë,
 që i lejonte ekipit të nxirrte rregullime gjatë jetës së hershme të tokenit.
 
 ## Brezi 2: kalimi te Ethereum, 2024

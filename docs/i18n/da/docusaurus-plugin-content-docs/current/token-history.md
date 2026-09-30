@@ -20,8 +20,7 @@ kontrollere historikken på egen hånd.
 - **Adresse**: `0x625fc9bb971bb305a2ad63252665dcfe9098bee9`
 - **Blokudforsker**: [Snowscan](https://snowscan.xyz/address/0x625fc9bb971bb305a2ad63252665dcfe9098bee9)
 
-Det var her, BSO startede. Hele udbuddet blev fordelt via airdrop, uden presalg og uden en
-teamandel skåret fra på forhånd. Kontrakten var en opgraderbar proxy, hvilket var standardpraksis
+Det var her, BSO startede. Udbuddet blev givet væk gennem tre airdrops og belønninger fra likviditetsmining, uden presalg og uden en teamandel skåret fra på forhånd. Kontrakten var en opgraderbar proxy, hvilket var standardpraksis
 dengang og gjorde det muligt for teamet at udsende rettelser i tokenets tidlige liv.
 
 ## Gen 2: flytningen til Ethereum, 2024
