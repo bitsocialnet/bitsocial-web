@@ -1,5 +1,8 @@
 export const BSO_TOKEN_ADDRESS = "0xB50cea4c109dc223A10d44c14f521CaeD91DaB5A" as const;
 
+/** The rich list is the site's second HTML entry, `chain/rich-list/index.html`. */
+export const RICH_LIST_PATH = "/rich-list/" as const;
+
 export const ETHERSCAN_TOKEN_URL = `https://etherscan.io/token/${BSO_TOKEN_ADDRESS}` as const;
 
 export const UNISWAP_TOKEN_URL =
@@ -45,14 +48,6 @@ export type ExternalLink = {
   href: string;
   icon?: "etherscan" | "coingecko" | "uniswap" | "dexscreener";
 };
-
-// Brand-name links only: these labels are never translated. The topbar adds the translated
-// main-site link after them.
-export const TOPBAR_LINKS: ExternalLink[] = [
-  { label: "Etherscan", href: ETHERSCAN_TOKEN_URL },
-  { label: "CoinGecko", href: COINGECKO_URL },
-  { label: "Uniswap", href: UNISWAP_TOKEN_URL },
-];
 
 export const FOOTER_TOKEN_LINKS: ExternalLink[] = [
   { label: "Etherscan", href: ETHERSCAN_TOKEN_URL, icon: "etherscan" },

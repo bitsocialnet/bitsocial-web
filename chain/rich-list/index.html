@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1018" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+    <link rel="icon" type="image/png" sizes="576x576" href="/favicon-576.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Preload the locally hosted Exo display font -->
+    <link rel="preload" href="/fonts/exo/latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/exo/latin-ext.woff2" as="font" type="font/woff2" crossorigin />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta
+      name="description"
+      content="Every BSO holder, with linked wallets grouped, the team's wallets marked, and the on-chain and Telegram evidence behind each link. Plus the history of the three 2022 airdrops."
+    />
+
+    <link rel="canonical" href="https://chain.bitsocial.net/rich-list/" />
+
+    <!-- Absolute URLs are required here: social crawlers do not resolve the relative asset base. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BSO / Bitsocial Chain" />
+    <meta property="og:title" content="BSO Rich List - Who Holds BSO" />
+    <meta
+      property="og:description"
+      content="Every BSO holder, with linked wallets grouped and the evidence behind each link."
+    />
+    <meta property="og:url" content="https://chain.bitsocial.net/rich-list/" />
+    <meta property="og:image" content="https://chain.bitsocial.net/logo.png" />
+    <meta property="og:image:width" content="640" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Bitsocial Chain logo" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="BSO Rich List - Who Holds BSO" />
+    <meta
+      name="twitter:description"
+      content="Every BSO holder, with linked wallets grouped and the evidence behind each link."
+    />
+    <meta name="twitter:image" content="https://chain.bitsocial.net/logo.png" />
+    <meta name="twitter:image:alt" content="Bitsocial Chain logo" />
+
+    <!-- Same theme bootstrap as the main page, so both pages share one stored preference. -->
+    <script>
+      (() => {
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const queryTheme = params.get("theme");
+          const storedTheme = window.localStorage.getItem("bso-theme");
+          const theme =
+            queryTheme === "light" || queryTheme === "dark"
+              ? queryTheme
+              : storedTheme === "light" || storedTheme === "dark"
+                ? storedTheme
+                : window.matchMedia("(prefers-color-scheme: light)").matches
+                  ? "light"
+                  : "dark";
+          document.documentElement.classList.toggle("dark", theme === "dark");
+          if (queryTheme === "light" || queryTheme === "dark") {
+            window.localStorage.setItem("bso-theme", queryTheme);
+          }
+        } catch {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+    <title>BSO Rich List - Who Holds BSO</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/rich-list-main.tsx"></script>
+  </body>
+</html>

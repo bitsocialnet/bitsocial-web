@@ -27,6 +27,13 @@ export default defineConfig(({ mode }) => ({
     minify: mode === "profiling" ? false : undefined,
     sourcemap: mode === "profiling",
     emptyOutDir: true,
+    // Two static pages: the landing page and the rich list at /rich-list/.
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+        richList: path.resolve(__dirname, "rich-list/index.html"),
+      },
+    },
   },
   css: {
     postcss: {

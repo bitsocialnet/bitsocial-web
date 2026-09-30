@@ -59,18 +59,26 @@ function updateDocumentDirection(language: string | null | undefined) {
   document.documentElement.lang = normalizedLanguage;
 }
 
+// Each HTML entry has its own title and description; the rich list sets `richList.meta`.
+let documentMetaKey = "meta";
+
+export function setDocumentMetaKey(key: string) {
+  documentMetaKey = key;
+  updateDocumentMeta();
+}
+
 // Keeps the tab title and search snippet in the active language. The static English values in
-// index.html remain the fallback until translations load (or if they fail to load).
+// the HTML entry remain the fallback until translations load (or if they fail to load).
 function updateDocumentMeta() {
   // `languageChanged` also fires while `init` is still running, before resources are usable.
-  if (!i18n.isInitialized || !i18n.exists("meta.title")) {
+  if (!i18n.isInitialized || !i18n.exists(`${documentMetaKey}.title`)) {
     return;
   }
 
-  document.title = i18n.t("meta.title");
+  document.title = i18n.t(`${documentMetaKey}.title`);
   document
     .querySelector<HTMLMetaElement>('meta[name="description"]')
-    ?.setAttribute("content", i18n.t("meta.description"));
+    ?.setAttribute("content", i18n.t(`${documentMetaKey}.description`));
 }
 
 let i18nReadyPromise: Promise<typeof i18n> | null = null;

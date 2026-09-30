@@ -1,11 +1,20 @@
-import { type MouseEvent, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  createContext,
+  type MouseEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { m } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import HamburgerButton from "@/components/hamburger-button";
 import LanguageSelector, { NoJsLanguageSelector } from "@/components/language-selector";
 import MobileMenu from "@/components/mobile-menu";
 import { NoJsThemeToggle, ThemeToggle } from "@/components/theme-toggle";
-import { BITSOCIAL_URL, TOPBAR_LINKS, type ExternalLink } from "@/lib/site";
+import { BITSOCIAL_URL, RICH_LIST_PATH, type ExternalLink } from "@/lib/site";
 import { cn, getScrollBehavior } from "@/lib/utils";
 
 // Every topbar control is an explicit 44px flex-centred box on every pointer type, matching the
@@ -17,12 +26,12 @@ const desktopNavLinkClassName = "h-11 min-w-11 justify-center";
 const compactNavigationTriggerBufferPx = 160;
 const MOBILE_MENU_INTERACTION_GUARD_ATTRIBUTE = "data-mobile-menu-interaction-guard";
 
-// TOPBAR_LINKS holds the brand-name links, which are never translated. The main-site link is
-// appended here so its label is translated.
+// The only external topbar link. Token links (Etherscan, CoinGecko, Uniswap, DEX Screener) live in
+// the footer so the bar stays short.
 function useTopbarLinks(): ExternalLink[] {
   const { t } = useTranslation();
 
-  return [...TOPBAR_LINKS, { label: t("nav.mainSite"), href: BITSOCIAL_URL }];
+  return [{ label: t("nav.mainSite"), href: BITSOCIAL_URL }];
 }
 
 function NavLink({
@@ -51,10 +60,30 @@ function NavLink({
 
 const FAQ_ID = "faq";
 
-// The one in-page link. The href keeps it working without JavaScript; with it, the click scrolls
-// smoothly (unless reduced motion is on) like bitsocial.net's topbar FAQ instead of the anchor's
-// instant jump, and replaces the hash so the jump does not stack history entries.
+export type TopbarPage = "home" | "rich-list";
+
+// Which HTML entry renders the topbar. The FAQ only exists on the landing page.
+const TopbarPageContext = createContext<TopbarPage>("home");
+
 function FaqNavLink({ onClick, className }: { onClick?: () => void; className?: string }) {
+  const { t } = useTranslation();
+  const page = useContext(TopbarPageContext);
+
+  if (page !== "home") {
+    return (
+      <a href={`/#${FAQ_ID}`} className={cn(navLinkClassName, className)} onClick={onClick}>
+        {t("nav.faq")}
+      </a>
+    );
+  }
+
+  return <HomeFaqNavLink onClick={onClick} className={className} />;
+}
+
+// The landing page's in-page FAQ link. The href keeps it working without JavaScript; with it, the
+// click scrolls smoothly (unless reduced motion is on) like bitsocial.net's topbar FAQ instead of
+// the anchor's instant jump, and replaces the hash so the jump does not stack history entries.
+function HomeFaqNavLink({ onClick, className }: { onClick?: () => void; className?: string }) {
   const { t } = useTranslation();
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     onClick?.();
@@ -87,9 +116,36 @@ function FaqNavLink({ onClick, className }: { onClick?: () => void; className?: 
   );
 }
 
+function RichListNavLink({ onClick, className }: { onClick?: () => void; className?: string }) {
+  const { t } = useTranslation();
+  const isCurrent = useContext(TopbarPageContext) === "rich-list";
+
+  return (
+    <a
+      href={RICH_LIST_PATH}
+      aria-current={isCurrent ? "page" : undefined}
+      className={cn(navLinkClassName, isCurrent && "text-foreground", className)}
+      onClick={onClick}
+    >
+      {t("nav.richList")}
+    </a>
+  );
+}
+
+// Links that stay on chain.bitsocial.net come before the external ones.
+function SiteNavLinks({ onClick, className }: { onClick?: () => void; className?: string }) {
+  return (
+    <>
+      <RichListNavLink onClick={onClick} className={className} />
+      <FaqNavLink onClick={onClick} className={className} />
+    </>
+  );
+}
+
 function TopbarLinks({ links, onNavClick }: { links: ExternalLink[]; onNavClick: () => void }) {
   return (
     <div className="topbar-links flex items-center gap-5 whitespace-nowrap">
+      <SiteNavLinks onClick={onNavClick} className={desktopNavLinkClassName} />
       {links.map((link) => (
         <NavLink
           key={link.href}
@@ -98,7 +154,6 @@ function TopbarLinks({ links, onNavClick }: { links: ExternalLink[]; onNavClick:
           className={desktopNavLinkClassName}
         />
       ))}
-      <FaqNavLink onClick={onNavClick} className={desktopNavLinkClassName} />
     </div>
   );
 }
@@ -152,10 +207,10 @@ function NoJsMobileMenu({ links }: { links: ExternalLink[] }) {
 
       <div className="nojs-mobile-panel px-4 py-6">
         <nav className="flex flex-col gap-1">
+          <SiteNavLinks />
           {links.map((link) => (
             <NavLink key={link.href} link={link} />
           ))}
-          <FaqNavLink />
         </nav>
 
         <div className="mt-2 flex flex-col gap-3 border-t border-border/30 pt-4">
@@ -171,7 +226,7 @@ function NoJsMobileMenu({ links }: { links: ExternalLink[] }) {
   );
 }
 
-export default function Topbar() {
+export default function Topbar({ page = "home" }: { page?: TopbarPage }) {
   const { t } = useTranslation();
   const links = useTopbarLinks();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -282,93 +337,95 @@ export default function Topbar() {
   };
 
   return (
-    <m.nav
-      ref={menuContainerRef}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{
-        duration: 0.5,
-        ease: [0.4, 0, 0.2, 1],
-      }}
-      aria-label={t("topbar.navLabel")}
-      className="topbar-position fixed z-50 mx-auto max-w-7xl"
-    >
-      <div
-        className={cn(
-          "relative overflow-hidden topbar-frosted",
-          isMenuExpanded ? "rounded-[2rem]" : "rounded-full",
-        )}
+    <TopbarPageContext.Provider value={page}>
+      <m.nav
+        ref={menuContainerRef}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{
+          duration: 0.5,
+          ease: [0.4, 0, 0.2, 1],
+        }}
+        aria-label={t("topbar.navLabel")}
+        className="topbar-position fixed z-50 mx-auto max-w-7xl"
       >
-        <div className="relative px-4 md:px-5 py-2">
-          <div
-            ref={desktopNavMeasureRef}
-            aria-hidden="true"
-            className="pointer-events-none invisible absolute left-0 top-0 whitespace-nowrap"
-          >
-            <DesktopNavigation
-              links={links}
-              onNavClick={handleNavClick}
-              includeNoJsControls={false}
-            />
-          </div>
-
-          <div ref={topbarContentRef} className="flex h-11 items-center justify-between">
-            <a
-              ref={logoRef}
-              href="/"
-              className="group inline-flex h-11 shrink-0 items-center gap-1 transition-colors"
-            >
-              <img
-                src="/logo-small.png"
-                width={32}
-                height={32}
-                alt=""
-                aria-hidden="true"
-                className="h-8 w-8 transition-[filter] group-hover:brightness-110"
-              />
-              <span className="text-xl font-display font-regular text-muted-foreground group-hover:text-foreground transition-colors">
-                Bitsocial Chain
-              </span>
-            </a>
-
-            {usesCompactNavigation ? (
-              <div className="flex h-11 items-center gap-2">
-                <HamburgerButton isOpen={isMobileMenuOpen} onClick={handleMenuToggle} />
-              </div>
-            ) : (
-              <DesktopNavigation links={links} onNavClick={handleNavClick} />
-            )}
-
-            <noscript>
-              <NoJsMobileMenu links={links} />
-            </noscript>
-          </div>
-        </div>
-        <MobileMenu
-          isOpen={usesCompactNavigation && isMobileMenuOpen}
-          onExitComplete={() => setIsMenuExpanded(false)}
+        <div
+          className={cn(
+            "relative overflow-hidden topbar-frosted",
+            isMenuExpanded ? "rounded-[2rem]" : "rounded-full",
+          )}
         >
-          <div className="flex flex-col gap-1">
-            {links.map((link) => (
-              <NavLink key={link.href} link={link} onClick={handleNavClick} />
-            ))}
-            <FaqNavLink onClick={handleNavClick} />
-          </div>
-
-          <div className="mt-2 flex flex-row gap-2 border-t border-border/30 pt-4">
-            <div className="flex-1">
-              <LanguageSelector
-                mobile
-                mobileMenuInteractionGuardAttribute={MOBILE_MENU_INTERACTION_GUARD_ATTRIBUTE}
+          <div className="relative px-4 md:px-5 py-2">
+            <div
+              ref={desktopNavMeasureRef}
+              aria-hidden="true"
+              className="pointer-events-none invisible absolute left-0 top-0 whitespace-nowrap"
+            >
+              <DesktopNavigation
+                links={links}
+                onNavClick={handleNavClick}
+                includeNoJsControls={false}
               />
             </div>
-            <div className="flex-1">
-              <ThemeToggle mobile />
+
+            <div ref={topbarContentRef} className="flex h-11 items-center justify-between">
+              <a
+                ref={logoRef}
+                href="/"
+                className="group inline-flex h-11 shrink-0 items-center gap-1 transition-colors"
+              >
+                <img
+                  src="/logo-small.png"
+                  width={32}
+                  height={32}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-8 w-8 transition-[filter] group-hover:brightness-110"
+                />
+                <span className="text-xl font-display font-regular text-muted-foreground group-hover:text-foreground transition-colors">
+                  Bitsocial Chain
+                </span>
+              </a>
+
+              {usesCompactNavigation ? (
+                <div className="flex h-11 items-center gap-2">
+                  <HamburgerButton isOpen={isMobileMenuOpen} onClick={handleMenuToggle} />
+                </div>
+              ) : (
+                <DesktopNavigation links={links} onNavClick={handleNavClick} />
+              )}
+
+              <noscript>
+                <NoJsMobileMenu links={links} />
+              </noscript>
             </div>
           </div>
-        </MobileMenu>
-      </div>
-    </m.nav>
+          <MobileMenu
+            isOpen={usesCompactNavigation && isMobileMenuOpen}
+            onExitComplete={() => setIsMenuExpanded(false)}
+          >
+            <div className="flex flex-col gap-1">
+              <SiteNavLinks onClick={handleNavClick} />
+              {links.map((link) => (
+                <NavLink key={link.href} link={link} onClick={handleNavClick} />
+              ))}
+            </div>
+
+            <div className="mt-2 flex flex-row gap-2 border-t border-border/30 pt-4">
+              <div className="flex-1">
+                <LanguageSelector
+                  mobile
+                  mobileMenuInteractionGuardAttribute={MOBILE_MENU_INTERACTION_GUARD_ATTRIBUTE}
+                />
+              </div>
+              <div className="flex-1">
+                <ThemeToggle mobile />
+              </div>
+            </div>
+          </MobileMenu>
+        </div>
+      </m.nav>
+    </TopbarPageContext.Provider>
   );
 }
 
