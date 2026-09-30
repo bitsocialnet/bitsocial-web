@@ -21,7 +21,8 @@ corepack yarn build:chain
 
 ## Important Notes
 
-- The site is a single static page with no router, SSR, or backend. Sections are addressed by hash anchors.
+- The site is static, with no router, SSR, or backend. It has two HTML entries: the landing page ([`index.html`](./index.html)), whose sections are addressed by hash anchors, and the rich list ([`rich-list/index.html`](./rich-list/index.html)) at `/rich-list/`.
+- The rich list renders from the committed snapshot in [`src/data/bso-holders.json`](./src/data/bso-holders.json), then refreshes balances and the price from Blockscout's public API in the browser every five minutes. Refresh the fallback snapshot with `corepack yarn rich-list:snapshot`. Which wallets are linked, and the evidence for each link, is curated research in [`src/lib/rich-list/data.ts`](./src/lib/rich-list/data.ts) and never updates on its own.
 - BSO is live; Bitsocial Chain is a proposal. Copy should describe the chain as a design rather than a running system unless that changes.
 - The official BSO contract address, along with the token, project, and social links, is defined once in [`src/lib/site.ts`](./src/lib/site.ts). The Verify section asks readers to match the address character by character, so never hardcode it elsewhere.
 - Page order comes from `SECTION_IDS` in [`src/lib/faq.ts`](./src/lib/faq.ts). Each section answers one reader question: its headline is the answer, and the question itself only appears in the FAQ index at the bottom. [`src/sections/index.tsx`](./src/sections/index.tsx) keys its components by those ids, so a section without a question, or a question without a section, fails to typecheck.

@@ -30,9 +30,7 @@ export default function LiveStatus() {
 
   return (
     <p className="rl-snapshot" aria-live="polite">
-      {status === "live" ? (
-        <span className="rl-live-dot" aria-hidden />
-      ) : null}
+      {status === "live" ? <span className="rl-live-dot" aria-hidden /> : null}
       {t(`richList.hero.status.${status}`, values)}
     </p>
   );

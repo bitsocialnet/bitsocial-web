@@ -23,7 +23,7 @@ export default function Airdrops() {
       key: "how",
       cells: AIRDROP_ROUNDS.map((round) =>
         round.link ? (
-          <ExternalLink href={round.link}>
+          <ExternalLink key={round.id} href={round.link}>
             {t(`richList.airdrops.rounds.${round.id}.how`)}
           </ExternalLink>
         ) : (
@@ -76,7 +76,9 @@ export default function Airdrops() {
     },
     {
       key: "sources",
-      cells: AIRDROP_ROUNDS.map((round) => <TelegramLinks messageIds={round.sourceMessageIds} />),
+      cells: AIRDROP_ROUNDS.map((round) => (
+        <TelegramLinks key={round.id} messageIds={round.sourceMessageIds} />
+      )),
     },
   ];
 

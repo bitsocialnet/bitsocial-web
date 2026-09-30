@@ -72,17 +72,8 @@ async function main() {
     holders,
   };
 
-  // One holder per line keeps regenerated snapshots readable in diffs.
-  const { holders: holderRows, ...meta } = snapshot;
-  const metaLines = Object.entries(meta).map(
-    ([key, value]) => `  ${JSON.stringify(key)}: ${JSON.stringify(value)},`,
-  );
-  const holderLines = holderRows.map((holder) => `    ${JSON.stringify(holder)}`).join(",\n");
   await mkdir(path.dirname(outputPath), { recursive: true });
-  await writeFile(
-    outputPath,
-    `{\n${metaLines.join("\n")}\n  "holders": [\n${holderLines}\n  ]\n}\n`,
-  );
+  await writeFile(outputPath, `${JSON.stringify(snapshot, null, 2)}\n`);
   console.log(`Wrote ${holders.length} holders to ${path.relative(repoRoot, outputPath)}`);
 }
 

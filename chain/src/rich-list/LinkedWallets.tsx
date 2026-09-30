@@ -10,11 +10,13 @@ export default function LinkedWallets() {
   const { t } = useTranslation();
   const format = useFormatters();
   const { entityRows, shareOfSupply } = useRichList();
-  const groups = entityRows.filter((row) => row.entity.kind === "linked").sort(
-    (a, b) =>
-      CONFIDENCE_ORDER[a.entity.confidence ?? "possible"] -
-        CONFIDENCE_ORDER[b.entity.confidence ?? "possible"] || b.balance - a.balance,
-  );
+  const groups = entityRows
+    .filter((row) => row.entity.kind === "linked")
+    .sort(
+      (a, b) =>
+        CONFIDENCE_ORDER[a.entity.confidence ?? "possible"] -
+          CONFIDENCE_ORDER[b.entity.confidence ?? "possible"] || b.balance - a.balance,
+    );
 
   return (
     <RichSection

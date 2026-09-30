@@ -11,9 +11,8 @@ export default function SupplyStrip() {
   const format = useFormatters();
   const { entityRows, snapshot, shareOfSupply } = useRichList();
 
-  const linked: Segment[] = entityRows.filter(
-    (row) => row.entity.kind === "linked" && row.balance > 0,
-  )
+  const linked: Segment[] = entityRows
+    .filter((row) => row.entity.kind === "linked" && row.balance > 0)
     .sort((a, b) => b.balance - a.balance)
     .map((row) => ({
       key: row.entity.id,
@@ -22,14 +21,12 @@ export default function SupplyStrip() {
       category: entityCategory(row.entity),
       href: `#entity-${row.entity.id}`,
     }));
-  const teamBalance = entityRows.filter((row) => row.entity.kind === "team").reduce(
-    (sum, row) => sum + row.balance,
-    0,
-  );
-  const poolBalance = entityRows.filter((row) => row.entity.kind === "pool").reduce(
-    (sum, row) => sum + row.balance,
-    0,
-  );
+  const teamBalance = entityRows
+    .filter((row) => row.entity.kind === "team")
+    .reduce((sum, row) => sum + row.balance, 0);
+  const poolBalance = entityRows
+    .filter((row) => row.entity.kind === "pool")
+    .reduce((sum, row) => sum + row.balance, 0);
   const labelled = [
     ...linked,
     {
@@ -54,10 +51,7 @@ export default function SupplyStrip() {
       label: t("richList.strip.everyoneElse", {
         count:
           snapshot.holderCount -
-          entityRows.reduce(
-            (sum, row) => sum + row.wallets.filter((w) => w.balance > 0).length,
-            0,
-          ),
+          entityRows.reduce((sum, row) => sum + row.wallets.filter((w) => w.balance > 0).length, 0),
       }),
       share: 1 - labelledShare,
       category: "other",

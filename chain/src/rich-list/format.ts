@@ -39,7 +39,11 @@ export function useFormatters() {
       maximumFractionDigits: 5,
     });
     const day = new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeZone: "UTC" });
-    const month = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric", timeZone: "UTC" });
+    const month = new Intl.DateTimeFormat(locale, {
+      month: "long",
+      year: "numeric",
+      timeZone: "UTC",
+    });
     const relative = new Intl.RelativeTimeFormat(locale, { numeric: "auto" });
     const year = new Intl.DateTimeFormat(locale, { year: "numeric", timeZone: "UTC" });
 

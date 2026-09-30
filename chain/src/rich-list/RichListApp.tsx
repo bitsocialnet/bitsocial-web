@@ -51,7 +51,11 @@ function RichListPage() {
             </nav>
           </header>
 
-          <RichSection id="holders" title={t("richList.table.title")} lead={t("richList.table.lead")}>
+          <RichSection
+            id="holders"
+            title={t("richList.table.title")}
+            lead={t("richList.table.lead")}
+          >
             <HoldersTable />
           </RichSection>
 
