@@ -32,6 +32,9 @@ export type EvidenceItem = {
   addresses?: { chain: Chain; address: string }[];
 };
 
+/** How a holder is drawn and labelled: team, pool, the confidence of a link, or unlinked. */
+export type Category = "team" | "pool" | Confidence | "other";
+
 export type Entity = {
   id: string;
   kind: EntityKind;
@@ -39,6 +42,10 @@ export type Entity = {
   wallets: EntityWallet[];
   evidence: EvidenceItem[];
 };
+
+export function entityCategory(entity: Entity): Category {
+  return entity.kind === "linked" ? (entity.confidence ?? "possible") : entity.kind;
+}
 
 /** Both migrations kept this ratio for every holder: 7,114.596 PLEB became 1 BSO. */
 export const PLEB_PER_BSO = 7114.596;

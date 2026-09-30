@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import type { Chain, Confidence, Entity, TxRef } from "@/lib/rich-list/data";
+import type { Category, Chain, TxRef } from "@/lib/rich-list/data";
 import {
   bsoHolderUrl,
   explorerAddressUrl,
@@ -9,12 +9,6 @@ import {
   shortAddress,
   telegramMessageUrl,
 } from "@/lib/rich-list/holders";
-
-export type Category = "team" | "pool" | Confidence | "other";
-
-export function entityCategory(entity: Entity): Category {
-  return entity.kind === "linked" ? (entity.confidence ?? "possible") : entity.kind;
-}
 
 /** A labelled page region with an anchor, a headline and an optional lead paragraph. */
 export function RichSection({

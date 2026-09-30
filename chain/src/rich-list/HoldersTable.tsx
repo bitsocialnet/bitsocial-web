@@ -4,7 +4,8 @@ import { useTranslation } from "react-i18next";
 import { type RichListRow, getEntityIdForAddress } from "@/lib/rich-list/holders";
 import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
-import { AddressLink, CategoryBadge, entityCategory } from "./primitives";
+import { entityCategory } from "@/lib/rich-list/data";
+import { AddressLink, CategoryBadge } from "./primitives";
 
 const INITIAL_ROWS = 100;
 

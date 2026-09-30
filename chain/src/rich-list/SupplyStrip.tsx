@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
-import { type Category, entityCategory } from "./primitives";
+import { type Category, entityCategory } from "@/lib/rich-list/data";
 
 type Segment = { key: string; label: string; share: number; category: Category; href?: string };
 

@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
-import { AddressLink, CategoryBadge, RichSection, TxLinks, entityCategory } from "./primitives";
+import { entityCategory } from "@/lib/rich-list/data";
+import { AddressLink, CategoryBadge, RichSection, TxLinks } from "./primitives";
 
 const CONFIDENCE_ORDER = { confirmed: 0, likely: 1, possible: 2 } as const;
 
