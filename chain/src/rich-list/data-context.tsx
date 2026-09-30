@@ -18,8 +18,9 @@ const RichListContext = createContext<RichListContextValue | null>(null);
 
 /**
  * Renders from the committed snapshot at once, then keeps the page on live Blockscout data:
- * refreshed every five minutes while the tab is visible, and again when it becomes visible after
- * going stale. A failed refresh keeps the last good data and reports the page as unavailable.
+ * refreshed five minutes after the previous refresh while the tab is visible, and as soon as it
+ * becomes visible again after going stale. A failed refresh keeps the last good data; before any
+ * live data has arrived, it reports the page as unavailable.
  */
 export function RichListDataProvider({ children }: { children: ReactNode }) {
   const [snapshot, setSnapshot] = useState<Snapshot>(COMMITTED_SNAPSHOT);
@@ -27,13 +28,23 @@ export function RichListDataProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let controller: AbortController | null = null;
+    let timer: number | undefined;
     let lastFetch = 0;
 
+    const refreshIfVisible = () => {
+      if (document.visibilityState === "visible" && Date.now() - lastFetch >= REFRESH_MS) {
+        void refresh();
+      }
+    };
+
+    // A hidden tab lets the timer lapse; visibilitychange refreshes it when it comes back.
     const refresh = async () => {
       controller?.abort();
       const current = new AbortController();
       controller = current;
       lastFetch = Date.now();
+      window.clearTimeout(timer);
+      timer = window.setTimeout(refreshIfVisible, REFRESH_MS);
       try {
         const next = await fetchLiveSnapshot(current.signal);
         setSnapshot(next);
@@ -46,18 +57,11 @@ export function RichListDataProvider({ children }: { children: ReactNode }) {
       }
     };
 
-    const refreshIfVisible = () => {
-      if (document.visibilityState === "visible" && Date.now() - lastFetch >= REFRESH_MS) {
-        void refresh();
-      }
-    };
-
     void refresh();
-    const interval = window.setInterval(refreshIfVisible, REFRESH_MS);
     document.addEventListener("visibilitychange", refreshIfVisible);
 
     return () => {
-      window.clearInterval(interval);
+      window.clearTimeout(timer);
       document.removeEventListener("visibilitychange", refreshIfVisible);
       controller?.abort();
     };

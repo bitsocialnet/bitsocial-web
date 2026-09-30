@@ -109,7 +109,7 @@ export default function TeamAllocation() {
         <h3 className="rl-subtitle">{t("richList.team.statementsTitle")}</h3>
         {STATEMENTS.map((statement) => (
           <figure key={statement.messageId} className="rl-statement">
-            <blockquote lang="en">
+            <blockquote lang="en" dir="ltr">
               <p>“{statement.text}”</p>
             </blockquote>
             <figcaption>

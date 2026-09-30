@@ -1,5 +1,5 @@
 import committedSnapshot from "@/data/bso-holders.json";
-import { BSO_TOKEN_ADDRESS } from "@/lib/site";
+import { BSO_TOKEN_ADDRESS, TELEGRAM_URL } from "@/lib/site";
 import { ENTITIES, PLEB_PER_BSO, type Chain, type Entity } from "./data";
 
 export type Holder = { address: string; balance: number; isContract: boolean };
@@ -114,7 +114,7 @@ export function bsoHolderUrl(address: string) {
 }
 
 export function telegramMessageUrl(messageId: number) {
-  return `https://t.me/bitsocialnet/${messageId}`;
+  return `${TELEGRAM_URL}/${messageId}`;
 }
 
 export function shortAddress(address: string) {

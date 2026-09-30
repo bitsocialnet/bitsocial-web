@@ -41,18 +41,18 @@ export default function HoldersTable() {
   const [expanded, setExpanded] = useState<ReadonlySet<string>>(() => new Set());
 
   const normalizedQuery = query.trim().toLowerCase();
-  const rows = view === "grouped" ? groupedRows : walletRows;
+  // A search lists matching wallets one by one, each still labelled with its holder, so a match
+  // inside a group is visible without expanding it.
+  const rows = normalizedQuery || view === "wallets" ? walletRows : groupedRows;
   const matchesQuery = (row: RichListRow) => {
-    if (!normalizedQuery) {
+    if (!normalizedQuery || row.type !== "wallet") {
       return true;
     }
-    if (row.type === "wallet") {
-      return row.holder.address.toLowerCase().includes(normalizedQuery);
-    }
-    const name = t(`richList.entities.${row.row.entity.id}.name`).toLowerCase();
+    const entityId = getEntityIdForAddress(row.holder.address);
     return (
-      name.includes(normalizedQuery) ||
-      row.row.wallets.some((wallet) => wallet.address.toLowerCase().includes(normalizedQuery))
+      row.holder.address.toLowerCase().includes(normalizedQuery) ||
+      (entityId !== undefined &&
+        t(`richList.entities.${entityId}.name`).toLowerCase().includes(normalizedQuery))
     );
   };
   const filtered = rows.filter(matchesQuery);
@@ -150,12 +150,7 @@ export default function HoldersTable() {
 
               const { entity, wallets, balance } = row.row;
               const heldWallets = wallets.filter((wallet) => wallet.balance > 0);
-              const isOpen =
-                expanded.has(entity.id) ||
-                (normalizedQuery.length > 2 &&
-                  heldWallets.some((wallet) =>
-                    wallet.address.toLowerCase().includes(normalizedQuery),
-                  ));
+              const isOpen = expanded.has(entity.id);
               const panelId = `rl-wallets-${entity.id}`;
               return (
                 <GroupRows

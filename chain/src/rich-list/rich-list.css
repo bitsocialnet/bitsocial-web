@@ -544,6 +544,12 @@ a.rl-holder-label:hover {
   transform: rotate(180deg);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .rl-expand svg {
+    transition: none;
+  }
+}
+
 .rl-empty {
   padding-block: 2rem;
   text-align: center;
@@ -966,7 +972,6 @@ a.rl-holder-label:hover {
 .rl-page a:focus-visible,
 .rl-page button:focus-visible,
 .rl-page summary:focus-visible {
-  border-radius: 0.5rem;
   outline: none;
   box-shadow: var(--focus-ring);
 }

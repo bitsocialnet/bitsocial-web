@@ -34,7 +34,9 @@ export async function fetchLiveSnapshot(signal: AbortSignal): Promise<Snapshot> 
   const tokenUrl = `${BLOCKSCOUT_API}/tokens/${BSO_TOKEN_ADDRESS}`;
   const token = await getJson<TokenResponse>(tokenUrl, signal);
 
-  const holders: Holder[] = [];
+  // Keyed by address: balances can move while the pages load, and keyset paging may then return
+  // the same holder twice.
+  const holders = new Map<string, Holder>();
   let nextPageParams: HoldersResponse["next_page_params"] = null;
   do {
     const query = nextPageParams
@@ -45,7 +47,7 @@ export async function fetchLiveSnapshot(signal: AbortSignal): Promise<Snapshot> 
       signal,
     );
     for (const item of page.items) {
-      holders.push({
+      holders.set(item.address.hash.toLowerCase(), {
         address: item.address.hash,
         balance: toBso(item.value),
         isContract: Boolean(item.address.is_contract),
@@ -54,13 +56,13 @@ export async function fetchLiveSnapshot(signal: AbortSignal): Promise<Snapshot> 
     nextPageParams = page.next_page_params;
   } while (nextPageParams);
 
-  holders.sort((a, b) => b.balance - a.balance);
+  const sortedHolders = [...holders.values()].sort((a, b) => b.balance - a.balance);
 
   return {
     generatedAt: new Date().toISOString(),
     priceUsd: token.exchange_rate ? Number(token.exchange_rate) : null,
     totalSupply: toBso(token.total_supply),
-    holderCount: holders.length,
-    holders,
+    holderCount: sortedHolders.length,
+    holders: sortedHolders,
   };
 }

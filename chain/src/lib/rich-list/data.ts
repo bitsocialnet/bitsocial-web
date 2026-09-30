@@ -1,3 +1,5 @@
+import { DEXSCREENER_PAIR_ADDRESS } from "@/lib/site";
+
 /**
  * Curated facts behind chain.bitsocial.net/rich-list/. Balances come from the generated holder
  * snapshot (`yarn rich-list:snapshot`); everything here is research that does not change between
@@ -78,7 +80,7 @@ export const ENTITIES: Entity[] = [
   {
     id: "pool",
     kind: "pool",
-    wallets: [{ address: "0xae8d1a28c8fa6b71c4099ede2d7924672dc51e32" }],
+    wallets: [{ address: DEXSCREENER_PAIR_ADDRESS }],
     evidence: [],
   },
   {
@@ -349,9 +351,6 @@ export const LIQUIDITY_SEED_TXS: TxRef[] = [
   avax("0x7c379f215876889c9a09acbd023c4b81e8da0f34d1d2a5875e2722a3470cb012"),
   avax("0xdd7f0b272e4756e0dd7c4f2466bed0e6952ced954d3ba42f13bddc959833e375"),
 ];
-
-/** Founder statements in the Telegram group, oldest first. */
-export const TEAM_STATEMENT_MESSAGE_IDS = [253, 294332, 331576] as const;
 
 export type HistoryEvent = {
   id: string;

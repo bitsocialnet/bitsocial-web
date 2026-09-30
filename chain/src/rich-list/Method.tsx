@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from "react-i18next";
 import { GEN1_TOKEN_ADDRESS, GEN2_TOKEN_ADDRESS } from "@/lib/rich-list/data";
 import { useRichList } from "./data-context";
-import { BSO_TOKEN_ADDRESS, CONTRIBUTE_URL } from "@/lib/site";
+import { BSO_TOKEN_ADDRESS, CONTRIBUTE_URL, ETHERSCAN_TOKEN_URL } from "@/lib/site";
 import { useFormatters } from "./format";
 import { AddressLink, RichSection } from "./primitives";
 
@@ -64,7 +64,7 @@ export default function Method() {
           <dd>
             <a
               className="rl-address"
-              href={`https://etherscan.io/token/${BSO_TOKEN_ADDRESS}`}
+              href={ETHERSCAN_TOKEN_URL}
               target="_blank"
               rel="noopener noreferrer"
               translate="no"
