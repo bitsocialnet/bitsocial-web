@@ -10,7 +10,7 @@ import {
   telegramMessageUrl,
 } from "@/lib/rich-list/holders";
 
-/** A chapter of the page on its own frosted panel: an anchor, a headline and an optional lead. */
+/** A labelled page region with an anchor, a headline and an optional lead paragraph. */
 export function RichSection({
   id,
   title,
@@ -23,7 +23,7 @@ export function RichSection({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="rl-section glass-card" aria-labelledby={`${id}-title`}>
+    <section id={id} className="rl-section" aria-labelledby={`${id}-title`}>
       <h2 id={`${id}-title`} className="rl-section-title">
         <a href={`#${id}`}>{title}</a>
       </h2>

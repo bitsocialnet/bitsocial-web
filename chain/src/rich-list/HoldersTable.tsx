@@ -116,7 +116,7 @@ export default function HoldersTable() {
 
       {/* On phones each row becomes a grid (rich-list.css), and some browsers drop a table's
           semantics once its display changes, so the table roles are stated explicitly. */}
-      <div className="rl-table-scroll rl-frame">
+      <div className="rl-table-scroll glass-card">
         <table className="rl-table rl-holders-table" role="table">
           <caption className="sr-only">{t("richList.table.caption")}</caption>
           <thead role="rowgroup">

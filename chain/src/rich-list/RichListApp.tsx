@@ -41,12 +41,12 @@ function RichListPage() {
       <main className="shell-main">
         <div className="content-panel">
           <header className="rl-hero">
-            <div className="rl-hero-panel glass-card">
+            <div className="rl-hero-intro">
               <h1 className="section-title">{t("richList.hero.title")}</h1>
               <p className="rl-lead">{t("richList.hero.lead")}</p>
               <LiveStatus />
-              <SupplyStrip />
             </div>
+            <SupplyStrip />
             <nav className="rl-chapters glass-card" aria-labelledby="rl-chapters-title">
               <p id="rl-chapters-title" className="rl-chapters-title">
                 {t("richList.hero.jumpLabel")}

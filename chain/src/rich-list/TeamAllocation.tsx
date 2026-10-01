@@ -65,7 +65,7 @@ export default function TeamAllocation() {
 
   return (
     <RichSection id="team" title={t("richList.team.title")} lead={t("richList.team.lead")}>
-      <figure className="rl-origin rl-frame">
+      <figure className="rl-origin glass-card">
         <figcaption className="rl-origin-caption">
           {t("richList.team.origin.caption", { amount: format.compact(minted) })}
         </figcaption>
@@ -96,34 +96,38 @@ export default function TeamAllocation() {
         </dl>
       </figure>
 
-      <ol className="rl-facts">
-        {FACTS.map((fact) => (
-          <li key={fact.id}>
-            <p>{t(`richList.team.facts.${fact.id}`)}</p>
-            {fact.txs ? <TxLinks txs={fact.txs} /> : null}
-          </li>
-        ))}
-      </ol>
+      <div className="rl-panel glass-card">
+        <ol className="rl-facts">
+          {FACTS.map((fact) => (
+            <li key={fact.id}>
+              <p>{t(`richList.team.facts.${fact.id}`)}</p>
+              {fact.txs ? <TxLinks txs={fact.txs} /> : null}
+            </li>
+          ))}
+        </ol>
+      </div>
 
       <div className="rl-statements">
         <h3 className="rl-subtitle">{t("richList.team.statementsTitle")}</h3>
-        {STATEMENTS.map((statement) => (
-          <figure key={statement.messageId} className="rl-statement">
-            <blockquote lang="en" dir="ltr">
-              <p>“{statement.text}”</p>
-            </blockquote>
-            <figcaption>
-              {t("richList.team.statementBy", { date: format.day(statement.date) })}
-              <TelegramLinks messageIds={[statement.messageId]} />
-            </figcaption>
-          </figure>
-        ))}
+        <div className="rl-panel glass-card">
+          {STATEMENTS.map((statement) => (
+            <figure key={statement.messageId} className="rl-statement">
+              <blockquote lang="en" dir="ltr">
+                <p>“{statement.text}”</p>
+              </blockquote>
+              <figcaption>
+                {t("richList.team.statementBy", { date: format.day(statement.date) })}
+                <TelegramLinks messageIds={[statement.messageId]} />
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </div>
 
       <div className="rl-team-wallets">
         <h3 className="rl-subtitle">{t("richList.team.walletsTitle")}</h3>
         {/* Rows become grids on phones, so the table roles are explicit (see HoldersTable). */}
-        <div className="rl-table-scroll rl-frame">
+        <div className="rl-table-scroll glass-card">
           <table className="rl-table rl-team-table" role="table">
             <caption className="sr-only">{t("richList.team.walletsTitle")}</caption>
             <thead role="rowgroup">

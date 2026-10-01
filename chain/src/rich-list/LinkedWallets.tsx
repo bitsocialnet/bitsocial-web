@@ -25,22 +25,24 @@ export default function LinkedWallets() {
       title={t("richList.linked.title")}
       lead={t("richList.linked.lead")}
     >
-      <dl className="rl-confidence-key">
-        {(["confirmed", "likely", "possible"] as const).map((confidence) => (
-          <div key={confidence}>
-            <dt>
-              <CategoryBadge category={confidence} />
-            </dt>
-            <dd>{t(`richList.linked.confidence.${confidence}`)}</dd>
-          </div>
-        ))}
-      </dl>
+      <div className="rl-panel glass-card">
+        <dl className="rl-confidence-key">
+          {(["confirmed", "likely", "possible"] as const).map((confidence) => (
+            <div key={confidence}>
+              <dt>
+                <CategoryBadge category={confidence} />
+              </dt>
+              <dd>{t(`richList.linked.confidence.${confidence}`)}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
 
       <div className="rl-evidence-list">
         {groups.map(({ entity, wallets, balance }) => {
           const base = `richList.entities.${entity.id}`;
           return (
-            <article key={entity.id} id={`entity-${entity.id}`} className="rl-evidence rl-frame">
+            <article key={entity.id} id={`entity-${entity.id}`} className="rl-evidence glass-card">
               <header className="rl-evidence-head">
                 <h3 className="rl-evidence-name">{t(`${base}.name`)}</h3>
                 <CategoryBadge category={entityCategory(entity)} />

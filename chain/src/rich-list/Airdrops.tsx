@@ -100,7 +100,7 @@ export default function Airdrops() {
       title={t("richList.airdrops.title")}
       lead={t("richList.airdrops.lead")}
     >
-      <div className="rl-table-scroll rl-airdrops-scroll rl-frame" onFocus={revealFocusedCell}>
+      <div className="rl-table-scroll rl-airdrops-scroll glass-card" onFocus={revealFocusedCell}>
         <table className="rl-table rl-airdrops">
           <caption className="sr-only">{t("richList.airdrops.caption")}</caption>
           <thead>

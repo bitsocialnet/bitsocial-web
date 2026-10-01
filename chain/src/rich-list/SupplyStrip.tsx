@@ -83,7 +83,7 @@ export default function SupplyStrip() {
   ];
 
   return (
-    <figure className="rl-strip">
+    <figure className="rl-strip glass-card">
       <div className="rl-strip-bar" role="img" aria-label={t("richList.strip.label")}>
         {segments.map((segment) => (
           <span
