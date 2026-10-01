@@ -75,3 +75,5 @@ export function useFormatters() {
     };
   }, [locale]);
 }
+
+export type Formatters = ReturnType<typeof useFormatters>;

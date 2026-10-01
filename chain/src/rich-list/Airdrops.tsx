@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { FocusEvent, ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { AIRDROP_ROUNDS, DISTINCT_CLAIMERS } from "@/lib/rich-list/data";
 import { plebToBso } from "@/lib/rich-list/holders";
@@ -11,6 +11,18 @@ const SIGNUP_WINDOWS = {
   twitter: ["2022-02-02", "2022-02-06"],
   reddit: ["2022-02-09", "2022-02-12"],
 } as const;
+
+/**
+ * On narrow screens the metric names stay pinned while the rounds scroll (rich-list.css). Focus
+ * scrolling only brings a link inside the scroll area, which can leave it under that column, so
+ * keyboard focus is scrolled again against the area's scroll padding. Pointer focus is left alone
+ * so a link never moves away from the cursor mid-click.
+ */
+function revealFocusedCell(event: FocusEvent<HTMLDivElement>) {
+  if (event.target.matches(":focus-visible")) {
+    event.target.scrollIntoView({ block: "nearest", inline: "nearest" });
+  }
+}
 
 export default function Airdrops() {
   const { t } = useTranslation();
@@ -88,7 +100,7 @@ export default function Airdrops() {
       title={t("richList.airdrops.title")}
       lead={t("richList.airdrops.lead")}
     >
-      <div className="rl-table-scroll glass-card">
+      <div className="rl-table-scroll rl-airdrops-scroll glass-card" onFocus={revealFocusedCell}>
         <table className="rl-table rl-airdrops">
           <caption className="sr-only">{t("richList.airdrops.caption")}</caption>
           <thead>

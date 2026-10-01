@@ -1,13 +1,14 @@
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import { ChevronDown, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { type RichListRow, getEntityIdForAddress } from "@/lib/rich-list/holders";
 import { useRichList } from "./data-context";
-import { useFormatters } from "./format";
+import { type Formatters, useFormatters } from "./format";
 import { entityCategory } from "@/lib/rich-list/data";
 import { AddressLink, CategoryBadge } from "./primitives";
 
-const INITIAL_ROWS = 100;
+const PAGE_SIZE = 25;
 
 type View = "grouped" | "wallets";
 
@@ -33,11 +34,12 @@ function EntityName({ entityId }: { entityId: string }) {
 export default function HoldersTable() {
   const { t } = useTranslation();
   const format = useFormatters();
-  const { groupedRows, walletRows, shareOfSupply, usdValue } = useRichList();
+  const { groupedRows, walletRows } = useRichList();
+  const bodyRef = useRef<HTMLTableSectionElement>(null);
   const searchId = useId();
   const [view, setView] = useState<View>("grouped");
   const [query, setQuery] = useState("");
-  const [showAll, setShowAll] = useState(false);
+  const [limit, setLimit] = useState(PAGE_SIZE);
   const [expanded, setExpanded] = useState<ReadonlySet<string>>(() => new Set());
 
   const normalizedQuery = query.trim().toLowerCase();
@@ -56,7 +58,19 @@ export default function HoldersTable() {
     );
   };
   const filtered = rows.filter(matchesQuery);
-  const visible = showAll || normalizedQuery ? filtered : filtered.slice(0, INITIAL_ROWS);
+  const visible = normalizedQuery ? filtered : filtered.slice(0, limit);
+  const remaining = filtered.length - visible.length;
+
+  // The buttons disappear once every row is shown, so focus moves to the first added row instead
+  // of falling back to the page, and keyboard users continue from where the list grew.
+  const reveal = (nextLimit: number) => {
+    const firstAdded = visible.length;
+    flushSync(() => setLimit(nextLimit));
+    bodyRef.current
+      ?.querySelectorAll(":scope > tr:not(.rl-subrow)")
+      [firstAdded]?.querySelector<HTMLElement>("a, button")
+      ?.focus();
+  };
 
   const toggle = (id: string) =>
     setExpanded((current) => {
@@ -100,34 +114,40 @@ export default function HoldersTable() {
         </label>
       </div>
 
+      {/* On phones each row becomes a grid (rich-list.css), and some browsers drop a table's
+          semantics once its display changes, so the table roles are stated explicitly. */}
       <div className="rl-table-scroll glass-card">
-        <table className="rl-table">
+        <table className="rl-table rl-holders-table" role="table">
           <caption className="sr-only">{t("richList.table.caption")}</caption>
-          <thead>
-            <tr>
-              <th scope="col" className="rl-col-rank">
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader" className="rl-col-rank">
                 #
               </th>
-              <th scope="col">{t("richList.table.holder")}</th>
-              <th scope="col" className="rl-col-num">
+              <th scope="col" role="columnheader" className="rl-col-holder">
+                {t("richList.table.holder")}
+              </th>
+              <th scope="col" role="columnheader" className="rl-col-num rl-col-balance">
                 {t("richList.table.balance")}
               </th>
-              <th scope="col" className="rl-col-num">
+              <th scope="col" role="columnheader" className="rl-col-num rl-col-share">
                 {t("richList.table.share")}
               </th>
-              <th scope="col" className="rl-col-num rl-col-usd">
+              <th scope="col" role="columnheader" className="rl-col-num rl-col-usd">
                 {t("richList.table.value")}
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody ref={bodyRef} role="rowgroup">
             {visible.map((row) => {
               if (row.type === "wallet") {
                 const entityId = getEntityIdForAddress(row.holder.address);
                 return (
-                  <tr key={row.holder.address}>
-                    <td className="rl-col-rank">{row.rank}</td>
-                    <td>
+                  <tr key={row.holder.address} role="row">
+                    <td role="cell" className="rl-col-rank">
+                      {row.rank}
+                    </td>
+                    <td role="cell" className="rl-col-holder">
                       <span className="rl-holder-name">
                         <AddressLink address={row.holder.address} />
                         {entityId ? (
@@ -137,13 +157,7 @@ export default function HoldersTable() {
                         ) : null}
                       </span>
                     </td>
-                    <td className="rl-col-num">{format.integer(row.holder.balance)}</td>
-                    <td className="rl-col-num">
-                      {format.percent(shareOfSupply(row.holder.balance))}
-                    </td>
-                    <td className="rl-col-num rl-col-usd">
-                      {format.usd(usdValue(row.holder.balance))}
-                    </td>
+                    <AmountCells format={format} balance={row.holder.balance} />
                   </tr>
                 );
               }
@@ -155,6 +169,7 @@ export default function HoldersTable() {
               return (
                 <GroupRows
                   key={entity.id}
+                  format={format}
                   rank={row.rank}
                   entityId={entity.id}
                   balance={balance}
@@ -167,8 +182,8 @@ export default function HoldersTable() {
               );
             })}
             {visible.length === 0 ? (
-              <tr>
-                <td colSpan={5} className="rl-empty">
+              <tr role="row">
+                <td role="cell" colSpan={5} className="rl-empty">
                   {t("richList.table.noMatch")}
                 </td>
               </tr>
@@ -177,16 +192,49 @@ export default function HoldersTable() {
         </table>
       </div>
 
-      {!showAll && !normalizedQuery && filtered.length > INITIAL_ROWS ? (
-        <button type="button" className="rl-more" onClick={() => setShowAll(true)}>
-          {t("richList.table.showAll", { count: filtered.length })}
-        </button>
+      {!normalizedQuery && remaining > 0 ? (
+        <div className="rl-more">
+          <button
+            type="button"
+            className="rl-more-button"
+            onClick={() => reveal(limit + PAGE_SIZE)}
+          >
+            {t("richList.table.showMore", { count: Math.min(PAGE_SIZE, remaining) })}
+          </button>
+          <button
+            type="button"
+            className="rl-more-all"
+            onClick={() => reveal(Number.POSITIVE_INFINITY)}
+          >
+            {t("richList.table.showAll", { count: filtered.length })}
+          </button>
+        </div>
       ) : null}
     </div>
   );
 }
 
+/** The balance, its share of the supply and its dollar value, which end every row. */
+function AmountCells({ format, balance }: { format: Formatters; balance: number }) {
+  const { shareOfSupply, usdValue } = useRichList();
+
+  return (
+    <>
+      <td role="cell" className="rl-col-num rl-col-balance">
+        {format.integer(balance)}
+      </td>
+      <td role="cell" className="rl-col-num rl-col-share">
+        {format.percent(shareOfSupply(balance))}
+      </td>
+      <td role="cell" className="rl-col-num rl-col-usd">
+        {format.usd(usdValue(balance))}
+      </td>
+    </>
+  );
+}
+
 function GroupRows({
+  format,
   rank,
   entityId,
   balance,
@@ -196,6 +244,7 @@ function GroupRows({
   onToggle,
   toggleLabel,
 }: {
+  format: Formatters;
   rank: number;
   entityId: string;
   balance: number;
@@ -205,15 +254,15 @@ function GroupRows({
   onToggle: () => void;
   toggleLabel: string;
 }) {
-  const format = useFormatters();
-  const { shareOfSupply, usdValue } = useRichList();
   const expandable = wallets.length > 1;
 
   return (
     <>
-      <tr className={isOpen && expandable ? "rl-group is-open" : "rl-group"}>
-        <td className="rl-col-rank">{rank}</td>
-        <td>
+      <tr role="row" className={isOpen && expandable ? "rl-group is-open" : "rl-group"}>
+        <td role="cell" className="rl-col-rank">
+          {rank}
+        </td>
+        <td role="cell" className="rl-col-holder">
           <span className="rl-holder-name">
             <EntityName entityId={entityId} />
             {expandable ? (
@@ -232,25 +281,22 @@ function GroupRows({
             )}
           </span>
         </td>
-        <td className="rl-col-num">{format.integer(balance)}</td>
-        <td className="rl-col-num">{format.percent(shareOfSupply(balance))}</td>
-        <td className="rl-col-num rl-col-usd">{format.usd(usdValue(balance))}</td>
+        <AmountCells format={format} balance={balance} />
       </tr>
       {expandable
         ? wallets.map((wallet, index) => (
             <tr
               key={wallet.address}
               id={`${panelId}-${index}`}
+              role="row"
               className="rl-subrow"
               hidden={!isOpen}
             >
-              <td className="rl-col-rank" />
-              <td>
+              <td role="cell" className="rl-col-rank" />
+              <td role="cell" className="rl-col-holder">
                 <AddressLink address={wallet.address} />
               </td>
-              <td className="rl-col-num">{format.integer(wallet.balance)}</td>
-              <td className="rl-col-num">{format.percent(shareOfSupply(wallet.balance))}</td>
-              <td className="rl-col-num rl-col-usd">{format.usd(usdValue(wallet.balance))}</td>
+              <AmountCells format={format} balance={wallet.balance} />
             </tr>
           ))
         : null}

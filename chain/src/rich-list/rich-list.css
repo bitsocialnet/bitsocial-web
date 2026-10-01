@@ -3,7 +3,8 @@
    surface than the landing page: left-aligned, tabular numbers,
    one shared width. Each linked holder gets its own hue, blue is
    kept for the team, and the pool and everyone else stay neutral.
-   Confidence is carried by the badges, never by colour.
+   Confidence badges pair a colour with their label and a fill
+   step, so the level never rests on colour alone.
    ============================================================ */
 
 .rl-page {
@@ -20,6 +21,14 @@
   --rl-team: var(--signal);
   --rl-pool: hsl(var(--muted-foreground) / 0.6);
   --rl-other: hsl(var(--border));
+  /* Where PLEB came from, beside the team's blue. Hues the holder palette does not use, validated
+     for colour-blind separation on both themes, so they need no dark steps. */
+  --rl-airdrop-claims: #0e9fb8;
+  --rl-liquidity-mining: #c2741f;
+  /* Confidence text and borders, stepped per theme to keep 4.5:1 on the badge tint. */
+  --rl-confirmed: #166534;
+  --rl-likely: #92400e;
+  --rl-possible: #9f1239;
   --rl-mono: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
 }
 
@@ -31,6 +40,9 @@
   --rl-holder-e: #008300;
   --rl-holder-f: #9085e9;
   --rl-holder-rest: #e66767;
+  --rl-confirmed: #4ade80;
+  --rl-likely: #fbbf24;
+  --rl-possible: #fb7185;
 }
 
 .rl-page ::selection {
@@ -47,17 +59,10 @@
 /* ---------- Hero ---------- */
 
 .rl-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.25rem;
   padding-block: clamp(2.5rem, 6vw, 4.5rem) 0;
-}
-
-.rl-title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4.25rem);
-  font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: var(--ink);
 }
 
 .rl-lead {
@@ -76,37 +81,137 @@
   color: var(--ink-faint);
 }
 
-.rl-jump {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 2rem;
+/* ---------- Section index ---------- */
+
+.rl-chapters-title {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 
-.rl-jump a {
-  display: inline-flex;
+.rl-chapters ol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--line);
+  list-style: none;
+}
+
+.rl-chapters li {
+  border-top: 1px solid var(--line);
+}
+
+.rl-chapters a {
+  display: flex;
   align-items: center;
-  min-height: 2.25rem;
-  padding: 0 0.9rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  gap: 0.75rem;
+  min-height: 3rem;
+  padding-block: 0.5rem;
+  border-radius: 0.375rem;
   font-family: var(--font-display);
-  font-size: 0.875rem;
-  color: var(--ink-muted);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.rl-chapter-number {
+  flex: none;
+  min-width: 1.25rem;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+  transition: color 160ms ease;
+}
+
+.rl-chapter-name {
+  flex: 1;
+  min-width: 0;
+}
+
+.rl-chapter-arrow {
+  flex: none;
+  color: var(--ink-faint);
   transition:
     color 160ms ease,
-    border-color 160ms ease;
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.rl-jump a:hover {
-  border-color: var(--line-strong);
-  color: var(--ink);
+.rl-chapters a:hover .rl-chapter-number,
+.rl-chapters a:hover .rl-chapter-arrow {
+  color: var(--signal);
+}
+
+.rl-chapters a:hover .rl-chapter-arrow {
+  transform: translateY(2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rl-chapter-arrow {
+    transition: color 160ms ease;
+  }
+
+  .rl-chapters a:hover .rl-chapter-arrow {
+    transform: none;
+  }
+}
+
+/* Two columns on a phone leave no room for the arrow beside a longer name. */
+@media (max-width: 39.99rem) {
+  .rl-chapter-arrow {
+    display: none;
+  }
+}
+
+@media (min-width: 40rem) {
+  .rl-chapters ol {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* One row of six on wide screens, each number above its name so the longer names fit. */
+@media (min-width: 64rem) {
+  .rl-chapters ol {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .rl-chapters a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "number number"
+      "name arrow";
+    row-gap: 0.25rem;
+    column-gap: 0.5rem;
+    min-height: 4.5rem;
+    padding-block: 0.75rem;
+    font-size: 1.125rem;
+  }
+
+  .rl-chapter-number {
+    grid-area: number;
+  }
+
+  .rl-chapter-name {
+    grid-area: name;
+  }
+
+  .rl-chapter-arrow {
+    grid-area: arrow;
+    align-self: center;
+  }
 }
 
 /* ---------- Supply strip ---------- */
 
 .rl-strip {
-  margin: 2.5rem 0 0;
+  margin: 0;
 }
 
 .rl-strip-bar {
@@ -148,10 +253,10 @@
   background: var(--rl-holder-rest);
 }
 .rl-origin-airdropClaims {
-  background: hsl(var(--foreground) / 0.72);
+  background: var(--rl-airdrop-claims);
 }
 .rl-origin-liquidityMining {
-  background: hsl(var(--foreground) / 0.32);
+  background: var(--rl-liquidity-mining);
 }
 .rl-fill-pool {
   background: var(--rl-pool);
@@ -209,14 +314,15 @@ a.rl-strip-name:hover {
   scroll-margin-top: 5.5rem;
 }
 
+/* Same colour and tracking as the landing page's .section-title, at a reading-page size. */
 .rl-section-title {
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3.4vw, 2.5rem);
   font-weight: 600;
   line-height: 1.15;
-  letter-spacing: -0.015em;
-  color: var(--ink);
+  letter-spacing: -0.01em;
+  color: var(--ink-muted);
 }
 
 .rl-section-title a {
@@ -288,21 +394,23 @@ a.rl-strip-name:hover {
   color: var(--ink);
 }
 
-/* Confidence steps down from a filled, solid badge to a dashed outline, in neutral ink so a
-   badge never looks like a holder's colour. */
+/* Confidence runs green, amber, rose, and also steps down from a tinted badge to a plain
+   outline to a dashed one, so it still reads without colour. */
 .rl-badge-confirmed {
-  border-color: var(--ink-muted);
-  background: hsl(var(--foreground) / 0.12);
-  color: var(--ink);
+  border-color: color-mix(in oklab, var(--rl-confirmed) 55%, transparent);
+  background: color-mix(in oklab, var(--rl-confirmed) 14%, transparent);
+  color: var(--rl-confirmed);
 }
 
 .rl-badge-likely {
-  border-color: var(--ink-muted);
-  color: var(--ink);
+  border-color: color-mix(in oklab, var(--rl-likely) 55%, transparent);
+  color: var(--rl-likely);
 }
 
 .rl-badge-possible {
   border-style: dashed;
+  border-color: color-mix(in oklab, var(--rl-possible) 55%, transparent);
+  color: var(--rl-possible);
 }
 
 .rl-tag {
@@ -323,6 +431,14 @@ a.rl-strip-name:hover {
 
 .rl-address:hover {
   text-decoration-color: currentColor;
+}
+
+/* A full address that has to wrap splits into even halves instead of leaving one
+   character alone on the second line. */
+.rl-address-full,
+.rl-contracts dd {
+  word-break: break-all;
+  text-wrap: balance;
 }
 
 .rl-tx-list {
@@ -576,8 +692,15 @@ a.rl-holder-label:hover {
 }
 
 .rl-more {
-  display: block;
-  margin: 1rem auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+  margin-top: 1rem;
+}
+
+.rl-more-button {
   min-height: 2.75rem;
   padding: 0 1.5rem;
   border: 1px solid var(--line-strong);
@@ -588,8 +711,26 @@ a.rl-holder-label:hover {
   transition: border-color 160ms ease;
 }
 
-.rl-more:hover {
+.rl-more-button:hover {
   border-color: var(--signal);
+}
+
+.rl-more-all {
+  min-height: 2.75rem;
+  padding: 0 0.5rem;
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+  transition:
+    color 160ms ease,
+    text-decoration-color 160ms ease;
+}
+
+.rl-more-all:hover {
+  color: var(--ink);
+  text-decoration-color: currentColor;
 }
 
 .rl-cell-note {
@@ -598,19 +739,121 @@ a.rl-holder-label:hover {
   color: var(--ink-faint);
 }
 
-@media (max-width: 640px) {
-  .rl-col-usd,
-  .rl-holders .rl-col-rank {
+/* Phones: five columns do not fit, so each row becomes a small grid with the holder on one
+   side and its amounts stacked on the other. Rank, share and dollar value all stay visible
+   and nothing scrolls sideways. The Supply and Value headings stay for screen readers; the
+   % and $ already label those lines. */
+@media (max-width: 40rem) {
+  .rl-holders-table,
+  .rl-holders-table > thead,
+  .rl-holders-table > tbody {
+    display: block;
+  }
+
+  .rl-holders-table tr {
+    display: grid;
+    grid-template-columns: 1.75rem minmax(0, 1fr) auto;
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+      "rank holder balance"
+      "rank holder share"
+      "rank holder usd"
+      "rank holder .";
+    column-gap: 0.75rem;
+    padding: 0.875rem 1rem;
+  }
+
+  /* Without this the grid display above would show collapsed wallet rows. */
+  .rl-holders-table tr[hidden] {
     display: none;
   }
 
-  .rl-subrow td:nth-child(2) {
-    padding-inline-start: 1rem;
+  .rl-holders-table th,
+  .rl-holders-table td,
+  .rl-holders-table thead th,
+  .rl-holders-table tbody tr + tr > *,
+  .rl-holders-table .rl-subrow > * {
+    padding: 0;
+    border: 0;
   }
 
-  .rl-table th,
-  .rl-table td {
-    padding-inline: 0.625rem;
+  .rl-holders-table thead tr {
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--line-strong);
+  }
+
+  .rl-holders-table thead .rl-col-share,
+  .rl-holders-table thead .rl-col-usd {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .rl-holders-table tbody tr + tr {
+    border-top: 1px solid var(--line);
+  }
+
+  .rl-holders-table tbody tr:hover > * {
+    background: none;
+  }
+
+  .rl-holders-table .rl-col-rank {
+    grid-area: rank;
+    width: auto;
+    padding-top: 0.125rem;
+    font-size: 0.8125rem;
+  }
+
+  .rl-holders-table .rl-col-holder {
+    grid-area: holder;
+  }
+
+  .rl-holders-table .rl-col-balance {
+    grid-area: balance;
+  }
+
+  .rl-holders-table .rl-col-share {
+    grid-area: share;
+  }
+
+  .rl-holders-table .rl-col-usd {
+    grid-area: usd;
+  }
+
+  .rl-holders-table tbody .rl-col-share,
+  .rl-holders-table tbody .rl-col-usd {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--ink-muted);
+  }
+
+  /* A holder's own wallets: one line for the address and balance, one for share and value. */
+  .rl-holders-table tbody .rl-subrow {
+    grid-template-columns: 1.75rem minmax(0, 1fr) auto auto;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "rank holder balance balance"
+      "rank holder share usd";
+    padding-block: 0.375rem;
+    border-top: 0;
+  }
+
+  .rl-holders-table .rl-subrow .rl-col-holder {
+    padding-inline-start: 0.75rem;
+  }
+
+  .rl-holders-table tbody .rl-subrow .rl-col-share,
+  .rl-holders-table tbody .rl-subrow .rl-col-usd {
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+  }
+
+  .rl-holders-table .rl-empty {
+    grid-column: 1 / -1;
+    padding-block: 1.5rem;
   }
 }
 
@@ -833,6 +1076,86 @@ a.rl-holder-label:hover {
   margin: 0;
 }
 
+/* Phones: the person and wallet on one side, balance and share stacked on the other. */
+@media (max-width: 40rem) {
+  .rl-team-table,
+  .rl-team-table > thead,
+  .rl-team-table > tbody,
+  .rl-team-table > tfoot {
+    display: block;
+  }
+
+  .rl-team-table tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "person balance"
+      "person share"
+      "wallet wallet";
+    column-gap: 1rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .rl-team-table th,
+  .rl-team-table td,
+  .rl-team-table thead th,
+  .rl-team-table tbody tr + tr > *,
+  .rl-team-table tfoot th,
+  .rl-team-table tfoot td {
+    padding: 0;
+    border: 0;
+  }
+
+  .rl-team-table thead tr {
+    border-bottom: 1px solid var(--line-strong);
+  }
+
+  .rl-team-table thead .rl-col-wallet,
+  .rl-team-table thead .rl-col-share {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .rl-team-table tbody tr + tr {
+    border-top: 1px solid var(--line);
+  }
+
+  .rl-team-table tfoot tr {
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .rl-team-table tbody tr:hover > * {
+    background: none;
+  }
+
+  .rl-team-table .rl-col-person {
+    grid-area: person;
+  }
+
+  .rl-team-table .rl-col-wallet {
+    grid-area: wallet;
+    margin-top: 0.25rem;
+  }
+
+  .rl-team-table .rl-col-balance {
+    grid-area: balance;
+  }
+
+  .rl-team-table .rl-col-share {
+    grid-area: share;
+  }
+
+  .rl-team-table tbody .rl-col-share {
+    font-size: 0.8125rem;
+    color: var(--ink-muted);
+  }
+}
+
 /* ---------- Airdrops ---------- */
 
 .rl-airdrops {
@@ -865,6 +1188,47 @@ a.rl-holder-label:hover {
   letter-spacing: 0.02em;
   text-transform: none;
   color: var(--ink);
+}
+
+/* Below the table's own width the rounds scroll sideways, so the metric names stay pinned
+   and every value keeps its label. The pinned column needs an opaque fill: the card's glass
+   over the page background. */
+@media (max-width: 48rem) {
+  .rl-airdrops {
+    min-width: 38rem;
+  }
+
+  /* Keeps a focused link in the rounds from scrolling in underneath the pinned column. */
+  .rl-airdrops-scroll {
+    scroll-padding-inline-start: 8rem;
+  }
+
+  .rl-airdrops thead td:first-child,
+  .rl-airdrops tbody th {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: 1;
+    width: 8rem;
+    white-space: normal;
+    background: var(--glass-card-fill), hsl(var(--background));
+    box-shadow: inset -1px 0 var(--line);
+  }
+
+  [dir="rtl"] .rl-airdrops thead td:first-child,
+  [dir="rtl"] .rl-airdrops tbody th {
+    box-shadow: inset 1px 0 var(--line);
+  }
+
+  .rl-airdrops tbody tr:hover > th {
+    background:
+      linear-gradient(hsl(var(--muted) / 0.35), hsl(var(--muted) / 0.35)), var(--glass-card-fill),
+      hsl(var(--background));
+  }
+
+  .rl-airdrops th,
+  .rl-airdrops td {
+    padding-inline: 0.75rem;
+  }
 }
 
 /* ---------- History ---------- */

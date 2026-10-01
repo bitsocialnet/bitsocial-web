@@ -74,7 +74,7 @@ export function AddressLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="rl-address"
+      className={full ? "rl-address rl-address-full" : "rl-address"}
       title={address}
       translate="no"
       dir="ltr"

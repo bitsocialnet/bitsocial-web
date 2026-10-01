@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { ArrowDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import BackToTop from "@/components/back-to-top";
 import Footer from "@/components/footer";
@@ -40,16 +41,34 @@ function RichListPage() {
       <main className="shell-main">
         <div className="content-panel">
           <header className="rl-hero">
-            <h1 className="rl-title">{t("richList.hero.title")}</h1>
-            <p className="rl-lead">{t("richList.hero.lead")}</p>
-            <LiveStatus />
+            <div className="rl-hero-intro">
+              <h1 className="section-title">{t("richList.hero.title")}</h1>
+              <p className="rl-lead">{t("richList.hero.lead")}</p>
+              <LiveStatus />
+            </div>
             <SupplyStrip />
-            <nav className="rl-jump" aria-label={t("richList.hero.jumpLabel")}>
-              {JUMP_LINKS.map((id) => (
-                <a key={id} href={`#${id}`}>
-                  {t(`richList.jump.${id}`)}
-                </a>
-              ))}
+            <nav className="rl-chapters" aria-labelledby="rl-chapters-title">
+              <p id="rl-chapters-title" className="rl-chapters-title">
+                {t("richList.hero.jumpLabel")}
+              </p>
+              <ol>
+                {JUMP_LINKS.map((id, index) => (
+                  <li key={id}>
+                    <a href={`#${id}`}>
+                      <span className="rl-chapter-number" aria-hidden>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="rl-chapter-name">{t(`richList.jump.${id}`)}</span>
+                      <ArrowDown
+                        aria-hidden
+                        className="rl-chapter-arrow"
+                        size={16}
+                        strokeWidth={1.8}
+                      />
+                    </a>
+                  </li>
+                ))}
+              </ol>
             </nav>
           </header>
 

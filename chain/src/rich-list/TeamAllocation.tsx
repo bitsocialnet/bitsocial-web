@@ -122,26 +122,31 @@ export default function TeamAllocation() {
 
       <div className="rl-team-wallets">
         <h3 className="rl-subtitle">{t("richList.team.walletsTitle")}</h3>
+        {/* Rows become grids on phones, so the table roles are explicit (see HoldersTable). */}
         <div className="rl-table-scroll glass-card">
-          <table className="rl-table">
+          <table className="rl-table rl-team-table" role="table">
             <caption className="sr-only">{t("richList.team.walletsTitle")}</caption>
-            <thead>
-              <tr>
-                <th scope="col">{t("richList.team.person")}</th>
-                <th scope="col">{t("richList.team.wallet")}</th>
-                <th scope="col" className="rl-col-num">
+            <thead role="rowgroup">
+              <tr role="row">
+                <th scope="col" role="columnheader" className="rl-col-person">
+                  {t("richList.team.person")}
+                </th>
+                <th scope="col" role="columnheader" className="rl-col-wallet">
+                  {t("richList.team.wallet")}
+                </th>
+                <th scope="col" role="columnheader" className="rl-col-num rl-col-balance">
                   {t("richList.table.balance")}
                 </th>
-                <th scope="col" className="rl-col-num">
+                <th scope="col" role="columnheader" className="rl-col-num rl-col-share">
                   {t("richList.table.share")}
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody role="rowgroup">
               {teamRows.flatMap((row) =>
                 row.wallets.map((wallet) => (
-                  <tr key={wallet.address}>
-                    <td>
+                  <tr key={wallet.address} role="row">
+                    <td role="cell" className="rl-col-person">
                       {t(`richList.entities.${row.entity.id}.name`)}
                       {wallet.role ? (
                         <span className="rl-cell-note">
@@ -149,22 +154,30 @@ export default function TeamAllocation() {
                         </span>
                       ) : null}
                     </td>
-                    <td>
+                    <td role="cell" className="rl-col-wallet">
                       <AddressLink address={wallet.address} />
                     </td>
-                    <td className="rl-col-num">{format.integer(wallet.balance)}</td>
-                    <td className="rl-col-num">{format.percent(shareOfSupply(wallet.balance))}</td>
+                    <td role="cell" className="rl-col-num rl-col-balance">
+                      {format.integer(wallet.balance)}
+                    </td>
+                    <td role="cell" className="rl-col-num rl-col-share">
+                      {format.percent(shareOfSupply(wallet.balance))}
+                    </td>
                   </tr>
                 )),
               )}
             </tbody>
-            <tfoot>
-              <tr>
-                <th scope="row" colSpan={2}>
+            <tfoot role="rowgroup">
+              <tr role="row">
+                <th scope="row" role="rowheader" colSpan={2} className="rl-col-person">
                   {t("richList.team.total")}
                 </th>
-                <td className="rl-col-num">{format.integer(teamTotal)}</td>
-                <td className="rl-col-num">{format.percent(shareOfSupply(teamTotal))}</td>
+                <td role="cell" className="rl-col-num rl-col-balance">
+                  {format.integer(teamTotal)}
+                </td>
+                <td role="cell" className="rl-col-num rl-col-share">
+                  {format.percent(shareOfSupply(teamTotal))}
+                </td>
               </tr>
             </tfoot>
           </table>
