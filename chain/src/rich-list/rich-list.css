@@ -31,6 +31,12 @@
   --rl-confirmed: #166534;
   --rl-likely: #92400e;
   --rl-possible: #9f1239;
+  /* Outlines for pills, chips and toggles, the selected toggle fill, and row dividers. The shared
+     light border is too faint on a white card, so light mode steps these from the ink instead. */
+  --rl-control-line: hsl(var(--foreground) / 0.24);
+  --rl-control-line-hover: hsl(var(--foreground) / 0.45);
+  --rl-control-fill: hsl(var(--foreground) / 0.1);
+  --rl-divider: hsl(var(--foreground) / 0.14);
   --rl-mono: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
 }
 
@@ -45,6 +51,10 @@
   --rl-confirmed: #4ade80;
   --rl-likely: #fbbf24;
   --rl-possible: #fb7185;
+  --rl-control-line: var(--line);
+  --rl-control-line-hover: var(--line-strong);
+  --rl-control-fill: hsl(var(--muted));
+  --rl-divider: var(--line);
 }
 
 .rl-page ::selection {
@@ -115,7 +125,7 @@
 }
 
 .rl-chapters li {
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--rl-divider);
 }
 
 .rl-chapters a {
@@ -236,6 +246,27 @@
 .rl-strip-segment {
   flex-basis: 0;
   min-width: 2px;
+}
+
+/* Hovering a segment or its legend entry fades the others, tying the two together. */
+.rl-strip-segment,
+.rl-strip-legend li {
+  transition: opacity 160ms ease;
+}
+
+.rl-strip-segment.is-dimmed {
+  opacity: 0.25;
+}
+
+.rl-strip-legend li.is-dimmed {
+  opacity: 0.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rl-strip-segment,
+  .rl-strip-legend li {
+    transition: none;
+  }
 }
 
 .rl-fill-team,
@@ -484,7 +515,7 @@ a.rl-strip-name:hover {
   gap: 0.375rem;
   min-height: 1.75rem;
   padding: 0 0.625rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--rl-control-line);
   border-radius: 999px;
   font-family: var(--rl-mono);
   font-size: 0.75rem;
@@ -526,7 +557,7 @@ a.rl-strip-name:hover {
 .rl-segmented {
   display: inline-flex;
   padding: 0.25rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--rl-control-line);
   border-radius: 999px;
 }
 
@@ -547,7 +578,7 @@ a.rl-strip-name:hover {
 }
 
 .rl-segmented-option[aria-pressed="true"] {
-  background: hsl(var(--muted));
+  background: var(--rl-control-fill);
   color: var(--ink);
 }
 
@@ -559,7 +590,7 @@ a.rl-strip-name:hover {
   max-width: 26rem;
   min-height: 2.75rem;
   padding: 0 1rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--rl-control-line);
   border-radius: 999px;
   color: var(--ink-faint);
   transition: border-color 160ms ease;
@@ -579,6 +610,11 @@ a.rl-strip-name:hover {
   font-size: 0.875rem;
   color: var(--ink);
   outline: none;
+}
+
+/* The pill around the field already shows focus; the global input glow would draw a second ring. */
+.rl-search input:focus-visible {
+  box-shadow: none;
 }
 
 .rl-search input::placeholder {
@@ -662,10 +698,6 @@ a.rl-holder-label:hover {
   color: var(--signal);
 }
 
-.rl-group > td {
-  font-weight: 600;
-}
-
 .rl-table .rl-subrow > * {
   border-top-color: transparent;
   padding-block: 0.375rem;
@@ -684,7 +716,7 @@ a.rl-holder-label:hover {
   gap: 0.25rem;
   min-height: 1.75rem;
   padding: 0 0.625rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--rl-control-line);
   border-radius: 999px;
   font-size: 0.8125rem;
   font-weight: 500;
@@ -695,7 +727,7 @@ a.rl-holder-label:hover {
 }
 
 .rl-expand:hover {
-  border-color: var(--line-strong);
+  border-color: var(--rl-control-line-hover);
   color: var(--ink);
 }
 
@@ -728,37 +760,31 @@ a.rl-holder-label:hover {
   margin-top: 1rem;
 }
 
-.rl-more-button {
+/* Secondary pill buttons beside the site's blue primary: "Show all" and the wallet lists. */
+.rl-more-all,
+.rl-evidence-wallets summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
   min-height: 2.75rem;
-  padding: 0 1.5rem;
-  border: 1px solid var(--line-strong);
+  padding: 0 1.25rem;
+  border: 1px solid var(--rl-control-line);
   border-radius: 999px;
+  cursor: pointer;
   font-family: var(--font-display);
-  font-size: 0.9375rem;
-  color: var(--ink);
-  transition: border-color 160ms ease;
-}
-
-.rl-more-button:hover {
-  border-color: var(--signal);
-}
-
-.rl-more-all {
-  min-height: 2.75rem;
-  padding: 0 0.5rem;
   font-size: 0.875rem;
   color: var(--ink-muted);
-  text-decoration: underline;
-  text-decoration-color: var(--line-strong);
-  text-underline-offset: 3px;
   transition:
     color 160ms ease,
-    text-decoration-color 160ms ease;
+    border-color 160ms ease,
+    background-color 160ms ease;
 }
 
-.rl-more-all:hover {
+.rl-more-all:hover,
+.rl-evidence-wallets summary:hover {
+  border-color: var(--rl-control-line-hover);
+  background: hsl(var(--foreground) / 0.04);
   color: var(--ink);
-  text-decoration-color: currentColor;
 }
 
 .rl-cell-note {
@@ -854,7 +880,6 @@ a.rl-holder-label:hover {
   .rl-holders-table tbody .rl-col-share,
   .rl-holders-table tbody .rl-col-usd {
     font-size: 0.8125rem;
-    font-weight: 400;
     color: var(--ink-muted);
   }
 
@@ -987,17 +1012,27 @@ a.rl-holder-label:hover {
 }
 
 .rl-evidence-wallets summary {
-  display: inline-flex;
-  align-items: center;
   min-height: 2.25rem;
-  cursor: pointer;
-  font-family: var(--font-display);
-  font-size: 0.875rem;
-  color: var(--ink-muted);
+  padding-inline: 0.875rem;
+  list-style: none;
 }
 
-.rl-evidence-wallets summary:hover {
-  color: var(--ink);
+.rl-evidence-wallets summary::-webkit-details-marker {
+  display: none;
+}
+
+.rl-evidence-wallets summary svg {
+  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rl-evidence-wallets[open] summary svg {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rl-evidence-wallets summary svg {
+    transition: none;
+  }
 }
 
 .rl-evidence-wallets ul {

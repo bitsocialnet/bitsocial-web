@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
@@ -78,7 +79,10 @@ export default function LinkedWallets() {
               </ol>
 
               <details className="rl-evidence-wallets">
-                <summary>{t("richList.linked.walletList", { count: wallets.length })}</summary>
+                <summary>
+                  {t("richList.linked.walletList", { count: wallets.length })}
+                  <ChevronDown aria-hidden size={14} strokeWidth={2} />
+                </summary>
                 <ul>
                   {wallets.map((wallet) => (
                     <li key={wallet.address}>

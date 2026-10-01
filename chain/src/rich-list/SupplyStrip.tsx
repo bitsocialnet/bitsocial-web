@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
@@ -25,6 +26,8 @@ export default function SupplyStrip() {
   const { t } = useTranslation();
   const format = useFormatters();
   const { entityRows, snapshot, shareOfSupply } = useRichList();
+  // The hovered or focused group, so its segment and legend entry stand out together.
+  const [active, setActive] = useState<string | null>(null);
 
   const linkedRows = entityRows
     .filter((row) => row.entity.kind === "linked" && row.balance > 0)
@@ -82,13 +85,20 @@ export default function SupplyStrip() {
     },
   ];
 
+  const dimmedClass = (key: string) => (active !== null && active !== key ? "is-dimmed" : "");
+  const hoverHandlers = (key: string) => ({
+    onPointerEnter: () => setActive(key),
+    onPointerLeave: () => setActive(null),
+  });
+
   return (
     <figure className="rl-strip glass-card">
       <div className="rl-strip-bar" role="img" aria-label={t("richList.strip.label")}>
         {segments.map((segment) => (
           <span
             key={segment.key}
-            className={`rl-strip-segment ${segment.fill}`}
+            {...hoverHandlers(segment.key)}
+            className={`rl-strip-segment ${segment.fill} ${dimmedClass(segment.key)}`}
             style={{ flexGrow: segment.share }}
             title={`${segment.label}: ${format.percent(segment.share)}`}
           />
@@ -97,7 +107,13 @@ export default function SupplyStrip() {
       <figcaption>
         <ul className="rl-strip-legend">
           {segments.map((segment) => (
-            <li key={segment.key}>
+            <li
+              key={segment.key}
+              {...hoverHandlers(segment.key)}
+              className={dimmedClass(segment.key) || undefined}
+              onFocus={() => setActive(segment.key)}
+              onBlur={() => setActive(null)}
+            >
               <span className={`rl-swatch ${segment.fill}`} aria-hidden />
               {segment.href ? (
                 <a className="rl-strip-name" href={segment.href}>

@@ -6,6 +6,7 @@ import { type RichListRow, getEntityIdForAddress } from "@/lib/rich-list/holders
 import { useRichList } from "./data-context";
 import { type Formatters, useFormatters } from "./format";
 import { entityCategory } from "@/lib/rich-list/data";
+import { cn } from "@/lib/utils";
 import { AddressLink, CategoryBadge } from "./primitives";
 
 const PAGE_SIZE = 25;
@@ -194,9 +195,16 @@ export default function HoldersTable() {
 
       {!normalizedQuery && remaining > 0 ? (
         <div className="rl-more">
+          {/* The site's standard button (see the newsletter form). */}
           <button
             type="button"
-            className="rl-more-button"
+            className={cn(
+              "inline-flex min-h-11 items-center justify-center rounded-full px-6 font-display text-sm font-semibold",
+              "border border-blue-core/30 bg-blue-core/[0.08] text-foreground/90",
+              "hover:border-blue-glow hover:bg-blue-core/[0.14] hover:text-foreground",
+              "ring-glow cta-glow transition-[box-shadow,border-color,background-color,color] duration-300",
+              "dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:hover:border-blue-glow dark:hover:bg-blue-core/[0.24]",
+            )}
             onClick={() => reveal(limit + PAGE_SIZE)}
           >
             {t("richList.table.showMore", { count: Math.min(PAGE_SIZE, remaining) })}
