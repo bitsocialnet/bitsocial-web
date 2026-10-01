@@ -4,7 +4,8 @@
    one shared width. Each linked holder gets its own hue, blue is
    kept for the team, and the pool and everyone else stay neutral.
    Confidence badges pair a colour with their label and a fill
-   step, so the level never rests on colour alone.
+   step, so the level never rests on colour alone. All text sits on
+   frosted panels so the mesh background never runs behind it.
    ============================================================ */
 
 .rl-page {
@@ -52,6 +53,8 @@
 
 .rl-hero,
 .rl-section {
+  --rl-panel-pad: clamp(1.25rem, 4vw, 2.5rem);
+  --rl-panel-gap: clamp(1rem, 2.5vw, 1.75rem);
   width: var(--rl-width);
   margin-inline: auto;
 }
@@ -61,8 +64,13 @@
 .rl-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 2.25rem;
-  padding-block: clamp(2.5rem, 6vw, 4.5rem) 0;
+  gap: var(--rl-panel-gap);
+  padding-top: clamp(1rem, 3vw, 2rem);
+}
+
+.rl-hero-panel,
+.rl-chapters {
+  padding: var(--rl-panel-pad);
 }
 
 .rl-lead {
@@ -99,7 +107,6 @@
   column-gap: 1.25rem;
   margin: 0;
   padding: 0;
-  border-bottom: 1px solid var(--line);
   list-style: none;
 }
 
@@ -211,7 +218,7 @@
 /* ---------- Supply strip ---------- */
 
 .rl-strip {
-  margin: 0;
+  margin: 2rem 0 0;
 }
 
 .rl-strip-bar {
@@ -309,12 +316,30 @@ a.rl-strip-name:hover {
 
 /* ---------- Sections ---------- */
 
+/* Each chapter is one frosted panel. Tables, figures and evidence inside it use .rl-frame, an
+   inset outline rather than a second card, so glass never stacks on glass. */
 .rl-section {
-  padding-top: clamp(4rem, 8vw, 6rem);
+  margin-top: var(--rl-panel-gap);
+  padding: var(--rl-panel-pad);
   scroll-margin-top: 5.5rem;
 }
 
-/* Same colour and tracking as the landing page's .section-title, at a reading-page size. */
+.rl-frame {
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: hsl(var(--foreground) / 0.025);
+}
+
+/* On phones the tables run to the panel's edges, keeping the full width for their columns. */
+@media (max-width: 40rem) {
+  .rl-section .rl-table-scroll {
+    margin-inline: calc(-1 * var(--rl-panel-pad));
+    border-inline: 0;
+    border-radius: 0;
+  }
+}
+
+/* The landing page's tracking, in full ink: the hero title alone stays grey like its titles. */
 .rl-section-title {
   margin: 0;
   font-family: var(--font-display);
@@ -322,7 +347,7 @@ a.rl-strip-name:hover {
   font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.01em;
-  color: var(--ink-muted);
+  color: var(--ink);
 }
 
 .rl-section-title a {
@@ -558,7 +583,6 @@ a.rl-strip-name:hover {
   color: var(--ink-faint);
 }
 
-/* The wrapper also carries .glass-card, so tables share the cards' surface, border and blur. */
 .rl-table-scroll {
   overflow-x: auto;
 }
@@ -886,7 +910,7 @@ a.rl-holder-label:hover {
 }
 
 .rl-evidence {
-  padding: clamp(1.25rem, 3vw, 2rem);
+  padding: clamp(1rem, 3vw, 2rem);
   scroll-margin-top: 5.5rem;
 }
 
@@ -1002,7 +1026,7 @@ a.rl-holder-label:hover {
 
 .rl-origin {
   margin: 2rem 0 0;
-  padding: clamp(1.25rem, 3vw, 2rem);
+  padding: clamp(1rem, 3vw, 2rem);
 }
 
 .rl-origin-caption {
@@ -1347,7 +1371,7 @@ a.rl-holder-label:hover {
 
 /* The footer follows the last section on this page, not the mailing list. */
 .rl-page footer {
-  margin-top: clamp(4rem, 8vw, 6rem);
+  margin-top: clamp(2.5rem, 6vw, 4rem);
 }
 
 /* ---------- Focus ---------- */

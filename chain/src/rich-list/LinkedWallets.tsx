@@ -40,7 +40,7 @@ export default function LinkedWallets() {
         {groups.map(({ entity, wallets, balance }) => {
           const base = `richList.entities.${entity.id}`;
           return (
-            <article key={entity.id} id={`entity-${entity.id}`} className="rl-evidence glass-card">
+            <article key={entity.id} id={`entity-${entity.id}`} className="rl-evidence rl-frame">
               <header className="rl-evidence-head">
                 <h3 className="rl-evidence-name">{t(`${base}.name`)}</h3>
                 <CategoryBadge category={entityCategory(entity)} />

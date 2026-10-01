@@ -65,7 +65,7 @@ export default function TeamAllocation() {
 
   return (
     <RichSection id="team" title={t("richList.team.title")} lead={t("richList.team.lead")}>
-      <figure className="rl-origin glass-card">
+      <figure className="rl-origin rl-frame">
         <figcaption className="rl-origin-caption">
           {t("richList.team.origin.caption", { amount: format.compact(minted) })}
         </figcaption>
@@ -123,7 +123,7 @@ export default function TeamAllocation() {
       <div className="rl-team-wallets">
         <h3 className="rl-subtitle">{t("richList.team.walletsTitle")}</h3>
         {/* Rows become grids on phones, so the table roles are explicit (see HoldersTable). */}
-        <div className="rl-table-scroll glass-card">
+        <div className="rl-table-scroll rl-frame">
           <table className="rl-table rl-team-table" role="table">
             <caption className="sr-only">{t("richList.team.walletsTitle")}</caption>
             <thead role="rowgroup">
