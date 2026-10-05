@@ -62,7 +62,8 @@ async function main() {
       holders.push({
         address: item.address.hash,
         balance: toBso(item.value),
-        isContract: Boolean(item.address.is_contract),
+        // Match the live list: EIP-7702 delegated EOAs are holder wallets.
+        isContract: Boolean(item.address.is_contract) && item.address.proxy_type !== "eip7702",
       });
     }
     nextPageParams = page.next_page_params;

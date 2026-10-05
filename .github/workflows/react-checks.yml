@@ -10,6 +10,8 @@ on:
         "docs/**",
         "scripts/react-perf/**",
         "scripts/__tests__/about-ssr.node-test.mjs",
+        "scripts/__tests__/bso-holders.node-test.mjs",
+        "scripts/generate-bso-holders.mjs",
         "scripts/pw-session.sh",
         "package.json",
         "yarn.lock",
@@ -24,6 +26,8 @@ on:
         "docs/**",
         "scripts/react-perf/**",
         "scripts/__tests__/about-ssr.node-test.mjs",
+        "scripts/__tests__/bso-holders.node-test.mjs",
+        "scripts/generate-bso-holders.mjs",
         "scripts/pw-session.sh",
         "package.json",
         "yarn.lock",
@@ -50,6 +54,8 @@ jobs:
       - run: corepack yarn install --immutable
       - name: Verify about SSR deployment output
         run: node --test scripts/__tests__/about-ssr.node-test.mjs
+      - name: Verify BSO holder classification
+        run: node --test scripts/__tests__/bso-holders.node-test.mjs
       - run: corepack yarn doctor:check
       - run: corepack yarn perf:install --with-deps
       # Hosted runners are roughly 2.5x slower than the developer hardware the

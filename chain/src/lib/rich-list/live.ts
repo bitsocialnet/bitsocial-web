@@ -9,7 +9,10 @@ const DECIMALS = 18n;
 type TokenResponse = { exchange_rate: string | null; total_supply: string };
 
 type HoldersResponse = {
-  items: { address: { hash: string; is_contract?: boolean }; value: string }[];
+  items: {
+    address: { hash: string; is_contract?: boolean; proxy_type?: string | null };
+    value: string;
+  }[];
   next_page_params: Record<string, string | number> | null;
 };
 
@@ -50,7 +53,8 @@ export async function fetchLiveSnapshot(signal: AbortSignal): Promise<Snapshot> 
       holders.set(item.address.hash.toLowerCase(), {
         address: item.address.hash,
         balance: toBso(item.value),
-        isContract: Boolean(item.address.is_contract),
+        // Blockscout marks EIP-7702 delegated EOAs as contracts, but they are holder wallets.
+        isContract: Boolean(item.address.is_contract) && item.address.proxy_type !== "eip7702",
       });
     }
     nextPageParams = page.next_page_params;
