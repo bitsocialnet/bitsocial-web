@@ -392,45 +392,12 @@ kontrolado ng keypair ang mga identity at hindi ipinagkakaloob ng server.
 
 ## Paano naman ang Nostr?
 
-Hindi maayos na kasya ang Nostr sa alinman sa dalawang kategorya. Hindi ito federation na tulad ng
-ActivityPub, dahil hindi binibigyan ng account ang mga user ng mga instance at hindi nakatali ang
-identity sa iisang server. Hindi rin ito blockchain social media, dahil walang chain, consensus, gas,
-o pandaigdigang pagkakasunod-sunod ng transaksyon.
-
-Mas mainam ilarawan ang Nostr bilang **social media na nakabatay sa relay**. Sa base na protocol
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)), hawak ng mga user ang kanilang
-keypair, pinipirmahan nila ang mga event, at inilalathala nila ang mga event na iyon sa mga WebSocket
-relay. Nagsa-subscribe ang mga kliyente sa mga relay na may mga filter, kinukuha ang mga tugmang
-event, at bine-verify ang mga pirma nang lokal. Maaari ring maglathala ang mga user ng metadata ng
-listahan ng relay ([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)) na nagsasabi
-sa mga kliyente kung aling mga relay ang karaniwan nilang sinusulatan at kung aling mga relay ang
-mas gusto nila para sa pagbabasa ng mga banggit.
-
-Dahil dito, mas malapit ang Nostr sa Bitsocial kaysa sa mga federated o blockchain na sistema sa isang
-mahalagang aspeto: kriptograpiko at portable ang identity. Ang pangunahing pagkakaiba ay ang layer ng
-data. Sa Nostr, ang mga relay ang karaniwang layer ng imbakan at paghahatid. Sa Bitsocial, tinutulungan
-lang ng mga HTTP router ang mga kliyente na makahanap ng mga peer. Hindi nag-iimbak ang mga router ng
-mga post, profile, metadata ng komunidad, o estado ng pagmo-moderate; nagbabalik sila ng mga address
-ng provider peer, at pagkatapos ay kinukuha ng mga kliyente ang nilalaman mula sa mga peer.
-
-Makikita ang parehong hati sa mga komunidad. May mga opsyonal na pattern ang Nostr para sa
-[mga grupong nakabatay sa relay](https://github.com/nostr-protocol/nips/blob/master/29.md) at
-[mga komunidad na inaprubahan ng moderator](https://github.com/nostr-protocol/nips/blob/master/72.md),
-ngunit nakadepende pa rin ang mga ito sa patakaran ng relay, sa estado ng grupong naka-host sa relay,
-o sa desisyon ng kliyente kung aling mga pag-apruba ang igagalang. Itinuturing ng Bitsocial ang mga
-komunidad bilang first-class na kriptograpikong bagay na ang node ng operator ang bumabalida sa mga
-post, nagpapatakbo sa patakaran ng hamon ng komunidad, at naglalathala ng pinakabagong tinanggap na
-estado sa peer-to-peer network.
-
-| Tanong                         | Nostr                                                                                             | Bitsocial                                                                                                     |
-| ------------------------------ | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Kategorya                      | Protocol na nakabatay sa relay                                                                    | Peer-to-peer na network ng komunidad                                                                          |
-| Identity                       | Pampublikong key ng user                                                                          | Mga keypair ng user at ng komunidad                                                                           |
-| Daanan ng data                 | Mga pirmadong event na inilathala sa mga relay                                                    | Nireresolba ng address na nakabatay sa pampublikong key ang mga peer; kinukuha ang nilalaman mula sa mga peer |
-| Sino ang nagpapanatiling buhay | Mga relay na pinipili ng mga user at kliyente                                                     | Node ng may-ari ng komunidad kasama ang mga katulong na seeder                                                |
-| Mga komunidad                  | Opsyonal na mga grupong nakabatay sa relay o mga komunidad na inaprubahan ng moderator            | First-class na mga bagay na komunidad na kontrolado ng operator ang pagmo-moderate                            |
-| Anti-spam                      | Patakaran ng relay, auth, bayad, proof-of-work, mga filter ng kliyente, o pag-apruba ng moderator | Lohika ng hamon na itinakda ng komunidad bago ang pagsasama                                                   |
-| Pangunahing palitan            | Portable na identity, ngunit nakadepende sa relay ang availability at patakaran                   | Mas maliit na pagdepende sa relay, ngunit hindi garantisadong panghabambuhay ang lumang nilalaman             |
+Ang Nostr ay social media na nakabatay sa relay: hawak ng mga user ang kanilang keypair at
+naglalathala sila ng mga pirmadong event sa mga relay, na nag-iimbak at naghahatid ng mga ito. Sa
+Bitsocial, tinutulungan lang ng mga HTTP router ang mga kliyente na makahanap ng mga peer, at ang
+mga komunidad ay first-class na mga bagay na ang sarili nilang node ang tumatanggap o tumatanggi sa
+mga post. Para sa buong paghahambing, tingnan ang pahinang
+[Ang Bitsocial at ang Nostr](/comparisons/nostr/).
 
 ---
 

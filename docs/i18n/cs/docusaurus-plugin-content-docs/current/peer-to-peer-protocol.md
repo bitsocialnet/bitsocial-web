@@ -361,41 +361,10 @@ nemůže zabavit identity uživatelů, protože identity jsou řízené párem k
 
 ## A co Nostr?
 
-Nostr do žádné z těchto kategorií pořádně nezapadá. Není to federace ve stylu ActivityPub, protože
-uživatelům nevydávají účty jednotlivé instance a identita není vázaná na jeden server. Není to ani
-blockchainové sociální médium, protože tu není žádný řetězec, konsensus, poplatky za plyn ani
-globální pořadí transakcí.
-
-Nostr se lépe popisuje jako **sociální médium založené na relayích**. V základním protokolu
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)) uživatelé drží páry klíčů,
-podepisují události a publikují je na WebSocket relaye. Klienti se k relayím přihlašují s filtry,
-stahují odpovídající události a ověřují podpisy lokálně. Uživatelé mohou také publikovat metadata se
-seznamem relayí ([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)), která
-klientům říkají, na které relaye běžně zapisují a které preferují pro čtení zmínek.
-
-V jednom důležitém ohledu to Nostr přibližuje k Bitsocialu víc než federované nebo blockchainové
-systémy: identita je kryptografická a přenositelná. Hlavní rozdíl je v datové vrstvě. U Nostru jsou
-relaye běžnou vrstvou pro ukládání i doručování. U Bitsocialu HTTP routery klientům jen pomáhají
-najít peery. Routery neukládají příspěvky, profily, metadata komunit ani stav moderování; vracejí
-adresy poskytujících peerů a klienti si pak obsah stáhnou od peerů.
-
-Stejné rozdělení se ukazuje i u komunit. Nostr má volitelné vzory pro
-[skupiny založené na relayích](https://github.com/nostr-protocol/nips/blob/master/29.md) a
-[komunity schvalované moderátory](https://github.com/nostr-protocol/nips/blob/master/72.md), ty ale
-stále závisejí na pravidlech relaye, na stavu skupiny hostovaném relayí nebo na tom, která schválení
-se klient rozhodne respektovat. Bitsocial chápe komunity jako plnohodnotné kryptografické objekty,
-jejichž uzel provozovatele ověřuje příspěvky, uplatňuje pravidla výzvy dané komunity a publikuje
-nejnovější přijatý stav do peer-to-peer sítě.
-
-| Otázka             | Nostr                                                                                          | Bitsocial                                                         |
-| ------------------ | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Kategorie          | Protokol založený na relayích                                                                  | Peer-to-peer síť komunit                                          |
-| Identita           | Veřejný klíč uživatele                                                                         | Páry klíčů uživatele a komunity                                   |
-| Cesta k datům      | Podepsané události publikované na relaye                                                       | Adresa z veřejného klíče vede k peerům; obsah se stahuje od peerů |
-| Kdo to drží online | Relaye zvolené uživateli a klienty                                                             | Uzel vlastníka komunity a pomocné seedery                         |
-| Komunity           | Volitelné skupiny na relayích nebo komunity schvalované moderátory                             | Plnohodnotné objekty komunit s moderováním v rukou provozovatele  |
-| Antispam           | Pravidla relaye, autentizace, platba, proof-of-work, filtry klienta nebo schválení moderátorem | Logika výzvy definovaná komunitou ještě před zařazením            |
-| Hlavní kompromis   | Přenositelná identita, ale dostupnost a pravidla závislé na relayích                           | Menší závislost na relayích, ale starý obsah není zaručen navždy  |
+Nostr je sociální médium založené na relayích: uživatelé drží páry klíčů a publikují podepsané
+události na relaye, které je ukládají a poskytují. U Bitsocialu HTTP routery klientům jen pomáhají
+najít peery a komunity jsou plnohodnotné objekty, jejichž vlastní uzel přijímá, nebo odmítá
+příspěvky. Úplné srovnání najdete v části [Bitsocial a Nostr](/comparisons/nostr/).
 
 ---
 

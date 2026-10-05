@@ -381,43 +381,10 @@ prin perechi de chei, nu acordate de server.
 
 ## Dar Nostr?
 
-Nostr nu se încadrează clar în niciuna dintre cele două categorii. Nu este federație în stil
-ActivityPub, pentru că utilizatorilor nu li se emit conturi de către instanțe, iar identitatea nu
-este legată de un singur server. Nu este nici rețea socială pe blockchain, pentru că nu există lanț,
-consens, gas sau ordine globală a tranzacțiilor.
-
-Nostr este descris mai bine ca **rețea socială bazată pe relee**. În protocolul de bază
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)), utilizatorii dețin perechi de
-chei, semnează evenimente și publică acele evenimente către relee WebSocket. Clienții se abonează la
-relee cu filtre, preiau evenimentele care se potrivesc și verifică semnăturile local. Utilizatorii
-pot publica și metadate cu lista releelor
-([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)), care le spun clienților către
-ce relee scriu de obicei și ce relee preferă pentru citirea mențiunilor.
-
-Asta apropie Nostr de Bitsocial mai mult decât sistemele federate sau cele bazate pe blockchain
-într-o privință importantă: identitatea este criptografică și portabilă. Principala diferență este
-stratul de date. În Nostr, releele sunt stratul obișnuit de stocare și livrare. În Bitsocial,
-routerele HTTP doar ajută clienții să găsească noduri. Routerele nu stochează postări, profiluri,
-metadate de comunitate sau stare de moderare; ele returnează adresele nodurilor furnizoare, iar apoi
-clienții preiau conținutul de la noduri.
-
-Comunitățile arată aceeași separare. Nostr are tipare opționale pentru
-[grupuri bazate pe relee](https://github.com/nostr-protocol/nips/blob/master/29.md) și
-[comunități aprobate de moderatori](https://github.com/nostr-protocol/nips/blob/master/72.md), dar
-acestea depind în continuare de politica releelor, de starea grupurilor găzduită pe relee sau de
-alegerile clienților privind aprobările pe care le respectă. Bitsocial tratează comunitățile ca
-obiecte criptografice de prim rang, al căror nod operator validează postările, aplică politica de
-provocări a comunității și publică în rețeaua peer-to-peer cea mai recentă stare acceptată.
-
-| Întrebare             | Nostr                                                                                               | Bitsocial                                                                             |
-| --------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| Categorie             | Protocol bazat pe relee                                                                             | Rețea de comunități peer-to-peer                                                      |
-| Identitate            | Cheia publică a utilizatorului                                                                      | Perechi de chei pentru utilizatori și comunități                                      |
-| Calea datelor         | Evenimente semnate publicate către relee                                                            | Adresa bazată pe cheie publică se rezolvă în noduri; conținutul se preia de la noduri |
-| Cine îl ține online   | Releele alese de utilizatori și de clienți                                                          | Nodul proprietarului comunității, plus seederi ajutători                              |
-| Comunități            | Grupuri opționale bazate pe relee sau comunități aprobate de moderatori                             | Obiecte de comunitate de prim rang, cu moderare controlată de operator                |
-| Anti-spam             | Politica releelor, autentificare, plată, proof-of-work, filtre de client sau aprobări de moderatori | Logică de provocare definită de comunitate, aplicată înainte de includere             |
-| Compromisul principal | Identitate portabilă, dar disponibilitate și politici dependente de relee                           | Dependență mai mică de relee, dar conținutul vechi nu este garantat pentru totdeauna  |
+Nostr este o rețea socială bazată pe relee: utilizatorii dețin perechi de chei și publică evenimente
+semnate către relee, care le stochează și le servesc. În Bitsocial, routerele HTTP doar ajută clienții
+să găsească noduri, iar comunitățile sunt obiecte de prim rang, al căror nod propriu acceptă sau
+respinge postări. Consultați [Bitsocial și Nostr](/comparisons/nostr/) pentru comparația completă.
 
 ---
 

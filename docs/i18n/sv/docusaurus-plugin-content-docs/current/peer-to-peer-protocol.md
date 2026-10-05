@@ -372,43 +372,10 @@ server.
 
 ## Hur är det med Nostr?
 
-Nostr passar inte prydligt in i någon av kategorierna. Det är inte federation i ActivityPub-stil,
-eftersom användare inte tilldelas konton av instanser och identiteten inte är knuten till en enskild
-server. Det är inte heller blockkedjebaserade sociala medier, eftersom det varken finns kedja,
-konsensus, gas eller global transaktionsordning.
-
-Nostr beskrivs bättre som **reläbaserade sociala medier**. I basprotokollet
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)) håller användarna nyckelpar,
-signerar händelser och publicerar dessa händelser till WebSocket-reläer. Klienter prenumererar på
-reläer med filter, hämtar matchande händelser och verifierar signaturer lokalt. Användare kan också
-publicera metadata med relälistor
-([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)) som talar om för klienterna
-vilka reläer de normalt skriver till och vilka reläer de föredrar när de läser omnämnanden.
-
-Det placerar Nostr närmare Bitsocial än federerade eller blockkedjebaserade system på en viktig
-punkt: identiteten är kryptografisk och portabel. Den stora skillnaden ligger i datalagret. I Nostr
-är reläerna det normala lagrings- och leveranslagret. I Bitsocial hjälper HTTP-routrarna bara
-klienterna att hitta peers. Routrarna lagrar varken inlägg, profiler, community-metadata eller
-modereringstillstånd; de returnerar leverantörers peer-adresser, och sedan hämtar klienterna
-innehållet från peers.
-
-Communityer visar samma uppdelning. Nostr har valfria mönster för
-[reläbaserade grupper](https://github.com/nostr-protocol/nips/blob/master/29.md) och
-[moderatorgodkända communityer](https://github.com/nostr-protocol/nips/blob/master/72.md), men de är
-fortfarande beroende av reläets policy, gruppdata som ligger hos reläet eller klientens val av vilka
-godkännanden som ska respekteras. Bitsocial behandlar communityer som förstklassiga kryptografiska
-objekt vars operatörsnod validerar inlägg, kör communityns utmaningspolicy och publicerar det senaste
-accepterade tillståndet till peer-to-peer-nätverket.
-
-| Fråga                  | Nostr                                                                                         | Bitsocial                                                              |
-| ---------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| Kategori               | Reläbaserat protokoll                                                                         | Peer-to-peer-nätverk av communityer                                    |
-| Identitet              | Användarens publika nyckel                                                                    | Nyckelpar för användare och communityer                                |
-| Dataväg                | Signerade händelser publiceras till reläer                                                    | Publik nyckeladress löses upp till peers; innehållet hämtas från peers |
-| Vem håller det uppe    | Reläer som användare och klienter väljer                                                      | Communityns ägarnod plus hjälpande seeders                             |
-| Communityer            | Valfria reläbaserade grupper eller moderatorgodkända communityer                              | Förstklassiga community-objekt med operatörsstyrd moderering           |
-| Anti-spam              | Reläpolicy, autentisering, betalning, proof-of-work, klientfilter eller moderatorgodkännanden | Communitydefinierad utmaningslogik före inkludering                    |
-| Viktigaste avvägningen | Portabel identitet, men tillgänglighet och policy beror på reläer                             | Mindre reläberoende, men gammalt innehåll garanteras inte för alltid   |
+Nostr är reläbaserade sociala medier: användarna har nyckelpar och publicerar signerade händelser
+till reläer, som lagrar och levererar dem. I Bitsocial hjälper HTTP-routrar bara klienter att hitta
+peers, och communityer är förstklassiga objekt vars egen nod accepterar eller avvisar inlägg. Se
+[Bitsocial och Nostr](/comparisons/nostr/) för hela jämförelsen.
 
 ---
 

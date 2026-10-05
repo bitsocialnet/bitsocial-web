@@ -372,40 +372,10 @@ không phải do máy chủ cấp.
 
 ## Còn Nostr thì sao?
 
-Nostr không thuộc hẳn nhóm nào trong hai nhóm trên. Nó không phải mô hình liên hợp kiểu ActivityPub,
-vì người dùng không được các instance cấp tài khoản và danh tính không gắn với một máy chủ. Nó cũng
-không phải mạng xã hội blockchain, vì không có chuỗi, đồng thuận, gas hay thứ tự giao dịch toàn cục.
-
-Mô tả sát hơn thì Nostr là **mạng xã hội dựa trên relay**. Trong giao thức nền
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)), người dùng giữ cặp khóa, ký các
-sự kiện và xuất bản chúng lên những relay WebSocket. Client đăng ký với relay kèm bộ lọc, lấy về các
-sự kiện khớp và tự xác minh chữ ký cục bộ. Người dùng cũng có thể xuất bản siêu dữ liệu danh sách
-relay ([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)) để cho client biết họ
-thường ghi vào những relay nào và ưa dùng relay nào để đọc các lượt nhắc tên.
-
-Điều đó khiến Nostr gần với Bitsocial hơn so với các hệ thống liên hợp hay blockchain ở một điểm quan
-trọng: danh tính mang tính mật mã và có thể mang theo. Khác biệt chính nằm ở lớp dữ liệu. Trong
-Nostr, relay là lớp lưu trữ và phân phối thông thường. Trong Bitsocial, router HTTP chỉ giúp client
-tìm ra các peer. Router không lưu bài đăng, hồ sơ, siêu dữ liệu cộng đồng hay trạng thái kiểm duyệt;
-chúng trả về địa chỉ của các peer cung cấp, rồi client tự lấy nội dung từ các peer.
-
-Cộng đồng cũng cho thấy khác biệt tương tự. Nostr có các mô hình tùy chọn cho
-[nhóm dựa trên relay](https://github.com/nostr-protocol/nips/blob/master/29.md) và
-[cộng đồng do người kiểm duyệt phê duyệt](https://github.com/nostr-protocol/nips/blob/master/72.md),
-nhưng chúng vẫn phụ thuộc vào chính sách của relay, trạng thái nhóm lưu trên relay, hoặc lựa chọn của
-client về việc công nhận phê duyệt nào. Bitsocial coi cộng đồng là đối tượng mật mã hạng nhất: node
-của người vận hành kiểm tra bài đăng, chạy chính sách thử thách của cộng đồng và xuất bản trạng thái
-mới nhất đã được chấp nhận vào mạng ngang hàng.
-
-| Câu hỏi                       | Nostr                                                                                                         | Bitsocial                                                                        |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Phân loại                     | Giao thức dựa trên relay                                                                                      | Mạng cộng đồng ngang hàng                                                        |
-| Danh tính                     | Khóa công khai của người dùng                                                                                 | Cặp khóa của người dùng và của cộng đồng                                         |
-| Đường đi dữ liệu              | Sự kiện đã ký được xuất bản lên relay                                                                         | Địa chỉ khóa công khai phân giải ra peer; nội dung được lấy từ peer              |
-| Ai giữ cho nó luôn trực tuyến | Các relay do người dùng và client chọn                                                                        | Node của chủ cộng đồng cùng các seeder hỗ trợ                                    |
-| Cộng đồng                     | Nhóm dựa trên relay hoặc cộng đồng do người kiểm duyệt phê duyệt, đều là tùy chọn                             | Đối tượng cộng đồng hạng nhất, kiểm duyệt do người vận hành kiểm soát            |
-| Chống spam                    | Chính sách relay, xác thực, thanh toán, proof-of-work, bộ lọc phía client hoặc phê duyệt của người kiểm duyệt | Logic thử thách do cộng đồng tự định nghĩa, áp dụng trước khi nội dung được nhận |
-| Đánh đổi chính                | Danh tính mang theo được, nhưng khả năng sẵn sàng và chính sách phụ thuộc relay                               | Ít phụ thuộc relay hơn, nhưng nội dung cũ không được bảo đảm mãi mãi             |
+Nostr là mạng xã hội dựa trên relay: người dùng giữ cặp khóa và xuất bản các sự kiện đã ký lên relay,
+nơi lưu trữ và phục vụ chúng. Trong Bitsocial, router HTTP chỉ giúp client tìm ra các peer, và cộng
+đồng là đối tượng hạng nhất có node riêng chấp nhận hoặc từ chối bài đăng. Xem
+[Bitsocial và Nostr](/comparisons/nostr/) để đọc bản so sánh đầy đủ.
 
 ---
 

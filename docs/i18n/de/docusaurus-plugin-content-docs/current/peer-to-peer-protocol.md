@@ -379,44 +379,11 @@ Identitäten werden über Schlüsselpaare kontrolliert und nicht vom Server verg
 
 ## Was ist mit Nostr?
 
-Nostr passt in keine der beiden Schubladen. Es ist keine Föderation im Stil von ActivityPub, denn
-Nutzer bekommen ihre Konten nicht von Instanzen zugeteilt und die Identität hängt nicht an einem
-einzelnen Server. Es ist aber auch keine Blockchain-basierte soziale Plattform, denn es gibt weder
-Chain noch Konsens, Gas oder globale Transaktionsreihenfolge.
-
-Nostr lässt sich besser als **Relay-basierte soziale Medien** beschreiben. Im Basisprotokoll
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)) halten Nutzer Schlüsselpaare,
-signieren Events und veröffentlichen diese Events an WebSocket-Relays. Clients abonnieren Relays mit
-Filtern, holen passende Events ab und prüfen die Signaturen lokal. Nutzer können außerdem
-Relay-Listen als Metadaten veröffentlichen
-([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)), die Clients mitteilen, an
-welche Relays sie üblicherweise schreiben und welche Relays sie zum Lesen von Erwähnungen bevorzugen.
-
-Damit steht Nostr in einem wichtigen Punkt näher an Bitsocial als föderierte oder Blockchain-Systeme:
-Die Identität ist kryptografisch und portabel. Der Hauptunterschied liegt in der Datenschicht. Bei
-Nostr sind Relays die normale Speicher- und Auslieferungsschicht. Bei Bitsocial helfen HTTP-Router
-den Clients lediglich dabei, Peers zu finden. Die Router speichern weder Beiträge noch Profile,
-Community-Metadaten oder Moderationszustände; sie geben die Adressen anbietender Peers zurück, und
-die Clients holen die Inhalte anschließend von den Peers.
-
-Bei Communities zeigt sich dieselbe Trennung. Nostr kennt optionale Muster für
-[Relay-basierte Gruppen](https://github.com/nostr-protocol/nips/blob/master/29.md) und
-[von Moderatoren freigegebene Communities](https://github.com/nostr-protocol/nips/blob/master/72.md),
-die aber weiterhin von der Relay-Richtlinie, vom relaygehosteten Gruppenzustand oder von
-Client-Entscheidungen darüber abhängen, welche Freigaben anerkannt werden. Bitsocial behandelt
-Communities als vollwertige kryptografische Objekte, deren Betreiber-Node Beiträge validiert, die
-Challenge-Richtlinie der Community durchsetzt und den zuletzt akzeptierten Stand in das
-Peer-to-Peer-Netzwerk veröffentlicht.
-
-| Frage                  | Nostr                                                                                     | Bitsocial                                                                     |
-| ---------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Kategorie              | Relay-basiertes Protokoll                                                                 | Peer-to-Peer-Community-Netzwerk                                               |
-| Identität              | Öffentlicher Schlüssel des Nutzers                                                        | Schlüsselpaare von Nutzern und Communities                                    |
-| Datenpfad              | Signierte Events, die an Relays veröffentlicht werden                                     | Public-Key-Adresse löst zu Peers auf; Inhalte werden von Peers geholt         |
-| Wer hält es online     | Von Nutzern und Clients gewählte Relays                                                   | Node des Community-Eigentümers plus helfende Seeder                           |
-| Communities            | Optionale Relay-basierte Gruppen oder von Moderatoren freigegebene Communities            | Vollwertige Community-Objekte mit betreibergesteuerter Moderation             |
-| Anti-Spam              | Relay-Richtlinie, Auth, Bezahlung, Proof-of-Work, Client-Filter oder Moderatorenfreigaben | Von der Community definierte Challenge-Logik vor der Aufnahme                 |
-| Wichtigster Kompromiss | Portable Identität, aber relayabhängige Verfügbarkeit und Richtlinien                     | Weniger Relay-Abhängigkeit, aber alte Inhalte sind nicht dauerhaft garantiert |
+Nostr ist ein Relay-basiertes soziales Netzwerk: Nutzer halten Schlüsselpaare und veröffentlichen
+signierte Events an Relays, die sie speichern und ausliefern. Bei Bitsocial helfen HTTP-Router den
+Clients nur dabei, Peers zu finden, und Communities sind vollwertige Objekte, deren eigener Node
+Beiträge annimmt oder ablehnt. Den vollständigen Vergleich finden Sie unter
+[Bitsocial und Nostr](/comparisons/nostr/).
 
 ---
 

@@ -383,45 +383,11 @@ kulcspárok vezérlik, nem a szerver osztja ki őket.
 
 ## Mi a helyzet a Nostrral?
 
-A Nostr egyik kategóriába sem illik bele tisztán. Nem ActivityPub-stílusú föderáció, mert a
-felhasználók nem az egyes példányoktól kapnak fiókot, és az identitás nem kötődik egyetlen
-szerverhez. De blokklánc-alapú közösségi média sem, mert nincs benne lánc, konszenzus, gáz vagy
-globális tranzakciósorrend.
-
-A Nostrt pontosabb **relay-alapú közösségi médiaként** leírni. Az alapprotokollban
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)) a felhasználók kulcspárokat
-birtokolnak, eseményeket írnak alá, és ezeket az eseményeket WebSocket relayekre teszik közzé. A
-kliensek szűrőkkel iratkoznak fel a relayekre, lekérik az illeszkedő eseményeket, és helyben
-ellenőrzik az aláírásokat. A felhasználók relaylista-metaadatokat is közzétehetnek
-([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)), amelyek megmondják a
-klienseknek, hogy általában mely relayekre írnak, és mely relayeket részesítik előnyben az
-említések olvasásához.
-
-Ez egy fontos szempontból közelebb helyezi a Nostrt a Bitsocialhoz, mint a föderált vagy
-blokklánc-alapú rendszereket: az identitás kriptográfiai és hordozható. A fő különbség az adatréteg.
-A Nostrban a relayek jelentik a szokásos tároló- és kézbesítési réteget. A Bitsocialban a
-HTTP-útválasztók csak abban segítenek a klienseknek, hogy megtalálják a társakat. Az útválasztók nem
-tárolnak bejegyzéseket, profilokat, közösségi metaadatokat vagy moderálási állapotot; szolgáltató
-társak címeit adják vissza, a kliensek pedig ezt követően a társaktól kérik le a tartalmat.
-
-A közösségeknél ugyanez a kettősség figyelhető meg. A Nostrban vannak opcionális minták a
-[relay-alapú csoportokra](https://github.com/nostr-protocol/nips/blob/master/29.md) és a
-[moderátor által jóváhagyott közösségekre](https://github.com/nostr-protocol/nips/blob/master/72.md),
-ezek azonban továbbra is a relayek szabályzatától, a relayen tárolt csoportállapottól vagy attól
-függenek, hogy a kliens mely jóváhagyásokat veszi figyelembe. A Bitsocial a közösségeket elsőrangú
-kriptográfiai objektumként kezeli: az üzemeltető csomópontja ellenőrzi a bejegyzéseket, futtatja a
-közösség kihívási szabályzatát, és közzéteszi a legfrissebb elfogadott állapotot a peer-to-peer
-hálózatba.
-
-| Kérdés           | Nostr                                                                                                 | Bitsocial                                                                   |
-| ---------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| Kategória        | Relay-alapú protokoll                                                                                 | Peer-to-peer közösségi hálózat                                              |
-| Identitás        | Felhasználói nyilvános kulcs                                                                          | Felhasználói és közösségi kulcspárok                                        |
-| Adatútvonal      | Relayekre közzétett aláírt események                                                                  | A nyilvános kulcsú cím társakra oldódik fel; a tartalom a társaktól érkezik |
-| Ki tartja online | A felhasználók és a kliensek által választott relayek                                                 | A közösség tulajdonosának csomópontja és a segítő seederek                  |
-| Közösségek       | Opcionális relay-alapú csoportok vagy moderátor által jóváhagyott közösségek                          | Elsőrangú közösségi objektumok, üzemeltető által vezérelt moderálással      |
-| Spamvédelem      | Relay-szabályzat, hitelesítés, fizetés, proof-of-work, kliensoldali szűrők vagy moderátori jóváhagyás | Közösség által meghatározott kihíváslogika a befogadás előtt                |
-| Fő kompromisszum | Hordozható identitás, de relayfüggő elérhetőség és szabályzat                                         | Kevesebb relayfüggőség, de a régi tartalom nem marad meg garantáltan örökre |
+A Nostr relay-alapú közösségi média: a felhasználók kulcspárokat birtokolnak, és aláírt eseményeket
+tesznek közzé relayeken, amelyek tárolják és kiszolgálják azokat. A Bitsocialban a HTTP-útválasztók
+csak abban segítenek a klienseknek, hogy megtalálják a társakat, a közösségek pedig elsőrangú
+objektumok, amelyeknek saját csomópontja fogadja el vagy utasítja el a bejegyzéseket. A teljes
+összehasonlításért lásd [A Bitsocial és a Nostr](/comparisons/nostr/) című oldalt.
 
 ---
 

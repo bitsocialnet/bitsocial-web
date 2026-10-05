@@ -391,43 +391,11 @@ porque las identidades las controla un par de claves y no las concede un servido
 
 ## ¿Y Nostr?
 
-Nostr no encaja del todo en ninguna de las dos categorías. No es federación al estilo de
-ActivityPub, porque las instancias no emiten cuentas a los usuarios y la identidad no está atada a
-un servidor. Tampoco es una red social sobre blockchain, porque no hay cadena, ni consenso, ni gas,
-ni un orden global de transacciones.
-
-Nostr se describe mejor como **red social basada en relés**. En el protocolo base
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)), los usuarios tienen pares de
-claves, firman eventos y publican esos eventos en relés de WebSocket. Los clientes se suscriben a
-los relés con filtros, obtienen los eventos que coinciden y verifican las firmas localmente. Los
-usuarios también pueden publicar metadatos de lista de relés
-([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)) que indican a los clientes en
-qué relés escriben normalmente y qué relés prefieren para leer menciones.
-
-Eso sitúa a Nostr más cerca de Bitsocial que los sistemas federados o basados en blockchain en un
-aspecto importante: la identidad es criptográfica y portátil. La diferencia principal está en la
-capa de datos. En Nostr, los relés son la capa habitual de almacenamiento y entrega. En Bitsocial,
-los enrutadores HTTP solo ayudan a los clientes a encontrar pares. Los enrutadores no almacenan
-publicaciones, perfiles, metadatos de comunidad ni estado de moderación; devuelven direcciones de
-pares proveedores y después los clientes obtienen el contenido de esos pares.
-
-Con las comunidades ocurre lo mismo. Nostr tiene patrones opcionales para
-[grupos basados en relés](https://github.com/nostr-protocol/nips/blob/master/29.md) y
-[comunidades aprobadas por moderadores](https://github.com/nostr-protocol/nips/blob/master/72.md),
-pero siguen dependiendo de la política del relé, del estado del grupo alojado en el relé o de las
-decisiones del cliente sobre qué aprobaciones respetar. Bitsocial trata las comunidades como
-objetos criptográficos de primera clase cuyo nodo operador valida las publicaciones, ejecuta la
-política de desafíos de la comunidad y publica el último estado aceptado en la red peer-to-peer.
-
-| Pregunta                     | Nostr                                                                                                        | Bitsocial                                                                              |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| Categoría                    | Protocolo basado en relés                                                                                    | Red comunitaria peer-to-peer                                                           |
-| Identidad                    | Clave pública del usuario                                                                                    | Pares de claves de usuario y de comunidad                                              |
-| Ruta de los datos            | Eventos firmados publicados en relés                                                                         | La dirección de clave pública resuelve a pares; el contenido se obtiene de los pares   |
-| Quién lo mantiene disponible | Relés elegidos por los usuarios y los clientes                                                               | El nodo del propietario de la comunidad más seeders auxiliares                         |
-| Comunidades                  | Grupos opcionales basados en relés o comunidades aprobadas por moderadores                                   | Objetos de comunidad de primera clase con moderación controlada por el operador        |
-| Antispam                     | Política del relé, autenticación, pago, prueba de trabajo, filtros del cliente o aprobaciones de moderadores | Lógica de desafío definida por la comunidad antes de la inclusión                      |
-| Contrapartida principal      | Identidad portátil, pero disponibilidad y política dependientes de los relés                                 | Menos dependencia de relés, pero el contenido antiguo no está garantizado para siempre |
+Nostr es una red social basada en relés: los usuarios tienen pares de claves y publican eventos
+firmados en relés, que los almacenan y los sirven. En Bitsocial, los enrutadores HTTP solo ayudan a
+los clientes a encontrar pares, y las comunidades son objetos de primera clase cuyo propio nodo
+acepta o rechaza las publicaciones. Consulta [Bitsocial y Nostr](/comparisons/nostr/) para ver la
+comparación completa.
 
 ---
 

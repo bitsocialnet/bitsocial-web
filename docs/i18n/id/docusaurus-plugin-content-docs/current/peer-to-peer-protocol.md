@@ -374,44 +374,10 @@ diberikan server.
 
 ## Bagaimana dengan Nostr?
 
-Nostr tidak masuk rapi ke salah satu kategori itu. Nostr bukan federasi bergaya ActivityPub, karena
-pengguna tidak diberi akun oleh instance dan identitasnya tidak terikat pada satu server. Nostr juga
-bukan media sosial berbasis blockchain, karena tidak ada rantai, konsensus, gas, maupun urutan
-transaksi global.
-
-Nostr lebih tepat disebut **media sosial berbasis relay**. Pada protokol dasarnya
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)), pengguna memegang pasangan
-kunci, menandatangani event, lalu mempublikasikan event tersebut ke relay WebSocket. Klien
-berlangganan ke relay dengan filter, mengambil event yang cocok, dan memverifikasi tanda tangan
-secara lokal. Pengguna juga bisa mempublikasikan metadata daftar relay
-([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)) yang memberi tahu klien relay
-mana yang biasanya mereka pakai untuk menulis dan relay mana yang mereka pilih untuk membaca
-penyebutan.
-
-Hal itu menempatkan Nostr lebih dekat ke Bitsocial daripada sistem federasi atau blockchain dalam
-satu hal penting: identitasnya kriptografis dan bisa dibawa pindah. Perbedaan utamanya ada di
-lapisan data. Di Nostr, relay adalah lapisan penyimpanan dan pengiriman yang normal. Di Bitsocial,
-router HTTP hanya membantu klien menemukan peer. Router tidak menyimpan postingan, profil, metadata
-komunitas, atau status moderasi; router mengembalikan alamat peer penyedia, lalu klien mengambil
-kontennya dari peer.
-
-Komunitas menunjukkan pemisahan yang sama. Nostr punya pola opsional untuk
-[grup berbasis relay](https://github.com/nostr-protocol/nips/blob/master/29.md) dan
-[komunitas dengan persetujuan moderator](https://github.com/nostr-protocol/nips/blob/master/72.md),
-tetapi semuanya tetap bergantung pada kebijakan relay, status grup yang ditampung relay, atau
-pilihan klien tentang persetujuan mana yang dihormati. Bitsocial memperlakukan komunitas sebagai
-objek kriptografis kelas satu yang node operatornya memvalidasi postingan, menjalankan kebijakan
-tantangan komunitas, dan mempublikasikan status terbaru yang diterima ke jaringan peer-to-peer.
-
-| Pertanyaan                   | Nostr                                                                                      | Bitsocial                                                                     |
-| ---------------------------- | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| Kategori                     | Protokol berbasis relay                                                                    | Jaringan komunitas peer-to-peer                                               |
-| Identitas                    | Kunci publik pengguna                                                                      | Pasangan kunci pengguna dan komunitas                                         |
-| Jalur data                   | Event bertanda tangan yang dipublikasikan ke relay                                         | Alamat kunci publik diresolusi jadi peer; konten diambil dari peer            |
-| Siapa yang menjaganya online | Relay yang dipilih pengguna dan klien                                                      | Node pemilik komunitas plus seeder pembantu                                   |
-| Komunitas                    | Grup berbasis relay opsional atau komunitas dengan persetujuan moderator                   | Objek komunitas kelas satu dengan moderasi yang dikendalikan operator         |
-| Anti-spam                    | Kebijakan relay, auth, pembayaran, proof-of-work, filter klien, atau persetujuan moderator | Logika tantangan yang ditentukan komunitas sebelum konten dimasukkan          |
-| Konsekuensi utama            | Identitas bisa dibawa pindah, tetapi ketersediaan dan kebijakan bergantung pada relay      | Ketergantungan pada relay lebih kecil, tetapi konten lama tidak dijamin abadi |
+Nostr adalah media sosial berbasis relay: pengguna memegang pasangan kunci dan mempublikasikan event
+bertanda tangan ke relay, yang menyimpan dan menyajikannya. Di Bitsocial, router HTTP hanya membantu
+klien menemukan peer, dan komunitas adalah objek kelas satu yang node-nya sendiri menerima atau
+menolak postingan. Lihat [Bitsocial dan Nostr](/comparisons/nostr/) untuk perbandingan lengkapnya.
 
 ---
 

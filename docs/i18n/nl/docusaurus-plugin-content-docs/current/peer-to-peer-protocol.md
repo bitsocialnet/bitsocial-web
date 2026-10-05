@@ -383,43 +383,10 @@ sleutelparen worden beheerd en niet door een server worden uitgegeven.
 
 ## Hoe zit het met Nostr?
 
-Nostr past niet netjes in een van beide categorieën. Het is geen federatie in ActivityPub-stijl, want
-gebruikers krijgen geen account van een instance en identiteit is niet aan één server gebonden. Het
-is ook geen blockchain-sociale-media, want er is geen chain, geen consensus, geen gas en geen globale
-transactievolgorde.
-
-Nostr kun je beter omschrijven als **sociale media op basis van relays**. In het basisprotocol
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)) houden gebruikers sleutelparen
-aan, ondertekenen ze events en publiceren ze die events naar WebSocket-relays. Clients abonneren zich
-met filters op relays, halen bijpassende events op en verifiëren de handtekeningen lokaal. Gebruikers
-kunnen ook metadata met relaylijsten publiceren
-([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)) die clients vertelt naar welke
-relays ze normaal schrijven en welke relays ze het liefst gebruiken om vermeldingen te lezen.
-
-Daarmee staat Nostr op één belangrijk punt dichter bij Bitsocial dan gefedereerde of
-blockchainsystemen: identiteit is cryptografisch en overdraagbaar. Het grote verschil zit in de
-datalaag. Bij Nostr zijn relays de normale opslag- en bezorglaag. Bij Bitsocial helpen HTTP-routers
-clients alleen om peers te vinden. De routers bewaren geen berichten, profielen, community-metadata
-of moderatiestatus; ze geven adressen van aanbiedende peers terug, waarna clients de inhoud bij die
-peers ophalen.
-
-Bij communities zie je dezelfde scheiding. Nostr kent optionele patronen voor
-[groepen op basis van relays](https://github.com/nostr-protocol/nips/blob/master/29.md) en
-[communities met moderatorgoedkeuring](https://github.com/nostr-protocol/nips/blob/master/72.md),
-maar die blijven afhankelijk van relaybeleid, groepsstatus die op een relay staat, of keuzes van
-clients over welke goedkeuringen ze honoreren. Bitsocial behandelt communities als volwaardige
-cryptografische objecten: de node van de beheerder valideert berichten, voert het challengebeleid van
-de community uit en publiceert de nieuwste geaccepteerde staat naar het peer-to-peer-netwerk.
-
-| Vraag                  | Nostr                                                                                    | Bitsocial                                                                     |
-| ---------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Categorie              | Protocol op basis van relays                                                             | Peer-to-peer community-netwerk                                                |
-| Identiteit             | Publieke sleutel van de gebruiker                                                        | Sleutelparen van gebruikers en communities                                    |
-| Datapad                | Ondertekende events gepubliceerd naar relays                                             | Adres van de publieke sleutel leidt naar peers; inhoud komt van die peers     |
-| Wie houdt het online   | Relays die gebruikers en clients kiezen                                                  | Node van de community-eigenaar plus helpende seeders                          |
-| Communities            | Optionele groepen op basis van relays of communities met moderatorgoedkeuring            | Volwaardige community-objecten met moderatie door de beheerder                |
-| Anti-spam              | Relaybeleid, auth, betaling, proof-of-work, clientfilters of goedkeuring door moderators | Door de community bepaalde challengelogica vóór opname                        |
-| Belangrijkste afweging | Overdraagbare identiteit, maar beschikbaarheid en beleid hangen af van relays            | Minder afhankelijk van relays, maar oude inhoud is niet voor altijd verzekerd |
+Nostr is sociale media op basis van relays: gebruikers hebben sleutelparen en publiceren ondertekende
+events naar relays, die ze opslaan en uitleveren. Bij Bitsocial helpen HTTP-routers clients alleen om
+peers te vinden, en communities zijn volwaardige objecten waarvan de eigen node berichten accepteert
+of weigert. Zie [Bitsocial en Nostr](/comparisons/nostr/) voor de volledige vergelijking.
 
 ---
 

@@ -382,43 +382,11 @@ es controlen amb parells de claus i no les concedeix el servidor.
 
 ## I Nostr?
 
-Nostr no encaixa clarament en cap dels dos grups. No és federació a l'estil d'ActivityPub, perquè les
-instàncies no emeten comptes als usuaris i la identitat no està lligada a un servidor. Tampoc no és
-xarxa social sobre cadena de blocs, perquè no hi ha cadena, ni consens, ni gas, ni ordre global de
-transaccions.
-
-Nostr es descriu millor com a **xarxa social basada en relés**. Al protocol base
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)), els usuaris tenen parells de
-claus, signen esdeveniments i publiquen aquests esdeveniments en relés de WebSocket. Els clients se
-subscriuen als relés amb filtres, obtenen els esdeveniments que hi coincideixen i verifiquen les
-signatures localment. Els usuaris també poden publicar metadades de llista de relés
-([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)) que indiquen als clients en
-quins relés escriuen habitualment i quins relés prefereixen per llegir les mencions.
-
-Això situa Nostr més a prop de Bitsocial que dels sistemes federats o de cadena de blocs en un
-aspecte important: la identitat és criptogràfica i portable. La diferència principal és la capa de
-dades. A Nostr, els relés són la capa normal d'emmagatzematge i de lliurament. A Bitsocial, els
-encaminadors HTTP només ajuden els clients a trobar iguals. Els encaminadors no desen entrades,
-perfils, metadades de comunitat ni estat de moderació; retornen adreces d'iguals proveïdors i,
-després, els clients obtenen el contingut dels iguals.
-
-Amb les comunitats passa el mateix. Nostr té patrons opcionals per a
-[grups basats en relés](https://github.com/nostr-protocol/nips/blob/master/29.md) i
-[comunitats aprovades per moderadors](https://github.com/nostr-protocol/nips/blob/master/72.md),
-però encara depenen de la política del relé, de l'estat del grup allotjat al relé o de les decisions
-del client sobre quines aprovacions respecta. Bitsocial tracta les comunitats com a objectes
-criptogràfics de primera classe, i el node del seu operador valida les entrades, aplica la política
-de reptes de la comunitat i publica a la xarxa peer-to-peer l'últim estat acceptat.
-
-| Pregunta                | Nostr                                                                                                       | Bitsocial                                                                         |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Categoria               | Protocol basat en relés                                                                                     | Xarxa de comunitats peer-to-peer                                                  |
-| Identitat               | Clau pública de l'usuari                                                                                    | Parells de claus d'usuari i de comunitat                                          |
-| Camí de les dades       | Esdeveniments signats publicats als relés                                                                   | L'adreça de clau pública es resol en iguals; el contingut s'obté dels iguals      |
-| Qui ho manté en línia   | Relés triats pels usuaris i els clients                                                                     | Node del propietari de la comunitat més seeders auxiliars                         |
-| Comunitats              | Grups opcionals basats en relés o comunitats aprovades per moderadors                                       | Objectes de comunitat de primera classe amb moderació controlada per l'operador   |
-| Antispam                | Política del relé, autenticació, pagament, prova de treball, filtres del client o aprovacions de moderadors | Lògica de reptes definida per la comunitat abans de la inclusió                   |
-| Contrapartida principal | Identitat portable, però disponibilitat i política dependents dels relés                                    | Menys dependència dels relés, però el contingut antic no està garantit per sempre |
+Nostr és una xarxa social basada en relés: els usuaris tenen parells de claus i publiquen esdeveniments
+signats en relés, que els emmagatzemen i els serveixen. A Bitsocial, els encaminadors HTTP només ajuden
+els clients a trobar iguals, i les comunitats són objectes de primera classe el node propi dels quals
+accepta o rebutja les publicacions. Consulta [Bitsocial i Nostr](/comparisons/nostr/) per a la
+comparació completa.
 
 ---
 

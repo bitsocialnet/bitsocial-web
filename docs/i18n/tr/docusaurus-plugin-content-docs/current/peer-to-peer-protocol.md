@@ -371,41 +371,10 @@ verilmez, anahtar çiftiyle denetlenir.
 
 ## Peki ya Nostr?
 
-Nostr bu iki kategoriden hiçbirine tam oturmaz. ActivityPub tarzı bir federasyon değildir, çünkü
-kullanıcılara hesap veren örnekler yoktur ve kimlik tek bir sunucuya bağlı değildir. Blok zinciri
-tabanlı sosyal medya da değildir, çünkü ortada zincir, uzlaşı, gas veya küresel işlem sırası yoktur.
-
-Nostr'u tanımlamanın daha iyi yolu **röle tabanlı sosyal medya** demektir. Temel protokolde
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)), kullanıcılar anahtar çiftleri
-tutar, olayları imzalar ve bu olayları WebSocket rölelerine yayımlar. İstemciler rölelere filtrelerle
-abone olur, eşleşen olayları alır ve imzaları yerelde doğrular. Kullanıcılar ayrıca istemcilere
-normalde hangi rölelere yazdıklarını ve kendilerinden söz eden gönderileri okumak için hangi röleleri
-tercih ettiklerini bildiren röle listesi meta verisi
-([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)) yayımlayabilir.
-
-Bu, Nostr'u önemli bir noktada federe veya blok zinciri sistemlerinden çok Bitsocial'a yaklaştırır:
-kimlik kriptografik ve taşınabilirdir. Asıl fark veri katmanındadır. Nostr'da röleler olağan depolama
-ve dağıtım katmanıdır. Bitsocial'da HTTP yönlendiricileri yalnızca istemcilerin eş bulmasına yardım
-eder. Yönlendiriciler gönderileri, profilleri, topluluk meta verilerini veya moderasyon durumunu
-saklamaz; sağlayıcı eş adreslerini döndürürler, ardından istemciler içeriği eşlerden alır.
-
-Topluluklarda da aynı ayrım görülür. Nostr'un
-[röle tabanlı gruplar](https://github.com/nostr-protocol/nips/blob/master/29.md) ve
-[moderatör onaylı topluluklar](https://github.com/nostr-protocol/nips/blob/master/72.md) için isteğe
-bağlı desenleri vardır, ama bunlar hâlâ röle politikasına, rölede tutulan grup durumuna ya da
-istemcilerin hangi onayları dikkate alacağı tercihine bağlıdır. Bitsocial toplulukları birinci sınıf
-kriptografik nesneler olarak ele alır; bu nesnelerin işletmeci düğümü gönderileri doğrular,
-topluluğun sınama politikasını çalıştırır ve kabul edilen en güncel durumu eşler arası ağa yayımlar.
-
-| Soru            | Nostr                                                                                               | Bitsocial                                                              |
-| --------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| Kategori        | Röle tabanlı protokol                                                                               | Eşler arası topluluk ağı                                               |
-| Kimlik          | Kullanıcı açık anahtarı                                                                             | Kullanıcı ve topluluk anahtar çiftleri                                 |
-| Veri yolu       | Rölelere yayımlanan imzalı olaylar                                                                  | Açık anahtar adresi eşlere çözülür; içerik eşlerden alınır             |
-| Çevrimiçi tutan | Kullanıcıların ve istemcilerin seçtiği röleler                                                      | Topluluk sahibinin düğümü ve yardımcı seeder'lar                       |
-| Topluluklar     | İsteğe bağlı röle tabanlı gruplar veya moderatör onaylı topluluklar                                 | İşletmeci denetimli moderasyona sahip birinci sınıf topluluk nesneleri |
-| Spam önleme     | Röle politikası, kimlik doğrulama, ödeme, proof-of-work, istemci filtreleri veya moderatör onayları | Dâhil edilmeden önce topluluğun tanımladığı sınama mantığı             |
-| Ana ödünleşim   | Taşınabilir kimlik, ama röleye bağımlı erişilebilirlik ve politika                                  | Röleye daha az bağımlılık, ama eski içerik sonsuza dek garanti değil   |
+Nostr röle tabanlı sosyal medyadır: kullanıcılar anahtar çiftleri tutar ve imzalı olayları, bunları
+depolayıp sunan rölelere yayımlar. Bitsocial'da HTTP yönlendiricileri yalnızca istemcilerin eş
+bulmasına yardım eder; topluluklar ise gönderileri kendi düğümleri kabul eden veya reddeden birinci
+sınıf nesnelerdir. Karşılaştırmanın tamamı için bkz. [Bitsocial ve Nostr](/comparisons/nostr/).
 
 ---
 

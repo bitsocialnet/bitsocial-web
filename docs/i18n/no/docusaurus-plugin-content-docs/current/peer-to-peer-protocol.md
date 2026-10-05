@@ -375,43 +375,10 @@ server.
 
 ## Hva med Nostr?
 
-Nostr passer ikke rent inn i noen av kategoriene. Det er ikke føderasjon av ActivityPub-typen, for
-brukerne får ikke kontoer tildelt av instanser, og identiteten er ikke knyttet til én server. Det er
-heller ikke sosiale medier på blokkjede, for det finnes verken kjede, konsensus, gass eller global
-transaksjonsrekkefølge.
-
-Nostr beskrives bedre som **relébaserte sosiale medier**. I basisprotokollen
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)) har brukerne nøkkelpar,
-signerer hendelser og publiserer hendelsene til WebSocket-reléer. Klienter abonnerer på reléer med
-filtre, henter hendelsene som passer, og verifiserer signaturene lokalt. Brukere kan også publisere
-metadata med relélister ([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)) som
-forteller klientene hvilke reléer de vanligvis skriver til, og hvilke reléer de foretrekker når de
-leser omtaler av seg selv.
-
-Det plasserer Nostr nærmere Bitsocial enn både fødererte systemer og blokkjedesystemer på ett
-viktig punkt: identiteten er kryptografisk og flyttbar. Hovedforskjellen ligger i datalaget. I
-Nostr er reléene det normale laget for lagring og levering. I Bitsocial hjelper HTTP-rutere bare
-klientene med å finne peers. Ruterne lagrer verken innlegg, profiler, fellesskapsmetadata eller
-modereringstilstand; de returnerer adressene til peers som leverer innholdet, og deretter henter
-klientene innholdet fra disse peerne.
-
-Fellesskap viser den samme forskjellen. Nostr har valgfrie mønstre for
-[relébaserte grupper](https://github.com/nostr-protocol/nips/blob/master/29.md) og
-[fellesskap med moderatorgodkjenning](https://github.com/nostr-protocol/nips/blob/master/72.md), men
-de avhenger fortsatt av relépolicy, gruppetilstand lagret på reléet, eller klientens valg av hvilke
-godkjenninger den skal respektere. Bitsocial behandler fellesskap som førsteklasses kryptografiske
-objekter, der operatørnoden validerer innlegg, kjører fellesskapets regler for utfordringer og
-publiserer den nyeste godkjente tilstanden ut i peer-to-peer-nettverket.
-
-| Spørsmål                     | Nostr                                                                                       | Bitsocial                                                                            |
-| ---------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| Kategori                     | Relébasert protokoll                                                                        | Peer-to-peer-nettverk av fellesskap                                                  |
-| Identitet                    | Brukerens offentlige nøkkel                                                                 | Nøkkelpar for både bruker og fellesskap                                              |
-| Datavei                      | Signerte hendelser publisert til reléer                                                     | Adressen fra den offentlige nøkkelen løses opp til peers; innholdet hentes fra peers |
-| Hvem holder det tilgjengelig | Reléer valgt av brukere og klienter                                                         | Noden til fellesskapets eier pluss seedere som hjelper til                           |
-| Fellesskap                   | Valgfrie relébaserte grupper eller fellesskap med moderatorgodkjenning                      | Fellesskap som førsteklasses objekter med moderering styrt av operatøren             |
-| Anti-spam                    | Relépolicy, autentisering, betaling, proof-of-work, klientfiltre eller moderatorgodkjenning | Utfordringslogikk definert av fellesskapet før innlegget tas med                     |
-| Viktigste avveining          | Flyttbar identitet, men tilgjengelighet og regler avhenger av reléene                       | Mindre avhengighet av reléer, men gammelt innhold er ikke garantert for alltid       |
+Nostr er relébaserte sosiale medier: brukerne har nøkkelpar og publiserer signerte hendelser til
+reléer, som lagrer og serverer dem. I Bitsocial hjelper HTTP-rutere bare klientene med å finne peers,
+og fellesskap er førsteklasses objekter der fellesskapets egen node godtar eller avviser innlegg. Se
+[Bitsocial og Nostr](/comparisons/nostr/) for hele sammenligningen.
 
 ---
 

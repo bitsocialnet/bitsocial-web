@@ -381,43 +381,11 @@ kontrollohen nga çifte çelësash dhe nuk jepen nga serveri.
 
 ## Po Nostr?
 
-Nostr nuk hyn pastër në asnjërën kategori. Nuk është federim në stilin e ActivityPub, sepse
-përdoruesve nuk u jepen llogari nga instancat dhe identiteti nuk lidhet me një server të vetëm. Nuk
-është as media sociale mbi blockchain, sepse nuk ka zinxhir, konsensus, gaz apo renditje globale
-transaksionesh.
-
-Nostr përshkruhet më mirë si **media sociale e bazuar në rele**. Në protokollin bazë
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)), përdoruesit mbajnë çifte
-çelësash, nënshkruajnë ngjarje dhe i publikojnë ato ngjarje te rele WebSocket. Klientët abonohen te
-relet me filtra, marrin ngjarjet që përputhen dhe i verifikojnë nënshkrimet lokalisht. Përdoruesit
-mund të publikojnë gjithashtu meta të dhëna me listën e releve
-([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)), të cilat u tregojnë klientëve
-te cilat rele shkruajnë zakonisht dhe cilat rele preferojnë për të lexuar përmendjet.
-
-Kjo e vendos Nostr-in më afër Bitsocial-it sesa sistemet e federuara ose ato mbi blockchain në një
-pikë të rëndësishme: identiteti është kriptografik dhe i transportueshëm. Dallimi kryesor është
-shtresa e të dhënave. Te Nostr, relet janë shtresa e zakonshme e ruajtjes dhe e shpërndarjes. Te
-Bitsocial, ruterët HTTP thjesht i ndihmojnë klientët të gjejnë nyje. Ruterët nuk ruajnë postime,
-profile, meta të dhëna komunitetesh apo gjendje moderimi; ata kthejnë adresa nyjesh ofruese, pastaj
-klientët e marrin përmbajtjen nga nyjet.
-
-Të njëjtën ndarje e tregojnë edhe komunitetet. Nostr ka modele opsionale për
-[grupe të bazuara në rele](https://github.com/nostr-protocol/nips/blob/master/29.md) dhe
-[komunitete të miratuara nga moderatorët](https://github.com/nostr-protocol/nips/blob/master/72.md),
-por ato varen ende nga politika e releve, nga gjendja e grupeve e strehuar te relet ose nga zgjedhjet
-e klientëve se cilat miratime t'i njohin. Bitsocial i trajton komunitetet si objekte kriptografike të
-klasit të parë, nyja e operatorit të të cilëve i vlerëson postimet, zbaton politikën e sfidave të
-komunitetit dhe publikon gjendjen më të fundit të pranuar në rrjetin peer-to-peer.
-
-| Pyetja               | Nostr                                                                                          | Bitsocial                                                                    |
-| -------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Kategoria            | Protokoll i bazuar në rele                                                                     | Rrjet komunitetesh peer-to-peer                                              |
-| Identiteti           | Çelësi publik i përdoruesit                                                                    | Çifte çelësash të përdoruesit dhe të komunitetit                             |
-| Rruga e të dhënave   | Ngjarje të nënshkruara të publikuara te relet                                                  | Adresa me çelës publik të çon te nyjet; përmbajtja merret nga nyjet          |
-| Kush e mban në linjë | Rele të zgjedhura nga përdoruesit dhe klientët                                                 | Nyja e pronarit të komunitetit plus seeder-a ndihmës                         |
-| Komunitetet          | Grupe opsionale të bazuara në rele ose komunitete të miratuara nga moderatorët                 | Objekte komuniteti të klasit të parë me moderim të kontrolluar nga operatori |
-| Kundër spamit        | Politikë relesh, autentikim, pagesë, proof-of-work, filtra klientësh ose miratime moderatorësh | Logjikë sfide e përcaktuar nga komuniteti përpara përfshirjes                |
-| Kompromisi kryesor   | Identitet i transportueshëm, por disponueshmëri dhe politika që varen nga relet                | Më pak varësi nga relet, por përmbajtja e vjetër nuk garantohet përgjithmonë |
+Nostr është media sociale e bazuar në rele: përdoruesit mbajnë çifte çelësash dhe publikojnë ngjarje
+të nënshkruara te relet, të cilat i ruajnë dhe i shërbejnë. Te Bitsocial, ruterët HTTP thjesht i
+ndihmojnë klientët të gjejnë nyje, dhe komunitetet janë objekte të klasit të parë, nyja e vetë të
+cilave i pranon ose i refuzon postimet. Shihni [Bitsocial dhe Nostr](/comparisons/nostr/) për
+krahasimin e plotë.
 
 ---
 

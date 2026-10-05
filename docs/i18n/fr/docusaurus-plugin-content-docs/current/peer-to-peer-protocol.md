@@ -386,46 +386,11 @@ utilisateurs, car celles-ci sont contrôlées par des paires de clés et non oct
 
 ## Et Nostr ?
 
-Nostr n'entre proprement dans aucune de ces deux catégories. Ce n'est pas de la fédération à la
-ActivityPub, car les instances ne délivrent pas de comptes aux utilisateurs et l'identité n'est pas
-liée à un serveur. Ce n'est pas non plus un réseau social sur blockchain, car il n'y a ni chaîne, ni
-consensus, ni gas, ni ordre global des transactions.
-
-On décrit mieux Nostr comme un **réseau social fondé sur des relais**. Dans le protocole de base
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)), les utilisateurs détiennent
-des paires de clés, signent des événements et publient ces événements vers des relais WebSocket. Les
-clients s'abonnent aux relais avec des filtres, récupèrent les événements correspondants et
-vérifient les signatures localement. Les utilisateurs peuvent aussi publier des métadonnées de liste
-de relais ([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)) qui indiquent aux
-clients vers quels relais ils écrivent habituellement et quels relais ils préfèrent pour lire les
-mentions.
-
-Cela rapproche Nostr de Bitsocial, davantage que les systèmes fédérés ou blockchain, sur un point
-important : l'identité y est cryptographique et portable. La principale différence tient à la couche
-de données. Dans Nostr, les relais constituent la couche normale de stockage et de diffusion. Dans
-Bitsocial, les routeurs HTTP aident seulement les clients à trouver des pairs. Les routeurs ne
-stockent ni publications, ni profils, ni métadonnées de communauté, ni état de modération ; ils
-renvoient des adresses de pairs fournisseurs, puis les clients récupèrent le contenu auprès des
-pairs.
-
-Les communautés font apparaître la même séparation. Nostr propose des schémas optionnels pour les
-[groupes fondés sur des relais](https://github.com/nostr-protocol/nips/blob/master/29.md) et les
-[communautés approuvées par des modérateurs](https://github.com/nostr-protocol/nips/blob/master/72.md),
-mais ceux-ci restent tributaires de la politique des relais, d'un état de groupe hébergé par les
-relais, ou des choix du client quant aux approbations à honorer. Bitsocial traite les communautés
-comme des objets cryptographiques de premier ordre, dont le nœud opérateur valide les publications,
-applique la politique de défis de la communauté et publie le dernier état accepté sur le réseau
-peer-to-peer.
-
-| Question                  | Nostr                                                                                                             | Bitsocial                                                                                 |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| Catégorie                 | Protocole fondé sur des relais                                                                                    | Réseau de communautés peer-to-peer                                                        |
-| Identité                  | Clé publique de l'utilisateur                                                                                     | Paires de clés d'utilisateur et de communauté                                             |
-| Chemin des données        | Événements signés publiés vers des relais                                                                         | L'adresse de clé publique se résout en pairs ; le contenu est récupéré auprès des pairs   |
-| Qui le maintient en ligne | Des relais choisis par les utilisateurs et les clients                                                            | Le nœud propriétaire de la communauté, plus des seeders auxiliaires                       |
-| Communautés               | Groupes optionnels fondés sur des relais, ou communautés approuvées par des modérateurs                           | Objets de communauté de premier ordre, avec modération contrôlée par l'opérateur          |
-| Anti-spam                 | Politique de relais, authentification, paiement, preuve de travail, filtres client ou approbations de modérateurs | Logique de défi définie par la communauté, appliquée avant inclusion                      |
-| Compromis principal       | Identité portable, mais disponibilité et politique dépendantes des relais                                         | Moins de dépendance aux relais, mais aucune garantie de conservation des anciens contenus |
+Nostr est un réseau social fondé sur des relais : les utilisateurs détiennent des paires de clés et
+publient des événements signés vers des relais, qui les stockent et les servent. Dans Bitsocial, les
+routeurs HTTP aident seulement les clients à trouver des pairs, et les communautés sont des objets
+de premier ordre dotés de leur propre nœud, qui accepte ou rejette les publications. Voir
+[Bitsocial et Nostr](/comparisons/nostr/) pour la comparaison complète.
 
 ---
 

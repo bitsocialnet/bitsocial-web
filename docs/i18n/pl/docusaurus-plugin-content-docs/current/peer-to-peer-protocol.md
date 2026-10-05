@@ -372,43 +372,11 @@ przejąć tożsamości użytkowników, bo są one kontrolowane parą kluczy, a n
 
 ## A co z Nostr?
 
-Nostr nie mieści się dobrze w żadnej z tych kategorii. To nie jest federacja w stylu ActivityPub, bo
-instancje nie wydają użytkownikom kont, a tożsamość nie jest przywiązana do jednego serwera. To nie
-są też blockchainowe media społecznościowe, bo nie ma tu łańcucha, konsensusu, gazu ani globalnej
-kolejności transakcji.
-
-Nostr lepiej opisać jako **media społecznościowe oparte na przekaźnikach**. W bazowym protokole
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)) użytkownicy trzymają pary
-kluczy, podpisują zdarzenia i publikują je do przekaźników WebSocket. Klienci subskrybują
-przekaźniki z filtrami, pobierają pasujące zdarzenia i lokalnie weryfikują podpisy. Użytkownicy mogą
-też publikować metadane z listą przekaźników
-([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)), które mówią klientom, do
-których przekaźników zwykle piszą i z których wolą czytać wzmianki.
-
-Pod jednym ważnym względem stawia to Nostr bliżej Bitsocial niż systemów federacyjnych czy
-blockchainowych: tożsamość jest kryptograficzna i przenośna. Główna różnica leży w warstwie danych. W
-Nostr przekaźniki są zwyczajną warstwą przechowywania i dostarczania. W Bitsocial routery HTTP
-jedynie pomagają klientom znaleźć peery. Routery nie przechowują postów, profili, metadanych
-społeczności ani stanu moderacji; zwracają adresy peerów-dostawców, a treść klienci pobierają już od
-peerów.
-
-Ten sam podział widać w społecznościach. Nostr ma opcjonalne wzorce dla
-[grup opartych na przekaźnikach](https://github.com/nostr-protocol/nips/blob/master/29.md) i
-[społeczności zatwierdzanych przez moderatorów](https://github.com/nostr-protocol/nips/blob/master/72.md),
-ale i one zależą od polityki przekaźnika, stanu grupy trzymanego na przekaźniku albo od tego, które
-zatwierdzenia klient zdecyduje się respektować. Bitsocial traktuje społeczności jako pełnoprawne
-obiekty kryptograficzne, których węzeł operatora weryfikuje posty, prowadzi politykę wyzwań
-społeczności i publikuje najnowszy przyjęty stan do sieci peer-to-peer.
-
-| Pytanie                  | Nostr                                                                                                         | Bitsocial                                                                          |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| Kategoria                | Protokół oparty na przekaźnikach                                                                              | Sieć społeczności peer-to-peer                                                     |
-| Tożsamość                | Klucz publiczny użytkownika                                                                                   | Pary kluczy użytkownika i społeczności                                             |
-| Ścieżka danych           | Podpisane zdarzenia publikowane do przekaźników                                                               | Adres oparty na kluczu publicznym wskazuje peery; treść pobierana od peerów        |
-| Kto utrzymuje dostępność | Przekaźniki wybrane przez użytkowników i klientów                                                             | Węzeł właściciela społeczności plus pomocnicze węzły seedujące                     |
-| Społeczności             | Opcjonalne grupy na przekaźnikach lub społeczności zatwierdzane przez moderatorów                             | Pełnoprawne obiekty społeczności z moderacją kontrolowaną przez operatora          |
-| Ochrona przed spamem     | Polityka przekaźnika, uwierzytelnianie, płatność, proof-of-work, filtry klienta lub zatwierdzenia moderatorów | Logika wyzwań zdefiniowana przez społeczność przed przyjęciem treści               |
-| Główny kompromis         | Przenośna tożsamość, ale dostępność i polityka zależne od przekaźników                                        | Mniejsza zależność od przekaźników, ale stare treści nie są gwarantowane na zawsze |
+Nostr to media społecznościowe oparte na przekaźnikach: użytkownicy mają pary kluczy i publikują
+podpisane zdarzenia do przekaźników, które je przechowują i udostępniają. W Bitsocial routery HTTP
+jedynie pomagają klientom znaleźć peery, a społeczności są pełnoprawnymi obiektami, których własny
+węzeł przyjmuje lub odrzuca posty. Pełne porównanie znajdziesz w artykule
+[Bitsocial i Nostr](/comparisons/nostr/).
 
 ---
 

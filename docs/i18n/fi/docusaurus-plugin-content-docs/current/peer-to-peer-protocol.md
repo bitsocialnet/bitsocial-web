@@ -376,43 +376,11 @@ eikä niitä myönnetä palvelimelta.
 
 ## Entä Nostr?
 
-Nostr ei asetu siististi kumpaankaan lokeroon. Se ei ole ActivityPub-tyylistä federaatiota, koska
-instanssit eivät myönnä käyttäjille tilejä eikä identiteetti ole sidottu yhteen palvelimeen. Se ei
-ole myöskään lohkoketjupohjaista sosiaalista mediaa, koska ketjua, konsensusta, gasia tai globaalia
-tapahtumajärjestystä ei ole.
-
-Nostria kuvaa paremmin **välityspalvelinpohjainen sosiaalinen media**. Perusprotokollassa
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)) käyttäjillä on avainparit, he
-allekirjoittavat tapahtumia ja julkaisevat ne WebSocket-välityspalvelimille. Asiakkaat tilaavat
-välityspalvelimilta suodattimilla, hakevat vastaavat tapahtumat ja tarkistavat allekirjoitukset
-paikallisesti. Käyttäjät voivat myös julkaista välityspalvelinlistan metatietoja
-([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)), jotka kertovat asiakkaille,
-mille välityspalvelimille he yleensä kirjoittavat ja miltä he lukevat mainintoja mieluiten.
-
-Yhdessä tärkeässä suhteessa se asettaa Nostrin lähemmäs Bitsocialia kuin federoidut tai
-lohkoketjupohjaiset järjestelmät: identiteetti on kryptografinen ja siirrettävä. Pääero on
-datakerroksessa. Nostrissa välityspalvelimet ovat tavanomainen tallennus- ja jakelukerros.
-Bitsocialissa HTTP-reitittimet vain auttavat asiakkaita löytämään vertaisia. Reitittimet eivät
-säilytä julkaisuja, profiileja, yhteisöjen metatietoja tai moderointitilaa; ne palauttavat
-tarjoajavertaisten osoitteet, ja asiakkaat hakevat sisällön vertaisilta.
-
-Yhteisöissä näkyy sama jako. Nostrissa on valinnaisia malleja
-[välityspalvelinpohjaisille ryhmille](https://github.com/nostr-protocol/nips/blob/master/29.md) ja
-[moderaattorien hyväksymille yhteisöille](https://github.com/nostr-protocol/nips/blob/master/72.md),
-mutta ne nojaavat edelleen välityspalvelinten käytäntöihin, välityspalvelimella isännöityyn
-ryhmätilaan tai asiakkaan valintoihin siitä, mitä hyväksyntöjä kunnioitetaan. Bitsocial kohtelee
-yhteisöjä ensiluokkaisina kryptografisina objekteina, joiden ylläpitäjän solmu tarkistaa julkaisut,
-ajaa yhteisön haastekäytäntöä ja julkaisee viimeisimmän hyväksytyn tilan vertaisverkkoon.
-
-| Kysymys                 | Nostr                                                                                               | Bitsocial                                                                                      |
-| ----------------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Kategoria               | Välityspalvelinpohjainen protokolla                                                                 | Vertaisverkkopohjainen yhteisöverkko                                                           |
-| Identiteetti            | Käyttäjän julkinen avain                                                                            | Käyttäjien ja yhteisöjen avainparit                                                            |
-| Datapolku               | Allekirjoitetut tapahtumat julkaistaan välityspalvelimille                                          | Julkisen avaimen osoite ratkeaa vertaisiksi; sisältö haetaan vertaisilta                       |
-| Kuka pitää sen verkossa | Käyttäjien ja asiakkaiden valitsemat välityspalvelimet                                              | Yhteisön omistajan solmu sekä avustavat jakajat                                                |
-| Yhteisöt                | Valinnaiset välityspalvelinpohjaiset ryhmät tai moderaattorien hyväksymät yhteisöt                  | Ensiluokkaiset yhteisöobjektit, joiden moderointia ylläpitäjä hallitsee                        |
-| Roskapostin torjunta    | Välityspalvelinkäytäntö, tunnistautuminen, maksu, proof-of-work, asiakassuodattimet tai hyväksynnät | Yhteisön määrittelemä haastelogiikka ennen sisällyttämistä                                     |
-| Tärkein kompromissi     | Siirrettävä identiteetti, mutta saatavuus ja käytännöt riippuvat välityspalvelimista                | Vähemmän riippuvuutta välityspalvelimista, mutta vanhan sisällön säilymistä ei taata ikuisesti |
+Nostr on välityspalvelinpohjaista sosiaalista mediaa: käyttäjillä on avainparit, ja he julkaisevat
+allekirjoitettuja tapahtumia välityspalvelimille, jotka tallentavat ja tarjoilevat niitä.
+Bitsocialissa HTTP-reitittimet vain auttavat asiakkaita löytämään vertaisia, ja yhteisöt ovat
+ensiluokkaisia objekteja, joiden oma solmu hyväksyy tai hylkää julkaisut. Koko vertailu on sivulla
+[Bitsocial ja Nostr](/comparisons/nostr/).
 
 ---
 
