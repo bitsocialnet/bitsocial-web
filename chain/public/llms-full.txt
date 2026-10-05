@@ -215,7 +215,7 @@ Description: Proof of concept for Bitsocial Chain , the proposed Ethereum L2 eco
 
 Proof of concept for **Bitsocial Chain**, the proposed Ethereum L2 economic layer for [Bitsocial](https://bitsocial.net) apps ([Phase 2 of the master plan](https://bitsocial.net/#master-plan-phase-2)).
 
-This POC implements exactly one primitive: **decentralized `.bso` names** whose registry state is derived deterministically from Ethereum L1 history, in the spirit of [Ethscriptions](https://github.com/ethscriptions-protocol) and [Facet](https://github.com/0xFacet).
+Bitsocial Chain is meant to host `.bso` names, tipping and payments, community tokens, and AgoraSwap. This POC implements exactly one primitive: **decentralized `.bso` names** whose registry state is derived deterministically from Ethereum L1 history, in the spirit of [Ethscriptions](https://github.com/ethscriptions-protocol) and [Facet](https://github.com/0xFacet).
 
 > **This is not production Stage 2; this is a Stage-2-shaped proof of concept for .bso naming.**
 
@@ -233,6 +233,20 @@ This POC implements exactly one primitive: **decentralized `.bso` names** whose 
 - No mainnet deployment, no audited code, no economics or pricing, no governance.
 - No built-in privacy system: `.bso` ownership and intent transactions are public in this POC. Privacy is a compatibility requirement for future economic features, not an implemented feature here.
 - See [POC_LIMITATIONS.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/POC_LIMITATIONS.md) for the full honest list.
+
+## Production architecture (open)
+
+This POC proves the `.bso` naming primitive and an L1-derived pattern that suits it. It does not settle the architecture for the rest of the chain. Community tokens, payments at scale, and AgoraSwap need batching, cheap data availability, full EVM execution, and a sequencing decision that L1-calldata derivation does not provide (see [ECONOMICS_DISCUSSION.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/ECONOMICS_DISCUSSION.md)).
+
+Under evaluation:
+
+- **Native rollups (leading candidate):** an L2 whose blocks Ethereum verifies with its own EVM proof program, so there is no bespoke verifier to govern. The design supports BSO as the gas token and custom fee handling. Native rollups are not yet part of any scheduled Ethereum hard fork, and the public [devnet](https://nativerollups.fyi/) still mocks the proof and the L1 proof check. See [RESEARCH_NATIVE_ROLLUPS.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_NATIVE_ROLLUPS.md).
+- **Sequencing:** based sequencing (no operator, 12-second blocks) versus a sequencer with preconfirmations and forced inclusion. Open, and tied to AgoraSwap's mechanism design.
+- **Names on that chain:** a fork of the ownerless [.gwei name service](https://github.com/lucadonnoh/gwei-names) is a candidate. It would replace this POC's registry rules with expiring, renewable names and burned fees.
+- **Privacy:** transparent by default, with a private-payments lane; Aztec is the leading candidate (see [RESEARCH_AZTEC_VS_FACET.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_AZTEC_VS_FACET.md)).
+- **Requirement for whichever design wins:** Stage 2, with no privileged operator in the trust path.
+
+None of these is decided.
 
 ## How it works
 
@@ -278,6 +292,8 @@ There is deliberately **no L1 contract** in the intent path: an intent is any tr
 | `demo/`     | `@bitsocial/bso-chain-demo`     | Runnable end-to-end demo on a local L1 dev chain |
 
 Docs: [SPEC.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/SPEC.md) (normative protocol rules) · [DESIGN.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/DESIGN.md) (rationale and roadmap fit) · [POC_LIMITATIONS.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/POC_LIMITATIONS.md) (shortcuts taken).
+
+Research: [RESEARCH_NATIVE_ROLLUPS.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_NATIVE_ROLLUPS.md) (production architecture candidate and a `.gwei` fork for names) · [RESEARCH_AZTEC_VS_FACET.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_AZTEC_VS_FACET.md) (privacy lane) · [RESEARCH_INTERFOLD_CRISP.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_INTERFOLD_CRISP.md) (sealed-bid auctions, secret ballots) · [ECONOMICS_DISCUSSION.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/ECONOMICS_DISCUSSION.md) (burn vs. liquidity, AgoraSwap, community tokens).
 
 ## Setup
 
@@ -350,7 +366,7 @@ await resolver.destroy();
 
 Bitsocial communities and identities are controlled by keys and addressed by public-key hashes; apps, RPCs, discovery, and hosting are all replaceable. What `.bso` names add is a durable, human-readable, **ownable** locator for those keys that no registrar, DNS provider, or platform can seize — because the registry rules live in open derivation code over Ethereum history rather than in any operator's database. Posts, votes, moderation, and feeds never touch the chain; a client resolves `alice.bso` to a public key once, then talks to the P2P network exactly as it does today.
 
-The same L1-derived pattern is meant to later carry the rest of Bitsocial Chain (awards, tipping, payments, shared liquidity) without ever putting social content on-chain — see [DESIGN.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/DESIGN.md).
+This repo shows the L1-derived pattern works for names. Whether the rest of Bitsocial Chain (tipping, payments, community tokens, AgoraSwap) uses the same pattern or a full rollup is open; see [Production architecture (open)](#production-architecture-open). Either way, social content never goes on-chain.
 
 ## Stage 2 disclaimer
 

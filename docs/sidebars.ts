@@ -19,6 +19,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Comparisons",
+      items: ["comparisons/reticulum"],
+    },
+    {
+      type: "category",
       label: "Master plan",
       items: [
         "bitsocial-network",
