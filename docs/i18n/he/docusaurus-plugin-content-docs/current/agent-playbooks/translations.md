@@ -1,43 +1,23 @@
-# זרימת עבודה של תרגומים
+# תרגומים
 
-פרויקט זה משתמש בקובצי תרגום i18next ב-`public/translations/{lang}/default.json`.
+אתר ה-about משתמש בקובצי JSON של i18next ב-`about/public/translations/{lang}/default.json`. תרגומי המקור של Docusaurus נמצאים בנפרד ב-`docs/i18n/`.
 
-## כלל
+## מפתחות של אתר ה-about
 
-אל תערוך ידנית כל קובץ שפה. השתמש ב-`scripts/update-translations.js`.
+השתמש ב-`.agents/skills/translate/SKILL.md`. גלה את הלוקאלים הנוכחיים מהדיסק ושמור על מצייני מקום, סימון, מונחים טכניים ושמות מותגים. בבקשות גדולות יותר, צאצאים יכולים ליצור מפות עצמאיות, אבל הורה אחד מחיל את כל הכתיבות ללוקאלים באופן סדרתי; לכלי העדכון אין נעילת כותב.
 
-## הוסף או עדכן מפתח
+השתמש בנתיב מפה ייחודי שבבעלות המשימה. הצג תצוגה מקדימה עם `node scripts/update-translations.js --key <key> --map <map.json> --include-en --dry`, ואז החל עם אותם ארגומנטים ועם `--write`. אמת כיסוי וערכים אחרי הכתיבה, והסר רק את המפות הזמניות שבבעלות המשימה הזו.
 
-1. צור קובץ מילון זמני, למשל. `translations-temp.json`:
+השתמש ב-`--delete` להסרות שהתבקשו. בדוק את הממצאים של `--audit --dry` לפני `--audit --write` מורשה; מפתחות תרגום דינמיים מחייבים סקירה ידנית של קוד המקור. העתק אנגלית לכל לוקאל רק עבור מונח טכני, מותג או מציין מקום.
 
-```json
-{
-  "en": "English text",
-  "es": "Spanish text",
-  "fr": "French text",
-  "de": "German text"
-}
-```
+## דפי Docusaurus
 
-2. החל את מפת התרגום:
+`scripts/translate-docs.py` הוא כותב גורף לכל הדפים והלוקאלים, ואין לו מסנן לפי קובץ; אל תשתמש בו לעריכת תרגום צרה. `scripts/check-docs-translations.py` הוא המאמת לקריאה בלבד, והוא תומך ב-`--locales` וב-`--paths`.
 
-```bash
-node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
-```
+שמור על בלוקי קוד, קישורים, קוד מוטבע, כתובות חוזים, כותרות, טבלאות ותיבות הערה מיושרים עם המקור האנגלי. פתור את שגיאות המאמת; אזהרות `frontmatter-untranslated` על שמות מותגים צפויות. פעל לפי `docs/AGENTS.md` ובנה דרך השורש כשאתה משנה את ערכת הנושא של התיעוד או את התנהגות ה-i18n, כדי שהפלט הסטטי ו-Pagefind יישארו מתואמים.
 
-3. מחק את קובץ המילון הזמני.
+## סקירה סמנטית אופציונלית
 
-## פקודות שימושיות אחרות
+עבור מפתחות i18next נבחרים, השתמש ב-`scripts/jev/translation-README.md`. עבור דפי תיעוד, הרץ קודם `node scripts/jev/docs-translations.mjs --locales it,de --paths browser-p2p.md`. הפקודה דורשת בחירה מפורשת של לוקאלים ודפים, מריצה את המאמת המבני, ומדווחת על הסקירה הסמנטית כלא מאומתת עד שמופעלת הסקה חיה. הוסף `--live` רק עם הרשאת הספק והתקציב של המשימה; התצורה הפרטית המשותפת של המחשב מספקת פרטי גישה ומודל מוצמד. משתני סביבה ו-`--model` יכולים לדרוס את ההגדרה הזו. הפקודה לעולם אינה עורכת תרגומים.
 
-```bash
-# Copy a key from English to all languages (dry run then write)
-node scripts/update-translations.js --key some_key --from en --dry
-node scripts/update-translations.js --key some_key --from en --write
-
-# Delete a key from all languages
-node scripts/update-translations.js --key obsolete_key --delete --write
-
-# Audit for unused translation keys
-node scripts/update-translations.js --audit --dry
-node scripts/update-translations.js --audit --write
-```
+מתאם הדפים שומר על ההקשר של הדף כולו ומגביל כל דף ל-24 KB וכל הרצה ל-30 זוגות. עבור דפים גדולים יותר, הכן זוגות פסקאות של מקור/תרגום שמיושרים במפורש עבור `translations.mjs --pairs`; אל תצמיד פסקאות אוטומטית לפי אינדקס. התוצאות הסמנטיות הן בגדר המלצה: בדוק את הבעיות ואת אי-הוודאות שדווחו, ושמור על הבדיקות הדטרמיניסטיות של קוד, קישורים וכתובות.

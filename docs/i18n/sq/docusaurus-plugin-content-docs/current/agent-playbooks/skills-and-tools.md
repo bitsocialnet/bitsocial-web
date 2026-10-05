@@ -1,73 +1,83 @@
 # Aftësitë dhe veglat
 
-Përdoreni këtë udhërrëfyes kur konfiguroni ose rregulloni aftësitë dhe veglat e jashtme.
+Aftësitë e përbashkëta ndodhen te `.agents/skills/`. Redaktoni këto burime, pastaj ekzekutoni `yarn ai-workflow:sync` për të gjeneruar `.claude/skills/` për Claude Code. Codex dhe Cursor e zbulojnë drejtpërdrejt `.agents/skills/`; mos i riktheni rrënjët e dublikuara `.codex/skills/` ose `.cursor/skills/`.
 
-## Aftësitë e rekomanduara
+Prompt-et e përbashkëta të roleve ndodhen te `.agents/roles/*.md`. Ky është një format burimi specifik për këtë depo, jo një shteg vendas për zbulimin e agjentëve. `scripts/ai-workflow-files.mjs` i shndërron këto burime në skedarët specifikë për secilin aplikacion më poshtë; `yarn ai-workflow:sync` i shkruan ata. Futini në depo skedarët e gjeneruar bashkë me burimet e tyre, që një checkout i ri ta ketë konfigurimin vendas pa pasur nevojë të ekzekutojë më parë një gjenerues. Pasi të hiqni një burim, hiqni shprehimisht daljet e gjeneruara që janë vjetruar; validuesi i raporton ato në vend që t'i fshijë skedarët në heshtje.
 
-### Context7 (dokumentacion bibliotekash)
+## Shtigjet vendase të zbulimit
 
-Për dokumentacion të përditësuar mbi bibliotekat.
+Verifikuar kundrejt dokumentacionit zyrtar më 2026-09-12:
 
-```bash
-npx skills add https://github.com/intellectronica/agent-skills --skill context7
-```
+| Aplikacioni | Udhëzimet e projektit                                                                               | Aftësitë që përdor kjo depo                  | Agjentët e personalizuar që përdor kjo depo |
+| ----------- | --------------------------------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------- |
+| Codex       | `AGENTS.md`                                                                                         | `.agents/skills/<name>/SKILL.md`             | `.codex/agents/<name>.toml` i gjeneruar     |
+| Cursor      | `AGENTS.md`; `.cursor/rules/*.mdc` mbetet i disponueshëm për rregulla me kusht specifike për Cursor | `.agents/skills/<name>/SKILL.md`             | `.cursor/agents/<name>.md` i gjeneruar      |
+| Claude Code | `CLAUDE.md` importon `@AGENTS.md`                                                                   | `.claude/skills/<name>/SKILL.md` i gjeneruar | `.claude/agents/<name>.md` i gjeneruar      |
 
-### Playwright CLI
+Burimet: [Aftësitë e Codex](https://learn.chatgpt.com/docs/build-skills), [Nënagjentët e Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Rregullat e Cursor](https://cursor.com/docs/rules), [Aftësitë e Cursor](https://cursor.com/docs/skills), [Nënagjentët e Cursor](https://cursor.com/docs/subagents), [Memoria e Claude](https://code.claude.com/docs/en/memory), [Aftësitë e Claude](https://code.claude.com/docs/en/skills), [Nënagjentët e Claude](https://code.claude.com/docs/en/sub-agents).
 
-Përdorni `playwright-cli` për automatizimin e shfletuesit (navigim, ndërveprim, pamje ekrani, teste, nxjerrje të dhënash).
+Mos i zëvendësoni direktoritë vendase të agjentëve me `.agents/roles` dhe mos supozoni se Claude e zbulon `.agents/skills`. Claude mund të lexojë gjithsesi një skedar të referuar atje si kontekst të zakonshëm projekti. Për përputhshmëri, Cursor zbulon edhe `.claude/skills`; kopjet mbeten të sinkronizuara, por udhëzuesi i tij i publikuar për aftësitë nuk specifikon si i heq dublikatat mes këtyre rrënjëve. Kontrolloni katalogun e aftësive të aplikacionit të instaluar në vend që të premtoni se nuk mund të shfaqen hyrje të dublikuara.
 
-Kur përdorni `playwright-cli` për të verifikuar ndërfaqen e depos, mos u ndalni pas një motori të vetëm. Ekzekutojeni rrjedhën përkatëse në të tre motorët kryesorë të shfletuesve:
+Direktoritë e AI-së përdorin fundrreshta LF përmes `.gitattributes`, që teksti i gjeneruar të mbetet identik në të gjitha platformat. Asetet ndihmëse të aftësive kopjohen bajt për bajt.
 
-- `chrome` për Blink
-- `firefox` për Gecko
-- `webkit` për mbulimin e Safari/WebKit
+## Aftësitë
 
-Përdorni sesione të veçanta me emër për secilin motor, që provat të mbeten të izoluara, por ekzekutojini ato sesione njërin pas tjetrit. Vetëm një sesion shfletuesi Playwright mund të jetë aktiv njëherësh në të gjithë makinën, sepse burimi i kontestuar është RAM-i dhe CPU-ja e makinës, jo depoja. Hapini dhe mbyllini sesionet përmes `./scripts/pw-session.sh`; ai e mban atë kyç të përbashkët, kështu që agjentët e njëkohshëm e shtyjnë dhe e riprovojnë punën me shfletuesin në vend që ta ngopin makinën. Nëse një motor anashkalohet qëllimisht, shënoni arsyen.
+| Aftësia                              | Qëllimi                                                                                                                |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| `commit`                             | Krijon commit-e lokale të autorizuara dhe brenda fushës së kërkuar                                                     |
+| `commit-format`, `issue-format`      | Formaton sugjerimet kur kërkohen                                                                                       |
+| `make-closed-issue`                  | Krijon një issue të autorizuar, një commit brenda fushës dhe një PR                                                    |
+| `review-and-merge-pr`                | Klasifikon komentet e PR-së; rregullon/publikon/bashkon vetëm brenda fushës së kërkuar                                 |
+| `fix-merge-conflicts`                | Zgjidh konfliktet dhe verifikon rezultatin e bashkuar                                                                  |
+| `release`                            | Përgatit tekstin e publikimit dhe kryen hapat e autorizuar të publikimit                                               |
+| `code-quality-review`                | Rishikon diff-e jo të parëndësishme ose një shqetësim cilësie të kërkuar shprehimisht                                  |
+| `retro`                              | I kthen gabimet e dëshmuara në kontrolle ose udhëzime të fokusuara që parandalojnë përsëritjen e tyre                  |
+| `refactor-pass`, `deslop`            | Pastrim i kërkuar i ndryshimeve ekzistuese                                                                             |
+| `debug-agent`                        | Debugim i bazuar në prova, me instrumentim kur nevojitet                                                               |
+| `you-might-not-need-an-effect`       | Rishikim i fokusuar i efekteve/memo-ve                                                                                 |
+| `vercel-react-best-practices`        | Udhëzime të zbatueshme për performancën e React; anashkaloni rregullat vetëm për Next.js/serverin për këtë klient Vite |
+| `translate`                          | Gjeneron përkthime, pastaj i zbaton hartat përmes një shkruesi të vetëm                                                |
+| `playwright-cli`, `inspect-elements` | Verifikim në shfletues dhe lidhje e DOM-it me kodin burimor                                                            |
+| `profile-browsing`                   | Profilizim i shfletuesit dhe i React brenda një fushe të kufizuar                                                      |
+| `test-apk`                           | Verifikon një mbështjellës shoqërues Android të dhënë                                                                  |
+| `impeccable`, `improve-threejs`      | Dizajn i ndërfaqes brenda fushës së kërkuar dhe rishikim i renderimit me Three.js                                      |
+| `implement-plan`                     | Zbaton një plan me delegim opsional dhe të kufizuar                                                                    |
+| `readme`                             | Mirëmban dokumentacion të verifikuar të projektit                                                                      |
+| `context7`                           | Merr dokumentacion bibliotekash të përshtatshëm për versionin                                                          |
+| `find-skills`                        | Gjen aftësi shtesë kur kërkohet shprehimisht                                                                           |
 
-Gjatë përsëritjeve të punës, përdorni vetëm Chrome/Blink. Ekzekutojeni sekuencën e plotë Chrome, Firefox dhe WebKit sapo ndryshimi të jetë gati për verifikimin përfundimtar. Ripërdoreni sesionin e secilit motor për desktop dhe për celular duke e ripërmasuar, mbylleni në një pastrim të tipit finally dhe vetëm pastaj hapni motorin tjetër.
+## Rolet dhe modelet
 
-```bash
-./scripts/pw-session.sh open verify-chrome https://bitsocial.localhost --browser=chrome
-playwright-cli -s=verify-chrome snapshot
-./scripts/pw-session.sh close verify-chrome
-```
+Mbani rolet e personalizuara për `browser-check`, `profiler`, `test-apk`, `translator` dhe `reviewer`. Për zbatimin e zakonshëm dhe zbulimin e kodit, përdorni rolin e integruar worker/general-purpose ose explorer të mjedisit të agjentit. Prindi cakton kriteret e pranimit dhe pronësinë; kontrollet e rënda i ekzekuton një pronar i vetëm.
 
-Kur vendi është i zënë, `open` del me kodin 75; bllokohuni te `./scripts/pw-session.sh open --wait[=SECONDS] ...` (parazgjedhja 300s) në vend që të riprovoni me dorë. Një kyç i lënë pas nga një rrjedhë pune e ndërprerë rimerret automatikisht, sepse `open` e lëshon çdo vend shfletuesi i regjistruar i të cilit nuk është më në punë. Inspektojeni mbajtësin me `./scripts/pw-session.sh status`; `release <session>` është zgjidhja e fundit për rastin e rrallë kur `status` nuk arrin ta verifikojë gjendjen e shfletuesit.
+Skedarët e agjentëve të Codex përfshijnë `name`, `description` dhe `developer_instructions`. `.codex/config.toml` i kufizon nënagjentët e njëkohshëm në katër përmes `max_concurrent_threads_per_session`. Meta të dhënat e përbashkëta të roleve përmbajnë emrin, përshkrimin dhe mënyrën opsionale të sandbox-it; ato qëllimisht nuk kanë fusha modeli.
 
-```bash
-npm install -g @playwright/cli@latest
-playwright-cli install --skills
-```
+Në të tria aplikacionet, lërini fushat e modelit dhe të arsyetimit jashtë aftësive dhe agjentëve të personalizuar që futen në depo. Kështu lejohen zgjedhjet në kohën e thirrjes, parazgjedhjet e përdoruesit dhe trashëgimia nga prindi sipas përparësisë së dokumentuar të secilit aplikacion. Aliaset e familjeve të Claude e pakësojnë mirëmbajtjen e versioneve, por gjithsesi zgjedhin një familje; një model Cursor me version kërkon përditësime në të ardhmen. Kur nevojiten, mbajini zgjedhje të tilla në cilësimet e përdoruesit/sesionit. Trashëgimia nuk premton zgjedhjen automatike të modelit më të mirë aktual. Mos shpikni një alias `latest` dhe mos shtoni kërkime në katalogun e modeleve te detyrat rutinë. Shihni [zgjedhjen në Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [zgjedhjen në Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model) dhe [zgjedhjen në Cursor](https://cursor.com/docs/subagents#model-configuration).
 
-Vendndodhjet e instalimit të aftësive:
+`sandbox-mode: read-only` i përgjigjet sandbox-it të Codex dhe `readonly` të Cursor; lista e veglave të Claude dhe udhëzimet e rolit e kufizojnë rrjedhën e tij të rishikimit, por qasja në Bash nuk është sandbox në nivel sistemi operativ.
 
-- `.cursor/skills/playwright-cli/`
-- `.claude/skills/playwright-cli/`
+Frontmatter-i i aftësive të përbashkëta përdor `disable-model-invocation: true` për rrjedhat e punës që i thërret përdoruesi, kur kjo është e zbatueshme. Cilësimi përkatës i Codex ndodhet te `agents/openai.yaml` si `policy.allow_implicit_invocation: false`; validuesi i kërkon të dyja. Meta të dhënat e thirrjes plotësojnë rregullat e shprehura të autorizimit; një kërkesë për rishikim nuk autorizon kurrë publikimin vetëm sepse një aftësi përmban hapa publikimi.
 
-### Praktikat më të mira për React nga Vercel
+## Kontrollet dhe zbulimi
 
-Për udhëzime më të thelluara mbi performancën e React/Next.
+- `yarn ai-workflow:sync` rigjeneron daljet e përputhshmërisë duke përdorur `js-yaml` dhe `smol-toml` të instaluara.
+- `yarn ai-workflow:check` analizon burimet/frontmatter-in/konfigurimet dhe kontrollon daljet e gjeneruara, meta të dhënat e thirrjes, vendosjen e fushave të modelit dhe lidhjen e hook-ut që vetëm formaton. Ai nuk i zgjidh identifikuesit e modeleve kundrejt katalogut të një ofruesi.
+- `yarn ai-workflow:test` ekzekuton fixture të izoluara Node për ngarkesat e hook-eve dhe për gjenerimin/validimin e rrjedhës së punës.
+- Pas përditësimit të një aplikacioni agjentësh, verifikoni zbulimin e aftësive/roleve në atë aplikacion. Kontrollet e sintaksës/paritetit nuk e zëvendësojnë një kontroll të ngarkuesit. Ringarkojeni aplikacionin nëse një sesion ekzistues mban ende një katalog të vjetër.
+- Hook-et kërkojnë besimin te projekti dhe rishikimin e hook-eve nga mjedisi i agjentit; mos e anashkaloni besimin vetëm që një kontroll të kalojë. Shihni [hooks-setup.md](hooks-setup.md).
 
-```bash
-npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-react-best-practices
-```
+## Mirëmbajtja e udhëzimeve të dobishme
 
-### Gjetja e aftësive
+Ndiqni [udhëzimet e OpenAI për aftësitë dhe prompt-et](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra) (rishikuar më 2026-09-12): mbajini përshkrimet të sakta, ngarkoni detajet vetëm kur janë të rëndësishme dhe ruani fushën e kërkuar nga përdoruesi. Aftësitë e përbashkëta u shërbejnë modeleve të ndryshme; ruani invariantet specifike të projektit, duke lënë njëkohësisht vend për zgjedhje rutinë zbatimi.
 
-Zbuloni dhe instaloni aftësi nga ekosistemi i hapur.
+Mbajini te `SKILL.md` qëllimin e një aftësie, kufijtë e vendimeve dhe kufizimet thelbësore. Komandat ose shembujt e konsiderueshëm që vlejnë për një mënyrë të caktuar lidhini si referenca opsionale. Vendosini kushtet e aktivizimit herët, në përshkrime të shkurtra; një fjalë kyçe që përputhet nuk duhet ta zgjerojë vetvetiu detyrën. Ruani meta të dhënat ekzistuese të thirrjes, përveçse kur sjellja e tyre po ndryshohet qëllimisht.
 
-```bash
-npx skills add https://github.com/vercel-labs/skills --skill find-skills
-```
+Pas një ndryshimi të konsiderueshëm në udhëzime, provoni disa kërkesa përfaqësuese, të vogla dhe të mëdha. Kontrolloni cilat aftësi/referenca u zgjodhën, nëse veprimet mbetën brenda fushës, nëse verifikimi i përshtatej ndryshimit dhe nëse puna e autorizuar u përfundua. Testet e skemës dhe të fixture-ve vërtetojnë korrektësinë e veglave, jo cilësinë e vendimeve të agjentit.
 
-## Arsyetimi i politikës për MCP
+## Veglat dhe pronësia e shfletuesit
 
-Shmangini serverët MCP të GitHub dhe ata MCP të shfletuesit në këtë projekt, sepse shtojnë ngarkesë të ndjeshme në skemën e veglave dhe në kontekst.
+Preferoni katalogun ekzistues të aftësive/veglave dhe CLI-të e instaluara të projektit. Përdorni `gh` për GitHub, `playwright-cli` për verifikimin në shfletues dhe dokumentacion zyrtar/specifik për versionin kur sjellja e bibliotekës ka rëndësi. Shmangni instalimin e aftësive të dublikuara ose shkarkimin e një pakete pa version të fiksuar vetëm për të ekzekutuar një formatues ekzistues.
 
-- Veprimet me GitHub: përdorni `gh` CLI.
-- Veprimet me shfletuesin: përdorni `playwright-cli`.
+Kostoja shtesë e MCP-së varet nga mjedisi i agjentit: ngarkimi i shtyrë i veglave mund të shmangë ngarkimin e çdo skeme që në fillim. Mbajini integrimet të rëndësishme për punën, në vend që ta trajtoni vetë MCP-në si të vjetruar. Zgjedhjet ekzistuese të CLI-ve mbeten të dobishme për riprodhueshmërinë dhe kontrollin e burimeve.
 
-## Disponueshmëria e modeleve
-
-- `composer-2` ofrohet vetëm në Cursor. Mos e konfiguroni nën `.claude/` ose `.codex/`.
-- Codex nuk dokumenton një alias modeli `latest`. Skedarët TOML të agjentëve të personalizuar nën `.codex/**/agents/*.toml` që janë futur në depo i lënë jashtë si `model` ashtu edhe `model_reasoning_effort`, që të trashëgojnë cilësimet aktuale të sesionit prind.
+Të gjitha sesionet e shfletuesit përdorin `./scripts/pw-session.sh`, i cili imponon një shfletues të vetëm aktiv në të gjithë makinën. Si parazgjedhje, përdorni një sesion të ri dhe të izoluar. Qasja në shfletuesin personal aktual kërkon autorizim të shprehur; ripërdoreni atë autorizim në hapat pasues. Zgjidhni shfletuesit/pamjet sipas sjelljes së prekur, ekzekutoni motorët e zgjedhur njëri pas tjetrit, mbyllni sesionin e saktë me emër gjatë pastrimit dhe mos përdorni kurrë `close-all`/`kill-all`. Shihni aftësinë `playwright-cli` dhe [verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md).

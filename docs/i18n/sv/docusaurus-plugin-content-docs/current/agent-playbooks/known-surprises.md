@@ -188,12 +188,28 @@ Om du är osäker, fråga utvecklaren innan du lägger till en post.
 - **Åtgärd:** Använd rotrelativa länkar (`/peer-to-peer-protocol/`, `/apps/5chan/`) i stället för relativa `.md`-länkar på varje dokumentationssida som inte speglas in i `docs/i18n/**`; Docusaurus lägger till lokalprefixet automatiskt. `docs/build-your-own-client.md` är det befintliga exemplet. Kör ett fullständigt `yarn docs:build` — inte bara `build:verify` — innan du lämnar över en ändring som lägger till eller länkar till en dokumentationssida.
 - **Status:** confirmed
 
-### `update-translations.js` måste köras från `about/`, och samtidiga körningar tappar nycklar tyst
+### Samtidiga körningar av `update-translations.js` tappar nycklar tyst
 
 - **Datum:** 2026-08-02
 - **Observerad av:** Claude
 - **Sammanhang:** Att applicera 26 översatta i18next-nycklar över alla 36 lokaler via skillen `translate`
-- **Det överraskande:** Två separata fällor i samma skript. För det första löser `scripts/update-translations.js` upp sitt mål som `path.join(process.cwd(), "public", "translations")`, men det här repot håller översättningarna i `about/public/translations`. Att köra det dokumenterade kommandot från repots rot misslyckas varje gång med "Translations directory not found" — `docs/agent-playbooks/translations.md` visar `node scripts/update-translations.js ...`, vilket läses som ett kommando från repots rot. För det andra är varje körning en läs-ändra-skriv över alla 36 lokalfiler, så två körningar samtidigt skriver över varandra och en nyckel försvinner utan felmeddelande. Skillen `translate` instruerar uttryckligen att upp till 4 underagenter ska startas samtidigt, och var och en av dem skulle anropa skriptet.
-- **Konsekvens:** Formen från repots rot misslyckas högljutt och slösar bort en hel omgång. Samtidighetsproblemet misslyckas tyst: nycklar försvinner från godtyckliga lokaler, och diffen ser fortfarande rimlig ut.
-- **Åtgärd:** Kör det som `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Låt aldrig översättande underagenter skriva lokalfiler samtidigt — låt dem bara producera JSON-ordböcker, och applicera sedan varje nyckel seriellt från föräldraagenten. Verifiera programmatiskt efter appliceringen att varje nyckel finns i alla 35 icke-engelska lokaler och att inget värde är byte-identiskt med den engelska källan.
+- **Det överraskande:** Varje körning är en läs-ändra-skriv över alla 36 lokalfiler, så två körningar samtidigt skriver över varandra och en nyckel försvinner utan felmeddelande. Skillen `translate` instruerar uttryckligen att upp till 4 underagenter ska startas samtidigt, och var och en av dem skulle anropa skriptet.
+- **Konsekvens:** Det misslyckas tyst: nycklar försvinner från godtyckliga lokaler, och diffen ser fortfarande rimlig ut.
+- **Åtgärd:** Låt aldrig översättande underagenter skriva lokalfiler samtidigt — låt dem bara producera JSON-ordböcker, och applicera sedan varje nyckel seriellt från föräldraagenten. Verifiera programmatiskt efter appliceringen att varje nyckel finns i alla 35 icke-engelska lokaler och att inget värde är byte-identiskt med den engelska källan.
+- **Status:** confirmed
+- **Uppdatering (2026-08-10):** Skriptet löste tidigare också upp sitt mål som `path.join(process.cwd(), "public", "translations")`, så det dokumenterade kommandot från repots rot misslyckades med "Translations directory not found" och måste köras från `about/`. Nu löser det upp arbetsytan från den aktuella katalogen eller från sin egen plats, och fungerar varifrån som helst. Samtidighetsfällan ovan är oförändrad.
+
+### Annoteringskontroller i utvecklingsläge kan fånga upp automatiserade klick
+
+- **Sammanhang:** About- och chain-sajterna har fasta kontroller i nedre högra hörnet, där även Agentation-verktygsfältet visas under utveckling.
+- **Åtgärd:** `scripts/pw-session.sh open` registrerar `window.__NO_DEV_TOOLBAR__ = true` innan sidan laddas om. Agentations initierare respekterar också `__VISUAL_TESTING__` och `__PROFILING__`; källkodsinspektion förblir tillgänglig oberoende av detta. Direkt webbläsarautomatisering måste sätta samma flagga innan applikationen laddas.
+
+### `skills add` installerar Codex- och Cursor-kopior i den gitignorerade katalogen `.agents/`
+
+- **Datum:** 2026-08-18
+- **Observerad av:** Tommaso + Claude
+- **Sammanhang:** Att installera skillen `improve-threejs` från `millionco/react-doctor` med `skills`-CLI:t (`vercel-labs/skills`).
+- **Det överraskande:** `npx skills add <repo> --skill <name> --agent codex` och `--agent cursor` skriver båda till `.agents/skills/<name>/`, inte till `.codex/skills/` eller `.cursor/skills/`. `AGENTS.md` förbjuder en `.agents/`-katalog på reponivå och `.gitignore:29` ignorerar den, så båda kopiorna blir tyst ospårade. Bara `--agent claude-code` skriver till den förväntade `.claude/skills/`. Dessutom misslyckas den dokumenterade kommaseparerade formen (`--agent claude-code,codex,cursor`) med "Invalid agents" och installerar ingenting, trots att varje namn är giltigt för sig.
+- **Konsekvens:** Installationen rapporterar att den lyckades medan två av de tre verktygskedjornas kopior hamnar någonstans där de aldrig kommer att checkas in, så Codex och Cursor saknar tyst skillen efter en ny klon. Kommaformen kan också ge en installation som inte gör något men ser ut att ha lyckats.
+- **Aktuell åtgärd:** Repot spårar nu `.agents/skills` som sin kanoniska källa och genererar Claude-kopior med `yarn ai-workflow:sync`. Det tidigare förbudet mot `.agents` och ignoreringsregeln har tagits bort. Kopiera inte nya skills till tre oberoende rötter; kontrollera den genererade pariteten och appens katalog efter att du har lagt till en skill.
 - **Status:** confirmed

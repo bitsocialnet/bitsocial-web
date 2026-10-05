@@ -188,12 +188,28 @@ Fragen Sie im Zweifel den Entwickler, bevor Sie einen Eintrag ergänzen.
 - **Gegenmaßnahme:** Verwenden Sie in jeder Docs-Seite, die nicht nach `docs/i18n/**` gespiegelt ist, root-relative Links (`/peer-to-peer-protocol/`, `/apps/5chan/`) statt relativer `.md`-Links; Docusaurus stellt ihnen die Locale automatisch voran. `docs/build-your-own-client.md` ist das vorhandene Beispiel. Führen Sie ein vollständiges `yarn docs:build` aus — nicht nur `build:verify` —, bevor Sie eine Änderung übergeben, die eine Docs-Seite hinzufügt oder verlinkt.
 - **Status:** confirmed
 
-### `update-translations.js` muss aus `about/` heraus laufen, und parallele Läufe verlieren stillschweigend Schlüssel
+### Parallele Läufe von `update-translations.js` verlieren stillschweigend Schlüssel
 
 - **Datum:** 2026-08-02
 - **Beobachtet von:** Claude
 - **Kontext:** Anwendung von 26 übersetzten i18next-Schlüsseln auf alle 36 Locales über den Skill `translate`
-- **Überraschend war:** Zwei getrennte Fallen im selben Skript. Erstens löst `scripts/update-translations.js` sein Ziel als `path.join(process.cwd(), "public", "translations")` auf, während dieses Repo die Übersetzungen unter `about/public/translations` hält. Der dokumentierte Befehl scheitert aus dem Repo-Root bei jedem Aufruf mit "Translations directory not found" — `docs/agent-playbooks/translations.md` zeigt `node scripts/update-translations.js ...`, was sich wie ein Befehl für das Repo-Root liest. Zweitens ist jeder Aufruf ein Read-Modify-Write über alle 36 Locale-Dateien: Laufen zwei Aufrufe gleichzeitig, überschreiben sie einander, und ein Schlüssel verschwindet ohne Fehlermeldung. Der Skill `translate` weist ausdrücklich an, bis zu vier Subagenten parallel zu starten, von denen jeder das Skript aufrufen würde.
-- **Auswirkung:** Die Root-Variante scheitert lautstark und verschwendet einen kompletten Durchlauf. Das Nebenläufigkeitsproblem scheitert leise: Schlüssel fehlen in beliebigen Locales, und das Diff sieht trotzdem plausibel aus.
-- **Gegenmaßnahme:** Rufen Sie es als `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write` auf. Lassen Sie Übersetzer-Subagenten niemals gleichzeitig Locale-Dateien schreiben — sie sollen nur Wörterbuch-JSON-Dateien ausgeben, deren Schlüssel der übergeordnete Agent anschließend seriell anwendet. Prüfen Sie nach dem Anwenden programmatisch, dass jeder Schlüssel in allen 35 nicht-englischen Locales vorhanden und kein Wert byte-identisch mit der englischen Quelle ist.
+- **Überraschend war:** Jeder Aufruf ist ein Read-Modify-Write über alle 36 Locale-Dateien: Laufen zwei Aufrufe gleichzeitig, überschreiben sie einander, und ein Schlüssel verschwindet ohne Fehlermeldung. Der Skill `translate` weist ausdrücklich an, bis zu vier Subagenten parallel zu starten, von denen jeder das Skript aufrufen würde.
+- **Auswirkung:** Der Fehler bleibt still: Schlüssel fehlen in beliebigen Locales, und das Diff sieht trotzdem plausibel aus.
+- **Gegenmaßnahme:** Lassen Sie Übersetzer-Subagenten niemals gleichzeitig Locale-Dateien schreiben — sie sollen nur Wörterbuch-JSON-Dateien ausgeben, deren Schlüssel der übergeordnete Agent anschließend seriell anwendet. Prüfen Sie nach dem Anwenden programmatisch, dass jeder Schlüssel in allen 35 nicht-englischen Locales vorhanden und kein Wert byte-identisch mit der englischen Quelle ist.
+- **Status:** confirmed
+- **Nachtrag (2026-08-10):** Früher löste das Skript sein Ziel zusätzlich als `path.join(process.cwd(), "public", "translations")` auf, sodass der dokumentierte Befehl aus dem Repo-Root mit "Translations directory not found" scheiterte und aus `about/` heraus ausgeführt werden musste. Inzwischen ermittelt es den Workspace aus dem aktuellen Verzeichnis oder aus seinem eigenen Speicherort und funktioniert von überall. Die oben beschriebene Nebenläufigkeitsfalle besteht unverändert.
+
+### Annotations-Bedienelemente der Entwicklungsumgebung können automatisierte Klicks abfangen
+
+- **Kontext:** Die About- und die Chain-Site haben feste Bedienelemente in der unteren rechten Ecke, wo in der Entwicklung auch die Agentation-Toolbar erscheint.
+- **Gegenmaßnahme:** `scripts/pw-session.sh open` registriert `window.__NO_DEV_TOOLBAR__ = true`, bevor die Seite neu geladen wird. Der Agentation-Initialisierer berücksichtigt außerdem `__VISUAL_TESTING__` und `__PROFILING__`; die Quellcode-Inspektion bleibt unabhängig davon verfügbar. Direkte Browser-Automatisierung muss dasselbe Flag setzen, bevor die Anwendung geladen wird.
+
+### `skills add` installiert die Kopien für Codex und Cursor in das von Git ignorierte Verzeichnis `.agents/`
+
+- **Datum:** 2026-08-18
+- **Beobachtet von:** Tommaso + Claude
+- **Kontext:** Installation des Skills `improve-threejs` aus `millionco/react-doctor` mit der CLI `skills` (`vercel-labs/skills`).
+- **Überraschend war:** `npx skills add <repo> --skill <name> --agent codex` und `--agent cursor` schreiben beide nach `.agents/skills/<name>/`, nicht nach `.codex/skills/` oder `.cursor/skills/`. `AGENTS.md` verbietet ein `.agents/`-Verzeichnis auf Repo-Ebene, und `.gitignore:29` ignoriert es, sodass beide Kopien stillschweigend unversioniert bleiben. Nur `--agent claude-code` schreibt in das erwartete `.claude/skills/`. Unabhängig davon scheitert die dokumentierte kommagetrennte Form (`--agent claude-code,codex,cursor`) mit "Invalid agents" und installiert nichts, obwohl jeder Name für sich gültig ist.
+- **Auswirkung:** Die Installation meldet Erfolg, während zwei der drei Toolchain-Kopien an einem Ort landen, der nie committet wird, sodass Codex und Cursor nach einem frischen Klon stillschweigend ohne den Skill dastehen. Die Kommaform kann außerdem eine wirkungslose Installation erzeugen, die wie ein Erfolg aussieht.
+- **Aktuelle Gegenmaßnahme:** Das Repository versioniert jetzt `.agents/skills` als kanonische Quelle und erzeugt die Claude-Kopien mit `yarn ai-workflow:sync`. Das frühere Verbot von `.agents` und die Ignore-Regel wurden entfernt. Kopieren Sie neue Skills nicht in drei unabhängige Wurzelverzeichnisse; prüfen Sie nach dem Hinzufügen eines Skills die Parität der erzeugten Dateien und den Katalog der App.
 - **Status:** confirmed

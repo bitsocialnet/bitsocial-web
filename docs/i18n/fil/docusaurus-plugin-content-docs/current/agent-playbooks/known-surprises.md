@@ -188,12 +188,28 @@ Kung hindi ka sigurado, tanungin muna ang developer bago magdagdag ng entry.
 - **Mitigasyon:** Sa anumang docs page na hindi sinasalamin sa `docs/i18n/**`, gumamit ng root-relative na link (`/peer-to-peer-protocol/`, `/apps/5chan/`) sa halip na relatibong link na `.md`; awtomatikong nilalagyan ng Docusaurus ang mga ito ng prefix ng locale. Ang umiiral na halimbawa ay ang `docs/build-your-own-client.md`. Patakbuhin ang buong `yarn docs:build` — hindi lamang ang `build:verify` — bago iabot ang anumang pagbabagong nagdaragdag o nag-link ng isang docs page.
 - **Katayuan:** nakumpirma
 
-### Dapat patakbuhin ang `update-translations.js` mula sa `about/`, at tahimik na nawawalan ng mga key ang sabayang pagpapatakbo
+### Tahimik na nawawalan ng mga key ang sabayang pagpapatakbo ng `update-translations.js`
 
 - **Petsa:** 2026-08-02
 - **Naobserbahan ni:** Claude
 - **Konteksto:** Paglalapat ng 26 na isinaling i18next key sa lahat ng 36 na locale sa pamamagitan ng `translate` skill
-- **Ano ang nakakagulat:** Dalawang magkahiwalay na bitag sa iisang script. Una, tinutukoy ng `scripts/update-translations.js` ang target nito bilang `path.join(process.cwd(), "public", "translations")`, ngunit itinatago ng repong ito ang mga salin sa `about/public/translations`. Ang pagpapatakbo ng nakadokumentong command mula sa root ng repo ay nabibigo sa bawat tawag nang may "Translations directory not found" — ipinapakita ng `docs/agent-playbooks/translations.md` ang `node scripts/update-translations.js ...`, na nababasa bilang command mula sa root ng repo. Pangalawa, ang bawat tawag ay isang read-modify-write sa lahat ng 36 na file ng locale, kaya nagpapatungan ang dalawang tawag na sabay tumatakbo at nawawala ang isang key nang walang error. Tahasang nag-uutos ang `translate` skill na maglunsad ng hanggang 4 na subagent nang sabay, at bawat isa sa kanila ay tatawag sa script.
-- **Epekto:** Maingay na nabibigo ang anyong mula sa root ng repo at nasasayang nito ang isang buong pass. Tahimik namang nabibigo ang isyu sa concurrency: nawawala ang mga key mula sa mga di-tiyak na locale, at mukhang makatwiran pa rin ang diff.
-- **Mitigasyon:** Patakbuhin ito bilang `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Huwag kailanman hayaang sabay na magsulat ng mga file ng locale ang mga subagent na tagasalin — hayaan silang maglabas lamang ng mga JSON file ng diksyunaryo, at saka ilapat ang bawat key nang sunod-sunod mula sa magulang na ahente. Pagkatapos ilapat, patunayan sa pamamagitan ng programa na umiiral ang bawat key sa lahat ng 35 na locale na hindi Ingles at walang halagang byte-identical sa source na Ingles.
+- **Ano ang nakakagulat:** Ang bawat tawag ay isang read-modify-write sa lahat ng 36 na file ng locale, kaya nagpapatungan ang dalawang tawag na sabay tumatakbo at nawawala ang isang key nang walang error. Tahasang nag-uutos ang `translate` skill na maglunsad ng hanggang 4 na subagent nang sabay, at bawat isa sa kanila ay tatawag sa script.
+- **Epekto:** Tahimik itong nabibigo: nawawala ang mga key mula sa mga di-tiyak na locale, at mukhang makatwiran pa rin ang diff.
+- **Mitigasyon:** Huwag kailanman hayaang sabay na magsulat ng mga file ng locale ang mga subagent na tagasalin — hayaan silang maglabas lamang ng mga JSON file ng diksyunaryo, at saka ilapat ang bawat key nang sunod-sunod mula sa magulang na ahente. Pagkatapos ilapat, patunayan sa pamamagitan ng programa na umiiral ang bawat key sa lahat ng 35 na locale na hindi Ingles at walang halagang byte-identical sa source na Ingles.
+- **Katayuan:** nakumpirma
+- **Pag-update (2026-08-10):** Dati ring tinutukoy ng script ang target nito bilang `path.join(process.cwd(), "public", "translations")`, kaya nabibigo ang nakadokumentong command mula sa root ng repo nang may "Translations directory not found" at kinailangan itong patakbuhin mula sa `about/`. Tinutukoy na nito ngayon ang workspace mula sa kasalukuyang direktoryo o mula sa sarili nitong lokasyon, at gumagana ito mula saanman. Hindi nagbago ang bitag sa concurrency na nasa itaas.
+
+### Maaaring maharang ng mga development annotation control ang mga click na isinasagawa ng automation
+
+- **Konteksto:** May mga nakapirming control sa kanang-ibabang sulok ang about site at ang chain site, kung saan lumalabas din ang Agentation toolbar habang nasa development.
+- **Mitigasyon:** Inirerehistro ng `scripts/pw-session.sh open` ang `window.__NO_DEV_TOOLBAR__ = true` bago i-reload ang pahina. Iginagalang din ng Agentation initializer ang `__VISUAL_TESTING__` at `__PROFILING__`; nananatiling available nang hiwalay ang source inspection. Kailangang itakda ng direktang browser automation ang parehong flag bago i-load ang application.
+
+### Nag-i-install ang `skills add` ng mga kopya para sa Codex at Cursor sa naka-gitignore na direktoryong `.agents/`
+
+- **Petsa:** 2026-08-18
+- **Naobserbahan ni:** Tommaso + Claude
+- **Konteksto:** Pag-install ng `improve-threejs` skill mula sa `millionco/react-doctor` gamit ang `skills` CLI (`vercel-labs/skills`).
+- **Ano ang nakakagulat:** Parehong nagsusulat ang `npx skills add <repo> --skill <name> --agent codex` at ang `--agent cursor` sa `.agents/skills/<name>/`, hindi sa `.codex/skills/` o `.cursor/skills/`. Ipinagbabawal ng `AGENTS.md` ang isang `.agents/` na direktoryo sa antas ng repo at ini-ignore ito ng `.gitignore:29`, kaya tahimik na hindi nasusubaybayan ang parehong kopya. Tanging ang `--agent claude-code` ang nagsusulat sa inaasahang `.claude/skills/`. Bukod pa riyan, nabibigo ang nakadokumentong anyong pinaghihiwalay ng kuwit (`--agent claude-code,codex,cursor`) nang may "Invalid agents" at walang ini-install, kahit balido ang bawat pangalan nang mag-isa.
+- **Epekto:** Nag-uulat ng tagumpay ang pag-install habang napupunta ang dalawa sa tatlong kopya ng toolchain sa isang lugar na hindi kailanman maku-commit, kaya tahimik na nawawalan ng skill ang Codex at Cursor pagkatapos ng bagong clone. Maaari ring magresulta ang anyong may kuwit sa isang pag-install na walang ginawa ngunit mukhang matagumpay.
+- **Kasalukuyang mitigasyon:** Sinusubaybayan na ngayon ng repository ang `.agents/skills` bilang canonical na source nito at bumubuo ito ng mga kopya para sa Claude gamit ang `yarn ai-workflow:sync`. Inalis na ang dating pagbabawal sa `.agents` at ang panuntunan sa pag-ignore nito. Huwag kopyahin ang mga bagong skill sa tatlong magkakahiwalay na root; suriin ang parity ng mga nabuong file at ang catalog ng app pagkatapos magdagdag ng skill.
 - **Katayuan:** nakumpirma

@@ -188,12 +188,28 @@ Nếu chưa chắc chắn, hãy hỏi nhà phát triển trước khi thêm mụ
 - **Cách khắc phục:** Trong bất kỳ trang tài liệu nào chưa được phản chiếu vào `docs/i18n/**`, hãy dùng liên kết tính từ gốc (`/peer-to-peer-protocol/`, `/apps/5chan/`) thay cho liên kết `.md` tương đối; Docusaurus sẽ tự thêm tiền tố ngôn ngữ cho chúng. `docs/build-your-own-client.md` là ví dụ sẵn có. Hãy chạy `yarn docs:build` đầy đủ — chứ không chỉ `build:verify` — trước khi bàn giao bất kỳ thay đổi nào thêm mới hoặc liên kết tới một trang tài liệu.
 - **Trạng thái:** đã xác nhận
 
-### `update-translations.js` phải được chạy từ `about/`, và các lần chạy đồng thời lặng lẽ làm mất khóa
+### Các lần chạy `update-translations.js` đồng thời lặng lẽ làm mất khóa
 
 - **Ngày:** 2026-08-02
 - **Người ghi nhận:** Claude
 - **Bối cảnh:** Áp dụng 26 khóa i18next đã dịch cho toàn bộ 36 ngôn ngữ thông qua skill `translate`
-- **Điều bất ngờ:** Hai cái bẫy riêng biệt trong cùng một script. Thứ nhất, `scripts/update-translations.js` xác định đích của nó bằng `path.join(process.cwd(), "public", "translations")`, nhưng kho lưu trữ này đặt bản dịch tại `about/public/translations`. Chạy lệnh đúng như tài liệu ghi từ thư mục gốc của kho lưu trữ sẽ thất bại ở mọi lần gọi với "Translations directory not found" — `docs/agent-playbooks/translations.md` ghi `node scripts/update-translations.js ...`, đọc lên như một lệnh chạy từ thư mục gốc. Thứ hai, mỗi lần gọi là một thao tác đọc-sửa-ghi trên cả 36 tệp ngôn ngữ, nên hai lần gọi chạy cùng lúc sẽ đè lên nhau và một khóa biến mất mà không hề báo lỗi. Skill `translate` lại hướng dẫn rõ việc tạo tối đa 4 subagent chạy đồng thời, mà mỗi subagent đều sẽ gọi script này.
-- **Ảnh hưởng:** Dạng chạy từ thư mục gốc thất bại một cách ồn ào và làm phí cả một lượt. Vấn đề chạy đồng thời thì thất bại âm thầm: các khóa biến mất khỏi những ngôn ngữ ngẫu nhiên, còn diff vẫn trông hợp lý.
-- **Cách khắc phục:** Hãy chạy nó dưới dạng `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Đừng bao giờ để các subagent dịch ghi tệp ngôn ngữ đồng thời — hãy để chúng chỉ xuất ra các tệp JSON từ điển, rồi áp dụng từng khóa một cách tuần tự từ agent cha. Sau khi áp dụng, hãy kiểm tra bằng chương trình rằng mỗi khóa đều tồn tại trong cả 35 ngôn ngữ không phải tiếng Anh, và không giá trị nào giống hệt từng byte với nguồn tiếng Anh.
+- **Điều bất ngờ:** Mỗi lần gọi là một thao tác đọc-sửa-ghi trên cả 36 tệp ngôn ngữ, nên hai lần gọi chạy cùng lúc sẽ đè lên nhau và một khóa biến mất mà không hề báo lỗi. Skill `translate` lại hướng dẫn rõ việc tạo tối đa 4 subagent chạy đồng thời, mà mỗi subagent đều sẽ gọi script này.
+- **Ảnh hưởng:** Thất bại âm thầm: các khóa biến mất khỏi những ngôn ngữ ngẫu nhiên, còn diff vẫn trông hợp lý.
+- **Cách khắc phục:** Đừng bao giờ để các subagent dịch ghi tệp ngôn ngữ đồng thời — hãy để chúng chỉ xuất ra các tệp JSON từ điển, rồi áp dụng từng khóa một cách tuần tự từ agent cha. Sau khi áp dụng, hãy kiểm tra bằng chương trình rằng mỗi khóa đều tồn tại trong cả 35 ngôn ngữ không phải tiếng Anh, và không giá trị nào giống hệt từng byte với nguồn tiếng Anh.
+- **Trạng thái:** đã xác nhận
+- **Cập nhật (2026-08-10):** Trước đây script này còn xác định đích bằng `path.join(process.cwd(), "public", "translations")`, nên lệnh chạy từ thư mục gốc như tài liệu ghi đã thất bại với "Translations directory not found" và phải được chạy từ `about/`. Giờ nó xác định workspace từ thư mục hiện tại hoặc từ vị trí của chính nó, và chạy được từ bất cứ đâu. Cái bẫy chạy đồng thời nêu trên thì vẫn không đổi.
+
+### Các nút điều khiển chú thích trong môi trường phát triển có thể chặn những cú nhấp tự động
+
+- **Bối cảnh:** Trang about và chain có các nút điều khiển cố định ở góc dưới bên phải, nơi thanh công cụ Agentation cũng xuất hiện trong môi trường phát triển.
+- **Cách khắc phục:** `scripts/pw-session.sh open` đăng ký `window.__NO_DEV_TOOLBAR__ = true` trước khi tải lại trang. Trình khởi tạo Agentation cũng tôn trọng `__VISUAL_TESTING__` và `__PROFILING__`; tính năng kiểm tra mã nguồn vẫn dùng được một cách độc lập. Tự động hóa trình duyệt trực tiếp phải đặt cùng cờ đó trước khi tải ứng dụng.
+
+### `skills add` cài bản sao cho Codex và Cursor vào thư mục `.agents/` bị gitignore
+
+- **Ngày:** 2026-08-18
+- **Người ghi nhận:** Tommaso + Claude
+- **Bối cảnh:** Cài skill `improve-threejs` từ `millionco/react-doctor` bằng CLI `skills` (`vercel-labs/skills`).
+- **Điều bất ngờ:** `npx skills add <repo> --skill <name> --agent codex` và `--agent cursor` đều ghi vào `.agents/skills/<name>/`, chứ không phải `.codex/skills/` hay `.cursor/skills/`. `AGENTS.md` cấm thư mục `.agents/` ở cấp kho lưu trữ và `.gitignore:29` bỏ qua nó, nên cả hai bản sao đều lặng lẽ không được theo dõi. Chỉ `--agent claude-code` ghi vào `.claude/skills/` như mong đợi. Ngoài ra, dạng phân tách bằng dấu phẩy được ghi trong tài liệu (`--agent claude-code,codex,cursor`) thất bại với "Invalid agents" và không cài gì cả, dù từng tên đều hợp lệ khi dùng riêng.
+- **Ảnh hưởng:** Lệnh cài báo thành công trong khi hai trong ba bản sao cho các bộ công cụ lại nằm ở nơi sẽ không bao giờ được commit, nên Codex và Cursor lặng lẽ thiếu skill đó sau một lần clone mới. Dạng dấu phẩy cũng có thể tạo ra một lần cài không làm gì nhưng trông như thành công.
+- **Cách khắc phục hiện tại:** Kho lưu trữ giờ theo dõi `.agents/skills` như nguồn chuẩn và sinh các bản sao cho Claude bằng `yarn ai-workflow:sync`. Lệnh cấm `.agents` trước đây và quy tắc bỏ qua đã được gỡ bỏ. Đừng sao chép skill mới vào ba thư mục gốc độc lập; hãy kiểm tra tính tương đồng của các tệp được sinh và danh mục của ứng dụng sau khi thêm một skill.
 - **Trạng thái:** đã xác nhận

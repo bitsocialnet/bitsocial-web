@@ -1,43 +1,23 @@
-# Fordítási munkafolyamat
+# Fordítások
 
-Ez a projekt a `public/translations/{lang}/default.json` i18next fordítási fájljait használja.
+Az about oldal i18next JSON-fájlokat használ az `about/public/translations/{lang}/default.json` útvonalon. A Docusaurus forrásfordításai ettől külön, a `docs/i18n/` könyvtárban találhatók.
 
-## szabály
+## Az about oldal kulcsai
 
-Ne szerkesszen manuálisan minden nyelvi fájlt. Használja a `scripts/update-translations.js`-t.
+Használja a `.agents/skills/translate/SKILL.md` leírást. Az aktuális lokálokat a lemezről derítse ki, és őrizze meg a helyőrzőket, a jelölést, a szakkifejezéseket és a márkaneveket. Nagyobb kéréseknél a gyermekügynökök független szótárfájlokat állíthatnak elő, de minden lokálírást egyetlen szülőügynök alkalmaz sorosan; a frissítő szkriptnek nincs írási zára.
 
-## Kulcs hozzáadása vagy frissítése
+Használjon egyedi, a feladathoz tartozó szótárfájl-útvonalat. Előnézet: `node scripts/update-translations.js --key <key> --map <map.json> --include-en --dry`, majd alkalmazza ugyanazokkal az argumentumokkal és a `--write` kapcsolóval. Írás után ellenőrizze a lefedettséget/értékeket, és csak az ehhez a feladathoz tartozó ideiglenes szótárfájlokat törölje.
 
-1. Hozzon létre egy ideiglenes szótárfájlt, pl. `translations-temp.json`:
+Kért eltávolításokhoz használja a `--delete` kapcsolót. Egy engedélyezett `--audit --write` előtt vizsgálja meg a `--audit --dry` megállapításait; a dinamikus fordítási kulcsok kézi forrásellenőrzést igényelnek. Az angol szöveget csak szakkifejezés, márkanév vagy helyőrző esetén másolja át minden lokálba.
 
-```json
-{
-  "en": "English text",
-  "es": "Spanish text",
-  "fr": "French text",
-  "de": "German text"
-}
-```
+## Docusaurus-oldalak
 
-2. A fordítási térkép alkalmazása:
+A `scripts/translate-docs.py` az összes oldalt/lokált egyszerre író tömeges eszköz, fájlonkénti szűrő nélkül; szűk fordítási szerkesztéshez ne használja. A `scripts/check-docs-translations.py` a csak olvasó ellenőrző, és támogatja a `--locales` és a `--paths` kapcsolót.
 
-```bash
-node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
-```
+A kódblokkokat, a linkeket, az inline kódot, a szerződéscímeket, a címsorokat, a táblázatokat és a figyelmeztető blokkokat tartsa összhangban az angol forrással. Javítsa az ellenőrző által jelzett hibákat; márkanevek esetén `frontmatter-untranslated` figyelmeztetések várhatók. Kövesse a `docs/AGENTS.md` útmutatását, és a dokumentáció témájának vagy i18n-viselkedésének módosításakor a gyökérből buildeljen, hogy a statikus kimenet és a Pagefind összhangban maradjon.
 
-3. Törölje az ideiglenes szótárfájlt.
+## Opcionális szemantikai átnézés
 
-## Egyéb hasznos parancsok
+Kiválasztott i18next kulcsokhoz használja a `scripts/jev/translation-README.md` leírást. Dokumentációs oldalakhoz először futtassa a `node scripts/jev/docs-translations.mjs --locales it,de --paths browser-p2p.md` parancsot. Ez kifejezett lokál- és oldalválasztást igényel, lefuttatja a szerkezeti ellenőrzőt, és a szemantikai átnézést ellenőrizetlenként jelenti, amíg az élő inferencia nincs bekapcsolva. A `--live` kapcsolót csak a feladathoz tartozó szolgáltatói engedéllyel és költségkerettel adja hozzá; a közös privát gépkonfiguráció biztosítja a hitelesítő adatokat és egy rögzített modellt. Ezt a beállítást környezeti változók és a `--model` kapcsoló felülbírálhatják. A parancs soha nem szerkeszti a fordításokat.
 
-```bash
-# Copy a key from English to all languages (dry run then write)
-node scripts/update-translations.js --key some_key --from en --dry
-node scripts/update-translations.js --key some_key --from en --write
-
-# Delete a key from all languages
-node scripts/update-translations.js --key obsolete_key --delete --write
-
-# Audit for unused translation keys
-node scripts/update-translations.js --audit --dry
-node scripts/update-translations.js --audit --write
-```
+Az oldaladapter megőrzi a teljes oldal kontextusát, és oldalanként 24 KB-ra, futásonként pedig 30 párra korlátoz. Nagyobb oldalakhoz készítsen kifejezetten egymáshoz igazított forrás–fordítás bekezdéspárokat a `translations.mjs --pairs` számára; a bekezdéseket ne párosítsa automatikusan index alapján. A szemantikai eredmények tanácsadó jellegűek: vizsgálja meg a jelentett problémákat és bizonytalanságokat, és tartsa meg a determinisztikus kód-, link- és címellenőrzéseket.

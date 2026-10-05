@@ -1,73 +1,83 @@
 # Skills en tools
 
-Gebruik dit draaiboek bij het opzetten of aanpassen van skills en externe tooling.
+Gedeelde skills staan in `.agents/skills/`. Bewerk deze bronnen en voer daarna `yarn ai-workflow:sync` uit om `.claude/skills/` voor Claude Code te genereren. Codex en Cursor vinden `.agents/skills/` rechtstreeks; herstel de dubbele roots `.codex/skills/` of `.cursor/skills/` niet.
 
-## Aanbevolen skills
+Gedeelde rolprompts staan in `.agents/roles/*.md`. Dit is een repository-specifiek bronformaat, geen native pad waarin agents worden gevonden. `scripts/ai-workflow-files.mjs` zet deze bronnen om in de app-specifieke bestanden hieronder; `yarn ai-workflow:sync` schrijft ze weg. Commit de gegenereerde bestanden samen met hun bronnen, zodat een verse checkout de native configuratie heeft zonder eerst een generator te draaien. Verwijder na het verwijderen van een bron de verouderde gegenereerde uitvoer expliciet; de validator rapporteert die, in plaats van bestanden stilzwijgend te verwijderen.
 
-### Context7 (bibliotheekdocumentatie)
+## Native detectiepaden
 
-Voor actuele documentatie over bibliotheken.
+Geverifieerd aan de hand van de officiële documentatie op 2026-09-12:
 
-```bash
-npx skills add https://github.com/intellectronica/agent-skills --skill context7
-```
+| App         | Projectinstructies                                                                                  | Skills die deze repository gebruikt           | Aangepaste agents die deze repository gebruikt |
+| ----------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------- | ---------------------------------------------- |
+| Codex       | `AGENTS.md`                                                                                         | `.agents/skills/<name>/SKILL.md`              | Gegenereerde `.codex/agents/<name>.toml`       |
+| Cursor      | `AGENTS.md`; `.cursor/rules/*.mdc` blijft beschikbaar voor Cursor-specifieke voorwaardelijke regels | `.agents/skills/<name>/SKILL.md`              | Gegenereerde `.cursor/agents/<name>.md`        |
+| Claude Code | `CLAUDE.md` importeert `@AGENTS.md`                                                                 | Gegenereerde `.claude/skills/<name>/SKILL.md` | Gegenereerde `.claude/agents/<name>.md`        |
 
-### Playwright CLI
+Bronnen: [Codex-skills](https://learn.chatgpt.com/docs/build-skills), [Codex-subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Cursor-regels](https://cursor.com/docs/rules), [Cursor-skills](https://cursor.com/docs/skills), [Cursor-subagents](https://cursor.com/docs/subagents), [Claude-geheugen](https://code.claude.com/docs/en/memory), [Claude-skills](https://code.claude.com/docs/en/skills), [Claude-subagents](https://code.claude.com/docs/en/sub-agents).
 
-Gebruik `playwright-cli` voor browserautomatisering (navigatie, interactie, schermafbeeldingen, tests, extractie).
+Vervang de native agentmappen niet door `.agents/roles` en ga er niet van uit dat Claude `.agents/skills` vindt. Claude kan een bestand waarnaar daar wordt verwezen nog steeds lezen als gewone projectcontext. Cursor vindt voor compatibiliteit ook `.claude/skills`; de kopieën blijven gesynchroniseerd, maar de gepubliceerde skillshandleiding van Cursor zegt niets over deduplicatie tussen deze roots. Controleer de skillcatalogus van de geïnstalleerde app in plaats van te beloven dat er geen dubbele vermeldingen kunnen verschijnen.
 
-Stop niet na één engine wanneer je `playwright-cli` gebruikt om de UI van deze repository te verifiëren. Draai de relevante flow in alle drie de belangrijkste browserengines:
+De AI-mappen gebruiken LF-regeleinden via `.gitattributes`, zodat gegenereerde tekst op alle platforms identiek blijft. Ondersteunende assets van skills worden byte voor byte gekopieerd.
 
-- `chrome` voor Blink
-- `firefox` voor Gecko
-- `webkit` voor dekking van Safari/WebKit
+## Skills
 
-Gebruik per engine een aparte benoemde sessie zodat het bewijsmateriaal gescheiden blijft, maar draai die sessies na elkaar. Er mag op de hele machine slechts één Playwright-browsersessie tegelijk actief zijn, omdat het schaarse middel het RAM en de CPU van de machine is en niet de repository. Open en sluit sessies via `./scripts/pw-session.sh`; dat script houdt die gedeelde lock vast, zodat gelijktijdige agents browserwerk uitstellen en opnieuw proberen in plaats van de machine te overbelasten. Als een engine bewust wordt overgeslagen, leg dan vast waarom.
+| Skill                                | Doel                                                                                                               |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `commit`                             | Geautoriseerde, afgebakende lokale commits maken                                                                   |
+| `commit-format`, `issue-format`      | Suggesties opmaken wanneer daarom wordt gevraagd                                                                   |
+| `make-closed-issue`                  | Een geautoriseerd issue, een afgebakende commit en een PR aanmaken                                                 |
+| `review-and-merge-pr`                | PR-feedback triëren; alleen binnen de gevraagde scope fixen, publiceren of mergen                                  |
+| `fix-merge-conflicts`                | Conflicten oplossen en het samengevoegde resultaat verifiëren                                                      |
+| `release`                            | Releasetekst voorbereiden en geautoriseerde releasestappen uitvoeren                                               |
+| `code-quality-review`                | Niet-triviale diffs of een expliciet gevraagd kwaliteitsprobleem reviewen                                          |
+| `retro`                              | Aangetoonde fouten omzetten in gerichte checks of richtlijnen die herhaling voorkomen                              |
+| `refactor-pass`, `deslop`            | Gevraagde opschoning van bestaande wijzigingen                                                                     |
+| `debug-agent`                        | Debuggen op basis van bewijs, met instrumentatie waar nodig                                                        |
+| `you-might-not-need-an-effect`       | Gerichte review van effects en memo's                                                                              |
+| `vercel-react-best-practices`        | Toepasselijke React-performancerichtlijnen; sla regels voor Next.js of alleen de server over voor deze Vite-client |
+| `translate`                          | Vertalingen genereren en de maps daarna via één schrijver toepassen                                                |
+| `playwright-cli`, `inspect-elements` | Browserverificatie en koppeling van DOM naar broncode                                                              |
+| `profile-browsing`                   | Afgebakende browser- en React-profilering                                                                          |
+| `test-apk`                           | Een aangeleverde Android-companionwrapper verifiëren                                                               |
+| `impeccable`, `improve-threejs`      | Afgebakend interfaceontwerp en review van Three.js-rendering                                                       |
+| `implement-plan`                     | Een plan uitvoeren met optionele, begrensde delegatie                                                              |
+| `readme`                             | Geverifieerde projectdocumentatie onderhouden                                                                      |
+| `context7`                           | Bibliotheekdocumentatie ophalen die bij de versie past                                                             |
+| `find-skills`                        | Extra skills zoeken wanneer daar expliciet om wordt gevraagd                                                       |
 
-Gebruik tijdens het itereren alleen Chrome/Blink. Draai de volledige reeks Chrome, Firefox en WebKit zodra de wijziging klaar is voor de eindverificatie. Hergebruik elke enginesessie voor desktop en mobiel door hem van formaat te veranderen, sluit hem af in een finally-achtige opruimstap en open pas daarna de volgende engine.
+## Rollen en modellen
 
-```bash
-./scripts/pw-session.sh open verify-chrome https://bitsocial.localhost --browser=chrome
-playwright-cli -s=verify-chrome snapshot
-./scripts/pw-session.sh close verify-chrome
-```
+Behoud aangepaste rollen voor `browser-check`, `profiler`, `test-apk`, `translator` en `reviewer`. Gebruik de ingebouwde worker-/general-purpose- of explorer-rol van de harness voor gewone implementatie en het verkennen van code. De bovenliggende agent wijst acceptatiecriteria en eigenaarschap toe; één eigenaar draait zware checks.
 
-Wanneer de plek bezet is, eindigt `open` met code 75; wacht dan met `./scripts/pw-session.sh open --wait[=SECONDS] ...` (standaard 300s) in plaats van handmatig opnieuw te proberen. Een lock die is achtergebleven door een afgebroken workflow wordt automatisch teruggenomen, omdat `open` elke plek vrijgeeft waarvan de geregistreerde browser niet meer draait. Bekijk wie de lock vasthoudt met `./scripts/pw-session.sh status`; `release <session>` is een laatste redmiddel voor het zeldzame geval dat `status` de browserstatus niet kan controleren.
+Codex-agentbestanden bevatten `name`, `description` en `developer_instructions`. `.codex/config.toml` beperkt het aantal gelijktijdige child-agents tot vier met `max_concurrent_threads_per_session`. Gedeelde rolmetadata bevat de naam, de beschrijving en een optionele sandboxmodus; er zitten bewust geen modelvelden in.
 
-```bash
-npm install -g @playwright/cli@latest
-playwright-cli install --skills
-```
+Laat model- en reasoningvelden weg uit gecommitte skills en aangepaste agents in alle drie de apps. Zo blijven keuzes bij het aanroepen tijdens runtime, standaardinstellingen van de gebruiker en overerving van de bovenliggende agent mogelijk volgens de gedocumenteerde voorrangsregels van elke app. Aliassen voor Claude-modelfamilies verminderen versieonderhoud, maar kiezen nog steeds een familie; een Cursor-model met versienummer vereist toekomstige updates. Leg zulke keuzes waar nodig vast in gebruikers- of sessie-instellingen. Overerving belooft niet dat automatisch het beste actuele model wordt gekozen. Verzin geen `latest`-alias en voeg geen onderzoek naar de modelcatalogus toe aan routinetaken. Zie [modelkeuze in Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [modelkeuze in Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model) en [modelkeuze in Cursor](https://cursor.com/docs/subagents#model-configuration).
 
-Installatielocaties van skills:
+`sandbox-mode: read-only` komt overeen met de sandbox van Codex en `readonly` van Cursor; bij Claude beperken de toollijst en de rolinstructies de reviewworkflow, maar Bash-toegang is geen sandbox op OS-niveau.
 
-- `.cursor/skills/playwright-cli/`
-- `.claude/skills/playwright-cli/`
+Gedeelde skill-frontmatter gebruikt waar van toepassing `disable-model-invocation: true` voor workflows die de gebruiker zelf aanroept. De overeenkomstige instelling van Codex staat in `agents/openai.yaml` als `policy.allow_implicit_invocation: false`; de validator vereist beide. Aanroepmetadata vult expliciete autorisatieregels aan; een reviewverzoek geeft nooit toestemming om te publiceren alleen omdat een skill publicatiestappen bevat.
 
-### Vercel React Best Practices
+## Checks en detectie
 
-Voor diepgaandere richtlijnen over React-/Next-prestaties.
+- `yarn ai-workflow:sync` genereert de compatibiliteitsuitvoer opnieuw met de geïnstalleerde `js-yaml` en `smol-toml`.
+- `yarn ai-workflow:check` parseert bronnen, frontmatter en configuraties, en controleert gegenereerde uitvoer, aanroepmetadata, de plaatsing van modelvelden en de koppeling van de hook die alleen formatteert. Het controleert modelidentifiers niet tegen de catalogus van een provider.
+- `yarn ai-workflow:test` draait geïsoleerde Node-fixtures voor hook-payloads en voor het genereren en valideren van de workflow.
+- Controleer na het upgraden van een agentapplicatie of skills en rollen in die applicatie worden gevonden. Syntaxis- en pariteitschecks vervangen geen loadercheck. Herlaad de applicatie als een bestaande sessie een oude catalogus vasthoudt.
+- Hooks vereisen het projectvertrouwen en de hookreview van de harness; omzeil het vertrouwen niet om een check te laten slagen. Zie [hooks-setup.md](hooks-setup.md).
 
-```bash
-npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-react-best-practices
-```
+## Bruikbare instructies onderhouden
 
-### Find Skills
+Volg [de richtlijnen van OpenAI voor skills en prompts](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra) (bekeken op 2026-09-12): houd beschrijvingen precies, laad details alleen wanneer ze relevant zijn en respecteer de scope die de gebruiker heeft gevraagd. Gedeelde skills bedienen verschillende modellen; behoud projectspecifieke invarianten en laat ruimte voor routinematige implementatiekeuzes.
 
-Skills uit het open ecosysteem ontdekken en installeren.
+Houd het doel, de beslisgrenzen en de essentiële beperkingen van een skill in `SKILL.md`. Link omvangrijke modusspecifieke commando's of voorbeelden als optionele referenties. Zet triggervoorwaarden vooraan in korte beschrijvingen; een overeenkomend trefwoord alleen mag de taak niet uitbreiden. Behoud bestaande aanroepmetadata, tenzij het gedrag ervan bewust wordt gewijzigd.
 
-```bash
-npx skills add https://github.com/vercel-labs/skills --skill find-skills
-```
+Probeer na een substantiële wijziging in de instructies een paar representatieve kleine en grote verzoeken uit. Controleer welke skills en referenties werden geselecteerd, of acties binnen de scope bleven, of de verificatie bij de wijziging paste en of het geautoriseerde werk werd afgerond. Schema- en fixturetests stellen de correctheid van de tooling vast, niet de kwaliteit van de beslissingen van de agent.
 
-## Onderbouwing van het MCP-beleid
+## Tools en browsereigenaarschap
 
-Vermijd GitHub-MCP- en browser-MCP-servers voor dit project, omdat ze aanzienlijke overhead in toolschema's en context toevoegen.
+Geef de voorkeur aan de bestaande catalogus van skills en tools en aan de geïnstalleerde project-CLI's. Gebruik `gh` voor GitHub, `playwright-cli` voor browserverificatie en officiële, versiespecifieke documentatie wanneer het gedrag van een bibliotheek ertoe doet. Installeer geen dubbele skills en haal geen niet-vastgepind pakket op alleen om een bestaande formatter te draaien.
 
-- GitHub-bewerkingen: gebruik de `gh` CLI.
-- Browserbewerkingen: gebruik `playwright-cli`.
+De overhead van MCP hangt af van de harness: uitgesteld laden van tools kan voorkomen dat elk schema vooraf wordt geladen. Houd integraties relevant in plaats van MCP zelf als achterhaald te behandelen. Bestaande CLI-keuzes blijven nuttig voor reproduceerbaarheid en controle over resources.
 
-## Beschikbaarheid van modellen
-
-- `composer-2` is alleen beschikbaar in Cursor. Configureer het niet onder `.claude/` of `.codex/`.
-- Codex documenteert geen `latest`-modelalias. De vastgelegde TOML-bestanden voor custom agents onder `.codex/**/agents/*.toml` laten zowel `model` als `model_reasoning_effort` weg, zodat ze de instellingen van de huidige bovenliggende sessie overnemen.
+Alle browsersessies gebruiken `./scripts/pw-session.sh`, dat machinebreed één actieve browser afdwingt. Begin standaard met een verse, geïsoleerde sessie. Toegang tot de huidige persoonlijke browser vereist expliciete autorisatie; hergebruik die autorisatie in volgende stappen. Kies browsers en viewports op basis van het getroffen gedrag, draai geselecteerde engines na elkaar, sluit bij het opruimen precies de benoemde sessie en gebruik nooit `close-all`/`kill-all`. Zie de `playwright-cli`-skill en [verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md).

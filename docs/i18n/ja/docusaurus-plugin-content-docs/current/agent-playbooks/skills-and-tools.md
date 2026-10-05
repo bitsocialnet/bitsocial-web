@@ -1,73 +1,83 @@
 # スキルとツール
 
-スキルや外部ツールをセットアップ・調整するときは、このプレイブックを使ってください。
+共有スキルは `.agents/skills/` にあります。このソースを編集してから `yarn ai-workflow:sync` を実行し、Claude Code 用の `.claude/skills/` を生成します。Codex と Cursor は `.agents/skills/` を直接検出します。重複する `.codex/skills/` や `.cursor/skills/` のルートを復活させないでください。
 
-## 推奨スキル
+共有のロールプロンプトは `.agents/roles/*.md` にあります。これはこのリポジトリ固有のソース形式であり、エージェントのネイティブな検出パスではありません。`scripts/ai-workflow-files.mjs` がこれらのソースを下記のアプリ別ファイルに変換し、`yarn ai-workflow:sync` がそれを書き出します。新しくチェックアウトした時点で、ジェネレーターを実行しなくてもネイティブな設定が揃っているよう、生成されたファイルはソースと一緒にコミットしてください。ソースを削除した後は、不要になった生成物を明示的に削除します。バリデーターはそれらを黙って削除するのではなく、報告するだけです。
 
-### Context7 (ライブラリのドキュメント)
+## ネイティブな検出パス
 
-ライブラリの最新ドキュメントを参照するために使います。
+2026-09-12 に公式ドキュメントと照合済み:
 
-```bash
-npx skills add https://github.com/intellectronica/agent-skills --skill context7
-```
+| アプリ      | プロジェクトの指示                                                                    | このリポジトリが使うスキル                  | このリポジトリが使うカスタムエージェント |
+| ----------- | ------------------------------------------------------------------------------------- | ------------------------------------------- | ---------------------------------------- |
+| Codex       | `AGENTS.md`                                                                           | `.agents/skills/<name>/SKILL.md`            | 生成された `.codex/agents/<name>.toml`   |
+| Cursor      | `AGENTS.md`。Cursor 固有の条件付きルールには引き続き `.cursor/rules/*.mdc` を使用可能 | `.agents/skills/<name>/SKILL.md`            | 生成された `.cursor/agents/<name>.md`    |
+| Claude Code | `CLAUDE.md` が `@AGENTS.md` をインポート                                              | 生成された `.claude/skills/<name>/SKILL.md` | 生成された `.claude/agents/<name>.md`    |
 
-### Playwright CLI
+出典: [Codex のスキル](https://learn.chatgpt.com/docs/build-skills)、[Codex のサブエージェント](https://learn.chatgpt.com/docs/agent-configuration/subagents)、[Cursor のルール](https://cursor.com/docs/rules)、[Cursor のスキル](https://cursor.com/docs/skills)、[Cursor のサブエージェント](https://cursor.com/docs/subagents)、[Claude のメモリ](https://code.claude.com/docs/en/memory)、[Claude のスキル](https://code.claude.com/docs/en/skills)、[Claude のサブエージェント](https://code.claude.com/docs/en/sub-agents)。
 
-ブラウザ自動化 (ページ遷移、操作、スクリーンショット、テスト、情報の抽出) には `playwright-cli` を使ってください。
+ネイティブのエージェントディレクトリを `.agents/roles` で置き換えたり、Claude が `.agents/skills` を検出すると想定したりしないでください。ただし Claude も、そこにあるファイルが参照されていれば、通常のプロジェクトコンテキストとして読むことはできます。Cursor は互換性のために `.claude/skills` も検出します。コピーは同期されたままですが、Cursor が公開しているスキルのガイドには、これらのルートをまたいだ重複排除についての記載がありません。重複したエントリが表示されることはないと約束するのではなく、インストールされたアプリのスキルカタログを確認してください。
 
-リポジトリの UI 検証で `playwright-cli` を使うときは、1 つのエンジンで止めないでください。対象のフローを主要な 3 つのブラウザエンジンすべてで実行します。
+AI 関連のディレクトリは `.gitattributes` によって LF 改行を使うため、生成されたテキストはプラットフォームをまたいで同一に保たれます。スキルの補助アセットはバイト列のままコピーされます。
 
-- Blink 系は `chrome`
-- Gecko 系は `firefox`
-- Safari/WebKit のカバレッジには `webkit`
+## スキル
 
-証跡が混ざらないようにエンジンごとに名前付きセッションを分けますが、それらのセッションは順番に実行してください。同時にアクティブにできる Playwright のブラウザセッションはマシン全体で 1 つだけです。競合するリソースがリポジトリではなくマシンの RAM と CPU だからです。セッションの開始と終了は `./scripts/pw-session.sh` 経由で行ってください。このスクリプトが共有ロックを保持するため、同時に動いている他のエージェントはマシンを飽和させる代わりにブラウザ作業を後回しにして再試行します。あるエンジンを意図的にスキップする場合は、その理由を記録してください。
+| スキル                               | 目的                                                                                                         |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `commit`                             | 許可された、範囲を絞ったローカルコミットを作成する                                                           |
+| `commit-format`、`issue-format`      | 依頼に応じて、所定の形式で提案を示す                                                                         |
+| `make-closed-issue`                  | 許可された issue、範囲を絞ったコミット、PR を作成する                                                        |
+| `review-and-merge-pr`                | PR のフィードバックを仕分けし、修正・公開・マージは依頼された範囲内でのみ行う                                |
+| `fix-merge-conflicts`                | コンフリクトを解消し、マージ結果を検証する                                                                   |
+| `release`                            | リリースの文言を準備し、許可されたリリース手順を実行する                                                     |
+| `code-quality-review`                | 自明でない差分、または明示的に依頼された品質上の懸念をレビューする                                           |
+| `retro`                              | 実際に起きたミスを、再発を防ぐための的を絞ったチェックやガイダンスに変える                                   |
+| `refactor-pass`、`deslop`            | 依頼に応じた、既存の変更のクリーンアップ                                                                     |
+| `debug-agent`                        | 証拠に基づくデバッグ。必要に応じて計測用のコードを入れる                                                     |
+| `you-might-not-need-an-effect`       | エフェクトやメモ化に絞ったレビュー                                                                           |
+| `vercel-react-best-practices`        | 該当する React のパフォーマンスガイダンス。この Vite クライアントでは Next.js やサーバー専用のルールは飛ばす |
+| `translate`                          | 翻訳を生成し、単一のライターでマップを適用する                                                               |
+| `playwright-cli`、`inspect-elements` | ブラウザ検証と、DOM からソースへの対応付け                                                                   |
+| `profile-browsing`                   | 範囲を絞ったブラウザと React のプロファイリング                                                              |
+| `test-apk`                           | 提供されたコンパニオンの Android ラッパーを検証する                                                          |
+| `impeccable`、`improve-threejs`      | 範囲を絞ったインターフェースデザインと、Three.js のレンダリングのレビュー                                    |
+| `implement-plan`                     | 必要に応じて範囲を限った委任を行いながら計画を実行する                                                       |
+| `readme`                             | 検証済みのプロジェクトドキュメントを維持する                                                                 |
+| `context7`                           | バージョンに合ったライブラリのドキュメントを取得する                                                         |
+| `find-skills`                        | 明示的に依頼されたときに追加のスキルを探す                                                                   |
 
-反復作業中は Chrome/Blink だけを使います。変更が最終検証の段階に入ったら、Chrome、Firefox、WebKit の順に一通り実行してください。各エンジンのセッションはサイズ変更してデスクトップとモバイルの両方で再利用し、finally 相当のクリーンアップで確実に閉じてから、次のエンジンを開いてください。
+## ロールとモデル
 
-```bash
-./scripts/pw-session.sh open verify-chrome https://bitsocial.localhost --browser=chrome
-playwright-cli -s=verify-chrome snapshot
-./scripts/pw-session.sh close verify-chrome
-```
+`browser-check`、`profiler`、`test-apk`、`translator`、`reviewer` のカスタムロールは維持します。通常の実装やコードの調査には、ハーネスに組み込まれた worker/general-purpose ロールまたは explorer ロールを使います。親が受け入れ基準と担当を割り当て、重いチェックは 1 人の担当者が実行します。
 
-枠が使用中のとき、`open` は終了コード 75 を返します。手動でリトライする代わりに `./scripts/pw-session.sh open --wait[=SECONDS] ...` (既定 300 秒) でブロックして待ってください。中断されたワークフローが残したロックは自動的に回収されます。`open` は、記録されたブラウザがすでに動いていない枠を解放するためです。ロックの保持者は `./scripts/pw-session.sh status` で確認できます。`release <session>` は、`status` でブラウザの状態を確認できないまれなケースのための最終手段です。
+Codex のエージェントファイルには `name`、`description`、`developer_instructions` が含まれます。`.codex/config.toml` は `max_concurrent_threads_per_session` を使って、同時に動く子エージェントを 4 つまでに制限しています。共有ロールのメタデータには名前、説明、任意のサンドボックスモードが含まれ、モデルのフィールドは意図的に持たせていません。
 
-```bash
-npm install -g @playwright/cli@latest
-playwright-cli install --skills
-```
+3 つのアプリすべてで、コミットするスキルとカスタムエージェントにはモデルと推論のフィールドを含めないでください。こうすることで、各アプリのドキュメントに記された優先順位に従って、実行時の呼び出しでの選択、ユーザーの既定値、親からの継承が適用されます。Claude のファミリーエイリアスを使えばバージョンの保守は減りますが、それでも特定のファミリーを選ぶことになります。バージョン付きの Cursor モデルは、将来の更新が必要になります。必要な場合、こうした選択はユーザーやセッションの設定に置いてください。継承によって、その時点で最良のモデルが自動的に選ばれる保証はありません。`latest` エイリアスをでっち上げたり、日常的なタスクにモデルカタログの調査を加えたりしないでください。[Codex での選択](https://learn.chatgpt.com/docs/agent-configuration/subagents)、[Claude での選択](https://code.claude.com/docs/en/sub-agents#choose-a-model)、[Cursor での選択](https://cursor.com/docs/subagents#model-configuration) を参照してください。
 
-スキルのインストール先:
+`sandbox-mode: read-only` は Codex のサンドボックスと Cursor の `readonly` に対応します。Claude ではツールリストとロールの指示によってレビューのワークフローが制限されますが、Bash へのアクセスは OS レベルのサンドボックスではありません。
 
-- `.cursor/skills/playwright-cli/`
-- `.claude/skills/playwright-cli/`
+共有スキルのフロントマターでは、該当する場合、ユーザーが呼び出すワークフローに `disable-model-invocation: true` を使います。Codex で対応する設定は `agents/openai.yaml` の `policy.allow_implicit_invocation: false` で、バリデーターは両方を要求します。呼び出しのメタデータは、明示的な許可のルールを補うものです。スキルに公開の手順が含まれているというだけで、レビューの依頼が公開を許可することには決してなりません。
 
-### Vercel React Best Practices
+## チェックと検出
 
-React/Next のパフォーマンスについて、より踏み込んだ指針を得るために使います。
+- `yarn ai-workflow:sync` は、インストール済みの `js-yaml` と `smol-toml` を使って互換用の出力を再生成します。
+- `yarn ai-workflow:check` は、ソース、フロントマター、設定ファイルをパースし、生成された出力、呼び出しのメタデータ、モデルフィールドの配置、フォーマッター専用のフック配線をチェックします。モデル識別子をプロバイダーのカタログと照合して解決することはしません。
+- `yarn ai-workflow:test` は、フックのペイロードとワークフローの生成・検証について、分離された Node のフィクスチャを実行します。
+- エージェントアプリケーションをアップグレードした後は、そのアプリケーションでスキルとロールが検出されることを確認します。構文やパリティのチェックは、ローダーの確認の代わりにはなりません。既存のセッションが古いカタログを保持している場合は、アプリケーションを再読み込みしてください。
+- フックには、ハーネスによるプロジェクトの信頼とフックのレビューが必要です。チェックを通すために信頼を回避しないでください。[hooks-setup.md](hooks-setup.md) を参照してください。
 
-```bash
-npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-react-best-practices
-```
+## 有用な指示を保つ
 
-### Find Skills
+[OpenAI のスキルとプロンプトに関するガイダンス](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra) (2026-09-12 に確認) に従います。説明は正確に保ち、詳細は関連する場合にだけ読み込み、ユーザーが依頼した範囲を守ります。共有スキルはさまざまなモデルが使います。プロジェクト固有の不変条件は保持しつつ、日常的な実装上の選択の余地は残してください。
 
-公開されているエコシステムからスキルを探してインストールします。
+スキルの目的、判断の境界、不可欠な制約は `SKILL.md` に記述します。モード固有の分量のあるコマンドや例は、任意の参照資料としてリンクします。短い説明の冒頭近くにトリガー条件を置いてください。キーワードが一致したというだけでタスクを広げるべきではありません。既存の呼び出しメタデータは、その挙動を意図的に変更する場合を除いて維持します。
 
-```bash
-npx skills add https://github.com/vercel-labs/skills --skill find-skills
-```
+指示を大きく変更した後は、代表的な小さい依頼と大きい依頼をいくつか試してください。どのスキルや参照資料が選ばれたか、操作が範囲内にとどまったか、検証が変更に見合っていたか、許可された作業が完了したかを確認します。スキーマやフィクスチャのテストで確かめられるのはツールの正しさであり、エージェントの判断の質ではありません。
 
-## MCP ポリシーの根拠
+## ツールとブラウザの所有
 
-このプロジェクトでは、GitHub MCP とブラウザ MCP サーバーは避けてください。ツールスキーマとコンテキストのオーバーヘッドがかなり大きいためです。
+既存のスキルやツールのカタログと、インストール済みのプロジェクトの CLI を優先します。GitHub には `gh`、ブラウザ検証には `playwright-cli` を使い、ライブラリの挙動が重要な場合は公式のバージョン別ドキュメントを参照します。重複するスキルをインストールしたり、既存のフォーマッターを実行するためだけにバージョンが固定されていないパッケージを取得したりしないでください。
 
-- GitHub の操作には `gh` CLI を使う。
-- ブラウザの操作には `playwright-cli` を使う。
+MCP のオーバーヘッドはハーネスによって異なります。ツールの遅延読み込みを使えば、すべてのスキーマを最初に読み込まずに済む場合があります。MCP そのものを時代遅れとみなすのではなく、統合を必要なものに絞ってください。既存の CLI という選択は、再現性とリソース管理の面で引き続き有用です。
 
-## モデルの利用可否
-
-- `composer-2` は Cursor でのみ利用できます。`.claude/` や `.codex/` の下で設定しないでください。
-- Codex には `latest` というモデルエイリアスのドキュメントがありません。`.codex/**/agents/*.toml` にコミットされているカスタムエージェントの TOML は `model` と `model_reasoning_effort` の両方を省略し、親セッションの現在の設定を継承します。
+すべてのブラウザセッションは `./scripts/pw-session.sh` を使います。このスクリプトは、アクティブなブラウザをマシン全体で 1 つに制限します。既定では、新しい分離されたセッションを使います。現在の個人用ブラウザへのアクセスには明示的な許可が必要で、許可を得たら以降のステップでもその許可を引き継ぎます。影響を受ける挙動に合わせてブラウザとビューポートを選び、選んだエンジンは順番に実行し、クリーンアップでは名前を正確に指定してセッションを閉じます。`close-all`/`kill-all` は決して使わないでください。`playwright-cli` スキルと [verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md) を参照してください。

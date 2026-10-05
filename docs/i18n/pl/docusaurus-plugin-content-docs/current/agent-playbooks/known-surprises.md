@@ -188,12 +188,28 @@ W razie wątpliwości zapytaj dewelopera przed dodaniem wpisu.
 - **Środek zaradczy:** Na każdej stronie dokumentacji, która nie ma kopii w `docs/i18n/**`, używaj linków od katalogu głównego (`/peer-to-peer-protocol/`, `/apps/5chan/`) zamiast względnych linków `.md`; Docusaurus sam dokłada prefiks lokalizacji. Istniejącym przykładem jest `docs/build-your-own-client.md`. Przed przekazaniem jakiejkolwiek zmiany, która dodaje lub linkuje stronę dokumentacji, uruchom pełne `yarn docs:build`, a nie tylko `build:verify`.
 - **Status:** potwierdzony
 
-### `update-translations.js` trzeba uruchamiać z `about/`, a równoległe uruchomienia po cichu gubią klucze
+### Równoległe uruchomienia `update-translations.js` po cichu gubią klucze
 
 - **Data:** 2026-08-02
 - **Zaobserwowane przez:** Claude
 - **Kontekst:** Zastosowanie 26 przetłumaczonych kluczy i18next we wszystkich 36 lokalizacjach przy użyciu umiejętności `translate`
-- **Co było zaskakujące:** Dwie osobne pułapki w tym samym skrypcie. Po pierwsze, `scripts/update-translations.js` wyznacza katalog docelowy jako `path.join(process.cwd(), "public", "translations")`, ale to repozytorium trzyma tłumaczenia w `about/public/translations`. Uruchomienie udokumentowanego polecenia z katalogu głównego repozytorium kończy się za każdym razem błędem „Translations directory not found” — `docs/agent-playbooks/translations.md` pokazuje `node scripts/update-translations.js ...`, co czyta się jak polecenie wykonywane w katalogu głównym repozytorium. Po drugie, każde wywołanie to odczyt-modyfikacja-zapis na wszystkich 36 plikach lokalizacji, więc dwa równoległe wywołania nadpisują się nawzajem i jeden klucz znika bez żadnego błędu. Umiejętność `translate` wprost każe uruchamiać do 4 subagentów równolegle, a każdy z nich wywołałby ten skrypt.
-- **Skutek:** Wariant z katalogu głównego repozytorium zawodzi głośno i marnuje całe przejście. Problem ze współbieżnością zawodzi po cichu: klucze znikają z przypadkowych lokalizacji, a diff nadal wygląda wiarygodnie.
-- **Środek zaradczy:** Uruchamiaj to jako `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Nigdy nie pozwalaj subagentom-tłumaczom zapisywać plików lokalizacji równolegle — niech generują wyłącznie pliki JSON ze słownikami, a potem zastosuj każdy klucz szeregowo z agenta nadrzędnego. Po zastosowaniu sprawdź programowo, że każdy klucz istnieje we wszystkich 35 nieangielskich lokalizacjach i że żadna wartość nie jest bajt w bajt identyczna z angielskim źródłem.
+- **Co było zaskakujące:** Każde wywołanie to odczyt-modyfikacja-zapis na wszystkich 36 plikach lokalizacji, więc dwa równoległe wywołania nadpisują się nawzajem i jeden klucz znika bez żadnego błędu. Umiejętność `translate` wprost każe uruchamiać do 4 subagentów równolegle, a każdy z nich wywołałby ten skrypt.
+- **Skutek:** Zawodzi po cichu: klucze znikają z przypadkowych lokalizacji, a diff nadal wygląda wiarygodnie.
+- **Środek zaradczy:** Nigdy nie pozwalaj subagentom-tłumaczom zapisywać plików lokalizacji równolegle — niech generują wyłącznie pliki JSON ze słownikami, a potem zastosuj każdy klucz szeregowo z agenta nadrzędnego. Po zastosowaniu sprawdź programowo, że każdy klucz istnieje we wszystkich 35 nieangielskich lokalizacjach i że żadna wartość nie jest bajt w bajt identyczna z angielskim źródłem.
+- **Status:** potwierdzony
+- **Aktualizacja (2026-08-10):** Skrypt wyznaczał wcześniej katalog docelowy także jako `path.join(process.cwd(), "public", "translations")`, więc udokumentowane polecenie uruchamiane z katalogu głównego repozytorium kończyło się błędem „Translations directory not found” i trzeba było uruchamiać je z `about/`. Teraz skrypt ustala workspace na podstawie bieżącego katalogu lub własnej lokalizacji i działa z dowolnego miejsca. Opisana wyżej pułapka współbieżności pozostaje bez zmian.
+
+### Deweloperskie kontrolki adnotacji mogą przechwytywać sterowane kliknięcia
+
+- **Kontekst:** Serwisy about i chain mają stałe kontrolki w prawym dolnym rogu, gdzie w trybie deweloperskim pojawia się też pasek narzędzi Agentation.
+- **Środek zaradczy:** `scripts/pw-session.sh open` rejestruje `window.__NO_DEV_TOOLBAR__ = true` przed przeładowaniem strony. Inicjalizator Agentation respektuje też `__VISUAL_TESTING__` i `__PROFILING__`; inspekcja źródeł pozostaje dostępna niezależnie od tego. Bezpośrednia automatyzacja przeglądarki musi ustawić tę samą flagę przed wczytaniem aplikacji.
+
+### `skills add` instaluje kopie dla Codex i Cursor w ignorowanym przez Git katalogu `.agents/`
+
+- **Data:** 2026-08-18
+- **Zaobserwowane przez:** Tommaso + Claude
+- **Kontekst:** Instalowanie umiejętności `improve-threejs` z `millionco/react-doctor` za pomocą CLI `skills` (`vercel-labs/skills`).
+- **Co było zaskakujące:** `npx skills add <repo> --skill <name> --agent codex` i `--agent cursor` zapisują do `.agents/skills/<name>/`, a nie do `.codex/skills/` ani `.cursor/skills/`. `AGENTS.md` zabrania katalogu `.agents/` na poziomie repozytorium, a `.gitignore:29` go ignoruje, więc obie kopie po cichu pozostają nieśledzone. Tylko `--agent claude-code` zapisuje do oczekiwanego `.claude/skills/`. Ponadto udokumentowana forma z przecinkami (`--agent claude-code,codex,cursor`) kończy się błędem „Invalid agents” i niczego nie instaluje, choć każda nazwa z osobna jest poprawna.
+- **Skutek:** Instalacja zgłasza sukces, a dwie z trzech kopii dla poszczególnych narzędzi trafiają w miejsce, które nigdy nie zostanie zatwierdzone, więc po świeżym sklonowaniu Codex i Cursor po cichu nie mają tej umiejętności. Forma z przecinkami może też dać instalację, która nic nie robi, a wygląda na udaną.
+- **Obecny środek zaradczy:** Repozytorium śledzi teraz `.agents/skills` jako kanoniczne źródło i generuje kopie dla Claude za pomocą `yarn ai-workflow:sync`. Dawny zakaz `.agents` i reguła ignorowania zostały usunięte. Nie kopiuj nowych umiejętności do trzech niezależnych katalogów głównych; po dodaniu umiejętności sprawdź zgodność wygenerowanych plików i katalog umiejętności w aplikacji.
 - **Status:** potwierdzony

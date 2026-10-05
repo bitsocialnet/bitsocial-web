@@ -188,12 +188,28 @@ Er du i tvivl, så spørg udvikleren, før du tilføjer en post.
 - **Afhjælpning:** På enhver docs-side, der ikke er spejlet ind i `docs/i18n/**`, skal du bruge rod-relative links (`/peer-to-peer-protocol/`, `/apps/5chan/`) i stedet for relative `.md`-links; Docusaurus sætter automatisk sprogpræfikset foran. `docs/build-your-own-client.md` er det eksisterende eksempel. Kør et fuldt `yarn docs:build` — ikke bare `build:verify` — før du afleverer en ændring, der tilføjer eller linker til en docs-side.
 - **Status:** bekræftet
 
-### `update-translations.js` skal køres fra `about/`, og samtidige kørsler taber nøgler i stilhed
+### Samtidige kørsler af `update-translations.js` taber nøgler i stilhed
 
 - **Dato:** 2026-08-02
 - **Observeret af:** Claude
 - **Kontekst:** Anvendelse af 26 oversatte i18next-nøgler på tværs af alle 36 sprog via `translate`-skillen
-- **Hvad var overraskende:** To separate fælder i det samme script. For det første opløser `scripts/update-translations.js` sit mål som `path.join(process.cwd(), "public", "translations")`, men dette repo har oversættelserne i `about/public/translations`. Kører man den dokumenterede kommando fra repo-roden, fejler hvert eneste kald med "Translations directory not found" — `docs/agent-playbooks/translations.md` viser `node scripts/update-translations.js ...`, hvilket læses som en kommando fra repo-roden. For det andet er hvert kald en læs-modificer-skriv hen over alle 36 sprogfiler, så to samtidige kørsler overskriver hinanden, og en nøgle forsvinder uden nogen fejl. `translate`-skillen instruerer eksplicit i at starte op til 4 subagenter samtidig, og hver af dem ville kalde scriptet.
-- **Konsekvens:** Formen med repo-roden fejler højlydt og spilder en hel runde. Samtidighedsproblemet fejler i stilhed: nøgler forsvinder fra tilfældige sprog, og diffen ser stadig plausibel ud.
-- **Afhjælpning:** Kør den som `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Lad aldrig oversætter-subagenter skrive sprogfiler samtidig — lad dem kun udsende JSON-ordbogsfiler, og anvend derefter hver nøgle serielt fra forældreagenten. Efter anvendelsen skal du programmatisk verificere, at hver nøgle findes i alle 35 ikke-engelske sprog, og at ingen værdi er byte-identisk med den engelske kilde.
+- **Hvad var overraskende:** Hvert kald er en læs-modificer-skriv hen over alle 36 sprogfiler, så to kald, der kører samtidig, overskriver hinanden, og en nøgle forsvinder uden nogen fejl. `translate`-skillen instruerer eksplicit i at starte op til 4 subagenter samtidig, og hver af dem ville kalde scriptet.
+- **Konsekvens:** Fejlen sker i stilhed: nøgler forsvinder fra tilfældige sprog, og diffen ser stadig plausibel ud.
+- **Afhjælpning:** Lad aldrig oversætter-subagenter skrive sprogfiler samtidig — lad dem kun udsende JSON-ordbogsfiler, og anvend derefter hver nøgle serielt fra forældreagenten. Efter anvendelsen skal du programmatisk verificere, at hver nøgle findes i alle 35 ikke-engelske sprog, og at ingen værdi er byte-identisk med den engelske kilde.
+- **Status:** bekræftet
+- **Opdatering (2026-08-10):** Scriptet opløste tidligere også sit mål som `path.join(process.cwd(), "public", "translations")`, så den dokumenterede kommando fra repo-roden fejlede med "Translations directory not found" og måtte køres fra `about/`. Nu finder det workspacet ud fra den aktuelle mappe eller ud fra sin egen placering og virker uanset hvor det køres fra. Samtidighedsfælden ovenfor er uændret.
+
+### Annoteringsværktøjer i udviklingstilstand kan opsnappe automatiserede klik
+
+- **Kontekst:** Både about-sitet og chain-sitet har faste kontrolelementer i nederste højre hjørne, hvor Agentation-værktøjslinjen også vises under udvikling.
+- **Afhjælpning:** `scripts/pw-session.sh open` registrerer `window.__NO_DEV_TOOLBAR__ = true`, før siden genindlæses. Agentations initialiseringskode respekterer også `__VISUAL_TESTING__` og `__PROFILING__`; kildeinspektion er fortsat tilgængelig uafhængigt af det. Direkte browserautomatisering skal sætte det samme flag, før applikationen indlæses.
+
+### `skills add` installerer Codex- og Cursor-kopier i den gitignorerede mappe `.agents/`
+
+- **Dato:** 2026-08-18
+- **Observeret af:** Tommaso + Claude
+- **Kontekst:** Installation af `improve-threejs`-skillen fra `millionco/react-doctor` med `skills`-CLI'en (`vercel-labs/skills`).
+- **Hvad var overraskende:** `npx skills add <repo> --skill <name> --agent codex` og `--agent cursor` skriver begge til `.agents/skills/<name>/`, ikke til `.codex/skills/` eller `.cursor/skills/`. `AGENTS.md` forbyder en `.agents/`-mappe på repo-niveau, og `.gitignore:29` ignorerer den, så begge kopier forbliver uversionerede uden nogen advarsel. Kun `--agent claude-code` skriver til den forventede `.claude/skills/`. Derudover fejler den dokumenterede kommaseparerede form (`--agent claude-code,codex,cursor`) med "Invalid agents" og installerer intet, selvom hvert navn er gyldigt for sig.
+- **Konsekvens:** Installationen melder succes, mens to af de tre kopier til værktøjskæderne havner et sted, hvor de aldrig bliver committet, så Codex og Cursor i stilhed mangler skillen efter en frisk klon. Kommaformen kan også give en installation, der ikke gør noget, men som ligner en succes.
+- **Nuværende afhjælpning:** Repoet versionsstyrer nu `.agents/skills` som sin kanoniske kilde og genererer Claude-kopier med `yarn ai-workflow:sync`. Det tidligere forbud mod `.agents` og ignoreringsreglen er fjernet. Kopiér ikke nye skills ind i tre uafhængige rodmapper; tjek den genererede paritet og appens katalog, når du har tilføjet en skill.
 - **Status:** bekræftet

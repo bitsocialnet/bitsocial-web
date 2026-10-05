@@ -188,12 +188,28 @@ Vraag het bij twijfel eerst aan de ontwikkelaar voordat je een vermelding toevoe
 - **Mitigatie:** Gebruik in elke docs-pagina die niet naar `docs/i18n/**` is gespiegeld root-relatieve links (`/peer-to-peer-protocol/`, `/apps/5chan/`) in plaats van relatieve `.md`-links; Docusaurus zet daar automatisch de locale voor. `docs/build-your-own-client.md` is het bestaande voorbeeld. Draai een volledige `yarn docs:build` — niet alleen `build:verify` — voordat je een wijziging overdraagt die een docs-pagina toevoegt of ernaar linkt.
 - **Status:** bevestigd
 
-### `update-translations.js` moet vanuit `about/` worden uitgevoerd, en gelijktijdige runs verliezen stilzwijgend sleutels
+### Gelijktijdige runs van `update-translations.js` verliezen stilzwijgend sleutels
 
 - **Datum:** 2026-08-02
 - **Waargenomen door:** Claude
 - **Context:** 26 vertaalde i18next-sleutels toepassen op alle 36 locales via de `translate`-skill
-- **Wat verrassend was:** Twee afzonderlijke valkuilen in hetzelfde script. Ten eerste bepaalt `scripts/update-translations.js` zijn doelmap als `path.join(process.cwd(), "public", "translations")`, terwijl deze repository de vertalingen in `about/public/translations` bewaart. Het gedocumenteerde commando vanuit de root van de repository draaien mislukt daarom bij elke aanroep met "Translations directory not found" — `docs/agent-playbooks/translations.md` toont `node scripts/update-translations.js ...`, wat leest als een commando vanuit de repository-root. Ten tweede is elke aanroep een read-modify-write over alle 36 locale-bestanden, dus twee gelijktijdige aanroepen overschrijven elkaar en verdwijnt er zonder foutmelding een sleutel. De `translate`-skill schrijft expliciet voor om tot 4 subagents tegelijk te starten, die het script elk zouden aanroepen.
-- **Impact:** De vorm vanuit de repository-root mislukt luidruchtig en verspilt een volledige ronde. Het gelijktijdigheidsprobleem faalt stilzwijgend: sleutels verdwijnen uit willekeurige locales en de diff ziet er nog steeds plausibel uit.
-- **Mitigatie:** Voer het uit als `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Laat vertaal-subagents nooit gelijktijdig locale-bestanden schrijven — laat ze alleen JSON-woordenboekbestanden produceren en pas daarna elke sleutel serieel toe vanuit de bovenliggende agent. Controleer na het toepassen programmatisch dat elke sleutel in alle 35 niet-Engelse locales bestaat en dat geen enkele waarde byte-identiek is aan de Engelse bron.
+- **Wat verrassend was:** Elke aanroep is een read-modify-write over alle 36 locale-bestanden, dus twee gelijktijdige aanroepen overschrijven elkaar en er verdwijnt zonder foutmelding een sleutel. De `translate`-skill schrijft expliciet voor om tot 4 subagents tegelijk te starten, die het script elk zouden aanroepen.
+- **Impact:** Faalt stilzwijgend: sleutels verdwijnen uit willekeurige locales en de diff ziet er nog steeds plausibel uit.
+- **Mitigatie:** Laat vertaal-subagents nooit gelijktijdig locale-bestanden schrijven — laat ze alleen JSON-woordenboekbestanden produceren en pas daarna elke sleutel serieel toe vanuit de bovenliggende agent. Controleer na het toepassen programmatisch dat elke sleutel in alle 35 niet-Engelse locales bestaat en dat geen enkele waarde byte-identiek is aan de Engelse bron.
+- **Status:** bevestigd
+- **Update (2026-08-10):** Het script bepaalde zijn doelmap vroeger ook als `path.join(process.cwd(), "public", "translations")`, waardoor het gedocumenteerde commando vanuit de repository-root mislukte met "Translations directory not found" en vanuit `about/` moest worden uitgevoerd. Het bepaalt de workspace nu op basis van de huidige map of van zijn eigen locatie en werkt vanaf elke plek. De gelijktijdigheidsvalkuil hierboven is ongewijzigd.
+
+### Annotatiebediening voor development kan aangestuurde klikken onderscheppen
+
+- **Context:** De about- en chain-sites hebben vaste bedieningselementen in de rechteronderhoek, waar in development ook de Agentation-toolbar verschijnt.
+- **Mitigatie:** `scripts/pw-session.sh open` registreert `window.__NO_DEV_TOOLBAR__ = true` voordat de pagina opnieuw wordt geladen. De Agentation-initializer respecteert ook `__VISUAL_TESTING__` en `__PROFILING__`; broninspectie blijft daar los van beschikbaar. Directe browserautomatisering moet dezelfde vlag instellen voordat de applicatie wordt geladen.
+
+### `skills add` installeert de kopieën voor Codex en Cursor in de door Git genegeerde map `.agents/`
+
+- **Datum:** 2026-08-18
+- **Waargenomen door:** Tommaso + Claude
+- **Context:** De skill `improve-threejs` uit `millionco/react-doctor` installeren met de `skills`-CLI (`vercel-labs/skills`).
+- **Wat verrassend was:** `npx skills add <repo> --skill <name> --agent codex` en `--agent cursor` schrijven allebei naar `.agents/skills/<name>/`, niet naar `.codex/skills/` of `.cursor/skills/`. `AGENTS.md` verbiedt een `.agents/`-map op repositoryniveau en `.gitignore:29` negeert die, dus beide kopieën blijven stilzwijgend ongetrackt. Alleen `--agent claude-code` schrijft naar de verwachte `.claude/skills/`. Daarnaast mislukt de gedocumenteerde kommagescheiden vorm (`--agent claude-code,codex,cursor`) met "Invalid agents" en wordt er niets geïnstalleerd, hoewel elke naam afzonderlijk geldig is.
+- **Impact:** De installatie meldt succes, terwijl twee van de drie toolchainkopieën terechtkomen op een plek die nooit wordt gecommit, zodat Codex en Cursor de skill na een verse clone stilzwijgend missen. De kommavorm kan ook een installatie opleveren die niets doet maar als succes oogt.
+- **Huidige mitigatie:** De repository trackt `.agents/skills` nu als canonieke bron en genereert Claude-kopieën met `yarn ai-workflow:sync`. Het vroegere verbod op `.agents` en de bijbehorende ignore-regel zijn verwijderd. Kopieer nieuwe skills niet naar drie onafhankelijke roots; controleer na het toevoegen van een skill de pariteit van de gegenereerde bestanden en de catalogus van de app.
 - **Status:** bevestigd

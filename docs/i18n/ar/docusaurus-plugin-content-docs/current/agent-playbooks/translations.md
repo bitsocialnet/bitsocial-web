@@ -1,43 +1,23 @@
-# سير عمل الترجمات
+# الترجمات
 
-يستخدم هذا المشروع ملفات الترجمة i18next في `public/translations/{lang}/default.json`.
+يستخدم موقع about ملفات JSON الخاصة بـ i18next في `about/public/translations/{lang}/default.json`. أما ترجمات مصادر Docusaurus فتوجد بشكل منفصل في `docs/i18n/`.
 
-## القاعدة
+## مفاتيح موقع about
 
-لا تقم بتحرير كل ملف لغة يدويًا. استخدم `scripts/update-translations.js`.
+استخدم `.agents/skills/translate/SKILL.md`. اكتشف اللغات الحالية من القرص، وحافظ على العناصر النائبة والترميز والمصطلحات التقنية وأسماء العلامات التجارية. وفي الطلبات الأكبر، يمكن للوكلاء الفرعيين توليد خرائط مستقلة، لكن وكيلًا أبًا واحدًا يطبّق كل عمليات الكتابة في ملفات اللغات بالتتابع؛ فأداة التحديث لا تملك قفلًا للكتابة.
 
-## إضافة أو تحديث مفتاح
+استخدم مسار خريطة فريدًا تملكه المهمة. عاين النتيجة عبر `node scripts/update-translations.js --key <key> --map <map.json> --include-en --dry`، ثم طبّقها بالوسائط نفسها مع `--write`. تحقق من التغطية والقيم بعد الكتابة، ولا تحذف إلا الخرائط المؤقتة التي تملكها هذه المهمة.
 
-1. قم بإنشاء ملف قاموس مؤقت، على سبيل المثال. `translations-temp.json`:
+استخدم `--delete` لعمليات الحذف المطلوبة. وافحص نتائج `--audit --dry` قبل أي تشغيل مصرَّح به لـ `--audit --write`؛ فمفاتيح الترجمة الديناميكية تتطلب مراجعة يدوية للشيفرة المصدرية. ولا تنسخ النص الإنجليزي إلى كل لغة إلا في حالة مصطلح تقني أو علامة تجارية أو عنصر نائب.
 
-```json
-{
-  "en": "English text",
-  "es": "Spanish text",
-  "fr": "French text",
-  "de": "German text"
-}
-```
+## صفحات Docusaurus
 
-2. تطبيق خريطة الترجمة:
+يُعدّ `scripts/translate-docs.py` أداة كتابة جماعية تشمل جميع الصفحات واللغات ولا تملك مرشحًا لكل ملف؛ فلا تستخدمه لتعديل ترجمة محدود. أما `scripts/check-docs-translations.py` فهو أداة التحقق المخصّصة للقراءة فقط، ويدعم `--locales` و`--paths`.
 
-```bash
-node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
-```
+أبقِ كتل الشيفرة المسوّرة والروابط والشيفرة المضمّنة وعناوين العقود ورؤوس الأقسام والجداول والتنبيهات متوافقة مع المصدر الإنجليزي. وعالج أخطاء أداة التحقق؛ أما تحذيرات `frontmatter-untranslated` الخاصة بأسماء العلامات التجارية فقد تكون متوقعة. واتبع `docs/AGENTS.md`، ونفّذ البناء من الجذر عند تغيير سمة التوثيق أو سلوك i18n حتى يبقى الإخراج الثابت وPagefind متوافقين.
 
-3. احذف ملف القاموس المؤقت.
+## مراجعة دلالية اختيارية
 
-## أوامر مفيدة أخرى
+لمفاتيح i18next المختارة، استخدم `scripts/jev/translation-README.md`. أما لصفحات التوثيق، فشغّل أولًا `node scripts/jev/docs-translations.mjs --locales it,de --paths browser-p2p.md`. ويتطلب هذا اختيارًا صريحًا للغات والصفحات، ويشغّل أداة التحقق البنيوية، ويبلّغ عن المراجعة الدلالية بأنها غير متحقَّق منها إلى أن يُفعَّل الاستدلال الحي. ولا تضف `--live` إلا بتفويض المزوّد وبالميزانية المخصّصين للمهمة؛ إذ يوفّر إعداد الجهاز الخاص المشترك بيانات الاعتماد ونموذجًا محدد الإصدار. ويمكن لمتغيرات البيئة و`--model` تجاوز ذلك الإعداد. ولا يعدّل الأمر الترجمات أبدًا.
 
-```bash
-# Copy a key from English to all languages (dry run then write)
-node scripts/update-translations.js --key some_key --from en --dry
-node scripts/update-translations.js --key some_key --from en --write
-
-# Delete a key from all languages
-node scripts/update-translations.js --key obsolete_key --delete --write
-
-# Audit for unused translation keys
-node scripts/update-translations.js --audit --dry
-node scripts/update-translations.js --audit --write
-```
+يحافظ محوّل الصفحات على سياق الصفحة كاملًا، ويحدّ كل صفحة بـ 24 كيلوبايت وكل تشغيل بـ 30 زوجًا. وللصفحات الأكبر، جهّز أزواجًا من فقرات المصدر والترجمة محاذاةً صراحةً لاستخدامها مع `translations.mjs --pairs`؛ ولا تقرن الفقرات تلقائيًا بحسب ترتيبها. والنتائج الدلالية استرشادية: افحص المشكلات المبلَّغ عنها وأوجه عدم اليقين، واحتفظ بالفحوص الحتمية للشيفرة والروابط والعناوين.

@@ -1,73 +1,83 @@
 # Taidot ja työkalut
 
-Käytä tätä ohjekirjaa, kun otat käyttöön tai säädät taitoja ja ulkoisia työkaluja.
+Jaetut taidot ovat hakemistossa `.agents/skills/`. Muokkaa näitä lähteitä ja aja sitten `yarn ai-workflow:sync`, joka generoi hakemiston `.claude/skills/` Claude Codea varten. Codex ja Cursor löytävät hakemiston `.agents/skills/` suoraan; älä palauta päällekkäisiä juurihakemistoja `.codex/skills/` tai `.cursor/skills/`.
 
-## Suositellut taidot
+Jaetut roolikehotteet ovat tiedostoissa `.agents/roles/*.md`. Tämä on repokohtainen lähdemuoto, ei agenttien natiivi löytöpolku. `scripts/ai-workflow-files.mjs` muuntaa nämä lähteet alla luetelluiksi sovelluskohtaisiksi tiedostoiksi; `yarn ai-workflow:sync` kirjoittaa ne. Commitoi generoidut tiedostot lähteidensä kanssa, jotta tuoreessa checkoutissa on natiivi määritys ilman, että generaattoria tarvitsee ajaa ensin. Kun poistat lähteen, poista sen vanhentuneet generoidut tulosteet erikseen; validaattori raportoi ne eikä poista tiedostoja hiljaisesti.
 
-### Context7 (kirjastodokumentaatio)
+## Natiivit löytöpolut
 
-Ajantasaista dokumentaatiota kirjastoista.
+Tarkistettu virallista dokumentaatiota vasten 2026-09-12:
 
-```bash
-npx skills add https://github.com/intellectronica/agent-skills --skill context7
-```
+| Sovellus    | Projektin ohjeet                                                                                      | Tämän repon käyttämät taidot               | Tämän repon käyttämät mukautetut agentit |
+| ----------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------ | ---------------------------------------- |
+| Codex       | `AGENTS.md`                                                                                           | `.agents/skills/<name>/SKILL.md`           | Generoitu `.codex/agents/<name>.toml`    |
+| Cursor      | `AGENTS.md`; `.cursor/rules/*.mdc` on edelleen käytettävissä Cursor-kohtaisiin ehdollisiin sääntöihin | `.agents/skills/<name>/SKILL.md`           | Generoitu `.cursor/agents/<name>.md`     |
+| Claude Code | `CLAUDE.md` tuo tiedoston `@AGENTS.md`                                                                | Generoitu `.claude/skills/<name>/SKILL.md` | Generoitu `.claude/agents/<name>.md`     |
 
-### Playwright CLI
+Lähteet: [Codexin taidot](https://learn.chatgpt.com/docs/build-skills), [Codexin aliagentit](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Cursorin säännöt](https://cursor.com/docs/rules), [Cursorin taidot](https://cursor.com/docs/skills), [Cursorin aliagentit](https://cursor.com/docs/subagents), [Clauden muisti](https://code.claude.com/docs/en/memory), [Clauden taidot](https://code.claude.com/docs/en/skills), [Clauden aliagentit](https://code.claude.com/docs/en/sub-agents).
 
-Käytä selainautomaatioon työkalua `playwright-cli` (navigointi, vuorovaikutus, kuvakaappaukset, testit, sisällön poiminta).
+Älä korvaa natiiveja agenttihakemistoja hakemistolla `.agents/roles` äläkä oleta, että Claude löytää hakemiston `.agents/skills`. Claude voi silti lukea sieltä tiedoston, johon viitataan, tavallisena projektikontekstina. Cursor löytää yhteensopivuussyistä myös hakemiston `.claude/skills`; kopiot pysyvät synkronoituina, mutta Cursorin julkaistu taito-opas ei määrittele, poistetaanko kaksoiskappaleet näiden juurien välillä. Tarkista asennetun sovelluksen taitokatalogi sen sijaan, että lupaisit, ettei päällekkäisiä merkintöjä voi ilmetä.
 
-Kun tarkistat repon käyttöliittymää työkalulla `playwright-cli`, älä lopeta yhteen moottoriin. Aja olennainen kulku kaikissa kolmessa pääselainmoottorissa:
+Tekoälyhakemistot käyttävät `.gitattributes`-tiedoston kautta LF-rivinvaihtoja, jotta generoitu teksti pysyy identtisenä eri alustoilla. Taitojen tukitiedostot kopioidaan tavuina.
 
-- `chrome` Blinkiä varten
-- `firefox` Geckoa varten
-- `webkit` Safari/WebKit-kattavuutta varten
+## Taidot
 
-Käytä moottorikohtaisia nimettyjä istuntoja, jotta todisteet pysyvät erillään, mutta aja istunnot peräkkäin. Vain yksi Playwright-selainistunto saa olla kerrallaan käynnissä koko koneella, koska kilpailtu resurssi on koneen muisti ja suoritin eikä repo. Avaa ja sulje istunnot skriptillä `./scripts/pw-session.sh`; se pitää hallussaan tuota jaettua lukkoa, jotta rinnakkaiset agentit lykkäävät selaintyötään ja yrittävät myöhemmin uudelleen sen sijaan, että kuormittaisivat koneen täyteen. Jos jokin moottori jätetään tarkoituksella väliin, kirjaa syy.
+| Taito                                | Tarkoitus                                                                                                 |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| `commit`                             | Luo valtuutettuja, rajattuja paikallisia committeja                                                       |
+| `commit-format`, `issue-format`      | Muotoile ehdotuksia pyydettäessä                                                                          |
+| `make-closed-issue`                  | Luo valtuutettu issue, rajattu commit ja PR                                                               |
+| `review-and-merge-pr`                | Käy läpi PR-palaute; korjaa, julkaise tai yhdistä vain pyydetyn rajauksen puitteissa                      |
+| `fix-merge-conflicts`                | Ratkaise konfliktit ja varmista yhdistetty tulos                                                          |
+| `release`                            | Valmistele julkaisun sanamuoto ja suorita valtuutetut julkaisuvaiheet                                     |
+| `code-quality-review`                | Katselmoi ei-triviaalit diffit tai nimenomaisesti pyydetty laatuhuoli                                     |
+| `retro`                              | Muuta osoitetut virheet kohdennetuiksi tarkistuksiksi tai ohjeiksi, jotka estävät niiden toistumisen      |
+| `refactor-pass`, `deslop`            | Olemassa olevien muutosten pyydetty siistiminen                                                           |
+| `debug-agent`                        | Näyttöön perustuva virheenjäljitys, tarvittaessa instrumentoinnin avulla                                  |
+| `you-might-not-need-an-effect`       | Kohdennettu efektien ja memojen katselmointi                                                              |
+| `vercel-react-best-practices`        | Soveltuva React-suorituskykyohjeistus; ohita Next.js- ja palvelinkohtaiset säännöt tässä Vite-asiakkaassa |
+| `translate`                          | Generoi käännökset ja vie sitten kartat yhden kirjoittajan kautta                                         |
+| `playwright-cli`, `inspect-elements` | Selaintarkistus ja DOM-elementtien yhdistäminen lähdekoodiin                                              |
+| `profile-browsing`                   | Rajattu selain- ja React-profilointi                                                                      |
+| `test-apk`                           | Varmista toimitettu Android-kumppanikääre                                                                 |
+| `impeccable`, `improve-threejs`      | Rajattu käyttöliittymäsuunnittelu ja Three.js-renderöinnin katselmointi                                   |
+| `implement-plan`                     | Toteuta suunnitelma, valinnaisesti rajatulla delegoinnilla                                                |
+| `readme`                             | Ylläpidä varmennettua projektidokumentaatiota                                                             |
+| `context7`                           | Hae versioon sopivaa kirjastodokumentaatiota                                                              |
+| `find-skills`                        | Etsi lisää taitoja, kun sitä nimenomaisesti pyydetään                                                     |
 
-Käytä iterointivaiheessa vain Chromea/Blinkiä. Aja koko Chrome-, Firefox- ja WebKit-sarja, kun muutos on valmis lopulliseen varmistukseen. Käytä kutakin moottori-istuntoa uudelleen sekä työpöytä- että mobiilinäkymään muuttamalla ikkunan kokoa, sulje istunto finally-tyylisessä siivouksessa ja avaa vasta sitten seuraava moottori.
+## Roolit ja mallit
 
-```bash
-./scripts/pw-session.sh open verify-chrome https://bitsocial.localhost --browser=chrome
-playwright-cli -s=verify-chrome snapshot
-./scripts/pw-session.sh close verify-chrome
-```
+Säilytä mukautetut roolit `browser-check`, `profiler`, `test-apk`, `translator` ja `reviewer`. Käytä tavalliseen toteutukseen ja koodin kartoitukseen ajoympäristön sisäänrakennettua worker-/general-purpose- tai explorer-roolia. Pääagentti määrittää hyväksymisehdot ja omistajuuden; yksi omistaja ajaa raskaat tarkistukset.
 
-Kun paikka on varattu, `open` päättyy koodiin 75; odota tällöin komennolla `./scripts/pw-session.sh open --wait[=SECONDS] ...` (oletuksena 300 s) sen sijaan, että yrittäisit uudelleen käsin. Keskeytyneen työnkulun jättämä lukko vapautuu automaattisesti, koska `open` vapauttaa jokaisen paikan, jonka kirjattu selain ei ole enää käynnissä. Tarkastele paikan haltijaa komennolla `./scripts/pw-session.sh status`; `release <session>` on viimeinen keino niihin harvinaisiin tapauksiin, joissa `status` ei pysty varmistamaan selaimen tilaa.
+Codexin agenttitiedostot sisältävät kentät `name`, `description` ja `developer_instructions`. `.codex/config.toml` rajaa samanaikaiset aliagentit neljään asetuksella `max_concurrent_threads_per_session`. Jaetut roolimetatiedot sisältävät nimen, kuvauksen ja valinnaisen hiekkalaatikkotilan; niissä ei tarkoituksella ole mallikenttiä.
 
-```bash
-npm install -g @playwright/cli@latest
-playwright-cli install --skills
-```
+Jätä malli- ja päättelykentät pois versionhallintaan tallennetuista taidoista ja mukautetuista agenteista kaikissa kolmessa sovelluksessa. Näin ajonaikaiset kutsuvalinnat, käyttäjän oletukset ja periytyminen pääagentilta toimivat kunkin sovelluksen dokumentoidun etusijajärjestyksen mukaisesti. Clauden malliperheiden aliakset vähentävät versioiden ylläpitoa, mutta valitsevat silti perheen; versioitu Cursor-malli vaatii päivityksiä tulevaisuudessa. Pidä tällaiset valinnat tarvittaessa käyttäjä- tai istuntoasetuksissa. Periytyminen ei lupaa, että paras nykyinen malli valitaan automaattisesti. Älä keksi `latest`-aliasta äläkä lisää mallikatalogin selvittämistä rutiinitehtäviin. Katso [Codexin mallivalinta](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Clauden mallivalinta](https://code.claude.com/docs/en/sub-agents#choose-a-model) ja [Cursorin mallivalinta](https://cursor.com/docs/subagents#model-configuration).
 
-Taitojen asennuspaikat:
+`sandbox-mode: read-only` vastaa Codexin hiekkalaatikkoa ja Cursorin asetusta `readonly`; Clauden työkalulista ja roolin ohjeet rajoittavat sen katselmointityönkulkua, mutta Bash-pääsy ei ole käyttöjärjestelmätason hiekkalaatikko.
 
-- `.cursor/skills/playwright-cli/`
-- `.claude/skills/playwright-cli/`
+Jaettujen taitojen frontmatter käyttää soveltuvin osin asetusta `disable-model-invocation: true` käyttäjän käynnistämissä työnkuluissa. Codexin vastaava asetus on tiedostossa `agents/openai.yaml` muodossa `policy.allow_implicit_invocation: false`; validaattori vaatii molemmat. Kutsumetatiedot täydentävät nimenomaisia valtuutussääntöjä; katselmointipyyntö ei koskaan valtuuta julkaisemaan pelkästään siksi, että taito sisältää julkaisuvaiheita.
 
-### Vercel React Best Practices
+## Tarkistukset ja löytäminen
 
-Syvempää React- ja Next-suorituskykyohjeistusta.
+- `yarn ai-workflow:sync` generoi yhteensopivuustulosteet uudelleen asennettujen pakettien `js-yaml` ja `smol-toml` avulla.
+- `yarn ai-workflow:check` jäsentää lähteet, frontmatterin ja asetustiedostot sekä tarkistaa generoidut tulosteet, kutsumetatiedot, mallikenttien sijoittelun ja pelkkää muotoilua tekevän koukun kytkennät. Se ei tarkista mallitunnisteita palveluntarjoajan katalogia vasten.
+- `yarn ai-workflow:test` ajaa eristettyjä Node-fixtureja koukkujen hyötykuormille sekä työnkulun generoinnille ja validoinnille.
+- Kun päivität agenttisovelluksen, varmista taitojen ja roolien löytyminen kyseisessä sovelluksessa. Syntaksi- ja vastaavuustarkistukset eivät korvaa lataajan tarkistusta. Lataa sovellus uudelleen, jos olemassa oleva istunto säilyttää vanhan katalogin.
+- Koukut edellyttävät, että ajoympäristö luottaa projektiin ja että koukut on katselmoitu; älä ohita luottamusta saadaksesi tarkistuksen läpi. Katso [hooks-setup.md](hooks-setup.md).
 
-```bash
-npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-react-best-practices
-```
+## Hyödyllisten ohjeiden ylläpito
 
-### Find Skills
+Noudata [OpenAI:n taito- ja kehoteohjeistusta](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra) (tarkistettu 2026-09-12): pidä kuvaukset täsmällisinä, lataa yksityiskohdat vain, kun ne ovat olennaisia, ja säilytä käyttäjän pyytämä rajaus. Jaetut taidot palvelevat eri malleja; säilytä projektikohtaiset invariantit, mutta salli rutiininomaiset toteutusvalinnat.
 
-Löydä ja asenna taitoja avoimesta ekosysteemistä.
+Pidä taidon tarkoitus, päätösrajat ja olennaiset rajoitteet tiedostossa `SKILL.md`. Linkitä laajat tilakohtaiset komennot tai esimerkit valinnaisina viitteinä. Sijoita laukaisuehdot lyhyiden kuvausten alkuun; pelkkä osuva avainsana ei saa laajentaa tehtävää. Säilytä olemassa olevat kutsumetatiedot, ellei niiden toimintaa ole tarkoitus muuttaa.
 
-```bash
-npx skills add https://github.com/vercel-labs/skills --skill find-skills
-```
+Kokeile merkittävän ohjemuutoksen jälkeen muutamaa edustavaa pientä ja suurta pyyntöä. Tarkista, mitkä taidot ja viitteet valittiin, pysyivätkö toimet rajauksen sisällä, vastasiko varmistus muutosta ja valmistuiko valtuutettu työ. Skeema- ja fixture-testit osoittavat työkalujen oikeellisuuden, eivät agentin päätöksenteon laatua.
 
-## MCP-linjauksen perustelut
+## Työkalut ja selainten omistajuus
 
-Vältä tässä projektissa GitHub MCP:tä ja selain-MCP-palvelimia, koska ne kasvattavat työkaluskeemojen ja kontekstin kuormaa merkittävästi.
+Suosi olemassa olevaa taito- ja työkalukatalogia sekä projektiin asennettuja komentorivityökaluja. Käytä GitHubiin työkalua `gh`, selaintarkistukseen työkalua `playwright-cli` ja virallista, versiokohtaista dokumentaatiota, kun kirjaston toiminnalla on merkitystä. Vältä päällekkäisten taitojen asentamista tai kiinnittämättömän paketin hakemista pelkästään olemassa olevan muotoilijan ajamiseksi.
 
-- GitHub-operaatiot: käytä työkalua `gh`.
-- Selainoperaatiot: käytä työkalua `playwright-cli`.
+MCP:n aiheuttama kuorma riippuu ajoympäristöstä: viivästetty työkalujen lataus voi välttää jokaisen skeeman lataamisen etukäteen. Pidä integraatiot olennaisina sen sijaan, että pitäisit MCP:tä itsessään vanhentuneena. Nykyiset komentorivityökaluvalinnat ovat edelleen hyödyllisiä toistettavuuden ja resurssien hallinnan kannalta.
 
-## Mallien saatavuus
-
-- `composer-2` on saatavilla vain Cursorissa. Älä määritä sitä hakemistoihin `.claude/` tai `.codex/`.
-- Codex ei dokumentoi `latest`-mallialiasta. Versionhallintaan tallennetut mukautettujen agenttien TOML-tiedostot polussa `.codex/**/agents/*.toml` jättävät pois sekä avaimen `model` että avaimen `model_reasoning_effort`, jotta ne perivät nykyisen pääistunnon asetukset.
+Kaikki selainistunnot käyttävät skriptiä `./scripts/pw-session.sh`, joka sallii koko koneella vain yhden aktiivisen selaimen. Käytä oletuksena tuoretta, eristettyä istuntoa. Pääsy käyttäjän nykyiseen henkilökohtaiseen selaimeen vaatii nimenomaisen valtuutuksen; käytä tätä valtuutusta uudelleen seuraavissa vaiheissa. Valitse selaimet ja näkymäkoot muuttuneen toiminnan mukaan, aja valitut moottorit peräkkäin, sulje täsmälleen nimetty istunto siivousvaiheessa äläkä koskaan käytä komentoja `close-all`/`kill-all`. Katso `playwright-cli`-taito ja [verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md).

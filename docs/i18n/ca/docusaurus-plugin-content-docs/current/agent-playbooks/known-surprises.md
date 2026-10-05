@@ -188,12 +188,28 @@ Si teniu dubtes, pregunteu-ho al desenvolupador abans d'afegir una entrada.
 - **Mitigació:** a qualsevol pàgina de documentació que no estigui replicada a `docs/i18n/**`, feu servir enllaços relatius a l'arrel (`/peer-to-peer-protocol/`, `/apps/5chan/`) en lloc d'enllaços relatius `.md`; Docusaurus hi afegeix el prefix de l'idioma automàticament. `docs/build-your-own-client.md` n'és l'exemple existent. Executeu un `yarn docs:build` complet, no només `build:verify`, abans de lliurar cap canvi que afegeixi o enllaci una pàgina de documentació.
 - **Estat:** confirmat
 
-### `update-translations.js` s'ha d'executar des d'`about/`, i les execucions concurrents perden claus en silenci
+### Les execucions concurrents de `update-translations.js` perden claus en silenci
 
 - **Data:** 2026-08-02
 - **Observat per:** Claude
 - **Context:** aplicació de 26 claus d'i18next traduïdes als 36 idiomes mitjançant la skill `translate`
-- **Què va sorprendre:** dos paranys diferents al mateix script. Primer, `scripts/update-translations.js` resol el seu objectiu com a `path.join(process.cwd(), "public", "translations")`, però aquest repositori manté les traduccions a `about/public/translations`. Executar l'ordre documentada des de l'arrel del repositori falla a cada invocació amb «Translations directory not found»: `docs/agent-playbooks/translations.md` mostra `node scripts/update-translations.js ...`, cosa que es llegeix com una ordre per executar des de l'arrel del repositori. Segon, cada invocació és una lectura-modificació-escriptura sobre els 36 fitxers d'idioma, de manera que dues invocacions simultànies s'esclafen mútuament i una clau desapareix sense cap error. La skill `translate` indica explícitament que es generin fins a 4 subagents concurrents, i cadascun cridaria l'script.
-- **Impacte:** la forma des de l'arrel del repositori falla de manera sorollosa i malbarata una passada sencera. El problema de concurrència falla en silenci: desapareixen claus d'idiomes arbitraris i el diff continua semblant plausible.
-- **Mitigació:** executeu-lo com a `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. No deixeu mai que els subagents traductors escriguin fitxers d'idioma de manera concurrent: feu que només emetin fitxers JSON de diccionari i després apliqueu totes les claus de manera seriada des de l'agent pare. Un cop aplicades, verifiqueu programàticament que cada clau existeix als 35 idiomes que no són l'anglès i que cap valor no és idèntic byte a byte a l'original en anglès.
+- **Què va sorprendre:** cada invocació és una lectura-modificació-escriptura sobre els 36 fitxers d'idioma, de manera que dues invocacions simultànies s'esclafen mútuament i una clau desapareix sense cap error. La skill `translate` indica explícitament que es generin fins a 4 subagents concurrents, i cadascun cridaria l'script.
+- **Impacte:** falla en silenci: desapareixen claus d'idiomes arbitraris i el diff continua semblant plausible.
+- **Mitigació:** no deixeu mai que els subagents traductors escriguin fitxers d'idioma de manera concurrent: feu que només emetin fitxers JSON de diccionari i després apliqueu totes les claus de manera seriada des de l'agent pare. Un cop aplicades, verifiqueu programàticament que cada clau existeix als 35 idiomes que no són l'anglès i que cap valor no és idèntic byte a byte a l'original en anglès.
+- **Estat:** confirmat
+- **Actualització (2026-08-10):** abans, l'script també resolia el seu objectiu com a `path.join(process.cwd(), "public", "translations")`, de manera que l'ordre documentada des de l'arrel del repositori fallava amb «Translations directory not found» i s'havia d'executar des d'`about/`. Ara resol el workspace a partir del directori actual o de la seva pròpia ubicació, i funciona des de qualsevol lloc. El parany de concurrència descrit més amunt no ha canviat.
+
+### Els controls d'anotació de desenvolupament poden interceptar clics automatitzats
+
+- **Context:** els llocs about i chain tenen controls fixos a la cantonada inferior dreta, on en desenvolupament també apareix la barra d'eines d'Agentation.
+- **Mitigació:** `scripts/pw-session.sh open` registra `window.__NO_DEV_TOOLBAR__ = true` abans de recarregar la pàgina. L'inicialitzador d'Agentation també respecta `__VISUAL_TESTING__` i `__PROFILING__`; la inspecció del codi font continua disponible de manera independent. L'automatització directa del navegador ha d'establir el mateix indicador abans de carregar l'aplicació.
+
+### `skills add` instal·la les còpies de Codex i Cursor al directori `.agents/`, ignorat per git
+
+- **Data:** 2026-08-18
+- **Observat per:** Tommaso + Claude
+- **Context:** instal·lació de la skill `improve-threejs` des de `millionco/react-doctor` amb la CLI `skills` (`vercel-labs/skills`).
+- **Què va sorprendre:** `npx skills add <repo> --skill <name> --agent codex` i `--agent cursor` escriuen tots dos a `.agents/skills/<name>/`, no a `.codex/skills/` ni a `.cursor/skills/`. `AGENTS.md` prohibeix un directori `.agents/` a nivell de repositori i `.gitignore:29` l'ignora, de manera que totes dues còpies queden fora del control de versions en silenci. Només `--agent claude-code` escriu a l'esperat `.claude/skills/`. A més, la forma documentada separada per comes (`--agent claude-code,codex,cursor`) falla amb «Invalid agents» i no instal·la res, tot i que cada nom és vàlid per separat.
+- **Impacte:** la instal·lació informa d'èxit mentre dues de les tres còpies de les eines acaben en un lloc que no es confirmarà mai, de manera que Codex i Cursor es queden sense la skill després d'un clon nou sense que ningú se n'adoni. La forma amb comes també pot produir una instal·lació buida que sembla un èxit.
+- **Mitigació actual:** ara el repositori versiona `.agents/skills` com a font canònica i genera les còpies per a Claude amb `yarn ai-workflow:sync`. S'han eliminat l'antiga prohibició de `.agents` i la regla que l'ignorava. No copieu skills noves a tres arrels independents; després d'afegir una skill, comproveu la paritat del que s'ha generat i el catàleg de l'aplicació.
 - **Estat:** confirmat

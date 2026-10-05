@@ -188,12 +188,28 @@ Si tiene dudas, consulte con el desarrollador antes de añadir una entrada.
 - **Mitigación:** En cualquier página de documentación que no esté replicada en `docs/i18n/**`, use enlaces relativos a la raíz (`/peer-to-peer-protocol/`, `/apps/5chan/`) en lugar de enlaces relativos a archivos `.md`; Docusaurus les añade el prefijo de idioma automáticamente. `docs/build-your-own-client.md` es el ejemplo existente. Ejecute un `yarn docs:build` completo, no solo `build:verify`, antes de entregar cualquier cambio que añada o enlace una página de documentación.
 - **Estado:** confirmado
 
-### `update-translations.js` debe ejecutarse desde `about/`, y las ejecuciones simultáneas pierden claves sin avisar
+### Las ejecuciones simultáneas de `update-translations.js` pierden claves sin avisar
 
 - **Fecha:** 2026-08-02
 - **Observado por:** Claude
 - **Contexto:** Aplicación de 26 claves i18next traducidas a los 36 idiomas mediante la skill `translate`
-- **Qué resultó sorprendente:** Dos trampas distintas en el mismo script. Primera: `scripts/update-translations.js` resuelve su destino como `path.join(process.cwd(), "public", "translations")`, pero este repositorio guarda las traducciones en `about/public/translations`. Ejecutar el comando documentado desde la raíz del repositorio falla siempre con "Translations directory not found"; `docs/agent-playbooks/translations.md` muestra `node scripts/update-translations.js ...`, que se lee como un comando de la raíz del repositorio. Segunda: cada invocación es una lectura-modificación-escritura sobre los 36 archivos de idioma, así que dos invocaciones simultáneas se pisan entre sí y una clave desaparece sin ningún error. La skill `translate` indica explícitamente que se lancen hasta 4 subagentes en paralelo, y cada uno llamaría al script.
-- **Impacto:** La forma ejecutada desde la raíz falla de manera ruidosa y desperdicia una pasada completa. El problema de concurrencia falla en silencio: hay claves que desaparecen de idiomas arbitrarios y el diff sigue pareciendo plausible.
-- **Mitigación:** Ejecútelo como `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. No deje nunca que los subagentes traductores escriban archivos de idioma de forma simultánea: haga que solo emitan archivos JSON de diccionario y aplique después cada clave en serie desde el agente padre. Tras aplicarlas, verifique por programa que cada clave existe en los 35 idiomas distintos del inglés y que ningún valor es idéntico byte a byte al original en inglés.
+- **Qué resultó sorprendente:** Cada invocación es una lectura-modificación-escritura sobre los 36 archivos de idioma, así que dos invocaciones simultáneas se pisan entre sí y una clave desaparece sin ningún error. La skill `translate` indica explícitamente que se lancen hasta 4 subagentes en paralelo, y cada uno llamaría al script.
+- **Impacto:** Falla en silencio: hay claves que desaparecen de idiomas arbitrarios y el diff sigue pareciendo plausible.
+- **Mitigación:** No deje nunca que los subagentes traductores escriban archivos de idioma de forma simultánea: haga que solo emitan archivos JSON de diccionario y aplique después cada clave en serie desde el agente padre. Tras aplicarlas, verifique por programa que cada clave existe en los 35 idiomas distintos del inglés y que ningún valor es idéntico byte a byte al original en inglés.
+- **Estado:** confirmado
+- **Actualización (2026-08-10):** Antes, el script también resolvía su destino como `path.join(process.cwd(), "public", "translations")`, por lo que el comando documentado desde la raíz del repositorio fallaba con "Translations directory not found" y había que ejecutarlo desde `about/`. Ahora resuelve el workspace a partir del directorio actual o de su propia ubicación, y funciona desde cualquier sitio. La trampa de concurrencia descrita arriba no ha cambiado.
+
+### Los controles de anotación de desarrollo pueden interceptar clics automatizados
+
+- **Contexto:** Los sitios about y chain tienen controles fijos en la esquina inferior derecha, donde en desarrollo también aparece la barra de herramientas de Agentation.
+- **Mitigación:** `scripts/pw-session.sh open` registra `window.__NO_DEV_TOOLBAR__ = true` antes de recargar la página. El inicializador de Agentation también respeta `__VISUAL_TESTING__` y `__PROFILING__`; la inspección del código fuente sigue disponible de forma independiente. La automatización directa del navegador debe establecer el mismo indicador antes de cargar la aplicación.
+
+### `skills add` instala las copias de Codex y Cursor en el directorio `.agents/`, ignorado por git
+
+- **Fecha:** 2026-08-18
+- **Observado por:** Tommaso + Claude
+- **Contexto:** Instalación de la skill `improve-threejs` desde `millionco/react-doctor` con la CLI `skills` (`vercel-labs/skills`).
+- **Qué resultó sorprendente:** `npx skills add <repo> --skill <name> --agent codex` y `--agent cursor` escriben ambos en `.agents/skills/<name>/`, no en `.codex/skills/` ni en `.cursor/skills/`. `AGENTS.md` prohíbe un directorio `.agents/` a nivel de repositorio y `.gitignore:29` lo ignora, así que ambas copias quedan fuera del control de versiones sin avisar. Solo `--agent claude-code` escribe en el `.claude/skills/` esperado. Por otro lado, la forma documentada separada por comas (`--agent claude-code,codex,cursor`) falla con "Invalid agents" y no instala nada, aunque cada nombre sea válido por separado.
+- **Impacto:** La instalación informa de éxito mientras dos de las tres copias de las herramientas acaban en un lugar que nunca se confirmará, de modo que Codex y Cursor se quedan sin la skill tras un clon nuevo sin que nadie lo note. La forma con comas también puede producir una instalación vacía que parece un éxito.
+- **Mitigación actual:** El repositorio ahora versiona `.agents/skills` como fuente canónica y genera las copias para Claude con `yarn ai-workflow:sync`. Se han eliminado la antigua prohibición de `.agents` y la regla que lo ignoraba. No copie skills nuevas en tres raíces independientes; después de añadir una skill, compruebe la paridad de lo generado y el catálogo de la aplicación.
 - **Estado:** confirmado

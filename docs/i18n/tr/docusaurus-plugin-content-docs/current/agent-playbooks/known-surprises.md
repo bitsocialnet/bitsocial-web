@@ -188,12 +188,28 @@ Emin değilseniz, kayıt eklemeden önce geliştiriciye danışın.
 - **Önlem:** `docs/i18n/**` içine yansıtılmayan her belge sayfasında, göreli `.md` bağlantıları yerine köke göreli bağlantılar (`/peer-to-peer-protocol/`, `/apps/5chan/`) kullanın; Docusaurus bunların başına yerel ayarı kendiliğinden ekler. Mevcut örnek `docs/build-your-own-client.md` dosyasıdır. Bir belge sayfası ekleyen ya da böyle bir sayfaya bağlantı veren her değişikliği teslim etmeden önce, yalnızca `build:verify` değil tam bir `yarn docs:build` çalıştırın.
 - **Durum:** onaylandı
 
-### `update-translations.js` `about/` dizininden çalıştırılmalıdır ve eşzamanlı çalıştırmalar anahtarları sessizce kaybeder
+### Eşzamanlı `update-translations.js` çalıştırmaları anahtarları sessizce kaybeder
 
 - **Tarih:** 2026-08-02
 - **Gözlemleyen:** Claude
 - **Bağlam:** `translate` becerisi aracılığıyla 26 çevrilmiş i18next anahtarının 36 yerel ayarın tamamına uygulanması
-- **Şaşırtıcı olan:** Aynı betikte birbirinden ayrı iki tuzak. Birincisi, `scripts/update-translations.js` hedefini `path.join(process.cwd(), "public", "translations")` olarak çözümlüyor, ama bu depo çevirileri `about/public/translations` altında tutuyor. Belgelenen komutu depo kökünden çalıştırmak her seferinde "Translations directory not found" hatasıyla başarısız oluyor — `docs/agent-playbooks/translations.md` dosyası `node scripts/update-translations.js ...` gösteriyor ve bu, depo kökünde çalıştırılacak bir komut gibi okunuyor. İkincisi, her çağrı 36 yerel ayar dosyasının tamamı üzerinde bir oku-değiştir-yaz döngüsü olduğundan, aynı anda çalışan iki çağrı birbirinin üzerine yazıyor ve bir anahtar hiçbir hata vermeden kayboluyor. `translate` becerisi ise aynı anda 4 alt ajana kadar üretmeyi açıkça söylüyor ve bunların her biri betiği çağıracaktı.
-- **Etki:** Depo kökü biçimi gürültülü biçimde başarısız oluyor ve tam bir turu boşa harcıyor. Eşzamanlılık sorunu ise sessizce başarısız oluyor: anahtarlar rastgele yerel ayarlardan kayboluyor ve diff yine de makul görünüyor.
-- **Önlem:** Komutu şu biçimde çalıştırın: `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Çevirmen alt ajanların yerel ayar dosyalarını eşzamanlı olarak yazmasına asla izin vermeyin — yalnızca sözlük JSON dosyaları üretsinler, ardından her anahtarı üst ajandan sırayla uygulayın. Uyguladıktan sonra, her anahtarın İngilizce dışındaki 35 yerel ayarın tamamında bulunduğunu ve hiçbir değerin İngilizce kaynakla bayt bayt aynı olmadığını programatik olarak doğrulayın.
+- **Şaşırtıcı olan:** Her çağrı 36 yerel ayar dosyasının tamamı üzerinde bir oku-değiştir-yaz döngüsü olduğundan, aynı anda çalışan iki çağrı birbirinin üzerine yazıyor ve bir anahtar hiçbir hata vermeden kayboluyor. `translate` becerisi ise aynı anda 4 alt ajana kadar üretmeyi açıkça söylüyor ve bunların her biri betiği çağıracaktı.
+- **Etki:** Sessizce başarısız oluyor: anahtarlar rastgele yerel ayarlardan kayboluyor ve diff yine de makul görünüyor.
+- **Önlem:** Çevirmen alt ajanların yerel ayar dosyalarını eşzamanlı olarak yazmasına asla izin vermeyin — yalnızca sözlük JSON dosyaları üretsinler, ardından her anahtarı üst ajandan sırayla uygulayın. Uyguladıktan sonra, her anahtarın İngilizce dışındaki 35 yerel ayarın tamamında bulunduğunu ve hiçbir değerin İngilizce kaynakla bayt bayt aynı olmadığını programatik olarak doğrulayın.
+- **Durum:** onaylandı
+- **Güncelleme (2026-08-10):** Betik eskiden ayrıca hedefini `path.join(process.cwd(), "public", "translations")` olarak çözümlüyordu; bu yüzden belgelenen depo kökü komutu "Translations directory not found" hatasıyla başarısız oluyor ve komutun `about/` dizininden çalıştırılması gerekiyordu. Betik artık çalışma alanını geçerli dizinden veya kendi konumundan çözümlüyor ve her yerden çalışıyor. Yukarıdaki eşzamanlılık tuzağı değişmedi.
+
+### Geliştirme ortamındaki açıklama ekleme kontrolleri, otomasyonla yapılan tıklamaları yakalayabilir
+
+- **Bağlam:** About ve chain sitelerinin sağ alt köşesinde, geliştirme ortamında Agentation araç çubuğunun da göründüğü yerde sabit kontroller bulunuyor.
+- **Önlem:** `scripts/pw-session.sh open`, sayfayı yeniden yüklemeden önce `window.__NO_DEV_TOOLBAR__ = true` değerini kaydeder. Agentation başlatıcısı `__VISUAL_TESTING__` ve `__PROFILING__` bayraklarını da dikkate alır; kaynak inceleme bundan bağımsız olarak kullanılabilir kalır. Doğrudan tarayıcı otomasyonu, uygulamayı yüklemeden önce aynı bayrağı ayarlamalıdır.
+
+### `skills add`, Codex ve Cursor kopyalarını gitignore ile yok sayılan `.agents/` dizinine kurar
+
+- **Tarih:** 2026-08-18
+- **Gözlemleyen:** Tommaso + Claude
+- **Bağlam:** `improve-threejs` becerisinin `millionco/react-doctor` deposundan `skills` CLI'ı (`vercel-labs/skills`) ile kurulması.
+- **Şaşırtıcı olan:** `npx skills add <repo> --skill <name> --agent codex` ve `--agent cursor` komutlarının ikisi de `.codex/skills/` veya `.cursor/skills/` yerine `.agents/skills/<name>/` dizinine yazıyor. `AGENTS.md` depo düzeyinde bir `.agents/` dizinini yasaklıyor ve `.gitignore:29` bu dizini yok sayıyor; bu yüzden iki kopya da sessizce takip dışı kalıyor. Beklenen `.claude/skills/` dizinine yalnızca `--agent claude-code` yazıyor. Ayrıca belgelenen virgülle ayrılmış biçim (`--agent claude-code,codex,cursor`), her ad tek başına geçerli olsa da "Invalid agents" hatasıyla başarısız oluyor ve hiçbir şey kurmuyor.
+- **Etki:** Kurulum başarılı olduğunu bildirirken üç araç zinciri kopyasından ikisi hiçbir zaman işlenmeyecek bir yere düşüyor; bu yüzden yeni bir klonlamadan sonra Codex ve Cursor'da beceri sessizce eksik kalıyor. Virgüllü biçim de başarılı gibi görünen ama hiçbir şey yapmayan bir kurulum üretebiliyor.
+- **Güncel önlem:** Depo artık `.agents/skills` dizinini kanonik kaynağı olarak takip ediyor ve Claude kopyalarını `yarn ai-workflow:sync` ile üretiyor. Eski `.agents` yasağı ve yok sayma kuralı kaldırıldı. Yeni becerileri birbirinden bağımsız üç köke kopyalamayın; bir beceri ekledikten sonra üretilen kopyaların denkliğini ve uygulama kataloğunu kontrol edin.
 - **Durum:** onaylandı

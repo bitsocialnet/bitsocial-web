@@ -1,6 +1,6 @@
 ---
 title: Spam Blocker
-description: Centralized spam detection service with risk scoring, OAuth challenges, and configurable tier thresholds.
+description: जोखिम स्कोरिंग, OAuth चुनौतियों और कॉन्फ़िगर करने योग्य टियर सीमाओं वाली केंद्रीकृत स्पैम पहचान सेवा।
 sidebar_position: 1
 ---
 

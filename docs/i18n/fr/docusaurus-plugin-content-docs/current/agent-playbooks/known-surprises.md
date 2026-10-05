@@ -188,12 +188,28 @@ En cas de doute, demandez au développeur avant d'ajouter une entrée.
 - **Atténuation :** Dans toute page de documentation qui n'est pas répliquée dans `docs/i18n/**`, utilisez des liens relatifs à la racine (`/peer-to-peer-protocol/`, `/apps/5chan/`) plutôt que des liens `.md` relatifs ; Docusaurus les préfixe automatiquement avec la locale. `docs/build-your-own-client.md` en est l'exemple existant. Lancez un `yarn docs:build` complet — et pas seulement `build:verify` — avant de livrer tout changement qui ajoute une page de documentation ou en référence une.
 - **Statut :** confirmé
 
-### `update-translations.js` doit être lancé depuis `about/`, et les exécutions concurrentes perdent des clés silencieusement
+### Les exécutions concurrentes de `update-translations.js` perdent des clés silencieusement
 
 - **Date :** 2026-08-02
 - **Observé par :** Claude
 - **Contexte :** Application de 26 clés i18next traduites sur les 36 locales via le skill `translate`
-- **Ce qui a surpris :** Deux pièges distincts dans le même script. D'abord, `scripts/update-translations.js` résout sa cible comme `path.join(process.cwd(), "public", "translations")`, alors que ce dépôt garde les traductions dans `about/public/translations` : lancer la commande documentée depuis la racine du dépôt échoue à chaque invocation avec « Translations directory not found », et `docs/agent-playbooks/translations.md` montre `node scripts/update-translations.js ...`, qui se lit comme une commande à exécuter à la racine. Ensuite, chaque invocation est un cycle lecture-modification-écriture sur les 36 fichiers de locale : deux invocations simultanées s'écrasent mutuellement et une clé disparaît sans la moindre erreur. Or le skill `translate` demande explicitement de lancer jusqu'à 4 sous-agents en parallèle, dont chacun appellerait ce script.
-- **Impact :** La forme lancée depuis la racine du dépôt échoue bruyamment et gâche une passe complète. Le problème de concurrence, lui, échoue en silence : des clés disparaissent de locales arbitraires et le diff garde toute son apparence de plausibilité.
-- **Atténuation :** Lancez-le sous la forme `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Ne laissez jamais des sous-agents traducteurs écrire des fichiers de locale en parallèle : faites-leur produire uniquement des fichiers JSON de dictionnaire, puis appliquez chaque clé en série depuis l'agent parent. Après application, vérifiez par script que chaque clé existe dans les 35 locales non anglaises et qu'aucune valeur n'est identique octet pour octet à la source anglaise.
+- **Ce qui a surpris :** Chaque invocation est un cycle lecture-modification-écriture sur les 36 fichiers de locale : deux invocations simultanées s'écrasent mutuellement et une clé disparaît sans la moindre erreur. Le skill `translate` demande explicitement de lancer jusqu'à 4 sous-agents en parallèle, dont chacun appellerait ce script.
+- **Impact :** L'échec est silencieux : des clés disparaissent de locales arbitraires et le diff garde toute son apparence de plausibilité.
+- **Atténuation :** Ne laissez jamais des sous-agents traducteurs écrire des fichiers de locale en parallèle : faites-leur produire uniquement des fichiers JSON de dictionnaire, puis appliquez chaque clé en série depuis l'agent parent. Après application, vérifiez par script que chaque clé existe dans les 35 locales non anglaises et qu'aucune valeur n'est identique octet pour octet à la source anglaise.
+- **Statut :** confirmé
+- **Mise à jour (2026-08-10) :** Le script résolvait aussi sa cible comme `path.join(process.cwd(), "public", "translations")`, si bien que la commande documentée, lancée depuis la racine du dépôt, échouait avec « Translations directory not found » et devait être exécutée depuis `about/`. Il résout désormais l'espace de travail à partir du répertoire courant ou de son propre emplacement, et fonctionne depuis n'importe où. Le piège de concurrence décrit ci-dessus reste inchangé.
+
+### Les commandes d'annotation de développement peuvent intercepter les clics automatisés
+
+- **Contexte :** Les sites about et chain comportent des commandes fixes dans le coin inférieur droit, là où la barre d'outils Agentation apparaît aussi en développement.
+- **Atténuation :** `scripts/pw-session.sh open` enregistre `window.__NO_DEV_TOOLBAR__ = true` avant de recharger la page. L'initialiseur d'Agentation respecte aussi `__VISUAL_TESTING__` et `__PROFILING__` ; l'inspection du code source reste disponible indépendamment. L'automatisation directe du navigateur doit définir le même indicateur avant de charger l'application.
+
+### `skills add` installe les copies Codex et Cursor dans le répertoire `.agents/` ignoré par Git
+
+- **Date :** 2026-08-18
+- **Observé par :** Tommaso + Claude
+- **Contexte :** Installation du skill `improve-threejs` depuis `millionco/react-doctor` avec la CLI `skills` (`vercel-labs/skills`).
+- **Ce qui a surpris :** `npx skills add <repo> --skill <name> --agent codex` et `--agent cursor` écrivent tous deux dans `.agents/skills/<name>/`, et non dans `.codex/skills/` ou `.cursor/skills/`. `AGENTS.md` interdit un répertoire `.agents/` au niveau du dépôt et `.gitignore:29` l'ignore, si bien que les deux copies restent silencieusement non suivies. Seul `--agent claude-code` écrit dans le `.claude/skills/` attendu. Par ailleurs, la forme documentée séparée par des virgules (`--agent claude-code,codex,cursor`) échoue avec « Invalid agents » et n'installe rien, alors que chaque nom est valide pris isolément.
+- **Impact :** L'installation signale un succès alors que deux des trois copies destinées aux chaînes d'outils atterrissent à un endroit qui ne sera jamais commité ; Codex et Cursor se retrouvent donc silencieusement privés du skill après un clone neuf. La forme avec virgules peut aussi produire une installation sans effet qui passe pour un succès.
+- **Atténuation actuelle :** Le dépôt suit désormais `.agents/skills` comme source canonique et génère les copies Claude avec `yarn ai-workflow:sync`. L'ancienne interdiction de `.agents` et la règle d'exclusion correspondante ont été supprimées. Ne copiez pas de nouveaux skills dans trois racines indépendantes ; après l'ajout d'un skill, vérifiez la parité des fichiers générés et le catalogue de l'application.
 - **Statut :** confirmé

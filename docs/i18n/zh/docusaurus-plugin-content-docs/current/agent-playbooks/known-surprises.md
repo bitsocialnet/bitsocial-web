@@ -188,12 +188,28 @@
 - **缓解措施：** 在任何没有被镜像到 `docs/i18n/**` 的文档页里，使用根相对链接（`/peer-to-peer-protocol/`、`/apps/5chan/`），而不是相对的 `.md` 链接；Docusaurus 会自动为它们加上语言前缀。`docs/build-your-own-client.md` 就是现成的例子。在交付任何新增或链接文档页的改动之前，请运行完整的 `yarn docs:build`，而不只是 `build:verify`。
 - **状态：** 已确认
 
-### `update-translations.js` 必须从 `about/` 目录运行，并发运行还会悄悄丢键
+### 并发运行 `update-translations.js` 会悄悄丢键
 
 - **日期：** 2026-08-02
 - **发现者：** Claude
 - **背景：** 通过 `translate` 技能把 26 个翻译好的 i18next 键应用到全部 36 种语言
-- **意外之处：** 同一个脚本里藏着两个陷阱。第一，`scripts/update-translations.js` 把目标解析为 `path.join(process.cwd(), "public", "translations")`，但本仓库把翻译放在 `about/public/translations`。按文档从仓库根目录运行该命令，每次都会以 "Translations directory not found" 失败 —— `docs/agent-playbooks/translations.md` 里写的是 `node scripts/update-translations.js ...`，读起来就像一条仓库根目录的命令。第二，每次调用都是对全部 36 个语言文件的一次读-改-写，因此两次调用同时运行会互相覆盖，某个键会毫无报错地消失。而 `translate` 技能明确要求最多并发派生 4 个子代理，它们每个都会调用这个脚本。
-- **影响：** 仓库根目录的写法会大声失败，白白浪费一整轮。并发问题则是静默失败：键会从任意语言中消失，而 diff 看上去仍然合理。
-- **缓解措施：** 按 `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write` 的形式运行。绝不要让翻译子代理并发写入语言文件 —— 让它们只输出字典 JSON 文件，然后由父代理串行地逐个应用每个键。应用完成后，用程序化方式验证每个键都存在于全部 35 种非英语语言中，且没有任何值与英文源逐字节相同。
+- **意外之处：** 每次调用都是对全部 36 个语言文件的一次读-改-写，因此两次调用同时运行会互相覆盖，某个键会毫无报错地消失。而 `translate` 技能明确要求最多并发派生 4 个子代理，它们每个都会调用这个脚本。
+- **影响：** 静默失败：键会从任意语言中消失，而 diff 看上去仍然合理。
+- **缓解措施：** 绝不要让翻译子代理并发写入语言文件 —— 让它们只输出字典 JSON 文件，然后由父代理串行地逐个应用每个键。应用完成后，用程序化方式验证每个键都存在于全部 35 种非英语语言中，且没有任何值与英文源逐字节相同。
+- **状态：** 已确认
+- **更新（2026-08-10）：** 这个脚本过去还会把目标解析为 `path.join(process.cwd(), "public", "translations")`，因此文档中从仓库根目录运行的命令会以 "Translations directory not found" 失败，只能在 `about/` 中运行。现在它会从当前目录或脚本自身所在的位置解析工作区，在任何位置都能运行。上面所说的并发陷阱依然存在。
+
+### 开发环境的标注控件可能拦截自动化点击
+
+- **背景：** about 和 chain 站点的右下角有固定控件，而在开发环境中，Agentation 工具栏也出现在那里。
+- **缓解措施：** `scripts/pw-session.sh open` 会在重新加载页面之前注册 `window.__NO_DEV_TOOLBAR__ = true`。Agentation 初始化程序也会遵循 `__VISUAL_TESTING__` 和 `__PROFILING__`；源码检查功能仍可独立使用。直接进行浏览器自动化时，必须在加载应用之前设置同样的标志。
+
+### `skills add` 会把 Codex 和 Cursor 的副本安装到被 gitignore 忽略的 `.agents/` 目录
+
+- **日期：** 2026-08-18
+- **发现者：** Tommaso + Claude
+- **背景：** 使用 `skills` CLI（`vercel-labs/skills`）从 `millionco/react-doctor` 安装 `improve-threejs` 技能。
+- **意外之处：** `npx skills add <repo> --skill <name> --agent codex` 和 `--agent cursor` 都会写入 `.agents/skills/<name>/`，而不是 `.codex/skills/` 或 `.cursor/skills/`。`AGENTS.md` 禁止在仓库层级存在 `.agents/` 目录，而且 `.gitignore:29` 会忽略它，因此这两份副本都会悄悄地处于未跟踪状态。只有 `--agent claude-code` 会写入预期的 `.claude/skills/`。另外，文档中给出的逗号分隔形式（`--agent claude-code,codex,cursor`）会以 "Invalid agents" 失败且什么都不安装，尽管每个名称单独使用时都是有效的。
+- **影响：** 安装报告成功，但三份工具链副本中有两份落在了永远不会被提交的位置，因此在全新克隆之后，Codex 和 Cursor 会悄无声息地缺少该技能。逗号形式也可能产生一次看似成功、实则什么都没做的安装。
+- **当前缓解措施：** 仓库现在把 `.agents/skills` 作为规范源进行跟踪，并通过 `yarn ai-workflow:sync` 生成 Claude 副本。以前对 `.agents` 的禁止规定和忽略规则都已移除。不要把新技能复制到三个彼此独立的根目录；添加技能之后，检查生成结果的一致性以及应用的技能清单。
 - **状态：** 已确认

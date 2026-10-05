@@ -188,12 +188,28 @@ Nëse nuk jeni të sigurt, pyeteni zhvilluesin përpara se të shtoni një zë.
 - **Zbutja:** Në çdo faqe dokumentacioni që nuk pasqyrohet te `docs/i18n/**`, përdorni lidhje relative ndaj rrënjës (`/peer-to-peer-protocol/`, `/apps/5chan/`) në vend të lidhjeve relative me `.md`; Docusaurus u vendos automatikisht gjuhën si prefiks. `docs/build-your-own-client.md` është shembulli ekzistues. Ekzekutoni një `yarn docs:build` të plotë — jo vetëm `build:verify` — përpara se të dorëzoni çfarëdo ndryshimi që shton ose lidh një faqe dokumentacioni.
 - **Statusi:** i konfirmuar
 
-### `update-translations.js` duhet ekzekutuar nga `about/`, dhe ekzekutimet e njëkohshme humbin çelësa në heshtje
+### Ekzekutimet e njëkohshme të `update-translations.js` humbin çelësa në heshtje
 
 - **Data:** 2026-08-02
 - **Vëzhguar nga:** Claude
 - **Konteksti:** Zbatimi i 26 çelësave të përkthyer i18next në të 36 gjuhët përmes aftësisë `translate`
-- **Çfarë ishte befasuese:** Dy kurthe të veçanta në të njëjtin skript. Së pari, `scripts/update-translations.js` e zgjidh objektivin e vet si `path.join(process.cwd(), "public", "translations")`, por kjo depo i mban përkthimet te `about/public/translations`. Ekzekutimi i komandës së dokumentuar nga rrënja e depos dështon në çdo thirrje me "Translations directory not found" — `docs/agent-playbooks/translations.md` tregon `node scripts/update-translations.js ...`, që lexohet si komandë nga rrënja e depos. Së dyti, çdo thirrje është një lexim-modifikim-shkrim mbi të 36 skedarët gjuhësorë, prandaj dy thirrje që ekzekutohen njëkohësisht e shkelin njëra-tjetrën dhe një çelës zhduket pa asnjë gabim. Aftësia `translate` udhëzon shprehimisht nisjen e deri në 4 nënagjentëve njëkohësisht, secili prej të cilëve do ta thërriste skriptin.
-- **Ndikimi:** Forma nga rrënja e depos dështon me zë të lartë dhe harxhon kot një kalim të tërë. Problemi i njëkohshmërisë dështon në heshtje: çelësat zhduken nga gjuhë të rastësishme dhe diff-i vazhdon të duket i besueshëm.
-- **Zbutja:** Ekzekutojeni si `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Mos i lini kurrë nënagjentët përkthyes të shkruajnë skedarë gjuhësorë njëkohësisht — bëjini të prodhojnë vetëm skedarë JSON fjalorësh, pastaj zbatojini të gjithë çelësat në mënyrë serike nga agjenti prind. Pas zbatimit, verifikoni në mënyrë programatike që secili çelës ekziston në të 35 gjuhët jo-angleze dhe që asnjë vlerë nuk është identike bajt për bajt me burimin anglisht.
+- **Çfarë ishte befasuese:** Çdo thirrje është një lexim-modifikim-shkrim mbi të 36 skedarët gjuhësorë, prandaj dy thirrje që ekzekutohen njëkohësisht e shkelin njëra-tjetrën dhe një çelës zhduket pa asnjë gabim. Aftësia `translate` udhëzon shprehimisht nisjen e deri në 4 nënagjentëve njëkohësisht, secili prej të cilëve do ta thërriste skriptin.
+- **Ndikimi:** Dështon në heshtje: çelësat zhduken nga gjuhë të rastësishme dhe diff-i vazhdon të duket i besueshëm.
+- **Zbutja:** Mos i lini kurrë nënagjentët përkthyes të shkruajnë skedarë gjuhësorë njëkohësisht — bëjini të prodhojnë vetëm skedarë JSON fjalorësh, pastaj zbatojini të gjithë çelësat në mënyrë serike nga agjenti prind. Pas zbatimit, verifikoni në mënyrë programatike që secili çelës ekziston në të 35 gjuhët jo-angleze dhe që asnjë vlerë nuk është identike bajt për bajt me burimin anglisht.
+- **Statusi:** i konfirmuar
+- **Përditësim (2026-08-10):** Më parë skripti e zgjidhte gjithashtu objektivin e vet si `path.join(process.cwd(), "public", "translations")`, prandaj komanda e dokumentuar nga rrënja e depos dështonte me "Translations directory not found" dhe duhej ekzekutuar nga `about/`. Tani ai e zgjidh hapësirën e punës nga direktoria aktuale ose nga vendndodhja e vet, dhe funksionon nga kudo. Kurthi i njëkohshmërisë i përshkruar më sipër mbetet i pandryshuar.
+
+### Kontrollet e anotimit në zhvillim mund t'i kapin klikimet e automatizuara
+
+- **Konteksti:** Sajtet about dhe chain kanë kontrolle fikse në këndin poshtë djathtas, aty ku në zhvillim shfaqet edhe shiriti i veglave Agentation.
+- **Zbutja:** `scripts/pw-session.sh open` regjistron `window.__NO_DEV_TOOLBAR__ = true` përpara se ta ringarkojë faqen. Inicializuesi i Agentation respekton edhe `__VISUAL_TESTING__` dhe `__PROFILING__`; inspektimi i kodit burimor mbetet i disponueshëm në mënyrë të pavarur. Automatizimi i drejtpërdrejtë i shfletuesit duhet ta vendosë të njëjtin flamur përpara se të ngarkojë aplikacionin.
+
+### `skills add` i instalon kopjet për Codex dhe Cursor në direktorinë `.agents/` që injorohet nga Git
+
+- **Data:** 2026-08-18
+- **Vëzhguar nga:** Tommaso + Claude
+- **Konteksti:** Instalimi i aftësisë `improve-threejs` nga `millionco/react-doctor` me CLI-në `skills` (`vercel-labs/skills`).
+- **Çfarë ishte befasuese:** `npx skills add <repo> --skill <name> --agent codex` dhe `--agent cursor` shkruajnë që të dyja te `.agents/skills/<name>/`, jo te `.codex/skills/` ose `.cursor/skills/`. `AGENTS.md` ndalon një direktori `.agents/` në nivel depoje dhe `.gitignore:29` e injoron atë, prandaj të dyja kopjet mbeten në heshtje të pagjurmuara. Vetëm `--agent claude-code` shkruan te `.claude/skills/` e pritur. Veçmas, forma e dokumentuar me presje (`--agent claude-code,codex,cursor`) dështon me "Invalid agents" dhe nuk instalon asgjë, edhe pse secili emër është i vlefshëm më vete.
+- **Ndikimi:** Instalimi raporton sukses, ndërkohë që dy nga tri kopjet për zinxhirët e veglave përfundojnë diku ku nuk do të futen kurrë në depo, prandaj pas një klonimi të ri Codex dhe Cursor mbeten në heshtje pa aftësinë. Forma me presje mund të prodhojë gjithashtu një instalim që nuk bën asgjë, por që duket si i suksesshëm.
+- **Zbutja aktuale:** Depoja tani e gjurmon `.agents/skills` si burimin e saj kanonik dhe i gjeneron kopjet për Claude me `yarn ai-workflow:sync`. Ndalimi i dikurshëm i `.agents` dhe rregulli përkatës i injorimit janë hequr. Mos i kopjoni aftësitë e reja në tri rrënjë të pavarura; pas shtimit të një aftësie, kontrolloni paritetin e daljeve të gjeneruara dhe katalogun e aplikacionit.
 - **Statusi:** i konfirmuar

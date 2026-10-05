@@ -1,43 +1,23 @@
-# Arbetsflöde för översättningar
+# Översättningar
 
-Det här projektet använder i18next-översättningsfiler i `public/translations/{lang}/default.json`.
+About-sajten använder i18next-JSON i `about/public/translations/{lang}/default.json`. Översättningarna av Docusaurus-källorna finns separat i `docs/i18n/`.
 
-## Regel
+## Nycklar för about-sajten
 
-Redigera inte varje språkfil manuellt. Använd `scripts/update-translations.js`.
+Använd `.agents/skills/translate/SKILL.md`. Ta reda på de aktuella lokalerna från disken och bevara platshållare, markup, tekniska termer och varumärkesnamn. Vid större förfrågningar kan underagenter generera oberoende kartor, men en enda föräldraagent applicerar varje skrivning till lokalerna seriellt; uppdateraren har inget skrivlås.
 
-## Lägg till eller uppdatera en nyckel
+Använd en unik kartsökväg som ägs av uppgiften. Förhandsgranska med `node scripts/update-translations.js --key <key> --map <map.json> --include-en --dry` och applicera sedan med samma argument och `--write`. Verifiera täckning/värden efter skrivningen och ta bara bort de tillfälliga kartor som den här uppgiften äger.
 
-1. Skapa en tillfällig ordboksfil, t.ex. `translations-temp.json`:
+Använd `--delete` för begärda borttagningar. Granska fynden från `--audit --dry` innan en auktoriserad `--audit --write`; dynamiska översättningsnycklar kräver manuell granskning av källkoden. Kopiera engelska till varje lokal bara för en teknisk term, ett varumärke eller en platshållare.
 
-```json
-{
-  "en": "English text",
-  "es": "Spanish text",
-  "fr": "French text",
-  "de": "German text"
-}
-```
+## Docusaurus-sidor
 
-2. Använd översättningskartan:
+`scripts/translate-docs.py` är en massskrivare för alla sidor/lokaler och har inget filter per fil; använd den inte för en smal översättningsändring. `scripts/check-docs-translations.py` är den skrivskyddade verifieraren och stöder `--locales` och `--paths`.
 
-```bash
-node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
-```
+Håll kodblock, länkar, inlinekod, kontraktsadresser, rubriker, tabeller och admonitions i linje med den engelska källan. Åtgärda verifierarens fel; varningar av typen `frontmatter-untranslated` för varumärkesnamn kan vara väntade. Följ `docs/AGENTS.md` och bygg via roten när du ändrar dokumentationens tema eller i18n-beteende, så att den statiska utdatan och Pagefind förblir i linje.
 
-3. Ta bort den tillfälliga ordboksfilen.
+## Valfri semantisk granskning
 
-## Andra användbara kommandon
+För utvalda i18next-nycklar, använd `scripts/jev/translation-README.md`. För dokumentationssidor, kör först `node scripts/jev/docs-translations.mjs --locales it,de --paths browser-p2p.md`. Det kräver ett uttryckligt val av lokal/sida, kör den strukturella verifieraren och rapporterar den semantiska granskningen som overifierad tills live-inferens är aktiverad. Lägg bara till `--live` om uppgiften har auktorisering och budget för leverantören; den delade privata maskinkonfigurationen tillhandahåller autentiseringsuppgifter och en versionslåst modell. Miljövariabler och `--model` kan åsidosätta den uppsättningen. Kommandot redigerar aldrig översättningar.
 
-```bash
-# Copy a key from English to all languages (dry run then write)
-node scripts/update-translations.js --key some_key --from en --dry
-node scripts/update-translations.js --key some_key --from en --write
-
-# Delete a key from all languages
-node scripts/update-translations.js --key obsolete_key --delete --write
-
-# Audit for unused translation keys
-node scripts/update-translations.js --audit --dry
-node scripts/update-translations.js --audit --write
-```
+Sidadaptern bevarar hela sidans kontext och begränsar varje sida till 24 KB och varje körning till 30 par. För större sidor, förbered uttryckligen sammanpassade par av käll- och översättningsstycken för `translations.mjs --pairs`; para inte automatiskt ihop stycken efter index. Semantiska resultat är rådgivande: granska rapporterade problem och osäkerheter, och behåll de deterministiska kontrollerna av kod, länkar och adresser.

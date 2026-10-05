@@ -188,12 +188,28 @@ Na dúvida, pergunte ao desenvolvedor antes de adicionar uma entrada.
 - **Mitigação:** Em qualquer página de documentação que não esteja espelhada em `docs/i18n/**`, use links relativos à raiz (`/peer-to-peer-protocol/`, `/apps/5chan/`) em vez de links relativos `.md`; o Docusaurus acrescenta o prefixo do locale automaticamente. O `docs/build-your-own-client.md` é o exemplo existente. Rode um `yarn docs:build` completo — não apenas o `build:verify` — antes de entregar qualquer mudança que adicione ou aponte para uma página de documentação.
 - **Status:** confirmado
 
-### O `update-translations.js` precisa ser rodado a partir de `about/`, e execuções concorrentes perdem chaves silenciosamente
+### Execuções concorrentes do `update-translations.js` perdem chaves silenciosamente
 
 - **Data:** 2026-08-02
 - **Observado por:** Claude
 - **Contexto:** Aplicar 26 chaves i18next traduzidas em todos os 36 locales por meio da skill `translate`
-- **O que surpreendeu:** Duas armadilhas distintas no mesmo script. Primeiro, o `scripts/update-translations.js` resolve seu destino como `path.join(process.cwd(), "public", "translations")`, mas este repositório mantém as traduções em `about/public/translations`. Rodar o comando documentado a partir da raiz do repositório falha em toda invocação com "Translations directory not found" — o `docs/agent-playbooks/translations.md` mostra `node scripts/update-translations.js ...`, que se lê como um comando da raiz do repositório. Segundo, cada invocação é um ciclo de ler-modificar-escrever sobre todos os 36 arquivos de locale, então duas invocações rodando ao mesmo tempo se sobrescrevem e uma chave desaparece sem nenhum erro. A skill `translate` instrui explicitamente a criar até 4 subagentes concorrentes, e cada um deles chamaria o script.
-- **Impacto:** A forma a partir da raiz do repositório falha de maneira ruidosa e desperdiça uma passada inteira. O problema de concorrência falha em silêncio: chaves somem de locales arbitrários e o diff continua parecendo plausível.
-- **Mitigação:** Rode como `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Nunca deixe subagentes tradutores escreverem arquivos de locale de forma concorrente — faça-os emitir apenas arquivos JSON de dicionário e depois aplique cada chave em série a partir do agente pai. Depois de aplicar, verifique programaticamente que cada chave existe em todos os 35 locales não ingleses e que nenhum valor é idêntico byte a byte ao original em inglês.
+- **O que surpreendeu:** Cada invocação é um ciclo de ler-modificar-escrever sobre todos os 36 arquivos de locale, então duas invocações rodando ao mesmo tempo se sobrescrevem e uma chave desaparece sem nenhum erro. A skill `translate` instrui explicitamente a criar até 4 subagentes concorrentes, e cada um deles chamaria o script.
+- **Impacto:** Falha em silêncio: chaves somem de locales arbitrários e o diff continua parecendo plausível.
+- **Mitigação:** Nunca deixe subagentes tradutores escreverem arquivos de locale de forma concorrente — faça-os emitir apenas arquivos JSON de dicionário e depois aplique cada chave em série a partir do agente pai. Depois de aplicar, verifique programaticamente que cada chave existe em todos os 35 locales não ingleses e que nenhum valor é idêntico byte a byte ao original em inglês.
+- **Status:** confirmado
+- **Atualização (2026-08-10):** O script também resolvia seu destino como `path.join(process.cwd(), "public", "translations")`, então o comando documentado, rodado a partir da raiz do repositório, falhava com "Translations directory not found" e precisava ser executado a partir de `about/`. Agora ele resolve o workspace a partir do diretório atual ou da própria localização e funciona de qualquer lugar. A armadilha de concorrência descrita acima não mudou.
+
+### Controles de anotação de desenvolvimento podem interceptar cliques automatizados
+
+- **Contexto:** Os sites about e chain têm controles fixos no canto inferior direito, onde a barra de ferramentas do Agentation também aparece em desenvolvimento.
+- **Mitigação:** `scripts/pw-session.sh open` registra `window.__NO_DEV_TOOLBAR__ = true` antes de recarregar a página. O inicializador do Agentation também respeita `__VISUAL_TESTING__` e `__PROFILING__`; a inspeção do código-fonte continua disponível de forma independente. Automações diretas de navegador precisam definir a mesma flag antes de carregar a aplicação.
+
+### `skills add` instala as cópias do Codex e do Cursor no diretório `.agents/`, ignorado pelo Git
+
+- **Data:** 2026-08-18
+- **Observado por:** Tommaso + Claude
+- **Contexto:** Instalação da skill `improve-threejs` de `millionco/react-doctor` com a CLI `skills` (`vercel-labs/skills`).
+- **O que surpreendeu:** `npx skills add <repo> --skill <name> --agent codex` e `--agent cursor` gravam ambos em `.agents/skills/<name>/`, e não em `.codex/skills/` ou `.cursor/skills/`. O `AGENTS.md` proíbe um diretório `.agents/` no nível do repositório e o `.gitignore:29` o ignora, então as duas cópias ficam silenciosamente fora do controle de versão. Só `--agent claude-code` grava no `.claude/skills/` esperado. Além disso, a forma documentada separada por vírgulas (`--agent claude-code,codex,cursor`) falha com "Invalid agents" e não instala nada, embora cada nome seja válido isoladamente.
+- **Impacto:** A instalação informa sucesso enquanto duas das três cópias das ferramentas vão parar em um lugar que nunca será commitado, então o Codex e o Cursor ficam silenciosamente sem a skill depois de um clone novo. A forma com vírgulas também pode produzir uma instalação que não faz nada, mas parece bem-sucedida.
+- **Mitigação atual:** O repositório agora versiona `.agents/skills` como fonte canônica e gera as cópias do Claude com `yarn ai-workflow:sync`. A antiga proibição de `.agents` e a regra de ignore foram removidas. Não copie novas skills para três raízes independentes; depois de adicionar uma skill, verifique a paridade dos arquivos gerados e o catálogo do app.
 - **Status:** confirmado

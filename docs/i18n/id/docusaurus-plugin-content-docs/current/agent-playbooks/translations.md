@@ -1,43 +1,23 @@
-# Alur Kerja Terjemahan
+# Terjemahan
 
-Proyek ini menggunakan file terjemahan i18next di `public/translations/{lang}/default.json`.
+Situs about memakai JSON i18next di `about/public/translations/{lang}/default.json`. Terjemahan sumber Docusaurus berada terpisah di `docs/i18n/`.
 
-## Aturan
+## Key situs about
 
-Jangan mengedit setiap file bahasa secara manual. Gunakan `scripts/update-translations.js`.
+Gunakan `.agents/skills/translate/SKILL.md`. Temukan locale yang ada saat ini dari disk dan pertahankan placeholder, markup, istilah teknis, dan nama merek. Untuk permintaan yang lebih besar, agen anak dapat menghasilkan peta secara independen, tetapi satu agen induk menerapkan setiap penulisan locale secara berurutan; updater tidak memiliki kunci penulis.
 
-## Tambahkan atau Perbarui Kunci
+Gunakan jalur peta unik yang dimiliki tugas. Pratinjau dengan `node scripts/update-translations.js --key <key> --map <map.json> --include-en --dry`, lalu terapkan dengan argumen yang sama ditambah `--write`. Verifikasi cakupan/nilai setelah menulis dan hapus hanya peta sementara milik tugas ini.
 
-1. Buat file kamus sementara, mis. `translations-temp.json`:
+Gunakan `--delete` untuk penghapusan yang diminta. Periksa temuan `--audit --dry` sebelum menjalankan `--audit --write` yang diizinkan; key terjemahan dinamis memerlukan tinjauan sumber secara manual. Salin teks bahasa Inggris ke setiap locale hanya untuk istilah teknis, merek, atau placeholder.
 
-```json
-{
-  "en": "English text",
-  "es": "Spanish text",
-  "fr": "French text",
-  "de": "German text"
-}
-```
+## Halaman Docusaurus
 
-2. Terapkan peta terjemahan:
+`scripts/translate-docs.py` adalah penulis massal untuk semua halaman/locale dan tidak memiliki filter per berkas; jangan gunakan untuk suntingan terjemahan yang sempit. `scripts/check-docs-translations.py` adalah verifikator hanya-baca dan mendukung `--locales` serta `--paths`.
 
-```bash
-node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
-```
+Jaga agar code fence, tautan, kode inline, alamat kontrak, judul, tabel, dan admonition tetap selaras dengan sumber bahasa Inggris. Selesaikan error verifikator; peringatan `frontmatter-untranslated` untuk nama merek memang bisa diperkirakan. Ikuti `docs/AGENTS.md` dan lakukan build melalui root ketika mengubah tema dokumentasi atau perilaku i18n agar keluaran statis dan Pagefind tetap selaras.
 
-3. Hapus file kamus sementara.
+## Tinjauan semantik opsional
 
-## Perintah Berguna Lainnya
+Untuk key i18next tertentu, gunakan `scripts/jev/translation-README.md`. Untuk halaman dokumentasi, jalankan `node scripts/jev/docs-translations.mjs --locales it,de --paths browser-p2p.md` terlebih dahulu. Perintah ini memerlukan pemilihan locale/halaman yang eksplisit, menjalankan verifikator struktural, dan melaporkan tinjauan semantik sebagai belum terverifikasi sampai inferensi langsung diaktifkan. Tambahkan `--live` hanya dengan otorisasi penyedia dan anggaran dari tugas; konfigurasi mesin privat bersama menyediakan kredensial dan model yang dipatok. Variabel lingkungan dan `--model` dapat menimpa penyiapan itu. Perintah ini tidak pernah menyunting terjemahan.
 
-```bash
-# Copy a key from English to all languages (dry run then write)
-node scripts/update-translations.js --key some_key --from en --dry
-node scripts/update-translations.js --key some_key --from en --write
-
-# Delete a key from all languages
-node scripts/update-translations.js --key obsolete_key --delete --write
-
-# Audit for unused translation keys
-node scripts/update-translations.js --audit --dry
-node scripts/update-translations.js --audit --write
-```
+Adapter halaman mempertahankan konteks seluruh halaman dan membatasi tiap halaman hingga 24 KB serta tiap eksekusi hingga 30 pasangan. Untuk halaman yang lebih besar, siapkan pasangan paragraf sumber/terjemahan yang diselaraskan secara eksplisit untuk `translations.mjs --pairs`; jangan memasangkan paragraf secara otomatis berdasarkan indeks. Hasil semantik bersifat saran: periksa masalah dan ketidakpastian yang dilaporkan, dan pertahankan pemeriksaan kode/tautan/alamat yang deterministik.

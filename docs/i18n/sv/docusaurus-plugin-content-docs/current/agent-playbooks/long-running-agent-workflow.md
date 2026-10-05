@@ -1,67 +1,9 @@
-# Långvarigt agentarbetsflöde
+# Långvarigt agentarbete
 
-Använd den här spelboken när en uppgift sannolikt kommer att sträcka sig över flera sessioner, handoffs eller skapade agenter.
+Använd beständigt uppgiftstillstånd när arbetet behöver kunna återupptas eller lämnas över, eller när en enskild körning är så lång att kontextkomprimering kan göra att det återstående arbetet tappas bort. Små uppgifter behöver ingen tavla eller förloppsfil. För delat arbete, håll en koncis `feature-list.json` och `progress.md` i en uppgiftsspecifik `docs/agent-runs/<slug>/`, och använd befintliga mallar där det hjälper.
 
-## Mål
+Registrera det begärda resultatet, aktuell gren/worktree, filägarskap, slutförda ändringar, kontroller med resultat, ägda processer/sessioner och nästa olösta steg. Lagra inte autentiseringsuppgifter eller godtyckliga dumpar av källkod. Markera en funktion som klar först när dess acceptanskriterier har verifierats.
 
-- Ge varje ny session ett snabbt sätt att återfå sammanhanget
-- Håll arbetet stegvis istället för att göra en stor förändring
-- Fånga en trasig lokal baslinje innan du lägger till mer kod
-- Lämna hållbara artefakter som nästa session kan lita på
+När arbetet återupptas, granska Git-tillståndet, det senaste förloppet och relevant källkod innan du redigerar. Återanvänd kompatibla resurser som du äger; starta en utvecklingsserver bara när nästa kontroll behöver en. Välj kontroller efter påverkan med hjälp av [verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md), i stället för att upprepa en oförändrad fullständig körning.
 
-## Var ska man hålla staten
-
-- Använd `docs/agent-runs/<slug>/` när människor, recensionsrobotar eller flera verktygskedjor behöver samma uppgiftstillstånd.
-- Använd en verktygslokal katalog som `.codex/runs/<slug>/` endast när uppgiftstillståndet avsiktligt är lokalt för en arbetsstation eller en verktygskedja.
-- Dölj inte delat tillstånd för flera sessioner i en privat skrapfil om en annan bidragsgivare eller agent kommer att behöva det senare.
-
-## Obligatoriska filer
-
-Skapa dessa filer i början av den långa uppgiften:
-
-- `feature-list.json`
-- `progress.md`
-
-Använd mallarna i `docs/agent-playbooks/templates/feature-list.template.json` och `docs/agent-playbooks/templates/progress.template.md`.
-
-Föredrar JSON för funktionslistan så att agenter kan uppdatera ett litet antal fält utan att skriva om hela dokumentet.
-
-## Checklista för sessionsstart
-
-1. Kör `pwd`.
-2. Läs `progress.md`.
-3. Läs `feature-list.json`.
-4. Kör `git log --oneline -20`.
-5. Kör `./scripts/agent-init.sh --smoke`.
-6. Välj exakt ett objekt med högst prioritet som fortfarande är `pending`, `in_progress` eller `blocked`.
-
-Om röksteget misslyckas, fixa den trasiga baslinjen innan du implementerar en ny funktionsskiva.
-
-## Sessionsregler
-
-- Arbeta med en funktion eller uppgiftsdel åt gången.
-- Håll funktionslistan maskinläsbar och stabil. Uppdatera status, anteckningar, filer och verifieringsfält istället för att skriva om orelaterade objekt.
-- Markera endast ett objekt som verifierat efter att ha kört kommandot eller användarflödet som anges i det objektet.
-- Använd genererade agenter för avgränsade delar, inte för övergripande uppgifts-tillståndsägande.
-- När en underordnad agent äger en artikel, ge den exakt artikel-id, acceptanskriterier och filer som den kan röra.
-
-## Checklista för avslutad session
-
-1. Bifoga en kort förloppspost till `progress.md`.
-2. Uppdatera objektet som du har berört i `feature-list.json`.
-3. Spela in de exakta kommandona som körs för verifiering.
-4. Fånga blockerare, uppföljningar och det näst bästa objektet att återuppta.
-
-## Rekommenderad form för framstegsinmatning
-
-Använd en kort struktur som:
-
-```markdown
-## 2026-03-17 14:30
-
-- Item: F003
-- Summary: Updated the browser-check flow to use the shared init/bootstrap path.
-- Files: `.cursor/agents/browser-check.md`, `.codex/agents/browser-check.toml`
-- Verification: `corepack yarn build:verify`, `corepack yarn lint`, `corepack yarn typecheck`
-- Next: Run the smoke flow and update the task-board status.
-```
+Håll relaterat delegerat arbete avgränsat och utan överlapp. En agent äger tunga kontroller och webbläsarsessioner. Uppdatera det beständiga tillståndet när en slutförd del, ett hinder eller en överlämning ändrar vad nästa bidragsgivare behöver veta; logga inte mekaniskt varje kommando.

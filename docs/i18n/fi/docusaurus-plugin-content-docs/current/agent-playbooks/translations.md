@@ -1,43 +1,23 @@
-# Käännöstyönkulku
+# Käännökset
 
-Tämä projekti käyttää i18next-käännöstiedostoja muodossa `public/translations/{lang}/default.json`.
+About-sivusto käyttää i18next-JSON-tiedostoja polussa `about/public/translations/{lang}/default.json`. Docusauruksen lähdekäännökset ovat erikseen hakemistossa `docs/i18n/`.
 
-## Sääntö
+## About-sivuston avaimet
 
-Älä muokkaa kaikkia kielitiedostoja manuaalisesti. Käytä `scripts/update-translations.js`.
+Käytä ohjetta `.agents/skills/translate/SKILL.md`. Selvitä nykyiset kieliversiot levyltä ja säilytä paikkamerkit, merkintäkoodi, tekniset termit ja brändinimet. Suuremmissa pyynnöissä aliagentit voivat tuottaa toisistaan riippumattomia karttoja, mutta yksi pääagentti tekee jokaisen kieliversion kirjoituksen sarjassa; päivitysskriptissä ei ole kirjoituslukkoa.
 
-## Lisää tai päivitä avain
+Käytä yksilöllistä, tehtävän omistamaa karttapolkua. Esikatsele komennolla `node scripts/update-translations.js --key <key> --map <map.json> --include-en --dry` ja vie sitten muutokset samoilla argumenteilla ja valinnalla `--write`. Varmista kattavuus ja arvot kirjoittamisen jälkeen ja poista vain tämän tehtävän omistamat väliaikaiset kartat.
 
-1. Luo väliaikainen sanakirjatiedosto, esim. `translations-temp.json`:
+Käytä valintaa `--delete` pyydettyihin poistoihin. Tarkastele `--audit --dry` -havaintoja ennen valtuutettua `--audit --write` -ajoa; dynaamiset käännösavaimet vaativat lähdekoodin manuaalisen tarkastelun. Kopioi englanninkielinen teksti jokaiseen kieliversioon vain, kun kyse on teknisestä termistä, brändistä tai paikkamerkistä.
 
-```json
-{
-  "en": "English text",
-  "es": "Spanish text",
-  "fr": "French text",
-  "de": "German text"
-}
-```
+## Docusaurus-sivut
 
-2. Käytä käännöskartta:
+`scripts/translate-docs.py` on kaikkien sivujen ja kieliversioiden massakirjoitin, eikä siinä ole tiedostokohtaista suodatinta; älä käytä sitä suppeaan käännösmuutokseen. `scripts/check-docs-translations.py` on vain lukeva tarkistin ja tukee valintoja `--locales` ja `--paths`.
 
-```bash
-node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
-```
+Pidä koodilohkot, linkit, rivinsisäinen koodi, sopimusosoitteet, otsikot, taulukot ja huomautuslohkot linjassa englanninkielisen lähteen kanssa. Korjaa tarkistimen virheet; brändinimiä koskevia `frontmatter-untranslated`-varoituksia voi odottaa. Noudata tiedostoa `docs/AGENTS.md` ja kokoa juuren kautta, kun muutat dokumentaation teemaa tai i18n-toimintaa, jotta staattinen tuloste ja Pagefind pysyvät linjassa.
 
-3. Poista väliaikainen sanakirjatiedosto.
+## Valinnainen semanttinen katselmointi
 
-## Muut hyödylliset komennot
+Valituille i18next-avaimille käytä ohjetta `scripts/jev/translation-README.md`. Dokumentaatiosivuille aja ensin `node scripts/jev/docs-translations.mjs --locales it,de --paths browser-p2p.md`. Komento vaatii nimenomaisen kieliversio- ja sivuvalinnan, ajaa rakenteellisen tarkistimen ja raportoi semanttisen katselmoinnin varmistamattomaksi, kunnes live-päättely on otettu käyttöön. Lisää `--live` vain, kun tehtävällä on palveluntarjoajan valtuutus ja budjetti; jaettu yksityinen konekohtainen määritys tarjoaa tunnistetiedot ja kiinnitetyn mallin. Ympäristömuuttujat ja `--model` voivat ohittaa tämän määrityksen. Komento ei koskaan muokkaa käännöksiä.
 
-```bash
-# Copy a key from English to all languages (dry run then write)
-node scripts/update-translations.js --key some_key --from en --dry
-node scripts/update-translations.js --key some_key --from en --write
-
-# Delete a key from all languages
-node scripts/update-translations.js --key obsolete_key --delete --write
-
-# Audit for unused translation keys
-node scripts/update-translations.js --audit --dry
-node scripts/update-translations.js --audit --write
-```
+Sivusovitin säilyttää koko sivun kontekstin ja rajaa jokaisen sivun 24 kilotavuun ja jokaisen ajon 30 pariin. Suuremmille sivuille valmistele nimenomaisesti kohdistetut lähde- ja käännöskappaleparit komennolle `translations.mjs --pairs`; älä muodosta kappalepareja automaattisesti järjestysnumeron perusteella. Semanttiset tulokset ovat neuvoa-antavia: tarkastele raportoituja ongelmia ja epävarmuutta ja säilytä deterministiset koodi-, linkki- ja osoitetarkistukset.

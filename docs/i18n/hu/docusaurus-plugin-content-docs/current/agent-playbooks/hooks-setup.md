@@ -1,90 +1,17 @@
-# Ügynöki hookok beállítása
+# Ügynöki hookok
 
-Ha az AI-kódolóasszisztense támogatja az életciklus-hookokat, állítsa be az alábbiakat ehhez a repóhoz.
+A commitolt életciklus-hookok csak a sikeresen szerkesztett JavaScript/TypeScript fájlokat formázzák a telepített oxfmt segítségével. A közös logika a `scripts/agent-hooks/format.mjs` fájlban található; minden natív burkoló erre delegál.
 
-## Ajánlott hookok
+| Alkalmazás | Natív konfiguráció | Esemény |
+|---|---|---|
+| Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
+| Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
+| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
-| Hook            | Parancs                                       | Cél                                                                                                                                                                                                                                                     |
-| --------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `afterFileEdit` | `scripts/agent-hooks/format.sh`               | Fájlok automatikus formázása az AI-szerkesztések után                                                                                                                                                                                                   |
-| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`         | `corepack yarn install` futtatása, amikor a `package.json` változik                                                                                                                                                                                     |
-| `afterFileEdit` | `scripts/agent-hooks/react-pattern-review.sh` | Ha egy diff `useEffect`/memo primitíveket ad hozzá az `about/src/` alatt, emlékezteti az ügynököt, hogy gondolja újra a React-review skillekkel                                                                                                         |
-| `stop`          | `scripts/agent-hooks/sync-git-branches.sh`    | Elavult refek metszése és a beolvasztott ideiglenes feladatágak törlése                                                                                                                                                                                 |
-| `stop`          | `scripts/agent-hooks/react-pattern-review.sh` | Az aktuális diff újbóli átvizsgálása új React-effektek és -memók után az `about/src/` alatt, a záró ellenőrzési kapu előtt                                                                                                                              |
-| `stop`          | `scripts/agent-hooks/verify.sh`               | Kemény kapu a célzott build-ellenőrzéshez, linthez, típusellenőrzéshez és formátumellenőrzéshez; a `yarn npm audit` maradjon tájékoztató jellegű, a `yarn knip` pedig külön, tanácsadó auditként fusson, amikor a függőségek vagy az importok változnak |
+A Claude nem olvas be különálló `.claude/hooks.json` fájlt. A projekt megbízhatóságáról és a hookok engedélyezéséről továbbra is az egyes alkalmazások döntenek; a megbízhatóság megkerülése helyett vizsgálja meg az aktuális beállításaikat. A `.codex/config.toml` repókonfiguráció, nem hookparancs-nyilvántartás.
 
-## Miért
+A formázó ellenőrzi az eseményt/payloadot, a szerkesztés sikerességét, a fájlkiterjesztést, valamint azt, hogy a fájl a repón belül van-e, a szimbolikus linkeket is beleértve. Hiányzó függőségek vagy nem releváns bemenet esetén nem végez munkát. A parancsok argumentumtömböt használnak, letiltott Corepack-hálózati hozzáféréssel; a hookok nem telepítenek függőségeket, nem futtatnak buildet vagy átnézést, és nem módosítják a Git-állapotot.
 
-- Egységes formázás
-- A lockfile szinkronban marad
-- Az about-oldalon megjelenő új `useEffect`/memo kiegészítések kifejezett második átnézést kapnak, mielőtt az ügynök befejezi a munkát
-- A workspace szempontjából releváns build-, lint- és típusproblémák korán kiderülnek anélkül, hogy minden feladatnál ki kellene kényszeríteni a teljes többnyelvű dokumentációs buildet
-- Biztonsági rálátás a `yarn npm audit` révén
-- A függőségek és importok elsodródása a `yarn knip` paranccsal ellenőrizhető anélkül, hogy zajos, globális stop hookká válna
-- Egyetlen közös hookimplementáció a Codex és a Cursor számára
-- Az ideiglenes feladatágak összhangban maradnak a repó munkafa-munkafolyamatával
+Az ellenőrzéseket külön, kifejezetten futtassa a [verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md) szerint. A munkafolyamat módosítása után futtassa a `yarn ai-workflow:sync`, `yarn ai-workflow:check` és `yarn ai-workflow:test` parancsot. A fixture-ök eldobható fájlokat és álformázó-hívásokat használnak; nem bizonyítják, hogy az egyes alkalmazások betöltötték a konfigurációjukat. Frissítések után töltse újra az alkalmazást, és vizsgálja meg a katalógusát.
 
-## Példa hookszkriptek
-
-### Formázó hook
-
-```bash
-#!/bin/bash
-# Auto-format JS/TS files after AI edits
-# Hook receives JSON via stdin with file_path
-
-input=$(cat)
-file_path=$(echo "$input" | grep -o '"file_path"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*:.*"\([^"]*\)"/\1/')
-
-case "$file_path" in
-  *.js|*.jsx|*.ts|*.tsx|*.mjs|*.cjs|*.json|*.css) corepack yarn exec oxfmt "$file_path" 2>/dev/null ;;
-esac
-exit 0
-```
-
-### Ellenőrző hook
-
-```bash
-#!/bin/bash
-# Run targeted build verification, lint, typecheck, format check, and security audit when agent finishes
-
-cat > /dev/null  # consume stdin
-status=0
-corepack yarn build:verify || status=1
-corepack yarn lint || status=1
-corepack yarn typecheck || status=1
-corepack yarn format:check || status=1
-echo "=== yarn npm audit ===" && (corepack yarn npm audit || true)  # informational
-exit $status
-```
-
-Alapértelmezés szerint a `scripts/agent-hooks/verify.sh` nem nulla kóddal lép ki, ha egy kötelező ellenőrzés elbukik. Az `AGENT_VERIFY_MODE=advisory` beállítást csak akkor használja, ha szándékosan szeretne jelzést kapni egy hibás fáról anélkül, hogy a hook blokkolna. A `yarn knip` maradjon a kemény kapun kívül, hacsak a repó kifejezetten úgy nem dönt, hogy tanácsadó import- és függőségi problémákon is elbukik.
-
-Az életciklus-hookok nem helyettesítik a kézi böngészős ellenőrzést. UI- vagy vizuális változásoknál továbbra is futtasson `playwright-cli` ellenőrzéseket `chrome`, `firefox` és `webkit` motorokon, valamint mindegyik motorban egy mobil nézetablakos folyamatot, ha a reszponzivitás vagy az érintéses viselkedés változott.
-
-### Yarn install hook
-
-```bash
-#!/bin/bash
-# Run corepack yarn install when package.json is changed
-# Hook receives JSON via stdin with file_path
-
-input=$(cat)
-file_path=$(echo "$input" | grep -o '"file_path"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*:.*"\([^"]*\)"/\1/')
-
-if [ -z "$file_path" ]; then
-  exit 0
-fi
-
-if [ "$file_path" = "package.json" ]; then
-  cd "$(dirname "$0")/../.." || exit 0
-  echo "package.json changed - running corepack yarn install to update yarn.lock..."
-  corepack yarn install
-fi
-
-exit 0
-```
-
-A hookok bekötését az ügynökeszköz dokumentációja szerint állítsa be (`hooks.json` vagy ennek megfelelője stb.).
-
-Ebben a repóban a `.codex/hooks/*.sh` és a `.cursor/hooks/*.sh` fájlok maradjanak vékony burkolók, amelyek a `scripts/agent-hooks/` alatti közös implementációkra delegálnak.
+Az Impeccable tervezési skill és a futtatható segédprogramjai igény szerint továbbra is elérhetők a `.agents/skills/impeccable` alatt. Korábbi Codex-hookja egy nem létező könyvtárra mutatott; a tervezési munkafolyamat mostantól akkor fut, amikor a skillt kiválasztják, mindig aktív tervezési hook nélkül. A skill nem konfigurálhatja át a projekt hookjait mellékes tervezési lépésként.

@@ -1,73 +1,83 @@
 # Skill-uri și instrumente
 
-Folosiți acest manual atunci când configurați sau ajustați skill-uri și instrumente externe.
+Skill-urile comune se află în `.agents/skills/`. Editați aceste surse, apoi rulați `yarn ai-workflow:sync` pentru a genera `.claude/skills/` pentru Claude Code. Codex și Cursor descoperă direct `.agents/skills/`; nu restaurați rădăcinile duplicate `.codex/skills/` sau `.cursor/skills/`.
 
-## Skill-uri recomandate
+Prompturile comune pentru roluri se află în `.agents/roles/*.md`. Acesta este un format sursă specific depozitului, nu o cale nativă de descoperire a agenților. `scripts/ai-workflow-files.mjs` convertește aceste surse în fișierele specifice fiecărei aplicații, enumerate mai jos; `yarn ai-workflow:sync` le scrie. Includeți fișierele generate în commit împreună cu sursele lor, astfel încât un checkout proaspăt să aibă configurația nativă fără a rula mai întâi un generator. După eliminarea unei surse, eliminați explicit ieșirile generate devenite inutile; validatorul le raportează, în loc să șteargă fișiere în tăcere.
 
-### Context7 (documentație pentru biblioteci)
+## Căi native de descoperire
 
-Pentru documentație actualizată despre biblioteci.
+Verificat în raport cu documentația oficială la 2026-09-12:
 
-```bash
-npx skills add https://github.com/intellectronica/agent-skills --skill context7
-```
+| Aplicație   | Instrucțiuni de proiect                                                                          | Skill-uri folosite de acest depozit       | Agenți personalizați folosiți de acest depozit |
+| ----------- | ------------------------------------------------------------------------------------------------ | ----------------------------------------- | ---------------------------------------------- |
+| Codex       | `AGENTS.md`                                                                                      | `.agents/skills/<name>/SKILL.md`          | `.codex/agents/<name>.toml`, generat           |
+| Cursor      | `AGENTS.md`; `.cursor/rules/*.mdc` rămâne disponibil pentru reguli condiționale specifice Cursor | `.agents/skills/<name>/SKILL.md`          | `.cursor/agents/<name>.md`, generat            |
+| Claude Code | `CLAUDE.md` importă `@AGENTS.md`                                                                 | `.claude/skills/<name>/SKILL.md`, generat | `.claude/agents/<name>.md`, generat            |
 
-### Playwright CLI
+Surse: [Skill-uri Codex](https://learn.chatgpt.com/docs/build-skills), [Subagenți Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Reguli Cursor](https://cursor.com/docs/rules), [Skill-uri Cursor](https://cursor.com/docs/skills), [Subagenți Cursor](https://cursor.com/docs/subagents), [Memoria Claude](https://code.claude.com/docs/en/memory), [Skill-uri Claude](https://code.claude.com/docs/en/skills), [Subagenți Claude](https://code.claude.com/docs/en/sub-agents).
 
-Folosiți `playwright-cli` pentru automatizarea browserului (navigare, interacțiune, capturi de ecran, teste, extragere de date).
+Nu înlocuiți directoarele native de agenți cu `.agents/roles` și nu presupuneți că Claude descoperă `.agents/skills`. Claude poate totuși citi un fișier de acolo, la care se face referire, ca simplu context de proiect. Cursor descoperă și `.claude/skills`, pentru compatibilitate; copiile rămân sincronizate, dar ghidul publicat pentru skill-uri nu precizează cum se deduplică acestea între rădăcini. Verificați catalogul de skill-uri al aplicației instalate, în loc să promiteți că nu pot apărea intrări duplicate.
 
-Când folosiți `playwright-cli` pentru verificarea interfeței din acest depozit, nu vă opriți după un singur motor. Rulați fluxul relevant în toate cele trei motoare principale de browser:
+Directoarele AI folosesc terminații de linie LF prin `.gitattributes`, astfel încât textul generat să rămână identic pe toate platformele. Resursele auxiliare ale skill-urilor sunt copiate octet cu octet.
 
-- `chrome` pentru Blink
-- `firefox` pentru Gecko
-- `webkit` pentru acoperirea Safari/WebKit
+## Skill-uri
 
-Folosiți sesiuni denumite separat pentru fiecare motor, astfel încât dovezile să rămână izolate, dar rulați acele sesiuni secvențial. O singură sesiune de browser Playwright poate fi activă la un moment dat, la nivelul întregii mașini, pentru că resursa disputată este memoria și procesorul mașinii, nu depozitul. Deschideți și închideți sesiunile prin `./scripts/pw-session.sh`; el ține acel blocaj comun, astfel încât agenții concurenți amână și reîncearcă lucrul în browser în loc să satureze mașina. Dacă un motor este omis intenționat, notați motivul.
+| Skill                                | Scop                                                                                                                   |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| `commit`                             | Creează commit-uri locale autorizate și bine delimitate                                                                |
+| `commit-format`, `issue-format`      | Formatează sugestii, la cerere                                                                                         |
+| `make-closed-issue`                  | Creează un issue autorizat, un commit bine delimitat și un PR                                                          |
+| `review-and-merge-pr`                | Triază feedbackul la PR-uri; corectează, publică sau face merge doar în limitele cererii                               |
+| `fix-merge-conflicts`                | Rezolvă conflictele și verifică rezultatul integrat                                                                    |
+| `release`                            | Pregătește textul release-ului și execută pașii de release autorizați                                                  |
+| `code-quality-review`                | Revizuiește diff-uri netriviale sau o problemă de calitate cerută explicit                                             |
+| `retro`                              | Transformă greșelile demonstrate în verificări sau îndrumări țintite, care previn repetarea lor                        |
+| `refactor-pass`, `deslop`            | Curățarea cerută a modificărilor existente                                                                             |
+| `debug-agent`                        | Depanare bazată pe dovezi, cu instrumentare atunci când este nevoie                                                    |
+| `you-might-not-need-an-effect`       | Revizuire țintită a efectelor și a memoizării                                                                          |
+| `vercel-react-best-practices`        | Îndrumări aplicabile de performanță React; regulile pentru Next.js sau doar pentru server se omit la acest client Vite |
+| `translate`                          | Generează traduceri, apoi aplică hărțile printr-un singur proces de scriere                                            |
+| `playwright-cli`, `inspect-elements` | Verificare în browser și maparea DOM-ului la sursă                                                                     |
+| `profile-browsing`                   | Profilare delimitată a browserului și a React                                                                          |
+| `test-apk`                           | Verifică un wrapper Android însoțitor primit                                                                           |
+| `impeccable`, `improve-threejs`      | Design de interfață delimitat și revizuirea randării Three.js                                                          |
+| `implement-plan`                     | Execută un plan, cu delegare opțională în limite clare                                                                 |
+| `readme`                             | Întreține documentație de proiect verificată                                                                           |
+| `context7`                           | Obține documentația bibliotecilor potrivită versiunii                                                                  |
+| `find-skills`                        | Găsește skill-uri suplimentare, când se cere explicit                                                                  |
 
-În timpul iterațiilor, folosiți doar Chrome/Blink. Rulați secvența completă Chrome, Firefox și WebKit o singură dată, atunci când modificarea este gata pentru verificarea finală. Refolosiți sesiunea fiecărui motor pentru desktop și mobil, redimensionând-o, închideți-o într-o curățare de tip finally și abia apoi deschideți motorul următor.
+## Roluri și modele
 
-```bash
-./scripts/pw-session.sh open verify-chrome https://bitsocial.localhost --browser=chrome
-playwright-cli -s=verify-chrome snapshot
-./scripts/pw-session.sh close verify-chrome
-```
+Păstrați rolurile personalizate pentru `browser-check`, `profiler`, `test-apk`, `translator` și `reviewer`. Pentru implementarea obișnuită și descoperirea codului, folosiți rolul integrat al harness-ului de tip worker/general-purpose sau explorer. Agentul părinte stabilește criteriile de acceptare și proprietatea; un singur proprietar rulează verificările grele.
 
-Când slotul este ocupat, `open` iese cu codul 75; așteptați cu `./scripts/pw-session.sh open --wait[=SECONDS] ...` (implicit 300 de secunde) în loc să reîncercați manual. Un blocaj rămas în urma unui flux întrerupt este recuperat automat, pentru că `open` eliberează orice slot al cărui browser înregistrat nu mai rulează. Inspectați deținătorul cu `./scripts/pw-session.sh status`; `release <session>` este o soluție de ultimă instanță pentru cazul rar în care `status` nu poate verifica starea browserului.
+Fișierele de agent Codex includ `name`, `description` și `developer_instructions`. `.codex/config.toml` limitează la patru numărul subagenților concurenți prin `max_concurrent_threads_per_session`. Metadatele comune ale rolurilor conțin numele, descrierea și modul sandbox opțional; în mod deliberat, nu au câmpuri de model.
 
-```bash
-npm install -g @playwright/cli@latest
-playwright-cli install --skills
-```
+Lăsați câmpurile de model și de raționament în afara skill-urilor și agenților personalizați incluși în depozit, în toate cele trei aplicații. Astfel rămân posibile alegerile făcute la invocare, valorile implicite ale utilizatorului și moștenirea de la părinte, conform ordinii de precedență documentate a fiecărei aplicații. Aliasurile de familie Claude reduc întreținerea legată de versiuni, dar tot aleg o familie; un model Cursor cu versiune fixă necesită actualizări viitoare. Păstrați astfel de alegeri în setările utilizatorului sau ale sesiunii, când este nevoie. Moștenirea nu garantează alegerea automată a celui mai bun model actual. Nu inventați un alias `latest` și nu adăugați cercetarea catalogului de modele la sarcinile de rutină. Consultați [selecția în Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [selecția în Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model) și [selecția în Cursor](https://cursor.com/docs/subagents#model-configuration).
 
-Locațiile de instalare a skill-ului:
+`sandbox-mode: read-only` corespunde sandboxului din Codex și opțiunii `readonly` din Cursor; lista de instrumente a lui Claude și instrucțiunile rolului îi restricționează fluxul de revizuire, dar accesul la Bash nu este un sandbox la nivelul sistemului de operare.
 
-- `.cursor/skills/playwright-cli/`
-- `.claude/skills/playwright-cli/`
+Frontmatter-ul skill-urilor comune folosește `disable-model-invocation: true` pentru fluxurile invocate de utilizator, acolo unde se aplică. Setarea corespunzătoare din Codex se află în `agents/openai.yaml`, sub forma `policy.allow_implicit_invocation: false`; validatorul le cere pe amândouă. Metadatele de invocare completează regulile explicite de autorizare; o cerere de revizuire nu autorizează niciodată publicarea doar pentru că un skill include pași de publicare.
 
-### Bune practici React de la Vercel
+## Verificări și descoperire
 
-Pentru îndrumări mai aprofundate privind performanța React/Next.
+- `yarn ai-workflow:sync` regenerează ieșirile de compatibilitate folosind pachetele instalate `js-yaml` și `smol-toml`.
+- `yarn ai-workflow:check` parsează sursele, frontmatter-ul și configurațiile și verifică ieșirile generate, metadatele de invocare, amplasarea câmpurilor de model și conectarea hook-ului care doar formatează. Nu verifică identificatorii de model în catalogul vreunui furnizor.
+- `yarn ai-workflow:test` rulează fixture-uri Node izolate pentru payload-urile hook-urilor și pentru generarea și validarea fluxului de lucru.
+- După actualizarea unei aplicații de agent, verificați în acea aplicație descoperirea skill-urilor și a rolurilor. Verificările de sintaxă și de paritate nu înlocuiesc o verificare a încărcătorului. Reîncărcați aplicația dacă o sesiune existentă păstrează un catalog vechi.
+- Hook-urile necesită încrederea în proiect și revizuirea hook-urilor din harness; nu ocoliți mecanismul de încredere ca să treacă o verificare. Consultați [hooks-setup.md](hooks-setup.md).
 
-```bash
-npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-react-best-practices
-```
+## Menținerea unor instrucțiuni utile
 
-### Găsirea skill-urilor
+Urmați [îndrumările OpenAI despre skill-uri și prompturi](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra) (consultate la 2026-09-12): păstrați descrierile precise, încărcați detaliile doar când sunt relevante și respectați domeniul cerut de utilizator. Skill-urile comune servesc modele diferite; păstrați invarianții specifici proiectului, lăsând totodată loc alegerilor de implementare de rutină.
 
-Descoperiți și instalați skill-uri din ecosistemul deschis.
+Păstrați în `SKILL.md` scopul unui skill, limitele lui de decizie și constrângerile esențiale. Legați comenzile sau exemplele ample, specifice unui anumit mod, ca referințe opționale. Puneți condițiile de declanșare la începutul descrierilor scurte; un simplu cuvânt-cheie care se potrivește nu ar trebui să extindă sarcina. Păstrați metadatele de invocare existente, cu excepția cazului în care comportamentul lor este schimbat intenționat.
 
-```bash
-npx skills add https://github.com/vercel-labs/skills --skill find-skills
-```
+După o modificare substanțială a instrucțiunilor, încercați câteva cereri reprezentative, mici și mari. Verificați ce skill-uri și referințe au fost selectate, dacă acțiunile au rămas în limitele cererii, dacă verificarea s-a potrivit cu modificarea și dacă lucrul autorizat a fost dus la capăt. Testele de schemă și fixture-urile stabilesc corectitudinea instrumentelor, nu calitatea deciziilor agentului.
 
-## Motivația politicii privind MCP
+## Instrumente și proprietatea browserului
 
-Evitați serverele MCP pentru GitHub și pentru browser în acest proiect, pentru că adaugă o supraîncărcare semnificativă de schemă a instrumentelor și de context.
+Preferați catalogul existent de skill-uri și instrumente și CLI-urile instalate ale proiectului. Folosiți `gh` pentru GitHub, `playwright-cli` pentru verificarea în browser și documentația oficială, specifică versiunii, atunci când contează comportamentul bibliotecii. Evitați instalarea de skill-uri duplicate sau descărcarea unui pachet nefixat doar pentru a rula un formator existent.
 
-- Operațiuni GitHub: folosiți `gh` CLI.
-- Operațiuni în browser: folosiți `playwright-cli`.
+Costul suplimentar al MCP depinde de harness: încărcarea amânată a instrumentelor poate evita încărcarea tuturor schemelor de la început. Păstrați integrările relevante, în loc să tratați MCP ca fiind depășit în sine. Alegerile existente bazate pe CLI rămân utile pentru reproductibilitate și pentru controlul resurselor.
 
-## Disponibilitatea modelelor
-
-- `composer-2` este disponibil doar în Cursor. Nu îl configurați sub `.claude/` sau `.codex/`.
-- Codex nu documentează un alias de model `latest`. Fișierele TOML de agenți personalizați din `.codex/**/agents/*.toml` omit atât `model`, cât și `model_reasoning_effort`, ca să moștenească setările sesiunii părinte curente.
+Toate sesiunile de browser folosesc `./scripts/pw-session.sh`, care impune un singur browser activ la nivelul întregii mașini. Implicit, folosiți o sesiune nouă, izolată. Accesul la browserul personal curent necesită autorizare explicită; refolosiți acea autorizare în pașii următori. Alegeți browserele și viewporturile în funcție de comportamentul afectat, rulați secvențial motoarele selectate, închideți la curățare exact sesiunea denumită și nu folosiți niciodată `close-all`/`kill-all`. Consultați skill-ul `playwright-cli` și [verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md).

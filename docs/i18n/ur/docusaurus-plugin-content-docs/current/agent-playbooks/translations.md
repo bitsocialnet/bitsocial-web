@@ -1,43 +1,23 @@
-# ترجمہ ورک فلو
+# ترجمے
 
-یہ پروجیکٹ i18next ترجمہ فائلوں کو `public/translations/{lang}/default.json` میں استعمال کرتا ہے۔
+اباؤٹ سائٹ `about/public/translations/{lang}/default.json` میں i18next JSON استعمال کرتی ہے۔ Docusaurus کے سورس ترجمے الگ سے `docs/i18n/` میں رہتے ہیں۔
 
-## قاعدہ
+## اباؤٹ سائٹ کی کیز
 
-ہر زبان کی فائل میں دستی طور پر ترمیم نہ کریں۔ `scripts/update-translations.js` استعمال کریں۔
+`.agents/skills/translate/SKILL.md` استعمال کریں۔ موجودہ لوکیلز ڈسک سے معلوم کریں اور پلیس ہولڈرز، مارک اپ، تکنیکی اصطلاحات اور برانڈ ناموں کو برقرار رکھیں۔ بڑی درخواستوں کے لیے چائلڈ ایجنٹس آزادانہ نقشے تیار کر سکتے ہیں، مگر لوکیلز میں ہر تحریر ایک ہی پیرنٹ یکے بعد دیگرے لاگو کرتا ہے؛ اپ ڈیٹر میں کوئی رائٹر لاک نہیں ہے۔
 
-## کلید شامل کریں یا اپ ڈیٹ کریں
+نقشے کے لیے ٹاسک کی ملکیت والا منفرد راستہ استعمال کریں۔ `node scripts/update-translations.js --key <key> --map <map.json> --include-en --dry` سے پیش نظارہ کریں، پھر انہی آرگیومنٹس اور `--write` کے ساتھ لاگو کریں۔ لکھنے کے بعد کوریج/ویلیوز کی تصدیق کریں اور صرف وہی عارضی نقشے ہٹائیں جو اس ٹاسک کی ملکیت ہوں۔
 
-1. ایک عارضی لغت فائل بنائیں، جیسے `translations-temp.json`:
+مطلوبہ حذف کے لیے `--delete` استعمال کریں۔ مجاز `--audit --write` سے پہلے `--audit --dry` کے نتائج کا معائنہ کریں؛ متحرک ترجمہ کیز کے لیے سورس کا دستی جائزہ درکار ہے۔ انگریزی کو ہر لوکیل میں صرف کسی تکنیکی اصطلاح، برانڈ یا پلیس ہولڈر کے لیے کاپی کریں۔
 
-```json
-{
-  "en": "English text",
-  "es": "Spanish text",
-  "fr": "French text",
-  "de": "German text"
-}
-```
+## Docusaurus صفحات
 
-2. ترجمے کا نقشہ لگائیں:
+`scripts/translate-docs.py` تمام صفحات/لوکیلز کے لیے بلک رائٹر ہے اور اس میں فی فائل فلٹر نہیں؛ ترجمے کی کسی محدود ترمیم کے لیے اسے استعمال نہ کریں۔ `scripts/check-docs-translations.py` صرف پڑھنے والا ویریفائر ہے اور `--locales` اور `--paths` کی حمایت کرتا ہے۔
 
-```bash
-node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
-```
+کوڈ فینسز، لنکس، ان لائن کوڈ، کنٹریکٹ ایڈریسز، ہیڈنگز، جدول اور ایڈمونیشنز کو انگریزی سورس کے مطابق رکھیں۔ ویریفائر کی خرابیاں حل کریں؛ برانڈ ناموں پر `frontmatter-untranslated` انتباہات متوقع ہو سکتے ہیں۔ دستاویزات کی تھیم یا i18n رویہ بدلتے وقت `docs/AGENTS.md` پر عمل کریں اور روٹ سے بلڈ کریں تاکہ اسٹیٹک آؤٹ پٹ اور Pagefind ہم آہنگ رہیں۔
 
-3. عارضی لغت فائل کو حذف کریں۔
+## اختیاری معنوی جائزہ
 
-## دیگر مفید کمانڈز
+منتخب i18next کیز کے لیے `scripts/jev/translation-README.md` استعمال کریں۔ دستاویزی صفحات کے لیے پہلے `node scripts/jev/docs-translations.mjs --locales it,de --paths browser-p2p.md` چلائیں۔ اس کے لیے لوکیل/صفحے کا صریح انتخاب درکار ہے؛ یہ ساختی ویریفائر چلاتا ہے، اور جب تک لائیو انفرنس فعال نہ ہو، معنوی جائزے کو غیر تصدیق شدہ رپورٹ کرتا ہے۔ `--live` صرف ٹاسک کے لیے فراہم کنندہ کی اجازت اور بجٹ کے ساتھ شامل کریں؛ مشترکہ نجی مشین کنفیگریشن کریڈینشلز اور پن کیا گیا ماڈل فراہم کرتی ہے۔ انوائرنمنٹ ویری ایبلز اور `--model` اس سیٹ اپ کو اوور رائیڈ کر سکتے ہیں۔ یہ کمانڈ کبھی ترجموں میں ترمیم نہیں کرتی۔
 
-```bash
-# Copy a key from English to all languages (dry run then write)
-node scripts/update-translations.js --key some_key --from en --dry
-node scripts/update-translations.js --key some_key --from en --write
-
-# Delete a key from all languages
-node scripts/update-translations.js --key obsolete_key --delete --write
-
-# Audit for unused translation keys
-node scripts/update-translations.js --audit --dry
-node scripts/update-translations.js --audit --write
-```
+صفحہ ایڈاپٹر پورے صفحے کا سیاق و سباق برقرار رکھتا ہے اور ہر صفحے کو 24 KB اور ہر رن کو 30 جوڑوں تک محدود رکھتا ہے۔ بڑے صفحات کے لیے `translations.mjs --pairs` کے واسطے سورس/ترجمے کے پیراگرافس کے صراحتاً ہم آہنگ کیے گئے جوڑے تیار کریں؛ پیراگرافس کو ان کے ترتیبی نمبر کی بنیاد پر خودکار طور پر جوڑا نہ بنائیں۔ معنوی نتائج مشاورتی ہیں: رپورٹ کیے گئے مسائل اور غیر یقینی کا معائنہ کریں، اور کوڈ/لنک/ایڈریس کی متعین جانچیں برقرار رکھیں۔

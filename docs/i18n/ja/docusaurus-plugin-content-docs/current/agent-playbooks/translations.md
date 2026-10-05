@@ -1,43 +1,23 @@
-# 翻訳ワークフロー
+# 翻訳
 
-このプロジェクトは、`public/translations/{lang}/default.json` の i18next 翻訳ファイルを使用します。
+about サイトは `about/public/translations/{lang}/default.json` の i18next JSON を使います。Docusaurus のソース翻訳はそれとは別に `docs/i18n/` にあります。
 
-## ルール
+## about サイトのキー
 
-すべての言語ファイルを手動で編集しないでください。 `scripts/update-translations.js` を使用します。
+`.agents/skills/translate/SKILL.md` を使います。現在のロケールはディスクから確認し、プレースホルダー、マークアップ、技術用語、ブランド名は保持します。大きな依頼では子エージェントがそれぞれ独立したマップを生成してもかまいませんが、すべてのロケールへの書き込みは 1 つの親が順番に適用します。アップデーターには書き込みロックがないためです。
 
-## キーを追加または更新します
+タスク専用の一意なマップのパスを使います。`node scripts/update-translations.js --key <key> --map <map.json> --include-en --dry` でプレビューし、同じ引数に `--write` を付けて適用します。書き込み後は網羅性と値を検証し、このタスクが所有する一時マップだけを削除してください。
 
-1. 一時辞書ファイルを作成します。 `translations-temp.json`:
+削除を依頼された場合は `--delete` を使います。許可された `--audit --write` の前に、`--audit --dry` の結果を確認してください。動的な翻訳キーは、ソースを手動でレビューする必要があります。英語をすべてのロケールにコピーするのは、技術用語、ブランド、プレースホルダーの場合だけです。
 
-```json
-{
-  "en": "English text",
-  "es": "Spanish text",
-  "fr": "French text",
-  "de": "German text"
-}
-```
+## Docusaurus のページ
 
-2. 変換マップを適用します:
+`scripts/translate-docs.py` はすべてのページとロケールを対象とする一括ライターで、ファイル単位のフィルターはありません。範囲の狭い翻訳の編集には使わないでください。`scripts/check-docs-translations.py` は読み取り専用の検証ツールで、`--locales` と `--paths` に対応しています。
 
-```bash
-node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
-```
+コードフェンス、リンク、インラインコード、コントラクトアドレス、見出し、表、アドモニションは英語の原文と揃えてください。検証ツールのエラーは解消します。ブランド名による `frontmatter-untranslated` 警告は想定内です。ドキュメントのテーマや i18n の挙動を変更する場合は、`docs/AGENTS.md` に従い、静的出力と Pagefind が揃うようにルートからビルドしてください。
 
-3. 一時辞書ファイルを削除します。
+## 任意のセマンティックレビュー
 
-## その他の便利なコマンド
+選択した i18next キーについては `scripts/jev/translation-README.md` を使います。ドキュメントページについては、まず `node scripts/jev/docs-translations.mjs --locales it,de --paths browser-p2p.md` を実行します。このコマンドはロケールとページを明示的に選択する必要があり、構造の検証ツールを実行したうえで、ライブ推論が有効になるまではセマンティックレビューを未検証として報告します。`--live` は、そのタスクにプロバイダーの利用許可と予算がある場合にのみ付けてください。認証情報と固定されたモデルは、共有のプライベートなマシン設定が提供します。環境変数と `--model` でその設定を上書きできます。このコマンドが翻訳を編集することはありません。
 
-```bash
-# Copy a key from English to all languages (dry run then write)
-node scripts/update-translations.js --key some_key --from en --dry
-node scripts/update-translations.js --key some_key --from en --write
-
-# Delete a key from all languages
-node scripts/update-translations.js --key obsolete_key --delete --write
-
-# Audit for unused translation keys
-node scripts/update-translations.js --audit --dry
-node scripts/update-translations.js --audit --write
-```
+ページアダプターはページ全体のコンテキストを保持し、1 ページあたり 24 KB、1 回の実行あたり 30 ペアまでに制限します。それより大きなページでは、原文と訳文の段落を明示的に対応させたペアを `translations.mjs --pairs` 用に用意してください。段落をインデックス順に自動でペアにしてはいけません。セマンティックレビューの結果はアドバイザリーです。報告された問題と不確実性を確認し、コード、リンク、アドレスの決定論的なチェックは維持してください。

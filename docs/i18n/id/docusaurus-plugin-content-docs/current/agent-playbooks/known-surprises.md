@@ -188,12 +188,28 @@ Jika ragu, tanyakan dulu kepada developer sebelum menambahkan entri.
 - **Mitigasi:** Pada halaman dokumentasi mana pun yang tidak dicerminkan ke `docs/i18n/**`, gunakan tautan relatif-root (`/peer-to-peer-protocol/`, `/apps/5chan/`) alih-alih tautan `.md` relatif; Docusaurus otomatis menambahkan awalan locale. `docs/build-your-own-client.md` adalah contoh yang sudah ada. Jalankan `yarn docs:build` penuh — bukan sekadar `build:verify` — sebelum menyerahkan perubahan apa pun yang menambahkan atau menautkan halaman dokumentasi.
 - **Status:** confirmed
 
-### `update-translations.js` harus dijalankan dari `about/`, dan eksekusi bersamaan diam-diam menghilangkan key
+### Eksekusi `update-translations.js` yang bersamaan diam-diam menghilangkan key
 
 - **Tanggal:** 2026-08-02
 - **Diamati oleh:** Claude
 - **Konteks:** Menerapkan 26 key i18next hasil terjemahan ke seluruh 36 locale lewat skill `translate`
-- **Yang mengejutkan:** Dua jebakan berbeda pada skrip yang sama. Pertama, `scripts/update-translations.js` menentukan targetnya sebagai `path.join(process.cwd(), "public", "translations")`, padahal repo ini menyimpan terjemahan di `about/public/translations`. Menjalankan perintah yang terdokumentasi dari root repo membuat setiap pemanggilan gagal dengan "Translations directory not found" — `docs/agent-playbooks/translations.md` menampilkan `node scripts/update-translations.js ...`, yang terbaca sebagai perintah untuk root repo. Kedua, setiap pemanggilan adalah operasi baca-ubah-tulis atas seluruh 36 berkas locale, sehingga dua pemanggilan yang berjalan bersamaan saling menimpa dan satu key lenyap tanpa error. Skill `translate` secara eksplisit menginstruksikan pemunculan hingga 4 subagen secara bersamaan, dan masing-masing akan memanggil skrip tersebut.
-- **Dampak:** Bentuk root repo gagal secara terang-terangan dan membuang satu putaran kerja penuh. Masalah konkurensinya gagal secara senyap: key hilang dari locale yang acak, dan diff-nya tetap terlihat wajar.
-- **Mitigasi:** Jalankan sebagai `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Jangan pernah membiarkan subagen penerjemah menulis berkas locale secara bersamaan — biarkan mereka hanya menghasilkan berkas JSON kamus, lalu terapkan setiap key secara berurutan dari agen induk. Setelah diterapkan, verifikasi secara terprogram bahwa setiap key ada di seluruh 35 locale non-Inggris dan bahwa tidak ada nilai yang identik byte-per-byte dengan sumber bahasa Inggrisnya.
+- **Yang mengejutkan:** Setiap pemanggilan adalah operasi baca-ubah-tulis atas seluruh 36 berkas locale, sehingga dua pemanggilan yang berjalan bersamaan saling menimpa dan satu key lenyap tanpa error. Skill `translate` secara eksplisit menginstruksikan pemunculan hingga 4 subagen secara bersamaan, dan masing-masing akan memanggil skrip tersebut.
+- **Dampak:** Gagal secara senyap: key hilang dari locale yang acak, dan diff-nya tetap terlihat wajar.
+- **Mitigasi:** Jangan pernah membiarkan subagen penerjemah menulis berkas locale secara bersamaan — biarkan mereka hanya menghasilkan berkas JSON kamus, lalu terapkan setiap key secara berurutan dari agen induk. Setelah diterapkan, verifikasi secara terprogram bahwa setiap key ada di seluruh 35 locale non-Inggris dan bahwa tidak ada nilai yang identik byte-per-byte dengan sumber bahasa Inggrisnya.
+- **Status:** confirmed
+- **Pembaruan (2026-08-10):** Skrip ini dulu juga menentukan targetnya sebagai `path.join(process.cwd(), "public", "translations")`, sehingga perintah terdokumentasi dari root repo gagal dengan "Translations directory not found" dan harus dijalankan dari `about/`. Kini skrip menentukan workspace dari direktori saat ini atau dari lokasinya sendiri, sehingga berfungsi dari mana saja. Jebakan konkurensi di atas tidak berubah.
+
+### Kontrol anotasi mode pengembangan bisa mencegat klik dari otomasi
+
+- **Konteks:** Situs about dan chain memiliki kontrol tetap di pojok kanan bawah, tempat toolbar Agentation juga muncul dalam mode pengembangan.
+- **Mitigasi:** `scripts/pw-session.sh open` mendaftarkan `window.__NO_DEV_TOOLBAR__ = true` sebelum memuat ulang halaman. Penginisialisasi Agentation juga menghormati `__VISUAL_TESTING__` dan `__PROFILING__`; inspeksi kode sumber tetap tersedia secara terpisah. Otomasi browser langsung harus menyetel flag yang sama sebelum memuat aplikasi.
+
+### `skills add` memasang salinan Codex dan Cursor ke direktori `.agents/` yang di-gitignore
+
+- **Tanggal:** 2026-08-18
+- **Diamati oleh:** Tommaso + Claude
+- **Konteks:** Memasang skill `improve-threejs` dari `millionco/react-doctor` dengan CLI `skills` (`vercel-labs/skills`).
+- **Yang mengejutkan:** `npx skills add <repo> --skill <name> --agent codex` dan `--agent cursor` sama-sama menulis ke `.agents/skills/<name>/`, bukan ke `.codex/skills/` atau `.cursor/skills/`. `AGENTS.md` melarang direktori `.agents/` di tingkat repo dan `.gitignore:29` mengabaikannya, sehingga kedua salinan itu diam-diam tidak terlacak. Hanya `--agent claude-code` yang menulis ke `.claude/skills/` sesuai harapan. Terpisah dari itu, bentuk dipisah koma yang terdokumentasi (`--agent claude-code,codex,cursor`) gagal dengan "Invalid agents" dan tidak memasang apa pun, padahal tiap nama valid jika dipakai sendiri-sendiri.
+- **Dampak:** Instalasi melaporkan keberhasilan padahal dua dari tiga salinan toolchain berakhir di tempat yang tidak akan pernah di-commit, sehingga Codex dan Cursor diam-diam tidak memiliki skill tersebut setelah clone baru. Bentuk koma juga bisa menghasilkan instalasi kosong yang tampak berhasil.
+- **Mitigasi saat ini:** Repositori kini melacak `.agents/skills` sebagai sumber kanonisnya dan menghasilkan salinan Claude dengan `yarn ai-workflow:sync`. Larangan `.agents` sebelumnya beserta aturan ignore-nya telah dihapus. Jangan menyalin skill baru ke tiga root yang terpisah; periksa paritas hasil generate dan katalog aplikasi setelah menambahkan skill.
 - **Status:** confirmed

@@ -1,43 +1,23 @@
-# Pracovní postup překladů
+# Překlady
 
-Tento projekt používá překladové soubory i18next v `public/translations/{lang}/default.json`.
+Web about používá JSON pro i18next v `about/public/translations/{lang}/default.json`. Zdrojové překlady pro Docusaurus žijí odděleně v `docs/i18n/`.
 
-## Pravidlo
+## Klíče webu about
 
-Neupravujte ručně každý jazykový soubor. Použijte `scripts/update-translations.js`.
+Použijte `.agents/skills/translate/SKILL.md`. Aktuální jazykové verze zjistěte z disku a zachovejte zástupné symboly, značkování, technické termíny a názvy značek. U větších požadavků mohou podřízení agenti generovat nezávislé mapy, ale všechny zápisy do jazykových verzí provádí postupně jediný rodičovský agent; aktualizační skript nemá zámek pro zápis.
 
-## Přidat nebo aktualizovat klíč
+Použijte jedinečnou cestu k mapě, kterou vlastní daná úloha. Náhled si zobrazte pomocí `node scripts/update-translations.js --key <key> --map <map.json> --include-en --dry` a pak změny aplikujte se stejnými argumenty a `--write`. Po zápisu ověřte pokrytí a hodnoty a odstraňte pouze dočasné mapy, které vlastní tato úloha.
 
-1. Vytvořte dočasný soubor slovníku, např. `translations-temp.json`:
+Pro vyžádaná odstranění použijte `--delete`. Před autorizovaným `--audit --write` si prohlédněte zjištění z `--audit --dry`; dynamické překladové klíče vyžadují ruční kontrolu zdrojového kódu. Anglický text kopírujte do všech jazykových verzí jen u technického termínu, značky nebo zástupného symbolu.
 
-```json
-{
-  "en": "English text",
-  "es": "Spanish text",
-  "fr": "French text",
-  "de": "German text"
-}
-```
+## Stránky Docusaurus
 
-2. Použijte mapu překladu:
+`scripts/translate-docs.py` je hromadný zapisovač pro všechny stránky a jazykové verze a nemá filtr pro jednotlivé soubory; pro úzkou úpravu překladu ho nepoužívejte. `scripts/check-docs-translations.py` je ověřovač pouze pro čtení a podporuje `--locales` a `--paths`.
 
-```bash
-node scripts/update-translations.js --key my_new_key --map translations-temp.json --include-en --write
-```
+Bloky kódu, odkazy, inline kód, adresy kontraktů, nadpisy, tabulky a bloky upozornění (admonitions) udržujte v souladu s anglickým zdrojem. Chyby ověřovače vyřešte; varování `frontmatter-untranslated` u názvů značek lze očekávat. Řiďte se `docs/AGENTS.md`, a když měníte motiv dokumentace nebo chování i18n, sestavujte přes kořen repozitáře, aby statický výstup a Pagefind zůstaly v souladu.
 
-3. Odstraňte dočasný soubor slovníku.
+## Volitelná sémantická revize
 
-## Další užitečné příkazy
+Pro vybrané klíče i18next použijte `scripts/jev/translation-README.md`. U stránek dokumentace nejprve spusťte `node scripts/jev/docs-translations.mjs --locales it,de --paths browser-p2p.md`. Příkaz vyžaduje explicitní výběr jazykových verzí a stránek, spustí strukturální ověřovač a sémantickou revizi hlásí jako neověřenou, dokud není povolena živá inference. `--live` přidejte jen tehdy, když má úloha autorizaci pro použití poskytovatele a rozpočet; přihlašovací údaje a připnutý model dodává sdílená soukromá konfigurace stroje. Toto nastavení lze přepsat proměnnými prostředí a parametrem `--model`. Příkaz nikdy neupravuje překlady.
 
-```bash
-# Copy a key from English to all languages (dry run then write)
-node scripts/update-translations.js --key some_key --from en --dry
-node scripts/update-translations.js --key some_key --from en --write
-
-# Delete a key from all languages
-node scripts/update-translations.js --key obsolete_key --delete --write
-
-# Audit for unused translation keys
-node scripts/update-translations.js --audit --dry
-node scripts/update-translations.js --audit --write
-```
+Adaptér pro stránky zachovává kontext celé stránky a omezuje každou stránku na 24 KB a každý běh na 30 dvojic. U větších stránek připravte pro `translations.mjs --pairs` explicitně zarovnané dvojice odstavců zdroje a překladu; nepárujte odstavce automaticky podle indexu. Sémantické výsledky mají poradní charakter: prohlédněte si nahlášené problémy a míru nejistoty a ponechte deterministické kontroly kódu, odkazů a adres.

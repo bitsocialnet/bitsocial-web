@@ -188,12 +188,28 @@ In caso di dubbio, chiedi allo sviluppatore prima di aggiungere una voce.
 - **Mitigazione:** in qualsiasi pagina di documentazione non rispecchiata in `docs/i18n/**`, usa link relativi alla radice (`/peer-to-peer-protocol/`, `/apps/5chan/`) invece dei link relativi `.md`; Docusaurus vi antepone automaticamente la lingua. `docs/build-your-own-client.md` è l'esempio già presente. Esegui un `yarn docs:build` completo, non solo `build:verify`, prima di consegnare qualsiasi modifica che aggiunga o colleghi una pagina di documentazione.
 - **Stato:** confermato
 
-### `update-translations.js` va eseguito da `about/`, e le esecuzioni concorrenti perdono chiavi in silenzio
+### Le esecuzioni concorrenti di `update-translations.js` perdono chiavi in silenzio
 
 - **Data:** 2026-08-02
 - **Osservato da:** Claude
 - **Contesto:** applicazione di 26 chiavi i18next tradotte a tutte le 36 lingue tramite la skill `translate`
-- **Cosa ha sorpreso:** due trappole distinte nello stesso script. La prima: `scripts/update-translations.js` risolve la propria destinazione come `path.join(process.cwd(), "public", "translations")`, ma questo repository tiene le traduzioni in `about/public/translations`. Eseguire il comando documentato dalla radice del repository fallisce a ogni invocazione con "Translations directory not found", perché `docs/agent-playbooks/translations.md` mostra `node scripts/update-translations.js ...`, che si legge come un comando da radice del repository. La seconda: ogni invocazione è un ciclo lettura-modifica-scrittura su tutti e 36 i file di lingua, quindi due invocazioni contemporanee si sovrascrivono a vicenda e una chiave sparisce senza alcun errore. La skill `translate` prescrive esplicitamente di avviare fino a 4 subagenti in parallelo, e ognuno di loro chiamerebbe lo script.
-- **Impatto:** la forma eseguita dalla radice del repository fallisce in modo rumoroso e spreca un intero passaggio. Il problema di concorrenza fallisce invece in silenzio: le chiavi spariscono da lingue arbitrarie e il diff continua a sembrare plausibile.
-- **Mitigazione:** eseguilo come `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Non lasciare mai che i subagenti traduttori scrivano i file di lingua in parallelo: falli produrre soltanto file JSON di dizionario, poi applica ogni chiave in modo seriale dall'agente genitore. Dopo l'applicazione, verifica in modo programmatico che ogni chiave esista in tutte le 35 lingue non inglesi e che nessun valore sia identico byte per byte al sorgente inglese.
+- **Cosa ha sorpreso:** ogni invocazione è un ciclo lettura-modifica-scrittura su tutti e 36 i file di lingua, quindi due invocazioni contemporanee si sovrascrivono a vicenda e una chiave sparisce senza alcun errore. La skill `translate` prescrive esplicitamente di avviare fino a 4 subagenti in parallelo, e ognuno di loro chiamerebbe lo script.
+- **Impatto:** il problema fallisce in silenzio: le chiavi spariscono da lingue arbitrarie e il diff continua a sembrare plausibile.
+- **Mitigazione:** non lasciare mai che i subagenti traduttori scrivano i file di lingua in parallelo: falli produrre soltanto file JSON di dizionario, poi applica ogni chiave in modo seriale dall'agente genitore. Dopo l'applicazione, verifica in modo programmatico che ogni chiave esista in tutte le 35 lingue non inglesi e che nessun valore sia identico byte per byte al sorgente inglese.
+- **Stato:** confermato
+- **Aggiornamento (2026-08-10):** in passato lo script risolveva anche la propria destinazione come `path.join(process.cwd(), "public", "translations")`, quindi il comando documentato dalla radice del repository falliva con "Translations directory not found" e andava eseguito da `about/`. Ora risolve il workspace a partire dalla directory corrente o dalla propria posizione, e funziona da qualsiasi punto. La trappola di concorrenza descritta sopra resta invariata.
+
+### I controlli di annotazione in sviluppo possono intercettare i clic automatizzati
+
+- **Contesto:** i siti about e chain hanno controlli fissi nell'angolo in basso a destra, dove in sviluppo compare anche la toolbar di Agentation.
+- **Mitigazione:** `scripts/pw-session.sh open` registra `window.__NO_DEV_TOOLBAR__ = true` prima di ricaricare la pagina. L'inizializzatore di Agentation rispetta anche `__VISUAL_TESTING__` e `__PROFILING__`; l'ispezione del sorgente resta disponibile in modo indipendente. L'automazione diretta del browser deve impostare lo stesso flag prima di caricare l'applicazione.
+
+### `skills add` installa le copie per Codex e Cursor nella directory `.agents/` ignorata da Git
+
+- **Data:** 2026-08-18
+- **Osservato da:** Tommaso + Claude
+- **Contesto:** installazione della skill `improve-threejs` da `millionco/react-doctor` con la CLI `skills` (`vercel-labs/skills`).
+- **Cosa ha sorpreso:** `npx skills add <repo> --skill <name> --agent codex` e `--agent cursor` scrivono entrambi in `.agents/skills/<name>/`, non in `.codex/skills/` o `.cursor/skills/`. `AGENTS.md` vieta una directory `.agents/` a livello di repository e `.gitignore:29` la ignora, quindi entrambe le copie restano non tracciate senza alcun avviso. Solo `--agent claude-code` scrive nella directory prevista, `.claude/skills/`. Separatamente, la forma documentata con valori separati da virgole (`--agent claude-code,codex,cursor`) fallisce con "Invalid agents" e non installa nulla, anche se ogni nome, preso da solo, è valido.
+- **Impatto:** l'installazione segnala un successo mentre due delle tre copie per le toolchain finiscono in un posto che non entrerà mai in un commit, così dopo un clone pulito Codex e Cursor restano senza la skill senza che nessuno se ne accorga. La forma con le virgole può anche produrre un'installazione che non fa nulla ma sembra riuscita.
+- **Mitigazione attuale:** il repository ora traccia `.agents/skills` come sorgente canonico e genera le copie per Claude con `yarn ai-workflow:sync`. Il precedente divieto su `.agents` e la relativa regola di esclusione sono stati rimossi. Non copiare le nuove skill in tre radici indipendenti; dopo aver aggiunto una skill, controlla la parità degli output generati e il catalogo dell'app.
 - **Stato:** confermato

@@ -1,73 +1,83 @@
 # Skillek és eszközök
 
-Használja ezt a playbookot, amikor skilleket és külső eszközöket állít be vagy módosít.
+A közös skillek a `.agents/skills/` könyvtárban találhatók. Ezeket a forrásokat szerkessze, majd futtassa a `yarn ai-workflow:sync` parancsot, amely létrehozza a `.claude/skills/` könyvtárat a Claude Code számára. A Codex és a Cursor közvetlenül felfedezi a `.agents/skills/` könyvtárat; ne állítsa vissza a duplikált `.codex/skills/` vagy `.cursor/skills/` gyökeret.
 
-## Ajánlott skillek
+A közös szerepkör-promptok a `.agents/roles/*.md` fájlokban találhatók. Ez repóspecifikus forrásformátum, nem natív ügynökfelfedezési útvonal. A `scripts/ai-workflow-files.mjs` ezeket a forrásokat az alábbi alkalmazásspecifikus fájlokká alakítja; a `yarn ai-workflow:sync` írja ki őket. A generált fájlokat a forrásaikkal együtt commitolja, hogy egy friss checkoutban generátor futtatása nélkül is meglegyen a natív konfiguráció. Egy forrás eltávolítása után kifejezetten távolítsa el az elavult generált kimeneteit is; a validátor jelzi ezeket, ahelyett hogy csendben törölné a fájlokat.
 
-### Context7 (könyvtárdokumentáció)
+## Natív felfedezési útvonalak
 
-Naprakész dokumentációhoz a különféle könyvtárakról.
+A hivatalos dokumentációval 2026-09-12-én ellenőrizve:
 
-```bash
-npx skills add https://github.com/intellectronica/agent-skills --skill context7
-```
+| Alkalmazás  | Projektutasítások                                                                                     | A repó által használt skillek             | A repó által használt egyéni ügynökök |
+| ----------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------- |
+| Codex       | `AGENTS.md`                                                                                           | `.agents/skills/<name>/SKILL.md`          | Generált `.codex/agents/<name>.toml`  |
+| Cursor      | `AGENTS.md`; a `.cursor/rules/*.mdc` továbbra is elérhető a Cursor-specifikus feltételes szabályokhoz | `.agents/skills/<name>/SKILL.md`          | Generált `.cursor/agents/<name>.md`   |
+| Claude Code | A `CLAUDE.md` importálja az `@AGENTS.md` fájlt                                                        | Generált `.claude/skills/<name>/SKILL.md` | Generált `.claude/agents/<name>.md`   |
 
-### Playwright CLI
+Források: [Codex-skillek](https://learn.chatgpt.com/docs/build-skills), [Codex-alügynökök](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Cursor-szabályok](https://cursor.com/docs/rules), [Cursor-skillek](https://cursor.com/docs/skills), [Cursor-alügynökök](https://cursor.com/docs/subagents), [Claude-memória](https://code.claude.com/docs/en/memory), [Claude-skillek](https://code.claude.com/docs/en/skills), [Claude-alügynökök](https://code.claude.com/docs/en/sub-agents).
 
-Böngészőautomatizáláshoz (navigáció, interakció, képernyőképek, tesztek, adatkinyerés) a `playwright-cli` eszközt használja.
+Ne cserélje le a natív ügynökkönyvtárakat a `.agents/roles` könyvtárra, és ne feltételezze, hogy a Claude felfedezi a `.agents/skills` könyvtárat. A Claude ettől még elolvashat egy ott lévő, hivatkozott fájlt hétköznapi projektkontextusként. A Cursor a kompatibilitás érdekében a `.claude/skills` könyvtárat is felfedezi; a másolatok szinkronban maradnak, de a Cursor közzétett skill-útmutatója nem határozza meg, hogyan szűri a duplikátumokat ezek között a gyökerek között. Ahelyett, hogy megígérné, hogy duplikált bejegyzések nem jelenhetnek meg, ellenőrizze a telepített alkalmazás skillkatalógusát.
 
-Amikor a `playwright-cli` eszközzel ellenőrzi a repó felületét, ne álljon meg egyetlen motornál. Futtassa le a releváns folyamatot mind a három fő böngészőmotorban:
+Az AI-könyvtárak a `.gitattributes` révén LF sorvégeket használnak, így a generált szöveg minden platformon azonos marad. A skillek kiegészítő fájljai bájtra pontosan másolódnak.
 
-- `chrome` a Blinkhez
-- `firefox` a Geckóhoz
-- `webkit` a Safari/WebKit lefedettséghez
+## Skillek
 
-Motoronként külön elnevezett munkamenetet használjon, hogy a bizonyítékok elkülönüljenek, de ezeket a munkameneteket sorosan futtassa. Gépszinten egyszerre csak egy Playwright böngésző-munkamenet lehet aktív, mert a szűkös erőforrás a gép memóriája és processzora, nem pedig maga a repository. A munkameneteket a `./scripts/pw-session.sh` szkripttel nyissa meg és zárja be; ez tartja a közös zárat, így a párhuzamosan dolgozó ügynökök elhalasztják és később újrapróbálják a böngészős munkát ahelyett, hogy telítenék a gépet. Ha szándékosan kihagy egy motort, rögzítse ennek okát.
+| Skill                                | Cél                                                                                                                    |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| `commit`                             | Engedélyezett, körülhatárolt helyi commitok létrehozása                                                                |
+| `commit-format`, `issue-format`      | Formázási javaslatok kérésre                                                                                           |
+| `make-closed-issue`                  | Engedélyezett issue, körülhatárolt commit és PR létrehozása                                                            |
+| `review-and-merge-pr`                | PR-visszajelzések osztályozása; javítás/közzététel/merge csak a kért hatókörön belül                                   |
+| `fix-merge-conflicts`                | Ütközések feloldása és az egyesített eredmény ellenőrzése                                                              |
+| `release`                            | Kiadási szöveg előkészítése és az engedélyezett kiadási lépések végrehajtása                                           |
+| `code-quality-review`                | Nem triviális diffek vagy kifejezetten kért minőségi aggály átnézése                                                   |
+| `retro`                              | A ténylegesen előfordult hibák célzott ellenőrzésekké vagy útmutatássá alakítása, amelyek megelőzik az ismétlődést     |
+| `refactor-pass`, `deslop`            | A meglévő változtatások kért takarítása                                                                                |
+| `debug-agent`                        | Bizonyítékalapú hibakeresés, szükség esetén instrumentálással                                                          |
+| `you-might-not-need-an-effect`       | Célzott effekt-/memo-átnézés                                                                                           |
+| `vercel-react-best-practices`        | Alkalmazható React-teljesítményútmutatás; ennél a Vite-kliensnél hagyja ki a Next.js-es/csak szerveroldali szabályokat |
+| `translate`                          | Fordítások előállítása, majd a szótárfájlok alkalmazása egyetlen íróval                                                |
+| `playwright-cli`, `inspect-elements` | Böngészős ellenőrzés és a DOM forráskódra való leképezése                                                              |
+| `profile-browsing`                   | Körülhatárolt böngésző- és React-profilozás                                                                            |
+| `test-apk`                           | Egy átadott Android-kísérőburkoló ellenőrzése                                                                          |
+| `impeccable`, `improve-threejs`      | Körülhatárolt felülettervezés és Three.js-renderelési átnézés                                                          |
+| `implement-plan`                     | Terv végrehajtása opcionális, korlátozott delegálással                                                                 |
+| `readme`                             | Ellenőrzött projektdokumentáció karbantartása                                                                          |
+| `context7`                           | A verziónak megfelelő könyvtárdokumentáció lekérése                                                                    |
+| `find-skills`                        | További skillek keresése, ha ezt kifejezetten kérik                                                                    |
 
-Iteráció közben csak a Chrome/Blink motort használja. A teljes Chrome-, Firefox- és WebKit-sorozatot akkor futtassa le, amikor a változás készen áll a záró ellenőrzésre. Az egyes motorok munkamenetét átméretezéssel használja újra asztali és mobil nézethez, zárja be finally jellegű takarításban, és csak ezután nyissa meg a következő motort.
+## Szerepkörök és modellek
 
-```bash
-./scripts/pw-session.sh open verify-chrome https://bitsocial.localhost --browser=chrome
-playwright-cli -s=verify-chrome snapshot
-./scripts/pw-session.sh close verify-chrome
-```
+Tartsa meg az egyéni szerepköröket a `browser-check`, `profiler`, `test-apk`, `translator` és `reviewer` feladatokhoz. Hétköznapi implementációhoz és kódfelderítéshez a keretrendszer beépített worker/általános célú vagy explorer szerepkörét használja. A szülő jelöli ki az elfogadási feltételeket és a tulajdonjogot; a nehéz ellenőrzéseket egyetlen tulajdonos futtatja.
 
-Ha a slot foglalt, az `open` 75-ös kóddal lép ki; kézi újrapróbálkozás helyett várakozzon a `./scripts/pw-session.sh open --wait[=SECONDS] ...` paranccsal (alapértelmezés szerint 300 mp). A megszakadt munkafolyamat által hátrahagyott zárat a rendszer automatikusan visszaveszi, mert az `open` elenged minden olyan slotot, amelynek nyilvántartott böngészője már nem fut. A zár birtokosát a `./scripts/pw-session.sh status` paranccsal vizsgálhatja meg; a `release <session>` végső megoldás arra a ritka esetre, amikor a `status` nem tudja ellenőrizni a böngésző állapotát.
+A Codex ügynökfájljai tartalmazzák a `name`, a `description` és a `developer_instructions` mezőt. A `.codex/config.toml` a `max_concurrent_threads_per_session` beállítással négyben korlátozza az egyidejű gyermekügynökök számát. A közös szerepkör-metaadatok a nevet, a leírást és az opcionális sandbox-módot tartalmazzák; modellmezőket szándékosan nem.
 
-```bash
-npm install -g @playwright/cli@latest
-playwright-cli install --skills
-```
+Mindhárom alkalmazásban hagyja ki a modell- és gondolkodási mezőket a commitolt skillekből és egyéni ügynökökből. Így az egyes alkalmazások dokumentált elsőbbségi sorrendje szerint érvényesülhetnek a futásidejű meghívási döntések, a felhasználói alapértelmezések és a szülőtől való öröklés. A Claude modellcsalád-aliasai csökkentik a verziók karbantartását, de így is egy családot választanak; egy verziószámmal megadott Cursor-modell a jövőben frissítést igényel. Ha szükséges, az ilyen döntéseket a felhasználói/munkamenet-beállításokban tartsa. Az öröklés nem ígéri, hogy automatikusan a legjobb aktuális modell lesz kiválasztva. Ne találjon ki `latest` aliast, és ne tegye a modellkatalógus kutatását a rutinfeladatok részévé. Lásd: [Codex-modellválasztás](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Claude-modellválasztás](https://code.claude.com/docs/en/sub-agents#choose-a-model) és [Cursor-modellválasztás](https://cursor.com/docs/subagents#model-configuration).
 
-A skillek telepítési helyei:
+A `sandbox-mode: read-only` a Codex sandboxára és a Cursor `readonly` beállítására képeződik le; a Claude esetében az eszközlista és a szerepkör utasításai korlátozzák az átnézési munkafolyamatot, de a Bash-hozzáférés nem operációsrendszer-szintű sandbox.
 
-- `.cursor/skills/playwright-cli/`
-- `.claude/skills/playwright-cli/`
+A közös skillek frontmattere a felhasználó által indított munkafolyamatoknál, ahol ez alkalmazható, a `disable-model-invocation: true` beállítást használja. A Codex megfelelő beállítása az `agents/openai.yaml` fájlban található `policy.allow_implicit_invocation: false` formában; a validátor mindkettőt megköveteli. A meghívási metaadatok kiegészítik a kifejezett engedélyezési szabályokat; egy átnézési kérés soha nem jogosít fel közzétételre csak azért, mert egy skill közzétételi lépéseket is tartalmaz.
 
-### Vercel React Best Practices
+## Ellenőrzések és felfedezés
 
-Mélyebb React- és Next-teljesítményútmutatáshoz.
+- A `yarn ai-workflow:sync` a telepített `js-yaml` és `smol-toml` csomaggal újragenerálja a kompatibilitási kimeneteket.
+- A `yarn ai-workflow:check` elemzi a forrásokat/frontmattert/konfigurációkat, és ellenőrzi a generált kimeneteket, a meghívási metaadatokat, a modellmezők elhelyezését és a csak formázást végző hookbekötést. A modellazonosítókat nem veti össze egy szolgáltatói katalógussal.
+- A `yarn ai-workflow:test` elszigetelt Node-fixture-öket futtat a hookok payloadjaihoz és a munkafolyamat generálásához/validálásához.
+- Egy ügynökalkalmazás frissítése után ellenőrizze a skillek/szerepkörök felfedezését az adott alkalmazásban. A szintaxis- és egyezésellenőrzések nem helyettesítik a betöltés ellenőrzését. Töltse újra az alkalmazást, ha egy meglévő munkamenet megtartja a régi katalógust.
+- A hookokhoz szükség van a keretrendszer projektmegbízhatósági jóváhagyására és a hookok átnézésére; ne kerülje meg a megbízhatóságot csak azért, hogy egy ellenőrzés átmenjen. Lásd: [hooks-setup.md](hooks-setup.md).
 
-```bash
-npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-react-best-practices
-```
+## Hasznos utasítások karbantartása
 
-### Find Skills
+Kövesse az [OpenAI skillekre és promptokra vonatkozó útmutatását](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra) (átnézve: 2026-09-12): a leírások legyenek pontosak, a részleteket csak akkor töltse be, ha relevánsak, és őrizze meg a felhasználó által kért hatókört. A közös skillek különböző modelleket szolgálnak ki; őrizze meg a projektspecifikus invariánsokat, miközben teret hagy a rutinszerű implementációs döntéseknek.
 
-Skillek felfedezése és telepítése a nyílt ökoszisztémából.
+A skill célját, döntési határait és alapvető megkötéseit a `SKILL.md` fájlban tartsa. A terjedelmes, módspecifikus parancsokat vagy példákat opcionális hivatkozásként linkelje. A rövid leírásokban az aktiválási feltételek kerüljenek előre; egy egyező kulcsszó önmagában ne bővítse ki a feladatot. A meglévő meghívási metaadatokat őrizze meg, hacsak nem szándékosan módosítja a viselkedésüket.
 
-```bash
-npx skills add https://github.com/vercel-labs/skills --skill find-skills
-```
+Egy jelentős utasításmódosítás után próbáljon ki néhány reprezentatív kis és nagy kérést. Ellenőrizze, mely skillek/hivatkozások lettek kiválasztva, a műveletek a hatókörön belül maradtak-e, az ellenőrzés illeszkedett-e a változáshoz, és elkészült-e az engedélyezett munka. A séma- és fixture-tesztek az eszközök helyességét igazolják, nem az ügynök döntéseinek minőségét.
 
-## Az MCP-házirend indoklása
+## Eszközök és a böngésző tulajdonjoga
 
-Kerülje a GitHub MCP-t és a böngésző MCP-kiszolgálókat ebben a projektben, mert jelentős eszközséma- és kontextusterhelést jelentenek.
+Részesítse előnyben a meglévő skill- és eszközkatalógust és a projektben telepített CLI-ket. A GitHubhoz a `gh`, böngészős ellenőrzéshez a `playwright-cli` eszközt használja, és ha egy könyvtár viselkedése számít, a hivatalos/verzióspecifikus dokumentációt. Kerülje a duplikált skillek telepítését, és ne töltsön le rögzítetlen csomagot csak azért, hogy egy meglévő formázót futtasson.
 
-- GitHub-műveletek: használja a `gh` CLI-t.
-- Böngészőműveletek: használja a `playwright-cli` eszközt.
+Az MCP többletterhelése a keretrendszertől függ: a késleltetett eszközbetöltéssel elkerülhető, hogy minden séma előre betöltődjön. Az integrációk legyenek relevánsak, ahelyett hogy magát az MCP-t elavultnak tekintené. A meglévő CLI-választások továbbra is hasznosak a reprodukálhatóság és az erőforrások kézben tartása szempontjából.
 
-## Modellek elérhetősége
-
-- A `composer-2` kizárólag a Cursorban érhető el. Ne állítsa be a `.claude/` vagy a `.codex/` könyvtárban.
-- A Codex nem dokumentál `latest` modellaliast. A `.codex/**/agents/*.toml` alatt commitolt egyéni ügynök-TOML-fájlok kihagyják a `model` és a `model_reasoning_effort` beállítást is, így az aktuális szülő munkamenet beállításait öröklik.
+Minden böngésző-munkamenet a `./scripts/pw-session.sh` szkriptet használja, amely gépszinten egyetlen aktív böngészőt enged. Alapértelmezésként friss, elszigetelt munkamenetet használjon. A felhasználó aktuális személyes böngészőjéhez való hozzáféréshez kifejezett engedély kell; ezt az engedélyt a későbbi lépésekben használja újra. A böngészőket/nézetablakokat az érintett viselkedéshez válassza meg, a kiválasztott motorokat sorosan futtassa, takarításkor a pontosan megnevezett munkamenetet zárja be, és soha ne használja a `close-all`/`kill-all` parancsot. Lásd a `playwright-cli` skillt és a [verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md) oldalt.

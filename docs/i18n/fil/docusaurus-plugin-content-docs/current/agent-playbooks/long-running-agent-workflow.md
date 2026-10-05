@@ -1,67 +1,9 @@
-# Long-Running Agent Workflow
+# Pangmatagalang gawain ng ahente
 
-Gamitin ang playbook na ito kapag ang isang gawain ay malamang na sumasaklaw sa maraming session, handoff, o spawned agent.
+Gumamit ng matibay na estado ng gawain kapag kailangang ipagpatuloy o iabot ang trabaho, o kapag sapat na katagal ang iisang run para mawala sa context compaction ang pagsubaybay sa natitirang trabaho. Hindi kailangan ng board o progress file ang maliliit na gawain. Para sa nakabahaging trabaho, panatilihin ang maikling `feature-list.json` at `progress.md` sa isang `docs/agent-runs/<slug>/` na tiyak sa gawain, gamit ang mga umiiral na template kung makatutulong.
 
-## Mga layunin
+Itala ang hiniling na resulta, ang kasalukuyang branch/worktree, ang pagmamay-ari ng mga file, ang mga natapos na pagbabago, ang mga pagsusuri kasama ang mga resulta nito, ang mga proseso/session na pagmamay-ari, at ang susunod na hakbang na hindi pa nalulutas. Huwag mag-imbak ng mga credential o basta-bastang dump ng source. Markahan lamang na kumpleto ang isang feature kapag na-verify na ang mga pamantayan sa pagtanggap nito.
 
-- Bigyan ang bawat bagong session ng mabilis na paraan upang mabawi ang konteksto
-- Panatilihing incremental ang trabaho sa halip na mag-one-shot ng malaking pagbabago
-- Makakuha ng sirang lokal na baseline bago magdagdag ng higit pang code
-- Mag-iwan ng mga matibay na artifact na mapagkakatiwalaan ng susunod na session
+Sa pagpapatuloy, suriin ang estado ng Git, ang pinakabagong progreso, at ang kaugnay na source bago mag-edit. Muling gamitin ang mga katugmang resource na pagmamay-ari; magsimula lamang ng dev server kapag kailangan ito ng susunod na pagsusuri. Pumili ng mga pagsusuri ayon sa epekto gamit ang [verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md), sa halip na ulitin ang isang buong pass na walang nagbago.
 
-## Kung saan Panatilihin ang Estado
-
-- Gamitin ang `docs/agent-runs/<slug>/` kapag kailangan ng mga tao, mga bot ng review, o maraming toolchain ng parehong estado ng gawain.
-- Gumamit lamang ng tool-local na direktoryo tulad ng `.codex/runs/<slug>/` kapag ang estado ng gawain ay sadyang lokal sa isang workstation o isang toolchain.
-- Huwag itago ang multi-session shared state sa isang pribadong scratch file kung kakailanganin ito ng ibang contributor o ahente sa ibang pagkakataon.
-
-## Mga Kinakailangang File
-
-Lumikha ng mga file na ito sa simula ng matagal nang gawain:
-
-- `feature-list.json`
-- `progress.md`
-
-Gamitin ang mga template sa `docs/agent-playbooks/templates/feature-list.template.json` at `docs/agent-playbooks/templates/progress.template.md`.
-
-Mas gusto ang JSON para sa listahan ng tampok upang ma-update ng mga ahente ang isang maliit na bilang ng mga field nang hindi muling sinusulat ang buong dokumento.
-
-## Checklist ng Pagsisimula ng Sesyon
-
-1. Patakbuhin ang `pwd`.
-2. Basahin ang `progress.md`.
-3. Basahin ang `feature-list.json`.
-4. Patakbuhin ang `git log --oneline -20`.
-5. Patakbuhin ang `./scripts/agent-init.sh --smoke`.
-6. Pumili ng eksaktong isang item na may pinakamataas na priyoridad na `pending`, `in_progress`, o `blocked` pa rin.
-
-Kung nabigo ang smoke step, ayusin ang sirang baseline bago magpatupad ng bagong feature slice.
-
-## Mga Panuntunan sa Sesyon
-
-- Magtrabaho sa isang feature o task slice sa isang pagkakataon.
-- Panatilihing nababasa at stable ng makina ang listahan ng feature. I-update ang status, mga tala, mga file, at mga field ng pag-verify sa halip na muling isulat ang mga hindi nauugnay na item.
-- Markahan lamang ang isang item na na-verify pagkatapos patakbuhin ang command o daloy ng user na nakalista sa item na iyon.
-- Gumamit ng mga spawned agent para sa mga bounded slice, hindi para sa pangkalahatang pagmamay-ari ng task-state.
-- Kapag nagmamay-ari ang isang ahente ng bata ng isang item, ibigay dito ang eksaktong item id, pamantayan sa pagtanggap, at mga file na maaaring mahawakan nito.
-
-## Checklist ng Pagtatapos ng Sesyon
-
-1. Magdagdag ng maikling pag-usad na entry sa `progress.md`.
-2. I-update ang hinawakan na item sa `feature-list.json`.
-3. Itala ang mga eksaktong command na pinapatakbo para sa pag-verify.
-4. Kunin ang mga blocker, follow-up, at ang susunod na pinakamagandang item na ipagpatuloy.
-
-## Inirerekomendang Hugis ng Pagpasok sa Pag-unlad
-
-Gumamit ng isang maikling istraktura tulad ng:
-
-```markdown
-## 2026-03-17 14:30
-
-- Item: F003
-- Summary: Updated the browser-check flow to use the shared init/bootstrap path.
-- Files: `.cursor/agents/browser-check.md`, `.codex/agents/browser-check.toml`
-- Verification: `corepack yarn build:verify`, `corepack yarn lint`, `corepack yarn typecheck`
-- Next: Run the smoke flow and update the task-board status.
-```
+Panatilihing may saklaw at hindi nagsasapawan ang magkakaugnay na ipinasang trabaho. Iisang ahente ang may-ari ng mabibigat na pagsusuri at ng mga browser session. I-update ang matibay na estado kapag binabago ng isang natapos na bahagi, blocker, o handoff ang kailangang malaman ng susunod na contributor; huwag mekanikal na itala ang bawat command.

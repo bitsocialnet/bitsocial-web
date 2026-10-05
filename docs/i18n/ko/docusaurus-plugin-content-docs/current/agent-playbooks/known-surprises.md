@@ -175,7 +175,7 @@
 - **맥락:** Bitsocial 브라우저 P2P의 동작 방식을 설명하는 랜딩 페이지와 문서 문구를 쓰던 중
 - **의외였던 점:** `@pkcprotocol/pkc-js`에는 브라우저에서 WebRTC와 WebTransport 다이얼을 거부하는 기본 연결 게이터가 들어 있습니다. `dist/browser/helia/dial-transport-filter.js`가 `DENIED_DIAL_TRANSPORTS_BY_DEFAULT = ["webrtc", "webrtc-direct", "webtransport"]`를 내보냅니다. 소스 주석이 그 이유를 밝힙니다. 브라우저에서 이 전송 방식들은 길고 자주 실패하는 연결 수립 경로(STUN/ICE, certhash 교체)를 더해 로딩을 느리게 만드는 반면, WebSocket은 직접적이고 안정적이라는 것입니다. 블로그의 P2P 상태 패널에 나타나는 라이브 피어는 모두 "Secure WebSocket"으로 표시됩니다. 이 게이터는 `node_modules` 안에 있어서 저장소에는 아무런 단서도 없습니다.
 - **영향:** 기술적으로 그럴듯하지만 사실이 아닌 공개 문구를 쓰기가 아주 쉽습니다. 예를 들어 2026년 3월 WebTransport가 브라우저 Baseline에 도달한 덕분에 Bitsocial 브라우저 P2P가 가능해졌다고 쓰는 식입니다. 그 주장은 개발자가 잡아내기 전까지 랜딩 페이지와 비교 표, 문서 두 페이지에 실제로 실렸습니다. 공개 페이지의 잘못된 아키텍처 주장은 이 사이트가 겨냥하는 바로 그 개발자 독자들이 검증합니다.
-- **완화 방법:** libp2p나 브라우저 플랫폼이 원리적으로 지원하는 것을 근거로 Bitsocial이 어떤 전송 방식을 쓰는지 추론하지 마세요. 현재 거부 목록은 `node_modules/@pkcprotocol/pkc-js/dist/browser/helia/dial-transport-filter.js`에서 확인하고, `about/src/` 아래에 `connectionGater` 재정의가 없는지 확인하고, 공개적으로 어떤 주장을 하기 전에 블로그 "P2P 상태" 패널의 실제 전송 방식 라벨을 읽으세요. 브라우저 게시를 실제로 가능하게 한 업스트림 변경은 `@libp2p/gossipsub` 15.0.21(2026년 5월)의 gossipsub 단조 seqno 수정이며, pkc-js는 현재 16.0.4를 포함합니다.
+- **완화 방법:** libp2p나 브라우저 플랫폼이 원리적으로 지원하는 것을 근거로 Bitsocial이 어떤 전송 방식을 쓰는지 추론하지 마세요. 현재 거부 목록은 `node_modules/@pkcprotocol/pkc-js/dist/browser/helia/dial-transport-filter.js`에서 확인하고, `about/src/` 아래에 `connectionGater` 재정의가 없는지 확인하고, 공개적으로 어떤 주장을 하기 전에 블로그 "P2P status" 패널의 실제 전송 방식 라벨을 읽으세요. 브라우저 게시를 실제로 가능하게 한 업스트림 변경은 `@libp2p/gossipsub` 15.0.21(2026년 5월)의 gossipsub 단조 seqno 수정이며, pkc-js는 현재 16.0.4를 포함합니다.
 - **상태:** 확인됨
 
 ### 번역되지 않은 문서 페이지의 상대 `./page.md` 링크가 모든 지역화 빌드를 깨뜨립니다
@@ -188,12 +188,28 @@
 - **완화 방법:** `docs/i18n/**`로 미러링되지 않는 문서 페이지에서는 상대 `.md` 링크 대신 루트 기준 링크(`/peer-to-peer-protocol/`, `/apps/5chan/`)를 사용하세요. Docusaurus가 로케일 접두사를 자동으로 붙여 줍니다. 기존 예시는 `docs/build-your-own-client.md`입니다. 문서 페이지를 추가하거나 링크하는 변경을 넘기기 전에 `build:verify`만이 아니라 전체 `yarn docs:build`를 실행하세요.
 - **상태:** 확인됨
 
-### `update-translations.js`는 `about/`에서 실행해야 하며, 동시에 실행하면 키가 조용히 사라집니다
+### 동시에 실행한 `update-translations.js`가 키를 조용히 잃어버립니다
 
 - **날짜:** 2026-08-02
 - **관찰자:** Claude
 - **맥락:** `translate` 스킬로 번역된 i18next 키 26개를 36개 로케일 전체에 적용하던 중
-- **의외였던 점:** 같은 스크립트에 함정이 두 개 있습니다. 첫째, `scripts/update-translations.js`는 대상 경로를 `path.join(process.cwd(), "public", "translations")`로 계산하는데, 이 저장소는 번역을 `about/public/translations`에 둡니다. 문서에 적힌 명령을 저장소 루트에서 실행하면 매번 "Translations directory not found"로 실패합니다. `docs/agent-playbooks/translations.md`가 보여 주는 `node scripts/update-translations.js ...`는 저장소 루트에서 쓰는 명령처럼 읽힙니다. 둘째, 호출 한 번이 36개 로케일 파일 전체에 대한 읽기-수정-쓰기이므로, 두 호출이 동시에 돌면 서로를 덮어쓰고 키 하나가 아무 오류 없이 사라집니다. `translate` 스킬은 서브에이전트를 최대 4개까지 동시에 띄우라고 명시하는데, 그 서브에이전트들이 각각 이 스크립트를 호출하게 됩니다.
-- **영향:** 저장소 루트 형태는 요란하게 실패해서 한 번의 작업을 통째로 낭비합니다. 동시성 문제는 조용히 실패합니다. 임의의 로케일에서 키가 사라지는데도 diff는 그럴듯해 보입니다.
-- **완화 방법:** `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write` 형태로 실행하세요. 번역 서브에이전트가 로케일 파일을 동시에 쓰게 두지 마세요. 서브에이전트는 딕셔너리 JSON 파일만 내보내게 하고, 부모 에이전트가 모든 키를 순차적으로 적용해야 합니다. 적용한 뒤에는 각 키가 영어를 제외한 35개 로케일 모두에 존재하는지, 그리고 어떤 값도 영어 원문과 바이트 단위로 동일하지 않은지 프로그램으로 검증하세요.
+- **의외였던 점:** 호출 한 번이 36개 로케일 파일 전체에 대한 읽기-수정-쓰기이므로, 두 호출이 동시에 돌면 서로를 덮어쓰고 키 하나가 아무 오류 없이 사라집니다. `translate` 스킬은 서브에이전트를 최대 4개까지 동시에 띄우라고 명시하는데, 그 서브에이전트들이 각각 이 스크립트를 호출하게 됩니다.
+- **영향:** 조용히 실패합니다. 임의의 로케일에서 키가 사라지는데도 diff는 그럴듯해 보입니다.
+- **완화 방법:** 번역 서브에이전트가 로케일 파일을 동시에 쓰게 두지 마세요. 서브에이전트는 딕셔너리 JSON 파일만 내보내게 하고, 부모 에이전트가 모든 키를 순차적으로 적용해야 합니다. 적용한 뒤에는 각 키가 영어를 제외한 35개 로케일 모두에 존재하는지, 그리고 어떤 값도 영어 원문과 바이트 단위로 동일하지 않은지 프로그램으로 검증하세요.
+- **상태:** 확인됨
+- **업데이트(2026-08-10):** 예전에는 이 스크립트가 대상 경로를 `path.join(process.cwd(), "public", "translations")`로도 계산했기 때문에, 문서에 적힌 저장소 루트 명령이 "Translations directory not found"로 실패했고 `about/`에서 실행해야 했습니다. 이제는 현재 디렉터리나 스크립트 자신의 위치를 기준으로 워크스페이스를 찾으므로 어디에서 실행해도 동작합니다. 위의 동시성 함정은 그대로입니다.
+
+### 개발용 주석 도구 컨트롤이 자동화된 클릭을 가로챌 수 있습니다
+
+- **맥락:** about 사이트와 chain 사이트에는 오른쪽 아래 구석에 고정된 컨트롤이 있는데, 개발 환경에서는 같은 위치에 Agentation 툴바도 나타납니다.
+- **완화 방법:** `scripts/pw-session.sh open`은 페이지를 다시 불러오기 전에 `window.__NO_DEV_TOOLBAR__ = true`를 등록합니다. Agentation 초기화 코드는 `__VISUAL_TESTING__`과 `__PROFILING__`도 인식하며, 소스 검사 기능은 이와 별개로 계속 사용할 수 있습니다. 브라우저를 직접 자동화할 때는 애플리케이션을 불러오기 전에 같은 플래그를 설정해야 합니다.
+
+### `skills add`가 Codex와 Cursor용 사본을 gitignore된 `.agents/` 디렉터리에 설치합니다
+
+- **날짜:** 2026-08-18
+- **관찰자:** Tommaso + Claude
+- **맥락:** `skills` CLI(`vercel-labs/skills`)로 `millionco/react-doctor`의 `improve-threejs` 스킬을 설치하던 중.
+- **의외였던 점:** `npx skills add <repo> --skill <name> --agent codex`와 `--agent cursor`는 둘 다 `.codex/skills/`나 `.cursor/skills/`가 아니라 `.agents/skills/<name>/`에 씁니다. `AGENTS.md`는 저장소 수준의 `.agents/` 디렉터리를 금지하고 `.gitignore:29`가 이 디렉터리를 무시하므로, 두 사본 모두 아무 경고 없이 추적 대상에서 빠집니다. 기대한 대로 `.claude/skills/`에 쓰는 것은 `--agent claude-code`뿐입니다. 이와 별개로, 문서에 나온 쉼표 구분 형식(`--agent claude-code,codex,cursor`)은 각 이름이 단독으로는 유효한데도 "Invalid agents"로 실패하고 아무것도 설치하지 않습니다.
+- **영향:** 설치는 성공했다고 보고하지만 세 툴체인 사본 중 두 개는 결코 커밋되지 않을 위치에 놓이므로, 새로 클론하면 Codex와 Cursor에는 조용히 스킬이 빠져 있게 됩니다. 쉼표 형식은 성공처럼 보이지만 실제로는 아무것도 하지 않는 설치를 만들 수도 있습니다.
+- **현재 완화 방법:** 이제 저장소는 `.agents/skills`를 표준 소스로 추적하고, `yarn ai-workflow:sync`로 Claude용 사본을 생성합니다. 예전의 `.agents` 금지 규칙과 무시 규칙은 제거되었습니다. 새 스킬을 서로 독립된 세 루트에 각각 복사하지 마세요. 스킬을 추가한 뒤에는 생성된 사본의 일치 여부와 앱 카탈로그를 확인하세요.
 - **상태:** 확인됨

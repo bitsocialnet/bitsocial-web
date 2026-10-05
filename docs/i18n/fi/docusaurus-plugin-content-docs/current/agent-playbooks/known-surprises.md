@@ -188,12 +188,28 @@ Jos olet epävarma, kysy kehittäjältä ennen merkinnän lisäämistä.
 - **Ratkaisu:** Käytä jokaisella dokumentaatiosivulla, jota ei ole peilattu hakemistoon `docs/i18n/**`, juuritason linkkejä (`/peer-to-peer-protocol/`, `/apps/5chan/`) suhteellisten `.md`-linkkien sijaan; Docusaurus lisää niihin kieliversioetuliitteen automaattisesti. `docs/build-your-own-client.md` on tästä olemassa oleva esimerkki. Aja täysi `yarn docs:build` — ei pelkkä `build:verify` — ennen kuin luovutat muutoksen, joka lisää dokumentaatiosivun tai linkittää siihen.
 - **Tila:** vahvistettu
 
-### `update-translations.js` on ajettava hakemistosta `about/`, ja rinnakkaiset ajot hukkaavat avaimia hiljaisesti
+### Rinnakkaiset `update-translations.js`-ajot hukkaavat avaimia hiljaisesti
 
 - **Päivämäärä:** 2026-08-02
 - **Havainnut:** Claude
 - **Konteksti:** 26 käännetyn i18next-avaimen vieminen kaikkiin 36 kieliversioon `translate`-taidon avulla
-- **Yllättävää oli:** Samassa skriptissä on kaksi erillistä ansaa. Ensinnäkin `scripts/update-translations.js` ratkaisee kohteensa muodossa `path.join(process.cwd(), "public", "translations")`, mutta tässä repossa käännökset sijaitsevat hakemistossa `about/public/translations`. Dokumentoidun komennon ajaminen repon juuresta epäonnistuu joka kerta virheeseen "Translations directory not found" — `docs/agent-playbooks/translations.md` näyttää muodon `node scripts/update-translations.js ...`, joka luetaan repon juuren komennoksi. Toiseksi jokainen ajo on luku-muokkaus-kirjoitus kaikkien 36 kieliversiotiedoston yli, joten kaksi samanaikaista ajoa ylikirjoittavat toisensa ja yksi avain katoaa ilman virheilmoitusta. `translate`-taito ohjeistaa nimenomaisesti käynnistämään jopa neljä aliagenttia rinnakkain, ja jokainen niistä kutsuisi tätä skriptiä.
-- **Vaikutus:** Repon juuresta ajettu muoto epäonnistuu näkyvästi ja hukkaa kokonaisen kierroksen. Rinnakkaisuusongelma epäonnistuu hiljaisesti: avaimia katoaa satunnaisista kieliversioista, ja diff näyttää silti uskottavalta.
-- **Ratkaisu:** Aja se muodossa `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Älä koskaan anna kääntäjä-aliagenttien kirjoittaa kieliversiotiedostoja rinnakkain — anna niiden tuottaa vain sanakirja-JSON-tiedostoja ja vie sitten jokainen avain sarjassa pääagentista. Varmista viennin jälkeen ohjelmallisesti, että jokainen avain löytyy kaikista 35 ei-englanninkielisestä kieliversiosta eikä yksikään arvo ole tavulleen identtinen englanninkielisen lähteen kanssa.
+- **Yllättävää oli:** Jokainen ajo on luku-muokkaus-kirjoitus kaikkien 36 kieliversiotiedoston yli, joten kaksi samanaikaista ajoa ylikirjoittavat toisensa ja yksi avain katoaa ilman virheilmoitusta. `translate`-taito ohjeistaa nimenomaisesti käynnistämään jopa neljä aliagenttia rinnakkain, ja jokainen niistä kutsuisi tätä skriptiä.
+- **Vaikutus:** Virhe on hiljainen: avaimia katoaa satunnaisista kieliversioista, ja diff näyttää silti uskottavalta.
+- **Ratkaisu:** Älä koskaan anna kääntäjä-aliagenttien kirjoittaa kieliversiotiedostoja rinnakkain — anna niiden tuottaa vain sanakirja-JSON-tiedostoja ja vie sitten jokainen avain sarjassa pääagentista. Varmista viennin jälkeen ohjelmallisesti, että jokainen avain löytyy kaikista 35 ei-englanninkielisestä kieliversiosta eikä yksikään arvo ole tavulleen identtinen englanninkielisen lähteen kanssa.
+- **Tila:** vahvistettu
+- **Päivitys (2026-08-10):** Skripti ratkaisi aiemmin myös kohteensa muodossa `path.join(process.cwd(), "public", "translations")`, joten dokumentoitu repon juuresta ajettava komento epäonnistui virheeseen "Translations directory not found", ja skripti piti ajaa hakemistosta `about/`. Nyt se ratkaisee työtilan nykyisestä hakemistosta tai omasta sijainnistaan ja toimii mistä tahansa. Yllä kuvattu rinnakkaisuusansa on ennallaan.
+
+### Kehitystilan annotaatiosäätimet voivat siepata automaation klikkauksia
+
+- **Konteksti:** About- ja chain-sivustoilla on kiinteitä säätimiä oikeassa alakulmassa, jossa myös Agentation-työkalupalkki näkyy kehitystilassa.
+- **Ratkaisu:** `scripts/pw-session.sh open` rekisteröi asetuksen `window.__NO_DEV_TOOLBAR__ = true` ennen sivun uudelleenlatausta. Agentationin alustaja huomioi myös liput `__VISUAL_TESTING__` ja `__PROFILING__`; lähdekoodin tarkastelu pysyy käytettävissä tästä riippumatta. Suoran selainautomaation on asetettava sama lippu ennen sovelluksen lataamista.
+
+### `skills add` asentaa Codexin ja Cursorin kopiot gitignoroituun `.agents/`-hakemistoon
+
+- **Päivämäärä:** 2026-08-18
+- **Havainnut:** Tommaso + Claude
+- **Konteksti:** `improve-threejs`-taidon asentaminen lähteestä `millionco/react-doctor` `skills`-komentorivityökalulla (`vercel-labs/skills`).
+- **Yllättävää oli:** `npx skills add <repo> --skill <name> --agent codex` ja `--agent cursor` kirjoittavat molemmat hakemistoon `.agents/skills/<name>/` eivätkä hakemistoihin `.codex/skills/` tai `.cursor/skills/`. `AGENTS.md` kieltää repotason `.agents/`-hakemiston, ja `.gitignore:29` jättää sen huomiotta, joten molemmat kopiot jäävät hiljaisesti versionhallinnan ulkopuolelle. Vain `--agent claude-code` kirjoittaa odotettuun hakemistoon `.claude/skills/`. Tästä erillään dokumentoitu pilkuin erotettu muoto (`--agent claude-code,codex,cursor`) epäonnistuu virheeseen "Invalid agents" eikä asenna mitään, vaikka jokainen nimi on yksinään kelvollinen.
+- **Vaikutus:** Asennus ilmoittaa onnistuneensa, vaikka kaksi kolmesta työkaluketjun kopiosta päätyy paikkaan, jota ei koskaan commitoida, joten Codexilta ja Cursorilta puuttuu taito hiljaisesti tuoreen kloonauksen jälkeen. Pilkkumuoto voi myös tuottaa asennuksen, joka ei tee mitään mutta näyttää onnistuneelta.
+- **Nykyinen ratkaisu:** Repo seuraa nyt hakemistoa `.agents/skills` kanonisena lähteenään ja generoi Claude-kopiot komennolla `yarn ai-workflow:sync`. Aiempi `.agents`-kielto ja ohitussääntö on poistettu. Älä kopioi uusia taitoja kolmeen erilliseen juureen; tarkista generoitu vastaavuus ja sovelluksen katalogi taidon lisäämisen jälkeen.
 - **Tila:** vahvistettu

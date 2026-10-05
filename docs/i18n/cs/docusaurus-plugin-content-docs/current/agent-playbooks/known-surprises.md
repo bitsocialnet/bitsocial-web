@@ -188,12 +188,28 @@ Pokud si nejste jisti, zeptejte se před přidáním záznamu vývojáře.
 - **Opatření:** V každé stránce dokumentace, která není zrcadlena do `docs/i18n/**`, používejte odkazy relativní ke kořeni (`/peer-to-peer-protocol/`, `/apps/5chan/`) místo relativních odkazů na `.md`; Docusaurus k nim prefix jazykové verze doplní automaticky. Existujícím příkladem je `docs/build-your-own-client.md`. Než předáte jakoukoli změnu, která přidává stránku dokumentace nebo na ni odkazuje, spusťte plný `yarn docs:build`, ne jen `build:verify`.
 - **Stav:** potvrzeno
 
-### `update-translations.js` se musí spouštět z `about/` a souběžné běhy tiše ztrácejí klíče
+### Souběžné běhy `update-translations.js` tiše ztrácejí klíče
 
 - **Datum:** 2026-08-02
 - **Zjistil:** Claude
 - **Kontext:** Aplikování 26 přeložených klíčů i18next do všech 36 jazykových verzí pomocí dovednosti `translate`
-- **Co bylo překvapivé:** Dvě různé pasti v jednom skriptu. Zaprvé, `scripts/update-translations.js` odvozuje svůj cíl jako `path.join(process.cwd(), "public", "translations")`, jenže tento repozitář drží překlady v `about/public/translations`. Spuštění dokumentovaného příkazu z kořene repozitáře selže při každém volání s hláškou „Translations directory not found“ — `docs/agent-playbooks/translations.md` uvádí `node scripts/update-translations.js ...`, což se čte jako příkaz z kořene repozitáře. Zadruhé, každé volání je operace čtení, úpravy a zápisu nad všemi 36 jazykovými soubory, takže dvě souběžně běžící volání se navzájem přepíší a jeden klíč zmizí bez jakékoli chyby. Dovednost `translate` přitom výslovně nabádá ke spuštění až 4 souběžných subagentů, z nichž každý by tento skript volal.
-- **Dopad:** Varianta z kořene repozitáře selže hlasitě a promarní celý průchod. Problém se souběžností selhává tiše: klíče chybí v náhodných jazykových verzích a diff přesto vypadá věrohodně.
-- **Opatření:** Spouštějte to jako `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Nikdy nenechte překladatelské subagenty zapisovat jazykové soubory souběžně — nechte je pouze vygenerovat slovníkové soubory JSON a pak z rodičovského agenta aplikujte každý klíč sériově. Po aplikování programově ověřte, že každý klíč existuje ve všech 35 neanglických jazykových verzích a že žádná hodnota není bajt po bajtu totožná s anglickým zdrojem.
+- **Co bylo překvapivé:** Každé volání je operace čtení, úpravy a zápisu nad všemi 36 jazykovými soubory, takže dvě souběžně běžící volání se navzájem přepíší a jeden klíč zmizí bez jakékoli chyby. Dovednost `translate` přitom výslovně nabádá ke spuštění až 4 souběžných subagentů, z nichž každý by tento skript volal.
+- **Dopad:** Selhává tiše: klíče chybí v náhodných jazykových verzích a diff přesto vypadá věrohodně.
+- **Opatření:** Nikdy nenechte překladatelské subagenty zapisovat jazykové soubory souběžně — nechte je pouze vygenerovat slovníkové soubory JSON a pak z rodičovského agenta aplikujte každý klíč sériově. Po aplikování programově ověřte, že každý klíč existuje ve všech 35 neanglických jazykových verzích a že žádná hodnota není bajt po bajtu totožná s anglickým zdrojem.
+- **Stav:** potvrzeno
+- **Aktualizace (2026-08-10):** Skript dříve navíc odvozoval svůj cíl jako `path.join(process.cwd(), "public", "translations")`, takže dokumentovaný příkaz z kořene repozitáře selhal s hláškou „Translations directory not found“ a musel se spouštět z `about/`. Nyní odvozuje workspace z aktuálního adresáře nebo ze svého vlastního umístění a funguje odkudkoli. Výše popsaná past se souběžností zůstává beze změny.
+
+### Vývojové ovládací prvky pro anotace mohou zachytit kliknutí z automatizace
+
+- **Kontext:** Weby about a chain mají v pravém dolním rohu pevně umístěné ovládací prvky a právě tam se ve vývojovém režimu objevuje i panel nástrojů Agentation.
+- **Opatření:** `scripts/pw-session.sh open` před opětovným načtením stránky zaregistruje `window.__NO_DEV_TOOLBAR__ = true`. Inicializátor Agentation respektuje také `__VISUAL_TESTING__` a `__PROFILING__`; inspekce zdrojového kódu zůstává dostupná nezávisle na tom. Přímá automatizace prohlížeče musí stejný příznak nastavit ještě před načtením aplikace.
+
+### `skills add` instaluje kopie pro Codex a Cursor do adresáře `.agents/`, který Git ignoruje
+
+- **Datum:** 2026-08-18
+- **Zjistil:** Tommaso + Claude
+- **Kontext:** Instalace dovednosti `improve-threejs` z `millionco/react-doctor` pomocí CLI `skills` (`vercel-labs/skills`).
+- **Co bylo překvapivé:** `npx skills add <repo> --skill <name> --agent codex` i `--agent cursor` zapisují do `.agents/skills/<name>/`, ne do `.codex/skills/` nebo `.cursor/skills/`. `AGENTS.md` zakazuje adresář `.agents/` na úrovni repozitáře a `.gitignore:29` ho ignoruje, takže obě kopie tiše zůstanou nesledované. Do očekávaného `.claude/skills/` zapisuje jen `--agent claude-code`. Kromě toho dokumentovaný tvar s hodnotami oddělenými čárkami (`--agent claude-code,codex,cursor`) selže s hláškou „Invalid agents“ a nenainstaluje nic, přestože každý z názvů je sám o sobě platný.
+- **Dopad:** Instalace hlásí úspěch, zatímco dvě ze tří kopií pro jednotlivé toolchainy skončí tam, kde nikdy nebudou commitnuty, takže Codexu a Cursoru po čerstvém klonování dovednost tiše chybí. Tvar s čárkami navíc může vést k instalaci, která nic neudělá, a přesto vypadá jako úspěch.
+- **Aktuální opatření:** Repozitář nyní sleduje `.agents/skills` jako svůj kanonický zdroj a kopie pro Claude generuje pomocí `yarn ai-workflow:sync`. Dřívější zákaz `.agents` i pravidlo pro jeho ignorování byly odstraněny. Nové dovednosti nekopírujte do tří nezávislých kořenů; po přidání dovednosti zkontrolujte paritu vygenerovaných souborů a katalog aplikace.
 - **Stav:** potvrzeno

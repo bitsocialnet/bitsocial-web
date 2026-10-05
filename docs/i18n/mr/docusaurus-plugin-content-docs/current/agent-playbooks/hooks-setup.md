@@ -1,90 +1,17 @@
-# एजंट हुक्स सेटअप
+# एजंट हुक्स
 
-तुमचा AI कोडिंग असिस्टंट लाइफसायकल हुक्सना पाठिंबा देत असेल, तर या रिपॉझिटरीसाठी खालील हुक्स कॉन्फिगर करा.
+कमिट केलेले लाइफसायकल हुक्स फक्त यशस्वीपणे संपादित झालेल्या JavaScript/TypeScript फाइल्स इन्स्टॉल केलेल्या oxfmt मार्फत फॉरमॅट करतात. सामायिक लॉजिक `scripts/agent-hooks/format.mjs` मध्ये आहे; प्रत्येक नेटिव्ह रॅपर काम त्याच्याकडेच सोपवतो.
 
-## शिफारस केलेले हुक्स
+| ॲप | नेटिव्ह कॉन्फिगरेशन | इव्हेंट |
+|---|---|---|
+| Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
+| Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
+| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
-| हुक             | कमांड                                         | उद्देश                                                                                                                                                                                                |
-| --------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `afterFileEdit` | `scripts/agent-hooks/format.sh`               | AI ने केलेल्या एडिट्सनंतर फाइल्स आपोआप फॉरमॅट करते                                                                                                                                                    |
-| `afterFileEdit` | `scripts/agent-hooks/yarn-install.sh`         | `package.json` बदलल्यावर `corepack yarn install` चालवते                                                                                                                                               |
-| `afterFileEdit` | `scripts/agent-hooks/react-pattern-review.sh` | डिफमध्ये `about/src/` अंतर्गत `useEffect`/memo प्रिमिटिव्ह जोडली गेल्यास, React रिव्ह्यू स्किल्सच्या साहाय्याने पुनर्विचार करण्याची एजंटला आठवण करून देते                                             |
-| `stop`          | `scripts/agent-hooks/sync-git-branches.sh`    | जुने रेफ्स काढून टाकते आणि विलीन झालेल्या तात्पुरत्या टास्क ब्रांच डिलीट करते                                                                                                                         |
-| `stop`          | `scripts/agent-hooks/react-pattern-review.sh` | अंतिम व्हेरिफाय गेटच्या आधी `about/src/` मधील नवीन React इफेक्ट्स/मेमोंसाठी सध्याचा डिफ पुन्हा स्कॅन करते                                                                                             |
-| `stop`          | `scripts/agent-hooks/verify.sh`               | लक्ष्यित बिल्ड पडताळणी, लिंट, टाइपचेक आणि फॉरमॅट तपासण्या हार्ड-गेट करते; `yarn npm audit` फक्त माहितीपुरते ठेवा आणि डिपेंडन्सी/इम्पोर्ट बदलल्यावर `yarn knip` सल्लागार ऑडिट म्हणून स्वतंत्रपणे चालवा |
+Claude स्वतंत्र `.claude/hooks.json` वाचत नाही. प्रोजेक्ट ट्रस्ट आणि हुक्स सक्षम आहेत की नाहीत हे अजूनही प्रत्येक ॲपच्याच नियंत्रणात असते; ट्रस्टला बगल देण्याऐवजी त्या ॲपच्या सध्याच्या सेटिंग्ज तपासा. `.codex/config.toml` हे रिपॉझिटरी कॉन्फिगरेशन आहे, हुक कमांड रजिस्ट्री नव्हे.
 
-## का
+फॉरमॅटर इव्हेंट/पेलोड, संपादन यशस्वी झाले की नाही, फाइल एक्सटेन्शन, आणि सिमलिंकसह फाइल रिपॉझिटरीच्या आतच आहे की नाही याची पडताळणी करतो. डिपेंडन्सी गहाळ असतील किंवा इनपुट असंबंधित असेल तर तो काहीही करत नाही. कमांड्स Corepack चा नेटवर्क ॲक्सेस बंद ठेवून आर्ग्युमेंट ॲरे वापरतात; हुक्स डिपेंडन्सी इन्स्टॉल करत नाहीत, बिल्ड/रिव्ह्यू चालवत नाहीत, किंवा Git मध्ये बदल करत नाहीत.
 
-- सुसंगत फॉरमॅटिंग
-- लॉकफाइल सिंकमध्ये राहते
-- about साइटमध्ये नव्याने जोडलेल्या `useEffect`/memo वापरांकडे एजंटचे काम संपण्यापूर्वी स्पष्टपणे दुसऱ्यांदा पाहिले जाते
-- प्रत्येक टास्कवर संपूर्ण मल्टी-लोकेल डॉक्स बिल्ड न लादता वर्कस्पेसशी संबंधित बिल्ड/लिंट/टाइप समस्या लवकर सापडतात
-- `yarn npm audit` द्वारे सुरक्षिततेची दृश्यता
-- डिपेंडन्सी/इम्पोर्ट ड्रिफ्ट `yarn knip` ने तपासता येते, आणि त्यासाठी त्याला गोंगाट करणारा ग्लोबल stop हुक बनवावे लागत नाही
-- Codex आणि Cursor दोघांसाठी एकच सामायिक हुक अंमलबजावणी
-- तात्पुरत्या टास्क ब्रांच रिपॉझिटरीच्या वर्कट्री वर्कफ्लोशी सुसंगत राहतात
+[verification.md](https://github.com/bitsocialnet/bitsocial-web/blob/master/docs/agent-playbooks/verification.md) नुसार तपासण्या स्पष्टपणे चालवा. वर्कफ्लो बदलल्यानंतर `yarn ai-workflow:sync`, `yarn ai-workflow:check`, आणि `yarn ai-workflow:test` चालवा. फिक्स्चर्स वापरून झाल्यावर टाकून देता येणाऱ्या तात्पुरत्या फाइल्स आणि बनावट फॉरमॅटर इन्व्होकेशन्स वापरतात; प्रत्येक ॲपने आपले कॉन्फिगरेशन लोड केले हे ते सिद्ध करत नाहीत. अपग्रेडनंतर ॲप रीलोड करा आणि त्याचा कॅटलॉग तपासा.
 
-## उदाहरण हुक स्क्रिप्ट्स
-
-### फॉरमॅट हुक
-
-```bash
-#!/bin/bash
-# Auto-format JS/TS files after AI edits
-# Hook receives JSON via stdin with file_path
-
-input=$(cat)
-file_path=$(echo "$input" | grep -o '"file_path"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*:.*"\([^"]*\)"/\1/')
-
-case "$file_path" in
-  *.js|*.jsx|*.ts|*.tsx|*.mjs|*.cjs|*.json|*.css) corepack yarn exec oxfmt "$file_path" 2>/dev/null ;;
-esac
-exit 0
-```
-
-### व्हेरिफाय हुक
-
-```bash
-#!/bin/bash
-# Run targeted build verification, lint, typecheck, format check, and security audit when agent finishes
-
-cat > /dev/null  # consume stdin
-status=0
-corepack yarn build:verify || status=1
-corepack yarn lint || status=1
-corepack yarn typecheck || status=1
-corepack yarn format:check || status=1
-echo "=== yarn npm audit ===" && (corepack yarn npm audit || true)  # informational
-exit $status
-```
-
-डीफॉल्टनुसार, आवश्यक तपासणी अयशस्वी झाल्यास `scripts/agent-hooks/verify.sh` शून्येतर एक्झिट कोड देते. तुटलेल्या ट्रीमधून हुक न अडवता सिग्नल हवा असेल तेव्हाच जाणीवपूर्वक `AGENT_VERIFY_MODE=advisory` सेट करा. सल्लागार इम्पोर्ट/डिपेंडन्सी समस्यांवर अपयशी ठरायचे असे रिपॉझिटरीने स्पष्टपणे ठरवले नसेल, तोपर्यंत `yarn knip` हार्ड गेटच्या बाहेरच ठेवा.
-
-लाइफसायकल हुक्स मॅन्युअल ब्राउझर पडताळणीची जागा घेत नाहीत. UI किंवा दृश्य बदलांसाठी `chrome`, `firefox` आणि `webkit` मध्ये `playwright-cli` तपासण्या तरीही चालवा, आणि रिस्पॉन्सिव्हनेस किंवा टच वर्तन बदलले असल्यास प्रत्येक एंजिनमध्ये मोबाइल व्ह्यूपोर्ट फ्लोदेखील तपासा.
-
-### Yarn इन्स्टॉल हुक
-
-```bash
-#!/bin/bash
-# Run corepack yarn install when package.json is changed
-# Hook receives JSON via stdin with file_path
-
-input=$(cat)
-file_path=$(echo "$input" | grep -o '"file_path"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*:.*"\([^"]*\)"/\1/')
-
-if [ -z "$file_path" ]; then
-  exit 0
-fi
-
-if [ "$file_path" = "package.json" ]; then
-  cd "$(dirname "$0")/../.." || exit 0
-  echo "package.json changed - running corepack yarn install to update yarn.lock..."
-  corepack yarn install
-fi
-
-exit 0
-```
-
-तुमच्या एजंट टूलच्या दस्तऐवजांनुसार हुक वायरिंग कॉन्फिगर करा (`hooks.json`, तत्सम फाइल, इत्यादी).
-
-या रिपॉझिटरीमध्ये `.codex/hooks/*.sh` आणि `.cursor/hooks/*.sh` हे `scripts/agent-hooks/` अंतर्गत असलेल्या सामायिक अंमलबजावणीकडे काम सोपवणारे पातळ रॅपर्स म्हणूनच राहिले पाहिजेत.
+Impeccable डिझाइन स्किल आणि त्याचे एक्झिक्युटेबल हेल्पर्स `.agents/skills/impeccable` अंतर्गत गरजेनुसार उपलब्ध राहतात. त्याचा पूर्वीचा Codex हुक अस्तित्वात नसलेल्या डिरेक्टरीकडे निर्देश करत होता; डिझाइन वर्कफ्लो आता त्याचे स्किल निवडल्यावरच चालतो, आणि सतत चालू असणारा कोणताही डिझाइन हुक नाही. डिझाइनच्या कामातील आनुषंगिक पायरी म्हणून स्किलने प्रोजेक्ट हुक्स पुन्हा कॉन्फिगर करू नयेत.

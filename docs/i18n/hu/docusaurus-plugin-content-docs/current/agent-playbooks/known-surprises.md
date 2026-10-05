@@ -188,12 +188,28 @@ Ha bizonytalan, kérdezze meg a fejlesztőt, mielőtt bejegyzést ad hozzá.
 - **Enyhítés:** Minden olyan dokumentációs oldalon, amely nincs tükrözve a `docs/i18n/**` alá, a relatív `.md` linkek helyett gyökérrelatív linkeket használjon (`/peer-to-peer-protocol/`, `/apps/5chan/`); a Docusaurus automatikusan elé fűzi a lokált. A meglévő példa a `docs/build-your-own-client.md`. Mielőtt átad egy olyan változást, amely dokumentációs oldalt ad hozzá vagy hivatkozik rá, futtasson teljes `yarn docs:build` parancsot, ne csak `build:verify` ellenőrzést.
 - **Állapot:** megerősítve
 
-### Az `update-translations.js` szkriptet az `about/` könyvtárból kell futtatni, a párhuzamos futások pedig csendben kulcsokat veszítenek
+### A párhuzamos `update-translations.js` futások csendben kulcsokat veszítenek
 
 - **Dátum:** 2026-08-02
 - **Megfigyelte:** Claude
 - **Kontextus:** 26 lefordított i18next kulcs alkalmazása mind a 36 lokálra a `translate` skillel
-- **Ami meglepő volt:** Ugyanabban a szkriptben két külön csapda. Először: a `scripts/update-translations.js` a célkönyvtárat `path.join(process.cwd(), "public", "translations")` alakban oldja fel, ez a repó viszont az `about/public/translations` útvonalon tartja a fordításokat. A dokumentált parancs a repó gyökeréből futtatva minden alkalommal a „Translations directory not found” hibával áll le, a `docs/agent-playbooks/translations.md` pedig a `node scripts/update-translations.js ...` formát mutatja, ami gyökérszintű parancsként olvasható. Másodszor: minden hívás olvasás-módosítás-írás ciklust végez mind a 36 lokálfájlon, így két egyszerre futó hívás felülírja egymást, és egy kulcs hibaüzenet nélkül eltűnik. A `translate` skill kifejezetten azt írja elő, hogy legfeljebb 4 alügynököt kell párhuzamosan indítani, amelyek mindegyike meghívná a szkriptet.
-- **Hatás:** A gyökérszintű forma hangosan elbukik, és egy teljes kört elpazarol. A párhuzamossági probléma viszont csendben bukik: kulcsok tűnnek el tetszőleges lokálokból, a diff pedig továbbra is hihetőnek látszik.
-- **Enyhítés:** Így futtassa: `cd about && node ../scripts/update-translations.js --key <key> --map <abs-path> --write`. Soha ne engedje, hogy fordító alügynökök egyszerre írjanak lokálfájlokat; csak szótár-JSON fájlokat állítsanak elő, majd a szülőügynök alkalmazza az összes kulcsot sorosan. Az alkalmazás után programozottan ellenőrizze, hogy minden kulcs szerepel-e mind a 35 nem angol lokálban, és hogy egyik érték sem byte-azonos az angol forrással.
+- **Ami meglepő volt:** Minden hívás olvasás-módosítás-írás ciklust végez mind a 36 lokálfájlon, így két egyszerre futó hívás felülírja egymást, és egy kulcs hibaüzenet nélkül eltűnik. A `translate` skill kifejezetten azt írja elő, hogy legfeljebb 4 alügynököt kell párhuzamosan indítani, amelyek mindegyike meghívná a szkriptet.
+- **Hatás:** Csendben bukik el: kulcsok tűnnek el tetszőleges lokálokból, a diff pedig továbbra is hihetőnek látszik.
+- **Enyhítés:** Soha ne engedje, hogy fordító alügynökök egyszerre írjanak lokálfájlokat; csak szótár-JSON fájlokat állítsanak elő, majd a szülőügynök alkalmazza az összes kulcsot sorosan. Az alkalmazás után programozottan ellenőrizze, hogy minden kulcs szerepel-e mind a 35 nem angol lokálban, és hogy egyik érték sem byte-azonos az angol forrással.
+- **Állapot:** megerősítve
+- **Frissítés (2026-08-10):** A szkript korábban a célkönyvtárat is `path.join(process.cwd(), "public", "translations")` alakban oldotta fel, így a dokumentált, repó gyökeréből futtatott parancs a „Translations directory not found” hibával leállt, és az `about/` könyvtárból kellett futtatni. Mostantól a workspace-t az aktuális könyvtárból vagy a saját helyéből oldja fel, és bárhonnan működik. A fenti párhuzamossági csapda változatlan.
+
+### A fejlesztői annotációs vezérlők elfoghatják az automatizált kattintásokat
+
+- **Kontextus:** Az about és a chain oldalon a jobb alsó sarokban rögzített vezérlők vannak, és fejlesztői módban ugyanott jelenik meg az Agentation eszköztár is.
+- **Enyhítés:** A `scripts/pw-session.sh open` az oldal újratöltése előtt regisztrálja a `window.__NO_DEV_TOOLBAR__ = true` beállítást. Az Agentation inicializálója a `__VISUAL_TESTING__` és a `__PROFILING__` jelzőt is figyelembe veszi; a forráskód-vizsgálat ettől függetlenül elérhető marad. A közvetlen böngészőautomatizálásnak ugyanezt a jelzőt kell beállítania az alkalmazás betöltése előtt.
+
+### A `skills add` a Codex- és Cursor-példányokat a gitignore által kizárt `.agents/` könyvtárba telepíti
+
+- **Dátum:** 2026-08-18
+- **Megfigyelte:** Tommaso + Claude
+- **Kontextus:** Az `improve-threejs` skill telepítése a `millionco/react-doctor` repóból a `skills` CLI-vel (`vercel-labs/skills`).
+- **Ami meglepő volt:** Az `npx skills add <repo> --skill <name> --agent codex` és a `--agent cursor` egyaránt a `.agents/skills/<name>/` könyvtárba ír, nem a `.codex/skills/` vagy a `.cursor/skills/` könyvtárba. Az `AGENTS.md` tiltja a repószintű `.agents/` könyvtárat, a `.gitignore:29` pedig kizárja, így mindkét példány csendben követetlen marad. Csak a `--agent claude-code` ír a várt `.claude/skills/` könyvtárba. Ettől függetlenül a dokumentált, vesszővel elválasztott forma (`--agent claude-code,codex,cursor`) az „Invalid agents” hibával elbukik, és semmit sem telepít, pedig önmagában mindegyik név érvényes.
+- **Hatás:** A telepítés sikert jelez, miközben a három eszközlánc-példányból kettő olyan helyre kerül, amely soha nem lesz commitolva, így egy friss klónozás után a Codexből és a Cursorból csendben hiányzik a skill. A vesszős forma ráadásul olyan üres telepítést is eredményezhet, amely sikeresnek látszik.
+- **Jelenlegi enyhítés:** A repó mostantól a `.agents/skills` könyvtárat követi kanonikus forrásként, és a Claude-példányokat a `yarn ai-workflow:sync` paranccsal generálja. A `.agents` korábbi tiltását és kizárási szabályát eltávolították. Ne másoljon új skilleket három független gyökérbe; skill hozzáadása után ellenőrizze a generált példányok egyezését és az alkalmazáskatalógust.
 - **Állapot:** megerősítve
