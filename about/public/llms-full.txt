@@ -481,6 +481,13 @@ Details:
 
 ## Other
 
+- [Bitsocial and ActivityPub](https://docs.bitsocial.net/comparisons/activitypub/): How the Fediverse, with Mastodon for microblogging and Lemmy for Reddit-style communities, compares with Bitsocial's peer-to-peer communities.
+- [Bitsocial and Blockchain Social Networks](https://docs.bitsocial.net/comparisons/blockchain-social/): How Lens, DeSo and Steem put social data or rules on a blockchain, and why Bitsocial does not use one.
+- [Bitsocial and Bluesky](https://docs.bitsocial.net/comparisons/bluesky/): How Bluesky and the AT Protocol, with personal data servers, relays and AppViews, compare with Bitsocial's peer-to-peer communities.
+- [Bitsocial and Farcaster](https://docs.bitsocial.net/comparisons/farcaster/): How Farcaster, with onchain accounts, storage rent and the Snapchain validator network, compares with Bitsocial's peer-to-peer communities.
+- [Bitsocial and Lapis Net](https://docs.bitsocial.net/comparisons/lapis/): How Lapis Net, a Kotlin peer-to-peer social protocol with per-viewer trust scores and Bitcoin-backed visibility, compares with Bitsocial.
+- [Bitsocial and Mirage](https://docs.bitsocial.net/comparisons/mirage/): How Mirage, a Reddit-style forum on its own Cosmos SDK blockchain, compares with Bitsocial and its Reddit-style app Seedit.
+- [Bitsocial and Nostr](https://docs.bitsocial.net/comparisons/nostr/): How Nostr's relay-based model compares with Bitsocial's peer-to-peer communities, from data path and identity to groups, spam control and moderation.
 - [Bitsocial and Reticulum](https://docs.bitsocial.net/comparisons/reticulum/): How Reticulum, the cryptographic networking stack for LoRa and other low-bandwidth links, compares with Bitsocial, and whether Bitsocial could run over it.
 - [Content Discovery](https://docs.bitsocial.net/content-discovery/): How Bitsocial separates peer discovery from app-level curation.
 - [i18n Default Language Policy](https://docs.bitsocial.net/i18n-default-language-policy/): Anonymous visitors resolve language in this order:
@@ -1096,40 +1103,10 @@ cannot seize user identities, because identities are keypair-controlled, not ser
 
 ## What about Nostr?
 
-Nostr does not fit cleanly into either bucket. It is not ActivityPub-style federation, because users
-are not issued accounts by instances and identity is not tied to one server. It is not blockchain
-social media either, because there is no chain, consensus, gas, or global transaction order.
-
-Nostr is better described as **relay-based social media**. In the base protocol
-([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)), users hold keypairs, sign
-events, and publish those events to WebSocket relays. Clients subscribe to relays with filters,
-fetch matching events, and verify signatures locally. Users can also publish relay-list metadata
-([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)) that tells clients which
-relays they normally write to and which relays they prefer for reading mentions.
-
-That puts Nostr closer to Bitsocial than federated or blockchain systems in one important way:
-identity is cryptographic and portable. The main difference is the data layer. In Nostr, relays are
-the normal storage and delivery layer. In Bitsocial, HTTP routers only help clients find peers. The
-routers do not store posts, profiles, community metadata, or moderation state; they return provider
-peer addresses, then clients fetch content from peers.
-
-Communities show the same split. Nostr has optional patterns for
-[relay-based groups](https://github.com/nostr-protocol/nips/blob/master/29.md) and
-[moderator-approved communities](https://github.com/nostr-protocol/nips/blob/master/72.md), but
-they still depend on relay policy, relay-hosted group state, or client choices about which
-approvals to honor. Bitsocial treats communities as first-class cryptographic objects whose
-operator node validates posts, runs the community's challenge policy, and publishes the latest
-accepted state into the peer-to-peer network.
-
-| Question            | Nostr                                                                              | Bitsocial                                                         |
-| ------------------- | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Category            | Relay-based protocol                                                               | Peer-to-peer community network                                    |
-| Identity            | User public key                                                                    | User and community keypairs                                       |
-| Data path           | Signed events published to relays                                                  | Public-key address resolves to peers; content fetched from peers  |
-| Who keeps it online | Relays chosen by users and clients                                                 | Community owner node plus helper seeders                          |
-| Communities         | Optional relay-based groups or moderator-approved communities                      | First-class community objects with operator-controlled moderation |
-| Anti-spam           | Relay policy, auth, payment, proof-of-work, client filters, or moderator approvals | Community-defined challenge logic before inclusion                |
-| Main tradeoff       | Portable identity, but relay-dependent availability and policy                     | Less relay dependence, but old content is not guaranteed forever  |
+Nostr is relay-based social media: users hold keypairs and publish signed events to relays, which
+store and serve them. In Bitsocial, HTTP routers only help clients find peers, and communities are
+first-class objects whose own node accepts or rejects posts. See
+[Bitsocial and Nostr](https://docs.bitsocial.net/comparisons/nostr/) for the full comparison.
 
 ---
 
@@ -2711,6 +2688,627 @@ Keep code fences, links, inline code, contract addresses, headings, tables, and 
 For selected i18next keys, use `scripts/jev/translation-README.md`. For documentation pages, run `node scripts/jev/docs-translations.mjs --locales it,de --paths browser-p2p.md` first. This requires an explicit locale/page selection, runs the structural verifier, and reports semantic review as unverified until live inference is enabled. Add `--live` only with the task's provider authorization and budget; the shared private machine configuration supplies credentials and a pinned model. Environment variables and `--model` can override that setup. The command never edits translations.
 
 The page adapter preserves whole-page context and limits each page to 24 KB and each run to 30 pairs. For larger pages, prepare explicitly aligned source/translation paragraph pairs for `translations.mjs --pairs`; do not automatically pair paragraphs by index. Semantic results are advisory: inspect reported issues and uncertainty, and retain deterministic code/link/address checks.
+
+### Bitsocial and ActivityPub
+
+Source: https://docs.bitsocial.net/comparisons/activitypub/
+Path: docs/comparisons/activitypub.md
+Description: How the Fediverse, with Mastodon for microblogging and Lemmy for Reddit-style communities, compares with Bitsocial's peer-to-peer communities.
+
+# Bitsocial and ActivityPub
+
+[ActivityPub](https://www.w3.org/TR/activitypub/) is the W3C standard behind the Fediverse. Users
+pick a server, called an instance, which hosts their account, and servers exchange posts with each
+other. [Mastodon](https://joinmastodon.org/) is its best-known microblogging software;
+[Lemmy](https://join-lemmy.org/) is a Reddit-style link aggregator and forum built from topic
+communities, which makes it the closest Fediverse match for Bitsocial apps such as
+[Seedit](https://docs.bitsocial.net/apps/seedit/).
+
+## How ActivityPub works
+
+- **Inboxes and outboxes.** Every account has an inbox and an outbox. Servers deliver activities into
+  inboxes on other servers, and each receiving server stores its own copy of what its users follow.
+- **Server-owned identity.** Account and post IDs are HTTPS addresses on the origin server's domain.
+  A Mastodon handle is `@user@domain`, resolved with WebFinger, and the server signs federation
+  messages on the user's behalf.
+- **Clients.** Apps and browsers talk only to the user's own server, over that server's API.
+- **Lemmy communities.** A community is a group actor hosted on one instance. Users send posts to the
+  community, which re-broadcasts them to its followers; under the shared forum standard
+  ([FEP-1b12](https://codeberg.org/fediverse/fep/src/branch/main/fep/1b12/fep-1b12.md)) a community
+  may validate posts first, up to manual approval by moderators.
+- **Moderation.** Moderation is local to each server. Admins can suspend accounts, block whole
+  servers or federate only with an allowlist; Lemmy also has moderators for each community.
+- **Spam control.** ActivityPub defines no anti-spam mechanism. Mastodon and Lemmy gate signups with
+  approval, invites, application questions, captchas and email checks, then rely on rate limits,
+  reports and moderation.
+
+## Where they differ
+
+### Identity belongs to a domain
+
+A Fediverse account belongs to its server's domain. Mastodon can redirect followers to a new
+account, but [posts do not move](https://docs.joinmastodon.org/user/moving/), the move has to start
+from the old server, and there is a 30-day cooldown. In Bitsocial, profiles and communities are
+keypairs, so changing hosts or apps does not change the identity. See
+[Identity and Community Ownership](https://docs.bitsocial.net/identity-and-ownership/).
+
+### Where a community lives
+
+A Lemmy community is structurally close to a Bitsocial one: posts go to the community, which can
+check them before re-broadcasting. The difference is where it lives. A Lemmy community can only be
+created on its creator's home instance, the instance admin has
+[complete control](https://join-lemmy.org/docs/users/05-censorship-resistance.html) over it, and
+there is no documented way to move it to another instance. A Bitsocial community is its own keypair:
+the owner can run its node anywhere, and no server admin sits above it.
+
+### Spam control
+
+Fediverse servers mostly stop spam at signup and moderate afterwards. A Bitsocial community runs a
+challenge on every post before accepting it, and each community chooses its own: captcha, allowlist,
+payment or any other code. See [Custom Anti-Spam Challenges](https://docs.bitsocial.net/custom-challenges/).
+
+### Running the infrastructure
+
+Running an instance means an always-on server with a domain, TLS and email. Mastodon also needs
+PostgreSQL, Redis and background workers; Lemmy is lighter, at about 150 MB of RAM by its own
+figure. Each instance stores copies of the remote content its users follow. A Bitsocial community
+node needs no domain or certificate and runs from the desktop app or `bitsocial-cli`.
+
+### What servers give in return
+
+Fediverse servers keep full history and serve it reliably, and Mastodon has mature moderation tools
+built up over years. Bitsocial does not guarantee old content forever, and its moderation tools live
+in each app.
+
+## Comparison
+
+| Question            | ActivityPub (Mastodon, Lemmy)                                                           | Bitsocial                                                             |
+| ------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Category            | Federated servers                                                                       | Peer-to-peer community network                                        |
+| Identity            | Account on a server's domain, signed by the server                                      | Ed25519 keypairs for users and communities                            |
+| Where posts live    | The origin server, plus copies on every server that follows                             | The community owner's node and the peers that read and seed it        |
+| Who keeps it online | Instance admins                                                                         | Community owner node plus helper seeders                              |
+| Communities         | Lemmy communities hosted on one instance                                                | First-class objects whose node accepts or rejects posts               |
+| Spam control        | Signup gates, rate limits, reports and moderation                                       | Each community's challenge before a post is accepted                  |
+| Moderation          | Server admins and community moderators, local to each server                            | Community owners moderate their community; apps choose what they show |
+| Names               | `@user@domain` and `!community@domain` handles                                          | `.bso` and `.eth` names that resolve to keys                          |
+| Browser             | Client of the user's own server                                                         | Peer-to-peer node inside a normal browser tab                         |
+| Main tradeoff       | Reliable history and mature moderation, but identity and communities belong to a server | No server or domain needed, but old content is not guaranteed forever |
+
+### Bitsocial and Blockchain Social Networks
+
+Source: https://docs.bitsocial.net/comparisons/blockchain-social/
+Path: docs/comparisons/blockchain-social.md
+Description: How Lens, DeSo and Steem put social data or rules on a blockchain, and why Bitsocial does not use one.
+
+# Bitsocial and Blockchain Social Networks
+
+Lens, DeSo and Steem each put social activity on a blockchain. Accounts, follows, posts or the rules
+around them become transactions that validators order and store. Bitsocial uses no blockchain:
+social media does not need a global order for every post, so Bitsocial skips consensus, gas and
+staking. See [Peer-to-Peer Protocol](https://docs.bitsocial.net/peer-to-peer-protocol/) for that reasoning.
+
+## What they have in common
+
+- **Someone pays for every write.** Lens charges gas, which apps can sponsor; DeSo charges a fee on
+  every action; Steem rations actions by staked tokens.
+- **The chain sets one spam policy for everyone.** Fees, stake and account costs apply across the
+  network instead of being chosen by each community.
+- **On-chain records are permanent.** Apps can hide content, but they cannot remove it from the
+  chain.
+- **Browsers are API clients.** Web apps sign transactions and read through a node, indexer or API
+  operated by someone else.
+
+## Lens
+
+[Lens](https://lens.xyz/) runs on Lens Chain, an Ethereum layer 2 built with ZKsync's ZK Stack that
+uses Avail for data availability. Mask Network has
+[stewarded Lens since January 2026](https://lens.xyz/news/mask-network-to-steward-the-next-chapter-of-lens).
+
+- **On the chain:** accounts are smart contracts, usernames are NFTs inside namespaces, and graphs,
+  groups, feeds and their rules are contracts too.
+- **Off the chain:** a post's text and media live in a JSON file at a URI, usually on Grove, Lens's
+  storage service in front of IPFS. Reactions and bookmarks are held by the Lens API, and apps read
+  through that API.
+- **Spam and gates:** transactions need gas in GHO, which apps can sponsor with rate limits. Feed and
+  group rules can require token holdings or payments.
+- **Chain operation:** [L2BEAT](https://l2beat.com/scaling/projects/lens) rates Lens Chain as a Stage
+  0 validium with a centralized operator that can refuse to include transactions.
+
+## DeSo
+
+[DeSo](https://docs.deso.org/) is a layer-1 blockchain built for social apps. It moved from proof
+of work to proof of stake in July 2024.
+
+- **On the chain:** profiles, posts, likes, follows and direct messages are all transactions stored
+  by every full node. Images and video are hosted off-chain; the reference node uses Google Cloud
+  Storage and Cloudflare Stream.
+- **Spam:** every action pays a fee in DESO. New users usually get starter DESO from a node after
+  phone verification.
+- **Moderation:** each node decides what it shows by blacklisting or graylisting, but
+  [content stays on-chain](https://docs.deso.org/deso-blockchain/content-moderation).
+- **Communities:** the docs describe no community or forum primitive; a "community" is a feed that
+  an app curates.
+- **Running a node:** validators need at least 32 GB of RAM and 200 GB of disk, according to the
+  [validator guide](https://docs.deso.org/deso-validators/run-a-validator).
+
+## Steem
+
+[Steem](https://steem.com/) is a social blockchain that pays authors and curators in tokens, with
+[Steemit](https://steemit.com/) as its main blogging app. Hive split from Steem in 2020; according
+to [Hive's whitepaper](https://hive.io/whitepaper.pdf), the fork followed the sale of Steemit Inc.
+to Justin Sun.
+
+- **On the chain:** text posts, comments, votes and their edit history, ordered by 21 elected
+  witnesses producing a block every three seconds. Images are hosted off-chain.
+- **Spam:** actions consume Resource Credits, which grow with staked STEEM. Creating an account
+  costs STEEM; Steemit pays it for users who verify an email address and phone number.
+- **Communities:** they are
+  [custom operations interpreted by an indexer](https://github.com/steemit/hivemind/blob/master/docs/communities.md)
+  outside consensus. Moderators can mute posts, which hides them in apps but leaves them on-chain.
+- **Rewards:** inflation funds rewards, and stake-weighted votes decide how they are split, so large
+  holders shape what earns attention.
+
+## Comparison
+
+| Question      | Lens                                                                       | DeSo                                                           | Steem                                                        | Bitsocial                                                                          |
+| ------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| Chain         | Ethereum layer 2 (ZK Stack validium)                                       | Own layer 1, proof of stake                                    | Own chain, delegated proof of stake                          | None                                                                               |
+| Post content  | Off-chain JSON, usually on Grove                                           | On-chain text; media off-chain                                 | On-chain text; images off-chain                              | On the community owner's node and the peers that read and seed it                  |
+| Identity      | Smart-contract account; username NFTs                                      | Keypair with an on-chain profile                               | Named chain account with tiered keys                         | Ed25519 keypairs for users and communities                                         |
+| Communities   | Groups and feeds as contracts with rules                                   | No community primitive                                         | Indexer-interpreted communities outside consensus            | First-class objects whose node accepts or rejects posts                            |
+| Spam control  | Gas (often sponsored), token or payment rules                              | Fee on every action; starter funds after phone checks          | Resource Credits from stake; paid account creation           | Each community's challenge before a post is accepted                               |
+| Moderation    | Group admins, on-chain rules, API-level hiding                             | Each node filters what it shows                                | Community mutes, stake-weighted downvotes, app filters       | Community owners moderate their community; apps choose what they show              |
+| Running it    | Chain operator plus the Lens API and Grove                                 | Validators with at least 32 GB RAM                             | Elected witnesses plus API and indexer nodes                 | A community node on consumer hardware, plus helper seeders                         |
+| Main tradeoff | Programmable on-chain rules, but content and reads depend on Lens services | Open data pool, but every action costs a fee and stays forever | Built-in rewards, but stake shapes visibility and governance | No fees or stake, but no global ordering and old content is not guaranteed forever |
+
+### Bitsocial and Bluesky
+
+Source: https://docs.bitsocial.net/comparisons/bluesky/
+Path: docs/comparisons/bluesky.md
+Description: How Bluesky and the AT Protocol, with personal data servers, relays and AppViews, compare with Bitsocial's peer-to-peer communities.
+
+# Bitsocial and Bluesky
+
+[Bluesky](https://bsky.app/) is a microblogging app built on the [AT Protocol](https://atproto.com/),
+which Bluesky Social PBC designed. The protocol splits a social network into separate services:
+personal data servers host accounts, relays aggregate them into one stream, and AppViews index that
+stream into the timelines and threads people see. Its docs describe account data as stored on host
+servers, "as opposed to a peer-to-peer model"
+([overview](https://atproto.com/guides/overview)).
+
+## How the AT Protocol works
+
+- **Repositories on servers.** Every post, like or follow is a record in the author's signed
+  repository, hosted on a personal data server (PDS). Bluesky runs the default servers, and anyone
+  can host their own.
+- **Relays.** Relays subscribe to every PDS and rebroadcast changes as one stream, the firehose.
+  Since a 2025 protocol update they no longer archive every repository, which made them much cheaper
+  to run ([Sync v1.1](https://atproto.com/blog/relay-updates-sync-v1-1)).
+- **AppViews.** An AppView indexes the whole firehose and serves timelines, complete reply threads,
+  counts and search. It is the most resource-intensive part of the network.
+- **Identity.** An account is a DID: usually `did:plc`, registered in one global directory, or
+  `did:web`, tied to a domain. The DID document lists the account's handle, signing key and current
+  server. The PDS holds the signing key; `did:plc` also lets users hold rotation keys so they can
+  move without the old host's help ([identity guide](https://atproto.com/guides/identity)).
+- **Handles.** Handles are DNS names, such as `alice.bsky.social` or a domain the user owns,
+  verified against the DID.
+- **Moderation.** Hosting and reach are separate layers. Anyone can run a labeler and users can
+  stack them ([moderation guide](https://atproto.com/guides/moderation)), but the Bluesky app always
+  applies Bluesky's own moderation. Authors can limit who may reply to their posts and hide replies.
+
+## Where they differ
+
+### Servers or peers
+
+Bluesky's data lives on servers: a PDS hosts each account, relays carry the firehose, and AppViews
+serve what clients display. A browser is an HTTP client of those services, never a peer. In
+Bitsocial, the community's node and the peers that read it serve content, and a web app can run its
+own peer-to-peer node. See [Browser Peer-to-Peer](https://docs.bitsocial.net/browser-p2p/).
+
+### A global view or communities
+
+The AT Protocol is designed for one global view: an AppView sees every reply, so threads and search
+are complete. Bitsocial has no global index; each community publishes its own state, and apps build
+discovery on top. See [Content Discovery](https://docs.bitsocial.net/content-discovery/).
+
+Bluesky has no community object for public posts today. In June 2026 it
+[announced native communities](https://bsky.app/profile/alexbenzer.com/post/3mnxh6mmlxk2k) with
+approval-gated posting at some privacy levels; they had not launched by October 2026. In Bitsocial,
+communities are the core object, and a community's node accepts or rejects posts.
+
+### Spam control
+
+Bluesky handles spam with rate limits on its servers, limits on new hosts at the relay, automated
+detection, human review and labels, and authors can restrict replies. No community-level gate decides
+what a post must pass before it is accepted. In Bitsocial, each community chooses its own challenge.
+See [Custom Anti-Spam Challenges](https://docs.bitsocial.net/custom-challenges/).
+
+### Who holds the keys
+
+Accounts on Bluesky's own servers log in with a password, and those servers hold their signing
+keys custodially ([Kleppmann et al.](https://arxiv.org/abs/2402.03239)). According to a Bluesky protocol engineer,
+[most accounts have no independently controlled rotation keys](https://whtwnd.com/bnewbold.net/3lbvbtqrg5t2t).
+A Bitsocial identity is a keypair generated and held by the user's app.
+
+### Running the infrastructure
+
+A personal server is cheap: the [reference PDS](https://github.com/bluesky-social/pds) recommends 1
+GB of RAM for up to 20 users. An independent full-network AppView is a large project; one built in
+2025 [cost about $200 a month](https://whtwnd.com/futur.blue/3ls7sbvpsqc2w), mostly for 16 TB of
+storage. Bitsocial has no global index to replicate, and a community node runs on consumer hardware.
+
+## Comparison
+
+| Question            | Bluesky (AT Protocol)                                                   | Bitsocial                                                             |
+| ------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Category            | Federated servers with a global index                                   | Peer-to-peer community network                                        |
+| Identity            | DID, with signing keys usually held by the server                       | Ed25519 keypairs for users and communities                            |
+| Where posts live    | The author's repository on a personal data server                       | The community owner's node and the peers that read and seed it        |
+| Who keeps it online | PDS hosts, relays and AppViews, by default run by Bluesky               | Community owner node plus helper seeders                              |
+| Communities         | None for public posts yet (announced in 2026)                           | First-class objects whose node accepts or rejects posts               |
+| Spam control        | Server rate limits, automated detection, labels, reply controls         | Each community's challenge before a post is accepted                  |
+| Moderation          | Stackable labelers; the Bluesky app always applies Bluesky's moderation | Community owners moderate their community; apps choose what they show |
+| Names               | DNS handles verified against the DID                                    | `.bso` and `.eth` names that resolve to keys                          |
+| Browser             | HTTP client of a PDS and an AppView                                     | Peer-to-peer node inside a normal browser tab                         |
+| Main tradeoff       | Complete global threads and search, but aggregation needs heavy servers | No heavy global index, but no complete network-wide view              |
+
+### Bitsocial and Farcaster
+
+Source: https://docs.bitsocial.net/comparisons/farcaster/
+Path: docs/comparisons/farcaster.md
+Description: How Farcaster, with onchain accounts, storage rent and the Snapchain validator network, compares with Bitsocial's peer-to-peer communities.
+
+# Bitsocial and Farcaster
+
+[Farcaster](https://docs.farcaster.xyz/) keeps identity on a blockchain and social data off it.
+Accounts, app keys and storage payments live in contracts on OP Mainnet, an Ethereum layer 2. Posts,
+called casts, along with follows and reactions, are signed messages stored by
+[Snapchain](https://snapchain.farcaster.xyz/), a blockchain-like network that replaced Farcaster's
+earlier Hub network in 2025.
+
+## How Farcaster works
+
+- **Accounts.** An account is a numeric Farcaster ID owned by an Ethereum address, which can also
+  set a recovery address. Apps post with delegated app keys registered onchain; an app key cannot
+  take over the account.
+- **Storage rent.** Every account rents storage units, currently $0.20 per unit per year. A unit
+  rented since July 2025 holds 100 casts; beyond that, the oldest casts are pruned. Rate limits scale
+  with rented storage.
+- **Snapchain.** Validators order messages into blocks with Tendermint-style consensus, and every
+  full node keeps the whole network's data. Nodes need about 16 GB of RAM and 2 TB of storage, per
+  the [node guide](https://snapchain.farcaster.xyz/getting-started).
+- **Names.** Default usernames, called fnames, are free and issued by Farcaster's own name server,
+  which [can revoke them](https://docs.farcaster.xyz/learn/what-is-farcaster/usernames). Users can
+  instead use a `.eth` name registered on Ethereum.
+- **Channels.** Topic channels are an experimental feature of the Farcaster client. Casts in a
+  channel are protocol data, but channel metadata, follows and moderation are
+  [stored in the client](https://docs.farcaster.xyz/learn/what-is-farcaster/channels).
+- **Reading.** Apps read through a Snapchain node they run or a managed provider, usually Neynar.
+
+## Where they differ
+
+### Blockchains and validators
+
+Farcaster depends on OP Mainnet for accounts and payments, and on Snapchain, a blockchain-like
+network, for ordering all social data. Snapchain's validator set is permissioned. Its whitepaper says
+censorship becomes hard with about ten globally distributed validators; in October 2026 its
+[validator list](https://snapchain.farcaster.xyz/validators) was smaller, and most keys belonged to
+Neynar, which [acquired Farcaster](https://neynar.com/blog/neynar-is-acquiring-farcaster) in January 2026. Bitsocial has no chain, validators or consensus.
+
+### Paying to post
+
+Every Farcaster account pays storage rent, and storage caps how much of an account's history the
+network keeps. In Bitsocial, posting costs nothing at the protocol level; each community decides
+whether to require a captcha, a payment, a token or something else. See
+[Custom Anti-Spam Challenges](https://docs.bitsocial.net/custom-challenges/).
+
+### Communities
+
+Farcaster channels are a client feature: the client stores their metadata and enforces channel
+moderation, so a cast blocked in a channel can remain valid on the network and visible in other apps.
+In Bitsocial, communities are protocol objects with their own keypair, and the community's node
+accepts or rejects posts.
+
+### Running the infrastructure
+
+A Farcaster node holds the entire network, so its storage grows with all activity; Farcaster
+projects growth toward the largest cloud disks. A Bitsocial community node holds only its own
+communities and runs on consumer hardware.
+
+### Browser
+
+A Farcaster browser app is an HTTP client of a node or provider. A Bitsocial web app can run a
+peer-to-peer node inside the tab. See [Browser Peer-to-Peer](https://docs.bitsocial.net/browser-p2p/).
+
+## Comparison
+
+| Question            | Farcaster                                                                 | Bitsocial                                                                          |
+| ------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Category            | Onchain identity with validator-ordered social data                       | Peer-to-peer community network                                                     |
+| Identity            | Farcaster ID owned by an Ethereum address, with delegated app keys        | Ed25519 keypairs for users and communities                                         |
+| Where posts live    | Snapchain, replicated on every full node, within paid storage limits      | The community owner's node and the peers that read and seed it                     |
+| Who keeps it online | Snapchain validators and node operators                                   | Community owner node plus helper seeders                                           |
+| Communities         | Experimental channels managed by the Farcaster client                     | First-class objects whose node accepts or rejects posts                            |
+| Spam control        | Storage rent and rate limits, plus app-level spam labels                  | Each community's challenge before a post is accepted                               |
+| Moderation          | Channel hosts in the client, app filters, validator-level censorship risk | Community owners moderate their community; apps choose what they show              |
+| Names               | Free fnames revocable by Farcaster, or `.eth` names                       | `.bso` and `.eth` names that resolve to keys                                       |
+| Browser             | HTTP client of a node or provider                                         | Peer-to-peer node inside a normal browser tab                                      |
+| Main tradeoff       | One consistent global dataset, but rent, chains and a small validator set | No fees or chains, but no global dataset and old content is not guaranteed forever |
+
+### Bitsocial and Lapis Net
+
+Source: https://docs.bitsocial.net/comparisons/lapis/
+Path: docs/comparisons/lapis.md
+Description: How Lapis Net, a Kotlin peer-to-peer social protocol with per-viewer trust scores and Bitcoin-backed visibility, compares with Bitsocial.
+
+# Bitsocial and Lapis Net
+
+[Lapis Net](https://net.lapisproject.dev/) is a peer-to-peer social network protocol written in
+Kotlin for the JVM. It arrived independently at foundations close to Bitsocial's: keypair
+identities, IPFS-style content storage and libp2p gossipsub. The two differ in where they put spam
+filtering and curation. Lapis gives each viewer a personal trust graph and lets Bitcoin and
+Lightning payments raise visibility; Bitsocial lets each community decide what may be published.
+
+Lapis is a working prototype. In October 2026 it had no public network yet, and connecting two
+nodes was a manual step, according to its
+[repository](https://github.com/lapisproject-dev/Lapis-Net).
+
+## How Lapis works
+
+- **Identities.** Each identity is a secp256k1 keypair, compatible with Bitcoin keys, with an
+  Ed25519 key bound to it for the libp2p peer ID.
+- **Storage and propagation.** Content is stored with Nabu, an IPFS implementation on libp2p (DHT
+  and Bitswap), and spread with libp2p gossipsub.
+- **Scoring.** Four optional scores sit on top of a core that stays neutral about curation:
+  - Veritas, a web of trust computed from each viewer's own trust graph
+  - Virtus, visibility backed by on-chain or Lightning payment proofs that decay over time
+  - Karma, free likes weighted by Veritas
+  - Madli, a reputation score that nodes keep about each other's behaviour
+- **Messaging.** End-to-end encrypted direct messages, one-to-one voice calls and an e-mail-like
+  asynchronous message system are part of the project.
+- **Clients.** Each user runs a JVM node. The reference client is a web interface served by that
+  local node.
+
+## Where they differ
+
+### Who filters spam
+
+Lapis filters at the viewer. Content propagates, then each viewer's trust graph and the payment
+rules of the app they use decide what surfaces. Bitsocial filters at the community: a post has to
+pass the community's challenge before the community node accepts it, so rejected spam never becomes
+part of the community. See [Custom Anti-Spam Challenges](https://docs.bitsocial.net/custom-challenges/).
+
+### Who holds power
+
+In Lapis, each viewer decides whom they trust, and the operator of each app decides how paid
+visibility works there. In Bitsocial, a community owner sets the rules for that one community, and
+apps choose what they show. Neither has a protocol-level administrator.
+
+### Economics
+
+Lapis builds Bitcoin and Lightning payment proofs into its visibility score. Bitsocial has no payment
+layer in the protocol; a community can require a payment or a token through its challenge.
+
+### Browser
+
+Bitsocial apps can run a peer-to-peer node inside a normal browser tab. See
+[Browser Peer-to-Peer](https://docs.bitsocial.net/browser-p2p/). Lapis's browser interface is a local page served by the
+user's JVM node.
+
+### Scope
+
+Lapis bundles direct messages, voice calls and mail. Bitsocial focuses on public communities and has
+no native direct messages yet.
+
+## Comparison
+
+| Question         | Lapis Net                                                                  | Bitsocial                                                                        |
+| ---------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Category         | Peer-to-peer social protocol (prototype)                                   | Peer-to-peer community network                                                   |
+| Identity         | secp256k1 keypair with a bound Ed25519 peer ID                             | Ed25519 keypairs for users and communities                                       |
+| Where posts live | Nabu (IPFS on libp2p) storage on participating nodes                       | The community owner's node and the peers that read and seed it                   |
+| Communities      | No community object; curation happens per viewer and per app               | First-class objects whose node accepts or rejects posts                          |
+| Spam control     | Viewer trust graph, paid visibility, Lightning deposits for first messages | Each community's challenge before a post is accepted                             |
+| Moderation       | Each viewer's trust graph; app operators set paid-visibility rules         | Community owners moderate their community; apps choose what they show            |
+| Economics        | Bitcoin and Lightning payment proofs in scoring                            | None in the protocol; a challenge can require a payment or token                 |
+| Browser          | Local web interface served by a JVM node                                   | Peer-to-peer node inside a normal browser tab                                    |
+| Network          | Prototype without a public network                                         | Live network with apps such as [5chan](https://docs.bitsocial.net/apps/5chan/) and [Seedit](https://docs.bitsocial.net/apps/seedit/) |
+| Main tradeoff    | Rich built-in reputation and messaging, but no public network yet          | Smaller core that runs in browsers, but no built-in reputation or DMs            |
+
+## Could they work together?
+
+Bitsocial challenges are arbitrary code, so a Lapis-style trust score could become one. The built-in
+`whitelist` challenge can already read lists of allowed addresses from URLs. A service that published
+the Bitsocial addresses a Veritas graph trusts could let those authors skip a CAPTCHA in a community.
+That would need a way to link a Lapis identity to a Bitsocial address, and nothing like it exists
+today.
+
+### Bitsocial and Mirage
+
+Source: https://docs.bitsocial.net/comparisons/mirage/
+Path: docs/comparisons/mirage.md
+Description: How Mirage, a Reddit-style forum on its own Cosmos SDK blockchain, compares with Bitsocial and its Reddit-style app Seedit.
+
+# Bitsocial and Mirage
+
+[Mirage](https://mirage.foundation/) is a Reddit-style discussion network with communities,
+threaded posts and votes. Instead of a company database, it runs on its own blockchain, a Cosmos SDK
+chain with CometBFT consensus. Bitsocial's closest product is [Seedit](https://docs.bitsocial.net/apps/seedit/), a
+Reddit-style app on the Bitsocial network, so the comparison is mostly about how each one hosts,
+owns and moderates communities.
+
+## How Mirage works
+
+- **Nodes.** A Mirage node is one Docker container holding a validator, a PostgreSQL database, an
+  indexer, an HTTP API and the web frontend. Every node is also a validator. Running one requires an
+  Ubuntu server on amd64 and 10,000,000 MIRAGE tokens in the operator's account, according to the
+  [deploy guide](https://github.com/MirageFoundation/mirage-node/blob/dev/docs/guides/deploy.md).
+- **Posting.** The browser signs each action with the user's secp256k1 key, and free users also
+  compute a small proof of work. The node wraps the action in a chain transaction and pays the fee.
+- **Reading.** Each node's indexer copies chain data into its own database and serves feeds over an
+  HTTP API. Nodes keep about a week of blocks, so long-term post history lives in each node's
+  database, and a new node starts without the history before its sync point.
+- **Accounts.** An account is a key derived from a 12-word seed phrase, and the same seed works on
+  any node. Usernames are recorded on the chain and are unique across the network.
+- **Communities.** Every valid name is already a community, and nobody owns it. Paid curator teams
+  of up to ten users each maintain a moderated view of a community; readers choose a team's view,
+  the node's default or an uncensored view. See the [Mirage FAQ](https://mirage.talk/faq).
+- **Token.** The MIRAGE token pays for subscriptions, rewards authors and nodes, and gives
+  validators governance weight. Subscribers skip the proof of work and get higher limits.
+
+## Where they differ
+
+### Who owns a community
+
+In Seedit, the creator of a community holds its keypair, runs or delegates its node, and moderates
+it. In Mirage, nobody owns a community: competing curator teams offer moderated views of the same
+name, and the default view is the team chosen by the most paying subscribers.
+
+### Spam control
+
+Mirage applies one rule to the whole network: free users pay with proof of work whose difficulty
+adjusts to incoming volume, and subscribers skip it. In Bitsocial, each community chooses its own challenge,
+from captchas to allowlists to payments. See [Custom Anti-Spam Challenges](https://docs.bitsocial.net/custom-challenges/).
+
+### Infrastructure
+
+Mirage needs a blockchain. Validators reach consensus on every action, and each node runs a full
+server stack and must hold a large token stake. Bitsocial has no chain: a community node runs on
+consumer hardware from the desktop app or `bitsocial-cli`, and readers can help share content.
+
+### Network-wide control
+
+Mirage has on-chain governance weighted by validator stake. It can change difficulty, prices and
+token emission, mint or burn tokens, and appoint admins whose deletions the reference indexer
+applies to any post. The chain code also lets governance
+[delete accounts](https://github.com/MirageFoundation/mirage-node/blob/142a2e4e2542b6a3c9cc6d71591c282e5e5a9503/blockchain/x/core/module/module.go#L2572-L2573)
+and
+[send tokens from any address](https://github.com/MirageFoundation/mirage-node/blob/142a2e4e2542b6a3c9cc6d71591c282e5e5a9503/blockchain/x/core/module/module.go#L2656).
+In October 2026, four validators produced the chain's blocks, and the project's own runbooks managed
+all four.
+
+Bitsocial has no protocol-level administrator. Community owners moderate their own communities and
+apps choose what they show. See [Local Moderation, Not Global Bans](https://docs.bitsocial.net/local-moderation/).
+
+### Browser
+
+Mirage's web client is an HTTP client of a node: the browser signs actions but does not join a
+peer-to-peer network. Bitsocial apps can run a peer-to-peer node inside the browser tab. See
+[Browser Peer-to-Peer](https://docs.bitsocial.net/browser-p2p/).
+
+## Comparison
+
+| Question            | Mirage                                                                                                   | Bitsocial                                                                                  |
+| ------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Category            | Forum on its own blockchain (Cosmos SDK)                                                                 | Peer-to-peer community network                                                             |
+| Identity            | secp256k1 key from a 12-word seed, with an on-chain username                                             | Ed25519 keypairs for users and communities                                                 |
+| Where posts live    | Chain transactions, then each node's PostgreSQL database                                                 | The community owner's node and the peers that read and seed it                             |
+| Who keeps it online | Validator nodes, each holding 10,000,000 MIRAGE                                                          | Community owner node plus helper seeders                                                   |
+| Communities         | Ownerless names with competing paid curator teams                                                        | Owned by a keypair; the owner's node accepts or rejects posts                              |
+| Spam control        | Network-wide proof of work; subscribers skip it                                                          | Each community's challenge before a post is accepted                                       |
+| Moderation          | Curator-team views, personal filters, governance-appointed admins                                        | Community owners moderate their community; apps choose what they show                      |
+| Economics           | MIRAGE token for subscriptions, rewards and validator stake                                              | None in the protocol; a challenge can require a payment or token                           |
+| Browser             | HTTP client of a node                                                                                    | Peer-to-peer node inside a normal browser tab                                              |
+| Main tradeoff       | One shared, ordered state and easy sign-up, but a small validator set and network-wide governance powers | No chain or stake needed, but no global ordering and old content is not guaranteed forever |
+
+### Bitsocial and Nostr
+
+Source: https://docs.bitsocial.net/comparisons/nostr/
+Path: docs/comparisons/nostr.md
+Description: How Nostr's relay-based model compares with Bitsocial's peer-to-peer communities, from data path and identity to groups, spam control and moderation.
+
+# Bitsocial and Nostr
+
+Nostr does not fit cleanly into the federated or blockchain buckets. Users are not issued accounts
+by instances, and there is no chain, consensus, gas or global ordering. Nostr is better described as
+**relay-based social media**: users hold keypairs, sign events, and publish them to relays, which
+are ordinary servers that store and serve them
+([NIP-01](https://github.com/nostr-protocol/nips/blob/master/01.md)). Nostr's own
+[README](https://github.com/nostr-protocol/nostr) says it does not rely on peer-to-peer techniques.
+
+That puts Nostr closer to Bitsocial than federated or blockchain systems in one important way:
+identity is cryptographic and portable. The differences are the data layer and who holds the gate.
+
+## How Nostr works
+
+- **Events and relays.** Every post, profile or reaction is a signed JSON event. Clients publish
+  events to relays over WebSockets and subscribe with filters; relays store events and serve them
+  back. Relays do not talk to each other.
+- **Replication.** Users usually publish to several relays. A study of 712 relays in 2023 found the
+  average post on 34.6 of them ([Wei and Tyson](https://arxiv.org/abs/2402.05709)).
+- **Finding someone's posts.** Users publish a list of the relays they write to and read from
+  ([NIP-65](https://github.com/nostr-protocol/nips/blob/master/65.md)), and clients fetch a user's
+  posts from that user's write relays.
+- **Identity.** Each user is a secp256k1 key that signs with Schnorr signatures. The specs define no
+  key rotation or recovery, so a lost key is a lost account. Optional `name@domain` identifiers
+  ([NIP-05](https://github.com/nostr-protocol/nips/blob/master/05.md)) are checked against a file on
+  that domain's web server.
+- **Groups.** The recommended community mechanism is relay-based groups
+  ([NIP-29](https://github.com/nostr-protocol/nips/blob/master/29.md)): a relay hosts a group,
+  enforces its membership and posting rules before accepting a post, and signs its metadata. The
+  older moderator-approved communities
+  ([NIP-72](https://github.com/nostr-protocol/nips/blob/master/72.md)) are now marked unrecommended
+  in favour of NIP-29.
+- **Spam control.** Each relay chooses its gate: proof of work
+  ([NIP-13](https://github.com/nostr-protocol/nips/blob/master/13.md)), authentication and allowlists
+  ([NIP-42](https://github.com/nostr-protocol/nips/blob/master/42.md)), payment or rate limits.
+  Clients add mute lists and trust scores.
+- **Media.** Images and video are uploaded to separate HTTP file servers.
+
+## Where they differ
+
+### Who stores and serves posts
+
+In Nostr, relays are the storage and delivery layer: a server has to keep each post online. In
+Bitsocial, HTTP routers only help clients find peers. They do not store posts, profiles, community
+metadata or moderation state; clients fetch content from the community's node and the peers that
+seed it. See [Peer-to-Peer Protocol](https://docs.bitsocial.net/peer-to-peer-protocol/).
+
+### Who holds the gate
+
+Nostr's write gates belong to relay operators. Outside NIP-29 groups, a key rejected by one relay can
+publish the same event to any relay that accepts it, and what readers see depends on which relays
+their client reads. A NIP-29 group is closer to a Bitsocial community: its host relay accepts or
+rejects posts. The relay still defines what group roles can do, and the group's history stays tied to
+that relay unless another relay agrees to take it over.
+
+In Bitsocial, a community is a cryptographic object with its own keypair. The community's node runs
+whatever challenge the owner chooses and publishes the accepted state into the peer-to-peer network.
+See [Custom Anti-Spam Challenges](https://docs.bitsocial.net/custom-challenges/).
+
+### Running the infrastructure
+
+A relay is a server with a domain and a WebSocket endpoint, and popular relays carry the storage and
+bandwidth cost of what they serve. The 2023 study estimated that about 95% of free relays could not
+cover their costs from donations. A Bitsocial community node runs on consumer hardware, and peers
+that read a community can help share it.
+
+### Browser
+
+A Nostr web client opens WebSocket connections straight to relays, so no app server is needed. A
+Bitsocial web app runs a peer-to-peer node in the tab and fetches content from peers. See
+[Browser Peer-to-Peer](https://docs.bitsocial.net/browser-p2p/).
+
+### Old content
+
+Nostr posts are widely replicated across relays, which helps old posts survive. Bitsocial keeps the
+latest community state and does not guarantee old content forever.
+
+## Comparison
+
+| Question            | Nostr                                                                                | Bitsocial                                                             |
+| ------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+| Category            | Relay-based protocol                                                                 | Peer-to-peer community network                                        |
+| Identity            | secp256k1 user key, with no rotation in the specs                                    | Ed25519 keypairs for users and communities                            |
+| Where posts live    | Relays chosen by the author, often many                                              | The community owner's node and the peers that read and seed it        |
+| Who keeps it online | Relay operators                                                                      | Community owner node plus helper seeders                              |
+| Communities         | Relay-hosted groups (NIP-29)                                                         | First-class objects whose node accepts or rejects posts               |
+| Spam control        | Each relay's policy: proof of work, authentication, payment, allowlists, rate limits | Each community's challenge before a post is accepted                  |
+| Moderation          | Relay policies, client mute lists, labels and reports                                | Community owners moderate their community; apps choose what they show |
+| Names               | Optional `name@domain` identifiers checked over HTTPS                                | `.bso` and `.eth` names that resolve to keys                          |
+| Browser             | WebSocket client of relays                                                           | Peer-to-peer node inside a normal browser tab                         |
+| Main tradeoff       | Portable identity and wide replication, but relay-dependent availability and policy  | Less relay dependence, but old content is not guaranteed forever      |
 
 ### Bitsocial and Reticulum
 

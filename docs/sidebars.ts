@@ -20,7 +20,16 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Comparisons",
-      items: ["comparisons/reticulum"],
+      items: [
+        "comparisons/nostr",
+        "comparisons/bluesky",
+        "comparisons/activitypub",
+        "comparisons/farcaster",
+        "comparisons/blockchain-social",
+        "comparisons/lapis",
+        "comparisons/mirage",
+        "comparisons/reticulum",
+      ],
     },
     {
       type: "category",
