@@ -1,9 +1,9 @@
 ---
-title: Identität und Gemeinschaftseigentum
+title: Identität und Eigentum an Communities
 description: Wie Bitsocial Profile und Communities als schlüsselkontrolliertes Eigentum und nicht als widerrufbare Plattformkonten behandelt.
 ---
 
-# Identität und Gemeinschaftseigentum
+# Identität und Eigentum an Communities
 
 Profile und Communities in Bitsocial werden durch Schlüsselpaare gesteuert, nicht durch widerrufbare Plattformkonten.
 

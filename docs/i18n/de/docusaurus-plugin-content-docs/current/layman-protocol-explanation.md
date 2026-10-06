@@ -169,7 +169,7 @@ Der Punkt ist nicht, dass jeder Benutzer dies alles verstehen muss, bevor er etw
 - [Peer-to-Peer-Protokoll](./peer-to-peer-protocol.md) erklärt den technischen Ablauf.
 - [Entdeckung von Inhalten](./content-discovery.md) erklärt die Netzwerksuche im Vergleich zur App-Kuratierung.
 - [Benutzerdefinierte Anti-Spam-Herausforderungen](./custom-challenges.md) erklärt das Challenge-System.
-- [Identität und Gemeinschaftseigentum](./identity-and-ownership.md) erklärt schlüsselgesteuert
+- [Identität und Eigentum an Communities](./identity-and-ownership.md) erklärt schlüsselgesteuert
   Eigentum.
 - [Erstellen Sie Ihren eigenen Kunden](/build-your-own-client/) erklärt, wie unabhängige Apps darauf aufbauen können
   das gleiche Netzwerk.

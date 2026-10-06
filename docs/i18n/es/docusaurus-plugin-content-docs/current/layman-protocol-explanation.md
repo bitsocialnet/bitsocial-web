@@ -169,7 +169,7 @@ La cuestión no es que todos los usuarios deban comprender todo esto antes de pu
 - [Protocolo de igual a igual](./peer-to-peer-protocol.md) explica el flujo técnico.
 - [Descubrimiento de contenido](./content-discovery.md) explica la búsqueda en la red versus la curación de aplicaciones.
 - [Desafíos antispam personalizados](./custom-challenges.md) explica el sistema de desafíos.
-- [Identidad y propiedad comunitaria](./identity-and-ownership.md) explica clave controlada
+- [Identidad y propiedad de las comunidades](./identity-and-ownership.md) explica clave controlada
   propiedad.
 - [Construye tu propio cliente](/build-your-own-client/) explica cómo las aplicaciones independientes pueden aprovechar
   la misma red.

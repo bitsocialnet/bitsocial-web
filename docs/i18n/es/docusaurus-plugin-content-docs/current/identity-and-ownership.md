@@ -1,9 +1,9 @@
 ---
-title: Identidad y propiedad comunitaria
+title: Identidad y propiedad de las comunidades
 description: Cómo Bitsocial trata los perfiles y las comunidades como propiedad controlada por clave en lugar de cuentas de plataforma revocables.
 ---
 
-# Identidad y propiedad comunitaria
+# Identidad y propiedad de las comunidades
 
 Los perfiles y comunidades en Bitsocial están controlados por pares de claves, no por cuentas de plataforma revocables.
 
