@@ -51,7 +51,7 @@ Yksinkertaisesti sanottuna:
 
 Bitsocial-yhteisö ei ole vain sivu yhdessä sovelluksessa.
 
-Siinä on oma avainparinsa. Julkinen avain antaa yhteisölle vakaan verkko-osoitteen. Yksityinen avain ohjaa yhteisön tilan päivityksiä, kuten metatietoja, sääntöjä, valvojaluetteloa, haastemäärityksiä ja viittauksia viimeisimpään hyväksyttyyn sisältöön.
+Siinä on oma avainparinsa. Julkinen avain antaa yhteisölle vakaan verkko-osoitteen. Yksityinen avain ohjaa yhteisön tilan päivityksiä, kuten metatietoja, sääntöjä, moderaattoriluetteloa, haastemäärityksiä ja viittauksia viimeisimpään hyväksyttyyn sisältöön.
 
 Tämä tarkoittaa, että yhteisö voi elää kauemmin kuin yksi käyttöliittymä. Yksi sovellus voi näyttää sen tauluna. Toinen sovellus voi näyttää sen foorumina. Tuleva sovellus voi näyttää sen profiilipohjaisessa syötteessä. Sovellus voi muuttua, mutta yhteisön osoite viittaa silti samaan omistettuun yhteisöön.
 
@@ -104,13 +104,13 @@ Tällä joustavuudella on merkitystä, koska roskaposti muuttuu. Protokollatason
 
 Tarkennetun selityksen saamiseksi lue [Mukautetut roskapostin torjuntahaasteet](./custom-challenges.md).
 
-## Miten maltillisuus toimii
+## Miten moderointi toimii
 
-Bitsocial ei ole maltillinen. Se on moderointia ilman yhtä globaalia superjärjestelmänvalvojaa.
+Bitsocial ei ole moderoinnista vapaa. Se on moderointia ilman yhtä globaalia superjärjestelmänvalvojaa.
 
-Yhteisöllä voi olla omistajia ja valvojia. Valvojan osoitteet ovat osa yhteisön tilaa. Kun moderaattori tekee toimenpiteen, se voidaan allekirjoittaa. Yhteisösolmu ja asiakkaat voivat tarkistaa allekirjoituksen moderaattoriluettelosta.
+Yhteisöllä voi olla omistajia ja moderaattoreita. Moderaattorien osoitteet ovat osa yhteisön tilaa. Kun moderaattori tekee toimenpiteen, se voidaan allekirjoittaa. Yhteisösolmu ja asiakkaat voivat tarkistaa allekirjoituksen moderaattoriluettelosta.
 
-Tämä antaa maltillisuudelle paikallisen ulottuvuuden:
+Tämä antaa moderoinnille paikallisen ulottuvuuden:
 
 - yhteisön omistaja hallitsee yhteisöä
 - moderaattorit toimivat yhteisön tunnistamien avainten kautta

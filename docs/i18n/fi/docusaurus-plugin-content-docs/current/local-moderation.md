@@ -1,6 +1,6 @@
 ---
 title: Paikallinen moderointi, ei globaaleja estoja
-description: Mitä Bitsocial tarkoittaa, kun se sanoo, että maltillisuus pysyy paikallisena.
+description: Mitä Bitsocial tarkoittaa, kun se sanoo, että moderointi pysyy paikallisena.
 ---
 
 # Paikallinen moderointi, ei globaaleja estoja
@@ -11,7 +11,7 @@ Yhteisön omistajat asettavat edelleen säännöt omille tiloilleen. Sovellukset
 
 Jos haluat laajemman englanninkielisen esittelyn yhteisön omistajuudesta, julkaisemisesta, haasteista ja moderaattorien allekirjoituksista, lue [Täydellinen maallikon selitys Bitsocial-protokollasta](./layman-protocol-explanation.md).
 
-## Miten maltillisuus toimii
+## Miten moderointi toimii
 
 - Yhteisön omistaja voi valvoa tätä yhteisöä
 - Sovellus voi valita, mitä se indeksoi tai näyttää
@@ -32,7 +32,7 @@ Tämä keskeinen kohta tekee tuotepoliittisesta päätöksestä verkon laajuisen
 
 ## Käytännön kompromissi
 
-Paikallinen valvonta ei tarkoita, että kaikki sovellukset näyttävät samalta. Se tarkoittaa, että maltillisuuden seuraukset pysyvät voimassa:
+Paikallinen moderointi ei tarkoita, että kaikki sovellukset näyttävät samalta. Se tarkoittaa, että moderoinnin seuraukset pysyvät rajattuina:
 
 - yhteisön säännöt pätevät yhteisön sisällä
 - sovelluksen sisällä sovelletaan sovellussääntöjä
