@@ -1,9 +1,9 @@
 ---
-title: Identita a komunitní vlastnictví
+title: Identita a vlastnictví komunit
 description: Jak Bitsocial zachází s profily a komunitami jako s majetkem ovládaným klíčem namísto odvolatelných účtů platformy.
 ---
 
-# Identita a komunitní vlastnictví
+# Identita a vlastnictví komunit
 
 Profily a komunity v Bitsocial jsou řízeny páry klíčů, nikoli odvolatelnými účty platformy.
 

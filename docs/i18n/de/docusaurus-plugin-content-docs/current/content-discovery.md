@@ -1,9 +1,9 @@
 ---
-title: Inhaltserkennung
+title: Entdeckung von Inhalten
 description: Wie Bitsocial Peer Discovery von der Kuration auf App-Ebene trennt.
 ---
 
-# Inhaltserkennung
+# Entdeckung von Inhalten
 
 Bitsocial fügt keinen globalen Feed, Suchindex oder Ranking-Algorithmus in das Protokoll ein. Es unterteilt die Inhaltserkennung in zwei Ebenen:
 

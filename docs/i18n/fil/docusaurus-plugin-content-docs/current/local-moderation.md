@@ -1,9 +1,9 @@
 ---
-title: Lokal na Moderation, Hindi Global Bans
+title: Lokal na Pagmo-moderate, Hindi Pandaigdigang Pagbabawal
 description: Ang ibig sabihin ng Bitsocial kapag sinabi nitong nananatiling lokal ang pagmo-moderate.
 ---
 
-# Lokal na Moderation, Hindi Global Bans
+# Lokal na Pagmo-moderate, Hindi Pandaigdigang Pagbabawal
 
 Ang bitsocial ay hindi moderation-free. Ito ay moderation na walang protocol-level super-admin.
 

@@ -77,7 +77,7 @@ sariling mga runbook ng proyekto ang lahat ng apat.
 
 Walang administrator sa antas ng protocol ang Bitsocial. Mino-moderate ng mga may-ari ng komunidad
 ang sarili nilang mga komunidad at pinipili ng mga app kung ano ang ipapakita. Tingnan ang
-[Lokal na Moderation, Hindi Global Bans](/local-moderation/).
+[Lokal na Pagmo-moderate, Hindi Pandaigdigang Pagbabawal](/local-moderation/).
 
 ### Browser
 

@@ -169,7 +169,7 @@ Nejde o to, že každý uživatel musí tomu všemu před odesláním porozumět
 - [Protokol Peer-to-Peer](./peer-to-peer-protocol.md) vysvětluje technický postup.
 - [Objevování obsahu](./content-discovery.md) vysvětluje vyhledávání v síti versus spravování aplikací.
 - [Vlastní antispamové výzvy](./custom-challenges.md) vysvětluje systém výzev.
-- [Identita a komunitní vlastnictví](./identity-and-ownership.md) vysvětluje ovládání klíčem
+- [Identita a vlastnictví komunit](./identity-and-ownership.md) vysvětluje ovládání klíčem
   vlastnictví.
 - [Sestavte si vlastního klienta](/build-your-own-client/) explains how independent apps can build on
   stejnou síť.

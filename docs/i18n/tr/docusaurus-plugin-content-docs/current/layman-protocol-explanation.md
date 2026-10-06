@@ -102,7 +102,7 @@ Bir topluluk captcha kullanabilir. Bir başkası davet kodlarını kullanabilir.
 
 Spam değiştiği için bu esneklik önemlidir. Protokol düzeyindeki bir spam kuralı eski hale gelir. Topluluk düzeyindeki bir zorluk, tüm ağı taşımadan gelişebilir.
 
-Odaklanmış açıklama için [Özel Spam Karşıtı Mücadeleleri](./custom-challenges.md) bölümünü okuyun.
+Odaklanmış açıklama için [Özel Spam Önleme Sınamaları](./custom-challenges.md) bölümünü okuyun.
 
 ## Moderasyon nasıl çalışır?
 
@@ -168,7 +168,7 @@ Mesele şu ki, her kullanıcının paylaşım yapmadan önce tüm bunları anlam
 
 - [Eşler Arası Protokolü](./peer-to-peer-protocol.md) teknik akışı açıklıyor.
 - [İçerik Keşfi](./content-discovery.md), ağ arama ile uygulama iyileştirmeyi açıklıyor.
-- [Özel Anti-Spam Mücadeleleri](./custom-challenges.md) sorgulama sistemini açıklıyor.
+- [Özel Spam Önleme Sınamaları](./custom-challenges.md) sorgulama sistemini açıklıyor.
 - [Kimlik ve Topluluk Sahipliği](./identity-and-ownership.md) anahtar kontrollü olduğunu açıklıyor
   mülkiyet.
 - [Kendi müşterinizi birleştirme](/build-your-own-client/), bağımsız uygulamaların nasıl geliştirilebileceğini açıklıyor

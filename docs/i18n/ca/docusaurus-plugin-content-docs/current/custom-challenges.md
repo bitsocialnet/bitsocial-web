@@ -1,9 +1,9 @@
 ---
-title: Reptes personalitzats contra el correu brossa
+title: Reptes antispam personalitzats
 description: Per què Bitsocial permet a cada comunitat definir la seva pròpia política anti-spam.
 ---
 
-# Reptes personalitzats contra el correu brossa
+# Reptes antispam personalitzats
 
 Bitsocial no assumeix una defensa universal contra el correu brossa. Cada comunitat pot decidir què requereix una publicació o resposta vàlida, i aquest repte pot ser tan lleuger o opinió com vulgui l'operador.
 

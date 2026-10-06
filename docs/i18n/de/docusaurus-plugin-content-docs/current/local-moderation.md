@@ -1,9 +1,9 @@
 ---
-title: Lokale Moderation, keine globalen Verbote
+title: Lokale Moderation, keine globalen Sperren
 description: Was Bitsocial meint, wenn es heißt, dass Moderation lokal bleibt.
 ---
 
-# Lokale Moderation, keine globalen Verbote
+# Lokale Moderation, keine globalen Sperren
 
 Bitsocial ist nicht moderationsfrei. Es handelt sich um eine Moderation ohne Superadministrator auf Protokollebene.
 

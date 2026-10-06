@@ -119,7 +119,7 @@ Tämä antaa maltillisuudelle paikallisen ulottuvuuden:
 
 Käytännössä tämä tarkoittaa, että yhteisö voi poistaa roskapostia tai valvoa sääntöjen noudattamista omassa tilassaan muuttamatta sääntöjään laiksi koko verkossa.
 
-Käytäntönäkymää varten lue [Paikallinen maltillisuus, ei muotoet kiellot](./local-moderation.md).
+Käytäntönäkymää varten lue [Paikallinen moderointi, ei globaaleja estoja](./local-moderation.md).
 
 ## Mitä sovelluksia lisää
 

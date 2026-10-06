@@ -72,7 +72,7 @@ Der Fluss ist näher daran:
 
 Der Router ist nur ein Suchhelfer. Es kommt eher der Frage „Wer hat das?“ gleich. als zu fragen: „Bitte stellen Sie mir die gesamte Website zur Verfügung.“
 
-Weitere Einzelheiten zu dieser Aufteilung finden Sie unter [Inhaltserkennung](./content-discovery.md).
+Weitere Einzelheiten zu dieser Aufteilung finden Sie unter [Entdeckung von Inhalten](./content-discovery.md).
 
 ## So funktioniert das Posten
 
@@ -119,7 +119,7 @@ Das gibt der Moderation eine lokale Reichweite:
 
 In der Praxis bedeutet dies, dass eine Community Spam entfernen oder Regeln in ihrem eigenen Bereich durchsetzen kann, ohne ihre Regeln für das gesamte Netzwerk in Gesetz umsetzen zu müssen.
 
-Für die Richtlinienansicht lesen Sie [Lokale Moderation, keine globalen Verbote](./local-moderation.md).
+Für die Richtlinienansicht lesen Sie [Lokale Moderation, keine globalen Sperren](./local-moderation.md).
 
 ## Welche Apps hinzufügen
 
@@ -167,7 +167,7 @@ Der Punkt ist nicht, dass jeder Benutzer dies alles verstehen muss, bevor er etw
 ## Wohin als nächstes?
 
 - [Peer-to-Peer-Protokoll](./peer-to-peer-protocol.md) erklärt den technischen Ablauf.
-- [Inhaltserkennung](./content-discovery.md) erklärt die Netzwerksuche im Vergleich zur App-Kuratierung.
+- [Entdeckung von Inhalten](./content-discovery.md) erklärt die Netzwerksuche im Vergleich zur App-Kuratierung.
 - [Benutzerdefinierte Anti-Spam-Herausforderungen](./custom-challenges.md) erklärt das Challenge-System.
 - [Identität und Gemeinschaftseigentum](./identity-and-ownership.md) erklärt schlüsselgesteuert
   Eigentum.

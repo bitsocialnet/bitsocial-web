@@ -102,7 +102,7 @@ Una comunitat pot utilitzar un captcha. Un altre podria utilitzar codis d'invita
 
 Aquesta flexibilitat és important perquè el correu brossa canvia. Una regla de correu brossa a nivell de protocol queda obsoleta. Un repte a nivell de comunitat pot evolucionar sense migrar tota la xarxa.
 
-Per a l'explicació centrada, llegiu [Reptes personalitzats contra el correu brossa](./custom-challenges.md).
+Per a l'explicació centrada, llegiu [Reptes antispam personalitzats](./custom-challenges.md).
 
 ## Com funciona la moderació
 
@@ -168,8 +168,8 @@ La qüestió no és que cada usuari hagi d'entendre tot això abans de publicar-
 
 - [Protocol peer-to-peer](./peer-to-peer-protocol.md) explica el flux tècnic.
 - [Descobriment de continguts](./content-discovery.md) explica la cerca de xarxa versus la curació d'aplicacions.
-- [Reptes personalitzats contra el correu brossa](./custom-challenges.md) explica el sistema de desafiaments.
-- [Identitat i propietat comunitària](./identity-and-ownership.md) explica el control de claus
+- [Reptes antispam personalitzats](./custom-challenges.md) explica el sistema de desafiaments.
+- [Identitat i propietat de les comunitats](./identity-and-ownership.md) explica el control de claus
   propietat.
 - [Construeix el teu propi client](/build-your-own-client/) explica com es poden basar les aplicacions independents
   la mateixa xarxa.

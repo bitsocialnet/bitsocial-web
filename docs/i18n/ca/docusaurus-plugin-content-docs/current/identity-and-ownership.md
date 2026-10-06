@@ -1,9 +1,9 @@
 ---
-title: Identitat i propietat comunitària
+title: Identitat i propietat de les comunitats
 description: Com tracta Bitsocial els perfils i les comunitats com a propietat controlada per clau en lloc de comptes de plataforma revocables.
 ---
 
-# Identitat i propietat comunitària
+# Identitat i propietat de les comunitats
 
 Els perfils i les comunitats de Bitsocial estan controlats per parells de claus, no per comptes de plataforma revocables.
 

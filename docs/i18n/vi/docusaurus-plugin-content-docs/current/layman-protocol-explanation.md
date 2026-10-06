@@ -169,7 +169,7 @@ Vấn đề không phải là mọi người dùng đều cần hiểu tất c�
 - [Giao thức ngang hàng](./peer-to-peer-protocol.md) giải thích luồng kỹ thuật.
 - [Khám phá nội dung](./content-discovery.md) giải thích việc tra cứu mạng và quản lý ứng dụng.
 - [Thử chống rác tùy chỉnh](./custom-challenges.md) giải thích hệ thống thử thách.
-- [Bản sắc và quyền sở hữu cộng đồng](./identity-and-ownership.md) giải thích về kiểm soát khóa
+- [Danh tính và quyền sở hữu cộng đồng](./identity-and-ownership.md) giải thích về kiểm soát khóa
   quyền sở hữu.
 - [Xây dựng khách hàng riêng của bạn](/build-your-own-client/) giải thích cách các ứng dụng độc lập có thể xây dựng trên đó
   cùng một mạng.

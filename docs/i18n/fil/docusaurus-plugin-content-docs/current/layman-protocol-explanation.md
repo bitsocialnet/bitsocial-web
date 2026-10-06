@@ -119,7 +119,7 @@ Nagbibigay iyon ng pagmo-moderate ng isang lokal na saklaw:
 
 Sa pagsasagawa, nangangahulugan ito na ang isang komunidad ay maaaring mag-alis ng spam o magpatupad ng mga panuntunan sa loob ng sarili nitong espasyo nang hindi ginagawang batas ang mga panuntunan nito para sa buong network.
 
-Para sa view ng patakaran, basahin ang [Lokal na Moderation, Hindi Global Bans](./local-moderation.md).
+Para sa view ng patakaran, basahin ang [Lokal na Pagmo-moderate, Hindi Pandaigdigang Pagbabawal](./local-moderation.md).
 
 ## Anong mga app ang idinagdag
 

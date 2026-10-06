@@ -1,9 +1,9 @@
 ---
-title: Paikallinen maltillisuus, ei maailmanlaajuiset kiellot
+title: Paikallinen moderointi, ei globaaleja estoja
 description: Mitä Bitsocial tarkoittaa, kun se sanoo, että maltillisuus pysyy paikallisena.
 ---
 
-# Paikallinen maltillisuus, ei maailmanlaajuiset kiellot
+# Paikallinen moderointi, ei globaaleja estoja
 
 Bitsocial ei ole moderaatiovapaa. Se on moderointia ilman protokollatason super-järjestelmänvalvojaa.
 

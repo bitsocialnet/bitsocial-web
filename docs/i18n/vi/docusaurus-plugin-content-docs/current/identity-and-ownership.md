@@ -1,9 +1,9 @@
 ---
-title: Bản sắc và quyền sở hữu cộng đồng
+title: Danh tính và quyền sở hữu cộng đồng
 description: Cách Bitsocial coi hồ sơ và cộng đồng là tài sản được kiểm soát bằng khóa thay vì tài khoản nền tảng có thể hủy ngang.
 ---
 
-# Bản sắc và quyền sở hữu cộng đồng
+# Danh tính và quyền sở hữu cộng đồng
 
 Hồ sơ và cộng đồng trong Bitsocial được kiểm soát bởi các cặp khóa chứ không phải bởi các tài khoản nền tảng có thể thu hồi.
 

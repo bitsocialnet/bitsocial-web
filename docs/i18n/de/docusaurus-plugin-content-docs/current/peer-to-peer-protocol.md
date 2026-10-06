@@ -38,7 +38,7 @@ brauchen weder eine globale Transaktionsreihenfolge noch die dauerhafte Verfügb
 Beitrags. Das Spam-Problem löst es, indem jede Community ihre eigene Anti-Spam-Challenge über das
 Peer-to-Peer-Netzwerk abwickelt.
 
-Zum Erkennungsmodell oberhalb dieser Netzwerkschicht siehe [Inhaltserkennung](./content-discovery.md).
+Zum Erkennungsmodell oberhalb dieser Netzwerkschicht siehe [Entdeckung von Inhalten](./content-discovery.md).
 
 ---
 

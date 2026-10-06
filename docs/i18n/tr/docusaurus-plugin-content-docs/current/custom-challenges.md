@@ -1,9 +1,9 @@
 ---
-title: Özel Anti-Spam Mücadeleleri
+title: Özel Spam Önleme Sınamaları
 description: Bitsocial neden her topluluğun kendi anti-spam politikasını tanımlamasına izin veriyor?
 ---
 
-# Özel Anti-Spam Mücadeleleri
+# Özel Spam Önleme Sınamaları
 
 Bitsocial tek bir evrensel spam savunması üstlenmez. Her topluluk, geçerli bir gönderinin veya yanıtın neyi gerektirdiğine karar verebilir ve bu zorluk, operatörün istediği kadar hafif veya fikir odaklı olabilir.
 
