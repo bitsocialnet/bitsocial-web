@@ -4720,10 +4720,13 @@ node scripts/publish-audit-log-to-community.mjs \
   --community 12D3KooW... \
   --audit-log ~/.bitsocial-ai-moderation-audit.jsonl \
   --challenge-answer-file ~/.bitsocial-ai-moderation-mod-log-password \
+  --keep-posts 100 \
   --follow
 ```
 
 The publisher creates a persistent local signer at `~/.bitsocial-ai-moderation-mod-log-signer.json`, stores its read offset in `~/.bitsocial-ai-moderation-mod-log-state.json`, and submits the private challenge answer when publishing. Each mod-log post includes the AI action, verdict reason, matched rule indexes, source community, publication kind, author identifiers, available CIDs, link metadata, content/title, provider/model, cache key, prompt hash, and rule hash.
+
+Keep the mod log bounded with `--keep-posts`: posts the publisher made beyond the newest N are archived, and archived posts are purged after `--archive-purge-seconds` (default 48 hours), the same scheme 5chan-board-manager uses for boards. The publisher's signer must be a moderator of the mod-log community. An unbounded mod log grows by one post per verdict from a single author, and pkc-js 0.0.101 recalculates every one of an author's comments when that author posts, so a large mod log keeps the node's main thread busy and slows publishing on every community it hosts.
 
 ## Test Coverage
 
