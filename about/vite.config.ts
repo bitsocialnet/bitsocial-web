@@ -149,6 +149,11 @@ function ssrServerBuildPlugin(profiling: boolean) {
             "@": path.resolve(configRoot, "./src"),
           },
         },
+        ssr: {
+          // react-router's conditional exports (module-sync vs default) can resolve at
+          // runtime to files Vercel's function tracing did not ship, so bundle it.
+          noExternal: ["react-router", "react-router-dom"],
+        },
         define: {
           "process.env.BITSOCIAL_SSR_SERVER_BUILD": JSON.stringify("1"),
           "import.meta.env.BITSOCIAL_SSR_CLIENT_TEMPLATE": JSON.stringify(builtClientTemplateHtml),
