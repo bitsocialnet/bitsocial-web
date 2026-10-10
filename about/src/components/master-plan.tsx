@@ -320,7 +320,7 @@ function PhaseLabel({ item }: { item: PhaseItem }) {
       <a
         id={item.id}
         href={`#${item.id}`}
-        className="touch-target inline-flex scroll-mt-[99px] items-center rounded-md transition-[color,box-shadow] duration-300 hover:text-blue-glow md:scroll-mt-[103px]"
+        className="touch-target touch-target-flush inline-flex scroll-mt-[99px] items-center rounded-md transition-[color,box-shadow] duration-300 hover:text-blue-glow md:scroll-mt-[103px]"
       >
         {item.phase}
       </a>

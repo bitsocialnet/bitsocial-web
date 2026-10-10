@@ -465,6 +465,13 @@
       min-height: 2rem;
     }
 
+    /* Inline labels inside cards keep the full tap target, but negative block margins
+       absorb the extra height so the target overlaps surrounding padding instead of
+       padding the text line and pushing it away from the card edge. */
+    .touch-target-flush {
+      margin-block: calc((1lh - 2.75rem) / 2);
+    }
+
     .home-section-eyebrow > a {
       min-width: 2.75rem;
       min-height: 2.75rem;
