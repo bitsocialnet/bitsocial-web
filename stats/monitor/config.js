@@ -70,7 +70,7 @@ export default {
     ],
     // Ethereum RPCs the clients use to resolve community names.
     chainProviders: {
-      eth: { urls: [...bsoResolverProviders, "ethers.js"], chainId: 1 },
+      eth: { urls: [...bsoResolverProviders, "viem"], chainId: 1 },
     },
     webpages: [
       { url: "https://bitsocial.net", match: "Bitsocial" },
@@ -155,10 +155,6 @@ export default {
       "https://gateway.forumindex.com",
     ],
     pubsubKuboRpcClientsOptions: ["https://pubsubprovider.xyz/api/v0"],
-    chainProviders: {
-      eth: { urls: ["https://ethrpc.xyz", "viem", "ethers.js"], chainId: 1 },
-      sol: { urls: ["https://solrpc.xyz", "web3.js"], chainId: 1 },
-    },
     httpRoutersOptions: [
       "https://routing.lol",
       "https://peers.pleb.bot",
