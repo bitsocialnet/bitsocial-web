@@ -174,7 +174,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "corepack yarn deps:check-pinned && lint-staged",
-      "prepare-commit-msg": "exec < /dev/tty && cz --hook || true"
+      "prepare-commit-msg": "(exec < /dev/tty) 2>/dev/null && exec < /dev/tty && cz --hook || true"
     }
   },
   "lint-staged": {
