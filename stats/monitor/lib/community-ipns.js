@@ -49,8 +49,9 @@ const getCidFromIpfsPath = (ipfsPath) => {
 };
 
 const fetchCommunityUpdate = async (communityName, publicKey) => {
-  const resolvedIpnsName =
-    await pkcKuboRpc._clientsManager.resolveSubplebbitAddressIfNeeded(publicKey);
+  const resolvedIpnsName = await pkcKuboRpc._clientsManager.resolveCommunityNameIfNeeded({
+    communityName: publicKey,
+  });
   if (!resolvedIpnsName) {
     throw Error(`failed resolving public key '${publicKey}' for '${communityName}'`);
   }
