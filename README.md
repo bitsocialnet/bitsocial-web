@@ -214,9 +214,9 @@ This repo uses Commitizen for Conventional Commits.
 - Interactive: `corepack yarn commit`
 - Non-interactive: `git commit -m "type(scope): message"`
 
-The Husky Commitizen hook may print a `/dev/tty` warning in non-interactive shells, but the commit
-can still succeed when the message is already provided. Use `--no-verify` only when you explicitly
-need to bypass local hooks.
+The Husky Commitizen hook prompts only when a terminal is available. In non-interactive shells it
+skips the prompt and the commit uses the message you provided. Use `--no-verify` only when you
+explicitly need to bypass local hooks.
 
 ### React diagnostics and performance
 
