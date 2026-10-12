@@ -6,10 +6,18 @@ const pubsubKuboRpcUrl = config.pubsubKuboRpcUrl || config.kuboRpcUrl;
 import { create as createKubo } from "kubo-rpc-client";
 import { Agent as HttpsAgent } from "https";
 import { Agent as HttpAgent } from "http";
-import createPkcClient from "@plebbit/plebbit-js";
+import createPkcClient from "@pkcprotocol/pkc-js";
+import { BsoResolver } from "@bitsocial/bso-resolver";
+
+// pkc-js resolves community names through resolver plugins; each client gets its own instances
+const createNameResolvers = () =>
+  config.bsoResolverProviders.map(
+    (provider) => new BsoResolver({ key: `bso-${provider}`, provider }),
+  );
 
 const pkcKuboRpc = await createPkcClient({
   ...config.pkcOptions,
+  nameResolvers: createNameResolvers(),
   kuboRpcClientsOptions: [config.kuboRpcUrl],
   pubsubKuboRpcClientsOptions: [config.kuboRpcUrl],
 });
@@ -18,6 +26,7 @@ pkcKuboRpc.on("error", (error) => {
 });
 const pkcPubsubKuboRpc = await createPkcClient({
   ...config.pkcOptions,
+  nameResolvers: createNameResolvers(),
   kuboRpcClientsOptions: [pubsubKuboRpcUrl],
   pubsubKuboRpcClientsOptions: [pubsubKuboRpcUrl],
 });
@@ -25,7 +34,7 @@ pkcPubsubKuboRpc.on("error", (error) => {
   // console.log(error) // upstream client errors are only useful for debugging, not production
 });
 
-const pkc = await createPkcClient(config.pkcOptions);
+const pkc = await createPkcClient({ ...config.pkcOptions, nameResolvers: createNameResolvers() });
 pkc.on("error", (error) => {
   // console.log(error) // upstream client errors are only useful for debugging, not production
 });

@@ -239,7 +239,7 @@ const publishFakeChallengeRequest = async (community) => {
   const getRandomString = () => (Math.random() + 1).toString(36).replace(".", "");
   const comment = await pkcPubsubKuboRpc.createComment({
     signer,
-    subplebbitAddress: publishCommunityAddress,
+    communityAddress: publishCommunityAddress,
     title: `I am the community uptime monitor ${getRandomString()}`,
     content: `I am the community uptime monitor ${getRandomString()}`,
   });

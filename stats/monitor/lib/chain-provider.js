@@ -1,40 +1,23 @@
-import path from "node:path";
-import { createRequire } from "node:module";
-import { pathToFileURL } from "node:url";
 import config from "../config.js";
 import monitorState from "./monitor-state.js";
 import { fetchHtml, createCounter } from "./utils.js";
 import prometheus from "./prometheus.js";
 import PeerId from "peer-id";
 import Debug from "debug";
+import { BsoResolver } from "@bitsocial/bso-resolver";
 const debug = Debug("bitsocial-stats-monitor:chain-provider");
 
-const require = createRequire(import.meta.url);
-const pkcJsEntryPath = require.resolve("@plebbit/plebbit-js");
-const pkcJsInternalModulePath = path.join(path.dirname(pkcJsEntryPath), "domain-resolver.js");
-const pkcJsInternal = await import(pathToFileURL(pkcJsInternalModulePath).href);
-
+// one resolver per monitored provider, unbatched so each probe times its own eth_call
 const resolvers = {};
-const resolve = (address, txtRecordName, chainTicker, chainProviderUrl, chainId) => {
-  const key = chainTicker + chainProviderUrl + chainId;
-  if (!resolvers[key]) {
-    try {
-      const chainProviders = { [chainTicker]: { url: chainProviderUrl, chainId } };
-      resolvers[key] = new pkcJsInternal.DomainResolver({ chainProviders });
-      if (typeof resolvers[key].resolveTxtRecord !== "function") {
-        throw Error("upstream domain-resolver resolveTxtRecord is not a function");
-      }
-    } catch (e) {
-      throw Error("failed getting resolveTxtRecord function from the current upstream client");
-    }
+const resolve = (name, chainProviderUrl) => {
+  if (!resolvers[chainProviderUrl]) {
+    resolvers[chainProviderUrl] = new BsoResolver({
+      key: `bso-${chainProviderUrl}`,
+      provider: chainProviderUrl,
+      batch: false,
+    });
   }
-  return resolvers[key].resolveTxtRecord(
-    address,
-    txtRecordName,
-    chainTicker,
-    chainProviderUrl,
-    chainId,
-  );
+  return resolvers[chainProviderUrl].resolve({ name });
 };
 
 const initChainProviderMonitorState = (chainProviderUrl) => {
@@ -75,31 +58,24 @@ const isPeerId = (string) => {
   }
 };
 
-const authorAddresses = { eth: "estebanabaroa.eth", sol: "estebanabaroa.sol" };
+// 5chan's feedback board, listed with its public key in data/5chan-directories.snapshot.json
+const probeNames = { eth: "5chan-feedback.bso" };
 
 const countResolveAddress = createCounter();
 const getResolveAddressStats = async (chainProviderUrl, chainTicker, chainId) => {
-  const authorAddress = authorAddresses[chainTicker];
-  if (!authorAddress) {
-    throw Error(
-      `no authorAddress for chainTicker '${chainTicker}' to monitor '${chainProviderUrl}'`,
-    );
+  const probeName = probeNames[chainTicker];
+  if (!probeName) {
+    throw Error(`no probe name for chainTicker '${chainTicker}' to monitor '${chainProviderUrl}'`);
   }
 
   let lastResolveAddressSuccess = false;
   let lastResolveAddressTime;
   try {
     const beforeTimestamp = Date.now();
-    const txtRecord = await resolve(
-      authorAddress,
-      "plebbit-author-address",
-      chainTicker,
-      chainProviderUrl,
-      chainId,
-    );
-    if (!isPeerId(txtRecord)) {
+    const publicKey = (await resolve(probeName, chainProviderUrl))?.publicKey;
+    if (!isPeerId(publicKey)) {
       throw Error(
-        `failed fetching got response '${txtRecord?.substring ? txtRecord.substring(0, 300).replace(/\s*\n\s*/g, " ") : txtRecord}'`,
+        `failed fetching got response '${publicKey?.substring ? publicKey.substring(0, 300).replace(/\s*\n\s*/g, " ") : publicKey}'`,
       );
     }
     lastResolveAddressSuccess = true;
@@ -119,10 +95,8 @@ const getResolveAddressStats = async (chainProviderUrl, chainTicker, chainId) =>
   };
 };
 // test
-// debug(await getResolveAddressStats('https://ethrpc.xyz', 'eth', 1))
-// debug(await getResolveAddressStats('ethers.js', 'eth', 1))
-// debug(await getResolveAddressStats('https://solrpc.xyz', 'sol'))
-// debug(await getResolveAddressStats('web3.js', 'sol'))
+// debug(await getResolveAddressStats('https://ethereum-rpc.publicnode.com', 'eth', 1))
+// debug(await getResolveAddressStats('viem', 'eth', 1))
 
 // test
 // monitorChainProviders(); setInterval(() => monitorChainProviders(), 1000 * 60 * 10)
