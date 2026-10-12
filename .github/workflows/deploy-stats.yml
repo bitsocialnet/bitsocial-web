@@ -37,10 +37,14 @@ jobs:
           chmod 600 ~/.ssh/stats_deploy ~/.ssh/known_hosts
 
       - name: Deploy exact revision
+        # A cold image build can print nothing for over four minutes while it exports layers, and the
+        # runner's network drops TCP flows idle that long, so keepalives hold the session open.
         run: |
           ssh \
             -o BatchMode=yes \
             -o IdentitiesOnly=yes \
+            -o ServerAliveInterval=30 \
+            -o ServerAliveCountMax=6 \
             -i ~/.ssh/stats_deploy \
             root@"$DEPLOY_HOST" \
             "deploy $GITHUB_SHA"
