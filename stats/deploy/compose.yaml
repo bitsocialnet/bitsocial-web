@@ -49,7 +49,6 @@ services:
     ports:
       - "127.0.0.1:${BITSOCIAL_STATS_MONITOR_PORT:-3301}:3000"
     volumes:
-      - bitsocial-stats-monitor-plebbit:/app/stats/monitor/.plebbit
       - bitsocial-stats-monitor-history:/app/stats/monitor/history
     healthcheck:
       test:
@@ -123,5 +122,4 @@ volumes:
   bitsocial-stats-ipfs-bin:
   bitsocial-stats-ipfs-data:
   bitsocial-stats-monitor-history:
-  bitsocial-stats-monitor-plebbit:
   bitsocial-stats-prometheus-data:

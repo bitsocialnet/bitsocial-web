@@ -39,7 +39,6 @@ services:
     ports:
       - "127.0.0.1:3301:3000"
     volumes:
-      - stats-monitor-plebbit:/app/stats/monitor/.plebbit
       - stats-monitor-history:/app/stats/monitor/history
     healthcheck:
       test:
@@ -108,5 +107,4 @@ volumes:
   stats-ipfs-bin:
   stats-ipfs-data:
   stats-monitor-history:
-  stats-monitor-plebbit:
   stats-prometheus-data:
