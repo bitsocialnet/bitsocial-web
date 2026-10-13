@@ -53,6 +53,13 @@ const TARGET_FETCH_TIMEOUT_MS = 15_000;
 const RUNTIME_INTEGRITY_FILE_PATTERN = /\.(?:css|html|js|json|mjs|txt|webmanifest|wasm)$/;
 const URL_SCHEME_PATTERN = /^[a-zA-Z][a-zA-Z0-9+.-]*:/;
 const releaseTextEncoder = new TextEncoder();
+const SUCCESS_CACHE_CONTROL = "public, s-maxage=300, stale-while-revalidate=86400";
+// Errors must never be cached by the CDN: a single upstream hiccup (e.g. GitHub API rate
+// limiting) would otherwise be served to every visitor for the whole s-maxage window.
+const ERROR_CACHE_CONTROL = "no-store";
+// Last successfully resolved download URL per app/variant, reused by warm function instances
+// when GitHub release metadata is temporarily unavailable.
+const lastKnownDownloadUrls = new Map<string, string>();
 
 const RELEASE_INTEGRITY_ASSETS: Record<string, ReleaseIntegrityAsset> = {
   "5chan:manifest": {
@@ -162,9 +169,8 @@ export default async function handler(request: RequestLike, response: ResponseLi
 
   const releaseAsset = RELEASE_INTEGRITY_ASSETS[`${app}:${asset}`];
 
-  response.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=86400");
-
   if (!releaseAsset) {
+    response.setHeader("Cache-Control", SUCCESS_CACHE_CONTROL);
     response.status(404).send("Unknown release integrity asset");
     return;
   }
@@ -173,19 +179,23 @@ export default async function handler(request: RequestLike, response: ResponseLi
     const releaseResponse = await fetchReleaseAsset(releaseAsset);
 
     if (releaseResponse.status === 404) {
+      response.setHeader("Cache-Control", SUCCESS_CACHE_CONTROL);
       response.status(204).send("");
       return;
     }
 
     if (!releaseResponse.ok) {
+      response.setHeader("Cache-Control", ERROR_CACHE_CONTROL);
       response.status(releaseResponse.status).send("Release integrity asset is unavailable");
       return;
     }
 
+    response.setHeader("Cache-Control", SUCCESS_CACHE_CONTROL);
     response.status(200);
     response.setHeader("Content-Type", releaseAsset.contentType);
     response.send(await releaseResponse.text());
   } catch {
+    response.setHeader("Cache-Control", ERROR_CACHE_CONTROL);
     response.status(502).send("Release integrity asset fetch failed");
   }
 }
@@ -196,18 +206,32 @@ async function handleLatestDownloadRequest(
   requestUrl: URL,
   response: ResponseLike,
 ) {
-  response.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=86400");
+  const variant =
+    getSingleQueryValue(request.query?.variant) ?? requestUrl.searchParams.get("variant");
+  const downloadKey = `${app}:${variant}`;
 
   try {
-    const variant =
-      getSingleQueryValue(request.query?.variant) ?? requestUrl.searchParams.get("variant");
-    const downloadAsset = RELEASE_DOWNLOAD_ASSETS[`${app}:${variant}`];
+    const downloadAsset = RELEASE_DOWNLOAD_ASSETS[downloadKey];
 
     if (!downloadAsset) {
       throw new ReleaseIntegrityHttpError(404, "Unknown release download asset");
     }
 
-    const downloadUrl = await resolveLatestDownloadUrl(downloadAsset);
+    let downloadUrl: string;
+    try {
+      downloadUrl = await resolveLatestDownloadUrl(downloadAsset);
+      lastKnownDownloadUrls.set(downloadKey, downloadUrl);
+      response.setHeader("Cache-Control", SUCCESS_CACHE_CONTROL);
+    } catch (error) {
+      const fallbackUrl = lastKnownDownloadUrls.get(downloadKey);
+      if (!fallbackUrl) {
+        throw error;
+      }
+      // Serve the last good redirect, but don't let the CDN pin it while upstream is degraded.
+      downloadUrl = fallbackUrl;
+      response.setHeader("Cache-Control", ERROR_CACHE_CONTROL);
+    }
+
     response.status(307);
     response.setHeader("Location", downloadUrl);
     response.setHeader("Content-Type", "text/plain; charset=utf-8");
@@ -216,6 +240,7 @@ async function handleLatestDownloadRequest(
     const statusCode = error instanceof ReleaseIntegrityHttpError ? error.statusCode : 502;
     const message = error instanceof Error ? error.message : "Release download lookup failed";
 
+    response.setHeader("Cache-Control", ERROR_CACHE_CONTROL);
     response.status(statusCode).send(message);
   }
 }
@@ -274,19 +299,19 @@ async function resolveLatestDownloadUrl(downloadAsset: ReleaseDownloadAsset) {
   const releaseResponse = await fetchReleaseUrlWithTimeout(
     `https://api.github.com/repos/${downloadAsset.repository}/releases/latest`,
     {
-      headers: {
-        Accept: "application/vnd.github+json",
-        "User-Agent": "bitsocial-web-latest-release-download",
-      },
+      headers: getGitHubApiHeaders(),
       redirect: "follow",
     },
   );
 
   if (!releaseResponse.ok) {
-    throw new ReleaseIntegrityHttpError(
-      releaseResponse.status,
-      "Latest release metadata is unavailable",
-    );
+    // GitHub answers rate limiting with 403/429; surface that as a temporary upstream outage
+    // instead of telling clients the download itself is forbidden.
+    const statusCode =
+      releaseResponse.status === 403 || releaseResponse.status === 429
+        ? 503
+        : releaseResponse.status;
+    throw new ReleaseIntegrityHttpError(statusCode, "Latest release metadata is unavailable");
   }
 
   const release = (await releaseResponse.json()) as unknown;
@@ -311,6 +336,19 @@ async function resolveLatestDownloadUrl(downloadAsset: ReleaseDownloadAsset) {
   }
 
   throw new ReleaseIntegrityHttpError(404, "Latest release download asset was not found");
+}
+
+function getGitHubApiHeaders(): Record<string, string> {
+  const headers: Record<string, string> = {
+    Accept: "application/vnd.github+json",
+    "User-Agent": "bitsocial-web-latest-release-download",
+  };
+  // Optional read-only token: anonymous GitHub API calls share a 60 requests/hour limit per IP.
+  const token = process.env.GITHUB_TOKEN?.trim();
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  return headers;
 }
 
 async function fetchReleaseAsset(releaseAsset: ReleaseIntegrityAsset) {
