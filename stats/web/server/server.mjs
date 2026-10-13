@@ -133,7 +133,15 @@ export const createStatsServer = ({
       return;
     }
 
-    const { pathname, searchParams } = new URL(request.url, "http://localhost");
+    let url;
+    try {
+      url = new URL(request.url, "http://localhost");
+    } catch {
+      response.writeHead(400, securityHeaders);
+      response.end();
+      return;
+    }
+    const { pathname, searchParams } = url;
 
     if (pathname === "/healthz") {
       response.writeHead(200, { ...securityHeaders, "Content-Type": "text/plain" });

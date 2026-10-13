@@ -106,8 +106,6 @@ function getPreferredPortlessAppName(baseName, activeRouteHosts) {
   return baseName;
 }
 
-// Short-path redirects of the stats.bitsocial.net site block in the production Caddyfile,
-// e.g. "/5chan" -> "/public-dashboards/<token>", so local runs mirror production URLs.
 export function getPortlessPublicUrl(appName) {
   return `https://${appName}.localhost`;
 }

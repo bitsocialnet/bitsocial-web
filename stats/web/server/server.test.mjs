@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import net from "node:net";
 import test from "node:test";
 import { createStatsServer } from "./server.mjs";
 
@@ -45,6 +46,7 @@ const startServer = async (dashboardOverrides = {}) => {
   const base = `http://127.0.0.1:${server.address().port}`;
   return {
     builds,
+    url: base,
     get: (path, options) => fetch(`${base}${path}`, { redirect: "manual", ...options }),
     close: () => new Promise((resolve) => server.close(resolve)),
   };
@@ -129,4 +131,21 @@ test("serves the dashboard routes, assets and legacy Grafana links", async (t) =
   assert.equal((await server.get("/public-dashboards/unknown")).status, 404);
   assert.equal((await server.get("/index.html/../../etc/passwd")).status, 404);
   assert.equal((await server.get("/healthz")).status, 200);
+});
+
+test("answers an unparseable request target with 400", async (t) => {
+  const server = await startServer();
+  t.after(server.close);
+
+  const { port } = new URL(server.url);
+  const raw = await new Promise((resolve, reject) => {
+    const socket = net.connect(Number(port), "127.0.0.1", () => {
+      socket.end("GET // HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n");
+    });
+    let received = "";
+    socket.on("data", (chunk) => (received += chunk));
+    socket.on("end", () => resolve(received));
+    socket.on("error", reject);
+  });
+  assert.match(raw, /^HTTP\/1\.1 400 /);
 });

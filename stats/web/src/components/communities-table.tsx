@@ -118,7 +118,7 @@ const gridColumns = (columns: Column[], upTo?: Column["from"]) => {
     ...(upTo === "2xl" ? (["xl", "2xl"] as const) : upTo ? [upTo] : []),
   ]);
   return [
-    "minmax(12rem, 1fr)",
+    "minmax(9rem, 1fr)",
     ...columns.filter(({ from }) => shown.has(from)).map(({ width }) => width),
   ].join(" ");
 };
@@ -157,24 +157,24 @@ const buildColumns = (
   range: RangeInfo,
   offlineAfterSeconds: number,
 ): Column[] => [
-  { key: "status", label: "Status", width: "8.5rem", cell: statusCell(offlineAfterSeconds) },
+  { key: "status", label: "Status", width: "7.5rem", cell: statusCell(offlineAfterSeconds) },
   {
     key: "uptime",
     label: "Availability",
-    width: "minmax(8rem, 11rem)",
+    width: "minmax(7rem, 11rem)",
     cell: (row) => <Availability row={row} range={range} />,
   },
   {
     key: "postsLastDay",
     label: "Posts 24h",
-    width: "5rem",
+    width: "4.5rem",
     alignRight: true,
     cell: (row) => formatInteger(row.postsLastDay),
   },
   {
     key: "currentUsers",
     label: "Users 7d",
-    width: "5rem",
+    width: "4.5rem",
     alignRight: true,
     cell: (row) => formatInteger(row.currentUsers),
   },
@@ -408,7 +408,7 @@ function CommunityGrid({
     <div
       role="table"
       aria-label={`${client.label} ${client.communities}`}
-      className="hidden text-[13px] md:block"
+      className="hidden overflow-x-auto text-[13px] md:block"
       style={
         {
           "--columns": gridColumns(columns),

@@ -238,9 +238,13 @@ export function Freshness({
     tone = "bg-up";
   }
   return (
-    <p className="flex items-center gap-2 text-xs text-ink-3" aria-live="polite">
+    <p className="flex items-center gap-2 text-xs text-ink-3">
       <span className={`size-1.5 rounded-full ${tone}`} aria-hidden="true" />
       {text}
+      {/* Announce only failures and recoveries, not the ticking age. */}
+      <span className="sr-only" aria-live="polite">
+        {error ? "Stats could not be refreshed." : ""}
+      </span>
     </p>
   );
 }

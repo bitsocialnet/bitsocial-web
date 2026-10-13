@@ -95,7 +95,7 @@ test("overview sums clients into network totals and lists every configured servi
       result: [sample({ service_probe_id: "spam_blocker_server" }, 1)],
     },
     {
-      when: /^avg_over_time\(\(max without.*service_probe_last_success\)\)\[120s:30s\]\)$/,
+      when: /^max by \(service_probe_id\) \(avg_over_time\(\(max without.*service_probe_last_success\)\)\[120s:30s\]\)\)$/,
       range: true,
       result: [matrix({ service_probe_id: "spam_blocker_server" }, [1, 0.5, 0])],
     },

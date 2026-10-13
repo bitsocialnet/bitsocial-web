@@ -32,7 +32,7 @@ const AXIS_BAND = 22;
 
 const niceMax = (max: number, integer: boolean) => {
   if (max <= 0) {
-    return 1;
+    return integer ? 2 : 1;
   }
   const magnitude = 10 ** Math.floor(Math.log10(max));
   const step = [1, 2, 4, 6, 8, 10].find((candidate) => candidate * magnitude >= max) ?? 10;
@@ -393,10 +393,11 @@ export function TimeChart({
               ? `${formatMoment(hover.time)}: ${describe(hover.index)}`
               : `Latest: ${latest.join(", ")}`
           }
-          className="absolute inset-0 cursor-crosshair rounded-md"
+          className="absolute inset-0 cursor-crosshair touch-pan-y rounded-md"
           onPointerMove={updateHover}
           onPointerDown={updateHover}
-          onPointerLeave={() => setHoverIndex(null)}
+          // A lifted finger leaves the readout up; tapping elsewhere blurs the slider and clears it.
+          onPointerLeave={(event) => event.pointerType !== "touch" && setHoverIndex(null)}
           onKeyDown={onKeyDown}
           onBlur={() => setHoverIndex(null)}
         />

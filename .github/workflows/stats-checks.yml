@@ -1,0 +1,44 @@
+name: Stats checks
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      [
+        "stats/**",
+        "scripts/start-stats.mjs",
+        "scripts/start-stats-proxy.mjs",
+        "package.json",
+        "yarn.lock",
+        ".github/workflows/stats-checks.yml",
+      ]
+  push:
+    branches: [master]
+    paths:
+      [
+        "stats/**",
+        "scripts/start-stats.mjs",
+        "scripts/start-stats-proxy.mjs",
+        "package.json",
+        "yarn.lock",
+        ".github/workflows/stats-checks.yml",
+      ]
+
+permissions:
+  contents: read
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: corepack enable
+      - run: corepack yarn install --immutable
+      - run: corepack yarn build:stats-web
+      - run: corepack yarn workspace @bitsocial/stats-web test
+      - run: corepack yarn workspace @bitsocial/stats-monitor test
+      - run: corepack yarn build:stats-monitor

@@ -84,7 +84,7 @@ function NetworkFigures({ data }: { data: Overview }) {
           detail:
             growth === null
               ? "Posts and replies, all time"
-              : `+${formatInteger(growth)} in the last ${rangeLabel}`,
+              : `${growth >= 0 ? "+" : ""}${formatInteger(growth)} in the last ${rangeLabel}`,
         },
         {
           label: "Services up",

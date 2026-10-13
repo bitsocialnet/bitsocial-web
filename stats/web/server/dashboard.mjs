@@ -40,9 +40,12 @@ const seriesByLabel = (matrix, label, timeline) =>
     (matrix || []).map((series) => [series.metric[label], alignValues(series.values, timeline)]),
   );
 
-// Share of each step a status (1 up, 0 down) was up, sampled at the range's resolution.
-const bucketAverage = (expr, timeline) =>
-  `avg_over_time((${expr})[${timeline.step}s:${timeline.resolution}s])`;
+// Share of each step a status (1 up, 0 down) was up, sampled at the range's resolution. With a
+// key label, series that differ only in other labels (a renamed probe) merge into one history.
+const bucketAverage = (expr, timeline, byLabel) => {
+  const average = `avg_over_time((${expr})[${timeline.step}s:${timeline.resolution}s])`;
+  return byLabel ? `max by (${byLabel}) (${average})` : average;
+};
 
 const average = (values) => {
   const known = values.filter((value) => value !== null);
@@ -159,7 +162,10 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
         ),
       },
       serviceUp: { expr: infra.serviceUp },
-      serviceHistory: { expr: bucketAverage(infra.serviceUp, timeline), range: true },
+      serviceHistory: {
+        expr: bucketAverage(infra.serviceUp, timeline, "service_probe_id"),
+        range: true,
+      },
       serviceLatency: {
         expr: whenSuccessful(metric("service_probe_last_duration_seconds"), infra.serviceUp),
       },

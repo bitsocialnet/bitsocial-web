@@ -38,7 +38,12 @@ export function PeerMap({ locations }: { locations: PeerLocation[] }) {
   const activePoint = active ? project(active.latitude, active.longitude) : null;
 
   return (
-    <div className="relative w-full" style={{ aspectRatio: `${columns} / ${HEIGHT}` }}>
+    // On touch screens a tap shows a location and a tap on the map hides it again.
+    <div
+      className="relative w-full"
+      style={{ aspectRatio: `${columns} / ${HEIGHT}` }}
+      onClick={() => setActive(null)}
+    >
       <svg
         viewBox={`0 0 ${columns} ${HEIGHT}`}
         className="absolute inset-0 size-full"
@@ -69,7 +74,11 @@ export function PeerMap({ locations }: { locations: PeerLocation[] }) {
               strokeWidth={0.3}
               className="cursor-pointer"
               onPointerEnter={() => setActive(location)}
-              onPointerLeave={() => setActive(null)}
+              onPointerLeave={(event) => event.pointerType !== "touch" && setActive(null)}
+              onClick={(event) => {
+                event.stopPropagation();
+                setActive(location);
+              }}
             >
               <title>{`${placeName(location)}: ${formatInteger(location.count)} peers`}</title>
             </circle>
