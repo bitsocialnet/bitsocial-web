@@ -4,6 +4,11 @@
 // A community counts as offline once its latest update is older than this.
 export const COMMUNITY_OFFLINE_AFTER_SECONDS = 2 * 60 * 60;
 
+// How long a community's last reported stats count after the monitor stops exporting them. An old
+// all-time total is still a fair floor, while windowed counts ("posts in the last day") go stale,
+// so those only bridge a monitor restart.
+const statsLastWithin = (window) => (window === "all" ? "7d" : "1h");
+
 const dedupeIgnoredLabels = ["instance", "job", "service", "subplebbit_address"];
 
 // Product facts about each monitored client. Ids match `monitoring.clients` in the monitor config.
@@ -36,7 +41,9 @@ export const statsClients = [
 export const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\\\$&");
 const escapeString = (value) => value.replace(/[\\"]/g, "\\$&");
 
-export const metric = (name, matchers = {}) => {
+// `lastWithin` (a PromQL duration) keeps each series at its last sample for that long after the
+// monitor stops exporting it.
+export const metric = (name, matchers = {}, { lastWithin } = {}) => {
   const selector = Object.entries(matchers)
     .map(([label, value]) =>
       Array.isArray(value)
@@ -44,7 +51,8 @@ export const metric = (name, matchers = {}) => {
         : `${label}="${escapeString(value)}"`,
     )
     .join(",");
-  return `max without(${dedupeIgnoredLabels.join(", ")}) (bitsocial_stats_${name}${selector ? `{${selector}}` : ""})`;
+  const series = `bitsocial_stats_${name}${selector ? `{${selector}}` : ""}`;
+  return `max without(${dedupeIgnoredLabels.join(", ")}) (${lastWithin ? `last_over_time(${series}[${lastWithin}])` : series})`;
 };
 
 export const whenSuccessful = (durationExpr, successExpr) =>
@@ -61,7 +69,14 @@ export const communityQueries = (clientIds, communityAddress) => {
   const fetchSuccess = communityMetric("last_community_update_fetch_success");
   // The monitor keeps a community's last values after a failed fetch; drop them where staleness misleads.
   const whenFetched = (expr) => `${expr} and (${fetchSuccess} == 1)`;
-  const stat = (window, name) => communityMetric(`community_stats_${window}_${name}_count`);
+  // The monitor exports a community's stats only after reading them since it last started, which
+  // can take minutes, so each restart would drop communities from the sums until then. Their last
+  // report stands in, as the monitor does itself while it runs. Counts behind whenFetched still
+  // wait for the community's first update fetch after a restart.
+  const stat = (window, name) =>
+    metric(`community_stats_${window}_${name}_count`, matchers, {
+      lastWithin: statsLastWithin(window),
+    });
   const posts = (window, { freshOnly = false } = {}) =>
     ["post", "reply"]
       .map((name) => `sum(${freshOnly ? whenFetched(stat(window, name)) : stat(window, name)})`)

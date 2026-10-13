@@ -150,7 +150,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"seedit\"})) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"seedit\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_post_count{client_id=\"seedit\"}[7d]))) + sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_reply_count{client_id=\"seedit\"}[7d])))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -215,7 +215,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1)) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1)) + sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -280,7 +280,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\"}[1h])))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -396,7 +396,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
           "instant": false,
           "legendFormat": "Posts",
           "range": true,
@@ -408,7 +408,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
           "instant": false,
           "legendFormat": "Comments",
           "range": true,
@@ -527,7 +527,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
           "instant": false,
           "legendFormat": "24 hours",
           "range": true,
@@ -539,7 +539,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\"}[1h])))",
           "instant": false,
           "legendFormat": "7 days",
           "range": true,
@@ -551,7 +551,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\"}[1h])))",
           "instant": false,
           "legendFormat": "30 days",
           "range": true,
@@ -670,7 +670,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"seedit\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_post_count{client_id=\"seedit\"}[7d])))",
           "instant": false,
           "legendFormat": "Posts",
           "range": true,
@@ -682,7 +682,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"seedit\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_reply_count{client_id=\"seedit\"}[7d])))",
           "instant": false,
           "legendFormat": "Comments",
           "range": true,
@@ -694,7 +694,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_active_user_count{client_id=\"seedit\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_active_user_count{client_id=\"seedit\"}[7d])))",
           "instant": false,
           "legendFormat": "Unique addresses",
           "range": true,
@@ -1001,7 +1001,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"seedit\"})",
+          "expr": "max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_post_count{client_id=\"seedit\"}[7d]))",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1014,7 +1014,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"seedit\"})",
+          "expr": "max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_reply_count{client_id=\"seedit\"}[7d]))",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1027,7 +1027,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\"})",
+          "expr": "max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\"}[1h]))",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1040,7 +1040,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_active_user_count{client_id=\"seedit\"})",
+          "expr": "max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_active_user_count{client_id=\"seedit\"}[7d]))",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1428,7 +1428,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"askseedit.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"askseedit.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"askseedit.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"askseedit.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Posts",
               "range": true,
@@ -1440,7 +1440,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"askseedit.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"askseedit.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"askseedit.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"askseedit.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Comments",
               "range": true,
@@ -1559,7 +1559,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"askseedit.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"askseedit.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"askseedit.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"askseedit.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "24 hours",
               "range": true,
@@ -1571,7 +1571,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"askseedit.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"askseedit.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "7 days",
               "range": true,
@@ -1583,7 +1583,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"askseedit.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"askseedit.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "30 days",
               "range": true,
@@ -1884,7 +1884,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"memes-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"memes-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"memes-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"memes-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Posts",
               "range": true,
@@ -1896,7 +1896,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"memes-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"memes-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"memes-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"memes-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Comments",
               "range": true,
@@ -2015,7 +2015,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"memes-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"memes-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"memes-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"memes-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "24 hours",
               "range": true,
@@ -2027,7 +2027,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"memes-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"memes-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "7 days",
               "range": true,
@@ -2039,7 +2039,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"memes-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"memes-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "30 days",
               "range": true,
@@ -2340,7 +2340,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"news-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"news-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"news-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"news-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Posts",
               "range": true,
@@ -2352,7 +2352,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"news-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"news-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"news-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"news-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Comments",
               "range": true,
@@ -2471,7 +2471,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"news-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"news-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"news-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"news-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "24 hours",
               "range": true,
@@ -2483,7 +2483,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"news-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"news-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "7 days",
               "range": true,
@@ -2495,7 +2495,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"news-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"news-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "30 days",
               "range": true,
@@ -2796,7 +2796,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"pics-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"pics-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"pics-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"pics-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Posts",
               "range": true,
@@ -2808,7 +2808,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"pics-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"pics-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"pics-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"pics-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Comments",
               "range": true,
@@ -2927,7 +2927,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"pics-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"pics-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"pics-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"pics-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "24 hours",
               "range": true,
@@ -2939,7 +2939,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"pics-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"pics-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "7 days",
               "range": true,
@@ -2951,7 +2951,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"pics-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"pics-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "30 days",
               "range": true,
@@ -3252,7 +3252,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"til-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"til-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"til-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"til-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Posts",
               "range": true,
@@ -3264,7 +3264,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"til-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"til-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"til-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"til-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Comments",
               "range": true,
@@ -3383,7 +3383,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"til-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"til-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"til-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"til-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "24 hours",
               "range": true,
@@ -3395,7 +3395,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"til-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"til-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "7 days",
               "range": true,
@@ -3407,7 +3407,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"til-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"til-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "30 days",
               "range": true,
@@ -3708,7 +3708,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Posts",
               "range": true,
@@ -3720,7 +3720,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Comments",
               "range": true,
@@ -3839,7 +3839,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "24 hours",
               "range": true,
@@ -3851,7 +3851,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "7 days",
               "range": true,
@@ -3863,7 +3863,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"interestingasfuck.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "30 days",
               "range": true,
@@ -4164,7 +4164,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Posts",
               "range": true,
@@ -4176,7 +4176,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Comments",
               "range": true,
@@ -4295,7 +4295,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "24 hours",
               "range": true,
@@ -4307,7 +4307,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "7 days",
               "range": true,
@@ -4319,7 +4319,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"gaming-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "30 days",
               "range": true,
@@ -4620,7 +4620,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"videos-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"videos-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"videos-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"videos-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Posts",
               "range": true,
@@ -4632,7 +4632,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"videos-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"videos-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"videos-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"videos-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Comments",
               "range": true,
@@ -4751,7 +4751,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"videos-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"videos-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"videos-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"videos-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "24 hours",
               "range": true,
@@ -4763,7 +4763,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"videos-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"videos-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "7 days",
               "range": true,
@@ -4775,7 +4775,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"videos-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"videos-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "30 days",
               "range": true,
@@ -5076,7 +5076,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"funny-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"funny-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"funny-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"funny-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Posts",
               "range": true,
@@ -5088,7 +5088,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"funny-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"funny-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"funny-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"funny-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Comments",
               "range": true,
@@ -5207,7 +5207,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"funny-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"funny-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"funny-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"funny-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "24 hours",
               "range": true,
@@ -5219,7 +5219,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"funny-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"funny-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "7 days",
               "range": true,
@@ -5231,7 +5231,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"funny-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"funny-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "30 days",
               "range": true,
@@ -5532,7 +5532,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"aww-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"aww-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\",community_address=\"aww-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"aww-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Posts",
               "range": true,
@@ -5544,7 +5544,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"aww-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"aww-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\",community_address=\"aww-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"aww-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "Comments",
               "range": true,
@@ -5663,7 +5663,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"aww-posting.bso\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"aww-posting.bso\"}) == 1))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_active_user_count{client_id=\"seedit\",community_address=\"aww-posting.bso\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\",community_address=\"aww-posting.bso\"}) == 1))",
               "instant": false,
               "legendFormat": "24 hours",
               "range": true,
@@ -5675,7 +5675,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"aww-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\",community_address=\"aww-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "7 days",
               "range": true,
@@ -5687,7 +5687,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"aww-posting.bso\"}))",
+              "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_month_active_user_count{client_id=\"seedit\",community_address=\"aww-posting.bso\"}[1h])))",
               "instant": false,
               "legendFormat": "30 days",
               "range": true,

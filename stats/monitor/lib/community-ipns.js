@@ -1,5 +1,7 @@
+import config from "../config.js";
 import monitorState from "./monitor-state.js";
 import { getCommunityMetricLabelNames, getCommunityMetricLabels } from "./community-metrics.js";
+import { readCommunityStats, readJsonFromKubo } from "./community-stats.js";
 import { kubo, pkcKuboRpc } from "./pkc-js/pkc-js.js";
 import {
   getTimeAgo,
@@ -15,15 +17,6 @@ import Debug from "debug";
 const debug = Debug("bitsocial-stats-monitor:community-ipns");
 
 const countGetCommunity = createCounter();
-
-const readJsonFromKubo = async (path) => {
-  const chunks = [];
-  for await (const chunk of kubo.cat(path)) {
-    chunks.push(Buffer.from(chunk));
-  }
-
-  return JSON.parse(Buffer.concat(chunks).toString("utf8"));
-};
 
 const resolveIpnsPath = async (ipnsName) => {
   let resolvedPath;
@@ -57,7 +50,7 @@ const fetchCommunityUpdate = async (communityName, publicKey) => {
   }
   const resolvedUpdatePath = await resolveIpnsPath(resolvedIpnsName);
   const resolvedUpdateCid = getCidFromIpfsPath(resolvedUpdatePath);
-  const communityUpdate = await readJsonFromKubo(resolvedUpdatePath);
+  const communityUpdate = await readJsonFromKubo(kubo, resolvedUpdatePath);
 
   if (communityUpdate?.address && communityUpdate.address !== communityName) {
     throw Error(
@@ -98,7 +91,11 @@ export const monitorCommunitiesIpns = async () => {
 
         // fetch community stats
         if (communityUpdate.statsCid) {
-          readJsonFromKubo(communityUpdate.statsCid)
+          readCommunityStats(communityUpdate.statsCid, {
+            kubo,
+            ipfsGatewayUrls: config.pkcOptions.ipfsGatewayUrls,
+            log: debug,
+          })
             .then((res) => {
               const communityStats = res;
               debug(

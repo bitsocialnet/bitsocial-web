@@ -222,7 +222,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=~\"5chan|seedit\"})) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=~\"5chan|seedit\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_post_count{client_id=~\"5chan|seedit\"}[7d]))) + sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_reply_count{client_id=~\"5chan|seedit\"}[7d])))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -287,7 +287,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=~\"5chan|seedit\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=~\"5chan|seedit\"}[1h])))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -403,7 +403,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"5chan\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1)) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"5chan\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"5chan\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1)) + sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"5chan\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"5chan\"}) == 1))",
           "instant": false,
           "legendFormat": "5chan",
           "range": true,
@@ -415,7 +415,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1)) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_post_count{client_id=\"seedit\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1)) + sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_day_reply_count{client_id=\"seedit\"}[1h])) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_last_community_update_fetch_success{client_id=\"seedit\"}) == 1))",
           "instant": false,
           "legendFormat": "Seedit",
           "range": true,
@@ -519,7 +519,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"5chan\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"5chan\"}[1h])))",
           "instant": false,
           "legendFormat": "5chan",
           "range": true,
@@ -531,7 +531,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_week_active_user_count{client_id=\"seedit\"}[1h])))",
           "instant": false,
           "legendFormat": "Seedit",
           "range": true,
@@ -635,7 +635,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"5chan\"})) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"5chan\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_post_count{client_id=\"5chan\"}[7d]))) + sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_reply_count{client_id=\"5chan\"}[7d])))",
           "instant": false,
           "legendFormat": "5chan",
           "range": true,
@@ -647,7 +647,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_post_count{client_id=\"seedit\"})) + sum(max without(instance, job, service, subplebbit_address) (bitsocial_stats_community_stats_all_reply_count{client_id=\"seedit\"}))",
+          "expr": "sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_post_count{client_id=\"seedit\"}[7d]))) + sum(max without(instance, job, service, subplebbit_address) (last_over_time(bitsocial_stats_community_stats_all_reply_count{client_id=\"seedit\"}[7d])))",
           "instant": false,
           "legendFormat": "Seedit",
           "range": true,
@@ -1223,7 +1223,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_chain_provider_last_resolve_address_success{chain_provider_url=~\"https://ethereum-rpc\\\\.publicnode\\\\.com|https://eth\\\\.drpc\\\\.org|https://ethereum\\\\.publicnode\\\\.com|https://rpc\\\\.mevblocker\\\\.io|https://1rpc\\\\.io/eth|https://eth-pokt\\\\.nodies\\\\.app|ethers\\\\.js\",chain_ticker=\"eth\"})",
+          "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_chain_provider_last_resolve_address_success{chain_provider_url=~\"https://ethereum-rpc\\\\.publicnode\\\\.com|https://eth\\\\.drpc\\\\.org|https://ethereum\\\\.publicnode\\\\.com|https://rpc\\\\.mevblocker\\\\.io|https://1rpc\\\\.io/eth|https://eth-pokt\\\\.nodies\\\\.app|viem\",chain_ticker=\"eth\"})",
           "instant": false,
           "legendFormat": "Name resolution · {{chain_provider_url}}",
           "range": true,
@@ -1566,7 +1566,7 @@
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_chain_provider_last_resolve_address_duration_seconds{chain_provider_url=~\"https://ethereum-rpc\\\\.publicnode\\\\.com|https://eth\\\\.drpc\\\\.org|https://ethereum\\\\.publicnode\\\\.com|https://rpc\\\\.mevblocker\\\\.io|https://1rpc\\\\.io/eth|https://eth-pokt\\\\.nodies\\\\.app|ethers\\\\.js\",chain_ticker=\"eth\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_chain_provider_last_resolve_address_success{chain_provider_url=~\"https://ethereum-rpc\\\\.publicnode\\\\.com|https://eth\\\\.drpc\\\\.org|https://ethereum\\\\.publicnode\\\\.com|https://rpc\\\\.mevblocker\\\\.io|https://1rpc\\\\.io/eth|https://eth-pokt\\\\.nodies\\\\.app|ethers\\\\.js\",chain_ticker=\"eth\"}) == 1)",
+              "expr": "max without(instance, job, service, subplebbit_address) (bitsocial_stats_chain_provider_last_resolve_address_duration_seconds{chain_provider_url=~\"https://ethereum-rpc\\\\.publicnode\\\\.com|https://eth\\\\.drpc\\\\.org|https://ethereum\\\\.publicnode\\\\.com|https://rpc\\\\.mevblocker\\\\.io|https://1rpc\\\\.io/eth|https://eth-pokt\\\\.nodies\\\\.app|viem\",chain_ticker=\"eth\"}) and (max without(instance, job, service, subplebbit_address) (bitsocial_stats_chain_provider_last_resolve_address_success{chain_provider_url=~\"https://ethereum-rpc\\\\.publicnode\\\\.com|https://eth\\\\.drpc\\\\.org|https://ethereum\\\\.publicnode\\\\.com|https://rpc\\\\.mevblocker\\\\.io|https://1rpc\\\\.io/eth|https://eth-pokt\\\\.nodies\\\\.app|viem\",chain_ticker=\"eth\"}) == 1)",
               "instant": false,
               "legendFormat": "{{chain_provider_url}}",
               "range": true,
