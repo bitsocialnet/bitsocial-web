@@ -18,6 +18,7 @@ const debug = Debug("bitsocial-stats-monitor:community-pubsub");
 const fakeChallengeRequestsIntervalMs = 1000 * 60 * 5;
 const lastCommunityPubsubMessageTooOldMs = 1000 * 60 * 10;
 const pubsubPeersIntervalMs = 1000 * 10;
+const pubsubPeersTimeoutMs = 1000 * 30;
 
 export const monitorCommunitiesPubsub = async () => {
   for (const community of monitorState.communitiesMonitoring) {
@@ -107,7 +108,9 @@ const fetchPubsubPeers = async (community, pubsubTopic) => {
     //   throw Error(`not yet subscribed to pubsub topic '${pubsubTopic}'`)
     // }
 
-    const pubsubPeers = await kuboPubsub.pubsub.peers(pubsubTopic);
+    const pubsubPeers = await kuboPubsub.pubsub.peers(pubsubTopic, {
+      signal: AbortSignal.timeout(pubsubPeersTimeoutMs),
+    });
     return pubsubPeers;
   } catch (e) {
     throw Error(`failed fetching pubsub peers for '${community.address}': ${e.message}`);
@@ -123,7 +126,8 @@ const startFetchingPubsubPeers = (community, pubsubTopic) => {
   }
   isFetchingPubsubPeers[pubsubTopic] = true;
 
-  setInterval(() => {
+  // schedule the next poll once the previous one settled, so slow kubo calls can't overlap and pile up
+  const fetchPubsubPeersAndScheduleNext = () => {
     fetchPubsubPeers(community, pubsubTopic)
       .then((pubsubPeers) => {
         if (Math.random() < 0.05) {
@@ -135,8 +139,10 @@ const startFetchingPubsubPeers = (community, pubsubTopic) => {
         };
         prometheusObserveCommunityPubsubPeers(community.address, "Pubsub", pubsubPeers);
       })
-      .catch((e) => debug(e.message));
-  }, pubsubPeersIntervalMs);
+      .catch((e) => debug(e.message))
+      .finally(() => setTimeout(fetchPubsubPeersAndScheduleNext, pubsubPeersIntervalMs));
+  };
+  setTimeout(fetchPubsubPeersAndScheduleNext, pubsubPeersIntervalMs);
 };
 
 const countPubsubMessage = createCounter();

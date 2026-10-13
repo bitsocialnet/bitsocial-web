@@ -9,7 +9,7 @@ import decompress from "@xhmikosr/decompress";
 import http from "http";
 import tcpPortUsed from "tcp-port-used";
 import { arch } from "os";
-import { URL } from "url";
+import { createKuboRpcProxy } from "./lib/kubo-rpc-proxy.js";
 
 const basicAuthUsername = process.env.IPFS_BASIC_AUTH_USERNAME;
 const basicAuthPassword = process.env.IPFS_BASIC_AUTH_PASSWORD;
@@ -305,66 +305,15 @@ const startIpfsAutoRestart = async () => {
 };
 startIpfsAutoRestart();
 
-const proxyTarget = new URL(`http://127.0.0.1:${ipfsApiPort}`);
-const proxy = (req, res) => {
-  const reqHeaders = { ...req.headers };
-
-  // delete proxying related headers
-  delete reqHeaders["host"];
-  delete reqHeaders["connection"];
-
-  // remove headers that could potentially cause an ipfs 403 error
-  delete reqHeaders["cf-ipcountry"];
-  delete reqHeaders["cf-ray"];
-  delete reqHeaders["x-forwarded-proto"];
-  delete reqHeaders["cf-visitor"];
-  delete reqHeaders["sec-ch-ua"];
-  delete reqHeaders["sec-ch-ua-mobile"];
-  delete reqHeaders["user-agent"];
-  delete reqHeaders["origin"];
-  delete reqHeaders["sec-fetch-site"];
-  delete reqHeaders["sec-fetch-mode"];
-  delete reqHeaders["sec-fetch-dest"];
-  delete reqHeaders["referer"];
-  delete reqHeaders["cf-connecting-ip"];
-  delete reqHeaders["cdn-loop"];
-
-  const requestOptions = {
-    hostname: proxyTarget.hostname,
-    port: proxyTarget.port,
-    path: req.url,
-    method: req.method,
-    headers: reqHeaders,
-  };
-  const proxyReq = http.request(requestOptions, (proxyRes) => {
-    proxyRes.on("error", (e) => {
-      console.log("proxy res error:", e.message);
-      res.writeHead(502);
-      res.end(`Bad Gateway: ${e.message}`);
-    });
-
-    // fix error 'has been blocked by CORS policy'
-    const resHeaders = { ...proxyRes.headers };
-    resHeaders["access-control-allow-origin"] = "*";
-
-    res.writeHead(proxyRes.statusCode, resHeaders);
-    res.flushHeaders(); // send http headers right away, without it kubo.pubsub.subscribe onError not triggered
-    proxyRes.pipe(res, { end: true });
-  });
-  proxyReq.on("error", (e) => {
-    console.log("proxy req error:", e.message);
-    res.writeHead(500);
-    res.end(`Internal Server Error: ${e.message}`);
-  });
-  req.pipe(proxyReq);
-};
+const proxy = createKuboRpcProxy({ target: `http://127.0.0.1:${ipfsApiPort}` });
 
 // start server
 const startServer = (port) => {
   const server = http.createServer();
 
-  // never timeout the keep alive connection
-  server.keepAliveTimeout = 0;
+  // close idle keep-alive connections, this only applies between requests so in-flight
+  // responses like pubsub/sub streams are not affected
+  server.keepAliveTimeout = 1000 * 60;
 
   server.on("request", async (req, res) => {
     // unrelated endpoints
