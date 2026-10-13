@@ -25,6 +25,8 @@ services:
     build:
       context: ..
       dockerfile: stats/monitor/Dockerfile
+    # The web service runs from this image as well; building the monitor builds both.
+    image: bitsocial-stats-node:local
     command: node monitor.js
     restart: unless-stopped
     environment:
@@ -68,6 +70,32 @@ services:
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - stats-prometheus-data:/prometheus
+
+  web:
+    image: bitsocial-stats-node:local
+    command: node /app/stats/web/server/server.mjs
+    restart: unless-stopped
+    environment:
+      HOST: 0.0.0.0
+      PORT: "3000"
+      BITSOCIAL_STATS_PROMETHEUS_URL: http://prometheus:9090
+    depends_on:
+      prometheus:
+        condition: service_started
+    ports:
+      - "127.0.0.1:3302:3000"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/healthz').then((response)=>process.exit(response.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
 
   grafana:
     image: grafana/grafana:12.4.2

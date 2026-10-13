@@ -55,9 +55,17 @@ const needsStatsMonitorCheck = changedPaths.some(
     filePath === "stats/monitor/package.json" ||
     filePath.startsWith("stats/monitor/"),
 );
-const needsStatsDashboardsBuild = changedPaths.some((filePath) =>
-  filePath.startsWith("stats/grafana/"),
+const needsStatsDashboardsBuild = changedPaths.some(
+  (filePath) => filePath.startsWith("stats/grafana/") || filePath.startsWith("stats/shared/"),
 );
+const needsStatsWebBuild =
+  touchesRootDependencies ||
+  changedPaths.some(
+    (filePath) =>
+      filePath.startsWith("stats/web/") ||
+      filePath.startsWith("stats/shared/") ||
+      filePath === "stats/monitor/config.js",
+  );
 
 if (changedPaths.length === 0) {
   console.log("No local changes detected; running the default frontend verification build.");
@@ -91,12 +99,18 @@ if (needsStatsMonitorCheck) {
   runYarnCommand(["build:stats-monitor"]);
 }
 
+if (needsStatsWebBuild) {
+  runYarnCommand(["build:stats-web"]);
+  runYarnCommand(["workspace", "@bitsocial/stats-web", "test"]);
+}
+
 if (
   !needsAboutBuild &&
   !needsChainBuild &&
   !needsDocsBuild &&
   !needsStatsDashboardsBuild &&
-  !needsStatsMonitorCheck
+  !needsStatsMonitorCheck &&
+  !needsStatsWebBuild
 ) {
   console.log("No targeted build checks matched the current diff.");
 }

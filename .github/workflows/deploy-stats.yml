@@ -50,11 +50,19 @@ jobs:
             "deploy $GITHUB_SHA"
 
       - name: Verify public dashboard
+        # Until the host Caddyfile from this repository is installed, stats.bitsocial.net still
+        # redirects to Grafana's shared dashboard, so verify whichever one is live.
         run: |
-          dashboard_url="https://stats.bitsocial.net/api/public/dashboards/e9277bcc0c421ddcacd29f591466678c"
-          dashboard=$(curl --fail --silent --show-error --retry 12 --retry-delay 5 "$dashboard_url")
-          grep -q '"type":"markers"' <<< "$dashboard"
-          grep -q '"mode":"coords"' <<< "$dashboard"
+          if overview=$(curl --fail --silent --show-error --retry 12 --retry-delay 5 "https://stats.bitsocial.net/api/v1/overview?range=6h"); then
+            grep -q '"network":' <<< "$overview"
+            page=$(curl --fail --silent --show-error https://stats.bitsocial.net/5chan)
+            grep -q '<title>Bitsocial Stats</title>' <<< "$page"
+          else
+            dashboard_url="https://stats.bitsocial.net/api/public/dashboards/e9277bcc0c421ddcacd29f591466678c"
+            dashboard=$(curl --fail --silent --show-error --retry 12 --retry-delay 5 "$dashboard_url")
+            grep -q '"type":"markers"' <<< "$dashboard"
+            grep -q '"mode":"coords"' <<< "$dashboard"
+          fi
 
       - name: Remove deploy key
         if: always()

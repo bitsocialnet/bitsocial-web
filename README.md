@@ -10,7 +10,7 @@ It currently serves:
 - `https://bitsocial.net/` for the public Bitsocial landing/about site
 - `https://chain.bitsocial.net/` for the Bitsocial Chain landing site (BSO token and L2 appchain)
 - `https://docs.bitsocial.net/` for Docusaurus docs
-- `https://stats.bitsocial.net/` for the Grafana-backed stats dashboard
+- `https://stats.bitsocial.net/` for the live network stats dashboard
 
 Chain, docs, and stats are served on their own subdomains while remaining in this monorepo. Legacy `/docs` and `/stats` paths on `bitsocial.net` redirect permanently to their dedicated subdomains.
 
@@ -20,7 +20,7 @@ Chain, docs, and stats are served on their own subdomains while remaining in thi
 about/   Public Bitsocial landing/about site
 chain/   Bitsocial Chain landing site (BSO token and L2 appchain)
 docs/    Docusaurus docs, i18n files, and contributor playbooks
-stats/   Grafana, Prometheus, Docker Compose, deploy config, and monitor package
+stats/   Stats dashboard, monitor, Prometheus, Grafana, Docker Compose, and deploy config
 scripts/ Shared repo scripts and agent hooks
 ```
 
@@ -56,6 +56,7 @@ Portless keeps a stable named local URL. On non-`master` branches, the repo can 
 ```bash
 corepack yarn start
 corepack yarn start:stats
+corepack yarn start:stats-web
 corepack yarn start:android-usb
 corepack yarn start:ios-sim
 corepack yarn llms:generate
@@ -67,6 +68,7 @@ corepack yarn typecheck
 corepack yarn format:check
 corepack yarn doctor
 corepack yarn build:stats-dashboards
+corepack yarn build:stats-web
 corepack yarn stats:up
 corepack yarn stats:down
 corepack yarn stats:logs
@@ -133,9 +135,8 @@ the generator itself.
 
 ### `stats/`
 
-- Contains the Grafana/Prometheus stack and deployment files
-- The executable monitor service lives in `stats/monitor/`
-- Public traffic is served at `stats.bitsocial.net`, with Grafana hosted on the VPS origin
+- Contains the stats dashboard (`stats/web/`), the monitor service (`stats/monitor/`), Prometheus, Grafana, and deployment files
+- Public traffic is served at `stats.bitsocial.net` by the dashboard on the VPS; Grafana stays on the VPS loopback for operators
 
 ### Future Splits
 
@@ -178,7 +179,7 @@ Relevant local rules also live in:
 - `bitsocial.net` is served by Vercel
 - `chain.bitsocial.net` is served from the standalone Chain app
 - `docs.bitsocial.net` is served from the docs build
-- `stats.bitsocial.net` routes to the VPS-hosted Grafana stack
+- `stats.bitsocial.net` routes to the VPS-hosted stats dashboard
 - Legacy `/docs` and `/stats` paths on `bitsocial.net` return permanent redirects to those subdomains
 - `newsletter.bitsocial.net` remains separate
 

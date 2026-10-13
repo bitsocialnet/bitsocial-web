@@ -1,6 +1,6 @@
 ## Bitsocial Stats Monitor
 
-This service powers the Prometheus metrics and JSON API used by the Grafana dashboards on `stats.bitsocial.net`.
+This service powers the Prometheus metrics behind the stats dashboard on `stats.bitsocial.net` and the operators' Grafana dashboards, plus its own JSON API.
 
 ### Running locally
 
@@ -9,7 +9,7 @@ yarn install
 yarn start:stats-monitor -- --only webpages
 ```
 
-For the full local Grafana stack, use:
+For the full local stack (Prometheus, the stats dashboard and Grafana), use:
 
 ```bash
 yarn stats:up

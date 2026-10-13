@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 // Runs the local stats stack like `yarn start` runs the about site: starts Docker if needed,
-// brings up stats/compose.yaml, waits for the shared Grafana dashboards, then serves them on a
-// Portless URL with the production short paths (/, /5chan, /seedit) and opens the browser.
+// brings up stats/compose.yaml, waits for the stats dashboard container, then serves it on a
+// Portless URL with the production paths (/, /5chan, /seedit) and opens the browser.
 // Ctrl+C stops the containers; their data stays in the Docker volumes.
 
 import { spawn, spawnSync } from "node:child_process";
@@ -20,7 +20,6 @@ import {
   isWindows,
   portlessBin,
   portlessEnv,
-  readStatsRedirects,
   repoRoot,
 } from "./dev-server-utils.mjs";
 
@@ -30,9 +29,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const proxyScript = path.join(__dirname, "start-stats-proxy.mjs");
 const statsDir = path.join(repoRoot, "stats");
 const composeArgs = ["compose", "-f", path.join(statsDir, "compose.yaml")];
-const grafanaUrl = "http://127.0.0.1:3300";
+const webUrl = "http://127.0.0.1:3302";
 const dockerStartTimeoutMs = 3 * 60_000;
-const grafanaStartTimeoutMs = 5 * 60_000;
+const webStartTimeoutMs = 5 * 60_000;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -124,14 +123,9 @@ if (runCompose(["up", "--build", "--detach"]) !== 0) {
   process.exit(1);
 }
 
-console.log("Waiting for Grafana and the shared dashboards...");
+console.log("Waiting for the stats dashboard...");
 try {
-  await waitForUrl(`${grafanaUrl}/api/health`, grafanaStartTimeoutMs);
-  // The grafana-bootstrap job creates the shared dashboards after Grafana starts.
-  for (const target of readStatsRedirects().values()) {
-    const accessToken = target.split("/").pop();
-    await waitForUrl(`${grafanaUrl}/api/public/dashboards/${accessToken}`, grafanaStartTimeoutMs);
-  }
+  await waitForUrl(`${webUrl}/healthz`, webStartTimeoutMs);
 } catch (error) {
   console.error(`${error.message}. Check the containers with: yarn stats:logs`);
   process.exit(1);
@@ -159,7 +153,8 @@ const child = spawn(command, args, {
 });
 
 console.log("");
-console.log("Monitor data fills in over the first minutes; pick a short time range at first.");
+console.log("Monitor data fills in over the first minutes; pick the 6H range at first.");
+console.log("For hot reload while editing the dashboard, also run: yarn start:stats-web");
 console.log("Press Ctrl+C to stop the stats stack (its data is kept in Docker volumes).");
 
 if (browserOpenUrl && process.env.BROWSER !== "none") {

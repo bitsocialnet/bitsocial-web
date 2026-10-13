@@ -152,6 +152,8 @@ The home route uses generous vertical spacing and large hero moments; the app di
 
 **The Two-Density Rule.** Brand routes may breathe; product routes such as the directory and app detail should stay compact and scannable.
 
+**The Console Rule.** The stats dashboard (`stats/web`) is the densest product surface: one persistent view switcher with each app's icon and a live readout (left rail from 1024px, bottom tab bar below), hairline-divided KPI bands, and solid panels rather than glass. Blue marks the whole network and selection; 5chan orange and Seedit aqua mark only their own series; status lamps always travel with a text state. Its tokens live in `stats/web/src/index.css`.
+
 ## Elevation & Depth
 
 Depth is mostly tonal and atmospheric. The default surface is a bordered glass card with subtle gradient fill and backdrop blur. Shadows appear on active app statuses, hover states, focused controls, sheets, and selected filters.
