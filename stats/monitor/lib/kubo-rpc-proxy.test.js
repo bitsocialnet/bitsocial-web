@@ -210,3 +210,59 @@ test("drops the client connection when kubo dies mid-response", async (t) => {
   assert.equal(error.code, "ECONNRESET");
   assert.equal(clientRes.complete, false);
 });
+
+test("reports open upstream sockets per pool", async (t) => {
+  const kubo = http.createServer((req, res) => {
+    if (req.url.startsWith("/api/v0/pubsub/sub")) {
+      res.writeHead(200);
+      res.flushHeaders();
+      return;
+    }
+    res.end("{}");
+  });
+  const kuboUrl = await listen(kubo);
+  const proxyHandler = createKuboRpcProxy({ target: kuboUrl });
+  const proxy = http.createServer(proxyHandler);
+  const proxyUrl = await listen(proxy);
+  t.after(() => {
+    proxy.closeAllConnections();
+    proxy.close();
+    kubo.closeAllConnections();
+    kubo.close();
+  });
+  const statsBecome = (expected, message) => {
+    const deadline = Date.now() + 2000;
+    return new Promise((resolve, reject) => {
+      const check = () => {
+        const stats = proxyHandler.getStats();
+        if (JSON.stringify(stats) === JSON.stringify(expected)) {
+          resolve();
+        } else if (Date.now() > deadline) {
+          reject(Error(`${message}, got ${JSON.stringify(stats)}`));
+        } else {
+          setTimeout(check, 10);
+        }
+      };
+      check();
+    });
+  };
+  const sockets = (rpcActive, rpcIdle, stream) => ({
+    upstreamSockets: { rpcActive, rpcIdle, stream },
+    queuedRequests: 0,
+  });
+
+  assert.deepEqual(proxyHandler.getStats(), sockets(0, 0, 0));
+
+  const rpcReq = postToProxy(proxyUrl, "/api/v0/version");
+  const [rpcRes] = await once(rpcReq, "response");
+  rpcRes.resume();
+  await once(rpcRes, "end");
+  await statsBecome(sockets(0, 1, 0), "finished rpc call should leave one idle pooled socket");
+
+  const streamReq = postToProxy(proxyUrl, "/api/v0/pubsub/sub?arg=topic");
+  await once(streamReq, "response");
+  await statsBecome(sockets(0, 1, 1), "open subscription should hold one stream socket");
+
+  streamReq.destroy();
+  await statsBecome(sockets(0, 1, 0), "subscription socket should close with its client");
+});

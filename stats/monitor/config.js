@@ -141,6 +141,11 @@ export default {
         expectedBodyMatch: "flag|5chan|Flags Challenge|@bitsocial",
       },
     ],
+    // The start-ipfs.js proxy keeps about one upstream socket per live pubsub subscription plus
+    // pooled rpc sockets. Leaked sockets grow past that until host TCP memory runs out (issue #25).
+    kuboRpcProxy: {
+      maxUpstreamSockets: 1000,
+    },
     nfts: [],
   },
   delegatedRoutingUrls,

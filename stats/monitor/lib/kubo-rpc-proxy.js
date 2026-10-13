@@ -39,6 +39,10 @@ const endWithError = (res, statusCode, message) => {
   res.end(message);
 };
 
+// http.Agent keeps its sockets and queued requests in lists keyed by host:port
+const countByHost = (listsByHost) =>
+  Object.values(listsByHost).reduce((count, list) => count + list.length, 0);
+
 export const createKuboRpcProxy = ({ target, idleTimeoutMs = defaultIdleTimeoutMs }) => {
   const proxyTarget = new URL(target);
 
@@ -53,7 +57,7 @@ export const createKuboRpcProxy = ({ target, idleTimeoutMs = defaultIdleTimeoutM
   // long-lived streams get their own connections so open subscriptions can't use up the rpc pool
   const streamAgent = new http.Agent({ keepAlive: false });
 
-  return (req, res) => {
+  const proxy = (req, res) => {
     const reqHeaders = { ...req.headers };
     for (const header of strippedRequestHeaders) {
       delete reqHeaders[header];
@@ -107,4 +111,16 @@ export const createKuboRpcProxy = ({ target, idleTimeoutMs = defaultIdleTimeoutM
 
     req.pipe(proxyReq);
   };
+
+  // open upstream sockets per pool, polled by the stats monitor for its gauges and leak alert
+  proxy.getStats = () => ({
+    upstreamSockets: {
+      rpcActive: countByHost(rpcAgent.sockets),
+      rpcIdle: countByHost(rpcAgent.freeSockets),
+      stream: countByHost(streamAgent.sockets),
+    },
+    queuedRequests: countByHost(rpcAgent.requests),
+  });
+
+  return proxy;
 };

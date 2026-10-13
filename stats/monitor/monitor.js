@@ -25,6 +25,7 @@ import { monitorWebpages } from "./lib/webpage.js";
 import { monitorServiceProbes } from "./lib/service-probe.js";
 import { monitorNfts } from "./lib/nft.js";
 import { monitorPkcSeeders } from "./lib/pkc-seeder.js";
+import { monitorKuboRpcProxy } from "./lib/kubo-rpc-proxy-stats.js";
 
 // start server on port 3000
 import "./lib/server.js";
@@ -46,6 +47,7 @@ const webpagesIntervalMs = 1000 * 60 * 10;
 const serviceProbesIntervalMs = 1000 * 60;
 const nftsIntervalMs = 1000 * 60 * 10;
 const pkcSeedersIntervalMs = 1000 * 60 * 10;
+const kuboRpcProxyIntervalMs = 1000 * 60;
 const monitoringNameAliases = {
   previewers: "pkcPreviewers",
   seeders: "pkcSeeders",
@@ -238,6 +240,15 @@ if (isMonitoring("serviceProbes")) {
   setInterval(
     () => monitorServiceProbes().catch((e) => console.log(e.message)),
     serviceProbesIntervalMs,
+  );
+}
+
+// check kubo rpc proxy upstream sockets every 1min
+if (isMonitoring("kuboRpcProxy")) {
+  monitorKuboRpcProxy().catch((e) => console.log(e.message));
+  setInterval(
+    () => monitorKuboRpcProxy().catch((e) => console.log(e.message)),
+    kuboRpcProxyIntervalMs,
   );
 }
 
