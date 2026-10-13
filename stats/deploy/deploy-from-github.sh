@@ -9,9 +9,14 @@ readonly public_dashboard_url="http://127.0.0.1:3300/api/public/dashboards/e9277
 readonly web_url="http://127.0.0.1:3302"
 readonly caddyfile_path="/etc/caddy/Caddyfile"
 readonly caddyfile_state="/var/lib/bitsocial-stats-deploy/caddyfile.sha256"
-# The repository's Caddyfile from before deploys managed the host config. A host file with this
-# hash, or with the hash recorded at the last install, has not been edited by hand.
-readonly legacy_caddyfile_sha256="d782e3ba6efdac9237babeec4e6f80ce8a8cc2e7cabcdd92d48794f58fed7eb0"
+# Every Caddyfile the repository committed for stats.bitsocial.net before deploys managed the host
+# config (65aa3be1, 099cbe35): operators installed them by hand, so the host can carry any of them.
+# A host file with one of these hashes, or with the hash recorded at the last install, has not been
+# edited by hand.
+readonly committed_caddyfile_sha256s=(
+  "153f19eee3bec60d7cd08891c8f69587609b3a1beff89e95a3979be4cf8fbab7"
+  "d782e3ba6efdac9237babeec4e6f80ce8a8cc2e7cabcdd92d48794f58fed7eb0"
+)
 
 log() {
   printf '[bitsocial-stats-deploy] %s\n' "$*"
@@ -64,8 +69,8 @@ install_caddyfile() {
   fi
 
   known_sha=$(cat "$caddyfile_state" 2>/dev/null || true)
-  if [[ $current_sha != "$legacy_caddyfile_sha256" && $current_sha != "$known_sha" ]]; then
-    log "leaving $caddyfile_path alone: it was edited on the host; install stats/deploy/Caddyfile by hand"
+  if [[ $current_sha != "$known_sha" && " ${committed_caddyfile_sha256s[*]} " != *" $current_sha "* ]]; then
+    log "leaving $caddyfile_path alone: it was edited on the host (sha256 $current_sha); install stats/deploy/Caddyfile by hand"
     return
   fi
 
