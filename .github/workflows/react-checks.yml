@@ -11,6 +11,7 @@ on:
         "scripts/react-perf/**",
         "scripts/__tests__/about-ssr.node-test.mjs",
         "scripts/__tests__/bso-holders.node-test.mjs",
+        "scripts/__tests__/release-integrity.node-test.mjs",
         "scripts/generate-bso-holders.mjs",
         "scripts/pw-session.sh",
         "package.json",
@@ -27,6 +28,7 @@ on:
         "scripts/react-perf/**",
         "scripts/__tests__/about-ssr.node-test.mjs",
         "scripts/__tests__/bso-holders.node-test.mjs",
+        "scripts/__tests__/release-integrity.node-test.mjs",
         "scripts/generate-bso-holders.mjs",
         "scripts/pw-session.sh",
         "package.json",
@@ -56,6 +58,8 @@ jobs:
         run: node --test scripts/__tests__/about-ssr.node-test.mjs
       - name: Verify BSO holder classification
         run: node --test scripts/__tests__/bso-holders.node-test.mjs
+      - name: Verify release integrity API caching
+        run: node --test scripts/__tests__/release-integrity.node-test.mjs
       - run: corepack yarn doctor:check
       - run: corepack yarn perf:install --with-deps
       # Hosted runners are roughly 2.5x slower than the developer hardware the
