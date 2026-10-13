@@ -11,6 +11,7 @@ This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current
 - `stats.bitsocial.net` is served directly by VPS Caddy with automatic HTTPS (A record → this host)
 - Caddy proxies `stats.bitsocial.net` to the stats dashboard service on `127.0.0.1:3302` ([`stats/web`](../web)), which serves `/`, `/5chan`, `/seedit`, its read-only `/api/v1/` API, and redirects for the old Grafana shared-dashboard links
 - Grafana is no longer exposed publicly; it listens on `127.0.0.1:3300` for operators (see [Grafana access](#grafana-access))
+- Compose binds Grafana, the monitor and the dashboard to the fixed loopback ports `3300`, `3301` and `3302`. The Caddyfile and the deploy receiver's health checks use these ports, so `stats/deploy/.env` cannot change them
 - legacy `bitsocial.net/stats/*` URLs are 308-redirected by Vercel to `stats.bitsocial.net/*`; the old `:8080` origin is retired
 
 ### Automatic GitHub deployment
@@ -67,18 +68,20 @@ dashboard-only monitoring.
 
 ### Activating Caddy
 
-Deploys install the Caddyfile (see below). To install it by hand, copy `stats/deploy/Caddyfile` to `/etc/caddy/Caddyfile`, then validate and reload, and record its hash so later deploys keep it current:
+On the production VPS, `/etc/caddy/Caddyfile` also serves sites that are not in this repository and holds private configuration, so it must never be replaced with `stats/deploy/Caddyfile`. Apply stats changes by editing only its `stats.bitsocial.net` block to match the repository's, keeping a copy to restore if the reload fails:
 
 ```bash
+cp /etc/caddy/Caddyfile /root/Caddyfile.before
+$EDITOR /etc/caddy/Caddyfile
 caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
 systemctl reload caddy
-install -d /var/lib/bitsocial-stats-deploy
-sha256sum /etc/caddy/Caddyfile | cut -d ' ' -f 1 > /var/lib/bitsocial-stats-deploy/caddyfile.sha256
 ```
 
-After the stack passes its health checks, the deploy receiver installs `stats/deploy/Caddyfile` to `/etc/caddy/Caddyfile` itself: it validates the release's copy, swaps it in, reloads Caddy and restores the previous file if the reload fails. It only replaces a host file it recognizes, either one of the Caddyfiles the repository committed for `stats.bitsocial.net` before deploys managed it or the one it last installed (its hash is kept in `/var/lib/bitsocial-stats-deploy/caddyfile.sha256`). A file edited on the host is left alone and the deploy log says so, with the file's hash; fold the edit into the repository, then install by hand as below.
+Do not record the edited file's hash in `/var/lib/bitsocial-stats-deploy/caddyfile.sha256`. A recorded hash marks the file as receiver-managed, and the next deploy would replace it with the repository copy and drop the other sites.
 
-The receiver updates itself at the end of each deploy, so a change to the receiver takes effect from the following deploy. When the switch from the Grafana shared dashboards to the stats dashboard first lands, the first deploy starts the `web` service and installs the new receiver; running the workflow again (`workflow_dispatch`) installs the Caddyfile. The GitHub workflow verifies whichever of the two sites is public.
+After the stack passes its health checks, the deploy receiver installs `stats/deploy/Caddyfile` to `/etc/caddy/Caddyfile` only on a host whose file it recognizes: one of the Caddyfiles the repository committed for `stats.bitsocial.net` before deploys managed it, or the one it last installed (its hash is kept in `/var/lib/bitsocial-stats-deploy/caddyfile.sha256`). It validates the release's copy, swaps it in, reloads Caddy and restores the previous file if the reload fails. Any other file is left alone, and the deploy log says so with the file's hash. On the production VPS that log line appears on every deploy and is expected.
+
+The receiver updates itself at the end of each deploy, so a change to the receiver takes effect from the following deploy. The GitHub workflow verifies whichever of the two sites is public.
 
 ### Grafana access
 

@@ -70,7 +70,7 @@ install_caddyfile() {
 
   known_sha=$(cat "$caddyfile_state" 2>/dev/null || true)
   if [[ $current_sha != "$known_sha" && " ${committed_caddyfile_sha256s[*]} " != *" $current_sha "* ]]; then
-    log "leaving $caddyfile_path alone: it was edited on the host (sha256 $current_sha); install stats/deploy/Caddyfile by hand"
+    log "leaving $caddyfile_path alone: it was edited on the host (sha256 $current_sha); update its stats.bitsocial.net block by hand (see stats/deploy/README.md)"
     return
   fi
 
