@@ -349,7 +349,8 @@ const gauges = {
     labelNames,
     registers: [prometheus.promClient.register],
     collect() {
-      for (const { address } of monitorState.communitiesMonitoring) {
+      // communitiesMonitoring is undefined until the monitor has fetched the community lists at startup
+      for (const { address } of monitorState.communitiesMonitoring || []) {
         const community = monitorState.communities[address];
         if (community?.address && community.lastPubsubMessageTimestamp) {
           this.set(
@@ -366,7 +367,7 @@ const gauges = {
     labelNames,
     registers: [prometheus.promClient.register],
     collect() {
-      for (const { address } of monitorState.communitiesMonitoring) {
+      for (const { address } of monitorState.communitiesMonitoring || []) {
         const community = monitorState.communities[address];
         if (community?.address && community.lastCommunityPubsubMessageTimestamp) {
           this.set(
