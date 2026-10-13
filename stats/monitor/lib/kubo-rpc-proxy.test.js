@@ -46,6 +46,59 @@ const settlesWithin = async (promise, ms, message) => {
   }
 };
 
+test("forwards rpc calls to kubo with the cors header and stripped client headers", async (t) => {
+  const kuboSockets = new Set();
+  const kuboRequests = [];
+  const proxyUrl = await startProxy(t, async (req, res) => {
+    kuboSockets.add(req.socket);
+    let body = "";
+    req.setEncoding("utf8");
+    for await (const chunk of req) {
+      body += chunk;
+    }
+    kuboRequests.push({ headers: req.headers, body });
+    res.writeHead(201, { "content-type": "application/json", "x-kubo": "1" });
+    res.end('{"Hash":"cid"}');
+  });
+
+  const uploadedBody = "x".repeat(100_000);
+  for (let i = 0; i < 2; i++) {
+    const clientReq = http.request(`${proxyUrl}/api/v0/add`, {
+      method: "POST",
+      agent: false,
+      headers: {
+        "content-type": "text/plain",
+        origin: "https://example.com",
+        "user-agent": "test",
+      },
+    });
+    clientReq.end(uploadedBody);
+    const [clientRes] = await settlesWithin(
+      once(clientReq, "response"),
+      2000,
+      "kubo never answered the proxied rpc call",
+    );
+    clientRes.setEncoding("utf8");
+    let responseBody = "";
+    for await (const chunk of clientRes) {
+      responseBody += chunk;
+    }
+
+    assert.equal(clientRes.statusCode, 201);
+    assert.equal(clientRes.headers["access-control-allow-origin"], "*");
+    assert.equal(clientRes.headers["x-kubo"], "1");
+    assert.equal(responseBody, '{"Hash":"cid"}');
+  }
+
+  for (const { headers, body } of kuboRequests) {
+    assert.equal(body, uploadedBody);
+    assert.equal(headers["content-type"], "text/plain");
+    assert.equal(headers.origin, undefined);
+    assert.equal(headers["user-agent"], undefined);
+  }
+  assert.equal(kuboSockets.size, 1, "sequential rpc calls should reuse the kubo connection");
+});
+
 test("closes the kubo connection when the client leaves a pubsub/sub stream", async (t) => {
   const kuboRes = Promise.withResolvers();
   const proxyUrl = await startProxy(t, (req, res) => {
@@ -86,6 +139,31 @@ test("answers 504 when kubo sends nothing within the idle timeout", async (t) =>
   clientRes.resume();
 
   assert.equal(clientRes.statusCode, 504);
+});
+
+test("drops the client connection when kubo goes idle mid-response", async (t) => {
+  const kuboRes = Promise.withResolvers();
+  const proxyUrl = await startProxy(
+    t,
+    (req, res) => {
+      res.writeHead(200);
+      res.write("partial");
+      kuboRes.resolve(res);
+    },
+    { idleTimeoutMs: 100 },
+  );
+
+  const clientReq = postToProxy(proxyUrl, "/api/v0/cat?arg=cid");
+  const [clientRes] = await once(clientReq, "response");
+  const clientResError = Promise.withResolvers();
+  clientRes.on("error", clientResError.resolve);
+  clientRes.resume();
+  const kuboResClosed = once(await kuboRes.promise, "close");
+
+  const error = await settlesWithin(clientResError.promise, 2000, "client connection stayed open");
+  assert.equal(error.code, "ECONNRESET");
+  assert.equal(clientRes.complete, false);
+  await settlesWithin(kuboResClosed, 2000, "kubo connection stayed open after the timeout");
 });
 
 test("keeps pubsub/sub streams open past the idle timeout", async (t) => {
