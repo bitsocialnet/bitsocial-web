@@ -17,7 +17,7 @@ This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current
 
 Every push to `master` runs [`.github/workflows/deploy-stats.yml`](../../.github/workflows/deploy-stats.yml). The workflow uses the protected `stats-production` environment and a forced-command SSH key that can only request deployment of an exact commit SHA.
 
-The server-side receiver is installed at `/usr/local/sbin/bitsocial-stats-deploy` from [`deploy-from-github.sh`](./deploy-from-github.sh). It downloads the matching public GitHub archive, synchronizes it to `/srv/bitsocial-web/current`, preserves `stats/deploy/.env`, rebuilds the Docker Compose stack (the `web` service runs from the monitor image, which also builds the dashboard), refreshes the shared Grafana dashboards, runs health checks against the monitor, Grafana and the dashboard, and writes the deployed SHA to `/srv/bitsocial-web/current/.deploy-revision`.
+The server-side receiver is installed at `/usr/local/sbin/bitsocial-stats-deploy` from [`deploy-from-github.sh`](./deploy-from-github.sh). It downloads the matching public GitHub archive, synchronizes it to `/srv/bitsocial-web/current`, preserves `stats/deploy/.env`, rebuilds the Docker Compose stack (the `web` service runs from the monitor image, which also builds the dashboard), refreshes the shared Grafana dashboards, runs health checks against the monitor, Grafana and the dashboard, installs the host Caddyfile when it changed (see [Activating Caddy](#activating-caddy)), and writes the deployed SHA to `/srv/bitsocial-web/current/.deploy-revision`.
 
 Required `stats-production` environment configuration:
 
@@ -67,14 +67,18 @@ dashboard-only monitoring.
 
 ### Activating Caddy
 
-Install `stats/deploy/Caddyfile` to `/etc/caddy/Caddyfile`, then validate and reload:
+Deploys install the Caddyfile (see below). To install it by hand, copy `stats/deploy/Caddyfile` to `/etc/caddy/Caddyfile`, then validate and reload, and record its hash so later deploys keep it current:
 
 ```bash
 caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
 systemctl reload caddy
+install -d /var/lib/bitsocial-stats-deploy
+sha256sum /etc/caddy/Caddyfile | cut -d ' ' -f 1 > /var/lib/bitsocial-stats-deploy/caddyfile.sha256
 ```
 
-The deploy receiver does not touch the host Caddy config. When moving from the Grafana shared dashboards to the stats dashboard, deploy first (the `web` service then answers on `127.0.0.1:3302` while Caddy keeps serving Grafana), check `curl -fsS http://127.0.0.1:3302/healthz`, then install and reload the new Caddyfile. The GitHub workflow verifies whichever of the two is public.
+After the stack passes its health checks, the deploy receiver installs `stats/deploy/Caddyfile` to `/etc/caddy/Caddyfile` itself: it validates the release's copy, swaps it in, reloads Caddy and restores the previous file if the reload fails. It only replaces a host file it recognizes, either the repository's pre-automation Caddyfile or the one it last installed (its hash is kept in `/var/lib/bitsocial-stats-deploy/caddyfile.sha256`). A file edited on the host is left alone and the deploy log says so; fold the edit into the repository, then install by hand as below.
+
+The receiver updates itself at the end of each deploy, so a change to the receiver takes effect from the following deploy. When the switch from the Grafana shared dashboards to the stats dashboard first lands, the first deploy starts the `web` service and installs the new receiver; running the workflow again (`workflow_dispatch`) installs the Caddyfile. The GitHub workflow verifies whichever of the two sites is public.
 
 ### Grafana access
 

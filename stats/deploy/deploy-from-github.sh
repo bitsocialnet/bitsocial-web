@@ -7,6 +7,11 @@ readonly target_dir="/srv/bitsocial-web/current"
 readonly deploy_script_path="/usr/local/sbin/bitsocial-stats-deploy"
 readonly public_dashboard_url="http://127.0.0.1:3300/api/public/dashboards/e9277bcc0c421ddcacd29f591466678c"
 readonly web_url="http://127.0.0.1:3302"
+readonly caddyfile_path="/etc/caddy/Caddyfile"
+readonly caddyfile_state="/var/lib/bitsocial-stats-deploy/caddyfile.sha256"
+# The repository's Caddyfile from before deploys managed the host config. A host file with this
+# hash, or with the hash recorded at the last install, has not been edited by hand.
+readonly legacy_caddyfile_sha256="d782e3ba6efdac9237babeec4e6f80ce8a8cc2e7cabcdd92d48794f58fed7eb0"
 
 log() {
   printf '[bitsocial-stats-deploy] %s\n' "$*"
@@ -41,6 +46,41 @@ wait_for_url() {
 
   printf 'Timed out waiting for %s\n' "$url" >&2
   return 1
+}
+
+sha256_of() {
+  sha256sum "$1" | cut -d ' ' -f 1
+}
+
+# Installs the release's Caddyfile on the host and reloads Caddy, but only over a host file this
+# receiver knows: a hand-edited /etc/caddy/Caddyfile is left alone and reported instead.
+install_caddyfile() {
+  local release_caddyfile=$1
+  local current_sha release_sha known_sha
+  release_sha=$(sha256_of "$release_caddyfile")
+  current_sha=$(sha256_of "$caddyfile_path")
+  if [[ $current_sha == "$release_sha" ]]; then
+    return
+  fi
+
+  known_sha=$(cat "$caddyfile_state" 2>/dev/null || true)
+  if [[ $current_sha != "$legacy_caddyfile_sha256" && $current_sha != "$known_sha" ]]; then
+    log "leaving $caddyfile_path alone: it was edited on the host; install stats/deploy/Caddyfile by hand"
+    return
+  fi
+
+  caddy validate --config "$release_caddyfile" --adapter caddyfile
+  cp "$caddyfile_path" "$work_dir/Caddyfile.previous"
+  install -m 0644 "$release_caddyfile" "$caddyfile_path"
+  if ! systemctl reload caddy; then
+    log "caddy reload failed; restoring the previous $caddyfile_path"
+    install -m 0644 "$work_dir/Caddyfile.previous" "$caddyfile_path"
+    systemctl reload caddy
+    return 1
+  fi
+  install -d -m 0755 "$(dirname "$caddyfile_state")"
+  printf '%s\n' "$release_sha" > "$caddyfile_state"
+  log "installed $caddyfile_path ($release_sha) and reloaded caddy"
 }
 
 revision=$(get_revision "$@")
@@ -141,6 +181,8 @@ page=$(curl --fail --silent --show-error "$web_url/")
 grep -q '<title>Bitsocial Stats</title>' <<< "$page"
 overview=$(curl --fail --silent --show-error --retry 5 --retry-delay 3 "$web_url/api/v1/overview?range=6h")
 grep -q '"network":' <<< "$overview"
+
+install_caddyfile "$target_dir/stats/deploy/Caddyfile"
 
 printf '%s\n' "$revision" > "$target_dir/.deploy-revision"
 install -m 0755 "$release_root/stats/deploy/deploy-from-github.sh" "$deploy_script_path"
