@@ -49,7 +49,7 @@ services:
       ipfs:
         condition: service_healthy
     ports:
-      - "127.0.0.1:${BITSOCIAL_STATS_MONITOR_PORT:-3301}:3000"
+      - "127.0.0.1:3301:3000"
     volumes:
       - bitsocial-stats-monitor-history:/app/stats/monitor/history
     healthcheck:
@@ -95,7 +95,7 @@ services:
       prometheus:
         condition: service_started
     ports:
-      - "127.0.0.1:${BITSOCIAL_STATS_WEB_PORT:-3302}:3000"
+      - "127.0.0.1:3302:3000"
     healthcheck:
       test:
         [
@@ -125,7 +125,7 @@ services:
       GF_SERVER_SERVE_FROM_SUB_PATH: "false"
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/bitsocial-stats.json
     ports:
-      - "127.0.0.1:${BITSOCIAL_STATS_GRAFANA_PORT:-3300}:3000"
+      - "127.0.0.1:3300:3000"
     volumes:
       - ../grafana/provisioning/datasources/prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml:ro
       - ../grafana/provisioning/dashboards/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml:ro
