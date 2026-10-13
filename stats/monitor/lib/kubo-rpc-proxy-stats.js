@@ -2,53 +2,65 @@ import fetch from "node-fetch";
 import Debug from "debug";
 import config from "../config.js";
 import prometheus from "./prometheus.js";
+import { kuboRpcProxyStatsPath, parseKuboRpcProxyStats } from "./kubo-rpc-proxy.js";
 import { notifyProbeTransition } from "./telegram-alerts.js";
 
 const debug = Debug("bitsocial-stats-monitor:kubo-rpc-proxy");
 
 const statsTimeoutMs = 1000 * 15;
 const defaultMaxUpstreamSockets = 1000;
+// requests only queue once the rpc pool is full, and healthy kubo calls free a socket within
+// seconds, so a queue that lasts this many polls (1 per minute) means the pool is stuck
+const stuckQueuePolls = 3;
+
+let consecutiveQueuedPolls = 0;
 
 export const monitorKuboRpcProxy = async () => {
   // the start-ipfs.js proxy serves its stats next to the kubo rpc api it proxies
-  const statsUrl = new URL("/proxy/stats", config.kuboRpcUrl).toString();
+  const statsUrl = new URL(kuboRpcProxyStatsPath, config.kuboRpcUrl).toString();
   let stats;
   try {
     const response = await fetch(statsUrl, { signal: AbortSignal.timeout(statsTimeoutMs) });
     if (!response.ok) {
       throw Error(`HTTP ${response.status}`);
     }
-    stats = await response.json();
+    stats = parseKuboRpcProxyStats(await response.json());
   } catch (e) {
-    // no proxy in front of kubo (e.g. a local kubo on 5001), or the ipfs container is down
+    // no proxy in front of kubo (e.g. a local kubo on 5001), the ipfs container is down,
+    // or the proxy answers in a shape this monitor doesn't know
     debug(`failed fetching kubo rpc proxy stats from '${statsUrl}': ${e.message}`);
     gauges.upstreamSockets.reset();
     gauges.queuedRequests.reset();
+    consecutiveQueuedPolls = 0;
     return;
   }
 
-  const { rpcActive, rpcIdle, stream } = stats.upstreamSockets;
-  gauges.upstreamSockets.set({ pool: "rpc", state: "active" }, rpcActive);
-  gauges.upstreamSockets.set({ pool: "rpc", state: "idle" }, rpcIdle);
-  gauges.upstreamSockets.set({ pool: "stream", state: "active" }, stream);
+  gauges.upstreamSockets.set({ pool: "rpc", state: "active" }, stats.rpcActive);
+  gauges.upstreamSockets.set({ pool: "rpc", state: "idle" }, stats.rpcIdle);
+  gauges.upstreamSockets.set({ pool: "stream", state: "active" }, stats.stream);
   gauges.queuedRequests.set({ pool: "rpc" }, stats.queuedRequests);
 
-  const upstreamSockets = rpcActive + rpcIdle + stream;
+  consecutiveQueuedPolls = stats.queuedRequests > 0 ? consecutiveQueuedPolls + 1 : 0;
   const maxUpstreamSockets =
     config.monitoring.kuboRpcProxy?.maxUpstreamSockets ?? defaultMaxUpstreamSockets;
-  const ok = upstreamSockets <= maxUpstreamSockets;
+  const tooManySockets = stats.upstreamSockets > maxUpstreamSockets;
+  const poolStuck = consecutiveQueuedPolls >= stuckQueuePolls;
+  let summary = `The Kubo RPC proxy is back to ${stats.upstreamSockets} upstream sockets with no queued requests.`;
+  if (tooManySockets) {
+    summary = `The Kubo RPC proxy has ${stats.upstreamSockets} sockets open to Kubo, above the limit of ${maxUpstreamSockets}. Restarting the ipfs container clears them.`;
+  } else if (poolStuck) {
+    summary = `The Kubo RPC proxy's rpc pool has been full for ${consecutiveQueuedPolls} minutes with ${stats.queuedRequests} requests waiting for a socket. Kubo is stuck or rpc calls are leaking.`;
+  }
   await notifyProbeTransition({
     id: "kuboRpcProxy:upstreamSockets",
     label: "Kubo RPC proxy upstream sockets",
-    ok,
-    summary: ok
-      ? `The Kubo RPC proxy is back to ${upstreamSockets} upstream sockets.`
-      : `The Kubo RPC proxy has ${upstreamSockets} sockets open to Kubo, above the limit of ${maxUpstreamSockets}. Restarting the ipfs container clears them.`,
+    ok: !tooManySockets && !poolStuck,
+    summary,
     details: [
       `url=${statsUrl}`,
-      `rpc_active=${rpcActive}`,
-      `rpc_idle=${rpcIdle}`,
-      `stream=${stream}`,
+      `rpc_active=${stats.rpcActive}`,
+      `rpc_idle=${stats.rpcIdle}`,
+      `stream=${stats.stream}`,
       `queued_requests=${stats.queuedRequests}`,
     ].join("\n"),
   });

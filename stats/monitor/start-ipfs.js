@@ -358,13 +358,6 @@ const startServer = (port) => {
       return;
     }
 
-    // upstream socket counts for the stats monitor, kubo has no /proxy routes so nothing is shadowed
-    if (req.url === "/proxy/stats") {
-      res.writeHead(200, { "content-type": "application/json" });
-      res.end(JSON.stringify(proxy.getStats()));
-      return;
-    }
-
     proxy(req, res);
   });
   server.on("error", console.error);

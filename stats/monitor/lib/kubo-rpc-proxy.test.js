@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { once } from "node:events";
 import http from "node:http";
 import test from "node:test";
-import { createKuboRpcProxy } from "./kubo-rpc-proxy.js";
+import { createKuboRpcProxy, parseKuboRpcProxyStats } from "./kubo-rpc-proxy.js";
 
 const listen = async (server) => {
   server.listen(0, "127.0.0.1");
@@ -211,58 +211,98 @@ test("drops the client connection when kubo dies mid-response", async (t) => {
   assert.equal(clientRes.complete, false);
 });
 
-test("reports open upstream sockets per pool", async (t) => {
-  const kubo = http.createServer((req, res) => {
-    if (req.url.startsWith("/api/v0/pubsub/sub")) {
-      res.writeHead(200);
-      res.flushHeaders();
+const stats = (rpcActive, rpcIdle, stream, queuedRequests) => ({
+  upstreamSockets: { rpcActive, rpcIdle, stream },
+  queuedRequests,
+});
+
+const statsBecome = async (proxyUrl, expected, message) => {
+  const deadline = Date.now() + 2000;
+  let current;
+  while (Date.now() < deadline) {
+    current = await (await fetch(`${proxyUrl}/proxy/stats`)).json();
+    if (JSON.stringify(current) === JSON.stringify(expected)) {
       return;
     }
-    res.end("{}");
-  });
-  const kuboUrl = await listen(kubo);
-  const proxyHandler = createKuboRpcProxy({ target: kuboUrl });
-  const proxy = http.createServer(proxyHandler);
-  const proxyUrl = await listen(proxy);
-  t.after(() => {
-    proxy.closeAllConnections();
-    proxy.close();
-    kubo.closeAllConnections();
-    kubo.close();
-  });
-  const statsBecome = (expected, message) => {
-    const deadline = Date.now() + 2000;
-    return new Promise((resolve, reject) => {
-      const check = () => {
-        const stats = proxyHandler.getStats();
-        if (JSON.stringify(stats) === JSON.stringify(expected)) {
-          resolve();
-        } else if (Date.now() > deadline) {
-          reject(Error(`${message}, got ${JSON.stringify(stats)}`));
-        } else {
-          setTimeout(check, 10);
-        }
-      };
-      check();
-    });
-  };
-  const sockets = (rpcActive, rpcIdle, stream) => ({
-    upstreamSockets: { rpcActive, rpcIdle, stream },
-    queuedRequests: 0,
-  });
+    await new Promise((resolve) => setTimeout(resolve, 10));
+  }
+  assert.fail(`${message}, got ${JSON.stringify(current)}`);
+};
 
-  assert.deepEqual(proxyHandler.getStats(), sockets(0, 0, 0));
+test("reports open upstream sockets per pool at /proxy/stats", async (t) => {
+  const proxyUrl = await startProxy(
+    t,
+    (req, res) => {
+      if (req.url.startsWith("/api/v0/pubsub/sub")) {
+        res.writeHead(200);
+        res.flushHeaders();
+      } else if (!req.url.startsWith("/api/v0/cat")) {
+        res.end("{}");
+      }
+      // cat never answers, like a stuck kubo
+    },
+    { maxSockets: 1 },
+  );
+
+  await statsBecome(proxyUrl, stats(0, 0, 0, 0), "a fresh proxy should have no upstream sockets");
 
   const rpcReq = postToProxy(proxyUrl, "/api/v0/version");
   const [rpcRes] = await once(rpcReq, "response");
   rpcRes.resume();
   await once(rpcRes, "end");
-  await statsBecome(sockets(0, 1, 0), "finished rpc call should leave one idle pooled socket");
+  await statsBecome(
+    proxyUrl,
+    stats(0, 1, 0, 0),
+    "a finished rpc call should leave one idle socket",
+  );
+
+  postToProxy(proxyUrl, "/api/v0/cat?arg=first");
+  await statsBecome(
+    proxyUrl,
+    stats(1, 0, 0, 0),
+    "a pending rpc call should hold the pooled socket",
+  );
+
+  const queuedReq = postToProxy(proxyUrl, "/api/v0/cat?arg=second");
+  await statsBecome(proxyUrl, stats(1, 0, 0, 1), "a call over maxSockets should wait in the queue");
+
+  queuedReq.destroy();
+  await statsBecome(
+    proxyUrl,
+    stats(1, 0, 0, 0),
+    "a queued call whose client left should not count",
+  );
 
   const streamReq = postToProxy(proxyUrl, "/api/v0/pubsub/sub?arg=topic");
   await once(streamReq, "response");
-  await statsBecome(sockets(0, 1, 1), "open subscription should hold one stream socket");
+  await statsBecome(
+    proxyUrl,
+    stats(1, 0, 1, 0),
+    "an open subscription should hold a stream socket",
+  );
 
   streamReq.destroy();
-  await statsBecome(sockets(0, 1, 0), "subscription socket should close with its client");
+  await statsBecome(
+    proxyUrl,
+    stats(1, 0, 0, 0),
+    "a subscription socket should close with its client",
+  );
+});
+
+test("parses kubo rpc proxy stats and rejects other shapes", () => {
+  assert.deepEqual(parseKuboRpcProxyStats(stats(2, 3, 4, 1)), {
+    rpcActive: 2,
+    rpcIdle: 3,
+    stream: 4,
+    queuedRequests: 1,
+    upstreamSockets: 9,
+  });
+  for (const invalid of [
+    null,
+    {},
+    { upstreamSockets: { rpcActive: 1, rpcIdle: "x", stream: 0 }, queuedRequests: 0 },
+    stats(1, 0, -1, 0),
+  ]) {
+    assert.throws(() => parseKuboRpcProxyStats(invalid), /invalid kubo rpc proxy stats/);
+  }
 });

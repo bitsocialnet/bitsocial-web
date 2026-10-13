@@ -49,9 +49,9 @@ Alerts are sent only on state transitions: first failure, then recovery.
 
 The monitor also polls `/proxy/stats` on the Kubo RPC proxy that `start-ipfs.js` runs in the ipfs
 container, once a minute. It exports the counts as `bitsocial_stats_kubo_rpc_proxy_upstream_sockets`
-(labeled by `pool` and `state`) and `bitsocial_stats_kubo_rpc_proxy_queued_requests`. When the
-proxy holds more upstream sockets than `monitoring.kuboRpcProxy.maxUpstreamSockets` in
-[config.js](./config.js), it sends an alert, so a socket leak like
-[#25](https://github.com/bitsocialnet/bitsocial-web/issues/25) is reported long before it exhausts
-host TCP memory. With the monitor pointed straight at Kubo and no proxy in between, the gauges stay
-empty and no alert is sent.
+(labeled by `pool` and `state`) and `bitsocial_stats_kubo_rpc_proxy_queued_requests`. It sends an
+alert when the proxy holds more upstream sockets than `monitoring.kuboRpcProxy.maxUpstreamSockets`
+in [config.js](./config.js), or when requests have waited for a pooled rpc socket for three polls in
+a row. A socket leak like [#25](https://github.com/bitsocialnet/bitsocial-web/issues/25) is reported
+that way long before it exhausts host TCP memory. With the monitor pointed straight at Kubo and no
+proxy in between, the gauges stay empty and no alert is sent.
