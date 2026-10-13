@@ -164,7 +164,7 @@ test("the view fails when Prometheus answers no query at all", async () => {
 test("client view keeps the list order and fills each community's columns", async () => {
   const { dashboard } = createTestDashboard([
     {
-      when: /^max without.*community_stats_all_post_count\{client_id="5chan"\}\)$/,
+      when: /^max without.*\(last_over_time\(bitsocial_stats_community_stats_all_post_count\{client_id="5chan"\}\[7d\]\)\)$/,
       result: [
         sample({ community_address: "g.bso" }, 900),
         sample({ community_address: "biz.bso" }, 12),
