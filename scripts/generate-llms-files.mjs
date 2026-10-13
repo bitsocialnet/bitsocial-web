@@ -1262,7 +1262,7 @@ Two interpretation notes matter:
 - [Bitsocial Chain](${chainOrigin}/): BSO token and proposed Ethereum L2 appchain landing page.
 - [Bitsocial Chain llms.txt](${chainOrigin}/llms.txt): Chain-specific routing index.
 - [Bitsocial Chain llms-full.txt](${chainOrigin}/llms-full.txt): Chain-focused inline context.
-- [Stats dashboard](${statsOrigin}/): Grafana-backed public stats surface for Bitsocial apps and infrastructure.
+- [Stats dashboard](${statsOrigin}/): Live network stats for 5chan and Seedit communities, peers, services, and client infrastructure.
 
 ${renderLandingShortIndex(landing)}
 

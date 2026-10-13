@@ -6,6 +6,7 @@ readonly repository="bitsocialnet/bitsocial-web"
 readonly target_dir="/srv/bitsocial-web/current"
 readonly deploy_script_path="/usr/local/sbin/bitsocial-stats-deploy"
 readonly public_dashboard_url="http://127.0.0.1:3300/api/public/dashboards/e9277bcc0c421ddcacd29f591466678c"
+readonly web_url="http://127.0.0.1:3302"
 
 log() {
   printf '[bitsocial-stats-deploy] %s\n' "$*"
@@ -85,7 +86,8 @@ for required_file in \
   stats/deploy/compose.yaml \
   stats/deploy/deploy-from-github.sh \
   stats/grafana/dashboards/bitsocial-stats.json \
-  stats/monitor/Dockerfile; do
+  stats/monitor/Dockerfile \
+  stats/web/server/server.mjs; do
   if [[ ! -f "$release_root/$required_file" ]]; then
     printf 'Release is missing %s\n' "$required_file" >&2
     exit 65
@@ -105,6 +107,7 @@ release_compose=(
   -f "$release_root/stats/deploy/compose.yaml"
 )
 "${release_compose[@]}" config --quiet
+# The web service runs from the monitor image, which also builds the dashboard.
 "${release_compose[@]}" build ipfs monitor
 
 rsync \
@@ -132,6 +135,12 @@ grep -q '^# HELP bitsocial_stats_network_ipns_http_routers_peer_location_count '
 dashboard=$(curl --fail --silent --show-error "$public_dashboard_url")
 grep -q '"type":"markers"' <<< "$dashboard"
 grep -q '"mode":"coords"' <<< "$dashboard"
+
+wait_for_url "$web_url/healthz"
+page=$(curl --fail --silent --show-error "$web_url/")
+grep -q '<title>Bitsocial Stats</title>' <<< "$page"
+overview=$(curl --fail --silent --show-error --retry 5 --retry-delay 3 "$web_url/api/v1/overview?range=6h")
+grep -q '"network":' <<< "$overview"
 
 printf '%s\n' "$revision" > "$target_dir/.deploy-revision"
 install -m 0755 "$release_root/stats/deploy/deploy-from-github.sh" "$deploy_script_path"

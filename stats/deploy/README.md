@@ -1,6 +1,6 @@
 ## Bitsocial VPS Deploy
 
-This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current` on the VPS. The VPS hosts the Grafana/Prometheus stack and serves `stats.bitsocial.net` directly; the public apex site and docs stay on Vercel.
+This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current` on the VPS. The VPS hosts the stats stack (monitor, Prometheus, the stats dashboard and Grafana) and serves `stats.bitsocial.net` directly; the public apex site and docs stay on Vercel.
 
 ### Expected host layout
 
@@ -9,14 +9,15 @@ This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current
 - newsletter/listmonk remains on `newsletter.bitsocial.net` via `127.0.0.1:9000`
 - newsletter gateway API traffic under `/api/bitsocial/*` goes to `127.0.0.1:9011`
 - `stats.bitsocial.net` is served directly by VPS Caddy with automatic HTTPS (A record → this host)
-- Caddy redirects `/`, `/5chan`, and `/seedit` on `stats.bitsocial.net` to Grafana shared-dashboard URLs so visitors land on the public view without anonymous access to the full Grafana app
+- Caddy proxies `stats.bitsocial.net` to the stats dashboard service on `127.0.0.1:3302` ([`stats/web`](../web)), which serves `/`, `/5chan`, `/seedit`, its read-only `/api/v1/` API, and redirects for the old Grafana shared-dashboard links
+- Grafana is no longer exposed publicly; it listens on `127.0.0.1:3300` for operators (see [Grafana access](#grafana-access))
 - legacy `bitsocial.net/stats/*` URLs are 308-redirected by Vercel to `stats.bitsocial.net/*`; the old `:8080` origin is retired
 
 ### Automatic GitHub deployment
 
 Every push to `master` runs [`.github/workflows/deploy-stats.yml`](../../.github/workflows/deploy-stats.yml). The workflow uses the protected `stats-production` environment and a forced-command SSH key that can only request deployment of an exact commit SHA.
 
-The server-side receiver is installed at `/usr/local/sbin/bitsocial-stats-deploy` from [`deploy-from-github.sh`](./deploy-from-github.sh). It downloads the matching public GitHub archive, synchronizes it to `/srv/bitsocial-web/current`, preserves `stats/deploy/.env`, rebuilds the Docker Compose stack, refreshes the shared Grafana dashboards, runs health checks, and writes the deployed SHA to `/srv/bitsocial-web/current/.deploy-revision`.
+The server-side receiver is installed at `/usr/local/sbin/bitsocial-stats-deploy` from [`deploy-from-github.sh`](./deploy-from-github.sh). It downloads the matching public GitHub archive, synchronizes it to `/srv/bitsocial-web/current`, preserves `stats/deploy/.env`, rebuilds the Docker Compose stack (the `web` service runs from the monitor image, which also builds the dashboard), refreshes the shared Grafana dashboards, runs health checks against the monitor, Grafana and the dashboard, and writes the deployed SHA to `/srv/bitsocial-web/current/.deploy-revision`.
 
 Required `stats-production` environment configuration:
 
@@ -73,6 +74,17 @@ caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
 systemctl reload caddy
 ```
 
+The deploy receiver does not touch the host Caddy config. When moving from the Grafana shared dashboards to the stats dashboard, deploy first (the `web` service then answers on `127.0.0.1:3302` while Caddy keeps serving Grafana), check `curl -fsS http://127.0.0.1:3302/healthz`, then install and reload the new Caddyfile. The GitHub workflow verifies whichever of the two is public.
+
+### Grafana access
+
+Grafana keeps running with the provisioned dashboards for ad-hoc queries, but only on the VPS loopback. Reach it through an SSH tunnel and log in with the admin credentials from `stats/deploy/.env`:
+
+```bash
+ssh -L 3300:127.0.0.1:3300 root@HOST
+# then open http://127.0.0.1:3300/login
+```
+
 ### Smoke checks
 
 Verify the public stats subdomain:
@@ -81,13 +93,15 @@ Verify the public stats subdomain:
 curl -I https://stats.bitsocial.net/
 curl -I https://stats.bitsocial.net/5chan
 curl -I https://stats.bitsocial.net/seedit
+curl -fsS "https://stats.bitsocial.net/api/v1/overview?range=6h" | head -c 300
+curl -I https://stats.bitsocial.net/public-dashboards/fa6f2225e0ea98e116fb6f85d84e0186
 curl -fsS http://127.0.0.1:9091/api/v1/targets
 curl -fsS http://127.0.0.1:3301/metrics/prometheus | grep bitsocial_stats_service_probe_last_success
 ```
 
-The `curl -I` checks for `/`, `/5chan`, and `/seedit` should return `302` redirects to the corresponding public dashboard URLs.
+`/`, `/5chan`, and `/seedit` should return `200` with the dashboard, the overview API should return JSON, and the old shared-dashboard link should return a `301` to `/5chan`.
 
-Once the stack is up, verify Grafana bootstrapped the public dashboards and left the login-protected app closed off:
+Once the stack is up, verify Grafana bootstrapped its dashboards and left the login-protected app closed off:
 
 ```bash
 curl -I http://127.0.0.1:3300/login
@@ -97,7 +111,7 @@ curl -I http://127.0.0.1:3300/public-dashboards/c770d7565c18df52dd26461c9191e05d
 curl -i http://127.0.0.1:3300/api/ds/query
 ```
 
-The shared dashboard URLs should return `200`, while direct Grafana API access without a login should return `401`.
+The shared dashboard URLs should return `200` on the loopback, while direct Grafana API access without a login should return `401`.
 
 After Vercel deploy (legacy path redirects):
 
