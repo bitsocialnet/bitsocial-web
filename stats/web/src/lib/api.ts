@@ -142,7 +142,6 @@ export interface StatsResult<T> {
   /** True while `data` belongs to another range of the same view. */
   isPrevious: boolean;
   error: string | undefined;
-  fetchedAt: number | undefined;
   loading: boolean;
 }
 
@@ -156,7 +155,6 @@ export function useStats<T>(path: string | null): StatsResult<T> {
     data: (entry?.data ?? previous) as T | undefined,
     isPrevious: Boolean(previous),
     error: entry?.error,
-    fetchedAt: entry?.fetchedAt,
     loading: Boolean(entry?.loading),
   };
 }

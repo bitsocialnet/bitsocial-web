@@ -215,6 +215,10 @@ const useNow = (intervalMs: number) => {
   return now;
 };
 
+// The server rebuilds its data every 30 seconds and the page polls every minute, so data this old
+// means the server has stopped refreshing (Prometheus is unreachable) even though it still answers.
+const STALE_AFTER_MS = 5 * 60_000;
+
 /** How old the data on screen is (when the server built it), and whether the last refresh failed. */
 export function Freshness({
   updatedAt,
@@ -226,6 +230,7 @@ export function Freshness({
   error: string | undefined;
 }) {
   const now = useNow(10_000);
+  const stale = updatedAt !== undefined && now - updatedAt > STALE_AFTER_MS;
   let text = "Loading…";
   let tone = "bg-unknown";
   if (error) {
@@ -233,6 +238,9 @@ export function Freshness({
       ? `Refresh failed · data from ${formatAge((now - updatedAt) / 1000)} ago`
       : "Stats are unavailable right now";
     tone = "bg-down";
+  } else if (stale) {
+    text = `Not updating · data from ${formatAge((now - updatedAt) / 1000)} ago`;
+    tone = "bg-partial";
   } else if (updatedAt) {
     text = loading ? "Refreshing…" : `Updated ${formatAge((now - updatedAt) / 1000)} ago`;
     tone = "bg-up";
@@ -243,7 +251,7 @@ export function Freshness({
       {text}
       {/* Announce only failures and recoveries, not the ticking age. */}
       <span className="sr-only" aria-live="polite">
-        {error ? "Stats could not be refreshed." : ""}
+        {error ? "Stats could not be refreshed." : stale ? "Stats have stopped updating." : ""}
       </span>
     </p>
   );

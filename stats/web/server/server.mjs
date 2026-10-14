@@ -225,7 +225,13 @@ const main = () => {
 
   const snapshots = createSnapshots({ dashboard });
   const startedAt = Date.now();
-  snapshots.start().then(() => console.log(`stats snapshots built in ${Date.now() - startedAt}ms`));
+  snapshots
+    .start()
+    .then(() =>
+      console.log(
+        `stats snapshots: first pass built ${snapshots.size} documents in ${Date.now() - startedAt}ms`,
+      ),
+    );
 
   const server = createStatsServer({
     dashboard,

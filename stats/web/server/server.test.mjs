@@ -49,7 +49,7 @@ const fakeDashboard = () => {
 
 const startServer = async ({ build = true } = {}) => {
   const dashboard = fakeDashboard();
-  const snapshots = createSnapshots({ dashboard });
+  const snapshots = createSnapshots({ dashboard, firstPassWaitSeconds: 0.05 });
   if (build) {
     await snapshots.refresh();
   }
@@ -118,6 +118,15 @@ test("sends a pre-compressed body and revalidates by ETag", async (t) => {
     headers: { "Accept-Encoding": "gzip;q=0, identity" },
   });
   assert.equal(plain.headers.get("content-encoding"), null);
+  const body = Buffer.from(await plain.arrayBuffer());
+  assert.equal(Number(plain.headers.get("content-length")), body.length);
+  const headOnly = await server.get("/api/v1/overview", {
+    method: "HEAD",
+    headers: { "Accept-Encoding": "identity" },
+  });
+  assert.equal(headOnly.status, 200);
+  assert.equal(Number(headOnly.headers.get("content-length")), body.length);
+  assert.equal((await headOnly.arrayBuffer()).byteLength, 0);
   const etag = plain.headers.get("etag");
   assert.match(etag, /^W\/"/);
   assert.equal(
