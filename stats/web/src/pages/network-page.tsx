@@ -100,14 +100,20 @@ function NetworkFigures({ data }: { data: Overview }) {
 }
 
 export function NetworkPage({ result, range }: { result: StatsResult<Overview>; range: RangeKey }) {
-  const { data, error, fetchedAt, loading, isPrevious } = result;
+  const { data, error, loading, isPrevious } = result;
   const clientNames = data?.clients.map(({ label }) => label).join(" and ") ?? "5chan and Seedit";
 
   const header = (
     <PageHeader
       title="Bitsocial network"
       description={`${data?.network.communitiesTotal ?? "All"} communities across ${clientNames}, plus the services and peer-to-peer infrastructure their apps depend on.`}
-      status={<Freshness fetchedAt={fetchedAt} loading={loading || isPrevious} error={error} />}
+      status={
+        <Freshness
+          updatedAt={data && Date.parse(data.generatedAt)}
+          loading={loading || isPrevious}
+          error={error}
+        />
+      }
     />
   );
   if (!data) {

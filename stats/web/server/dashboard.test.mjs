@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { statsClients } from "../../shared/stats-queries.mjs";
 import { createDashboard } from "./dashboard.mjs";
-import { getTimeline } from "./ranges.mjs";
+import { RANGES, getTimeline } from "./ranges.mjs";
 
 const monitoring = {
   webpages: [{ url: "https://bitsocial.net" }, { url: "https://5chan.app" }],
@@ -30,8 +30,8 @@ const matrix = (labels, values) => ({
 // Answers each query from the first rule whose pattern matches its PromQL.
 const fakePrometheus = (rules) => {
   const calls = [];
-  const answer = (kind, expr) => {
-    calls.push({ kind, expr });
+  const answer = (kind, expr, at) => {
+    calls.push({ kind, expr, at });
     const rule = rules.find(
       ({ when, range }) => when.test(expr) && Boolean(range) === (kind === "range"),
     );
@@ -42,8 +42,8 @@ const fakePrometheus = (rules) => {
   };
   return {
     calls,
-    instant: (expr) => answer("instant", expr),
-    range: (expr) => answer("range", expr),
+    instant: (expr, time) => answer("instant", expr, time),
+    range: (expr, { start, end, step }) => answer("range", expr, `${start}-${end}/${step}`),
   };
 };
 
@@ -190,15 +190,68 @@ test("client view keeps the list order and fills each community's columns", asyn
   assert.equal(view.communities[1].uptime, null);
 });
 
-test("community view only queries the requested address", async () => {
-  const { dashboard, prometheus } = createTestDashboard([]);
+test("community views split one grouped query per series by address", async () => {
+  const { dashboard, prometheus } = createTestDashboard([
+    {
+      when: /^sum by \(community_address\) \(.*community_stats_day_post_count/,
+      range: true,
+      result: [
+        matrix({ community_address: "g.bso" }, [4, 5]),
+        matrix({ community_address: "biz.bso" }, [1, 2]),
+      ],
+    },
+  ]);
   assert.equal(dashboard.hasCommunity("5chan", "biz.bso"), true);
   assert.equal(dashboard.hasCommunity("5chan", "memes.bso"), false);
   assert.equal(dashboard.hasClient("lainchan"), false);
-  const view = await dashboard.communityView("5chan", "biz.bso", timeline);
-  assert.equal(view.community.directoryCode, "biz");
-  assert.ok(prometheus.calls.length > 0);
+
+  const views = await dashboard.communityViews("5chan", timeline);
+  assert.deepEqual([...views.keys()], ["biz.bso", "g.bso"]);
+  assert.equal(views.get("biz.bso").community.directoryCode, "biz");
+  assert.deepEqual(views.get("biz.bso").series.posts.slice(0, 3), [1, 2, null]);
+  assert.deepEqual(views.get("g.bso").series.posts.slice(0, 3), [4, 5, null]);
+  assert.equal(views.get("g.bso").series.replies.length, timeline.points);
+  // One query per series for the whole client, never one per community.
+  assert.equal(prometheus.calls.length, 7);
   for (const { expr } of prometheus.calls) {
-    assert.match(expr, /community_address="biz\.bso"/);
+    assert.doesNotMatch(expr, /community_address="/);
   }
+});
+
+test("a pass builds every range and runs each shared query once", async () => {
+  const { dashboard, prometheus } = createTestDashboard([]);
+  const { documents, errors } = await dashboard.documents(1_800_000_000);
+
+  assert.deepEqual(errors, []);
+  // Per range: the overview, two client views and three listed communities.
+  assert.equal(documents.size, 4 * 6);
+  for (const key of [
+    "overview:6h",
+    "overview:14d",
+    "client:seedit:7d",
+    "community:5chan:g.bso:24h",
+    "community:seedit:memes.bso:14d",
+  ]) {
+    assert.ok(documents.has(key), key);
+  }
+  assert.equal(documents.get("client:5chan:7d").range.key, "7d");
+  // Every range ends at the same time, so instant queries are shared across ranges and views, and
+  // a range query two views share (availability, communities online) runs once per range.
+  const runs = prometheus.calls.map(({ kind, expr, at }) => `${kind} ${at} ${expr}`);
+  assert.equal(new Set(runs).size, runs.length);
+  assert.equal(new Set(prometheus.calls.map(({ at }) => at)).size, 1 + Object.keys(RANGES).length);
+});
+
+test("a view that fails in a pass is reported while the rest build", async () => {
+  const { dashboard } = createTestDashboard([
+    {
+      when: /webpage_last_webpage_fetch_success|service_probe|http_router|chain_provider|ipfs_gateway|pubsub_provider|network_/,
+      fail: true,
+    },
+    { when: /./, range: true, fail: true },
+  ]);
+  const { documents, errors } = await dashboard.documents(1_800_000_000);
+  assert.ok(errors.some((error) => error.startsWith("communities 5chan 6h:")));
+  assert.ok(documents.has("client:5chan:6h"));
+  assert.ok(!documents.has("community:5chan:biz.bso:6h"));
 });

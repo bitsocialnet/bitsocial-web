@@ -10,12 +10,13 @@ export const RANGES = {
 
 export const DEFAULT_RANGE = "24h";
 
-// Matches the API cache lifetime, so visitors within one window share an identical timeline.
-const ALIGN_SECONDS = 30;
+// The server rebuilds its snapshots once per window, and every range's timeline ends on the
+// window's boundary, so each pass covers new data and all ranges in a pass share one end time.
+export const SNAPSHOT_SECONDS = 30;
 
 export const getTimeline = (rangeKey, nowSeconds = Date.now() / 1000) => {
   const range = RANGES[rangeKey];
-  const end = Math.floor(nowSeconds / ALIGN_SECONDS) * ALIGN_SECONDS;
+  const end = Math.floor(nowSeconds / SNAPSHOT_SECONDS) * SNAPSHOT_SECONDS;
   return {
     key: rangeKey,
     start: end - range.seconds,

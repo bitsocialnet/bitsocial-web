@@ -5,7 +5,7 @@ The public dashboard at `https://stats.bitsocial.net/`: a Network overview at `/
 ### How it fits together
 
 - `src/` is a Vite + React + Tailwind single-page app.
-- `server/server.mjs` serves the built app and a read-only JSON API. Each endpoint runs a fixed set of PromQL queries against Prometheus, so visitors only choose a view, a range from an allowlist and a community the monitor already lists. Responses are cached for 30 seconds per view and range.
+- `server/server.mjs` serves the built app and a read-only JSON API whose responses are snapshots the server builds itself. Every 30 seconds [`server/snapshots.mjs`](./server/snapshots.mjs) rebuilds every view for every range, client and listed community from a fixed set of PromQL queries, and requests are answered from memory with a pre-compressed body and an ETag. Visitors only choose a view, a range from an allowlist and a community the monitor already lists, and never cause a Prometheus query, so traffic does not change the load on Prometheus. A view whose queries all fail in a pass keeps its previous snapshot, and the dashboard shows each response's age from its `generatedAt`, turning amber once it is over 5 minutes old.
 - The PromQL lives in [`../shared/stats-queries.mjs`](../shared/stats-queries.mjs), shared with the Grafana dashboard generator so both report the same "online", "total posts" and "current users" numbers.
 - Community names and order come from the monitor's snapshots in [`../monitor/data`](../monitor/data), refreshed by `yarn build:stats-dashboards`.
 
