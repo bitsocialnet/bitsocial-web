@@ -215,13 +215,13 @@ const useNow = (intervalMs: number) => {
   return now;
 };
 
-/** How fresh the data on screen is, and whether the last refresh failed. */
+/** How old the data on screen is (when the server built it), and whether the last refresh failed. */
 export function Freshness({
-  fetchedAt,
+  updatedAt,
   loading,
   error,
 }: {
-  fetchedAt: number | undefined;
+  updatedAt: number | undefined;
   loading: boolean;
   error: string | undefined;
 }) {
@@ -229,12 +229,12 @@ export function Freshness({
   let text = "Loading…";
   let tone = "bg-unknown";
   if (error) {
-    text = fetchedAt
-      ? `Refresh failed · data from ${formatAge((now - fetchedAt) / 1000)} ago`
+    text = updatedAt
+      ? `Refresh failed · data from ${formatAge((now - updatedAt) / 1000)} ago`
       : "Stats are unavailable right now";
     tone = "bg-down";
-  } else if (fetchedAt) {
-    text = loading ? "Refreshing…" : `Updated ${formatAge((now - fetchedAt) / 1000)} ago`;
+  } else if (updatedAt) {
+    text = loading ? "Refreshing…" : `Updated ${formatAge((now - updatedAt) / 1000)} ago`;
     tone = "bg-up";
   }
   return (

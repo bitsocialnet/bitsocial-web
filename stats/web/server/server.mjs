@@ -6,16 +6,15 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import monitorConfig from "../../monitor/config.js";
 import { statsClients } from "../../shared/stats-queries.mjs";
 import { loadCommunityLists } from "./communities.mjs";
-import { createDashboard } from "./dashboard.mjs";
+import { createDashboard, documentKey } from "./dashboard.mjs";
 import { createPrometheusClient } from "./prometheus.mjs";
-import { DEFAULT_RANGE, RANGES, getTimeline } from "./ranges.mjs";
+import { DEFAULT_RANGE, RANGES, SNAPSHOT_SECONDS } from "./ranges.mjs";
+import { createSnapshots } from "./snapshots.mjs";
 import { loadStaticFiles } from "./static-files.mjs";
 
-// Serves stats.bitsocial.net: the built dashboard plus a read-only JSON API that runs a fixed set
-// of Prometheus queries per view. Responses are cached briefly, so traffic never multiplies load
-// on Prometheus.
-
-const CACHE_SECONDS = 30;
+// Serves stats.bitsocial.net: the built dashboard plus a read-only JSON API. The server builds
+// every API document from Prometheus on its own schedule and answers from those snapshots, so the
+// number of visitors never changes the load on Prometheus.
 
 // Grafana shared-dashboard links from before this dashboard replaced them.
 const legacyDashboardPaths = new Map([
@@ -45,32 +44,40 @@ const sendJson = (response, status, body, headers = {}) => {
   response.end(JSON.stringify(body));
 };
 
-export const createStatsServer = ({
-  dashboard,
-  staticFiles,
-  pageRoutes,
-  now = () => Date.now() / 1000,
-}) => {
-  const cache = new Map();
+const acceptsGzip = (header = "") =>
+  header.split(",").some((part) => {
+    const [coding, ...params] = part.split(";").map((value) => value.trim());
+    const quality = params.find((param) => param.startsWith("q="));
+    return coding.toLowerCase() === "gzip" && (!quality || Number(quality.slice(2)) > 0);
+  });
 
-  // Shares one in-flight or recent result per view and range between all visitors.
-  const cached = (key, build) => {
-    const time = now();
-    for (const [entryKey, entry] of cache) {
-      if (entry.expiresAt <= time) {
-        cache.delete(entryKey);
-      }
-    }
-    let entry = cache.get(key);
-    if (!entry) {
-      entry = { expiresAt: time + CACHE_SECONDS, promise: build() };
-      cache.set(key, entry);
-      entry.promise.catch(() => cache.delete(key));
-    }
-    return entry.promise;
+const sendSnapshot = (request, response, snapshot) => {
+  const headers = {
+    ...securityHeaders,
+    "Content-Type": "application/json; charset=utf-8",
+    "Cache-Control": `public, max-age=${SNAPSHOT_SECONDS}`,
+    ETag: snapshot.etag,
+    Vary: "Accept-Encoding",
   };
+  const cachedTags = request.headers["if-none-match"]?.split(",").map((tag) => tag.trim()) || [];
+  if (cachedTags.includes(snapshot.etag)) {
+    response.writeHead(304, headers);
+    response.end();
+    return;
+  }
+  // Compressed once per snapshot, so Caddy passes it through instead of encoding every response.
+  const gzip = acceptsGzip(request.headers["accept-encoding"]);
+  const body = gzip ? snapshot.gzip : snapshot.json;
+  response.writeHead(200, {
+    ...headers,
+    ...(gzip && { "Content-Encoding": "gzip" }),
+    "Content-Length": body.length,
+  });
+  response.end(request.method === "HEAD" ? undefined : body);
+};
 
-  const handleApi = async (pathname, searchParams, response) => {
+export const createStatsServer = ({ dashboard, snapshots, staticFiles, pageRoutes }) => {
+  const handleApi = async (request, pathname, searchParams, response) => {
     const rangeKey = searchParams.get("range") || DEFAULT_RANGE;
     if (!Object.hasOwn(RANGES, rangeKey)) {
       sendJson(response, 400, {
@@ -81,13 +88,10 @@ export const createStatsServer = ({
 
     const [, , , view, clientId, child, encodedAddress, ...rest] = pathname.split("/");
     let key;
-    let build;
     if (view === "overview" && clientId === undefined) {
-      key = `overview:${rangeKey}`;
-      build = () => dashboard.overview(getTimeline(rangeKey, now()));
+      key = documentKey.overview(rangeKey);
     } else if (view === "clients" && dashboard.hasClient(clientId) && child === undefined) {
-      key = `client:${clientId}:${rangeKey}`;
-      build = () => dashboard.clientView(clientId, getTimeline(rangeKey, now()));
+      key = documentKey.client(clientId, rangeKey);
     } else if (
       view === "clients" &&
       dashboard.hasClient(clientId) &&
@@ -105,25 +109,23 @@ export const createStatsServer = ({
         sendJson(response, 404, { error: "unknown community" });
         return;
       }
-      key = `community:${clientId}:${address}:${rangeKey}`;
-      build = () => dashboard.communityView(clientId, address, getTimeline(rangeKey, now()));
+      key = documentKey.community(clientId, address, rangeKey);
     } else {
       sendJson(response, 404, { error: "not found" });
       return;
     }
 
-    try {
-      const body = await cached(key, build);
-      sendJson(response, 200, body, { "Cache-Control": `public, max-age=${CACHE_SECONDS}` });
-    } catch (error) {
-      console.error(`stats api ${key} failed: ${error.message}`);
+    const snapshot = await snapshots.get(key);
+    if (!snapshot) {
       sendJson(
         response,
         502,
         { error: "Stats data is temporarily unavailable." },
         { "Cache-Control": "no-store" },
       );
+      return;
     }
+    sendSnapshot(request, response, snapshot);
   };
 
   const handleRequest = async (request, response) => {
@@ -150,7 +152,7 @@ export const createStatsServer = ({
     }
 
     if (pathname.startsWith("/api/v1/")) {
-      await handleApi(pathname, searchParams, response);
+      await handleApi(request, pathname, searchParams, response);
       return;
     }
 
@@ -221,8 +223,13 @@ const main = () => {
     console.warn(`no built dashboard in ${distDir}; serving the API only`);
   }
 
+  const snapshots = createSnapshots({ dashboard });
+  const startedAt = Date.now();
+  snapshots.start().then(() => console.log(`stats snapshots built in ${Date.now() - startedAt}ms`));
+
   const server = createStatsServer({
     dashboard,
+    snapshots,
     staticFiles,
     pageRoutes: new Set(["/", ...clients.map(({ id }) => `/${id}`)]),
   });
@@ -231,6 +238,7 @@ const main = () => {
   });
   for (const signal of ["SIGINT", "SIGTERM"]) {
     process.on(signal, () => {
+      snapshots.stop();
       server.close(() => process.exit(0));
       server.closeAllConnections();
     });

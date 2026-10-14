@@ -1,7 +1,11 @@
 import assert from "node:assert/strict";
 import net from "node:net";
 import test from "node:test";
+import { gunzipSync } from "node:zlib";
+import { documentKey } from "./dashboard.mjs";
+import { RANGES } from "./ranges.mjs";
 import { createStatsServer } from "./server.mjs";
+import { createSnapshots } from "./snapshots.mjs";
 
 const file = (body, contentType, cacheControl = "public, max-age=300") => ({
   body: Buffer.from(body),
@@ -17,60 +21,142 @@ const staticFiles = new Map([
   ],
 ]);
 
-const startServer = async (dashboardOverrides = {}) => {
-  const builds = [];
+// A dashboard whose passes count themselves; documents name their key and pass number.
+const fakeDashboard = () => {
   const dashboard = {
+    passes: 0,
+    failing: false,
     hasClient: (clientId) => clientId === "5chan",
     hasCommunity: (clientId, address) => clientId === "5chan" && address === "biz.bso",
-    overview: async (timeline) => {
-      builds.push(["overview", timeline.key]);
-      return { view: "overview", range: timeline.key };
+    documents: async () => {
+      dashboard.passes += 1;
+      if (dashboard.failing) {
+        return { documents: new Map(), errors: ["overview 24h: Prometheus is down"] };
+      }
+      const keys = Object.keys(RANGES).flatMap((rangeKey) => [
+        documentKey.overview(rangeKey),
+        documentKey.client("5chan", rangeKey),
+        documentKey.community("5chan", "biz.bso", rangeKey),
+      ]);
+      return {
+        documents: new Map(keys.map((key) => [key, { key, pass: dashboard.passes }])),
+        errors: [],
+      };
     },
-    clientView: async (clientId, timeline) => {
-      builds.push(["client", clientId, timeline.key]);
-      return { view: "client", clientId };
-    },
-    communityView: async (clientId, address, timeline) => {
-      builds.push(["community", clientId, address, timeline.key]);
-      return { view: "community", address };
-    },
-    ...dashboardOverrides,
   };
+  return dashboard;
+};
+
+const startServer = async ({ build = true } = {}) => {
+  const dashboard = fakeDashboard();
+  const snapshots = createSnapshots({ dashboard });
+  if (build) {
+    await snapshots.refresh();
+  }
   const server = createStatsServer({
     dashboard,
+    snapshots,
     staticFiles,
     pageRoutes: new Set(["/", "/5chan", "/seedit"]),
-    now: () => 1_800_000_000,
   });
   await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
   const base = `http://127.0.0.1:${server.address().port}`;
   return {
-    builds,
+    dashboard,
+    snapshots,
     url: base,
     get: (path, options) => fetch(`${base}${path}`, { redirect: "manual", ...options }),
     close: () => new Promise((resolve) => server.close(resolve)),
   };
 };
 
-test("serves the API and shares one build per view and range", async (t) => {
+test("answers every view from the snapshot without querying per request", async (t) => {
   const server = await startServer();
   t.after(server.close);
 
   const first = await server.get("/api/v1/overview");
   assert.equal(first.status, 200);
-  assert.deepEqual(await first.json(), { view: "overview", range: "24h" });
+  assert.deepEqual(await first.json(), { key: "overview:24h", pass: 1 });
   assert.match(first.headers.get("cache-control"), /max-age=30/);
-  await server.get("/api/v1/overview?range=24h");
-  await server.get("/api/v1/overview?range=7d");
-  assert.deepEqual(server.builds, [
-    ["overview", "24h"],
-    ["overview", "7d"],
-  ]);
+  for (const range of Object.keys(RANGES)) {
+    assert.equal((await server.get(`/api/v1/overview?range=${range}`)).status, 200);
+  }
 
   const client = await server.get("/api/v1/clients/5chan?range=6h");
-  assert.deepEqual(await client.json(), { view: "client", clientId: "5chan" });
+  assert.deepEqual(await client.json(), { key: "client:5chan:6h", pass: 1 });
   const community = await server.get("/api/v1/clients/5chan/communities/biz.bso");
-  assert.deepEqual(await community.json(), { view: "community", address: "biz.bso" });
+  assert.deepEqual(await community.json(), { key: "community:5chan:biz.bso:24h", pass: 1 });
+  assert.equal(server.dashboard.passes, 1);
+});
+
+test("sends a pre-compressed body and revalidates by ETag", async (t) => {
+  const server = await startServer();
+  t.after(server.close);
+
+  const raw = await new Promise((resolve, reject) => {
+    const socket = net.connect(Number(new URL(server.url).port), "127.0.0.1", () => {
+      socket.end(
+        "GET /api/v1/overview HTTP/1.1\r\nHost: localhost\r\nAccept-Encoding: br, gzip\r\nConnection: close\r\n\r\n",
+      );
+    });
+    const chunks = [];
+    socket.on("data", (chunk) => chunks.push(chunk));
+    socket.on("end", () => resolve(Buffer.concat(chunks)));
+    socket.on("error", reject);
+  });
+  const split = raw.indexOf("\r\n\r\n");
+  const head = raw.subarray(0, split).toString();
+  assert.match(head, /^HTTP\/1\.1 200 /);
+  assert.match(head, /content-encoding: gzip/i);
+  assert.match(head, /vary: Accept-Encoding/i);
+  assert.deepEqual(JSON.parse(gunzipSync(raw.subarray(split + 4))), {
+    key: "overview:24h",
+    pass: 1,
+  });
+
+  const plain = await server.get("/api/v1/overview", {
+    headers: { "Accept-Encoding": "gzip;q=0, identity" },
+  });
+  assert.equal(plain.headers.get("content-encoding"), null);
+  const etag = plain.headers.get("etag");
+  assert.match(etag, /^W\/"/);
+  assert.equal(
+    (await server.get("/api/v1/overview", { headers: { "If-None-Match": etag } })).status,
+    304,
+  );
+
+  await server.snapshots.refresh();
+  const changed = await server.get("/api/v1/overview", { headers: { "If-None-Match": etag } });
+  assert.equal(changed.status, 200);
+  assert.notEqual(changed.headers.get("etag"), etag);
+});
+
+test("keeps serving the last snapshot while a refresh fails", async (t) => {
+  const server = await startServer();
+  t.after(server.close);
+
+  server.dashboard.failing = true;
+  await server.snapshots.refresh();
+  const response = await server.get("/api/v1/overview");
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { key: "overview:24h", pass: 1 });
+});
+
+test("waits for the first pass and answers 502 when it built nothing", async (t) => {
+  const server = await startServer({ build: false });
+  t.after(() => {
+    server.snapshots.stop();
+    return server.close();
+  });
+
+  server.dashboard.failing = true;
+  server.snapshots.start();
+  const response = await server.get("/api/v1/overview");
+  assert.equal(response.status, 502);
+  assert.deepEqual(await response.json(), { error: "Stats data is temporarily unavailable." });
+  assert.equal(response.headers.get("cache-control"), "no-store");
+  await server.get("/api/v1/overview");
+  assert.equal(server.dashboard.passes, 1);
 });
 
 test("rejects unknown ranges, clients, communities and paths", async (t) => {
@@ -84,24 +170,7 @@ test("rejects unknown ranges, clients, communities and paths", async (t) => {
   assert.equal((await server.get("/api/v1/clients/5chan/communities/biz.bso/x")).status, 404);
   assert.equal((await server.get("/api/v1/overview/extra")).status, 404);
   assert.equal((await server.get("/api/v1/overview", { method: "POST" })).status, 405);
-  assert.deepEqual(server.builds, []);
-});
-
-test("answers 502 without caching a failed build", async (t) => {
-  let attempts = 0;
-  const server = await startServer({
-    overview: async () => {
-      attempts += 1;
-      throw new Error("Prometheus is down");
-    },
-  });
-  t.after(server.close);
-
-  const response = await server.get("/api/v1/overview");
-  assert.equal(response.status, 502);
-  assert.deepEqual(await response.json(), { error: "Stats data is temporarily unavailable." });
-  await server.get("/api/v1/overview");
-  assert.equal(attempts, 2);
+  assert.equal(server.dashboard.passes, 1);
 });
 
 test("serves the dashboard routes, assets and legacy Grafana links", async (t) => {

@@ -4,7 +4,8 @@ import { RANGE_KEYS } from "@/lib/router";
 // A small cache of API responses shared by every component. A path refreshes once a minute while
 // at least one component subscribes to it and the tab is visible; switching views or ranges
 // reuses what is already loaded. Once a view loads, its other ranges load in the background, so
-// the range picker switches without waiting on Prometheus.
+// the range picker switches without a round trip. Every response is a snapshot the server built on
+// its own schedule, so none of this adds load beyond serving it.
 
 const REFRESH_MS = 60_000;
 const RETRY_MS = 15_000;

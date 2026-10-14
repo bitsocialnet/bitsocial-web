@@ -5,9 +5,17 @@ import {
   metric,
   whenSuccessful,
 } from "../../shared/stats-queries.mjs";
+import { RANGES, getTimeline } from "./ranges.mjs";
 
-// Builds the JSON documents behind the dashboard views. Every PromQL expression is fixed here:
-// visitors only pick a view, a range from an allowlist and a known community address.
+// Builds the JSON documents behind the dashboard views. Every PromQL expression is fixed here,
+// and the server builds every document on its own schedule rather than per visitor.
+
+// Keys of the documents the API serves, one per view, client, listed community and range.
+export const documentKey = {
+  overview: (rangeKey) => `overview:${rangeKey}`,
+  client: (clientId, rangeKey) => `client:${clientId}:${rangeKey}`,
+  community: (clientId, address, rangeKey) => `community:${clientId}:${address}:${rangeKey}`,
+};
 
 // Four decimals keep uptime shares and sub-millisecond latencies exact enough while halving the
 // size of long series.
@@ -93,6 +101,26 @@ const runQueries = async (prometheus, timeline, queries) => {
   return results;
 };
 
+// Every range in a pass ends at the same aligned time, so instant queries (current totals and
+// statuses) and any range query two views share run once per pass instead of once per document.
+const shareQueries = (prometheus) => {
+  const results = new Map();
+  const once = (key, run) => {
+    if (!results.has(key)) {
+      results.set(key, run());
+    }
+    return results.get(key);
+  };
+  return {
+    instant: (query, time) =>
+      once(`instant ${time} ${query}`, () => prometheus.instant(query, time)),
+    range: (query, timeline) =>
+      once(`range ${timeline.start} ${timeline.end} ${timeline.step} ${query}`, () =>
+        prometheus.range(query, timeline),
+      ),
+  };
+};
+
 const rangeInfo = (timeline) => ({
   key: timeline.key,
   start: timeline.start,
@@ -134,7 +162,7 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
   const urlItems = (urls, labelOf = hostOf) =>
     urls.map((url) => ({ key: url, id: url, label: labelOf(url), url }));
 
-  const overview = async (timeline) => {
+  const overview = async (timeline, source = prometheus) => {
     const perClient = clients.map((client) => [client.id, communityQueries(client.id)]);
     const peerMetrics = {
       pubsub: "network_pubsub_peer_count",
@@ -230,7 +258,7 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
       queries[`${clientId}:statuses`] = { expr: client.online };
     }
 
-    const results = await runQueries(prometheus, timeline, queries);
+    const results = await runQueries(source, timeline, queries);
 
     const clientSummaries = clients.map((client) => {
       const value = (key) => firstValue(results[`${client.id}:${key}`]);
@@ -383,7 +411,7 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
     };
   };
 
-  const clientView = async (clientId, timeline) => {
+  const clientView = async (clientId, timeline, source = prometheus) => {
     const client = clientById.get(clientId);
     const communityList = communityLists[clientId] || [];
     const q = communityQueries(clientId);
@@ -426,7 +454,7 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
       queries[`community:${key}`] = { expr };
     }
 
-    const results = await runQueries(prometheus, timeline, queries);
+    const results = await runQueries(source, timeline, queries);
     const columns = Object.fromEntries(
       Object.keys(perCommunity).map((key) => [
         key,
@@ -479,38 +507,91 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
     };
   };
 
-  const communityView = async (clientId, address, timeline) => {
-    const community = communityLists[clientId].find((entry) => entry.address === address);
-    const q = communityQueries(clientId, address);
-    const fresh = (window, name) => `sum(${q.whenFetched(q.stat(window, name))})`;
+  // Every listed community's charts for one client, from one query per series grouped by address.
+  const communityViews = async (clientId, timeline, source = prometheus) => {
+    const q = communityQueries(clientId);
+    const byAddress = (expr) => `sum by (community_address) (${expr})`;
     const series = {
+      // The client view's availability query, so a pass runs it once for both.
       online: bucketAverage(q.online, timeline),
-      posts: fresh("day", "post"),
-      replies: fresh("day", "reply"),
-      activeDay: fresh("day", "active_user"),
-      activeWeek: q.currentUsers,
-      activeMonth: `sum(${q.stat("month", "active_user")})`,
-      pubsubPeers: q.communityMetric("last_community_pubsub_pubsub_peer_count"),
+      posts: byAddress(q.whenFetched(q.stat("day", "post"))),
+      replies: byAddress(q.whenFetched(q.stat("day", "reply"))),
+      activeDay: byAddress(q.whenFetched(q.stat("day", "active_user"))),
+      activeWeek: byAddress(q.stat("week", "active_user")),
+      activeMonth: byAddress(q.stat("month", "active_user")),
+      pubsubPeers: `max by (community_address) (${q.communityMetric("last_community_pubsub_pubsub_peer_count")})`,
     };
     const results = await runQueries(
-      prometheus,
+      source,
       timeline,
       Object.fromEntries(Object.entries(series).map(([key, expr]) => [key, { expr, range: true }])),
     );
-    return {
-      generatedAt: new Date(timeline.end * 1000).toISOString(),
-      range: rangeInfo(timeline),
-      community,
-      series: Object.fromEntries(
-        Object.keys(series).map((key) => [key, firstSeries(results[key], timeline)]),
-      ),
+    const columns = Object.fromEntries(
+      Object.keys(series).map((key) => [
+        key,
+        seriesByLabel(results[key], "community_address", timeline),
+      ]),
+    );
+    return new Map(
+      (communityLists[clientId] || []).map((community) => [
+        community.address,
+        {
+          generatedAt: new Date(timeline.end * 1000).toISOString(),
+          range: rangeInfo(timeline),
+          community,
+          series: Object.fromEntries(
+            Object.keys(series).map((key) => [
+              key,
+              columns[key].get(community.address) ||
+                Array.from({ length: timeline.points }, () => null),
+            ]),
+          ),
+        },
+      ]),
+    );
+  };
+
+  // Builds every document the API serves for one moment, one view at a time so a pass never
+  // floods Prometheus. A view that fails is reported and left out, and the server keeps its
+  // previous snapshot.
+  const documents = async (nowSeconds) => {
+    const source = shareQueries(prometheus);
+    const built = new Map();
+    const errors = [];
+    const add = async (label, build) => {
+      try {
+        for (const [key, document] of await build()) {
+          built.set(key, document);
+        }
+      } catch (error) {
+        errors.push(`${label}: ${error.message}`);
+      }
     };
+    for (const rangeKey of Object.keys(RANGES)) {
+      const timeline = getTimeline(rangeKey, nowSeconds);
+      await add(`overview ${rangeKey}`, async () => [
+        [documentKey.overview(rangeKey), await overview(timeline, source)],
+      ]);
+      for (const { id } of clients) {
+        await add(`client ${id} ${rangeKey}`, async () => [
+          [documentKey.client(id, rangeKey), await clientView(id, timeline, source)],
+        ]);
+        await add(`communities ${id} ${rangeKey}`, async () =>
+          [...(await communityViews(id, timeline, source))].map(([address, view]) => [
+            documentKey.community(id, address, rangeKey),
+            view,
+          ]),
+        );
+      }
+    }
+    return { documents: built, errors };
   };
 
   return {
     overview,
     clientView,
-    communityView,
+    communityViews,
+    documents,
     hasClient: (clientId) => clientById.has(clientId),
     hasCommunity: (clientId, address) =>
       Boolean(communityLists[clientId]?.some((entry) => entry.address === address)),
