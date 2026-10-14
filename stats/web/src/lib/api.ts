@@ -1,8 +1,10 @@
 import { useMemo, useSyncExternalStore } from "react";
+import { RANGE_KEYS } from "@/lib/router";
 
 // A small cache of API responses shared by every component. A path refreshes once a minute while
 // at least one component subscribes to it and the tab is visible; switching views or ranges
-// reuses what is already loaded.
+// reuses what is already loaded. Once a view loads, its other ranges load in the background, so
+// the range picker switches without waiting on Prometheus.
 
 const REFRESH_MS = 60_000;
 const RETRY_MS = 15_000;
@@ -20,6 +22,7 @@ const entries = new Map<string, Entry>();
 // The latest data per view, kept so a range change can show the previous chart until the new one
 // arrives instead of flashing empty.
 const latestByView = new Map<string, unknown>();
+const prefetchedViews = new Set<string>();
 const listeners = new Set<() => void>();
 const watchers = new Map<string, { count: number; stop: () => void }>();
 let version = 0;
@@ -49,6 +52,7 @@ const load = async (path: string) => {
     const body: unknown = await response.json();
     entries.set(path, { data: body, fetchedAt: Date.now(), loading: false });
     latestByView.set(viewKey(path), body);
+    void prefetchOtherRanges(path);
   } catch (error) {
     entries.set(path, {
       ...entries.get(path),
@@ -58,6 +62,25 @@ const load = async (path: string) => {
     });
   }
   notify();
+};
+
+// Runs once per view, after its first response. One range at a time keeps a visitor's background
+// loads from competing with the range on screen; a range the visitor already opened is skipped.
+const prefetchOtherRanges = async (path: string) => {
+  const view = viewKey(path);
+  const params = new URLSearchParams(path.slice(view.length));
+  const range = params.get("range");
+  if (!range || prefetchedViews.has(view)) {
+    return;
+  }
+  prefetchedViews.add(view);
+  for (const key of RANGE_KEYS) {
+    params.set("range", key);
+    const sibling = `${view}?${params}`;
+    if (key !== range && !entries.get(sibling)?.data) {
+      await load(sibling);
+    }
+  }
 };
 
 const refreshIfStale = (path: string) => {
