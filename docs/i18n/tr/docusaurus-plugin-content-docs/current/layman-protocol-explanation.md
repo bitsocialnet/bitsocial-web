@@ -171,5 +171,5 @@ Mesele şu ki, her kullanıcının paylaşım yapmadan önce tüm bunları anlam
 - [Özel Spam Önleme Sınamaları](./custom-challenges.md) sorgulama sistemini açıklıyor.
 - [Kimlik ve Topluluk Sahipliği](./identity-and-ownership.md) anahtar kontrollü olduğunu açıklıyor
   mülkiyet.
-- [Kendi müşterinizi birleştirme](/build-your-own-client/), bağımsız uygulamaların nasıl geliştirilebileceğini açıklıyor
+- [Kendi istemcinizi geliştirin](/build-your-own-client/), bağımsız uygulamaların nasıl geliştirilebileceğini açıklıyor
   aynı ağ.

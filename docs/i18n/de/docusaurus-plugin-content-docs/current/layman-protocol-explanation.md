@@ -136,7 +136,7 @@ Eine App fügt die menschliche Erfahrung rund um das Protokoll hinzu:
 - Mobil-, Desktop- oder Browser-Paketierung
 - Geschäftsmodell und Zahlungsausfälle
 
-Deshalb kann Bitsocial verschiedene App-Stile unterstützen. 5chan kann sich wie ein Imageboard anfühlen. Seedit kann sich wie eine Forumsdiskussion anfühlen. Andere Kunden können andere Entdeckungsoberflächen, Ranking-Systeme, Moderationsansichten oder Community-Standards erstellen und dabei weiterhin kompatible Bitsocial-Communitys verwenden.
+Deshalb kann Bitsocial verschiedene App-Stile unterstützen. 5chan kann sich wie ein Imageboard anfühlen. Seedit kann sich wie eine Forumsdiskussion anfühlen. Andere Clients können andere Entdeckungsoberflächen, Ranking-Systeme, Moderationsansichten oder Community-Standards erstellen und dabei weiterhin kompatible Bitsocial-Communitys verwenden.
 
 Das Protokoll hält den Besitz und die Veröffentlichung portierbar. Apps konkurrieren um die Produktqualität.
 
@@ -171,5 +171,5 @@ Der Punkt ist nicht, dass jeder Benutzer dies alles verstehen muss, bevor er etw
 - [Benutzerdefinierte Anti-Spam-Herausforderungen](./custom-challenges.md) erklärt das Challenge-System.
 - [Identität und Eigentum an Communities](./identity-and-ownership.md) erklärt schlüsselgesteuert
   Eigentum.
-- [Erstellen Sie Ihren eigenen Kunden](/build-your-own-client/) erklärt, wie unabhängige Apps darauf aufbauen können
+- [Erstellen Sie Ihren eigenen Client](/build-your-own-client/) erklärt, wie unabhängige Apps darauf aufbauen können
   das gleiche Netzwerk.

@@ -26,7 +26,7 @@ De afzonderlijke productvraag is: "Welke community's moet een gebruiker als eers
 
 Bitsocial laat dat over aan apps, lijsten en gebruikers in plaats van één antwoord in het netwerk te bakken. Voorbeelden zijn onder meer:
 
-- een klant die communities toont die de gebruiker al volgt
+- een client die communities toont die de gebruiker al volgt
 - een samengestelde standaardlijst voor een app in Reddit-stijl
 - directoryslots voor een app in imageboard-stijl
 - zoek- of rangschikkingsindexen die door een specifieke app worden bijgehouden

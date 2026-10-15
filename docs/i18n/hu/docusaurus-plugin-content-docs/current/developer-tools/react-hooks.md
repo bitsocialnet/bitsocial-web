@@ -80,7 +80,7 @@ Tartalom közzététele és írási műveletek végrehajtása.
 
 Figyelje a kapcsolat állapotát, és lépjen kapcsolatba egy távoli Bitsocial démonnal.
 
-- `useClientsStates(options?)` -- visszaadja az IPFS/pubsub ügyfelek kapcsolati állapotát
+- `useClientsStates(options?)` -- visszaadja az IPFS/pubsub kliensek kapcsolati állapotát
 - RPC beállítások hook -- az aktuális RPC démon konfigurációt adja vissza
 
 ## Fejlesztés

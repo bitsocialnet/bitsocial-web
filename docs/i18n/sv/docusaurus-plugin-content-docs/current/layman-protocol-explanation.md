@@ -171,5 +171,5 @@ Poängen är inte att alla användare behöver förstå allt detta innan de post
 - [Anpassade anti-spam-utmaningar](./custom-challenges.md) förklarar utmaningssystemet.
 - [Identitet och gemenskapsägande](./identity-and-ownership.md) förklarar nyckelkontrollerad
   ägande.
-- [Bygg din egen kund](/build-your-own-client/) förklarar hur oberoende appar kan bygga vidare på
+- [Bygg din egen klient](/build-your-own-client/) förklarar hur oberoende appar kan bygga vidare på
   samma nätverk.

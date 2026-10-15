@@ -108,7 +108,7 @@ Tính linh hoạt đó rất quan trọng vì thư rác thay đổi. Quy tắc t
 
 Bitsocial không bị kiểm duyệt. Đó là sự kiểm duyệt mà không cần một siêu quản trị viên toàn cầu.
 
-Một cộng đồng có thể có chủ sở hữu và người kiểm duyệt. Địa chỉ của người điều hành là một phần của trạng thái cộng đồng. Khi người điều hành thực hiện một hành động, hành động đó có thể được ký. Nút cộng đồng và khách hàng có thể kiểm tra chữ ký đối với danh sách người kiểm duyệt.
+Một cộng đồng có thể có chủ sở hữu và người kiểm duyệt. Địa chỉ của người điều hành là một phần của trạng thái cộng đồng. Khi người điều hành thực hiện một hành động, hành động đó có thể được ký. Nút cộng đồng và ứng dụng khách có thể kiểm tra chữ ký đối với danh sách người kiểm duyệt.
 
 Điều đó mang lại cho sự kiểm duyệt một phạm vi cục bộ:
 
@@ -136,7 +136,7 @@ Một ứng dụng bổ sung thêm trải nghiệm của con người xung quanh
 - bao bì trên thiết bị di động, máy tính để bàn hoặc trình duyệt
 - mô hình kinh doanh và mặc định
 
-Đó là lý do tại sao Bitsocial có thể hỗ trợ các kiểu ứng dụng khác nhau. 5chan có thể giống như một bảng hình ảnh. Seedit có thể giống như một cuộc thảo luận kiểu diễn đàn. Các khách hàng khác có thể xây dựng các bề mặt khám phá, hệ thống xếp hạng, chế độ xem kiểm duyệt hoặc mặc định cộng đồng khác nhau trong khi vẫn sử dụng các cộng đồng Bitsocial tương thích bên dưới.
+Đó là lý do tại sao Bitsocial có thể hỗ trợ các kiểu ứng dụng khác nhau. 5chan có thể giống như một bảng hình ảnh. Seedit có thể giống như một cuộc thảo luận kiểu diễn đàn. Các ứng dụng khách khác có thể xây dựng các bề mặt khám phá, hệ thống xếp hạng, chế độ xem kiểm duyệt hoặc mặc định cộng đồng khác nhau trong khi vẫn sử dụng các cộng đồng Bitsocial tương thích bên dưới.
 
 Giao thức giữ quyền sở hữu và xuất bản di động. Ứng dụng cạnh tranh về chất lượng sản phẩm.
 
@@ -171,5 +171,5 @@ Vấn đề không phải là mọi người dùng đều cần hiểu tất c�
 - [Thử chống rác tùy chỉnh](./custom-challenges.md) giải thích hệ thống thử thách.
 - [Danh tính và quyền sở hữu cộng đồng](./identity-and-ownership.md) giải thích về kiểm soát khóa
   quyền sở hữu.
-- [Xây dựng khách hàng riêng của bạn](/build-your-own-client/) giải thích cách các ứng dụng độc lập có thể xây dựng trên đó
+- [Tự xây dựng ứng dụng khách của bạn](/build-your-own-client/) giải thích cách các ứng dụng độc lập có thể xây dựng trên đó
   cùng một mạng.

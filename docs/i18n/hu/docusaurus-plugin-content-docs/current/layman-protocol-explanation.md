@@ -108,7 +108,7 @@ A fókuszált magyarázatért olvassa el az [Egyéni levélszemét-ellenes kihí
 
 A Bitsocial nem moderálásmentes. Ez moderálás egyetlen globális szuperadminisztrátor nélkül.
 
-Egy közösségnek lehetnek tulajdonosai és moderátorai. A moderátorok címei a közösségi állapot részét képezik. Amikor egy moderátor végrehajt egy műveletet, azt alá lehet írni. A közösségi csomópont és az ügyfelek ellenőrizhetik az aláírást a moderátorlistában.
+Egy közösségnek lehetnek tulajdonosai és moderátorai. A moderátorok címei a közösségi állapot részét képezik. Amikor egy moderátor végrehajt egy műveletet, azt alá lehet írni. A közösségi csomópont és a kliensek ellenőrizhetik az aláírást a moderátorlistában.
 
 Ez helyi hatókört ad a moderálásnak:
 
@@ -136,7 +136,7 @@ Egy alkalmazás hozzáadja az emberi tapasztalatot a protokollhoz:
 - mobil, asztali vagy böngésző csomagolásban
 - üzleti modellt és alapértelmezéseket
 
-Ez az oka annak, hogy a Bitsocial támogatja a különböző alkalmazásstílusokat. Az 5chan úgy érezheti magát, mint egy imageboard. A Seedit fórum-jellegű vita lehet. Más ügyfelek különböző felfedezési felületeket, rangsorolási rendszereket, moderálási nézeteket vagy közösségi alapértelmezéseket építhetnek fel, miközben továbbra is kompatibilis Bitsocial közösségeket használnak alatta.
+Ez az oka annak, hogy a Bitsocial támogatja a különböző alkalmazásstílusokat. Az 5chan úgy érezheti magát, mint egy imageboard. A Seedit fórum-jellegű vita lehet. Más kliensek különböző felfedezési felületeket, rangsorolási rendszereket, moderálási nézeteket vagy közösségi alapértelmezéseket építhetnek fel, miközben továbbra is kompatibilis Bitsocial közösségeket használnak alatta.
 
 A protokoll a tulajdonjogot és a közzétételt hordozhatóvá teszi. Az alkalmazások a termékminőségben versenyeznek.
 
@@ -171,5 +171,5 @@ A lényeg nem az, hogy minden felhasználónak meg kell értenie mindezt a közz
 - [Egyéni levélszemét-ellenes kihívások](./custom-challenges.md) magyarázza a kihívásrendszert.
 - Az [Identitás és közösségi tulajdon](./identity-and-ownership.md) magyarázata a kulcsvezérelt
   tulajdonjog.
-- [Készítse el saját ügyfelét](/build-your-own-client/) elmagyarázza, hogyan építhetnek a független alkalmazások
+- [Építsen saját klienst](/build-your-own-client/) elmagyarázza, hogyan építhetnek a független alkalmazások
   ugyanaz a hálózat.

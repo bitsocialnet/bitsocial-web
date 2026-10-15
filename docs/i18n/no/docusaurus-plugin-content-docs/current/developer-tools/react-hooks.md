@@ -40,7 +40,7 @@ Administrer lokale brukerkontoer, identitet og innstillinger.
 
 Hent og samhandle med individuelle kommentarer og tråder.
 
-- `useComment(commentCid?)` -- henter en enkelt kommentar ved sin kunde-ID
+- `useComment(commentCid?)` -- henter en enkelt kommentar ved sin CID
 - `useComments(commentCids?)` -- henter flere kommentarer i batch
 - `useEditedComment(comment?)` -- returnerer den siste redigerte versjonen av en kommentar
 
