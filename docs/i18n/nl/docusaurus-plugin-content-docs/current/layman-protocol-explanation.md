@@ -136,7 +136,7 @@ Een app voegt de menselijke ervaring rond het protocol toe:
 - mobiele, desktop- of browserverpakking
 - bedrijfsmodel en standaarden
 
-Daarom kan Bitsocial verschillende app-stijlen ondersteunen. 5chan kan aanvoelen als een imageboard. Seedit kan aanvoelen als een discussie in forumstijl. Andere klanten kunnen verschillende ontdekkingsoppervlakken, rangschikkingssystemen, moderatieweergaven of standaardinstellingen voor de community bouwen, terwijl ze daaronder nog steeds compatibele Bitsocial-community's gebruiken.
+Daarom kan Bitsocial verschillende app-stijlen ondersteunen. 5chan kan aanvoelen als een imageboard. Seedit kan aanvoelen als een discussie in forumstijl. Andere clients kunnen verschillende ontdekkingsoppervlakken, rangschikkingssystemen, moderatieweergaven of standaardinstellingen voor de community bouwen, terwijl ze daaronder nog steeds compatibele Bitsocial-community's gebruiken.
 
 Het protocol zorgt ervoor dat eigendom en publicatie draagbaar blijven. Apps concurreren op productkwaliteit.
 
@@ -171,5 +171,5 @@ Het punt is niet dat elke gebruiker dit allemaal moet begrijpen voordat hij een 
 - [Aangepaste antispamuitdagingen](./custom-challenges.md) legt het challenge-systeem uit.
 - [Identiteit en gemeenschapseigendom](./identity-and-ownership.md) legt sleutelgestuurd uit
   eigendom.
-- [Bouw je eigen klant](/build-your-own-client/) legt uit hoe onafhankelijke apps kunnen voortbouwen op
+- [Bouw je eigen client](/build-your-own-client/) legt uit hoe onafhankelijke apps kunnen voortbouwen op
   hetzelfde netwerk.

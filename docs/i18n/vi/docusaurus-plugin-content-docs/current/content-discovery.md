@@ -16,7 +16,7 @@ Bitsocial không đưa một nguồn cấp dữ liệu toàn cầu, chỉ mục 
 
 Mỗi cộng đồng đều có một địa chỉ ổn định được lấy từ khóa công khai của nó. Khi một máy khách đã biết địa chỉ đó, nó sẽ truy vấn các bộ định tuyến HTTP hạng nhẹ để tìm các đồng nghiệp tự công bố là nhà cung cấp địa chỉ đó.
 
-Các bộ định tuyến chỉ trả về địa chỉ ngang hàng của nhà cung cấp. Họ không lưu trữ các bài đăng, siêu dữ liệu, danh sách người dùng hoặc thư mục cộng đồng mà con người có thể đọc được. Sau khi khách hàng nhận được địa chỉ ngang hàng, nó sẽ kết nối với các đồng nghiệp đó và tìm nạp siêu dữ liệu cộng đồng mới nhất cùng với các con trỏ nội dung, sau đó tìm nạp dữ liệu bài đăng thực tế bằng hàm băm.
+Các bộ định tuyến chỉ trả về địa chỉ ngang hàng của nhà cung cấp. Họ không lưu trữ các bài đăng, siêu dữ liệu, danh sách người dùng hoặc thư mục cộng đồng mà con người có thể đọc được. Sau khi ứng dụng khách nhận được địa chỉ ngang hàng, nó sẽ kết nối với các đồng nghiệp đó và tìm nạp siêu dữ liệu cộng đồng mới nhất cùng với các con trỏ nội dung, sau đó tìm nạp dữ liệu bài đăng thực tế bằng hàm băm.
 
 Điều này trả lời câu hỏi về giao thức: "Tôi có thể lấy trạng thái mới nhất cho cộng đồng này ở đâu?"
 
@@ -26,7 +26,7 @@ Câu hỏi riêng về sản phẩm là: "Người dùng nên xem cộng đồng
 
 Bitsocial để việc đó cho các ứng dụng, danh sách và người dùng thay vì đưa một câu trả lời vào mạng. Ví dụ bao gồm:
 
-- một khách hàng hiển thị các cộng đồng mà người dùng đã theo dõi
+- một ứng dụng khách hiển thị các cộng đồng mà người dùng đã theo dõi
 - danh sách mặc định được quản lý cho ứng dụng kiểu Reddit
 - khe thư mục cho ứng dụng kiểu bảng hình ảnh
 - chỉ mục tìm kiếm hoặc xếp hạng được duy trì bởi một ứng dụng cụ thể
