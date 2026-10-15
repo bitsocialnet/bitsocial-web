@@ -1,6 +1,6 @@
 ---
 title: Bitsocial and Urbit
-description: How Urbit, a network of personal servers with Ethereum-registered Urbit IDs and host-run groups in Tlon Messenger, compares with Bitsocial's peer-to-peer communities.
+description: How Urbit, a network of personal servers with Ethereum-based Urbit IDs and host-run groups in Tlon Messenger, compares with Bitsocial's peer-to-peer communities.
 ---
 
 # Bitsocial and Urbit
@@ -18,10 +18,12 @@ out.
 ## How Urbit works
 
 - **Urbit IDs.** Every ship has an Urbit ID: a number shown as a pronounceable name such as
-  `~sampel-palnet`. Ownership and each ID's networking public keys are recorded in the Azimuth
-  contracts on Ethereum. A "naive rollup" added in 2021 batches ID transactions to cut fees, and
-  Tlon runs a roller that is free for public use, according to the
-  [Urbit ID docs](https://docs.urbit.org/urbit-id/what-is-urbit-id).
+  `~sampel-palnet`. Layer 1 IDs are NFTs whose ownership and networking public keys are recorded in
+  the Azimuth contracts on Ethereum. Layer 2 IDs, added in 2021 to cut fees, use a "naive rollup":
+  their transactions are posted to Ethereum in batches, but their ownership is not stored in the
+  Azimuth contract, and each ship computes it locally. Tlon runs a roller that is free for public
+  use, according to the [Urbit ID docs](https://docs.urbit.org/urbit-id/what-is-urbit-id) and
+  [Get on Urbit](https://docs.urbit.org/get-on-urbit).
 - **A fixed hierarchy.** The address space has 256 galaxies, 65,536 stars and about 4 billion
   planets for everyday use. Galaxies issue stars, stars issue planets, and each planet can issue
   moons for its own devices. Comets are free IDs that a ship generates for itself and that never
@@ -78,11 +80,13 @@ no membership: anyone can read it, and anyone can try to post, subject to its ch
 
 ### Spam and identity
 
-Urbit fights spam by making identity scarce. The supply of planets is fixed, every one is issued by
-a star, and a banned user needs another planet from a star's owner to come back. Reputation can
-follow the hierarchy: Azimuth includes a Censures contract that lets galaxies and stars flag IDs, and
-a Tlon group can ban a whole rank at once, which shuts out free comets with one setting. Because
-scarcity is built into the address space, every group starts from the same baseline.
+Urbit fights spam by making identity scarce. The supply of planets is fixed and every one is issued
+by a star. Free comets get around that scarcity, so groups that want it to hold turn them away:
+Urbit's docs note that some groups refuse comets, and a Tlon group can ban the whole comet rank with
+one setting. Once comets are shut out, a banned user needs another planet from a star's owner to come
+back. Reputation can also follow the hierarchy: Azimuth includes a Censures contract that lets
+galaxies and stars flag IDs. Because the scarcity is built into the address space, it works the same
+way in every group that turns comets away.
 
 Bitsocial identities are free keypairs. Each community chooses its own challenge before accepting a
 post, such as a captcha, a payment, a token balance or an allowlist, and other communities can choose
@@ -90,8 +94,9 @@ differently. See [Custom Anti-Spam Challenges](/custom-challenges/).
 
 ### Blockchain and governance
 
-Urbit's identity layer depends on Ethereum. Azimuth records who owns each ID and which networking
-keys it uses, and the Galactic Senate can upgrade the contract that governs it. The same 256 galaxies
+Urbit's identity layer depends on Ethereum. The Azimuth contracts record Layer 1 ownership and
+networking keys, Layer 2 transactions are posted to Ethereum in batches, and the Galactic Senate can
+upgrade the contract that governs Azimuth. The same 256 galaxies
 also handle peer discovery and relaying, so a fixed set of identities carries both governance and
 part of the network's routing.
 
@@ -135,16 +140,16 @@ and Tlon now presents itself as a place where people and AI agents work together
 
 ## Comparison
 
-| Question          | Urbit                                                                                 | Bitsocial                                                                                      |
-| ----------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Category          | Personal-server network and operating system                                          | Peer-to-peer community network                                                                 |
-| Identity          | Urbit IDs: about 4 billion planets registered on Ethereum, plus free comets           | Ed25519 keypairs for users and communities                                                     |
-| Who runs a server | Every user, on their own ship or a hosted one                                         | Community owners; readers and posters can use a browser tab                                    |
-| Where posts live  | The group host's ship and a copy on every member's ship                               | The community owner's node and the peers that read and seed it                                 |
-| Communities       | Groups hosted by their creator's ship, with member lists                              | First-class objects whose node accepts or rejects posts                                        |
-| Spam control      | Scarce IDs issued by stars; groups ban ships or whole ranks                           | Each community's challenge before a post is accepted                                           |
-| Moderation        | The group host's roles and bans                                                       | Community owners moderate their community; apps choose what they show                          |
-| Peer discovery    | Galaxies track and relay for the ships beneath them                                   | HTTP routers return provider peers and store no content                                        |
-| Governance        | The Galactic Senate of 256 galaxies votes on Azimuth upgrades                         | No protocol-level authority over identities or communities                                     |
-| Private messages  | Encrypted direct messages and invite-only groups                                      | Public communities; no native direct messages yet                                              |
-| Main tradeoff     | A whole personal computer with private groups, but every user needs an always-on ship | Free identities and browser access, but no private messaging and only the latest state is kept |
+| Question          | Urbit                                                                                  | Bitsocial                                                                                      |
+| ----------------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Category          | Personal-server network and operating system                                           | Peer-to-peer community network                                                                 |
+| Identity          | Urbit IDs: about 4 billion planets on Ethereum or its Layer 2 rollup, plus free comets | Ed25519 keypairs for users and communities                                                     |
+| Who runs a server | Every user, on their own ship or a hosted one                                          | Community owners; readers and posters can use a browser tab                                    |
+| Where posts live  | The group host's ship and a copy on every member's ship                                | The community owner's node and the peers that read and seed it                                 |
+| Communities       | Groups hosted by their creator's ship, with member lists                               | First-class objects whose node accepts or rejects posts                                        |
+| Spam control      | Scarce IDs issued by stars; groups ban ships or whole ranks                            | Each community's challenge before a post is accepted                                           |
+| Moderation        | The group host's roles and bans                                                        | Community owners moderate their community; apps choose what they show                          |
+| Peer discovery    | Galaxies track and relay for the ships beneath them                                    | HTTP routers return provider peers and store no content                                        |
+| Governance        | The Galactic Senate of 256 galaxies votes on Azimuth upgrades                          | No protocol-level authority over identities or communities                                     |
+| Private messages  | Encrypted direct messages and invite-only groups                                       | Public communities; no native direct messages yet                                              |
+| Main tradeoff     | A whole personal computer with private groups, but every user needs an always-on ship  | Free identities and browser access, but no private messaging and only the latest state is kept |
