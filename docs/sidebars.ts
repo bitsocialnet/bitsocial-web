@@ -27,6 +27,7 @@ const sidebars: SidebarsConfig = {
         "comparisons/farcaster",
         "comparisons/blockchain-social",
         "comparisons/scuttlebutt",
+        "comparisons/urbit",
         "comparisons/lapis",
         "comparisons/mirage",
         "comparisons/reticulum",
