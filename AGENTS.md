@@ -80,6 +80,7 @@ Record recurring repository surprises with concrete mitigation in [known-surpris
 - Stage only task-owned changes, using selective patches for mixed files. Do not use `git add -A` by default. Preserve secrets, unrelated edits, and preexisting artifacts during cleanup.
 - Only commit, push, publish, or merge when authorized; existing authorization persists through necessary steps. When a PR is requested, target `master` and make it ready for review unless a draft was requested.
 - After an authorized merge, remove only the verified merged branch/worktree. Never perform Git cleanup from lifecycle hooks.
+- Open a PR for every branch you push; GitHub deletes PR branches on merge, but nothing removes a branch without one. If you abandon or supersede a pushed branch you created, delete it once you have verified it holds no unmerged work.
 - Use `gh` for GitHub operations. Use [commit-issue-format.md](docs/agent-playbooks/commit-issue-format.md) for requested wording or actual commit/issue creation, not automatic suggestions.
 
 ## Verification and resources
