@@ -11,14 +11,18 @@
 .header h2 {
   margin: 0;
   font-family: var(--ifm-heading-font-family);
-  font-size: clamp(1.6rem, 1.15rem + 1.2vw, 2.25rem);
-  letter-spacing: 0.01em;
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
 }
 
 .header p:last-child {
   margin: 0;
-  max-width: 52rem;
-  color: var(--ifm-color-emphasis-700);
+  max-width: 68ch;
+  color: var(--ifm-font-color-base);
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
 .surface {
@@ -27,7 +31,7 @@
   background: var(--bitsocial-glass-fill);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
   padding: 1rem;
 }
 
@@ -80,8 +84,16 @@
     0 0 18px rgba(37, 99, 235, 0.18);
 }
 
-.surface :global(.pagefind-ui__search-clear) {
-  color: var(--ifm-color-emphasis-600);
+/* Doubled class: Pagefind's runtime stylesheet loads later at equal specificity */
+.surface :global(.pagefind-ui__search-clear.pagefind-ui__search-clear) {
+  border: 0;
+  background: transparent;
+  color: var(--bitsocial-muted);
+  font-size: 0.8rem;
+}
+
+.surface :global(.pagefind-ui__search-clear.pagefind-ui__search-clear:hover) {
+  color: var(--ifm-heading-color);
 }
 
 .surface :global(.pagefind-ui__drawer) {

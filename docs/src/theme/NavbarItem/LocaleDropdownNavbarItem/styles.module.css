@@ -327,6 +327,31 @@
   }
 }
 
+/* Phones: collapse the navbar trigger to its globe so the brand name keeps
+   its room. The label stays in the accessibility tree as the button name. */
+@media (max-width: 480px) {
+  .triggerDesktop {
+    width: 2.35rem;
+    min-height: 2.35rem;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .triggerDesktop .triggerText {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .triggerDesktop .chevron {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .trigger,
   .chevron,

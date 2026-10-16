@@ -37,8 +37,7 @@
   --bitsocial-surface: #f7f8fb;
   --bitsocial-blue-core: #1a4fd0;
   --bitsocial-blue-glow: #2563eb;
-  --bitsocial-muted: #6b7280;
-  --bitsocial-heading-muted: #4b5563;
+  --bitsocial-muted: #5b6472;
   --bitsocial-glass-border: rgba(68, 74, 88, 0.1);
   --bitsocial-glass-fill: linear-gradient(
     rgba(170, 182, 200, 0.1),
@@ -46,6 +45,18 @@
     rgba(93, 117, 155, 0.04)
   );
   --bitsocial-backdrop: #f6f7fb;
+  --bitsocial-focus-ring: 0 0 0 2px rgb(37 99 235 / 0.92), 0 0 0 5px rgba(37, 99, 235, 0.16);
+  --bitsocial-code-bg: #ffffff;
+  --bitsocial-inline-code-bg: rgba(26, 31, 46, 0.05);
+  --bitsocial-link-underline: rgba(37, 99, 235, 0.35);
+  --bitsocial-selection: rgba(37, 99, 235, 0.18);
+  --ifm-table-border-color: var(--bitsocial-glass-border);
+  --ifm-table-head-background: rgba(26, 31, 46, 0.035);
+  --ifm-table-stripe-background: transparent;
+  --ifm-table-cell-padding: 0.7rem 1rem;
+  --ifm-scrollbar-track-background-color: transparent;
+  --ifm-scrollbar-thumb-background-color: var(--ifm-color-emphasis-300);
+  --ifm-scrollbar-thumb-hover-background-color: var(--ifm-color-emphasis-600);
   --docusaurus-highlighted-code-line-bg: rgba(37, 99, 235, 0.08);
 }
 
@@ -72,7 +83,6 @@
   --ifm-menu-color-background-hover: rgba(37, 99, 235, 0.08);
   --bitsocial-surface: #070a10;
   --bitsocial-muted: #7a8699;
-  --bitsocial-heading-muted: #9eabc2;
   --bitsocial-glass-border: rgba(232, 238, 247, 0.08);
   --bitsocial-glass-fill: linear-gradient(
     rgba(222, 244, 255, 0.05),
@@ -80,7 +90,21 @@
     rgba(120, 135, 148, 0.03)
   );
   --bitsocial-backdrop: #05070b;
+  --bitsocial-code-bg: #0b0f17;
+  --bitsocial-inline-code-bg: rgba(232, 238, 247, 0.06);
+  --bitsocial-link-underline: rgba(96, 140, 245, 0.4);
+  --bitsocial-selection: rgba(37, 99, 235, 0.32);
+  --ifm-table-head-background: rgba(232, 238, 247, 0.035);
   --docusaurus-highlighted-code-line-bg: rgba(37, 99, 235, 0.18);
+}
+
+/* Infima sets these under html[data-theme="dark"], which outranks the block
+   above, so they need the same selector weight to apply in dark mode. */
+html[data-theme="dark"] {
+  --ifm-table-stripe-background: transparent;
+  --ifm-scrollbar-track-background-color: transparent;
+  --ifm-scrollbar-thumb-background-color: var(--ifm-color-emphasis-300);
+  --ifm-scrollbar-thumb-hover-background-color: var(--ifm-color-emphasis-600);
 }
 
 /* ── Base ──────────────────────────────────────────────────────────── */
@@ -109,6 +133,27 @@ a:hover {
   text-decoration: none;
 }
 
+::selection {
+  background: var(--bitsocial-selection);
+}
+
+/* Search-term highlights (Pagefind excerpts) instead of the UA's bright yellow */
+mark {
+  border-radius: 0.2em;
+  background: var(--bitsocial-selection);
+  color: var(--ifm-heading-color);
+  padding: 0 0.1em;
+}
+
+/* Shared keyboard focus outline; controls and cards use the ring near the end of this file */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: 2px solid rgb(37 99 235 / 0.92);
+  outline-offset: 2px;
+}
+
 .main-wrapper {
   background: transparent;
 }
@@ -121,7 +166,7 @@ a:hover {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: none;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
 }
 
 @media (min-width: 997px) {
@@ -433,6 +478,13 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
 
 /* ── Doc content typography ────────────────────────────────────────── */
 
+/* Extra breathing room under the navbar; Infima's padding-top--md utility is !important */
+@media (min-width: 997px) {
+  main[class*="docMainContainer"] > .container {
+    margin-top: 1rem;
+  }
+}
+
 .theme-doc-markdown h1,
 .theme-doc-markdown h2,
 .theme-doc-markdown h3,
@@ -446,6 +498,21 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
 .theme-doc-markdown h1 {
   font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
   margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.theme-doc-markdown :is(h2, h3, h4) {
+  text-wrap: balance;
+}
+
+/* Heading permalink: neutral so it does not compete with the heading */
+.theme-doc-markdown .hash-link {
+  color: var(--bitsocial-muted);
+}
+
+.theme-doc-markdown .hash-link:hover {
+  color: var(--bitsocial-blue-glow);
 }
 
 .theme-doc-markdown h2 {
@@ -460,14 +527,15 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
   font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
 }
 
-.theme-doc-markdown p,
-.theme-doc-markdown li {
+/* :where() keeps these prose defaults below component classes such as
+   .docs-kicker, which otherwise lose to the element selector's specificity. */
+:where(.theme-doc-markdown) :is(p, li) {
   color: var(--ifm-font-color-base);
-  font-size: 0.95rem;
-  line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.75;
 }
 
-.theme-doc-markdown p {
+:where(.theme-doc-markdown) p {
   margin-bottom: 1.25rem;
 }
 
@@ -476,19 +544,133 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
   margin-top: 0;
 }
 
-.theme-doc-markdown code {
-  border: 1px solid var(--bitsocial-glass-border);
-  border-radius: 0.4rem;
-  background: color-mix(in srgb, var(--bitsocial-surface) 70%, transparent);
-  padding: 0.15rem 0.4rem;
-  font-size: 0.85em;
+.theme-doc-markdown strong {
+  color: var(--ifm-heading-color);
+  font-weight: 600;
 }
 
-.theme-code-block,
-.theme-doc-markdown pre {
+/* Prose links: underline so they do not rely on color alone. Classed links
+   (heading anchors, cards, Pagefind results) keep their own treatment;
+   Docusaurus renders unclassed links with an empty class attribute. */
+.theme-doc-markdown :is(p, li, td, blockquote) a:is(:not([class]), [class=""]) {
+  text-decoration: underline;
+  text-decoration-color: var(--bitsocial-link-underline);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.theme-doc-markdown :is(p, li, td, blockquote) a:is(:not([class]), [class=""]):hover {
+  text-decoration-color: currentColor;
+}
+
+/* Inline code only; fenced blocks are styled through .theme-code-block */
+.theme-doc-markdown :not(pre) > code {
+  border: 1px solid var(--bitsocial-glass-border);
+  border-radius: 0.375rem;
+  background: var(--bitsocial-inline-code-bg);
+  color: var(--ifm-heading-color);
+  padding: 0.1em 0.35em;
+  font-size: 0.85em;
+  vertical-align: baseline;
+  overflow-wrap: anywhere;
+}
+
+.theme-doc-markdown a > code {
+  color: inherit;
+}
+
+/* Fenced code blocks: one border, one surface, readable padding */
+.theme-code-block {
+  --prism-background-color: var(--bitsocial-code-bg) !important;
+  /* Upstream highlighted lines bleed by -var(--ifm-pre-padding), so pad through the token */
+  --ifm-pre-padding: 1.25rem;
   border: 1px solid var(--bitsocial-glass-border);
   border-radius: 1rem;
-  box-shadow: 0 4px 16px rgba(13, 18, 30, 0.06);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+/* The prism theme writes background and text-shadow inline on <pre> */
+.theme-code-block pre {
+  border: 0;
+  border-radius: 0;
+  background-color: var(--bitsocial-code-bg) !important;
+  text-shadow: none !important;
+}
+
+/* <pre> is focusable for keyboard scrolling; keep its outline inside the clipped frame */
+.theme-code-block pre[tabindex]:focus-visible {
+  outline-offset: -2px;
+}
+
+.theme-code-block pre code {
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+.theme-code-block [class*="codeBlockTitle"] {
+  border-bottom: 1px solid var(--bitsocial-glass-border);
+  padding: 0.6rem 1.25rem;
+  color: var(--bitsocial-muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.theme-code-block [class*="buttonGroup"] button {
+  border: 1px solid var(--bitsocial-glass-border);
+  border-radius: 0.5rem;
+  background: var(--bitsocial-code-bg);
+  color: var(--bitsocial-muted);
+}
+
+.theme-code-block [class*="buttonGroup"] button:hover {
+  color: var(--ifm-heading-color);
+}
+
+/* Tables: hairline rows, quiet header, rounded frame sized to content */
+.theme-doc-markdown table {
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid var(--bitsocial-glass-border);
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.theme-doc-markdown table tr {
+  border: 0;
+}
+
+.theme-doc-markdown :is(th, td) {
+  border: 0;
+  border-bottom: 1px solid var(--bitsocial-glass-border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.theme-doc-markdown tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.theme-doc-markdown th {
+  color: var(--ifm-heading-color);
+  font-family: var(--ifm-font-family-base);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.theme-doc-markdown td {
+  color: var(--ifm-font-color-base);
+  font-variant-numeric: tabular-nums;
+}
+
+.theme-doc-markdown hr {
+  height: 1px;
+  background: var(--bitsocial-glass-border);
+  margin: 3rem 0;
 }
 
 /* Generated-index pages — match overview card styling */
@@ -498,50 +680,21 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
   font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
 }
 
-/* Generated-index card list */
-[class*="cardContainer"] {
-  border: 1px solid var(--bitsocial-glass-border);
-  border-radius: 1.25rem;
-  background: var(--bitsocial-glass-fill);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 1.5rem;
-  transition:
-    transform 200ms ease,
-    border-color 200ms ease,
-    box-shadow 200ms ease;
-  box-shadow: none;
-}
-
-[class*="cardContainer"]:hover {
-  border-color: rgba(37, 99, 235, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(13, 18, 30, 0.08);
-}
-
-/* Card title — hide emoji, use display font */
-[class*="cardTitle"] {
-  font-family: var(--ifm-heading-font-family);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--ifm-heading-color);
-}
-
-/* Hide emoji prefix from card titles */
-[class*="cardTitle"]::first-letter {
-  /* Can't reliably hide emojis via CSS, handled below */
-}
-
-/* Card description */
-[class*="cardDescription"] {
+/* Doc footer: last-updated stays quiet and upright */
+.theme-last-updated {
   color: var(--bitsocial-muted);
-  font-size: 0.85rem;
-  line-height: 1.6;
+  font-size: 0.8rem;
+  font-style: normal;
 }
 
-/* Generated-index list items */
-[class*="docCardListItem"] {
-  padding-bottom: 0;
+.theme-last-updated b {
+  color: var(--ifm-font-color-base);
+  font-weight: 500;
+}
+
+.theme-edit-this-page {
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 /* ── Footer — Inter (body font) like frontpage ─────────────────────── */
@@ -695,9 +848,16 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
 }
 
 /* Admonition content text */
-.theme-admonition p {
-  font-size: 0.875rem;
+.theme-admonition :is(p, li) {
+  font-size: 0.9rem;
   line-height: 1.65;
+}
+
+.theme-admonition p {
+  margin-bottom: 0.6rem;
+}
+
+.theme-admonition [class*="admonitionContent"] > :last-child {
   margin-bottom: 0;
 }
 
@@ -716,27 +876,27 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
   position: relative;
   display: grid;
   gap: 1.25rem;
-  padding: clamp(2.5rem, 1.5rem + 3vw, 4rem) clamp(2rem, 1rem + 2vw, 3rem);
+  padding: clamp(2rem, 1.25rem + 3vw, 4rem) clamp(1.25rem, 0.5rem + 3vw, 3rem);
   overflow: hidden;
 }
 
-/* Hero heading — readable muted, not washed out */
 .docs-home__hero h1 {
   margin: 0;
-  max-width: 28ch;
+  max-width: 26ch;
   font-family: var(--ifm-heading-font-family);
-  font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem);
-  font-weight: 400;
-  line-height: 1.35;
-  color: var(--bitsocial-heading-muted);
-  letter-spacing: -0.01em;
+  font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ifm-heading-color);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .docs-home__lede {
   margin: 0;
-  max-width: 52rem;
+  max-width: 62ch;
   color: var(--ifm-font-color-base);
-  font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1rem);
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
   line-height: 1.7;
 }
 
@@ -752,20 +912,19 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
   border-radius: 999px;
-  padding: 0.6rem 1.25rem;
+  padding: 0.6rem 1.35rem;
   font-family: var(--ifm-heading-font-family);
-  font-weight: 500;
-  font-size: 0.875rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
   transition:
     box-shadow 200ms ease,
     border-color 200ms ease,
     background-color 200ms ease,
     color 200ms ease;
-}
-
-.docs-button:hover {
-  box-shadow: 0 0 16px rgba(37, 99, 235, 0.15);
 }
 
 .docs-button--glass {
@@ -780,23 +939,16 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
 }
 
 .docs-button--solid {
-  border: 1px solid color-mix(in srgb, var(--bitsocial-blue-glow) 30%, transparent);
-  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.45);
+  background: rgba(26, 79, 208, 0.14);
   color: var(--ifm-heading-color);
 }
 
 .docs-button--solid:hover {
-  background: rgba(37, 99, 235, 0.14);
-  border-color: rgba(37, 99, 235, 0.45);
-}
-
-.docs-button--ghost {
-  border: 1px solid transparent;
-  color: var(--bitsocial-muted);
-}
-
-.docs-button--ghost:hover {
+  border-color: var(--bitsocial-blue-glow);
+  background: rgba(26, 79, 208, 0.2);
   color: var(--ifm-heading-color);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.25);
 }
 
 /* ── Section layout ────────────────────────────────────────────────── */
@@ -811,22 +963,23 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
   gap: 0.5rem;
 }
 
-/* Section headings — readable, not washed-out gray */
 .docs-home__section-header h2 {
   margin: 0;
+  max-width: 32ch;
   font-family: var(--ifm-heading-font-family);
   font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
-  font-weight: 400;
-  color: var(--bitsocial-heading-muted);
-  letter-spacing: -0.01em;
-  line-height: 1.3;
+  font-weight: 500;
+  color: var(--ifm-heading-color);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  text-wrap: balance;
 }
 
 .docs-home__section-header p:last-child {
   margin: 0;
-  max-width: 52rem;
+  max-width: 68ch;
   color: var(--ifm-font-color-base);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.7;
 }
 
@@ -835,9 +988,10 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
   margin: 0;
   color: var(--bitsocial-blue-glow);
   font-family: var(--ifm-heading-font-family);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  line-height: 1;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
@@ -845,19 +999,26 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
 
 .docs-home__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
   gap: 1rem;
 }
 
+/* Even card counts pair up instead of leaving one orphan on a 3-column row */
+@media (min-width: 640px) {
+  .docs-home__grid--pairs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .docs-card {
+  position: relative;
   display: grid;
   align-content: start;
   gap: 0.5rem;
-  min-height: 11rem;
   border: 1px solid var(--bitsocial-glass-border);
   border-radius: 1.25rem;
   background: var(--bitsocial-glass-fill);
-  padding: 1.5rem;
+  padding: 1.5rem 3.25rem 1.5rem 1.5rem;
   color: var(--ifm-font-color-base);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -867,15 +1028,43 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
     box-shadow 200ms ease;
 }
 
+/* Arrow affordance: a Lucide arrow-right mask, muted at rest and blue on hover */
+.docs-card::after {
+  content: "";
+  position: absolute;
+  top: 1.45rem;
+  right: 1.35rem;
+  width: 1rem;
+  height: 1rem;
+  background: var(--bitsocial-muted);
+  opacity: 0.55;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  /* rtlcss (RTL locales) mirrors positions but not the mask image itself */
+  transform: none /*rtl:scaleX(-1)*/;
+  transition:
+    transform 200ms ease,
+    opacity 200ms ease,
+    background-color 200ms ease;
+}
+
 .docs-card:hover {
   border-color: rgba(37, 99, 235, 0.3);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(13, 18, 30, 0.08);
 }
 
+.docs-card:hover::after {
+  background: var(--bitsocial-blue-glow);
+  opacity: 1;
+  transform: translateX(2px) /*rtl:scaleX(-1) translateX(2px)*/;
+}
+
 .docs-card strong {
   font-family: var(--ifm-heading-font-family);
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.3;
   color: var(--ifm-heading-color);
@@ -883,18 +1072,17 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
 
 .docs-card span:last-child {
   color: var(--bitsocial-muted);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   line-height: 1.6;
 }
 
 .docs-card__eyebrow {
   color: var(--bitsocial-blue-glow);
   font-family: var(--ifm-heading-font-family);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.8;
 }
 
 /* ── Search embed ──────────────────────────────────────────────────── */
@@ -934,17 +1122,16 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
   padding-top: 1rem;
 }
 
-/* ── Tables in doc content ─────────────────────────────────────────── */
+/* ── Focus ring ────────────────────────────────────────────────────── */
 
-.theme-doc-markdown table {
-  font-size: 0.875rem;
-}
-
-.theme-doc-markdown th {
-  font-family: var(--ifm-font-family-base);
-  font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.02em;
+/* After the hover rules so a hovered control still shows its focus ring */
+.docs-card:focus-visible,
+.docs-button:focus-visible,
+.navbar__link:focus-visible,
+.menu__link:focus-visible,
+.pagination-nav__link:focus-visible {
+  outline: none;
+  box-shadow: var(--bitsocial-focus-ring);
 }
 
 /* ── Responsive ────────────────────────────────────────────────────── */
@@ -956,6 +1143,10 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --ifm-table-cell-padding: 0.6rem 0.75rem;
+  }
+
   .docs-home__actions {
     flex-direction: column;
   }
@@ -974,8 +1165,13 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
 
   a,
   .docs-card,
+  .docs-card::after,
   .docs-button {
     transition: none;
+  }
+
+  .docs-card:hover {
+    transform: none;
   }
 
   .menu__caret::before,

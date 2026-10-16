@@ -2,6 +2,9 @@
   position: relative;
   width: min(19rem, 32vw);
   min-width: 12rem;
+  /* Reserve the input height so the fallback link stays a full pill while
+     Pagefind is loading, unavailable, or running without JavaScript. */
+  min-height: 2.35rem;
 }
 
 .mobileLink {
@@ -60,6 +63,14 @@
   color: var(--bitsocial-muted);
   font-size: 0.875rem;
   text-decoration: none;
+  transition:
+    color 200ms ease,
+    border-color 200ms ease;
+}
+
+.placeholder:hover {
+  border-color: color-mix(in srgb, var(--bitsocial-blue-core) 26%, var(--bitsocial-glass-border));
+  color: var(--ifm-heading-color);
 }
 
 .searchShell :global(.pagefind-ui) {
@@ -228,6 +239,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .placeholder,
   .searchShell :global(.pagefind-ui__search-input.pagefind-ui__search-input) {
     transition: none;
   }

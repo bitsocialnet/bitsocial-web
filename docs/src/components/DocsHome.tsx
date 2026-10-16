@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
 import PagefindSearch from "./PagefindSearch";
@@ -353,7 +354,7 @@ function CardGrid({
   cards: ReadonlyArray<{ to: string; eyebrow: string; title: string; body: string }>;
 }) {
   return (
-    <div className="docs-home__grid">
+    <div className={clsx("docs-home__grid", cards.length % 2 === 0 && "docs-home__grid--pairs")}>
       {cards.map((card) => (
         <Link key={card.to} className="docs-card" to={card.to}>
           <span className="docs-card__eyebrow">{card.eyebrow}</span>
@@ -392,7 +393,7 @@ export default function DocsHome() {
               "Primary docs home CTA linking to the local moderation doc.",
             )}
           </Link>
-          <Link className="docs-button docs-button--ghost" to="/search/">
+          <Link className="docs-button docs-button--glass" to="/search/">
             {tr(
               "docs.home.hero.action.searchDocs",
               "Search docs",

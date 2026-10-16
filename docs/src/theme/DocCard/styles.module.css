@@ -1,0 +1,77 @@
+.cardContainer:global(.card) {
+  --ifm-link-color: var(--ifm-heading-color);
+  --ifm-link-hover-color: var(--ifm-heading-color);
+  --ifm-link-hover-decoration: none;
+
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1.35rem 1.5rem;
+  border: 1px solid var(--bitsocial-glass-border);
+  border-radius: 1.25rem;
+  background: var(--bitsocial-glass-fill);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: none;
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.cardContainer:global(.card):hover {
+  border-color: rgba(37, 99, 235, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(13, 18, 30, 0.08);
+}
+
+.cardContainer:global(.card):focus-visible {
+  outline: none;
+  box-shadow: var(--bitsocial-focus-ring);
+}
+
+.cardIcon {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-bottom: 0.35rem;
+  color: var(--bitsocial-muted);
+  transition: color 200ms ease;
+}
+
+.cardContainer:hover .cardIcon {
+  color: var(--bitsocial-blue-glow);
+}
+
+.cardTitle {
+  margin: 0;
+  color: var(--ifm-heading-color);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Two lines instead of upstream's single truncated line, so summaries stay readable */
+.cardDescription {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--bitsocial-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardContainer:global(.card),
+  .cardIcon {
+    transition: none;
+  }
+
+  .cardContainer:global(.card):hover {
+    transform: none;
+  }
+}
