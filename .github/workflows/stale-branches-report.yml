@@ -1,0 +1,101 @@
+name: Stale branches report
+
+# Lists branches that look stale in a single issue so a person can decide what to delete.
+# It never deletes branches: an unmerged branch can still be superseded work worth keeping,
+# and that call needs a human.
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/github-script@v8
+        env:
+          STALE_DAYS: "14"
+        with:
+          script: |
+            const staleDays = Number(process.env.STALE_DAYS);
+            const title = "Stale branches report";
+            const { owner, repo } = context.repo;
+            const fullName = `${owner}/${repo}`;
+
+            const { data: repoInfo } = await github.rest.repos.get({ owner, repo });
+            const defaultBranch = repoInfo.default_branch;
+            const branches = await github.paginate(github.rest.repos.listBranches, { owner, repo, per_page: 100 });
+            const pulls = await github.paginate(github.rest.pulls.list, { owner, repo, state: "all", per_page: 100 });
+
+            const pullsByBranch = new Map();
+            for (const pull of pulls) {
+              if (pull.head.repo?.full_name !== fullName) continue;
+              const list = pullsByBranch.get(pull.head.ref) ?? [];
+              list.push(pull);
+              pullsByBranch.set(pull.head.ref, list);
+            }
+
+            const rows = [];
+            for (const branch of branches) {
+              if (branch.name === defaultBranch || branch.protected) continue;
+              const branchPulls = pullsByBranch.get(branch.name) ?? [];
+              if (branchPulls.some((pull) => pull.state === "open")) continue;
+
+              const { data: commit } = await github.rest.repos.getCommit({ owner, repo, ref: branch.commit.sha });
+              const committedAt = new Date(commit.commit.committer.date);
+              const ageDays = Math.floor((Date.now() - committedAt.getTime()) / 86_400_000);
+              const mergedAtTip = branchPulls.find((pull) => pull.merged_at && pull.head.sha === branch.commit.sha);
+              const merged = branchPulls.find((pull) => pull.merged_at);
+              const closed = branchPulls.find((pull) => pull.state === "closed" && !pull.merged_at);
+
+              let status;
+              if (mergedAtTip) status = `Merged in #${mergedAtTip.number} with no later commits; safe to delete`;
+              else if (ageDays < staleDays) continue;
+              else if (merged) status = `Has commits after #${merged.number} was merged`;
+              else if (closed) status = `#${closed.number} was closed without merging`;
+              else status = "Never had a PR";
+
+              const compare = `https://github.com/${fullName}/compare/${defaultBranch}...${branch.name}`;
+              const age = `${ageDays} day${ageDays === 1 ? "" : "s"}`;
+              rows.push(`| [\`${branch.name}\`](${compare}) | ${committedAt.toISOString().slice(0, 10)} (${age}) | ${status} |`);
+            }
+
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              state: "open",
+              creator: "github-actions[bot]",
+              per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title && !issue.pull_request);
+
+            if (rows.length === 0) {
+              if (existing) {
+                await github.rest.issues.createComment({ owner, repo, issue_number: existing.number, body: "No stale branches remain." });
+                await github.rest.issues.update({ owner, repo, issue_number: existing.number, state: "closed", state_reason: "completed" });
+              }
+              core.info("No stale branches.");
+              return;
+            }
+
+            const body = [
+              `These branches have no open PR, and either point at a merged PR's head or have had no commits for ${staleDays} days.`,
+              "Nothing here is deleted automatically. Check each branch, then delete it from the Branches page or with `git push origin --delete <branch>`.",
+              "",
+              "| Branch | Last commit | Status |",
+              "| --- | --- | --- |",
+              ...rows,
+              "",
+              `_Updated by the [stale branches report](https://github.com/${fullName}/actions/workflows/stale-branches-report.yml) workflow._`,
+            ].join("\n");
+
+            if (existing) await github.rest.issues.update({ owner, repo, issue_number: existing.number, body });
+            else await github.rest.issues.create({ owner, repo, title, body });
+            core.info(`Reported ${rows.length} stale branch(es).`);
