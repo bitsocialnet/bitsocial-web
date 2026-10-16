@@ -11,10 +11,9 @@ const repoEditUrl = "https://github.com/bitsocialnet/bitsocial-web/tree/master";
 const showDocsGitMetadata = process.env.VERCEL !== "1";
 const docsPreviewMode = process.env.DOCS_START_MODE === "live" ? "live" : "multilocale";
 
-/** Docs live at docs.bitsocial.net; logo + title must link to the main site root, not useBaseUrl("/"). */
+/** Docs live at docs.bitsocial.net; the navbar brand links to the docs home of the current locale. */
 const docsSiteOrigin = "https://docs.bitsocial.net";
-const mainSiteOrigin = "https://bitsocial.net";
-const navbarBrandTitle = "Bitsocial";
+const navbarBrandTitle = "Bitsocial Docs";
 const localeConfigs = Object.fromEntries(
   SUPPORTED_LANGUAGES.map((language) => [
     language.code,
@@ -108,7 +107,6 @@ const config: Config = {
       logo: {
         alt: "Bitsocial logo",
         src: "img/logo.png",
-        href: `${mainSiteOrigin}/`,
       },
       items: [
         {

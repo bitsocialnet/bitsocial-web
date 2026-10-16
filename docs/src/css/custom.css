@@ -189,6 +189,13 @@ summary:focus-visible,
   margin-right: 1.5rem;
 }
 
+/* Keeps "Bitsocial Docs" untruncated down to 320px wide phones */
+@media (max-width: 996px) {
+  .navbar__brand {
+    margin-right: 0.75rem;
+  }
+}
+
 .navbar__logo {
   display: flex;
   align-items: center;
