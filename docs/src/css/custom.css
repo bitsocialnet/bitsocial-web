@@ -98,15 +98,6 @@
   --docusaurus-highlighted-code-line-bg: rgba(37, 99, 235, 0.18);
 }
 
-/* Infima sets these under html[data-theme="dark"], which outranks the block
-   above, so they need the same selector weight to apply in dark mode. */
-html[data-theme="dark"] {
-  --ifm-table-stripe-background: transparent;
-  --ifm-scrollbar-track-background-color: transparent;
-  --ifm-scrollbar-thumb-background-color: var(--ifm-color-emphasis-300);
-  --ifm-scrollbar-thumb-hover-background-color: var(--ifm-color-emphasis-600);
-}
-
 /* ── Base ──────────────────────────────────────────────────────────── */
 
 html {
