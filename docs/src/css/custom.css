@@ -1089,6 +1089,170 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
   margin-top: 0.25rem;
 }
 
+/* ── Search results (Pagefind) ─────────────────────────────────────── */
+
+/* Shared by the navbar drawer and the /search page, which tune sizes through
+   the --docs-search-* properties. Pagefind appends its stylesheet after ours
+   and doubles its Svelte hash classes, so these selectors add ancestor scope
+   and double the target class to outrank it. */
+.pagefind-ui {
+  --docs-search-divider: color-mix(in srgb, var(--bitsocial-glass-border) 80%, transparent);
+  --docs-search-guide: color-mix(in srgb, var(--bitsocial-muted) 32%, transparent);
+}
+
+.pagefind-ui .pagefind-ui__results-area.pagefind-ui__results-area {
+  margin-top: 0;
+}
+
+.pagefind-ui .pagefind-ui__message.pagefind-ui__message {
+  height: auto;
+  padding: 0 0 0.35rem;
+  color: var(--bitsocial-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.pagefind-ui .pagefind-ui__results.pagefind-ui__results {
+  margin: 0;
+}
+
+.pagefind-ui .pagefind-ui__results .pagefind-ui__result.pagefind-ui__result {
+  position: relative;
+  margin: 0;
+  padding: var(--docs-search-result-padding, 0.75rem) 0;
+  border-top: 1px solid var(--docs-search-divider);
+}
+
+.pagefind-ui .pagefind-ui__results .pagefind-ui__result.pagefind-ui__result:first-of-type {
+  padding-top: 0.35rem;
+  border-top: 0;
+}
+
+.pagefind-ui .pagefind-ui__results .pagefind-ui__result.pagefind-ui__result:last-of-type {
+  padding-bottom: 0.25rem;
+  border-bottom: 0;
+}
+
+.pagefind-ui .pagefind-ui__results .pagefind-ui__result-inner.pagefind-ui__result-inner {
+  align-items: stretch;
+  margin-top: 0;
+}
+
+.pagefind-ui .pagefind-ui__results .pagefind-ui__result-title.pagefind-ui__result-title {
+  display: block;
+  font-family: var(--ifm-heading-font-family);
+  font-size: var(--docs-search-title-size, 0.9375rem);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.pagefind-ui
+  .pagefind-ui__results
+  .pagefind-ui__result-title
+  .pagefind-ui__result-link.pagefind-ui__result-link {
+  color: var(--ifm-heading-color);
+  text-decoration: none;
+}
+
+/* The whole result row is the click target; section rows sit above it */
+.pagefind-ui .pagefind-ui__results .pagefind-ui__result-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.pagefind-ui
+  .pagefind-ui__results
+  .pagefind-ui__result-title
+  .pagefind-ui__result-link.pagefind-ui__result-link:hover {
+  color: var(--bitsocial-blue-glow);
+  text-decoration: none;
+}
+
+.pagefind-ui .pagefind-ui__results .pagefind-ui__result-excerpt.pagefind-ui__result-excerpt {
+  display: -webkit-box;
+  min-width: 0;
+  margin-top: 0.15rem;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--docs-search-excerpt-lines, 2);
+  color: var(--ifm-color-emphasis-700);
+  font-size: var(--docs-search-excerpt-size, 0.8125rem);
+  line-height: 1.55;
+}
+
+/* Section hits: an indented list on one hairline guide instead of arrows */
+.pagefind-ui .pagefind-ui__results .pagefind-ui__result-nested.pagefind-ui__result-nested {
+  position: relative;
+  z-index: 1;
+  padding: 0.3rem 0;
+  padding-inline-start: 0.85rem;
+  margin-inline-start: 0.15rem;
+  border-inline-start: 1px solid var(--docs-search-guide);
+  transition: border-color 200ms ease;
+}
+
+.pagefind-ui
+  .pagefind-ui__results
+  .pagefind-ui__result-nested.pagefind-ui__result-nested:first-of-type {
+  margin-top: 0.5rem;
+  padding-top: 0.3rem;
+}
+
+.pagefind-ui .pagefind-ui__results .pagefind-ui__result-nested.pagefind-ui__result-nested:hover {
+  border-inline-start-color: var(--bitsocial-blue-core);
+}
+
+.pagefind-ui
+  .pagefind-ui__results
+  .pagefind-ui__result-nested
+  .pagefind-ui__result-title.pagefind-ui__result-title {
+  font-family: var(--ifm-font-family-base);
+  font-size: var(--docs-search-sub-title-size, 0.875rem);
+  font-weight: 500;
+}
+
+.pagefind-ui
+  .pagefind-ui__results
+  .pagefind-ui__result-nested
+  .pagefind-ui__result-link.pagefind-ui__result-link {
+  position: static;
+  font-size: inherit;
+}
+
+.pagefind-ui
+  .pagefind-ui__results
+  .pagefind-ui__result-nested
+  .pagefind-ui__result-link.pagefind-ui__result-link::before {
+  content: none;
+}
+
+.pagefind-ui
+  .pagefind-ui__results
+  .pagefind-ui__result-nested:hover
+  .pagefind-ui__result-link.pagefind-ui__result-link {
+  color: var(--bitsocial-blue-glow);
+}
+
+.pagefind-ui .pagefind-ui__button.pagefind-ui__button {
+  height: 2.25rem;
+  margin-top: 0.75rem;
+  border: 1px solid var(--bitsocial-glass-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bitsocial-surface) 90%, transparent);
+  color: var(--ifm-heading-color);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.pagefind-ui .pagefind-ui__button.pagefind-ui__button:hover {
+  border-color: color-mix(in srgb, var(--bitsocial-blue-core) 40%, var(--bitsocial-glass-border));
+  background: color-mix(in srgb, var(--bitsocial-surface) 90%, transparent);
+  color: var(--ifm-heading-color);
+}
+
 /* ── Glass card (shared) ───────────────────────────────────────────── */
 
 .glass-card {
@@ -1170,6 +1334,10 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
 
   .docs-card:hover {
     transform: none;
+  }
+
+  .pagefind-ui .pagefind-ui__results .pagefind-ui__result-nested.pagefind-ui__result-nested {
+    transition: none;
   }
 
   .menu__caret::before,

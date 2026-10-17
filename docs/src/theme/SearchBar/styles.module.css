@@ -147,44 +147,14 @@
   overflow: auto;
   border: 1px solid var(--bitsocial-glass-border);
   border-radius: 1.25rem;
-  background: color-mix(in srgb, var(--bitsocial-surface) 94%, transparent);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  /* Solid: the navbar's own backdrop-filter keeps a nested blur from
+     reaching the page, so a translucent fill let content show through */
+  background: var(--bitsocial-surface);
   box-shadow: 0 18px 48px rgba(13, 18, 30, 0.16);
   padding: 0.85rem 1rem;
-}
-
-.searchShell :global(.pagefind-ui__message.pagefind-ui__message) {
-  font-size: 0.85rem;
-  color: var(--ifm-color-emphasis-700);
-}
-
-.searchShell :global(.pagefind-ui__result.pagefind-ui__result) {
-  border-top: 1px solid color-mix(in srgb, var(--bitsocial-glass-border) 80%, transparent);
-  padding: 0.85rem 0;
-}
-
-.searchShell :global(.pagefind-ui__result-link.pagefind-ui__result-link) {
-  color: var(--ifm-heading-color);
-  font-family: var(--ifm-heading-font-family);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.searchShell :global(.pagefind-ui__result-link.pagefind-ui__result-link:hover) {
-  color: var(--bitsocial-blue-glow);
-}
-
-.searchShell :global(.pagefind-ui__result-excerpt.pagefind-ui__result-excerpt),
-.searchShell :global(.pagefind-ui__result-nested.pagefind-ui__result-nested) {
-  color: var(--ifm-color-emphasis-700);
-}
-
-.searchShell :global(.pagefind-ui__button.pagefind-ui__button) {
-  border-radius: 999px;
-  border: 1px solid var(--bitsocial-glass-border);
-  background: color-mix(in srgb, var(--bitsocial-surface) 90%, transparent);
-  color: var(--ifm-font-color-base);
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--docs-search-guide) transparent;
 }
 
 @media (max-width: 1200px) {
