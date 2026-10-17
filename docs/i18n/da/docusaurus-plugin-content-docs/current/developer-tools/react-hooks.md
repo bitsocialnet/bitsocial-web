@@ -1,104 +1,34 @@
 ---
 title: React Hooks
-description: React hooks-bibliotek til at bygge decentrale sociale applikationer på Bitsocial-protokollen.
+description: React-hooks-bibliotek til at bygge decentrale sociale applikationer på Bitsocial-protokollen.
 sidebar_position: 1
 ---
 
 # React Hooks
 
-`bitsocial-react-hooks`-pakken giver en velkendt React hooks API til at interagere med Bitsocial-protokollen. Det håndterer at hente feeds, kommentarer og forfatterprofiler, administrere konti, udgive indhold og abonnere på fællesskaber – alt sammen uden at være afhængig af en central server.
+`@bitsocial/bitsocial-react-hooks` giver React-apps et hooks-API til Bitsocial-protokollen: feeds, kommentarer, fællesskaber, forfatterprofiler, konti og udgivelse af indhold, uden en central server. [5chan](/apps/5chan/) og [Seedit](/apps/seedit/) er bygget på det.
 
-Dette bibliotek er den primære grænseflade, der bruges af [5 chan](/apps/5chan/) og andre Bitsocial-klientapplikationer.
-
-:::note
-`bitsocial-react-hooks` forbruges i øjeblikket direkte fra GitHub i stedet for publiceret til npm.
-:::
+Biblioteket har sit eget dokumentationssite, som opdateres med hver ny version: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## Installation
 
-Fordi pakken endnu ikke er på npm, skal du installere den direkte fra GitHub ved at fastgøre til en specifik commit-hash:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-Erstat `<commit-hash>` med den commit, du vil målrette mod.
+Pakken understøtter React 16.8 og nyere.
 
-## API-oversigt
+## Hvor du skal begynde
 
-Krogene er organiseret i funktionelle kategorier. Nedenfor er en oversigt over de mest brugte kroge i hver kategori. For fuldstændige signaturer, parametre og returtyper, se [fuld API-reference på GitHub](https://github.com/bitsocialnet/bitsocial-react-hooks).
-
-### Regnskaber
-
-Administrer lokale brugerkonti, identitet og indstillinger.
-
-- `useAccount(accountName?)` -- returnerer det aktive (eller navngivne) kontoobjekt
-- `useAccounts()` -- returnerer alle lokalt lagrede konti
-- `useAccountComments(options?)` -- returnerer kommentarer udgivet af den aktive konto
-
-### Kommentarer
-
-Hent og interager med individuelle kommentarer og tråde.
-
-- `useComment(commentCid?)` -- henter en enkelt kommentar ved sit CID
-- `useComments(commentCids?)` -- henter flere kommentarer i batch
-- `useEditedComment(comment?)` -- returnerer den senest redigerede version af en kommentar
-
-### Fællesskaber
-
-Hent metadata og indstillinger for fællesskabet.
-
-- Single-community lookup hook – henter et fællesskab efter adresse
-- Opslagskrog for flere fællesskaber -- henter flere fællesskaber
-- Community statistik hook - returnerer abonnenter og indlæg
-
-### Forfattere
-
-Slå forfatterprofiler og metadata op.
-
-- `useAuthor(authorAddress?)` -- henter en forfatterprofil
-- `useAuthorComments(options?)` -- returnerer kommentarer fra en bestemt forfatter
-- `useResolvedAuthorAddress(authorAddress?)` -- løser en menneskelig læsbar adresse (f.eks. ENS) til dens protokoladresse
-
-### Feeds
-
-Abonner på og sideindsæt indholdsfeeds.
-
-- `useFeed(options?)` -- returnerer et pagineret feed med indlæg fra et eller flere fællesskaber
-- `useBufferedFeeds(feedOptions?)` -- præ-bufferer flere feeds for hurtigere gengivelse
-- `useAuthorFeed(authorAddress?)` -- returnerer et feed med indlæg fra en bestemt forfatter
-
-### Handlinger
-
-Udgiv indhold og udfør skrivehandlinger.
-
-- `usePublishComment(options?)` -- udgiv en ny kommentar eller svar
-- `usePublishVote(options?)` -- afgiv en op- eller nedstemme
-- `useSubscribe(options?)` -- tilmeld eller afmeld et fællesskab
-
-### stater og RPC
-
-Overvåg forbindelsestilstand og interager med en ekstern Bitsocial-dæmon.
-
-- `useClientsStates(options?)` -- returnerer forbindelsestilstanden for IPFS/pubsub-klienter
-- RPC-indstillingshook -- returnerer den aktuelle RPC-dæmonkonfiguration
-
-## Udvikling
-
-Sådan arbejder du på hooks-biblioteket lokalt:
-
-**Forudsætninger:** Node.js, Corepack aktiveret, Garn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-Se repository README for test- og build-kommandoer.
+- [Kvikstart](https://hooks.bitsocial.net/docs/quickstart/): gengiv dit første fællesskabsfeed.
+- [Koncepter](https://hooks.bitsocial.net/docs/concepts/): hvordan feeds, lokale konti, delt tilstand og udgivelse hænger sammen.
+- [API-reference](https://hooks.bitsocial.net/docs/api/feeds-hooks/): alle hooks med deres indstillinger og returværdier.
+- [Playground](https://hooks.bitsocial.net/#playground): rediger live-eksempler, der kører på simuleret indhold.
+- [Byg med AI](https://hooks.bitsocial.net/docs/ai/): `llms.txt` og Markdown-versioner af hver side til kodeagenter.
 
 ## Links
 
+- **Dokumentation:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **Licens:** GPL-2.0-kun
+- **Licens:** GPL-3.0-or-later

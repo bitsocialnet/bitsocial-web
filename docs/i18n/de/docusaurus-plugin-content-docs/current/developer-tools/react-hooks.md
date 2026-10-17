@@ -1,104 +1,34 @@
 ---
-title: Reagieren Sie auf Hooks
-description: React-Hooks-Bibliothek zum Aufbau dezentraler sozialer Anwendungen auf dem Bitsocial-Protokoll.
+title: React Hooks
+description: React-Hooks-Bibliothek zum Erstellen dezentraler sozialer Anwendungen auf dem Bitsocial-Protokoll.
 sidebar_position: 1
 ---
 
-# Reagieren Sie auf Hooks
+# React Hooks
 
-Das `bitsocial-react-hooks`-Paket bietet eine bekannte React-Hooks-API für die Interaktion mit dem Bitsocial-Protokoll. Es übernimmt das Abrufen von Feeds, Kommentaren und Autorenprofilen, das Verwalten von Konten, das Veröffentlichen von Inhalten und das Abonnieren von Communities – und das alles, ohne auf einen zentralen Server angewiesen zu sein.
+`@bitsocial/bitsocial-react-hooks` stellt React-Apps eine Hooks-API für das Bitsocial-Protokoll bereit: Feeds, Kommentare, Communities, Autorenprofile, Konten und das Veröffentlichen von Inhalten, ganz ohne zentralen Server. [5chan](/apps/5chan/) und [Seedit](/apps/seedit/) basieren darauf.
 
-Diese Bibliothek ist die primäre Schnittstelle, die von [5chan](/apps/5chan/) und anderen Bitsocial-Clientanwendungen verwendet wird.
-
-:::note
-`bitsocial-react-hooks` wird derzeit direkt von GitHub genutzt und nicht auf npm veröffentlicht.
-:::
+Die Bibliothek hat eine eigene Dokumentationsseite, die mit jedem Release aktualisiert wird: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## Installation
 
-Da sich das Paket noch nicht auf npm befindet, installieren Sie es direkt von GitHub und pinnen Sie es an einen bestimmten Commit-Hash an:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-Ersetzen Sie `<commit-hash>` durch den Commit, auf den Sie abzielen möchten.
+Das Paket unterstützt React 16.8 und neuer.
 
-## API-Übersicht
+## Einstieg
 
-Die Haken sind in funktionale Kategorien unterteilt. Nachfolgend finden Sie eine Zusammenfassung der am häufigsten verwendeten Haken in jeder Kategorie. Vollständige Signaturen, Parameter und Rückgabetypen finden Sie in der [vollständigen API-Referenz auf GitHub](https://github.com/bitsocialnet/bitsocial-react-hooks).
-
-### Konten
-
-Verwalten Sie lokale Benutzerkonten, Identitäten und Einstellungen.
-
-- `useAccount(accountName?)` – gibt das aktive (oder benannte) Kontoobjekt zurück
-- `useAccounts()` – gibt alle lokal gespeicherten Konten zurück
-- `useAccountComments(options?)` – gibt vom aktiven Konto veröffentlichte Kommentare zurück
-
-### Kommentare
-
-Rufen Sie einzelne Kommentare und Threads ab und interagieren Sie mit ihnen.
-
-- `useComment(commentCid?)` – ruft einen einzelnen Kommentar anhand seiner CID ab
-- `useComments(commentCids?)` – ruft mehrere Kommentare im Stapel ab
-- `useEditedComment(comment?)` – gibt die zuletzt bearbeitete Version eines Kommentars zurück
-
-### Gemeinschaften
-
-Community-Metadaten und -Einstellungen abrufen.
-
-- Such-Hook für eine einzelne Community – ruft eine Community anhand der Adresse ab
-- Multi-Community-Lookup-Hook – ruft mehrere Communities ab
-- Community-Statistik-Hook – gibt Abonnenten- und Beitragszahlen zurück
-
-### Autoren
-
-Suchen Sie nach Autorenprofilen und Metadaten.
-
-- `useAuthor(authorAddress?)` – ruft ein Autorenprofil ab
-- `useAuthorComments(options?)` – gibt Kommentare eines bestimmten Autors zurück
-- `useResolvedAuthorAddress(authorAddress?)` – löst eine für Menschen lesbare Adresse (z. B. ENS) in ihre Protokolladresse auf
-
-### Feeds
-
-Abonnieren und paginieren Sie Content-Feeds.
-
-- `useFeed(options?)` – gibt einen paginierten Feed mit Beiträgen aus einer oder mehreren Communities zurück
-- `useBufferedFeeds(feedOptions?)` – puffert mehrere Feeds für schnelleres Rendern vor
-- `useAuthorFeed(authorAddress?)` – gibt einen Feed mit Beiträgen eines bestimmten Autors zurück
-
-### Aktionen
-
-Veröffentlichen Sie Inhalte und führen Sie Schreibvorgänge durch.
-
-- `usePublishComment(options?)` – einen neuen Kommentar oder eine neue Antwort veröffentlichen
-- `usePublishVote(options?)` – Geben Sie eine positive oder negative Bewertung ab
-- `useSubscribe(options?)` – Abonnieren oder Abmelden von einer Community
-
-### Staaten und RPC
-
-Überwachen Sie den Verbindungsstatus und interagieren Sie mit einem Remote-Bitsocial-Daemon.
-
-- `useClientsStates(options?)` – gibt den Verbindungsstatus von IPFS/Pubsub-Clients zurück
-- RPC-Einstellungs-Hook – gibt die aktuelle RPC-Daemon-Konfiguration zurück
-
-## Entwicklung
-
-So arbeiten Sie lokal an der Hooks-Bibliothek:
-
-**Voraussetzungen:** Node.js, Corepack aktiviert, Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-Informationen zu Test- und Build-Befehlen finden Sie in der README-Datei des Repositorys.
+- [Schnellstart](https://hooks.bitsocial.net/docs/quickstart/): Rendern Sie Ihren ersten Community-Feed.
+- [Konzepte](https://hooks.bitsocial.net/docs/concepts/): Wie Feeds, lokale Konten, gemeinsamer Zustand und Veröffentlichen zusammenspielen.
+- [API-Referenz](https://hooks.bitsocial.net/docs/api/feeds-hooks/): Jeder Hook mit seinen Optionen und Rückgabewerten.
+- [Playground](https://hooks.bitsocial.net/#playground): Bearbeiten Sie Live-Beispiele, die mit simulierten Inhalten laufen.
+- [Mit KI entwickeln](https://hooks.bitsocial.net/docs/ai/): `llms.txt` und Markdown-Versionen jeder Seite für Coding-Agenten.
 
 ## Links
 
+- **Dokumentation:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **Lizenz:** Nur GPL-2.0
+- **Lizenz:** GPL-3.0-or-later

@@ -1,104 +1,34 @@
 ---
 title: React Hooks
-description: ספריית React Hooks לבניית יישומים חברתיים מבוזרים בפרוטוקול Bitsocial.
+description: ספריית React hooks לבניית אפליקציות חברתיות מבוזרות על גבי פרוטוקול Bitsocial.
 sidebar_position: 1
 ---
 
 # React Hooks
 
-חבילת `bitsocial-react-hooks` מספקת API מוכר של React hooks לאינטראקציה עם פרוטוקול Bitsocial. הוא מטפל בהבאת עדכונים, הערות ופרופילי מחבר, ניהול חשבונות, פרסום תוכן והרשמה לקהילות -- כל זאת מבלי להסתמך על שרת מרכזי.
+`@bitsocial/bitsocial-react-hooks` מספקת לאפליקציות React ממשק API מבוסס hooks לפרוטוקול Bitsocial: פידים, תגובות, קהילות, פרופילי מחברים, חשבונות ופרסום, בלי שרת מרכזי. הספרייה משמשת בסיס ל-[5chan](/apps/5chan/) ול-[Seedit](/apps/seedit/).
 
-ספריה זו היא הממשק העיקרי המשמש את [5chan](/apps/5chan/) ויישומי לקוח Bitsocial אחרים.
-
-:::note
-`bitsocial-react-hooks` נצרך כעת ישירות מ-GitHub במקום מפורסם ב-npm.
-:::
+לספרייה יש אתר תיעוד משלה, שמתעדכן בכל גרסה: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## התקנה
 
-מכיוון שהחבילה עדיין לא נמצאת ב-npm, התקן אותה ישירות מ-GitHub, הצמד ל-commit hash ספציפי:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-החלף את `<commit-hash>` ב-commit שאליו ברצונך למקד.
+החבילה תומכת ב-React 16.8 ומעלה.
 
-## סקירה כללית של API
+## מאיפה להתחיל
 
-הווים מאורגנים בקטגוריות פונקציונליות. להלן סיכום של הווים הנפוצים ביותר בכל קטגוריה. עבור חתימות מלאות, פרמטרים וסוגי החזרה, ראה [הפניה מלאה ל-API ב-GitHub](https://github.com/bitsocialnet/bitsocial-react-hooks).
-
-### חשבונות
-
-נהל חשבונות משתמש מקומיים, זהות והגדרות.
-
-- `useAccount(accountName?)` -- מחזירה את אובייקט החשבון הפעיל (או בעל השם).
-- `useAccounts()` -- מחזירה את כל החשבונות המאוחסנים מקומית
-- `useAccountComments(options?)` -- מחזיר הערות שפורסמו על ידי החשבון הפעיל
-
-### הערות
-
-אחזר וקיים אינטראקציה עם הערות ושרשורים בודדים.
-
-- `useComment(commentCid?)` -- מביא הערה בודדת לפי ה-CID שלו
-- `useComments(commentCids?)` -- מביא הערות מרובות באצווה
-- `useEditedComment(comment?)` -- מחזירה את הגרסה הערוכה האחרונה של הערה
-
-### קהילות
-
-אחזר מטא נתונים והגדרות של הקהילה.
-
-- וו בדיקה של קהילה אחת -- מביא קהילה לפי כתובת
-- וו חיפוש מרובות קהילה -- מביא מספר קהילות
-- הוק לנתונים סטטיסטיים של הקהילה -- מחזיר ספירת מנויים ופוסטים
-
-### מחברים
-
-חפש פרופילים ומטא נתונים של מחברים.
-
-- `useAuthor(authorAddress?)` -- מביא פרופיל מחבר
-- `useAuthorComments(options?)` -- מחזיר הערות של מחבר ספציפי
-- `useResolvedAuthorAddress(authorAddress?)` -- פותר כתובת קריאת אדם (למשל, ENS) לכתובת הפרוטוקול שלה
-
-### הזנות
-
-הירשם להזנות תוכן ועיפ אותן.
-
-- `useFeed(options?)` -- מחזירה עדכון מעומד של פוסטים מקהילה אחת או יותר
-- `useBufferedFeeds(feedOptions?)` -- מאחס מראש הזנות מרובות לעיבוד מהיר יותר
-- `useAuthorFeed(authorAddress?)` -- מחזירה עדכון של פוסטים של מחבר ספציפי
-
-### פעולות
-
-פרסום תוכן וביצוע פעולות כתיבה.
-
-- `usePublishComment(options?)` -- פרסם תגובה או תשובה חדשה
-- `usePublishVote(options?)` -- הצביעו בעד או נגד
-- `useSubscribe(options?)` -- הירשם או בטל את הרישום לקהילה
-
-### מדינות ו-RPC
-
-עקוב אחר מצב החיבור וקיים אינטראקציה עם דמון Bitsocial מרוחק.
-
-- `useClientsStates(options?)` -- מחזירה את מצב החיבור של לקוחות IPFS/pubsub
-- Hook להגדרות RPC -- מחזיר את תצורת הדמון הנוכחית של RPC
-
-## פיתוח
-
-כדי לעבוד על ספריית הוקס באופן מקומי:
-
-**דרישות מוקדמות:** Node.js, Corepack מופעלת, Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-עיין במאגר README עבור פקודות בדיקה ובנייה.
+- [התחלה מהירה](https://hooks.bitsocial.net/docs/quickstart/): הציגו את פיד הקהילה הראשון שלכם.
+- [מושגים](https://hooks.bitsocial.net/docs/concepts/): איך פידים, חשבונות מקומיים, מצב משותף ופרסום משתלבים זה בזה.
+- [תיעוד ה-API](https://hooks.bitsocial.net/docs/api/feeds-hooks/): כל hook עם האפשרויות וערכי ההחזרה שלו.
+- [סביבת התנסות](https://hooks.bitsocial.net/#playground): ערכו דוגמאות חיות שרצות על תוכן מדומה.
+- [בנייה עם בינה מלאכותית](https://hooks.bitsocial.net/docs/ai/): `llms.txt` וגרסאות Markdown של כל עמוד עבור סוכני קוד.
 
 ## קישורים
 
+- **תיעוד:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **רישיון:** GPL-2.0 בלבד
+- **רישיון:** GPL-3.0-or-later

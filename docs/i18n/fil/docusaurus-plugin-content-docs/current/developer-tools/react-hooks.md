@@ -6,99 +6,29 @@ sidebar_position: 1
 
 # React Hooks
 
-Ang `bitsocial-react-hooks` package ay nagbibigay ng pamilyar na React hooks API para sa pakikipag-ugnayan sa Bitsocial protocol. Pinangangasiwaan nito ang pagkuha ng mga feed, komento, at profile ng may-akda, pamamahala ng mga account, pag-publish ng nilalaman, at pag-subscribe sa mga komunidad -- lahat nang hindi umaasa sa isang sentral na server.
+Nagbibigay ang `@bitsocial/bitsocial-react-hooks` sa mga React app ng hooks API para sa Bitsocial protocol: mga feed, komento, komunidad, profile ng may-akda, account, at pag-publish, nang walang sentral na server. Nakabatay rito ang [5chan](/apps/5chan/) at [Seedit](/apps/seedit/).
 
-Ang library na ito ay ang pangunahing interface na ginagamit ng [5chan](/apps/5chan/) at iba pang mga application ng Bitsocial client.
-
-:::note
-Ang `bitsocial-react-hooks` ay kasalukuyang ginagamit nang direkta mula sa GitHub sa halip na na-publish sa npm.
-:::
+May sariling site ng dokumentasyon ang library, na ina-update sa bawat release: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## Pag-install
 
-Dahil ang package ay wala pa sa npm, i-install ito nang direkta mula sa GitHub, pag-pin sa isang partikular na commit hash:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-Palitan ang `<commit-hash>` ng commit na gusto mong i-target.
+Sinusuportahan ng package ang React 16.8 at mas bagong bersyon.
 
-## Pangkalahatang-ideya ng API
+## Saan magsisimula
 
-Ang mga kawit ay isinaayos sa mga functional na kategorya. Nasa ibaba ang isang buod ng pinakakaraniwang ginagamit na mga kawit sa bawat kategorya. Para sa kumpletong mga lagda, parameter, at uri ng pagbabalik, tingnan ang [buong sanggunian ng API sa GitHub](https://github.com/bitsocialnet/bitsocial-react-hooks).
+- [Mabilisang Pagsisimula](https://hooks.bitsocial.net/docs/quickstart/): i-render ang iyong unang feed ng komunidad.
+- [Mga Konsepto](https://hooks.bitsocial.net/docs/concepts/): kung paano nagkakaugnay ang mga feed, lokal na account, shared state, at pag-publish.
+- [Sanggunian ng API](https://hooks.bitsocial.net/docs/api/feeds-hooks/): bawat hook kasama ang mga opsyon at return value nito.
+- [Playground](https://hooks.bitsocial.net/#playground): mag-edit ng mga live na halimbawa na tumatakbo sa simulated na nilalaman.
+- [Bumuo gamit ang AI](https://hooks.bitsocial.net/docs/ai/): `llms.txt` at mga bersyong Markdown ng bawat pahina para sa mga coding agent.
 
-### Mga account
+## Mga Link
 
-Pamahalaan ang mga lokal na user account, pagkakakilanlan, at mga setting.
-
-- `useAccount(accountName?)` -- ibinabalik ang aktibo (o pinangalanang) account object
-- `useAccounts()` -- ibinabalik ang lahat ng lokal na nakaimbak na account
-- `useAccountComments(options?)` -- nagbabalik ng mga komentong nai-publish ng aktibong account
-
-### Mga komento
-
-Kunin at makipag-ugnayan sa mga indibidwal na komento at thread.
-
-- `useComment(commentCid?)` -- kinukuha ang isang komento ng CID nito
-- `useComments(commentCids?)` -- kumukuha ng maraming komento sa batch
-- `useEditedComment(comment?)` -- ibinabalik ang pinakabagong na-edit na bersyon ng isang komento
-
-### Mga komunidad
-
-Kunin ang metadata at mga setting ng komunidad.
-
-- Single-community lookup hook -- kinukuha ang isang komunidad ayon sa address
-- Multi-community lookup hook -- kumukuha ng maraming komunidad
-- Community stats hook -- nagbabalik ng subscriber at mga bilang ng post
-
-### Mga may-akda
-
-Hanapin ang mga profile ng may-akda at metadata.
-
-- `useAuthor(authorAddress?)` -- kumukuha ng profile ng may-akda
-- `useAuthorComments(options?)` -- nagbabalik ng mga komento ng isang partikular na may-akda
-- `useResolvedAuthorAddress(authorAddress?)` -- niresolba ang isang address na nababasa ng tao (hal., ENS) sa protocol address nito
-
-### Mga feed
-
-Mag-subscribe sa at pagbilang ng pahina sa mga feed ng nilalaman.
-
-- `useFeed(options?)` -- nagbabalik ng paginated feed ng mga post mula sa isa o higit pang mga komunidad
-- `useBufferedFeeds(feedOptions?)` -- nag-pre-buffer ng maraming feed para sa mas mabilis na pag-render
-- `useAuthorFeed(authorAddress?)` -- nagbabalik ng feed ng mga post ng isang partikular na may-akda
-
-### Mga aksyon
-
-Mag-publish ng nilalaman at magsagawa ng mga operasyon sa pagsulat.
-
-- `usePublishComment(options?)` -- mag-publish ng bagong komento o tugon
-- `usePublishVote(options?)` -- magsumite ng upvote o downvote
-- `useSubscribe(options?)` -- mag-subscribe o mag-unsubscribe mula sa isang komunidad
-
-### Estado at RPC
-
-Subaybayan ang estado ng koneksyon at makipag-ugnayan sa isang malayuang Bitsocial daemon.
-
-- `useClientsStates(options?)` -- ibinabalik ang estado ng koneksyon ng mga kliyenteng IPFS/pubsub
-- Hook ng mga setting ng RPC -- ibinabalik ang kasalukuyang configuration ng RPC daemon
-
-## Pag-unlad
-
-Upang magtrabaho sa library ng mga kawit nang lokal:
-
-**Mga Kinakailangan:** Node.js, pinagana ang Corepack, Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-Sumangguni sa repositoryong README para sa pagsubok at pagbuo ng mga utos.
-
-## Mga link
-
+- **Dokumentasyon:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **Lisensya:** GPL-2.0-lamang
+- **Lisensya:** GPL-3.0-or-later

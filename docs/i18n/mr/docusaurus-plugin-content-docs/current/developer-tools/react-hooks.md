@@ -1,104 +1,34 @@
 ---
-title: प्रतिक्रिया हुक
-description: बिटसोशियल प्रोटोकॉलवर विकेंद्रित सामाजिक अनुप्रयोग तयार करण्यासाठी प्रतिक्रिया हुक लायब्ररी.
+title: React Hooks
+description: Bitsocial प्रोटोकॉलवर विकेंद्रित सोशल ॲप्लिकेशन्स तयार करण्यासाठी React हुक लायब्ररी.
 sidebar_position: 1
 ---
 
-# प्रतिक्रिया हुक
+# React Hooks
 
-Bitsocial प्रोटोकॉलशी संवाद साधण्यासाठी `bitsocial-react-hooks` पॅकेज एक परिचित प्रतिक्रिया हुक API प्रदान करते. हे फीड, टिप्पण्या आणि लेखक प्रोफाइल आणणे, खाती व्यवस्थापित करणे, सामग्री प्रकाशित करणे आणि समुदायांची सदस्यता घेणे - सर्व काही केंद्रीय सर्व्हरवर अवलंबून न राहता हाताळते.
+`@bitsocial/bitsocial-react-hooks` React ॲप्सना Bitsocial प्रोटोकॉलसाठी हुक API देते: फीड, टिप्पण्या, समुदाय, लेखक प्रोफाइल, खाती आणि प्रकाशन, तेही केंद्रीय सर्व्हरशिवाय. [5chan](/apps/5chan/) आणि [Seedit](/apps/seedit/) याच लायब्ररीवर तयार झाले आहेत.
 
-ही लायब्ररी [5chan](/apps/5chan/) आणि इतर बिटसोशियल क्लायंट ऍप्लिकेशन्सद्वारे वापरली जाणारी प्राथमिक इंटरफेस आहे.
+या लायब्ररीची स्वतःची दस्तऐवज साइट आहे, जी प्रत्येक रिलीझसोबत अपडेट होते: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
-:::note
-`bitsocial-react-hooks` सध्या npm वर प्रकाशित करण्याऐवजी थेट GitHub वरून वापरला जातो.
-:::
-
-## स्थापना
-
-पॅकेज अद्याप npm वर नसल्यामुळे, ते थेट GitHub वरून स्थापित करा, विशिष्ट कमिट हॅशवर पिन करा:
+## इन्स्टॉलेशन
 
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-`<commit-hash>` ला तुम्ही लक्ष्य करू इच्छित असलेल्या कमिटसह बदला.
+हे पॅकेज React 16.8 आणि त्यानंतरच्या आवृत्त्यांना समर्थन देते.
 
-## API विहंगावलोकन
+## सुरुवात कुठून करावी
 
-हुक कार्यात्मक श्रेणींमध्ये आयोजित केले जातात. खाली प्रत्येक श्रेणीतील सर्वात सामान्यपणे वापरल्या जाणाऱ्या हुकचा सारांश आहे. संपूर्ण स्वाक्षरी, पॅरामीटर्स आणि रिटर्न प्रकारांसाठी, पहा [GitHub वर संपूर्ण API संदर्भ](https://github.com/bitsocialnet/bitsocial-react-hooks).
-
-### खाती
-
-स्थानिक वापरकर्ता खाती, ओळख आणि सेटिंग्ज व्यवस्थापित करा.
-
-- `useAccount(accountName?)` -- सक्रिय (किंवा नामांकित) खाते ऑब्जेक्ट परत करते
-- `useAccounts()` -- स्थानिक पातळीवर साठवलेली सर्व खाती परत करते
-- `useAccountComments(options?)` -- सक्रिय खात्याद्वारे प्रकाशित टिप्पण्या परत करते
-
-### टिप्पण्या
-
-वैयक्तिक टिप्पण्या आणि थ्रेड मिळवा आणि संवाद साधा.
-
-- `useComment(commentCid?)` -- त्याच्या CID द्वारे एकल टिप्पणी मिळवते
-- `useComments(commentCids?)` -- बॅचमध्ये अनेक टिप्पण्या मिळवते
-- `useEditedComment(comment?)` -- टिप्पणीची नवीनतम संपादित आवृत्ती परत करते
-
-### समुदाय
-
-समुदाय मेटाडेटा आणि सेटिंग्ज पुनर्प्राप्त करा.
-
-- सिंगल-कम्युनिटी लुकअप हुक -- पत्त्यानुसार समुदाय मिळवते
-- बहु-समुदाय लुकअप हुक -- एकाधिक समुदाय आणते
-- समुदाय आकडेवारी हुक -- परतावा सदस्य आणि पोस्ट संख्या
-
-### लेखक
-
-लेखक प्रोफाइल आणि मेटाडेटा पहा.
-
-- `useAuthor(authorAddress?)` -- लेखक प्रोफाइल आणते
-- `useAuthorComments(options?)` -- विशिष्ट लेखकाच्या टिप्पण्या परत करते
-- `useResolvedAuthorAddress(authorAddress?)` -- मानवी वाचनीय पत्त्याचे निराकरण करते (उदा., ENS) त्याच्या प्रोटोकॉल पत्त्यावर
-
-### फीड
-
-सामग्री फीडची सदस्यता घ्या आणि पृष्ठांकन करा.
-
-- `useFeed(options?)` -- एक किंवा अधिक समुदायांमधील पोस्टचे पृष्ठांकित फीड परत करते
-- `useBufferedFeeds(feedOptions?)` -- जलद रेंडरिंगसाठी अनेक फीड्स प्री-बफर करते
-- `useAuthorFeed(authorAddress?)` -- विशिष्ट लेखकाच्या पोस्टचे फीड परत करते
-
-### क्रिया
-
-सामग्री प्रकाशित करा आणि लेखन ऑपरेशन करा.
-
-- `usePublishComment(options?)` -- नवीन टिप्पणी किंवा उत्तर प्रकाशित करा
-- `usePublishVote(options?)` -- अपवोट किंवा डाउनव्होट करा
-- `useSubscribe(options?)` -- समुदायाची सदस्यता घ्या किंवा सदस्यता रद्द करा
-
-### राज्ये आणि RPC
-
-कनेक्शन स्थितीचे निरीक्षण करा आणि रिमोट बिटसोशियल डिमनसह संवाद साधा.
-
-- `useClientsStates(options?)` -- आयपीएफएस/पबसब क्लायंटची कनेक्शन स्थिती परत करते
-- RPC सेटिंग्ज हुक -- वर्तमान RPC डिमन कॉन्फिगरेशन परत करते
-
-## विकास
-
-हुक लायब्ररीवर स्थानिक पातळीवर काम करण्यासाठी:
-
-**पूर्वआवश्यकता:** Node.js, Corepack सक्षम, सूत ४
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-चाचणी आणि बिल्ड कमांडसाठी रेपॉजिटरी README चा संदर्भ घ्या.
+- [क्विकस्टार्ट](https://hooks.bitsocial.net/docs/quickstart/): तुमचे पहिले समुदाय फीड रेंडर करा.
+- [संकल्पना](https://hooks.bitsocial.net/docs/concepts/): फीड, स्थानिक खाती, सामायिक स्टेट आणि प्रकाशन एकत्र कसे काम करतात.
+- [API संदर्भ](https://hooks.bitsocial.net/docs/api/feeds-hooks/): प्रत्येक हुक, त्याच्या पर्यायांसह आणि रिटर्न व्हॅल्यूजसह.
+- [प्लेग्राउंड](https://hooks.bitsocial.net/#playground): सिम्युलेटेड सामग्रीवर चालणारी लाइव्ह उदाहरणे संपादित करा.
+- [AI सोबत तयार करा](https://hooks.bitsocial.net/docs/ai/): कोडिंग एजंटसाठी `llms.txt` आणि प्रत्येक पानाच्या Markdown आवृत्त्या.
 
 ## दुवे
 
+- **दस्तऐवज:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **परवाना:** GPL-2.0-केवळ
+- **परवाना:** GPL-3.0-or-later

@@ -30,6 +30,8 @@ The content is biased toward inference-time lookup, not formal API reference gen
 - [Bitsocial home](https://bitsocial.net/): Public network and ecosystem overview.
 - [Bitsocial Chain](https://chain.bitsocial.net/): BSO token and proposed Ethereum L2 appchain landing page.
 - [Bitsocial Chain llms.txt](https://chain.bitsocial.net/llms.txt): Chain-specific routing index.
+- [Bitsocial React Hooks](https://hooks.bitsocial.net/): Developer docs, API reference, and playground for building React clients with `@bitsocial/bitsocial-react-hooks`.
+- [Bitsocial React Hooks llms.txt](https://hooks.bitsocial.net/llms.txt): Hooks-specific routing index for coding agents building React clients.
 
 ## Protocol notes
 
@@ -1701,100 +1703,32 @@ Description: React hooks library for building decentralized social applications 
 
 # React Hooks
 
-The `bitsocial-react-hooks` package provides a familiar React hooks API for interacting with the Bitsocial protocol. It handles fetching feeds, comments, and author profiles, managing accounts, publishing content, and subscribing to communities -- all without relying on a central server.
+`@bitsocial/bitsocial-react-hooks` gives React apps a hooks API for the Bitsocial protocol: feeds, comments, communities, author profiles, accounts, and publishing, without a central server. [5chan](https://docs.bitsocial.net/apps/5chan/) and [Seedit](https://docs.bitsocial.net/apps/seedit/) are built on it.
 
-This library is the primary interface used by [5chan](https://docs.bitsocial.net/apps/5chan/) and other Bitsocial client applications.
-
-`bitsocial-react-hooks` is currently consumed directly from GitHub rather than published to npm.
+The library has its own documentation site, updated with every release: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## Installation
 
-Because the package is not yet on npm, install it directly from GitHub, pinning to a specific commit hash:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-Replace `<commit-hash>` with the commit you want to target.
+The package supports React 16.8 and later.
 
-## API Overview
+## Where to start
 
-The hooks are organized into functional categories. Below is a summary of the most commonly used hooks in each category. For complete signatures, parameters, and return types, see the [full API reference on GitHub](https://github.com/bitsocialnet/bitsocial-react-hooks).
-
-### Accounts
-
-Manage local user accounts, identity, and settings.
-
-- `useAccount(accountName?)` -- returns the active (or named) account object
-- `useAccounts()` -- returns all locally stored accounts
-- `useAccountComments(options?)` -- returns comments published by the active account
-
-### Comments
-
-Fetch and interact with individual comments and threads.
-
-- `useComment(commentCid?)` -- fetches a single comment by its CID
-- `useComments(commentCids?)` -- fetches multiple comments in batch
-- `useEditedComment(comment?)` -- returns the latest edited version of a comment
-
-### Communities
-
-Retrieve community metadata and settings.
-
-- Single-community lookup hook -- fetches a community by address
-- Multi-community lookup hook -- fetches multiple communities
-- Community stats hook -- returns subscriber and post counts
-
-### Authors
-
-Look up author profiles and metadata.
-
-- `useAuthor(authorAddress?)` -- fetches an author profile
-- `useAuthorComments(options?)` -- returns comments by a specific author
-- `useResolvedAuthorAddress(authorAddress?)` -- resolves a human-readable address (e.g., ENS) to its protocol address
-
-### Feeds
-
-Subscribe to and paginate content feeds.
-
-- `useFeed(options?)` -- returns a paginated feed of posts from one or more communities
-- `useBufferedFeeds(feedOptions?)` -- pre-buffers multiple feeds for faster rendering
-- `useAuthorFeed(authorAddress?)` -- returns a feed of posts by a specific author
-
-### Actions
-
-Publish content and perform write operations.
-
-- `usePublishComment(options?)` -- publish a new comment or reply
-- `usePublishVote(options?)` -- cast an upvote or downvote
-- `useSubscribe(options?)` -- subscribe or unsubscribe from a community
-
-### States and RPC
-
-Monitor connection state and interact with a remote Bitsocial daemon.
-
-- `useClientsStates(options?)` -- returns the connection state of IPFS/pubsub clients
-- RPC settings hook -- returns current RPC daemon configuration
-
-## Development
-
-To work on the hooks library locally:
-
-**Prerequisites:** Node.js, Corepack enabled, Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-Refer to the repository README for test and build commands.
+- [Quickstart](https://hooks.bitsocial.net/docs/quickstart/): render your first community feed.
+- [Concepts](https://hooks.bitsocial.net/docs/concepts/): how feeds, local accounts, shared state, and publishing fit together.
+- [API reference](https://hooks.bitsocial.net/docs/api/feeds-hooks/): every hook with its options and return values.
+- [Playground](https://hooks.bitsocial.net/#playground): edit live examples that run on simulated content.
+- [Build with AI](https://hooks.bitsocial.net/docs/ai/): `llms.txt` and Markdown versions of every page for coding agents.
 
 ## Links
 
+- **Documentation:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **License:** GPL-2.0-only
+- **License:** GPL-3.0-or-later
 
 ### Captcha Canvas Challenge
 
@@ -4310,11 +4244,11 @@ The about `apps-search` scenario waits for each character to appear in both the 
 
 Repository: bitsocialnet/5chan
 Source: https://github.com/bitsocialnet/5chan#readme
-Description: 5chan is a serverless, adminless, decentralized and open source imageboard built on the Bitsocial protocol. It features the classic imageboard directory structure, but with a crucial difference: anyone can create and own boards, and multiple boards can compete for each directory slot .
+Description: 5chan is meant to replace 4chan for people who already use it. It's a decentralized, open source imageboard built on the Bitsocial protocol. It features the classic imageboard directory structure, but with a crucial difference: anyone can create and own boards, and multiple boards can compete for each directory slot .
 
 # 5chan
 
-5chan is a serverless, adminless, decentralized and open-source imageboard built on the [Bitsocial protocol](https://bitsocial.net). It features the classic imageboard directory structure, but with a crucial difference: **anyone can create and own boards, and multiple boards can compete for each directory slot**.
+5chan is meant to replace 4chan for people who already use it. It's a decentralized, open-source imageboard built on the [Bitsocial protocol](https://bitsocial.net). It features the classic imageboard directory structure, but with a crucial difference: **anyone can create and own boards, and multiple boards can compete for each directory slot**.
 
 ## Key Features
 
@@ -4336,9 +4270,9 @@ Currently, directory assignments are temporarily handpicked by developers throug
 
 ### Future Roadmap
 
-#### In-App Board Creation
+#### Board Creation Without Running a Node
 
-Creating boards directly from the 5chan web app (5chan.app) is planned. This requires connecting via RPC to a bitsocial node—technically already possible, but there's no default connection configured. A default connection would require a public RPC service (similar to what Infura provides for crypto wallets, but for bitsocial nodes). This would allow all users to be connected to a P2P node by default using a free tier subscription in the background, potentially monetized via ads injected in the RPC service-owned boards.
+Board creation already works in the desktop app and in any 5chan client connected via RPC to a bitsocial node, but the web app (5chan.app) has no default RPC connection configured. A default connection would require a public RPC service (similar to what Infura provides for crypto wallets, but for bitsocial nodes). This would allow all users to be connected to a P2P node by default using a free tier subscription in the background, potentially monetized via ads injected in the RPC service-owned boards.
 
 #### Directory Voting
 
@@ -4375,7 +4309,7 @@ Once created, anyone can connect to your community using any bitsocial client (s
 
 Without 5chan Board Manager, a community can still be opened in 5chan, but it will not behave like a conventional imageboard board: old threads will not be archived when they fall past the last page, bump limits will not be enforced, archived threads will not be purged after the retention window, and author-deleted content will not be automatically purged.
 
-**Note**: Creating boards directly from the 5chan web app is planned for the future (see [Future Roadmap](#future-roadmap)).
+**In-app creation**: The 5chan desktop app, which runs a full bitsocial node, and any 5chan client connected to a bitsocial node over RPC can create a board with the **[Create Board]** button in the top bar. The connected node hosts the board, so it must stay online. The owner and admins can then edit the board as JSON with **[Board Settings]** on the board page from any client: admins can change its public settings, the owner can also change roles and the address, and private settings such as challenges can only be edited on the node that hosts the board. Run 5chan Board Manager for the board on the same node to get the lifecycle rules described above.
 
 ## Submitting Your Board to a Directory
 
@@ -7209,7 +7143,7 @@ EXAMPLES
   $ bitsocial challenge install ./my-local-challenge
 ```
 
-_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/challenge/install.ts)_
+_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/challenge/install.ts)_
 
 ## `bitsocial challenge list`
 
@@ -7235,7 +7169,7 @@ EXAMPLES
   $ bitsocial challenge list -q
 ```
 
-_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/challenge/list.ts)_
+_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/challenge/list.ts)_
 
 ## `bitsocial challenge ls`
 
@@ -7290,7 +7224,7 @@ EXAMPLES
   $ bitsocial challenge remove @scope/my-challenge
 ```
 
-_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/challenge/remove.ts)_
+_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/challenge/remove.ts)_
 
 ## `bitsocial challenge rm NAME`
 
@@ -7407,7 +7341,7 @@ EXAMPLES
     $ bitsocial community create --jsonFile ./create-options.json
 ```
 
-_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/community/create.ts)_
+_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/community/create.ts)_
 
 ## `bitsocial community delete ADDRESSES`
 
@@ -7432,7 +7366,7 @@ EXAMPLES
   $ bitsocial community delete 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/community/delete.ts)_
+_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/community/delete.ts)_
 
 ## `bitsocial community edit ADDRESS`
 
@@ -7503,7 +7437,7 @@ EXAMPLES
     $ bitsocial community edit bitsocial.bso --jsonFile ./edit-options.json
 ```
 
-_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/community/edit.ts)_
+_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/community/edit.ts)_
 
 ## `bitsocial community export [ADDRESS]`
 
@@ -7544,7 +7478,7 @@ EXAMPLES
   $ bitsocial community export --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/community/export.ts)_
+_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/community/export.ts)_
 
 ## `bitsocial community get [ADDRESS]`
 
@@ -7575,7 +7509,7 @@ EXAMPLES
   $ bitsocial community get --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/community/get.ts)_
+_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/community/get.ts)_
 
 ## `bitsocial community list`
 
@@ -7598,7 +7532,7 @@ EXAMPLES
   $ bitsocial community list
 ```
 
-_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/community/list.ts)_
+_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/community/list.ts)_
 
 ## `bitsocial community start ADDRESSES`
 
@@ -7632,7 +7566,7 @@ EXAMPLES
     $ bitsocial community start $(bitsocial community list -q) --concurrency 1
 ```
 
-_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/community/start.ts)_
+_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/community/start.ts)_
 
 ## `bitsocial community stop ADDRESSES`
 
@@ -7657,7 +7591,7 @@ EXAMPLES
   $ bitsocial community stop Qmb99crTbSUfKXamXwZBe829Vf6w5w5TktPkb6WstC9RFW
 ```
 
-_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/community/stop.ts)_
+_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/community/stop.ts)_
 
 ## `bitsocial daemon`
 
@@ -7707,7 +7641,7 @@ EXAMPLES
   $ bitsocial daemon --no-allowPrivateKeyExport
 ```
 
-_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/daemon.ts)_
+_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/daemon.ts)_
 
 ## `bitsocial help [COMMAND]`
 
@@ -7771,7 +7705,7 @@ EXAMPLES
   $ bitsocial logs --stdout -f
 ```
 
-_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/logs.ts)_
+_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/logs.ts)_
 
 ## `bitsocial update check`
 
@@ -7788,7 +7722,7 @@ EXAMPLES
   $ bitsocial update check
 ```
 
-_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/update/check.ts)_
+_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/update/check.ts)_
 
 ## `bitsocial update install [VERSION]`
 
@@ -7820,7 +7754,7 @@ EXAMPLES
   $ bitsocial update install --no-restart-daemons
 ```
 
-_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/update/install.ts)_
+_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/update/install.ts)_
 
 ## `bitsocial update versions`
 
@@ -7842,7 +7776,7 @@ EXAMPLES
   $ bitsocial update versions --limit 5
 ```
 
-_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.99/src/cli/commands/update/versions.ts)_
+_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.104/src/cli/commands/update/versions.ts)_
 
 ## Contribution
 
@@ -7875,7 +7809,15 @@ No — and for most users it is not the recommended way. Bitsocial desktop apps 
 
 `bitsocial-seeder` exists for operators who want to contribute consistent 24/7 seeding capacity from a VPS or a spare machine — for example, running closer to popular communities to lower fetch latency, or keeping data available during quiet periods when few app users are online. It is helpful but not required.
 
+A publicly reachable seeder also serves a role the apps usually cannot: it makes communities hosted behind NAT loadable from browsers. Most desktop nodes sit behind home routers, carrier-grade NAT, or mobile hotspots without port forwarding, so their Kubo announces only relayed (`/p2p-circuit`) addresses. A browser node cannot hole-punch to such a node (Kubo has no WebRTC private-to-private transport), and a relayed connection is too limited to serve pages, so a community whose only provider is its owner's NATed node never loads on web clients such as 5chan.app (see [pkc-js#369](https://github.com/pkcprotocol/pkc-js/issues/369)). A seeder on a public IP pins the community's pages and post updates and joins its pubsub topic, giving browsers a dialable peer to fetch from.
+
 This is also an **experimental repository**. Releases are cut frequently, internals change without warning between minor versions, and the project is treated as a place to try ideas that benefit the protocol but are not on its critical path. Please file issues if you hit anything; expect bumps.
+
+## Posting to communities hosted behind NAT
+
+Browsers cannot dial a community owner behind NAT (see [pkc-js#369](https://github.com/pkcprotocol/pkc-js/issues/369)). A publicly reachable seeder fixes both directions, not just reads: besides pinning the community's pages, the seeder's Kubo joins every seeded community's pubsub topic, so once the NAT-hosted owner node is connected to the seeder, gossipsub forwards the whole challenge exchange (challenge request, challenge, answer, verification) browser → seeder → owner and back. Nobody can dial the owner, but it finds the seeder on its own: Kubo's pubsub peer discovery looks up each joined topic's `floodsub:<topic>` routing CID through its content routers, the seeder provides exactly those CIDs to the same HTTP routers, and the owner dials out to the address it gets back. Browsers find the seeder the same way. No relay role or extra configuration is needed on either side.
+
+This is covered by `test/nat-owner-publish-e2e.test.ts`, which hosts a community on a loopback-only Kubo forced to private reachability with no bootstrap peers, seeds it from a second daemon, and gives both only an HTTP router that learns providers from what the nodes themselves announce. It checks that the owner finds and dials the seeder through the router (about a minute after the seeder starts seeding), publishes a post from a pkc-js libp2p-js client that can only reach the seeder, and confirms the same publish fails once the seeder is stopped.
 
 ## Setup
 
@@ -8989,14 +8931,26 @@ This is a fork of [mhkafadar/notifine](https://github.com/mhkafadar/notifine), s
 - **Supported events**: push (incl. branch create/delete and force-push), release, issues (incl. transfers), pull requests, comments (issue/PR review/commit), check runs, workflow runs, wiki edits, ping
 - **Issue transfers** — reported once, from the source repository, naming who moved the issue and where it landed; the destination repository's `opened` event is dropped because GitHub sends it with the original author as sender
 - **Branch filtering** — `?branch=` / `?exclude_branch=` glob patterns on the webhook URL
+- **Authenticated deliveries** — verifies HMAC-SHA256 signatures and accepts only the GitHub organization IDs of `bitsocialnet`, `bitsocialforge`, and `pkcprotocol`
+- **Public repositories only** — private repositories and missing or inconsistent visibility are acknowledged without payload logging or Telegram notifications
 - **Forum topics** — run `/start` inside a Telegram topic to receive notifications there
 - Built with Rust (actix-web + teloxide + diesel/Postgres)
 
 ## Usage
 
-1. Open a chat with the bot (or add it to a group) and send `/start`
-2. The bot replies with a webhook URL of the form `https://github.bitsocial.net/github/<token>`
-3. In your GitHub repo, open **Settings → Webhooks → Add webhook**, paste the URL, set content type to `application/json`, and pick the events you want
+Organization webhooks cover current and future public repositories in `bitsocialnet`, `bitsocialforge`, and `pkcprotocol`. New repositories need no individual webhook or secret setup. Private repositories are excluded from notifications.
+
+To configure an organization's Telegram destination (organization owners only):
+
+1. Open the destination chat or topic with the bot (or add it to a group) and send `/start`.
+2. The bot replies with that chat's webhook URL of the form `https://github.bitsocial.net/github/<token>`; sending `/start` alone does not change the organization's destination.
+3. In the organization's **Settings → Webhooks**, configure one webhook with the URL, content type `application/json`, and the desired events. The hosted setup subscribes to pushes, issues, and releases.
+4. Set **Secret** to the server's `GITHUB_WEBHOOK_SECRET`, supplied privately by the operator. Keep SSL verification enabled. Never put the secret in the URL or a repository.
+5. Verify a successful organization-hook delivery, then disable repository hooks pointing to the same destination to prevent duplicate alerts.
+
+Both JSON and form-encoded deliveries are supported. The server validates the signature over the original request bytes before parsing, filtering, or sending notifications. Missing or invalid signatures return `401`; owners outside the allowlist return `403`. The allowlist uses immutable organization IDs, so another account cannot gain access by taking an old organization name. Organization-hook pings are also supported. Self-hosters serving other organizations must change the IDs in `src/webhooks/github/security.rs`.
+
+GitHub sends organization webhooks for private repositories too. After authentication and owner checks, the bot returns `200` without processing or logging their contents. Repository events require `private: false`; if `visibility` is present, it must be `public`. Missing or inconsistent visibility is ignored. Organization pings without a repository remain supported.
 
 ### Branch filtering
 
@@ -9022,12 +8976,15 @@ Applies to push, pull request, workflow run, and create/delete events.
 | `DATABASE_URL` | yes | Postgres connection string |
 | `WEBHOOK_BASE_URL` | yes | Public base URL GitHub uses to reach the server, e.g. `https://github.bitsocial.net` |
 | `GITHUB_TELOXIDE_TOKEN` | yes | Telegram bot token from [@BotFather](https://t.me/BotFather) |
+| `GITHUB_WEBHOOK_SECRET` | yes | Random signing secret of at least 32 bytes, identical to the Secret setting on every connected GitHub webhook |
 | `PORT` | no | HTTP listen port (default `8080`) |
 | `ADMIN_LOGS` | no | `ACTIVE` to send admin logs to Telegram (default `NOT_ACTIVE`) |
 | `TELEGRAM_ADMIN_CHAT_ID` | no | Chat id that receives admin logs |
 | `ADMIN_LOG_LEVEL` | no | 0–255 verbosity threshold for admin logs (default `50`) |
 
 Database migrations are embedded and run automatically at startup.
+
+Generate the webhook secret with `openssl rand -hex 32` and store it privately. The app refuses to start with a missing or short secret. For an existing deployment, configure the secret on every connected GitHub webhook and in the server environment before deploying signature enforcement. New webhooks also require this secret; copying the URL alone is insufficient. To rotate it, coordinate updates to the server and all connected hooks.
 
 ### Docker Compose (production)
 
@@ -9038,6 +8995,7 @@ mkdir bitsocial-github-alerts && cd bitsocial-github-alerts
 curl -fsSLO https://raw.githubusercontent.com/bitsocialnet/bitsocial-github-alerts/master/deploy/docker-compose.yml
 cat > .env <<'ENV'
 GITHUB_TELOXIDE_TOKEN=<bot token>
+GITHUB_WEBHOOK_SECRET=<random webhook secret>
 WEBHOOK_BASE_URL=https://github.example.com
 DATABASE_PASSWORD=<random password>
 ENV
@@ -9094,7 +9052,18 @@ A CLI tool that implements 4chan-style thread auto-archiving and purging for 5ch
 - After `archive_purge_seconds` has elapsed since archiving → purge via `createCommentModeration({ commentModeration: { purged: true } })`
 - Purging is time-based rather than activity-based, so it also runs on a periodic sweep (`PURGE_SWEEP_INTERVAL_SECONDS`, default 60s) instead of only when a `community.update` event arrives. Without the sweep, a board that went quiet after archiving would keep expired threads in the archive until unrelated activity woke the manager.
 
-### Feature 4: Author-deleted comment purging
+### Feature 4: Boards without an archive
+
+A board whose community record sets `features.noArchive: true` has no archive, like 4chan's /b/ and /trash/:
+
+- Threads beyond position `per_page × pages` are purged right away via `createCommentModeration({ commentModeration: { purged: true } })` instead of archived
+- Threads that reach `bump_limit` are locked via `createCommentModeration({ commentModeration: { locked: true } })` instead of archived, so they stop being bumped and sink off the board
+- Threads archived earlier, by the board manager or by hand, are purged once they are past capacity, since clients no longer list an archive for the board. Ones the board manager archived also still expire through `archive_purge_seconds`
+- The flag is read from the community on every update, so it takes effect without restarting the board manager. pkc-js rejects archive moderations on such a board, and 5chan hides its archive
+
+Turn it on with bitsocial-cli (`bitsocial community edit <address> --features.noArchive`), or by uncommenting `noArchive` in the preset before running `5chan board add`.
+
+### Feature 5: Author-deleted comment purging
 
 - On each update, scan comments and replies for `deleted === true`
 - Purge via `createCommentModeration({ commentModeration: { purged: true } })`
@@ -9133,7 +9102,9 @@ Config and state are stored per-board under `~/.config/5chan/`, managed via `5ch
       "archiveCapacity": "5chan board manager: thread archived — exceeded board capacity",
       "archiveBumpLimit": "5chan board manager: thread archived — reached bump limit",
       "purgeArchived": "5chan board manager: thread purged — archive retention expired",
-      "purgeDeleted": "5chan board manager: content purged — author-deleted"
+      "purgeDeleted": "5chan board manager: content purged — author-deleted",
+      "purgeCapacity": "5chan board manager: thread purged — exceeded board capacity",
+      "lockBumpLimit": "5chan board manager: thread locked — reached bump limit"
     }
   }
 }
@@ -9145,7 +9116,7 @@ All fields except each board's `address` are optional:
 - `rpcUrl` — falls back to `PKC_RPC_WS_URL` env var, then `ws://localhost:9138`
 - `defaults` — applied to all boards unless overridden per-board
 - Per-board fields (`perPage`, `pages`, `bumpLimit`, `archivePurgeSeconds`, `moderationReasons`) override `defaults`
-- `moderationReasons` — optional object with `archiveCapacity`, `archiveBumpLimit`, `purgeArchived`, `purgeDeleted` string fields. Per-board values override defaults per-field (not the whole object). These reason strings are passed to `createCommentModeration()` so PKC clients can display why a thread was archived or purged.
+- `moderationReasons` — optional object with `archiveCapacity`, `archiveBumpLimit`, `purgeArchived`, `purgeDeleted`, `purgeCapacity`, `lockBumpLimit` string fields (the last two apply only to boards without an archive). Per-board values override defaults per-field (not the whole object). These reason strings are passed to `createCommentModeration()` so PKC clients can display why a thread was archived or purged.
 - Board directory names must match the address field in `config.json`
 
 ## Installation
@@ -9314,6 +9285,8 @@ Preset JSONC is validated with Zod. Both plain JSON and JSONC (with `//` comment
 `boardSettings` must follow pkc-js `CommunityEditOptions`:
 https://github.com/pkcprotocol/pkc-js?tab=readme-ov-file#communityeditcommunityeditoptions
 
+> **Moderator bypass:** The bundled preset exempts moderators from its challenges with `{ "roles": ["moderator", "admin", "owner"] }`. Nodes on pkc-js 0.0.101 or later reject the older `exclude.role` field (`ERR_CHALLENGE_EXCLUDE_ROLE_FIELD_RENAMED`), so custom presets must use `roles` as well. Nodes on older pkc-js accept `roles` but ignore it, so their moderators get the preset's challenges like other users.
+
 Bundled preset JSONC defaults:
 [`src/presets/community-defaults.jsonc`](https://github.com/bitsocialnet/5chan-board-manager/blob/HEAD/src/presets/community-defaults.jsonc)
 
@@ -9462,7 +9435,7 @@ EXAMPLES
   $ 5chan board add my-board.bso --apply-defaults --defaults-preset ./my-preset.json
 ```
 
-_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.30/src/commands/board/add.ts)_
+_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.31/src/commands/board/add.ts)_
 
 ## `5chan board edit ADDRESS`
 
@@ -9509,7 +9482,7 @@ EXAMPLES
   $ 5chan board edit random.bso -i
 ```
 
-_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.30/src/commands/board/edit.ts)_
+_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.31/src/commands/board/edit.ts)_
 
 ## `5chan board list`
 
@@ -9526,7 +9499,7 @@ EXAMPLES
   $ 5chan board list
 ```
 
-_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.30/src/commands/board/list.ts)_
+_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.31/src/commands/board/list.ts)_
 
 ## `5chan board remove ADDRESS`
 
@@ -9546,7 +9519,7 @@ EXAMPLES
   $ 5chan board remove random.bso
 ```
 
-_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.30/src/commands/board/remove.ts)_
+_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.31/src/commands/board/remove.ts)_
 
 ## `5chan defaults set`
 
@@ -9586,7 +9559,7 @@ EXAMPLES
   $ 5chan defaults set -i
 ```
 
-_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.30/src/commands/defaults/set.ts)_
+_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.31/src/commands/defaults/set.ts)_
 
 ## `5chan help [COMMAND]`
 
@@ -9650,7 +9623,7 @@ EXAMPLES
   $ 5chan logs --stdout -f
 ```
 
-_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.30/src/commands/logs.ts)_
+_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.31/src/commands/logs.ts)_
 
 ## `5chan start`
 
@@ -9688,7 +9661,7 @@ EXAMPLES
   $ 5chan start --log-path /var/log/5chan
 ```
 
-_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.30/src/commands/start.ts)_
+_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.31/src/commands/start.ts)_
 
 ## Config Hot-Reload
 
@@ -9913,7 +9886,7 @@ End-to-end tests run the real board manager against a real PKC RPC server:
 npm run test:e2e
 ```
 
-The e2e suite spawns its own Kubo (IPFS) daemon on random ports and an in-process PKC RPC server on port `19138`. All state is written to temp directories that are removed at teardown. No `bitsocial-cli` or docker-compose stack needs to be running — Kubo is provided by the `kubo` npm package installed as a devDependency.
+The e2e suite spawns its own Kubo (IPFS) daemon on random ports and an in-process PKC RPC server on port `19138`. All state is written to temp directories that are removed at teardown. No `bitsocial-cli` or docker-compose stack needs to be running. On first run the suite downloads the pinned Kubo release from GitHub, checks it against a pinned SHA-512 and caches it under `node_modules/.cache/kubo`; set `KUBO_BINARY` to use an existing `ipfs` binary instead.
 
 To point the suite at an externally-running RPC instead (e.g. a long-lived docker-compose stack), set `PKC_RPC_WS_URL` before invoking the script — when set, global-setup skips spawning and uses the provided URL verbatim:
 
@@ -9948,9 +9921,9 @@ Uses 4chan field names for interoperability.
 |---------|---------|-------------|-------------|
 | `per_page` | 15 | 15–30 | Threads per index page |
 | `pages` | 10 | 1–10 | Number of index pages |
-| `bump_limit` | 300 | 300–500 | Max replies before thread is archived |
+| `bump_limit` | 300 | 300–500 | Max replies before thread is archived (locked on boards without an archive) |
 | `archive_purge_seconds` | 172800 (48h) | ~48h | Seconds before archived posts are purged (no 4chan equivalent, 4chan uses ~48h) |
-| `moderationReasons` | (see below) | — | Reason strings passed to `createCommentModeration()`. Fields: `archiveCapacity`, `archiveBumpLimit`, `purgeArchived`, `purgeDeleted` |
+| `moderationReasons` | (see below) | — | Reason strings passed to `createCommentModeration()`. Fields: `archiveCapacity`, `archiveBumpLimit`, `purgeArchived`, `purgeDeleted`, `purgeCapacity`, `lockBumpLimit` |
 
 **Max active threads** = `per_page × pages` (default: 150)
 

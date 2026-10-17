@@ -6,99 +6,29 @@ sidebar_position: 1
 
 # React Hooks
 
-แพ็กเกจ `bitsocial-react-hooks` เปิดโปรโตคอล Bitsocial ออกมาในรูปของ React hooks API ที่นักพัฒนาคุ้นเคยอยู่แล้ว ครอบคลุมตั้งแต่การดึงฟีด ความคิดเห็น และโปรไฟล์ผู้เขียน ไปจนถึงการจัดการบัญชี การเผยแพร่เนื้อหา และการติดตามชุมชน -- โดยไม่ต้องพึ่งเซิร์ฟเวอร์ส่วนกลางเลยสักขั้นตอนเดียว
+`@bitsocial/bitsocial-react-hooks` มอบ hooks API สำหรับโปรโตคอล Bitsocial ให้แก่แอป React ครอบคลุมฟีด ความคิดเห็น ชุมชน โปรไฟล์ผู้เขียน บัญชี และการเผยแพร่ โดยไม่ต้องพึ่งเซิร์ฟเวอร์ส่วนกลาง [5chan](/apps/5chan/) และ [Seedit](/apps/seedit/) สร้างขึ้นบนไลบรารีนี้
 
-ไลบรารีนี้คืออินเทอร์เฟซหลักที่ [5chan](/apps/5chan/) และไคลเอ็นต์อื่น ๆ ของ Bitsocial ใช้งานอยู่
-
-:::note
-ขณะนี้ `bitsocial-react-hooks` ยังไม่ถูกเผยแพร่ขึ้น npm จึงต้องดึงมาจาก GitHub โดยตรง
-:::
+ไลบรารีนี้มีเว็บไซต์เอกสารของตัวเอง ซึ่งอัปเดตทุกครั้งที่ออกรุ่นใหม่: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**
 
 ## การติดตั้ง
 
-เนื่องจากแพ็กเกจยังไม่อยู่บน npm ให้ติดตั้งจาก GitHub โดยตรง พร้อมตรึงไว้ที่แฮชของคอมมิตที่ต้องการ:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-แทนที่ `<commit-hash>` ด้วยคอมมิตที่คุณต้องการใช้
+แพ็กเกจนี้รองรับ React 16.8 ขึ้นไป
 
-## ภาพรวมของ API
+## จะเริ่มต้นจากตรงไหน
 
-hooks ถูกจัดกลุ่มตามหน้าที่การใช้งาน ด้านล่างนี้คือสรุปของ hooks ที่ใช้บ่อยที่สุดในแต่ละกลุ่ม หากต้องการรายละเอียดครบถ้วนทั้ง signature พารามิเตอร์ และชนิดข้อมูลที่ส่งคืน ดูได้จาก [เอกสารอ้างอิง API ฉบับเต็มบน GitHub](https://github.com/bitsocialnet/bitsocial-react-hooks)
-
-### บัญชี
-
-จัดการบัญชีผู้ใช้ในเครื่อง ตัวตน และการตั้งค่าต่าง ๆ
-
-- `useAccount(accountName?)` -- ส่งคืนอ็อบเจกต์ของบัญชีที่กำลังใช้งานอยู่ หรือบัญชีตามชื่อที่ระบุ
-- `useAccounts()` -- ส่งคืนบัญชีทุกบัญชีที่เก็บอยู่ในเครื่อง
-- `useAccountComments(options?)` -- ส่งคืนความคิดเห็นทั้งหมดที่บัญชีปัจจุบันเคยเผยแพร่ไว้
-
-### ความคิดเห็น
-
-ดึงและทำงานกับความคิดเห็นรายชิ้นและเธรดสนทนา
-
-- `useComment(commentCid?)` -- ดึงความคิดเห็นหนึ่งรายการจาก CID ของมัน
-- `useComments(commentCids?)` -- ดึงความคิดเห็นหลายรายการพร้อมกันเป็นชุดเดียว
-- `useEditedComment(comment?)` -- ส่งคืนความคิดเห็นฉบับที่ถูกแก้ไขล่าสุด
-
-### ชุมชน
-
-เรียกดูเมทาดาทาและการตั้งค่าของชุมชน
-
-- hook สำหรับค้นหาชุมชนเดียว -- ดึงข้อมูลชุมชนจากที่อยู่
-- hook สำหรับค้นหาหลายชุมชน -- ดึงข้อมูลชุมชนหลายแห่งพร้อมกัน
-- hook สำหรับสถิติของชุมชน -- ส่งคืนจำนวนผู้ติดตามและจำนวนโพสต์
-
-### ผู้เขียน
-
-ค้นหาโปรไฟล์และเมทาดาทาของผู้เขียน
-
-- `useAuthor(authorAddress?)` -- ดึงโปรไฟล์ของผู้เขียนหนึ่งราย
-- `useAuthorComments(options?)` -- ส่งคืนความคิดเห็นของผู้เขียนรายที่ระบุ
-- `useResolvedAuthorAddress(authorAddress?)` -- แปลงที่อยู่ที่มนุษย์อ่านออก (เช่น ENS) ให้กลายเป็นที่อยู่ระดับโปรโตคอล
-
-### ฟีด
-
-ติดตามฟีดเนื้อหาและแบ่งหน้าผลลัพธ์
-
-- `useFeed(options?)` -- ส่งคืนฟีดโพสต์แบบแบ่งหน้าจากชุมชนหนึ่งแห่งหรือหลายแห่ง
-- `useBufferedFeeds(feedOptions?)` -- เตรียมบัฟเฟอร์ฟีดหลายรายการไว้ล่วงหน้าเพื่อให้เรนเดอร์ได้เร็วขึ้น
-- `useAuthorFeed(authorAddress?)` -- ส่งคืนฟีดโพสต์ของผู้เขียนรายที่ระบุ
-
-### การกระทำ
-
-เผยแพร่เนื้อหาและดำเนินการที่เป็นการเขียนข้อมูล
-
-- `usePublishComment(options?)` -- เผยแพร่ความคิดเห็นหรือการตอบกลับชิ้นใหม่
-- `usePublishVote(options?)` -- ลงคะแนนโหวตขึ้นหรือโหวตลง
-- `useSubscribe(options?)` -- ติดตามหรือเลิกติดตามชุมชน
-
-### สถานะและ RPC
-
-เฝ้าดูสถานะการเชื่อมต่อ และทำงานร่วมกับเดมอน Bitsocial ที่อยู่ระยะไกล
-
-- `useClientsStates(options?)` -- ส่งคืนสถานะการเชื่อมต่อของไคลเอ็นต์ IPFS/pubsub
-- hook สำหรับการตั้งค่า RPC -- ส่งคืนการกำหนดค่าปัจจุบันของเดมอน RPC
-
-## การพัฒนา
-
-หากต้องการพัฒนาไลบรารี hooks นี้ในเครื่องของคุณเอง:
-
-**สิ่งที่ต้องเตรียม:** Node.js, เปิดใช้งาน Corepack แล้ว, Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-ดูคำสั่งสำหรับทดสอบและบิลด์ได้จากไฟล์ README ของที่เก็บโค้ด
+- [เริ่มต้นอย่างรวดเร็ว](https://hooks.bitsocial.net/docs/quickstart/): เรนเดอร์ฟีดชุมชนแรกของคุณ
+- [แนวคิด](https://hooks.bitsocial.net/docs/concepts/): ฟีด บัญชีในเครื่อง สถานะที่ใช้ร่วมกัน และการเผยแพร่ทำงานประสานกันอย่างไร
+- [เอกสารอ้างอิง API](https://hooks.bitsocial.net/docs/api/feeds-hooks/): hook ทุกตัวพร้อมตัวเลือกและค่าที่ส่งคืน
+- [สนามทดลอง](https://hooks.bitsocial.net/#playground): แก้ไขตัวอย่างสดที่รันบนเนื้อหาจำลอง
+- [สร้างด้วย AI](https://hooks.bitsocial.net/docs/ai/): `llms.txt` และทุกหน้าในรูปแบบ Markdown สำหรับเอเจนต์เขียนโค้ด
 
 ## ลิงก์
 
+- **เอกสาร:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **สัญญาอนุญาต:** GPL-2.0-only
+- **สัญญาอนุญาต:** GPL-3.0-or-later

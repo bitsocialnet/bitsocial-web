@@ -1,104 +1,34 @@
 ---
 title: React Hooks
-description: React hooks könyvtár decentralizált közösségi alkalmazások létrehozásához a Bitsocial protokollon.
+description: React hooks könyvtár decentralizált közösségi alkalmazások építéséhez a Bitsocial protokollon.
 sidebar_position: 1
 ---
 
 # React Hooks
 
-A `bitsocial-react-hooks` csomag egy ismerős React hooks API-t biztosít a Bitsocial protokollal való interakcióhoz. Kezeli a hírfolyamok, megjegyzések és szerzői profilok lekérését, a fiókok kezelését, a tartalom közzétételét és a közösségekre való feliratkozást – mindezt anélkül, hogy központi szerverre támaszkodna.
+A `@bitsocial/bitsocial-react-hooks` hooks API-t biztosít a React-alkalmazások számára a Bitsocial protokollhoz: hírfolyamok, hozzászólások, közösségek, szerzői profilok, fiókok és közzététel, központi szerver nélkül. Az [5chan](/apps/5chan/) és a [Seedit](/apps/seedit/) is erre épül.
 
-Ez a könyvtár az [5chan](/apps/5chan/) és más Bitsocial ügyfélalkalmazások által használt elsődleges felület.
-
-:::note
-A `bitsocial-react-hooks`-t jelenleg közvetlenül a GitHubról fogyasztják, nem pedig npm-ben teszik közzé.
-:::
+A könyvtárnak saját dokumentációs oldala van, amely minden kiadással frissül: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## Telepítés
 
-Mivel a csomag még nincs npm-en, telepítse közvetlenül a GitHubról, rögzítve egy adott véglegesítési hashhez:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-Cserélje le a `<commit-hash>` értéket a megcélozni kívánt véglegesítésre.
+A csomag a React 16.8-as és újabb verzióit támogatja.
 
-## API áttekintése
+## Hol érdemes kezdeni
 
-A horgok funkcionális kategóriákba vannak rendezve. Az alábbiakban összefoglaljuk az egyes kategóriákban leggyakrabban használt horgokat. A teljes aláírások, paraméterek és visszatérési típusok megtekintéséhez lásd a [teljes API-referencia a GitHubon](https://github.com/bitsocialnet/bitsocial-react-hooks).
+- [Gyorsindítás](https://hooks.bitsocial.net/docs/quickstart/): jelenítse meg az első közösségi hírfolyamát.
+- [Fogalmak](https://hooks.bitsocial.net/docs/concepts/): hogyan kapcsolódnak egymáshoz a hírfolyamok, a helyi fiókok, a megosztott állapot és a közzététel.
+- [API-referencia](https://hooks.bitsocial.net/docs/api/feeds-hooks/): minden hook a beállításaival és visszatérési értékeivel.
+- [Játszótér](https://hooks.bitsocial.net/#playground): szerkesszen élő példákat, amelyek szimulált tartalmon futnak.
+- [Fejlesztés AI segítségével](https://hooks.bitsocial.net/docs/ai/): `llms.txt` és minden oldal Markdown-változata kódolóügynökök számára.
 
-### Fiókok
+## Hivatkozások
 
-Helyi felhasználói fiókok, identitások és beállítások kezelése.
-
-- `useAccount(accountName?)` -- az aktív (vagy elnevezett) fiókobjektumot adja vissza
-- `useAccounts()` -- visszaadja az összes helyileg tárolt fiókot
-- `useAccountComments(options?)` -- az aktív fiók által közzétett megjegyzéseket adja vissza
-
-### Megjegyzések
-
-Egyéni megjegyzések és szálak lekérése és interakciója.
-
-- `useComment(commentCid?)` -- egyetlen megjegyzést kér le a CID alapján
-- `useComments(commentCids?)` -- több megjegyzést tölt le kötegben
-- `useEditedComment(comment?)` -- a megjegyzés legutóbbi szerkesztett verzióját adja vissza
-
-### közösségek
-
-Közösségi metaadatok és beállítások lekérése.
-
-- Egyközösségi keresési horog -- cím alapján kéri le a közösséget
-- Többközösségi keresési horog -- több közösséget tölt le
-- Közösségi statisztikai horog -- visszaadja a feliratkozók és bejegyzések számát
-
-### Szerzők
-
-Keresse meg a szerzői profilokat és a metaadatokat.
-
-- `useAuthor(authorAddress?)` -- szerzői profilt kér le
-- `useAuthorComments(options?)` -- egy adott szerző megjegyzéseit adja vissza
-- `useResolvedAuthorAddress(authorAddress?)` -- az ember által olvasható címet (pl. ENS) a protokollcímére oldja fel
-
-### Feedek
-
-Iratkozzon fel a tartalmi hírcsatornákra és lapozzon.
-
-- `useFeed(options?)` -- egy vagy több közösség bejegyzéseinek lapszámozott hírfolyamát adja vissza
-- `useBufferedFeeds(feedOptions?)` – több feedet előpufferel a gyorsabb megjelenítés érdekében
-- `useAuthorFeed(authorAddress?)` -- egy adott szerző bejegyzéseinek feedjét adja vissza
-
-### Akciók
-
-Tartalom közzététele és írási műveletek végrehajtása.
-
-- `usePublishComment(options?)` -- új megjegyzés vagy válasz közzététele
-- `usePublishVote(options?)` -- pozitív vagy negatív szavazat leadása
-- `useSubscribe(options?)` -- feliratkozás egy közösségre, vagy leiratkozás egy közösségről
-
-### államok és az RPC
-
-Figyelje a kapcsolat állapotát, és lépjen kapcsolatba egy távoli Bitsocial démonnal.
-
-- `useClientsStates(options?)` -- visszaadja az IPFS/pubsub kliensek kapcsolati állapotát
-- RPC beállítások hook -- az aktuális RPC démon konfigurációt adja vissza
-
-## Fejlesztés
-
-Ha helyileg szeretne dolgozni a hooks könyvtáron:
-
-**Előfeltételek:** Node.js, Corepack engedélyezve, Fonal 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-Teszt és build parancsokat a README lerakatban talál.
-
-## Linkek
-
+- **Dokumentáció:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **Licenc:** Csak GPL-2.0
+- **Licenc:** GPL-3.0-or-later
