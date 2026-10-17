@@ -9,6 +9,7 @@ const siteOrigin = "https://bitsocial.net";
 const chainOrigin = "https://chain.bitsocial.net";
 const chainProofOfConceptRepo = "bitsocialnet/bitsocial-chain";
 const docsOrigin = "https://docs.bitsocial.net";
+const hooksOrigin = "https://hooks.bitsocial.net";
 const statsOrigin = "https://stats.bitsocial.net";
 const aboutPublicDir = path.join(repoRoot, "about", "public");
 const chainRoot = path.join(repoRoot, "chain");
@@ -1160,6 +1161,7 @@ ${renderBulletList(apps)}
 - [Bitsocial Chain](${docsOrigin}/bitsocial-network/): Master-plan overview of the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
 - [Build your own client](${docsOrigin}/build-your-own-client/): Builder guide for shipping independent Bitsocial clients.
 - [CLI](${docsOrigin}/developer-tools/cli/): Command-line documentation for the Bitsocial protocol tooling.
+- [Bitsocial React Hooks](${hooksOrigin}/): Developer docs, API reference, and playground for building React clients with \`@bitsocial/bitsocial-react-hooks\`.
 - [Spam Blocker](${docsOrigin}/anti-spam/spam-blocker/): Technical documentation for the centralized risk-scoring anti-spam service.
 
 ## Optional
@@ -1167,6 +1169,7 @@ ${renderBulletList(apps)}
 - [llms-full.txt](${siteOrigin}/llms-full.txt): Expanded inline corpus covering the public docs plus companion project READMEs.
 - [Docs llms-full.txt](${docsOrigin}/llms-full.txt): Docs-scoped full inline corpus if only the documentation surface is needed.
 - [Bitsocial Chain llms.txt](${chainOrigin}/llms.txt): Chain-specific routing index for BSO and the proposed L2 appchain.
+- [Bitsocial React Hooks llms.txt](${hooksOrigin}/llms.txt): Hooks-specific routing index for coding agents building React clients.
 - [Contributor playbooks](${docsOrigin}/agent-playbooks/): Public workflow docs for contributors and AI agents; useful for repo and process questions, but usually unnecessary for end-user product questions.
 - [All public docs pages](${docsOrigin}/llms.txt): ${docs.length} curated public docs entries from the Bitsocial docs site.
 `);
@@ -1187,6 +1190,8 @@ ${renderLandingShortIndex(landing, "Related landing page context")}
 - [Bitsocial home](${siteOrigin}/): Public network and ecosystem overview.
 - [Bitsocial Chain](${chainOrigin}/): BSO token and proposed Ethereum L2 appchain landing page.
 - [Bitsocial Chain llms.txt](${chainOrigin}/llms.txt): Chain-specific routing index.
+- [Bitsocial React Hooks](${hooksOrigin}/): Developer docs, API reference, and playground for building React clients with \`@bitsocial/bitsocial-react-hooks\`.
+- [Bitsocial React Hooks llms.txt](${hooksOrigin}/llms.txt): Hooks-specific routing index for coding agents building React clients.
 
 ${renderDocsSections(docs)}
 
@@ -1219,6 +1224,8 @@ ${renderLandingShortIndex(landing, "Related landing page context")}
 - [Bitsocial home](${siteOrigin}/): Public network and ecosystem overview.
 - [Bitsocial Chain](${chainOrigin}/): BSO token and proposed Ethereum L2 appchain landing page.
 - [Bitsocial Chain llms.txt](${chainOrigin}/llms.txt): Chain-specific routing index.
+- [Bitsocial React Hooks](${hooksOrigin}/): Developer docs, API reference, and playground for building React clients with \`@bitsocial/bitsocial-react-hooks\`.
+- [Bitsocial React Hooks llms.txt](${hooksOrigin}/llms.txt): Hooks-specific routing index for coding agents building React clients.
 
 ${renderDocsSections(docs)}
 
@@ -1262,6 +1269,8 @@ Two interpretation notes matter:
 - [Bitsocial Chain](${chainOrigin}/): BSO token and proposed Ethereum L2 appchain landing page.
 - [Bitsocial Chain llms.txt](${chainOrigin}/llms.txt): Chain-specific routing index.
 - [Bitsocial Chain llms-full.txt](${chainOrigin}/llms-full.txt): Chain-focused inline context.
+- [Bitsocial React Hooks](${hooksOrigin}/): Developer docs, API reference, and playground for building React clients with \`@bitsocial/bitsocial-react-hooks\`.
+- [Bitsocial React Hooks llms.txt](${hooksOrigin}/llms.txt): Hooks-specific routing index for coding agents building React clients.
 - [Stats dashboard](${statsOrigin}/): Live network stats for 5chan and Seedit communities, peers, services, and client infrastructure.
 
 ${renderLandingShortIndex(landing)}

@@ -6,99 +6,29 @@ sidebar_position: 1
 
 # React Hooks
 
-Il pacchetto `bitsocial-react-hooks` offre una familiare API di hook React per interagire con il protocollo Bitsocial. Si occupa del recupero di feed, commenti e profili degli autori, della gestione degli account, della pubblicazione di contenuti e dell'iscrizione alle comunità -- il tutto senza dipendere da un server centrale.
+`@bitsocial/bitsocial-react-hooks` offre alle app React un'API di hook per il protocollo Bitsocial: feed, commenti, comunità, profili degli autori, account e pubblicazione, senza un server centrale. [5chan](/apps/5chan/) e [Seedit](/apps/seedit/) sono costruiti su questa libreria.
 
-Questa libreria è l'interfaccia principale usata da [5chan](/apps/5chan/) e dalle altre applicazioni client Bitsocial.
-
-:::note
-`bitsocial-react-hooks` al momento viene consumato direttamente da GitHub anziché pubblicato su npm.
-:::
+La libreria ha un proprio sito di documentazione, aggiornato a ogni release: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## Installazione
 
-Poiché il pacchetto non è ancora su npm, installalo direttamente da GitHub fissandolo a un hash di commit specifico:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-Sostituisci `<commit-hash>` con il commit che vuoi usare.
+Il pacchetto supporta React 16.8 e versioni successive.
 
-## Panoramica dell'API
+## Da dove iniziare
 
-Gli hook sono organizzati in categorie funzionali. Di seguito una sintesi degli hook più usati in ciascuna categoria. Per firme complete, parametri e tipi restituiti, consulta il [riferimento API completo su GitHub](https://github.com/bitsocialnet/bitsocial-react-hooks).
-
-### Account
-
-Gestiscono gli account utente locali, l'identità e le impostazioni.
-
-- `useAccount(accountName?)` -- restituisce l'oggetto dell'account attivo (o di quello indicato)
-- `useAccounts()` -- restituisce tutti gli account memorizzati localmente
-- `useAccountComments(options?)` -- restituisce i commenti pubblicati dall'account attivo
-
-### Commenti
-
-Recuperano singoli commenti e discussioni e permettono di interagirci.
-
-- `useComment(commentCid?)` -- recupera un singolo commento a partire dal suo CID
-- `useComments(commentCids?)` -- recupera più commenti in un'unica richiesta
-- `useEditedComment(comment?)` -- restituisce la versione modificata più recente di un commento
-
-### Comunità
-
-Recuperano metadati e impostazioni delle comunità.
-
-- Hook per la ricerca di una singola comunità -- recupera una comunità dal suo indirizzo
-- Hook per la ricerca di più comunità -- recupera più comunità
-- Hook per le statistiche di comunità -- restituisce il numero di iscritti e di post
-
-### Autori
-
-Consultano profili e metadati degli autori.
-
-- `useAuthor(authorAddress?)` -- recupera il profilo di un autore
-- `useAuthorComments(options?)` -- restituisce i commenti di un autore specifico
-- `useResolvedAuthorAddress(authorAddress?)` -- risolve un indirizzo leggibile (ad esempio ENS) nel corrispondente indirizzo di protocollo
-
-### Feed
-
-Permettono di iscriversi ai feed di contenuti e di impaginarli.
-
-- `useFeed(options?)` -- restituisce un feed impaginato di post provenienti da una o più comunità
-- `useBufferedFeeds(feedOptions?)` -- precarica più feed per un rendering più rapido
-- `useAuthorFeed(authorAddress?)` -- restituisce un feed dei post di un autore specifico
-
-### Azioni
-
-Pubblicano contenuti ed eseguono operazioni di scrittura.
-
-- `usePublishComment(options?)` -- pubblica un nuovo commento o una risposta
-- `usePublishVote(options?)` -- esprime un voto positivo o negativo
-- `useSubscribe(options?)` -- iscrive o disiscrive da una comunità
-
-### Stati e RPC
-
-Monitorano lo stato della connessione e interagiscono con un daemon Bitsocial remoto.
-
-- `useClientsStates(options?)` -- restituisce lo stato di connessione dei client IPFS/pubsub
-- Hook per le impostazioni RPC -- restituisce la configurazione attuale del daemon RPC
-
-## Sviluppo
-
-Per lavorare in locale alla libreria di hook:
-
-**Prerequisiti:** Node.js, Corepack abilitato, Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-Consulta il README del repository per i comandi di test e di build.
+- [Guida rapida](https://hooks.bitsocial.net/docs/quickstart/): visualizza il tuo primo feed di una comunità.
+- [Concetti](https://hooks.bitsocial.net/docs/concepts/): come si integrano feed, account locali, stato condiviso e pubblicazione.
+- [Riferimento API](https://hooks.bitsocial.net/docs/api/feeds-hooks/): ogni hook con le relative opzioni e i valori restituiti.
+- [Playground](https://hooks.bitsocial.net/#playground): modifica esempi live che girano su contenuti simulati.
+- [Sviluppa con l'IA](https://hooks.bitsocial.net/docs/ai/): `llms.txt` e versioni Markdown di ogni pagina per gli agenti di programmazione.
 
 ## Collegamenti
 
+- **Documentazione:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **Licenza:** GPL-2.0-only
+- **Licenza:** GPL-3.0-or-later

@@ -1,104 +1,34 @@
 ---
-title: Хуки React
+title: React Hooks
 description: Бібліотека хуків React для створення децентралізованих соціальних застосунків на базі протоколу Bitsocial.
 sidebar_position: 1
 ---
 
-# Хуки React
+# React Hooks
 
-Пакет `bitsocial-react-hooks` дає звичний для React API у вигляді хуків для роботи з протоколом Bitsocial. Він бере на себе завантаження стрічок, коментарів і профілів авторів, керування акаунтами, публікацію вмісту та підписку на спільноти — і все це без опори на центральний сервер.
+`@bitsocial/bitsocial-react-hooks` надає React-застосункам API хуків для протоколу Bitsocial: стрічки, коментарі, спільноти, профілі авторів, акаунти та публікація, і все це без центрального сервера. На ньому побудовано [5chan](/apps/5chan/) і [Seedit](/apps/seedit/).
 
-Ця бібліотека є основним інтерфейсом, який використовують [5chan](/apps/5chan/) та інші клієнтські застосунки Bitsocial.
-
-:::note
-Наразі `bitsocial-react-hooks` підключають безпосередньо з GitHub, а не з npm.
-:::
+Бібліотека має власний сайт документації, який оновлюється з кожним релізом: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## Встановлення
 
-Оскільки пакета ще немає в npm, встановлюйте його безпосередньо з GitHub, закріплюючись за конкретним хешем коміту:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-Замініть `<commit-hash>` на той коміт, який вам потрібен.
+Пакет підтримує React 16.8 і новіші версії.
 
-## Огляд API
+## З чого почати
 
-Хуки згруповані за функціональними категоріями. Нижче наведено найуживаніші хуки з кожної категорії. Повні сигнатури, параметри й типи, що повертаються, дивіться в [повному довіднику API на GitHub](https://github.com/bitsocialnet/bitsocial-react-hooks).
-
-### Акаунти
-
-Керування локальними акаунтами користувача, ідентичністю та налаштуваннями.
-
-- `useAccount(accountName?)` — повертає об’єкт активного (або вказаного на ім’я) акаунта
-- `useAccounts()` — повертає всі акаунти, збережені локально
-- `useAccountComments(options?)` — повертає коментарі, опубліковані активним акаунтом
-
-### Коментарі
-
-Отримання окремих коментарів і гілок обговорення та взаємодія з ними.
-
-- `useComment(commentCid?)` — завантажує один коментар за його CID
-- `useComments(commentCids?)` — завантажує кілька коментарів одним пакетом
-- `useEditedComment(comment?)` — повертає найновішу відредаговану версію коментаря
-
-### Спільноти
-
-Отримання метаданих і налаштувань спільноти.
-
-- Хук пошуку однієї спільноти — завантажує спільноту за адресою
-- Хук пошуку кількох спільнот — завантажує одразу кілька спільнот
-- Хук статистики спільноти — повертає кількість підписників і дописів
-
-### Автори
-
-Пошук профілів авторів і супутніх метаданих.
-
-- `useAuthor(authorAddress?)` — завантажує профіль автора
-- `useAuthorComments(options?)` — повертає коментарі конкретного автора
-- `useResolvedAuthorAddress(authorAddress?)` — перетворює зрозумілу людині адресу (наприклад, ENS) на адресу протоколу
-
-### Стрічки
-
-Підписка на стрічки вмісту та їх посторінкове завантаження.
-
-- `useFeed(options?)` — повертає посторінкову стрічку дописів з однієї або кількох спільнот
-- `useBufferedFeeds(feedOptions?)` — заздалегідь буферизує кілька стрічок, щоб вони швидше відображалися
-- `useAuthorFeed(authorAddress?)` — повертає стрічку дописів конкретного автора
-
-### Дії
-
-Публікація вмісту та операції запису.
-
-- `usePublishComment(options?)` — публікує новий коментар або відповідь
-- `usePublishVote(options?)` — віддає голос «за» або «проти»
-- `useSubscribe(options?)` — підписує на спільноту або скасовує підписку
-
-### Стани та RPC
-
-Спостереження за станом підключення та взаємодія з віддаленим демоном Bitsocial.
-
-- `useClientsStates(options?)` — повертає стан підключення клієнтів IPFS/pubsub
-- Хук налаштувань RPC — повертає поточну конфігурацію демона RPC
-
-## Розробка
-
-Щоб працювати над бібліотекою хуків локально:
-
-**Вимоги:** Node.js, увімкнений Corepack, Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-Команди для тестування та збірки шукайте у файлі README цього репозиторію.
+- [Швидкий старт](https://hooks.bitsocial.net/docs/quickstart/): відобразіть свою першу стрічку спільноти.
+- [Концепції](https://hooks.bitsocial.net/docs/concepts/): як поєднуються стрічки, локальні акаунти, спільний стан і публікація.
+- [Довідник API](https://hooks.bitsocial.net/docs/api/feeds-hooks/): кожен хук з його параметрами та значеннями, що повертаються.
+- [Пісочниця](https://hooks.bitsocial.net/#playground): редагуйте живі приклади, що працюють на змодельованому вмісті.
+- [Розробка з ШІ](https://hooks.bitsocial.net/docs/ai/): `llms.txt` і Markdown-версії кожної сторінки для агентів, що пишуть код.
 
 ## Посилання
 
+- **Документація:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **Ліцензія:** GPL-2.0-only
+- **Ліцензія:** GPL-3.0-or-later

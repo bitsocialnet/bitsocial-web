@@ -1,104 +1,34 @@
 ---
-title: Bereaksi Kait
-description: Pustaka React hooks untuk membangun aplikasi sosial terdesentralisasi pada protokol Bitsocial.
+title: React Hooks
+description: Pustaka React hooks untuk membangun aplikasi sosial terdesentralisasi di atas protokol Bitsocial.
 sidebar_position: 1
 ---
 
-# Bereaksi Kait
+# React Hooks
 
-Paket `bitsocial-react-hooks` menyediakan API React hooks yang familier untuk berinteraksi dengan protokol Bitsocial. Ini menangani pengambilan feed, komentar, dan profil penulis, mengelola akun, menerbitkan konten, dan berlangganan komunitas -- semuanya tanpa bergantung pada server pusat.
+`@bitsocial/bitsocial-react-hooks` menyediakan API hooks bagi aplikasi React untuk protokol Bitsocial: feed, komentar, komunitas, profil penulis, akun, dan penerbitan, tanpa server pusat. [5chan](/apps/5chan/) dan [Seedit](/apps/seedit/) dibangun di atasnya.
 
-Pustaka ini adalah antarmuka utama yang digunakan oleh [5chan](/apps/5chan/) dan aplikasi klien Bitsocial lainnya.
-
-:::note
-`bitsocial-react-hooks` saat ini digunakan langsung dari GitHub daripada dipublikasikan ke npm.
-:::
+Pustaka ini memiliki situs dokumentasi sendiri yang diperbarui di setiap rilis: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## Instalasi
 
-Karena paket belum ada di npm, instal langsung dari GitHub, sematkan ke hash penerapan tertentu:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-Ganti `<commit-hash>` dengan komit yang ingin Anda targetkan.
+Paket ini mendukung React 16.8 dan versi yang lebih baru.
 
-## Ikhtisar API
+## Dari mana memulai
 
-Pengait disusun ke dalam kategori fungsional. Di bawah ini adalah ringkasan hook yang paling umum digunakan di setiap kategori. Untuk tanda tangan lengkap, parameter, dan tipe pengembalian, lihat [referensi API lengkap di GitHub](https://github.com/bitsocialnet/bitsocial-react-hooks).
-
-### Akun
-
-Kelola akun pengguna lokal, identitas, dan pengaturan.
-
-- `useAccount(accountName?)` -- mengembalikan objek akun yang aktif (atau bernama).
-- `useAccounts()` -- mengembalikan semua akun yang disimpan secara lokal
-- `useAccountComments(options?)` -- mengembalikan komentar yang diterbitkan oleh akun aktif
-
-### Komentar
-
-Ambil dan berinteraksi dengan komentar dan rangkaian pesan individual.
-
-- `useComment(commentCid?)` -- mengambil satu komentar berdasarkan CID-nya
-- `useComments(commentCids?)` -- mengambil beberapa komentar sekaligus
-- `useEditedComment(comment?)` -- mengembalikan versi komentar terbaru yang telah diedit
-
-### Komunitas
-
-Ambil metadata dan pengaturan komunitas.
-
-- Kait pencarian komunitas tunggal -- mengambil komunitas berdasarkan alamat
-- Kait pencarian multi-komunitas -- mengambil banyak komunitas
-- Kait statistik komunitas -- mengembalikan jumlah pelanggan dan kiriman
-
-### Penulis
-
-Cari profil penulis dan metadata.
-
-- `useAuthor(authorAddress?)` -- mengambil profil penulis
-- `useAuthorComments(options?)` -- mengembalikan komentar dari penulis tertentu
-- `useResolvedAuthorAddress(authorAddress?)` -- menyelesaikan alamat yang dapat dibaca manusia (mis., ENS) ke alamat protokolnya
-
-### Umpan
-
-Berlangganan dan memberi nomor halaman pada feed konten.
-
-- `useFeed(options?)` -- mengembalikan feed postingan yang diberi nomor halaman dari satu atau lebih komunitas
-- `useBufferedFeeds(feedOptions?)` -- melakukan pra-buffer pada beberapa feed untuk rendering yang lebih cepat
-- `useAuthorFeed(authorAddress?)` -- mengembalikan feed postingan oleh penulis tertentu
-
-### Tindakan
-
-Publikasikan konten dan lakukan operasi tulis.
-
-- `usePublishComment(options?)` -- mempublikasikan komentar atau balasan baru
-- `usePublishVote(options?)` -- memberikan suara positif atau suara negatif
-- `useSubscribe(options?)` -- berlangganan atau berhenti berlangganan dari komunitas
-
-### Amerika dan RPC
-
-Pantau status koneksi dan berinteraksi dengan daemon Bitsocial jarak jauh.
-
-- `useClientsStates(options?)` -- mengembalikan status koneksi klien IPFS/pubsub
-- Kait pengaturan RPC -- mengembalikan konfigurasi daemon RPC saat ini
-
-## Pembangunan
-
-Untuk mengerjakan perpustakaan hooks secara lokal:
-
-**Prasyarat:** Node.js, Corepack diaktifkan, Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-Lihat repositori README untuk perintah pengujian dan pembangunan.
+- [Mulai cepat](https://hooks.bitsocial.net/docs/quickstart/): tampilkan feed komunitas pertama Anda.
+- [Konsep](https://hooks.bitsocial.net/docs/concepts/): bagaimana feed, akun lokal, state bersama, dan penerbitan saling terhubung.
+- [Referensi API](https://hooks.bitsocial.net/docs/api/feeds-hooks/): setiap hook beserta opsi dan nilai kembaliannya.
+- [Playground](https://hooks.bitsocial.net/#playground): sunting contoh interaktif yang berjalan di atas konten simulasi.
+- [Membangun dengan AI](https://hooks.bitsocial.net/docs/ai/): `llms.txt` dan versi Markdown dari setiap halaman untuk agen pemrograman.
 
 ## Tautan
 
-- **GitHub:** [bitsocialnet/bitsocial-react-hook](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **Lisensi:** Khusus GPL-2.0
+- **Dokumentasi:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
+- **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
+- **Lisensi:** GPL-3.0-or-later

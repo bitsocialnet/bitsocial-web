@@ -6,99 +6,29 @@ sidebar_position: 1
 
 # React Hooks
 
-The `bitsocial-react-hooks` package provides a familiar React hooks API for interacting with the Bitsocial protocol. It handles fetching feeds, comments, and author profiles, managing accounts, publishing content, and subscribing to communities -- all without relying on a central server.
+`@bitsocial/bitsocial-react-hooks` gives React apps a hooks API for the Bitsocial protocol: feeds, comments, communities, author profiles, accounts, and publishing, without a central server. [5chan](/apps/5chan/) and [Seedit](/apps/seedit/) are built on it.
 
-This library is the primary interface used by [5chan](/apps/5chan/) and other Bitsocial client applications.
-
-:::note
-`bitsocial-react-hooks` is currently consumed directly from GitHub rather than published to npm.
-:::
+The library has its own documentation site, updated with every release: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## Installation
 
-Because the package is not yet on npm, install it directly from GitHub, pinning to a specific commit hash:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-Replace `<commit-hash>` with the commit you want to target.
+The package supports React 16.8 and later.
 
-## API Overview
+## Where to start
 
-The hooks are organized into functional categories. Below is a summary of the most commonly used hooks in each category. For complete signatures, parameters, and return types, see the [full API reference on GitHub](https://github.com/bitsocialnet/bitsocial-react-hooks).
-
-### Accounts
-
-Manage local user accounts, identity, and settings.
-
-- `useAccount(accountName?)` -- returns the active (or named) account object
-- `useAccounts()` -- returns all locally stored accounts
-- `useAccountComments(options?)` -- returns comments published by the active account
-
-### Comments
-
-Fetch and interact with individual comments and threads.
-
-- `useComment(commentCid?)` -- fetches a single comment by its CID
-- `useComments(commentCids?)` -- fetches multiple comments in batch
-- `useEditedComment(comment?)` -- returns the latest edited version of a comment
-
-### Communities
-
-Retrieve community metadata and settings.
-
-- Single-community lookup hook -- fetches a community by address
-- Multi-community lookup hook -- fetches multiple communities
-- Community stats hook -- returns subscriber and post counts
-
-### Authors
-
-Look up author profiles and metadata.
-
-- `useAuthor(authorAddress?)` -- fetches an author profile
-- `useAuthorComments(options?)` -- returns comments by a specific author
-- `useResolvedAuthorAddress(authorAddress?)` -- resolves a human-readable address (e.g., ENS) to its protocol address
-
-### Feeds
-
-Subscribe to and paginate content feeds.
-
-- `useFeed(options?)` -- returns a paginated feed of posts from one or more communities
-- `useBufferedFeeds(feedOptions?)` -- pre-buffers multiple feeds for faster rendering
-- `useAuthorFeed(authorAddress?)` -- returns a feed of posts by a specific author
-
-### Actions
-
-Publish content and perform write operations.
-
-- `usePublishComment(options?)` -- publish a new comment or reply
-- `usePublishVote(options?)` -- cast an upvote or downvote
-- `useSubscribe(options?)` -- subscribe or unsubscribe from a community
-
-### States and RPC
-
-Monitor connection state and interact with a remote Bitsocial daemon.
-
-- `useClientsStates(options?)` -- returns the connection state of IPFS/pubsub clients
-- RPC settings hook -- returns current RPC daemon configuration
-
-## Development
-
-To work on the hooks library locally:
-
-**Prerequisites:** Node.js, Corepack enabled, Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-Refer to the repository README for test and build commands.
+- [Quickstart](https://hooks.bitsocial.net/docs/quickstart/): render your first community feed.
+- [Concepts](https://hooks.bitsocial.net/docs/concepts/): how feeds, local accounts, shared state, and publishing fit together.
+- [API reference](https://hooks.bitsocial.net/docs/api/feeds-hooks/): every hook with its options and return values.
+- [Playground](https://hooks.bitsocial.net/#playground): edit live examples that run on simulated content.
+- [Build with AI](https://hooks.bitsocial.net/docs/ai/): `llms.txt` and Markdown versions of every page for coding agents.
 
 ## Links
 
+- **Documentation:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **License:** GPL-2.0-only
+- **License:** GPL-3.0-or-later

@@ -1,104 +1,34 @@
 ---
 title: React Hooks
-description: React hooks biblioteca per crear aplicacions socials descentralitzades al protocol Bitsocial.
+description: Biblioteca de hooks de React per crear aplicacions socials descentralitzades sobre el protocol Bitsocial.
 sidebar_position: 1
 ---
 
 # React Hooks
 
-El paquet `bitsocial-react-hooks` proporciona una API React hooks familiar per interactuar amb el protocol Bitsocial. Gestiona l'obtenció de fonts, comentaris i perfils d'autor, la gestió de comptes, la publicació de contingut i la subscripció a comunitats, tot sense dependre d'un servidor central.
+`@bitsocial/bitsocial-react-hooks` ofereix a les aplicacions React una API de hooks per al protocol Bitsocial: feeds, comentaris, comunitats, perfils d'autor, comptes i publicació, sense cap servidor central. [5chan](/apps/5chan/) i [Seedit](/apps/seedit/) es basen en aquesta biblioteca.
 
-Aquesta biblioteca és la interfície principal utilitzada per [5canal](/apps/5chan/) i altres aplicacions de client Bitsocial.
-
-:::note
-`bitsocial-react-hooks` actualment es consumeix directament des de GitHub en lloc de publicar-se a npm.
-:::
+La biblioteca té el seu propi lloc de documentació, que s'actualitza amb cada versió: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## Instal·lació
 
-Com que el paquet encara no està a npm, instal·leu-lo directament des de GitHub, fixant-lo a un hash de commit específic:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-Substituïu `<commit-hash>` per la confirmació que voleu orientar.
+El paquet és compatible amb React 16.8 i versions posteriors.
 
-## Visió general de l'API
+## Per on començar
 
-Els ganxos s'organitzen en categories funcionals. A continuació es mostra un resum dels ganxos més utilitzats en cada categoria. Per obtenir signatures completes, paràmetres i tipus de retorn, consulteu la [referència completa de l'API a GitHub](https://github.com/bitsocialnet/bitsocial-react-hooks).
-
-### Comptes
-
-Gestioneu els comptes d'usuari locals, la identitat i la configuració.
-
-- `useAccount(accountName?)`: retorna l'objecte del compte actiu (o amb nom).
-- `useAccounts()`: retorna tots els comptes emmagatzemats localment
-- `useAccountComments(options?)`: retorna els comentaris publicats pel compte actiu
-
-### Comentaris
-
-Obteniu i interactueu amb comentaris i fils individuals.
-
-- `useComment(commentCid?)`: obté un únic comentari pel seu CID
-- `useComments(commentCids?)`: obté diversos comentaris per lots
-- `useEditedComment(comment?)`: retorna la darrera versió editada d'un comentari
-
-### Comunitats
-
-Recuperar les metadades i la configuració de la comunitat.
-
-- Ganxo de cerca d'una sola comunitat: obté una comunitat per adreça
-- Ganxo de cerca de diverses comunitats: recupera diverses comunitats
-- Ganxo d'estadístiques de la comunitat: retorna el recompte de subscriptors i publicacions
-
-### Autors
-
-Consulta els perfils i metadades dels autors.
-
-- `useAuthor(authorAddress?)` -- obté un perfil d'autor
-- `useAuthorComments(options?)`: retorna els comentaris d'un autor específic
-- `useResolvedAuthorAddress(authorAddress?)`: resol una adreça llegible pels humans (per exemple, ENS) a la seva adreça de protocol
-
-### Feeds
-
-Subscriu-te i pagina els canals de contingut.
-
-- `useFeed(options?)`: retorna un feed paginat de publicacions d'una o més comunitats
-- `useBufferedFeeds(feedOptions?)`: pre-buffers múltiples fonts per a una renderització més ràpida
-- `useAuthorFeed(authorAddress?)`: retorna un feed de publicacions d'un autor específic
-
-### Accions
-
-Publicar contingut i realitzar operacions d'escriptura.
-
-- `usePublishComment(options?)`: publica un comentari o una resposta nous
-- `usePublishVote(options?)`: feu un vot a favor o en contra
-- `useSubscribe(options?)`: subscriu-te o cancel·la la subscripció d'una comunitat
-
-### Estats i RPC
-
-Superviseu l'estat de connexió i interactueu amb un dimoni Bitsocial remot.
-
-- `useClientsStates(options?)`: retorna l'estat de connexió dels clients IPFS/pubsub
-- Ganxo de configuració RPC: retorna la configuració actual del dimoni RPC
-
-## Desenvolupament
-
-Per treballar a la biblioteca de ganxos localment:
-
-**Requisits previs:** Node.js, Corepack habilitat, Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-Consulteu el repositori README per a les ordres de prova i compilació.
+- [Inici ràpid](https://hooks.bitsocial.net/docs/quickstart/): renderitzeu el vostre primer feed d'una comunitat.
+- [Conceptes](https://hooks.bitsocial.net/docs/concepts/): com encaixen els feeds, els comptes locals, l'estat compartit i la publicació.
+- [Referència de l'API](https://hooks.bitsocial.net/docs/api/feeds-hooks/): cada hook amb les seves opcions i valors de retorn.
+- [Entorn de proves](https://hooks.bitsocial.net/#playground): editeu exemples en directe que s'executen amb contingut simulat.
+- [Construir amb IA](https://hooks.bitsocial.net/docs/ai/): `llms.txt` i versions en Markdown de cada pàgina per a agents de programació.
 
 ## Enllaços
 
+- **Documentació:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **Llicència:** només GPL-2.0
+- **Llicència:** GPL-3.0-or-later

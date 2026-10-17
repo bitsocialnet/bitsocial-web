@@ -1,104 +1,34 @@
 ---
-title: React ہکس
+title: React Hooks
 description: Bitsocial پروٹوکول پر غیر مرکزی سماجی ایپلیکیشنز بنانے کے لیے React ہکس کی لائبریری۔
 sidebar_position: 1
 ---
 
-# React ہکس
+# React Hooks
 
-`bitsocial-react-hooks` پیکیج Bitsocial پروٹوکول سے تعامل کے لیے ایک مانوس React ہکس API فراہم کرتا ہے۔ یہ فیڈز، تبصرے اور مصنفین کے پروفائل حاصل کرنے، اکاؤنٹس سنبھالنے، مواد شائع کرنے اور کمیونٹیز کو سبسکرائب کرنے کا کام کرتا ہے -- اور یہ سب کسی مرکزی سرور پر انحصار کیے بغیر۔
+`@bitsocial/bitsocial-react-hooks` React ایپس کو Bitsocial پروٹوکول کے لیے ہکس API فراہم کرتا ہے: فیڈز، تبصرے، کمیونٹیز، مصنفین کے پروفائل، اکاؤنٹس اور اشاعت، اور یہ سب کسی مرکزی سرور کے بغیر۔ [5chan](/apps/5chan/) اور [Seedit](/apps/seedit/) اسی پر بنی ہیں۔
 
-یہ لائبریری [5chan](/apps/5chan/) اور دیگر Bitsocial کلائنٹ ایپلیکیشنز کا بنیادی انٹرفیس ہے۔
-
-:::note
-`bitsocial-react-hooks` فی الحال npm پر شائع کرنے کے بجائے براہِ راست GitHub سے استعمال کیا جاتا ہے۔
-:::
+اس لائبریری کی اپنی دستاویزات کی سائٹ ہے جو ہر ریلیز کے ساتھ اپ ڈیٹ ہوتی ہے: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**۔
 
 ## تنصیب
 
-چونکہ یہ پیکیج ابھی npm پر موجود نہیں، اسے براہِ راست GitHub سے انسٹال کریں اور کسی مخصوص کمٹ ہیش پر پن کریں:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-`<commit-hash>` کی جگہ وہ کمٹ لکھیں جسے آپ استعمال کرنا چاہتے ہیں۔
+یہ پیکیج React 16.8 اور اس کے بعد کے ورژنز کو سپورٹ کرتا ہے۔
 
-## API کا جائزہ
+## کہاں سے شروع کریں
 
-ہکس کو کام کے لحاظ سے زمروں میں تقسیم کیا گیا ہے۔ نیچے ہر زمرے کے سب سے زیادہ استعمال ہونے والے ہکس کا خلاصہ ہے۔ مکمل سگنیچرز، پیرامیٹرز اور واپسی کی اقسام کے لیے [GitHub پر مکمل API حوالہ](https://github.com/bitsocialnet/bitsocial-react-hooks) دیکھیں۔
-
-### اکاؤنٹس
-
-مقامی صارف اکاؤنٹس، شناخت اور ترتیبات کا انتظام کریں۔
-
-- `useAccount(accountName?)` -- فعال (یا نامزد) اکاؤنٹ آبجیکٹ واپس کرتا ہے
-- `useAccounts()` -- مقامی طور پر محفوظ تمام اکاؤنٹس واپس کرتا ہے
-- `useAccountComments(options?)` -- فعال اکاؤنٹ کے شائع کردہ تبصرے واپس کرتا ہے
-
-### تبصرے
-
-انفرادی تبصروں اور تھریڈز کو حاصل کریں اور ان سے تعامل کریں۔
-
-- `useComment(commentCid?)` -- CID کے ذریعے ایک تبصرہ حاصل کرتا ہے
-- `useComments(commentCids?)` -- ایک ساتھ کئی تبصرے حاصل کرتا ہے
-- `useEditedComment(comment?)` -- کسی تبصرے کا تازہ ترین ترمیم شدہ نسخہ واپس کرتا ہے
-
-### کمیونٹیز
-
-کمیونٹی کا میٹا ڈیٹا اور ترتیبات حاصل کریں۔
-
-- ایک کمیونٹی تلاش کرنے والا ہک -- پتے کے ذریعے کوئی کمیونٹی حاصل کرتا ہے
-- متعدد کمیونٹیز تلاش کرنے والا ہک -- کئی کمیونٹیز حاصل کرتا ہے
-- کمیونٹی کے اعدادوشمار کا ہک -- سبسکرائبرز اور پوسٹس کی تعداد واپس کرتا ہے
-
-### مصنفین
-
-مصنفین کے پروفائل اور میٹا ڈیٹا دیکھیں۔
-
-- `useAuthor(authorAddress?)` -- کسی مصنف کا پروفائل حاصل کرتا ہے
-- `useAuthorComments(options?)` -- کسی مخصوص مصنف کے تبصرے واپس کرتا ہے
-- `useResolvedAuthorAddress(authorAddress?)` -- انسانی پڑھنے کے قابل پتے (مثلاً ENS) کو اس کے پروٹوکول پتے میں حل کرتا ہے
-
-### فیڈز
-
-مواد کے فیڈز سبسکرائب کریں اور انہیں صفحہ بہ صفحہ دکھائیں۔
-
-- `useFeed(options?)` -- ایک یا زیادہ کمیونٹیز کی پوسٹس کا صفحہ بہ صفحہ فیڈ واپس کرتا ہے
-- `useBufferedFeeds(feedOptions?)` -- تیز رینڈرنگ کے لیے کئی فیڈز پہلے سے بفر کرتا ہے
-- `useAuthorFeed(authorAddress?)` -- کسی مخصوص مصنف کی پوسٹس کا فیڈ واپس کرتا ہے
-
-### کارروائیاں
-
-مواد شائع کریں اور لکھنے کی کارروائیاں انجام دیں۔
-
-- `usePublishComment(options?)` -- نیا تبصرہ یا جواب شائع کریں
-- `usePublishVote(options?)` -- اپ ووٹ یا ڈاؤن ووٹ دیں
-- `useSubscribe(options?)` -- کسی کمیونٹی کو سبسکرائب یا ان سبسکرائب کریں
-
-### حالتیں اور RPC
-
-کنکشن کی حالت پر نظر رکھیں اور کسی دور دراز Bitsocial ڈیمن سے تعامل کریں۔
-
-- `useClientsStates(options?)` -- IPFS/pubsub کلائنٹس کے کنکشن کی حالت واپس کرتا ہے
-- RPC ترتیبات کا ہک -- RPC ڈیمن کی موجودہ ترتیب واپس کرتا ہے
-
-## ڈویلپمنٹ
-
-ہکس لائبریری پر مقامی طور پر کام کرنے کے لیے:
-
-**پیشگی ضروریات:** Node.js، Corepack فعال، Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-ٹیسٹ اور بلڈ کمانڈز کے لیے ریپازٹری کا README دیکھیں۔
+- [فوری آغاز](https://hooks.bitsocial.net/docs/quickstart/): اپنی پہلی کمیونٹی فیڈ رینڈر کریں۔
+- [تصورات](https://hooks.bitsocial.net/docs/concepts/): فیڈز، مقامی اکاؤنٹس، مشترکہ حالت اور اشاعت آپس میں کیسے جڑتے ہیں۔
+- [API حوالہ](https://hooks.bitsocial.net/docs/api/feeds-hooks/): ہر ہک، اپنے آپشنز اور واپس آنے والی قدروں کے ساتھ۔
+- [پلے گراؤنڈ](https://hooks.bitsocial.net/#playground): فرضی مواد پر چلنے والی لائیو مثالوں میں ترمیم کریں۔
+- [AI کے ساتھ بنائیں](https://hooks.bitsocial.net/docs/ai/): کوڈنگ ایجنٹس کے لیے `llms.txt` اور ہر صفحے کے Markdown ورژن۔
 
 ## لنکس
 
+- **دستاویزات:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **لائسنس:** GPL-2.0-only
+- **لائسنس:** GPL-3.0-or-later

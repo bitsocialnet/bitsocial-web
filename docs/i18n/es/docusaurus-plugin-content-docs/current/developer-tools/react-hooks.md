@@ -1,104 +1,34 @@
 ---
-title: Ganchos de reacción
-description: Biblioteca React Hooks para crear aplicaciones sociales descentralizadas en el protocolo Bitsocial.
+title: React Hooks
+description: Biblioteca de hooks de React para crear aplicaciones sociales descentralizadas sobre el protocolo Bitsocial.
 sidebar_position: 1
 ---
 
-# Ganchos de reacción
+# React Hooks
 
-El paquete `bitsocial-react-hooks` proporciona una API de ganchos React familiar para interactuar con el protocolo Bitsocial. Se encarga de buscar feeds, comentarios y perfiles de autor, administrar cuentas, publicar contenido y suscribirse a comunidades, todo sin depender de un servidor central.
+`@bitsocial/bitsocial-react-hooks` ofrece a las aplicaciones React una API de hooks para el protocolo Bitsocial: feeds, comentarios, comunidades, perfiles de autor, cuentas y publicación, sin un servidor central. [5chan](/apps/5chan/) y [Seedit](/apps/seedit/) están construidas sobre ella.
 
-Esta biblioteca es la interfaz principal utilizada por [5chan](/apps/5chan/) y otras aplicaciones cliente de Bitsocial.
-
-:::note
-Actualmente, `bitsocial-react-hooks` se consume directamente desde GitHub en lugar de publicarse en npm.
-:::
+La biblioteca tiene su propio sitio de documentación, que se actualiza con cada versión: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## Instalación
 
-Debido a que el paquete aún no está en npm, instálelo directamente desde GitHub, fijándolo a un hash de confirmación específico:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-Reemplace `<commit-hash>` con la confirmación a la que desea dirigirse.
+El paquete es compatible con React 16.8 y versiones posteriores.
 
-## Descripción general de la API
+## Por dónde empezar
 
-Los ganchos están organizados en categorías funcionales. A continuación se muestra un resumen de los ganchos más utilizados en cada categoría. Para firmas, parámetros y tipos de retorno completos, consulte la [referencia completa de API en GitHub](https://github.com/bitsocialnet/bitsocial-react-hooks).
-
-### Cuentas
-
-Administre cuentas de usuarios locales, identidades y configuraciones.
-
-- `useAccount(accountName?)`: devuelve el objeto de cuenta activo (o con nombre).
-- `useAccounts()`: devuelve todas las cuentas almacenadas localmente
-- `useAccountComments(options?)`: devuelve comentarios publicados por la cuenta activa
-
-### Comentarios
-
-Obtenga e interactúe con comentarios e hilos individuales.
-
-- `useComment(commentCid?)`: recupera un único comentario por su CID
-- `useComments(commentCids?)`: recupera varios comentarios por lotes
-- `useEditedComment(comment?)`: devuelve la última versión editada de un comentario.
-
-### Comunidades
-
-Recuperar metadatos y configuraciones de la comunidad.
-
-- Gancho de búsqueda de una sola comunidad: busca una comunidad por dirección
-- Gancho de búsqueda multicomunidad: busca múltiples comunidades
-- Gancho de estadísticas de la comunidad: devuelve el número de suscriptores y publicaciones.
-
-### Autores
-
-Busque perfiles de autor y metadatos.
-
-- `useAuthor(authorAddress?)`: recupera un perfil de autor
-- `useAuthorComments(options?)`: devuelve comentarios de un autor específico
-- `useResolvedAuthorAddress(authorAddress?)`: resuelve una dirección legible por humanos (por ejemplo, ENS) en su dirección de protocolo
-
-### Feeds
-
-Suscríbete y pagina canales de contenido.
-
-- `useFeed(options?)`: devuelve un feed paginado de publicaciones de una o más comunidades
-- `useBufferedFeeds(feedOptions?)`: almacena previamente en búfer varios feeds para un renderizado más rápido
-- `useAuthorFeed(authorAddress?)`: devuelve un feed de publicaciones de un autor específico
-
-### Acciones
-
-Publicar contenido y realizar operaciones de escritura.
-
-- `usePublishComment(options?)`: publica un nuevo comentario o responde
-- `usePublishVote(options?)`: emitir un voto a favor o en contra
-- `useSubscribe(options?)`: suscribirse o darse de baja de una comunidad
-
-### Estados y RPC
-
-Supervise el estado de la conexión e interactúe con un demonio Bitsocial remoto.
-
-- `useClientsStates(options?)`: devuelve el estado de conexión de los clientes IPFS/pubsub
-- Gancho de configuración de RPC: devuelve la configuración actual del demonio RPC
-
-## Desarrollo
-
-Para trabajar en la biblioteca de ganchos localmente:
-
-**Requisitos previos:** Node.js, Corepack habilitado, Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-Consulte el archivo README del repositorio para obtener comandos de prueba y compilación.
+- [Inicio rápido](https://hooks.bitsocial.net/docs/quickstart/): renderiza tu primer feed de una comunidad.
+- [Conceptos](https://hooks.bitsocial.net/docs/concepts/): cómo encajan los feeds, las cuentas locales, el estado compartido y la publicación.
+- [Referencia de la API](https://hooks.bitsocial.net/docs/api/feeds-hooks/): cada hook con sus opciones y valores de retorno.
+- [Entorno de pruebas](https://hooks.bitsocial.net/#playground): edita ejemplos en vivo que se ejecutan sobre contenido simulado.
+- [Desarrollar con IA](https://hooks.bitsocial.net/docs/ai/): `llms.txt` y versiones en Markdown de cada página para agentes de programación.
 
 ## Enlaces
 
+- **Documentación:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **Licencia:** GPL-2.0 únicamente
+- **Licencia:** GPL-3.0-or-later

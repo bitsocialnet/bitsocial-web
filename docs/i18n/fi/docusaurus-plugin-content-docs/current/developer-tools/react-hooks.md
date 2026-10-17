@@ -1,104 +1,34 @@
 ---
-title: Reagoi koukut
+title: React Hooks
 description: React hooks -kirjasto hajautettujen sosiaalisten sovellusten rakentamiseen Bitsocial-protokollalla.
 sidebar_position: 1
 ---
 
-# Reagoi koukut
+# React Hooks
 
-`bitsocial-react-hooks`-paketti tarjoaa tutun React hooks APIn vuorovaikutukseen Bitsocial-protokollan kanssa. Se hoitaa syötteiden, kommenttien ja kirjoittajaprofiilien noudon, tilien hallinnan, sisällön julkaisemisen ja yhteisöjen tilaamisen – kaikki ilman keskuspalvelinta.
+`@bitsocial/bitsocial-react-hooks` tarjoaa React-sovelluksille hooks-rajapinnan Bitsocial-protokollaan: syötteet, kommentit, yhteisöt, kirjoittajaprofiilit, tilit ja julkaiseminen ilman keskuspalvelinta. [5chan](/apps/5chan/) ja [Seedit](/apps/seedit/) on rakennettu sen varaan.
 
-Tämä kirjasto on [5chan](/apps/5chan/) ja muiden Bitsocial-asiakassovellusten ensisijainen käyttöliittymä.
-
-:::note
-`bitsocial-react-hooks` kulutetaan tällä hetkellä suoraan GitHubista sen sijaan, että se julkaistaan npm:lle.
-:::
+Kirjastolla on oma dokumentaatiosivustonsa, jota päivitetään jokaisen uuden version myötä: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## Asennus
 
-Koska paketti ei ole vielä npm:ssä, asenna se suoraan GitHubista kiinnittäen tiettyyn vahvistushajaan:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-Korvaa `<commit-hash>` sitoumuksella, johon haluat kohdistaa.
+Paketti tukee Reactin versiota 16.8 ja sitä uudempia.
 
-## API yleiskatsaus
+## Mistä aloittaa
 
-Koukut on järjestetty toiminnallisiin luokkiin. Alla on yhteenveto kunkin luokan yleisimmin käytetyistä koukuista. Katso täydelliset allekirjoitukset, parametrit ja palautustyypit [täydellinen API-viittaus GitHubissa](https://github.com/bitsocialnet/bitsocial-react-hooks).
-
-### Tilit
-
-Hallinnoi paikallisia käyttäjätilejä, identiteettiä ja asetuksia.
-
-- `useAccount(accountName?)` -- palauttaa aktiivisen (tai nimetyn) tiliobjektin
-- `useAccounts()` – palauttaa kaikki paikallisesti tallennetut tilit
-- `useAccountComments(options?)` -- palauttaa aktiivisen tilin julkaisemat kommentit
-
-### Kommentit
-
-Hae ja käytä yksittäisiä kommentteja ja viestiketjuja.
-
-- `useComment(commentCid?)` -- hakee yksittäisen kommentin CID-tunnuksellaan
-- `useComments(commentCids?)` -- hakee useita kommentteja erässä
-- `useEditedComment(comment?)` -- palauttaa kommentin viimeisimmän muokatun version
-
-### yhteisöt
-
-Hae yhteisön metatiedot ja asetukset.
-
-- Yhden yhteisön hakukoukku – hakee yhteisön osoitteen perusteella
-- Monen yhteisön hakukoukku – hakee useita yhteisöjä
-- Yhteisön tilastokoukku – palauttaa tilaaja- ja viestimäärät
-
-### Tekijät
-
-Etsi tekijäprofiilit ja metatiedot.
-
-- `useAuthor(authorAddress?)` -- hakee tekijäprofiilin
-- `useAuthorComments(options?)` -- palauttaa tietyn kirjoittajan kommentit
-- `useResolvedAuthorAddress(authorAddress?)` – ratkaisee ihmisen luettavissa olevan osoitteen (esim. ENS) protokollaosoitteekseen
-
-### Syötteet
-
-Tilaa ja sivuuta sisältösyötteitä.
-
-- `useFeed(options?)` – palauttaa sivutetun syötteen yhdestä tai useammasta yhteisöstä
-- `useBufferedFeeds(feedOptions?)` – esipuskuroi useita syötteitä nopeuttaakseen hahmontamista
-- `useAuthorFeed(authorAddress?)` -- palauttaa syötteen tietyn kirjoittajan viesteistä
-
-### Toiminnot
-
-Julkaise sisältöä ja suorita kirjoitustoimintoja.
-
-- `usePublishComment(options?)` -- julkaise uusi kommentti tai vastaus
-- `usePublishVote(options?)` -- anna plus- tai miinusäänestys
-- `useSubscribe(options?)` -- tilaa yhteisö tai peruuta sen tilaus
-
-### osavaltiot ja RPC
-
-Valvo yhteyden tilaa ja ole vuorovaikutuksessa Bitsocial-etädemonin kanssa.
-
-- `useClientsStates(options?)` – palauttaa IPFS-/pubsub-asiakkaiden yhteystilan
-- RPC-asetusten koukku – palauttaa nykyisen RPC-daemon-kokoonpanon
-
-## Kehitys
-
-Hooks-kirjaston työskentely paikallisesti:
-
-**Edellytykset:** Node.js, Corepack käytössä, Lanka 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-Katso testi- ja rakennuskomennot arkistosta README.
+- [Pikaopas](https://hooks.bitsocial.net/docs/quickstart/): renderöi ensimmäinen yhteisösyötteesi.
+- [Käsitteet](https://hooks.bitsocial.net/docs/concepts/): miten syötteet, paikalliset tilit, jaettu tila ja julkaiseminen sopivat yhteen.
+- [API-viite](https://hooks.bitsocial.net/docs/api/feeds-hooks/): jokainen hook asetuksineen ja paluuarvoineen.
+- [Kokeiluympäristö](https://hooks.bitsocial.net/#playground): muokkaa live-esimerkkejä, jotka toimivat simuloidulla sisällöllä.
+- [Rakenna tekoälyn avulla](https://hooks.bitsocial.net/docs/ai/): `llms.txt` ja jokaisen sivun Markdown-versiot koodausagenteille.
 
 ## Linkit
 
+- **Dokumentaatio:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **Lisenssi:** Vain GPL-2.0
+- **Lisenssi:** GPL-3.0-or-later

@@ -1,104 +1,34 @@
 ---
-title: رد فعل السنانير
-description: مكتبة React Hooks لبناء تطبيقات اجتماعية لامركزية على بروتوكول Bitsocial.
+title: React Hooks
+description: مكتبة خطافات React لبناء تطبيقات اجتماعية لامركزية على بروتوكول Bitsocial.
 sidebar_position: 1
 ---
 
-# رد فعل السنانير
+# React Hooks
 
-توفر الحزمة `bitsocial-react-hooks` واجهة برمجة تطبيقات React Hooks المألوفة للتفاعل مع بروتوكول Bitsocial. فهو يتعامل مع جلب الخلاصات والتعليقات وملفات تعريف المؤلف وإدارة الحسابات ونشر المحتوى والاشتراك في المجتمعات - كل ذلك دون الاعتماد على خادم مركزي.
+تمنح الحزمة `@bitsocial/bitsocial-react-hooks` تطبيقات React واجهة برمجية قائمة على الخطافات لبروتوكول Bitsocial: الخلاصات والتعليقات والمجتمعات والملفات الشخصية للمؤلفين والحسابات والنشر، دون الحاجة إلى خادم مركزي. وعليها بُني كلٌّ من [5chan](/apps/5chan/) و[Seedit](/apps/seedit/).
 
-هذه المكتبة هي الواجهة الأساسية التي يستخدمها [5chan](/apps/5chan/) وتطبيقات عميل Bitsocial الأخرى.
-
-:::note
-يتم استهلاك `bitsocial-react-hooks` حاليًا مباشرةً من GitHub بدلاً من نشره على npm.
-:::
+للمكتبة موقع توثيق خاص بها يُحدَّث مع كل إصدار: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## التثبيت
 
-نظرًا لأن الحزمة لم تصل بعد إلى npm، قم بتثبيتها مباشرة من GitHub، مع تثبيتها على تجزئة التزام محددة:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-استبدل `<commit-hash>` بالالتزام الذي تريد استهدافه.
+تدعم الحزمة React 16.8 والإصدارات الأحدث.
 
-## نظرة عامة على واجهة برمجة التطبيقات
+## من أين تبدأ
 
-يتم تنظيم الخطافات في فئات وظيفية. فيما يلي ملخص للخطافات الأكثر استخدامًا في كل فئة. للحصول على التوقيعات الكاملة والمعلمات وأنواع الإرجاع، راجع [مرجع API الكامل على GitHub](https://github.com/bitsocialnet/bitsocial-react-hooks).)
+- [البدء السريع](https://hooks.bitsocial.net/docs/quickstart/): اعرض أول خلاصة لمجتمع.
+- [المفاهيم](https://hooks.bitsocial.net/docs/concepts/): كيف تتكامل الخلاصات والحسابات المحلية والحالة المشتركة والنشر معًا.
+- [مرجع API](https://hooks.bitsocial.net/docs/api/feeds-hooks/): كل خطاف مع خياراته والقيم التي يُرجعها.
+- [ساحة التجارب](https://hooks.bitsocial.net/#playground): عدّل أمثلة حية تعمل على محتوى مُحاكى.
+- [البناء بالذكاء الاصطناعي](https://hooks.bitsocial.net/docs/ai/): ملف `llms.txt` ونسخ بصيغة Markdown من كل صفحة لوكلاء البرمجة.
 
-### الحسابات
+## الروابط
 
-إدارة حسابات المستخدمين المحليين والهوية والإعدادات.
-
-- `useAccount(accountName?)` - إرجاع كائن الحساب النشط (أو المسمى).
-- `useAccounts()` - إرجاع جميع الحسابات المخزنة محليًا
-- `useAccountComments(options?)` - إرجاع التعليقات المنشورة بواسطة الحساب النشط
-
-### التعليقات
-
-جلب والتفاعل مع التعليقات والمواضيع الفردية.
-
-- `useComment(commentCid?)` - يجلب تعليقًا واحدًا بواسطة CID الخاص به
-- `useComments(commentCids?)` - جلب تعليقات متعددة دفعة واحدة
-- `useEditedComment(comment?)` - يعرض أحدث نسخة معدلة من التعليق
-
-### المجتمعات
-
-استرداد البيانات التعريفية والإعدادات للمجتمع.
-
-- خطاف البحث لمجتمع واحد - يجلب المجتمع حسب العنوان
-- خطاف البحث متعدد المجتمعات - يجلب مجتمعات متعددة
-- ربط إحصائيات المجتمع - يعرض عدد المشتركين والمشاركات
-
-### المؤلفون
-
-ابحث عن الملفات الشخصية للمؤلفين والبيانات الوصفية.
-
-- `useAuthor(authorAddress?)` - جلب ملف تعريف المؤلف
-- `useAuthorComments(options?)` - إرجاع التعليقات بواسطة مؤلف محدد
-- `useResolvedAuthorAddress(authorAddress?)` - يحل العنوان الذي يمكن قراءته بواسطة الإنسان (على سبيل المثال، ENS) إلى عنوان البروتوكول الخاص به
-
-### يغذي
-
-الاشتراك في خلاصات المحتوى وترقيم صفحاتها.
-
-- `useFeed(options?)` - يعرض موجزًا مرقّمًا للمشاركات من مجتمع واحد أو أكثر
-- `useBufferedFeeds(feedOptions?)` - يقوم بتخزين خلاصات متعددة مؤقتًا مسبقًا لعرض أسرع
-- `useAuthorFeed(authorAddress?)` - يعرض موجزًا للمشاركات التي كتبها مؤلف محدد
-
-### الإجراءات
-
-نشر المحتوى وتنفيذ عمليات الكتابة.
-
-- `usePublishComment(options?)` - نشر تعليق أو رد جديد
-- `usePublishVote(options?)` - قم بالتصويت الإيجابي أو السلبي
-- `useSubscribe(options?)` - الاشتراك أو إلغاء الاشتراك في المجتمع
-
-### الدول وRPC
-
-مراقبة حالة الاتصال والتفاعل مع برنامج Bitsocial البعيد.
-
-- `useClientsStates(options?)` - يُرجع حالة الاتصال لعملاء IPFS/pubsub
-- ربط إعدادات RPC - يُرجع التكوين الخفي الحالي لـ RPC
-
-## التنمية
-
-للعمل على مكتبة الخطافات محليًا:
-
-**المتطلبات الأساسية:** Node.js، تمكين Corepack، Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-ارجع إلى الملف README الخاص بالمستودع للحصول على أوامر الاختبار والإنشاء.
-
-## روابط
-
+- **التوثيق:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **الترخيص:** GPL-2.0 فقط
+- **الترخيص:** GPL-3.0-or-later

@@ -1,104 +1,34 @@
 ---
-title: Reagovat Hooks
-description: Knihovna háčků React pro vytváření decentralizovaných sociálních aplikací na protokolu Bitsocial.
+title: React Hooks
+description: Knihovna React hooků pro tvorbu decentralizovaných sociálních aplikací na protokolu Bitsocial.
 sidebar_position: 1
 ---
 
-# Reagovat Hooks
+# React Hooks
 
-Balíček `bitsocial-react-hooks` poskytuje známé rozhraní React hooks API pro interakci s protokolem Bitsocial. Zvládá načítání zdrojů, komentářů a profilů autorů, správu účtů, publikování obsahu a přihlašování do komunit – to vše bez spoléhání na centrální server.
+`@bitsocial/bitsocial-react-hooks` poskytuje aplikacím v Reactu API s hooky pro protokol Bitsocial: feedy, komentáře, komunity, profily autorů, účty a publikování, a to bez centrálního serveru. Na této knihovně stojí [5chan](/apps/5chan/) i [Seedit](/apps/seedit/).
 
-Tato knihovna je primárním rozhraním používaným [5kanál](/apps/5chan/) a dalšími klientskými aplikacemi Bitsocial.
-
-:::note
-`bitsocial-react-hooks` je v současnosti spotřebováván přímo z GitHubu, nikoli publikován do npm.
-:::
+Knihovna má vlastní web s dokumentací, který se aktualizuje s každým vydáním: **[hooks.bitsocial.net](https://hooks.bitsocial.net/)**.
 
 ## Instalace
 
-Protože balíček ještě není na npm, nainstalujte jej přímo z GitHubu a připněte ke konkrétnímu hash odevzdání:
-
 ```bash
-yarn add https://github.com/bitsocialnet/bitsocial-react-hooks.git#<commit-hash>
+npm install @bitsocial/bitsocial-react-hooks
 ```
 
-Nahraďte `<commit-hash>` odevzdáním, na které chcete cílit.
+Balíček podporuje React 16.8 a novější.
 
-## Přehled API
+## Kde začít
 
-Háčky jsou uspořádány do funkčních kategorií. Níže je uveden souhrn nejčastěji používaných háčků v každé kategorii. Úplné podpisy, parametry a návratové typy naleznete v [úplná referenční API na GitHubu](https://github.com/bitsocialnet/bitsocial-react-hooks).
-
-### Účty
-
-Spravujte místní uživatelské účty, identitu a nastavení.
-
-- `useAccount(accountName?)` -- vrátí aktivní (nebo pojmenovaný) objekt účtu
-- `useAccounts()` -- vrátí všechny lokálně uložené účty
-- `useAccountComments(options?)` -- vrátí komentáře publikované aktivním účtem
-
-### Komentáře
-
-Stahujte jednotlivé komentáře a vlákna a pracujte s nimi.
-
-- `useComment(commentCid?)` -- načte jeden komentář podle svého CID
-- `useComments(commentCids?)` -- načte více komentářů v dávce
-- `useEditedComment(comment?)` -- vrátí poslední upravenou verzi komentáře
-
-### společenství
-
-Načtěte metadata a nastavení komunity.
-
-- Vyhledávací hák jedné komunity -- načte komunitu podle adresy
-- Háček pro vyhledávání více komunit -- načte více komunit
-- Háček na statistiky komunity -- vrací počty odběratelů a příspěvků
-
-### Autoři
-
-Vyhledejte profily a metadata autorů.
-
-- `useAuthor(authorAddress?)` -- načte profil autora
-- `useAuthorComments(options?)` -- vrátí komentáře od konkrétního autora
-- `useResolvedAuthorAddress(authorAddress?)` – převádí lidsky čitelnou adresu (např. ENS) na adresu protokolu
-
-### Zdroje
-
-Přihlaste se k odběru a stránkujte zdroje obsahu.
-
-- `useFeed(options?)` – vrátí stránkovaný zdroj příspěvků z jedné nebo více komunit
-- `useBufferedFeeds(feedOptions?)` -- přednakládá do vyrovnávací paměti více kanálů pro rychlejší vykreslování
-- `useAuthorFeed(authorAddress?)` -- vrátí zdroj příspěvků od konkrétního autora
-
-### Akce
-
-Publikujte obsah a provádějte operace zápisu.
-
-- `usePublishComment(options?)` -- publikujte nový komentář nebo odpověď
-- `usePublishVote(options?)` -- hlasujte pro nebo proti
-- `useSubscribe(options?)` -- přihlášení nebo odhlášení z komunity
-
-### státy a RPC
-
-Monitorujte stav připojení a komunikujte se vzdáleným Bitsocial démonem.
-
-- `useClientsStates(options?)` -- vrací stav připojení klientů IPFS/pubsub
-- RPC settings hook -- vrátí aktuální konfiguraci RPC démona
-
-## Vývoj
-
-Chcete-li lokálně pracovat na knihovně háčků:
-
-**Předpoklady:** Node.js, povoleno Corepack, Yarn 4
-
-```bash
-git clone https://github.com/bitsocialnet/bitsocial-react-hooks.git
-cd bitsocial-react-hooks
-corepack enable
-yarn install
-```
-
-Příkazy pro testování a sestavení najdete v úložišti README.
+- [Rychlý start](https://hooks.bitsocial.net/docs/quickstart/): vykreslete svůj první feed komunity.
+- [Koncepty](https://hooks.bitsocial.net/docs/concepts/): jak do sebe zapadají feedy, lokální účty, sdílený stav a publikování.
+- [Reference API](https://hooks.bitsocial.net/docs/api/feeds-hooks/): všechny hooky včetně jejich voleb a návratových hodnot.
+- [Playground](https://hooks.bitsocial.net/#playground): upravujte živé příklady, které běží nad simulovaným obsahem.
+- [Vývoj s AI](https://hooks.bitsocial.net/docs/ai/): `llms.txt` a verze všech stránek v Markdownu pro kódovací agenty.
 
 ## Odkazy
 
+- **Dokumentace:** [hooks.bitsocial.net](https://hooks.bitsocial.net/)
+- **npm:** [@bitsocial/bitsocial-react-hooks](https://www.npmjs.com/package/@bitsocial/bitsocial-react-hooks)
 - **GitHub:** [bitsocialnet/bitsocial-react-hooks](https://github.com/bitsocialnet/bitsocial-react-hooks)
-- **Licence:** Pouze GPL-2.0
+- **Licence:** GPL-3.0-or-later
