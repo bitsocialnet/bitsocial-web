@@ -1,6 +1,7 @@
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+import remarkPele from "./plugins/remark-pele.mjs";
 import {
   DEFAULT_LANGUAGE_CODE,
   SUPPORTED_LANGUAGES,
@@ -42,12 +43,10 @@ const config: Config = {
   onBrokenLinks: "throw",
   trailingSlash: true,
   markdown: {
-    mermaid: true,
     hooks: {
       onBrokenMarkdownLinks: "warn",
     },
   },
-  themes: ["@docusaurus/theme-mermaid"],
   i18n: {
     defaultLocale: "en",
     locales: [...SUPPORTED_LANGUAGE_CODES],
@@ -73,6 +72,7 @@ const config: Config = {
           breadcrumbs: false,
           showLastUpdateTime: showDocsGitMetadata,
           showLastUpdateAuthor: false,
+          beforeDefaultRemarkPlugins: [remarkPele],
           exclude: [
             ".docusaurus/**",
             "build/**",
