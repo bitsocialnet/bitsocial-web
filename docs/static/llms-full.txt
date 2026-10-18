@@ -6702,7 +6702,6 @@ Default options use the first bundled profile and target the 5chan issuer:
 | `namespace`    | `5chan`                          | Top-level comment object key for immutable data       |
 | `profile`      | `5chan`                          | Flag profile to validate; this release supports 5chan |
 | `allowedFlags` | `country,pol,pony`               | Comma-separated flag families accepted by the board   |
-| `requireFlag`  | `false`                          | Rejects posts and replies that do not request a flag  |
 | `emitFlair`    | `true`                           | Mirrors the verified flag to author community flairs  |
 | `error`        | `Flag verification failed.`      | Error prefix shown if verification fails              |
 
@@ -6714,20 +6713,6 @@ Boards can restrict flag families:
     name: "@bitsocial/flags-challenge",
     options: {
       allowedFlags: "country,pol",
-    },
-  },
-];
-```
-
-Boards where every post must carry a flag, such as `/pol/`, also set `requireFlag`. Without it, a client that omits the flag request is accepted. Comment edits and other non-comment publications are not affected.
-
-```js
-[
-  {
-    name: "@bitsocial/flags-challenge",
-    options: {
-      allowedFlags: "country,pol",
-      requireFlag: "true",
     },
   },
 ];
