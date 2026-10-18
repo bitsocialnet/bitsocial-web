@@ -370,7 +370,7 @@ Al prescindir de la blockchain, Bitsocial evita:
 La contrapartida es que Bitsocial no garantiza la disponibilidad permanente del contenido antiguo.
 Pero para las redes sociales es una contrapartida aceptable: el nodo del operador de la comunidad
 conserva los datos, el contenido popular se reparte entre muchos pares y las publicaciones muy
-antiguas se apagan de forma natural, igual que ocurre en cualquier plataforma social.
+antiguas se apagan de forma natural, igual que ocurre en cualquier plataforma social. Para saber quién mantiene las publicaciones en línea, cómo las comunidades fijan su propia retención y cómo los archivos conservan legible el contenido antiguo, consulta [Dónde viven las publicaciones y cuánto duran](/content-persistence/).
 
 ## ¿Por qué no la federación?
 

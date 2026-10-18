@@ -82,7 +82,9 @@ peers. Veja [Peer-to-Peer no navegador](/browser-p2p/).
 ### Conteúdo antigo
 
 Os posts do Nostr são amplamente replicados entre relays, o que ajuda posts antigos a sobreviver. O
-Bitsocial mantém o estado mais recente da comunidade e não garante o conteúdo antigo para sempre.
+Bitsocial mantém o estado mais recente da comunidade e não garante o conteúdo antigo para sempre. Cada
+post ainda é assinado e endereçado por conteúdo; o que varia é quem guarda uma cópia: o nó da comunidade, leitores, seeders e arquivos. Veja [Onde os posts ficam e por quanto tempo
+permanecem](/content-persistence/).
 
 ## Comparação
 

@@ -353,6 +353,7 @@ medya için bu kabul edilebilir bir bedeldir: veriyi topluluk işletmecisinin d�
 içerik birçok eşe yayılır ve çok eski gönderiler doğal olarak silikleşir — tıpkı her sosyal
 platformda olduğu gibi.
 
+ Gönderileri kimin çevrimiçi tuttuğu, toplulukların saklama süresini nasıl belirlediği ve arşivlerin eski içeriği nasıl okunur tuttuğu için bkz. [Gönderiler Nerede Yaşar ve Ne Kadar Kalır](/content-persistence/).
 ## Neden federasyon değil?
 
 Federe ağlar (e-posta ya da ActivityPub tabanlı platformlar gibi) merkezîleşmeye göre bir ilerlemedir

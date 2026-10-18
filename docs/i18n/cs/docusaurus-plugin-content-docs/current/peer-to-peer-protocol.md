@@ -343,7 +343,7 @@ Vynecháním blockchainu se Bitsocial vyhýbá:
 
 Kompromisem je, že Bitsocial nezaručuje trvalou dostupnost starého obsahu. Pro sociální média je to
 ale přijatelné: data drží uzel provozovatele komunity, populární obsah se rozšíří mezi mnoho peerů a
-velmi staré příspěvky přirozeně vyblednou — stejně jako na každé sociální platformě.
+velmi staré příspěvky přirozeně vyblednou — stejně jako na každé sociální platformě. Kdo drží příspěvky online, jak si komunity nastavují vlastní dobu uchování a jak archivy udržují starý obsah čitelný, popisuje [Kde příspěvky jsou a jak dlouho vydrží](/content-persistence/).
 
 ## Proč ne federace?
 

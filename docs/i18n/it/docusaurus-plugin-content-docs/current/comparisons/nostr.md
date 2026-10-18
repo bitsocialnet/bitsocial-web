@@ -86,7 +86,7 @@ contenuti dai peer. Vedi [Peer-to-peer nel browser](/browser-p2p/).
 
 I post di Nostr sono ampiamente replicati sui relay, il che aiuta i vecchi post a sopravvivere.
 Bitsocial conserva lo stato più recente della comunità e non garantisce i vecchi contenuti per
-sempre.
+sempre. Ogni post resta firmato e indirizzato in base al contenuto; varia solo chi ne conserva una copia: il nodo della comunità, i lettori, i seeders e gli archivi. Vedi [Dove vivono i post e per quanto tempo restano disponibili](/content-persistence/).
 
 ## Confronto
 

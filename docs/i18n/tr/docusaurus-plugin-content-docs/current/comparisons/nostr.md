@@ -85,6 +85,7 @@ içeriği eşlerden alır. Bkz. [Tarayıcıda Eşler Arası Ağ](/browser-p2p/).
 Nostr gönderileri röleler arasında geniş ölçüde çoğaltılır; bu da eski gönderilerin ayakta kalmasına
 yardım eder. Bitsocial topluluğun en güncel durumunu tutar ve eski içeriği sonsuza dek garanti etmez.
 
+ Her gönderi yine imzalı ve içerik adreslidir; değişen, kimin kopya tuttuğudur: topluluk düğümü, okuyucular, seeders ve arşivler. Bkz. [Gönderiler Nerede Yaşar ve Ne Kadar Kalır](/content-persistence/).
 ## Karşılaştırma
 
 | Soru                       | Nostr                                                                                         | Bitsocial                                                                                    |

@@ -356,7 +356,7 @@ Saltando la blockchain, Bitsocial evita:
 Il compromesso è che Bitsocial non garantisce la disponibilità permanente dei vecchi contenuti. Ma
 per i social media è un compromesso accettabile: il nodo dell'operatore della comunità conserva i
 dati, i contenuti popolari si diffondono su molti peer e i post molto vecchi svaniscono naturalmente
-— proprio come accade su qualsiasi piattaforma social.
+— proprio come accade su qualsiasi piattaforma social. Per sapere chi mantiene online i post, come le comunità scelgono la conservazione e come gli archivi mantengono leggibile il vecchio contenuto, vedi [Dove vivono i post e per quanto tempo restano disponibili](/content-persistence/).
 
 ## Perché non la federazione?
 

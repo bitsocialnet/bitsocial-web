@@ -352,6 +352,7 @@ sociala medier är det en acceptabel avvägning: community-operatörens nod hål
 innehåll sprids över många peers och mycket gamla inlägg tonar naturligt bort — precis som de gör på
 alla andra sociala plattformar.
 
+ För information om vem som håller inlägg online, hur communities bestämmer sin egen bevaringstid och hur arkiv håller gammalt innehåll läsbart, se [Var inlägg finns och hur länge de finns kvar](/content-persistence/).
 ## Varför inte federation?
 
 Federerade nätverk (som e-post eller ActivityPub-baserade plattformar) är ett steg upp från

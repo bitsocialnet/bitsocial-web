@@ -85,7 +85,7 @@ Lihat [Peer-to-Peer di Browser](/browser-p2p/).
 
 Postingan Nostr direplikasi secara luas di berbagai relay, sehingga postingan lama lebih mungkin
 bertahan. Bitsocial menyimpan status komunitas terbaru dan tidak menjamin konten lama tersedia
-selamanya.
+selamanya. Setiap postingan tetap ditandatangani dan dialamatkan berdasarkan konten; yang berbeda adalah siapa yang menyimpan salinan: node komunitas, pembaca, seeder, dan arsip. Lihat [Di Mana Postingan Berada dan Berapa Lama Bertahan](/content-persistence/).
 
 ## Perbandingan
 

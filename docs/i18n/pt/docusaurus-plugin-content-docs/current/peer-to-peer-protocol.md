@@ -358,7 +358,9 @@ Ao dispensar a blockchain, o Bitsocial evita:
 A contrapartida é que o Bitsocial não garante disponibilidade permanente do conteúdo antigo. Mas,
 para mídia social, essa é uma contrapartida aceitável: o nó do operador da comunidade guarda os
 dados, o conteúdo popular se espalha por muitos pares e as publicações muito antigas somem
-naturalmente — do mesmo jeito que acontece em qualquer plataforma social.
+naturalmente — do mesmo jeito que acontece em qualquer plataforma social. Para saber quem mantém os posts online, como as comunidades definem sua
+própria retenção e como os arquivos mantêm o conteúdo antigo legível, veja [Onde os posts ficam e por
+quanto tempo permanecem](/content-persistence/).
 
 ## Por que não federação?
 

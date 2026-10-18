@@ -86,7 +86,9 @@ përmbajtjen nga homologët. Shihni [Peer-to-Peer në shfletues](/browser-p2p/).
 
 Postimet e Nostr replikohen gjerësisht nëpër rele, gjë që i ndihmon postimet e vjetra të mbijetojnë.
 Bitsocial mban gjendjen më të fundit të komunitetit dhe nuk e garanton përgjithmonë përmbajtjen e
-vjetër.
+vjetër. Çdo postim është ende i nënshkruar dhe i adresuar sipas përmbajtjes; ajo që ndryshon është
+kush mban një kopje: nyja e komunitetit, lexuesit, seeder-at dhe arkivat. Shihni [Ku ruhen postimet dhe
+sa gjatë qëndrojnë të disponueshme](/content-persistence/).
 
 ## Krahasimi
 

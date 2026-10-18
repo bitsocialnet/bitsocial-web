@@ -352,6 +352,7 @@ Nhờ bỏ qua blockchain, Bitsocial tránh được:
 đánh đổi chấp nhận được: node của người vận hành cộng đồng giữ dữ liệu, nội dung phổ biến lan ra
 nhiều peer, và những bài rất cũ tự nhiên phai dần — đúng như trên mọi nền tảng xã hội khác.
 
+ Để biết ai giữ bài đăng trực tuyến, cộng đồng đặt thời hạn lưu giữ ra sao và kho lưu trữ giúp nội dung cũ còn đọc được thế nào, xem [Bài đăng ở đâu và tồn tại bao lâu](/content-persistence/).
 ## Tại sao không dùng mô hình liên hợp?
 
 Các mạng liên hợp (như email hay những nền tảng dựa trên ActivityPub) khá hơn mô hình tập trung

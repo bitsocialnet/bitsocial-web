@@ -91,7 +91,7 @@ tab at kumukuha ito ng nilalaman mula sa mga peer. Tingnan ang
 
 Malawakang nire-replicate sa mga relay ang mga post sa Nostr, na tumutulong upang manatili ang mga
 lumang post. Pinapanatili ng Bitsocial ang pinakabagong estado ng komunidad at hindi nito
-ginagarantiyang mananatili magpakailanman ang lumang nilalaman.
+ginagarantiyang mananatili magpakailanman ang lumang nilalaman. Signed at content-addressed pa rin ang bawat post; ang nag-iiba ay kung sino ang may kopya: node ng komunidad, mga mambabasa, seeder at archive. Tingnan ang [Saan nakatira ang mga post at gaano katagal ang mga ito](/content-persistence/).
 
 ## Paghahambing
 

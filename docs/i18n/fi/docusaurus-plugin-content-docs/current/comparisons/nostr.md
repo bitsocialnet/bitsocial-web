@@ -89,7 +89,7 @@ vertaisilta. Katso [Selaimen peer-to-peer](/browser-p2p/).
 
 Nostr-julkaisut replikoituvat laajasti välityspalvelimille, mikä auttaa vanhoja julkaisuja
 säilymään. Bitsocial säilyttää yhteisön uusimman tilan eikä takaa vanhan sisällön säilymistä
-ikuisesti.
+ikuisesti. Jokainen julkaisu on silti allekirjoitettu ja sisältöosoitettu; vaihtelevaa on se, kuka säilyttää kopion: yhteisön solmu, lukijat, jakajat ja arkistot. Katso [Missä julkaisut ovat ja kuinka kauan ne säilyvät](/content-persistence/).
 
 ## Vertailu
 

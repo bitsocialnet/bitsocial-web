@@ -361,7 +361,7 @@ En saltar-se la cadena de blocs, Bitsocial evita:
 La contrapartida és que Bitsocial no garanteix la disponibilitat permanent del contingut antic. Però
 per a les xarxes socials és una contrapartida acceptable: el node de l'operador de la comunitat
 conserva les dades, el contingut popular s'escampa per molts iguals i les entrades molt antigues
-s'esvaeixen de manera natural, igual que passa a totes les plataformes socials.
+s'esvaeixen de manera natural, igual que passa a totes les plataformes socials. Per saber qui manté les publicacions en línia, com les comunitats estableixen la seva retenció i com els arxius mantenen llegible el contingut antic, consulta [On viuen les publicacions i quant duren](/content-persistence/).
 
 ## Per què no la federació?
 
