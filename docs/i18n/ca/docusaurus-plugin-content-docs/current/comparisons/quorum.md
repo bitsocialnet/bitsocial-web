@@ -5,8 +5,8 @@ description: Com es compara Quorum, l'aplicació de missatgeria de grup de Quili
 
 # Bitsocial i Quorum
 
-[Quorum](https://www.quorummessenger.com/) és una aplicació de missatgeria de grup creada per
-Quilibrium Inc. sobre la seva xarxa [Quilibrium](https://quilibrium.com/). S'organitza com Discord,
+[Quorum](https://www.quorummessenger.com/) és una aplicació de missatgeria de grup de Quilibrium Inc.,
+l'empresa que hi ha darrere de la xarxa [Quilibrium](https://quilibrium.com/). S'organitza com Discord,
 amb Spaces, canals, rols i missatges directes, i els seus missatges estan xifrats d'extrem a extrem.
 Apareix al costat de Bitsocial perquè tots dos es descriuen com a peer-to-peer i resistents a la
 censura, amb grups que fixen les seves pròpies regles. Persegueixen objectius diferents: Quorum, el
@@ -30,36 +30,43 @@ d'escriptori i [quorum-mobile](https://github.com/QuilibriumNetwork/quorum-mobil
 de 2026.
 
 - **Identitats.** La identitat mestra d'un usuari és un conjunt de claus Ed448, i cada dispositiu
-  rep les seves pròpies claus X448 i Ed448. Al navegador, les claus estan protegides per una clau
-  d'accés (passkey). Les adreces són hashes que comencen per `Qm`, i els usuaris poden mostrar un
-  nom d'usuari del servei de noms de Quilibrium.
+  rep les seves pròpies claus X448 i Ed448. Al navegador, les claus normalment estan protegides per
+  una clau d'accés (passkey); l'aplicació mòbil les deriva d'una frase de recuperació. Les adreces són
+  hashes que comencen per `Qm`, i els usuaris poden mostrar un nom d'usuari del servei de noms de
+  Quilibrium.
 - **Xifratge.** Els missatges directes fan servir el Double Ratchet entre dispositius. Un Space
   comparteix una única sessió de Triple Ratchet entre els seus membres, que signen els missatges amb
-  claus específiques d'aquell Space. Tots els Spaces estan xifrats, i Quorum afirma que la seva
-  intermediació de missatges impedeix que el servei que retransmet els missatges vinculi remitents i
-  destinataris.
+  claus específiques d'aquell Space. Tots els Spaces estan xifrats. Quorum afirma que la seva
+  intermediació de missatges impedeix vincular remitents i destinataris, però el client web i
+  d'escriptori se subscriu a totes les safates d'entrada d'un dispositiu, inclosa la que figura al
+  registre públic de l'usuari, en
+  [una sola petició](https://github.com/QuilibriumNetwork/quorum-desktop/blob/db04b991dfb0f7c9db330bd4f816b08aaa4a6811/src/components/context/MessageDB.tsx#L616-L623)
+  al servei, que per tant les pot vincular a l'adreça de l'usuari.
 - **Unir-s'hi.** Als Spaces s'hi entra amb enllaços d'invitació. Un enllaç d'un sol ús porta a la
   URL les claus per unir-s'hi; un enllaç públic les obté del servei de Quorum, i els Spaces públics
   poden figurar en un directori amb cercador.
-- **Transport.** Els clients web, d'escriptori i mòbil es connecten tots per HTTPS i un WebSocket a
-  un únic servei,
+- **Transport.** Per a la missatgeria, els clients web, d'escriptori i mòbil es connecten tots per
+  HTTPS i un WebSocket a un únic servei,
   [`api.quorummessenger.com`](https://github.com/QuilibriumNetwork/quorum-desktop/blob/db04b991dfb0f7c9db330bd4f816b08aaa4a6811/src/config/config.quorum.ts#L6-L7).
-  Aquest servei retransmet els missatges xifrats a la safata d'entrada de cada membre i emmagatzema
-  els registres d'usuaris, el manifest xifrat de cada Space (canals, rols, emoji), el material
+  Aquest servei retransmet els missatges xifrats a la safata d'entrada de cada membre i els reté fins
+  que el client en confirma la recepció. També emmagatzema els registres d'usuaris, els perfils
+  públics d'activació voluntària, el manifest xifrat de cada Space (canals, rols, emoji), el material
   d'invitació, el directori públic i una sincronització opcional i xifrada de la configuració. El
   programari de node de Quilibrium té un servei de safata d'entrada i hub amb la mateixa estructura,
   però ni els clients ni la documentació de Quilibrium diuen com es correspon aquest servei amb la
   xarxa.
 - **Historial.** El client de cada membre conserva la seva pròpia còpia del Space a l'emmagatzematge
-  local. El client web i d'escriptori recupera l'historial anterior demanant a un membre connectat
-  que el sincronitzi; el client mòbil reprodueix un registre que el servei manté per a cada Space,
-  de manera que es pot posar al dia quan no hi ha cap altre membre connectat.
+  local, i tots dos clients recullen de les seves safates d'entrada al servei els missatges enviats
+  mentre estaven desconnectats. Per a l'historial més antic, el client web i d'escriptori demana a un
+  membre connectat que el sincronitzi, mentre que el client mòbil reprodueix un registre persistent
+  que el servei manté per a cada Space.
 - **Moderació.** Els rols concedeixen permisos per esborrar, fixar, silenciar i fer mencions
   `@everyone`. El client de cada membre comprova la signatura de cada acció de moderació i només
   l'aplica si el signant té el rol adequat. El propietari pot expulsar un membre, cosa que rota les
   claus del Space perquè el membre expulsat no pugui llegir els missatges nous. Un Space pot exigir
   missatges signats o deixar que els membres publiquin missatges sense signar, l'autoria dels quals
-  es pot negar.
+  es pot negar. Els llistats del directori públic tenen un estat de revisió, i els usuaris poden
+  denunciar Spaces, i des de l'aplicació mòbil missatges individuals, al servei de Quorum.
 - **Codi.** El client web i d'escriptori té llicència AGPL-3.0, i el client mòbil, GPL-3.0. El
   client mòbil també inclou una cartera de criptomonedes, integració amb Farcaster i Apex, una
   subscripció de pagament que es descriu més avall.
@@ -76,9 +83,9 @@ aplicació, sense unir-s'hi, i qualsevol pot intentar publicar-hi, subjecte al r
 ### Què manté un grup en línia
 
 Un Space de Quorum no té cap node amfitrió. Els membres envien els missatges a través del servei de
-Quorum, el client de cada membre en conserva una còpia i el propietari no necessita estar en línia
-perquè els altres conversin. Una comunitat de Bitsocial viu al node del seu propietari, que accepta
-o rebutja cada publicació i publica l'estat més recent de la comunitat. La comunitat continua sent
+Quorum, que en guarda una còpia per a cada membre fins que el seu client la recull, i el propietari
+no necessita estar en línia perquè els altres conversin. Una comunitat de Bitsocial viu al node del
+seu propietari, que accepta o rebutja cada publicació i publica l'estat més recent de la comunitat. La comunitat continua sent
 llegible mentre hi hagi iguals que en facin de seeders, però no pot acceptar publicacions noves
 mentre el seu node està desconnectat. Consulta [Protocol peer-to-peer](/peer-to-peer-protocol/).
 
@@ -86,24 +93,26 @@ mentre el seu node està desconnectat. Consulta [Protocol peer-to-peer](/peer-to
 
 A Quorum, les regles es fan complir als extrems. El client de cada membre decideix si aplica un
 esborrat, una fixació o un silenciament segons el rol del signant, i una expulsió funciona
-traslladant tots els altres a claus noves. A Bitsocial, les regles es fan complir al node de la
-comunitat: una publicació que no supera el repte o les regles de la comunitat mai no arriba a
-formar-ne part. Consulta [Moderació local, no prohibicions globals](/local-moderation/).
+traslladant tots els altres a claus noves. Paral·lelament, l'operador del servei rep les denúncies i
+revisa el directori públic. A Bitsocial, les regles es fan complir al node de la comunitat: una
+publicació que no supera el repte de la comunitat mai no és acceptada, i el node aplica les
+eliminacions dels seus moderadors. Consulta [Moderació local, no prohibicions globals](/local-moderation/).
 
 ### Control de l'spam
 
 Quorum manté fora l'spam sobretot mitjançant invitacions. Un enllaç d'un sol ús admet una persona,
 un enllaç públic admet qualsevol que el tingui, i el propietari pot expulsar i canviar les claus
-després; el client també limita la freqüència dels seus propis enviaments. Les identitats de
-Bitsocial són parells de claus gratuïts, de manera que cada comunitat tria un repte que s'executa
-abans d'acceptar una publicació, com ara un captcha, un pagament, un saldo de tokens o una llista de
-permesos. Consulta [Reptes antispam personalitzats](/custom-challenges/).
+després. Els clients també limiten la rapidesa amb què un membre pot enviar, i el client web i
+d'escriptori descarta els missatges dels Spaces de qualsevol remitent per sobre de 10 en 10 segons.
+Les identitats de Bitsocial són parells de claus gratuïts, de manera que cada comunitat tria un repte
+que s'executa abans d'acceptar una publicació, com ara un captcha, un pagament, un saldo de tokens o
+una llista de permesos. Consulta [Reptes antispam personalitzats](/custom-challenges/).
 
 ### El client i la xarxa
 
 Una aplicació de Quorum és un client del servei de Quorum, que gestiona Quilibrium Inc. Les
 aplicacions no s'uneixen per si mateixes a cap xarxa peer-to-peer, de manera que arribar a un Space
-depèn d'aquest únic punt d'accés. Al darrere, Quilibrium és una xarxa pròpia: l'octubre de 2026, el
+depèn d'aquest únic punt d'accés. A banda d'això, Quilibrium és una xarxa pròpia: l'octubre de 2026, el
 seu [explorador](https://dashboard.quilibrium.com/) mostrava 114 iguals accessibles i 181 provers
 repartits en 99 shards.
 
@@ -127,9 +136,10 @@ pagament o un token mitjançant el seu repte.
 
 Aquí Quorum és més fort. Els missatges directes i els missatges dels Spaces estan xifrats d'extrem a
 extrem amb secret cap endavant, i el contingut dels missatges només arriba al servei de Quorum com a
-text xifrat. Bitsocial se centra en les comunitats públiques i encara no té missatges directes
-nadius. Una publicació de Bitsocial va xifrada amb la clau del node de la comunitat mentre viatja
-per pubsub, però un cop acceptada és pública.
+text xifrat, excepte quan un membre denuncia un missatge des de l'aplicació mòbil, que n'envia el
+contingut als moderadors de Quorum. Bitsocial se centra en les comunitats públiques i encara no té
+missatges directes nadius. Una publicació de Bitsocial va xifrada amb la clau del node de la
+comunitat mentre viatja per pubsub, però un cop acceptada és pública.
 
 ## Estat del projecte
 
@@ -144,23 +154,24 @@ reprendre després d'una aturada ([anunci](https://x.com/QuilibriumInc/status/19
 El 2026 el node es va reescriure en Rust, amb signatures postquàntiques per al consens i un protocol
 de comunicació que els nodes més antics no entenen. Parts de la documentació descriuen el disseny i
 no el codi en funcionament: descriuen
-l'[encaminament per mixnet](https://docs.quilibrium.com/docs/learn/communication/mixnet-routing/),
-però al node 2.1.0.25 el servei de mixnet és un
+l'[encaminament per mixnet](https://docs.quilibrium.com/docs/learn/communication/mixnet-routing/).
+Els nodes sí que retransmeten trànsit entre ells mitjançant circuits amb encaminament onion, però al
+node 2.1.0.25 el servei de mixnet és un
 [stub](https://github.com/QuilibriumNetwork/monorepo/blob/bba996388e453ec484695c3cf9d8b2f3b4b1e43d/crates/quil-rpc/src/mixnet_service.rs#L29-L31)
 que accepta missatges sense barrejar-los.
 
 ## Comparació
 
-| Pregunta                       | Quorum                                                                                                    | Bitsocial                                                                                                             |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Categoria                      | Aplicació de missatgeria de grup xifrada d'extrem a extrem a la xarxa Quilibrium                          | Xarxa de comunitats peer-to-peer                                                                                      |
-| Identitat                      | Conjunt de claus mestre Ed448 més claus per dispositiu, protegides per una clau d'accés                   | Parells de claus Ed25519 per a usuaris i comunitats                                                                   |
-| Qui pot llegir                 | Els membres que tenen les claus d'un Space                                                                | Qualsevol, des de qualsevol aplicació                                                                                 |
-| On viuen els missatges         | El dispositiu de cada membre; el client mòbil també reprodueix un registre que guarda el servei de Quorum | El node del propietari de la comunitat i els iguals que la llegeixen i en fan de seeders                              |
-| A què es connecten els clients | Al servei de Quorum a `api.quorummessenger.com`                                                           | A iguals mitjançant libp2p, fins i tot des d'una pestanya del navegador                                               |
-| Comunitats                     | Spaces amb canals, rols i enllaços d'invitació                                                            | Objectes de primera classe el node dels quals accepta o rebutja publicacions                                          |
-| Control de l'spam              | Enllaços d'invitació, expulsions amb canvi de claus, límits de freqüència al client                       | El repte de cada comunitat abans d'acceptar una publicació                                                            |
-| Moderació                      | Rols que aplica el client de cada membre; el propietari expulsa                                           | Els propietaris de cada comunitat la moderen; les aplicacions trien què mostren                                       |
-| Missatges privats              | Missatges directes xifrats d'extrem a extrem                                                              | Comunitats públiques; encara sense missatges directes nadius                                                          |
-| Economia                       | Token de xarxa QUIL; subscripció Apex opcional de 5 dòlars al mes                                         | Cap al protocol; un repte pot exigir un pagament o un token                                                           |
-| Contrapartida principal        | Grups privats i xifrats, però tots els clients depenen d'un únic servei                                   | Identitats gratuïtes i accés des del navegador, però sense missatgeria privada i només es conserva l'estat més recent |
+| Pregunta                       | Quorum                                                                                                                  | Bitsocial                                                                                                             |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Categoria                      | Aplicació de missatgeria de grup xifrada d'extrem a extrem de Quilibrium Inc.                                           | Xarxa de comunitats peer-to-peer                                                                                      |
+| Identitat                      | Conjunt de claus mestre Ed448 més claus per dispositiu, protegides per una clau d'accés o una frase de recuperació      | Parells de claus Ed25519 per a usuaris i comunitats                                                                   |
+| Qui pot llegir                 | Els membres que tenen les claus d'un Space                                                                              | Qualsevol, des de qualsevol aplicació                                                                                 |
+| On viuen els missatges         | El dispositiu de cada membre; el servei de Quorum guarda les còpies no lliurades i, per al mòbil, un registre per Space | El node del propietari de la comunitat i els iguals que la llegeixen i en fan de seeders                              |
+| A què es connecten els clients | Al servei de Quorum a `api.quorummessenger.com`                                                                         | A iguals mitjançant libp2p, trobats a través d'encaminadors HTTP, fins i tot des d'una pestanya del navegador         |
+| Comunitats                     | Spaces amb canals, rols i enllaços d'invitació                                                                          | Objectes de primera classe el node dels quals accepta o rebutja publicacions                                          |
+| Control de l'spam              | Enllaços d'invitació, expulsions amb canvi de claus, límits de freqüència al client                                     | El repte de cada comunitat abans d'acceptar una publicació                                                            |
+| Moderació                      | Rols que aplica el client de cada membre; el propietari expulsa; les denúncies van a l'operador del servei              | Els propietaris de cada comunitat la moderen; les aplicacions trien què mostren                                       |
+| Missatges privats              | Missatges directes xifrats d'extrem a extrem                                                                            | Comunitats públiques; encara sense missatges directes nadius                                                          |
+| Economia                       | Token de xarxa QUIL; subscripció Apex opcional de 5 dòlars al mes                                                       | Cap al protocol; un repte pot exigir un pagament o un token                                                           |
+| Contrapartida principal        | Grups privats i xifrats, però tots els clients depenen d'un únic servei                                                 | Identitats gratuïtes i accés des del navegador, però sense missatgeria privada i només es conserva l'estat més recent |

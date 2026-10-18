@@ -5,8 +5,8 @@ description: Jak si Quorum, koncově šifrovaný skupinový messenger od Quilibr
 
 # Bitsocial a Quorum
 
-[Quorum](https://www.quorummessenger.com/) je skupinový messenger, který vytvořila společnost
-Quilibrium Inc. na své síti [Quilibrium](https://quilibrium.com/). Je uspořádaný jako Discord, se
+[Quorum](https://www.quorummessenger.com/) je skupinový messenger od společnosti Quilibrium Inc.,
+která stojí za sítí [Quilibrium](https://quilibrium.com/). Je uspořádaný jako Discord, se
 Spaces, kanály, rolemi a přímými zprávami, a jeho zprávy jsou koncově šifrované. Zmiňuje se vedle
 Bitsocialu, protože se oba popisují jako peer-to-peer a odolné vůči cenzuře, se skupinami, které si
 určují vlastní pravidla. Míří přitom na různé věci: Quorum na soukromý skupinový chat, Bitsocial na
@@ -29,32 +29,38 @@ aplikaci a z [quorum-mobile](https://github.com/QuilibriumNetwork/quorum-mobile)
 říjnu 2026.
 
 - **Identity.** Hlavní identita uživatele je sada klíčů Ed448 a každé zařízení dostane vlastní klíče
-  X448 a Ed448. V prohlížeči jsou klíče chráněny přístupovým klíčem (passkey). Adresy jsou hashe
-  začínající na `Qm` a uživatelé mohou zobrazovat uživatelské jméno ze jmenné služby Quilibrium.
+  X448 a Ed448. V prohlížeči jsou klíče obvykle chráněny přístupovým klíčem (passkey);
+  mobilní aplikace je odvozuje z fráze pro obnovení. Adresy jsou hashe začínající na `Qm` a uživatelé
+  mohou zobrazovat uživatelské jméno ze jmenné služby Quilibrium.
 - **Šifrování.** Přímé zprávy používají mezi zařízeními Double Ratchet. Space sdílí mezi svými členy
   jedinou relaci Triple Ratchet a členové podepisují své zprávy klíči specifickými pro daný Space.
-  Každý Space je šifrovaný a Quorum uvádí, že jeho zprostředkování zpráv brání službě, která zprávy
-  přeposílá, v propojování odesílatelů s příjemci.
+  Každý Space je šifrovaný. Quorum uvádí, že jeho zprostředkování zpráv brání propojování odesílatelů
+  s příjemci, ale webový a desktopový klient se přihlašuje k odběru všech schránek zařízení, včetně té
+  uvedené ve veřejné registraci uživatele,
+  [jediným požadavkem](https://github.com/QuilibriumNetwork/quorum-desktop/blob/db04b991dfb0f7c9db330bd4f816b08aaa4a6811/src/components/context/MessageDB.tsx#L616-L623)
+  na službu, která je tak může spojit s adresou uživatele.
 - **Vstup.** Do Spaces se vstupuje pomocí pozvánkových odkazů. Jednorázový odkaz nese klíče potřebné
   ke vstupu přímo v URL; veřejný odkaz je získá ze služby Quorum a veřejné Spaces mohou být uvedeny
   ve vyhledávatelném adresáři.
-- **Přenos.** Webový, desktopový i mobilní klient se všechny připojují přes HTTPS a WebSocket k
-  jediné službě,
+- **Přenos.** Pro zasílání zpráv se webový, desktopový i mobilní klient všechny připojují přes HTTPS
+  a WebSocket k jediné službě,
   [`api.quorummessenger.com`](https://github.com/QuilibriumNetwork/quorum-desktop/blob/db04b991dfb0f7c9db330bd4f816b08aaa4a6811/src/config/config.quorum.ts#L6-L7).
-  Ta přeposílá šifrované zprávy do schránky každého člena a ukládá registrace uživatelů, šifrovaný
+  Ta přeposílá šifrované zprávy do schránky každého člena a drží je, dokud klient jejich přijetí
+  nepotvrdí. Dále ukládá registrace uživatelů, dobrovolné veřejné profily, šifrovaný
   manifest každého Space (kanály, role, emoji), materiály pro pozvánky, veřejný adresář a volitelnou
   šifrovanou synchronizaci nastavení. Uzlový software Quilibrium má službu inboxu a hubu se stejnou
   strukturou, ale ani klienti, ani dokumentace Quilibrium neuvádějí, jak se tato služba mapuje na
   síť.
-- **Historie.** Klient každého člena uchovává vlastní kopii Space v místním úložišti. Webový a
-  desktopový klient doplňuje starší historii tak, že požádá některého člena, který je online, o
-  synchronizaci; mobilní klient přehrává log, který služba vede pro každý Space, takže může dohnat
-  zameškané, když není online žádný jiný člen.
+- **Historie.** Klient každého člena uchovává vlastní kopii Space v místním úložišti a oba klienti
+  si zprávy odeslané v době, kdy byli offline, vyzvednou ze svých schránek ve službě. Starší historii
+  webový a desktopový klient získává tak, že požádá některého člena, který je online, o synchronizaci,
+  zatímco mobilní klient přehrává trvalý log, který služba vede pro každý Space.
 - **Moderování.** Role udělují právo mazat, připínat, ztlumovat a používat zmínky `@everyone`.
   Klient každého člena ověřuje podpis u každé moderátorské akce a použije ji jen tehdy, když má
   podepisující správnou roli. Vlastník může člena vyhodit, čímž se klíče Space vymění, takže
   vyhozený člen nemůže číst nové zprávy. Space může vyžadovat podepsané zprávy, nebo členům dovolit
-  posílat nepodepsané zprávy, které lze popřít.
+  posílat nepodepsané zprávy, které lze popřít. Záznamy ve veřejném adresáři nesou stav posouzení a
+  uživatelé mohou službě Quorum nahlásit Spaces a z mobilní aplikace i jednotlivé zprávy.
 - **Kód.** Webový a desktopový klient je licencován pod AGPL-3.0 a mobilní klient pod GPL-3.0.
   Mobilní klient má navíc kryptopeněženku, integraci s Farcasterem a Apex, placené předplatné
   popsané níže.
@@ -70,8 +76,9 @@ může pokusit přispět, pokud projde výzvou dané komunity.
 
 ### Co udržuje skupinu online
 
-Space v Quorum nemá žádný hostitelský uzel. Členové posílají zprávy přes službu Quorum, klient
-každého člena si uchovává kopii a vlastník nemusí být online, aby spolu ostatní mohli mluvit.
+Space v Quorum nemá žádný hostitelský uzel. Členové posílají zprávy přes službu Quorum, která
+pro každého člena drží kopii, dokud si ji jeho klient nevyzvedne, a vlastník nemusí být online, aby
+spolu ostatní mohli mluvit.
 Komunita v Bitsocialu žije na uzlu svého vlastníka; tento uzel přijímá nebo odmítá každý příspěvek a
 publikuje nejnovější stav komunity. Komunita zůstává čitelná, dokud ji peeři seedují, ale nemůže
 přijímat nové příspěvky, dokud je její uzel offline. Viz
@@ -81,23 +88,25 @@ přijímat nové příspěvky, dokud je její uzel offline. Viz
 
 V Quorum se pravidla prosazují na okraji sítě. Klient každého člena podle role podepisujícího
 rozhoduje, zda použije smazání, připnutí nebo ztlumení, a vyhození funguje tak, že se všichni
-ostatní přesunou na nové klíče. V Bitsocialu se pravidla prosazují na uzlu komunity: příspěvek,
-který neprojde výzvou nebo pravidly komunity, se nikdy nestane součástí komunity. Viz
+ostatní přesunou na nové klíče. Vedle toho provozovatel služby přijímá nahlášení a kontroluje
+veřejný adresář. V Bitsocialu se pravidla prosazují na uzlu komunity: příspěvek, který neprojde
+výzvou komunity, nikdy není přijat, a uzel uplatňuje odstranění provedená jeho moderátory. Viz
 [Místní moderování, nikoli globální zákazy](/local-moderation/).
 
 ### Ochrana proti spamu
 
 Quorum drží spam venku hlavně pomocí pozvánek. Jednorázový odkaz vpustí jednu osobu, veřejný odkaz
-kohokoli, kdo ho má, a vlastník může následně členy vyhazovat a měnit klíče; klient navíc omezuje
-rychlost vlastního odesílání. Identity v Bitsocialu jsou bezplatné páry klíčů, takže každá komunita
-si volí výzvu, kterou spustí, než přijme příspěvek, například captchu, platbu, zůstatek tokenů nebo
-seznam povolených. Viz [Vlastní antispamové výzvy](/custom-challenges/).
+kohokoli, kdo ho má, a vlastník může následně členy vyhazovat a měnit klíče. Klienti navíc
+omezují, jak rychle může člen odesílat, a webový a desktopový klient zahazuje zprávy ve Spaces od
+jakéhokoli odesílatele nad 10 za 10 sekund. Identity v Bitsocialu jsou bezplatné páry klíčů, takže
+každá komunita si volí výzvu, kterou spustí, než přijme příspěvek, například captchu, platbu,
+zůstatek tokenů nebo seznam povolených. Viz [Vlastní antispamové výzvy](/custom-challenges/).
 
 ### Klient a síť
 
 Aplikace Quorum je klientem služby Quorum, kterou provozuje Quilibrium Inc. Aplikace se samy
 nepřipojují k žádné peer-to-peer síti, takže přístup ke Space závisí na tomto jediném koncovém bodu.
-Za ním je Quilibrium samostatnou sítí: v říjnu 2026 jeho
+Nezávisle na tom je Quilibrium samostatnou sítí: v říjnu 2026 jeho
 [explorer](https://dashboard.quilibrium.com/) ukazoval 114 dosažitelných peerů a 181 proverů v 99
 shardech.
 
@@ -119,9 +128,10 @@ prostřednictvím své výzvy vyžadovat platbu nebo token.
 ### Soukromé zprávy
 
 Tady je silnější Quorum. Přímé zprávy i zprávy ve Spaces jsou koncově šifrované s dopřednou
-bezpečností a obsah zpráv se ke službě Quorum dostává jen jako šifrovaný text. Bitsocial se zaměřuje
-na veřejné komunity a zatím nemá nativní přímé zprávy. Příspěvek v Bitsocialu je během přenosu přes
-pubsub zašifrovaný klíčem uzlu komunity, ale jakmile je přijat, je veřejný.
+bezpečností a obsah zpráv se ke službě Quorum dostává jen jako šifrovaný text, s výjimkou případu, kdy
+člen nahlásí zprávu z mobilní aplikace, která pak její obsah odešle moderátorům Quorum. Bitsocial se
+zaměřuje na veřejné komunity a zatím nemá nativní přímé zprávy. Příspěvek v Bitsocialu je během
+přenosu přes pubsub zašifrovaný klíčem uzlu komunity, ale jakmile je přijat, je veřejný.
 
 ## Stav projektu
 
@@ -134,23 +144,24 @@ Mainnet sítě Quilibrium dosáhl 30. září 2025 verze 2.1, kdy se síť po za
 ([oznámení](https://x.com/QuilibriumInc/status/1973082817236984270)). V roce 2026 byl uzel přepsán
 do Rustu, s postkvantovými podpisy pro konsenzus a síťovým protokolem, kterým starší uzly neumějí
 komunikovat. Části dokumentace popisují návrh, a ne běžící kód: popisují
-[mixnetové směrování](https://docs.quilibrium.com/docs/learn/communication/mixnet-routing/), ale v
-uzlu 2.1.0.25 je služba mixnetu
+[mixnetové směrování](https://docs.quilibrium.com/docs/learn/communication/mixnet-routing/).
+Uzly mezi sebou sice skutečně přeposílají provoz přes onion-routované okruhy, ale v uzlu 2.1.0.25 je
+služba mixnetu
 [stub](https://github.com/QuilibriumNetwork/monorepo/blob/bba996388e453ec484695c3cf9d8b2f3b4b1e43d/crates/quil-rpc/src/mixnet_service.rs#L29-L31),
 který zprávy přijímá, aniž by je míchal.
 
 ## Srovnání
 
-| Otázka                      | Quorum                                                                              | Bitsocial                                                                                              |
-| --------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Kategorie                   | Koncově šifrovaný skupinový messenger v síti Quilibrium                             | Peer-to-peer síť komunit                                                                               |
-| Identita                    | Hlavní sada klíčů Ed448 plus klíče pro každé zařízení, chráněné přístupovým klíčem  | Páry klíčů Ed25519 pro uživatele a komunity                                                            |
-| Kdo může číst               | Členové, kteří mají klíče daného Space                                              | Kdokoli, z jakékoli aplikace                                                                           |
-| Kde jsou zprávy uloženy     | Zařízení každého člena; mobilní klient navíc přehrává log, který vede služba Quorum | Uzel vlastníka komunity a peeři, kteří ji čtou a seedují                                               |
-| K čemu se klienti připojují | Ke službě Quorum na `api.quorummessenger.com`                                       | K peerům přes libp2p, i ze záložky prohlížeče                                                          |
-| Komunity                    | Spaces s kanály, rolemi a pozvánkovými odkazy                                       | Plnohodnotné objekty, jejichž uzel přijímá nebo odmítá příspěvky                                       |
-| Ochrana proti spamu         | Pozvánkové odkazy, vyhazování s výměnou klíčů, omezení rychlosti na straně klienta  | Výzva dané komunity, než je příspěvek přijat                                                           |
-| Moderování                  | Role prosazované klientem každého člena; vyhazuje vlastník                          | Vlastníci komunit moderují svou komunitu; aplikace si volí, co zobrazí                                 |
-| Soukromé zprávy             | Koncově šifrované přímé zprávy                                                      | Veřejné komunity; zatím žádné nativní přímé zprávy                                                     |
-| Ekonomika                   | Síťový token QUIL; volitelné předplatné Apex za 5 dolarů měsíčně                    | V protokolu žádná; výzva může vyžadovat platbu nebo token                                              |
-| Hlavní kompromis            | Soukromé, šifrované skupiny, ale každý klient závisí na jediné službě               | Bezplatné identity a přístup z prohlížeče, ale žádné soukromé zprávy a uchovává se jen nejnovější stav |
+| Otázka                      | Quorum                                                                                                     | Bitsocial                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Kategorie                   | Koncově šifrovaný skupinový messenger od Quilibrium Inc.                                                   | Peer-to-peer síť komunit                                                                               |
+| Identita                    | Hlavní sada klíčů Ed448 plus klíče pro každé zařízení, chráněné přístupovým klíčem nebo frází pro obnovení | Páry klíčů Ed25519 pro uživatele a komunity                                                            |
+| Kdo může číst               | Členové, kteří mají klíče daného Space                                                                     | Kdokoli, z jakékoli aplikace                                                                           |
+| Kde jsou zprávy uloženy     | Zařízení každého člena; služba Quorum drží nedoručené kopie a pro mobilní klient log každého Space         | Uzel vlastníka komunity a peeři, kteří ji čtou a seedují                                               |
+| K čemu se klienti připojují | Ke službě Quorum na `api.quorummessenger.com`                                                              | K peerům přes libp2p, nalezeným přes HTTP routery, i ze záložky prohlížeče                             |
+| Komunity                    | Spaces s kanály, rolemi a pozvánkovými odkazy                                                              | Plnohodnotné objekty, jejichž uzel přijímá nebo odmítá příspěvky                                       |
+| Ochrana proti spamu         | Pozvánkové odkazy, vyhazování s výměnou klíčů, omezení rychlosti na straně klienta                         | Výzva dané komunity, než je příspěvek přijat                                                           |
+| Moderování                  | Role prosazované klientem každého člena; vyhazuje vlastník; nahlášení jdou provozovateli služby            | Vlastníci komunit moderují svou komunitu; aplikace si volí, co zobrazí                                 |
+| Soukromé zprávy             | Koncově šifrované přímé zprávy                                                                             | Veřejné komunity; zatím žádné nativní přímé zprávy                                                     |
+| Ekonomika                   | Síťový token QUIL; volitelné předplatné Apex za 5 dolarů měsíčně                                           | V protokolu žádná; výzva může vyžadovat platbu nebo token                                              |
+| Hlavní kompromis            | Soukromé, šifrované skupiny, ale každý klient závisí na jediné službě                                      | Bezplatné identity a přístup z prohlížeče, ale žádné soukromé zprávy a uchovává se jen nejnovější stav |
