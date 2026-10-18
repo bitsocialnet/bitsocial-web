@@ -85,7 +85,9 @@ conținutul de la peeri. Consultați [Peer-to-peer în browser](/browser-p2p/).
 
 Postările Nostr sunt replicate pe scară largă între relee, ceea ce ajută postările vechi să
 supraviețuiască. Bitsocial păstrează cea mai recentă stare a comunității și nu garantează conținutul
-vechi pentru totdeauna.
+vechi pentru totdeauna. Fiecare postare este în continuare semnată și adresată după conținut; ceea ce
+variază este cine păstrează o copie: nodul comunității, cititorii, seederii și arhivele. Consultați [Unde se
+află postările și cât timp rămân disponibile](/content-persistence/).
 
 ## Comparație
 

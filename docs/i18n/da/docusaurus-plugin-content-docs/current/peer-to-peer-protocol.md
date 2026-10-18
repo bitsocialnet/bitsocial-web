@@ -353,7 +353,7 @@ Ved at droppe blockchain undgår Bitsocial:
 Prisen er, at Bitsocial ikke garanterer permanent tilgængelighed af gammelt indhold. Men for sociale
 medier er det en acceptabel pris: fællesskabsoperatørens node har dataene, populært indhold spreder
 sig til mange peers, og meget gamle indlæg falmer af sig selv — præcis som de gør på enhver social
-platform.
+platform. Se [Hvor indlæg lever, og hvor længe de varer](/content-persistence/) for at se, hvem der holder indlæg online, hvordan fællesskaber fastsætter deres egen opbevaringstid, og hvordan arkiver holder gammelt indhold læsbart.
 
 ## Hvorfor ikke føderering?
 

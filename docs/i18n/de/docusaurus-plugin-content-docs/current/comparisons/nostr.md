@@ -88,7 +88,7 @@ Siehe [Browser-Peer-to-Peer](/browser-p2p/).
 ### Alte Inhalte
 
 Nostr-Beiträge sind breit über Relays repliziert, was alten Beiträgen hilft zu überdauern. Bitsocial
-bewahrt den jeweils neuesten Stand einer Community und garantiert alte Inhalte nicht für immer.
+bewahrt den jeweils neuesten Stand einer Community und garantiert alte Inhalte nicht für immer. Jeder Beitrag ist weiterhin signiert und inhaltsadressiert; unterschiedlich ist nur, wer eine Kopie behält: der Node der Community, Leser, Seeder und Archive. Siehe [Wo Beiträge leben und wie lange sie bleiben](/content-persistence/).
 
 ## Vergleich
 

@@ -86,7 +86,7 @@ obté el contingut dels iguals. Consulta [Peer-to-peer al navegador](/browser-p2
 
 Les publicacions de Nostr estan àmpliament replicades entre relés, cosa que ajuda que les
 publicacions antigues sobrevisquin. Bitsocial conserva l'estat més recent de la comunitat i no
-garanteix el contingut antic per sempre.
+garanteix el contingut antic per sempre. Cada publicació continua estant signada i adreçada pel contingut; el que varia és qui en conserva una còpia: el node de la comunitat, els lectors, els seeders i els arxius. Consulta [On viuen les publicacions i quant duren](/content-persistence/).
 
 ## Comparació
 

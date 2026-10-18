@@ -82,7 +82,7 @@ peerů. Viz [Peer-to-Peer v prohlížeči](/browser-p2p/).
 ### Starý obsah
 
 Příspěvky na Nostru jsou široce replikované napříč relayemi, což pomáhá starým příspěvkům přežít.
-Bitsocial uchovává nejnovější stav komunity a nezaručuje, že starý obsah zůstane navždy.
+Bitsocial uchovává nejnovější stav komunity a nezaručuje, že starý obsah zůstane navždy. Každý příspěvek je stále podepsaný a adresovaný obsahem; liší se jen to, kdo drží kopii: uzel komunity, čtenáři, seedery a archivy. Viz [Kde příspěvky jsou a jak dlouho vydrží](/content-persistence/).
 
 ## Srovnání
 

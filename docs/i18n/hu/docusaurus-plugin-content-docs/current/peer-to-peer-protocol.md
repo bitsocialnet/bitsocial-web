@@ -361,7 +361,7 @@ A blokklánc kihagyásával a Bitsocial elkerüli a következőket:
 A kompromisszum az, hogy a Bitsocial nem garantálja a régi tartalom állandó elérhetőségét. A
 közösségi média esetében azonban ez elfogadható kompromisszum: az adat a közösség üzemeltetőjének
 csomópontján van, a népszerű tartalom sok társ között terjed, a nagyon régi bejegyzések pedig
-természetes módon halványulnak el — ugyanúgy, ahogy minden más közösségi platformon.
+természetes módon halványulnak el — ugyanúgy, ahogy minden más közösségi platformon. Hogy ki tartja online a bejegyzéseket, hogyan választják a közösségek a megőrzést, és hogyan tartják olvashatóan a régi tartalmat az archívumok, lásd: [Hol élnek a bejegyzések, és meddig maradnak meg](/content-persistence/).
 
 ## Miért nem föderáció?
 

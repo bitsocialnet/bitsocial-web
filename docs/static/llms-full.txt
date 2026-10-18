@@ -97,6 +97,7 @@ The content is biased toward inference-time lookup, not formal API reference gen
 - [Bitsocial and Secure Scuttlebutt](https://docs.bitsocial.net/comparisons/scuttlebutt/): How Secure Scuttlebutt (SSB) and its Manyverse app compare with Bitsocial, from append-only feeds and follow-graph replication to communities, spam control and offline sync.
 - [Bitsocial and Urbit](https://docs.bitsocial.net/comparisons/urbit/): How Urbit, a network of personal servers with Ethereum-based Urbit IDs and host-run groups in Tlon Messenger, compares with Bitsocial's peer-to-peer communities.
 - [Content Discovery](https://docs.bitsocial.net/content-discovery/): How Bitsocial separates peer discovery from app-level curation.
+- [Where Posts Live and How Long They Last](https://docs.bitsocial.net/content-persistence/): Why Bitsocial posts are signed and content-addressed but not stored forever by every node, who keeps them online, and how archivers keep old content readable.
 - [i18n Default Language Policy](https://docs.bitsocial.net/i18n-default-language-policy/): Anonymous visitors resolve language in this order:
 - [A complete layman explanation of the Bitsocial protocol](https://docs.bitsocial.net/layman-protocol-explanation/): A plain-English walkthrough of Bitsocial communities, peer lookup, publishing, anti-spam challenges, moderation, and apps.
 - [BSO Token History](https://docs.bitsocial.net/token-history/): The full generation history of the BSO token, from its 2022 Avalanche origin to today's immutable, adminless Ethereum contract.
@@ -1102,7 +1103,9 @@ By skipping the blockchain, Bitsocial avoids:
 The tradeoff is that Bitsocial does not guarantee permanent availability of old content. But for
 social media, that is an acceptable tradeoff: the community operator's node holds the data, popular
 content spreads across many peers, and very old posts naturally fade — the same way they do on every
-social platform.
+social platform. For who keeps posts online, how communities set their own retention and how
+archives keep old content readable, see
+[Where Posts Live and How Long They Last](https://docs.bitsocial.net/content-persistence/).
 
 ## Why not federation?
 
@@ -3243,7 +3246,9 @@ Bitsocial web app runs a peer-to-peer node in the tab and fetches content from p
 ### Old content
 
 Nostr posts are widely replicated across relays, which helps old posts survive. Bitsocial keeps the
-latest community state and does not guarantee old content forever.
+latest community state and does not guarantee old content forever. Every post is still signed and
+content-addressed; what varies is who keeps a copy: the community's node, readers, seeders and
+archives. See [Where Posts Live and How Long They Last](https://docs.bitsocial.net/content-persistence/).
 
 ## Comparison
 
@@ -3692,6 +3697,101 @@ A single decentralized network still needs good discovery, but the discovery lay
 replaceable. Bitsocial's core protocol focuses on addressability, peer lookup, publishing, and
 anti-spam. Curation lives above that layer, where apps can experiment with directories, default
 lists, feeds, search, voting, and moderation policies without requiring a network-wide migration.
+
+### Where Posts Live and How Long They Last
+
+Source: https://docs.bitsocial.net/content-persistence/
+Path: docs/content-persistence.md
+Description: Why Bitsocial posts are signed and content-addressed but not stored forever by every node, who keeps them online, and how archivers keep old content readable.
+
+# Where Posts Live and How Long They Last
+
+Bitsocial does not store every post on a blockchain or in a company database. Each community's own
+node keeps its posts, readers and seeders help serve them, and anyone who wants a permanent record
+can keep one. Keeping posts forever is **optional, not mandatory**: the protocol does not force every
+participant to store the whole network's history.
+
+This page explains what that means in practice, because "not stored forever" is easy to misread as
+"disappears" or "trust me".
+
+## Authenticity and availability are separate questions
+
+There are two different questions about a post:
+
+1. **Is it real?** Did this author write it, and was it accepted by this community?
+2. **Is it still online?** Can someone fetch it today?
+
+Bitsocial answers the first question with cryptography, not trust. Every post is signed by its
+author's keypair, and once a community accepts it, the post is stored under a content identifier
+(CID): a hash of its exact bytes. Anyone who fetches a post can check the signature and the hash
+themselves. A node, router, gateway or archive cannot change a post's text or forge a post from
+someone else without the check failing.
+
+The second question is about who keeps a copy, and that is the only part that is not guaranteed.
+
+## Who keeps posts online
+
+- **The community's node.** The owner's node accepts posts and keeps them in its database for as long
+  as the community keeps them. This is the one copy that always exists while the community is
+  running. See [Peer-to-Peer Protocol](https://docs.bitsocial.net/peer-to-peer-protocol/).
+- **Readers.** Desktop apps such as the 5chan Electron app seed the communities they load while they
+  are running, so popular communities are served by many peers, the same way popular torrents are.
+  A browser tab can cache and validate content while it is open, but it is not a long-lived host.
+- **Seeders.** [`bitsocial-seeder`](https://github.com/bitsocialnet/bitsocial-seeder) lets anyone
+  contribute always-on capacity from a VPS or a spare machine. It pins communities' latest pages and
+  post updates, which also makes communities hosted behind home routers loadable from browsers.
+- **Archivers.** Anyone can crawl communities and keep everything they see. Archives are ordinary
+  services built on top of the network, not a special role in the protocol.
+
+## Communities choose their own retention
+
+How long a community keeps old posts is its owner's decision, not a protocol rule. Some communities
+want years of history. Others are designed to forget: 5chan boards work like an imageboard, where
+threads fall off the board, move to an archive and are purged from the board's node after a set
+time (48 hours by default). A community can also skip the archive entirely.
+
+The same protocol supports both because retention is a policy each community sets, not a cost every
+node has to pay.
+
+## Why not store everything forever?
+
+A network that requires every node to keep every post forever has to pay for it somehow:
+
+- **Blockchains** make every full node store the whole history, so node requirements grow with all
+  activity, and posting usually costs a fee.
+- **Paid storage**, as in Farcaster's storage rent, makes users pay to keep their history and prunes
+  the oldest posts beyond what they pay for. See [Bitsocial and Farcaster](https://docs.bitsocial.net/comparisons/farcaster/).
+- **Central servers** keep everything, but only as long as one company wants to, under that company's
+  rules.
+
+Social media does not need a global ledger. It does not matter whether post A was accepted one
+millisecond before post B, and most old posts are rarely read. Bitsocial lets each community node
+hold only its own communities, which keeps hosting cheap enough for a laptop, a Raspberry Pi or a
+small VPS. See [Why not a blockchain?](https://docs.bitsocial.net/peer-to-peer-protocol/#why-not-a-blockchain)
+
+## The tradeoff
+
+If nobody keeps a copy of a post, it can become unavailable. A post's CID never changes, but a CID is
+only an address: content stays fetchable only while at least one node is serving it. If a community's
+node goes offline for good and no reader, seeder or archive kept its posts, those posts are gone.
+
+That is the honest cost of not requiring a global ledger. It is also the cost every major platform
+already has: old posts vanish from them when accounts, servers or companies disappear. The difference
+is that on Bitsocial, keeping something does not need anyone's permission.
+
+## Keeping what matters
+
+- **Run the community node yourself.** A community owner who keeps the node running keeps the
+  community's history, for as long as the community's settings retain it.
+- **Seed.** Leaving a desktop app open or running `bitsocial-seeder` keeps communities available to
+  others.
+- **Archive.** Independent archives keep old threads readable and searchable after a community drops
+  them. [5archive.org](https://5archive.org) archives 5chan boards and
+  [seeditarchive.org](https://seeditarchive.org) archives Seedit communities. Both are open source, so
+  anyone can run a mirror or a competing archive.
+
+Because every archived post is still signed, an archive cannot quietly rewrite what someone said: a
+reader can verify an archived post's signature the same way as a live one.
 
 ### i18n Default Language Policy
 
@@ -6550,6 +6650,7 @@ Default options use the first bundled profile and target the 5chan issuer:
 | `namespace`    | `5chan`                          | Top-level comment object key for immutable data       |
 | `profile`      | `5chan`                          | Flag profile to validate; this release supports 5chan |
 | `allowedFlags` | `country,pol,pony`               | Comma-separated flag families accepted by the board   |
+| `requireFlag`  | `false`                          | Rejects posts and replies that do not request a flag  |
 | `emitFlair`    | `true`                           | Mirrors the verified flag to author community flairs  |
 | `error`        | `Flag verification failed.`      | Error prefix shown if verification fails              |
 
@@ -6561,6 +6662,20 @@ Boards can restrict flag families:
     name: "@bitsocial/flags-challenge",
     options: {
       allowedFlags: "country,pol",
+    },
+  },
+];
+```
+
+Boards where every post must carry a flag, such as `/pol/`, also set `requireFlag`. Without it, a client that omits the flag request is accepted. Comment edits and other non-comment publications are not affected.
+
+```js
+[
+  {
+    name: "@bitsocial/flags-challenge",
+    options: {
+      allowedFlags: "country,pol",
+      requireFlag: "true",
     },
   },
 ];

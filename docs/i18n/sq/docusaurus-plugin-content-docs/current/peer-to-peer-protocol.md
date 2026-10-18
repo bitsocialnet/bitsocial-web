@@ -359,7 +359,9 @@ Duke e anashkaluar blockchain-in, Bitsocial i shmang:
 Kompromisi është që Bitsocial nuk garanton disponueshmëri të përhershme të përmbajtjes së vjetër. Por
 për median sociale ky është një kompromis i pranueshëm: nyja e operatorit të komunitetit i mban të
 dhënat, përmbajtja e popullarizuar përhapet nëpër shumë nyje dhe postimet shumë të vjetra zbehen
-natyrshëm — njësoj siç ndodh në çdo platformë sociale.
+natyrshëm — njësoj siç ndodh në çdo platformë sociale. Për atë se kush i mban postimet në linjë, si i caktojnë komunitetet
+vetë afatet e ruajtjes dhe si arkivat e mbajnë të lexueshme përmbajtjen e vjetër, shihni [Ku ruhen
+postimet dhe sa gjatë qëndrojnë të disponueshme](/content-persistence/).
 
 ## Pse jo federimi?
 

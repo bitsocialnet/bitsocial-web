@@ -83,7 +83,9 @@ Zie [Peer-to-peer in de browser](/browser-p2p/).
 
 Nostr-posts worden op grote schaal over relays gerepliceerd, wat helpt om oude posts te laten
 voortbestaan. Bitsocial bewaart de nieuwste staat van een community en garandeert oude inhoud niet
-voor altijd.
+voor altijd. Elk bericht is nog steeds ondertekend en op inhoud geadresseerd; wat verschilt, is wie
+een kopie bewaart: de node van de community, lezers, seeders en archieven. Zie [Waar berichten staan en
+hoe lang ze blijven bestaan](/content-persistence/).
 
 ## Vergelijking
 

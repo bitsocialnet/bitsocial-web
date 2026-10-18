@@ -11,6 +11,7 @@ const sidebars: SidebarsConfig = {
         "layman-protocol-explanation",
         "peer-to-peer-protocol",
         "browser-p2p",
+        "content-persistence",
         "content-discovery",
         "custom-challenges",
         "local-moderation",
