@@ -84,8 +84,8 @@ En Bitsocial-webbapp kör en peer-to-peer-nod i fliken och hämtar innehåll fr�
 
 Nostr-inlägg replikeras brett över reläer, vilket hjälper gamla inlägg att överleva. Bitsocial
 behåller communityns senaste tillstånd och garanterar inte gammalt innehåll för alltid.
+Varje inlägg är fortfarande signerat och innehållsadresserat; det som varierar är vem som har en kopia: communityns nod, läsare, seeders och arkiv. Se [Var inlägg finns och hur länge de finns kvar](/content-persistence/).
 
- Varje inlägg är fortfarande signerat och innehållsadresserat; det som varierar är vem som har en kopia: communityns nod, läsare, seeders och arkiv. Se [Var inlägg finns och hur länge de finns kvar](/content-persistence/).
 ## Jämförelse
 
 | Fråga                  | Nostr                                                                                                | Bitsocial                                                            |

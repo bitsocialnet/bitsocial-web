@@ -83,8 +83,8 @@ Một web client của Nostr mở kết nối WebSocket thẳng tới các relay
 
 Bài đăng Nostr được sao chép rộng rãi giữa các relay, điều này giúp bài cũ tồn tại lâu. Bitsocial giữ
 trạng thái mới nhất của cộng đồng và không bảo đảm nội dung cũ tồn tại mãi mãi.
+Mọi bài đăng vẫn được ký và định địa chỉ theo nội dung; điều khác nhau là ai giữ một bản sao: node cộng đồng, người đọc, seeders và kho lưu trữ. Xem [Bài đăng ở đâu và tồn tại bao lâu](/content-persistence/).
 
- Mọi bài đăng vẫn được ký và định địa chỉ theo nội dung; điều khác nhau là ai giữ một bản sao: node cộng đồng, người đọc, seeders và kho lưu trữ. Xem [Bài đăng ở đâu và tồn tại bao lâu](/content-persistence/).
 ## So sánh
 
 | Câu hỏi                       | Nostr                                                                                               | Bitsocial                                                                       |
