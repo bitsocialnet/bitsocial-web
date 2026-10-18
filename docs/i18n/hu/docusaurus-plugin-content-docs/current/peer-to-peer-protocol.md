@@ -254,15 +254,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | Réteg          | Szerep                                                                                                                                                      |
@@ -361,7 +361,7 @@ A blokklánc kihagyásával a Bitsocial elkerüli a következőket:
 A kompromisszum az, hogy a Bitsocial nem garantálja a régi tartalom állandó elérhetőségét. A
 közösségi média esetében azonban ez elfogadható kompromisszum: az adat a közösség üzemeltetőjének
 csomópontján van, a népszerű tartalom sok társ között terjed, a nagyon régi bejegyzések pedig
-természetes módon halványulnak el — ugyanúgy, ahogy minden más közösségi platformon.
+természetes módon halványulnak el — ugyanúgy, ahogy minden más közösségi platformon. Hogy ki tartja online a bejegyzéseket, hogyan választják a közösségek a megőrzést, és hogyan tartják olvashatóan a régi tartalmat az archívumok, lásd: [Hol élnek a bejegyzések, és meddig maradnak meg](/content-persistence/).
 
 ## Miért nem föderáció?
 

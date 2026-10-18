@@ -90,7 +90,7 @@ alkalmazásszerverre. Egy Bitsocial-webalkalmazás peer-to-peer csomópontot fut
 
 A Nostr-bejegyzéseket széles körben replikálják a relayek között, ami segíti a régi bejegyzések
 fennmaradását. A Bitsocial a közösség legfrissebb állapotát őrzi meg, és nem garantálja, hogy a régi
-tartalom örökre megmarad.
+tartalom örökre megmarad. Minden bejegyzés továbbra is aláírt és tartalomcímzett; csak az változik, ki őriz példányt: a közösség csomópontja, olvasók, seederek és archívumok. Lásd: [Hol élnek a bejegyzések, és meddig maradnak meg](/content-persistence/).
 
 ## Összehasonlítás
 

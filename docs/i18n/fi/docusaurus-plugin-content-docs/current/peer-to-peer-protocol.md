@@ -249,15 +249,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | Kerros         | Rooli                                                                                                                                                |
@@ -355,7 +355,7 @@ Ohittamalla lohkoketjun Bitsocial välttää seuraavat:
 Kompromissina Bitsocial ei takaa vanhan sisällön pysyvää saatavuutta. Sosiaaliselle medialle se on
 hyväksyttävä kompromissi: yhteisön ylläpitäjän solmu säilyttää datan, suosittu sisältö leviää usealle
 vertaiselle, ja hyvin vanhat julkaisut haipuvat luonnostaan — aivan kuten jokaisella sosiaalisella
-alustalla.
+alustalla. Katso, kuka pitää julkaisut verkossa, miten yhteisöt määrittävät oman säilytysaikansa ja miten arkistot pitävät vanhan sisällön luettavana: [Missä julkaisut ovat ja kuinka kauan ne säilyvät](/content-persistence/).
 
 ## Miksi ei federaatiota?
 

@@ -254,15 +254,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | Laag         | Rol                                                                                                                                                            |
@@ -361,7 +361,9 @@ Door de blockchain over te slaan vermijdt Bitsocial:
 De afweging is dat Bitsocial geen permanente beschikbaarheid van oude inhoud garandeert. Maar voor
 sociale media is dat een acceptabele afweging: de node van de beheerder van de community bewaart de
 data, populaire inhoud verspreidt zich over veel peers, en heel oude berichten vervagen vanzelf — net
-zoals op elk sociaal platform.
+zoals op elk sociaal platform. Zie voor wie berichten online houdt, hoe communities hun eigen
+bewaartermijn bepalen en hoe archieven oude inhoud leesbaar houden, [Waar berichten staan en hoe lang ze
+blijven bestaan](/content-persistence/).
 
 ## Waarom geen federatie?
 

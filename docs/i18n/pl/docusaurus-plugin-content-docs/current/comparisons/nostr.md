@@ -83,7 +83,9 @@ od peerów. Zobacz [Peer-to-peer w przeglądarce](/browser-p2p/).
 ### Stare treści
 
 Posty Nostr są szeroko replikowane między przekaźnikami, co pomaga starym postom przetrwać. Bitsocial
-przechowuje najnowszy stan społeczności i nie gwarantuje starych treści na zawsze.
+przechowuje najnowszy stan społeczności i nie gwarantuje starych treści na zawsze. Każdy post nadal
+jest podpisany i adresowany treścią; różni się tylko to, kto zachowuje kopię: węzeł społeczności, czytelnicy, seederzy i archiwa. Zobacz [Gdzie znajdują się posty i jak długo
+pozostają dostępne](/content-persistence/).
 
 ## Porównanie
 

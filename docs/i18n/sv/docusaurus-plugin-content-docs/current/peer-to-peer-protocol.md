@@ -244,15 +244,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | Lager         | Roll                                                                                                                                                   |
@@ -351,6 +351,7 @@ Avvägningen är att Bitsocial inte garanterar permanent tillgänglighet för ga
 sociala medier är det en acceptabel avvägning: community-operatörens nod håller datan, populärt
 innehåll sprids över många peers och mycket gamla inlägg tonar naturligt bort — precis som de gör på
 alla andra sociala plattformar.
+För information om vem som håller inlägg online, hur communities bestämmer sin egen bevaringstid och hur arkiv håller gammalt innehåll läsbart, se [Var inlägg finns och hur länge de finns kvar](/content-persistence/).
 
 ## Varför inte federation?
 

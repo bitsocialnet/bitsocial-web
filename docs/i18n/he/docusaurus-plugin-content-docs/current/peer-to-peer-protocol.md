@@ -229,15 +229,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | שכבה         | תפקיד                                                                                                 |
@@ -327,7 +327,7 @@ P2P בדפדפן הוא כיום מסלול הווב שמוגדר כברירת �
 
 הפשרה היא ש-Bitsocial לא מבטיח זמינות תמידית של תוכן ישן. אבל עבור מדיה חברתית זו פשרה סבירה: הצומת
 של מפעיל הקהילה מחזיק את הנתונים, תוכן פופולרי מתפזר בין עמיתים רבים, ופוסטים ישנים מאוד דוהים באופן
-טבעי — בדיוק כפי שקורה בכל פלטפורמה חברתית.
+טבעי — בדיוק כפי שקורה בכל פלטפורמה חברתית. למידע על מי מחזיק פוסטים ברשת, כיצד קהילות קובעות את השימור שלהן וכיצד ארכיונים שומרים תוכן ישן קריא, ראו [היכן פוסטים נמצאים וכמה זמן הם נשארים](/content-persistence/).
 
 ## למה לא פדרציה?
 

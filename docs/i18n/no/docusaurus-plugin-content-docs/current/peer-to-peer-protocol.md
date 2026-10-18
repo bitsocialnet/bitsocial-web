@@ -248,15 +248,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | Lag           | Rolle                                                                                                                                                     |
@@ -355,7 +355,9 @@ Ved å droppe blokkjeden unngår Bitsocial:
 Avveiningen er at Bitsocial ikke garanterer at gammelt innhold alltid er tilgjengelig. Men for
 sosiale medier er det en akseptabel avveining: noden til fellesskapets operatør har dataene,
 populært innhold sprer seg til mange peers, og svært gamle innlegg blekner naturlig — akkurat som de
-gjør på enhver sosial plattform.
+gjør på enhver sosial plattform. For hvem som holder innlegg på nett, hvordan fellesskap bestemmer sin
+egen oppbevaringstid og hvordan arkiver holder gammelt innhold lesbart, se [Hvor innlegg ligger og hvor
+lenge de varer](/content-persistence/).
 
 ## Hvorfor ikke føderasjon?
 

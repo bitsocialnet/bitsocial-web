@@ -223,15 +223,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | 层次       | 作用                                                                                   |
@@ -312,6 +312,7 @@ HTTP 路由器对内容发现依然重要：它们会返回某个社区哈希的
 
 代价是 Bitsocial 不保证旧内容永久可用。但对社交媒体来说这是可以接受的取舍：社区运营者的节点持有
 数据，热门内容会扩散到许多对等点，非常久远的帖子则自然淡出 — 就像在任何一个社交平台上那样。
+关于谁让帖子保持在线、社区如何自行设定保留期限，以及存档如何让旧内容保持可读，请参阅 [帖子存在哪里，以及保留多久](/content-persistence/)。
 
 ## 为什么不用联邦式架构？
 

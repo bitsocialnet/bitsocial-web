@@ -242,15 +242,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | پرت          | کردار                                                                                                                                    |
@@ -345,6 +345,7 @@ Bitsocial کلائنٹس میں براؤزر P2P اب ممکن ہے۔ ایک ب�
 اس کا نقصان یہ ہے کہ Bitsocial پرانے مواد کی مستقل دستیابی کی ضمانت نہیں دیتا۔ مگر سوشل میڈیا کے لیے یہ
 قابلِ قبول سودا ہے: کمیونٹی چلانے والے کا نوڈ ڈیٹا رکھتا ہے، مقبول مواد بہت سے پیئرز تک پھیل جاتا ہے، اور
 بہت پرانی پوسٹس قدرتی طور پر ماند پڑ جاتی ہیں — جیسا کہ ہر سوشل پلیٹ فارم پر ہوتا ہے۔
+پوسٹس کو آن لائن کون رکھتا ہے، کمیونٹیز اپنی مدتِ حفاظت کیسے مقرر کرتی ہیں، اور آرکائیوز پرانے مواد کو کیسے قابلِ مطالعہ رکھتے ہیں، اس کے لیے دیکھیں [پوسٹس کہاں رہتی ہیں اور کتنی دیر تک](/content-persistence/).
 
 ## فیڈریشن کیوں نہیں؟
 

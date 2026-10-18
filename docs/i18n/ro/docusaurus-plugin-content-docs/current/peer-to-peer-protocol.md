@@ -253,15 +253,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | Strat         | Rol                                                                                                                                                                |
@@ -359,7 +359,9 @@ Sărind peste blockchain, Bitsocial evită:
 Compromisul este că Bitsocial nu garantează disponibilitatea permanentă a conținutului vechi. Dar
 pentru rețelele sociale acesta este un compromis acceptabil: nodul operatorului comunității păstrează
 datele, conținutul popular se răspândește pe multe noduri, iar postările foarte vechi se estompează
-natural — exact cum se întâmplă pe orice platformă socială.
+natural — exact cum se întâmplă pe orice platformă socială. Pentru cine ține postările online, cum își stabilesc comunitățile propria
+retenție și cum arhivele păstrează lizibil conținutul vechi, consultați [Unde se află postările și cât
+timp rămân disponibile](/content-persistence/).
 
 ## De ce nu federație?
 

@@ -260,15 +260,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | Layer        | Papel                                                                                                                                                                            |
@@ -370,7 +370,7 @@ Sa pamamagitan ng paglaktaw sa blockchain, naiiwasan ng Bitsocial ang:
 Ang katumbas nito ay hindi ginagarantiya ng Bitsocial ang permanenteng availability ng lumang
 nilalaman. Ngunit para sa social media, katanggap-tanggap ang palitang iyon: hawak ng node ng
 operator ng komunidad ang data, kumakalat ang sikat na nilalaman sa maraming peer, at natural na
-kumukupas ang napakalumang mga post — tulad ng nangyayari sa bawat social platform.
+kumukupas ang napakalumang mga post — tulad ng nangyayari sa bawat social platform. Para malaman kung sino ang nagpapanatili ng mga post online, paano itinatakda ng mga komunidad ang sarili nilang retention at paano pinananatiling nababasa ng mga archive ang lumang nilalaman, tingnan ang [Saan nakatira ang mga post at gaano katagal ang mga ito](/content-persistence/).
 
 ## Bakit hindi federation?
 

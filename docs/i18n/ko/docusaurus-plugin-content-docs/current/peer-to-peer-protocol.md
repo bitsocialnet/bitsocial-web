@@ -233,15 +233,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | 계층         | 역할                                                                                                                        |
@@ -331,7 +331,7 @@ WebSockets로 다이얼합니다. `pkc-js`는 WebRTC와 WebTransport 다이얼�
 
 그 대가로 Bitsocial은 오래된 콘텐츠의 영구적인 가용성을 보장하지 않습니다. 하지만 소셜 미디어에서는 받아들일
 만한 절충입니다. 커뮤니티 운영자의 노드가 데이터를 보관하고, 인기 있는 콘텐츠는 여러 피어로 퍼지며, 아주
-오래된 게시물은 자연스럽게 잊힙니다. 어느 소셜 플랫폼에서나 일어나는 일과 같습니다.
+오래된 게시물은 자연스럽게 잊힙니다. 어느 소셜 플랫폼에서나 일어나는 일과 같습니다. 누가 게시물을 온라인에 유지하는지, 커뮤니티가 보존 기간을 어떻게 정하는지, 아카이브가 오래된 콘텐츠를 읽을 수 있게 하는 방법은 [게시물은 어디에 있고 얼마나 오래 유지되는가](/content-persistence/)를 보세요.
 
 ## 왜 연합이 아닌가?
 

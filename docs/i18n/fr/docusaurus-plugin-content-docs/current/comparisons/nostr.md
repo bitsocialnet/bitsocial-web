@@ -89,7 +89,7 @@ le contenu auprès des pairs. Voir [Peer-to-peer dans le navigateur](/browser-p2
 
 Les publications Nostr sont largement répliquées entre relais, ce qui aide les anciennes
 publications à survivre. Bitsocial conserve le dernier état de chaque communauté et ne garantit pas
-la conservation indéfinie des anciens contenus.
+la conservation indéfinie des anciens contenus. Chaque publication reste signée et adressée par contenu ; ce qui varie est qui en conserve une copie : le nœud de la communauté, les lecteurs, les seeders et les archives. Voir [Où vivent les publications et combien de temps elles durent](/content-persistence/).
 
 ## Comparaison
 

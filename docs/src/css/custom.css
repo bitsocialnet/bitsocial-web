@@ -1345,3 +1345,26 @@ a[class*="footer__link-item"] [class*="iconExternalLink"] {
     transition: none;
   }
 }
+
+/* ── Diagrams (Pele, rendered to SVG at build time) ────────────────── */
+
+.pele-diagram {
+  margin: 0 0 var(--ifm-leading);
+  overflow-x: auto;
+  text-align: center;
+}
+
+.pele-diagram .pele {
+  --pele-bg: transparent;
+  --pele-fg: var(--ifm-heading-color);
+  --pele-muted: var(--bitsocial-muted);
+  --pele-line: color-mix(in srgb, var(--ifm-heading-color) 60%, transparent);
+  --pele-surface: var(--bitsocial-code-bg);
+  /* Notes and cluster fills: a light primary tint so notes don't read as actors. */
+  --pele-surface-alt: color-mix(in srgb, var(--ifm-color-primary) 10%, var(--bitsocial-code-bg));
+  --pele-border: var(--ifm-color-emphasis-300);
+  --pele-accent: var(--ifm-color-primary);
+  --pele-font: var(--ifm-font-family-base);
+  --pele-font-mono: var(--ifm-font-family-monospace);
+  --pele-radius: 8px;
+}

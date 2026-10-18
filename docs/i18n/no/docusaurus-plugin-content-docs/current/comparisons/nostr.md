@@ -81,7 +81,9 @@ En Bitsocial-webapp kjører en peer-to-peer-node i fanen og henter innhold fra p
 ### Gammelt innhold
 
 Nostr-innlegg replikeres bredt på tvers av reléer, noe som hjelper gamle innlegg å overleve.
-Bitsocial beholder fellesskapets nyeste tilstand og garanterer ikke gammelt innhold for alltid.
+Bitsocial beholder fellesskapets nyeste tilstand og garanterer ikke gammelt innhold for alltid. Hvert
+innlegg er fortsatt signert og innholdsadressert; det som varierer, er hvem som beholder en kopi: fellesskapets node, lesere, seedere og arkiver. Se [Hvor innlegg ligger og hvor lenge
+de varer](/content-persistence/).
 
 ## Sammenligning
 

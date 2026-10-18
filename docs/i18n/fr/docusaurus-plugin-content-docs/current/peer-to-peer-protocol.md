@@ -255,15 +255,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | Couche          | Rôle                                                                                                                                                                          |
@@ -366,7 +366,7 @@ En se passant de blockchain, Bitsocial évite :
 Le compromis, c'est que Bitsocial ne garantit pas la disponibilité permanente des anciens contenus.
 Mais pour des médias sociaux, le compromis est acceptable : le nœud de l'opérateur de la communauté
 conserve les données, le contenu populaire se propage chez de nombreux pairs, et les publications
-très anciennes s'effacent naturellement — exactement comme sur toutes les plateformes sociales.
+très anciennes s'effacent naturellement — exactement comme sur toutes les plateformes sociales. Pour savoir qui maintient les publications en ligne, comment les communautés définissent leur propre rétention et comment les archives gardent les anciens contenus lisibles, voir [Où vivent les publications et combien de temps elles durent](/content-persistence/).
 
 ## Pourquoi pas la fédération ?
 

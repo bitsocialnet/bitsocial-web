@@ -245,15 +245,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | Katman       | Rol                                                                                                                                                  |
@@ -352,6 +352,7 @@ Bunun bedeli, Bitsocial'ın eski içeriğin kalıcı erişilebilirliğini garant
 medya için bu kabul edilebilir bir bedeldir: veriyi topluluk işletmecisinin düğümü tutar, popüler
 içerik birçok eşe yayılır ve çok eski gönderiler doğal olarak silikleşir — tıpkı her sosyal
 platformda olduğu gibi.
+Gönderileri kimin çevrimiçi tuttuğu, toplulukların saklama süresini nasıl belirlediği ve arşivlerin eski içeriği nasıl okunur tuttuğu için bkz. [Gönderiler Nerede Yaşar ve Ne Kadar Kalır](/content-persistence/).
 
 ## Neden federasyon değil?
 

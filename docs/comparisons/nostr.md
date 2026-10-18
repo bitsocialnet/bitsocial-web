@@ -78,7 +78,9 @@ Bitsocial web app runs a peer-to-peer node in the tab and fetches content from p
 ### Old content
 
 Nostr posts are widely replicated across relays, which helps old posts survive. Bitsocial keeps the
-latest community state and does not guarantee old content forever.
+latest community state and does not guarantee old content forever. Every post is still signed and
+content-addressed; what varies is who keeps a copy: the community's node, readers, seeders and
+archives. See [Where Posts Live and How Long They Last](/content-persistence/).
 
 ## Comparison
 

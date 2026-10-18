@@ -83,7 +83,7 @@ appserver. En Bitsocial-webapp kører en peer-to-peer-node i fanen og henter ind
 ### Gammelt indhold
 
 Nostr-indlæg er bredt replikeret på tværs af relæer, hvilket hjælper gamle indlæg med at overleve.
-Bitsocial bevarer fællesskabets seneste tilstand og garanterer ikke gammelt indhold for evigt.
+Bitsocial bevarer fællesskabets seneste tilstand og garanterer ikke gammelt indhold for evigt. Hvert indlæg er stadig signeret og indholdsadresseret; det, der varierer, er, hvem der beholder en kopi: fællesskabets node, læsere, seedere og arkiver. Se [Hvor indlæg lever, og hvor længe de varer](/content-persistence/).
 
 ## Sammenligning
 

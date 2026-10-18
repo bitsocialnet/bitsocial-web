@@ -244,15 +244,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | 層               | 役割                                                                                                                                                         |
@@ -347,7 +347,7 @@ P2P ネットワークとブラウザのクライアントの間でデータを�
 その代わり、Bitsocial は古いコンテンツの恒久的な可用性を保証しません。しかしソーシャルメディアに
 とって、それは受け入れられるトレードオフです。コミュニティ運用者のノードがデータを保持し、人気のある
 コンテンツは多くのピアへ広がり、とても古い投稿は自然に薄れていきます。どのソーシャルプラット
-フォームでも起きているのと同じことです。
+フォームでも起きているのと同じことです。 誰が投稿をオンラインに保つのか、コミュニティが保持期間をどう決めるのか、アーカイブが古いコンテンツをどう読める状態に保つのかは、[投稿はどこにあり、いつまで残るのか](/content-persistence/) を参照してください。
 
 ## なぜフェデレーションではないのか？
 

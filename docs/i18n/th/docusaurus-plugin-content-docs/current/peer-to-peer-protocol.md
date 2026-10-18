@@ -240,15 +240,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | ชั้น          | บทบาท                                                                                                                                                              |
@@ -345,6 +345,7 @@ gossipsub ใน `@libp2p/gossipsub` 15.0.21 ซึ่งทำให้เพ�
 นั่นเป็นข้อแลกเปลี่ยนที่ยอมรับได้ เพราะโหนดของผู้ดำเนินการชุมชนถือข้อมูลไว้
 เนื้อหายอดนิยมกระจายไปยังเพียร์จำนวนมาก และโพสต์ที่เก่ามากก็ค่อย ๆ จางหายไปตามธรรมชาติ
 เช่นเดียวกับที่เกิดขึ้นบนทุกแพลตฟอร์มโซเชียล
+ดูข้อมูลว่าใครทำให้โพสต์ออนไลน์ ชุมชนกำหนดระยะเก็บรักษาเองอย่างไร และ archive ทำให้เนื้อหาเก่าอ่านได้อย่างไร ได้ที่ [โพสต์อยู่ที่ใดและอยู่นานแค่ไหน](/content-persistence/).
 
 ## ทำไมไม่ใช้เฟเดอเรชัน
 

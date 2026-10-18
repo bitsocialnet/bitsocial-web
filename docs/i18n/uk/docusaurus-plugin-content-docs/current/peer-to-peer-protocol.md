@@ -246,15 +246,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | Рівень         | Роль                                                                                                                                                             |
@@ -350,6 +350,7 @@ P2P у браузері тепер є типовим вебшляхом, а не
 медіа це прийнятний компроміс: дані тримає вузол оператора спільноти, популярний вміст розходиться
 між багатьма вузлами, а дуже старі дописи природно згасають — так само, як на кожній соціальній
 платформі.
+Про те, хто тримає дописи онлайн, як спільноти визначають зберігання та як архіви зберігають читабельність старого вмісту, див. [Де живуть дописи й скільки вони зберігаються](/content-persistence/).
 
 ## Чому не федерація?
 

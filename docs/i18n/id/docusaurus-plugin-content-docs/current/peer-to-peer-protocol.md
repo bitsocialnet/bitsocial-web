@@ -247,15 +247,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | Lapisan      | Peran                                                                                                                                                    |
@@ -354,7 +354,7 @@ Dengan melewatkan blockchain, Bitsocial terhindar dari:
 Konsekuensinya, Bitsocial tidak menjamin ketersediaan permanen konten lama. Namun untuk media
 sosial, itu konsekuensi yang wajar: node operator komunitas menyimpan datanya, konten populer
 menyebar ke banyak peer, dan postingan yang sangat lama memudar dengan sendirinya — sama seperti di
-setiap platform sosial.
+setiap platform sosial. Untuk mengetahui siapa yang menjaga postingan tetap online, bagaimana komunitas menetapkan retensinya, dan bagaimana arsip menjaga konten lama tetap dapat dibaca, lihat [Di Mana Postingan Berada dan Berapa Lama Bertahan](/content-persistence/).
 
 ## Mengapa bukan federasi?
 

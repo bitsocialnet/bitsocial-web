@@ -244,15 +244,15 @@ graph TB
 
     subgraph Network ["Network layer"]
         Router["🛰️ HTTP router<br/>(content discovery)"]
-        GS["💬 Gossipsub<br/>(real-time messaging)"]
         TR["📦 Content transfer<br/>(data exchange)"]
+        GS["💬 Gossipsub<br/>(real-time messaging)"]
     end
 
-    A1 & A2 & A3 --> PK & PS & CH
+    Apps --> Protocol
     PK --> Router
+    PK --> TR
     PS --> GS
     CH --> GS
-    PK --> TR
 ```
 
 | Layer        | Role                                                                                                                                               |
@@ -347,7 +347,9 @@ By skipping the blockchain, Bitsocial avoids:
 The tradeoff is that Bitsocial does not guarantee permanent availability of old content. But for
 social media, that is an acceptable tradeoff: the community operator's node holds the data, popular
 content spreads across many peers, and very old posts naturally fade — the same way they do on every
-social platform.
+social platform. For who keeps posts online, how communities set their own retention and how
+archives keep old content readable, see
+[Where Posts Live and How Long They Last](/content-persistence/).
 
 ## Why not federation?
 
