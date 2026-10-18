@@ -5,12 +5,12 @@ description: Como o Quorum, o mensageiro de grupo com criptografia de ponta a po
 
 # Bitsocial e Quorum
 
-O [Quorum](https://www.quorummessenger.com/) é um mensageiro de grupo criado pela Quilibrium Inc.
-sobre a rede [Quilibrium](https://quilibrium.com/), da própria empresa. Ele é organizado como o
-Discord, com Spaces, canais, papéis e mensagens diretas, e suas mensagens têm criptografia de ponta
-a ponta. Ele aparece ao lado do Bitsocial porque ambos se descrevem como peer-to-peer e resistentes
-à censura, com grupos que definem as próprias regras. Os dois miram coisas diferentes: o Quorum, o
-chat privado em grupo; o Bitsocial, comunidades públicas que qualquer pessoa pode ler.
+O [Quorum](https://www.quorummessenger.com/) é um mensageiro de grupo da Quilibrium Inc., a empresa
+por trás da rede [Quilibrium](https://quilibrium.com/). Ele é organizado como o Discord, com Spaces,
+canais, papéis e mensagens diretas, e suas mensagens têm criptografia de ponta a ponta. Ele aparece
+ao lado do Bitsocial porque ambos se descrevem como peer-to-peer e resistentes à censura, com grupos
+que definem as próprias regras. Os dois miram coisas diferentes: o Quorum, o chat privado em grupo;
+o Bitsocial, comunidades públicas que qualquer pessoa pode ler.
 
 O Quilibrium se descreve como uma alternativa descentralizada às plataformas de nuvem: uma rede de
 nós que guardam dados em um hipergrafo criptografado e chegam a um acordo sobre o estado dele por
@@ -28,33 +28,42 @@ Os detalhes abaixo vêm do código-fonte dos clientes do Quorum,
 [quorum-mobile](https://github.com/QuilibriumNetwork/quorum-mobile), em outubro de 2026.
 
 - **Identidades.** A identidade mestra de um usuário é um conjunto de chaves Ed448, e cada
-  dispositivo recebe as próprias chaves X448 e Ed448. No navegador, as chaves são protegidas por uma
-  chave de acesso (passkey). Os endereços são hashes que começam com `Qm`, e os usuários podem
-  exibir um nome de usuário do serviço de nomes do Quilibrium.
+  dispositivo recebe as próprias chaves X448 e Ed448. No navegador, as chaves normalmente são
+  protegidas por uma chave de acesso (passkey); o app móvel as deriva de uma frase de recuperação.
+  Os endereços são hashes que começam com `Qm`, e os usuários podem exibir um nome de usuário do
+  serviço de nomes do Quilibrium.
 - **Criptografia.** As mensagens diretas usam o Double Ratchet entre dispositivos. Um Space
   compartilha uma única sessão Triple Ratchet entre seus membros, que assinam as próprias mensagens
-  com chaves específicas do Space. Todo Space é criptografado, e o Quorum diz que sua intermediação
-  de mensagens impede que o serviço que retransmite as mensagens associe remetentes a destinatários.
+  com chaves específicas do Space. Todo Space é criptografado. O Quorum diz que sua intermediação de
+  mensagens impede que remetentes e destinatários sejam associados, mas o cliente web e desktop se
+  inscreve em todas as caixas de entrada de um dispositivo, incluindo a que consta no cadastro
+  público do usuário, em
+  [uma única requisição](https://github.com/QuilibriumNetwork/quorum-desktop/blob/db04b991dfb0f7c9db330bd4f816b08aaa4a6811/src/components/context/MessageDB.tsx#L616-L623)
+  ao serviço, que por isso pode vinculá-las ao endereço do usuário.
 - **Entrada.** Entra-se nos Spaces por links de convite. Um link de uso único carrega na URL as
   chaves para entrar; um link público as busca no serviço do Quorum, e os Spaces públicos podem ser
   listados em um diretório pesquisável.
-- **Transporte.** Os clientes web, desktop e móvel se conectam todos, por HTTPS e um WebSocket, a um
-  único serviço,
+- **Transporte.** Para a troca de mensagens, os clientes web, desktop e móvel se conectam todos, por
+  HTTPS e um WebSocket, a um único serviço,
   [`api.quorummessenger.com`](https://github.com/QuilibriumNetwork/quorum-desktop/blob/db04b991dfb0f7c9db330bd4f816b08aaa4a6811/src/config/config.quorum.ts#L6-L7).
-  Ele retransmite mensagens criptografadas para a caixa de entrada de cada membro e armazena os
-  cadastros de usuários, o manifesto criptografado de cada Space (canais, papéis, emoji), material
-  de convite, o diretório público e uma sincronização opcional e criptografada de configurações. O
+  Ele retransmite mensagens criptografadas para a caixa de entrada de cada membro e as guarda até
+  que o cliente confirme o recebimento. Também armazena os cadastros de usuários, perfis públicos
+  por adesão (opt-in), o manifesto criptografado de cada Space (canais, papéis, emoji), material de
+  convite, o diretório público e uma sincronização opcional e criptografada de configurações. O
   software de nó do Quilibrium tem um serviço de caixa de entrada e hub com o mesmo formato, mas nem
   os clientes nem a documentação do Quilibrium dizem como esse serviço se relaciona com a rede.
-- **Histórico.** O cliente de cada membro mantém a própria cópia do Space no armazenamento local. O
-  cliente web e desktop preenche o histórico pedindo a um membro online que sincronize; o cliente
-  móvel reproduz um log que o serviço mantém para cada Space, então consegue se atualizar mesmo
-  quando nenhum outro membro está online.
+- **Histórico.** O cliente de cada membro mantém a própria cópia do Space no armazenamento local, e
+  os dois clientes recebem, das próprias caixas de entrada no serviço, as mensagens enviadas
+  enquanto estavam offline. Para o histórico mais antigo, o cliente web e desktop pede a um membro
+  online que sincronize, enquanto o cliente móvel reproduz um log durável que o serviço mantém para
+  cada Space.
 - **Moderação.** Os papéis concedem permissão para apagar, fixar, silenciar e fazer menções
   `@everyone`. O cliente de cada membro verifica a assinatura de cada ação de moderação e só a
   aplica se quem assinou tiver o papel adequado. O dono pode expulsar um membro, o que faz a rotação
   das chaves do Space para que o membro expulso não consiga ler novas mensagens. Um Space pode
-  exigir mensagens assinadas ou deixar os membros publicarem mensagens não assinadas e negáveis.
+  exigir mensagens assinadas ou deixar os membros publicarem mensagens não assinadas e negáveis. As
+  entradas do diretório público têm um status de revisão, e os usuários podem denunciar Spaces e,
+  pelo app móvel, mensagens individuais ao serviço do Quorum.
 - **Código.** O cliente web e desktop é licenciado sob a AGPL-3.0, e o cliente móvel, sob a GPL-3.0.
   O cliente móvel também tem uma carteira de criptomoedas, integração com o Farcaster e o Apex, uma
   assinatura paga descrita abaixo.
@@ -70,35 +79,37 @@ ingressar, e qualquer pessoa pode tentar publicar, desde que passe pelo desafio 
 
 ### O que mantém um grupo online
 
-Um Space do Quorum não tem nó host. Os membros enviam mensagens pelo serviço do Quorum, o cliente de
-cada membro guarda uma cópia, e o dono não precisa estar online para que os outros conversem. Uma
-comunidade Bitsocial fica no nó de seu dono, que aceita ou rejeita cada post e publica o estado mais
-recente da comunidade. A comunidade continua legível enquanto houver peers fazendo seed dela, mas
-não consegue aceitar novos posts enquanto seu nó estiver offline. Veja
+Um Space do Quorum não tem nó host. Os membros enviam mensagens pelo serviço do Quorum, que guarda
+uma cópia para cada membro até que o cliente dele a recolha, e o dono não precisa estar online para
+que os outros conversem. Uma comunidade Bitsocial fica no nó de seu dono, que aceita ou rejeita cada
+post e publica o estado mais recente da comunidade. A comunidade continua legível enquanto houver
+peers fazendo seed dela, mas não consegue aceitar novos posts enquanto seu nó estiver offline. Veja
 [Protocolo peer-to-peer](/peer-to-peer-protocol/).
 
 ### Quem aplica as regras
 
 No Quorum, as regras são aplicadas na borda. O cliente de cada membro decide, com base no papel de
 quem assinou, se aplica uma exclusão, uma fixação ou um silenciamento, e uma expulsão funciona
-movendo todos os demais para chaves novas. No Bitsocial, as regras são aplicadas no nó da
-comunidade: um post que não passa pelo desafio ou pelas regras da comunidade nunca chega a fazer
-parte dela. Veja [Moderação local, não proibições globais](/local-moderation/).
+movendo todos os demais para chaves novas. Além disso, o operador do serviço recebe denúncias e
+revisa o diretório público. No Bitsocial, as regras são aplicadas no nó da comunidade: um post que
+não passa pelo desafio da comunidade nunca é aceito, e o nó aplica as remoções feitas pelos seus
+moderadores. Veja [Moderação local, não proibições globais](/local-moderation/).
 
 ### Controle de spam
 
 O Quorum mantém o spam do lado de fora principalmente por meio de convites. Um link de uso único
 admite uma pessoa, um link público admite qualquer pessoa que o tenha, e o dono pode expulsar
-membros e trocar as chaves depois; o cliente também limita a taxa dos próprios envios. As
-identidades do Bitsocial são pares de chaves gratuitos, então cada comunidade escolhe um desafio a
-ser executado antes de aceitar um post, como um captcha, um pagamento, um saldo de tokens ou uma
-lista de permissão. Veja [Desafios antispam personalizados](/custom-challenges/).
+membros e trocar as chaves depois. Os clientes também limitam a velocidade com que um membro pode
+enviar, e o cliente web e desktop descarta mensagens de Space de qualquer remetente acima de 10 em
+10 segundos. As identidades do Bitsocial são pares de chaves gratuitos, então cada comunidade
+escolhe um desafio a ser executado antes de aceitar um post, como um captcha, um pagamento, um saldo
+de tokens ou uma lista de permissão. Veja [Desafios antispam personalizados](/custom-challenges/).
 
 ### O cliente e a rede
 
 Um app do Quorum é um cliente do serviço do Quorum, que a Quilibrium Inc. opera. Os apps não entram
 por conta própria em uma rede peer-to-peer, então chegar a um Space depende desse único endpoint.
-Por trás dele, o Quilibrium é uma rede à parte: em outubro de 2026, seu
+Separadamente, o Quilibrium é uma rede à parte: em outubro de 2026, seu
 [explorador](https://dashboard.quilibrium.com/) mostrava 114 peers alcançáveis e 181 provers
 distribuídos por 99 shards.
 
@@ -121,9 +132,10 @@ exigir um pagamento ou um token por meio do seu desafio.
 
 É aqui que o Quorum leva vantagem. As mensagens diretas e as mensagens dos Spaces têm criptografia
 de ponta a ponta com sigilo encaminhado (forward secrecy), e o conteúdo das mensagens só chega ao
-serviço do Quorum como texto cifrado. O Bitsocial se concentra em comunidades públicas e ainda não
-tem mensagens diretas nativas. Um post do Bitsocial é criptografado para a chave do nó da comunidade
-enquanto trafega pelo pubsub, mas, uma vez aceito, é público.
+serviço do Quorum como texto cifrado, exceto quando um membro denuncia uma mensagem pelo app móvel,
+que envia o conteúdo dela aos moderadores do Quorum. O Bitsocial se concentra em comunidades
+públicas e ainda não tem mensagens diretas nativas. Um post do Bitsocial é criptografado para a
+chave do nó da comunidade enquanto trafega pelo pubsub, mas, uma vez aceito, é público.
 
 ## Situação do projeto
 
@@ -138,23 +150,24 @@ funcionar após uma paralisação ([anúncio](https://x.com/QuilibriumInc/status
 Em 2026, o nó foi reescrito em Rust, com assinaturas pós-quânticas para o consenso e um protocolo de
 comunicação que os nós mais antigos não falam. Partes da documentação descrevem o projeto, e não o
 código em execução: elas descrevem o
-[roteamento por mixnet](https://docs.quilibrium.com/docs/learn/communication/mixnet-routing/), mas
+[roteamento por mixnet](https://docs.quilibrium.com/docs/learn/communication/mixnet-routing/). Os
+nós de fato retransmitem tráfego entre si por circuitos com roteamento cebola (onion routing), mas
 no nó 2.1.0.25 o serviço de mixnet é um
 [stub](https://github.com/QuilibriumNetwork/monorepo/blob/bba996388e453ec484695c3cf9d8b2f3b4b1e43d/crates/quil-rpc/src/mixnet_service.rs#L29-L31)
 que aceita mensagens sem misturá-las.
 
 ## Comparação
 
-| Pergunta                      | Quorum                                                                                              | Bitsocial                                                                                                       |
-| ----------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Categoria                     | Mensageiro de grupo com criptografia de ponta a ponta na rede Quilibrium                            | Rede de comunidades peer-to-peer                                                                                |
-| Identidade                    | Conjunto de chaves mestre Ed448 mais chaves por dispositivo, protegidas por uma chave de acesso     | Pares de chaves Ed25519 para usuários e comunidades                                                             |
-| Quem pode ler                 | Membros que têm as chaves de um Space                                                               | Qualquer pessoa, de qualquer app                                                                                |
-| Onde ficam as mensagens       | O dispositivo de cada membro; o cliente móvel também reproduz um log mantido pelo serviço do Quorum | O nó do dono da comunidade e os peers que a leem e fazem seed dela                                              |
-| A que os clientes se conectam | O serviço do Quorum em `api.quorummessenger.com`                                                    | Peers via libp2p, inclusive a partir de uma aba do navegador                                                    |
-| Comunidades                   | Spaces com canais, papéis e links de convite                                                        | Objetos de primeira classe cujo nó aceita ou rejeita posts                                                      |
-| Controle de spam              | Links de convite, expulsões com troca de chaves, limites de taxa no cliente                         | O desafio de cada comunidade antes de um post ser aceito                                                        |
-| Moderação                     | Papéis aplicados pelo cliente de cada membro; o dono expulsa                                        | Donos de comunidades moderam a própria comunidade; os apps escolhem o que mostram                               |
-| Mensagens privadas            | Mensagens diretas com criptografia de ponta a ponta                                                 | Comunidades públicas; ainda sem mensagens diretas nativas                                                       |
-| Economia                      | Token de rede QUIL; assinatura opcional Apex de $5 por mês                                          | Nenhuma no protocolo; um desafio pode exigir um pagamento ou token                                              |
-| Contrapartida principal       | Grupos privados e criptografados, mas todo cliente depende de um único serviço                      | Identidades gratuitas e acesso pelo navegador, mas sem mensagens privadas e só o estado mais recente é guardado |
+| Pergunta                      | Quorum                                                                                                                      | Bitsocial                                                                                                       |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Categoria                     | Mensageiro de grupo com criptografia de ponta a ponta da Quilibrium Inc.                                                    | Rede de comunidades peer-to-peer                                                                                |
+| Identidade                    | Conjunto de chaves mestre Ed448 mais chaves por dispositivo, protegidas por uma chave de acesso ou uma frase de recuperação | Pares de chaves Ed25519 para usuários e comunidades                                                             |
+| Quem pode ler                 | Membros que têm as chaves de um Space                                                                                       | Qualquer pessoa, de qualquer app                                                                                |
+| Onde ficam as mensagens       | O dispositivo de cada membro; o serviço do Quorum guarda cópias não entregues e um log por Space para o móvel               | O nó do dono da comunidade e os peers que a leem e fazem seed dela                                              |
+| A que os clientes se conectam | O serviço do Quorum em `api.quorummessenger.com`                                                                            | Peers via libp2p, encontrados por roteadores HTTP, inclusive a partir de uma aba do navegador                   |
+| Comunidades                   | Spaces com canais, papéis e links de convite                                                                                | Objetos de primeira classe cujo nó aceita ou rejeita posts                                                      |
+| Controle de spam              | Links de convite, expulsões com troca de chaves, limites de taxa no cliente                                                 | O desafio de cada comunidade antes de um post ser aceito                                                        |
+| Moderação                     | Papéis aplicados pelo cliente de cada membro; o dono expulsa; as denúncias vão para o operador do serviço                   | Donos de comunidades moderam a própria comunidade; os apps escolhem o que mostram                               |
+| Mensagens privadas            | Mensagens diretas com criptografia de ponta a ponta                                                                         | Comunidades públicas; ainda sem mensagens diretas nativas                                                       |
+| Economia                      | Token de rede QUIL; assinatura opcional Apex de $5 por mês                                                                  | Nenhuma no protocolo; um desafio pode exigir um pagamento ou token                                              |
+| Contrapartida principal       | Grupos privados e criptografados, mas todo cliente depende de um único serviço                                              | Identidades gratuitas e acesso pelo navegador, mas sem mensagens privadas e só o estado mais recente é guardado |

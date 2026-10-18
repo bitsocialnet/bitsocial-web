@@ -5,12 +5,12 @@ description: Hvordan Quorum, Quilibriums ende-til-ende-krypterte gruppemessenger
 
 # Bitsocial og Quorum
 
-[Quorum](https://www.quorummessenger.com/) er en gruppemessenger laget av Quilibrium Inc. på
-selskapets eget nettverk, [Quilibrium](https://quilibrium.com/). Den er organisert som Discord, med
-Spaces, kanaler, roller og direktemeldinger, og meldingene er ende-til-ende-kryptert. Den nevnes ved
-siden av Bitsocial fordi begge beskriver seg selv som peer-to-peer og sensurresistente, med grupper
-som setter sine egne regler. De sikter mot forskjellige ting: Quorum mot privat gruppechat,
-Bitsocial mot offentlige fellesskap som alle kan lese.
+[Quorum](https://www.quorummessenger.com/) er en gruppemessenger fra Quilibrium Inc., selskapet bak
+nettverket [Quilibrium](https://quilibrium.com/). Den er organisert som Discord, med Spaces,
+kanaler, roller og direktemeldinger, og meldingene er ende-til-ende-kryptert. Den nevnes ved siden
+av Bitsocial fordi begge beskriver seg selv som peer-to-peer og sensurresistente, med grupper som
+setter sine egne regler. De sikter mot forskjellige ting: Quorum mot privat gruppechat, Bitsocial
+mot offentlige fellesskap som alle kan lese.
 
 Quilibrium beskriver seg selv som et desentralisert alternativ til skyplattformer: et nettverk av
 noder som lagrer data i en kryptert hypergraf og blir enige om tilstanden gjennom en konsensus som
@@ -29,32 +29,39 @@ og [quorum-mobile](https://github.com/QuilibriumNetwork/quorum-mobile), slik den
 oktober 2026.
 
 - **Identiteter.** En brukers hovedidentitet er et Ed448-nøkkelsett, og hver enhet får sine egne
-  X448- og Ed448-nøkler. I nettleseren beskyttes nøklene av en passnøkkel. Adresser er hasher som
-  begynner med `Qm`, og brukere kan vise et brukernavn fra Quilibriums navnetjeneste.
+  X448- og Ed448-nøkler. I nettleseren beskyttes nøklene normalt av en passnøkkel; mobilappen
+  avleder dem fra en gjenopprettingsfrase. Adresser er hasher som begynner med `Qm`, og brukere kan
+  vise et brukernavn fra Quilibriums navnetjeneste.
 - **Kryptering.** Direktemeldinger bruker Double Ratchet mellom enheter. En Space deler én Triple
   Ratchet-økt mellom medlemmene, som signerer meldingene sine med Space-spesifikke nøkler. Hver
-  Space er kryptert, og Quorum sier at meldingsformidlingen hindrer tjenesten som videresender
-  meldinger, i å koble avsendere og mottakere sammen.
+  Space er kryptert. Quorum sier at meldingsformidlingen hindrer at avsendere og mottakere kobles
+  sammen, men nett- og skrivebordsklienten abonnerer på alle innboksene til en enhet, også den som
+  er oppført i brukerens offentlige registrering, i
+  [én enkelt forespørsel](https://github.com/QuilibriumNetwork/quorum-desktop/blob/db04b991dfb0f7c9db330bd4f816b08aaa4a6811/src/components/context/MessageDB.tsx#L616-L623)
+  til tjenesten, som dermed kan knytte dem til brukerens adresse.
 - **Å bli med.** Man går inn i Spaces via invitasjonslenker. En engangslenke har nøklene som trengs
   for å bli med, i selve URL-en; en offentlig lenke henter dem fra Quorum-tjenesten, og offentlige
   Spaces kan føres opp i en søkbar katalog.
-- **Transport.** Nett-, skrivebords- og mobilklientene kobler seg alle til én tjeneste over HTTPS og
-  en WebSocket,
+- **Transport.** For meldinger kobler nett-, skrivebords- og mobilklientene seg alle til én tjeneste
+  over HTTPS og en WebSocket,
   [`api.quorummessenger.com`](https://github.com/QuilibriumNetwork/quorum-desktop/blob/db04b991dfb0f7c9db330bd4f816b08aaa4a6811/src/config/config.quorum.ts#L6-L7).
-  Den videresender krypterte meldinger til hvert medlems innboks, og lagrer brukerregistreringer,
+  Den videresender krypterte meldinger til hvert medlems innboks og holder på dem til klienten
+  bekrefter at de er mottatt. Den lagrer også brukerregistreringer, frivillige offentlige profiler,
   det krypterte manifestet til hver Space (kanaler, roller, emoji), invitasjonsmateriale, den
   offentlige katalogen og valgfri kryptert synkronisering av innstillinger. Quilibriums
   nodeprogramvare har en innboks- og hubtjeneste med samme form, men verken klientene eller
   Quilibriums dokumentasjon sier hvordan denne tjenesten forholder seg til nettverket.
-- **Historikk.** Hvert medlems klient beholder sin egen kopi av Spacen i lokal lagring. Nett- og
-  skrivebordsklienten fyller inn eldre historikk ved å be et medlem som er på nett, om å
-  synkronisere; mobilklienten spiller av en logg som tjenesten fører for hver Space, så den kan ta
-  igjen det den har gått glipp av når ingen andre medlemmer er på nett.
+- **Historikk.** Hvert medlems klient beholder sin egen kopi av Spacen i lokal lagring, og begge
+  klientene henter meldinger som ble sendt mens de var av nett, fra innboksene sine hos tjenesten.
+  For eldre historikk ber nett- og skrivebordsklienten et medlem som er på nett, om å synkronisere,
+  mens mobilklienten spiller av en varig logg som tjenesten fører for hver Space.
 - **Moderering.** Roller gir rett til sletting, festing, demping og `@everyone`-omtaler. Hvert
   medlems klient kontrollerer signaturen på hver modereringshandling og utfører den bare hvis den
   som har signert, har riktig rolle. Eieren kan kaste ut et medlem, noe som roterer nøklene til
   Spacen slik at det utkastede medlemmet ikke kan lese nye meldinger. En Space kan kreve signerte
-  meldinger eller la medlemmene poste usignerte, benektbare meldinger.
+  meldinger eller la medlemmene poste usignerte, benektbare meldinger. Oppføringer i den offentlige
+  katalogen har en gjennomgangsstatus, og brukere kan rapportere Spaces, og fra mobilappen
+  enkeltmeldinger, til Quorum-tjenesten.
 - **Kode.** Nett- og skrivebordsklienten er lisensiert under AGPL-3.0 og mobilklienten under
   GPL-3.0. Mobilklienten har også en kryptolommebok, Farcaster-integrasjon og Apex, et betalt
   abonnement som beskrives nedenfor.
@@ -70,36 +77,39 @@ helst app, uten å bli med, og alle kan prøve å poste, men må da bestå felle
 
 ### Hva som holder en gruppe på nett
 
-En Quorum-Space har ingen vertsnode. Medlemmene sender meldinger gjennom Quorum-tjenesten, hvert
-medlems klient beholder en kopi, og eieren trenger ikke være på nett for at andre skal kunne snakke
-sammen. Et Bitsocial-fellesskap ligger på eierens node, som godtar eller avviser hvert innlegg og
-publiserer fellesskapets nyeste tilstand. Fellesskapet forblir lesbart så lenge peers seeder det,
-men kan ikke godta nye innlegg mens noden er av nett. Se
+En Quorum-Space har ingen vertsnode. Medlemmene sender meldinger gjennom Quorum-tjenesten, som
+holder på en kopi for hvert medlem til klienten deres henter den, og eieren trenger ikke være på
+nett for at andre skal kunne snakke sammen. Et Bitsocial-fellesskap ligger på eierens node, som
+godtar eller avviser hvert innlegg og publiserer fellesskapets nyeste tilstand. Fellesskapet forblir
+lesbart så lenge peers seeder det, men kan ikke godta nye innlegg mens noden er av nett. Se
 [Peer-to-peer-protokoll](/peer-to-peer-protocol/).
 
 ### Hvem som håndhever reglene
 
 I Quorum skjer håndhevingen i kanten. Hvert medlems klient avgjør om en sletting, en festing eller
 en demping skal utføres, basert på rollen til den som har signert, og en utkastelse fungerer ved at
-alle andre flyttes over til nye nøkler. I Bitsocial skjer håndhevingen i fellesskapets node: et
-innlegg som ikke består fellesskapets utfordring eller regler, blir aldri en del av fellesskapet. Se
-[Lokal moderering, ikke globale forbud](/local-moderation/).
+alle andre flyttes over til nye nøkler. I tillegg mottar operatøren av tjenesten rapporter og går
+gjennom den offentlige katalogen. I Bitsocial skjer håndhevingen i fellesskapets node: et innlegg
+som ikke består fellesskapets utfordring, blir aldri godtatt, og noden gjennomfører fjerningene til
+moderatorene sine. Se [Lokal moderering, ikke globale forbud](/local-moderation/).
 
 ### Spamkontroll
 
 Quorum holder spam ute hovedsakelig gjennom invitasjoner. En engangslenke slipper inn én person, en
 offentlig lenke slipper inn alle som har den, og eieren kan kaste ut medlemmer og bytte nøkler i
-etterkant; klienten begrenser også hvor raskt den selv sender. Bitsocial-identiteter er gratis
-nøkkelpar, så hvert fellesskap velger en utfordring som skal kjøres før et innlegg godtas, for
-eksempel en captcha, en betaling, en tokensaldo eller en tillatelsesliste. Se
+etterkant. Klientene begrenser også hvor raskt et medlem kan sende, og nett- og skrivebordsklienten
+forkaster Space-meldinger fra enhver avsender over 10 på 10 sekunder. Bitsocial-identiteter er
+gratis nøkkelpar, så hvert fellesskap velger en utfordring som skal kjøres før et innlegg godtas,
+for eksempel en captcha, en betaling, en tokensaldo eller en tillatelsesliste. Se
 [Tilpassede utfordringer mot spam](/custom-challenges/).
 
 ### Klienten og nettverket
 
 En Quorum-app er en klient for Quorum-tjenesten, som Quilibrium Inc. drifter. Appene blir ikke selv
-med i noe peer-to-peer-nettverk, så det å nå en Space avhenger av det ene endepunktet. Bak det er
-Quilibrium et eget nettverk: i oktober 2026 viste [utforskeren](https://dashboard.quilibrium.com/)
-114 nåbare peers og 181 provers fordelt på 99 shards.
+med i noe peer-to-peer-nettverk, så det å nå en Space avhenger av det ene endepunktet. Uavhengig av
+dette er Quilibrium et eget nettverk: i oktober 2026 viste
+[utforskeren](https://dashboard.quilibrium.com/) 114 nåbare peers og 181 provers fordelt på 99
+shards.
 
 En Bitsocial-webapp kan kjøre en libp2p-node i fanen, hente fellesskapsinnhold fra peers og
 publisere over gossipsub. Oppdagelse av peers går gjennom HTTP-rutere som bare returnerer adresser
@@ -119,10 +129,11 @@ betaling eller et token gjennom utfordringen sin.
 ### Private meldinger
 
 Her er Quorum sterkere. Direktemeldinger og meldinger i Spaces er ende-til-ende-kryptert med forward
-secrecy, og meldingsinnholdet når Quorum-tjenesten bare som chiffertekst. Bitsocial fokuserer på
-offentlige fellesskap og har ennå ingen innebygde direktemeldinger. Et Bitsocial-innlegg er kryptert
-med nøkkelen til fellesskapets node mens det sendes over pubsub, men når det først er godtatt, er
-det offentlig.
+secrecy, og meldingsinnholdet når Quorum-tjenesten bare som chiffertekst, unntatt når et medlem
+rapporterer en melding fra mobilappen, som sender innholdet til Quorums moderatorer. Bitsocial
+fokuserer på offentlige fellesskap og har ennå ingen innebygde direktemeldinger. Et
+Bitsocial-innlegg er kryptert med nøkkelen til fellesskapets node mens det sendes over pubsub, men
+når det først er godtatt, er det offentlig.
 
 ## Prosjektstatus
 
@@ -136,23 +147,24 @@ en stans ([kunngjøring](https://x.com/QuilibriumInc/status/1973082817236984270)
 skrevet om i Rust, med postkvantesignaturer for konsensus og en kommunikasjonsprotokoll som eldre
 noder ikke kan snakke. Deler av dokumentasjonen beskriver designet snarere enn koden som faktisk
 kjører: den beskriver
-[mixnet-ruting](https://docs.quilibrium.com/docs/learn/communication/mixnet-routing/), men i node
-2.1.0.25 er mixnet-tjenesten en
+[mixnet-ruting](https://docs.quilibrium.com/docs/learn/communication/mixnet-routing/). Noder
+videresender riktignok trafikk seg imellom gjennom løkrutede kretser, men i node 2.1.0.25 er
+mixnet-tjenesten en
 [stubb](https://github.com/QuilibriumNetwork/monorepo/blob/bba996388e453ec484695c3cf9d8b2f3b4b1e43d/crates/quil-rpc/src/mixnet_service.rs#L29-L31)
 som tar imot meldinger uten å mikse dem.
 
 ## Sammenligning
 
-| Spørsmål                     | Quorum                                                                                | Bitsocial                                                                                                          |
-| ---------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| Kategori                     | Ende-til-ende-kryptert gruppemessenger på Quilibrium-nettverket                       | Peer-to-peer-nettverk av fellesskap                                                                                |
-| Identitet                    | Ed448-hovednøkkelsett pluss nøkler per enhet, beskyttet av en passnøkkel              | Ed25519-nøkkelpar for brukere og fellesskap                                                                        |
-| Hvem kan lese                | Medlemmer som har nøklene til en Space                                                | Alle, fra hvilken som helst app                                                                                    |
-| Hvor meldingene ligger       | Hvert medlems enhet; mobilklienten spiller også av en logg som Quorum-tjenesten fører | Noden til fellesskapets eier og peerne som leser og seeder det                                                     |
-| Hva klientene kobler seg til | Quorum-tjenesten på `api.quorummessenger.com`                                         | Peers over libp2p, også fra en nettleserfane                                                                       |
-| Fellesskap                   | Spaces med kanaler, roller og invitasjonslenker                                       | Førsteklasses objekter der noden godtar eller avviser innlegg                                                      |
-| Spamkontroll                 | Invitasjonslenker, utkastelser med nøkkelbytte, hastighetsbegrensning i klienten      | Hvert fellesskaps utfordring før et innlegg godtas                                                                 |
-| Moderering                   | Roller som håndheves av hvert medlems klient; eieren kaster ut                        | Fellesskapseiere modererer sitt fellesskap; apper velger hva de viser                                              |
-| Private meldinger            | Ende-til-ende-krypterte direktemeldinger                                              | Offentlige fellesskap; ennå ingen innebygde direktemeldinger                                                       |
-| Økonomi                      | QUIL-nettverkstoken; valgfritt Apex-abonnement til $5 i måneden                       | Ingenting i protokollen; en utfordring kan kreve en betaling eller et token                                        |
-| Viktigste avveining          | Private, krypterte grupper, men hver klient er avhengig av én tjeneste                | Gratis identiteter og tilgang fra nettleseren, men ingen private meldinger, og bare den nyeste tilstanden beholdes |
+| Spørsmål                     | Quorum                                                                                                    | Bitsocial                                                                                                          |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Kategori                     | Ende-til-ende-kryptert gruppemessenger fra Quilibrium Inc.                                                | Peer-to-peer-nettverk av fellesskap                                                                                |
+| Identitet                    | Ed448-hovednøkkelsett pluss nøkler per enhet, bak en passnøkkel eller en gjenopprettingsfrase             | Ed25519-nøkkelpar for brukere og fellesskap                                                                        |
+| Hvem kan lese                | Medlemmer som har nøklene til en Space                                                                    | Alle, fra hvilken som helst app                                                                                    |
+| Hvor meldingene ligger       | Hvert medlems enhet; Quorum-tjenesten holder på ikke-leverte kopier, og en logg per Space for mobil       | Noden til fellesskapets eier og peerne som leser og seeder det                                                     |
+| Hva klientene kobler seg til | Quorum-tjenesten på `api.quorummessenger.com`                                                             | Peers over libp2p, funnet via HTTP-rutere, også fra en nettleserfane                                               |
+| Fellesskap                   | Spaces med kanaler, roller og invitasjonslenker                                                           | Førsteklasses objekter der noden godtar eller avviser innlegg                                                      |
+| Spamkontroll                 | Invitasjonslenker, utkastelser med nøkkelbytte, hastighetsbegrensning i klienten                          | Hvert fellesskaps utfordring før et innlegg godtas                                                                 |
+| Moderering                   | Roller som håndheves av hvert medlems klient; eieren kaster ut; rapporter går til operatøren av tjenesten | Fellesskapseiere modererer sitt fellesskap; apper velger hva de viser                                              |
+| Private meldinger            | Ende-til-ende-krypterte direktemeldinger                                                                  | Offentlige fellesskap; ennå ingen innebygde direktemeldinger                                                       |
+| Økonomi                      | QUIL-nettverkstoken; valgfritt Apex-abonnement til $5 i måneden                                           | Ingenting i protokollen; en utfordring kan kreve en betaling eller et token                                        |
+| Viktigste avveining          | Private, krypterte grupper, men hver klient er avhengig av én tjeneste                                    | Gratis identiteter og tilgang fra nettleseren, men ingen private meldinger, og bare den nyeste tilstanden beholdes |
