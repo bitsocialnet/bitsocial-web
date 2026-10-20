@@ -61,7 +61,9 @@ const fetchCommunityUpdate = async (communityName, publicKey) => {
   return { resolvedIpnsName, resolvedUpdateCid, communityUpdate };
 };
 
-export const monitorCommunitiesIpns = async () => {
+// `fiveChanBoards` (lib/five-chan-boards.js) keeps each 5chan board's record and stats for the
+// 5chan boards snapshot.
+export const monitorCommunitiesIpns = async ({ fiveChanBoards } = {}) => {
   for (const community of monitorState.communitiesMonitoring) {
     debug(`fetching community '${community?.name}' via IPNS public key '${community?.publicKey}'`);
     (async () => {
@@ -88,6 +90,7 @@ export const monitorCommunitiesIpns = async () => {
         };
 
         prometheusObserveCommunityUpdate(community.address, communityUpdate);
+        fiveChanBoards?.recordCommunityUpdate(community, communityUpdate);
 
         // fetch community stats
         if (communityUpdate.statsCid) {
@@ -106,6 +109,11 @@ export const monitorCommunitiesIpns = async () => {
                 communityStats,
               };
               prometheusObserveCommunityStats(community.address, communityStats);
+              fiveChanBoards?.recordCommunityStats(
+                community,
+                communityUpdate.statsCid,
+                communityStats,
+              );
             })
             .catch((e) => {
               debug(`failed to fetch community stats for '${community.address}': ${e.message}`);

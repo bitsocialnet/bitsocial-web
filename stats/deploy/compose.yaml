@@ -52,6 +52,8 @@ services:
       - "127.0.0.1:3301:3000"
     volumes:
       - bitsocial-stats-monitor-history:/app/stats/monitor/history
+      # The monitor writes the 5chan boards snapshot here; the web service serves it.
+      - bitsocial-stats-monitor-exports:/app/stats/monitor/exports
     healthcheck:
       test:
         [
@@ -96,6 +98,8 @@ services:
         condition: service_started
     ports:
       - "127.0.0.1:3302:3000"
+    volumes:
+      - bitsocial-stats-monitor-exports:/app/stats/monitor/exports:ro
     healthcheck:
       test:
         [
@@ -150,5 +154,6 @@ volumes:
   bitsocial-stats-grafana-data:
   bitsocial-stats-ipfs-bin:
   bitsocial-stats-ipfs-data:
+  bitsocial-stats-monitor-exports:
   bitsocial-stats-monitor-history:
   bitsocial-stats-prometheus-data:

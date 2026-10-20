@@ -19,6 +19,12 @@ const parseCsvEnv = (value) =>
     .map((entry) => entry.trim())
     .filter(Boolean);
 
+// The monitor writes the 5chan boards snapshot here and the stats web server serves it at
+// /api/v1/5chan/boards. Compose mounts one volume at this directory in both containers.
+const fiveChanBoardsPath =
+  process.env.BITSOCIAL_STATS_5CHAN_BOARDS_PATH ||
+  path.join(monitorRoot, "exports", "5chan-boards.json");
+
 const kuboRpcUrl = process.env.BITSOCIAL_STATS_KUBO_RPC_URL || "http://127.0.0.1:5001";
 const pubsubKuboRpcUrl = process.env.BITSOCIAL_STATS_PUBSUB_KUBO_RPC_URL || kuboRpcUrl;
 const delegatedRoutingUrls = parseCsvEnv(process.env.BITSOCIAL_STATS_DELEGATED_ROUTING_URLS) || [
@@ -150,6 +156,7 @@ export default {
   },
   delegatedRoutingUrls,
   bsoResolverProviders,
+  fiveChanBoardsPath,
   kuboRpcUrl,
   pubsubKuboRpcUrl,
   pkcOptions: {

@@ -17,7 +17,7 @@ yarn stats:up
 
 The main configuration lives in [config.js](./config.js). Community monitoring is client-aware:
 
-- `5chan` is enabled via the generated snapshot from the official `5chan-directories/` files
+- `5chan` is enabled via the generated snapshot from the official `5chan-directories/` files, with every board each directory lists
 - `seedit` is enabled via the generated snapshot from `seedit-default-subscriptions.json`
 - community labels are the public `.bso` addresses from those lists; the monitor resolves them to public keys with the BSO resolver
 - future clients can be added through `monitoring.clients`
@@ -28,6 +28,8 @@ The API listens on port `3000` by default:
 - `/` returns the current JSON snapshot
 - `/history` returns stored snapshots over time
 - `/metrics/prometheus` exposes Prometheus metrics
+
+While it monitors community IPNS records, the monitor also writes every 5chan board's record time, stats and most popular threads to `exports/5chan-boards.json` once a minute, which the stats dashboard server serves at `/api/v1/5chan/boards` (see [`../web/README.md`](../web/README.md#5chan-boards-provider)).
 
 ### Service probes and alerts
 
