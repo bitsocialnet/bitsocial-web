@@ -118,9 +118,8 @@ export const createFiveChanBoards = ({
   log = () => {},
 }) => {
   // address -> { updatedAt, statsCid, stats, candidates }, only for boards fetched at least once.
-  // `statsCid` is the record's, while `stats` stays the last stats read until that cid's arrive,
-  // so a board does not drop out of the totals while its new stats are fetched. A record that
-  // publishes no stats clears them, since no fetch would ever replace them.
+  // `stats` is always the stats file of the record's own `statsCid`: a record pointing to other
+  // stats clears them until those are read, right after the record in the same IPNS pass.
   const boards = new Map();
 
   const document = (communities) => {
@@ -158,7 +157,7 @@ export const createFiveChanBoards = ({
       boards.set(community.address, {
         updatedAt,
         statsCid: communityUpdate.statsCid,
-        stats: typeof communityUpdate.statsCid === "string" ? (previous?.stats ?? null) : null,
+        stats: previous?.statsCid === communityUpdate.statsCid ? (previous?.stats ?? null) : null,
         candidates: getPopularThreadCandidates(communityUpdate),
       });
     },
