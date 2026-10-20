@@ -4820,66 +4820,6 @@ bitbones is a port of an existing GPL bare-bones client onto the Bitsocial stack
 
 GPL-3.0-or-later — see [LICENSE](https://github.com/bitsocialnet/bitbones/blob/HEAD/LICENSE).
 
-### HuggingSocial
-
-Repository: Rinse12/huggingsocial
-Source: https://github.com/Rinse12/huggingsocial#readme
-Description: Website: huggingsocial.co
-
-# HuggingSocial
-
-**Website: [huggingsocial.co](https://huggingsocial.co/)**
-
-**BitTorrent moves the weights. BitSocial keeps the index and the conversation out of anyone's hands.**
-
-HuggingSocial is a peer-to-peer place to find, discuss and download open AI models and datasets. It is a
-model hub that no company owns: the list of models, the model cards, the comments and the votes all
-live on a peer-to-peer network, and the model files themselves are fetched over BitTorrent (or plain
-HTTP mirrors), verified on your machine with checksums.
-
-## Why is this needed?
-
-Almost all open AI models live on one website, Hugging Face. In August 2026 Nvidia agreed to buy it for
-roughly $13 billion. Whatever you think of Nvidia, the open-model ecosystem now has a single owner for
-its hosting, and the places where people *talk* about models (Reddit, Discord) are also companies
-that can change their rules, sell, or be pressured at any time.
-
-When one entity controls where models are stored, the next thing that gets controlled is which models
-are visible, which are removed, and which conversations are allowed. Hugging Face has already removed
-models it did not like ([GPT-4chan](https://thegradient.pub/gpt-4chan-lessons/)), and corporate takedowns
-have wiped community copies ([Meta's DMCA against 403 LLaMA repositories](https://github.com/github/dmca/blob/master/2023/03/2023-03-21-meta.md)).
-A torrent index would help with storage, but torrent indexes get taken down too,
-and a torrent tells you nothing about *who* published a file.
-
-HuggingSocial fixes the three parts together:
-
-- **Discovery.** The index of models is held by communities ("hubs") that are controlled by cryptographic
-  keys, not by accounts on a website. Nobody can delete a hub except its owner.
-- **Provenance.** Every model listing is signed by whoever published it, and every download is checked
-  against the checksums in that listing. A poisoned re-upload will simply fail verification.
-- **Discourse.** Model cards, benchmarks, "does this quant run on my GPU", fine-tune requests and
-  license debates happen in the same hubs, with moderation set by each hub, not by a platform.
-
-## How it works (short version)
-
-- **Hubs** are communities on [BitSocial](https://bitsocial.net), a peer-to-peer social protocol built on
-  IPFS/libp2p. Each hub sets its own rules and anti-spam challenge.
-- A **model listing** is a post in a hub: name, version, license, model card, file checksums, and a list of
-  download sources (Hugging Face URL, magnet link, IPFS, …).
-- The **client** (web app, or desktop app with a built-in torrent engine) downloads from any of those
-  sources, verifies the files, and can keep seeding them so others get them faster.
-- **HuggingSocial hosts nothing.** We build the client. Anyone can run a hub, an index, or a seedbox.
-
-## Status
-
-In design and early development. Sign up to the newsletter on the website to hear when there's
-something to run. Technical design is in [DESIGN.md](https://github.com/Rinse12/huggingsocial/blob/HEAD/DESIGN.md); open work is in [TODO.md](https://github.com/Rinse12/huggingsocial/blob/HEAD/TODO.md).
-
-## License
-
-Free software, [GPL-3.0-or-later](https://github.com/Rinse12/huggingsocial/blob/HEAD/LICENSE): the clients, the tooling, the website. Contributions
-welcome: pick something from [TODO.md](https://github.com/Rinse12/huggingsocial/blob/HEAD/TODO.md) or open an issue.
-
 ### @bitsocial/ai-moderation-challenge
 
 Repository: bitsocialnet/ai-moderation-challenge
