@@ -111,18 +111,23 @@ const getDirectoryBoards = (directoryFile, sourceLabel) => {
   throw new Error(`${sourceLabel} is missing a boards array`);
 };
 
-const getPrimaryDirectoryBoard = (directoryFile, sourceLabel) => {
-  const [primaryBoard] = getDirectoryBoards(directoryFile, sourceLabel);
-  if (!primaryBoard) {
+// Every board competing for a directory, in the file's order (the first one is the board the
+// directory resolves to by default). 5chan rotates to the next board when one goes offline and
+// counts them all in its "all listed boards" stats, so the monitor tracks each of them.
+const getListedDirectoryBoards = (directoryFile, sourceLabel) => {
+  const boards = getDirectoryBoards(directoryFile, sourceLabel);
+  if (boards.length === 0) {
     throw new Error(`${sourceLabel} does not define any boards`);
   }
 
-  const address = primaryBoard.address || primaryBoard.communityAddress || primaryBoard.name;
-  if (typeof address !== "string") {
-    throw new Error(`${sourceLabel} primary board is missing address/communityAddress/name`);
-  }
+  return boards.map((board, index) => {
+    const address = board?.address || board?.communityAddress || board?.name;
+    if (typeof address !== "string") {
+      throw new Error(`${sourceLabel} board ${index + 1} is missing address/communityAddress/name`);
+    }
 
-  return { ...primaryBoard, address };
+    return { ...board, address };
+  });
 };
 
 const getDirectoryUpdatedAt = (directoryList, directoryRecords) =>
@@ -183,17 +188,16 @@ const buildResolvedDirectoryList = ({ directoryDefaults, directoryRecords }) => 
   const orderedDirectoryCodes = Object.keys(defaultsByCode).filter((directoryCode) =>
     recordsByCode.has(directoryCode),
   );
-  const directories = orderedDirectoryCodes.map((directoryCode) => {
+  const directories = orderedDirectoryCodes.flatMap((directoryCode) => {
     const defaults = defaultsByCode[directoryCode];
     const record = recordsByCode.get(directoryCode);
-    const primaryBoard = getPrimaryDirectoryBoard(record.directoryFile, record.sourceUrl);
 
-    return {
+    return getListedDirectoryBoards(record.directoryFile, record.sourceUrl).map((board) => ({
       ...defaults,
       directoryCode: defaults.directoryCode || directoryCode,
-      name: primaryBoard.address,
-      publicKey: primaryBoard.publicKey,
-    };
+      name: board.address,
+      publicKey: board.publicKey,
+    }));
   });
 
   return {

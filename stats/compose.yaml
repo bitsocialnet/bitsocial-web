@@ -42,6 +42,8 @@ services:
       - "127.0.0.1:3301:3000"
     volumes:
       - stats-monitor-history:/app/stats/monitor/history
+      # The monitor writes the 5chan boards snapshot here; the web service serves it.
+      - stats-monitor-exports:/app/stats/monitor/exports
     healthcheck:
       test:
         [
@@ -84,6 +86,8 @@ services:
         condition: service_started
     ports:
       - "127.0.0.1:3302:3000"
+    volumes:
+      - stats-monitor-exports:/app/stats/monitor/exports:ro
     healthcheck:
       test:
         [
@@ -134,5 +138,6 @@ volumes:
   stats-grafana-data:
   stats-ipfs-bin:
   stats-ipfs-data:
+  stats-monitor-exports:
   stats-monitor-history:
   stats-prometheus-data:

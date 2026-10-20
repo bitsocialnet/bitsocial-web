@@ -200,6 +200,32 @@
       "publicKey": "12D3KooWR7nTdKZqZ1twGWMfVsXYDGp1XAKUrnYznKP651jFrizE"
     },
     {
+      "directoryCode": "biz",
+      "title": "/biz/ - Business & Finance",
+      "features": {
+        "pseudonymityMode": "per-post",
+        "safeForWork": true,
+        "hasFlags": false,
+        "requirePostLink": true,
+        "requirePostLinkIsMedia": true,
+        "requireReplyLinkIsMedia": true,
+        "bumpLimit": 300,
+        "noSpoilers": true,
+        "noSpoilerReplies": true,
+        "noUpvotes": true,
+        "noDownvotes": true,
+        "postsPerPage": 20
+      },
+      "rules": [
+        "All discussion should pertain to business, finance, and economics related topics. This includes financial markets, securities, currencies (including cryptocurrencies), and commodities—as well as topics relating to starting and running a business.",
+        "All political discussion belongs in /pol/. Conspiracy theories belong in /x/.",
+        "Absolutely no advertising, soliciting, or promotion of any kind. You may not discuss projects you have an interest in without making that disclosure. We will remove anything that remotely breaks this rule.",
+        "Begging/asking (including tipping) for cryptocurrencies or asking for money/capital is also strictly forbidden."
+      ],
+      "name": "business-and-finance.bso",
+      "publicKey": "12D3KooWNMybS8JqELi38ZBX897PrjWbCrGoMKfw3bgoqzC2n1Dh"
+    },
+    {
       "directoryCode": "c",
       "title": "/c/ - Anime/Cute",
       "features": {
@@ -858,6 +884,31 @@
       "publicKey": "12D3KooWDpiDmJCGKbXB3RJFfATmRMzmwTkjimBvf8xKZmUx2L1P"
     },
     {
+      "directoryCode": "pol",
+      "title": "/pol/ - Politically Incorrect",
+      "features": {
+        "pseudonymityMode": "per-post",
+        "safeForWork": false,
+        "hasFlags": true,
+        "requirePostLink": true,
+        "requirePostLinkIsMedia": true,
+        "requireReplyLinkIsMedia": true,
+        "bumpLimit": 300,
+        "noSpoilers": true,
+        "noSpoilerReplies": true,
+        "noUpvotes": true,
+        "noDownvotes": true,
+        "postsPerPage": 20
+      },
+      "rules": [
+        "Debate and discussion related to politics and current events is welcome.",
+        "You are free to speak your mind, but *do not attack other users.* You may challenge one another, but *keep it civil!*",
+        "Posting pornography is not permitted. This is a politics board, not a porn board."
+      ],
+      "name": "politically-incorrect.bso",
+      "publicKey": "12D3KooWMVob74DQoTLGZ4B8kWgPwDfbtiWqdJE4DrGtf2rmVw36"
+    },
+    {
       "directoryCode": "pw",
       "title": "/pw/ - Professional Wrestling",
       "features": {
@@ -1108,6 +1159,27 @@
       "rules": ["No illegal stuff. Warez is allowed."],
       "name": "torrentz.bso",
       "publicKey": "12D3KooWA3nWX92JwSSfCyo1pkQGez8Y8XpbeJrjMoBUyo991KJc"
+    },
+    {
+      "directoryCode": "t",
+      "title": "/t/ - Torrents",
+      "features": {
+        "pseudonymityMode": "per-reply",
+        "safeForWork": false,
+        "hasFlags": false,
+        "requirePostLink": true,
+        "requirePostLinkIsMedia": true,
+        "requireReplyLinkIsMedia": true,
+        "bumpLimit": 300,
+        "noSpoilers": true,
+        "noSpoilerReplies": true,
+        "noUpvotes": true,
+        "noDownvotes": true,
+        "postsPerPage": 15
+      },
+      "rules": ["No illegal stuff. Warez is allowed."],
+      "name": "torrents-posting.bso",
+      "publicKey": "12D3KooWFwieYtPDEd3UBK5qG6HFZ3Qu8cDd4B4RcY2HJ9CBkfaZ"
     },
     {
       "directoryCode": "tg",

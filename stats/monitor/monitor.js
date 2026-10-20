@@ -15,6 +15,7 @@ import { fetchClientCommunities } from "./lib/client-sources.js";
 import config from "./config.js";
 import monitorState from "./lib/monitor-state.js";
 import { monitorCommunitiesIpns } from "./lib/community-ipns.js";
+import { createFiveChanBoards } from "./lib/five-chan-boards.js";
 import { monitorCommunitiesPubsub } from "./lib/community-pubsub.js";
 import { monitorIpfsGateways } from "./lib/ipfs-gateway.js";
 import { monitorPubsubProviders } from "./lib/pubsub-provider.js";
@@ -48,6 +49,7 @@ const serviceProbesIntervalMs = 1000 * 60;
 const nftsIntervalMs = 1000 * 60 * 10;
 const pkcSeedersIntervalMs = 1000 * 60 * 10;
 const kuboRpcProxyIntervalMs = 1000 * 60;
+const fiveChanBoardsIntervalMs = 1000 * 60;
 const monitoringNameAliases = {
   previewers: "pkcPreviewers",
   seeders: "pkcSeeders",
@@ -131,12 +133,25 @@ const isMonitoringOnly = (name) => {
   );
 };
 
-// fetch communities ipns every 10min
+// fetch communities ipns every 10min, and write the 5chan boards snapshot from what it fetched
+// every 1min
 if (isMonitoring("communitiesIpns")) {
-  monitorCommunitiesIpns().catch((e) => console.log(e.message));
+  const fiveChanBoards = createFiveChanBoards({
+    filePath: config.fiveChanBoardsPath,
+    log: console.log,
+  });
+  await fiveChanBoards.load();
+  monitorCommunitiesIpns({ fiveChanBoards }).catch((e) => console.log(e.message));
   setInterval(
-    () => monitorCommunitiesIpns().catch((e) => console.log(e.message)),
+    () => monitorCommunitiesIpns({ fiveChanBoards }).catch((e) => console.log(e.message)),
     communitiesIpnsIntervalMs,
+  );
+  setInterval(
+    () =>
+      fiveChanBoards
+        .write(monitorState.communitiesMonitoring)
+        .catch((e) => console.log(`failed writing 5chan boards: ${e.message}`)),
+    fiveChanBoardsIntervalMs,
   );
 }
 

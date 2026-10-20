@@ -7,6 +7,11 @@ import monitorConfig from "../../monitor/config.js";
 import { statsClients } from "../../shared/stats-queries.mjs";
 import { loadCommunityLists } from "./communities.mjs";
 import { createDashboard, documentKey } from "./dashboard.mjs";
+import {
+  FIVE_CHAN_BOARDS_KEY,
+  FIVE_CHAN_BOARDS_SECONDS,
+  createFiveChanBoardsSource,
+} from "./five-chan-boards.mjs";
 import { createPrometheusClient } from "./prometheus.mjs";
 import { DEFAULT_RANGE, RANGES, SNAPSHOT_SECONDS } from "./ranges.mjs";
 import { createSnapshots } from "./snapshots.mjs";
@@ -51,11 +56,20 @@ const acceptsGzip = (header = "") =>
     return coding.toLowerCase() === "gzip" && (!quality || Number(quality.slice(2)) > 0);
   });
 
-const sendSnapshot = (request, response, snapshot) => {
+// Public, read-only data that the 5chan app reads from any origin (web forks, Android, Electron).
+const publicReadHeaders = { "Access-Control-Allow-Origin": "*" };
+
+const sendSnapshot = (
+  request,
+  response,
+  snapshot,
+  { maxAge = SNAPSHOT_SECONDS, headers: extraHeaders = {} } = {},
+) => {
   const headers = {
     ...securityHeaders,
+    ...extraHeaders,
     "Content-Type": "application/json; charset=utf-8",
-    "Cache-Control": `public, max-age=${SNAPSHOT_SECONDS}`,
+    "Cache-Control": `public, max-age=${maxAge}`,
     ETag: snapshot.etag,
     Vary: "Accept-Encoding",
   };
@@ -76,8 +90,40 @@ const sendSnapshot = (request, response, snapshot) => {
   response.end(request.method === "HEAD" ? undefined : body);
 };
 
-export const createStatsServer = ({ dashboard, snapshots, staticFiles, pageRoutes }) => {
+const sendUnavailable = (response, headers = {}) =>
+  sendJson(
+    response,
+    502,
+    { error: "Stats data is temporarily unavailable." },
+    { ...headers, "Cache-Control": "no-store" },
+  );
+
+export const createStatsServer = ({
+  dashboard,
+  snapshots,
+  fiveChanBoards,
+  staticFiles,
+  pageRoutes,
+}) => {
+  // Takes no parameters: any query string is ignored.
+  const handleFiveChanBoards = async (request, response) => {
+    const snapshot = await fiveChanBoards.get(FIVE_CHAN_BOARDS_KEY);
+    if (!snapshot) {
+      sendUnavailable(response, publicReadHeaders);
+      return;
+    }
+    sendSnapshot(request, response, snapshot, {
+      maxAge: FIVE_CHAN_BOARDS_SECONDS,
+      headers: publicReadHeaders,
+    });
+  };
+
   const handleApi = async (request, pathname, searchParams, response) => {
+    if (pathname === "/api/v1/5chan/boards" && fiveChanBoards) {
+      await handleFiveChanBoards(request, response);
+      return;
+    }
+
     const rangeKey = searchParams.get("range") || DEFAULT_RANGE;
     if (!Object.hasOwn(RANGES, rangeKey)) {
       sendJson(response, 400, {
@@ -117,12 +163,7 @@ export const createStatsServer = ({ dashboard, snapshots, staticFiles, pageRoute
 
     const snapshot = await snapshots.get(key);
     if (!snapshot) {
-      sendJson(
-        response,
-        502,
-        { error: "Stats data is temporarily unavailable." },
-        { "Cache-Control": "no-store" },
-      );
+      sendUnavailable(response);
       return;
     }
     sendSnapshot(request, response, snapshot);
@@ -232,10 +273,20 @@ const main = () => {
         `stats snapshots: first pass built ${snapshots.size} documents in ${Date.now() - startedAt}ms`,
       ),
     );
+  // A separate store, so a missing boards file never delays or masks the Prometheus views. Reading
+  // a local file takes milliseconds, so while there is none a request answers 502 within a second
+  // rather than waiting out the store's retry interval.
+  const fiveChanBoards = createSnapshots({
+    dashboard: createFiveChanBoardsSource({ filePath: monitorConfig.fiveChanBoardsPath }),
+    windowSeconds: FIVE_CHAN_BOARDS_SECONDS,
+    firstPassWaitSeconds: 1,
+  });
+  fiveChanBoards.start();
 
   const server = createStatsServer({
     dashboard,
     snapshots,
+    fiveChanBoards,
     staticFiles,
     pageRoutes: new Set(["/", ...clients.map(({ id }) => `/${id}`)]),
   });
@@ -245,6 +296,7 @@ const main = () => {
   for (const signal of ["SIGINT", "SIGTERM"]) {
     process.on(signal, () => {
       snapshots.stop();
+      fiveChanBoards.stop();
       server.close(() => process.exit(0));
       server.closeAllConnections();
     });
