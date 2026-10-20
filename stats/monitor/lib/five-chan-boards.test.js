@@ -278,6 +278,21 @@ test("a board keeps its stats when a newer record arrives", () => {
   assert.deepEqual(entry.stats, { statsCid: "QmStats", allPostCount: 1 });
 });
 
+test("a board drops its stats when a newer record publishes none", () => {
+  const fiveChanBoards = createFiveChanBoards({ filePath: "unused", now: () => NOW });
+  const fetched = board("anime-and-manga.bso");
+  fiveChanBoards.recordCommunityUpdate(fetched, communityRecord([]));
+  fiveChanBoards.recordCommunityStats(fetched, "QmStats", { allPostCount: 1 });
+  fiveChanBoards.recordCommunityUpdate(
+    fetched,
+    communityRecord([], { updatedAt: NOW, statsCid: undefined }),
+  );
+
+  const [entry] = fiveChanBoards.document([fetched]).boards;
+  assert.equal(entry.updatedAt, NOW);
+  assert.equal(entry.stats, null);
+});
+
 test("an older record does not replace a newer one, nor its stats", () => {
   const fiveChanBoards = createFiveChanBoards({ filePath: "unused", now: () => NOW });
   const fetched = board("anime-and-manga.bso");
