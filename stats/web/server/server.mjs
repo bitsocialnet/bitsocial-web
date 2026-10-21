@@ -59,6 +59,14 @@ const acceptsGzip = (header = "") =>
 // Public, read-only data that the 5chan app reads from any origin (web forks, Android, Electron).
 const publicReadHeaders = { "Access-Control-Allow-Origin": "*" };
 
+// Lets Cloudflare keep serving an expired 5chan boards copy for up to 10 minutes while it refetches
+// in the background, so the first visitor after each expiry does not wait for this server. Only
+// Cloudflare reads this header and it does not forward it, so browsers still follow Cache-Control.
+// 5chan discards snapshots older than an hour.
+const fiveChanBoardsEdgeHeaders = {
+  "Cloudflare-CDN-Cache-Control": `max-age=${FIVE_CHAN_BOARDS_SECONDS}, stale-while-revalidate=600`,
+};
+
 const sendSnapshot = (
   request,
   response,
@@ -114,7 +122,7 @@ export const createStatsServer = ({
     }
     sendSnapshot(request, response, snapshot, {
       maxAge: FIVE_CHAN_BOARDS_SECONDS,
-      headers: publicReadHeaders,
+      headers: { ...publicReadHeaders, ...fiveChanBoardsEdgeHeaders },
     });
   };
 
