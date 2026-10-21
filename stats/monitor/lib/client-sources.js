@@ -43,6 +43,11 @@ export const normalizeDirectory = async (
     publicKey,
     title: directory.title,
     directoryCode: directory.directoryCode,
+    // Undefined when the directory does not say; 5chan treats such a board as worksafe.
+    safeForWork:
+      typeof directory.features?.safeForWork === "boolean"
+        ? directory.features.safeForWork
+        : undefined,
     clientId,
     resolutionError,
   };

@@ -3,8 +3,8 @@ import path from "node:path";
 
 // Keeps what the 5chan home page needs from every 5chan board the monitor fetches (its record's
 // updatedAt, its stats and its most popular thread) and writes it to a JSON file that the stats
-// web server serves at /api/v1/5chan/boards, so the home page does not have to download every
-// board over P2P before it can show its Popular Threads and Stats boxes.
+// web server serves at /api/v1/5chan/boards and /api/v1/5chan/stats, so the home page does not
+// have to download every board over P2P before it can show its Popular Threads and Stats boxes.
 
 export const FIVE_CHAN_CLIENT_ID = "5chan";
 export const FIVE_CHAN_BOARDS_VERSION = 1;
@@ -129,12 +129,13 @@ export const createFiveChanBoards = ({
       generatedAt: nowSeconds,
       boards: communities
         .filter(({ clientId }) => clientId === FIVE_CHAN_CLIENT_ID)
-        .map(({ address, publicKey, directoryCode }) => {
+        .map(({ address, publicKey, directoryCode, safeForWork }) => {
           const board = boards.get(address);
           return {
             address,
             publicKey: publicKey ?? null,
             directoryCode: directoryCode ?? null,
+            safeForWork: safeForWork ?? null,
             updatedAt: board?.updatedAt ?? null,
             stats: board?.stats ?? null,
             threads: board ? pickPopularThreads(board.candidates, nowSeconds) : [],

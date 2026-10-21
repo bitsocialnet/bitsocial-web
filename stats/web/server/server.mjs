@@ -10,6 +10,7 @@ import { createDashboard, documentKey } from "./dashboard.mjs";
 import {
   FIVE_CHAN_BOARDS_KEY,
   FIVE_CHAN_BOARDS_SECONDS,
+  FIVE_CHAN_STATS_KEY,
   createFiveChanBoardsSource,
 } from "./five-chan-boards.mjs";
 import { createPrometheusClient } from "./prometheus.mjs";
@@ -59,12 +60,18 @@ const acceptsGzip = (header = "") =>
 // Public, read-only data that the 5chan app reads from any origin (web forks, Android, Electron).
 const publicReadHeaders = { "Access-Control-Allow-Origin": "*" };
 
-// Lets Cloudflare keep serving an expired 5chan boards copy for up to 10 minutes while it refetches
+// Lets Cloudflare keep serving an expired 5chan document for up to 10 minutes while it refetches
 // in the background, so the first visitor after each expiry does not wait for this server. Only
 // Cloudflare reads this header and it does not forward it, so browsers still follow Cache-Control.
 // 5chan discards snapshots older than an hour.
-const fiveChanBoardsEdgeHeaders = {
+const fiveChanEdgeHeaders = {
   "Cloudflare-CDN-Cache-Control": `max-age=${FIVE_CHAN_BOARDS_SECONDS}, stale-while-revalidate=600`,
+};
+
+// The home page's Popular Threads box reads the boards, its Stats box the much smaller stats.
+const fiveChanDocumentKeys = {
+  "/api/v1/5chan/boards": FIVE_CHAN_BOARDS_KEY,
+  "/api/v1/5chan/stats": FIVE_CHAN_STATS_KEY,
 };
 
 const sendSnapshot = (
@@ -114,21 +121,21 @@ export const createStatsServer = ({
   pageRoutes,
 }) => {
   // Takes no parameters: any query string is ignored.
-  const handleFiveChanBoards = async (request, response) => {
-    const snapshot = await fiveChanBoards.get(FIVE_CHAN_BOARDS_KEY);
+  const handleFiveChanDocument = async (request, response, key) => {
+    const snapshot = await fiveChanBoards.get(key);
     if (!snapshot) {
       sendUnavailable(response, publicReadHeaders);
       return;
     }
     sendSnapshot(request, response, snapshot, {
       maxAge: FIVE_CHAN_BOARDS_SECONDS,
-      headers: { ...publicReadHeaders, ...fiveChanBoardsEdgeHeaders },
+      headers: { ...publicReadHeaders, ...fiveChanEdgeHeaders },
     });
   };
 
   const handleApi = async (request, pathname, searchParams, response) => {
-    if (pathname === "/api/v1/5chan/boards" && fiveChanBoards) {
-      await handleFiveChanBoards(request, response);
+    if (Object.hasOwn(fiveChanDocumentKeys, pathname) && fiveChanBoards) {
+      await handleFiveChanDocument(request, response, fiveChanDocumentKeys[pathname]);
       return;
     }
 
