@@ -20,7 +20,8 @@ const parseCsvEnv = (value) =>
     .filter(Boolean);
 
 // The monitor writes the 5chan boards snapshot here and the stats web server serves it at
-// /api/v1/5chan/boards. Compose mounts one volume at this directory in both containers.
+// /api/v1/5chan/boards and /api/v1/5chan/stats. Compose mounts one volume at this directory in both
+// containers.
 const fiveChanBoardsPath =
   process.env.BITSOCIAL_STATS_5CHAN_BOARDS_PATH ||
   path.join(monitorRoot, "exports", "5chan-boards.json");

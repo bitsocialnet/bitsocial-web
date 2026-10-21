@@ -29,7 +29,7 @@ The API listens on port `3000` by default:
 - `/history` returns stored snapshots over time
 - `/metrics/prometheus` exposes Prometheus metrics
 
-While it monitors community IPNS records, the monitor also writes every 5chan board's record time, stats and most popular threads to `exports/5chan-boards.json` once a minute, which the stats dashboard server serves at `/api/v1/5chan/boards` (see [`../web/README.md`](../web/README.md#5chan-boards-provider)).
+While it monitors community IPNS records, the monitor also writes every 5chan board's record time, stats and most popular threads to `exports/5chan-boards.json` once a minute, which the stats dashboard server serves at `/api/v1/5chan/boards` and `/api/v1/5chan/stats` (see [`../web/README.md`](../web/README.md#5chan-boards-provider)).
 
 ### Service probes and alerts
 

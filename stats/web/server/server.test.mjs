@@ -327,6 +327,25 @@ test("serves the 5chan boards snapshot to any origin and ignores query parameter
   assert.equal((await server.get("/api/v1/5chan")).status, 404);
 });
 
+test("serves the 5chan stats without threads, cached like the boards", async (t) => {
+  const server = await startBoardsServer(t);
+  await server.fiveChanBoards.refresh();
+
+  const response = await server.get("/api/v1/5chan/stats");
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("access-control-allow-origin"), "*");
+  assert.equal(response.headers.get("cache-control"), "public, max-age=60");
+  assert.equal(
+    response.headers.get("cloudflare-cdn-cache-control"),
+    "max-age=60, stale-while-revalidate=600",
+  );
+  assert.deepEqual(await response.json(), {
+    ...boardsFile,
+    boards: boardsFile.boards.map(({ threads: _threads, ...board }) => board),
+  });
+  assert.equal((await server.get("/api/v1/5chan/stats/extra")).status, 404);
+});
+
 test("reads the boards file only on the snapshot schedule", async (t) => {
   const server = await startBoardsServer(t);
   await server.fiveChanBoards.refresh();

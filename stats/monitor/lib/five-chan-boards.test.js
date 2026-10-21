@@ -64,6 +64,7 @@ const board = (address, fields = {}) => ({
   address,
   publicKey: `12D3KooW${address}`,
   directoryCode: address.slice(0, 1),
+  safeForWork: true,
   clientId: "5chan",
   ...fields,
 });
@@ -234,7 +235,11 @@ test("lists every 5chan board, including boards never fetched", () => {
   fiveChanBoards.recordCommunityUpdate(seedit, communityRecord([pageEntry()]));
 
   assert.deepEqual(
-    fiveChanBoards.document([fetched, board("biz.bso", { publicKey: undefined }), seedit]),
+    fiveChanBoards.document([
+      fetched,
+      board("biz.bso", { publicKey: undefined, safeForWork: undefined }),
+      seedit,
+    ]),
     {
       version: 1,
       generatedAt: NOW,
@@ -243,6 +248,7 @@ test("lists every 5chan board, including boards never fetched", () => {
           address: "anime-and-manga.bso",
           publicKey: "12D3KooWanime-and-manga.bso",
           directoryCode: "a",
+          safeForWork: true,
           updatedAt: NOW - 120,
           stats: {
             statsCid: "QmStats",
@@ -257,6 +263,7 @@ test("lists every 5chan board, including boards never fetched", () => {
           address: "biz.bso",
           publicKey: null,
           directoryCode: "b",
+          safeForWork: null,
           updatedAt: null,
           stats: null,
           threads: [],
