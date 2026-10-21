@@ -11,6 +11,7 @@ import {
   useState,
 } from "react";
 import { m } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 import {
@@ -32,6 +33,19 @@ const PlanetGraphic = lazy(() => import("./planet-graphic"));
 const MeshGraphic = lazy(() => import("./mesh-graphic"));
 
 const HighlightIndexCtx = createContext(-1);
+
+const HOOKS_DOCS_URL = "https://hooks.bitsocial.net/";
+
+// Mirrors the hooks.bitsocial.net hero version link: quiet gray text with a blue dot.
+// Inline flow (not flex) keeps the dot and arrow beside the words when longer
+// translations wrap on phones.
+const developersCtaClassName = cn(
+  "relative text-balance text-xs text-muted-foreground",
+  "transition-colors duration-200 hover:text-foreground",
+  // Invisible hit-area: keeps the link visually small but gives it a ~44px
+  // effective mobile touch target.
+  "after:absolute after:-inset-y-3.5 after:inset-x-0 after:content-['']",
+);
 
 const TAGLINE_LINK_COUNT = 6;
 const INTRO_START_DELAY = TAGLINE_INTRO_START_MS;
@@ -349,6 +363,24 @@ export default function Hero() {
         transition={{ delay: 0.3, duration: 0.6 }}
         className="relative z-10 mb-[var(--space-hero-actions-gap)] px-2 text-center sm:px-4"
       >
+        <div className="mb-[var(--space-hero-actions-gap)] flex justify-center">
+          <a
+            href={HOOKS_DOCS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={developersCtaClassName}
+          >
+            <span
+              aria-hidden="true"
+              className="me-2.5 inline-block h-1.5 w-1.5 rounded-full bg-blue-glow align-middle shadow-[0_0_10px_#2563eb66]"
+            />
+            {t("hero.developersCta")}
+            <ArrowUpRight
+              aria-hidden="true"
+              className="ms-2.5 inline-block h-3.5 w-3.5 align-[-0.2em]"
+            />
+          </a>
+        </div>
         <h1
           id="hero-tagline"
           data-hero-tagline
