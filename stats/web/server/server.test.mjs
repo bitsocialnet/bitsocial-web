@@ -294,6 +294,10 @@ test("serves the 5chan boards snapshot to any origin and ignores query parameter
   assert.equal(response.status, 200);
   assert.equal(response.headers.get("access-control-allow-origin"), "*");
   assert.equal(response.headers.get("cache-control"), "public, max-age=60");
+  assert.equal(
+    response.headers.get("cloudflare-cdn-cache-control"),
+    "max-age=60, stale-while-revalidate=600",
+  );
   assert.match(response.headers.get("content-type"), /^application\/json/);
   const text = await response.text();
   assert.deepEqual(JSON.parse(text), boardsFile);
@@ -305,6 +309,10 @@ test("serves the 5chan boards snapshot to any origin and ignores query parameter
   const cached = await server.get("/api/v1/5chan/boards", { headers: { "If-None-Match": etag } });
   assert.equal(cached.status, 304);
   assert.equal(cached.headers.get("access-control-allow-origin"), "*");
+  assert.equal(
+    cached.headers.get("cloudflare-cdn-cache-control"),
+    "max-age=60, stale-while-revalidate=600",
+  );
   const head = await server.get("/api/v1/5chan/boards", { method: "HEAD" });
   assert.equal(head.status, 200);
   assert.equal(head.headers.get("access-control-allow-origin"), "*");
@@ -314,6 +322,7 @@ test("serves the 5chan boards snapshot to any origin and ignores query parameter
   const overview = await server.get("/api/v1/overview");
   assert.equal(overview.headers.get("access-control-allow-origin"), null);
   assert.match(overview.headers.get("cache-control"), /max-age=30/);
+  assert.equal(overview.headers.get("cloudflare-cdn-cache-control"), null);
   assert.equal((await server.get("/api/v1/5chan/boards/extra")).status, 404);
   assert.equal((await server.get("/api/v1/5chan")).status, 404);
 });
