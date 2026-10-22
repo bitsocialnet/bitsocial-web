@@ -2,9 +2,10 @@
   "nav": {
     "language": "Kieli",
     "theme": "Teema",
-    "mainSite": "Pääsivusto",
+    "bitsocial": "Bitsocial",
     "faq": "UKK",
-    "richList": "Haltijalista"
+    "richList": "Haltijalista",
+    "chart": "Kaavio"
   },
   "languageSelector": {
     "title": "Valitse kieli",
@@ -404,19 +405,19 @@
       },
       "holderB": {
         "name": "Haltija B",
-        "summary": "2/4-Safe-multisig, joka keräsi vanhaa BSO:ta 14 lompakosta yhden iltapäivän aikana, sekä yksi sen omistajista.",
+        "summary": "2/4-Safe-multisig, joka keräsi PLEBiä 14 lompakosta yhden iltapäivän aikana, sekä yksi sen omistajista.",
         "evidence": {
           "owners": "Safen 4 omistajasta 2:n on allekirjoitettava. Yksi omistajista pitää hallussaan myös BSO:ta suoraan. Neljä omistajaa voi tarkoittaa yhtä henkilöä, jolla on useita avaimia, tai pientä ryhmää.",
-          "consolidation": "1. kesäkuuta 2024 klo 16:08–17:51 UTC Safe vastaanotti 120,5 miljardia vanhaa BSO:ta 14 lompakosta. Ensimmäinen siirto oli 10 tokenin testi, jonka Safe lähetti heti takaisin.",
-          "vesting": "12. elokuuta 2024 Safe siirsi 60,5 miljardia vanhaa BSO:ta Sablierin vesting-virtaan. Vuoden 2026 migraatio hyvitti tämän virran takaisin Safelle, minkä vuoksi Safe sai kaksi migraatiosiirtoa.",
-          "commonSender": "Sama lompakko lähetti vanhaa BSO:ta sekä Safen omistajalle (13,7 miljardia 8. maaliskuuta 2024) että Safelle (1,5 miljardia 1. kesäkuuta 2024)."
+          "consolidation": "1. kesäkuuta 2024 klo 16:08–17:51 UTC Safe vastaanotti 120,5 miljardia PLEBiä 14 lompakosta. Ensimmäinen siirto oli 10 tokenin testi, jonka Safe lähetti heti takaisin.",
+          "vesting": "12. elokuuta 2024 Safe siirsi 60,5 miljardia PLEBiä Sablierin vesting-virtaan. Vuoden 2026 migraatio hyvitti tämän virran takaisin Safelle, minkä vuoksi Safe sai kaksi migraatiosiirtoa.",
+          "commonSender": "Sama lompakko lähetti PLEBiä sekä Safen omistajalle (13,7 miljardia 8. maaliskuuta 2024) että Safelle (1,5 miljardia 1. kesäkuuta 2024)."
         }
       },
       "holderC": {
         "name": "Haltija C",
-        "summary": "Kaksi lompakkoa, jotka saivat vanhaa BSO:ta samalta lähettäjältä.",
+        "summary": "Kaksi lompakkoa, jotka saivat PLEBiä samalta lähettäjältä.",
         "evidence": {
-          "commonSender": "Yksi lompakko lähetti ensimmäiselle 4,7 miljardia vanhaa BSO:ta 19. elokuuta 2024 ja toiselle 15,4 miljardia 14. marraskuuta 2025. Yhteinen lähettäjä voi olla myös yksi myyjä, joka palvelee kahta ostajaa."
+          "commonSender": "Yksi lompakko lähetti ensimmäiselle 4,7 miljardia PLEBiä 19. elokuuta 2024 ja toiselle 15,4 miljardia 14. marraskuuta 2025. Yhteinen lähettäjä voi olla myös yksi myyjä, joka palvelee kahta ostajaa."
         }
       },
       "holderD": {
@@ -430,21 +431,21 @@
         "name": "Haltija E",
         "summary": "Kaksi lompakkoa, jotka täytettiin samasta lähteestä.",
         "evidence": {
-          "commonSender": "Yksi lompakko lähetti ensimmäiselle 39,4 miljardia vanhaa BSO:ta seitsemässä siirrossa lokakuun 2024 ja tammikuun 2025 välillä sekä toiselle 2,0 miljardia 22. marraskuuta 2025."
+          "commonSender": "Yksi lompakko lähetti ensimmäiselle 39,4 miljardia PLEBiä seitsemässä siirrossa lokakuun 2024 ja tammikuun 2025 välillä sekä toiselle 2,0 miljardia 22. marraskuuta 2025."
         }
       },
       "holderF": {
         "name": "Haltija F",
         "summary": "Yksi lompakko, joka jakoi tokeninsa kolmeen uuteen lompakkoon ja maksoi niiden gas-kulut.",
         "evidence": {
-          "split": "10. maaliskuuta 2024 yksi lompakko lähetti seitsemän minuutin sisällä tasasummia vanhaa BSO:ta (12, 8 ja 4 miljardia) kolmeen uuteen lompakkoon ja lähetti samana päivänä kahdelle niistä ETH:ta gas-kuluihin. Sillä itsellään on yhä BSO:ta."
+          "split": "10. maaliskuuta 2024 yksi lompakko lähetti seitsemän minuutin sisällä tasasummia PLEBiä (12, 8 ja 4 miljardia) kolmeen uuteen lompakkoon ja lähetti samana päivänä kahdelle niistä ETH:ta gas-kuluihin. Sillä itsellään on yhä BSO:ta."
         }
       },
       "holderG": {
         "name": "Haltija G",
         "summary": "Kaksi lompakkoa, jotka sama lähettäjä rahoitti kolmen vuoden erolla.",
         "evidence": {
-          "commonSender": "Yksi lompakko lähetti toiselle 4,7 miljardia PLEBiä huhtikuussa 2022 ja ensimmäiselle 6 miljardia vanhaa BSO:ta tammikuussa 2025."
+          "commonSender": "Yksi lompakko lähetti toiselle 4,7 miljardia PLEBiä Avalanchella huhtikuussa 2022 ja ensimmäiselle 6 miljardia PLEBiä Ethereumissa tammikuussa 2025."
         }
       },
       "holderH": {
@@ -458,7 +459,7 @@
         "name": "Haltija I",
         "summary": "Kaksi lompakkoa, joiden välillä on toistuvia siirtoja.",
         "evidence": {
-          "directTransfers": "Toinen lompakko lähetti ensimmäiselle 13,2 miljardia vanhaa BSO:ta 30. lokakuuta 2023 ja 5 miljardia 8. marraskuuta 2023."
+          "directTransfers": "Toinen lompakko lähetti ensimmäiselle 13,2 miljardia PLEBiä 30. lokakuuta 2023 ja 5 miljardia 8. marraskuuta 2023."
         }
       }
     },
@@ -572,11 +573,11 @@
         },
         "rebrand": {
           "title": "plebbitistä tulee Bitsocial",
-          "body": "Maaliskuun 2026 aikana projekti ja sen token ottavat vähitellen käyttöön Bitsocial-nimen."
+          "body": "plebbit julkistaa uuden nimensä, Bitsocial. Ketjussa token säilyttää PLEB-nimen toukokuuhun asti."
         },
         "rebase": {
-          "title": "Tarjonnaksi 210 miljoonaa",
-          "body": "Toisen sukupolven tokenille tehdään rebase, jotta kokonaistarjonta on tasan 210 miljoonaa: 7 114,6 vanhasta tokenista tulee 1."
+          "title": "PLEBistä tulee 210 miljoonaa BSO:ta",
+          "body": "Toisen sukupolven token nimetään uudelleen BSO:ksi ja sille tehdään rebase, jotta kokonaistarjonta on tasan 210 miljoonaa: 7 114,6 PLEBistä tulee 1 BSO."
         },
         "immutable": {
           "title": "BSO:sta tulee muuttumaton",
@@ -589,7 +590,7 @@
       "lead": "Miten ryhmät löydettiin ja mitä tämä sivu ei näe.",
       "howTitle": "Miten lompakot linkitettiin",
       "how": {
-        "transfers": "Jokainen PLEBin, vanhan BSO:n ja BSO:n siirto kahden tavallisen lompakon välillä jäljitettiin, pois lukien pörssit, reitittimet, poolit ja muut älysopimukset. Safe-multisigit linkitettiin omistajiinsa.",
+        "transfers": "Jokainen PLEBin ja BSO:n siirto kahden tavallisen lompakon välillä Avalanchella ja Ethereumissa jäljitettiin, pois lukien pörssit, reitittimet, poolit ja muut älysopimukset. Safe-multisigit linkitettiin omistajiinsa.",
         "funders": "Kunkin suuren haltijan kohdalla verrattiin lompakkoa, joka lähetti sille ensimmäisenä AVAXia tai ETH:ta. Pörssit rahoittavat tuhansia lompakoita, joten vain yksityiset rahoittajat lasketaan yhteydeksi.",
         "pattern": "Lompakoiden, joilla ei ole suoraa yhteyttä, ostokäyttäytymistä verrattiin saman ajanjakson jokaiseen PLEBin ostajaan.",
         "migrations": "Saldoja seurattiin molempien migraatioiden läpi kurssilla 7 114,6 PLEBiä BSO:ta kohden."
@@ -603,10 +604,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: PLEB Avalanchella",
-        "gen2": "Gen 2: vanha BSO Ethereumissa",
+        "gen2": "Gen 2: PLEB Ethereumissa, nimetty uudelleen BSO:ksi toukokuussa 2026",
         "gen3": "Gen 3: BSO nykyään"
       },
       "snapshot": "Saldot ja hinta Blockscoutista: {{count}} lompakkoa, tilanne {{date}}. Löysitkö väärän tai puuttuvan yhteyden? <contributeLink>Paranna tätä sivua</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "BSO:n hintakaavio – jokainen kauppa vuodesta 2022",
+      "description": "BSO:n hinta ja markkina-arvo sen ensimmäisestä kaupasta vuonna 2022 alkaen kaikilla kolmella älysopimuksella: PLEB Avalanchella, PLEB Ethereumissa ja BSO nykyään, yhdessä on-chain-vaihdoista kootussa kaaviossa."
+    },
+    "hero": {
+      "title": "BSO:n hinta ensimmäisestä kaupasta lähtien",
+      "lead": "Yksi kaavio kaikista kolmesta älysopimuksesta: PLEB Avalanchella, PLEB Ethereumissa, joka nimettiin vuonna 2026 uudelleen BSO:ksi, ja BSO nykyään. Vanhemmat hinnat on muunnettu kurssilla 7 114,6 PLEB-tokenia BSO:ta kohden, samalla suhteella, joka säilyi molemmissa migraatioissa. Jokaisen hintaliikkeen tausta löytyy haltijalistan <historyLink>historiasta</historyLink>.",
+      "status": {
+        "live": "Suoraan Uniswap-poolista: BSO {{price}}. Päivitetty {{ago}}.",
+        "loading": "Päivittäinen historia {{date}} asti. Ladataan uusimpia hintoja…",
+        "unavailable": "Reaaliaikaiset hinnat eivät ole juuri nyt saatavilla, joten kaavio päättyy päivään {{date}}."
+      }
+    },
+    "panelTitle": "Päivittäinen hintakaavio",
+    "summary": {
+      "price": "BSO:n päivittäinen hinta {{from}}–{{to}}. Alin päätöskurssi {{low}}, ylin päätöskurssi {{high}}, viimeisin {{latest}}.",
+      "mcap": "BSO:n päivittäinen markkina-arvo {{from}}–{{to}}. Alin päätösarvo {{low}}, ylin päätösarvo {{high}}, viimeisin {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Näytä",
+      "metrics": {
+        "price": "Hinta",
+        "mcap": "Markkina-arvo"
+      },
+      "rangeLabel": "Aikaväli",
+      "ranges": {
+        "1M": "1 kk",
+        "3M": "3 kk",
+        "1Y": "1 v",
+        "all": "Kaikki"
+      },
+      "typeLabel": "Kaaviotyyppi",
+      "types": {
+        "line": "Viiva",
+        "candles": "Kynttilät"
+      },
+      "scaleLabel": "Asteikko",
+      "scales": {
+        "log": "Log",
+        "linear": "Lineaarinen"
+      }
+    },
+    "legend": {
+      "since": "{{date}} lähtien",
+      "ohlc": "O {{open}} · H {{high}} · L {{low}} · C {{close}}",
+      "volume": "Volyymi {{value}}"
+    },
+    "eras": {
+      "label": "Älysopimukset. Valitse yksi tarkentaaksesi sen aikakauteen.",
+      "gen1": "PLEB Avalanchella",
+      "gen2": "PLEB Ethereumissa",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "nyt",
+      "rebrand": "Nimeksi Bitsocial"
+    },
+    "method": {
+      "title": "Miten kaavio on koottu",
+      "lead": "Jokainen kynttilä perustuu ketjussa tehtyihin vaihtoihin, joten minkä tahansa päivän voi tarkistaa lohkoketjuselaimesta.",
+      "steps": {
+        "swaps": "Päivän avaus, ylin, alin ja päätös ovat päivän vaihdoissa maksettu ensimmäinen, korkein, matalin ja viimeinen hinta UTC-ajassa, luettuna kunkin poolin Swap-tapahtumista.",
+        "usd": "Poolien vastavaluuttana on AVAX tai ETH, joten jokainen vaihto muunnetaan dollareiksi Coinbasen kurssilla sen tunnin ajalta, jolloin vaihto tapahtui.",
+        "units": "PLEB, Avalanchella ja Ethereumissa <rebaseLink>2. toukokuuta 2026 tehtyyn rebaseen</rebaseLink> asti, näytetään BSO:ta kohden: sen hinta kerrotaan luvulla 7 114,596, eli niiden PLEB-tokenien määrällä, jonka kukin BSO korvasi.",
+        "pools": "Kun samana päivänä kauppaa käytiin useammassa kuin yhdessä poolissa, eniten volyymia kerännyt pooli määrää päivän kynttilän, jotta lähes tyhjä pooli ei voi piirtää väärää hintapiikkiä. Volyymi lasketaan yhteen kaikista pooleista, ja päivä ilman kauppoja toistaa edellisen päätöskurssin.",
+        "mcap": "Markkina-arvo on päätöskurssi kerrottuna päivän kokonaistarjonnalla: kaikki älysopimuksen mintaamat tokenit miinus kaikki sen polttamat tokenit, muunnettuna BSO:ksi samoin kuin hinta. Rebasen jälkeen ja nykyisellä BSO:lla tarjonta on kiinteä 210 miljoonaa.",
+        "eras": "Kunkin älysopimuksen historia päättyy seuraavan älysopimuksen ensimmäiseen kauppaan. Ethereumin älysopimus säilytti PLEB-nimen siihen päivitykseen asti, joka teki sille rebasen, kuusi viikkoa sen jälkeen, kun plebbitistä tuli Bitsocial 18. maaliskuuta 2026."
+      },
+      "poolsTitle": "Luetut poolit",
+      "eraDates": "{{from}}–{{to}}",
+      "snapshot": "Historia on koottu {{count}} vaihdosta {{date}} asti. Uudemmat päivät tulevat GeckoTerminalista ja päivittyvät viiden minuutin välein, kun tämä sivu on auki. Huomasitko väärän kynttilän? <contributeLink>Paranna tätä sivua</contributeLink>."
     }
   }
 }

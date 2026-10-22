@@ -2,9 +2,10 @@
   "nav": {
     "language": "Ngôn ngữ",
     "theme": "Giao diện",
-    "mainSite": "Trang chính",
+    "bitsocial": "Bitsocial",
     "faq": "Câu hỏi thường gặp",
-    "richList": "Bảng xếp hạng ví"
+    "richList": "Bảng xếp hạng ví",
+    "chart": "Biểu đồ"
   },
   "languageSelector": {
     "title": "Chọn ngôn ngữ",
@@ -399,19 +400,19 @@
       },
       "holderB": {
         "name": "Người nắm giữ B",
-        "summary": "Một multisig Safe cần 2 trên 4 chữ ký, đã gom BSO cũ từ 14 ví chỉ trong một buổi chiều, cùng với một trong các chủ sở hữu của nó.",
+        "summary": "Một multisig Safe cần 2 trên 4 chữ ký, đã gom PLEB từ 14 ví chỉ trong một buổi chiều, cùng với một trong các chủ sở hữu của nó.",
         "evidence": {
           "owners": "Safe cần 2 trong 4 chủ sở hữu ký. Một chủ sở hữu cũng nắm giữ BSO trực tiếp. Bốn chủ sở hữu có thể là một người với nhiều khóa hoặc một nhóm nhỏ.",
-          "consolidation": "Ngày 1 tháng 6 năm 2024, từ 16:08 đến 17:51 UTC, Safe đã nhận 120,5 tỷ BSO cũ từ 14 ví. Lần chuyển đầu tiên là một giao dịch thử 10 token mà Safe gửi trả lại ngay.",
-          "vesting": "Ngày 12 tháng 8 năm 2024, Safe chuyển 60,5 tỷ BSO cũ vào một luồng vesting trên Sablier. Đợt migration năm 2026 đã ghi có luồng đó trở lại cho Safe, đó là lý do Safe nhận được hai lần chuyển từ migration.",
-          "commonSender": "Cùng một ví đã gửi BSO cũ cho cả chủ sở hữu Safe (13,7 tỷ vào ngày 8 tháng 3 năm 2024) lẫn Safe (1,5 tỷ vào ngày 1 tháng 6 năm 2024)."
+          "consolidation": "Ngày 1 tháng 6 năm 2024, từ 16:08 đến 17:51 UTC, Safe đã nhận 120,5 tỷ PLEB từ 14 ví. Lần chuyển đầu tiên là một giao dịch thử 10 token mà Safe gửi trả lại ngay.",
+          "vesting": "Ngày 12 tháng 8 năm 2024, Safe chuyển 60,5 tỷ PLEB vào một luồng vesting trên Sablier. Đợt migration năm 2026 đã ghi có luồng đó trở lại cho Safe, đó là lý do Safe nhận được hai lần chuyển từ migration.",
+          "commonSender": "Cùng một ví đã gửi PLEB cho cả chủ sở hữu Safe (13,7 tỷ vào ngày 8 tháng 3 năm 2024) lẫn Safe (1,5 tỷ vào ngày 1 tháng 6 năm 2024)."
         }
       },
       "holderC": {
         "name": "Người nắm giữ C",
-        "summary": "Hai ví nhận BSO cũ từ cùng một người gửi.",
+        "summary": "Hai ví nhận PLEB từ cùng một người gửi.",
         "evidence": {
-          "commonSender": "Một ví đã gửi 4,7 tỷ BSO cũ cho ví thứ nhất vào ngày 19 tháng 8 năm 2024 và 15,4 tỷ cho ví thứ hai vào ngày 14 tháng 11 năm 2025. Một người gửi chung cũng có thể là một người bán phục vụ hai người mua."
+          "commonSender": "Một ví đã gửi 4,7 tỷ PLEB cho ví thứ nhất vào ngày 19 tháng 8 năm 2024 và 15,4 tỷ cho ví thứ hai vào ngày 14 tháng 11 năm 2025. Một người gửi chung cũng có thể là một người bán phục vụ hai người mua."
         }
       },
       "holderD": {
@@ -425,21 +426,21 @@
         "name": "Người nắm giữ E",
         "summary": "Hai ví được nạp từ cùng một nguồn.",
         "evidence": {
-          "commonSender": "Một ví đã gửi cho ví thứ nhất 39,4 tỷ BSO cũ qua bảy lần chuyển từ tháng 10 năm 2024 đến tháng 1 năm 2025, và gửi cho ví thứ hai 2,0 tỷ vào ngày 22 tháng 11 năm 2025."
+          "commonSender": "Một ví đã gửi cho ví thứ nhất 39,4 tỷ PLEB qua bảy lần chuyển từ tháng 10 năm 2024 đến tháng 1 năm 2025, và gửi cho ví thứ hai 2,0 tỷ vào ngày 22 tháng 11 năm 2025."
         }
       },
       "holderF": {
         "name": "Người nắm giữ F",
         "summary": "Một ví đã chia token của mình sang ba ví mới và trả phí gas cho chúng.",
         "evidence": {
-          "split": "Ngày 10 tháng 3 năm 2024, trong vòng bảy phút, một ví đã gửi các khoản BSO cũ tròn số (12 tỷ, 8 tỷ và 4 tỷ) đến ba ví mới và trong cùng ngày gửi ETH cho hai trong số đó để trả phí gas. Bản thân ví này vẫn còn nắm giữ BSO."
+          "split": "Ngày 10 tháng 3 năm 2024, trong vòng bảy phút, một ví đã gửi các khoản PLEB tròn số (12 tỷ, 8 tỷ và 4 tỷ) đến ba ví mới và trong cùng ngày gửi ETH cho hai trong số đó để trả phí gas. Bản thân ví này vẫn còn nắm giữ BSO."
         }
       },
       "holderG": {
         "name": "Người nắm giữ G",
         "summary": "Hai ví được cùng một người gửi cấp vốn, cách nhau ba năm.",
         "evidence": {
-          "commonSender": "Một ví đã gửi cho ví thứ hai 4,7 tỷ PLEB vào tháng 4 năm 2022 và gửi cho ví thứ nhất 6 tỷ BSO cũ vào tháng 1 năm 2025."
+          "commonSender": "Một ví đã gửi cho ví thứ hai 4,7 tỷ PLEB trên Avalanche vào tháng 4 năm 2022 và gửi cho ví thứ nhất 6 tỷ PLEB trên Ethereum vào tháng 1 năm 2025."
         }
       },
       "holderH": {
@@ -453,7 +454,7 @@
         "name": "Người nắm giữ I",
         "summary": "Hai ví có nhiều lần chuyển giữa chúng.",
         "evidence": {
-          "directTransfers": "Ví thứ hai đã gửi cho ví thứ nhất 13,2 tỷ BSO cũ vào ngày 30 tháng 10 năm 2023 và 5 tỷ vào ngày 8 tháng 11 năm 2023."
+          "directTransfers": "Ví thứ hai đã gửi cho ví thứ nhất 13,2 tỷ PLEB vào ngày 30 tháng 10 năm 2023 và 5 tỷ vào ngày 8 tháng 11 năm 2023."
         }
       }
     },
@@ -567,11 +568,11 @@
         },
         "rebrand": {
           "title": "plebbit trở thành Bitsocial",
-          "body": "Trong suốt tháng 3 năm 2026, dự án và token của nó dần chuyển sang tên Bitsocial."
+          "body": "plebbit công bố tên mới của mình, Bitsocial. Trên chuỗi, token vẫn giữ tên PLEB cho đến tháng 5."
         },
         "rebase": {
-          "title": "Nguồn cung được đặt ở mức 210 triệu",
-          "body": "Token thế hệ thứ hai được rebase để tổng nguồn cung đúng bằng 210 triệu: 7.114,6 token cũ trở thành 1."
+          "title": "PLEB trở thành 210 triệu BSO",
+          "body": "Token thế hệ thứ hai được đổi tên thành BSO và được rebase để tổng nguồn cung đúng bằng 210 triệu: 7.114,6 PLEB trở thành 1 BSO."
         },
         "immutable": {
           "title": "BSO trở nên bất biến",
@@ -584,7 +585,7 @@
       "lead": "Các nhóm được tìm ra như thế nào, và những gì trang này không thể thấy.",
       "howTitle": "Cách liên kết các ví",
       "how": {
-        "transfers": "Mọi lần chuyển PLEB, BSO cũ và BSO giữa hai ví thông thường đều được truy vết, loại trừ các sàn giao dịch, router, pool và các hợp đồng khác. Các multisig Safe được liên kết với chủ sở hữu của chúng.",
+        "transfers": "Mọi lần chuyển PLEB và BSO giữa hai ví thông thường, trên Avalanche và Ethereum, đều được truy vết, loại trừ các sàn giao dịch, router, pool và các hợp đồng khác. Các multisig Safe được liên kết với chủ sở hữu của chúng.",
         "funders": "Ví đầu tiên gửi AVAX hoặc ETH cho mỗi người nắm giữ lớn đều được so sánh. Các sàn giao dịch cấp vốn cho hàng nghìn ví, nên chỉ các nguồn cấp vốn riêng mới được tính là liên kết.",
         "pattern": "Với các ví không có liên kết trực tiếp, hành vi mua được so sánh với mọi người mua PLEB trong cùng giai đoạn.",
         "migrations": "Số dư được theo dõi qua cả hai đợt migration với tỷ lệ 7.114,6 PLEB mỗi BSO."
@@ -598,10 +599,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: PLEB trên Avalanche",
-        "gen2": "Gen 2: BSO cũ trên Ethereum",
+        "gen2": "Gen 2: PLEB trên Ethereum, được đổi tên thành BSO vào tháng 5 năm 2026",
         "gen3": "Gen 3: BSO hiện nay"
       },
       "snapshot": "Số dư và giá từ Blockscout: {{count}} ví tính đến {{date}}. Bạn thấy một liên kết sai hoặc bị thiếu? <contributeLink>Cải thiện trang này</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "Biểu đồ giá BSO - Mọi giao dịch từ năm 2022",
+      "description": "Giá và vốn hóa thị trường của BSO kể từ giao dịch đầu tiên năm 2022, trên cả ba hợp đồng: PLEB trên Avalanche, PLEB trên Ethereum và BSO hiện nay, trong một biểu đồ duy nhất dựng từ các lệnh swap trên chuỗi."
+    },
+    "hero": {
+      "title": "Giá BSO kể từ giao dịch đầu tiên",
+      "lead": "Một biểu đồ cho cả ba hợp đồng: PLEB trên Avalanche, PLEB trên Ethereum, được đổi tên thành BSO vào năm 2026, và BSO hiện nay. Giá cũ được quy đổi theo tỷ lệ 7.114,6 PLEB cho mỗi BSO, tỷ lệ mà cả hai đợt migration đều giữ nguyên. Câu chuyện đằng sau mỗi biến động có trong phần <historyLink>lịch sử</historyLink> của bảng xếp hạng ví.",
+      "status": {
+        "live": "Trực tiếp từ pool Uniswap: giá BSO {{price}}. Đã cập nhật {{ago}}.",
+        "loading": "Lịch sử theo ngày đến {{date}}. Đang tải giá mới nhất…",
+        "unavailable": "Hiện không có giá trực tiếp, nên biểu đồ kết thúc vào ngày {{date}}."
+      }
+    },
+    "panelTitle": "Biểu đồ giá theo ngày",
+    "summary": {
+      "price": "Giá BSO theo ngày từ {{from}} đến {{to}}. Giá đóng cửa thấp nhất {{low}}, giá đóng cửa cao nhất {{high}}, mới nhất {{latest}}.",
+      "mcap": "Vốn hóa thị trường BSO theo ngày từ {{from}} đến {{to}}. Mức đóng cửa thấp nhất {{low}}, mức đóng cửa cao nhất {{high}}, mới nhất {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Hiển thị",
+      "metrics": {
+        "price": "Giá",
+        "mcap": "Vốn hóa"
+      },
+      "rangeLabel": "Khoảng thời gian",
+      "ranges": {
+        "1M": "1M",
+        "3M": "3M",
+        "1Y": "1Y",
+        "all": "Tất cả"
+      },
+      "typeLabel": "Loại biểu đồ",
+      "types": {
+        "line": "Đường",
+        "candles": "Nến"
+      },
+      "scaleLabel": "Thang đo",
+      "scales": {
+        "log": "Log",
+        "linear": "Tuyến tính"
+      }
+    },
+    "legend": {
+      "since": "từ {{date}}",
+      "ohlc": "O {{open}} · H {{high}} · L {{low}} · C {{close}}",
+      "volume": "Khối lượng {{value}}"
+    },
+    "eras": {
+      "label": "Hợp đồng. Chọn một hợp đồng để phóng to vào giai đoạn của nó.",
+      "gen1": "PLEB trên Avalanche",
+      "gen2": "PLEB trên Ethereum",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "nay",
+      "rebrand": "Đổi tên thành Bitsocial"
+    },
+    "method": {
+      "title": "Cách dựng biểu đồ",
+      "lead": "Mỗi cây nến đều đến từ các lệnh swap trên chuỗi, nên ngày nào cũng có thể kiểm tra trên trình khám phá khối.",
+      "steps": {
+        "swaps": "Giá mở cửa, cao nhất, thấp nhất và đóng cửa của một ngày là giá đầu tiên, cao nhất, thấp nhất và cuối cùng được trả trong các lệnh swap của ngày đó, theo giờ UTC, đọc từ các sự kiện Swap của từng pool.",
+        "usd": "Các pool giao dịch với AVAX hoặc ETH, nên mỗi lệnh swap được quy đổi sang đô la theo tỷ giá Coinbase của giờ diễn ra lệnh đó.",
+        "units": "PLEB, trên Avalanche và trên Ethereum cho đến <rebaseLink>đợt rebase ngày 2 tháng 5 năm 2026</rebaseLink>, được hiển thị theo mỗi BSO: giá của nó được nhân với 7.114,596, số PLEB mà mỗi BSO đã thay thế.",
+        "pools": "Khi có nhiều hơn một pool giao dịch trong cùng một ngày, pool có khối lượng lớn nhất sẽ quyết định cây nến của ngày đó, để một pool gần như trống không thể vẽ ra một bóng nến giả. Khối lượng là tổng của mọi pool, và một ngày không có giao dịch sẽ lặp lại giá đóng cửa gần nhất.",
+        "mcap": "Vốn hóa thị trường là giá đóng cửa nhân với tổng nguồn cung của ngày đó: mọi token hợp đồng đã mint trừ đi mọi token nó đã đốt, quy đổi sang BSO giống như giá. Sau đợt rebase, và đối với BSO hiện nay, nguồn cung cố định ở mức 210 triệu.",
+        "eras": "Lịch sử của mỗi hợp đồng kết thúc tại giao dịch đầu tiên của hợp đồng tiếp theo. Hợp đồng trên Ethereum giữ tên PLEB cho đến đợt nâng cấp thực hiện rebase, sáu tuần sau khi plebbit trở thành Bitsocial vào ngày 18 tháng 3 năm 2026."
+      },
+      "poolsTitle": "Các pool được đọc",
+      "eraDates": "{{from}} đến {{to}}",
+      "snapshot": "Lịch sử được dựng từ {{count}} lệnh swap tính đến {{date}}. Các ngày mới hơn lấy từ GeckoTerminal và được làm mới mỗi năm phút khi trang này đang mở. Bạn thấy một cây nến sai? <contributeLink>Cải thiện trang này</contributeLink>."
     }
   }
 }

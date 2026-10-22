@@ -2,8 +2,9 @@
   "nav": {
     "language": "Language",
     "theme": "Theme",
-    "mainSite": "Main Site",
+    "bitsocial": "Bitsocial",
     "faq": "FAQ",
+    "chart": "Chart",
     "richList": "Rich list"
   },
   "languageSelector": {
@@ -404,19 +405,19 @@
       },
       "holderB": {
         "name": "Holder B",
-        "summary": "A 2-of-4 Safe multisig that gathered old BSO from 14 wallets in one afternoon, plus one of its owners.",
+        "summary": "A 2-of-4 Safe multisig that gathered PLEB from 14 wallets in one afternoon, plus one of its owners.",
         "evidence": {
           "owners": "The Safe needs 2 of its 4 owners to sign. One owner also holds BSO directly. Four owners can mean one person with several keys or a small group.",
-          "consolidation": "On June 1, 2024, between 16:08 and 17:51 UTC, the Safe received 120.5B old BSO from 14 wallets. The first transfer was a 10-token test that the Safe sent straight back.",
-          "vesting": "On August 12, 2024, the Safe moved 60.5B old BSO into a Sablier vesting stream. The 2026 migration credited that stream back to the Safe, which is why the Safe received two migration transfers.",
-          "commonSender": "The same wallet sent old BSO to both the Safe owner (13.7B on March 8, 2024) and the Safe (1.5B on June 1, 2024)."
+          "consolidation": "On June 1, 2024, between 16:08 and 17:51 UTC, the Safe received 120.5B PLEB from 14 wallets. The first transfer was a 10-token test that the Safe sent straight back.",
+          "vesting": "On August 12, 2024, the Safe moved 60.5B PLEB into a Sablier vesting stream. The 2026 migration credited that stream back to the Safe, which is why the Safe received two migration transfers.",
+          "commonSender": "The same wallet sent PLEB to both the Safe owner (13.7B on March 8, 2024) and the Safe (1.5B on June 1, 2024)."
         }
       },
       "holderC": {
         "name": "Holder C",
-        "summary": "Two wallets that received old BSO from the same sender.",
+        "summary": "Two wallets that received PLEB from the same sender.",
         "evidence": {
-          "commonSender": "One wallet sent 4.7B old BSO to the first on August 19, 2024 and 15.4B to the second on November 14, 2025. A shared sender can also be one seller serving two buyers."
+          "commonSender": "One wallet sent 4.7B PLEB to the first on August 19, 2024 and 15.4B to the second on November 14, 2025. A shared sender can also be one seller serving two buyers."
         }
       },
       "holderD": {
@@ -430,21 +431,21 @@
         "name": "Holder E",
         "summary": "Two wallets filled from the same source.",
         "evidence": {
-          "commonSender": "One wallet sent the first 39.4B old BSO in seven transfers between October 2024 and January 2025, and the second 2.0B on November 22, 2025."
+          "commonSender": "One wallet sent the first 39.4B PLEB in seven transfers between October 2024 and January 2025, and the second 2.0B on November 22, 2025."
         }
       },
       "holderF": {
         "name": "Holder F",
         "summary": "One wallet that split its tokens into three new wallets and paid their gas.",
         "evidence": {
-          "split": "On March 10, 2024, within seven minutes, one wallet sent round amounts of old BSO (12B, 8B and 4B) to three new wallets and sent two of them ETH for gas the same day. It still holds BSO itself."
+          "split": "On March 10, 2024, within seven minutes, one wallet sent round amounts of PLEB (12B, 8B and 4B) to three new wallets and sent two of them ETH for gas the same day. It still holds BSO itself."
         }
       },
       "holderG": {
         "name": "Holder G",
         "summary": "Two wallets funded by the same sender, three years apart.",
         "evidence": {
-          "commonSender": "One wallet sent the second 4.7B PLEB in April 2022 and the first 6B old BSO in January 2025."
+          "commonSender": "One wallet sent the second 4.7B PLEB on Avalanche in April 2022 and the first 6B PLEB on Ethereum in January 2025."
         }
       },
       "holderH": {
@@ -458,7 +459,7 @@
         "name": "Holder I",
         "summary": "Two wallets with repeated transfers between them.",
         "evidence": {
-          "directTransfers": "The second wallet sent the first 13.2B old BSO on October 30, 2023 and 5B on November 8, 2023."
+          "directTransfers": "The second wallet sent the first 13.2B PLEB on October 30, 2023 and 5B on November 8, 2023."
         }
       }
     },
@@ -572,11 +573,11 @@
         },
         "rebrand": {
           "title": "plebbit becomes Bitsocial",
-          "body": "Over March 2026, the project and its token gradually take the Bitsocial name."
+          "body": "plebbit announces its new name, Bitsocial. On-chain, the token keeps the PLEB name until May."
         },
         "rebase": {
-          "title": "Supply set to 210 million",
-          "body": "The second-generation token is rebased so the total supply is exactly 210 million: 7,114.6 old tokens become 1."
+          "title": "PLEB becomes 210 million BSO",
+          "body": "The second-generation token is renamed BSO and rebased so the total supply is exactly 210 million: 7,114.6 PLEB become 1 BSO."
         },
         "immutable": {
           "title": "BSO becomes immutable",
@@ -589,7 +590,7 @@
       "lead": "How the groups were found, and what this page cannot see.",
       "howTitle": "How wallets were linked",
       "how": {
-        "transfers": "Every transfer of PLEB, old BSO and BSO between two ordinary wallets was traced, leaving out exchanges, routers, pools and other contracts. Safe multisigs were linked to their owners.",
+        "transfers": "Every transfer of PLEB and BSO between two ordinary wallets, on Avalanche and Ethereum, was traced, leaving out exchanges, routers, pools and other contracts. Safe multisigs were linked to their owners.",
         "funders": "The first wallet to send each top holder AVAX or ETH was compared. Exchanges fund thousands of wallets, so only private funders count as a link.",
         "pattern": "For wallets with no direct link, buying behavior was compared against every PLEB buyer of the same period.",
         "migrations": "Balances were followed through both migrations at 7,114.6 PLEB per BSO."
@@ -603,10 +604,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: PLEB on Avalanche",
-        "gen2": "Gen 2: old BSO on Ethereum",
+        "gen2": "Gen 2: PLEB on Ethereum, renamed BSO in May 2026",
         "gen3": "Gen 3: BSO today"
       },
       "snapshot": "Balances and price from Blockscout: {{count}} wallets as of {{date}}. Found a wrong link or a missing one? <contributeLink>Improve this page</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "BSO Price Chart - Every Trade Since 2022",
+      "description": "BSO's price and market cap since its first trade in 2022, across all three contracts: PLEB on Avalanche, PLEB on Ethereum and BSO today, in one chart built from on-chain swaps."
+    },
+    "hero": {
+      "title": "BSO's price since its first trade",
+      "lead": "One chart across all three contracts: PLEB on Avalanche, PLEB on Ethereum, which was renamed BSO in 2026, and BSO today. Older prices are converted at 7,114.6 PLEB per BSO, the ratio both migrations kept. The story behind each move is in the rich list's <historyLink>history</historyLink>.",
+      "status": {
+        "live": "Live from the Uniswap pool: BSO at {{price}}. Updated {{ago}}.",
+        "loading": "Daily history to {{date}}. Loading the latest prices…",
+        "unavailable": "Live prices are unavailable right now, so the chart ends on {{date}}."
+      }
+    },
+    "panelTitle": "Daily price chart",
+    "summary": {
+      "price": "Daily BSO price from {{from}} to {{to}}. Lowest close {{low}}, highest close {{high}}, latest {{latest}}.",
+      "mcap": "Daily BSO market cap from {{from}} to {{to}}. Lowest close {{low}}, highest close {{high}}, latest {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Show",
+      "metrics": {
+        "price": "Price",
+        "mcap": "Market cap"
+      },
+      "rangeLabel": "Time range",
+      "ranges": {
+        "1M": "1M",
+        "3M": "3M",
+        "1Y": "1Y",
+        "all": "All"
+      },
+      "typeLabel": "Chart type",
+      "types": {
+        "line": "Line",
+        "candles": "Candles"
+      },
+      "scaleLabel": "Scale",
+      "scales": {
+        "log": "Log",
+        "linear": "Linear"
+      }
+    },
+    "legend": {
+      "since": "since {{date}}",
+      "ohlc": "O {{open}} · H {{high}} · L {{low}} · C {{close}}",
+      "volume": "Volume {{value}}"
+    },
+    "eras": {
+      "label": "Contracts. Select one to zoom to its era.",
+      "gen1": "PLEB on Avalanche",
+      "gen2": "PLEB on Ethereum",
+      "gen3": "BSO",
+      "rebrand": "Bitsocial rebrand",
+      "years": "{{from}}–{{to}}",
+      "now": "now"
+    },
+    "method": {
+      "title": "How the chart is built",
+      "lead": "Every candle comes from swaps on the chain, so any day can be checked on an explorer.",
+      "steps": {
+        "swaps": "A day's open, high, low and close are the first, highest, lowest and last price paid in that day's swaps, in UTC, read from each pool's Swap events.",
+        "usd": "Pools trade against AVAX or ETH, so each swap is converted to dollars at Coinbase's rate for the hour it happened.",
+        "units": "PLEB, on Avalanche and on Ethereum until the <rebaseLink>rebase on May 2, 2026</rebaseLink>, is shown per BSO: its price is multiplied by 7,114.596, the number of PLEB each BSO replaced.",
+        "pools": "When more than one pool traded on a day, the one with the most volume sets that day's candle, so a nearly empty pool cannot draw a false wick. Volume adds up every pool, and a day without trades repeats the last close.",
+        "mcap": "Market cap is the close times that day's total supply: every token the contract minted minus every token it burned, converted to BSO like the price. After the rebase, and for BSO today, the supply is the fixed 210 million.",
+        "eras": "Each contract's history ends at the first trade of the next one. The Ethereum contract kept the PLEB name until the upgrade that rebased it, six weeks after plebbit became Bitsocial on March 18, 2026."
+      },
+      "poolsTitle": "Pools read",
+      "eraDates": "{{from}} to {{to}}",
+      "snapshot": "History built from {{count}} swaps up to {{date}}. Newer days come from GeckoTerminal and refresh every five minutes while this page is open. Spotted a wrong candle? <contributeLink>Improve this page</contributeLink>."
     }
   }
 }

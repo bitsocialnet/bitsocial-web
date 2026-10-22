@@ -23,6 +23,7 @@
     "llms:generate": "node scripts/generate-llms-files.mjs",
     "llms:check": "node scripts/check-llms-files.mjs",
     "rich-list:snapshot": "node scripts/generate-bso-holders.mjs",
+    "chart:snapshot": "node scripts/generate-bso-price-history.mjs",
     "start:stats": "node scripts/start-stats.mjs",
     "start:stats-monitor": "yarn workspace @bitsocial/stats-monitor start",
     "start:stats-web": "vite --config stats/web/vite.config.ts",

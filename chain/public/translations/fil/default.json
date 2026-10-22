@@ -2,9 +2,10 @@
   "nav": {
     "language": "Wika",
     "theme": "Tema",
-    "mainSite": "Pangunahing Site",
+    "bitsocial": "Bitsocial",
     "faq": "FAQ",
-    "richList": "Rich list"
+    "richList": "Rich list",
+    "chart": "Chart"
   },
   "languageSelector": {
     "title": "Pumili ng wika",
@@ -404,19 +405,19 @@
       },
       "holderB": {
         "name": "May-hawak B",
-        "summary": "Isang 2-of-4 Safe multisig na nag-ipon ng lumang BSO mula sa 14 na wallet sa loob ng isang hapon, kasama ang isa sa mga may-ari nito.",
+        "summary": "Isang 2-of-4 Safe multisig na nag-ipon ng PLEB mula sa 14 na wallet sa loob ng isang hapon, kasama ang isa sa mga may-ari nito.",
         "evidence": {
           "owners": "Kailangan ng Safe ang pirma ng 2 sa 4 na may-ari nito. May hawak ding BSO nang direkta ang isang may-ari. Ang apat na may-ari ay puwedeng iisang tao na may ilang key o isang maliit na grupo.",
-          "consolidation": "Noong Hunyo 1, 2024, mula 16:08 hanggang 17:51 UTC, nakatanggap ang Safe ng 120.5B lumang BSO mula sa 14 na wallet. Ang unang transfer ay isang 10-token na test na agad ibinalik ng Safe.",
-          "vesting": "Noong Agosto 12, 2024, inilipat ng Safe ang 60.5B lumang BSO sa isang Sablier vesting stream. Ibinalik ng 2026 migration ang stream na iyon sa Safe, kaya dalawang migration transfer ang natanggap ng Safe.",
-          "commonSender": "Iisang wallet ang nagpadala ng lumang BSO sa may-ari ng Safe (13.7B noong Marso 8, 2024) at sa Safe mismo (1.5B noong Hunyo 1, 2024)."
+          "consolidation": "Noong Hunyo 1, 2024, mula 16:08 hanggang 17:51 UTC, nakatanggap ang Safe ng 120.5B PLEB mula sa 14 na wallet. Ang unang transfer ay isang 10-token na test na agad ibinalik ng Safe.",
+          "vesting": "Noong Agosto 12, 2024, inilipat ng Safe ang 60.5B PLEB sa isang Sablier vesting stream. Ibinalik ng 2026 migration ang stream na iyon sa Safe, kaya dalawang migration transfer ang natanggap ng Safe.",
+          "commonSender": "Iisang wallet ang nagpadala ng PLEB sa may-ari ng Safe (13.7B noong Marso 8, 2024) at sa Safe mismo (1.5B noong Hunyo 1, 2024)."
         }
       },
       "holderC": {
         "name": "May-hawak C",
-        "summary": "Dalawang wallet na nakatanggap ng lumang BSO mula sa iisang sender.",
+        "summary": "Dalawang wallet na nakatanggap ng PLEB mula sa iisang sender.",
         "evidence": {
-          "commonSender": "Nagpadala ang isang wallet ng 4.7B lumang BSO sa una noong Agosto 19, 2024 at ng 15.4B sa ikalawa noong Nobyembre 14, 2025. Ang iisang sender ay puwede ring iisang nagbebenta na nagsisilbi sa dalawang mamimili."
+          "commonSender": "Nagpadala ang isang wallet ng 4.7B PLEB sa una noong Agosto 19, 2024 at ng 15.4B sa ikalawa noong Nobyembre 14, 2025. Ang iisang sender ay puwede ring iisang nagbebenta na nagsisilbi sa dalawang mamimili."
         }
       },
       "holderD": {
@@ -430,21 +431,21 @@
         "name": "May-hawak E",
         "summary": "Dalawang wallet na pinunan mula sa iisang source.",
         "evidence": {
-          "commonSender": "Nagpadala ang isang wallet sa una ng 39.4B lumang BSO sa pitong transfer mula Oktubre 2024 hanggang Enero 2025, at sa ikalawa ng 2.0B noong Nobyembre 22, 2025."
+          "commonSender": "Nagpadala ang isang wallet sa una ng 39.4B PLEB sa pitong transfer mula Oktubre 2024 hanggang Enero 2025, at sa ikalawa ng 2.0B noong Nobyembre 22, 2025."
         }
       },
       "holderF": {
         "name": "May-hawak F",
         "summary": "Isang wallet na hinati ang mga token nito sa tatlong bagong wallet at binayaran ang gas ng mga ito.",
         "evidence": {
-          "split": "Noong Marso 10, 2024, sa loob ng pitong minuto, nagpadala ang isang wallet ng mga buong halaga ng lumang BSO (12B, 8B at 4B) sa tatlong bagong wallet at pinadalhan ang dalawa sa mga ito ng ETH para sa gas sa parehong araw. May hawak pa rin itong BSO mismo."
+          "split": "Noong Marso 10, 2024, sa loob ng pitong minuto, nagpadala ang isang wallet ng mga buong halaga ng PLEB (12B, 8B at 4B) sa tatlong bagong wallet at pinadalhan ang dalawa sa mga ito ng ETH para sa gas sa parehong araw. May hawak pa rin itong BSO mismo."
         }
       },
       "holderG": {
         "name": "May-hawak G",
         "summary": "Dalawang wallet na pinondohan ng iisang sender, tatlong taon ang pagitan.",
         "evidence": {
-          "commonSender": "Nagpadala ang isang wallet sa ikalawa ng 4.7B PLEB noong Abril 2022 at sa una ng 6B lumang BSO noong Enero 2025."
+          "commonSender": "Nagpadala ang isang wallet sa ikalawa ng 4.7B PLEB sa Avalanche noong Abril 2022 at sa una ng 6B PLEB sa Ethereum noong Enero 2025."
         }
       },
       "holderH": {
@@ -458,7 +459,7 @@
         "name": "May-hawak I",
         "summary": "Dalawang wallet na may paulit-ulit na transfer sa pagitan nila.",
         "evidence": {
-          "directTransfers": "Nagpadala ang ikalawang wallet sa una ng 13.2B lumang BSO noong Oktubre 30, 2023 at 5B noong Nobyembre 8, 2023."
+          "directTransfers": "Nagpadala ang ikalawang wallet sa una ng 13.2B PLEB noong Oktubre 30, 2023 at 5B noong Nobyembre 8, 2023."
         }
       }
     },
@@ -572,11 +573,11 @@
         },
         "rebrand": {
           "title": "Naging Bitsocial ang plebbit",
-          "body": "Sa buong Marso 2026, unti-unting ginamit ng proyekto at ng token nito ang pangalang Bitsocial."
+          "body": "Inanunsyo ng plebbit ang bago nitong pangalan, Bitsocial. On-chain, nanatiling PLEB ang pangalan ng token hanggang Mayo."
         },
         "rebase": {
-          "title": "Itinakda sa 210 milyon ang supply",
-          "body": "Ni-rebase ang ikalawang henerasyong token para eksaktong 210 milyon ang kabuuang supply: ang 7,114.6 lumang token ay naging 1."
+          "title": "Naging 210 milyong BSO ang PLEB",
+          "body": "Pinalitan ng pangalang BSO ang ikalawang henerasyong token at ni-rebase ito para eksaktong 210 milyon ang kabuuang supply: ang 7,114.6 PLEB ay naging 1 BSO."
         },
         "immutable": {
           "title": "Naging immutable ang BSO",
@@ -589,7 +590,7 @@
       "lead": "Kung paano natukoy ang mga grupo, at kung ano ang hindi nakikita ng pahinang ito.",
       "howTitle": "Paano na-link ang mga wallet",
       "how": {
-        "transfers": "Tinunton ang bawat transfer ng PLEB, lumang BSO at BSO sa pagitan ng dalawang karaniwang wallet, maliban sa mga exchange, router, pool at iba pang kontrata. Na-link ang mga Safe multisig sa kanilang mga may-ari.",
+        "transfers": "Tinunton ang bawat transfer ng PLEB at BSO sa pagitan ng dalawang karaniwang wallet, sa Avalanche at Ethereum, maliban sa mga exchange, router, pool at iba pang kontrata. Na-link ang mga Safe multisig sa kanilang mga may-ari.",
         "funders": "Pinaghambing ang unang wallet na nagpadala ng AVAX o ETH sa bawat nangungunang may-hawak. Libo-libong wallet ang pinopondohan ng mga exchange, kaya ang mga pribadong funder lang ang itinuturing na link.",
         "pattern": "Para sa mga wallet na walang direktang link, inihambing ang gawi sa pagbili sa bawat bumili ng PLEB sa parehong panahon.",
         "migrations": "Sinundan ang mga balanse sa parehong migration sa 7,114.6 PLEB bawat BSO."
@@ -603,10 +604,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: PLEB sa Avalanche",
-        "gen2": "Gen 2: lumang BSO sa Ethereum",
+        "gen2": "Gen 2: PLEB sa Ethereum, pinalitan ng pangalang BSO noong Mayo 2026",
         "gen3": "Gen 3: BSO ngayon"
       },
       "snapshot": "Mga balanse at presyo mula sa Blockscout: {{count}} wallet noong {{date}}. May nakitang maling link o kulang na link? <contributeLink>Pagbutihin ang pahinang ito</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "Chart ng Presyo ng BSO - Bawat Trade Mula 2022",
+      "description": "Ang presyo at market cap ng BSO mula sa unang trade nito noong 2022, sa lahat ng tatlong kontrata: PLEB sa Avalanche, PLEB sa Ethereum at BSO ngayon, sa iisang chart na binuo mula sa mga on-chain na swap."
+    },
+    "hero": {
+      "title": "Ang presyo ng BSO mula sa unang trade nito",
+      "lead": "Iisang chart para sa lahat ng tatlong kontrata: PLEB sa Avalanche, PLEB sa Ethereum, na pinalitan ng pangalan at naging BSO noong 2026, at BSO ngayon. Kino-convert ang mga mas lumang presyo sa 7,114.6 PLEB bawat BSO, ang ratio na pinanatili ng parehong migration. Nasa <historyLink>kasaysayan</historyLink> ng rich list ang kuwento sa likod ng bawat galaw.",
+      "status": {
+        "live": "Live mula sa Uniswap pool: BSO sa {{price}}. Na-update {{ago}}.",
+        "loading": "Pang-araw-araw na kasaysayan hanggang {{date}}. Nilo-load ang mga pinakabagong presyo…",
+        "unavailable": "Hindi available ang mga live na presyo ngayon, kaya nagtatapos ang chart sa {{date}}."
+      }
+    },
+    "panelTitle": "Pang-araw-araw na chart ng presyo",
+    "summary": {
+      "price": "Pang-araw-araw na presyo ng BSO mula {{from}} hanggang {{to}}. Pinakamababang close {{low}}, pinakamataas na close {{high}}, pinakabago {{latest}}.",
+      "mcap": "Pang-araw-araw na market cap ng BSO mula {{from}} hanggang {{to}}. Pinakamababang close {{low}}, pinakamataas na close {{high}}, pinakabago {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Ipakita",
+      "metrics": {
+        "price": "Presyo",
+        "mcap": "Market cap"
+      },
+      "rangeLabel": "Saklaw ng panahon",
+      "ranges": {
+        "1M": "1M",
+        "3M": "3M",
+        "1Y": "1Y",
+        "all": "Lahat"
+      },
+      "typeLabel": "Uri ng chart",
+      "types": {
+        "line": "Linya",
+        "candles": "Candle"
+      },
+      "scaleLabel": "Iskala",
+      "scales": {
+        "log": "Log",
+        "linear": "Linear"
+      }
+    },
+    "legend": {
+      "since": "mula {{date}}",
+      "ohlc": "O {{open}} · H {{high}} · L {{low}} · C {{close}}",
+      "volume": "Volume {{value}}"
+    },
+    "eras": {
+      "label": "Mga kontrata. Pumili ng isa para mag-zoom sa panahon nito.",
+      "gen1": "PLEB sa Avalanche",
+      "gen2": "PLEB sa Ethereum",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "ngayon",
+      "rebrand": "Rebrand sa Bitsocial"
+    },
+    "method": {
+      "title": "Paano binuo ang chart",
+      "lead": "Galing sa mga swap sa chain ang bawat candle, kaya puwedeng suriin ang kahit anong araw sa isang explorer.",
+      "steps": {
+        "swaps": "Ang open, high, low at close ng isang araw ay ang una, pinakamataas, pinakamababa at huling presyong ibinayad sa mga swap ng araw na iyon, sa UTC, na binasa mula sa mga Swap event ng bawat pool.",
+        "usd": "Nakikipag-trade ang mga pool laban sa AVAX o ETH, kaya kino-convert ang bawat swap sa dolyar gamit ang rate ng Coinbase para sa oras kung kailan ito nangyari.",
+        "units": "Ipinapakita bawat BSO ang PLEB, sa Avalanche at sa Ethereum hanggang sa <rebaseLink>rebase noong Mayo 2, 2026</rebaseLink>: minu-multiply ang presyo nito sa 7,114.596, ang bilang ng PLEB na pinalitan ng bawat BSO.",
+        "pools": "Kapag higit sa isang pool ang may trade sa isang araw, ang may pinakamalaking volume ang nagtatakda ng candle ng araw na iyon, kaya hindi makakaguhit ng pekeng wick ang halos walang lamang pool. Pinagsasama ang volume ng lahat ng pool, at inuulit ng araw na walang trade ang huling close.",
+        "mcap": "Ang market cap ay ang close na minu-multiply sa kabuuang supply ng araw na iyon: bawat token na na-mint ng kontrata bawas ang bawat token na na-burn nito, na kino-convert sa BSO tulad ng presyo. Pagkatapos ng rebase, at para sa BSO ngayon, ang supply ay ang nakapirming 210 milyon.",
+        "eras": "Nagtatapos ang kasaysayan ng bawat kontrata sa unang trade ng kasunod na kontrata. Nanatili ang pangalang PLEB sa kontrata sa Ethereum hanggang sa upgrade na nag-rebase dito, anim na linggo matapos maging Bitsocial ang plebbit noong Marso 18, 2026."
+      },
+      "poolsTitle": "Mga pool na binasa",
+      "eraDates": "{{from}} hanggang {{to}}",
+      "snapshot": "Binuo ang kasaysayan mula sa {{count}} swap hanggang {{date}}. Galing sa GeckoTerminal ang mga mas bagong araw at nire-refresh bawat limang minuto habang bukas ang pahinang ito. May napansing maling candle? <contributeLink>Pagbutihin ang pahinang ito</contributeLink>."
     }
   }
 }

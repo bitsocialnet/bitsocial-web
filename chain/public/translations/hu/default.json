@@ -2,9 +2,10 @@
   "nav": {
     "language": "Nyelv",
     "theme": "Téma",
-    "mainSite": "Főoldal",
+    "bitsocial": "Bitsocial",
     "faq": "GYIK",
-    "richList": "Birtokosok listája"
+    "richList": "Birtokosok listája",
+    "chart": "Grafikon"
   },
   "languageSelector": {
     "title": "Nyelv kiválasztása",
@@ -404,19 +405,19 @@
       },
       "holderB": {
         "name": "Birtokos B",
-        "summary": "Egy 2/4-es Safe multisig, amely egyetlen délután alatt 14 tárcából gyűjtött össze régi BSO-t, valamint az egyik tulajdonosa.",
+        "summary": "Egy 2/4-es Safe multisig, amely egyetlen délután alatt 14 tárcából gyűjtött össze PLEB-et, valamint az egyik tulajdonosa.",
         "evidence": {
           "owners": "A Safe-hez 4 tulajdonosából 2 aláírása szükséges. Az egyik tulajdonos közvetlenül is tart BSO-t. Négy tulajdonos jelenthet egyetlen, több kulccsal rendelkező személyt vagy egy kis csoportot.",
-          "consolidation": "2024. június 1-jén 16:08 és 17:51 UTC között a Safe 120,5 milliárd régi BSO-t kapott 14 tárcából. Az első átutalás egy 10 tokenes teszt volt, amelyet a Safe azonnal visszaküldött.",
-          "vesting": "2024. augusztus 12-én a Safe 60,5 milliárd régi BSO-t helyezett egy Sablier vesting streambe. A 2026-os migráció ezt a streamet visszaírta a Safe javára, ezért kapott a Safe két migrációs átutalást.",
-          "commonSender": "Ugyanaz a tárca küldött régi BSO-t a Safe-tulajdonosnak (13,7 milliárdot 2024. március 8-án) és magának a Safe-nek is (1,5 milliárdot 2024. június 1-jén)."
+          "consolidation": "2024. június 1-jén 16:08 és 17:51 UTC között a Safe 120,5 milliárd PLEB-et kapott 14 tárcából. Az első átutalás egy 10 tokenes teszt volt, amelyet a Safe azonnal visszaküldött.",
+          "vesting": "2024. augusztus 12-én a Safe 60,5 milliárd PLEB-et helyezett egy Sablier vesting streambe. A 2026-os migráció ezt a streamet visszaírta a Safe javára, ezért kapott a Safe két migrációs átutalást.",
+          "commonSender": "Ugyanaz a tárca küldött PLEB-et a Safe-tulajdonosnak (13,7 milliárdot 2024. március 8-án) és magának a Safe-nek is (1,5 milliárdot 2024. június 1-jén)."
         }
       },
       "holderC": {
         "name": "Birtokos C",
-        "summary": "Két tárca, amely ugyanattól a küldőtől kapott régi BSO-t.",
+        "summary": "Két tárca, amely ugyanattól a küldőtől kapott PLEB-et.",
         "evidence": {
-          "commonSender": "Egy tárca 4,7 milliárd régi BSO-t küldött az elsőnek 2024. augusztus 19-én, és 15,4 milliárdot a másodiknak 2025. november 14-én. A közös küldő lehet egyetlen eladó is, aki két vevőt szolgál ki."
+          "commonSender": "Egy tárca 4,7 milliárd PLEB-et küldött az elsőnek 2024. augusztus 19-én, és 15,4 milliárdot a másodiknak 2025. november 14-én. A közös küldő lehet egyetlen eladó is, aki két vevőt szolgál ki."
         }
       },
       "holderD": {
@@ -430,21 +431,21 @@
         "name": "Birtokos E",
         "summary": "Két tárca, amelyeket ugyanabból a forrásból töltöttek fel.",
         "evidence": {
-          "commonSender": "Egy tárca 2024 októbere és 2025 januárja között hét átutalásban 39,4 milliárd régi BSO-t küldött az elsőnek, 2025. november 22-én pedig 2,0 milliárdot a másodiknak."
+          "commonSender": "Egy tárca 2024 októbere és 2025 januárja között hét átutalásban 39,4 milliárd PLEB-et küldött az elsőnek, 2025. november 22-én pedig 2,0 milliárdot a másodiknak."
         }
       },
       "holderF": {
         "name": "Birtokos F",
         "summary": "Egy tárca, amely három új tárcára osztotta szét a tokenjeit, és kifizette a gasdíjukat.",
         "evidence": {
-          "split": "2024. március 10-én egy tárca hét percen belül kerek összegű régi BSO-t (12, 8 és 4 milliárdot) küldött három új tárcának, és ugyanazon a napon kettőnek közülük ETH-t is küldött gasra. Maga is tart még BSO-t."
+          "split": "2024. március 10-én egy tárca hét percen belül kerek összegű PLEB-et (12, 8 és 4 milliárdot) küldött három új tárcának, és ugyanazon a napon kettőnek közülük ETH-t is küldött gasra. Maga is tart még BSO-t."
         }
       },
       "holderG": {
         "name": "Birtokos G",
         "summary": "Két tárca, amelyeket ugyanaz a küldő finanszírozott, három év különbséggel.",
         "evidence": {
-          "commonSender": "Egy tárca 2022 áprilisában 4,7 milliárd PLEB-et küldött a másodiknak, 2025 januárjában pedig 6 milliárd régi BSO-t az elsőnek."
+          "commonSender": "Egy tárca 2022 áprilisában 4,7 milliárd PLEB-et küldött a másodiknak az Avalanche-on, 2025 januárjában pedig 6 milliárd PLEB-et az elsőnek az Ethereumon."
         }
       },
       "holderH": {
@@ -458,7 +459,7 @@
         "name": "Birtokos I",
         "summary": "Két tárca ismétlődő átutalásokkal közöttük.",
         "evidence": {
-          "directTransfers": "A második tárca 2023. október 30-án 13,2 milliárd régi BSO-t küldött az elsőnek, 2023. november 8-án pedig 5 milliárdot."
+          "directTransfers": "A második tárca 2023. október 30-án 13,2 milliárd PLEB-et küldött az elsőnek, 2023. november 8-án pedig 5 milliárdot."
         }
       }
     },
@@ -572,11 +573,11 @@
         },
         "rebrand": {
           "title": "A plebbitből Bitsocial lesz",
-          "body": "2026 márciusa során a projekt és a tokenje fokozatosan felveszi a Bitsocial nevet."
+          "body": "A plebbit bejelenti új nevét, a Bitsocialt. A láncon a token májusig megtartja a PLEB nevet."
         },
         "rebase": {
-          "title": "A kínálat 210 millió lesz",
-          "body": "A második generációs tokenen rebase-t hajtanak végre, hogy a teljes kínálat pontosan 210 millió legyen: 7114,6 régi tokenből 1 lesz."
+          "title": "A PLEB-ből 210 millió BSO lesz",
+          "body": "A második generációs tokent BSO-ra nevezik át, és rebase-t hajtanak végre rajta, hogy a teljes kínálat pontosan 210 millió legyen: 7114,6 PLEB-ből 1 BSO lesz."
         },
         "immutable": {
           "title": "A BSO megváltoztathatatlanná válik",
@@ -589,7 +590,7 @@
       "lead": "Hogyan azonosítottuk a csoportokat, és mit nem lát ez az oldal.",
       "howTitle": "Hogyan kapcsoltuk össze a tárcákat",
       "how": {
-        "transfers": "Két hétköznapi tárca közötti minden PLEB-, régi BSO- és BSO-átutalást nyomon követtünk, kihagyva a tőzsdéket, routereket, poolokat és egyéb szerződéseket. A Safe multisigeket a tulajdonosaikhoz kapcsoltuk.",
+        "transfers": "Az Avalanche-on és az Ethereumon két hétköznapi tárca közötti minden PLEB- és BSO-átutalást nyomon követtünk, kihagyva a tőzsdéket, routereket, poolokat és egyéb szerződéseket. A Safe multisigeket a tulajdonosaikhoz kapcsoltuk.",
         "funders": "Összevetettük, melyik tárca küldött elsőként AVAX-ot vagy ETH-t az egyes nagy birtokosoknak. A tőzsdék tárcák ezreit finanszírozzák, ezért csak a magánfinanszírozók számítanak kapcsolatnak.",
         "pattern": "A közvetlen kapcsolat nélküli tárcák vásárlási viselkedését ugyanazon időszak összes PLEB-vásárlójáéval vetettük össze.",
         "migrations": "Az egyenlegeket mindkét migráción keresztül követtük, 7114,6 PLEB/BSO arányon."
@@ -603,10 +604,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: PLEB az Avalanche-on",
-        "gen2": "Gen 2: régi BSO az Ethereumon",
+        "gen2": "Gen 2: PLEB az Ethereumon, 2026 májusában átnevezve BSO-ra",
         "gen3": "Gen 3: a mai BSO"
       },
       "snapshot": "Egyenlegek és árfolyam a Blockscoutból: {{count}} tárca, {{date}} állapot szerint. Hibás vagy hiányzó kapcsolatot találtál? <contributeLink>Tedd jobbá ezt az oldalt</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "BSO-árfolyamgrafikon - Minden kereskedés 2022 óta",
+      "description": "A BSO árfolyama és piaci kapitalizációja a 2022-es első kereskedés óta, mindhárom szerződésen át: PLEB az Avalanche-on, PLEB az Ethereumon és a mai BSO, egyetlen, láncon lévő swapokból épített grafikonon."
+    },
+    "hero": {
+      "title": "A BSO árfolyama az első kereskedés óta",
+      "lead": "Egy grafikon mindhárom szerződésről: PLEB az Avalanche-on, PLEB az Ethereumon, amelyet 2026-ban BSO-ra neveztek át, és a mai BSO. A régebbi árfolyamokat 7114,6 PLEB/BSO arányon számítjuk át, ezt az arányt mindkét migráció megtartotta. Az egyes mozgások hátteréről a birtokosok listájának <historyLink>Történet</historyLink> részében olvashatsz.",
+      "status": {
+        "live": "Élőben az Uniswap-poolból: a BSO árfolyama {{price}}. Frissítve: {{ago}}.",
+        "loading": "Napi előzmények eddig: {{date}}. A legfrissebb árfolyamok betöltése…",
+        "unavailable": "Az élő árfolyamok most nem érhetők el, ezért a grafikon utolsó napja: {{date}}."
+      }
+    },
+    "panelTitle": "Napi árfolyamgrafikon",
+    "summary": {
+      "price": "A BSO napi árfolyama {{from}} és {{to}} között. Legalacsonyabb záróár {{low}}, legmagasabb záróár {{high}}, legutóbbi {{latest}}.",
+      "mcap": "A BSO napi piaci kapitalizációja {{from}} és {{to}} között. Legalacsonyabb záróérték {{low}}, legmagasabb záróérték {{high}}, legutóbbi {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Megjelenítés",
+      "metrics": {
+        "price": "Árfolyam",
+        "mcap": "Piaci érték"
+      },
+      "rangeLabel": "Időszak",
+      "ranges": {
+        "1M": "1 hó",
+        "3M": "3 hó",
+        "1Y": "1 év",
+        "all": "Összes"
+      },
+      "typeLabel": "Grafikontípus",
+      "types": {
+        "line": "Vonal",
+        "candles": "Gyertyák"
+      },
+      "scaleLabel": "Skála",
+      "scales": {
+        "log": "Log",
+        "linear": "Lineáris"
+      }
+    },
+    "legend": {
+      "since": "{{date}} óta",
+      "ohlc": "O {{open}} · H {{high}} · L {{low}} · C {{close}}",
+      "volume": "Forgalom {{value}}"
+    },
+    "eras": {
+      "label": "Szerződések. Válassz ki egyet a korszakára nagyításhoz.",
+      "gen1": "PLEB az Avalanche-on",
+      "gen2": "PLEB az Ethereumon",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "ma",
+      "rebrand": "Bitsocial-névváltás"
+    },
+    "method": {
+      "title": "Hogyan készül a grafikon",
+      "lead": "Minden gyertya a láncon történt swapokból származik, így bármelyik nap ellenőrizhető egy blokkböngészőben.",
+      "steps": {
+        "swaps": "Egy nap nyitó-, maximum-, minimum- és záróára az adott nap swapjaiban fizetett első, legmagasabb, legalacsonyabb és utolsó ár, UTC szerint, az egyes poolok Swap-eseményeiből kiolvasva.",
+        "usd": "A poolokban AVAX vagy ETH ellenében folyik a kereskedés, ezért minden swapot a Coinbase adott órára vonatkozó árfolyamán számítunk át dollárra.",
+        "units": "A PLEB, az Avalanche-on és az Ethereumon egészen a <rebaseLink>2026. május 2-i rebase-ig</rebaseLink>, BSO-ra vetítve jelenik meg: az árát 7114,596-tal szorozzuk meg, ennyi PLEB-et váltott fel egy-egy BSO.",
+        "pools": "Ha egy napon több pool is forgalmazott, a legnagyobb forgalmú határozza meg az adott nap gyertyáját, így egy szinte üres pool nem rajzolhat hamis árnyékot. A forgalom az összes pool összege, a kereskedés nélküli nap pedig az utolsó záróárat ismétli.",
+        "mcap": "A piaci kapitalizáció a záróár és az adott napi teljes kínálat szorzata: a szerződés által kibocsátott összes token, levonva belőle az általa elégetett összes tokent, az árhoz hasonlóan BSO-ra átszámítva. A rebase után, és a mai BSO esetében, a kínálat fix 210 millió.",
+        "eras": "Minden szerződés története a következő szerződés első kereskedésénél ér véget. Az Ethereum-szerződés a PLEB nevet egészen a rebase-t végrehajtó frissítésig megtartotta, hat héttel azután, hogy 2026. március 18-án a plebbitből Bitsocial lett."
+      },
+      "poolsTitle": "Felhasznált poolok",
+      "eraDates": "{{from}} – {{to}}",
+      "snapshot": "Az előzmények {{count}} swapból készültek, {{date}} állapot szerint. Az újabb napok a GeckoTerminalról érkeznek, és ötpercenként frissülnek, amíg ez az oldal nyitva van. Hibás gyertyát láttál? <contributeLink>Tedd jobbá ezt az oldalt</contributeLink>."
     }
   }
 }

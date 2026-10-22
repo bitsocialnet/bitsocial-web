@@ -1,19 +1,7 @@
-import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNow } from "@/lib/use-now";
 import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
-
-/** Re-renders often enough for "updated 3 minutes ago" to stay true. */
-function useNow(intervalMs: number) {
-  const [now, setNow] = useState(() => Date.now());
-
-  useEffect(() => {
-    const interval = window.setInterval(() => setNow(Date.now()), intervalMs);
-    return () => window.clearInterval(interval);
-  }, [intervalMs]);
-
-  return now;
-}
 
 /** Where the numbers on the page come from right now, and how fresh they are. */
 export default function LiveStatus() {

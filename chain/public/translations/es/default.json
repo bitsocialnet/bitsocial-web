@@ -2,9 +2,10 @@
   "nav": {
     "language": "Idioma",
     "theme": "Tema",
-    "mainSite": "Sitio principal",
+    "bitsocial": "Bitsocial",
     "faq": "FAQ",
-    "richList": "Lista de poseedores"
+    "richList": "Lista de poseedores",
+    "chart": "Gráfico"
   },
   "languageSelector": {
     "title": "Seleccionar idioma",
@@ -409,19 +410,19 @@
       },
       "holderB": {
         "name": "Poseedor B",
-        "summary": "Una multisig Safe 2 de 4 que reunió BSO antiguo de 14 billeteras en una sola tarde, más uno de sus propietarios.",
+        "summary": "Una multisig Safe 2 de 4 que reunió PLEB de 14 billeteras en una sola tarde, más uno de sus propietarios.",
         "evidence": {
           "owners": "El Safe necesita la firma de 2 de sus 4 propietarios. Un propietario también tiene BSO directamente. Cuatro propietarios pueden ser una persona con varias claves o un grupo pequeño.",
-          "consolidation": "El 1 de junio de 2024, entre las 16:08 y las 17:51 UTC, el Safe recibió 120.500 millones de BSO antiguos de 14 billeteras. La primera transferencia fue una prueba de 10 tokens que el Safe devolvió de inmediato.",
-          "vesting": "El 12 de agosto de 2024, el Safe movió 60.500 millones de BSO antiguos a un stream de vesting de Sablier. La migración de 2026 acreditó ese stream de vuelta al Safe, por eso el Safe recibió dos transferencias de migración.",
-          "commonSender": "La misma billetera envió BSO antiguo tanto al propietario del Safe (13.700 millones el 8 de marzo de 2024) como al Safe (1500 millones el 1 de junio de 2024)."
+          "consolidation": "El 1 de junio de 2024, entre las 16:08 y las 17:51 UTC, el Safe recibió 120.500 millones de PLEB de 14 billeteras. La primera transferencia fue una prueba de 10 tokens que el Safe devolvió de inmediato.",
+          "vesting": "El 12 de agosto de 2024, el Safe movió 60.500 millones de PLEB a un stream de vesting de Sablier. La migración de 2026 acreditó ese stream de vuelta al Safe, por eso el Safe recibió dos transferencias de migración.",
+          "commonSender": "La misma billetera envió PLEB tanto al propietario del Safe (13.700 millones el 8 de marzo de 2024) como al Safe (1500 millones el 1 de junio de 2024)."
         }
       },
       "holderC": {
         "name": "Poseedor C",
-        "summary": "Dos billeteras que recibieron BSO antiguo del mismo remitente.",
+        "summary": "Dos billeteras que recibieron PLEB del mismo remitente.",
         "evidence": {
-          "commonSender": "Una billetera envió 4700 millones de BSO antiguos a la primera el 19 de agosto de 2024 y 15.400 millones a la segunda el 14 de noviembre de 2025. Un remitente común también puede ser un vendedor que atiende a dos compradores."
+          "commonSender": "Una billetera envió 4700 millones de PLEB a la primera el 19 de agosto de 2024 y 15.400 millones a la segunda el 14 de noviembre de 2025. Un remitente común también puede ser un vendedor que atiende a dos compradores."
         }
       },
       "holderD": {
@@ -435,21 +436,21 @@
         "name": "Poseedor E",
         "summary": "Dos billeteras abastecidas desde la misma fuente.",
         "evidence": {
-          "commonSender": "Una billetera envió a la primera 39.400 millones de BSO antiguos en siete transferencias entre octubre de 2024 y enero de 2025, y a la segunda 2000 millones el 22 de noviembre de 2025."
+          "commonSender": "Una billetera envió a la primera 39.400 millones de PLEB en siete transferencias entre octubre de 2024 y enero de 2025, y a la segunda 2000 millones el 22 de noviembre de 2025."
         }
       },
       "holderF": {
         "name": "Poseedor F",
         "summary": "Una billetera que repartió sus tokens entre tres billeteras nuevas y les pagó el gas.",
         "evidence": {
-          "split": "El 10 de marzo de 2024, en siete minutos, una billetera envió cantidades redondas de BSO antiguo (12.000, 8000 y 4000 millones) a tres billeteras nuevas y ese mismo día envió ETH a dos de ellas para el gas. Todavía tiene BSO."
+          "split": "El 10 de marzo de 2024, en siete minutos, una billetera envió cantidades redondas de PLEB (12.000, 8000 y 4000 millones) a tres billeteras nuevas y ese mismo día envió ETH a dos de ellas para el gas. Todavía tiene BSO."
         }
       },
       "holderG": {
         "name": "Poseedor G",
         "summary": "Dos billeteras financiadas por el mismo remitente, con tres años de diferencia.",
         "evidence": {
-          "commonSender": "Una billetera envió a la segunda 4700 millones de PLEB en abril de 2022 y a la primera 6000 millones de BSO antiguos en enero de 2025."
+          "commonSender": "Una billetera envió a la segunda 4700 millones de PLEB en Avalanche, en abril de 2022, y a la primera 6000 millones de PLEB en Ethereum, en enero de 2025."
         }
       },
       "holderH": {
@@ -463,7 +464,7 @@
         "name": "Poseedor I",
         "summary": "Dos billeteras con transferencias repetidas entre ellas.",
         "evidence": {
-          "directTransfers": "La segunda billetera envió a la primera 13.200 millones de BSO antiguos el 30 de octubre de 2023 y 5000 millones el 8 de noviembre de 2023."
+          "directTransfers": "La segunda billetera envió a la primera 13.200 millones de PLEB el 30 de octubre de 2023 y 5000 millones el 8 de noviembre de 2023."
         }
       }
     },
@@ -577,11 +578,11 @@
         },
         "rebrand": {
           "title": "plebbit se convierte en Bitsocial",
-          "body": "A lo largo de marzo de 2026, el proyecto y su token adoptan poco a poco el nombre Bitsocial."
+          "body": "plebbit anuncia su nuevo nombre, Bitsocial. On-chain, el token conserva el nombre PLEB hasta mayo."
         },
         "rebase": {
-          "title": "Suministro fijado en 210 millones",
-          "body": "Al token de segunda generación se le aplica un rebase para que el suministro total sea exactamente de 210 millones: 7114,6 tokens antiguos pasan a ser 1."
+          "title": "PLEB se convierte en 210 millones de BSO",
+          "body": "El token de segunda generación pasa a llamarse BSO y se le aplica un rebase para que el suministro total sea exactamente de 210 millones: 7114,6 PLEB pasan a ser 1 BSO."
         },
         "immutable": {
           "title": "BSO se vuelve inmutable",
@@ -594,7 +595,7 @@
       "lead": "Cómo se encontraron los grupos y lo que esta página no puede ver.",
       "howTitle": "Cómo se vincularon las billeteras",
       "how": {
-        "transfers": "Se rastreó cada transferencia de PLEB, BSO antiguo y BSO entre dos billeteras normales, dejando fuera exchanges, routers, pools y otros contratos. Las multisig Safe se vincularon con sus propietarios.",
+        "transfers": "Se rastreó cada transferencia de PLEB y BSO entre dos billeteras normales, en Avalanche y Ethereum, dejando fuera exchanges, routers, pools y otros contratos. Las multisig Safe se vincularon con sus propietarios.",
         "funders": "Se comparó la primera billetera que envió AVAX o ETH a cada gran poseedor. Los exchanges financian miles de billeteras, así que solo los financiadores privados cuentan como vínculo.",
         "pattern": "En las billeteras sin vínculo directo, se comparó su comportamiento de compra con el de todos los compradores de PLEB del mismo periodo.",
         "migrations": "Los saldos se siguieron a través de ambas migraciones a 7114,6 PLEB por BSO."
@@ -608,10 +609,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: PLEB en Avalanche",
-        "gen2": "Gen 2: BSO antiguo en Ethereum",
+        "gen2": "Gen 2: PLEB en Ethereum, que pasó a llamarse BSO en mayo de 2026",
         "gen3": "Gen 3: BSO actual"
       },
       "snapshot": "Saldos y precio de Blockscout: {{count}} billeteras a fecha de {{date}}. ¿Has encontrado un vínculo erróneo o uno que falta? <contributeLink>Mejora esta página</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "Gráfico del precio de BSO - Cada operación desde 2022",
+      "description": "El precio y la capitalización de mercado de BSO desde su primera operación en 2022, a través de los tres contratos: PLEB en Avalanche, PLEB en Ethereum y BSO actual, en un solo gráfico construido a partir de swaps on-chain."
+    },
+    "hero": {
+      "title": "El precio de BSO desde su primera operación",
+      "lead": "Un solo gráfico para los tres contratos: PLEB en Avalanche, PLEB en Ethereum, que pasó a llamarse BSO en 2026, y BSO actual. Los precios anteriores se convierten a 7114,6 PLEB por BSO, la proporción que mantuvieron ambas migraciones. Lo que hay detrás de cada movimiento se cuenta en la <historyLink>historia</historyLink> de la lista de poseedores.",
+      "status": {
+        "live": "En directo desde el pool de Uniswap: BSO a {{price}}. Actualizado {{ago}}.",
+        "loading": "Historial diario hasta el {{date}}. Cargando los precios más recientes…",
+        "unavailable": "Los precios en directo no están disponibles ahora mismo, así que el gráfico termina el {{date}}."
+      }
+    },
+    "panelTitle": "Gráfico de precio diario",
+    "summary": {
+      "price": "Precio diario de BSO del {{from}} al {{to}}. Cierre más bajo {{low}}, cierre más alto {{high}}, último {{latest}}.",
+      "mcap": "Capitalización de mercado diaria de BSO del {{from}} al {{to}}. Cierre más bajo {{low}}, cierre más alto {{high}}, último {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Mostrar",
+      "metrics": {
+        "price": "Precio",
+        "mcap": "Cap. de mercado"
+      },
+      "rangeLabel": "Periodo",
+      "ranges": {
+        "1M": "1M",
+        "3M": "3M",
+        "1Y": "1A",
+        "all": "Todo"
+      },
+      "typeLabel": "Tipo de gráfico",
+      "types": {
+        "line": "Línea",
+        "candles": "Velas"
+      },
+      "scaleLabel": "Escala",
+      "scales": {
+        "log": "Log",
+        "linear": "Lineal"
+      }
+    },
+    "legend": {
+      "since": "desde el {{date}}",
+      "ohlc": "O {{open}} · H {{high}} · L {{low}} · C {{close}}",
+      "volume": "Volumen {{value}}"
+    },
+    "eras": {
+      "label": "Contratos. Elige uno para ampliar su etapa.",
+      "gen1": "PLEB en Avalanche",
+      "gen2": "PLEB en Ethereum",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "hoy",
+      "rebrand": "Cambio a Bitsocial"
+    },
+    "method": {
+      "title": "Cómo se construye el gráfico",
+      "lead": "Cada vela sale de swaps en la cadena, así que cualquier día puede comprobarse en un explorador.",
+      "steps": {
+        "swaps": "La apertura, el máximo, el mínimo y el cierre de un día son el primer precio, el más alto, el más bajo y el último pagados en los swaps de ese día, en UTC, leídos de los eventos Swap de cada pool.",
+        "usd": "Los pools operan contra AVAX o ETH, así que cada swap se convierte a dólares al tipo de cambio de Coinbase de la hora en que se produjo.",
+        "units": "PLEB, en Avalanche y en Ethereum hasta el <rebaseLink>rebase del 2 de mayo de 2026</rebaseLink>, se muestra por BSO: su precio se multiplica por 7114,596, el número de PLEB que sustituyó cada BSO.",
+        "pools": "Cuando más de un pool tuvo operaciones en un día, el de mayor volumen define la vela de ese día, para que un pool casi vacío no pueda dibujar una mecha falsa. El volumen suma todos los pools, y un día sin operaciones repite el último cierre.",
+        "mcap": "La capitalización de mercado es el cierre multiplicado por el suministro total de ese día: todos los tokens que acuñó el contrato menos todos los que quemó, convertidos a BSO igual que el precio. Tras el rebase, y para el BSO actual, el suministro es fijo: 210 millones.",
+        "eras": "El historial de cada contrato termina en la primera operación del siguiente. El contrato de Ethereum mantuvo el nombre PLEB hasta la actualización que aplicó el rebase, seis semanas después de que plebbit se convirtiera en Bitsocial el 18 de marzo de 2026."
+      },
+      "poolsTitle": "Pools consultados",
+      "eraDates": "{{from}} hasta {{to}}",
+      "snapshot": "Historial construido con {{count}} swaps hasta el {{date}}. Los días más recientes vienen de GeckoTerminal y se actualizan cada cinco minutos mientras esta página está abierta. ¿Has visto una vela errónea? <contributeLink>Mejora esta página</contributeLink>."
     }
   }
 }
