@@ -60,6 +60,14 @@ const ERROR_CACHE_CONTROL = "no-store";
 // Last successfully resolved download URL per app/variant, reused by warm function instances
 // when GitHub release metadata is temporarily unavailable.
 const lastKnownDownloadUrls = new Map<string, string>();
+// Last successfully fetched manifest/signature body per app/asset. GitHub's
+// releases/latest/download redirect intermittently answers 404 for releases that exist, so a
+// warm instance serves the last good body instead of reporting the asset as missing.
+const lastKnownIntegrityAssets = new Map<string, string>();
+const LATEST_RELEASE_404_RETRY_DELAY_MS = 500;
+// Only retry a fast 404: a slow first answer plus a full second fetch could outlast the browser's
+// 30 s proxy timeout (worst case here: 5 s + 0.5 s + 15 s).
+const LATEST_RELEASE_404_RETRY_MAX_FIRST_RESPONSE_MS = 5_000;
 
 const RELEASE_INTEGRITY_ASSETS: Record<string, ReleaseIntegrityAsset> = {
   "5chan:manifest": {
@@ -175,29 +183,81 @@ export default async function handler(request: RequestLike, response: ResponseLi
     return;
   }
 
-  try {
-    const releaseResponse = await fetchReleaseAsset(releaseAsset);
+  const assetKey = `${app}:${asset}`;
 
-    if (releaseResponse.status === 404) {
+  try {
+    const firstAttemptStartedAt = Date.now();
+    let releaseResponse = await fetchReleaseAsset(releaseAsset);
+
+    if (
+      releaseResponse.status === 404 &&
+      Date.now() - firstAttemptStartedAt < LATEST_RELEASE_404_RETRY_MAX_FIRST_RESPONSE_MS
+    ) {
+      // GitHub's "latest" redirect flaps between the real release and 404; retry once.
+      discardResponseBody(releaseResponse);
+      await delay(LATEST_RELEASE_404_RETRY_DELAY_MS);
+      releaseResponse = await fetchReleaseAsset(releaseAsset);
+    }
+
+    if (releaseResponse.ok) {
+      const body = await releaseResponse.text();
+      lastKnownIntegrityAssets.set(assetKey, body);
       response.setHeader("Cache-Control", SUCCESS_CACHE_CONTROL);
+      response.status(200);
+      response.setHeader("Content-Type", releaseAsset.contentType);
+      response.send(body);
+      return;
+    }
+
+    discardResponseBody(releaseResponse);
+    if (sendLastKnownIntegrityAsset(assetKey, releaseAsset, response)) {
+      return;
+    }
+
+    // Never let the CDN cache a missing or failed lookup: a transient GitHub 404 would
+    // otherwise be served to every visitor for the whole s-maxage window.
+    response.setHeader("Cache-Control", ERROR_CACHE_CONTROL);
+    if (releaseResponse.status === 404) {
       response.status(204).send("");
       return;
     }
-
-    if (!releaseResponse.ok) {
-      response.setHeader("Cache-Control", ERROR_CACHE_CONTROL);
-      response.status(releaseResponse.status).send("Release integrity asset is unavailable");
+    response.status(releaseResponse.status).send("Release integrity asset is unavailable");
+  } catch {
+    if (sendLastKnownIntegrityAsset(assetKey, releaseAsset, response)) {
       return;
     }
-
-    response.setHeader("Cache-Control", SUCCESS_CACHE_CONTROL);
-    response.status(200);
-    response.setHeader("Content-Type", releaseAsset.contentType);
-    response.send(await releaseResponse.text());
-  } catch {
     response.setHeader("Cache-Control", ERROR_CACHE_CONTROL);
     response.status(502).send("Release integrity asset fetch failed");
   }
+}
+
+function sendLastKnownIntegrityAsset(
+  assetKey: string,
+  releaseAsset: ReleaseIntegrityAsset,
+  response: ResponseLike,
+) {
+  const lastKnownBody = lastKnownIntegrityAssets.get(assetKey);
+  if (lastKnownBody === undefined) {
+    return false;
+  }
+
+  // Serve the last good body, but don't let the CDN pin it while upstream is degraded.
+  response.setHeader("Cache-Control", ERROR_CACHE_CONTROL);
+  response.status(200);
+  response.setHeader("Content-Type", releaseAsset.contentType);
+  response.send(lastKnownBody);
+  return true;
+}
+
+// An unread fetch body keeps its connection open until garbage collection.
+function discardResponseBody(releaseResponse: Response) {
+  void releaseResponse.body?.cancel().catch(() => {});
+}
+
+function delay(ms: number) {
+  return new Promise<void>((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
 
 async function handleLatestDownloadRequest(

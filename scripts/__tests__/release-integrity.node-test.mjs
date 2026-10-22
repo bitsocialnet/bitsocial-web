@@ -140,37 +140,79 @@ test("resolved downloads are cached and warm instances reuse them while GitHub i
   assert.equal(fallbackAfterUpdate.headers["Cache-Control"], "no-store");
 });
 
-test("release integrity assets cache only definitive upstream answers", async (t) => {
+test("release integrity assets never CDN-cache missing or failed lookups", async (t) => {
   const fetchMock = t.mock.method(globalThis, "fetch", async () => new Response("{}"));
-  const request = await loadHandler();
 
   for (const asset of ["manifest", "signature"]) {
     const query = { app: "5chan", asset };
 
-    fetchMock.mock.mockImplementation(async () => new Response('{"schema":"test"}'));
-    const found = await request(query);
-    assert.equal(found.status, 200, asset);
-    assert.equal(found.body, '{"schema":"test"}', asset);
-    assert.equal(found.headers["Content-Type"], "application/json; charset=utf-8", asset);
-    assert.equal(found.headers["Cache-Control"], successCacheControl, asset);
-
+    // Cold instance: GitHub's releases/latest redirect flaps to 404 for releases that exist, so a
+    // missing asset must not be pinned by the CDN for the whole s-maxage window.
+    const coldRequest = await loadHandler();
     fetchMock.mock.mockImplementation(async () => new Response("", { status: 404 }));
-    const missing = await request(query);
+    const missing = await coldRequest(query);
     assert.equal(missing.status, 204, asset);
-    assert.equal(missing.headers["Cache-Control"], successCacheControl, asset);
+    assert.equal(missing.headers["Cache-Control"], "no-store", asset);
 
     fetchMock.mock.mockImplementation(async () => new Response("", { status: 429 }));
-    const rateLimited = await request(query);
+    const rateLimited = await coldRequest(query);
     assert.equal(rateLimited.status, 429, asset);
     assert.equal(rateLimited.headers["Cache-Control"], "no-store", asset);
 
     fetchMock.mock.mockImplementation(async () => {
       throw new TypeError("fetch failed");
     });
-    const networkFailure = await request(query);
+    const networkFailure = await coldRequest(query);
     assert.equal(networkFailure.status, 502, asset);
     assert.equal(networkFailure.headers["Cache-Control"], "no-store", asset);
+
+    // A single flaky 404 is retried before giving up.
+    const retryRequest = await loadHandler();
+    let calls = 0;
+    fetchMock.mock.mockImplementation(async () => {
+      calls += 1;
+      return calls === 1 ? new Response("", { status: 404 }) : new Response('{"schema":"test"}');
+    });
+    const retried = await retryRequest(query);
+    assert.equal(retried.status, 200, asset);
+    assert.equal(retried.body, '{"schema":"test"}', asset);
+    assert.equal(retried.headers["Content-Type"], "application/json; charset=utf-8", asset);
+    assert.equal(retried.headers["Cache-Control"], successCacheControl, asset);
+
+    // Warm instance: serve the last good body uncached while upstream is degraded.
+    for (const failure of [
+      async () => new Response("", { status: 404 }),
+      async () => new Response("", { status: 429 }),
+      async () => {
+        throw new TypeError("fetch failed");
+      },
+    ]) {
+      fetchMock.mock.mockImplementation(failure);
+      const fallback = await retryRequest(query);
+      assert.equal(fallback.status, 200, asset);
+      assert.equal(fallback.body, '{"schema":"test"}', asset);
+      assert.equal(fallback.headers["Content-Type"], "application/json; charset=utf-8", asset);
+      assert.equal(fallback.headers["Cache-Control"], "no-store", asset);
+    }
   }
+});
+
+test("release integrity lookups cancel the upstream bodies they discard", async (t) => {
+  const cancelled = [];
+  const respond = (status) =>
+    new Response(new ReadableStream({ cancel: () => void cancelled.push(status) }), { status });
+  const fetchMock = t.mock.method(globalThis, "fetch", async () => respond(404));
+  const request = await loadHandler();
+  const query = { app: "5chan", asset: "manifest" };
+
+  const missing = await request(query);
+  assert.equal(missing.status, 204);
+  assert.deepEqual(cancelled, [404, 404], "both the retried and the final 404");
+
+  fetchMock.mock.mockImplementation(async () => respond(429));
+  const rateLimited = await request(query);
+  assert.equal(rateLimited.status, 429);
+  assert.deepEqual(cancelled, [404, 404, 429]);
 });
 
 test("GITHUB_TOKEN authenticates only the release metadata lookup", async (t) => {
