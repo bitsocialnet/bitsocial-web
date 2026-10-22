@@ -2,3 +2,7 @@
 .claude/** text=auto eol=lf
 .codex/** text=auto eol=lf
 .cursor/** text=auto eol=lf
+
+# Bundled third-party tooling is excluded from GitHub language statistics.
+/.agents/skills/impeccable/** linguist-vendored
+/.claude/skills/impeccable/** linguist-vendored
