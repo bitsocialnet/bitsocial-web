@@ -15,11 +15,8 @@ import {
   LineStyle,
   PriceScaleMode,
   createChart,
-  createSeriesMarkers,
   type IChartApi,
   type ISeriesApi,
-  type ISeriesMarkersPluginApi,
-  type SeriesMarker,
   type Time,
   type UTCTimestamp,
 } from "lightweight-charts";
@@ -57,7 +54,7 @@ function metricFactor(candle: Candle, metric: Metric) {
   return metric === "mcap" ? candle.supply : 1;
 }
 
-// Rich list history events with a known day, drawn as markers where the price was at the time.
+// Rich list history events with a known day, named in the legend when the reader hovers that day.
 const EVENTS = HISTORY.filter((event) => (event.precision ?? "day") === "day").map((event) => ({
   id: event.id,
   time: Date.parse(`${event.date}T00:00:00Z`) / 1000,
@@ -78,8 +75,6 @@ type Handles = {
   area: ISeriesApi<"Area">;
   candles: ISeriesApi<"Candlestick">;
   volume: ISeriesApi<"Histogram">;
-  areaMarkers: ISeriesMarkersPluginApi<Time>;
-  candleMarkers: ISeriesMarkersPluginApi<Time>;
   bands: EraBands;
 };
 
@@ -292,15 +287,7 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
     const bands = new EraBands();
     volume.attachPrimitive(bands);
 
-    handlesRef.current = {
-      chart,
-      area,
-      candles: candleSeries,
-      volume,
-      areaMarkers: createSeriesMarkers(area, []),
-      candleMarkers: createSeriesMarkers(candleSeries, []),
-      bands,
-    };
+    handlesRef.current = { chart, area, candles: candleSeries, volume, bands };
 
     chart.subscribeCrosshairMove((param) => {
       hoverTimeRef.current = param.time === undefined ? null : Number(param.time);
@@ -380,20 +367,6 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
         color: palette.volume,
       })),
     );
-
-    const first = candles[0]?.time ?? 0;
-    const markers: SeriesMarker<Time>[] = EVENTS.filter((event) => event.time >= first).map(
-      (event) => ({
-        id: event.id,
-        time: event.time as UTCTimestamp,
-        position: "aboveBar",
-        shape: "circle",
-        color: palette.marker,
-        size: 0.6,
-      }),
-    );
-    handles.areaMarkers.setMarkers(markers);
-    handles.candleMarkers.setMarkers(markers);
 
     const starts = eraStartDays(candles);
     bands.update(
