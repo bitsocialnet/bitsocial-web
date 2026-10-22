@@ -33,6 +33,38 @@ export function RichSection({
   );
 }
 
+/** A pill of mutually exclusive options, each a pressed-state toggle button. */
+export function SegmentedControl<T extends string>({
+  label,
+  options,
+  value,
+  onChange,
+  optionLabel,
+}: {
+  label: string;
+  options: readonly T[];
+  /** `null` when no option applies, as when a chart is panned away from every preset. */
+  value: T | null;
+  onChange: (option: T) => void;
+  optionLabel: (option: T) => string;
+}) {
+  return (
+    <div className="rl-segmented" role="group" aria-label={label}>
+      {options.map((option) => (
+        <button
+          key={option}
+          type="button"
+          aria-pressed={value === option}
+          className="rl-segmented-option"
+          onClick={() => onChange(option)}
+        >
+          {optionLabel(option)}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function CategoryBadge({ category }: { category: Category }) {
   const { t } = useTranslation();
 

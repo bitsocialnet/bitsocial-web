@@ -2,9 +2,10 @@
   "nav": {
     "language": "语言",
     "theme": "主题",
-    "mainSite": "主站",
+    "bitsocial": "Bitsocial",
     "faq": "常见问题",
-    "richList": "富豪榜"
+    "richList": "富豪榜",
+    "chart": "图表"
   },
   "languageSelector": {
     "title": "选择语言",
@@ -399,19 +400,19 @@
       },
       "holderB": {
         "name": "持有者 B",
-        "summary": "一个 2/4 的 Safe 多签，在一个下午内从 14 个钱包归集了旧 BSO，另加它的一位所有者。",
+        "summary": "一个 2/4 的 Safe 多签，在一个下午内从 14 个钱包归集了 PLEB，另加它的一位所有者。",
         "evidence": {
           "owners": "该 Safe 需要其 4 名所有者中的 2 名签名。其中一名所有者也直接持有 BSO。四名所有者可能是持有多把密钥的一个人，也可能是一个小团体。",
-          "consolidation": "2024 年 6 月 1 日 16:08 至 17:51 UTC 之间，该 Safe 从 14 个钱包收到 1205 亿旧 BSO。第一笔转账是 10 枚代币的测试，Safe 随即将其退回。",
-          "vesting": "2024 年 8 月 12 日，该 Safe 将 605 亿旧 BSO 转入一个 Sablier 归属流。2026 年的迁移把这笔流记回 Safe，因此 Safe 收到了两笔迁移转账。",
-          "commonSender": "同一个钱包曾向 Safe 所有者（2024 年 3 月 8 日，137 亿）和 Safe（2024 年 6 月 1 日，15 亿）转入旧 BSO。"
+          "consolidation": "2024 年 6 月 1 日 16:08 至 17:51 UTC 之间，该 Safe 从 14 个钱包收到 1205 亿 PLEB。第一笔转账是 10 枚代币的测试，Safe 随即将其退回。",
+          "vesting": "2024 年 8 月 12 日，该 Safe 将 605 亿 PLEB 转入一个 Sablier 归属流。2026 年的迁移把这笔流记回 Safe，因此 Safe 收到了两笔迁移转账。",
+          "commonSender": "同一个钱包曾向 Safe 所有者（2024 年 3 月 8 日，137 亿）和 Safe（2024 年 6 月 1 日，15 亿）转入 PLEB。"
         }
       },
       "holderC": {
         "name": "持有者 C",
-        "summary": "两个从同一发送方收到旧 BSO 的钱包。",
+        "summary": "两个从同一发送方收到 PLEB 的钱包。",
         "evidence": {
-          "commonSender": "一个钱包于 2024 年 8 月 19 日向第一个钱包转入 47 亿旧 BSO，并于 2025 年 11 月 14 日向第二个钱包转入 154 亿。共同的发送方也可能是同一个卖家在向两个买家出售。"
+          "commonSender": "一个钱包于 2024 年 8 月 19 日向第一个钱包转入 47 亿 PLEB，并于 2025 年 11 月 14 日向第二个钱包转入 154 亿。共同的发送方也可能是同一个卖家在向两个买家出售。"
         }
       },
       "holderD": {
@@ -425,21 +426,21 @@
         "name": "持有者 E",
         "summary": "由同一来源注资的两个钱包。",
         "evidence": {
-          "commonSender": "一个钱包在 2024 年 10 月至 2025 年 1 月期间分七笔向第一个钱包转入 394 亿旧 BSO，并于 2025 年 11 月 22 日向第二个钱包转入 20 亿。"
+          "commonSender": "一个钱包在 2024 年 10 月至 2025 年 1 月期间分七笔向第一个钱包转入 394 亿 PLEB，并于 2025 年 11 月 22 日向第二个钱包转入 20 亿。"
         }
       },
       "holderF": {
         "name": "持有者 F",
         "summary": "一个钱包把自己的代币拆分到三个新钱包，并为它们支付了 gas。",
         "evidence": {
-          "split": "2024 年 3 月 10 日，一个钱包在七分钟内向三个新钱包分别转入整数金额的旧 BSO（120 亿、80 亿和 40 亿），并在同一天向其中两个钱包转入 ETH 作为 gas。它自己仍持有 BSO。"
+          "split": "2024 年 3 月 10 日，一个钱包在七分钟内向三个新钱包分别转入整数金额的 PLEB（120 亿、80 亿和 40 亿），并在同一天向其中两个钱包转入 ETH 作为 gas。它自己仍持有 BSO。"
         }
       },
       "holderG": {
         "name": "持有者 G",
         "summary": "由同一发送方注资、相隔三年的两个钱包。",
         "evidence": {
-          "commonSender": "一个钱包于 2022 年 4 月向第二个钱包转入 47 亿 PLEB，又于 2025 年 1 月向第一个钱包转入 60 亿旧 BSO。"
+          "commonSender": "一个钱包于 2022 年 4 月在 Avalanche 上向第二个钱包转入 47 亿 PLEB，又于 2025 年 1 月在 Ethereum 上向第一个钱包转入 60 亿 PLEB。"
         }
       },
       "holderH": {
@@ -453,7 +454,7 @@
         "name": "持有者 I",
         "summary": "两个钱包之间有多次转账。",
         "evidence": {
-          "directTransfers": "第二个钱包于 2023 年 10 月 30 日向第一个钱包转入 132 亿旧 BSO，又于 2023 年 11 月 8 日转入 50 亿。"
+          "directTransfers": "第二个钱包于 2023 年 10 月 30 日向第一个钱包转入 132 亿 PLEB，又于 2023 年 11 月 8 日转入 50 亿。"
         }
       }
     },
@@ -567,11 +568,11 @@
         },
         "rebrand": {
           "title": "plebbit 更名为 Bitsocial",
-          "body": "在 2026 年 3 月期间，项目及其代币逐步改用 Bitsocial 这个名称。"
+          "body": "plebbit 宣布其新名称 Bitsocial。在链上，代币直到 5 月仍沿用 PLEB 这个名称。"
         },
         "rebase": {
-          "title": "供应量定为 2.1 亿",
-          "body": "第二代代币进行 rebase，使总供应量恰好为 2.1 亿：7,114.6 枚旧代币变为 1 枚。"
+          "title": "PLEB 变为 2.1 亿枚 BSO",
+          "body": "第二代代币更名为 BSO 并进行 rebase，使总供应量恰好为 2.1 亿：7,114.6 枚 PLEB 变为 1 枚 BSO。"
         },
         "immutable": {
           "title": "BSO 变为不可变",
@@ -584,7 +585,7 @@
       "lead": "这些分组是如何找到的，以及本页看不到什么。",
       "howTitle": "钱包是如何关联的",
       "how": {
-        "transfers": "追踪了两个普通钱包之间每一笔 PLEB、旧 BSO 和 BSO 的转账，排除交易所、路由合约、流动性池和其他合约。Safe 多签与其所有者相关联。",
+        "transfers": "追踪了 Avalanche 和 Ethereum 上两个普通钱包之间每一笔 PLEB 和 BSO 的转账，排除交易所、路由合约、流动性池和其他合约。Safe 多签与其所有者相关联。",
         "funders": "比较了向每个大户首次发送 AVAX 或 ETH 的钱包。交易所为成千上万个钱包提供资金，因此只有私人资金来源才算作关联。",
         "pattern": "对于没有直接关联的钱包，将其买入行为与同一时期的所有 PLEB 买家进行比较。",
         "migrations": "按每 BSO 7,114.6 PLEB 的比率，在两次迁移中追踪余额。"
@@ -598,10 +599,83 @@
       },
       "contracts": {
         "gen1": "Gen 1：Avalanche 上的 PLEB",
-        "gen2": "Gen 2：Ethereum 上的旧 BSO",
+        "gen2": "Gen 2：Ethereum 上的 PLEB，2026 年 5 月更名为 BSO",
         "gen3": "Gen 3：如今的 BSO"
       },
       "snapshot": "余额和价格来自 Blockscout：截至 {{date}} 共 {{count}} 个钱包。发现错误或遗漏的关联？<contributeLink>改进此页面</contributeLink>。"
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "BSO 价格图表 - 2022 年以来的每一笔交易",
+      "description": "BSO 自 2022 年首笔交易以来的价格和市值，涵盖全部三个合约：Avalanche 上的 PLEB、Ethereum 上的 PLEB 和如今的 BSO，汇于一张基于链上兑换构建的图表。"
+    },
+    "hero": {
+      "title": "BSO 自首笔交易以来的价格",
+      "lead": "一张图表涵盖全部三个合约：Avalanche 上的 PLEB、Ethereum 上的 PLEB（2026 年更名为 BSO），以及如今的 BSO。早期价格按每 BSO 对应 7,114.6 枚 PLEB 换算，这是两次迁移都沿用的比率。每次涨跌背后的经过，见富豪榜的<historyLink>历史</historyLink>。",
+      "status": {
+        "live": "Uniswap 池实时数据：BSO 价格 {{price}}。最后更新：{{ago}}。",
+        "loading": "每日历史数据截至 {{date}}。正在加载最新价格…",
+        "unavailable": "实时价格暂时不可用，因此图表止于 {{date}}。"
+      }
+    },
+    "panelTitle": "每日价格图表",
+    "summary": {
+      "price": "{{from}} 至 {{to}} 的 BSO 每日价格。最低收盘价 {{low}}，最高收盘价 {{high}}，最新 {{latest}}。",
+      "mcap": "{{from}} 至 {{to}} 的 BSO 每日市值。最低收盘市值 {{low}}，最高收盘市值 {{high}}，最新 {{latest}}。"
+    },
+    "controls": {
+      "metricLabel": "显示",
+      "metrics": {
+        "price": "价格",
+        "mcap": "市值"
+      },
+      "rangeLabel": "时间范围",
+      "ranges": {
+        "1M": "近1月",
+        "3M": "近3月",
+        "1Y": "近1年",
+        "all": "全部"
+      },
+      "typeLabel": "图表类型",
+      "types": {
+        "line": "折线",
+        "candles": "K线"
+      },
+      "scaleLabel": "刻度",
+      "scales": {
+        "log": "对数",
+        "linear": "线性"
+      }
+    },
+    "legend": {
+      "since": "自 {{date}} 起",
+      "ohlc": "开 {{open}} · 高 {{high}} · 低 {{low}} · 收 {{close}}",
+      "volume": "成交量 {{value}}"
+    },
+    "eras": {
+      "label": "合约。选择其中一个即可缩放到对应时期。",
+      "gen1": "Avalanche 上的 PLEB",
+      "gen2": "Ethereum 上的 PLEB",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "今",
+      "rebrand": "更名为 Bitsocial"
+    },
+    "method": {
+      "title": "图表的构建方法",
+      "lead": "每根 K 线都来自链上的兑换交易，因此任何一天都可以在区块浏览器上核查。",
+      "steps": {
+        "swaps": "每日的开盘价、最高价、最低价和收盘价，分别是当天（按 UTC 计）兑换中成交的第一笔、最高、最低和最后一笔价格，读取自各个池的 Swap 事件。",
+        "usd": "这些池以 AVAX 或 ETH 计价交易，因此每笔兑换都按其发生时所在小时的 Coinbase 汇率换算为美元。",
+        "units": "Avalanche 上的 PLEB，以及 <rebaseLink>2026 年 5 月 2 日 rebase</rebaseLink> 之前 Ethereum 上的 PLEB，均按每 BSO 显示：其价格乘以 7,114.596，即每枚 BSO 所替换的 PLEB 数量。",
+        "pools": "某天有多个池发生交易时，由成交量最大的池决定当天的 K 线，这样几乎空置的池就无法画出虚假的影线。成交量为所有池的总和，没有交易的日子沿用上一个收盘价。",
+        "mcap": "市值是收盘价乘以当天的总供应量：合约铸造的全部代币减去其销毁的全部代币，并像价格一样换算为 BSO。rebase 之后以及如今的 BSO，供应量固定为 2.1 亿。",
+        "eras": "每个合约的历史止于下一个合约的首笔交易。Ethereum 合约一直沿用 PLEB 这个名称，直到对其执行 rebase 的那次升级；那次升级发生在 2026 年 3 月 18 日 plebbit 更名为 Bitsocial 的六周之后。"
+      },
+      "poolsTitle": "读取的池",
+      "eraDates": "{{from}}至{{to}}",
+      "snapshot": "历史数据由截至 {{date}} 的 {{count}} 笔兑换构建。更新的日期来自 GeckoTerminal，页面打开期间每五分钟刷新一次。发现有误的 K 线？<contributeLink>改进此页面</contributeLink>。"
     }
   }
 }

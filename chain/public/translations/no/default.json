@@ -2,9 +2,10 @@
   "nav": {
     "language": "Språk",
     "theme": "Tema",
-    "mainSite": "Hovedside",
+    "bitsocial": "Bitsocial",
     "faq": "FAQ",
-    "richList": "Rikeliste"
+    "richList": "Rikeliste",
+    "chart": "Graf"
   },
   "languageSelector": {
     "title": "Velg språk",
@@ -404,19 +405,19 @@
       },
       "holderB": {
         "name": "Innehaver B",
-        "summary": "En 2-av-4 Safe-multisig som samlet gammel BSO fra 14 lommebøker på én ettermiddag, pluss en av eierne.",
+        "summary": "En 2-av-4 Safe-multisig som samlet PLEB fra 14 lommebøker på én ettermiddag, pluss en av eierne.",
         "evidence": {
           "owners": "Safen krever signatur fra 2 av de 4 eierne. Én eier har også BSO direkte. Fire eiere kan bety én person med flere nøkler eller en liten gruppe.",
-          "consolidation": "1. juni 2024, mellom 16:08 og 17:51 UTC, mottok Safen 120,5 mrd. gammel BSO fra 14 lommebøker. Den første overføringen var en test på 10 tokens som Safen sendte rett tilbake.",
-          "vesting": "12. august 2024 flyttet Safen 60,5 mrd. gammel BSO inn i en vesting-strøm i Sablier. Migreringen i 2026 krediterte den strømmen tilbake til Safen, og derfor mottok Safen to migreringsoverføringer.",
-          "commonSender": "Den samme lommeboken sendte gammel BSO både til Safe-eieren (13,7 mrd. 8. mars 2024) og til Safen (1,5 mrd. 1. juni 2024)."
+          "consolidation": "1. juni 2024, mellom 16:08 og 17:51 UTC, mottok Safen 120,5 mrd. PLEB fra 14 lommebøker. Den første overføringen var en test på 10 tokens som Safen sendte rett tilbake.",
+          "vesting": "12. august 2024 flyttet Safen 60,5 mrd. PLEB inn i en vesting-strøm i Sablier. Migreringen i 2026 krediterte den strømmen tilbake til Safen, og derfor mottok Safen to migreringsoverføringer.",
+          "commonSender": "Den samme lommeboken sendte PLEB både til Safe-eieren (13,7 mrd. 8. mars 2024) og til Safen (1,5 mrd. 1. juni 2024)."
         }
       },
       "holderC": {
         "name": "Innehaver C",
-        "summary": "To lommebøker som mottok gammel BSO fra samme avsender.",
+        "summary": "To lommebøker som mottok PLEB fra samme avsender.",
         "evidence": {
-          "commonSender": "Én lommebok sendte 4,7 mrd. gammel BSO til den første 19. august 2024 og 15,4 mrd. til den andre 14. november 2025. En felles avsender kan også være én selger som betjener to kjøpere."
+          "commonSender": "Én lommebok sendte 4,7 mrd. PLEB til den første 19. august 2024 og 15,4 mrd. til den andre 14. november 2025. En felles avsender kan også være én selger som betjener to kjøpere."
         }
       },
       "holderD": {
@@ -430,21 +431,21 @@
         "name": "Innehaver E",
         "summary": "To lommebøker fylt fra samme kilde.",
         "evidence": {
-          "commonSender": "Én lommebok sendte den første 39,4 mrd. gammel BSO i sju overføringer mellom oktober 2024 og januar 2025, og den andre 2,0 mrd. 22. november 2025."
+          "commonSender": "Én lommebok sendte den første 39,4 mrd. PLEB i sju overføringer mellom oktober 2024 og januar 2025, og den andre 2,0 mrd. 22. november 2025."
         }
       },
       "holderF": {
         "name": "Innehaver F",
         "summary": "Én lommebok som delte tokenene sine på tre nye lommebøker og betalte gassen deres.",
         "evidence": {
-          "split": "10. mars 2024 sendte én lommebok i løpet av sju minutter runde beløp gammel BSO (12 mrd., 8 mrd. og 4 mrd.) til tre nye lommebøker og sendte to av dem ETH til gass samme dag. Den har fortsatt BSO selv."
+          "split": "10. mars 2024 sendte én lommebok i løpet av sju minutter runde beløp PLEB (12 mrd., 8 mrd. og 4 mrd.) til tre nye lommebøker og sendte to av dem ETH til gass samme dag. Den har fortsatt BSO selv."
         }
       },
       "holderG": {
         "name": "Innehaver G",
         "summary": "To lommebøker finansiert av samme avsender, med tre års mellomrom.",
         "evidence": {
-          "commonSender": "Én lommebok sendte den andre 4,7 mrd. PLEB i april 2022 og den første 6 mrd. gammel BSO i januar 2025."
+          "commonSender": "Én lommebok sendte den andre 4,7 mrd. PLEB på Avalanche i april 2022 og den første 6 mrd. PLEB på Ethereum i januar 2025."
         }
       },
       "holderH": {
@@ -458,7 +459,7 @@
         "name": "Innehaver I",
         "summary": "To lommebøker med gjentatte overføringer mellom seg.",
         "evidence": {
-          "directTransfers": "Den andre lommeboken sendte den første 13,2 mrd. gammel BSO 30. oktober 2023 og 5 mrd. 8. november 2023."
+          "directTransfers": "Den andre lommeboken sendte den første 13,2 mrd. PLEB 30. oktober 2023 og 5 mrd. 8. november 2023."
         }
       }
     },
@@ -572,11 +573,11 @@
         },
         "rebrand": {
           "title": "plebbit blir Bitsocial",
-          "body": "I løpet av mars 2026 tar prosjektet og tokenet gradvis navnet Bitsocial."
+          "body": "plebbit kunngjør det nye navnet sitt, Bitsocial. On-chain beholder tokenet navnet PLEB frem til mai."
         },
         "rebase": {
-          "title": "Tilbudet settes til 210 millioner",
-          "body": "Andregenerasjonstokenet rebases slik at det totale tilbudet blir nøyaktig 210 millioner: 7114,6 gamle tokens blir 1."
+          "title": "PLEB blir 210 millioner BSO",
+          "body": "Andregenerasjonstokenet omdøpes til BSO og rebases slik at det totale tilbudet blir nøyaktig 210 millioner: 7114,6 PLEB blir 1 BSO."
         },
         "immutable": {
           "title": "BSO blir uforanderlig",
@@ -589,7 +590,7 @@
       "lead": "Hvordan gruppene ble funnet, og hva denne siden ikke kan se.",
       "howTitle": "Hvordan lommebøker ble koblet",
       "how": {
-        "transfers": "Hver overføring av PLEB, gammel BSO og BSO mellom to vanlige lommebøker ble sporet, med unntak av børser, rutere, pooler og andre kontrakter. Safe-multisigs ble koblet til eierne sine.",
+        "transfers": "Hver overføring av PLEB og BSO mellom to vanlige lommebøker, på Avalanche og Ethereum, ble sporet, med unntak av børser, rutere, pooler og andre kontrakter. Safe-multisigs ble koblet til eierne sine.",
         "funders": "Den første lommeboken som sendte hver av de største innehaverne AVAX eller ETH, ble sammenlignet. Børser finansierer tusenvis av lommebøker, så bare private finansierere teller som en kobling.",
         "pattern": "For lommebøker uten direkte kobling ble kjøpsatferden sammenlignet med alle PLEB-kjøpere i samme periode.",
         "migrations": "Saldoene ble fulgt gjennom begge migreringene med 7114,6 PLEB per BSO."
@@ -603,10 +604,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: PLEB på Avalanche",
-        "gen2": "Gen 2: gammel BSO på Ethereum",
+        "gen2": "Gen 2: PLEB på Ethereum, omdøpt til BSO i mai 2026",
         "gen3": "Gen 3: BSO i dag"
       },
       "snapshot": "Saldoer og pris fra Blockscout: {{count}} lommebøker per {{date}}. Fant du en feil kobling eller en som mangler? <contributeLink>Forbedre denne siden</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "BSO-kursgraf - Hver handel siden 2022",
+      "description": "BSOs kurs og markedsverdi siden den første handelen i 2022, på tvers av alle tre kontraktene: PLEB på Avalanche, PLEB på Ethereum og BSO i dag, i én graf bygget fra on-chain-swapper."
+    },
+    "hero": {
+      "title": "BSOs kurs siden den første handelen",
+      "lead": "Én graf på tvers av alle tre kontraktene: PLEB på Avalanche, PLEB på Ethereum, som fikk navnet BSO i 2026, og BSO i dag. Eldre kurser er regnet om med 7114,6 PLEB per BSO, forholdet begge migreringene beholdt. Historien bak hver bevegelse står i rikelistens <historyLink>historikk</historyLink>.",
+      "status": {
+        "live": "Direkte fra Uniswap-poolen: BSO til {{price}}. Oppdatert {{ago}}.",
+        "loading": "Daglig historikk til {{date}}. Laster inn de siste kursene…",
+        "unavailable": "Direktekurser er ikke tilgjengelige akkurat nå, så grafen slutter {{date}}."
+      }
+    },
+    "panelTitle": "Daglig kursgraf",
+    "summary": {
+      "price": "Daglig BSO-kurs fra {{from}} til {{to}}. Laveste sluttkurs {{low}}, høyeste sluttkurs {{high}}, siste {{latest}}.",
+      "mcap": "Daglig markedsverdi for BSO fra {{from}} til {{to}}. Laveste sluttverdi {{low}}, høyeste sluttverdi {{high}}, siste {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Vis",
+      "metrics": {
+        "price": "Kurs",
+        "mcap": "Markedsverdi"
+      },
+      "rangeLabel": "Periode",
+      "ranges": {
+        "1M": "1M",
+        "3M": "3M",
+        "1Y": "1Å",
+        "all": "Alt"
+      },
+      "typeLabel": "Graftype",
+      "types": {
+        "line": "Linje",
+        "candles": "Lysestaker"
+      },
+      "scaleLabel": "Skala",
+      "scales": {
+        "log": "Log",
+        "linear": "Lineær"
+      }
+    },
+    "legend": {
+      "since": "siden {{date}}",
+      "ohlc": "O {{open}} · H {{high}} · L {{low}} · C {{close}}",
+      "volume": "Volum {{value}}"
+    },
+    "eras": {
+      "label": "Kontrakter. Velg én for å zoome inn på perioden dens.",
+      "gen1": "PLEB på Avalanche",
+      "gen2": "PLEB på Ethereum",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "nå",
+      "rebrand": "Navnebytte til Bitsocial"
+    },
+    "method": {
+      "title": "Slik er grafen bygget",
+      "lead": "Hver lysestake kommer fra swapper på kjeden, så hvilken som helst dag kan sjekkes i en blokkutforsker.",
+      "steps": {
+        "swaps": "En dags åpningskurs, høyeste kurs, laveste kurs og sluttkurs er den første, høyeste, laveste og siste prisen som ble betalt i swappene den dagen, i UTC, lest fra Swap-hendelsene i hver pool.",
+        "usd": "Poolene handler mot AVAX eller ETH, så hver swap regnes om til dollar med Coinbase-kursen for timen den skjedde.",
+        "units": "PLEB, på Avalanche og på Ethereum fram til <rebaseLink>rebasen 2. mai 2026</rebaseLink>, vises per BSO: kursen er ganget med 7114,596, antallet PLEB hver BSO erstattet.",
+        "pools": "Når det ble handlet i mer enn én pool samme dag, bestemmer poolen med mest volum lysestaken for den dagen, så en nesten tom pool ikke kan tegne en falsk veke. Volumet summerer alle poolene, og en dag uten handel gjentar siste sluttkurs.",
+        "mcap": "Markedsverdien er sluttkursen ganget med det totale tilbudet den dagen: alle tokens kontrakten har mintet minus alle tokens den har brent, regnet om til BSO på samme måte som kursen. Etter rebasen, og for BSO i dag, er tilbudet fast på 210 millioner.",
+        "eras": "Historikken til hver kontrakt slutter ved den første handelen i den neste. Ethereum-kontrakten beholdt navnet PLEB fram til oppgraderingen som gjennomførte rebasen, seks uker etter at plebbit ble Bitsocial 18. mars 2026."
+      },
+      "poolsTitle": "Pooler som er lest",
+      "eraDates": "{{from}} til {{to}}",
+      "snapshot": "Historikk bygget fra {{count}} swapper frem til {{date}}. Nyere dager kommer fra GeckoTerminal og oppdateres hvert femte minutt mens denne siden er åpen. Fant du en feil lysestake? <contributeLink>Forbedre denne siden</contributeLink>."
     }
   }
 }

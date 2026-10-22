@@ -11,8 +11,10 @@ on:
         "scripts/react-perf/**",
         "scripts/__tests__/about-ssr.node-test.mjs",
         "scripts/__tests__/bso-holders.node-test.mjs",
+        "scripts/__tests__/bso-price-history.node-test.mjs",
         "scripts/__tests__/release-integrity.node-test.mjs",
         "scripts/generate-bso-holders.mjs",
+        "scripts/generate-bso-price-history.mjs",
         "scripts/pw-session.sh",
         "package.json",
         "yarn.lock",
@@ -28,8 +30,10 @@ on:
         "scripts/react-perf/**",
         "scripts/__tests__/about-ssr.node-test.mjs",
         "scripts/__tests__/bso-holders.node-test.mjs",
+        "scripts/__tests__/bso-price-history.node-test.mjs",
         "scripts/__tests__/release-integrity.node-test.mjs",
         "scripts/generate-bso-holders.mjs",
+        "scripts/generate-bso-price-history.mjs",
         "scripts/pw-session.sh",
         "package.json",
         "yarn.lock",
@@ -58,6 +62,8 @@ jobs:
         run: node --test scripts/__tests__/about-ssr.node-test.mjs
       - name: Verify BSO holder classification
         run: node --test scripts/__tests__/bso-holders.node-test.mjs
+      - name: Verify BSO price history merging
+        run: node --test scripts/__tests__/bso-price-history.node-test.mjs
       - name: Verify release integrity API caching
         run: node --test scripts/__tests__/release-integrity.node-test.mjs
       - run: corepack yarn doctor:check

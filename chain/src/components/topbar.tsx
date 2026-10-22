@@ -9,12 +9,13 @@ import {
   useState,
 } from "react";
 import { m } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import HamburgerButton from "@/components/hamburger-button";
 import LanguageSelector, { NoJsLanguageSelector } from "@/components/language-selector";
 import MobileMenu from "@/components/mobile-menu";
 import { NoJsThemeToggle, ThemeToggle } from "@/components/theme-toggle";
-import { BITSOCIAL_URL, RICH_LIST_PATH, type ExternalLink } from "@/lib/site";
+import { BITSOCIAL_URL, CHART_PATH, RICH_LIST_PATH, type ExternalLink } from "@/lib/site";
 import { cn, getScrollBehavior } from "@/lib/utils";
 
 // Every topbar control is an explicit 44px flex-centred box on every pointer type, matching the
@@ -31,7 +32,7 @@ const MOBILE_MENU_INTERACTION_GUARD_ATTRIBUTE = "data-mobile-menu-interaction-gu
 function useTopbarLinks(): ExternalLink[] {
   const { t } = useTranslation();
 
-  return [{ label: t("nav.mainSite"), href: BITSOCIAL_URL }];
+  return [{ label: t("nav.bitsocial"), href: BITSOCIAL_URL }];
 }
 
 function NavLink({
@@ -54,13 +55,14 @@ function NavLink({
       onClick={onClick}
     >
       {link.label}
+      <ArrowUpRight aria-hidden className="ms-0.5 h-3.5 w-3.5 opacity-70 rtl:-scale-x-100" />
     </a>
   );
 }
 
 const FAQ_ID = "faq";
 
-export type TopbarPage = "home" | "rich-list";
+export type TopbarPage = "home" | "rich-list" | "chart";
 
 // Which HTML entry renders the topbar. The FAQ only exists on the landing page.
 const TopbarPageContext = createContext<TopbarPage>("home");
@@ -116,27 +118,54 @@ function HomeFaqNavLink({ onClick, className }: { onClick?: () => void; classNam
   );
 }
 
-function RichListNavLink({ onClick, className }: { onClick?: () => void; className?: string }) {
-  const { t } = useTranslation();
-  const isCurrent = useContext(TopbarPageContext) === "rich-list";
+// A link to one of the site's other HTML entries, marked as the current page on that entry.
+function PageNavLink({
+  page,
+  href,
+  label,
+  onClick,
+  className,
+}: {
+  page: TopbarPage;
+  href: string;
+  label: string;
+  onClick?: () => void;
+  className?: string;
+}) {
+  const isCurrent = useContext(TopbarPageContext) === page;
 
   return (
     <a
-      href={RICH_LIST_PATH}
+      href={href}
       aria-current={isCurrent ? "page" : undefined}
       className={cn(navLinkClassName, isCurrent && "text-foreground", className)}
       onClick={onClick}
     >
-      {t("nav.richList")}
+      {label}
     </a>
   );
 }
 
 // Links that stay on chain.bitsocial.net come before the external ones.
 function SiteNavLinks({ onClick, className }: { onClick?: () => void; className?: string }) {
+  const { t } = useTranslation();
+
   return (
     <>
-      <RichListNavLink onClick={onClick} className={className} />
+      <PageNavLink
+        page="chart"
+        href={CHART_PATH}
+        label={t("nav.chart")}
+        onClick={onClick}
+        className={className}
+      />
+      <PageNavLink
+        page="rich-list"
+        href={RICH_LIST_PATH}
+        label={t("nav.richList")}
+        onClick={onClick}
+        className={className}
+      />
       <FaqNavLink onClick={onClick} className={className} />
     </>
   );

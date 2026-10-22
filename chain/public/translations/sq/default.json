@@ -2,9 +2,10 @@
   "nav": {
     "language": "Gjuha",
     "theme": "Tema",
-    "mainSite": "Faqja kryesore",
+    "bitsocial": "Bitsocial",
     "faq": "Pyetje të shpeshta",
-    "richList": "Lista e mbajtësve"
+    "richList": "Lista e mbajtësve",
+    "chart": "Grafiku"
   },
   "languageSelector": {
     "title": "Zgjidh gjuhën",
@@ -404,19 +405,19 @@
       },
       "holderB": {
         "name": "Mbajtësi B",
-        "summary": "Një multisig Safe 2-nga-4 që mblodhi BSO të vjetër nga 14 portofole brenda një pasditeje, plus një nga pronarët e tij.",
+        "summary": "Një multisig Safe 2-nga-4 që mblodhi PLEB nga 14 portofole brenda një pasditeje, plus një nga pronarët e tij.",
         "evidence": {
           "owners": "Safe-i kërkon nënshkrimin e 2 nga 4 pronarët e tij. Një pronar mban edhe BSO drejtpërdrejt. Katër pronarë mund të nënkuptojnë një person me disa çelësa ose një grup të vogël.",
-          "consolidation": "Më 1 qershor 2024, midis orës 16:08 dhe 17:51 UTC, Safe-i mori 120,5 mld BSO të vjetër nga 14 portofole. Transferimi i parë ishte një provë me 10 tokenë, të cilën Safe-i e ktheu menjëherë.",
-          "vesting": "Më 12 gusht 2024, Safe-i zhvendosi 60,5 mld BSO të vjetër në një rrjedhë vesting në Sablier. Migrimi i vitit 2026 e kreditoi atë rrjedhë përsëri te Safe-i, prandaj Safe-i mori dy transferime migrimi.",
-          "commonSender": "I njëjti portofol i dërgoi BSO të vjetër si pronarit të Safe-it (13,7 mld më 8 mars 2024), ashtu edhe Safe-it (1,5 mld më 1 qershor 2024)."
+          "consolidation": "Më 1 qershor 2024, midis orës 16:08 dhe 17:51 UTC, Safe-i mori 120,5 mld PLEB nga 14 portofole. Transferimi i parë ishte një provë me 10 tokenë, të cilën Safe-i e ktheu menjëherë.",
+          "vesting": "Më 12 gusht 2024, Safe-i zhvendosi 60,5 mld PLEB në një rrjedhë vesting në Sablier. Migrimi i vitit 2026 e kreditoi atë rrjedhë përsëri te Safe-i, prandaj Safe-i mori dy transferime migrimi.",
+          "commonSender": "I njëjti portofol i dërgoi PLEB si pronarit të Safe-it (13,7 mld më 8 mars 2024), ashtu edhe Safe-it (1,5 mld më 1 qershor 2024)."
         }
       },
       "holderC": {
         "name": "Mbajtësi C",
-        "summary": "Dy portofole që morën BSO të vjetër nga i njëjti dërgues.",
+        "summary": "Dy portofole që morën PLEB nga i njëjti dërgues.",
         "evidence": {
-          "commonSender": "Një portofol i dërgoi të parit 4,7 mld BSO të vjetër më 19 gusht 2024 dhe të dytit 15,4 mld më 14 nëntor 2025. Një dërgues i përbashkët mund të jetë edhe një shitës i vetëm që u shërben dy blerësve."
+          "commonSender": "Një portofol i dërgoi të parit 4,7 mld PLEB më 19 gusht 2024 dhe të dytit 15,4 mld më 14 nëntor 2025. Një dërgues i përbashkët mund të jetë edhe një shitës i vetëm që u shërben dy blerësve."
         }
       },
       "holderD": {
@@ -430,21 +431,21 @@
         "name": "Mbajtësi E",
         "summary": "Dy portofole të mbushura nga i njëjti burim.",
         "evidence": {
-          "commonSender": "Një portofol i dërgoi të parit 39,4 mld BSO të vjetër në shtatë transferime midis tetorit 2024 dhe janarit 2025, dhe të dytit 2,0 mld më 22 nëntor 2025."
+          "commonSender": "Një portofol i dërgoi të parit 39,4 mld PLEB në shtatë transferime midis tetorit 2024 dhe janarit 2025, dhe të dytit 2,0 mld më 22 nëntor 2025."
         }
       },
       "holderF": {
         "name": "Mbajtësi F",
         "summary": "Një portofol që i ndau tokenët e vet në tre portofole të reja dhe u pagoi gas-in.",
         "evidence": {
-          "split": "Më 10 mars 2024, brenda shtatë minutave, një portofol u dërgoi tre portofoleve të reja shuma të rrumbullakëta BSO të vjetër (12 mld, 8 mld dhe 4 mld) dhe po atë ditë u dërgoi dyve prej tyre ETH për gas. Ai vetë mban ende BSO."
+          "split": "Më 10 mars 2024, brenda shtatë minutave, një portofol u dërgoi tre portofoleve të reja shuma të rrumbullakëta PLEB (12 mld, 8 mld dhe 4 mld) dhe po atë ditë u dërgoi dyve prej tyre ETH për gas. Ai vetë mban ende BSO."
         }
       },
       "holderG": {
         "name": "Mbajtësi G",
         "summary": "Dy portofole të financuara nga i njëjti dërgues, me tre vjet diferencë.",
         "evidence": {
-          "commonSender": "Një portofol i dërgoi të dytit 4,7 mld PLEB në prill 2022 dhe të parit 6 mld BSO të vjetër në janar 2025."
+          "commonSender": "Një portofol i dërgoi të dytit 4,7 mld PLEB në Avalanche në prill 2022 dhe të parit 6 mld PLEB në Ethereum në janar 2025."
         }
       },
       "holderH": {
@@ -458,7 +459,7 @@
         "name": "Mbajtësi I",
         "summary": "Dy portofole me transferime të përsëritura mes tyre.",
         "evidence": {
-          "directTransfers": "Portofoli i dytë i dërgoi të parit 13,2 mld BSO të vjetër më 30 tetor 2023 dhe 5 mld më 8 nëntor 2023."
+          "directTransfers": "Portofoli i dytë i dërgoi të parit 13,2 mld PLEB më 30 tetor 2023 dhe 5 mld më 8 nëntor 2023."
         }
       }
     },
@@ -572,11 +573,11 @@
         },
         "rebrand": {
           "title": "plebbit bëhet Bitsocial",
-          "body": "Gjatë marsit 2026, projekti dhe tokeni i tij marrin gradualisht emrin Bitsocial."
+          "body": "plebbit shpall emrin e tij të ri, Bitsocial. On-chain, tokeni e mban emrin PLEB deri në maj."
         },
         "rebase": {
-          "title": "Furnizimi vendoset në 210 milionë",
-          "body": "Tokeni i brezit të dytë kalon një rebase, që furnizimi total të jetë saktësisht 210 milionë: 7114,6 tokenë të vjetër bëhen 1."
+          "title": "PLEB bëhet 210 milionë BSO",
+          "body": "Tokeni i brezit të dytë riemërtohet BSO dhe kalon një rebase, që furnizimi total të jetë saktësisht 210 milionë: 7114,6 PLEB bëhen 1 BSO."
         },
         "immutable": {
           "title": "BSO bëhet i pandryshueshëm",
@@ -589,7 +590,7 @@
       "lead": "Si u gjetën grupet dhe çfarë nuk mund të shohë kjo faqe.",
       "howTitle": "Si u lidhën portofolet",
       "how": {
-        "transfers": "U gjurmua çdo transferim PLEB, BSO të vjetër dhe BSO mes dy portofoleve të zakonshme, duke lënë jashtë exchange-t, router-at, pool-et dhe kontratat e tjera. Multisig-ët Safe u lidhën me pronarët e tyre.",
+        "transfers": "U gjurmua çdo transferim PLEB dhe BSO mes dy portofoleve të zakonshme, në Avalanche dhe Ethereum, duke lënë jashtë exchange-t, router-at, pool-et dhe kontratat e tjera. Multisig-ët Safe u lidhën me pronarët e tyre.",
         "funders": "U krahasua portofoli i parë që i dërgoi AVAX ose ETH secilit mbajtës të madh. Exchange-t financojnë mijëra portofole, prandaj vetëm financuesit privatë llogariten si lidhje.",
         "pattern": "Për portofolet pa lidhje të drejtpërdrejtë, sjellja e blerjeve u krahasua me atë të çdo blerësi të PLEB në të njëjtën periudhë.",
         "migrations": "Bilancet u ndoqën nëpër të dy migrimet me 7114,6 PLEB për BSO."
@@ -603,10 +604,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: PLEB në Avalanche",
-        "gen2": "Gen 2: BSO i vjetër në Ethereum",
+        "gen2": "Gen 2: PLEB në Ethereum, i riemërtuar BSO në maj 2026",
         "gen3": "Gen 3: BSO sot"
       },
       "snapshot": "Bilancet dhe çmimi nga Blockscout: {{count}} portofole më {{date}}. Gjete një lidhje të gabuar ose që mungon? <contributeLink>Përmirëso këtë faqe</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "Grafiku i çmimit të BSO - Çdo tregtim që nga 2022",
+      "description": "Çmimi dhe kapitalizimi i tregut i BSO që nga tregtimi i parë në 2022, në të tri kontratat: PLEB në Avalanche, PLEB në Ethereum dhe BSO sot, në një grafik të vetëm të ndërtuar nga swap-et on-chain."
+    },
+    "hero": {
+      "title": "Çmimi i BSO që nga tregtimi i parë",
+      "lead": "Një grafik i vetëm për të tri kontratat: PLEB në Avalanche, PLEB në Ethereum, që u riemërtua BSO në 2026, dhe BSO sot. Çmimet më të vjetra janë konvertuar me 7114,6 PLEB për BSO, raporti që ruajtën të dy migrimet. Çfarë qëndron pas çdo lëvizjeje e gjen te <historyLink>historia</historyLink> e listës së mbajtësve.",
+      "status": {
+        "live": "Drejtpërdrejt nga pool-i i Uniswap: BSO me çmim {{price}}. Përditësuar {{ago}}.",
+        "loading": "Historia ditore deri më {{date}}. Po ngarkohen çmimet më të fundit…",
+        "unavailable": "Çmimet e drejtpërdrejta nuk janë të disponueshme tani, prandaj grafiku mbaron më {{date}}."
+      }
+    },
+    "panelTitle": "Grafiku ditor i çmimit",
+    "summary": {
+      "price": "Çmimi ditor i BSO nga {{from}} deri më {{to}}. Mbyllja më e ulët {{low}}, mbyllja më e lartë {{high}}, e fundit {{latest}}.",
+      "mcap": "Kapitalizimi ditor i tregut i BSO nga {{from}} deri më {{to}}. Mbyllja më e ulët {{low}}, mbyllja më e lartë {{high}}, e fundit {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Shfaq",
+      "metrics": {
+        "price": "Çmimi",
+        "mcap": "Kapitalizimi"
+      },
+      "rangeLabel": "Periudha",
+      "ranges": {
+        "1M": "1M",
+        "3M": "3M",
+        "1Y": "1V",
+        "all": "Të gjitha"
+      },
+      "typeLabel": "Lloji i grafikut",
+      "types": {
+        "line": "Vijë",
+        "candles": "Qirinj"
+      },
+      "scaleLabel": "Shkalla",
+      "scales": {
+        "log": "Log",
+        "linear": "Lineare"
+      }
+    },
+    "legend": {
+      "since": "që nga {{date}}",
+      "ohlc": "O {{open}} · H {{high}} · L {{low}} · C {{close}}",
+      "volume": "Vëllimi {{value}}"
+    },
+    "eras": {
+      "label": "Kontratat. Zgjidh njërën për ta zmadhuar grafikun te periudha e saj.",
+      "gen1": "PLEB në Avalanche",
+      "gen2": "PLEB në Ethereum",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "sot",
+      "rebrand": "Riemërtimi në Bitsocial"
+    },
+    "method": {
+      "title": "Si ndërtohet grafiku",
+      "lead": "Çdo qiri vjen nga swap-et në zinxhir, ndaj çdo ditë mund të kontrollohet në një eksplorues blloqesh.",
+      "steps": {
+        "swaps": "Hapja, maksimumi, minimumi dhe mbyllja e një dite janë çmimi i parë, më i larti, më i ulëti dhe i fundit i paguar në swap-et e asaj dite, sipas UTC, të lexuara nga ngjarjet Swap të çdo pool-i.",
+        "usd": "Pool-et tregtojnë kundrejt AVAX ose ETH, ndaj çdo swap konvertohet në dollarë me kursin e Coinbase për orën kur ndodhi.",
+        "units": "PLEB, në Avalanche dhe në Ethereum deri në <rebaseLink>rebase-in e 2 majit 2026</rebaseLink>, shfaqet për BSO: çmimi i tij shumëzohet me 7114,596, numri i PLEB që zëvendësoi çdo BSO.",
+        "pools": "Kur në një ditë është tregtuar në më shumë se një pool, pool-i me vëllimin më të madh përcakton qiriun e asaj dite, që një pool pothuajse bosh të mos vizatojë një fitil të rremë. Vëllimi mbledh të gjitha pool-et, dhe një ditë pa tregtime përsërit mbylljen e fundit.",
+        "mcap": "Kapitalizimi i tregut është mbyllja shumëzuar me furnizimin total të asaj dite: të gjithë tokenët që kontrata bëri mint minus të gjithë ata që dogji, të konvertuar në BSO ashtu si çmimi. Pas rebase-it, dhe për BSO sot, furnizimi është i fiksuar në 210 milionë.",
+        "eras": "Historia e çdo kontrate mbaron te tregtimi i parë i kontratës pasardhëse. Kontrata në Ethereum e mbajti emrin PLEB deri te përditësimi që i bëri rebase, gjashtë javë pasi plebbit u bë Bitsocial më 18 mars 2026."
+      },
+      "poolsTitle": "Pool-et e lexuara",
+      "eraDates": "{{from}} – {{to}}",
+      "snapshot": "Historia u ndërtua nga {{count}} swap-e deri më {{date}}. Ditët më të reja vijnë nga GeckoTerminal dhe rifreskohen çdo pesë minuta sa kohë që kjo faqe është e hapur. Vure re një qiri të gabuar? <contributeLink>Përmirëso këtë faqe</contributeLink>."
     }
   }
 }

@@ -3,6 +3,9 @@ export const BSO_TOKEN_ADDRESS = "0xB50cea4c109dc223A10d44c14f521CaeD91DaB5A" as
 /** The rich list is the site's second HTML entry, `chain/rich-list/index.html`. */
 export const RICH_LIST_PATH = "/rich-list/" as const;
 
+/** The price chart is the site's third HTML entry, `chain/chart/index.html`. */
+export const CHART_PATH = "/chart/" as const;
+
 export const ETHERSCAN_TOKEN_URL = `https://etherscan.io/token/${BSO_TOKEN_ADDRESS}` as const;
 
 export const UNISWAP_TOKEN_URL =

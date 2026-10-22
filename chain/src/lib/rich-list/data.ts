@@ -6,8 +6,8 @@ import { DEXSCREENER_PAIR_ADDRESS } from "@/lib/site";
  * snapshots: who the team is, which wallets are linked and why, and the 2022 launch figures.
  *
  * Every link cites a transaction or address so a reader can check it on an explorer. Amounts on
- * Avalanche are PLEB (Gen 1), amounts on Ethereum before 2026 are old BSO (Gen 2); both convert to
- * today's BSO at PLEB_PER_BSO.
+ * Avalanche are PLEB (Gen 1), and so are amounts on Ethereum before the May 2026 rebase (Gen 2,
+ * renamed BSO in that rebase); both convert to today's BSO at PLEB_PER_BSO.
  */
 
 export type Chain = "avalanche" | "ethereum";
@@ -362,6 +362,9 @@ export type HistoryEvent = {
   link?: string;
 };
 
+/** The day plebbit announced its new name, Bitsocial, at https://t.me/plebbit/2. */
+export const REBRAND_DATE = "2026-03-18";
+
 export const HISTORY: HistoryEvent[] = [
   { id: "groupOpens", date: "2021-12-25" },
   { id: "telegramRound", date: "2022-01-07", messageIds: [697, 8398] },
@@ -376,7 +379,7 @@ export const HISTORY: HistoryEvent[] = [
   { id: "claimsClose", date: "2022-02-21", messageIds: [77224] },
   { id: "farm", date: "2022-02-28", messageIds: [94366] },
   { id: "ethereum", date: "2023-05-17", messageIds: [363424, 372233] },
-  { id: "rebrand", date: "2026-03-01", precision: "month" },
+  { id: "rebrand", date: REBRAND_DATE },
   { id: "rebase", date: "2026-05-02" },
   {
     id: "immutable",

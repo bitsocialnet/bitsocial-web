@@ -2,9 +2,10 @@
   "nav": {
     "language": "Dil",
     "theme": "Tema",
-    "mainSite": "Ana Site",
+    "bitsocial": "Bitsocial",
     "faq": "SSS",
-    "richList": "Zengin listesi"
+    "richList": "Zengin listesi",
+    "chart": "Grafik"
   },
   "languageSelector": {
     "title": "Dil seçin",
@@ -404,19 +405,19 @@
       },
       "holderB": {
         "name": "Sahip B",
-        "summary": "4 sahibinden 2'sinin imzasını gerektiren, tek bir öğleden sonra 14 cüzdandan eski BSO toplayan bir Safe multisig ve sahiplerinden biri.",
+        "summary": "4 sahibinden 2'sinin imzasını gerektiren, tek bir öğleden sonra 14 cüzdandan PLEB toplayan bir Safe multisig ve sahiplerinden biri.",
         "evidence": {
           "owners": "Safe, 4 sahibinden 2'sinin imzalamasını gerektirir. Sahiplerden biri doğrudan da BSO tutuyor. Dört sahip, birden fazla anahtarı olan tek bir kişi ya da küçük bir grup anlamına gelebilir.",
-          "consolidation": "1 Haziran 2024'te, 16:08 ile 17:51 UTC arasında Safe, 14 cüzdandan 120,5 milyar eski BSO aldı. İlk transfer, Safe'in hemen geri gönderdiği 10 token'lık bir testti.",
-          "vesting": "12 Ağustos 2024'te Safe, 60,5 milyar eski BSO'yu bir Sablier vesting akışına taşıdı. 2026 geçişi bu akışı yeniden Safe'e yazdı; Safe'in iki geçiş transferi almasının nedeni budur.",
-          "commonSender": "Aynı cüzdan hem Safe sahibine (8 Mart 2024'te 13,7 milyar) hem de Safe'e (1 Haziran 2024'te 1,5 milyar) eski BSO gönderdi."
+          "consolidation": "1 Haziran 2024'te, 16:08 ile 17:51 UTC arasında Safe, 14 cüzdandan 120,5 milyar PLEB aldı. İlk transfer, Safe'in hemen geri gönderdiği 10 token'lık bir testti.",
+          "vesting": "12 Ağustos 2024'te Safe, 60,5 milyar PLEB'i bir Sablier vesting akışına taşıdı. 2026 geçişi bu akışı yeniden Safe'e yazdı; Safe'in iki geçiş transferi almasının nedeni budur.",
+          "commonSender": "Aynı cüzdan hem Safe sahibine (8 Mart 2024'te 13,7 milyar) hem de Safe'e (1 Haziran 2024'te 1,5 milyar) PLEB gönderdi."
         }
       },
       "holderC": {
         "name": "Sahip C",
-        "summary": "Aynı göndericiden eski BSO alan iki cüzdan.",
+        "summary": "Aynı göndericiden PLEB alan iki cüzdan.",
         "evidence": {
-          "commonSender": "Bir cüzdan 19 Ağustos 2024'te birincisine 4,7 milyar eski BSO, 14 Kasım 2025'te ikincisine 15,4 milyar gönderdi. Ortak bir gönderici, iki alıcıya satış yapan tek bir satıcı da olabilir."
+          "commonSender": "Bir cüzdan 19 Ağustos 2024'te birincisine 4,7 milyar PLEB, 14 Kasım 2025'te ikincisine 15,4 milyar gönderdi. Ortak bir gönderici, iki alıcıya satış yapan tek bir satıcı da olabilir."
         }
       },
       "holderD": {
@@ -430,21 +431,21 @@
         "name": "Sahip E",
         "summary": "Aynı kaynaktan doldurulan iki cüzdan.",
         "evidence": {
-          "commonSender": "Bir cüzdan, Ekim 2024 ile Ocak 2025 arasında yedi transferle birincisine 39,4 milyar eski BSO, 22 Kasım 2025'te ikincisine 2,0 milyar gönderdi."
+          "commonSender": "Bir cüzdan, Ekim 2024 ile Ocak 2025 arasında yedi transferle birincisine 39,4 milyar PLEB, 22 Kasım 2025'te ikincisine 2,0 milyar gönderdi."
         }
       },
       "holderF": {
         "name": "Sahip F",
         "summary": "Token'larını üç yeni cüzdana bölen ve onların gas ücretini ödeyen bir cüzdan.",
         "evidence": {
-          "split": "10 Mart 2024'te, yedi dakika içinde, bir cüzdan üç yeni cüzdana yuvarlak miktarlarda eski BSO (12 milyar, 8 milyar ve 4 milyar) gönderdi ve aynı gün ikisine gas için ETH gönderdi. Kendisi hâlâ BSO tutuyor."
+          "split": "10 Mart 2024'te, yedi dakika içinde, bir cüzdan üç yeni cüzdana yuvarlak miktarlarda PLEB (12 milyar, 8 milyar ve 4 milyar) gönderdi ve aynı gün ikisine gas için ETH gönderdi. Kendisi hâlâ BSO tutuyor."
         }
       },
       "holderG": {
         "name": "Sahip G",
         "summary": "Aynı gönderici tarafından, üç yıl arayla fonlanan iki cüzdan.",
         "evidence": {
-          "commonSender": "Bir cüzdan, Nisan 2022'de ikincisine 4,7 milyar PLEB, Ocak 2025'te birincisine 6 milyar eski BSO gönderdi."
+          "commonSender": "Bir cüzdan, Nisan 2022'de Avalanche'ta ikincisine 4,7 milyar PLEB, Ocak 2025'te Ethereum'da birincisine 6 milyar PLEB gönderdi."
         }
       },
       "holderH": {
@@ -458,7 +459,7 @@
         "name": "Sahip I",
         "summary": "Aralarında tekrarlanan transferler bulunan iki cüzdan.",
         "evidence": {
-          "directTransfers": "İkinci cüzdan, 30 Ekim 2023'te birincisine 13,2 milyar eski BSO, 8 Kasım 2023'te de 5 milyar gönderdi."
+          "directTransfers": "İkinci cüzdan, 30 Ekim 2023'te birincisine 13,2 milyar PLEB, 8 Kasım 2023'te de 5 milyar gönderdi."
         }
       }
     },
@@ -572,11 +573,11 @@
         },
         "rebrand": {
           "title": "plebbit, Bitsocial oluyor",
-          "body": "Mart 2026 boyunca proje ve token'ı kademeli olarak Bitsocial adını alıyor."
+          "body": "plebbit yeni adını duyuruyor: Bitsocial. Zincir üzerinde token, mayıs ayına kadar PLEB adını koruyor."
         },
         "rebase": {
-          "title": "Arz 210 milyona ayarlanıyor",
-          "body": "İkinci nesil token, toplam arz tam olarak 210 milyon olacak şekilde rebase ediliyor: 7.114,6 eski token 1 oluyor."
+          "title": "PLEB, 210 milyon BSO oluyor",
+          "body": "İkinci nesil token'ın adı BSO olarak değiştiriliyor ve toplam arz tam olarak 210 milyon olacak şekilde rebase ediliyor: 7.114,6 PLEB 1 BSO oluyor."
         },
         "immutable": {
           "title": "BSO değiştirilemez hâle geliyor",
@@ -589,7 +590,7 @@
       "lead": "Grupların nasıl bulunduğu ve bu sayfanın neleri göremediği.",
       "howTitle": "Cüzdanlar nasıl bağlandı",
       "how": {
-        "transfers": "İki sıradan cüzdan arasındaki her PLEB, eski BSO ve BSO transferi izlendi; borsalar, router'lar, havuzlar ve diğer sözleşmeler hariç tutuldu. Safe multisig'ler sahiplerine bağlandı.",
+        "transfers": "Avalanche ve Ethereum'da iki sıradan cüzdan arasındaki her PLEB ve BSO transferi izlendi; borsalar, router'lar, havuzlar ve diğer sözleşmeler hariç tutuldu. Safe multisig'ler sahiplerine bağlandı.",
         "funders": "Her büyük sahibe ilk kez AVAX veya ETH gönderen cüzdan karşılaştırıldı. Borsalar binlerce cüzdanı fonladığı için yalnızca özel fon sağlayıcılar bağlantı sayılır.",
         "pattern": "Doğrudan bağlantısı olmayan cüzdanlar için alım davranışı, aynı dönemdeki tüm PLEB alıcılarıyla karşılaştırıldı.",
         "migrations": "Bakiyeler, BSO başına 7.114,6 PLEB oranıyla her iki geçiş boyunca takip edildi."
@@ -603,10 +604,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: Avalanche'ta PLEB",
-        "gen2": "Gen 2: Ethereum'da eski BSO",
+        "gen2": "Gen 2: Ethereum'da PLEB, Mayıs 2026'da adı BSO olarak değiştirildi",
         "gen3": "Gen 3: Bugünkü BSO"
       },
       "snapshot": "Bakiyeler ve fiyat Blockscout'tan: {{date}} itibarıyla {{count}} cüzdan. Yanlış ya da eksik bir bağlantı mı buldunuz? <contributeLink>Bu sayfayı iyileştir</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "BSO Fiyat Grafiği - 2022'den Beri Her İşlem",
+      "description": "BSO'nun 2022'deki ilk işleminden bu yana fiyatı ve piyasa değeri, üç sözleşmenin tamamında: Avalanche'ta PLEB, Ethereum'da PLEB ve bugünkü BSO; zincir üstü swap'lardan oluşturulan tek bir grafikte."
+    },
+    "hero": {
+      "title": "BSO'nun ilk işleminden bu yana fiyatı",
+      "lead": "Üç sözleşmenin tamamı tek bir grafikte: Avalanche'ta PLEB, Ethereum'da PLEB (adı 2026'da BSO olarak değiştirildi) ve bugünkü BSO. Eski fiyatlar, her iki geçişin de koruduğu oran olan BSO başına 7.114,6 PLEB üzerinden dönüştürülür. Her hareketin ardındaki hikâye, zengin listesindeki <historyLink>geçmiş</historyLink> bölümünde.",
+      "status": {
+        "live": "Uniswap havuzundan canlı: BSO fiyatı {{price}}. Güncelleme: {{ago}}.",
+        "loading": "{{date}} tarihine kadar günlük geçmiş. En güncel fiyatlar yükleniyor…",
+        "unavailable": "Canlı fiyatlar şu anda kullanılamıyor, bu yüzden grafik {{date}} tarihinde sona eriyor."
+      }
+    },
+    "panelTitle": "Günlük fiyat grafiği",
+    "summary": {
+      "price": "{{from}} ile {{to}} arasında günlük BSO fiyatı. En düşük kapanış {{low}}, en yüksek kapanış {{high}}, son {{latest}}.",
+      "mcap": "{{from}} ile {{to}} arasında günlük BSO piyasa değeri. En düşük kapanış {{low}}, en yüksek kapanış {{high}}, son {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Göster",
+      "metrics": {
+        "price": "Fiyat",
+        "mcap": "Piyasa değeri"
+      },
+      "rangeLabel": "Zaman aralığı",
+      "ranges": {
+        "1M": "1A",
+        "3M": "3A",
+        "1Y": "1Y",
+        "all": "Tümü"
+      },
+      "typeLabel": "Grafik türü",
+      "types": {
+        "line": "Çizgi",
+        "candles": "Mum"
+      },
+      "scaleLabel": "Ölçek",
+      "scales": {
+        "log": "Log",
+        "linear": "Doğrusal"
+      }
+    },
+    "legend": {
+      "since": "{{date}} tarihinden beri",
+      "ohlc": "A {{open}} · Y {{high}} · D {{low}} · K {{close}}",
+      "volume": "Hacim {{value}}"
+    },
+    "eras": {
+      "label": "Sözleşmeler. Dönemine yakınlaştırmak için birini seçin.",
+      "gen1": "Avalanche'ta PLEB",
+      "gen2": "Ethereum'da PLEB",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "bugün",
+      "rebrand": "Yeni ad: Bitsocial"
+    },
+    "method": {
+      "title": "Grafik nasıl oluşturuluyor",
+      "lead": "Her mum zincirdeki swap'lardan gelir, bu yüzden herhangi bir gün bir blok gezgininde kontrol edilebilir.",
+      "steps": {
+        "swaps": "Bir günün açılış, en yüksek, en düşük ve kapanış değerleri, o günün swap'larında ödenen ilk, en yüksek, en düşük ve son fiyattır. Günler UTC'ye göre hesaplanır ve fiyatlar her havuzun Swap olaylarından okunur.",
+        "usd": "Havuzlar AVAX veya ETH karşılığında işlem görür, bu yüzden her swap, gerçekleştiği saatteki Coinbase kuru üzerinden dolara çevrilir.",
+        "units": "Avalanche'ta ve <rebaseLink>2 Mayıs 2026'daki rebase</rebaseLink> gerçekleşene kadar Ethereum'da işlem gören PLEB, BSO başına gösterilir: fiyatı, her BSO'nun yerini aldığı PLEB sayısı olan 7.114,596 ile çarpılır.",
+        "pools": "Bir günde birden fazla havuzda işlem olduysa o günün mumunu en yüksek hacimli havuz belirler; böylece neredeyse boş bir havuz sahte bir fitil çizemez. Hacim tüm havuzların toplamıdır ve işlem olmayan bir gün son kapanışı tekrarlar.",
+        "mcap": "Piyasa değeri, kapanış fiyatı ile o günün toplam arzının çarpımıdır: sözleşmenin mint ettiği tüm token'lardan yaktığı tüm token'lar çıkarılır ve fiyat gibi BSO'ya dönüştürülür. Rebase'den sonra ve bugünkü BSO için arz sabit 210 milyondur.",
+        "eras": "Her sözleşmenin geçmişi, bir sonrakinin ilk işleminde sona erer. Ethereum sözleşmesi, onu rebase eden yükseltmeye kadar PLEB adını korudu; bu yükseltme, plebbit'in 18 Mart 2026'da Bitsocial olmasından altı hafta sonra geldi."
+      },
+      "poolsTitle": "Okunan havuzlar",
+      "eraDates": "{{from}} ile {{to}} arası",
+      "snapshot": "Geçmiş, {{date}} tarihine kadarki {{count}} swap'tan oluşturuldu. Daha yeni günler GeckoTerminal'den gelir ve bu sayfa açıkken her beş dakikada bir yenilenir. Yanlış bir mum mu fark ettiniz? <contributeLink>Bu sayfayı iyileştir</contributeLink>."
     }
   }
 }

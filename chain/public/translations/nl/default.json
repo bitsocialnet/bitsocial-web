@@ -2,9 +2,10 @@
   "nav": {
     "language": "Taal",
     "theme": "Thema",
-    "mainSite": "Hoofdsite",
+    "bitsocial": "Bitsocial",
     "faq": "FAQ",
-    "richList": "Rijkenlijst"
+    "richList": "Rijkenlijst",
+    "chart": "Grafiek"
   },
   "languageSelector": {
     "title": "Taal selecteren",
@@ -404,19 +405,19 @@
       },
       "holderB": {
         "name": "Houder B",
-        "summary": "Een 2-van-4 Safe-multisig die op één middag oude BSO uit 14 wallets verzamelde, plus een van de eigenaren.",
+        "summary": "Een 2-van-4 Safe-multisig die op één middag PLEB uit 14 wallets verzamelde, plus een van de eigenaren.",
         "evidence": {
           "owners": "De Safe heeft handtekeningen van 2 van zijn 4 eigenaren nodig. Eén eigenaar heeft ook zelf direct BSO. Vier eigenaren kan één persoon met meerdere sleutels betekenen of een kleine groep.",
-          "consolidation": "Op 1 juni 2024 ontving de Safe tussen 16:08 en 17:51 UTC 120,5 mld. oude BSO uit 14 wallets. De eerste transfer was een test van 10 tokens die de Safe meteen terugstuurde.",
-          "vesting": "Op 12 augustus 2024 verplaatste de Safe 60,5 mld. oude BSO naar een vestingstream op Sablier. Bij de migratie van 2026 werd die stream teruggeboekt naar de Safe, en daarom ontving de Safe twee migratietransfers.",
-          "commonSender": "Dezelfde wallet stuurde oude BSO naar zowel de Safe-eigenaar (13,7 mld. op 8 maart 2024) als de Safe (1,5 mld. op 1 juni 2024)."
+          "consolidation": "Op 1 juni 2024 ontving de Safe tussen 16:08 en 17:51 UTC 120,5 mld. PLEB uit 14 wallets. De eerste transfer was een test van 10 tokens die de Safe meteen terugstuurde.",
+          "vesting": "Op 12 augustus 2024 verplaatste de Safe 60,5 mld. PLEB naar een vestingstream op Sablier. Bij de migratie van 2026 werd die stream teruggeboekt naar de Safe, en daarom ontving de Safe twee migratietransfers.",
+          "commonSender": "Dezelfde wallet stuurde PLEB naar zowel de Safe-eigenaar (13,7 mld. op 8 maart 2024) als de Safe (1,5 mld. op 1 juni 2024)."
         }
       },
       "holderC": {
         "name": "Houder C",
-        "summary": "Twee wallets die oude BSO ontvingen van dezelfde afzender.",
+        "summary": "Twee wallets die PLEB ontvingen van dezelfde afzender.",
         "evidence": {
-          "commonSender": "Eén wallet stuurde op 19 augustus 2024 4,7 mld. oude BSO naar de eerste en op 14 november 2025 15,4 mld. naar de tweede. Een gedeelde afzender kan ook één verkoper zijn die twee kopers bedient."
+          "commonSender": "Eén wallet stuurde op 19 augustus 2024 4,7 mld. PLEB naar de eerste en op 14 november 2025 15,4 mld. naar de tweede. Een gedeelde afzender kan ook één verkoper zijn die twee kopers bedient."
         }
       },
       "holderD": {
@@ -430,21 +431,21 @@
         "name": "Houder E",
         "summary": "Twee wallets gevuld vanuit dezelfde bron.",
         "evidence": {
-          "commonSender": "Eén wallet stuurde de eerste 39,4 mld. oude BSO in zeven transfers tussen oktober 2024 en januari 2025, en de tweede 2,0 mld. op 22 november 2025."
+          "commonSender": "Eén wallet stuurde de eerste 39,4 mld. PLEB in zeven transfers tussen oktober 2024 en januari 2025, en de tweede 2,0 mld. op 22 november 2025."
         }
       },
       "holderF": {
         "name": "Houder F",
         "summary": "Eén wallet die zijn tokens over drie nieuwe wallets verdeelde en hun gas betaalde.",
         "evidence": {
-          "split": "Op 10 maart 2024 stuurde één wallet binnen zeven minuten ronde bedragen oude BSO (12 mld., 8 mld. en 4 mld.) naar drie nieuwe wallets en stuurde twee daarvan dezelfde dag ETH voor gas. De wallet heeft zelf nog steeds BSO."
+          "split": "Op 10 maart 2024 stuurde één wallet binnen zeven minuten ronde bedragen PLEB (12 mld., 8 mld. en 4 mld.) naar drie nieuwe wallets en stuurde twee daarvan dezelfde dag ETH voor gas. De wallet heeft zelf nog steeds BSO."
         }
       },
       "holderG": {
         "name": "Houder G",
         "summary": "Twee wallets gefinancierd door dezelfde afzender, met drie jaar ertussen.",
         "evidence": {
-          "commonSender": "Eén wallet stuurde de tweede 4,7 mld. PLEB in april 2022 en de eerste 6 mld. oude BSO in januari 2025."
+          "commonSender": "Eén wallet stuurde de tweede 4,7 mld. PLEB op Avalanche in april 2022 en de eerste 6 mld. PLEB op Ethereum in januari 2025."
         }
       },
       "holderH": {
@@ -458,7 +459,7 @@
         "name": "Houder I",
         "summary": "Twee wallets met herhaalde transfers tussen hen.",
         "evidence": {
-          "directTransfers": "De tweede wallet stuurde de eerste 13,2 mld. oude BSO op 30 oktober 2023 en 5 mld. op 8 november 2023."
+          "directTransfers": "De tweede wallet stuurde de eerste 13,2 mld. PLEB op 30 oktober 2023 en 5 mld. op 8 november 2023."
         }
       }
     },
@@ -572,11 +573,11 @@
         },
         "rebrand": {
           "title": "plebbit wordt Bitsocial",
-          "body": "In de loop van maart 2026 nemen het project en zijn token geleidelijk de naam Bitsocial aan."
+          "body": "plebbit maakt zijn nieuwe naam bekend: Bitsocial. On-chain houdt de token de naam PLEB tot mei."
         },
         "rebase": {
-          "title": "Aanbod vastgezet op 210 miljoen",
-          "body": "De token van de tweede generatie krijgt een rebase zodat het totale aanbod precies 210 miljoen is: 7.114,6 oude tokens worden er 1."
+          "title": "PLEB wordt 210 miljoen BSO",
+          "body": "De token van de tweede generatie wordt omgedoopt tot BSO en krijgt een rebase zodat het totale aanbod precies 210 miljoen is: 7.114,6 PLEB worden 1 BSO."
         },
         "immutable": {
           "title": "BSO wordt onveranderlijk",
@@ -589,7 +590,7 @@
       "lead": "Hoe de groepen zijn gevonden, en wat deze pagina niet kan zien.",
       "howTitle": "Hoe wallets zijn gekoppeld",
       "how": {
-        "transfers": "Elke transfer van PLEB, oude BSO en BSO tussen twee gewone wallets is getraceerd, met uitzondering van exchanges, routers, pools en andere contracten. Safe-multisigs zijn gekoppeld aan hun eigenaren.",
+        "transfers": "Elke transfer van PLEB en BSO tussen twee gewone wallets, op Avalanche en Ethereum, is getraceerd, met uitzondering van exchanges, routers, pools en andere contracten. Safe-multisigs zijn gekoppeld aan hun eigenaren.",
         "funders": "De eerste wallet die elke grote houder AVAX of ETH stuurde, is vergeleken. Exchanges financieren duizenden wallets, dus alleen privéfinanciers tellen als koppeling.",
         "pattern": "Voor wallets zonder directe koppeling is het koopgedrag vergeleken met dat van elke PLEB-koper uit dezelfde periode.",
         "migrations": "Saldi zijn door beide migraties heen gevolgd tegen 7.114,6 PLEB per BSO."
@@ -603,10 +604,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: PLEB op Avalanche",
-        "gen2": "Gen 2: oude BSO op Ethereum",
+        "gen2": "Gen 2: PLEB op Ethereum, in mei 2026 omgedoopt tot BSO",
         "gen3": "Gen 3: BSO vandaag"
       },
       "snapshot": "Saldi en prijs van Blockscout: {{count}} wallets per {{date}}. Een verkeerde of ontbrekende koppeling gevonden? <contributeLink>Verbeter deze pagina</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "BSO-koersgrafiek - Elke trade sinds 2022",
+      "description": "De koers en marktkapitalisatie van BSO sinds de eerste trade in 2022, over alle drie de contracten: PLEB op Avalanche, PLEB op Ethereum en BSO vandaag, in één grafiek opgebouwd uit on-chain swaps."
+    },
+    "hero": {
+      "title": "De koers van BSO sinds de eerste trade",
+      "lead": "Eén grafiek over alle drie de contracten: PLEB op Avalanche, PLEB op Ethereum, dat in 2026 de naam BSO kreeg, en BSO vandaag. Oudere koersen zijn omgerekend tegen 7.114,6 PLEB per BSO, de verhouding die beide migraties aanhielden. Het verhaal achter elke beweging staat in de <historyLink>geschiedenis</historyLink> van de rijkenlijst.",
+      "status": {
+        "live": "Live van de Uniswap-pool: BSO op {{price}}. Bijgewerkt {{ago}}.",
+        "loading": "Dagelijkse geschiedenis tot {{date}}. Laatste koersen laden…",
+        "unavailable": "Livekoersen zijn nu niet beschikbaar, dus de grafiek eindigt op {{date}}."
+      }
+    },
+    "panelTitle": "Dagelijkse koersgrafiek",
+    "summary": {
+      "price": "Dagelijkse BSO-koers van {{from}} tot {{to}}. Laagste slotkoers {{low}}, hoogste slotkoers {{high}}, laatste {{latest}}.",
+      "mcap": "Dagelijkse marktkapitalisatie van BSO van {{from}} tot {{to}}. Laagste slotstand {{low}}, hoogste slotstand {{high}}, laatste {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Toon",
+      "metrics": {
+        "price": "Koers",
+        "mcap": "Marktkap."
+      },
+      "rangeLabel": "Periode",
+      "ranges": {
+        "1M": "1M",
+        "3M": "3M",
+        "1Y": "1J",
+        "all": "Alles"
+      },
+      "typeLabel": "Grafiektype",
+      "types": {
+        "line": "Lijn",
+        "candles": "Candles"
+      },
+      "scaleLabel": "Schaal",
+      "scales": {
+        "log": "Log",
+        "linear": "Lineair"
+      }
+    },
+    "legend": {
+      "since": "sinds {{date}}",
+      "ohlc": "O {{open}} · H {{high}} · L {{low}} · C {{close}}",
+      "volume": "Volume {{value}}"
+    },
+    "eras": {
+      "label": "Contracten. Kies er een om in te zoomen op de bijbehorende periode.",
+      "gen1": "PLEB op Avalanche",
+      "gen2": "PLEB op Ethereum",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "nu",
+      "rebrand": "Rebranding naar Bitsocial"
+    },
+    "method": {
+      "title": "Hoe de grafiek is opgebouwd",
+      "lead": "Elke candle komt uit swaps op de chain, dus elke dag is te controleren in een explorer.",
+      "steps": {
+        "swaps": "De openingskoers, hoogste, laagste en slotkoers van een dag zijn de eerste, hoogste, laagste en laatste prijs die in de swaps van die dag is betaald, in UTC, gelezen uit de Swap-events van elke pool.",
+        "usd": "Pools handelen tegen AVAX of ETH, dus elke swap is omgerekend naar dollars tegen de koers van Coinbase voor het uur waarin hij plaatsvond.",
+        "units": "PLEB, op Avalanche en op Ethereum tot de <rebaseLink>rebase van 2 mei 2026</rebaseLink>, wordt per BSO getoond: de koers is vermenigvuldigd met 7.114,596, het aantal PLEB dat elke BSO verving.",
+        "pools": "Als er op een dag in meer dan één pool is gehandeld, bepaalt de pool met het meeste volume de candle van die dag, zodat een bijna lege pool geen valse uitschieter kan tekenen. Het volume telt alle pools op, en een dag zonder trades herhaalt de laatste slotkoers.",
+        "mcap": "Marktkapitalisatie is de slotkoers maal het totale aanbod van die dag: alle tokens die het contract heeft gemint min alle tokens die het heeft verbrand, net als de koers omgerekend naar BSO. Na de rebase, en voor BSO vandaag, is het aanbod vast op 210 miljoen.",
+        "eras": "De geschiedenis van elk contract eindigt bij de eerste trade van het volgende. Het Ethereum-contract hield de naam PLEB tot de upgrade die de rebase uitvoerde, zes weken nadat plebbit op 18 maart 2026 Bitsocial werd."
+      },
+      "poolsTitle": "Gelezen pools",
+      "eraDates": "{{from}} tot {{to}}",
+      "snapshot": "Geschiedenis opgebouwd uit {{count}} swaps tot {{date}}. Nieuwere dagen komen van GeckoTerminal en worden elke vijf minuten ververst zolang deze pagina openstaat. Een verkeerde candle gezien? <contributeLink>Verbeter deze pagina</contributeLink>."
     }
   }
 }

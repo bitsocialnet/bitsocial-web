@@ -2,9 +2,10 @@
   "nav": {
     "language": "Bahasa",
     "theme": "Tema",
-    "mainSite": "Situs Utama",
+    "bitsocial": "Bitsocial",
     "faq": "FAQ",
-    "richList": "Rich list"
+    "richList": "Rich list",
+    "chart": "Grafik"
   },
   "languageSelector": {
     "title": "Pilih bahasa",
@@ -399,19 +400,19 @@
       },
       "holderB": {
         "name": "Pemegang B",
-        "summary": "Multisig Safe 2-dari-4 yang mengumpulkan BSO lama dari 14 dompet dalam satu sore, ditambah salah satu pemiliknya.",
+        "summary": "Multisig Safe 2-dari-4 yang mengumpulkan PLEB dari 14 dompet dalam satu sore, ditambah salah satu pemiliknya.",
         "evidence": {
           "owners": "Safe ini membutuhkan tanda tangan 2 dari 4 pemiliknya. Salah satu pemilik juga memegang BSO secara langsung. Empat pemilik bisa berarti satu orang dengan beberapa kunci atau sekelompok kecil orang.",
-          "consolidation": "Pada 1 Juni 2024, antara pukul 16:08 dan 17:51 UTC, Safe menerima 120,5 miliar BSO lama dari 14 dompet. Transfer pertama adalah uji coba 10 token yang langsung dikirim balik oleh Safe.",
-          "vesting": "Pada 12 Agustus 2024, Safe memindahkan 60,5 miliar BSO lama ke stream vesting Sablier. Migrasi 2026 mengkreditkan stream itu kembali ke Safe, itulah sebabnya Safe menerima dua transfer migrasi.",
-          "commonSender": "Dompet yang sama mengirim BSO lama ke pemilik Safe (13,7 miliar pada 8 Maret 2024) dan ke Safe itu sendiri (1,5 miliar pada 1 Juni 2024)."
+          "consolidation": "Pada 1 Juni 2024, antara pukul 16:08 dan 17:51 UTC, Safe menerima 120,5 miliar PLEB dari 14 dompet. Transfer pertama adalah uji coba 10 token yang langsung dikirim balik oleh Safe.",
+          "vesting": "Pada 12 Agustus 2024, Safe memindahkan 60,5 miliar PLEB ke stream vesting Sablier. Migrasi 2026 mengkreditkan stream itu kembali ke Safe, itulah sebabnya Safe menerima dua transfer migrasi.",
+          "commonSender": "Dompet yang sama mengirim PLEB ke pemilik Safe (13,7 miliar pada 8 Maret 2024) dan ke Safe itu sendiri (1,5 miliar pada 1 Juni 2024)."
         }
       },
       "holderC": {
         "name": "Pemegang C",
-        "summary": "Dua dompet yang menerima BSO lama dari pengirim yang sama.",
+        "summary": "Dua dompet yang menerima PLEB dari pengirim yang sama.",
         "evidence": {
-          "commonSender": "Satu dompet mengirim 4,7 miliar BSO lama ke dompet pertama pada 19 Agustus 2024 dan 15,4 miliar ke dompet kedua pada 14 November 2025. Pengirim yang sama bisa juga berarti satu penjual yang melayani dua pembeli."
+          "commonSender": "Satu dompet mengirim 4,7 miliar PLEB ke dompet pertama pada 19 Agustus 2024 dan 15,4 miliar ke dompet kedua pada 14 November 2025. Pengirim yang sama bisa juga berarti satu penjual yang melayani dua pembeli."
         }
       },
       "holderD": {
@@ -425,21 +426,21 @@
         "name": "Pemegang E",
         "summary": "Dua dompet yang diisi dari sumber yang sama.",
         "evidence": {
-          "commonSender": "Satu dompet mengirim 39,4 miliar BSO lama ke dompet pertama dalam tujuh transfer antara Oktober 2024 dan Januari 2025, dan 2,0 miliar ke dompet kedua pada 22 November 2025."
+          "commonSender": "Satu dompet mengirim 39,4 miliar PLEB ke dompet pertama dalam tujuh transfer antara Oktober 2024 dan Januari 2025, dan 2,0 miliar ke dompet kedua pada 22 November 2025."
         }
       },
       "holderF": {
         "name": "Pemegang F",
         "summary": "Satu dompet yang membagi tokennya ke tiga dompet baru dan membayar gas mereka.",
         "evidence": {
-          "split": "Pada 10 Maret 2024, dalam tujuh menit, satu dompet mengirim BSO lama dalam jumlah bulat (12 miliar, 8 miliar, dan 4 miliar) ke tiga dompet baru dan pada hari yang sama mengirim ETH untuk gas ke dua di antaranya. Dompet itu sendiri masih memegang BSO."
+          "split": "Pada 10 Maret 2024, dalam tujuh menit, satu dompet mengirim PLEB dalam jumlah bulat (12 miliar, 8 miliar, dan 4 miliar) ke tiga dompet baru dan pada hari yang sama mengirim ETH untuk gas ke dua di antaranya. Dompet itu sendiri masih memegang BSO."
         }
       },
       "holderG": {
         "name": "Pemegang G",
         "summary": "Dua dompet yang didanai oleh pengirim yang sama, dengan selang tiga tahun.",
         "evidence": {
-          "commonSender": "Satu dompet mengirim 4,7 miliar PLEB ke dompet kedua pada April 2022 dan 6 miliar BSO lama ke dompet pertama pada Januari 2025."
+          "commonSender": "Satu dompet mengirim 4,7 miliar PLEB di Avalanche ke dompet kedua pada April 2022 dan 6 miliar PLEB di Ethereum ke dompet pertama pada Januari 2025."
         }
       },
       "holderH": {
@@ -453,7 +454,7 @@
         "name": "Pemegang I",
         "summary": "Dua dompet dengan transfer berulang di antara mereka.",
         "evidence": {
-          "directTransfers": "Dompet kedua mengirim 13,2 miliar BSO lama ke dompet pertama pada 30 Oktober 2023 dan 5 miliar pada 8 November 2023."
+          "directTransfers": "Dompet kedua mengirim 13,2 miliar PLEB ke dompet pertama pada 30 Oktober 2023 dan 5 miliar pada 8 November 2023."
         }
       }
     },
@@ -567,11 +568,11 @@
         },
         "rebrand": {
           "title": "plebbit menjadi Bitsocial",
-          "body": "Sepanjang Maret 2026, proyek ini dan tokennya secara bertahap memakai nama Bitsocial."
+          "body": "plebbit mengumumkan nama barunya, Bitsocial. Secara on-chain, token tetap bernama PLEB hingga Mei."
         },
         "rebase": {
-          "title": "Suplai ditetapkan 210 juta",
-          "body": "Token generasi kedua di-rebase agar total suplai tepat 210 juta: 7.114,6 token lama menjadi 1."
+          "title": "PLEB menjadi 210 juta BSO",
+          "body": "Token generasi kedua berganti nama menjadi BSO dan di-rebase agar total suplai tepat 210 juta: 7.114,6 PLEB menjadi 1 BSO."
         },
         "immutable": {
           "title": "BSO menjadi tidak dapat diubah",
@@ -584,7 +585,7 @@
       "lead": "Bagaimana kelompok-kelompok ini ditemukan, dan apa yang tidak bisa dilihat halaman ini.",
       "howTitle": "Bagaimana dompet ditautkan",
       "how": {
-        "transfers": "Setiap transfer PLEB, BSO lama, dan BSO antara dua dompet biasa ditelusuri, tidak termasuk exchange, router, pool, dan kontrak lainnya. Multisig Safe ditautkan ke pemiliknya.",
+        "transfers": "Setiap transfer PLEB dan BSO antara dua dompet biasa, di Avalanche dan Ethereum, ditelusuri, tidak termasuk exchange, router, pool, dan kontrak lainnya. Multisig Safe ditautkan ke pemiliknya.",
         "funders": "Untuk setiap pemegang besar, dompet pertama yang mengirim AVAX atau ETH kepadanya dibandingkan. Exchange mendanai ribuan dompet, jadi hanya penyandang dana pribadi yang dihitung sebagai tautan.",
         "pattern": "Untuk dompet tanpa tautan langsung, perilaku pembelian dibandingkan dengan setiap pembeli PLEB pada periode yang sama.",
         "migrations": "Saldo diikuti melalui kedua migrasi dengan rasio 7.114,6 PLEB per BSO."
@@ -598,10 +599,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: PLEB di Avalanche",
-        "gen2": "Gen 2: BSO lama di Ethereum",
+        "gen2": "Gen 2: PLEB di Ethereum, berganti nama menjadi BSO pada Mei 2026",
         "gen3": "Gen 3: BSO saat ini"
       },
       "snapshot": "Saldo dan harga dari Blockscout: {{count}} dompet per {{date}}. Menemukan tautan yang salah atau terlewat? <contributeLink>Tingkatkan halaman ini</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "Grafik Harga BSO - Setiap Perdagangan Sejak 2022",
+      "description": "Harga dan kapitalisasi pasar BSO sejak perdagangan pertamanya pada 2022, di ketiga kontrak: PLEB di Avalanche, PLEB di Ethereum, dan BSO saat ini, dalam satu grafik yang dibangun dari swap on-chain."
+    },
+    "hero": {
+      "title": "Harga BSO sejak perdagangan pertamanya",
+      "lead": "Satu grafik untuk ketiga kontrak: PLEB di Avalanche, PLEB di Ethereum, yang berganti nama menjadi BSO pada 2026, dan BSO saat ini. Harga lama dikonversi dengan rasio 7.114,6 PLEB per BSO, rasio yang dipertahankan di kedua migrasi. Cerita di balik setiap pergerakan ada di <historyLink>riwayat</historyLink> rich list.",
+      "status": {
+        "live": "Langsung dari pool Uniswap: BSO di {{price}}. Diperbarui {{ago}}.",
+        "loading": "Riwayat harian hingga {{date}}. Memuat harga terbaru…",
+        "unavailable": "Harga langsung sedang tidak tersedia, jadi grafik berakhir pada {{date}}."
+      }
+    },
+    "panelTitle": "Grafik harga harian",
+    "summary": {
+      "price": "Harga harian BSO dari {{from}} hingga {{to}}. Penutupan terendah {{low}}, penutupan tertinggi {{high}}, terbaru {{latest}}.",
+      "mcap": "Kapitalisasi pasar harian BSO dari {{from}} hingga {{to}}. Penutupan terendah {{low}}, penutupan tertinggi {{high}}, terbaru {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Tampilkan",
+      "metrics": {
+        "price": "Harga",
+        "mcap": "Kapitalisasi pasar"
+      },
+      "rangeLabel": "Rentang waktu",
+      "ranges": {
+        "1M": "1B",
+        "3M": "3B",
+        "1Y": "1T",
+        "all": "Semua"
+      },
+      "typeLabel": "Jenis grafik",
+      "types": {
+        "line": "Garis",
+        "candles": "Candle"
+      },
+      "scaleLabel": "Skala",
+      "scales": {
+        "log": "Log",
+        "linear": "Linear"
+      }
+    },
+    "legend": {
+      "since": "sejak {{date}}",
+      "ohlc": "O {{open}} · H {{high}} · L {{low}} · C {{close}}",
+      "volume": "Volume {{value}}"
+    },
+    "eras": {
+      "label": "Kontrak. Pilih salah satu untuk memperbesar ke eranya.",
+      "gen1": "PLEB di Avalanche",
+      "gen2": "PLEB di Ethereum",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "sekarang",
+      "rebrand": "Rebrand ke Bitsocial"
+    },
+    "method": {
+      "title": "Cara grafik ini dibuat",
+      "lead": "Setiap candle berasal dari swap di chain, jadi hari apa pun bisa diperiksa di explorer.",
+      "steps": {
+        "swaps": "Pembukaan, tertinggi, terendah, dan penutupan suatu hari adalah harga pertama, tertinggi, terendah, dan terakhir yang dibayarkan dalam swap hari itu, dalam UTC, yang dibaca dari event Swap setiap pool.",
+        "usd": "Pool diperdagangkan terhadap AVAX atau ETH, jadi setiap swap dikonversi ke dolar dengan kurs Coinbase pada jam swap itu terjadi.",
+        "units": "PLEB, di Avalanche dan di Ethereum hingga <rebaseLink>rebase pada 2 Mei 2026</rebaseLink>, ditampilkan per BSO: harganya dikalikan 7.114,596, jumlah PLEB yang digantikan oleh setiap BSO.",
+        "pools": "Jika lebih dari satu pool diperdagangkan pada hari yang sama, pool dengan volume terbesar menentukan candle hari itu, sehingga pool yang hampir kosong tidak bisa menggambar wick palsu. Volume menjumlahkan semua pool, dan hari tanpa perdagangan mengulang penutupan terakhir.",
+        "mcap": "Kapitalisasi pasar adalah penutupan dikali total suplai hari itu: setiap token yang di-mint kontrak dikurangi setiap token yang dibakarnya, dikonversi ke BSO seperti harga. Setelah rebase, dan untuk BSO saat ini, suplainya tetap 210 juta.",
+        "eras": "Riwayat setiap kontrak berakhir pada perdagangan pertama kontrak berikutnya. Kontrak Ethereum tetap memakai nama PLEB hingga upgrade yang menjalankan rebase, enam minggu setelah plebbit menjadi Bitsocial pada 18 Maret 2026."
+      },
+      "poolsTitle": "Pool yang dibaca",
+      "eraDates": "{{from}} hingga {{to}}",
+      "snapshot": "Riwayat dibangun dari {{count}} swap hingga {{date}}. Hari-hari yang lebih baru berasal dari GeckoTerminal dan diperbarui setiap lima menit selama halaman ini terbuka. Melihat candle yang salah? <contributeLink>Tingkatkan halaman ini</contributeLink>."
     }
   }
 }

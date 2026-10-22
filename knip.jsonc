@@ -13,4 +13,10 @@
     // Loaded from Tailwind config, but still misreported by Knip in this repo's config graph.
     "tailwindcss-animate",
   ],
+  "workspaces": {
+    "chain": {
+      // One module per HTML entry: Knip's Vite plugin only follows the root index.html.
+      "entry": ["src/main.tsx!", "src/rich-list-main.tsx!", "src/chart-main.tsx!"],
+    },
+  },
 }

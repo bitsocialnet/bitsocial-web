@@ -7,11 +7,12 @@ import { useRichList } from "./data-context";
 import { type Formatters, useFormatters } from "./format";
 import { entityCategory } from "@/lib/rich-list/data";
 import { cn } from "@/lib/utils";
-import { AddressLink, CategoryBadge } from "./primitives";
+import { AddressLink, CategoryBadge, SegmentedControl } from "./primitives";
 
 const PAGE_SIZE = 25;
 
-type View = "grouped" | "wallets";
+const VIEWS = ["grouped", "wallets"] as const;
+type View = (typeof VIEWS)[number];
 
 function EntityName({ entityId }: { entityId: string }) {
   const { t } = useTranslation();
@@ -87,19 +88,13 @@ export default function HoldersTable() {
   return (
     <div className="rl-holders">
       <div className="rl-controls">
-        <div className="rl-segmented" role="group" aria-label={t("richList.table.viewLabel")}>
-          {(["grouped", "wallets"] as const).map((option) => (
-            <button
-              key={option}
-              type="button"
-              aria-pressed={view === option}
-              className="rl-segmented-option"
-              onClick={() => setView(option)}
-            >
-              {t(`richList.table.view.${option}`)}
-            </button>
-          ))}
-        </div>
+        <SegmentedControl
+          label={t("richList.table.viewLabel")}
+          options={VIEWS}
+          value={view}
+          onChange={setView}
+          optionLabel={(option) => t(`richList.table.view.${option}`)}
+        />
         <label className="rl-search" htmlFor={searchId}>
           <Search aria-hidden size={16} strokeWidth={1.8} />
           <span className="sr-only">{t("richList.table.searchLabel")}</span>

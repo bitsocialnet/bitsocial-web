@@ -4,6 +4,7 @@ import {
   ABOUT_URL,
   BITSOCIAL_URL,
   BLOG_URL,
+  CHART_PATH,
   CONTRIBUTE_URL,
   FOOTER_TOKEN_LINKS,
   GITHUB_URL,
@@ -82,6 +83,11 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a href={CHART_PATH} className={linkClassName}>
+                  {t("nav.chart")}
+                </a>
+              </li>
               <li>
                 <a href={RICH_LIST_PATH} className={linkClassName}>
                   {t("nav.richList")}

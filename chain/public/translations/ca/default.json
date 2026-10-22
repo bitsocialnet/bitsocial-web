@@ -2,9 +2,10 @@
   "nav": {
     "language": "Idioma",
     "theme": "Tema",
-    "mainSite": "Web principal",
+    "bitsocial": "Bitsocial",
     "faq": "FAQ",
-    "richList": "Llista de posseïdors"
+    "richList": "Llista de posseïdors",
+    "chart": "Gràfic"
   },
   "languageSelector": {
     "title": "Selecciona l'idioma",
@@ -409,19 +410,19 @@
       },
       "holderB": {
         "name": "Posseïdor B",
-        "summary": "Una multisig Safe 2 de 4 que va reunir BSO antic de 14 carteres en una sola tarda, més un dels seus propietaris.",
+        "summary": "Una multisig Safe 2 de 4 que va reunir PLEB de 14 carteres en una sola tarda, més un dels seus propietaris.",
         "evidence": {
           "owners": "El Safe necessita la signatura de 2 dels seus 4 propietaris. Un propietari també té BSO directament. Quatre propietaris poden ser una persona amb diverses claus o un grup petit.",
-          "consolidation": "L'1 de juny de 2024, entre les 16:08 i les 17:51 UTC, el Safe va rebre 120.500 milions de BSO antics de 14 carteres. La primera transferència va ser una prova de 10 tokens que el Safe va retornar immediatament.",
-          "vesting": "El 12 d'agost de 2024, el Safe va moure 60.500 milions de BSO antics a un stream de vesting de Sablier. La migració del 2026 va abonar aquest stream de nou al Safe, i per això el Safe va rebre dues transferències de migració.",
-          "commonSender": "La mateixa cartera va enviar BSO antic tant al propietari del Safe (13.700 milions el 8 de març de 2024) com al Safe (1.500 milions l'1 de juny de 2024)."
+          "consolidation": "L'1 de juny de 2024, entre les 16:08 i les 17:51 UTC, el Safe va rebre 120.500 milions de PLEB de 14 carteres. La primera transferència va ser una prova de 10 tokens que el Safe va retornar immediatament.",
+          "vesting": "El 12 d'agost de 2024, el Safe va moure 60.500 milions de PLEB a un stream de vesting de Sablier. La migració del 2026 va abonar aquest stream de nou al Safe, i per això el Safe va rebre dues transferències de migració.",
+          "commonSender": "La mateixa cartera va enviar PLEB tant al propietari del Safe (13.700 milions el 8 de març de 2024) com al Safe (1.500 milions l'1 de juny de 2024)."
         }
       },
       "holderC": {
         "name": "Posseïdor C",
-        "summary": "Dues carteres que van rebre BSO antic del mateix remitent.",
+        "summary": "Dues carteres que van rebre PLEB del mateix remitent.",
         "evidence": {
-          "commonSender": "Una cartera va enviar 4.700 milions de BSO antics a la primera el 19 d'agost de 2024 i 15.400 milions a la segona el 14 de novembre de 2025. Un remitent comú també pot ser un venedor que serveix dos compradors."
+          "commonSender": "Una cartera va enviar 4.700 milions de PLEB a la primera el 19 d'agost de 2024 i 15.400 milions a la segona el 14 de novembre de 2025. Un remitent comú també pot ser un venedor que serveix dos compradors."
         }
       },
       "holderD": {
@@ -435,21 +436,21 @@
         "name": "Posseïdor E",
         "summary": "Dues carteres alimentades des de la mateixa font.",
         "evidence": {
-          "commonSender": "Una cartera va enviar a la primera 39.400 milions de BSO antics en set transferències entre l'octubre de 2024 i el gener de 2025, i a la segona 2.000 milions el 22 de novembre de 2025."
+          "commonSender": "Una cartera va enviar a la primera 39.400 milions de PLEB en set transferències entre l'octubre de 2024 i el gener de 2025, i a la segona 2.000 milions el 22 de novembre de 2025."
         }
       },
       "holderF": {
         "name": "Posseïdor F",
         "summary": "Una cartera que va repartir els seus tokens entre tres carteres noves i en va pagar el gas.",
         "evidence": {
-          "split": "El 10 de març de 2024, en set minuts, una cartera va enviar quantitats rodones de BSO antic (12.000, 8.000 i 4.000 milions) a tres carteres noves i el mateix dia va enviar ETH a dues d'elles per al gas. Encara té BSO."
+          "split": "El 10 de març de 2024, en set minuts, una cartera va enviar quantitats rodones de PLEB (12.000, 8.000 i 4.000 milions) a tres carteres noves i el mateix dia va enviar ETH a dues d'elles per al gas. Encara té BSO."
         }
       },
       "holderG": {
         "name": "Posseïdor G",
         "summary": "Dues carteres finançades pel mateix remitent, amb tres anys de diferència.",
         "evidence": {
-          "commonSender": "Una cartera va enviar a la segona 4.700 milions de PLEB l'abril de 2022 i a la primera 6.000 milions de BSO antics el gener de 2025."
+          "commonSender": "Una cartera va enviar a la segona 4.700 milions de PLEB a Avalanche l'abril de 2022 i a la primera 6.000 milions de PLEB a Ethereum el gener de 2025."
         }
       },
       "holderH": {
@@ -463,7 +464,7 @@
         "name": "Posseïdor I",
         "summary": "Dues carteres amb transferències repetides entre elles.",
         "evidence": {
-          "directTransfers": "La segona cartera va enviar a la primera 13.200 milions de BSO antics el 30 d'octubre de 2023 i 5.000 milions el 8 de novembre de 2023."
+          "directTransfers": "La segona cartera va enviar a la primera 13.200 milions de PLEB el 30 d'octubre de 2023 i 5.000 milions el 8 de novembre de 2023."
         }
       }
     },
@@ -577,11 +578,11 @@
         },
         "rebrand": {
           "title": "plebbit es converteix en Bitsocial",
-          "body": "Al llarg de març de 2026, el projecte i el seu token adopten a poc a poc el nom Bitsocial."
+          "body": "plebbit anuncia el seu nou nom, Bitsocial. On-chain, el token manté el nom PLEB fins al maig."
         },
         "rebase": {
-          "title": "Oferta fixada en 210 milions",
-          "body": "Al token de segona generació se li aplica un rebase perquè l'oferta total sigui exactament de 210 milions: 7.114,6 tokens antics passen a ser 1."
+          "title": "PLEB es converteix en 210 milions de BSO",
+          "body": "El token de segona generació es reanomena BSO i se li aplica un rebase perquè l'oferta total sigui exactament de 210 milions: 7.114,6 PLEB passen a ser 1 BSO."
         },
         "immutable": {
           "title": "BSO esdevé immutable",
@@ -594,7 +595,7 @@
       "lead": "Com es van trobar els grups i què no pot veure aquesta pàgina.",
       "howTitle": "Com es van vincular les carteres",
       "how": {
-        "transfers": "Es va rastrejar cada transferència de PLEB, BSO antic i BSO entre dues carteres normals, deixant fora exchanges, routers, pools i altres contractes. Les multisig Safe es van vincular amb els seus propietaris.",
+        "transfers": "Es va rastrejar cada transferència de PLEB i BSO entre dues carteres normals, a Avalanche i Ethereum, deixant fora exchanges, routers, pools i altres contractes. Les multisig Safe es van vincular amb els seus propietaris.",
         "funders": "Es va comparar la primera cartera que va enviar AVAX o ETH a cada gran posseïdor. Els exchanges financen milers de carteres, així que només els finançadors privats compten com a vincle.",
         "pattern": "Per a les carteres sense vincle directe, es va comparar el comportament de compra amb el de tots els compradors de PLEB del mateix període.",
         "migrations": "Els saldos es van seguir a través de les dues migracions a 7.114,6 PLEB per BSO."
@@ -608,10 +609,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: PLEB a Avalanche",
-        "gen2": "Gen 2: BSO antic a Ethereum",
+        "gen2": "Gen 2: PLEB a Ethereum, reanomenat BSO el maig de 2026",
         "gen3": "Gen 3: BSO actual"
       },
       "snapshot": "Saldos i preu de Blockscout: {{count}} carteres a data de {{date}}. Has trobat un vincle erroni o un que hi falta? <contributeLink>Millora aquesta pàgina</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "Gràfic del preu de BSO - Cada operació des del 2022",
+      "description": "El preu i la capitalització de mercat de BSO des de la primera operació, el 2022, als tres contractes: PLEB a Avalanche, PLEB a Ethereum i BSO actual, en un sol gràfic construït a partir de swaps on-chain."
+    },
+    "hero": {
+      "title": "El preu de BSO des de la primera operació",
+      "lead": "Un sol gràfic per als tres contractes: PLEB a Avalanche, PLEB a Ethereum, que el 2026 es va reanomenar BSO, i BSO actual. Els preus anteriors es converteixen a 7.114,6 PLEB per BSO, la proporció que van mantenir les dues migracions. El que hi ha darrere de cada moviment s'explica a la <historyLink>història</historyLink> de la llista de posseïdors.",
+      "status": {
+        "live": "En directe des del pool d'Uniswap: BSO a {{price}}. Actualitzat {{ago}}.",
+        "loading": "Historial diari fins al {{date}}. S'estan carregant els preus més recents…",
+        "unavailable": "Ara mateix els preus en directe no estan disponibles, així que el gràfic acaba el {{date}}."
+      }
+    },
+    "panelTitle": "Gràfic de preu diari",
+    "summary": {
+      "price": "Preu diari de BSO del {{from}} al {{to}}. Tancament més baix {{low}}, tancament més alt {{high}}, últim {{latest}}.",
+      "mcap": "Capitalització de mercat diària de BSO del {{from}} al {{to}}. Tancament més baix {{low}}, tancament més alt {{high}}, últim {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Mostra",
+      "metrics": {
+        "price": "Preu",
+        "mcap": "Cap. de mercat"
+      },
+      "rangeLabel": "Període",
+      "ranges": {
+        "1M": "1M",
+        "3M": "3M",
+        "1Y": "1A",
+        "all": "Tot"
+      },
+      "typeLabel": "Tipus de gràfic",
+      "types": {
+        "line": "Línia",
+        "candles": "Espelmes"
+      },
+      "scaleLabel": "Escala",
+      "scales": {
+        "log": "Log",
+        "linear": "Lineal"
+      }
+    },
+    "legend": {
+      "since": "des del {{date}}",
+      "ohlc": "O {{open}} · H {{high}} · L {{low}} · C {{close}}",
+      "volume": "Volum {{value}}"
+    },
+    "eras": {
+      "label": "Contractes. Tria'n un per ampliar-ne l'etapa.",
+      "gen1": "PLEB a Avalanche",
+      "gen2": "PLEB a Ethereum",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "avui",
+      "rebrand": "Canvi a Bitsocial"
+    },
+    "method": {
+      "title": "Com es construeix el gràfic",
+      "lead": "Cada espelma surt de swaps a la cadena, així que qualsevol dia es pot comprovar en un explorador.",
+      "steps": {
+        "swaps": "L'obertura, el màxim, el mínim i el tancament d'un dia són el primer preu, el més alt, el més baix i l'últim pagats en els swaps d'aquell dia, en UTC, llegits dels esdeveniments Swap de cada pool.",
+        "usd": "Els pools operen contra AVAX o ETH, així que cada swap es converteix a dòlars al canvi de Coinbase de l'hora en què es va fer.",
+        "units": "PLEB, a Avalanche i a Ethereum fins al <rebaseLink>rebase del 2 de maig de 2026</rebaseLink>, es mostra per BSO: el seu preu es multiplica per 7.114,596, el nombre de PLEB que va substituir cada BSO.",
+        "pools": "Quan més d'un pool va tenir operacions en un dia, el de més volum defineix l'espelma d'aquell dia, perquè un pool gairebé buit no pugui dibuixar una metxa falsa. El volum suma tots els pools, i un dia sense operacions repeteix l'últim tancament.",
+        "mcap": "La capitalització de mercat és el tancament multiplicat per l'oferta total d'aquell dia: tots els tokens que el contracte va encunyar menys tots els que va cremar, convertits a BSO com el preu. Després del rebase, i per al BSO actual, l'oferta és fixa: 210 milions.",
+        "eras": "L'historial de cada contracte acaba amb la primera operació del següent. El contracte d'Ethereum va mantenir el nom PLEB fins a l'actualització que en va fer el rebase, sis setmanes després que plebbit es convertís en Bitsocial el 18 de març de 2026."
+      },
+      "poolsTitle": "Pools consultats",
+      "eraDates": "{{from}} fins a {{to}}",
+      "snapshot": "Historial construït amb {{count}} swaps fins al {{date}}. Els dies més recents venen de GeckoTerminal i s'actualitzen cada cinc minuts mentre aquesta pàgina està oberta. Has vist una espelma errònia? <contributeLink>Millora aquesta pàgina</contributeLink>."
     }
   }
 }

@@ -2,9 +2,10 @@
   "nav": {
     "language": "Jazyk",
     "theme": "Téma",
-    "mainSite": "Hlavní web",
+    "bitsocial": "Bitsocial",
     "faq": "Časté dotazy",
-    "richList": "Seznam držitelů"
+    "richList": "Seznam držitelů",
+    "chart": "Graf"
   },
   "languageSelector": {
     "title": "Vyberte jazyk",
@@ -414,19 +415,19 @@
       },
       "holderB": {
         "name": "Držitel B",
-        "summary": "Multisig Safe typu 2 ze 4, který během jednoho odpoledne shromáždil starý BSO ze 14 peněženek, plus jeden z jeho vlastníků.",
+        "summary": "Multisig Safe typu 2 ze 4, který během jednoho odpoledne shromáždil PLEB ze 14 peněženek, plus jeden z jeho vlastníků.",
         "evidence": {
           "owners": "Safe potřebuje podpis 2 ze svých 4 vlastníků. Jeden vlastník drží BSO i přímo. Čtyři vlastníci mohou být jeden člověk s několika klíči, nebo malá skupina.",
-          "consolidation": "1. června 2024 mezi 16:08 a 17:51 UTC přijal Safe 120,5 mld. starých BSO ze 14 peněženek. Prvním převodem byl test o 10 tokenech, který Safe hned poslal zpět.",
-          "vesting": "12. srpna 2024 přesunul Safe 60,5 mld. starých BSO do vestingového streamu Sablier. Migrace v roce 2026 připsala tento stream zpět Safe, a proto Safe dostal dva migrační převody.",
-          "commonSender": "Stejná peněženka poslala starý BSO jak vlastníkovi Safe (13,7 mld. dne 8. března 2024), tak samotnému Safe (1,5 mld. dne 1. června 2024)."
+          "consolidation": "1. června 2024 mezi 16:08 a 17:51 UTC přijal Safe 120,5 mld. PLEB ze 14 peněženek. Prvním převodem byl test o 10 tokenech, který Safe hned poslal zpět.",
+          "vesting": "12. srpna 2024 přesunul Safe 60,5 mld. PLEB do vestingového streamu Sablier. Migrace v roce 2026 připsala tento stream zpět Safe, a proto Safe dostal dva migrační převody.",
+          "commonSender": "Stejná peněženka poslala PLEB jak vlastníkovi Safe (13,7 mld. dne 8. března 2024), tak samotnému Safe (1,5 mld. dne 1. června 2024)."
         }
       },
       "holderC": {
         "name": "Držitel C",
-        "summary": "Dvě peněženky, které dostaly starý BSO od stejného odesílatele.",
+        "summary": "Dvě peněženky, které dostaly PLEB od stejného odesílatele.",
         "evidence": {
-          "commonSender": "Jedna peněženka poslala 19. srpna 2024 první z nich 4,7 mld. starých BSO a 14. listopadu 2025 druhé 15,4 mld. Společný odesílatel může být i jeden prodejce, který obsluhuje dva kupce."
+          "commonSender": "Jedna peněženka poslala 19. srpna 2024 první z nich 4,7 mld. PLEB a 14. listopadu 2025 druhé 15,4 mld. Společný odesílatel může být i jeden prodejce, který obsluhuje dva kupce."
         }
       },
       "holderD": {
@@ -440,21 +441,21 @@
         "name": "Držitel E",
         "summary": "Dvě peněženky naplněné ze stejného zdroje.",
         "evidence": {
-          "commonSender": "Jedna peněženka poslala první z nich 39,4 mld. starých BSO v sedmi převodech mezi říjnem 2024 a lednem 2025 a druhé 2,0 mld. dne 22. listopadu 2025."
+          "commonSender": "Jedna peněženka poslala první z nich 39,4 mld. PLEB v sedmi převodech mezi říjnem 2024 a lednem 2025 a druhé 2,0 mld. dne 22. listopadu 2025."
         }
       },
       "holderF": {
         "name": "Držitel F",
         "summary": "Jedna peněženka, která rozdělila své tokeny do tří nových peněženek a zaplatila jim gas.",
         "evidence": {
-          "split": "10. března 2024 poslala jedna peněženka během sedmi minut kulaté částky starého BSO (12 mld., 8 mld. a 4 mld.) na tři nové peněženky a téhož dne dvěma z nich poslala ETH na gas. Sama BSO stále drží."
+          "split": "10. března 2024 poslala jedna peněženka během sedmi minut kulaté částky PLEB (12 mld., 8 mld. a 4 mld.) na tři nové peněženky a téhož dne dvěma z nich poslala ETH na gas. Sama BSO stále drží."
         }
       },
       "holderG": {
         "name": "Držitel G",
         "summary": "Dvě peněženky financované stejným odesílatelem, s odstupem tří let.",
         "evidence": {
-          "commonSender": "Jedna peněženka poslala druhé 4,7 mld. PLEB v dubnu 2022 a první 6 mld. starých BSO v lednu 2025."
+          "commonSender": "Jedna peněženka poslala druhé 4,7 mld. PLEB na Avalanche v dubnu 2022 a první 6 mld. PLEB na Ethereu v lednu 2025."
         }
       },
       "holderH": {
@@ -468,7 +469,7 @@
         "name": "Držitel I",
         "summary": "Dvě peněženky s opakovanými převody mezi sebou.",
         "evidence": {
-          "directTransfers": "Druhá peněženka poslala první 13,2 mld. starých BSO dne 30. října 2023 a 5 mld. dne 8. listopadu 2023."
+          "directTransfers": "Druhá peněženka poslala první 13,2 mld. PLEB dne 30. října 2023 a 5 mld. dne 8. listopadu 2023."
         }
       }
     },
@@ -582,11 +583,11 @@
         },
         "rebrand": {
           "title": "Z plebbit se stává Bitsocial",
-          "body": "Během března 2026 projekt i jeho token postupně přebírají jméno Bitsocial."
+          "body": "plebbit oznamuje své nové jméno, Bitsocial. On-chain si token jméno PLEB ponechává až do května."
         },
         "rebase": {
-          "title": "Nabídka nastavena na 210 milionů",
-          "body": "Token druhé generace projde rebasem, aby celková nabídka byla přesně 210 milionů: ze 7 114,6 starých tokenů se stane 1."
+          "title": "Z PLEB se stává 210 milionů BSO",
+          "body": "Token druhé generace je přejmenován na BSO a projde rebasem, aby celková nabídka byla přesně 210 milionů: ze 7 114,6 PLEB se stane 1 BSO."
         },
         "immutable": {
           "title": "BSO se stává neměnným",
@@ -599,7 +600,7 @@
       "lead": "Jak se skupiny našly a co tato stránka nevidí.",
       "howTitle": "Jak se peněženky propojovaly",
       "how": {
-        "transfers": "Byl dohledán každý převod PLEB, starého BSO a BSO mezi dvěma běžnými peněženkami, bez burz, routerů, poolů a jiných kontraktů. Multisigy Safe byly propojeny se svými vlastníky.",
+        "transfers": "Byl dohledán každý převod PLEB a BSO mezi dvěma běžnými peněženkami na Avalanche i na Ethereu, bez burz, routerů, poolů a jiných kontraktů. Multisigy Safe byly propojeny se svými vlastníky.",
         "funders": "Porovnávalo se, která peněženka jako první poslala každému z největších držitelů AVAX nebo ETH. Burzy financují tisíce peněženek, takže jako propojení se počítají jen soukromí financovatelé.",
         "pattern": "U peněženek bez přímého propojení se nákupní chování porovnalo se všemi kupci PLEB ze stejného období.",
         "migrations": "Zůstatky byly sledovány přes obě migrace v poměru 7 114,6 PLEB za BSO."
@@ -613,10 +614,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: PLEB na Avalanche",
-        "gen2": "Gen 2: starý BSO na Ethereu",
+        "gen2": "Gen 2: PLEB na Ethereu, v květnu 2026 přejmenovaný na BSO",
         "gen3": "Gen 3: dnešní BSO"
       },
       "snapshot": "Zůstatky a cena z Blockscoutu: {{count}} peněženek ke dni {{date}}. Našli jste chybné nebo chybějící propojení? <contributeLink>Vylepšit tuto stránku</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "Graf ceny BSO - Každý obchod od roku 2022",
+      "description": "Cena a tržní kapitalizace BSO od prvního obchodu v roce 2022 napříč všemi třemi kontrakty: PLEB na Avalanche, PLEB na Ethereum a dnešní BSO, v jednom grafu sestaveném ze swapů na blockchainu."
+    },
+    "hero": {
+      "title": "Cena BSO od prvního obchodu",
+      "lead": "Jeden graf napříč všemi třemi kontrakty: PLEB na Avalanche, PLEB na Ethereum, který byl v roce 2026 přejmenován na BSO, a dnešní BSO. Starší ceny jsou přepočteny v poměru 7 114,6 PLEB za BSO, který zachovaly obě migrace. Co stojí za každým pohybem, popisuje <historyLink>historie</historyLink> v seznamu držitelů.",
+      "status": {
+        "live": "Živě z poolu na Uniswapu: BSO za {{price}}. Aktualizováno {{ago}}.",
+        "loading": "Denní historie do {{date}}. Načítají se nejnovější ceny…",
+        "unavailable": "Živé ceny teď nejsou k dispozici, proto graf končí ke dni {{date}}."
+      }
+    },
+    "panelTitle": "Denní graf ceny",
+    "summary": {
+      "price": "Denní cena BSO od {{from}} do {{to}}. Nejnižší závěrečná cena {{low}}, nejvyšší závěrečná cena {{high}}, poslední {{latest}}.",
+      "mcap": "Denní tržní kapitalizace BSO od {{from}} do {{to}}. Nejnižší závěrečná hodnota {{low}}, nejvyšší závěrečná hodnota {{high}}, poslední {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Zobrazit",
+      "metrics": {
+        "price": "Cena",
+        "mcap": "Tržní kap."
+      },
+      "rangeLabel": "Období",
+      "ranges": {
+        "1M": "1M",
+        "3M": "3M",
+        "1Y": "1R",
+        "all": "Vše"
+      },
+      "typeLabel": "Typ grafu",
+      "types": {
+        "line": "Čára",
+        "candles": "Svíčky"
+      },
+      "scaleLabel": "Měřítko",
+      "scales": {
+        "log": "Log",
+        "linear": "Lineární"
+      }
+    },
+    "legend": {
+      "since": "od {{date}}",
+      "ohlc": "O {{open}} · H {{high}} · L {{low}} · C {{close}}",
+      "volume": "Objem {{value}}"
+    },
+    "eras": {
+      "label": "Kontrakty. Výběrem jednoho přiblížíte jeho období.",
+      "gen1": "PLEB na Avalanche",
+      "gen2": "PLEB na Ethereum",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "dosud",
+      "rebrand": "Přejmenování na Bitsocial"
+    },
+    "method": {
+      "title": "Jak graf vzniká",
+      "lead": "Každá svíčka pochází ze swapů na blockchainu, takže kterýkoli den lze ověřit v exploreru.",
+      "steps": {
+        "swaps": "Otevírací, nejvyšší, nejnižší a závěrečná cena dne jsou první, nejvyšší, nejnižší a poslední cena zaplacená ve swapech daného dne podle UTC, načtené z událostí Swap každého poolu.",
+        "usd": "Pooly obchodují proti AVAX nebo ETH, takže každý swap se přepočítá na dolary kurzem Coinbase z hodiny, kdy proběhl.",
+        "units": "PLEB na Avalanche a na Ethereum až do <rebaseLink>rebasu 2. května 2026</rebaseLink> se zobrazuje v přepočtu na BSO: jeho cena se násobí číslem 7 114,596, tedy počtem PLEB, které každý BSO nahradil.",
+        "pools": "Pokud se v jeden den obchodovalo ve více poolech, svíčku dne určí pool s největším objemem, aby téměř prázdný pool nemohl vykreslit falešný knot. Objem sčítá všechny pooly a den bez obchodů opakuje poslední závěrečnou cenu.",
+        "mcap": "Tržní kapitalizace je závěrečná cena krát celková nabídka daného dne: všechny tokeny, které kontrakt vymintoval, minus všechny, které spálil, přepočtené na BSO stejně jako cena. Po rebasu a u dnešního BSO je nabídka pevně 210 milionů.",
+        "eras": "Historie každého kontraktu končí prvním obchodem toho následujícího. Kontrakt na Ethereum si jméno PLEB ponechal až do upgradu, který provedl jeho rebase, šest týdnů poté, co se 18. března 2026 z plebbit stal Bitsocial."
+      },
+      "poolsTitle": "Načtené pooly",
+      "eraDates": "{{from}} – {{to}}",
+      "snapshot": "Historie sestavená z {{count}} swapů do {{date}}. Novější dny pocházejí z GeckoTerminalu a obnovují se každých pět minut, dokud je tato stránka otevřená. Všimli jste si chybné svíčky? <contributeLink>Vylepšit tuto stránku</contributeLink>."
     }
   }
 }

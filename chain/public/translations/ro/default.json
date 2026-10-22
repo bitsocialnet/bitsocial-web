@@ -2,9 +2,10 @@
   "nav": {
     "language": "Limbă",
     "theme": "Temă",
-    "mainSite": "Site-ul principal",
+    "bitsocial": "Bitsocial",
     "faq": "FAQ",
-    "richList": "Lista deținătorilor"
+    "richList": "Lista deținătorilor",
+    "chart": "Grafic"
   },
   "languageSelector": {
     "title": "Selectează limba",
@@ -409,19 +410,19 @@
       },
       "holderB": {
         "name": "Deținătorul B",
-        "summary": "Un multisig Safe 2-din-4 care a strâns BSO vechi din 14 portofele într-o singură după-amiază, plus unul dintre proprietarii săi.",
+        "summary": "Un multisig Safe 2-din-4 care a strâns PLEB din 14 portofele într-o singură după-amiază, plus unul dintre proprietarii săi.",
         "evidence": {
           "owners": "Safe-ul are nevoie de semnăturile a 2 dintre cei 4 proprietari ai săi. Unul dintre proprietari deține și BSO direct. Patru proprietari pot însemna o singură persoană cu mai multe chei sau un grup mic.",
-          "consolidation": "Pe 1 iunie 2024, între 16:08 și 17:51 UTC, Safe-ul a primit 120,5 mld. BSO vechi din 14 portofele. Primul transfer a fost un test de 10 tokenuri, pe care Safe-ul l-a trimis imediat înapoi.",
-          "vesting": "Pe 12 august 2024, Safe-ul a mutat 60,5 mld. BSO vechi într-un flux de vesting Sablier. Migrarea din 2026 a creditat acel flux înapoi către Safe, motiv pentru care Safe-ul a primit două transferuri de migrare.",
-          "commonSender": "Același portofel a trimis BSO vechi atât proprietarului Safe-ului (13,7 mld. pe 8 martie 2024), cât și Safe-ului (1,5 mld. pe 1 iunie 2024)."
+          "consolidation": "Pe 1 iunie 2024, între 16:08 și 17:51 UTC, Safe-ul a primit 120,5 mld. PLEB din 14 portofele. Primul transfer a fost un test de 10 tokenuri, pe care Safe-ul l-a trimis imediat înapoi.",
+          "vesting": "Pe 12 august 2024, Safe-ul a mutat 60,5 mld. PLEB într-un flux de vesting Sablier. Migrarea din 2026 a creditat acel flux înapoi către Safe, motiv pentru care Safe-ul a primit două transferuri de migrare.",
+          "commonSender": "Același portofel a trimis PLEB atât proprietarului Safe-ului (13,7 mld. pe 8 martie 2024), cât și Safe-ului (1,5 mld. pe 1 iunie 2024)."
         }
       },
       "holderC": {
         "name": "Deținătorul C",
-        "summary": "Două portofele care au primit BSO vechi de la același expeditor.",
+        "summary": "Două portofele care au primit PLEB de la același expeditor.",
         "evidence": {
-          "commonSender": "Un portofel a trimis 4,7 mld. BSO vechi primului pe 19 august 2024 și 15,4 mld. celui de-al doilea pe 14 noiembrie 2025. Un expeditor comun poate fi și un singur vânzător care servește doi cumpărători."
+          "commonSender": "Un portofel a trimis 4,7 mld. PLEB primului pe 19 august 2024 și 15,4 mld. celui de-al doilea pe 14 noiembrie 2025. Un expeditor comun poate fi și un singur vânzător care servește doi cumpărători."
         }
       },
       "holderD": {
@@ -435,21 +436,21 @@
         "name": "Deținătorul E",
         "summary": "Două portofele alimentate din aceeași sursă.",
         "evidence": {
-          "commonSender": "Un portofel i-a trimis primului 39,4 mld. BSO vechi în șapte transferuri între octombrie 2024 și ianuarie 2025, iar celui de-al doilea 2,0 mld. pe 22 noiembrie 2025."
+          "commonSender": "Un portofel i-a trimis primului 39,4 mld. PLEB în șapte transferuri între octombrie 2024 și ianuarie 2025, iar celui de-al doilea 2,0 mld. pe 22 noiembrie 2025."
         }
       },
       "holderF": {
         "name": "Deținătorul F",
         "summary": "Un portofel care și-a împărțit tokenurile în trei portofele noi și le-a plătit taxele de gas.",
         "evidence": {
-          "split": "Pe 10 martie 2024, în șapte minute, un portofel a trimis sume rotunde de BSO vechi (12 mld., 8 mld. și 4 mld.) către trei portofele noi și, în aceeași zi, a trimis la două dintre ele ETH pentru gas. Încă deține el însuși BSO."
+          "split": "Pe 10 martie 2024, în șapte minute, un portofel a trimis sume rotunde de PLEB (12 mld., 8 mld. și 4 mld.) către trei portofele noi și, în aceeași zi, a trimis la două dintre ele ETH pentru gas. Încă deține el însuși BSO."
         }
       },
       "holderG": {
         "name": "Deținătorul G",
         "summary": "Două portofele finanțate de același expeditor, la trei ani distanță.",
         "evidence": {
-          "commonSender": "Un portofel i-a trimis celui de-al doilea 4,7 mld. PLEB în aprilie 2022, iar primului 6 mld. BSO vechi în ianuarie 2025."
+          "commonSender": "Un portofel i-a trimis celui de-al doilea 4,7 mld. PLEB pe Avalanche în aprilie 2022, iar primului 6 mld. PLEB pe Ethereum în ianuarie 2025."
         }
       },
       "holderH": {
@@ -463,7 +464,7 @@
         "name": "Deținătorul I",
         "summary": "Două portofele cu transferuri repetate între ele.",
         "evidence": {
-          "directTransfers": "Al doilea portofel i-a trimis primului 13,2 mld. BSO vechi pe 30 octombrie 2023 și 5 mld. pe 8 noiembrie 2023."
+          "directTransfers": "Al doilea portofel i-a trimis primului 13,2 mld. PLEB pe 30 octombrie 2023 și 5 mld. pe 8 noiembrie 2023."
         }
       }
     },
@@ -577,11 +578,11 @@
         },
         "rebrand": {
           "title": "plebbit devine Bitsocial",
-          "body": "Pe parcursul lunii martie 2026, proiectul și tokenul său preiau treptat numele Bitsocial."
+          "body": "plebbit își anunță noul nume, Bitsocial. On-chain, tokenul păstrează numele PLEB până în mai."
         },
         "rebase": {
-          "title": "Oferta, fixată la 210 milioane",
-          "body": "Tokenul de a doua generație trece printr-un rebase, astfel încât oferta totală să fie exact 210 milioane: 7.114,6 tokenuri vechi devin 1."
+          "title": "PLEB devine 210 milioane de BSO",
+          "body": "Tokenul de a doua generație este redenumit BSO și trece printr-un rebase, astfel încât oferta totală să fie exact 210 milioane: 7.114,6 PLEB devin 1 BSO."
         },
         "immutable": {
           "title": "BSO devine imuabil",
@@ -594,7 +595,7 @@
       "lead": "Cum au fost găsite grupurile și ce nu poate vedea această pagină.",
       "howTitle": "Cum au fost legate portofelele",
       "how": {
-        "transfers": "Fiecare transfer de PLEB, BSO vechi și BSO între două portofele obișnuite a fost urmărit, lăsând deoparte exchange-urile, routerele, pool-urile și alte contracte. Multisig-urile Safe au fost legate de proprietarii lor.",
+        "transfers": "Fiecare transfer de PLEB și BSO între două portofele obișnuite, pe Avalanche și Ethereum, a fost urmărit, lăsând deoparte exchange-urile, routerele, pool-urile și alte contracte. Multisig-urile Safe au fost legate de proprietarii lor.",
         "funders": "A fost comparat primul portofel care i-a trimis AVAX sau ETH fiecărui deținător mare. Exchange-urile finanțează mii de portofele, așa că doar finanțatorii privați contează ca legătură.",
         "pattern": "Pentru portofelele fără legătură directă, comportamentul de cumpărare a fost comparat cu al fiecărui cumpărător de PLEB din aceeași perioadă.",
         "migrations": "Soldurile au fost urmărite prin ambele migrări la 7.114,6 PLEB per BSO."
@@ -608,10 +609,83 @@
       },
       "contracts": {
         "gen1": "Gen 1: PLEB pe Avalanche",
-        "gen2": "Gen 2: BSO vechi pe Ethereum",
+        "gen2": "Gen 2: PLEB pe Ethereum, redenumit BSO în mai 2026",
         "gen3": "Gen 3: BSO astăzi"
       },
       "snapshot": "Solduri și preț de la Blockscout — portofele: {{count}}, la data de {{date}}. Ai găsit o legătură greșită sau una care lipsește? <contributeLink>Îmbunătățește această pagină</contributeLink>."
+    }
+  },
+  "chart": {
+    "meta": {
+      "title": "Graficul prețului BSO - Fiecare tranzacție din 2022",
+      "description": "Prețul și capitalizarea de piață ale BSO de la prima tranzacție din 2022, pe toate cele trei contracte: PLEB pe Avalanche, PLEB pe Ethereum și BSO astăzi, într-un singur grafic construit din swap-uri on-chain."
+    },
+    "hero": {
+      "title": "Prețul BSO de la prima tranzacție",
+      "lead": "Un singur grafic pentru toate cele trei contracte: PLEB pe Avalanche, PLEB pe Ethereum, redenumit BSO în 2026, și BSO astăzi. Prețurile mai vechi sunt convertite la 7.114,6 PLEB per BSO, raportul păstrat de ambele migrări. Povestea din spatele fiecărei mișcări se află în <historyLink>istoricul</historyLink> din lista deținătorilor.",
+      "status": {
+        "live": "Date live din pool-ul Uniswap — prețul BSO: {{price}}. Actualizat {{ago}}.",
+        "loading": "Istoric zilnic până la {{date}}. Se încarcă cele mai recente prețuri…",
+        "unavailable": "Prețurile live nu sunt disponibile acum, așa că graficul se oprește la {{date}}."
+      }
+    },
+    "panelTitle": "Graficul zilnic al prețului",
+    "summary": {
+      "price": "Prețul zilnic al BSO între {{from}} și {{to}}. Cea mai mică închidere: {{low}}, cea mai mare închidere: {{high}}, ultima: {{latest}}.",
+      "mcap": "Capitalizarea de piață zilnică a BSO între {{from}} și {{to}}. Cea mai mică închidere: {{low}}, cea mai mare închidere: {{high}}, ultima: {{latest}}."
+    },
+    "controls": {
+      "metricLabel": "Afișează",
+      "metrics": {
+        "price": "Preț",
+        "mcap": "Capitalizare"
+      },
+      "rangeLabel": "Interval de timp",
+      "ranges": {
+        "1M": "1L",
+        "3M": "3L",
+        "1Y": "1A",
+        "all": "Tot"
+      },
+      "typeLabel": "Tip de grafic",
+      "types": {
+        "line": "Linie",
+        "candles": "Lumânări"
+      },
+      "scaleLabel": "Scară",
+      "scales": {
+        "log": "Log",
+        "linear": "Liniară"
+      }
+    },
+    "legend": {
+      "since": "de la {{date}}",
+      "ohlc": "O {{open}} · H {{high}} · L {{low}} · C {{close}}",
+      "volume": "Volum {{value}}"
+    },
+    "eras": {
+      "label": "Contracte. Alege unul pentru a mări graficul pe perioada lui.",
+      "gen1": "PLEB pe Avalanche",
+      "gen2": "PLEB pe Ethereum",
+      "gen3": "BSO",
+      "years": "{{from}}–{{to}}",
+      "now": "prezent",
+      "rebrand": "Redenumire în Bitsocial"
+    },
+    "method": {
+      "title": "Cum este construit graficul",
+      "lead": "Fiecare lumânare provine din swap-uri pe lanț, așa că orice zi poate fi verificată într-un explorer.",
+      "steps": {
+        "swaps": "Deschiderea, maximul, minimul și închiderea unei zile sunt primul, cel mai mare, cel mai mic și ultimul preț plătit în swap-urile din acea zi, în UTC, citite din evenimentele Swap ale fiecărui pool.",
+        "usd": "Pool-urile tranzacționează contra AVAX sau ETH, așa că fiecare swap este convertit în dolari la cursul Coinbase din ora în care a avut loc.",
+        "units": "PLEB, pe Avalanche și pe Ethereum până la <rebaseLink>rebase-ul din 2 mai 2026</rebaseLink>, este afișat per BSO: prețul său este înmulțit cu 7.114,596, numărul de PLEB pe care l-a înlocuit fiecare BSO.",
+        "pools": "Când în aceeași zi s-a tranzacționat în mai multe pool-uri, cel cu cel mai mare volum stabilește lumânarea zilei, ca un pool aproape gol să nu poată desena un fitil fals. Volumul adună toate pool-urile, iar o zi fără tranzacții repetă ultima închidere.",
+        "mcap": "Capitalizarea de piață este închiderea înmulțită cu oferta totală din acea zi: toate tokenurile emise de contract minus toate cele arse de el, convertite în BSO la fel ca prețul. După rebase și pentru BSO de astăzi, oferta este fixă: 210 milioane.",
+        "eras": "Istoricul fiecărui contract se încheie la prima tranzacție a următorului. Contractul de pe Ethereum a păstrat numele PLEB până la upgrade-ul care i-a aplicat rebase-ul, la șase săptămâni după ce plebbit a devenit Bitsocial, pe 18 martie 2026."
+      },
+      "poolsTitle": "Pool-uri citite",
+      "eraDates": "{{from}} – {{to}}",
+      "snapshot": "Istoric construit din swap-uri până la {{date}} (total: {{count}}). Zilele mai noi vin de la GeckoTerminal și se actualizează la fiecare cinci minute cât timp pagina este deschisă. Ai observat o lumânare greșită? <contributeLink>Îmbunătățește această pagină</contributeLink>."
     }
   }
 }
