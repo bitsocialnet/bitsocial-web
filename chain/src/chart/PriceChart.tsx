@@ -130,7 +130,8 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const handlesRef = useRef<Handles | null>(null);
   const hoverTimeRef = useRef<number | null>(null);
-  const lastInteractionRef = useRef(0);
+  // Not 0: performance.now() starts near 0 on load, so the chart's first fit would read as input.
+  const lastInteractionRef = useRef(Number.NEGATIVE_INFINITY);
   const legendRef = useRef<LegendNodes>({
     swatch: null,
     era: null,
@@ -389,7 +390,7 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
   const selectView = (next: View) => {
     setView(next);
     // A preset picked right after a drag must not be cleared by its own range change.
-    lastInteractionRef.current = 0;
+    lastInteractionRef.current = Number.NEGATIVE_INFINITY;
     if (handlesRef.current) {
       applyView(handlesRef.current, candles, next);
     }
@@ -511,7 +512,10 @@ function ChartLegend({
   );
 }
 
-/** The legend of the three contracts, each a button that zooms the chart to its era. */
+/**
+ * The legend of the three contracts, each a button that zooms the chart to its era. Pressing the
+ * selected era again goes back to the whole history.
+ */
 function EraButtons({
   view,
   colors,
@@ -536,7 +540,7 @@ function EraButtons({
             aria-pressed={view === eraView}
             className="ch-era"
             style={{ "--ch-swatch": colors[index] } as CSSProperties}
-            onClick={() => onSelect(eraView)}
+            onClick={() => onSelect(view === eraView ? "all" : eraView)}
           >
             <span className="ch-swatch" aria-hidden />
             <span className="ch-era-name">{t(`chart.eras.${era.id}`)}</span>
