@@ -18,7 +18,7 @@ export type EraBand = { startDay: number; label: string };
 /** A moment inside an era worth marking, such as a rename, drawn as a dashed line. */
 export type EraDivider = { day: number; label: string };
 
-export type EraBandColors = { fill: string; line: string; label: string };
+export type EraBandColors = { line: string; label: string };
 
 const LABEL_FONT_PX = 10.5;
 const LABEL_INSET_PX = 12;
@@ -27,18 +27,14 @@ const DIVIDER_LABEL_TOP_PX = 32;
 
 /**
  * Draws each contract's era behind the price: a hairline where one contract hands over to the
- * next, a faint tint on every other era, and the era's name in its top corner when it fits. Edges
- * sit between two bars, so each day falls wholly inside one band. Dividers get a dashed line and a
- * label on the row below the era names, on whichever side has room.
+ * next, and the era's name in its top corner when it fits. Edges sit between two bars, so each day
+ * falls wholly inside one band. Dividers get a dashed line and a label on the row below the era
+ * names, on whichever side has room.
  */
 export class EraBands implements ISeriesPrimitive<Time> {
   private bands: EraBand[] = [];
   private dividers: EraDivider[] = [];
-  private colors: EraBandColors = {
-    fill: "transparent",
-    line: "transparent",
-    label: "transparent",
-  };
+  private colors: EraBandColors = { line: "transparent", label: "transparent" };
   private params: SeriesAttachedParameter<Time> | null = null;
   private readonly view: IPrimitivePaneView = {
     zOrder: () => "bottom",
@@ -105,10 +101,6 @@ export class EraBands implements ISeriesPrimitive<Time> {
             return;
           }
 
-          if (index % 2 === 1) {
-            context.fillStyle = this.colors.fill;
-            context.fillRect(left, 0, right - left, height);
-          }
           if (index > 0 && left > 0) {
             context.fillStyle = this.colors.line;
             context.fillRect(left, 0, Math.max(1, Math.floor(horizontalPixelRatio)), height);
