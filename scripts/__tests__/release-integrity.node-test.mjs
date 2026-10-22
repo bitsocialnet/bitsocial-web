@@ -171,9 +171,7 @@ test("release integrity assets never CDN-cache missing or failed lookups", async
     let calls = 0;
     fetchMock.mock.mockImplementation(async () => {
       calls += 1;
-      return calls === 1
-        ? new Response("", { status: 404 })
-        : new Response('{"schema":"test"}');
+      return calls === 1 ? new Response("", { status: 404 }) : new Response('{"schema":"test"}');
     });
     const retried = await retryRequest(query);
     assert.equal(retried.status, 200, asset);
@@ -197,6 +195,24 @@ test("release integrity assets never CDN-cache missing or failed lookups", async
       assert.equal(fallback.headers["Cache-Control"], "no-store", asset);
     }
   }
+});
+
+test("release integrity lookups cancel the upstream bodies they discard", async (t) => {
+  const cancelled = [];
+  const respond = (status) =>
+    new Response(new ReadableStream({ cancel: () => void cancelled.push(status) }), { status });
+  const fetchMock = t.mock.method(globalThis, "fetch", async () => respond(404));
+  const request = await loadHandler();
+  const query = { app: "5chan", asset: "manifest" };
+
+  const missing = await request(query);
+  assert.equal(missing.status, 204);
+  assert.deepEqual(cancelled, [404, 404], "both the retried and the final 404");
+
+  fetchMock.mock.mockImplementation(async () => respond(429));
+  const rateLimited = await request(query);
+  assert.equal(rateLimited.status, 429);
+  assert.deepEqual(cancelled, [404, 404, 429]);
 });
 
 test("GITHUB_TOKEN authenticates only the release metadata lookup", async (t) => {

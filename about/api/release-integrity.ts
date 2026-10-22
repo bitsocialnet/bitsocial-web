@@ -194,6 +194,7 @@ export default async function handler(request: RequestLike, response: ResponseLi
       Date.now() - firstAttemptStartedAt < LATEST_RELEASE_404_RETRY_MAX_FIRST_RESPONSE_MS
     ) {
       // GitHub's "latest" redirect flaps between the real release and 404; retry once.
+      discardResponseBody(releaseResponse);
       await delay(LATEST_RELEASE_404_RETRY_DELAY_MS);
       releaseResponse = await fetchReleaseAsset(releaseAsset);
     }
@@ -208,6 +209,7 @@ export default async function handler(request: RequestLike, response: ResponseLi
       return;
     }
 
+    discardResponseBody(releaseResponse);
     if (sendLastKnownIntegrityAsset(assetKey, releaseAsset, response)) {
       return;
     }
@@ -245,6 +247,11 @@ function sendLastKnownIntegrityAsset(
   response.setHeader("Content-Type", releaseAsset.contentType);
   response.send(lastKnownBody);
   return true;
+}
+
+// An unread fetch body keeps its connection open until garbage collection.
+function discardResponseBody(releaseResponse: Response) {
+  void releaseResponse.body?.cancel().catch(() => {});
 }
 
 function delay(ms: number) {
