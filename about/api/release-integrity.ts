@@ -65,6 +65,9 @@ const lastKnownDownloadUrls = new Map<string, string>();
 // warm instance serves the last good body instead of reporting the asset as missing.
 const lastKnownIntegrityAssets = new Map<string, string>();
 const LATEST_RELEASE_404_RETRY_DELAY_MS = 500;
+// Only retry a fast 404: a slow first answer plus a full second fetch could outlast the browser's
+// 30 s proxy timeout (worst case here: 5 s + 0.5 s + 15 s).
+const LATEST_RELEASE_404_RETRY_MAX_FIRST_RESPONSE_MS = 5_000;
 
 const RELEASE_INTEGRITY_ASSETS: Record<string, ReleaseIntegrityAsset> = {
   "5chan:manifest": {
@@ -183,9 +186,13 @@ export default async function handler(request: RequestLike, response: ResponseLi
   const assetKey = `${app}:${asset}`;
 
   try {
+    const firstAttemptStartedAt = Date.now();
     let releaseResponse = await fetchReleaseAsset(releaseAsset);
 
-    if (releaseResponse.status === 404) {
+    if (
+      releaseResponse.status === 404 &&
+      Date.now() - firstAttemptStartedAt < LATEST_RELEASE_404_RETRY_MAX_FIRST_RESPONSE_MS
+    ) {
       // GitHub's "latest" redirect flaps between the real release and 404; retry once.
       await delay(LATEST_RELEASE_404_RETRY_DELAY_MS);
       releaseResponse = await fetchReleaseAsset(releaseAsset);
