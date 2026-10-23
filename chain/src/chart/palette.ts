@@ -17,6 +17,7 @@ export function chartPalette(theme: Theme) {
     up: dark ? "#199e70" : "#1baf7a",
     down: dark ? "#e66767" : "#e34948",
     volume: dark ? "rgba(237, 237, 237, 0.24)" : "rgba(26, 26, 26, 0.2)",
+    marker: dark ? "rgba(237, 237, 237, 0.75)" : "rgba(26, 26, 26, 0.6)",
     background: dark ? "#08080b" : "#ffffff",
     bands: {
       line: dark ? "rgba(255, 255, 255, 0.16)" : "rgba(0, 0, 0, 0.14)",
