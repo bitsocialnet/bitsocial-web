@@ -622,7 +622,7 @@
     },
     "hero": {
       "title": "El precio de BSO desde su primera operación",
-      "lead": "Un solo gráfico para los tres contratos: PLEB en Avalanche, PLEB en Ethereum, que pasó a llamarse BSO en 2026, y BSO actual. Los precios anteriores se convierten a 7114,6 PLEB por BSO, la proporción que mantuvieron ambas migraciones. Lo que hay detrás de cada movimiento se cuenta en la <historyLink>historia</historyLink> de la lista de poseedores.",
+      "lead": "Un solo gráfico para los tres contratos: PLEB en Avalanche, PLEB en Ethereum, que pasó a llamarse BSO en 2026, y BSO actual. Los precios anteriores se convierten a 7114,6 PLEB por BSO, la proporción que mantuvieron ambas migraciones. Elige un punto del gráfico para ver qué pasó ese día; la trayectoria completa del token se cuenta en la <historyLink>historia</historyLink> de la lista de poseedores.",
       "status": {
         "live": "En directo desde el pool de Uniswap: BSO a {{price}}. Actualizado {{ago}}.",
         "loading": "Historial diario hasta el {{date}}. Cargando los precios más recientes…",
@@ -686,6 +686,50 @@
       "poolsTitle": "Pools consultados",
       "eraDates": "{{from}} hasta {{to}}",
       "snapshot": "Historial construido con {{count}} swaps hasta el {{date}}. Los días más recientes vienen de GeckoTerminal y se actualizan cada cinco minutos mientras esta página está abierta. ¿Has visto una vela errónea? <contributeLink>Mejora esta página</contributeLink>."
+    },
+    "eventList": "Eventos marcados en el gráfico",
+    "eventDetails": {
+      "close": "Cerrar",
+      "links": {
+        "reddit": "Publicación en Reddit",
+        "release": "Versión en GitHub",
+        "hackerNews": "Hilo de Hacker News",
+        "tweet": "Tuit"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "Una subvención de Protocol Labs",
+        "body": "Protocol Labs, el equipo detrás de IPFS y Filecoin, otorga a plebbit una subvención para construir su alternativa descentralizada a Reddit."
+      },
+      "firstApp": {
+        "title": "La primera app de plebbit",
+        "body": "Sale la primera app de escritorio para Linux, Windows y Mac. Ejecuta su propio nodo de IPFS, así que, a diferencia de la demo web, es totalmente peer-to-peer."
+      },
+      "plebchan": {
+        "title": "Llega plebchan",
+        "body": "plebchan, una app al estilo de 4chan sobre el protocolo plebbit, publica su primera versión, para la web, Mac y Linux."
+      },
+      "hackerNews": {
+        "title": "En la portada de Hacker News",
+        "body": "En plena polémica por los nuevos precios de la API de Reddit, la demo de plebbit llega a la portada de Hacker News con más de 300 puntos. Esa misma semana, publicaciones sobre ella llegan a la portada de r/ethereum y suman 30.000 visualizaciones en r/CryptoCurrency."
+      },
+      "coingecko": {
+        "title": "Listado en CoinGecko",
+        "body": "Tras rechazarlo varias veces desde principios de 2022, CoinGecko lista PLEB."
+      },
+      "socialFi": {
+        "title": "En la categoría SocialFi de CoinGecko",
+        "body": "CoinGecko añade PLEB a su categoría SocialFi a petición del equipo, y una lista de tokens SocialFi compartida en X lo incluye. El precio casi se duplica en cinco días."
+      },
+      "seedit": {
+        "title": "Llega Seedit",
+        "body": "Seedit, una app que se ve y funciona como el Reddit clásico, publica su primera versión."
+      },
+      "marchRally": {
+        "title": "El rally de marzo de 2024",
+        "body": "El 1 de marzo, el inversor Jason Calacanis tuitea que quiere un Reddit distribuido y sin permisos, y plebbit le responde con su demo. Seedit 0.1.6 sale el 3 de marzo, y el 4 de marzo el equipo anuncia comunidades con acceso mediante tokens. Con ETH superando los 4000 dólares ese mes, el precio casi se duplica el 4 de marzo y se triplica para finales de marzo, con un volumen de 2,2 millones de dólares, el mayor de todos los meses de este gráfico."
+      }
     }
   }
 }

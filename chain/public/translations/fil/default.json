@@ -617,7 +617,7 @@
     },
     "hero": {
       "title": "Ang presyo ng BSO mula sa unang trade nito",
-      "lead": "Iisang chart para sa lahat ng tatlong kontrata: PLEB sa Avalanche, PLEB sa Ethereum, na pinalitan ng pangalan at naging BSO noong 2026, at BSO ngayon. Kino-convert ang mga mas lumang presyo sa 7,114.6 PLEB bawat BSO, ang ratio na pinanatili ng parehong migration. Nasa <historyLink>kasaysayan</historyLink> ng rich list ang kuwento sa likod ng bawat galaw.",
+      "lead": "Iisang chart para sa lahat ng tatlong kontrata: PLEB sa Avalanche, PLEB sa Ethereum, na pinalitan ng pangalan at naging BSO noong 2026, at BSO ngayon. Kino-convert ang mga mas lumang presyo sa 7,114.6 PLEB bawat BSO, ang ratio na pinanatili ng parehong migration. Pumili ng tuldok sa chart para makita kung ano ang nangyari sa araw na iyon; nasa <historyLink>kasaysayan</historyLink> ng rich list ang buong kuwento ng token.",
       "status": {
         "live": "Live mula sa Uniswap pool: BSO sa {{price}}. Na-update {{ago}}.",
         "loading": "Pang-araw-araw na kasaysayan hanggang {{date}}. Nilo-load ang mga pinakabagong presyo…",
@@ -681,6 +681,50 @@
       "poolsTitle": "Mga pool na binasa",
       "eraDates": "{{from}} hanggang {{to}}",
       "snapshot": "Binuo ang kasaysayan mula sa {{count}} swap hanggang {{date}}. Galing sa GeckoTerminal ang mga mas bagong araw at nire-refresh bawat limang minuto habang bukas ang pahinang ito. May napansing maling candle? <contributeLink>Pagbutihin ang pahinang ito</contributeLink>."
+    },
+    "eventList": "Mga event na minarkahan sa chart",
+    "eventDetails": {
+      "close": "Isara",
+      "links": {
+        "reddit": "Post sa Reddit",
+        "release": "Release sa GitHub",
+        "hackerNews": "Thread sa Hacker News",
+        "tweet": "Tweet"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "Isang grant mula sa Protocol Labs",
+        "body": "Nagbigay ang Protocol Labs, ang team sa likod ng IPFS at Filecoin, ng grant sa plebbit para buuin ang desentralisadong alternatibo nito sa Reddit."
+      },
+      "firstApp": {
+        "title": "Ang unang plebbit app",
+        "body": "Inilabas ang unang desktop app para sa Linux, Windows at Mac. Nagpapatakbo ito ng sarili nitong IPFS node, kaya hindi tulad ng web demo, ganap itong peer-to-peer."
+      },
+      "plebchan": {
+        "title": "Inilunsad ang plebchan",
+        "body": "Inilabas ng plebchan, isang app na istilong 4chan sa plebbit protocol, ang una nitong release, para sa web, Mac at Linux."
+      },
+      "hackerNews": {
+        "title": "Front page ng Hacker News",
+        "body": "Sa gitna ng batikos sa bagong API pricing ng Reddit, umabot ang plebbit demo sa front page ng Hacker News na may mahigit 300 points. Sa parehong linggo, umabot sa front page ng r/ethereum ang mga post tungkol dito at nakakuha ng 30,000 views sa r/CryptoCurrency."
+      },
+      "coingecko": {
+        "title": "Nakalista sa CoinGecko",
+        "body": "Matapos itong tanggihan nang ilang beses mula unang bahagi ng 2022, inilista ng CoinGecko ang PLEB."
+      },
+      "socialFi": {
+        "title": "Nasa SocialFi category ng CoinGecko",
+        "body": "Idinagdag ng CoinGecko ang PLEB sa SocialFi category nito matapos humiling ang team, at kasama ito sa isang listahan ng mga SocialFi token na ibinahagi sa X. Halos dumoble ang presyo sa loob ng limang araw."
+      },
+      "seedit": {
+        "title": "Inilunsad ang Seedit",
+        "body": "Inilabas ng Seedit, isang app na mukha at gumagana tulad ng old Reddit, ang una nitong release."
+      },
+      "marchRally": {
+        "title": "Ang rally ng Marso 2024",
+        "body": "Noong Marso 1, nag-tweet ang investor na si Jason Calacanis na gusto niya ng distributed at permissionless na Reddit, at sumagot ang plebbit gamit ang demo nito. Inilabas ang Seedit 0.1.6 noong Marso 3, at noong Marso 4 inanunsyo ng team ang mga token-gated na komunidad. Habang lumampas ang ETH sa $4,000 nang buwang iyon, halos dumoble ang presyo noong Marso 4 at naging tatlong beses pagsapit ng katapusan ng Marso, sa $2.2 milyong volume, ang pinakamalaki sa lahat ng buwan sa chart na ito."
+      }
     }
   }
 }

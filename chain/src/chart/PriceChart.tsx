@@ -1,5 +1,6 @@
 import {
   type CSSProperties,
+  useEffect,
   useEffectEvent,
   useLayoutEffect,
   useMemo,
@@ -24,11 +25,12 @@ import {
   type UTCTimestamp,
 } from "lightweight-charts";
 import { useTranslation } from "react-i18next";
+import { CHART_EVENTS, type ChartEvent } from "@/lib/chart/events";
 import { DAY_SECONDS, ERAS, REBRAND_DAY, type Candle } from "@/lib/chart/history";
-import { HISTORY } from "@/lib/rich-list/data";
 import { useTheme } from "@/lib/useTheme";
 import { SegmentedControl } from "@/rich-list/primitives";
 import { EraBands } from "./era-bands";
+import EventDetails, { EventList } from "./EventDetails";
 import { useChartFormatters } from "./format";
 import { chartPalette, withAlpha } from "./palette";
 
@@ -52,7 +54,7 @@ const INTERACTION_WINDOW_MS = 300;
 const MARKER_SIZE = 0.6;
 /** How near, in CSS pixels, the pointer must come to a dot's centre to pick its event. */
 const EVENT_HOVER_RADIUS = 16;
-/** Space between a hovered dot and the event name drawn above it. */
+/** Space between a dot and the event name or details drawn beside it. */
 const EVENT_TIP_GAP = 6;
 
 function dayOf(seconds: number) {
@@ -63,12 +65,6 @@ function dayOf(seconds: number) {
 function metricFactor(candle: Candle, metric: Metric) {
   return metric === "mcap" ? candle.supply : 1;
 }
-
-// Rich list history events with a known day, drawn as markers where the price was at the time.
-const EVENTS = HISTORY.filter((event) => (event.precision ?? "day") === "day").map((event) => ({
-  id: event.id,
-  time: Date.parse(`${event.date}T00:00:00Z`) / 1000,
-}));
 
 /**
  * The day each contract's era begins on the chart: its first candle. A migration day goes to
@@ -94,7 +90,36 @@ function markerGeometry(barSpacing: number) {
   };
 }
 
-type EventDot = { id: string; time: number; close: number; x: number; y: number; radius: number };
+type EventDot = { event: ChartEvent; close: number; x: number; y: number; radius: number };
+
+/** The dot nearest the pointer, if it comes within reach of one. */
+function nearestDot(dots: EventDot[], point: { x: number; y: number }) {
+  let nearest: EventDot | null = null;
+  let reach = EVENT_HOVER_RADIUS;
+  for (const dot of dots) {
+    const distance = Math.hypot(dot.x - point.x, dot.y - point.y);
+    if (distance <= reach) {
+      reach = distance;
+      nearest = dot;
+    }
+  }
+  return nearest;
+}
+
+/**
+ * Where an element beside a dot goes, in CSS pixels from the plot's top left: centred above the
+ * dot, below it when the plot's top is too near, and inside the plot's width and the chart's
+ * height either way, which on a phone can mean over the dot.
+ */
+function placeBesideDot(element: HTMLElement, dot: EventDot, plotWidth: number) {
+  const { offsetWidth: width, offsetHeight: height } = element;
+  const chartHeight = element.parentElement?.clientHeight ?? Number.POSITIVE_INFINITY;
+  const left = Math.max(0, Math.min(dot.x - width / 2, plotWidth - width));
+  const above = dot.y - dot.radius - EVENT_TIP_GAP - height;
+  const below = dot.y + dot.radius + EVENT_TIP_GAP;
+  const top = above >= 0 ? above : Math.max(0, Math.min(below, chartHeight - height));
+  element.style.transform = `translate(${left}px, ${top}px)`;
+}
 
 type Handles = {
   chart: IChartApi;
@@ -153,7 +178,7 @@ type TipNodes = Record<"tip" | "title" | "date", HTMLElement | null>;
  * and the crosshair never re-render the page.
  */
 export default function PriceChart({ candles }: { candles: Candle[] }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const format = useChartFormatters();
   const { theme } = useTheme();
   const palette = useMemo(() => chartPalette(theme), [theme]);
@@ -163,6 +188,7 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
   const pointerRef = useRef<{ x: number; y: number } | null>(null);
   const hoveredEventRef = useRef<EventDot | null>(null);
   const tipRef = useRef<TipNodes>({ tip: null, title: null, date: null });
+  const detailsRef = useRef<HTMLDialogElement>(null);
   // Not 0: performance.now() starts near 0 on load, so the chart's first fit would read as input.
   const lastInteractionRef = useRef(Number.NEGATIVE_INFINITY);
   const legendRef = useRef<LegendNodes>({
@@ -180,13 +206,21 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
   const [view, setView] = useState<View>("all");
   const [chartType, setChartType] = useState<ChartType>("line");
   const [scale, setScale] = useState<Scale>("log");
+  // The event whose details are open, picked by clicking or tapping its dot.
+  const [openEventId, setOpenEventId] = useState<string | null>(null);
+  const openEvent = CHART_EVENTS.find((event) => event.id === openEventId);
   const formatValue = metric === "mcap" ? format.marketCap : format.price;
 
   const candleIndexByTime = useMemo(
     () => new Map(candles.map((candle, index) => [candle.time, index])),
     [candles],
   );
-  const eventByTime = useMemo(() => new Map(EVENTS.map((event) => [event.time, event.id])), []);
+  const eventByTime = useMemo(() => new Map(CHART_EVENTS.map((event) => [event.time, event])), []);
+  // The events drawn on the chart: those from the first candle on.
+  const chartedEvents = useMemo(
+    () => CHART_EVENTS.filter((event) => event.time >= (candles[0]?.time ?? 0)),
+    [candles],
+  );
   const summary = useMemo(() => {
     const closes = candles.map((candle) => candle.close * metricFactor(candle, metric));
     return t(`chart.summary.${metric}`, {
@@ -211,13 +245,13 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
     const clamp = (value: number) => Math.min(lastIndex, Math.max(0, value));
     // A fitted range starts a hair past bar 0, which still means bar 0.
     const firstVisible = candles[range ? clamp(Math.ceil(range.from - 0.001)) : 0];
-    const hoverTime = hoveredEventRef.current?.time ?? hoverTimeRef.current;
+    const hoverTime = hoveredEventRef.current?.event.time ?? hoverTimeRef.current;
     const hoveredIndex = hoverTime === null ? undefined : candleIndexByTime.get(hoverTime);
     const candle = candles[hoveredIndex ?? (range ? clamp(Math.floor(range.to)) : lastIndex)];
     const factor = metricFactor(candle, metric);
     const change =
       (candle.close * factor) / (firstVisible.close * metricFactor(firstVisible, metric)) - 1;
-    const eventId = eventByTime.get(candle.time);
+    const event = eventByTime.get(candle.time);
 
     nodes.swatch?.style.setProperty("--ch-swatch", palette.eras[candle.eraIndex]);
     if (nodes.era) nodes.era.textContent = t(`chart.eras.${ERAS[candle.eraIndex].id}`);
@@ -244,66 +278,90 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
       });
     }
     if (nodes.event) {
-      nodes.event.textContent = eventId ? t(`richList.history.events.${eventId}.title`) : "";
-      nodes.event.hidden = !eventId;
+      nodes.event.textContent = event ? t(`${event.copyKey}.title`) : "";
+      nodes.event.hidden = !event;
     }
+  });
+
+  // Where the visible series draws each event's dot. A dot scrolled out of view is left out, but
+  // one cut by the plot's edge is kept.
+  const visibleDots = useEffectEvent((): EventDot[] => {
+    const handles = handlesRef.current;
+    if (!handles) {
+      return [];
+    }
+    const timeScale = handles.chart.timeScale();
+    const plotWidth = timeScale.width();
+    const { radius, lift } = markerGeometry(timeScale.options().barSpacing);
+    const series = chartType === "line" ? handles.area : handles.candles;
+    const dots: EventDot[] = [];
+    for (const event of chartedEvents) {
+      const index = candleIndexByTime.get(event.time);
+      const x = timeScale.timeToCoordinate(event.time as UTCTimestamp);
+      if (index === undefined || x === null || x < -radius || x > plotWidth + radius) {
+        continue;
+      }
+      // Line dots sit above the close, candle dots above the high.
+      const candle = candles[index];
+      const factor = metricFactor(candle, metric);
+      const bar = series.priceToCoordinate(
+        (chartType === "line" ? candle.close : candle.high) * factor,
+      );
+      if (bar !== null) {
+        dots.push({ event, close: candle.close * factor, x, y: bar - lift, radius });
+      }
+    }
+    return dots;
+  });
+
+  // An open event's details stay beside its dot as the chart pans and zooms, and close once the
+  // dot leaves the view.
+  const placeDetails = useEffectEvent(() => {
+    const handles = handlesRef.current;
+    const details = detailsRef.current;
+    if (!handles || !details || !openEventId) {
+      return;
+    }
+    const dot = visibleDots().find((candidate) => candidate.event.id === openEventId);
+    if (dot) {
+      placeBesideDot(details, dot, handles.chart.timeScale().width());
+    } else {
+      setOpenEventId(null);
+    }
+  });
+
+  const onChartClick = useEffectEvent((point: { x: number; y: number } | undefined) => {
+    const dot = point ? nearestDot(visibleDots(), point) : null;
+    setOpenEventId(dot ? dot.event.id : null);
   });
 
   // An event is hovered once the pointer comes within reach of its dot, not only on its exact day:
   // across the whole history a day is about a pixel wide, far narrower than the dot. Its name is
-  // then drawn above the dot and the legend moves to its day.
+  // then drawn above the dot, unless its details are already open, and the legend moves to its day.
   const renderHover = useEffectEvent(() => {
     const handles = handlesRef.current;
     const point = pointerRef.current;
-    let nearest: EventDot | null = null;
-    if (handles && point) {
-      const timeScale = handles.chart.timeScale();
-      const plotWidth = timeScale.width();
-      const { radius, lift } = markerGeometry(timeScale.options().barSpacing);
-      const series = chartType === "line" ? handles.area : handles.candles;
-      let reach = EVENT_HOVER_RADIUS;
-      for (const event of EVENTS) {
-        const index = candleIndexByTime.get(event.time);
-        const x = timeScale.timeToCoordinate(event.time as UTCTimestamp);
-        // A dot scrolled out of view cannot be hovered, but one cut by the plot's edge can.
-        if (index === undefined || x === null || x < -radius || x > plotWidth + radius) {
-          continue;
-        }
-        // Line dots sit above the close, candle dots above the high.
-        const candle = candles[index];
-        const value = chartType === "line" ? candle.close : candle.high;
-        const bar = series.priceToCoordinate(value * metricFactor(candle, metric));
-        if (bar === null) {
-          continue;
-        }
-        const y = bar - lift;
-        const distance = Math.hypot(x - point.x, y - point.y);
-        if (distance <= reach) {
-          reach = distance;
-          const close = candle.close * metricFactor(candle, metric);
-          nearest = { id: event.id, time: event.time, close, x, y, radius };
-        }
-      }
+    const nearest = handles && point ? nearestDot(visibleDots(), point) : null;
+    hoveredEventRef.current = nearest;
+    if (handles && nearest) {
       // The crosshair moves to the event's day too, so its date and the legend agree. Setting it
       // does not fire another crosshair move.
-      if (nearest) {
-        handles.chart.setCrosshairPosition(nearest.close, nearest.time as UTCTimestamp, series);
-      }
+      handles.chart.setCrosshairPosition(
+        nearest.close,
+        nearest.event.time as UTCTimestamp,
+        chartType === "line" ? handles.area : handles.candles,
+      );
     }
-    hoveredEventRef.current = nearest;
+    containerRef.current?.toggleAttribute("data-event-hovered", nearest !== null);
 
     const { tip, title, date } = tipRef.current;
     if (tip && title && date) {
-      tip.hidden = !nearest;
-      if (handles && nearest) {
-        title.textContent = t(`richList.history.events.${nearest.id}.title`);
-        date.textContent = format.day(nearest.time);
-        const { offsetWidth: width, offsetHeight: height } = tip;
-        const maxLeft = handles.chart.timeScale().width() - width;
-        const left = Math.max(0, Math.min(nearest.x - width / 2, maxLeft));
-        const above = nearest.y - nearest.radius - EVENT_TIP_GAP - height;
-        const top = above >= 0 ? above : nearest.y + nearest.radius + EVENT_TIP_GAP;
-        tip.style.transform = `translate(${left}px, ${top}px)`;
+      const showTip = handles && nearest && nearest.event.id !== openEventId;
+      tip.hidden = !showTip;
+      if (showTip) {
+        title.textContent = t(`${nearest.event.copyKey}.title`);
+        date.textContent = format.day(nearest.event.time);
+        placeBesideDot(tip, nearest, handles.chart.timeScale().width());
       }
     }
     renderLegend();
@@ -314,6 +372,7 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
       setView(null);
     }
     renderHover();
+    placeDetails();
   });
 
   const restoreView = useEffectEvent(() => {
@@ -397,6 +456,7 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
       pointerRef.current = param.point ?? null;
       renderHover();
     });
+    chart.subscribeClick((param) => onChartClick(param.point));
     chart.timeScale().subscribeVisibleLogicalRangeChange(() => onRangeChange());
     // The plot narrows once the price axis has measured its labels, and with the left edge fixed
     // that cuts the newest days off a preset; re-applying it keeps the preset whole.
@@ -472,17 +532,14 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
       })),
     );
 
-    const first = candles[0]?.time ?? 0;
-    const markers: SeriesMarker<Time>[] = EVENTS.filter((event) => event.time >= first).map(
-      (event) => ({
-        id: event.id,
-        time: event.time as UTCTimestamp,
-        position: "aboveBar",
-        shape: "circle",
-        color: palette.marker,
-        size: MARKER_SIZE,
-      }),
-    );
+    const markers: SeriesMarker<Time>[] = chartedEvents.map((event) => ({
+      id: event.id,
+      time: event.time as UTCTimestamp,
+      position: "aboveBar",
+      shape: "circle",
+      color: palette.marker,
+      size: MARKER_SIZE,
+    }));
     handles.areaMarkers.setMarkers(markers);
     handles.candleMarkers.setMarkers(markers);
 
@@ -498,7 +555,42 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
 
     restoreView();
     renderLegend();
-  }, [candles, format, formatValue, metric, palette, t]);
+  }, [candles, chartedEvents, format, formatValue, metric, palette, t]);
+
+  // Opened details go beside their dot before the browser paints, and take focus so Escape and Tab
+  // work in them right away. The hover name hides while it repeats the open event, and returns
+  // when the details close.
+  useLayoutEffect(() => {
+    if (openEventId) {
+      placeDetails();
+      detailsRef.current?.focus({ preventScroll: true });
+    }
+    renderHover();
+  }, [openEventId]);
+
+  // Escape or a press anywhere outside the chart closes the details. Presses on the chart itself
+  // reach its click handler, which opens another event's details or closes these.
+  useEffect(() => {
+    if (!openEventId) {
+      return;
+    }
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpenEventId(null);
+      }
+    };
+    const onPointerDown = (event: PointerEvent) => {
+      if (!containerRef.current?.contains(event.target as Node)) {
+        setOpenEventId(null);
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [openEventId]);
 
   const markInteraction = () => {
     lastInteractionRef.current = performance.now();
@@ -547,6 +639,7 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
       <p id="ch-panel-summary" className="sr-only">
         {summary}
       </p>
+      <EventList events={chartedEvents} />
       <div className="ch-head">
         <ChartLegend nodeRef={setLegendNode} />
 
@@ -600,10 +693,13 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
       >
         {/* The hovered event's name beside its dot. The legend names it too, so assistive
             technology reads it there. */}
-        <div ref={setTipNode("tip")} className="ch-tip" aria-hidden hidden>
+        <div ref={setTipNode("tip")} className="ch-tip" aria-hidden hidden dir={i18n.dir()}>
           <span ref={setTipNode("title")} className="ch-tip-title" />
           <span ref={setTipNode("date")} className="ch-tip-date" />
         </div>
+        {openEvent ? (
+          <EventDetails ref={detailsRef} event={openEvent} onClose={() => setOpenEventId(null)} />
+        ) : null}
       </div>
 
       <EraButtons view={view} colors={palette.eras} onSelect={selectView} />

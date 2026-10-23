@@ -617,7 +617,7 @@
     },
     "hero": {
       "title": "BSO:s pris sedan den första affären",
-      "lead": "Ett diagram för alla tre kontrakten: PLEB på Avalanche, PLEB på Ethereum, som döptes om till BSO 2026, och BSO i dag. Äldre priser räknas om med 7 114,6 PLEB per BSO, den kvot som båda migreringarna behöll. Historien bakom varje rörelse finns i rikelistans <historyLink>historik</historyLink>.",
+      "lead": "Ett diagram för alla tre kontrakten: PLEB på Avalanche, PLEB på Ethereum, som döptes om till BSO 2026, och BSO i dag. Äldre priser räknas om med 7 114,6 PLEB per BSO, den kvot som båda migreringarna behöll. Välj en punkt i diagrammet för att se vad som hände den dagen; hela tokenhistorien finns i rikelistans <historyLink>historik</historyLink>.",
       "status": {
         "live": "Live från Uniswap-poolen: BSO-pris {{price}}. Uppdaterat {{ago}}.",
         "loading": "Daglig historik fram till {{date}}. Laddar de senaste priserna…",
@@ -681,6 +681,50 @@
       "poolsTitle": "Avlästa pooler",
       "eraDates": "{{from}} till {{to}}",
       "snapshot": "Historiken bygger på {{count}} swappar fram till {{date}}. Nyare dagar kommer från GeckoTerminal och uppdateras var femte minut medan sidan är öppen. Hittat ett felaktigt ljus? <contributeLink>Förbättra den här sidan</contributeLink>."
+    },
+    "eventList": "Händelser markerade i diagrammet",
+    "eventDetails": {
+      "close": "Stäng",
+      "links": {
+        "reddit": "Reddit-inlägg",
+        "release": "Utgåva på GitHub",
+        "hackerNews": "Tråd på Hacker News",
+        "tweet": "Tweet"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "Ett anslag från Protocol Labs",
+        "body": "Protocol Labs, teamet bakom IPFS och Filecoin, ger plebbit ett anslag för att bygga sitt decentraliserade alternativ till Reddit."
+      },
+      "firstApp": {
+        "title": "Den första plebbit-appen",
+        "body": "Den första skrivbordsappen släpps för Linux, Windows och Mac. Den kör en egen IPFS-nod, så till skillnad från webbdemon är den helt peer-to-peer."
+      },
+      "plebchan": {
+        "title": "plebchan lanseras",
+        "body": "plebchan, en app i 4chan-stil på plebbit-protokollet, publicerar sin första utgåva, för webben, Mac och Linux."
+      },
+      "hackerNews": {
+        "title": "Förstasidan på Hacker News",
+        "body": "Mitt i motreaktionerna mot Reddits nya API-priser når plebbit-demon förstasidan på Hacker News med över 300 poäng. Samma vecka når inlägg om den förstasidan på r/ethereum och får 30 000 visningar på r/CryptoCurrency."
+      },
+      "coingecko": {
+        "title": "Listad på CoinGecko",
+        "body": "Efter att ha tackat nej flera gånger sedan början av 2022 listar CoinGecko PLEB."
+      },
+      "socialFi": {
+        "title": "I CoinGeckos SocialFi-kategori",
+        "body": "CoinGecko lägger till PLEB i sin SocialFi-kategori efter att teamet har bett om det, och en lista över SocialFi-tokens som delas på X tar med den. Priset fördubblas nästan på fem dagar."
+      },
+      "seedit": {
+        "title": "Seedit lanseras",
+        "body": "Seedit, en app som ser ut och fungerar som gamla Reddit, publicerar sin första utgåva."
+      },
+      "marchRally": {
+        "title": "Rallyt i mars 2024",
+        "body": "Den 1 mars twittrar investeraren Jason Calacanis att han vill ha ett distribuerat, tillståndslöst Reddit, och plebbit svarar med sin demo. Seedit 0.1.6 släpps den 3 mars, och den 4 mars tillkännager teamet tokenlåsta gemenskaper. När ETH passerar 4 000 dollar den månaden fördubblas priset nästan den 4 mars och har tredubblats i slutet av mars, på en volym på 2,2 miljoner dollar, den högsta av alla månader i diagrammet."
+      }
     }
   }
 }

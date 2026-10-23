@@ -622,7 +622,7 @@
     },
     "hero": {
       "title": "Le prix de BSO depuis son premier échange",
-      "lead": "Un seul graphique pour les trois contrats : PLEB sur Avalanche, PLEB sur Ethereum, renommé BSO en 2026, et BSO aujourd’hui. Les prix plus anciens sont convertis à raison de 7 114,6 PLEB par BSO, le ratio conservé lors des deux migrations. L’histoire derrière chaque mouvement se trouve dans l’<historyLink>historique</historyLink> de la rich list.",
+      "lead": "Un seul graphique pour les trois contrats : PLEB sur Avalanche, PLEB sur Ethereum, renommé BSO en 2026, et BSO aujourd’hui. Les prix plus anciens sont convertis à raison de 7 114,6 PLEB par BSO, le ratio conservé lors des deux migrations. Sélectionnez un point sur le graphique pour voir ce qui s’est passé ce jour-là ; l’histoire complète du token se trouve dans l’<historyLink>historique</historyLink> de la rich list.",
       "status": {
         "live": "En direct depuis le pool Uniswap : BSO à {{price}}. Mis à jour {{ago}}.",
         "loading": "Historique quotidien jusqu’au {{date}}. Chargement des derniers prix…",
@@ -686,6 +686,50 @@
       "poolsTitle": "Pools utilisés",
       "eraDates": "{{from}} – {{to}}",
       "snapshot": "Historique construit à partir de {{count}} swaps jusqu’au {{date}}. Les jours plus récents proviennent de GeckoTerminal et s’actualisent toutes les cinq minutes tant que cette page est ouverte. Vous avez repéré une bougie erronée ? <contributeLink>Améliorer cette page</contributeLink>."
+    },
+    "eventList": "Événements marqués sur le graphique",
+    "eventDetails": {
+      "close": "Fermer",
+      "links": {
+        "reddit": "Publication Reddit",
+        "release": "Version sur GitHub",
+        "hackerNews": "Discussion sur Hacker News",
+        "tweet": "Tweet"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "Une subvention de Protocol Labs",
+        "body": "Protocol Labs, l’équipe derrière IPFS et Filecoin, accorde une subvention à plebbit pour construire son alternative décentralisée à Reddit."
+      },
+      "firstApp": {
+        "title": "La première application plebbit",
+        "body": "La première application de bureau sort pour Linux, Windows et Mac. Elle fait tourner son propre nœud IPFS, si bien que, contrairement à la démo web, elle est entièrement peer-to-peer."
+      },
+      "plebchan": {
+        "title": "Lancement de plebchan",
+        "body": "plebchan, une application de style 4chan basée sur le protocole plebbit, publie sa première version, pour le web, Mac et Linux."
+      },
+      "hackerNews": {
+        "title": "En une de Hacker News",
+        "body": "En pleine polémique sur la nouvelle tarification de l’API de Reddit, la démo de plebbit atteint la une de Hacker News avec plus de 300 points. La même semaine, des publications à son sujet arrivent en une de r/ethereum et cumulent 30 000 vues sur r/CryptoCurrency."
+      },
+      "coingecko": {
+        "title": "Listé sur CoinGecko",
+        "body": "Après l’avoir refusé plusieurs fois depuis début 2022, CoinGecko liste PLEB."
+      },
+      "socialFi": {
+        "title": "Dans la catégorie SocialFi de CoinGecko",
+        "body": "CoinGecko ajoute PLEB à sa catégorie SocialFi à la demande de l’équipe, et une liste de tokens SocialFi partagée sur X l’inclut. Le prix double presque en cinq jours."
+      },
+      "seedit": {
+        "title": "Lancement de Seedit",
+        "body": "Seedit, une application qui a l’apparence et le fonctionnement de l’ancien Reddit, publie sa première version."
+      },
+      "marchRally": {
+        "title": "Le rallye de mars 2024",
+        "body": "Le 1er mars, l’investisseur Jason Calacanis tweete qu’il veut un Reddit distribué et sans permission, et plebbit lui répond avec sa démo. Seedit 0.1.6 sort le 3 mars, et le 4 mars l’équipe annonce des communautés réservées aux détenteurs de tokens. Alors que l’ETH dépasse les 4 000 $ ce mois-là, le prix double presque le 4 mars et triple d’ici la fin mars, sur un volume de 2,2 millions de dollars, le plus élevé de tous les mois de ce graphique."
+      }
     }
   }
 }

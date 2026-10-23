@@ -612,7 +612,7 @@
     },
     "hero": {
       "title": "最初の取引以降のBSOの価格",
-      "lead": "3つのコントラクトすべてを1つのチャートに：Avalanche上のPLEB、2026年にBSOへ改名されたEthereum上のPLEB、そして現在のBSO。過去の価格は、2回の移行で維持された比率である1 BSOあたり7,114.6 PLEBで換算しています。それぞれの値動きの背景は、リッチリストの<historyLink>歴史</historyLink>で紹介しています。",
+      "lead": "3つのコントラクトすべてを1つのチャートに：Avalanche上のPLEB、2026年にBSOへ改名されたEthereum上のPLEB、そして現在のBSO。過去の価格は、2回の移行で維持された比率である1 BSOあたり7,114.6 PLEBで換算しています。チャート上の点を選択すると、その日に何があったかを確認できます。トークンのすべての経緯は、リッチリストの<historyLink>歴史</historyLink>で紹介しています。",
       "status": {
         "live": "Uniswapプールからライブ取得：BSOは{{price}}。{{ago}}に更新。",
         "loading": "{{date}}までの日次履歴。最新の価格を読み込み中…",
@@ -676,6 +676,50 @@
       "poolsTitle": "読み取ったプール",
       "eraDates": "{{from}}〜{{to}}",
       "snapshot": "{{date}}までの{{count}}件のスワップから作成した履歴です。それ以降の日はGeckoTerminalから取得し、このページを開いている間は5分ごとに更新されます。誤ったローソク足を見つけましたか？<contributeLink>このページを改善する</contributeLink>。"
+    },
+    "eventList": "チャート上に示したイベント",
+    "eventDetails": {
+      "close": "閉じる",
+      "links": {
+        "reddit": "Redditの投稿",
+        "release": "GitHubのリリース",
+        "hackerNews": "Hacker Newsのスレッド",
+        "tweet": "ツイート"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "Protocol Labsからの助成金",
+        "body": "IPFSとFilecoinを手がけるチームであるProtocol Labsが、分散型のRedditの代替を構築するための助成金をplebbitに提供します。"
+      },
+      "firstApp": {
+        "title": "最初のplebbitアプリ",
+        "body": "最初のデスクトップアプリがLinux、Windows、Mac向けにリリースされます。自前のIPFSノードを実行するため、Webデモとは異なり完全にpeer-to-peerです。"
+      },
+      "plebchan": {
+        "title": "plebchanが公開",
+        "body": "plebbitプロトコル上で動く4chan風のアプリplebchanが、Web、Mac、Linux向けの最初のリリースを公開します。"
+      },
+      "hackerNews": {
+        "title": "Hacker Newsのトップページに掲載",
+        "body": "Redditの新しいAPI料金への反発が広がるなか、plebbitのデモが300ポイント以上を獲得してHacker Newsのトップページに載ります。同じ週、plebbitに関する投稿がr/ethereumのトップページに載り、r/CryptoCurrencyでは3万回閲覧されます。"
+      },
+      "coingecko": {
+        "title": "CoinGeckoに掲載",
+        "body": "2022年初めから何度か掲載を断ってきたCoinGeckoが、PLEBを掲載します。"
+      },
+      "socialFi": {
+        "title": "CoinGeckoのSocialFiカテゴリーに",
+        "body": "チームの依頼を受けてCoinGeckoがPLEBをSocialFiカテゴリーに追加し、Xで共有されたSocialFiトークンのリストにも含まれます。価格は5日間でほぼ2倍になります。"
+      },
+      "seedit": {
+        "title": "Seeditが公開",
+        "body": "旧Redditのような見た目と操作感のアプリSeeditが、最初のリリースを公開します。"
+      },
+      "marchRally": {
+        "title": "2024年3月の急騰",
+        "body": "3月1日、投資家のJason Calacanisが、分散型でパーミッションレスなRedditが欲しいとツイートし、plebbitはデモで応えます。3月3日にSeedit 0.1.6がリリースされ、3月4日にはチームがトークンゲート型コミュニティを発表します。その月にETHが4,000ドルを超えるなか、価格は3月4日にほぼ2倍となり、3月末までに3倍になります。出来高は220万ドルで、このチャートのどの月よりも多くなっています。"
+      }
     }
   }
 }

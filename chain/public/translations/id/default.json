@@ -612,7 +612,7 @@
     },
     "hero": {
       "title": "Harga BSO sejak perdagangan pertamanya",
-      "lead": "Satu grafik untuk ketiga kontrak: PLEB di Avalanche, PLEB di Ethereum, yang berganti nama menjadi BSO pada 2026, dan BSO saat ini. Harga lama dikonversi dengan rasio 7.114,6 PLEB per BSO, rasio yang dipertahankan di kedua migrasi. Cerita di balik setiap pergerakan ada di <historyLink>riwayat</historyLink> rich list.",
+      "lead": "Satu grafik untuk ketiga kontrak: PLEB di Avalanche, PLEB di Ethereum, yang berganti nama menjadi BSO pada 2026, dan BSO saat ini. Harga lama dikonversi dengan rasio 7.114,6 PLEB per BSO, rasio yang dipertahankan di kedua migrasi. Pilih sebuah titik di grafik untuk melihat apa yang terjadi pada hari itu; kisah lengkap token ini ada di <historyLink>riwayat</historyLink> rich list.",
       "status": {
         "live": "Langsung dari pool Uniswap: BSO di {{price}}. Diperbarui {{ago}}.",
         "loading": "Riwayat harian hingga {{date}}. Memuat harga terbaru…",
@@ -676,6 +676,50 @@
       "poolsTitle": "Pool yang dibaca",
       "eraDates": "{{from}} hingga {{to}}",
       "snapshot": "Riwayat dibangun dari {{count}} swap hingga {{date}}. Hari-hari yang lebih baru berasal dari GeckoTerminal dan diperbarui setiap lima menit selama halaman ini terbuka. Melihat candle yang salah? <contributeLink>Tingkatkan halaman ini</contributeLink>."
+    },
+    "eventList": "Peristiwa yang ditandai di grafik",
+    "eventDetails": {
+      "close": "Tutup",
+      "links": {
+        "reddit": "Postingan Reddit",
+        "release": "Rilis di GitHub",
+        "hackerNews": "Thread Hacker News",
+        "tweet": "Tweet"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "Hibah dari Protocol Labs",
+        "body": "Protocol Labs, tim di balik IPFS dan Filecoin, memberi plebbit hibah untuk membangun alternatif Reddit-nya yang terdesentralisasi."
+      },
+      "firstApp": {
+        "title": "Aplikasi plebbit pertama",
+        "body": "Aplikasi desktop pertama dirilis untuk Linux, Windows, dan Mac. Aplikasi ini menjalankan node IPFS-nya sendiri, jadi tidak seperti demo web, aplikasi ini sepenuhnya peer-to-peer."
+      },
+      "plebchan": {
+        "title": "plebchan diluncurkan",
+        "body": "plebchan, aplikasi bergaya 4chan di protokol plebbit, menerbitkan rilis pertamanya untuk web, Mac, dan Linux."
+      },
+      "hackerNews": {
+        "title": "Halaman depan Hacker News",
+        "body": "Di tengah gelombang protes atas harga API baru Reddit, demo plebbit mencapai halaman depan Hacker News dengan lebih dari 300 poin. Pada minggu yang sama, postingan tentangnya mencapai halaman depan r/ethereum dan meraih 30.000 tayangan di r/CryptoCurrency."
+      },
+      "coingecko": {
+        "title": "Terdaftar di CoinGecko",
+        "body": "Setelah beberapa kali menolaknya sejak awal 2022, CoinGecko mencantumkan PLEB."
+      },
+      "socialFi": {
+        "title": "Di kategori SocialFi CoinGecko",
+        "body": "CoinGecko menambahkan PLEB ke kategori SocialFi-nya setelah tim memintanya, dan sebuah daftar token SocialFi yang dibagikan di X ikut menyertakannya. Harga hampir naik dua kali lipat dalam lima hari."
+      },
+      "seedit": {
+        "title": "Seedit diluncurkan",
+        "body": "Seedit, aplikasi yang tampilan dan cara kerjanya seperti Reddit versi lama, menerbitkan rilis pertamanya."
+      },
+      "marchRally": {
+        "title": "Reli Maret 2024",
+        "body": "Pada 1 Maret, investor Jason Calacanis menulis tweet bahwa ia menginginkan Reddit yang terdistribusi dan tanpa izin, dan plebbit membalas dengan demonya. Seedit 0.1.6 dirilis pada 3 Maret, dan pada 4 Maret tim mengumumkan komunitas dengan akses berbasis token. Dengan ETH menembus $4.000 bulan itu, harga hampir naik dua kali lipat pada 4 Maret dan menjadi tiga kali lipat pada akhir Maret, dengan volume $2,2 juta, tertinggi di antara semua bulan di grafik ini."
+      }
     }
   }
 }

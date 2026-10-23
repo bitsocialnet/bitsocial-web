@@ -617,7 +617,7 @@
     },
     "hero": {
       "title": "A BSO árfolyama az első kereskedés óta",
-      "lead": "Egy grafikon mindhárom szerződésről: PLEB az Avalanche-on, PLEB az Ethereumon, amelyet 2026-ban BSO-ra neveztek át, és a mai BSO. A régebbi árfolyamokat 7114,6 PLEB/BSO arányon számítjuk át, ezt az arányt mindkét migráció megtartotta. Az egyes mozgások hátteréről a birtokosok listájának <historyLink>Történet</historyLink> részében olvashatsz.",
+      "lead": "Egy grafikon mindhárom szerződésről: PLEB az Avalanche-on, PLEB az Ethereumon, amelyet 2026-ban BSO-ra neveztek át, és a mai BSO. A régebbi árfolyamokat 7114,6 PLEB/BSO arányon számítjuk át, ezt az arányt mindkét migráció megtartotta. Válassz ki egy pontot a grafikonon, és megnézheted, mi történt aznap; a token teljes történetéről a birtokosok listájának <historyLink>Történet</historyLink> részében olvashatsz.",
       "status": {
         "live": "Élőben az Uniswap-poolból: a BSO árfolyama {{price}}. Frissítve: {{ago}}.",
         "loading": "Napi előzmények eddig: {{date}}. A legfrissebb árfolyamok betöltése…",
@@ -681,6 +681,50 @@
       "poolsTitle": "Felhasznált poolok",
       "eraDates": "{{from}} – {{to}}",
       "snapshot": "Az előzmények {{count}} swapból készültek, {{date}} állapot szerint. Az újabb napok a GeckoTerminalról érkeznek, és ötpercenként frissülnek, amíg ez az oldal nyitva van. Hibás gyertyát láttál? <contributeLink>Tedd jobbá ezt az oldalt</contributeLink>."
+    },
+    "eventList": "A grafikonon jelölt események",
+    "eventDetails": {
+      "close": "Bezárás",
+      "links": {
+        "reddit": "Reddit-bejegyzés",
+        "release": "Kiadás a GitHubon",
+        "hackerNews": "Hacker News-szál",
+        "tweet": "Tweet"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "Támogatás a Protocol Labstől",
+        "body": "A Protocol Labs, az IPFS és a Filecoin mögött álló csapat, támogatást ad a plebbitnek decentralizált Reddit-alternatívája megépítéséhez."
+      },
+      "firstApp": {
+        "title": "Az első plebbit-alkalmazás",
+        "body": "Megjelenik az első asztali alkalmazás Linuxra, Windowsra és Macre. Saját IPFS-csomópontot futtat, így a webes demóval ellentétben teljesen peer-to-peer."
+      },
+      "plebchan": {
+        "title": "Elindul a plebchan",
+        "body": "A plebchan, egy 4chan-stílusú alkalmazás a plebbit protokollon, kiadja első verzióját webre, Macre és Linuxra."
+      },
+      "hackerNews": {
+        "title": "A Hacker News címlapján",
+        "body": "A Reddit új API-árazása körüli felháborodás közepette a plebbit demója több mint 300 ponttal a Hacker News címlapjára kerül. Ugyanazon a héten a róla szóló bejegyzések az r/ethereum címlapjára kerülnek, és 30 000 megtekintést gyűjtenek az r/CryptoCurrency közösségben."
+      },
+      "coingecko": {
+        "title": "Felkerül a CoinGeckóra",
+        "body": "Miután 2022 eleje óta többször elutasította, a CoinGecko felveszi a PLEB-et."
+      },
+      "socialFi": {
+        "title": "A CoinGecko SocialFi-kategóriájában",
+        "body": "A CoinGecko a csapat kérésére felveszi a PLEB-et a SocialFi-kategóriájába, és egy X-en megosztott SocialFi-tokenlista is tartalmazza. Az árfolyam öt nap alatt majdnem megduplázódik."
+      },
+      "seedit": {
+        "title": "Elindul a Seedit",
+        "body": "A Seedit, egy olyan alkalmazás, amely úgy néz ki és úgy működik, mint a régi Reddit, kiadja első verzióját."
+      },
+      "marchRally": {
+        "title": "A 2024. márciusi emelkedés",
+        "body": "Március 1-jén Jason Calacanis befektető azt tweeteli, hogy egy elosztott, engedély nélküli Redditet szeretne, a plebbit pedig a demójával válaszol. A Seedit 0.1.6 március 3-án jelenik meg, március 4-én pedig a csapat bejelenti a tokenhez kötött hozzáférésű közösségeket. Miközben az ETH abban a hónapban átlépi a 4000 dollárt, az árfolyam március 4-én majdnem megduplázódik, március végére pedig megháromszorozódik, 2,2 millió dollár forgalom mellett, ami a grafikon összes hónapja közül a legtöbb."
+      }
     }
   }
 }

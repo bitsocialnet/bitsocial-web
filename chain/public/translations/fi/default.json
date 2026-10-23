@@ -617,7 +617,7 @@
     },
     "hero": {
       "title": "BSO:n hinta ensimmäisestä kaupasta lähtien",
-      "lead": "Yksi kaavio kaikista kolmesta älysopimuksesta: PLEB Avalanchella, PLEB Ethereumissa, joka nimettiin vuonna 2026 uudelleen BSO:ksi, ja BSO nykyään. Vanhemmat hinnat on muunnettu kurssilla 7 114,6 PLEB-tokenia BSO:ta kohden, samalla suhteella, joka säilyi molemmissa migraatioissa. Jokaisen hintaliikkeen tausta löytyy haltijalistan <historyLink>historiasta</historyLink>.",
+      "lead": "Yksi kaavio kaikista kolmesta älysopimuksesta: PLEB Avalanchella, PLEB Ethereumissa, joka nimettiin vuonna 2026 uudelleen BSO:ksi, ja BSO nykyään. Vanhemmat hinnat on muunnettu kurssilla 7 114,6 PLEB-tokenia BSO:ta kohden, samalla suhteella, joka säilyi molemmissa migraatioissa. Valitse kaaviosta piste nähdäksesi, mitä sinä päivänä tapahtui; tokenin koko tarina löytyy haltijalistan <historyLink>historiasta</historyLink>.",
       "status": {
         "live": "Suoraan Uniswap-poolista: BSO {{price}}. Päivitetty {{ago}}.",
         "loading": "Päivittäinen historia {{date}} asti. Ladataan uusimpia hintoja…",
@@ -681,6 +681,50 @@
       "poolsTitle": "Luetut poolit",
       "eraDates": "{{from}}–{{to}}",
       "snapshot": "Historia on koottu {{count}} vaihdosta {{date}} asti. Uudemmat päivät tulevat GeckoTerminalista ja päivittyvät viiden minuutin välein, kun tämä sivu on auki. Huomasitko väärän kynttilän? <contributeLink>Paranna tätä sivua</contributeLink>."
+    },
+    "eventList": "Kaavioon merkityt tapahtumat",
+    "eventDetails": {
+      "close": "Sulje",
+      "links": {
+        "reddit": "Reddit-julkaisu",
+        "release": "Julkaisu GitHubissa",
+        "hackerNews": "Hacker News -ketju",
+        "tweet": "Twiitti"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "Apuraha Protocol Labsilta",
+        "body": "Protocol Labs, IPFS:n ja Filecoinin takana oleva tiimi, myöntää plebbitille apurahan hajautetun Reddit-vaihtoehdon rakentamiseen."
+      },
+      "firstApp": {
+        "title": "Ensimmäinen plebbit-sovellus",
+        "body": "Ensimmäinen työpöytäsovellus julkaistaan Linuxille, Windowsille ja Macille. Se ajaa omaa IPFS-solmuaan, joten toisin kuin verkkodemo, se on täysin peer-to-peer."
+      },
+      "plebchan": {
+        "title": "plebchan julkaistaan",
+        "body": "plebchan, 4chan-tyylinen sovellus plebbit-protokollalla, julkaisee ensimmäisen versionsa verkkoon, Macille ja Linuxille."
+      },
+      "hackerNews": {
+        "title": "Hacker Newsin etusivulla",
+        "body": "Redditin uuden API-hinnoittelun herättämän vastareaktion keskellä plebbitin demo nousee Hacker Newsin etusivulle yli 300 pisteellä. Samalla viikolla siitä kertovat julkaisut nousevat r/ethereumin etusivulle ja keräävät 30 000 katselukertaa r/CryptoCurrencyssa."
+      },
+      "coingecko": {
+        "title": "Listattu CoinGeckoon",
+        "body": "Hylättyään sen useaan otteeseen vuoden 2022 alusta lähtien CoinGecko listaa PLEBin."
+      },
+      "socialFi": {
+        "title": "CoinGeckon SocialFi-kategoriassa",
+        "body": "CoinGecko lisää PLEBin SocialFi-kategoriaansa tiimin pyynnöstä, ja X:ssä jaettu SocialFi-tokenien lista sisältää sen. Hinta lähes kaksinkertaistuu viidessä päivässä."
+      },
+      "seedit": {
+        "title": "Seedit julkaistaan",
+        "body": "Seedit, sovellus, joka näyttää ja toimii kuin vanha Reddit, julkaisee ensimmäisen versionsa."
+      },
+      "marchRally": {
+        "title": "Maaliskuun 2024 nousu",
+        "body": "Sijoittaja Jason Calacanis twiittaa 1. maaliskuuta haluavansa hajautetun Redditin, joka ei vaadi lupia, ja plebbit vastaa hänelle demollaan. Seedit 0.1.6 julkaistaan 3. maaliskuuta, ja 4. maaliskuuta tiimi julkistaa tokenilla rajatut yhteisöt. Kun ETH ylittää samassa kuussa 4 000 dollaria, hinta lähes kaksinkertaistuu 4. maaliskuuta ja kolminkertaistuu maaliskuun loppuun mennessä 2,2 miljoonan dollarin volyymilla, joka on tämän kaavion kuukausista suurin."
+      }
     }
   }
 }

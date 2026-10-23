@@ -617,7 +617,7 @@
     },
     "hero": {
       "title": "De koers van BSO sinds de eerste trade",
-      "lead": "Eén grafiek over alle drie de contracten: PLEB op Avalanche, PLEB op Ethereum, dat in 2026 de naam BSO kreeg, en BSO vandaag. Oudere koersen zijn omgerekend tegen 7.114,6 PLEB per BSO, de verhouding die beide migraties aanhielden. Het verhaal achter elke beweging staat in de <historyLink>geschiedenis</historyLink> van de rijkenlijst.",
+      "lead": "Eén grafiek over alle drie de contracten: PLEB op Avalanche, PLEB op Ethereum, dat in 2026 de naam BSO kreeg, en BSO vandaag. Oudere koersen zijn omgerekend tegen 7.114,6 PLEB per BSO, de verhouding die beide migraties aanhielden. Kies een stip in de grafiek om te zien wat er die dag gebeurde; het volledige verhaal van de token staat in de <historyLink>geschiedenis</historyLink> van de rijkenlijst.",
       "status": {
         "live": "Live van de Uniswap-pool: BSO op {{price}}. Bijgewerkt {{ago}}.",
         "loading": "Dagelijkse geschiedenis tot {{date}}. Laatste koersen laden…",
@@ -681,6 +681,50 @@
       "poolsTitle": "Gelezen pools",
       "eraDates": "{{from}} tot {{to}}",
       "snapshot": "Geschiedenis opgebouwd uit {{count}} swaps tot {{date}}. Nieuwere dagen komen van GeckoTerminal en worden elke vijf minuten ververst zolang deze pagina openstaat. Een verkeerde candle gezien? <contributeLink>Verbeter deze pagina</contributeLink>."
+    },
+    "eventList": "Gebeurtenissen gemarkeerd in de grafiek",
+    "eventDetails": {
+      "close": "Sluiten",
+      "links": {
+        "reddit": "Reddit-post",
+        "release": "Release op GitHub",
+        "hackerNews": "Hacker News-thread",
+        "tweet": "Tweet"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "Een subsidie van Protocol Labs",
+        "body": "Protocol Labs, het team achter IPFS en Filecoin, geeft plebbit een subsidie om zijn gedecentraliseerde alternatief voor Reddit te bouwen."
+      },
+      "firstApp": {
+        "title": "De eerste plebbit-app",
+        "body": "De eerste desktopapp verschijnt voor Linux, Windows en Mac. Die draait een eigen IPFS-node, dus in tegenstelling tot de webdemo is hij volledig peer-to-peer."
+      },
+      "plebchan": {
+        "title": "plebchan wordt gelanceerd",
+        "body": "plebchan, een app in 4chan-stijl op het plebbit-protocol, publiceert zijn eerste release, voor het web, Mac en Linux."
+      },
+      "hackerNews": {
+        "title": "Voorpagina van Hacker News",
+        "body": "Te midden van de ophef over de nieuwe API-prijzen van Reddit haalt de plebbit-demo de voorpagina van Hacker News met meer dan 300 punten. Dezelfde week halen berichten erover de voorpagina van r/ethereum en trekken ze 30.000 weergaven op r/CryptoCurrency."
+      },
+      "coingecko": {
+        "title": "Vermeld op CoinGecko",
+        "body": "Na PLEB sinds begin 2022 meerdere keren te hebben afgewezen, neemt CoinGecko de token op."
+      },
+      "socialFi": {
+        "title": "In de SocialFi-categorie van CoinGecko",
+        "body": "Op verzoek van het team voegt CoinGecko PLEB toe aan zijn SocialFi-categorie, en een lijst met SocialFi-tokens die op X wordt gedeeld, noemt PLEB ook. De koers verdubbelt bijna in vijf dagen."
+      },
+      "seedit": {
+        "title": "Seedit wordt gelanceerd",
+        "body": "Seedit, een app die eruitziet en werkt als het klassieke old Reddit, publiceert zijn eerste release."
+      },
+      "marchRally": {
+        "title": "De rally van maart 2024",
+        "body": "Op 1 maart tweet investeerder Jason Calacanis dat hij een gedistribueerd, permissieloos Reddit wil, en plebbit reageert met zijn demo. Seedit 0.1.6 verschijnt op 3 maart, en op 4 maart kondigt het team token-gated communities aan. Terwijl ETH die maand boven de $4.000 stijgt, verdubbelt de koers bijna op 4 maart en verdrievoudigt hij tegen eind maart, bij $2,2 miljoen aan volume, het hoogste van alle maanden in deze grafiek."
+      }
     }
   }
 }

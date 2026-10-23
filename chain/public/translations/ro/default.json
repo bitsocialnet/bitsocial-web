@@ -622,7 +622,7 @@
     },
     "hero": {
       "title": "Prețul BSO de la prima tranzacție",
-      "lead": "Un singur grafic pentru toate cele trei contracte: PLEB pe Avalanche, PLEB pe Ethereum, redenumit BSO în 2026, și BSO astăzi. Prețurile mai vechi sunt convertite la 7.114,6 PLEB per BSO, raportul păstrat de ambele migrări. Povestea din spatele fiecărei mișcări se află în <historyLink>istoricul</historyLink> din lista deținătorilor.",
+      "lead": "Un singur grafic pentru toate cele trei contracte: PLEB pe Avalanche, PLEB pe Ethereum, redenumit BSO în 2026, și BSO astăzi. Prețurile mai vechi sunt convertite la 7.114,6 PLEB per BSO, raportul păstrat de ambele migrări. Alege un punct de pe grafic pentru a vedea ce s-a întâmplat în acea zi; povestea completă a tokenului se află în <historyLink>istoricul</historyLink> din lista deținătorilor.",
       "status": {
         "live": "Date live din pool-ul Uniswap — prețul BSO: {{price}}. Actualizat {{ago}}.",
         "loading": "Istoric zilnic până la {{date}}. Se încarcă cele mai recente prețuri…",
@@ -686,6 +686,50 @@
       "poolsTitle": "Pool-uri citite",
       "eraDates": "{{from}} – {{to}}",
       "snapshot": "Istoric construit din swap-uri până la {{date}} (total: {{count}}). Zilele mai noi vin de la GeckoTerminal și se actualizează la fiecare cinci minute cât timp pagina este deschisă. Ai observat o lumânare greșită? <contributeLink>Îmbunătățește această pagină</contributeLink>."
+    },
+    "eventList": "Evenimente marcate pe grafic",
+    "eventDetails": {
+      "close": "Închide",
+      "links": {
+        "reddit": "Postare pe Reddit",
+        "release": "Versiune pe GitHub",
+        "hackerNews": "Firul de pe Hacker News",
+        "tweet": "Tweet"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "Un grant de la Protocol Labs",
+        "body": "Protocol Labs, echipa din spatele IPFS și Filecoin, îi acordă lui plebbit un grant pentru a-și construi alternativa descentralizată la Reddit."
+      },
+      "firstApp": {
+        "title": "Prima aplicație plebbit",
+        "body": "Prima aplicație desktop apare pentru Linux, Windows și Mac. Rulează propriul nod IPFS, așa că, spre deosebire de demo-ul web, este complet peer-to-peer."
+      },
+      "plebchan": {
+        "title": "Se lansează plebchan",
+        "body": "plebchan, o aplicație în stilul 4chan pe protocolul plebbit, își publică prima versiune, pentru web, Mac și Linux."
+      },
+      "hackerNews": {
+        "title": "Pe prima pagină a Hacker News",
+        "body": "În plin val de nemulțumiri față de noile prețuri ale API-ului Reddit, demo-ul plebbit ajunge pe prima pagină a Hacker News cu peste 300 de puncte. În aceeași săptămână, postările despre el ajung pe prima pagină a r/ethereum și strâng 30.000 de vizualizări pe r/CryptoCurrency."
+      },
+      "coingecko": {
+        "title": "Listat pe CoinGecko",
+        "body": "După ce l-a refuzat de mai multe ori de la începutul lui 2022, CoinGecko listează PLEB."
+      },
+      "socialFi": {
+        "title": "În categoria SocialFi de pe CoinGecko",
+        "body": "La cererea echipei, CoinGecko adaugă PLEB în categoria sa SocialFi, iar o listă de tokenuri SocialFi distribuită pe X îl include. Prețul aproape se dublează în cinci zile."
+      },
+      "seedit": {
+        "title": "Se lansează Seedit",
+        "body": "Seedit, o aplicație care arată și funcționează ca vechiul Reddit (old Reddit), își publică prima versiune."
+      },
+      "marchRally": {
+        "title": "Raliul din martie 2024",
+        "body": "Pe 1 martie, investitorul Jason Calacanis postează un tweet în care spune că vrea un Reddit distribuit, fără permisiuni, iar plebbit îi răspunde cu demo-ul său. Seedit 0.1.6 apare pe 3 martie, iar pe 4 martie echipa anunță comunități cu acces pe bază de token. Cu ETH trecând de 4.000 $ în acea lună, prețul aproape se dublează pe 4 martie și se triplează până la sfârșitul lui martie, la un volum de 2,2 milioane $, cel mai mare dintre toate lunile din acest grafic."
+      }
     }
   }
 }

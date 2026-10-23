@@ -612,7 +612,7 @@
     },
     "hero": {
       "title": "BSO 自首笔交易以来的价格",
-      "lead": "一张图表涵盖全部三个合约：Avalanche 上的 PLEB、Ethereum 上的 PLEB（2026 年更名为 BSO），以及如今的 BSO。早期价格按每 BSO 对应 7,114.6 枚 PLEB 换算，这是两次迁移都沿用的比率。每次涨跌背后的经过，见富豪榜的<historyLink>历史</historyLink>。",
+      "lead": "一张图表涵盖全部三个合约：Avalanche 上的 PLEB、Ethereum 上的 PLEB（2026 年更名为 BSO），以及如今的 BSO。早期价格按每 BSO 对应 7,114.6 枚 PLEB 换算，这是两次迁移都沿用的比率。选择图表上的圆点，即可查看当天发生了什么；代币的完整历程见富豪榜的<historyLink>历史</historyLink>。",
       "status": {
         "live": "Uniswap 池实时数据：BSO 价格 {{price}}。最后更新：{{ago}}。",
         "loading": "每日历史数据截至 {{date}}。正在加载最新价格…",
@@ -676,6 +676,50 @@
       "poolsTitle": "读取的池",
       "eraDates": "{{from}}至{{to}}",
       "snapshot": "历史数据由截至 {{date}} 的 {{count}} 笔兑换构建。更新的日期来自 GeckoTerminal，页面打开期间每五分钟刷新一次。发现有误的 K 线？<contributeLink>改进此页面</contributeLink>。"
+    },
+    "eventList": "图表上标记的事件",
+    "eventDetails": {
+      "close": "关闭",
+      "links": {
+        "reddit": "Reddit 帖子",
+        "release": "GitHub 上的版本发布",
+        "hackerNews": "Hacker News 讨论帖",
+        "tweet": "推文"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "来自 Protocol Labs 的资助",
+        "body": "IPFS 和 Filecoin 背后的团队 Protocol Labs 向 plebbit 提供资助，用于打造其去中心化的 Reddit 替代品。"
+      },
+      "firstApp": {
+        "title": "第一个 plebbit 应用",
+        "body": "首个桌面应用发布，支持 Linux、Windows 和 Mac。它运行自己的 IPFS 节点，因此与网页演示版不同，它是完全点对点的。"
+      },
+      "plebchan": {
+        "title": "plebchan 上线",
+        "body": "基于 plebbit 协议的 4chan 风格应用 plebchan 发布首个版本，支持网页、Mac 和 Linux。"
+      },
+      "hackerNews": {
+        "title": "登上 Hacker News 首页",
+        "body": "在 Reddit 新 API 定价引发强烈抵制之际，plebbit 演示版以 300 多分登上 Hacker News 首页。同一周，有关它的帖子登上 r/ethereum 首页，并在 r/CryptoCurrency 获得 30,000 次浏览。"
+      },
+      "coingecko": {
+        "title": "被 CoinGecko 收录",
+        "body": "自 2022 年初以来多次拒绝之后，CoinGecko 收录 PLEB。"
+      },
+      "socialFi": {
+        "title": "进入 CoinGecko 的 SocialFi 分类",
+        "body": "应团队请求，CoinGecko 将 PLEB 加入其 SocialFi 分类，X 上分享的一份 SocialFi 代币列表也收录了它。价格在五天内几乎翻倍。"
+      },
+      "seedit": {
+        "title": "Seedit 上线",
+        "body": "外观和用法都像旧版 Reddit 的应用 Seedit 发布首个版本。"
+      },
+      "marchRally": {
+        "title": "2024 年 3 月的上涨行情",
+        "body": "3 月 1 日，投资人 Jason Calacanis 发推称他想要一个分布式、无需许可的 Reddit，plebbit 则以其演示版回复。3 月 3 日 Seedit 0.1.6 发布，3 月 4 日团队宣布推出凭代币准入的社区。当月 ETH 突破 4,000 美元，价格在 3 月 4 日几乎翻倍，到 3 月底涨至三倍，成交量达 220 万美元，为本图表中所有月份之最。"
+      }
     }
   }
 }

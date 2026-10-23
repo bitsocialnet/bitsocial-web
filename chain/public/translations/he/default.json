@@ -622,7 +622,7 @@
     },
     "hero": {
       "title": "המחיר של BSO מאז העסקה הראשונה",
-      "lead": "גרף אחד לכל שלושת החוזים: PLEB ב-Avalanche, PLEB ב-Ethereum, ששמו שונה ל-BSO ב-2026, ו-BSO היום. מחירים ישנים יותר מומרים לפי 7,114.6 PLEB ל-BSO, היחס שנשמר בשתי ההגירות. הסיפור שמאחורי כל תנועה נמצא ב<historyLink>היסטוריה</historyLink> של רשימת המחזיקים.",
+      "lead": "גרף אחד לכל שלושת החוזים: PLEB ב-Avalanche, PLEB ב-Ethereum, ששמו שונה ל-BSO ב-2026, ו-BSO היום. מחירים ישנים יותר מומרים לפי 7,114.6 PLEB ל-BSO, היחס שנשמר בשתי ההגירות. בחרו נקודה בגרף כדי לראות מה קרה באותו יום; הסיפור המלא של הטוקן נמצא ב<historyLink>היסטוריה</historyLink> של רשימת המחזיקים.",
       "status": {
         "live": "בזמן אמת ממאגר Uniswap: מחיר BSO הוא {{price}}. עודכן {{ago}}.",
         "loading": "היסטוריה יומית עד {{date}}. טוען את המחירים העדכניים…",
@@ -686,6 +686,50 @@
       "poolsTitle": "מאגרים שנקראו",
       "eraDates": "{{from}} עד {{to}}",
       "snapshot": "ההיסטוריה נבנתה מ-{{count}} החלפות עד {{date}}. ימים חדשים יותר מגיעים מ-GeckoTerminal ומתרעננים כל חמש דקות כל עוד הדף פתוח. מצאתם נר שגוי? <contributeLink>שפרו את הדף הזה</contributeLink>."
+    },
+    "eventList": "אירועים שמסומנים בגרף",
+    "eventDetails": {
+      "close": "סגירה",
+      "links": {
+        "reddit": "פוסט ב-Reddit",
+        "release": "גרסה ב-GitHub",
+        "hackerNews": "שרשור ב-Hacker News",
+        "tweet": "ציוץ"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "מענק מ-Protocol Labs",
+        "body": "Protocol Labs, הצוות שמאחורי IPFS ו-Filecoin, מעניק ל-plebbit מענק לבניית החלופה המבוזרת שלו ל-Reddit."
+      },
+      "firstApp": {
+        "title": "אפליקציית plebbit הראשונה",
+        "body": "אפליקציית הדסקטופ הראשונה יוצאת ל-Linux, ל-Windows ול-Mac. היא מריצה צומת IPFS משלה, כך שבניגוד לדמו לווב היא peer-to-peer לחלוטין."
+      },
+      "plebchan": {
+        "title": "השקת plebchan",
+        "body": "plebchan, אפליקציה בסגנון 4chan על פרוטוקול plebbit, מפרסמת את הגרסה הראשונה שלה, לווב, ל-Mac ול-Linux."
+      },
+      "hackerNews": {
+        "title": "בעמוד הראשי של Hacker News",
+        "body": "על רקע הסערה סביב התמחור החדש של ה-API של Reddit, הדמו של plebbit מגיע לעמוד הראשי של Hacker News עם יותר מ-300 נקודות. באותו שבוע, פוסטים עליו מגיעים לעמוד הראשי של r/ethereum ומושכים 30,000 צפיות ב-r/CryptoCurrency."
+      },
+      "coingecko": {
+        "title": "רישום ב-CoinGecko",
+        "body": "אחרי שדחתה אותו כמה פעמים מאז תחילת 2022, CoinGecko מוסיפה את PLEB לרשימת המטבעות שלה."
+      },
+      "socialFi": {
+        "title": "בקטגוריית SocialFi של CoinGecko",
+        "body": "CoinGecko מוסיפה את PLEB לקטגוריית ה-SocialFi שלה לבקשת הצוות, ורשימה של טוקני SocialFi ששותפה ב-X כוללת אותו. המחיר כמעט מכפיל את עצמו בתוך חמישה ימים."
+      },
+      "seedit": {
+        "title": "השקת Seedit",
+        "body": "Seedit, אפליקציה שנראית ופועלת כמו Reddit הישן, מפרסמת את הגרסה הראשונה שלה."
+      },
+      "marchRally": {
+        "title": "הראלי של מרץ 2024",
+        "body": "ב-1 במרץ, המשקיע Jason Calacanis מצייץ שהוא רוצה Reddit מבוזר שלא דורש הרשאות, ו-plebbit עונה לו עם הדמו שלו. Seedit 0.1.6 יוצאת ב-3 במרץ, וב-4 במרץ הצוות מכריז על קהילות עם גישה מבוססת טוקנים. כש-ETH חוצה את ה-4,000 דולר באותו חודש, המחיר כמעט מכפיל את עצמו ב-4 במרץ וגדל פי שלושה עד סוף מרץ, בנפח של 2.2 מיליון דולר, הגבוה ביותר מכל חודש בגרף הזה."
+      }
     }
   }
 }

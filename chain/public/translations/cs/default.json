@@ -627,7 +627,7 @@
     },
     "hero": {
       "title": "Cena BSO od prvního obchodu",
-      "lead": "Jeden graf napříč všemi třemi kontrakty: PLEB na Avalanche, PLEB na Ethereum, který byl v roce 2026 přejmenován na BSO, a dnešní BSO. Starší ceny jsou přepočteny v poměru 7 114,6 PLEB za BSO, který zachovaly obě migrace. Co stojí za každým pohybem, popisuje <historyLink>historie</historyLink> v seznamu držitelů.",
+      "lead": "Jeden graf napříč všemi třemi kontrakty: PLEB na Avalanche, PLEB na Ethereum, který byl v roce 2026 přejmenován na BSO, a dnešní BSO. Starší ceny jsou přepočteny v poměru 7 114,6 PLEB za BSO, který zachovaly obě migrace. Výběrem tečky v grafu zobrazíte, co se ten den stalo; celý příběh tokenu popisuje <historyLink>historie</historyLink> v seznamu držitelů.",
       "status": {
         "live": "Živě z poolu na Uniswapu: BSO za {{price}}. Aktualizováno {{ago}}.",
         "loading": "Denní historie do {{date}}. Načítají se nejnovější ceny…",
@@ -691,6 +691,50 @@
       "poolsTitle": "Načtené pooly",
       "eraDates": "{{from}} – {{to}}",
       "snapshot": "Historie sestavená z {{count}} swapů do {{date}}. Novější dny pocházejí z GeckoTerminalu a obnovují se každých pět minut, dokud je tato stránka otevřená. Všimli jste si chybné svíčky? <contributeLink>Vylepšit tuto stránku</contributeLink>."
+    },
+    "eventList": "Události vyznačené v grafu",
+    "eventDetails": {
+      "close": "Zavřít",
+      "links": {
+        "reddit": "Příspěvek na Redditu",
+        "release": "Vydání na GitHubu",
+        "hackerNews": "Vlákno na Hacker News",
+        "tweet": "Tweet"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "Grant od Protocol Labs",
+        "body": "Protocol Labs, tým stojící za IPFS a Filecoinem, uděluje plebbit grant na vývoj jeho decentralizované alternativy k Redditu."
+      },
+      "firstApp": {
+        "title": "První aplikace plebbit",
+        "body": "Vychází první desktopová aplikace pro Linux, Windows a Mac. Provozuje vlastní uzel IPFS, takže je na rozdíl od webového dema plně peer-to-peer."
+      },
+      "plebchan": {
+        "title": "Vychází plebchan",
+        "body": "plebchan, aplikace ve stylu 4chanu postavená na protokolu plebbit, vydává svou první verzi, pro web, Mac a Linux."
+      },
+      "hackerNews": {
+        "title": "Na titulní stránce Hacker News",
+        "body": "Uprostřed vlny nevole kvůli novým cenám API Redditu se demo plebbit dostává s více než 300 body na titulní stránku Hacker News. Týž týden se příspěvky o něm dostávají na titulní stránku r/ethereum a na r/CryptoCurrency mají 30 000 zhlédnutí."
+      },
+      "coingecko": {
+        "title": "Zařazení na CoinGecko",
+        "body": "Po několika odmítnutích od začátku roku 2022 CoinGecko zařazuje PLEB."
+      },
+      "socialFi": {
+        "title": "V kategorii SocialFi na CoinGecko",
+        "body": "CoinGecko na žádost týmu přidává PLEB do své kategorie SocialFi a token se objevuje i v seznamu tokenů SocialFi sdíleném na X. Cena se za pět dní téměř zdvojnásobí."
+      },
+      "seedit": {
+        "title": "Vychází Seedit",
+        "body": "Seedit, aplikace, která vypadá a funguje jako starý Reddit, vydává svou první verzi."
+      },
+      "marchRally": {
+        "title": "Rally v březnu 2024",
+        "body": "Dne 1. března investor Jason Calacanis tweetuje, že chce distribuovaný Reddit bez nutnosti povolení, a plebbit mu odpovídá svým demem. Dne 3. března vychází Seedit 0.1.6 a 4. března tým oznamuje komunity s přístupem podmíněným tokenem. Zatímco ETH ten měsíc překonává 4 000 dolarů, cena se 4. března téměř zdvojnásobí a do konce března ztrojnásobí, při objemu 2,2 milionu dolarů, nejvyšším ze všech měsíců v tomto grafu."
+      }
     }
   }
 }

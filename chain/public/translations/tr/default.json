@@ -617,7 +617,7 @@
     },
     "hero": {
       "title": "BSO'nun ilk işleminden bu yana fiyatı",
-      "lead": "Üç sözleşmenin tamamı tek bir grafikte: Avalanche'ta PLEB, Ethereum'da PLEB (adı 2026'da BSO olarak değiştirildi) ve bugünkü BSO. Eski fiyatlar, her iki geçişin de koruduğu oran olan BSO başına 7.114,6 PLEB üzerinden dönüştürülür. Her hareketin ardındaki hikâye, zengin listesindeki <historyLink>geçmiş</historyLink> bölümünde.",
+      "lead": "Üç sözleşmenin tamamı tek bir grafikte: Avalanche'ta PLEB, Ethereum'da PLEB (adı 2026'da BSO olarak değiştirildi) ve bugünkü BSO. Eski fiyatlar, her iki geçişin de koruduğu oran olan BSO başına 7.114,6 PLEB üzerinden dönüştürülür. O gün ne olduğunu görmek için grafikteki bir noktayı seçin; token'ın tüm hikâyesi zengin listesindeki <historyLink>geçmiş</historyLink> bölümünde.",
       "status": {
         "live": "Uniswap havuzundan canlı: BSO fiyatı {{price}}. Güncelleme: {{ago}}.",
         "loading": "{{date}} tarihine kadar günlük geçmiş. En güncel fiyatlar yükleniyor…",
@@ -681,6 +681,50 @@
       "poolsTitle": "Okunan havuzlar",
       "eraDates": "{{from}} ile {{to}} arası",
       "snapshot": "Geçmiş, {{date}} tarihine kadarki {{count}} swap'tan oluşturuldu. Daha yeni günler GeckoTerminal'den gelir ve bu sayfa açıkken her beş dakikada bir yenilenir. Yanlış bir mum mu fark ettiniz? <contributeLink>Bu sayfayı iyileştir</contributeLink>."
+    },
+    "eventList": "Grafikte işaretlenen olaylar",
+    "eventDetails": {
+      "close": "Kapat",
+      "links": {
+        "reddit": "Reddit gönderisi",
+        "release": "GitHub'daki sürüm",
+        "hackerNews": "Hacker News başlığı",
+        "tweet": "Tweet"
+      }
+    },
+    "events": {
+      "protocolLabsGrant": {
+        "title": "Protocol Labs'ten bir hibe",
+        "body": "IPFS ve Filecoin'in arkasındaki ekip Protocol Labs, merkeziyetsiz Reddit alternatifini geliştirmesi için plebbit'e hibe veriyor."
+      },
+      "firstApp": {
+        "title": "İlk plebbit uygulaması",
+        "body": "İlk masaüstü uygulaması Linux, Windows ve Mac için çıkıyor. Kendi IPFS düğümünü çalıştırıyor, bu yüzden web demosunun aksine tamamen peer-to-peer."
+      },
+      "plebchan": {
+        "title": "plebchan yayına giriyor",
+        "body": "plebbit protokolü üzerinde çalışan 4chan tarzı bir uygulama olan plebchan, web, Mac ve Linux için ilk sürümünü yayımlıyor."
+      },
+      "hackerNews": {
+        "title": "Hacker News ana sayfasında",
+        "body": "Reddit'in yeni API fiyatlandırmasına yönelik tepkilerin ortasında plebbit demosu 300'ü aşkın puanla Hacker News ana sayfasına çıkıyor. Aynı hafta, demo hakkındaki gönderiler r/ethereum'un ana sayfasına çıkıyor ve r/CryptoCurrency'de 30.000 görüntülenme alıyor."
+      },
+      "coingecko": {
+        "title": "CoinGecko'da listeleniyor",
+        "body": "2022'nin başından bu yana birkaç kez reddettikten sonra CoinGecko PLEB'i listeliyor."
+      },
+      "socialFi": {
+        "title": "CoinGecko'nun SocialFi kategorisinde",
+        "body": "Ekibin talebi üzerine CoinGecko, PLEB'i SocialFi kategorisine ekliyor; X'te paylaşılan bir SocialFi token'ları listesi de onu içeriyor. Fiyat beş günde neredeyse ikiye katlanıyor."
+      },
+      "seedit": {
+        "title": "Seedit yayına giriyor",
+        "body": "Eski Reddit gibi görünen ve çalışan bir uygulama olan Seedit, ilk sürümünü yayımlıyor."
+      },
+      "marchRally": {
+        "title": "Mart 2024 yükselişi",
+        "body": "1 Mart'ta yatırımcı Jason Calacanis, bir tweet'inde dağıtık ve izinsiz bir Reddit istediğini yazıyor; plebbit de demosuyla yanıt veriyor. Seedit 0.1.6, 3 Mart'ta çıkıyor ve 4 Mart'ta ekip yalnızca token sahiplerine açık toplulukları duyuruyor. O ay ETH'nin 4.000 doları geçmesiyle fiyat 4 Mart'ta neredeyse ikiye katlanıyor ve mart sonuna kadar üçe katlanıyor; 2,2 milyon dolarlık hacimle bu, grafikteki tüm aylar içinde en yüksek hacim."
+      }
     }
   }
 }
