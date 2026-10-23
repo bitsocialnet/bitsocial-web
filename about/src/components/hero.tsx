@@ -356,13 +356,16 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-[min(100svh,58rem)] flex-col items-center justify-start overflow-x-clip px-[var(--space-page-inline)] pt-[var(--space-hero-top)] md:min-h-[min(100svh,60rem)]">
+      {/* Phones keep the actions gap. From md up the stack tightens, and a quarter of the
+          slack goes above the copy and the rest below the CTAs, which centers the stack
+          between the topbar and the top of the mesh. */}
       <m.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: -20 }}
         transition={{ delay: 0.3, duration: 0.6 }}
-        className="relative z-10 mb-[var(--space-hero-actions-gap)] px-2 text-center sm:px-4"
+        className="relative z-10 mb-[var(--space-hero-actions-gap)] px-2 text-center sm:px-4 md:mb-[var(--space-hero-stack-gap)] md:mt-[calc(var(--space-hero-stack-slack)/4)]"
       >
-        <div className="mb-[var(--space-hero-actions-gap)] flex justify-center">
+        <div className="mb-[var(--space-hero-actions-gap)] flex justify-center md:mb-[var(--space-hero-stack-gap)]">
           <a
             href={HOOKS_SITE_URL}
             target="_blank"
@@ -441,7 +444,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: -20 }}
         transition={{ delay: 0.5, duration: 0.6 }}
-        className="flex flex-col sm:flex-row gap-4 relative z-40"
+        className="flex flex-col sm:flex-row gap-4 relative z-40 md:mb-[calc(var(--space-hero-stack-slack)*3/4)]"
       >
         <a
           href="/#mailing-list"
