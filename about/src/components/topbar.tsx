@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type MouseEv
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { m } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
+import { CHAIN_SITE_URL, DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
 import { FAQ_HASH, goToHomeSectionHash } from "@/lib/home-section-nav";
 import { cn } from "@/lib/utils";
@@ -21,6 +21,10 @@ const desktopNavLinkClassName = "h-11 min-w-11 justify-center";
 const compactNavigationTriggerBufferPx = 160;
 const MOBILE_MENU_INTERACTION_GUARD_ATTRIBUTE = "data-mobile-menu-interaction-guard";
 const APPS_DIRECTORY_HREF = "/projects?category=apps";
+
+function opensInNewTab(to: string) {
+  return isDocsPath(to) || isStatsPath(to) || to.startsWith(CHAIN_SITE_URL);
+}
 
 function NavLink({
   to,
@@ -62,7 +66,7 @@ function NavLink({
   }
 
   if (to) {
-    if (isDocsPath(to) || isStatsPath(to)) {
+    if (opensInNewTab(to)) {
       return (
         <a
           href={to}
@@ -193,20 +197,16 @@ function NoJsMobileMenu({
 
       <div className="nojs-mobile-panel px-4 py-6">
         <nav className="flex flex-col gap-1">
-          {routeLinks.map((link) => {
-            const opensInNewTab = isDocsPath(link.to) || isStatsPath(link.to);
-
-            return (
-              <a
-                key={link.to}
-                href={link.to}
-                className={navLinkClassName}
-                {...(opensInNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              >
-                {link.label}
-              </a>
-            );
-          })}
+          {routeLinks.map((link) => (
+            <a
+              key={link.to}
+              href={link.to}
+              className={navLinkClassName}
+              {...(opensInNewTab(link.to) ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            >
+              {link.label}
+            </a>
+          ))}
           <a href={`/${FAQ_HASH}`} className={navLinkClassName}>
             {faqLabel}
           </a>
@@ -357,12 +357,14 @@ export default function Topbar() {
   };
 
   const appsLabel = t("nav.apps");
+  const chainLabel = t("nav.chain");
   const blogLabel = t("nav.blog");
   const docsLabel = t("nav.docs");
   const statsLabel = t("nav.status");
   const faqLabel = t("nav.faq");
   const routeLinks = [
     { label: appsLabel, to: APPS_DIRECTORY_HREF },
+    { label: chainLabel, to: CHAIN_SITE_URL },
     { label: blogLabel, to: "/blog" },
     { label: docsLabel, to: DOCS_LINKS.home },
     { label: statsLabel, to: STATS_LINKS.home },
