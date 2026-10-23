@@ -48,6 +48,13 @@ const RANGE_DAYS: Record<Exclude<Range, "all">, number> = { "1M": 30, "3M": 91, 
 /** A pan or zoom this soon after the reader's own input is theirs, so it clears the preset. */
 const INTERACTION_WINDOW_MS = 300;
 
+/** The event dots' size, as a share of Lightweight Charts' default marker. */
+const MARKER_SIZE = 0.6;
+/** How near, in CSS pixels, the pointer must come to a dot's centre to pick its event. */
+const EVENT_HOVER_RADIUS = 16;
+/** Space between a hovered dot and the event name drawn above it. */
+const EVENT_TIP_GAP = 6;
+
 function dayOf(seconds: number) {
   return Math.floor(seconds / DAY_SECONDS) * DAY_SECONDS;
 }
@@ -72,6 +79,22 @@ function eraStartDays(candles: Candle[]) {
     (era, index) => candles.find((candle) => candle.eraIndex === index)?.time ?? dayOf(era.start),
   );
 }
+
+/**
+ * How Lightweight Charts draws an `aboveBar` circle marker at a bar spacing: the marker is the
+ * spacing, held between 12 and 30px, times its size; the circle is 0.8 of that but never less than
+ * 0.8 of 12px; and its centre sits half the marker's height plus a margin above the bar.
+ */
+function markerGeometry(barSpacing: number) {
+  const spacing = Math.min(Math.max(barSpacing, 12), 30);
+  const height = spacing * MARKER_SIZE;
+  return {
+    radius: (Math.max(height, 12) * 0.8) / 2,
+    lift: height / 2 + Math.max(spacing * 0.1, 3),
+  };
+}
+
+type EventDot = { id: string; time: number; close: number; x: number; y: number; radius: number };
 
 type Handles = {
   chart: IChartApi;
@@ -122,6 +145,8 @@ type LegendNodes = {
   event: HTMLSpanElement | null;
 };
 
+type TipNodes = Record<"tip" | "title" | "date", HTMLElement | null>;
+
 /**
  * BSO's daily price across all three contracts, on TradingView's Lightweight Charts. The chart
  * itself lives outside React: series, options and the legend are written imperatively so panning
@@ -135,6 +160,9 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const handlesRef = useRef<Handles | null>(null);
   const hoverTimeRef = useRef<number | null>(null);
+  const pointerRef = useRef<{ x: number; y: number } | null>(null);
+  const hoveredEventRef = useRef<EventDot | null>(null);
+  const tipRef = useRef<TipNodes>({ tip: null, title: null, date: null });
   // Not 0: performance.now() starts near 0 on load, so the chart's first fit would read as input.
   const lastInteractionRef = useRef(Number.NEGATIVE_INFINITY);
   const legendRef = useRef<LegendNodes>({
@@ -170,7 +198,8 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
     });
   }, [candles, format, formatValue, metric, t]);
 
-  // The legend shows the hovered day, or the last day in view, against the first day in view.
+  // The legend shows the hovered event's day, the hovered day, or the last day in view, against
+  // the first day in view.
   const renderLegend = useEffectEvent(() => {
     const handles = handlesRef.current;
     const nodes = legendRef.current;
@@ -182,8 +211,8 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
     const clamp = (value: number) => Math.min(lastIndex, Math.max(0, value));
     // A fitted range starts a hair past bar 0, which still means bar 0.
     const firstVisible = candles[range ? clamp(Math.ceil(range.from - 0.001)) : 0];
-    const hoveredIndex =
-      hoverTimeRef.current === null ? undefined : candleIndexByTime.get(hoverTimeRef.current);
+    const hoverTime = hoveredEventRef.current?.time ?? hoverTimeRef.current;
+    const hoveredIndex = hoverTime === null ? undefined : candleIndexByTime.get(hoverTime);
     const candle = candles[hoveredIndex ?? (range ? clamp(Math.floor(range.to)) : lastIndex)];
     const factor = metricFactor(candle, metric);
     const change =
@@ -220,11 +249,71 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
     }
   });
 
+  // An event is hovered once the pointer comes within reach of its dot, not only on its exact day:
+  // across the whole history a day is about a pixel wide, far narrower than the dot. Its name is
+  // then drawn above the dot and the legend moves to its day.
+  const renderHover = useEffectEvent(() => {
+    const handles = handlesRef.current;
+    const point = pointerRef.current;
+    let nearest: EventDot | null = null;
+    if (handles && point) {
+      const timeScale = handles.chart.timeScale();
+      const plotWidth = timeScale.width();
+      const { radius, lift } = markerGeometry(timeScale.options().barSpacing);
+      const series = chartType === "line" ? handles.area : handles.candles;
+      let reach = EVENT_HOVER_RADIUS;
+      for (const event of EVENTS) {
+        const index = candleIndexByTime.get(event.time);
+        const x = timeScale.timeToCoordinate(event.time as UTCTimestamp);
+        // A dot scrolled out of view cannot be hovered, but one cut by the plot's edge can.
+        if (index === undefined || x === null || x < -radius || x > plotWidth + radius) {
+          continue;
+        }
+        // Line dots sit above the close, candle dots above the high.
+        const candle = candles[index];
+        const value = chartType === "line" ? candle.close : candle.high;
+        const bar = series.priceToCoordinate(value * metricFactor(candle, metric));
+        if (bar === null) {
+          continue;
+        }
+        const y = bar - lift;
+        const distance = Math.hypot(x - point.x, y - point.y);
+        if (distance <= reach) {
+          reach = distance;
+          const close = candle.close * metricFactor(candle, metric);
+          nearest = { id: event.id, time: event.time, close, x, y, radius };
+        }
+      }
+      // The crosshair moves to the event's day too, so its date and the legend agree. Setting it
+      // does not fire another crosshair move.
+      if (nearest) {
+        handles.chart.setCrosshairPosition(nearest.close, nearest.time as UTCTimestamp, series);
+      }
+    }
+    hoveredEventRef.current = nearest;
+
+    const { tip, title, date } = tipRef.current;
+    if (tip && title && date) {
+      tip.hidden = !nearest;
+      if (handles && nearest) {
+        title.textContent = t(`richList.history.events.${nearest.id}.title`);
+        date.textContent = format.day(nearest.time);
+        const { offsetWidth: width, offsetHeight: height } = tip;
+        const maxLeft = handles.chart.timeScale().width() - width;
+        const left = Math.max(0, Math.min(nearest.x - width / 2, maxLeft));
+        const above = nearest.y - nearest.radius - EVENT_TIP_GAP - height;
+        const top = above >= 0 ? above : nearest.y + nearest.radius + EVENT_TIP_GAP;
+        tip.style.transform = `translate(${left}px, ${top}px)`;
+      }
+    }
+    renderLegend();
+  });
+
   const onRangeChange = useEffectEvent(() => {
     if (performance.now() - lastInteractionRef.current < INTERACTION_WINDOW_MS) {
       setView(null);
     }
-    renderLegend();
+    renderHover();
   });
 
   const restoreView = useEffectEvent(() => {
@@ -305,7 +394,8 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
 
     chart.subscribeCrosshairMove((param) => {
       hoverTimeRef.current = param.time === undefined ? null : Number(param.time);
-      renderLegend();
+      pointerRef.current = param.point ?? null;
+      renderHover();
     });
     chart.timeScale().subscribeVisibleLogicalRangeChange(() => onRangeChange());
     // The plot narrows once the price axis has measured its labels, and with the left edge fixed
@@ -390,7 +480,7 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
         position: "aboveBar",
         shape: "circle",
         color: palette.marker,
-        size: 0.6,
+        size: MARKER_SIZE,
       }),
     );
     handles.areaMarkers.setMarkers(markers);
@@ -438,6 +528,10 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
 
   const setLegendNode = (key: keyof LegendNodes) => (node: HTMLSpanElement | null) => {
     legendRef.current[key] = node;
+  };
+
+  const setTipNode = (key: keyof TipNodes) => (node: HTMLElement | null) => {
+    tipRef.current[key] = node;
   };
 
   return (
@@ -503,7 +597,14 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
           }
         }}
         onWheelCapture={markInteraction}
-      />
+      >
+        {/* The hovered event's name beside its dot. The legend names it too, so assistive
+            technology reads it there. */}
+        <div ref={setTipNode("tip")} className="ch-tip" aria-hidden hidden>
+          <span ref={setTipNode("title")} className="ch-tip-title" />
+          <span ref={setTipNode("date")} className="ch-tip-date" />
+        </div>
+      </div>
 
       <EraButtons view={view} colors={palette.eras} onSelect={selectView} />
     </section>
