@@ -30,7 +30,7 @@ Bitsocial 不靠为每一种用途提供一个官方应用来取胜。它取胜�
 
 - 试用 [5chan](https://5chan.app)，体验匿名图版社区。
 - 试用 [Seedit](https://seedit.app)，体验 Reddit 风格的讨论。
-- 阅读 [Bitsocial React hooks](/developer-tools/react-hooks/) 文档，了解客户端集成方式。
+- 阅读 [Bitsocial React hooks](https://hooks.bitsocial.net/docs/quickstart/) 文档，了解客户端集成方式。
 - 阅读 [Bitsocial CLI](/developer-tools/cli/) 文档，了解节点与社区运维。
 
 如果你想快速推进，可以先给现有应用做贡献。如果你想要的界面、文化或社区模式无法在其中实现，再另外构建一个客户端。
@@ -56,7 +56,7 @@ Bitsocial 不靠为每一种用途提供一个官方应用来取胜。它取胜�
 实际可行的路径有三条：
 
 1. 当你的想法接近 5chan 或 Seedit 时，分叉一个现有客户端。
-2. 用 Bitsocial React hooks 构建一个新的 React 客户端。
+2. 用 [Bitsocial React hooks](https://hooks.bitsocial.net/) 构建一个新的 React 客户端。
 3. 在节点 API 和公共 RPC 基础设施之上构建你自己的集成。
 
 公共 RPC 应该会让第三条路径实用得多。用户可以先通过由他人运营、但不代管密钥的 RPC 服务起步，之后再迁移到自建节点或另一家提供方。

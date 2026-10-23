@@ -34,7 +34,7 @@ Bitsocial のクライアントは、ネットワーク全体をフォークす�
 
 - 匿名のイメージボードコミュニティなら [5chan](https://5chan.app) を試してください。
 - Reddit スタイルの議論なら [Seedit](https://seedit.app) を試してください。
-- クライアント側の組み込みについては [Bitsocial React hooks](/developer-tools/react-hooks/) のドキュメントを読んでください。
+- クライアント側の組み込みについては [Bitsocial React hooks](https://hooks.bitsocial.net/docs/quickstart/) のドキュメントを読んでください。
 - ノードとコミュニティの運用については [Bitsocial CLI](/developer-tools/cli/) のドキュメントを読んでください。
 
 素早く進めたいなら、まず既存のアプリに貢献するのが近道です。求めているインターフェース、文化、
@@ -63,7 +63,7 @@ Bitsocial のクライアントは、ネットワーク全体をフォークす�
 現実的な道は 3 つあります。
 
 1. アイデアが 5chan や Seedit に近いなら、既存のクライアントをフォークする。
-2. Bitsocial React hooks を使って新しい React クライアントを作る。
+2. [Bitsocial React hooks](https://hooks.bitsocial.net/) を使って新しい React クライアントを作る。
 3. ノードの API と公開 RPC のインフラの上に独自の統合を作る。
 
 公開 RPC によって、3 つ目の道はずっと現実的になるはずです。ユーザーはホスト型で非カストディアルな

@@ -24,6 +24,7 @@ import {
   shouldPreferPngGraphicsFallback,
   useGraphicsMode,
 } from "@/lib/graphics-mode";
+import { HOOKS_SITE_URL } from "@/lib/docs-links";
 import { goToMailingListSection } from "@/lib/mailing-list-nav";
 import { rememberScrollReturn } from "@/lib/scroll-return";
 import { highlightedCtaClassName } from "@/components/card-inline-cta";
@@ -33,8 +34,6 @@ const PlanetGraphic = lazy(() => import("./planet-graphic"));
 const MeshGraphic = lazy(() => import("./mesh-graphic"));
 
 const HighlightIndexCtx = createContext(-1);
-
-const HOOKS_DOCS_URL = "https://hooks.bitsocial.net/";
 
 // Mirrors the hooks.bitsocial.net hero version link: quiet gray text with a blue dot.
 // Inline flow (not flex) keeps the dot and arrow beside the words when longer
@@ -365,7 +364,7 @@ export default function Hero() {
       >
         <div className="mb-[var(--space-hero-actions-gap)] flex justify-center">
           <a
-            href={HOOKS_DOCS_URL}
+            href={HOOKS_SITE_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={developersCtaClassName}

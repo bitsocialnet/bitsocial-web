@@ -33,7 +33,7 @@ description: دليل للمطوّرين لإطلاق عملاء Bitsocial مس�
 
 - جرّب [5chan](https://5chan.app) لمجتمعات لوحات الصور المجهولة.
 - جرّب [Seedit](https://seedit.app) للنقاش على طراز Reddit.
-- اقرأ وثائق [خطافات React في Bitsocial](/developer-tools/react-hooks/) للتكامل من جهة العميل.
+- اقرأ وثائق [خطافات React في Bitsocial](https://hooks.bitsocial.net/docs/quickstart/) للتكامل من جهة العميل.
 - اقرأ وثائق [Bitsocial CLI](/developer-tools/cli/) لعمليات العقد والمجتمعات.
 
 إن أردت التقدّم بسرعة، ساهم أولًا في تطبيق قائم. وإن لم تناسبك الواجهة أو الثقافة أو نموذج المجتمع
@@ -61,7 +61,7 @@ description: دليل للمطوّرين لإطلاق عملاء Bitsocial مس�
 هناك ثلاثة مسارات عملية:
 
 1. فرّع عميلًا قائمًا إن كانت فكرتك قريبة من 5chan أو Seedit.
-2. ابنِ عميل React جديدًا باستخدام خطافات React في Bitsocial.
+2. ابنِ عميل React جديدًا باستخدام [خطافات React في Bitsocial](https://hooks.bitsocial.net/).
 3. ابنِ تكاملك الخاص فوق واجهات برمجة العقد والبنية التحتية العامة لـ RPC.
 
 من المفترض أن يجعل RPC العام المسار الثالث أكثر عملية بكثير. يستطيع المستخدم أن يبدأ عبر مزوّد RPC

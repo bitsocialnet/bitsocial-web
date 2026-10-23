@@ -35,7 +35,7 @@ Nisni nga aplikacionet që ekzistojnë tashmë:
 
 - Provoni [5chan](https://5chan.app) për komunitete anonime të tipit imageboard.
 - Provoni [Seedit](https://seedit.app) për diskutime në stilin e Reddit.
-- Lexoni dokumentacionin e [React hooks të Bitsocial](/developer-tools/react-hooks/) për integrimin nga ana e klientit.
+- Lexoni dokumentacionin e [React hooks të Bitsocial](https://hooks.bitsocial.net/docs/quickstart/) për integrimin nga ana e klientit.
 - Lexoni dokumentacionin e [Bitsocial CLI](/developer-tools/cli/) për veprimet me nyjet dhe komunitetet.
 
 Nëse doni të ecni shpejt, kontribuoni fillimisht në një aplikacion ekzistues. Nëse ndërfaqja, kultura
@@ -64,7 +64,7 @@ që t'i mbyllin përdoruesit e tyre në një bazë të dhënash private.
 Ka tri rrugë praktike:
 
 1. Degëzoni një klient ekzistues kur ideja juaj është afër 5chan ose Seedit.
-2. Ndërtoni një klient të ri React me React hooks të Bitsocial.
+2. Ndërtoni një klient të ri React me [React hooks të Bitsocial](https://hooks.bitsocial.net/).
 3. Ndërtoni integrimin tuaj mbi API-të e nyjeve dhe infrastrukturën publike RPC.
 
 RPC-ja publike duhet ta bëjë rrugën e tretë shumë më praktike. Një përdorues mund të nisë nëpërmjet

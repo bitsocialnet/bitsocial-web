@@ -36,7 +36,7 @@ Kezdje a már létező alkalmazásokkal:
 
 - Próbálja ki az [5chan](https://5chan.app) alkalmazást névtelen imageboard-közösségekhez.
 - Próbálja ki a [Seedit](https://seedit.app) alkalmazást Reddit-stílusú beszélgetésekhez.
-- Olvassa el a [Bitsocial React hookok](/developer-tools/react-hooks/) dokumentációját a
+- Olvassa el a [Bitsocial React hookok](https://hooks.bitsocial.net/docs/quickstart/) dokumentációját a
   kliensoldali integrációhoz.
 - Olvassa el a [Bitsocial CLI](/developer-tools/cli/) dokumentációját a csomópontok és közösségek
   üzemeltetéséhez.
@@ -67,7 +67,7 @@ a felhasználóikat egy privát adatbázisba zárnák.
 Három gyakorlati út létezik:
 
 1. Forkoljon egy meglévő klienst, ha az ötlete közel áll az 5chan vagy a Seedit koncepciójához.
-2. Építsen új React klienst a Bitsocial React hookokkal.
+2. Építsen új React klienst a [Bitsocial React hookokkal](https://hooks.bitsocial.net/).
 3. Építse meg a saját integrációját a csomópont-API-kra és a nyilvános RPC-infrastruktúrára.
 
 A nyilvános RPC a harmadik utat teszi majd sokkal gyakorlatiasabbá. A felhasználó elindulhat egy

@@ -35,7 +35,7 @@ Empieza por las aplicaciones que ya existen:
 
 - Prueba [5chan](https://5chan.app) para comunidades de imageboard anónimas.
 - Prueba [Seedit](https://seedit.app) para debates al estilo de Reddit.
-- Lee la documentación de los [hooks de React de Bitsocial](/developer-tools/react-hooks/) para la integración en el cliente.
+- Lee la documentación de los [hooks de React de Bitsocial](https://hooks.bitsocial.net/docs/quickstart/) para la integración en el cliente.
 - Lee la documentación de la [CLI de Bitsocial](/developer-tools/cli/) para las operaciones de nodo y de comunidad.
 
 Si quieres avanzar rápido, contribuye primero a una aplicación existente. Si la interfaz, la cultura
@@ -64,7 +64,7 @@ de encerrar a sus usuarios en una base de datos privada.
 Hay tres vías prácticas:
 
 1. Bifurcar un cliente existente cuando tu idea se parece a 5chan o a Seedit.
-2. Crear un cliente nuevo en React con los hooks de React de Bitsocial.
+2. Crear un cliente nuevo en React con los [hooks de React de Bitsocial](https://hooks.bitsocial.net/).
 3. Crear tu propia integración sobre las API de los nodos y la infraestructura pública de RPC.
 
 La RPC pública debería hacer que la tercera vía sea mucho más práctica. Una persona puede empezar con

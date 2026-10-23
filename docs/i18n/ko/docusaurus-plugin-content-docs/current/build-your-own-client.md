@@ -34,7 +34,7 @@ Bitsocial 클라이언트는 네트워크 전체를 포크하지 않고도 제�
 
 - 익명 이미지보드 커뮤니티는 [5chan](https://5chan.app)에서 경험해 보세요.
 - Reddit 방식의 토론은 [Seedit](https://seedit.app)에서 경험해 보세요.
-- 클라이언트 측 통합은 [Bitsocial React 훅](/developer-tools/react-hooks/) 문서를 읽어보세요.
+- 클라이언트 측 통합은 [Bitsocial React 훅](https://hooks.bitsocial.net/docs/quickstart/) 문서를 읽어보세요.
 - 노드와 커뮤니티 운영은 [Bitsocial CLI](/developer-tools/cli/) 문서를 읽어보세요.
 
 빠르게 움직이고 싶다면 먼저 기존 앱에 기여하세요. 원하는 인터페이스, 문화, 커뮤니티 모델이
@@ -63,7 +63,7 @@ Bitsocial 클라이언트는 네트워크 전체를 포크하지 않고도 제�
 현실적인 경로는 세 가지입니다.
 
 1. 아이디어가 5chan이나 Seedit에 가깝다면 기존 클라이언트를 포크합니다.
-2. Bitsocial React 훅으로 새로운 React 클라이언트를 만듭니다.
+2. [Bitsocial React 훅](https://hooks.bitsocial.net/)으로 새로운 React 클라이언트를 만듭니다.
 3. 노드 API와 공개 RPC 인프라 위에 직접 통합을 구축합니다.
 
 공개 RPC는 세 번째 경로를 훨씬 더 현실적으로 만들어 줍니다. 사용자는 호스팅형 비수탁 RPC

@@ -33,7 +33,7 @@ Bitsocial לא מנצחת בזכות אפליקציה רשמית אחת לכל �
 
 - נסו את [5chan](https://5chan.app) לקהילות לוח תמונות אנונימיות.
 - נסו את [Seedit](https://seedit.app) לדיונים בסגנון Reddit.
-- קראו את התיעוד של [Bitsocial React hooks](/developer-tools/react-hooks/) לשילוב בצד הלקוח.
+- קראו את התיעוד של [Bitsocial React hooks](https://hooks.bitsocial.net/docs/quickstart/) לשילוב בצד הלקוח.
 - קראו את התיעוד של [Bitsocial CLI](/developer-tools/cli/) לתפעול צמתים וקהילות.
 
 אם אתם רוצים להתקדם מהר, תרמו קודם לאפליקציה קיימת. אם הממשק, התרבות או מודל הקהילה שאתם רוצים לא
@@ -62,7 +62,7 @@ Bitsocial לא מנצחת בזכות אפליקציה רשמית אחת לכל �
 יש שלושה מסלולים מעשיים:
 
 1. פצלו לקוח קיים כשהרעיון שלכם קרוב ל-5chan או ל-Seedit.
-2. בנו לקוח React חדש עם Bitsocial React hooks.
+2. בנו לקוח React חדש עם [Bitsocial React hooks](https://hooks.bitsocial.net/).
 3. בנו שילוב משלכם מעל ממשקי ה-API של הצומת ומעל תשתית RPC ציבורית.
 
 RPC ציבורי אמור להפוך את המסלול השלישי למעשי הרבה יותר. משתמש יכול להתחיל דרך ספק RPC מתארח ולא

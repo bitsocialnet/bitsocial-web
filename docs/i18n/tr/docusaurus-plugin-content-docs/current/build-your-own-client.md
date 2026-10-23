@@ -35,7 +35,7 @@ Halihazırda var olan uygulamalarla başlayın:
 
 - Anonim imageboard toplulukları için [5chan](https://5chan.app) uygulamasını deneyin.
 - Reddit tarzı tartışma için [Seedit](https://seedit.app) uygulamasını deneyin.
-- İstemci tarafı entegrasyon için [Bitsocial React hooks](/developer-tools/react-hooks/) belgelerini okuyun.
+- İstemci tarafı entegrasyon için [Bitsocial React hooks](https://hooks.bitsocial.net/docs/quickstart/) belgelerini okuyun.
 - Düğüm ve topluluk işlemleri için [Bitsocial CLI](/developer-tools/cli/) belgelerini okuyun.
 
 Hızlı ilerlemek istiyorsanız önce mevcut bir uygulamaya katkıda bulunun. İstediğiniz arayüz, kültür
@@ -64,7 +64,7 @@ yerine aynı ağın içinde büyümelerine olanak tanır.
 Pratikte üç yol vardır:
 
 1. Fikriniz 5chan veya Seedit'e yakınsa mevcut bir istemciyi çatallayın.
-2. Bitsocial React hooks ile yeni bir React istemcisi geliştirin.
+2. [Bitsocial React hooks](https://hooks.bitsocial.net/) ile yeni bir React istemcisi geliştirin.
 3. Düğüm API'lerinin ve genel RPC altyapısının üzerine kendi entegrasyonunuzu kurun.
 
 Genel RPC, üçüncü yolu çok daha uygulanabilir hâle getirmeli. Bir kullanıcı, barındırılan ve

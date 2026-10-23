@@ -34,7 +34,7 @@ Mulailah dari aplikasi yang sudah ada:
 
 - Coba [5chan](https://5chan.app) untuk komunitas imageboard anonim.
 - Coba [Seedit](https://seedit.app) untuk diskusi bergaya Reddit.
-- Baca dokumentasi [React hooks Bitsocial](/developer-tools/react-hooks/) untuk integrasi di sisi klien.
+- Baca dokumentasi [React hooks Bitsocial](https://hooks.bitsocial.net/docs/quickstart/) untuk integrasi di sisi klien.
 - Baca dokumentasi [Bitsocial CLI](/developer-tools/cli/) untuk pengoperasian node dan komunitas.
 
 Jika ingin bergerak cepat, berkontribusilah dulu pada aplikasi yang sudah ada. Jika antarmuka, budaya,
@@ -63,7 +63,7 @@ mengurung penggunanya di dalam basis data privat.
 Ada tiga jalur praktis:
 
 1. Fork klien yang sudah ada jika ide Anda dekat dengan 5chan atau Seedit.
-2. Bangun klien React baru dengan React hooks Bitsocial.
+2. Bangun klien React baru dengan [React hooks Bitsocial](https://hooks.bitsocial.net/).
 3. Bangun integrasi Anda sendiri di atas API node dan infrastruktur RPC publik.
 
 RPC publik seharusnya membuat jalur ketiga jauh lebih praktis. Pengguna dapat memulai lewat penyedia

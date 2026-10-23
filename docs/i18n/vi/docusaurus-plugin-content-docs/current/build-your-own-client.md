@@ -30,7 +30,7 @@ Hãy bắt đầu từ những ứng dụng đã có sẵn:
 
 - Thử [5chan](https://5chan.app) cho các cộng đồng bảng hình ảnh ẩn danh.
 - Thử [Seedit](https://seedit.app) cho thảo luận kiểu Reddit.
-- Đọc tài liệu [Bitsocial React hooks](/developer-tools/react-hooks/) để tích hợp ở phía ứng dụng khách.
+- Đọc tài liệu [Bitsocial React hooks](https://hooks.bitsocial.net/docs/quickstart/) để tích hợp ở phía ứng dụng khách.
 - Đọc tài liệu [Bitsocial CLI](/developer-tools/cli/) cho các thao tác với nút và cộng đồng.
 
 Nếu muốn đi nhanh, trước hết hãy đóng góp cho một ứng dụng đã có. Nếu giao diện, văn hóa hoặc mô hình cộng đồng mà bạn muốn không phù hợp ở đó, hãy dựng một ứng dụng khách riêng.
@@ -56,7 +56,7 @@ Những ứng dụng khách nhỏ vẫn hữu ích, vì Bitsocial cho phép chú
 Có ba hướng khả thi:
 
 1. Fork một ứng dụng khách sẵn có khi ý tưởng của bạn gần với 5chan hoặc Seedit.
-2. Dựng một ứng dụng khách React mới bằng Bitsocial React hooks.
+2. Dựng một ứng dụng khách React mới bằng [Bitsocial React hooks](https://hooks.bitsocial.net/).
 3. Tự xây dựng phần tích hợp của riêng bạn trên các API của nút và hạ tầng RPC công khai.
 
 RPC công khai sẽ khiến hướng thứ ba thực tế hơn nhiều. Người dùng có thể bắt đầu qua một nhà cung cấp RPC được lưu trữ sẵn và không nắm quyền quản lý khóa, rồi sau đó chuyển sang tự vận hành hoặc sang một nhà cung cấp cạnh tranh khác.

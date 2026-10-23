@@ -34,7 +34,7 @@ Börja med apparna som redan finns:
 
 - Testa [5chan](https://5chan.app) för anonyma imageboard-communities.
 - Testa [Seedit](https://seedit.app) för diskussioner i Reddit-stil.
-- Läs dokumentationen om [Bitsocial React hooks](/developer-tools/react-hooks/) för integration på
+- Läs dokumentationen om [Bitsocial React hooks](https://hooks.bitsocial.net/docs/quickstart/) för integration på
   klientsidan.
 - Läs dokumentationen om [Bitsocial CLI](/developer-tools/cli/) för nod- och community-drift.
 
@@ -64,7 +64,7 @@ låsa in sina användare i en privat databas.
 Det finns tre praktiska vägar:
 
 1. Forka en befintlig klient när din idé ligger nära 5chan eller Seedit.
-2. Bygg en ny React-klient med Bitsocial React hooks.
+2. Bygg en ny React-klient med [Bitsocial React hooks](https://hooks.bitsocial.net/).
 3. Bygg din egen integration ovanpå nod-API:er och publik RPC-infrastruktur.
 
 Publik RPC bör göra den tredje vägen betydligt mer praktisk. En användare kan börja hos en hostad,

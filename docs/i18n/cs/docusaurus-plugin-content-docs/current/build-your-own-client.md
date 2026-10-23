@@ -35,7 +35,7 @@ Začněte u aplikací, které už existují:
 
 - Vyzkoušejte [5chan](https://5chan.app) pro anonymní imageboardové komunity.
 - Vyzkoušejte [Seedit](https://seedit.app) pro diskuse ve stylu Redditu.
-- Přečtěte si dokumentaci [React hooků pro Bitsocial](/developer-tools/react-hooks/) k integraci na
+- Přečtěte si dokumentaci [React hooků pro Bitsocial](https://hooks.bitsocial.net/docs/quickstart/) k integraci na
   straně klienta.
 - Přečtěte si dokumentaci [Bitsocial CLI](/developer-tools/cli/) k provozu uzlu a správě komunit.
 
@@ -65,7 +65,7 @@ uživatele uzavírali do soukromé databáze.
 Existují tři praktické cesty:
 
 1. Forkněte existujícího klienta, pokud je váš nápad blízký 5chanu nebo Seeditu.
-2. Postavte nového React klienta s React hooky pro Bitsocial.
+2. Postavte nového React klienta s [React hooky pro Bitsocial](https://hooks.bitsocial.net/).
 3. Postavte vlastní integraci nad API uzlu a veřejnou RPC infrastrukturou.
 
 Veřejné RPC by mělo třetí cestu výrazně zpraktičtit. Uživatel může začít u hostovaného

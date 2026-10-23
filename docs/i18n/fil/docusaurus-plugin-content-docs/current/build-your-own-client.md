@@ -36,7 +36,7 @@ Magsimula sa mga app na umiiral na:
 
 - Subukan ang [5chan](https://5chan.app) para sa mga anonymous na komunidad ng imageboard.
 - Subukan ang [Seedit](https://seedit.app) para sa talakayang tulad ng sa Reddit.
-- Basahin ang dokumentasyon ng [Bitsocial React hooks](/developer-tools/react-hooks/) para sa integrasyon sa panig ng client.
+- Basahin ang dokumentasyon ng [Bitsocial React hooks](https://hooks.bitsocial.net/docs/quickstart/) para sa integrasyon sa panig ng client.
 - Basahin ang dokumentasyon ng [Bitsocial CLI](/developer-tools/cli/) para sa mga operasyon ng node at komunidad.
 
 Kung gusto mong kumilos nang mabilis, mag-ambag muna sa isang umiiral na app. Kung hindi kasya ang
@@ -65,7 +65,7 @@ iisang network sa halip na ikulong ang kanilang mga user sa isang pribadong data
 May tatlong praktikal na landas:
 
 1. I-fork ang isang umiiral na client kapag malapit ang iyong ideya sa 5chan o Seedit.
-2. Bumuo ng bagong React client gamit ang Bitsocial React hooks.
+2. Bumuo ng bagong React client gamit ang [Bitsocial React hooks](https://hooks.bitsocial.net/).
 3. Bumuo ng sarili mong integrasyon sa ibabaw ng mga node API at pampublikong imprastrakturang RPC.
 
 Dapat gawing mas praktikal ng pampublikong RPC ang ikatlong landas. Maaaring magsimula ang isang

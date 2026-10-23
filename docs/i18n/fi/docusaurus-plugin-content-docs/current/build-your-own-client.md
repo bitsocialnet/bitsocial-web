@@ -37,7 +37,7 @@ Aloita sovelluksista, jotka ovat jo olemassa:
 
 - Kokeile [5chania](https://5chan.app) anonyymeihin kuvalautayhteisöihin.
 - Kokeile [Seeditiä](https://seedit.app) Redditin tyyliseen keskusteluun.
-- Lue [Bitsocialin React-hookien](/developer-tools/react-hooks/) dokumentaatio asiakaspuolen
+- Lue [Bitsocialin React-hookien](https://hooks.bitsocial.net/docs/quickstart/) dokumentaatio asiakaspuolen
   integraatiota varten.
 - Lue [Bitsocial CLI:n](/developer-tools/cli/) dokumentaatio solmujen ja yhteisöjen ylläpidosta.
 
@@ -68,7 +68,7 @@ sen sijaan, että ne lukitsisivat käyttäjänsä yksityiseen tietokantaan.
 Käytännön polkuja on kolme:
 
 1. Haarauta olemassa oleva asiakassovellus, kun ideasi on lähellä 5chania tai Seeditiä.
-2. Rakenna uusi React-asiakassovellus Bitsocialin React-hookeilla.
+2. Rakenna uusi React-asiakassovellus [Bitsocialin React-hookeilla](https://hooks.bitsocial.net/).
 3. Rakenna oma integraatio solmurajapintojen ja julkisen RPC-infrastruktuurin päälle.
 
 Julkisen RPC:n pitäisi tehdä kolmannesta polusta huomattavasti käytännöllisemmän. Käyttäjä voi

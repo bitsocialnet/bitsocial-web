@@ -35,7 +35,7 @@ Comenceu per les aplicacions que ja existeixen:
 
 - Proveu [5chan](https://5chan.app) per a comunitats anònimes de taulers d'imatges.
 - Proveu [Seedit](https://seedit.app) per a discussions a l'estil de Reddit.
-- Llegiu la documentació dels [hooks de React de Bitsocial](/developer-tools/react-hooks/) per a la
+- Llegiu la documentació dels [hooks de React de Bitsocial](https://hooks.bitsocial.net/docs/quickstart/) per a la
   integració al costat del client.
 - Llegiu la documentació de la [CLI de Bitsocial](/developer-tools/cli/) per a operacions de nodes i
   de comunitats.
@@ -66,7 +66,7 @@ d'atrapar-ne els usuaris en una base de dades privada.
 Hi ha tres camins pràctics:
 
 1. Bifurcar un client existent quan la vostra idea s'assembla a 5chan o Seedit.
-2. Construir un client de React nou amb els hooks de React de Bitsocial.
+2. Construir un client de React nou amb els [hooks de React de Bitsocial](https://hooks.bitsocial.net/).
 3. Construir la vostra pròpia integració damunt de les API dels nodes i de la infraestructura de RPC
    pública.
 

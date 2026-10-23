@@ -8,7 +8,6 @@ export const DOCS_LINKS = {
   customChallenges: `${DOCS_SITE_URL}/custom-challenges/`,
   localModeration: `${DOCS_SITE_URL}/local-moderation/`,
   identityAndOwnership: `${DOCS_SITE_URL}/identity-and-ownership/`,
-  buildYourOwnClient: `${DOCS_SITE_URL}/build-your-own-client/`,
   flagshipBitsocialApp: `${DOCS_SITE_URL}/flagship-bitsocial-app/`,
   scaleBitsocialEconomies: `${DOCS_SITE_URL}/scale-bitsocial-economies/`,
   decentralizeAllSocialMedia: `${DOCS_SITE_URL}/decentralize-all-social-media/`,
@@ -18,6 +17,8 @@ export const DOCS_LINKS = {
 export const CHAIN_SITE_URL = "https://chain.bitsocial.net" as const;
 
 export const STATS_SITE_URL = "https://stats.bitsocial.net" as const;
+
+export const HOOKS_SITE_URL = "https://hooks.bitsocial.net" as const;
 
 export const STATS_LINKS = {
   home: `${STATS_SITE_URL}/`,

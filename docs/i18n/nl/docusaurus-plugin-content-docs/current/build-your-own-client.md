@@ -35,7 +35,7 @@ Begin bij de apps die er al zijn:
 
 - Probeer [5chan](https://5chan.app) voor anonieme imageboardcommunity's.
 - Probeer [Seedit](https://seedit.app) voor discussie in Reddit-stijl.
-- Lees de documentatie over de [Bitsocial React hooks](/developer-tools/react-hooks/) voor integratie aan clientzijde.
+- Lees de documentatie over de [Bitsocial React hooks](https://hooks.bitsocial.net/docs/quickstart/) voor integratie aan clientzijde.
 - Lees de documentatie over de [Bitsocial CLI](/developer-tools/cli/) voor het beheren van nodes en community's.
 
 Wil je snel vooruit, draag dan eerst bij aan een bestaande app. Past de interface, de cultuur of het
@@ -64,7 +64,7 @@ van hun gebruikers op te sluiten in een private database.
 Er zijn drie praktische paden:
 
 1. Fork een bestaande client wanneer je idee dicht bij 5chan of Seedit ligt.
-2. Bouw een nieuwe React-client met de Bitsocial React hooks.
+2. Bouw een nieuwe React-client met de [Bitsocial React hooks](https://hooks.bitsocial.net/).
 3. Bouw je eigen integratie boven op de node-API's en publieke RPC-infrastructuur.
 
 Publieke RPC zou dat derde pad een stuk praktischer moeten maken. Een gebruiker kan starten via een

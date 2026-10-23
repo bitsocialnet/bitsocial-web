@@ -35,7 +35,7 @@ Beginnen Sie mit den Apps, die es bereits gibt:
 
 - Probieren Sie [5chan](https://5chan.app) für anonyme Imageboard-Communities aus.
 - Probieren Sie [Seedit](https://seedit.app) für Diskussionen im Reddit-Stil aus.
-- Lesen Sie die Dokumentation zu den [Bitsocial React Hooks](/developer-tools/react-hooks/) für die Integration auf Client-Seite.
+- Lesen Sie die Dokumentation zu den [Bitsocial React Hooks](https://hooks.bitsocial.net/docs/quickstart/) für die Integration auf Client-Seite.
 - Lesen Sie die Dokumentation zur [Bitsocial CLI](/developer-tools/cli/) für den Betrieb von Knoten und Communities.
 
 Wenn Sie schnell vorankommen wollen, tragen Sie zunächst zu einer bestehenden App bei. Passt die
@@ -65,7 +65,7 @@ ihre Nutzer in einer privaten Datenbank einzuschließen.
 Es gibt drei praktikable Wege:
 
 1. Forken Sie einen bestehenden Client, wenn Ihre Idee nahe an 5chan oder Seedit liegt.
-2. Bauen Sie einen neuen React-Client mit den Bitsocial React Hooks.
+2. Bauen Sie einen neuen React-Client mit den [Bitsocial React Hooks](https://hooks.bitsocial.net/).
 3. Bauen Sie eine eigene Integration auf Basis der Knoten-APIs und der öffentlichen RPC-Infrastruktur.
 
 Öffentliche RPC sollte den dritten Weg deutlich praktikabler machen. Nutzer können über einen

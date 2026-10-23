@@ -36,7 +36,7 @@ Stratul comun este protocolul. Stratul de produs rămâne deschis concurenței.
 
 - Încearcă [5chan](https://5chan.app) pentru comunități de tip imageboard anonim.
 - Încearcă [Seedit](https://seedit.app) pentru discuții în stil Reddit.
-- Citește documentația [Bitsocial React hooks](/developer-tools/react-hooks/) pentru integrarea în partea de client.
+- Citește documentația [Bitsocial React hooks](https://hooks.bitsocial.net/docs/quickstart/) pentru integrarea în partea de client.
 - Citește documentația [Bitsocial CLI](/developer-tools/cli/) pentru operațiuni de nod și de comunitate.
 
 Dacă vrei să avansezi rapid, contribuie mai întâi la o aplicație existentă. Dacă interfața, cultura
@@ -66,7 +66,7 @@ Clienții mici sunt utili tocmai pentru că Bitsocial îi lasă să crească în
 Există trei căi practice:
 
 1. Bifurcă un client existent atunci când ideea ta este apropiată de 5chan sau Seedit.
-2. Construiește un client React nou cu Bitsocial React hooks.
+2. Construiește un client React nou cu [Bitsocial React hooks](https://hooks.bitsocial.net/).
 3. Construiește-ți propria integrare peste API-urile de nod și infrastructura RPC publică.
 
 RPC-ul public ar trebui să facă a treia cale mult mai practică. Un utilizator poate începe printr-un

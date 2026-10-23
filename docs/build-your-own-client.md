@@ -34,7 +34,8 @@ Start with the apps that already exist:
 
 - Try [5chan](https://5chan.app) for anonymous imageboard communities.
 - Try [Seedit](https://seedit.app) for Reddit-style discussion.
-- Read the [Bitsocial React hooks](/developer-tools/react-hooks/) docs for client-side integration.
+- Read the [Bitsocial React hooks](https://hooks.bitsocial.net/docs/quickstart/) docs for
+  client-side integration.
 - Read the [Bitsocial CLI](/developer-tools/cli/) docs for node and community operations.
 
 If you want to move quickly, contribute to an existing app first. If the interface, culture, or
@@ -63,7 +64,7 @@ their users in a private database.
 There are three practical paths:
 
 1. Fork an existing client when your idea is close to 5chan or Seedit.
-2. Build a new React client with Bitsocial React hooks.
+2. Build a new React client with [Bitsocial React hooks](https://hooks.bitsocial.net/).
 3. Build your own integration on top of node APIs and public RPC infrastructure.
 
 Public RPC should make the third path much more practical. A user can start through a hosted,

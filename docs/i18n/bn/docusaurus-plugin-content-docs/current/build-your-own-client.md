@@ -34,7 +34,7 @@ description: স্বাধীন Bitsocial ক্লায়েন্ট ত�
 
 - বেনামী ইমেজবোর্ড কমিউনিটির জন্য [5chan](https://5chan.app) দেখুন।
 - Reddit-ধাঁচের আলোচনার জন্য [Seedit](https://seedit.app) দেখুন।
-- ক্লায়েন্ট-সাইড ইন্টিগ্রেশনের জন্য [Bitsocial React hooks](/developer-tools/react-hooks/) ডকুমেন্টেশন পড়ুন।
+- ক্লায়েন্ট-সাইড ইন্টিগ্রেশনের জন্য [Bitsocial React hooks](https://hooks.bitsocial.net/docs/quickstart/) ডকুমেন্টেশন পড়ুন।
 - নোড ও কমিউনিটি পরিচালনার জন্য [Bitsocial CLI](/developer-tools/cli/) ডকুমেন্টেশন পড়ুন।
 
 দ্রুত এগোতে চাইলে প্রথমে কোনো বিদ্যমান অ্যাপে অবদান রাখুন। আপনি যে ইন্টারফেস, সংস্কৃতি বা কমিউনিটি
@@ -63,7 +63,7 @@ description: স্বাধীন Bitsocial ক্লায়েন্ট ত�
 বাস্তবসম্মত তিনটি পথ আছে:
 
 1. আপনার ভাবনা 5chan বা Seedit-এর কাছাকাছি হলে কোনো বিদ্যমান ক্লায়েন্ট ফর্ক করুন।
-2. Bitsocial React hooks দিয়ে নতুন একটি React ক্লায়েন্ট বানান।
+2. [Bitsocial React hooks](https://hooks.bitsocial.net/) দিয়ে নতুন একটি React ক্লায়েন্ট বানান।
 3. নোড API এবং পাবলিক RPC অবকাঠামোর উপরে নিজের ইন্টিগ্রেশন তৈরি করুন।
 
 পাবলিক RPC তৃতীয় পথটিকে অনেক বেশি বাস্তবসম্মত করে তোলার কথা। একজন ব্যবহারকারী হোস্ট করা,
