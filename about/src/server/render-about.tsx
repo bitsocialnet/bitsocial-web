@@ -173,7 +173,7 @@ export async function renderAboutRequest(request: RenderRequest) {
   });
   const i18nInstance = await createServerI18n(bootstrapPayload);
   const appHtml = renderApplication(`${requestUrl.pathname}${requestUrl.search}`, i18nInstance);
-  const seo = getSeoMetadata(requestUrl.pathname, requestUrl.search);
+  const seo = getSeoMetadata(requestUrl.pathname, requestUrl.search, i18nInstance.t);
   const template = request.templateHtml ?? CLIENT_TEMPLATE_HTML;
   const htmlWithSeo = injectSeoHead(template, seo);
   const htmlWithAttributes = injectHtmlAttributes(htmlWithSeo, bootstrapPayload, theme);
