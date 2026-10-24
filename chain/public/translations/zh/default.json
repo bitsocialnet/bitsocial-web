@@ -353,7 +353,9 @@
       "walletCount_other": "{{count}} 个钱包",
       "noMatch": "没有与此搜索匹配的持有者。",
       "showAll_other": "显示全部 {{count}} 行",
-      "showMore": "再显示 {{count}} 行"
+      "showMore": "再显示 {{count}} 行",
+      "history": "走势",
+      "historySummary": "自{{start}}以来的余额：于{{highDate}}达到峰值 {{high}} BSO，目前为 {{current}} BSO"
     },
     "evidenceLinks": "证据交易",
     "telegramSources": "Telegram 来源",
@@ -595,7 +597,8 @@
         "exchangeOnly": "如果持有者通过交易所为每个钱包注资，且从不在这些钱包之间转移代币，就不会留下任何链上关联。某些分组可能仍隐藏着更多钱包。",
         "sales": "两个钱包之间的一笔转账可能是出售，也可能是赠送。标记为“有可能”的分组仅依赖一条这样的关联。",
         "contracts": "由 Uniswap 池和 Safe 以外的合约持有的代币按原样列出。",
-        "snapshot": "页面打开期间，余额和价格每五分钟从链上刷新一次。钱包之间的关联由人工调查得出，不会自动更新。"
+        "snapshot": "页面打开期间，余额和价格每五分钟从链上刷新一次。钱包之间的关联由人工调查得出，不会自动更新。",
+        "history": "走势线显示每个钱包的持有量，覆盖持有至少 0.01% 供应量的钱包，以及已知持有者的所有钱包。存入流动性池、农场或归属流的代币会从走势线中移出，而两次迁移将其中一些代币重新发行给其所有者，因此部分走势线在迁移当日出现跳升。"
       },
       "contracts": {
         "gen1": "Gen 1：Avalanche 上的 PLEB",

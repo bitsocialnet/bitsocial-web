@@ -3,7 +3,7 @@ import type { Holder, Snapshot } from "./holders";
 
 // Blockscout's public API needs no key and allows cross-origin reads. Etherscan's holder list is a
 // paid endpoint. scripts/generate-bso-holders.mjs makes the same calls for the committed snapshot.
-const BLOCKSCOUT_API = "https://eth.blockscout.com/api/v2";
+export const BLOCKSCOUT_API = "https://eth.blockscout.com/api/v2";
 const DECIMALS = 18n;
 
 type TokenResponse = { exchange_rate: string | null; total_supply: string };
@@ -16,7 +16,7 @@ type HoldersResponse = {
   next_page_params: Record<string, string | number> | null;
 };
 
-async function getJson<T>(url: string, signal: AbortSignal): Promise<T> {
+export async function getJson<T>(url: string, signal?: AbortSignal): Promise<T> {
   const response = await fetch(url, { signal, headers: { accept: "application/json" } });
   if (!response.ok) {
     throw new Error(`Blockscout returned ${response.status} for ${url}`);
@@ -25,7 +25,7 @@ async function getJson<T>(url: string, signal: AbortSignal): Promise<T> {
 }
 
 // Four decimals are plenty for display, and they keep Number precision safe for any balance.
-function toBso(rawValue: string) {
+export function toBso(rawValue: string) {
   const raw = BigInt(rawValue);
   const unit = 10n ** DECIMALS;
   const fraction = (raw % unit) / 10n ** (DECIMALS - 4n);

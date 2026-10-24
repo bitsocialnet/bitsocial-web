@@ -353,7 +353,9 @@
       "walletCount_other": "{{count}} ví",
       "noMatch": "Không có người nắm giữ nào khớp với tìm kiếm này.",
       "showAll_other": "Hiển thị tất cả {{count}} hàng",
-      "showMore": "Hiển thị thêm {{count}} hàng"
+      "showMore": "Hiển thị thêm {{count}} hàng",
+      "history": "Lịch sử",
+      "historySummary": "Số dư từ {{start}}: cao nhất {{high}} BSO vào {{highDate}}, hiện tại {{current}} BSO"
     },
     "evidenceLinks": "Giao dịch làm bằng chứng",
     "telegramSources": "Nguồn Telegram",
@@ -595,7 +597,8 @@
         "exchangeOnly": "Một người nắm giữ cấp vốn cho mọi ví qua sàn giao dịch và không bao giờ chuyển token giữa chúng sẽ không để lại liên kết on-chain nào. Một số nhóm vẫn có thể đang ẩn thêm ví.",
         "sales": "Một lần chuyển giữa hai ví có thể là một giao dịch bán hoặc một món quà. Các nhóm được đánh dấu “Có thể” dựa trên một liên kết duy nhất như vậy.",
         "contracts": "Token do các hợp đồng khác ngoài pool Uniswap và Safe nắm giữ được liệt kê nguyên trạng.",
-        "snapshot": "Số dư và giá được làm mới từ chuỗi mỗi năm phút khi trang này đang mở. Các liên kết giữa các ví được nghiên cứu thủ công và không tự cập nhật."
+        "snapshot": "Số dư và giá được làm mới từ chuỗi mỗi năm phút khi trang này đang mở. Các liên kết giữa các ví được nghiên cứu thủ công và không tự cập nhật.",
+        "history": "Các đường lịch sử theo dõi lượng mà mỗi ví nắm giữ, cho các ví có ít nhất 0,01% nguồn cung và mọi ví của một người nắm giữ đã biết. Token nằm trong pool thanh khoản, farm hoặc luồng vesting sẽ ra khỏi đường, và các đợt migration đã phát hành lại một phần trong số đó cho chủ sở hữu, nên một số đường nhảy vọt vào những ngày đó."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB trên Avalanche",

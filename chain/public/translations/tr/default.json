@@ -356,7 +356,9 @@
       "noMatch": "Bu aramayla eşleşen sahip yok.",
       "showAll_one": "{{count}} satırın tümünü göster",
       "showAll_other": "{{count}} satırın tümünü göster",
-      "showMore": "{{count}} satır daha göster"
+      "showMore": "{{count}} satır daha göster",
+      "history": "Geçmiş",
+      "historySummary": "{{start}} tarihinden bu yana bakiye: {{highDate}} tarihinde {{high}} BSO ile zirve, şu anda {{current}} BSO"
     },
     "evidenceLinks": "Kanıt işlemleri",
     "telegramSources": "Telegram kaynakları",
@@ -600,7 +602,8 @@
         "exchangeOnly": "Her cüzdanını bir borsa üzerinden fonlayan ve aralarında hiç token taşımayan bir sahip, zincir üzerinde hiçbir bağlantı bırakmaz. Bazı gruplar hâlâ başka cüzdanlar gizliyor olabilir.",
         "sales": "İki cüzdan arasındaki bir transfer, bir satış ya da hediye olabilir. Olası olarak işaretlenen gruplar, bu türden tek bir bağlantıya dayanır.",
         "contracts": "Uniswap havuzu ve Safe dışındaki sözleşmelerin tuttuğu token'lar olduğu gibi listelenir.",
-        "snapshot": "Bu sayfa açıkken bakiyeler ve fiyat her beş dakikada bir zincirden yenilenir. Cüzdanlar arasındaki bağlantılar elle araştırılır ve kendiliğinden güncellenmez."
+        "snapshot": "Bu sayfa açıkken bakiyeler ve fiyat her beş dakikada bir zincirden yenilenir. Cüzdanlar arasındaki bağlantılar elle araştırılır ve kendiliğinden güncellenmez.",
+        "history": "Geçmiş çizgileri her cüzdanın ne kadar tuttuğunu gösterir; arzın en az %0,01'ine sahip cüzdanlar ve bilinen bir sahibin tüm cüzdanları için çizilir. Likidite havuzundaki, farm'daki veya vesting akışındaki token'lar çizgiden düşer ve geçişler bunların bir kısmını sahiplerine yeniden çıkardığı için bazı çizgiler o günlerde sıçrar."
       },
       "contracts": {
         "gen1": "Gen 1: Avalanche'ta PLEB",

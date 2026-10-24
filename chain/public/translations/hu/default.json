@@ -356,7 +356,9 @@
       "noMatch": "Egyetlen birtokos sem felel meg ennek a keresésnek.",
       "showAll_one": "Összes sor megjelenítése ({{count}})",
       "showAll_other": "Összes sor megjelenítése ({{count}})",
-      "showMore": "További {{count}} sor megjelenítése"
+      "showMore": "További {{count}} sor megjelenítése",
+      "history": "Előzmények",
+      "historySummary": "Egyenleg {{start}} óta: csúcs {{high}} BSO ({{highDate}}), most {{current}} BSO"
     },
     "evidenceLinks": "Bizonyító tranzakciók",
     "telegramSources": "Telegram-források",
@@ -600,7 +602,8 @@
         "exchangeOnly": "Az a birtokos, aki minden tárcáját tőzsdén keresztül finanszírozza, és soha nem mozgat tokent közöttük, nem hagy kapcsolatot a láncon. Egyes csoportok még további tárcákat rejthetnek.",
         "sales": "Két tárca közötti átutalás lehet eladás vagy ajándék. A Lehetséges jelölésű csoportok egyetlen ilyen kapcsolaton alapulnak.",
         "contracts": "Az Uniswap-poolon és a Safe-en kívüli szerződésekben tartott tokenek úgy szerepelnek, ahogy vannak.",
-        "snapshot": "Az egyenlegek és az árfolyam ötpercenként frissülnek a láncról, amíg ez az oldal nyitva van. A tárcák közötti kapcsolatokat kézzel kutattuk fel, és nem frissülnek maguktól."
+        "snapshot": "Az egyenlegek és az árfolyam ötpercenként frissülnek a láncról, amíg ez az oldal nyitva van. A tárcák közötti kapcsolatokat kézzel kutattuk fel, és nem frissülnek maguktól.",
+        "history": "Az Előzmények oszlop vonalai az egyes tárcák egyenlegét követik azoknál a tárcáknál, amelyek a kínálat legalább 0,01%-át birtokolják, valamint minden ismert birtokos összes tárcájánál. A likviditási poolban, farmban vagy vesting streamben lévő tokenek kikerülnek a vonalból, a migrációk pedig egy részüket újra kibocsátották a tulajdonosaiknak, ezért egyes vonalak azokon a napokon ugranak egyet."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB az Avalanche-on",

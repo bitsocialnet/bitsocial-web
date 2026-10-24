@@ -359,7 +359,9 @@
       "showAll_one": "Mostra {{count}} fila",
       "showAll_many": "Mostra les {{count}} files",
       "showAll_other": "Mostra les {{count}} files",
-      "showMore": "Mostra'n {{count}} més"
+      "showMore": "Mostra'n {{count}} més",
+      "history": "Historial",
+      "historySummary": "Saldo (inici: {{start}}): màxim de {{high}} BSO ({{highDate}}), ara {{current}} BSO"
     },
     "evidenceLinks": "Transaccions que ho proven",
     "telegramSources": "Fonts de Telegram",
@@ -605,7 +607,8 @@
         "exchangeOnly": "Un posseïdor que finança cada cartera a través d'un exchange i no mou mai tokens entre elles no deixa cap vincle on-chain. Alguns grups encara podrien amagar més carteres.",
         "sales": "Una transferència entre dues carteres pot ser una venda o un regal. Els grups marcats com a Possible es basen en un sol vincle d'aquest tipus.",
         "contracts": "Els tokens en mans de contractes que no siguin el pool d'Uniswap i el Safe es mostren tal com són.",
-        "snapshot": "Els saldos i el preu s'actualitzen des de la cadena cada cinc minuts mentre aquesta pàgina està oberta. Els vincles entre carteres s'investiguen a mà i no s'actualitzen sols."
+        "snapshot": "Els saldos i el preu s'actualitzen des de la cadena cada cinc minuts mentre aquesta pàgina està oberta. Els vincles entre carteres s'investiguen a mà i no s'actualitzen sols.",
+        "history": "Les línies de l'historial segueixen el que tenia cada cartera, per a les carteres amb almenys un 0,01% de l'oferta i per a cada cartera d'un posseïdor conegut. Els tokens en un pool de liquiditat, en una granja o en un stream de vesting surten de la línia, i les migracions en van tornar a emetre una part als seus propietaris, de manera que algunes línies fan un salt aquells dies."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB a Avalanche",

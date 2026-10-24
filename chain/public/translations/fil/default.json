@@ -356,7 +356,9 @@
       "noMatch": "Walang may-hawak na tumutugma sa paghahanap na ito.",
       "showAll_one": "Ipakita ang lahat ng {{count}} row",
       "showAll_other": "Ipakita ang lahat ng {{count}} row",
-      "showMore": "Ipakita ang {{count}} pa"
+      "showMore": "Ipakita ang {{count}} pa",
+      "history": "Kasaysayan",
+      "historySummary": "Balanse mula {{start}}: pinakamataas na {{high}} BSO noong {{highDate}}, {{current}} BSO ngayon"
     },
     "evidenceLinks": "Mga transaction na ebidensya",
     "telegramSources": "Mga source sa Telegram",
@@ -600,7 +602,8 @@
         "exchangeOnly": "Ang isang may-hawak na nagpopondo sa bawat wallet sa pamamagitan ng exchange at hindi kailanman naglilipat ng token sa pagitan ng mga ito ay walang iniiwang on-chain na link. Maaaring may ilang grupo pa ring nagtatago ng mas maraming wallet.",
         "sales": "Ang transfer sa pagitan ng dalawang wallet ay puwedeng bentahan o regalo. Ang mga grupong may markang Posible ay nakasalalay sa iisang ganoong link.",
         "contracts": "Ang mga token na hawak ng mga kontrata maliban sa Uniswap pool at sa Safe ay nakalista kung ano sila.",
-        "snapshot": "Nire-refresh mula sa chain ang mga balanse at presyo bawat limang minuto habang bukas ang pahinang ito. Mano-manong sinaliksik ang mga link sa pagitan ng mga wallet at hindi kusang nag-a-update."
+        "snapshot": "Nire-refresh mula sa chain ang mga balanse at presyo bawat limang minuto habang bukas ang pahinang ito. Mano-manong sinaliksik ang mga link sa pagitan ng mga wallet at hindi kusang nag-a-update.",
+        "history": "Sinusundan ng mga linya sa Kasaysayan ang hawak ng bawat wallet, para sa mga wallet na may hindi bababa sa 0.01% ng supply at sa bawat wallet ng isang kilalang may-hawak. Umaalis sa linya ang mga token na nasa liquidity pool, farm o vesting stream, at muling inisyu ng mga migration ang ilan sa mga ito sa kanilang mga may-ari, kaya may mga linyang biglang tumataas sa mga araw na iyon."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB sa Avalanche",

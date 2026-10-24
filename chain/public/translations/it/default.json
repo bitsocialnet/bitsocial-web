@@ -359,7 +359,9 @@
       "showAll_one": "Mostra {{count}} riga",
       "showAll_many": "Mostra tutte le {{count}} righe",
       "showAll_other": "Mostra tutte le {{count}} righe",
-      "showMore": "Mostra altre {{count}}"
+      "showMore": "Mostra altre {{count}}",
+      "history": "Storico",
+      "historySummary": "Saldo da {{start}}: picco di {{high}} BSO nel mese di {{highDate}}, ora {{current}} BSO"
     },
     "evidenceLinks": "Transazioni di prova",
     "telegramSources": "Fonti Telegram",
@@ -605,7 +607,8 @@
         "exchangeOnly": "Un detentore che finanzia ogni portafoglio tramite un exchange e non sposta mai token tra di essi non lascia alcun collegamento on-chain. Alcuni gruppi potrebbero ancora nascondere altri portafogli.",
         "sales": "Un trasferimento tra due portafogli può essere una vendita o un regalo. I gruppi contrassegnati come Possibile si basano su un unico collegamento di questo tipo.",
         "contracts": "I token detenuti da contratti diversi dal pool Uniswap e dal Safe sono elencati così come sono.",
-        "snapshot": "Saldi e prezzo si aggiornano dalla chain ogni cinque minuti mentre questa pagina è aperta. I collegamenti tra i portafogli sono ricercati a mano e non si aggiornano da soli."
+        "snapshot": "Saldi e prezzo si aggiornano dalla chain ogni cinque minuti mentre questa pagina è aperta. I collegamenti tra i portafogli sono ricercati a mano e non si aggiornano da soli.",
+        "history": "Le linee dello storico seguono ciò che ha detenuto ogni portafoglio, per i portafogli con almeno lo 0,01% dell'offerta e per ogni portafoglio di un detentore noto. I token in un pool di liquidità, in una farm o in uno stream di vesting escono dalla linea, e le migrazioni ne hanno riemesso una parte ai loro proprietari, quindi alcune linee fanno un salto in quei giorni."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB su Avalanche",

@@ -362,7 +362,9 @@
       "showAll_few": "Pokaż wszystkie wiersze ({{count}})",
       "showAll_many": "Pokaż wszystkie wiersze ({{count}})",
       "showAll_other": "Pokaż wszystkie wiersze ({{count}})",
-      "showMore": "Pokaż więcej ({{count}})"
+      "showMore": "Pokaż więcej ({{count}})",
+      "history": "Historia",
+      "historySummary": "Saldo (początek: {{start}}): szczyt {{high}} BSO ({{highDate}}), obecnie {{current}} BSO"
     },
     "evidenceLinks": "Transakcje dowodowe",
     "telegramSources": "Źródła na Telegramie",
@@ -610,7 +612,8 @@
         "exchangeOnly": "Posiadacz, który zasila każdy portfel przez giełdę i nigdy nie przenosi tokenów między nimi, nie zostawia żadnego powiązania on-chain. Niektóre grupy mogą wciąż ukrywać kolejne portfele.",
         "sales": "Transfer między dwoma portfelami może być sprzedażą lub prezentem. Grupy oznaczone jako Możliwe opierają się na jednym takim powiązaniu.",
         "contracts": "Tokeny należące do kontraktów innych niż pula Uniswap i Safe są pokazane bez zmian.",
-        "snapshot": "Salda i cena odświeżają się z łańcucha co pięć minut, gdy ta strona jest otwarta. Powiązania między portfelami są badane ręcznie i nie aktualizują się same."
+        "snapshot": "Salda i cena odświeżają się z łańcucha co pięć minut, gdy ta strona jest otwarta. Powiązania między portfelami są badane ręcznie i nie aktualizują się same.",
+        "history": "Linie w kolumnie Historia pokazują, ile miał każdy portfel, dla portfeli z co najmniej 0,01% podaży i dla każdego portfela znanego posiadacza. Tokeny w puli płynności, na farmie lub w strumieniu vestingowym wypadają z linii, a migracje wyemitowały część z nich ponownie ich właścicielom, więc niektóre linie w te dni skaczą."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB na Avalanche",

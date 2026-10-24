@@ -2,11 +2,14 @@ import { useId, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { ChevronDown, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { type HolderHistoryState, useHolderHistory } from "@/lib/rich-list/history";
 import { type RichListRow, getEntityIdForAddress } from "@/lib/rich-list/holders";
+import { useReveal } from "@/lib/useReveal";
 import { useRichList } from "./data-context";
 import { type Formatters, useFormatters } from "./format";
 import { entityCategory } from "@/lib/rich-list/data";
 import { cn } from "@/lib/utils";
+import BalanceTrend from "./BalanceTrend";
 import { AddressLink, CategoryBadge, SegmentedControl } from "./primitives";
 
 const PAGE_SIZE = 25;
@@ -43,6 +46,12 @@ export default function HoldersTable() {
   const [query, setQuery] = useState("");
   const [limit, setLimit] = useState(PAGE_SIZE);
   const [expanded, setExpanded] = useState<ReadonlySet<string>>(() => new Set());
+  // The balance history is a separate download, fetched only once the table nears the viewport.
+  const { ref: tableRef, revealed } = useReveal<HTMLDivElement>({
+    threshold: 0,
+    rootMargin: "300px 0px",
+  });
+  const history = useHolderHistory(revealed);
 
   const normalizedQuery = query.trim().toLowerCase();
   // A search lists matching wallets one by one, each still labelled with its holder, so a match
@@ -112,7 +121,7 @@ export default function HoldersTable() {
 
       {/* On phones each row becomes a grid (rich-list.css), and some browsers drop a table's
           semantics once its display changes, so the table roles are stated explicitly. */}
-      <div className="rl-table-scroll glass-card">
+      <div ref={tableRef} className="rl-table-scroll glass-card">
         <table className="rl-table rl-holders-table" role="table">
           <caption className="sr-only">{t("richList.table.caption")}</caption>
           <thead role="rowgroup">
@@ -131,6 +140,9 @@ export default function HoldersTable() {
               </th>
               <th scope="col" role="columnheader" className="rl-col-num rl-col-usd">
                 {t("richList.table.value")}
+              </th>
+              <th scope="col" role="columnheader" className="rl-col-trend">
+                {t("richList.table.history")}
               </th>
             </tr>
           </thead>
@@ -154,12 +166,15 @@ export default function HoldersTable() {
                       </span>
                     </td>
                     <AmountCells format={format} balance={row.holder.balance} />
+                    <TrendCell format={format} history={history} addresses={[row.holder.address]} />
                   </tr>
                 );
               }
 
               const { entity, wallets, balance } = row.row;
               const heldWallets = wallets.filter((wallet) => wallet.balance > 0);
+              // The line counts every wallet, including ones that have since sold out.
+              const allAddresses = wallets.map((wallet) => wallet.address);
               const isOpen = expanded.has(entity.id);
               const panelId = `rl-wallets-${entity.id}`;
               return (
@@ -170,6 +185,8 @@ export default function HoldersTable() {
                   entityId={entity.id}
                   balance={balance}
                   wallets={heldWallets}
+                  allAddresses={allAddresses}
+                  history={history}
                   isOpen={isOpen}
                   panelId={panelId}
                   onToggle={() => toggle(entity.id)}
@@ -179,7 +196,7 @@ export default function HoldersTable() {
             })}
             {visible.length === 0 ? (
               <tr role="row">
-                <td role="cell" colSpan={5} className="rl-empty">
+                <td role="cell" colSpan={6} className="rl-empty">
                   {t("richList.table.noMatch")}
                 </td>
               </tr>
@@ -236,12 +253,31 @@ function AmountCells({ format, balance }: { format: Formatters; balance: number 
   );
 }
 
+/** The balance history: only rendered rows draw one, and only once the history has loaded. */
+function TrendCell({
+  format,
+  history,
+  addresses,
+}: {
+  format: Formatters;
+  history: HolderHistoryState;
+  addresses: readonly string[];
+}) {
+  return (
+    <td role="cell" className="rl-col-trend">
+      <BalanceTrend format={format} state={history} addresses={addresses} />
+    </td>
+  );
+}
+
 function GroupRows({
   format,
   rank,
   entityId,
   balance,
   wallets,
+  allAddresses,
+  history,
   isOpen,
   panelId,
   onToggle,
@@ -252,6 +288,8 @@ function GroupRows({
   entityId: string;
   balance: number;
   wallets: { address: string; balance: number }[];
+  allAddresses: readonly string[];
+  history: HolderHistoryState;
   isOpen: boolean;
   panelId: string;
   onToggle: () => void;
@@ -285,6 +323,7 @@ function GroupRows({
           </span>
         </td>
         <AmountCells format={format} balance={balance} />
+        <TrendCell format={format} history={history} addresses={allAddresses} />
       </tr>
       {expandable
         ? wallets.map((wallet, index) => (
@@ -300,6 +339,11 @@ function GroupRows({
                 <AddressLink address={wallet.address} />
               </td>
               <AmountCells format={format} balance={wallet.balance} />
+              <TrendCell
+                format={format}
+                history={history}
+                addresses={isOpen ? [wallet.address] : []}
+              />
             </tr>
           ))
         : null}

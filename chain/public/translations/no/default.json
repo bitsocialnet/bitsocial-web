@@ -356,7 +356,9 @@
       "noMatch": "Ingen innehaver samsvarer med dette søket.",
       "showAll_one": "Vis {{count}} rad",
       "showAll_other": "Vis alle {{count}} radene",
-      "showMore": "Vis {{count}} til"
+      "showMore": "Vis {{count}} til",
+      "history": "Historikk",
+      "historySummary": "Saldo siden {{start}}: høyest {{high}} BSO i {{highDate}}, nå {{current}} BSO"
     },
     "evidenceLinks": "Bevistransaksjoner",
     "telegramSources": "Telegram-kilder",
@@ -600,7 +602,8 @@
         "exchangeOnly": "En innehaver som finansierer alle lommebøkene sine via en børs og aldri flytter tokens mellom dem, etterlater ingen kobling on-chain. Noen grupper kan fortsatt skjule flere lommebøker.",
         "sales": "En overføring mellom to lommebøker kan være et salg eller en gave. Grupper merket Mulig hviler på én slik kobling.",
         "contracts": "Tokens som holdes av andre kontrakter enn Uniswap-poolen og Safen, vises som de er.",
-        "snapshot": "Saldoer og pris oppdateres fra kjeden hvert femte minutt mens denne siden er åpen. Koblingene mellom lommebøker er undersøkt for hånd og oppdateres ikke av seg selv."
+        "snapshot": "Saldoer og pris oppdateres fra kjeden hvert femte minutt mens denne siden er åpen. Koblingene mellom lommebøker er undersøkt for hånd og oppdateres ikke av seg selv.",
+        "history": "Historikklinjene følger hva hver lommebok har hatt, for lommebøker med minst 0,01% av tilbudet og for hver lommebok som tilhører en kjent innehaver. Tokens i en likviditetspool, farm eller vesting-strøm faller ut av linjen, og migreringene utstedte noen av dem på nytt til eierne, så noen linjer hopper på de dagene."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB på Avalanche",

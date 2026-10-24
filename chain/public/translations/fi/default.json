@@ -356,7 +356,9 @@
       "noMatch": "Yksikään haltija ei vastaa tätä hakua.",
       "showAll_one": "Näytä {{count}} rivi",
       "showAll_other": "Näytä kaikki {{count}} riviä",
-      "showMore": "Näytä {{count}} lisää"
+      "showMore": "Näytä {{count}} lisää",
+      "history": "Historia",
+      "historySummary": "Saldo (alku: {{start}}): huippu {{high}} BSO ({{highDate}}), nyt {{current}} BSO"
     },
     "evidenceLinks": "Todisteena olevat transaktiot",
     "telegramSources": "Telegram-lähteet",
@@ -600,7 +602,8 @@
         "exchangeOnly": "Haltija, joka rahoittaa jokaisen lompakkonsa pörssin kautta eikä koskaan siirrä tokeneita niiden välillä, ei jätä on-chain-yhteyttä. Jotkin ryhmät voivat yhä kätkeä muitakin lompakoita.",
         "sales": "Siirto kahden lompakon välillä voi olla myynti tai lahja. Mahdollinen-merkityt ryhmät perustuvat yhteen tällaiseen yhteyteen.",
         "contracts": "Muiden älysopimusten kuin Uniswap-poolin ja Safen hallussa olevat tokenit on listattu sellaisinaan.",
-        "snapshot": "Saldot ja hinta päivittyvät ketjusta viiden minuutin välein, kun tämä sivu on auki. Lompakoiden väliset yhteydet on selvitetty käsin, eivätkä ne päivity itsestään."
+        "snapshot": "Saldot ja hinta päivittyvät ketjusta viiden minuutin välein, kun tämä sivu on auki. Lompakoiden väliset yhteydet on selvitetty käsin, eivätkä ne päivity itsestään.",
+        "history": "Historia-sarakkeen viivat näyttävät, mitä kukin lompakko on pitänyt hallussaan, lompakoille, joilla on vähintään 0,01 % tarjonnasta, sekä jokaiselle tunnetun haltijan lompakolle. Likviditeettipoolissa, farmissa tai vesting-virrassa olevat tokenit putoavat pois viivasta, ja migraatiot laskivat osan niistä uudelleen liikkeeseen niiden omistajille, joten jotkin viivat hyppäävät noina päivinä."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB Avalanchella",

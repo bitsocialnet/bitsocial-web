@@ -359,7 +359,9 @@
       "showAll_one": "Afișează {{count}} rând",
       "showAll_few": "Afișează toate cele {{count}} rânduri",
       "showAll_other": "Afișează toate cele {{count}} de rânduri",
-      "showMore": "Afișează încă {{count}}"
+      "showMore": "Afișează încă {{count}}",
+      "history": "Istoric",
+      "historySummary": "Sold din {{start}}: maxim de {{high}} BSO în {{highDate}}, acum {{current}} BSO"
     },
     "evidenceLinks": "Tranzacții doveditoare",
     "telegramSources": "Surse Telegram",
@@ -605,7 +607,8 @@
         "exchangeOnly": "Un deținător care își finanțează fiecare portofel printr-un exchange și nu mută niciodată tokenuri între ele nu lasă nicio legătură on-chain. Unele grupuri ar putea încă să ascundă mai multe portofele.",
         "sales": "Un transfer între două portofele poate fi o vânzare sau un cadou. Grupurile marcate Posibil se bazează pe o singură legătură de acest fel.",
         "contracts": "Tokenurile deținute de alte contracte decât pool-ul Uniswap și Safe-ul sunt listate ca atare.",
-        "snapshot": "Soldurile și prețul se reîmprospătează din lanț la fiecare cinci minute cât timp această pagină este deschisă. Legăturile dintre portofele sunt cercetate manual și nu se actualizează singure."
+        "snapshot": "Soldurile și prețul se reîmprospătează din lanț la fiecare cinci minute cât timp această pagină este deschisă. Legăturile dintre portofele sunt cercetate manual și nu se actualizează singure.",
+        "history": "Liniile din Istoric urmăresc ce a deținut fiecare portofel, pentru portofelele cu cel puțin 0,01% din ofertă și pentru fiecare portofel al unui deținător cunoscut. Tokenurile dintr-un pool de lichiditate, dintr-o fermă sau dintr-un flux de vesting ies din linie, iar migrările au reemis o parte dintre ele proprietarilor lor, așa că unele linii fac un salt în acele zile."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB pe Avalanche",

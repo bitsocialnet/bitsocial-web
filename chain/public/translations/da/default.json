@@ -356,7 +356,9 @@
       "noMatch": "Ingen indehaver matcher denne søgning.",
       "showAll_one": "Vis {{count}} række",
       "showAll_other": "Vis alle {{count}} rækker",
-      "showMore": "Vis {{count}} mere"
+      "showMore": "Vis {{count}} mere",
+      "history": "Historik",
+      "historySummary": "Saldo siden {{start}}: højest {{high}} BSO i {{highDate}}, nu {{current}} BSO"
     },
     "evidenceLinks": "Transaktioner som bevis",
     "telegramSources": "Telegram-kilder",
@@ -600,7 +602,8 @@
         "exchangeOnly": "En indehaver, der finansierer hver wallet via en børs og aldrig flytter tokens mellem dem, efterlader ingen forbindelse on-chain. Nogle grupper kan stadig skjule flere wallets.",
         "sales": "En overførsel mellem to wallets kan være et salg eller en gave. Grupper markeret som Mulig hviler på én sådan forbindelse.",
         "contracts": "Tokens i andre kontrakter end Uniswap-poolen og Safen vises, som de er.",
-        "snapshot": "Saldi og pris opdateres fra chainen hvert femte minut, mens denne side er åben. Forbindelserne mellem wallets er undersøgt manuelt og opdateres ikke af sig selv."
+        "snapshot": "Saldi og pris opdateres fra chainen hvert femte minut, mens denne side er åben. Forbindelserne mellem wallets er undersøgt manuelt og opdateres ikke af sig selv.",
+        "history": "Historiklinjerne følger, hvad hver wallet har holdt, for wallets med mindst 0,01% af udbuddet og for hver wallet hos en kendt indehaver. Tokens i en likviditetspool, farm eller vestingstream forsvinder fra linjen, og migreringerne udstedte nogle af dem igen til deres ejere, så nogle linjer springer på de dage."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB på Avalanche",
