@@ -362,7 +362,9 @@
       "showAll_few": "Zobrazit všechny {{count}} řádky",
       "showAll_many": "Zobrazit všech {{count}} řádku",
       "showAll_other": "Zobrazit všech {{count}} řádků",
-      "showMore": "Zobrazit další ({{count}})"
+      "showMore": "Zobrazit další ({{count}})",
+      "history": "Historie",
+      "historySummary": "Zůstatek (začátek: {{start}}): maximum {{high}} BSO ({{highDate}}), nyní {{current}} BSO"
     },
     "evidenceLinks": "Transakce jako důkaz",
     "telegramSources": "Zdroje na Telegramu",
@@ -610,7 +612,8 @@
         "exchangeOnly": "Držitel, který financuje každou peněženku přes burzu a nikdy mezi nimi nepřesouvá tokeny, nezanechá žádné on-chain propojení. Některé skupiny tak mohou skrývat další peněženky.",
         "sales": "Převod mezi dvěma peněženkami může být prodej nebo dar. Skupiny označené jako Možné stojí na jediném takovém propojení.",
         "contracts": "Tokeny držené jinými kontrakty než poolem na Uniswapu a Safe jsou uvedeny tak, jak jsou.",
-        "snapshot": "Zůstatky a cena se z blockchainu obnovují každých pět minut, dokud je tato stránka otevřená. Propojení mezi peněženkami se dohledávají ručně a sama se neaktualizují."
+        "snapshot": "Zůstatky a cena se z blockchainu obnovují každých pět minut, dokud je tato stránka otevřená. Propojení mezi peněženkami se dohledávají ručně a sama se neaktualizují.",
+        "history": "Křivky ve sloupci Historie ukazují, kolik která peněženka držela, a to u peněženek s alespoň 0,01 % nabídky a u každé peněženky známého držitele. Tokeny v poolu likvidity, ve farmě nebo ve vestingovém streamu z křivky vypadnou, a protože migrace část z nich znovu vydaly jejich vlastníkům, některé křivky v těch dnech poskočí."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB na Avalanche",

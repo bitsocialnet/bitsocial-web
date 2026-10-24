@@ -356,7 +356,9 @@
       "noMatch": "No holder matches this search.",
       "showAll_one": "Show all {{count}} rows",
       "showAll_other": "Show all {{count}} rows",
-      "showMore": "Show {{count}} more"
+      "showMore": "Show {{count}} more",
+      "history": "History",
+      "historySummary": "Balance since {{start}}: peaked at {{high}} BSO in {{highDate}}, {{current}} BSO now"
     },
     "evidenceLinks": "Evidence transactions",
     "telegramSources": "Telegram sources",
@@ -600,7 +602,8 @@
         "exchangeOnly": "A holder who funds every wallet through an exchange and never moves tokens between them leaves no on-chain link. Some groups may still hide more wallets.",
         "sales": "A transfer between two wallets can be a sale or a gift. Groups marked Possible rest on a single link like that.",
         "contracts": "Tokens held by contracts other than the Uniswap pool and the Safe are listed as they are.",
-        "snapshot": "Balances and the price refresh from the chain every five minutes while this page is open. The links between wallets are researched by hand and do not update on their own."
+        "snapshot": "Balances and the price refresh from the chain every five minutes while this page is open. The links between wallets are researched by hand and do not update on their own.",
+        "history": "History lines follow what each wallet held, for wallets with at least 0.01% of the supply and every wallet of a known holder. Tokens in a liquidity pool, farm or vesting stream leave the line, and the migrations re-issued some of them to their owners, so some lines jump on those days."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB on Avalanche",

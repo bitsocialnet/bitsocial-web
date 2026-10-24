@@ -356,7 +356,9 @@
       "noMatch": "Geen houder komt overeen met deze zoekopdracht.",
       "showAll_one": "Toon {{count}} rij",
       "showAll_other": "Toon alle {{count}} rijen",
-      "showMore": "Toon nog {{count}}"
+      "showMore": "Toon nog {{count}}",
+      "history": "Verloop",
+      "historySummary": "Saldo sinds {{start}}: piek van {{high}} BSO in {{highDate}}, nu {{current}} BSO"
     },
     "evidenceLinks": "Bewijstransacties",
     "telegramSources": "Telegram-bronnen",
@@ -600,7 +602,8 @@
         "exchangeOnly": "Een houder die elke wallet via een exchange financiert en nooit tokens tussen die wallets verplaatst, laat geen on-chain koppeling achter. Sommige groepen kunnen nog meer wallets verbergen.",
         "sales": "Een transfer tussen twee wallets kan een verkoop of een cadeau zijn. Groepen gemarkeerd als Mogelijk steunen op één zo'n koppeling.",
         "contracts": "Tokens in handen van andere contracten dan de Uniswap-pool en de Safe worden weergegeven zoals ze zijn.",
-        "snapshot": "Saldi en de prijs worden elke vijf minuten van de chain ververst zolang deze pagina openstaat. De koppelingen tussen wallets zijn met de hand onderzocht en worden niet vanzelf bijgewerkt."
+        "snapshot": "Saldi en de prijs worden elke vijf minuten van de chain ververst zolang deze pagina openstaat. De koppelingen tussen wallets zijn met de hand onderzocht en worden niet vanzelf bijgewerkt.",
+        "history": "De lijnen in de kolom Verloop volgen wat elke wallet in bezit had, voor wallets met minstens 0,01% van het aanbod en voor elke wallet van een bekende houder. Tokens in een liquiditeitspool, farm of vestingstream verdwijnen uit de lijn, en bij de migraties is een deel ervan opnieuw uitgegeven aan hun eigenaars, waardoor sommige lijnen op die dagen een sprong maken."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB op Avalanche",

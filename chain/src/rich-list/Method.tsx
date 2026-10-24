@@ -5,7 +5,7 @@ import { BSO_TOKEN_ADDRESS, CONTRIBUTE_URL, ETHERSCAN_TOKEN_URL } from "@/lib/si
 import { useFormatters } from "./format";
 import { AddressLink, RichSection } from "./primitives";
 
-const LIMITS = ["exchangeOnly", "sales", "contracts", "snapshot"] as const;
+const LIMITS = ["exchangeOnly", "sales", "contracts", "history", "snapshot"] as const;
 
 export default function Method() {
   const { t } = useTranslation();

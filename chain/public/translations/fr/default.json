@@ -359,7 +359,9 @@
       "showAll_one": "Afficher {{count}} ligne",
       "showAll_many": "Afficher les {{count}} lignes",
       "showAll_other": "Afficher les {{count}} lignes",
-      "showMore": "Afficher {{count}} de plus"
+      "showMore": "Afficher {{count}} de plus",
+      "history": "Historique",
+      "historySummary": "Solde depuis {{start}} : pic de {{high}} BSO en {{highDate}}, {{current}} BSO aujourd’hui"
     },
     "evidenceLinks": "Transactions servant de preuve",
     "telegramSources": "Sources Telegram",
@@ -605,7 +607,8 @@
         "exchangeOnly": "Un détenteur qui finance chaque portefeuille via une plateforme d’échange et ne déplace jamais de tokens entre eux ne laisse aucun lien on-chain. Certains groupes peuvent encore cacher d’autres portefeuilles.",
         "sales": "Un transfert entre deux portefeuilles peut être une vente ou un don. Les groupes marqués « Possible » reposent sur un seul lien de ce type.",
         "contracts": "Les tokens détenus par des contrats autres que le pool Uniswap et le Safe sont listés tels quels.",
-        "snapshot": "Les soldes et le prix sont actualisés depuis la chaîne toutes les cinq minutes tant que cette page est ouverte. Les liens entre portefeuilles sont établis à la main et ne se mettent pas à jour d’eux-mêmes."
+        "snapshot": "Les soldes et le prix sont actualisés depuis la chaîne toutes les cinq minutes tant que cette page est ouverte. Les liens entre portefeuilles sont établis à la main et ne se mettent pas à jour d’eux-mêmes.",
+        "history": "Les courbes de l’historique suivent ce que détenait chaque portefeuille, pour les portefeuilles détenant au moins 0,01 % de l’offre et pour chaque portefeuille d’un détenteur connu. Les tokens placés dans un pool de liquidité, une farm ou un flux de vesting sortent de la courbe, et les migrations en ont réémis une partie à leurs propriétaires, si bien que certaines courbes font un bond ces jours-là."
       },
       "contracts": {
         "gen1": "Gen 1 : PLEB sur Avalanche",

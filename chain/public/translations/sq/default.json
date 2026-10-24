@@ -356,7 +356,9 @@
       "noMatch": "Asnjë mbajtës nuk përputhet me këtë kërkim.",
       "showAll_one": "Shfaq {{count}} rresht",
       "showAll_other": "Shfaq të {{count}} rreshtat",
-      "showMore": "Shfaq edhe {{count}}"
+      "showMore": "Shfaq edhe {{count}}",
+      "history": "Historiku",
+      "historySummary": "Bilanci (fillimi: {{start}}): kulmi {{high}} BSO ({{highDate}}), tani {{current}} BSO"
     },
     "evidenceLinks": "Transaksionet provë",
     "telegramSources": "Burimet në Telegram",
@@ -600,7 +602,8 @@
         "exchangeOnly": "Një mbajtës që e financon çdo portofol përmes një exchange dhe nuk lëviz kurrë tokenë mes tyre nuk lë asnjë lidhje on-chain. Disa grupe mund të fshehin ende më shumë portofole.",
         "sales": "Një transferim mes dy portofoleve mund të jetë shitje ose dhuratë. Grupet e shënuara si “E mundshme” mbështeten në një lidhje të vetme të tillë.",
         "contracts": "Tokenët që mbahen nga kontrata të tjera përveç pool-it të Uniswap dhe Safe-it renditen ashtu siç janë.",
-        "snapshot": "Bilancet dhe çmimi rifreskohen nga zinxhiri çdo pesë minuta ndërsa kjo faqe është e hapur. Lidhjet mes portofoleve janë hulumtuar me dorë dhe nuk përditësohen vetë."
+        "snapshot": "Bilancet dhe çmimi rifreskohen nga zinxhiri çdo pesë minuta ndërsa kjo faqe është e hapur. Lidhjet mes portofoleve janë hulumtuar me dorë dhe nuk përditësohen vetë.",
+        "history": "Linjat e Historikut ndjekin sa ka mbajtur çdo portofol, për portofolet me të paktën 0,01% të furnizimit dhe për çdo portofol të një mbajtësi të njohur. Tokenët në një pool likuiditeti, në një fermë ose në një rrjedhë vesting dalin nga linja, dhe migrimet i rilëshuan disa prej tyre te pronarët e tyre, prandaj disa linja kërcejnë në ato ditë."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB në Avalanche",

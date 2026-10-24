@@ -356,7 +356,9 @@
       "noMatch": "Ingen innehavare matchar sökningen.",
       "showAll_one": "Visa alla {{count}} rader",
       "showAll_other": "Visa alla {{count}} rader",
-      "showMore": "Visa {{count}} till"
+      "showMore": "Visa {{count}} till",
+      "history": "Historik",
+      "historySummary": "Saldo sedan {{start}}: som högst {{high}} BSO i {{highDate}}, nu {{current}} BSO"
     },
     "evidenceLinks": "Bevistransaktioner",
     "telegramSources": "Telegram-källor",
@@ -600,7 +602,8 @@
         "exchangeOnly": "En innehavare som finansierar varje plånbok via en börs och aldrig flyttar tokens mellan dem lämnar ingen koppling on-chain. Vissa grupper kan fortfarande dölja fler plånböcker.",
         "sales": "En överföring mellan två plånböcker kan vara en försäljning eller en gåva. Grupper som är markerade som Möjlig vilar på en enda sådan koppling.",
         "contracts": "Tokens som innehas av andra kontrakt än Uniswap-poolen och Safe-kontot listas som de är.",
-        "snapshot": "Saldon och pris uppdateras från kedjan var femte minut medan sidan är öppen. Kopplingarna mellan plånböcker har undersökts för hand och uppdateras inte av sig själva."
+        "snapshot": "Saldon och pris uppdateras från kedjan var femte minut medan sidan är öppen. Kopplingarna mellan plånböcker har undersökts för hand och uppdateras inte av sig själva.",
+        "history": "Historiklinjerna följer vad varje plånbok har innehaft, för plånböcker med minst 0,01 % av utbudet och för varje plånbok som tillhör en känd innehavare. Tokens i en likviditetspool, farm eller vestingström faller bort från linjen, och migreringarna gav ut några av dem på nytt till deras ägare, så vissa linjer gör ett hopp de dagarna."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB på Avalanche",

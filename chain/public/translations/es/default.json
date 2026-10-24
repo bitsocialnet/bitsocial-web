@@ -359,7 +359,9 @@
       "showAll_one": "Mostrar {{count}} fila",
       "showAll_many": "Mostrar las {{count}} filas",
       "showAll_other": "Mostrar las {{count}} filas",
-      "showMore": "Mostrar {{count}} más"
+      "showMore": "Mostrar {{count}} más",
+      "history": "Historial",
+      "historySummary": "Saldo desde {{start}}: máximo de {{high}} BSO en {{highDate}}, ahora {{current}} BSO"
     },
     "evidenceLinks": "Transacciones que lo prueban",
     "telegramSources": "Fuentes en Telegram",
@@ -605,7 +607,8 @@
         "exchangeOnly": "Un poseedor que financia cada billetera a través de un exchange y nunca mueve tokens entre ellas no deja ningún vínculo on-chain. Algunos grupos aún podrían ocultar más billeteras.",
         "sales": "Una transferencia entre dos billeteras puede ser una venta o un regalo. Los grupos marcados como Posible se basan en un único vínculo de ese tipo.",
         "contracts": "Los tokens en manos de contratos distintos del pool de Uniswap y el Safe se muestran tal cual.",
-        "snapshot": "Los saldos y el precio se actualizan desde la cadena cada cinco minutos mientras esta página está abierta. Los vínculos entre billeteras se investigan a mano y no se actualizan solos."
+        "snapshot": "Los saldos y el precio se actualizan desde la cadena cada cinco minutos mientras esta página está abierta. Los vínculos entre billeteras se investigan a mano y no se actualizan solos.",
+        "history": "Las líneas del historial siguen lo que tenía cada billetera, para las billeteras con al menos un 0,01% del suministro y para cada billetera de un poseedor conocido. Los tokens en un pool de liquidez, en una granja o en un stream de vesting salen de la línea, y las migraciones volvieron a emitir parte de ellos a sus dueños, así que algunas líneas dan un salto esos días."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB en Avalanche",

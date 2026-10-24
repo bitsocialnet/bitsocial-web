@@ -359,7 +359,9 @@
       "showAll_one": "Mostrar {{count}} linha",
       "showAll_many": "Mostrar todas as {{count}} linhas",
       "showAll_other": "Mostrar todas as {{count}} linhas",
-      "showMore": "Mostrar mais {{count}}"
+      "showMore": "Mostrar mais {{count}}",
+      "history": "Histórico",
+      "historySummary": "Saldo desde {{start}}: pico de {{high}} BSO em {{highDate}}, agora {{current}} BSO"
     },
     "evidenceLinks": "Transações de evidência",
     "telegramSources": "Fontes no Telegram",
@@ -605,7 +607,8 @@
         "exchangeOnly": "Um detentor que financia todas as carteiras por meio de uma corretora e nunca move tokens entre elas não deixa nenhum vínculo on-chain. Alguns grupos ainda podem esconder mais carteiras.",
         "sales": "Uma transferência entre duas carteiras pode ser uma venda ou um presente. Os grupos marcados como Possível se baseiam em um único vínculo desse tipo.",
         "contracts": "Tokens mantidos por contratos que não sejam o pool da Uniswap e o Safe são listados como estão.",
-        "snapshot": "Os saldos e o preço são atualizados a partir da cadeia a cada cinco minutos enquanto esta página estiver aberta. Os vínculos entre carteiras são pesquisados manualmente e não se atualizam sozinhos."
+        "snapshot": "Os saldos e o preço são atualizados a partir da cadeia a cada cinco minutos enquanto esta página estiver aberta. Os vínculos entre carteiras são pesquisados manualmente e não se atualizam sozinhos.",
+        "history": "As linhas do histórico seguem o que cada carteira detinha, para carteiras com pelo menos 0,01% da oferta e para cada carteira de um detentor conhecido. Tokens em um pool de liquidez, farm ou stream de vesting saem da linha, e as migrações reemitiram parte deles para seus donos, então algumas linhas dão um salto nesses dias."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB na Avalanche",

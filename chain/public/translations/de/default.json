@@ -356,7 +356,9 @@
       "noMatch": "Kein Halter passt zu dieser Suche.",
       "showAll_one": "{{count}} Zeile anzeigen",
       "showAll_other": "Alle {{count}} Zeilen anzeigen",
-      "showMore": "{{count}} weitere anzeigen"
+      "showMore": "{{count}} weitere anzeigen",
+      "history": "Verlauf",
+      "historySummary": "Guthaben seit {{start}}: Höchststand {{high}} BSO im {{highDate}}, jetzt {{current}} BSO"
     },
     "evidenceLinks": "Belegtransaktionen",
     "telegramSources": "Telegram-Quellen",
@@ -600,7 +602,8 @@
         "exchangeOnly": "Ein Halter, der jede Wallet über eine Börse finanziert und nie Tokens zwischen ihnen bewegt, hinterlässt keine On-Chain-Verknüpfung. Manche Gruppen könnten noch weitere Wallets verbergen.",
         "sales": "Ein Transfer zwischen zwei Wallets kann ein Verkauf oder ein Geschenk sein. Als „Möglich“ markierte Gruppen beruhen auf einer einzigen solchen Verknüpfung.",
         "contracts": "Tokens in anderen Contracts als dem Uniswap-Pool und dem Safe werden so aufgeführt, wie sie sind.",
-        "snapshot": "Guthaben und Preis werden alle fünf Minuten aus der Chain aktualisiert, solange diese Seite geöffnet ist. Die Verknüpfungen zwischen Wallets werden von Hand recherchiert und aktualisieren sich nicht von selbst."
+        "snapshot": "Guthaben und Preis werden alle fünf Minuten aus der Chain aktualisiert, solange diese Seite geöffnet ist. Die Verknüpfungen zwischen Wallets werden von Hand recherchiert und aktualisieren sich nicht von selbst.",
+        "history": "Die Verlaufslinien zeigen, was jede Wallet gehalten hat, und zwar für Wallets mit mindestens 0,01% der Gesamtmenge sowie für jede Wallet eines bekannten Halters. Tokens in einem Liquiditätspool, einer Farm oder einem Vesting-Stream fallen aus der Linie heraus, und bei den Migrationen wurden einige davon an ihre Besitzer neu ausgegeben, sodass manche Linien an diesen Tagen springen."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB auf Avalanche",

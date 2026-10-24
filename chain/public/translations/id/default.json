@@ -353,7 +353,9 @@
       "walletCount_other": "{{count}} dompet",
       "noMatch": "Tidak ada pemegang yang cocok dengan pencarian ini.",
       "showAll_other": "Tampilkan semua {{count}} baris",
-      "showMore": "Tampilkan {{count}} lagi"
+      "showMore": "Tampilkan {{count}} lagi",
+      "history": "Riwayat",
+      "historySummary": "Saldo sejak {{start}}: puncak {{high}} BSO pada {{highDate}}, kini {{current}} BSO"
     },
     "evidenceLinks": "Transaksi bukti",
     "telegramSources": "Sumber Telegram",
@@ -595,7 +597,8 @@
         "exchangeOnly": "Pemegang yang mendanai setiap dompet melalui exchange dan tidak pernah memindahkan token di antara dompet-dompet itu tidak meninggalkan tautan on-chain. Beberapa kelompok mungkin masih menyembunyikan dompet lain.",
         "sales": "Transfer antara dua dompet bisa berupa penjualan atau hadiah. Kelompok yang ditandai Mungkin bertumpu pada satu tautan seperti itu.",
         "contracts": "Token yang dipegang kontrak selain pool Uniswap dan Safe dicantumkan apa adanya.",
-        "snapshot": "Saldo dan harga diperbarui dari chain setiap lima menit selama halaman ini terbuka. Tautan antardompet diteliti secara manual dan tidak diperbarui dengan sendirinya."
+        "snapshot": "Saldo dan harga diperbarui dari chain setiap lima menit selama halaman ini terbuka. Tautan antardompet diteliti secara manual dan tidak diperbarui dengan sendirinya.",
+        "history": "Garis riwayat mengikuti jumlah yang dipegang setiap dompet, untuk dompet dengan setidaknya 0,01% dari suplai dan setiap dompet milik pemegang yang dikenal. Token di pool likuiditas, farm, atau stream vesting keluar dari garis, dan kedua migrasi menerbitkan ulang sebagian di antaranya kepada pemiliknya, sehingga beberapa garis melonjak pada hari-hari itu."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB di Avalanche",
