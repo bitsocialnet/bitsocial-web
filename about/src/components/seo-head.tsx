@@ -1,4 +1,5 @@
 import { useLayoutEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { getSeoMetadata, serializeStructuredData } from "@/lib/seo";
 
@@ -25,9 +26,10 @@ function upsertHeadElement<T extends SupportedHeadElement>(
 
 export default function SeoHead() {
   const location = useLocation();
+  const { t } = useTranslation();
 
   useLayoutEffect(() => {
-    const seo = getSeoMetadata(location.pathname, location.search);
+    const seo = getSeoMetadata(location.pathname, location.search, t);
 
     document.title = seo.title;
 
@@ -46,6 +48,18 @@ export default function SeoHead() {
       rel: "canonical",
       href: seo.canonicalUrl,
     });
+    const alternateLinks = seo.alternates.map((alternate) => {
+      const link = document.createElement("link");
+      link.setAttribute("data-seo-managed", "alternate");
+      link.rel = "alternate";
+      link.hreflang = alternate.hreflang;
+      link.href = alternate.href;
+      return link;
+    });
+    document.head
+      .querySelectorAll('link[data-seo-managed="alternate"]')
+      .forEach((link) => link.remove());
+    document.head.querySelector('link[data-seo-managed="canonical"]')?.after(...alternateLinks);
     upsertHeadElement<HTMLMetaElement>('meta[data-seo-managed="og:type"]', "meta", {
       "data-seo-managed": "og:type",
       property: "og:type",
@@ -121,7 +135,7 @@ export default function SeoHead() {
       },
     );
     structuredDataScript.textContent = serializeStructuredData(seo.structuredData);
-  }, [location.pathname, location.search]);
+  }, [location.pathname, location.search, t]);
 
   return null;
 }
