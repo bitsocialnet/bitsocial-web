@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Ang Seedit ay isang walang server, walang admin, at ganap na desentralisadong alternatibo sa lumang istilong Reddit, na binuo sa Bitsocial protocol. Binibigyan nito ang mga user ng kumpletong pagmamay-ari sa kanilang mga komunidad — kahit sino ay maaaring gumawa ng isa, at maraming komunidad ang maaaring makipagkumpitensya para sa mga default na slot ng listahan.
+Ang Seedit ay isang walang server, walang admin, at ganap na desentralisadong alternatibo sa lumang istilong Reddit, na binuo sa Bitsocial protocol. Binibigyan nito ang mga user ng kumpletong pagmamay-ari sa kanilang mga komunidad — kahit sino ay maaaring gumawa ng isa, at maraming komunidad ang maaaring makipagkumpitensya para sa iisang maikling route, tulad ng `/s/funny`.
 
 ## Mga download
 
@@ -19,7 +19,7 @@ Ang Seedit ay isang walang server, walang admin, at ganap na desentralisadong al
 
 ## Paano gumagana ang mga komunidad
 
-Ang Seedit ay nag-aayos ng nilalaman sa mga komunidad na katulad ng mga subreddits. Ang bawat komunidad ay pagmamay-ari ng lumikha nito at nagpapatakbo nang walang sentralisadong pangangasiwa. Kapag maraming komunidad ang nagta-target sa parehong default na slot, maaari silang makipagkumpetensya para sa posisyong iyon.
+Ang Seedit ay nag-aayos ng nilalaman sa mga komunidad na katulad ng mga subreddits. Ang bawat komunidad ay pagmamay-ari ng lumikha nito at nagpapatakbo nang walang sentralisadong pangangasiwa. Maaaring makipagkumpitensya ang maraming komunidad para sa iisang route ng [direktoryo](/directories/), tulad ng `/s/funny`, na nagbubukas ng kasalukuyang panalo. Laging tumuturo sa eksaktong komunidad ang mga subscription at link ng post.
 
 ### Paglikha ng isang komunidad
 
@@ -30,7 +30,7 @@ Mayroong dalawang paraan upang lumikha ng bagong komunidad:
 
 ### Default na listahan ng komunidad
 
-Ang listahan ng mga default na komunidad na lumalabas sa front page ay tinukoy sa `default-multisub.json` sa loob ng list repository. Upang idagdag ang iyong komunidad sa mga default, magsumite ng pull request kasama ang mga detalye ng iyong komunidad.
+Awtomatikong naka-subscribe ang mga bagong account sa isang default na listahan ng mga eksaktong komunidad na tinukoy sa `seedit-default-subscriptions.json` sa repository na [bitsocialnet/lists](https://github.com/bitsocialnet/lists). Nakalista ang mga kandidato ng direktoryo sa mga file na `seedit-directories/seedit-<code>-directory.json` sa parehong repository. Upang idagdag ang iyong komunidad sa alinmang listahan, magsumite ng pull request kasama ang mga detalye ng iyong komunidad.
 
 ## Mga link
 

@@ -28,7 +28,7 @@ O Bitsocial deixa isso para aplicativos, listas e usuários, em vez de inserir u
 
 - um cliente mostrando comunidades que o usuário já segue
 - uma lista padrão selecionada para um aplicativo estilo Reddit
-- slots de diretório para um aplicativo estilo imageboard
+- diretórios, em que comunidades disputam um nome de tema como `/g/` ou `/s/funny`
 - índices de pesquisa ou classificação mantidos por um aplicativo específico
 - links diretos compartilhados pelos usuários
 
@@ -36,9 +36,9 @@ Os aplicativos podem indexar, classificar, filtrar ou destacar coisas diferentes
 
 ## Aplicativos atuais
 
-O 5chan atualmente usa caminhos de diretório familiares, como `/b/` ou `/g/`. As atribuições de diretório são gerenciadas por meio de uma lista pública hoje, e espera-se que versões futuras ofereçam suporte à criação de quadros no aplicativo e à votação em slots de diretório.
+O 5chan e o Seedit usam [diretórios](./directories.md): rotas curtas como `/g/` ou `/s/funny` que as comunidades disputam. Hoje as candidatas são listadas em um repositório público, e o 5chan está testando votações para decidir as vencedoras.
 
-Seedit usa listas de comunidades padrão em sua primeira página. As comunidades ainda podem ser criadas e compartilhadas fora dessa lista padrão.
+O Seedit também inscreve novas contas em uma lista padrão de comunidades específicas. As comunidades ainda podem ser criadas e compartilhadas fora dessas listas.
 
 Em ambos os casos, a lista no nível do aplicativo ajuda os usuários a encontrar algo para abrir, e a pesquisa no nível do protocolo resolve a comunidade escolhida para os pares.
 

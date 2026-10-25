@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit est une alternative sans serveur, sans administrateur et entièrement décentralisée à l'ancien Reddit, construite sur le protocole Bitsocial. Il donne aux utilisateurs la propriété totale de leurs communautés : n'importe qui peut en créer une et plusieurs communautés peuvent rivaliser pour les emplacements de liste par défaut.
+Seedit est une alternative sans serveur, sans administrateur et entièrement décentralisée à l'ancien Reddit, construite sur le protocole Bitsocial. Il donne aux utilisateurs la propriété totale de leurs communautés : n'importe qui peut en créer une et plusieurs communautés peuvent se disputer la même route courte, comme `/s/funny`.
 
 ## Téléchargements
 
@@ -19,7 +19,7 @@ Seedit est une alternative sans serveur, sans administrateur et entièrement dé
 
 ## Comment fonctionnent les communautés
 
-Seedit organise le contenu en communautés similaires aux subreddits. Chaque communauté appartient à son créateur et fonctionne sans administration centralisée. Lorsque plusieurs communautés ciblent le même emplacement par défaut, elles peuvent concourir pour ce poste.
+Seedit organise le contenu en communautés similaires aux subreddits. Chaque communauté appartient à son créateur et fonctionne sans administration centralisée. Plusieurs communautés peuvent se disputer la même route de [répertoire](/directories/), comme `/s/funny`, qui ouvre la gagnante actuelle. Les abonnements et les liens vers les publications pointent toujours vers la communauté exacte.
 
 ### Créer une communauté
 
@@ -30,7 +30,7 @@ Il existe deux manières de créer une nouvelle communauté :
 
 ### Liste de communauté par défaut
 
-La liste des communautés par défaut qui apparaissent sur la page d'accueil est définie dans `default-multisub.json` au sein du référentiel de listes. Pour ajouter votre communauté aux valeurs par défaut, soumettez une pull request avec les détails de votre communauté.
+Les nouveaux comptes sont abonnés à une liste par défaut de communautés identifiées par leur adresse exacte, définie dans `seedit-default-subscriptions.json` dans le dépôt [bitsocialnet/lists](https://github.com/bitsocialnet/lists). Les candidates des répertoires sont listées dans des fichiers `seedit-directories/seedit-<code>-directory.json` du même dépôt. Pour ajouter votre communauté à l'une ou l'autre liste, soumettez une pull request avec les détails de votre communauté.
 
 ## Liens
 

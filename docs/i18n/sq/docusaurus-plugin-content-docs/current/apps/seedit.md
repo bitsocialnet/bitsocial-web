@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-sedit është një alternativë pa server, pa administrim dhe plotësisht e decentralizuar ndaj Reddit të stilit të vjetër, e ndërtuar mbi protokollin Bitsocial. Ai u jep përdoruesve pronësi të plotë mbi komunitetet e tyre – çdokush mund të krijojë një të tillë dhe shumë komunitete mund të konkurrojnë për lojëra elektronike të paracaktuara të listimit.
+sedit është një alternativë pa server, pa administrim dhe plotësisht e decentralizuar ndaj Reddit të stilit të vjetër, e ndërtuar mbi protokollin Bitsocial. Ai u jep përdoruesve pronësi të plotë mbi komunitetet e tyre – çdokush mund të krijojë një të tillë dhe shumë komunitete mund të konkurrojnë për të njëjtën rrugë të shkurtër, si `/s/funny`.
 
 ## Shkarkimet
 
@@ -19,7 +19,7 @@ sedit është një alternativë pa server, pa administrim dhe plotësisht e dece
 
 ## Si funksionojnë komunitetet
 
-sedit organizon përmbajtjen në komunitete të ngjashme me subreddits. Çdo komunitet është në pronësi të krijuesit të tij dhe funksionon pa administrim të centralizuar. Kur shumë komunitete synojnë të njëjtin vend të paracaktuar, ato mund të konkurrojnë për atë pozicion.
+sedit organizon përmbajtjen në komunitete të ngjashme me subreddits. Çdo komunitet është në pronësi të krijuesit të tij dhe funksionon pa administrim të centralizuar. Shumë komunitete mund të konkurrojnë për të njëjtën rrugë [drejtorie](/directories/), si `/s/funny`, e cila hap fituesin aktual. Abonimet dhe lidhjet e postimeve tregojnë gjithmonë drejt komunitetit të saktë.
 
 ### Krijimi i një komuniteti
 
@@ -30,7 +30,7 @@ Ka dy mënyra për të krijuar një komunitet të ri:
 
 ### Lista e parazgjedhur e komunitetit
 
-Lista e bashkësive të paracaktuara që shfaqen në faqen e parë përcaktohet në `default-multisub.json` brenda depove të listave. Për të shtuar komunitetin tuaj në standardet, paraqisni një kërkesë tërheqëse me detajet e komunitetit tuaj.
+Llogaritë e reja abonohen te një listë e paracaktuar komunitetesh të caktuara, e përcaktuar në `seedit-default-subscriptions.json` në depon [bitsocialnet/lists](https://github.com/bitsocialnet/lists). Kandidatët e drejtorive renditen në skedarët `seedit-directories/seedit-<code>-directory.json` në të njëjtën depo. Për të shtuar komunitetin tuaj në cilëndo nga listat, paraqisni një kërkesë tërheqëse me detajet e komunitetit tuaj.
 
 ## Lidhjet
 

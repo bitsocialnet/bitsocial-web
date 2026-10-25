@@ -28,7 +28,7 @@ A Bitsocial ezt az alkalmazásokra, listákra és felhasználókra hagyja, ahely
 
 - egy kliens, amely a felhasználó által már követett közösségeket mutatja
 - egy válogatott alapértelmezett lista egy Reddit-stílusú alkalmazáshoz
-- könyvtárhelyek egy imageboard stílusú alkalmazáshoz
+- címtárak, ahol a közösségek egy témanévért versenyeznek, például a `/g/` vagy a `/s/funny` útvonalért
 - egy adott alkalmazás által karbantartott keresési vagy rangsorolási indexek
 - a felhasználók által megosztott közvetlen linkek
 
@@ -36,9 +36,9 @@ Az alkalmazások indexelhetnek, rangsorolhatnak, szűrhetnek vagy kiemelhetnek k
 
 ## Jelenlegi alkalmazások
 
-Az 5chan jelenleg ismert könyvtárútvonalakat használ, például a `/b/` vagy a `/g/`. A címtár-hozzárendeléseket ma nyilvános listán keresztül kezelik, a jövőbeli verziók pedig várhatóan támogatják az alkalmazáson belüli táblák létrehozását és a címtárhelyekre való szavazást.
+Az 5chan és a Seedit egyaránt [címtárakat](./directories.md) használ: olyan rövid útvonalakat, mint a `/g/` vagy a `/s/funny`, amelyekért a közösségek versenyeznek. A jelöltek ma egy nyilvános tárolóban szerepelnek, az 5chan pedig szavazási versenyeket tesztel a győztesek eldöntésére.
 
-A Seedit az alapértelmezett közösségi listákat használja a címlapon. A közösségek továbbra is létrehozhatók és megoszthatók az alapértelmezett listán kívül.
+A Seedit emellett az új fiókokat pontosan megadott közösségek alapértelmezett listájára iratkoztatja fel. A közösségek továbbra is létrehozhatók és megoszthatók ezeken a listákon kívül is.
 
 Mindkét esetben az alkalmazásszintű lista segít a felhasználóknak megtalálni a megnyitandó tartalmakat, a protokollszintű keresés pedig feloldja a kiválasztott közösséget a társaknak.
 

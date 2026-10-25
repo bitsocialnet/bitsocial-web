@@ -28,7 +28,7 @@ Bitsocial lascia questo compito ad app, elenchi e utenti invece di fornire una r
 
 - un client che mostra le comunità che l'utente già segue
 - un elenco predefinito curato per un'app in stile Reddit
-- slot di directory per un'app in stile imageboard
+- directory, in cui le comunità competono per un nome di argomento come `/g/` o `/s/funny`
 - indici di ricerca o classificazione gestiti da un'app specifica
 - collegamenti diretti condivisi dagli utenti
 
@@ -36,9 +36,9 @@ Le app possono indicizzare, classificare, filtrare o evidenziare cose diverse se
 
 ## App attuali
 
-5chan attualmente utilizza percorsi di directory familiari come `/b/` o `/g/`. Oggi le assegnazioni delle directory vengono gestite tramite un elenco pubblico, con le versioni future che dovrebbero supportare la creazione di bacheche in-app e la votazione per gli slot delle directory.
+5chan e Seedit usano entrambe le [directory](./directories.md): percorsi brevi come `/g/` o `/s/funny` per cui le comunità competono. Oggi le candidate sono elencate in un repository pubblico, e 5chan sta sperimentando votazioni per decidere le vincitrici.
 
-Seedit utilizza elenchi di comunità predefiniti per la sua prima pagina. È comunque possibile creare e condividere comunità al di fuori dell'elenco predefinito.
+Seedit, inoltre, iscrive i nuovi account a un elenco predefinito di comunità specifiche. È comunque possibile creare e condividere comunità al di fuori di questi elenchi.
 
 In entrambi i casi, l'elenco a livello di app aiuta gli utenti a trovare qualcosa da aprire e la ricerca a livello di protocollo risolve quindi la comunità scelta tra i peer.
 

@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit adalah alternatif tanpa server, tanpa admin, dan terdesentralisasi sepenuhnya untuk Reddit gaya lama, yang dibangun di atas protokol Bitsocial. Hal ini memberi pengguna kepemilikan penuh atas komunitas mereka — siapa pun dapat membuatnya, dan beberapa komunitas dapat bersaing untuk mendapatkan slot daftar default.
+Seedit adalah alternatif tanpa server, tanpa admin, dan terdesentralisasi sepenuhnya untuk Reddit gaya lama, yang dibangun di atas protokol Bitsocial. Hal ini memberi pengguna kepemilikan penuh atas komunitas mereka — siapa pun dapat membuatnya, dan beberapa komunitas dapat bersaing memperebutkan rute pendek yang sama, seperti `/s/funny`.
 
 ## Unduhan
 
@@ -19,7 +19,7 @@ Seedit adalah alternatif tanpa server, tanpa admin, dan terdesentralisasi sepenu
 
 ## Bagaimana komunitas bekerja
 
-Seedit mengatur konten ke dalam komunitas yang mirip dengan subreddits. Setiap komunitas dimiliki oleh penciptanya dan beroperasi tanpa administrasi terpusat. Ketika beberapa komunitas menargetkan slot default yang sama, mereka dapat bersaing untuk mendapatkan posisi tersebut.
+Seedit mengatur konten ke dalam komunitas yang mirip dengan subreddits. Setiap komunitas dimiliki oleh penciptanya dan beroperasi tanpa administrasi terpusat. Beberapa komunitas dapat bersaing memperebutkan rute [direktori](/directories/) yang sama, seperti `/s/funny`, yang membuka pemenang saat ini. Langganan dan tautan postingan selalu mengarah ke alamat persis komunitas.
 
 ### Menciptakan komunitas
 
@@ -30,7 +30,7 @@ Ada dua cara untuk membuat komunitas baru:
 
 ### Daftar komunitas default
 
-Daftar komunitas default yang muncul di halaman depan ditentukan di `default-multisub.json` dalam repositori daftar. Untuk menambahkan komunitas Anda ke default, kirimkan permintaan penarikan dengan detail komunitas Anda.
+Akun baru otomatis berlangganan ke daftar default berisi komunitas tertentu yang ditetapkan di `seedit-default-subscriptions.json` dalam repositori [bitsocialnet/lists](https://github.com/bitsocialnet/lists). Kandidat direktori dicantumkan dalam berkas `seedit-directories/seedit-<code>-directory.json` di repositori yang sama. Untuk menambahkan komunitas Anda ke salah satu daftar tersebut, kirimkan pull request dengan detail komunitas Anda.
 
 ## Tautan
 

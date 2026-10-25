@@ -28,7 +28,7 @@ Bitsocial menyerahkan hal itu kepada aplikasi, daftar, dan pengguna alih-alih me
 
 - klien menunjukkan komunitas yang sudah diikuti pengguna
 - daftar default yang dikurasi untuk aplikasi bergaya Reddit
-- slot direktori untuk aplikasi bergaya imageboard
+- direktori, tempat komunitas bersaing memperebutkan nama topik seperti `/g/` atau `/s/funny`
 - indeks pencarian atau peringkat yang dikelola oleh aplikasi tertentu
 - tautan langsung yang dibagikan oleh pengguna
 
@@ -36,9 +36,9 @@ Aplikasi dapat mengindeks, memberi peringkat, memfilter, atau menyorot berbagai 
 
 ## Aplikasi saat ini
 
-5chan saat ini menggunakan jalur direktori yang sudah dikenal seperti `/b/` atau `/g/`. Penugasan direktori dikelola melalui daftar publik saat ini, dengan versi mendatang diharapkan mendukung pembuatan papan dalam aplikasi dan pemungutan suara untuk slot direktori.
+5chan dan Seedit sama-sama menggunakan [direktori](./directories.md): rute pendek seperti `/g/` atau `/s/funny` yang diperebutkan komunitas. Saat ini kandidat dicantumkan di repositori publik, dan 5chan sedang menguji kontes pemungutan suara untuk menentukan pemenangnya.
 
-Seedit menggunakan daftar komunitas default untuk halaman depannya. Komunitas masih dapat dibuat dan dibagikan di luar daftar default tersebut.
+Seedit juga membuat akun baru otomatis berlangganan ke daftar default berisi komunitas-komunitas tertentu. Komunitas masih dapat dibuat dan dibagikan di luar daftar-daftar ini.
 
 Dalam kedua kasus tersebut, daftar tingkat aplikasi membantu pengguna menemukan sesuatu untuk dibuka, dan pencarian tingkat protokol kemudian menyelesaikan komunitas yang dipilih menjadi komunitas yang setara.
 

@@ -28,7 +28,7 @@ Bitsocial pozostawia to aplikacjom, listom i użytkownikom, zamiast umieszczać 
 
 - klient pokazujący społeczności, które użytkownik już obserwuje
 - wyselekcjonowana domyślna lista aplikacji w stylu Reddita
-- miejsca w katalogach dla aplikacji w stylu tablicy graficznej
+- katalogi, w których społeczności rywalizują o nazwę tematu, taką jak `/g/` lub `/s/funny`
 - indeksy wyszukiwania lub rankingi prowadzone przez konkretną aplikację
 - bezpośrednie linki udostępniane przez użytkowników
 
@@ -36,9 +36,9 @@ Aplikacje mogą indeksować, oceniać, filtrować i wyróżniać różne rzeczy 
 
 ## Aktualne aplikacje
 
-5chan używa obecnie znanych ścieżek katalogów, takich jak `/b/` lub `/g/`. Przypisaniami katalogów zarządza się obecnie za pomocą publicznej listy, a przyszłe wersje mają obsługiwać tworzenie tablic w aplikacji i głosowanie na miejsca w katalogach.
+5chan i Seedit korzystają z [katalogów](./directories.md): krótkich ścieżek, takich jak `/g/` lub `/s/funny`, o które rywalizują społeczności. Kandydaci są obecnie wymienieni w publicznym repozytorium, a 5chan testuje głosowania, które mają wyłaniać zwycięzców.
 
-Seedit używa domyślnych list społeczności na swojej stronie głównej. Społeczności można nadal tworzyć i udostępniać poza domyślną listą.
+Nowe konta w Seedit automatycznie subskrybują też domyślną listę konkretnych społeczności. Społeczności można nadal tworzyć i udostępniać poza tymi listami.
 
 W obu przypadkach lista na poziomie aplikacji pomaga użytkownikom znaleźć coś do otwarcia, a wyszukiwanie na poziomie protokołu następnie rozpoznaje wybraną społeczność jako równorzędną.
 

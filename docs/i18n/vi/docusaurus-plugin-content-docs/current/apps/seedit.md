@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit là một giải pháp thay thế không cần máy chủ, không cần quản trị viên và được phân quyền hoàn toàn cho Reddit kiểu cũ, được xây dựng trên giao thức Bitsocial. It gives users complete ownership over their communities — anyone can create one, and multiple communities can compete for default listing slots.
+Seedit là một giải pháp thay thế không cần máy chủ, không cần quản trị viên và được phân quyền hoàn toàn cho Reddit kiểu cũ, được xây dựng trên giao thức Bitsocial. Nó trao cho người dùng toàn quyền sở hữu cộng đồng của mình — bất kỳ ai cũng có thể tạo một cộng đồng, và nhiều cộng đồng có thể cạnh tranh cùng một đường dẫn ngắn, chẳng hạn `/s/funny`.
 
 ## Tải xuống
 
@@ -19,7 +19,7 @@ Seedit là một giải pháp thay thế không cần máy chủ, không cần q
 
 ## Cách cộng đồng hoạt động
 
-Seedit tổ chức nội dung thành các cộng đồng tương tự như subreddits. Mỗi cộng đồng được sở hữu bởi người tạo ra nó và hoạt động mà không cần quản lý tập trung. Khi nhiều cộng đồng nhắm mục tiêu vào cùng một vị trí mặc định, họ có thể cạnh tranh cho vị trí đó.
+Seedit tổ chức nội dung thành các cộng đồng tương tự như subreddits. Mỗi cộng đồng được sở hữu bởi người tạo ra nó và hoạt động mà không cần quản lý tập trung. Nhiều cộng đồng có thể cạnh tranh cùng một đường dẫn [thư mục](/directories/), chẳng hạn `/s/funny`, và đường dẫn này mở bên thắng hiện tại. Lượt đăng ký và liên kết bài đăng luôn trỏ tới đúng cộng đồng cụ thể.
 
 ### Tạo một cộng đồng
 
@@ -30,7 +30,7 @@ Có hai cách để tạo cộng đồng mới:
 
 ### Danh sách cộng đồng mặc định
 
-Danh sách các cộng đồng mặc định xuất hiện trên trang đầu được xác định trong `default-multisub.json` trong kho danh sách. Để thêm cộng đồng của bạn vào mặc định, hãy gửi yêu cầu kéo kèm theo thông tin chi tiết về cộng đồng của bạn.
+Tài khoản mới được đăng ký vào một danh sách mặc định gồm các cộng đồng cụ thể, được định nghĩa trong `seedit-default-subscriptions.json` thuộc kho mã [bitsocialnet/lists](https://github.com/bitsocialnet/lists). Các ứng viên thư mục được liệt kê trong các tệp `seedit-directories/seedit-<code>-directory.json` trong cùng kho mã đó. Để thêm cộng đồng của bạn vào một trong hai danh sách, hãy gửi một pull request kèm thông tin chi tiết về cộng đồng của bạn.
 
 ## Liên kết
 

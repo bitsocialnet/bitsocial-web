@@ -28,7 +28,7 @@ Bitsocial overlader det til apps, lister og brugere i stedet for at bage ét sva
 
 - en klient, der viser fællesskaber, som brugeren allerede følger
 - en kureret standardliste for en app i Reddit-stil
-- mappepladser til en app i imageboard-stil
+- kataloger, hvor fællesskaber konkurrerer om et emnenavn som `/g/` eller `/s/funny`
 - søge- eller rangeringsindekser, der vedligeholdes af en bestemt app
 - direkte links delt af brugere
 
@@ -36,9 +36,9 @@ Apps kan indeksere, rangere, filtrere eller fremhæve forskellige ting uden at o
 
 ## Aktuelle apps
 
-5chan bruger i øjeblikket velkendte mappestier såsom `/b/` eller `/g/`. Directory-tildelinger administreres gennem en offentlig liste i dag, med fremtidige versioner, der forventes at understøtte oprettelse af tavler i appen og stemme for katalogpladser.
+Både 5chan og Seedit bruger [kataloger](./directories.md): korte ruter som `/g/` eller `/s/funny`, som fællesskaber konkurrerer om. Kandidaterne står i dag i et offentligt repository, og 5chan tester afstemninger, der skal afgøre vinderne.
 
-Seedit bruger standard fællesskabslister til sin forside. Fællesskaber kan stadig oprettes og deles uden for denne standardliste.
+Seedit abonnerer desuden nye konti på en standardliste med præcise fællesskabsadresser. Fællesskaber kan stadig oprettes og deles uden for disse lister.
 
 I begge tilfælde hjælper app-niveau-listen brugere med at finde noget at åbne, og protokol-niveau-opslaget løser derefter det valgte fællesskab til peers.
 

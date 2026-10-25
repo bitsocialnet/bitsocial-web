@@ -28,7 +28,7 @@ Bitsocial überlässt dies den Apps, Listen und Benutzern, anstatt eine einzige 
 
 - ein Client, der Communitys anzeigt, denen der Benutzer bereits folgt
 - eine kuratierte Standardliste für eine App im Reddit-Stil
-- Verzeichnisslots für eine App im Imageboard-Stil
+- Verzeichnisse, in denen Communities um einen Themennamen wie `/g/` oder `/s/funny` konkurrieren
 - Such- oder Ranking-Indizes, die von einer bestimmten App verwaltet werden
 - Direkte Links, die von Benutzern geteilt werden
 
@@ -36,9 +36,9 @@ Apps können verschiedene Dinge indizieren, bewerten, filtern oder hervorheben, 
 
 ## Aktuelle Apps
 
-5chan verwendet derzeit bekannte Verzeichnispfade wie `/b/` oder `/g/`. Verzeichniszuweisungen werden heute über eine öffentliche Liste verwaltet. Zukünftige Versionen werden voraussichtlich die Erstellung von In-App-Boards und die Abstimmung über Verzeichnisplätze unterstützen.
+5chan und Seedit nutzen beide [Verzeichnisse](./directories.md): kurze Routen wie `/g/` oder `/s/funny`, um die Communities konkurrieren. Die Kandidaten werden derzeit in einem öffentlichen Repository geführt, und 5chan testet Abstimmungen, um die Gewinner zu bestimmen.
 
-Seedit verwendet Standard-Community-Listen für seine Startseite. Communitys können weiterhin außerhalb dieser Standardliste erstellt und geteilt werden.
+Außerdem abonniert Seedit für neue Konten eine Standardliste mit exakten Community-Adressen. Communitys können weiterhin außerhalb dieser Listen erstellt und geteilt werden.
 
 In beiden Fällen hilft die Liste auf App-Ebene Benutzern dabei, etwas zum Öffnen zu finden, und die Suche auf Protokollebene löst dann die ausgewählte Community in Peers auf.
 

@@ -28,7 +28,7 @@ Bitsocial to nechává na aplikacích, seznamech a uživatelích, místo aby jed
 
 - klient zobrazující komunity, které uživatel již sleduje
 - kurátorský výchozí seznam pro aplikaci ve stylu Reddit
-- adresářové sloty pro aplikaci ve stylu imageboardu
+- adresáře, v nichž komunity soupeří o tematický název, jako je `/g/` nebo `/s/funny`
 - vyhledávací nebo hodnotící indexy spravované konkrétní aplikací
 - přímé odkazy sdílené uživateli
 
@@ -36,9 +36,9 @@ Aplikace mohou indexovat, hodnotit, filtrovat nebo zvýrazňovat různé věci, 
 
 ## Aktuální aplikace
 
-5chan aktuálně používá známé cesty k adresářům, jako je `/b/` nebo `/g/`. Přiřazení adresářů jsou dnes spravována prostřednictvím veřejného seznamu, přičemž se očekává, že budoucí verze budou podporovat vytváření nástěnek v aplikaci a hlasování pro adresářové sloty.
+5chan i Seedit používají [adresáře](./directories.md): krátké cesty jako `/g/` nebo `/s/funny`, o které komunity soupeří. Kandidáti jsou dnes uvedeni ve veřejném repozitáři a 5chan zkouší hlasování, která o vítězích rozhodnou.
 
-Seedit používá pro svou titulní stránku výchozí seznamy komunit. Komunity lze i nadále vytvářet a sdílet mimo tento výchozí seznam.
+Seedit navíc nové účty přihlašuje k odběru výchozího seznamu konkrétních komunit, určených přesnou adresou. Komunity lze i nadále vytvářet a sdílet mimo tyto seznamy.
 
 V obou případech seznam na úrovni aplikace pomáhá uživatelům najít něco, co mohou otevřít, a vyhledávání na úrovni protokolu pak převede vybranou komunitu na partnery.
 

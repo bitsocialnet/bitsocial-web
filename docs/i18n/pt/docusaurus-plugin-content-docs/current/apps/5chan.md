@@ -18,7 +18,7 @@ O 5chan é um imageboard sem servidor, sem administrador e totalmente descentral
 
 ## Como funcionam os boards
 
-O 5chan organiza o conteúdo em boards usando o layout clássico de diretórios (por exemplo, `/b/`, `/g/`). Ao contrário dos imageboards tradicionais, em que um administrador central controla todos os boards, o 5chan permite que qualquer usuário crie e seja plenamente dono do próprio board. Quando vários boards apontam para o mesmo espaço de diretório, eles disputam essa posição por votação.
+O 5chan organiza o conteúdo em boards usando o layout clássico de diretórios (por exemplo, `/b/`, `/g/`). Ao contrário dos imageboards tradicionais, em que um administrador central controla todos os boards, o 5chan permite que qualquer usuário crie e seja plenamente dono do próprio board. Quando vários boards apontam para o mesmo espaço de diretório, eles disputam essa posição; veja [Diretórios](/directories/).
 
 ### Como criar um board
 
@@ -26,7 +26,7 @@ Para criar um novo board, você precisa executar o `bitsocial-cli` como um nó p
 
 ### Atribuições de diretório
 
-As atribuições dos espaços de diretório (qual board aparece em qual caminho) são gerenciadas hoje por meio de pull requests no GitHub ao arquivo `5chan-directories.json`. Esse processo é temporário — versões futuras vão permitir a criação de boards dentro do aplicativo e votação via pubsub para cuidar das atribuições de diretório automaticamente.
+Os boards candidatos de cada diretório ficam listados em um arquivo `5chan-directories/5chan-<code>-directory.json` no repositório [bitsocialnet/lists](https://github.com/bitsocialnet/lists), e um board entra em um diretório por meio de um pull request para esse arquivo. O 5chan também realiza uma votação para cada diretório com [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): cada titular de um 5chan Pass tem direito a um voto, e votar em um board que não está na lista o indica como candidato. As votações rodam atualmente na testnet Base Sepolia, onde as apurações são exibidas, mas não reordenam a lista.
 
 ## Detalhes internos
 

@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Com funcionen els taulers
 
-5chan organitza el contingut en taulers seguint una disposició de directoris clàssica (p. ex., `/b/`, `/g/`). A diferència dels taulers d'imatges tradicionals, on un administrador central controla tots els taulers, 5chan permet que qualsevol usuari creï i sigui plenament propietari del seu propi tauler. Quan diversos taulers apunten a la mateixa posició del directori, competeixen per aquesta posició mitjançant votació.
+5chan organitza el contingut en taulers seguint una disposició de directoris clàssica (p. ex., `/b/`, `/g/`). A diferència dels taulers d'imatges tradicionals, on un administrador central controla tots els taulers, 5chan permet que qualsevol usuari creï i sigui plenament propietari del seu propi tauler. Quan diversos taulers apunten a la mateixa posició del directori, competeixen per aquesta posició; vegeu [Directoris](/directories/).
 
 ### Crear un tauler
 
@@ -26,7 +26,7 @@ Per crear un tauler nou, cal executar `bitsocial-cli` com a node peer-to-peer. A
 
 ### Assignacions de directori
 
-Les assignacions de les posicions del directori (quin tauler apareix a quina ruta) es gestionen actualment mitjançant pull requests a GitHub sobre el fitxer `5chan-directories.json`. És un procés temporal: les versions futures admetran la creació de taulers dins de l'aplicació i la votació per pubsub per resoldre les assignacions de directori automàticament.
+Els taulers candidats de cada directori figuren en un fitxer `5chan-directories/5chan-<code>-directory.json` del repositori [bitsocialnet/lists](https://github.com/bitsocialnet/lists), i un tauler s'uneix a un directori mitjançant una pull request a aquest fitxer. A més, 5chan fa una votació per a cada directori amb [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): cada titular d'un 5chan Pass té un vot, i votar per un tauler que no és a la llista el nomina. Ara per ara les votacions es fan a la xarxa de proves Base Sepolia, on els recomptes es mostren però no reordenen la llista.
 
 ## Interioritats
 

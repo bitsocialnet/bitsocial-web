@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## How boards work
 
-5chan organizes content into boards using a classic directory layout (e.g., `/b/`, `/g/`). Unlike traditional imageboards where a central admin controls every board, 5chan allows any user to create and fully own their own board. When multiple boards target the same directory slot, they compete for that position through voting.
+5chan organizes content into boards using a classic directory layout (e.g., `/b/`, `/g/`). Unlike traditional imageboards where a central admin controls every board, 5chan allows any user to create and fully own their own board. When multiple boards target the same directory slot, they compete for that position; see [Directories](/directories/).
 
 ### Creating a board
 
@@ -26,7 +26,7 @@ To create a new board, you need to run `bitsocial-cli` as a peer-to-peer node. T
 
 ### Directory assignments
 
-Directory slot assignments (which board appears at which path) are currently managed through GitHub pull requests to the `5chan-directories.json` file. This is a temporary process — future releases will support in-app board creation and pubsub-based voting to handle directory assignments automatically.
+Each directory's candidate boards are listed in a `5chan-directories/5chan-<code>-directory.json` file in the [bitsocialnet/lists](https://github.com/bitsocialnet/lists) repository, and a board joins a directory through a pull request to that file. 5chan also runs a vote contest for each directory with [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): each 5chan Pass holder gets one vote, and voting for an unlisted board nominates it. The contests currently run on the Base Sepolia testnet, where tallies are shown but do not reorder the list.
 
 ## Internals
 

@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Miten laudat toimivat
 
-5chan järjestää sisällön laudoiksi klassisen hakemistorakenteen avulla (esimerkiksi `/b/`, `/g/`). Toisin kuin perinteisillä kuvalaudoilla, joissa keskitetty ylläpitäjä hallitsee jokaista lautaa, 5chanissa kuka tahansa käyttäjä voi luoda oman lautansa ja omistaa sen kokonaan. Kun useampi lauta tavoittelee samaa hakemistopaikkaa, ne kilpailevat siitä äänestämällä.
+5chan järjestää sisällön laudoiksi klassisen hakemistorakenteen avulla (esimerkiksi `/b/`, `/g/`). Toisin kuin perinteisillä kuvalaudoilla, joissa keskitetty ylläpitäjä hallitsee jokaista lautaa, 5chanissa kuka tahansa käyttäjä voi luoda oman lautansa ja omistaa sen kokonaan. Kun useampi lauta tavoittelee samaa hakemistopaikkaa, ne kilpailevat siitä; katso [Hakemistot](/directories/).
 
 ### Laudan luominen
 
@@ -26,7 +26,7 @@ Uuden laudan luominen edellyttää, että ajat `bitsocial-cli`-ohjelmaa vertaisv
 
 ### Hakemistopaikkojen jako
 
-Hakemistopaikkojen jakoa (mikä lauta näkyy missäkin polussa) hallitaan tällä hetkellä GitHubin pull requesteilla `5chan-directories.json`-tiedostoon. Tämä on väliaikainen käytäntö — tulevat julkaisut tukevat laudan luomista suoraan sovelluksessa ja pubsub-pohjaista äänestystä, joka hoitaa hakemistopaikkojen jaon automaattisesti.
+Kunkin hakemiston ehdokaslaudat luetellaan `5chan-directories/5chan-<code>-directory.json`-tiedostossa [bitsocialnet/lists](https://github.com/bitsocialnet/lists)-repositoriossa, ja lauta liittyy hakemistoon pull requestilla kyseiseen tiedostoon. Lisäksi 5chan järjestää jokaiselle hakemistolle äänestyskilpailun [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting)-kirjaston avulla: jokainen 5chan Passin haltija saa yhden äänen, ja ääni luettelon ulkopuoliselle laudalle asettaa sen ehdolle. Kilpailut käydään tällä hetkellä Base Sepolia -testiverkossa, jossa tulokset näytetään, mutta ne eivät muuta luettelon järjestystä.
 
 ## Sisäinen toteutus
 

@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit je bezserverová, správná a plně decentralizovaná alternativa ke starému Redditu, postavená na protokolu Bitsocial. Poskytuje uživatelům úplné vlastnictví jejich komunit – kdokoli může jednu vytvořit a několik komunit může soutěžit o výchozí bloky.
+Seedit je bezserverová, správná a plně decentralizovaná alternativa ke starému Redditu, postavená na protokolu Bitsocial. Poskytuje uživatelům úplné vlastnictví jejich komunit – kdokoli může jednu vytvořit a několik komunit může soutěžit o stejnou krátkou cestu, například `/s/funny`.
 
 ## Stahování
 
@@ -19,7 +19,7 @@ Seedit je bezserverová, správná a plně decentralizovaná alternativa ke star
 
 ## Jak fungují komunity
 
-Seedit organizuje obsah do komunit podobně jako subreddits. Každá komunita je vlastněna jejím tvůrcem a funguje bez centralizované správy. Když více komunit cílí na stejný výchozí slot, mohou soutěžit o tuto pozici.
+Seedit organizuje obsah do komunit podobně jako subreddits. Každá komunita je vlastněna jejím tvůrcem a funguje bez centralizované správy. O stejnou cestu [adresáře](/directories/), například `/s/funny`, může soutěžit více komunit; tato cesta otevře aktuálního vítěze. Odběry a odkazy na příspěvky vždy směřují na konkrétní komunitu.
 
 ### Vytváření komunity
 
@@ -30,7 +30,7 @@ Existují dva způsoby, jak vytvořit novou komunitu:
 
 ### Výchozí seznam komunit
 
-Seznam výchozích komunit, které se zobrazují na titulní stránce, je definován v `default-multisub.json` v úložišti seznamů. Chcete-li přidat svou komunitu do výchozích nastavení, odešlete žádost o stažení s podrobnostmi o komunitě.
+Nové účty se automaticky přihlásí k odběru výchozího seznamu konkrétních komunit, který je definován v `seedit-default-subscriptions.json` v repozitáři [bitsocialnet/lists](https://github.com/bitsocialnet/lists). Kandidáti adresářů jsou uvedeni v souborech `seedit-directories/seedit-<code>-directory.json` ve stejném repozitáři. Chcete-li přidat svou komunitu do některého z těchto seznamů, odešlete pull request s podrobnostmi o své komunitě.
 
 ## Odkazy
 

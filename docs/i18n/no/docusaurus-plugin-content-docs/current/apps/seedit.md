@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit er et serverløst, adminløst og fullstendig desentralisert alternativ til gammeldags Reddit, bygget på Bitsocial-protokollen. Det gir brukerne fullstendig eierskap over fellesskapene deres - hvem som helst kan opprette et, og flere fellesskap kan konkurrere om standard listeplasser.
+Seedit er et serverløst, adminløst og fullstendig desentralisert alternativ til gammeldags Reddit, bygget på Bitsocial-protokollen. Det gir brukerne fullstendig eierskap over fellesskapene deres - hvem som helst kan opprette et, og flere fellesskap kan konkurrere om den samme korte ruten, for eksempel `/s/funny`.
 
 ## Nedlastinger
 
@@ -19,7 +19,7 @@ Seedit er et serverløst, adminløst og fullstendig desentralisert alternativ ti
 
 ## Hvordan fellesskap fungerer
 
-Seedit organiserer innhold i fellesskap som ligner på subreddits. Hvert fellesskap eies av dets skaper og opererer uten sentralisert administrasjon. Når flere fellesskap målretter mot samme standardplass, kan de konkurrere om den posisjonen.
+Seedit organiserer innhold i fellesskap som ligner på subreddits. Hvert fellesskap eies av dets skaper og opererer uten sentralisert administrasjon. Flere fellesskap kan konkurrere om den samme [katalogruten](/directories/), for eksempel `/s/funny`, og ruten åpner den nåværende vinneren. Abonnementer og lenker til innlegg peker alltid på det eksakte fellesskapet.
 
 ### Å skape et fellesskap
 
@@ -30,7 +30,7 @@ Det er to måter å opprette et nytt fellesskap på:
 
 ### Standard fellesskapsliste
 
-Listen over standard fellesskap som vises på forsiden er definert i `default-multisub.json` i listedepotet. For å legge til fellesskapet ditt til standardinnstillingene, send inn en pull-forespørsel med fellesskapets detaljer.
+Nye kontoer abonnerer på en standardliste med eksakte fellesskap, definert i `seedit-default-subscriptions.json` i depotet [bitsocialnet/lists](https://github.com/bitsocialnet/lists). Katalogkandidater står i filene `seedit-directories/seedit-<code>-directory.json` i det samme depotet. For å legge til fellesskapet ditt i en av listene, send inn en pull-forespørsel med fellesskapets detaljer.
 
 ## Lenker
 

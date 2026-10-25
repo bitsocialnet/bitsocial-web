@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit é uma alternativa sem servidor, sem administração e totalmente descentralizada ao antigo Reddit, construído no protocolo Bitsocial. Ele dá aos usuários propriedade total sobre suas comunidades – qualquer um pode criar uma, e várias comunidades podem competir por vagas de listagem padrão.
+Seedit é uma alternativa sem servidor, sem administração e totalmente descentralizada ao antigo Reddit, construído no protocolo Bitsocial. Ele dá aos usuários propriedade total sobre suas comunidades – qualquer um pode criar uma, e várias comunidades podem competir pela mesma rota curta, como `/s/funny`.
 
 ## Transferências
 
@@ -19,7 +19,7 @@ Seedit é uma alternativa sem servidor, sem administração e totalmente descent
 
 ## Como funcionam as comunidades
 
-Seedit organiza o conteúdo em comunidades semelhantes aos subreddits. Cada comunidade pertence ao seu criador e opera sem administração centralizada. Quando várias comunidades têm como alvo o mesmo slot padrão, elas podem competir por essa posição.
+Seedit organiza o conteúdo em comunidades semelhantes aos subreddits. Cada comunidade pertence ao seu criador e opera sem administração centralizada. Várias comunidades podem competir pela mesma rota de [diretório](/directories/), como `/s/funny`, que abre a vencedora atual. Inscrições e links de publicações sempre apontam para a comunidade exata.
 
 ### Criando uma comunidade
 
@@ -30,7 +30,7 @@ Existem duas maneiras de criar uma nova comunidade:
 
 ### Lista de comunidades padrão
 
-A lista de comunidades padrão que aparecem na primeira página é definida em `default-multisub.json` no repositório de listas. Para adicionar sua comunidade aos padrões, envie uma solicitação pull com os detalhes da sua comunidade.
+Novas contas são inscritas em uma lista padrão de comunidades específicas definida em `seedit-default-subscriptions.json` no repositório [bitsocialnet/lists](https://github.com/bitsocialnet/lists). As candidatas dos diretórios ficam listadas em arquivos `seedit-directories/seedit-<code>-directory.json` no mesmo repositório. Para adicionar sua comunidade a qualquer uma das listas, envie uma solicitação pull com os detalhes da sua comunidade.
 
 ## Ligações
 

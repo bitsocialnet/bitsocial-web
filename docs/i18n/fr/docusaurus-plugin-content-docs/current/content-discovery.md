@@ -28,7 +28,7 @@ Bitsocial laisse cela aux applications, aux listes et aux utilisateurs au lieu d
 
 - un client montrant les communautés que l'utilisateur suit déjà
 - une liste par défaut organisée pour une application de style Reddit
-- emplacements de répertoire pour une application de style tableau d'images
+- des répertoires, où des communautés se disputent un nom de sujet comme `/g/` ou `/s/funny`
 - index de recherche ou de classement gérés par une application spécifique
 - liens directs partagés par les utilisateurs
 
@@ -36,9 +36,9 @@ Les applications peuvent indexer, classer, filtrer ou mettre en évidence diffé
 
 ## Applications actuelles
 
-5chan utilise actuellement des chemins de répertoire familiers tels que `/b/` ou `/g/`. Les attributions d'annuaire sont aujourd'hui gérées via une liste publique, les futures versions devant prendre en charge la création de forums dans l'application et le vote pour les emplacements d'annuaire.
+5chan et Seedit utilisent tous deux des [répertoires](./directories.md) : des routes courtes comme `/g/` ou `/s/funny` que les communautés se disputent. Les candidats sont aujourd'hui listés dans un dépôt public, et 5chan teste des scrutins pour désigner les gagnants.
 
-Seedit utilise des listes de communautés par défaut pour sa page d'accueil. Les communautés peuvent toujours être créées et partagées en dehors de cette liste par défaut.
+Seedit abonne aussi les nouveaux comptes à une liste par défaut de communautés identifiées par leur adresse exacte. Les communautés peuvent toujours être créées et partagées en dehors de ces listes.
 
 Dans les deux cas, la liste au niveau de l'application aide les utilisateurs à trouver quelque chose à ouvrir, et la recherche au niveau du protocole résout ensuite la communauté choisie en pairs.
 

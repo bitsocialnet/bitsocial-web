@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit er et serverløst, adminløst og fuldt decentraliseret alternativ til gammeldags Reddit, bygget på Bitsocial-protokollen. Det giver brugerne fuldstændigt ejerskab over deres fællesskaber - alle kan oprette et, og flere fællesskaber kan konkurrere om standardlistepladser.
+Seedit er et serverløst, adminløst og fuldt decentraliseret alternativ til gammeldags Reddit, bygget på Bitsocial-protokollen. Det giver brugerne fuldstændigt ejerskab over deres fællesskaber - alle kan oprette et, og flere fællesskaber kan konkurrere om den samme korte rute, f.eks. `/s/funny`.
 
 ## Downloads
 
@@ -19,7 +19,7 @@ Seedit er et serverløst, adminløst og fuldt decentraliseret alternativ til gam
 
 ## Hvordan fællesskaber fungerer
 
-Seedit organiserer indhold i fællesskaber, der ligner subreddits. Hvert fællesskab ejes af dets skaber og fungerer uden centraliseret administration. Når flere fællesskaber målretter mod den samme standardplads, kan de konkurrere om den position.
+Seedit organiserer indhold i fællesskaber, der ligner subreddits. Hvert fællesskab ejes af dets skaber og fungerer uden centraliseret administration. Flere fællesskaber kan konkurrere om den samme rute i et [katalog](/directories/), f.eks. `/s/funny`, som åbner den aktuelle vinder. Abonnementer og links til opslag peger altid på det præcise fællesskab.
 
 ### At skabe et fællesskab
 
@@ -30,7 +30,7 @@ Der er to måder at oprette et nyt fællesskab på:
 
 ### Standard fællesskabsliste
 
-Listen over standardfællesskaber, der vises på forsiden, er defineret i `default-multisub.json` i listelageret. For at tilføje dit fællesskab til standardindstillingerne skal du indsende en pull-anmodning med dit fællesskabs detaljer.
+Nye konti abonnerer på en standardliste med præcise fællesskabsadresser, der er defineret i `seedit-default-subscriptions.json` i repositoriet [bitsocialnet/lists](https://github.com/bitsocialnet/lists). Katalogkandidater står i filerne `seedit-directories/seedit-<code>-directory.json` i samme repository. For at tilføje dit fællesskab til en af listerne skal du indsende en pull request med dit fællesskabs detaljer.
 
 ## Links
 

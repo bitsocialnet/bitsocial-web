@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Jak boardy fungují
 
-5chan organizuje obsah do boardů pomocí klasického adresářového rozvržení (např. `/b/`, `/g/`). Na rozdíl od tradičních imageboardů, kde každý board řídí centrální administrátor, umožňuje 5chan komukoli vytvořit vlastní board a plně jej vlastnit. Pokud na stejnou pozici v adresáři cílí více boardů, soupeří o ni hlasováním.
+5chan organizuje obsah do boardů pomocí klasického adresářového rozvržení (např. `/b/`, `/g/`). Na rozdíl od tradičních imageboardů, kde každý board řídí centrální administrátor, umožňuje 5chan komukoli vytvořit vlastní board a plně jej vlastnit. Pokud na stejnou pozici v adresáři cílí více boardů, soupeří o ni; viz [Adresáře](/directories/).
 
 ### Vytvoření boardu
 
@@ -26,7 +26,7 @@ K vytvoření nového boardu je potřeba spustit `bitsocial-cli` jako peer-to-pe
 
 ### Přiřazení adresářů
 
-Přiřazení pozic v adresáři (který board se objeví na které cestě) se zatím spravuje pomocí pull requestů na GitHubu do souboru `5chan-directories.json`. Jde o dočasný postup — budoucí verze podpoří vytváření boardů přímo v aplikaci a hlasování přes pubsub, které přiřazení adresářů vyřeší automaticky.
+Kandidátské boardy každého adresáře jsou uvedeny v souboru `5chan-directories/5chan-<code>-directory.json` v repozitáři [bitsocialnet/lists](https://github.com/bitsocialnet/lists) a board se k adresáři připojí pull requestem do tohoto souboru. 5chan navíc pro každý adresář pořádá hlasování pomocí [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): každý držitel 5chan Pass má jeden hlas a kdo hlasuje pro board, který na seznamu ještě není, tím jej nominuje. Hlasování zatím probíhají na testnetu Base Sepolia, kde se výsledky zobrazují, ale pořadí seznamu nemění.
 
 ## Vnitřní fungování
 

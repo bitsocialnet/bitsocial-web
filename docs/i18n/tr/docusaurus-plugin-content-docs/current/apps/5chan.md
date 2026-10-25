@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Panolar nasıl çalışır
 
-5chan, içeriği klasik bir dizin düzeni kullanarak panolar hâlinde düzenler (örneğin `/b/`, `/g/`). Her panonun merkezi bir yöneticinin denetiminde olduğu geleneksel imageboard'ların aksine 5chan, herhangi bir kullanıcının kendi panosunu oluşturmasına ve ona tümüyle sahip olmasına izin verir. Birden fazla pano aynı dizin yuvasını hedeflediğinde, o konum için oylama yoluyla rekabet ederler.
+5chan, içeriği klasik bir dizin düzeni kullanarak panolar hâlinde düzenler (örneğin `/b/`, `/g/`). Her panonun merkezi bir yöneticinin denetiminde olduğu geleneksel imageboard'ların aksine 5chan, herhangi bir kullanıcının kendi panosunu oluşturmasına ve ona tümüyle sahip olmasına izin verir. Birden fazla pano aynı dizin yuvasını hedeflediğinde, o konum için rekabet ederler; bkz. [Dizinler](/directories/).
 
 ### Pano oluşturma
 
@@ -26,7 +26,7 @@ Yeni bir pano oluşturmak için `bitsocial-cli` aracını eşler arası bir dü�
 
 ### Dizin atamaları
 
-Dizin yuvası atamaları (hangi panonun hangi yolda görüneceği) şu anda `5chan-directories.json` dosyasına gönderilen GitHub çekme istekleriyle yönetiliyor. Bu geçici bir süreçtir; ilerideki sürümler, dizin atamalarını otomatik olarak yürütmek için uygulama içinde pano oluşturmayı ve pubsub tabanlı oylamayı destekleyecek.
+Her dizinin aday panoları [bitsocialnet/lists](https://github.com/bitsocialnet/lists) deposundaki bir `5chan-directories/5chan-<code>-directory.json` dosyasında listelenir ve bir pano, bu dosyaya gönderilen bir çekme isteğiyle dizine katılır. 5chan ayrıca [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting) ile her dizin için bir oylama yarışması yürütür: her 5chan Pass sahibinin bir oyu vardır ve listede olmayan bir panoya oy vermek onu aday gösterir. Yarışmalar şu anda Base Sepolia test ağında çalışıyor; burada sonuçlar gösterilir ancak listenin sırasını değiştirmez.
 
 ## İç yapı
 

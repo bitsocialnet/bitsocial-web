@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit, Bitsocial protokolü üzerine kurulu, eski tarz Reddit'e sunucusuz, yöneticisiz ve tamamen merkezi olmayan bir alternatiftir. Kullanıcılara toplulukları üzerinde tam sahiplik sağlar; herkes bir topluluk oluşturabilir ve birden fazla topluluk, varsayılan listeleme alanları için rekabet edebilir.
+Seedit, Bitsocial protokolü üzerine kurulu, eski tarz Reddit'e sunucusuz, yöneticisiz ve tamamen merkezi olmayan bir alternatiftir. Kullanıcılara toplulukları üzerinde tam sahiplik sağlar; herkes bir topluluk oluşturabilir ve birden fazla topluluk, `/s/funny` gibi aynı kısa rota için rekabet edebilir.
 
 ## İndirilenler
 
@@ -19,7 +19,7 @@ Seedit, Bitsocial protokolü üzerine kurulu, eski tarz Reddit'e sunucusuz, yön
 
 ## Topluluklar nasıl çalışır?
 
-Seedit, içeriği alt dizinlere benzer topluluklar halinde düzenler. Her topluluk, yaratıcısına aittir ve merkezi yönetim olmadan çalışır. Birden fazla topluluk aynı varsayılan alanı hedeflediğinde o konum için rekabet edebilir.
+Seedit, içeriği alt dizinlere benzer topluluklar halinde düzenler. Her topluluk, yaratıcısına aittir ve merkezi yönetim olmadan çalışır. Birden fazla topluluk `/s/funny` gibi aynı [dizin](/directories/) rotası için rekabet edebilir; bu rota mevcut kazananı açar. Abonelikler ve gönderi bağlantıları her zaman tam olarak o topluluğu gösterir.
 
 ### Topluluk oluşturma
 
@@ -30,7 +30,7 @@ Yeni bir topluluk oluşturmanın iki yolu vardır:
 
 ### Varsayılan topluluk listesi
 
-Ön sayfada görünen varsayılan toplulukların listesi, liste deposundaki `default-multisub.json`'da tanımlanır. Topluluğunuzu varsayılanlara eklemek için topluluğunuzun ayrıntılarını içeren bir çekme isteği gönderin.
+Yeni hesaplar, [bitsocialnet/lists](https://github.com/bitsocialnet/lists) deposundaki `seedit-default-subscriptions.json` dosyasında tanımlanan ve belirli topluluklardan oluşan varsayılan bir listeye abone olur. Dizin adayları aynı depodaki `seedit-directories/seedit-<code>-directory.json` dosyalarında listelenir. Topluluğunuzu bu listelerden birine eklemek için topluluğunuzun ayrıntılarını içeren bir çekme isteği gönderin.
 
 ## Bağlantılar
 

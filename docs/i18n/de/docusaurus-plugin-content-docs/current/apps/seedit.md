@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit ist eine serverlose, verwaltungslose und vollständig dezentrale Alternative zum altmodischen Reddit, die auf dem Bitsocial-Protokoll basiert. Es gibt Benutzern die vollständige Kontrolle über ihre Communities – jeder kann eine erstellen und mehrere Communities können um Standardeintragsplätze konkurrieren.
+Seedit ist eine serverlose, verwaltungslose und vollständig dezentrale Alternative zum altmodischen Reddit, die auf dem Bitsocial-Protokoll basiert. Es gibt Benutzern die vollständige Kontrolle über ihre Communities – jeder kann eine erstellen und mehrere Communities können um dieselbe kurze Route konkurrieren, etwa `/s/funny`.
 
 ## Downloads
 
@@ -19,7 +19,7 @@ Seedit ist eine serverlose, verwaltungslose und vollständig dezentrale Alternat
 
 ## Wie Gemeinschaften funktionieren
 
-Seedit organisiert Inhalte in Communities ähnlich wie Subreddits. Jede Community ist Eigentum ihres Gründers und funktioniert ohne zentrale Verwaltung. Wenn mehrere Communities denselben Standardplatz anstreben, können sie um diese Position konkurrieren.
+Seedit organisiert Inhalte in Communities ähnlich wie Subreddits. Jede Community ist Eigentum ihres Gründers und funktioniert ohne zentrale Verwaltung. Mehrere Communities können um dieselbe Route eines [Verzeichnisses](/directories/) konkurrieren, etwa `/s/funny`, die den aktuellen Gewinner öffnet. Abonnements und Beitragslinks verweisen immer auf die exakte Community.
 
 ### Eine Gemeinschaft schaffen
 
@@ -30,7 +30,7 @@ Es gibt zwei Möglichkeiten, eine neue Community zu erstellen:
 
 ### Standard-Community-Liste
 
-Die Liste der Standard-Communitys, die auf der Startseite angezeigt werden, ist in `default-multisub.json` im Listen-Repository definiert. Um Ihre Community zu den Standardeinstellungen hinzuzufügen, senden Sie eine Pull-Anfrage mit den Details Ihrer Community.
+Neue Konten abonnieren eine Standardliste mit exakten Community-Adressen, die in `seedit-default-subscriptions.json` im Repository [bitsocialnet/lists](https://github.com/bitsocialnet/lists) definiert ist. Verzeichniskandidaten sind in den Dateien `seedit-directories/seedit-<code>-directory.json` im selben Repository aufgeführt. Um Ihre Community zu einer der beiden Listen hinzuzufügen, senden Sie einen Pull-Request mit den Details Ihrer Community.
 
 ## Links
 

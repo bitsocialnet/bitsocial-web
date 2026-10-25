@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Slik fungerer tavler
 
-5chan organiserer innhold i tavler med et klassisk katalogoppsett (f.eks. `/b/`, `/g/`). I motsetning til tradisjonelle bildetavler, der én sentral administrator styrer hver tavle, lar 5chan hvilken som helst bruker opprette og eie sin egen tavle fullt ut. Når flere tavler sikter mot den samme katalogplassen, konkurrerer de om plasseringen gjennom avstemning.
+5chan organiserer innhold i tavler med et klassisk katalogoppsett (f.eks. `/b/`, `/g/`). I motsetning til tradisjonelle bildetavler, der én sentral administrator styrer hver tavle, lar 5chan hvilken som helst bruker opprette og eie sin egen tavle fullt ut. Når flere tavler sikter mot den samme katalogplassen, konkurrerer de om plasseringen; se [Kataloger](/directories/).
 
 ### Opprette en tavle
 
@@ -26,7 +26,7 @@ For å opprette en ny tavle må du kjøre `bitsocial-cli` som en peer-to-peer-no
 
 ### Katalogtildelinger
 
-Tildeling av katalogplasser (hvilken tavle som vises på hvilken sti) håndteres foreløpig gjennom pull requests på GitHub til filen `5chan-directories.json`. Dette er en midlertidig prosess – fremtidige versjoner vil støtte oppretting av tavler direkte i appen og pubsub-basert avstemning som håndterer katalogtildelinger automatisk.
+Kandidattavlene for hver katalog står i en fil `5chan-directories/5chan-<code>-directory.json` i depotet [bitsocialnet/lists](https://github.com/bitsocialnet/lists), og en tavle blir med i en katalog gjennom en pull request til den filen. 5chan kjører også en avstemning for hver katalog med [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): hver innehaver av et 5chan Pass får én stemme, og en stemme på en tavle som ikke står på listen, nominerer den. Avstemningene kjører foreløpig på testnettet Base Sepolia, der opptellingene vises, men ikke endrer rekkefølgen på listen.
 
 ## Under panseret
 

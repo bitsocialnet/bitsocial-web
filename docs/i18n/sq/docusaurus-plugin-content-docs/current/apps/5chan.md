@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Si funksionojnë bordet
 
-5chan e organizon përmbajtjen në borde duke përdorur një strukturë klasike drejtorish (p.sh. `/b/`, `/g/`). Ndryshe nga imageboard-et tradicionale, ku një administrator qendror kontrollon çdo bord, 5chan i lejon çdo përdoruesi të krijojë dhe të zotërojë plotësisht bordin e vet. Kur disa borde synojnë të njëjtin vend drejtorie, ato konkurrojnë për atë pozicion përmes votimit.
+5chan e organizon përmbajtjen në borde duke përdorur një strukturë klasike drejtorish (p.sh. `/b/`, `/g/`). Ndryshe nga imageboard-et tradicionale, ku një administrator qendror kontrollon çdo bord, 5chan i lejon çdo përdoruesi të krijojë dhe të zotërojë plotësisht bordin e vet. Kur disa borde synojnë të njëjtin vend drejtorie, ato konkurrojnë për atë pozicion; shih [Drejtoritë](/directories/).
 
 ### Krijimi i një bordi
 
@@ -26,7 +26,7 @@ Për të krijuar një bord të ri, duhet të ekzekutoni `bitsocial-cli` si nyje 
 
 ### Caktimet e drejtorive
 
-Caktimi i vendeve në drejtori (cili bord shfaqet në cilin shteg) menaxhohet aktualisht përmes pull request-eve në GitHub te skedari `5chan-directories.json`. Ky është një proces i përkohshëm — versionet e ardhshme do të mbështesin krijimin e bordeve brenda aplikacionit dhe votimin me pubsub, që caktimet e drejtorive të bëhen automatikisht.
+Bordet kandidate të çdo drejtorie renditen në një skedar `5chan-directories/5chan-<code>-directory.json` në depon [bitsocialnet/lists](https://github.com/bitsocialnet/lists), dhe një bord hyn në një drejtori përmes një pull request-i te ai skedar. 5chan zhvillon gjithashtu një garë votimi për çdo drejtori me [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): çdo mbajtës i një 5chan Pass ka një votë, dhe votimi për një bord që nuk është në listë e nominon atë. Garat aktualisht zhvillohen në testnet-in Base Sepolia, ku rezultatet shfaqen, por nuk e rirendisin listën.
 
 ## Nga brenda
 

@@ -28,7 +28,7 @@ Bitsocial deixa això a les aplicacions, les llistes i els usuaris en lloc de fe
 
 - un client que mostra les comunitats que l'usuari ja segueix
 - una llista per defecte seleccionada per a una aplicació d'estil Reddit
-- ranures de directoris per a una aplicació d'estil imageboard
+- directoris, on les comunitats competeixen per un nom temàtic com ara `/g/` o `/s/funny`
 - índexs de cerca o classificació mantinguts per una aplicació específica
 - enllaços directes compartits pels usuaris
 
@@ -36,9 +36,9 @@ Les aplicacions poden indexar, classificar, filtrar o destacar coses diferents s
 
 ## Aplicacions actuals
 
-Actualment, 5chan utilitza camins de directoris coneguts com ara `/b/` o `/g/`. Les assignacions de directoris es gestionen avui a través d'una llista pública, i s'espera que les futures versions admetin la creació de taulers dins de l'aplicació i la votació de les franges de directoris.
+Tant 5chan com Seedit fan servir [directoris](./directories.md): rutes curtes com ara `/g/` o `/s/funny` per les quals competeixen les comunitats. Avui les comunitats candidates figuren en un repositori públic, i 5chan està provant votacions per decidir-ne les guanyadores.
 
-Seedit utilitza llistes de comunitats predeterminades per a la seva portada. Les comunitats encara es poden crear i compartir fora d'aquesta llista predeterminada.
+A més, Seedit subscriu els comptes nous a una llista predeterminada d'adreces exactes de comunitats. Les comunitats encara es poden crear i compartir fora d'aquestes llistes.
 
 En ambdós casos, la llista a nivell d'aplicació ajuda els usuaris a trobar alguna cosa per obrir i la cerca a nivell de protocol resol la comunitat escollida als companys.
 

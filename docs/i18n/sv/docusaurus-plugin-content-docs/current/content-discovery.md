@@ -28,7 +28,7 @@ Bitsocial överlåter det till appar, listor och användare istället för att b
 
 - en klient som visar gemenskaper som användaren redan följer
 - en kurerad standardlista för en Reddit-liknande app
-- katalogplatser för en app i imageboard-stil
+- kataloger, där gemenskaper konkurrerar om ett ämnesnamn som `/g/` eller `/s/funny`
 - sök- eller rankningsindex som underhålls av en specifik app
 - direktlänkar som delas av användare
 
@@ -36,9 +36,9 @@ Appar kan indexera, rangordna, filtrera eller markera olika saker utan att göra
 
 ## Aktuella appar
 
-5chan använder för närvarande välbekanta katalogsökvägar som `/b/` eller `/g/`. Kataloguppdrag hanteras via en offentlig lista idag, med framtida versioner som förväntas stödja skapandet av tavlor i appen och rösta för katalogplatser.
+Både 5chan och Seedit använder [kataloger](./directories.md): korta sökvägar som `/g/` eller `/s/funny` som gemenskaper konkurrerar om. Kandidaterna listas i dag i ett offentligt repositorium, och 5chan testar omröstningar för att avgöra vinnarna.
 
-Seedit använder standardgrupplistor för sin förstasida. Grupper kan fortfarande skapas och delas utanför den standardlistan.
+Seedit prenumererar dessutom nya konton på en standardlista med specifika gemenskaper. Gemenskaper kan fortfarande skapas och delas utanför dessa listor.
 
 I båda fallen hjälper listan på appnivå användare att hitta något att öppna, och uppslagningen på protokollnivå löser sedan den valda communityn till kamrater.
 

@@ -28,7 +28,7 @@ Bitsocial overlater det til apper, lister og brukere i stedet for å bake ett sv
 
 - en klient som viser fellesskap brukeren allerede følger
 - en kurert standardliste for en app i Reddit-stil
-- katalogspor for en app i imageboard-stil
+- kataloger, der fellesskap konkurrerer om et emnenavn som `/g/` eller `/s/funny`
 - søke- eller rangeringsindekser vedlikeholdt av en bestemt app
 - direkte lenker som deles av brukere
 
@@ -36,9 +36,9 @@ Apper kan indeksere, rangere, filtrere eller fremheve forskjellige ting uten å 
 
 ## Nåværende apper
 
-5chan bruker for øyeblikket kjente katalogstier som `/b/` eller `/g/`. Katalogoppdrag administreres gjennom en offentlig liste i dag, med fremtidige versjoner som forventes å støtte oppretting av tavler i appen og stemme for katalogplasser.
+5chan og Seedit bruker begge [kataloger](./directories.md): korte ruter som `/g/` eller `/s/funny` som fellesskap konkurrerer om. Kandidatene står foreløpig i et offentlig depot, og 5chan tester avstemninger for å avgjøre vinnerne.
 
-Seedit bruker standard fellesskapslister for forsiden. Fellesskap kan fortsatt opprettes og deles utenfor den standardlisten.
+Seedit abonnerer også nye kontoer på en standardliste med eksakte fellesskap. Fellesskap kan fortsatt opprettes og deles utenfor disse listene.
 
 I begge tilfeller hjelper app-nivå-listen brukere med å finne noe å åpne, og oppslaget på protokollnivå løser deretter det valgte fellesskapet til jevnaldrende.
 

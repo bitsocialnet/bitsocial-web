@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## 板块如何运作
 
-5chan 使用经典的目录布局（例如 `/b/`、`/g/`）把内容组织成板块。传统图版由中心管理员控制每一个板块，而 5chan 允许任何用户创建并完全拥有自己的板块。当多个板块指向同一个目录位置时，它们会通过投票来竞争这个位置。
+5chan 使用经典的目录布局（例如 `/b/`、`/g/`）把内容组织成板块。传统图版由中心管理员控制每一个板块，而 5chan 允许任何用户创建并完全拥有自己的板块。当多个板块指向同一个目录位置时，它们会竞争这个位置；参见[目录](/directories/)。
 
 ### 创建板块
 
@@ -26,7 +26,7 @@ sidebar_position: 1
 
 ### 目录位置分配
 
-目录位置的分配（哪个板块出现在哪个路径上）目前通过向 `5chan-directories.json` 文件提交 GitHub pull request 来管理。这只是临时方案——后续版本将支持在应用内创建板块，并通过基于 pubsub 的投票自动处理目录分配。
+每个目录的候选板块都列在 [bitsocialnet/lists](https://github.com/bitsocialnet/lists) 仓库中的 `5chan-directories/5chan-<code>-directory.json` 文件里，板块通过向该文件提交 pull request 来加入目录。5chan 还使用 [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting) 为每个目录举行投票竞赛：每位 5chan Pass 持有者有一票，为未列入的板块投票即可提名它。这些竞赛目前在 Base Sepolia 测试网上运行，票数会显示出来，但不会改变列表的排序。
 
 ## 内部实现
 

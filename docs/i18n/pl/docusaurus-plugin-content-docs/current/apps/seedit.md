@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-nasionko to bezserwerowa, pozbawiona administratora i w pełni zdecentralizowana alternatywa dla Reddita w starym stylu, zbudowana na protokole Bitsocial. Daje użytkownikom pełną własność nad swoimi społecznościami — każdy może je utworzyć, a wiele społeczności może konkurować o domyślne miejsca na listy.
+nasionko to bezserwerowa, pozbawiona administratora i w pełni zdecentralizowana alternatywa dla Reddita w starym stylu, zbudowana na protokole Bitsocial. Daje użytkownikom pełną własność nad swoimi społecznościami — każdy może je utworzyć, a wiele społeczności może konkurować o tę samą krótką ścieżkę, taką jak `/s/funny`.
 
 ## Pliki do pobrania
 
@@ -19,7 +19,7 @@ nasionko to bezserwerowa, pozbawiona administratora i w pełni zdecentralizowana
 
 ## Jak działają społeczności
 
-Seedit organizuje treści w społeczności podobne do subredditów. Każda społeczność jest własnością swojego twórcy i działa bez scentralizowanej administracji. Kiedy wiele społeczności celuje w to samo domyślne miejsce, mogą konkurować o tę pozycję.
+Seedit organizuje treści w społeczności podobne do subredditów. Każda społeczność jest własnością swojego twórcy i działa bez scentralizowanej administracji. Wiele społeczności może konkurować o tę samą ścieżkę [katalogu](/directories/), taką jak `/s/funny`, która otwiera aktualnego zwycięzcę. Subskrypcje i linki do postów zawsze wskazują konkretną społeczność.
 
 ### Tworzenie społeczności
 
@@ -30,7 +30,7 @@ Istnieją dwa sposoby utworzenia nowej społeczności:
 
 ### Domyślna lista społeczności
 
-Lista domyślnych społeczności, która pojawia się na stronie głównej, jest zdefiniowana w `default-multisub.json` w repozytorium list. Aby dodać społeczność do ustawień domyślnych, prześlij żądanie ściągnięcia, podając szczegóły społeczności.
+Nowe konta subskrybują domyślną listę konkretnych społeczności zdefiniowaną w `seedit-default-subscriptions.json` w repozytorium [bitsocialnet/lists](https://github.com/bitsocialnet/lists). Kandydaci do katalogów są wymienieni w plikach `seedit-directories/seedit-<code>-directory.json` w tym samym repozytorium. Aby dodać społeczność do którejkolwiek z tych list, prześlij żądanie ściągnięcia, podając szczegóły społeczności.
 
 ## Spinki do mankietów
 

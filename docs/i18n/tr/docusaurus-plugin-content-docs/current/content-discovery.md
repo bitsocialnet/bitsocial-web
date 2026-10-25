@@ -28,7 +28,7 @@ Bitsocial, ağda tek bir yanıt oluşturmak yerine bunu uygulamalara, listelere 
 
 - kullanıcının zaten takip ettiği toplulukları gösteren bir istemci
 - Reddit tarzı bir uygulama için seçilmiş bir varsayılan liste
-- imageboard tarzı bir uygulama için dizin yuvaları
+- toplulukların `/g/` veya `/s/funny` gibi bir konu adı için rekabet ettiği dizinler
 - Belirli bir uygulama tarafından tutulan dizinleri arayın veya sıralayın
 - kullanıcılar tarafından paylaşılan doğrudan bağlantılar
 
@@ -36,9 +36,9 @@ Uygulamalar, bu seçimleri protokol yasasına dönüştürmeden farklı şeyleri
 
 ## Mevcut uygulamalar
 
-5chan şu anda `/b/` veya `/g/` gibi tanıdık dizin yollarını kullanıyor. Dizin atamaları bugün genel bir liste aracılığıyla yönetiliyor ve gelecekteki sürümlerin uygulama içi pano oluşturmayı ve dizin yuvaları için oylamayı desteklemesi bekleniyor.
+5chan ve Seedit'in ikisi de [dizinleri](./directories.md) kullanır: bunlar, toplulukların uğruna rekabet ettiği `/g/` veya `/s/funny` gibi kısa rotalardır. Adaylar bugün herkese açık bir depoda listeleniyor ve 5chan, kazananları belirlemek için oylama yarışmalarını test ediyor.
 
-Seedit, ön sayfası için varsayılan topluluk listelerini kullanır. Topluluklar yine de bu varsayılan listenin dışında oluşturulabilir ve paylaşılabilir.
+Seedit ayrıca yeni hesapları, belirli topluluklardan oluşan varsayılan bir listeye abone eder. Topluluklar yine de bu listelerin dışında oluşturulabilir ve paylaşılabilir.
 
 Her iki durumda da, uygulama düzeyindeki liste kullanıcıların açacak bir şey bulmasına yardımcı olur ve protokol düzeyindeki arama daha sonra seçilen topluluğu eşlere çözer.
 

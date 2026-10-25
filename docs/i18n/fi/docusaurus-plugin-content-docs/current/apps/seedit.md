@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit on palvelimeton, järjestelmänvalvojaton ja täysin hajautettu vaihtoehto vanhanaikaiselle Redditille, joka on rakennettu Bitsocial-protokollalle. Se antaa käyttäjille täyden omistusoikeuden yhteisöihinsä – kuka tahansa voi luoda sellaisen, ja useat yhteisöt voivat kilpailla oletuslistauspaikoista.
+Seedit on palvelimeton, järjestelmänvalvojaton ja täysin hajautettu vaihtoehto vanhanaikaiselle Redditille, joka on rakennettu Bitsocial-protokollalle. Se antaa käyttäjille täyden omistusoikeuden yhteisöihinsä – kuka tahansa voi luoda sellaisen, ja useat yhteisöt voivat kilpailla samasta lyhyestä reitistä, kuten `/s/funny`.
 
 ## Lataukset
 
@@ -19,7 +19,7 @@ Seedit on palvelimeton, järjestelmänvalvojaton ja täysin hajautettu vaihtoeht
 
 ## Miten yhteisöt toimivat
 
-Seedit järjestää sisällön subreddittien kaltaisiin yhteisöihin. Jokainen yhteisö on luojansa omistama ja toimii ilman keskitettyä hallintoa. Kun useat yhteisöt kohdistavat samaan oletuspaikkaan, ne voivat kilpailla kyseisestä paikasta.
+Seedit järjestää sisällön subreddittien kaltaisiin yhteisöihin. Jokainen yhteisö on luojansa omistama ja toimii ilman keskitettyä hallintoa. Useat yhteisöt voivat kilpailla samasta [hakemiston](/directories/) reitistä, kuten `/s/funny`, joka avaa nykyisen voittajan. Tilaukset ja viestilinkit osoittavat aina tarkasti yksilöityyn yhteisöön.
 
 ### Yhteisön luominen
 
@@ -30,7 +30,7 @@ On kaksi tapaa luoda uusi yhteisö:
 
 ### Oletusyhteisöluettelo
 
-Luettelo etusivulla näkyvistä oletusyhteisöistä on määritetty `default-multisub.json` luettelovaraston sisällä. Jos haluat lisätä yhteisön oletusasetuksiin, lähetä vetopyyntö, joka sisältää yhteisön tiedot.
+Uudet tilit tilaavat oletusluettelon yhteisöt, jotka on määritetty tarkkoina osoitteina `seedit-default-subscriptions.json`-tiedostossa [bitsocialnet/lists](https://github.com/bitsocialnet/lists)-repositoriossa. Hakemistojen ehdokkaat luetellaan samassa repositoriossa olevissa `seedit-directories/seedit-<code>-directory.json`-tiedostoissa. Jos haluat lisätä yhteisösi jompaankumpaan luetteloon, lähetä vetopyyntö, joka sisältää yhteisön tiedot.
 
 ## Linkit
 

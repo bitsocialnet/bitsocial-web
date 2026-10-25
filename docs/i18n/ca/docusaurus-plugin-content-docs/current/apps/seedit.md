@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit és una alternativa sense servidor, sense administrador i totalment descentralitzada a Reddit d'estil antic, basada en el protocol Bitsocial. Ofereix als usuaris la propietat total de les seves comunitats: qualsevol pot crear-ne una i diverses comunitats poden competir per les places de llista predeterminades.
+Seedit és una alternativa sense servidor, sense administrador i totalment descentralitzada a Reddit d'estil antic, basada en el protocol Bitsocial. Ofereix als usuaris la propietat total de les seves comunitats: qualsevol pot crear-ne una i diverses comunitats poden competir per la mateixa ruta curta, com ara `/s/funny`.
 
 ## Descàrregues
 
@@ -19,7 +19,7 @@ Seedit és una alternativa sense servidor, sense administrador i totalment desce
 
 ## Com funcionen les comunitats
 
-Seedit organitza el contingut en comunitats semblants als subreddits. Cada comunitat és propietat del seu creador i funciona sense administració centralitzada. Quan diverses comunitats apunten al mateix espai predeterminat, poden competir per aquesta posició.
+Seedit organitza el contingut en comunitats semblants als subreddits. Cada comunitat és propietat del seu creador i funciona sense administració centralitzada. Diverses comunitats poden competir per la mateixa ruta de [directori](/directories/), com ara `/s/funny`, que obre la guanyadora actual. Les subscripcions i els enllaços a publicacions sempre apunten a la comunitat exacta.
 
 ### Creant una comunitat
 
@@ -30,7 +30,7 @@ Hi ha dues maneres de crear una nova comunitat:
 
 ### Llista de comunitats per defecte
 
-La llista de comunitats per defecte que apareixen a la portada es defineix a `default-multisub.json` dins del repositori de llistes. Per afegir la vostra comunitat als valors predeterminats, envieu una sol·licitud d'extracció amb els detalls de la vostra comunitat.
+Els comptes nous se subscriuen a una llista predeterminada d'adreces exactes de comunitats, definida a `seedit-default-subscriptions.json` al repositori [bitsocialnet/lists](https://github.com/bitsocialnet/lists). Les comunitats candidates dels directoris figuren als fitxers `seedit-directories/seedit-<code>-directory.json` del mateix repositori. Per afegir la vostra comunitat a qualsevol de les dues llistes, envieu una pull request amb els detalls de la vostra comunitat.
 
 ## Enllaços
 

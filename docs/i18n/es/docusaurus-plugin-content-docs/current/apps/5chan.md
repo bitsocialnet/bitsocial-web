@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Cómo funcionan los tablones
 
-5chan organiza el contenido en tablones con la clásica estructura de directorios (por ejemplo, `/b/`, `/g/`). A diferencia de los imageboards tradicionales, donde un administrador central controla todos los tablones, en 5chan cualquier usuario puede crear un tablón y ser su dueño por completo. Cuando varios tablones aspiran al mismo puesto del directorio, compiten por esa posición mediante votación.
+5chan organiza el contenido en tablones con la clásica estructura de directorios (por ejemplo, `/b/`, `/g/`). A diferencia de los imageboards tradicionales, donde un administrador central controla todos los tablones, en 5chan cualquier usuario puede crear un tablón y ser su dueño por completo. Cuando varios tablones aspiran al mismo puesto del directorio, compiten por esa posición; consulta [Directorios](/directories/).
 
 ### Crear un tablón
 
@@ -26,7 +26,7 @@ Para crear un tablón nuevo necesitas ejecutar `bitsocial-cli` como nodo peer-to
 
 ### Asignación de directorios
 
-La asignación de los puestos del directorio (qué tablón aparece en qué ruta) se gestiona actualmente mediante pull requests de GitHub al archivo `5chan-directories.json`. Es un proceso temporal: en próximas versiones se podrán crear tablones desde la propia aplicación y las asignaciones de directorio se resolverán automáticamente mediante votación por pubsub.
+Los tablones candidatos de cada directorio figuran en un archivo `5chan-directories/5chan-<code>-directory.json` del repositorio [bitsocialnet/lists](https://github.com/bitsocialnet/lists), y un tablón se une a un directorio mediante un pull request a ese archivo. Además, 5chan celebra una votación por cada directorio con [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): cada titular de un 5chan Pass tiene un voto, y votar por un tablón que no está en la lista lo nomina. Por ahora las votaciones se realizan en la red de pruebas Base Sepolia, donde los recuentos se muestran pero no reordenan la lista.
 
 ## Interioridades
 

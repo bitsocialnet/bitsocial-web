@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Comment fonctionnent les boards
 
-5chan organise le contenu en boards selon une disposition de répertoires classique (par exemple `/b/`, `/g/`). Contrairement aux imageboards traditionnels, où un administrateur central contrôle chaque board, 5chan permet à n'importe quel utilisateur de créer et de posséder pleinement son propre board. Lorsque plusieurs boards visent le même emplacement de répertoire, ils se disputent cette position par un vote.
+5chan organise le contenu en boards selon une disposition de répertoires classique (par exemple `/b/`, `/g/`). Contrairement aux imageboards traditionnels, où un administrateur central contrôle chaque board, 5chan permet à n'importe quel utilisateur de créer et de posséder pleinement son propre board. Lorsque plusieurs boards visent le même emplacement de répertoire, ils se disputent cette position ; voir [Répertoires](/directories/).
 
 ### Créer un board
 
@@ -26,7 +26,7 @@ Pour créer un board, vous devez exécuter `bitsocial-cli` en tant que nœud pee
 
 ### Attribution des répertoires
 
-L'attribution des emplacements de répertoire (quel board apparaît à quel chemin) passe actuellement par des pull requests GitHub sur le fichier `5chan-directories.json`. Ce processus est temporaire : de futures versions permettront la création de boards directement dans l'application ainsi qu'un vote via pubsub pour gérer automatiquement l'attribution des répertoires.
+Les boards candidats de chaque répertoire sont listés dans un fichier `5chan-directories/5chan-<code>-directory.json` du dépôt [bitsocialnet/lists](https://github.com/bitsocialnet/lists), et un board rejoint un répertoire via une pull request sur ce fichier. 5chan organise aussi un scrutin pour chaque répertoire avec [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting) : chaque détenteur d'un 5chan Pass dispose d'une voix, et voter pour un board non listé revient à le proposer comme candidat. Les scrutins se déroulent actuellement sur le testnet Base Sepolia, où les décomptes sont affichés mais ne modifient pas l'ordre de la liste.
 
 ## Fonctionnement interne
 

@@ -28,7 +28,7 @@ Bitsocial ua lë këtë aplikacioneve, listave dhe përdoruesve në vend që të
 
 - një klient që tregon komunitetet që përdoruesi tashmë ndjek
 - një listë e paracaktuar e kuruar për një aplikacion të stilit Reddit
-- lojëra elektronike të drejtorisë për një aplikacion të stilit të imazhit
+- drejtori, ku komunitetet konkurrojnë për një emër teme si `/g/` ose `/s/funny`
 - indekset e kërkimit ose të renditjes të mbajtura nga një aplikacion specifik
 - lidhje direkte të ndara nga përdoruesit
 
@@ -36,9 +36,9 @@ Aplikacionet mund të indeksojnë, renditin, filtrojnë ose nxjerrin në pah gj�
 
 ## Aplikacionet aktuale
 
-5chan aktualisht përdor shtigje të njohura të drejtorive si `/b/` ose `/g/`. Detyrat e drejtorive menaxhohen përmes një liste publike sot, me versionet e ardhshme që pritet të mbështesin krijimin e bordit brenda aplikacionit dhe votimin për lojëra elektronike të drejtorive.
+Si 5chan, ashtu edhe Seedit përdorin [drejtori](./directories.md): rrugë të shkurtra si `/g/` ose `/s/funny`, për të cilat konkurrojnë komunitetet. Sot kandidatët renditen në një depo publike, dhe 5chan po teston gara votimi për të vendosur fituesit.
 
-Seedit përdor listat e paracaktuara të komuniteteve për faqen e saj të parë. Komunitetet ende mund të krijohen dhe ndahen jashtë asaj liste të paracaktuar.
+Seedit gjithashtu i abonon llogaritë e reja te një listë e paracaktuar komunitetesh të caktuara. Komunitetet ende mund të krijohen dhe të ndahen jashtë këtyre listave.
 
 Në të dyja rastet, lista e nivelit të aplikacionit i ndihmon përdoruesit të gjejnë diçka për të hapur dhe kërkimi i nivelit të protokollit më pas zgjidh komunitetin e zgjedhur tek kolegët.
 

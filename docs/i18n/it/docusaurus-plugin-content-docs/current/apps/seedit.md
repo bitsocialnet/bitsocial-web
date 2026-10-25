@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit è un'alternativa serverless, senza amministrazione e completamente decentralizzata al vecchio stile Reddit, basata sul protocollo Bitsocial. Offre agli utenti la completa proprietà sulle proprie comunità: chiunque può crearne una e più comunità possono competere per gli spazi di elenco predefiniti.
+Seedit è un'alternativa serverless, senza amministrazione e completamente decentralizzata al vecchio stile Reddit, basata sul protocollo Bitsocial. Offre agli utenti la completa proprietà sulle proprie comunità: chiunque può crearne una e più comunità possono competere per lo stesso percorso breve, come `/s/funny`.
 
 ## Download
 
@@ -19,7 +19,7 @@ Seedit è un'alternativa serverless, senza amministrazione e completamente decen
 
 ## Come funzionano le comunità
 
-Seedit organizza i contenuti in comunità simili a subreddit. Ogni comunità è di proprietà del suo creatore e funziona senza amministrazione centralizzata. Quando più comunità hanno come target lo stesso slot predefinito, possono competere per quella posizione.
+Seedit organizza i contenuti in comunità simili a subreddit. Ogni comunità è di proprietà del suo creatore e funziona senza amministrazione centralizzata. Più comunità possono competere per lo stesso percorso di [directory](/directories/), come `/s/funny`, che apre la vincitrice attuale. Le iscrizioni e i link ai post puntano sempre alla comunità esatta.
 
 ### Creazione di una comunità
 
@@ -30,7 +30,7 @@ Esistono due modi per creare una nuova comunità:
 
 ### Elenco delle comunità predefinite
 
-L'elenco delle comunità predefinite che appaiono nella prima pagina è definito in `default-multisub.json` all'interno del repository degli elenchi. Per aggiungere la tua comunità a quelle predefinite, invia una richiesta pull con i dettagli della tua comunità.
+I nuovi account vengono iscritti a un elenco predefinito di comunità specifiche, definito in `seedit-default-subscriptions.json` nel repository [bitsocialnet/lists](https://github.com/bitsocialnet/lists). Le candidate delle directory sono elencate nei file `seedit-directories/seedit-<code>-directory.json` dello stesso repository. Per aggiungere la tua comunità a uno dei due elenchi, invia una pull request con i dettagli della tua comunità.
 
 ## Link
 

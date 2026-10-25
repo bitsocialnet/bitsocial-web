@@ -28,7 +28,7 @@ Bitsocial để việc đó cho các ứng dụng, danh sách và người dùng
 
 - một ứng dụng khách hiển thị các cộng đồng mà người dùng đã theo dõi
 - danh sách mặc định được quản lý cho ứng dụng kiểu Reddit
-- khe thư mục cho ứng dụng kiểu bảng hình ảnh
+- thư mục, nơi các cộng đồng cạnh tranh một tên chủ đề như `/g/` hoặc `/s/funny`
 - chỉ mục tìm kiếm hoặc xếp hạng được duy trì bởi một ứng dụng cụ thể
 - liên kết trực tiếp được chia sẻ bởi người dùng
 
@@ -36,9 +36,9 @@ Bitsocial để việc đó cho các ứng dụng, danh sách và người dùng
 
 ## Ứng dụng hiện tại
 
-5chan hiện sử dụng các đường dẫn thư mục quen thuộc như `/b/` hoặc `/g/`. Việc phân công thư mục ngày nay được quản lý thông qua danh sách công khai, với các phiên bản trong tương lai dự kiến ​​sẽ hỗ trợ tạo bảng trong ứng dụng và bỏ phiếu cho các vị trí thư mục.
+Cả 5chan và Seedit đều dùng [thư mục](./directories.md): các đường dẫn ngắn như `/g/` hoặc `/s/funny` mà các cộng đồng cạnh tranh để giành lấy. Hiện nay các ứng viên được liệt kê trong một kho mã công khai, và 5chan đang thử nghiệm các cuộc bỏ phiếu để quyết định bên thắng.
 
-Seedit sử dụng danh sách cộng đồng mặc định cho trang đầu của nó. Các cộng đồng vẫn có thể được tạo và chia sẻ bên ngoài danh sách mặc định đó.
+Seedit cũng tự động đăng ký cho tài khoản mới một danh sách mặc định gồm các cộng đồng cụ thể. Các cộng đồng vẫn có thể được tạo và chia sẻ bên ngoài các danh sách này.
 
 Trong cả hai trường hợp, danh sách cấp ứng dụng sẽ giúp người dùng tìm nội dung nào đó để mở và sau đó, việc tra cứu cấp giao thức sẽ phân giải cộng đồng đã chọn thành các đồng nghiệp.
 

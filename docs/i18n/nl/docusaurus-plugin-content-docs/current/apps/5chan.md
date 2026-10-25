@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Hoe boards werken
 
-5chan ordent inhoud in boards volgens een klassieke mapindeling (bijvoorbeeld `/b/`, `/g/`). Anders dan bij traditionele imageboards, waar één centrale beheerder elk board bestuurt, kan bij 5chan elke gebruiker een eigen board aanmaken en volledig in eigendom houden. Wanneer meerdere boards dezelfde plek in de directory willen, strijden ze via een stemming om die positie.
+5chan ordent inhoud in boards volgens een klassieke mapindeling (bijvoorbeeld `/b/`, `/g/`). Anders dan bij traditionele imageboards, waar één centrale beheerder elk board bestuurt, kan bij 5chan elke gebruiker een eigen board aanmaken en volledig in eigendom houden. Wanneer meerdere boards dezelfde plek in de directory willen, strijden ze om die positie; zie [Directory's](/directories/).
 
 ### Een board aanmaken
 
@@ -26,7 +26,7 @@ Om een nieuw board aan te maken, moet je `bitsocial-cli` als peer-to-peer node d
 
 ### Toewijzing van directoryplekken
 
-De toewijzing van directoryplekken (welk board op welk pad verschijnt) verloopt momenteel via pull requests op GitHub naar het bestand `5chan-directories.json`. Dat is een tijdelijke werkwijze: toekomstige releases ondersteunen het aanmaken van boards in de app zelf en stemmen via pubsub, zodat toewijzingen automatisch worden geregeld.
+De kandidaat-boards van elke directory staan in een bestand `5chan-directories/5chan-<code>-directory.json` in de repository [bitsocialnet/lists](https://github.com/bitsocialnet/lists), en een board sluit zich bij een directory aan via een pull request op dat bestand. Daarnaast houdt 5chan voor elke directory een stemronde met [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): elke houder van een 5chan Pass krijgt één stem, en een stem op een board dat niet op de lijst staat, nomineert dat board. De stemrondes draaien momenteel op het Base Sepolia-testnet, waar de tellingen wel worden getoond maar de volgorde van de lijst niet veranderen.
 
 ## Onder de motorkap
 

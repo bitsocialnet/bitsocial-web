@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-A Seedit a régi stílusú Reddit szerver nélküli, adminisztrátor nélküli és teljesen decentralizált alternatívája, amely a Bitsocial protokollra épül. Teljes tulajdonjogot biztosít a felhasználóknak közösségeik felett – bárki létrehozhat egyet, és több közösség versenghet az alapértelmezett listázási helyekért.
+A Seedit a régi stílusú Reddit szerver nélküli, adminisztrátor nélküli és teljesen decentralizált alternatívája, amely a Bitsocial protokollra épül. Teljes tulajdonjogot biztosít a felhasználóknak közösségeik felett – bárki létrehozhat egyet, és több közösség is versenghet ugyanazért a rövid útvonalért, például a `/s/funny` útvonalért.
 
 ## Letöltések
 
@@ -19,7 +19,7 @@ A Seedit a régi stílusú Reddit szerver nélküli, adminisztrátor nélküli �
 
 ## Hogyan működnek a közösségek
 
-A Seedit a subredditekhez hasonló közösségekbe rendezi a tartalmat. Minden közösség a létrehozója tulajdonában van, és központosított adminisztráció nélkül működik. Ha több közösség ugyanazt az alapértelmezett helyet célozza meg, versenyezhetnek az adott pozícióért.
+A Seedit a subredditekhez hasonló közösségekbe rendezi a tartalmat. Minden közösség a létrehozója tulajdonában van, és központosított adminisztráció nélkül működik. Több közösség is versenghet ugyanazért a [címtár](/directories/)-útvonalért, például a `/s/funny` útvonalért, amely az aktuális győztest nyitja meg. A feliratkozások és a bejegyzéslinkek mindig a pontosan meghatározott közösségre mutatnak.
 
 ### Közösség létrehozása
 
@@ -30,7 +30,7 @@ Kétféleképpen hozhat létre új közösséget:
 
 ### Alapértelmezett közösséglista
 
-A címlapon megjelenő alapértelmezett közösségek listája a `default-multisub.json` listában van meghatározva a listák tárában. Ha hozzá szeretné adni a közösséget az alapértelmezett értékekhez, küldjön be egy lehívási kérelmet a közösség adataival.
+Az új fiókok pontosan megadott közösségek alapértelmezett listájára iratkoznak fel, amelyet a [bitsocialnet/lists](https://github.com/bitsocialnet/lists) tároló `seedit-default-subscriptions.json` fájlja határoz meg. A címtárak jelöltjei ugyanebben a tárolóban, `seedit-directories/seedit-<code>-directory.json` fájlokban szerepelnek. Ha bármelyik listához hozzá szeretné adni a közösségét, küldjön be egy pull requestet a közösség adataival.
 
 ## Linkek
 

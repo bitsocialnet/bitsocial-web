@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Sådan fungerer boards
 
-5chan organiserer indhold i boards ved hjælp af et klassisk katalogopsæt (f.eks. `/b/`, `/g/`). I modsætning til traditionelle imageboards, hvor en central administrator styrer hvert board, lader 5chan enhver bruger oprette og fuldt ud eje sit eget board. Når flere boards sigter mod den samme plads i kataloget, konkurrerer de om positionen gennem afstemning.
+5chan organiserer indhold i boards ved hjælp af et klassisk katalogopsæt (f.eks. `/b/`, `/g/`). I modsætning til traditionelle imageboards, hvor en central administrator styrer hvert board, lader 5chan enhver bruger oprette og fuldt ud eje sit eget board. Når flere boards sigter mod den samme plads i kataloget, konkurrerer de om positionen; se [Kataloger](/directories/).
 
 ### Sådan opretter du et board
 
@@ -26,7 +26,7 @@ For at oprette et nyt board skal du køre `bitsocial-cli` som en peer-to-peer-no
 
 ### Tildeling af katalogpladser
 
-Tildelingen af katalogpladser (hvilket board der vises på hvilken sti) styres i øjeblikket gennem pull requests på GitHub til filen `5chan-directories.json`. Det er en midlertidig proces — kommende udgivelser vil understøtte oprettelse af boards direkte i appen samt pubsub-baseret afstemning, så tildelingerne håndteres automatisk.
+Hvert katalogs kandidat-boards står i en fil `5chan-directories/5chan-<code>-directory.json` i repositoriet [bitsocialnet/lists](https://github.com/bitsocialnet/lists), og et board tilslutter sig et katalog via en pull request til den fil. 5chan afholder desuden en afstemning for hvert katalog med [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): Hver indehaver af et 5chan Pass har én stemme, og en stemme på et board, der ikke er på listen, nominerer det. Afstemningerne kører i øjeblikket på testnettet Base Sepolia, hvor resultaterne vises, men ikke ændrer listens rækkefølge.
 
 ## Interne detaljer
 

@@ -18,7 +18,7 @@ Az 5chan egy szerver nélküli, adminisztrátor nélküli, teljesen decentraliz�
 
 ## Hogyan működnek a táblák
 
-Az 5chan klasszikus könyvtárelrendezés szerint (például `/b/`, `/g/`) rendezi táblákba a tartalmat. A hagyományos imageboardokkal ellentétben, ahol egy központi adminisztrátor felügyel minden táblát, itt bármelyik felhasználó létrehozhat saját táblát, amely teljes egészében az övé marad. Ha több tábla ugyanarra a könyvtárhelyre pályázik, szavazással versenyeznek az adott pozícióért.
+Az 5chan klasszikus könyvtárelrendezés szerint (például `/b/`, `/g/`) rendezi táblákba a tartalmat. A hagyományos imageboardokkal ellentétben, ahol egy központi adminisztrátor felügyel minden táblát, itt bármelyik felhasználó létrehozhat saját táblát, amely teljes egészében az övé marad. Ha több tábla ugyanarra a könyvtárhelyre pályázik, versenyeznek az adott pozícióért; lásd: [Címtárak](/directories/).
 
 ### Tábla létrehozása
 
@@ -26,7 +26,7 @@ Az 5chan klasszikus könyvtárelrendezés szerint (például `/b/`, `/g/`) rende
 
 ### Címtár-hozzárendelések
 
-A könyvtárhelyek kiosztását (vagyis hogy melyik tábla melyik útvonalon jelenik meg) jelenleg a `5chan-directories.json` fájlhoz beküldött GitHub pull requestek kezelik. Ez ideiglenes megoldás – a jövőbeli kiadások támogatni fogják az alkalmazáson belüli tábla-létrehozást és a pubsub-alapú szavazást, hogy a címtár-hozzárendelések automatikusan történjenek.
+Az egyes címtárak jelölt tábláit a [bitsocialnet/lists](https://github.com/bitsocialnet/lists) tároló egy-egy `5chan-directories/5chan-<code>-directory.json` fájlja sorolja fel, és egy tábla az adott fájlhoz beküldött pull requesttel csatlakozik egy címtárhoz. Az 5chan emellett minden címtárhoz szavazási versenyt is futtat a [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting) segítségével: minden 5chan Pass-birtokos egy szavazattal rendelkezik, és egy nem listázott táblára leadott szavazat jelöli az adott táblát. A versenyek jelenleg a Base Sepolia tesztneten futnak, ahol az eredmények megjelennek, de nem változtatják meg a lista sorrendjét.
 
 ## Belső működés
 

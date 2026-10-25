@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Jak działają boardy
 
-5chan porządkuje treści w boardy z użyciem klasycznego układu katalogów (np. `/b/`, `/g/`). W odróżnieniu od tradycyjnych imageboardów, gdzie centralny administrator kontroluje każdy board, 5chan pozwala dowolnemu użytkownikowi utworzyć własny board i w pełni go posiadać. Kiedy wiele boardów celuje w to samo miejsce w katalogu, rywalizują o tę pozycję w głosowaniu.
+5chan porządkuje treści w boardy z użyciem klasycznego układu katalogów (np. `/b/`, `/g/`). W odróżnieniu od tradycyjnych imageboardów, gdzie centralny administrator kontroluje każdy board, 5chan pozwala dowolnemu użytkownikowi utworzyć własny board i w pełni go posiadać. Kiedy wiele boardów celuje w to samo miejsce w katalogu, rywalizują o tę pozycję; zobacz [Katalogi](/directories/).
 
 ### Tworzenie boardu
 
@@ -26,7 +26,7 @@ Aby utworzyć nowy board, musisz uruchomić `bitsocial-cli` jako węzeł peer-to
 
 ### Przypisania miejsc w katalogu
 
-Przypisania miejsc w katalogu (który board pojawia się pod którą ścieżką) są obecnie zarządzane przez pull requesty na GitHubie do pliku `5chan-directories.json`. To rozwiązanie tymczasowe — przyszłe wydania będą obsługiwać tworzenie boardów w aplikacji oraz głosowanie oparte na pubsub, które będzie automatycznie zarządzać przypisaniami w katalogu.
+Boardy kandydujące do każdego katalogu są wymienione w pliku `5chan-directories/5chan-<code>-directory.json` w repozytorium [bitsocialnet/lists](https://github.com/bitsocialnet/lists), a board dołącza do katalogu przez pull request do tego pliku. 5chan prowadzi też głosowanie dla każdego katalogu za pomocą [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): każdy posiadacz 5chan Pass ma jeden głos, a głos na board spoza listy zgłasza go jako kandydata. Głosowania działają obecnie w sieci testowej Base Sepolia, gdzie wyniki są wyświetlane, ale nie zmieniają kolejności na liście.
 
 ## Jak to działa od środka
 

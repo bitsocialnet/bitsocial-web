@@ -18,7 +18,7 @@ Ang 5chan ay isang walang server, walang admin, at ganap na desentralisadong ima
 
 ## Paano gumagana ang mga board
 
-Inaayos ng 5chan ang nilalaman sa mga board gamit ang klasikong layout ng direktoryo (hal., `/b/`, `/g/`). Hindi tulad ng tradisyonal na mga imageboard kung saan kinokontrol ng isang sentral na admin ang bawat board, hinahayaan ng 5chan ang sinumang user na gumawa at ganap na magmay-ari ng sarili niyang board. Kapag maraming board ang nagta-target sa iisang slot sa direktoryo, naglalaban sila para sa posisyong iyon sa pamamagitan ng botohan.
+Inaayos ng 5chan ang nilalaman sa mga board gamit ang klasikong layout ng direktoryo (hal., `/b/`, `/g/`). Hindi tulad ng tradisyonal na mga imageboard kung saan kinokontrol ng isang sentral na admin ang bawat board, hinahayaan ng 5chan ang sinumang user na gumawa at ganap na magmay-ari ng sarili niyang board. Kapag maraming board ang nagta-target sa iisang slot sa direktoryo, naglalaban sila para sa posisyong iyon; tingnan ang [Mga Direktoryo](/directories/).
 
 ### Paggawa ng board
 
@@ -26,7 +26,7 @@ Upang gumawa ng bagong board, kailangan mong patakbuhin ang `bitsocial-cli` bila
 
 ### Mga pagtatalaga sa direktoryo
 
-Ang pagtatalaga ng mga slot sa direktoryo (kung aling board ang lumalabas sa aling path) ay kasalukuyang pinamamahalaan sa pamamagitan ng mga GitHub pull request sa file na `5chan-directories.json`. Pansamantala lamang ang prosesong ito — susuportahan ng mga susunod na release ang paggawa ng board sa loob mismo ng app at ang botohang nakabatay sa pubsub upang awtomatikong hawakan ang mga pagtatalaga sa direktoryo.
+Nakalista ang mga kandidatong board ng bawat direktoryo sa isang file na `5chan-directories/5chan-<code>-directory.json` sa repository na [bitsocialnet/lists](https://github.com/bitsocialnet/lists), at sumasali ang isang board sa isang direktoryo sa pamamagitan ng pull request sa file na iyon. Nagpapatakbo rin ang 5chan ng paligsahan sa botohan para sa bawat direktoryo gamit ang [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): may isang boto ang bawat may-hawak ng 5chan Pass, at ang pagboto para sa isang board na wala pa sa listahan ay nagnonomina rito. Kasalukuyang tumatakbo ang mga paligsahan sa Base Sepolia testnet, kung saan ipinapakita ang mga tally ngunit hindi nito binabago ang pagkakasunod-sunod ng listahan.
 
 ## Mga panloob na bahagi
 

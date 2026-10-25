@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Wie Boards funktionieren
 
-5chan organisiert Inhalte in Boards mit einem klassischen Verzeichnislayout (z. B. `/b/`, `/g/`). Anders als bei herkömmlichen Imageboards, bei denen ein zentraler Administrator jedes Board kontrolliert, kann bei 5chan jeder Nutzer ein eigenes Board erstellen und vollständig besitzen. Streben mehrere Boards denselben Verzeichnisplatz an, konkurrieren sie per Abstimmung um diese Position.
+5chan organisiert Inhalte in Boards mit einem klassischen Verzeichnislayout (z. B. `/b/`, `/g/`). Anders als bei herkömmlichen Imageboards, bei denen ein zentraler Administrator jedes Board kontrolliert, kann bei 5chan jeder Nutzer ein eigenes Board erstellen und vollständig besitzen. Streben mehrere Boards denselben Verzeichnisplatz an, konkurrieren sie um diese Position; siehe [Verzeichnisse](/directories/).
 
 ### Ein Board erstellen
 
@@ -26,7 +26,7 @@ Um ein neues Board zu erstellen, müssen Sie `bitsocial-cli` als Peer-to-Peer-Kn
 
 ### Verzeichniszuweisungen
 
-Die Zuweisung der Verzeichnisplätze (welches Board unter welchem Pfad erscheint) wird derzeit über GitHub-Pull-Requests an der Datei `5chan-directories.json` verwaltet. Das ist ein vorläufiges Verfahren: Künftige Versionen werden das Anlegen von Boards direkt in der App sowie Abstimmungen über pubsub unterstützen, damit Verzeichniszuweisungen automatisch ablaufen.
+Die Kandidaten-Boards jedes Verzeichnisses sind in einer Datei `5chan-directories/5chan-<code>-directory.json` im Repository [bitsocialnet/lists](https://github.com/bitsocialnet/lists) aufgeführt, und ein Board tritt einem Verzeichnis per Pull-Request an diese Datei bei. Zusätzlich führt 5chan für jedes Verzeichnis eine Abstimmung mit [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting) durch: Jeder Inhaber eines 5chan Pass hat eine Stimme, und wer für ein noch nicht gelistetes Board stimmt, nominiert es damit. Die Abstimmungen laufen derzeit im Testnet Base Sepolia, wo die Ergebnisse zwar angezeigt werden, die Reihenfolge der Liste aber nicht verändern.
 
 ## Interna
 

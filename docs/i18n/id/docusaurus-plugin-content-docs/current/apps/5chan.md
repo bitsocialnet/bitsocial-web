@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Cara kerja papan
 
-5chan menata konten ke dalam papan menggunakan tata letak direktori klasik (misalnya `/b/`, `/g/`). Berbeda dengan imageboard tradisional yang setiap papannya dikendalikan oleh admin pusat, 5chan memungkinkan setiap pengguna membuat dan sepenuhnya memiliki papannya sendiri. Ketika beberapa papan mengincar slot direktori yang sama, mereka memperebutkan posisi itu lewat pemungutan suara.
+5chan menata konten ke dalam papan menggunakan tata letak direktori klasik (misalnya `/b/`, `/g/`). Berbeda dengan imageboard tradisional yang setiap papannya dikendalikan oleh admin pusat, 5chan memungkinkan setiap pengguna membuat dan sepenuhnya memiliki papannya sendiri. Ketika beberapa papan mengincar slot direktori yang sama, mereka memperebutkan posisi itu; lihat [Direktori](/directories/).
 
 ### Membuat papan
 
@@ -26,7 +26,7 @@ Untuk membuat papan baru, Anda perlu menjalankan `bitsocial-cli` sebagai node pe
 
 ### Penetapan direktori
 
-Penetapan slot direktori (papan mana yang muncul di jalur mana) saat ini dikelola melalui pull request GitHub ke berkas `5chan-directories.json`. Ini proses sementara — rilis mendatang akan mendukung pembuatan papan langsung di dalam aplikasi serta pemungutan suara berbasis pubsub untuk menangani penetapan direktori secara otomatis.
+Papan kandidat untuk setiap direktori dicantumkan dalam berkas `5chan-directories/5chan-<code>-directory.json` di repositori [bitsocialnet/lists](https://github.com/bitsocialnet/lists), dan sebuah papan bergabung ke direktori melalui pull request ke berkas tersebut. 5chan juga menjalankan kontes pemungutan suara untuk setiap direktori dengan [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): setiap pemegang 5chan Pass mendapat satu suara, dan memberikan suara untuk papan yang belum terdaftar berarti menominasikannya. Kontes saat ini berjalan di testnet Base Sepolia, tempat hasil penghitungan ditampilkan tetapi tidak mengubah urutan daftar.
 
 ## Cara kerja internal
 

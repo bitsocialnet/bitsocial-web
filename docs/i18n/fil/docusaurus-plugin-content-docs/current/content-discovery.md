@@ -28,7 +28,7 @@ Iniiwan iyon ng bitsocial sa mga app, listahan, at user sa halip na mag-bake ng 
 
 - isang kliyente na nagpapakita ng mga komunidad na sinusundan na ng user
 - isang na-curate na default na listahan para sa isang Reddit-style na app
-- mga puwang ng direktoryo para sa isang imageboard-style na app
+- mga direktoryo, kung saan nagpapaligsahan ang mga komunidad para sa isang pangalan ng paksa tulad ng `/g/` o `/s/funny`
 - paghahanap o pagraranggo ng mga index na pinananatili ng isang partikular na app
 - mga direktang link na ibinahagi ng mga user
 
@@ -36,9 +36,9 @@ Maaaring i-index, i-rank, i-filter, o i-highlight ng mga app ang iba't ibang bag
 
 ## Mga kasalukuyang app
 
-Kasalukuyang gumagamit ang 5chan ng mga pamilyar na path ng direktoryo gaya ng `/b/` o `/g/`. Ang mga pagtatalaga ng direktoryo ay pinamamahalaan sa pamamagitan ng isang pampublikong listahan ngayon, na may mga bersyon sa hinaharap na inaasahang susuporta sa paggawa ng in-app na board at pagboto para sa mga puwang ng direktoryo.
+Parehong gumagamit ang 5chan at Seedit ng [mga direktoryo](./directories.md): mga maikling route tulad ng `/g/` o `/s/funny` na pinagpapaligsahan ng mga komunidad. Nakalista ngayon ang mga kandidato sa isang pampublikong repository, at sinusubukan ng 5chan ang mga paligsahan sa botohan upang mapagpasyahan ang mga panalo.
 
-Gumagamit ang Seedit ng mga default na listahan ng komunidad para sa front page nito. Maaari pa ring gawin at ibahagi ang mga komunidad sa labas ng default na listahang iyon.
+Bukod dito, awtomatikong isinasa-subscribe ng Seedit ang mga bagong account sa isang default na listahan ng mga eksaktong komunidad. Maaari pa ring gawin at ibahagi ang mga komunidad sa labas ng mga listahang ito.
 
 Sa parehong mga kaso, ang listahan sa antas ng app ay tumutulong sa mga user na makahanap ng isang bagay na bubuksan, at pagkatapos ay niresolba ng paghahanap sa antas ng protocol ang napiling komunidad sa mga kapantay.
 

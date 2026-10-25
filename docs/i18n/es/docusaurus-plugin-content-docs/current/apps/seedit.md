@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit es una alternativa sin servidor, sin administrador y totalmente descentralizada al antiguo Reddit, construida sobre el protocolo Bitsocial. Les brinda a los usuarios propiedad total sobre sus comunidades: cualquiera puede crear una y varias comunidades pueden competir por los espacios predeterminados en la lista.
+Seedit es una alternativa sin servidor, sin administrador y totalmente descentralizada al antiguo Reddit, construida sobre el protocolo Bitsocial. Les brinda a los usuarios propiedad total sobre sus comunidades: cualquiera puede crear una y varias comunidades pueden competir por la misma ruta corta, como `/s/funny`.
 
 ## Descargas
 
@@ -19,7 +19,7 @@ Seedit es una alternativa sin servidor, sin administrador y totalmente descentra
 
 ## Cómo funcionan las comunidades
 
-Seedit organiza el contenido en comunidades similares a los subreddits. Cada comunidad es propiedad de su creador y opera sin administración centralizada. Cuando varias comunidades apuntan al mismo puesto predeterminado, pueden competir por ese puesto.
+Seedit organiza el contenido en comunidades similares a los subreddits. Cada comunidad es propiedad de su creador y opera sin administración centralizada. Varias comunidades pueden competir por la misma ruta de [directorio](/directories/), como `/s/funny`, que abre la ganadora actual. Las suscripciones y los enlaces a publicaciones siempre apuntan a la comunidad exacta.
 
 ### Creando una comunidad
 
@@ -30,7 +30,7 @@ Hay dos formas de crear una nueva comunidad:
 
 ### Lista de comunidades predeterminada
 
-La lista de comunidades predeterminadas que aparecen en la página principal se define en `default-multisub.json` dentro del repositorio de listas. Para agregar su comunidad a los valores predeterminados, envíe una solicitud de extracción con los detalles de su comunidad.
+Las cuentas nuevas se suscriben a una lista predeterminada de direcciones exactas de comunidades, definida en `seedit-default-subscriptions.json` en el repositorio [bitsocialnet/lists](https://github.com/bitsocialnet/lists). Las comunidades candidatas de los directorios figuran en los archivos `seedit-directories/seedit-<code>-directory.json` del mismo repositorio. Para agregar su comunidad a cualquiera de las dos listas, envíe un pull request con los detalles de su comunidad.
 
 ## Enlaces
 

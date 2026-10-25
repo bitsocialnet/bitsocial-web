@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Các bảng hoạt động ra sao
 
-5chan sắp xếp nội dung thành các bảng theo bố cục thư mục cổ điển (ví dụ `/b/`, `/g/`). Khác với những bảng hình ảnh truyền thống nơi một quản trị viên trung tâm kiểm soát mọi bảng, 5chan cho phép bất kỳ người dùng nào tạo và sở hữu trọn vẹn bảng của riêng mình. Khi nhiều bảng cùng nhắm tới một vị trí thư mục, chúng cạnh tranh vị trí đó bằng bỏ phiếu.
+5chan sắp xếp nội dung thành các bảng theo bố cục thư mục cổ điển (ví dụ `/b/`, `/g/`). Khác với những bảng hình ảnh truyền thống nơi một quản trị viên trung tâm kiểm soát mọi bảng, 5chan cho phép bất kỳ người dùng nào tạo và sở hữu trọn vẹn bảng của riêng mình. Khi nhiều bảng cùng nhắm tới một vị trí thư mục, chúng cạnh tranh vị trí đó; xem [Thư mục](/directories/).
 
 ### Tạo một bảng
 
@@ -26,7 +26,7 @@ sidebar_position: 1
 
 ### Gán vị trí thư mục
 
-Việc gán vị trí thư mục (bảng nào xuất hiện ở đường dẫn nào) hiện được quản lý qua các pull request GitHub vào tệp `5chan-directories.json`. Đây chỉ là quy trình tạm thời — các bản phát hành sau sẽ hỗ trợ tạo bảng ngay trong ứng dụng và bỏ phiếu dựa trên pubsub để tự động xử lý việc gán thư mục.
+Các bảng ứng viên của mỗi thư mục được liệt kê trong một tệp `5chan-directories/5chan-<code>-directory.json` thuộc kho mã [bitsocialnet/lists](https://github.com/bitsocialnet/lists), và một bảng tham gia thư mục bằng một pull request vào tệp đó. 5chan cũng tổ chức một cuộc bỏ phiếu cho mỗi thư mục bằng [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): mỗi người nắm giữ 5chan Pass có một phiếu, và bỏ phiếu cho một bảng chưa có trong danh sách sẽ đề cử bảng đó. Các cuộc bỏ phiếu hiện chạy trên mạng thử nghiệm Base Sepolia, nơi kết quả được hiển thị nhưng không sắp xếp lại danh sách.
 
 ## Bên trong
 

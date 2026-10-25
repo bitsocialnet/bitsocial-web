@@ -28,7 +28,7 @@ Bitsocial deja eso en manos de las aplicaciones, listas y usuarios en lugar de i
 
 - un cliente que muestra comunidades que el usuario ya sigue
 - una lista predeterminada seleccionada para una aplicación estilo Reddit
-- ranuras de directorio para una aplicación estilo tablero de imágenes
+- directorios, donde las comunidades compiten por un nombre temático como `/g/` o `/s/funny`
 - índices de búsqueda o clasificación mantenidos por una aplicación específica
 - enlaces directos compartidos por los usuarios
 
@@ -36,9 +36,9 @@ Apps can index, rank, filter, or highlight different things without turning thos
 
 ## Aplicaciones actuales
 
-5chan currently uses familiar directory paths such as `/b/` or `/g/`. Las asignaciones de directorios se administran actualmente a través de una lista pública, y se espera que las versiones futuras admitan la creación de tableros en la aplicación y la votación de espacios en el directorio.
+5chan y Seedit usan [directorios](./directories.md): rutas cortas como `/g/` o `/s/funny` por las que compiten las comunidades. Hoy las comunidades candidatas figuran en un repositorio público, y 5chan está probando votaciones para decidir las ganadoras.
 
-Seedit uses default community lists for its front page. Communities can still be created and shared outside that default list.
+Además, Seedit suscribe a las cuentas nuevas a una lista predeterminada de direcciones exactas de comunidades. Las comunidades se pueden seguir creando y compartiendo fuera de estas listas.
 
 In both cases, the app-level list helps users find something to open, and the protocol-level lookup then resolves the chosen community to peers.
 

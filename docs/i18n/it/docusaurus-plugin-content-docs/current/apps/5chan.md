@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Come funzionano le board
 
-5chan organizza i contenuti in board seguendo il classico schema a directory (ad esempio `/b/`, `/g/`). A differenza degli imageboard tradizionali, dove un amministratore centrale controlla ogni board, 5chan permette a qualsiasi utente di creare e possedere interamente la propria board. Quando più board puntano allo stesso slot di directory, competono per quella posizione tramite il voto.
+5chan organizza i contenuti in board seguendo il classico schema a directory (ad esempio `/b/`, `/g/`). A differenza degli imageboard tradizionali, dove un amministratore centrale controlla ogni board, 5chan permette a qualsiasi utente di creare e possedere interamente la propria board. Quando più board puntano allo stesso slot di directory, competono per quella posizione; vedi [Directory](/directories/).
 
 ### Creare una board
 
@@ -26,7 +26,7 @@ Per creare una nuova board devi eseguire `bitsocial-cli` come nodo peer-to-peer.
 
 ### Assegnazione delle directory
 
-L'assegnazione degli slot di directory (quale board compare in quale percorso) è gestita al momento tramite pull request su GitHub al file `5chan-directories.json`. È una procedura temporanea: le versioni future supporteranno la creazione di board dall'app e il voto tramite pubsub, così da gestire automaticamente le assegnazioni delle directory.
+Le board candidate di ogni directory sono elencate in un file `5chan-directories/5chan-<code>-directory.json` nel repository [bitsocialnet/lists](https://github.com/bitsocialnet/lists), e una board entra in una directory tramite una pull request a quel file. 5chan gestisce anche una votazione per ogni directory con [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): ogni titolare di un 5chan Pass ha diritto a un voto, e votare per una board non in elenco equivale a candidarla. Le votazioni si svolgono attualmente sulla testnet Base Sepolia, dove i conteggi vengono mostrati ma non riordinano l'elenco.
 
 ## Funzionamento interno
 

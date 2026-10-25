@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Seedit
 
-Seedit is a serverless, adminless, and fully decentralized alternative to old-style Reddit, built on the Bitsocial protocol. It gives users complete ownership over their communities — anyone can create one, and multiple communities can compete for default listing slots.
+Seedit is a serverless, adminless, and fully decentralized alternative to old-style Reddit, built on the Bitsocial protocol. It gives users complete ownership over their communities — anyone can create one, and multiple communities can compete for the same short route, such as `/s/funny`.
 
 ## Downloads
 
@@ -19,7 +19,7 @@ Seedit is a serverless, adminless, and fully decentralized alternative to old-st
 
 ## How communities work
 
-Seedit organizes content into communities similar to subreddits. Each community is owned by its creator and operates without centralized administration. When multiple communities target the same default slot, they can compete for that position.
+Seedit organizes content into communities similar to subreddits. Each community is owned by its creator and operates without centralized administration. Multiple communities can compete for the same [directory](/directories/) route, such as `/s/funny`, which opens the current winner. Subscriptions and post links always point to the exact community.
 
 ### Creating a community
 
@@ -30,7 +30,7 @@ There are two ways to create a new community:
 
 ### Default community list
 
-The list of default communities that appear on the front page is defined in `default-multisub.json` within the lists repository. To add your community to the defaults, submit a pull request with your community's details.
+New accounts subscribe to a default list of exact communities defined in `seedit-default-subscriptions.json` in the [bitsocialnet/lists](https://github.com/bitsocialnet/lists) repository. Directory candidates are listed in `seedit-directories/seedit-<code>-directory.json` files in the same repository. To add your community to either list, submit a pull request with your community's details.
 
 ## Links
 

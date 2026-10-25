@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Cum funcționează board-urile
 
-5chan organizează conținutul în board-uri, folosind o structură clasică de directoare (de exemplu, `/b/`, `/g/`). Spre deosebire de imageboard-urile tradiționale, unde un administrator central controlează fiecare board, 5chan permite oricărui utilizator să creeze și să dețină în întregime propriul board. Când mai multe board-uri vizează același slot de director, concurează pentru acea poziție prin vot.
+5chan organizează conținutul în board-uri, folosind o structură clasică de directoare (de exemplu, `/b/`, `/g/`). Spre deosebire de imageboard-urile tradiționale, unde un administrator central controlează fiecare board, 5chan permite oricărui utilizator să creeze și să dețină în întregime propriul board. Când mai multe board-uri vizează același slot de director, concurează pentru acea poziție; vezi [Directoare](/directories/).
 
 ### Crearea unui board
 
@@ -26,7 +26,7 @@ Pentru a crea un board nou, trebuie să rulezi `bitsocial-cli` ca nod peer-to-pe
 
 ### Atribuirea directoarelor
 
-Atribuirea sloturilor de director (care board apare la ce cale) este gestionată în prezent prin pull request-uri pe GitHub către fișierul `5chan-directories.json`. Este un proces temporar — versiunile viitoare vor permite crearea board-urilor direct în aplicație și vot prin pubsub, astfel încât atribuirea directoarelor să se facă automat.
+Board-urile candidate ale fiecărui director sunt listate într-un fișier `5chan-directories/5chan-<code>-directory.json` din depozitul [bitsocialnet/lists](https://github.com/bitsocialnet/lists), iar un board intră într-un director printr-un pull request către acel fișier. 5chan organizează și câte un vot pentru fiecare director cu [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting): fiecare deținător al unui 5chan Pass are un vot, iar votul pentru un board care nu este pe listă îl nominalizează. Voturile rulează în prezent pe testnetul Base Sepolia, unde rezultatele sunt afișate, dar nu reordonează lista.
 
 ## Funcționare internă
 

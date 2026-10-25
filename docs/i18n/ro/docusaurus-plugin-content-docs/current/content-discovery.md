@@ -28,7 +28,7 @@ Bitsocial lasă asta aplicațiilor, listelor și utilizatorilor, în loc să fur
 
 - un client care arată comunitățile pe care utilizatorul le urmărește deja
 - o listă prestabilită pentru o aplicație în stil Reddit
-- sloturi pentru directoare pentru o aplicație în stil imageboard
+- directoare, în care comunitățile concurează pentru un nume de subiect precum `/g/` sau `/s/funny`
 - indici de căutare sau clasare menținute de o anumită aplicație
 - link-uri directe partajate de utilizatori
 
@@ -36,9 +36,9 @@ Aplicațiile pot indexa, clasifica, filtra sau evidenția diferite lucruri făr�
 
 ## Aplicații curente
 
-5chan utilizează în prezent căi de director familiare, cum ar fi `/b/` sau `/g/`. Directory assignments are managed through a public list today, with future versions expected to support in-app board creation and voting for directory slots.
+Atât 5chan, cât și Seedit folosesc [directoare](./directories.md): rute scurte precum `/g/` sau `/s/funny` pentru care concurează comunitățile. În prezent, candidatele sunt listate într-un depozit public, iar 5chan testează voturi pentru a stabili câștigătoarele.
 
-Seedit folosește listele de comunități implicite pentru prima pagină. Comunitățile pot fi în continuare create și partajate în afara acelei liste prestabilite.
+De asemenea, Seedit abonează conturile noi la o listă implicită de comunități specifice. Comunitățile pot fi în continuare create și partajate în afara acestor liste.
 
 În ambele cazuri, lista la nivel de aplicație îi ajută pe utilizatori să găsească ceva de deschis, iar căutarea la nivel de protocol rezolvă apoi comunitatea aleasă către colegi.
 

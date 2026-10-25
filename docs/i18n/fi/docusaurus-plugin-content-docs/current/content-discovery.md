@@ -28,7 +28,7 @@ Bitsocial jättää sen sovelluksille, listoille ja käyttäjille sen sijaan, et
 
 - asiakas, joka näyttää yhteisöt, joita käyttäjä jo seuraa
 - kuratoitu oletusluettelo Reddit-tyyliselle sovellukselle
-- hakemistopaikat imageboard-tyyliselle sovellukselle
+- hakemistot, joissa yhteisöt kilpailevat aihenimestä, kuten `/g/` tai `/s/funny`
 - tietyn sovelluksen ylläpitämät haku- tai sijoitusindeksit
 - käyttäjien jakamat suorat linkit
 
@@ -36,9 +36,9 @@ Sovellukset voivat indeksoida, luokitella, suodattaa tai korostaa erilaisia asio
 
 ## Nykyiset sovellukset
 
-5chan käyttää tällä hetkellä tuttuja hakemistopolkuja, kuten `/b/` tai `/g/`. Hakemistomäärityksiä hallitaan nykyään julkisen luettelon kautta, ja tulevien versioiden odotetaan tukevan sovelluksen sisäistä luomista ja hakemistopaikoista äänestämistä.
+5chan ja Seedit käyttävät molemmat [hakemistoja](./directories.md): lyhyitä reittejä, kuten `/g/` tai `/s/funny`, joista yhteisöt kilpailevat. Ehdokkaat luetellaan nykyään julkisessa repositoriossa, ja 5chan testaa äänestyskilpailuja voittajien ratkaisemiseksi.
 
-Seedit käyttää oletusarvoisia yhteisöluetteloita etusivullaan. Yhteisöjä voidaan edelleen luoda ja jakaa oletusluettelon ulkopuolella.
+Lisäksi Seedit tilaa uusille tileille oletusluettelon yhteisöjä niiden tarkoilla osoitteilla. Yhteisöjä voidaan edelleen luoda ja jakaa näiden luetteloiden ulkopuolella.
 
 Molemmissa tapauksissa sovellustason luettelo auttaa käyttäjiä löytämään jotain avattavaa, ja protokollatason haku ratkaisee valitun yhteisön vertaisille.
 

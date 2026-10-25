@@ -28,7 +28,7 @@ Bitsocial laat dat over aan apps, lijsten en gebruikers in plaats van één antw
 
 - een client die communities toont die de gebruiker al volgt
 - een samengestelde standaardlijst voor een app in Reddit-stijl
-- directoryslots voor een app in imageboard-stijl
+- directory's, waarin community's strijden om een onderwerpnaam zoals `/g/` of `/s/funny`
 - zoek- of rangschikkingsindexen die door een specifieke app worden bijgehouden
 - directe links gedeeld door gebruikers
 
@@ -36,9 +36,9 @@ Apps kunnen verschillende dingen indexeren, rangschikken, filteren of benadrukke
 
 ## Huidige apps
 
-5chan gebruikt momenteel bekende mappaden zoals `/b/` of `/g/`. Directory-toewijzingen worden tegenwoordig beheerd via een openbare lijst, en toekomstige versies zullen naar verwachting het maken van in-app-borden en het stemmen op directory-slots ondersteunen.
+5chan en Seedit gebruiken allebei [directory's](./directories.md): korte routes zoals `/g/` of `/s/funny` waar community's om strijden. Kandidaten staan momenteel in een openbare repository, en 5chan test stemrondes om de winnaars te bepalen.
 
-Seedit gebruikt standaard communitylijsten voor de voorpagina. Community's kunnen nog steeds buiten die standaardlijst worden gemaakt en gedeeld.
+Seedit abonneert nieuwe accounts daarnaast op een standaardlijst van exacte community's. Community's kunnen nog steeds buiten deze lijsten worden gemaakt en gedeeld.
 
 In beide gevallen helpt de lijst op app-niveau gebruikers iets te vinden om te openen, en de opzoekopdracht op protocolniveau vertaalt vervolgens de gekozen community naar peers.
 
