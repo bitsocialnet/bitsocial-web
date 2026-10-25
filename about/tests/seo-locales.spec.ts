@@ -62,6 +62,10 @@ test.describe("localized SEO metadata", () => {
     const unknownLanguage = getSeoMetadata("/", "?lang=xx");
     expect(unknownLanguage.robots.startsWith("noindex")).toBe(true);
     expect(unknownLanguage.canonicalUrl).toBe("https://bitsocial.net/");
+
+    const repeatedLanguage = getSeoMetadata("/", "?lang=it&lang=xx");
+    expect(repeatedLanguage.robots.startsWith("noindex")).toBe(true);
+    expect(repeatedLanguage.alternates).toEqual([]);
   });
 
   test("translates titles and descriptions with the rendered locale", async () => {

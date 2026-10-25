@@ -147,7 +147,10 @@ interface SeoUrlState {
 
 function getSeoUrlState(search: string): SeoUrlState {
   const searchParams = new URLSearchParams(search);
-  const language = resolveSupportedLanguageCode(searchParams.get(LANGUAGE_QUERY_PARAM));
+  // Repeated `lang` values are ambiguous, so they stay as extra params and the URL is noindex.
+  const languageValues = searchParams.getAll(LANGUAGE_QUERY_PARAM);
+  const language =
+    languageValues.length === 1 ? resolveSupportedLanguageCode(languageValues[0]) : null;
   if (language) {
     searchParams.delete(LANGUAGE_QUERY_PARAM);
   }
