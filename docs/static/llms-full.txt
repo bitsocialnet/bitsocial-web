@@ -99,6 +99,7 @@ The content is biased toward inference-time lookup, not formal API reference gen
 - [Bitsocial and Urbit](https://docs.bitsocial.net/comparisons/urbit/): How Urbit, a network of personal servers with Ethereum-based Urbit IDs and host-run groups in Tlon Messenger, compares with Bitsocial's peer-to-peer communities.
 - [Content Discovery](https://docs.bitsocial.net/content-discovery/): How Bitsocial separates peer discovery from app-level curation.
 - [Where Posts Live and How Long They Last](https://docs.bitsocial.net/content-persistence/): Why Bitsocial posts are signed and content-addressed but not stored forever by every node, who keeps them online, and how archivers keep old content readable.
+- [Directories](https://docs.bitsocial.net/directories/): How Bitsocial apps let communities compete for a topic name instead of keeping it for whoever claimed it first.
 - [i18n Default Language Policy](https://docs.bitsocial.net/i18n-default-language-policy/): Anonymous visitors resolve language in this order:
 - [A complete layman explanation of the Bitsocial protocol](https://docs.bitsocial.net/layman-protocol-explanation/): A plain-English walkthrough of Bitsocial communities, peer lookup, publishing, anti-spam challenges, moderation, and apps.
 - [BSO Token History](https://docs.bitsocial.net/token-history/): The full generation history of the BSO token, from its 2022 Avalanche origin to today's immutable, adminless Ethereum contract.
@@ -1269,7 +1270,8 @@ Start with the apps that already exist:
 
 - Try [5chan](https://5chan.app) for anonymous imageboard communities.
 - Try [Seedit](https://seedit.app) for Reddit-style discussion.
-- Read the [Bitsocial React hooks](https://docs.bitsocial.net/developer-tools/react-hooks/) docs for client-side integration.
+- Read the [Bitsocial React hooks](https://hooks.bitsocial.net/docs/quickstart/) docs for
+  client-side integration.
 - Read the [Bitsocial CLI](https://docs.bitsocial.net/developer-tools/cli/) docs for node and community operations.
 
 If you want to move quickly, contribute to an existing app first. If the interface, culture, or
@@ -1298,7 +1300,7 @@ their users in a private database.
 There are three practical paths:
 
 1. Fork an existing client when your idea is close to 5chan or Seedit.
-2. Build a new React client with Bitsocial React hooks.
+2. Build a new React client with [Bitsocial React hooks](https://hooks.bitsocial.net/).
 3. Build your own integration on top of node APIs and public RPC infrastructure.
 
 Public RPC should make the third path much more practical. A user can start through a hosted,
@@ -3837,7 +3839,7 @@ Examples include:
 
 - a client showing communities the user already follows
 - a curated default list for a Reddit-style app
-- directory slots for an imageboard-style app
+- directories, where communities compete for a topic name such as `/g/` or `/s/funny`
 - search or ranking indexes maintained by a specific app
 - direct links shared by users
 
@@ -3847,12 +3849,12 @@ the same underlying communities.
 
 ## Current apps
 
-5chan currently uses familiar directory paths such as `/b/` or `/g/`. Directory assignments are
-managed through a public list today, with future versions expected to support in-app board creation
-and voting for directory slots.
+5chan and Seedit both use [directories](https://docs.bitsocial.net/directories/): short routes such as `/g/` or
+`/s/funny` that communities compete for. Candidates are listed in a public repository today, and
+5chan is testing vote contests to decide the winners.
 
-Seedit uses default community lists for its front page. Communities can still be created and shared
-outside that default list.
+Seedit also subscribes new accounts to a default list of exact communities. Communities can still be
+created and shared outside these lists.
 
 In both cases, the app-level list helps users find something to open, and the protocol-level lookup
 then resolves the chosen community to peers.
@@ -3958,6 +3960,86 @@ is that on Bitsocial, keeping something does not need anyone's permission.
 
 Because every archived post is still signed, an archive cannot quietly rewrite what someone said: a
 reader can verify an archived post's signature the same way as a live one.
+
+### Directories
+
+Source: https://docs.bitsocial.net/directories/
+Path: docs/directories.md
+Description: How Bitsocial apps let communities compete for a topic name instead of keeping it for whoever claimed it first.
+
+# Directories
+
+On Reddit, a name like `r/opensource` can belong to only one community, and whoever controls it
+keeps it. If its moderators make choices users dislike, the only alternative is to start
+`r/opensource2`. The new community starts with zero subscribers, even though most people who
+subscribed to `r/opensource` cared about open source, not about that particular moderation team.
+
+Bitsocial apps avoid this with **directories**. A directory is a topic name, such as `opensource`,
+that communities compete for. The short route for that name opens whichever community currently
+ranks first, so a better community can take over the name without anyone's permission.
+
+## How it works
+
+1. **A directory code is a topic name.** Seedit uses routes like `/s/funny`. 5chan uses
+   imageboard paths like `/g/`.
+2. **Communities compete as candidates.** Each directory has a list of candidate communities, each
+   with its own exact address, such as `funny-posting.bso`.
+3. **The highest-ranked candidate wins the route.** Opening `/s/funny` shows the current winner.
+4. **Losing deletes nothing.** A community that is not the winner keeps its address, its posts, and
+   its subscribers, and anyone can still open it directly.
+
+## The name is a front door, not an identity
+
+A directory code is only a discovery route. Everything durable points at an exact community:
+
+- Subscribing from `/s/funny` subscribes to the current winner's exact address. The directory code
+  itself is never stored as a subscription.
+- Post links always use the community's exact address, so an old link cannot start pointing to a
+  different community after the winner changes.
+- When the winner changes, Seedit leaves existing subscriptions alone and asks each subscriber
+  whether to switch to the new winner, keep both, or keep the current community. Automatic
+  switching is an opt-in setting per directory, and an automatic switch shows a notice with undo.
+
+A competing community therefore does not take anyone's subscriptions. It wins the name: new visitors
+land on it, and existing subscribers get a one-click choice. People who preferred the old community
+keep it.
+
+## Why not first-come names
+
+- **No squatting.** Holding a good name is not enough. A community has to remain the best candidate
+  for it.
+- **No admin assigns names.** Allocation by an administrator would recreate the central veto that
+  Bitsocial is built to remove.
+- **Competitors keep a path to the audience.** A rival community targets the same name instead of
+  starting over under a worse one.
+- **Clients agree on the winner.** Seedit ranks candidates deterministically, so every client
+  reading the same finalized directory snapshot shows the same winner. Seedit does not swap in
+  another candidate because the winner is temporarily unreachable on one user's connection.
+
+## How winners are chosen today
+
+Candidates are published as JSON files in the
+[bitsocialnet/lists](https://github.com/bitsocialnet/lists) repository, one file per directory, and
+a community joins a directory through a pull request to its file. This is a bootstrap step. The goal
+is for voting to replace pull requests as the way winners are decided.
+
+- **Seedit** ranks a directory's candidates by score, then by the time they were added, then by
+  address. Each directory file carries a revision number, and any change to its candidates or
+  winner publishes a new revision.
+- **5chan** runs one vote contest per directory with
+  [`@bitsocial/pubsub-voting`](https://github.com/bitsocialnet/pubsub-voting). Clients exchange
+  signed ballots over libp2p gossipsub and compute the tally themselves, with no server counting
+  votes. Voting requires holding a 5chan Pass, a non-transferable token, and each holder gets one
+  vote.
+  Voting for a board that is not yet listed nominates it. The contests currently run on the Base
+  Sepolia testnet, and until they move off testnet, tallies are shown but do not reorder the list.
+
+## Protocol or app?
+
+Directories are not part of PKC, the peer-to-peer layer that stores and moves communities. They are
+a convention that clients apply above it, alongside default lists and search; see
+[Content Discovery](https://docs.bitsocial.net/content-discovery/). A client can read the same directory files, publish its
+own, or skip directories entirely, and users can still open any community by its address.
 
 ### i18n Default Language Policy
 
@@ -7373,7 +7455,7 @@ EXAMPLES
   $ bitsocial challenge install ./my-local-challenge
 ```
 
-_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/challenge/install.ts)_
+_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/challenge/install.ts)_
 
 ## `bitsocial challenge list`
 
@@ -7399,7 +7481,7 @@ EXAMPLES
   $ bitsocial challenge list -q
 ```
 
-_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/challenge/list.ts)_
+_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/challenge/list.ts)_
 
 ## `bitsocial challenge ls`
 
@@ -7427,21 +7509,24 @@ EXAMPLES
 
 ## `bitsocial challenge remove NAME`
 
-Remove an installed challenge package
+Remove an installed challenge package. Refuses while a community's settings.challenges still names it, unless --force is passed
 
 ```
 USAGE
-  $ bitsocial challenge remove NAME --pkcRpcUrl <value> [--pkcOptions.dataPath <value>]
+  $ bitsocial challenge remove NAME --pkcRpcUrl <value> [--pkcOptions.dataPath <value>] [--force]
 
 ARGUMENTS
   NAME  The challenge package name (e.g., my-challenge or @scope/my-challenge)
 
 FLAGS
+  --force                        Remove without checking whether communities still use it (the daemon is not contacted
+                                 for the check)
   --pkcOptions.dataPath=<value>  Data path where challenges are installed
   --pkcRpcUrl=<value>            (required) [default: ws://localhost:9138/] URL to PKC RPC
 
 DESCRIPTION
-  Remove an installed challenge package
+  Remove an installed challenge package. Refuses while a community's settings.challenges still names it, unless --force
+  is passed
 
 ALIASES
   $ bitsocial challenge uninstall
@@ -7452,27 +7537,32 @@ EXAMPLES
   $ bitsocial challenge remove my-challenge
 
   $ bitsocial challenge remove @scope/my-challenge
+
+  $ bitsocial challenge remove my-challenge --force
 ```
 
-_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/challenge/remove.ts)_
+_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/challenge/remove.ts)_
 
 ## `bitsocial challenge rm NAME`
 
-Remove an installed challenge package
+Remove an installed challenge package. Refuses while a community's settings.challenges still names it, unless --force is passed
 
 ```
 USAGE
-  $ bitsocial challenge rm NAME --pkcRpcUrl <value> [--pkcOptions.dataPath <value>]
+  $ bitsocial challenge rm NAME --pkcRpcUrl <value> [--pkcOptions.dataPath <value>] [--force]
 
 ARGUMENTS
   NAME  The challenge package name (e.g., my-challenge or @scope/my-challenge)
 
 FLAGS
+  --force                        Remove without checking whether communities still use it (the daemon is not contacted
+                                 for the check)
   --pkcOptions.dataPath=<value>  Data path where challenges are installed
   --pkcRpcUrl=<value>            (required) [default: ws://localhost:9138/] URL to PKC RPC
 
 DESCRIPTION
-  Remove an installed challenge package
+  Remove an installed challenge package. Refuses while a community's settings.challenges still names it, unless --force
+  is passed
 
 ALIASES
   $ bitsocial challenge uninstall
@@ -7483,25 +7573,30 @@ EXAMPLES
   $ bitsocial challenge remove my-challenge
 
   $ bitsocial challenge remove @scope/my-challenge
+
+  $ bitsocial challenge remove my-challenge --force
 ```
 
 ## `bitsocial challenge un NAME`
 
-Remove an installed challenge package
+Remove an installed challenge package. Refuses while a community's settings.challenges still names it, unless --force is passed
 
 ```
 USAGE
-  $ bitsocial challenge un NAME --pkcRpcUrl <value> [--pkcOptions.dataPath <value>]
+  $ bitsocial challenge un NAME --pkcRpcUrl <value> [--pkcOptions.dataPath <value>] [--force]
 
 ARGUMENTS
   NAME  The challenge package name (e.g., my-challenge or @scope/my-challenge)
 
 FLAGS
+  --force                        Remove without checking whether communities still use it (the daemon is not contacted
+                                 for the check)
   --pkcOptions.dataPath=<value>  Data path where challenges are installed
   --pkcRpcUrl=<value>            (required) [default: ws://localhost:9138/] URL to PKC RPC
 
 DESCRIPTION
-  Remove an installed challenge package
+  Remove an installed challenge package. Refuses while a community's settings.challenges still names it, unless --force
+  is passed
 
 ALIASES
   $ bitsocial challenge uninstall
@@ -7512,25 +7607,30 @@ EXAMPLES
   $ bitsocial challenge remove my-challenge
 
   $ bitsocial challenge remove @scope/my-challenge
+
+  $ bitsocial challenge remove my-challenge --force
 ```
 
 ## `bitsocial challenge uninstall NAME`
 
-Remove an installed challenge package
+Remove an installed challenge package. Refuses while a community's settings.challenges still names it, unless --force is passed
 
 ```
 USAGE
-  $ bitsocial challenge uninstall NAME --pkcRpcUrl <value> [--pkcOptions.dataPath <value>]
+  $ bitsocial challenge uninstall NAME --pkcRpcUrl <value> [--pkcOptions.dataPath <value>] [--force]
 
 ARGUMENTS
   NAME  The challenge package name (e.g., my-challenge or @scope/my-challenge)
 
 FLAGS
+  --force                        Remove without checking whether communities still use it (the daemon is not contacted
+                                 for the check)
   --pkcOptions.dataPath=<value>  Data path where challenges are installed
   --pkcRpcUrl=<value>            (required) [default: ws://localhost:9138/] URL to PKC RPC
 
 DESCRIPTION
-  Remove an installed challenge package
+  Remove an installed challenge package. Refuses while a community's settings.challenges still names it, unless --force
+  is passed
 
 ALIASES
   $ bitsocial challenge uninstall
@@ -7541,6 +7641,8 @@ EXAMPLES
   $ bitsocial challenge remove my-challenge
 
   $ bitsocial challenge remove @scope/my-challenge
+
+  $ bitsocial challenge remove my-challenge --force
 ```
 
 ## `bitsocial community create`
@@ -7571,7 +7673,7 @@ EXAMPLES
     $ bitsocial community create --jsonFile ./create-options.json
 ```
 
-_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/community/create.ts)_
+_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/create.ts)_
 
 ## `bitsocial community delete ADDRESSES`
 
@@ -7596,7 +7698,7 @@ EXAMPLES
   $ bitsocial community delete 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/community/delete.ts)_
+_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/delete.ts)_
 
 ## `bitsocial community edit ADDRESS`
 
@@ -7673,7 +7775,7 @@ EXAMPLES
     $ bitsocial community edit bitsocial.bso --jsonFile ./edit-options.json
 ```
 
-_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/community/edit.ts)_
+_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/edit.ts)_
 
 ## `bitsocial community export [ADDRESS]`
 
@@ -7714,7 +7816,7 @@ EXAMPLES
   $ bitsocial community export --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/community/export.ts)_
+_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/export.ts)_
 
 ## `bitsocial community get [ADDRESS]`
 
@@ -7745,7 +7847,7 @@ EXAMPLES
   $ bitsocial community get --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/community/get.ts)_
+_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/get.ts)_
 
 ## `bitsocial community list`
 
@@ -7768,7 +7870,7 @@ EXAMPLES
   $ bitsocial community list
 ```
 
-_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/community/list.ts)_
+_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/list.ts)_
 
 ## `bitsocial community start ADDRESSES`
 
@@ -7802,7 +7904,7 @@ EXAMPLES
     $ bitsocial community start $(bitsocial community list -q) --concurrency 1
 ```
 
-_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/community/start.ts)_
+_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/start.ts)_
 
 ## `bitsocial community stop ADDRESSES`
 
@@ -7827,7 +7929,7 @@ EXAMPLES
   $ bitsocial community stop Qmb99crTbSUfKXamXwZBe829Vf6w5w5TktPkb6WstC9RFW
 ```
 
-_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/community/stop.ts)_
+_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/stop.ts)_
 
 ## `bitsocial daemon`
 
@@ -7877,7 +7979,7 @@ EXAMPLES
   $ bitsocial daemon --no-allowPrivateKeyExport
 ```
 
-_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/daemon.ts)_
+_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/daemon.ts)_
 
 ## `bitsocial help [COMMAND]`
 
@@ -7941,7 +8043,7 @@ EXAMPLES
   $ bitsocial logs --stdout -f
 ```
 
-_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/logs.ts)_
+_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/logs.ts)_
 
 ## `bitsocial page-sort add PACKAGE`
 
@@ -8033,7 +8135,7 @@ EXAMPLES
   $ bitsocial page-sort install ./my-local-page-sort
 ```
 
-_See code: [src/cli/commands/page-sort/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/page-sort/install.ts)_
+_See code: [src/cli/commands/page-sort/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/page-sort/install.ts)_
 
 ## `bitsocial page-sort list`
 
@@ -8059,7 +8161,7 @@ EXAMPLES
   $ bitsocial page-sort list -q
 ```
 
-_See code: [src/cli/commands/page-sort/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/page-sort/list.ts)_
+_See code: [src/cli/commands/page-sort/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/page-sort/list.ts)_
 
 ## `bitsocial page-sort ls`
 
@@ -8097,7 +8199,8 @@ ARGUMENTS
   NAME  The page sort package name (e.g., my-page-sort or @scope/my-page-sort)
 
 FLAGS
-  --force                        Remove even if communities still use it, or if the daemon cannot be reached to check
+  --force                        Remove without checking whether communities still use it (the daemon is not contacted
+                                 for the check)
   --pkcOptions.dataPath=<value>  Data path where page sorts are installed
   --pkcRpcUrl=<value>            (required) [default: ws://localhost:9138/] URL to PKC RPC
 
@@ -8116,7 +8219,7 @@ EXAMPLES
   $ bitsocial page-sort remove @pkcprotocol/active-page-sort --force
 ```
 
-_See code: [src/cli/commands/page-sort/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/page-sort/remove.ts)_
+_See code: [src/cli/commands/page-sort/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/page-sort/remove.ts)_
 
 ## `bitsocial page-sort rm NAME`
 
@@ -8130,7 +8233,8 @@ ARGUMENTS
   NAME  The page sort package name (e.g., my-page-sort or @scope/my-page-sort)
 
 FLAGS
-  --force                        Remove even if communities still use it, or if the daemon cannot be reached to check
+  --force                        Remove without checking whether communities still use it (the daemon is not contacted
+                                 for the check)
   --pkcOptions.dataPath=<value>  Data path where page sorts are installed
   --pkcRpcUrl=<value>            (required) [default: ws://localhost:9138/] URL to PKC RPC
 
@@ -8161,7 +8265,8 @@ ARGUMENTS
   NAME  The page sort package name (e.g., my-page-sort or @scope/my-page-sort)
 
 FLAGS
-  --force                        Remove even if communities still use it, or if the daemon cannot be reached to check
+  --force                        Remove without checking whether communities still use it (the daemon is not contacted
+                                 for the check)
   --pkcOptions.dataPath=<value>  Data path where page sorts are installed
   --pkcRpcUrl=<value>            (required) [default: ws://localhost:9138/] URL to PKC RPC
 
@@ -8192,7 +8297,8 @@ ARGUMENTS
   NAME  The page sort package name (e.g., my-page-sort or @scope/my-page-sort)
 
 FLAGS
-  --force                        Remove even if communities still use it, or if the daemon cannot be reached to check
+  --force                        Remove without checking whether communities still use it (the daemon is not contacted
+                                 for the check)
   --pkcOptions.dataPath=<value>  Data path where page sorts are installed
   --pkcRpcUrl=<value>            (required) [default: ws://localhost:9138/] URL to PKC RPC
 
@@ -8226,7 +8332,7 @@ EXAMPLES
   $ bitsocial update check
 ```
 
-_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/update/check.ts)_
+_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/update/check.ts)_
 
 ## `bitsocial update install [VERSION]`
 
@@ -8258,7 +8364,7 @@ EXAMPLES
   $ bitsocial update install --no-restart-daemons
 ```
 
-_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/update/install.ts)_
+_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/update/install.ts)_
 
 ## `bitsocial update versions`
 
@@ -8280,7 +8386,7 @@ EXAMPLES
   $ bitsocial update versions --limit 5
 ```
 
-_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.109/src/cli/commands/update/versions.ts)_
+_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/update/versions.ts)_
 
 ## Contribution
 
@@ -10002,7 +10108,7 @@ EXAMPLES
   $ 5chan board add my-board.bso --apply-defaults --defaults-preset ./my-preset.json
 ```
 
-_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.33/src/commands/board/add.ts)_
+_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/board/add.ts)_
 
 ## `5chan board edit ADDRESS`
 
@@ -10049,7 +10155,7 @@ EXAMPLES
   $ 5chan board edit random.bso -i
 ```
 
-_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.33/src/commands/board/edit.ts)_
+_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/board/edit.ts)_
 
 ## `5chan board list`
 
@@ -10066,7 +10172,7 @@ EXAMPLES
   $ 5chan board list
 ```
 
-_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.33/src/commands/board/list.ts)_
+_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/board/list.ts)_
 
 ## `5chan board remove ADDRESS`
 
@@ -10086,7 +10192,7 @@ EXAMPLES
   $ 5chan board remove random.bso
 ```
 
-_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.33/src/commands/board/remove.ts)_
+_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/board/remove.ts)_
 
 ## `5chan defaults set`
 
@@ -10126,7 +10232,7 @@ EXAMPLES
   $ 5chan defaults set -i
 ```
 
-_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.33/src/commands/defaults/set.ts)_
+_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/defaults/set.ts)_
 
 ## `5chan help [COMMAND]`
 
@@ -10190,7 +10296,7 @@ EXAMPLES
   $ 5chan logs --stdout -f
 ```
 
-_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.33/src/commands/logs.ts)_
+_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/logs.ts)_
 
 ## `5chan start`
 
@@ -10228,7 +10334,7 @@ EXAMPLES
   $ 5chan start --log-path /var/log/5chan
 ```
 
-_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.33/src/commands/start.ts)_
+_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/start.ts)_
 
 ## Config Hot-Reload
 

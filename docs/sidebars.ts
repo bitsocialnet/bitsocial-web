@@ -13,6 +13,7 @@ const sidebars: SidebarsConfig = {
         "browser-p2p",
         "content-persistence",
         "content-discovery",
+        "directories",
         "custom-challenges",
         "local-moderation",
         "identity-and-ownership",

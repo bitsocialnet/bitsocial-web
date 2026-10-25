@@ -35,7 +35,7 @@ Examples include:
 
 - a client showing communities the user already follows
 - a curated default list for a Reddit-style app
-- directory slots for an imageboard-style app
+- directories, where communities compete for a topic name such as `/g/` or `/s/funny`
 - search or ranking indexes maintained by a specific app
 - direct links shared by users
 
@@ -45,12 +45,12 @@ the same underlying communities.
 
 ## Current apps
 
-5chan currently uses familiar directory paths such as `/b/` or `/g/`. Directory assignments are
-managed through a public list today, with future versions expected to support in-app board creation
-and voting for directory slots.
+5chan and Seedit both use [directories](./directories.md): short routes such as `/g/` or
+`/s/funny` that communities compete for. Candidates are listed in a public repository today, and
+5chan is testing vote contests to decide the winners.
 
-Seedit uses default community lists for its front page. Communities can still be created and shared
-outside that default list.
+Seedit also subscribes new accounts to a default list of exact communities. Communities can still be
+created and shared outside these lists.
 
 In both cases, the app-level list helps users find something to open, and the protocol-level lookup
 then resolves the chosen community to peers.
