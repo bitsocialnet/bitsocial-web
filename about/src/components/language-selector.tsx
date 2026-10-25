@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Check, ChevronDown, Globe, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import {
@@ -123,6 +123,8 @@ export default function LanguageSelector({
   mobileMenuInteractionGuardAttribute?: string;
 }) {
   const { i18n, t } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -154,8 +156,23 @@ export default function LanguageSelector({
       setOpen(false);
       setSearchQuery("");
       setActiveIndex(0);
+
+      // A `?lang=` URL (e.g. from a localized search result) outranks the saved choice on reload.
+      const searchParams = new URLSearchParams(location.search);
+      if (searchParams.has(LANGUAGE_QUERY_PARAM)) {
+        if (code === DEFAULT_LANGUAGE_CODE) {
+          searchParams.delete(LANGUAGE_QUERY_PARAM);
+        } else {
+          searchParams.set(LANGUAGE_QUERY_PARAM, code);
+        }
+        const query = searchParams.toString();
+        navigate(
+          { pathname: location.pathname, search: query ? `?${query}` : "", hash: location.hash },
+          { replace: true },
+        );
+      }
     },
-    [i18n],
+    [i18n, location.hash, location.pathname, location.search, navigate],
   );
 
   useEffect(() => {

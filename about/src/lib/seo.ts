@@ -1,12 +1,22 @@
+import type { TFunction } from "i18next";
 import {
   APPS,
   getAppBySlug,
+  getAppDescription,
   getAppPlatforms,
+  getAppTagline,
   getPrimaryCategorySlug,
   type AppCategorySlug,
   type AppData,
 } from "./apps-data";
 import { DOCS_LINKS, DOCS_SITE_URL } from "./docs-links";
+import {
+  DEFAULT_LANGUAGE_CODE,
+  LANGUAGE_QUERY_PARAM,
+  SUPPORTED_LANGUAGE_CODES,
+  resolveSupportedLanguageCode,
+  type SupportedLanguageCode,
+} from "./locales";
 
 const SITE_NAME = "Bitsocial";
 const SITE_ORIGIN = "https://bitsocial.net";
@@ -66,12 +76,23 @@ const HOME_SEO_FEATURES = [
   },
 ] as const;
 
+// Google documents hreflang values as ISO 639-1; Filipino only has a three-letter code.
+const HREFLANG_OVERRIDES: Partial<Record<SupportedLanguageCode, string>> = {
+  fil: "tl",
+};
+
 type StructuredDataValue = Record<string, unknown>;
+
+export interface SeoAlternateLink {
+  hreflang: string;
+  href: string;
+}
 
 export interface SeoMetadata {
   title: string;
   description: string;
   canonicalUrl: string;
+  alternates: SeoAlternateLink[];
   robots: string;
   ogType: "website";
   imageUrl: string;
@@ -100,6 +121,73 @@ function toAbsoluteUrl(pathOrUrl: string) {
 
   const normalizedPath = pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`;
   return `${SITE_ORIGIN}${normalizedPath}`;
+}
+
+// Each language is indexable at `?lang=<code>`; English stays on the bare path, which is also
+// the locale-adaptive x-default that crawlers without Accept-Language receive in English.
+function toLocalizedUrl(pathname: string, language: SupportedLanguageCode) {
+  const url = toAbsoluteUrl(pathname);
+  return language === DEFAULT_LANGUAGE_CODE ? url : `${url}?${LANGUAGE_QUERY_PARAM}=${language}`;
+}
+
+function buildAlternateLinks(pathname: string): SeoAlternateLink[] {
+  return [
+    ...SUPPORTED_LANGUAGE_CODES.map((language) => ({
+      hreflang: HREFLANG_OVERRIDES[language] ?? language,
+      href: toLocalizedUrl(pathname, language),
+    })),
+    { hreflang: "x-default", href: toAbsoluteUrl(pathname) },
+  ];
+}
+
+interface SeoUrlState {
+  language: SupportedLanguageCode;
+  hasNonLanguageParams: boolean;
+}
+
+function getSeoUrlState(search: string): SeoUrlState {
+  const searchParams = new URLSearchParams(search);
+  // Repeated `lang` values are ambiguous, so they stay as extra params and the URL is noindex.
+  const languageValues = searchParams.getAll(LANGUAGE_QUERY_PARAM);
+  const language =
+    languageValues.length === 1 ? resolveSupportedLanguageCode(languageValues[0]) : null;
+  if (language) {
+    searchParams.delete(LANGUAGE_QUERY_PARAM);
+  }
+
+  return {
+    language: language ?? DEFAULT_LANGUAGE_CODE,
+    hasNonLanguageParams: searchParams.size > 0,
+  };
+}
+
+function buildIndexingMetadata(pathname: string, urlState: SeoUrlState) {
+  return {
+    canonicalUrl: toLocalizedUrl(pathname, urlState.language),
+    alternates: urlState.hasNonLanguageParams ? [] : buildAlternateLinks(pathname),
+    robots: urlState.hasNonLanguageParams ? NOINDEX_ROBOTS : DEFAULT_ROBOTS,
+  };
+}
+
+function translateSeoValue(
+  t: TFunction | undefined,
+  key: string,
+  fallback: string,
+  values: Record<string, string> = {},
+) {
+  const translatedValue = t?.(key, { defaultValue: fallback, ...values });
+  if (typeof translatedValue === "string") {
+    return translatedValue;
+  }
+
+  return Object.entries(values).reduce(
+    (text, [name, value]) => text.split(`{{${name}}}`).join(value),
+    fallback,
+  );
+}
+
+function stripMarkup(text: string) {
+  return text.replace(/<[^>]+>/g, "");
 }
 
 function truncateDescription(text: string, maxLength = 160) {
@@ -241,14 +329,11 @@ function buildHomeWebPageSchema(): StructuredDataValue {
   };
 }
 
-function buildHomeSeoMetadata(search: string): SeoMetadata {
-  const hasSearchParams = new URLSearchParams(search).size > 0;
-
+function buildHomeSeoMetadata(urlState: SeoUrlState, t?: TFunction): SeoMetadata {
   return {
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    canonicalUrl: toAbsoluteUrl("/"),
-    robots: hasSearchParams ? NOINDEX_ROBOTS : DEFAULT_ROBOTS,
+    title: translateSeoValue(t, "seo.home.title", SITE_TITLE),
+    description: translateSeoValue(t, "seo.home.description", SITE_DESCRIPTION),
+    ...buildIndexingMetadata("/", urlState),
     ogType: "website",
     imageUrl: toAbsoluteUrl(DEFAULT_IMAGE_PATH),
     imageAlt: DEFAULT_IMAGE_ALT,
@@ -291,16 +376,21 @@ function buildProjectsCollectionPageSchema(): StructuredDataValue {
   };
 }
 
-function buildProjectsSeoMetadata(search: string): SeoMetadata {
-  const hasSearchParams = new URLSearchParams(search).size > 0;
-
+function buildProjectsSeoMetadata(urlState: SeoUrlState, t?: TFunction): SeoMetadata {
   return {
-    title: "Bitsocial Projects | P2P Social Apps and Tools",
-    description: truncateDescription(
-      "Explore Bitsocial apps, anti-spam modules, and CLI tools, including live web apps, Android APKs, desktop builds, and developer utilities.",
+    title: translateSeoValue(
+      t,
+      "seo.projects.title",
+      "Bitsocial Projects | P2P Social Apps and Tools",
     ),
-    canonicalUrl: toAbsoluteUrl("/projects"),
-    robots: hasSearchParams ? NOINDEX_ROBOTS : DEFAULT_ROBOTS,
+    description: truncateDescription(
+      translateSeoValue(
+        t,
+        "seo.projects.description",
+        "Explore Bitsocial apps, anti-spam modules, and CLI tools, including live web apps, Android APKs, desktop builds, and developer utilities.",
+      ),
+    ),
+    ...buildIndexingMetadata("/projects", urlState),
     ogType: "website",
     imageUrl: toAbsoluteUrl(DEFAULT_IMAGE_PATH),
     imageAlt: "Bitsocial project directory preview",
@@ -316,16 +406,19 @@ function buildProjectsSeoMetadata(search: string): SeoMetadata {
   };
 }
 
-function buildPrivacySeoMetadata(): SeoMetadata {
+function buildPrivacySeoMetadata(urlState: SeoUrlState, t?: TFunction): SeoMetadata {
   const canonicalUrl = toAbsoluteUrl("/privacy");
 
   return {
-    title: "Bitsocial | Privacy",
+    title: translateSeoValue(t, "seo.privacy.title", "Bitsocial | Privacy"),
     description: truncateDescription(
-      "How bitsocial.net handles newsletter signups, privacy-friendly analytics, language preferences, and third-party services across the about site, docs, and stats surfaces.",
+      translateSeoValue(
+        t,
+        "seo.privacy.description",
+        "How bitsocial.net handles newsletter signups, privacy-friendly analytics, language preferences, and third-party services across the about site, docs, and stats surfaces.",
+      ),
     ),
-    canonicalUrl,
-    robots: DEFAULT_ROBOTS,
+    ...buildIndexingMetadata("/privacy", urlState),
     ogType: "website",
     imageUrl: toAbsoluteUrl(DEFAULT_IMAGE_PATH),
     imageAlt: "Bitsocial privacy notice",
@@ -351,16 +444,19 @@ function buildPrivacySeoMetadata(): SeoMetadata {
   };
 }
 
-function buildAboutSeoMetadata(): SeoMetadata {
+function buildAboutSeoMetadata(urlState: SeoUrlState, t?: TFunction): SeoMetadata {
   const canonicalUrl = toAbsoluteUrl("/about");
 
   return {
-    title: "About Bitsocial | Core Team",
+    title: translateSeoValue(t, "seo.about.title", "About Bitsocial | Core Team"),
     description: truncateDescription(
-      "Meet the Bitsocial core team and learn about the peer-to-peer social protocol they have been building since early 2022.",
+      translateSeoValue(
+        t,
+        "seo.about.description",
+        "Meet the Bitsocial core team and learn about the peer-to-peer social protocol they have been building since early 2022.",
+      ),
     ),
-    canonicalUrl,
-    robots: DEFAULT_ROBOTS,
+    ...buildIndexingMetadata("/about", urlState),
     ogType: "website",
     imageUrl: toAbsoluteUrl(DEFAULT_IMAGE_PATH),
     imageAlt: "Bitsocial core team page",
@@ -389,17 +485,23 @@ function buildAboutSeoMetadata(): SeoMetadata {
   };
 }
 
-function buildBlogSeoMetadata(search: string): SeoMetadata {
-  const hasSearchParams = new URLSearchParams(search).size > 0;
+function buildBlogSeoMetadata(urlState: SeoUrlState, t?: TFunction): SeoMetadata {
   const canonicalUrl = toAbsoluteUrl("/blog");
 
   return {
-    title: "Bitsocial Blog | Updates, Releases, and Tutorials",
-    description: truncateDescription(
-      "The official Bitsocial blog from the core devs, published as an unstoppable peer-to-peer feed. Read product updates, release notes, and tutorials from any Bitsocial app.",
+    title: translateSeoValue(
+      t,
+      "seo.blog.title",
+      "Bitsocial Blog | Updates, Releases, and Tutorials",
     ),
-    canonicalUrl,
-    robots: hasSearchParams ? NOINDEX_ROBOTS : DEFAULT_ROBOTS,
+    description: truncateDescription(
+      translateSeoValue(
+        t,
+        "seo.blog.description",
+        "The official Bitsocial blog from the core devs, published as an unstoppable peer-to-peer feed. Read product updates, release notes, and tutorials from any Bitsocial app.",
+      ),
+    ),
+    ...buildIndexingMetadata("/blog", urlState),
     ogType: "website",
     imageUrl: toAbsoluteUrl(DEFAULT_IMAGE_PATH),
     imageAlt: "Bitsocial blog preview",
@@ -510,15 +612,22 @@ function buildAppDetailPageSchema(app: AppData): StructuredDataValue {
   };
 }
 
-function buildAppDetailSeoMetadata(search: string, app: AppData): SeoMetadata {
-  const hasSearchParams = new URLSearchParams(search).size > 0;
-  const canonicalUrl = toAbsoluteUrl(`/projects/${app.slug}`);
+function buildAppDetailSeoMetadata(
+  urlState: SeoUrlState,
+  app: AppData,
+  t?: TFunction,
+): SeoMetadata {
+  const pathname = `/projects/${app.slug}`;
+  const canonicalUrl = toAbsoluteUrl(pathname);
+  const tagline = t ? getAppTagline(app, t) : app.tagline;
+  const description = t ? getAppDescription(app, t) : app.description;
 
   return {
-    title: `${app.name} | Bitsocial Project Directory`,
-    description: truncateDescription(`${app.tagline} ${app.description}`),
-    canonicalUrl,
-    robots: hasSearchParams ? NOINDEX_ROBOTS : DEFAULT_ROBOTS,
+    title: translateSeoValue(t, "seo.appDetail.title", "{{name}} | Bitsocial Project Directory", {
+      name: app.name,
+    }),
+    description: truncateDescription(stripMarkup(`${tagline} ${description}`)),
+    ...buildIndexingMetadata(pathname, urlState),
     ogType: "website",
     imageUrl: toAbsoluteUrl(DEFAULT_IMAGE_PATH),
     imageAlt: `${app.name} on Bitsocial`,
@@ -550,6 +659,7 @@ function buildFallbackSeoMetadata(pathname: string): SeoMetadata {
     title: "Page Not Found | Bitsocial",
     description: SITE_DESCRIPTION,
     canonicalUrl: toAbsoluteUrl(pathname),
+    alternates: [],
     robots: NOINDEX_ROBOTS,
     ogType: "website",
     imageUrl: toAbsoluteUrl(DEFAULT_IMAGE_PATH),
@@ -558,43 +668,51 @@ function buildFallbackSeoMetadata(pathname: string): SeoMetadata {
   };
 }
 
-function resolveKnownSeoMetadata(normalizedPath: string, search: string): SeoMetadata | null {
+function resolveKnownSeoMetadata(
+  normalizedPath: string,
+  search: string,
+  t?: TFunction,
+): SeoMetadata | null {
+  const urlState = getSeoUrlState(search);
+
   if (normalizedPath === "/") {
-    return buildHomeSeoMetadata(search);
+    return buildHomeSeoMetadata(urlState, t);
   }
 
   if (normalizedPath === "/projects") {
-    return buildProjectsSeoMetadata(search);
+    return buildProjectsSeoMetadata(urlState, t);
   }
 
   if (normalizedPath === "/privacy") {
-    return buildPrivacySeoMetadata();
+    return buildPrivacySeoMetadata(urlState, t);
   }
 
   if (normalizedPath === "/about") {
-    return buildAboutSeoMetadata();
+    return buildAboutSeoMetadata(urlState, t);
   }
 
   if (normalizedPath === "/blog") {
-    return buildBlogSeoMetadata(search);
+    return buildBlogSeoMetadata(urlState, t);
   }
 
   const appSlugMatch = normalizedPath.match(/^\/projects\/([^/]+)$/);
   if (appSlugMatch?.[1]) {
     const app = getAppBySlug(appSlugMatch[1]);
     if (app) {
-      return buildAppDetailSeoMetadata(search, app);
+      return buildAppDetailSeoMetadata(urlState, app, t);
     }
   }
 
   return null;
 }
 
-export function getSeoMetadata(pathname: string, search = ""): SeoMetadata {
+// `t` should be bound to the rendered locale so the title and description match the page body;
+// canonical and hreflang URLs come from the `lang` query parameter alone.
+export function getSeoMetadata(pathname: string, search = "", t?: TFunction): SeoMetadata {
   const normalizedPath = normalizePathname(pathname);
 
   return (
-    resolveKnownSeoMetadata(normalizedPath, search) ?? buildFallbackSeoMetadata(normalizedPath)
+    resolveKnownSeoMetadata(normalizedPath, search, t) ?? buildFallbackSeoMetadata(normalizedPath)
   );
 }
 
@@ -612,10 +730,15 @@ export function getStaticSeoRoutes(): StaticSeoRoute[] {
     "/about",
     "/blog",
     ...APPS.map((app) => `/projects/${app.slug}`),
-  ].map((pathname) => ({
-    pathname,
-    seo: getSeoMetadata(pathname),
-  }));
+  ].flatMap((pathname) =>
+    SUPPORTED_LANGUAGE_CODES.map((language) => ({
+      pathname,
+      seo: getSeoMetadata(
+        pathname,
+        language === DEFAULT_LANGUAGE_CODE ? "" : `?${LANGUAGE_QUERY_PARAM}=${language}`,
+      ),
+    })),
+  );
 }
 
 function escapeHtml(value: string) {
@@ -642,6 +765,10 @@ export function renderSeoHead(seo: SeoMetadata) {
     `    <meta data-seo-managed="description" name="description" content="${escapeHtml(seo.description)}" />`,
     `    <meta data-seo-managed="robots" name="robots" content="${escapeHtml(seo.robots)}" />`,
     `    <link data-seo-managed="canonical" rel="canonical" href="${escapeHtml(seo.canonicalUrl)}" />`,
+    ...seo.alternates.map(
+      (alternate) =>
+        `    <link data-seo-managed="alternate" rel="alternate" hreflang="${escapeHtml(alternate.hreflang)}" href="${escapeHtml(alternate.href)}" />`,
+    ),
     `    <meta data-seo-managed="og:type" property="og:type" content="${escapeHtml(seo.ogType)}" />`,
     `    <meta data-seo-managed="og:site_name" property="og:site_name" content="${SITE_NAME}" />`,
     `    <meta data-seo-managed="og:title" property="og:title" content="${escapeHtml(seo.title)}" />`,
