@@ -24,6 +24,7 @@ import {
   type Time,
   type UTCTimestamp,
 } from "lightweight-charts";
+import { Skeleton } from "boneyard-js/react";
 import { useTranslation } from "react-i18next";
 import { CHART_EVENTS, type ChartEvent } from "@/lib/chart/events";
 import { DAY_SECONDS, ERAS, REBRAND_DAY, type Candle } from "@/lib/chart/history";
@@ -173,11 +174,38 @@ type LegendNodes = {
 type TipNodes = Record<"tip" | "title" | "date", HTMLElement | null>;
 
 /**
+ * The chart's panel. While `loading`, the chart is drawn but hidden under skeleton bones, so its
+ * first view is already up to date. `corepack yarn chart:bones` captures the bones from the chart.
+ * The panel stays outside the skeleton because boneyard draws no bones for surfaces, and the chart
+ * stays whole inside it because boneyard mounts its children a render late.
+ */
+export default function PriceChart({ candles, loading }: { candles: Candle[]; loading: boolean }) {
+  return (
+    <div className="ch-panel">
+      {/* Bones are captured per viewport width, so the viewport picks them, not the panel. */}
+      <Skeleton
+        name="price-chart"
+        loading={loading}
+        snapshotConfig={{ excludeSelectors: [".sr-only"] }}
+        select="viewport"
+        className="ch-skeleton"
+        color="var(--ch-bone)"
+        darkColor="var(--ch-bone)"
+        animate="solid"
+        boneClass="ch-bone"
+      >
+        <Chart candles={candles} />
+      </Skeleton>
+    </div>
+  );
+}
+
+/**
  * BSO's daily price across all three contracts, on TradingView's Lightweight Charts. The chart
  * itself lives outside React: series, options and the legend are written imperatively so panning
  * and the crosshair never re-render the page.
  */
-export default function PriceChart({ candles }: { candles: Candle[] }) {
+function Chart({ candles }: { candles: Candle[] }) {
   const { t, i18n } = useTranslation();
   const format = useChartFormatters();
   const { theme } = useTheme();
@@ -628,7 +656,7 @@ export default function PriceChart({ candles }: { candles: Candle[] }) {
 
   return (
     <section
-      className="ch-panel"
+      className="ch-chart"
       aria-labelledby="ch-panel-title"
       aria-describedby="ch-panel-summary"
       data-chart-type={chartType}

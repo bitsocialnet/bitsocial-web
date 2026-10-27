@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Trans, useTranslation } from "react-i18next";
@@ -13,6 +14,9 @@ import ChartMethod from "./ChartMethod";
 import ChartStatus from "./ChartStatus";
 import PriceChart from "./PriceChart";
 
+/** The longest the chart stays a skeleton while live candles load; then it shows the snapshot. */
+const LIVE_WAIT_MS = 5000;
+
 export default function ChartApp() {
   useHashScroll();
   const { t } = useTranslation();
@@ -21,6 +25,12 @@ export default function ChartApp() {
     fetchLivePriceHistory,
     "GeckoTerminal",
   );
+  const [waitedOut, setWaitedOut] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setWaitedOut(true), LIVE_WAIT_MS);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     // Shares the rich list's reading-page system; `ch-page` adds the chart's own surfaces.
@@ -46,7 +56,7 @@ export default function ChartApp() {
             </div>
           </header>
 
-          <PriceChart candles={history.candles} />
+          <PriceChart candles={history.candles} loading={status === "loading" && !waitedOut} />
           <ChartMethod />
           <Footer />
         </div>
