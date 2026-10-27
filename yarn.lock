@@ -1715,6 +1715,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@chenglou/pretext@npm:^0.0.5":
+  version: 0.0.5
+  resolution: "@chenglou/pretext@npm:0.0.5"
+  checksum: 10c0/5139b39a166fbe7d1e0cf31c95f83125cc0658d8951b19dff3ac14b94d08c2bb53e954801c0325dac79c5b2b21157fa7763e0c561d46773baa37253f1a526242
+  languageName: node
+  linkType: hard
+
 "@colors/colors@npm:1.5.0":
   version: 1.5.0
   resolution: "@colors/colors@npm:1.5.0"
@@ -10717,6 +10724,7 @@ __metadata:
     "@radix-ui/react-slot": "npm:1.2.4"
     "@vercel/analytics": "npm:2.0.1"
     "@vercel/speed-insights": "npm:2.0.0"
+    boneyard-js: "npm:1.10.0"
     class-variance-authority: "npm:0.7.1"
     clsx: "npm:2.1.1"
     framer-motion: "npm:11.18.2"
@@ -10946,6 +10954,44 @@ __metadata:
     type-is: "npm:~1.6.18"
     unpipe: "npm:~1.0.0"
   checksum: 10c0/ad477209f1e714c41fa892a7d2fe22e10b23262103cc25cc6492dd3e6f7869cd2d8b00928b543a1a14d3c3663432452a192efd00422fad6f3687b0e38f7e3b07
+  languageName: node
+  linkType: hard
+
+"boneyard-js@npm:1.10.0":
+  version: 1.10.0
+  resolution: "boneyard-js@npm:1.10.0"
+  dependencies:
+    "@chenglou/pretext": "npm:^0.0.5"
+    playwright: "npm:^1.58.2"
+  peerDependencies:
+    "@angular/core": ">=14"
+    preact: ">=10"
+    react: ">=18"
+    react-native: ">=0.71"
+    svelte: ">=5.29"
+    vite: ">=5"
+    vue: ">=3"
+  dependenciesMeta:
+    "@chenglou/pretext":
+      optional: true
+  peerDependenciesMeta:
+    "@angular/core":
+      optional: true
+    preact:
+      optional: true
+    react:
+      optional: true
+    react-native:
+      optional: true
+    svelte:
+      optional: true
+    vite:
+      optional: true
+    vue:
+      optional: true
+  bin:
+    boneyard-js: bin/cli.js
+  checksum: 10c0/863fac6e00dadac646a927fbec96d429f2d35a807ac18e022f26a1f2e074866aa3053d8df712a4dcc4fc15d6b90d627a280bd7f030a76ece4e6c991bed82c2f0
   languageName: node
   linkType: hard
 

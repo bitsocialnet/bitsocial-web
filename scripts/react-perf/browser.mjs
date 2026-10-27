@@ -98,8 +98,9 @@ export async function withBrowser(packageRoot, headed, run) {
       { cwd: repoRoot, env, timeout: 60000 },
     );
     process.stderr.write(result.stdout);
-    browser = await driver.chromium.connectOverCDP(`http://127.0.0.1:${port}`);
-    return await run(browser);
+    const cdpUrl = `http://127.0.0.1:${port}`;
+    browser = await driver.chromium.connectOverCDP(cdpUrl);
+    return await run(browser, cdpUrl);
   } catch (error) {
     primaryError = error;
     busy = error.code === 75;
