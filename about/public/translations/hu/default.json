@@ -527,7 +527,8 @@
         "ai": "MI",
         "antiRepost": "Újraküldés elleni",
         "referenceClient": "Referenciakliens",
-        "search": "Keresés"
+        "search": "Keresés",
+        "images": "Képek"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -618,6 +619,14 @@
         "bitbones": {
           "tagline": "Minimalista referenciakliens, amelyben minden nézet csupán vékony burok egyetlen hook körül.",
           "description": "A bitbones a legkisebb használható felület a Bitsocial React hookjai fölött: alig van benne stílus, nincsenek termékdöntések, és minden nézet mögött egyetlen hook áll. Itt lehet a leggyorsabban reprodukálni egy hibát vagy kipróbálni egy hookmódosítást valódi közösségeken, az alapértelmezett hírfolyama pedig átkapcsolható a Seedit és az 5chan közösséglistája között."
+        },
+        "image-classifier-bot": {
+          "tagline": "Moderálási sorban dolgozó bot, amely csak azokat a posztokat hagyja jóvá, amelyeknek a képe megfelel annak, amit a közösség megenged.",
+          "description": "Az Image Classifier Bot olyan közösségeket moderál, amelyek csak egyféle képet szeretnének, például csak macskákat, csak kutyákat vagy csak ételeket. A bitsocial-cli mellett fut, figyeli a közösség moderálási sorát, és minden új posztot jóváhagy vagy elutasít úgy, hogy a hozzá linkelt képet egy CLIP/SigLIP képfelismerő modellel osztályozza, amelyet a tulajdonos saját maga hosztol CPU-n. A címkék egyszerű angol nyelvű kifejezések, és nem igényelnek tanítást, így a macskákról kutyákra váltás csupán konfigurációs változtatás. A posztolóknak nem kell megvárniuk az ellenőrzést, egyetlen kép sem kerül harmadik fél AI-szolgáltatásához, az elutasított posztoknál pedig látszik az elutasítás oka."
+        },
+        "askwise": {
+          "tagline": "AI válaszbot, amelyet a közösségek saját döntésük alapján kapcsolnak be, és @askwise megemlítésével hívnak elő.",
+          "description": "Az AskWise egy AI válaszbot, amelyet a Bitsocial-közösségek saját döntésük alapján kapcsolhatnak be. Azokban a közösségekben, amelyek telepítették, bárki megemlítheti a botot egy posztban vagy válaszban <code>@askwise</code> vagy <code>askwise.bso</code> alakban, a bot pedig elolvassa a szálat a benne lévő képekkel együtt, és ott válaszol a közösség szabályait betartva. A bot figyelmen kívül hagyja azokat a közösségeket, amelyek nem telepítették, és csak azok a szálak jutnak el az üzemeltető AI-szolgáltatójához, amelyek megemlítik. Az AskWise független projekt, amely a bitsocial-cli-n fut; nem a Bitsocial készíti, és nem is a Bitsocial üzemelteti."
         }
       }
     },

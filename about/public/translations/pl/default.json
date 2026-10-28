@@ -527,7 +527,8 @@
         "ai": "AI",
         "antiRepost": "Anty-repost",
         "referenceClient": "Klient referencyjny",
-        "search": "Wyszukiwanie"
+        "search": "Wyszukiwanie",
+        "images": "Obrazy"
       },
       "linkLabels": {
         "androidApk": "APK na Androida",
@@ -618,6 +619,14 @@
         "bitbones": {
           "tagline": "Maksymalnie uproszczony klient referencyjny, w którym każdy widok to cienka nakładka na pojedynczy hook.",
           "description": "bitbones to najmniejsza użyteczna warstwa nad hookami React od Bitsocial: prawie żadnych stylów, żadnych decyzji produktowych i pojedynczy hook za każdym widokiem. To najszybsze miejsce, by odtworzyć błąd albo sprawdzić zmianę w hookach na prawdziwych społecznościach, a domyślny feed można przełączać między listami społeczności Seedit i 5chan."
+        },
+        "image-classifier-bot": {
+          "tagline": "Bot kolejki moderacji, który zatwierdza tylko posty z obrazem zgodnym z tym, na co pozwala społeczność.",
+          "description": "Image Classifier Bot moderuje społeczności, które chcą tylko jednego rodzaju zdjęć, na przykład tylko kotów, tylko psów albo tylko jedzenia. Działa obok bitsocial-cli, obserwuje kolejkę moderacji społeczności i zatwierdza lub odrzuca każdy nowy post, klasyfikując podlinkowany w nim obraz za pomocą modelu wizyjnego CLIP/SigLIP, który właściciel sam hostuje na CPU. Etykiety to zwykły tekst po angielsku i nie wymagają trenowania, więc przejście z kotów na psy to tylko zmiana w konfiguracji. Autorzy postów nie czekają na sprawdzenie, żaden obraz nie trafia do usługi AI firmy trzeciej, a odrzucone posty pokazują powód."
+        },
+        "askwise": {
+          "tagline": "Bot odpowiedzi AI, który społeczności same włączają i przywołują za pomocą @askwise.",
+          "description": "AskWise to bot odpowiedzi AI, który społeczności Bitsocial włączają z własnego wyboru. W społeczności, która go zainstalowała, każdy może wspomnieć o <code>@askwise</code> lub <code>askwise.bso</code> w poście lub odpowiedzi, a bot przeczyta wątek, łącznie z obrazami, i odpowie w nim, przestrzegając zasad społeczności. Społeczności, które go nie zainstalowały, są ignorowane, a do dostawcy AI operatora trafiają tylko wątki, w których o nim wspomniano. AskWise to niezależny projekt działający na bitsocial-cli; nie jest tworzony ani prowadzony przez Bitsocial."
         }
       }
     },

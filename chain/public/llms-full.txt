@@ -242,6 +242,7 @@ Under evaluation:
 
 - **Native rollups (leading candidate):** an L2 whose blocks Ethereum verifies with its own EVM proof program, so there is no bespoke verifier to govern. The design supports BSO as the gas token and custom fee handling. Native rollups are not yet part of any scheduled Ethereum hard fork, and the public [devnet](https://nativerollups.fyi/) still mocks the proof and the L1 proof check. See [RESEARCH_NATIVE_ROLLUPS.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_NATIVE_ROLLUPS.md).
 - **Sequencing:** based sequencing (no operator, 12-second blocks) versus a sequencer with preconfirmations and forced inclusion. Open, and tied to AgoraSwap's mechanism design.
+- **EVM upgrades:** a native rollup either follows L1's EVM through the EIP-8357 verification key registry or pins one version, and an ownerless rollup contract fixes that choice at deployment. Following is the recommended direction; it needs provers ready at every L1 fork.
 - **Names on that chain:** a fork of the ownerless [.gwei name service](https://github.com/lucadonnoh/gwei-names) is a candidate. It would replace this POC's registry rules with expiring, renewable names and burned fees.
 - **Privacy:** transparent by default, with a private-payments lane; Aztec is the leading candidate (see [RESEARCH_AZTEC_VS_FACET.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_AZTEC_VS_FACET.md)).
 - **Requirement for whichever design wins:** Stage 2, with no privileged operator in the trust path.

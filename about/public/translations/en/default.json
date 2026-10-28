@@ -738,7 +738,8 @@
         "verification": "Verification",
         "antiRepost": "Anti-repost",
         "referenceClient": "Reference client",
-        "search": "Search"
+        "search": "Search",
+        "images": "Images"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -833,6 +834,14 @@
         "bitbones": {
           "tagline": "Bare-bones reference client where every view is a thin wrapper over one hook.",
           "description": "bitbones is the smallest useful surface over the Bitsocial React hooks: almost no styling, no product opinions, and a single hook behind every view. It is the fastest place to reproduce a bug or try a hooks change against real communities, and its default feed can be switched between the Seedit and 5chan community lists."
+        },
+        "image-classifier-bot": {
+          "tagline": "Mod-queue bot that only approves posts whose image matches what the community allows.",
+          "description": "Image Classifier Bot moderates communities that only want one kind of picture, such as only cats, only dogs, or only food. It runs next to bitsocial-cli, watches the community's mod queue, and approves or rejects each new post by classifying its linked image with a CLIP/SigLIP vision model the owner hosts themselves on a CPU. Labels are plain English and need no training, so switching from cats to dogs is a config change. Posters don't wait for the check, no image goes to a third-party AI service, and rejected posts show the reason."
+        },
+        "askwise": {
+          "tagline": "AI reply bot that communities opt into and summon with @askwise.",
+          "description": "AskWise is an AI reply bot that Bitsocial communities opt into. In a community that installed it, anyone can mention <code>@askwise</code> or <code>askwise.bso</code> in a post or reply, and the bot reads the thread, including its images, and answers there while following the community's rules. Communities that haven't installed it are ignored, and only threads that mention it are sent to the operator's AI provider. AskWise is an independent project that runs on bitsocial-cli; it is not made or run by Bitsocial."
         }
       }
     },

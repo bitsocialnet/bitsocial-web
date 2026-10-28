@@ -527,7 +527,8 @@
         "ai": "AI",
         "antiRepost": "Kundër ripostimeve",
         "referenceClient": "Klient referues",
-        "search": "Kërkim"
+        "search": "Kërkim",
+        "images": "Imazhe"
       },
       "linkLabels": {
         "androidApk": "APK për Android",
@@ -618,6 +619,14 @@
         "bitbones": {
           "tagline": "Klient referues krejt i thjeshtë, ku çdo pamje është vetëm një mbështjellës i hollë mbi një hook të vetëm.",
           "description": "bitbones është sipërfaqja më e vogël e dobishme mbi hook-et React të Bitsocial: pothuajse pa stilizim, pa vendime produkti dhe me një hook të vetëm pas çdo pamjeje. Është vendi më i shpejtë për të riprodhuar një defekt ose për të provuar një ndryshim te hook-et kundrejt komuniteteve reale, ndërsa feed-i i tij i parazgjedhur mund të ndërrohet midis listave të komuniteteve të Seedit dhe 5chan."
+        },
+        "image-classifier-bot": {
+          "tagline": "Bot i radhës së moderimit që miraton vetëm postimet, imazhi i të cilave përputhet me atë që lejon komuniteti.",
+          "description": "Image Classifier Bot moderon komunitete që duan vetëm një lloj fotografie, për shembull vetëm mace, vetëm qen ose vetëm ushqim. Ai ekzekutohet krahas bitsocial-cli, ndjek radhën e moderimit të komunitetit dhe miraton ose refuzon çdo postim të ri duke klasifikuar imazhin te i cili çon lidhja e postimit me një model vizioni CLIP/SigLIP që pronari e strehon vetë në një CPU. Etiketat janë fjali të zakonshme në anglisht dhe nuk kërkojnë trajnim, prandaj kalimi nga macet te qentë është thjesht një ndryshim konfigurimi. Ata që postojnë nuk presin për kontrollin, asnjë imazh nuk dërgohet te një shërbim AI i palëve të treta dhe postimet e refuzuara tregojnë arsyen."
+        },
+        "askwise": {
+          "tagline": "Bot përgjigjesh me AI që komunitetet e aktivizojnë me zgjedhjen e tyre dhe e thërrasin me @askwise.",
+          "description": "AskWise është një bot përgjigjesh me AI që komunitetet e Bitsocial e aktivizojnë me zgjedhjen e tyre. Në një komunitet që e ka instaluar, kushdo mund të përmendë <code>@askwise</code> ose <code>askwise.bso</code> në një postim ose përgjigje, dhe boti lexon temën, përfshirë imazhet e saj, dhe përgjigjet aty duke ndjekur rregullat e komunitetit. Komunitetet që nuk e kanë instaluar injorohen, dhe vetëm temat që e përmendin dërgohen te ofruesi AI i operatorit. AskWise është projekt i pavarur që funksionon mbi bitsocial-cli; nuk krijohet dhe as nuk drejtohet nga Bitsocial."
         }
       }
     },

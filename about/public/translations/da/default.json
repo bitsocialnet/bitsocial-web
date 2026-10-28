@@ -527,7 +527,8 @@
         "ai": "AI",
         "antiRepost": "Anti-genopslag",
         "referenceClient": "Referenceklient",
-        "search": "Søgning"
+        "search": "Søgning",
+        "images": "Billeder"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -591,6 +592,14 @@
         },
         "spam-blocker": {
           "description": "Spam Blocker evaluerer publikationer og returnerer en risikoscore, som fællesskaber kan kombinere med deres egen moderationslogik. Dens hostede tjeneste forbinder også signeringsnøgler første gang set fra samme IP, så en bruger, der fortsætter med at oprette nye konti for at undgå et fællesskabsforbud eller fremstille en samtale, ser sin risikoscore stige, mens nogle få signaturværdier forbliver tilladt til legitim brug på flere enheder."
+        },
+        "image-classifier-bot": {
+          "tagline": "Bot til moderationskøen, der kun godkender opslag, hvis billede passer til det, fællesskabet tillader.",
+          "description": "Image Classifier Bot modererer fællesskaber, der kun vil have én slags billeder, for eksempel kun katte, kun hunde eller kun mad. Den kører ved siden af bitsocial-cli, overvåger fællesskabets moderationskø og godkender eller afviser hvert nyt opslag ved at klassificere det linkede billede med en CLIP/SigLIP-visionsmodel, som ejeren selv hoster på en CPU. Etiketterne skrives på almindeligt engelsk og kræver ingen træning, så et skift fra katte til hunde blot er en ændring i konfigurationen. De, der skriver opslag, skal ikke vente på kontrollen, intet billede sendes til en AI-tjeneste hos en tredjepart, og afviste opslag viser årsagen."
+        },
+        "askwise": {
+          "tagline": "AI-svarbot, som fællesskaber selv vælger at slå til og kalder frem med @askwise.",
+          "description": "AskWise er en AI-svarbot, som Bitsocial-fællesskaber selv vælger at slå til. I et fællesskab, der har installeret den, kan alle nævne <code>@askwise</code> eller <code>askwise.bso</code> i et opslag eller svar, hvorefter botten læser tråden, inklusive dens billeder, og svarer i den efter fællesskabets regler. Fællesskaber, der ikke har installeret den, ignoreres, og kun tråde, der nævner den, sendes til operatørens AI-udbyder. AskWise er et uafhængigt projekt, der kører på bitsocial-cli; det er hverken lavet eller drevet af Bitsocial."
         }
       }
     },

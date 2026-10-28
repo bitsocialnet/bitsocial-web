@@ -4805,7 +4805,7 @@ Directory assignment only affects discovery. Even without it, anyone can reach y
 
 ### Prerequisites
 
-- Node.js 22.12.0, pinned in [`.nvmrc`](https://github.com/bitsocialnet/seedit/blob/HEAD/.nvmrc)
+- Node.js 22.17.0, pinned in [`.nvmrc`](https://github.com/bitsocialnet/seedit/blob/HEAD/.nvmrc)
 - Corepack enabled once per machine: `corepack enable`
 
 ### Contributor Setup
@@ -5152,6 +5152,298 @@ npm trust github @bitsocial/ai-moderation-challenge --repo bitsocialnet/ai-moder
 ```
 
 Future releases publish automatically when `package.json` version changes on `master`. The publish workflow skips versions that already exist on npm.
+
+### image-classifier-bitsocial-moderator-bot
+
+Repository: bitsocialnet/image-classifier-bitsocial-moderator-bot
+Source: https://github.com/bitsocialnet/image-classifier-bitsocial-moderator-bot#readme
+Description: A moderator bot for PKC (Bitsocial) communities that only want one kind of picture: only cats, only dogs, only food. New posts go to the community's mod queue, and the bot approves or rejects each one by classifying its linked image with a CLIP/SigLIP model on a server you host yourself. Posters never wait for the check, and no image goes to a third party AI service.
+
+# image-classifier-bitsocial-moderator-bot
+
+A moderator bot for PKC (Bitsocial) communities that only want one kind of picture: only cats, only dogs, only food. New posts go to the community's mod queue, and the bot approves or rejects each one by classifying its linked image with a CLIP/SigLIP model on a server you host yourself. Posters never wait for the check, and no image goes to a third-party AI service.
+
+It is a zero-shot classifier: you describe what is allowed and what is not in plain English, and no training is involved. Switching from cats to dogs is a config change.
+
+## How it works
+
+1. The community sends every new post to its mod queue. A built-in `publication-match` challenge with no patterns always succeeds, and `pendingApproval: true` routes posts that pass it to the queue. Moderators, admins and the owner are exempt, as are replies, votes and edits, so those publish directly.
+2. The bot connects to the community's bitsocial daemon over pkc RPC, watches `community.modQueue`, and for each pending post:
+    - checks `community.exportCommunityModLogs()` and skips the post if a moderator already approved or rejected it;
+    - downloads the post's `link`, which must point directly to a JPEG, PNG, WebP or GIF image;
+    - scores the image against every label on the model server (a softmax over cosine similarities);
+    - publishes a `CommentModeration` approving the post when the allowed labels' combined probability is at least `threshold`, or rejecting it with a reason such as `Image rejected: it looks like "a photo of a dog". This community only accepts: "a photo of a cat", ...`.
+3. Rejected posts are deleted after the community's `purgeDisapprovedCommentsOlderThan`.
+
+If the problem is the post's link (not an image, too large, a host outside `allowedHosts`, a private address), the post is rejected with that reason. If the problem is on our side (model server down, network trouble), the post stays queued and the bot retries after 30 s, 60 s, 120 s, ... up to every 30 minutes. A moderator can approve or reject any queued post by hand at any time, and the bot leaves it alone.
+
+## Requirements
+
+- A bitsocial daemon (bitsocial-cli) running the community, reachable over pkc RPC. Running the bot on the same machine needs no RPC auth key.
+- The [Immich machine-learning container](https://github.com/immich-app/immich/tree/main/machine-learning) as model server, which serves CLIP/SigLIP models on CPU. `deploy/docker-compose.yml` runs it on `127.0.0.1:3003` with the recommended model preloaded. It needs about 1 GB RAM, 1 GB disk and no GPU. One image takes about 0.1 s on a modern CPU.
+- Node.js 22+.
+
+## Set it up for your own community
+
+You need to own the community (it runs on your bitsocial daemon) and be able to run Docker and Node.js 22+ on the same machine. The bot can also run elsewhere and reach the daemon over RPC with its auth key (`ws://host:9138/<auth-key>`), but the model server should sit next to the bot.
+
+### 1. Start the model server
+
+```bash
+git clone https://github.com/bitsocialnet/image-classifier-bitsocial-moderator-bot.git
+cd image-classifier-bitsocial-moderator-bot
+docker compose -f deploy/docker-compose.yml up -d
+docker logs -f image-classifier-ml   # wait for "Loading visual model"; the first start downloads ~800 MB
+```
+
+If the container keeps restarting with `NumPy was built with baseline optimizations: (X86_V2)`, the machine's (usually virtual) CPU is too old for the image's NumPy (`grep -c sse4_2 /proc/cpuinfo` prints `0`). Use the old-CPU build, which swaps in a NumPy that runs there. Classification then takes about 3 s per image instead of 0.1 s:
+
+```bash
+docker compose -f deploy/docker-compose.yml -f deploy/docker-compose.old-cpu.yml up -d --build
+```
+
+### 2. Install the bot and describe your pictures
+
+```bash
+npm install --omit=dev
+cp config.example.json config.json
+```
+
+In `config.json`, set `communityAddress` and the `classifier` labels. The cats example below is a good template: `allowed` is what you want, `disallowed` is everything people might post instead, especially look-alikes. For a dogs-only community, for example, swap the cat labels for `"a photo of a dog"`, `"a photo of a puppy"` and move `"a photo of a dog"` out of `disallowed` in favor of `"a photo of a cat"`, `"a photo of a wolf"`, `"a drawing or painting of a dog"`, `"a stuffed toy dog"`.
+
+Before going live, check the labels and pick a threshold with your own images (see [Tuning labels](#tuning-labels-for-your-community)): `node scripts/evaluate.js config.json ./images dog`.
+
+Decide where images may come from. `allowedHosts` limits links to hosts you trust; leave it empty to accept any host, and set `proxyUrl` if you don't want image hosts to see your server's IP (see [Privacy](#privacy-the-image-host-sees-who-downloads)).
+
+### 3. Give the bot a moderator key
+
+```bash
+npm run create-signer
+bitsocial community edit <community address> '--roles["<bot address>"].role' moderator
+```
+
+`create-signer` stores the key in `data/bot-signer.json` (readable only by its owner) and prints the bot's address and the exact `edit` command. The bot refuses to start without a moderator, admin or owner role.
+
+### 4. Send new posts to the mod queue
+
+Add a challenge that always succeeds and marks posts for approval, exempting moderators (including the bot) and everything that isn't a post, and set how long rejected posts are kept (here one day). [`examples/mod-queue-settings.json`](https://github.com/bitsocialnet/image-classifier-bitsocial-moderator-bot/blob/HEAD/examples/mod-queue-settings.json) has exactly that:
+
+```json
+{
+    "settings": {
+        "purgeDisapprovedCommentsOlderThan": 86400,
+        "challenges": [
+            {
+                "name": "publication-match",
+                "description": "New posts wait for an image check before they appear.",
+                "pendingApproval": true,
+                "exclude": [
+                    { "roles": ["moderator", "admin", "owner"] },
+                    {
+                        "publicationType": {
+                            "reply": true,
+                            "vote": true,
+                            "commentEdit": true,
+                            "commentModeration": true,
+                            "communityEdit": true
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+`settings.challenges` replaces the community's whole challenge list, so add any challenges you already use to your copy (the cats example below puts the spam blocker first). Then apply it:
+
+```bash
+bitsocial community edit <community address> --jsonFile ./mod-queue-settings.json
+```
+
+Exempt moderators from every other challenge too (`"exclude": [{ "roles": ["moderator", "admin", "owner"] }]`), or the bot's approvals get challenged and fail. It's also worth telling posters in `rules` what is allowed, that a bot checks posts, and how long rejected ones are kept.
+
+### 5. Run it
+
+```bash
+npm start
+```
+
+To keep it running, install `deploy/image-classifier-bot.service` as a systemd unit (it assumes the repo is at `/root/image-classifier-bot` and Node.js from nvm; adjust `WorkingDirectory` and the paths):
+
+```bash
+sudo cp deploy/image-classifier-bot.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now image-classifier-bot
+journalctl -u image-classifier-bot -f
+```
+
+### 6. Test it
+
+Post an image from an account that is **not** a moderator (moderators skip the queue). Within a few seconds the log shows `approved` or `rejected: ...` with the score, and the post appears in the community or is shown to its author as rejected with the reason.
+
+## Example: a cats-only community
+
+This is the setup behind `onlycats.bso`. Big cats count as cats, captioned cat photos are allowed, and drawings, cartoons, AI art, sculptures and plush toys are not. The spam blocker runs first; posts that pass it go to the mod queue for the bot.
+
+[`examples/onlycats-community.json`](https://github.com/bitsocialnet/image-classifier-bitsocial-moderator-bot/blob/HEAD/examples/onlycats-community.json):
+
+```json
+{
+    "title": "Only Cats",
+    "description": "Pictures of cats. That's it. Every new post is checked by a self-hosted AI vision model that looks at the linked image and only lets cats through.",
+    "rules": [
+        "Every post must link directly to an image (jpg, png, webp or gif) of a cat hosted on forgeimg.net or i.imgur.com. Big cats count.",
+        "Real cats only: no drawings, cartoons, AI art, sculptures or plush toys. Captioned cat photos are fine.",
+        "Replies can be anything.",
+        "New posts wait in the mod queue until an AI vision model (running on this community's own server; images are not sent to any outside service) checks that the image shows a cat. That usually takes a few seconds. Rejected posts show the reason and are deleted after a day."
+    ],
+    "settings": {
+        "fetchThumbnailUrls": true,
+        "purgeDisapprovedCommentsOlderThan": 86400,
+        "challenges": [
+            {
+                "name": "@bitsocial/spam-blocker-challenge",
+                "exclude": [{ "roles": ["moderator", "admin", "owner"] }]
+            },
+            {
+                "name": "publication-match",
+                "description": "New posts wait for the cat check before they appear.",
+                "pendingApproval": true,
+                "exclude": [
+                    { "roles": ["moderator", "admin", "owner"] },
+                    {
+                        "publicationType": {
+                            "reply": true,
+                            "vote": true,
+                            "commentEdit": true,
+                            "commentModeration": true,
+                            "communityEdit": true
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+```bash
+bitsocial community create --jsonFile ./examples/onlycats-community.json
+bitsocial community edit <address> '--roles["<bot address>"].role' moderator
+```
+
+And the bot's [`config.example.json`](https://github.com/bitsocialnet/image-classifier-bitsocial-moderator-bot/blob/HEAD/config.example.json):
+
+```json
+{
+    "rpcUrl": "ws://localhost:9138",
+    "communityAddress": "onlycats.bso",
+    "dataDir": "data",
+    "classifier": {
+        "mlUrl": "http://127.0.0.1:3003",
+        "model": "ViT-B-16-SigLIP2__webli",
+        "allowed": ["a photo of a cat", "a photo of a kitten", "a photo of a lion, tiger or other big cat"],
+        "disallowed": [
+            "a photo of a dog",
+            "a photo of a fox",
+            "a photo of another animal",
+            "a drawing or painting of a cat",
+            "a cartoon or illustration",
+            "a statue or sculpture of a cat",
+            "a stuffed toy cat",
+            "a screenshot",
+            "a photo of a person",
+            "a photo of food",
+            "a photo of an object or place"
+        ],
+        "threshold": 0.35,
+        "allowedHosts": ["forgeimg.net", "i.imgur.com"]
+    }
+}
+```
+
+Instead of a proxy, it only accepts images from two hosts the operator trusts not to log or share the server's IP (`allowedHosts`).
+
+How these labels did in testing, with `ViT-B-16-SigLIP2__webli` on 67 images that should pass (house cats, kittens, lions, captioned cat photos) and 45 that should not (dogs, foxes, rabbits, cat drawings, AI-generated cats, cartoons, cat sculptures, screenshots, food, people):
+
+| threshold | cats wrongly rejected | non-cats wrongly accepted |
+| --------- | --------------------- | ------------------------- |
+| 0.3       | 1/67                  | 1/45                      |
+| **0.35**  | **1/67**              | **0/45**                  |
+| 0.4       | 2/67                  | 0/45                      |
+| 0.5       | 4/67                  | 0/45                      |
+
+The one cat rejected at 0.35 was almost entirely hidden behind a bicycle. The smaller `ViT-B-32-SigLIP2-256__webli` was much worse on the same set (6/67 cats rejected at its best threshold), and SigLIP2-L was no better than base. Treat these numbers as a starting point: the test set was small, so watch the bot's decisions after launch and adjust `threshold`.
+
+## Configuration
+
+`config.json` (or the file named by the `CONFIG` environment variable):
+
+| Key                       | Default                   | Description                                                                                                                        |
+| ------------------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `rpcUrl`                  | `ws://localhost:9138`     | pkc RPC of the daemon running the community. A remote daemon needs its auth key: `ws://host:9138/<auth-key>`.                      |
+| `communityAddress`        | required                  | The community to moderate.                                                                                                         |
+| `dataDir`                 | `data`                    | Holds the bot's signing key, `bot-signer.json`.                                                                                    |
+| `classifier.allowed`      | required                  | Descriptions an image must match.                                                                                                  |
+| `classifier.disallowed`   | required                  | What to reject. Most of the accuracy comes from this list: name the look-alikes you want kept out (other animals, drawings, toys). |
+| `classifier.threshold`    | `0.5`                     | Minimum combined probability of the allowed labels, above 0 and at most 1. Lower lets more through.                                |
+| `classifier.mlUrl`        | `http://127.0.0.1:3003`   | Base URL of the model server.                                                                                                      |
+| `classifier.apiFormat`    | `immich`                  | Model server API. Only `immich` is implemented.                                                                                    |
+| `classifier.apiKey`       | unset                     | Sent as `Authorization: Bearer <apiKey>`, for a model server behind an authenticating reverse proxy.                               |
+| `classifier.model`        | `ViT-B-16-SigLIP2__webli` | Model name on the server; must match the container's preload setting. Re-run the evaluation after switching.                       |
+| `classifier.allowedHosts` | `[]`                      | Hostnames images may be linked from, e.g. `["i.imgur.com"]`. Empty allows any host.                                                |
+| `classifier.proxyUrl`     | unset                     | HTTP proxy for image downloads.                                                                                                    |
+| `retryBaseSeconds`        | `30`                      | First retry delay for posts that could not be classified; doubles each attempt.                                                    |
+| `retryMaxSeconds`         | `1800`                    | Longest retry delay.                                                                                                               |
+| `rescanIntervalSeconds`   | `60`                      | The queue is rescanned on this interval as well as on every community update.                                                      |
+
+## Tuning labels for your community
+
+Labels are short English descriptions; `a photo of a ...` phrasing works best. Think about what people will try to post that is close to, but not, what you want, and add each as a disallowed label. `scripts/evaluate.js` scores your own images with a config's classifier settings:
+
+```bash
+# images/cat/*.jpg should pass; images/dog, images/drawing, ... should be rejected
+node scripts/evaluate.js config.json ./images cat
+```
+
+It prints every image's score and how many images each threshold would get wrong. Collect 50+ images of each kind, including the hard cases, before picking a threshold.
+
+## Limitations
+
+### The image can be swapped after it is approved
+
+The bot checks the image once. Whoever controls the server a link points to can later serve a different image at the same URL, and the post stays up. Moderators remove swapped images like any other rule-breaking post. `allowedHosts` limited to hosts that never let uploaders replace a file closes this.
+
+### Privacy: the image host sees who downloads
+
+Downloading an image reveals the bot machine's IP address to the server the link points to, and anyone can post a link to a server they control. Use `allowedHosts` to accept only hosts you trust, or `proxyUrl` so hosts see the proxy's address instead. The machine's IP is also visible to its peers on the p2p network; this only stops image hosts, who can be anyone, from linking that IP to your community.
+
+The bot also refuses links that point to private, loopback or link-local addresses (including after redirects and DNS lookups), so a post can't make the bot request services on your network.
+
+### What it can't tell
+
+Zero-shot classification judges what an image looks like. It does not reliably read text, so a caption on a photo is mostly ignored, and it can be fooled by photorealistic AI-generated images. Expect a few wrong calls in both directions near the threshold. Moderators can remove a wrongly approved post, but pkc-js can't approve a comment that was already rejected, so a wrongly rejected author has to post again (and a moderator can approve the new post from the queue before the bot does).
+
+## Download limits
+
+- 10 second timeout for the download, 60 seconds for each model server request
+- 10 MB maximum image size
+- JPEG, PNG, WebP or GIF (the first frame), detected from the file's bytes, not its extension or `content-type`
+- At most 3 redirects, each checked against `allowedHosts` and the private-address rules
+- A generic browser `User-Agent`, since some image hosts refuse requests without one
+
+## Development
+
+```bash
+npm ci
+npm test
+npm run type-check
+```
+
+## License
+
+GPL-3.0-or-later. This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See [LICENSE](https://github.com/bitsocialnet/image-classifier-bitsocial-moderator-bot/blob/HEAD/LICENSE).
 
 ### BitsocialSpamBlocker
 
@@ -7455,7 +7747,7 @@ EXAMPLES
   $ bitsocial challenge install ./my-local-challenge
 ```
 
-_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/challenge/install.ts)_
+_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/challenge/install.ts)_
 
 ## `bitsocial challenge list`
 
@@ -7481,7 +7773,7 @@ EXAMPLES
   $ bitsocial challenge list -q
 ```
 
-_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/challenge/list.ts)_
+_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/challenge/list.ts)_
 
 ## `bitsocial challenge ls`
 
@@ -7541,7 +7833,7 @@ EXAMPLES
   $ bitsocial challenge remove my-challenge --force
 ```
 
-_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/challenge/remove.ts)_
+_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/challenge/remove.ts)_
 
 ## `bitsocial challenge rm NAME`
 
@@ -7673,7 +7965,7 @@ EXAMPLES
     $ bitsocial community create --jsonFile ./create-options.json
 ```
 
-_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/create.ts)_
+_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/create.ts)_
 
 ## `bitsocial community delete ADDRESSES`
 
@@ -7698,7 +7990,7 @@ EXAMPLES
   $ bitsocial community delete 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/delete.ts)_
+_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/delete.ts)_
 
 ## `bitsocial community edit ADDRESS`
 
@@ -7775,7 +8067,7 @@ EXAMPLES
     $ bitsocial community edit bitsocial.bso --jsonFile ./edit-options.json
 ```
 
-_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/edit.ts)_
+_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/edit.ts)_
 
 ## `bitsocial community export [ADDRESS]`
 
@@ -7816,7 +8108,7 @@ EXAMPLES
   $ bitsocial community export --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/export.ts)_
+_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/export.ts)_
 
 ## `bitsocial community get [ADDRESS]`
 
@@ -7847,7 +8139,7 @@ EXAMPLES
   $ bitsocial community get --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/get.ts)_
+_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/get.ts)_
 
 ## `bitsocial community list`
 
@@ -7870,7 +8162,7 @@ EXAMPLES
   $ bitsocial community list
 ```
 
-_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/list.ts)_
+_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/list.ts)_
 
 ## `bitsocial community start ADDRESSES`
 
@@ -7904,7 +8196,7 @@ EXAMPLES
     $ bitsocial community start $(bitsocial community list -q) --concurrency 1
 ```
 
-_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/start.ts)_
+_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/start.ts)_
 
 ## `bitsocial community stop ADDRESSES`
 
@@ -7929,7 +8221,7 @@ EXAMPLES
   $ bitsocial community stop Qmb99crTbSUfKXamXwZBe829Vf6w5w5TktPkb6WstC9RFW
 ```
 
-_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/community/stop.ts)_
+_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/stop.ts)_
 
 ## `bitsocial daemon`
 
@@ -7979,7 +8271,7 @@ EXAMPLES
   $ bitsocial daemon --no-allowPrivateKeyExport
 ```
 
-_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/daemon.ts)_
+_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/daemon.ts)_
 
 ## `bitsocial help [COMMAND]`
 
@@ -8043,7 +8335,7 @@ EXAMPLES
   $ bitsocial logs --stdout -f
 ```
 
-_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/logs.ts)_
+_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/logs.ts)_
 
 ## `bitsocial page-sort add PACKAGE`
 
@@ -8135,7 +8427,7 @@ EXAMPLES
   $ bitsocial page-sort install ./my-local-page-sort
 ```
 
-_See code: [src/cli/commands/page-sort/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/page-sort/install.ts)_
+_See code: [src/cli/commands/page-sort/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/page-sort/install.ts)_
 
 ## `bitsocial page-sort list`
 
@@ -8161,7 +8453,7 @@ EXAMPLES
   $ bitsocial page-sort list -q
 ```
 
-_See code: [src/cli/commands/page-sort/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/page-sort/list.ts)_
+_See code: [src/cli/commands/page-sort/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/page-sort/list.ts)_
 
 ## `bitsocial page-sort ls`
 
@@ -8219,7 +8511,7 @@ EXAMPLES
   $ bitsocial page-sort remove @pkcprotocol/active-page-sort --force
 ```
 
-_See code: [src/cli/commands/page-sort/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/page-sort/remove.ts)_
+_See code: [src/cli/commands/page-sort/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/page-sort/remove.ts)_
 
 ## `bitsocial page-sort rm NAME`
 
@@ -8332,7 +8624,7 @@ EXAMPLES
   $ bitsocial update check
 ```
 
-_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/update/check.ts)_
+_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/update/check.ts)_
 
 ## `bitsocial update install [VERSION]`
 
@@ -8364,7 +8656,7 @@ EXAMPLES
   $ bitsocial update install --no-restart-daemons
 ```
 
-_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/update/install.ts)_
+_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/update/install.ts)_
 
 ## `bitsocial update versions`
 
@@ -8386,7 +8678,7 @@ EXAMPLES
   $ bitsocial update versions --limit 5
 ```
 
-_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.113/src/cli/commands/update/versions.ts)_
+_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/update/versions.ts)_
 
 ## Contribution
 
@@ -9026,6 +9318,7 @@ All config is environment variables (see [`server/.env.example`](https://github.
 |-----|---------|---------|
 | `COMMUNITIES` | _(empty)_ | Comma-separated community addresses to index, e.g. `art.bso,tech.bso` |
 | `COMMUNITIES_SOURCE` | _(empty)_ | URL/path to a JSON list of community addresses (e.g. a client's directory). Overrides/augments `COMMUNITIES`. |
+| `COMMUNITIES_RELOAD_MS` | `300000` | How often `COMMUNITIES_SOURCE` is re-read. Added communities are scheduled at once; dropped ones stop being crawled (see below). |
 | `PKC_RPC_URL` | `ws://localhost:9138` | The `bitsocial-cli` daemon RPC endpoint |
 | `DB_PATH` | `./data/indexer.db` | SQLite file (`:memory:` for ephemeral) |
 | `CRAWL_INTERVAL_MS` | `60000` | Per-community delay before the next refresh |
@@ -9038,6 +9331,14 @@ All config is environment variables (see [`server/.env.example`](https://github.
 
 If neither `COMMUNITIES` nor `COMMUNITIES_SOURCE` is set, the crawler stays
 idle and the indexer serves nothing. That is intentional.
+
+The list is the crawl schedule, re-read every `COMMUNITIES_RELOAD_MS`, so a
+source such as a [bitsocial-discovery](https://github.com/bitsocialnet/bitsocial-discovery)
+filter takes effect without a restart. A community that leaves the list stops
+being crawled; what was already archived for it stays served until the
+blocklist takes it down. A source that cannot be read (network error, HTTP
+error, anything that is not a list) changes nothing, so an outage never
+unschedules everything; only a real empty list does.
 
 #### Takedowns (`BLOCKLIST_SOURCE`)
 
@@ -9133,7 +9434,7 @@ CORS-enabled so browser clients can call it directly.
 | Endpoint | Description |
 |----------|-------------|
 | `GET /api/health` | Status + index counts |
-| `GET /api/communities` | Indexed communities + post counts + resolved `nsfw` flag + declared `safe_for_work` |
+| `GET /api/communities` | Indexed communities + post counts + `last_activity_at` + resolved `nsfw` flag + declared `safe_for_work`. Most posts first; `?sort=new` = most recently added to this index, `?sort=active` = latest visible post or reply |
 | `GET /api/posts` | Browse posts — `?community=&sort=new\|top\|replies\|old&time=hour..all&page=&limit=&replies=true` |
 | `GET /api/posts/:cid` | A thread: original post + threaded replies |
 | `GET /api/search` | Full-text search — `?q=&community=&sort=&time=&page=&limit=&replies=&nsfw=&status=active\|archived\|all`, plus the advanced filters below (NSFW excluded by default; status defaults to `all`). A `q` that is a comment CID is looked up by CID instead (see below) |
@@ -9633,6 +9934,279 @@ ghcr.io/bitsocialnet/bitsocial-github-alerts:latest
 ## Credits
 
 Forked from [mhkafadar/notifine](https://github.com/mhkafadar/notifine). Report bugs for this fork by [creating an issue](https://github.com/bitsocialnet/bitsocial-github-alerts/issues/new).
+
+### @askwise
+
+Repository: Rinse12/askwise-bot
+Source: https://github.com/Rinse12/askwise-bot#readme
+Description: An AI reply bot for Bitsocial communities, in the spirit of "@grok is this true?". It only works in communities that explicitly installed it. In those, anyone can mention @askwise (or askwise.bso / u/askwise.bso) in a post or a reply, and the bot answers in the thread. It reads the thread and any images posted in it.
+
+# @askwise
+
+An AI reply bot for Bitsocial communities, in the spirit of "@grok is this true?". It only works in communities that explicitly installed it. In those, anyone can mention `@askwise` (or `askwise.bso` / `u/askwise.bso`) in a post or a reply, and the bot answers in the thread. It reads the thread and any images posted in it.
+
+AskWise is an independent project. It is not made, run or endorsed by Bitsocial.
+
+## Using the bot
+
+In any community that has installed it, mention the bot in a post or a reply, and it answers in the thread a few moments later.
+
+- **How to call it:** write `@askwise` anywhere in your post's title or text, or in a reply. `askwise.bso` and `u/askwise.bso` work too.
+- **Examples:**
+  - a reply under a post: `@askwise is this true?`
+  - a post titled `@askwise explain how ENS names work`
+  - a reply under an image post: `@askwise what's in this picture?`
+- **What it reads:** your comment, the post and the replies above yours, and any images in them. So "is this true?" refers to what you're replying to.
+- **Where it works:** only in communities whose owners installed it. Elsewhere, mentions are ignored.
+- **Limits:**
+  - It answers each comment once.
+  - It doesn't keep a back-and-forth going forever in one thread.
+  - Communities have per-hour limits. When one is reached the bot says so and answers later.
+  - If the bot was offline, it answers when it comes back. Mentions older than two days are skipped.
+
+The bot can be wrong. Treat its answers like any other reply.
+
+**Privacy:** when you mention the bot, the thread it reads (the post, the replies above yours, their authors' names and addresses, and the images in them) is sent to the AI provider the bot's operator uses, which for this code is Anthropic. Nothing is sent for threads that don't mention it. Don't mention the bot in a thread you wouldn't want an AI provider to read.
+
+## How it fits into pkc-js
+
+- **Installing = deciding, for each of the community's challenges, whether the bot is exempt from it.** An exempted challenge in `settings.challenges` gets this exclude item:
+
+  ```json
+  { "names": ["askwise.bso"], "publicationType": { "reply": true } }
+  ```
+
+  pkc-js only applies it when a publication's `author.name` is exactly `askwise.bso` **and** that name currently resolves to the key that signed it. So the exemption follows the wallet that owns the name, not a signing key that could leak. Rotating the key is just re-pointing the name; no community has to do anything.
+  - The bot only publishes replies, and the exemption covers only replies.
+  - Your own users are still challenged exactly as before.
+  - This is *not* the `whitelist` challenge, which would lock out everyone not on the list.
+- **Challenges the owner keeps for the bot** (e.g. AI moderation) get a marker item instead: `{ "names": ["askwise.bso"], "publicationType": { "reply": false } }`. pkc-js never applies it, since no publication type is set to true; the bot's replies go through that challenge like anyone else's. The marker only records that the owner decided.
+  - Whether a challenge asks a question is only known when a publication arrives (mintpass, for one, passes some authors and asks others), so the install script can't tell which ones the bot could pass. If a challenge kept for the bot asks it a question, the bot can't answer: it stops answering in that community until the challenges change, and says so in its status.
+- **Excludes are public**, so the bot checks for itself that a community installed it. If an owner adds a challenge later and hasn't decided on it, the bot notices, stops answering there, and resumes once the install script is re-run.
+- **Registering:** after installing, anyone posts the community address in the registry community.
+  - The poster's role doesn't matter: only the owner can set the challenge excludes, so they are the owner's consent. The bot checks that every challenge has a decision, then replies ✅ (listing the challenges that still check its replies) and starts watching.
+  - Otherwise it replies ❌ with what is wrong and how to fix it: no address in the post, community unreachable, or which challenge has no decision (including a `.eth` or differently-cased spelling of the name).
+- **Mentions** are found by walking whatever page sorts the community publishes. No particular sort (`new`, `hot`, …) is assumed. Pages are content-addressed, so already-walked pages are never fetched twice.
+
+## Install @askwise in your community
+
+Requirements: the community runs on a [bitsocial-cli](https://github.com/bitsocialnet/bitsocial-cli) daemon **on this machine** (pkc RPC at `ws://localhost:9138`), and Node.js 22+.
+
+```sh
+git clone https://github.com/rinse12/askwise-bot.git && cd askwise-bot
+npm ci
+
+# preview the change, then apply it
+npm run install-bot -- --community <your-community-address> --dry-run
+npm run install-bot -- --community <your-community-address>
+```
+
+- For each challenge the script asks **whether to exempt the bot** (`y`/`n`, no default):
+  - `y`: the bot's replies skip it.
+  - `n`: the bot's replies must pass it, e.g. to keep AI moderation on what the bot writes. If it asks a question (a captcha, a quiz...), the bot can't answer and won't reply in your community.
+- Then, unless your community already offers one, it asks whether to add a `🤖 bot` author flair, and explains what that changes (see "Optional bot badge" below). `--bot-flair` adds it without asking, `--no-bot-flair` skips it.
+- On later runs it only asks about challenges you haven't decided on yet. **Run it again whenever you add challenges.** `--ask-all` asks about every challenge again, `--exempt-all` exempts the bot from all of them without asking.
+- If your daemon is elsewhere, set `PKC_RPC_SSH_HOST=<ssh host>` (tunnel) or `PKC_RPC_URL=ws://host:9138/<auth-key>` in `.env`, or pass `--rpc`.
+
+Then make a post, from any account, in the registry community **`registry.askwise.bso`** whose content is just your community address. The bot replies ✅ when it is active, or ❌ with what to fix.
+
+**Optional bot badge.** A community only accepts author flairs it lists itself, so the bot can't badge itself. The install script offers to enable `features.authorFlairs` and add `🤖 bot` to `flairs.author`; any author flair whose text contains "bot" works, and the bot uses it automatically.
+- Enabling `features.authorFlairs` is community-wide: every author can then pick their own flair from `flairs.author`, including the bot one. The badge is a label; only the name `askwise.bso` proves a reply is the bot's.
+- Uninstalling leaves the flair in place.
+
+**Uninstall:**
+
+```sh
+npm run install-bot -- --community <your-community-address> --uninstall
+```
+
+The bot sees the change on the community's next update and stops answering.
+
+## Self-hosting your own bot
+
+You can run your own instance under your own `.bso` name, e.g. `yourbot.bso`. Communities install your bot by passing your name to the install script:
+
+```sh
+BOT_NAME=yourbot.bso npm run install-bot -- --community <address>
+```
+
+### 1. Requirements
+
+- A machine that stays online, with Node.js 22+ (nvm recommended).
+- A [bitsocial-cli](https://github.com/bitsocialnet/bitsocial-cli) daemon for the bot to read and publish through. It does not need to host any community except the registry.
+
+  ```sh
+  npm install -g @bitsocial/bitsocial-cli
+  bitsocial daemon        # pkc RPC on ws://localhost:9138
+  ```
+
+  Or use the Docker setup from the bitsocial-cli README.
+- If the daemon runs on another machine, either:
+  - set `PKC_RPC_URL=ws://host:9138/<auth-key>`, or
+  - set `PKC_RPC_SSH_HOST=myserver` (any ssh destination, including a `~/.ssh/config` alias). The bot then tunnels to the daemon's RPC over ssh and restarts the tunnel if it drops. The RPC needn't be exposed to the internet, and the daemon sees a local connection, so no auth key is needed. Use key-based ssh login; the tunnel runs non-interactively.
+- One of:
+  - an Anthropic API key (`ANTHROPIC_API_KEY`, or `ant auth login`), billed per token;
+  - [Claude Code](https://code.claude.com) logged in with your Claude subscription (`LLM_PROVIDER=claude-code`), **for private testing only**. Anthropic doesn't allow routing other people's requests through Free, Pro or Max plan credentials ([legal and compliance](https://code.claude.com/docs/en/legal-and-compliance.md)). A public bot needs an API key.
+- Your own `.bso` name, e.g. `yourbot.bso`. `.bso` is the protocol's name system and it sits on ENS: to get `yourbot.bso`, register `yourbot.eth` at [app.ens.domains](https://app.ens.domains) with an Ethereum wallet. You set the record on the `.eth` side (step 3), but everywhere in Bitsocial, including `BOT_NAME` and the communities' excludes, you write it as `yourbot.bso`.
+  - pkc-js compares exclude names as exact strings, so always use the same lowercase `.bso` spelling.
+
+### 2. Install the bot
+
+```sh
+git clone https://github.com/rinse12/askwise-bot.git && cd askwise-bot
+npm ci
+cp .env.example .env
+```
+
+### 3. Create the bot's key and point your name at it
+
+```sh
+npm run create-signer
+```
+
+- This needs no running node. It writes `data/bot-signer.json` (the private key, readable only by you) and prints an address like `12D3KooW...`.
+- In the ENS app, from the wallet that owns `yourbot.eth`, add a text record:
+  - key `bitsocial`
+  - value: the `12D3KooW...` address
+
+  That is what makes `yourbot.bso` resolve to the bot's key.
+- Back up `data/bot-signer.json`. If the key ever leaks, run `create-signer` again (after moving the old file away) and re-point the name. Communities don't have to change anything, because they exempt the name, not the key.
+  - Nodes cache name lookups, so for a while after re-pointing, some communities may still reject the bot's replies as signed by the wrong key. Those mentions are marked failed and not retried.
+
+### 4. Create the registry community
+
+On your daemon:
+
+```sh
+bitsocial community create --title "AskWise registry" --description "Post your community address here to activate the bot"
+```
+
+- Give it no challenges, or run `npm run install-bot -- --community <registry-address>` so the bot can reply there.
+- To show a bot badge on the bot's replies, enable author flairs and add a `🤖 bot` author flair (see "Optional bot badge" above).
+
+### 5. Configure `.env`
+
+Every command (`npm start`, `install-bot`, `usage`, `create-signer`) reads `.env` from the repo root. Variables already set in your shell take precedence.
+
+| Variable | What it is |
+|---|---|
+| `PKC_RPC_URL` | your daemon, default `ws://localhost:9138` |
+| `PKC_RPC_SSH_HOST` / `PKC_RPC_SSH_REMOTE` | reach the daemon through an ssh tunnel instead (remote default `127.0.0.1:9138`) |
+| `BOT_NAME` / `BOT_DISPLAY_NAME` | your name (`yourbot.bso`) and the display name shown on replies |
+| `REGISTRY_ADDRESS` | the registry community from step 4 |
+| `LLM_PROVIDER` | `anthropic-api` (default) or `claude-code` |
+| `ANTHROPIC_API_KEY` | for `anthropic-api`, unless you used `ant auth login` |
+| `CLAUDE_CODE_BIN` | for `claude-code`: path of the `claude` binary, default `claude` |
+| `LLM_MODEL` | defaults to `claude-haiku-5-5`, the cheapest Claude model. Set e.g. `claude-opus-5-5` for better answers, and update `LLM_INPUT_PRICE_PER_MTOK` / `LLM_OUTPUT_PRICE_PER_MTOK` so cost tracking stays right. |
+| `IMAGE_PROXY_URL` | optional, see "Images and privacy" |
+| `PRIVATE_STRINGS` | comma-separated strings no reply may contain, e.g. your name or email |
+| `LIMIT_*` | spend and rate limits; the daily spend cap defaults to $20 |
+
+Optionally add `data/author-profile.json` with `displayName`, an `avatar` (NFT) or `wallets`. Avatar and wallet entries must be signed offline by the wallet that owns the name. The avatar artwork is `assets/avatar.png` (1024×1024); Bitsocial avatars are NFTs, so mint it first.
+
+### 6. Run it
+
+```sh
+npm start
+```
+
+- The bot refuses to start until your name resolves to its key.
+- To keep it running, use a systemd user service:
+
+  ```ini
+  # ~/.config/systemd/user/askwise-bot.service
+  [Unit]
+  Description=AskWise bot
+  After=network-online.target
+
+  [Service]
+  WorkingDirectory=%h/askwise-bot
+  ExecStart=/usr/bin/env npm start
+  Restart=always
+  RestartSec=10
+
+  [Install]
+  WantedBy=default.target
+  ```
+
+  ```sh
+  systemctl --user enable --now askwise-bot
+  loginctl enable-linger "$USER"   # keep it running after you log out
+  journalctl --user -u askwise-bot -f
+  ```
+
+- All state is in `data/`: the key, `bot.db` (installed communities, handled mentions, token usage) and the optional profile. Back up that folder to move the bot to another machine.
+
+Every bot publication carries `author.name`, `displayName`, `previousCommentCid` (chained across all of its comments) and, where the community offers one, a bot flair.
+
+### Claude Code backend
+
+> **Local testing only.** Anthropic's terms don't allow serving other people's requests through a Free, Pro or Max plan ([legal and compliance](https://code.claude.com/docs/en/legal-and-compliance.md)). A bot that answers anyone in a community does exactly that, so a public bot must use `LLM_PROVIDER=anthropic-api`. This backend will be removed once the API backend is in use.
+
+With `LLM_PROVIDER=claude-code`, each mention runs `claude -p` headless as a fresh session:
+- no tools, so thread content cannot make it run anything;
+- the bot's own system prompt instead of Claude Code's;
+- no settings, CLAUDE.md, MCP servers or skills, and an empty working directory under `data/`.
+
+`ANTHROPIC_API_KEY` is removed from its environment so it always uses the subscription. Auto-memory, CLAUDE.md files and git instructions are turned off, and the working directory is outside any project.
+
+**Privacy:** Claude Code still adds context of its own to every request, and no setting removes it while keeping subscription login. That includes **the logged-in account's email address**, environment info (OS, working directory) and the date. Anyone mentioning the bot could try to get these out of it. This is one more reason to keep this backend to private testing.
+
+What the bot does about it:
+- **Startup:** the bot reads the account's email (and its local part) and org id with `claude auth status`. It won't start if it can't.
+- **Before publishing:** every reply is checked for those strings, plus anything in `PRIVATE_STRINGS`, case-insensitively and also when spelled out ("name at domain dot com", spaced-out letters). A match blocks the reply: it isn't published, isn't retried, and the log doesn't contain it.
+- **System prompt:** it tells the model never to reveal anything about its operator or the machine.
+
+This catches the details themselves, not every possible hint, such as describing the address without spelling it. The API-key backend avoids the problem entirely, because no account context is sent. Token usage and the equivalent API cost are recorded the same way, so the limits and `npm run usage` keep working.
+
+### Images and privacy
+
+The bot shows the LLM up to `LLM_MAX_IMAGES` images from the thread: post image links, markdown images, and pasted image URLs. The bot's machine never loads them directly:
+
+- **Default (no `IMAGE_PROXY_URL`):** the image URL is passed to Claude and Anthropic's servers fetch it. This holds for both backends; Claude Code forwards the URL without loading it.
+- **`IMAGE_PROXY_URL=socks5://127.0.0.1:9050`** (Tor) **or `http://proxy:port`:** the bot downloads the image through the proxy and sends the bytes inline. Private and LAN addresses are refused, and images must be jpeg/png/gif/webp under 5 MB.
+
+If Anthropic can't fetch an image, the bot retries without that image (then without any) and tells the model which one was unavailable.
+
+### Limits and token tracking
+
+All LLM calls are recorded in `data/bot.db` (`llm_usage`: tokens, model, cost per mention). Before calling the LLM, the bot enforces:
+
+- replies per community per hour
+- tokens per community per day
+- mentions per author per hour
+- a global daily spend cap
+- a cap on bot replies per thread, to avoid loops
+
+They are set in `.env` (`LIMIT_*`, see `.env.example`). A mention over a limit is answered once the limit resets. The first time, the bot replies that it has reached its limit, at most once an hour per author (their own limit) or per community (shared limits).
+
+```sh
+npm run usage -- --since 7d --by community   # or --by author / --by model, --since 24h / 4w / all
+```
+
+### Downtime, backlog and retries
+
+The bot can be offline: on a laptop that sleeps, during a restart, or while the network is down.
+- **Catching up:** a mention counts as new when the bot hasn't seen its comment yet, not when it was posted. When the bot comes back, it answers everything posted meanwhile, oldest first. Mentions older than `MENTION_MAX_AGE_HOURS` (48) are skipped instead of answered late.
+- **Failed replies** retry with backoff (LLM or network outage, community node down, install fixed later). A refusal doesn't retry.
+- **Rate-limited mentions** wait until the limits allow them.
+- **Interrupted replies:** a reply interrupted by a crash or shutdown is retried on the next start.
+
+**After a suspend or network drop, restart the bot** (`npm start`, or `systemctl --user restart askwise-bot`). The pkc RPC client reconnects, but until [pkc-js#425](https://github.com/pkcprotocol/pkc-js/issues/425) is fixed its community subscriptions stay silent afterwards. Nothing is lost: the restart picks up the backlog.
+
+## Development
+
+```sh
+npm test           # unit tests
+npm run typecheck
+npm run e2e        # full flow against a local Kubo + in-process pkc RPC node, with a fake LLM (needs `ipfs` on PATH or KUBO_BIN)
+```
+
+## License
+
+Copyright (C) 2026 Rinse
+
+[GPL-3.0-or-later](https://github.com/Rinse12/askwise-bot/blob/HEAD/LICENSE): you may redistribute and modify it under the terms of the GNU General Public License, version 3 or any later version.
 
 ### 5chan Board Manager
 
