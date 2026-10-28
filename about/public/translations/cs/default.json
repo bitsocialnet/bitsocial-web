@@ -527,7 +527,8 @@
         "ai": "AI",
         "antiRepost": "Proti repostům",
         "referenceClient": "Referenční klient",
-        "search": "Vyhledávání"
+        "search": "Vyhledávání",
+        "images": "Obrázky"
       },
       "linkLabels": {
         "androidApk": "APK pro Android",
@@ -591,6 +592,14 @@
         },
         "spam-blocker": {
           "description": "Spam Blocker vyhodnocuje příspěvky a vrací skóre rizika, které mohou komunity kombinovat se svou vlastní logikou moderace. Její hostovaná služba také propojuje podpisové klíče poprvé viditelné ze stejné IP adresy, takže uživatel, který stále vytváří nové účty, aby se vyhnul zákazu komunity nebo vytvořil konverzaci, vidí nárůst svého skóre rizika, zatímco několik podepisovatelů zůstane povoleno pro legitimní použití více zařízení."
+        },
+        "image-classifier-bot": {
+          "tagline": "Bot pro moderační frontu, který schvaluje jen příspěvky s obrázkem odpovídajícím tomu, co komunita povoluje.",
+          "description": "Image Classifier Bot moderuje komunity, které chtějí jen jeden druh obrázků, například jen kočky, jen psy nebo jen jídlo. Běží vedle bitsocial-cli, sleduje moderační frontu komunity a každý nový příspěvek schválí, nebo zamítne podle klasifikace odkazovaného obrázku vizuálním modelem CLIP/SigLIP, který si vlastník sám hostuje na CPU. Štítky se píší běžnou angličtinou a nevyžadují žádné trénování, takže přechod z koček na psy je jen změna konfigurace. Přispěvatelé na kontrolu nečekají, žádný obrázek se neposílá do AI služby třetí strany a u zamítnutých příspěvků se zobrazí důvod."
+        },
+        "askwise": {
+          "tagline": "AI bot pro odpovědi, kterého si komunity samy zapínají a přivolávají přes @askwise.",
+          "description": "AskWise je AI bot pro odpovědi, kterého si komunity Bitsocial zapínají dobrovolně. V komunitě, která ho nainstalovala, může kdokoli zmínit <code>@askwise</code> nebo <code>askwise.bso</code> v příspěvku nebo odpovědi a bot si přečte vlákno včetně obrázků a odpoví v něm v souladu s pravidly komunity. Komunity, které ho nenainstalovaly, ignoruje a k poskytovateli AI jeho provozovatele se dostanou jen vlákna, ve kterých je zmíněn. AskWise je nezávislý projekt, který běží na bitsocial-cli; Bitsocial ho nevytváří ani neprovozuje."
         }
       }
     },

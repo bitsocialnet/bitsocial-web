@@ -527,7 +527,8 @@
         "ai": "AI",
         "antiRepost": "Uudelleenjulkaisun esto",
         "referenceClient": "Viiteasiakas",
-        "search": "Haku"
+        "search": "Haku",
+        "images": "Kuvat"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -618,6 +619,14 @@
         "bitbones": {
           "tagline": "Riisuttu referenssiasiakas, jossa jokainen näkymä on ohut kuori yhden hookin ympärillä.",
           "description": "bitbones on pienin hyödyllinen pinta Bitsocialin React-hookien päällä: tyylejä ei juuri ole, tuotepäätöksiä ei lainkaan, ja jokaisen näkymän takana on yksi hook. Se on nopein paikka toistaa bugi tai kokeilla hook-muutosta oikeita yhteisöjä vasten, ja sen oletussyötteen voi vaihtaa Seeditin ja 5chanin yhteisölistojen välillä."
+        },
+        "image-classifier-bot": {
+          "tagline": "Moderointijonon botti, joka hyväksyy vain julkaisut, joiden kuva vastaa yhteisön sallimaa sisältöä.",
+          "description": "Image Classifier Bot moderoi yhteisöjä, jotka haluavat vain yhdenlaisia kuvia, esimerkiksi pelkkiä kissoja, pelkkiä koiria tai pelkkää ruokaa. Se toimii bitsocial-cli-ohjelman rinnalla, seuraa yhteisön moderointijonoa ja hyväksyy tai hylkää jokaisen uuden julkaisun luokittelemalla siihen linkitetyn kuvan CLIP/SigLIP-konenäkömallilla, jota omistaja hostaa itse CPU:lla. Luokkien nimet kirjoitetaan tavallisella englannin kielellä eikä niitä tarvitse kouluttaa, joten vaihto kissoista koiriin on pelkkä asetusmuutos. Julkaisijoiden ei tarvitse odottaa tarkistusta, yhtään kuvaa ei lähetetä kolmannen osapuolen tekoälypalveluun, ja hylätyissä julkaisuissa näkyy hylkäyksen syy."
+        },
+        "askwise": {
+          "tagline": "Tekoälyvastausbotti, jonka yhteisöt ottavat käyttöön omasta valinnastaan ja kutsuvat paikalle maininnalla @askwise.",
+          "description": "AskWise on tekoälyvastausbotti, jonka Bitsocial-yhteisöt voivat ottaa käyttöön omasta valinnastaan. Yhteisössä, joka on asentanut sen, kuka tahansa voi mainita <code>@askwise</code> tai <code>askwise.bso</code> julkaisussa tai vastauksessa, jolloin botti lukee ketjun kuvineen ja vastaa samaan ketjuun yhteisön sääntöjä noudattaen. Yhteisöt, jotka eivät ole asentaneet sitä, jätetään huomiotta, ja ylläpitäjän tekoälypalveluntarjoajalle lähetetään vain ketjut, joissa botti mainitaan. AskWise on itsenäinen projekti, joka toimii bitsocial-cli-ohjelman päällä; Bitsocial ei ole sen tekijä eikä ylläpitäjä."
         }
       }
     },

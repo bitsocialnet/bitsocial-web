@@ -527,7 +527,8 @@
         "ai": "AI",
         "antiRepost": "Yeniden paylaşım karşıtı",
         "referenceClient": "Referans istemci",
-        "search": "Arama"
+        "search": "Arama",
+        "images": "Görseller"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -618,6 +619,14 @@
         "bitbones": {
           "tagline": "Her görünümün tek bir hook üzerindeki ince bir sarmalayıcıdan ibaret olduğu, en yalın referans istemci.",
           "description": "bitbones, Bitsocial'ın React hook'ları üzerindeki en küçük kullanışlı katmandır: neredeyse hiç biçimlendirme yok, ürün kararları yok ve her görünümün arkasında tek bir hook var. Bir hatayı yeniden üretmek ya da hook'lardaki bir değişikliği gerçek topluluklar üzerinde denemek için en hızlı yer burasıdır; varsayılan akışı da Seedit ile 5chan topluluk listeleri arasında değiştirilebilir."
+        },
+        "image-classifier-bot": {
+          "tagline": "Yalnızca görseli topluluğun izin verdiği içerikle eşleşen gönderileri onaylayan moderasyon kuyruğu botu.",
+          "description": "Image Classifier Bot, yalnızca tek tür görsel isteyen toplulukları modere eder; örneğin yalnızca kediler, yalnızca köpekler veya yalnızca yemek. Bot, bitsocial-cli'nin yanında çalışır, topluluğun moderasyon kuyruğunu izler ve her yeni gönderinin bağlantılı görselini, sahibinin bir CPU üzerinde kendisi barındırdığı bir CLIP/SigLIP görü modeliyle sınıflandırarak gönderiyi onaylar veya reddeder. Etiketler sade İngilizceyle yazılır ve eğitim gerektirmez; bu yüzden kedilerden köpeklere geçmek bir yapılandırma değişikliğinden ibarettir. Gönderi paylaşanlar kontrolü beklemez, hiçbir görsel üçüncü taraf bir AI hizmetine gönderilmez ve reddedilen gönderilerde nedeni gösterilir."
+        },
+        "askwise": {
+          "tagline": "Toplulukların kendi tercihiyle etkinleştirdiği ve @askwise ile çağırdığı AI yanıt botu.",
+          "description": "AskWise, Bitsocial topluluklarının kendi tercihiyle etkinleştirdiği bir AI yanıt botudur. Onu kurmuş bir toplulukta herkes bir gönderide veya yanıtta <code>@askwise</code> ya da <code>askwise.bso</code> yazarak botu anabilir; bot da thread'i görselleriyle birlikte okur ve topluluğun kurallarına uyarak orada yanıt verir. Onu kurmamış topluluklar yok sayılır ve yalnızca ondan bahseden thread'ler operatörün AI sağlayıcısına gönderilir. AskWise, bitsocial-cli üzerinde çalışan bağımsız bir projedir; Bitsocial tarafından geliştirilmemiştir ve işletilmemektedir."
         }
       }
     },

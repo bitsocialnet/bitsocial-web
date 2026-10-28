@@ -527,7 +527,8 @@
         "ai": "AI",
         "antiRepost": "Anti-repost",
         "referenceClient": "Referensklient",
-        "search": "Sökning"
+        "search": "Sökning",
+        "images": "Bilder"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -618,6 +619,14 @@
         "bitbones": {
           "tagline": "Avskalad referensklient där varje vy bara är ett tunt hölje kring en enda hook.",
           "description": "bitbones är den minsta användbara ytan ovanpå Bitsocials React-hooks: nästan ingen styling, inga produktbeslut och en enda hook bakom varje vy. Det är det snabbaste stället att återskapa en bugg eller pröva en hook-ändring mot riktiga gemenskaper, och standardflödet kan växlas mellan Seedits och 5chans gemenskapslistor."
+        },
+        "image-classifier-bot": {
+          "tagline": "Bot för modereringskön som bara godkänner inlägg vars bild stämmer med det communityt tillåter.",
+          "description": "Image Classifier Bot modererar communities som bara vill ha en sorts bilder, till exempel bara katter, bara hundar eller bara mat. Den körs bredvid bitsocial-cli, bevakar communityts modereringskö och godkänner eller avvisar varje nytt inlägg genom att klassificera dess länkade bild med en CLIP/SigLIP-visionsmodell som ägaren själv kör på en CPU. Etiketterna skrivs på vanlig engelska och kräver ingen träning, så att byta från katter till hundar är bara en konfigurationsändring. Den som postar behöver inte vänta på kontrollen, ingen bild skickas till en AI-tjänst från tredje part och avvisade inlägg visar orsaken."
+        },
+        "askwise": {
+          "tagline": "AI-svarsbot som communities själva väljer att aktivera och kallar på med @askwise.",
+          "description": "AskWise är en AI-svarsbot som Bitsocial-communities själva väljer att aktivera. I en community som har installerat den kan vem som helst nämna <code>@askwise</code> eller <code>askwise.bso</code> i ett inlägg eller svar, och boten läser tråden, inklusive dess bilder, och svarar där enligt communityts regler. Communities som inte har installerat den ignoreras, och endast trådar som nämner den skickas till operatörens AI-leverantör. AskWise är ett oberoende projekt som körs på bitsocial-cli; det är varken skapat eller drivet av Bitsocial."
         }
       }
     },

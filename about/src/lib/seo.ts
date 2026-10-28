@@ -576,12 +576,10 @@ function buildSoftwareApplicationSchema(app: AppData): StructuredDataValue {
     applicationCategory: getApplicationCategory(getPrimaryCategorySlug(app)),
     operatingSystem: getOperatingSystem(app),
     keywords: app.tags.join(", "),
-    author: {
-      "@id": `${SITE_ORIGIN}/#organization`,
-    },
-    publisher: {
-      "@id": `${SITE_ORIGIN}/#organization`,
-    },
+    author: app.author
+      ? { "@type": "Person", name: app.author.name, url: app.author.url }
+      : { "@id": `${SITE_ORIGIN}/#organization` },
+    publisher: app.author ? undefined : { "@id": `${SITE_ORIGIN}/#organization` },
     codeRepository: `https://github.com/${app.githubRepo}`,
     downloadUrl: primaryDownloadUrl,
     sameAs,

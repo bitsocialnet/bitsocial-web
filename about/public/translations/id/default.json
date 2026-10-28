@@ -527,7 +527,8 @@
         "ai": "AI",
         "antiRepost": "Anti-repost",
         "referenceClient": "Klien referensi",
-        "search": "Pencarian"
+        "search": "Pencarian",
+        "images": "Gambar"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -618,6 +619,14 @@
         "bitbones": {
           "tagline": "Klien referensi paling sederhana, dengan setiap tampilan hanya berupa pembungkus tipis di atas satu hook.",
           "description": "bitbones adalah lapisan berguna paling kecil di atas React hooks milik Bitsocial: nyaris tanpa styling, tanpa keputusan produk, dan hanya satu hook di balik setiap tampilan. Ini tempat tercepat untuk mereproduksi bug atau mencoba perubahan hooks terhadap komunitas sungguhan, dan feed bawaannya dapat diganti antara daftar komunitas Seedit dan 5chan."
+        },
+        "image-classifier-bot": {
+          "tagline": "Bot antrean moderasi yang hanya menyetujui posting yang gambarnya sesuai dengan yang diizinkan komunitas.",
+          "description": "Image Classifier Bot memoderasi komunitas yang hanya menginginkan satu jenis gambar, misalnya hanya kucing, hanya anjing, atau hanya makanan. Bot ini berjalan berdampingan dengan bitsocial-cli, memantau antrean moderasi komunitas, lalu menyetujui atau menolak setiap posting baru dengan mengklasifikasikan gambar yang ditautkannya menggunakan model visi CLIP/SigLIP yang di-hosting sendiri oleh pemilik di CPU. Label ditulis dalam bahasa Inggris biasa dan tidak memerlukan pelatihan, jadi beralih dari kucing ke anjing cukup dengan mengubah konfigurasi. Pembuat posting tidak perlu menunggu pemeriksaan, tidak ada gambar yang dikirim ke layanan AI pihak ketiga, dan posting yang ditolak menampilkan alasannya."
+        },
+        "askwise": {
+          "tagline": "Bot balasan AI yang dipasang komunitas atas pilihan sendiri dan dipanggil dengan @askwise.",
+          "description": "AskWise adalah bot balasan AI yang dipasang komunitas Bitsocial atas pilihan mereka sendiri. Di komunitas yang memasangnya, siapa pun dapat menyebut <code>@askwise</code> atau <code>askwise.bso</code> dalam posting atau balasan, lalu bot akan membaca thread tersebut, termasuk gambarnya, dan menjawab di sana dengan tetap mengikuti aturan komunitas. Komunitas yang tidak memasangnya diabaikan, dan hanya thread yang menyebutnya yang dikirim ke penyedia AI milik operator. AskWise adalah proyek independen yang berjalan di atas bitsocial-cli; proyek ini tidak dibuat maupun dijalankan oleh Bitsocial."
         }
       }
     },

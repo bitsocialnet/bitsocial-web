@@ -527,7 +527,8 @@
         "ai": "AI",
         "antiRepost": "Chống đăng lại",
         "referenceClient": "Client tham chiếu",
-        "search": "Tìm kiếm"
+        "search": "Tìm kiếm",
+        "images": "Hình ảnh"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -618,6 +619,14 @@
         "bitbones": {
           "tagline": "Client tham chiếu tối giản, trong đó mỗi màn hình chỉ là một lớp bọc mỏng quanh đúng một hook.",
           "description": "bitbones là lớp hữu ích nhỏ nhất đặt trên các React hook của Bitsocial: gần như không có phần tạo kiểu, không có quyết định sản phẩm, và mỗi màn hình chỉ đứng sau đúng một hook. Đây là nơi nhanh nhất để tái hiện một lỗi hoặc thử một thay đổi trong hooks trên các cộng đồng thật, và bảng tin mặc định của nó có thể chuyển giữa danh sách cộng đồng của Seedit và 5chan."
+        },
+        "image-classifier-bot": {
+          "tagline": "Bot hàng đợi kiểm duyệt chỉ duyệt những bài đăng có hình ảnh phù hợp với nội dung mà cộng đồng cho phép.",
+          "description": "Image Classifier Bot kiểm duyệt những cộng đồng chỉ muốn một loại hình ảnh, chẳng hạn chỉ mèo, chỉ chó hoặc chỉ đồ ăn. Bot chạy cạnh bitsocial-cli, theo dõi hàng đợi kiểm duyệt của cộng đồng và duyệt hoặc từ chối từng bài đăng mới bằng cách phân loại hình ảnh được liên kết trong bài bằng một mô hình thị giác CLIP/SigLIP mà chủ sở hữu tự lưu trữ trên CPU. Nhãn được viết bằng tiếng Anh thông thường và không cần huấn luyện, nên chuyển từ mèo sang chó chỉ là một thay đổi cấu hình. Người đăng không phải chờ kiểm tra, không hình ảnh nào được gửi tới dịch vụ AI của bên thứ ba, và các bài đăng bị từ chối sẽ hiển thị lý do."
+        },
+        "askwise": {
+          "tagline": "Bot trả lời AI mà các cộng đồng tự chọn bật và gọi bằng @askwise.",
+          "description": "AskWise là bot trả lời AI mà các cộng đồng Bitsocial tự chọn bật. Trong cộng đồng đã cài đặt bot, bất kỳ ai cũng có thể nhắc đến <code>@askwise</code> hoặc <code>askwise.bso</code> trong bài đăng hoặc phản hồi, và bot sẽ đọc chủ đề, kể cả hình ảnh trong đó, rồi trả lời ngay tại chủ đề đó theo quy tắc của cộng đồng. Các cộng đồng chưa cài đặt bot sẽ bị bỏ qua, và chỉ những chủ đề có nhắc đến bot mới được gửi tới nhà cung cấp AI của người vận hành. AskWise là một dự án độc lập chạy trên bitsocial-cli; dự án này không do Bitsocial tạo ra hay vận hành."
         }
       }
     },

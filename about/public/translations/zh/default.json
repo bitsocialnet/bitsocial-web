@@ -527,7 +527,8 @@
         "ai": "AI",
         "antiRepost": "反重复发布",
         "referenceClient": "参考客户端",
-        "search": "搜索"
+        "search": "搜索",
+        "images": "图片"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -617,6 +618,14 @@
         "bitbones": {
           "tagline": "极简参考客户端，每个视图都只是单个 hook 之上的一层薄封装。",
           "description": "bitbones 是 Bitsocial React hooks 之上最小的可用外壳：几乎没有样式，不带任何产品取舍，每个视图背后只有一个 hook。要在真实社区上复现 bug 或试验 hooks 的改动，这里是最快的落脚点；它的默认信息流可以在 Seedit 与 5chan 的社区列表之间切换。"
+        },
+        "image-classifier-bot": {
+          "tagline": "审核队列机器人，只批准图片符合社区允许内容的帖子。",
+          "description": "Image Classifier Bot 为只想要一种图片的社区执行审核，例如只要猫、只要狗或只要食物。它与 bitsocial-cli 并行运行，监视社区的审核队列，并使用所有者自行在 CPU 上托管的 CLIP/SigLIP 视觉模型对每个新帖子所链接的图片进行分类，据此批准或拒绝该帖子。标签使用普通英文编写，无需训练，因此从猫切换到狗只需更改配置。发帖者无需等待检查，任何图片都不会发送到第三方 AI 服务，被拒绝的帖子会显示原因。"
+        },
+        "askwise": {
+          "tagline": "社区自主选择启用、通过 @askwise 召唤的 AI 回复机器人。",
+          "description": "AskWise 是一款由 Bitsocial 社区自主选择启用的 AI 回复机器人。在已安装它的社区中，任何人都可以在帖子或回复中提及 <code>@askwise</code> 或 <code>askwise.bso</code>，机器人会阅读该讨论串（包括其中的图片），并在遵守社区规则的前提下在原处作答。未安装它的社区会被忽略，只有提及它的讨论串才会发送给运营者的 AI 提供商。AskWise 是运行在 bitsocial-cli 上的独立项目，并非由 Bitsocial 开发或运营。"
         }
       }
     },

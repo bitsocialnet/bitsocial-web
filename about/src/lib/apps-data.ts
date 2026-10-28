@@ -90,6 +90,8 @@ export interface AppData {
   logoSrc?: string;
   logoPixelated?: boolean;
   githubRepo: string;
+  /** Set only for independent projects, so structured data credits this person instead of Bitsocial. */
+  author?: { name: string; url: string };
   links: AppLink[];
   relatedSlugs: string[];
   featured?: boolean;
@@ -233,6 +235,7 @@ const APP_TAG_TRANSLATION_KEYS: Record<string, string> = {
   Forums: "apps.catalog.tags.forums",
   "Human checks": "apps.catalog.tags.humanChecks",
   Imageboard: "apps.catalog.tags.imageboard",
+  Images: "apps.catalog.tags.images",
   Invites: "apps.catalog.tags.invites",
   Mirrors: "apps.catalog.tags.mirrors",
   Moderation: "apps.catalog.tags.moderation",
@@ -340,6 +343,14 @@ const APP_COPY_TRANSLATION_KEYS: Record<string, { tagline: string; description: 
   "bitsocial-github-alerts": {
     tagline: "apps.catalog.items.bitsocial-github-alerts.tagline",
     description: "apps.catalog.items.bitsocial-github-alerts.description",
+  },
+  "image-classifier-bot": {
+    tagline: "apps.catalog.items.image-classifier-bot.tagline",
+    description: "apps.catalog.items.image-classifier-bot.description",
+  },
+  askwise: {
+    tagline: "apps.catalog.items.askwise.tagline",
+    description: "apps.catalog.items.askwise.description",
   },
 };
 
@@ -692,6 +703,22 @@ export const APPS: AppData[] = [
     searchTerms: ["ai", "openai", "llm", "rules", "review", "moderation"],
   },
   {
+    slug: "image-classifier-bot",
+    name: "Image Classifier Bot",
+    tagline:
+      "Mod-queue bot that only approves posts whose image matches what the community allows.",
+    description:
+      "Image Classifier Bot moderates communities that only want one kind of picture, such as only cats, only dogs, or only food. It runs next to bitsocial-cli, watches the community's mod queue, and approves or rejects each new post by classifying its linked image with a CLIP/SigLIP vision model the owner hosts themselves on a CPU. Labels are plain English and need no training, so switching from cats to dogs is a config change. Posters don't wait for the check, no image goes to a third-party AI service, and rejected posts show the reason.",
+    categories: ["anti-spam"],
+    tags: ["AI", "Moderation", "Bots", "Images"],
+    icon: "bot",
+    githubRepo: "bitsocialnet/image-classifier-bitsocial-moderator-bot",
+    links: [],
+    relatedSlugs: ["ai-moderation-challenge", "spam-blocker", "bitsocial-cli", "seedit"],
+    status: "experimental",
+    searchTerms: ["image", "vision", "clip", "siglip", "classifier", "mod queue", "bot", "cats"],
+  },
+  {
     slug: "spam-blocker",
     name: "Spam Blocker",
     tagline: "Centralized risk scoring layer for filtering abusive publications.",
@@ -1016,6 +1043,23 @@ export const APPS: AppData[] = [
     ],
     relatedSlugs: ["telegram-bots", "bitsocial-cli"],
     searchTerms: ["github", "alerts", "telegram", "notifications", "releases", "webhook"],
+  },
+  {
+    slug: "askwise",
+    name: "AskWise",
+    tagline: "AI reply bot that communities opt into and summon with @askwise.",
+    description:
+      "AskWise is an AI reply bot that Bitsocial communities opt into. In a community that installed it, anyone can mention <code>@askwise</code> or <code>askwise.bso</code> in a post or reply, and the bot reads the thread, including its images, and answers there while following the community's rules. Communities that haven't installed it are ignored, and only threads that mention it are sent to the operator's AI provider. AskWise is an independent project that runs on bitsocial-cli; it is not made or run by Bitsocial.",
+    categories: ["tools"],
+    tags: ["AI", "Bots"],
+    icon: "bot",
+    logoSrc: "/assets/apps/askwise.svg",
+    githubRepo: "Rinse12/askwise-bot",
+    author: { name: "Rinse12", url: "https://github.com/Rinse12" },
+    links: [],
+    relatedSlugs: ["bitsocial-cli", "5chan", "seedit"],
+    status: "experimental",
+    searchTerms: ["ai", "bot", "mention", "reply", "askwise", "llm"],
   },
   {
     slug: "5chan-board-manager",

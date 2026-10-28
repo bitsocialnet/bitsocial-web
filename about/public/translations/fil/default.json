@@ -527,7 +527,8 @@
         "ai": "AI",
         "antiRepost": "Anti-repost",
         "referenceClient": "Reference client",
-        "search": "Paghahanap"
+        "search": "Paghahanap",
+        "images": "Mga larawan"
       },
       "linkLabels": {
         "androidApk": "APK ng Android",
@@ -618,6 +619,14 @@
         "bitbones": {
           "tagline": "Napakasimpleng reference client kung saan ang bawat view ay manipis na balot lamang sa iisang hook.",
           "description": "Ang bitbones ang pinakamaliit na kapaki-pakinabang na balat sa ibabaw ng React hooks ng Bitsocial: halos walang styling, walang opinyon sa produkto, at iisang hook lamang sa likod ng bawat view. Ito ang pinakamabilis na lugar para ulitin ang isang bug o subukan ang isang pagbabago sa hooks laban sa mga totoong komunidad, at maaaring palitan ang default na feed nito sa pagitan ng listahan ng komunidad ng Seedit at ng 5chan."
+        },
+        "image-classifier-bot": {
+          "tagline": "Bot para sa mod queue na inaaprubahan lang ang mga post na tugma ang larawan sa pinapayagan ng komunidad.",
+          "description": "Mino-moderate ng Image Classifier Bot ang mga komunidad na iisang uri lang ng larawan ang gusto, gaya ng puro pusa, puro aso, o puro pagkain. Tumatakbo ito katabi ng bitsocial-cli, binabantayan ang mod queue ng komunidad, at inaaprubahan o tinatanggihan ang bawat bagong post sa pamamagitan ng pag-classify sa naka-link na larawan nito gamit ang isang CLIP/SigLIP vision model na hino-host mismo ng owner sa isang CPU. Nakasulat sa simpleng Ingles ang mga label at hindi kailangang i-train, kaya ang paglipat mula sa pusa papunta sa aso ay pagbabago lang sa config. Hindi kailangang maghintay ng mga nagpo-post sa pagsusuri, walang larawang ipinapadala sa third-party na AI service, at ipinapakita ng mga tinanggihang post ang dahilan."
+        },
+        "askwise": {
+          "tagline": "AI reply bot na pinipiling i-install ng mga komunidad at tinatawag gamit ang @askwise.",
+          "description": "Ang AskWise ay isang AI reply bot na pinipiling i-install ng mga komunidad sa Bitsocial. Sa isang komunidad na nag-install nito, puwedeng i-mention ng kahit sino ang <code>@askwise</code> o <code>askwise.bso</code> sa isang post o reply, at babasahin ng bot ang thread, kasama ang mga larawan nito, at sasagot doon habang sinusunod ang mga patakaran ng komunidad. Binabalewala nito ang mga komunidad na hindi nag-install nito, at ang mga thread lang na bumabanggit dito ang ipinapadala sa AI provider ng operator. Ang AskWise ay isang independiyenteng proyekto na tumatakbo sa bitsocial-cli; hindi ito gawa o pinapatakbo ng Bitsocial."
         }
       }
     },
