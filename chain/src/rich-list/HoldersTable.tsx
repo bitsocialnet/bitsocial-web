@@ -1,4 +1,4 @@
-import { useId, useRef, useState } from "react";
+import { type ReactNode, useId, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { ChevronDown, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -10,7 +10,7 @@ import { type Formatters, useFormatters } from "./format";
 import { entityCategory } from "@/lib/rich-list/data";
 import { cn } from "@/lib/utils";
 import BalanceTrend from "./BalanceTrend";
-import { AddressLink, CategoryBadge, SegmentedControl } from "./primitives";
+import { AddressLink, CategoryBadge, LiveSkeleton, SegmentedControl } from "./primitives";
 
 const PAGE_SIZE = 25;
 
@@ -39,7 +39,7 @@ function EntityName({ entityId }: { entityId: string }) {
 export default function HoldersTable() {
   const { t } = useTranslation();
   const format = useFormatters();
-  const { groupedRows, walletRows } = useRichList();
+  const { groupedRows, walletRows, awaitingLive } = useRichList();
   const bodyRef = useRef<HTMLTableSectionElement>(null);
   const searchId = useId();
   const [view, setView] = useState<View>("grouped");
@@ -120,89 +120,96 @@ export default function HoldersTable() {
       </div>
 
       {/* On phones each row becomes a grid (rich-list.css), and some browsers drop a table's
-          semantics once its display changes, so the table roles are stated explicitly. */}
+          semantics once its display changes, so the table roles are stated explicitly. The card
+          is the surface, so it stays outside the skeleton. */}
       <div ref={tableRef} className="rl-table-scroll glass-card">
-        <table className="rl-table rl-holders-table" role="table">
-          <caption className="sr-only">{t("richList.table.caption")}</caption>
-          <thead role="rowgroup">
-            <tr role="row">
-              <th scope="col" role="columnheader" className="rl-col-rank">
-                #
-              </th>
-              <th scope="col" role="columnheader" className="rl-col-holder">
-                {t("richList.table.holder")}
-              </th>
-              <th scope="col" role="columnheader" className="rl-col-num rl-col-balance">
-                {t("richList.table.balance")}
-              </th>
-              <th scope="col" role="columnheader" className="rl-col-num rl-col-share">
-                {t("richList.table.share")}
-              </th>
-              <th scope="col" role="columnheader" className="rl-col-num rl-col-usd">
-                {t("richList.table.value")}
-              </th>
-              <th scope="col" role="columnheader" className="rl-col-trend">
-                {t("richList.table.history")}
-              </th>
-            </tr>
-          </thead>
-          <tbody ref={bodyRef} role="rowgroup">
-            {visible.map((row) => {
-              if (row.type === "wallet") {
-                const entityId = getEntityIdForAddress(row.holder.address);
-                return (
-                  <tr key={row.holder.address} role="row">
-                    <td role="cell" className="rl-col-rank">
-                      {row.rank}
-                    </td>
-                    <td role="cell" className="rl-col-holder">
-                      <span className="rl-holder-name">
-                        <AddressLink address={row.holder.address} />
-                        {entityId ? (
-                          <EntityName entityId={entityId} />
-                        ) : row.holder.isContract ? (
-                          <span className="rl-tag">{t("richList.table.contract")}</span>
-                        ) : null}
-                      </span>
-                    </td>
-                    <AmountCells format={format} balance={row.holder.balance} />
-                    <TrendCell format={format} history={history} addresses={[row.holder.address]} />
-                  </tr>
-                );
-              }
-
-              const { entity, wallets, balance } = row.row;
-              const heldWallets = wallets.filter((wallet) => wallet.balance > 0);
-              // The line counts every wallet, including ones that have since sold out.
-              const allAddresses = wallets.map((wallet) => wallet.address);
-              const isOpen = expanded.has(entity.id);
-              const panelId = `rl-wallets-${entity.id}`;
-              return (
-                <GroupRows
-                  key={entity.id}
-                  format={format}
-                  rank={row.rank}
-                  entityId={entity.id}
-                  balance={balance}
-                  wallets={heldWallets}
-                  allAddresses={allAddresses}
-                  history={history}
-                  isOpen={isOpen}
-                  panelId={panelId}
-                  onToggle={() => toggle(entity.id)}
-                  toggleLabel={t("richList.table.walletCount", { count: heldWallets.length })}
-                />
-              );
-            })}
-            {visible.length === 0 ? (
+        <LiveSkeleton name="rich-list-holders" loading={awaitingLive}>
+          <table className="rl-table rl-holders-table" role="table">
+            <caption className="sr-only">{t("richList.table.caption")}</caption>
+            <thead role="rowgroup">
               <tr role="row">
-                <td role="cell" colSpan={6} className="rl-empty">
-                  {t("richList.table.noMatch")}
-                </td>
+                <th scope="col" role="columnheader" className="rl-col-rank">
+                  <CellText>#</CellText>
+                </th>
+                <th scope="col" role="columnheader" className="rl-col-holder">
+                  <CellText>{t("richList.table.holder")}</CellText>
+                </th>
+                <th scope="col" role="columnheader" className="rl-col-num rl-col-balance">
+                  <CellText>{t("richList.table.balance")}</CellText>
+                </th>
+                <th scope="col" role="columnheader" className="rl-col-num rl-col-share">
+                  <CellText>{t("richList.table.share")}</CellText>
+                </th>
+                <th scope="col" role="columnheader" className="rl-col-num rl-col-usd">
+                  <CellText>{t("richList.table.value")}</CellText>
+                </th>
+                <th scope="col" role="columnheader" className="rl-col-trend">
+                  <CellText>{t("richList.table.history")}</CellText>
+                </th>
               </tr>
-            ) : null}
-          </tbody>
-        </table>
+            </thead>
+            <tbody ref={bodyRef} role="rowgroup">
+              {visible.map((row) => {
+                if (row.type === "wallet") {
+                  const entityId = getEntityIdForAddress(row.holder.address);
+                  return (
+                    <tr key={row.holder.address} role="row">
+                      <td role="cell" className="rl-col-rank">
+                        <CellText>{row.rank}</CellText>
+                      </td>
+                      <td role="cell" className="rl-col-holder">
+                        <span className="rl-holder-name">
+                          <AddressLink address={row.holder.address} />
+                          {entityId ? (
+                            <EntityName entityId={entityId} />
+                          ) : row.holder.isContract ? (
+                            <span className="rl-tag">{t("richList.table.contract")}</span>
+                          ) : null}
+                        </span>
+                      </td>
+                      <AmountCells format={format} balance={row.holder.balance} />
+                      <TrendCell
+                        format={format}
+                        history={history}
+                        addresses={[row.holder.address]}
+                      />
+                    </tr>
+                  );
+                }
+
+                const { entity, wallets, balance } = row.row;
+                const heldWallets = wallets.filter((wallet) => wallet.balance > 0);
+                // The line counts every wallet, including ones that have since sold out.
+                const allAddresses = wallets.map((wallet) => wallet.address);
+                const isOpen = expanded.has(entity.id);
+                const panelId = `rl-wallets-${entity.id}`;
+                return (
+                  <GroupRows
+                    key={entity.id}
+                    format={format}
+                    rank={row.rank}
+                    entityId={entity.id}
+                    balance={balance}
+                    wallets={heldWallets}
+                    allAddresses={allAddresses}
+                    history={history}
+                    isOpen={isOpen}
+                    panelId={panelId}
+                    onToggle={() => toggle(entity.id)}
+                    toggleLabel={t("richList.table.walletCount", { count: heldWallets.length })}
+                  />
+                );
+              })}
+              {visible.length === 0 ? (
+                <tr role="row">
+                  <td role="cell" colSpan={6} className="rl-empty">
+                    {t("richList.table.noMatch")}
+                  </td>
+                </tr>
+              ) : null}
+            </tbody>
+          </table>
+        </LiveSkeleton>
       </div>
 
       {!normalizedQuery && remaining > 0 ? (
@@ -234,6 +241,14 @@ export default function HoldersTable() {
   );
 }
 
+/**
+ * A cell's text as an element of its own, so the skeleton captures the text rather than the whole
+ * cell: boneyard takes a cell holding only text as one bone, and adjacent cells would join up.
+ */
+function CellText({ children }: { children: ReactNode }) {
+  return <span className="rl-cell-text">{children}</span>;
+}
+
 /** The balance, its share of the supply and its dollar value, which end every row. */
 function AmountCells({ format, balance }: { format: Formatters; balance: number }) {
   const { shareOfSupply, usdValue } = useRichList();
@@ -241,13 +256,13 @@ function AmountCells({ format, balance }: { format: Formatters; balance: number 
   return (
     <>
       <td role="cell" className="rl-col-num rl-col-balance">
-        {format.integer(balance)}
+        <CellText>{format.integer(balance)}</CellText>
       </td>
       <td role="cell" className="rl-col-num rl-col-share">
-        {format.percent(shareOfSupply(balance))}
+        <CellText>{format.percent(shareOfSupply(balance))}</CellText>
       </td>
       <td role="cell" className="rl-col-num rl-col-usd">
-        {format.usd(usdValue(balance))}
+        <CellText>{format.usd(usdValue(balance))}</CellText>
       </td>
     </>
   );
@@ -301,7 +316,7 @@ function GroupRows({
     <>
       <tr role="row" className={isOpen && expandable ? "rl-group is-open" : "rl-group"}>
         <td role="cell" className="rl-col-rank">
-          {rank}
+          <CellText>{rank}</CellText>
         </td>
         <td role="cell" className="rl-col-holder">
           <span className="rl-holder-name">

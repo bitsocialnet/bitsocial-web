@@ -38,6 +38,11 @@
   --rl-control-fill: hsl(var(--foreground) / 0.1);
   --rl-divider: hsl(var(--foreground) / 0.14);
   --rl-mono: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
+  /* Skeleton bones and their pulse, mixed from the surface they sit on. Opaque, because nested
+     elements capture overlapping bones. */
+  --rl-bone-surface: hsl(var(--background));
+  --rl-bone: color-mix(in srgb, var(--rl-bone-surface) 92%, var(--ink));
+  --rl-bone-pulse: color-mix(in srgb, var(--rl-bone-surface) 96%, var(--ink));
 }
 
 .dark .rl-page {
@@ -101,6 +106,41 @@
   font-size: 0.875rem;
   font-variant-numeric: tabular-nums;
   color: var(--ink-faint);
+}
+
+/* ---------- Loading skeleton ---------- */
+
+/* boneyard places the bones over a hidden view while its live data loads. Each bone is a line box,
+   so stacked lines would touch; the inset keeps a gap between them. */
+.rl-bone {
+  padding-block: 2px;
+  background-clip: content-box;
+}
+
+/* The pulse is set here so reduced motion can leave it out; it animates the colour boneyard sets
+   inline. */
+@media (prefers-reduced-motion: no-preference) {
+  .rl-bone {
+    animation: rl-bone-pulse 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes rl-bone-pulse {
+  50% {
+    background-color: var(--rl-bone-pulse);
+  }
+}
+
+/* boneyard reserves the height it captured the bones at, but text wraps with the language and the
+   chart's canvas follows the viewport's height. The hidden view already holds its real height, so
+   the skeleton keeps that and the bones are scaled to it. */
+.rl-skeleton {
+  min-height: 0 !important;
+}
+
+/* The bones were captured left to right; a right-to-left page mirrors the view, so they follow. */
+[dir="rtl"] .rl-skeleton > [data-boneyard-overlay] {
+  transform: scaleX(-1);
 }
 
 /* ---------- Section index ---------- */
@@ -231,7 +271,7 @@
 
 /* ---------- Supply strip ---------- */
 
-.rl-strip {
+.rl-strip-figure {
   margin: 0;
 }
 
@@ -676,6 +716,11 @@ a.rl-strip-name:hover {
   text-align: end;
 }
 
+/* Not inline, or the skeleton would capture the whole cell (HoldersTable's CellText). */
+.rl-cell-text {
+  display: inline-block;
+}
+
 .rl-col-rank {
   width: 3rem;
   font-variant-numeric: tabular-nums;
@@ -904,6 +949,8 @@ a.rl-holder-label:hover {
     border-bottom: 1px solid var(--line-strong);
   }
 
+  /* Transparent as well as clipped, so the skeleton draws no bones for them; screen readers still
+     read them. */
   .rl-holders-table thead .rl-col-share,
   .rl-holders-table thead .rl-col-usd,
   .rl-holders-table thead .rl-col-trend {
@@ -913,6 +960,7 @@ a.rl-holder-label:hover {
     overflow: hidden;
     clip-path: inset(50%);
     white-space: nowrap;
+    opacity: 0;
   }
 
   .rl-holders-table tbody tr + tr {

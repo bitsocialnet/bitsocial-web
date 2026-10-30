@@ -14,10 +14,8 @@
   /* Price change text, stepped per theme to keep 4.5:1 on the panel. */
   --ch-up: #15803d;
   --ch-down: #c0262d;
-  /* Skeleton bones and their pulse. Opaque, because the chart's canvases stack and their bones
-     overlap. */
-  --ch-bone: color-mix(in srgb, var(--ch-panel-fill) 92%, var(--ink));
-  --ch-bone-pulse: color-mix(in srgb, var(--ch-panel-fill) 96%, var(--ink));
+  /* The skeleton's bones (rich-list.css) sit on the panel rather than glass. */
+  --rl-bone-surface: var(--ch-panel-fill);
 }
 
 .dark .ch-page {
@@ -341,34 +339,6 @@
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-}
-
-/* ---------- Loading skeleton ---------- */
-
-/* boneyard places the bones over the hidden chart while live candles load. The pulse is set here so
-   reduced motion can leave it out; it animates the colour boneyard sets inline. */
-@media (prefers-reduced-motion: no-preference) {
-  .ch-bone {
-    animation: ch-bone-pulse 1.6s ease-in-out infinite;
-  }
-}
-
-@keyframes ch-bone-pulse {
-  50% {
-    background-color: var(--ch-bone-pulse);
-  }
-}
-
-/* boneyard reserves the height it captured the bones at, but the canvas follows the viewport's
-   height and the toolbar wraps with the language. The hidden chart already holds its real height,
-   so the panel keeps that and the bones are scaled to it. */
-.ch-skeleton {
-  min-height: 0 !important;
-}
-
-/* The bones were captured left to right; a right-to-left page mirrors the panel, so they follow. */
-[dir="rtl"] .ch-skeleton > [data-boneyard-overlay] {
-  transform: scaleX(-1);
 }
 
 /* ---------- Eras: the legend that also zooms ---------- */

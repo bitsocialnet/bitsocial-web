@@ -62,3 +62,18 @@ export function useLiveData<T>(
 
   return { data, status };
 }
+
+/**
+ * Whether views that live data changes should still wait under their skeleton: until the first
+ * live data or error arrives, for at most `maxWaitMs`, after which they show the committed data.
+ */
+export function useAwaitingLive(status: LiveStatus, maxWaitMs: number) {
+  const [waitedOut, setWaitedOut] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setWaitedOut(true), maxWaitMs);
+    return () => window.clearTimeout(timer);
+  }, [maxWaitMs]);
+
+  return status === "loading" && !waitedOut;
+}

@@ -1,5 +1,5 @@
 import "./lib/dev-tools";
-import "./bones/registry";
+import "./chart/bones/registry";
 import ChartApp from "./chart/ChartApp";
 import { setDocumentMetaKey } from "./lib/i18n";
 import { renderPage } from "./render-page";

@@ -24,12 +24,11 @@ import {
   type Time,
   type UTCTimestamp,
 } from "lightweight-charts";
-import { Skeleton } from "boneyard-js/react";
 import { useTranslation } from "react-i18next";
 import { CHART_EVENTS, type ChartEvent } from "@/lib/chart/events";
 import { DAY_SECONDS, ERAS, REBRAND_DAY, type Candle } from "@/lib/chart/history";
 import { useTheme } from "@/lib/useTheme";
-import { SegmentedControl } from "@/rich-list/primitives";
+import { LiveSkeleton, SegmentedControl } from "@/rich-list/primitives";
 import { EraBands } from "./era-bands";
 import EventDetails, { EventList } from "./EventDetails";
 import { useChartFormatters } from "./format";
@@ -175,27 +174,14 @@ type TipNodes = Record<"tip" | "title" | "date", HTMLElement | null>;
 
 /**
  * The chart's panel. While `loading`, the chart is drawn but hidden under skeleton bones, so its
- * first view is already up to date. `corepack yarn chart:bones` captures the bones from the chart.
- * The panel stays outside the skeleton because boneyard draws no bones for surfaces, and the chart
- * stays whole inside it because boneyard mounts its children a render late.
+ * first view is already up to date. The panel is the surface, so it stays outside the skeleton.
  */
 export default function PriceChart({ candles, loading }: { candles: Candle[]; loading: boolean }) {
   return (
     <div className="ch-panel">
-      {/* Bones are captured per viewport width, so the viewport picks them, not the panel. */}
-      <Skeleton
-        name="price-chart"
-        loading={loading}
-        snapshotConfig={{ excludeSelectors: [".sr-only"] }}
-        select="viewport"
-        className="ch-skeleton"
-        color="var(--ch-bone)"
-        darkColor="var(--ch-bone)"
-        animate="solid"
-        boneClass="ch-bone"
-      >
+      <LiveSkeleton name="price-chart" loading={loading}>
         <Chart candles={candles} />
-      </Skeleton>
+      </LiveSkeleton>
     </div>
   );
 }
