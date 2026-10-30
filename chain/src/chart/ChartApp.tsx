@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Trans, useTranslation } from "react-i18next";
@@ -8,7 +7,7 @@ import Topbar, { TopbarSpacer } from "@/components/topbar";
 import { COMMITTED_PRICE_HISTORY, fetchLivePriceHistory } from "@/lib/chart/live";
 import { RICH_LIST_PATH } from "@/lib/site";
 import { useHashScroll } from "@/lib/use-hash-scroll";
-import { useLiveData } from "@/lib/use-live-data";
+import { useAwaitingLive, useLiveData } from "@/lib/use-live-data";
 import PolygonMeshBackground from "@/PolygonMeshBackground";
 import ChartMethod from "./ChartMethod";
 import ChartStatus from "./ChartStatus";
@@ -25,12 +24,7 @@ export default function ChartApp() {
     fetchLivePriceHistory,
     "GeckoTerminal",
   );
-  const [waitedOut, setWaitedOut] = useState(false);
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setWaitedOut(true), LIVE_WAIT_MS);
-    return () => window.clearTimeout(timer);
-  }, []);
+  const awaitingLive = useAwaitingLive(status, LIVE_WAIT_MS);
 
   return (
     // Shares the rich list's reading-page system; `ch-page` adds the chart's own surfaces.
@@ -56,7 +50,7 @@ export default function ChartApp() {
             </div>
           </header>
 
-          <PriceChart candles={history.candles} loading={status === "loading" && !waitedOut} />
+          <PriceChart candles={history.candles} loading={awaitingLive} />
           <ChartMethod />
           <Footer />
         </div>

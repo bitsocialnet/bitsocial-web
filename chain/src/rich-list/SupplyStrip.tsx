@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
+import { LiveSkeleton } from "./primitives";
 
 type Segment = { key: string; label: string; share: number; fill: string; href?: string };
 
@@ -25,7 +26,7 @@ const SMALLER_HOLDER_FILL = "rl-fill-holder-rest";
 export default function SupplyStrip() {
   const { t } = useTranslation();
   const format = useFormatters();
-  const { entityRows, snapshot, shareOfSupply } = useRichList();
+  const { entityRows, snapshot, shareOfSupply, awaitingLive } = useRichList();
   // The hovered or focused group, so its segment and legend entry stand out together.
   const [active, setActive] = useState<string | null>(null);
 
@@ -92,41 +93,45 @@ export default function SupplyStrip() {
   });
 
   return (
-    <figure className="rl-strip glass-card">
-      <div className="rl-strip-bar" role="img" aria-label={t("richList.strip.label")}>
-        {segments.map((segment) => (
-          <span
-            key={segment.key}
-            {...hoverHandlers(segment.key)}
-            className={`rl-strip-segment ${segment.fill} ${dimmedClass(segment.key)}`}
-            style={{ flexGrow: segment.share }}
-            title={`${segment.label}: ${format.percent(segment.share)}`}
-          />
-        ))}
-      </div>
-      <figcaption>
-        <ul className="rl-strip-legend">
-          {segments.map((segment) => (
-            <li
-              key={segment.key}
-              {...hoverHandlers(segment.key)}
-              className={dimmedClass(segment.key) || undefined}
-              onFocus={() => setActive(segment.key)}
-              onBlur={() => setActive(null)}
-            >
-              <span className={`rl-swatch ${segment.fill}`} aria-hidden />
-              {segment.href ? (
-                <a className="rl-strip-name" href={segment.href}>
-                  {segment.label}
-                </a>
-              ) : (
-                <span className="rl-strip-name">{segment.label}</span>
-              )}
-              <span className="rl-strip-share">{format.percent(segment.share)}</span>
-            </li>
-          ))}
-        </ul>
-      </figcaption>
-    </figure>
+    <div className="rl-strip glass-card">
+      <LiveSkeleton name="rich-list-strip" loading={awaitingLive}>
+        <figure className="rl-strip-figure">
+          <div className="rl-strip-bar" role="img" aria-label={t("richList.strip.label")}>
+            {segments.map((segment) => (
+              <span
+                key={segment.key}
+                {...hoverHandlers(segment.key)}
+                className={`rl-strip-segment ${segment.fill} ${dimmedClass(segment.key)}`}
+                style={{ flexGrow: segment.share }}
+                title={`${segment.label}: ${format.percent(segment.share)}`}
+              />
+            ))}
+          </div>
+          <figcaption>
+            <ul className="rl-strip-legend">
+              {segments.map((segment) => (
+                <li
+                  key={segment.key}
+                  {...hoverHandlers(segment.key)}
+                  className={dimmedClass(segment.key) || undefined}
+                  onFocus={() => setActive(segment.key)}
+                  onBlur={() => setActive(null)}
+                >
+                  <span className={`rl-swatch ${segment.fill}`} aria-hidden />
+                  {segment.href ? (
+                    <a className="rl-strip-name" href={segment.href}>
+                      {segment.label}
+                    </a>
+                  ) : (
+                    <span className="rl-strip-name">{segment.label}</span>
+                  )}
+                  <span className="rl-strip-share">{format.percent(segment.share)}</span>
+                </li>
+              ))}
+            </ul>
+          </figcaption>
+        </figure>
+      </LiveSkeleton>
+    </div>
   );
 }

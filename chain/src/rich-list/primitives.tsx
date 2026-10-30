@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Skeleton } from "boneyard-js/react";
 import { ArrowUpRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import type { Category, Chain, TxRef } from "@/lib/rich-list/data";
@@ -30,6 +31,40 @@ export function RichSection({
       {lead ? <p className="rl-section-lead">{lead}</p> : null}
       {children}
     </section>
+  );
+}
+
+/**
+ * Draws a view that live data changes hidden under skeleton bones while `loading`, so its first
+ * view is already up to date. The page's `<page>:bones` script captures the bones from the view.
+ * Keep the view's surface outside, because boneyard draws no bones for surfaces, and keep state
+ * that must survive inside the view, because boneyard mounts its children a render late.
+ */
+export function LiveSkeleton({
+  name,
+  loading,
+  children,
+}: {
+  name: string;
+  loading: boolean;
+  children: ReactNode;
+}) {
+  return (
+    // Bones are captured per viewport width, so the viewport picks them, not the container.
+    <Skeleton
+      name={name}
+      loading={loading}
+      // An empty cell would be captured whole, as a block across its row.
+      snapshotConfig={{ excludeSelectors: [".sr-only", "td:empty"] }}
+      select="viewport"
+      className="rl-skeleton"
+      color="var(--rl-bone)"
+      darkColor="var(--rl-bone)"
+      animate="solid"
+      boneClass="rl-bone"
+    >
+      {children}
+    </Skeleton>
   );
 }
 
