@@ -12,6 +12,11 @@ export const DOCS_LINKS = {
   scaleBitsocialEconomies: `${DOCS_SITE_URL}/scale-bitsocial-economies/`,
   decentralizeAllSocialMedia: `${DOCS_SITE_URL}/decentralize-all-social-media/`,
   bsoResolver: `${DOCS_SITE_URL}/infrastructure/bso-resolver/`,
+  nostrComparison: `${DOCS_SITE_URL}/comparisons/nostr/`,
+  blueskyComparison: `${DOCS_SITE_URL}/comparisons/bluesky/`,
+  activityPubComparison: `${DOCS_SITE_URL}/comparisons/activitypub/`,
+  farcasterComparison: `${DOCS_SITE_URL}/comparisons/farcaster/`,
+  blockchainSocialComparison: `${DOCS_SITE_URL}/comparisons/blockchain-social/`,
 } as const;
 
 export const CHAIN_SITE_URL = "https://chain.bitsocial.net" as const;
