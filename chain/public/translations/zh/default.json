@@ -492,7 +492,7 @@
       "wallet": "钱包",
       "total": "团队合计",
       "walletsNote": "按快照价格计算价值 {{value}}。每个钱包的完整历史都在 Etherscan 上公开可查。",
-      "poolNote": "Uniswap 池的流动性代币有 79.1% 由 Esteban 的部署者钱包持有，7.4% 由 estebanabaroa.eth 持有。它们没有被锁定。"
+      "poolNote": "2026 年 10 月 30 日，Esteban 的部署者钱包和 estebanabaroa.eth 将 Uniswap 池 86.6% 的流动性代币发送到零地址，任何人都无法再取出。团队持有的不到 0.01%，其余属于其他流动性提供者。"
     },
     "airdrops": {
       "title": "三轮空投，2022",
@@ -579,6 +579,10 @@
         "immutable": {
           "title": "BSO 变为不可变",
           "body": "最终的 BSO 合约上线，没有铸造、所有者、暂停或代理功能。全部 2.1 亿枚在一笔交易中按 rebase 后的余额比例发出。"
+        },
+        "liquidityBurned": {
+          "title": "86.6% 的流动性被销毁",
+          "body": "Esteban 的两个钱包将其 7,881 枚 Uniswap 流动性代币（占 BSO/ETH 池的 86.6%）发送到零地址。没有人持有该地址的私钥，因此池中这部分 BSO 和 ETH 被永久锁定。"
         }
       }
     },

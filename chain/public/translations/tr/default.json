@@ -497,7 +497,7 @@
       "wallet": "Cüzdan",
       "total": "Ekip toplamı",
       "walletsNote": "Anlık görüntü fiyatıyla değeri {{value}}. Her cüzdanın tüm geçmişi Etherscan'de herkese açıktır.",
-      "poolNote": "Uniswap havuzunun likidite token'larının %79,1'i Esteban'ın deployer cüzdanında, %7,4'ü estebanabaroa.eth'te bulunuyor. Kilitli değiller."
+      "poolNote": "30 Ekim 2026'da Esteban'ın deployer cüzdanı ve estebanabaroa.eth, Uniswap havuzunun likidite token'larının %86,6'sını sıfır adrese gönderdi; oradan kimse onları çekemez. Ekipte %0,01'den azı kaldı, geri kalanı diğer likidite sağlayıcılarına ait."
     },
     "airdrops": {
       "title": "Üç airdrop, 2022",
@@ -584,6 +584,10 @@
         "immutable": {
           "title": "BSO değiştirilemez hâle geliyor",
           "body": "Nihai BSO sözleşmesi mint, sahip, duraklatma veya proxy olmadan yayına giriyor. 210 milyonun tamamı, rebase edilmiş bakiyelerle orantılı olarak tek bir işlemde dağıtılıyor."
+        },
+        "liquidityBurned": {
+          "title": "Likiditenin %86,6'sı yakılıyor",
+          "body": "Esteban'ın iki cüzdanı, 7.881 Uniswap likidite token'ını, yani BSO/ETH havuzunun %86,6'sını sıfır adrese gönderiyor. Bu adresin anahtarı kimsede yok; bu yüzden havuzdaki BSO ve ETH'nin bu payı sonsuza dek kilitli kalıyor."
         }
       }
     },

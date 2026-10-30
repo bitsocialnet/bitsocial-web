@@ -507,7 +507,7 @@
       "wallet": "Portfel",
       "total": "Razem zespół",
       "walletsNote": "Warte {{value}} po cenie z migawki. Pełna historia każdego portfela jest publicznie dostępna na Etherscan.",
-      "poolNote": "Tokeny płynności puli Uniswap w 79,1% należą do portfela deployera Estebana, a w 7,4% do estebanabaroa.eth. Nie są zablokowane."
+      "poolNote": "30 października 2026 roku portfel deployera Estebana i estebanabaroa.eth wysłały 86,6% tokenów płynności puli Uniswap na adres zerowy, skąd nikt nie może ich wypłacić. Zespół zachowuje mniej niż 0,01%, a reszta należy do innych dostawców płynności."
     },
     "airdrops": {
       "title": "Trzy airdropy, 2022",
@@ -594,6 +594,10 @@
         "immutable": {
           "title": "BSO staje się niezmienny",
           "body": "Ostateczny kontrakt BSO startuje bez mintowania, właściciela, pauzy i proxy. Całe 210 mln zostaje rozesłane w jednej transakcji, proporcjonalnie do sald po rebase."
+        },
+        "liquidityBurned": {
+          "title": "86,6% płynności zostaje spalone",
+          "body": "Dwa portfele Estebana wysyłają swoje 7881 tokenów płynności Uniswap, czyli 86,6% puli BSO/ETH, na adres zerowy. Nikt nie ma klucza do tego adresu, więc ta część BSO i ETH w puli zostaje zablokowana na zawsze."
         }
       }
     },

@@ -492,7 +492,7 @@
       "wallet": "Dompet",
       "total": "Total tim",
       "walletsNote": "Bernilai {{value}} pada harga snapshot. Riwayat lengkap setiap dompet bersifat publik di Etherscan.",
-      "poolNote": "Token likuiditas pool Uniswap dipegang 79,1% oleh dompet deployer milik Esteban dan 7,4% oleh estebanabaroa.eth. Token tersebut tidak dikunci."
+      "poolNote": "Pada 30 Oktober 2026, dompet deployer milik Esteban dan estebanabaroa.eth mengirim 86,6% token likuiditas pool Uniswap ke alamat nol, tempat tidak ada seorang pun yang bisa menariknya. Tim menyimpan kurang dari 0,01%, dan sisanya milik penyedia likuiditas lain."
     },
     "airdrops": {
       "title": "Tiga airdrop, 2022",
@@ -579,6 +579,10 @@
         "immutable": {
           "title": "BSO menjadi tidak dapat diubah",
           "body": "Kontrak BSO final diluncurkan tanpa mint, pemilik, pause, atau proxy. Seluruh 210 juta keluar dalam satu transaksi, sebanding dengan saldo setelah rebase."
+        },
+        "liquidityBurned": {
+          "title": "86,6% likuiditas dibakar",
+          "body": "Dua dompet Esteban mengirim 7.881 token likuiditas Uniswap mereka, 86,6% dari pool BSO/ETH, ke alamat nol. Tidak ada yang memegang kunci alamat itu, jadi bagian BSO dan ETH pool tersebut terkunci selamanya."
         }
       }
     },

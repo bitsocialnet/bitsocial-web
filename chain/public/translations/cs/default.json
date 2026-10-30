@@ -507,7 +507,7 @@
       "wallet": "Peněženka",
       "total": "Tým celkem",
       "walletsNote": "V hodnotě {{value}} při ceně ze snímku. Celá historie každé peněženky je veřejně dostupná na Etherscanu.",
-      "poolNote": "Tokeny likvidity poolu na Uniswapu drží ze 79,1 % Estebanova deployer peněženka a ze 7,4 % estebanabaroa.eth. Nejsou uzamčené."
+      "poolNote": "30. října 2026 poslaly Estebanova deployer peněženka a estebanabaroa.eth 86,6 % tokenů likvidity poolu na Uniswapu na nulovou adresu, odkud je nikdo nemůže vybrat. Tým si ponechává méně než 0,01 % a zbytek patří ostatním poskytovatelům likvidity."
     },
     "airdrops": {
       "title": "Tři airdropy, 2022",
@@ -594,6 +594,10 @@
         "immutable": {
           "title": "BSO se stává neměnným",
           "body": "Finální kontrakt BSO se spouští bez mintu, vlastníka, pozastavení i proxy. Všech 210 mil. odchází v jedné transakci, v poměru k zůstatkům po rebasu."
+        },
+        "liquidityBurned": {
+          "title": "86,6 % likvidity je spáleno",
+          "body": "Estebanovy dvě peněženky posílají svých 7 881 tokenů likvidity Uniswapu, tedy 86,6 % poolu BSO/ETH, na nulovou adresu. Klíč k této adrese nemá nikdo, takže tento podíl BSO a ETH v poolu zůstane navždy uzamčen."
         }
       }
     },

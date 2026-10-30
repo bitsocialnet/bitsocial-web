@@ -502,7 +502,7 @@
       "wallet": "Portofel",
       "total": "Total echipă",
       "walletsNote": "Valoare de {{value}} la prețul din instantaneu. Istoricul complet al fiecărui portofel este public pe Etherscan.",
-      "poolNote": "Tokenurile de lichiditate ale pool-ului Uniswap sunt deținute în proporție de 79,1% de portofelul deployer al lui Esteban și de 7,4% de estebanabaroa.eth. Nu sunt blocate."
+      "poolNote": "Pe 30 octombrie 2026, portofelul deployer al lui Esteban și estebanabaroa.eth au trimis 86,6% din tokenurile de lichiditate ale pool-ului Uniswap la adresa zero, de unde nimeni nu le poate retrage. Echipa păstrează mai puțin de 0,01%, iar restul aparține altor furnizori de lichiditate."
     },
     "airdrops": {
       "title": "Trei airdrop-uri, 2022",
@@ -589,6 +589,10 @@
         "immutable": {
           "title": "BSO devine imuabil",
           "body": "Contractul BSO final intră în funcțiune fără mint, proprietar, pauză sau proxy. Toate cele 210 mil. sunt distribuite într-o singură tranzacție, proporțional cu soldurile de după rebase."
+        },
+        "liquidityBurned": {
+          "title": "86,6% din lichiditate este arsă",
+          "body": "Cele două portofele ale lui Esteban trimit cele 7.881 de tokenuri de lichiditate Uniswap, 86,6% din pool-ul BSO/ETH, la adresa zero. Nimeni nu deține cheia acestei adrese, așa că această parte din BSO și ETH-ul pool-ului rămâne blocată pentru totdeauna."
         }
       }
     },

@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { LIQUIDITY_SEED_TXS, PLEB_MINTS, type TxRef } from "@/lib/rich-list/data";
+import { LIQUIDITY_SEED_TXS, LP_BURN_TXS, PLEB_MINTS, type TxRef } from "@/lib/rich-list/data";
 import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
 import { AddressLink, RichSection, TelegramLinks, TxLinks } from "./primitives";
@@ -190,6 +190,7 @@ export default function TeamAllocation() {
           {t("richList.team.walletsNote", { value: format.usd(usdValue(teamTotal)) })}
         </p>
         <p className="rl-note">{t("richList.team.poolNote")}</p>
+        <TxLinks txs={LP_BURN_TXS} />
       </div>
     </RichSection>
   );
