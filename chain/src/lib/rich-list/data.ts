@@ -74,7 +74,10 @@ export const ENTITIES: Entity[] = [
   {
     id: "tom",
     kind: "team",
-    wallets: [{ address: "0x89e768ddf3696eb79112734fb0755ab27f8c5620" }],
+    wallets: [
+      { address: "0x89e768ddf3696eb79112734fb0755ab27f8c5620" },
+      { address: "0x13087d38b78df0345d67c8cee73b215589ae3a1f" },
+    ],
     evidence: [],
   },
   {
