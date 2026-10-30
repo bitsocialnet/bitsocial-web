@@ -355,6 +355,15 @@ export const LIQUIDITY_SEED_TXS: TxRef[] = [
   avax("0xdd7f0b272e4756e0dd7c4f2466bed0e6952ced954d3ba42f13bddc959833e375"),
 ];
 
+/**
+ * Esteban's deployer and ENS wallets sending their Uniswap V2 liquidity tokens to the zero address:
+ * 7,208 and 673 of the pair's 9,103.5, so 86.6% of the pool can never be withdrawn.
+ */
+export const LP_BURN_TXS: TxRef[] = [
+  eth("0x5dd335d4a00837717701c701419e398dbb21103c84111e9be9a554a7a0fa8a75"),
+  eth("0x0acba8c2f442b679893f1997e052b4ad30c569415a2df0647f68074fa965cb74"),
+];
+
 export type HistoryEvent = {
   id: string;
   /** ISO date; `precision` limits what is shown when the exact day is not known. */
@@ -389,6 +398,7 @@ export const HISTORY: HistoryEvent[] = [
     date: "2026-07-02",
     txs: [eth("0x484af845fd8335b6963f38787f34ace516286667e1ce2399aae990e2a160d8db")],
   },
+  { id: "liquidityBurned", date: "2026-10-30", txs: LP_BURN_TXS },
 ];
 
 export const GEN1_TOKEN_ADDRESS = "0x625fc9bb971bb305a2ad63252665dcfe9098bee9" as const;

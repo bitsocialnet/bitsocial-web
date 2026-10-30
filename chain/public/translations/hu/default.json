@@ -497,7 +497,7 @@
       "wallet": "Tárca",
       "total": "Csapat összesen",
       "walletsNote": "Értéke a pillanatkép árfolyamán {{value}}. Minden tárca teljes előzménye nyilvános az Etherscanen.",
-      "poolNote": "Az Uniswap-pool likviditási tokenjeinek 79,1%-a Esteban deployer tárcájánál, 7,4%-a pedig az estebanabaroa.eth címnél van. Nincsenek zárolva."
+      "poolNote": "2026. október 30-án Esteban deployer tárcája és az estebanabaroa.eth elküldte az Uniswap-pool likviditási tokenjeinek 86,6%-át a nulla címre, ahonnan senki sem veheti ki őket. A csapatnál 0,01%-nál kevesebb maradt, a többi más likviditásszolgáltatóké."
     },
     "airdrops": {
       "title": "Három airdrop, 2022",
@@ -584,6 +584,10 @@
         "immutable": {
           "title": "A BSO megváltoztathatatlanná válik",
           "body": "A végleges BSO-szerződés új kibocsátás, tulajdonos, szüneteltetés és proxy nélkül indul el. Mind a 210 millió egyetlen tranzakcióban megy ki, a rebase utáni egyenlegek arányában."
+        },
+        "liquidityBurned": {
+          "title": "Elégetik a likviditás 86,6%-át",
+          "body": "Esteban két tárcája elküldi 7881 Uniswap-likviditási tokenjét, a BSO/ETH-pool 86,6%-át, a nulla címre. Ehhez a címhez senkinek nincs kulcsa, így a pool BSO- és ETH-készletének ez a része örökre zárolva marad."
         }
       }
     },

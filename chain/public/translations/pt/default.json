@@ -502,7 +502,7 @@
       "wallet": "Carteira",
       "total": "Total da equipe",
       "walletsNote": "Valem {{value}} ao preço do snapshot. O histórico completo de cada carteira é público no Etherscan.",
-      "poolNote": "Os tokens de liquidez do pool da Uniswap estão 79,1% com a carteira deployer do Esteban e 7,4% com estebanabaroa.eth. Eles não estão bloqueados."
+      "poolNote": "Em 30 de outubro de 2026, a carteira deployer do Esteban e estebanabaroa.eth enviaram 86,6% dos tokens de liquidez do pool da Uniswap para o endereço zero, de onde ninguém pode retirá-los. A equipe fica com menos de 0,01%, e o restante pertence a outros provedores de liquidez."
     },
     "airdrops": {
       "title": "Três airdrops, 2022",
@@ -589,6 +589,10 @@
         "immutable": {
           "title": "O BSO se torna imutável",
           "body": "O contrato final do BSO entra no ar sem cunhagem, dono, pausa ou proxy. Todos os 210 milhões saem em uma única transação, na proporção dos saldos após o rebase."
+        },
+        "liquidityBurned": {
+          "title": "86,6% da liquidez é queimada",
+          "body": "As duas carteiras do Esteban enviam seus 7.881 tokens de liquidez da Uniswap, 86,6% do pool BSO/ETH, para o endereço zero. Ninguém tem a chave desse endereço, então essa parte dos BSO e ETH do pool fica bloqueada para sempre."
         }
       }
     },

@@ -497,7 +497,7 @@
       "wallet": "Wallet",
       "total": "Team gesamt",
       "walletsNote": "Wert: {{value}} zum Snapshot-Preis. Die vollständige Historie jeder Wallet ist öffentlich auf Etherscan einsehbar.",
-      "poolNote": "Die Liquiditäts-Tokens des Uniswap-Pools liegen zu 79,1% bei Estebans Deployer-Wallet und zu 7,4% bei estebanabaroa.eth. Sie sind nicht gesperrt."
+      "poolNote": "Am 30. Oktober 2026 haben Estebans Deployer-Wallet und estebanabaroa.eth 86,6% der Liquiditäts-Tokens des Uniswap-Pools an die Nulladresse geschickt, von der niemand sie abheben kann. Das Team behält weniger als 0,01%, der Rest gehört anderen Liquiditätsanbietern."
     },
     "airdrops": {
       "title": "Drei Airdrops, 2022",
@@ -584,6 +584,10 @@
         "immutable": {
           "title": "BSO wird unveränderlich",
           "body": "Der endgültige BSO-Contract geht live, ohne Mint, Owner, Pause oder Proxy. Alle 210 Mio. werden in einer einzigen Transaktion verteilt, im Verhältnis zu den per Rebase angepassten Guthaben."
+        },
+        "liquidityBurned": {
+          "title": "86,6% der Liquidität werden verbrannt",
+          "body": "Estebans zwei Wallets schicken ihre 7.881 Uniswap-Liquiditäts-Tokens, 86,6% des BSO/ETH-Pools, an die Nulladresse. Niemand besitzt einen Schlüssel zu dieser Adresse, daher ist dieser Anteil an BSO und ETH im Pool für immer gesperrt."
         }
       }
     },

@@ -502,7 +502,7 @@
       "wallet": "Cartera",
       "total": "Total de l'equip",
       "walletsNote": "Valen {{value}} al preu de la instantània. L'historial complet de cada cartera és públic a Etherscan.",
-      "poolNote": "Els tokens de liquiditat del pool d'Uniswap els té en un 79,1% la cartera desplegadora d'Esteban i en un 7,4% estebanabaroa.eth. No estan bloquejats."
+      "poolNote": "El 30 d'octubre de 2026, la cartera desplegadora d'Esteban i estebanabaroa.eth van enviar el 86,6% dels tokens de liquiditat del pool d'Uniswap a l'adreça zero, d'on ningú no els pot retirar. L'equip en conserva menys del 0,01%, i la resta pertany a altres proveïdors de liquiditat."
     },
     "airdrops": {
       "title": "Tres airdrops, 2022",
@@ -589,6 +589,10 @@
         "immutable": {
           "title": "BSO esdevé immutable",
           "body": "El contracte final de BSO entra en funcionament sense mint, propietari, pausa ni proxy. Els 210 milions surten en una sola transacció, en proporció als saldos després del rebase."
+        },
+        "liquidityBurned": {
+          "title": "Es crema el 86,6% de la liquiditat",
+          "body": "Les dues carteres d'Esteban envien els seus 7.881 tokens de liquiditat d'Uniswap, el 86,6% del pool BSO/ETH, a l'adreça zero. Ningú no té la clau d'aquesta adreça, així que aquesta part dels BSO i ETH del pool queda bloquejada per sempre."
         }
       }
     },

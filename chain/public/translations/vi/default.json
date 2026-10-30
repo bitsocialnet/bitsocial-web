@@ -492,7 +492,7 @@
       "wallet": "Ví",
       "total": "Tổng của đội ngũ",
       "walletsNote": "Trị giá {{value}} theo giá tại thời điểm chụp dữ liệu. Toàn bộ lịch sử của từng ví đều công khai trên Etherscan.",
-      "poolNote": "Token thanh khoản của pool Uniswap được nắm giữ 79,1% bởi ví deployer của Esteban và 7,4% bởi estebanabaroa.eth. Chúng không bị khóa."
+      "poolNote": "Ngày 30 tháng 10 năm 2026, ví deployer của Esteban và estebanabaroa.eth đã gửi 86,6% token thanh khoản của pool Uniswap đến địa chỉ số không, nơi không ai có thể rút chúng ra. Đội ngũ giữ dưới 0,01%, phần còn lại thuộc về các nhà cung cấp thanh khoản khác."
     },
     "airdrops": {
       "title": "Ba đợt airdrop, 2022",
@@ -579,6 +579,10 @@
         "immutable": {
           "title": "BSO trở nên bất biến",
           "body": "Hợp đồng BSO cuối cùng đi vào hoạt động mà không có mint, chủ sở hữu, tạm dừng hay proxy. Toàn bộ 210 triệu được phát ra trong một giao dịch, theo tỷ lệ số dư sau rebase."
+        },
+        "liquidityBurned": {
+          "title": "86,6% thanh khoản bị đốt",
+          "body": "Hai ví của Esteban gửi 7.881 token thanh khoản Uniswap của mình, tức 86,6% pool BSO/ETH, đến địa chỉ số không. Không ai nắm giữ khóa của địa chỉ đó, nên phần BSO và ETH này trong pool bị khóa vĩnh viễn."
         }
       }
     },
