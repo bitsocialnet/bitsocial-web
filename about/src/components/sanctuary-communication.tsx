@@ -1,5 +1,5 @@
 import { m, useReducedMotion } from "framer-motion";
-import { ArrowRight, Check, ChevronDown, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, ChevronDown, X } from "lucide-react";
 import {
   Fragment,
   memo,
@@ -176,6 +176,7 @@ type DeepComparisonSource = {
   shortLabel: string;
 };
 type DeepComparison = {
+  docsHref: string;
   id: DeepComparisonServiceId;
   label: string;
   rows: DeepComparisonRow[];
@@ -207,6 +208,16 @@ const DEEP_COMPARISON_HASH_BY_SERVICE: Record<DeepComparisonServiceId, string> =
   lens: "lens-comparison",
   deso: "deso-comparison",
   steemit: "steemit-comparison",
+};
+/** Lens, DeSo and Steem share one docs page, so they link to their own section of it. */
+const DEEP_COMPARISON_DOCS_HREF_BY_SERVICE: Record<DeepComparisonServiceId, string> = {
+  nostr: DOCS_LINKS.nostrComparison,
+  bluesky: DOCS_LINKS.blueskyComparison,
+  mastodon: DOCS_LINKS.activityPubComparison,
+  farcaster: DOCS_LINKS.farcasterComparison,
+  lens: `${DOCS_LINKS.blockchainSocialComparison}#lens`,
+  deso: `${DOCS_LINKS.blockchainSocialComparison}#deso`,
+  steemit: `${DOCS_LINKS.blockchainSocialComparison}#steem`,
 };
 const DEEP_COMPARISON_ROW_KEYS: DeepComparisonRowKey[] = [
   "replies",
@@ -1008,6 +1019,7 @@ function pushDeepComparisonHash(serviceId: DeepComparisonServiceId) {
 
 function getSanctuaryDeepComparisons(t: TFunction): DeepComparison[] {
   return DEEP_COMPARISON_SERVICE_IDS.map((serviceId) => ({
+    docsHref: DEEP_COMPARISON_DOCS_HREF_BY_SERVICE[serviceId],
     id: serviceId,
     label: t(DEEP_COMPARISON_SERVICE_I18N[serviceId].label),
     rows: DEEP_COMPARISON_ROW_KEYS.map((rowKey) => {
@@ -1739,23 +1751,34 @@ function DeepComparisonOverlay({
       open={open}
       onOpenChange={onOpenChange}
     >
-      <div className="flex items-start justify-between gap-4 border-b border-[var(--glass-border-subtle)] pb-5">
-        <div className="min-w-0">
-          <p className="mb-2 text-xs font-display font-semibold uppercase tracking-[0.18em] text-blue-glow">
-            {t("sanctuary.deepComparison.modalEyebrow")}
-          </p>
-          <h3 className="-ml-px text-2xl font-display font-semibold leading-tight text-foreground md:text-3xl">
-            {title}
-          </h3>
+      <div className="border-b border-[var(--glass-border-subtle)] pb-5">
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <p className="mb-2 text-xs font-display font-semibold uppercase tracking-[0.18em] text-blue-glow">
+              {t("sanctuary.deepComparison.modalEyebrow")}
+            </p>
+            <h3 className="-ml-px text-2xl font-display font-semibold leading-tight text-foreground md:text-3xl">
+              {title}
+            </h3>
+          </div>
+          <button
+            type="button"
+            aria-label={t("sanctuary.deepComparison.close")}
+            onClick={() => onOpenChange(false)}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--glass-border-subtle)] bg-background/70 text-muted-foreground transition-[border-color,color,box-shadow] duration-300 hover:border-blue-glow hover:text-foreground hover:shadow-[0_0_16px_rgba(37,99,235,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:bg-muted/60 dark:text-foreground/70 motion-reduce:transition-none"
+          >
+            <X className="h-4 w-4" aria-hidden />
+          </button>
         </div>
-        <button
-          type="button"
-          aria-label={t("sanctuary.deepComparison.close")}
-          onClick={() => onOpenChange(false)}
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--glass-border-subtle)] bg-background/70 text-muted-foreground transition-[border-color,color,box-shadow] duration-300 hover:border-blue-glow hover:text-foreground hover:shadow-[0_0_16px_rgba(37,99,235,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:bg-muted/60 dark:text-foreground/70 motion-reduce:transition-none"
+        <a
+          href={comparison.docsHref}
+          target="_blank"
+          rel="noreferrer"
+          className="ring-glow cta-glow mt-4 inline-flex max-w-full items-center gap-1.5 rounded-full border border-blue-core/30 bg-blue-core/[0.08] px-4 py-2 text-sm font-display font-semibold text-foreground/90 hover:border-blue-glow hover:bg-blue-core/[0.14] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-glow focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:border-blue-core/45 dark:bg-blue-core/[0.18] dark:hover:border-blue-glow dark:hover:bg-blue-core/[0.24] motion-reduce:transition-none"
         >
-          <X className="h-4 w-4" aria-hidden />
-        </button>
+          {t("sanctuary.deepComparison.docsLink")}
+          <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden />
+        </a>
       </div>
 
       <div className="mt-6 space-y-3 md:hidden">
