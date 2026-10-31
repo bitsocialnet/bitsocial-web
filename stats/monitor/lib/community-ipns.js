@@ -13,6 +13,7 @@ import {
   getCommunityIpnsNameFromPublicKey,
 } from "./utils.js";
 import prometheus from "./prometheus.js";
+import { filterBrowserDialablePeers } from "./browser-dialable.js";
 import Debug from "debug";
 const debug = Debug("bitsocial-stats-monitor:community-ipns");
 
@@ -190,12 +191,31 @@ export const monitorCommunitiesIpns = async ({ fiveChanBoards } = {}) => {
                 "CidHttpRouters",
                 ipnsCidHttpRoutersPeers,
               );
+              filterBrowserDialablePeers(ipnsCidHttpRoutersPeers)
+                .then((ipnsCidHttpRoutersBrowserPeers) => {
+                  monitorState.communities[community.address] = {
+                    ...monitorState.communities[community.address],
+                    ipnsCidHttpRoutersBrowserPeers,
+                  };
+                  prometheusObserveCommunityIpnsPeers(
+                    community.address,
+                    "CidHttpRoutersBrowser",
+                    ipnsCidHttpRoutersBrowserPeers,
+                  );
+                })
+                .catch((e) => {
+                  debug(
+                    `failed to probe browser-dialable peers for '${community.address}': ${e.message}`,
+                  );
+                  prometheusObserveCommunityIpnsPeers(community.address, "CidHttpRoutersBrowser");
+                });
             })
             .catch((e) => {
               debug(
                 `failed to fetch community update cid http routers peers for '${community.address}': ${e.message}`,
               );
               prometheusObserveCommunityIpnsPeers(community.address, "CidHttpRouters");
+              prometheusObserveCommunityIpnsPeers(community.address, "CidHttpRoutersBrowser");
             });
         }
       } catch (e) {
@@ -260,8 +280,8 @@ for (const statsName of communityStatsNames) {
     });
   }
 }
-// add all community ipns peers types
-const peerTypes = ["Dht", "HttpRouters", "CidHttpRouters"];
+// add all community ipns peers types; CidHttpRoutersBrowser are the CidHttpRouters peers a browser can dial
+const peerTypes = ["Dht", "HttpRouters", "CidHttpRouters", "CidHttpRoutersBrowser"];
 for (const peerType of peerTypes) {
   counters[`communityIpns${peerType}PeersFetchCount`] = new prometheus.promClient.Counter({
     name: `${prometheus.prefix}community_ipns_${toSnakeCase(peerType)}_peers_fetch_count`,
