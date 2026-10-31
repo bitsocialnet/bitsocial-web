@@ -168,6 +168,9 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
       pubsub: "network_pubsub_peer_count",
       pubsubProviders: "network_pubsub_http_routers_peer_count",
       ipnsProviders: "network_ipns_http_routers_peer_count",
+      // Providers of the latest community records that the monitor reached over a secure
+      // WebSocket, the only transport browsers dial by default.
+      browserProviders: "network_ipns_cid_http_routers_browser_peer_count",
     };
     const routerDuration = whenSuccessful(
       metric("http_router_last_community_ipns_get_providers_fetch_duration_seconds", {

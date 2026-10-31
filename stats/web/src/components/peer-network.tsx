@@ -29,6 +29,13 @@ export function PeerNetwork({ data }: { data: Overview }) {
       values: peers.series.ipnsProviders,
       now: network.peers.ipnsProviders,
     },
+    {
+      key: "browserProviders",
+      label: "Reachable from browsers",
+      hint: "Record providers a browser can connect to (secure WebSocket)",
+      values: peers.series.browserProviders,
+      now: network.peers.browserProviders,
+    },
   ];
   const countryTotal = peers.countries.reduce((sum, { count }) => sum + count, 0);
 

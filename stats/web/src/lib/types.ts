@@ -77,11 +77,21 @@ export interface Overview {
     currentUsers: number | null;
     servicesTotal: number;
     servicesUp: number | null;
-    peers: { pubsub: number | null; pubsubProviders: number | null; ipnsProviders: number | null };
+    peers: {
+      pubsub: number | null;
+      pubsubProviders: number | null;
+      ipnsProviders: number | null;
+      browserProviders: number | null;
+    };
   };
   clients: ClientSummary[];
   peers: {
-    series: { pubsub: Series; pubsubProviders: Series; ipnsProviders: Series };
+    series: {
+      pubsub: Series;
+      pubsubProviders: Series;
+      ipnsProviders: Series;
+      browserProviders: Series;
+    };
     locations: PeerLocation[];
     countries: { country: string | null; count: number }[];
   };

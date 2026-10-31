@@ -12,6 +12,8 @@ const peersNames = [
   "ipnsDhtPeers",
   "ipnsHttpRoutersPeers",
   "ipnsCidHttpRoutersPeers",
+  // the ipnsCidHttpRoutersPeers a browser can dial (lib/browser-dialable.js)
+  "ipnsCidHttpRoutersBrowserPeers",
   "pubsubDhtPeers",
   "pubsubHttpRoutersPeers",
   "pubsubPeers",
