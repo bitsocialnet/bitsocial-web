@@ -16,12 +16,43 @@ type HoldersResponse = {
   next_page_params: Record<string, string | number> | null;
 };
 
+const MAX_ATTEMPTS = 4;
+
+function wait(ms: number, signal?: AbortSignal) {
+  return new Promise<void>((resolve, reject) => {
+    const timer = setTimeout(resolve, ms);
+    signal?.addEventListener(
+      "abort",
+      () => {
+        clearTimeout(timer);
+        reject(signal.reason);
+      },
+      { once: true },
+    );
+  });
+}
+
+// Blockscout fails single requests with a 500 now and then, and a full refresh takes about 13
+// pages, so one unretried failure throws the whole refresh away. Its 500s carry no CORS header,
+// which the browser reports as a network error rather than a response, so those are retried too.
 export async function getJson<T>(url: string, signal?: AbortSignal): Promise<T> {
-  const response = await fetch(url, { signal, headers: { accept: "application/json" } });
-  if (!response.ok) {
-    throw new Error(`Blockscout returned ${response.status} for ${url}`);
+  for (let attempt = 1; ; attempt += 1) {
+    let response: Response;
+    try {
+      response = await fetch(url, { signal, headers: { accept: "application/json" } });
+    } catch (error) {
+      if (signal?.aborted || attempt >= MAX_ATTEMPTS) throw error;
+      await wait(attempt * 500, signal);
+      continue;
+    }
+    if (response.ok) {
+      return response.json() as Promise<T>;
+    }
+    if ((response.status !== 429 && response.status < 500) || attempt >= MAX_ATTEMPTS) {
+      throw new Error(`Blockscout returned ${response.status} for ${url}`);
+    }
+    await wait(attempt * 500, signal);
   }
-  return response.json() as Promise<T>;
 }
 
 // Four decimals are plenty for display, and they keep Number precision safe for any balance.
