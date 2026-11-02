@@ -1,5 +1,5 @@
 import { BSO_TOKEN_ADDRESS } from "@/lib/site";
-import type { Holder, Snapshot } from "./holders";
+import { COMMITTED_SNAPSHOT, type Holder, type Snapshot } from "./holders";
 
 // Blockscout's public API needs no key and allows cross-origin reads. Etherscan's holder list is a
 // paid endpoint. scripts/generate-bso-holders.mjs makes the same calls for the committed snapshot.
@@ -63,24 +63,68 @@ export function toBso(rawValue: string) {
   return Number(`${raw / unit}.${fraction.toString().padStart(4, "0")}`);
 }
 
+type PageParams = NonNullable<HoldersResponse["next_page_params"]>;
+
+const HOLDERS_URL = `${BLOCKSCOUT_API}/tokens/${BSO_TOKEN_ADDRESS}/holders`;
+const PAGE_SIZE = 50;
+// Runs start 40 holders apart in the snapshot and read 50 a page, so ten holders can join a stretch
+// before its run needs a second page.
+const SEEK_STRIDE = 40;
+
+/**
+ * Where each run starts, as Blockscout's keyset cursor: the balance and address of a holder in the
+ * committed snapshot, largest first. The balance is rounded up past the snapshot's 4 decimals, so
+ * the run includes that holder and the run before it can stop as soon as it reaches them. Dust
+ * under 0.0001 BSO is all 0 in the snapshot, so one run pages through all of it.
+ */
+const SEEKS = (() => {
+  const seeks: { params: PageParams; value: bigint }[] = [];
+  const holders = COMMITTED_SNAPSHOT.holders;
+  for (let index = SEEK_STRIDE - 1; index < holders.length - 1; index += SEEK_STRIDE) {
+    const holder = holders[index];
+    const value = BigInt(Math.round(holder.balance * 1e4) + 1) * 10n ** (DECIMALS - 4n);
+    const previous = seeks[seeks.length - 1]?.value;
+    if (previous === undefined || value < previous) {
+      const params = { value: String(value), address_hash: holder.address.toLowerCase() };
+      seeks.push({ params: { ...params, items_count: PAGE_SIZE }, value });
+    }
+  }
+  return seeks;
+})();
+
+/**
+ * Holders from `start` on, page by page, until they fall below `stopBelow`. Balances that moved
+ * since the snapshot shift where a page ends, so each run reads past the next run's start instead of
+ * stopping after a fixed number of pages; `onPage` receives each page as it arrives.
+ */
+async function fetchHolderRun(
+  start: PageParams | null,
+  stopBelow: bigint | null,
+  signal: AbortSignal,
+  onPage: (items: HoldersResponse["items"]) => void,
+) {
+  let params = start;
+  do {
+    const query = params
+      ? `?${new URLSearchParams(Object.entries(params).map(([key, value]) => [key, String(value)]))}`
+      : "";
+    const page = await getJson<HoldersResponse>(`${HOLDERS_URL}${query}`, signal);
+    onPage(page.items);
+    const last = page.items[page.items.length - 1];
+    if (stopBelow !== null && last && BigInt(last.value) < stopBelow) {
+      break;
+    }
+    params = page.next_page_params;
+  } while (params);
+}
+
 /** Every BSO holder and the current price, straight from Blockscout. */
 export async function fetchLiveSnapshot(signal: AbortSignal): Promise<Snapshot> {
-  const tokenUrl = `${BLOCKSCOUT_API}/tokens/${BSO_TOKEN_ADDRESS}`;
-  const token = await getJson<TokenResponse>(tokenUrl, signal);
-
-  // Keyed by address: balances can move while the pages load, and keyset paging may then return
-  // the same holder twice.
+  // Keyed by address and filled as pages arrive: runs overlap, and balances can move while the
+  // pages load, so the same holder can come back twice and the latest read should win.
   const holders = new Map<string, Holder>();
-  let nextPageParams: HoldersResponse["next_page_params"] = null;
-  do {
-    const query = nextPageParams
-      ? `?${new URLSearchParams(Object.entries(nextPageParams).map(([key, value]) => [key, String(value)]))}`
-      : "";
-    const page: HoldersResponse = await getJson<HoldersResponse>(
-      `${tokenUrl}/holders${query}`,
-      signal,
-    );
-    for (const item of page.items) {
+  const addPage = (items: HoldersResponse["items"]) => {
+    for (const item of items) {
       holders.set(item.address.hash.toLowerCase(), {
         address: item.address.hash,
         balance: toBso(item.value),
@@ -88,8 +132,16 @@ export async function fetchLiveSnapshot(signal: AbortSignal): Promise<Snapshot> 
         isContract: Boolean(item.address.is_contract) && item.address.proxy_type !== "eip7702",
       });
     }
-    nextPageParams = page.next_page_params;
-  } while (nextPageParams);
+  };
+
+  // Paging one cursor after another took about ten seconds; seeking to points spread through the
+  // snapshot loads the pages side by side, well inside Blockscout's 180 requests a minute.
+  const [token] = await Promise.all([
+    getJson<TokenResponse>(`${BLOCKSCOUT_API}/tokens/${BSO_TOKEN_ADDRESS}`, signal),
+    ...[null, ...SEEKS].map((seek, index) =>
+      fetchHolderRun(seek?.params ?? null, SEEKS[index]?.value ?? null, signal, addPage),
+    ),
+  ]);
 
   const sortedHolders = [...holders.values()].sort((a, b) => b.balance - a.balance);
 

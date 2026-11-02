@@ -44,17 +44,47 @@ const expectedHolders = items.map((item, index) => ({
   isContract: [false, true, true, false, false][index],
 }));
 
-function responseFor(url) {
-  const { pathname, searchParams } = new URL(url);
-  if (pathname.endsWith("/holders")) {
-    return searchParams.has("page")
-      ? { items: items.slice(2), next_page_params: null }
-      : { items: items.slice(0, 2), next_page_params: { page: 2 } };
+/** Blockscout's holder order: balance, then address, both descending. */
+function compareHolders(a, b) {
+  const [valueA, valueB] = [BigInt(a.value), BigInt(b.value)];
+  if (valueA !== valueB) {
+    return valueA > valueB ? -1 : 1;
   }
-  return token;
+  const [hashA, hashB] = [a.address.hash.toLowerCase(), b.address.hash.toLowerCase()];
+  return hashA === hashB ? 0 : hashA > hashB ? -1 : 1;
 }
 
-test("live holders treat EIP-7702 delegated wallets as holders and keep contracts tagged", async (t) => {
+/**
+ * Blockscout's keyset paging over `holders`, `pageSize` a page, each page continuing after the
+ * `value` and `address_hash` cursor. `issued` collects the cursors it hands out, so a test can tell
+ * a run's next page from a seek.
+ */
+function blockscout(holders, pageSize, issued = new Set()) {
+  const sorted = [...holders].sort(compareHolders);
+  return (url) => {
+    const { pathname, searchParams } = new URL(url);
+    if (!pathname.endsWith("/holders")) {
+      return token;
+    }
+    const value = searchParams.get("value");
+    const cursor = value && {
+      value,
+      address: { hash: searchParams.get("address_hash") ?? "" },
+    };
+    const start = cursor ? sorted.findIndex((item) => compareHolders(item, cursor) > 0) : 0;
+    const page = start === -1 ? [] : sorted.slice(start, start + pageSize);
+    if (start === -1 || start + pageSize >= sorted.length) {
+      return { items: page, next_page_params: null };
+    }
+    const last = page[page.length - 1];
+    const next = { value: last.value, address_hash: last.address.hash.toLowerCase() };
+    issued.add(`${next.value}:${next.address_hash}`);
+    return { items: page, next_page_params: { ...next, items_count: pageSize } };
+  };
+}
+
+/** Fetches a live snapshot from `respond`, counting holder requests that continue a run. */
+async function fetchFrom(t, respond, issued = new Set()) {
   const { outputFiles } = await build({
     entryPoints: [path.join(repoRoot, "chain/src/lib/rich-list/live.ts")],
     alias: { "@": path.join(repoRoot, "chain/src") },
@@ -67,19 +97,80 @@ test("live holders treat EIP-7702 delegated wallets as holders and keep contract
     `data:text/javascript;base64,${Buffer.from(outputFiles[0].contents).toString("base64")}`
   );
   const controller = new AbortController();
-  let requests = 0;
+  let continued = 0;
   t.mock.method(globalThis, "fetch", async (url, options) => {
     assert.equal(options.signal, controller.signal);
-    requests += 1;
-    return new Response(JSON.stringify(responseFor(url)));
+    const { searchParams } = new URL(url);
+    if (issued.has(`${searchParams.get("value")}:${searchParams.get("address_hash")}`)) {
+      continued += 1;
+    }
+    return new Response(JSON.stringify(respond(url)));
   });
+  return { snapshot: await fetchLiveSnapshot(controller.signal), continued };
+}
 
-  const snapshot = await fetchLiveSnapshot(controller.signal);
+/** The committed snapshot as Blockscout serves it, with digits past the 4 decimals restored. */
+async function committedItems() {
+  const { holders } = JSON.parse(
+    await readFile(path.join(repoRoot, "chain/src/data/bso-holders.json"), "utf8"),
+  );
+  return holders.map((holder, index) => ({
+    address: { hash: holder.address, is_contract: holder.isContract },
+    value: String(BigInt(Math.round(holder.balance * 1e4)) * 10n ** 14n + BigInt(index + 1)),
+  }));
+}
+
+const toHolder = (item) => ({
+  address: item.address.hash,
+  balance: Number(BigInt(item.value) / 10n ** 14n) / 1e4,
+  isContract: item.address.is_contract,
+});
+
+const byAddress = (holders) =>
+  holders.toSorted((a, b) => a.address.toLowerCase().localeCompare(b.address.toLowerCase()));
+
+test("live holders treat EIP-7702 delegated wallets as holders and keep contracts tagged", async (t) => {
+  const { snapshot } = await fetchFrom(t, blockscout(items, 50));
   assert.deepEqual(snapshot.holders, expectedHolders);
   assert.equal(snapshot.holderCount, items.length);
   assert.equal(snapshot.priceUsd, 0.01);
   assert.equal(snapshot.totalSupply, 210000000);
-  assert.equal(requests, 3);
+});
+
+test("live holders take one page a run while the list still matches the committed snapshot", async (t) => {
+  const committed = await committedItems();
+  const issued = new Set();
+  const { snapshot, continued } = await fetchFrom(t, blockscout(committed, 50, issued), issued);
+  assert.deepEqual(byAddress(snapshot.holders), byAddress(committed.map(toHolder)));
+  // Dust has no seek of its own, so only its run reads more than one page.
+  const dust = committed.filter((item) => BigInt(item.value) < 10n ** 14n).length;
+  assert.equal(continued, Math.max(0, Math.ceil(dust / 50) - 1));
+});
+
+test("live holders leave no gaps after holders joined, left and moved since the snapshot", async (t) => {
+  const committed = await committedItems();
+  // Drop every seventh holder, triple every eleventh, and add a holder after every ninth, so the
+  // stretches between seeks both shrink and grow; 25 new holders after the 100th outgrow one page.
+  const live = committed
+    .filter((_, index) => index % 7 !== 3)
+    .map((item, index) =>
+      index % 11 === 5 ? { ...item, value: String(BigInt(item.value) * 3n + 7n) } : item,
+    );
+  for (let index = 0; index < committed.length; index += 9) {
+    live.push({
+      address: { hash: `0x${(index + 1).toString(16).padStart(40, "a")}`, is_contract: false },
+      value: String(BigInt(committed[index].value) - 1n),
+    });
+  }
+  for (let offset = 1; offset <= 25; offset += 1) {
+    live.push({
+      address: { hash: `0x${offset.toString(16).padStart(40, "b")}`, is_contract: false },
+      value: String(BigInt(committed[100].value) - BigInt(offset)),
+    });
+  }
+
+  const { snapshot } = await fetchFrom(t, blockscout(live, 50));
+  assert.deepEqual(byAddress(snapshot.holders), byAddress(live.map(toHolder)));
 });
 
 test("snapshot generation uses the same delegated-wallet classification across pages", async (t) => {
@@ -96,9 +187,11 @@ test("snapshot generation uses the same delegated-wallet classification across p
     path.join(fixture, "chain/src/lib/site.ts"),
   );
 
+  // Two a page, so the classification holds across pages.
+  const respond = blockscout(items, 2);
   const server = createServer((request, response) => {
     response.setHeader("content-type", "application/json");
-    response.end(JSON.stringify(responseFor(`http://localhost${request.url}`)));
+    response.end(JSON.stringify(respond(`http://localhost${request.url}`)));
   });
   t.after(() => new Promise((resolve) => server.close(resolve)));
   await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));

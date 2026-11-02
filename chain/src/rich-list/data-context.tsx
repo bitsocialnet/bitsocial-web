@@ -5,8 +5,8 @@ import { type LiveStatus, useAwaitingLive, useLiveData } from "@/lib/use-live-da
 
 /**
  * The longest the strip and the holders table stay a skeleton while live balances load; then they
- * show the snapshot. Blockscout serves the holders 50 to a page, so a full refresh takes about four
- * seconds.
+ * show the snapshot. Blockscout serves the holders 50 to a page; loaded side by side, a full refresh
+ * takes about two seconds.
  */
 const LIVE_WAIT_MS = 10_000;
 
