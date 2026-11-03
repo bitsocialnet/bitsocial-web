@@ -364,6 +364,12 @@ export const LP_BURN_TXS: TxRef[] = [
   eth("0x0acba8c2f442b679893f1997e052b4ad30c569415a2df0647f68074fa965cb74"),
 ];
 
+/**
+ * The burned LP tokens' share of the pair's supply at the burn. Other providers adding or removing
+ * liquidity would move it, along with the 86.6% written in the pool note and the history event.
+ */
+export const LP_BURNED_SHARE = 7_881 / 9_103.53;
+
 export type HistoryEvent = {
   id: string;
   /** ISO date; `precision` limits what is shown when the exact day is not known. */
