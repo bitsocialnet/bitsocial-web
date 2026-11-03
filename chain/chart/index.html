@@ -76,6 +76,17 @@
         }
       })();
     </script>
+    <!-- The stylesheets only arrive with the page's JS chunks, so paint the canvas in the
+         theme's --background up front; otherwise every page load flashes the default white. -->
+    <style>
+      html {
+        background-color: #fff;
+      }
+      html.dark {
+        background-color: #000;
+        color-scheme: dark;
+      }
+    </style>
     <title>BSO Price Chart - Every Trade Since 2022</title>
   </head>
   <body>
