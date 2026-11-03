@@ -1,5 +1,11 @@
 import { useTranslation } from "react-i18next";
-import { LIQUIDITY_SEED_TXS, LP_BURN_TXS, PLEB_MINTS, type TxRef } from "@/lib/rich-list/data";
+import {
+  LIQUIDITY_SEED_TXS,
+  LP_BURNED_SHARE,
+  LP_BURN_TXS,
+  PLEB_MINTS,
+  type TxRef,
+} from "@/lib/rich-list/data";
 import { useRichList } from "./data-context";
 import { useFormatters } from "./format";
 import { AddressLink, RichSection, TelegramLinks, TxLinks } from "./primitives";
@@ -53,9 +59,12 @@ const FACTS: { id: string; txs?: TxRef[] }[] = [
 export default function TeamAllocation() {
   const { t } = useTranslation();
   const format = useFormatters();
-  const { entityRows, shareOfSupply, usdValue } = useRichList();
+  const { entityRows, entityRowById, shareOfSupply, usdValue } = useRichList();
   const teamRows = entityRows.filter((row) => row.entity.kind === "team");
   const teamTotal = teamRows.reduce((sum, row) => sum + row.balance, 0);
+  // A Uniswap V2 pool holds equal value of both tokens, so its ETH is worth as much as its BSO.
+  const poolBso = entityRowById.get("pool")?.balance ?? 0;
+  const burnedLiquidityUsd = usdValue(poolBso * 2 * LP_BURNED_SHARE);
   const minted = PLEB_MINTS.airdropClaims + PLEB_MINTS.liquidityMining + PLEB_MINTS.liquiditySeed;
   const origins = (["airdropClaims", "liquidityMining", "liquiditySeed"] as const).map((key) => ({
     key,
@@ -189,7 +198,9 @@ export default function TeamAllocation() {
         <p className="rl-note">
           {t("richList.team.walletsNote", { value: format.usd(usdValue(teamTotal)) })}
         </p>
-        <p className="rl-note">{t("richList.team.poolNote")}</p>
+        <p className="rl-note">
+          {t("richList.team.poolNote", { value: format.usd(burnedLiquidityUsd) })}
+        </p>
         <TxLinks txs={LP_BURN_TXS} />
       </div>
     </RichSection>
