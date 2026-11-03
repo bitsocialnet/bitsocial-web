@@ -169,16 +169,12 @@ async function detectUrl(url, options = {}) {
     throw new Error(`Browser script not found at ${browserScriptPath}`);
   }
 
-  // CI runners (GitHub Actions Ubuntu) block unprivileged user namespaces, so
-  // Chrome can't initialize its sandbox there. Disable the sandbox only when
-  // running in CI; local users keep the default hardened launch.
-  const launchArgs = process.env.CI ? ['--no-sandbox', '--disable-setuid-sandbox'] : [];
   const browser = externalBrowser || await profileStepAsync(profile, {
     engine: 'browser',
     phase: 'load',
     ruleId: 'launch-browser',
     target: url,
-  }, () => puppeteer.default.launch({ headless: true, args: launchArgs }));
+  }, () => puppeteer.default.launch({ channel: 'chrome', headless: true }));
   const page = await profileStepAsync(profile, {
     engine: 'browser',
     phase: 'load',
@@ -311,10 +307,10 @@ async function createBrowserDetector(options = {}) {
   } catch {
     throw new Error('puppeteer is required for URL scanning. Install: npm install puppeteer');
   }
-  const launchArgs = options.launchArgs || (process.env.CI ? ['--no-sandbox', '--disable-setuid-sandbox'] : []);
   const browser = options.browser || await puppeteer.default.launch({
+    channel: 'chrome',
     headless: options.headless ?? true,
-    args: launchArgs,
+    args: options.launchArgs,
   });
   const ownsBrowser = !options.browser;
   const defaults = {

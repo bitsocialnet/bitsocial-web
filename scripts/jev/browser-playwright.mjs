@@ -138,7 +138,11 @@ export function createPlaywrightDriver({ execute = exec } = {}) {
       await writeFile(
         config,
         JSON.stringify({
-          browser: { isolated: true, contextOptions: { serviceWorkers: "block" } },
+          browser: {
+            isolated: true,
+            launchOptions: { chromiumSandbox: true },
+            contextOptions: { serviceWorkers: "block" },
+          },
           outputDir: directory,
         }),
         { mode: 0o600 },

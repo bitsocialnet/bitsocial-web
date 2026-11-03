@@ -1,7 +1,8 @@
 import { spawnSync } from "node:child_process";
 import { browserDriver } from "./browser.mjs";
 
-const args = ["install", "chromium", ...process.argv.slice(2)];
+const channel = process.env.REACT_PERF_BROWSER_CHANNEL || "chrome";
+const args = ["install", channel, ...process.argv.slice(2)];
 const result = spawnSync(process.execPath, [browserDriver().install, ...args], {
   stdio: "inherit",
 });
