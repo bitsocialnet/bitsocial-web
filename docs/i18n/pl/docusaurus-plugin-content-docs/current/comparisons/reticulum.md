@@ -65,10 +65,17 @@ internetową: klient pobiera od peerów metadane społeczności i treść postó
 pubsub, co słabo pasuje do łączy zbudowanych wokół 500-bajtowych pakietów i przepustowości mierzonej
 w bitach lub kilobitach na sekundę.
 
-Realistyczna droga jest węższa: klient, który działa przez lokalną sieć mesh, gdy nie ma połączenia,
-a potem synchronizuje się z szerszą siecią Bitsocial, gdy osiągalny jest peer lub brama z dostępem
-do internetu. Byłby to nowy klient i most, a nie zmiana w protokole, i nie ma tego w obecnej
-roadmapie.
+Realistyczna droga jest węższa: klient, który działa przez lokalną sieć mesh i dociera do szerszej
+sieci Bitsocial przez peera lub bramę z dostępem do internetu. Dopóki ta brama jest osiągalna w
+czasie rzeczywistym, byłby to nowy klient i most, a nie zmiana w protokole.
+
+Publikowanie postów, gdy sieć mesh jest odcięta od internetu, jest trudniejsze. Węzeł społeczności
+odrzuca publikacje i wiadomości wyzwania, których znacznik czasu odbiega o więcej niż 5 minut od
+jego własnego zegara, więc post przechowany do późniejszego dostarczenia zostałby odrzucony w chwili
+dotarcia. Publikowanie offline działałoby tylko w społecznościach, których węzeł działa w samej
+sieci mesh; dotarcie do społeczności w internecie wymagałoby zmiany w protokole, na przykład takiej,
+która pozwoliłaby społeczności dobrowolnie włączyć przyjmowanie opóźnionych publikacji. Nic z tego
+nie ma w obecnej roadmapie.
 
 ## Dla deweloperów
 

@@ -67,10 +67,18 @@ sávszélességet feltételez: a kliens a társaktól tölti le a közösség me
 tartalmát, és pubsub-üzeneteket vált velük, ami rosszul illik az 500 bájtos csomagokra épülő,
 másodpercenként bitekben vagy kilobitekben mért átviteli sebességű kapcsolatokhoz.
 
-A reális út szűkebb: egy olyan kliens, amely internetkapcsolat nélkül helyi mesh-hálózaton működik,
-majd szinkronizál a tágabb Bitsocial-hálózattal, amikor elérhetővé válik egy internet-hozzáféréssel
-rendelkező társ vagy átjáró. Ez nem a protokoll módosítása lenne, hanem egy új kliens és egy új híd,
-és jelenleg nem szerepel az ütemtervben.
+A reális út szűkebb: egy olyan kliens, amely helyi mesh-hálózaton működik, és egy
+internet-hozzáféréssel rendelkező társon vagy átjárón keresztül éri el a tágabb Bitsocial-hálózatot.
+Amíg ez az átjáró valós időben elérhető, ez nem a protokoll módosítása lenne, hanem egy új kliens és
+egy új híd.
+
+Nehezebb a közzététel, amíg a mesh-hálózat el van vágva az internettől. A közösségi csomópont
+elutasítja azokat a közzétételeket és kihívásüzeneteket, amelyek időbélyege több mint 5 perccel
+eltér a saját órájától, így a későbbi kézbesítésre visszatartott bejegyzést elutasítaná, amikor az
+megérkezik. Az offline közzététel csak azokban a közösségekben működne, amelyek csomópontja magán a
+mesh-hálózaton fut; az interneten lévő közösségek eléréséhez a protokoll módosítására lenne szükség,
+például arra, hogy egy közösség maga dönthessen a késleltetett közzétételek elfogadásáról. Ezek
+közül egyik sem szerepel jelenleg az ütemtervben.
 
 ## Fejlesztőknek
 

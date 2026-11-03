@@ -69,10 +69,18 @@ bandwidth ng internet: kumukuha ang isang kliyente ng metadata ng komunidad at n
 mula sa mga peer at nakikipagpalitan ng mga mensahe ng pubsub, na hindi gaanong akma sa mga link na
 nakabatay sa 500-byte na packet at sa throughput na sinusukat sa bit o kilobit bawat segundo.
 
-Mas makitid ang makatotohanang landas: isang kliyenteng gumagana sa isang lokal na mesh habang
-walang koneksyon, at saka nagsi-sync sa mas malawak na network ng Bitsocial kapag naaabot na ang
-isang peer o gateway na may access sa internet. Bagong kliyente at bridge iyon sa halip na pagbabago
-sa protocol, at wala ito sa kasalukuyang roadmap.
+Mas makitid ang makatotohanang landas: isang kliyenteng gumagana sa isang lokal na mesh at umaabot
+sa mas malawak na network ng Bitsocial sa pamamagitan ng isang peer o gateway na may access sa
+internet. Habang naaabot nang real time ang gateway na iyon, bagong kliyente at bridge ito sa halip
+na pagbabago sa protocol.
+
+Mas mahirap ang pag-post habang walang koneksyon sa internet ang mesh. Tinatanggihan ng isang node
+ng komunidad ang mga publikasyon at mensahe ng hamon na may timestamp na mahigit 5 minuto ang agwat
+sa sarili nitong orasan, kaya tatanggihan pagdating nito ang isang post na itinabi para maihatid sa
+ibang pagkakataon. Gagana lang ang pag-post nang offline para sa mga komunidad na ang node ay
+tumatakbo mismo sa mesh; para maabot ang mga komunidad sa internet, kakailanganin ng pagbabago sa
+protocol, gaya ng pagpapahintulot sa isang komunidad na piliing tumanggap ng mga naantalang
+publikasyon. Wala sa mga ito ang nasa kasalukuyang roadmap.
 
 ## Para sa mga tagabuo
 

@@ -66,10 +66,17 @@ internetbandbredd: en klient hämtar community-metadata och inläggsinnehåll fr
 pubsub-meddelanden, vilket passar dåligt på länkar som är byggda kring paket på 500 byte och en
 genomströmning som mäts i bitar eller kilobit per sekund.
 
-Den realistiska vägen är smalare: en klient som fungerar över ett lokalt mesh-nät medan den är
-frånkopplad och sedan synkroniserar med det bredare Bitsocial-nätverket när en peer eller gateway
-med internetåtkomst går att nå. Det skulle vara en ny klient och en ny brygga snarare än en ändring
-av protokollet, och det finns inte med på den nuvarande färdplanen.
+Den realistiska vägen är smalare: en klient som fungerar över ett lokalt mesh-nät och når det
+bredare Bitsocial-nätverket via en peer eller gateway med internetåtkomst. Så länge den gatewayen
+går att nå i realtid skulle det vara en ny klient och en ny brygga snarare än en ändring av
+protokollet.
+
+Att publicera inlägg medan mesh-nätet är avskuret från internet är svårare. En communitynod avvisar
+publikationer och utmaningsmeddelanden vars tidsstämpel avviker mer än 5 minuter från nodens egen
+klocka, så ett inlägg som hålls kvar för senare leverans skulle avvisas när det kommer fram. Att
+publicera offline skulle bara fungera för communityer vars nod körs på själva mesh-nätet; att nå
+communityer på internet skulle kräva en ändring av protokollet, till exempel att en community kan
+välja att ta emot fördröjda publikationer. Inget av detta finns med på den nuvarande färdplanen.
 
 ## För byggare
 

@@ -64,10 +64,17 @@ genişliğini varsayar: bir istemci topluluk meta verilerini ve gönderi içeri�
 pubsub mesajları alışverişi yapar; bu da 500 baytlık paketler ve saniyede bit ya da kilobit ile
 ölçülen veri hızı etrafında kurulmuş bağlantılara pek uymaz.
 
-Gerçekçi yol daha dardır: ağdan kopukken yerel bir mesh ağı üzerinden çalışan, ardından internet
-erişimi olan bir eşe veya ağ geçidine ulaşılabildiğinde daha geniş Bitsocial ağıyla eşitlenen bir
-istemci. Bu, protokolde bir değişiklik değil, yeni bir istemci ve köprü olurdu; ayrıca mevcut yol
-haritasında yer almıyor.
+Gerçekçi yol daha dardır: yerel bir mesh ağı üzerinden çalışan ve internet erişimi olan bir eş veya
+ağ geçidi aracılığıyla daha geniş Bitsocial ağına ulaşan bir istemci. Ağ geçidine gerçek zamanlı
+olarak ulaşılabildiği sürece bu, protokolde bir değişiklik değil, yeni bir istemci ve köprü olurdu.
+
+Mesh ağının internetle bağlantısı kesikken gönderi paylaşmak daha zordur. Bir topluluk düğümü, zaman
+damgası kendi saatinden 5 dakikadan fazla sapan yayınları ve sınama mesajlarını reddeder; bu yüzden
+daha sonra iletilmek üzere bekletilen bir gönderi, ulaştığında reddedilirdi. Çevrimdışı gönderi
+paylaşmak yalnızca düğümü doğrudan mesh ağı üzerinde çalışan topluluklar için işe yarardı;
+internetteki topluluklara ulaşmak ise bir protokol değişikliği gerektirirdi, örneğin bir topluluğun
+gecikmeli yayınları kabul etmeyi isteğe bağlı olarak etkinleştirebilmesi. Bunların hiçbiri mevcut
+yol haritasında yer almıyor.
 
 ## Geliştiriciler için
 

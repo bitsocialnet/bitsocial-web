@@ -66,10 +66,18 @@ de banda d'internet: un client obté dels iguals les metadades de la comunitat i
 publicacions i intercanvia missatges de pubsub, cosa que encaixa malament en enllaços pensats per a
 paquets de 500 bytes i amb un rendiment que es mesura en bits o kilobits per segon.
 
-El camí realista és més estret: un client que funcioni sobre una xarxa en malla local mentre està
-desconnectat i que després se sincronitzi amb la resta de la xarxa Bitsocial quan tingui a l'abast
-un igual o una passarel·la amb accés a internet. Això seria un client i un pont nous, no un canvi al
-protocol, i no és al full de ruta actual.
+El camí realista és més estret: un client que funcioni sobre una xarxa en malla local i que arribi a
+la resta de la xarxa Bitsocial a través d'un igual o una passarel·la amb accés a internet. Mentre
+aquesta passarel·la sigui accessible en temps real, això seria un client i un pont nous, no un canvi
+al protocol.
+
+Publicar mentre la malla està aïllada és més difícil. Un node de la comunitat rebutja les
+publicacions i els missatges de repte amb una marca de temps que difereix més de 5 minuts del seu
+propi rellotge, de manera que una publicació retinguda per lliurar-la més tard seria rebutjada en
+arribar. Publicar sense connexió només funcionaria en comunitats el node de les quals s'executi a la
+mateixa malla; per arribar a comunitats d'internet caldria un canvi al protocol, com ara permetre
+que una comunitat opti per acceptar publicacions endarrerides. Res d'això no és al full de ruta
+actual.
 
 ## Per a desenvolupadors
 

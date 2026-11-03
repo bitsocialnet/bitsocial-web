@@ -65,10 +65,18 @@ bandă de internet: un client preia de la peeri metadatele comunității și con
 schimbă mesaje pubsub, ceea ce se potrivește prost cu legături construite în jurul unor pachete de
 500 de octeți și al unui debit măsurat în biți sau kilobiți pe secundă.
 
-Calea realistă este mai îngustă: un client care funcționează printr-o rețea mesh locală cât timp este
-deconectat, apoi se sincronizează cu rețeaua Bitsocial mai largă atunci când devine accesibil un peer
-sau un gateway cu acces la internet. Acesta ar fi un client nou și o punte, nu o modificare a
-protocolului, și nu se află pe foaia de parcurs actuală.
+Calea realistă este mai îngustă: un client care funcționează printr-o rețea mesh locală și ajunge la
+rețeaua Bitsocial mai largă printr-un peer sau un gateway cu acces la internet. Cât timp acel
+gateway este accesibil în timp real, acesta ar fi un client nou și o punte, nu o modificare a
+protocolului.
+
+Postarea cât timp rețeaua mesh este izolată de internet este mai dificilă. Un nod de comunitate
+respinge publicațiile și mesajele de provocare al căror marcaj temporal diferă cu mai mult de 5
+minute față de propriul său ceas, așa că o postare păstrată pentru livrare ulterioară ar fi refuzată
+la sosire. Postarea offline ar funcționa doar pentru comunitățile al căror nod rulează chiar în
+rețeaua mesh; pentru a ajunge la comunitățile de pe internet ar fi nevoie de o modificare a
+protocolului, de exemplu ca o comunitate să poată alege să accepte publicații întârziate. Nimic din
+toate acestea nu se află pe foaia de parcurs actuală.
 
 ## Pentru dezvoltatori
 

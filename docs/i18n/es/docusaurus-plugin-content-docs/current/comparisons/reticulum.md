@@ -65,10 +65,17 @@ banda de internet: un cliente obtiene de los pares los metadatos de la comunidad
 las publicaciones e intercambia mensajes de pubsub, algo que encaja mal en enlaces pensados para
 paquetes de 500 bytes y con un rendimiento que se mide en bits o kilobits por segundo.
 
-El camino realista es más limitado: un cliente que funcione sobre una malla local mientras está
-desconectado y que luego se sincronice con el resto de la red Bitsocial cuando haya a su alcance un
-par o una pasarela con acceso a internet. Eso sería un cliente y un puente nuevos, no un cambio en
-el protocolo, y no está en la hoja de ruta actual.
+El camino realista es más limitado: un cliente que funcione sobre una malla local y llegue al resto
+de la red Bitsocial a través de un par o una pasarela con acceso a internet. Mientras esa pasarela
+esté accesible en tiempo real, eso sería un cliente y un puente nuevos, no un cambio en el
+protocolo.
+
+Publicar mientras la malla está aislada es más difícil. Un nodo de la comunidad rechaza las
+publicaciones y los mensajes de desafío cuya marca de tiempo difiere en más de 5 minutos de su
+propio reloj, así que una publicación retenida para entregarla más tarde sería rechazada al llegar.
+Publicar sin conexión solo funcionaría en comunidades cuyo nodo se ejecute en la propia malla; para
+llegar a las comunidades de internet haría falta un cambio en el protocolo, como permitir que una
+comunidad opte por aceptar publicaciones con retraso. Nada de esto está en la hoja de ruta actual.
 
 ## Para desarrolladores
 

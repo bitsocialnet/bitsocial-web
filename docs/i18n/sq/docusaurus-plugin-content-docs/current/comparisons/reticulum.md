@@ -67,10 +67,18 @@ brezi interneti: një klient merr meta të dhënat e komunitetit dhe përmbajtje
 homologët dhe shkëmben mesazhe pubsub, gjë që përshtatet keq me lidhje të ndërtuara rreth paketave
 500-bajtëshe dhe me xhiro që matet në bit ose kilobit në sekondë.
 
-Rruga realiste është më e ngushtë: një klient që funksionon mbi një rrjet lokal mesh kur është i
-shkëputur, dhe që më pas sinkronizohet me rrjetin më të gjerë Bitsocial sapo arrin një homolog ose
-një portë me qasje në internet. Kjo do të kërkonte një klient dhe një urë të re, jo një ndryshim në
-protokoll, dhe nuk është pjesë e planit aktual të zhvillimit.
+Rruga realiste është më e ngushtë: një klient që funksionon mbi një rrjet lokal mesh dhe arrin
+rrjetin më të gjerë Bitsocial përmes një homologu ose një porte me qasje në internet. Për sa kohë që
+ajo portë është e arritshme në kohë reale, kjo do të kërkonte një klient dhe një urë të re, jo një
+ndryshim në protokoll.
+
+Postimi kur rrjeti mesh është i shkëputur nga interneti është më i vështirë. Një nyje komuniteti
+refuzon publikimet dhe mesazhet e sfidës, vula kohore e të cilave ndryshon me më shumë se 5 minuta
+nga ora e saj, kështu që një postim i mbajtur për t'u dërguar më vonë do të refuzohej kur të
+mbërrinte. Postimi jashtë linje do të funksiononte vetëm për komunitetet, nyja e të cilëve
+funksionon në vetë rrjetin mesh; për të arritur komunitetet në internet do të duhej një ndryshim në
+protokoll, për shembull duke i lejuar një komuniteti të zgjedhë vetë pranimin e publikimeve të
+vonuara. Asgjë nga këto nuk është pjesë e planit aktual të zhvillimit.
 
 ## Për ndërtuesit
 

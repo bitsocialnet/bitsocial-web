@@ -63,10 +63,16 @@ internetu: klient stahuje od peerů metadata komunit a obsah příspěvků a vym
 což se špatně hodí na linky postavené kolem 500bajtových paketů s propustností měřenou v bitech
 nebo kilobitech za sekundu.
 
-Realistická cesta je užší: klient, který v odpojeném stavu funguje přes lokální mesh síť a se
-širší sítí Bitsocial se synchronizuje, jakmile je dosažitelný peer nebo gateway s přístupem
-k internetu. Šlo by o nového klienta a most, nikoli o změnu protokolu, a v současné roadmapě to
-není.
+Realistická cesta je užší: klient, který funguje přes lokální mesh síť a se širší sítí Bitsocial se
+spojuje prostřednictvím peeru nebo gateway s přístupem k internetu. Dokud je tato gateway
+dosažitelná v reálném čase, šlo by o nového klienta a most, nikoli o změnu protokolu.
+
+Publikování v době, kdy je mesh síť odříznutá, je těžší. Uzel komunity odmítá publikace a zprávy
+výzvy, jejichž časové razítko se od jeho vlastních hodin liší o více než 5 minut, takže příspěvek
+zadržený pro pozdější doručení by byl odmítnut, jakmile dorazí. Offline publikování by fungovalo jen
+u komunit, jejichž uzel běží přímo v mesh síti; u komunit na internetu by byla nutná změna
+protokolu, například možnost, aby se komunita sama rozhodla přijímat opožděné publikace. Nic z toho
+v současné roadmapě není.
 
 ## Pro vývojáře
 

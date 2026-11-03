@@ -63,10 +63,17 @@ en klient henter fællesskabsmetadata og indlægsindhold fra peers og udveksler 
 hvilket passer dårligt til forbindelser, der er bygget op omkring pakker på 500 byte og en
 gennemstrømning målt i bit eller kilobit i sekundet.
 
-Den realistiske vej er smallere: en klient, der fungerer over et lokalt mesh-netværk, mens den er
-afkoblet, og som derefter synkroniserer med det bredere Bitsocial-netværk, når en peer eller gateway
-med internetadgang kan nås. Det ville være en ny klient og en ny bro snarere end en ændring af
-protokollen, og det står ikke på den nuværende køreplan.
+Den realistiske vej er smallere: en klient, der fungerer over et lokalt mesh-netværk og når det
+bredere Bitsocial-netværk gennem en peer eller gateway med internetadgang. Så længe den gateway kan
+nås i realtid, ville det være en ny klient og en ny bro snarere end en ændring af protokollen.
+
+Det er sværere at skrive indlæg, mens mesh-netværket er afskåret. En fællesskabsnode afviser
+publikationer og udfordringsbeskeder med et tidsstempel, der afviger mere end 5 minutter fra nodens
+eget ur, så et indlæg, der holdes tilbage til senere levering, ville blive afvist, når det kommer
+frem. At skrive indlæg offline ville kun fungere for fællesskaber, der har deres node på selve
+mesh-netværket; at nå fællesskaber på internettet ville kræve en protokolændring, for eksempel at et
+fællesskab kan vælge at tage imod forsinkede publikationer. Intet af dette står på den nuværende
+køreplan.
 
 ## Til udviklere
 

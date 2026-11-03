@@ -64,10 +64,18 @@ internetbandbreedte: een client haalt communitymetadata en postinhoud op bij pee
 pubsub-berichten uit. Dat past slecht op verbindingen die zijn opgebouwd rond pakketten van 500 bytes
 en een doorvoer die in bits of kilobits per seconde wordt gemeten.
 
-De realistische route is smaller: een client die via een lokaal mesh werkt zolang er geen verbinding
-is, en daarna synchroniseert met het bredere Bitsocial-netwerk zodra een peer of gateway met
-internettoegang bereikbaar is. Dat zou een nieuwe client met een bridge zijn in plaats van een
-wijziging aan het protocol, en het staat niet op de huidige roadmap.
+De realistische route is smaller: een client die via een lokaal mesh werkt en het bredere
+Bitsocial-netwerk bereikt via een peer of gateway met internettoegang. Zolang die gateway in
+realtime bereikbaar is, zou dat een nieuwe client met een bridge zijn in plaats van een wijziging
+aan het protocol.
+
+Posten terwijl het mesh van het internet is afgesneden, is lastiger. Een communitynode weigert
+publicaties en challengeberichten met een tijdstempel die meer dan 5 minuten afwijkt van zijn eigen
+klok, dus een post die wordt vastgehouden om later te bezorgen, zou bij aankomst worden geweigerd.
+Offline posten zou alleen werken voor communities waarvan de node zelf op het mesh draait; om
+communities op het internet te bereiken zou een wijziging aan het protocol nodig zijn, bijvoorbeeld
+door een community zelf te laten kiezen om vertraagde publicaties te accepteren. Niets hiervan staat
+op de huidige roadmap.
 
 ## Voor bouwers
 

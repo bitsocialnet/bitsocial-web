@@ -67,10 +67,18 @@ banda di internet: un client recupera dai peer i metadati delle comunità e il c
 scambia messaggi pubsub, cosa che si adatta male a collegamenti costruiti attorno a pacchetti da 500
 byte e a un throughput misurato in bit o kilobit al secondo.
 
-La strada realistica è più stretta: un client che funzioni su una mesh locale mentre è disconnesso,
-e che poi si sincronizzi con la rete Bitsocial più ampia quando è raggiungibile un peer o un gateway
-con accesso a internet. Si tratterebbe di un nuovo client con un bridge, non di una modifica al
-protocollo, e non rientra nella roadmap attuale.
+La strada realistica è più stretta: un client che funzioni su una mesh locale e raggiunga la rete
+Bitsocial più ampia tramite un peer o un gateway con accesso a internet. Finché quel gateway è
+raggiungibile in tempo reale, si tratterebbe di un nuovo client con un bridge, non di una modifica
+al protocollo.
+
+Pubblicare mentre la mesh è isolata da internet è più difficile. Un nodo di comunità rifiuta le
+pubblicazioni e i messaggi di sfida con un timestamp che si discosta di oltre 5 minuti dal suo
+orologio, quindi un post trattenuto per una consegna successiva verrebbe rifiutato al suo arrivo. La
+pubblicazione offline funzionerebbe solo per le comunità il cui nodo gira sulla mesh stessa; per
+raggiungere le comunità su internet servirebbe una modifica al protocollo, per esempio consentire a
+una comunità di scegliere di accettare le pubblicazioni differite. Niente di tutto questo rientra
+nella roadmap attuale.
 
 ## Per chi sviluppa
 

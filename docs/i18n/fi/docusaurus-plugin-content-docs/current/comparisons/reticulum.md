@@ -66,10 +66,18 @@ kaistanleveyden: asiakas hakee yhteisön metatiedot ja julkaisujen sisällön ve
 pubsub-viestejä, mikä sopii huonosti linkeille, jotka on rakennettu 500-tavuisten pakettien varaan
 ja joiden läpäisy mitataan bitteinä tai kilobitteinä sekunnissa.
 
-Realistinen polku on kapeampi: asiakas, joka toimii paikallisen mesh-verkon yli ilman
-internetyhteyttä ja synkronoituu laajempaan Bitsocial-verkkoon, kun jokin internetyhteydellinen
-vertainen tai yhdyskäytävä on tavoitettavissa. Se olisi uusi asiakas ja silta eikä muutos
-protokollaan, eikä se ole nykyisellä tiekartalla.
+Realistinen polku on kapeampi: asiakas, joka toimii paikallisen mesh-verkon yli ja tavoittaa
+laajemman Bitsocial-verkon jonkin internetyhteydellisen vertaisen tai yhdyskäytävän kautta. Niin
+kauan kuin yhdyskäytävä on tavoitettavissa reaaliajassa, tämä olisi uusi asiakas ja silta eikä
+muutos protokollaan.
+
+Julkaiseminen on vaikeampaa silloin, kun mesh-verkolla ei ole yhteyttä internetiin. Yhteisön solmu
+hylkää julkaisut ja haasteviestit, joiden aikaleima poikkeaa sen omasta kellosta yli 5 minuuttia,
+joten myöhempää toimitusta varten säilytetty julkaisu hylättäisiin, kun se lopulta saapuu perille.
+Julkaiseminen offline-tilassa toimisi vain yhteisöissä, joiden solmu toimii itse mesh-verkossa;
+internetissä toimivien yhteisöjen tavoittaminen vaatisi muutoksen protokollaan, esimerkiksi sen,
+että yhteisö voisi halutessaan hyväksyä viivästyneet julkaisut. Mikään tästä ei ole nykyisellä
+tiekartalla.
 
 ## Rakentajille
 

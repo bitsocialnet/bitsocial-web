@@ -3534,10 +3534,15 @@ client fetches community metadata and post content from peers and exchanges pubs
 fits poorly on links built around 500-byte packets and throughput measured in bits or kilobits per
 second.
 
-The realistic path is narrower: a client that works over a local mesh while disconnected, then syncs
-with the wider Bitsocial network when a peer or gateway with internet access is reachable. That
-would be a new client and bridge rather than a change to the protocol, and it is not on the current
-roadmap.
+The realistic path is narrower: a client that works over a local mesh and reaches the wider
+Bitsocial network through a peer or gateway with internet access. While that gateway is reachable in
+real time, this would be a new client and bridge rather than a change to the protocol.
+
+Posting while the mesh is cut off is harder. A community node rejects publications and challenge
+messages timestamped more than 5 minutes from its own clock, so a post held for later delivery would
+be refused when it arrives. Offline posting would work only for communities whose node runs on the
+mesh itself; reaching internet communities would need a protocol change, such as letting a community
+opt in to delayed publications. None of this is on the current roadmap.
 
 ## For builders
 

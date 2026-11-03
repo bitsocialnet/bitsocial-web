@@ -68,11 +68,19 @@ passante d'internet : un client récupère les métadonnées des communautés et
 publications auprès des pairs et échange des messages pubsub, ce qui s'accommode mal de liaisons
 conçues autour de paquets de 500 octets et de débits mesurés en bits ou en kilobits par seconde.
 
-La voie réaliste est plus étroite : un client qui fonctionne sur un réseau maillé local lorsqu'il
-est déconnecté, puis se synchronise avec le reste du réseau Bitsocial dès qu'un pair ou une
-passerelle disposant d'un accès à internet est joignable. Il s'agirait d'un nouveau client doublé
-d'un pont, plutôt que d'une modification du protocole, et ce n'est pas prévu dans la feuille de
-route actuelle.
+La voie réaliste est plus étroite : un client qui fonctionne sur un réseau maillé local et accède au
+reste du réseau Bitsocial par l'intermédiaire d'un pair ou d'une passerelle disposant d'un accès à
+internet. Tant que cette passerelle est joignable en temps réel, il s'agirait d'un nouveau client
+doublé d'un pont, plutôt que d'une modification du protocole.
+
+Publier pendant que le réseau maillé est coupé d'internet est plus difficile. Un nœud de communauté
+rejette les publications et les messages de défi dont l'horodatage s'écarte de plus de 5 minutes de
+sa propre horloge : une publication mise en attente pour être livrée plus tard serait donc refusée à
+son arrivée. La publication hors ligne ne fonctionnerait que pour les communautés dont le nœud
+tourne sur le réseau maillé lui-même ; atteindre les communautés présentes sur internet
+nécessiterait une modification du protocole, par exemple permettre à une communauté de choisir
+d'accepter les publications différées. Rien de tout cela n'est prévu dans la feuille de route
+actuelle.
 
 ## Pour les développeurs
 

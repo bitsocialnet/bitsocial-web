@@ -65,10 +65,17 @@ bandwidth internet: klien mengambil metadata komunitas dan konten postingan dari
 pesan pubsub, dan pola itu kurang cocok untuk tautan yang dirancang di sekitar paket 500 byte dengan
 throughput yang diukur dalam bit atau kilobit per detik.
 
-Jalur yang realistis lebih sempit: sebuah klien yang bekerja di atas mesh lokal selama tidak
-terhubung, lalu menyinkronkan diri dengan jaringan Bitsocial yang lebih luas ketika peer atau
-gateway yang punya akses internet dapat dijangkau. Itu berarti klien dan jembatan baru, bukan
-perubahan pada protokol, dan hal itu tidak ada dalam peta jalan saat ini.
+Jalur yang realistis lebih sempit: sebuah klien yang bekerja di atas mesh lokal dan menjangkau
+jaringan Bitsocial yang lebih luas melalui peer atau gateway yang punya akses internet. Selama
+gateway itu dapat dijangkau secara real time, itu berarti klien dan jembatan baru, bukan perubahan
+pada protokol.
+
+Memposting saat mesh terputus dari internet lebih sulit. Node komunitas menolak publikasi dan pesan
+tantangan yang stempel waktunya berselisih lebih dari 5 menit dari jamnya sendiri, sehingga
+postingan yang ditahan untuk dikirim belakangan akan ditolak saat tiba. Memposting secara offline
+hanya akan berhasil untuk komunitas yang node-nya berjalan di mesh itu sendiri; menjangkau komunitas
+di internet akan membutuhkan perubahan pada protokol, misalnya dengan memungkinkan komunitas memilih
+untuk menerima publikasi yang tertunda. Tidak satu pun dari hal ini ada dalam peta jalan saat ini.
 
 ## Untuk pengembang
 

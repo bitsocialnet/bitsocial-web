@@ -66,10 +66,18 @@ Internetbandbreite voraus: Ein Client ruft Community-Metadaten und Beitragsinhal
 tauscht Pubsub-Nachrichten aus. Das passt schlecht zu Verbindungen, die auf 500-Byte-Pakete und einen
 Durchsatz von einigen Bit oder Kilobit pro Sekunde ausgelegt sind.
 
-Realistisch ist ein schmalerer Weg: ein Client, der ohne Internetverbindung über ein lokales Mesh
-funktioniert und sich mit dem übrigen Bitsocial-Netzwerk synchronisiert, sobald ein Peer oder
-Gateway mit Internetzugang erreichbar ist. Das wäre ein neuer Client samt Brücke, keine Änderung am
-Protokoll, und es steht nicht auf der aktuellen Roadmap.
+Realistisch ist ein schmalerer Weg: ein Client, der in einem lokalen Mesh funktioniert und das
+übrige Bitsocial-Netzwerk über einen Peer oder ein Gateway mit Internetzugang erreicht. Solange
+dieses Gateway in Echtzeit erreichbar ist, wäre das ein neuer Client samt Brücke, keine Änderung am
+Protokoll.
+
+Schwieriger ist das Veröffentlichen von Beiträgen, während das Mesh abgeschnitten ist. Ein
+Community-Node lehnt Publikationen und Challenge-Nachrichten ab, deren Zeitstempel um mehr als 5
+Minuten von seiner eigenen Uhr abweicht, sodass ein für die spätere Zustellung zurückgehaltener
+Beitrag bei seiner Ankunft abgewiesen würde. Offline zu veröffentlichen würde nur bei Communities
+funktionieren, deren Node selbst im Mesh läuft; um Communities im Internet zu erreichen, wäre eine
+Protokolländerung nötig, etwa eine Option, mit der eine Community verzögerte Publikationen zulassen
+kann. Nichts davon steht auf der aktuellen Roadmap.
 
 ## Für Entwickler
 

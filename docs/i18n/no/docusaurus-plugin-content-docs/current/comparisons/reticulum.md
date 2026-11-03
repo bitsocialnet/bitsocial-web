@@ -62,10 +62,17 @@ en klient henter fellesskapsmetadata og innleggsinnhold fra peers og utveksler p
 som passer dårlig på forbindelser bygget rundt pakker på 500 byte og gjennomstrømning målt i bit
 eller kilobit per sekund.
 
-Den realistiske veien er smalere: en klient som fungerer over et lokalt mesh mens den er frakoblet,
-og som så synkroniserer med det bredere Bitsocial-nettverket når en peer eller gateway med
-internettilgang er innen rekkevidde. Det ville vært en ny klient og bro snarere enn en endring i
-protokollen, og det står ikke på det nåværende veikartet.
+Den realistiske veien er smalere: en klient som fungerer over et lokalt mesh og når det bredere
+Bitsocial-nettverket gjennom en peer eller gateway med internettilgang. Så lenge den gatewayen kan
+nås i sanntid, ville dette vært en ny klient og bro snarere enn en endring i protokollen.
+
+Å legge ut innlegg mens meshet er avskåret fra internett, er vanskeligere. En fellesskapsnode
+avviser publikasjoner og utfordringsmeldinger med et tidsstempel som avviker mer enn 5 minutter fra
+nodens egen klokke, så et innlegg som holdes tilbake for senere levering, ville blitt avvist når det
+kommer fram. Å legge ut innlegg uten nettilgang ville bare fungert for fellesskap der noden selv
+kjører på meshet; å nå fellesskap på internett ville kreve en endring i protokollen, for eksempel at
+et fellesskap kan velge å godta forsinkede publikasjoner. Ingenting av dette står på det nåværende
+veikartet.
 
 ## For utviklere
 

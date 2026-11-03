@@ -66,10 +66,17 @@ banda de internet: um cliente busca metadados da comunidade e conteúdo de posts
 troca mensagens pubsub, o que se encaixa mal em enlaces construídos em torno de pacotes de 500 bytes
 e de uma vazão medida em bits ou kilobits por segundo.
 
-O caminho realista é mais estreito: um cliente que funcione sobre uma rede mesh local enquanto
-estiver desconectado e depois sincronize com a rede Bitsocial mais ampla quando um peer ou gateway
-com acesso à internet estiver ao alcance. Isso seria um novo cliente com uma ponte, e não uma
-mudança no protocolo, e não está no roadmap atual.
+O caminho realista é mais estreito: um cliente que funcione sobre uma rede mesh local e chegue à
+rede Bitsocial mais ampla por meio de um peer ou gateway com acesso à internet. Enquanto esse
+gateway estiver acessível em tempo real, isso seria um novo cliente com uma ponte, e não uma mudança
+no protocolo.
+
+Publicar enquanto a rede mesh está isolada da internet é mais difícil. Um nó de comunidade rejeita
+publicações e mensagens de desafio cujo carimbo de data/hora se afasta mais de 5 minutos do seu
+próprio relógio, então um post guardado para entrega posterior seria recusado ao chegar. Publicar
+offline só funcionaria em comunidades cujo nó roda na própria rede mesh; alcançar comunidades na
+internet exigiria uma mudança no protocolo, como permitir que uma comunidade opte por aceitar
+publicações atrasadas. Nada disso está no roadmap atual.
 
 ## Para desenvolvedores
 

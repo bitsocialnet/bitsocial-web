@@ -64,10 +64,17 @@ băng thông internet: một client lấy siêu dữ liệu cộng đồng và n
 đổi tin nhắn pubsub, điều vốn rất khó khớp với những đường truyền được xây dựng quanh các gói 500 byte
 và thông lượng tính bằng bit hoặc kilobit mỗi giây.
 
-Hướng đi thực tế hẹp hơn nhiều: một client hoạt động qua mạng mesh cục bộ khi bị ngắt kết nối, rồi
-đồng bộ với mạng Bitsocial rộng hơn khi có thể liên lạc với một peer hoặc cổng có truy cập internet.
-Đó sẽ là một client và một cầu nối mới chứ không phải một thay đổi đối với giao thức, và nó không nằm
-trong lộ trình hiện tại.
+Hướng đi thực tế hẹp hơn nhiều: một client hoạt động qua mạng mesh cục bộ và kết nối tới mạng
+Bitsocial rộng hơn thông qua một peer hoặc cổng có truy cập internet. Chừng nào cổng đó còn liên lạc
+được theo thời gian thực, đây sẽ là một client và một cầu nối mới chứ không phải một thay đổi đối
+với giao thức.
+
+Đăng bài trong lúc mạng mesh bị cắt khỏi internet thì khó hơn. Nút cộng đồng từ chối các nội dung
+đăng tải và tin nhắn thử thách có dấu thời gian lệch quá 5 phút so với đồng hồ của chính nó, nên một
+bài đăng được giữ lại để gửi sau sẽ bị từ chối khi đến nơi. Đăng bài ngoại tuyến chỉ hoạt động được
+với những cộng đồng có nút chạy ngay trên mạng mesh; muốn tới được các cộng đồng trên internet thì
+cần thay đổi giao thức, chẳng hạn cho phép một cộng đồng tự chọn chấp nhận các nội dung đăng tải bị
+trễ. Không điều nào trong số này nằm trong lộ trình hiện tại.
 
 ## Dành cho nhà phát triển
 
