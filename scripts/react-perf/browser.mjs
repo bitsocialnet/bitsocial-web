@@ -61,24 +61,18 @@ export async function withBrowser(packageRoot, headed, run) {
   if (!existsSync(wrapper)) throw new Error(`Browser ownership wrapper missing: ${wrapper}`);
   const session = `perf-${process.pid}-${Date.now().toString(36)}`;
   const port = await freePort();
-  const channel = process.env.REACT_PERF_BROWSER_CHANNEL;
-  if (!channel && !existsSync(driver.chromium.executablePath()))
-    throw new Error("Profiling browser is missing. Run perf:install first.");
+  const channel = process.env.REACT_PERF_BROWSER_CHANNEL || "chrome";
   const scratch = await mkdtemp(path.join(tmpdir(), "react-perf-"));
   const config = path.join(scratch, "browser.json");
-  // Hosted runners restrict unprivileged user namespaces, so Chromium's own
-  // sandbox cannot initialize there and the browser aborts before launching.
-  // The runner is already an isolated throwaway VM; local runs keep the sandbox.
-  const sandboxed = !process.env.CI;
   await writeFile(
     config,
     JSON.stringify({
       browser: {
         browserName: "chromium",
         launchOptions: {
-          ...(channel ? { channel } : { executablePath: driver.chromium.executablePath() }),
+          channel,
           headless: !headed,
-          chromiumSandbox: sandboxed,
+          chromiumSandbox: true,
           args: [`--remote-debugging-port=${port}`],
         },
         contextOptions: { viewport: { width: 1280, height: 900 } },

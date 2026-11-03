@@ -67,7 +67,8 @@ jobs:
       - name: Verify release integrity API caching
         run: node --test scripts/__tests__/release-integrity.node-test.mjs
       - run: corepack yarn doctor:check
-      - run: corepack yarn perf:install --with-deps
+      # Hosted images disable Chrome updates between image releases.
+      - run: corepack yarn perf:install --force
       # Hosted runners are roughly 2.5x slower than the developer hardware the
       # wall-clock budgets were calibrated on: about/apps-search renders ~2.3s
       # here against a 1s local limit. Commit and component-update budgets are
