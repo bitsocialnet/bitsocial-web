@@ -50,10 +50,21 @@ const seriesByLabel = (matrix, label, timeline) =>
 
 // Share of each step a status (1 up, 0 down) was up, sampled at the range's resolution. With a
 // key label, series that differ only in other labels (a renamed probe) merge into one history.
+// The newest bucket is read at the pass time over everything since the grid's previous point, so
+// it joins the history without a gap and includes the time past the grid's end.
 const bucketAverage = (expr, timeline, byLabel) => {
-  const average = `avg_over_time((${expr})[${timeline.step}s:${timeline.resolution}s])`;
-  return byLabel ? `max by (${byLabel}) (${average})` : average;
+  const over = (seconds) => {
+    const average = `avg_over_time((${expr})[${seconds}s:${timeline.resolution}s])`;
+    return byLabel ? `max by (${byLabel}) (${average})` : average;
+  };
+  return {
+    expr: over(timeline.step),
+    latest: over(timeline.at - timeline.end + timeline.step),
+    range: true,
+  };
 };
+
+const rangeQuery = (expr) => ({ expr, range: true });
 
 const average = (values) => {
   const known = values.filter((value) => value !== null);
@@ -102,16 +113,18 @@ const settle = (promise) =>
   );
 
 // Runs a named set of queries in parallel. Instant queries read the pass time; a range query reads
-// its history on the range's grid plus its newest point at the pass time. A failed query leaves
-// its key undefined so one bad expression degrades a single block. The view fails when every
-// pass-time read fails, because histories can come from an earlier pass and would otherwise pass
-// off old data as current, or when nothing at all could be read.
+// its history on the range's grid plus its newest point at the pass time (from `latest` when that
+// point needs another window). A failed query leaves its key undefined so one bad expression
+// degrades a single block; a range block needs its history, since a chart of one point would read
+// as a gap. The view fails, and the server keeps its previous snapshot, when every pass-time read
+// fails (histories can come from an earlier pass and would pass off old data as current) or when
+// no block has data.
 const runQueries = async (source, timeline, queries) => {
   const entries = Object.entries(queries);
   const outcomes = await Promise.all(
-    entries.map(([, { expr, range }]) =>
+    entries.map(([, { expr, range, latest = expr }]) =>
       Promise.all([
-        settle(source.instant(expr, timeline.at)),
+        settle(source.instant(latest, timeline.at)),
         range ? settle(source.range(expr, timeline)) : undefined,
       ]),
     ),
@@ -254,7 +267,7 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
 
     const queries = {
       webpageUp: { expr: infra.webpageUp },
-      webpageHistory: { expr: bucketAverage(infra.webpageUp, timeline), range: true },
+      webpageHistory: bucketAverage(infra.webpageUp, timeline),
       webpageLatency: {
         expr: whenSuccessful(
           metric("webpage_last_webpage_fetch_duration_seconds"),
@@ -262,22 +275,19 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
         ),
       },
       serviceUp: { expr: infra.serviceUp },
-      serviceHistory: {
-        expr: bucketAverage(infra.serviceUp, timeline, "service_probe_id"),
-        range: true,
-      },
+      serviceHistory: bucketAverage(infra.serviceUp, timeline, "service_probe_id"),
       serviceLatency: {
         expr: whenSuccessful(metric("service_probe_last_duration_seconds"), infra.serviceUp),
       },
       routerUp: { expr: infra.httpRouterUp },
-      routerHistory: { expr: bucketAverage(infra.httpRouterUp, timeline), range: true },
+      routerHistory: bucketAverage(infra.httpRouterUp, timeline),
       routerLatency: { expr: `avg by (http_router_url) (${routerDuration})` },
       // Share of communities for which the router returned at least one IPNS record provider.
       routerCoverage: {
         expr: `(count by (http_router_url) ((${routerProviders} > 0) and (${infra.routerLookupSuccess} == 1)) or count by (http_router_url) (${infra.routerLookupSuccess}) * 0) / count by (http_router_url) (${infra.routerLookupSuccess})`,
       },
       resolverUp: { expr: infra.nameResolverUp },
-      resolverHistory: { expr: bucketAverage(infra.nameResolverUp, timeline), range: true },
+      resolverHistory: bucketAverage(infra.nameResolverUp, timeline),
       resolverLatency: {
         expr: whenSuccessful(
           metric("chain_provider_last_resolve_address_duration_seconds", {
@@ -288,7 +298,7 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
         ),
       },
       gatewayUp: { expr: infra.gatewayUp },
-      gatewayHistory: { expr: bucketAverage(infra.gatewayUp, timeline), range: true },
+      gatewayHistory: bucketAverage(infra.gatewayUp, timeline),
       gatewayLatency: {
         expr: whenSuccessful(
           metric("ipfs_gateway_last_comment_fetch_duration_seconds", {
@@ -298,7 +308,7 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
         ),
       },
       pubsubUp: { expr: infra.pubsubProviderUp },
-      pubsubHistory: { expr: bucketAverage(infra.pubsubProviderUp, timeline), range: true },
+      pubsubHistory: bucketAverage(infra.pubsubProviderUp, timeline),
       pubsubLatency: {
         expr: whenSuccessful(
           metric("pubsub_provider_last_publish_duration_seconds", {
@@ -517,7 +527,7 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
       totalPosts: { expr: q.totalPosts },
       postsLastDay: { expr: q.postsLastDay },
       currentUsers: { expr: q.currentUsers },
-      availability: { expr: bucketAverage(q.online, timeline), range: true },
+      availability: bucketAverage(q.online, timeline),
     };
     for (const [key, expr] of Object.entries(series)) {
       queries[`series:${key}`] = { expr, range: true };
@@ -582,7 +592,7 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
   // Every listed community's charts for one client, from one query per series grouped by address.
   const communityViews = async (clientId, timeline, source = prometheus) => {
     const q = communityQueries(clientId);
-    const byAddress = (expr) => `sum by (community_address) (${expr})`;
+    const byAddress = (expr) => rangeQuery(`sum by (community_address) (${expr})`);
     const series = {
       // The client view's availability query, so a pass runs it once for both.
       online: bucketAverage(q.online, timeline),
@@ -591,13 +601,11 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
       activeDay: byAddress(q.whenFetched(q.stat("day", "active_user"))),
       activeWeek: byAddress(q.stat("week", "active_user")),
       activeMonth: byAddress(q.stat("month", "active_user")),
-      pubsubPeers: `max by (community_address) (${q.communityMetric("last_community_pubsub_pubsub_peer_count")})`,
+      pubsubPeers: rangeQuery(
+        `max by (community_address) (${q.communityMetric("last_community_pubsub_pubsub_peer_count")})`,
+      ),
     };
-    const results = await runQueries(
-      source,
-      timeline,
-      Object.fromEntries(Object.entries(series).map(([key, expr]) => [key, { expr, range: true }])),
-    );
+    const results = await runQueries(source, timeline, series);
     const columns = Object.fromEntries(
       Object.keys(series).map((key) => [
         key,

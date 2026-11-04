@@ -362,3 +362,65 @@ test("when Prometheus stops answering, no view is rebuilt from earlier histories
   assert.equal(errors.length, 4 * 5);
   assert.ok(errors.every((error) => /every current-value query failed/.test(error)));
 });
+
+test("the newest uptime bucket covers everything since the grid's previous point", async () => {
+  // 7170 seconds past a 14d step boundary: the grid's last point is almost a whole step behind.
+  const at = 1_800_007_170;
+  const fortnight = getTimeline("14d", at);
+  assert.equal(fortnight.end, 1_800_000_000);
+  const biz = { community_address: "biz.bso" };
+  const { dashboard } = createTestDashboard([
+    {
+      when: /^avg_over_time\(.*\[7200s:600s\]\)$/,
+      range: true,
+      result: [
+        {
+          metric: biz,
+          values: [
+            [fortnight.end - fortnight.step, "1"],
+            [fortnight.end, "1"],
+          ],
+        },
+      ],
+    },
+    // Read over the step alone, the newest bucket would skip the 7170 seconds after the grid's
+    // previous point, where an outage would go unseen.
+    { when: /^avg_over_time\(.*\[14370s:600s\]\)$/, result: [{ metric: biz, value: [at, "0.5"] }] },
+    { when: /^avg_over_time\(.*\[7200s:600s\]\)$/, result: [{ metric: biz, value: [at, "1"] }] },
+  ]);
+
+  const view = await dashboard.clientView("5chan", fortnight);
+  assert.deepEqual(view.communities[0].history.slice(-2), [1, 0.5]);
+  assert.equal(view.communities[0].uptime, 0.75);
+});
+
+test("a pass reuses each expression's own history", async () => {
+  const start = 1_800_000_000;
+  // Points on every range's grid, since a pass at `start` ends every grid there.
+  const history = (older, newer) => [
+    {
+      metric: {},
+      values: [
+        [start - 7200, String(older)],
+        [start, String(newer)],
+      ],
+    },
+  ];
+  const { dashboard, prometheus } = createTestDashboard([
+    { when: /community_stats_day_post_count/, range: true, result: history(11, 12) },
+    { when: /community_stats_day_post_count/, result: [{ metric: {}, value: [0, "13"] }] },
+    { when: /community_stats_day_reply_count/, range: true, result: history(21, 22) },
+    { when: /community_stats_day_reply_count/, result: [{ metric: {}, value: [0, "23"] }] },
+  ]);
+  const known = (values) => values.filter((value) => value !== null);
+
+  await dashboard.documents(start);
+  prometheus.calls.length = 0;
+  const { documents } = await dashboard.documents(start + 30);
+  assert.equal(prometheus.calls.filter(({ kind }) => kind === "range").length, 0);
+  for (const rangeKey of Object.keys(RANGES)) {
+    const { series } = documents.get(`client:5chan:${rangeKey}`);
+    assert.deepEqual(known(series.posts), [11, 13], rangeKey);
+    assert.deepEqual(known(series.replies), [21, 23], rangeKey);
+  }
+});
