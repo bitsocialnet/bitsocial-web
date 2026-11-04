@@ -138,7 +138,7 @@ const RELEASE_DOWNLOAD_ASSETS: Record<string, ReleaseDownloadAsset> = {
     repository: "bitsocialnet/seedit",
   },
   "seedit:windows-portable": {
-    assetNamePattern: /^seedit\.Portable\.\d+\.\d+\.\d+\.exe$/,
+    assetNamePattern: /^seedit\.Portable\.\d+\.\d+\.\d+\.zip$/,
     repository: "bitsocialnet/seedit",
   },
 };
