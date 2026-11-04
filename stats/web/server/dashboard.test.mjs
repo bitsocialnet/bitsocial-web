@@ -158,7 +158,7 @@ test("the view fails when Prometheus answers no query at all", async () => {
     { when: /./, fail: true },
     { when: /./, range: true, fail: true },
   ]);
-  await assert.rejects(dashboard.overview(timeline), /every Prometheus query failed/);
+  await assert.rejects(dashboard.overview(timeline), /every current-value query failed/);
 });
 
 test("client view keeps the list order and fills each community's columns", async () => {
@@ -211,8 +211,10 @@ test("community views split one grouped query per series by address", async () =
   assert.deepEqual(views.get("biz.bso").series.posts.slice(0, 3), [1, 2, null]);
   assert.deepEqual(views.get("g.bso").series.posts.slice(0, 3), [4, 5, null]);
   assert.equal(views.get("g.bso").series.replies.length, timeline.points);
-  // One query per series for the whole client, never one per community.
-  assert.equal(prometheus.calls.length, 7);
+  // One history and one current-value query per series for the whole client, never one per
+  // community.
+  assert.equal(prometheus.calls.filter(({ kind }) => kind === "range").length, 7);
+  assert.equal(prometheus.calls.filter(({ kind }) => kind === "instant").length, 7);
   for (const { expr } of prometheus.calls) {
     assert.doesNotMatch(expr, /community_address="/);
   }
@@ -235,8 +237,9 @@ test("a pass builds every range and runs each shared query once", async () => {
     assert.ok(documents.has(key), key);
   }
   assert.equal(documents.get("client:5chan:7d").range.key, "7d");
-  // Every range ends at the same time, so instant queries are shared across ranges and views, and
-  // a range query two views share (availability, communities online) runs once per range.
+  // Every range reads current values at the same time, so instant queries are shared across
+  // ranges and views, and a range query two views share (availability, communities online) runs
+  // once per range.
   const runs = prometheus.calls.map(({ kind, expr, at }) => `${kind} ${at} ${expr}`);
   assert.equal(new Set(runs).size, runs.length);
   assert.equal(new Set(prometheus.calls.map(({ at }) => at)).size, 1 + Object.keys(RANGES).length);
@@ -254,4 +257,108 @@ test("a view that fails in a pass is reported while the rest build", async () =>
   assert.ok(errors.some((error) => error.startsWith("communities 5chan 6h:")));
   assert.ok(documents.has("client:5chan:6h"));
   assert.ok(!documents.has("community:5chan:biz.bso:6h"));
+});
+
+test("a chart's history stays on its step grid while its last point is read at the pass time", async () => {
+  // 330 seconds past a 24h step boundary, so the pass time and the grid's end differ.
+  const at = 1_800_000_330;
+  const day = getTimeline("24h", at);
+  assert.equal(day.at, at);
+  assert.equal(day.end, 1_800_000_000);
+  const grid = (address, values) => ({
+    metric: { community_address: address },
+    values: values.map((value, index) => [
+      day.end - (values.length - 1 - index) * day.step,
+      String(value),
+    ]),
+  });
+  const now = (address, value) => ({
+    metric: { community_address: address },
+    value: [at, String(value)],
+  });
+  const { dashboard } = createTestDashboard([
+    // g.bso has no history yet but a value now.
+    { when: /community_stats_day_post_count/, range: true, result: [grid("biz.bso", [3, 4])] },
+    { when: /community_stats_day_post_count/, result: [now("biz.bso", 7), now("g.bso", 1)] },
+    // g.bso had a history but has no value now.
+    { when: /community_stats_day_active_user_count/, range: true, result: [grid("g.bso", [5, 6])] },
+    { when: /community_stats_day_active_user_count/, result: [] },
+    { when: /community_stats_day_reply_count/, range: true, result: [grid("biz.bso", [8, 9])] },
+    { when: /community_stats_day_reply_count/, fail: true },
+  ]);
+
+  const views = await dashboard.communityViews("5chan", day);
+  const biz = views.get("biz.bso");
+  const g = views.get("g.bso");
+  assert.equal(biz.generatedAt, new Date(at * 1000).toISOString());
+  assert.deepEqual(biz.range, { key: "24h", start: day.start, end: day.end, step: 600 });
+  assert.equal(biz.series.posts.length, day.points);
+  assert.deepEqual(biz.series.posts.slice(-2), [3, 7]);
+  assert.deepEqual(g.series.posts.slice(-2), [null, 1]);
+  assert.deepEqual(g.series.activeDay.slice(-2), [5, null]);
+  // When the current read fails, the history keeps its own last point.
+  assert.deepEqual(biz.series.replies.slice(-2), [8, 9]);
+});
+
+test("passes reuse each range's history until its grid moves and read current values every pass", async () => {
+  const { dashboard, prometheus } = createTestDashboard([]);
+  // The steps of the range histories a pass queried, after checking it read every current value
+  // at its own time.
+  const historySteps = async (at) => {
+    prometheus.calls.length = 0;
+    const { documents, errors } = await dashboard.documents(at);
+    assert.deepEqual(errors, []);
+    assert.equal(documents.size, 4 * 6);
+    const instants = prometheus.calls.filter(({ kind }) => kind === "instant");
+    assert.ok(instants.length > 0);
+    assert.ok(instants.every((call) => call.at === at));
+    for (const document of documents.values()) {
+      assert.equal(document.generatedAt, new Date(at * 1000).toISOString());
+    }
+    const steps = prometheus.calls
+      .filter(({ kind }) => kind === "range")
+      .map((call) => Number(call.at.split("/")[1]));
+    return [...new Set(steps)].sort((left, right) => left - right);
+  };
+
+  // 1_800_000_000 is a boundary of every range's step.
+  const start = 1_800_000_000;
+  assert.deepEqual(await historySteps(start), [120, 600, 3600, 7200]);
+  assert.deepEqual(await historySteps(start + 30), []);
+  assert.deepEqual(await historySteps(start + 90), []);
+  assert.deepEqual(await historySteps(start + 120), [120]);
+  assert.deepEqual(await historySteps(start + 600), [120, 600]);
+  assert.deepEqual(await historySteps(start + 3600), [120, 600, 3600]);
+  assert.deepEqual(await historySteps(start + 3630), []);
+});
+
+test("a history Prometheus failed to answer is queried again in the next pass", async () => {
+  const rules = [{ when: /./, range: true, fail: true }];
+  const { dashboard, prometheus } = createTestDashboard(rules);
+  const start = 1_800_000_000;
+  const first = await dashboard.documents(start);
+  assert.ok(first.errors.some((error) => error.startsWith("communities 5chan 6h:")));
+
+  rules.length = 0;
+  prometheus.calls.length = 0;
+  const second = await dashboard.documents(start + 30);
+  assert.deepEqual(second.errors, []);
+  assert.equal(
+    new Set(prometheus.calls.filter(({ kind }) => kind === "range").map(({ at }) => at)).size,
+    Object.keys(RANGES).length,
+  );
+});
+
+test("when Prometheus stops answering, no view is rebuilt from earlier histories", async () => {
+  const rules = [];
+  const { dashboard } = createTestDashboard(rules);
+  const start = 1_800_000_000;
+  assert.equal((await dashboard.documents(start)).documents.size, 4 * 6);
+
+  rules.push({ when: /./, fail: true }, { when: /./, range: true, fail: true });
+  const { documents, errors } = await dashboard.documents(start + 30);
+  // Every view keeps its previous snapshot, whose generatedAt shows how old it is.
+  assert.equal(documents.size, 0);
+  assert.equal(errors.length, 4 * 5);
+  assert.ok(errors.every((error) => /every current-value query failed/.test(error)));
 });

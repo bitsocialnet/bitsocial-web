@@ -73,26 +73,76 @@ const hostOf = (url) => {
   }
 };
 
-// Runs a named set of queries in parallel. A failed query leaves its key undefined so one bad
-// expression degrades a single block; the request only fails when Prometheus answers nothing.
-const runQueries = async (prometheus, timeline, queries) => {
+const seriesKey = (labels) => JSON.stringify(Object.entries(labels).sort());
+
+// Ends each series of a range result with the same expression read at the pass time, so a chart's
+// last point is as current as the instant values beside it. The value stays on the grid's last
+// point, up to one step before the pass time, so documents keep their evenly spaced timeline. A
+// series the read no longer returns ends without a value there, as a range query ending at that
+// moment would.
+const withLatest = (history, latest, timeline) => {
+  const latestByKey = new Map(latest.map((sample) => [seriesKey(sample.metric), sample]));
+  const series = history.map(({ metric, values }) => {
+    const key = seriesKey(metric);
+    const sample = latestByKey.get(key);
+    latestByKey.delete(key);
+    const earlier = values.filter(([time]) => time < timeline.end);
+    return { metric, values: sample ? [...earlier, [timeline.end, sample.value[1]]] : earlier };
+  });
+  for (const { metric, value } of latestByKey.values()) {
+    series.push({ metric, values: [[timeline.end, value[1]]] });
+  }
+  return series;
+};
+
+const settle = (promise) =>
+  promise.then(
+    (value) => ({ value }),
+    (error) => ({ error: error?.message || String(error) }),
+  );
+
+// Runs a named set of queries in parallel. Instant queries read the pass time; a range query reads
+// its history on the range's grid plus its newest point at the pass time. A failed query leaves
+// its key undefined so one bad expression degrades a single block. The view fails when every
+// pass-time read fails, because histories can come from an earlier pass and would otherwise pass
+// off old data as current, or when nothing at all could be read.
+const runQueries = async (source, timeline, queries) => {
   const entries = Object.entries(queries);
-  const settled = await Promise.allSettled(
+  const outcomes = await Promise.all(
     entries.map(([, { expr, range }]) =>
-      range ? prometheus.range(expr, timeline) : prometheus.instant(expr, timeline.end),
+      Promise.all([
+        settle(source.instant(expr, timeline.at)),
+        range ? settle(source.range(expr, timeline)) : undefined,
+      ]),
     ),
   );
   const results = {};
   const errors = [];
-  for (const [index, outcome] of settled.entries()) {
+  let answeredNow = false;
+  for (const [index, [latest, history]] of outcomes.entries()) {
     const [key] = entries[index];
-    if (outcome.status === "fulfilled") {
-      results[key] = outcome.value;
+    if (latest.error) {
+      errors.push(`${key}: ${latest.error}`);
     } else {
-      errors.push(`${key}: ${outcome.reason?.message || outcome.reason}`);
+      answeredNow = true;
+    }
+    if (history?.error) {
+      errors.push(`${key} history: ${history.error}`);
+    }
+    if (!history) {
+      if (!latest.error) {
+        results[key] = latest.value;
+      }
+    } else if (!history.error) {
+      results[key] = latest.error
+        ? history.value
+        : withLatest(history.value, latest.value, timeline);
     }
   }
-  if (errors.length === entries.length) {
+  if (!answeredNow) {
+    throw new Error(`every current-value query failed (${errors[0]})`);
+  }
+  if (Object.keys(results).length === 0) {
     throw new Error(`every Prometheus query failed (${errors[0]})`);
   }
   for (const error of errors) {
@@ -101,9 +151,11 @@ const runQueries = async (prometheus, timeline, queries) => {
   return results;
 };
 
-// Every range in a pass ends at the same aligned time, so instant queries (current totals and
-// statuses) and any range query two views share run once per pass instead of once per document.
-const shareQueries = (prometheus) => {
+// Every view in a pass reads through this, so a query two views share runs once per pass: all
+// ranges read current values at the same time, and views of one range share its grid. A range's
+// grid only moves once per step, so a history Prometheus answered in an earlier pass on the same
+// grid is reused rather than queried again.
+const shareQueries = (prometheus, histories) => {
   const results = new Map();
   const once = (key, run) => {
     if (!results.has(key)) {
@@ -114,10 +166,27 @@ const shareQueries = (prometheus) => {
   return {
     instant: (query, time) =>
       once(`instant ${time} ${query}`, () => prometheus.instant(query, time)),
-    range: (query, timeline) =>
-      once(`range ${timeline.start} ${timeline.end} ${timeline.step} ${query}`, () =>
-        prometheus.range(query, timeline),
-      ),
+    range: (query, { start, end, step }) => {
+      const key = `range ${start} ${end} ${step} ${query}`;
+      return once(key, () =>
+        histories.has(key)
+          ? Promise.resolve(histories.get(key))
+          : prometheus.range(query, { start, end, step }),
+      );
+    },
+    /** The histories this pass read that Prometheus answered, for later passes to reuse. */
+    answeredHistories: async () => {
+      const answered = new Map();
+      for (const [key, result] of results) {
+        if (key.startsWith("range ")) {
+          const { value, error } = await settle(result);
+          if (!error) {
+            answered.set(key, value);
+          }
+        }
+      }
+      return answered;
+    },
   };
 };
 
@@ -355,7 +424,7 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
     };
 
     return {
-      generatedAt: new Date(timeline.end * 1000).toISOString(),
+      generatedAt: new Date(timeline.at * 1000).toISOString(),
       range: rangeInfo(timeline),
       offlineAfterSeconds: COMMUNITY_OFFLINE_AFTER_SECONDS,
       network,
@@ -467,7 +536,7 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
     const availability = seriesByLabel(results.availability, "community_address", timeline);
 
     return {
-      generatedAt: new Date(timeline.end * 1000).toISOString(),
+      generatedAt: new Date(timeline.at * 1000).toISOString(),
       range: rangeInfo(timeline),
       offlineAfterSeconds: COMMUNITY_OFFLINE_AFTER_SECONDS,
       client: {
@@ -539,7 +608,7 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
       (communityLists[clientId] || []).map((community) => [
         community.address,
         {
-          generatedAt: new Date(timeline.end * 1000).toISOString(),
+          generatedAt: new Date(timeline.at * 1000).toISOString(),
           range: rangeInfo(timeline),
           community,
           series: Object.fromEntries(
@@ -554,11 +623,15 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
     );
   };
 
+  // Range histories Prometheus answered in the last pass, keyed by query and grid.
+  let histories = new Map();
+
   // Builds every document the API serves for one moment, one view at a time so a pass never
-  // floods Prometheus. A view that fails is reported and left out, and the server keeps its
-  // previous snapshot.
+  // floods Prometheus. Current values are read every pass; each range's history is read once per
+  // step, when its grid moves. A view that fails is reported and left out, and the server keeps
+  // its previous snapshot.
   const documents = async (nowSeconds) => {
-    const source = shareQueries(prometheus);
+    const source = shareQueries(prometheus, histories);
     const built = new Map();
     const errors = [];
     const add = async (label, build) => {
@@ -587,6 +660,8 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
         );
       }
     }
+    // Keeps only what this pass read, so histories of grids that have moved on are dropped.
+    histories = await source.answeredHistories();
     return { documents: built, errors };
   };
 
