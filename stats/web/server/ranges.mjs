@@ -10,15 +10,18 @@ export const RANGES = {
 
 export const DEFAULT_RANGE = "24h";
 
-// The server rebuilds its snapshots once per window, and every range's timeline ends on the
-// window's boundary, so each pass covers new data and all ranges in a pass share one end time.
+// The server rebuilds its snapshots once per window. Every pass reads current values at the
+// window's boundary (`at`), shared by all ranges. Each range's chart points sit on a grid of its
+// step that ends on the last step boundary, so a range's history only changes once per step.
 export const SNAPSHOT_SECONDS = 30;
 
 export const getTimeline = (rangeKey, nowSeconds = Date.now() / 1000) => {
   const range = RANGES[rangeKey];
-  const end = Math.floor(nowSeconds / SNAPSHOT_SECONDS) * SNAPSHOT_SECONDS;
+  const at = Math.floor(nowSeconds / SNAPSHOT_SECONDS) * SNAPSHOT_SECONDS;
+  const end = Math.floor(at / range.step) * range.step;
   return {
     key: rangeKey,
+    at,
     start: end - range.seconds,
     end,
     step: range.step,
