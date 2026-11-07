@@ -663,7 +663,9 @@
         "title": "bitsocial.net काय वापरते",
         "body": [
           "Newsletter signup मध्ये तुम्ही form submit केल्यावरच तुमचा email address configured mailing-list endpoint कडे पाठवला जातो.",
-          "bitsocial.net वर एकूण traffic आणि performance measurement साठी Vercel Web Analytics आणि Speed Insights वापरले जातात.",
+          "Vercel Web Analytics आणि Speed Insights हे bitsocial.net आणि chain.bitsocial.net वरील एकूण traffic आणि performance मोजतात. Web Analytics कोणत्याही cookies set करत नाही: Vercel request च्या hash द्वारे visitors मोजते आणि तो hash 24 तासांनंतर टाकून देते.",
+          "प्रत्येक page view मध्ये page चा address नोंदवला जातो, पण त्याचा # fragment आणि utm_ campaign tags वगळता इतर सर्व query parameters काढून टाकले जातात. त्यासोबत referring page आणि Vercel request वरून ठरवत असलेले अंदाजे location, browser, operating system आणि device type देखील नोंदवले जातात. Site वरील pages नसलेले addresses एकाच not-found page म्हणून नोंदवले जातात.",
+          "या sites newsletter signups देखील मोजतात, पण ते फक्त यशस्वी किंवा अयशस्वी म्हणून नोंदवले जातात, तसेच bitsocial.net वर एखादा project उघडणारे किंवा download करणारे clicks देखील मोजतात, जे project आणि platform सह नोंदवले जातात. या records मध्ये तुमचा email address, wallet addresses किंवा तुम्ही type केलेले काहीही कधीच समाविष्ट नसते.",
           "about site आणि docs site तुमची language choice browser storage मध्ये ठेवतात, जेणेकरून interface तुम्ही निवडलेल्या भाषेत पुन्हा उघडता येईल.",
           "Public pages Google Fonts मधून fonts लोड करतात, त्यामुळे तुमचा browser Google च्या font servers शी जोडला जातो."
         ]
@@ -684,7 +686,7 @@
           "Browser मधील site storage साफ करून तुम्ही कधीही language preference हटवू शकता.",
           "Browser किंवा network controls वापरून remote font requests block करू शकता, जरी त्यामुळे site चे appearance बदलू शकते.",
           "Public site अतिरिक्त tracking, embeds, किंवा signup flows वापरू लागल्यास आम्ही ही page update करू.",
-          "ही आवृत्ती शेवटची 5 एप्रिल 2026 रोजी अपडेट केली होती."
+          "ही आवृत्ती शेवटची 7 नोव्हेंबर 2026 रोजी अपडेट केली होती."
         ]
       }
     },

@@ -1,4 +1,3 @@
-import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Trans, useTranslation } from "react-i18next";
 import ChainStatusCta from "@/components/chain-status-cta";
@@ -73,7 +72,6 @@ export default function App() {
         </div>
       </main>
       <BackToTop />
-      <Analytics />
       <SpeedInsights />
     </div>
   );

@@ -663,7 +663,9 @@
         "title": "Cosa usa bitsocial.net",
         "body": [
           "L'iscrizione alla newsletter invia il tuo indirizzo email all'endpoint della mailing list configurato solo quando invii il modulo.",
-          "Vercel Web Analytics e Speed Insights vengono usati su bitsocial.net per misurazioni aggregate del traffico e delle prestazioni.",
+          "Vercel Web Analytics e Speed Insights misurano in forma aggregata il traffico e le prestazioni di bitsocial.net e chain.bitsocial.net. Web Analytics non imposta cookie: Vercel conta i visitatori tramite un hash della richiesta, che viene eliminato dopo 24 ore.",
+          "Ogni visualizzazione di pagina registra l'indirizzo della pagina senza il frammento # e senza alcun parametro di query, tranne i tag di campagna utm_, oltre alla pagina di provenienza e alla posizione approssimativa, al browser, al sistema operativo e al tipo di dispositivo che Vercel ricava dalla richiesta. Gli indirizzi che non corrispondono a pagine del sito vengono registrati come un'unica pagina “non trovata”.",
+          "I siti contano anche le iscrizioni alla newsletter, registrate solo come riuscite o non riuscite, e i clic che aprono o scaricano un progetto su bitsocial.net, registrati insieme al progetto e alla piattaforma. Queste registrazioni non includono mai il tuo indirizzo email, indirizzi di portafoglio o qualsiasi cosa tu digiti.",
           "Il sito about e il sito docs memorizzano la tua scelta della lingua nell'archiviazione del browser, così l'interfaccia può riaprirsi nella lingua che hai selezionato.",
           "Le pagine pubbliche caricano i font da Google Fonts, quindi il tuo browser si connette ai server dei font di Google."
         ]
@@ -684,7 +686,7 @@
           "Puoi cancellare la preferenza linguistica in qualsiasi momento svuotando l'archiviazione del sito nel browser.",
           "Puoi bloccare le richieste di font remoti con i controlli del browser o della rete, anche se farlo può modificare l'aspetto del sito.",
           "Aggiorneremo questa pagina se il sito pubblico inizierà a usare tracciamento aggiuntivo, embed o flussi di iscrizione.",
-          "Questa versione è stata aggiornata l'ultima volta il 5 aprile 2026."
+          "Questa versione è stata aggiornata l'ultima volta il 7 novembre 2026."
         ]
       }
     },

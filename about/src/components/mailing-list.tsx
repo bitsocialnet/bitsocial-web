@@ -2,6 +2,7 @@ import { useState } from "react";
 import { m } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Mail, ArrowRight, Check } from "lucide-react";
+import { trackNewsletterSignup } from "@/lib/analytics";
 import { normalizeLanguageCode } from "@/lib/locales";
 import {
   configuredNewsletterListUuids,
@@ -41,9 +42,14 @@ export default function MailingList() {
       await subscribeToNewsletter(normalizedEmail, { locale });
       setFormState("success");
       setEmail("");
+      trackNewsletterSignup("success");
     } catch (error) {
       console.error("Newsletter signup failed", error);
-      setFormState(error instanceof NewsletterConfigurationError ? "idle" : "error");
+      const isConfigurationError = error instanceof NewsletterConfigurationError;
+      setFormState(isConfigurationError ? "idle" : "error");
+      if (!isConfigurationError) {
+        trackNewsletterSignup("failure");
+      }
     }
   };
 

@@ -663,7 +663,9 @@
         "title": "Hva bitsocial.net bruker",
         "body": [
           "Påmelding til nyhetsbrevet sender e-postadressen din til den konfigurerte mailingliste-endepunkten bare når du sender inn skjemaet.",
-          "Vercel Web Analytics og Speed Insights brukes på bitsocial.net for aggregert trafikk- og ytelsesmåling.",
+          "Vercel Web Analytics og Speed Insights måler aggregert trafikk og ytelse på bitsocial.net og chain.bitsocial.net. Web Analytics setter ingen informasjonskapsler: Vercel teller besøkende ved hjelp av en hash av forespørselen og forkaster hashen etter 24 timer.",
+          "Hver sidevisning registrerer sidens adresse uten #-fragmentet og uten spørringsparametere, bortsett fra utm_-kampanjetagger, samt den henvisende siden og omtrentlig plassering, nettleser, operativsystem og enhetstype som Vercel utleder fra forespørselen. Adresser som ikke er sider på nettstedet, registreres som én samlet «ikke funnet»-side.",
+          "Nettstedene teller også påmeldinger til nyhetsbrevet, som bare registreres som vellykket eller mislykket, og klikk som åpner eller laster ned et prosjekt på bitsocial.net, som registreres sammen med prosjektet og plattformen. Disse registreringene inneholder aldri e-postadressen din, wallet-adresser eller noe du skriver.",
           "about-siden og docs-siden lagrer språkvalget ditt i nettleserlagring slik at grensesnittet kan åpnes på nytt på språket du valgte.",
           "De offentlige sidene laster skrifter fra Google Fonts, så nettleseren din kobler til Googles skriftservere."
         ]
@@ -684,7 +686,7 @@
           "Du kan når som helst slette språkinnstillingen ved å tømme nettstedlagringen i nettleseren din.",
           "Du kan blokkere eksterne skriftforespørsler med nettleser- eller nettverkskontroller, selv om det kan endre hvordan nettstedet ser ut.",
           "Vi oppdaterer denne siden hvis det offentlige nettstedet begynner å bruke mer sporing, innebygde elementer eller registreringsflyter.",
-          "Denne versjonen ble sist oppdatert 5. april 2026."
+          "Denne versjonen ble sist oppdatert 7. november 2026."
         ]
       }
     },

@@ -1,4 +1,3 @@
-import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Trans, useTranslation } from "react-i18next";
 import BackToTop from "@/components/back-to-top";
@@ -56,7 +55,6 @@ export default function ChartApp() {
         </div>
       </main>
       <BackToTop />
-      <Analytics />
       <SpeedInsights />
     </div>
   );

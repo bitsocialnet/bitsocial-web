@@ -663,7 +663,9 @@
         "title": "Ce folosește bitsocial.net",
         "body": [
           "Înscrierea la newsletter trimite adresa ta de email către endpointul listei de corespondență configurat doar atunci când trimiți formularul.",
-          "Vercel Web Analytics și Speed Insights sunt folosite pe bitsocial.net pentru măsurarea agregată a traficului și a performanței.",
+          "Vercel Web Analytics și Speed Insights măsoară traficul și performanța la nivel agregat pe bitsocial.net și chain.bitsocial.net. Web Analytics nu setează niciun cookie: Vercel numără vizitatorii folosind un hash al solicitării, pe care îl șterge după 24 de ore.",
+          "Fiecare vizualizare de pagină înregistrează adresa paginii fără fragmentul # și fără niciun parametru de interogare, cu excepția etichetelor de campanie utm_, precum și pagina de proveniență și locația aproximativă, browserul, sistemul de operare și tipul de dispozitiv pe care Vercel le deduce din solicitare. Adresele care nu sunt pagini ale site-ului sunt înregistrate ca o singură pagină „negăsită”.",
+          "Site-urile numără și înscrierile la newsletter, înregistrate doar ca reușite sau eșuate, precum și clicurile care deschid sau descarcă un proiect pe bitsocial.net, înregistrate împreună cu proiectul și platforma. Aceste înregistrări nu includ niciodată adresa ta de email, adrese de portofel și nimic din ce tastezi.",
           "Site-ul about și site-ul docs îți salvează alegerea limbii în stocarea browserului, astfel încât interfața să se poată redeschide în limba selectată.",
           "Paginiile publice încarcă fonturi de la Google Fonts, astfel că browserul tău se conectează la serverele de fonturi ale Google."
         ]
@@ -684,7 +686,7 @@
           "Poți șterge preferința de limbă oricând, curățând stocarea site-ului din browserul tău.",
           "Poți bloca solicitările de fonturi de la distanță cu controale din browser sau rețea, deși acest lucru poate schimba aspectul site-ului.",
           "Vom actualiza această pagină dacă site-ul public începe să folosească urmărire suplimentară, embed-uri sau fluxuri de înscriere.",
-          "Această versiune a fost actualizată ultima dată pe 5 aprilie 2026."
+          "Această versiune a fost actualizată ultima dată pe 7 noiembrie 2026."
         ]
       }
     },

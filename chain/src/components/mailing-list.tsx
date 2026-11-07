@@ -9,6 +9,7 @@ import {
   subscribeToNewsletter,
   NewsletterConfigurationError,
 } from "@/lib/newsletter";
+import { trackNewsletterSignup } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 type FormState = "idle" | "submitting" | "success" | "error";
@@ -37,9 +38,14 @@ export default function MailingList() {
       await subscribeToNewsletter(normalizedEmail);
       setFormState("success");
       setEmail("");
+      trackNewsletterSignup("success");
     } catch (error) {
       console.error("Newsletter signup failed", error);
-      setFormState(error instanceof NewsletterConfigurationError ? "idle" : "error");
+      const isConfigurationError = error instanceof NewsletterConfigurationError;
+      setFormState(isConfigurationError ? "idle" : "error");
+      if (!isConfigurationError) {
+        trackNewsletterSignup("failure");
+      }
     }
   };
 

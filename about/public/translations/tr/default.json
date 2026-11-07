@@ -663,7 +663,9 @@
         "title": "bitsocial.net ne kullanır",
         "body": [
           "Bülten kaydı, e-posta adresinizi yalnızca formu gönderdiğinizde yapılandırılmış mailing-list endpoint'ine gönderir.",
-          "bitsocial.net'te toplu trafik ve performans ölçümü için Vercel Web Analytics ve Speed Insights kullanılır.",
+          "Vercel Web Analytics ve Speed Insights, bitsocial.net ve chain.bitsocial.net üzerindeki toplu trafiği ve performansı ölçer. Web Analytics hiçbir çerez yerleştirmez: Vercel ziyaretçileri isteğin bir hash değeriyle sayar ve bu değeri 24 saat sonra siler.",
+          "Her sayfa görüntülemesi, sayfa adresini # parçası olmadan ve utm_ kampanya etiketleri dışında hiçbir sorgu parametresi olmadan kaydeder; ayrıca yönlendiren sayfayı ve Vercel'in istekten çıkardığı yaklaşık konum, tarayıcı, işletim sistemi ve cihaz türünü de kaydeder. Sitedeki sayfalara karşılık gelmeyen adresler tek bir “bulunamadı” sayfası olarak kaydedilir.",
+          "Siteler ayrıca bülten kayıtlarını da sayar; bunlar yalnızca başarılı ya da başarısız olarak kaydedilir. bitsocial.net'te bir projeyi açan veya indiren tıklamalar da sayılır ve proje ile platform bilgisiyle birlikte kaydedilir. Bu kayıtlar e-posta adresinizi, cüzdan adreslerini veya yazdığınız hiçbir şeyi asla içermez.",
           "about site ve docs site, arayüzün seçtiğiniz dilde yeniden açılabilmesi için dil seçiminizi tarayıcı depolamasında saklar.",
           "Genel sayfalar yazı tiplerini Google Fonts'tan yükler, bu yüzden tarayıcınız Google'ın font sunucularına bağlanır."
         ]
@@ -684,7 +686,7 @@
           "Tarayıcınızdaki site depolamasını temizleyerek dil tercihini istediğiniz zaman silebilirsiniz.",
           "Tarayıcı veya ağ kontrolleriyle uzak font isteklerini engelleyebilirsiniz; ancak bunu yapmak sitenin görünümünü değiştirebilir.",
           "Genel site ek izleme, gömme içerikler veya kayıt akışları kullanmaya başlarsa bu sayfayı güncelleyeceğiz.",
-          "Bu sürüm en son 5 Nisan 2026 tarihinde güncellendi."
+          "Bu sürüm en son 7 Kasım 2026 tarihinde güncellendi."
         ]
       }
     },

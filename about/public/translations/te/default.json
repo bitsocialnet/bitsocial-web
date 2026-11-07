@@ -663,7 +663,9 @@
         "title": "bitsocial.net ఏమి ఉపయోగిస్తుంది",
         "body": [
           "Newsletter signup మీరు form submit చేసినప్పుడు మాత్రమే మీ email addressను configured mailing-list endpointకు పంపుతుంది.",
-          "bitsocial.netలో మొత్తం traffic మరియు performance measurement కోసం Vercel Web Analytics మరియు Speed Insights ఉపయోగించబడతాయి.",
+          "Vercel Web Analytics మరియు Speed Insights bitsocial.net మరియు chain.bitsocial.netలో మొత్తం traffic మరియు performanceను కొలుస్తాయి. Web Analytics ఎలాంటి cookiesను set చేయదు: Vercel request యొక్క hashతో visitorsను లెక్కిస్తుంది, ఆ hashను 24 గంటల తర్వాత తొలగిస్తుంది.",
+          "ప్రతి page view page addressను దాని # fragment లేకుండా, utm_ campaign tags తప్ప ఇతర query parameters ఏవీ లేకుండా నమోదు చేస్తుంది. దానితో పాటు referring pageను, అలాగే Vercel request నుండి గుర్తించే సుమారు location, browser, operating system మరియు device typeను కూడా నమోదు చేస్తుంది. Siteలో pages కాని addresses అన్నీ ఒకే not-found pageగా నమోదు చేయబడతాయి.",
+          "Sites newsletter signupsను కూడా లెక్కిస్తాయి, అవి విజయవంతమైంది లేదా విఫలమైంది అని మాత్రమే నమోదు చేయబడతాయి; అలాగే bitsocial.netలో ఒక projectను open లేదా download చేసే clicksను కూడా లెక్కిస్తాయి, అవి project మరియు platformతో పాటు నమోదు చేయబడతాయి. ఈ records మీ email address, wallet addresses, లేదా మీరు type చేసే దేనినీ ఎప్పుడూ కలిగి ఉండవు.",
           "about site మరియు docs site మీరు ఎంచుకున్న భాషలో interface మళ్లీ తెరవబడేలా మీ language choiceను browser storageలో నిల్వ చేస్తాయి.",
           "Public pages Google Fonts నుండి fontsను లోడ్ చేస్తాయి, కాబట్టి మీ browser Google యొక్క font serversకు కలుస్తుంది."
         ]
@@ -684,7 +686,7 @@
           "మీ browserలో site storageను clear చేసి మీరు ఎప్పుడైనా language preferenceను తొలగించవచ్చు.",
           "Browser లేదా network controlsతో remote font requestsను block చేయవచ్చు, అయితే అలా చేస్తే site రూపం మారవచ్చు.",
           "Public site అదనపు tracking, embeds, లేదా signup flowsను ఉపయోగించడం ప్రారంభిస్తే మేము ఈ pageను update చేస్తాము.",
-          "ఈ version చివరిసారిగా 5 ఏప్రిల్ 2026న updated చేయబడింది."
+          "ఈ version చివరిసారిగా 7 నవంబర్ 2026న updated చేయబడింది."
         ]
       }
     },

@@ -636,7 +636,9 @@
         "title": "Hvad bitsocial.net bruger",
         "body": [
           "Tilmelding til nyhedsbrevet sender kun din e-mailadresse til den konfigurerede mailingliste-endpoint, når du indsender formularen.",
-          "Vercel Web Analytics og Speed Insights bruges på bitsocial.net til samlet måling af trafik og ydelse.",
+          "Vercel Web Analytics og Speed Insights måler samlet trafik og ydelse på bitsocial.net og chain.bitsocial.net. Web Analytics sætter ingen cookies: Vercel tæller besøgende ved hjælp af en hash af anmodningen, som Vercel sletter efter 24 timer.",
+          "Hver sidevisning registrerer sidens adresse uden #-fragmentet og uden forespørgselsparametre bortset fra utm_-kampagnetags, samt den henvisende side og den omtrentlige placering, browser, styresystem og enhedstype, som Vercel udleder af anmodningen. Adresser, der ikke er sider på webstedet, registreres som én samlet »ikke fundet«-side.",
+          "Webstederne tæller også tilmeldinger til nyhedsbrevet, som kun registreres som vellykket eller mislykket, og klik, der åbner eller downloader et projekt på bitsocial.net, som registreres med projekt og platform. Disse registreringer indeholder aldrig din e-mailadresse, wallet-adresser eller noget, du skriver.",
           "about-sitet og docs-sitet gemmer dit sprogvalg i browserlagring, så brugerfladen kan åbne igen på det sprog, du valgte.",
           "De offentlige sider indlæser skrifttyper fra Google Fonts, så din browser forbinder til Googles skrifttypeservere."
         ]
@@ -657,7 +659,7 @@
           "Du kan til enhver tid rydde sprogpræferencen ved at rydde webstedslagring i din browser.",
           "Du kan blokere eksterne skriftanmodninger med browser- eller netværkskontroller, selv om det kan ændre webstedets udseende.",
           "Vi opdaterer denne side, hvis det offentlige site begynder at bruge yderligere sporing, indlejringer eller tilmeldingsflows.",
-          "Denne version blev senest opdateret den 5. april 2026."
+          "Denne version blev senest opdateret den 7. november 2026."
         ]
       }
     },

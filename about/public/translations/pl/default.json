@@ -663,7 +663,9 @@
         "title": "Z czego korzysta bitsocial.net",
         "body": [
           "Zapis do newslettera wysyła Twój adres e-mail do skonfigurowanego punktu końcowego listy mailingowej tylko po przesłaniu formularza.",
-          "Na bitsocial.net do zbiorczego pomiaru ruchu i wydajności używane są Vercel Web Analytics oraz Speed Insights.",
+          "Vercel Web Analytics i Speed Insights mierzą zbiorczy ruch i wydajność na bitsocial.net i chain.bitsocial.net. Web Analytics nie ustawia plików cookie: Vercel zlicza odwiedzających na podstawie skrótu (hash) żądania, który usuwa po 24 godzinach.",
+          "Przy każdym wyświetleniu strony zapisywane są: adres strony bez fragmentu # i bez żadnych parametrów zapytania poza tagami kampanii utm_, strona odsyłająca oraz przybliżona lokalizacja, przeglądarka, system operacyjny i typ urządzenia, które Vercel ustala na podstawie żądania. Adresy, które nie są stronami witryny, są zapisywane jako jedna wspólna strona „nie znaleziono”.",
+          "Witryny zliczają też zapisy do newslettera, rejestrowane wyłącznie jako udane lub nieudane, oraz kliknięcia otwierające lub pobierające projekt na bitsocial.net, rejestrowane wraz z projektem i platformą. Te dane nigdy nie obejmują Twojego adresu e-mail, adresów portfeli ani niczego, co wpisujesz.",
           "Witryna about i witryna docs zapisują wybór języka w pamięci przeglądarki, aby interfejs mógł się ponownie otworzyć w wybranym przez Ciebie języku.",
           "Publiczne strony wczytują czcionki z Google Fonts, więc Twoja przeglądarka łączy się z serwerami czcionek Google."
         ]
@@ -684,7 +686,7 @@
           "Możesz w dowolnym momencie usunąć preferencję językową, czyszcząc pamięć witryny w przeglądarce.",
           "Możesz blokować zdalne żądania czcionek za pomocą ustawień przeglądarki lub sieci, choć może to zmienić wygląd witryny.",
           "Zaktualizujemy tę stronę, jeśli publiczna witryna zacznie korzystać z dodatkowego śledzenia, osadzanych treści lub formularzy zapisu.",
-          "Ta wersja została ostatnio zaktualizowana 5 kwietnia 2026 r."
+          "Ta wersja została ostatnio zaktualizowana 7 listopada 2026 r."
         ]
       }
     },

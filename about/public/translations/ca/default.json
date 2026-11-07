@@ -663,7 +663,9 @@
         "title": "Què fa servir bitsocial.net",
         "body": [
           "La subscripció al butlletí envia la teva adreça electrònica només al punt final de la llista de correu configurat quan envies el formulari.",
-          "Vercel Web Analytics i Speed Insights s'utilitzen a bitsocial.net per mesurar el trànsit agregat i el rendiment.",
+          "Vercel Web Analytics i Speed Insights mesuren el trànsit i el rendiment agregats a bitsocial.net i chain.bitsocial.net. Web Analytics no instal·la cap galeta: Vercel compta els visitants amb un hash de la petició que descarta al cap de 24 hores.",
+          "Cada visualització de pàgina registra l'adreça de la pàgina sense el fragment # ni cap paràmetre de consulta, excepte les etiquetes de campanya utm_, a més de la pàgina de referència i la ubicació aproximada, el navegador, el sistema operatiu i el tipus de dispositiu que Vercel dedueix de la petició. Les adreces que no són pàgines del lloc es registren com una única pàgina «no trobada».",
+          "Els llocs també compten les subscripcions al butlletí, que només es registren com a reeixides o fallides, i els clics que obren o descarreguen un projecte a bitsocial.net, que es registren amb el projecte i la plataforma. Aquests registres mai no inclouen la teva adreça electrònica, adreces de cartera ni res del que escriguis.",
           "El lloc about i el lloc docs desa la teva elecció d'idioma a l'emmagatzematge del navegador perquè la interfície es pugui tornar a obrir en l'idioma que has seleccionat.",
           "Les pàgines públiques carreguen fonts de Google Fonts, de manera que el teu navegador es connecta als servidors de fonts de Google."
         ]
@@ -684,7 +686,7 @@
           "Pots esborrar la preferència d'idioma en qualsevol moment eliminant l'emmagatzematge del lloc al teu navegador.",
           "Pots bloquejar les peticions remotes de fonts amb els controls del navegador o de la xarxa, tot i que fer-ho pot canviar l'aparença del lloc.",
           "Actualitzarem aquesta pàgina si el lloc públic comença a utilitzar més seguiment, incrustacions o fluxos de subscripció.",
-          "Aquesta versió es va actualitzar per última vegada el 5 d'abril de 2026."
+          "Aquesta versió es va actualitzar per última vegada el 7 de novembre de 2026."
         ]
       }
     },

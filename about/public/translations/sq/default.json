@@ -663,7 +663,9 @@
         "title": "Çfarë përdor bitsocial.net",
         "body": [
           "Regjistrimi për buletinin e dërgon adresën tënde të emailit te endpoint-i i listës së postës vetëm kur dorëzon formularin.",
-          "Vercel Web Analytics dhe Speed Insights përdoren në bitsocial.net për matje të përmbledhura të trafikut dhe performancës.",
+          "Vercel Web Analytics dhe Speed Insights masin trafikun dhe performancën në mënyrë të përmbledhur në bitsocial.net dhe chain.bitsocial.net. Web Analytics nuk vendos asnjë cookie: Vercel i numëron vizitorët me një hash të kërkesës, të cilin e fshin pas 24 orësh.",
+          "Çdo shikim faqeje regjistron adresën e faqes pa fragmentin # dhe pa asnjë parametër query, përveç etiketave të fushatës utm_, si dhe faqen nga e cila ke ardhur dhe vendndodhjen e përafërt, shfletuesin, sistemin operativ dhe llojin e pajisjes që Vercel i nxjerr nga kërkesa. Adresat që nuk janë faqe të sitit regjistrohen si një faqe e vetme „nuk u gjet“.",
+          "Sitet numërojnë gjithashtu regjistrimet për buletinin, të ruajtura vetëm si të suksesshme ose të dështuara, si dhe klikimet që hapin ose shkarkojnë një projekt në bitsocial.net, të ruajtura bashkë me projektin dhe platformën. Këto të dhëna nuk përfshijnë kurrë adresën tënde të emailit, adresat e portofolit apo çfarëdo që shkruan.",
           "Sajti about dhe sajti docs ruajnë zgjedhjen tënde të gjuhës në storage-in e shfletuesit që ndërfaqja të hapet sërish në gjuhën që zgjodhe.",
           "Faqet publike ngarkojnë fontet nga Google Fonts, kështu që shfletuesi yt lidhet me serverët e fontit të Google."
         ]
@@ -684,7 +686,7 @@
           "Mund ta pastrosh preferencën e gjuhës në çdo kohë duke pastruar storage-in e sitit në shfletuesin tënd.",
           "Mund të bllokosh kërkesat e fonteve në distancë me kontrolle të shfletuesit ose të rrjetit, megjithëse kjo mund të ndryshojë pamjen e sitit.",
           "Do ta përditësojmë këtë faqe nëse siti publik fillon të përdorë gjurmim shtesë, embed-e ose rrjedha regjistrimi.",
-          "Ky version u përditësua për herë të fundit më 5 prill 2026."
+          "Ky version u përditësua për herë të fundit më 7 nëntor 2026."
         ]
       }
     },

@@ -663,7 +663,9 @@
         "title": "bitsocial.net क्या उपयोग करता है",
         "body": [
           "Newsletter signup आपका email address केवल तब configured mailing-list endpoint को भेजता है जब आप form submit करते हैं।",
-          "Vercel Web Analytics और Speed Insights का उपयोग bitsocial.net पर aggregate traffic और performance measurement के लिए किया जाता है।",
+          "Vercel Web Analytics और Speed Insights, bitsocial.net और chain.bitsocial.net पर aggregate traffic और performance को मापते हैं। Web Analytics कोई cookies set नहीं करता: Vercel request के एक hash से visitors की गिनती करता है और उस hash को 24 घंटे बाद हटा देता है।",
+          "हर page view में page का address दर्ज होता है, उसके # fragment के बिना और utm_ campaign tags को छोड़कर किसी भी query parameter के बिना। साथ ही referring page और वह अनुमानित location, browser, operating system और device type भी दर्ज होते हैं जिन्हें Vercel request से निकालता है। जो addresses site के pages नहीं हैं, उन्हें एक ही not-found page के रूप में दर्ज किया जाता है।",
+          "ये sites newsletter signups भी गिनते हैं, जिन्हें केवल सफल या विफल के रूप में दर्ज किया जाता है, और bitsocial.net पर किसी project को खोलने या download करने वाले clicks भी, जिन्हें project और platform के साथ दर्ज किया जाता है। इन records में कभी भी आपका email address, wallet addresses, या आपके द्वारा type की गई कोई भी चीज़ शामिल नहीं होती।",
           "about site और docs site आपकी language choice को browser storage में रखते हैं ताकि interface आपके चुने हुए language में फिर से खुल सके।",
           "Public pages Google Fonts से fonts लोड करती हैं, इसलिए आपका browser Google के font servers से जुड़ता है।"
         ]
@@ -684,7 +686,7 @@
           "आप अपने browser में site storage साफ़ करके किसी भी समय language preference हटा सकते हैं।",
           "आप browser या network controls से remote font requests block कर सकते हैं, हालांकि ऐसा करने से site का रूप बदल सकता है।",
           "यदि public site अतिरिक्त tracking, embeds, या signup flows का उपयोग शुरू करता है, तो हम इस page को अपडेट करेंगे।",
-          "यह संस्करण अंतिम बार 5 अप्रैल 2026 को अपडेट किया गया था।"
+          "यह संस्करण अंतिम बार 7 नवंबर 2026 को अपडेट किया गया था।"
         ]
       }
     },

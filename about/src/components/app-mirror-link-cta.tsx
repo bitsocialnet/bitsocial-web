@@ -53,6 +53,7 @@ interface AppMirrorLinkCtaProps {
   icon?: ReactNode;
   iconClassName?: string;
   link: AppLink;
+  onClick?: () => void;
   showVerifiedLabel?: boolean;
 }
 
@@ -61,6 +62,7 @@ export default function AppMirrorLinkCta({
   icon,
   iconClassName = "h-4 w-4",
   link,
+  onClick,
   showVerifiedLabel = false,
 }: AppMirrorLinkCtaProps) {
   const { t } = useTranslation();
@@ -131,6 +133,7 @@ export default function AppMirrorLinkCta({
   return (
     <CardInlineCta
       href={link.url}
+      onClick={onClick}
       className={cn("group/mirror-link", className)}
       aria-describedby={describedBy}
       aria-label={

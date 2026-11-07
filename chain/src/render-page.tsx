@@ -1,6 +1,7 @@
 import React, { type ComponentType } from "react";
 import { createRoot } from "react-dom/client";
 import { domAnimation, LazyMotion, MotionConfig } from "framer-motion";
+import { trackPageView } from "./lib/analytics";
 import { GraphicsModeProvider } from "./lib/graphics-mode";
 import { i18nReady } from "./lib/i18n";
 import { ThemeProvider } from "./lib/useTheme";
@@ -49,4 +50,6 @@ export async function renderPage(Page: ComponentType, profilerId: string) {
       app
     ),
   );
+  // One page view per load: each page is its own HTML entry, and in-page hash links are not pages.
+  trackPageView(window.location.pathname);
 }

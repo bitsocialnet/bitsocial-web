@@ -35,6 +35,7 @@ export default function CardInlineCta({
         href={href}
         target="_blank"
         rel="noreferrer"
+        onClick={onClick}
         className={resolvedClassName}
         aria-describedby={ariaDescribedBy}
         aria-label={ariaLabel}
@@ -48,6 +49,7 @@ export default function CardInlineCta({
     return (
       <a
         href={href}
+        onClick={onClick}
         className={resolvedClassName}
         aria-describedby={ariaDescribedBy}
         aria-label={ariaLabel}
@@ -61,6 +63,7 @@ export default function CardInlineCta({
     return (
       <a
         href={href}
+        onClick={onClick}
         className={resolvedClassName}
         aria-describedby={ariaDescribedBy}
         aria-label={ariaLabel}
@@ -87,6 +90,7 @@ export default function CardInlineCta({
   return (
     <Link
       to={href}
+      onClick={onClick}
       className={resolvedClassName}
       aria-describedby={ariaDescribedBy}
       aria-label={ariaLabel}
