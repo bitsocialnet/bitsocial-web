@@ -663,7 +663,9 @@
         "title": "bitsocial.net sử dụng gì",
         "body": [
           "Đăng ký bản tin sẽ chỉ gửi địa chỉ email của bạn đến đầu cuối mailing-list đã được cấu hình khi bạn gửi biểu mẫu.",
-          "Vercel Web Analytics và Speed Insights được dùng trên bitsocial.net để đo lường tổng hợp lưu lượng và hiệu năng.",
+          "Vercel Web Analytics và Speed Insights đo lường tổng hợp lưu lượng và hiệu năng trên bitsocial.net và chain.bitsocial.net. Web Analytics không đặt cookie nào: Vercel đếm khách truy cập bằng một mã băm (hash) của yêu cầu và xóa mã này sau 24 giờ.",
+          "Mỗi lượt xem trang ghi lại địa chỉ trang, không kèm phần # (fragment) và không kèm bất kỳ tham số truy vấn nào ngoại trừ các thẻ chiến dịch utm_, cùng với trang đã dẫn bạn đến và vị trí gần đúng, trình duyệt, hệ điều hành và loại thiết bị mà Vercel suy ra từ yêu cầu. Những địa chỉ không phải là trang của trang web được ghi lại chung thành một trang “không tìm thấy” duy nhất.",
+          "Các trang web cũng đếm lượt đăng ký bản tin, chỉ được ghi lại là thành công hay thất bại, và các lượt nhấp để mở hoặc tải xuống một dự án trên bitsocial.net, được ghi lại kèm dự án và nền tảng. Những bản ghi này không bao giờ chứa địa chỉ email của bạn, địa chỉ ví hay bất cứ nội dung nào bạn nhập.",
           "Trang about và trang docs lưu lựa chọn ngôn ngữ của bạn trong bộ nhớ trình duyệt để giao diện có thể mở lại bằng ngôn ngữ bạn đã chọn.",
           "Các trang công khai tải phông chữ từ Google Fonts, vì vậy trình duyệt của bạn kết nối tới máy chủ phông chữ của Google."
         ]
@@ -684,7 +686,7 @@
           "Bạn có thể xóa tùy chọn ngôn ngữ bất cứ lúc nào bằng cách xóa bộ nhớ trang web trong trình duyệt.",
           "Bạn có thể chặn các yêu cầu phông chữ từ xa bằng điều khiển của trình duyệt hoặc mạng, dù làm vậy có thể thay đổi giao diện trang web.",
           "Chúng tôi sẽ cập nhật trang này nếu trang công khai bắt đầu dùng thêm theo dõi, nội dung nhúng hoặc luồng đăng ký.",
-          "Phiên bản này được cập nhật lần cuối vào ngày 5 tháng 4 năm 2026."
+          "Phiên bản này được cập nhật lần cuối vào ngày 7 tháng 11 năm 2026."
         ]
       }
     },

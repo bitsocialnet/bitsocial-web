@@ -663,7 +663,9 @@
         "title": "Qué usa bitsocial.net",
         "body": [
           "El registro al boletín envía tu dirección de correo al punto final de la lista de correo configurado solo cuando envías el formulario.",
-          "Vercel Web Analytics y Speed Insights se usan en bitsocial.net para medir de forma agregada el tráfico y el rendimiento.",
+          "Vercel Web Analytics y Speed Insights miden de forma agregada el tráfico y el rendimiento en bitsocial.net y chain.bitsocial.net. Web Analytics no instala cookies: Vercel cuenta a los visitantes con un hash de la solicitud que descarta pasadas 24 horas.",
+          "Cada vista de página registra la dirección de la página sin su fragmento # ni ningún parámetro de consulta salvo las etiquetas de campaña utm_, además de la página de referencia y la ubicación aproximada, el navegador, el sistema operativo y el tipo de dispositivo que Vercel deduce de la solicitud. Las direcciones que no son páginas del sitio se registran como una única página «no encontrada».",
+          "Los sitios también cuentan las suscripciones al boletín, que solo se registran como exitosas o fallidas, y los clics que abren o descargan un proyecto en bitsocial.net, que se registran con el proyecto y la plataforma. Estos registros nunca incluyen tu dirección de correo, direcciones de cartera ni nada de lo que escribas.",
           "El sitio about y el sitio docs guardan tu elección de idioma en el almacenamiento del navegador para que la interfaz pueda volver a abrirse en el idioma que seleccionaste.",
           "Las páginas públicas cargan fuentes desde Google Fonts, por lo que tu navegador se conecta a los servidores de fuentes de Google."
         ]
@@ -684,7 +686,7 @@
           "Puedes borrar la preferencia de idioma en cualquier momento eliminando el almacenamiento del sitio en tu navegador.",
           "Puedes bloquear las solicitudes remotas de fuentes con los controles del navegador o de la red, aunque hacerlo puede cambiar la apariencia del sitio.",
           "Actualizaremos esta página si el sitio público empieza a usar seguimiento adicional, incrustaciones o flujos de registro.",
-          "Esta versión se actualizó por última vez el 5 de abril de 2026."
+          "Esta versión se actualizó por última vez el 7 de noviembre de 2026."
         ]
       }
     },

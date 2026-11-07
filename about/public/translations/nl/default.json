@@ -663,7 +663,9 @@
         "title": "Wat bitsocial.net gebruikt",
         "body": [
           "Aanmelding voor de nieuwsbrief stuurt je e-mailadres alleen naar het geconfigureerde mailinglijst-eindpunt wanneer je het formulier verzendt.",
-          "Vercel Web Analytics en Speed Insights worden op bitsocial.net gebruikt voor geaggregeerde metingen van verkeer en prestaties.",
+          "Vercel Web Analytics en Speed Insights meten verkeer en prestaties in geaggregeerde vorm op bitsocial.net en chain.bitsocial.net. Web Analytics plaatst geen cookies: Vercel telt bezoekers met een hash van het verzoek en verwijdert die hash na 24 uur.",
+          "Elke paginaweergave legt het paginaadres vast zonder het #-fragment en zonder queryparameters, behalve utm_-campagnetags, plus de verwijzende pagina en de geschatte locatie, de browser, het besturingssysteem en het apparaattype die Vercel uit het verzoek afleidt. Adressen die geen pagina's op de site zijn, worden vastgelegd als één enkele niet-gevonden-pagina.",
+          "De sites tellen ook aanmeldingen voor de nieuwsbrief, die alleen als geslaagd of mislukt worden vastgelegd, en klikken die een project op bitsocial.net openen of downloaden, die samen met het project en het platform worden vastgelegd. Deze gegevens bevatten nooit je e-mailadres, walletadressen of iets wat je typt.",
           "De about site en docs site slaan je taalkeuze op in browseropslag, zodat de interface opnieuw kan worden geopend in de taal die je hebt gekozen.",
           "De openbare pagina's laden lettertypen van Google Fonts, dus je browser maakt verbinding met de fontservers van Google."
         ]
@@ -684,7 +686,7 @@
           "Je kunt de taalvoorkeur op elk moment wissen door de site-opslag in je browser te wissen.",
           "Je kunt verzoeken om externe lettertypen blokkeren met browser- of netwerkcontroles, hoewel dat het uiterlijk van de site kan veranderen.",
           "We zullen deze pagina bijwerken als de openbare site extra tracking, embeds of aanmeldflows gaat gebruiken.",
-          "Deze versie is voor het laatst bijgewerkt op 5 april 2026."
+          "Deze versie is voor het laatst bijgewerkt op 7 november 2026."
         ]
       }
     },

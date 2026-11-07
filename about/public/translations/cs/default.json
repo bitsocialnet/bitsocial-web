@@ -636,7 +636,9 @@
         "title": "Co bitsocial.net používá",
         "body": [
           "Přihlášení k newsletteru odešle vaši e-mailovou adresu do nakonfigurovaného koncového bodu mailing listu pouze při odeslání formuláře.",
-          "Na bitsocial.net se pro souhrnné měření provozu a výkonu používají Vercel Web Analytics a Speed Insights.",
+          "Vercel Web Analytics a Speed Insights měří souhrnný provoz a výkon na bitsocial.net a chain.bitsocial.net. Web Analytics nenastavuje žádné cookies: Vercel počítá návštěvníky pomocí hashe požadavku, který po 24 hodinách zahodí.",
+          "Každé zobrazení stránky zaznamená adresu stránky bez fragmentu # a bez jakýchkoli parametrů dotazu kromě značek kampaní utm_, dále odkazující stránku a přibližnou polohu, prohlížeč, operační systém a typ zařízení, které Vercel odvodí z požadavku. Adresy, které nejsou stránkami webu, se zaznamenávají jako jediná stránka „nenalezeno“.",
+          "Weby také počítají přihlášení k newsletteru, zaznamenaná pouze jako úspěšná nebo neúspěšná, a kliknutí, která otevřou nebo stáhnou projekt na bitsocial.net, zaznamenaná spolu s projektem a platformou. Tyto záznamy nikdy neobsahují vaši e-mailovou adresu, adresy peněženek ani nic, co napíšete.",
           "Web about a web docs ukládají vaši volbu jazyka do úložiště prohlížeče, aby se rozhraní mohlo znovu otevřít v jazyce, který jste si vybrali.",
           "Veřejné stránky načítají písma z Google Fonts, takže se váš prohlížeč připojuje k fontovým serverům Google."
         ]
@@ -657,7 +659,7 @@
           "Jazykovou preferenci můžete kdykoli smazat vymazáním úložiště webu ve svém prohlížeči.",
           "Můžete blokovat vzdálené požadavky na písma pomocí ovládání prohlížeče nebo sítě, i když tím se může změnit vzhled webu.",
           "Tuto stránku aktualizujeme, pokud veřejný web začne používat další sledování, vložený obsah nebo registrační toky.",
-          "Tato verze byla naposledy aktualizována 5. dubna 2026."
+          "Tato verze byla naposledy aktualizována 7. listopadu 2026."
         ]
       }
     },

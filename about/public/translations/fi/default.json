@@ -663,7 +663,9 @@
         "title": "Mitä bitsocial.net käyttää",
         "body": [
           "Uutiskirjeen tilaus lähettää sähköpostiosoitteesi määritettyyn postituslistan päätepisteeseen vain, kun lähetät lomakkeen.",
-          "bitsocial.netissä käytetään Vercel Web Analyticsia ja Speed Insightsia liikenteen ja suorituskyvyn koontimittaukseen.",
+          "Vercel Web Analytics ja Speed Insights tekevät liikenteen ja suorituskyvyn koontimittausta sivustoilla bitsocial.net ja chain.bitsocial.net. Web Analytics ei aseta evästeitä: Vercel laskee kävijät pyynnöstä muodostetulla tiivisteellä, jonka se hävittää 24 tunnin kuluttua.",
+          "Jokainen sivun katselu tallentaa sivun osoitteen ilman #-fragmenttia ja ilman kyselyparametreja utm_-kampanjatunnisteita lukuun ottamatta sekä viittaavan sivun ja likimääräisen sijainnin, selaimen, käyttöjärjestelmän ja laitetyypin, jotka Vercel päättelee pyynnöstä. Osoitteet, jotka eivät ole sivuston sivuja, tallennetaan yhtenä ”ei löytynyt” -sivuna.",
+          "Sivustot laskevat myös uutiskirjeen tilaukset, jotka tallennetaan vain onnistuneina tai epäonnistuneina, sekä bitsocial.netissä projektin avaavat tai lataavat klikkaukset, joiden yhteydessä tallennetaan projekti ja alusta. Nämä merkinnät eivät koskaan sisällä sähköpostiosoitettasi, lompakko-osoitteita tai mitään kirjoittamaasi.",
           "about-sivusto ja docs-sivusto tallentavat kielivalintasi selaimen tallennustilaan, jotta käyttöliittymä voidaan avata uudelleen valitsemallasi kielellä.",
           "Julkiset sivut lataavat fontit Google Fontsista, joten selaimesi yhdistyy Googlen fonttipalvelimiin."
         ]
@@ -684,7 +686,7 @@
           "Voit tyhjentää kieliasetuksen milloin tahansa poistamalla sivuston tallennustiedot selaimestasi.",
           "Voit estää etäfonttipyynnöt selaimen tai verkon hallintakeinoilla, vaikka se saattaa muuttaa sivuston ulkoasua.",
           "Päivitämme tämän sivun, jos julkinen sivusto alkaa käyttää lisäseurantaa, upotuksia tai rekisteröitymisvirtoja.",
-          "Tämä versio päivitettiin viimeksi 5. huhtikuuta 2026."
+          "Tämä versio päivitettiin viimeksi 7. marraskuuta 2026."
         ]
       }
     },

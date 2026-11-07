@@ -879,7 +879,9 @@
         "title": "What bitsocial.net uses",
         "body": [
           "Newsletter signup sends your email address to the configured mailing-list endpoint only when you submit the form.",
-          "Vercel Web Analytics and Speed Insights are used on bitsocial.net for aggregate traffic and performance measurement.",
+          "Vercel Web Analytics and Speed Insights measure aggregate traffic and performance on bitsocial.net and chain.bitsocial.net. Web Analytics sets no cookies: Vercel counts visitors with a hash of the request that it discards after 24 hours.",
+          "Each page view records the page address without its # fragment or any query parameters except utm_ campaign tags, plus the referring page and the approximate location, browser, operating system, and device type that Vercel derives from the request. Addresses that are not pages on the site are recorded as a single not-found page.",
+          "The sites also count newsletter signups, recorded only as succeeded or failed, and clicks that open or download a project on bitsocial.net, recorded with the project and platform. These records never include your email address, wallet addresses, or anything you type.",
           "The about site and docs site store your language choice in browser storage so the interface can reopen in the language you selected.",
           "The public pages load fonts from Google Fonts, so your browser connects to Google's font servers."
         ]
@@ -900,7 +902,7 @@
           "You can clear the language preference at any time by clearing site storage in your browser.",
           "You can block remote font requests with browser or network controls, although doing so may change the site's appearance.",
           "We will update this page if the public site starts using additional tracking, embeds, or signup flows.",
-          "This version was last updated on April 5, 2026."
+          "This version was last updated on November 7, 2026."
         ]
       }
     },

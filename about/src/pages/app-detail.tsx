@@ -29,6 +29,7 @@ import {
   getPrimaryLinks,
   type AppLink,
 } from "@/lib/apps-data";
+import { trackAppLinkClick } from "@/lib/analytics";
 
 export default function AppDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -151,6 +152,7 @@ export default function AppDetail() {
                   <AppMirrorLinkCta
                     key={link.url}
                     link={link}
+                    onClick={() => trackAppLinkClick(app.slug, link)}
                     icon={getPrimaryLinkIcon(link)}
                     className={
                       index === 0
@@ -162,6 +164,7 @@ export default function AppDetail() {
                   <CardInlineCta
                     key={link.url}
                     href={link.url}
+                    onClick={() => trackAppLinkClick(app.slug, link)}
                     className={
                       index === 0
                         ? `${highlightedCtaClassName} !px-4 !py-2 text-sm`

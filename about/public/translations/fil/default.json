@@ -663,7 +663,9 @@
         "title": "Ano ang ginagamit ng bitsocial.net",
         "body": [
           "Ang pag-sign up sa newsletter ay nagpapadala ng iyong email address sa configured mailing-list endpoint lamang kapag isinumite mo ang form.",
-          "Ginagamit ang Vercel Web Analytics at Speed Insights sa bitsocial.net para sa pinagsama-samang pagsukat ng trapiko at performance.",
+          "Sinusukat ng Vercel Web Analytics at Speed Insights ang pinagsama-samang trapiko at performance sa bitsocial.net at chain.bitsocial.net. Walang itinatakdang cookie ang Web Analytics: binibilang ng Vercel ang mga bisita gamit ang hash ng request na itinatapon nito pagkalipas ng 24 na oras.",
+          "Itinatala ng bawat page view ang address ng page nang walang # fragment nito o anumang query parameter maliban sa mga utm_ campaign tag, kasama ang referring page at ang tinatayang lokasyon, browser, operating system, at uri ng device na hinuhango ng Vercel mula sa request. Ang mga address na hindi page sa site ay itinatala bilang iisang not-found page.",
+          "Binibilang din ng mga site ang mga pag-sign up sa newsletter, na itinatala lamang bilang nagtagumpay o nabigo, at ang mga click na nagbubukas o nagda-download ng isang proyekto sa bitsocial.net, na itinatala kasama ang proyekto at platform. Hindi kailanman kasama sa mga talang ito ang iyong email address, mga wallet address, o anumang tina-type mo.",
           "Iniimbak ng about site at docs site ang pinili mong wika sa browser storage para muling mabuksan ang interface sa wikang pinili mo.",
           "Naglo-load ang mga pampublikong page ng mga font mula sa Google Fonts, kaya kumokonekta ang iyong browser sa mga font server ng Google."
         ]
@@ -684,7 +686,7 @@
           "Maaari mong burahin ang language preference anumang oras sa pamamagitan ng pag-clear ng site storage sa iyong browser.",
           "Maaari mong i-block ang remote font requests gamit ang browser o network controls, bagama't maaari nitong baguhin ang hitsura ng site.",
           "Ia-update namin ang pahinang ito kung magsimulang gumamit ang pampublikong site ng karagdagang tracking, embeds, o signup flows.",
-          "Huling na-update ang bersyong ito noong Abril 5, 2026."
+          "Huling na-update ang bersyong ito noong Nobyembre 7, 2026."
         ]
       }
     },

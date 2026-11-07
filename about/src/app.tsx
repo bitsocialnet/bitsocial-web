@@ -1,5 +1,4 @@
 import { useLayoutEffect, useRef, type ReactNode } from "react";
-import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Home from "@/pages/home";
@@ -8,6 +7,7 @@ import About from "@/pages/about";
 import Privacy from "@/pages/privacy";
 import AppDetail from "@/pages/app-detail";
 import Blog from "@/pages/blog";
+import PageViewTracker from "@/components/page-view-tracker";
 import PolygonMeshBackground from "@/components/polygon-mesh-background";
 import SeoHead from "@/components/seo-head";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
@@ -92,7 +92,7 @@ function AppFrame({
           </Routes>
         </div>
       </div>
-      {includeAnalytics ? <Analytics /> : null}
+      {includeAnalytics ? <PageViewTracker /> : null}
       {includeAnalytics ? <SpeedInsights /> : null}
     </>
   );

@@ -1,4 +1,3 @@
-import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { ArrowDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -89,7 +88,6 @@ function RichListPage() {
         </div>
       </main>
       <BackToTop />
-      <Analytics />
       <SpeedInsights />
     </div>
   );

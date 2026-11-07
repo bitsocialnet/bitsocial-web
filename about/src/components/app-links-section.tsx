@@ -15,6 +15,7 @@ import {
   filterCryptoWalletGatedLinks,
   useHasCryptoWalletProvider,
 } from "@/lib/crypto-wallet-provider";
+import { trackAppLinkClick } from "@/lib/analytics";
 
 interface AppLinksSectionProps {
   app: AppData;
@@ -53,26 +54,37 @@ export default function AppLinksSection({ app }: AppLinksSectionProps) {
 
       <div className="divide-y divide-border/60">
         {webLinks.length > 0 ? (
-          <LinkGroup title={t("apps.webLinks")} links={webLinks} t={t} />
+          <LinkGroup appSlug={app.slug} title={t("apps.webLinks")} links={webLinks} t={t} />
         ) : null}
         {mobileLinks.length > 0 ? (
-          <LinkGroup title={t("apps.mobileDownloads")} links={mobileLinks} t={t} />
+          <LinkGroup
+            appSlug={app.slug}
+            title={t("apps.mobileDownloads")}
+            links={mobileLinks}
+            t={t}
+          />
         ) : null}
         {desktopLinks.length > 0 ? (
-          <LinkGroup title={t("apps.desktopDownloads")} links={desktopLinks} t={t} />
+          <LinkGroup
+            appSlug={app.slug}
+            title={t("apps.desktopDownloads")}
+            links={desktopLinks}
+            t={t}
+          />
         ) : null}
         {packageLinks.length > 0 ? (
           <LinkGroup
+            appSlug={app.slug}
             title={t("apps.packages", { defaultValue: "Packages" })}
             links={packageLinks}
             t={t}
           />
         ) : null}
         {extraLinks.length > 0 ? (
-          <LinkGroup title={t("apps.extraDownloads")} links={extraLinks} t={t} />
+          <LinkGroup appSlug={app.slug} title={t("apps.extraDownloads")} links={extraLinks} t={t} />
         ) : null}
         {mirrorLinks.length > 0 ? (
-          <LinkGroup title={t("apps.mirrors")} links={mirrorLinks} t={t} />
+          <LinkGroup appSlug={app.slug} title={t("apps.mirrors")} links={mirrorLinks} t={t} />
         ) : null}
 
         <div className="grid gap-3 py-4 first:pt-0 last:pb-0 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-5">
@@ -97,10 +109,12 @@ export default function AppLinksSection({ app }: AppLinksSectionProps) {
 }
 
 function LinkGroup({
+  appSlug,
   title,
   links,
   t,
 }: {
+  appSlug: string;
   title: string;
   links: AppLink[];
   t: ReturnType<typeof useTranslation>["t"];
@@ -116,6 +130,7 @@ function LinkGroup({
             <AppMirrorLinkCta
               key={link.url}
               link={link}
+              onClick={() => trackAppLinkClick(appSlug, link)}
               icon={link.kind === "mirror" ? undefined : getLinkIcon(link)}
               className={`${cardInlineCtaClassName} max-w-full !rounded-full !px-4 !py-2`}
               showVerifiedLabel={link.kind === "mirror"}
@@ -124,6 +139,7 @@ function LinkGroup({
             <CardInlineCta
               key={link.url}
               href={link.url}
+              onClick={() => trackAppLinkClick(appSlug, link)}
               className={`${cardInlineCtaClassName} max-w-full !rounded-full !px-4 !py-2`}
             >
               <span className="inline-flex min-w-0 items-center gap-2">

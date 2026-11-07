@@ -663,7 +663,9 @@
         "title": "Was bitsocial.net verwendet",
         "body": [
           "Die Anmeldung zum Newsletter sendet deine E-Mail-Adresse nur dann an den konfigurierten Mailinglisten-Endpunkt, wenn du das Formular absendest.",
-          "Vercel Web Analytics und Speed Insights werden auf bitsocial.net für aggregierte Messungen von Traffic und Leistung eingesetzt.",
+          "Vercel Web Analytics und Speed Insights messen aggregiert Traffic und Leistung auf bitsocial.net und chain.bitsocial.net. Web Analytics setzt keine Cookies: Vercel zählt Besucher anhand eines Hashs der Anfrage, der nach 24 Stunden verworfen wird.",
+          "Jeder Seitenaufruf erfasst die Seitenadresse ohne ihr #-Fragment und ohne Abfrageparameter mit Ausnahme von utm_-Kampagnen-Tags, dazu die verweisende Seite sowie den ungefähren Standort, den Browser, das Betriebssystem und den Gerätetyp, die Vercel aus der Anfrage ableitet. Adressen, die keine Seiten der Website sind, werden als eine einzige „Nicht gefunden“-Seite erfasst.",
+          "Die Websites zählen außerdem Newsletter-Anmeldungen, die nur als erfolgreich oder fehlgeschlagen erfasst werden, sowie Klicks, die auf bitsocial.net ein Projekt öffnen oder herunterladen und mit Projekt und Plattform erfasst werden. Diese Einträge enthalten niemals deine E-Mail-Adresse, Wallet-Adressen oder irgendetwas, das du eingibst.",
           "Die about-Site und die docs-Site speichern deine Sprachauswahl im Browser-Speicher, damit die Oberfläche wieder in der von dir gewählten Sprache geöffnet werden kann.",
           "Die öffentlichen Seiten laden Schriftarten von Google Fonts, sodass dein Browser eine Verbindung zu Googles Schriftarten-Servern herstellt."
         ]
@@ -684,7 +686,7 @@
           "Du kannst die Sprachpräferenz jederzeit löschen, indem du den Website-Speicher in deinem Browser leerst.",
           "Du kannst entfernte Schriftanfragen mit Browser- oder Netzwerkkontrollen blockieren, auch wenn sich dadurch das Erscheinungsbild der Website ändern kann.",
           "Wir werden diese Seite aktualisieren, wenn die öffentliche Website zusätzliche Nachverfolgung, Einbettungen oder Anmeldeflows verwendet.",
-          "Diese Version wurde zuletzt am 5. April 2026 aktualisiert."
+          "Diese Version wurde zuletzt am 7. November 2026 aktualisiert."
         ]
       }
     },

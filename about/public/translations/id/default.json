@@ -663,7 +663,9 @@
         "title": "Apa yang digunakan bitsocial.net",
         "body": [
           "Pendaftaran newsletter mengirim alamat email Anda ke endpoint milis yang dikonfigurasi hanya saat Anda mengirim formulir.",
-          "Vercel Web Analytics dan Speed Insights digunakan di bitsocial.net untuk pengukuran trafik dan performa agregat.",
+          "Vercel Web Analytics dan Speed Insights mengukur trafik dan performa agregat di bitsocial.net dan chain.bitsocial.net. Web Analytics tidak memasang cookie: Vercel menghitung pengunjung menggunakan hash dari permintaan, lalu membuang hash tersebut setelah 24 jam.",
+          "Setiap tampilan halaman mencatat alamat halaman tanpa fragmen # dan tanpa parameter kueri apa pun kecuali tag kampanye utm_, ditambah halaman perujuk serta perkiraan lokasi, browser, sistem operasi, dan jenis perangkat yang disimpulkan Vercel dari permintaan. Alamat yang bukan halaman di situs dicatat sebagai satu halaman “tidak ditemukan”.",
+          "Situs-situs ini juga menghitung pendaftaran newsletter, yang hanya dicatat sebagai berhasil atau gagal, serta klik yang membuka atau mengunduh proyek di bitsocial.net, yang dicatat bersama proyek dan platformnya. Catatan ini tidak pernah mencakup alamat email Anda, alamat dompet, atau apa pun yang Anda ketik.",
           "Situs about dan situs docs menyimpan pilihan bahasa Anda di penyimpanan browser agar antarmuka dapat dibuka kembali dalam bahasa yang Anda pilih.",
           "Halaman publik memuat font dari Google Fonts, jadi browser Anda terhubung ke server font milik Google."
         ]
@@ -684,7 +686,7 @@
           "Anda dapat menghapus preferensi bahasa kapan saja dengan membersihkan penyimpanan situs di browser Anda.",
           "Anda dapat memblokir permintaan font jarak jauh dengan kontrol browser atau jaringan, meskipun hal itu dapat mengubah tampilan situs.",
           "Kami akan memperbarui halaman ini jika situs publik mulai menggunakan pelacakan tambahan, embed, atau alur pendaftaran.",
-          "Versi ini terakhir diperbarui pada 5 April 2026."
+          "Versi ini terakhir diperbarui pada 7 November 2026."
         ]
       }
     },

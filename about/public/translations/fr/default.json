@@ -663,7 +663,9 @@
         "title": "Ce que bitsocial.net utilise",
         "body": [
           "L'inscription à la newsletter envoie votre adresse e-mail au point de terminaison de la liste de diffusion configuré uniquement lorsque vous soumettez le formulaire.",
-          "Vercel Web Analytics et Speed Insights sont utilisés sur bitsocial.net pour mesurer de façon agrégée le trafic et les performances.",
+          "Vercel Web Analytics et Speed Insights mesurent de façon agrégée le trafic et les performances sur bitsocial.net et chain.bitsocial.net. Web Analytics ne dépose aucun cookie : Vercel compte les visiteurs à l'aide d'un hachage de la requête qu'il supprime au bout de 24 heures.",
+          "Chaque page vue enregistre l'adresse de la page sans son fragment # ni aucun paramètre de requête, à l'exception des balises de campagne utm_, ainsi que la page référente et la localisation approximative, le navigateur, le système d'exploitation et le type d'appareil que Vercel déduit de la requête. Les adresses qui ne sont pas des pages du site sont enregistrées comme une seule page « introuvable ».",
+          "Les sites comptent aussi les inscriptions à la newsletter, enregistrées uniquement comme réussies ou échouées, et les clics qui ouvrent ou téléchargent un projet sur bitsocial.net, enregistrés avec le projet et la plateforme. Ces enregistrements n'incluent jamais votre adresse e-mail, ni d'adresses de portefeuille, ni rien de ce que vous saisissez.",
           "Le site about et le site docs stockent votre choix de langue dans le stockage du navigateur afin que l'interface puisse se rouvrir dans la langue que vous avez choisie.",
           "Les pages publiques chargent des polices depuis Google Fonts, donc votre navigateur se connecte aux serveurs de polices de Google."
         ]
@@ -684,7 +686,7 @@
           "Vous pouvez effacer la préférence de langue à tout moment en vidant le stockage du site dans votre navigateur.",
           "Vous pouvez bloquer les requêtes de polices distantes avec les contrôles du navigateur ou du réseau, même si cela peut modifier l'apparence du site.",
           "Nous mettrons cette page à jour si le site public commence à utiliser un suivi supplémentaire, des intégrations ou des flux d'inscription.",
-          "Cette version a été mise à jour pour la dernière fois le 5 avril 2026."
+          "Cette version a été mise à jour pour la dernière fois le 7 novembre 2026."
         ]
       }
     },

@@ -10,6 +10,7 @@ on:
         "docs/**",
         "scripts/react-perf/**",
         "scripts/__tests__/about-ssr.node-test.mjs",
+        "scripts/__tests__/analytics.node-test.mjs",
         "scripts/__tests__/bso-holders.node-test.mjs",
         "scripts/__tests__/bso-price-history.node-test.mjs",
         "scripts/__tests__/release-integrity.node-test.mjs",
@@ -29,6 +30,7 @@ on:
         "docs/**",
         "scripts/react-perf/**",
         "scripts/__tests__/about-ssr.node-test.mjs",
+        "scripts/__tests__/analytics.node-test.mjs",
         "scripts/__tests__/bso-holders.node-test.mjs",
         "scripts/__tests__/bso-price-history.node-test.mjs",
         "scripts/__tests__/release-integrity.node-test.mjs",
@@ -60,6 +62,8 @@ jobs:
       - run: corepack yarn install --immutable
       - name: Verify about SSR deployment output
         run: node --test scripts/__tests__/about-ssr.node-test.mjs
+      - name: Verify analytics page-view sanitizing and gating
+        run: node --test scripts/__tests__/analytics.node-test.mjs
       - name: Verify BSO holder classification
         run: node --test scripts/__tests__/bso-holders.node-test.mjs
       - name: Verify BSO price history merging

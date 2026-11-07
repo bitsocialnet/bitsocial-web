@@ -663,7 +663,9 @@
         "title": "O que o bitsocial.net usa",
         "body": [
           "A inscrição na newsletter envia seu endereço de e-mail ao endpoint da lista de e-mails configurado somente quando você envia o formulário.",
-          "Vercel Web Analytics e Speed Insights são usados no bitsocial.net para medição agregada de tráfego e desempenho.",
+          "Vercel Web Analytics e Speed Insights medem de forma agregada o tráfego e o desempenho do bitsocial.net e do chain.bitsocial.net. O Web Analytics não define cookies: a Vercel conta os visitantes com um hash da solicitação, que é descartado após 24 horas.",
+          "Cada visualização de página registra o endereço da página sem o fragmento # e sem nenhum parâmetro de consulta, exceto as tags de campanha utm_, além da página de origem e da localização aproximada, do navegador, do sistema operacional e do tipo de dispositivo que a Vercel infere a partir da solicitação. Endereços que não são páginas do site são registrados como uma única página “não encontrada”.",
+          "Os sites também contam inscrições na newsletter, registradas apenas como bem-sucedidas ou malsucedidas, e cliques que abrem ou baixam um projeto no bitsocial.net, registrados com o projeto e a plataforma. Esses registros nunca incluem seu endereço de e-mail, endereços de carteira ou qualquer coisa que você digite.",
           "O site about e o site docs armazenam sua escolha de idioma no armazenamento do navegador para que a interface possa reabrir no idioma selecionado.",
           "As páginas públicas carregam fontes do Google Fonts, então seu navegador se conecta aos servidores de fontes do Google."
         ]
@@ -684,7 +686,7 @@
           "Você pode limpar a preferência de idioma a qualquer momento apagando o armazenamento do site no navegador.",
           "Você pode bloquear solicitações remotas de fontes com controles do navegador ou da rede, embora isso possa alterar a aparência do site.",
           "Atualizaremos esta página se o site público começar a usar rastreamento adicional, incorporações ou fluxos de inscrição.",
-          "Esta versão foi atualizada pela última vez em 5 de abril de 2026."
+          "Esta versão foi atualizada pela última vez em 7 de novembro de 2026."
         ]
       }
     },

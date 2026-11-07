@@ -663,7 +663,9 @@
         "title": "Mit használ a bitsocial.net",
         "body": [
           "A hírlevél-feliratkozás csak akkor küldi el az e-mail címedet a beállított levelezőlista-végpontra, amikor elküldöd az űrlapot.",
-          "A bitsocial.neten a Vercel Web Analytics és a Speed Insights szolgál az összesített forgalom- és teljesítménymérésre.",
+          "A Vercel Web Analytics és a Speed Insights a bitsocial.net és a chain.bitsocial.net összesített forgalmát és teljesítményét méri. A Web Analytics nem helyez el sütiket: a Vercel a kérésből képzett hash alapján számolja a látogatókat, és ezt a hash-t 24 óra elteltével törli.",
+          "Minden oldalmegtekintés rögzíti az oldal címét a # utáni rész (fragment) nélkül, és az utm_ kampánycímkék kivételével minden lekérdezési paraméter nélkül, továbbá a hivatkozó oldalt, valamint azt a hozzávetőleges helyet, böngészőt, operációs rendszert és eszköztípust, amelyet a Vercel a kérésből állapít meg. A webhelyen nem létező oldalakra mutató címek egyetlen „nem található” oldalként kerülnek rögzítésre.",
+          "A webhelyek a hírlevél-feliratkozásokat is számolják, amelyeket csak sikeresként vagy sikertelenként rögzítenek, valamint a bitsocial.neten egy projektet megnyitó vagy letöltő kattintásokat, amelyeket a projekttel és a platformmal együtt rögzítenek. Ezek a bejegyzések soha nem tartalmazzák az e-mail címedet, a pénztárcacímeket vagy bármit, amit begépelsz.",
           "Az about site és a docs site a böngésző tárhelyében tárolja a nyelvválasztásodat, hogy a felület újra abban a nyelvben nyíljon meg, amelyet kiválasztottál.",
           "A nyilvános oldalak a Google Fonts-ból töltenek be betűtípusokat, így a böngésződ a Google betűtípus-szervereihez kapcsolódik."
         ]
@@ -684,7 +686,7 @@
           "Bármikor törölheted a nyelvi beállítást azzal, hogy kiüríted az oldal tárhelyét a böngésződben.",
           "Letilthatod a távoli betűtípus-kéréseket böngésző- vagy hálózati vezérlőkkel, bár ez megváltoztathatja az oldal megjelenését.",
           "Frissítjük ezt az oldalt, ha a nyilvános oldal további követést, beágyazásokat vagy regisztrációs folyamatokat kezd használni.",
-          "Ezt a verziót utoljára 2026. április 5-én frissítettük."
+          "Ezt a verziót utoljára 2026. november 7-én frissítettük."
         ]
       }
     },

@@ -662,7 +662,9 @@
         "title": "bitsocial.net 使用什么",
         "body": [
           "只有在你提交表单时，newsletter 订阅才会把你的电子邮件地址发送到已配置的 mailing-list endpoint。",
-          "bitsocial.net 使用 Vercel Web Analytics 和 Speed Insights 进行总体流量和性能测量。",
+          "Vercel Web Analytics 和 Speed Insights 会测量 bitsocial.net 和 chain.bitsocial.net 上的总体流量和性能。Web Analytics 不设置任何 cookie：Vercel 通过请求的哈希值统计访客，并在 24 小时后丢弃该哈希值。",
+          "每次页面浏览都会记录页面地址（不含 # 片段，也不含除 utm_ 活动标签以外的任何查询参数），以及来源页面，还有 Vercel 根据请求推断出的大致位置、浏览器、操作系统和设备类型。不属于该站点页面的地址会统一记录为同一个“未找到”页面。",
+          "这些站点还会统计 newsletter 订阅（仅记录成功或失败），以及在 bitsocial.net 上打开或下载项目的点击（记录对应的项目和平台）。这些记录绝不会包含你的电子邮件地址、钱包地址或你输入的任何内容。",
           "about site 和 docs site 会把你的语言选择存储在浏览器存储中，以便界面可以用你选择的语言重新打开。",
           "公开页面会从 Google Fonts 加载字体，因此你的浏览器会连接到 Google 的 font servers。"
         ]
@@ -683,7 +685,7 @@
           "你可以随时清除浏览器中的站点存储，从而清除语言偏好。",
           "你可以使用浏览器或网络控制来阻止远程字体请求，不过这样做可能会改变网站外观。",
           "如果公开站点开始使用额外的跟踪、嵌入内容或注册流程，我们会更新此页面。",
-          "此版本最后更新于 2026 年 4 月 5 日。"
+          "此版本最后更新于 2026 年 11 月 7 日。"
         ]
       }
     },

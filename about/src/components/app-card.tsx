@@ -27,6 +27,7 @@ import {
   getPrimaryLinks,
   tagsMatchFilter,
 } from "@/lib/apps-data";
+import { trackAppLinkClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 interface AppCardProps {
@@ -194,12 +195,14 @@ export default function AppCard({
           linkHasVerifiableStatus(primaryActionLink) ? (
             <AppMirrorLinkCta
               link={primaryActionLink}
+              onClick={() => trackAppLinkClick(app.slug, primaryActionLink)}
               icon={getLinkIcon(primaryActionLink)}
               className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-4 !py-2 text-sm`}
             />
           ) : (
             <CardInlineCta
               href={primaryActionLink.url}
+              onClick={() => trackAppLinkClick(app.slug, primaryActionLink)}
               className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-4 !py-2 text-sm`}
             >
               <span className="inline-flex items-center gap-2">
