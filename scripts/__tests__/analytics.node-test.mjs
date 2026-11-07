@@ -185,6 +185,16 @@ test("sent URLs drop the fragment and every query parameter but non-identifying 
     ),
     "https://chain.bitsocial.net/?utm_campaign=bso",
   );
+  // An identifier can sit in the parameter name, so only the standard campaign tag names are kept.
+  const identifyingKeys = `utm_alice%40example.com=campaign&utm_${wallet}=x&utm_id=1&utm_source=x`;
+  assert.equal(
+    about.client.getAnalyticsUrl(`https://bitsocial.net/?${identifyingKeys}`),
+    "https://bitsocial.net/?utm_source=x",
+  );
+  assert.equal(
+    chain.client.getAnalyticsUrl(`https://chain.bitsocial.net/?${identifyingKeys}`),
+    "https://chain.bitsocial.net/?utm_source=x",
+  );
 });
 
 test("beforeSend sanitizes page views and custom events and keeps their payload", async (t) => {

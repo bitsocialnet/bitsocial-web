@@ -14,6 +14,8 @@ const PAGE_PATHS = new Map([
   ["/rich-list/", "/rich-list"],
   ["/rich-list/index.html", "/rich-list"],
 ]);
+// Only the five standard campaign tags are kept: any other utm_ name could itself carry an identifier.
+const UTM_KEYS = new Set(["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"]);
 // A utm_ value carrying an email address or a wallet address identifies someone, so it stays local.
 const IDENTIFYING_VALUE = /@|0x[0-9a-f]{40}/i;
 
@@ -35,7 +37,7 @@ export function getAnalyticsUrl(url: string, liveUrl?: string): string {
     live && getAnalyticsPath(live.pathname) === path ? live.searchParams : source.searchParams;
   const sanitized = new URL(path, source.origin);
   for (const [key, value] of query) {
-    if (key.startsWith("utm_") && !IDENTIFYING_VALUE.test(value)) {
+    if (UTM_KEYS.has(key) && !IDENTIFYING_VALUE.test(value)) {
       sanitized.searchParams.append(key, value);
     }
   }
