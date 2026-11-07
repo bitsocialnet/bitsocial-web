@@ -56,15 +56,7 @@ const avax = (hash: string): TxRef => ({ chain: "avalanche", hash });
 const eth = (hash: string): TxRef => ({ chain: "ethereum", hash });
 
 export const ENTITIES: Entity[] = [
-  {
-    id: "esteban",
-    kind: "team",
-    wallets: [
-      { address: "0x4a09b1efef421055fee00cd79894df71f175853d", role: "deployer" },
-      { address: "0x5bc4ff33f86e0272be53fa25861294489ab2fe2a", role: "estebanEns" },
-    ],
-    evidence: [],
-  },
+  // Team members are labelled Holder J, K and L like the linked holders, in this order.
   {
     id: "rinse12",
     kind: "team",
@@ -77,6 +69,15 @@ export const ENTITIES: Entity[] = [
     wallets: [
       { address: "0x89e768ddf3696eb79112734fb0755ab27f8c5620" },
       { address: "0x13087d38b78df0345d67c8cee73b215589ae3a1f" },
+    ],
+    evidence: [],
+  },
+  {
+    id: "esteban",
+    kind: "team",
+    wallets: [
+      { address: "0x4a09b1efef421055fee00cd79894df71f175853d", role: "deployer" },
+      { address: "0x5bc4ff33f86e0272be53fa25861294489ab2fe2a", role: "estebanEns" },
     ],
     evidence: [],
   },
