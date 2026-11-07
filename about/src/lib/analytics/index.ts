@@ -20,7 +20,9 @@ function withClient(send: (client: AnalyticsClient) => void) {
 }
 
 export function trackPageView(pathname: string) {
-  withClient((client) => client.trackPageView(pathname));
+  // Read the address now: the visitor can move on while the client downloads.
+  const href = typeof window === "undefined" ? undefined : window.location.href;
+  withClient((client) => client.trackPageView(pathname, href));
 }
 
 export function trackAppLinkClick(appSlug: string, link: Pick<AppLink, "kind" | "platform">) {

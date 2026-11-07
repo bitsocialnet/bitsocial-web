@@ -63,9 +63,10 @@ export function getAnalyticsUrl(url: string, liveUrl?: string): string {
   return sanitized.href;
 }
 
-// The address of each requested page view, by sent path: a view queued before Vercel's script loads
-// is sanitized later, when the visitor may already be on another page.
-const requestedPageUrls = new Map<string, string>();
+// The addresses of requested page views, in order, by sent path: a view queued before Vercel's
+// script loads is sanitized later, when the visitor may already be on another page. Unknown pages
+// share /not-found, so each view takes its own address from the front of that path's queue.
+const requestedPageUrls = new Map<string, string[]>();
 
 /**
  * Every page view and custom event passes through here before it leaves the browser. The SDK hands
@@ -82,8 +83,7 @@ export function sanitizeAnalyticsEvent(event: BeforeSendEvent): BeforeSendEvent 
     if (event.type === "event") {
       return { ...event, url: new URL(path, source.origin).href };
     }
-    const requestedUrl = requestedPageUrls.get(path);
-    requestedPageUrls.delete(path);
+    const requestedUrl = requestedPageUrls.get(path)?.shift();
     return { ...event, url: getAnalyticsUrl(event.url, requestedUrl ?? window.location.href) };
   } catch {
     return null;
@@ -98,11 +98,14 @@ function initialize() {
   initialized = true;
 }
 
-export function trackPageView(pathname: string) {
+/** `href` is the page's address when the view was requested, before this module finished loading. */
+export function trackPageView(pathname: string, href = window.location.href) {
   if (!isAnalyticsEnabled()) return;
   initialize();
   const page = getAnalyticsPage(pathname);
-  requestedPageUrls.set(page.path, window.location.href);
+  const queued = requestedPageUrls.get(page.path) ?? [];
+  queued.push(href);
+  requestedPageUrls.set(page.path, queued);
   pageview(page);
 }
 

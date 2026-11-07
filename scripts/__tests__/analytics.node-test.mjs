@@ -269,6 +269,32 @@ test("utm_ tags survive the SDK's query reset when the live location is the same
       );
     },
   );
+  await t.test("the address is read before the lazy client loads", async (t) => {
+    browserAt(t, "https://bitsocial.net/projects/?utm_source=x");
+    const { lazy, client } = await load("about");
+    lazy.trackPageView("/projects/");
+    window.location = new URL("https://bitsocial.net/privacy");
+    await settle();
+    assert.deepEqual(
+      client.sanitizeAnalyticsEvent({ type: "pageview", url: "https://bitsocial.net/projects" }),
+      { type: "pageview", url: "https://bitsocial.net/projects?utm_source=x" },
+    );
+  });
+  await t.test("two queued unknown pages keep their own tags", async (t) => {
+    browserAt(t, "https://bitsocial.net/privacy");
+    const { client } = await load("about");
+    client.trackPageView("/old/", "https://bitsocial.net/old/?utm_source=one");
+    client.trackPageView("/gone/", "https://bitsocial.net/gone/?utm_source=two");
+    const notFound = { type: "pageview", url: "https://bitsocial.net/not-found" };
+    assert.deepEqual(client.sanitizeAnalyticsEvent(notFound), {
+      ...notFound,
+      url: "https://bitsocial.net/not-found?utm_source=one",
+    });
+    assert.deepEqual(client.sanitizeAnalyticsEvent(notFound), {
+      ...notFound,
+      url: "https://bitsocial.net/not-found?utm_source=two",
+    });
+  });
 });
 
 // Campaign tags are free text, and the privacy page says event records never carry identifiers.
