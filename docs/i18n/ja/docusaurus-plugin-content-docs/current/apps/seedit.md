@@ -10,12 +10,12 @@ Seedit は、Bitsocial プロトコルに基づいて構築された、古いス
 
 ## ダウンロード
 
-| プラットフォーム | リンク                                                    |
-| ---------------- | --------------------------------------------------------- |
-| ウェブ           | [seedit.app](https://seedit.app)                          |
-| Web (ENS)        | `seedit.eth` (Brave ブラウザーまたは IPFS Companion 経由) |
-| デスクトップ     | Mac、Windows、Linux で利用可能                            |
-| モバイル         | Android で利用可能                                        |
+| プラットフォーム | リンク                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------ |
+| ウェブ           | [seedit.app](https://seedit.app)                                                           |
+| Web (ENS)        | `seedit.eth` ([Freedom Browser](https://freedom.baby/)、Brave、または IPFS Companion 経由) |
+| デスクトップ     | Mac、Windows、Linux で利用可能                                                             |
+| モバイル         | Android で利用可能                                                                         |
 
 ## コミュニティの仕組み
 

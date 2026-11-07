@@ -10,12 +10,12 @@ A Seedit a régi stílusú Reddit szerver nélküli, adminisztrátor nélküli �
 
 ## Letöltések
 
-| Platform  | Link                                                              |
-| --------- | ----------------------------------------------------------------- |
-| Web       | [seedit.app](https://seedit.app)                                  |
-| Web (ENS) | `seedit.eth` a Brave böngészőn vagy az IPFS Companionon keresztül |
-| Asztali   | Elérhető Mac, Windows és Linux rendszerekhez                      |
-| Mobil     | Elérhető Android                                                  |
+| Platform  | Link                                                                                                 |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| Web       | [seedit.app](https://seedit.app)                                                                     |
+| Web (ENS) | `seedit.eth` a [Freedom Browser](https://freedom.baby/), a Brave vagy az IPFS Companion segítségével |
+| Asztali   | Elérhető Mac, Windows és Linux rendszerekhez                                                         |
+| Mobil     | Elérhető Android                                                                                     |
 
 ## Hogyan működnek a közösségek
 

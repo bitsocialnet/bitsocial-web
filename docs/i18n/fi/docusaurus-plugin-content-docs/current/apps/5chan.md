@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## Lataukset
 
-| Alusta   | Linkki                                       |
-| -------- | -------------------------------------------- |
-| Web      | [5chan.app](https://5chan.app)               |
-| Työpöytä | Saatavilla Macille, Windowsille ja Linuxille |
-| Mobiili  | Saatavilla Androidille                       |
+| Alusta    | Linkki                                                                                     |
+| --------- | ------------------------------------------------------------------------------------------ |
+| Web       | [5chan.app](https://5chan.app)                                                             |
+| Web (ENS) | `5chan.eth` [Freedom Browserin](https://freedom.baby/), Braven tai IPFS Companionin kautta |
+| Työpöytä  | Saatavilla Macille, Windowsille ja Linuxille                                               |
+| Mobiili   | Saatavilla Androidille                                                                     |
 
 ## Miten laudat toimivat
 

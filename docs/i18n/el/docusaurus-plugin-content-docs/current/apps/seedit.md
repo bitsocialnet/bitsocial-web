@@ -10,12 +10,12 @@ sidebar_position: 2
 
 ## Λήψεις
 
-| Πλατφόρμα                | Σύνδεσμος                                        |
-| ------------------------ | ------------------------------------------------ |
-| Web                      | [seedit.app](https://seedit.app)                 |
-| Web (ENS)                | `seedit.eth` μέσω Brave browser ή IPFS Companion |
-| Επιτραπέζιος υπολογιστής | Διαθέσιμο για Mac, Windows και Linux             |
-| Κινητό                   | Διαθέσιμο για Android                            |
+| Πλατφόρμα                | Σύνδεσμος                                                                          |
+| ------------------------ | ---------------------------------------------------------------------------------- |
+| Web                      | [seedit.app](https://seedit.app)                                                   |
+| Web (ENS)                | `seedit.eth` μέσω [Freedom Browser](https://freedom.baby/), Brave ή IPFS Companion |
+| Επιτραπέζιος υπολογιστής | Διαθέσιμο για Mac, Windows και Linux                                               |
+| Κινητό                   | Διαθέσιμο για Android                                                              |
 
 ## Πώς λειτουργούν οι κοινότητες
 

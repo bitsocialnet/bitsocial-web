@@ -10,12 +10,12 @@ Ang Seedit ay isang walang server, walang admin, at ganap na desentralisadong al
 
 ## Mga download
 
-| Platform  | Link                                                          |
-| --------- | ------------------------------------------------------------- |
-| Web       | [seedit.app](https://seedit.app)                              |
-| Web (ENS) | `seedit.eth` sa pamamagitan ng Brave browser o IPFS Companion |
-| Desktop   | Available para sa Mac, Windows, at Linux                      |
-| Mobile    | Available para sa Android                                     |
+| Platform  | Link                                                                                             |
+| --------- | ------------------------------------------------------------------------------------------------ |
+| Web       | [seedit.app](https://seedit.app)                                                                 |
+| Web (ENS) | `seedit.eth` sa pamamagitan ng [Freedom Browser](https://freedom.baby/), Brave, o IPFS Companion |
+| Desktop   | Available para sa Mac, Windows, at Linux                                                         |
+| Mobile    | Available para sa Android                                                                        |
 
 ## Paano gumagana ang mga komunidad
 

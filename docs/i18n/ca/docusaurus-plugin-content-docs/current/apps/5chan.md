@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## Descàrregues
 
-| Plataforma | Enllaç                                |
-| ---------- | ------------------------------------- |
-| Web        | [5chan.app](https://5chan.app)        |
-| Escriptori | Disponible per a Mac, Windows i Linux |
-| Mòbil      | Disponible per a Android              |
+| Plataforma | Enllaç                                                                                  |
+| ---------- | --------------------------------------------------------------------------------------- |
+| Web        | [5chan.app](https://5chan.app)                                                          |
+| Web (ENS)  | `5chan.eth` mitjançant [Freedom Browser](https://freedom.baby/), Brave o IPFS Companion |
+| Escriptori | Disponible per a Mac, Windows i Linux                                                   |
+| Mòbil      | Disponible per a Android                                                                |
 
 ## Com funcionen els taulers
 

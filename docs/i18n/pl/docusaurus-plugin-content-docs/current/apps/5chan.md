@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## Pliki do pobrania
 
-| Platforma    | Link                                |
-| ------------ | ----------------------------------- |
-| Przeglądarka | [5chan.app](https://5chan.app)      |
-| Komputer     | Dostępny na Maca, Windows i Linuksa |
-| Telefon      | Dostępny na Androida                |
+| Platforma          | Link                                                                                 |
+| ------------------ | ------------------------------------------------------------------------------------ |
+| Przeglądarka       | [5chan.app](https://5chan.app)                                                       |
+| Przeglądarka (ENS) | `5chan.eth` przez [Freedom Browser](https://freedom.baby/), Brave lub IPFS Companion |
+| Komputer           | Dostępny na Maca, Windows i Linuksa                                                  |
+| Telefon            | Dostępny na Androida                                                                 |
 
 ## Jak działają boardy
 

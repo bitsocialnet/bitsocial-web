@@ -10,12 +10,12 @@ Seedit é uma alternativa sem servidor, sem administração e totalmente descent
 
 ## Transferências
 
-| Plataforma       | Ligação                                            |
-| ---------------- | -------------------------------------------------- |
-| Rede             | [seedit.app](https://seedit.app)                   |
-| Rede (ENS)       | `seedit.eth` via navegador Brave ou IPFS Companion |
-| Área de Trabalho | Disponível para Mac, Windows e Linux               |
-| Móvel            | Disponível para Android                            |
+| Plataforma       | Ligação                                                                            |
+| ---------------- | ---------------------------------------------------------------------------------- |
+| Rede             | [seedit.app](https://seedit.app)                                                   |
+| Rede (ENS)       | `seedit.eth` via [Freedom Browser](https://freedom.baby/), Brave ou IPFS Companion |
+| Área de Trabalho | Disponível para Mac, Windows e Linux                                               |
+| Móvel            | Disponível para Android                                                            |
 
 ## Como funcionam as comunidades
 

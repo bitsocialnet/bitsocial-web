@@ -10,12 +10,12 @@ Seedit is een serverloos, beheerdersloos en volledig gedecentraliseerd alternati
 
 ## Downloads
 
-| Platform  | Link                                             |
-| --------- | ------------------------------------------------ |
-| Web       | [seedit.app](https://seedit.app)                 |
-| Web (ENS) | `seedit.eth` via Brave browser of IPFS Companion |
-| Desktop   | Beschikbaar voor Mac, Windows en Linux           |
-| Mobiel    | Beschikbaar voor Android                         |
+| Platform  | Link                                                                               |
+| --------- | ---------------------------------------------------------------------------------- |
+| Web       | [seedit.app](https://seedit.app)                                                   |
+| Web (ENS) | `seedit.eth` via [Freedom Browser](https://freedom.baby/), Brave of IPFS Companion |
+| Desktop   | Beschikbaar voor Mac, Windows en Linux                                             |
+| Mobiel    | Beschikbaar voor Android                                                           |
 
 ## Hoe communities werken
 

@@ -10,12 +10,12 @@ nasionko to bezserwerowa, pozbawiona administratora i w pełni zdecentralizowana
 
 ## Pliki do pobrania
 
-| Platforma  | Link                                                     |
-| ---------- | -------------------------------------------------------- |
-| Sieć       | [seedit.app](https://seedit.app)                         |
-| Sieć (ENS) | `seedit.eth` przez przeglądarkę Brave lub IPFS Companion |
-| Pulpit     | Dostępne dla komputerów Mac, Windows i Linux             |
-| Komórka    | Dostępne dla Androida                                    |
+| Platforma  | Link                                                                                  |
+| ---------- | ------------------------------------------------------------------------------------- |
+| Sieć       | [seedit.app](https://seedit.app)                                                      |
+| Sieć (ENS) | `seedit.eth` przez [Freedom Browser](https://freedom.baby/), Brave lub IPFS Companion |
+| Pulpit     | Dostępne dla komputerów Mac, Windows i Linux                                          |
+| Komórka    | Dostępne dla Androida                                                                 |
 
 ## Jak działają społeczności
 

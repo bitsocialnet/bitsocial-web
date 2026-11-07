@@ -10,11 +10,12 @@ Az 5chan egy szerver nélküli, adminisztrátor nélküli, teljesen decentraliz�
 
 ## Letöltések
 
-| Platform | Link                                        |
-| -------- | ------------------------------------------- |
-| Web      | [5chan.app](https://5chan.app)              |
-| Asztali  | Elérhető Mac, Windows és Linux rendszerekre |
-| Mobil    | Elérhető Androidra                          |
+| Platform  | Link                                                                                                |
+| --------- | --------------------------------------------------------------------------------------------------- |
+| Web       | [5chan.app](https://5chan.app)                                                                      |
+| Web (ENS) | `5chan.eth` a [Freedom Browser](https://freedom.baby/), a Brave vagy az IPFS Companion segítségével |
+| Asztali   | Elérhető Mac, Windows és Linux rendszerekre                                                         |
+| Mobil     | Elérhető Androidra                                                                                  |
 
 ## Hogyan működnek a táblák
 

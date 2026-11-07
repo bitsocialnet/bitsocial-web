@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## Tải xuống
 
-| Nền tảng           | Liên kết                         |
-| ------------------ | -------------------------------- |
-| Web                | [5chan.app](https://5chan.app)   |
-| Máy tính để bàn    | Có sẵn cho Mac, Windows và Linux |
-| Điện thoại di động | Có sẵn cho Android               |
+| Nền tảng           | Liên kết                                                                            |
+| ------------------ | ----------------------------------------------------------------------------------- |
+| Web                | [5chan.app](https://5chan.app)                                                      |
+| Web (ENS)          | `5chan.eth` qua [Freedom Browser](https://freedom.baby/), Brave hoặc IPFS Companion |
+| Máy tính để bàn    | Có sẵn cho Mac, Windows và Linux                                                    |
+| Điện thoại di động | Có sẵn cho Android                                                                  |
 
 ## Các bảng hoạt động ra sao
 

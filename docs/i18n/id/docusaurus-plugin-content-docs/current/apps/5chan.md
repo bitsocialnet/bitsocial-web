@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## Unduhan
 
-| Platform | Tautan                                 |
-| -------- | -------------------------------------- |
-| Web      | [5chan.app](https://5chan.app)         |
-| Desktop  | Tersedia untuk Mac, Windows, dan Linux |
-| Seluler  | Tersedia untuk Android                 |
+| Platform  | Tautan                                                                                   |
+| --------- | ---------------------------------------------------------------------------------------- |
+| Web       | [5chan.app](https://5chan.app)                                                           |
+| Web (ENS) | `5chan.eth` melalui [Freedom Browser](https://freedom.baby/), Brave, atau IPFS Companion |
+| Desktop   | Tersedia untuk Mac, Windows, dan Linux                                                   |
+| Seluler   | Tersedia untuk Android                                                                   |
 
 ## Cara kerja papan
 

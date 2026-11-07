@@ -10,12 +10,12 @@ sedit është një alternativë pa server, pa administrim dhe plotësisht e dece
 
 ## Shkarkimet
 
-| Platforma | Lidhje                                                      |
-| --------- | ----------------------------------------------------------- |
-| Web       | [seedit.app](https://seedit.app)                            |
-| Web (ENS) | `seedit.eth` nëpërmjet shfletuesit Brave ose IPFS Companion |
-| Desktop   | Në dispozicion për Mac, Windows dhe Linux                   |
-| Celular   | Në dispozicion për Android                                  |
+| Platforma | Lidhje                                                                                    |
+| --------- | ----------------------------------------------------------------------------------------- |
+| Web       | [seedit.app](https://seedit.app)                                                          |
+| Web (ENS) | `seedit.eth` nëpërmjet [Freedom Browser](https://freedom.baby/), Brave ose IPFS Companion |
+| Desktop   | Në dispozicion për Mac, Windows dhe Linux                                                 |
+| Celular   | Në dispozicion për Android                                                                |
 
 ## Si funksionojnë komunitetet
 

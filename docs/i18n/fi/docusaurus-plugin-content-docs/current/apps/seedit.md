@@ -10,12 +10,12 @@ Seedit on palvelimeton, järjestelmänvalvojaton ja täysin hajautettu vaihtoeht
 
 ## Lataukset
 
-| Alusta    | Linkki                                                  |
-| --------- | ------------------------------------------------------- |
-| Web       | [seedit.app](https://seedit.app)                        |
-| Web (ENS) | `seedit.eth` Brave-selaimen tai IPFS Companionin kautta |
-| Työpöytä  | Saatavilla Macille, Windowsille ja Linuxille            |
-| Mobiili   | Saatavilla Androidille                                  |
+| Alusta    | Linkki                                                                                      |
+| --------- | ------------------------------------------------------------------------------------------- |
+| Web       | [seedit.app](https://seedit.app)                                                            |
+| Web (ENS) | `seedit.eth` [Freedom Browserin](https://freedom.baby/), Braven tai IPFS Companionin kautta |
+| Työpöytä  | Saatavilla Macille, Windowsille ja Linuxille                                                |
+| Mobiili   | Saatavilla Androidille                                                                      |
 
 ## Miten yhteisöt toimivat
 

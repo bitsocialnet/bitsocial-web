@@ -10,12 +10,12 @@ Seedit은 Bitsocial 프로토콜을 기반으로 구축된 구식 Reddit에 대�
 
 ## 다운로드
 
-| 플랫폼   | 링크                                                   |
-| -------- | ------------------------------------------------------ |
-| 웹       | [seedit.app](https://seedit.app)                       |
-| 웹(ENS)  | Brave 브라우저 또는 IPFS Companion을 통한 `seedit.eth` |
-| 데스크톱 | Mac, Windows 및 Linux에서 사용 가능                    |
-| 모바일   | Android에서 사용 가능                                  |
+| 플랫폼   | 링크                                                                                    |
+| -------- | --------------------------------------------------------------------------------------- |
+| 웹       | [seedit.app](https://seedit.app)                                                        |
+| 웹(ENS)  | [Freedom Browser](https://freedom.baby/), Brave 또는 IPFS Companion을 통한 `seedit.eth` |
+| 데스크톱 | Mac, Windows 및 Linux에서 사용 가능                                                     |
+| 모바일   | Android에서 사용 가능                                                                   |
 
 ## 커뮤니티 작동 방식
 

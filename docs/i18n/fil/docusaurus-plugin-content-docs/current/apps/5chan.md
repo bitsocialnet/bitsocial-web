@@ -10,11 +10,12 @@ Ang 5chan ay isang walang server, walang admin, at ganap na desentralisadong ima
 
 ## Mga download
 
-| Platform | Link                                     |
-| -------- | ---------------------------------------- |
-| Web      | [5chan.app](https://5chan.app)           |
-| Desktop  | Available para sa Mac, Windows, at Linux |
-| Mobile   | Available para sa Android                |
+| Platform  | Link                                                                                            |
+| --------- | ----------------------------------------------------------------------------------------------- |
+| Web       | [5chan.app](https://5chan.app)                                                                  |
+| Web (ENS) | `5chan.eth` sa pamamagitan ng [Freedom Browser](https://freedom.baby/), Brave, o IPFS Companion |
+| Desktop   | Available para sa Mac, Windows, at Linux                                                        |
+| Mobile    | Available para sa Android                                                                       |
 
 ## Paano gumagana ang mga board
 

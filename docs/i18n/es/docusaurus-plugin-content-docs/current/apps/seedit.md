@@ -10,12 +10,12 @@ Seedit es una alternativa sin servidor, sin administrador y totalmente descentra
 
 ## Descargas
 
-| Plataforma | Enlace                                                     |
-| ---------- | ---------------------------------------------------------- |
-| Web        | [seedit.app](https://seedit.app)                           |
-| Web (ENS)  | `seedit.eth` a través del navegador Brave o IPFS Companion |
-| Escritorio | Disponible para Mac, Windows y Linux                       |
-| Móvil      | Disponible para Android                                    |
+| Plataforma | Enlace                                                                                    |
+| ---------- | ----------------------------------------------------------------------------------------- |
+| Web        | [seedit.app](https://seedit.app)                                                          |
+| Web (ENS)  | `seedit.eth` a través de [Freedom Browser](https://freedom.baby/), Brave o IPFS Companion |
+| Escritorio | Disponible para Mac, Windows y Linux                                                      |
+| Móvil      | Disponible para Android                                                                   |
 
 ## Cómo funcionan las comunidades
 

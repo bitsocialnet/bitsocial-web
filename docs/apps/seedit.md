@@ -10,12 +10,12 @@ Seedit is a serverless, adminless, and fully decentralized alternative to old-st
 
 ## Downloads
 
-| Platform  | Link                                             |
-| --------- | ------------------------------------------------ |
-| Web       | [seedit.app](https://seedit.app)                 |
-| Web (ENS) | `seedit.eth` via Brave browser or IPFS Companion |
-| Desktop   | Available for Mac, Windows, and Linux            |
-| Mobile    | Available for Android                            |
+| Platform  | Link                                                                                |
+| --------- | ----------------------------------------------------------------------------------- |
+| Web       | [seedit.app](https://seedit.app)                                                    |
+| Web (ENS) | `seedit.eth` via [Freedom Browser](https://freedom.baby/), Brave, or IPFS Companion |
+| Desktop   | Available for Mac, Windows, and Linux                                               |
+| Mobile    | Available for Android                                                               |
 
 ## How communities work
 

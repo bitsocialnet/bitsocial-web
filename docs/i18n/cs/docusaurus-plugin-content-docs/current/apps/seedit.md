@@ -10,12 +10,12 @@ Seedit je bezserverová, správná a plně decentralizovaná alternativa ke star
 
 ## Stahování
 
-| Platforma | Odkaz                                                 |
-| --------- | ----------------------------------------------------- |
-| Web       | [seedit.app](https://seedit.app)                      |
-| Web (ENS) | `seedit.eth` přes prohlížeč Brave nebo IPFS Companion |
-| Desktop   | K dispozici pro Mac, Windows a Linux                  |
-| Mobil     | K dispozici pro Android                               |
+| Platforma | Odkaz                                                                                 |
+| --------- | ------------------------------------------------------------------------------------- |
+| Web       | [seedit.app](https://seedit.app)                                                      |
+| Web (ENS) | `seedit.eth` přes [Freedom Browser](https://freedom.baby/), Brave nebo IPFS Companion |
+| Desktop   | K dispozici pro Mac, Windows a Linux                                                  |
+| Mobil     | K dispozici pro Android                                                               |
 
 ## Jak fungují komunity
 

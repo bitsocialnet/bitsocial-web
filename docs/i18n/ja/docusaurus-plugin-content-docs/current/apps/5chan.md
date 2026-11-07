@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## ダウンロード
 
-| プラットフォーム | リンク                         |
-| ---------------- | ------------------------------ |
-| ウェブ           | [5chan.app](https://5chan.app) |
-| デスクトップ     | Mac、Windows、Linux で利用可能 |
-| モバイル         | Android で利用可能             |
+| プラットフォーム | リンク                                                                                    |
+| ---------------- | ----------------------------------------------------------------------------------------- |
+| ウェブ           | [5chan.app](https://5chan.app)                                                            |
+| ウェブ (ENS)     | `5chan.eth` ([Freedom Browser](https://freedom.baby/)、Brave、または IPFS Companion 経由) |
+| デスクトップ     | Mac、Windows、Linux で利用可能                                                            |
+| モバイル         | Android で利用可能                                                                        |
 
 ## 板の仕組み
 

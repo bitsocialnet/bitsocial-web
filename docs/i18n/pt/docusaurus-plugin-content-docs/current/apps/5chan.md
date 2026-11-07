@@ -10,11 +10,12 @@ O 5chan é um imageboard sem servidor, sem administrador e totalmente descentral
 
 ## Downloads
 
-| Plataforma | Link                                 |
-| ---------- | ------------------------------------ |
-| Web        | [5chan.app](https://5chan.app)       |
-| Desktop    | Disponível para Mac, Windows e Linux |
-| Celular    | Disponível para Android              |
+| Plataforma | Link                                                                              |
+| ---------- | --------------------------------------------------------------------------------- |
+| Web        | [5chan.app](https://5chan.app)                                                    |
+| Web (ENS)  | `5chan.eth` via [Freedom Browser](https://freedom.baby/), Brave ou IPFS Companion |
+| Desktop    | Disponível para Mac, Windows e Linux                                              |
+| Celular    | Disponível para Android                                                           |
 
 ## Como funcionam os boards
 

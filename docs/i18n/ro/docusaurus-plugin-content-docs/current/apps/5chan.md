@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## Descărcări
 
-| Platformă | Link                                    |
-| --------- | --------------------------------------- |
-| Web       | [5chan.app](https://5chan.app)          |
-| Desktop   | Disponibil pentru Mac, Windows și Linux |
-| Mobil     | Disponibil pentru Android               |
+| Platformă | Link                                                                                |
+| --------- | ----------------------------------------------------------------------------------- |
+| Web       | [5chan.app](https://5chan.app)                                                      |
+| Web (ENS) | `5chan.eth` prin [Freedom Browser](https://freedom.baby/), Brave sau IPFS Companion |
+| Desktop   | Disponibil pentru Mac, Windows și Linux                                             |
+| Mobil     | Disponibil pentru Android                                                           |
 
 ## Cum funcționează board-urile
 

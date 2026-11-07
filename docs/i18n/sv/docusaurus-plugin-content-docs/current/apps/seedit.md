@@ -10,12 +10,12 @@ Seedit är ett serverlöst, adminlöst och helt decentraliserat alternativ till 
 
 ## Nedladdningar
 
-| Plattform  | Länk                                                   |
-| ---------- | ------------------------------------------------------ |
-| Webb       | [seedit.app](https://seedit.app)                       |
-| Webb (ENS) | `seedit.eth` via Brave webbläsare eller IPFS Companion |
-| Desktop    | Tillgänglig för Mac, Windows och Linux                 |
-| Mobil      | Tillgänglig för Android                                |
+| Plattform  | Länk                                                                                  |
+| ---------- | ------------------------------------------------------------------------------------- |
+| Webb       | [seedit.app](https://seedit.app)                                                      |
+| Webb (ENS) | `seedit.eth` via [Freedom Browser](https://freedom.baby/), Brave eller IPFS Companion |
+| Desktop    | Tillgänglig för Mac, Windows och Linux                                                |
+| Mobil      | Tillgänglig för Android                                                               |
 
 ## Hur samhällen fungerar
 

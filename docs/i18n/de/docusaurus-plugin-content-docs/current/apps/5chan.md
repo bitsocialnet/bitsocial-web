@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## Downloads
 
-| Plattform | Link                                 |
-| --------- | ------------------------------------ |
-| Web       | [5chan.app](https://5chan.app)       |
-| Desktop   | Verfügbar für Mac, Windows und Linux |
-| Mobil     | Verfügbar für Android                |
+| Plattform | Link                                                                                 |
+| --------- | ------------------------------------------------------------------------------------ |
+| Web       | [5chan.app](https://5chan.app)                                                       |
+| Web (ENS) | `5chan.eth` über [Freedom Browser](https://freedom.baby/), Brave oder IPFS Companion |
+| Desktop   | Verfügbar für Mac, Windows und Linux                                                 |
+| Mobil     | Verfügbar für Android                                                                |
 
 ## Wie Boards funktionieren
 

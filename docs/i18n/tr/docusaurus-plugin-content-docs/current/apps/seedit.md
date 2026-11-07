@@ -10,12 +10,12 @@ Seedit, Bitsocial protokolü üzerine kurulu, eski tarz Reddit'e sunucusuz, yön
 
 ## İndirilenler
 
-| Platformu | Bağlantı                                                     |
-| --------- | ------------------------------------------------------------ |
-| Web       | [seedit.app](https://seedit.app)                             |
-| Web (ENS) | Cesur tarayıcı veya IPFS Companion aracılığıyla `seedit.eth` |
-| Masaüstü  | Mac, Windows ve Linux için kullanılabilir                    |
-| Mobil     | Android için mevcut                                          |
+| Platformu | Bağlantı                                                                                      |
+| --------- | --------------------------------------------------------------------------------------------- |
+| Web       | [seedit.app](https://seedit.app)                                                              |
+| Web (ENS) | [Freedom Browser](https://freedom.baby/), Brave veya IPFS Companion aracılığıyla `seedit.eth` |
+| Masaüstü  | Mac, Windows ve Linux için kullanılabilir                                                     |
+| Mobil     | Android için mevcut                                                                           |
 
 ## Topluluklar nasıl çalışır?
 

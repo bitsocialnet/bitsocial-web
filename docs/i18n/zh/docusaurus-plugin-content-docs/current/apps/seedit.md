@@ -10,12 +10,12 @@ Seedit 是一种无服务器、无管理且完全去中心化的旧式 Reddit �
 
 ## 下载
 
-| 平台       | 链接                                            |
-| ---------- | ----------------------------------------------- |
-| 网页       | [seedit.app](https://seedit.app)                |
-| 网络 (ENS) | `seedit.eth` 通过 Brave 浏览器或 IPFS Companion |
-| 桌面       | 适用于 Mac、Windows 和 Linux                    |
-| 手机       | 适用于 Android                                  |
+| 平台       | 链接                                                                                |
+| ---------- | ----------------------------------------------------------------------------------- |
+| 网页       | [seedit.app](https://seedit.app)                                                    |
+| 网络 (ENS) | `seedit.eth` 通过 [Freedom Browser](https://freedom.baby/)、Brave 或 IPFS Companion |
+| 桌面       | 适用于 Mac、Windows 和 Linux                                                        |
+| 手机       | 适用于 Android                                                                      |
 
 ## 社区如何运作
 

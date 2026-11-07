@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## 下载
 
-| 平台 | 链接                           |
-| ---- | ------------------------------ |
-| 网页 | [5chan.app](https://5chan.app) |
-| 桌面 | 支持 Mac、Windows 和 Linux     |
-| 移动 | 支持 Android                   |
+| 平台       | 链接                                                                               |
+| ---------- | ---------------------------------------------------------------------------------- |
+| 网页       | [5chan.app](https://5chan.app)                                                     |
+| 网页 (ENS) | `5chan.eth` 通过 [Freedom Browser](https://freedom.baby/)、Brave 或 IPFS Companion |
+| 桌面       | 支持 Mac、Windows 和 Linux                                                         |
+| 移动       | 支持 Android                                                                       |
 
 ## 板块如何运作
 

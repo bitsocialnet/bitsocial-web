@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## Nedlastinger
 
-| Plattform | Lenke                                  |
-| --------- | -------------------------------------- |
-| Web       | [5chan.app](https://5chan.app)         |
-| Desktop   | Tilgjengelig for Mac, Windows og Linux |
-| Mobil     | Tilgjengelig for Android               |
+| Plattform | Lenke                                                                                |
+| --------- | ------------------------------------------------------------------------------------ |
+| Web       | [5chan.app](https://5chan.app)                                                       |
+| Web (ENS) | `5chan.eth` via [Freedom Browser](https://freedom.baby/), Brave eller IPFS Companion |
+| Desktop   | Tilgjengelig for Mac, Windows og Linux                                               |
+| Mobil     | Tilgjengelig for Android                                                             |
 
 ## Slik fungerer tavler
 

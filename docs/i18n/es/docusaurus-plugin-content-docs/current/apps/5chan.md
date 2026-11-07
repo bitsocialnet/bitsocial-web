@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## Descargas
 
-| Plataforma | Enlace                               |
-| ---------- | ------------------------------------ |
-| Web        | [5chan.app](https://5chan.app)       |
-| Escritorio | Disponible para Mac, Windows y Linux |
-| Móvil      | Disponible para Android              |
+| Plataforma | Enlace                                                                                   |
+| ---------- | ---------------------------------------------------------------------------------------- |
+| Web        | [5chan.app](https://5chan.app)                                                           |
+| Web (ENS)  | `5chan.eth` a través de [Freedom Browser](https://freedom.baby/), Brave o IPFS Companion |
+| Escritorio | Disponible para Mac, Windows y Linux                                                     |
+| Móvil      | Disponible para Android                                                                  |
 
 ## Cómo funcionan los tablones
 

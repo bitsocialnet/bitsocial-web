@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## 다운로드
 
-| 플랫폼   | 링크                              |
-| -------- | --------------------------------- |
-| 웹       | [5chan.app](https://5chan.app)    |
-| 데스크톱 | Mac, Windows, Linux에서 사용 가능 |
-| 모바일   | Android에서 사용 가능             |
+| 플랫폼   | 링크                                                                                   |
+| -------- | -------------------------------------------------------------------------------------- |
+| 웹       | [5chan.app](https://5chan.app)                                                         |
+| 웹 (ENS) | [Freedom Browser](https://freedom.baby/), Brave 또는 IPFS Companion을 통한 `5chan.eth` |
+| 데스크톱 | Mac, Windows, Linux에서 사용 가능                                                      |
+| 모바일   | Android에서 사용 가능                                                                  |
 
 ## 보드가 작동하는 방식
 

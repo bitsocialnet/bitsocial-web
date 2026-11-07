@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## Shkarkimet
 
-| Platforma | Lidhja                                    |
-| --------- | ----------------------------------------- |
-| Web       | [5chan.app](https://5chan.app)            |
-| Desktop   | Në dispozicion për Mac, Windows dhe Linux |
-| Celular   | Në dispozicion për Android                |
+| Platforma | Lidhja                                                                                   |
+| --------- | ---------------------------------------------------------------------------------------- |
+| Web       | [5chan.app](https://5chan.app)                                                           |
+| Web (ENS) | `5chan.eth` nëpërmjet [Freedom Browser](https://freedom.baby/), Brave ose IPFS Companion |
+| Desktop   | Në dispozicion për Mac, Windows dhe Linux                                                |
+| Celular   | Në dispozicion për Android                                                               |
 
 ## Si funksionojnë bordet
 

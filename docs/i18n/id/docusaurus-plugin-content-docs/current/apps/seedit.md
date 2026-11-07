@@ -10,12 +10,12 @@ Seedit adalah alternatif tanpa server, tanpa admin, dan terdesentralisasi sepenu
 
 ## Unduhan
 
-| Platform  | Link                                                   |
-| --------- | ------------------------------------------------------ |
-| jaring    | [seedit.app](https://seedit.app)                       |
-| Web (ENS) | `seedit.eth` melalui browser Brave atau IPFS Companion |
-| Desktop   | Tersedia untuk Mac, Windows, dan Linux                 |
-| Seluler   | Tersedia untuk Android                                 |
+| Platform  | Link                                                                                      |
+| --------- | ----------------------------------------------------------------------------------------- |
+| jaring    | [seedit.app](https://seedit.app)                                                          |
+| Web (ENS) | `seedit.eth` melalui [Freedom Browser](https://freedom.baby/), Brave, atau IPFS Companion |
+| Desktop   | Tersedia untuk Mac, Windows, dan Linux                                                    |
+| Seluler   | Tersedia untuk Android                                                                    |
 
 ## Bagaimana komunitas bekerja
 

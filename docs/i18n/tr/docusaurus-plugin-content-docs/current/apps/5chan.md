@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## İndirmeler
 
-| Platform | Bağlantı                                  |
-| -------- | ----------------------------------------- |
-| Web      | [5chan.app](https://5chan.app)            |
-| Masaüstü | Mac, Windows ve Linux için kullanılabilir |
-| Mobil    | Android için kullanılabilir               |
+| Platform  | Bağlantı                                                                                     |
+| --------- | -------------------------------------------------------------------------------------------- |
+| Web       | [5chan.app](https://5chan.app)                                                               |
+| Web (ENS) | [Freedom Browser](https://freedom.baby/), Brave veya IPFS Companion aracılığıyla `5chan.eth` |
+| Masaüstü  | Mac, Windows ve Linux için kullanılabilir                                                    |
+| Mobil     | Android için kullanılabilir                                                                  |
 
 ## Panolar nasıl çalışır
 

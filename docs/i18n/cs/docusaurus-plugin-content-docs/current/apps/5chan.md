@@ -10,11 +10,12 @@ sidebar_position: 1
 
 ## Ke stažení
 
-| Platforma | Odkaz                             |
-| --------- | --------------------------------- |
-| Web       | [5chan.app](https://5chan.app)    |
-| Desktop   | Dostupné pro Mac, Windows a Linux |
-| Mobil     | Dostupné pro Android              |
+| Platforma | Odkaz                                                                                |
+| --------- | ------------------------------------------------------------------------------------ |
+| Web       | [5chan.app](https://5chan.app)                                                       |
+| Web (ENS) | `5chan.eth` přes [Freedom Browser](https://freedom.baby/), Brave nebo IPFS Companion |
+| Desktop   | Dostupné pro Mac, Windows a Linux                                                    |
+| Mobil     | Dostupné pro Android                                                                 |
 
 ## Jak boardy fungují
 
