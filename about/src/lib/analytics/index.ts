@@ -10,7 +10,11 @@ let clientPromise: Promise<AnalyticsClient> | undefined;
 function withClient(send: (client: AnalyticsClient) => void) {
   if (!isAnalyticsEnabled()) return;
   if (!clientPromise) {
-    clientPromise = import("./client");
+    clientPromise = import("./client").catch((error: unknown) => {
+      // Forget a failed download so a later event can retry it.
+      clientPromise = undefined;
+      throw error;
+    });
   }
   clientPromise.then(send).catch(() => {});
 }

@@ -53,6 +53,11 @@ export function sanitizeAnalyticsEvent(event: BeforeSendEvent): BeforeSendEvent 
     return null;
   }
   try {
+    // Custom events keep only the page: campaign tags are free text, and event records promise none.
+    if (event.type === "event") {
+      const source = new URL(event.url);
+      return { ...event, url: new URL(getAnalyticsPath(source.pathname), source.origin).href };
+    }
     return { ...event, url: getAnalyticsUrl(event.url, window.location.href) };
   } catch {
     return null;

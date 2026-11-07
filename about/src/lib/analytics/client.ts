@@ -63,6 +63,10 @@ export function getAnalyticsUrl(url: string, liveUrl?: string): string {
   return sanitized.href;
 }
 
+// The address of each requested page view, by sent path: a view queued before Vercel's script loads
+// is sanitized later, when the visitor may already be on another page.
+const requestedPageUrls = new Map<string, string>();
+
 /**
  * Every page view and custom event passes through here before it leaves the browser. The SDK hands
  * over the live location for the current page, query and fragment included.
@@ -72,7 +76,15 @@ export function sanitizeAnalyticsEvent(event: BeforeSendEvent): BeforeSendEvent 
     return null;
   }
   try {
-    return { ...event, url: getAnalyticsUrl(event.url, window.location.href) };
+    const source = new URL(event.url);
+    const path = getAnalyticsPage(source.pathname).path;
+    // Custom events keep only the page: campaign tags are free text, and event records promise none.
+    if (event.type === "event") {
+      return { ...event, url: new URL(path, source.origin).href };
+    }
+    const requestedUrl = requestedPageUrls.get(path);
+    requestedPageUrls.delete(path);
+    return { ...event, url: getAnalyticsUrl(event.url, requestedUrl ?? window.location.href) };
   } catch {
     return null;
   }
@@ -89,7 +101,9 @@ function initialize() {
 export function trackPageView(pathname: string) {
   if (!isAnalyticsEnabled()) return;
   initialize();
-  pageview(getAnalyticsPage(pathname));
+  const page = getAnalyticsPage(pathname);
+  requestedPageUrls.set(page.path, window.location.href);
+  pageview(page);
 }
 
 export type AppLinkEvent = "app_open" | "app_download";

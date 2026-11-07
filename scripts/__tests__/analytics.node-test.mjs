@@ -255,6 +255,47 @@ test("utm_ tags survive the SDK's query reset when the live location is the same
       { type: "pageview", url: "https://bitsocial.net/projects/5chan?utm_source=queued" },
     );
   });
+  await t.test(
+    "a view queued before the script loads keeps the tags of the page it was for",
+    async (t) => {
+      const sdk = browserAt(t, "https://bitsocial.net/projects/?utm_source=x");
+      const { client } = await load("about");
+      client.trackPageView("/projects/");
+      assert.deepEqual(calls(sdk.pageview), [[{ path: "/projects", route: "/projects" }]]);
+      window.location = new URL("https://bitsocial.net/privacy");
+      assert.deepEqual(
+        client.sanitizeAnalyticsEvent({ type: "pageview", url: "https://bitsocial.net/projects" }),
+        { type: "pageview", url: "https://bitsocial.net/projects?utm_source=x" },
+      );
+    },
+  );
+});
+
+// Campaign tags are free text, and the privacy page says event records never carry identifiers.
+test("custom events keep only the page, without campaign tags", async (t) => {
+  for (const [app, url, sent] of [
+    [
+      "about",
+      "https://bitsocial.net/projects/5chan/?utm_campaign=x&ref=y",
+      "https://bitsocial.net/projects/5chan",
+    ],
+    [
+      "chain",
+      "https://chain.bitsocial.net/rich-list/?utm_source=x",
+      "https://chain.bitsocial.net/rich-list",
+    ],
+  ]) {
+    await t.test(app, async (t) => {
+      browserAt(t, url);
+      const { client } = await load(app);
+      const payload = { name: "newsletter_signup", data: { outcome: "success" } };
+      assert.deepEqual(client.sanitizeAnalyticsEvent({ type: "event", url, payload }), {
+        type: "event",
+        url: sent,
+        payload,
+      });
+    });
+  }
 });
 
 for (const app of ["about", "chain"]) {
