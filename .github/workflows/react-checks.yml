@@ -43,6 +43,11 @@ on:
 permissions:
   contents: read
 
+# A newer push to the same pull request cancels its older run. Pushes to a branch never cancel each other.
+concurrency:
+  group: react-checks-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   react:
     env:
