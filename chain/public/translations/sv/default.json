@@ -383,20 +383,10 @@
       "safeOwner": "Safe-ägare"
     },
     "entities": {
-      "esteban": {
-        "name": "Innehavare L"
-      },
-      "rinse12": {
-        "name": "Innehavare J"
-      },
-      "tom": {
-        "name": "Innehavare K"
-      },
       "pool": {
         "name": "Uniswap-poolen BSO/ETH"
       },
       "holderA": {
-        "name": "Innehavare A",
         "summary": "Tolv plånböcker som köpte PLEB på Avalanche mellan 22 februari och 8 april 2022 och aldrig har sålt. Fem är sammankopplade on-chain; de andra sju matchar samma köpares mönster.",
         "evidence": {
           "transfersToLpWallet": "Två av köparplånböckerna skickade PLEB och AVAX till en tredje plånbok, som använde dem för likviditet och farming på Trader Joe: 1 md PLEB och 5 AVAX den 27 februari 2022, sedan 7,2 md PLEB och 34 AVAX mellan 28 februari och 2 mars. Den tredje plånboken skickade tillbaka 0,013 AVAX.",
@@ -406,7 +396,6 @@
         }
       },
       "holderB": {
-        "name": "Innehavare B",
         "summary": "En Safe-multisig med 2 av 4 signaturer som samlade in PLEB från 14 plånböcker på en eftermiddag, plus en av dess ägare.",
         "evidence": {
           "owners": "Safe-kontot kräver signaturer från 2 av sina 4 ägare. En ägare innehar också BSO direkt. Fyra ägare kan betyda en person med flera nycklar eller en liten grupp.",
@@ -416,49 +405,42 @@
         }
       },
       "holderC": {
-        "name": "Innehavare C",
         "summary": "Två plånböcker som fick PLEB från samma avsändare.",
         "evidence": {
           "commonSender": "En plånbok skickade 4,7 md PLEB till den första den 19 augusti 2024 och 15,4 md till den andra den 14 november 2025. En gemensam avsändare kan också vara en säljare som säljer till två köpare."
         }
       },
       "holderD": {
-        "name": "Innehavare D",
         "summary": "Tre plånböcker som hänger ihop via en av dem.",
         "evidence": {
           "sharedRecipient": "Den mellersta plånboken tog emot en testöverföring och sedan 5 md PLEB från den första den 18 november 2022, och 8,2 md PLEB från den tredje den 1 december 2022. Det kan också vara en köpare som betalar två säljare."
         }
       },
       "holderE": {
-        "name": "Innehavare E",
         "summary": "Två plånböcker som fylldes på från samma källa.",
         "evidence": {
           "commonSender": "En plånbok skickade 39,4 md PLEB till den första i sju överföringar mellan oktober 2024 och januari 2025, och 2,0 md till den andra den 22 november 2025."
         }
       },
       "holderF": {
-        "name": "Innehavare F",
         "summary": "En plånbok som delade upp sina tokens på tre nya plånböcker och betalade deras gas.",
         "evidence": {
           "split": "Den 10 mars 2024 skickade en plånbok inom sju minuter jämna belopp PLEB (12 md, 8 md och 4 md) till tre nya plånböcker och skickade samma dag ETH för gas till två av dem. Den innehar fortfarande själv BSO."
         }
       },
       "holderG": {
-        "name": "Innehavare G",
         "summary": "Två plånböcker finansierade av samma avsändare, med tre års mellanrum.",
         "evidence": {
           "commonSender": "En plånbok skickade 4,7 md PLEB på Avalanche till den andra i april 2022 och 6 md PLEB på Ethereum till den första i januari 2025."
         }
       },
       "holderH": {
-        "name": "Innehavare H",
         "summary": "Två plånböcker med en överföring mellan sig.",
         "evidence": {
           "directTransfer": "Den första plånboken skickade 420 mn PLEB till den andra den 24 april 2022."
         }
       },
       "holderI": {
-        "name": "Innehavare I",
         "summary": "Två plånböcker med upprepade överföringar mellan sig.",
         "evidence": {
           "directTransfers": "Den andra plånboken skickade 13,2 md PLEB till den första den 30 oktober 2023 och 5 md den 8 november 2023."
@@ -615,7 +597,8 @@
         "gen3": "Gen 3: BSO i dag"
       },
       "snapshot": "Saldon och pris från Blockscout: {{count}} plånböcker per {{date}}. Hittat en felaktig eller saknad koppling? <contributeLink>Förbättra den här sidan</contributeLink>."
-    }
+    },
+    "holderName": "Innehavare {{letter}}"
   },
   "chart": {
     "meta": {

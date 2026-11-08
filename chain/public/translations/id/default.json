@@ -378,20 +378,10 @@
       "safeOwner": "pemilik Safe"
     },
     "entities": {
-      "esteban": {
-        "name": "Pemegang L"
-      },
-      "rinse12": {
-        "name": "Pemegang J"
-      },
-      "tom": {
-        "name": "Pemegang K"
-      },
       "pool": {
         "name": "Pool BSO/ETH Uniswap"
       },
       "holderA": {
-        "name": "Pemegang A",
         "summary": "Dua belas dompet yang membeli PLEB di Avalanche antara 22 Februari dan 8 April 2022, dan tidak pernah menjual. Lima di antaranya terhubung satu sama lain on-chain; tujuh lainnya cocok dengan pola pembeli yang sama.",
         "evidence": {
           "transfersToLpWallet": "Dua dompet pembeli mengirim PLEB dan AVAX ke dompet ketiga, yang menggunakannya untuk likuiditas dan farming di Trader Joe: 1 miliar PLEB dan 5 AVAX pada 27 Februari 2022, lalu 7,2 miliar PLEB dan 34 AVAX antara 28 Februari dan 2 Maret. Dompet ketiga mengirim balik 0,013 AVAX.",
@@ -401,7 +391,6 @@
         }
       },
       "holderB": {
-        "name": "Pemegang B",
         "summary": "Multisig Safe 2-dari-4 yang mengumpulkan PLEB dari 14 dompet dalam satu sore, ditambah salah satu pemiliknya.",
         "evidence": {
           "owners": "Safe ini membutuhkan tanda tangan 2 dari 4 pemiliknya. Salah satu pemilik juga memegang BSO secara langsung. Empat pemilik bisa berarti satu orang dengan beberapa kunci atau sekelompok kecil orang.",
@@ -411,49 +400,42 @@
         }
       },
       "holderC": {
-        "name": "Pemegang C",
         "summary": "Dua dompet yang menerima PLEB dari pengirim yang sama.",
         "evidence": {
           "commonSender": "Satu dompet mengirim 4,7 miliar PLEB ke dompet pertama pada 19 Agustus 2024 dan 15,4 miliar ke dompet kedua pada 14 November 2025. Pengirim yang sama bisa juga berarti satu penjual yang melayani dua pembeli."
         }
       },
       "holderD": {
-        "name": "Pemegang D",
         "summary": "Tiga dompet yang terhubung melalui salah satunya.",
         "evidence": {
           "sharedRecipient": "Dompet tengah menerima transfer uji coba lalu 5 miliar PLEB dari dompet pertama pada 18 November 2022, dan 8,2 miliar PLEB dari dompet ketiga pada 1 Desember 2022. Bisa juga ini satu pembeli yang membayar dua penjual."
         }
       },
       "holderE": {
-        "name": "Pemegang E",
         "summary": "Dua dompet yang diisi dari sumber yang sama.",
         "evidence": {
           "commonSender": "Satu dompet mengirim 39,4 miliar PLEB ke dompet pertama dalam tujuh transfer antara Oktober 2024 dan Januari 2025, dan 2,0 miliar ke dompet kedua pada 22 November 2025."
         }
       },
       "holderF": {
-        "name": "Pemegang F",
         "summary": "Satu dompet yang membagi tokennya ke tiga dompet baru dan membayar gas mereka.",
         "evidence": {
           "split": "Pada 10 Maret 2024, dalam tujuh menit, satu dompet mengirim PLEB dalam jumlah bulat (12 miliar, 8 miliar, dan 4 miliar) ke tiga dompet baru dan pada hari yang sama mengirim ETH untuk gas ke dua di antaranya. Dompet itu sendiri masih memegang BSO."
         }
       },
       "holderG": {
-        "name": "Pemegang G",
         "summary": "Dua dompet yang didanai oleh pengirim yang sama, dengan selang tiga tahun.",
         "evidence": {
           "commonSender": "Satu dompet mengirim 4,7 miliar PLEB di Avalanche ke dompet kedua pada April 2022 dan 6 miliar PLEB di Ethereum ke dompet pertama pada Januari 2025."
         }
       },
       "holderH": {
-        "name": "Pemegang H",
         "summary": "Dua dompet dengan satu transfer di antara mereka.",
         "evidence": {
           "directTransfer": "Dompet pertama mengirim 420 juta PLEB ke dompet kedua pada 24 April 2022."
         }
       },
       "holderI": {
-        "name": "Pemegang I",
         "summary": "Dua dompet dengan transfer berulang di antara mereka.",
         "evidence": {
           "directTransfers": "Dompet kedua mengirim 13,2 miliar PLEB ke dompet pertama pada 30 Oktober 2023 dan 5 miliar pada 8 November 2023."
@@ -610,7 +592,8 @@
         "gen3": "Gen 3: BSO saat ini"
       },
       "snapshot": "Saldo dan harga dari Blockscout: {{count}} dompet per {{date}}. Menemukan tautan yang salah atau terlewat? <contributeLink>Tingkatkan halaman ini</contributeLink>."
-    }
+    },
+    "holderName": "Pemegang {{letter}}"
   },
   "chart": {
     "meta": {

@@ -383,20 +383,10 @@
       "safeOwner": "Safe-eigenaar"
     },
     "entities": {
-      "esteban": {
-        "name": "Houder L"
-      },
-      "rinse12": {
-        "name": "Houder J"
-      },
-      "tom": {
-        "name": "Houder K"
-      },
       "pool": {
         "name": "Uniswap BSO/ETH-pool"
       },
       "holderA": {
-        "name": "Houder A",
         "summary": "Twaalf wallets die tussen 22 februari en 8 april 2022 PLEB kochten op Avalanche en nooit hebben verkocht. Vijf zijn on-chain met elkaar verbonden; de andere zeven passen in het patroon van dezelfde koper.",
         "evidence": {
           "transfersToLpWallet": "Twee van de kopende wallets stuurden PLEB en AVAX naar een derde wallet, die ze gebruikte voor liquiditeit en farming op Trader Joe: 1 mld. PLEB en 5 AVAX op 27 februari 2022, daarna 7,2 mld. PLEB en 34 AVAX tussen 28 februari en 2 maart. De derde wallet stuurde 0,013 AVAX terug.",
@@ -406,7 +396,6 @@
         }
       },
       "holderB": {
-        "name": "Houder B",
         "summary": "Een 2-van-4 Safe-multisig die op één middag PLEB uit 14 wallets verzamelde, plus een van de eigenaren.",
         "evidence": {
           "owners": "De Safe heeft handtekeningen van 2 van zijn 4 eigenaren nodig. Eén eigenaar heeft ook zelf direct BSO. Vier eigenaren kan één persoon met meerdere sleutels betekenen of een kleine groep.",
@@ -416,49 +405,42 @@
         }
       },
       "holderC": {
-        "name": "Houder C",
         "summary": "Twee wallets die PLEB ontvingen van dezelfde afzender.",
         "evidence": {
           "commonSender": "Eén wallet stuurde op 19 augustus 2024 4,7 mld. PLEB naar de eerste en op 14 november 2025 15,4 mld. naar de tweede. Een gedeelde afzender kan ook één verkoper zijn die twee kopers bedient."
         }
       },
       "holderD": {
-        "name": "Houder D",
         "summary": "Drie wallets die via één ervan met elkaar verbonden zijn.",
         "evidence": {
           "sharedRecipient": "De middelste wallet ontving op 18 november 2022 een testtransfer en daarna 5 mld. PLEB van de eerste, en op 1 december 2022 8,2 mld. PLEB van de derde. Het kan ook één koper zijn die twee verkopers betaalt."
         }
       },
       "holderE": {
-        "name": "Houder E",
         "summary": "Twee wallets gevuld vanuit dezelfde bron.",
         "evidence": {
           "commonSender": "Eén wallet stuurde de eerste 39,4 mld. PLEB in zeven transfers tussen oktober 2024 en januari 2025, en de tweede 2,0 mld. op 22 november 2025."
         }
       },
       "holderF": {
-        "name": "Houder F",
         "summary": "Eén wallet die zijn tokens over drie nieuwe wallets verdeelde en hun gas betaalde.",
         "evidence": {
           "split": "Op 10 maart 2024 stuurde één wallet binnen zeven minuten ronde bedragen PLEB (12 mld., 8 mld. en 4 mld.) naar drie nieuwe wallets en stuurde twee daarvan dezelfde dag ETH voor gas. De wallet heeft zelf nog steeds BSO."
         }
       },
       "holderG": {
-        "name": "Houder G",
         "summary": "Twee wallets gefinancierd door dezelfde afzender, met drie jaar ertussen.",
         "evidence": {
           "commonSender": "Eén wallet stuurde de tweede 4,7 mld. PLEB op Avalanche in april 2022 en de eerste 6 mld. PLEB op Ethereum in januari 2025."
         }
       },
       "holderH": {
-        "name": "Houder H",
         "summary": "Twee wallets met één transfer tussen hen.",
         "evidence": {
           "directTransfer": "De eerste wallet stuurde de tweede 420 mln. PLEB op 24 april 2022."
         }
       },
       "holderI": {
-        "name": "Houder I",
         "summary": "Twee wallets met herhaalde transfers tussen hen.",
         "evidence": {
           "directTransfers": "De tweede wallet stuurde de eerste 13,2 mld. PLEB op 30 oktober 2023 en 5 mld. op 8 november 2023."
@@ -615,7 +597,8 @@
         "gen3": "Gen 3: BSO vandaag"
       },
       "snapshot": "Saldi en prijs van Blockscout: {{count}} wallets per {{date}}. Een verkeerde of ontbrekende koppeling gevonden? <contributeLink>Verbeter deze pagina</contributeLink>."
-    }
+    },
+    "holderName": "Houder {{letter}}"
   },
   "chart": {
     "meta": {

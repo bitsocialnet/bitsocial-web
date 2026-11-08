@@ -388,20 +388,10 @@
       "safeOwner": "propietario del Safe"
     },
     "entities": {
-      "esteban": {
-        "name": "Poseedor L"
-      },
-      "rinse12": {
-        "name": "Poseedor J"
-      },
-      "tom": {
-        "name": "Poseedor K"
-      },
       "pool": {
         "name": "Pool BSO/ETH de Uniswap"
       },
       "holderA": {
-        "name": "Poseedor A",
         "summary": "Doce billeteras que compraron PLEB en Avalanche entre el 22 de febrero y el 8 de abril de 2022 y nunca han vendido. Cinco están conectadas entre sí on-chain; las otras siete encajan con el patrón del mismo comprador.",
         "evidence": {
           "transfersToLpWallet": "Dos de las billeteras compradoras enviaron PLEB y AVAX a una tercera billetera, que los usó para aportar liquidez y hacer farming en Trader Joe: 1000 millones de PLEB y 5 AVAX el 27 de febrero de 2022, y luego 7200 millones de PLEB y 34 AVAX entre el 28 de febrero y el 2 de marzo. La tercera billetera devolvió 0,013 AVAX.",
@@ -411,7 +401,6 @@
         }
       },
       "holderB": {
-        "name": "Poseedor B",
         "summary": "Una multisig Safe 2 de 4 que reunió PLEB de 14 billeteras en una sola tarde, más uno de sus propietarios.",
         "evidence": {
           "owners": "El Safe necesita la firma de 2 de sus 4 propietarios. Un propietario también tiene BSO directamente. Cuatro propietarios pueden ser una persona con varias claves o un grupo pequeño.",
@@ -421,49 +410,42 @@
         }
       },
       "holderC": {
-        "name": "Poseedor C",
         "summary": "Dos billeteras que recibieron PLEB del mismo remitente.",
         "evidence": {
           "commonSender": "Una billetera envió 4700 millones de PLEB a la primera el 19 de agosto de 2024 y 15.400 millones a la segunda el 14 de noviembre de 2025. Un remitente común también puede ser un vendedor que atiende a dos compradores."
         }
       },
       "holderD": {
-        "name": "Poseedor D",
         "summary": "Tres billeteras unidas a través de una de ellas.",
         "evidence": {
           "sharedRecipient": "La billetera del medio recibió una transferencia de prueba y luego 5000 millones de PLEB de la primera el 18 de noviembre de 2022, y 8200 millones de PLEB de la tercera el 1 de diciembre de 2022. También podría ser un comprador que paga a dos vendedores."
         }
       },
       "holderE": {
-        "name": "Poseedor E",
         "summary": "Dos billeteras abastecidas desde la misma fuente.",
         "evidence": {
           "commonSender": "Una billetera envió a la primera 39.400 millones de PLEB en siete transferencias entre octubre de 2024 y enero de 2025, y a la segunda 2000 millones el 22 de noviembre de 2025."
         }
       },
       "holderF": {
-        "name": "Poseedor F",
         "summary": "Una billetera que repartió sus tokens entre tres billeteras nuevas y les pagó el gas.",
         "evidence": {
           "split": "El 10 de marzo de 2024, en siete minutos, una billetera envió cantidades redondas de PLEB (12.000, 8000 y 4000 millones) a tres billeteras nuevas y ese mismo día envió ETH a dos de ellas para el gas. Todavía tiene BSO."
         }
       },
       "holderG": {
-        "name": "Poseedor G",
         "summary": "Dos billeteras financiadas por el mismo remitente, con tres años de diferencia.",
         "evidence": {
           "commonSender": "Una billetera envió a la segunda 4700 millones de PLEB en Avalanche, en abril de 2022, y a la primera 6000 millones de PLEB en Ethereum, en enero de 2025."
         }
       },
       "holderH": {
-        "name": "Poseedor H",
         "summary": "Dos billeteras con una transferencia entre ellas.",
         "evidence": {
           "directTransfer": "La primera billetera envió a la segunda 420 millones de PLEB el 24 de abril de 2022."
         }
       },
       "holderI": {
-        "name": "Poseedor I",
         "summary": "Dos billeteras con transferencias repetidas entre ellas.",
         "evidence": {
           "directTransfers": "La segunda billetera envió a la primera 13.200 millones de PLEB el 30 de octubre de 2023 y 5000 millones el 8 de noviembre de 2023."
@@ -620,7 +602,8 @@
         "gen3": "Gen 3: BSO actual"
       },
       "snapshot": "Saldos y precio de Blockscout: {{count}} billeteras a fecha de {{date}}. ¿Has encontrado un vínculo erróneo o uno que falta? <contributeLink>Mejora esta página</contributeLink>."
-    }
+    },
+    "holderName": "Poseedor {{letter}}"
   },
   "chart": {
     "meta": {

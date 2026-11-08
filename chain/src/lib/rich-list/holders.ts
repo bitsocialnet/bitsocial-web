@@ -28,6 +28,11 @@ export type RichListData = {
   snapshot: Snapshot;
   entityRows: EntityRow[];
   entityRowById: Map<string, EntityRow>;
+  /**
+   * The letter each team member and linked holder is named by, A for the largest by current
+   * balance, so the names follow the ranking whenever balances change. The pool keeps its name.
+   */
+  holderLetterById: Map<string, string>;
   /** Holders with linked wallets merged into one row per entity, largest first. */
   groupedRows: RichListRow[];
   /** Every wallet on its own, as a block explorer lists them. */
@@ -74,11 +79,18 @@ export function buildRichListData(snapshot: Snapshot): RichListData {
   ];
   const balanceOf = (entry: (typeof entries)[number]) =>
     entry.type === "entity" ? entry.row.balance : entry.holder.balance;
+  // Sorting is stable, so holders with equal balances keep their ENTITIES order.
+  const lettered = entityRows
+    .filter((row) => row.entity.kind !== "pool")
+    .sort((a, b) => b.balance - a.balance);
 
   return {
     snapshot,
     entityRows,
     entityRowById: new Map(entityRows.map((row) => [row.entity.id, row])),
+    holderLetterById: new Map(
+      lettered.map((row, index) => [row.entity.id, holderLetter(index)] as const),
+    ),
     groupedRows: entries
       .sort((a, b) => balanceOf(b) - balanceOf(a))
       .map((entry, index) => ({ ...entry, rank: index + 1 })),
@@ -90,6 +102,12 @@ export function buildRichListData(snapshot: Snapshot): RichListData {
     shareOfSupply: (balance) => balance / snapshot.totalSupply,
     usdValue: (bso) => (snapshot.priceUsd === null ? null : bso * snapshot.priceUsd),
   };
+}
+
+/** A, B, … Z, then AA, AB, … as spreadsheet columns count. */
+function holderLetter(index: number): string {
+  const letter = String.fromCharCode(65 + (index % 26));
+  return index < 26 ? letter : holderLetter(Math.floor(index / 26) - 1) + letter;
 }
 
 export function plebToBso(pleb: number) {

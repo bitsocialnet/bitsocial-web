@@ -388,20 +388,10 @@
       "safeOwner": "owner del Safe"
     },
     "entities": {
-      "esteban": {
-        "name": "Detentore L"
-      },
-      "rinse12": {
-        "name": "Detentore J"
-      },
-      "tom": {
-        "name": "Detentore K"
-      },
       "pool": {
         "name": "Pool BSO/ETH di Uniswap"
       },
       "holderA": {
-        "name": "Detentore A",
         "summary": "Dodici portafogli che hanno comprato PLEB su Avalanche tra il 22 febbraio e l'8 aprile 2022 e non hanno mai venduto. Cinque sono collegati tra loro on-chain; gli altri sette corrispondono allo schema dello stesso acquirente.",
         "evidence": {
           "transfersToLpWallet": "Due dei portafogli acquirenti hanno inviato PLEB e AVAX a un terzo portafoglio, che li ha usati per fornire liquidità e fare farming su Trader Joe: 1 miliardo di PLEB e 5 AVAX il 27 febbraio 2022, poi 7,2 miliardi di PLEB e 34 AVAX tra il 28 febbraio e il 2 marzo. Il terzo portafoglio ha restituito 0,013 AVAX.",
@@ -411,7 +401,6 @@
         }
       },
       "holderB": {
-        "name": "Detentore B",
         "summary": "Un multisig Safe 2 su 4 che ha raccolto PLEB da 14 portafogli in un solo pomeriggio, più uno dei suoi owner.",
         "evidence": {
           "owners": "Il Safe richiede la firma di 2 dei suoi 4 owner. Uno degli owner detiene anche BSO direttamente. Quattro owner possono indicare una sola persona con più chiavi oppure un piccolo gruppo.",
@@ -421,49 +410,42 @@
         }
       },
       "holderC": {
-        "name": "Detentore C",
         "summary": "Due portafogli che hanno ricevuto PLEB dallo stesso mittente.",
         "evidence": {
           "commonSender": "Un portafoglio ha inviato 4,7 miliardi di PLEB al primo il 19 agosto 2024 e 15,4 miliardi al secondo il 14 novembre 2025. Un mittente in comune può anche essere un unico venditore che serve due acquirenti."
         }
       },
       "holderD": {
-        "name": "Detentore D",
         "summary": "Tre portafogli uniti tramite uno di essi.",
         "evidence": {
           "sharedRecipient": "Il portafoglio centrale ha ricevuto un trasferimento di prova e poi 5 miliardi di PLEB dal primo il 18 novembre 2022, e 8,2 miliardi di PLEB dal terzo il 1° dicembre 2022. Potrebbe anche trattarsi di un unico acquirente che paga due venditori."
         }
       },
       "holderE": {
-        "name": "Detentore E",
         "summary": "Due portafogli riforniti dalla stessa fonte.",
         "evidence": {
           "commonSender": "Un portafoglio ha inviato al primo 39,4 miliardi di PLEB in sette trasferimenti tra ottobre 2024 e gennaio 2025, e al secondo 2,0 miliardi il 22 novembre 2025."
         }
       },
       "holderF": {
-        "name": "Detentore F",
         "summary": "Un portafoglio che ha suddiviso i propri token in tre nuovi portafogli e ne ha pagato il gas.",
         "evidence": {
           "split": "Il 10 marzo 2024, nel giro di sette minuti, un portafoglio ha inviato importi tondi di PLEB (12, 8 e 4 miliardi) a tre nuovi portafogli e lo stesso giorno ha inviato ETH per il gas a due di essi. Detiene tuttora BSO a sua volta."
         }
       },
       "holderG": {
-        "name": "Detentore G",
         "summary": "Due portafogli finanziati dallo stesso mittente, a tre anni di distanza.",
         "evidence": {
           "commonSender": "Un portafoglio ha inviato al secondo 4,7 miliardi di PLEB su Avalanche nell'aprile 2022 e al primo 6 miliardi di PLEB su Ethereum nel gennaio 2025."
         }
       },
       "holderH": {
-        "name": "Detentore H",
         "summary": "Due portafogli con un trasferimento tra loro.",
         "evidence": {
           "directTransfer": "Il primo portafoglio ha inviato al secondo 420 milioni di PLEB il 24 aprile 2022."
         }
       },
       "holderI": {
-        "name": "Detentore I",
         "summary": "Due portafogli con trasferimenti ripetuti tra loro.",
         "evidence": {
           "directTransfers": "Il secondo portafoglio ha inviato al primo 13,2 miliardi di PLEB il 30 ottobre 2023 e 5 miliardi l'8 novembre 2023."
@@ -620,7 +602,8 @@
         "gen3": "Gen 3: BSO oggi"
       },
       "snapshot": "Saldi e prezzo da Blockscout: {{count}} portafogli al {{date}}. Hai trovato un collegamento sbagliato o mancante? <contributeLink>Migliora questa pagina</contributeLink>."
-    }
+    },
+    "holderName": "Detentore {{letter}}"
   },
   "chart": {
     "meta": {

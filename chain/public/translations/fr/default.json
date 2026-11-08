@@ -388,20 +388,10 @@
       "safeOwner": "propriétaire du Safe"
     },
     "entities": {
-      "esteban": {
-        "name": "Détenteur L"
-      },
-      "rinse12": {
-        "name": "Détenteur J"
-      },
-      "tom": {
-        "name": "Détenteur K"
-      },
       "pool": {
         "name": "Pool BSO/ETH d’Uniswap"
       },
       "holderA": {
-        "name": "Détenteur A",
         "summary": "Douze portefeuilles qui ont acheté du PLEB sur Avalanche entre le 22 février et le 8 avril 2022 et n’ont jamais vendu. Cinq sont reliés entre eux on-chain ; les sept autres correspondent au schéma du même acheteur.",
         "evidence": {
           "transfersToLpWallet": "Deux des portefeuilles acheteurs ont envoyé des PLEB et des AVAX à un troisième portefeuille, qui s’en est servi pour fournir de la liquidité et faire du farming sur Trader Joe : 1 milliard de PLEB et 5 AVAX le 27 février 2022, puis 7,2 milliards de PLEB et 34 AVAX entre le 28 février et le 2 mars. Le troisième portefeuille a renvoyé 0,013 AVAX.",
@@ -411,7 +401,6 @@
         }
       },
       "holderB": {
-        "name": "Détenteur B",
         "summary": "Un multisig Safe 2 sur 4 qui a rassemblé des PLEB provenant de 14 portefeuilles en un seul après-midi, plus l’un de ses propriétaires.",
         "evidence": {
           "owners": "Le Safe exige la signature de 2 de ses 4 propriétaires. L’un d’eux détient aussi du BSO directement. Quatre propriétaires peuvent correspondre à une seule personne disposant de plusieurs clés, ou à un petit groupe.",
@@ -421,49 +410,42 @@
         }
       },
       "holderC": {
-        "name": "Détenteur C",
         "summary": "Deux portefeuilles qui ont reçu des PLEB du même expéditeur.",
         "evidence": {
           "commonSender": "Un portefeuille a envoyé 4,7 milliards de PLEB au premier le 19 août 2024 et 15,4 milliards au second le 14 novembre 2025. Un expéditeur commun peut aussi être un seul vendeur servant deux acheteurs."
         }
       },
       "holderD": {
-        "name": "Détenteur D",
         "summary": "Trois portefeuilles reliés par l’un d’entre eux.",
         "evidence": {
           "sharedRecipient": "Le portefeuille du milieu a reçu un transfert de test puis 5 milliards de PLEB du premier le 18 novembre 2022, et 8,2 milliards de PLEB du troisième le 1er décembre 2022. Il pourrait aussi s’agir d’un seul acheteur payant deux vendeurs."
         }
       },
       "holderE": {
-        "name": "Détenteur E",
         "summary": "Deux portefeuilles alimentés par la même source.",
         "evidence": {
           "commonSender": "Un portefeuille a envoyé au premier 39,4 milliards de PLEB en sept transferts entre octobre 2024 et janvier 2025, et au second 2,0 milliards le 22 novembre 2025."
         }
       },
       "holderF": {
-        "name": "Détenteur F",
         "summary": "Un portefeuille qui a réparti ses tokens sur trois nouveaux portefeuilles et payé leur gas.",
         "evidence": {
           "split": "Le 10 mars 2024, en l’espace de sept minutes, un portefeuille a envoyé des montants ronds de PLEB (12, 8 et 4 milliards) à trois nouveaux portefeuilles, puis a envoyé le même jour de l’ETH pour le gas à deux d’entre eux. Il détient toujours lui-même du BSO."
         }
       },
       "holderG": {
-        "name": "Détenteur G",
         "summary": "Deux portefeuilles financés par le même expéditeur, à trois ans d’intervalle.",
         "evidence": {
           "commonSender": "Un portefeuille a envoyé au second 4,7 milliards de PLEB sur Avalanche en avril 2022 et au premier 6 milliards de PLEB sur Ethereum en janvier 2025."
         }
       },
       "holderH": {
-        "name": "Détenteur H",
         "summary": "Deux portefeuilles avec un transfert entre eux.",
         "evidence": {
           "directTransfer": "Le premier portefeuille a envoyé au second 420 millions de PLEB le 24 avril 2022."
         }
       },
       "holderI": {
-        "name": "Détenteur I",
         "summary": "Deux portefeuilles avec des transferts répétés entre eux.",
         "evidence": {
           "directTransfers": "Le second portefeuille a envoyé au premier 13,2 milliards de PLEB le 30 octobre 2023 et 5 milliards le 8 novembre 2023."
@@ -620,7 +602,8 @@
         "gen3": "Gen 3 : BSO aujourd’hui"
       },
       "snapshot": "Soldes et prix issus de Blockscout : {{count}} portefeuilles au {{date}}. Vous avez trouvé un lien erroné ou manquant ? <contributeLink>Améliorer cette page</contributeLink>."
-    }
+    },
+    "holderName": "Détenteur {{letter}}"
   },
   "chart": {
     "meta": {

@@ -383,20 +383,10 @@
       "safeOwner": "Safe owner"
     },
     "entities": {
-      "esteban": {
-        "name": "Holder L"
-      },
-      "rinse12": {
-        "name": "Holder J"
-      },
-      "tom": {
-        "name": "Holder K"
-      },
       "pool": {
         "name": "Uniswap BSO/ETH pool"
       },
       "holderA": {
-        "name": "Holder A",
         "summary": "Twelve wallets that bought PLEB on Avalanche between February 22 and April 8, 2022, and have never sold. Five are tied together on-chain; the other seven match the same buyer's pattern.",
         "evidence": {
           "transfersToLpWallet": "Two of the buying wallets sent PLEB and AVAX to a third wallet, which used them for Trader Joe liquidity and farming: 1B PLEB and 5 AVAX on February 27, 2022, then 7.2B PLEB and 34 AVAX between February 28 and March 2. The third wallet sent 0.013 AVAX back.",
@@ -406,7 +396,6 @@
         }
       },
       "holderB": {
-        "name": "Holder B",
         "summary": "A 2-of-4 Safe multisig that gathered PLEB from 14 wallets in one afternoon, plus one of its owners.",
         "evidence": {
           "owners": "The Safe needs 2 of its 4 owners to sign. One owner also holds BSO directly. Four owners can mean one person with several keys or a small group.",
@@ -416,49 +405,42 @@
         }
       },
       "holderC": {
-        "name": "Holder C",
         "summary": "Two wallets that received PLEB from the same sender.",
         "evidence": {
           "commonSender": "One wallet sent 4.7B PLEB to the first on August 19, 2024 and 15.4B to the second on November 14, 2025. A shared sender can also be one seller serving two buyers."
         }
       },
       "holderD": {
-        "name": "Holder D",
         "summary": "Three wallets joined through one of them.",
         "evidence": {
           "sharedRecipient": "The middle wallet received a test transfer and then 5B PLEB from the first on November 18, 2022, and 8.2B PLEB from the third on December 1, 2022. It could also be one buyer paying two sellers."
         }
       },
       "holderE": {
-        "name": "Holder E",
         "summary": "Two wallets filled from the same source.",
         "evidence": {
           "commonSender": "One wallet sent the first 39.4B PLEB in seven transfers between October 2024 and January 2025, and the second 2.0B on November 22, 2025."
         }
       },
       "holderF": {
-        "name": "Holder F",
         "summary": "One wallet that split its tokens into three new wallets and paid their gas.",
         "evidence": {
           "split": "On March 10, 2024, within seven minutes, one wallet sent round amounts of PLEB (12B, 8B and 4B) to three new wallets and sent two of them ETH for gas the same day. It still holds BSO itself."
         }
       },
       "holderG": {
-        "name": "Holder G",
         "summary": "Two wallets funded by the same sender, three years apart.",
         "evidence": {
           "commonSender": "One wallet sent the second 4.7B PLEB on Avalanche in April 2022 and the first 6B PLEB on Ethereum in January 2025."
         }
       },
       "holderH": {
-        "name": "Holder H",
         "summary": "Two wallets with one transfer between them.",
         "evidence": {
           "directTransfer": "The first wallet sent the second 420M PLEB on April 24, 2022."
         }
       },
       "holderI": {
-        "name": "Holder I",
         "summary": "Two wallets with repeated transfers between them.",
         "evidence": {
           "directTransfers": "The second wallet sent the first 13.2B PLEB on October 30, 2023 and 5B on November 8, 2023."
@@ -615,7 +597,8 @@
         "gen3": "Gen 3: BSO today"
       },
       "snapshot": "Balances and price from Blockscout: {{count}} wallets as of {{date}}. Found a wrong link or a missing one? <contributeLink>Improve this page</contributeLink>."
-    }
+    },
+    "holderName": "Holder {{letter}}"
   },
   "chart": {
     "meta": {

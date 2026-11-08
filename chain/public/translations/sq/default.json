@@ -383,20 +383,10 @@
       "safeOwner": "Pronar i Safe"
     },
     "entities": {
-      "esteban": {
-        "name": "Mbajtësi L"
-      },
-      "rinse12": {
-        "name": "Mbajtësi J"
-      },
-      "tom": {
-        "name": "Mbajtësi K"
-      },
       "pool": {
         "name": "Pool-i BSO/ETH i Uniswap"
       },
       "holderA": {
-        "name": "Mbajtësi A",
         "summary": "Dymbëdhjetë portofole që blenë PLEB në Avalanche midis 22 shkurtit dhe 8 prillit 2022 dhe nuk kanë shitur kurrë. Pesë janë të lidhura mes tyre on-chain; shtatë të tjerat përputhen me modelin e të njëjtit blerës.",
         "evidence": {
           "transfersToLpWallet": "Dy nga portofolet blerëse i dërguan PLEB dhe AVAX një portofoli të tretë, i cili i përdori për likuiditet dhe farming në Trader Joe: 1 mld PLEB dhe 5 AVAX më 27 shkurt 2022, pastaj 7,2 mld PLEB dhe 34 AVAX midis 28 shkurtit dhe 2 marsit. Portofoli i tretë ktheu 0,013 AVAX.",
@@ -406,7 +396,6 @@
         }
       },
       "holderB": {
-        "name": "Mbajtësi B",
         "summary": "Një multisig Safe 2-nga-4 që mblodhi PLEB nga 14 portofole brenda një pasditeje, plus një nga pronarët e tij.",
         "evidence": {
           "owners": "Safe-i kërkon nënshkrimin e 2 nga 4 pronarët e tij. Një pronar mban edhe BSO drejtpërdrejt. Katër pronarë mund të nënkuptojnë një person me disa çelësa ose një grup të vogël.",
@@ -416,49 +405,42 @@
         }
       },
       "holderC": {
-        "name": "Mbajtësi C",
         "summary": "Dy portofole që morën PLEB nga i njëjti dërgues.",
         "evidence": {
           "commonSender": "Një portofol i dërgoi të parit 4,7 mld PLEB më 19 gusht 2024 dhe të dytit 15,4 mld më 14 nëntor 2025. Një dërgues i përbashkët mund të jetë edhe një shitës i vetëm që u shërben dy blerësve."
         }
       },
       "holderD": {
-        "name": "Mbajtësi D",
         "summary": "Tre portofole të lidhura përmes njërit prej tyre.",
         "evidence": {
           "sharedRecipient": "Portofoli i mesit mori nga i pari një transferim prove dhe pastaj 5 mld PLEB më 18 nëntor 2022, dhe nga i treti 8,2 mld PLEB më 1 dhjetor 2022. Mund të jetë edhe një blerës i vetëm që paguan dy shitës."
         }
       },
       "holderE": {
-        "name": "Mbajtësi E",
         "summary": "Dy portofole të mbushura nga i njëjti burim.",
         "evidence": {
           "commonSender": "Një portofol i dërgoi të parit 39,4 mld PLEB në shtatë transferime midis tetorit 2024 dhe janarit 2025, dhe të dytit 2,0 mld më 22 nëntor 2025."
         }
       },
       "holderF": {
-        "name": "Mbajtësi F",
         "summary": "Një portofol që i ndau tokenët e vet në tre portofole të reja dhe u pagoi gas-in.",
         "evidence": {
           "split": "Më 10 mars 2024, brenda shtatë minutave, një portofol u dërgoi tre portofoleve të reja shuma të rrumbullakëta PLEB (12 mld, 8 mld dhe 4 mld) dhe po atë ditë u dërgoi dyve prej tyre ETH për gas. Ai vetë mban ende BSO."
         }
       },
       "holderG": {
-        "name": "Mbajtësi G",
         "summary": "Dy portofole të financuara nga i njëjti dërgues, me tre vjet diferencë.",
         "evidence": {
           "commonSender": "Një portofol i dërgoi të dytit 4,7 mld PLEB në Avalanche në prill 2022 dhe të parit 6 mld PLEB në Ethereum në janar 2025."
         }
       },
       "holderH": {
-        "name": "Mbajtësi H",
         "summary": "Dy portofole me një transferim mes tyre.",
         "evidence": {
           "directTransfer": "Portofoli i parë i dërgoi të dytit 420 mln PLEB më 24 prill 2022."
         }
       },
       "holderI": {
-        "name": "Mbajtësi I",
         "summary": "Dy portofole me transferime të përsëritura mes tyre.",
         "evidence": {
           "directTransfers": "Portofoli i dytë i dërgoi të parit 13,2 mld PLEB më 30 tetor 2023 dhe 5 mld më 8 nëntor 2023."
@@ -615,7 +597,8 @@
         "gen3": "Gen 3: BSO sot"
       },
       "snapshot": "Bilancet dhe çmimi nga Blockscout: {{count}} portofole më {{date}}. Gjete një lidhje të gabuar ose që mungon? <contributeLink>Përmirëso këtë faqe</contributeLink>."
-    }
+    },
+    "holderName": "Mbajtësi {{letter}}"
   },
   "chart": {
     "meta": {

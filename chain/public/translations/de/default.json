@@ -383,20 +383,10 @@
       "safeOwner": "Safe-Owner"
     },
     "entities": {
-      "esteban": {
-        "name": "Halter L"
-      },
-      "rinse12": {
-        "name": "Halter J"
-      },
-      "tom": {
-        "name": "Halter K"
-      },
       "pool": {
         "name": "Uniswap-Pool BSO/ETH"
       },
       "holderA": {
-        "name": "Halter A",
         "summary": "Zwölf Wallets, die zwischen dem 22. Februar und dem 8. April 2022 PLEB auf Avalanche gekauft und nie verkauft haben. Fünf sind on-chain miteinander verbunden; die anderen sieben passen zum Muster desselben Käufers.",
         "evidence": {
           "transfersToLpWallet": "Zwei der kaufenden Wallets schickten PLEB und AVAX an eine dritte Wallet, die damit Liquidität und Farming auf Trader Joe betrieb: 1 Mrd. PLEB und 5 AVAX am 27. Februar 2022, dann 7,2 Mrd. PLEB und 34 AVAX zwischen dem 28. Februar und dem 2. März. Die dritte Wallet schickte 0,013 AVAX zurück.",
@@ -406,7 +396,6 @@
         }
       },
       "holderB": {
-        "name": "Halter B",
         "summary": "Ein 2-von-4-Safe-Multisig, das an einem einzigen Nachmittag PLEB aus 14 Wallets eingesammelt hat, dazu einer seiner Owner.",
         "evidence": {
           "owners": "Für den Safe müssen 2 seiner 4 Owner signieren. Ein Owner hält BSO auch direkt. Vier Owner können eine Person mit mehreren Schlüsseln sein oder eine kleine Gruppe.",
@@ -416,49 +405,42 @@
         }
       },
       "holderC": {
-        "name": "Halter C",
         "summary": "Zwei Wallets, die PLEB vom selben Absender erhalten haben.",
         "evidence": {
           "commonSender": "Eine Wallet schickte 4,7 Mrd. PLEB am 19. August 2024 an die erste und 15,4 Mrd. am 14. November 2025 an die zweite. Ein gemeinsamer Absender kann auch ein Verkäufer sein, der zwei Käufer bedient."
         }
       },
       "holderD": {
-        "name": "Halter D",
         "summary": "Drei Wallets, verbunden über eine von ihnen.",
         "evidence": {
           "sharedRecipient": "Die mittlere Wallet erhielt am 18. November 2022 von der ersten einen Testtransfer und dann 5 Mrd. PLEB, und am 1. Dezember 2022 von der dritten 8,2 Mrd. PLEB. Es könnte auch ein Käufer sein, der zwei Verkäufer bezahlt."
         }
       },
       "holderE": {
-        "name": "Halter E",
         "summary": "Zwei Wallets, die aus derselben Quelle gefüllt wurden.",
         "evidence": {
           "commonSender": "Eine Wallet schickte der ersten zwischen Oktober 2024 und Januar 2025 in sieben Transfers 39,4 Mrd. PLEB und der zweiten 2,0 Mrd. am 22. November 2025."
         }
       },
       "holderF": {
-        "name": "Halter F",
         "summary": "Eine Wallet, die ihre Tokens auf drei neue Wallets aufgeteilt und deren Gas bezahlt hat.",
         "evidence": {
           "split": "Am 10. März 2024 schickte eine Wallet innerhalb von sieben Minuten runde Beträge an PLEB (12 Mrd., 8 Mrd. und 4 Mrd.) an drei neue Wallets und schickte zwei davon am selben Tag ETH für Gas. Sie hält selbst noch BSO."
         }
       },
       "holderG": {
-        "name": "Halter G",
         "summary": "Zwei Wallets, finanziert vom selben Absender, im Abstand von drei Jahren.",
         "evidence": {
           "commonSender": "Eine Wallet schickte der zweiten im April 2022 auf Avalanche 4,7 Mrd. PLEB und der ersten im Januar 2025 auf Ethereum 6 Mrd. PLEB."
         }
       },
       "holderH": {
-        "name": "Halter H",
         "summary": "Zwei Wallets mit einem Transfer zwischen ihnen.",
         "evidence": {
           "directTransfer": "Die erste Wallet schickte der zweiten 420 Mio. PLEB am 24. April 2022."
         }
       },
       "holderI": {
-        "name": "Halter I",
         "summary": "Zwei Wallets mit wiederholten Transfers zwischen ihnen.",
         "evidence": {
           "directTransfers": "Die zweite Wallet schickte der ersten 13,2 Mrd. PLEB am 30. Oktober 2023 und 5 Mrd. am 8. November 2023."
@@ -615,7 +597,8 @@
         "gen3": "Gen 3: BSO heute"
       },
       "snapshot": "Guthaben und Preis von Blockscout: {{count}} Wallets, Stand {{date}}. Eine falsche oder fehlende Verknüpfung gefunden? <contributeLink>Diese Seite verbessern</contributeLink>."
-    }
+    },
+    "holderName": "Halter {{letter}}"
   },
   "chart": {
     "meta": {

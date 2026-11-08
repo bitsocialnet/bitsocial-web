@@ -378,20 +378,10 @@
       "safeOwner": "chủ sở hữu Safe"
     },
     "entities": {
-      "esteban": {
-        "name": "Người nắm giữ L"
-      },
-      "rinse12": {
-        "name": "Người nắm giữ J"
-      },
-      "tom": {
-        "name": "Người nắm giữ K"
-      },
       "pool": {
         "name": "Pool BSO/ETH trên Uniswap"
       },
       "holderA": {
-        "name": "Người nắm giữ A",
         "summary": "Mười hai ví đã mua PLEB trên Avalanche từ ngày 22 tháng 2 đến ngày 8 tháng 4 năm 2022 và chưa bao giờ bán. Năm ví liên kết với nhau on-chain; bảy ví còn lại khớp với mô thức của cùng một người mua.",
         "evidence": {
           "transfersToLpWallet": "Hai trong số các ví mua đã gửi PLEB và AVAX sang một ví thứ ba, ví này dùng chúng để cung cấp thanh khoản và farm trên Trader Joe: 1 tỷ PLEB và 5 AVAX vào ngày 27 tháng 2 năm 2022, sau đó 7,2 tỷ PLEB và 34 AVAX từ ngày 28 tháng 2 đến ngày 2 tháng 3. Ví thứ ba đã gửi lại 0,013 AVAX.",
@@ -401,7 +391,6 @@
         }
       },
       "holderB": {
-        "name": "Người nắm giữ B",
         "summary": "Một multisig Safe cần 2 trên 4 chữ ký, đã gom PLEB từ 14 ví chỉ trong một buổi chiều, cùng với một trong các chủ sở hữu của nó.",
         "evidence": {
           "owners": "Safe cần 2 trong 4 chủ sở hữu ký. Một chủ sở hữu cũng nắm giữ BSO trực tiếp. Bốn chủ sở hữu có thể là một người với nhiều khóa hoặc một nhóm nhỏ.",
@@ -411,49 +400,42 @@
         }
       },
       "holderC": {
-        "name": "Người nắm giữ C",
         "summary": "Hai ví nhận PLEB từ cùng một người gửi.",
         "evidence": {
           "commonSender": "Một ví đã gửi 4,7 tỷ PLEB cho ví thứ nhất vào ngày 19 tháng 8 năm 2024 và 15,4 tỷ cho ví thứ hai vào ngày 14 tháng 11 năm 2025. Một người gửi chung cũng có thể là một người bán phục vụ hai người mua."
         }
       },
       "holderD": {
-        "name": "Người nắm giữ D",
         "summary": "Ba ví được nối với nhau qua một ví trong số đó.",
         "evidence": {
           "sharedRecipient": "Ví ở giữa đã nhận một giao dịch thử rồi 5 tỷ PLEB từ ví thứ nhất vào ngày 18 tháng 11 năm 2022, và 8,2 tỷ PLEB từ ví thứ ba vào ngày 1 tháng 12 năm 2022. Đây cũng có thể là một người mua trả tiền cho hai người bán."
         }
       },
       "holderE": {
-        "name": "Người nắm giữ E",
         "summary": "Hai ví được nạp từ cùng một nguồn.",
         "evidence": {
           "commonSender": "Một ví đã gửi cho ví thứ nhất 39,4 tỷ PLEB qua bảy lần chuyển từ tháng 10 năm 2024 đến tháng 1 năm 2025, và gửi cho ví thứ hai 2,0 tỷ vào ngày 22 tháng 11 năm 2025."
         }
       },
       "holderF": {
-        "name": "Người nắm giữ F",
         "summary": "Một ví đã chia token của mình sang ba ví mới và trả phí gas cho chúng.",
         "evidence": {
           "split": "Ngày 10 tháng 3 năm 2024, trong vòng bảy phút, một ví đã gửi các khoản PLEB tròn số (12 tỷ, 8 tỷ và 4 tỷ) đến ba ví mới và trong cùng ngày gửi ETH cho hai trong số đó để trả phí gas. Bản thân ví này vẫn còn nắm giữ BSO."
         }
       },
       "holderG": {
-        "name": "Người nắm giữ G",
         "summary": "Hai ví được cùng một người gửi cấp vốn, cách nhau ba năm.",
         "evidence": {
           "commonSender": "Một ví đã gửi cho ví thứ hai 4,7 tỷ PLEB trên Avalanche vào tháng 4 năm 2022 và gửi cho ví thứ nhất 6 tỷ PLEB trên Ethereum vào tháng 1 năm 2025."
         }
       },
       "holderH": {
-        "name": "Người nắm giữ H",
         "summary": "Hai ví có một lần chuyển giữa chúng.",
         "evidence": {
           "directTransfer": "Ví thứ nhất đã gửi cho ví thứ hai 420 triệu PLEB vào ngày 24 tháng 4 năm 2022."
         }
       },
       "holderI": {
-        "name": "Người nắm giữ I",
         "summary": "Hai ví có nhiều lần chuyển giữa chúng.",
         "evidence": {
           "directTransfers": "Ví thứ hai đã gửi cho ví thứ nhất 13,2 tỷ PLEB vào ngày 30 tháng 10 năm 2023 và 5 tỷ vào ngày 8 tháng 11 năm 2023."
@@ -610,7 +592,8 @@
         "gen3": "Gen 3: BSO hiện nay"
       },
       "snapshot": "Số dư và giá từ Blockscout: {{count}} ví tính đến {{date}}. Bạn thấy một liên kết sai hoặc bị thiếu? <contributeLink>Cải thiện trang này</contributeLink>."
-    }
+    },
+    "holderName": "Người nắm giữ {{letter}}"
   },
   "chart": {
     "meta": {

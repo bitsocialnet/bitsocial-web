@@ -383,20 +383,10 @@
       "safeOwner": "Safe sahibi"
     },
     "entities": {
-      "esteban": {
-        "name": "Sahip L"
-      },
-      "rinse12": {
-        "name": "Sahip J"
-      },
-      "tom": {
-        "name": "Sahip K"
-      },
       "pool": {
         "name": "Uniswap BSO/ETH havuzu"
       },
       "holderA": {
-        "name": "Sahip A",
         "summary": "22 Şubat ile 8 Nisan 2022 arasında Avalanche'ta PLEB satın alan ve o günden beri hiç satmayan on iki cüzdan. Beşi zincir üzerinde birbirine bağlı; diğer yedisi aynı alıcının örüntüsüyle eşleşiyor.",
         "evidence": {
           "transfersToLpWallet": "Alım yapan cüzdanlardan ikisi PLEB ve AVAX'ı üçüncü bir cüzdana gönderdi; bu cüzdan onları Trader Joe'da likidite ve farming için kullandı: 27 Şubat 2022'de 1 milyar PLEB ve 5 AVAX, ardından 28 Şubat ile 2 Mart arasında 7,2 milyar PLEB ve 34 AVAX. Üçüncü cüzdan 0,013 AVAX'ı geri gönderdi.",
@@ -406,7 +396,6 @@
         }
       },
       "holderB": {
-        "name": "Sahip B",
         "summary": "4 sahibinden 2'sinin imzasını gerektiren, tek bir öğleden sonra 14 cüzdandan PLEB toplayan bir Safe multisig ve sahiplerinden biri.",
         "evidence": {
           "owners": "Safe, 4 sahibinden 2'sinin imzalamasını gerektirir. Sahiplerden biri doğrudan da BSO tutuyor. Dört sahip, birden fazla anahtarı olan tek bir kişi ya da küçük bir grup anlamına gelebilir.",
@@ -416,49 +405,42 @@
         }
       },
       "holderC": {
-        "name": "Sahip C",
         "summary": "Aynı göndericiden PLEB alan iki cüzdan.",
         "evidence": {
           "commonSender": "Bir cüzdan 19 Ağustos 2024'te birincisine 4,7 milyar PLEB, 14 Kasım 2025'te ikincisine 15,4 milyar gönderdi. Ortak bir gönderici, iki alıcıya satış yapan tek bir satıcı da olabilir."
         }
       },
       "holderD": {
-        "name": "Sahip D",
         "summary": "İçlerinden biri üzerinden birbirine bağlanan üç cüzdan.",
         "evidence": {
           "sharedRecipient": "Ortadaki cüzdan, 18 Kasım 2022'de birincisinden bir test transferi ve ardından 5 milyar PLEB, 1 Aralık 2022'de ise üçüncüsünden 8,2 milyar PLEB aldı. Bu, iki satıcıya ödeme yapan tek bir alıcı da olabilir."
         }
       },
       "holderE": {
-        "name": "Sahip E",
         "summary": "Aynı kaynaktan doldurulan iki cüzdan.",
         "evidence": {
           "commonSender": "Bir cüzdan, Ekim 2024 ile Ocak 2025 arasında yedi transferle birincisine 39,4 milyar PLEB, 22 Kasım 2025'te ikincisine 2,0 milyar gönderdi."
         }
       },
       "holderF": {
-        "name": "Sahip F",
         "summary": "Token'larını üç yeni cüzdana bölen ve onların gas ücretini ödeyen bir cüzdan.",
         "evidence": {
           "split": "10 Mart 2024'te, yedi dakika içinde, bir cüzdan üç yeni cüzdana yuvarlak miktarlarda PLEB (12 milyar, 8 milyar ve 4 milyar) gönderdi ve aynı gün ikisine gas için ETH gönderdi. Kendisi hâlâ BSO tutuyor."
         }
       },
       "holderG": {
-        "name": "Sahip G",
         "summary": "Aynı gönderici tarafından, üç yıl arayla fonlanan iki cüzdan.",
         "evidence": {
           "commonSender": "Bir cüzdan, Nisan 2022'de Avalanche'ta ikincisine 4,7 milyar PLEB, Ocak 2025'te Ethereum'da birincisine 6 milyar PLEB gönderdi."
         }
       },
       "holderH": {
-        "name": "Sahip H",
         "summary": "Aralarında tek bir transfer bulunan iki cüzdan.",
         "evidence": {
           "directTransfer": "Birinci cüzdan, 24 Nisan 2022'de ikincisine 420 milyon PLEB gönderdi."
         }
       },
       "holderI": {
-        "name": "Sahip I",
         "summary": "Aralarında tekrarlanan transferler bulunan iki cüzdan.",
         "evidence": {
           "directTransfers": "İkinci cüzdan, 30 Ekim 2023'te birincisine 13,2 milyar PLEB, 8 Kasım 2023'te de 5 milyar gönderdi."
@@ -615,7 +597,8 @@
         "gen3": "Gen 3: Bugünkü BSO"
       },
       "snapshot": "Bakiyeler ve fiyat Blockscout'tan: {{date}} itibarıyla {{count}} cüzdan. Yanlış ya da eksik bir bağlantı mı buldunuz? <contributeLink>Bu sayfayı iyileştir</contributeLink>."
-    }
+    },
+    "holderName": "Sahip {{letter}}"
   },
   "chart": {
     "meta": {

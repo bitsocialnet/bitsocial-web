@@ -1,4 +1,5 @@
 import { type ReactNode, createContext, useContext, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { COMMITTED_SNAPSHOT, type RichListData, buildRichListData } from "@/lib/rich-list/holders";
 import { fetchLiveSnapshot } from "@/lib/rich-list/live";
 import { type LiveStatus, useAwaitingLive, useLiveData } from "@/lib/use-live-data";
@@ -39,4 +40,17 @@ export function useRichList() {
     throw new Error("useRichList must be used inside RichListDataProvider.");
   }
   return value;
+}
+
+/** An entity's display name: "Holder" and its current letter, or the pool's own name. */
+export function useEntityName() {
+  const { t } = useTranslation();
+  const { holderLetterById } = useRichList();
+
+  return (entityId: string) => {
+    const letter = holderLetterById.get(entityId);
+    return letter === undefined
+      ? t(`richList.entities.${entityId}.name`)
+      : t("richList.holderName", { letter });
+  };
 }

@@ -393,20 +393,10 @@
       "safeOwner": "vlastník Safe"
     },
     "entities": {
-      "esteban": {
-        "name": "Držitel L"
-      },
-      "rinse12": {
-        "name": "Držitel J"
-      },
-      "tom": {
-        "name": "Držitel K"
-      },
       "pool": {
         "name": "Pool BSO/ETH na Uniswapu"
       },
       "holderA": {
-        "name": "Držitel A",
         "summary": "Dvanáct peněženek, které mezi 22. únorem a 8. dubnem 2022 koupily PLEB na Avalanche a nikdy neprodaly. Pět z nich je propojeno on-chain; zbylých sedm odpovídá vzorci stejného kupce.",
         "evidence": {
           "transfersToLpWallet": "Dvě z nakupujících peněženek poslaly PLEB a AVAX třetí peněžence, která je použila na likviditu a farming na Trader Joe: 1 mld. PLEB a 5 AVAX dne 27. února 2022, pak 7,2 mld. PLEB a 34 AVAX mezi 28. únorem a 2. březnem. Třetí peněženka poslala zpět 0,013 AVAX.",
@@ -416,7 +406,6 @@
         }
       },
       "holderB": {
-        "name": "Držitel B",
         "summary": "Multisig Safe typu 2 ze 4, který během jednoho odpoledne shromáždil PLEB ze 14 peněženek, plus jeden z jeho vlastníků.",
         "evidence": {
           "owners": "Safe potřebuje podpis 2 ze svých 4 vlastníků. Jeden vlastník drží BSO i přímo. Čtyři vlastníci mohou být jeden člověk s několika klíči, nebo malá skupina.",
@@ -426,49 +415,42 @@
         }
       },
       "holderC": {
-        "name": "Držitel C",
         "summary": "Dvě peněženky, které dostaly PLEB od stejného odesílatele.",
         "evidence": {
           "commonSender": "Jedna peněženka poslala 19. srpna 2024 první z nich 4,7 mld. PLEB a 14. listopadu 2025 druhé 15,4 mld. Společný odesílatel může být i jeden prodejce, který obsluhuje dva kupce."
         }
       },
       "holderD": {
-        "name": "Držitel D",
         "summary": "Tři peněženky spojené přes jednu z nich.",
         "evidence": {
           "sharedRecipient": "Prostřední peněženka dostala 18. listopadu 2022 od první testovací převod a pak 5 mld. PLEB a 1. prosince 2022 od třetí 8,2 mld. PLEB. Mohl by to být i jeden kupec, který platí dvěma prodejcům."
         }
       },
       "holderE": {
-        "name": "Držitel E",
         "summary": "Dvě peněženky naplněné ze stejného zdroje.",
         "evidence": {
           "commonSender": "Jedna peněženka poslala první z nich 39,4 mld. PLEB v sedmi převodech mezi říjnem 2024 a lednem 2025 a druhé 2,0 mld. dne 22. listopadu 2025."
         }
       },
       "holderF": {
-        "name": "Držitel F",
         "summary": "Jedna peněženka, která rozdělila své tokeny do tří nových peněženek a zaplatila jim gas.",
         "evidence": {
           "split": "10. března 2024 poslala jedna peněženka během sedmi minut kulaté částky PLEB (12 mld., 8 mld. a 4 mld.) na tři nové peněženky a téhož dne dvěma z nich poslala ETH na gas. Sama BSO stále drží."
         }
       },
       "holderG": {
-        "name": "Držitel G",
         "summary": "Dvě peněženky financované stejným odesílatelem, s odstupem tří let.",
         "evidence": {
           "commonSender": "Jedna peněženka poslala druhé 4,7 mld. PLEB na Avalanche v dubnu 2022 a první 6 mld. PLEB na Ethereu v lednu 2025."
         }
       },
       "holderH": {
-        "name": "Držitel H",
         "summary": "Dvě peněženky s jedním převodem mezi sebou.",
         "evidence": {
           "directTransfer": "První peněženka poslala druhé 420 mil. PLEB dne 24. dubna 2022."
         }
       },
       "holderI": {
-        "name": "Držitel I",
         "summary": "Dvě peněženky s opakovanými převody mezi sebou.",
         "evidence": {
           "directTransfers": "Druhá peněženka poslala první 13,2 mld. PLEB dne 30. října 2023 a 5 mld. dne 8. listopadu 2023."
@@ -625,7 +607,8 @@
         "gen3": "Gen 3: dnešní BSO"
       },
       "snapshot": "Zůstatky a cena z Blockscoutu: {{count}} peněženek ke dni {{date}}. Našli jste chybné nebo chybějící propojení? <contributeLink>Vylepšit tuto stránku</contributeLink>."
-    }
+    },
+    "holderName": "Držitel {{letter}}"
   },
   "chart": {
     "meta": {

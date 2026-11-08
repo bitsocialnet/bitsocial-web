@@ -383,20 +383,10 @@
       "safeOwner": "Safe-ejer"
     },
     "entities": {
-      "esteban": {
-        "name": "Indehaver L"
-      },
-      "rinse12": {
-        "name": "Indehaver J"
-      },
-      "tom": {
-        "name": "Indehaver K"
-      },
       "pool": {
         "name": "Uniswap-pool for BSO/ETH"
       },
       "holderA": {
-        "name": "Indehaver A",
         "summary": "Tolv wallets, der købte PLEB på Avalanche mellem 22. februar og 8. april 2022 og aldrig har solgt. Fem er forbundet med hinanden on-chain; de andre syv matcher den samme købers mønster.",
         "evidence": {
           "transfersToLpWallet": "To af de købende wallets sendte PLEB og AVAX til en tredje wallet, som brugte dem til likviditet og farming på Trader Joe: 1 mia. PLEB og 5 AVAX den 27. februar 2022, derefter 7,2 mia. PLEB og 34 AVAX mellem 28. februar og 2. marts. Den tredje wallet sendte 0,013 AVAX tilbage.",
@@ -406,7 +396,6 @@
         }
       },
       "holderB": {
-        "name": "Indehaver B",
         "summary": "En 2-af-4 Safe-multisig, der samlede PLEB fra 14 wallets på én eftermiddag, plus en af dens ejere.",
         "evidence": {
           "owners": "Safen kræver underskrift fra 2 af sine 4 ejere. En af ejerne har også BSO direkte. Fire ejere kan være én person med flere nøgler eller en lille gruppe.",
@@ -416,49 +405,42 @@
         }
       },
       "holderC": {
-        "name": "Indehaver C",
         "summary": "To wallets, der modtog PLEB fra den samme afsender.",
         "evidence": {
           "commonSender": "Én wallet sendte 4,7 mia. PLEB til den første den 19. august 2024 og 15,4 mia. til den anden den 14. november 2025. En fælles afsender kan også være én sælger, der betjener to købere."
         }
       },
       "holderD": {
-        "name": "Indehaver D",
         "summary": "Tre wallets forbundet gennem én af dem.",
         "evidence": {
           "sharedRecipient": "Den midterste wallet modtog en testoverførsel og derefter 5 mia. PLEB fra den første den 18. november 2022 og 8,2 mia. PLEB fra den tredje den 1. december 2022. Det kunne også være én køber, der betaler to sælgere."
         }
       },
       "holderE": {
-        "name": "Indehaver E",
         "summary": "To wallets fyldt op fra samme kilde.",
         "evidence": {
           "commonSender": "Én wallet sendte den første 39,4 mia. PLEB i syv overførsler mellem oktober 2024 og januar 2025 og den anden 2,0 mia. den 22. november 2025."
         }
       },
       "holderF": {
-        "name": "Indehaver F",
         "summary": "Én wallet, der delte sine tokens ud på tre nye wallets og betalte deres gas.",
         "evidence": {
           "split": "Den 10. marts 2024 sendte én wallet inden for syv minutter runde beløb af PLEB (12 mia., 8 mia. og 4 mia.) til tre nye wallets og sendte samme dag ETH til gas til to af dem. Den har stadig selv BSO."
         }
       },
       "holderG": {
-        "name": "Indehaver G",
         "summary": "To wallets finansieret af den samme afsender med tre års mellemrum.",
         "evidence": {
           "commonSender": "Én wallet sendte den anden 4,7 mia. PLEB på Avalanche i april 2022 og den første 6 mia. PLEB på Ethereum i januar 2025."
         }
       },
       "holderH": {
-        "name": "Indehaver H",
         "summary": "To wallets med én overførsel imellem sig.",
         "evidence": {
           "directTransfer": "Den første wallet sendte den anden 420 mio. PLEB den 24. april 2022."
         }
       },
       "holderI": {
-        "name": "Indehaver I",
         "summary": "To wallets med gentagne overførsler imellem sig.",
         "evidence": {
           "directTransfers": "Den anden wallet sendte den første 13,2 mia. PLEB den 30. oktober 2023 og 5 mia. den 8. november 2023."
@@ -615,7 +597,8 @@
         "gen3": "Gen 3: BSO i dag"
       },
       "snapshot": "Saldi og pris fra Blockscout: {{count}} wallets pr. {{date}}. Har du fundet en forkert eller manglende forbindelse? <contributeLink>Forbedr denne side</contributeLink>."
-    }
+    },
+    "holderName": "Indehaver {{letter}}"
   },
   "chart": {
     "meta": {

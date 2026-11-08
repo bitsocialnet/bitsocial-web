@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useRichList } from "./data-context";
+import { useEntityName, useRichList } from "./data-context";
 import { useFormatters } from "./format";
 import { LiveSkeleton } from "./primitives";
 
@@ -26,6 +26,7 @@ const SMALLER_HOLDER_FILL = "rl-fill-holder-rest";
 export default function SupplyStrip() {
   const { t } = useTranslation();
   const format = useFormatters();
+  const entityName = useEntityName();
   const { entityRows, snapshot, shareOfSupply, awaitingLive } = useRichList();
   // The hovered or focused group, so its segment and legend entry stand out together.
   const [active, setActive] = useState<string | null>(null);
@@ -41,7 +42,7 @@ export default function SupplyStrip() {
   const labelled: Segment[] = [
     ...ownHue.map((row) => ({
       key: row.entity.id,
-      label: t(`richList.entities.${row.entity.id}.name`),
+      label: entityName(row.entity.id),
       share: shareOfSupply(row.balance),
       fill: HOLDER_FILLS[row.entity.id],
       href: `#entity-${row.entity.id}`,
@@ -50,7 +51,7 @@ export default function SupplyStrip() {
       ? [
           {
             key: "smaller-holders",
-            label: sharedHue.map((row) => t(`richList.entities.${row.entity.id}.name`)).join(", "),
+            label: sharedHue.map((row) => entityName(row.entity.id)).join(", "),
             share: shareOfSupply(sharedHue.reduce((sum, row) => sum + row.balance, 0)),
             fill: SMALLER_HOLDER_FILL,
             href: "#linked-wallets",

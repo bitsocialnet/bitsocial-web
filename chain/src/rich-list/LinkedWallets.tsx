@@ -1,6 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useRichList } from "./data-context";
+import { useEntityName, useRichList } from "./data-context";
 import { useFormatters } from "./format";
 import { entityCategory } from "@/lib/rich-list/data";
 import { AddressLink, CategoryBadge, RichSection, TxLinks } from "./primitives";
@@ -11,6 +11,7 @@ const CONFIDENCE_ORDER = { confirmed: 0, likely: 1, possible: 2 } as const;
 export default function LinkedWallets() {
   const { t } = useTranslation();
   const format = useFormatters();
+  const entityName = useEntityName();
   const { entityRows, shareOfSupply } = useRichList();
   const groups = entityRows
     .filter((row) => row.entity.kind === "linked")
@@ -45,7 +46,7 @@ export default function LinkedWallets() {
           return (
             <article key={entity.id} id={`entity-${entity.id}`} className="rl-evidence glass-card">
               <header className="rl-evidence-head">
-                <h3 className="rl-evidence-name">{t(`${base}.name`)}</h3>
+                <h3 className="rl-evidence-name">{entityName(entity.id)}</h3>
                 <CategoryBadge category={entityCategory(entity)} />
                 <p className="rl-evidence-total">
                   {t("richList.linked.holds", {

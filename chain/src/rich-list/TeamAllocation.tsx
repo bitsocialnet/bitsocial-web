@@ -6,7 +6,7 @@ import {
   PLEB_MINTS,
   type TxRef,
 } from "@/lib/rich-list/data";
-import { useRichList } from "./data-context";
+import { useEntityName, useRichList } from "./data-context";
 import { useFormatters } from "./format";
 import { AddressLink, RichSection, TelegramLinks, TxLinks } from "./primitives";
 
@@ -59,8 +59,12 @@ const FACTS: { id: string; txs?: TxRef[] }[] = [
 export default function TeamAllocation() {
   const { t } = useTranslation();
   const format = useFormatters();
+  const entityName = useEntityName();
   const { entityRows, entityRowById, shareOfSupply, usdValue } = useRichList();
-  const teamRows = entityRows.filter((row) => row.entity.kind === "team");
+  // Largest first, the order their letters are given in.
+  const teamRows = entityRows
+    .filter((row) => row.entity.kind === "team")
+    .sort((a, b) => b.balance - a.balance);
   const teamTotal = teamRows.reduce((sum, row) => sum + row.balance, 0);
   // A Uniswap V2 pool holds equal value of both tokens, so its ETH is worth as much as its BSO.
   const poolBso = entityRowById.get("pool")?.balance ?? 0;
@@ -160,7 +164,7 @@ export default function TeamAllocation() {
                 row.wallets.map((wallet) => (
                   <tr key={wallet.address} role="row">
                     <td role="cell" className="rl-col-person">
-                      {t(`richList.entities.${row.entity.id}.name`)}
+                      {entityName(row.entity.id)}
                       {wallet.role ? (
                         <span className="rl-cell-note">
                           {t(`richList.walletRoles.${wallet.role}`)}

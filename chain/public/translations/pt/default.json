@@ -388,20 +388,10 @@
       "safeOwner": "Dono do Safe"
     },
     "entities": {
-      "esteban": {
-        "name": "Detentor L"
-      },
-      "rinse12": {
-        "name": "Detentor J"
-      },
-      "tom": {
-        "name": "Detentor K"
-      },
       "pool": {
         "name": "Pool BSO/ETH da Uniswap"
       },
       "holderA": {
-        "name": "Detentor A",
         "summary": "Doze carteiras que compraram PLEB na Avalanche entre 22 de fevereiro e 8 de abril de 2022 e nunca venderam. Cinco estão ligadas entre si on-chain; as outras sete seguem o padrão do mesmo comprador.",
         "evidence": {
           "transfersToLpWallet": "Duas das carteiras compradoras enviaram PLEB e AVAX para uma terceira carteira, que os usou para liquidez e farming na Trader Joe: 1 bilhão de PLEB e 5 AVAX em 27 de fevereiro de 2022, depois 7,2 bilhões de PLEB e 34 AVAX entre 28 de fevereiro e 2 de março. A terceira carteira devolveu 0,013 AVAX.",
@@ -411,7 +401,6 @@
         }
       },
       "holderB": {
-        "name": "Detentor B",
         "summary": "Uma multisig Safe 2 de 4 que reuniu PLEB de 14 carteiras em uma só tarde, mais um de seus donos.",
         "evidence": {
           "owners": "O Safe precisa da assinatura de 2 de seus 4 donos. Um dos donos também tem BSO diretamente. Quatro donos podem significar uma pessoa com várias chaves ou um grupo pequeno.",
@@ -421,49 +410,42 @@
         }
       },
       "holderC": {
-        "name": "Detentor C",
         "summary": "Duas carteiras que receberam PLEB do mesmo remetente.",
         "evidence": {
           "commonSender": "Uma carteira enviou 4,7 bilhões de PLEB para a primeira em 19 de agosto de 2024 e 15,4 bilhões para a segunda em 14 de novembro de 2025. Um remetente em comum também pode ser um único vendedor atendendo dois compradores."
         }
       },
       "holderD": {
-        "name": "Detentor D",
         "summary": "Três carteiras ligadas por meio de uma delas.",
         "evidence": {
           "sharedRecipient": "A carteira do meio recebeu uma transferência de teste e depois 5 bilhões de PLEB da primeira em 18 de novembro de 2022, e 8,2 bilhões de PLEB da terceira em 1º de dezembro de 2022. Também pode ser um único comprador pagando dois vendedores."
         }
       },
       "holderE": {
-        "name": "Detentor E",
         "summary": "Duas carteiras abastecidas pela mesma origem.",
         "evidence": {
           "commonSender": "Uma carteira enviou à primeira 39,4 bilhões de PLEB em sete transferências entre outubro de 2024 e janeiro de 2025, e à segunda 2,0 bilhões em 22 de novembro de 2025."
         }
       },
       "holderF": {
-        "name": "Detentor F",
         "summary": "Uma carteira que dividiu seus tokens entre três carteiras novas e pagou o gás delas.",
         "evidence": {
           "split": "Em 10 de março de 2024, em sete minutos, uma carteira enviou valores redondos de PLEB (12 bilhões, 8 bilhões e 4 bilhões) para três carteiras novas e, no mesmo dia, mandou ETH para gás a duas delas. Ela mesma ainda tem BSO."
         }
       },
       "holderG": {
-        "name": "Detentor G",
         "summary": "Duas carteiras financiadas pelo mesmo remetente, com três anos de diferença.",
         "evidence": {
           "commonSender": "Uma carteira enviou à segunda 4,7 bilhões de PLEB na Avalanche em abril de 2022 e à primeira 6 bilhões de PLEB no Ethereum em janeiro de 2025."
         }
       },
       "holderH": {
-        "name": "Detentor H",
         "summary": "Duas carteiras com uma transferência entre elas.",
         "evidence": {
           "directTransfer": "A primeira carteira enviou à segunda 420 milhões de PLEB em 24 de abril de 2022."
         }
       },
       "holderI": {
-        "name": "Detentor I",
         "summary": "Duas carteiras com transferências repetidas entre elas.",
         "evidence": {
           "directTransfers": "A segunda carteira enviou à primeira 13,2 bilhões de PLEB em 30 de outubro de 2023 e 5 bilhões em 8 de novembro de 2023."
@@ -620,7 +602,8 @@
         "gen3": "Gen 3: BSO hoje"
       },
       "snapshot": "Saldos e preço do Blockscout: {{count}} carteiras em {{date}}. Encontrou um vínculo errado ou faltando? <contributeLink>Melhore esta página</contributeLink>."
-    }
+    },
+    "holderName": "Detentor {{letter}}"
   },
   "chart": {
     "meta": {

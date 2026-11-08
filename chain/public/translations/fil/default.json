@@ -383,20 +383,10 @@
       "safeOwner": "may-ari ng Safe"
     },
     "entities": {
-      "esteban": {
-        "name": "May-hawak L"
-      },
-      "rinse12": {
-        "name": "May-hawak J"
-      },
-      "tom": {
-        "name": "May-hawak K"
-      },
       "pool": {
         "name": "Uniswap BSO/ETH pool"
       },
       "holderA": {
-        "name": "May-hawak A",
         "summary": "Labindalawang wallet na bumili ng PLEB sa Avalanche mula Pebrero 22 hanggang Abril 8, 2022, at hindi kailanman nagbenta. Lima ang magkakaugnay on-chain; tugma naman ang pito pa sa pattern ng iisang mamimili.",
         "evidence": {
           "transfersToLpWallet": "Nagpadala ang dalawa sa mga bumibiling wallet ng PLEB at AVAX sa ikatlong wallet, na ginamit ang mga ito para sa liquidity at farming sa Trader Joe: 1B PLEB at 5 AVAX noong Pebrero 27, 2022, at pagkatapos ay 7.2B PLEB at 34 AVAX mula Pebrero 28 hanggang Marso 2. Nagpadala pabalik ang ikatlong wallet ng 0.013 AVAX.",
@@ -406,7 +396,6 @@
         }
       },
       "holderB": {
-        "name": "May-hawak B",
         "summary": "Isang 2-of-4 Safe multisig na nag-ipon ng PLEB mula sa 14 na wallet sa loob ng isang hapon, kasama ang isa sa mga may-ari nito.",
         "evidence": {
           "owners": "Kailangan ng Safe ang pirma ng 2 sa 4 na may-ari nito. May hawak ding BSO nang direkta ang isang may-ari. Ang apat na may-ari ay puwedeng iisang tao na may ilang key o isang maliit na grupo.",
@@ -416,49 +405,42 @@
         }
       },
       "holderC": {
-        "name": "May-hawak C",
         "summary": "Dalawang wallet na nakatanggap ng PLEB mula sa iisang sender.",
         "evidence": {
           "commonSender": "Nagpadala ang isang wallet ng 4.7B PLEB sa una noong Agosto 19, 2024 at ng 15.4B sa ikalawa noong Nobyembre 14, 2025. Ang iisang sender ay puwede ring iisang nagbebenta na nagsisilbi sa dalawang mamimili."
         }
       },
       "holderD": {
-        "name": "May-hawak D",
         "summary": "Tatlong wallet na pinagdugtong ng isa sa kanila.",
         "evidence": {
           "sharedRecipient": "Nakatanggap ang gitnang wallet ng test transfer at pagkatapos ay 5B PLEB mula sa una noong Nobyembre 18, 2022, at 8.2B PLEB mula sa ikatlo noong Disyembre 1, 2022. Puwede rin itong iisang mamimili na nagbabayad sa dalawang nagbebenta."
         }
       },
       "holderE": {
-        "name": "May-hawak E",
         "summary": "Dalawang wallet na pinunan mula sa iisang source.",
         "evidence": {
           "commonSender": "Nagpadala ang isang wallet sa una ng 39.4B PLEB sa pitong transfer mula Oktubre 2024 hanggang Enero 2025, at sa ikalawa ng 2.0B noong Nobyembre 22, 2025."
         }
       },
       "holderF": {
-        "name": "May-hawak F",
         "summary": "Isang wallet na hinati ang mga token nito sa tatlong bagong wallet at binayaran ang gas ng mga ito.",
         "evidence": {
           "split": "Noong Marso 10, 2024, sa loob ng pitong minuto, nagpadala ang isang wallet ng mga buong halaga ng PLEB (12B, 8B at 4B) sa tatlong bagong wallet at pinadalhan ang dalawa sa mga ito ng ETH para sa gas sa parehong araw. May hawak pa rin itong BSO mismo."
         }
       },
       "holderG": {
-        "name": "May-hawak G",
         "summary": "Dalawang wallet na pinondohan ng iisang sender, tatlong taon ang pagitan.",
         "evidence": {
           "commonSender": "Nagpadala ang isang wallet sa ikalawa ng 4.7B PLEB sa Avalanche noong Abril 2022 at sa una ng 6B PLEB sa Ethereum noong Enero 2025."
         }
       },
       "holderH": {
-        "name": "May-hawak H",
         "summary": "Dalawang wallet na may isang transfer sa pagitan nila.",
         "evidence": {
           "directTransfer": "Nagpadala ang unang wallet sa ikalawa ng 420M PLEB noong Abril 24, 2022."
         }
       },
       "holderI": {
-        "name": "May-hawak I",
         "summary": "Dalawang wallet na may paulit-ulit na transfer sa pagitan nila.",
         "evidence": {
           "directTransfers": "Nagpadala ang ikalawang wallet sa una ng 13.2B PLEB noong Oktubre 30, 2023 at 5B noong Nobyembre 8, 2023."
@@ -615,7 +597,8 @@
         "gen3": "Gen 3: BSO ngayon"
       },
       "snapshot": "Mga balanse at presyo mula sa Blockscout: {{count}} wallet noong {{date}}. May nakitang maling link o kulang na link? <contributeLink>Pagbutihin ang pahinang ito</contributeLink>."
-    }
+    },
+    "holderName": "May-hawak {{letter}}"
   },
   "chart": {
     "meta": {

@@ -383,20 +383,10 @@
       "safeOwner": "Safen omistaja"
     },
     "entities": {
-      "esteban": {
-        "name": "Haltija L"
-      },
-      "rinse12": {
-        "name": "Haltija J"
-      },
-      "tom": {
-        "name": "Haltija K"
-      },
       "pool": {
         "name": "Uniswapin BSO/ETH-pooli"
       },
       "holderA": {
-        "name": "Haltija A",
         "summary": "Kaksitoista lompakkoa, jotka ostivat PLEBiä Avalanchella 22. helmikuuta ja 8. huhtikuuta 2022 välillä eivätkä ole koskaan myyneet. Viisi niistä on sidottu toisiinsa on-chain; loput seitsemän vastaavat saman ostajan toimintamallia.",
         "evidence": {
           "transfersToLpWallet": "Kaksi ostavista lompakoista lähetti PLEBiä ja AVAXia kolmannelle lompakolle, joka käytti ne Trader Joen likviditeettiin ja farmaukseen: 1 miljardi PLEBiä ja 5 AVAXia 27. helmikuuta 2022, sitten 7,2 miljardia PLEBiä ja 34 AVAXia 28. helmikuuta ja 2. maaliskuuta välillä. Kolmas lompakko lähetti takaisin 0,013 AVAXia.",
@@ -406,7 +396,6 @@
         }
       },
       "holderB": {
-        "name": "Haltija B",
         "summary": "2/4-Safe-multisig, joka keräsi PLEBiä 14 lompakosta yhden iltapäivän aikana, sekä yksi sen omistajista.",
         "evidence": {
           "owners": "Safen 4 omistajasta 2:n on allekirjoitettava. Yksi omistajista pitää hallussaan myös BSO:ta suoraan. Neljä omistajaa voi tarkoittaa yhtä henkilöä, jolla on useita avaimia, tai pientä ryhmää.",
@@ -416,49 +405,42 @@
         }
       },
       "holderC": {
-        "name": "Haltija C",
         "summary": "Kaksi lompakkoa, jotka saivat PLEBiä samalta lähettäjältä.",
         "evidence": {
           "commonSender": "Yksi lompakko lähetti ensimmäiselle 4,7 miljardia PLEBiä 19. elokuuta 2024 ja toiselle 15,4 miljardia 14. marraskuuta 2025. Yhteinen lähettäjä voi olla myös yksi myyjä, joka palvelee kahta ostajaa."
         }
       },
       "holderD": {
-        "name": "Haltija D",
         "summary": "Kolme lompakkoa, jotka yhdistyvät yhden niistä kautta.",
         "evidence": {
           "sharedRecipient": "Keskimmäinen lompakko sai ensimmäiseltä testisiirron ja sitten 5 miljardia PLEBiä 18. marraskuuta 2022 sekä kolmannelta 8,2 miljardia PLEBiä 1. joulukuuta 2022. Kyse voi olla myös yhdestä ostajasta, joka maksaa kahdelle myyjälle."
         }
       },
       "holderE": {
-        "name": "Haltija E",
         "summary": "Kaksi lompakkoa, jotka täytettiin samasta lähteestä.",
         "evidence": {
           "commonSender": "Yksi lompakko lähetti ensimmäiselle 39,4 miljardia PLEBiä seitsemässä siirrossa lokakuun 2024 ja tammikuun 2025 välillä sekä toiselle 2,0 miljardia 22. marraskuuta 2025."
         }
       },
       "holderF": {
-        "name": "Haltija F",
         "summary": "Yksi lompakko, joka jakoi tokeninsa kolmeen uuteen lompakkoon ja maksoi niiden gas-kulut.",
         "evidence": {
           "split": "10. maaliskuuta 2024 yksi lompakko lähetti seitsemän minuutin sisällä tasasummia PLEBiä (12, 8 ja 4 miljardia) kolmeen uuteen lompakkoon ja lähetti samana päivänä kahdelle niistä ETH:ta gas-kuluihin. Sillä itsellään on yhä BSO:ta."
         }
       },
       "holderG": {
-        "name": "Haltija G",
         "summary": "Kaksi lompakkoa, jotka sama lähettäjä rahoitti kolmen vuoden erolla.",
         "evidence": {
           "commonSender": "Yksi lompakko lähetti toiselle 4,7 miljardia PLEBiä Avalanchella huhtikuussa 2022 ja ensimmäiselle 6 miljardia PLEBiä Ethereumissa tammikuussa 2025."
         }
       },
       "holderH": {
-        "name": "Haltija H",
         "summary": "Kaksi lompakkoa, joiden välillä on yksi siirto.",
         "evidence": {
           "directTransfer": "Ensimmäinen lompakko lähetti toiselle 420 miljoonaa PLEBiä 24. huhtikuuta 2022."
         }
       },
       "holderI": {
-        "name": "Haltija I",
         "summary": "Kaksi lompakkoa, joiden välillä on toistuvia siirtoja.",
         "evidence": {
           "directTransfers": "Toinen lompakko lähetti ensimmäiselle 13,2 miljardia PLEBiä 30. lokakuuta 2023 ja 5 miljardia 8. marraskuuta 2023."
@@ -615,7 +597,8 @@
         "gen3": "Gen 3: BSO nykyään"
       },
       "snapshot": "Saldot ja hinta Blockscoutista: {{count}} lompakkoa, tilanne {{date}}. Löysitkö väärän tai puuttuvan yhteyden? <contributeLink>Paranna tätä sivua</contributeLink>."
-    }
+    },
+    "holderName": "Haltija {{letter}}"
   },
   "chart": {
     "meta": {

@@ -55,8 +55,12 @@ export const PLEB_PER_BSO = 7114.596;
 const avax = (hash: string): TxRef => ({ chain: "avalanche", hash });
 const eth = (hash: string): TxRef => ({ chain: "ethereum", hash });
 
+/**
+ * Ids are stable keys for translations, anchors and colours. On the page, team members and linked
+ * holders are named by their current balance rank instead (see `holderLetterById`), so the letter
+ * in an id like `holderE` need not match the letter shown.
+ */
 export const ENTITIES: Entity[] = [
-  // Team members are labelled Holder J, K and L like the linked holders, in this order.
   {
     id: "rinse12",
     kind: "team",

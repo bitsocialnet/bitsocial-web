@@ -383,20 +383,10 @@
       "safeOwner": "Safe-eier"
     },
     "entities": {
-      "esteban": {
-        "name": "Innehaver L"
-      },
-      "rinse12": {
-        "name": "Innehaver J"
-      },
-      "tom": {
-        "name": "Innehaver K"
-      },
       "pool": {
         "name": "Uniswap BSO/ETH-pool"
       },
       "holderA": {
-        "name": "Innehaver A",
         "summary": "Tolv lommebøker som kjøpte PLEB på Avalanche mellom 22. februar og 8. april 2022 og aldri har solgt. Fem er knyttet sammen on-chain; de andre sju passer med samme kjøpers mønster.",
         "evidence": {
           "transfersToLpWallet": "To av kjøpslommebøkene sendte PLEB og AVAX til en tredje lommebok, som brukte dem til likviditet og farming på Trader Joe: 1 mrd. PLEB og 5 AVAX 27. februar 2022, deretter 7,2 mrd. PLEB og 34 AVAX mellom 28. februar og 2. mars. Den tredje lommeboken sendte 0,013 AVAX tilbake.",
@@ -406,7 +396,6 @@
         }
       },
       "holderB": {
-        "name": "Innehaver B",
         "summary": "En 2-av-4 Safe-multisig som samlet PLEB fra 14 lommebøker på én ettermiddag, pluss en av eierne.",
         "evidence": {
           "owners": "Safen krever signatur fra 2 av de 4 eierne. Én eier har også BSO direkte. Fire eiere kan bety én person med flere nøkler eller en liten gruppe.",
@@ -416,49 +405,42 @@
         }
       },
       "holderC": {
-        "name": "Innehaver C",
         "summary": "To lommebøker som mottok PLEB fra samme avsender.",
         "evidence": {
           "commonSender": "Én lommebok sendte 4,7 mrd. PLEB til den første 19. august 2024 og 15,4 mrd. til den andre 14. november 2025. En felles avsender kan også være én selger som betjener to kjøpere."
         }
       },
       "holderD": {
-        "name": "Innehaver D",
         "summary": "Tre lommebøker knyttet sammen gjennom én av dem.",
         "evidence": {
           "sharedRecipient": "Den midterste lommeboken mottok en testoverføring og deretter 5 mrd. PLEB fra den første 18. november 2022, og 8,2 mrd. PLEB fra den tredje 1. desember 2022. Det kan også være én kjøper som betaler to selgere."
         }
       },
       "holderE": {
-        "name": "Innehaver E",
         "summary": "To lommebøker fylt fra samme kilde.",
         "evidence": {
           "commonSender": "Én lommebok sendte den første 39,4 mrd. PLEB i sju overføringer mellom oktober 2024 og januar 2025, og den andre 2,0 mrd. 22. november 2025."
         }
       },
       "holderF": {
-        "name": "Innehaver F",
         "summary": "Én lommebok som delte tokenene sine på tre nye lommebøker og betalte gassen deres.",
         "evidence": {
           "split": "10. mars 2024 sendte én lommebok i løpet av sju minutter runde beløp PLEB (12 mrd., 8 mrd. og 4 mrd.) til tre nye lommebøker og sendte to av dem ETH til gass samme dag. Den har fortsatt BSO selv."
         }
       },
       "holderG": {
-        "name": "Innehaver G",
         "summary": "To lommebøker finansiert av samme avsender, med tre års mellomrom.",
         "evidence": {
           "commonSender": "Én lommebok sendte den andre 4,7 mrd. PLEB på Avalanche i april 2022 og den første 6 mrd. PLEB på Ethereum i januar 2025."
         }
       },
       "holderH": {
-        "name": "Innehaver H",
         "summary": "To lommebøker med én overføring mellom seg.",
         "evidence": {
           "directTransfer": "Den første lommeboken sendte den andre 420 mill. PLEB 24. april 2022."
         }
       },
       "holderI": {
-        "name": "Innehaver I",
         "summary": "To lommebøker med gjentatte overføringer mellom seg.",
         "evidence": {
           "directTransfers": "Den andre lommeboken sendte den første 13,2 mrd. PLEB 30. oktober 2023 og 5 mrd. 8. november 2023."
@@ -615,7 +597,8 @@
         "gen3": "Gen 3: BSO i dag"
       },
       "snapshot": "Saldoer og pris fra Blockscout: {{count}} lommebøker per {{date}}. Fant du en feil kobling eller en som mangler? <contributeLink>Forbedre denne siden</contributeLink>."
-    }
+    },
+    "holderName": "Innehaver {{letter}}"
   },
   "chart": {
     "meta": {

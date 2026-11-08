@@ -393,20 +393,10 @@
       "safeOwner": "Właściciel Safe"
     },
     "entities": {
-      "esteban": {
-        "name": "Posiadacz L"
-      },
-      "rinse12": {
-        "name": "Posiadacz J"
-      },
-      "tom": {
-        "name": "Posiadacz K"
-      },
       "pool": {
         "name": "Pula Uniswap BSO/ETH"
       },
       "holderA": {
-        "name": "Posiadacz A",
         "summary": "Dwanaście portfeli, które kupiły PLEB na Avalanche między 22 lutego a 8 kwietnia 2022 roku i nigdy nie sprzedały. Pięć jest powiązanych ze sobą on-chain; pozostałe siedem pasuje do wzorca tego samego kupującego.",
         "evidence": {
           "transfersToLpWallet": "Dwa z kupujących portfeli wysłały PLEB i AVAX do trzeciego portfela, który użył ich do zapewniania płynności i farmingu na Trader Joe: 1 mld PLEB i 5 AVAX 27 lutego 2022 roku, a potem 7,2 mld PLEB i 34 AVAX między 28 lutego a 2 marca. Trzeci portfel odesłał 0,013 AVAX.",
@@ -416,7 +406,6 @@
         }
       },
       "holderB": {
-        "name": "Posiadacz B",
         "summary": "Multisig Safe typu 2 z 4, który jednego popołudnia zebrał PLEB z 14 portfeli, plus jeden z jego właścicieli.",
         "evidence": {
           "owners": "Safe wymaga podpisów 2 z 4 właścicieli. Jeden z właścicieli posiada też BSO bezpośrednio. Czterech właścicieli może oznaczać jedną osobę z kilkoma kluczami albo małą grupę.",
@@ -426,49 +415,42 @@
         }
       },
       "holderC": {
-        "name": "Posiadacz C",
         "summary": "Dwa portfele, które otrzymały PLEB od tego samego nadawcy.",
         "evidence": {
           "commonSender": "Jeden portfel wysłał 4,7 mld PLEB do pierwszego 19 sierpnia 2024 roku i 15,4 mld do drugiego 14 listopada 2025 roku. Wspólny nadawca może też być jednym sprzedawcą obsługującym dwóch kupujących."
         }
       },
       "holderD": {
-        "name": "Posiadacz D",
         "summary": "Trzy portfele połączone przez jeden z nich.",
         "evidence": {
           "sharedRecipient": "Środkowy portfel otrzymał od pierwszego 18 listopada 2022 roku transfer testowy, a potem 5 mld PLEB, a od trzeciego 1 grudnia 2022 roku 8,2 mld PLEB. Może to też być jeden kupujący płacący dwóm sprzedawcom."
         }
       },
       "holderE": {
-        "name": "Posiadacz E",
         "summary": "Dwa portfele zasilone z tego samego źródła.",
         "evidence": {
           "commonSender": "Jeden portfel wysłał pierwszemu 39,4 mld PLEB w siedmiu transferach między październikiem 2024 a styczniem 2025 roku, a drugiemu 2,0 mld 22 listopada 2025 roku."
         }
       },
       "holderF": {
-        "name": "Posiadacz F",
         "summary": "Jeden portfel, który podzielił swoje tokeny na trzy nowe portfele i opłacił ich gaz.",
         "evidence": {
           "split": "10 marca 2024 roku, w ciągu siedmiu minut, jeden portfel wysłał okrągłe kwoty PLEB (12 mld, 8 mld i 4 mld) do trzech nowych portfeli, a tego samego dnia wysłał dwóm z nich ETH na gaz. Sam nadal posiada BSO."
         }
       },
       "holderG": {
-        "name": "Posiadacz G",
         "summary": "Dwa portfele zasilone przez tego samego nadawcę w odstępie trzech lat.",
         "evidence": {
           "commonSender": "Jeden portfel wysłał drugiemu 4,7 mld PLEB na Avalanche w kwietniu 2022 roku, a pierwszemu 6 mld PLEB na Ethereum w styczniu 2025 roku."
         }
       },
       "holderH": {
-        "name": "Posiadacz H",
         "summary": "Dwa portfele z jednym transferem między nimi.",
         "evidence": {
           "directTransfer": "Pierwszy portfel wysłał drugiemu 420 mln PLEB 24 kwietnia 2022 roku."
         }
       },
       "holderI": {
-        "name": "Posiadacz I",
         "summary": "Dwa portfele z powtarzającymi się transferami między nimi.",
         "evidence": {
           "directTransfers": "Drugi portfel wysłał pierwszemu 13,2 mld PLEB 30 października 2023 roku i 5 mld 8 listopada 2023 roku."
@@ -625,7 +607,8 @@
         "gen3": "Gen 3: BSO dziś"
       },
       "snapshot": "Salda i cena z Blockscout: liczba portfeli {{count}} na dzień {{date}}. Znalazłeś błędne lub brakujące powiązanie? <contributeLink>Ulepsz tę stronę</contributeLink>."
-    }
+    },
+    "holderName": "Posiadacz {{letter}}"
   },
   "chart": {
     "meta": {

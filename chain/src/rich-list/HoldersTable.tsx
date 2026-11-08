@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { type HolderHistoryState, useHolderHistory } from "@/lib/rich-list/history";
 import { type RichListRow, getEntityIdForAddress } from "@/lib/rich-list/holders";
 import { useReveal } from "@/lib/useReveal";
-import { useRichList } from "./data-context";
+import { useEntityName, useRichList } from "./data-context";
 import { type Formatters, useFormatters } from "./format";
 import { entityCategory } from "@/lib/rich-list/data";
 import { cn } from "@/lib/utils";
@@ -18,7 +18,7 @@ const VIEWS = ["grouped", "wallets"] as const;
 type View = (typeof VIEWS)[number];
 
 function EntityName({ entityId }: { entityId: string }) {
-  const { t } = useTranslation();
+  const entityName = useEntityName();
   const row = useRichList().entityRowById.get(entityId);
 
   if (!row) {
@@ -29,7 +29,7 @@ function EntityName({ entityId }: { entityId: string }) {
   return (
     <span className="rl-holder-name">
       <a href={anchor} className="rl-holder-label">
-        {t(`richList.entities.${entityId}.name`)}
+        {entityName(entityId)}
       </a>
       <CategoryBadge category={entityCategory(row.entity)} />
     </span>
@@ -39,6 +39,7 @@ function EntityName({ entityId }: { entityId: string }) {
 export default function HoldersTable() {
   const { t } = useTranslation();
   const format = useFormatters();
+  const entityName = useEntityName();
   const { groupedRows, walletRows, awaitingLive } = useRichList();
   const bodyRef = useRef<HTMLTableSectionElement>(null);
   const searchId = useId();
@@ -64,8 +65,7 @@ export default function HoldersTable() {
     const entityId = getEntityIdForAddress(row.holder.address);
     return (
       row.holder.address.toLowerCase().includes(normalizedQuery) ||
-      (entityId !== undefined &&
-        t(`richList.entities.${entityId}.name`).toLowerCase().includes(normalizedQuery))
+      (entityId !== undefined && entityName(entityId).toLowerCase().includes(normalizedQuery))
     );
   };
   const filtered = rows.filter(matchesQuery);

@@ -378,20 +378,10 @@
       "safeOwner": "Safe 所有者"
     },
     "entities": {
-      "esteban": {
-        "name": "持有者 L"
-      },
-      "rinse12": {
-        "name": "持有者 J"
-      },
-      "tom": {
-        "name": "持有者 K"
-      },
       "pool": {
         "name": "Uniswap BSO/ETH 池"
       },
       "holderA": {
-        "name": "持有者 A",
         "summary": "十二个钱包在 2022 年 2 月 22 日至 4 月 8 日期间于 Avalanche 上买入 PLEB，此后从未卖出。其中五个在链上相互关联；另外七个符合同一买家的模式。",
         "evidence": {
           "transfersToLpWallet": "其中两个买入钱包把 PLEB 和 AVAX 转给第三个钱包，后者用它们在 Trader Joe 上提供流动性和挖矿：2022 年 2 月 27 日转入 10 亿 PLEB 和 5 AVAX，随后在 2 月 28 日至 3 月 2 日期间转入 72 亿 PLEB 和 34 AVAX。第三个钱包回转了 0.013 AVAX。",
@@ -401,7 +391,6 @@
         }
       },
       "holderB": {
-        "name": "持有者 B",
         "summary": "一个 2/4 的 Safe 多签，在一个下午内从 14 个钱包归集了 PLEB，另加它的一位所有者。",
         "evidence": {
           "owners": "该 Safe 需要其 4 名所有者中的 2 名签名。其中一名所有者也直接持有 BSO。四名所有者可能是持有多把密钥的一个人，也可能是一个小团体。",
@@ -411,49 +400,42 @@
         }
       },
       "holderC": {
-        "name": "持有者 C",
         "summary": "两个从同一发送方收到 PLEB 的钱包。",
         "evidence": {
           "commonSender": "一个钱包于 2024 年 8 月 19 日向第一个钱包转入 47 亿 PLEB，并于 2025 年 11 月 14 日向第二个钱包转入 154 亿。共同的发送方也可能是同一个卖家在向两个买家出售。"
         }
       },
       "holderD": {
-        "name": "持有者 D",
         "summary": "通过其中一个钱包相连的三个钱包。",
         "evidence": {
           "sharedRecipient": "中间的钱包在 2022 年 11 月 18 日先从第一个钱包收到一笔测试转账，随后收到 50 亿 PLEB；又在 2022 年 12 月 1 日从第三个钱包收到 82 亿 PLEB。这也可能是同一个买家在向两个卖家付款。"
         }
       },
       "holderE": {
-        "name": "持有者 E",
         "summary": "由同一来源注资的两个钱包。",
         "evidence": {
           "commonSender": "一个钱包在 2024 年 10 月至 2025 年 1 月期间分七笔向第一个钱包转入 394 亿 PLEB，并于 2025 年 11 月 22 日向第二个钱包转入 20 亿。"
         }
       },
       "holderF": {
-        "name": "持有者 F",
         "summary": "一个钱包把自己的代币拆分到三个新钱包，并为它们支付了 gas。",
         "evidence": {
           "split": "2024 年 3 月 10 日，一个钱包在七分钟内向三个新钱包分别转入整数金额的 PLEB（120 亿、80 亿和 40 亿），并在同一天向其中两个钱包转入 ETH 作为 gas。它自己仍持有 BSO。"
         }
       },
       "holderG": {
-        "name": "持有者 G",
         "summary": "由同一发送方注资、相隔三年的两个钱包。",
         "evidence": {
           "commonSender": "一个钱包于 2022 年 4 月在 Avalanche 上向第二个钱包转入 47 亿 PLEB，又于 2025 年 1 月在 Ethereum 上向第一个钱包转入 60 亿 PLEB。"
         }
       },
       "holderH": {
-        "name": "持有者 H",
         "summary": "两个钱包之间有一笔转账。",
         "evidence": {
           "directTransfer": "第一个钱包于 2022 年 4 月 24 日向第二个钱包转入 4.2 亿 PLEB。"
         }
       },
       "holderI": {
-        "name": "持有者 I",
         "summary": "两个钱包之间有多次转账。",
         "evidence": {
           "directTransfers": "第二个钱包于 2023 年 10 月 30 日向第一个钱包转入 132 亿 PLEB，又于 2023 年 11 月 8 日转入 50 亿。"
@@ -610,7 +592,8 @@
         "gen3": "Gen 3：如今的 BSO"
       },
       "snapshot": "余额和价格来自 Blockscout：截至 {{date}} 共 {{count}} 个钱包。发现错误或遗漏的关联？<contributeLink>改进此页面</contributeLink>。"
-    }
+    },
+    "holderName": "持有者 {{letter}}"
   },
   "chart": {
     "meta": {

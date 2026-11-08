@@ -388,20 +388,10 @@
       "safeOwner": "propietari del Safe"
     },
     "entities": {
-      "esteban": {
-        "name": "Posseïdor L"
-      },
-      "rinse12": {
-        "name": "Posseïdor J"
-      },
-      "tom": {
-        "name": "Posseïdor K"
-      },
       "pool": {
         "name": "Pool BSO/ETH d'Uniswap"
       },
       "holderA": {
-        "name": "Posseïdor A",
         "summary": "Dotze carteres que van comprar PLEB a Avalanche entre el 22 de febrer i el 8 d'abril de 2022 i no han venut mai. Cinc estan connectades entre elles on-chain; les altres set encaixen amb el patró del mateix comprador.",
         "evidence": {
           "transfersToLpWallet": "Dues de les carteres compradores van enviar PLEB i AVAX a una tercera cartera, que els va fer servir per aportar liquiditat i fer farming a Trader Joe: 1.000 milions de PLEB i 5 AVAX el 27 de febrer de 2022, i després 7.200 milions de PLEB i 34 AVAX entre el 28 de febrer i el 2 de març. La tercera cartera en va retornar 0,013 AVAX.",
@@ -411,7 +401,6 @@
         }
       },
       "holderB": {
-        "name": "Posseïdor B",
         "summary": "Una multisig Safe 2 de 4 que va reunir PLEB de 14 carteres en una sola tarda, més un dels seus propietaris.",
         "evidence": {
           "owners": "El Safe necessita la signatura de 2 dels seus 4 propietaris. Un propietari també té BSO directament. Quatre propietaris poden ser una persona amb diverses claus o un grup petit.",
@@ -421,49 +410,42 @@
         }
       },
       "holderC": {
-        "name": "Posseïdor C",
         "summary": "Dues carteres que van rebre PLEB del mateix remitent.",
         "evidence": {
           "commonSender": "Una cartera va enviar 4.700 milions de PLEB a la primera el 19 d'agost de 2024 i 15.400 milions a la segona el 14 de novembre de 2025. Un remitent comú també pot ser un venedor que serveix dos compradors."
         }
       },
       "holderD": {
-        "name": "Posseïdor D",
         "summary": "Tres carteres unides a través d'una d'elles.",
         "evidence": {
           "sharedRecipient": "La cartera del mig va rebre una transferència de prova i després 5.000 milions de PLEB de la primera el 18 de novembre de 2022, i 8.200 milions de PLEB de la tercera l'1 de desembre de 2022. També podria ser un comprador que paga dos venedors."
         }
       },
       "holderE": {
-        "name": "Posseïdor E",
         "summary": "Dues carteres alimentades des de la mateixa font.",
         "evidence": {
           "commonSender": "Una cartera va enviar a la primera 39.400 milions de PLEB en set transferències entre l'octubre de 2024 i el gener de 2025, i a la segona 2.000 milions el 22 de novembre de 2025."
         }
       },
       "holderF": {
-        "name": "Posseïdor F",
         "summary": "Una cartera que va repartir els seus tokens entre tres carteres noves i en va pagar el gas.",
         "evidence": {
           "split": "El 10 de març de 2024, en set minuts, una cartera va enviar quantitats rodones de PLEB (12.000, 8.000 i 4.000 milions) a tres carteres noves i el mateix dia va enviar ETH a dues d'elles per al gas. Encara té BSO."
         }
       },
       "holderG": {
-        "name": "Posseïdor G",
         "summary": "Dues carteres finançades pel mateix remitent, amb tres anys de diferència.",
         "evidence": {
           "commonSender": "Una cartera va enviar a la segona 4.700 milions de PLEB a Avalanche l'abril de 2022 i a la primera 6.000 milions de PLEB a Ethereum el gener de 2025."
         }
       },
       "holderH": {
-        "name": "Posseïdor H",
         "summary": "Dues carteres amb una transferència entre elles.",
         "evidence": {
           "directTransfer": "La primera cartera va enviar a la segona 420 milions de PLEB el 24 d'abril de 2022."
         }
       },
       "holderI": {
-        "name": "Posseïdor I",
         "summary": "Dues carteres amb transferències repetides entre elles.",
         "evidence": {
           "directTransfers": "La segona cartera va enviar a la primera 13.200 milions de PLEB el 30 d'octubre de 2023 i 5.000 milions el 8 de novembre de 2023."
@@ -620,7 +602,8 @@
         "gen3": "Gen 3: BSO actual"
       },
       "snapshot": "Saldos i preu de Blockscout: {{count}} carteres a data de {{date}}. Has trobat un vincle erroni o un que hi falta? <contributeLink>Millora aquesta pàgina</contributeLink>."
-    }
+    },
+    "holderName": "Posseïdor {{letter}}"
   },
   "chart": {
     "meta": {

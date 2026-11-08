@@ -383,20 +383,10 @@
       "safeOwner": "Safe-tulajdonos"
     },
     "entities": {
-      "esteban": {
-        "name": "Birtokos L"
-      },
-      "rinse12": {
-        "name": "Birtokos J"
-      },
-      "tom": {
-        "name": "Birtokos K"
-      },
       "pool": {
         "name": "Uniswap BSO/ETH pool"
       },
       "holderA": {
-        "name": "Birtokos A",
         "summary": "Tizenkét tárca, amely 2022. február 22. és április 8. között PLEB-et vásárolt az Avalanche-on, és soha nem adott el. Közülük öt a láncon is össze van kötve; a másik hét ugyanannak a vevőnek a mintájára illik.",
         "evidence": {
           "transfersToLpWallet": "A vásárló tárcák közül kettő PLEB-et és AVAX-ot küldött egy harmadik tárcának, amely ezeket Trader Joe-likviditásra és farmolásra használta: 1 milliárd PLEB-et és 5 AVAX-ot 2022. február 27-én, majd 7,2 milliárd PLEB-et és 34 AVAX-ot február 28. és március 2. között. A harmadik tárca 0,013 AVAX-ot küldött vissza.",
@@ -406,7 +396,6 @@
         }
       },
       "holderB": {
-        "name": "Birtokos B",
         "summary": "Egy 2/4-es Safe multisig, amely egyetlen délután alatt 14 tárcából gyűjtött össze PLEB-et, valamint az egyik tulajdonosa.",
         "evidence": {
           "owners": "A Safe-hez 4 tulajdonosából 2 aláírása szükséges. Az egyik tulajdonos közvetlenül is tart BSO-t. Négy tulajdonos jelenthet egyetlen, több kulccsal rendelkező személyt vagy egy kis csoportot.",
@@ -416,49 +405,42 @@
         }
       },
       "holderC": {
-        "name": "Birtokos C",
         "summary": "Két tárca, amely ugyanattól a küldőtől kapott PLEB-et.",
         "evidence": {
           "commonSender": "Egy tárca 4,7 milliárd PLEB-et küldött az elsőnek 2024. augusztus 19-én, és 15,4 milliárdot a másodiknak 2025. november 14-én. A közös küldő lehet egyetlen eladó is, aki két vevőt szolgál ki."
         }
       },
       "holderD": {
-        "name": "Birtokos D",
         "summary": "Három tárca, amelyeket az egyikük köt össze.",
         "evidence": {
           "sharedRecipient": "A középső tárca 2022. november 18-án egy tesztátutalást, majd 5 milliárd PLEB-et kapott az elsőtől, 2022. december 1-jén pedig 8,2 milliárd PLEB-et a harmadiktól. Ez lehet egyetlen vevő is, aki két eladónak fizet."
         }
       },
       "holderE": {
-        "name": "Birtokos E",
         "summary": "Két tárca, amelyeket ugyanabból a forrásból töltöttek fel.",
         "evidence": {
           "commonSender": "Egy tárca 2024 októbere és 2025 januárja között hét átutalásban 39,4 milliárd PLEB-et küldött az elsőnek, 2025. november 22-én pedig 2,0 milliárdot a másodiknak."
         }
       },
       "holderF": {
-        "name": "Birtokos F",
         "summary": "Egy tárca, amely három új tárcára osztotta szét a tokenjeit, és kifizette a gasdíjukat.",
         "evidence": {
           "split": "2024. március 10-én egy tárca hét percen belül kerek összegű PLEB-et (12, 8 és 4 milliárdot) küldött három új tárcának, és ugyanazon a napon kettőnek közülük ETH-t is küldött gasra. Maga is tart még BSO-t."
         }
       },
       "holderG": {
-        "name": "Birtokos G",
         "summary": "Két tárca, amelyeket ugyanaz a küldő finanszírozott, három év különbséggel.",
         "evidence": {
           "commonSender": "Egy tárca 2022 áprilisában 4,7 milliárd PLEB-et küldött a másodiknak az Avalanche-on, 2025 januárjában pedig 6 milliárd PLEB-et az elsőnek az Ethereumon."
         }
       },
       "holderH": {
-        "name": "Birtokos H",
         "summary": "Két tárca egyetlen átutalással közöttük.",
         "evidence": {
           "directTransfer": "Az első tárca 2022. április 24-én 420 millió PLEB-et küldött a másodiknak."
         }
       },
       "holderI": {
-        "name": "Birtokos I",
         "summary": "Két tárca ismétlődő átutalásokkal közöttük.",
         "evidence": {
           "directTransfers": "A második tárca 2023. október 30-án 13,2 milliárd PLEB-et küldött az elsőnek, 2023. november 8-án pedig 5 milliárdot."
@@ -615,7 +597,8 @@
         "gen3": "Gen 3: a mai BSO"
       },
       "snapshot": "Egyenlegek és árfolyam a Blockscoutból: {{count}} tárca, {{date}} állapot szerint. Hibás vagy hiányzó kapcsolatot találtál? <contributeLink>Tedd jobbá ezt az oldalt</contributeLink>."
-    }
+    },
+    "holderName": "Birtokos {{letter}}"
   },
   "chart": {
     "meta": {
