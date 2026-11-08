@@ -102,7 +102,7 @@
       },
       "airdrop": {
         "label": "Distribuția",
-        "note": "Trei runde de airdrop în ianuarie și februarie 2022, revendicate de 1.510 adrese. Runda 1 a folosit un bot Telegram cu bonusuri pentru recomandări, iar Esteban a verificat manual recomandările pentru abuzuri; rundele 2 și 3 s-au desfășurat pe Twitter și Reddit. Aproximativ 63% din totalul PLEB a fost distribuit prin airdrop-uri, iar 34% ca recompense pentru cei care au oferit lichiditate; restul a alimentat pool-urile de lansare. Fără presale, fără alocare pentru echipă, nimic vândut.",
+        "note": "Trei runde de airdrop în ianuarie și februarie 2022, revendicate de 1.510 adrese. Runda 1 a folosit un bot Telegram cu bonusuri pentru recomandări, iar Esteban a verificat manual recomandările pentru abuzuri; rundele 2 și 3 s-au desfășurat pe Twitter și Reddit. Aproximativ 63% din totalul BSO a fost distribuit prin airdrop-uri, iar 34% ca recompense pentru cei care au oferit lichiditate; restul a alimentat pool-urile de lansare. Fără presale, fără alocare pentru echipă, nimic vândut.",
         "richListLink": "Vezi fiecare deținător și toate cele trei runde"
       },
       "contract": {
@@ -392,89 +392,89 @@
         "name": "Pool-ul Uniswap BSO/ETH"
       },
       "holderA": {
-        "summary": "Douăsprezece portofele care au cumpărat PLEB pe Avalanche între 22 februarie și 8 aprilie 2022 și nu au vândut niciodată. Cinci sunt legate între ele on-chain; celelalte șapte se potrivesc tiparului aceluiași cumpărător.",
+        "summary": "Douăsprezece portofele care au cumpărat pe Avalanche între 22 februarie și 8 aprilie 2022 și nu au vândut niciodată. Cinci sunt legate între ele on-chain; celelalte șapte se potrivesc tiparului aceluiași cumpărător.",
         "evidence": {
-          "transfersToLpWallet": "Două dintre portofelele cumpărătoare au trimis PLEB și AVAX unui al treilea portofel, care le-a folosit pentru lichiditate și farming pe Trader Joe: 1 mld. PLEB și 5 AVAX pe 27 februarie 2022, apoi 7,2 mld. PLEB și 34 AVAX între 28 februarie și 2 martie. Al treilea portofel a trimis înapoi 0,013 AVAX.",
+          "transfersToLpWallet": "Două dintre portofelele cumpărătoare au trimis tokenuri și AVAX unui al treilea portofel, care le-a folosit pentru lichiditate și farming pe Trader Joe: 141.000 BSO și 5 AVAX pe 27 februarie 2022, apoi 1,01 mil. BSO și 34 AVAX între 28 februarie și 2 martie. Al treilea portofel a trimis înapoi 0,013 AVAX.",
           "sharedFunder": "Un portofel privat a finanțat trei dintre portofelele cumpărătoare și nimic altceva. Fiecare tranzacție pe care a trimis-o vreodată a mers către ele, în ordine: nonce-urile de la 0 la 4 către primul, de la 5 la 7 către al doilea, 8 către al treilea.",
-          "buyingPattern": "Alte șapte portofele erau toate noi, fiecare finanțat prin una sau două retrageri de pe un exchange de aproximativ 2.000–3.400 $, prin Binance sau ChangeNOW (aceleași servicii folosite de portofelele legate), apoi schimbat integral în PLEB și nefolosit niciodată după aceea. Au cumpărat unul după altul între 28 februarie și 31 martie 2022, fără să se suprapună vreodată cu portofelele legate. Dintre toți cei 292 de cumpărători de PLEB din februarie până în aprilie 2022, niciun alt portofel nu se potrivește acestui tipar.",
+          "buyingPattern": "Alte șapte portofele erau toate noi, fiecare finanțat prin una sau două retrageri de pe un exchange de aproximativ 2.000–3.400 $, prin Binance sau ChangeNOW (aceleași servicii folosite de portofelele legate), apoi schimbat integral în token și nefolosit niciodată după aceea. Au cumpărat unul după altul între 28 februarie și 31 martie 2022, fără să se suprapună vreodată cu portofelele legate. Dintre toți cei 292 de cumpărători din februarie până în aprilie 2022, niciun alt portofel nu se potrivește acestui tipar.",
           "neverSold": "Niciunul dintre cele douăsprezece portofele nu și-a vândut sau mutat tokenurile de atunci. Soldurile lor au trecut neschimbate prin ambele migrări."
         }
       },
       "holderB": {
-        "summary": "Un multisig Safe 2-din-4 care a strâns PLEB din 14 portofele într-o singură după-amiază, plus unul dintre proprietarii săi.",
+        "summary": "Un multisig Safe 2-din-4 care a strâns BSO din 14 portofele într-o singură după-amiază, plus unul dintre proprietarii săi.",
         "evidence": {
           "owners": "Safe-ul are nevoie de semnăturile a 2 dintre cei 4 proprietari ai săi. Unul dintre proprietari deține și BSO direct. Patru proprietari pot însemna o singură persoană cu mai multe chei sau un grup mic.",
-          "consolidation": "Pe 1 iunie 2024, între 16:08 și 17:51 UTC, Safe-ul a primit 120,5 mld. PLEB din 14 portofele. Primul transfer a fost un test de 10 tokenuri, pe care Safe-ul l-a trimis imediat înapoi.",
-          "vesting": "Pe 12 august 2024, Safe-ul a mutat 60,5 mld. PLEB într-un flux de vesting Sablier. Migrarea din 2026 a creditat acel flux înapoi către Safe, motiv pentru care Safe-ul a primit două transferuri de migrare.",
-          "commonSender": "Același portofel a trimis PLEB atât proprietarului Safe-ului (13,7 mld. pe 8 martie 2024), cât și Safe-ului (1,5 mld. pe 1 iunie 2024)."
+          "consolidation": "Pe 1 iunie 2024, între 16:08 și 17:51 UTC, Safe-ul a primit 16,9 mil. BSO din 14 portofele. Primul transfer a fost un test de 10 tokenuri, pe care Safe-ul l-a trimis imediat înapoi.",
+          "vesting": "Pe 12 august 2024, Safe-ul a mutat 8,5 mil. BSO într-un flux de vesting Sablier. Migrarea din 2026 a creditat acel flux înapoi către Safe, motiv pentru care Safe-ul a primit două transferuri de migrare.",
+          "commonSender": "Același portofel a trimis BSO atât proprietarului Safe-ului (1,93 mil. pe 8 martie 2024), cât și Safe-ului (211.000 pe 1 iunie 2024)."
         }
       },
       "holderC": {
-        "summary": "Două portofele care au primit PLEB de la același expeditor.",
+        "summary": "Două portofele care au primit BSO de la același expeditor.",
         "evidence": {
-          "commonSender": "Un portofel a trimis 4,7 mld. PLEB primului pe 19 august 2024 și 15,4 mld. celui de-al doilea pe 14 noiembrie 2025. Un expeditor comun poate fi și un singur vânzător care servește doi cumpărători."
+          "commonSender": "Un portofel a trimis 661.000 BSO primului pe 19 august 2024 și 2,16 mil. celui de-al doilea pe 14 noiembrie 2025. Un expeditor comun poate fi și un singur vânzător care servește doi cumpărători."
         }
       },
       "holderD": {
         "summary": "Trei portofele legate prin unul dintre ele.",
         "evidence": {
-          "sharedRecipient": "Portofelul din mijloc a primit un transfer de test și apoi 5 mld. PLEB de la primul pe 18 noiembrie 2022, și 8,2 mld. PLEB de la al treilea pe 1 decembrie 2022. Ar putea fi și un singur cumpărător care plătește doi vânzători."
+          "sharedRecipient": "Portofelul din mijloc a primit un transfer de test și apoi 703.000 BSO de la primul pe 18 noiembrie 2022, și 1,15 mil. BSO de la al treilea pe 1 decembrie 2022. Ar putea fi și un singur cumpărător care plătește doi vânzători."
         }
       },
       "holderE": {
         "summary": "Două portofele alimentate din aceeași sursă.",
         "evidence": {
-          "commonSender": "Un portofel i-a trimis primului 39,4 mld. PLEB în șapte transferuri între octombrie 2024 și ianuarie 2025, iar celui de-al doilea 2,0 mld. pe 22 noiembrie 2025."
+          "commonSender": "Un portofel i-a trimis primului 5,54 mil. BSO în șapte transferuri între octombrie 2024 și ianuarie 2025, iar celui de-al doilea 281.000 pe 22 noiembrie 2025."
         }
       },
       "holderF": {
         "summary": "Un portofel care și-a împărțit tokenurile în trei portofele noi și le-a plătit taxele de gas.",
         "evidence": {
-          "split": "Pe 10 martie 2024, în șapte minute, un portofel a trimis sume rotunde de PLEB (12 mld., 8 mld. și 4 mld.) către trei portofele noi și, în aceeași zi, a trimis la două dintre ele ETH pentru gas. Încă deține el însuși BSO."
+          "split": "Pe 10 martie 2024, în șapte minute, un portofel a trimis sume rotunde de PLEB, cum se numea atunci BSO (12 mld., 8 mld. și 4 mld.), către trei portofele noi și, în aceeași zi, a trimis la două dintre ele ETH pentru gas. Încă deține el însuși BSO."
         }
       },
       "holderG": {
         "summary": "Două portofele finanțate de același expeditor, la trei ani distanță.",
         "evidence": {
-          "commonSender": "Un portofel i-a trimis celui de-al doilea 4,7 mld. PLEB pe Avalanche în aprilie 2022, iar primului 6 mld. PLEB pe Ethereum în ianuarie 2025."
+          "commonSender": "Un portofel i-a trimis celui de-al doilea 661.000 BSO pe Avalanche în aprilie 2022, iar primului 843.000 pe Ethereum în ianuarie 2025."
         }
       },
       "holderH": {
         "summary": "Două portofele cu un transfer între ele.",
         "evidence": {
-          "directTransfer": "Primul portofel i-a trimis celui de-al doilea 420 mil. PLEB pe 24 aprilie 2022."
+          "directTransfer": "Primul portofel i-a trimis celui de-al doilea 59.000 BSO pe 24 aprilie 2022."
         }
       },
       "holderI": {
         "summary": "Două portofele cu transferuri repetate între ele.",
         "evidence": {
-          "directTransfers": "Al doilea portofel i-a trimis primului 13,2 mld. PLEB pe 30 octombrie 2023 și 5 mld. pe 8 noiembrie 2023."
+          "directTransfers": "Al doilea portofel i-a trimis primului 1,86 mil. BSO pe 30 octombrie 2023 și 703.000 pe 8 noiembrie 2023."
         }
       }
     },
     "team": {
       "title": "Nicio alocare pentru echipă",
-      "lead": "Nu au fost rezervate tokenuri pentru echipă, investitori sau vreun presale. Iată de unde a venit fiecare PLEB, ce dețin astăzi portofelele echipei și ce spunea fondatorul la momentul respectiv.",
+      "lead": "Nu au fost rezervate tokenuri pentru echipă, investitori sau vreun presale. Iată de unde a venit fiecare BSO, ce dețin astăzi portofelele echipei și ce spunea fondatorul la momentul respectiv.",
       "origin": {
-        "caption": "Toate cele {{amount}} PLEB emise vreodată, după modul de emitere",
-        "label": "PLEB emise, pe surse",
+        "caption": "Cum a fost emis inițial fiecare BSO, în 2022 și 2023",
+        "label": "Ponderea BSO după modul de emitere inițială",
         "airdropClaims": {
           "label": "Revendicări din airdrop",
-          "note": "{{amount}} PLEB revendicate de 1.510 adrese în trei runde. Alocările nerevendicate de nimeni nu au fost emise niciodată."
+          "note": "{{amount}} BSO revendicate de 1.510 adrese în trei runde. Alocările nerevendicate de nimeni nu au fost emise niciodată."
         },
         "liquidityMining": {
           "label": "Liquidity mining",
-          "note": "{{amount}} PLEB plătite celor care au pus în staking lichiditate pe Trader Joe, din februarie 2022 până în mai 2023."
+          "note": "{{amount}} BSO plătite celor care au pus în staking lichiditate pe Trader Joe, din februarie 2022 până în mai 2023."
         },
         "liquiditySeed": {
           "label": "Lichiditatea de lansare",
-          "note": "{{amount}} PLEB emise către deployer și adăugate în cele două pool-uri de lansare împreună cu 7 AVAX."
+          "note": "{{amount}} BSO emise către deployer și adăugate în cele două pool-uri de lansare împreună cu 7 AVAX."
         }
       },
       "facts": {
-        "liquiditySeed": "Singura emitere către un portofel al echipei în afara airdrop-ului a fost lichiditatea de lansare: 50 mld. PLEB, adăugate în pool-ul Trader Joe (40,1 mld.) și în pool-ul Pangolin (10 mld.) în decurs de șapte minute, pe 14 ianuarie 2022.",
-        "teamClaims": "Doi membri ai echipei au revendicat în runda 1: Esteban 5 mld. PLEB, iar Tom 13,2 mld. PLEB, a treia cea mai mare dintre cele 767 de revendicări. Împreună, asta înseamnă 2% din totalul PLEB revendicate în airdrop-uri.",
-        "noFarmRewards": "Niciun portofel al echipei nu a primit recompense din liquidity mining. Cele 433 mld. plătite pe Avalanche au mers la alte 208 adrese, iar cele 57 mld. încă neplătite la mutarea pe Ethereum au fost creditate celor care le câștigaseră prin staking.",
+        "liquiditySeed": "Singura emitere către un portofel al echipei în afara airdrop-ului a fost lichiditatea de lansare: 7 mil. BSO, adăugate în pool-ul Trader Joe (5,6 mil.) și în pool-ul Pangolin (1,4 mil.) în decurs de șapte minute, pe 14 ianuarie 2022.",
+        "teamClaims": "Doi membri ai echipei au revendicat în runda 1: Esteban 703.000 BSO, iar Tom 1,86 mil. BSO, a treia cea mai mare dintre cele 767 de revendicări. Împreună, asta înseamnă 2% din totalul tokenurilor revendicate în airdrop-uri.",
+        "noFarmRewards": "Niciun portofel al echipei nu a primit recompense din liquidity mining. Cele 60,9 mil. BSO plătite pe Avalanche au mers la alte 208 adrese, iar cele 8 mil. încă neplătite la mutarea pe Ethereum au fost creditate celor care le câștigaseră prin staking.",
         "migrationMintedNothing": "Migrarea din 2026 nu a creat tokenuri noi pentru nimeni: toate cele 210 mil. BSO au fost distribuite într-o singură tranzacție, proporțional cu soldurile vechi."
       },
       "statementsTitle": "Ce spunea fondatorul la momentul respectiv",
@@ -489,7 +489,7 @@
     "airdrops": {
       "title": "Trei airdrop-uri, 2022",
       "lead": "PLEB, prima generație a BSO, s-a lansat pe Avalanche fără nicio vânzare. A fost dat gratuit în trei runde, iar fiecare revendicare a trecut în BSO la aceeași rată: 7.114,6 PLEB pentru 1 BSO.",
-      "caption": "Cele trei runde ale airdrop-ului PLEB și cât valorează astăzi tokenurile revendicate",
+      "caption": "Cele trei runde ale airdrop-ului și cât valorează astăzi tokenurile revendicate",
       "round": "Runda {{number}}",
       "total": "Total",
       "rounds": {
@@ -538,7 +538,7 @@
         },
         "launch": {
           "title": "Întâi lichiditatea, apoi revendicările",
-          "body": "La 18:00 UTC, deployer-ul adaugă PLEB și 7 AVAX pe Trader Joe și Pangolin. Pagina de revendicare se deschide cu aproximativ 30 de minute mai târziu, așa că fiecare alocare era stabilită înainte ca cineva să poată tranzacționa."
+          "body": "La 18:00 UTC, deployer-ul adaugă primele tokenuri și 7 AVAX pe Trader Joe și Pangolin. Pagina de revendicare se deschide cu aproximativ 30 de minute mai târziu, așa că fiecare alocare era stabilită înainte ca cineva să poată tranzacționa."
         },
         "twitterRound": {
           "title": "Runda 2: Twitter",
@@ -554,11 +554,11 @@
         },
         "farm": {
           "title": "Începe liquidity mining-ul",
-          "body": "Cei care pun în staking lichiditate PLEB/AVAX câștigă PLEB nou emis. Ferma plătește recompense până la mutarea pe Ethereum."
+          "body": "Cei care pun în staking lichiditate pe Trader Joe câștigă tokenuri nou emise. Ferma plătește recompense până la mutarea pe Ethereum."
         },
         "ethereum": {
           "title": "Mutarea pe Ethereum",
-          "body": "După un vot pe Snapshot, PLEB este înghețat, iar fiecare sold, inclusiv tokenurile blocate, pozițiile de lichiditate și recompensele de farm neplătite, este reemis pe Ethereum ca token de a doua generație. Deținătorii nu trebuie să facă nimic."
+          "body": "După un vot pe Snapshot, tokenul de pe Avalanche este înghețat, iar fiecare sold, inclusiv tokenurile blocate, pozițiile de lichiditate și recompensele de farm neplătite, este reemis pe Ethereum ca token de a doua generație. Deținătorii nu trebuie să facă nimic."
         },
         "rebrand": {
           "title": "plebbit devine Bitsocial",
@@ -583,10 +583,10 @@
       "lead": "Cum au fost găsite grupurile și ce nu poate vedea această pagină.",
       "howTitle": "Cum au fost legate portofelele",
       "how": {
-        "transfers": "Fiecare transfer de PLEB și BSO între două portofele obișnuite, pe Avalanche și Ethereum, a fost urmărit, lăsând deoparte exchange-urile, routerele, pool-urile și alte contracte. Multisig-urile Safe au fost legate de proprietarii lor.",
+        "transfers": "Fiecare transfer între două portofele obișnuite, pe toate cele trei contracte, pe Avalanche și Ethereum, a fost urmărit, lăsând deoparte exchange-urile, routerele, pool-urile și alte contracte. Multisig-urile Safe au fost legate de proprietarii lor.",
         "funders": "A fost comparat primul portofel care i-a trimis AVAX sau ETH fiecărui deținător mare. Exchange-urile finanțează mii de portofele, așa că doar finanțatorii privați contează ca legătură.",
-        "pattern": "Pentru portofelele fără legătură directă, comportamentul de cumpărare a fost comparat cu al fiecărui cumpărător de PLEB din aceeași perioadă.",
-        "migrations": "Soldurile au fost urmărite prin ambele migrări la 7.114,6 PLEB per BSO."
+        "pattern": "Pentru portofelele fără legătură directă, comportamentul de cumpărare a fost comparat cu al fiecărui cumpărător din aceeași perioadă.",
+        "migrations": "Soldurile au fost urmărite prin ambele migrări la 7.114,6 PLEB per BSO, aceeași rată pe care această pagină o folosește pentru a afișa în BSO sumele mai vechi."
       },
       "limitsTitle": "Limite",
       "limits": {
@@ -706,11 +706,11 @@
       },
       "coingecko": {
         "title": "Listat pe CoinGecko",
-        "body": "După ce l-a refuzat de mai multe ori de la începutul lui 2022, CoinGecko listează PLEB."
+        "body": "După ce l-a refuzat de mai multe ori de la începutul lui 2022, CoinGecko listează tokenul."
       },
       "socialFi": {
         "title": "În categoria SocialFi de pe CoinGecko",
-        "body": "La cererea echipei, CoinGecko adaugă PLEB în categoria sa SocialFi, iar o listă de tokenuri SocialFi distribuită pe X îl include. Prețul aproape se dublează în cinci zile."
+        "body": "La cererea echipei, CoinGecko adaugă tokenul în categoria sa SocialFi, iar o listă de tokenuri SocialFi distribuită pe X îl include. Prețul aproape se dublează în cinci zile."
       },
       "seedit": {
         "title": "Se lansează Seedit",

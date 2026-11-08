@@ -102,7 +102,7 @@
       },
       "airdrop": {
         "label": "Shpërndarja",
-        "note": "Tre raunde airdrop-i në janar dhe shkurt 2022, të marra nga 1510 adresa. Raundi 1 përdori një bot në Telegram me bonuse për referime, dhe Esteban i kontrolloi me dorë referimet për abuzime; raundet 2 dhe 3 u zhvilluan në Twitter dhe Reddit. Rreth 63% e totalit të PLEB u shpërnda përmes airdrop-eve dhe 34% si shpërblime për njerëzit që ofruan likuiditet; pjesa tjetër shërbeu si likuiditet fillestar për pool-et e nisjes. Pa presale, pa alokim për ekipin, asgjë e shitur.",
+        "note": "Tre raunde airdrop-i në janar dhe shkurt 2022, të marra nga 1510 adresa. Raundi 1 përdori një bot në Telegram me bonuse për referime, dhe Esteban i kontrolloi me dorë referimet për abuzime; raundet 2 dhe 3 u zhvilluan në Twitter dhe Reddit. Rreth 63% e totalit të BSO-së u shpërnda përmes airdrop-eve dhe 34% si shpërblime për njerëzit që ofruan likuiditet; pjesa tjetër shërbeu si likuiditet fillestar për pool-et e nisjes. Pa presale, pa alokim për ekipin, asgjë e shitur.",
         "richListLink": "Shiko çdo mbajtës dhe të tre raundet"
       },
       "contract": {
@@ -387,89 +387,89 @@
         "name": "Pool-i BSO/ETH i Uniswap"
       },
       "holderA": {
-        "summary": "Dymbëdhjetë portofole që blenë PLEB në Avalanche midis 22 shkurtit dhe 8 prillit 2022 dhe nuk kanë shitur kurrë. Pesë janë të lidhura mes tyre on-chain; shtatë të tjerat përputhen me modelin e të njëjtit blerës.",
+        "summary": "Dymbëdhjetë portofole që blenë në Avalanche midis 22 shkurtit dhe 8 prillit 2022 dhe nuk kanë shitur kurrë. Pesë janë të lidhura mes tyre on-chain; shtatë të tjerat përputhen me modelin e të njëjtit blerës.",
         "evidence": {
-          "transfersToLpWallet": "Dy nga portofolet blerëse i dërguan PLEB dhe AVAX një portofoli të tretë, i cili i përdori për likuiditet dhe farming në Trader Joe: 1 mld PLEB dhe 5 AVAX më 27 shkurt 2022, pastaj 7,2 mld PLEB dhe 34 AVAX midis 28 shkurtit dhe 2 marsit. Portofoli i tretë ktheu 0,013 AVAX.",
+          "transfersToLpWallet": "Dy nga portofolet blerëse i dërguan tokenë dhe AVAX një portofoli të tretë, i cili i përdori për likuiditet dhe farming në Trader Joe: 141 mijë BSO dhe 5 AVAX më 27 shkurt 2022, pastaj 1,01 mln BSO dhe 34 AVAX midis 28 shkurtit dhe 2 marsit. Portofoli i tretë ktheu 0,013 AVAX.",
           "sharedFunder": "Një portofol privat financoi tre nga portofolet blerëse dhe asgjë tjetër. Çdo transaksion që ka dërguar ndonjëherë shkoi te to, me radhë: nonce 0 deri 4 te i pari, 5 deri 7 te i dyti, 8 te i treti.",
-          "buyingPattern": "Shtatë portofole të tjera ishin të gjitha të reja: secili u financua me një ose dy tërheqje nga një exchange prej rreth $2000 deri $3400 përmes Binance ose ChangeNOW (të njëjtat shërbime që përdorën portofolet e lidhura), i shkëmbeu të gjitha në PLEB dhe nuk u përdor më kurrë. Ato blenë njëri pas tjetrit midis 28 shkurtit dhe 31 marsit 2022, pa u mbivendosur kurrë me portofolet e lidhura. Nga të gjithë 292 blerësit e PLEB nga shkurti deri në prill 2022, asnjë portofol tjetër nuk i përshtatet këtij modeli.",
+          "buyingPattern": "Shtatë portofole të tjera ishin të gjitha të reja: secili u financua me një ose dy tërheqje nga një exchange prej rreth $2000 deri $3400 përmes Binance ose ChangeNOW (të njëjtat shërbime që përdorën portofolet e lidhura), i shkëmbeu të gjitha në token dhe nuk u përdor më kurrë. Ato blenë njëri pas tjetrit midis 28 shkurtit dhe 31 marsit 2022, pa u mbivendosur kurrë me portofolet e lidhura. Nga të gjithë 292 blerësit nga shkurti deri në prill 2022, asnjë portofol tjetër nuk i përshtatet këtij modeli.",
           "neverSold": "Asnjë nga dymbëdhjetë portofolet nuk i ka shitur apo lëvizur tokenët e vet që atëherë. Bilancet e tyre kaluan të pandryshuara nëpër të dy migrimet."
         }
       },
       "holderB": {
-        "summary": "Një multisig Safe 2-nga-4 që mblodhi PLEB nga 14 portofole brenda një pasditeje, plus një nga pronarët e tij.",
+        "summary": "Një multisig Safe 2-nga-4 që mblodhi BSO nga 14 portofole brenda një pasditeje, plus një nga pronarët e tij.",
         "evidence": {
           "owners": "Safe-i kërkon nënshkrimin e 2 nga 4 pronarët e tij. Një pronar mban edhe BSO drejtpërdrejt. Katër pronarë mund të nënkuptojnë një person me disa çelësa ose një grup të vogël.",
-          "consolidation": "Më 1 qershor 2024, midis orës 16:08 dhe 17:51 UTC, Safe-i mori 120,5 mld PLEB nga 14 portofole. Transferimi i parë ishte një provë me 10 tokenë, të cilën Safe-i e ktheu menjëherë.",
-          "vesting": "Më 12 gusht 2024, Safe-i zhvendosi 60,5 mld PLEB në një rrjedhë vesting në Sablier. Migrimi i vitit 2026 e kreditoi atë rrjedhë përsëri te Safe-i, prandaj Safe-i mori dy transferime migrimi.",
-          "commonSender": "I njëjti portofol i dërgoi PLEB si pronarit të Safe-it (13,7 mld më 8 mars 2024), ashtu edhe Safe-it (1,5 mld më 1 qershor 2024)."
+          "consolidation": "Më 1 qershor 2024, midis orës 16:08 dhe 17:51 UTC, Safe-i mori 16,9 mln BSO nga 14 portofole. Transferimi i parë ishte një provë me 10 tokenë, të cilën Safe-i e ktheu menjëherë.",
+          "vesting": "Më 12 gusht 2024, Safe-i zhvendosi 8,5 mln BSO në një rrjedhë vesting në Sablier. Migrimi i vitit 2026 e kreditoi atë rrjedhë përsëri te Safe-i, prandaj Safe-i mori dy transferime migrimi.",
+          "commonSender": "I njëjti portofol i dërgoi BSO si pronarit të Safe-it (1,93 mln më 8 mars 2024), ashtu edhe Safe-it (211 mijë më 1 qershor 2024)."
         }
       },
       "holderC": {
-        "summary": "Dy portofole që morën PLEB nga i njëjti dërgues.",
+        "summary": "Dy portofole që morën BSO nga i njëjti dërgues.",
         "evidence": {
-          "commonSender": "Një portofol i dërgoi të parit 4,7 mld PLEB më 19 gusht 2024 dhe të dytit 15,4 mld më 14 nëntor 2025. Një dërgues i përbashkët mund të jetë edhe një shitës i vetëm që u shërben dy blerësve."
+          "commonSender": "Një portofol i dërgoi të parit 661 mijë BSO më 19 gusht 2024 dhe të dytit 2,16 mln më 14 nëntor 2025. Një dërgues i përbashkët mund të jetë edhe një shitës i vetëm që u shërben dy blerësve."
         }
       },
       "holderD": {
         "summary": "Tre portofole të lidhura përmes njërit prej tyre.",
         "evidence": {
-          "sharedRecipient": "Portofoli i mesit mori nga i pari një transferim prove dhe pastaj 5 mld PLEB më 18 nëntor 2022, dhe nga i treti 8,2 mld PLEB më 1 dhjetor 2022. Mund të jetë edhe një blerës i vetëm që paguan dy shitës."
+          "sharedRecipient": "Portofoli i mesit mori nga i pari një transferim prove dhe pastaj 703 mijë BSO më 18 nëntor 2022, dhe nga i treti 1,15 mln BSO më 1 dhjetor 2022. Mund të jetë edhe një blerës i vetëm që paguan dy shitës."
         }
       },
       "holderE": {
         "summary": "Dy portofole të mbushura nga i njëjti burim.",
         "evidence": {
-          "commonSender": "Një portofol i dërgoi të parit 39,4 mld PLEB në shtatë transferime midis tetorit 2024 dhe janarit 2025, dhe të dytit 2,0 mld më 22 nëntor 2025."
+          "commonSender": "Një portofol i dërgoi të parit 5,54 mln BSO në shtatë transferime midis tetorit 2024 dhe janarit 2025, dhe të dytit 281 mijë më 22 nëntor 2025."
         }
       },
       "holderF": {
         "summary": "Një portofol që i ndau tokenët e vet në tre portofole të reja dhe u pagoi gas-in.",
         "evidence": {
-          "split": "Më 10 mars 2024, brenda shtatë minutave, një portofol u dërgoi tre portofoleve të reja shuma të rrumbullakëta PLEB (12 mld, 8 mld dhe 4 mld) dhe po atë ditë u dërgoi dyve prej tyre ETH për gas. Ai vetë mban ende BSO."
+          "split": "Më 10 mars 2024, brenda shtatë minutave, një portofol u dërgoi tre portofoleve të reja shuma të rrumbullakëta PLEB, siç quhej atëherë BSO (12 mld, 8 mld dhe 4 mld), dhe po atë ditë u dërgoi dyve prej tyre ETH për gas. Ai vetë mban ende BSO."
         }
       },
       "holderG": {
         "summary": "Dy portofole të financuara nga i njëjti dërgues, me tre vjet diferencë.",
         "evidence": {
-          "commonSender": "Një portofol i dërgoi të dytit 4,7 mld PLEB në Avalanche në prill 2022 dhe të parit 6 mld PLEB në Ethereum në janar 2025."
+          "commonSender": "Një portofol i dërgoi të dytit 661 mijë BSO në Avalanche në prill 2022 dhe të parit 843 mijë në Ethereum në janar 2025."
         }
       },
       "holderH": {
         "summary": "Dy portofole me një transferim mes tyre.",
         "evidence": {
-          "directTransfer": "Portofoli i parë i dërgoi të dytit 420 mln PLEB më 24 prill 2022."
+          "directTransfer": "Portofoli i parë i dërgoi të dytit 59 mijë BSO më 24 prill 2022."
         }
       },
       "holderI": {
         "summary": "Dy portofole me transferime të përsëritura mes tyre.",
         "evidence": {
-          "directTransfers": "Portofoli i dytë i dërgoi të parit 13,2 mld PLEB më 30 tetor 2023 dhe 5 mld më 8 nëntor 2023."
+          "directTransfers": "Portofoli i dytë i dërgoi të parit 1,86 mln BSO më 30 tetor 2023 dhe 703 mijë më 8 nëntor 2023."
         }
       }
     },
     "team": {
       "title": "Pa alokim për ekipin",
-      "lead": "Asnjë token nuk u rezervua për ekipin, investitorët apo për ndonjë presale. Ja nga erdhi çdo PLEB, çfarë mbajnë sot portofolet e ekipit dhe çfarë tha themeluesi në atë kohë.",
+      "lead": "Asnjë token nuk u rezervua për ekipin, investitorët apo për ndonjë presale. Ja nga erdhi çdo BSO, çfarë mbajnë sot portofolet e ekipit dhe çfarë tha themeluesi në atë kohë.",
       "origin": {
-        "caption": "Të gjithë {{amount}} PLEB të bërë mint ndonjëherë, sipas mënyrës së mint-it",
-        "label": "PLEB të bërë mint sipas burimit",
+        "caption": "Si u bë mint fillimisht çdo BSO, në vitet 2022 dhe 2023",
+        "label": "Pjesa e BSO sipas mënyrës së mint-it fillestar",
         "airdropClaims": {
           "label": "Marrjet nga airdrop-i",
-          "note": "{{amount}} PLEB të marra nga 1510 adresa në tre raunde. Alokimet që nuk i mori askush nuk u bënë kurrë mint."
+          "note": "{{amount}} BSO të marra nga 1510 adresa në tre raunde. Alokimet që nuk i mori askush nuk u bënë kurrë mint."
         },
         "liquidityMining": {
           "label": "Liquidity mining",
-          "note": "{{amount}} PLEB të paguara njerëzve që bënë staking likuiditeti në Trader Joe, nga shkurti 2022 deri në maj 2023."
+          "note": "{{amount}} BSO të paguara njerëzve që bënë staking likuiditeti në Trader Joe, nga shkurti 2022 deri në maj 2023."
         },
         "liquiditySeed": {
           "label": "Likuiditeti i nisjes",
-          "note": "{{amount}} PLEB të bërë mint te deployer-i dhe të shtuara në dy pool-et e nisjes bashkë me 7 AVAX."
+          "note": "{{amount}} BSO të bërë mint te deployer-i dhe të shtuara në dy pool-et e nisjes bashkë me 7 AVAX."
         }
       },
       "facts": {
-        "liquiditySeed": "I vetmi mint te një portofol i ekipit jashtë airdrop-it ishte likuiditeti i nisjes: 50 mld PLEB, të shtuara në pool-in e Trader Joe (40,1 mld) dhe në pool-in e Pangolin (10 mld) brenda shtatë minutave më 14 janar 2022.",
-        "teamClaims": "Dy anëtarë të ekipit morën tokenë në raundin 1: Esteban 5 mld PLEB dhe Tom 13,2 mld PLEB, marrja e tretë më e madhe nga 767. Së bashku kjo është 2% e totalit të PLEB të marra në airdrop-e.",
-        "noFarmRewards": "Asnjë portofol i ekipit nuk mori shpërblime nga liquidity mining. 433 mld e paguara në Avalanche shkuan te 208 adresa të tjera, dhe 57 mld që ende nuk ishin paguar në kohën e kalimit te Ethereum u kredituan te stakerët që i kishin fituar.",
+        "liquiditySeed": "I vetmi mint te një portofol i ekipit jashtë airdrop-it ishte likuiditeti i nisjes: 7 mln BSO, të shtuara në pool-in e Trader Joe (5,6 mln) dhe në pool-in e Pangolin (1,4 mln) brenda shtatë minutave më 14 janar 2022.",
+        "teamClaims": "Dy anëtarë të ekipit morën tokenë në raundin 1: Esteban 703 mijë BSO dhe Tom 1,86 mln BSO, marrja e tretë më e madhe nga 767. Së bashku kjo është 2% e totalit të tokenëve të marrë në airdrop-e.",
+        "noFarmRewards": "Asnjë portofol i ekipit nuk mori shpërblime nga liquidity mining. 60,9 mln BSO e paguara në Avalanche shkuan te 208 adresa të tjera, dhe 8 mln që ende nuk ishin paguar në kohën e kalimit te Ethereum u kredituan te stakerët që i kishin fituar.",
         "migrationMintedNothing": "Migrimi i vitit 2026 nuk krijoi tokenë të rinj për askënd: të gjitha 210 mln BSO dolën në një transaksion të vetëm, në përpjesëtim me bilancet e vjetra."
       },
       "statementsTitle": "Çfarë tha themeluesi në atë kohë",
@@ -484,7 +484,7 @@
     "airdrops": {
       "title": "Tre airdrop-e, 2022",
       "lead": "PLEB, brezi i parë i BSO, u nis në Avalanche pa asnjë shitje. U shpërnda falas në tre raunde dhe çdo marrje kaloi në BSO me të njëjtin kurs: 7114,6 PLEB për 1 BSO.",
-      "caption": "Tre raundet e airdrop-it të PLEB dhe sa vlejnë sot tokenët e marrë",
+      "caption": "Tre raundet e airdrop-it dhe sa vlejnë sot tokenët e marrë",
       "round": "Raundi {{number}}",
       "total": "Totali",
       "rounds": {
@@ -533,7 +533,7 @@
         },
         "launch": {
           "title": "Fillimisht likuiditeti, pastaj marrjet",
-          "body": "Në orën 18:00 UTC, deployer-i shton PLEB dhe 7 AVAX në Trader Joe dhe Pangolin. Faqja e marrjes hapet rreth 30 minuta më vonë, kështu që çdo alokim ishte i fiksuar para se dikush të mund të tregtonte."
+          "body": "Në orën 18:00 UTC, deployer-i shton tokenët e parë dhe 7 AVAX në Trader Joe dhe Pangolin. Faqja e marrjes hapet rreth 30 minuta më vonë, kështu që çdo alokim ishte i fiksuar para se dikush të mund të tregtonte."
         },
         "twitterRound": {
           "title": "Raundi 2: Twitter",
@@ -549,11 +549,11 @@
         },
         "farm": {
           "title": "Nis liquidity mining",
-          "body": "Ata që bëjnë staking likuiditeti PLEB/AVAX fitojnë PLEB të sapobërë mint. Ferma paguan shpërblime deri në kalimin te Ethereum."
+          "body": "Ata që bëjnë staking likuiditeti në Trader Joe fitojnë tokenë të sapobërë mint. Ferma paguan shpërblime deri në kalimin te Ethereum."
         },
         "ethereum": {
           "title": "Kalimi te Ethereum",
-          "body": "Pas një votimi në Snapshot, PLEB ngrin dhe çdo bilanc, përfshirë tokenët e bllokuar, pozicionet e likuiditetit dhe shpërblimet e papaguara të fermës, rilëshohet në Ethereum si tokeni i brezit të dytë. Mbajtësit nuk duhet të bëjnë asgjë."
+          "body": "Pas një votimi në Snapshot, tokeni në Avalanche ngrin dhe çdo bilanc, përfshirë tokenët e bllokuar, pozicionet e likuiditetit dhe shpërblimet e papaguara të fermës, rilëshohet në Ethereum si tokeni i brezit të dytë. Mbajtësit nuk duhet të bëjnë asgjë."
         },
         "rebrand": {
           "title": "plebbit bëhet Bitsocial",
@@ -578,10 +578,10 @@
       "lead": "Si u gjetën grupet dhe çfarë nuk mund të shohë kjo faqe.",
       "howTitle": "Si u lidhën portofolet",
       "how": {
-        "transfers": "U gjurmua çdo transferim PLEB dhe BSO mes dy portofoleve të zakonshme, në Avalanche dhe Ethereum, duke lënë jashtë exchange-t, router-at, pool-et dhe kontratat e tjera. Multisig-ët Safe u lidhën me pronarët e tyre.",
+        "transfers": "U gjurmua çdo transferim mes dy portofoleve të zakonshme në të tri kontratat, në Avalanche dhe Ethereum, duke lënë jashtë exchange-t, router-at, pool-et dhe kontratat e tjera. Multisig-ët Safe u lidhën me pronarët e tyre.",
         "funders": "U krahasua portofoli i parë që i dërgoi AVAX ose ETH secilit mbajtës të madh. Exchange-t financojnë mijëra portofole, prandaj vetëm financuesit privatë llogariten si lidhje.",
-        "pattern": "Për portofolet pa lidhje të drejtpërdrejtë, sjellja e blerjeve u krahasua me atë të çdo blerësi të PLEB në të njëjtën periudhë.",
-        "migrations": "Bilancet u ndoqën nëpër të dy migrimet me 7114,6 PLEB për BSO."
+        "pattern": "Për portofolet pa lidhje të drejtpërdrejtë, sjellja e blerjeve u krahasua me atë të çdo blerësi në të njëjtën periudhë.",
+        "migrations": "Bilancet u ndoqën nëpër të dy migrimet me 7114,6 PLEB për BSO, i njëjti kurs që përdor kjo faqe për të shfaqur shumat më të vjetra në BSO."
       },
       "limitsTitle": "Kufizimet",
       "limits": {
@@ -701,11 +701,11 @@
       },
       "coingecko": {
         "title": "Listohet në CoinGecko",
-        "body": "Pasi e refuzoi disa herë që nga fillimi i 2022, CoinGecko liston PLEB."
+        "body": "Pasi e refuzoi disa herë që nga fillimi i 2022, CoinGecko liston tokenin."
       },
       "socialFi": {
         "title": "Në kategorinë SocialFi të CoinGecko",
-        "body": "CoinGecko e shton PLEB në kategorinë e vet SocialFi pasi ekipi e kërkon, dhe një listë tokenësh SocialFi e ndarë në X e përfshin atë. Çmimi gati dyfishohet brenda pesë ditëve."
+        "body": "CoinGecko e shton tokenin në kategorinë e vet SocialFi pasi ekipi e kërkon, dhe një listë tokenësh SocialFi e ndarë në X e përfshin atë. Çmimi gati dyfishohet brenda pesë ditëve."
       },
       "seedit": {
         "title": "Lansohet Seedit",

@@ -102,7 +102,7 @@
       },
       "airdrop": {
         "label": "Fordelingen",
-        "note": "Tre airdrop-runder i januar og februar 2022, claimet af 1.510 adresser. Runde 1 brugte en Telegram-bot med henvisningsbonusser, og Esteban gennemgik dens henvisninger manuelt for misbrug; runde 2 og 3 foregik på Twitter og Reddit. Omkring 63% af alle PLEB blev fordelt gennem airdroppene og 34% som belønninger til folk, der stillede likviditet til rådighed; resten blev startlikviditet i lanceringspoolene. Ingen presale, ingen teamallokering, intet solgt.",
+        "note": "Tre airdrop-runder i januar og februar 2022, claimet af 1.510 adresser. Runde 1 brugte en Telegram-bot med henvisningsbonusser, og Esteban gennemgik dens henvisninger manuelt for misbrug; runde 2 og 3 foregik på Twitter og Reddit. Omkring 63% af alle BSO blev fordelt gennem airdroppene og 34% som belønninger til folk, der stillede likviditet til rådighed; resten blev startlikviditet i lanceringspoolene. Ingen presale, ingen teamallokering, intet solgt.",
         "richListLink": "Se alle indehavere og alle tre runder"
       },
       "contract": {
@@ -387,89 +387,89 @@
         "name": "Uniswap-pool for BSO/ETH"
       },
       "holderA": {
-        "summary": "Tolv wallets, der købte PLEB på Avalanche mellem 22. februar og 8. april 2022 og aldrig har solgt. Fem er forbundet med hinanden on-chain; de andre syv matcher den samme købers mønster.",
+        "summary": "Tolv wallets, der købte på Avalanche mellem 22. februar og 8. april 2022 og aldrig har solgt. Fem er forbundet med hinanden on-chain; de andre syv matcher den samme købers mønster.",
         "evidence": {
-          "transfersToLpWallet": "To af de købende wallets sendte PLEB og AVAX til en tredje wallet, som brugte dem til likviditet og farming på Trader Joe: 1 mia. PLEB og 5 AVAX den 27. februar 2022, derefter 7,2 mia. PLEB og 34 AVAX mellem 28. februar og 2. marts. Den tredje wallet sendte 0,013 AVAX tilbage.",
+          "transfersToLpWallet": "To af de købende wallets sendte tokens og AVAX til en tredje wallet, som brugte dem til likviditet og farming på Trader Joe: 141.000 BSO og 5 AVAX den 27. februar 2022, derefter 1,01 mio. BSO og 34 AVAX mellem 28. februar og 2. marts. Den tredje wallet sendte 0,013 AVAX tilbage.",
           "sharedFunder": "Én privat wallet finansierede tre af de købende wallets og intet andet. Hver eneste transaktion, den nogensinde har sendt, gik til dem, i rækkefølge: nonce 0 til 4 til den første, 5 til 7 til den anden, 8 til den tredje.",
-          "buyingPattern": "Syv andre wallets var alle nye, finansieret med én eller to udbetalinger fra en børs på omkring 2.000 til 3.400 dollar via Binance eller ChangeNOW (de samme tjenester, som de forbundne wallets brugte), vekslet helt til PLEB og aldrig brugt igen. De købte én efter én mellem 28. februar og 31. marts 2022 og overlappede aldrig tidsmæssigt med de forbundne wallets. Af alle 292 PLEB-købere fra februar til april 2022 passer ingen anden wallet til dette mønster.",
+          "buyingPattern": "Syv andre wallets var alle nye, finansieret med én eller to udbetalinger fra en børs på omkring 2.000 til 3.400 dollar via Binance eller ChangeNOW (de samme tjenester, som de forbundne wallets brugte), vekslet helt til tokenet og aldrig brugt igen. De købte én efter én mellem 28. februar og 31. marts 2022 og overlappede aldrig tidsmæssigt med de forbundne wallets. Af alle 292 købere fra februar til april 2022 passer ingen anden wallet til dette mønster.",
           "neverSold": "Ingen af de tolv wallets har solgt eller flyttet sine tokens siden. Deres saldi kom uændrede gennem begge migreringer."
         }
       },
       "holderB": {
-        "summary": "En 2-af-4 Safe-multisig, der samlede PLEB fra 14 wallets på én eftermiddag, plus en af dens ejere.",
+        "summary": "En 2-af-4 Safe-multisig, der samlede BSO fra 14 wallets på én eftermiddag, plus en af dens ejere.",
         "evidence": {
           "owners": "Safen kræver underskrift fra 2 af sine 4 ejere. En af ejerne har også BSO direkte. Fire ejere kan være én person med flere nøgler eller en lille gruppe.",
-          "consolidation": "Den 1. juni 2024 mellem kl. 16:08 og 17:51 UTC modtog Safen 120,5 mia. PLEB fra 14 wallets. Den første overførsel var en test på 10 tokens, som Safen straks sendte tilbage.",
-          "vesting": "Den 12. august 2024 flyttede Safen 60,5 mia. PLEB over i en Sablier-vestingstream. Migreringen i 2026 krediterede den stream tilbage til Safen, og derfor modtog Safen to migreringsoverførsler.",
-          "commonSender": "Den samme wallet sendte PLEB både til Safe-ejeren (13,7 mia. den 8. marts 2024) og til Safen (1,5 mia. den 1. juni 2024)."
+          "consolidation": "Den 1. juni 2024 mellem kl. 16:08 og 17:51 UTC modtog Safen 16,9 mio. BSO fra 14 wallets. Den første overførsel var en test på 10 tokens, som Safen straks sendte tilbage.",
+          "vesting": "Den 12. august 2024 flyttede Safen 8,5 mio. BSO over i en Sablier-vestingstream. Migreringen i 2026 krediterede den stream tilbage til Safen, og derfor modtog Safen to migreringsoverførsler.",
+          "commonSender": "Den samme wallet sendte BSO både til Safe-ejeren (1,93 mio. den 8. marts 2024) og til Safen (211.000 den 1. juni 2024)."
         }
       },
       "holderC": {
-        "summary": "To wallets, der modtog PLEB fra den samme afsender.",
+        "summary": "To wallets, der modtog BSO fra den samme afsender.",
         "evidence": {
-          "commonSender": "Én wallet sendte 4,7 mia. PLEB til den første den 19. august 2024 og 15,4 mia. til den anden den 14. november 2025. En fælles afsender kan også være én sælger, der betjener to købere."
+          "commonSender": "Én wallet sendte 661.000 BSO til den første den 19. august 2024 og 2,16 mio. til den anden den 14. november 2025. En fælles afsender kan også være én sælger, der betjener to købere."
         }
       },
       "holderD": {
         "summary": "Tre wallets forbundet gennem én af dem.",
         "evidence": {
-          "sharedRecipient": "Den midterste wallet modtog en testoverførsel og derefter 5 mia. PLEB fra den første den 18. november 2022 og 8,2 mia. PLEB fra den tredje den 1. december 2022. Det kunne også være én køber, der betaler to sælgere."
+          "sharedRecipient": "Den midterste wallet modtog en testoverførsel og derefter 703.000 BSO fra den første den 18. november 2022 og 1,15 mio. BSO fra den tredje den 1. december 2022. Det kunne også være én køber, der betaler to sælgere."
         }
       },
       "holderE": {
         "summary": "To wallets fyldt op fra samme kilde.",
         "evidence": {
-          "commonSender": "Én wallet sendte den første 39,4 mia. PLEB i syv overførsler mellem oktober 2024 og januar 2025 og den anden 2,0 mia. den 22. november 2025."
+          "commonSender": "Én wallet sendte den første 5,54 mio. BSO i syv overførsler mellem oktober 2024 og januar 2025 og den anden 281.000 den 22. november 2025."
         }
       },
       "holderF": {
         "summary": "Én wallet, der delte sine tokens ud på tre nye wallets og betalte deres gas.",
         "evidence": {
-          "split": "Den 10. marts 2024 sendte én wallet inden for syv minutter runde beløb af PLEB (12 mia., 8 mia. og 4 mia.) til tre nye wallets og sendte samme dag ETH til gas til to af dem. Den har stadig selv BSO."
+          "split": "Den 10. marts 2024 sendte én wallet inden for syv minutter runde beløb af PLEB, som BSO hed dengang (12 mia., 8 mia. og 4 mia.), til tre nye wallets og sendte samme dag ETH til gas til to af dem. Den har stadig selv BSO."
         }
       },
       "holderG": {
         "summary": "To wallets finansieret af den samme afsender med tre års mellemrum.",
         "evidence": {
-          "commonSender": "Én wallet sendte den anden 4,7 mia. PLEB på Avalanche i april 2022 og den første 6 mia. PLEB på Ethereum i januar 2025."
+          "commonSender": "Én wallet sendte den anden 661.000 BSO på Avalanche i april 2022 og den første 843.000 på Ethereum i januar 2025."
         }
       },
       "holderH": {
         "summary": "To wallets med én overførsel imellem sig.",
         "evidence": {
-          "directTransfer": "Den første wallet sendte den anden 420 mio. PLEB den 24. april 2022."
+          "directTransfer": "Den første wallet sendte den anden 59.000 BSO den 24. april 2022."
         }
       },
       "holderI": {
         "summary": "To wallets med gentagne overførsler imellem sig.",
         "evidence": {
-          "directTransfers": "Den anden wallet sendte den første 13,2 mia. PLEB den 30. oktober 2023 og 5 mia. den 8. november 2023."
+          "directTransfers": "Den anden wallet sendte den første 1,86 mio. BSO den 30. oktober 2023 og 703.000 den 8. november 2023."
         }
       }
     },
     "team": {
       "title": "Ingen teamallokering",
-      "lead": "Der blev ikke reserveret tokens til teamet, investorer eller et presale. Her kan du se, hvor hver eneste PLEB kom fra, hvad teamets wallets har i dag, og hvad grundlæggeren sagde dengang.",
+      "lead": "Der blev ikke reserveret tokens til teamet, investorer eller et presale. Her kan du se, hvor hver eneste BSO kom fra, hvad teamets wallets har i dag, og hvad grundlæggeren sagde dengang.",
       "origin": {
-        "caption": "Alle {{amount}} PLEB, der nogensinde er mintet, fordelt efter hvordan de blev mintet",
-        "label": "Mintede PLEB efter kilde",
+        "caption": "Hvordan hver BSO oprindeligt blev mintet, i 2022 og 2023",
+        "label": "Andel af BSO efter hvordan de oprindeligt blev mintet",
         "airdropClaims": {
           "label": "Airdrop-claims",
-          "note": "{{amount}} PLEB claimet af 1.510 adresser i tre runder. Allokeringer, som ingen claimede, blev aldrig mintet."
+          "note": "{{amount}} BSO claimet af 1.510 adresser i tre runder. Allokeringer, som ingen claimede, blev aldrig mintet."
         },
         "liquidityMining": {
           "label": "Likviditetsmining",
-          "note": "{{amount}} PLEB udbetalt til folk, der stakede likviditet på Trader Joe, fra februar 2022 til maj 2023."
+          "note": "{{amount}} BSO udbetalt til folk, der stakede likviditet på Trader Joe, fra februar 2022 til maj 2023."
         },
         "liquiditySeed": {
           "label": "Lanceringslikviditet",
-          "note": "{{amount}} PLEB mintet til deployeren og tilføjet de to lanceringspools sammen med 7 AVAX."
+          "note": "{{amount}} BSO mintet til deployeren og tilføjet de to lanceringspools sammen med 7 AVAX."
         }
       },
       "facts": {
-        "liquiditySeed": "Den eneste mint til en team-wallet uden for airdroppet var lanceringslikviditeten: 50 mia. PLEB, tilføjet Trader Joe-poolen (40,1 mia.) og Pangolin-poolen (10 mia.) inden for syv minutter den 14. januar 2022.",
-        "teamClaims": "To teammedlemmer claimede i runde 1: Esteban 5 mia. PLEB og Tom 13,2 mia. PLEB, det tredjestørste af 767 claims. Tilsammen er det 2% af alle PLEB, der blev claimet i airdroppene.",
-        "noFarmRewards": "Ingen team-wallet modtog belønninger fra likviditetsmining. De 433 mia., der blev udbetalt på Avalanche, gik til 208 andre adresser, og de 57 mia., der stadig ikke var udbetalt ved flytningen til Ethereum, blev krediteret de stakere, der havde tjent dem.",
+        "liquiditySeed": "Den eneste mint til en team-wallet uden for airdroppet var lanceringslikviditeten: 7 mio. BSO, tilføjet Trader Joe-poolen (5,6 mio.) og Pangolin-poolen (1,4 mio.) inden for syv minutter den 14. januar 2022.",
+        "teamClaims": "To teammedlemmer claimede i runde 1: Esteban 703.000 BSO og Tom 1,86 mio. BSO, det tredjestørste af 767 claims. Tilsammen er det 2% af alle tokens, der blev claimet i airdroppene.",
+        "noFarmRewards": "Ingen team-wallet modtog belønninger fra likviditetsmining. De 60,9 mio. BSO, der blev udbetalt på Avalanche, gik til 208 andre adresser, og de 8 mio., der stadig ikke var udbetalt ved flytningen til Ethereum, blev krediteret de stakere, der havde tjent dem.",
         "migrationMintedNothing": "Migreringen i 2026 skabte ingen nye tokens til nogen: alle 210 mio. BSO blev sendt ud i én transaktion, i forhold til de gamle saldi."
       },
       "statementsTitle": "Hvad grundlæggeren sagde dengang",
@@ -484,7 +484,7 @@
     "airdrops": {
       "title": "Tre airdrops, 2022",
       "lead": "PLEB, den første generation af BSO, blev lanceret på Avalanche uden noget salg. Den blev givet væk i tre runder, og hvert claim blev overført til BSO med samme kurs: 7.114,6 PLEB for 1 BSO.",
-      "caption": "De tre PLEB-airdroprunder og hvad de claimede tokens er værd i dag",
+      "caption": "De tre airdroprunder og hvad de claimede tokens er værd i dag",
       "round": "Runde {{number}}",
       "total": "I alt",
       "rounds": {
@@ -533,7 +533,7 @@
         },
         "launch": {
           "title": "Først likviditet, så claims",
-          "body": "Kl. 18:00 UTC tilføjer deployeren PLEB og 7 AVAX til Trader Joe og Pangolin. Claim-siden åbner omkring 30 minutter senere, så alle allokeringer lå fast, før nogen kunne handle."
+          "body": "Kl. 18:00 UTC tilføjer deployeren de første tokens og 7 AVAX til Trader Joe og Pangolin. Claim-siden åbner omkring 30 minutter senere, så alle allokeringer lå fast, før nogen kunne handle."
         },
         "twitterRound": {
           "title": "Runde 2: Twitter",
@@ -549,11 +549,11 @@
         },
         "farm": {
           "title": "Likviditetsmining starter",
-          "body": "Folk, der staker PLEB/AVAX-likviditet, tjener nyligt mintede PLEB. Farmen udbetaler frem til flytningen til Ethereum."
+          "body": "Folk, der staker likviditet på Trader Joe, tjener nyligt mintede tokens. Farmen udbetaler frem til flytningen til Ethereum."
         },
         "ethereum": {
           "title": "Flytningen til Ethereum",
-          "body": "Efter en afstemning på Snapshot fryses PLEB, og hver saldo, inklusive låste tokens, likviditetspositioner og ikke-udbetalte farm-belønninger, udstedes igen på Ethereum som andengenerationstokenet. Indehaverne skal ikke gøre noget."
+          "body": "Efter en afstemning på Snapshot fryses tokenet på Avalanche, og hver saldo, inklusive låste tokens, likviditetspositioner og ikke-udbetalte farm-belønninger, udstedes igen på Ethereum som andengenerationstokenet. Indehaverne skal ikke gøre noget."
         },
         "rebrand": {
           "title": "plebbit bliver til Bitsocial",
@@ -578,10 +578,10 @@
       "lead": "Hvordan grupperne blev fundet, og hvad denne side ikke kan se.",
       "howTitle": "Sådan blev wallets forbundet",
       "how": {
-        "transfers": "Hver overførsel af PLEB og BSO mellem to almindelige wallets på Avalanche og Ethereum blev sporet, uden børser, routere, pools og andre kontrakter. Safe-multisigs blev forbundet med deres ejere.",
+        "transfers": "Hver overførsel mellem to almindelige wallets på alle tre kontrakter, på Avalanche og Ethereum, blev sporet, uden børser, routere, pools og andre kontrakter. Safe-multisigs blev forbundet med deres ejere.",
         "funders": "Den første wallet, der sendte AVAX eller ETH til hver af de største indehavere, blev sammenlignet. Børser finansierer tusindvis af wallets, så kun private finansieringskilder tæller som en forbindelse.",
-        "pattern": "For wallets uden direkte forbindelse blev købsadfærden sammenlignet med alle PLEB-købere i samme periode.",
-        "migrations": "Saldi blev fulgt gennem begge migreringer med 7.114,6 PLEB pr. BSO."
+        "pattern": "For wallets uden direkte forbindelse blev købsadfærden sammenlignet med alle købere i samme periode.",
+        "migrations": "Saldi blev fulgt gennem begge migreringer med 7.114,6 PLEB pr. BSO, den samme kurs, som denne side bruger til at vise ældre beløb i BSO."
       },
       "limitsTitle": "Begrænsninger",
       "limits": {
@@ -701,11 +701,11 @@
       },
       "coingecko": {
         "title": "Listet på CoinGecko",
-        "body": "Efter at have afvist det flere gange siden starten af 2022 lister CoinGecko PLEB."
+        "body": "Efter at have afvist det flere gange siden starten af 2022 lister CoinGecko tokenet."
       },
       "socialFi": {
         "title": "I CoinGeckos SocialFi-kategori",
-        "body": "CoinGecko føjer PLEB til sin SocialFi-kategori, efter at teamet har bedt om det, og en liste over SocialFi-tokens, der deles på X, tager det med. Prisen fordobles næsten på fem dage."
+        "body": "CoinGecko føjer tokenet til sin SocialFi-kategori, efter at teamet har bedt om det, og en liste over SocialFi-tokens, der deles på X, tager det med. Prisen fordobles næsten på fem dage."
       },
       "seedit": {
         "title": "Seedit lanceres",

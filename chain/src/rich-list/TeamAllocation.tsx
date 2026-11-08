@@ -6,6 +6,7 @@ import {
   PLEB_MINTS,
   type TxRef,
 } from "@/lib/rich-list/data";
+import { plebToBso } from "@/lib/rich-list/holders";
 import { useEntityName, useRichList } from "./data-context";
 import { useFormatters } from "./format";
 import { AddressLink, RichSection, TelegramLinks, TxLinks } from "./primitives";
@@ -79,9 +80,7 @@ export default function TeamAllocation() {
   return (
     <RichSection id="team" title={t("richList.team.title")} lead={t("richList.team.lead")}>
       <figure className="rl-origin glass-card">
-        <figcaption className="rl-origin-caption">
-          {t("richList.team.origin.caption", { amount: format.compact(minted) })}
-        </figcaption>
+        <figcaption className="rl-origin-caption">{t("richList.team.origin.caption")}</figcaption>
         <div className="rl-strip-bar" role="img" aria-label={t("richList.team.origin.label")}>
           {origins.map((origin) => (
             <span
@@ -101,7 +100,7 @@ export default function TeamAllocation() {
               </dt>
               <dd>
                 {t(`richList.team.origin.${origin.key}.note`, {
-                  amount: format.compact(origin.amount),
+                  amount: format.compact(plebToBso(origin.amount)),
                 })}
               </dd>
             </div>

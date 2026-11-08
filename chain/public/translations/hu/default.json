@@ -102,7 +102,7 @@
       },
       "airdrop": {
         "label": "Az elosztás",
-        "note": "Három airdrop-kör 2022 januárjában és februárjában, amelyekben 1510 cím igényelt. Az 1. kör egy ajánlási bónuszokat adó Telegram-botot használt, amelynek ajánlásait Esteban kézzel ellenőrizte visszaélések után kutatva; a 2. és a 3. kör a Twitteren és a Redditen zajlott. Az összes PLEB körülbelül 63%-a az airdropokon keresztül került ki, 34%-a pedig jutalomként a likviditást biztosítókhoz; a maradék az indulási poolok kezdő likviditása lett. Nincs presale, nincs csapatnak félretett rész, semmit nem adtak el.",
+        "note": "Három airdrop-kör 2022 januárjában és februárjában, amelyekben 1510 cím igényelt. Az 1. kör egy ajánlási bónuszokat adó Telegram-botot használt, amelynek ajánlásait Esteban kézzel ellenőrizte visszaélések után kutatva; a 2. és a 3. kör a Twitteren és a Redditen zajlott. Az összes BSO körülbelül 63%-a az airdropokon keresztül került ki, 34%-a pedig jutalomként a likviditást biztosítókhoz; a maradék az indulási poolok kezdő likviditása lett. Nincs presale, nincs csapatnak félretett rész, semmit nem adtak el.",
         "richListLink": "Nézd meg az összes birtokost és mindhárom kört"
       },
       "contract": {
@@ -387,89 +387,89 @@
         "name": "Uniswap BSO/ETH pool"
       },
       "holderA": {
-        "summary": "Tizenkét tárca, amely 2022. február 22. és április 8. között PLEB-et vásárolt az Avalanche-on, és soha nem adott el. Közülük öt a láncon is össze van kötve; a másik hét ugyanannak a vevőnek a mintájára illik.",
+        "summary": "Tizenkét tárca, amely 2022. február 22. és április 8. között vásárolt az Avalanche-on, és soha nem adott el. Közülük öt a láncon is össze van kötve; a másik hét ugyanannak a vevőnek a mintájára illik.",
         "evidence": {
-          "transfersToLpWallet": "A vásárló tárcák közül kettő PLEB-et és AVAX-ot küldött egy harmadik tárcának, amely ezeket Trader Joe-likviditásra és farmolásra használta: 1 milliárd PLEB-et és 5 AVAX-ot 2022. február 27-én, majd 7,2 milliárd PLEB-et és 34 AVAX-ot február 28. és március 2. között. A harmadik tárca 0,013 AVAX-ot küldött vissza.",
+          "transfersToLpWallet": "A vásárló tárcák közül kettő tokeneket és AVAX-ot küldött egy harmadik tárcának, amely ezeket Trader Joe-likviditásra és farmolásra használta: 141 ezer BSO-t és 5 AVAX-ot 2022. február 27-én, majd 1,01 millió BSO-t és 34 AVAX-ot február 28. és március 2. között. A harmadik tárca 0,013 AVAX-ot küldött vissza.",
           "sharedFunder": "Egyetlen magántárca finanszírozott három vásárló tárcát, és semmi mást. Minden tranzakció, amelyet valaha elküldött, hozzájuk ment, sorrendben: a 0–4. nonce az elsőhöz, az 5–7. a másodikhoz, a 8. a harmadikhoz.",
-          "buyingPattern": "További hét tárca mind új volt: egy vagy két, nagyjából 2000–3400 dolláros tőzsdei kivétellel finanszírozták őket a Binance-en vagy a ChangeNOW-n keresztül (ugyanazokon a szolgáltatásokon, amelyeket az összekapcsolt tárcák is használtak), teljes egészében PLEB-re váltották, és soha többé nem használták őket. Egymás után vásároltak 2022. február 28. és március 31. között, soha nem átfedésben az összekapcsolt tárcákkal. A 2022 februárja és áprilisa közötti mind a 292 PLEB-vásárló közül egyetlen más tárca sem illik ebbe a mintába.",
+          "buyingPattern": "További hét tárca mind új volt: egy vagy két, nagyjából 2000–3400 dolláros tőzsdei kivétellel finanszírozták őket a Binance-en vagy a ChangeNOW-n keresztül (ugyanazokon a szolgáltatásokon, amelyeket az összekapcsolt tárcák is használtak), teljes egészében a tokenre váltották, és soha többé nem használták őket. Egymás után vásároltak 2022. február 28. és március 31. között, soha nem átfedésben az összekapcsolt tárcákkal. A 2022 februárja és áprilisa közötti mind a 292 vásárló közül egyetlen más tárca sem illik ebbe a mintába.",
           "neverSold": "A tizenkét tárca egyike sem adta el és nem mozgatta azóta a tokenjeit. Egyenlegeik változatlanul mentek át mindkét migráción."
         }
       },
       "holderB": {
-        "summary": "Egy 2/4-es Safe multisig, amely egyetlen délután alatt 14 tárcából gyűjtött össze PLEB-et, valamint az egyik tulajdonosa.",
+        "summary": "Egy 2/4-es Safe multisig, amely egyetlen délután alatt 14 tárcából gyűjtött össze BSO-t, valamint az egyik tulajdonosa.",
         "evidence": {
           "owners": "A Safe-hez 4 tulajdonosából 2 aláírása szükséges. Az egyik tulajdonos közvetlenül is tart BSO-t. Négy tulajdonos jelenthet egyetlen, több kulccsal rendelkező személyt vagy egy kis csoportot.",
-          "consolidation": "2024. június 1-jén 16:08 és 17:51 UTC között a Safe 120,5 milliárd PLEB-et kapott 14 tárcából. Az első átutalás egy 10 tokenes teszt volt, amelyet a Safe azonnal visszaküldött.",
-          "vesting": "2024. augusztus 12-én a Safe 60,5 milliárd PLEB-et helyezett egy Sablier vesting streambe. A 2026-os migráció ezt a streamet visszaírta a Safe javára, ezért kapott a Safe két migrációs átutalást.",
-          "commonSender": "Ugyanaz a tárca küldött PLEB-et a Safe-tulajdonosnak (13,7 milliárdot 2024. március 8-án) és magának a Safe-nek is (1,5 milliárdot 2024. június 1-jén)."
+          "consolidation": "2024. június 1-jén 16:08 és 17:51 UTC között a Safe 16,9 millió BSO-t kapott 14 tárcából. Az első átutalás egy 10 tokenes teszt volt, amelyet a Safe azonnal visszaküldött.",
+          "vesting": "2024. augusztus 12-én a Safe 8,5 millió BSO-t helyezett egy Sablier vesting streambe. A 2026-os migráció ezt a streamet visszaírta a Safe javára, ezért kapott a Safe két migrációs átutalást.",
+          "commonSender": "Ugyanaz a tárca küldött BSO-t a Safe-tulajdonosnak (1,93 milliót 2024. március 8-án) és magának a Safe-nek is (211 ezret 2024. június 1-jén)."
         }
       },
       "holderC": {
-        "summary": "Két tárca, amely ugyanattól a küldőtől kapott PLEB-et.",
+        "summary": "Két tárca, amely ugyanattól a küldőtől kapott BSO-t.",
         "evidence": {
-          "commonSender": "Egy tárca 4,7 milliárd PLEB-et küldött az elsőnek 2024. augusztus 19-én, és 15,4 milliárdot a másodiknak 2025. november 14-én. A közös küldő lehet egyetlen eladó is, aki két vevőt szolgál ki."
+          "commonSender": "Egy tárca 661 ezer BSO-t küldött az elsőnek 2024. augusztus 19-én, és 2,16 milliót a másodiknak 2025. november 14-én. A közös küldő lehet egyetlen eladó is, aki két vevőt szolgál ki."
         }
       },
       "holderD": {
         "summary": "Három tárca, amelyeket az egyikük köt össze.",
         "evidence": {
-          "sharedRecipient": "A középső tárca 2022. november 18-án egy tesztátutalást, majd 5 milliárd PLEB-et kapott az elsőtől, 2022. december 1-jén pedig 8,2 milliárd PLEB-et a harmadiktól. Ez lehet egyetlen vevő is, aki két eladónak fizet."
+          "sharedRecipient": "A középső tárca 2022. november 18-án egy tesztátutalást, majd 703 ezer BSO-t kapott az elsőtől, 2022. december 1-jén pedig 1,15 millió BSO-t a harmadiktól. Ez lehet egyetlen vevő is, aki két eladónak fizet."
         }
       },
       "holderE": {
         "summary": "Két tárca, amelyeket ugyanabból a forrásból töltöttek fel.",
         "evidence": {
-          "commonSender": "Egy tárca 2024 októbere és 2025 januárja között hét átutalásban 39,4 milliárd PLEB-et küldött az elsőnek, 2025. november 22-én pedig 2,0 milliárdot a másodiknak."
+          "commonSender": "Egy tárca 2024 októbere és 2025 januárja között hét átutalásban 5,54 millió BSO-t küldött az elsőnek, 2025. november 22-én pedig 281 ezret a másodiknak."
         }
       },
       "holderF": {
         "summary": "Egy tárca, amely három új tárcára osztotta szét a tokenjeit, és kifizette a gasdíjukat.",
         "evidence": {
-          "split": "2024. március 10-én egy tárca hét percen belül kerek összegű PLEB-et (12, 8 és 4 milliárdot) küldött három új tárcának, és ugyanazon a napon kettőnek közülük ETH-t is küldött gasra. Maga is tart még BSO-t."
+          "split": "2024. március 10-én egy tárca hét percen belül kerek összegű PLEB-et (így hívták akkor a BSO-t), 12, 8 és 4 milliárdot küldött három új tárcának, és ugyanazon a napon kettőnek közülük ETH-t is küldött gasra. Maga is tart még BSO-t."
         }
       },
       "holderG": {
         "summary": "Két tárca, amelyeket ugyanaz a küldő finanszírozott, három év különbséggel.",
         "evidence": {
-          "commonSender": "Egy tárca 2022 áprilisában 4,7 milliárd PLEB-et küldött a másodiknak az Avalanche-on, 2025 januárjában pedig 6 milliárd PLEB-et az elsőnek az Ethereumon."
+          "commonSender": "Egy tárca 2022 áprilisában 661 ezer BSO-t küldött a másodiknak az Avalanche-on, 2025 januárjában pedig 843 ezret az elsőnek az Ethereumon."
         }
       },
       "holderH": {
         "summary": "Két tárca egyetlen átutalással közöttük.",
         "evidence": {
-          "directTransfer": "Az első tárca 2022. április 24-én 420 millió PLEB-et küldött a másodiknak."
+          "directTransfer": "Az első tárca 2022. április 24-én 59 ezer BSO-t küldött a másodiknak."
         }
       },
       "holderI": {
         "summary": "Két tárca ismétlődő átutalásokkal közöttük.",
         "evidence": {
-          "directTransfers": "A második tárca 2023. október 30-án 13,2 milliárd PLEB-et küldött az elsőnek, 2023. november 8-án pedig 5 milliárdot."
+          "directTransfers": "A második tárca 2023. október 30-án 1,86 millió BSO-t küldött az elsőnek, 2023. november 8-án pedig 703 ezret."
         }
       }
     },
     "team": {
       "title": "Nincs csapatnak félretett rész",
-      "lead": "Semmilyen tokent nem különítettek el a csapatnak, befektetőknek vagy presale-re. Íme, honnan származik minden PLEB, mi van ma a csapat tárcáiban, és mit mondott akkor az alapító.",
+      "lead": "Semmilyen tokent nem különítettek el a csapatnak, befektetőknek vagy presale-re. Íme, honnan származik minden BSO, mi van ma a csapat tárcáiban, és mit mondott akkor az alapító.",
       "origin": {
-        "caption": "Az összes valaha kibocsátott PLEB ({{amount}}), a kibocsátás módja szerint",
-        "label": "Kibocsátott PLEB forrás szerint",
+        "caption": "Hogyan bocsátották ki eredetileg az összes BSO-t, 2022-ben és 2023-ban",
+        "label": "A BSO megoszlása az eredeti kibocsátás módja szerint",
         "airdropClaims": {
           "label": "Airdrop-igénylések",
-          "note": "{{amount}} PLEB-et 1510 cím igényelt három körben. Azokat az allokációkat, amelyeket senki sem igényelt, soha nem bocsátották ki."
+          "note": "{{amount}} BSO-t 1510 cím igényelt három körben. Azokat az allokációkat, amelyeket senki sem igényelt, soha nem bocsátották ki."
         },
         "liquidityMining": {
           "label": "Likviditásbányászat",
-          "note": "{{amount}} PLEB-et fizettek ki azoknak, akik Trader Joe-likviditást stake-eltek, 2022 februárjától 2023 májusáig."
+          "note": "{{amount}} BSO-t fizettek ki azoknak, akik Trader Joe-likviditást stake-eltek, 2022 februárjától 2023 májusáig."
         },
         "liquiditySeed": {
           "label": "Indulási likviditás",
-          "note": "{{amount}} PLEB-et bocsátottak ki a deployernek, és 7 AVAX-szal együtt hozzáadták a két indulási poolhoz."
+          "note": "{{amount}} BSO-t bocsátottak ki a deployernek, és 7 AVAX-szal együtt hozzáadták a két indulási poolhoz."
         }
       },
       "facts": {
-        "liquiditySeed": "Az airdropon kívül az egyetlen kibocsátás csapattárcába az indulási likviditás volt: 50 milliárd PLEB, amelyet 2022. január 14-én hét percen belül adtak hozzá a Trader Joe-poolhoz (40,1 milliárd) és a Pangolin-poolhoz (10 milliárd).",
-        "teamClaims": "Két csapattag igényelt az 1. körben: Esteban 5 milliárd PLEB-et, Tom pedig 13,2 milliárd PLEB-et, ami a 767 igénylés közül a harmadik legnagyobb volt. Együtt ez az airdropokban igényelt összes PLEB 2%-a.",
-        "noFarmRewards": "Egyetlen csapattárca sem kapott likviditásbányászati jutalmat. Az Avalanche-on kifizetett 433 milliárd 208 másik címhez került, az Ethereumra való átálláskor még ki nem fizetett 57 milliárdot pedig jóváírták azoknak a stake-előknek, akik megszerezték.",
+        "liquiditySeed": "Az airdropon kívül az egyetlen kibocsátás csapattárcába az indulási likviditás volt: 7 millió BSO, amelyet 2022. január 14-én hét percen belül adtak hozzá a Trader Joe-poolhoz (5,6 millió) és a Pangolin-poolhoz (1,4 millió).",
+        "teamClaims": "Két csapattag igényelt az 1. körben: Esteban 703 ezer BSO-t, Tom pedig 1,86 millió BSO-t, ami a 767 igénylés közül a harmadik legnagyobb volt. Együtt ez az airdropokban igényelt összes token 2%-a.",
+        "noFarmRewards": "Egyetlen csapattárca sem kapott likviditásbányászati jutalmat. Az Avalanche-on kifizetett 60,9 millió BSO 208 másik címhez került, az Ethereumra való átálláskor még ki nem fizetett 8 milliót pedig jóváírták azoknak a stake-előknek, akik megszerezték.",
         "migrationMintedNothing": "A 2026-os migráció senkinek sem hozott létre új tokent: mind a 210 millió BSO egyetlen tranzakcióban ment ki, a régi egyenlegek arányában."
       },
       "statementsTitle": "Amit az alapító akkor mondott",
@@ -484,7 +484,7 @@
     "airdrops": {
       "title": "Három airdrop, 2022",
       "lead": "A PLEB, a BSO első generációja, eladás nélkül indult az Avalanche-on. Három körben osztották szét ingyen, és minden igénylés ugyanazon az arányon került át BSO-ba: 7114,6 PLEB 1 BSO-ért.",
-      "caption": "A három PLEB-airdrop kör, és hogy ma mennyit érnek az igényelt tokenek",
+      "caption": "A három airdrop-kör, és hogy ma mennyit érnek az igényelt tokenek",
       "round": "{{number}}. kör",
       "total": "Összesen",
       "rounds": {
@@ -533,7 +533,7 @@
         },
         "launch": {
           "title": "Előbb likviditás, aztán igénylés",
-          "body": "18:00 UTC-kor a deployer PLEB-et és 7 AVAX-ot ad hozzá a Trader Joe-hoz és a Pangolinhoz. Az igénylési oldal körülbelül 30 perccel később nyílik meg, így minden allokáció rögzítve volt, mielőtt bárki kereskedhetett volna."
+          "body": "18:00 UTC-kor a deployer az első tokeneket és 7 AVAX-ot adja hozzá a Trader Joe-hoz és a Pangolinhoz. Az igénylési oldal körülbelül 30 perccel később nyílik meg, így minden allokáció rögzítve volt, mielőtt bárki kereskedhetett volna."
         },
         "twitterRound": {
           "title": "2. kör: Twitter",
@@ -549,11 +549,11 @@
         },
         "farm": {
           "title": "Elindul a likviditásbányászat",
-          "body": "Akik PLEB/AVAX-likviditást stake-elnek, frissen kibocsátott PLEB-et kapnak. A farm az Ethereumra való átállásig fizet."
+          "body": "Akik Trader Joe-likviditást stake-elnek, frissen kibocsátott tokeneket kapnak. A farm az Ethereumra való átállásig fizet."
         },
         "ethereum": {
           "title": "Átállás az Ethereumra",
-          "body": "Egy Snapshot-szavazás után a PLEB-et befagyasztják, és minden egyenleget, beleértve a zárolt tokeneket, a likviditási pozíciókat és a ki nem fizetett farmjutalmakat, második generációs tokenként újra kibocsátanak az Ethereumon. A birtokosoknak semmit sem kell tenniük."
+          "body": "Egy Snapshot-szavazás után az Avalanche-on lévő tokent befagyasztják, és minden egyenleget, beleértve a zárolt tokeneket, a likviditási pozíciókat és a ki nem fizetett farmjutalmakat, második generációs tokenként újra kibocsátanak az Ethereumon. A birtokosoknak semmit sem kell tenniük."
         },
         "rebrand": {
           "title": "A plebbitből Bitsocial lesz",
@@ -578,10 +578,10 @@
       "lead": "Hogyan azonosítottuk a csoportokat, és mit nem lát ez az oldal.",
       "howTitle": "Hogyan kapcsoltuk össze a tárcákat",
       "how": {
-        "transfers": "Az Avalanche-on és az Ethereumon két hétköznapi tárca közötti minden PLEB- és BSO-átutalást nyomon követtünk, kihagyva a tőzsdéket, routereket, poolokat és egyéb szerződéseket. A Safe multisigeket a tulajdonosaikhoz kapcsoltuk.",
+        "transfers": "Mindhárom szerződés esetében, az Avalanche-on és az Ethereumon is, nyomon követtünk minden két hétköznapi tárca közötti átutalást, kihagyva a tőzsdéket, routereket, poolokat és egyéb szerződéseket. A Safe multisigeket a tulajdonosaikhoz kapcsoltuk.",
         "funders": "Összevetettük, melyik tárca küldött elsőként AVAX-ot vagy ETH-t az egyes nagy birtokosoknak. A tőzsdék tárcák ezreit finanszírozzák, ezért csak a magánfinanszírozók számítanak kapcsolatnak.",
-        "pattern": "A közvetlen kapcsolat nélküli tárcák vásárlási viselkedését ugyanazon időszak összes PLEB-vásárlójáéval vetettük össze.",
-        "migrations": "Az egyenlegeket mindkét migráción keresztül követtük, 7114,6 PLEB/BSO arányon."
+        "pattern": "A közvetlen kapcsolat nélküli tárcák vásárlási viselkedését ugyanazon időszak összes vásárlójáéval vetettük össze.",
+        "migrations": "Az egyenlegeket mindkét migráción keresztül követtük, 7114,6 PLEB/BSO arányon, ugyanazon az arányon, amellyel ez az oldal a régebbi összegeket BSO-ban mutatja."
       },
       "limitsTitle": "Korlátok",
       "limits": {
@@ -701,11 +701,11 @@
       },
       "coingecko": {
         "title": "Felkerül a CoinGeckóra",
-        "body": "Miután 2022 eleje óta többször elutasította, a CoinGecko felveszi a PLEB-et."
+        "body": "Miután 2022 eleje óta többször elutasította, a CoinGecko felveszi a tokent."
       },
       "socialFi": {
         "title": "A CoinGecko SocialFi-kategóriájában",
-        "body": "A CoinGecko a csapat kérésére felveszi a PLEB-et a SocialFi-kategóriájába, és egy X-en megosztott SocialFi-tokenlista is tartalmazza. Az árfolyam öt nap alatt majdnem megduplázódik."
+        "body": "A CoinGecko a csapat kérésére felveszi a tokent a SocialFi-kategóriájába, és egy X-en megosztott SocialFi-tokenlista is tartalmazza. Az árfolyam öt nap alatt majdnem megduplázódik."
       },
       "seedit": {
         "title": "Elindul a Seedit",
