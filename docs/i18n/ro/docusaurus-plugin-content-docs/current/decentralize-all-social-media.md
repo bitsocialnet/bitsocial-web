@@ -31,6 +31,19 @@ După aceea, rețeaua ar trebui să se extindă spre coada lungă:
 Unele dintre aceste aplicații pot fi open source. Unele pot fi clienți centralizați. Unele pot fi
 construite de Bitsocial Forge, iar multe ar trebui construite de dezvoltatori independenți.
 
+## Idei în cercetare
+
+Unele dintre aceste idei au deja depozite în stadiu de idee. Nimic din ele nu este încă construit.
+Fiecare adună designul și întrebările deschise, astfel încât constructorii și finanțatorii să le
+poată prelua.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): o alternativă la YouTube în care fiecare canal
+  este o comunitate deținută de creatorul său.
+- [GitHub descentralizat](https://github.com/bitsocialnet/decentralized-github): cercetare și
+  arhitectură pentru o alternativă la GitHub construită pe Bitsocial.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): o enciclopedie pe care nu o deține
+  nimeni, în care grupuri editoriale publică versiuni concurente, iar cititorii aleg.
+
 ## Finanțarea a cât mai mulți constructori
 
 Scopul este ca noii clienți sociali să poată fi finanțați înainte de a avea deja tracțiune la scară

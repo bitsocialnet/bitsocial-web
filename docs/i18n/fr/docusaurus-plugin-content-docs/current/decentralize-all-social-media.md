@@ -33,6 +33,20 @@ Certaines de ces applications peuvent être open source. D'autres peuvent être 
 centralisés. Certaines peuvent être construites par Bitsocial Forge, et beaucoup devraient l'être
 par des développeurs indépendants.
 
+## Idées à l'étude
+
+Certaines de ces idées ont déjà des dépôts au stade d'idée. Rien n'y est encore construit. Chacun
+rassemble la conception et les questions ouvertes pour que des développeurs et des financeurs
+puissent s'en emparer.
+
+- [WeTube](https://github.com/bitsocialnet/wetube) : une alternative à YouTube où chaque chaîne est
+  une communauté qui appartient à son créateur.
+- [GitHub décentralisé](https://github.com/bitsocialnet/decentralized-github) : recherche et
+  architecture pour une alternative à GitHub construite sur Bitsocial.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia) : une encyclopédie qui n'appartient à
+  personne, où des groupes éditoriaux publient des versions concurrentes et où les lecteurs
+  choisissent.
+
 ## Financer de nombreux constructeurs
 
 L'objectif est de rendre les nouveaux clients sociaux finançables avant même qu'ils aient atteint la

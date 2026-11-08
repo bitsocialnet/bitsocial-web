@@ -31,6 +31,19 @@ Ezután a hálózatnak a hosszú farok felé kell terjeszkednie:
 Ezek közül egyes alkalmazások lehetnek nyílt forráskódúak, mások központosított kliensek. Néhányat a
 Bitsocial Forge is megépíthet, sokat viszont független fejlesztőknek kellene megépíteniük.
 
+## Kutatás alatt álló ötletek
+
+Néhány ötletnek már van ötletszakaszban lévő repója. Egyikben sincs még semmi megépítve. Mindegyik
+összegyűjti a tervet és a nyitott kérdéseket, hogy a fejlesztők és a támogatók átvehessék.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): YouTube-alternatíva, amelyben minden csatorna a
+  készítője tulajdonában lévő közösség.
+- [Decentralizált GitHub](https://github.com/bitsocialnet/decentralized-github): kutatás és
+  architektúra egy Bitsocialra épülő GitHub-alternatívához.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): senki tulajdonában nem lévő
+  enciklopédia, amelyben szerkesztői csoportok egymással versengő változatokat tesznek közzé, és az
+  olvasók választanak.
+
 ## Sok fejlesztő finanszírozása
 
 A cél az, hogy az új közösségi kliensek már azelőtt finanszírozhatók legyenek, hogy platformszintű

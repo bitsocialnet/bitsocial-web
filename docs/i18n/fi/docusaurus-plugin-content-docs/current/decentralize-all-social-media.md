@@ -31,6 +31,19 @@ Sen jälkeen verkon pitää laajentua pitkään häntään:
 Osa näistä sovelluksista voi olla avointa lähdekoodia. Osa voi olla keskitettyjä asiakassovelluksia.
 Osan voi rakentaa Bitsocial Forge, ja monien pitäisi syntyä itsenäisten kehittäjien käsissä.
 
+## Tutkittavat ideat
+
+Osalla näistä ideoista on jo ideavaiheen repositorio. Niissä ei ole vielä mitään rakennettuna.
+Jokainen kokoaa suunnitelman ja avoimet kysymykset, jotta rakentajat ja rahoittajat voivat tarttua
+niihin.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): YouTube-vaihtoehto, jossa jokainen kanava on
+  tekijänsä omistama yhteisö.
+- [Hajautettu GitHub](https://github.com/bitsocialnet/decentralized-github): tutkimus ja
+  arkkitehtuuri Bitsocialin päälle rakennetulle GitHub-vaihtoehdolle.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): tietosanakirja, jota kukaan ei omista
+  ja jossa toimitusryhmät julkaisevat kilpailevia versioita ja lukijat valitsevat.
+
 ## Monen rakentajan rahoittaminen
 
 Tavoitteena on tehdä uusista sosiaalisista asiakassovelluksista rahoituskelpoisia jo ennen kuin

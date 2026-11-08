@@ -1345,6 +1345,18 @@ After that, the network should expand into the long tail:
 Some of these apps can be open source. Some can be centralized clients. Some can be built by
 Bitsocial Forge, and many should be built by independent developers.
 
+## Ideas in research
+
+Some of these ideas already have idea-stage repositories. Nothing in them is built yet. Each one
+collects the design and open questions so builders and funders can pick it up.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): a YouTube alternative where every channel is a
+  community owned by its creator.
+- [Decentralized GitHub](https://github.com/bitsocialnet/decentralized-github): research and
+  architecture for a GitHub alternative built on Bitsocial.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): an encyclopedia nobody owns, where
+  editorial groups publish competing versions and readers choose.
+
 ## Funding many builders
 
 The goal is to make new social clients fundable before they already have platform-scale traction.
@@ -4634,7 +4646,7 @@ Directory voting pages are planned for each slot on 5chan. These pages will list
 
 ## Downloads
 
-- **Web version**: https://5chan.app (also available using Brave/IPFS Companion on https://5chan.eth)
+- **Web version**: https://5chan.app (also available on https://5chan.eth using [Freedom Browser](https://freedom.baby/) or Brave/IPFS Companion)
 - **Desktop version** (full P2P bitsocial node, seeds automatically): Available for Mac/Windows/Linux, [download from the release page](https://github.com/bitsocialnet/5chan/releases/latest)
 - **Mobile version**: Available for Android, [download from the release page](https://github.com/bitsocialnet/5chan/releases/latest)
 
@@ -4673,6 +4685,7 @@ To have your board appear in a directory on the 5chan homepage:
    - Active and well-moderated
    - Relevant to the directory category
    - **99% uptime** (since a board acts like its own server—it's a P2P node)
+   - **One file per post**: galleries stay off (`features.maxPostGalleryItems` and `features.maxReplyGalleryItems` unset or 0). Directory boards keep 4chan's layout, where each image has its own post number to reply to, whichever board hosts the directory. Boards outside directories can enable galleries.
 
 2. Open a pull request on GitHub by editing the relevant file in the [5chan-directories folder](https://github.com/bitsocialnet/lists/tree/master/5chan-directories)
 
@@ -4775,7 +4788,7 @@ The search box matches communities from the lists Seedit ships, from your own su
 
 ## Downloads
 
-- **Web version**: https://seedit.app — or, using Brave/IPFS Companion: https://seedit.eth
+- **Web version**: https://seedit.app — or, using [Freedom Browser](https://freedom.baby/) or Brave/IPFS Companion: https://seedit.eth
 - **Desktop version** (full P2P bitsocial node, seeds automatically): available for Mac/Windows/Linux, [download from the release page](https://github.com/bitsocialnet/seedit/releases/latest)
 - **Mobile version**: available for Android, [download from the release page](https://github.com/bitsocialnet/seedit/releases/latest)
 
@@ -4841,7 +4854,7 @@ The dev server runs at https://seedit.localhost via [Portless](https://github.co
 - **Tests**: `yarn test`
 - **Lint and module boundaries**: `yarn lint`
 - **Types**: `yarn type-check`
-- **Build, lint, types, React diagnostics, and runtime performance scenarios**: `yarn agent:verify` (run `yarn perf:install` once first)
+- **Build, lint, types, React diagnostics, and runtime performance scenarios**: `yarn agent:verify` (uses system Chrome, which `yarn perf:install` checks for)
 
 Module layering is enforced: `src/views` composes pages, `src/components` holds reusable UI, and `src/hooks`, `src/stores`, `src/lib`, and `src/data` sit below them, with imports flowing one way. `yarn boundaries` (part of `yarn lint`) fails on a violation. See [src/AGENTS.md](https://github.com/bitsocialnet/seedit/blob/HEAD/src/AGENTS.md) for the rules and [AGENTS.md](https://github.com/bitsocialnet/seedit/blob/HEAD/AGENTS.md) for the wider contributor workflow.
 
@@ -5524,7 +5537,7 @@ Evaluate publication risk. The server tracks author history internally, so no co
 
 Requests are signed by the community signer to prevent abuse (e.g., someone unrelated to the community querying the engine to doxx users). The server validates the request signature and ensures the signer matches the community (for domain addresses, the server resolves the community via `bitsocial.getCommunity` and compares `community.signature.publicKey`). Resolved community public keys are cached in-memory for 12 hours to reduce repeated lookups. The HTTP server initializes a single shared bitsocial instance and only destroys it when the server shuts down.
 
-The public challenge package does not call this endpoint from `getChallenge()`. It returns `/api/v1/iframe/:sessionId/lazy#payload=...` instead. The signed payload is stored in the URL fragment, which is not sent on the initial iframe GET; the lazy iframe posts it to `/evaluate` only after the user opens the iframe.
+The public challenge package does not call this endpoint from `getChallenge()` unless the ChallengeRequest carries a [pre-check pass](#pre-check-pass-client-authors). It returns `/api/v1/iframe/:sessionId/lazy#payload=...` instead. The signed payload is stored in the URL fragment, which is not sent on the initial iframe GET; the lazy iframe posts it to `/evaluate` only after the user opens the iframe.
 
 **Request Format:** `Content-Type: application/cbor`
 
@@ -5539,6 +5552,7 @@ The request body is CBOR-encoded (not JSON). This preserves `Uint8Array` types d
 {
     challengeRequest: DecryptedChallengeRequestMessageTypeWithcommunityAuthor;
     sessionId?: string; // Optional client-generated ID for consent-gated lazy iframes
+    precheckSessionId?: string; // Optional pre-check pass being redeemed; must be in signedPropertyNames when present
     evaluationOptions?: {
         autoAcceptThreshold?: number;
         autoRejectThreshold?: number;
@@ -5548,7 +5562,7 @@ The request body is CBOR-encoded (not JSON). This preserves `Uint8Array` types d
         signature: Uint8Array; // Ed25519 signature of CBOR-encoded signed properties
         publicKey: Uint8Array; // 32-byte Ed25519 public key
         type: "ed25519";
-        signedPropertyNames: Array<"challengeRequest" | "sessionId" | "evaluationOptions" | "timestamp">;
+        signedPropertyNames: Array<"challengeRequest" | "sessionId" | "evaluationOptions" | "precheckSessionId" | "timestamp">;
     }
 }
 ```
@@ -5563,6 +5577,7 @@ The request body is CBOR-encoded (not JSON). This preserves `Uint8Array` types d
   sessionId: string;
   challengeUrl: string; // Full URL: https://spamblocker.bitsocial.net/api/v1/iframe/{sessionId}
   challengeExpiresAt?: number; // Unix timestamp, 1 hour from creation
+  status?: "pending" | "completed" | "failed"; // Session state; optional so older servers' responses still parse
 }
 ```
 
@@ -5734,6 +5749,22 @@ User opens iframe -> lazy iframe posts signed payload to /evaluate -> riskScore
 8. Community verify("") calls /challenge/verify with the pre-generated sessionId.
 9. The community applies post-challenge IP filters and accepts or rejects the publication.
 ```
+
+## Pre-check Pass (Client Authors)
+
+A client can run a board's spam blocker check before it uploads an attached file, so rejected authors never upload. The board still evaluates the real signed publication (including `link`) when it is published; the pass only lets the board reuse the confirmed user-origin IP and any CAPTCHA/OAuth the author already completed, so the author is not shown a second iframe.
+
+**Public marker.** The challenge package publishes `community.challenges[i].challenge = "<serverUrl>/precheck"` (for example `https://spamblocker.bitsocial.net/api/v1/precheck`). A challenge is pass-capable when its `type` is `"url/iframe"` and `challenge` is an `https` (or localhost `http`) URL whose pathname ends with `/precheck`. If the board's options are invalid, `challenge` is omitted.
+
+**Obtaining a pass.** The client generates a session id `precheck-<lowercase uuid v4>`, signs a pre-check request for the draft publication (without `link`) with the author's signer, opens `<serverUrl>/iframe/<sessionId>/precheck#payload=<base64url CBOR>` as a `url/iframe` challenge, and after the iframe posts its answer reads `GET <serverUrl>/challenge/status/<sessionId>`. Only `completed` produces a pass; on `failed`, or a check the author closed before it finished, the client stops before uploading. If the status cannot be read, the client can publish without a pass and let the board check the post as usual.
+
+**Redeeming a pass.** After uploading, publish with the pre-check session id as the answer at the index of each pass-capable challenge that applies to the publication, for example `challengeRequest: { challengeAnswers: [pass] }` when the spam blocker is `community.challenges[0]`. Every slot before that index must hold an answer the challenge there accepts: challenges that ignore pre-supplied answers (such as pkc-js `fail`) take any string, but one that publishes its own `challenge` text (pkc-js `question`) reads its slot as the author's answer, so a client should not pre-check a board where such a challenge would receive the pass. The board's `getChallenge()` sees a value matching `^precheck-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$` at its `challengeIndex` and POSTs a community-signed `/evaluate` request with `precheckSessionId`:
+
+- `completed` or `failed`: the board answers immediately through `/challenge/verify`, so its IP, country, and VPN/proxy/Tor/datacenter policies still apply.
+- `pending`: the board returns its usual lazy iframe for the same session, which continues from the pass's completed CAPTCHA/OAuth.
+- Any redemption error, or no valid pass: the board returns its usual lazy iframe, as if no pass was sent.
+
+A pass is single use and is only accepted for the same author signer and community that ran the pre-check.
 
 ## Risk Score
 
@@ -5967,7 +5998,7 @@ field from its internal database of author history, so new authors won't have it
 
 **Error Handling:** If the server is unreachable, the challenge code returns a failed challenge result instead of silently accepting or rejecting user-generated content. Community-level actions are accepted locally without contacting the server.
 
-**Privacy of options:** The `options` object (including `serverUrl` and all threshold/filtering settings) is **not** exposed in the public `community.challenges` IPFS record. bitsocial-js strips `options` when computing the public `communityChallenge` from `communityChallengeSetting`, so only `type`, `description`, and `exclude` are published. This means the server URL, thresholds, and filtering rules remain private to the community operator.
+**Privacy of options:** The `options` object (including thresholds and filtering settings) is **not** exposed in the public `community.challenges` IPFS record. bitsocial-js strips `options` when computing the public `communityChallenge` from `communityChallengeSetting`, so only `type`, `description`, `challenge`, and `exclude` are published. `challenge` is the pre-check marker `<serverUrl>/precheck`, so the server URL is public (it was already visible to every author in the lazy iframe URL); thresholds and filtering rules remain private to the community operator.
 
 ### Server Configuration (separate from challenge)
 
@@ -7353,7 +7384,7 @@ Description: What is Bitsocial?
 
 ## Install
 
-Requires Node.js 22 or later. We recommend using [nvm](https://github.com/nvm-sh/nvm) to install and manage Node.js versions.
+Requires Node.js 22.19 or later. We recommend using [nvm](https://github.com/nvm-sh/nvm) to install and manage Node.js versions.
 
 ```sh-session
 npm install -g @bitsocial/bitsocial-cli
@@ -7568,6 +7599,37 @@ Once `bitsocial daemon` is running, you can create and manage your communities t
 
 If you need to view detailed protocol or IPFS logs for debugging, you can use `bitsocial logs`. For example, `bitsocial logs --tail 50` shows the last 50 lines, or `bitsocial logs --since 1h` shows logs from the past hour.
 
+#### Making your node reachable from browsers
+
+This sets up two of the ways a browser can dial a node: WebSocket Secure, which needs a certificate browsers trust, and WebTransport. Without either, the daemon prints a line at start saying browsers cannot reach this node. To fix that, run this while the daemon is running:
+
+```sh-session
+$ bitsocial reachability setup
+```
+
+It finds this machine's public addresses, asks the router to forward ports through UPnP if it is behind NAT, gets a Let's Encrypt certificate for the IP address (or for your domain with `--domain`), configures kubo and checks the result. It is safe to rerun. The daemon then keeps Caddy running, renews certificates and follows IP changes.
+
+| Command | What it does |
+| ------- | ------------ |
+| `bitsocial reachability setup` | Discover, configure, get a certificate, verify |
+| `bitsocial reachability status` | Show mode, addresses, certificate expiry and last checks (`--json` for scripts) |
+| `bitsocial reachability enable` | Repair and turn back on from the stored choices, without asking anything |
+| `bitsocial reachability disable` | Stop serving and restore the kubo config. `--purge` also moves the state to a timestamped backup |
+
+`status` and `setup` both check what this machine needs and say how to fix anything missing: permission for Caddy and kubo to bind port 443 (kubo otherwise keeps running and silently does not listen on UDP 443), whether TCP 80, TCP 443 and UDP 443 are held by another program, an active `ufw` or `firewalld`, and what kubo is really listening on. Nothing on the machine can prove inbound traffic reaches it, or see a cloud provider's firewall, so test from another network too.
+
+**Already serving WSS without `setup`?** If you run your own reverse proxy, or kubo has an AutoTLS address, you do not need `setup`. `status` and the daemon try a real libp2p handshake with each WSS address kubo announces and report the result, and they only say browsers cannot reach the node if every handshake definitely failed. The handshake runs from this machine, so a success does not prove other networks can connect, and behind a router a failure only gets a warning, as the router may not connect a machine to its own public address.
+
+- **Port 443 already in use:** pass `--domain`, and setup prints a snippet for nginx, Apache or Caddy that forwards the name to kubo. Then pass `--announce` with the address your server serves. It is announced only after a real libp2p handshake through it succeeds.
+- **Linux, not root:** Caddy and kubo both need to bind port 443. `sudo sysctl -w net.ipv4.ip_unprivileged_port_start=443` covers both; persist it in `/etc/sysctl.d/`. Setup offers to run `setcap` on Caddy instead, and prints what kubo needs if it could not bind UDP 443.
+- **Docker:** add `cap_add: [NET_BIND_SERVICE]` and publish `443:443/tcp`, `443:443/udp` and `80:80/tcp`.
+- **Windows:** setup prints the firewall rules to add.
+- **Testing:** `--staging` uses the Let's Encrypt staging CA, whose certificates browsers do not trust.
+
+See [docs/reachability.md](https://github.com/bitsocialnet/bitsocial-cli/blob/HEAD/docs/reachability.md) for how it works, choosing a path and troubleshooting.
+
+Caddy is downloaded on the first `setup` from its GitHub release and checked against a hash pinned in this repository. State lives in `<data path>/reachability/`. Running `setup` means accepting the [Let's Encrypt Subscriber Agreement](https://letsencrypt.org/repository/); no email address is sent.
+
 #### Creating your first community
 
 ```sh-session
@@ -7647,6 +7709,10 @@ $ bitsocial community edit mysub.bso '--roles["author-address.bso"]' null
 * [`bitsocial page-sort rm NAME`](#bitsocial-page-sort-rm-name)
 * [`bitsocial page-sort un NAME`](#bitsocial-page-sort-un-name)
 * [`bitsocial page-sort uninstall NAME`](#bitsocial-page-sort-uninstall-name)
+* [`bitsocial reachability disable`](#bitsocial-reachability-disable)
+* [`bitsocial reachability enable`](#bitsocial-reachability-enable)
+* [`bitsocial reachability setup`](#bitsocial-reachability-setup)
+* [`bitsocial reachability status`](#bitsocial-reachability-status)
 * [`bitsocial update check`](#bitsocial-update-check)
 * [`bitsocial update install [VERSION]`](#bitsocial-update-install-version)
 * [`bitsocial update versions`](#bitsocial-update-versions)
@@ -7753,7 +7819,7 @@ EXAMPLES
   $ bitsocial challenge install ./my-local-challenge
 ```
 
-_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/challenge/install.ts)_
+_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/challenge/install.ts)_
 
 ## `bitsocial challenge list`
 
@@ -7779,7 +7845,7 @@ EXAMPLES
   $ bitsocial challenge list -q
 ```
 
-_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/challenge/list.ts)_
+_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/challenge/list.ts)_
 
 ## `bitsocial challenge ls`
 
@@ -7839,7 +7905,7 @@ EXAMPLES
   $ bitsocial challenge remove my-challenge --force
 ```
 
-_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/challenge/remove.ts)_
+_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/challenge/remove.ts)_
 
 ## `bitsocial challenge rm NAME`
 
@@ -7971,7 +8037,7 @@ EXAMPLES
     $ bitsocial community create --jsonFile ./create-options.json
 ```
 
-_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/create.ts)_
+_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/community/create.ts)_
 
 ## `bitsocial community delete ADDRESSES`
 
@@ -7996,7 +8062,7 @@ EXAMPLES
   $ bitsocial community delete 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/delete.ts)_
+_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/community/delete.ts)_
 
 ## `bitsocial community edit ADDRESS`
 
@@ -8073,7 +8139,7 @@ EXAMPLES
     $ bitsocial community edit bitsocial.bso --jsonFile ./edit-options.json
 ```
 
-_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/edit.ts)_
+_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/community/edit.ts)_
 
 ## `bitsocial community export [ADDRESS]`
 
@@ -8114,7 +8180,7 @@ EXAMPLES
   $ bitsocial community export --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/export.ts)_
+_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/community/export.ts)_
 
 ## `bitsocial community get [ADDRESS]`
 
@@ -8145,7 +8211,7 @@ EXAMPLES
   $ bitsocial community get --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/get.ts)_
+_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/community/get.ts)_
 
 ## `bitsocial community list`
 
@@ -8156,7 +8222,7 @@ USAGE
   $ bitsocial community list --pkcRpcUrl <value> [-q]
 
 FLAGS
-  -q, --quiet              Only display community addresses (much faster: skips the per-community 'started' lookup)
+  -q, --quiet              Only display community addresses, one per line
       --pkcRpcUrl=<value>  (required) [default: ws://localhost:9138/] URL to PKC RPC
 
 DESCRIPTION
@@ -8168,7 +8234,7 @@ EXAMPLES
   $ bitsocial community list
 ```
 
-_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/list.ts)_
+_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/community/list.ts)_
 
 ## `bitsocial community start ADDRESSES`
 
@@ -8202,7 +8268,7 @@ EXAMPLES
     $ bitsocial community start $(bitsocial community list -q) --concurrency 1
 ```
 
-_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/start.ts)_
+_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/community/start.ts)_
 
 ## `bitsocial community stop ADDRESSES`
 
@@ -8227,7 +8293,7 @@ EXAMPLES
   $ bitsocial community stop Qmb99crTbSUfKXamXwZBe829Vf6w5w5TktPkb6WstC9RFW
 ```
 
-_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/community/stop.ts)_
+_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/community/stop.ts)_
 
 ## `bitsocial daemon`
 
@@ -8260,8 +8326,8 @@ DESCRIPTION
   any machine. Within the web ui users are able to browse, create and manage their communities fully P2P.
   Options can be passed to the RPC's instance through flag --pkcOptions.optionName. For a list of pkc options
   (https://github.com/pkcprotocol/pkc-js?tab=readme-ov-file#pkcoptions)
-  If you need to modify ipfs config, you should head to {bitsocial-data-path}/.ipfs-bitsocial-cli/config and modify the
-  config file
+  If you need to modify ipfs config, you should head to {bitsocial-data-path}/.bitsocial-cli.ipfs/config (or
+  $IPFS_PATH/config if set) and modify the config file
 
 EXAMPLES
   $ bitsocial daemon
@@ -8277,7 +8343,7 @@ EXAMPLES
   $ bitsocial daemon --no-allowPrivateKeyExport
 ```
 
-_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/daemon.ts)_
+_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/daemon.ts)_
 
 ## `bitsocial help [COMMAND]`
 
@@ -8341,7 +8407,7 @@ EXAMPLES
   $ bitsocial logs --stdout -f
 ```
 
-_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/logs.ts)_
+_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/logs.ts)_
 
 ## `bitsocial page-sort add PACKAGE`
 
@@ -8433,7 +8499,7 @@ EXAMPLES
   $ bitsocial page-sort install ./my-local-page-sort
 ```
 
-_See code: [src/cli/commands/page-sort/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/page-sort/install.ts)_
+_See code: [src/cli/commands/page-sort/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/page-sort/install.ts)_
 
 ## `bitsocial page-sort list`
 
@@ -8459,7 +8525,7 @@ EXAMPLES
   $ bitsocial page-sort list -q
 ```
 
-_See code: [src/cli/commands/page-sort/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/page-sort/list.ts)_
+_See code: [src/cli/commands/page-sort/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/page-sort/list.ts)_
 
 ## `bitsocial page-sort ls`
 
@@ -8517,7 +8583,7 @@ EXAMPLES
   $ bitsocial page-sort remove @pkcprotocol/active-page-sort --force
 ```
 
-_See code: [src/cli/commands/page-sort/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/page-sort/remove.ts)_
+_See code: [src/cli/commands/page-sort/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/page-sort/remove.ts)_
 
 ## `bitsocial page-sort rm NAME`
 
@@ -8615,6 +8681,114 @@ EXAMPLES
   $ bitsocial page-sort remove @pkcprotocol/active-page-sort --force
 ```
 
+## `bitsocial reachability disable`
+
+Stop serving browsers and restore the kubo config. State is kept, so `enable` does not need new certificates. On a node that was never set up, records that you declined, so the daemon stops reminding you
+
+```
+USAGE
+  $ bitsocial reachability disable [--pkcOptions.dataPath <value>] [--purge]
+
+FLAGS
+  --pkcOptions.dataPath=<value>  Data path of the node
+  --purge                        Also move the state directory, including the ACME account and certificates, to a
+                                 timestamped backup
+
+DESCRIPTION
+  Stop serving browsers and restore the kubo config. State is kept, so `enable` does not need new certificates. On a
+  node that was never set up, records that you declined, so the daemon stops reminding you
+
+EXAMPLES
+  $ bitsocial reachability disable
+
+  $ bitsocial reachability disable --purge
+```
+
+_See code: [src/cli/commands/reachability/disable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/reachability/disable.ts)_
+
+## `bitsocial reachability enable`
+
+Turn reachability back on: re-run discovery and repair from the stored choices, without asking anything
+
+```
+USAGE
+  $ bitsocial reachability enable [--pkcOptions.dataPath <value>]
+
+FLAGS
+  --pkcOptions.dataPath=<value>  Data path of the node
+
+DESCRIPTION
+  Turn reachability back on: re-run discovery and repair from the stored choices, without asking anything
+
+EXAMPLES
+  $ bitsocial reachability enable
+```
+
+_See code: [src/cli/commands/reachability/enable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/reachability/enable.ts)_
+
+## `bitsocial reachability setup`
+
+Make this node dialable from browsers: discover public addresses, obtain a certificate, configure kubo and verify. Safe to rerun
+
+```
+USAGE
+  $ bitsocial reachability setup [--pkcOptions.dataPath <value>] [--domain <value>] [--announce <value>] [--force]
+    [--staging] [--non-interactive]
+
+FLAGS
+  --announce=<value>             A multiaddr your own proxy serves, e.g. /dns4/node.example/tcp/443/tls/ws. Announced
+                                 only after a real libp2p dial succeeds
+  --domain=<value>               A domain pointing at this machine, to get a certificate for or to forward through your
+                                 own proxy
+  --force                        Continue when the domain does not resolve to this machine, for proxies in front of it
+  --non-interactive              Never ask. Exit non-zero with the reason if an answer would be needed
+  --pkcOptions.dataPath=<value>  Data path of the node
+  --staging                      Use the Let's Encrypt staging CA. Its certificates are not trusted by browsers
+
+DESCRIPTION
+  Make this node dialable from browsers: discover public addresses, obtain a certificate, configure kubo and verify.
+  Safe to rerun
+
+EXAMPLES
+  $ bitsocial reachability setup
+
+  $ bitsocial reachability setup --staging
+
+  $ bitsocial reachability setup --domain node.example
+
+  $ bitsocial reachability setup --domain node.example --announce /dns4/node.example/tcp/443/tls/ws
+
+  $ bitsocial reachability setup --non-interactive
+```
+
+_See code: [src/cli/commands/reachability/setup.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/reachability/setup.ts)_
+
+## `bitsocial reachability status`
+
+Show whether browsers can reach this node: mode, announced addresses, certificate expiry, last checks, and whether each requirement is met, including permission to bind UDP 443
+
+```
+USAGE
+  $ bitsocial reachability status [--json] [--pkcOptions.dataPath <value>]
+
+FLAGS
+  --pkcOptions.dataPath=<value>  Data path of the node
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Show whether browsers can reach this node: mode, announced addresses, certificate expiry, last checks, and whether
+  each requirement is met, including permission to bind UDP 443
+
+EXAMPLES
+  $ bitsocial reachability status
+
+  $ bitsocial reachability status --json
+```
+
+_See code: [src/cli/commands/reachability/status.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/reachability/status.ts)_
+
 ## `bitsocial update check`
 
 Check if a newer version of bitsocial is available on npm
@@ -8630,7 +8804,7 @@ EXAMPLES
   $ bitsocial update check
 ```
 
-_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/update/check.ts)_
+_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/update/check.ts)_
 
 ## `bitsocial update install [VERSION]`
 
@@ -8662,7 +8836,7 @@ EXAMPLES
   $ bitsocial update install --no-restart-daemons
 ```
 
-_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/update/install.ts)_
+_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/update/install.ts)_
 
 ## `bitsocial update versions`
 
@@ -8684,7 +8858,7 @@ EXAMPLES
   $ bitsocial update versions --limit 5
 ```
 
-_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.114/src/cli/commands/update/versions.ts)_
+_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.126/src/cli/commands/update/versions.ts)_
 
 ## Contribution
 
@@ -8717,7 +8891,7 @@ No — and for most users it is not the recommended way. Bitsocial desktop apps 
 
 `bitsocial-seeder` exists for operators who want to contribute consistent 24/7 seeding capacity from a VPS or a spare machine — for example, running closer to popular communities to lower fetch latency, or keeping data available during quiet periods when few app users are online. It is helpful but not required.
 
-A publicly reachable seeder also serves a role the apps usually cannot: it makes communities hosted behind NAT loadable from browsers. Most desktop nodes sit behind home routers, carrier-grade NAT, or mobile hotspots without port forwarding, so their Kubo announces only relayed (`/p2p-circuit`) addresses. A browser node cannot hole-punch to such a node (Kubo has no WebRTC private-to-private transport), and a relayed connection is too limited to serve pages, so a community whose only provider is its owner's NATed node never loads on web clients such as 5chan.app (see [pkc-js#369](https://github.com/pkcprotocol/pkc-js/issues/369)). A seeder on a public IP pins the community's pages and post updates and joins its pubsub topic, giving browsers a dialable peer to fetch from.
+A publicly reachable seeder also serves a role the apps usually cannot: it makes communities hosted behind NAT loadable from browsers. Most desktop nodes sit behind home routers, carrier-grade NAT, or mobile hotspots without port forwarding, so their Kubo announces only relayed (`/p2p-circuit`) addresses. A browser node cannot hole-punch to such a node (Kubo has no WebRTC private-to-private transport), and a relayed connection is too limited to serve pages, so a community whose only provider is its owner's NATed node never loads on web clients such as 5chan.app (see [pkc-js#369](https://github.com/pkcprotocol/pkc-js/issues/369)). A seeder on a public IP pins the community's record, pages and post updates and joins its pubsub topic, giving browsers a dialable peer to fetch from.
 
 This is also an **experimental repository**. Releases are cut frequently, internals change without warning between minor versions, and the project is treated as a place to try ideas that benefit the protocol but are not on its critical path. Please file issues if you hit anything; expect bumps.
 
@@ -10092,7 +10266,7 @@ bitsocial community create --title "AskWise registry" --description "Post your c
 
 ### 5. Configure `.env`
 
-Every command (`npm start`, `install-bot`, `usage`, `create-signer`) reads `.env` from the repo root. Variables already set in your shell take precedence.
+Every command (`npm start`, `install-bot`, `usage`, `dashboard`, `create-signer`) reads `.env` from the repo root. Variables already set in your shell take precedence.
 
 | Variable | What it is |
 |---|---|
@@ -10190,6 +10364,26 @@ They are set in `.env` (`LIMIT_*`, see `.env.example`). A mention over a limit i
 npm run usage -- --since 7d --by community   # or --by author / --by model, --since 24h / 4w / all
 ```
 
+For a web view, see the [dashboard](#dashboard).
+
+### Dashboard
+
+A local web page over `data/bot.db`, showing where the bot answered and what it cost:
+
+```sh
+npm run dashboard                          # http://127.0.0.1:8787/
+npm run dashboard -- --port 9000 --host 127.0.0.1
+```
+
+- **Totals:** communities installed (and how many need a reinstall), mentions by outcome (replied, failed, rate-limited, skipped), tokens in and out with the share of cache reads, cost and cost per reply, and the last 24h of spend against `LIMIT_GLOBAL_USD_PER_DAY`.
+- **Communities:** every community the bot is installed in or has handled a mention of, with its mentions by outcome, tokens, cost, the share of `LIMIT_COMMUNITY_TOKENS_PER_DAY` used in the last 24h, the last mention and the install date.
+- **Per day:** cost, tokens and LLM calls for each UTC day.
+- **Mentions:** each handled mention, newest first, with its community, author, an excerpt, status (and the reason for a failure or skip), tokens and cost (summed over all its LLM calls, refusals and retries included), and links to the mention and the bot's reply on seedit.
+
+Switch the period with the 24h / 7d / 4w / all buttons (`?since=7d`). The page refreshes every minute. It only reads the database, so it can run next to the bot.
+
+It shows authors and what they wrote, so it listens on localhost only. To open it from another machine, forward the port: `ssh -L 8787:127.0.0.1:8787 <bot-host>`.
+
 ### Downtime, backlog and retries
 
 The bot can be offline: on a laptop that sleeps, during a restart, or while the network is down.
@@ -10264,6 +10458,14 @@ Turn it on with bitsocial-cli (`bitsocial community edit <address> --features.no
 - Purge via `createCommentModeration({ commentModeration: { purged: true } })`
 - Duplicate purge moderations (if the board hasn't processed prior purge yet) are harmless no-ops
 
+### Multi-file posts (`comment.gallery`)
+
+pkc-js 0.0.132 adds `comment.gallery`, a list of extra media links on a post or reply next to `link`. A board only accepts galleries when its community record sets `features.maxPostGalleryItems` and `features.maxReplyGalleryItems`; absent or `0` rejects any publication that carries a gallery.
+
+The preset sets both to `0`: a post or reply may have a `link` but no gallery, like 4chan's one file per post. The count is on top of `link`, because `requirePostLink` and `requirePostLinkIsMedia` only look at `link`, so a board that allows 4 files per post sets `maxPostGalleryItems: 3`. `noImages`, `noVideos`, `noAudio` and their reply versions apply to every gallery item as well.
+
+Raise the limits in the preset before running `5chan board add`, or on an existing board with bitsocial-cli (`bitsocial community edit <address> --features.maxPostGalleryItems 3 --features.maxReplyGalleryItems 3`). bitsocial-cli 0.19.119 or newer (pkc-js 0.0.132) enforces them; 0.19.116 to 0.19.118 stores the fields without checking galleries. The 5chan frontend does not render or publish galleries yet, so until it does, raising the limits only affects other clients.
+
 ### Config Directory Layout
 
 Config and state are stored per-board under `~/.config/5chan/`, managed via `5chan board add/edit/remove` or manual editing:
@@ -10317,7 +10519,8 @@ All fields except each board's `address` are optional:
 Docker is the only supported install path. The published image
 (`ghcr.io/bitsocialnet/5chan-board-manager:latest`) is built and tested with the
 bitsocial-cli version the default preset assumes (pinned in the compose files;
-the preset needs bitsocial-cli **0.19.107 or newer** for `bitsocial page-sort`),
+the board manager needs bitsocial-cli **0.19.116 or newer**: its pkc-js 0.0.129 changed
+the shape of the communities list the RPC sends, and older servers no longer connect),
 including the `@bitsocial/spam-blocker-challenge` and `@pkcprotocol/active-page-sort`
 packages that the preset references. Running 5chan
 outside Docker — or against a bitsocial-cli you manage yourself — is possible
@@ -10414,7 +10617,7 @@ bitsocial challenge install @bitsocial/spam-blocker-challenge
 
 If you do not want this dependency, remove both `@bitsocial/spam-blocker-challenge` entries from your preset (they are marked optional in the file) or use `--skip-apply-defaults`.
 
-**You must also install the bump-order page sort** (bitsocial-cli 0.19.107 or newer). The default preset names it in `settings.pages`, and the RPC server rejects `5chan board add --apply-defaults` with `ERR_RPC_CLIENT_PAGE_SORT_NAME_NOT_AVAILABLE_ON_SERVER` when it is missing:
+**You must also install the bump-order page sort** (bitsocial-cli 0.19.116 or newer, the board manager's minimum). The default preset names it in `settings.pages`, and the RPC server rejects `5chan board add --apply-defaults` with `ERR_RPC_CLIENT_PAGE_SORT_NAME_NOT_AVAILABLE_ON_SERVER` when it is missing:
 
 ```bash
 bitsocial page-sort install @pkcprotocol/active-page-sort@0.0.7
@@ -10583,7 +10786,7 @@ The bundled preset sets `settings.pages` (configurable page sorts, pkc-js 0.0.10
 - **replies**: `old` (thread view, oldest first, embedded) and `new` (board-view reply preview, fetched on demand). 5chan requests these keys and flattens them client-side, so they are not `oldFlat`/`newFlat`.
 - **Older 5chan clients**: 5chan v0.10.0 and older (desktop and Android builds not yet updated) fetch the posts `new` sort for the catalog's "creation date" option. To keep that option working for them, add `{ "name": "new" }` to `pages.posts` (not preloaded, so it costs no record bytes).
 
-Requires `bitsocial page-sort install @pkcprotocol/active-page-sort@0.0.7` on the bitsocial-cli instance (0.19.107 or newer), see [Installation](#installation).
+Requires `bitsocial page-sort install @pkcprotocol/active-page-sort@0.0.7` on the bitsocial-cli instance (0.19.116 or newer), see [Installation](#installation).
 
 Notes for operators:
 
@@ -10688,7 +10891,7 @@ EXAMPLES
   $ 5chan board add my-board.bso --apply-defaults --defaults-preset ./my-preset.json
 ```
 
-_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/board/add.ts)_
+_See code: [src/commands/board/add.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.36/src/commands/board/add.ts)_
 
 ## `5chan board edit ADDRESS`
 
@@ -10735,7 +10938,7 @@ EXAMPLES
   $ 5chan board edit random.bso -i
 ```
 
-_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/board/edit.ts)_
+_See code: [src/commands/board/edit.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.36/src/commands/board/edit.ts)_
 
 ## `5chan board list`
 
@@ -10752,7 +10955,7 @@ EXAMPLES
   $ 5chan board list
 ```
 
-_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/board/list.ts)_
+_See code: [src/commands/board/list.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.36/src/commands/board/list.ts)_
 
 ## `5chan board remove ADDRESS`
 
@@ -10772,7 +10975,7 @@ EXAMPLES
   $ 5chan board remove random.bso
 ```
 
-_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/board/remove.ts)_
+_See code: [src/commands/board/remove.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.36/src/commands/board/remove.ts)_
 
 ## `5chan defaults set`
 
@@ -10812,7 +11015,7 @@ EXAMPLES
   $ 5chan defaults set -i
 ```
 
-_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/defaults/set.ts)_
+_See code: [src/commands/defaults/set.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.36/src/commands/defaults/set.ts)_
 
 ## `5chan help [COMMAND]`
 
@@ -10876,7 +11079,7 @@ EXAMPLES
   $ 5chan logs --stdout -f
 ```
 
-_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/logs.ts)_
+_See code: [src/commands/logs.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.36/src/commands/logs.ts)_
 
 ## `5chan start`
 
@@ -10914,7 +11117,7 @@ EXAMPLES
   $ 5chan start --log-path /var/log/5chan
 ```
 
-_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.34/src/commands/start.ts)_
+_See code: [src/commands/start.ts](https://github.com/bitsocialnet/5chan-board-manager/blob/v0.2.36/src/commands/start.ts)_
 
 ## Config Hot-Reload
 

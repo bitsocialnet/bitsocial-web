@@ -30,6 +30,19 @@ Setelah itu, jaringan harus meluas ke long tail:
 Sebagian aplikasi ini bisa bersifat open source. Sebagian bisa berupa klien terpusat. Sebagian bisa
 dibangun oleh Bitsocial Forge, dan banyak di antaranya sebaiknya dibangun oleh pengembang independen.
 
+## Ide yang sedang diteliti
+
+Beberapa ide ini sudah memiliki repositori tahap ide. Belum ada yang dibangun di dalamnya.
+Masing-masing mengumpulkan desain dan pertanyaan terbuka agar pengembang dan penyandang dana bisa
+melanjutkannya.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): alternatif YouTube tempat setiap kanal adalah
+  komunitas yang dimiliki oleh kreatornya.
+- [GitHub terdesentralisasi](https://github.com/bitsocialnet/decentralized-github): riset dan
+  arsitektur untuk alternatif GitHub yang dibangun di atas Bitsocial.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): ensiklopedia yang tidak dimiliki siapa
+  pun, tempat kelompok editorial menerbitkan versi yang saling bersaing dan pembaca yang memilih.
+
 ## Mendanai banyak pengembang
 
 Tujuannya adalah membuat klien sosial baru layak didanai sebelum mereka punya traksi sebesar platform

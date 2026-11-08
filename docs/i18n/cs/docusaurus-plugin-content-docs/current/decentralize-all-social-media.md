@@ -30,6 +30,18 @@ Poté by se síť měla rozšířit do dlouhého ocasu:
 Některé z těchto aplikací mohou být open source. Některé mohou být centralizovanými klienty. Některé
 může postavit Bitsocial Forge a mnoho by jich měli postavit nezávislí vývojáři.
 
+## Nápady ve fázi výzkumu
+
+Některé z těchto nápadů už mají repozitáře ve fázi nápadu. Zatím v nich nic není postavené. Každý
+shromažďuje návrh a otevřené otázky, aby se jich mohli ujmout vývojáři i investoři.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): alternativa k YouTube, kde je každý kanál
+  komunitou, kterou vlastní její tvůrce.
+- [Decentralizovaný GitHub](https://github.com/bitsocialnet/decentralized-github): výzkum a
+  architektura alternativy ke GitHubu postavené na Bitsocialu.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): encyklopedie, kterou nikdo nevlastní,
+  kde redakční skupiny zveřejňují konkurenční verze a čtenáři si vybírají.
+
 ## Financování mnoha tvůrců
 
 Cílem je, aby noví sociální klienti byli financovatelní dřív, než získají dosah na úrovni platforem.

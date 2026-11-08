@@ -26,6 +26,18 @@ Sau đó, mạng lưới nên mở rộng sang phần đuôi dài:
 
 Một số ứng dụng trong đó có thể là mã nguồn mở. Một số có thể là ứng dụng khách tập trung. Một số có thể do Bitsocial Forge dựng nên, và nhiều ứng dụng nên do các nhà phát triển độc lập dựng nên.
 
+## Ý tưởng đang nghiên cứu
+
+Một số ý tưởng này đã có kho mã ở giai đoạn ý tưởng. Chưa có gì trong đó được xây dựng. Mỗi kho tập
+hợp thiết kế và các câu hỏi còn bỏ ngỏ để nhà phát triển và nhà tài trợ có thể tiếp nhận.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): một giải pháp thay thế YouTube, nơi mỗi kênh là
+  một cộng đồng thuộc sở hữu của người tạo ra nó.
+- [GitHub phi tập trung](https://github.com/bitsocialnet/decentralized-github): nghiên cứu và kiến
+  trúc cho một giải pháp thay thế GitHub xây dựng trên Bitsocial.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): một bách khoa toàn thư không thuộc về
+  ai, nơi các nhóm biên tập xuất bản những phiên bản cạnh tranh nhau và người đọc tự chọn.
+
 ## Cấp vốn cho nhiều người xây dựng
 
 Mục tiêu là làm cho các ứng dụng khách xã hội mới có thể gọi được vốn trước khi chúng đã có sức hút ở quy mô nền tảng.

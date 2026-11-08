@@ -31,6 +31,19 @@ Bundan sonra ağın uzun kuyruğa doğru genişlemesi gerekir:
 Bu uygulamaların bazıları açık kaynak olabilir. Bazıları merkezi istemciler olabilir. Bazılarını
 Bitsocial Forge geliştirebilir, çoğunu ise bağımsız geliştiricilerin geliştirmesi gerekir.
 
+## Araştırılan fikirler
+
+Bu fikirlerin bazılarının şimdiden fikir aşamasında depoları var. Henüz hiçbirinde bir şey inşa
+edilmedi. Her biri tasarımı ve açık soruları bir araya getirir; böylece geliştiriciler ve fon
+sağlayıcılar onu devralabilir.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): her kanalın kendi yaratıcısına ait bir topluluk
+  olduğu bir YouTube alternatifi.
+- [Merkeziyetsiz GitHub](https://github.com/bitsocialnet/decentralized-github): Bitsocial üzerine
+  kurulu bir GitHub alternatifi için araştırma ve mimari.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): kimsenin sahibi olmadığı, editoryal
+  grupların birbiriyle yarışan sürümler yayımladığı ve okurların seçtiği bir ansiklopedi.
+
 ## Birçok geliştiriciyi finanse etmek
 
 Amaç, yeni sosyal istemcilerin platform ölçeğinde bir ilgi görmesini beklemeden finanse edilebilir

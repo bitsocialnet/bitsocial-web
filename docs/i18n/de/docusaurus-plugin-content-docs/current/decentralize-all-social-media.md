@@ -31,6 +31,19 @@ Danach sollte sich das Netzwerk in den Long Tail ausdehnen:
 Manche dieser Apps können Open Source sein. Manche können zentralisierte Clients sein. Manche können
 von Bitsocial Forge gebaut werden, und viele sollten von unabhängigen Entwicklern kommen.
 
+## Ideen in der Erforschung
+
+Für einige dieser Ideen gibt es bereits Repositories im Ideenstadium. Darin ist noch nichts gebaut.
+Jedes sammelt das Design und die offenen Fragen, damit Entwickler und Geldgeber es aufgreifen
+können.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): eine YouTube-Alternative, bei der jeder Kanal
+  eine Community ist, die ihrem Creator gehört.
+- [Dezentrales GitHub](https://github.com/bitsocialnet/decentralized-github): Forschung und
+  Architektur für eine GitHub-Alternative auf Basis von Bitsocial.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): eine Enzyklopädie, die niemandem
+  gehört, in der Redaktionsgruppen konkurrierende Versionen veröffentlichen und die Leser wählen.
+
 ## Viele Entwickler finanzieren
 
 Ziel ist es, neue soziale Clients finanzierbar zu machen, bevor sie bereits Zugkraft in

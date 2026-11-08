@@ -30,6 +30,17 @@ Chain, 프로필 노드, 3단계의 Twitter/X 대안, 그리고 그 주변의 �
 이 중 일부는 오픈 소스일 수 있고, 일부는 중앙형 클라이언트일 수 있습니다. 일부는 Bitsocial
 Forge가 만들 수 있지만, 상당수는 독립 개발자가 만들어야 합니다.
 
+## 연구 중인 아이디어
+
+이 중 일부 아이디어에는 이미 아이디어 단계의 저장소가 있습니다. 아직 구현된 것은 없습니다. 각 저장소는 설계와 열린 질문을 모아 두어 개발자와 후원자가 이어받을 수 있게
+합니다.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): 모든 채널이 크리에이터가 소유한 커뮤니티인 YouTube 대안.
+- [탈중앙화 GitHub](https://github.com/bitsocialnet/decentralized-github): Bitsocial 위에 구축하는 GitHub 대안을
+  위한 연구와 아키텍처.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): 누구도 소유하지 않는 백과사전으로, 편집 그룹들이 서로 경쟁하는
+  버전을 발행하고 독자가 선택합니다.
+
 ## 다수의 개발자를 지원하기
 
 목표는 새로운 소셜 클라이언트가 이미 플랫폼급 성과를 내기 전에도 자금을 받을 수 있게 만드는

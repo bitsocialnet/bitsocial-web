@@ -31,6 +31,14 @@ Bitsocial Chain、プロフィールノード、フェーズ 3 の Twitter/X 代
 これらのアプリはオープンソースでもかまいませんし、中央集権型のクライアントでもかまいません。
 Bitsocial Forge が作るものもあれば、多くは独立した開発者が作るべきものです。
 
+## 研究中のアイデア
+
+これらのアイデアの一部には、すでにアイデア段階のリポジトリがあります。まだ何も実装されていません。各リポジトリは設計と未解決の問いをまとめており、開発者や出資者が引き継げるようにしています。
+
+- [WeTube](https://github.com/bitsocialnet/wetube)：すべてのチャンネルが作成者の所有するコミュニティになる YouTube の代替。
+- [分散型 GitHub](https://github.com/bitsocialnet/decentralized-github)：Bitsocial 上に構築する GitHub の代替に向けた調査とアーキテクチャ。
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia)：誰のものでもない百科事典。編集グループが競合するバージョンを公開し、読者が選びます。
+
 ## 多くの作り手に資金を出す
 
 目標は、新しいソーシャルクライアントが、プラットフォーム規模の勢いを得るより前の段階で

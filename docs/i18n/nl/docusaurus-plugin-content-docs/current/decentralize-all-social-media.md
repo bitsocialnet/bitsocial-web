@@ -32,6 +32,18 @@ Sommige van deze apps kunnen open source zijn. Sommige kunnen gecentraliseerde c
 kunnen door Bitsocial Forge worden gebouwd, en veel ervan zouden door onafhankelijke ontwikkelaars
 gebouwd moeten worden.
 
+## Ideeën in onderzoek
+
+Voor sommige van deze ideeën bestaan al repositories in de ideefase. Er is nog niets in gebouwd. Elk
+verzamelt het ontwerp en de open vragen, zodat bouwers en financiers het kunnen oppakken.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): een YouTube-alternatief waarin elk kanaal een
+  community is die eigendom is van de maker.
+- [Gedecentraliseerde GitHub](https://github.com/bitsocialnet/decentralized-github): onderzoek en
+  architectuur voor een GitHub-alternatief gebouwd op Bitsocial.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): een encyclopedie die van niemand is,
+  waarin redactiegroepen concurrerende versies publiceren en lezers kiezen.
+
 ## Veel bouwers financieren
 
 Het doel is om nieuwe sociale clients financierbaar te maken voordat ze al tractie op platformschaal

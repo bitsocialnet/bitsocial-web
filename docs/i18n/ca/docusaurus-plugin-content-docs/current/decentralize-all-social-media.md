@@ -32,6 +32,19 @@ Algunes d'aquestes aplicacions poden ser de codi obert. Algunes poden ser client
 Algunes les pot construir Bitsocial Forge, i moltes les haurien de construir desenvolupadors
 independents.
 
+## Idees en recerca
+
+Algunes d'aquestes idees ja tenen repositoris en fase d'idea. Encara no s'hi ha construït res.
+Cadascun recull el disseny i les preguntes obertes perquè constructors i finançadors el puguin
+agafar.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): una alternativa a YouTube on cada canal és una
+  comunitat que pertany al seu creador.
+- [GitHub descentralitzat](https://github.com/bitsocialnet/decentralized-github): recerca i
+  arquitectura per a una alternativa a GitHub construïda sobre Bitsocial.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): una enciclopèdia que no és de ningú,
+  on grups editorials publiquen versions que competeixen entre si i els lectors trien.
+
 ## Finançar molts constructors
 
 L'objectiu és aconseguir que els clients socials nous es puguin finançar abans de tenir ja una

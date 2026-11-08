@@ -32,6 +32,18 @@ Disa nga këto aplikacione mund të jenë me burim të hapur. Disa mund të jen�
 Disa mund t'i ndërtojë Bitsocial Forge, ndërsa shumë prej tyre duhet t'i ndërtojnë zhvillues të
 pavarur.
 
+## Ide në kërkim
+
+Disa nga këto ide kanë tashmë depo në fazën e idesë. Asgjë në to nuk është ndërtuar ende. Secila
+mbledh projektimin dhe pyetjet e hapura, që ndërtuesit dhe financuesit ta marrin përsipër.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): një alternativë ndaj YouTube ku çdo kanal është
+  një komunitet në pronësi të krijuesit të tij.
+- [GitHub i decentralizuar](https://github.com/bitsocialnet/decentralized-github): kërkim dhe
+  arkitekturë për një alternativë ndaj GitHub të ndërtuar mbi Bitsocial.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): një enciklopedi që nuk e zotëron
+  askush, ku grupet redaktuese publikojnë versione konkurruese dhe lexuesit zgjedhin.
+
 ## Financimi i shumë ndërtuesve
 
 Qëllimi është që klientët e rinj socialë të jenë të financueshëm përpara se të kenë arritur tërheqje

@@ -32,6 +32,20 @@ Ang ilan sa mga app na ito ay maaaring open source. Ang ilan ay maaaring sentral
 ilan ay maaaring buuin ng Bitsocial Forge, at marami ang dapat buuin ng mga independiyenteng
 developer.
 
+## Mga ideyang sinasaliksik
+
+May mga repository na sa yugto ng ideya ang ilan sa mga ideyang ito. Wala pang nabubuo sa mga ito.
+Tinitipon ng bawat isa ang disenyo at ang mga bukas na tanong para maituloy ito ng mga developer at
+tagapondo.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): alternatibo sa YouTube kung saan bawat channel
+  ay isang komunidad na pag-aari ng gumawa nito.
+- [Desentralisadong GitHub](https://github.com/bitsocialnet/decentralized-github): pananaliksik at
+  arkitektura para sa isang alternatibo sa GitHub na binuo sa Bitsocial.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): isang ensiklopedya na walang
+  nagmamay-ari, kung saan naglalathala ang mga grupong editoryal ng magkakakumpitensyang bersyon at
+  ang mga mambabasa ang pumipili.
+
 ## Pagpopondo sa maraming developer
 
 Layunin na mapondohan ang mga bagong social client bago pa man sila magkaroon ng traksyong kasinlaki

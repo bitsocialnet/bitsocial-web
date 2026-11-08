@@ -30,6 +30,18 @@ Deretter bør nettverket utvide seg inn i den lange halen:
 Noen av disse appene kan ha åpen kildekode. Noen kan være sentraliserte klienter. Noen kan bygges av
 Bitsocial Forge, og mange bør bygges av uavhengige utviklere.
 
+## Idéer under utforskning
+
+Noen av disse idéene har allerede repositorier på idéstadiet. Ingenting i dem er bygget ennå. Hvert
+av dem samler designet og de åpne spørsmålene, slik at utviklere og finansiører kan ta dem videre.
+
+- [WeTube](https://github.com/bitsocialnet/wetube): et YouTube-alternativ der hver kanal er et
+  fellesskap som eies av skaperen.
+- [Desentralisert GitHub](https://github.com/bitsocialnet/decentralized-github): research og
+  arkitektur for et GitHub-alternativ bygget på Bitsocial.
+- [Infinipedia](https://github.com/bitsocialnet/infinipedia): et leksikon som ingen eier, der
+  redaksjonelle grupper publiserer konkurrerende versjoner og leserne velger.
+
 ## Å finansiere mange utviklere
 
 Målet er å gjøre nye sosiale klienter finansierbare før de allerede har oppslutning i
