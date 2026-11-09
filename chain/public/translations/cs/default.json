@@ -397,12 +397,12 @@
         "name": "Pool BSO/ETH na Uniswapu"
       },
       "holderA": {
-        "summary": "Dvanáct peněženek, které mezi 22. únorem a 8. dubnem 2022 nakoupily na Avalanche a nikdy neprodaly. Pět z nich je propojeno on-chain; zbylých sedm odpovídá vzorci stejného kupce.",
+        "summary": "Patnáct peněženek, které mezi únorem 2022 a květnem 2023 nakoupily na Avalanche a nikdy neprodaly. Pět z nich je propojeno on-chain; zbylých deset odpovídá vzorci stejného kupce.",
         "evidence": {
           "transfersToLpWallet": "Dvě z nakupujících peněženek poslaly tokeny a AVAX třetí peněžence, která je použila na likviditu a farming na Trader Joe: 141 tis. BSO a 5 AVAX dne 27. února 2022, pak 1,01 mil. BSO a 34 AVAX mezi 28. únorem a 2. březnem. Třetí peněženka poslala zpět 0,013 AVAX.",
           "sharedFunder": "Jedna soukromá peněženka financovala tři z nakupujících peněženek a nic jiného. Každá transakce, kterou kdy odeslala, šla jim, a to postupně: nonce 0 až 4 první, 5 až 7 druhé, 8 třetí.",
-          "buyingPattern": "Dalších sedm peněženek bylo vždy nových, financovaných jedním nebo dvěma výběry z burzy ve výši zhruba 2 000 až 3 400 dolarů přes Binance nebo ChangeNOW (stejné služby, jaké používaly propojené peněženky), celých směněných za token a už nikdy nepoužitých. Nakupovaly jedna po druhé mezi 28. únorem a 31. březnem 2022 a nikdy se časově nepřekrývaly s propojenými peněženkami. Ze všech 292 kupců od února do dubna 2022 tomuto vzorci neodpovídá žádná jiná peněženka.",
-          "neverSold": "Žádná z dvanácti peněženek od té doby své tokeny neprodala ani nepřesunula. Jejich zůstatky prošly oběma migracemi beze změny."
+          "buyingPattern": "Dalších deset peněženek bylo vždy nových, financovaných jedním nebo dvěma výběry z burzy ve výši zhruba 2 000 až 3 400 dolarů přes Binance nebo ChangeNOW (stejné služby, jaké používaly propojené peněženky), celých směněných za token a už nikdy nepoužitých. Sedm z nich nakupovalo jedna po druhé mezi 28. únorem a 31. březnem 2022 a nikdy se časově nepřekrývalo s propojenými peněženkami. Další tři udělaly totéž 12. dubna a 25. června 2022 a 6. května 2023. Mezi dnešními držiteli s alespoň 0,01 % nabídky je 21 peněženek, které byly vždy použity jen k nákupu na Avalanche, a to nejvýše ve čtyřech transakcích: těchto deset, dvě z propojených peněženek a devět dalších, z nichž každá utratila méně než 410 dolarů.",
+          "neverSold": "Žádná z patnácti peněženek od té doby své tokeny neprodala ani nepřesunula. Jejich zůstatky prošly oběma migracemi beze změny."
         }
       },
       "holderB": {
@@ -411,49 +411,80 @@
           "owners": "Safe potřebuje podpis 2 ze svých 4 vlastníků. Jeden vlastník drží BSO i přímo. Čtyři vlastníci mohou být jeden člověk s několika klíči, nebo malá skupina.",
           "consolidation": "1. června 2024 mezi 16:08 a 17:51 UTC přijal Safe 16,9 mil. BSO ze 14 peněženek. Prvním převodem byl test o 10 tokenech, který Safe hned poslal zpět.",
           "vesting": "12. srpna 2024 přesunul Safe 8,5 mil. BSO do vestingového streamu Sablier. Migrace v roce 2026 připsala tento stream zpět Safe, a proto Safe dostal dva migrační převody.",
-          "commonSender": "Stejná peněženka poslala BSO jak vlastníkovi Safe (1,93 mil. dne 8. března 2024), tak samotnému Safe (211 tis. dne 1. června 2024)."
+          "commonSender": "Stejná peněženka poslala BSO jak vlastníkovi Safe (1,93 mil. dne 8. března 2024), tak samotnému Safe (214 tis. dne 1. června 2024)."
         }
       },
       "holderC": {
-        "summary": "Dvě peněženky, které dostaly BSO od stejného odesílatele.",
+        "summary": "Dvě peněženky naplněné stejnou dvojicí nakupujících peněženek.",
         "evidence": {
-          "commonSender": "Jedna peněženka poslala 19. srpna 2024 první z nich 661 tis. BSO a 14. listopadu 2025 druhé 2,16 mil. Společný odesílatel může být i jeden prodejce, který obsluhuje dva kupce."
+          "commonSender": "Jedna nakupující peněženka poslala 19. srpna 2024 první z nich 664 tis. BSO. Dne 14. listopadu 2025 poslala druhé test o 7 tis. BSO, 0,1 ETH a pak 2,17 mil. BSO. Je to jediné ETH, které kdy druhá peněženka dostala, a ta nikdy neodeslala žádnou transakci.",
+          "secondSender": "Druhá nakupující peněženka poslala první z nich jejích zbylých 7,3 mil. BSO v osmi převodech mezi květnem a srpnem 2024, spolu s jejím prvním ETH, a dostala od ní zpět 4,35 ETH.",
+          "sendersLinked": "Obě nakupující peněženky jsou propojeny mezi sebou: jedna předala druhé 1,15 mil. BSO a 0,1 ETH dne 22. února 2024 a ta jí dne 17. srpna 2024 poslala zpět svých zbývajících 5,8 ETH."
         }
       },
       "holderD": {
-        "summary": "Tři peněženky spojené přes jednu z nich.",
+        "summary": "Pět peněženek: dvě, které si navzájem posílaly AVAX a ETH, třetí, kterou obě naplnily, a dvě další, které třetí peněženka připravila.",
         "evidence": {
-          "sharedRecipient": "Prostřední peněženka dostala 18. listopadu 2022 od první testovací převod a pak 703 tis. BSO a 1. prosince 2022 od třetí 1,15 mil. BSO. Mohl by to být i jeden kupec, který platí dvěma prodejcům."
+          "sharedRecipient": "Třetí peněženka dostala 18. listopadu 2022 od první testovací převod a pak 703 tis. BSO a 1. prosince 2022 od druhé 1,16 mil. BSO. Veškerý AVAX, který kdy měla na gas, pocházel od těchto dvou.",
+          "coinsBothWays": "První dvě peněženky si 20 měsíců navzájem posílaly mince na obou blockchainech: 0,5 AVAX jedním směrem a o devět minut později 0,49 zpět dne 24. března 2022, 73 AVAX dne 31. května 2022, 0,09 ETH dne 11. března 2023 a 2 ETH opačným směrem dne 7. listopadu 2023.",
+          "newWallets": "Třetí peněženka pak připravila dvě nové peněženky, pokaždé stejným způsobem: AVAX na gas, testovací převod, pak 281 tis. BSO, a to 24. listopadu 2022 a na konci dubna 2023. Ani jedna z nich nikdy neodeslala žádnou transakci."
         }
       },
       "holderE": {
         "summary": "Dvě peněženky naplněné ze stejného zdroje.",
         "evidence": {
-          "commonSender": "Jedna peněženka poslala první z nich 5,54 mil. BSO v sedmi převodech mezi říjnem 2024 a lednem 2025 a druhé 281 tis. dne 22. listopadu 2025."
+          "commonSender": "Jedna peněženka poslala první z nich 5,53 mil. BSO v sedmi převodech mezi říjnem 2024 a lednem 2025 a druhé 287 tis. dne 22. listopadu 2025.",
+          "onlyEth": "Stejná peněženka poslala každé z nich jediné ETH, které kdy daná peněženka dostala, a to ve stejné minutě jako její první tokeny: 0,1 ETH a 0,12 ETH. Ani jedna z obou peněženek nikdy neodeslala žádnou transakci."
         }
       },
       "holderF": {
-        "summary": "Jedna peněženka, která rozdělila své tokeny do tří nových peněženek a zaplatila jim gas.",
+        "summary": "Jedna peněženka, která rozdělila své tokeny a 4 ETH do tří nových peněženek.",
         "evidence": {
-          "split": "10. března 2024 poslala jedna peněženka během sedmi minut kulaté částky PLEB, jak se tehdy jmenoval BSO (12 mld., 8 mld. a 4 mld.), na tři nové peněženky a téhož dne dvěma z nich poslala ETH na gas. Sama BSO stále drží."
+          "split": "10. března 2024 poslala jedna peněženka během sedmi minut kulaté částky PLEB, jak se tehdy jmenoval BSO (12 mld., 8 mld. a 4 mld.), na tři nové peněženky. Sama BSO stále drží.",
+          "ethBothWays": "Ve stejných minutách poslala těmto třem peněženkám 4,05 ETH, každé mezi 1 a 2 ETH. Ta, která dostala nejvíc, poslala 24. června 2024 zpět 1,5 ETH; zbylé dvě nikdy neodeslaly žádnou transakci."
         }
       },
       "holderG": {
-        "summary": "Dvě peněženky financované stejným odesílatelem, s odstupem tří let.",
+        "summary": "Dvě peněženky financované stejným odesílatelem s odstupem tří let a třetí, na kterou jedna z nich přesunula svůj zůstatek.",
         "evidence": {
-          "commonSender": "Jedna peněženka poslala druhé 661 tis. BSO na Avalanche v dubnu 2022 a první 843 tis. na Ethereu v lednu 2025."
+          "commonSender": "Jedna peněženka poslala druhé 658 tis. BSO na Avalanche v dubnu 2022 a první 843 tis. na Ethereu v lednu 2025.",
+          "senderFunded": "Tento odesílatel poslal oběma peněženkám také mince: druhé dal její první AVAX a den nato 17,4 AVAX a první poslal svých zbývajících 0,15 ETH tři minuty po tokenech.",
+          "movedOn": "3. listopadu 2026 poslala druhá peněženka třetí ETH na gas, test o 100 BSO a pak celý svůj zůstatek 852 tis. BSO."
         }
       },
       "holderH": {
-        "summary": "Dvě peněženky s jedním převodem mezi sebou.",
+        "summary": "Dvě peněženky, z nichž jedna financovala druhou.",
         "evidence": {
-          "directTransfer": "První peněženka poslala druhé 59 tis. BSO dne 24. dubna 2022."
+          "directTransfer": "24. dubna 2022 poslala první peněženka druhé její první AVAX a o dvě minuty později 59 tis. BSO.",
+          "funding": "8. května 2022 poslala první peněženka druhé 23 AVAX v šesti převodech a druhá většinu z nich vždy během několika minut směnila za BSO."
         }
       },
       "holderI": {
-        "summary": "Dvě peněženky s opakovanými převody mezi sebou.",
+        "summary": "Dvě peněženky, které si navzájem posílaly ETH, než jedna přesunula celý svůj zůstatek na druhou.",
         "evidence": {
-          "directTransfers": "Druhá peněženka poslala první 1,86 mil. BSO dne 30. října 2023 a 703 tis. dne 8. listopadu 2023."
+          "directTransfers": "Druhá peněženka pak poslala první všechno, co držela: 1,85 mil. BSO dne 30. října 2023 a 703 tis. dne 8. listopadu 2023.",
+          "ethBothWays": "Druhá peněženka poslala první 0,77 ETH dne 16. prosince 2022 a první poslala den nato 0,02 ETH zpět."
+        }
+      },
+      "holderJ": {
+        "summary": "Dvě peněženky, které si déle než rok posílaly AVAX tam a zpět.",
+        "evidence": {
+          "coinsBothWays": "První peněženka poslala druhé její první AVAX dne 7. května 2021 a její první ETH v srpnu téhož roku. Do července 2022 jí poslala 331 AVAX ve dvanácti převodech a druhá poslala zpět 15 AVAX ve dvou.",
+          "sameEveningLocks": "Obě nakoupily BSO na Trader Joe a 28. dubna 2022 obě v rozmezí půl hodiny zamkly BSO ve stejném zamykacím kontraktu."
+        }
+      },
+      "holderK": {
+        "summary": "Dvě peněženky financované stejnou soukromou peněženkou.",
+        "evidence": {
+          "sharedFunder": "Jedna soukromá peněženka financovala obě. První peněžence poslala její první AVAX v říjnu 2021, 194 AVAX ve 21 převodech do konce roku 2023 a 3,49 mil. BSO ve dvou převodech. Druhé peněžence poslala její první AVAX dne 14. února 2022 a 23 AVAX v šesti převodech do dubna téhož roku. Obě poslaly malé částky AVAX zpět.",
+          "sharedRecipient": "Obě také financovaly stejnou novou peněženku: druhá jí 17. února 2022 poslala jejích prvních 5,1 AVAX a první jí o tři dny později poslala 38,3 AVAX."
+        }
+      },
+      "holderL": {
+        "summary": "Dvě peněženky financované ze stejné soukromé peněženky, jedna z nich přes zprostředkující peněženku.",
+        "evidence": {
+          "funderChain": "Jedna soukromá peněženka poslala druhé její první AVAX dne 12. února 2022. O šest dní později přesunula svých vlastních 597 tis. BSO a svůj zbývající AVAX do nové peněženky, která těch 597 tis. BSO dne 22. února předala první peněžence, spolu s jejím prvním AVAX.",
+          "directTransfer": "Druhá peněženka poslala první 0,005 AVAX dne 27. února 2022."
         }
       }
     },
@@ -589,14 +620,14 @@
       "howTitle": "Jak se peněženky propojovaly",
       "how": {
         "transfers": "Byl dohledán každý převod mezi dvěma běžnými peněženkami v rámci všech tří kontraktů, na Avalanche i na Ethereu, bez burz, routerů, poolů a jiných kontraktů. Multisigy Safe byly propojeny se svými vlastníky.",
-        "funders": "Porovnávalo se, která peněženka jako první poslala každému z největších držitelů AVAX nebo ETH. Burzy financují tisíce peněženek, takže jako propojení se počítají jen soukromí financovatelé.",
+        "funders": "Dohledán byl také každý převod AVAX a ETH do peněženky nebo z peněženky, která drží alespoň 0,01 % nabídky, včetně toho, kdo každé peněžence poslal mince jako první. Burzy a směnárenské služby financují tisíce peněženek, takže jako propojení se počítají jen soukromé peněženky.",
         "pattern": "U peněženek bez přímého propojení se nákupní chování porovnalo se všemi kupci ze stejného období.",
         "migrations": "Zůstatky byly sledovány přes obě migrace v poměru 7 114,6 PLEB za BSO, tedy ve stejném poměru, v jakém tato stránka zobrazuje starší částky v BSO."
       },
       "limitsTitle": "Omezení",
       "limits": {
         "exchangeOnly": "Držitel, který financuje každou peněženku přes burzu a nikdy mezi nimi nepřesouvá tokeny, nezanechá žádné on-chain propojení. Některé skupiny tak mohou skrývat další peněženky.",
-        "sales": "Převod mezi dvěma peněženkami může být prodej nebo dar. Skupiny označené jako Možné stojí na jediném takovém propojení.",
+        "sales": "Převod mezi dvěma peněženkami může být prodej nebo dar, takže žádná skupina nestojí na jediném převodu. Některé peněženky od své skupiny vždy jen dostávaly tokeny a mince a nikdy nic neodeslaly; i to by mohly být dary.",
         "contracts": "Tokeny držené jinými kontrakty než poolem na Uniswapu a Safe jsou uvedeny tak, jak jsou.",
         "snapshot": "Zůstatky a cena se z blockchainu obnovují každých pět minut, dokud je tato stránka otevřená. Propojení mezi peněženkami se dohledávají ručně a sama se neaktualizují.",
         "history": "Křivky ve sloupci Historie ukazují, kolik která peněženka držela, a to u peněženek s alespoň 0,01 % nabídky a u každé peněženky známého držitele. Tokeny v poolu likvidity, ve farmě nebo ve vestingovém streamu z křivky vypadnou, a protože migrace část z nich znovu vydaly jejich vlastníkům, některé křivky v těch dnech poskočí."

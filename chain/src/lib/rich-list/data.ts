@@ -108,6 +108,9 @@ export const ENTITIES: Entity[] = [
       { address: "0x4917532eb87205e35521f52511e05a6c91b5e910", patternOnly: true },
       { address: "0x641479cb068e77bd2908d547d057f1defcd9e485", patternOnly: true },
       { address: "0x343e1400008f08694e923b30d1a8fe20c1dbb6ef", patternOnly: true },
+      { address: "0xdccf1af9a9f0ae46942a1b432b007e7823179f5b", patternOnly: true },
+      { address: "0xb7b8cac031c6d860f2404c5277fe736f9a3d4884", patternOnly: true },
+      { address: "0x72bcd36157ba54d3800522c222582c34efc08b8a", patternOnly: true },
     ],
     evidence: [
       {
@@ -169,7 +172,7 @@ export const ENTITIES: Entity[] = [
   {
     id: "holderF",
     kind: "linked",
-    confidence: "likely",
+    confidence: "confirmed",
     wallets: [
       { address: "0xb5c3f2515e135de263903fc14ac0a150fd832c64" },
       { address: "0x310d6b410ff9c1472040af416ac0f2368bfb6d0a" },
@@ -183,6 +186,16 @@ export const ENTITIES: Entity[] = [
           eth("0x43174cc168f1a525b57a03dee7bb97d9894291026d02722e694ad31f096c563b"),
           eth("0x334ee7560ae0382a846d4faa6505158f9b4ecc262ae033b9e5d23cafa8513db3"),
           eth("0x8c3946ab19baf714f2f7467753dde3b10f8506ea23536bd57642070feb291625"),
+        ],
+      },
+      {
+        id: "ethBothWays",
+        txs: [
+          eth("0xfac298ec4f83e8ea7c8598ab8b39ea4561a57657cbfbedd9b6f410b45fc03c51"),
+          eth("0x207dc2090b881ceb5aa47e657ac07c298cb7574548a594b0fceab169a9109b15"),
+          eth("0xe494bb55d5dbfbc9b76e577e9a5435ff9a7102034cdf7e20b3455fc44bb688c8"),
+          eth("0x4d4d6ccf00574b8b64f42308fac3463a46d75527a52091924ebe98a6fc9e00e1"),
+          eth("0xd09f3cd7a27ceef01288810be6752c678f7566521d0b45c180642a10fb9957f7"),
         ],
       },
     ],
@@ -203,18 +216,33 @@ export const ENTITIES: Entity[] = [
           eth("0xb965254b3e59ae5251e6281f34fbb3cc2c9d60e02e1060e06aa7a3977b41b1a6"),
           eth("0xb8a9804b458c0176d5d8cd6baca004ed225aaaf413c16984d34ab189d8d0fecc"),
         ],
+        addresses: [{ chain: "ethereum", address: "0x72dc34a1d402972db44e430b9e8c7bcd9b52270d" }],
+      },
+      {
+        id: "onlyEth",
+        txs: [
+          eth("0xd6cfcf07aa2b59b101c878c0b321541879d3ab45e5f0a763b0fe22c140a9bfc8"),
+          eth("0x6b909f04b9cdaa779bd203d844bdbe3ef3de58d0c4adbd596de055de283d24bc"),
+        ],
       },
     ],
   },
   {
     id: "holderI",
     kind: "linked",
-    confidence: "likely",
+    confidence: "confirmed",
     wallets: [
       { address: "0x2e93db4d3a397fb9f18dbdc11695c563f6728586" },
       { address: "0x4874e8166dbff69e72f0441f0e86ae7236235c60" },
     ],
     evidence: [
+      {
+        id: "ethBothWays",
+        txs: [
+          eth("0xb7f7dd120a58f4ef86c1d4842e7bef4c326c3f623c8eae40e061bd7392a579bf"),
+          eth("0xdfb28089bfbfcd9ec8f17f1d7a88541a2c351afa848cd0a366cad24830473b36"),
+        ],
+      },
       {
         id: "directTransfers",
         txs: [
@@ -227,7 +255,7 @@ export const ENTITIES: Entity[] = [
   {
     id: "holderC",
     kind: "linked",
-    confidence: "possible",
+    confidence: "likely",
     wallets: [
       { address: "0x4bcb68fdf8ef791a392195b952c541087505f8e2" },
       { address: "0x9c36d1e6d6c6d6871062dc7dd3494f884eb1798b" },
@@ -237,7 +265,29 @@ export const ENTITIES: Entity[] = [
         id: "commonSender",
         txs: [
           eth("0xb5ce89e5fb7e4eace119f383c58450400d0b28be2be510601bf88c7e81e2649d"),
+          eth("0xc03e862fc506ab7f704cde94fdfbc3b2b154319c731ac42f16d9ac9e411edcaf"),
+          eth("0xe5e29d9a8ce31cd3a650f7f0a79d2dca4d3915138c72fb6352277b28f5be92b8"),
           eth("0xc87982482f3bdfb737b60c054a7aa548fe83faac23bee6ae06ed4bfcd5b9deb3"),
+        ],
+        addresses: [{ chain: "ethereum", address: "0x51a7142b5ddccf34fd8429b4416e19fa0b8a26fe" }],
+      },
+      {
+        id: "secondSender",
+        txs: [
+          eth("0x96702cb5437afacea7d50a28d45a5abd4cde339e4e876e92a63f9741015dfca4"),
+          eth("0xc75ce93cfddad4109b63693c522e9117ca2dc4f427be77885a91054cea943bfc"),
+          eth("0xae60de829c6cea18a2860b0882c411a8dc9b2b5f1b3e10752de45d4d35bc30f2"),
+          eth("0x53dc66716933dc50a435f7bd04246d72bc513cbe03aae4b0b2dd40ebdd8a88e2"),
+          eth("0x49d2fb10ce4d8ac0327b85a6bab199f066ea2335dfe591ee1bc4bf5f760fccc7"),
+        ],
+        addresses: [{ chain: "ethereum", address: "0xf6f03c32176a989b76d0c2e991535a07973a1393" }],
+      },
+      {
+        id: "sendersLinked",
+        txs: [
+          eth("0x648ca27290790b24922182447462a6070c6b8b1f856a9ad1f7f70ff42bb3358f"),
+          eth("0x3af7b2b1a8ca61aba498e08d4b761872ebccb1831c1f81d934f173e413cdd27b"),
+          eth("0x418f55da5f0b4976efb955fe7cfca510e76ccce3c463df0b65cdda22aa4bf352"),
         ],
       },
     ],
@@ -245,7 +295,7 @@ export const ENTITIES: Entity[] = [
   {
     id: "holderH",
     kind: "linked",
-    confidence: "possible",
+    confidence: "confirmed",
     wallets: [
       { address: "0x61c343f13284a69151ffc2dc73d2b292656000d1" },
       { address: "0x929e618df51f8c34ccf1f8e8b724363e7293ab2d" },
@@ -253,17 +303,32 @@ export const ENTITIES: Entity[] = [
     evidence: [
       {
         id: "directTransfer",
-        txs: [avax("0x117c632f8e6be2a3e11cd29a43dc888b09bcfc0b6b361ed81742a8486c97d03e")],
+        txs: [
+          avax("0xf1d3ab0578a3f0cf25e85a84afd452b6291b4be59a96d097862c6a809a32bffb"),
+          avax("0x117c632f8e6be2a3e11cd29a43dc888b09bcfc0b6b361ed81742a8486c97d03e"),
+        ],
+      },
+      {
+        id: "funding",
+        txs: [
+          avax("0x9792144558b40d7fab1a0b4560bd7b2dfb07e43b4151682a73abd5e4ff7c54a5"),
+          avax("0xc5b424a5fbbd28759302c1288861b133aeafd983cd936a676d9ca632994483fd"),
+          avax("0x98ae030b4c4a8ff26818b6fa6bdfad1e96a3b7fedd86ee329013ccafad19d700"),
+          avax("0xb55cecd2e15ef7cf8c747cad08d24ffa1b100510f5e96c326a15ff1663c182c4"),
+          avax("0x71b73cb05af1ce1788d0bdf227620501e21a26f3905d113220b7df3717c0d39d"),
+          avax("0x0f2bb3f0060ed30eee4e4a5a296bb5df2554d3dad00bd88cd308237032904d18"),
+        ],
       },
     ],
   },
   {
     id: "holderG",
     kind: "linked",
-    confidence: "possible",
+    confidence: "confirmed",
     wallets: [
       { address: "0x9f4704ce47f9b361174c5eea3103f3f74aec3a28" },
       { address: "0x4aeb56386b14e3816908c84833ca1744d0782c4e" },
+      { address: "0x20936c48e010e7ff3701f082b998ef3079b320ff" },
     ],
     evidence: [
       {
@@ -273,26 +338,157 @@ export const ENTITIES: Entity[] = [
           avax("0xeffa729dd0532e6445d621fa71ec54b87981fb069dd81710f331f75b16d9705e"),
           eth("0x404c9f87a86f6424ccd1565ede97962071e37a5fa76ab0b552b45051b9b32060"),
         ],
+        addresses: [{ chain: "avalanche", address: "0x37139e2ab0cc14b79b3a8458c16c34b127375c00" }],
+      },
+      {
+        id: "senderFunded",
+        txs: [
+          avax("0xc86adcb58bdca238408762cebe137ef29d673b4514e61c7fddacc11670b8f04e"),
+          avax("0xe7c5fe884f83e940810af72902f6d34b7cd4f119c306b580bb7969a1a20ebe83"),
+          eth("0xdd5d336af17952ba6e8b6b5af3184eadb10d58129ebccc56455fe3fc96c6fbab"),
+        ],
+      },
+      {
+        id: "movedOn",
+        txs: [
+          eth("0x636bd148715b553002ffbf9cb89f67406f1898d57aee544a9358b62cd689faf8"),
+          eth("0x2269f80241a4088c2d8dc28b5bb7d44100902a8d5c63caf0b436341ab4b6a550"),
+          eth("0xee124f038980e9b26a4b22723e1efc18d39c35ebc48c56f161742162bcbdc8ac"),
+        ],
       },
     ],
   },
   {
     id: "holderD",
     kind: "linked",
-    confidence: "possible",
+    confidence: "confirmed",
     wallets: [
       { address: "0xa539e2494a331cecd69f10934b723769575d4ce9" },
-      { address: "0xb14c37d62f6dddba576e924b69bf082735c7cd73" },
       { address: "0x798ecc9c631deac58018104c00464ee77874a618" },
+      { address: "0xb14c37d62f6dddba576e924b69bf082735c7cd73" },
+      { address: "0xb4fa1b48300e22b41956ccc1a3e4adf2be71496b" },
+      { address: "0x18f01a8fe60b0ed580dd945a9049977a7d268059" },
     ],
     evidence: [
+      {
+        id: "coinsBothWays",
+        txs: [
+          avax("0x8d18cef56e5ebeb15bf8f4cd4afd8190ba88afb68342b2bd093b95f11d712ff2"),
+          avax("0x030e12e7c6f1857dcc534ebc863a1fffe65b69bfb4eaa735086b8088d2a43315"),
+          avax("0x30c4bc8b6fcd37fe2194a6d9b98747a7ef02ea7860b9d09ea21f73d5e05d18bb"),
+          eth("0x8437337b4d5cfcf4ad16a8a57ba27b6e6f38a79106dec5a97e394ac4c79f2398"),
+          eth("0x88fb5e8bcdbc105e5d9e5c075f2e8ecd84d5c45f1df50b1806e7c91783d2b366"),
+        ],
+      },
       {
         id: "sharedRecipient",
         txs: [
           avax("0x516b7a04680c43f3cd0f5393063e8d337f0db8ce22a876c9f49e886b43f81d2d"),
           avax("0x114c118b905bad7906c020764e830178694fa834fba2a0eb1db46606e670c679"),
+          avax("0x106b87d196a85492c9a1cae2f08771f092ed111a4b086146e3e56092243daaa9"),
+          avax("0x498cee0e1b0458f17431ba92c99e168a024cba4b269d90582e5bff76620e7b36"),
+          avax("0x0ca7ac75f55e634365e9c2ee1b820f5650e3d8231a961b2874280b6c928a3025"),
           avax("0x50f489a70e6808dbe76df1cab63fcc03b1355a525f13c03a38e49a231e920988"),
         ],
+      },
+      {
+        id: "newWallets",
+        txs: [
+          avax("0x9d129d62ff1d8658de7da9b4c1494db5a7b8603f210f7259f21a52a798d5c5ef"),
+          avax("0xce4e93145d0dc8ee1327427001cfe8023a4a5490d61552ada4e1098832d4cf3b"),
+          avax("0x0ccc80f7b0968aaeac3959943fc5005374fe720fe7af3401484794ad6825d66c"),
+          avax("0x8b08a22b6f3b2597e50e625557be1ee4faa78bfdd950f7dcd206c47cbe5686d8"),
+          avax("0x3e1836f87e9fc135e8aa1a65282daaaeb56034163de1e1f337b64bbc36e9732b"),
+          avax("0x939dcb39f50758d8f7669618650ffffc157c7a94dbdc8f9982093b1af0a1f265"),
+        ],
+      },
+    ],
+  },
+  {
+    id: "holderK",
+    kind: "linked",
+    confidence: "confirmed",
+    wallets: [
+      { address: "0x8eeccf2f3ea9fe05d6906abaa1458be9646d938b" },
+      { address: "0x23b33f91420608d4a1ebe5430e3b38dc26da2864" },
+    ],
+    evidence: [
+      {
+        id: "sharedFunder",
+        txs: [
+          avax("0xede5f7c4309fd3c6cc0cc6bfc5a5d17ac0d6ff3e6655f043cb1f8d43adecfda6"),
+          avax("0x98dc5775e6b221e100341c9766f4c778df8d7419ddb8bd3b24298a99cb1f471c"),
+          avax("0x76d883ddf67cf64b6be3a6f05fd917e0e49898aa379f67ab51f147ca112297d9"),
+          avax("0xbfe3850d51d0d1b15eac75121b58a6f419d0b2e1acd117967d443e6121f8352f"),
+          avax("0x73c44a2b95c9b7e88afc4ea98e36fa4383f05b7042025c8516652f66faaeaac6"),
+          avax("0xe23852a5aa3fe7d5d66518ea0d032045f45bae8bc20405e65ba3917911429214"),
+        ],
+        addresses: [{ chain: "avalanche", address: "0x4b024b1609e1c3c8335a7396748e9339c671dfa6" }],
+      },
+      {
+        id: "sharedRecipient",
+        txs: [
+          avax("0xfd2e70bf63aa1c571665e031d46913ea58349159b11230ea7070eb36bc25943f"),
+          avax("0xd1610cca544ddb95ee8929b1592c76b3796e955e6843373f1baf32171e99a3ff"),
+          avax("0xcc26c7c68c4ff08b05555a59fbac3ca0bcfbdb1868d9649980c75728dd31348d"),
+        ],
+        addresses: [{ chain: "avalanche", address: "0xf13b3349c3a1c76ac6d101ee0da4aec152a7256c" }],
+      },
+    ],
+  },
+  {
+    id: "holderJ",
+    kind: "linked",
+    confidence: "confirmed",
+    wallets: [
+      { address: "0x4a7f785a9250f1ee6c3449585e321e6f5191b6d9" },
+      { address: "0xc608238743573144c9f1fe77471776f77db90326" },
+    ],
+    evidence: [
+      {
+        id: "coinsBothWays",
+        txs: [
+          avax("0x441481198be0e9d43444ce58a73d21872a67037d457d34b253ce57296b36655a"),
+          avax("0x311c386e836758ced3ef09997e6d6e53031237e37020ddb5999c17a11e05a81d"),
+          avax("0x84acfeaa8733e19de65fdf8bf7f40f4d93bfa4b7921903c281652167d539fa36"),
+          eth("0x5fa835354462a43b9808c099588d92bfe686404fe7360edddf744dbb1e6d6c10"),
+          avax("0xf0f478441707597e870b4efa73824c9ca474647484c18afa02d34bc1b1248067"),
+        ],
+      },
+      {
+        id: "sameEveningLocks",
+        txs: [
+          avax("0x42352e75f2e1f66796d7567f8ba0bc121db0a2d895bee262547f9727ba3c39da"),
+          avax("0x136940ff481cc78e87bab2b0837ddf0869ffc5e25453ecd54b43045ae7b85ef4"),
+        ],
+      },
+    ],
+  },
+  {
+    id: "holderL",
+    kind: "linked",
+    confidence: "likely",
+    wallets: [
+      { address: "0x8d57c54dd3371e54610c30804e6151e293cc1604" },
+      { address: "0xd2d8987b8df62c0639be4cb89d65b51e8709b3d8" },
+    ],
+    evidence: [
+      {
+        id: "funderChain",
+        txs: [
+          avax("0x45dc7343cc7024d7612c386bbf8b2713b47022c6c6125647db2b2e76f1ef1267"),
+          avax("0x63a5050dd1aa7589eb30cf7390d056993e24cae0829bcc403fb43a56a0586369"),
+          avax("0x911a599550e0f59ec0d77768496b58ded345f77ed1932de04c358b4b8581de6e"),
+          avax("0xe84c936bf7136504ea159400cc7dea64792ad3afdbc282eacce544c380c081fc"),
+        ],
+        addresses: [
+          { chain: "avalanche", address: "0x5739e68e77d45017f616c6dfd15be0e7e4d75ac4" },
+          { chain: "avalanche", address: "0x8d16b745c2e1aefd102f9743693b2378eae56cdd" },
+        ],
+      },
+      {
+        id: "directTransfer",
+        txs: [avax("0xc2af8d1950792ee30dfd15457e1696d3ec1f8a68a19f26a0faf891a9c274c31f")],
       },
     ],
   },

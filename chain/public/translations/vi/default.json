@@ -382,12 +382,12 @@
         "name": "Pool BSO/ETH trên Uniswap"
       },
       "holderA": {
-        "summary": "Mười hai ví đã mua vào trên Avalanche từ ngày 22 tháng 2 đến ngày 8 tháng 4 năm 2022 và chưa bao giờ bán. Năm ví liên kết với nhau on-chain; bảy ví còn lại khớp với mô thức của cùng một người mua.",
+        "summary": "Mười lăm ví đã mua vào trên Avalanche từ tháng 2 năm 2022 đến tháng 5 năm 2023 và chưa bao giờ bán. Năm ví liên kết với nhau on-chain; mười ví còn lại khớp với mô thức của cùng một người mua.",
         "evidence": {
           "transfersToLpWallet": "Hai trong số các ví mua đã gửi token và AVAX sang một ví thứ ba, ví này dùng chúng để cung cấp thanh khoản và farm trên Trader Joe: 141 nghìn BSO và 5 AVAX vào ngày 27 tháng 2 năm 2022, sau đó 1,01 triệu BSO và 34 AVAX từ ngày 28 tháng 2 đến ngày 2 tháng 3. Ví thứ ba đã gửi lại 0,013 AVAX.",
           "sharedFunder": "Một ví riêng đã cấp vốn cho ba trong số các ví mua và không làm gì khác. Mọi giao dịch nó từng gửi đều đi đến các ví này, theo thứ tự: nonce 0 đến 4 cho ví thứ nhất, 5 đến 7 cho ví thứ hai, 8 cho ví thứ ba.",
-          "buyingPattern": "Bảy ví nữa đều là ví mới, được cấp vốn bằng một hoặc hai lần rút tiền từ sàn khoảng 2.000 đến 3.400 USD qua Binance hoặc ChangeNOW (cũng là các dịch vụ mà các ví liên kết đã dùng), đổi toàn bộ sang token và không bao giờ được dùng lại. Chúng lần lượt mua từng ví một từ ngày 28 tháng 2 đến ngày 31 tháng 3 năm 2022, không bao giờ trùng thời gian với các ví liên kết. Trong tất cả 292 người mua từ tháng 2 đến tháng 4 năm 2022, không có ví nào khác khớp với mô thức này.",
-          "neverSold": "Không ví nào trong số mười hai ví đã bán hay chuyển token của mình kể từ đó. Số dư của chúng đi qua cả hai đợt migration mà không thay đổi."
+          "buyingPattern": "Mười ví nữa đều là ví mới, được cấp vốn bằng một hoặc hai lần rút tiền từ sàn khoảng 2.000 đến 3.400 USD qua Binance hoặc ChangeNOW (cũng là các dịch vụ mà các ví liên kết đã dùng), đổi toàn bộ sang token và không bao giờ được dùng lại. Bảy ví lần lượt mua từng ví một từ ngày 28 tháng 2 đến ngày 31 tháng 3 năm 2022, không bao giờ trùng thời gian với các ví liên kết. Ba ví nữa cũng làm như vậy vào ngày 12 tháng 4 và ngày 25 tháng 6 năm 2022 và vào ngày 6 tháng 5 năm 2023. Trong số những người nắm giữ hiện nay có ít nhất 0,01% nguồn cung, có 21 ví chỉ được dùng để mua trên Avalanche, với không quá bốn giao dịch: mười ví này, hai trong số các ví liên kết, và chín ví khác mà mỗi ví chi dưới 410 USD.",
+          "neverSold": "Không ví nào trong số mười lăm ví đã bán hay chuyển token của mình kể từ đó. Số dư của chúng đi qua cả hai đợt migration mà không thay đổi."
         }
       },
       "holderB": {
@@ -396,49 +396,80 @@
           "owners": "Safe cần 2 trong 4 chủ sở hữu ký. Một chủ sở hữu cũng nắm giữ BSO trực tiếp. Bốn chủ sở hữu có thể là một người với nhiều khóa hoặc một nhóm nhỏ.",
           "consolidation": "Ngày 1 tháng 6 năm 2024, từ 16:08 đến 17:51 UTC, Safe đã nhận 16,9 triệu BSO từ 14 ví. Lần chuyển đầu tiên là một giao dịch thử 10 token mà Safe gửi trả lại ngay.",
           "vesting": "Ngày 12 tháng 8 năm 2024, Safe chuyển 8,5 triệu BSO vào một luồng vesting trên Sablier. Đợt migration năm 2026 đã ghi có luồng đó trở lại cho Safe, đó là lý do Safe nhận được hai lần chuyển từ migration.",
-          "commonSender": "Cùng một ví đã gửi BSO cho cả chủ sở hữu Safe (1,93 triệu vào ngày 8 tháng 3 năm 2024) lẫn Safe (211 nghìn vào ngày 1 tháng 6 năm 2024)."
+          "commonSender": "Cùng một ví đã gửi BSO cho cả chủ sở hữu Safe (1,93 triệu vào ngày 8 tháng 3 năm 2024) lẫn Safe (214 nghìn vào ngày 1 tháng 6 năm 2024)."
         }
       },
       "holderC": {
-        "summary": "Hai ví nhận BSO từ cùng một người gửi.",
+        "summary": "Hai ví được nạp bởi cùng một cặp ví mua.",
         "evidence": {
-          "commonSender": "Một ví đã gửi 661 nghìn BSO cho ví thứ nhất vào ngày 19 tháng 8 năm 2024 và 2,16 triệu cho ví thứ hai vào ngày 14 tháng 11 năm 2025. Một người gửi chung cũng có thể là một người bán phục vụ hai người mua."
+          "commonSender": "Một ví mua đã gửi cho ví thứ nhất 664 nghìn BSO vào ngày 19 tháng 8 năm 2024. Ngày 14 tháng 11 năm 2025, nó gửi cho ví thứ hai một giao dịch thử 7 nghìn BSO, 0,1 ETH rồi 2,17 triệu BSO. Đó là số ETH duy nhất mà ví thứ hai từng nhận, và ví này chưa bao giờ gửi giao dịch nào.",
+          "secondSender": "Một ví mua khác đã gửi cho ví thứ nhất 7,3 triệu BSO còn lại của ví này qua tám lần chuyển từ tháng 5 đến tháng 8 năm 2024, cùng với số ETH đầu tiên của ví này, và nhận lại 4,35 ETH từ ví đó.",
+          "sendersLinked": "Hai ví mua này liên kết với nhau: một ví đã chuyển cho ví kia 1,15 triệu BSO và 0,1 ETH vào ngày 22 tháng 2 năm 2024, và ví kia gửi lại 5,8 ETH còn lại của mình vào ngày 17 tháng 8 năm 2024."
         }
       },
       "holderD": {
-        "summary": "Ba ví được nối với nhau qua một ví trong số đó.",
+        "summary": "Năm ví: hai ví gửi AVAX và ETH cho nhau, ví thứ ba được cả hai ví đó nạp, và hai ví nữa do ví thứ ba thiết lập.",
         "evidence": {
-          "sharedRecipient": "Ví ở giữa đã nhận một giao dịch thử rồi 703 nghìn BSO từ ví thứ nhất vào ngày 18 tháng 11 năm 2022, và 1,15 triệu BSO từ ví thứ ba vào ngày 1 tháng 12 năm 2022. Đây cũng có thể là một người mua trả tiền cho hai người bán."
+          "sharedRecipient": "Ví thứ ba đã nhận một giao dịch thử rồi 703 nghìn BSO từ ví thứ nhất vào ngày 18 tháng 11 năm 2022, và 1,16 triệu BSO từ ví thứ hai vào ngày 1 tháng 12 năm 2022. Toàn bộ số AVAX nó từng có để trả phí gas đều đến từ hai ví đó.",
+          "coinsBothWays": "Hai ví đầu tiên đã gửi coin cho nhau trên cả hai chuỗi trong 20 tháng: 0,5 AVAX theo một chiều và 0,49 gửi lại chín phút sau vào ngày 24 tháng 3 năm 2022, 73 AVAX vào ngày 31 tháng 5 năm 2022, 0,09 ETH vào ngày 11 tháng 3 năm 2023 và 2 ETH theo chiều ngược lại vào ngày 7 tháng 11 năm 2023.",
+          "newWallets": "Sau đó ví thứ ba thiết lập hai ví mới theo cùng một cách mỗi lần: AVAX để trả phí gas, một giao dịch thử, rồi 281 nghìn BSO, vào ngày 24 tháng 11 năm 2022 và vào cuối tháng 4 năm 2023. Cả hai ví đều chưa bao giờ gửi giao dịch nào."
         }
       },
       "holderE": {
         "summary": "Hai ví được nạp từ cùng một nguồn.",
         "evidence": {
-          "commonSender": "Một ví đã gửi cho ví thứ nhất 5,54 triệu BSO qua bảy lần chuyển từ tháng 10 năm 2024 đến tháng 1 năm 2025, và gửi cho ví thứ hai 281 nghìn vào ngày 22 tháng 11 năm 2025."
+          "commonSender": "Một ví đã gửi cho ví thứ nhất 5,53 triệu BSO qua bảy lần chuyển từ tháng 10 năm 2024 đến tháng 1 năm 2025, và gửi cho ví thứ hai 287 nghìn vào ngày 22 tháng 11 năm 2025.",
+          "onlyEth": "Chính ví đó đã gửi cho mỗi ví số ETH duy nhất mà ví ấy từng nhận, trong cùng phút với những token đầu tiên của nó: 0,1 ETH và 0,12 ETH. Cả hai ví đều chưa bao giờ gửi giao dịch nào."
         }
       },
       "holderF": {
-        "summary": "Một ví đã chia token của mình sang ba ví mới và trả phí gas cho chúng.",
+        "summary": "Một ví đã chia token của mình và 4 ETH sang ba ví mới.",
         "evidence": {
-          "split": "Ngày 10 tháng 3 năm 2024, trong vòng bảy phút, một ví đã gửi PLEB, tên gọi của BSO khi đó, với các khoản tròn số (12 tỷ, 8 tỷ và 4 tỷ) đến ba ví mới và trong cùng ngày gửi ETH cho hai trong số đó để trả phí gas. Bản thân ví này vẫn còn nắm giữ BSO."
+          "split": "Ngày 10 tháng 3 năm 2024, trong vòng bảy phút, một ví đã gửi PLEB, tên gọi của BSO khi đó, với các khoản tròn số (12 tỷ, 8 tỷ và 4 tỷ) đến ba ví mới. Bản thân ví này vẫn còn nắm giữ BSO.",
+          "ethBothWays": "Trong cùng những phút đó, nó đã gửi cho ba ví 4,05 ETH, mỗi ví từ 1 đến 2 ETH. Ví nhận nhiều nhất đã gửi lại 1,5 ETH vào ngày 24 tháng 6 năm 2024; hai ví còn lại chưa bao giờ gửi giao dịch nào."
         }
       },
       "holderG": {
-        "summary": "Hai ví được cùng một người gửi cấp vốn, cách nhau ba năm.",
+        "summary": "Hai ví được cùng một người gửi cấp vốn cách nhau ba năm, và một ví thứ ba mà một trong hai ví đó đã chuyển số dư của mình sang.",
         "evidence": {
-          "commonSender": "Một ví đã gửi cho ví thứ hai 661 nghìn BSO trên Avalanche vào tháng 4 năm 2022 và gửi cho ví thứ nhất 843 nghìn trên Ethereum vào tháng 1 năm 2025."
+          "commonSender": "Một ví đã gửi cho ví thứ hai 658 nghìn BSO trên Avalanche vào tháng 4 năm 2022 và gửi cho ví thứ nhất 843 nghìn trên Ethereum vào tháng 1 năm 2025.",
+          "senderFunded": "Người gửi đó cũng đã gửi coin cho cả hai ví: nó cấp cho ví thứ hai số AVAX đầu tiên của ví này và 17,4 AVAX vào ngày hôm sau, và gửi cho ví thứ nhất 0,15 ETH còn dư của mình ba phút sau khi gửi token.",
+          "movedOn": "Ngày 3 tháng 11 năm 2026, ví thứ hai đã gửi cho ví thứ ba ETH để trả phí gas, một giao dịch thử 100 BSO rồi toàn bộ số dư 852 nghìn BSO của mình."
         }
       },
       "holderH": {
-        "summary": "Hai ví có một lần chuyển giữa chúng.",
+        "summary": "Hai ví, trong đó một ví cấp vốn cho ví kia.",
         "evidence": {
-          "directTransfer": "Ví thứ nhất đã gửi cho ví thứ hai 59 nghìn BSO vào ngày 24 tháng 4 năm 2022."
+          "directTransfer": "Ngày 24 tháng 4 năm 2022, ví thứ nhất đã gửi cho ví thứ hai số AVAX đầu tiên của ví này và hai phút sau là 59 nghìn BSO.",
+          "funding": "Ngày 8 tháng 5 năm 2022, ví thứ nhất đã gửi cho ví thứ hai 23 AVAX qua sáu lần chuyển, và ví thứ hai đổi phần lớn số đó sang BSO trong vòng vài phút sau mỗi lần."
         }
       },
       "holderI": {
-        "summary": "Hai ví có nhiều lần chuyển giữa chúng.",
+        "summary": "Hai ví đã gửi ETH cho nhau trước khi một ví chuyển toàn bộ số dư của mình sang ví kia.",
         "evidence": {
-          "directTransfers": "Ví thứ hai đã gửi cho ví thứ nhất 1,86 triệu BSO vào ngày 30 tháng 10 năm 2023 và 703 nghìn vào ngày 8 tháng 11 năm 2023."
+          "directTransfers": "Sau đó ví thứ hai đã gửi cho ví thứ nhất toàn bộ những gì nó nắm giữ: 1,85 triệu BSO vào ngày 30 tháng 10 năm 2023 và 703 nghìn vào ngày 8 tháng 11 năm 2023.",
+          "ethBothWays": "Ví thứ hai đã gửi cho ví thứ nhất 0,77 ETH vào ngày 16 tháng 12 năm 2022, và ví thứ nhất gửi lại 0,02 ETH vào ngày hôm sau."
+        }
+      },
+      "holderJ": {
+        "summary": "Hai ví đã gửi AVAX qua lại trong hơn một năm.",
+        "evidence": {
+          "coinsBothWays": "Ví thứ nhất đã gửi cho ví thứ hai số AVAX đầu tiên của ví này vào ngày 7 tháng 5 năm 2021 và số ETH đầu tiên của ví này vào tháng 8 năm đó. Đến tháng 7 năm 2022, ví thứ nhất đã gửi 331 AVAX qua mười hai lần chuyển, và ví thứ hai đã gửi lại 15 AVAX qua hai lần.",
+          "sameEveningLocks": "Cả hai đều mua BSO trên Trader Joe, và vào ngày 28 tháng 4 năm 2022 cả hai đều khóa BSO trong cùng một hợp đồng khóa, cách nhau không quá nửa giờ."
+        }
+      },
+      "holderK": {
+        "summary": "Hai ví được cùng một ví riêng cấp vốn.",
+        "evidence": {
+          "sharedFunder": "Một ví riêng đã cấp vốn cho cả hai. Nó gửi cho ví thứ nhất số AVAX đầu tiên của ví này vào tháng 10 năm 2021, 194 AVAX qua 21 lần chuyển tính đến cuối năm 2023, và 3,49 triệu BSO qua hai lần chuyển. Nó gửi cho ví thứ hai số AVAX đầu tiên của ví này vào ngày 14 tháng 2 năm 2022 và 23 AVAX qua sáu lần chuyển tính đến tháng 4 năm đó. Cả hai đều gửi lại những khoản AVAX nhỏ.",
+          "sharedRecipient": "Cả hai cũng cấp vốn cho cùng một ví mới: ví thứ hai gửi cho nó 5,1 AVAX đầu tiên vào ngày 17 tháng 2 năm 2022, và ví thứ nhất gửi cho nó 38,3 AVAX ba ngày sau."
+        }
+      },
+      "holderL": {
+        "summary": "Hai ví được cấp vốn từ cùng một ví riêng, trong đó một ví qua một ví trung gian.",
+        "evidence": {
+          "funderChain": "Một ví riêng đã gửi cho ví thứ hai số AVAX đầu tiên của ví này vào ngày 12 tháng 2 năm 2022. Sáu ngày sau, nó chuyển 597 nghìn BSO của chính mình và số AVAX còn lại sang một ví mới, ví này chuyển tiếp 597 nghìn BSO cho ví thứ nhất vào ngày 22 tháng 2, cùng với số AVAX đầu tiên của ví thứ nhất.",
+          "directTransfer": "Ví thứ hai đã gửi cho ví thứ nhất 0,005 AVAX vào ngày 27 tháng 2 năm 2022."
         }
       }
     },
@@ -574,14 +605,14 @@
       "howTitle": "Cách liên kết các ví",
       "how": {
         "transfers": "Mọi lần chuyển giữa hai ví thông thường trên cả ba hợp đồng, trên Avalanche và Ethereum, đều được truy vết, loại trừ các sàn giao dịch, router, pool và các hợp đồng khác. Các multisig Safe được liên kết với chủ sở hữu của chúng.",
-        "funders": "Ví đầu tiên gửi AVAX hoặc ETH cho mỗi người nắm giữ lớn đều được so sánh. Các sàn giao dịch cấp vốn cho hàng nghìn ví, nên chỉ các nguồn cấp vốn riêng mới được tính là liên kết.",
+        "funders": "Mọi lần chuyển AVAX và ETH đến hoặc đi từ một ví nắm giữ ít nhất 0,01% nguồn cung cũng được truy vết, bao gồm cả việc ai là người đầu tiên gửi coin cho mỗi ví. Các sàn giao dịch và dịch vụ hoán đổi cấp vốn cho hàng nghìn ví, nên chỉ các ví riêng mới được tính là liên kết.",
         "pattern": "Với các ví không có liên kết trực tiếp, hành vi mua được so sánh với mọi người mua trong cùng giai đoạn.",
         "migrations": "Số dư được theo dõi qua cả hai đợt migration với tỷ lệ 7.114,6 PLEB mỗi BSO, cũng là tỷ lệ trang này dùng để hiển thị các khoản cũ hơn theo BSO."
       },
       "limitsTitle": "Giới hạn",
       "limits": {
         "exchangeOnly": "Một người nắm giữ cấp vốn cho mọi ví qua sàn giao dịch và không bao giờ chuyển token giữa chúng sẽ không để lại liên kết on-chain nào. Một số nhóm vẫn có thể đang ẩn thêm ví.",
-        "sales": "Một lần chuyển giữa hai ví có thể là một giao dịch bán hoặc một món quà. Các nhóm được đánh dấu “Có thể” dựa trên một liên kết duy nhất như vậy.",
+        "sales": "Một lần chuyển giữa hai ví có thể là một giao dịch bán hoặc một món quà, nên không nhóm nào chỉ dựa trên một lần chuyển duy nhất. Một số ví chỉ từng nhận token và coin từ nhóm của mình và chưa bao giờ gửi đi bất cứ thứ gì; đó cũng có thể là quà tặng.",
         "contracts": "Token do các hợp đồng khác ngoài pool Uniswap và Safe nắm giữ được liệt kê nguyên trạng.",
         "snapshot": "Số dư và giá được làm mới từ chuỗi mỗi năm phút khi trang này đang mở. Các liên kết giữa các ví được nghiên cứu thủ công và không tự cập nhật.",
         "history": "Các đường lịch sử theo dõi lượng mà mỗi ví nắm giữ, cho các ví có ít nhất 0,01% nguồn cung và mọi ví của một người nắm giữ đã biết. Token nằm trong pool thanh khoản, farm hoặc luồng vesting sẽ ra khỏi đường, và các đợt migration đã phát hành lại một phần trong số đó cho chủ sở hữu, nên một số đường nhảy vọt vào những ngày đó."

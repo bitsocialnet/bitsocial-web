@@ -397,12 +397,12 @@
         "name": "Pula Uniswap BSO/ETH"
       },
       "holderA": {
-        "summary": "Dwanaście portfeli, które kupiły na Avalanche między 22 lutego a 8 kwietnia 2022 roku i nigdy nie sprzedały. Pięć jest powiązanych ze sobą on-chain; pozostałe siedem pasuje do wzorca tego samego kupującego.",
+        "summary": "Piętnaście portfeli, które kupiły na Avalanche między lutym 2022 a majem 2023 roku i nigdy nie sprzedały. Pięć jest powiązanych ze sobą on-chain; pozostałe dziesięć pasuje do wzorca tego samego kupującego.",
         "evidence": {
           "transfersToLpWallet": "Dwa z kupujących portfeli wysłały tokeny i AVAX do trzeciego portfela, który użył ich do zapewniania płynności i farmingu na Trader Joe: 141 tys. BSO i 5 AVAX 27 lutego 2022 roku, a potem 1,01 mln BSO i 34 AVAX między 28 lutego a 2 marca. Trzeci portfel odesłał 0,013 AVAX.",
           "sharedFunder": "Jeden prywatny portfel sfinansował trzy z kupujących portfeli i nic poza tym. Każda transakcja, jaką kiedykolwiek wysłał, trafiła do nich, po kolei: nonce od 0 do 4 do pierwszego, od 5 do 7 do drugiego, 8 do trzeciego.",
-          "buyingPattern": "Kolejnych siedem portfeli było nowych: każdy zasilono jedną lub dwiema wypłatami z giełdy na kwotę od około 2000 do 3400 USD przez Binance lub ChangeNOW (te same usługi, z których korzystały powiązane portfele), całość wymieniono na token i portfela nigdy więcej nie użyto. Kupowały jeden po drugim między 28 lutego a 31 marca 2022 roku, nigdy nie pokrywając się w czasie z powiązanymi portfelami. Spośród wszystkich 292 kupujących od lutego do kwietnia 2022 roku żaden inny portfel nie pasuje do tego wzorca.",
-          "neverSold": "Żaden z dwunastu portfeli nie sprzedał ani nie przeniósł od tamtej pory swoich tokenów. Ich salda przeszły przez obie migracje bez zmian."
+          "buyingPattern": "Kolejnych dziesięć portfeli było nowych: każdy zasilono jedną lub dwiema wypłatami z giełdy na kwotę od około 2000 do 3400 USD przez Binance lub ChangeNOW (te same usługi, z których korzystały powiązane portfele), całość wymieniono na token i portfela nigdy więcej nie użyto. Siedem kupowało jeden po drugim między 28 lutego a 31 marca 2022 roku, nigdy nie pokrywając się w czasie z powiązanymi portfelami. Trzy kolejne zrobiły to samo 12 kwietnia i 25 czerwca 2022 roku oraz 6 maja 2023 roku. Wśród dzisiejszych posiadaczy z co najmniej 0,01% podaży 21 portfeli służyło wyłącznie do zakupów na Avalanche, w czterech transakcjach lub mniej: tych dziesięć, dwa z powiązanych portfeli i dziewięć innych, z których każdy wydał mniej niż 410 USD.",
+          "neverSold": "Żaden z piętnastu portfeli nie sprzedał ani nie przeniósł od tamtej pory swoich tokenów. Ich salda przeszły przez obie migracje bez zmian."
         }
       },
       "holderB": {
@@ -411,49 +411,80 @@
           "owners": "Safe wymaga podpisów 2 z 4 właścicieli. Jeden z właścicieli posiada też BSO bezpośrednio. Czterech właścicieli może oznaczać jedną osobę z kilkoma kluczami albo małą grupę.",
           "consolidation": "1 czerwca 2024 roku, między 16:08 a 17:51 UTC, Safe otrzymał 16,9 mln BSO z 14 portfeli. Pierwszy transfer był testem na 10 tokenów, który Safe od razu odesłał.",
           "vesting": "12 sierpnia 2024 roku Safe przeniósł 8,5 mln BSO do strumienia vestingowego Sablier. Migracja z 2026 roku zaksięgowała ten strumień z powrotem na Safe, dlatego Safe otrzymał dwa transfery migracyjne.",
-          "commonSender": "Ten sam portfel wysłał BSO zarówno do właściciela Safe (1,93 mln 8 marca 2024 roku), jak i do samego Safe (211 tys. 1 czerwca 2024 roku)."
+          "commonSender": "Ten sam portfel wysłał BSO zarówno do właściciela Safe (1,93 mln 8 marca 2024 roku), jak i do samego Safe (214 tys. 1 czerwca 2024 roku)."
         }
       },
       "holderC": {
-        "summary": "Dwa portfele, które otrzymały BSO od tego samego nadawcy.",
+        "summary": "Dwa portfele zasilone przez tę samą parę kupujących portfeli.",
         "evidence": {
-          "commonSender": "Jeden portfel wysłał 661 tys. BSO do pierwszego 19 sierpnia 2024 roku i 2,16 mln do drugiego 14 listopada 2025 roku. Wspólny nadawca może też być jednym sprzedawcą obsługującym dwóch kupujących."
+          "commonSender": "Jeden kupujący portfel wysłał 664 tys. BSO do pierwszego 19 sierpnia 2024 roku. 14 listopada 2025 roku wysłał do drugiego test na 7 tys. BSO, 0,1 ETH, a potem 2,17 mln BSO. To jedyne ETH, jakie otrzymał drugi portfel, a on sam nigdy nie wysłał żadnej transakcji.",
+          "secondSender": "Kolejny kupujący portfel wysłał pierwszemu jego pozostałe 7,3 mln BSO w ośmiu transferach między majem a sierpniem 2024 roku, razem z jego pierwszym ETH, i dostał od niego z powrotem 4,35 ETH.",
+          "sendersLinked": "Oba kupujące portfele są ze sobą powiązane: jeden przekazał drugiemu 1,15 mln BSO i 0,1 ETH 22 lutego 2024 roku, a ten odesłał swoje pozostałe 5,8 ETH 17 sierpnia 2024 roku."
         }
       },
       "holderD": {
-        "summary": "Trzy portfele połączone przez jeden z nich.",
+        "summary": "Pięć portfeli: dwa, które wysyłały sobie nawzajem AVAX i ETH, trzeci, który oba zasiliły, i dwa kolejne, które przygotował trzeci.",
         "evidence": {
-          "sharedRecipient": "Środkowy portfel otrzymał od pierwszego 18 listopada 2022 roku transfer testowy, a potem 703 tys. BSO, a od trzeciego 1 grudnia 2022 roku 1,15 mln BSO. Może to też być jeden kupujący płacący dwóm sprzedawcom."
+          "sharedRecipient": "Trzeci portfel otrzymał od pierwszego 18 listopada 2022 roku transfer testowy, a potem 703 tys. BSO, a od drugiego 1 grudnia 2022 roku 1,16 mln BSO. Całe AVAX, jakie kiedykolwiek miał na gaz, pochodziło od tych dwóch.",
+          "coinsBothWays": "Pierwsze dwa portfele przez 20 miesięcy wysyłały sobie nawzajem monety w obu łańcuchach: 0,5 AVAX w jedną stronę i 0,49 z powrotem dziewięć minut później 24 marca 2022 roku, 73 AVAX 31 maja 2022 roku, 0,09 ETH 11 marca 2023 roku i 2 ETH w drugą stronę 7 listopada 2023 roku.",
+          "newWallets": "Trzeci portfel przygotował potem dwa nowe portfele, za każdym razem w ten sam sposób: AVAX na gaz, transfer testowy, a potem 281 tys. BSO, 24 listopada 2022 roku i pod koniec kwietnia 2023 roku. Żaden z nich nigdy nie wysłał transakcji."
         }
       },
       "holderE": {
         "summary": "Dwa portfele zasilone z tego samego źródła.",
         "evidence": {
-          "commonSender": "Jeden portfel wysłał pierwszemu 5,54 mln BSO w siedmiu transferach między październikiem 2024 a styczniem 2025 roku, a drugiemu 281 tys. 22 listopada 2025 roku."
+          "commonSender": "Jeden portfel wysłał pierwszemu 5,53 mln BSO w siedmiu transferach między październikiem 2024 a styczniem 2025 roku, a drugiemu 287 tys. 22 listopada 2025 roku.",
+          "onlyEth": "Ten sam portfel wysłał każdemu z nich jedyne ETH, jakie ten kiedykolwiek otrzymał, w tej samej minucie co jego pierwsze tokeny: 0,1 ETH i 0,12 ETH. Żaden z tych portfeli nigdy nie wysłał transakcji."
         }
       },
       "holderF": {
-        "summary": "Jeden portfel, który podzielił swoje tokeny na trzy nowe portfele i opłacił ich gaz.",
+        "summary": "Jeden portfel, który podzielił swoje tokeny i 4 ETH na trzy nowe portfele.",
         "evidence": {
-          "split": "10 marca 2024 roku, w ciągu siedmiu minut, jeden portfel wysłał okrągłe kwoty PLEB, jak nazywał się wtedy BSO (12 mld, 8 mld i 4 mld), do trzech nowych portfeli, a tego samego dnia wysłał dwóm z nich ETH na gaz. Sam nadal posiada BSO."
+          "split": "10 marca 2024 roku, w ciągu siedmiu minut, jeden portfel wysłał okrągłe kwoty PLEB, jak nazywał się wtedy BSO (12 mld, 8 mld i 4 mld), do trzech nowych portfeli. Sam nadal posiada BSO.",
+          "ethBothWays": "W tych samych minutach wysłał tym trzem portfelom 4,05 ETH, każdemu od 1 do 2 ETH. Ten, który dostał najwięcej, odesłał 1,5 ETH 24 czerwca 2024 roku; dwa pozostałe nigdy nie wysłały transakcji."
         }
       },
       "holderG": {
-        "summary": "Dwa portfele zasilone przez tego samego nadawcę w odstępie trzech lat.",
+        "summary": "Dwa portfele zasilone przez tego samego nadawcę w odstępie trzech lat oraz trzeci, do którego jeden z nich przeniósł swoje saldo.",
         "evidence": {
-          "commonSender": "Jeden portfel wysłał drugiemu 661 tys. BSO na Avalanche w kwietniu 2022 roku, a pierwszemu 843 tys. na Ethereum w styczniu 2025 roku."
+          "commonSender": "Jeden portfel wysłał drugiemu 658 tys. BSO na Avalanche w kwietniu 2022 roku, a pierwszemu 843 tys. na Ethereum w styczniu 2025 roku.",
+          "senderFunded": "Ten nadawca wysłał obu portfelom także monety: drugiemu dał jego pierwsze AVAX i następnego dnia 17,4 AVAX, a pierwszemu wysłał swoje pozostałe 0,15 ETH trzy minuty po tokenach.",
+          "movedOn": "3 listopada 2026 roku drugi portfel wysłał trzeciemu ETH na gaz, test na 100 BSO, a potem całe swoje saldo, czyli 852 tys. BSO."
         }
       },
       "holderH": {
-        "summary": "Dwa portfele z jednym transferem między nimi.",
+        "summary": "Dwa portfele, z których jeden zasilił drugi.",
         "evidence": {
-          "directTransfer": "Pierwszy portfel wysłał drugiemu 59 tys. BSO 24 kwietnia 2022 roku."
+          "directTransfer": "24 kwietnia 2022 roku pierwszy portfel wysłał drugiemu jego pierwsze AVAX, a dwie minuty później 59 tys. BSO.",
+          "funding": "8 maja 2022 roku pierwszy portfel wysłał drugiemu 23 AVAX w sześciu transferach, a drugi w ciągu kilku minut po każdym z nich wymieniał większość na BSO."
         }
       },
       "holderI": {
-        "summary": "Dwa portfele z powtarzającymi się transferami między nimi.",
+        "summary": "Dwa portfele, które wysyłały sobie nawzajem ETH, zanim jeden przeniósł całe swoje saldo do drugiego.",
         "evidence": {
-          "directTransfers": "Drugi portfel wysłał pierwszemu 1,86 mln BSO 30 października 2023 roku i 703 tys. 8 listopada 2023 roku."
+          "directTransfers": "Drugi portfel wysłał potem pierwszemu wszystko, co miał: 1,85 mln BSO 30 października 2023 roku i 703 tys. 8 listopada 2023 roku.",
+          "ethBothWays": "Drugi portfel wysłał pierwszemu 0,77 ETH 16 grudnia 2022 roku, a pierwszy odesłał 0,02 ETH następnego dnia."
+        }
+      },
+      "holderJ": {
+        "summary": "Dwa portfele, które przez ponad rok wysyłały sobie AVAX w obie strony.",
+        "evidence": {
+          "coinsBothWays": "Pierwszy portfel wysłał drugiemu jego pierwsze AVAX 7 maja 2021 roku, a w sierpniu tego samego roku jego pierwsze ETH. Do lipca 2022 roku pierwszy wysłał 331 AVAX w dwunastu transferach, a drugi odesłał 15 AVAX w dwóch.",
+          "sameEveningLocks": "Oba kupiły BSO na Trader Joe, a 28 kwietnia 2022 roku oba zablokowały BSO w tym samym kontrakcie blokującym w odstępie mniej niż pół godziny."
+        }
+      },
+      "holderK": {
+        "summary": "Dwa portfele sfinansowane przez ten sam prywatny portfel.",
+        "evidence": {
+          "sharedFunder": "Jeden prywatny portfel sfinansował oba. Pierwszemu wysłał jego pierwsze AVAX w październiku 2021 roku, 194 AVAX w 21 transferach do końca 2023 roku oraz 3,49 mln BSO w dwóch transferach. Drugiemu wysłał jego pierwsze AVAX 14 lutego 2022 roku i 23 AVAX w sześciu transferach do kwietnia tego samego roku. Oba odesłały niewielkie kwoty AVAX.",
+          "sharedRecipient": "Oba sfinansowały też ten sam nowy portfel: drugi wysłał mu jego pierwsze 5,1 AVAX 17 lutego 2022 roku, a pierwszy wysłał mu 38,3 AVAX trzy dni później."
+        }
+      },
+      "holderL": {
+        "summary": "Dwa portfele sfinansowane z tego samego prywatnego portfela, jeden z nich przez portfel pośredni.",
+        "evidence": {
+          "funderChain": "Jeden prywatny portfel wysłał drugiemu jego pierwsze AVAX 12 lutego 2022 roku. Sześć dni później przeniósł własne 597 tys. BSO i swoje pozostałe AVAX do nowego portfela, który 22 lutego przekazał te 597 tys. BSO dalej pierwszemu portfelowi, razem z pierwszym AVAX tego portfela.",
+          "directTransfer": "Drugi portfel wysłał pierwszemu 0,005 AVAX 27 lutego 2022 roku."
         }
       }
     },
@@ -589,14 +620,14 @@
       "howTitle": "Jak powiązano portfele",
       "how": {
         "transfers": "Prześledzono każdy transfer między dwoma zwykłymi portfelami w ramach wszystkich trzech kontraktów, na Avalanche i Ethereum, pomijając giełdy, routery, pule i inne kontrakty. Multisigi Safe powiązano z ich właścicielami.",
-        "funders": "Porównano pierwszy portfel, który wysłał każdemu z największych posiadaczy AVAX lub ETH. Giełdy zasilają tysiące portfeli, więc za powiązanie uznaje się tylko prywatne portfele finansujące.",
+        "funders": "Prześledzono też każdy transfer AVAX i ETH do lub z portfela posiadającego co najmniej 0,01% podaży, w tym to, kto pierwszy wysłał każdemu portfelowi monety. Giełdy i serwisy wymiany zasilają tysiące portfeli, więc za powiązanie uznaje się tylko prywatne portfele.",
         "pattern": "W przypadku portfeli bez bezpośredniego powiązania zachowania zakupowe porównano z każdym kupującym z tego samego okresu.",
         "migrations": "Salda prześledzono przez obie migracje po kursie 7114,6 PLEB za BSO, tym samym, którego ta strona używa do pokazywania starszych kwot w BSO."
       },
       "limitsTitle": "Ograniczenia",
       "limits": {
         "exchangeOnly": "Posiadacz, który zasila każdy portfel przez giełdę i nigdy nie przenosi tokenów między nimi, nie zostawia żadnego powiązania on-chain. Niektóre grupy mogą wciąż ukrywać kolejne portfele.",
-        "sales": "Transfer między dwoma portfelami może być sprzedażą lub prezentem. Grupy oznaczone jako Możliwe opierają się na jednym takim powiązaniu.",
+        "sales": "Transfer między dwoma portfelami może być sprzedażą lub prezentem, więc żadna grupa nie opiera się na pojedynczym transferze. Niektóre portfele jedynie otrzymywały tokeny i monety od swojej grupy i nigdy niczego nie wysłały; to też mogły być prezenty.",
         "contracts": "Tokeny należące do kontraktów innych niż pula Uniswap i Safe są pokazane bez zmian.",
         "snapshot": "Salda i cena odświeżają się z łańcucha co pięć minut, gdy ta strona jest otwarta. Powiązania między portfelami są badane ręcznie i nie aktualizują się same.",
         "history": "Linie w kolumnie Historia pokazują, ile miał każdy portfel, dla portfeli z co najmniej 0,01% podaży i dla każdego portfela znanego posiadacza. Tokeny w puli płynności, na farmie lub w strumieniu vestingowym wypadają z linii, a migracje wyemitowały część z nich ponownie ich właścicielom, więc niektóre linie w te dni skaczą."

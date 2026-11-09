@@ -387,12 +387,12 @@
         "name": "Uniswap-pool for BSO/ETH"
       },
       "holderA": {
-        "summary": "Tolv wallets, der købte på Avalanche mellem 22. februar og 8. april 2022 og aldrig har solgt. Fem er forbundet med hinanden on-chain; de andre syv matcher den samme købers mønster.",
+        "summary": "Femten wallets, der købte på Avalanche mellem februar 2022 og maj 2023 og aldrig har solgt. Fem er forbundet med hinanden on-chain; de andre ti matcher den samme købers mønster.",
         "evidence": {
           "transfersToLpWallet": "To af de købende wallets sendte tokens og AVAX til en tredje wallet, som brugte dem til likviditet og farming på Trader Joe: 141.000 BSO og 5 AVAX den 27. februar 2022, derefter 1,01 mio. BSO og 34 AVAX mellem 28. februar og 2. marts. Den tredje wallet sendte 0,013 AVAX tilbage.",
           "sharedFunder": "Én privat wallet finansierede tre af de købende wallets og intet andet. Hver eneste transaktion, den nogensinde har sendt, gik til dem, i rækkefølge: nonce 0 til 4 til den første, 5 til 7 til den anden, 8 til den tredje.",
-          "buyingPattern": "Syv andre wallets var alle nye, finansieret med én eller to udbetalinger fra en børs på omkring 2.000 til 3.400 dollar via Binance eller ChangeNOW (de samme tjenester, som de forbundne wallets brugte), vekslet helt til tokenet og aldrig brugt igen. De købte én efter én mellem 28. februar og 31. marts 2022 og overlappede aldrig tidsmæssigt med de forbundne wallets. Af alle 292 købere fra februar til april 2022 passer ingen anden wallet til dette mønster.",
-          "neverSold": "Ingen af de tolv wallets har solgt eller flyttet sine tokens siden. Deres saldi kom uændrede gennem begge migreringer."
+          "buyingPattern": "Ti andre wallets var alle nye, finansieret med én eller to udbetalinger fra en børs på omkring 2.000 til 3.400 dollar via Binance eller ChangeNOW (de samme tjenester, som de forbundne wallets brugte), vekslet helt til tokenet og aldrig brugt igen. Syv købte én efter én mellem 28. februar og 31. marts 2022 og overlappede aldrig tidsmæssigt med de forbundne wallets. Yderligere tre gjorde det samme den 12. april og den 25. juni 2022 og den 6. maj 2023. Blandt nutidens indehavere med mindst 0,01% af udbuddet er 21 wallets kun blevet brugt til at købe på Avalanche, i fire transaktioner eller færre: disse ti, to af de forbundne wallets og ni andre, der hver brugte under 410 dollar.",
+          "neverSold": "Ingen af de femten wallets har solgt eller flyttet sine tokens siden. Deres saldi kom uændrede gennem begge migreringer."
         }
       },
       "holderB": {
@@ -401,49 +401,80 @@
           "owners": "Safen kræver underskrift fra 2 af sine 4 ejere. En af ejerne har også BSO direkte. Fire ejere kan være én person med flere nøgler eller en lille gruppe.",
           "consolidation": "Den 1. juni 2024 mellem kl. 16:08 og 17:51 UTC modtog Safen 16,9 mio. BSO fra 14 wallets. Den første overførsel var en test på 10 tokens, som Safen straks sendte tilbage.",
           "vesting": "Den 12. august 2024 flyttede Safen 8,5 mio. BSO over i en Sablier-vestingstream. Migreringen i 2026 krediterede den stream tilbage til Safen, og derfor modtog Safen to migreringsoverførsler.",
-          "commonSender": "Den samme wallet sendte BSO både til Safe-ejeren (1,93 mio. den 8. marts 2024) og til Safen (211.000 den 1. juni 2024)."
+          "commonSender": "Den samme wallet sendte BSO både til Safe-ejeren (1,93 mio. den 8. marts 2024) og til Safen (214.000 den 1. juni 2024)."
         }
       },
       "holderC": {
-        "summary": "To wallets, der modtog BSO fra den samme afsender.",
+        "summary": "To wallets fyldt op af det samme par købende wallets.",
         "evidence": {
-          "commonSender": "Én wallet sendte 661.000 BSO til den første den 19. august 2024 og 2,16 mio. til den anden den 14. november 2025. En fælles afsender kan også være én sælger, der betjener to købere."
+          "commonSender": "Én købende wallet sendte den første 664.000 BSO den 19. august 2024. Den 14. november 2025 sendte den en test på 7.000 BSO, 0,1 ETH og derefter 2,17 mio. BSO til den anden. Det er den eneste ETH, den anden wallet har modtaget, og den har aldrig sendt en transaktion.",
+          "secondSender": "En anden købende wallet sendte den første dens øvrige 7,3 mio. BSO i otte overførsler mellem maj og august 2024 sammen med dens første ETH og fik 4,35 ETH tilbage fra den.",
+          "sendersLinked": "De to købende wallets er forbundet med hinanden: Den ene overdrog den anden 1,15 mio. BSO og 0,1 ETH den 22. februar 2024, og den anden sendte sine resterende 5,8 ETH tilbage den 17. august 2024."
         }
       },
       "holderD": {
-        "summary": "Tre wallets forbundet gennem én af dem.",
+        "summary": "Fem wallets: to, der sendte hinanden AVAX og ETH, en tredje, som de begge fyldte op, og to mere, som den tredje satte op.",
         "evidence": {
-          "sharedRecipient": "Den midterste wallet modtog en testoverførsel og derefter 703.000 BSO fra den første den 18. november 2022 og 1,15 mio. BSO fra den tredje den 1. december 2022. Det kunne også være én køber, der betaler to sælgere."
+          "sharedRecipient": "Den tredje wallet modtog en testoverførsel og derefter 703.000 BSO fra den første den 18. november 2022 og 1,16 mio. BSO fra den anden den 1. december 2022. Al den AVAX, den nogensinde har haft til gas, kom fra de to.",
+          "coinsBothWays": "De to første wallets sendte hinanden coins på begge chains i 20 måneder: 0,5 AVAX den ene vej og 0,49 tilbage ni minutter senere den 24. marts 2022, 73 AVAX den 31. maj 2022, 0,09 ETH den 11. marts 2023 og 2 ETH den anden vej den 7. november 2023.",
+          "newWallets": "Den tredje wallet satte derefter to nye wallets op på samme måde hver gang: AVAX til gas, en testoverførsel og derefter 281.000 BSO, den 24. november 2022 og i slutningen af april 2023. Ingen af dem har nogensinde sendt en transaktion."
         }
       },
       "holderE": {
         "summary": "To wallets fyldt op fra samme kilde.",
         "evidence": {
-          "commonSender": "Én wallet sendte den første 5,54 mio. BSO i syv overførsler mellem oktober 2024 og januar 2025 og den anden 281.000 den 22. november 2025."
+          "commonSender": "Én wallet sendte den første 5,53 mio. BSO i syv overførsler mellem oktober 2024 og januar 2025 og den anden 287.000 den 22. november 2025.",
+          "onlyEth": "Den samme wallet sendte hver af dem den eneste ETH, den pågældende wallet nogensinde har modtaget, i samme minut som dens første tokens: 0,1 ETH og 0,12 ETH. Ingen af de to wallets har nogensinde sendt en transaktion."
         }
       },
       "holderF": {
-        "summary": "Én wallet, der delte sine tokens ud på tre nye wallets og betalte deres gas.",
+        "summary": "Én wallet, der delte sine tokens og 4 ETH ud på tre nye wallets.",
         "evidence": {
-          "split": "Den 10. marts 2024 sendte én wallet inden for syv minutter runde beløb af PLEB, som BSO hed dengang (12 mia., 8 mia. og 4 mia.), til tre nye wallets og sendte samme dag ETH til gas til to af dem. Den har stadig selv BSO."
+          "split": "Den 10. marts 2024 sendte én wallet inden for syv minutter runde beløb af PLEB, som BSO hed dengang (12 mia., 8 mia. og 4 mia.), til tre nye wallets. Den har stadig selv BSO.",
+          "ethBothWays": "I de samme minutter sendte den de tre wallets 4,05 ETH, mellem 1 og 2 ETH til hver. Den, der fik mest, sendte 1,5 ETH tilbage den 24. juni 2024; de to andre har aldrig sendt en transaktion."
         }
       },
       "holderG": {
-        "summary": "To wallets finansieret af den samme afsender med tre års mellemrum.",
+        "summary": "To wallets finansieret af den samme afsender med tre års mellemrum og en tredje, som en af dem flyttede sin saldo til.",
         "evidence": {
-          "commonSender": "Én wallet sendte den anden 661.000 BSO på Avalanche i april 2022 og den første 843.000 på Ethereum i januar 2025."
+          "commonSender": "Én wallet sendte den anden 658.000 BSO på Avalanche i april 2022 og den første 843.000 på Ethereum i januar 2025.",
+          "senderFunded": "Den afsender sendte også coins til begge wallets: Den gav den anden dens første AVAX og 17,4 AVAX dagen efter og sendte den første sine resterende 0,15 ETH tre minutter efter tokenoverførslen.",
+          "movedOn": "Den 3. november 2026 sendte den anden wallet den tredje ETH til gas, en test på 100 BSO og derefter hele sin saldo på 852.000 BSO."
         }
       },
       "holderH": {
-        "summary": "To wallets med én overførsel imellem sig.",
+        "summary": "To wallets, hvoraf den ene finansierede den anden.",
         "evidence": {
-          "directTransfer": "Den første wallet sendte den anden 59.000 BSO den 24. april 2022."
+          "directTransfer": "Den 24. april 2022 sendte den første wallet den anden dens første AVAX og to minutter senere 59.000 BSO.",
+          "funding": "Den 8. maj 2022 sendte den første wallet den anden 23 AVAX i seks overførsler, og den anden vekslede det meste til BSO inden for få minutter efter hver af dem."
         }
       },
       "holderI": {
-        "summary": "To wallets med gentagne overførsler imellem sig.",
+        "summary": "To wallets, der sendte hinanden ETH, før den ene flyttede hele sin saldo til den anden.",
         "evidence": {
-          "directTransfers": "Den anden wallet sendte den første 1,86 mio. BSO den 30. oktober 2023 og 703.000 den 8. november 2023."
+          "directTransfers": "Den anden wallet sendte derefter den første alt, hvad den havde: 1,85 mio. BSO den 30. oktober 2023 og 703.000 den 8. november 2023.",
+          "ethBothWays": "Den anden wallet sendte den første 0,77 ETH den 16. december 2022, og den første sendte 0,02 ETH tilbage dagen efter."
+        }
+      },
+      "holderJ": {
+        "summary": "To wallets, der sendte AVAX frem og tilbage i over et år.",
+        "evidence": {
+          "coinsBothWays": "Den første wallet sendte den anden dens første AVAX den 7. maj 2021 og dens første ETH i august samme år. I juli 2022 havde den sendt 331 AVAX i tolv overførsler, og den anden havde sendt 15 AVAX tilbage i to.",
+          "sameEveningLocks": "Begge købte BSO på Trader Joe, og den 28. april 2022 låste begge BSO i den samme låsekontrakt inden for en halv time af hinanden."
+        }
+      },
+      "holderK": {
+        "summary": "To wallets finansieret af den samme private wallet.",
+        "evidence": {
+          "sharedFunder": "Én privat wallet finansierede begge. Den sendte den første dens første AVAX i oktober 2021, 194 AVAX i 21 overførsler frem til udgangen af 2023 og 3,49 mio. BSO i to overførsler. Den sendte den anden dens første AVAX den 14. februar 2022 og 23 AVAX i seks overførsler frem til april samme år. Begge sendte små beløb i AVAX tilbage.",
+          "sharedRecipient": "Begge finansierede også den samme nye wallet: Den anden sendte den dens første 5,1 AVAX den 17. februar 2022, og den første sendte den 38,3 AVAX tre dage senere."
+        }
+      },
+      "holderL": {
+        "summary": "To wallets finansieret fra den samme private wallet, den ene via en mellemliggende wallet.",
+        "evidence": {
+          "funderChain": "Én privat wallet sendte den anden dens første AVAX den 12. februar 2022. Seks dage senere flyttede den sine egne 597.000 BSO og sin resterende AVAX til en ny wallet, som sendte de 597.000 BSO videre til den første wallet den 22. februar sammen med den wallets første AVAX.",
+          "directTransfer": "Den anden wallet sendte den første 0,005 AVAX den 27. februar 2022."
         }
       }
     },
@@ -579,14 +610,14 @@
       "howTitle": "Sådan blev wallets forbundet",
       "how": {
         "transfers": "Hver overførsel mellem to almindelige wallets på alle tre kontrakter, på Avalanche og Ethereum, blev sporet, uden børser, routere, pools og andre kontrakter. Safe-multisigs blev forbundet med deres ejere.",
-        "funders": "Den første wallet, der sendte AVAX eller ETH til hver af de største indehavere, blev sammenlignet. Børser finansierer tusindvis af wallets, så kun private finansieringskilder tæller som en forbindelse.",
+        "funders": "Hver AVAX- og ETH-overførsel til eller fra en wallet med mindst 0,01% af udbuddet blev også sporet, herunder hvem der først sendte coins til hver wallet. Børser og vekslingstjenester finansierer tusindvis af wallets, så kun private wallets tæller som en forbindelse.",
         "pattern": "For wallets uden direkte forbindelse blev købsadfærden sammenlignet med alle købere i samme periode.",
         "migrations": "Saldi blev fulgt gennem begge migreringer med 7.114,6 PLEB pr. BSO, den samme kurs, som denne side bruger til at vise ældre beløb i BSO."
       },
       "limitsTitle": "Begrænsninger",
       "limits": {
         "exchangeOnly": "En indehaver, der finansierer hver wallet via en børs og aldrig flytter tokens mellem dem, efterlader ingen forbindelse on-chain. Nogle grupper kan stadig skjule flere wallets.",
-        "sales": "En overførsel mellem to wallets kan være et salg eller en gave. Grupper markeret som Mulig hviler på én sådan forbindelse.",
+        "sales": "En overførsel mellem to wallets kan være et salg eller en gave, så ingen gruppe hviler på en enkelt overførsel. Nogle wallets har kun modtaget tokens og coins fra deres gruppe og aldrig sendt noget; det kunne også være gaver.",
         "contracts": "Tokens i andre kontrakter end Uniswap-poolen og Safen vises, som de er.",
         "snapshot": "Saldi og pris opdateres fra chainen hvert femte minut, mens denne side er åben. Forbindelserne mellem wallets er undersøgt manuelt og opdateres ikke af sig selv.",
         "history": "Historiklinjerne følger, hvad hver wallet har holdt, for wallets med mindst 0,01% af udbuddet og for hver wallet hos en kendt indehaver. Tokens i en likviditetspool, farm eller vestingstream forsvinder fra linjen, og migreringerne udstedte nogle af dem igen til deres ejere, så nogle linjer springer på de dage."

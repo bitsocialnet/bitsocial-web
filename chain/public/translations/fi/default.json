@@ -387,12 +387,12 @@
         "name": "Uniswapin BSO/ETH-pooli"
       },
       "holderA": {
-        "summary": "Kaksitoista lompakkoa, jotka ostivat Avalanchella 22. helmikuuta ja 8. huhtikuuta 2022 välillä eivätkä ole koskaan myyneet. Viisi niistä on sidottu toisiinsa on-chain; loput seitsemän vastaavat saman ostajan toimintamallia.",
+        "summary": "Viisitoista lompakkoa, jotka ostivat Avalanchella helmikuun 2022 ja toukokuun 2023 välillä eivätkä ole koskaan myyneet. Viisi niistä on sidottu toisiinsa on-chain; loput kymmenen vastaavat saman ostajan toimintamallia.",
         "evidence": {
           "transfersToLpWallet": "Kaksi ostavista lompakoista lähetti tokeneita ja AVAXia kolmannelle lompakolle, joka käytti ne Trader Joen likviditeettiin ja farmaukseen: 141 000 BSO:ta ja 5 AVAXia 27. helmikuuta 2022, sitten 1,01 miljoonaa BSO:ta ja 34 AVAXia 28. helmikuuta ja 2. maaliskuuta välillä. Kolmas lompakko lähetti takaisin 0,013 AVAXia.",
           "sharedFunder": "Yksi yksityinen lompakko rahoitti kolmea ostavista lompakoista eikä mitään muuta. Jokainen sen koskaan lähettämä transaktio meni niille, järjestyksessä: noncet 0–4 ensimmäiselle, 5–7 toiselle ja 8 kolmannelle.",
-          "buyingPattern": "Seitsemän muuta lompakkoa olivat kukin uusia: ne rahoitettiin yhdellä tai kahdella noin 2 000–3 400 dollarin nostolla pörssistä Binancen tai ChangeNOW:n kautta (samat palvelut, joita linkitetyt lompakot käyttivät), vaihdettiin kokonaan tokeniksi eikä niitä käytetty enää koskaan. Ne ostivat vuorotellen 28. helmikuuta ja 31. maaliskuuta 2022 välillä, eivätkä koskaan samaan aikaan linkitettyjen lompakoiden kanssa. Kaikista 292 ostajasta helmi–huhtikuussa 2022 yksikään muu lompakko ei sovi tähän malliin.",
-          "neverSold": "Yksikään kahdestatoista lompakosta ei ole sen jälkeen myynyt tai siirtänyt tokeneitaan. Niiden saldot säilyivät muuttumattomina molempien migraatioiden läpi."
+          "buyingPattern": "Kymmenen muuta lompakkoa olivat kukin uusia: ne rahoitettiin yhdellä tai kahdella noin 2 000–3 400 dollarin nostolla pörssistä Binancen tai ChangeNOW:n kautta (samat palvelut, joita linkitetyt lompakot käyttivät), vaihdettiin kokonaan tokeniksi eikä niitä käytetty enää koskaan. Seitsemän niistä osti vuorotellen 28. helmikuuta ja 31. maaliskuuta 2022 välillä, eikä koskaan samaan aikaan linkitettyjen lompakoiden kanssa. Kolme muuta teki samoin 12. huhtikuuta ja 25. kesäkuuta 2022 sekä 6. toukokuuta 2023. Nykyisistä haltijoista, joilla on vähintään 0,01 % tarjonnasta, 21 lompakkoa on käytetty ainoastaan ostamiseen Avalanchella, enintään neljällä transaktiolla: nämä kymmenen, kaksi linkitetyistä lompakoista ja yhdeksän muuta, jotka kukin käyttivät alle 410 dollaria.",
+          "neverSold": "Yksikään viidestätoista lompakosta ei ole sen jälkeen myynyt tai siirtänyt tokeneitaan. Niiden saldot säilyivät muuttumattomina molempien migraatioiden läpi."
         }
       },
       "holderB": {
@@ -401,49 +401,80 @@
           "owners": "Safen 4 omistajasta 2:n on allekirjoitettava. Yksi omistajista pitää hallussaan myös BSO:ta suoraan. Neljä omistajaa voi tarkoittaa yhtä henkilöä, jolla on useita avaimia, tai pientä ryhmää.",
           "consolidation": "1. kesäkuuta 2024 klo 16:08–17:51 UTC Safe vastaanotti 16,9 miljoonaa BSO:ta 14 lompakosta. Ensimmäinen siirto oli 10 tokenin testi, jonka Safe lähetti heti takaisin.",
           "vesting": "12. elokuuta 2024 Safe siirsi 8,5 miljoonaa BSO:ta Sablierin vesting-virtaan. Vuoden 2026 migraatio hyvitti tämän virran takaisin Safelle, minkä vuoksi Safe sai kaksi migraatiosiirtoa.",
-          "commonSender": "Sama lompakko lähetti BSO:ta sekä Safen omistajalle (1,93 miljoonaa 8. maaliskuuta 2024) että Safelle (211 000 1. kesäkuuta 2024)."
+          "commonSender": "Sama lompakko lähetti BSO:ta sekä Safen omistajalle (1,93 miljoonaa 8. maaliskuuta 2024) että Safelle (214 000 1. kesäkuuta 2024)."
         }
       },
       "holderC": {
-        "summary": "Kaksi lompakkoa, jotka saivat BSO:ta samalta lähettäjältä.",
+        "summary": "Kaksi lompakkoa, jotka sama kahden ostavan lompakon pari täytti.",
         "evidence": {
-          "commonSender": "Yksi lompakko lähetti ensimmäiselle 661 000 BSO:ta 19. elokuuta 2024 ja toiselle 2,16 miljoonaa 14. marraskuuta 2025. Yhteinen lähettäjä voi olla myös yksi myyjä, joka palvelee kahta ostajaa."
+          "commonSender": "Yksi ostava lompakko lähetti ensimmäiselle 664 000 BSO:ta 19. elokuuta 2024. 14. marraskuuta 2025 se lähetti toiselle 7 000 BSO:n testin, 0,1 ETH:ta ja sitten 2,17 miljoonaa BSO:ta. Se on ainoa ETH, jonka toinen lompakko on saanut, eikä tämä lompakko ole koskaan lähettänyt transaktiota.",
+          "secondSender": "Toinen ostava lompakko lähetti ensimmäiselle sen loput 7,3 miljoonaa BSO:ta kahdeksassa siirrossa toukokuun ja elokuun 2024 välillä sekä sen ensimmäisen ETH:n, ja sai siltä 4,35 ETH:ta takaisin.",
+          "sendersLinked": "Kaksi ostavaa lompakkoa on sidottu toisiinsa: toinen antoi toiselle 1,15 miljoonaa BSO:ta ja 0,1 ETH:ta 22. helmikuuta 2024, ja jälkimmäinen lähetti jäljellä olevat 5,8 ETH:ta takaisin 17. elokuuta 2024."
         }
       },
       "holderD": {
-        "summary": "Kolme lompakkoa, jotka yhdistyvät yhden niistä kautta.",
+        "summary": "Viisi lompakkoa: kaksi, jotka lähettivät toisilleen AVAXia ja ETH:ta, kolmas, jonka ne molemmat täyttivät, ja kaksi muuta, jotka kolmas perusti.",
         "evidence": {
-          "sharedRecipient": "Keskimmäinen lompakko sai ensimmäiseltä testisiirron ja sitten 703 000 BSO:ta 18. marraskuuta 2022 sekä kolmannelta 1,15 miljoonaa BSO:ta 1. joulukuuta 2022. Kyse voi olla myös yhdestä ostajasta, joka maksaa kahdelle myyjälle."
+          "sharedRecipient": "Kolmas lompakko sai ensimmäiseltä testisiirron ja sitten 703 000 BSO:ta 18. marraskuuta 2022 sekä toiselta 1,16 miljoonaa BSO:ta 1. joulukuuta 2022. Kaikki AVAX, joka sillä on koskaan ollut gas-kuluihin, tuli näiltä kahdelta.",
+          "coinsBothWays": "Kaksi ensimmäistä lompakkoa lähettivät toisilleen kolikoita molemmissa ketjuissa 20 kuukauden ajan: 0,5 AVAXia yhteen suuntaan ja 0,49 takaisin yhdeksän minuuttia myöhemmin 24. maaliskuuta 2022, 73 AVAXia 31. toukokuuta 2022, 0,09 ETH:ta 11. maaliskuuta 2023 ja 2 ETH:ta toiseen suuntaan 7. marraskuuta 2023.",
+          "newWallets": "Kolmas lompakko perusti sitten kaksi uutta lompakkoa joka kerta samalla tavalla: AVAXia gas-kuluihin, testisiirto ja sitten 281 000 BSO:ta, 24. marraskuuta 2022 ja huhtikuun 2023 lopussa. Kumpikaan ei ole koskaan lähettänyt transaktiota."
         }
       },
       "holderE": {
         "summary": "Kaksi lompakkoa, jotka täytettiin samasta lähteestä.",
         "evidence": {
-          "commonSender": "Yksi lompakko lähetti ensimmäiselle 5,54 miljoonaa BSO:ta seitsemässä siirrossa lokakuun 2024 ja tammikuun 2025 välillä sekä toiselle 281 000 BSO:ta 22. marraskuuta 2025."
+          "commonSender": "Yksi lompakko lähetti ensimmäiselle 5,53 miljoonaa BSO:ta seitsemässä siirrossa lokakuun 2024 ja tammikuun 2025 välillä sekä toiselle 287 000 BSO:ta 22. marraskuuta 2025.",
+          "onlyEth": "Sama lompakko lähetti kummallekin ainoan ETH:n, jonka ne ovat koskaan saaneet, saman minuutin aikana kuin niiden ensimmäiset tokenit: 0,1 ETH:ta ja 0,12 ETH:ta. Kumpikaan lompakko ei ole koskaan lähettänyt transaktiota."
         }
       },
       "holderF": {
-        "summary": "Yksi lompakko, joka jakoi tokeninsa kolmeen uuteen lompakkoon ja maksoi niiden gas-kulut.",
+        "summary": "Yksi lompakko, joka jakoi tokeninsa ja 4 ETH:ta kolmeen uuteen lompakkoon.",
         "evidence": {
-          "split": "10. maaliskuuta 2024 yksi lompakko lähetti seitsemän minuutin sisällä tasasummia PLEBiä, kuten BSO:ta silloin kutsuttiin (12, 8 ja 4 miljardia), kolmeen uuteen lompakkoon ja lähetti samana päivänä kahdelle niistä ETH:ta gas-kuluihin. Sillä itsellään on yhä BSO:ta."
+          "split": "10. maaliskuuta 2024 yksi lompakko lähetti seitsemän minuutin sisällä tasasummia PLEBiä, kuten BSO:ta silloin kutsuttiin (12, 8 ja 4 miljardia), kolmeen uuteen lompakkoon. Sillä itsellään on yhä BSO:ta.",
+          "ethBothWays": "Samojen minuuttien aikana se lähetti kolmelle lompakolle 4,05 ETH:ta, kullekin 1–2 ETH:ta. Eniten saanut lähetti 1,5 ETH:ta takaisin 24. kesäkuuta 2024; kaksi muuta ei ole koskaan lähettänyt transaktiota."
         }
       },
       "holderG": {
-        "summary": "Kaksi lompakkoa, jotka sama lähettäjä rahoitti kolmen vuoden erolla.",
+        "summary": "Kaksi lompakkoa, jotka sama lähettäjä rahoitti kolmen vuoden erolla, ja kolmas, johon toinen niistä siirsi saldonsa.",
         "evidence": {
-          "commonSender": "Yksi lompakko lähetti toiselle 661 000 BSO:ta Avalanchella huhtikuussa 2022 ja ensimmäiselle 843 000 Ethereumissa tammikuussa 2025."
+          "commonSender": "Yksi lompakko lähetti toiselle 658 000 BSO:ta Avalanchella huhtikuussa 2022 ja ensimmäiselle 843 000 Ethereumissa tammikuussa 2025.",
+          "senderFunded": "Tämä lähettäjä lähetti kummallekin lompakolle myös kolikoita: se antoi toiselle sen ensimmäisen AVAXin ja seuraavana päivänä 17,4 AVAXia, ja lähetti ensimmäiselle jäljelle jääneet 0,15 ETH:ta kolme minuuttia tokenien jälkeen.",
+          "movedOn": "3. marraskuuta 2026 toinen lompakko lähetti kolmannelle ETH:ta gas-kuluihin, 100 BSO:n testin ja sitten koko saldonsa, 852 000 BSO:ta."
         }
       },
       "holderH": {
-        "summary": "Kaksi lompakkoa, joiden välillä on yksi siirto.",
+        "summary": "Kaksi lompakkoa, joista toinen rahoitti toista.",
         "evidence": {
-          "directTransfer": "Ensimmäinen lompakko lähetti toiselle 59 000 BSO:ta 24. huhtikuuta 2022."
+          "directTransfer": "24. huhtikuuta 2022 ensimmäinen lompakko lähetti toiselle sen ensimmäisen AVAXin ja kaksi minuuttia myöhemmin 59 000 BSO:ta.",
+          "funding": "8. toukokuuta 2022 ensimmäinen lompakko lähetti toiselle 23 AVAXia kuudessa siirrossa, ja toinen vaihtoi suurimman osan siitä BSO:ksi muutaman minuutin kuluessa kustakin siirrosta."
         }
       },
       "holderI": {
-        "summary": "Kaksi lompakkoa, joiden välillä on toistuvia siirtoja.",
+        "summary": "Kaksi lompakkoa, jotka lähettivät toisilleen ETH:ta, ennen kuin toinen siirsi koko saldonsa toiselle.",
         "evidence": {
-          "directTransfers": "Toinen lompakko lähetti ensimmäiselle 1,86 miljoonaa BSO:ta 30. lokakuuta 2023 ja 703 000 BSO:ta 8. marraskuuta 2023."
+          "directTransfers": "Toinen lompakko lähetti sitten ensimmäiselle kaiken, mitä sillä oli: 1,85 miljoonaa BSO:ta 30. lokakuuta 2023 ja 703 000 BSO:ta 8. marraskuuta 2023.",
+          "ethBothWays": "Toinen lompakko lähetti ensimmäiselle 0,77 ETH:ta 16. joulukuuta 2022, ja ensimmäinen lähetti 0,02 ETH:ta takaisin seuraavana päivänä."
+        }
+      },
+      "holderJ": {
+        "summary": "Kaksi lompakkoa, jotka lähettivät AVAXia edestakaisin yli vuoden ajan.",
+        "evidence": {
+          "coinsBothWays": "Ensimmäinen lompakko lähetti toiselle sen ensimmäisen AVAXin 7. toukokuuta 2021 ja sen ensimmäisen ETH:n saman vuoden elokuussa. Heinäkuuhun 2022 mennessä se oli lähettänyt 331 AVAXia kahdessatoista siirrossa, ja toinen oli lähettänyt takaisin 15 AVAXia kahdessa siirrossa.",
+          "sameEveningLocks": "Molemmat ostivat BSO:ta Trader Joessa, ja 28. huhtikuuta 2022 molemmat lukitsivat BSO:ta samaan lukitussopimukseen puolen tunnin sisällä toisistaan."
+        }
+      },
+      "holderK": {
+        "summary": "Kaksi lompakkoa, jotka sama yksityinen lompakko rahoitti.",
+        "evidence": {
+          "sharedFunder": "Yksi yksityinen lompakko rahoitti molempia. Se lähetti ensimmäiselle sen ensimmäisen AVAXin lokakuussa 2021, 194 AVAXia 21 siirrossa vuoden 2023 loppuun mennessä ja 3,49 miljoonaa BSO:ta kahdessa siirrossa. Toiselle se lähetti sen ensimmäisen AVAXin 14. helmikuuta 2022 ja 23 AVAXia kuudessa siirrossa saman vuoden huhtikuuhun mennessä. Molemmat lähettivät pieniä määriä AVAXia takaisin.",
+          "sharedRecipient": "Molemmat rahoittivat myös samaa uutta lompakkoa: toinen lähetti sille sen ensimmäiset 5,1 AVAXia 17. helmikuuta 2022, ja ensimmäinen lähetti sille 38,3 AVAXia kolme päivää myöhemmin."
+        }
+      },
+      "holderL": {
+        "summary": "Kaksi lompakkoa, jotka rahoitettiin samasta yksityisestä lompakosta, toinen niistä välilompakon kautta.",
+        "evidence": {
+          "funderChain": "Yksi yksityinen lompakko lähetti toiselle sen ensimmäisen AVAXin 12. helmikuuta 2022. Kuusi päivää myöhemmin se siirsi omat 597 000 BSO:taan ja jäljellä olevan AVAXinsa uuteen lompakkoon, joka välitti nämä 597 000 BSO:ta edelleen ensimmäiselle lompakolle 22. helmikuuta yhdessä tämän lompakon ensimmäisen AVAXin kanssa.",
+          "directTransfer": "Toinen lompakko lähetti ensimmäiselle 0,005 AVAXia 27. helmikuuta 2022."
         }
       }
     },
@@ -579,14 +610,14 @@
       "howTitle": "Miten lompakot linkitettiin",
       "how": {
         "transfers": "Jokainen kahden tavallisen lompakon välinen siirto kaikissa kolmessa älysopimuksessa Avalanchella ja Ethereumissa jäljitettiin, pois lukien pörssit, reitittimet, poolit ja muut älysopimukset. Safe-multisigit linkitettiin omistajiinsa.",
-        "funders": "Kunkin suuren haltijan kohdalla verrattiin lompakkoa, joka lähetti sille ensimmäisenä AVAXia tai ETH:ta. Pörssit rahoittavat tuhansia lompakoita, joten vain yksityiset rahoittajat lasketaan yhteydeksi.",
+        "funders": "Myös jokainen AVAX- ja ETH-siirto lompakkoon tai lompakosta, jolla on vähintään 0,01 % tarjonnasta, jäljitettiin, mukaan lukien se, kuka lähetti kullekin lompakolle ensimmäisenä kolikoita. Pörssit ja vaihtopalvelut rahoittavat tuhansia lompakoita, joten vain yksityiset lompakot lasketaan yhteydeksi.",
         "pattern": "Lompakoiden, joilla ei ole suoraa yhteyttä, ostokäyttäytymistä verrattiin saman ajanjakson jokaiseen ostajaan.",
         "migrations": "Saldoja seurattiin molempien migraatioiden läpi kurssilla 7 114,6 PLEBiä BSO:ta kohden, samalla kurssilla, jolla tämä sivu näyttää vanhemmat määrät BSO:na."
       },
       "limitsTitle": "Rajoitukset",
       "limits": {
         "exchangeOnly": "Haltija, joka rahoittaa jokaisen lompakkonsa pörssin kautta eikä koskaan siirrä tokeneita niiden välillä, ei jätä on-chain-yhteyttä. Jotkin ryhmät voivat yhä kätkeä muitakin lompakoita.",
-        "sales": "Siirto kahden lompakon välillä voi olla myynti tai lahja. Mahdollinen-merkityt ryhmät perustuvat yhteen tällaiseen yhteyteen.",
+        "sales": "Siirto kahden lompakon välillä voi olla myynti tai lahja, joten yksikään ryhmä ei perustu yhteen siirtoon. Jotkin lompakot ovat ainoastaan vastaanottaneet tokeneita ja kolikoita ryhmältään eivätkä ole koskaan lähettäneet mitään; nekin voivat olla lahjoja.",
         "contracts": "Muiden älysopimusten kuin Uniswap-poolin ja Safen hallussa olevat tokenit on listattu sellaisinaan.",
         "snapshot": "Saldot ja hinta päivittyvät ketjusta viiden minuutin välein, kun tämä sivu on auki. Lompakoiden väliset yhteydet on selvitetty käsin, eivätkä ne päivity itsestään.",
         "history": "Historia-sarakkeen viivat näyttävät, mitä kukin lompakko on pitänyt hallussaan, lompakoille, joilla on vähintään 0,01 % tarjonnasta, sekä jokaiselle tunnetun haltijan lompakolle. Likviditeettipoolissa, farmissa tai vesting-virrassa olevat tokenit putoavat pois viivasta, ja migraatiot laskivat osan niistä uudelleen liikkeeseen niiden omistajille, joten jotkin viivat hyppäävät noina päivinä."

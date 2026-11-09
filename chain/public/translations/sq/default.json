@@ -387,12 +387,12 @@
         "name": "Pool-i BSO/ETH i Uniswap"
       },
       "holderA": {
-        "summary": "Dymbëdhjetë portofole që blenë në Avalanche midis 22 shkurtit dhe 8 prillit 2022 dhe nuk kanë shitur kurrë. Pesë janë të lidhura mes tyre on-chain; shtatë të tjerat përputhen me modelin e të njëjtit blerës.",
+        "summary": "Pesëmbëdhjetë portofole që blenë në Avalanche midis shkurtit 2022 dhe majit 2023 dhe nuk kanë shitur kurrë. Pesë janë të lidhura mes tyre on-chain; dhjetë të tjerat përputhen me modelin e të njëjtit blerës.",
         "evidence": {
           "transfersToLpWallet": "Dy nga portofolet blerëse i dërguan tokenë dhe AVAX një portofoli të tretë, i cili i përdori për likuiditet dhe farming në Trader Joe: 141 mijë BSO dhe 5 AVAX më 27 shkurt 2022, pastaj 1,01 mln BSO dhe 34 AVAX midis 28 shkurtit dhe 2 marsit. Portofoli i tretë ktheu 0,013 AVAX.",
           "sharedFunder": "Një portofol privat financoi tre nga portofolet blerëse dhe asgjë tjetër. Çdo transaksion që ka dërguar ndonjëherë shkoi te to, me radhë: nonce 0 deri 4 te i pari, 5 deri 7 te i dyti, 8 te i treti.",
-          "buyingPattern": "Shtatë portofole të tjera ishin të gjitha të reja: secili u financua me një ose dy tërheqje nga një exchange prej rreth $2000 deri $3400 përmes Binance ose ChangeNOW (të njëjtat shërbime që përdorën portofolet e lidhura), i shkëmbeu të gjitha në token dhe nuk u përdor më kurrë. Ato blenë njëri pas tjetrit midis 28 shkurtit dhe 31 marsit 2022, pa u mbivendosur kurrë me portofolet e lidhura. Nga të gjithë 292 blerësit nga shkurti deri në prill 2022, asnjë portofol tjetër nuk i përshtatet këtij modeli.",
-          "neverSold": "Asnjë nga dymbëdhjetë portofolet nuk i ka shitur apo lëvizur tokenët e vet që atëherë. Bilancet e tyre kaluan të pandryshuara nëpër të dy migrimet."
+          "buyingPattern": "Dhjetë portofole të tjera ishin të gjitha të reja: secili u financua me një ose dy tërheqje nga një exchange prej rreth $2000 deri $3400 përmes Binance ose ChangeNOW (të njëjtat shërbime që përdorën portofolet e lidhura), i shkëmbeu të gjitha në token dhe nuk u përdor më kurrë. Shtatë blenë njëri pas tjetrit midis 28 shkurtit dhe 31 marsit 2022, pa u mbivendosur kurrë me portofolet e lidhura. Tre të tjera bënë të njëjtën gjë më 12 prill dhe 25 qershor 2022 dhe më 6 maj 2023. Ndër mbajtësit e sotëm me të paktën 0,01% të furnizimit, 21 portofole janë përdorur vetëm për të blerë në Avalanche, në katër transaksione ose më pak: këto dhjetë, dy nga portofolet e lidhura dhe nëntë të tjera që shpenzuan secili më pak se $410.",
+          "neverSold": "Asnjë nga pesëmbëdhjetë portofolet nuk i ka shitur apo lëvizur tokenët e vet që atëherë. Bilancet e tyre kaluan të pandryshuara nëpër të dy migrimet."
         }
       },
       "holderB": {
@@ -401,49 +401,80 @@
           "owners": "Safe-i kërkon nënshkrimin e 2 nga 4 pronarët e tij. Një pronar mban edhe BSO drejtpërdrejt. Katër pronarë mund të nënkuptojnë një person me disa çelësa ose një grup të vogël.",
           "consolidation": "Më 1 qershor 2024, midis orës 16:08 dhe 17:51 UTC, Safe-i mori 16,9 mln BSO nga 14 portofole. Transferimi i parë ishte një provë me 10 tokenë, të cilën Safe-i e ktheu menjëherë.",
           "vesting": "Më 12 gusht 2024, Safe-i zhvendosi 8,5 mln BSO në një rrjedhë vesting në Sablier. Migrimi i vitit 2026 e kreditoi atë rrjedhë përsëri te Safe-i, prandaj Safe-i mori dy transferime migrimi.",
-          "commonSender": "I njëjti portofol i dërgoi BSO si pronarit të Safe-it (1,93 mln më 8 mars 2024), ashtu edhe Safe-it (211 mijë më 1 qershor 2024)."
+          "commonSender": "I njëjti portofol i dërgoi BSO si pronarit të Safe-it (1,93 mln më 8 mars 2024), ashtu edhe Safe-it (214 mijë më 1 qershor 2024)."
         }
       },
       "holderC": {
-        "summary": "Dy portofole që morën BSO nga i njëjti dërgues.",
+        "summary": "Dy portofole të mbushura nga i njëjti çift portofolesh blerëse.",
         "evidence": {
-          "commonSender": "Një portofol i dërgoi të parit 661 mijë BSO më 19 gusht 2024 dhe të dytit 2,16 mln më 14 nëntor 2025. Një dërgues i përbashkët mund të jetë edhe një shitës i vetëm që u shërben dy blerësve."
+          "commonSender": "Një portofol blerës i dërgoi të parit 664 mijë BSO më 19 gusht 2024. Më 14 nëntor 2025 i dërgoi të dytit një provë prej 7 mijë BSO, 0,1 ETH dhe pastaj 2,17 mln BSO. Ky është i vetmi ETH që ka marrë portofoli i dytë, dhe ai nuk ka dërguar kurrë asnjë transaksion.",
+          "secondSender": "Një portofol i dytë blerës i dërgoi të parit 7,3 mln BSO-të e tij të tjera në tetë transferime midis majit dhe gushtit 2024, së bashku me ETH-in e tij të parë, dhe mori mbrapsht prej tij 4,35 ETH.",
+          "sendersLinked": "Dy portofolet blerëse janë të lidhura me njëri-tjetrin: njëri i dha tjetrit 1,15 mln BSO dhe 0,1 ETH më 22 shkurt 2024, dhe më 17 gusht 2024 tjetri ia ktheu 5,8 ETH-të që i kishin mbetur."
         }
       },
       "holderD": {
-        "summary": "Tre portofole të lidhura përmes njërit prej tyre.",
+        "summary": "Pesë portofole: dy që i dërguan njëri-tjetrit AVAX dhe ETH, një i tretë që e mbushën të dyja, dhe dy të tjera që i përgatiti i treti.",
         "evidence": {
-          "sharedRecipient": "Portofoli i mesit mori nga i pari një transferim prove dhe pastaj 703 mijë BSO më 18 nëntor 2022, dhe nga i treti 1,15 mln BSO më 1 dhjetor 2022. Mund të jetë edhe një blerës i vetëm që paguan dy shitës."
+          "sharedRecipient": "Portofoli i tretë mori nga i pari një transferim prove dhe pastaj 703 mijë BSO më 18 nëntor 2022, dhe nga i dyti 1,16 mln BSO më 1 dhjetor 2022. I gjithë AVAX-i që ka pasur ndonjëherë për gas erdhi nga këto të dyja.",
+          "coinsBothWays": "Dy portofolet e para i dërguan njëri-tjetrit monedha në të dy zinxhirët për 20 muaj: 0,5 AVAX në njërin drejtim dhe 0,49 mbrapsht nëntë minuta më vonë më 24 mars 2022, 73 AVAX më 31 maj 2022, 0,09 ETH më 11 mars 2023 dhe 2 ETH në drejtimin tjetër më 7 nëntor 2023.",
+          "newWallets": "Portofoli i tretë pastaj përgatiti dy portofole të reja, çdo herë në të njëjtën mënyrë: AVAX për gas, një transferim prove, pastaj 281 mijë BSO, më 24 nëntor 2022 dhe në fund të prillit 2023. Asnjëri prej tyre nuk ka dërguar kurrë një transaksion."
         }
       },
       "holderE": {
         "summary": "Dy portofole të mbushura nga i njëjti burim.",
         "evidence": {
-          "commonSender": "Një portofol i dërgoi të parit 5,54 mln BSO në shtatë transferime midis tetorit 2024 dhe janarit 2025, dhe të dytit 281 mijë më 22 nëntor 2025."
+          "commonSender": "Një portofol i dërgoi të parit 5,53 mln BSO në shtatë transferime midis tetorit 2024 dhe janarit 2025, dhe të dytit 287 mijë më 22 nëntor 2025.",
+          "onlyEth": "I njëjti portofol i dërgoi secilit prej tyre të vetmin ETH që ai ka marrë ndonjëherë, në të njëjtën minutë me tokenët e tij të parë: 0,1 ETH dhe 0,12 ETH. Asnjëri nga dy portofolet nuk ka dërguar kurrë një transaksion."
         }
       },
       "holderF": {
-        "summary": "Një portofol që i ndau tokenët e vet në tre portofole të reja dhe u pagoi gas-in.",
+        "summary": "Një portofol që i ndau tokenët e vet dhe 4 ETH në tre portofole të reja.",
         "evidence": {
-          "split": "Më 10 mars 2024, brenda shtatë minutave, një portofol u dërgoi tre portofoleve të reja shuma të rrumbullakëta PLEB, siç quhej atëherë BSO (12 mld, 8 mld dhe 4 mld), dhe po atë ditë u dërgoi dyve prej tyre ETH për gas. Ai vetë mban ende BSO."
+          "split": "Më 10 mars 2024, brenda shtatë minutave, një portofol u dërgoi tre portofoleve të reja shuma të rrumbullakëta PLEB, siç quhej atëherë BSO (12 mld, 8 mld dhe 4 mld). Ai vetë mban ende BSO.",
+          "ethBothWays": "Në të njëjtat minuta ai u dërgoi tre portofoleve 4,05 ETH, nga 1 deri në 2 ETH secilit. Ai që mori më shumë ktheu 1,5 ETH më 24 qershor 2024; dy të tjerat nuk kanë dërguar kurrë një transaksion."
         }
       },
       "holderG": {
-        "summary": "Dy portofole të financuara nga i njëjti dërgues, me tre vjet diferencë.",
+        "summary": "Dy portofole të financuara nga i njëjti dërgues me tre vjet diferencë, dhe një i tretë te i cili njëri prej tyre zhvendosi bilancin e vet.",
         "evidence": {
-          "commonSender": "Një portofol i dërgoi të dytit 661 mijë BSO në Avalanche në prill 2022 dhe të parit 843 mijë në Ethereum në janar 2025."
+          "commonSender": "Një portofol i dërgoi të dytit 658 mijë BSO në Avalanche në prill 2022 dhe të parit 843 mijë në Ethereum në janar 2025.",
+          "senderFunded": "Ai dërgues u dërgoi të dy portofoleve edhe monedha: të dytit i dha AVAX-in e tij të parë dhe 17,4 AVAX të nesërmen, ndërsa të parit i dërgoi 0,15 ETH-të që i kishin mbetur, tre minuta pas tokenëve.",
+          "movedOn": "Më 3 nëntor 2026, portofoli i dytë i dërgoi të tretit ETH për gas, një provë prej 100 BSO dhe pastaj të gjithë bilancin e vet prej 852 mijë BSO."
         }
       },
       "holderH": {
-        "summary": "Dy portofole me një transferim mes tyre.",
+        "summary": "Dy portofole, njëri prej të cilëve financoi tjetrin.",
         "evidence": {
-          "directTransfer": "Portofoli i parë i dërgoi të dytit 59 mijë BSO më 24 prill 2022."
+          "directTransfer": "Më 24 prill 2022, portofoli i parë i dërgoi të dytit AVAX-in e tij të parë dhe, dy minuta më vonë, 59 mijë BSO.",
+          "funding": "Më 8 maj 2022, portofoli i parë i dërgoi të dytit 23 AVAX në gjashtë transferime, dhe i dyti e shkëmbeu pjesën më të madhe në BSO brenda pak minutash pas secilit."
         }
       },
       "holderI": {
-        "summary": "Dy portofole me transferime të përsëritura mes tyre.",
+        "summary": "Dy portofole që i dërguan njëri-tjetrit ETH përpara se njëri të zhvendoste të gjithë bilancin e vet te tjetri.",
         "evidence": {
-          "directTransfers": "Portofoli i dytë i dërgoi të parit 1,86 mln BSO më 30 tetor 2023 dhe 703 mijë më 8 nëntor 2023."
+          "directTransfers": "Portofoli i dytë pastaj i dërgoi të parit gjithçka që mbante: 1,85 mln BSO më 30 tetor 2023 dhe 703 mijë më 8 nëntor 2023.",
+          "ethBothWays": "Portofoli i dytë i dërgoi të parit 0,77 ETH më 16 dhjetor 2022, dhe i pari ktheu 0,02 ETH të nesërmen."
+        }
+      },
+      "holderJ": {
+        "summary": "Dy portofole që i dërguan AVAX njëri-tjetrit, në të dy drejtimet, për më shumë se një vit.",
+        "evidence": {
+          "coinsBothWays": "Portofoli i parë i dërgoi të dytit AVAX-in e tij të parë më 7 maj 2021 dhe ETH-in e tij të parë në gusht të atij viti. Deri në korrik 2022 i pari kishte dërguar 331 AVAX në dymbëdhjetë transferime, dhe i dyti kishte kthyer 15 AVAX në dy.",
+          "sameEveningLocks": "Të dyja blenë BSO në Trader Joe, dhe më 28 prill 2022 të dyja bllokuan BSO në të njëjtën kontratë bllokimi brenda gjysmë ore nga njëri-tjetri."
+        }
+      },
+      "holderK": {
+        "summary": "Dy portofole të financuara nga i njëjti portofol privat.",
+        "evidence": {
+          "sharedFunder": "Një portofol privat i financoi të dyja. Të parit i dërgoi AVAX-in e tij të parë në tetor 2021, 194 AVAX në 21 transferime deri në fund të vitit 2023 dhe 3,49 mln BSO në dy transferime. Të dytit i dërgoi AVAX-in e tij të parë më 14 shkurt 2022 dhe 23 AVAX në gjashtë transferime deri në prill të atij viti. Të dyja kthyen shuma të vogla AVAX.",
+          "sharedRecipient": "Të dyja financuan edhe të njëjtin portofol të ri: i dyti i dërgoi 5,1 AVAX-të e tij të parë më 17 shkurt 2022, dhe i pari i dërgoi 38,3 AVAX tri ditë më vonë."
+        }
+      },
+      "holderL": {
+        "summary": "Dy portofole të financuara nga i njëjti portofol privat, njëri prej tyre përmes një portofoli ndërmjetës.",
+        "evidence": {
+          "funderChain": "Një portofol privat i dërgoi të dytit AVAX-in e tij të parë më 12 shkurt 2022. Gjashtë ditë më vonë ai i zhvendosi 597 mijë BSO-të e veta dhe AVAX-in që i kishte mbetur në një portofol të ri, i cili ia kaloi 597 mijë BSO-të portofolit të parë më 22 shkurt, bashkë me AVAX-in e parë të atij portofoli.",
+          "directTransfer": "Portofoli i dytë i dërgoi të parit 0,005 AVAX më 27 shkurt 2022."
         }
       }
     },
@@ -579,14 +610,14 @@
       "howTitle": "Si u lidhën portofolet",
       "how": {
         "transfers": "U gjurmua çdo transferim mes dy portofoleve të zakonshme në të tri kontratat, në Avalanche dhe Ethereum, duke lënë jashtë exchange-t, router-at, pool-et dhe kontratat e tjera. Multisig-ët Safe u lidhën me pronarët e tyre.",
-        "funders": "U krahasua portofoli i parë që i dërgoi AVAX ose ETH secilit mbajtës të madh. Exchange-t financojnë mijëra portofole, prandaj vetëm financuesit privatë llogariten si lidhje.",
+        "funders": "U gjurmua edhe çdo transferim AVAX dhe ETH drejt ose nga një portofol që mban të paktën 0,01% të furnizimit, përfshirë se kush i dërgoi i pari monedha secilit portofol. Exchange-t dhe shërbimet e shkëmbimit financojnë mijëra portofole, prandaj vetëm portofolet private llogariten si lidhje.",
         "pattern": "Për portofolet pa lidhje të drejtpërdrejtë, sjellja e blerjeve u krahasua me atë të çdo blerësi në të njëjtën periudhë.",
         "migrations": "Bilancet u ndoqën nëpër të dy migrimet me 7114,6 PLEB për BSO, i njëjti kurs që përdor kjo faqe për të shfaqur shumat më të vjetra në BSO."
       },
       "limitsTitle": "Kufizimet",
       "limits": {
         "exchangeOnly": "Një mbajtës që e financon çdo portofol përmes një exchange dhe nuk lëviz kurrë tokenë mes tyre nuk lë asnjë lidhje on-chain. Disa grupe mund të fshehin ende më shumë portofole.",
-        "sales": "Një transferim mes dy portofoleve mund të jetë shitje ose dhuratë. Grupet e shënuara si “E mundshme” mbështeten në një lidhje të vetme të tillë.",
+        "sales": "Një transferim mes dy portofoleve mund të jetë shitje ose dhuratë, prandaj asnjë grup nuk mbështetet në një transferim të vetëm. Disa portofole vetëm kanë marrë tokenë dhe monedha nga grupi i tyre dhe nuk kanë dërguar kurrë asgjë; edhe këto mund të jenë dhurata.",
         "contracts": "Tokenët që mbahen nga kontrata të tjera përveç pool-it të Uniswap dhe Safe-it renditen ashtu siç janë.",
         "snapshot": "Bilancet dhe çmimi rifreskohen nga zinxhiri çdo pesë minuta ndërsa kjo faqe është e hapur. Lidhjet mes portofoleve janë hulumtuar me dorë dhe nuk përditësohen vetë.",
         "history": "Linjat e Historikut ndjekin sa ka mbajtur çdo portofol, për portofolet me të paktën 0,01% të furnizimit dhe për çdo portofol të një mbajtësi të njohur. Tokenët në një pool likuiditeti, në një fermë ose në një rrjedhë vesting dalin nga linja, dhe migrimet i rilëshuan disa prej tyre te pronarët e tyre, prandaj disa linja kërcejnë në ato ditë."

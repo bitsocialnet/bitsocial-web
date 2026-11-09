@@ -387,12 +387,12 @@
         "name": "Uniswap BSO/ETH havuzu"
       },
       "holderA": {
-        "summary": "22 Şubat ile 8 Nisan 2022 arasında Avalanche'ta alım yapan ve o günden beri hiç satmayan on iki cüzdan. Beşi zincir üzerinde birbirine bağlı; diğer yedisi aynı alıcının örüntüsüyle eşleşiyor.",
+        "summary": "Şubat 2022 ile Mayıs 2023 arasında Avalanche'ta alım yapan ve o günden beri hiç satmayan on beş cüzdan. Beşi zincir üzerinde birbirine bağlı; diğer onu aynı alıcının örüntüsüyle eşleşiyor.",
         "evidence": {
           "transfersToLpWallet": "Alım yapan cüzdanlardan ikisi üçüncü bir cüzdana token ve AVAX gönderdi; bu cüzdan bunları Trader Joe'da likidite ve farming için kullandı: 27 Şubat 2022'de 141 bin BSO ve 5 AVAX, ardından 28 Şubat ile 2 Mart arasında 1,01 milyon BSO ve 34 AVAX. Üçüncü cüzdan 0,013 AVAX'ı geri gönderdi.",
           "sharedFunder": "Özel bir cüzdan, alım yapan cüzdanlardan üçüne fon sağladı ve başka hiçbir şey yapmadı. Gönderdiği her işlem sırayla onlara gitti: 0'dan 4'e kadar nonce'lar birincisine, 5'ten 7'ye kadar ikincisine, 8 ise üçüncüsüne.",
-          "buyingPattern": "Yedi cüzdan daha vardı; her biri yeniydi, Binance veya ChangeNOW üzerinden (bağlantılı cüzdanların kullandığı hizmetlerin aynısı) yaklaşık 2.000 ile 3.400 dolar arasındaki bir veya iki borsa çekimiyle fonlandı, tamamen token'a çevrildi ve bir daha hiç kullanılmadı. 28 Şubat ile 31 Mart 2022 arasında, bağlantılı cüzdanlarla hiç çakışmadan birbiri ardına alım yaptılar. Şubat ile Nisan 2022 arasındaki toplam 292 alıcı içinde bu örüntüye uyan başka cüzdan yok.",
-          "neverSold": "On iki cüzdanın hiçbiri o zamandan beri token'larını satmadı veya taşımadı. Bakiyeleri her iki geçişten de değişmeden geçti."
+          "buyingPattern": "On cüzdan daha vardı; her biri yeniydi, Binance veya ChangeNOW üzerinden (bağlantılı cüzdanların kullandığı hizmetlerin aynısı) yaklaşık 2.000 ile 3.400 dolar arasındaki bir veya iki borsa çekimiyle fonlandı, tamamen token'a çevrildi ve bir daha hiç kullanılmadı. Yedisi 28 Şubat ile 31 Mart 2022 arasında, bağlantılı cüzdanlarla hiç çakışmadan birbiri ardına alım yaptı. Üçü daha 12 Nisan ve 25 Haziran 2022'de ve 6 Mayıs 2023'te aynısını yaptı. Arzın en az %0,01'ini elinde tutan bugünkü sahipler arasında 21 cüzdan yalnızca Avalanche'ta alım yapmak için, en fazla dört işlemle kullanıldı: bu on cüzdan, bağlantılı cüzdanlardan ikisi ve her biri 410 dolardan az harcayan dokuz cüzdan daha.",
+          "neverSold": "On beş cüzdanın hiçbiri o zamandan beri token'larını satmadı veya taşımadı. Bakiyeleri her iki geçişten de değişmeden geçti."
         }
       },
       "holderB": {
@@ -401,49 +401,80 @@
           "owners": "Safe, 4 sahibinden 2'sinin imzalamasını gerektirir. Sahiplerden biri doğrudan da BSO tutuyor. Dört sahip, birden fazla anahtarı olan tek bir kişi ya da küçük bir grup anlamına gelebilir.",
           "consolidation": "1 Haziran 2024'te, 16:08 ile 17:51 UTC arasında Safe, 14 cüzdandan 16,9 milyon BSO aldı. İlk transfer, Safe'in hemen geri gönderdiği 10 token'lık bir testti.",
           "vesting": "12 Ağustos 2024'te Safe, 8,5 milyon BSO'yu bir Sablier vesting akışına taşıdı. 2026 geçişi bu akışı yeniden Safe'e yazdı; Safe'in iki geçiş transferi almasının nedeni budur.",
-          "commonSender": "Aynı cüzdan hem Safe sahibine (8 Mart 2024'te 1,93 milyon) hem de Safe'e (1 Haziran 2024'te 211 bin) BSO gönderdi."
+          "commonSender": "Aynı cüzdan hem Safe sahibine (8 Mart 2024'te 1,93 milyon) hem de Safe'e (1 Haziran 2024'te 214 bin) BSO gönderdi."
         }
       },
       "holderC": {
-        "summary": "Aynı göndericiden BSO alan iki cüzdan.",
+        "summary": "Alım yapan aynı cüzdan çifti tarafından doldurulan iki cüzdan.",
         "evidence": {
-          "commonSender": "Bir cüzdan 19 Ağustos 2024'te birincisine 661 bin BSO, 14 Kasım 2025'te ikincisine 2,16 milyon gönderdi. Ortak bir gönderici, iki alıcıya satış yapan tek bir satıcı da olabilir."
+          "commonSender": "Alım yapan bir cüzdan 19 Ağustos 2024'te birincisine 664 bin BSO gönderdi. 14 Kasım 2025'te ikincisine 7 bin BSO'luk bir test, 0,1 ETH ve ardından 2,17 milyon BSO gönderdi. Bu, ikinci cüzdanın aldığı tek ETH'dir ve bu cüzdan hiç işlem göndermedi.",
+          "secondSender": "Alım yapan ikinci bir cüzdan, Mayıs ile Ağustos 2024 arasında sekiz transferle birincisine diğer 7,3 milyon BSO'sunu ve ilk ETH'sini gönderdi, ondan da 4,35 ETH geri aldı.",
+          "sendersLinked": "Alım yapan iki cüzdan birbirine bağlı: biri 22 Şubat 2024'te diğerine 1,15 milyon BSO ve 0,1 ETH verdi, diğeri de 17 Ağustos 2024'te kalan 5,8 ETH'sini geri gönderdi."
         }
       },
       "holderD": {
-        "summary": "İçlerinden biri üzerinden birbirine bağlanan üç cüzdan.",
+        "summary": "Beş cüzdan: birbirine AVAX ve ETH gönderen iki cüzdan, ikisinin de doldurduğu üçüncü bir cüzdan ve üçüncünün kurduğu iki cüzdan daha.",
         "evidence": {
-          "sharedRecipient": "Ortadaki cüzdan, 18 Kasım 2022'de birincisinden bir test transferi ve ardından 703 bin BSO, 1 Aralık 2022'de ise üçüncüsünden 1,15 milyon BSO aldı. Bu, iki satıcıya ödeme yapan tek bir alıcı da olabilir."
+          "sharedRecipient": "Üçüncü cüzdan, 18 Kasım 2022'de birincisinden bir test transferi ve ardından 703 bin BSO, 1 Aralık 2022'de ise ikincisinden 1,16 milyon BSO aldı. Gas için bugüne kadar sahip olduğu tüm AVAX bu ikisinden geldi.",
+          "coinsBothWays": "İlk iki cüzdan 20 ay boyunca her iki zincirde de birbirine coin gönderdi: 24 Mart 2022'de bir yönde 0,5 AVAX ve dokuz dakika sonra geri 0,49, 31 Mayıs 2022'de 73 AVAX, 11 Mart 2023'te 0,09 ETH ve 7 Kasım 2023'te ters yönde 2 ETH.",
+          "newWallets": "Üçüncü cüzdan daha sonra iki yeni cüzdanı her seferinde aynı şekilde kurdu: gas için AVAX, bir test transferi, ardından 281 bin BSO; 24 Kasım 2022'de ve Nisan 2023'ün sonunda. İkisi de hiç işlem göndermedi."
         }
       },
       "holderE": {
         "summary": "Aynı kaynaktan doldurulan iki cüzdan.",
         "evidence": {
-          "commonSender": "Bir cüzdan, Ekim 2024 ile Ocak 2025 arasında yedi transferle birincisine 5,54 milyon BSO, 22 Kasım 2025'te ikincisine 281 bin gönderdi."
+          "commonSender": "Bir cüzdan, Ekim 2024 ile Ocak 2025 arasında yedi transferle birincisine 5,53 milyon BSO, 22 Kasım 2025'te ikincisine 287 bin gönderdi.",
+          "onlyEth": "Aynı cüzdan, her birine o cüzdanın bugüne kadar aldığı tek ETH'yi, ilk token'larıyla aynı dakika içinde gönderdi: 0,1 ETH ve 0,12 ETH. İki cüzdan da hiç işlem göndermedi."
         }
       },
       "holderF": {
-        "summary": "Token'larını üç yeni cüzdana bölen ve onların gas ücretini ödeyen bir cüzdan.",
+        "summary": "Token'larını ve 4 ETH'yi üç yeni cüzdana bölen bir cüzdan.",
         "evidence": {
-          "split": "10 Mart 2024'te, yedi dakika içinde, bir cüzdan üç yeni cüzdana BSO'nun o zamanki adıyla PLEB cinsinden yuvarlak miktarlar (12 milyar, 8 milyar ve 4 milyar) gönderdi ve aynı gün ikisine gas için ETH gönderdi. Kendisi hâlâ BSO tutuyor."
+          "split": "10 Mart 2024'te, yedi dakika içinde, bir cüzdan üç yeni cüzdana BSO'nun o zamanki adıyla PLEB cinsinden yuvarlak miktarlar (12 milyar, 8 milyar ve 4 milyar) gönderdi. Kendisi hâlâ BSO tutuyor.",
+          "ethBothWays": "Aynı dakikalarda üç cüzdana, her birine 1 ile 2 ETH arasında olmak üzere 4,05 ETH gönderdi. En çok alan cüzdan 24 Haziran 2024'te 1,5 ETH'yi geri gönderdi; diğer ikisi hiç işlem göndermedi."
         }
       },
       "holderG": {
-        "summary": "Aynı gönderici tarafından, üç yıl arayla fonlanan iki cüzdan.",
+        "summary": "Aynı gönderici tarafından üç yıl arayla fonlanan iki cüzdan ve bunlardan birinin bakiyesini taşıdığı üçüncü bir cüzdan.",
         "evidence": {
-          "commonSender": "Bir cüzdan, Nisan 2022'de Avalanche'ta ikincisine 661 bin BSO, Ocak 2025'te Ethereum'da birincisine 843 bin gönderdi."
+          "commonSender": "Bir cüzdan, Nisan 2022'de Avalanche'ta ikincisine 658 bin BSO, Ocak 2025'te Ethereum'da birincisine 843 bin gönderdi.",
+          "senderFunded": "Bu gönderici her iki cüzdana coin de gönderdi: ikincisine ilk AVAX'ını ve ertesi gün 17,4 AVAX verdi, birincisine de token'lardan üç dakika sonra elinde kalan 0,15 ETH'yi gönderdi.",
+          "movedOn": "3 Kasım 2026'da ikinci cüzdan üçüncüsüne gas için ETH, 100 BSO'luk bir test ve ardından 852 bin BSO'luk bakiyesinin tamamını gönderdi."
         }
       },
       "holderH": {
-        "summary": "Aralarında tek bir transfer bulunan iki cüzdan.",
+        "summary": "Biri diğerini fonlayan iki cüzdan.",
         "evidence": {
-          "directTransfer": "Birinci cüzdan, 24 Nisan 2022'de ikincisine 59 bin BSO gönderdi."
+          "directTransfer": "24 Nisan 2022'de birinci cüzdan ikincisine ilk AVAX'ını ve iki dakika sonra 59 bin BSO gönderdi.",
+          "funding": "8 Mayıs 2022'de birinci cüzdan ikincisine altı transferle 23 AVAX gönderdi; ikincisi de her transferden sonraki dakikalar içinde bunun çoğunu BSO'ya çevirdi."
         }
       },
       "holderI": {
-        "summary": "Aralarında tekrarlanan transferler bulunan iki cüzdan.",
+        "summary": "Biri tüm bakiyesini diğerine taşımadan önce birbirine ETH gönderen iki cüzdan.",
         "evidence": {
-          "directTransfers": "İkinci cüzdan, 30 Ekim 2023'te birincisine 1,86 milyon BSO, 8 Kasım 2023'te de 703 bin gönderdi."
+          "directTransfers": "İkinci cüzdan daha sonra elindeki her şeyi birincisine gönderdi: 30 Ekim 2023'te 1,85 milyon BSO, 8 Kasım 2023'te de 703 bin.",
+          "ethBothWays": "İkinci cüzdan, 16 Aralık 2022'de birincisine 0,77 ETH gönderdi; birincisi de ertesi gün 0,02 ETH geri gönderdi."
+        }
+      },
+      "holderJ": {
+        "summary": "Bir yılı aşkın süre boyunca birbirine karşılıklı AVAX gönderen iki cüzdan.",
+        "evidence": {
+          "coinsBothWays": "Birinci cüzdan ikincisine 7 Mayıs 2021'de ilk AVAX'ını, aynı yılın Ağustos ayında da ilk ETH'sini gönderdi. Temmuz 2022'ye kadar on iki transferle 331 AVAX göndermişti; ikincisi de iki transferle 15 AVAX geri göndermişti.",
+          "sameEveningLocks": "İkisi de Trader Joe'da BSO aldı ve 28 Nisan 2022'de ikisi de birbirinden en fazla yarım saat arayla aynı kilitleme sözleşmesine BSO kilitledi."
+        }
+      },
+      "holderK": {
+        "summary": "Aynı özel cüzdan tarafından fonlanan iki cüzdan.",
+        "evidence": {
+          "sharedFunder": "Özel bir cüzdan ikisini de fonladı. Birincisine Ekim 2021'de ilk AVAX'ını, 2023'ün sonuna kadar 21 transferle 194 AVAX ve iki transferle 3,49 milyon BSO gönderdi. İkincisine 14 Şubat 2022'de ilk AVAX'ını ve aynı yılın Nisan ayına kadar altı transferle 23 AVAX gönderdi. İkisi de küçük miktarlarda AVAX'ı geri gönderdi.",
+          "sharedRecipient": "İkisi ayrıca aynı yeni cüzdanı fonladı: ikincisi 17 Şubat 2022'de ona ilk 5,1 AVAX'ını gönderdi, birincisi de üç gün sonra ona 38,3 AVAX gönderdi."
+        }
+      },
+      "holderL": {
+        "summary": "Aynı özel cüzdandan fonlanan iki cüzdan; biri bir aracı cüzdan üzerinden.",
+        "evidence": {
+          "funderChain": "Özel bir cüzdan 12 Şubat 2022'de ikincisine ilk AVAX'ını gönderdi. Altı gün sonra kendi 597 bin BSO'sunu ve kalan AVAX'ını yeni bir cüzdana taşıdı; bu cüzdan da 22 Şubat'ta 597 bin BSO'yu, birinci cüzdanın ilk AVAX'ıyla birlikte birinci cüzdana aktardı.",
+          "directTransfer": "İkinci cüzdan, 27 Şubat 2022'de birincisine 0,005 AVAX gönderdi."
         }
       }
     },
@@ -579,14 +610,14 @@
       "howTitle": "Cüzdanlar nasıl bağlandı",
       "how": {
         "transfers": "Avalanche ve Ethereum'daki üç sözleşmenin tamamında, iki sıradan cüzdan arasındaki her transfer izlendi; borsalar, router'lar, havuzlar ve diğer sözleşmeler hariç tutuldu. Safe multisig'ler sahiplerine bağlandı.",
-        "funders": "Her büyük sahibe ilk kez AVAX veya ETH gönderen cüzdan karşılaştırıldı. Borsalar binlerce cüzdanı fonladığı için yalnızca özel fon sağlayıcılar bağlantı sayılır.",
+        "funders": "Arzın en az %0,01'ini tutan bir cüzdana gelen veya bu cüzdandan giden her AVAX ve ETH transferi de izlendi; her cüzdana ilk kez kimin coin gönderdiği de buna dahil. Borsalar ve takas hizmetleri binlerce cüzdanı fonladığı için yalnızca özel cüzdanlar bağlantı sayılır.",
         "pattern": "Doğrudan bağlantısı olmayan cüzdanlar için alım davranışı, aynı dönemdeki tüm alıcılarla karşılaştırıldı.",
         "migrations": "Bakiyeler, BSO başına 7.114,6 PLEB oranıyla her iki geçiş boyunca takip edildi; bu sayfa da eski miktarları BSO cinsinden gösterirken aynı oranı kullanıyor."
       },
       "limitsTitle": "Sınırlar",
       "limits": {
         "exchangeOnly": "Her cüzdanını bir borsa üzerinden fonlayan ve aralarında hiç token taşımayan bir sahip, zincir üzerinde hiçbir bağlantı bırakmaz. Bazı gruplar hâlâ başka cüzdanlar gizliyor olabilir.",
-        "sales": "İki cüzdan arasındaki bir transfer, bir satış ya da hediye olabilir. Olası olarak işaretlenen gruplar, bu türden tek bir bağlantıya dayanır.",
+        "sales": "İki cüzdan arasındaki bir transfer, bir satış ya da hediye olabilir; bu yüzden hiçbir grup tek bir transfere dayanmaz. Bazı cüzdanlar kendi gruplarından yalnızca token ve coin aldı ve hiçbir şey göndermedi; bunlar da hediye olabilir.",
         "contracts": "Uniswap havuzu ve Safe dışındaki sözleşmelerin tuttuğu token'lar olduğu gibi listelenir.",
         "snapshot": "Bu sayfa açıkken bakiyeler ve fiyat her beş dakikada bir zincirden yenilenir. Cüzdanlar arasındaki bağlantılar elle araştırılır ve kendiliğinden güncellenmez.",
         "history": "Geçmiş çizgileri her cüzdanın ne kadar tuttuğunu gösterir; arzın en az %0,01'ine sahip cüzdanlar ve bilinen bir sahibin tüm cüzdanları için çizilir. Likidite havuzundaki, farm'daki veya vesting akışındaki token'lar çizgiden düşer ve geçişler bunların bir kısmını sahiplerine yeniden çıkardığı için bazı çizgiler o günlerde sıçrar."

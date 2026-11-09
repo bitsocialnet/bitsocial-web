@@ -387,12 +387,12 @@
         "name": "Uniswap BSO/ETH pool"
       },
       "holderA": {
-        "summary": "Labindalawang wallet na bumili sa Avalanche mula Pebrero 22 hanggang Abril 8, 2022, at hindi kailanman nagbenta. Lima ang magkakaugnay on-chain; tugma naman ang pito pa sa pattern ng iisang mamimili.",
+        "summary": "Labinlimang wallet na bumili sa Avalanche mula Pebrero 2022 hanggang Mayo 2023 at hindi kailanman nagbenta. Lima ang magkakaugnay on-chain; tugma naman ang sampu pa sa pattern ng iisang mamimili.",
         "evidence": {
           "transfersToLpWallet": "Nagpadala ang dalawa sa mga bumibiling wallet ng mga token at AVAX sa ikatlong wallet, na ginamit ang mga ito para sa liquidity at farming sa Trader Joe: 141K BSO at 5 AVAX noong Pebrero 27, 2022, at pagkatapos ay 1.01M BSO at 34 AVAX mula Pebrero 28 hanggang Marso 2. Nagpadala pabalik ang ikatlong wallet ng 0.013 AVAX.",
           "sharedFunder": "Isang pribadong wallet ang nagpondo sa tatlo sa mga bumibiling wallet at wala nang iba. Lahat ng transaction na naipadala nito ay napunta sa kanila, nang sunod-sunod: nonce 0 hanggang 4 sa una, 5 hanggang 7 sa ikalawa, 8 sa ikatlo.",
-          "buyingPattern": "Pito pang wallet ang bawat isa ay bago, pinondohan ng isa o dalawang withdrawal mula sa exchange na humigit-kumulang $2,000 hanggang $3,400 sa pamamagitan ng Binance o ChangeNOW (ang parehong serbisyong ginamit ng mga naka-link na wallet), ipinalit nang buo sa token, at hindi na muling ginamit. Sunod-sunod silang bumili mula Pebrero 28 hanggang Marso 31, 2022, nang hindi kailanman nagsasabay sa mga naka-link na wallet. Sa lahat ng 292 na bumili mula Pebrero hanggang Abril 2022, walang ibang wallet na tugma sa pattern na ito.",
-          "neverSold": "Wala sa labindalawang wallet ang nagbenta o naglipat ng mga token nito mula noon. Hindi nagbago ang kanilang mga balanse sa parehong migration."
+          "buyingPattern": "Sampu pang wallet ang bawat isa ay bago, pinondohan ng isa o dalawang withdrawal mula sa exchange na humigit-kumulang $2,000 hanggang $3,400 sa pamamagitan ng Binance o ChangeNOW (ang parehong serbisyong ginamit ng mga naka-link na wallet), ipinalit nang buo sa token, at hindi na muling ginamit. Sunod-sunod na bumili ang pito mula Pebrero 28 hanggang Marso 31, 2022, nang hindi kailanman nagsasabay sa mga naka-link na wallet. Ganoon din ang ginawa ng tatlo pa noong Abril 12 at Hunyo 25, 2022 at noong Mayo 6, 2023. Sa mga kasalukuyang may-hawak na may hindi bababa sa 0.01% ng supply, 21 wallet ang ginamit lang para bumili sa Avalanche, sa apat na transaction o mas kaunti: ang sampung ito, dalawa sa mga naka-link na wallet, at siyam na iba pa na bawat isa ay gumastos ng wala pang $410.",
+          "neverSold": "Wala sa labinlimang wallet ang nagbenta o naglipat ng mga token nito mula noon. Hindi nagbago ang kanilang mga balanse sa parehong migration."
         }
       },
       "holderB": {
@@ -401,49 +401,80 @@
           "owners": "Kailangan ng Safe ang pirma ng 2 sa 4 na may-ari nito. May hawak ding BSO nang direkta ang isang may-ari. Ang apat na may-ari ay puwedeng iisang tao na may ilang key o isang maliit na grupo.",
           "consolidation": "Noong Hunyo 1, 2024, mula 16:08 hanggang 17:51 UTC, nakatanggap ang Safe ng 16.9M BSO mula sa 14 na wallet. Ang unang transfer ay isang 10-token na test na agad ibinalik ng Safe.",
           "vesting": "Noong Agosto 12, 2024, inilipat ng Safe ang 8.5M BSO sa isang Sablier vesting stream. Ibinalik ng 2026 migration ang stream na iyon sa Safe, kaya dalawang migration transfer ang natanggap ng Safe.",
-          "commonSender": "Iisang wallet ang nagpadala ng BSO sa may-ari ng Safe (1.93M noong Marso 8, 2024) at sa Safe mismo (211K noong Hunyo 1, 2024)."
+          "commonSender": "Iisang wallet ang nagpadala ng BSO sa may-ari ng Safe (1.93M noong Marso 8, 2024) at sa Safe mismo (214K noong Hunyo 1, 2024)."
         }
       },
       "holderC": {
-        "summary": "Dalawang wallet na nakatanggap ng BSO mula sa iisang sender.",
+        "summary": "Dalawang wallet na pinunan ng iisang pares ng mga bumibiling wallet.",
         "evidence": {
-          "commonSender": "Nagpadala ang isang wallet ng 661K BSO sa una noong Agosto 19, 2024 at ng 2.16M sa ikalawa noong Nobyembre 14, 2025. Ang iisang sender ay puwede ring iisang nagbebenta na nagsisilbi sa dalawang mamimili."
+          "commonSender": "Nagpadala ang isang bumibiling wallet ng 664K BSO sa una noong Agosto 19, 2024. Noong Nobyembre 14, 2025, nagpadala ito sa ikalawa ng 7K BSO na test, 0.1 ETH at pagkatapos ay 2.17M BSO. Iyon lang ang ETH na natanggap ng ikalawang wallet, at hindi pa ito kailanman nagpadala ng transaction.",
+          "secondSender": "Isang ikalawang bumibiling wallet ang nagpadala sa una ng iba pa nitong 7.3M BSO sa walong transfer mula Mayo hanggang Agosto 2024, kasama ang unang ETH nito, at nakatanggap ng 4.35 ETH pabalik mula rito.",
+          "sendersLinked": "Magkaugnay ang dalawang bumibiling wallet: ibinigay ng isa sa isa pa ang 1.15M BSO at 0.1 ETH noong Pebrero 22, 2024, at ibinalik naman ng isa pa ang natitira nitong 5.8 ETH noong Agosto 17, 2024."
         }
       },
       "holderD": {
-        "summary": "Tatlong wallet na pinagdugtong ng isa sa kanila.",
+        "summary": "Limang wallet: dalawang nagpadalahan ng AVAX at ETH, isang ikatlo na pinunan ng dalawang iyon, at dalawa pang inihanda ng ikatlo.",
         "evidence": {
-          "sharedRecipient": "Nakatanggap ang gitnang wallet ng test transfer at pagkatapos ay 703K BSO mula sa una noong Nobyembre 18, 2022, at 1.15M BSO mula sa ikatlo noong Disyembre 1, 2022. Puwede rin itong iisang mamimili na nagbabayad sa dalawang nagbebenta."
+          "sharedRecipient": "Nakatanggap ang ikatlong wallet ng test transfer at pagkatapos ay 703K BSO mula sa una noong Nobyembre 18, 2022, at 1.16M BSO mula sa ikalawa noong Disyembre 1, 2022. Ang lahat ng AVAX na hinawakan nito kailanman para sa gas ay galing sa dalawang iyon.",
+          "coinsBothWays": "Nagpadalahan ng mga coin ang unang dalawang wallet sa parehong chain sa loob ng 20 buwan: 0.5 AVAX sa isang direksyon at 0.49 pabalik makalipas ang siyam na minuto noong Marso 24, 2022, 73 AVAX noong Mayo 31, 2022, 0.09 ETH noong Marso 11, 2023 at 2 ETH sa kabilang direksyon noong Nobyembre 7, 2023.",
+          "newWallets": "Pagkatapos, inihanda ng ikatlong wallet ang dalawang bagong wallet sa parehong paraan sa bawat pagkakataon: AVAX para sa gas, isang test transfer, at pagkatapos ay 281K BSO, noong Nobyembre 24, 2022 at sa katapusan ng Abril 2023. Wala sa dalawa ang nagpadala kailanman ng transaction."
         }
       },
       "holderE": {
         "summary": "Dalawang wallet na pinunan mula sa iisang source.",
         "evidence": {
-          "commonSender": "Nagpadala ang isang wallet sa una ng 5.54M BSO sa pitong transfer mula Oktubre 2024 hanggang Enero 2025, at sa ikalawa ng 281K noong Nobyembre 22, 2025."
+          "commonSender": "Nagpadala ang isang wallet sa una ng 5.53M BSO sa pitong transfer mula Oktubre 2024 hanggang Enero 2025, at sa ikalawa ng 287K noong Nobyembre 22, 2025.",
+          "onlyEth": "Ang parehong wallet ang nagpadala sa bawat isa sa kanila ng tanging ETH na natanggap nito kailanman, sa parehong minuto ng mga unang token nito: 0.1 ETH at 0.12 ETH. Wala sa dalawang wallet ang nagpadala kailanman ng transaction."
         }
       },
       "holderF": {
-        "summary": "Isang wallet na hinati ang mga token nito sa tatlong bagong wallet at binayaran ang gas ng mga ito.",
+        "summary": "Isang wallet na hinati ang mga token nito at 4 ETH sa tatlong bagong wallet.",
         "evidence": {
-          "split": "Noong Marso 10, 2024, sa loob ng pitong minuto, nagpadala ang isang wallet ng mga buong halaga ng PLEB, gaya ng tawag noon sa BSO (12B, 8B at 4B), sa tatlong bagong wallet at pinadalhan ang dalawa sa mga ito ng ETH para sa gas sa parehong araw. May hawak pa rin itong BSO mismo."
+          "split": "Noong Marso 10, 2024, sa loob ng pitong minuto, nagpadala ang isang wallet ng mga buong halaga ng PLEB, gaya ng tawag noon sa BSO (12B, 8B at 4B), sa tatlong bagong wallet. May hawak pa rin itong BSO mismo.",
+          "ethBothWays": "Sa parehong mga minutong iyon, nagpadala ito sa tatlong wallet ng 4.05 ETH, mula 1 hanggang 2 ETH bawat isa. Ang nakatanggap ng pinakamarami ay nagpadala pabalik ng 1.5 ETH noong Hunyo 24, 2024; ang dalawa pa ay hindi kailanman nagpadala ng transaction."
         }
       },
       "holderG": {
-        "summary": "Dalawang wallet na pinondohan ng iisang sender, tatlong taon ang pagitan.",
+        "summary": "Dalawang wallet na pinondohan ng iisang sender nang tatlong taon ang pagitan, at isang ikatlo na pinaglipatan ng isa sa kanila ng balanse nito.",
         "evidence": {
-          "commonSender": "Nagpadala ang isang wallet sa ikalawa ng 661K BSO sa Avalanche noong Abril 2022 at sa una ng 843K sa Ethereum noong Enero 2025."
+          "commonSender": "Nagpadala ang isang wallet sa ikalawa ng 658K BSO sa Avalanche noong Abril 2022 at sa una ng 843K sa Ethereum noong Enero 2025.",
+          "senderFunded": "Nagpadala rin ang sender na iyon ng mga coin sa parehong wallet: ibinigay nito sa ikalawa ang una nitong AVAX at 17.4 AVAX kinabukasan, at ipinadala sa una ang natira nitong 0.15 ETH tatlong minuto pagkatapos ng mga token.",
+          "movedOn": "Noong Nobyembre 3, 2026, nagpadala ang ikalawang wallet sa ikatlo ng ETH para sa gas, 100 BSO na test at pagkatapos ay ang buong balanse nitong 852K BSO."
         }
       },
       "holderH": {
-        "summary": "Dalawang wallet na may isang transfer sa pagitan nila.",
+        "summary": "Dalawang wallet, na ang isa ay nagpondo sa isa pa.",
         "evidence": {
-          "directTransfer": "Nagpadala ang unang wallet sa ikalawa ng 59K BSO noong Abril 24, 2022."
+          "directTransfer": "Noong Abril 24, 2022, ipinadala ng unang wallet sa ikalawa ang una nitong AVAX at, makalipas ang dalawang minuto, 59K BSO.",
+          "funding": "Noong Mayo 8, 2022, nagpadala ang unang wallet sa ikalawa ng 23 AVAX sa anim na transfer, at ipinalit ng ikalawa ang karamihan nito sa BSO sa loob ng ilang minuto matapos ang bawat isa."
         }
       },
       "holderI": {
-        "summary": "Dalawang wallet na may paulit-ulit na transfer sa pagitan nila.",
+        "summary": "Dalawang wallet na nagpadalahan ng ETH bago inilipat ng isa ang buong balanse nito sa isa pa.",
         "evidence": {
-          "directTransfers": "Nagpadala ang ikalawang wallet sa una ng 1.86M BSO noong Oktubre 30, 2023 at 703K noong Nobyembre 8, 2023."
+          "directTransfers": "Pagkatapos, ipinadala ng ikalawang wallet sa una ang lahat ng hawak nito: 1.85M BSO noong Oktubre 30, 2023 at 703K noong Nobyembre 8, 2023.",
+          "ethBothWays": "Nagpadala ang ikalawang wallet sa una ng 0.77 ETH noong Disyembre 16, 2022, at nagpadala pabalik ang una ng 0.02 ETH kinabukasan."
+        }
+      },
+      "holderJ": {
+        "summary": "Dalawang wallet na pabalik-balik na nagpadalahan ng AVAX sa loob ng mahigit isang taon.",
+        "evidence": {
+          "coinsBothWays": "Ipinadala ng unang wallet sa ikalawa ang una nitong AVAX noong Mayo 7, 2021 at ang una nitong ETH noong Agosto ng taong iyon. Pagsapit ng Hulyo 2022, nakapagpadala na ito ng 331 AVAX sa labindalawang transfer, at nakapagpadala pabalik ang ikalawa ng 15 AVAX sa dalawang transfer.",
+          "sameEveningLocks": "Parehong bumili ng BSO sa Trader Joe, at noong Abril 28, 2022 ay parehong nag-lock ng BSO sa iisang kontratang pang-lock nang wala pang kalahating oras ang pagitan."
+        }
+      },
+      "holderK": {
+        "summary": "Dalawang wallet na pinondohan ng iisang pribadong wallet.",
+        "evidence": {
+          "sharedFunder": "Isang pribadong wallet ang nagpondo sa pareho. Ipinadala nito sa una ang una nitong AVAX noong Oktubre 2021, 194 AVAX sa 21 transfer hanggang sa katapusan ng 2023, at 3.49M BSO sa dalawang transfer. Ipinadala nito sa ikalawa ang una nitong AVAX noong Pebrero 14, 2022 at 23 AVAX sa anim na transfer hanggang Abril ng taong iyon. Pareho silang nagpadala pabalik ng maliliit na halaga ng AVAX.",
+          "sharedRecipient": "Pareho rin nilang pinondohan ang iisang bagong wallet: ipinadala rito ng ikalawa ang una nitong 5.1 AVAX noong Pebrero 17, 2022, at nagpadala rito ang una ng 38.3 AVAX makalipas ang tatlong araw."
+        }
+      },
+      "holderL": {
+        "summary": "Dalawang wallet na pinondohan mula sa iisang pribadong wallet, ang isa sa mga ito ay dumaan sa isang tagapamagitang wallet.",
+        "evidence": {
+          "funderChain": "Ipinadala ng isang pribadong wallet sa ikalawa ang una nitong AVAX noong Pebrero 12, 2022. Makalipas ang anim na araw, inilipat nito ang sarili nitong 597K BSO at ang natitira nitong AVAX sa isang bagong wallet, na nagpasa naman ng 597K BSO sa unang wallet noong Pebrero 22, kasama ang unang AVAX ng wallet na iyon.",
+          "directTransfer": "Nagpadala ang ikalawang wallet sa una ng 0.005 AVAX noong Pebrero 27, 2022."
         }
       }
     },
@@ -579,14 +610,14 @@
       "howTitle": "Paano na-link ang mga wallet",
       "how": {
         "transfers": "Tinunton ang bawat transfer sa pagitan ng dalawang karaniwang wallet sa lahat ng tatlong kontrata, sa Avalanche at Ethereum, maliban sa mga exchange, router, pool at iba pang kontrata. Na-link ang mga Safe multisig sa kanilang mga may-ari.",
-        "funders": "Pinaghambing ang unang wallet na nagpadala ng AVAX o ETH sa bawat nangungunang may-hawak. Libo-libong wallet ang pinopondohan ng mga exchange, kaya ang mga pribadong funder lang ang itinuturing na link.",
+        "funders": "Tinunton din ang bawat transfer ng AVAX at ETH papunta sa o mula sa isang wallet na may hindi bababa sa 0.01% ng supply, kasama na kung sino ang unang nagpadala ng mga coin sa bawat wallet. Libo-libong wallet ang pinopondohan ng mga exchange at swap service, kaya ang mga pribadong wallet lang ang itinuturing na link.",
         "pattern": "Para sa mga wallet na walang direktang link, inihambing ang gawi sa pagbili sa bawat bumili sa parehong panahon.",
         "migrations": "Sinundan ang mga balanse sa parehong migration sa 7,114.6 PLEB bawat BSO, ang parehong rate na ginagamit ng page na ito para ipakita sa BSO ang mga mas lumang halaga."
       },
       "limitsTitle": "Mga limitasyon",
       "limits": {
         "exchangeOnly": "Ang isang may-hawak na nagpopondo sa bawat wallet sa pamamagitan ng exchange at hindi kailanman naglilipat ng token sa pagitan ng mga ito ay walang iniiwang on-chain na link. Maaaring may ilang grupo pa ring nagtatago ng mas maraming wallet.",
-        "sales": "Ang transfer sa pagitan ng dalawang wallet ay puwedeng bentahan o regalo. Ang mga grupong may markang Posible ay nakasalalay sa iisang ganoong link.",
+        "sales": "Ang transfer sa pagitan ng dalawang wallet ay puwedeng bentahan o regalo, kaya walang grupong nakasalalay sa iisang transfer lang. May ilang wallet na tumanggap lang ng mga token at coin mula sa kanilang grupo at hindi kailanman nagpadala ng anuman; puwede ring regalo ang mga iyon.",
         "contracts": "Ang mga token na hawak ng mga kontrata maliban sa Uniswap pool at sa Safe ay nakalista kung ano sila.",
         "snapshot": "Nire-refresh mula sa chain ang mga balanse at presyo bawat limang minuto habang bukas ang pahinang ito. Mano-manong sinaliksik ang mga link sa pagitan ng mga wallet at hindi kusang nag-a-update.",
         "history": "Sinusundan ng mga linya sa Kasaysayan ang hawak ng bawat wallet, para sa mga wallet na may hindi bababa sa 0.01% ng supply at sa bawat wallet ng isang kilalang may-hawak. Umaalis sa linya ang mga token na nasa liquidity pool, farm o vesting stream, at muling inisyu ng mga migration ang ilan sa mga ito sa kanilang mga may-ari, kaya may mga linyang biglang tumataas sa mga araw na iyon."

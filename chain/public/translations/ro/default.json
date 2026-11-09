@@ -392,12 +392,12 @@
         "name": "Pool-ul Uniswap BSO/ETH"
       },
       "holderA": {
-        "summary": "Douăsprezece portofele care au cumpărat pe Avalanche între 22 februarie și 8 aprilie 2022 și nu au vândut niciodată. Cinci sunt legate între ele on-chain; celelalte șapte se potrivesc tiparului aceluiași cumpărător.",
+        "summary": "Cincisprezece portofele care au cumpărat pe Avalanche între februarie 2022 și mai 2023 și nu au vândut niciodată. Cinci sunt legate între ele on-chain; celelalte zece se potrivesc tiparului aceluiași cumpărător.",
         "evidence": {
           "transfersToLpWallet": "Două dintre portofelele cumpărătoare au trimis tokenuri și AVAX unui al treilea portofel, care le-a folosit pentru lichiditate și farming pe Trader Joe: 141.000 BSO și 5 AVAX pe 27 februarie 2022, apoi 1,01 mil. BSO și 34 AVAX între 28 februarie și 2 martie. Al treilea portofel a trimis înapoi 0,013 AVAX.",
           "sharedFunder": "Un portofel privat a finanțat trei dintre portofelele cumpărătoare și nimic altceva. Fiecare tranzacție pe care a trimis-o vreodată a mers către ele, în ordine: nonce-urile de la 0 la 4 către primul, de la 5 la 7 către al doilea, 8 către al treilea.",
-          "buyingPattern": "Alte șapte portofele erau toate noi, fiecare finanțat prin una sau două retrageri de pe un exchange de aproximativ 2.000–3.400 $, prin Binance sau ChangeNOW (aceleași servicii folosite de portofelele legate), apoi schimbat integral în token și nefolosit niciodată după aceea. Au cumpărat unul după altul între 28 februarie și 31 martie 2022, fără să se suprapună vreodată cu portofelele legate. Dintre toți cei 292 de cumpărători din februarie până în aprilie 2022, niciun alt portofel nu se potrivește acestui tipar.",
-          "neverSold": "Niciunul dintre cele douăsprezece portofele nu și-a vândut sau mutat tokenurile de atunci. Soldurile lor au trecut neschimbate prin ambele migrări."
+          "buyingPattern": "Alte zece portofele erau toate noi, fiecare finanțat prin una sau două retrageri de pe un exchange de aproximativ 2.000–3.400 $, prin Binance sau ChangeNOW (aceleași servicii folosite de portofelele legate), apoi schimbat integral în token și nefolosit niciodată după aceea. Șapte au cumpărat unul după altul între 28 februarie și 31 martie 2022, fără să se suprapună vreodată cu portofelele legate. Alte trei au făcut același lucru pe 12 aprilie și 25 iunie 2022 și pe 6 mai 2023. Dintre deținătorii de astăzi cu cel puțin 0,01% din ofertă, 21 de portofele au fost folosite doar pentru a cumpăra pe Avalanche, în patru tranzacții sau mai puține: acestea zece, două dintre portofelele legate și alte nouă care au cheltuit fiecare sub 410 $.",
+          "neverSold": "Niciunul dintre cele cincisprezece portofele nu și-a vândut sau mutat tokenurile de atunci. Soldurile lor au trecut neschimbate prin ambele migrări."
         }
       },
       "holderB": {
@@ -406,49 +406,80 @@
           "owners": "Safe-ul are nevoie de semnăturile a 2 dintre cei 4 proprietari ai săi. Unul dintre proprietari deține și BSO direct. Patru proprietari pot însemna o singură persoană cu mai multe chei sau un grup mic.",
           "consolidation": "Pe 1 iunie 2024, între 16:08 și 17:51 UTC, Safe-ul a primit 16,9 mil. BSO din 14 portofele. Primul transfer a fost un test de 10 tokenuri, pe care Safe-ul l-a trimis imediat înapoi.",
           "vesting": "Pe 12 august 2024, Safe-ul a mutat 8,5 mil. BSO într-un flux de vesting Sablier. Migrarea din 2026 a creditat acel flux înapoi către Safe, motiv pentru care Safe-ul a primit două transferuri de migrare.",
-          "commonSender": "Același portofel a trimis BSO atât proprietarului Safe-ului (1,93 mil. pe 8 martie 2024), cât și Safe-ului (211.000 pe 1 iunie 2024)."
+          "commonSender": "Același portofel a trimis BSO atât proprietarului Safe-ului (1,93 mil. pe 8 martie 2024), cât și Safe-ului (214.000 pe 1 iunie 2024)."
         }
       },
       "holderC": {
-        "summary": "Două portofele care au primit BSO de la același expeditor.",
+        "summary": "Două portofele alimentate de aceeași pereche de portofele cumpărătoare.",
         "evidence": {
-          "commonSender": "Un portofel a trimis 661.000 BSO primului pe 19 august 2024 și 2,16 mil. celui de-al doilea pe 14 noiembrie 2025. Un expeditor comun poate fi și un singur vânzător care servește doi cumpărători."
+          "commonSender": "Un portofel cumpărător a trimis 664.000 BSO primului pe 19 august 2024. Pe 14 noiembrie 2025 i-a trimis celui de-al doilea un test de 7.000 BSO, 0,1 ETH și apoi 2,17 mil. BSO. Acesta este singurul ETH pe care l-a primit al doilea portofel, iar acest portofel nu a trimis niciodată o tranzacție.",
+          "secondSender": "Un al doilea portofel cumpărător i-a trimis primului ceilalți 7,3 mil. BSO ai acestuia în opt transferuri între mai și august 2024, împreună cu primul ETH al acestuia, și a primit înapoi de la el 4,35 ETH.",
+          "sendersLinked": "Cele două portofele cumpărătoare sunt legate între ele: unul i-a dat celuilalt 1,15 mil. BSO și 0,1 ETH pe 22 februarie 2024, iar pe 17 august 2024 celălalt i-a trimis înapoi cei 5,8 ETH care îi rămăseseră."
         }
       },
       "holderD": {
-        "summary": "Trei portofele legate prin unul dintre ele.",
+        "summary": "Cinci portofele: două care și-au trimis unul altuia AVAX și ETH, un al treilea pe care l-au alimentat amândouă și încă două pe care le-a pregătit al treilea.",
         "evidence": {
-          "sharedRecipient": "Portofelul din mijloc a primit un transfer de test și apoi 703.000 BSO de la primul pe 18 noiembrie 2022, și 1,15 mil. BSO de la al treilea pe 1 decembrie 2022. Ar putea fi și un singur cumpărător care plătește doi vânzători."
+          "sharedRecipient": "Al treilea portofel a primit un transfer de test și apoi 703.000 BSO de la primul pe 18 noiembrie 2022, și 1,16 mil. BSO de la al doilea pe 1 decembrie 2022. Tot AVAX-ul pe care l-a avut vreodată pentru gas a venit de la acestea două.",
+          "coinsBothWays": "Primele două portofele și-au trimis unul altuia monede pe ambele lanțuri timp de 20 de luni: 0,5 AVAX într-un sens și 0,49 înapoi nouă minute mai târziu pe 24 martie 2022, 73 AVAX pe 31 mai 2022, 0,09 ETH pe 11 martie 2023 și 2 ETH în sens invers pe 7 noiembrie 2023.",
+          "newWallets": "Al treilea portofel a pregătit apoi două portofele noi, de fiecare dată în același fel: AVAX pentru gas, un transfer de test, apoi 281.000 BSO, pe 24 noiembrie 2022 și la sfârșitul lui aprilie 2023. Niciunul dintre ele nu a trimis vreodată o tranzacție."
         }
       },
       "holderE": {
         "summary": "Două portofele alimentate din aceeași sursă.",
         "evidence": {
-          "commonSender": "Un portofel i-a trimis primului 5,54 mil. BSO în șapte transferuri între octombrie 2024 și ianuarie 2025, iar celui de-al doilea 281.000 pe 22 noiembrie 2025."
+          "commonSender": "Un portofel i-a trimis primului 5,53 mil. BSO în șapte transferuri între octombrie 2024 și ianuarie 2025, iar celui de-al doilea 287.000 pe 22 noiembrie 2025.",
+          "onlyEth": "Același portofel i-a trimis fiecăruia dintre ele singurul ETH pe care acesta l-a primit vreodată, în același minut cu primele sale tokenuri: 0,1 ETH și 0,12 ETH. Niciunul dintre cele două portofele nu a trimis vreodată o tranzacție."
         }
       },
       "holderF": {
-        "summary": "Un portofel care și-a împărțit tokenurile în trei portofele noi și le-a plătit taxele de gas.",
+        "summary": "Un portofel care și-a împărțit tokenurile și 4 ETH în trei portofele noi.",
         "evidence": {
-          "split": "Pe 10 martie 2024, în șapte minute, un portofel a trimis sume rotunde de PLEB, cum se numea atunci BSO (12 mld., 8 mld. și 4 mld.), către trei portofele noi și, în aceeași zi, a trimis la două dintre ele ETH pentru gas. Încă deține el însuși BSO."
+          "split": "Pe 10 martie 2024, în șapte minute, un portofel a trimis sume rotunde de PLEB, cum se numea atunci BSO (12 mld., 8 mld. și 4 mld.), către trei portofele noi. Încă deține el însuși BSO.",
+          "ethBothWays": "În aceleași minute le-a trimis celor trei portofele 4,05 ETH, între 1 și 2 ETH fiecăruia. Cel care a primit cel mai mult a trimis înapoi 1,5 ETH pe 24 iunie 2024; celelalte două nu au trimis niciodată o tranzacție."
         }
       },
       "holderG": {
-        "summary": "Două portofele finanțate de același expeditor, la trei ani distanță.",
+        "summary": "Două portofele finanțate de același expeditor la trei ani distanță și un al treilea în care unul dintre ele și-a mutat soldul.",
         "evidence": {
-          "commonSender": "Un portofel i-a trimis celui de-al doilea 661.000 BSO pe Avalanche în aprilie 2022, iar primului 843.000 pe Ethereum în ianuarie 2025."
+          "commonSender": "Un portofel i-a trimis celui de-al doilea 658.000 BSO pe Avalanche în aprilie 2022, iar primului 843.000 pe Ethereum în ianuarie 2025.",
+          "senderFunded": "Acel expeditor le-a trimis ambelor portofele și monede: celui de-al doilea i-a dat primul AVAX al acestuia și 17,4 AVAX în ziua următoare, iar primului i-a trimis cei 0,15 ETH care îi rămăseseră, la trei minute după tokenuri.",
+          "movedOn": "Pe 3 noiembrie 2026, al doilea portofel i-a trimis celui de-al treilea ETH pentru gas, un test de 100 BSO și apoi întregul său sold de 852.000 BSO."
         }
       },
       "holderH": {
-        "summary": "Două portofele cu un transfer între ele.",
+        "summary": "Două portofele, dintre care unul l-a finanțat pe celălalt.",
         "evidence": {
-          "directTransfer": "Primul portofel i-a trimis celui de-al doilea 59.000 BSO pe 24 aprilie 2022."
+          "directTransfer": "Pe 24 aprilie 2022, primul portofel i-a trimis celui de-al doilea primul AVAX al acestuia și, două minute mai târziu, 59.000 BSO.",
+          "funding": "Pe 8 mai 2022, primul portofel i-a trimis celui de-al doilea 23 AVAX în șase transferuri, iar al doilea a schimbat cea mai mare parte în BSO la câteva minute după fiecare."
         }
       },
       "holderI": {
-        "summary": "Două portofele cu transferuri repetate între ele.",
+        "summary": "Două portofele care și-au trimis unul altuia ETH înainte ca unul să își mute întregul sold în celălalt.",
         "evidence": {
-          "directTransfers": "Al doilea portofel i-a trimis primului 1,86 mil. BSO pe 30 octombrie 2023 și 703.000 pe 8 noiembrie 2023."
+          "directTransfers": "Al doilea portofel i-a trimis apoi primului tot ce deținea: 1,85 mil. BSO pe 30 octombrie 2023 și 703.000 pe 8 noiembrie 2023.",
+          "ethBothWays": "Al doilea portofel i-a trimis primului 0,77 ETH pe 16 decembrie 2022, iar primul a trimis înapoi 0,02 ETH în ziua următoare."
+        }
+      },
+      "holderJ": {
+        "summary": "Două portofele care și-au trimis AVAX unul altuia, în ambele sensuri, timp de peste un an.",
+        "evidence": {
+          "coinsBothWays": "Primul portofel i-a trimis celui de-al doilea primul AVAX al acestuia pe 7 mai 2021 și primul ETH al acestuia în august același an. Până în iulie 2022, primul trimisese 331 AVAX în douăsprezece transferuri, iar al doilea trimisese înapoi 15 AVAX în două.",
+          "sameEveningLocks": "Ambele au cumpărat BSO pe Trader Joe, iar pe 28 aprilie 2022 ambele au blocat BSO în același contract de blocare, la mai puțin de o jumătate de oră unul de altul."
+        }
+      },
+      "holderK": {
+        "summary": "Două portofele finanțate de același portofel privat.",
+        "evidence": {
+          "sharedFunder": "Un portofel privat le-a finanțat pe amândouă. Primului i-a trimis primul AVAX al acestuia în octombrie 2021, 194 AVAX în 21 de transferuri până la sfârșitul lui 2023 și 3,49 mil. BSO în două transferuri. Celui de-al doilea i-a trimis primul AVAX al acestuia pe 14 februarie 2022 și 23 AVAX în șase transferuri până în aprilie același an. Ambele au trimis înapoi sume mici de AVAX.",
+          "sharedRecipient": "Ambele au finanțat și același portofel nou: al doilea i-a trimis primii 5,1 AVAX ai acestuia pe 17 februarie 2022, iar primul i-a trimis 38,3 AVAX trei zile mai târziu."
+        }
+      },
+      "holderL": {
+        "summary": "Două portofele finanțate din același portofel privat, unul dintre ele printr-un portofel intermediar.",
+        "evidence": {
+          "funderChain": "Un portofel privat i-a trimis celui de-al doilea primul AVAX al acestuia pe 12 februarie 2022. Șase zile mai târziu și-a mutat propriii 597.000 BSO și AVAX-ul rămas într-un portofel nou, care a trimis mai departe cei 597.000 BSO către primul portofel pe 22 februarie, împreună cu primul AVAX al acelui portofel.",
+          "directTransfer": "Al doilea portofel i-a trimis primului 0,005 AVAX pe 27 februarie 2022."
         }
       }
     },
@@ -584,14 +615,14 @@
       "howTitle": "Cum au fost legate portofelele",
       "how": {
         "transfers": "Fiecare transfer între două portofele obișnuite, pe toate cele trei contracte, pe Avalanche și Ethereum, a fost urmărit, lăsând deoparte exchange-urile, routerele, pool-urile și alte contracte. Multisig-urile Safe au fost legate de proprietarii lor.",
-        "funders": "A fost comparat primul portofel care i-a trimis AVAX sau ETH fiecărui deținător mare. Exchange-urile finanțează mii de portofele, așa că doar finanțatorii privați contează ca legătură.",
+        "funders": "A fost urmărit și fiecare transfer de AVAX și ETH către sau dinspre un portofel care deține cel puțin 0,01% din ofertă, inclusiv cine i-a trimis prima dată monede fiecărui portofel. Exchange-urile și serviciile de swap finanțează mii de portofele, așa că doar portofelele private contează ca legătură.",
         "pattern": "Pentru portofelele fără legătură directă, comportamentul de cumpărare a fost comparat cu al fiecărui cumpărător din aceeași perioadă.",
         "migrations": "Soldurile au fost urmărite prin ambele migrări la 7.114,6 PLEB per BSO, aceeași rată pe care această pagină o folosește pentru a afișa în BSO sumele mai vechi."
       },
       "limitsTitle": "Limite",
       "limits": {
         "exchangeOnly": "Un deținător care își finanțează fiecare portofel printr-un exchange și nu mută niciodată tokenuri între ele nu lasă nicio legătură on-chain. Unele grupuri ar putea încă să ascundă mai multe portofele.",
-        "sales": "Un transfer între două portofele poate fi o vânzare sau un cadou. Grupurile marcate Posibil se bazează pe o singură legătură de acest fel.",
+        "sales": "Un transfer între două portofele poate fi o vânzare sau un cadou, așa că niciun grup nu se bazează pe un singur transfer. Unele portofele au primit doar tokenuri și monede de la grupul lor și nu au trimis niciodată nimic; și acestea ar putea fi cadouri.",
         "contracts": "Tokenurile deținute de alte contracte decât pool-ul Uniswap și Safe-ul sunt listate ca atare.",
         "snapshot": "Soldurile și prețul se reîmprospătează din lanț la fiecare cinci minute cât timp această pagină este deschisă. Legăturile dintre portofele sunt cercetate manual și nu se actualizează singure.",
         "history": "Liniile din Istoric urmăresc ce a deținut fiecare portofel, pentru portofelele cu cel puțin 0,01% din ofertă și pentru fiecare portofel al unui deținător cunoscut. Tokenurile dintr-un pool de lichiditate, dintr-o fermă sau dintr-un flux de vesting ies din linie, iar migrările au reemis o parte dintre ele proprietarilor lor, așa că unele linii fac un salt în acele zile."

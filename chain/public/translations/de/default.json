@@ -387,12 +387,12 @@
         "name": "Uniswap-Pool BSO/ETH"
       },
       "holderA": {
-        "summary": "Zwölf Wallets, die zwischen dem 22. Februar und dem 8. April 2022 auf Avalanche eingestiegen sind und nie verkauft haben. Fünf sind on-chain miteinander verbunden; die anderen sieben passen zum Muster desselben Käufers.",
+        "summary": "Fünfzehn Wallets, die zwischen Februar 2022 und Mai 2023 auf Avalanche eingestiegen sind und nie verkauft haben. Fünf sind on-chain miteinander verbunden; die anderen zehn passen zum Muster desselben Käufers.",
         "evidence": {
           "transfersToLpWallet": "Zwei der kaufenden Wallets schickten Tokens und AVAX an eine dritte Wallet, die damit Liquidität und Farming auf Trader Joe betrieb: 141.000 BSO und 5 AVAX am 27. Februar 2022, dann 1,01 Mio. BSO und 34 AVAX zwischen dem 28. Februar und dem 2. März. Die dritte Wallet schickte 0,013 AVAX zurück.",
           "sharedFunder": "Eine private Wallet finanzierte drei der kaufenden Wallets und sonst nichts. Jede Transaktion, die sie je gesendet hat, ging an diese drei, der Reihe nach: Nonces 0 bis 4 an die erste, 5 bis 7 an die zweite, 8 an die dritte.",
-          "buyingPattern": "Sieben weitere Wallets waren jeweils neu, wurden mit einer oder zwei Börsenauszahlungen von etwa 2.000 bis 3.400 $ über Binance oder ChangeNOW finanziert (dieselben Dienste, die auch die verknüpften Wallets nutzten), vollständig in den Token getauscht und danach nie wieder genutzt. Sie kauften zwischen dem 28. Februar und dem 31. März 2022 eine nach der anderen, ohne sich je zeitlich mit den verknüpften Wallets zu überschneiden. Von allen 292 Käufern zwischen Februar und April 2022 passt keine andere Wallet zu diesem Muster.",
-          "neverSold": "Keine der zwölf Wallets hat ihre Tokens seitdem verkauft oder bewegt. Ihre Guthaben haben beide Migrationen unverändert überstanden."
+          "buyingPattern": "Zehn weitere Wallets waren jeweils neu, wurden mit einer oder zwei Börsenauszahlungen von etwa 2.000 bis 3.400 $ über Binance oder ChangeNOW finanziert (dieselben Dienste, die auch die verknüpften Wallets nutzten), vollständig in den Token getauscht und danach nie wieder genutzt. Sieben kauften zwischen dem 28. Februar und dem 31. März 2022 eine nach der anderen, ohne sich je zeitlich mit den verknüpften Wallets zu überschneiden. Drei weitere taten dasselbe am 12. April und am 25. Juni 2022 sowie am 6. Mai 2023. Unter den heutigen Haltern mit mindestens 0,01% der Gesamtmenge wurden 21 Wallets ausschließlich zum Kaufen auf Avalanche genutzt, in vier oder weniger Transaktionen: diese zehn, zwei der verknüpften Wallets und neun weitere, die jeweils weniger als 410 $ ausgaben.",
+          "neverSold": "Keine der fünfzehn Wallets hat ihre Tokens seitdem verkauft oder bewegt. Ihre Guthaben haben beide Migrationen unverändert überstanden."
         }
       },
       "holderB": {
@@ -401,49 +401,80 @@
           "owners": "Für den Safe müssen 2 seiner 4 Owner signieren. Ein Owner hält BSO auch direkt. Vier Owner können eine Person mit mehreren Schlüsseln sein oder eine kleine Gruppe.",
           "consolidation": "Am 1. Juni 2024 erhielt der Safe zwischen 16:08 und 17:51 UTC 16,9 Mio. BSO von 14 Wallets. Der erste Transfer war ein Test über 10 Tokens, den der Safe sofort zurückschickte.",
           "vesting": "Am 12. August 2024 verschob der Safe 8,5 Mio. BSO in einen Sablier-Vesting-Stream. Die Migration 2026 schrieb diesen Stream wieder dem Safe gut, deshalb erhielt der Safe zwei Migrationstransfers.",
-          "commonSender": "Dieselbe Wallet schickte BSO sowohl an den Safe-Owner (1,93 Mio. am 8. März 2024) als auch an den Safe (211.000 am 1. Juni 2024)."
+          "commonSender": "Dieselbe Wallet schickte BSO sowohl an den Safe-Owner (1,93 Mio. am 8. März 2024) als auch an den Safe (214.000 am 1. Juni 2024)."
         }
       },
       "holderC": {
-        "summary": "Zwei Wallets, die BSO vom selben Absender erhalten haben.",
+        "summary": "Zwei Wallets, die vom selben Paar kaufender Wallets gefüllt wurden.",
         "evidence": {
-          "commonSender": "Eine Wallet schickte 661.000 BSO am 19. August 2024 an die erste und 2,16 Mio. am 14. November 2025 an die zweite. Ein gemeinsamer Absender kann auch ein Verkäufer sein, der zwei Käufer bedient."
+          "commonSender": "Eine kaufende Wallet schickte der ersten 664.000 BSO am 19. August 2024. Am 14. November 2025 schickte sie der zweiten einen Test über 7.000 BSO, 0,1 ETH und dann 2,17 Mio. BSO. Das ist das einzige ETH, das die zweite Wallet je erhalten hat, und sie hat nie eine Transaktion gesendet.",
+          "secondSender": "Eine zweite kaufende Wallet schickte der ersten zwischen Mai und August 2024 in acht Transfers deren übrige 7,3 Mio. BSO, zusammen mit deren erstem ETH, und bekam von ihr 4,35 ETH zurück.",
+          "sendersLinked": "Die beiden kaufenden Wallets sind miteinander verbunden: Die eine übergab der anderen 1,15 Mio. BSO und 0,1 ETH am 22. Februar 2024, und die andere schickte ihre verbleibenden 5,8 ETH am 17. August 2024 zurück."
         }
       },
       "holderD": {
-        "summary": "Drei Wallets, verbunden über eine von ihnen.",
+        "summary": "Fünf Wallets: zwei, die einander AVAX und ETH schickten, eine dritte, die von beiden gefüllt wurde, und zwei weitere, die die dritte eingerichtet hat.",
         "evidence": {
-          "sharedRecipient": "Die mittlere Wallet erhielt am 18. November 2022 von der ersten einen Testtransfer und dann 703.000 BSO, und am 1. Dezember 2022 von der dritten 1,15 Mio. BSO. Es könnte auch ein Käufer sein, der zwei Verkäufer bezahlt."
+          "sharedRecipient": "Die dritte Wallet erhielt am 18. November 2022 von der ersten einen Testtransfer und dann 703.000 BSO, und am 1. Dezember 2022 von der zweiten 1,16 Mio. BSO. Alles AVAX, das sie je für Gas hatte, kam von diesen beiden.",
+          "coinsBothWays": "Die ersten beiden Wallets schickten einander 20 Monate lang auf beiden Chains Coins: 0,5 AVAX in die eine Richtung und neun Minuten später 0,49 zurück am 24. März 2022, 73 AVAX am 31. Mai 2022, 0,09 ETH am 11. März 2023 und 2 ETH in die andere Richtung am 7. November 2023.",
+          "newWallets": "Die dritte Wallet richtete dann zwei neue Wallets ein, jedes Mal auf dieselbe Weise: AVAX für Gas, ein Testtransfer, dann 281.000 BSO, am 24. November 2022 und Ende April 2023. Keine der beiden hat je eine Transaktion gesendet."
         }
       },
       "holderE": {
         "summary": "Zwei Wallets, die aus derselben Quelle gefüllt wurden.",
         "evidence": {
-          "commonSender": "Eine Wallet schickte der ersten zwischen Oktober 2024 und Januar 2025 in sieben Transfers 5,54 Mio. BSO und der zweiten 281.000 am 22. November 2025."
+          "commonSender": "Eine Wallet schickte der ersten zwischen Oktober 2024 und Januar 2025 in sieben Transfers 5,53 Mio. BSO und der zweiten 287.000 am 22. November 2025.",
+          "onlyEth": "Dieselbe Wallet schickte jeder von ihnen das einzige ETH, das diese je erhalten hat, in derselben Minute wie ihre ersten Tokens: 0,1 ETH und 0,12 ETH. Keine der beiden Wallets hat je eine Transaktion gesendet."
         }
       },
       "holderF": {
-        "summary": "Eine Wallet, die ihre Tokens auf drei neue Wallets aufgeteilt und deren Gas bezahlt hat.",
+        "summary": "Eine Wallet, die ihre Tokens und 4 ETH auf drei neue Wallets aufgeteilt hat.",
         "evidence": {
-          "split": "Am 10. März 2024 schickte eine Wallet innerhalb von sieben Minuten runde Beträge an PLEB, wie BSO damals hieß (12 Mrd., 8 Mrd. und 4 Mrd.), an drei neue Wallets und schickte zwei davon am selben Tag ETH für Gas. Sie hält selbst noch BSO."
+          "split": "Am 10. März 2024 schickte eine Wallet innerhalb von sieben Minuten runde Beträge an PLEB, wie BSO damals hieß (12 Mrd., 8 Mrd. und 4 Mrd.), an drei neue Wallets. Sie hält selbst noch BSO.",
+          "ethBothWays": "In denselben Minuten schickte sie den drei Wallets 4,05 ETH, jeweils zwischen 1 und 2 ETH. Die Wallet, die am meisten bekam, schickte 1,5 ETH am 24. Juni 2024 zurück; die anderen beiden haben nie eine Transaktion gesendet."
         }
       },
       "holderG": {
-        "summary": "Zwei Wallets, finanziert vom selben Absender, im Abstand von drei Jahren.",
+        "summary": "Zwei Wallets, finanziert vom selben Absender im Abstand von drei Jahren, und eine dritte, auf die eine von ihnen ihr Guthaben verschoben hat.",
         "evidence": {
-          "commonSender": "Eine Wallet schickte der zweiten im April 2022 auf Avalanche 661.000 BSO und der ersten im Januar 2025 auf Ethereum 843.000."
+          "commonSender": "Eine Wallet schickte der zweiten im April 2022 auf Avalanche 658.000 BSO und der ersten im Januar 2025 auf Ethereum 843.000.",
+          "senderFunded": "Dieser Absender schickte beiden Wallets auch Coins: Er gab der zweiten deren erstes AVAX und am nächsten Tag 17,4 AVAX und schickte der ersten drei Minuten nach den Tokens seine restlichen 0,15 ETH.",
+          "movedOn": "Am 3. November 2026 schickte die zweite Wallet der dritten ETH für Gas, einen Test über 100 BSO und dann ihr gesamtes Guthaben von 852.000 BSO."
         }
       },
       "holderH": {
-        "summary": "Zwei Wallets mit einem Transfer zwischen ihnen.",
+        "summary": "Zwei Wallets, von denen eine die andere finanziert hat.",
         "evidence": {
-          "directTransfer": "Die erste Wallet schickte der zweiten 59.000 BSO am 24. April 2022."
+          "directTransfer": "Am 24. April 2022 schickte die erste Wallet der zweiten deren erstes AVAX und zwei Minuten später 59.000 BSO.",
+          "funding": "Am 8. Mai 2022 schickte die erste Wallet der zweiten 23 AVAX in sechs Transfers, und die zweite tauschte jeweils innerhalb von Minuten den Großteil davon in BSO."
         }
       },
       "holderI": {
-        "summary": "Zwei Wallets mit wiederholten Transfers zwischen ihnen.",
+        "summary": "Zwei Wallets, die einander ETH schickten, bevor eine ihr gesamtes Guthaben auf die andere verschob.",
         "evidence": {
-          "directTransfers": "Die zweite Wallet schickte der ersten 1,86 Mio. BSO am 30. Oktober 2023 und 703.000 am 8. November 2023."
+          "directTransfers": "Die zweite Wallet schickte der ersten dann alles, was sie hielt: 1,85 Mio. BSO am 30. Oktober 2023 und 703.000 am 8. November 2023.",
+          "ethBothWays": "Die zweite Wallet schickte der ersten 0,77 ETH am 16. Dezember 2022, und die erste schickte am nächsten Tag 0,02 ETH zurück."
+        }
+      },
+      "holderJ": {
+        "summary": "Zwei Wallets, die über ein Jahr lang AVAX hin- und herschickten.",
+        "evidence": {
+          "coinsBothWays": "Die erste Wallet schickte der zweiten deren erstes AVAX am 7. Mai 2021 und deren erstes ETH im August desselben Jahres. Bis Juli 2022 hatte sie 331 AVAX in zwölf Transfers geschickt, und die zweite hatte 15 AVAX in zwei Transfers zurückgeschickt.",
+          "sameEveningLocks": "Beide kauften BSO auf Trader Joe, und am 28. April 2022 sperrten beide innerhalb einer halben Stunde BSO im selben Locking-Contract."
+        }
+      },
+      "holderK": {
+        "summary": "Zwei Wallets, finanziert von derselben privaten Wallet.",
+        "evidence": {
+          "sharedFunder": "Eine private Wallet finanzierte beide. Sie schickte der ersten deren erstes AVAX im Oktober 2021, 194 AVAX in 21 Transfers bis Ende 2023 und 3,49 Mio. BSO in zwei Transfers. Sie schickte der zweiten deren erstes AVAX am 14. Februar 2022 und 23 AVAX in sechs Transfers bis April desselben Jahres. Beide schickten kleine Beträge AVAX zurück.",
+          "sharedRecipient": "Beide finanzierten außerdem dieselbe neue Wallet: Die zweite schickte ihr am 17. Februar 2022 deren erste 5,1 AVAX, und die erste schickte ihr drei Tage später 38,3 AVAX."
+        }
+      },
+      "holderL": {
+        "summary": "Zwei Wallets, finanziert aus derselben privaten Wallet, eine davon über eine Zwischen-Wallet.",
+        "evidence": {
+          "funderChain": "Eine private Wallet schickte der zweiten deren erstes AVAX am 12. Februar 2022. Sechs Tage später verschob sie ihre eigenen 597.000 BSO und ihr restliches AVAX auf eine neue Wallet, die die 597.000 BSO am 22. Februar an die erste Wallet weitergab, zusammen mit deren erstem AVAX.",
+          "directTransfer": "Die zweite Wallet schickte der ersten 0,005 AVAX am 27. Februar 2022."
         }
       }
     },
@@ -579,14 +610,14 @@
       "howTitle": "Wie Wallets verknüpft wurden",
       "how": {
         "transfers": "Jeder Transfer zwischen zwei gewöhnlichen Wallets über alle drei Contracts hinweg, auf Avalanche und Ethereum, wurde nachverfolgt, ohne Börsen, Router, Pools und andere Contracts. Safe-Multisigs wurden mit ihren Ownern verknüpft.",
-        "funders": "Verglichen wurde, welche Wallet jedem Top-Halter als erste AVAX oder ETH geschickt hat. Börsen finanzieren Tausende Wallets, daher zählen nur private Geldgeber als Verknüpfung.",
+        "funders": "Auch jeder AVAX- und ETH-Transfer an eine oder von einer Wallet mit mindestens 0,01% der Gesamtmenge wurde nachverfolgt, einschließlich der Frage, wer jeder Wallet zuerst Coins geschickt hat. Börsen und Tauschdienste finanzieren Tausende Wallets, daher zählen nur private Wallets als Verknüpfung.",
         "pattern": "Bei Wallets ohne direkte Verknüpfung wurde das Kaufverhalten mit allen Käufern desselben Zeitraums verglichen.",
         "migrations": "Die Guthaben wurden durch beide Migrationen hindurch verfolgt, zu 7.114,6 PLEB pro BSO, demselben Kurs, mit dem diese Seite ältere Beträge in BSO anzeigt."
       },
       "limitsTitle": "Grenzen",
       "limits": {
         "exchangeOnly": "Ein Halter, der jede Wallet über eine Börse finanziert und nie Tokens zwischen ihnen bewegt, hinterlässt keine On-Chain-Verknüpfung. Manche Gruppen könnten noch weitere Wallets verbergen.",
-        "sales": "Ein Transfer zwischen zwei Wallets kann ein Verkauf oder ein Geschenk sein. Als „Möglich“ markierte Gruppen beruhen auf einer einzigen solchen Verknüpfung.",
+        "sales": "Ein Transfer zwischen zwei Wallets kann ein Verkauf oder ein Geschenk sein, daher beruht keine Gruppe auf einem einzelnen Transfer. Manche Wallets haben Tokens und Coins immer nur von ihrer Gruppe erhalten und nie etwas gesendet; auch das könnten Geschenke sein.",
         "contracts": "Tokens in anderen Contracts als dem Uniswap-Pool und dem Safe werden so aufgeführt, wie sie sind.",
         "snapshot": "Guthaben und Preis werden alle fünf Minuten aus der Chain aktualisiert, solange diese Seite geöffnet ist. Die Verknüpfungen zwischen Wallets werden von Hand recherchiert und aktualisieren sich nicht von selbst.",
         "history": "Die Verlaufslinien zeigen, was jede Wallet gehalten hat, und zwar für Wallets mit mindestens 0,01% der Gesamtmenge sowie für jede Wallet eines bekannten Halters. Tokens in einem Liquiditätspool, einer Farm oder einem Vesting-Stream fallen aus der Linie heraus, und bei den Migrationen wurden einige davon an ihre Besitzer neu ausgegeben, sodass manche Linien an diesen Tagen springen."

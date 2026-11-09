@@ -382,12 +382,12 @@
         "name": "Pool BSO/ETH Uniswap"
       },
       "holderA": {
-        "summary": "Dua belas dompet yang membeli di Avalanche antara 22 Februari dan 8 April 2022, dan tidak pernah menjual. Lima di antaranya terhubung satu sama lain on-chain; tujuh lainnya cocok dengan pola pembeli yang sama.",
+        "summary": "Lima belas dompet yang membeli di Avalanche antara Februari 2022 dan Mei 2023 dan tidak pernah menjual. Lima di antaranya terhubung satu sama lain on-chain; sepuluh lainnya cocok dengan pola pembeli yang sama.",
         "evidence": {
           "transfersToLpWallet": "Dua dompet pembeli mengirim token dan AVAX ke dompet ketiga, yang menggunakannya untuk likuiditas dan farming di Trader Joe: 141 ribu BSO dan 5 AVAX pada 27 Februari 2022, lalu 1,01 juta BSO dan 34 AVAX antara 28 Februari dan 2 Maret. Dompet ketiga mengirim balik 0,013 AVAX.",
           "sharedFunder": "Satu dompet pribadi mendanai tiga dompet pembeli dan tidak ada yang lain. Setiap transaksi yang pernah dikirimnya ditujukan ke mereka, secara berurutan: nonce 0 sampai 4 ke yang pertama, 5 sampai 7 ke yang kedua, 8 ke yang ketiga.",
-          "buyingPattern": "Tujuh dompet lainnya masing-masing baru, didanai oleh satu atau dua penarikan dari exchange sekitar $2.000 hingga $3.400 melalui Binance atau ChangeNOW (layanan yang sama yang dipakai dompet-dompet tertaut), ditukar seluruhnya ke token tersebut, dan tidak pernah dipakai lagi. Mereka membeli satu per satu antara 28 Februari dan 31 Maret 2022, tanpa pernah tumpang tindih dengan dompet-dompet tertaut. Dari seluruh 292 pembeli dari Februari hingga April 2022, tidak ada dompet lain yang cocok dengan pola ini.",
-          "neverSold": "Tidak satu pun dari dua belas dompet itu yang menjual atau memindahkan tokennya sejak saat itu. Saldo mereka melewati kedua migrasi tanpa perubahan."
+          "buyingPattern": "Sepuluh dompet lainnya masing-masing baru, didanai oleh satu atau dua penarikan dari exchange sekitar $2.000 hingga $3.400 melalui Binance atau ChangeNOW (layanan yang sama yang dipakai dompet-dompet tertaut), ditukar seluruhnya ke token tersebut, dan tidak pernah dipakai lagi. Tujuh di antaranya membeli satu per satu antara 28 Februari dan 31 Maret 2022, tanpa pernah tumpang tindih dengan dompet-dompet tertaut. Tiga lainnya melakukan hal yang sama pada 12 April dan 25 Juni 2022 serta pada 6 Mei 2023. Di antara pemegang saat ini yang memiliki setidaknya 0,01% dari suplai, 21 dompet hanya dipakai untuk membeli di Avalanche, dalam empat transaksi atau kurang: sepuluh dompet ini, dua dari dompet-dompet tertaut, dan sembilan lainnya yang masing-masing membelanjakan kurang dari $410.",
+          "neverSold": "Tidak satu pun dari lima belas dompet itu yang menjual atau memindahkan tokennya sejak saat itu. Saldo mereka melewati kedua migrasi tanpa perubahan."
         }
       },
       "holderB": {
@@ -396,49 +396,80 @@
           "owners": "Safe ini membutuhkan tanda tangan 2 dari 4 pemiliknya. Salah satu pemilik juga memegang BSO secara langsung. Empat pemilik bisa berarti satu orang dengan beberapa kunci atau sekelompok kecil orang.",
           "consolidation": "Pada 1 Juni 2024, antara pukul 16:08 dan 17:51 UTC, Safe menerima 16,9 juta BSO dari 14 dompet. Transfer pertama adalah uji coba 10 token yang langsung dikirim balik oleh Safe.",
           "vesting": "Pada 12 Agustus 2024, Safe memindahkan 8,5 juta BSO ke stream vesting Sablier. Migrasi 2026 mengkreditkan stream itu kembali ke Safe, itulah sebabnya Safe menerima dua transfer migrasi.",
-          "commonSender": "Dompet yang sama mengirim BSO ke pemilik Safe (1,93 juta pada 8 Maret 2024) dan ke Safe itu sendiri (211 ribu pada 1 Juni 2024)."
+          "commonSender": "Dompet yang sama mengirim BSO ke pemilik Safe (1,93 juta pada 8 Maret 2024) dan ke Safe itu sendiri (214 ribu pada 1 Juni 2024)."
         }
       },
       "holderC": {
-        "summary": "Dua dompet yang menerima BSO dari pengirim yang sama.",
+        "summary": "Dua dompet yang diisi oleh pasangan dompet pembeli yang sama.",
         "evidence": {
-          "commonSender": "Satu dompet mengirim 661 ribu BSO ke dompet pertama pada 19 Agustus 2024 dan 2,16 juta ke dompet kedua pada 14 November 2025. Pengirim yang sama bisa juga berarti satu penjual yang melayani dua pembeli."
+          "commonSender": "Satu dompet pembeli mengirim 664 ribu BSO ke dompet pertama pada 19 Agustus 2024. Pada 14 November 2025, dompet itu mengirim uji coba 7 ribu BSO, 0,1 ETH, lalu 2,17 juta BSO ke dompet kedua. Itu satu-satunya ETH yang pernah diterima dompet kedua, dan dompet kedua tidak pernah mengirim transaksi.",
+          "secondSender": "Dompet pembeli kedua mengirim 7,3 juta BSO lainnya ke dompet pertama dalam delapan transfer antara Mei dan Agustus 2024, beserta ETH pertama dompet itu, dan menerima 4,35 ETH kembali darinya.",
+          "sendersLinked": "Kedua dompet pembeli itu terhubung satu sama lain: yang satu menyerahkan 1,15 juta BSO dan 0,1 ETH kepada yang lain pada 22 Februari 2024, dan yang lain mengirim balik sisa 5,8 ETH miliknya pada 17 Agustus 2024."
         }
       },
       "holderD": {
-        "summary": "Tiga dompet yang terhubung melalui salah satunya.",
+        "summary": "Lima dompet: dua yang saling mengirim AVAX dan ETH, dompet ketiga yang diisi oleh keduanya, dan dua lagi yang disiapkan oleh dompet ketiga.",
         "evidence": {
-          "sharedRecipient": "Dompet tengah menerima transfer uji coba lalu 703 ribu BSO dari dompet pertama pada 18 November 2022, dan 1,15 juta BSO dari dompet ketiga pada 1 Desember 2022. Bisa juga ini satu pembeli yang membayar dua penjual."
+          "sharedRecipient": "Dompet ketiga menerima transfer uji coba lalu 703 ribu BSO dari dompet pertama pada 18 November 2022, dan 1,16 juta BSO dari dompet kedua pada 1 Desember 2022. Semua AVAX untuk gas yang pernah dimilikinya berasal dari kedua dompet itu.",
+          "coinsBothWays": "Dua dompet pertama saling mengirim koin di kedua chain selama 20 bulan: 0,5 AVAX ke satu arah dan 0,49 kembali sembilan menit kemudian pada 24 Maret 2022, 73 AVAX pada 31 Mei 2022, 0,09 ETH pada 11 Maret 2023, dan 2 ETH ke arah sebaliknya pada 7 November 2023.",
+          "newWallets": "Dompet ketiga kemudian menyiapkan dua dompet baru dengan cara yang sama setiap kali: AVAX untuk gas, transfer uji coba, lalu 281 ribu BSO, pada 24 November 2022 dan pada akhir April 2023. Tidak satu pun dari keduanya pernah mengirim transaksi."
         }
       },
       "holderE": {
         "summary": "Dua dompet yang diisi dari sumber yang sama.",
         "evidence": {
-          "commonSender": "Satu dompet mengirim 5,54 juta BSO ke dompet pertama dalam tujuh transfer antara Oktober 2024 dan Januari 2025, dan 281 ribu ke dompet kedua pada 22 November 2025."
+          "commonSender": "Satu dompet mengirim 5,53 juta BSO ke dompet pertama dalam tujuh transfer antara Oktober 2024 dan Januari 2025, dan 287 ribu ke dompet kedua pada 22 November 2025.",
+          "onlyEth": "Dompet yang sama mengirimi masing-masing satu-satunya ETH yang pernah diterimanya, pada menit yang sama dengan token pertamanya: 0,1 ETH dan 0,12 ETH. Tidak satu pun dari kedua dompet itu pernah mengirim transaksi."
         }
       },
       "holderF": {
-        "summary": "Satu dompet yang membagi tokennya ke tiga dompet baru dan membayar gas mereka.",
+        "summary": "Satu dompet yang membagi tokennya dan 4 ETH ke tiga dompet baru.",
         "evidence": {
-          "split": "Pada 10 Maret 2024, dalam tujuh menit, satu dompet mengirim PLEB, nama BSO saat itu, dalam jumlah bulat (12 miliar, 8 miliar, dan 4 miliar) ke tiga dompet baru dan pada hari yang sama mengirim ETH untuk gas ke dua di antaranya. Dompet itu sendiri masih memegang BSO."
+          "split": "Pada 10 Maret 2024, dalam tujuh menit, satu dompet mengirim PLEB, nama BSO saat itu, dalam jumlah bulat (12 miliar, 8 miliar, dan 4 miliar) ke tiga dompet baru. Dompet itu sendiri masih memegang BSO.",
+          "ethBothWays": "Pada menit-menit yang sama, dompet itu mengirim 4,05 ETH ke ketiga dompet tersebut, masing-masing antara 1 dan 2 ETH. Dompet yang menerima paling banyak mengirim balik 1,5 ETH pada 24 Juni 2024; dua lainnya tidak pernah mengirim transaksi."
         }
       },
       "holderG": {
-        "summary": "Dua dompet yang didanai oleh pengirim yang sama, dengan selang tiga tahun.",
+        "summary": "Dua dompet yang didanai oleh pengirim yang sama dengan selang tiga tahun, dan dompet ketiga tempat salah satunya memindahkan saldonya.",
         "evidence": {
-          "commonSender": "Satu dompet mengirim 661 ribu BSO di Avalanche ke dompet kedua pada April 2022 dan 843 ribu di Ethereum ke dompet pertama pada Januari 2025."
+          "commonSender": "Satu dompet mengirim 658 ribu BSO di Avalanche ke dompet kedua pada April 2022 dan 843 ribu di Ethereum ke dompet pertama pada Januari 2025.",
+          "senderFunded": "Pengirim itu juga mengirim koin ke kedua dompet: ia memberi dompet kedua AVAX pertamanya dan 17,4 AVAX keesokan harinya, serta mengirim sisa 0,15 ETH miliknya ke dompet pertama tiga menit setelah token.",
+          "movedOn": "Pada 3 November 2026, dompet kedua mengirim ETH untuk gas, uji coba 100 BSO, lalu seluruh saldonya sebesar 852 ribu BSO ke dompet ketiga."
         }
       },
       "holderH": {
-        "summary": "Dua dompet dengan satu transfer di antara mereka.",
+        "summary": "Dua dompet, salah satunya mendanai yang lain.",
         "evidence": {
-          "directTransfer": "Dompet pertama mengirim 59 ribu BSO ke dompet kedua pada 24 April 2022."
+          "directTransfer": "Pada 24 April 2022, dompet pertama mengirimi dompet kedua AVAX pertamanya dan, dua menit kemudian, 59 ribu BSO.",
+          "funding": "Pada 8 Mei 2022, dompet pertama mengirim 23 AVAX ke dompet kedua dalam enam transfer, dan dompet kedua menukar sebagian besarnya ke BSO dalam hitungan menit setelah setiap transfer."
         }
       },
       "holderI": {
-        "summary": "Dua dompet dengan transfer berulang di antara mereka.",
+        "summary": "Dua dompet yang saling mengirim ETH sebelum salah satunya memindahkan seluruh saldonya ke yang lain.",
         "evidence": {
-          "directTransfers": "Dompet kedua mengirim 1,86 juta BSO ke dompet pertama pada 30 Oktober 2023 dan 703 ribu pada 8 November 2023."
+          "directTransfers": "Dompet kedua kemudian mengirim semua yang dipegangnya ke dompet pertama: 1,85 juta BSO pada 30 Oktober 2023 dan 703 ribu pada 8 November 2023.",
+          "ethBothWays": "Dompet kedua mengirim 0,77 ETH ke dompet pertama pada 16 Desember 2022, dan dompet pertama mengirim balik 0,02 ETH keesokan harinya."
+        }
+      },
+      "holderJ": {
+        "summary": "Dua dompet yang saling mengirim AVAX bolak-balik selama lebih dari setahun.",
+        "evidence": {
+          "coinsBothWays": "Dompet pertama mengirimi dompet kedua AVAX pertamanya pada 7 Mei 2021 dan ETH pertamanya pada Agustus tahun itu. Hingga Juli 2022, dompet pertama telah mengirim 331 AVAX dalam dua belas transfer, dan dompet kedua telah mengirim balik 15 AVAX dalam dua transfer.",
+          "sameEveningLocks": "Keduanya membeli BSO di Trader Joe, dan pada 28 April 2022 keduanya mengunci BSO di kontrak penguncian yang sama dalam selang setengah jam satu sama lain."
+        }
+      },
+      "holderK": {
+        "summary": "Dua dompet yang didanai oleh dompet pribadi yang sama.",
+        "evidence": {
+          "sharedFunder": "Satu dompet pribadi mendanai keduanya. Dompet itu mengirimi dompet pertama AVAX pertamanya pada Oktober 2021, 194 AVAX dalam 21 transfer hingga akhir 2023, dan 3,49 juta BSO dalam dua transfer. Dompet itu mengirimi dompet kedua AVAX pertamanya pada 14 Februari 2022 dan 23 AVAX dalam enam transfer hingga April tahun itu. Keduanya mengirim balik AVAX dalam jumlah kecil.",
+          "sharedRecipient": "Keduanya juga mendanai dompet baru yang sama: dompet kedua mengirimi dompet baru itu 5,1 AVAX pertamanya pada 17 Februari 2022, dan dompet pertama mengirim 38,3 AVAX kepadanya tiga hari kemudian."
+        }
+      },
+      "holderL": {
+        "summary": "Dua dompet yang didanai dari dompet pribadi yang sama, salah satunya melalui dompet perantara.",
+        "evidence": {
+          "funderChain": "Satu dompet pribadi mengirimi dompet kedua AVAX pertamanya pada 12 Februari 2022. Enam hari kemudian, dompet pribadi itu memindahkan 597 ribu BSO miliknya sendiri dan sisa AVAX-nya ke dompet baru, yang meneruskan 597 ribu BSO itu ke dompet pertama pada 22 Februari, beserta AVAX pertama dompet tersebut.",
+          "directTransfer": "Dompet kedua mengirim 0,005 AVAX ke dompet pertama pada 27 Februari 2022."
         }
       }
     },
@@ -574,14 +605,14 @@
       "howTitle": "Bagaimana dompet ditautkan",
       "how": {
         "transfers": "Setiap transfer antara dua dompet biasa di ketiga kontrak, di Avalanche dan Ethereum, ditelusuri, tidak termasuk exchange, router, pool, dan kontrak lainnya. Multisig Safe ditautkan ke pemiliknya.",
-        "funders": "Untuk setiap pemegang besar, dompet pertama yang mengirim AVAX atau ETH kepadanya dibandingkan. Exchange mendanai ribuan dompet, jadi hanya penyandang dana pribadi yang dihitung sebagai tautan.",
+        "funders": "Setiap transfer AVAX dan ETH ke atau dari dompet yang memegang setidaknya 0,01% dari suplai juga ditelusuri, termasuk siapa yang pertama kali mengirim koin ke setiap dompet. Exchange dan layanan swap mendanai ribuan dompet, jadi hanya dompet pribadi yang dihitung sebagai tautan.",
         "pattern": "Untuk dompet tanpa tautan langsung, perilaku pembelian dibandingkan dengan setiap pembeli pada periode yang sama.",
         "migrations": "Saldo diikuti melalui kedua migrasi dengan rasio 7.114,6 PLEB per BSO, rasio yang sama dengan yang digunakan halaman ini untuk menampilkan jumlah lama dalam BSO."
       },
       "limitsTitle": "Batasan",
       "limits": {
         "exchangeOnly": "Pemegang yang mendanai setiap dompet melalui exchange dan tidak pernah memindahkan token di antara dompet-dompet itu tidak meninggalkan tautan on-chain. Beberapa kelompok mungkin masih menyembunyikan dompet lain.",
-        "sales": "Transfer antara dua dompet bisa berupa penjualan atau hadiah. Kelompok yang ditandai Mungkin bertumpu pada satu tautan seperti itu.",
+        "sales": "Transfer antara dua dompet bisa berupa penjualan atau hadiah, jadi tidak ada kelompok yang bertumpu pada satu transfer saja. Beberapa dompet hanya pernah menerima token dan koin dari kelompoknya dan tidak pernah mengirim apa pun; itu pun bisa berupa hadiah.",
         "contracts": "Token yang dipegang kontrak selain pool Uniswap dan Safe dicantumkan apa adanya.",
         "snapshot": "Saldo dan harga diperbarui dari chain setiap lima menit selama halaman ini terbuka. Tautan antardompet diteliti secara manual dan tidak diperbarui dengan sendirinya.",
         "history": "Garis riwayat mengikuti jumlah yang dipegang setiap dompet, untuk dompet dengan setidaknya 0,01% dari suplai dan setiap dompet milik pemegang yang dikenal. Token di pool likuiditas, farm, atau stream vesting keluar dari garis, dan kedua migrasi menerbitkan ulang sebagian di antaranya kepada pemiliknya, sehingga beberapa garis melonjak pada hari-hari itu."

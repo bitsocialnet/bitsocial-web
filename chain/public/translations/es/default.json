@@ -392,12 +392,12 @@
         "name": "Pool BSO/ETH de Uniswap"
       },
       "holderA": {
-        "summary": "Doce billeteras que compraron en Avalanche entre el 22 de febrero y el 8 de abril de 2022 y nunca han vendido. Cinco están conectadas entre sí on-chain; las otras siete encajan con el patrón del mismo comprador.",
+        "summary": "Quince billeteras que compraron en Avalanche entre febrero de 2022 y mayo de 2023 y nunca han vendido. Cinco están conectadas entre sí on-chain; las otras diez encajan con el patrón del mismo comprador.",
         "evidence": {
           "transfersToLpWallet": "Dos de las billeteras compradoras enviaron tokens y AVAX a una tercera billetera, que los usó para aportar liquidez y hacer farming en Trader Joe: 141.000 BSO y 5 AVAX el 27 de febrero de 2022, y luego 1,01 millones de BSO y 34 AVAX entre el 28 de febrero y el 2 de marzo. La tercera billetera devolvió 0,013 AVAX.",
           "sharedFunder": "Una billetera privada financió a tres de las billeteras compradoras y a nada más. Todas las transacciones que ha enviado fueron a ellas, en orden: nonces 0 a 4 a la primera, 5 a 7 a la segunda y 8 a la tercera.",
-          "buyingPattern": "Otras siete billeteras eran nuevas, se financiaron con uno o dos retiros de exchange de unos 2000 a 3400 dólares a través de Binance o ChangeNOW (los mismos servicios que usaron las billeteras vinculadas), se cambiaron por completo al token y nunca se volvieron a usar. Compraron una tras otra entre el 28 de febrero y el 31 de marzo de 2022, sin coincidir nunca en el tiempo con las billeteras vinculadas. De los 292 compradores entre febrero y abril de 2022, ninguna otra billetera encaja con este patrón.",
-          "neverSold": "Ninguna de las doce billeteras ha vendido ni movido sus tokens desde entonces. Sus saldos pasaron por ambas migraciones sin cambios."
+          "buyingPattern": "Otras diez billeteras eran nuevas, se financiaron con uno o dos retiros de exchange de unos 2000 a 3400 dólares a través de Binance o ChangeNOW (los mismos servicios que usaron las billeteras vinculadas), se cambiaron por completo al token y nunca se volvieron a usar. Siete compraron una tras otra entre el 28 de febrero y el 31 de marzo de 2022, sin coincidir nunca en el tiempo con las billeteras vinculadas. Otras tres hicieron lo mismo el 12 de abril y el 25 de junio de 2022 y el 6 de mayo de 2023. Entre los poseedores actuales con al menos un 0,01% del suministro, 21 billeteras solo se han usado para comprar en Avalanche, en cuatro transacciones o menos: estas diez, dos de las billeteras vinculadas y otras nueve que gastaron menos de 410 dólares cada una.",
+          "neverSold": "Ninguna de las quince billeteras ha vendido ni movido sus tokens desde entonces. Sus saldos pasaron por ambas migraciones sin cambios."
         }
       },
       "holderB": {
@@ -406,49 +406,80 @@
           "owners": "El Safe necesita la firma de 2 de sus 4 propietarios. Un propietario también tiene BSO directamente. Cuatro propietarios pueden ser una persona con varias claves o un grupo pequeño.",
           "consolidation": "El 1 de junio de 2024, entre las 16:08 y las 17:51 UTC, el Safe recibió 16,9 millones de BSO de 14 billeteras. La primera transferencia fue una prueba de 10 tokens que el Safe devolvió de inmediato.",
           "vesting": "El 12 de agosto de 2024, el Safe movió 8,5 millones de BSO a un stream de vesting de Sablier. La migración de 2026 acreditó ese stream de vuelta al Safe, por eso el Safe recibió dos transferencias de migración.",
-          "commonSender": "La misma billetera envió BSO tanto al propietario del Safe (1,93 millones el 8 de marzo de 2024) como al Safe (211.000 el 1 de junio de 2024)."
+          "commonSender": "La misma billetera envió BSO tanto al propietario del Safe (1,93 millones el 8 de marzo de 2024) como al Safe (214.000 el 1 de junio de 2024)."
         }
       },
       "holderC": {
-        "summary": "Dos billeteras que recibieron BSO del mismo remitente.",
+        "summary": "Dos billeteras abastecidas por el mismo par de billeteras compradoras.",
         "evidence": {
-          "commonSender": "Una billetera envió 661.000 BSO a la primera el 19 de agosto de 2024 y 2,16 millones a la segunda el 14 de noviembre de 2025. Un remitente común también puede ser un vendedor que atiende a dos compradores."
+          "commonSender": "Una billetera compradora envió a la primera 664.000 BSO el 19 de agosto de 2024. El 14 de noviembre de 2025 envió a la segunda una prueba de 7000 BSO, 0,1 ETH y luego 2,17 millones de BSO. Ese es el único ETH que ha recibido la segunda billetera, que nunca ha enviado una transacción.",
+          "secondSender": "Una segunda billetera compradora envió a la primera sus otros 7,3 millones de BSO en ocho transferencias entre mayo y agosto de 2024, junto con su primer ETH, y recibió de ella 4,35 ETH de vuelta.",
+          "sendersLinked": "Las dos billeteras compradoras están conectadas entre sí: una entregó a la otra 1,15 millones de BSO y 0,1 ETH el 22 de febrero de 2024, y la otra le devolvió los 5,8 ETH que le quedaban el 17 de agosto de 2024."
         }
       },
       "holderD": {
-        "summary": "Tres billeteras unidas a través de una de ellas.",
+        "summary": "Cinco billeteras: dos que se enviaron AVAX y ETH entre sí, una tercera que ambas abastecieron y otras dos que la tercera preparó.",
         "evidence": {
-          "sharedRecipient": "La billetera del medio recibió una transferencia de prueba y luego 703.000 BSO de la primera el 18 de noviembre de 2022, y 1,15 millones de BSO de la tercera el 1 de diciembre de 2022. También podría ser un comprador que paga a dos vendedores."
+          "sharedRecipient": "La tercera billetera recibió una transferencia de prueba y luego 703.000 BSO de la primera el 18 de noviembre de 2022, y 1,16 millones de BSO de la segunda el 1 de diciembre de 2022. Todo el AVAX que ha tenido para el gas vino de esas dos.",
+          "coinsBothWays": "Las dos primeras billeteras se enviaron monedas entre sí en ambas cadenas durante 20 meses: 0,5 AVAX en un sentido y 0,49 de vuelta nueve minutos después el 24 de marzo de 2022, 73 AVAX el 31 de mayo de 2022, 0,09 ETH el 11 de marzo de 2023 y 2 ETH en el otro sentido el 7 de noviembre de 2023.",
+          "newWallets": "Después, la tercera billetera preparó dos billeteras nuevas de la misma manera cada vez: AVAX para el gas, una transferencia de prueba y luego 281.000 BSO, el 24 de noviembre de 2022 y a finales de abril de 2023. Ninguna de las dos ha enviado nunca una transacción."
         }
       },
       "holderE": {
         "summary": "Dos billeteras abastecidas desde la misma fuente.",
         "evidence": {
-          "commonSender": "Una billetera envió a la primera 5,54 millones de BSO en siete transferencias entre octubre de 2024 y enero de 2025, y a la segunda 281.000 el 22 de noviembre de 2025."
+          "commonSender": "Una billetera envió a la primera 5,53 millones de BSO en siete transferencias entre octubre de 2024 y enero de 2025, y a la segunda 287.000 el 22 de noviembre de 2025.",
+          "onlyEth": "La misma billetera envió a cada una de ellas el único ETH que esta ha recibido, en el mismo minuto que sus primeros tokens: 0,1 ETH y 0,12 ETH. Ninguna de las dos billeteras ha enviado nunca una transacción."
         }
       },
       "holderF": {
-        "summary": "Una billetera que repartió sus tokens entre tres billeteras nuevas y les pagó el gas.",
+        "summary": "Una billetera que repartió sus tokens y 4 ETH entre tres billeteras nuevas.",
         "evidence": {
-          "split": "El 10 de marzo de 2024, en siete minutos, una billetera envió cantidades redondas de PLEB, como se llamaba entonces BSO (12.000, 8000 y 4000 millones), a tres billeteras nuevas y ese mismo día envió ETH a dos de ellas para el gas. Todavía tiene BSO."
+          "split": "El 10 de marzo de 2024, en siete minutos, una billetera envió cantidades redondas de PLEB, como se llamaba entonces BSO (12.000, 8000 y 4000 millones), a tres billeteras nuevas. Todavía tiene BSO.",
+          "ethBothWays": "En esos mismos minutos envió a las tres billeteras 4,05 ETH, entre 1 y 2 ETH a cada una. La que más recibió devolvió 1,5 ETH el 24 de junio de 2024; las otras dos nunca han enviado una transacción."
         }
       },
       "holderG": {
-        "summary": "Dos billeteras financiadas por el mismo remitente, con tres años de diferencia.",
+        "summary": "Dos billeteras financiadas por el mismo remitente con tres años de diferencia, y una tercera a la que una de ellas movió su saldo.",
         "evidence": {
-          "commonSender": "Una billetera envió a la segunda 661.000 BSO en Avalanche, en abril de 2022, y a la primera 843.000 en Ethereum, en enero de 2025."
+          "commonSender": "Una billetera envió a la segunda 658.000 BSO en Avalanche, en abril de 2022, y a la primera 843.000 en Ethereum, en enero de 2025.",
+          "senderFunded": "Ese remitente también envió monedas a ambas billeteras: dio a la segunda su primer AVAX y 17,4 AVAX al día siguiente, y envió a la primera los 0,15 ETH que le sobraban tres minutos después de los tokens.",
+          "movedOn": "El 3 de noviembre de 2026, la segunda billetera envió a la tercera ETH para el gas, una prueba de 100 BSO y luego todo su saldo de 852.000 BSO."
         }
       },
       "holderH": {
-        "summary": "Dos billeteras con una transferencia entre ellas.",
+        "summary": "Dos billeteras, una de las cuales financió a la otra.",
         "evidence": {
-          "directTransfer": "La primera billetera envió a la segunda 59.000 BSO el 24 de abril de 2022."
+          "directTransfer": "El 24 de abril de 2022, la primera billetera envió a la segunda su primer AVAX y, dos minutos después, 59.000 BSO.",
+          "funding": "El 8 de mayo de 2022, la primera billetera envió a la segunda 23 AVAX en seis transferencias, y la segunda cambió la mayor parte a BSO a los pocos minutos de cada una."
         }
       },
       "holderI": {
-        "summary": "Dos billeteras con transferencias repetidas entre ellas.",
+        "summary": "Dos billeteras que se enviaron ETH entre sí antes de que una moviera todo su saldo a la otra.",
         "evidence": {
-          "directTransfers": "La segunda billetera envió a la primera 1,86 millones de BSO el 30 de octubre de 2023 y 703.000 el 8 de noviembre de 2023."
+          "directTransfers": "Después, la segunda billetera envió a la primera todo lo que tenía: 1,85 millones de BSO el 30 de octubre de 2023 y 703.000 el 8 de noviembre de 2023.",
+          "ethBothWays": "La segunda billetera envió a la primera 0,77 ETH el 16 de diciembre de 2022, y la primera devolvió 0,02 ETH al día siguiente."
+        }
+      },
+      "holderJ": {
+        "summary": "Dos billeteras que se enviaron AVAX de ida y vuelta durante más de un año.",
+        "evidence": {
+          "coinsBothWays": "La primera billetera envió a la segunda su primer AVAX el 7 de mayo de 2021 y su primer ETH ese agosto. Para julio de 2022 le había enviado 331 AVAX en doce transferencias, y la segunda había devuelto 15 AVAX en dos.",
+          "sameEveningLocks": "Ambas compraron BSO en Trader Joe, y el 28 de abril de 2022 ambas bloquearon BSO en el mismo contrato de bloqueo con menos de media hora de diferencia."
+        }
+      },
+      "holderK": {
+        "summary": "Dos billeteras financiadas por la misma billetera privada.",
+        "evidence": {
+          "sharedFunder": "Una billetera privada financió a ambas. Envió a la primera su primer AVAX en octubre de 2021, 194 AVAX en 21 transferencias hasta finales de 2023 y 3,49 millones de BSO en dos transferencias. Envió a la segunda su primer AVAX el 14 de febrero de 2022 y 23 AVAX en seis transferencias hasta ese abril. Ambas devolvieron pequeñas cantidades de AVAX.",
+          "sharedRecipient": "Ambas también financiaron la misma billetera nueva: la segunda le envió sus primeros 5,1 AVAX el 17 de febrero de 2022, y la primera le envió 38,3 AVAX tres días después."
+        }
+      },
+      "holderL": {
+        "summary": "Dos billeteras financiadas desde la misma billetera privada, una de ellas a través de una billetera intermediaria.",
+        "evidence": {
+          "funderChain": "Una billetera privada envió a la segunda su primer AVAX el 12 de febrero de 2022. Seis días después movió sus propios 597.000 BSO y el AVAX que le quedaba a una billetera nueva, que pasó los 597.000 BSO a la primera billetera el 22 de febrero, junto con el primer AVAX de esa billetera.",
+          "directTransfer": "La segunda billetera envió a la primera 0,005 AVAX el 27 de febrero de 2022."
         }
       }
     },
@@ -584,14 +615,14 @@
       "howTitle": "Cómo se vincularon las billeteras",
       "how": {
         "transfers": "Se rastreó cada transferencia entre dos billeteras normales en los tres contratos, en Avalanche y Ethereum, dejando fuera exchanges, routers, pools y otros contratos. Las multisig Safe se vincularon con sus propietarios.",
-        "funders": "Se comparó la primera billetera que envió AVAX o ETH a cada gran poseedor. Los exchanges financian miles de billeteras, así que solo los financiadores privados cuentan como vínculo.",
+        "funders": "También se rastreó cada transferencia de AVAX y ETH hacia o desde una billetera con al menos un 0,01% del suministro, incluido quién envió monedas por primera vez a cada billetera. Los exchanges y los servicios de intercambio financian miles de billeteras, así que solo las billeteras privadas cuentan como vínculo.",
         "pattern": "En las billeteras sin vínculo directo, se comparó su comportamiento de compra con el de todos los compradores del mismo periodo.",
         "migrations": "Los saldos se siguieron a través de ambas migraciones a 7114,6 PLEB por BSO, la misma tasa que usa esta página para mostrar en BSO las cantidades anteriores."
       },
       "limitsTitle": "Límites",
       "limits": {
         "exchangeOnly": "Un poseedor que financia cada billetera a través de un exchange y nunca mueve tokens entre ellas no deja ningún vínculo on-chain. Algunos grupos aún podrían ocultar más billeteras.",
-        "sales": "Una transferencia entre dos billeteras puede ser una venta o un regalo. Los grupos marcados como Posible se basan en un único vínculo de ese tipo.",
+        "sales": "Una transferencia entre dos billeteras puede ser una venta o un regalo, así que ningún grupo se basa en una única transferencia. Algunas billeteras solo han recibido tokens y monedas de su grupo y nunca han enviado nada; eso también podrían ser regalos.",
         "contracts": "Los tokens en manos de contratos distintos del pool de Uniswap y el Safe se muestran tal cual.",
         "snapshot": "Los saldos y el precio se actualizan desde la cadena cada cinco minutos mientras esta página está abierta. Los vínculos entre billeteras se investigan a mano y no se actualizan solos.",
         "history": "Las líneas del historial siguen lo que tenía cada billetera, para las billeteras con al menos un 0,01% del suministro y para cada billetera de un poseedor conocido. Los tokens en un pool de liquidez, en una granja o en un stream de vesting salen de la línea, y las migraciones volvieron a emitir parte de ellos a sus dueños, así que algunas líneas dan un salto esos días."

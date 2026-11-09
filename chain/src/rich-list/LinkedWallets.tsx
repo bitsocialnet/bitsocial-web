@@ -20,6 +20,10 @@ export default function LinkedWallets() {
         CONFIDENCE_ORDER[a.entity.confidence ?? "possible"] -
           CONFIDENCE_ORDER[b.entity.confidence ?? "possible"] || b.balance - a.balance,
     );
+  // The key explains only the levels some group carries.
+  const levels = (["confirmed", "likely", "possible"] as const).filter((confidence) =>
+    groups.some(({ entity }) => (entity.confidence ?? "possible") === confidence),
+  );
 
   return (
     <RichSection
@@ -29,7 +33,7 @@ export default function LinkedWallets() {
     >
       <div className="rl-panel glass-card">
         <dl className="rl-confidence-key">
-          {(["confirmed", "likely", "possible"] as const).map((confidence) => (
+          {levels.map((confidence) => (
             <div key={confidence}>
               <dt>
                 <CategoryBadge category={confidence} />

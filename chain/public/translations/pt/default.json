@@ -392,12 +392,12 @@
         "name": "Pool BSO/ETH da Uniswap"
       },
       "holderA": {
-        "summary": "Doze carteiras que compraram na Avalanche entre 22 de fevereiro e 8 de abril de 2022 e nunca venderam. Cinco estão ligadas entre si on-chain; as outras sete seguem o padrão do mesmo comprador.",
+        "summary": "Quinze carteiras que compraram na Avalanche entre fevereiro de 2022 e maio de 2023 e nunca venderam. Cinco estão ligadas entre si on-chain; as outras dez seguem o padrão do mesmo comprador.",
         "evidence": {
           "transfersToLpWallet": "Duas das carteiras compradoras enviaram tokens e AVAX para uma terceira carteira, que os usou para liquidez e farming na Trader Joe: 141 mil BSO e 5 AVAX em 27 de fevereiro de 2022, depois 1,01 milhão de BSO e 34 AVAX entre 28 de fevereiro e 2 de março. A terceira carteira devolveu 0,013 AVAX.",
           "sharedFunder": "Uma carteira privada financiou três das carteiras compradoras e nada mais. Todas as transações que ela já enviou foram para elas, em ordem: nonces 0 a 4 para a primeira, 5 a 7 para a segunda, 8 para a terceira.",
-          "buyingPattern": "Outras sete carteiras eram todas novas: cada uma foi financiada por um ou dois saques de corretora de cerca de US$ 2.000 a US$ 3.400 via Binance ou ChangeNOW (os mesmos serviços usados pelas carteiras vinculadas), trocou tudo pelo token e nunca mais foi usada. Elas compraram uma após a outra entre 28 de fevereiro e 31 de março de 2022, sem nunca se sobrepor às carteiras vinculadas. Entre todos os 292 compradores de fevereiro a abril de 2022, nenhuma outra carteira se encaixa nesse padrão.",
-          "neverSold": "Nenhuma das doze carteiras vendeu ou moveu seus tokens desde então. Os saldos passaram pelas duas migrações sem alteração."
+          "buyingPattern": "Outras dez carteiras eram todas novas: cada uma foi financiada por um ou dois saques de corretora de cerca de US$ 2.000 a US$ 3.400 via Binance ou ChangeNOW (os mesmos serviços usados pelas carteiras vinculadas), trocou tudo pelo token e nunca mais foi usada. Sete compraram uma após a outra entre 28 de fevereiro e 31 de março de 2022, sem nunca se sobrepor às carteiras vinculadas. Outras três fizeram o mesmo em 12 de abril e 25 de junho de 2022 e em 6 de maio de 2023. Entre os detentores atuais com pelo menos 0,01% da oferta, 21 carteiras só foram usadas para comprar na Avalanche, em quatro transações ou menos: essas dez, duas das carteiras vinculadas e outras nove que gastaram menos de US$ 410 cada.",
+          "neverSold": "Nenhuma das quinze carteiras vendeu ou moveu seus tokens desde então. Os saldos passaram pelas duas migrações sem alteração."
         }
       },
       "holderB": {
@@ -406,49 +406,80 @@
           "owners": "O Safe precisa da assinatura de 2 de seus 4 donos. Um dos donos também tem BSO diretamente. Quatro donos podem significar uma pessoa com várias chaves ou um grupo pequeno.",
           "consolidation": "Em 1º de junho de 2024, entre 16:08 e 17:51 UTC, o Safe recebeu 16,9 milhões de BSO de 14 carteiras. A primeira transferência foi um teste de 10 tokens que o Safe devolveu na hora.",
           "vesting": "Em 12 de agosto de 2024, o Safe moveu 8,5 milhões de BSO para um stream de vesting na Sablier. A migração de 2026 creditou esse stream de volta ao Safe, e é por isso que o Safe recebeu duas transferências da migração.",
-          "commonSender": "A mesma carteira enviou BSO tanto para o dono do Safe (1,93 milhão em 8 de março de 2024) quanto para o Safe (211 mil em 1º de junho de 2024)."
+          "commonSender": "A mesma carteira enviou BSO tanto para o dono do Safe (1,93 milhão em 8 de março de 2024) quanto para o Safe (214 mil em 1º de junho de 2024)."
         }
       },
       "holderC": {
-        "summary": "Duas carteiras que receberam BSO do mesmo remetente.",
+        "summary": "Duas carteiras abastecidas pelo mesmo par de carteiras compradoras.",
         "evidence": {
-          "commonSender": "Uma carteira enviou 661 mil BSO para a primeira em 19 de agosto de 2024 e 2,16 milhões para a segunda em 14 de novembro de 2025. Um remetente em comum também pode ser um único vendedor atendendo dois compradores."
+          "commonSender": "Uma carteira compradora enviou 664 mil BSO para a primeira em 19 de agosto de 2024. Em 14 de novembro de 2025, enviou para a segunda um teste de 7 mil BSO, 0,1 ETH e depois 2,17 milhões de BSO. Esse é o único ETH que a segunda carteira recebeu, e ela nunca enviou uma transação.",
+          "secondSender": "Uma segunda carteira compradora enviou à primeira os outros 7,3 milhões de BSO dela em oito transferências entre maio e agosto de 2024, junto com o primeiro ETH dela, e recebeu 4,35 ETH de volta.",
+          "sendersLinked": "As duas carteiras compradoras estão ligadas entre si: uma passou à outra 1,15 milhão de BSO e 0,1 ETH em 22 de fevereiro de 2024, e, em 17 de agosto de 2024, a outra devolveu os 5,8 ETH que lhe restavam."
         }
       },
       "holderD": {
-        "summary": "Três carteiras ligadas por meio de uma delas.",
+        "summary": "Cinco carteiras: duas que enviaram AVAX e ETH uma à outra, uma terceira que as duas abasteceram e mais duas que a terceira preparou.",
         "evidence": {
-          "sharedRecipient": "A carteira do meio recebeu uma transferência de teste e depois 703 mil BSO da primeira em 18 de novembro de 2022, e 1,15 milhão de BSO da terceira em 1º de dezembro de 2022. Também pode ser um único comprador pagando dois vendedores."
+          "sharedRecipient": "A terceira carteira recebeu uma transferência de teste e depois 703 mil BSO da primeira em 18 de novembro de 2022, e 1,16 milhão de BSO da segunda em 1º de dezembro de 2022. Todo o AVAX que ela já teve para gás veio dessas duas.",
+          "coinsBothWays": "As duas primeiras carteiras enviaram moedas uma à outra nas duas cadeias por 20 meses: 0,5 AVAX em um sentido e 0,49 de volta nove minutos depois em 24 de março de 2022, 73 AVAX em 31 de maio de 2022, 0,09 ETH em 11 de março de 2023 e 2 ETH no sentido contrário em 7 de novembro de 2023.",
+          "newWallets": "Depois, a terceira carteira preparou duas carteiras novas, sempre do mesmo jeito: AVAX para gás, uma transferência de teste e depois 281 mil BSO, em 24 de novembro de 2022 e no fim de abril de 2023. Nenhuma das duas jamais enviou uma transação."
         }
       },
       "holderE": {
         "summary": "Duas carteiras abastecidas pela mesma origem.",
         "evidence": {
-          "commonSender": "Uma carteira enviou à primeira 5,54 milhões de BSO em sete transferências entre outubro de 2024 e janeiro de 2025, e à segunda 281 mil em 22 de novembro de 2025."
+          "commonSender": "Uma carteira enviou à primeira 5,53 milhões de BSO em sete transferências entre outubro de 2024 e janeiro de 2025, e à segunda 287 mil em 22 de novembro de 2025.",
+          "onlyEth": "A mesma carteira enviou a cada uma delas o único ETH que cada uma já recebeu, no mesmo minuto dos seus primeiros tokens: 0,1 ETH e 0,12 ETH. Nenhuma das duas carteiras jamais enviou uma transação."
         }
       },
       "holderF": {
-        "summary": "Uma carteira que dividiu seus tokens entre três carteiras novas e pagou o gás delas.",
+        "summary": "Uma carteira que dividiu seus tokens e 4 ETH entre três carteiras novas.",
         "evidence": {
-          "split": "Em 10 de março de 2024, em sete minutos, uma carteira enviou valores redondos de PLEB, como o BSO se chamava na época (12 bilhões, 8 bilhões e 4 bilhões), para três carteiras novas e, no mesmo dia, mandou ETH para gás a duas delas. Ela mesma ainda tem BSO."
+          "split": "Em 10 de março de 2024, em sete minutos, uma carteira enviou valores redondos de PLEB, como o BSO se chamava na época (12 bilhões, 8 bilhões e 4 bilhões), para três carteiras novas. Ela mesma ainda tem BSO.",
+          "ethBothWays": "Nos mesmos minutos, ela enviou 4,05 ETH às três carteiras, entre 1 e 2 ETH para cada uma. A que recebeu mais devolveu 1,5 ETH em 24 de junho de 2024; as outras duas nunca enviaram uma transação."
         }
       },
       "holderG": {
-        "summary": "Duas carteiras financiadas pelo mesmo remetente, com três anos de diferença.",
+        "summary": "Duas carteiras financiadas pelo mesmo remetente com três anos de diferença, e uma terceira para a qual uma delas moveu seu saldo.",
         "evidence": {
-          "commonSender": "Uma carteira enviou à segunda 661 mil BSO na Avalanche em abril de 2022 e à primeira 843 mil no Ethereum em janeiro de 2025."
+          "commonSender": "Uma carteira enviou à segunda 658 mil BSO na Avalanche em abril de 2022 e à primeira 843 mil no Ethereum em janeiro de 2025.",
+          "senderFunded": "Esse remetente também enviou moedas às duas carteiras: deu à segunda o primeiro AVAX dela e 17,4 AVAX no dia seguinte, e enviou à primeira os 0,15 ETH que lhe restavam, três minutos depois dos tokens.",
+          "movedOn": "Em 3 de novembro de 2026, a segunda carteira enviou à terceira ETH para gás, um teste de 100 BSO e depois todo o seu saldo de 852 mil BSO."
         }
       },
       "holderH": {
-        "summary": "Duas carteiras com uma transferência entre elas.",
+        "summary": "Duas carteiras, uma das quais financiou a outra.",
         "evidence": {
-          "directTransfer": "A primeira carteira enviou à segunda 59 mil BSO em 24 de abril de 2022."
+          "directTransfer": "Em 24 de abril de 2022, a primeira carteira enviou à segunda o primeiro AVAX dela e, dois minutos depois, 59 mil BSO.",
+          "funding": "Em 8 de maio de 2022, a primeira carteira enviou à segunda 23 AVAX em seis transferências, e a segunda trocou a maior parte por BSO poucos minutos depois de cada uma."
         }
       },
       "holderI": {
-        "summary": "Duas carteiras com transferências repetidas entre elas.",
+        "summary": "Duas carteiras que enviaram ETH uma à outra antes de uma delas mover todo o seu saldo para a outra.",
         "evidence": {
-          "directTransfers": "A segunda carteira enviou à primeira 1,86 milhão de BSO em 30 de outubro de 2023 e 703 mil em 8 de novembro de 2023."
+          "directTransfers": "Depois, a segunda carteira enviou à primeira tudo o que tinha: 1,85 milhão de BSO em 30 de outubro de 2023 e 703 mil em 8 de novembro de 2023.",
+          "ethBothWays": "A segunda carteira enviou à primeira 0,77 ETH em 16 de dezembro de 2022, e a primeira devolveu 0,02 ETH no dia seguinte."
+        }
+      },
+      "holderJ": {
+        "summary": "Duas carteiras que enviaram AVAX uma à outra, nos dois sentidos, por mais de um ano.",
+        "evidence": {
+          "coinsBothWays": "A primeira carteira enviou à segunda o primeiro AVAX dela em 7 de maio de 2021 e o primeiro ETH dela em agosto daquele ano. Até julho de 2022, a primeira tinha enviado 331 AVAX em doze transferências, e a segunda tinha devolvido 15 AVAX em duas.",
+          "sameEveningLocks": "As duas compraram BSO na Trader Joe e, em 28 de abril de 2022, as duas bloquearam BSO no mesmo contrato de bloqueio com menos de meia hora de diferença."
+        }
+      },
+      "holderK": {
+        "summary": "Duas carteiras financiadas pela mesma carteira privada.",
+        "evidence": {
+          "sharedFunder": "Uma carteira privada financiou as duas. Ela enviou à primeira o primeiro AVAX dela em outubro de 2021, 194 AVAX em 21 transferências até o fim de 2023 e 3,49 milhões de BSO em duas transferências. Enviou à segunda o primeiro AVAX dela em 14 de fevereiro de 2022 e 23 AVAX em seis transferências até abril daquele ano. As duas devolveram pequenas quantias de AVAX.",
+          "sharedRecipient": "As duas também financiaram a mesma carteira nova: a segunda enviou os primeiros 5,1 AVAX dessa carteira em 17 de fevereiro de 2022, e a primeira enviou a ela 38,3 AVAX três dias depois."
+        }
+      },
+      "holderL": {
+        "summary": "Duas carteiras financiadas a partir da mesma carteira privada, uma delas por meio de uma carteira intermediária.",
+        "evidence": {
+          "funderChain": "Uma carteira privada enviou à segunda o primeiro AVAX dela em 12 de fevereiro de 2022. Seis dias depois, moveu seus próprios 597 mil BSO e o AVAX que lhe restava para uma carteira nova, que repassou os 597 mil BSO à primeira carteira em 22 de fevereiro, junto com o primeiro AVAX dessa carteira.",
+          "directTransfer": "A segunda carteira enviou à primeira 0,005 AVAX em 27 de fevereiro de 2022."
         }
       }
     },
@@ -584,14 +615,14 @@
       "howTitle": "Como as carteiras foram vinculadas",
       "how": {
         "transfers": "Toda transferência entre duas carteiras comuns nos três contratos, na Avalanche e no Ethereum, foi rastreada, deixando de fora corretoras, roteadores, pools e outros contratos. As multisigs Safe foram vinculadas aos seus donos.",
-        "funders": "Foi comparada a primeira carteira a enviar AVAX ou ETH a cada grande detentor. Corretoras financiam milhares de carteiras, então só financiadores privados contam como vínculo.",
+        "funders": "Toda transferência de AVAX e ETH de ou para uma carteira com pelo menos 0,01% da oferta também foi rastreada, incluindo quem primeiro enviou moedas a cada carteira. Corretoras e serviços de swap financiam milhares de carteiras, então só carteiras privadas contam como vínculo.",
         "pattern": "Para carteiras sem vínculo direto, o comportamento de compra foi comparado com o de todos os compradores do mesmo período.",
         "migrations": "Os saldos foram acompanhados pelas duas migrações a 7.114,6 PLEB por BSO, a mesma taxa que esta página usa para mostrar em BSO os valores mais antigos."
       },
       "limitsTitle": "Limites",
       "limits": {
         "exchangeOnly": "Um detentor que financia todas as carteiras por meio de uma corretora e nunca move tokens entre elas não deixa nenhum vínculo on-chain. Alguns grupos ainda podem esconder mais carteiras.",
-        "sales": "Uma transferência entre duas carteiras pode ser uma venda ou um presente. Os grupos marcados como Possível se baseiam em um único vínculo desse tipo.",
+        "sales": "Uma transferência entre duas carteiras pode ser uma venda ou um presente, então nenhum grupo se baseia em uma única transferência. Algumas carteiras só receberam tokens e moedas do seu grupo e nunca enviaram nada; esses também podem ser presentes.",
         "contracts": "Tokens mantidos por contratos que não sejam o pool da Uniswap e o Safe são listados como estão.",
         "snapshot": "Os saldos e o preço são atualizados a partir da cadeia a cada cinco minutos enquanto esta página estiver aberta. Os vínculos entre carteiras são pesquisados manualmente e não se atualizam sozinhos.",
         "history": "As linhas do histórico seguem o que cada carteira detinha, para carteiras com pelo menos 0,01% da oferta e para cada carteira de um detentor conhecido. Tokens em um pool de liquidez, farm ou stream de vesting saem da linha, e as migrações reemitiram parte deles para seus donos, então algumas linhas dão um salto nesses dias."

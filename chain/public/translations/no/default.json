@@ -387,12 +387,12 @@
         "name": "Uniswap BSO/ETH-pool"
       },
       "holderA": {
-        "summary": "Tolv lommebøker som kjøpte på Avalanche mellom 22. februar og 8. april 2022 og aldri har solgt. Fem er knyttet sammen on-chain; de andre sju passer med samme kjøpers mønster.",
+        "summary": "Femten lommebøker som kjøpte på Avalanche mellom februar 2022 og mai 2023 og aldri har solgt. Fem er knyttet sammen on-chain; de andre ti passer med samme kjøpers mønster.",
         "evidence": {
           "transfersToLpWallet": "To av kjøpslommebøkene sendte tokens og AVAX til en tredje lommebok, som brukte dem til likviditet og farming på Trader Joe: 141 000 BSO og 5 AVAX 27. februar 2022, deretter 1,01 mill. BSO og 34 AVAX mellom 28. februar og 2. mars. Den tredje lommeboken sendte 0,013 AVAX tilbake.",
           "sharedFunder": "Én privat lommebok finansierte tre av kjøpslommebøkene og ingenting annet. Hver transaksjon den noen gang sendte, gikk til dem, i rekkefølge: nonce 0 til 4 til den første, 5 til 7 til den andre, 8 til den tredje.",
-          "buyingPattern": "Ytterligere sju lommebøker var alle nye, finansiert med ett eller to børsuttak på rundt $2000 til $3400 via Binance eller ChangeNOW (de samme tjenestene som de koblede lommebøkene brukte), vekslet helt om til tokenet og aldri brukt igjen. De kjøpte etter tur mellom 28. februar og 31. mars 2022, uten noen gang å overlappe med de koblede lommebøkene. Av alle de 292 kjøperne fra februar til april 2022 passer ingen annen lommebok dette mønsteret.",
-          "neverSold": "Ingen av de tolv lommebøkene har solgt eller flyttet tokenene sine siden. Saldoene kom uendret gjennom begge migreringene."
+          "buyingPattern": "Ytterligere ti lommebøker var alle nye, finansiert med ett eller to børsuttak på rundt $2000 til $3400 via Binance eller ChangeNOW (de samme tjenestene som de koblede lommebøkene brukte), vekslet helt om til tokenet og aldri brukt igjen. Sju kjøpte etter tur mellom 28. februar og 31. mars 2022, uten noen gang å overlappe med de koblede lommebøkene. Tre til gjorde det samme 12. april og 25. juni 2022 og 6. mai 2023. Blant dagens innehavere med minst 0,01% av tilbudet er 21 lommebøker bare blitt brukt til å kjøpe på Avalanche, i fire transaksjoner eller færre: disse ti, to av de koblede lommebøkene og ni andre som hver brukte under $410.",
+          "neverSold": "Ingen av de femten lommebøkene har solgt eller flyttet tokenene sine siden. Saldoene kom uendret gjennom begge migreringene."
         }
       },
       "holderB": {
@@ -401,49 +401,80 @@
           "owners": "Safen krever signatur fra 2 av de 4 eierne. Én eier har også BSO direkte. Fire eiere kan bety én person med flere nøkler eller en liten gruppe.",
           "consolidation": "1. juni 2024, mellom 16:08 og 17:51 UTC, mottok Safen 16,9 mill. BSO fra 14 lommebøker. Den første overføringen var en test på 10 tokens som Safen sendte rett tilbake.",
           "vesting": "12. august 2024 flyttet Safen 8,5 mill. BSO inn i en vesting-strøm i Sablier. Migreringen i 2026 krediterte den strømmen tilbake til Safen, og derfor mottok Safen to migreringsoverføringer.",
-          "commonSender": "Den samme lommeboken sendte BSO både til Safe-eieren (1,93 mill. den 8. mars 2024) og til Safen (211 000 den 1. juni 2024)."
+          "commonSender": "Den samme lommeboken sendte BSO både til Safe-eieren (1,93 mill. den 8. mars 2024) og til Safen (214 000 den 1. juni 2024)."
         }
       },
       "holderC": {
-        "summary": "To lommebøker som mottok BSO fra samme avsender.",
+        "summary": "To lommebøker fylt av det samme paret kjøpslommebøker.",
         "evidence": {
-          "commonSender": "Én lommebok sendte 661 000 BSO til den første 19. august 2024 og 2,16 mill. til den andre 14. november 2025. En felles avsender kan også være én selger som betjener to kjøpere."
+          "commonSender": "Én kjøpslommebok sendte 664 000 BSO til den første 19. august 2024. 14. november 2025 sendte den en test på 7000 BSO, 0,1 ETH og deretter 2,17 mill. BSO til den andre. Det er den eneste ETH-en den andre lommeboken har mottatt, og den har aldri sendt en transaksjon.",
+          "secondSender": "En annen kjøpslommebok sendte den første dens øvrige 7,3 mill. BSO i åtte overføringer mellom mai og august 2024, sammen med dens første ETH, og fikk 4,35 ETH tilbake fra den.",
+          "sendersLinked": "De to kjøpslommebøkene er knyttet til hverandre: den ene ga den andre 1,15 mill. BSO og 0,1 ETH 22. februar 2024, og den andre sendte sine resterende 5,8 ETH tilbake 17. august 2024."
         }
       },
       "holderD": {
-        "summary": "Tre lommebøker knyttet sammen gjennom én av dem.",
+        "summary": "Fem lommebøker: to som sendte hverandre AVAX og ETH, en tredje som begge fylte, og to til som den tredje satte opp.",
         "evidence": {
-          "sharedRecipient": "Den midterste lommeboken mottok en testoverføring og deretter 703 000 BSO fra den første 18. november 2022, og 1,15 mill. BSO fra den tredje 1. desember 2022. Det kan også være én kjøper som betaler to selgere."
+          "sharedRecipient": "Den tredje lommeboken mottok en testoverføring og deretter 703 000 BSO fra den første 18. november 2022, og 1,16 mill. BSO fra den andre 1. desember 2022. All AVAX den noen gang har hatt til gass, kom fra de to.",
+          "coinsBothWays": "De to første lommebøkene sendte hverandre mynter på begge kjedene i 20 måneder: 0,5 AVAX den ene veien og 0,49 tilbake ni minutter senere 24. mars 2022, 73 AVAX 31. mai 2022, 0,09 ETH 11. mars 2023 og 2 ETH den andre veien 7. november 2023.",
+          "newWallets": "Den tredje lommeboken satte deretter opp to nye lommebøker på samme måte hver gang: AVAX til gass, en testoverføring og deretter 281 000 BSO, 24. november 2022 og i slutten av april 2023. Ingen av dem har noen gang sendt en transaksjon."
         }
       },
       "holderE": {
         "summary": "To lommebøker fylt fra samme kilde.",
         "evidence": {
-          "commonSender": "Én lommebok sendte den første 5,54 mill. BSO i sju overføringer mellom oktober 2024 og januar 2025, og den andre 281 000 den 22. november 2025."
+          "commonSender": "Én lommebok sendte den første 5,53 mill. BSO i sju overføringer mellom oktober 2024 og januar 2025, og den andre 287 000 den 22. november 2025.",
+          "onlyEth": "Den samme lommeboken sendte hver av dem den eneste ETH-en de noen gang har mottatt, i samme minutt som de første tokenene deres: 0,1 ETH og 0,12 ETH. Ingen av lommebøkene har noen gang sendt en transaksjon."
         }
       },
       "holderF": {
-        "summary": "Én lommebok som delte tokenene sine på tre nye lommebøker og betalte gassen deres.",
+        "summary": "Én lommebok som delte tokenene sine og 4 ETH på tre nye lommebøker.",
         "evidence": {
-          "split": "10. mars 2024 sendte én lommebok i løpet av sju minutter runde beløp PLEB, som BSO het den gangen (12 mrd., 8 mrd. og 4 mrd.), til tre nye lommebøker og sendte to av dem ETH til gass samme dag. Den har fortsatt BSO selv."
+          "split": "10. mars 2024 sendte én lommebok i løpet av sju minutter runde beløp PLEB, som BSO het den gangen (12 mrd., 8 mrd. og 4 mrd.), til tre nye lommebøker. Den har fortsatt BSO selv.",
+          "ethBothWays": "I de samme minuttene sendte den de tre lommebøkene 4,05 ETH, mellom 1 og 2 ETH hver. Den som fikk mest, sendte 1,5 ETH tilbake 24. juni 2024; de to andre har aldri sendt en transaksjon."
         }
       },
       "holderG": {
-        "summary": "To lommebøker finansiert av samme avsender, med tre års mellomrom.",
+        "summary": "To lommebøker finansiert av samme avsender med tre års mellomrom, og en tredje som en av dem flyttet saldoen sin til.",
         "evidence": {
-          "commonSender": "Én lommebok sendte den andre 661 000 BSO på Avalanche i april 2022 og den første 843 000 på Ethereum i januar 2025."
+          "commonSender": "Én lommebok sendte den andre 658 000 BSO på Avalanche i april 2022 og den første 843 000 på Ethereum i januar 2025.",
+          "senderFunded": "Den avsenderen sendte også begge lommebøkene mynter: den ga den andre dens første AVAX og 17,4 AVAX dagen etter, og sendte den første de 0,15 ETH den selv hadde igjen, tre minutter etter tokenene.",
+          "movedOn": "3. november 2026 sendte den andre lommeboken den tredje ETH til gass, en test på 100 BSO og deretter hele saldoen sin på 852 000 BSO."
         }
       },
       "holderH": {
-        "summary": "To lommebøker med én overføring mellom seg.",
+        "summary": "To lommebøker, der den ene finansierte den andre.",
         "evidence": {
-          "directTransfer": "Den første lommeboken sendte den andre 59 000 BSO 24. april 2022."
+          "directTransfer": "24. april 2022 sendte den første lommeboken den andre dens første AVAX og, to minutter senere, 59 000 BSO.",
+          "funding": "8. mai 2022 sendte den første lommeboken den andre 23 AVAX i seks overføringer, og den andre vekslet mesteparten om til BSO innen få minutter etter hver av dem."
         }
       },
       "holderI": {
-        "summary": "To lommebøker med gjentatte overføringer mellom seg.",
+        "summary": "To lommebøker som sendte hverandre ETH før den ene flyttet hele saldoen sin til den andre.",
         "evidence": {
-          "directTransfers": "Den andre lommeboken sendte den første 1,86 mill. BSO 30. oktober 2023 og 703 000 den 8. november 2023."
+          "directTransfers": "Den andre lommeboken sendte deretter den første alt den hadde: 1,85 mill. BSO 30. oktober 2023 og 703 000 den 8. november 2023.",
+          "ethBothWays": "Den andre lommeboken sendte den første 0,77 ETH 16. desember 2022, og den første sendte 0,02 ETH tilbake dagen etter."
+        }
+      },
+      "holderJ": {
+        "summary": "To lommebøker som sendte AVAX fram og tilbake i over et år.",
+        "evidence": {
+          "coinsBothWays": "Den første lommeboken sendte den andre dens første AVAX 7. mai 2021 og dens første ETH i august samme år. Innen juli 2022 hadde den første sendt 331 AVAX i tolv overføringer, og den andre hadde sendt 15 AVAX tilbake i to.",
+          "sameEveningLocks": "Begge kjøpte BSO på Trader Joe, og 28. april 2022 låste begge BSO i den samme låsekontrakten med under en halvtimes mellomrom."
+        }
+      },
+      "holderK": {
+        "summary": "To lommebøker finansiert av den samme private lommeboken.",
+        "evidence": {
+          "sharedFunder": "Én privat lommebok finansierte begge. Den sendte den første dens første AVAX i oktober 2021, 194 AVAX i 21 overføringer innen utgangen av 2023 og 3,49 mill. BSO i to overføringer. Den sendte den andre dens første AVAX 14. februar 2022 og 23 AVAX i seks overføringer innen april samme år. Begge sendte små beløp AVAX tilbake.",
+          "sharedRecipient": "Begge finansierte også den samme nye lommeboken: den andre sendte den dens første 5,1 AVAX 17. februar 2022, og den første sendte den 38,3 AVAX tre dager senere."
+        }
+      },
+      "holderL": {
+        "summary": "To lommebøker finansiert fra den samme private lommeboken, den ene via en mellomliggende lommebok.",
+        "evidence": {
+          "funderChain": "Én privat lommebok sendte den andre dens første AVAX 12. februar 2022. Seks dager senere flyttet den sine egne 597 000 BSO og resten av AVAX-en sin til en ny lommebok, som sendte de 597 000 BSO videre til den første lommeboken 22. februar, sammen med den lommebokens første AVAX.",
+          "directTransfer": "Den andre lommeboken sendte den første 0,005 AVAX 27. februar 2022."
         }
       }
     },
@@ -579,14 +610,14 @@
       "howTitle": "Hvordan lommebøker ble koblet",
       "how": {
         "transfers": "Hver overføring mellom to vanlige lommebøker på alle tre kontraktene, på Avalanche og Ethereum, ble sporet, med unntak av børser, rutere, pooler og andre kontrakter. Safe-multisigs ble koblet til eierne sine.",
-        "funders": "Den første lommeboken som sendte hver av de største innehaverne AVAX eller ETH, ble sammenlignet. Børser finansierer tusenvis av lommebøker, så bare private finansierere teller som en kobling.",
+        "funders": "Hver AVAX- og ETH-overføring til eller fra en lommebok med minst 0,01% av tilbudet ble også sporet, inkludert hvem som først sendte hver lommebok mynter. Børser og swap-tjenester finansierer tusenvis av lommebøker, så bare private lommebøker teller som en kobling.",
         "pattern": "For lommebøker uten direkte kobling ble kjøpsatferden sammenlignet med alle kjøpere i samme periode.",
         "migrations": "Saldoene ble fulgt gjennom begge migreringene med 7114,6 PLEB per BSO, den samme kursen denne siden bruker for å vise eldre beløp i BSO."
       },
       "limitsTitle": "Begrensninger",
       "limits": {
         "exchangeOnly": "En innehaver som finansierer alle lommebøkene sine via en børs og aldri flytter tokens mellom dem, etterlater ingen kobling on-chain. Noen grupper kan fortsatt skjule flere lommebøker.",
-        "sales": "En overføring mellom to lommebøker kan være et salg eller en gave. Grupper merket Mulig hviler på én slik kobling.",
+        "sales": "En overføring mellom to lommebøker kan være et salg eller en gave, så ingen gruppe hviler på én enkelt overføring. Noen lommebøker har bare mottatt tokens og mynter fra gruppen sin og aldri sendt noe; også det kan være gaver.",
         "contracts": "Tokens som holdes av andre kontrakter enn Uniswap-poolen og Safen, vises som de er.",
         "snapshot": "Saldoer og pris oppdateres fra kjeden hvert femte minutt mens denne siden er åpen. Koblingene mellom lommebøker er undersøkt for hånd og oppdateres ikke av seg selv.",
         "history": "Historikklinjene følger hva hver lommebok har hatt, for lommebøker med minst 0,01% av tilbudet og for hver lommebok som tilhører en kjent innehaver. Tokens i en likviditetspool, farm eller vesting-strøm faller ut av linjen, og migreringene utstedte noen av dem på nytt til eierne, så noen linjer hopper på de dagene."

@@ -387,12 +387,12 @@
         "name": "Uniswap-poolen BSO/ETH"
       },
       "holderA": {
-        "summary": "Tolv plånböcker som köpte på Avalanche mellan 22 februari och 8 april 2022 och aldrig har sålt. Fem är sammankopplade on-chain; de andra sju matchar samma köpares mönster.",
+        "summary": "Femton plånböcker som köpte på Avalanche mellan februari 2022 och maj 2023 och aldrig har sålt. Fem är sammankopplade on-chain; de andra tio matchar samma köpares mönster.",
         "evidence": {
           "transfersToLpWallet": "Två av köparplånböckerna skickade tokens och AVAX till en tredje plånbok, som använde dem för likviditet och farming på Trader Joe: 141 000 BSO och 5 AVAX den 27 februari 2022, sedan 1,01 mn BSO och 34 AVAX mellan 28 februari och 2 mars. Den tredje plånboken skickade tillbaka 0,013 AVAX.",
           "sharedFunder": "En privat plånbok finansierade tre av köparplånböckerna och inget annat. Varje transaktion den någonsin skickat gick till dem, i ordning: nonce 0 till 4 till den första, 5 till 7 till den andra, 8 till den tredje.",
-          "buyingPattern": "Ytterligare sju plånböcker var alla nya, finansierades av ett eller två börsuttag på omkring 2 000 till 3 400 dollar via Binance eller ChangeNOW (samma tjänster som de länkade plånböckerna använde), växlades helt till tokenen och användes aldrig igen. De köpte en efter en mellan 28 februari och 31 mars 2022 och överlappade aldrig med de länkade plånböckerna. Av alla 292 köpare från februari till april 2022 passar ingen annan plånbok in på det här mönstret.",
-          "neverSold": "Ingen av de tolv plånböckerna har sålt eller flyttat sina tokens sedan dess. Deras saldon gick oförändrade genom båda migreringarna."
+          "buyingPattern": "Ytterligare tio plånböcker var alla nya, finansierades av ett eller två börsuttag på omkring 2 000 till 3 400 dollar via Binance eller ChangeNOW (samma tjänster som de länkade plånböckerna använde), växlades helt till tokenen och användes aldrig igen. Sju köpte en efter en mellan 28 februari och 31 mars 2022 och överlappade aldrig med de länkade plånböckerna. Ytterligare tre gjorde likadant den 12 april och den 25 juni 2022 och den 6 maj 2023. Bland dagens innehavare med minst 0,01 % av utbudet har 21 plånböcker bara använts för att köpa på Avalanche, i högst fyra transaktioner: de här tio, två av de länkade plånböckerna och nio andra som var och en lade ut mindre än 410 dollar.",
+          "neverSold": "Ingen av de femton plånböckerna har sålt eller flyttat sina tokens sedan dess. Deras saldon gick oförändrade genom båda migreringarna."
         }
       },
       "holderB": {
@@ -401,49 +401,80 @@
           "owners": "Safe-kontot kräver signaturer från 2 av sina 4 ägare. En ägare innehar också BSO direkt. Fyra ägare kan betyda en person med flera nycklar eller en liten grupp.",
           "consolidation": "Den 1 juni 2024, mellan 16:08 och 17:51 UTC, tog Safe-kontot emot 16,9 mn BSO från 14 plånböcker. Den första överföringen var ett test på 10 tokens som Safe-kontot direkt skickade tillbaka.",
           "vesting": "Den 12 augusti 2024 flyttade Safe-kontot 8,5 mn BSO till en vestingström i Sablier. Migreringen 2026 krediterade den strömmen tillbaka till Safe-kontot, och därför fick Safe-kontot två migreringsöverföringar.",
-          "commonSender": "Samma plånbok skickade BSO både till Safe-ägaren (1,93 mn den 8 mars 2024) och till Safe-kontot (211 000 den 1 juni 2024)."
+          "commonSender": "Samma plånbok skickade BSO både till Safe-ägaren (1,93 mn den 8 mars 2024) och till Safe-kontot (214 000 den 1 juni 2024)."
         }
       },
       "holderC": {
-        "summary": "Två plånböcker som fick BSO från samma avsändare.",
+        "summary": "Två plånböcker som fylldes på av samma par köparplånböcker.",
         "evidence": {
-          "commonSender": "En plånbok skickade 661 000 BSO till den första den 19 augusti 2024 och 2,16 mn till den andra den 14 november 2025. En gemensam avsändare kan också vara en säljare som säljer till två köpare."
+          "commonSender": "En köparplånbok skickade 664 000 BSO till den första den 19 augusti 2024. Den 14 november 2025 skickade den ett test på 7 000 BSO, 0,1 ETH och sedan 2,17 mn BSO till den andra. Det är den enda ETH som den andra plånboken har tagit emot, och den har aldrig skickat en transaktion.",
+          "secondSender": "En annan köparplånbok skickade de övriga 7,3 mn BSO till den första i åtta överföringar mellan maj och augusti 2024, tillsammans med dess första ETH, och fick tillbaka 4,35 ETH från den.",
+          "sendersLinked": "De två köparplånböckerna är kopplade till varandra: den ena gav den andra 1,15 mn BSO och 0,1 ETH den 22 februari 2024, och den andra skickade tillbaka sina återstående 5,8 ETH den 17 augusti 2024."
         }
       },
       "holderD": {
-        "summary": "Tre plånböcker som hänger ihop via en av dem.",
+        "summary": "Fem plånböcker: två som skickade AVAX och ETH till varandra, en tredje som båda fyllde på, och två till som den tredje satte upp.",
         "evidence": {
-          "sharedRecipient": "Den mellersta plånboken tog emot en testöverföring och sedan 703 000 BSO från den första den 18 november 2022, och 1,15 mn BSO från den tredje den 1 december 2022. Det kan också vara en köpare som betalar två säljare."
+          "sharedRecipient": "Den tredje plånboken tog emot en testöverföring och sedan 703 000 BSO från den första den 18 november 2022, och 1,16 mn BSO från den andra den 1 december 2022. All AVAX den någonsin haft för gas kom från de två.",
+          "coinsBothWays": "De två första plånböckerna skickade mynt till varandra på båda kedjorna i 20 månader: 0,5 AVAX åt ena hållet och 0,49 tillbaka nio minuter senare den 24 mars 2022, 73 AVAX den 31 maj 2022, 0,09 ETH den 11 mars 2023 och 2 ETH åt andra hållet den 7 november 2023.",
+          "newWallets": "Den tredje plånboken satte sedan upp två nya plånböcker på samma sätt varje gång: AVAX för gas, en testöverföring och sedan 281 000 BSO, den 24 november 2022 och i slutet av april 2023. Ingen av dem har någonsin skickat en transaktion."
         }
       },
       "holderE": {
         "summary": "Två plånböcker som fylldes på från samma källa.",
         "evidence": {
-          "commonSender": "En plånbok skickade 5,54 mn BSO till den första i sju överföringar mellan oktober 2024 och januari 2025, och 281 000 till den andra den 22 november 2025."
+          "commonSender": "En plånbok skickade 5,53 mn BSO till den första i sju överföringar mellan oktober 2024 och januari 2025, och 287 000 till den andra den 22 november 2025.",
+          "onlyEth": "Samma plånbok skickade till var och en av dem den enda ETH den någonsin tagit emot, i samma minut som dess första tokens: 0,1 ETH och 0,12 ETH. Ingen av plånböckerna har någonsin skickat en transaktion."
         }
       },
       "holderF": {
-        "summary": "En plånbok som delade upp sina tokens på tre nya plånböcker och betalade deras gas.",
+        "summary": "En plånbok som delade upp sina tokens och 4 ETH på tre nya plånböcker.",
         "evidence": {
-          "split": "Den 10 mars 2024 skickade en plånbok inom sju minuter jämna belopp PLEB, som BSO hette då (12 md, 8 md och 4 md), till tre nya plånböcker och skickade samma dag ETH för gas till två av dem. Den innehar fortfarande själv BSO."
+          "split": "Den 10 mars 2024 skickade en plånbok inom sju minuter jämna belopp PLEB, som BSO hette då (12 md, 8 md och 4 md), till tre nya plånböcker. Den innehar fortfarande själv BSO.",
+          "ethBothWays": "Under samma minuter skickade den 4,05 ETH till de tre plånböckerna, mellan 1 och 2 ETH till var och en. Den som fick mest skickade tillbaka 1,5 ETH den 24 juni 2024; de andra två har aldrig skickat en transaktion."
         }
       },
       "holderG": {
-        "summary": "Två plånböcker finansierade av samma avsändare, med tre års mellanrum.",
+        "summary": "Två plånböcker finansierade av samma avsändare med tre års mellanrum, och en tredje som en av dem flyttade sitt saldo till.",
         "evidence": {
-          "commonSender": "En plånbok skickade 661 000 BSO på Avalanche till den andra i april 2022 och 843 000 på Ethereum till den första i januari 2025."
+          "commonSender": "En plånbok skickade 658 000 BSO på Avalanche till den andra i april 2022 och 843 000 på Ethereum till den första i januari 2025.",
+          "senderFunded": "Den avsändaren skickade också mynt till båda plånböckerna: den gav den andra dess första AVAX och 17,4 AVAX dagen därpå, och skickade sina kvarvarande 0,15 ETH till den första tre minuter efter att tokens skickats.",
+          "movedOn": "Den 3 november 2026 skickade den andra plånboken ETH för gas, ett test på 100 BSO och sedan hela sitt saldo på 852 000 BSO till den tredje."
         }
       },
       "holderH": {
-        "summary": "Två plånböcker med en överföring mellan sig.",
+        "summary": "Två plånböcker, varav den ena finansierade den andra.",
         "evidence": {
-          "directTransfer": "Den första plånboken skickade 59 000 BSO till den andra den 24 april 2022."
+          "directTransfer": "Den 24 april 2022 skickade den första plånboken till den andra dess första AVAX och, två minuter senare, 59 000 BSO.",
+          "funding": "Den 8 maj 2022 skickade den första plånboken 23 AVAX till den andra i sex överföringar, och den andra växlade det mesta till BSO inom några minuter efter var och en."
         }
       },
       "holderI": {
-        "summary": "Två plånböcker med upprepade överföringar mellan sig.",
+        "summary": "Två plånböcker som skickade ETH till varandra innan den ena flyttade hela sitt saldo till den andra.",
         "evidence": {
-          "directTransfers": "Den andra plånboken skickade 1,86 mn BSO till den första den 30 oktober 2023 och 703 000 den 8 november 2023."
+          "directTransfers": "Den andra plånboken skickade sedan allt den hade till den första: 1,85 mn BSO den 30 oktober 2023 och 703 000 den 8 november 2023.",
+          "ethBothWays": "Den andra plånboken skickade 0,77 ETH till den första den 16 december 2022, och den första skickade tillbaka 0,02 ETH dagen därpå."
+        }
+      },
+      "holderJ": {
+        "summary": "Två plånböcker som skickade AVAX fram och tillbaka i över ett år.",
+        "evidence": {
+          "coinsBothWays": "Den första plånboken skickade till den andra dess första AVAX den 7 maj 2021 och dess första ETH i augusti samma år. I juli 2022 hade den skickat 331 AVAX i tolv överföringar, och den andra hade skickat tillbaka 15 AVAX i två.",
+          "sameEveningLocks": "Båda köpte BSO på Trader Joe, och den 28 april 2022 låste båda BSO i samma låskontrakt inom en halvtimme från varandra."
+        }
+      },
+      "holderK": {
+        "summary": "Två plånböcker finansierade av samma privata plånbok.",
+        "evidence": {
+          "sharedFunder": "En privat plånbok finansierade båda. Den skickade till den första dess första AVAX i oktober 2021, 194 AVAX i 21 överföringar fram till slutet av 2023 och 3,49 mn BSO i två överföringar. Den skickade till den andra dess första AVAX den 14 februari 2022 och 23 AVAX i sex överföringar fram till april samma år. Båda skickade tillbaka små belopp AVAX.",
+          "sharedRecipient": "Båda finansierade också samma nya plånbok: den andra skickade till den dess första 5,1 AVAX den 17 februari 2022, och den första skickade 38,3 AVAX till den tre dagar senare."
+        }
+      },
+      "holderL": {
+        "summary": "Två plånböcker finansierade från samma privata plånbok, en av dem via en mellanliggande plånbok.",
+        "evidence": {
+          "funderChain": "En privat plånbok skickade till den andra dess första AVAX den 12 februari 2022. Sex dagar senare flyttade den sina egna 597 000 BSO och sin återstående AVAX till en ny plånbok, som skickade vidare de 597 000 BSO till den första plånboken den 22 februari, tillsammans med den plånbokens första AVAX.",
+          "directTransfer": "Den andra plånboken skickade 0,005 AVAX till den första den 27 februari 2022."
         }
       }
     },
@@ -579,14 +610,14 @@
       "howTitle": "Hur plånböcker länkades",
       "how": {
         "transfers": "Varje överföring mellan två vanliga plånböcker på alla tre kontrakten, på Avalanche och Ethereum, spårades, med undantag för börser, routrar, pooler och andra kontrakt. Safe-multisigs länkades till sina ägare.",
-        "funders": "Den första plånboken som skickade AVAX eller ETH till varje storinnehavare jämfördes. Börser finansierar tusentals plånböcker, så bara privata finansiärer räknas som en koppling.",
+        "funders": "Varje överföring av AVAX och ETH till eller från en plånbok med minst 0,01 % av utbudet spårades också, inklusive vem som först skickade mynt till varje plånbok. Börser och växlingstjänster finansierar tusentals plånböcker, så bara privata plånböcker räknas som en koppling.",
         "pattern": "För plånböcker utan direkt koppling jämfördes köpbeteendet med alla köpare under samma period.",
         "migrations": "Saldona följdes genom båda migreringarna med 7 114,6 PLEB per BSO, samma kurs som den här sidan använder för att visa äldre belopp i BSO."
       },
       "limitsTitle": "Begränsningar",
       "limits": {
         "exchangeOnly": "En innehavare som finansierar varje plånbok via en börs och aldrig flyttar tokens mellan dem lämnar ingen koppling on-chain. Vissa grupper kan fortfarande dölja fler plånböcker.",
-        "sales": "En överföring mellan två plånböcker kan vara en försäljning eller en gåva. Grupper som är markerade som Möjlig vilar på en enda sådan koppling.",
+        "sales": "En överföring mellan två plånböcker kan vara en försäljning eller en gåva, så ingen grupp vilar på en enda överföring. Vissa plånböcker har bara tagit emot tokens och mynt från sin grupp och aldrig skickat något; det kan också vara gåvor.",
         "contracts": "Tokens som innehas av andra kontrakt än Uniswap-poolen och Safe-kontot listas som de är.",
         "snapshot": "Saldon och pris uppdateras från kedjan var femte minut medan sidan är öppen. Kopplingarna mellan plånböcker har undersökts för hand och uppdateras inte av sig själva.",
         "history": "Historiklinjerna följer vad varje plånbok har innehaft, för plånböcker med minst 0,01 % av utbudet och för varje plånbok som tillhör en känd innehavare. Tokens i en likviditetspool, farm eller vestingström faller bort från linjen, och migreringarna gav ut några av dem på nytt till deras ägare, så vissa linjer gör ett hopp de dagarna."

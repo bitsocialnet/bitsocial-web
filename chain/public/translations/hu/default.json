@@ -387,12 +387,12 @@
         "name": "Uniswap BSO/ETH pool"
       },
       "holderA": {
-        "summary": "Tizenkét tárca, amely 2022. február 22. és április 8. között vásárolt az Avalanche-on, és soha nem adott el. Közülük öt a láncon is össze van kötve; a másik hét ugyanannak a vevőnek a mintájára illik.",
+        "summary": "Tizenöt tárca, amely 2022 februárja és 2023 májusa között vásárolt az Avalanche-on, és soha nem adott el. Közülük öt a láncon is össze van kötve; a másik tíz ugyanannak a vevőnek a mintájára illik.",
         "evidence": {
           "transfersToLpWallet": "A vásárló tárcák közül kettő tokeneket és AVAX-ot küldött egy harmadik tárcának, amely ezeket Trader Joe-likviditásra és farmolásra használta: 141 ezer BSO-t és 5 AVAX-ot 2022. február 27-én, majd 1,01 millió BSO-t és 34 AVAX-ot február 28. és március 2. között. A harmadik tárca 0,013 AVAX-ot küldött vissza.",
           "sharedFunder": "Egyetlen magántárca finanszírozott három vásárló tárcát, és semmi mást. Minden tranzakció, amelyet valaha elküldött, hozzájuk ment, sorrendben: a 0–4. nonce az elsőhöz, az 5–7. a másodikhoz, a 8. a harmadikhoz.",
-          "buyingPattern": "További hét tárca mind új volt: egy vagy két, nagyjából 2000–3400 dolláros tőzsdei kivétellel finanszírozták őket a Binance-en vagy a ChangeNOW-n keresztül (ugyanazokon a szolgáltatásokon, amelyeket az összekapcsolt tárcák is használtak), teljes egészében a tokenre váltották, és soha többé nem használták őket. Egymás után vásároltak 2022. február 28. és március 31. között, soha nem átfedésben az összekapcsolt tárcákkal. A 2022 februárja és áprilisa közötti mind a 292 vásárló közül egyetlen más tárca sem illik ebbe a mintába.",
-          "neverSold": "A tizenkét tárca egyike sem adta el és nem mozgatta azóta a tokenjeit. Egyenlegeik változatlanul mentek át mindkét migráción."
+          "buyingPattern": "További tíz tárca mind új volt: egy vagy két, nagyjából 2000–3400 dolláros tőzsdei kivétellel finanszírozták őket a Binance-en vagy a ChangeNOW-n keresztül (ugyanazokon a szolgáltatásokon, amelyeket az összekapcsolt tárcák is használtak), teljes egészében a tokenre váltották, és soha többé nem használták őket. Hét közülük egymás után vásárolt 2022. február 28. és március 31. között, soha nem átfedésben az összekapcsolt tárcákkal. További három ugyanígy tett 2022. április 12-én és június 25-én, valamint 2023. május 6-án. A kínálat legalább 0,01%-ával rendelkező mai birtokosok közül 21 tárcát kizárólag az Avalanche-on való vásárlásra használtak, legfeljebb négy tranzakcióval: ezt a tízet, az összekapcsolt tárcák közül kettőt, valamint kilenc másikat, amelyek egyenként 410 dollárnál kevesebbet költöttek.",
+          "neverSold": "A tizenöt tárca egyike sem adta el és nem mozgatta azóta a tokenjeit. Egyenlegeik változatlanul mentek át mindkét migráción."
         }
       },
       "holderB": {
@@ -401,49 +401,80 @@
           "owners": "A Safe-hez 4 tulajdonosából 2 aláírása szükséges. Az egyik tulajdonos közvetlenül is tart BSO-t. Négy tulajdonos jelenthet egyetlen, több kulccsal rendelkező személyt vagy egy kis csoportot.",
           "consolidation": "2024. június 1-jén 16:08 és 17:51 UTC között a Safe 16,9 millió BSO-t kapott 14 tárcából. Az első átutalás egy 10 tokenes teszt volt, amelyet a Safe azonnal visszaküldött.",
           "vesting": "2024. augusztus 12-én a Safe 8,5 millió BSO-t helyezett egy Sablier vesting streambe. A 2026-os migráció ezt a streamet visszaírta a Safe javára, ezért kapott a Safe két migrációs átutalást.",
-          "commonSender": "Ugyanaz a tárca küldött BSO-t a Safe-tulajdonosnak (1,93 milliót 2024. március 8-án) és magának a Safe-nek is (211 ezret 2024. június 1-jén)."
+          "commonSender": "Ugyanaz a tárca küldött BSO-t a Safe-tulajdonosnak (1,93 milliót 2024. március 8-án) és magának a Safe-nek is (214 ezret 2024. június 1-jén)."
         }
       },
       "holderC": {
-        "summary": "Két tárca, amely ugyanattól a küldőtől kapott BSO-t.",
+        "summary": "Két tárca, amelyeket ugyanaz a két vásárló tárca töltött fel.",
         "evidence": {
-          "commonSender": "Egy tárca 661 ezer BSO-t küldött az elsőnek 2024. augusztus 19-én, és 2,16 milliót a másodiknak 2025. november 14-én. A közös küldő lehet egyetlen eladó is, aki két vevőt szolgál ki."
+          "commonSender": "Egy vásárló tárca 664 ezer BSO-t küldött az elsőnek 2024. augusztus 19-én. 2025. november 14-én a másodiknak egy 7 ezer BSO-s tesztet, 0,1 ETH-t, majd 2,17 millió BSO-t küldött. Ez az egyetlen ETH, amelyet a második tárca kapott, és ez a tárca soha nem küldött tranzakciót.",
+          "secondSender": "Egy második vásárló tárca 2024 májusa és augusztusa között nyolc átutalásban elküldte az elsőnek annak további 7,3 millió BSO-ját, az első ETH-jával együtt, és 4,35 ETH-t kapott vissza tőle.",
+          "sendersLinked": "A két vásárló tárca össze van kötve egymással: az egyik 2024. február 22-én 1,15 millió BSO-t és 0,1 ETH-t adott át a másiknak, a másik pedig 2024. augusztus 17-én visszaküldte a megmaradt 5,8 ETH-ját."
         }
       },
       "holderD": {
-        "summary": "Három tárca, amelyeket az egyikük köt össze.",
+        "summary": "Öt tárca: kettő, amelyek AVAX-ot és ETH-t küldtek egymásnak, egy harmadik, amelyet mindkettő feltöltött, és további kettő, amelyeket a harmadik készített elő.",
         "evidence": {
-          "sharedRecipient": "A középső tárca 2022. november 18-án egy tesztátutalást, majd 703 ezer BSO-t kapott az elsőtől, 2022. december 1-jén pedig 1,15 millió BSO-t a harmadiktól. Ez lehet egyetlen vevő is, aki két eladónak fizet."
+          "sharedRecipient": "A harmadik tárca 2022. november 18-án egy tesztátutalást, majd 703 ezer BSO-t kapott az elsőtől, 2022. december 1-jén pedig 1,16 millió BSO-t a másodiktól. Az összes AVAX, amellyel valaha gasra rendelkezett, ettől a kettőtől származott.",
+          "coinsBothWays": "Az első két tárca 20 hónapon át mindkét láncon küldött egymásnak érméket: 2022. március 24-én 0,5 AVAX-ot az egyik irányba, majd kilenc perccel később 0,49-et vissza, 2022. május 31-én 73 AVAX-ot, 2023. március 11-én 0,09 ETH-t, 2023. november 7-én pedig 2 ETH-t a másik irányba.",
+          "newWallets": "A harmadik tárca ezután két új tárcát készített elő, mindkétszer ugyanúgy: AVAX gasra, egy tesztátutalás, majd 281 ezer BSO, 2022. november 24-én és 2023. április végén. Egyikük sem küldött soha tranzakciót."
         }
       },
       "holderE": {
         "summary": "Két tárca, amelyeket ugyanabból a forrásból töltöttek fel.",
         "evidence": {
-          "commonSender": "Egy tárca 2024 októbere és 2025 januárja között hét átutalásban 5,54 millió BSO-t küldött az elsőnek, 2025. november 22-én pedig 281 ezret a másodiknak."
+          "commonSender": "Egy tárca 2024 októbere és 2025 januárja között hét átutalásban 5,53 millió BSO-t küldött az elsőnek, 2025. november 22-én pedig 287 ezret a másodiknak.",
+          "onlyEth": "Ugyanez a tárca küldte mindkettőnek az egyetlen ETH-t, amelyet az valaha kapott, ugyanabban a percben, mint az első tokenjeit: 0,1 ETH-t és 0,12 ETH-t. Egyik tárca sem küldött soha tranzakciót."
         }
       },
       "holderF": {
-        "summary": "Egy tárca, amely három új tárcára osztotta szét a tokenjeit, és kifizette a gasdíjukat.",
+        "summary": "Egy tárca, amely három új tárcára osztotta szét a tokenjeit és 4 ETH-t.",
         "evidence": {
-          "split": "2024. március 10-én egy tárca hét percen belül kerek összegű PLEB-et (így hívták akkor a BSO-t), 12, 8 és 4 milliárdot küldött három új tárcának, és ugyanazon a napon kettőnek közülük ETH-t is küldött gasra. Maga is tart még BSO-t."
+          "split": "2024. március 10-én egy tárca hét percen belül kerek összegű PLEB-et (így hívták akkor a BSO-t), 12, 8 és 4 milliárdot küldött három új tárcának. Maga is tart még BSO-t.",
+          "ethBothWays": "Ugyanezekben a percekben 4,05 ETH-t küldött a három tárcának, egyenként 1 és 2 ETH közötti összeget. Amelyik a legtöbbet kapta, 2024. június 24-én 1,5 ETH-t küldött vissza; a másik kettő soha nem küldött tranzakciót."
         }
       },
       "holderG": {
-        "summary": "Két tárca, amelyeket ugyanaz a küldő finanszírozott, három év különbséggel.",
+        "summary": "Két tárca, amelyeket ugyanaz a küldő finanszírozott három év különbséggel, és egy harmadik, amelyre az egyikük átvitte az egyenlegét.",
         "evidence": {
-          "commonSender": "Egy tárca 2022 áprilisában 661 ezer BSO-t küldött a másodiknak az Avalanche-on, 2025 januárjában pedig 843 ezret az elsőnek az Ethereumon."
+          "commonSender": "Egy tárca 2022 áprilisában 658 ezer BSO-t küldött a másodiknak az Avalanche-on, 2025 januárjában pedig 843 ezret az elsőnek az Ethereumon.",
+          "senderFunded": "Ez a küldő érméket is küldött mindkét tárcának: a másodiknak ő adta az első AVAX-át, másnap pedig 17,4 AVAX-ot, az elsőnek pedig három perccel a tokenek után elküldte a megmaradt 0,15 ETH-ját.",
+          "movedOn": "2026. november 3-án a második tárca gasra ETH-t, egy 100 BSO-s tesztet, majd a teljes, 852 ezer BSO-s egyenlegét küldte a harmadiknak."
         }
       },
       "holderH": {
-        "summary": "Két tárca egyetlen átutalással közöttük.",
+        "summary": "Két tárca, amelyek közül az egyik finanszírozta a másikat.",
         "evidence": {
-          "directTransfer": "Az első tárca 2022. április 24-én 59 ezer BSO-t küldött a másodiknak."
+          "directTransfer": "Az első tárca 2022. április 24-én elküldte a másodiknak annak első AVAX-át, két perccel később pedig 59 ezer BSO-t.",
+          "funding": "2022. május 8-án az első tárca hat átutalásban 23 AVAX-ot küldött a másodiknak, a második pedig mindegyik után perceken belül BSO-ra váltotta a nagy részét."
         }
       },
       "holderI": {
-        "summary": "Két tárca ismétlődő átutalásokkal közöttük.",
+        "summary": "Két tárca, amelyek ETH-t küldtek egymásnak, mielőtt az egyik a teljes egyenlegét átvitte a másikra.",
         "evidence": {
-          "directTransfers": "A második tárca 2023. október 30-án 1,86 millió BSO-t küldött az elsőnek, 2023. november 8-án pedig 703 ezret."
+          "directTransfers": "A második tárca ezután mindent elküldött az elsőnek, amije volt: 2023. október 30-án 1,85 millió BSO-t, 2023. november 8-án pedig 703 ezret.",
+          "ethBothWays": "A második tárca 2022. december 16-án 0,77 ETH-t küldött az elsőnek, az első pedig másnap 0,02 ETH-t küldött vissza."
+        }
+      },
+      "holderJ": {
+        "summary": "Két tárca, amelyek több mint egy éven át oda-vissza küldtek egymásnak AVAX-ot.",
+        "evidence": {
+          "coinsBothWays": "Az első tárca 2021. május 7-én elküldte a másodiknak annak első AVAX-át, ugyanazon év augusztusában pedig az első ETH-ját. 2022 júliusáig tizenkét átutalásban 331 AVAX-ot küldött, a második pedig két átutalásban 15 AVAX-ot küldött vissza.",
+          "sameEveningLocks": "Mindkettő a Trader Joe-n vásárolt BSO-t, és 2022. április 28-án mindkettő ugyanabba a zároló szerződésbe zárolt BSO-t, egymáshoz képest fél órán belül."
+        }
+      },
+      "holderK": {
+        "summary": "Két tárca, amelyeket ugyanaz a magántárca finanszírozott.",
+        "evidence": {
+          "sharedFunder": "Egy magántárca finanszírozta mindkettőt. Az elsőnek 2021 októberében elküldte annak első AVAX-át, 2023 végéig 21 átutalásban 194 AVAX-ot, valamint két átutalásban 3,49 millió BSO-t. A másodiknak 2022. február 14-én küldte el annak első AVAX-át, és ugyanazon év áprilisáig hat átutalásban 23 AVAX-ot. Mindkettő kis összegű AVAX-ot küldött vissza.",
+          "sharedRecipient": "Mindkettő ugyanazt az új tárcát is finanszírozta: a második 2022. február 17-én elküldte neki annak első 5,1 AVAX-át, az első pedig három nappal később 38,3 AVAX-ot küldött neki."
+        }
+      },
+      "holderL": {
+        "summary": "Két tárca, amelyeket ugyanabból a magántárcából finanszíroztak, az egyiket egy közvetítő tárcán keresztül.",
+        "evidence": {
+          "funderChain": "Egy magántárca 2022. február 12-én elküldte a másodiknak annak első AVAX-át. Hat nappal később a saját 597 ezer BSO-ját és a megmaradt AVAX-át egy új tárcára vitte át, amely február 22-én továbbadta az 597 ezer BSO-t az első tárcának, annak első AVAX-ával együtt.",
+          "directTransfer": "A második tárca 2022. február 27-én 0,005 AVAX-ot küldött az elsőnek."
         }
       }
     },
@@ -579,14 +610,14 @@
       "howTitle": "Hogyan kapcsoltuk össze a tárcákat",
       "how": {
         "transfers": "Mindhárom szerződés esetében, az Avalanche-on és az Ethereumon is, nyomon követtünk minden két hétköznapi tárca közötti átutalást, kihagyva a tőzsdéket, routereket, poolokat és egyéb szerződéseket. A Safe multisigeket a tulajdonosaikhoz kapcsoltuk.",
-        "funders": "Összevetettük, melyik tárca küldött elsőként AVAX-ot vagy ETH-t az egyes nagy birtokosoknak. A tőzsdék tárcák ezreit finanszírozzák, ezért csak a magánfinanszírozók számítanak kapcsolatnak.",
+        "funders": "Nyomon követtünk minden AVAX- és ETH-átutalást is, amely a kínálat legalább 0,01%-át birtokló tárcára érkezett vagy onnan indult, beleértve azt is, hogy ki küldött elsőként érméket az egyes tárcáknak. A tőzsdék és a swapszolgáltatások tárcák ezreit finanszírozzák, ezért csak a magántárcák számítanak kapcsolatnak.",
         "pattern": "A közvetlen kapcsolat nélküli tárcák vásárlási viselkedését ugyanazon időszak összes vásárlójáéval vetettük össze.",
         "migrations": "Az egyenlegeket mindkét migráción keresztül követtük, 7114,6 PLEB/BSO arányon, ugyanazon az arányon, amellyel ez az oldal a régebbi összegeket BSO-ban mutatja."
       },
       "limitsTitle": "Korlátok",
       "limits": {
         "exchangeOnly": "Az a birtokos, aki minden tárcáját tőzsdén keresztül finanszírozza, és soha nem mozgat tokent közöttük, nem hagy kapcsolatot a láncon. Egyes csoportok még további tárcákat rejthetnek.",
-        "sales": "Két tárca közötti átutalás lehet eladás vagy ajándék. A Lehetséges jelölésű csoportok egyetlen ilyen kapcsolaton alapulnak.",
+        "sales": "Két tárca közötti átutalás lehet eladás vagy ajándék, ezért egyetlen csoport sem alapul egyetlen átutaláson. Egyes tárcák csak kaptak tokeneket és érméket a csoportjuktól, és soha nem küldtek semmit; ezek is lehetnek ajándékok.",
         "contracts": "Az Uniswap-poolon és a Safe-en kívüli szerződésekben tartott tokenek úgy szerepelnek, ahogy vannak.",
         "snapshot": "Az egyenlegek és az árfolyam ötpercenként frissülnek a láncról, amíg ez az oldal nyitva van. A tárcák közötti kapcsolatokat kézzel kutattuk fel, és nem frissülnek maguktól.",
         "history": "Az Előzmények oszlop vonalai az egyes tárcák egyenlegét követik azoknál a tárcáknál, amelyek a kínálat legalább 0,01%-át birtokolják, valamint minden ismert birtokos összes tárcájánál. A likviditási poolban, farmban vagy vesting streamben lévő tokenek kikerülnek a vonalból, a migrációk pedig egy részüket újra kibocsátották a tulajdonosaiknak, ezért egyes vonalak azokon a napokon ugranak egyet."
