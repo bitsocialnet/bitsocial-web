@@ -30,6 +30,21 @@ export function scrollToHomeSectionHash(hash: string) {
   });
 }
 
+/**
+ * Points the address bar at `hash` without a router navigation. In-page links write the hash with
+ * raw `history` calls the router never sees, so the router's `location.hash` can still equal a
+ * target the URL has already moved away from, and navigating to it again would change nothing.
+ */
+export function replaceUrlHash(hash: string) {
+  if (window.location.hash === hash) return;
+
+  window.history.replaceState(
+    window.history.state,
+    "",
+    `${window.location.pathname}${window.location.search}${hash}`,
+  );
+}
+
 /** Navigate to a home-page section, including when the current hash already matches the target. */
 export function goToHomeSectionHash(
   pathname: string,
@@ -42,6 +57,7 @@ export function goToHomeSectionHash(
 
   const isHome = pathname === "/" || pathname === "";
   if (isHome && currentHash === targetHash) {
+    replaceUrlHash(targetHash);
     scrollToHomeSectionHash(targetHash);
     return;
   }

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { replaceUrlHash } from "@/lib/home-section-nav";
 import {
   DEFAULT_LANGUAGE_CODE,
   LANGUAGE_QUERY_PARAM,
@@ -166,10 +167,15 @@ export default function LanguageSelector({
           searchParams.set(LANGUAGE_QUERY_PARAM, code);
         }
         const query = searchParams.toString();
+        // In-page links move the URL hash without the router, so its `location.hash` can be stale.
+        // Navigate with the router's hash (a new one would start the home section scroll), then
+        // put back the section the address bar was showing.
+        const urlHash = window.location.hash;
         navigate(
           { pathname: location.pathname, search: query ? `?${query}` : "", hash: location.hash },
           { replace: true },
         );
+        replaceUrlHash(urlHash);
       }
     },
     [i18n, location.hash, location.pathname, location.search, navigate],
