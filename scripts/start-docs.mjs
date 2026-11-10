@@ -12,6 +12,7 @@ import {
   isWindows,
   portlessEnv,
   portlessBin,
+  recordDevServerUrl,
   repoRoot,
   spawnDevServer,
 } from "./dev-server-utils.mjs";
@@ -44,6 +45,7 @@ if (command === portlessBin) {
   const publicUrl = getPortlessPublicUrl(appName);
 
   args = [appName, process.execPath, docsServerScript];
+  recordDevServerUrl("docs", publicUrl);
 
   if (appName !== "docs.bitsocial") {
     console.log(`Starting Portless docs server at ${publicUrl}`);

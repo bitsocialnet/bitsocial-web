@@ -1,6 +1,15 @@
 import assert from "node:assert/strict";
-import { spawn } from "node:child_process";
-import { chmodSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { execFileSync, spawn, spawnSync } from "node:child_process";
+import {
+  chmodSync,
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import http from "node:http";
 import net from "node:net";
 import { tmpdir } from "node:os";
@@ -10,7 +19,16 @@ import { fileURLToPath } from "node:url";
 
 const repoRoot = fileURLToPath(new URL("../../", import.meta.url));
 const baseEnv = { ...process.env, BITSOCIAL_PINNED_NODE_REEXEC: "1", BROWSER: "none" };
-for (const name of ["PORTLESS", "PORTLESS_URL", "PORT", "HOST"]) delete baseEnv[name];
+for (const name of [
+  "PORTLESS",
+  "PORTLESS_URL",
+  "PORT",
+  "HOST",
+  "DOCS_DEV_PROXY_TARGET",
+  "DOCS_DEV_URL_FILE",
+]) {
+  delete baseEnv[name];
+}
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -202,4 +220,98 @@ test("start-stats stops the containers when interrupted while the dashboard warm
 
   assert.ok(await run.waitForExit(10_000), `start-stats did not exit:\n${run.output()}`);
   assert.match(readFileSync(docker.log, "utf8"), /^compose -f \S+ stop$/m);
+});
+
+// Copies the launchers into a scratch checkout whose node_modules/.bin/portless is a stub: `list`
+// prints the routes in $FAKE_ROUTES, and running an app logs its name and the docs hand-off env.
+function portlessCheckout(t, branch) {
+  const root = mkdtempSync(path.join(tmpdir(), "dev-servers-portless-"));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  mkdirSync(path.join(root, "scripts"));
+  for (const file of ["dev-server-utils.mjs", "start-dev.mjs", "start-docs.mjs"]) {
+    copyFileSync(path.join(repoRoot, "scripts", file), path.join(root, "scripts", file));
+  }
+  mkdirSync(path.join(root, "node_modules/.bin"), { recursive: true });
+  const portless = path.join(root, "node_modules/.bin/portless");
+  writeFileSync(
+    portless,
+    `#!/bin/sh
+case "$1" in
+  proxy) exit 0 ;;
+  list) cat "$FAKE_ROUTES"; exit 0 ;;
+esac
+printf '%s|%s|%s\\n' "$1" "$DOCS_DEV_PROXY_TARGET" "$DOCS_DEV_URL_FILE" >> "$FAKE_LOG"
+`,
+  );
+  chmodSync(portless, 0o755);
+  execFileSync("git", ["init", "--quiet", "--initial-branch", branch], { cwd: root });
+  const routes = path.join(root, "routes");
+  const log = path.join(root, "apps.log");
+  writeFileSync(routes, "");
+  const run = (script) => {
+    const result = spawnSync(process.execPath, [path.join(root, "scripts", script)], {
+      cwd: root,
+      env: { ...baseEnv, FAKE_ROUTES: routes, FAKE_LOG: log },
+      encoding: "utf8",
+      timeout: 30_000,
+    });
+    assert.equal(result.status, 0, result.stdout + result.stderr);
+    const [name, docsTarget, docsUrlFile] = readFileSync(log, "utf8")
+      .trim()
+      .split("\n")
+      .at(-1)
+      .split("|");
+    return { name, docsTarget, docsUrlFile };
+  };
+  return { routes, run };
+}
+
+for (const [branch, docsHost] of [
+  ["master", "docs.bitsocial.localhost"],
+  ["feature/new-page", "feature-new-page.docs.bitsocial.localhost"],
+]) {
+  test(`about server on ${branch} redirects /docs to the docs host the running docs server claimed`, (t) => {
+    const checkout = portlessCheckout(t, branch);
+    const docs = checkout.run("start-docs.mjs");
+    assert.equal(`${docs.name}.localhost`, docsHost);
+    writeFileSync(checkout.routes, `https://${docsHost}  ->  localhost:4321  (pid 1)\n`);
+
+    const about = checkout.run("start-dev.mjs");
+
+    // Same precedence as docsDevRedirectOrigin() in about/vite.config.ts.
+    const recorded = about.docsUrlFile ? readFileSync(about.docsUrlFile, "utf8").trim() : "";
+    assert.equal(about.docsTarget || recorded, `https://${docsHost}`);
+  });
+}
+
+test("about dev server reads the recorded docs URL on every /docs request", async (t) => {
+  const record = path.join(mkdtempSync(path.join(tmpdir(), "dev-servers-docs-url-")), "docs-url");
+  t.after(() => rmSync(path.dirname(record), { recursive: true, force: true }));
+  const port = await freePort();
+  const server = launch(t, "start-about-server.mjs", {
+    PORT: String(port),
+    HOST: "127.0.0.1",
+    DOCS_DEV_URL_FILE: record,
+  });
+  await server.waitForOutput("Host URL");
+  const docsRedirect = () =>
+    new Promise((resolve, reject) => {
+      http
+        .get(`http://127.0.0.1:${port}/docs/getting-started`, (response) => {
+          response.resume();
+          resolve(`${response.statusCode} ${response.headers.location}`);
+        })
+        .once("error", reject);
+    });
+
+  writeFileSync(record, "https://feature.docs.bitsocial-2.localhost\n");
+  assert.equal(
+    await docsRedirect(),
+    "308 https://feature.docs.bitsocial-2.localhost/getting-started",
+  );
+  writeFileSync(record, "https://feature.docs.bitsocial.localhost\n");
+  assert.equal(
+    await docsRedirect(),
+    "308 https://feature.docs.bitsocial.localhost/getting-started",
+  );
 });

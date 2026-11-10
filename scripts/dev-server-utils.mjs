@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { spawn, spawnSync } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import net from "node:net";
 import path from "node:path";
 import process from "node:process";
@@ -108,6 +108,18 @@ function getPreferredPortlessAppName(baseName, activeRouteHosts) {
 
 export function getPortlessPublicUrl(appName) {
   return `https://${appName}.localhost`;
+}
+
+// A Portless name depends on which routes were taken when its launcher ran, so no other process
+// can re-derive it. Launchers record the URL they claimed here, per checkout (gitignored).
+export function devServerUrlFile(name) {
+  return path.join(repoRoot, ".dev-servers", `${name}-url`);
+}
+
+export function recordDevServerUrl(name, url) {
+  const file = devServerUrlFile(name);
+  mkdirSync(path.dirname(file), { recursive: true });
+  writeFileSync(file, `${url}\n`);
 }
 
 export function ensurePortlessProxy() {

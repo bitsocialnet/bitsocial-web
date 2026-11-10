@@ -8,6 +8,7 @@ import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 import {
+  devServerUrlFile,
   ensurePortlessProxy,
   ensurePinnedNodeVersion,
   getPortlessAppName,
@@ -35,10 +36,10 @@ if (command === portlessBin) {
   ensurePortlessProxy();
   const appName = getPortlessAppName("bitsocial");
   const publicUrl = getPortlessPublicUrl(appName);
-  const docsAppName = getPortlessAppName("docs.bitsocial");
 
   args = [appName, process.execPath, aboutServerScript];
-  childEnv.DOCS_DEV_PROXY_TARGET = getPortlessPublicUrl(docsAppName);
+  // start-docs records the docs URL it claims; the about server reads it on each /docs request.
+  childEnv.DOCS_DEV_URL_FILE = devServerUrlFile("docs");
   browserOpenUrl = publicUrl;
 
   if (appName !== "bitsocial") {
