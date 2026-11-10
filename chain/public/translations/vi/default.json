@@ -611,7 +611,7 @@
         "sales": "Một lần chuyển giữa hai ví có thể là một giao dịch bán hoặc một món quà, nên không nhóm nào chỉ dựa trên một lần chuyển duy nhất. Một số ví chỉ từng nhận token và coin từ nhóm của mình và chưa bao giờ gửi đi bất cứ thứ gì; đó cũng có thể là quà tặng.",
         "contracts": "Token do các hợp đồng khác ngoài pool Uniswap và Safe nắm giữ được liệt kê nguyên trạng.",
         "snapshot": "Số dư và giá được làm mới từ chuỗi mỗi năm phút khi trang này đang mở. Các liên kết giữa các ví được nghiên cứu thủ công và không tự cập nhật.",
-        "history": "Các đường lịch sử theo dõi lượng mà mỗi ví nắm giữ, cho các ví có ít nhất 0,01% nguồn cung và mọi ví của một người nắm giữ đã biết. Token nằm trong pool thanh khoản, farm hoặc luồng vesting sẽ ra khỏi đường, và các đợt migration đã phát hành lại một phần trong số đó cho chủ sở hữu, nên một số đường nhảy vọt vào những ngày đó."
+        "history": "Các đường lịch sử theo dõi lượng mà mỗi ví nắm giữ, cho các ví có ít nhất 0,01% nguồn cung và mọi ví của một người nắm giữ đã biết. Đường của một người nắm giữ đã biết cũng tính cả các ví đã rút hết mà token của họ đến từ đó, nên đường bắt đầu từ lần mua hoặc nhận (claim) đầu tiên. Token nằm trong pool thanh khoản, farm hoặc luồng vesting sẽ ra khỏi đường, và các đợt migration đã phát hành lại một phần trong số đó cho chủ sở hữu, nên một số đường nhảy vọt vào những ngày đó."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB trên Avalanche",

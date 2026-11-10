@@ -611,7 +611,7 @@
         "sales": "Transfer antara dua dompet bisa berupa penjualan atau hadiah, jadi tidak ada kelompok yang bertumpu pada satu transfer saja. Beberapa dompet hanya pernah menerima token dan koin dari kelompoknya dan tidak pernah mengirim apa pun; itu pun bisa berupa hadiah.",
         "contracts": "Token yang dipegang kontrak selain pool Uniswap dan Safe dicantumkan apa adanya.",
         "snapshot": "Saldo dan harga diperbarui dari chain setiap lima menit selama halaman ini terbuka. Tautan antardompet diteliti secara manual dan tidak diperbarui dengan sendirinya.",
-        "history": "Garis riwayat mengikuti jumlah yang dipegang setiap dompet, untuk dompet dengan setidaknya 0,01% dari suplai dan setiap dompet milik pemegang yang dikenal. Token di pool likuiditas, farm, atau stream vesting keluar dari garis, dan kedua migrasi menerbitkan ulang sebagian di antaranya kepada pemiliknya, sehingga beberapa garis melonjak pada hari-hari itu."
+        "history": "Garis riwayat mengikuti jumlah yang dipegang setiap dompet, untuk dompet dengan setidaknya 0,01% dari suplai dan setiap dompet milik pemegang yang dikenal. Garis milik pemegang yang dikenal juga menghitung dompet yang sudah dikosongkan tempat tokennya berasal, sehingga garis itu dimulai dari pembelian atau klaim pertama. Token di pool likuiditas, farm, atau stream vesting keluar dari garis, dan kedua migrasi menerbitkan ulang sebagian di antaranya kepada pemiliknya, sehingga beberapa garis melonjak pada hari-hari itu."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB di Avalanche",

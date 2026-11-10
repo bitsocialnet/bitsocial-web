@@ -621,7 +621,7 @@
         "sales": "Una transferència entre dues carteres pot ser una venda o un regal, així que cap grup no es basa en una sola transferència. Algunes carteres només han rebut tokens i monedes del seu grup i no han enviat mai res; això també podrien ser regals.",
         "contracts": "Els tokens en mans de contractes que no siguin el pool d'Uniswap i el Safe es mostren tal com són.",
         "snapshot": "Els saldos i el preu s'actualitzen des de la cadena cada cinc minuts mentre aquesta pàgina està oberta. Els vincles entre carteres s'investiguen a mà i no s'actualitzen sols.",
-        "history": "Les línies de l'historial segueixen el que tenia cada cartera, per a les carteres amb almenys un 0,01% de l'oferta i per a cada cartera d'un posseïdor conegut. Els tokens en un pool de liquiditat, en una granja o en un stream de vesting surten de la línia, i les migracions en van tornar a emetre una part als seus propietaris, de manera que algunes línies fan un salt aquells dies."
+        "history": "Les línies de l'historial segueixen el que tenia cada cartera, per a les carteres amb almenys un 0,01% de l'oferta i per a cada cartera d'un posseïdor conegut. La línia d'un posseïdor conegut també compta les carteres buidades d'on van venir els seus tokens, de manera que comença amb la primera compra o reclamació. Els tokens en un pool de liquiditat, en una granja o en un stream de vesting surten de la línia, i les migracions en van tornar a emetre una part als seus propietaris, de manera que algunes línies fan un salt aquells dies."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB a Avalanche",

@@ -621,7 +621,7 @@
         "sales": "Uma transferência entre duas carteiras pode ser uma venda ou um presente, então nenhum grupo se baseia em uma única transferência. Algumas carteiras só receberam tokens e moedas do seu grupo e nunca enviaram nada; esses também podem ser presentes.",
         "contracts": "Tokens mantidos por contratos que não sejam o pool da Uniswap e o Safe são listados como estão.",
         "snapshot": "Os saldos e o preço são atualizados a partir da cadeia a cada cinco minutos enquanto esta página estiver aberta. Os vínculos entre carteiras são pesquisados manualmente e não se atualizam sozinhos.",
-        "history": "As linhas do histórico seguem o que cada carteira detinha, para carteiras com pelo menos 0,01% da oferta e para cada carteira de um detentor conhecido. Tokens em um pool de liquidez, farm ou stream de vesting saem da linha, e as migrações reemitiram parte deles para seus donos, então algumas linhas dão um salto nesses dias."
+        "history": "As linhas do histórico seguem o que cada carteira detinha, para carteiras com pelo menos 0,01% da oferta e para cada carteira de um detentor conhecido. A linha de um detentor conhecido também conta as carteiras esvaziadas de onde vieram seus tokens, então ela começa na primeira compra ou resgate. Tokens em um pool de liquidez, farm ou stream de vesting saem da linha, e as migrações reemitiram parte deles para seus donos, então algumas linhas dão um salto nesses dias."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB na Avalanche",

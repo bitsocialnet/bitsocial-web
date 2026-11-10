@@ -626,7 +626,7 @@
         "sales": "Převod mezi dvěma peněženkami může být prodej nebo dar, takže žádná skupina nestojí na jediném převodu. Některé peněženky od své skupiny vždy jen dostávaly tokeny a mince a nikdy nic neodeslaly; i to by mohly být dary.",
         "contracts": "Tokeny držené jinými kontrakty než poolem na Uniswapu a Safe jsou uvedeny tak, jak jsou.",
         "snapshot": "Zůstatky a cena se z blockchainu obnovují každých pět minut, dokud je tato stránka otevřená. Propojení mezi peněženkami se dohledávají ručně a sama se neaktualizují.",
-        "history": "Křivky ve sloupci Historie ukazují, kolik která peněženka držela, a to u peněženek s alespoň 0,01 % nabídky a u každé peněženky známého držitele. Tokeny v poolu likvidity, ve farmě nebo ve vestingovém streamu z křivky vypadnou, a protože migrace část z nich znovu vydaly jejich vlastníkům, některé křivky v těch dnech poskočí."
+        "history": "Křivky ve sloupci Historie ukazují, kolik která peněženka držela, a to u peněženek s alespoň 0,01 % nabídky a u každé peněženky známého držitele. Křivka známého držitele zahrnuje i vyprázdněné peněženky, ze kterých jeho tokeny pocházejí, takže začíná prvním nákupem nebo prvním získáním tokenů. Tokeny v poolu likvidity, ve farmě nebo ve vestingovém streamu z křivky vypadnou, a protože migrace část z nich znovu vydaly jejich vlastníkům, některé křivky v těch dnech poskočí."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB na Avalanche",

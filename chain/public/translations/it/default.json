@@ -621,7 +621,7 @@
         "sales": "Un trasferimento tra due portafogli può essere una vendita o un regalo, quindi nessun gruppo si basa su un unico trasferimento. Alcuni portafogli hanno soltanto ricevuto token e coin dal proprio gruppo e non hanno mai inviato nulla; anche quelli potrebbero essere regali.",
         "contracts": "I token detenuti da contratti diversi dal pool Uniswap e dal Safe sono elencati così come sono.",
         "snapshot": "Saldi e prezzo si aggiornano dalla chain ogni cinque minuti mentre questa pagina è aperta. I collegamenti tra i portafogli sono ricercati a mano e non si aggiornano da soli.",
-        "history": "Le linee dello storico seguono ciò che ha detenuto ogni portafoglio, per i portafogli con almeno lo 0,01% dell'offerta e per ogni portafoglio di un detentore noto. I token in un pool di liquidità, in una farm o in uno stream di vesting escono dalla linea, e le migrazioni ne hanno riemesso una parte ai loro proprietari, quindi alcune linee fanno un salto in quei giorni."
+        "history": "Le linee dello storico seguono ciò che ha detenuto ogni portafoglio, per i portafogli con almeno lo 0,01% dell'offerta e per ogni portafoglio di un detentore noto. La linea di un detentore noto conta anche i portafogli svuotati da cui provengono i suoi token, quindi parte dal primo acquisto o dal primo claim. I token in un pool di liquidità, in una farm o in uno stream di vesting escono dalla linea, e le migrazioni ne hanno riemesso una parte ai loro proprietari, quindi alcune linee fanno un salto in quei giorni."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB su Avalanche",

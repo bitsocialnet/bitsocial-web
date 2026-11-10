@@ -37,7 +37,8 @@ const REBASE_BURN_BLOCK = 25_006_752;
 const PLEB_PER_BSO = 7114.596;
 
 // A wallet holding at least this much at the snapshot gets a line; every wallet of a known holder
-// gets one too, so a group's line adds up all of its wallets. 0.01% of the 210M supply.
+// gets one too, former wallets included, so a group's line adds up all of its wallets. 0.01% of the
+// 210M supply.
 const MIN_BALANCE = 21_000;
 
 async function readAddresses(file, pattern) {
@@ -254,9 +255,10 @@ function formatHistory(history) {
 async function main() {
   const generatedAt = new Date();
   const priceHistory = JSON.parse(await readFile(priceHistoryPath, "utf8"));
+  // Every quoted address: listed wallets, former wallets and the wallets cited as evidence.
   const entityAddresses = await readAddresses(
     "chain/src/lib/rich-list/data.ts",
-    /address: "(0x[0-9a-fA-F]{40})"/g,
+    /"(0x[0-9a-fA-F]{40})"/g,
   );
   const [poolAddress] = await readAddresses(
     "chain/src/lib/site.ts",

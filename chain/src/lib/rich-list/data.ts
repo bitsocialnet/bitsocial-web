@@ -40,6 +40,13 @@ export type Entity = {
   kind: EntityKind;
   confidence?: Confidence;
   wallets: EntityWallet[];
+  /**
+   * Emptied wallets whose tokens all went to this holder's wallets: each moved its whole balance,
+   * less any sales, to them or to another former wallet. They hold nothing so they are not listed,
+   * but they count toward the holder's history line, which then starts at the first purchase or
+   * claim instead of when today's wallets were filled.
+   */
+  formerWallets?: string[];
   evidence: EvidenceItem[];
 };
 
@@ -67,6 +74,38 @@ export const ENTITIES: Entity[] = [
       { address: "0x8eb1a66e06af821203ee9d648032af164ccbc14d", role: "safe" },
       { address: "0x5121cda4f41246d6d488598ca08c0d46d5b6d2fd", role: "safeOwner" },
     ],
+    formerWallets: [
+      "0x4ec92589c7cb12402a930ee44c238804e6197467",
+      "0x52b2884b6ea5c5f9ac7d3d44b984d4a3e71ce433",
+      "0xc9d5af04e2131a7f4aa07f06699ecec9339c1034",
+      "0xdbaad112b55fb0d29febcba8a1d208a62793b444",
+      "0x9a72cee219babf88dd39771d286c4d4b494064c1",
+      "0xa974af6148ffcf405b29c8670d108fe2a798438f",
+      "0x7eed02579e267c1e699dd8eea90a7465694f0061",
+      "0xa460299f8a5779f284897fe6fdb692aa2eaafcba",
+      "0x990a150c0990c8228a8dcc7c762e0693f217632d",
+      "0x07b0292b49495bc17624e0e6b9f5cefa69637b6b",
+      "0x98ef6a0a63c3be8cccfa374d26e54d07819eb06c",
+      "0xfd909c3af243be48a57eca0716646b687be3ec56",
+      "0xd194bc047b94d1e6627df59b7acae2aee2f5ebf7",
+      "0xc493b5a4c5d21765dd3cc37b5752d3af063f5ad5",
+      "0x6d1613316f1a4aedb7ada7078fb8d0a7efcf777a",
+      "0x1c5e7d9f3cdb1dfdeffc0cae1b3e79fe500c2e38",
+      "0x782875023f6b6d07e58abbf681acafea0592ad6f",
+      "0x0611cf40df920fa426a356dd68013de631617499",
+      "0x555cf0815314c5786d855a7cb300062f20e99b88",
+      "0x4d8d3ba670be46368afeeb5104c655dcbc0d18b0",
+      "0x2577cc9d4f62ab52d32d5ffcdd5d7a1073de0f15",
+      "0x7efc07e07d254ab4360eb3c8720ffd132087e4ad",
+      "0x5d16f130b5a36ee0a89cdf62cd67daa41d4b3444",
+      "0xd4ddb6c826516d72824ee1904e3b28502458f10d",
+      "0x6c7f3f2d622a2594cc6bcf8bd2bf8f14cca609d6",
+      "0x17dcab19030cb78bb25e565b0e3739d9173c0e5b",
+      "0x8c99fced913309ba6333a9e99b7f8f01b671a7c2",
+      "0xd57b780f34d96a40eedaa8d57907eb0cc9cfd452",
+      "0x290a5b06dbece8b2cddd6fcc9565eb726a78b7e2",
+      "0x19ecda49f87aab424fe6ed54ef738ed6d9fde48a",
+    ],
     evidence: [],
   },
   {
@@ -75,6 +114,12 @@ export const ENTITIES: Entity[] = [
     wallets: [
       { address: "0x89e768ddf3696eb79112734fb0755ab27f8c5620" },
       { address: "0x13087d38b78df0345d67c8cee73b215589ae3a1f" },
+    ],
+    formerWallets: [
+      "0x409e67f7124ef439ef83790ade3e81cf7dfc37da",
+      "0xb6ef273d546b13d42f6fb3328ab041eab939aadb",
+      "0x9b08b69818093a940ff381af8ec079ecdf3076bb",
+      "0xb295166ae52850160e2f3d692c6d54c12311b276",
     ],
     evidence: [],
   },
@@ -186,6 +231,7 @@ export const ENTITIES: Entity[] = [
       { address: "0xcea33702d7468fa6c5dfe2f6f35270ce2c799a34" },
       { address: "0xa274cd872b05dbd01a1b132cbf75c76bae5aba02" },
     ],
+    formerWallets: ["0x72dc34a1d402972db44e430b9e8c7bcd9b52270d"],
     evidence: [
       {
         id: "commonSender",
@@ -237,6 +283,10 @@ export const ENTITIES: Entity[] = [
     wallets: [
       { address: "0x4bcb68fdf8ef791a392195b952c541087505f8e2" },
       { address: "0x9c36d1e6d6c6d6871062dc7dd3494f884eb1798b" },
+    ],
+    formerWallets: [
+      "0xf6f03c32176a989b76d0c2e991535a07973a1393",
+      "0x51a7142b5ddccf34fd8429b4416e19fa0b8a26fe",
     ],
     evidence: [
       {
@@ -307,6 +357,14 @@ export const ENTITIES: Entity[] = [
       { address: "0x9f4704ce47f9b361174c5eea3103f3f74aec3a28" },
       { address: "0x4aeb56386b14e3816908c84833ca1744d0782c4e" },
       { address: "0x20936c48e010e7ff3701f082b998ef3079b320ff" },
+    ],
+    formerWallets: [
+      "0xbd7e083b1863fc53c7541756aff4966d720588ac",
+      "0x502b300c984193e0a80934eb352ab1ab616f59af",
+      "0x37139e2ab0cc14b79b3a8458c16c34b127375c00",
+      "0xc9be0e27adf30273a931a84a7a45a28d8de7696d",
+      "0x19c70a654e7e143093378fcc5f57e289c63cb86e",
+      "0xab0d2efc0a2f79cc904c41c7a3a51f64485af94d",
     ],
     evidence: [
       {
@@ -390,6 +448,7 @@ export const ENTITIES: Entity[] = [
       { address: "0x8eeccf2f3ea9fe05d6906abaa1458be9646d938b" },
       { address: "0x23b33f91420608d4a1ebe5430e3b38dc26da2864" },
     ],
+    formerWallets: ["0x4b024b1609e1c3c8335a7396748e9339c671dfa6"],
     evidence: [
       {
         id: "sharedFunder",
@@ -449,6 +508,10 @@ export const ENTITIES: Entity[] = [
     wallets: [
       { address: "0x8d57c54dd3371e54610c30804e6151e293cc1604" },
       { address: "0xd2d8987b8df62c0639be4cb89d65b51e8709b3d8" },
+    ],
+    formerWallets: [
+      "0x8d16b745c2e1aefd102f9743693b2378eae56cdd",
+      "0x5739e68e77d45017f616c6dfd15be0e7e4d75ac4",
     ],
     evidence: [
       {

@@ -179,8 +179,12 @@ export default function HoldersTable() {
 
                 const { entity, wallets, balance } = row.row;
                 const heldWallets = wallets.filter((wallet) => wallet.balance > 0);
-                // The line counts every wallet, including ones that have since sold out.
-                const allAddresses = wallets.map((wallet) => wallet.address);
+                // The line counts every wallet, including ones that have since sold out and the
+                // emptied wallets the holder's tokens came from.
+                const allAddresses = [
+                  ...wallets.map((wallet) => wallet.address),
+                  ...(entity.formerWallets ?? []),
+                ];
                 const isOpen = expanded.has(entity.id);
                 const panelId = `rl-wallets-${entity.id}`;
                 return (

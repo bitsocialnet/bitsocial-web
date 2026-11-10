@@ -621,7 +621,7 @@
         "sales": "Un transfert entre deux portefeuilles peut être une vente ou un don, donc aucun groupe ne repose sur un seul transfert. Certains portefeuilles n’ont jamais fait que recevoir des tokens et des coins de leur groupe, sans jamais rien envoyer ; il pourrait aussi s’agir de dons.",
         "contracts": "Les tokens détenus par des contrats autres que le pool Uniswap et le Safe sont listés tels quels.",
         "snapshot": "Les soldes et le prix sont actualisés depuis la chaîne toutes les cinq minutes tant que cette page est ouverte. Les liens entre portefeuilles sont établis à la main et ne se mettent pas à jour d’eux-mêmes.",
-        "history": "Les courbes de l’historique suivent ce que détenait chaque portefeuille, pour les portefeuilles détenant au moins 0,01 % de l’offre et pour chaque portefeuille d’un détenteur connu. Les tokens placés dans un pool de liquidité, une farm ou un flux de vesting sortent de la courbe, et les migrations en ont réémis une partie à leurs propriétaires, si bien que certaines courbes font un bond ces jours-là."
+        "history": "Les courbes de l’historique suivent ce que détenait chaque portefeuille, pour les portefeuilles détenant au moins 0,01 % de l’offre et pour chaque portefeuille d’un détenteur connu. La courbe d’un détenteur connu compte aussi les portefeuilles vidés d’où viennent ses tokens, si bien qu’elle commence au premier achat ou à la première réclamation. Les tokens placés dans un pool de liquidité, une farm ou un flux de vesting sortent de la courbe, et les migrations en ont réémis une partie à leurs propriétaires, si bien que certaines courbes font un bond ces jours-là."
       },
       "contracts": {
         "gen1": "Gen 1 : PLEB sur Avalanche",

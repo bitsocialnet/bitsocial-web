@@ -626,7 +626,7 @@
         "sales": "Transfer między dwoma portfelami może być sprzedażą lub prezentem, więc żadna grupa nie opiera się na pojedynczym transferze. Niektóre portfele jedynie otrzymywały tokeny i monety od swojej grupy i nigdy niczego nie wysłały; to też mogły być prezenty.",
         "contracts": "Tokeny należące do kontraktów innych niż pula Uniswap i Safe są pokazane bez zmian.",
         "snapshot": "Salda i cena odświeżają się z łańcucha co pięć minut, gdy ta strona jest otwarta. Powiązania między portfelami są badane ręcznie i nie aktualizują się same.",
-        "history": "Linie w kolumnie Historia pokazują, ile miał każdy portfel, dla portfeli z co najmniej 0,01% podaży i dla każdego portfela znanego posiadacza. Tokeny w puli płynności, na farmie lub w strumieniu vestingowym wypadają z linii, a migracje wyemitowały część z nich ponownie ich właścicielom, więc niektóre linie w te dni skaczą."
+        "history": "Linie w kolumnie Historia pokazują, ile miał każdy portfel, dla portfeli z co najmniej 0,01% podaży i dla każdego portfela znanego posiadacza. Linia znanego posiadacza uwzględnia też opróżnione portfele, z których pochodzą jego tokeny, więc zaczyna się od pierwszego zakupu lub odbioru tokenów. Tokeny w puli płynności, na farmie lub w strumieniu vestingowym wypadają z linii, a migracje wyemitowały część z nich ponownie ich właścicielom, więc niektóre linie w te dni skaczą."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB na Avalanche",

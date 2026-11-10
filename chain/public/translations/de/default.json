@@ -616,7 +616,7 @@
         "sales": "Ein Transfer zwischen zwei Wallets kann ein Verkauf oder ein Geschenk sein, daher beruht keine Gruppe auf einem einzelnen Transfer. Manche Wallets haben Tokens und Coins immer nur von ihrer Gruppe erhalten und nie etwas gesendet; auch das könnten Geschenke sein.",
         "contracts": "Tokens in anderen Contracts als dem Uniswap-Pool und dem Safe werden so aufgeführt, wie sie sind.",
         "snapshot": "Guthaben und Preis werden alle fünf Minuten aus der Chain aktualisiert, solange diese Seite geöffnet ist. Die Verknüpfungen zwischen Wallets werden von Hand recherchiert und aktualisieren sich nicht von selbst.",
-        "history": "Die Verlaufslinien zeigen, was jede Wallet gehalten hat, und zwar für Wallets mit mindestens 0,01% der Gesamtmenge sowie für jede Wallet eines bekannten Halters. Tokens in einem Liquiditätspool, einer Farm oder einem Vesting-Stream fallen aus der Linie heraus, und bei den Migrationen wurden einige davon an ihre Besitzer neu ausgegeben, sodass manche Linien an diesen Tagen springen."
+        "history": "Die Verlaufslinien zeigen, was jede Wallet gehalten hat, und zwar für Wallets mit mindestens 0,01% der Gesamtmenge sowie für jede Wallet eines bekannten Halters. Die Linie eines bekannten Halters zählt auch die geleerten Wallets mit, aus denen seine Tokens stammen, und beginnt deshalb beim ersten Kauf oder Claim. Tokens in einem Liquiditätspool, einer Farm oder einem Vesting-Stream fallen aus der Linie heraus, und bei den Migrationen wurden einige davon an ihre Besitzer neu ausgegeben, sodass manche Linien an diesen Tagen springen."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB auf Avalanche",

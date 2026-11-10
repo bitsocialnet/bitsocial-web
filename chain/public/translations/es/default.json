@@ -621,7 +621,7 @@
         "sales": "Una transferencia entre dos billeteras puede ser una venta o un regalo, así que ningún grupo se basa en una única transferencia. Algunas billeteras solo han recibido tokens y monedas de su grupo y nunca han enviado nada; eso también podrían ser regalos.",
         "contracts": "Los tokens en manos de contratos distintos del pool de Uniswap y el Safe se muestran tal cual.",
         "snapshot": "Los saldos y el precio se actualizan desde la cadena cada cinco minutos mientras esta página está abierta. Los vínculos entre billeteras se investigan a mano y no se actualizan solos.",
-        "history": "Las líneas del historial siguen lo que tenía cada billetera, para las billeteras con al menos un 0,01% del suministro y para cada billetera de un poseedor conocido. Los tokens en un pool de liquidez, en una granja o en un stream de vesting salen de la línea, y las migraciones volvieron a emitir parte de ellos a sus dueños, así que algunas líneas dan un salto esos días."
+        "history": "Las líneas del historial siguen lo que tenía cada billetera, para las billeteras con al menos un 0,01% del suministro y para cada billetera de un poseedor conocido. La línea de un poseedor conocido también cuenta las billeteras vaciadas de las que vinieron sus tokens, así que empieza con la primera compra o reclamación. Los tokens en un pool de liquidez, en una granja o en un stream de vesting salen de la línea, y las migraciones volvieron a emitir parte de ellos a sus dueños, así que algunas líneas dan un salto esos días."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB en Avalanche",

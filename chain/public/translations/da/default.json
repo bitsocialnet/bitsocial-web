@@ -616,7 +616,7 @@
         "sales": "En overførsel mellem to wallets kan være et salg eller en gave, så ingen gruppe hviler på en enkelt overførsel. Nogle wallets har kun modtaget tokens og coins fra deres gruppe og aldrig sendt noget; det kunne også være gaver.",
         "contracts": "Tokens i andre kontrakter end Uniswap-poolen og Safen vises, som de er.",
         "snapshot": "Saldi og pris opdateres fra chainen hvert femte minut, mens denne side er åben. Forbindelserne mellem wallets er undersøgt manuelt og opdateres ikke af sig selv.",
-        "history": "Historiklinjerne følger, hvad hver wallet har holdt, for wallets med mindst 0,01% af udbuddet og for hver wallet hos en kendt indehaver. Tokens i en likviditetspool, farm eller vestingstream forsvinder fra linjen, og migreringerne udstedte nogle af dem igen til deres ejere, så nogle linjer springer på de dage."
+        "history": "Historiklinjerne følger, hvad hver wallet har holdt, for wallets med mindst 0,01% af udbuddet og for hver wallet hos en kendt indehaver. En kendt indehavers linje tæller også de tømte wallets med, som dens tokens kom fra, så den starter ved det første køb eller claim. Tokens i en likviditetspool, farm eller vestingstream forsvinder fra linjen, og migreringerne udstedte nogle af dem igen til deres ejere, så nogle linjer springer på de dage."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB på Avalanche",

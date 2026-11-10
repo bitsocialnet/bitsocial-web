@@ -616,7 +616,7 @@
         "sales": "A transfer between two wallets can be a sale or a gift, so no group rests on a single transfer. Some wallets have only ever received tokens and coins from their group and never sent anything; those could also be gifts.",
         "contracts": "Tokens held by contracts other than the Uniswap pool and the Safe are listed as they are.",
         "snapshot": "Balances and the price refresh from the chain every five minutes while this page is open. The links between wallets are researched by hand and do not update on their own.",
-        "history": "History lines follow what each wallet held, for wallets with at least 0.01% of the supply and every wallet of a known holder. Tokens in a liquidity pool, farm or vesting stream leave the line, and the migrations re-issued some of them to their owners, so some lines jump on those days."
+        "history": "History lines follow what each wallet held, for wallets with at least 0.01% of the supply and every wallet of a known holder. A known holder's line also counts the emptied wallets its tokens came from, so it starts at the first purchase or claim. Tokens in a liquidity pool, farm or vesting stream leave the line, and the migrations re-issued some of them to their owners, so some lines jump on those days."
       },
       "contracts": {
         "gen1": "Gen 1: PLEB on Avalanche",
