@@ -52,15 +52,25 @@ const load = async (path: string) => {
     }
     const body: unknown = await response.json();
     entries.set(path, { data: body, fetchedAt: Date.now(), loading: false });
-    latestByView.set(viewKey(path), body);
+    // Only a path on screen is the view's previous data (watch() covers one opened on cached data),
+    // not a range loaded in the background.
+    if (watchers.has(path)) {
+      latestByView.set(viewKey(path), body);
+    }
     void prefetchOtherRanges(path);
   } catch (error) {
-    entries.set(path, {
-      ...entries.get(path),
-      error: error instanceof Error ? error.message : "The stats API is unreachable.",
-      failedAt: Date.now(),
-      loading: false,
-    });
+    if (watchers.has(path)) {
+      entries.set(path, {
+        ...current,
+        error: error instanceof Error ? error.message : "The stats API is unreachable.",
+        failedAt: Date.now(),
+        loading: false,
+      });
+    } else {
+      // Nobody is looking at this path (usually a background range load), so record no failure:
+      // opening it later fetches it at once instead of showing this error.
+      entries.set(path, { data: current?.data, fetchedAt: current?.fetchedAt, loading: false });
+    }
   }
   notify();
 };
@@ -100,6 +110,12 @@ const watch = (path: string) => {
   if (watcher) {
     watcher.count += 1;
     return;
+  }
+  // A path opened on cached data (a prefetched range, or one kept from an earlier visit) is on
+  // screen now and may not be refetched for a minute, so it is the view's previous data already.
+  const cached = entries.get(path);
+  if (cached?.data) {
+    latestByView.set(viewKey(path), cached.data);
   }
   const check = () => refreshIfStale(path);
   const interval = window.setInterval(check, CHECK_MS);
