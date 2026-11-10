@@ -1,10 +1,11 @@
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import { type ReactNode, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 import CardInlineCta, { prominentCtaClassName } from "@/components/card-inline-cta";
 import { DOCS_LINKS, STATS_LINKS, isDocsPath, isStatsPath } from "@/lib/docs-links";
 import { rememberScrollReturn } from "@/lib/scroll-return";
+import { usePrefersReducedMotion } from "@/lib/use-media-query";
 import { triggerFeatureGlow, triggerTaglineGlow } from "@/lib/utils";
 
 type FeatureId =
@@ -226,16 +227,17 @@ function MobileFeatureCta({ feature }: MobileFeatureCtaProps) {
 
 export default function Features() {
   const { t } = useTranslation();
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const features = useMemo(() => buildFeatures(t), [t]);
   const [drawnConnectorIds, setDrawnConnectorIds] = useState<Record<string, true>>({});
   const featureListRef = useRef<HTMLDivElement | null>(null);
   const featureCardRefs = useRef<Partial<Record<FeatureId, HTMLDivElement | null>>>({});
   const scheduleConnectorMeasurementRef = useRef<() => void>(() => {});
   const [connectors, setConnectors] = useState<FeatureConnectorLayout[]>([]);
+  // Reduced motion jumps hydrated reveals to their end state; see usePrefersReducedMotion.
   const sectionReveal = (y: number, delay = 0, duration = 0.6) =>
     prefersReducedMotion
-      ? {}
+      ? { animate: { opacity: 1, y: 0 }, transition: { duration: 0 } }
       : {
           initial: { opacity: 0, y },
           whileInView: { opacity: 1, y: 0 },
@@ -530,6 +532,9 @@ export default function Features() {
                     (exactly half at 2x, which reads as a connector cut off mid-run). The viewBox is
                     authored 1:1 with the rendered box, so strokeWidth 2 is already 2 CSS px. */}
                 <m.path
+                  // Remount as a static path when the preference turns to reduced motion with
+                  // the page open; an undrawn connector would otherwise keep its zero-length dash.
+                  key={prefersReducedMotion ? "static" : "animated"}
                   className="feature-connector-path"
                   d={connector.d}
                   strokeWidth={2}

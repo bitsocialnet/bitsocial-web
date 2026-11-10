@@ -1,4 +1,4 @@
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Check, ChevronDown, X } from "lucide-react";
 import {
   Fragment,
@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 import EasterEggOverlay from "@/components/easter-egg-overlay";
 import { DOCS_LINKS } from "@/lib/docs-links";
 import { loadGsap, type TweenLike } from "@/lib/motion-runtime";
+import { usePrefersReducedMotion } from "@/lib/use-media-query";
 
 type ApproachId = "federated" | "blockchain" | "bitsocial";
 type DeepComparisonServiceId =
@@ -1244,7 +1245,7 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel({
   const scrollSettleTimeoutRef = useRef<number | null>(null);
   const scrollTweenRef = useRef<TweenLike | null>(null);
   const scrollAnimationRequestRef = useRef(0);
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const getPanels = useCallback(() => {
     const carousel = carouselRef.current;
     if (!carousel) {

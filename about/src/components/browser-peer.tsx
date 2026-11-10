@@ -1,8 +1,9 @@
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import { Network, ShieldCheck, type LucideIcon } from "lucide-react";
 import { Trans, useTranslation } from "react-i18next";
 import CardInlineCta, { prominentCtaClassName } from "@/components/card-inline-cta";
 import { DOCS_LINKS } from "@/lib/docs-links";
+import { usePrefersReducedMotion } from "@/lib/use-media-query";
 
 type ReceiptId = "node" | "unstoppable";
 
@@ -72,10 +73,11 @@ function ReceiptCard({ receipt }: { receipt: Receipt }) {
 
 export default function BrowserPeer() {
   const { t } = useTranslation();
-  const prefersReducedMotion = useReducedMotion() ?? false;
+  const prefersReducedMotion = usePrefersReducedMotion();
+  // Reduced motion jumps hydrated reveals to their end state; see usePrefersReducedMotion.
   const reveal = (y: number, delay = 0, duration = 0.6) =>
     prefersReducedMotion
-      ? {}
+      ? { animate: { opacity: 1, y: 0 }, transition: { duration: 0 } }
       : {
           initial: { opacity: 0, y },
           whileInView: { opacity: 1, y: 0 },
@@ -86,7 +88,7 @@ export default function BrowserPeer() {
   // ancestor animates opacity, which would blank the glass surface mid-reveal.
   const revealCard = (y: number, delay = 0, duration = 0.6) =>
     prefersReducedMotion
-      ? {}
+      ? { animate: { y: 0 }, transition: { duration: 0 } }
       : {
           initial: { y },
           whileInView: { y: 0 },

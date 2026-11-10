@@ -1,9 +1,10 @@
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import { KeyRound, Scale, ServerCrash } from "lucide-react";
 import { type ComponentType, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CardInlineCta from "@/components/card-inline-cta";
 import { rememberScrollReturn } from "@/lib/scroll-return";
+import { usePrefersReducedMotion } from "@/lib/use-media-query";
 import { triggerFeatureGlow } from "@/lib/utils";
 
 type ProblemId = "rented-identity" | "single-owner" | "one-rulebook";
@@ -189,10 +190,11 @@ function MobileProblemCarousel({
 
 export default function ProblemSection() {
   const { t } = useTranslation();
-  const prefersReducedMotion = useReducedMotion() ?? false;
+  const prefersReducedMotion = usePrefersReducedMotion();
+  // Reduced motion jumps hydrated reveals to their end state; see usePrefersReducedMotion.
   const reveal = (y: number, delay = 0, duration = 0.6) =>
     prefersReducedMotion
-      ? {}
+      ? { animate: { opacity: 1, y: 0 }, transition: { duration: 0 } }
       : {
           initial: { opacity: 0, y },
           whileInView: { opacity: 1, y: 0 },
@@ -203,7 +205,7 @@ export default function ProblemSection() {
   // ancestor animates opacity, which would blank the glass surface mid-reveal.
   const revealCard = (y: number, delay = 0, duration = 0.6) =>
     prefersReducedMotion
-      ? {}
+      ? { animate: { y: 0 }, transition: { duration: 0 } }
       : {
           initial: { y },
           whileInView: { y: 0 },

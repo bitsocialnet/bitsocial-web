@@ -1,3 +1,4 @@
+import { useSyncExternalStore } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { ChevronDown, Globe, LayoutGrid, Monitor, Search, Smartphone, X } from "lucide-react";
@@ -57,6 +58,14 @@ function isFirefoxLikeBrowser() {
   return typeof navigator !== "undefined" && /\bFirefox\//i.test(navigator.userAgent);
 }
 
+const subscribeToNothing = () => () => {};
+
+// The server renders the default surfaces, and React keeps a mismatched attribute while
+// hydrating, so report Firefox only after hydration (client-only renders see it at once).
+function useIsFirefoxLikeBrowser() {
+  return useSyncExternalStore(subscribeToNothing, isFirefoxLikeBrowser, () => false);
+}
+
 function buildAppsHref(
   currentSearchParams: URLSearchParams,
   updates: Record<string, string | null>,
@@ -92,6 +101,7 @@ function buildAppsHref(
 export default function Apps() {
   const { t } = useTranslation();
   const graphicsMode = useGraphicsMode();
+  const isFirefoxLike = useIsFirefoxLikeBrowser();
   const isMobile = useMediaQuery(MOBILE_QUERY);
   const maxFilterCount = isMobile ? MAX_FILTER_COUNT_MOBILE : MAX_FILTER_COUNT_DESKTOP;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -145,7 +155,7 @@ export default function Apps() {
 
   const isFiltered = Boolean(query || activePlatform || activeCategory || activeTags.length > 0);
   const isAtFilterCap = baseFilterCount + activeTags.length >= maxFilterCount;
-  const useSimplifiedSurfaces = graphicsMode === "fallback" || isFirefoxLikeBrowser();
+  const useSimplifiedSurfaces = graphicsMode === "fallback" || isFirefoxLike;
 
   function updateSearchParams(updates: Record<string, string | null>) {
     const nextParams = new URLSearchParams(searchParams);
