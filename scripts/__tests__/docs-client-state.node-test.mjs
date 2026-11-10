@@ -35,6 +35,7 @@ async function loadDocsClient() {
       contents: [
         'export { default as Root } from "./theme/Root.tsx";',
         'export * as docsLanguage from "./lib/docsLanguage.ts";',
+        'export { usePagefindUi } from "./lib/usePagefindUi.ts";',
       ].join("\n"),
       loader: "ts",
       resolveDir: path.join(repoRoot, "docs/src"),
@@ -203,4 +204,117 @@ test("a default-locale 404 under a localized URL keeps the stored language", asy
   browser.storage.set("i18nextLng", "fr");
   await openPage(browser, "de", "/de");
   assert.equal(browser.storage.get("i18nextLng"), "de", "a page of a locale still stores it");
+});
+
+const settle = async () => {
+  for (let round = 0; round < 5; round += 1) {
+    await new Promise((resolve) => setImmediate(resolve));
+  }
+};
+
+/** A docs page with just enough DOM for the Pagefind loader, and a server that has the bundle. */
+function searchPage(t) {
+  const nodes = [];
+  const createElement = (tagName) => ({
+    tagName,
+    listeners: {},
+    addEventListener(type, listener) {
+      (this.listeners[type] ??= new Set()).add(listener);
+    },
+    removeEventListener(type, listener) {
+      this.listeners[type]?.delete(listener);
+    },
+    remove() {
+      nodes.splice(nodes.indexOf(this), 1);
+    },
+    fire(type) {
+      this[`on${type}`]?.();
+      for (const listener of this.listeners[type] ?? []) {
+        listener();
+      }
+    },
+  });
+  const append = (node) => nodes.push(node);
+  replaceGlobal(t, "document", {
+    createElement,
+    head: { appendChild: append },
+    body: { appendChild: append },
+    querySelector(selector) {
+      const [, tagName, attribute, value] = /^(\w+)\[(\w+)="(.*)"\]$/.exec(selector);
+      return nodes.find((node) => node.tagName === tagName && node[attribute] === value) ?? null;
+    },
+  });
+  const window = {};
+  replaceGlobal(t, "window", window);
+  const probes = [];
+  replaceGlobal(t, "fetch", async (url) => {
+    probes.push(url);
+    return { ok: true, headers: new Headers({ "content-type": "text/javascript" }) };
+  });
+  const mounted = [];
+  return {
+    probes,
+    mounted,
+    scripts: () => nodes.filter((node) => node.tagName === "script"),
+    /** Runs pagefind-ui.js: it defines the UI class, then the tag fires load. */
+    loadScript(script) {
+      window.PagefindUI = class {
+        constructor(options) {
+          mounted.push(options.element);
+        }
+      };
+      script.fire("load");
+    },
+  };
+}
+
+/** One search box: the navbar's or the search page's, each with its own container. */
+function mountSearchBox(client) {
+  const options = {
+    bundlePath: "/pagefind/",
+    scriptUrl: "/pagefind/pagefind-ui.js",
+    styleUrl: "/pagefind/pagefind-ui.css",
+    containerRef: { current: { replaceChildren() {} } },
+    uiOptions: {},
+  };
+  const runner = createHookRunner(() => client.usePagefindUi(options));
+  runner.render();
+  return runner;
+}
+
+test("a search box mounted after a failed Pagefind load tries again", async (t) => {
+  const page = searchPage(t);
+  const client = await loadDocsClient();
+  const navbar = mountSearchBox(client);
+  await settle();
+  const [failedScript] = page.scripts();
+  failedScript.fire("error");
+  await settle();
+  assert.equal(navbar.render().status, "error");
+
+  // In-app navigation to /search/ mounts the full-page search box.
+  const searchBox = mountSearchBox(client);
+  await settle();
+  const retry = page.scripts().at(-1);
+  assert.notEqual(retry, failedScript, "the failed script tag is not waited on again");
+  assert.equal(page.scripts().length, 1);
+  page.loadScript(retry);
+  await settle();
+  assert.equal(searchBox.render().status, "ready");
+});
+
+test("search boxes mounted together load pagefind-ui.js once", async (t) => {
+  const page = searchPage(t);
+  const client = await loadDocsClient();
+  const navbar = mountSearchBox(client);
+  const homeSearch = mountSearchBox(client);
+  await settle();
+  assert.equal(page.probes.length, 1);
+  assert.equal(page.scripts().length, 1);
+
+  page.loadScript(page.scripts()[0]);
+  await settle();
+  assert.equal(navbar.render().status, "ready");
+  assert.equal(homeSearch.render().status, "ready");
+  assert.equal(page.mounted.length, 2);
 });
