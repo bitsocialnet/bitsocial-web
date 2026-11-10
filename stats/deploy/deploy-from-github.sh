@@ -163,8 +163,15 @@ rsync \
   --exclude '.playwright-cli/' \
   --exclude 'node_modules/' \
   --exclude 'stats/deploy/.env' \
+  --exclude '.deploy-verified-revision' \
   "$release_root/" \
   "$target_dir/"
+
+# The tree now holds the release, so record it and install its receiver before any step below can
+# fail: a failed check then leaves the host naming the revision it runs, and the next deploy runs the
+# receiver that matches it. install replaces the file, so this running copy is unaffected.
+printf '%s\n' "$revision" > "$target_dir/.deploy-revision"
+install -m 0755 "$release_root/stats/deploy/deploy-from-github.sh" "$deploy_script_path"
 
 cd "$target_dir"
 compose=(docker compose --env-file stats/deploy/.env -f stats/deploy/compose.yaml)
@@ -189,7 +196,6 @@ grep -q '"network":' <<< "$overview"
 
 install_caddyfile "$target_dir/stats/deploy/Caddyfile"
 
-printf '%s\n' "$revision" > "$target_dir/.deploy-revision"
-install -m 0755 "$release_root/stats/deploy/deploy-from-github.sh" "$deploy_script_path"
+printf '%s\n' "$revision" > "$target_dir/.deploy-verified-revision"
 log "deployed revision $revision successfully"
 printf 'deployed_revision=%s\n' "$revision"

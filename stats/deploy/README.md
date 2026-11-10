@@ -18,7 +18,7 @@ This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current
 
 Every push to `master` runs [`.github/workflows/deploy-stats.yml`](../../.github/workflows/deploy-stats.yml). The workflow uses the protected `stats-production` environment and a forced-command SSH key that can only request deployment of an exact commit SHA.
 
-The server-side receiver is installed at `/usr/local/sbin/bitsocial-stats-deploy` from [`deploy-from-github.sh`](./deploy-from-github.sh). It downloads the matching public GitHub archive, synchronizes it to `/srv/bitsocial-web/current`, preserves `stats/deploy/.env`, rebuilds the Docker Compose stack (the `web` service runs from the monitor image, which also builds the dashboard), refreshes the shared Grafana dashboards, runs health checks against the monitor, Grafana and the dashboard, installs the host Caddyfile when it changed (see [Activating Caddy](#activating-caddy)), and writes the deployed SHA to `/srv/bitsocial-web/current/.deploy-revision`.
+The server-side receiver is installed at `/usr/local/sbin/bitsocial-stats-deploy` from [`deploy-from-github.sh`](./deploy-from-github.sh). It downloads the matching public GitHub archive, synchronizes it to `/srv/bitsocial-web/current`, preserves `stats/deploy/.env`, writes the synced SHA to `/srv/bitsocial-web/current/.deploy-revision`, rebuilds the Docker Compose stack (the `web` service runs from the monitor image, which also builds the dashboard), refreshes the shared Grafana dashboards, runs health checks against the monitor, Grafana and the dashboard, installs the host Caddyfile when it changed (see [Activating Caddy](#activating-caddy)), and writes the SHA to `/srv/bitsocial-web/current/.deploy-verified-revision` once all of that passed. There is no automatic rollback: after a failed deploy `/srv/bitsocial-web/current` holds the revision in `.deploy-revision` (the containers run it too if the deploy got past `docker compose up`), and `.deploy-verified-revision` still names the last one that passed its checks.
 
 Required `stats-production` environment configuration:
 
@@ -81,7 +81,7 @@ Do not record the edited file's hash in `/var/lib/bitsocial-stats-deploy/caddyfi
 
 After the stack passes its health checks, the deploy receiver installs `stats/deploy/Caddyfile` to `/etc/caddy/Caddyfile` only on a host whose file it recognizes: one of the Caddyfiles the repository committed for `stats.bitsocial.net` before deploys managed it, or the one it last installed (its hash is kept in `/var/lib/bitsocial-stats-deploy/caddyfile.sha256`). It validates the release's copy, swaps it in, reloads Caddy and restores the previous file if the reload fails. Any other file is left alone, and the deploy log says so with the file's hash. On the production VPS that log line appears on every deploy and is expected.
 
-The receiver updates itself at the end of each deploy, so a change to the receiver takes effect from the following deploy. The GitHub workflow verifies whichever of the two sites is public.
+The receiver installs the release's copy of itself right after syncing the tree, before the health checks, so a change to the receiver takes effect from the following deploy, even when this one fails its checks. The GitHub workflow verifies whichever of the two sites is public.
 
 ### Grafana access
 
