@@ -14,6 +14,7 @@ on:
         "scripts/__tests__/bso-holders.node-test.mjs",
         "scripts/__tests__/bso-price-history.node-test.mjs",
         "scripts/__tests__/chain-client-state.node-test.mjs",
+        "scripts/__tests__/docs-client-state.node-test.mjs",
         "scripts/__tests__/hook-runner.mjs",
         "scripts/__tests__/release-integrity.node-test.mjs",
         "scripts/generate-bso-holders.mjs",
@@ -36,6 +37,7 @@ on:
         "scripts/__tests__/bso-holders.node-test.mjs",
         "scripts/__tests__/bso-price-history.node-test.mjs",
         "scripts/__tests__/chain-client-state.node-test.mjs",
+        "scripts/__tests__/docs-client-state.node-test.mjs",
         "scripts/__tests__/hook-runner.mjs",
         "scripts/__tests__/release-integrity.node-test.mjs",
         "scripts/generate-bso-holders.mjs",
@@ -79,6 +81,8 @@ jobs:
         run: node --test scripts/__tests__/bso-price-history.node-test.mjs
       - name: Verify chain theme and rich list history state
         run: node --test scripts/__tests__/chain-client-state.node-test.mjs
+      - name: Verify docs client language and search state
+        run: node --test scripts/__tests__/docs-client-state.node-test.mjs
       - name: Verify release integrity API caching
         run: node --test scripts/__tests__/release-integrity.node-test.mjs
       - run: corepack yarn doctor:check

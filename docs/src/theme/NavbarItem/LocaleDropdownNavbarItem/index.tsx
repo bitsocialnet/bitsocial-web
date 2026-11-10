@@ -10,7 +10,7 @@ import {
   resolveDocsPreviewMode,
   getSupportedLanguageEntry,
   isDocsNotFoundPath,
-  persistDocsLanguage,
+  persistDocsLanguageChoice,
   stripLanguageQueryParam,
   SUPPORTED_LANGUAGES,
 } from "../../../lib/docsLanguage";
@@ -172,9 +172,9 @@ export default function LocaleDropdownNavbarItem({ mobile, className }: Props): 
   };
 
   const navigateToLanguage = (language: LanguageOption) => {
-    persistDocsLanguage(language.code);
+    const href = persistDocsLanguageChoice(language.code, language.href);
     closePanel();
-    window.location.assign(language.href);
+    window.location.assign(href);
   };
 
   useEffect(() => {
