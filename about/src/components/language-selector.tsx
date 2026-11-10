@@ -119,9 +119,12 @@ export function NoJsLanguageSelector({ mobile }: { mobile?: boolean }) {
 export default function LanguageSelector({
   mobile,
   mobileMenuInteractionGuardAttribute,
+  onOpenChange,
 }: {
   mobile?: boolean;
   mobileMenuInteractionGuardAttribute?: string;
+  /** Reports the sheet opening and closing, so a hosting menu can leave its input to the sheet. */
+  onOpenChange?: (open: boolean) => void;
 }) {
   const { i18n, t } = useTranslation();
   const location = useLocation();
@@ -155,6 +158,7 @@ export default function LanguageSelector({
     (code: string) => {
       i18n.changeLanguage(code);
       setOpen(false);
+      onOpenChange?.(false);
       setSearchQuery("");
       setActiveIndex(0);
 
@@ -178,7 +182,7 @@ export default function LanguageSelector({
         replaceUrlHash(urlHash);
       }
     },
-    [i18n, location.hash, location.pathname, location.search, navigate],
+    [i18n, location.hash, location.pathname, location.search, navigate, onOpenChange],
   );
 
   useEffect(() => {
@@ -228,6 +232,7 @@ export default function LanguageSelector({
     }
 
     setOpen(nextOpen);
+    onOpenChange?.(nextOpen);
 
     if (nextOpen) {
       const selectedIndex = filteredLanguages.findIndex(
