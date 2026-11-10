@@ -15,7 +15,7 @@ export type Snapshot = {
 export type EntityRow = {
   entity: Entity;
   /** Every wallet of the entity, with its balance (0 when it no longer holds BSO). */
-  wallets: { address: string; balance: number; role?: string; patternOnly?: boolean }[];
+  wallets: { address: string; balance: number; role?: string }[];
   balance: number;
 };
 

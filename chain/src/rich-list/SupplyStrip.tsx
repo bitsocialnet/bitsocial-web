@@ -13,12 +13,12 @@ type Segment = { key: string; label: string; share: number; fill: string; href?:
  * Holder hues are defined in rich-list.css and validated against both theme surfaces.
  */
 const HOLDER_FILLS: Record<string, string> = {
-  holderA: "rl-fill-holder-a",
-  holderC: "rl-fill-holder-b",
+  holderM: "rl-fill-holder-a",
+  holderA: "rl-fill-holder-b",
+  holderC: "rl-fill-holder-c",
   holderD: "rl-fill-holder-d",
   holderE: "rl-fill-holder-e",
   holderF: "rl-fill-holder-f",
-  holderG: "rl-fill-holder-c",
 };
 const SMALLER_HOLDER_FILL = "rl-fill-holder-rest";
 

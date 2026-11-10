@@ -23,8 +23,6 @@ export type EntityWallet = {
   address: string;
   /** i18n key suffix under `richList.walletRoles`, e.g. the Safe or one of its owners. */
   role?: string;
-  /** For linked groups mixing proof types: wallets tied only by buying pattern. */
-  patternOnly?: boolean;
 };
 
 export type EvidenceItem = {
@@ -105,16 +103,6 @@ export const ENTITIES: Entity[] = [
       { address: "0xe1ef88df537ebfcd811db00ea1ff70f9c5d6807a" },
       { address: "0x9ce4f6ba18bd5a89402f4d66983409178d099377" },
       { address: "0xd99c6e4705f18b09f5eb6288fc0a4cc5d10bb507" },
-      { address: "0xc5d1c20fa18ab967474b21b28722ccb2a6928161", patternOnly: true },
-      { address: "0xccd7c97b8a4259f143aedcff1d6156bd47a333e7", patternOnly: true },
-      { address: "0x0436d1718ea3f7148c518022b06db3df30318688", patternOnly: true },
-      { address: "0x75daa39abeb236863c28eefff8800a7358918a59", patternOnly: true },
-      { address: "0x4917532eb87205e35521f52511e05a6c91b5e910", patternOnly: true },
-      { address: "0x641479cb068e77bd2908d547d057f1defcd9e485", patternOnly: true },
-      { address: "0x343e1400008f08694e923b30d1a8fe20c1dbb6ef", patternOnly: true },
-      { address: "0xdccf1af9a9f0ae46942a1b432b007e7823179f5b", patternOnly: true },
-      { address: "0xb7b8cac031c6d860f2404c5277fe736f9a3d4884", patternOnly: true },
-      { address: "0x72bcd36157ba54d3800522c222582c34efc08b8a", patternOnly: true },
     ],
     evidence: [
       {
@@ -138,9 +126,26 @@ export const ENTITIES: Entity[] = [
         ],
         addresses: [{ chain: "avalanche", address: "0x187b9379d9b4f333a59f35eb5db89a61daab425e" }],
       },
-      { id: "buyingPattern" },
       { id: "neverSold" },
     ],
+  },
+  {
+    id: "holderM",
+    kind: "linked",
+    confidence: "likely",
+    wallets: [
+      { address: "0xc5d1c20fa18ab967474b21b28722ccb2a6928161" },
+      { address: "0xccd7c97b8a4259f143aedcff1d6156bd47a333e7" },
+      { address: "0x0436d1718ea3f7148c518022b06db3df30318688" },
+      { address: "0x75daa39abeb236863c28eefff8800a7358918a59" },
+      { address: "0x4917532eb87205e35521f52511e05a6c91b5e910" },
+      { address: "0x641479cb068e77bd2908d547d057f1defcd9e485" },
+      { address: "0x343e1400008f08694e923b30d1a8fe20c1dbb6ef" },
+      { address: "0xdccf1af9a9f0ae46942a1b432b007e7823179f5b" },
+      { address: "0xb7b8cac031c6d860f2404c5277fe736f9a3d4884" },
+      { address: "0x72bcd36157ba54d3800522c222582c34efc08b8a" },
+    ],
+    evidence: [{ id: "buyingPattern" }, { id: "neverSold" }],
   },
   {
     id: "holderF",

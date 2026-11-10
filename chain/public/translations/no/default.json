@@ -367,14 +367,13 @@
       "lead": "Lommebøker grupperes bare når kjeden viser en kobling: tokens eller gass som flyttes mellom dem, en felles privat finansierer, en eier av en multisig eller et identisk kjøpsmønster. Hver gruppe viser transaksjonene den bygger på.",
       "confidence": {
         "confirmed": "Lommebøkene gjør transaksjoner med hverandre, deler en privat finansierer eller kontrollerer hverandre.",
-        "likely": "Flere overføringer fra én kilde som er vanskelige å forklare på noen annen måte.",
+        "likely": "Flere overføringer fra én kilde, eller et identisk kjøpsmønster, som er vanskelige å forklare på noen annen måte.",
         "possible": "Én enkelt kobling som også kan være et salg eller en gave."
       },
       "holds_one": "{{amount}} BSO, {{share}} av tilbudet, i {{count}} lommebok",
       "holds_other": "{{amount}} BSO, {{share}} av tilbudet, fordelt på {{count}} lommebøker",
       "walletList_one": "{{count}} lommebok",
-      "walletList_other": "Alle {{count}} lommebøkene",
-      "patternOnly": "koblet via kjøpsmønster"
+      "walletList_other": "Alle {{count}} lommebøkene"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -387,12 +386,11 @@
         "name": "Uniswap BSO/ETH-pool"
       },
       "holderA": {
-        "summary": "Femten lommebøker som kjøpte på Avalanche mellom februar 2022 og mai 2023 og aldri har solgt. Fem er knyttet sammen on-chain; de andre ti passer med samme kjøpers mønster.",
+        "summary": "Fem lommebøker knyttet sammen av overføringer og en felles privat finansierer, som kjøpte på Avalanche mellom februar 2022 og mai 2023 og aldri har solgt.",
         "evidence": {
           "transfersToLpWallet": "To av kjøpslommebøkene sendte tokens og AVAX til en tredje lommebok, som brukte dem til likviditet og farming på Trader Joe: 141 000 BSO og 5 AVAX 27. februar 2022, deretter 1,01 mill. BSO og 34 AVAX mellom 28. februar og 2. mars. Den tredje lommeboken sendte 0,013 AVAX tilbake.",
           "sharedFunder": "Én privat lommebok finansierte tre av kjøpslommebøkene og ingenting annet. Hver transaksjon den noen gang sendte, gikk til dem, i rekkefølge: nonce 0 til 4 til den første, 5 til 7 til den andre, 8 til den tredje.",
-          "buyingPattern": "Ytterligere ti lommebøker var alle nye, finansiert med ett eller to børsuttak på rundt $2000 til $3400 via Binance eller ChangeNOW (de samme tjenestene som de koblede lommebøkene brukte), vekslet helt om til tokenet og aldri brukt igjen. Sju kjøpte etter tur mellom 28. februar og 31. mars 2022, uten noen gang å overlappe med de koblede lommebøkene. Tre til gjorde det samme 12. april og 25. juni 2022 og 6. mai 2023. Blant dagens innehavere med minst 0,01% av tilbudet er 21 lommebøker bare blitt brukt til å kjøpe på Avalanche, i fire transaksjoner eller færre: disse ti, to av de koblede lommebøkene og ni andre som hver brukte under $410.",
-          "neverSold": "Ingen av de femten lommebøkene har solgt eller flyttet tokenene sine siden. Saldoene kom uendret gjennom begge migreringene."
+          "neverSold": "Ingen av de fem lommebøkene har solgt. Saldoene kom uendret gjennom begge migreringene."
         }
       },
       "holderC": {
@@ -466,6 +464,13 @@
         "evidence": {
           "funderChain": "Én privat lommebok sendte den andre dens første AVAX 12. februar 2022. Seks dager senere flyttet den sine egne 597 000 BSO og resten av AVAX-en sin til en ny lommebok, som sendte de 597 000 BSO videre til den første lommeboken 22. februar, sammen med den lommebokens første AVAX.",
           "directTransfer": "Den andre lommeboken sendte den første 0,005 AVAX 27. februar 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Ti lommebøker som ikke gjorde annet enn å kjøpe på Avalanche, etter tur, mellom februar 2022 og mai 2023, og som aldri har solgt.",
+        "evidence": {
+          "buyingPattern": "Hver lommebok var ny, finansiert med ett eller to børsuttak på rundt $2000 til $3400 via Binance eller ChangeNOW, vekslet hele beløpet om til tokenet og ble aldri brukt igjen. Sju kjøpte etter tur mellom 28. februar og 31. mars 2022; tre til gjorde det samme 12. april og 25. juni 2022 og 6. mai 2023. Blant dagens innehavere med minst 0,01% av tilbudet er 21 lommebøker bare blitt brukt til å kjøpe på Avalanche, i fire transaksjoner eller færre: disse ti, to lommebøker fra en annen gruppe og ni andre som hver brukte under $410.",
+          "neverSold": "Ingen av de ti lommebøkene har solgt eller flyttet tokenene sine siden, bortsett fra én som låste tokenene sine i april 2022. Saldoene kom uendret gjennom begge migreringene."
         }
       }
     },

@@ -367,14 +367,13 @@
       "lead": "Wallets are grouped only when the chain shows a link: tokens or gas moving between them, a shared private funder, a multisig owner, or an identical buying pattern. Each group lists the transactions behind it.",
       "confidence": {
         "confirmed": "The wallets transact with each other, share a private funder, or control one another.",
-        "likely": "Several transfers from one source that are hard to explain any other way.",
+        "likely": "Several transfers from one source, or an identical buying pattern, that are hard to explain any other way.",
         "possible": "A single link that could also be a sale or a gift."
       },
       "holds_one": "{{amount}} BSO, {{share}} of supply, in {{count}} wallet",
       "holds_other": "{{amount}} BSO, {{share}} of supply, across {{count}} wallets",
       "walletList_one": "{{count}} wallet",
-      "walletList_other": "All {{count}} wallets",
-      "patternOnly": "linked by buying pattern"
+      "walletList_other": "All {{count}} wallets"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -387,12 +386,11 @@
         "name": "Uniswap BSO/ETH pool"
       },
       "holderA": {
-        "summary": "Fifteen wallets that bought in on Avalanche between February 2022 and May 2023 and have never sold. Five are tied together on-chain; the other ten match the same buyer's pattern.",
+        "summary": "Five wallets tied together by transfers and a shared private funder, which bought in on Avalanche between February 2022 and May 2023 and have never sold.",
         "evidence": {
           "transfersToLpWallet": "Two of the buying wallets sent tokens and AVAX to a third wallet, which used them for Trader Joe liquidity and farming: 141K BSO and 5 AVAX on February 27, 2022, then 1.01M BSO and 34 AVAX between February 28 and March 2. The third wallet sent 0.013 AVAX back.",
           "sharedFunder": "One private wallet funded three of the buying wallets and nothing else. Every transaction it ever sent went to them, in order: nonces 0 to 4 to the first, 5 to 7 to the second, 8 to the third.",
-          "buyingPattern": "Ten more wallets were each new, funded by one or two exchange withdrawals of about $2,000 to $3,400 through Binance or ChangeNOW (the same services the linked wallets used), swapped entirely into the token and never used again. Seven bought one after another between February 28 and March 31, 2022, never overlapping with the linked wallets. Three more did the same on April 12 and June 25, 2022 and on May 6, 2023. Among today's holders with at least 0.01% of the supply, 21 wallets were used only to buy on Avalanche, in four transactions or fewer: these ten, two of the linked wallets, and nine others that each spent under $410.",
-          "neverSold": "None of the fifteen wallets has sold or moved its tokens since. Their balances came through both migrations unchanged."
+          "neverSold": "None of the five wallets has sold. Their balances came through both migrations unchanged."
         }
       },
       "holderC": {
@@ -466,6 +464,13 @@
         "evidence": {
           "funderChain": "One private wallet sent the second its first AVAX on February 12, 2022. Six days later it moved its own 597K BSO and its remaining AVAX to a new wallet, which passed the 597K BSO on to the first wallet on February 22, along with that wallet's first AVAX.",
           "directTransfer": "The second wallet sent the first 0.005 AVAX on February 27, 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Ten wallets that did nothing but buy on Avalanche, one after another, between February 2022 and May 2023, and have never sold.",
+        "evidence": {
+          "buyingPattern": "Each wallet was new, funded by one or two exchange withdrawals of about $2,000 to $3,400 through Binance or ChangeNOW, swapped the whole amount into the token and was never used again. Seven bought one after another between February 28 and March 31, 2022; three more did the same on April 12 and June 25, 2022 and on May 6, 2023. Among today's holders with at least 0.01% of the supply, 21 wallets were used only to buy on Avalanche, in four transactions or fewer: these ten, two wallets of another group, and nine others that each spent under $410.",
+          "neverSold": "None of the ten wallets has sold or moved its tokens since, apart from one that put its tokens in a lock in April 2022. Their balances came through both migrations unchanged."
         }
       }
     },

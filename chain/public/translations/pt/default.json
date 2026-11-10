@@ -370,7 +370,7 @@
       "lead": "As carteiras só são agrupadas quando a cadeia mostra um vínculo: tokens ou gás circulando entre elas, um financiador privado em comum, um dono de multisig ou um padrão de compra idêntico. Cada grupo lista as transações que o sustentam.",
       "confidence": {
         "confirmed": "As carteiras fazem transações entre si, têm um financiador privado em comum ou controlam umas às outras.",
-        "likely": "Várias transferências de uma mesma origem, difíceis de explicar de outra forma.",
+        "likely": "Várias transferências de uma mesma origem, ou um padrão de compra idêntico, difíceis de explicar de outra forma.",
         "possible": "Um único vínculo, que também pode ser uma venda ou um presente."
       },
       "holds_one": "{{amount}} BSO, {{share}} da oferta, em {{count}} carteira",
@@ -378,8 +378,7 @@
       "holds_other": "{{amount}} BSO, {{share}} da oferta, distribuídos em {{count}} carteiras",
       "walletList_one": "{{count}} carteira",
       "walletList_many": "Todas as {{count}} carteiras",
-      "walletList_other": "Todas as {{count}} carteiras",
-      "patternOnly": "vinculada pelo padrão de compra"
+      "walletList_other": "Todas as {{count}} carteiras"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -392,12 +391,11 @@
         "name": "Pool BSO/ETH da Uniswap"
       },
       "holderA": {
-        "summary": "Quinze carteiras que compraram na Avalanche entre fevereiro de 2022 e maio de 2023 e nunca venderam. Cinco estão ligadas entre si on-chain; as outras dez seguem o padrão do mesmo comprador.",
+        "summary": "Cinco carteiras ligadas entre si por transferências e um financiador privado em comum, que compraram na Avalanche entre fevereiro de 2022 e maio de 2023 e nunca venderam.",
         "evidence": {
           "transfersToLpWallet": "Duas das carteiras compradoras enviaram tokens e AVAX para uma terceira carteira, que os usou para liquidez e farming na Trader Joe: 141 mil BSO e 5 AVAX em 27 de fevereiro de 2022, depois 1,01 milhão de BSO e 34 AVAX entre 28 de fevereiro e 2 de março. A terceira carteira devolveu 0,013 AVAX.",
           "sharedFunder": "Uma carteira privada financiou três das carteiras compradoras e nada mais. Todas as transações que ela já enviou foram para elas, em ordem: nonces 0 a 4 para a primeira, 5 a 7 para a segunda, 8 para a terceira.",
-          "buyingPattern": "Outras dez carteiras eram todas novas: cada uma foi financiada por um ou dois saques de corretora de cerca de US$ 2.000 a US$ 3.400 via Binance ou ChangeNOW (os mesmos serviços usados pelas carteiras vinculadas), trocou tudo pelo token e nunca mais foi usada. Sete compraram uma após a outra entre 28 de fevereiro e 31 de março de 2022, sem nunca se sobrepor às carteiras vinculadas. Outras três fizeram o mesmo em 12 de abril e 25 de junho de 2022 e em 6 de maio de 2023. Entre os detentores atuais com pelo menos 0,01% da oferta, 21 carteiras só foram usadas para comprar na Avalanche, em quatro transações ou menos: essas dez, duas das carteiras vinculadas e outras nove que gastaram menos de US$ 410 cada.",
-          "neverSold": "Nenhuma das quinze carteiras vendeu ou moveu seus tokens desde então. Os saldos passaram pelas duas migrações sem alteração."
+          "neverSold": "Nenhuma das cinco carteiras vendeu seus tokens. Os saldos passaram pelas duas migrações sem alteração."
         }
       },
       "holderC": {
@@ -471,6 +469,13 @@
         "evidence": {
           "funderChain": "Uma carteira privada enviou à segunda o primeiro AVAX dela em 12 de fevereiro de 2022. Seis dias depois, moveu seus próprios 597 mil BSO e o AVAX que lhe restava para uma carteira nova, que repassou os 597 mil BSO à primeira carteira em 22 de fevereiro, junto com o primeiro AVAX dessa carteira.",
           "directTransfer": "A segunda carteira enviou à primeira 0,005 AVAX em 27 de fevereiro de 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Dez carteiras que não fizeram nada além de comprar na Avalanche, uma após a outra, entre fevereiro de 2022 e maio de 2023, e nunca venderam.",
+        "evidence": {
+          "buyingPattern": "Cada carteira era nova: foi financiada por um ou dois saques de corretora de cerca de US$ 2.000 a US$ 3.400 via Binance ou ChangeNOW, trocou o valor inteiro pelo token e nunca mais foi usada. Sete compraram uma após a outra entre 28 de fevereiro e 31 de março de 2022; outras três fizeram o mesmo em 12 de abril e 25 de junho de 2022 e em 6 de maio de 2023. Entre os detentores atuais com pelo menos 0,01% da oferta, 21 carteiras só foram usadas para comprar na Avalanche, em quatro transações ou menos: essas dez, duas carteiras de outro grupo e outras nove que gastaram menos de US$ 410 cada.",
+          "neverSold": "Nenhuma das dez carteiras vendeu ou moveu seus tokens desde então, exceto uma que bloqueou seus tokens em abril de 2022. Os saldos passaram pelas duas migrações sem alteração."
         }
       }
     },

@@ -367,14 +367,13 @@
       "lead": "Wallets grupperes kun, når chainen viser en forbindelse: tokens eller gas, der flyttes mellem dem, en fælles privat finansieringskilde, en multisig-ejer eller et identisk købsmønster. Hver gruppe viser transaktionerne bag den.",
       "confidence": {
         "confirmed": "Disse wallets foretager transaktioner med hinanden, deler en privat finansieringskilde eller kontrollerer hinanden.",
-        "likely": "Flere overførsler fra én kilde, som er svære at forklare på anden vis.",
+        "likely": "Flere overførsler fra én kilde, eller et identisk købsmønster, som er svære at forklare på anden vis.",
         "possible": "En enkelt forbindelse, som også kunne være et salg eller en gave."
       },
       "holds_one": "{{amount}} BSO, {{share}} af udbuddet, i {{count}} wallet",
       "holds_other": "{{amount}} BSO, {{share}} af udbuddet, fordelt på {{count}} wallets",
       "walletList_one": "{{count}} wallet",
-      "walletList_other": "Alle {{count}} wallets",
-      "patternOnly": "forbundet via købsmønster"
+      "walletList_other": "Alle {{count}} wallets"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -387,12 +386,11 @@
         "name": "Uniswap-pool for BSO/ETH"
       },
       "holderA": {
-        "summary": "Femten wallets, der købte på Avalanche mellem februar 2022 og maj 2023 og aldrig har solgt. Fem er forbundet med hinanden on-chain; de andre ti matcher den samme købers mønster.",
+        "summary": "Fem wallets, der er forbundet med hinanden gennem overførsler og en fælles privat finansieringskilde, og som købte på Avalanche mellem februar 2022 og maj 2023 og aldrig har solgt.",
         "evidence": {
           "transfersToLpWallet": "To af de købende wallets sendte tokens og AVAX til en tredje wallet, som brugte dem til likviditet og farming på Trader Joe: 141.000 BSO og 5 AVAX den 27. februar 2022, derefter 1,01 mio. BSO og 34 AVAX mellem 28. februar og 2. marts. Den tredje wallet sendte 0,013 AVAX tilbage.",
           "sharedFunder": "Én privat wallet finansierede tre af de købende wallets og intet andet. Hver eneste transaktion, den nogensinde har sendt, gik til dem, i rækkefølge: nonce 0 til 4 til den første, 5 til 7 til den anden, 8 til den tredje.",
-          "buyingPattern": "Ti andre wallets var alle nye, finansieret med én eller to udbetalinger fra en børs på omkring 2.000 til 3.400 dollar via Binance eller ChangeNOW (de samme tjenester, som de forbundne wallets brugte), vekslet helt til tokenet og aldrig brugt igen. Syv købte én efter én mellem 28. februar og 31. marts 2022 og overlappede aldrig tidsmæssigt med de forbundne wallets. Yderligere tre gjorde det samme den 12. april og den 25. juni 2022 og den 6. maj 2023. Blandt nutidens indehavere med mindst 0,01% af udbuddet er 21 wallets kun blevet brugt til at købe på Avalanche, i fire transaktioner eller færre: disse ti, to af de forbundne wallets og ni andre, der hver brugte under 410 dollar.",
-          "neverSold": "Ingen af de femten wallets har solgt eller flyttet sine tokens siden. Deres saldi kom uændrede gennem begge migreringer."
+          "neverSold": "Ingen af de fem wallets har solgt. Deres saldi kom uændrede gennem begge migreringer."
         }
       },
       "holderC": {
@@ -466,6 +464,13 @@
         "evidence": {
           "funderChain": "Én privat wallet sendte den anden dens første AVAX den 12. februar 2022. Seks dage senere flyttede den sine egne 597.000 BSO og sin resterende AVAX til en ny wallet, som sendte de 597.000 BSO videre til den første wallet den 22. februar sammen med den wallets første AVAX.",
           "directTransfer": "Den anden wallet sendte den første 0,005 AVAX den 27. februar 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Ti wallets, der ikke gjorde andet end at købe på Avalanche, én efter én, mellem februar 2022 og maj 2023, og som aldrig har solgt.",
+        "evidence": {
+          "buyingPattern": "Hver wallet var ny, blev finansieret med én eller to udbetalinger fra en børs på omkring 2.000 til 3.400 dollar via Binance eller ChangeNOW, vekslede hele beløbet til tokenet og blev aldrig brugt igen. Syv købte én efter én mellem 28. februar og 31. marts 2022; yderligere tre gjorde det samme den 12. april og den 25. juni 2022 og den 6. maj 2023. Blandt nutidens indehavere med mindst 0,01% af udbuddet er 21 wallets kun blevet brugt til at købe på Avalanche, i fire transaktioner eller færre: disse ti, to wallets fra en anden gruppe og ni andre, der hver brugte under 410 dollar.",
+          "neverSold": "Ingen af de ti wallets har solgt eller flyttet sine tokens siden, bortset fra én, der låste sine tokens i april 2022. Deres saldi kom uændrede gennem begge migreringer."
         }
       }
     },

@@ -94,7 +94,6 @@ export default function LinkedWallets() {
                       <AddressLink address={wallet.address} full />
                       <span className="rl-evidence-wallet-meta">
                         {wallet.role ? t(`richList.walletRoles.${wallet.role}`) : null}
-                        {wallet.patternOnly ? t("richList.linked.patternOnly") : null}
                         <span>{format.integer(wallet.balance)} BSO</span>
                       </span>
                     </li>

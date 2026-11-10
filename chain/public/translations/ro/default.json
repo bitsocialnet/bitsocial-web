@@ -370,7 +370,7 @@
       "lead": "Portofelele sunt grupate doar când lanțul arată o legătură: tokenuri sau gas care circulă între ele, un finanțator privat comun, un proprietar de multisig sau un tipar de cumpărare identic. Fiecare grup listează tranzacțiile pe care se bazează.",
       "confidence": {
         "confirmed": "Portofelele fac tranzacții între ele, au un finanțator privat comun sau se controlează unul pe altul.",
-        "likely": "Mai multe transferuri dintr-o singură sursă, greu de explicat altfel.",
+        "likely": "Mai multe transferuri dintr-o singură sursă sau un tipar de cumpărare identic, greu de explicat altfel.",
         "possible": "O singură legătură, care ar putea fi și o vânzare sau un cadou."
       },
       "holds_one": "{{amount}} BSO, {{share}} din ofertă, în {{count}} portofel",
@@ -378,8 +378,7 @@
       "holds_other": "{{amount}} BSO, {{share}} din ofertă, în {{count}} de portofele",
       "walletList_one": "{{count}} portofel",
       "walletList_few": "Toate cele {{count}} portofele",
-      "walletList_other": "Toate cele {{count}} de portofele",
-      "patternOnly": "legat prin tiparul de cumpărare"
+      "walletList_other": "Toate cele {{count}} de portofele"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -392,12 +391,11 @@
         "name": "Pool-ul Uniswap BSO/ETH"
       },
       "holderA": {
-        "summary": "Cincisprezece portofele care au cumpărat pe Avalanche între februarie 2022 și mai 2023 și nu au vândut niciodată. Cinci sunt legate între ele on-chain; celelalte zece se potrivesc tiparului aceluiași cumpărător.",
+        "summary": "Cinci portofele legate între ele prin transferuri și un finanțator privat comun, care au cumpărat pe Avalanche între februarie 2022 și mai 2023 și nu au vândut niciodată.",
         "evidence": {
           "transfersToLpWallet": "Două dintre portofelele cumpărătoare au trimis tokenuri și AVAX unui al treilea portofel, care le-a folosit pentru lichiditate și farming pe Trader Joe: 141.000 BSO și 5 AVAX pe 27 februarie 2022, apoi 1,01 mil. BSO și 34 AVAX între 28 februarie și 2 martie. Al treilea portofel a trimis înapoi 0,013 AVAX.",
           "sharedFunder": "Un portofel privat a finanțat trei dintre portofelele cumpărătoare și nimic altceva. Fiecare tranzacție pe care a trimis-o vreodată a mers către ele, în ordine: nonce-urile de la 0 la 4 către primul, de la 5 la 7 către al doilea, 8 către al treilea.",
-          "buyingPattern": "Alte zece portofele erau toate noi, fiecare finanțat prin una sau două retrageri de pe un exchange de aproximativ 2.000–3.400 $, prin Binance sau ChangeNOW (aceleași servicii folosite de portofelele legate), apoi schimbat integral în token și nefolosit niciodată după aceea. Șapte au cumpărat unul după altul între 28 februarie și 31 martie 2022, fără să se suprapună vreodată cu portofelele legate. Alte trei au făcut același lucru pe 12 aprilie și 25 iunie 2022 și pe 6 mai 2023. Dintre deținătorii de astăzi cu cel puțin 0,01% din ofertă, 21 de portofele au fost folosite doar pentru a cumpăra pe Avalanche, în patru tranzacții sau mai puține: acestea zece, două dintre portofelele legate și alte nouă care au cheltuit fiecare sub 410 $.",
-          "neverSold": "Niciunul dintre cele cincisprezece portofele nu și-a vândut sau mutat tokenurile de atunci. Soldurile lor au trecut neschimbate prin ambele migrări."
+          "neverSold": "Niciunul dintre cele cinci portofele nu și-a vândut tokenurile. Soldurile lor au trecut neschimbate prin ambele migrări."
         }
       },
       "holderC": {
@@ -471,6 +469,13 @@
         "evidence": {
           "funderChain": "Un portofel privat i-a trimis celui de-al doilea primul AVAX al acestuia pe 12 februarie 2022. Șase zile mai târziu și-a mutat propriii 597.000 BSO și AVAX-ul rămas într-un portofel nou, care a trimis mai departe cei 597.000 BSO către primul portofel pe 22 februarie, împreună cu primul AVAX al acelui portofel.",
           "directTransfer": "Al doilea portofel i-a trimis primului 0,005 AVAX pe 27 februarie 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Zece portofele care nu au făcut altceva decât să cumpere pe Avalanche, unul după altul, între februarie 2022 și mai 2023, și nu au vândut niciodată.",
+        "evidence": {
+          "buyingPattern": "Fiecare portofel era nou, a fost finanțat prin una sau două retrageri de pe un exchange de aproximativ 2.000–3.400 $, prin Binance sau ChangeNOW, a schimbat întreaga sumă în token și nu a mai fost folosit niciodată. Șapte au cumpărat unul după altul între 28 februarie și 31 martie 2022; alte trei au făcut același lucru pe 12 aprilie și 25 iunie 2022 și pe 6 mai 2023. Dintre deținătorii de astăzi cu cel puțin 0,01% din ofertă, 21 de portofele au fost folosite doar pentru a cumpăra pe Avalanche, în patru tranzacții sau mai puține: acestea zece, două portofele dintr-un alt grup și alte nouă care au cheltuit fiecare sub 410 $.",
+          "neverSold": "Niciunul dintre cele zece portofele nu și-a vândut sau mutat tokenurile de atunci, cu excepția unuia care și-a blocat tokenurile în aprilie 2022. Soldurile lor au trecut neschimbate prin ambele migrări."
         }
       }
     },

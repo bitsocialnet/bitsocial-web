@@ -373,7 +373,7 @@
       "lead": "Peněženky se seskupují jen tehdy, když blockchain ukazuje propojení: tokeny nebo gas, které mezi nimi putují, společného soukromého financovatele, vlastníka multisigu nebo shodný nákupní vzorec. U každé skupiny jsou uvedeny transakce, na kterých stojí.",
       "confidence": {
         "confirmed": "Peněženky spolu provádějí transakce, sdílejí soukromého financovatele nebo se navzájem ovládají.",
-        "likely": "Několik převodů z jednoho zdroje, které se jinak dají vysvětlit jen stěží.",
+        "likely": "Několik převodů z jednoho zdroje nebo shodný nákupní vzorec, které se jinak dají vysvětlit jen stěží.",
         "possible": "Jediné propojení, které by mohlo být i prodejem nebo darem."
       },
       "holds_one": "{{amount}} BSO, {{share}} nabídky, v {{count}} peněžence",
@@ -383,8 +383,7 @@
       "walletList_one": "{{count}} peněženka",
       "walletList_few": "Všechny {{count}} peněženky",
       "walletList_many": "Všech {{count}} peněženky",
-      "walletList_other": "Všech {{count}} peněženek",
-      "patternOnly": "propojeno nákupním vzorcem"
+      "walletList_other": "Všech {{count}} peněženek"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -397,12 +396,11 @@
         "name": "Pool BSO/ETH na Uniswapu"
       },
       "holderA": {
-        "summary": "Patnáct peněženek, které mezi únorem 2022 a květnem 2023 nakoupily na Avalanche a nikdy neprodaly. Pět z nich je propojeno on-chain; zbylých deset odpovídá vzorci stejného kupce.",
+        "summary": "Pět peněženek propojených převody a společným soukromým financovatelem, které mezi únorem 2022 a květnem 2023 nakoupily na Avalanche a nikdy neprodaly.",
         "evidence": {
           "transfersToLpWallet": "Dvě z nakupujících peněženek poslaly tokeny a AVAX třetí peněžence, která je použila na likviditu a farming na Trader Joe: 141 tis. BSO a 5 AVAX dne 27. února 2022, pak 1,01 mil. BSO a 34 AVAX mezi 28. únorem a 2. březnem. Třetí peněženka poslala zpět 0,013 AVAX.",
           "sharedFunder": "Jedna soukromá peněženka financovala tři z nakupujících peněženek a nic jiného. Každá transakce, kterou kdy odeslala, šla jim, a to postupně: nonce 0 až 4 první, 5 až 7 druhé, 8 třetí.",
-          "buyingPattern": "Dalších deset peněženek bylo vždy nových, financovaných jedním nebo dvěma výběry z burzy ve výši zhruba 2 000 až 3 400 dolarů přes Binance nebo ChangeNOW (stejné služby, jaké používaly propojené peněženky), celých směněných za token a už nikdy nepoužitých. Sedm z nich nakupovalo jedna po druhé mezi 28. únorem a 31. březnem 2022 a nikdy se časově nepřekrývalo s propojenými peněženkami. Další tři udělaly totéž 12. dubna a 25. června 2022 a 6. května 2023. Mezi dnešními držiteli s alespoň 0,01 % nabídky je 21 peněženek, které byly vždy použity jen k nákupu na Avalanche, a to nejvýše ve čtyřech transakcích: těchto deset, dvě z propojených peněženek a devět dalších, z nichž každá utratila méně než 410 dolarů.",
-          "neverSold": "Žádná z patnácti peněženek od té doby své tokeny neprodala ani nepřesunula. Jejich zůstatky prošly oběma migracemi beze změny."
+          "neverSold": "Žádná z pěti peněženek nic neprodala. Jejich zůstatky prošly oběma migracemi beze změny."
         }
       },
       "holderC": {
@@ -476,6 +474,13 @@
         "evidence": {
           "funderChain": "Jedna soukromá peněženka poslala druhé její první AVAX dne 12. února 2022. O šest dní později přesunula svých vlastních 597 tis. BSO a svůj zbývající AVAX do nové peněženky, která těch 597 tis. BSO dne 22. února předala první peněžence, spolu s jejím prvním AVAX.",
           "directTransfer": "Druhá peněženka poslala první 0,005 AVAX dne 27. února 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Deset peněženek, které mezi únorem 2022 a květnem 2023 jedna po druhé jen nakoupily na Avalanche a nikdy neprodaly.",
+        "evidence": {
+          "buyingPattern": "Každá peněženka byla nová, financovaná jedním nebo dvěma výběry z burzy ve výši zhruba 2 000 až 3 400 dolarů přes Binance nebo ChangeNOW, celou částku směnila za token a už nikdy nebyla použita. Sedm z nich nakupovalo jedna po druhé mezi 28. únorem a 31. březnem 2022; další tři udělaly totéž 12. dubna a 25. června 2022 a 6. května 2023. Mezi dnešními držiteli s alespoň 0,01 % nabídky je 21 peněženek, které byly vždy použity jen k nákupu na Avalanche, a to nejvýše ve čtyřech transakcích: těchto deset, dvě peněženky z jiné skupiny a devět dalších, z nichž každá utratila méně než 410 dolarů.",
+          "neverSold": "Žádná z deseti peněženek od té doby své tokeny neprodala ani nepřesunula, kromě jedné, která je v dubnu 2022 zamkla. Jejich zůstatky prošly oběma migracemi beze změny."
         }
       }
     },

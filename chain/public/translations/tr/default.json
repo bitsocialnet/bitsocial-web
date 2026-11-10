@@ -367,14 +367,13 @@
       "lead": "Cüzdanlar yalnızca zincir bir bağlantı gösterdiğinde gruplanır: aralarında token veya gas hareketi, ortak bir özel fon sağlayıcı, bir multisig sahibi ya da birebir aynı alım örüntüsü. Her grup, arkasındaki işlemleri listeler.",
       "confidence": {
         "confirmed": "Cüzdanlar birbirleriyle işlem yapar, ortak bir özel fon sağlayıcıyı paylaşır veya birbirlerini kontrol eder.",
-        "likely": "Tek bir kaynaktan gelen ve başka bir şekilde açıklanması zor olan birden fazla transfer.",
+        "likely": "Başka bir şekilde açıklanması zor olan, tek bir kaynaktan gelen birden fazla transfer veya birebir aynı alım örüntüsü.",
         "possible": "Bir satış ya da hediye de olabilecek tek bir bağlantı."
       },
       "holds_one": "{{amount}} BSO, arz payı {{share}}, {{count}} cüzdanda",
       "holds_other": "{{amount}} BSO, arz payı {{share}}, {{count}} cüzdana dağılmış",
       "walletList_one": "{{count}} cüzdan",
-      "walletList_other": "{{count}} cüzdanın tümü",
-      "patternOnly": "alım örüntüsüyle bağlantılı"
+      "walletList_other": "{{count}} cüzdanın tümü"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -387,12 +386,11 @@
         "name": "Uniswap BSO/ETH havuzu"
       },
       "holderA": {
-        "summary": "Şubat 2022 ile Mayıs 2023 arasında Avalanche'ta alım yapan ve o günden beri hiç satmayan on beş cüzdan. Beşi zincir üzerinde birbirine bağlı; diğer onu aynı alıcının örüntüsüyle eşleşiyor.",
+        "summary": "Transferler ve ortak bir özel fon sağlayıcıyla birbirine bağlı, Şubat 2022 ile Mayıs 2023 arasında Avalanche'ta alım yapan ve o günden beri hiç satmayan beş cüzdan.",
         "evidence": {
           "transfersToLpWallet": "Alım yapan cüzdanlardan ikisi üçüncü bir cüzdana token ve AVAX gönderdi; bu cüzdan bunları Trader Joe'da likidite ve farming için kullandı: 27 Şubat 2022'de 141 bin BSO ve 5 AVAX, ardından 28 Şubat ile 2 Mart arasında 1,01 milyon BSO ve 34 AVAX. Üçüncü cüzdan 0,013 AVAX'ı geri gönderdi.",
           "sharedFunder": "Özel bir cüzdan, alım yapan cüzdanlardan üçüne fon sağladı ve başka hiçbir şey yapmadı. Gönderdiği her işlem sırayla onlara gitti: 0'dan 4'e kadar nonce'lar birincisine, 5'ten 7'ye kadar ikincisine, 8 ise üçüncüsüne.",
-          "buyingPattern": "On cüzdan daha vardı; her biri yeniydi, Binance veya ChangeNOW üzerinden (bağlantılı cüzdanların kullandığı hizmetlerin aynısı) yaklaşık 2.000 ile 3.400 dolar arasındaki bir veya iki borsa çekimiyle fonlandı, tamamen token'a çevrildi ve bir daha hiç kullanılmadı. Yedisi 28 Şubat ile 31 Mart 2022 arasında, bağlantılı cüzdanlarla hiç çakışmadan birbiri ardına alım yaptı. Üçü daha 12 Nisan ve 25 Haziran 2022'de ve 6 Mayıs 2023'te aynısını yaptı. Arzın en az %0,01'ini elinde tutan bugünkü sahipler arasında 21 cüzdan yalnızca Avalanche'ta alım yapmak için, en fazla dört işlemle kullanıldı: bu on cüzdan, bağlantılı cüzdanlardan ikisi ve her biri 410 dolardan az harcayan dokuz cüzdan daha.",
-          "neverSold": "On beş cüzdanın hiçbiri o zamandan beri token'larını satmadı veya taşımadı. Bakiyeleri her iki geçişten de değişmeden geçti."
+          "neverSold": "Beş cüzdanın hiçbiri token'larını satmadı. Bakiyeleri her iki geçişten de değişmeden geçti."
         }
       },
       "holderC": {
@@ -466,6 +464,13 @@
         "evidence": {
           "funderChain": "Özel bir cüzdan 12 Şubat 2022'de ikincisine ilk AVAX'ını gönderdi. Altı gün sonra kendi 597 bin BSO'sunu ve kalan AVAX'ını yeni bir cüzdana taşıdı; bu cüzdan da 22 Şubat'ta 597 bin BSO'yu, birinci cüzdanın ilk AVAX'ıyla birlikte birinci cüzdana aktardı.",
           "directTransfer": "İkinci cüzdan, 27 Şubat 2022'de birincisine 0,005 AVAX gönderdi."
+        }
+      },
+      "holderM": {
+        "summary": "Şubat 2022 ile Mayıs 2023 arasında Avalanche'ta birbiri ardına alım yapmaktan başka hiçbir şey yapmayan ve o günden beri hiç satmayan on cüzdan.",
+        "evidence": {
+          "buyingPattern": "Her cüzdan yeniydi; Binance veya ChangeNOW üzerinden yaklaşık 2.000 ile 3.400 dolar arasındaki bir veya iki borsa çekimiyle fonlandı, tutarın tamamını token'a çevirdi ve bir daha hiç kullanılmadı. Yedisi 28 Şubat ile 31 Mart 2022 arasında birbiri ardına alım yaptı; üçü daha 12 Nisan ve 25 Haziran 2022'de ve 6 Mayıs 2023'te aynısını yaptı. Arzın en az %0,01'ini elinde tutan bugünkü sahipler arasında 21 cüzdan yalnızca Avalanche'ta alım yapmak için, en fazla dört işlemle kullanıldı: bu on cüzdan, başka bir gruba ait iki cüzdan ve her biri 410 dolardan az harcayan dokuz cüzdan daha.",
+          "neverSold": "Nisan 2022'de token'larını kilitleyen bir cüzdan dışında, on cüzdanın hiçbiri o zamandan beri token'larını satmadı veya taşımadı. Bakiyeleri her iki geçişten de değişmeden geçti."
         }
       }
     },

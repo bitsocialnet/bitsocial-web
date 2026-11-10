@@ -367,14 +367,13 @@
       "lead": "Lompakot ryhmitellään vain, kun ketju osoittaa yhteyden: niiden välillä liikkuu tokeneita tai gas-varoja, niillä on yhteinen yksityinen rahoittaja tai multisig-omistaja, tai niiden ostokäyttäytyminen on identtinen. Jokaisen ryhmän kohdalla luetellaan sen taustalla olevat transaktiot.",
       "confidence": {
         "confirmed": "Lompakot tekevät transaktioita keskenään, niillä on yhteinen yksityinen rahoittaja tai ne hallitsevat toisiaan.",
-        "likely": "Useita siirtoja samasta lähteestä, joita on vaikea selittää muulla tavoin.",
+        "likely": "Useita siirtoja samasta lähteestä tai identtistä ostokäyttäytymistä, joita on vaikea selittää muulla tavoin.",
         "possible": "Yksittäinen yhteys, joka voi olla myös myynti tai lahja."
       },
       "holds_one": "{{amount}} BSO, {{share}} tarjonnasta, {{count}} lompakossa",
       "holds_other": "{{amount}} BSO, {{share}} tarjonnasta, yhteensä {{count}} lompakossa",
       "walletList_one": "{{count}} lompakko",
-      "walletList_other": "Kaikki {{count}} lompakkoa",
-      "patternOnly": "linkitetty ostokäyttäytymisen perusteella"
+      "walletList_other": "Kaikki {{count}} lompakkoa"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -387,12 +386,11 @@
         "name": "Uniswapin BSO/ETH-pooli"
       },
       "holderA": {
-        "summary": "Viisitoista lompakkoa, jotka ostivat Avalanchella helmikuun 2022 ja toukokuun 2023 välillä eivätkä ole koskaan myyneet. Viisi niistä on sidottu toisiinsa on-chain; loput kymmenen vastaavat saman ostajan toimintamallia.",
+        "summary": "Viisi lompakkoa, jotka on sidottu toisiinsa siirroilla ja yhteisellä yksityisellä rahoittajalla ja jotka ostivat Avalanchella helmikuun 2022 ja toukokuun 2023 välillä eivätkä ole koskaan myyneet.",
         "evidence": {
           "transfersToLpWallet": "Kaksi ostavista lompakoista lähetti tokeneita ja AVAXia kolmannelle lompakolle, joka käytti ne Trader Joen likviditeettiin ja farmaukseen: 141 000 BSO:ta ja 5 AVAXia 27. helmikuuta 2022, sitten 1,01 miljoonaa BSO:ta ja 34 AVAXia 28. helmikuuta ja 2. maaliskuuta välillä. Kolmas lompakko lähetti takaisin 0,013 AVAXia.",
           "sharedFunder": "Yksi yksityinen lompakko rahoitti kolmea ostavista lompakoista eikä mitään muuta. Jokainen sen koskaan lähettämä transaktio meni niille, järjestyksessä: noncet 0–4 ensimmäiselle, 5–7 toiselle ja 8 kolmannelle.",
-          "buyingPattern": "Kymmenen muuta lompakkoa olivat kukin uusia: ne rahoitettiin yhdellä tai kahdella noin 2 000–3 400 dollarin nostolla pörssistä Binancen tai ChangeNOW:n kautta (samat palvelut, joita linkitetyt lompakot käyttivät), vaihdettiin kokonaan tokeniksi eikä niitä käytetty enää koskaan. Seitsemän niistä osti vuorotellen 28. helmikuuta ja 31. maaliskuuta 2022 välillä, eikä koskaan samaan aikaan linkitettyjen lompakoiden kanssa. Kolme muuta teki samoin 12. huhtikuuta ja 25. kesäkuuta 2022 sekä 6. toukokuuta 2023. Nykyisistä haltijoista, joilla on vähintään 0,01 % tarjonnasta, 21 lompakkoa on käytetty ainoastaan ostamiseen Avalanchella, enintään neljällä transaktiolla: nämä kymmenen, kaksi linkitetyistä lompakoista ja yhdeksän muuta, jotka kukin käyttivät alle 410 dollaria.",
-          "neverSold": "Yksikään viidestätoista lompakosta ei ole sen jälkeen myynyt tai siirtänyt tokeneitaan. Niiden saldot säilyivät muuttumattomina molempien migraatioiden läpi."
+          "neverSold": "Yksikään viidestä lompakosta ei ole myynyt. Niiden saldot säilyivät muuttumattomina molempien migraatioiden läpi."
         }
       },
       "holderC": {
@@ -466,6 +464,13 @@
         "evidence": {
           "funderChain": "Yksi yksityinen lompakko lähetti toiselle sen ensimmäisen AVAXin 12. helmikuuta 2022. Kuusi päivää myöhemmin se siirsi omat 597 000 BSO:taan ja jäljellä olevan AVAXinsa uuteen lompakkoon, joka välitti nämä 597 000 BSO:ta edelleen ensimmäiselle lompakolle 22. helmikuuta yhdessä tämän lompakon ensimmäisen AVAXin kanssa.",
           "directTransfer": "Toinen lompakko lähetti ensimmäiselle 0,005 AVAXia 27. helmikuuta 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Kymmenen lompakkoa, jotka eivät tehneet muuta kuin ostivat Avalanchella vuorotellen helmikuun 2022 ja toukokuun 2023 välillä eivätkä ole koskaan myyneet.",
+        "evidence": {
+          "buyingPattern": "Jokainen lompakko oli uusi: se rahoitettiin yhdellä tai kahdella noin 2 000–3 400 dollarin nostolla pörssistä Binancen tai ChangeNOW:n kautta, koko summa vaihdettiin tokeniksi eikä lompakkoa käytetty enää koskaan. Seitsemän niistä osti vuorotellen 28. helmikuuta ja 31. maaliskuuta 2022 välillä; kolme muuta teki samoin 12. huhtikuuta ja 25. kesäkuuta 2022 sekä 6. toukokuuta 2023. Nykyisistä haltijoista, joilla on vähintään 0,01 % tarjonnasta, 21 lompakkoa on käytetty ainoastaan ostamiseen Avalanchella, enintään neljällä transaktiolla: nämä kymmenen, kaksi toisen ryhmän lompakkoa ja yhdeksän muuta, jotka kukin käyttivät alle 410 dollaria.",
+          "neverSold": "Yksikään kymmenestä lompakosta ei ole sen jälkeen myynyt tai siirtänyt tokeneitaan, paitsi yksi, joka lukitsi tokeninsa huhtikuussa 2022. Niiden saldot säilyivät muuttumattomina molempien migraatioiden läpi."
         }
       }
     },

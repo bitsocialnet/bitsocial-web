@@ -364,12 +364,11 @@
       "lead": "Các ví chỉ được gộp nhóm khi chuỗi cho thấy có liên kết: token hoặc gas di chuyển giữa chúng, một nguồn cấp vốn riêng chung, một chủ sở hữu multisig, hoặc một mô thức mua giống hệt nhau. Mỗi nhóm đều liệt kê các giao dịch đằng sau nó.",
       "confidence": {
         "confirmed": "Các ví giao dịch với nhau, có chung một nguồn cấp vốn riêng, hoặc kiểm soát lẫn nhau.",
-        "likely": "Nhiều lần chuyển từ một nguồn mà khó giải thích theo cách nào khác.",
+        "likely": "Nhiều lần chuyển từ một nguồn, hoặc một mô thức mua giống hệt nhau, mà khó giải thích theo cách nào khác.",
         "possible": "Chỉ một liên kết duy nhất, cũng có thể là một giao dịch bán hoặc một món quà."
       },
       "holds_other": "{{amount}} BSO, {{share}} nguồn cung, trong {{count}} ví",
-      "walletList_other": "Tất cả {{count}} ví",
-      "patternOnly": "liên kết qua mô thức mua"
+      "walletList_other": "Tất cả {{count}} ví"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -382,12 +381,11 @@
         "name": "Pool BSO/ETH trên Uniswap"
       },
       "holderA": {
-        "summary": "Mười lăm ví đã mua vào trên Avalanche từ tháng 2 năm 2022 đến tháng 5 năm 2023 và chưa bao giờ bán. Năm ví liên kết với nhau on-chain; mười ví còn lại khớp với mô thức của cùng một người mua.",
+        "summary": "Năm ví liên kết với nhau qua các lần chuyển và một nguồn cấp vốn riêng chung, đã mua vào trên Avalanche từ tháng 2 năm 2022 đến tháng 5 năm 2023 và chưa bao giờ bán.",
         "evidence": {
           "transfersToLpWallet": "Hai trong số các ví mua đã gửi token và AVAX sang một ví thứ ba, ví này dùng chúng để cung cấp thanh khoản và farm trên Trader Joe: 141 nghìn BSO và 5 AVAX vào ngày 27 tháng 2 năm 2022, sau đó 1,01 triệu BSO và 34 AVAX từ ngày 28 tháng 2 đến ngày 2 tháng 3. Ví thứ ba đã gửi lại 0,013 AVAX.",
           "sharedFunder": "Một ví riêng đã cấp vốn cho ba trong số các ví mua và không làm gì khác. Mọi giao dịch nó từng gửi đều đi đến các ví này, theo thứ tự: nonce 0 đến 4 cho ví thứ nhất, 5 đến 7 cho ví thứ hai, 8 cho ví thứ ba.",
-          "buyingPattern": "Mười ví nữa đều là ví mới, được cấp vốn bằng một hoặc hai lần rút tiền từ sàn khoảng 2.000 đến 3.400 USD qua Binance hoặc ChangeNOW (cũng là các dịch vụ mà các ví liên kết đã dùng), đổi toàn bộ sang token và không bao giờ được dùng lại. Bảy ví lần lượt mua từng ví một từ ngày 28 tháng 2 đến ngày 31 tháng 3 năm 2022, không bao giờ trùng thời gian với các ví liên kết. Ba ví nữa cũng làm như vậy vào ngày 12 tháng 4 và ngày 25 tháng 6 năm 2022 và vào ngày 6 tháng 5 năm 2023. Trong số những người nắm giữ hiện nay có ít nhất 0,01% nguồn cung, có 21 ví chỉ được dùng để mua trên Avalanche, với không quá bốn giao dịch: mười ví này, hai trong số các ví liên kết, và chín ví khác mà mỗi ví chi dưới 410 USD.",
-          "neverSold": "Không ví nào trong số mười lăm ví đã bán hay chuyển token của mình kể từ đó. Số dư của chúng đi qua cả hai đợt migration mà không thay đổi."
+          "neverSold": "Không ví nào trong số năm ví đã bán token của mình. Số dư của chúng đi qua cả hai đợt migration mà không thay đổi."
         }
       },
       "holderC": {
@@ -461,6 +459,13 @@
         "evidence": {
           "funderChain": "Một ví riêng đã gửi cho ví thứ hai số AVAX đầu tiên của ví này vào ngày 12 tháng 2 năm 2022. Sáu ngày sau, nó chuyển 597 nghìn BSO của chính mình và số AVAX còn lại sang một ví mới, ví này chuyển tiếp 597 nghìn BSO cho ví thứ nhất vào ngày 22 tháng 2, cùng với số AVAX đầu tiên của ví thứ nhất.",
           "directTransfer": "Ví thứ hai đã gửi cho ví thứ nhất 0,005 AVAX vào ngày 27 tháng 2 năm 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Mười ví không làm gì khác ngoài việc lần lượt mua trên Avalanche từ tháng 2 năm 2022 đến tháng 5 năm 2023, và chưa bao giờ bán.",
+        "evidence": {
+          "buyingPattern": "Mỗi ví đều là ví mới, được cấp vốn bằng một hoặc hai lần rút tiền từ sàn khoảng 2.000 đến 3.400 USD qua Binance hoặc ChangeNOW, đổi toàn bộ số tiền sang token và không bao giờ được dùng lại. Bảy ví lần lượt mua từng ví một từ ngày 28 tháng 2 đến ngày 31 tháng 3 năm 2022; ba ví nữa cũng làm như vậy vào ngày 12 tháng 4 và ngày 25 tháng 6 năm 2022 và vào ngày 6 tháng 5 năm 2023. Trong số những người nắm giữ hiện nay có ít nhất 0,01% nguồn cung, có 21 ví chỉ được dùng để mua trên Avalanche, với không quá bốn giao dịch: mười ví này, hai ví thuộc một nhóm khác, và chín ví khác mà mỗi ví chi dưới 410 USD.",
+          "neverSold": "Không ví nào trong số mười ví đã bán hay chuyển token của mình kể từ đó, ngoại trừ một ví đã khóa token của mình vào tháng 4 năm 2022. Số dư của chúng đi qua cả hai đợt migration mà không thay đổi."
         }
       }
     },

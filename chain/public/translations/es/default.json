@@ -370,7 +370,7 @@
       "lead": "Las billeteras solo se agrupan cuando la cadena muestra un vínculo: tokens o gas que pasan entre ellas, un financiador privado compartido, un propietario de multisig o un patrón de compra idéntico. Cada grupo enumera las transacciones que lo respaldan.",
       "confidence": {
         "confirmed": "Las billeteras realizan transacciones entre sí, comparten un financiador privado o se controlan entre sí.",
-        "likely": "Varias transferencias desde una misma fuente que difícilmente se explican de otra manera.",
+        "likely": "Varias transferencias desde una misma fuente, o un patrón de compra idéntico, que difícilmente se explican de otra manera.",
         "possible": "Un único vínculo que también podría ser una venta o un regalo."
       },
       "holds_one": "{{amount}} BSO, {{share}} del suministro, en {{count}} billetera",
@@ -378,8 +378,7 @@
       "holds_other": "{{amount}} BSO, {{share}} del suministro, repartidos en {{count}} billeteras",
       "walletList_one": "{{count}} billetera",
       "walletList_many": "Las {{count}} billeteras",
-      "walletList_other": "Las {{count}} billeteras",
-      "patternOnly": "vinculada por patrón de compra"
+      "walletList_other": "Las {{count}} billeteras"
     },
     "walletRoles": {
       "deployer": "desplegador",
@@ -392,12 +391,11 @@
         "name": "Pool BSO/ETH de Uniswap"
       },
       "holderA": {
-        "summary": "Quince billeteras que compraron en Avalanche entre febrero de 2022 y mayo de 2023 y nunca han vendido. Cinco están conectadas entre sí on-chain; las otras diez encajan con el patrón del mismo comprador.",
+        "summary": "Cinco billeteras conectadas entre sí por transferencias y un financiador privado compartido, que compraron en Avalanche entre febrero de 2022 y mayo de 2023 y nunca han vendido.",
         "evidence": {
           "transfersToLpWallet": "Dos de las billeteras compradoras enviaron tokens y AVAX a una tercera billetera, que los usó para aportar liquidez y hacer farming en Trader Joe: 141.000 BSO y 5 AVAX el 27 de febrero de 2022, y luego 1,01 millones de BSO y 34 AVAX entre el 28 de febrero y el 2 de marzo. La tercera billetera devolvió 0,013 AVAX.",
           "sharedFunder": "Una billetera privada financió a tres de las billeteras compradoras y a nada más. Todas las transacciones que ha enviado fueron a ellas, en orden: nonces 0 a 4 a la primera, 5 a 7 a la segunda y 8 a la tercera.",
-          "buyingPattern": "Otras diez billeteras eran nuevas, se financiaron con uno o dos retiros de exchange de unos 2000 a 3400 dólares a través de Binance o ChangeNOW (los mismos servicios que usaron las billeteras vinculadas), se cambiaron por completo al token y nunca se volvieron a usar. Siete compraron una tras otra entre el 28 de febrero y el 31 de marzo de 2022, sin coincidir nunca en el tiempo con las billeteras vinculadas. Otras tres hicieron lo mismo el 12 de abril y el 25 de junio de 2022 y el 6 de mayo de 2023. Entre los poseedores actuales con al menos un 0,01% del suministro, 21 billeteras solo se han usado para comprar en Avalanche, en cuatro transacciones o menos: estas diez, dos de las billeteras vinculadas y otras nueve que gastaron menos de 410 dólares cada una.",
-          "neverSold": "Ninguna de las quince billeteras ha vendido ni movido sus tokens desde entonces. Sus saldos pasaron por ambas migraciones sin cambios."
+          "neverSold": "Ninguna de las cinco billeteras ha vendido. Sus saldos pasaron por ambas migraciones sin cambios."
         }
       },
       "holderC": {
@@ -471,6 +469,13 @@
         "evidence": {
           "funderChain": "Una billetera privada envió a la segunda su primer AVAX el 12 de febrero de 2022. Seis días después movió sus propios 597.000 BSO y el AVAX que le quedaba a una billetera nueva, que pasó los 597.000 BSO a la primera billetera el 22 de febrero, junto con el primer AVAX de esa billetera.",
           "directTransfer": "La segunda billetera envió a la primera 0,005 AVAX el 27 de febrero de 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Diez billeteras que no hicieron nada más que comprar en Avalanche, una tras otra, entre febrero de 2022 y mayo de 2023, y nunca han vendido.",
+        "evidence": {
+          "buyingPattern": "Cada billetera era nueva, se financió con uno o dos retiros de exchange de unos 2000 a 3400 dólares a través de Binance o ChangeNOW, cambió todo el importe al token y nunca se volvió a usar. Siete compraron una tras otra entre el 28 de febrero y el 31 de marzo de 2022; otras tres hicieron lo mismo el 12 de abril y el 25 de junio de 2022 y el 6 de mayo de 2023. Entre los poseedores actuales con al menos un 0,01% del suministro, 21 billeteras solo se han usado para comprar en Avalanche, en cuatro transacciones o menos: estas diez, dos billeteras de otro grupo y otras nueve que gastaron menos de 410 dólares cada una.",
+          "neverSold": "Ninguna de las diez billeteras ha vendido ni movido sus tokens desde entonces, salvo una que los bloqueó en abril de 2022. Sus saldos pasaron por ambas migraciones sin cambios."
         }
       }
     },

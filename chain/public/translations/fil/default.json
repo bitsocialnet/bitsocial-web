@@ -367,14 +367,13 @@
       "lead": "Pinagsasama lang ang mga wallet kapag may ipinapakitang link ang chain: mga token o gas na gumagalaw sa pagitan nila, iisang pribadong funder, isang may-ari ng multisig, o magkaparehong pattern ng pagbili. Nakalista sa bawat grupo ang mga transaction sa likod nito.",
       "confidence": {
         "confirmed": "Nagta-transact ang mga wallet sa isa't isa, may iisang pribadong funder, o kinokontrol ang isa't isa.",
-        "likely": "Ilang transfer mula sa iisang source na mahirap ipaliwanag sa ibang paraan.",
+        "likely": "Ilang transfer mula sa iisang source, o magkaparehong pattern ng pagbili, na mahirap ipaliwanag sa ibang paraan.",
         "possible": "Iisang link na puwede ring isang bentahan o regalo."
       },
       "holds_one": "{{amount}} BSO, {{share}} ng supply, sa {{count}} wallet",
       "holds_other": "{{amount}} BSO, {{share}} ng supply, sa {{count}} wallet",
       "walletList_one": "{{count}} wallet",
-      "walletList_other": "Lahat ng {{count}} wallet",
-      "patternOnly": "naka-link dahil sa pattern ng pagbili"
+      "walletList_other": "Lahat ng {{count}} wallet"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -387,12 +386,11 @@
         "name": "Uniswap BSO/ETH pool"
       },
       "holderA": {
-        "summary": "Labinlimang wallet na bumili sa Avalanche mula Pebrero 2022 hanggang Mayo 2023 at hindi kailanman nagbenta. Lima ang magkakaugnay on-chain; tugma naman ang sampu pa sa pattern ng iisang mamimili.",
+        "summary": "Limang wallet na magkakaugnay sa pamamagitan ng mga transfer at iisang pribadong funder, na bumili sa Avalanche mula Pebrero 2022 hanggang Mayo 2023 at hindi kailanman nagbenta.",
         "evidence": {
           "transfersToLpWallet": "Nagpadala ang dalawa sa mga bumibiling wallet ng mga token at AVAX sa ikatlong wallet, na ginamit ang mga ito para sa liquidity at farming sa Trader Joe: 141K BSO at 5 AVAX noong Pebrero 27, 2022, at pagkatapos ay 1.01M BSO at 34 AVAX mula Pebrero 28 hanggang Marso 2. Nagpadala pabalik ang ikatlong wallet ng 0.013 AVAX.",
           "sharedFunder": "Isang pribadong wallet ang nagpondo sa tatlo sa mga bumibiling wallet at wala nang iba. Lahat ng transaction na naipadala nito ay napunta sa kanila, nang sunod-sunod: nonce 0 hanggang 4 sa una, 5 hanggang 7 sa ikalawa, 8 sa ikatlo.",
-          "buyingPattern": "Sampu pang wallet ang bawat isa ay bago, pinondohan ng isa o dalawang withdrawal mula sa exchange na humigit-kumulang $2,000 hanggang $3,400 sa pamamagitan ng Binance o ChangeNOW (ang parehong serbisyong ginamit ng mga naka-link na wallet), ipinalit nang buo sa token, at hindi na muling ginamit. Sunod-sunod na bumili ang pito mula Pebrero 28 hanggang Marso 31, 2022, nang hindi kailanman nagsasabay sa mga naka-link na wallet. Ganoon din ang ginawa ng tatlo pa noong Abril 12 at Hunyo 25, 2022 at noong Mayo 6, 2023. Sa mga kasalukuyang may-hawak na may hindi bababa sa 0.01% ng supply, 21 wallet ang ginamit lang para bumili sa Avalanche, sa apat na transaction o mas kaunti: ang sampung ito, dalawa sa mga naka-link na wallet, at siyam na iba pa na bawat isa ay gumastos ng wala pang $410.",
-          "neverSold": "Wala sa labinlimang wallet ang nagbenta o naglipat ng mga token nito mula noon. Hindi nagbago ang kanilang mga balanse sa parehong migration."
+          "neverSold": "Wala sa limang wallet ang nagbenta. Hindi nagbago ang kanilang mga balanse sa parehong migration."
         }
       },
       "holderC": {
@@ -466,6 +464,13 @@
         "evidence": {
           "funderChain": "Ipinadala ng isang pribadong wallet sa ikalawa ang una nitong AVAX noong Pebrero 12, 2022. Makalipas ang anim na araw, inilipat nito ang sarili nitong 597K BSO at ang natitira nitong AVAX sa isang bagong wallet, na nagpasa naman ng 597K BSO sa unang wallet noong Pebrero 22, kasama ang unang AVAX ng wallet na iyon.",
           "directTransfer": "Nagpadala ang ikalawang wallet sa una ng 0.005 AVAX noong Pebrero 27, 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Sampung wallet na walang ibang ginawa kundi bumili sa Avalanche, sunod-sunod, mula Pebrero 2022 hanggang Mayo 2023, at hindi kailanman nagbenta.",
+        "evidence": {
+          "buyingPattern": "Bawat wallet ay bago, pinondohan ng isa o dalawang withdrawal mula sa exchange na humigit-kumulang $2,000 hanggang $3,400 sa pamamagitan ng Binance o ChangeNOW, ipinalit ang buong halaga sa token, at hindi na muling ginamit. Sunod-sunod na bumili ang pito mula Pebrero 28 hanggang Marso 31, 2022; ganoon din ang ginawa ng tatlo pa noong Abril 12 at Hunyo 25, 2022 at noong Mayo 6, 2023. Sa mga kasalukuyang may-hawak na may hindi bababa sa 0.01% ng supply, 21 wallet ang ginamit lang para bumili sa Avalanche, sa apat na transaction o mas kaunti: ang sampung ito, dalawang wallet ng ibang grupo, at siyam na iba pa na bawat isa ay gumastos ng wala pang $410.",
+          "neverSold": "Wala sa sampung wallet ang nagbenta o naglipat ng mga token nito mula noon, maliban sa isa na nag-lock ng mga token nito noong Abril 2022. Hindi nagbago ang kanilang mga balanse sa parehong migration."
         }
       }
     },

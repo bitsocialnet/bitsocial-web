@@ -370,7 +370,7 @@
       "lead": "I portafogli vengono raggruppati solo quando la chain mostra un collegamento: token o gas che si spostano tra di loro, un finanziatore privato in comune, un owner di un multisig o uno schema di acquisto identico. Ogni gruppo elenca le transazioni su cui si basa.",
       "confidence": {
         "confirmed": "I portafogli effettuano transazioni tra loro, condividono un finanziatore privato o si controllano a vicenda.",
-        "likely": "Diversi trasferimenti da un'unica fonte, difficili da spiegare in altro modo.",
+        "likely": "Diversi trasferimenti da un'unica fonte, o uno schema di acquisto identico, difficili da spiegare in altro modo.",
         "possible": "Un unico collegamento, che potrebbe anche essere una vendita o un regalo."
       },
       "holds_one": "{{amount}} BSO, {{share}} dell'offerta, in {{count}} portafoglio",
@@ -378,8 +378,7 @@
       "holds_other": "{{amount}} BSO, {{share}} dell'offerta, distribuiti su {{count}} portafogli",
       "walletList_one": "{{count}} portafoglio",
       "walletList_many": "Tutti i {{count}} portafogli",
-      "walletList_other": "Tutti i {{count}} portafogli",
-      "patternOnly": "collegato per schema di acquisto"
+      "walletList_other": "Tutti i {{count}} portafogli"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -392,12 +391,11 @@
         "name": "Pool BSO/ETH di Uniswap"
       },
       "holderA": {
-        "summary": "Quindici portafogli che hanno comprato su Avalanche tra febbraio 2022 e maggio 2023 e non hanno mai venduto. Cinque sono collegati tra loro on-chain; gli altri dieci corrispondono allo schema dello stesso acquirente.",
+        "summary": "Cinque portafogli collegati tra loro da trasferimenti e da un finanziatore privato in comune, che hanno comprato su Avalanche tra febbraio 2022 e maggio 2023 e non hanno mai venduto.",
         "evidence": {
           "transfersToLpWallet": "Due dei portafogli acquirenti hanno inviato token e AVAX a un terzo portafoglio, che li ha usati per fornire liquidità e fare farming su Trader Joe: 141.000 BSO e 5 AVAX il 27 febbraio 2022, poi 1,01 milioni di BSO e 34 AVAX tra il 28 febbraio e il 2 marzo. Il terzo portafoglio ha restituito 0,013 AVAX.",
           "sharedFunder": "Un portafoglio privato ha finanziato tre dei portafogli acquirenti e nient'altro. Ogni transazione che abbia mai inviato è andata a loro, in ordine: nonce da 0 a 4 al primo, da 5 a 7 al secondo, 8 al terzo.",
-          "buyingPattern": "Altri dieci portafogli erano tutti nuovi, finanziati con uno o due prelievi da exchange tra circa 2.000 e 3.400 dollari tramite Binance o ChangeNOW (gli stessi servizi usati dai portafogli collegati), convertiti interamente nel token e mai più usati. Sette hanno comprato uno dopo l'altro tra il 28 febbraio e il 31 marzo 2022, senza mai sovrapporsi ai portafogli collegati. Altri tre hanno fatto lo stesso il 12 aprile e il 25 giugno 2022 e il 6 maggio 2023. Tra i detentori attuali con almeno lo 0,01% dell'offerta, 21 portafogli sono stati usati soltanto per comprare su Avalanche, in quattro transazioni o meno: questi dieci, due dei portafogli collegati e altri nove che hanno speso ciascuno meno di 410 dollari.",
-          "neverSold": "Nessuno dei quindici portafogli ha venduto o spostato i propri token da allora. I loro saldi hanno attraversato entrambe le migrazioni senza variazioni."
+          "neverSold": "Nessuno dei cinque portafogli ha venduto. I loro saldi hanno attraversato entrambe le migrazioni senza variazioni."
         }
       },
       "holderC": {
@@ -471,6 +469,13 @@
         "evidence": {
           "funderChain": "Un portafoglio privato ha inviato al secondo il suo primo AVAX il 12 febbraio 2022. Sei giorni dopo ha spostato i propri 597.000 BSO e gli AVAX che gli restavano in un nuovo portafoglio, che il 22 febbraio ha passato i 597.000 BSO al primo portafoglio, insieme al primo AVAX di quest'ultimo.",
           "directTransfer": "Il secondo portafoglio ha inviato al primo 0,005 AVAX il 27 febbraio 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Dieci portafogli che non hanno fatto altro che comprare su Avalanche, uno dopo l'altro, tra febbraio 2022 e maggio 2023, e non hanno mai venduto.",
+        "evidence": {
+          "buyingPattern": "Ogni portafoglio era nuovo, è stato finanziato con uno o due prelievi da exchange tra circa 2.000 e 3.400 dollari tramite Binance o ChangeNOW, ha convertito l'intero importo nel token e non è mai più stato usato. Sette hanno comprato uno dopo l'altro tra il 28 febbraio e il 31 marzo 2022; altri tre hanno fatto lo stesso il 12 aprile e il 25 giugno 2022 e il 6 maggio 2023. Tra i detentori attuali con almeno lo 0,01% dell'offerta, 21 portafogli sono stati usati soltanto per comprare su Avalanche, in quattro transazioni o meno: questi dieci, due portafogli di un altro gruppo e altri nove che hanno speso ciascuno meno di 410 dollari.",
+          "neverSold": "Nessuno dei dieci portafogli ha venduto o spostato i propri token da allora, tranne uno che li ha bloccati ad aprile 2022. I loro saldi hanno attraversato entrambe le migrazioni senza variazioni."
         }
       }
     },

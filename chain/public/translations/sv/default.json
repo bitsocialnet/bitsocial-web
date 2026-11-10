@@ -367,14 +367,13 @@
       "lead": "Plånböcker grupperas bara när kedjan visar en koppling: tokens eller gas som flyttas mellan dem, en gemensam privat finansiär, en multisig-ägare eller ett identiskt köpmönster. Varje grupp listar transaktionerna bakom den.",
       "confidence": {
         "confirmed": "Plånböckerna gör transaktioner med varandra, delar en privat finansiär eller kontrollerar varandra.",
-        "likely": "Flera överföringar från en och samma källa som är svåra att förklara på något annat sätt.",
+        "likely": "Flera överföringar från en och samma källa, eller ett identiskt köpmönster, som är svåra att förklara på något annat sätt.",
         "possible": "En enda koppling som också kan vara en försäljning eller en gåva."
       },
       "holds_one": "{{amount}} BSO, {{share}} av utbudet, i {{count}} plånbok",
       "holds_other": "{{amount}} BSO, {{share}} av utbudet, fördelat på {{count}} plånböcker",
       "walletList_one": "{{count}} plånbok",
-      "walletList_other": "Alla {{count}} plånböcker",
-      "patternOnly": "länkad via köpmönster"
+      "walletList_other": "Alla {{count}} plånböcker"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -387,12 +386,11 @@
         "name": "Uniswap-poolen BSO/ETH"
       },
       "holderA": {
-        "summary": "Femton plånböcker som köpte på Avalanche mellan februari 2022 och maj 2023 och aldrig har sålt. Fem är sammankopplade on-chain; de andra tio matchar samma köpares mönster.",
+        "summary": "Fem plånböcker sammankopplade genom överföringar och en gemensam privat finansiär, som köpte på Avalanche mellan februari 2022 och maj 2023 och aldrig har sålt.",
         "evidence": {
           "transfersToLpWallet": "Två av köparplånböckerna skickade tokens och AVAX till en tredje plånbok, som använde dem för likviditet och farming på Trader Joe: 141 000 BSO och 5 AVAX den 27 februari 2022, sedan 1,01 mn BSO och 34 AVAX mellan 28 februari och 2 mars. Den tredje plånboken skickade tillbaka 0,013 AVAX.",
           "sharedFunder": "En privat plånbok finansierade tre av köparplånböckerna och inget annat. Varje transaktion den någonsin skickat gick till dem, i ordning: nonce 0 till 4 till den första, 5 till 7 till den andra, 8 till den tredje.",
-          "buyingPattern": "Ytterligare tio plånböcker var alla nya, finansierades av ett eller två börsuttag på omkring 2 000 till 3 400 dollar via Binance eller ChangeNOW (samma tjänster som de länkade plånböckerna använde), växlades helt till tokenen och användes aldrig igen. Sju köpte en efter en mellan 28 februari och 31 mars 2022 och överlappade aldrig med de länkade plånböckerna. Ytterligare tre gjorde likadant den 12 april och den 25 juni 2022 och den 6 maj 2023. Bland dagens innehavare med minst 0,01 % av utbudet har 21 plånböcker bara använts för att köpa på Avalanche, i högst fyra transaktioner: de här tio, två av de länkade plånböckerna och nio andra som var och en lade ut mindre än 410 dollar.",
-          "neverSold": "Ingen av de femton plånböckerna har sålt eller flyttat sina tokens sedan dess. Deras saldon gick oförändrade genom båda migreringarna."
+          "neverSold": "Ingen av de fem plånböckerna har sålt sina tokens. Deras saldon gick oförändrade genom båda migreringarna."
         }
       },
       "holderC": {
@@ -466,6 +464,13 @@
         "evidence": {
           "funderChain": "En privat plånbok skickade till den andra dess första AVAX den 12 februari 2022. Sex dagar senare flyttade den sina egna 597 000 BSO och sin återstående AVAX till en ny plånbok, som skickade vidare de 597 000 BSO till den första plånboken den 22 februari, tillsammans med den plånbokens första AVAX.",
           "directTransfer": "Den andra plånboken skickade 0,005 AVAX till den första den 27 februari 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Tio plånböcker som inte gjorde något annat än att köpa på Avalanche, en efter en, mellan februari 2022 och maj 2023, och som aldrig har sålt.",
+        "evidence": {
+          "buyingPattern": "Varje plånbok var ny, finansierades av ett eller två börsuttag på omkring 2 000 till 3 400 dollar via Binance eller ChangeNOW, växlade hela beloppet till tokenen och användes aldrig igen. Sju köpte en efter en mellan 28 februari och 31 mars 2022; ytterligare tre gjorde likadant den 12 april och den 25 juni 2022 och den 6 maj 2023. Bland dagens innehavare med minst 0,01 % av utbudet har 21 plånböcker bara använts för att köpa på Avalanche, i högst fyra transaktioner: de här tio, två plånböcker från en annan grupp och nio andra som var och en lade ut mindre än 410 dollar.",
+          "neverSold": "Ingen av de tio plånböckerna har sålt eller flyttat sina tokens sedan dess, förutom en som låste sina tokens i april 2022. Deras saldon gick oförändrade genom båda migreringarna."
         }
       }
     },

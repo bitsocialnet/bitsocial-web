@@ -367,14 +367,13 @@
       "lead": "Portofolet grupohen vetëm kur zinxhiri tregon një lidhje: tokenë ose gas që lëvizin mes tyre, një financues privat i përbashkët, një pronar multisig-u ose një model blerjeje identik. Për çdo grup renditen transaksionet ku ai mbështetet.",
       "confidence": {
         "confirmed": "Portofolet kryejnë transaksione me njëri-tjetrin, kanë një financues privat të përbashkët ose kontrollojnë njëri-tjetrin.",
-        "likely": "Disa transferime nga një burim i vetëm, që është e vështirë t'i shpjegosh ndryshe.",
+        "likely": "Disa transferime nga një burim i vetëm, ose një model blerjeje identik, që është e vështirë t'i shpjegosh ndryshe.",
         "possible": "Një lidhje e vetme, që mund të jetë edhe shitje ose dhuratë."
       },
       "holds_one": "{{amount}} BSO, {{share}} e furnizimit, në {{count}} portofol",
       "holds_other": "{{amount}} BSO, {{share}} e furnizimit, në {{count}} portofole",
       "walletList_one": "{{count}} portofol",
-      "walletList_other": "Të {{count}} portofolet",
-      "patternOnly": "i lidhur nga modeli i blerjeve"
+      "walletList_other": "Të {{count}} portofolet"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -387,12 +386,11 @@
         "name": "Pool-i BSO/ETH i Uniswap"
       },
       "holderA": {
-        "summary": "Pesëmbëdhjetë portofole që blenë në Avalanche midis shkurtit 2022 dhe majit 2023 dhe nuk kanë shitur kurrë. Pesë janë të lidhura mes tyre on-chain; dhjetë të tjerat përputhen me modelin e të njëjtit blerës.",
+        "summary": "Pesë portofole të lidhura mes tyre me transferime dhe një financues privat të përbashkët, që blenë në Avalanche midis shkurtit 2022 dhe majit 2023 dhe nuk kanë shitur kurrë.",
         "evidence": {
           "transfersToLpWallet": "Dy nga portofolet blerëse i dërguan tokenë dhe AVAX një portofoli të tretë, i cili i përdori për likuiditet dhe farming në Trader Joe: 141 mijë BSO dhe 5 AVAX më 27 shkurt 2022, pastaj 1,01 mln BSO dhe 34 AVAX midis 28 shkurtit dhe 2 marsit. Portofoli i tretë ktheu 0,013 AVAX.",
           "sharedFunder": "Një portofol privat financoi tre nga portofolet blerëse dhe asgjë tjetër. Çdo transaksion që ka dërguar ndonjëherë shkoi te to, me radhë: nonce 0 deri 4 te i pari, 5 deri 7 te i dyti, 8 te i treti.",
-          "buyingPattern": "Dhjetë portofole të tjera ishin të gjitha të reja: secili u financua me një ose dy tërheqje nga një exchange prej rreth $2000 deri $3400 përmes Binance ose ChangeNOW (të njëjtat shërbime që përdorën portofolet e lidhura), i shkëmbeu të gjitha në token dhe nuk u përdor më kurrë. Shtatë blenë njëri pas tjetrit midis 28 shkurtit dhe 31 marsit 2022, pa u mbivendosur kurrë me portofolet e lidhura. Tre të tjera bënë të njëjtën gjë më 12 prill dhe 25 qershor 2022 dhe më 6 maj 2023. Ndër mbajtësit e sotëm me të paktën 0,01% të furnizimit, 21 portofole janë përdorur vetëm për të blerë në Avalanche, në katër transaksione ose më pak: këto dhjetë, dy nga portofolet e lidhura dhe nëntë të tjera që shpenzuan secili më pak se $410.",
-          "neverSold": "Asnjë nga pesëmbëdhjetë portofolet nuk i ka shitur apo lëvizur tokenët e vet që atëherë. Bilancet e tyre kaluan të pandryshuara nëpër të dy migrimet."
+          "neverSold": "Asnjë nga pesë portofolet nuk i ka shitur tokenët e vet. Bilancet e tyre kaluan të pandryshuara nëpër të dy migrimet."
         }
       },
       "holderC": {
@@ -466,6 +464,13 @@
         "evidence": {
           "funderChain": "Një portofol privat i dërgoi të dytit AVAX-in e tij të parë më 12 shkurt 2022. Gjashtë ditë më vonë ai i zhvendosi 597 mijë BSO-të e veta dhe AVAX-in që i kishte mbetur në një portofol të ri, i cili ia kaloi 597 mijë BSO-të portofolit të parë më 22 shkurt, bashkë me AVAX-in e parë të atij portofoli.",
           "directTransfer": "Portofoli i dytë i dërgoi të parit 0,005 AVAX më 27 shkurt 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Dhjetë portofole që nuk bënë gjë tjetër veçse të blinin në Avalanche, njëri pas tjetrit, midis shkurtit 2022 dhe majit 2023, dhe nuk kanë shitur kurrë.",
+        "evidence": {
+          "buyingPattern": "Secili portofol ishte i ri: u financua me një ose dy tërheqje nga një exchange prej rreth $2000 deri $3400 përmes Binance ose ChangeNOW, e shkëmbeu të gjithë shumën në token dhe nuk u përdor më kurrë. Shtatë blenë njëri pas tjetrit midis 28 shkurtit dhe 31 marsit 2022; tre të tjera bënë të njëjtën gjë më 12 prill dhe 25 qershor 2022 dhe më 6 maj 2023. Ndër mbajtësit e sotëm me të paktën 0,01% të furnizimit, 21 portofole janë përdorur vetëm për të blerë në Avalanche, në katër transaksione ose më pak: këto dhjetë, dy portofole të një grupi tjetër dhe nëntë të tjera që shpenzuan secili më pak se $410.",
+          "neverSold": "Asnjë nga dhjetë portofolet nuk i ka shitur apo lëvizur tokenët e vet që atëherë, përveç njërit që i bllokoi tokenët e vet në prill 2022. Bilancet e tyre kaluan të pandryshuara nëpër të dy migrimet."
         }
       }
     },

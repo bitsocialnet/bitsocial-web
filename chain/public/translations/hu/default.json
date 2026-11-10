@@ -367,14 +367,13 @@
       "lead": "A tárcák csak akkor kerülnek egy csoportba, ha a lánc kapcsolatot mutat köztük: tokenek vagy gas mozgását, közös magánfinanszírozót, multisig-tulajdonost vagy azonos vásárlási mintát. Minden csoportnál ott vannak a mögötte álló tranzakciók.",
       "confidence": {
         "confirmed": "A tárcák egymással tranzaktálnak, közös magánfinanszírozójuk van, vagy irányítják egymást.",
-        "likely": "Több átutalás egyetlen forrásból, amelyeket nehéz másként megmagyarázni.",
+        "likely": "Több átutalás egyetlen forrásból vagy azonos vásárlási minta, amelyeket nehéz másként megmagyarázni.",
         "possible": "Egyetlen kapcsolat, amely akár eladás vagy ajándék is lehet."
       },
       "holds_one": "{{amount}} BSO, a kínálatból {{share}}, {{count}} tárcában",
       "holds_other": "{{amount}} BSO, a kínálatból {{share}}, {{count}} tárcában elosztva",
       "walletList_one": "{{count}} tárca",
-      "walletList_other": "Az összes tárca ({{count}})",
-      "patternOnly": "vásárlási minta alapján kapcsolva"
+      "walletList_other": "Az összes tárca ({{count}})"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -387,12 +386,11 @@
         "name": "Uniswap BSO/ETH pool"
       },
       "holderA": {
-        "summary": "Tizenöt tárca, amely 2022 februárja és 2023 májusa között vásárolt az Avalanche-on, és soha nem adott el. Közülük öt a láncon is össze van kötve; a másik tíz ugyanannak a vevőnek a mintájára illik.",
+        "summary": "Öt tárca, amelyet átutalások és egy közös magánfinanszírozó kötnek össze, és amely 2022 februárja és 2023 májusa között vásárolt az Avalanche-on, és soha nem adott el.",
         "evidence": {
           "transfersToLpWallet": "A vásárló tárcák közül kettő tokeneket és AVAX-ot küldött egy harmadik tárcának, amely ezeket Trader Joe-likviditásra és farmolásra használta: 141 ezer BSO-t és 5 AVAX-ot 2022. február 27-én, majd 1,01 millió BSO-t és 34 AVAX-ot február 28. és március 2. között. A harmadik tárca 0,013 AVAX-ot küldött vissza.",
           "sharedFunder": "Egyetlen magántárca finanszírozott három vásárló tárcát, és semmi mást. Minden tranzakció, amelyet valaha elküldött, hozzájuk ment, sorrendben: a 0–4. nonce az elsőhöz, az 5–7. a másodikhoz, a 8. a harmadikhoz.",
-          "buyingPattern": "További tíz tárca mind új volt: egy vagy két, nagyjából 2000–3400 dolláros tőzsdei kivétellel finanszírozták őket a Binance-en vagy a ChangeNOW-n keresztül (ugyanazokon a szolgáltatásokon, amelyeket az összekapcsolt tárcák is használtak), teljes egészében a tokenre váltották, és soha többé nem használták őket. Hét közülük egymás után vásárolt 2022. február 28. és március 31. között, soha nem átfedésben az összekapcsolt tárcákkal. További három ugyanígy tett 2022. április 12-én és június 25-én, valamint 2023. május 6-án. A kínálat legalább 0,01%-ával rendelkező mai birtokosok közül 21 tárcát kizárólag az Avalanche-on való vásárlásra használtak, legfeljebb négy tranzakcióval: ezt a tízet, az összekapcsolt tárcák közül kettőt, valamint kilenc másikat, amelyek egyenként 410 dollárnál kevesebbet költöttek.",
-          "neverSold": "A tizenöt tárca egyike sem adta el és nem mozgatta azóta a tokenjeit. Egyenlegeik változatlanul mentek át mindkét migráción."
+          "neverSold": "Az öt tárca egyike sem adott el. Egyenlegeik változatlanul mentek át mindkét migráción."
         }
       },
       "holderC": {
@@ -466,6 +464,13 @@
         "evidence": {
           "funderChain": "Egy magántárca 2022. február 12-én elküldte a másodiknak annak első AVAX-át. Hat nappal később a saját 597 ezer BSO-ját és a megmaradt AVAX-át egy új tárcára vitte át, amely február 22-én továbbadta az 597 ezer BSO-t az első tárcának, annak első AVAX-ával együtt.",
           "directTransfer": "A második tárca 2022. február 27-én 0,005 AVAX-ot küldött az elsőnek."
+        }
+      },
+      "holderM": {
+        "summary": "Tíz tárca, amely 2022 februárja és 2023 májusa között egymás után semmi mást nem csinált, csak vásárolt az Avalanche-on, és soha nem adott el.",
+        "evidence": {
+          "buyingPattern": "Minden tárca új volt: egy vagy két, nagyjából 2000–3400 dolláros tőzsdei kivétellel finanszírozták a Binance-en vagy a ChangeNOW-n keresztül, a teljes összeget a tokenre váltották, és soha többé nem használták. Hét közülük egymás után vásárolt 2022. február 28. és március 31. között; további három ugyanígy tett 2022. április 12-én és június 25-én, valamint 2023. május 6-án. A kínálat legalább 0,01%-ával rendelkező mai birtokosok közül 21 tárcát kizárólag az Avalanche-on való vásárlásra használtak, legfeljebb négy tranzakcióval: ezt a tízet, egy másik csoport két tárcáját, valamint kilenc másikat, amelyek egyenként 410 dollárnál kevesebbet költöttek.",
+          "neverSold": "A tíz tárca egyike sem adta el és nem mozgatta azóta a tokenjeit, egy kivételével, amely 2022 áprilisában zárolta őket. Egyenlegeik változatlanul mentek át mindkét migráción."
         }
       }
     },

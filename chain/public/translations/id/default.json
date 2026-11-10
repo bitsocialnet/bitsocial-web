@@ -364,12 +364,11 @@
       "lead": "Dompet hanya dikelompokkan jika chain menunjukkan tautan: token atau gas yang berpindah di antara mereka, penyandang dana pribadi yang sama, pemilik multisig, atau pola pembelian yang identik. Setiap kelompok mencantumkan transaksi di baliknya.",
       "confidence": {
         "confirmed": "Dompet-dompet ini bertransaksi satu sama lain, memiliki penyandang dana pribadi yang sama, atau saling mengendalikan.",
-        "likely": "Beberapa transfer dari satu sumber yang sulit dijelaskan dengan cara lain.",
+        "likely": "Beberapa transfer dari satu sumber, atau pola pembelian yang identik, yang sulit dijelaskan dengan cara lain.",
         "possible": "Satu tautan saja, yang bisa juga berupa penjualan atau hadiah."
       },
       "holds_other": "{{amount}} BSO, {{share}} dari suplai, tersebar di {{count}} dompet",
-      "walletList_other": "Semua {{count}} dompet",
-      "patternOnly": "tertaut karena pola pembelian"
+      "walletList_other": "Semua {{count}} dompet"
     },
     "walletRoles": {
       "deployer": "deployer",
@@ -382,12 +381,11 @@
         "name": "Pool BSO/ETH Uniswap"
       },
       "holderA": {
-        "summary": "Lima belas dompet yang membeli di Avalanche antara Februari 2022 dan Mei 2023 dan tidak pernah menjual. Lima di antaranya terhubung satu sama lain on-chain; sepuluh lainnya cocok dengan pola pembeli yang sama.",
+        "summary": "Lima dompet yang terhubung satu sama lain melalui transfer dan penyandang dana pribadi yang sama, yang membeli di Avalanche antara Februari 2022 dan Mei 2023 dan tidak pernah menjual.",
         "evidence": {
           "transfersToLpWallet": "Dua dompet pembeli mengirim token dan AVAX ke dompet ketiga, yang menggunakannya untuk likuiditas dan farming di Trader Joe: 141 ribu BSO dan 5 AVAX pada 27 Februari 2022, lalu 1,01 juta BSO dan 34 AVAX antara 28 Februari dan 2 Maret. Dompet ketiga mengirim balik 0,013 AVAX.",
           "sharedFunder": "Satu dompet pribadi mendanai tiga dompet pembeli dan tidak ada yang lain. Setiap transaksi yang pernah dikirimnya ditujukan ke mereka, secara berurutan: nonce 0 sampai 4 ke yang pertama, 5 sampai 7 ke yang kedua, 8 ke yang ketiga.",
-          "buyingPattern": "Sepuluh dompet lainnya masing-masing baru, didanai oleh satu atau dua penarikan dari exchange sekitar $2.000 hingga $3.400 melalui Binance atau ChangeNOW (layanan yang sama yang dipakai dompet-dompet tertaut), ditukar seluruhnya ke token tersebut, dan tidak pernah dipakai lagi. Tujuh di antaranya membeli satu per satu antara 28 Februari dan 31 Maret 2022, tanpa pernah tumpang tindih dengan dompet-dompet tertaut. Tiga lainnya melakukan hal yang sama pada 12 April dan 25 Juni 2022 serta pada 6 Mei 2023. Di antara pemegang saat ini yang memiliki setidaknya 0,01% dari suplai, 21 dompet hanya dipakai untuk membeli di Avalanche, dalam empat transaksi atau kurang: sepuluh dompet ini, dua dari dompet-dompet tertaut, dan sembilan lainnya yang masing-masing membelanjakan kurang dari $410.",
-          "neverSold": "Tidak satu pun dari lima belas dompet itu yang menjual atau memindahkan tokennya sejak saat itu. Saldo mereka melewati kedua migrasi tanpa perubahan."
+          "neverSold": "Tidak satu pun dari lima dompet itu yang menjual. Saldo mereka melewati kedua migrasi tanpa perubahan."
         }
       },
       "holderC": {
@@ -461,6 +459,13 @@
         "evidence": {
           "funderChain": "Satu dompet pribadi mengirimi dompet kedua AVAX pertamanya pada 12 Februari 2022. Enam hari kemudian, dompet pribadi itu memindahkan 597 ribu BSO miliknya sendiri dan sisa AVAX-nya ke dompet baru, yang meneruskan 597 ribu BSO itu ke dompet pertama pada 22 Februari, beserta AVAX pertama dompet tersebut.",
           "directTransfer": "Dompet kedua mengirim 0,005 AVAX ke dompet pertama pada 27 Februari 2022."
+        }
+      },
+      "holderM": {
+        "summary": "Sepuluh dompet yang tidak melakukan apa pun selain membeli di Avalanche, satu per satu, antara Februari 2022 dan Mei 2023, dan tidak pernah menjual.",
+        "evidence": {
+          "buyingPattern": "Setiap dompet masih baru, didanai oleh satu atau dua penarikan dari exchange sekitar $2.000 hingga $3.400 melalui Binance atau ChangeNOW, seluruh jumlahnya ditukar ke token tersebut, dan tidak pernah dipakai lagi. Tujuh di antaranya membeli satu per satu antara 28 Februari dan 31 Maret 2022; tiga lainnya melakukan hal yang sama pada 12 April dan 25 Juni 2022 serta pada 6 Mei 2023. Di antara pemegang saat ini yang memiliki setidaknya 0,01% dari suplai, 21 dompet hanya dipakai untuk membeli di Avalanche, dalam empat transaksi atau kurang: sepuluh dompet ini, dua dompet dari kelompok lain, dan sembilan lainnya yang masing-masing membelanjakan kurang dari $410.",
+          "neverSold": "Tidak satu pun dari sepuluh dompet itu yang menjual atau memindahkan tokennya sejak saat itu, kecuali satu yang mengunci tokennya pada April 2022. Saldo mereka melewati kedua migrasi tanpa perubahan."
         }
       }
     },
