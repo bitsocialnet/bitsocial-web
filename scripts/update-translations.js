@@ -511,7 +511,8 @@ async function handleUpdate(
   write,
 ) {
   let sourceValue = undefined;
-  if (!literalValue && !map) {
+  const hasLiteral = typeof literalValue !== "undefined";
+  if (!hasLiteral && !map) {
     // default to --from
     const srcPath = path.join(translationsRoot, fromLang, "default.json");
     if (!(await fileExists(srcPath)))
@@ -540,7 +541,7 @@ async function handleUpdate(
     let nextVal;
     if (map && Object.prototype.hasOwnProperty.call(map, lang)) {
       nextVal = map[lang];
-    } else if (typeof literalValue !== "undefined") {
+    } else if (hasLiteral) {
       nextVal = literalValue;
     } else {
       nextVal = sourceValue;
@@ -629,7 +630,11 @@ async function main() {
   } else {
     // Update mode
     let literalValue = args["--value"];
+    // parseArgs stores a flag given without a value (or with "") as "". Read as "no literal" or
+    // "no map", that would write an empty string, or the source text, into every target locale.
+    if (literalValue === "") usage(1, "--value needs a non-empty string");
     let mapFile = args["--map"];
+    if (mapFile === "") usage(1, "--map needs a file path");
     let map = undefined;
 
     if (mapFile) {
