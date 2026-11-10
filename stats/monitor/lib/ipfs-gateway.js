@@ -2,13 +2,14 @@ import config from "../config.js";
 import monitorState from "./monitor-state.js";
 import { getCommunityMetricLabelNames, getCommunityMetricLabels } from "./community-metrics.js";
 import { kubo } from "./pkc-js/pkc-js.js";
-import { fetchJson, createCounter } from "./utils.js";
+import { fetchJson, createCounter, createRunUnlessPending } from "./utils.js";
 import prometheus from "./prometheus.js";
 import pTimeout from "p-timeout";
 import Debug from "debug";
 const debug = Debug("bitsocial-stats-monitor:ipfs-gateway");
 
 const waitForIpfsAddMs = 1000 * 10;
+const runCommunityIpnsFetches = createRunUnlessPending();
 
 const initIpfsGatewayMonitorState = (ipfsGatewayUrl) => {
   if (!monitorState.ipfsGateways[ipfsGatewayUrl]) {
@@ -37,8 +38,8 @@ export const monitorIpfsGateways = async () => {
       })
       .catch((e) => debug(e.message));
 
-    // community ipns fetches
-    (async () => {
+    // community ipns fetches, skipped while this gateway's previous pass is still running
+    runCommunityIpnsFetches(ipfsGatewayUrl, async () => {
       for (const community of monitorState.communitiesMonitoring) {
         // one at a time to not ddos gateway
         try {
@@ -53,7 +54,7 @@ export const monitorIpfsGateways = async () => {
           debug(e.message);
         }
       }
-    })();
+    });
   }
 };
 
