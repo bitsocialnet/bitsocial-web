@@ -102,9 +102,17 @@ export function SegmentedControl<T extends string>({
 
 export function CategoryBadge({ category }: { category: Category }) {
   const { t } = useTranslation();
+  // The team and the pool are pills; a link's confidence is a quiet note beside the name.
+  const isConfidence = category === "confirmed" || category === "likely" || category === "possible";
 
   return (
-    <span className={`rl-badge rl-badge-${category}`}>{t(`richList.categories.${category}`)}</span>
+    <span
+      className={
+        isConfidence ? `rl-confidence rl-confidence-${category}` : `rl-badge rl-badge-${category}`
+      }
+    >
+      {t(`richList.categories.${category}`)}
+    </span>
   );
 }
 

@@ -3,8 +3,8 @@
    surface than the landing page: left-aligned, tabular numbers,
    one shared width. Each linked holder gets its own hue, blue is
    kept for the team, and the pool and everyone else stay neutral.
-   Confidence badges pair a colour with their label and a fill
-   step, so the level never rests on colour alone. Headings and
+   Confidence notes pair a coloured dot with their label and a
+   fill step, so the level never rests on colour alone. Headings and
    their lead lines sit on the mesh; body text sits on frosted
    cards so the mesh never runs behind it.
    ============================================================ */
@@ -27,7 +27,7 @@
      for colour-blind separation on both themes, so they need no dark steps. */
   --rl-airdrop-claims: #0e9fb8;
   --rl-liquidity-mining: #c2741f;
-  /* Confidence text and borders, stepped per theme to keep 4.5:1 on the badge tint. */
+  /* Confidence dots, stepped per theme to keep 3:1 against the card surface. */
   --rl-confirmed: #166534;
   --rl-likely: #92400e;
   --rl-possible: #9f1239;
@@ -493,23 +493,45 @@ a.rl-strip-name:hover {
   color: var(--ink);
 }
 
-/* Confidence runs green, amber, rose, and also steps down from a tinted badge to a plain
-   outline to a dashed one, so it still reads without colour. */
-.rl-badge-confirmed {
-  border-color: color-mix(in oklab, var(--rl-confirmed) 55%, transparent);
-  background: color-mix(in oklab, var(--rl-confirmed) 14%, transparent);
-  color: var(--rl-confirmed);
+/* Confidence is a note, not a badge: muted text after a small dot that runs green, amber, rose
+   and steps from filled to hollow to dashed, so the level still reads without colour. */
+.rl-confidence {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--ink-muted);
 }
 
-.rl-badge-likely {
-  border-color: color-mix(in oklab, var(--rl-likely) 55%, transparent);
-  color: var(--rl-likely);
+.rl-confidence::before {
+  content: "";
+  flex: none;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border: 1.5px solid var(--rl-confidence-dot);
+  border-radius: 999px;
 }
 
-.rl-badge-possible {
+.rl-confidence-confirmed {
+  --rl-confidence-dot: var(--rl-confirmed);
+}
+
+.rl-confidence-confirmed::before {
+  background: var(--rl-confidence-dot);
+}
+
+.rl-confidence-likely {
+  --rl-confidence-dot: var(--rl-likely);
+}
+
+.rl-confidence-possible {
+  --rl-confidence-dot: var(--rl-possible);
+}
+
+.rl-confidence-possible::before {
   border-style: dashed;
-  border-color: color-mix(in oklab, var(--rl-possible) 55%, transparent);
-  color: var(--rl-possible);
 }
 
 .rl-tag {
