@@ -1353,7 +1353,13 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel({
 
       void loadGsap()
         .then((gsap) => {
-          if (!gsap || scrollAnimationRequestRef.current !== animationRequest) {
+          // A newer tap, swipe or resize already reset the snap and pending tab for its own
+          // request, so a superseded load must leave them alone.
+          if (scrollAnimationRequestRef.current !== animationRequest) {
+            return;
+          }
+
+          if (!gsap) {
             carousel.style.scrollSnapType = "";
             setPendingIndex(null);
             return;
