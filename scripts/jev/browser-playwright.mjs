@@ -1,4 +1,4 @@
-import { execFile } from "node:child_process";
+import { execFile, spawn } from "node:child_process";
 import { promisify } from "node:util";
 import { mkdtemp, readFile, writeFile, rm, chmod, access } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -7,8 +7,97 @@ import { randomBytes } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { JevError } from "./client.mjs";
 
-const exec = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+
+// Every process below `pids`, read from the process table: playwright-cli detaches its daemon, so
+// it is outside the wrapper's process group but still the client's child.
+async function descendantsOf(...pids) {
+  let table;
+  try {
+    ({ stdout: table } = await promisify(execFile)("ps", ["-A", "-o", "pid=,ppid="]));
+  } catch {
+    return [];
+  }
+  const children = new Map();
+  for (const line of table.trim().split("\n")) {
+    const [child, parent] = line.trim().split(/\s+/).map(Number);
+    children.set(parent, [...(children.get(parent) ?? []), child]);
+  }
+  const found = pids.flatMap((pid) => children.get(pid) ?? []);
+  for (let index = 0; index < found.length; index++)
+    found.push(...(children.get(found[index]) ?? []));
+  return found;
+}
+
+// pw-session.sh runs `playwright-cli open` in the foreground and passes no signal on, so a timeout
+// that killed only the wrapper left the browser launching after close() had released the slot. A
+// timeout now signals the wrapper and every process below it, the detached daemon included. The
+// command settles once the wrapper and the playwright-cli client have exited and closed the output
+// pipes. The detached daemon does not hold them, but the client waits for a daemon that is still
+// launching, so the launch has then stopped or finished and is closable. A daemon that was already
+// listening may still be shutting down when close() runs. `killAfter` ms after the SIGTERM, the
+// processes signalled then and anything started below them since are killed.
+export function runCommand(file, args, { timeout, maxBuffer, killAfter = 20_000, ...options }) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(file, args, { ...options, stdio: ["ignore", "pipe", "pipe"] });
+    const output = { stdout: "", stderr: "" };
+    let killed = false,
+      settled = false,
+      timer;
+    const killAll = (pids, name) => {
+      for (const pid of pids) {
+        try {
+          process.kill(pid, name);
+        } catch {
+          // Already exited.
+        }
+      }
+    };
+    const stop = async () => {
+      if (killed) return;
+      killed = true;
+      clearTimeout(timer);
+      const pids = [...(await descendantsOf(child.pid)), child.pid];
+      if (settled) return;
+      killAll(pids, "SIGTERM");
+      // A process that ignores SIGTERM must neither hold cleanup up for good nor outlive it.
+      timer = setTimeout(async () => {
+        killAll([...(await descendantsOf(...pids)), ...pids], "SIGKILL");
+        child.stdout.destroy();
+        child.stderr.destroy();
+      }, killAfter);
+    };
+    timer = setTimeout(stop, timeout);
+    for (const name of ["stdout", "stderr"]) {
+      child[name].setEncoding("utf8");
+      child[name].on("data", (chunk) => {
+        output[name] += chunk;
+        if (output[name].length > maxBuffer) stop();
+      });
+    }
+    child.on("error", (error) => {
+      settled = true;
+      clearTimeout(timer);
+      reject(error);
+    });
+    // "close" waits for every process still holding the output pipes, the wrapper's
+    // playwright-cli client included.
+    child.on("close", (code, signal) => {
+      settled = true;
+      clearTimeout(timer);
+      if (code === 0 && !killed) resolve(output);
+      else
+        reject(
+          Object.assign(new Error(`${path.basename(file)} exited with ${signal ?? code}`), {
+            ...output,
+            code,
+            signal,
+            killed,
+          }),
+        );
+    });
+  });
+}
 const locatorCode = `function locate(target) {
   let parent = page;
   if (target.within) parent = page.getByRole(target.within.role, {name: target.within.name, exact: true});
@@ -68,7 +157,7 @@ export async function findPlaywrightCli() {
   return "playwright-cli";
 }
 
-export function createPlaywrightDriver({ execute = exec } = {}) {
+export function createPlaywrightDriver({ execute = runCommand } = {}) {
   const session = `jev-${process.pid}-${randomBytes(4).toString("hex")}`;
   let directory,
     cli,
