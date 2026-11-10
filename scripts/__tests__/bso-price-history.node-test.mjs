@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
+import { cp, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -112,3 +115,102 @@ test("the committed history is one evenly spaced daily series across all three c
   });
   assert.equal(COMMITTED_CANDLES[COMMITTED_CANDLES.length - 1].supply, 210_000_000);
 });
+
+// Answers the generator's explorer and Coinbase requests offline: every pool traded once in its
+// era and every token minted once. SHORT_POOL and the mints of SHORT_MINTS come back as
+// Etherscan's empty "No records found" listing, and SHORT_PRODUCT's candles as an empty list.
+const offlineApis = `
+const word = (value) => BigInt(value).toString(16).padStart(64, "0");
+const swap = "0x" + [10n ** 21n, 0n, 0n, 10n ** 18n].map(word).join("");
+const transfer = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef";
+const gen1Pools = process.env.GEN1_POOLS.split(",");
+globalThis.fetch = async (input) => {
+  const url = new URL(input);
+  const query = url.searchParams;
+  let body;
+  if (url.pathname.endsWith("/candles")) {
+    const start = Date.parse(query.get("start")) / 1000;
+    const end = Date.parse(query.get("end")) / 1000;
+    body = [];
+    if (!url.pathname.includes("/" + process.env.SHORT_PRODUCT + "/"))
+      for (let time = end; time >= start; time -= 3600) body.push([time, 9, 11, 10, 10, 1]);
+  } else {
+    const pool = (query.get("topic1") ?? query.get("address")).toLowerCase();
+    const supply = query.get("topic0") === transfer;
+    const time = supply ? 1600000000 : gen1Pools.includes(pool) ? 1654041600 : 1735689600;
+    const burns = supply && query.has("topic2");
+    const shortMints = supply && !burns && query.get("address").toLowerCase() === process.env.SHORT_MINTS;
+    const empty = pool === process.env.SHORT_POOL || burns || shortMints;
+    const log = {
+      blockNumber: String(time === 1735689600 ? 25000000 : 1000),
+      logIndex: "0",
+      timeStamp: String(time),
+      transactionHash: pool,
+      data: supply ? "0x" + word(10n ** 24n) : swap,
+    };
+    body = empty
+      ? { status: "0", message: "No records found", result: [] }
+      : { status: "1", message: "OK", result: [log] };
+  }
+  return new Response(JSON.stringify(body));
+};
+`;
+
+const GEN1_TOKEN = "0x625fc9bb971bb305a2ad63252665dcfe9098bee9";
+
+for (const [gap, short] of [
+  ["a retired pool listed empty", { SHORT_POOL: "0x0f7a712e9f2d25160a7dc0c24324036c47ea951b" }],
+  ["a settled rate window returned empty", { SHORT_PRODUCT: "AVAX-USD" }],
+  ["a retired mint listing returned empty", { SHORT_MINTS: GEN1_TOKEN }],
+]) {
+  test(`${gap} is not cached, so the next run recovers`, async (t) => {
+    const fixture = await mkdtemp(path.join(os.tmpdir(), "bitsocial-price-history-"));
+    t.after(() => rm(fixture, { recursive: true, force: true }));
+    await mkdir(path.join(fixture, "scripts"), { recursive: true });
+    await mkdir(path.join(fixture, "chain/src/lib/rich-list"), { recursive: true });
+    await cp(
+      path.join(repoRoot, "scripts/generate-bso-price-history.mjs"),
+      path.join(fixture, "scripts/generate-bso-price-history.mjs"),
+    );
+    for (const file of ["chain/src/lib/site.ts", "chain/src/lib/rich-list/data.ts"]) {
+      await cp(path.join(repoRoot, file), path.join(fixture, file));
+    }
+    await writeFile(path.join(fixture, "offline-apis.mjs"), offlineApis);
+    const run = (env) =>
+      spawnSync(
+        process.execPath,
+        [
+          "--import",
+          path.join(fixture, "offline-apis.mjs"),
+          path.join(fixture, "scripts/generate-bso-price-history.mjs"),
+        ],
+        {
+          encoding: "utf8",
+          env: {
+            ...process.env,
+            GEN1_POOLS:
+              "0x0f7a712e9f2d25160a7dc0c24324036c47ea951b,0xdc63069d6f920c6300065ac28acd05b1f7b3b0c1",
+            ...env,
+          },
+          timeout: 30_000,
+        },
+      );
+
+    // A brief upstream gap fails the run...
+    assert.equal(run(short).status, 1);
+    // ...and once the data is back, the next run builds the history.
+    const recovered = run({});
+    assert.equal(recovered.status, 0, recovered.stderr);
+    const history = JSON.parse(
+      await readFile(path.join(fixture, "chain/src/data/bso-price-history.json"), "utf8"),
+    );
+    assert.equal(history.eras[0].start, 1654041600);
+    // Candles are [time, open, high, low, close, volume, era index, supply]; Gen 1 minted.
+    const gen1 = history.candles.filter((entry) => entry[6] === 0);
+    assert.ok(gen1.length > 0);
+    assert.ok(
+      gen1.every((entry) => entry[7] > 0),
+      "Gen 1 candles lost their supply",
+    );
+  });
+}
