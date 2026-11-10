@@ -315,3 +315,86 @@ test("about dev server reads the recorded docs URL on every /docs request", asyn
     "308 https://feature.docs.bitsocial.localhost/getting-started",
   );
 });
+
+// Runs agent-init.sh in a scratch repository with a stub `corepack` standing in for `yarn start`.
+function agentInit(t, corepackScript, env = {}) {
+  const root = mkdtempSync(path.join(tmpdir(), "dev-servers-agent-init-"));
+  execFileSync("git", ["init", "--quiet"], { cwd: root });
+  const bin = path.join(root, "bin");
+  mkdirSync(bin);
+  writeFileSync(path.join(bin, "corepack"), corepackScript);
+  chmodSync(path.join(bin, "corepack"), 0o755);
+  const pidFile = path.join(root, "server.pid");
+  t.after(() => {
+    if (existsSync(pidFile)) {
+      try {
+        process.kill(Number(readFileSync(pidFile, "utf8")), "SIGKILL");
+      } catch {
+        /* Already gone. */
+      }
+    }
+    rmSync(root, { recursive: true, force: true });
+  });
+  const child = spawn("bash", [path.join(repoRoot, "scripts/agent-init.sh")], {
+    cwd: root,
+    env: {
+      ...baseEnv,
+      ...env,
+      PATH: `${bin}${path.delimiter}${process.env.PATH}`,
+      AGENT_START_LOG: path.join(root, "start.log"),
+      SERVER_PID_FILE: pidFile,
+      FAKE_LOG: path.join(root, "server.log"),
+    },
+    stdio: ["ignore", "pipe", "pipe"],
+  });
+  let output = "";
+  child.stdout.on("data", (chunk) => (output += chunk));
+  child.stderr.on("data", (chunk) => (output += chunk));
+  const exited = new Promise((resolve) => child.once("exit", (code) => resolve(code)));
+  return { root, exited, output: () => output, serverLog: path.join(root, "server.log") };
+}
+
+test("agent-init stops the dev server it started when the server never becomes ready", async (t) => {
+  const run = agentInit(
+    t,
+    `#!/bin/sh
+echo $$ > "$SERVER_PID_FILE"
+trap 'echo stopped >> "$FAKE_LOG"; exit 143' TERM
+echo started >> "$FAKE_LOG"
+while :; do sleep 0.1; done
+`,
+    { AGENT_INIT_TIMEOUT_SECONDS: "1" },
+  );
+
+  assert.equal(await run.exited, 1, run.output());
+  const stopped = await waitUntil(
+    () => existsSync(run.serverLog) && readFileSync(run.serverLog, "utf8").includes("stopped"),
+    5_000,
+  );
+  assert.ok(stopped, `agent-init left its dev server running:\n${run.output()}`);
+});
+
+test("agent-init waits for the URL the about launcher recorded", async (t) => {
+  const server = http.createServer((_request, response) =>
+    response.end("<title>Bitsocial</title>"),
+  );
+  await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+  t.after(() => server.close());
+  const run = agentInit(
+    t,
+    `#!/bin/sh
+echo $$ > "$SERVER_PID_FILE"
+sleep 0.5
+mkdir -p .dev-servers
+echo "$FAKE_URL" > .dev-servers/about-url
+while :; do sleep 0.1; done
+`,
+    {
+      AGENT_INIT_TIMEOUT_SECONDS: "10",
+      FAKE_URL: `http://127.0.0.1:${server.address().port}`,
+    },
+  );
+
+  assert.equal(await run.exited, 0, run.output());
+  assert.match(run.output(), /Dev server is ready/);
+});

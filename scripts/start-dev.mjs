@@ -16,6 +16,7 @@ import {
   isWindows,
   portlessEnv,
   portlessBin,
+  recordDevServerUrl,
   repoRoot,
   spawnDevServer,
 } from "./dev-server-utils.mjs";
@@ -38,6 +39,7 @@ if (command === portlessBin) {
   const publicUrl = getPortlessPublicUrl(appName);
 
   args = [appName, process.execPath, aboutServerScript];
+  recordDevServerUrl("about", publicUrl);
   // start-docs records the docs URL it claims; the about server reads it on each /docs request.
   childEnv.DOCS_DEV_URL_FILE = devServerUrlFile("docs");
   browserOpenUrl = publicUrl;
