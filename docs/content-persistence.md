@@ -65,8 +65,8 @@ A network that requires every node to keep every post forever has to pay for it 
 
 Social media does not need a global ledger. It does not matter whether post A was accepted one
 millisecond before post B, and most old posts are rarely read. Bitsocial lets each community node
-hold only its own communities, which keeps hosting cheap enough for a laptop, a Raspberry Pi or a
-small VPS. See [Why not a blockchain?](/peer-to-peer-protocol/#why-not-a-blockchain)
+hold only its own communities, which keeps hosting cheap enough for a laptop,
+[a Raspberry Pi](/hardware-requirements/) or a small VPS. See [Why not a blockchain?](/peer-to-peer-protocol/#why-not-a-blockchain)
 
 ## The tradeoff
 

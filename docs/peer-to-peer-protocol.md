@@ -363,7 +363,7 @@ have structural limitations:
 - **Cost** — someone has to pay for hosting, which creates pressure toward consolidation
 
 Bitsocial's peer-to-peer approach removes the server from the equation entirely. A community node
-can run on a laptop, a Raspberry Pi, or a cheap VPS. The operator controls moderation policy but
+can run on a laptop, [a Raspberry Pi](/hardware-requirements/), or a cheap VPS. The operator controls moderation policy but
 cannot seize user identities, because identities are keypair-controlled, not server-granted.
 
 ## What about Nostr?

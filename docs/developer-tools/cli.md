@@ -8,7 +8,7 @@ sidebar_position: 2
 
 The `bitsocial-cli` is a command-line tool for interacting with the Bitsocial protocol backend. It lets you run a local P2P daemon, create and configure communities, and publish content -- all from the terminal.
 
-It is built on top of the shared Bitsocial protocol client layer and is used by [5chan](/apps/5chan/) and [Seedit](/apps/seedit/) for community creation and node management.
+It is built on top of the shared Bitsocial protocol client layer and is used by [5chan](/apps/5chan/) and [Seedit](/apps/seedit/) for community creation and node management. See [Hardware Requirements](/hardware-requirements/) for what a machine running the daemon needs.
 
 ## Installation
 

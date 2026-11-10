@@ -12,6 +12,7 @@ const sidebars: SidebarsConfig = {
         "peer-to-peer-protocol",
         "browser-p2p",
         "content-persistence",
+        "hardware-requirements",
         "content-discovery",
         "directories",
         "custom-challenges",

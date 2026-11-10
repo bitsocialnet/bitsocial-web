@@ -23,7 +23,7 @@ sidebar_position: 1
 
 ### Creating a board
 
-To create a new board, you need to run `bitsocial-cli` as a peer-to-peer node. This ensures your board is hosted in a decentralized manner without relying on any central server.
+To create a new board, you need to run `bitsocial-cli` as a peer-to-peer node. This ensures your board is hosted in a decentralized manner without relying on any central server. See [Hardware Requirements](/hardware-requirements/) for what the machine running it needs.
 
 ### Directory assignments
 

@@ -28,6 +28,8 @@ There are two ways to create a new community:
 1. **Desktop client** — Use the built-in GUI in the desktop application to set up and configure your community.
 2. **bitsocial-cli** — Run the CLI tool to create and manage communities from the command line.
 
+See [Hardware Requirements](/hardware-requirements/) for what the machine hosting a community needs.
+
 ### Default community list
 
 New accounts subscribe to a default list of exact communities defined in `seedit-default-subscriptions.json` in the [bitsocialnet/lists](https://github.com/bitsocialnet/lists) repository. Directory candidates are listed in `seedit-directories/seedit-<code>-directory.json` files in the same repository. To add your community to either list, submit a pull request with your community's details.

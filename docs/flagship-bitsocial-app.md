@@ -93,8 +93,8 @@ Each user should be able to participate as a full peer-to-peer node through RPC 
 RPC provider ownership over their identity or profile.
 
 The hosted path matters because most users will not start by running a server. The exit path matters
-just as much: a user should be able to move to their own profile node on low-spec hardware, including
-a Raspberry Pi, whenever they want.
+just as much: a user should be able to move to their own profile node on
+[low-spec hardware](/hardware-requirements/), including a Raspberry Pi, whenever they want.
 
 That is the difference between convenience and custody.
 
