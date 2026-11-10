@@ -239,3 +239,58 @@ test("newsletter links rewrite a URL hash an in-page link moved away from the ro
   assert.equal(win.url, "/#mailing-list");
   assert.deepEqual(calls, []);
 });
+
+test("deep comparison open/close cycles leave one history entry, not one per cycle", async (t) => {
+  const { win } = fakeBrowser(t, "/");
+  const { closeDeepComparisonHash, openDeepComparisonHash } = await load(
+    "lib/deep-comparison-history.ts",
+  );
+
+  for (let cycle = 0; cycle < 3; cycle += 1) {
+    openDeepComparisonHash("#nostr-comparison");
+    assert.equal(win.url, "/#nostr-comparison");
+    closeDeepComparisonHash("#decentralized");
+    assert.equal(win.url, "/#decentralized");
+  }
+
+  assert.equal(win.history.length, 2);
+  win.history.back();
+  assert.equal(win.url, "/");
+});
+
+test("Back from an open deep comparison returns to the entry it opened from", async (t) => {
+  const { win } = fakeBrowser(t, "/");
+  const { closeDeepComparisonHash, openDeepComparisonHash } = await load(
+    "lib/deep-comparison-history.ts",
+  );
+
+  openDeepComparisonHash("#nostr-comparison");
+  closeDeepComparisonHash("#decentralized");
+  // An in-page link pushes its own entry; the next open must not overwrite it.
+  win.history.pushState(null, "", "/#problem");
+  openDeepComparisonHash("#bluesky-comparison");
+
+  assert.equal(win.history.length, 4);
+  win.history.back();
+  assert.equal(win.url, "/#problem");
+});
+
+test("closing a deep-linked comparison keeps the landing entry's router state", async (t) => {
+  const { win } = fakeBrowser(t, "/#nostr-comparison");
+  win.history.replaceState({ idx: 0, key: "landing" }, "", "/#nostr-comparison");
+  const { closeDeepComparisonHash, openDeepComparisonHash } = await load(
+    "lib/deep-comparison-history.ts",
+  );
+
+  closeDeepComparisonHash("#decentralized");
+  assert.equal(win.url, "/#decentralized");
+  assert.deepEqual(win.history.state, { idx: 0, key: "landing" });
+
+  // Back from the reopened overlay closes it rather than leaving the page.
+  openDeepComparisonHash("#nostr-comparison");
+  closeDeepComparisonHash("#decentralized");
+  openDeepComparisonHash("#nostr-comparison");
+  assert.equal(win.history.length, 2);
+  win.history.back();
+  assert.equal(win.url, "/#decentralized");
+});
