@@ -1,6 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { prepareTranslationReview, importTranslationReview } from "../translations-review.mjs";
+import { access, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import {
+  prepareTranslationReview,
+  importTranslationReview,
+  main,
+} from "../translations-review.mjs";
 import { blankReview } from "../review-handoff.mjs";
 import {
   validateEvaluationCorpus,
@@ -126,4 +133,37 @@ test("deterministic placeholder failure is excluded from semantic-only calibrati
     result.evaluation.calibration.thresholds.every((row) => row.cases === 0),
     true,
   );
+});
+
+test("a reused output prefix fails before writing a corpus beside the earlier manifest", async (t) => {
+  const directory = await mkdtemp(join(tmpdir(), "translation-review-import-"));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  t.mock.method(console, "log", () => {});
+  const q = queue(),
+    pending = {
+      ...blankReview(q),
+      reviewerId: "test-human",
+      reviewedAt: "2026-09-21",
+      independentOfModelOutput: true,
+    },
+    decided = { ...pending, labels: pending.labels.map((row) => ({ ...row, label: "pass" })) };
+  const files = {
+    queue: join(directory, "queue.json"),
+    pending: join(directory, "pending.json"),
+    decided: join(directory, "decided.json"),
+  };
+  await writeFile(files.queue, JSON.stringify(q));
+  await writeFile(files.pending, JSON.stringify({ schemaVersion: 1, reviews: [pending] }));
+  await writeFile(files.decided, JSON.stringify({ schemaVersion: 1, reviews: [decided] }));
+  const out = join(directory, "review");
+  const run = (review) => main(["--queue", files.queue, "--review", review, "--out", out]);
+
+  // Nothing decided yet: only the manifest is written.
+  await run(files.pending);
+  const manifest = await readFile(`${out}.manifest.json`, "utf8");
+  await assert.rejects(access(`${out}.corpus.json`), { code: "ENOENT" });
+
+  await assert.rejects(run(files.decided));
+  await assert.rejects(access(`${out}.corpus.json`), { code: "ENOENT" });
+  assert.equal(await readFile(`${out}.manifest.json`, "utf8"), manifest);
 });
