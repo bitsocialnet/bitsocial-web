@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import { existsSync } from "node:fs";
-import { spawn } from "node:child_process";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -14,6 +13,7 @@ import {
   portlessEnv,
   portlessBin,
   repoRoot,
+  spawnDevServer,
 } from "./dev-server-utils.mjs";
 
 await ensurePinnedNodeVersion(import.meta.url);
@@ -56,17 +56,8 @@ if (command === portlessBin) {
   args = [docsServerScript];
 }
 
-const child = spawn(command, args, {
+spawnDevServer(command, args, {
   cwd: repoRoot,
   env: command === portlessBin ? { ...portlessEnv, ...childEnv } : childEnv,
   stdio: "inherit",
-});
-
-child.on("exit", (code, signal) => {
-  if (signal) {
-    process.kill(process.pid, signal);
-    return;
-  }
-
-  process.exit(code ?? 0);
 });

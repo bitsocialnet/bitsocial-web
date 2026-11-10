@@ -255,29 +255,10 @@ export async function waitForPort(host, port, timeoutMs = 30_000) {
   throw new Error(`Timed out waiting for dev server on http://${host}:${port}`);
 }
 
-export function startVite(host, port) {
-  const child = spawn(
-    yarnBin,
-    [
-      "exec",
-      "vite",
-      "--config",
-      "about/vite.config.ts",
-      "--host",
-      host,
-      "--port",
-      String(port),
-      "--strictPort",
-    ],
-    {
-      cwd: repoRoot,
-      env: {
-        ...process.env,
-        PORTLESS: "0",
-      },
-      stdio: "inherit",
-    },
-  );
+// Ties a server's lifetime to the launcher that spawned it: SIGINT or SIGTERM sent to the launcher
+// alone is forwarded, and the launcher exits with the server's code or signal.
+export function spawnDevServer(command, args, options) {
+  const child = spawn(command, args, options);
 
   const forwardSignal = (signal) => {
     if (!child.killed) {
@@ -304,4 +285,29 @@ export function startVite(host, port) {
   });
 
   return child;
+}
+
+export function startVite(host, port) {
+  return spawnDevServer(
+    yarnBin,
+    [
+      "exec",
+      "vite",
+      "--config",
+      "about/vite.config.ts",
+      "--host",
+      host,
+      "--port",
+      String(port),
+      "--strictPort",
+    ],
+    {
+      cwd: repoRoot,
+      env: {
+        ...process.env,
+        PORTLESS: "0",
+      },
+      stdio: "inherit",
+    },
+  );
 }
