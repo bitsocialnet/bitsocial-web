@@ -1,7 +1,8 @@
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import { DollarSign, Server, ShieldCheck, type LucideIcon } from "lucide-react";
 import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
+import { usePrefersReducedMotion } from "@/lib/use-media-query";
 
 type Pillar = {
   icon: LucideIcon;
@@ -175,6 +176,9 @@ function AdoptionCurve({
   prefersReducedMotion: boolean;
   t: TFunction;
 }) {
+  // A new key remounts the path when the preference turns to reduced motion after hydration;
+  // otherwise it would keep the zero-length dash of the hydrated pathLength reveal.
+  const pathKey = prefersReducedMotion ? "static" : "animated";
   const motionProps = prefersReducedMotion
     ? {}
     : {
@@ -234,6 +238,7 @@ function AdoptionCurve({
         ))}
 
         <m.path
+          key={pathKey}
           d={CURVE_PATH}
           fill="none"
           stroke="url(#adoption-curve-stroke)"
@@ -344,11 +349,12 @@ function AdoptionCurve({
 
 export default function AdoptionThesis() {
   const { t } = useTranslation();
-  const prefersReducedMotion = useReducedMotion() ?? false;
+  const prefersReducedMotion = usePrefersReducedMotion();
   const pillars = getPillars(t);
+  // Reduced motion jumps hydrated reveals to their end state; see usePrefersReducedMotion.
   const reveal = (y: number, delay = 0, duration = 0.6) =>
     prefersReducedMotion
-      ? {}
+      ? { animate: { y: 0 }, transition: { duration: 0 } }
       : {
           initial: { y },
           whileInView: { y: 0 },

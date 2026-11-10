@@ -232,9 +232,9 @@ export default function Topbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
   const [isLanguageSheetOpen, setIsLanguageSheetOpen] = useState(false);
-  const [usesCompactNavigation, setUsesCompactNavigation] = useState(
-    () => typeof window !== "undefined" && window.innerWidth < 768,
-  );
+  // Start with the desktop nav the server renders, so hydration matches at every width; the
+  // layout effect below measures the bar and switches to the hamburger before React's first paint.
+  const [usesCompactNavigation, setUsesCompactNavigation] = useState(false);
   const menuContainerRef = useRef<HTMLElement>(null);
   const topbarContentRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLAnchorElement>(null);

@@ -1,4 +1,4 @@
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   AppWindow,
   Ban,
@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { usePrefersReducedMotion } from "@/lib/use-media-query";
 
 type ConcernId = "communities" | "apps" | "media";
 
@@ -205,10 +206,11 @@ function MobileConcernCarousel({ prefersReducedMotion }: { prefersReducedMotion:
 
 export default function TextOnlyProtocol() {
   const { t } = useTranslation();
-  const prefersReducedMotion = useReducedMotion() ?? false;
+  const prefersReducedMotion = usePrefersReducedMotion();
+  // Reduced motion jumps hydrated reveals to their end state; see usePrefersReducedMotion.
   const reveal = (y: number, delay = 0, duration = 0.6) =>
     prefersReducedMotion
-      ? {}
+      ? { animate: { opacity: 1, y: 0 }, transition: { duration: 0 } }
       : {
           initial: { opacity: 0, y },
           whileInView: { opacity: 1, y: 0 },
@@ -219,7 +221,7 @@ export default function TextOnlyProtocol() {
   // ancestor animates opacity, which would blank the glass surface mid-reveal.
   const revealCard = (y: number, delay = 0, duration = 0.6) =>
     prefersReducedMotion
-      ? {}
+      ? { animate: { y: 0 }, transition: { duration: 0 } }
       : {
           initial: { y },
           whileInView: { y: 0 },
