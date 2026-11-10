@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -108,4 +109,89 @@ test("a stored chain theme wins over the system", async (t) => {
   const runner = createHookRunner(() => ThemeProvider({ children: null }));
 
   assert.equal(runner.render().props.value.theme, "dark");
+});
+
+const DAY_MS = 86_400_000;
+const committedHistory = JSON.parse(
+  await readFile(path.join(repoRoot, "chain/src/data/bso-holder-history.json"), "utf8"),
+);
+const snapshotDay = Math.floor(Date.parse(committedHistory.generatedAt) / DAY_MS);
+
+const settle = async () => {
+  for (let round = 0; round < 5; round += 1) {
+    await new Promise((resolve) => setImmediate(resolve));
+  }
+};
+
+/** Answers Blockscout's transfer pages with `respond(url)`: a status code, or a page body. */
+function blockscout(t, respond) {
+  const requests = [];
+  replaceGlobal(t, "fetch", async (url) => {
+    requests.push(url);
+    const answer = respond(url);
+    return typeof answer === "number"
+      ? { ok: false, status: answer, json: async () => ({}) }
+      : { ok: true, status: 200, json: async () => answer };
+  });
+  t.mock.method(console, "warn", () => {});
+  return requests;
+}
+
+test("rich list history retries a failed top-up with the next live balances", async (t) => {
+  let explorerUp = false;
+  const requests = blockscout(t, () => (explorerUp ? { items: [], next_page_params: null } : 400));
+  const { useHolderHistory } = await loadChainModule("chain/src/lib/rich-list/history.ts");
+  let liveSnapshot = { generatedAt: "first refresh" };
+  const runner = createHookRunner(() => useHolderHistory(true, liveSnapshot));
+
+  runner.render();
+  await settle();
+  let state = runner.render();
+  assert.equal(state.status, "ready");
+  assert.equal(
+    state.history.lastDay,
+    snapshotDay,
+    "without the top-up the lines end at the snapshot",
+  );
+  assert.equal(requests.length, 1);
+
+  explorerUp = true;
+  liveSnapshot = { generatedAt: "second refresh" };
+  runner.render();
+  await settle();
+  state = runner.render();
+  assert.equal(requests.length, 2, "the next live refresh tries the top-up again");
+  assert.equal(state.status, "ready");
+  assert.equal(state.history.lastDay, Math.floor(Date.now() / DAY_MS));
+
+  liveSnapshot = { generatedAt: "third refresh" };
+  runner.render();
+  await settle();
+  assert.equal(requests.length, 2, "a finished top-up is not fetched again");
+});
+
+test("rich list history does not retry a top-up that needs more pages than it may load", async (t) => {
+  const transfer = {
+    block_number: committedHistory.block + 1,
+    timestamp: new Date().toISOString(),
+    from: { hash: "0x0000000000000000000000000000000000000001" },
+    to: { hash: "0x0000000000000000000000000000000000000002" },
+    total: { value: "0" },
+  };
+  const requests = blockscout(t, () => ({ items: [transfer], next_page_params: { index: 1 } }));
+  const { useHolderHistory } = await loadChainModule("chain/src/lib/rich-list/history.ts");
+  let liveSnapshot = { generatedAt: "first refresh" };
+  const runner = createHookRunner(() => useHolderHistory(true, liveSnapshot));
+
+  runner.render();
+  await settle();
+  const state = runner.render();
+  assert.equal(state.history.lastDay, snapshotDay);
+  const pages = requests.length;
+
+  liveSnapshot = { generatedAt: "second refresh" };
+  runner.render();
+  await settle();
+  assert.equal(requests.length, pages);
+  assert.equal(runner.render().history, state.history);
 });
