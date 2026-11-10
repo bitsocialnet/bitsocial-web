@@ -10,7 +10,8 @@ import {
 } from "./utils.js";
 import * as cborg from "cborg";
 import { toString as uint8ArrayToString } from "uint8arrays/to-string";
-import { kuboPubsub, pkcPubsubKuboRpc, pubsubKuboRpcUrl } from "./pkc-js/pkc-js.js";
+import { kuboPubsub, pkcPubsubKuboRpc } from "./pkc-js/pkc-js.js";
+import { createPubsubSubscriptions } from "./pubsub-subscriptions.js";
 import prometheus from "./prometheus.js";
 import Debug from "debug";
 const debug = Debug("bitsocial-stats-monitor:community-pubsub");
@@ -20,7 +21,13 @@ const lastCommunityPubsubMessageTooOldMs = 1000 * 60 * 10;
 const pubsubPeersIntervalMs = 1000 * 10;
 const pubsubPeersTimeoutMs = 1000 * 30;
 
+const pubsubSubscriptions = createPubsubSubscriptions({ pubsub: kuboPubsub.pubsub, log: debug });
+
 export const monitorCommunitiesPubsub = async () => {
+  // a kubo restart can drop subscriptions without an error, so rejoin the topics kubo lost
+  pubsubSubscriptions
+    .resubscribeDropped()
+    .catch((e) => debug(`failed checking kubo pubsub subscriptions: ${e.message}`));
   for (const community of monitorState.communitiesMonitoring) {
     const pubsubTopic = monitorState.communities[community?.address]?.pubsubTopic;
     const signaturePublicKey = monitorState.communities[community?.address]?.signaturePublicKey;
@@ -146,12 +153,10 @@ const startFetchingPubsubPeers = (community, pubsubTopic) => {
 };
 
 const countPubsubMessage = createCounter();
-const isListeningToPubsubMessages = {};
 const startListeningToPubsubMessages = async (community, pubsubTopic, signaturePublicKey) => {
-  if (isListeningToPubsubMessages[pubsubTopic]) {
+  if (pubsubSubscriptions.has(pubsubTopic)) {
     return;
   }
-  isListeningToPubsubMessages[pubsubTopic] = true;
 
   const onPubsubMessageReceived = (rawPubsubMessage) => {
     const stats = { pubsubMessageCount: countPubsubMessage(community.address) };
@@ -181,53 +186,12 @@ const startListeningToPubsubMessages = async (community, pubsubTopic, signatureP
     prometheusObserveCommunityPubsubMessage(community.address, stats);
   };
 
-  pubsubSubscribeRetryForever(pubsubTopic, onPubsubMessageReceived, community.address);
+  pubsubSubscriptions.add(pubsubTopic, onPubsubMessageReceived, community.address);
 
   // give some time to get a message before starting publishing fake ones
   setTimeout(() => {
     startPublishingFakeChallengeRequests(community).catch((e) => debug(e.message));
   }, lastCommunityPubsubMessageTooOldMs);
-};
-
-const pubsubSubscribeRetryForever = (pubsubTopic, onMessage, communityAddress) => {
-  const onError = async (error, fatal, pubsubMessage) => {
-    debug(`kubo.pubsub.subscribe onError '${pubsubKuboRpcUrl}' community '${communityAddress}'`, {
-      error,
-      fatal,
-      pubsubMessage,
-    });
-    if (fatal) {
-      try {
-        await kuboPubsub.pubsub.unsubscribe(pubsubTopic, onMessage);
-      } catch (e) {
-        debug(
-          `kubo.pubsub.unsubscribe error '${pubsubKuboRpcUrl}' community '${communityAddress}': ${e.message}`,
-        );
-      }
-      await trySubscribe();
-    }
-  };
-  let isSubscribed = true;
-  const trySubscribe = async () => {
-    while (isSubscribed) {
-      try {
-        await kuboPubsub.pubsub.subscribe(pubsubTopic, onMessage, { onError });
-        debug(`subscribed to community pubsub '${communityAddress}'`);
-        break;
-      } catch (e) {
-        debug(
-          `failed subscribe to community pubsub '${communityAddress}': ${e.message}, trying again in 5s...`,
-        );
-        await new Promise((r) => setTimeout(r, 5000));
-      }
-    }
-  };
-  trySubscribe();
-  const unsubscribe = async () => {
-    isSubscribed = false;
-    await kuboPubsub.pubsub.unsubscribe(pubsubTopic, onMessage);
-  };
-  return unsubscribe;
 };
 
 const countPublish = createCounter();
