@@ -395,15 +395,6 @@
           "neverSold": "Wala sa labinlimang wallet ang nagbenta o naglipat ng mga token nito mula noon. Hindi nagbago ang kanilang mga balanse sa parehong migration."
         }
       },
-      "holderB": {
-        "summary": "Isang 2-of-4 Safe multisig na nag-ipon ng BSO mula sa 14 na wallet sa loob ng isang hapon, kasama ang isa sa mga may-ari nito.",
-        "evidence": {
-          "owners": "Kailangan ng Safe ang pirma ng 2 sa 4 na may-ari nito. May hawak ding BSO nang direkta ang isang may-ari. Ang apat na may-ari ay puwedeng iisang tao na may ilang key o isang maliit na grupo.",
-          "consolidation": "Noong Hunyo 1, 2024, mula 16:08 hanggang 17:51 UTC, nakatanggap ang Safe ng 16.9M BSO mula sa 14 na wallet. Ang unang transfer ay isang 10-token na test na agad ibinalik ng Safe.",
-          "vesting": "Noong Agosto 12, 2024, inilipat ng Safe ang 8.5M BSO sa isang Sablier vesting stream. Ibinalik ng 2026 migration ang stream na iyon sa Safe, kaya dalawang migration transfer ang natanggap ng Safe.",
-          "commonSender": "Iisang wallet ang nagpadala ng BSO sa may-ari ng Safe (1.93M noong Marso 8, 2024) at sa Safe mismo (214K noong Hunyo 1, 2024)."
-        }
-      },
       "holderC": {
         "summary": "Dalawang wallet na pinunan ng iisang pares ng mga bumibiling wallet.",
         "evidence": {
@@ -499,9 +490,9 @@
       },
       "facts": {
         "liquiditySeed": "Ang tanging mint sa isang wallet ng team bukod sa airdrop ay ang liquidity sa launch: 7M BSO, na idinagdag sa Trader Joe pool (5.6M) at sa Pangolin pool (1.4M) sa loob ng pitong minuto noong Enero 14, 2022.",
-        "teamClaims": "Dalawang miyembro ng team ang nag-claim sa round 1: si Esteban ng 703K BSO, at si Tom ng 1.86M BSO, ang ikatlong pinakamalaki sa 767 claim. Magkasama, 2% iyon ng lahat ng token na na-claim sa mga airdrop.",
-        "noFarmRewards": "Walang wallet ng team ang nakatanggap ng liquidity-mining reward. Napunta sa 208 ibang address ang 60.9M BSO na naibayad sa Avalanche, at ang 8M na hindi pa naibabayad nang lumipat sa Ethereum ay na-credit sa mga staker na kumita nito.",
-        "migrationMintedNothing": "Walang ginawang bagong token ang 2026 migration para kaninuman: lumabas ang lahat ng 210M BSO sa iisang transaction, ayon sa proporsyon ng mga lumang balanse."
+        "teamClaims": "Tatlong miyembro ng team ang nag-claim sa round 1: si Esteban ng 703K BSO, si Tom ng 1.86M BSO (ang ikatlong pinakamalaki sa 767 claim) at si rinse12 ng 1.1M BSO, mula sa dalawang wallet na ang mga token ay napunta kalaunan sa kanyang Safe. Magkasama, 2.8% iyon ng lahat ng token na na-claim sa mga airdrop.",
+        "migrationMintedNothing": "Walang ginawang bagong token ang 2026 migration para kaninuman: lumabas ang lahat ng 210M BSO sa iisang transaction, ayon sa proporsyon ng mga lumang balanse.",
+        "farmRewards": "Isang miyembro ng team ang nakatanggap ng liquidity-mining reward: nakakolekta ang isang wallet ni rinse12 ng 2.3M BSO noong Abril 5, 2022, ang ikaapat na pinakamalaking bahagi ng 60.9M BSO na naibayad sa Avalanche sa 208 address. Ang 8M na hindi pa naibabayad nang lumipat sa Ethereum ay na-credit sa mga staker na kumita nito."
       },
       "statementsTitle": "Ang sinabi ng tagapagtatag noon",
       "statementBy": "Esteban Abaroa, tagapagtatag, {{date}}",

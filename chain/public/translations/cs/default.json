@@ -405,15 +405,6 @@
           "neverSold": "Žádná z patnácti peněženek od té doby své tokeny neprodala ani nepřesunula. Jejich zůstatky prošly oběma migracemi beze změny."
         }
       },
-      "holderB": {
-        "summary": "Multisig Safe typu 2 ze 4, který během jednoho odpoledne shromáždil BSO ze 14 peněženek, plus jeden z jeho vlastníků.",
-        "evidence": {
-          "owners": "Safe potřebuje podpis 2 ze svých 4 vlastníků. Jeden vlastník drží BSO i přímo. Čtyři vlastníci mohou být jeden člověk s několika klíči, nebo malá skupina.",
-          "consolidation": "1. června 2024 mezi 16:08 a 17:51 UTC přijal Safe 16,9 mil. BSO ze 14 peněženek. Prvním převodem byl test o 10 tokenech, který Safe hned poslal zpět.",
-          "vesting": "12. srpna 2024 přesunul Safe 8,5 mil. BSO do vestingového streamu Sablier. Migrace v roce 2026 připsala tento stream zpět Safe, a proto Safe dostal dva migrační převody.",
-          "commonSender": "Stejná peněženka poslala BSO jak vlastníkovi Safe (1,93 mil. dne 8. března 2024), tak samotnému Safe (214 tis. dne 1. června 2024)."
-        }
-      },
       "holderC": {
         "summary": "Dvě peněženky naplněné stejnou dvojicí nakupujících peněženek.",
         "evidence": {
@@ -509,9 +500,9 @@
       },
       "facts": {
         "liquiditySeed": "Jediným mintem na peněženku týmu mimo airdrop byla počáteční likvidita: 7 mil. BSO, vložených 14. ledna 2022 během sedmi minut do poolu na Trader Joe (5,6 mil.) a poolu na Pangolin (1,4 mil.).",
-        "teamClaims": "V 1. kole si vyzvedli dva členové týmu: Esteban 703 tis. BSO a Tom 1,86 mil. BSO, což bylo třetí největší ze 767 vyzvednutí. Dohromady to jsou 2 % všech tokenů vyzvednutých v airdropech.",
-        "noFarmRewards": "Žádná peněženka týmu nedostala odměny z liquidity miningu. Vyplacených 60,9 mil. BSO na Avalanche šlo na 208 jiných adres a 8 mil., které při přechodu na Ethereum ještě nebyly vyplaceny, bylo připsáno stakerům, kteří si je vydělali.",
-        "migrationMintedNothing": "Migrace v roce 2026 nikomu nevytvořila žádné nové tokeny: všech 210 mil. BSO odešlo v jedné transakci, v poměru ke starým zůstatkům."
+        "teamClaims": "V 1. kole si vyzvedli tři členové týmu: Esteban 703 tis. BSO, Tom 1,86 mil. BSO (třetí největší ze 767 vyzvednutí) a rinse12 1,1 mil. BSO ze dvou peněženek, jejichž tokeny později putovaly do jeho Safe. Dohromady to je 2,8 % všech tokenů vyzvednutých v airdropech.",
+        "migrationMintedNothing": "Migrace v roce 2026 nikomu nevytvořila žádné nové tokeny: všech 210 mil. BSO odešlo v jedné transakci, v poměru ke starým zůstatkům.",
+        "farmRewards": "Jeden člen týmu dostal odměny z liquidity miningu: jedna z peněženek rinse12 si 5. dubna 2022 vybrala 2,3 mil. BSO, čtvrtý největší podíl z 60,9 mil. BSO vyplacených na Avalanche 208 adresám. Těch 8 mil., které při přechodu na Ethereum ještě nebyly vyplaceny, bylo připsáno stakerům, kteří si je vydělali."
       },
       "statementsTitle": "Co tehdy řekl zakladatel",
       "statementBy": "Esteban Abaroa, zakladatel, {{date}}",

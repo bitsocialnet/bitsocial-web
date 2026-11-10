@@ -14,11 +14,11 @@ type Segment = { key: string; label: string; share: number; fill: string; href?:
  */
 const HOLDER_FILLS: Record<string, string> = {
   holderA: "rl-fill-holder-a",
-  holderB: "rl-fill-holder-b",
-  holderC: "rl-fill-holder-c",
+  holderC: "rl-fill-holder-b",
   holderD: "rl-fill-holder-d",
   holderE: "rl-fill-holder-e",
   holderF: "rl-fill-holder-f",
+  holderG: "rl-fill-holder-c",
 };
 const SMALLER_HOLDER_FILL = "rl-fill-holder-rest";
 

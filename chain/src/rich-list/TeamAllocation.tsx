@@ -43,9 +43,21 @@ const FACTS: { id: string; txs?: TxRef[] }[] = [
         chain: "avalanche",
         hash: "0x8da58b4813203baf0b49db5586b6b9fe9f3afefa0b8913c4a48827074a2e15a6",
       },
+      {
+        chain: "avalanche",
+        hash: "0xabd714d709ee941cf030e87f99ab2099dcc84e92195c6eb83ca33f566c8c714a",
+      },
     ],
   },
-  { id: "noFarmRewards" },
+  {
+    id: "farmRewards",
+    txs: [
+      {
+        chain: "avalanche",
+        hash: "0x0ce229fab3dee8aa9097b2c38673f653d05b0a597eb259d017bf308f4df13ec6",
+      },
+    ],
+  },
   {
     id: "migrationMintedNothing",
     txs: [

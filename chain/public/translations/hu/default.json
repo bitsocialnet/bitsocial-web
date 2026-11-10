@@ -395,15 +395,6 @@
           "neverSold": "A tizenöt tárca egyike sem adta el és nem mozgatta azóta a tokenjeit. Egyenlegeik változatlanul mentek át mindkét migráción."
         }
       },
-      "holderB": {
-        "summary": "Egy 2/4-es Safe multisig, amely egyetlen délután alatt 14 tárcából gyűjtött össze BSO-t, valamint az egyik tulajdonosa.",
-        "evidence": {
-          "owners": "A Safe-hez 4 tulajdonosából 2 aláírása szükséges. Az egyik tulajdonos közvetlenül is tart BSO-t. Négy tulajdonos jelenthet egyetlen, több kulccsal rendelkező személyt vagy egy kis csoportot.",
-          "consolidation": "2024. június 1-jén 16:08 és 17:51 UTC között a Safe 16,9 millió BSO-t kapott 14 tárcából. Az első átutalás egy 10 tokenes teszt volt, amelyet a Safe azonnal visszaküldött.",
-          "vesting": "2024. augusztus 12-én a Safe 8,5 millió BSO-t helyezett egy Sablier vesting streambe. A 2026-os migráció ezt a streamet visszaírta a Safe javára, ezért kapott a Safe két migrációs átutalást.",
-          "commonSender": "Ugyanaz a tárca küldött BSO-t a Safe-tulajdonosnak (1,93 milliót 2024. március 8-án) és magának a Safe-nek is (214 ezret 2024. június 1-jén)."
-        }
-      },
       "holderC": {
         "summary": "Két tárca, amelyeket ugyanaz a két vásárló tárca töltött fel.",
         "evidence": {
@@ -499,9 +490,9 @@
       },
       "facts": {
         "liquiditySeed": "Az airdropon kívül az egyetlen kibocsátás csapattárcába az indulási likviditás volt: 7 millió BSO, amelyet 2022. január 14-én hét percen belül adtak hozzá a Trader Joe-poolhoz (5,6 millió) és a Pangolin-poolhoz (1,4 millió).",
-        "teamClaims": "Két csapattag igényelt az 1. körben: Esteban 703 ezer BSO-t, Tom pedig 1,86 millió BSO-t, ami a 767 igénylés közül a harmadik legnagyobb volt. Együtt ez az airdropokban igényelt összes token 2%-a.",
-        "noFarmRewards": "Egyetlen csapattárca sem kapott likviditásbányászati jutalmat. Az Avalanche-on kifizetett 60,9 millió BSO 208 másik címhez került, az Ethereumra való átálláskor még ki nem fizetett 8 milliót pedig jóváírták azoknak a stake-előknek, akik megszerezték.",
-        "migrationMintedNothing": "A 2026-os migráció senkinek sem hozott létre új tokent: mind a 210 millió BSO egyetlen tranzakcióban ment ki, a régi egyenlegek arányában."
+        "teamClaims": "Három csapattag igényelt az 1. körben: Esteban 703 ezer BSO-t, Tom 1,86 millió BSO-t (a 767 igénylés közül a harmadik legnagyobb), rinse12 pedig 1,1 millió BSO-t két tárcából, amelyek tokenjei később a Safe-jébe kerültek. Együtt ez az airdropokban igényelt összes token 2,8%-a.",
+        "migrationMintedNothing": "A 2026-os migráció senkinek sem hozott létre új tokent: mind a 210 millió BSO egyetlen tranzakcióban ment ki, a régi egyenlegek arányában.",
+        "farmRewards": "Egy csapattag kapott likviditásbányászati jutalmat: rinse12 egyik tárcája 2022. április 5-én 2,3 millió BSO-t gyűjtött be, ami a negyedik legnagyobb részesedés volt az Avalanche-on 208 címnek kifizetett 60,9 millió BSO-ból. Az Ethereumra való átálláskor még ki nem fizetett 8 milliót jóváírták azoknak a stake-előknek, akik megszerezték."
       },
       "statementsTitle": "Amit az alapító akkor mondott",
       "statementBy": "Esteban Abaroa, alapító, {{date}}",

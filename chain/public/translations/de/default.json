@@ -395,15 +395,6 @@
           "neverSold": "Keine der fünfzehn Wallets hat ihre Tokens seitdem verkauft oder bewegt. Ihre Guthaben haben beide Migrationen unverändert überstanden."
         }
       },
-      "holderB": {
-        "summary": "Ein 2-von-4-Safe-Multisig, das an einem einzigen Nachmittag BSO aus 14 Wallets eingesammelt hat, dazu einer seiner Owner.",
-        "evidence": {
-          "owners": "Für den Safe müssen 2 seiner 4 Owner signieren. Ein Owner hält BSO auch direkt. Vier Owner können eine Person mit mehreren Schlüsseln sein oder eine kleine Gruppe.",
-          "consolidation": "Am 1. Juni 2024 erhielt der Safe zwischen 16:08 und 17:51 UTC 16,9 Mio. BSO von 14 Wallets. Der erste Transfer war ein Test über 10 Tokens, den der Safe sofort zurückschickte.",
-          "vesting": "Am 12. August 2024 verschob der Safe 8,5 Mio. BSO in einen Sablier-Vesting-Stream. Die Migration 2026 schrieb diesen Stream wieder dem Safe gut, deshalb erhielt der Safe zwei Migrationstransfers.",
-          "commonSender": "Dieselbe Wallet schickte BSO sowohl an den Safe-Owner (1,93 Mio. am 8. März 2024) als auch an den Safe (214.000 am 1. Juni 2024)."
-        }
-      },
       "holderC": {
         "summary": "Zwei Wallets, die vom selben Paar kaufender Wallets gefüllt wurden.",
         "evidence": {
@@ -499,9 +490,9 @@
       },
       "facts": {
         "liquiditySeed": "Der einzige Mint an eine Team-Wallet außerhalb des Airdrops war die Start-Liquidität: 7 Mio. BSO, am 14. Januar 2022 innerhalb von sieben Minuten in den Trader-Joe-Pool (5,6 Mio.) und den Pangolin-Pool (1,4 Mio.) eingezahlt.",
-        "teamClaims": "Zwei Teammitglieder haben in Runde 1 geclaimt: Esteban 703.000 BSO und Tom 1,86 Mio. BSO, der drittgrößte von 767 Claims. Zusammen sind das 2% aller in den Airdrops geclaimten Tokens.",
-        "noFarmRewards": "Keine Team-Wallet hat Liquidity-Mining-Belohnungen erhalten. Die 60,9 Mio. BSO, die auf Avalanche ausgezahlt wurden, gingen an 208 andere Adressen, und die 8 Mio., die beim Wechsel zu Ethereum noch nicht ausgezahlt waren, wurden den Stakern gutgeschrieben, die sie verdient hatten.",
-        "migrationMintedNothing": "Die Migration 2026 hat für niemanden neue Tokens erzeugt: Alle 210 Mio. BSO wurden in einer einzigen Transaktion verteilt, im Verhältnis zu den alten Guthaben."
+        "teamClaims": "Drei Teammitglieder haben in Runde 1 geclaimt: Esteban 703.000 BSO, Tom 1,86 Mio. BSO (der drittgrößte von 767 Claims) und rinse12 1,1 Mio. BSO aus zwei Wallets, deren Tokens später in seinen Safe flossen. Zusammen sind das 2,8% aller in den Airdrops geclaimten Tokens.",
+        "migrationMintedNothing": "Die Migration 2026 hat für niemanden neue Tokens erzeugt: Alle 210 Mio. BSO wurden in einer einzigen Transaktion verteilt, im Verhältnis zu den alten Guthaben.",
+        "farmRewards": "Ein Teammitglied hat Liquidity-Mining-Belohnungen erhalten: Eine Wallet von rinse12 hat am 5. April 2022 2,3 Mio. BSO eingesammelt, den viertgrößten Anteil der 60,9 Mio. BSO, die auf Avalanche an 208 Adressen ausgezahlt wurden. Die 8 Mio., die beim Wechsel zu Ethereum noch nicht ausgezahlt waren, wurden den Stakern gutgeschrieben, die sie verdient hatten."
       },
       "statementsTitle": "Was der Gründer damals gesagt hat",
       "statementBy": "Esteban Abaroa, Gründer, {{date}}",

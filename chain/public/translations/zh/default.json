@@ -390,15 +390,6 @@
           "neverSold": "这十五个钱包此后都没有卖出或转移过代币。它们的余额在两次迁移中都保持不变。"
         }
       },
-      "holderB": {
-        "summary": "一个 2/4 的 Safe 多签，在一个下午内从 14 个钱包归集了 BSO，另加它的一位所有者。",
-        "evidence": {
-          "owners": "该 Safe 需要其 4 名所有者中的 2 名签名。其中一名所有者也直接持有 BSO。四名所有者可能是持有多把密钥的一个人，也可能是一个小团体。",
-          "consolidation": "2024 年 6 月 1 日 16:08 至 17:51 UTC 之间，该 Safe 从 14 个钱包收到 1690 万 BSO。第一笔转账是 10 枚代币的测试，Safe 随即将其退回。",
-          "vesting": "2024 年 8 月 12 日，该 Safe 将 850 万 BSO 转入一个 Sablier 归属流。2026 年的迁移把这笔流记回 Safe，因此 Safe 收到了两笔迁移转账。",
-          "commonSender": "同一个钱包曾向 Safe 所有者（2024 年 3 月 8 日，193 万）和 Safe（2024 年 6 月 1 日，21.4 万）转入 BSO。"
-        }
-      },
       "holderC": {
         "summary": "由同一对买入钱包注资的两个钱包。",
         "evidence": {
@@ -494,9 +485,9 @@
       },
       "facts": {
         "liquiditySeed": "空投之外唯一一次铸造到团队钱包的是启动流动性：700 万 BSO，于 2022 年 1 月 14 日在七分钟内注入 Trader Joe 池（560 万）和 Pangolin 池（140 万）。",
-        "teamClaims": "两名团队成员在第 1 轮领取：Esteban 领取 70.3 万 BSO，Tom 领取 186 万 BSO，在 767 笔领取中排名第三。两者合计占空投中全部已领取代币的 2%。",
-        "noFarmRewards": "没有任何团队钱包获得流动性挖矿奖励。在 Avalanche 上发放的 6090 万 BSO 全部流向了其他 208 个地址，而迁移至 Ethereum 时仍未发放的 800 万则记入了赚取这些奖励的质押者名下。",
-        "migrationMintedNothing": "2026 年的迁移没有为任何人创造新代币：全部 2.1 亿 BSO 在一笔交易中按旧余额的比例发出。"
+        "teamClaims": "三名团队成员在第 1 轮领取：Esteban 领取 70.3 万 BSO，Tom 领取 186 万 BSO（在 767 笔领取中排名第三），rinse12 从两个钱包领取 110 万 BSO，这两个钱包的代币后来转入了他的 Safe。三者合计占空投中全部已领取代币的 2.8%。",
+        "migrationMintedNothing": "2026 年的迁移没有为任何人创造新代币：全部 2.1 亿 BSO 在一笔交易中按旧余额的比例发出。",
+        "farmRewards": "有一名团队成员获得了流动性挖矿奖励：rinse12 的一个钱包于 2022 年 4 月 5 日领取了 230 万 BSO，是在 Avalanche 上发放给 208 个地址的 6090 万 BSO 中第四大的份额。迁移至 Ethereum 时仍未发放的 800 万则记入了赚取这些奖励的质押者名下。"
       },
       "statementsTitle": "创始人当时说了什么",
       "statementBy": "Esteban Abaroa，创始人，{{date}}",

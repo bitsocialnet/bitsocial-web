@@ -390,15 +390,6 @@
           "neverSold": "Tidak satu pun dari lima belas dompet itu yang menjual atau memindahkan tokennya sejak saat itu. Saldo mereka melewati kedua migrasi tanpa perubahan."
         }
       },
-      "holderB": {
-        "summary": "Multisig Safe 2-dari-4 yang mengumpulkan BSO dari 14 dompet dalam satu sore, ditambah salah satu pemiliknya.",
-        "evidence": {
-          "owners": "Safe ini membutuhkan tanda tangan 2 dari 4 pemiliknya. Salah satu pemilik juga memegang BSO secara langsung. Empat pemilik bisa berarti satu orang dengan beberapa kunci atau sekelompok kecil orang.",
-          "consolidation": "Pada 1 Juni 2024, antara pukul 16:08 dan 17:51 UTC, Safe menerima 16,9 juta BSO dari 14 dompet. Transfer pertama adalah uji coba 10 token yang langsung dikirim balik oleh Safe.",
-          "vesting": "Pada 12 Agustus 2024, Safe memindahkan 8,5 juta BSO ke stream vesting Sablier. Migrasi 2026 mengkreditkan stream itu kembali ke Safe, itulah sebabnya Safe menerima dua transfer migrasi.",
-          "commonSender": "Dompet yang sama mengirim BSO ke pemilik Safe (1,93 juta pada 8 Maret 2024) dan ke Safe itu sendiri (214 ribu pada 1 Juni 2024)."
-        }
-      },
       "holderC": {
         "summary": "Dua dompet yang diisi oleh pasangan dompet pembeli yang sama.",
         "evidence": {
@@ -494,9 +485,9 @@
       },
       "facts": {
         "liquiditySeed": "Satu-satunya mint ke dompet tim di luar airdrop adalah likuiditas peluncuran: 7 juta BSO, yang ditambahkan ke pool Trader Joe (5,6 juta) dan pool Pangolin (1,4 juta) dalam tujuh menit pada 14 Januari 2022.",
-        "teamClaims": "Dua anggota tim mengklaim di putaran 1: Esteban 703 ribu BSO, dan Tom 1,86 juta BSO, klaim terbesar ketiga dari 767 klaim. Jika digabung, itu 2% dari seluruh token yang diklaim dalam airdrop.",
-        "noFarmRewards": "Tidak ada dompet tim yang menerima imbalan liquidity mining. 60,9 juta BSO yang dibayarkan di Avalanche jatuh ke 208 alamat lain, dan 8 juta yang belum dibayarkan saat perpindahan ke Ethereum dikreditkan kepada para staker yang memperolehnya.",
-        "migrationMintedNothing": "Migrasi 2026 tidak membuat token baru untuk siapa pun: seluruh 210 juta BSO keluar dalam satu transaksi, sebanding dengan saldo lama."
+        "teamClaims": "Tiga anggota tim mengklaim di putaran 1: Esteban 703 ribu BSO, Tom 1,86 juta BSO (klaim terbesar ketiga dari 767 klaim), dan rinse12 1,1 juta BSO, dari dua dompet yang tokennya kemudian masuk ke Safe miliknya. Jika digabung, itu 2,8% dari seluruh token yang diklaim dalam airdrop.",
+        "migrationMintedNothing": "Migrasi 2026 tidak membuat token baru untuk siapa pun: seluruh 210 juta BSO keluar dalam satu transaksi, sebanding dengan saldo lama.",
+        "farmRewards": "Satu anggota tim menerima imbalan liquidity mining: salah satu dompet rinse12 mengumpulkan 2,3 juta BSO pada 5 April 2022, bagian terbesar keempat dari 60,9 juta BSO yang dibayarkan di Avalanche kepada 208 alamat. Adapun 8 juta yang belum dibayarkan saat perpindahan ke Ethereum dikreditkan kepada para staker yang memperolehnya."
       },
       "statementsTitle": "Apa yang dikatakan pendiri saat itu",
       "statementBy": "Esteban Abaroa, pendiri, {{date}}",

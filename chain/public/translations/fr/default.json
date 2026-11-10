@@ -400,15 +400,6 @@
           "neverSold": "Aucun des quinze portefeuilles n’a vendu ni déplacé ses tokens depuis. Leurs soldes ont traversé les deux migrations sans changement."
         }
       },
-      "holderB": {
-        "summary": "Un multisig Safe 2 sur 4 qui a rassemblé des BSO provenant de 14 portefeuilles en un seul après-midi, plus l’un de ses propriétaires.",
-        "evidence": {
-          "owners": "Le Safe exige la signature de 2 de ses 4 propriétaires. L’un d’eux détient aussi du BSO directement. Quatre propriétaires peuvent correspondre à une seule personne disposant de plusieurs clés, ou à un petit groupe.",
-          "consolidation": "Le 1er juin 2024, entre 16:08 et 17:51 UTC, le Safe a reçu 16,9 millions de BSO provenant de 14 portefeuilles. Le premier transfert était un test de 10 tokens que le Safe a immédiatement renvoyé.",
-          "vesting": "Le 12 août 2024, le Safe a placé 8,5 millions de BSO dans un flux de vesting Sablier. La migration de 2026 a recrédité ce flux au Safe, ce qui explique pourquoi le Safe a reçu deux transferts de migration.",
-          "commonSender": "Le même portefeuille a envoyé des BSO à la fois au propriétaire du Safe (1,93 million le 8 mars 2024) et au Safe (214 000 le 1er juin 2024)."
-        }
-      },
       "holderC": {
         "summary": "Deux portefeuilles alimentés par la même paire de portefeuilles acheteurs.",
         "evidence": {
@@ -504,9 +495,9 @@
       },
       "facts": {
         "liquiditySeed": "Le seul mint vers un portefeuille de l’équipe en dehors de l’airdrop a été la liquidité de lancement : 7 millions de BSO, ajoutés au pool Trader Joe (5,6 millions) et au pool Pangolin (1,4 million) en sept minutes, le 14 janvier 2022.",
-        "teamClaims": "Deux membres de l’équipe ont réclamé lors de la phase 1 : Esteban 703 000 BSO, et Tom 1,86 million de BSO, la troisième plus grosse des 767 réclamations. Ensemble, cela représente 2 % de tous les tokens réclamés lors des airdrops.",
-        "noFarmRewards": "Aucun portefeuille de l’équipe n’a reçu de récompenses de minage de liquidité. Les 60,9 millions de BSO versés sur Avalanche sont allés à 208 autres adresses, et les 8 millions encore non versés au moment du passage à Ethereum ont été crédités aux stakers qui les avaient gagnés.",
-        "migrationMintedNothing": "La migration de 2026 n’a créé aucun nouveau token pour personne : les 210 millions de BSO sont tous partis en une seule transaction, proportionnellement aux anciens soldes."
+        "teamClaims": "Trois membres de l’équipe ont réclamé lors de la phase 1 : Esteban 703 000 BSO, Tom 1,86 million de BSO (la troisième plus grosse des 767 réclamations) et rinse12 1,1 million de BSO, depuis deux portefeuilles dont les tokens ont ensuite rejoint son Safe. Ensemble, cela représente 2,8 % de tous les tokens réclamés lors des airdrops.",
+        "migrationMintedNothing": "La migration de 2026 n’a créé aucun nouveau token pour personne : les 210 millions de BSO sont tous partis en une seule transaction, proportionnellement aux anciens soldes.",
+        "farmRewards": "Un membre de l’équipe a reçu des récompenses de minage de liquidité : un portefeuille de rinse12 a récolté 2,3 millions de BSO le 5 avril 2022, la quatrième plus grosse part des 60,9 millions de BSO versés sur Avalanche à 208 adresses. Les 8 millions encore non versés au moment du passage à Ethereum ont été crédités aux stakers qui les avaient gagnés."
       },
       "statementsTitle": "Ce que disait le fondateur à l’époque",
       "statementBy": "Esteban Abaroa, fondateur, {{date}}",

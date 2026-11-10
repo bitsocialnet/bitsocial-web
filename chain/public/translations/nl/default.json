@@ -395,15 +395,6 @@
           "neverSold": "Geen van de vijftien wallets heeft sindsdien tokens verkocht of verplaatst. Hun saldi kwamen ongewijzigd door beide migraties."
         }
       },
-      "holderB": {
-        "summary": "Een 2-van-4 Safe-multisig die op één middag BSO uit 14 wallets verzamelde, plus een van de eigenaren.",
-        "evidence": {
-          "owners": "De Safe heeft handtekeningen van 2 van zijn 4 eigenaren nodig. Eén eigenaar heeft ook zelf direct BSO. Vier eigenaren kan één persoon met meerdere sleutels betekenen of een kleine groep.",
-          "consolidation": "Op 1 juni 2024 ontving de Safe tussen 16:08 en 17:51 UTC 16,9 mln. BSO uit 14 wallets. De eerste transfer was een test van 10 tokens die de Safe meteen terugstuurde.",
-          "vesting": "Op 12 augustus 2024 verplaatste de Safe 8,5 mln. BSO naar een vestingstream op Sablier. Bij de migratie van 2026 werd die stream teruggeboekt naar de Safe, en daarom ontving de Safe twee migratietransfers.",
-          "commonSender": "Dezelfde wallet stuurde BSO naar zowel de Safe-eigenaar (1,93 mln. op 8 maart 2024) als de Safe (214.000 op 1 juni 2024)."
-        }
-      },
       "holderC": {
         "summary": "Twee wallets gevuld door hetzelfde paar kopende wallets.",
         "evidence": {
@@ -499,9 +490,9 @@
       },
       "facts": {
         "liquiditySeed": "De enige mint naar een teamwallet buiten de airdrop was de lanceringsliquiditeit: 7 mln. BSO, op 14 januari 2022 binnen zeven minuten toegevoegd aan de Trader Joe-pool (5,6 mln.) en de Pangolin-pool (1,4 mln.).",
-        "teamClaims": "Twee teamleden claimden in ronde 1: Esteban 703.000 BSO en Tom 1,86 mln. BSO, de op twee na grootste van 767 claims. Samen is dat 2% van alle tokens die in de airdrops zijn geclaimd.",
-        "noFarmRewards": "Geen enkele teamwallet ontving beloningen uit liquidity mining. De 60,9 mln. BSO die op Avalanche werd uitbetaald, ging naar 208 andere adressen, en de 8 mln. die bij de overstap naar Ethereum nog niet was uitbetaald, werd bijgeschreven bij de stakers die het hadden verdiend.",
-        "migrationMintedNothing": "De migratie van 2026 creëerde voor niemand nieuwe tokens: alle 210 mln. BSO gingen in één transactie de deur uit, naar verhouding van de oude saldi."
+        "teamClaims": "Drie teamleden claimden in ronde 1: Esteban 703.000 BSO, Tom 1,86 mln. BSO (de op twee na grootste van 767 claims) en rinse12 1,1 mln. BSO, vanuit twee wallets waarvan de tokens later naar zijn Safe gingen. Samen is dat 2,8% van alle tokens die in de airdrops zijn geclaimd.",
+        "migrationMintedNothing": "De migratie van 2026 creëerde voor niemand nieuwe tokens: alle 210 mln. BSO gingen in één transactie de deur uit, naar verhouding van de oude saldi.",
+        "farmRewards": "Eén teamlid ontving beloningen uit liquidity mining: op 5 april 2022 haalde een wallet van rinse12 2,3 mln. BSO op, het op drie na grootste aandeel van de 60,9 mln. BSO die op Avalanche aan 208 adressen werd uitbetaald. De 8 mln. die bij de overstap naar Ethereum nog niet was uitbetaald, werd bijgeschreven bij de stakers die het hadden verdiend."
       },
       "statementsTitle": "Wat de oprichter destijds zei",
       "statementBy": "Esteban Abaroa, oprichter, {{date}}",

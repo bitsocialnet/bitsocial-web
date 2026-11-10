@@ -395,15 +395,6 @@
           "neverSold": "On beş cüzdanın hiçbiri o zamandan beri token'larını satmadı veya taşımadı. Bakiyeleri her iki geçişten de değişmeden geçti."
         }
       },
-      "holderB": {
-        "summary": "4 sahibinden 2'sinin imzasını gerektiren, tek bir öğleden sonra 14 cüzdandan BSO toplayan bir Safe multisig ve sahiplerinden biri.",
-        "evidence": {
-          "owners": "Safe, 4 sahibinden 2'sinin imzalamasını gerektirir. Sahiplerden biri doğrudan da BSO tutuyor. Dört sahip, birden fazla anahtarı olan tek bir kişi ya da küçük bir grup anlamına gelebilir.",
-          "consolidation": "1 Haziran 2024'te, 16:08 ile 17:51 UTC arasında Safe, 14 cüzdandan 16,9 milyon BSO aldı. İlk transfer, Safe'in hemen geri gönderdiği 10 token'lık bir testti.",
-          "vesting": "12 Ağustos 2024'te Safe, 8,5 milyon BSO'yu bir Sablier vesting akışına taşıdı. 2026 geçişi bu akışı yeniden Safe'e yazdı; Safe'in iki geçiş transferi almasının nedeni budur.",
-          "commonSender": "Aynı cüzdan hem Safe sahibine (8 Mart 2024'te 1,93 milyon) hem de Safe'e (1 Haziran 2024'te 214 bin) BSO gönderdi."
-        }
-      },
       "holderC": {
         "summary": "Alım yapan aynı cüzdan çifti tarafından doldurulan iki cüzdan.",
         "evidence": {
@@ -499,9 +490,9 @@
       },
       "facts": {
         "liquiditySeed": "Airdrop dışında bir ekip cüzdanına yapılan tek mint, lansman likiditesiydi: 14 Ocak 2022'de yedi dakika içinde Trader Joe havuzuna (5,6 milyon) ve Pangolin havuzuna (1,4 milyon) eklenen 7 milyon BSO.",
-        "teamClaims": "İki ekip üyesi 1. turda talepte bulundu: Esteban 703 bin BSO, Tom ise 767 talep arasında üçüncü en büyük olan 1,86 milyon BSO. İkisi birlikte airdrop'larda talep edilen tüm token'ların %2'sini oluşturuyor.",
-        "noFarmRewards": "Hiçbir ekip cüzdanı likidite madenciliği ödülü almadı. Avalanche'ta ödenen 60,9 milyon BSO 208 başka adrese gitti; Ethereum'a geçiş sırasında hâlâ ödenmemiş olan 8 milyon ise bu ödülleri kazanmış olan stake edenlerin hesabına yazıldı.",
-        "migrationMintedNothing": "2026 geçişi kimse için yeni token oluşturmadı: 210 milyon BSO'nun tamamı, eski bakiyelerle orantılı olarak tek bir işlemde dağıtıldı."
+        "teamClaims": "Üç ekip üyesi 1. turda talepte bulundu: Esteban 703 bin BSO, Tom 1,86 milyon BSO (767 talep arasında üçüncü en büyük) ve rinse12, token'ları daha sonra Safe'ine giden iki cüzdandan 1,1 milyon BSO. Üçü birlikte airdrop'larda talep edilen tüm token'ların %2,8'ini oluşturuyor.",
+        "migrationMintedNothing": "2026 geçişi kimse için yeni token oluşturmadı: 210 milyon BSO'nun tamamı, eski bakiyelerle orantılı olarak tek bir işlemde dağıtıldı.",
+        "farmRewards": "Bir ekip üyesi likidite madenciliği ödülü aldı: rinse12'ye ait bir cüzdan 5 Nisan 2022'de 2,3 milyon BSO topladı; bu, Avalanche'ta 208 adrese ödenen 60,9 milyon BSO içindeki dördüncü en büyük paydı. Ethereum'a geçiş sırasında hâlâ ödenmemiş olan 8 milyon ise bu ödülleri kazanmış olan stake edenlerin hesabına yazıldı."
       },
       "statementsTitle": "Kurucunun o dönemde söyledikleri",
       "statementBy": "Esteban Abaroa, kurucu, {{date}}",

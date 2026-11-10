@@ -64,7 +64,11 @@ export const ENTITIES: Entity[] = [
   {
     id: "rinse12",
     kind: "team",
-    wallets: [{ address: "0xced7e65e1da560bbda16d308a63d12f91a4ca6b2" }],
+    wallets: [
+      { address: "0xced7e65e1da560bbda16d308a63d12f91a4ca6b2" },
+      { address: "0x8eb1a66e06af821203ee9d648032af164ccbc14d", role: "safe" },
+      { address: "0x5121cda4f41246d6d488598ca08c0d46d5b6d2fd", role: "safeOwner" },
+    ],
     evidence: [],
   },
   {
@@ -136,37 +140,6 @@ export const ENTITIES: Entity[] = [
       },
       { id: "buyingPattern" },
       { id: "neverSold" },
-    ],
-  },
-  {
-    id: "holderB",
-    kind: "linked",
-    confidence: "confirmed",
-    wallets: [
-      { address: "0x8eb1a66e06af821203ee9d648032af164ccbc14d", role: "safe" },
-      { address: "0x5121cda4f41246d6d488598ca08c0d46d5b6d2fd", role: "safeOwner" },
-    ],
-    evidence: [
-      { id: "owners" },
-      {
-        id: "consolidation",
-        txs: [
-          eth("0x18c9e018514e7ca06057656fb40b8b2f079e0df0b92f3b23cb67558f048c68a1"),
-          eth("0x7588c27dbf3f26dd3ebff3e4f3b85eecc695694f62b153befe0ab34a020ef745"),
-          eth("0xe6a5aa8307530e6b8b3deef4105bf4b30b5bbcdccf5bc8a8a214b8b8c5167500"),
-        ],
-      },
-      {
-        id: "vesting",
-        txs: [eth("0x13450c13f8949d69dab95e8713aa10ecb51f3a6b5c364a9cc58395e9451ad70f")],
-      },
-      {
-        id: "commonSender",
-        txs: [
-          eth("0xe252fb80fddbcc349921c04dfd5c6954f098a11c202a71f1dd69e0486a227574"),
-          eth("0x9e0425bbe5c98d1dd877476de34d971855282e3fa97bbcf19ab870ff3400d9f4"),
-        ],
-      },
     ],
   },
   {

@@ -390,15 +390,6 @@
           "neverSold": "Không ví nào trong số mười lăm ví đã bán hay chuyển token của mình kể từ đó. Số dư của chúng đi qua cả hai đợt migration mà không thay đổi."
         }
       },
-      "holderB": {
-        "summary": "Một multisig Safe cần 2 trên 4 chữ ký, đã gom BSO từ 14 ví chỉ trong một buổi chiều, cùng với một trong các chủ sở hữu của nó.",
-        "evidence": {
-          "owners": "Safe cần 2 trong 4 chủ sở hữu ký. Một chủ sở hữu cũng nắm giữ BSO trực tiếp. Bốn chủ sở hữu có thể là một người với nhiều khóa hoặc một nhóm nhỏ.",
-          "consolidation": "Ngày 1 tháng 6 năm 2024, từ 16:08 đến 17:51 UTC, Safe đã nhận 16,9 triệu BSO từ 14 ví. Lần chuyển đầu tiên là một giao dịch thử 10 token mà Safe gửi trả lại ngay.",
-          "vesting": "Ngày 12 tháng 8 năm 2024, Safe chuyển 8,5 triệu BSO vào một luồng vesting trên Sablier. Đợt migration năm 2026 đã ghi có luồng đó trở lại cho Safe, đó là lý do Safe nhận được hai lần chuyển từ migration.",
-          "commonSender": "Cùng một ví đã gửi BSO cho cả chủ sở hữu Safe (1,93 triệu vào ngày 8 tháng 3 năm 2024) lẫn Safe (214 nghìn vào ngày 1 tháng 6 năm 2024)."
-        }
-      },
       "holderC": {
         "summary": "Hai ví được nạp bởi cùng một cặp ví mua.",
         "evidence": {
@@ -494,9 +485,9 @@
       },
       "facts": {
         "liquiditySeed": "Lần mint duy nhất cho một ví của đội ngũ ngoài airdrop là thanh khoản khởi đầu: 7 triệu BSO, được thêm vào pool Trader Joe (5,6 triệu) và pool Pangolin (1,4 triệu) trong vòng bảy phút vào ngày 14 tháng 1 năm 2022.",
-        "teamClaims": "Hai thành viên đội ngũ đã nhận trong đợt 1: Esteban 703 nghìn BSO, và Tom 1,86 triệu BSO, lượt nhận lớn thứ ba trong 767 lượt. Cộng lại là 2% tổng số token đã được nhận trong các đợt airdrop.",
-        "noFarmRewards": "Không ví nào của đội ngũ nhận phần thưởng khai thác thanh khoản. 60,9 triệu BSO đã được trả ra trên Avalanche đều đến 208 địa chỉ khác, còn 8 triệu chưa được trả vào thời điểm chuyển sang Ethereum đã được ghi có cho những người stake đã kiếm được số đó.",
-        "migrationMintedNothing": "Đợt migration năm 2026 không tạo ra token mới cho bất kỳ ai: toàn bộ 210 triệu BSO được phát ra trong một giao dịch, theo tỷ lệ số dư cũ."
+        "teamClaims": "Ba thành viên đội ngũ đã nhận trong đợt 1: Esteban 703 nghìn BSO, Tom 1,86 triệu BSO (lượt nhận lớn thứ ba trong 767 lượt) và rinse12 1,1 triệu BSO, từ hai ví mà số token sau đó đã được chuyển vào Safe của anh ấy. Cộng lại là 2,8% tổng số token đã được nhận trong các đợt airdrop.",
+        "migrationMintedNothing": "Đợt migration năm 2026 không tạo ra token mới cho bất kỳ ai: toàn bộ 210 triệu BSO được phát ra trong một giao dịch, theo tỷ lệ số dư cũ.",
+        "farmRewards": "Một thành viên đội ngũ đã nhận phần thưởng khai thác thanh khoản: một ví của rinse12 đã thu về 2,3 triệu BSO vào ngày 5 tháng 4 năm 2022, khoản lớn thứ tư trong số 60,9 triệu BSO đã được trả ra trên Avalanche cho 208 địa chỉ. Còn 8 triệu chưa được trả vào thời điểm chuyển sang Ethereum đã được ghi có cho những người stake đã kiếm được số đó."
       },
       "statementsTitle": "Những gì nhà sáng lập đã nói vào thời điểm đó",
       "statementBy": "Esteban Abaroa, nhà sáng lập, {{date}}",

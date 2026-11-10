@@ -400,15 +400,6 @@
           "neverSold": "Niciunul dintre cele cincisprezece portofele nu și-a vândut sau mutat tokenurile de atunci. Soldurile lor au trecut neschimbate prin ambele migrări."
         }
       },
-      "holderB": {
-        "summary": "Un multisig Safe 2-din-4 care a strâns BSO din 14 portofele într-o singură după-amiază, plus unul dintre proprietarii săi.",
-        "evidence": {
-          "owners": "Safe-ul are nevoie de semnăturile a 2 dintre cei 4 proprietari ai săi. Unul dintre proprietari deține și BSO direct. Patru proprietari pot însemna o singură persoană cu mai multe chei sau un grup mic.",
-          "consolidation": "Pe 1 iunie 2024, între 16:08 și 17:51 UTC, Safe-ul a primit 16,9 mil. BSO din 14 portofele. Primul transfer a fost un test de 10 tokenuri, pe care Safe-ul l-a trimis imediat înapoi.",
-          "vesting": "Pe 12 august 2024, Safe-ul a mutat 8,5 mil. BSO într-un flux de vesting Sablier. Migrarea din 2026 a creditat acel flux înapoi către Safe, motiv pentru care Safe-ul a primit două transferuri de migrare.",
-          "commonSender": "Același portofel a trimis BSO atât proprietarului Safe-ului (1,93 mil. pe 8 martie 2024), cât și Safe-ului (214.000 pe 1 iunie 2024)."
-        }
-      },
       "holderC": {
         "summary": "Două portofele alimentate de aceeași pereche de portofele cumpărătoare.",
         "evidence": {
@@ -504,9 +495,9 @@
       },
       "facts": {
         "liquiditySeed": "Singura emitere către un portofel al echipei în afara airdrop-ului a fost lichiditatea de lansare: 7 mil. BSO, adăugate în pool-ul Trader Joe (5,6 mil.) și în pool-ul Pangolin (1,4 mil.) în decurs de șapte minute, pe 14 ianuarie 2022.",
-        "teamClaims": "Doi membri ai echipei au revendicat în runda 1: Esteban 703.000 BSO, iar Tom 1,86 mil. BSO, a treia cea mai mare dintre cele 767 de revendicări. Împreună, asta înseamnă 2% din totalul tokenurilor revendicate în airdrop-uri.",
-        "noFarmRewards": "Niciun portofel al echipei nu a primit recompense din liquidity mining. Cele 60,9 mil. BSO plătite pe Avalanche au mers la alte 208 adrese, iar cele 8 mil. încă neplătite la mutarea pe Ethereum au fost creditate celor care le câștigaseră prin staking.",
-        "migrationMintedNothing": "Migrarea din 2026 nu a creat tokenuri noi pentru nimeni: toate cele 210 mil. BSO au fost distribuite într-o singură tranzacție, proporțional cu soldurile vechi."
+        "teamClaims": "Trei membri ai echipei au revendicat în runda 1: Esteban 703.000 BSO, Tom 1,86 mil. BSO (a treia cea mai mare dintre cele 767 de revendicări) și rinse12 1,1 mil. BSO, din două portofele ale căror tokenuri au ajuns ulterior în Safe-ul lui. Împreună, asta înseamnă 2,8% din totalul tokenurilor revendicate în airdrop-uri.",
+        "migrationMintedNothing": "Migrarea din 2026 nu a creat tokenuri noi pentru nimeni: toate cele 210 mil. BSO au fost distribuite într-o singură tranzacție, proporțional cu soldurile vechi.",
+        "farmRewards": "Un membru al echipei a primit recompense din liquidity mining: un portofel al lui rinse12 a încasat 2,3 mil. BSO pe 5 aprilie 2022, a patra cea mai mare sumă din cele 60,9 mil. BSO plătite pe Avalanche către 208 adrese. Cele 8 mil. încă neplătite la mutarea pe Ethereum au fost creditate celor care le câștigaseră prin staking."
       },
       "statementsTitle": "Ce spunea fondatorul la momentul respectiv",
       "statementBy": "Esteban Abaroa, fondator, {{date}}",

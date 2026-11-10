@@ -395,15 +395,6 @@
           "neverSold": "Yksikään viidestätoista lompakosta ei ole sen jälkeen myynyt tai siirtänyt tokeneitaan. Niiden saldot säilyivät muuttumattomina molempien migraatioiden läpi."
         }
       },
-      "holderB": {
-        "summary": "2/4-Safe-multisig, joka keräsi BSO:ta 14 lompakosta yhden iltapäivän aikana, sekä yksi sen omistajista.",
-        "evidence": {
-          "owners": "Safen 4 omistajasta 2:n on allekirjoitettava. Yksi omistajista pitää hallussaan myös BSO:ta suoraan. Neljä omistajaa voi tarkoittaa yhtä henkilöä, jolla on useita avaimia, tai pientä ryhmää.",
-          "consolidation": "1. kesäkuuta 2024 klo 16:08–17:51 UTC Safe vastaanotti 16,9 miljoonaa BSO:ta 14 lompakosta. Ensimmäinen siirto oli 10 tokenin testi, jonka Safe lähetti heti takaisin.",
-          "vesting": "12. elokuuta 2024 Safe siirsi 8,5 miljoonaa BSO:ta Sablierin vesting-virtaan. Vuoden 2026 migraatio hyvitti tämän virran takaisin Safelle, minkä vuoksi Safe sai kaksi migraatiosiirtoa.",
-          "commonSender": "Sama lompakko lähetti BSO:ta sekä Safen omistajalle (1,93 miljoonaa 8. maaliskuuta 2024) että Safelle (214 000 1. kesäkuuta 2024)."
-        }
-      },
       "holderC": {
         "summary": "Kaksi lompakkoa, jotka sama kahden ostavan lompakon pari täytti.",
         "evidence": {
@@ -499,9 +490,9 @@
       },
       "facts": {
         "liquiditySeed": "Ainoa mintaus tiimin lompakkoon airdropin ulkopuolella oli lanseerauslikviditeetti: 7 miljoonaa BSO:ta, jotka lisättiin Trader Joe -pooliin (5,6 miljoonaa) ja Pangolin-pooliin (1,4 miljoonaa) seitsemän minuutin sisällä 14. tammikuuta 2022.",
-        "teamClaims": "Kaksi tiimin jäsentä lunasti kierroksella 1: Esteban 703 000 BSO:ta ja Tom 1,86 miljoonaa BSO:ta, mikä oli 767 lunastuksesta kolmanneksi suurin. Yhteensä se on 2 % kaikista airdropeissa lunastetuista tokeneista.",
-        "noFarmRewards": "Yksikään tiimin lompakko ei saanut likviditeettilouhinnan palkkioita. Avalanchella maksetut 60,9 miljoonaa BSO:ta menivät 208 muulle osoitteelle, ja Ethereumiin siirryttäessä vielä maksamatta olleet 8 miljoonaa hyvitettiin ne ansainneille stakaajille.",
-        "migrationMintedNothing": "Vuoden 2026 migraatio ei luonut uusia tokeneita kenellekään: kaikki 210 miljoonaa BSO:ta jaettiin yhdessä transaktiossa suhteessa vanhoihin saldoihin."
+        "teamClaims": "Kolme tiimin jäsentä lunasti kierroksella 1: Esteban 703 000 BSO:ta, Tom 1,86 miljoonaa BSO:ta (767 lunastuksesta kolmanneksi suurin) ja rinse12 1,1 miljoonaa BSO:ta kahdesta lompakosta, joiden tokenit siirtyivät myöhemmin hänen Safeensa. Yhteensä se on 2,8 % kaikista airdropeissa lunastetuista tokeneista.",
+        "migrationMintedNothing": "Vuoden 2026 migraatio ei luonut uusia tokeneita kenellekään: kaikki 210 miljoonaa BSO:ta jaettiin yhdessä transaktiossa suhteessa vanhoihin saldoihin.",
+        "farmRewards": "Yksi tiimin jäsen sai likviditeettilouhinnan palkkioita: yksi rinse12:n lompakoista keräsi 2,3 miljoonaa BSO:ta 5. huhtikuuta 2022, mikä oli neljänneksi suurin osuus Avalanchella 208 osoitteelle maksetuista 60,9 miljoonasta BSO:sta. Ethereumiin siirryttäessä vielä maksamatta olleet 8 miljoonaa hyvitettiin ne ansainneille stakaajille."
       },
       "statementsTitle": "Mitä perustaja sanoi silloin",
       "statementBy": "Esteban Abaroa, perustaja, {{date}}",

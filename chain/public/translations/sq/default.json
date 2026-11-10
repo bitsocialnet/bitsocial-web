@@ -395,15 +395,6 @@
           "neverSold": "Asnjë nga pesëmbëdhjetë portofolet nuk i ka shitur apo lëvizur tokenët e vet që atëherë. Bilancet e tyre kaluan të pandryshuara nëpër të dy migrimet."
         }
       },
-      "holderB": {
-        "summary": "Një multisig Safe 2-nga-4 që mblodhi BSO nga 14 portofole brenda një pasditeje, plus një nga pronarët e tij.",
-        "evidence": {
-          "owners": "Safe-i kërkon nënshkrimin e 2 nga 4 pronarët e tij. Një pronar mban edhe BSO drejtpërdrejt. Katër pronarë mund të nënkuptojnë një person me disa çelësa ose një grup të vogël.",
-          "consolidation": "Më 1 qershor 2024, midis orës 16:08 dhe 17:51 UTC, Safe-i mori 16,9 mln BSO nga 14 portofole. Transferimi i parë ishte një provë me 10 tokenë, të cilën Safe-i e ktheu menjëherë.",
-          "vesting": "Më 12 gusht 2024, Safe-i zhvendosi 8,5 mln BSO në një rrjedhë vesting në Sablier. Migrimi i vitit 2026 e kreditoi atë rrjedhë përsëri te Safe-i, prandaj Safe-i mori dy transferime migrimi.",
-          "commonSender": "I njëjti portofol i dërgoi BSO si pronarit të Safe-it (1,93 mln më 8 mars 2024), ashtu edhe Safe-it (214 mijë më 1 qershor 2024)."
-        }
-      },
       "holderC": {
         "summary": "Dy portofole të mbushura nga i njëjti çift portofolesh blerëse.",
         "evidence": {
@@ -499,9 +490,9 @@
       },
       "facts": {
         "liquiditySeed": "I vetmi mint te një portofol i ekipit jashtë airdrop-it ishte likuiditeti i nisjes: 7 mln BSO, të shtuara në pool-in e Trader Joe (5,6 mln) dhe në pool-in e Pangolin (1,4 mln) brenda shtatë minutave më 14 janar 2022.",
-        "teamClaims": "Dy anëtarë të ekipit morën tokenë në raundin 1: Esteban 703 mijë BSO dhe Tom 1,86 mln BSO, marrja e tretë më e madhe nga 767. Së bashku kjo është 2% e totalit të tokenëve të marrë në airdrop-e.",
-        "noFarmRewards": "Asnjë portofol i ekipit nuk mori shpërblime nga liquidity mining. 60,9 mln BSO e paguara në Avalanche shkuan te 208 adresa të tjera, dhe 8 mln që ende nuk ishin paguar në kohën e kalimit te Ethereum u kredituan te stakerët që i kishin fituar.",
-        "migrationMintedNothing": "Migrimi i vitit 2026 nuk krijoi tokenë të rinj për askënd: të gjitha 210 mln BSO dolën në një transaksion të vetëm, në përpjesëtim me bilancet e vjetra."
+        "teamClaims": "Tre anëtarë të ekipit morën tokenë në raundin 1: Esteban 703 mijë BSO, Tom 1,86 mln BSO (marrja e tretë më e madhe nga 767) dhe rinse12 1,1 mln BSO, nga dy portofole, tokenët e të cilave shkuan më vonë në Safe-in e tij. Së bashku kjo është 2,8% e totalit të tokenëve të marrë në airdrop-e.",
+        "migrationMintedNothing": "Migrimi i vitit 2026 nuk krijoi tokenë të rinj për askënd: të gjitha 210 mln BSO dolën në një transaksion të vetëm, në përpjesëtim me bilancet e vjetra.",
+        "farmRewards": "Një anëtar i ekipit mori shpërblime nga liquidity mining: një portofol i rinse12 mblodhi 2,3 mln BSO më 5 prill 2022, pjesa e katërt më e madhe nga 60,9 mln BSO e paguara në Avalanche te 208 adresa. 8 mln që ende nuk ishin paguar në kohën e kalimit te Ethereum u kredituan te stakerët që i kishin fituar."
       },
       "statementsTitle": "Çfarë tha themeluesi në atë kohë",
       "statementBy": "Esteban Abaroa, themeluesi, {{date}}",

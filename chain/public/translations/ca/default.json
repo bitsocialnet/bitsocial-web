@@ -400,15 +400,6 @@
           "neverSold": "Cap de les quinze carteres no ha venut ni mogut els seus tokens des d'aleshores. Els seus saldos van passar per les dues migracions sense canvis."
         }
       },
-      "holderB": {
-        "summary": "Una multisig Safe 2 de 4 que va reunir BSO de 14 carteres en una sola tarda, més un dels seus propietaris.",
-        "evidence": {
-          "owners": "El Safe necessita la signatura de 2 dels seus 4 propietaris. Un propietari també té BSO directament. Quatre propietaris poden ser una persona amb diverses claus o un grup petit.",
-          "consolidation": "L'1 de juny de 2024, entre les 16:08 i les 17:51 UTC, el Safe va rebre 16,9 milions de BSO de 14 carteres. La primera transferència va ser una prova de 10 tokens que el Safe va retornar immediatament.",
-          "vesting": "El 12 d'agost de 2024, el Safe va moure 8,5 milions de BSO a un stream de vesting de Sablier. La migració del 2026 va abonar aquest stream de nou al Safe, i per això el Safe va rebre dues transferències de migració.",
-          "commonSender": "La mateixa cartera va enviar BSO tant al propietari del Safe (1,93 milions el 8 de març de 2024) com al Safe (214.000 l'1 de juny de 2024)."
-        }
-      },
       "holderC": {
         "summary": "Dues carteres alimentades pel mateix parell de carteres compradores.",
         "evidence": {
@@ -504,9 +495,9 @@
       },
       "facts": {
         "liquiditySeed": "L'única encunyació a una cartera de l'equip fora de l'airdrop va ser la liquiditat de llançament: 7 milions de BSO, afegits al pool de Trader Joe (5,6 milions) i al de Pangolin (1,4 milions) en set minuts el 14 de gener de 2022.",
-        "teamClaims": "Dos membres de l'equip van reclamar a la ronda 1: Esteban, 703.000 BSO, i Tom, 1,86 milions de BSO, la tercera reclamació més gran de 767. En conjunt, això és el 2% de tots els tokens reclamats als airdrops.",
-        "noFarmRewards": "Cap cartera de l'equip no va rebre recompenses de mineria de liquiditat. Els 60,9 milions de BSO pagats a Avalanche van anar a 208 altres adreces, i els 8 milions encara pendents de pagament en el pas a Ethereum es van abonar als qui havien fet staking i se'ls havien guanyat.",
-        "migrationMintedNothing": "La migració del 2026 no va crear tokens nous per a ningú: tots els 210 milions de BSO van sortir en una sola transacció, en proporció als saldos anteriors."
+        "teamClaims": "Tres membres de l'equip van reclamar a la ronda 1: Esteban, 703.000 BSO; Tom, 1,86 milions de BSO (la tercera reclamació més gran de 767), i rinse12, 1,1 milions de BSO, des de dues carteres els tokens de les quals van anar més tard al seu Safe. En conjunt, això és el 2,8% de tots els tokens reclamats als airdrops.",
+        "migrationMintedNothing": "La migració del 2026 no va crear tokens nous per a ningú: tots els 210 milions de BSO van sortir en una sola transacció, en proporció als saldos anteriors.",
+        "farmRewards": "Un membre de l'equip va rebre recompenses de mineria de liquiditat: una cartera de rinse12 va cobrar 2,3 milions de BSO el 5 d'abril de 2022, la quarta quantitat més gran dels 60,9 milions de BSO pagats a Avalanche a 208 adreces. Els 8 milions encara pendents de pagament en el pas a Ethereum es van abonar als qui havien fet staking i se'ls havien guanyat."
       },
       "statementsTitle": "Què va dir el fundador en aquell moment",
       "statementBy": "Esteban Abaroa, fundador, {{date}}",
