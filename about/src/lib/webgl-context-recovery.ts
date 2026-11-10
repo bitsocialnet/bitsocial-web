@@ -7,6 +7,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 // static fallback until the next manual reload.
 const RAPID_LOSS_WINDOW_MS = 10_000;
 const MAX_RAPID_LOSSES = 3;
+// After a real loss, a rebuild whose renderer cannot get a context fails within a frame, so
+// back-to-back retries would spend every attempt before a restarting GPU process is back. Each
+// repeat waits longer.
+const RAPID_LOSS_RETRY_STEP_MS = 1_000;
 
 type WebGLContextLike = Pick<WebGLRenderingContext, "isContextLost">;
 
@@ -30,6 +34,7 @@ export function useWebGLContextRecovery(onUnrecoverable?: () => void) {
   const rapidLossCountRef = useRef(0);
   const lastLossAtRef = useRef(0);
   const contextRef = useRef<WebGLContextLike | null>(null);
+  const hadContextRef = useRef(false);
   const onUnrecoverableRef = useRef(onUnrecoverable);
 
   useEffect(() => {
@@ -68,6 +73,7 @@ export function useWebGLContextRecovery(onUnrecoverable?: () => void) {
 
   const registerContext = useCallback((context: WebGLContextLike | null) => {
     contextRef.current = context;
+    if (context) hadContextRef.current = true;
   }, []);
 
   useEffect(() => {
@@ -91,28 +97,34 @@ export function useWebGLContextRecovery(onUnrecoverable?: () => void) {
   useEffect(() => {
     if (!isRecoveryPending) return;
 
-    const rebuild = () => {
+    // A scene that never held a context is on a device that cannot create one (for example WebGL1
+    // without WebGL2), not one waiting for its GPU process, so it reaches the fallback without delay.
+    const retryDelayMs = hadContextRef.current
+      ? (rapidLossCountRef.current - 1) * RAPID_LOSS_RETRY_STEP_MS
+      : 0;
+    let isRetryDue = retryDelayMs <= 0;
+
+    // Contexts created for a hidden tab are refused or dropped again on iOS, so
+    // wait until the page is actually on screen before rebuilding.
+    const rebuildWhenReady = () => {
+      if (!isRetryDue || document.visibilityState !== "visible") return;
       recoveryPendingRef.current = false;
       setIsRecoveryPending(false);
       setContextGeneration((generation) => generation + 1);
     };
 
-    // Contexts created for a hidden tab are refused or dropped again on iOS, so
-    // wait until the page is actually on screen before rebuilding.
-    if (document.visibilityState === "visible") {
-      rebuild();
-      return;
-    }
-
-    const handleVisibilityChange = () => {
-      if (document.visibilityState !== "visible") return;
-      rebuild();
-    };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+    document.addEventListener("visibilitychange", rebuildWhenReady);
+    const retryTimeoutId = isRetryDue
+      ? undefined
+      : window.setTimeout(() => {
+          isRetryDue = true;
+          rebuildWhenReady();
+        }, retryDelayMs);
+    rebuildWhenReady();
 
     return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.clearTimeout(retryTimeoutId);
+      document.removeEventListener("visibilitychange", rebuildWhenReady);
     };
   }, [isRecoveryPending]);
 
