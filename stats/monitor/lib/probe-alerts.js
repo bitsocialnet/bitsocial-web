@@ -1,6 +1,25 @@
 const escapeHtml = (value) =>
   String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
+// sendTelegramMessage cuts text past 3500 characters, which can split a tag or an entity, and
+// Telegram rejects that message on every retry. Each field is clipped after escaping instead,
+// between entities, within budgets that keep the whole message under that cap.
+const escapeHtmlClipped = (value, maxLength) => {
+  const escaped = escapeHtml(value);
+  if (escaped.length <= maxLength) {
+    return escaped;
+  }
+  let clipped = "";
+  for (const char of String(value)) {
+    const escapedChar = escapeHtml(char);
+    if (clipped.length + escapedChar.length > maxLength - 3) {
+      break;
+    }
+    clipped += escapedChar;
+  }
+  return `${clipped}...`;
+};
+
 // `state` is a probe's last observed state and `notifiedState` the last one the operator was told
 // about. notifiedState only moves once the message was sent (or alerts are disabled), so a failed
 // send is retried on the next poll instead of being lost.
@@ -34,10 +53,10 @@ export const createProbeTransitionNotifier =
 
     const title = ok ? "RECOVERED" : "DOWN";
     const message = [
-      `<b>${escapeHtml(alertName)} ${title}</b>`,
-      `<b>${escapeHtml(label)}</b>`,
-      escapeHtml(summary),
-      details ? `<pre>${escapeHtml(details)}</pre>` : "",
+      `<b>${escapeHtmlClipped(alertName, 100)} ${title}</b>`,
+      `<b>${escapeHtmlClipped(label, 200)}</b>`,
+      escapeHtmlClipped(summary, 1000),
+      details ? `<pre>${escapeHtmlClipped(details, 2000)}</pre>` : "",
     ]
       .filter(Boolean)
       .join("\n");

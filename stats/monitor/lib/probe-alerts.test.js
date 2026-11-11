@@ -78,6 +78,32 @@ test("stays silent for a first healthy poll and when alerts are disabled", async
   assert.equal(sent.length, 1, "a disabled send is not retried every poll");
 });
 
+test("keeps a long alert under Telegram's length cap with its markup intact", async () => {
+  const sent = [];
+  const notify = createProbeTransitionNotifier({
+    getAlerts: () => ({}),
+    alertName: "Stats",
+    sendMessage: async (text) => sent.push(text),
+  });
+
+  await notify({
+    id: "probe",
+    label: "Probe",
+    ok: false,
+    summary: "<&>".repeat(1000),
+    details: "a&b".repeat(2000),
+  });
+  const [message] = sent;
+  // telegram-alerts.js cuts anything longer, which could split a tag or an entity
+  assert.ok(message.length <= 3500, `message is ${message.length} characters`);
+  assert.ok(message.endsWith("...</pre>"), "the details are clipped inside their <pre>");
+  assert.doesNotMatch(
+    message.replaceAll(/<\/?(b|pre)>/g, ""),
+    /[<>]|&(?!(amp|lt|gt);)/,
+    "no tag or entity was split",
+  );
+});
+
 test("treats alerts saved before notifiedState existed as already notified", async () => {
   const alerts = {
     down: { state: "down", lastNotificationStatus: "sent" },
