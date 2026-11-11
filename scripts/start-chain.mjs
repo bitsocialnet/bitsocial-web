@@ -16,6 +16,7 @@ import {
   portlessBin,
   portlessEnv,
   repoRoot,
+  spawnDevServer,
 } from "./dev-server-utils.mjs";
 
 await ensurePinnedNodeVersion(import.meta.url);
@@ -49,7 +50,7 @@ if (command === portlessBin) {
   args = [chainServerScript];
 }
 
-const child = spawn(command, args, {
+spawnDevServer(command, args, {
   cwd: repoRoot,
   env: command === portlessBin ? { ...portlessEnv, ...childEnv } : childEnv,
   stdio: "inherit",
@@ -65,15 +66,6 @@ if (browserOpenUrl && process.env.BROWSER !== "none") {
       console.warn(`Could not auto-open ${browserOpenUrl}: ${error.message}`);
     });
 }
-
-child.on("exit", (code, signal) => {
-  if (signal) {
-    process.kill(process.pid, signal);
-    return;
-  }
-
-  process.exit(code ?? 0);
-});
 
 async function waitForUrlReady(url, timeoutMs) {
   const startedAt = Date.now();

@@ -1,6 +1,7 @@
 import { build, defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import autoprefixer from "autoprefixer";
+import { readFileSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -14,10 +15,27 @@ const statsDevRedirectOrigin = "https://stats.bitsocial.net";
 
 /** Docusaurus dev server when `yarn start:docs` runs under Portless (`docs.bitsocial.localhost`). */
 const docsDevProxyDefaultPortless = "https://docs.bitsocial.localhost";
+
+/**
+ * The Portless URL `start-docs.mjs` claimed, from the file `start-dev.mjs` names. The host is
+ * prefixed or suffixed when its preferred name was taken, so it is read on every request.
+ */
+function recordedDocsDevUrl() {
+  const file = process.env.DOCS_DEV_URL_FILE;
+  if (!file) {
+    return null;
+  }
+  try {
+    return readFileSync(file, "utf8").trim() || null;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * When Portless is off, `start-docs.mjs` binds Docusaurus to localhost (default 3001).
  * When Portless is on, the real port is random (4000–4999); proxy via the public URL instead.
- * Override for worktrees where the docs host is prefixed (see Portless git worktree behavior).
+ * DOCS_DEV_PROXY_TARGET overrides both.
  */
 function docsDevRedirectOrigin() {
   if (process.env.DOCS_DEV_PROXY_TARGET) {
@@ -27,7 +45,7 @@ function docsDevRedirectOrigin() {
     const port = process.env.DOCS_PORT ?? "3001";
     return `http://127.0.0.1:${port}`;
   }
-  return docsDevProxyDefaultPortless;
+  return (recordedDocsDevUrl() ?? docsDevProxyDefaultPortless).replace(/\/$/, "");
 }
 
 function redirectToSubdomain(origin: string, subpath: string) {
