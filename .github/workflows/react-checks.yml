@@ -9,6 +9,7 @@ on:
         "chain/**",
         "docs/**",
         "scripts/react-perf/**",
+        "scripts/__tests__/about-navigation.node-test.mjs",
         "scripts/__tests__/about-ssr.node-test.mjs",
         "scripts/__tests__/analytics.node-test.mjs",
         "scripts/__tests__/bso-holders.node-test.mjs",
@@ -29,6 +30,7 @@ on:
         "chain/**",
         "docs/**",
         "scripts/react-perf/**",
+        "scripts/__tests__/about-navigation.node-test.mjs",
         "scripts/__tests__/about-ssr.node-test.mjs",
         "scripts/__tests__/analytics.node-test.mjs",
         "scripts/__tests__/bso-holders.node-test.mjs",
@@ -65,6 +67,8 @@ jobs:
           node-version: 24
       - run: corepack enable
       - run: corepack yarn install --immutable
+      - name: Verify about scroll and hash navigation state
+        run: node --test scripts/__tests__/about-navigation.node-test.mjs
       - name: Verify about SSR deployment output
         run: node --test scripts/__tests__/about-ssr.node-test.mjs
       - name: Verify analytics page-view sanitizing and gating

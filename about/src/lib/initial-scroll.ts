@@ -52,20 +52,30 @@ export function normalizeInitialHomeScrollPosition() {
   html.style.overflowAnchor = "none";
   body.style.overflowAnchor = "none";
 
-  forceTop();
-  scheduleFramePasses(INITIAL_SCROLL_FRAME_PASSES);
-
-  timeoutIds.push(
-    window.setTimeout(() => {
-      forceTop();
-      restoreBrowserDefaults();
-    }, INITIAL_SCROLL_SETTLE_MS),
-  );
-
   const handlePageShow = () => {
     forceTop();
     scheduleFramePasses(2);
   };
+
+  const disarm = () => {
+    isActive = false;
+    frameIds.forEach(window.cancelAnimationFrame);
+    timeoutIds.forEach(window.clearTimeout);
+    window.removeEventListener("pageshow", handlePageShow);
+    restoreBrowserDefaults();
+  };
+
+  forceTop();
+  scheduleFramePasses(INITIAL_SCROLL_FRAME_PASSES);
+
+  // Past the settle window the reader owns the scroll position: a late `load` (its `pageshow`),
+  // font swap or back-forward cache restore must not pull them back to the top.
+  timeoutIds.push(
+    window.setTimeout(() => {
+      forceTop();
+      disarm();
+    }, INITIAL_SCROLL_SETTLE_MS),
+  );
 
   window.addEventListener("pageshow", handlePageShow);
 
@@ -76,11 +86,5 @@ export function normalizeInitialHomeScrollPosition() {
     });
   }
 
-  return () => {
-    isActive = false;
-    frameIds.forEach(window.cancelAnimationFrame);
-    timeoutIds.forEach(window.clearTimeout);
-    window.removeEventListener("pageshow", handlePageShow);
-    restoreBrowserDefaults();
-  };
+  return disarm;
 }
