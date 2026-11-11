@@ -2,8 +2,9 @@ const escapeHtml = (value) =>
   String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
 // sendTelegramMessage cuts text past 3500 characters, which can split a tag or an entity, and
-// Telegram rejects that message on every retry. Each field is clipped after escaping instead,
-// between entities, within budgets that keep the whole message under that cap.
+// Telegram rejects that message on every retry. A message that would be cut has each field clipped
+// after escaping instead, between entities, within budgets that keep the whole message under it.
+const maxMessageLength = 3500;
 const escapeHtmlClipped = (value, maxLength) => {
   const escaped = escapeHtml(value);
   if (escaped.length <= maxLength) {
@@ -52,14 +53,19 @@ export const createProbeTransitionNotifier =
     }
 
     const title = ok ? "RECOVERED" : "DOWN";
-    const message = [
-      `<b>${escapeHtmlClipped(alertName, 100)} ${title}</b>`,
-      `<b>${escapeHtmlClipped(label, 200)}</b>`,
-      escapeHtmlClipped(summary, 1000),
-      details ? `<pre>${escapeHtmlClipped(details, 2000)}</pre>` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
+    const formatMessage = (escape) =>
+      [
+        `<b>${escape(alertName, 100)} ${title}</b>`,
+        `<b>${escape(label, 200)}</b>`,
+        escape(summary, 1000),
+        details ? `<pre>${escape(details, 2000)}</pre>` : "",
+      ]
+        .filter(Boolean)
+        .join("\n");
+    let message = formatMessage(escapeHtml);
+    if (message.length > maxMessageLength) {
+      message = formatMessage(escapeHtmlClipped);
+    }
 
     try {
       const sent = await sendMessage(message);

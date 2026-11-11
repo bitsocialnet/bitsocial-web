@@ -104,6 +104,21 @@ test("keeps a long alert under Telegram's length cap with its markup intact", as
   );
 });
 
+test("keeps every field whole when the full alert fits under the length cap", async () => {
+  const sent = [];
+  const notify = createProbeTransitionNotifier({
+    getAlerts: () => ({}),
+    alertName: "Stats",
+    sendMessage: async (text) => sent.push(text),
+  });
+  const details = `url=https://example.com/${"a".repeat(2100)}\nstatus=503`;
+
+  await notify({ id: "probe", label: "Probe", ok: false, summary: "down", details });
+  const [message] = sent;
+  assert.ok(message.length <= 3500, `message is ${message.length} characters`);
+  assert.ok(message.endsWith(`${details}</pre>`), "the details were clipped");
+});
+
 test("treats alerts saved before notifiedState existed as already notified", async () => {
   const alerts = {
     down: { state: "down", lastNotificationStatus: "sent" },
