@@ -20,8 +20,9 @@ const waitFor = async (condition, message, timeoutMs = 5000) => {
 };
 
 // fake kubo rpc: `onSub` answers each pubsub/sub request, and pubsub/ls lists the topics of the
-// sub streams that are still open, like kubo, which drops a subscription when its stream closes
-const startKubo = async (t, onSub, { listsOpenSubs = true } = {}) => {
+// sub streams that are still open, like kubo, which drops a subscription when its stream closes.
+// `otherClientTopics` are topics another client of the same kubo is subscribed to.
+const startKubo = async (t, onSub, { listsOpenSubs = true, otherClientTopics = [] } = {}) => {
   const subs = [];
   const server = http.createServer(async (req, res) => {
     for await (const _chunk of req) {
@@ -30,6 +31,7 @@ const startKubo = async (t, onSub, { listsOpenSubs = true } = {}) => {
     const url = new URL(req.url, "http://kubo");
     if (url.pathname === "/api/v0/pubsub/ls") {
       const topics = subs.filter((sub) => listsOpenSubs && sub.isOpen).map((sub) => sub.arg);
+      topics.push(...otherClientTopics.map(toRpc));
       res.writeHead(200, { "content-type": "application/json" });
       res.end(JSON.stringify({ Strings: [...new Set(topics)] }));
       return;
@@ -116,6 +118,23 @@ test("subscribes again to a topic whose stream kubo ended cleanly", async (t) =>
   kubo.add();
   await waitFor(() => kubo.subs[0]?.isOpen, "no sub stream");
   kubo.subs[0].end();
+
+  assert.deepEqual(await kubo.subscriptions.resubscribeDropped(), [topic]);
+  await waitFor(() => kubo.subs[1]?.isOpen, "the ended topic was not subscribed again");
+  kubo.subs[1].send("hello");
+  await waitFor(() => kubo.messages.length === 1, "no message after resubscribing");
+  assert.deepEqual(kubo.messages, ["hello"]);
+});
+
+test("subscribes again to an ended stream while another kubo client keeps its topic listed", async (t) => {
+  // pkc-js publishing a fake challenge request subscribes to the topic on the same kubo
+  const kubo = await startKubo(t, (sub) => sub.open(), { otherClientTopics: [topic] });
+
+  kubo.add();
+  await waitFor(() => kubo.subs[0]?.isOpen, "no sub stream");
+  kubo.subs[0].end();
+  // let kubo-rpc-client read the end of the stream
+  await new Promise((resolve) => setTimeout(resolve, 100));
 
   assert.deepEqual(await kubo.subscriptions.resubscribeDropped(), [topic]);
   await waitFor(() => kubo.subs[1]?.isOpen, "the ended topic was not subscribed again");

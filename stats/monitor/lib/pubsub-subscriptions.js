@@ -1,8 +1,9 @@
 // One kubo pubsub subscription per topic, retried until kubo accepts it. kubo-rpc-client only calls
 // onError when a subscription stream throws: a stream kubo ends cleanly, or a subscribe request that
 // fails after the 1s subscribe() waits before resolving, drops the subscription silently. So
-// resubscribeDropped() asks kubo which topics it is still subscribed to and subscribes again to the
-// ones it lost.
+// resubscribeDropped() subscribes again to the topics whose own stream ended, and to the ones kubo
+// no longer lists. kubo's list alone can't tell: it lists a topic while any of its clients is
+// subscribed, like pkc-js waiting for a challenge on the same kubo.
 export const createPubsubSubscriptions = ({
   pubsub,
   log = () => {},
@@ -39,7 +40,11 @@ export const createPubsubSubscriptions = ({
             }
           };
           subscription.handler = handler;
-          await pubsub.subscribe(topic, handler, { onError });
+          const options = { onError };
+          await pubsub.subscribe(topic, handler, options);
+          // kubo-rpc-client 5.1.0 sets options.signal to this stream's tracker signal, which it
+          // aborts once the stream ends for any reason, a clean end included
+          subscription.signal = options.signal;
           log(`subscribed to community pubsub '${subscription.name}'`);
           return;
         } catch (e) {
@@ -60,7 +65,13 @@ export const createPubsubSubscriptions = ({
     if (subscriptions.has(topic)) {
       return false;
     }
-    subscriptions.set(topic, { name, onMessage, handler: undefined, subscribing: false });
+    subscriptions.set(topic, {
+      name,
+      onMessage,
+      handler: undefined,
+      signal: undefined,
+      subscribing: false,
+    });
     subscribe(topic);
     return true;
   };
@@ -74,7 +85,9 @@ export const createPubsubSubscriptions = ({
       return [];
     }
     const subscribedTopics = new Set(await pubsub.ls({ signal: AbortSignal.timeout(lsTimeoutMs) }));
-    const droppedTopics = topics.filter((topic) => !subscribedTopics.has(topic));
+    const droppedTopics = topics.filter(
+      (topic) => subscriptions.get(topic).signal?.aborted || !subscribedTopics.has(topic),
+    );
     for (const topic of droppedTopics) {
       log(`kubo dropped community pubsub '${subscriptions.get(topic).name}', subscribing again`);
       subscribe(topic);
