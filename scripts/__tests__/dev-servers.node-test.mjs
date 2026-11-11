@@ -72,9 +72,9 @@ function groupAlive(pid) {
 
 // Each script runs in its own process group so a test can signal exactly one PID, and cleanup
 // still reaches every descendant it left behind.
-function launch(t, script, env = {}) {
-  const child = spawn(process.execPath, [path.join(repoRoot, "scripts", script)], {
-    cwd: repoRoot,
+function launch(t, script, env = {}, root = repoRoot) {
+  const child = spawn(process.execPath, [path.join(root, "scripts", script)], {
+    cwd: root,
     env: { ...baseEnv, ...env },
     stdio: ["ignore", "pipe", "pipe"],
     detached: true,
@@ -224,6 +224,7 @@ test("start-stats stops the containers when interrupted while the dashboard warm
 
 // Copies the launchers into a scratch checkout whose node_modules/.bin/portless is a stub: `list`
 // prints the routes in $FAKE_ROUTES, and running an app logs its name and the docs hand-off env.
+// `run` waits for a launcher whose app exits at once; `start` leaves the app running.
 function portlessCheckout(t, branch) {
   const root = mkdtempSync(path.join(tmpdir(), "dev-servers-portless-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
@@ -241,6 +242,7 @@ case "$1" in
   list) cat "$FAKE_ROUTES"; exit 0 ;;
 esac
 printf '%s|%s|%s\\n' "$1" "$DOCS_DEV_PROXY_TARGET" "$DOCS_DEV_URL_FILE" >> "$FAKE_LOG"
+[ -z "$FAKE_STAY_UP" ] || exec sleep 60
 `,
   );
   chmodSync(portless, 0o755);
@@ -248,31 +250,40 @@ printf '%s|%s|%s\\n' "$1" "$DOCS_DEV_PROXY_TARGET" "$DOCS_DEV_URL_FILE" >> "$FAK
   const routes = path.join(root, "routes");
   const log = path.join(root, "apps.log");
   writeFileSync(routes, "");
+  const env = { FAKE_ROUTES: routes, FAKE_LOG: log };
+  const appLines = () => (existsSync(log) ? readFileSync(log, "utf8").trim().split("\n") : []);
+  const lastApp = () => {
+    const [name, docsTarget, docsUrlFile] = appLines().at(-1).split("|");
+    return { name, docsTarget, docsUrlFile };
+  };
   const run = (script) => {
     const result = spawnSync(process.execPath, [path.join(root, "scripts", script)], {
       cwd: root,
-      env: { ...baseEnv, FAKE_ROUTES: routes, FAKE_LOG: log },
+      env: { ...baseEnv, ...env },
       encoding: "utf8",
       timeout: 30_000,
     });
     assert.equal(result.status, 0, result.stdout + result.stderr);
-    const [name, docsTarget, docsUrlFile] = readFileSync(log, "utf8")
-      .trim()
-      .split("\n")
-      .at(-1)
-      .split("|");
-    return { name, docsTarget, docsUrlFile };
+    return lastApp();
   };
-  return { routes, run };
+  const start = async (script) => {
+    const before = appLines().length;
+    const launcher = launch(t, script, { ...env, FAKE_STAY_UP: "1" }, root);
+    const started = await waitUntil(() => appLines().length > before, 10_000);
+    assert.ok(started, `${script} never started its app:\n${launcher.output()}`);
+    return { ...launcher, ...lastApp() };
+  };
+  const urlRecord = (name) => path.join(root, ".dev-servers", `${name}-url`);
+  return { routes, run, start, urlRecord };
 }
 
 for (const [branch, docsHost] of [
   ["master", "docs.bitsocial.localhost"],
   ["feature/new-page", "feature-new-page.docs.bitsocial.localhost"],
 ]) {
-  test(`about server on ${branch} redirects /docs to the docs host the running docs server claimed`, (t) => {
+  test(`about server on ${branch} redirects /docs to the docs host the running docs server claimed`, async (t) => {
     const checkout = portlessCheckout(t, branch);
-    const docs = checkout.run("start-docs.mjs");
+    const docs = await checkout.start("start-docs.mjs");
     assert.equal(`${docs.name}.localhost`, docsHost);
     writeFileSync(checkout.routes, `https://${docsHost}  ->  localhost:4321  (pid 1)\n`);
 
@@ -281,6 +292,30 @@ for (const [branch, docsHost] of [
     // Same precedence as docsDevRedirectOrigin() in about/vite.config.ts.
     const recorded = about.docsUrlFile ? readFileSync(about.docsUrlFile, "utf8").trim() : "";
     assert.equal(about.docsTarget || recorded, `https://${docsHost}`);
+  });
+}
+
+// Once a server stops, its host can be claimed by another checkout, so a leftover record would
+// send /docs (or agent-init) there.
+for (const [launcher, record] of [
+  ["start-docs.mjs", "docs"],
+  ["start-dev.mjs", "about"],
+]) {
+  test(`${launcher} removes its URL record when its server stops, but not a newer launcher's`, async (t) => {
+    const checkout = portlessCheckout(t, "master");
+    const file = checkout.urlRecord(record);
+
+    const first = await checkout.start(launcher);
+    assert.ok(existsSync(file), `${launcher} recorded no URL:\n${first.output()}`);
+    process.kill(first.pid, "SIGTERM");
+    assert.ok(await first.waitForExit(10_000), `${launcher} did not exit:\n${first.output()}`);
+    assert.equal(existsSync(file), false, `${launcher} left its ${record} URL record behind`);
+
+    const second = await checkout.start(launcher);
+    writeFileSync(file, "https://newer.bitsocial.localhost\n");
+    process.kill(second.pid, "SIGTERM");
+    assert.ok(await second.waitForExit(10_000), `${launcher} did not exit:\n${second.output()}`);
+    assert.equal(readFileSync(file, "utf8"), "https://newer.bitsocial.localhost\n");
   });
 }
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { spawn, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import net from "node:net";
 import path from "node:path";
 import process from "node:process";
@@ -116,10 +116,22 @@ export function devServerUrlFile(name) {
   return path.join(repoRoot, ".dev-servers", `${name}-url`);
 }
 
+// Returns a function that removes the record once the server stops, since its host is then free for
+// another checkout to claim. A record a later launcher overwrote is left alone.
 export function recordDevServerUrl(name, url) {
   const file = devServerUrlFile(name);
   mkdirSync(path.dirname(file), { recursive: true });
   writeFileSync(file, `${url}\n`);
+
+  return () => {
+    try {
+      if (readFileSync(file, "utf8").trim() === url) {
+        rmSync(file, { force: true });
+      }
+    } catch {
+      // Already removed.
+    }
+  };
 }
 
 export function ensurePortlessProxy() {
@@ -268,8 +280,8 @@ export async function waitForPort(host, port, timeoutMs = 30_000) {
 }
 
 // Ties a server's lifetime to the launcher that spawned it: SIGINT or SIGTERM sent to the launcher
-// alone is forwarded, and the launcher exits with the server's code or signal.
-export function spawnDevServer(command, args, options) {
+// alone is forwarded, and the launcher exits with the server's code or signal after running onExit.
+export function spawnDevServer(command, args, options, onExit) {
   const child = spawn(command, args, options);
 
   const forwardSignal = (signal) => {
@@ -287,6 +299,7 @@ export function spawnDevServer(command, args, options) {
   child.on("exit", (code, signal) => {
     process.off("SIGINT", onSigint);
     process.off("SIGTERM", onSigterm);
+    onExit?.();
 
     if (signal) {
       process.kill(process.pid, signal);

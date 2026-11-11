@@ -29,6 +29,7 @@ const childEnv = {
   ...process.env,
 };
 let args = [];
+let releaseUrlRecord;
 
 if (docsStartMode && docsStartMode !== "live" && docsStartMode !== "multilocale") {
   console.error(`Invalid docs start mode: ${docsStartMode}`);
@@ -45,7 +46,7 @@ if (command === portlessBin) {
   const publicUrl = getPortlessPublicUrl(appName);
 
   args = [appName, process.execPath, docsServerScript];
-  recordDevServerUrl("docs", publicUrl);
+  releaseUrlRecord = recordDevServerUrl("docs", publicUrl);
 
   if (appName !== "docs.bitsocial") {
     console.log(`Starting Portless docs server at ${publicUrl}`);
@@ -58,8 +59,13 @@ if (command === portlessBin) {
   args = [docsServerScript];
 }
 
-spawnDevServer(command, args, {
-  cwd: repoRoot,
-  env: command === portlessBin ? { ...portlessEnv, ...childEnv } : childEnv,
-  stdio: "inherit",
-});
+spawnDevServer(
+  command,
+  args,
+  {
+    cwd: repoRoot,
+    env: command === portlessBin ? { ...portlessEnv, ...childEnv } : childEnv,
+    stdio: "inherit",
+  },
+  releaseUrlRecord,
+);
