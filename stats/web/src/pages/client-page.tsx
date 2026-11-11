@@ -23,7 +23,7 @@ const addSeries = (left: Series, right: Series) =>
   );
 
 export function ClientPage({ view, range }: { view: ViewDefinition; range: RangeKey }) {
-  const { data, error, loading, isPrevious } = useStats<ClientView>(
+  const { data, fetchedAt, error, loading, isPrevious } = useStats<ClientView>(
     `/api/v1/clients/${view.id}?range=${range}`,
   );
   const client = data?.client;
@@ -48,6 +48,7 @@ export function ClientPage({ view, range }: { view: ViewDefinition; range: Range
       status={
         <Freshness
           updatedAt={data && Date.parse(data.generatedAt)}
+          fetchedAt={fetchedAt}
           loading={loading || isPrevious}
           error={error}
         />
