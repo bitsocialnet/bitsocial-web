@@ -37,15 +37,23 @@ export const fetchOptions = {
   },
 };
 
-export const fetchJson = async (url, options) => {
+// A target that accepts the connection and never answers would leave its probe pending, with the
+// previous result still showing. This is longer than the 60-100s that proxies in front of gateways
+// and routers wait, so only requests that would never settle are cut.
+const defaultFetchTimeoutMs = 1000 * 60 * 2;
+
+export const fetchJson = async (url, { timeoutMs = defaultFetchTimeoutMs, ...options } = {}) => {
   const headers = {
     ...fetchOptions?.headers,
     ...options?.headers,
     "Content-Type": "application/json",
   };
-  let textResponse = await fetch(url, { ...fetchOptions, ...options, headers }).then((res) =>
-    res.text(),
-  );
+  let textResponse = await fetch(url, {
+    ...fetchOptions,
+    signal: AbortSignal.timeout(timeoutMs),
+    ...options,
+    headers,
+  }).then((res) => res.text());
   try {
     const json = JSON.parse(textResponse);
     return json;
@@ -60,9 +68,11 @@ export const fetchJson = async (url, options) => {
 };
 
 export const fetchKuboRpc = async (url) => {
-  let textResponse = await fetch(url, { ...fetchOptions, method: "POST" }).then((res) =>
-    res.text(),
-  );
+  let textResponse = await fetch(url, {
+    ...fetchOptions,
+    method: "POST",
+    signal: AbortSignal.timeout(defaultFetchTimeoutMs),
+  }).then((res) => res.text());
   try {
     const json = textResponse
       .split("\n")
@@ -79,11 +89,14 @@ export const fetchKuboRpc = async (url) => {
   }
 };
 
-export const fetchHtml = async (url, options) => {
+export const fetchHtml = async (url, { timeoutMs = defaultFetchTimeoutMs, ...options } = {}) => {
   const headers = { ...fetchOptions?.headers, ...options?.headers };
-  const textResponse = await fetch(url, { ...fetchOptions, ...options, headers }).then((res) =>
-    res.text(),
-  );
+  const textResponse = await fetch(url, {
+    ...fetchOptions,
+    signal: AbortSignal.timeout(timeoutMs),
+    ...options,
+    headers,
+  }).then((res) => res.text());
   return textResponse;
 };
 
@@ -302,6 +315,19 @@ export const getOwnIp = async () => {
     }
   } catch (e) {}
   throw Error("getOwnIp() failed");
+};
+
+// runs `run` for `key` unless the run started earlier for that key is still pending, so a target
+// that stops answering holds one pending run instead of gaining one every interval
+export const createRunUnlessPending = () => {
+  const pendingKeys = new Set();
+  return (key, run) => {
+    if (pendingKeys.has(key)) {
+      return;
+    }
+    pendingKeys.add(key);
+    return run().finally(() => pendingKeys.delete(key));
+  };
 };
 
 export const createCounter = () => {

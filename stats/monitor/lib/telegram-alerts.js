@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 import Debug from "debug";
 import monitorState from "./monitor-state.js";
+import { createProbeTransitionNotifier } from "./probe-alerts.js";
 
 const debug = Debug("bitsocial-stats-monitor:telegram-alerts");
 
@@ -9,9 +10,8 @@ const chatId = process.env.BITSOCIAL_STATS_TELEGRAM_CHAT_ID?.trim();
 const alertName = process.env.BITSOCIAL_STATS_ALERT_NAME?.trim() || "Bitsocial Stats";
 
 const isTelegramConfigured = Boolean(botToken && chatId);
-
-const escapeHtml = (value) =>
-  String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+// a failed send is retried on the next poll (1min), so a send must settle before then
+const sendTimeoutMs = 1000 * 15;
 
 const truncate = (value, maxLength = 3500) => {
   const text = String(value || "");
@@ -38,6 +38,7 @@ const sendTelegramMessage = async (text) => {
       parse_mode: "HTML",
       disable_web_page_preview: true,
     }),
+    signal: AbortSignal.timeout(sendTimeoutMs),
   });
 
   const body = await response.text();
@@ -48,50 +49,14 @@ const sendTelegramMessage = async (text) => {
   return true;
 };
 
-export const notifyProbeTransition = async ({ id, label, ok, summary, details }) => {
-  if (!monitorState.alerts) {
-    monitorState.alerts = {};
-  }
-
-  const previousState = monitorState.alerts[id]?.state;
-  const nextState = ok ? "up" : "down";
-  monitorState.alerts[id] = {
-    ...monitorState.alerts[id],
-    state: nextState,
-    updatedAt: new Date().toISOString(),
-  };
-
-  if (previousState === nextState) {
-    return;
-  }
-
-  if (previousState === undefined && ok) {
-    return;
-  }
-
-  const title = ok ? "RECOVERED" : "DOWN";
-  const message = [
-    `<b>${escapeHtml(alertName)} ${title}</b>`,
-    `<b>${escapeHtml(label)}</b>`,
-    escapeHtml(summary),
-    details ? `<pre>${escapeHtml(details)}</pre>` : "",
-  ]
-    .filter(Boolean)
-    .join("\n");
-
-  try {
-    const sent = await sendTelegramMessage(message);
-    monitorState.alerts[id] = {
-      ...monitorState.alerts[id],
-      lastNotifiedAt: sent ? new Date().toISOString() : monitorState.alerts[id]?.lastNotifiedAt,
-      lastNotificationStatus: sent ? "sent" : "disabled",
-    };
-  } catch (error) {
-    monitorState.alerts[id] = {
-      ...monitorState.alerts[id],
-      lastNotificationStatus: "failed",
-      lastNotificationError: error.message,
-    };
-    debug(error.message);
-  }
-};
+export const notifyProbeTransition = createProbeTransitionNotifier({
+  getAlerts: () => {
+    if (!monitorState.alerts) {
+      monitorState.alerts = {};
+    }
+    return monitorState.alerts;
+  },
+  sendMessage: sendTelegramMessage,
+  alertName,
+  log: debug,
+});
