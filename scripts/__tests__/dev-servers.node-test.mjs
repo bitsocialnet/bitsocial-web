@@ -242,15 +242,19 @@ case "$1" in
   list) cat "$FAKE_ROUTES"; exit 0 ;;
 esac
 printf '%s|%s|%s\\n' "$1" "$DOCS_DEV_PROXY_TARGET" "$DOCS_DEV_URL_FILE" >> "$FAKE_LOG"
-[ -z "$FAKE_STAY_UP" ] || exec sleep 60
+[ -n "$FAKE_STAY_UP" ] || exit 0
+trap 'echo TERM >> "$FAKE_SIGNALS"; exit 143' TERM
+trap 'echo HUP >> "$FAKE_SIGNALS"; exit 129' HUP
+while :; do sleep 0.1; done
 `,
   );
   chmodSync(portless, 0o755);
   execFileSync("git", ["init", "--quiet", "--initial-branch", branch], { cwd: root });
   const routes = path.join(root, "routes");
   const log = path.join(root, "apps.log");
+  const signalLog = path.join(root, "signals.log");
   writeFileSync(routes, "");
-  const env = { FAKE_ROUTES: routes, FAKE_LOG: log };
+  const env = { FAKE_ROUTES: routes, FAKE_LOG: log, FAKE_SIGNALS: signalLog };
   const appLines = () => (existsSync(log) ? readFileSync(log, "utf8").trim().split("\n") : []);
   const lastApp = () => {
     const [name, docsTarget, docsUrlFile] = appLines().at(-1).split("|");
@@ -274,7 +278,8 @@ printf '%s|%s|%s\\n' "$1" "$DOCS_DEV_PROXY_TARGET" "$DOCS_DEV_URL_FILE" >> "$FAK
     return { ...launcher, ...lastApp() };
   };
   const urlRecord = (name) => path.join(root, ".dev-servers", `${name}-url`);
-  return { routes, run, start, urlRecord };
+  const signals = () => (existsSync(signalLog) ? readFileSync(signalLog, "utf8").trim() : "");
+  return { routes, run, start, urlRecord, signals };
 }
 
 for (const [branch, docsHost] of [
@@ -316,6 +321,29 @@ for (const [launcher, record] of [
     process.kill(second.pid, "SIGTERM");
     assert.ok(await second.waitForExit(10_000), `${launcher} did not exit:\n${second.output()}`);
     assert.equal(readFileSync(file, "utf8"), "https://newer.bitsocial.localhost\n");
+  });
+
+  // `kill -HUP` reaches the launcher alone; closing its terminal sends SIGHUP to its whole group.
+  // Portless only removes its route and stops its detached server on SIGINT or SIGTERM.
+  test(`${launcher} stops its server with SIGTERM and removes its URL record on SIGHUP`, async (t) => {
+    const checkout = portlessCheckout(t, "master");
+    const file = checkout.urlRecord(record);
+
+    const alone = await checkout.start(launcher);
+    process.kill(alone.pid, "SIGHUP");
+    const stopped = await waitUntil(() => !groupAlive(alone.pid), 10_000);
+    assert.ok(stopped, `${launcher} left its server running after SIGHUP:\n${alone.output()}`);
+    assert.equal(checkout.signals(), "TERM");
+    assert.equal(existsSync(file), false, `${launcher} left its ${record} URL record behind`);
+
+    const group = await checkout.start(launcher);
+    process.kill(-group.pid, "SIGHUP");
+    assert.ok(await group.waitForExit(10_000), `${launcher} did not exit:\n${group.output()}`);
+    assert.equal(
+      existsSync(file),
+      false,
+      `${launcher} left its ${record} URL record behind when its terminal closed`,
+    );
   });
 }
 

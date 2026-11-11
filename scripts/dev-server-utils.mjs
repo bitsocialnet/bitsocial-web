@@ -281,6 +281,8 @@ export async function waitForPort(host, port, timeoutMs = 30_000) {
 
 // Ties a server's lifetime to the launcher that spawned it: SIGINT or SIGTERM sent to the launcher
 // alone is forwarded, and the launcher exits with the server's code or signal after running onExit.
+// SIGHUP (its terminal closed) is forwarded as SIGTERM, since Portless only removes its route and
+// stops its detached server on SIGINT or SIGTERM.
 export function spawnDevServer(command, args, options, onExit) {
   const child = spawn(command, args, options);
 
@@ -295,10 +297,12 @@ export function spawnDevServer(command, args, options, onExit) {
 
   process.on("SIGINT", onSigint);
   process.on("SIGTERM", onSigterm);
+  process.on("SIGHUP", onSigterm);
 
   child.on("exit", (code, signal) => {
     process.off("SIGINT", onSigint);
     process.off("SIGTERM", onSigterm);
+    process.off("SIGHUP", onSigterm);
     onExit?.();
 
     if (signal) {
