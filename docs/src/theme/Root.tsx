@@ -2,12 +2,14 @@ import React, { useEffect, type ReactNode } from "react";
 import { useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import {
+  getDocsPathLanguage,
   getLocalizedDocsPath,
   getQueryLanguage,
   getSupportedLanguageEntry,
   resolveDocsPreviewMode,
   isDocsNotFoundPath,
   persistDocsLanguage,
+  persistDocsLanguageChoice,
   resolveDocsLanguage,
   stripLanguageQueryParam,
 } from "../lib/docsLanguage";
@@ -61,13 +63,27 @@ function DocsLanguageSync() {
         (currentLanguage === defaultLocale && targetLanguage !== currentLanguage));
 
     if (shouldRedirect) {
-      persistDocsLanguage(targetLanguage);
-      window.location.replace(targetUrl);
-      return;
+      let redirectUrl = targetUrl;
+      if (queryLanguage === null) {
+        persistDocsLanguage(targetLanguage);
+      } else {
+        redirectUrl = persistDocsLanguageChoice(queryLanguage, targetUrl);
+      }
+
+      // The router decodes location.pathname, while a URL with ?lang= added comes back
+      // percent-encoded, so compare what the browser would load.
+      if (new URL(redirectUrl, window.location.href).href !== window.location.href) {
+        window.location.replace(redirectUrl);
+        return;
+      }
     }
 
     const language = getSupportedLanguageEntry(currentLanguage);
-    persistDocsLanguage(language.code);
+    // A host can answer a dead localized link with the default-locale 404 page; that page must not
+    // replace the reader's stored language.
+    if (getDocsPathLanguage(location.pathname) === language.code) {
+      persistDocsLanguage(language.code);
+    }
     document.documentElement.lang = language.code;
     document.documentElement.dir = language.dir === "rtl" ? "rtl" : "ltr";
   }, [

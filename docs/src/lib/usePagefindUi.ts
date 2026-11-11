@@ -8,6 +8,40 @@ declare global {
 
 type PagefindStatus = "loading" | "ready" | "error";
 
+const scriptLoads = new Map<string, Promise<void>>();
+
+/**
+ * Loads pagefind-ui.js once for every search box on the page. A failed load removes its tag and is
+ * forgotten, so the next search box to mount tries again instead of waiting on a dead tag.
+ */
+function loadPagefindScript(scriptUrl: string): Promise<void> {
+  let load = scriptLoads.get(scriptUrl);
+  if (!load) {
+    load = fetch(scriptUrl, { method: "HEAD" }).then((response) => {
+      const contentType = response.headers.get("content-type") ?? "";
+      if (!response.ok || contentType.includes("text/html")) {
+        throw new Error(`Pagefind UI is not available at ${scriptUrl}`);
+      }
+
+      return new Promise<void>((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = scriptUrl;
+        script.async = true;
+        script.onload = () => resolve();
+        script.onerror = () => {
+          script.remove();
+          reject(new Error(`Could not load ${scriptUrl}`));
+        };
+        document.body.appendChild(script);
+      });
+    });
+    load.catch(() => scriptLoads.delete(scriptUrl));
+    scriptLoads.set(scriptUrl, load);
+  }
+
+  return load;
+}
+
 interface UsePagefindUiOptions {
   bundlePath: string;
   scriptUrl: string;
@@ -79,41 +113,10 @@ export function usePagefindUi({
       };
     }
 
-    const existingScript = document.querySelector<HTMLScriptElement>(`script[src="${scriptUrl}"]`);
-    if (existingScript) {
-      existingScript.addEventListener("load", mountSearch);
-      existingScript.addEventListener("error", fail);
-
-      return () => {
-        cancelled = true;
-        existingScript.removeEventListener("load", mountSearch);
-        existingScript.removeEventListener("error", fail);
-      };
-    }
-
-    let script: HTMLScriptElement | null = null;
-
-    void fetch(scriptUrl, { method: "HEAD" })
-      .then((response) => {
-        const contentType = response.headers.get("content-type") ?? "";
-        if (!response.ok || contentType.includes("text/html")) {
-          fail();
-          return;
-        }
-
-        script = document.createElement("script");
-        script.src = scriptUrl;
-        script.async = true;
-        script.onload = mountSearch;
-        script.onerror = fail;
-        document.body.appendChild(script);
-      })
-      .catch(fail);
+    void loadPagefindScript(scriptUrl).then(mountSearch, fail);
 
     return () => {
       cancelled = true;
-      script?.removeEventListener("load", mountSearch);
-      script?.removeEventListener("error", fail);
     };
   }, [bundlePath, containerRef, isClient, scriptUrl, styleUrl, uiOptions]);
 
