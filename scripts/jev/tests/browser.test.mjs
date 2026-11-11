@@ -742,33 +742,45 @@ test("a benchmark run whose open times out leaves no browser behind", async (t) 
   await assertNothingLeft();
 });
 
-test("a timed-out command that ignores SIGTERM is killed with the processes below it", async (t) => {
+// A zombie has exited and only waits to be reaped, which a container's PID 1 may never do.
+const alive = (pid) => {
+  const { status, stdout } = spawnSync("ps", ["-o", "stat=", "-p", String(pid)], {
+    encoding: "utf8",
+  });
+  return status === 0 && !stdout.trim().startsWith("Z");
+};
+
+/** Times out `script` under sh; returns the pid it wrote to `$0`, given up to 2 s to stop. */
+async function timedOutShell(t, script) {
   const directory = await mkdtemp(path.join(tmpdir(), "jev-stubborn-"));
   const pidFile = path.join(directory, "pid");
-  const alive = (pid) => {
-    try {
-      process.kill(pid, 0);
-      return true;
-    } catch {
-      return false;
-    }
-  };
   t.after(async () => {
     const pid = Number(await readFile(pidFile, "utf8").catch(() => ""));
     if (pid && alive(pid)) process.kill(pid, "SIGKILL");
     await rm(directory, { recursive: true, force: true });
   });
-  // An ignored signal stays ignored across fork and exec, so neither the shell nor its sleep stops.
   await assert.rejects(
-    runCommand("sh", ["-c", `trap '' TERM; sleep 60 & echo $! > "$0"; wait`, pidFile], {
-      timeout: 200,
-      maxBuffer: 1024,
-      killAfter: 300,
-    }),
+    runCommand("sh", ["-c", script, pidFile], { timeout: 200, maxBuffer: 1024, killAfter: 300 }),
     { killed: true },
   );
   const pid = Number(await readFile(pidFile, "utf8"));
   // A killed process can briefly remain until it is reaped.
   for (let waited = 0; alive(pid) && waited < 2000; waited += 50) await delay(50);
+  return pid;
+}
+
+test("a timed-out command that ignores SIGTERM is killed with the processes below it", async (t) => {
+  // An ignored signal stays ignored across fork and exec, so neither the shell nor its sleep stops.
+  const pid = await timedOutShell(t, `trap '' TERM; sleep 60 & echo $! > "$0"; wait`);
+  assert.equal(alive(pid), false, "a process below the command outlived the forced stop");
+});
+
+test("the forced stop still reaches a process that ignores SIGTERM after the output closes", async (t) => {
+  // The shell stops on SIGTERM and closes the output; like the detached daemon, the sleep below it
+  // holds no output pipe, so the command settles while the sleep still runs.
+  const pid = await timedOutShell(
+    t,
+    `(trap '' TERM; exec sleep 60) </dev/null >/dev/null 2>&1 & echo $! > "$0"; wait`,
+  );
   assert.equal(alive(pid), false, "a process below the command outlived the forced stop");
 });
