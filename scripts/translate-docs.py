@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import ast
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -67,6 +68,9 @@ BATCH_DELAY_SECONDS = 0.05
 MAX_REQUEST_CHARS = 3500
 MAX_RETRIES = 2
 RETRY_BASE_DELAY_SECONDS = 1.5
+# Per locale, a digest of the English each locale JSON message was translated from, so a message
+# whose English changed is translated again instead of being kept because it differs from English.
+TRANSLATION_SOURCES_FILE = "translation-sources.json"
 
 translator_cache: dict[str, GoogleTranslator] = {}
 text_cache: dict[tuple[str, str], str] = {}
@@ -519,21 +523,37 @@ def translate_markdown_file(source_path: Path, target_path: Path, locale: str) -
     target_path.write_text("\n".join(output) + ("\n" if content.endswith("\n") else ""))
 
 
-def translate_json_messages(source_data: Any, target_data: Any, locale: str) -> Any:
+def english_digest(message: str) -> str:
+    return hashlib.sha256(message.encode("utf-8")).hexdigest()[:16]
+
+
+def translate_json_messages(
+    source_data: Any,
+    target_data: Any,
+    locale: str,
+    recorded: dict[str, str],
+    sources: dict[str, str],
+) -> Any:
     pending_messages: list[tuple[dict[str, Any], str]] = []
 
-    def walk(source: Any, target: Any) -> Any:
+    def walk(source: Any, target: Any, key: str) -> Any:
         if isinstance(source, dict):
             if "message" in source and isinstance(source["message"], str):
                 translated = dict(target or {})
                 current_message = translated.get("message", source["message"])
-                if current_message == source["message"]:
+                digest = english_digest(source["message"])
+                # With no record (a first run, or a message added by hand) the translation is
+                # taken as current; a record of other English means it is stale.
+                stale = recorded.get(key, digest) != digest
+                if current_message == source["message"] or stale:
                     pending_messages.append((translated, source["message"]))
+                sources[key] = digest
                 return translated
 
             result = dict(target or {})
-            for key, value in source.items():
-                result[key] = walk(value, result.get(key))
+            for child_key, value in source.items():
+                child_path = f"{key}/{child_key}" if key else child_key
+                result[child_key] = walk(value, result.get(child_key), child_path)
             return result
 
         if isinstance(source, list):
@@ -541,13 +561,14 @@ def translate_json_messages(source_data: Any, target_data: Any, locale: str) -> 
                 walk(
                     item,
                     target[index] if isinstance(target, list) and index < len(target) else None,
+                    f"{key}/{index}",
                 )
                 for index, item in enumerate(source)
             ]
 
         return source
 
-    translated_root = walk(source_data, target_data)
+    translated_root = walk(source_data, target_data, "")
     translated_messages = translate_inline_text_batch(
         [message for _, message in pending_messages], locale
     )
@@ -600,8 +621,10 @@ def ensure_custom_code_messages(locales: list[str]) -> None:
     source_code_path = DOCS_I18N_ROOT / "en" / "code.json"
     source_code = json.loads(source_code_path.read_text())
 
+    # DocsHome's tr() defaults are the English source; Docusaurus prefers en/code.json over them,
+    # so an edited default has to replace the old entry, not only fill in a missing one.
     for message_id, value in docs_home_messages.items():
-        source_code.setdefault(message_id, value)
+        source_code[message_id] = value
 
     source_code_path.write_text(json.dumps(source_code, ensure_ascii=False, indent=2) + "\n")
 
@@ -664,6 +687,9 @@ def translate_locale_json(locale: str) -> None:
     source_root = DOCS_I18N_ROOT / "en"
     target_root = DOCS_I18N_ROOT / locale
     log(f"Translating Docusaurus locale JSON for {locale} in {target_root}")
+    sources_path = target_root / TRANSLATION_SOURCES_FILE
+    recorded = json.loads(sources_path.read_text()) if sources_path.exists() else {}
+    sources: dict[str, dict[str, str]] = {}
 
     for source_path in sorted(source_root.rglob("*.json")):
         if source_path.name == "_category_.json":
@@ -676,9 +702,15 @@ def translate_locale_json(locale: str) -> None:
 
         source_data = json.loads(source_path.read_text())
         target_data = json.loads(target_path.read_text()) if target_path.exists() else source_data
-        translated = translate_json_messages(source_data, target_data, locale)
+        file_key = relative_path.as_posix()
+        sources[file_key] = {}
+        translated = translate_json_messages(
+            source_data, target_data, locale, recorded.get(file_key, {}), sources[file_key]
+        )
         target_path.parent.mkdir(parents=True, exist_ok=True)
         target_path.write_text(json.dumps(translated, ensure_ascii=False, indent=2) + "\n")
+
+    sources_path.write_text(json.dumps(sources, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
 
 
 def parse_args() -> argparse.Namespace:

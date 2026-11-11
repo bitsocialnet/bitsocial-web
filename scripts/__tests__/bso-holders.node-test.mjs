@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import { execFile } from "node:child_process";
-import { cp, mkdir, mkdtemp, readFile, rm } from "node:fs/promises";
+import { execFile, spawnSync } from "node:child_process";
+import { cp, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import os from "node:os";
 import path from "node:path";
@@ -221,3 +221,100 @@ test("the committed fallback snapshot does not tag the reported delegated wallet
   assert.ok(holder, "the reported holder must be present in the fallback snapshot");
   assert.equal(holder.isContract, false);
 });
+
+// Answers the history generator's explorer requests offline: a tracked wallet got 100 BSO worth of
+// the first contract, then 100 of the second and sent 50 on. SHORT_LISTING drops that receipt, as
+// an explorer gap would, and EMPTY_GEN1 lists the first contract as Etherscan's "No records found".
+const offlineHistoryApis = `
+const wallet = "0x00000000000000000000000000000000000000aa";
+const zero = "0x" + "0".repeat(40);
+const topic = (address) => "0x" + address.slice(2).padStart(64, "0");
+const transfer = (block, from, to, value) => ({
+  block_number: block,
+  log_index: 0,
+  timestamp: new Date(1735689600000 + (block - 24000000) * 12000).toISOString(),
+  from: { hash: from },
+  to: { hash: to },
+  total: { value: String(BigInt(value) * 10n ** 18n) },
+});
+const gen1 = {
+  blockNumber: "1000",
+  timeStamp: "1654041600",
+  topics: ["0xddf252ad", topic(zero), topic(wallet)],
+  data: "0x" + (711459600n * 10n ** 15n).toString(16),
+};
+globalThis.fetch = async (input) => {
+  const url = new URL(input);
+  let body;
+  if (url.pathname.endsWith("/blocks")) body = { items: [{ height: 30000000 }] };
+  else if (url.searchParams.get("action") === "getLogs")
+    body = process.env.EMPTY_GEN1
+      ? { status: "0", message: "No records found", result: [] }
+      : { status: "1", message: "OK", result: [gen1] };
+  else if (url.pathname.includes("/0x00000000000000000000000000000000000000b2/")) {
+    const sent = transfer(24000002, wallet, "0x00000000000000000000000000000000000000bb", 50);
+    body = {
+      items: process.env.SHORT_LISTING ? [sent] : [sent, transfer(24000001, zero, wallet, 100)],
+      next_page_params: null,
+    };
+  } else body = { items: [transfer(26000000, zero, wallet, 100)], next_page_params: null };
+  return new Response(JSON.stringify(body));
+};
+`;
+
+for (const [gap, env] of [
+  ["a retired listing that fails the gap check", { SHORT_LISTING: "1" }],
+  ["an empty retired listing", { EMPTY_GEN1: "1" }],
+]) {
+  test(`holder history does not cache ${gap}`, async (t) => {
+    const fixture = await mkdtemp(path.join(os.tmpdir(), "bitsocial-holder-history-"));
+    t.after(() => rm(fixture, { recursive: true, force: true }));
+    await mkdir(path.join(fixture, "scripts"), { recursive: true });
+    await mkdir(path.join(fixture, "chain/src/lib/rich-list"), { recursive: true });
+    await mkdir(path.join(fixture, "chain/src/data"), { recursive: true });
+    await cp(
+      path.join(repoRoot, "scripts/generate-bso-holder-history.mjs"),
+      path.join(fixture, "scripts/generate-bso-holder-history.mjs"),
+    );
+    await writeFile(
+      path.join(fixture, "chain/src/lib/rich-list/data.ts"),
+      'export const WALLET = "0x00000000000000000000000000000000000000aa";\n',
+    );
+    await writeFile(
+      path.join(fixture, "chain/src/lib/site.ts"),
+      `export const DEXSCREENER_PAIR_ADDRESS = "0x${"c".repeat(40)}";\n`,
+    );
+    await writeFile(
+      path.join(fixture, "chain/src/data/bso-price-history.json"),
+      JSON.stringify({
+        eras: [
+          { id: "gen1", chain: "avalanche", token: `0x${"0".repeat(38)}b1`, start: 1654041600 },
+          { id: "gen2", chain: "ethereum", token: `0x${"0".repeat(38)}b2`, start: 1735689600 },
+          { id: "gen3", chain: "ethereum", token: `0x${"0".repeat(38)}b3`, start: 1760000000 },
+        ],
+      }),
+    );
+    await writeFile(path.join(fixture, "offline-apis.mjs"), offlineHistoryApis);
+    const run = (gapEnv) =>
+      spawnSync(
+        process.execPath,
+        [
+          "--import",
+          path.join(fixture, "offline-apis.mjs"),
+          path.join(fixture, "scripts/generate-bso-holder-history.mjs"),
+        ],
+        { encoding: "utf8", env: { ...process.env, ...gapEnv }, timeout: 30_000 },
+      );
+
+    // A brief upstream gap fails the run...
+    assert.equal(run(env).status, 1);
+    // ...and once the explorer lists everything, the next run replays the full history.
+    const recovered = run({});
+    assert.equal(recovered.status, 0, recovered.stderr);
+    const { wallets } = JSON.parse(
+      await readFile(path.join(fixture, "chain/src/data/bso-holder-history.json"), "utf8"),
+    );
+    // The line starts with the first contract's 100 BSO.
+    assert.deepEqual(wallets["0x00000000000000000000000000000000000000aa"][0], [19144, 100]);
+  });
+}

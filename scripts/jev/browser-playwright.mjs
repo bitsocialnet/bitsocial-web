@@ -1,5 +1,6 @@
-import { execFile } from "node:child_process";
+import { execFile, spawn } from "node:child_process";
 import { promisify } from "node:util";
+import { setTimeout as delay } from "node:timers/promises";
 import { mkdtemp, readFile, writeFile, rm, chmod, access } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -7,8 +8,126 @@ import { randomBytes } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { JevError } from "./client.mjs";
 
-const exec = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+
+// pid -> parent and start time of every process still running (a zombie has already exited). The
+// start time tells a process from a later one that reuses its pid.
+async function processTable() {
+  const table = new Map();
+  let stdout;
+  try {
+    ({ stdout } = await promisify(execFile)("ps", ["-A", "-o", "pid=,ppid=,stat=,lstart="]));
+  } catch {
+    return table;
+  }
+  for (const line of stdout.split("\n")) {
+    const [, pid, parent, stat, started] =
+      line.match(/^\s*(\d+)\s+(\d+)\s+(\S+)\s+(.+?)\s*$/) ?? [];
+    if (pid && !stat.startsWith("Z")) table.set(Number(pid), { parent: Number(parent), started });
+  }
+  return table;
+}
+
+// Every process below `pids`: playwright-cli detaches its daemon, so it is outside the wrapper's
+// process group but still the client's child.
+function descendantsOf(table, pids) {
+  const children = new Map();
+  for (const [pid, { parent }] of table)
+    children.set(parent, [...(children.get(parent) ?? []), pid]);
+  const found = pids.flatMap((pid) => children.get(pid) ?? []);
+  for (let index = 0; index < found.length; index++)
+    found.push(...(children.get(found[index]) ?? []));
+  return found;
+}
+
+// pw-session.sh runs `playwright-cli open` in the foreground and passes no signal on, so a timeout
+// that killed only the wrapper left the browser launching after close() had released the slot. A
+// timeout now signals the wrapper and every process below it, the detached daemon included. The
+// command settles once the wrapper and the playwright-cli client have exited and closed the output
+// pipes. The detached daemon does not hold them, but the client waits for a daemon that is still
+// launching, so the launch has then stopped or finished and is closable. A daemon that was already
+// listening may still be shutting down when close() runs. `killAfter` ms after the SIGTERM, the
+// processes signalled then that still run, and anything started below them since, are killed,
+// even after the command has settled.
+export function runCommand(file, args, { timeout, maxBuffer, killAfter = 20_000, ...options }) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(file, args, { ...options, stdio: ["ignore", "pipe", "pipe"] });
+    const output = { stdout: "", stderr: "" };
+    let killed = false,
+      settled = false,
+      timer;
+    const killAll = (pids, name) => {
+      for (const pid of pids) {
+        try {
+          process.kill(pid, name);
+        } catch {
+          // Already exited.
+        }
+      }
+    };
+    const stop = async () => {
+      if (killed) return;
+      killed = true;
+      clearTimeout(timer);
+      const table = await processTable();
+      if (settled) return;
+      // The wrapper is signalled through `child`, which never reaches a reused pid. Every process
+      // below it is kept with its start time, so a later process that reuses its pid is left alone.
+      const signalled = new Map(
+        descendantsOf(table, [child.pid]).map((pid) => [pid, table.get(pid).started]),
+      );
+      child.kill("SIGTERM");
+      killAll(signalled.keys(), "SIGTERM");
+      const left = async () => {
+        const now = await processTable();
+        const same = [...signalled.keys()].filter(
+          (pid) => now.get(pid)?.started === signalled.get(pid),
+        );
+        const wrapperRunning = child.exitCode === null && child.signalCode === null;
+        return [...descendantsOf(now, wrapperRunning ? [child.pid, ...same] : same), ...same];
+      };
+      // A process that ignores SIGTERM must neither hold cleanup up for good nor outlive it. The
+      // detached daemon holds no output pipe, so the watch goes on after the command settles.
+      for (const deadline = Date.now() + killAfter; Date.now() < deadline; ) {
+        await delay(Math.min(250, deadline - Date.now()));
+        if (settled && (await left()).length === 0) return;
+      }
+      killAll(await left(), "SIGKILL");
+      child.kill("SIGKILL");
+      child.stdout.destroy();
+      child.stderr.destroy();
+    };
+    timer = setTimeout(stop, timeout);
+    for (const name of ["stdout", "stderr"]) {
+      child[name].setEncoding("utf8");
+      child[name].on("data", (chunk) => {
+        output[name] += chunk;
+        if (output[name].length > maxBuffer) stop();
+      });
+    }
+    child.on("error", (error) => {
+      settled = true;
+      clearTimeout(timer);
+      reject(error);
+    });
+    // "close" waits for every process still holding the output pipes, the wrapper's
+    // playwright-cli client included.
+    child.on("close", (code, signal) => {
+      settled = true;
+      clearTimeout(timer);
+      if (code === 0 && !killed) resolve(output);
+      else
+        reject(
+          Object.assign(new Error(`${path.basename(file)} exited with ${signal ?? code}`), {
+            ...output,
+            code,
+            signal,
+            killed,
+          }),
+        );
+    });
+  });
+}
 const locatorCode = `function locate(target) {
   let parent = page;
   if (target.within) parent = page.getByRole(target.within.role, {name: target.within.name, exact: true});
@@ -68,7 +187,7 @@ export async function findPlaywrightCli() {
   return "playwright-cli";
 }
 
-export function createPlaywrightDriver({ execute = exec } = {}) {
+export function createPlaywrightDriver({ execute = runCommand } = {}) {
   const session = `jev-${process.pid}-${randomBytes(4).toString("hex")}`;
   let directory,
     cli,

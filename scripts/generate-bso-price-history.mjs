@@ -208,7 +208,9 @@ async function fetchLogs(chain, params, label) {
   return [...logs.values()].sort((a, b) => a.block - b.block || a.logIndex - b.logIndex);
 }
 
-function fetchPoolLogs(era, pool) {
+// Every listed pool traded, so an empty listing is an explorer gap. Failing here keeps it out of
+// the cache, where it would fail every later run.
+async function fetchPoolLogs(era, pool) {
   const params =
     pool.kind === "v4"
       ? {
@@ -218,10 +220,17 @@ function fetchPoolLogs(era, pool) {
           topic0_1_opr: "and",
         }
       : { address: pool.address, topic0: pool.kind === "v3" ? SWAP_V3 : SWAP_V2 };
-  return fetchLogs(era.chain, params, `${era.id} ${pool.dex} swaps`);
+  const label = `${era.id} ${pool.dex} swaps`;
+  const logs = await fetchLogs(era.chain, params, label);
+  if (logs.length === 0) {
+    throw new Error(`getLogs for ${label} listed no swaps; rerun once the explorer has them`);
+  }
+  return logs;
 }
 
-// Mints are transfers from the zero address and burns are transfers to it.
+// Mints are transfers from the zero address and burns are transfers to it. Only the eras whose
+// supply is rebuilt from these get here, and each of them minted, so an empty mint listing is an
+// explorer gap; cached, it would draw zero supply for the era on every later run. Burns may be none.
 async function fetchSupplyChanges(era) {
   const transfer = { address: era.token, topic0: TRANSFER };
   const mints = await fetchLogs(
@@ -229,6 +238,9 @@ async function fetchSupplyChanges(era) {
     { ...transfer, topic1: ZERO_TOPIC, topic0_1_opr: "and" },
     `${era.id} mints`,
   );
+  if (mints.length === 0) {
+    throw new Error(`getLogs for ${era.id} mints listed none; rerun once the explorer has them`);
+  }
   const burns = await fetchLogs(
     era.chain,
     { ...transfer, topic2: ZERO_TOPIC, topic0_2_opr: "and" },
@@ -317,6 +329,10 @@ async function fetchHourlyRates(product, fromTime, toTime) {
         end: new Date(windowEnd * 1000).toISOString(),
       });
       const result = await getJson(`${COINBASE_API}/products/${product}/candles?${query}`);
+      // A settled window always has candles; an empty one would be cached for good.
+      if (!Array.isArray(result) || (settled && result.length === 0)) {
+        throw new Error(`${product} returned no candles for ${query.get("start")}`);
+      }
       await sleep(250);
       return result;
     });
