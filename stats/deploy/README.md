@@ -18,7 +18,7 @@ This deployment layout assumes the repo is synced to `/srv/bitsocial-web/current
 
 Every push to `master` runs [`.github/workflows/deploy-stats.yml`](../../.github/workflows/deploy-stats.yml). The workflow uses the protected `stats-production` environment and a forced-command SSH key that can only request deployment of an exact commit SHA.
 
-The server-side receiver is installed at `/usr/local/sbin/bitsocial-stats-deploy` from [`deploy-from-github.sh`](./deploy-from-github.sh). It downloads the matching public GitHub archive, synchronizes it to `/srv/bitsocial-web/current`, preserves `stats/deploy/.env`, writes the synced SHA to `/srv/bitsocial-web/current/.deploy-revision`, rebuilds the Docker Compose stack (the `web` service runs from the monitor image, which also builds the dashboard), refreshes the shared Grafana dashboards, runs health checks against the monitor, Grafana and the dashboard, installs the host Caddyfile when it changed (see [Activating Caddy](#activating-caddy)), and writes the SHA to `/srv/bitsocial-web/current/.deploy-verified-revision` once all of that passed. There is no automatic rollback: after a failed deploy `/srv/bitsocial-web/current` holds the revision in `.deploy-revision` (the containers run it too if the deploy got past `docker compose up`), and `.deploy-verified-revision` still names the last one that passed its checks.
+The server-side receiver is installed at `/usr/local/sbin/bitsocial-stats-deploy` from [`deploy-from-github.sh`](./deploy-from-github.sh). It downloads the matching public GitHub archive, synchronizes it to `/srv/bitsocial-web/current`, preserves `stats/deploy/.env`, writes the synced SHA to `/srv/bitsocial-web/current/.deploy-revision`, rebuilds the Docker Compose stack (the `web` service runs from the monitor image, which also builds the dashboard), refreshes the shared Grafana dashboards, runs health checks against the monitor, Grafana and the dashboard, installs the host Caddyfile when it changed (see [Activating Caddy](#activating-caddy)), and writes the SHA to `/srv/bitsocial-web/current/.deploy-verified-revision` once all of that passed. There is no automatic rollback: after a failed deploy `/srv/bitsocial-web/current` holds the revision in `.deploy-revision` (the containers run it too if the deploy got past `docker compose up`), and `.deploy-verified-revision` still names the last one that passed its checks. An empty `.deploy-verified-revision` means no deploy has passed yet.
 
 Required `stats-production` environment configuration:
 
@@ -48,6 +48,7 @@ rsync -az --delete \
   --exclude '.playwright-cli' \
   --exclude '.firecrawl' \
   --exclude 'stats/monitor/scripts' \
+  --exclude '.deploy-verified-revision' \
   ./ root@HOST:/srv/bitsocial-web/current/
 ```
 
