@@ -36,7 +36,7 @@ Forge가 만들 수 있지만, 상당수는 독립 개발자가 만들어야 합
 합니다.
 
 - [WeTube](https://github.com/bitsocialnet/wetube): 모든 채널이 크리에이터가 소유한 커뮤니티인 YouTube 대안.
-- [탈중앙화 GitHub](https://github.com/bitsocialnet/decentralized-github): Bitsocial 위에 구축하는 GitHub 대안을
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): Bitsocial 위에 구축하는 GitHub 대안을
   위한 연구와 아키텍처.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): 누구도 소유하지 않는 백과사전으로, 편집 그룹들이 서로 경쟁하는
   버전을 발행하고 독자가 선택합니다.

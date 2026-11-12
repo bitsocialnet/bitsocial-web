@@ -33,7 +33,7 @@ description: เฟส 5 ของแผนแม่บท ว่าด้วย
 
 - [WeTube](https://github.com/bitsocialnet/wetube): ทางเลือกแทน YouTube
   ที่ทุกช่องเป็นคอมมูนิตี้ที่ครีเอเตอร์เป็นเจ้าของ
-- [GitHub แบบกระจายศูนย์](https://github.com/bitsocialnet/decentralized-github):
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons):
   งานวิจัยและสถาปัตยกรรมสำหรับทางเลือกแทน GitHub ที่สร้างบน Bitsocial
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): สารานุกรมที่ไม่มีใครเป็นเจ้าของ
   ซึ่งกลุ่มบรรณาธิการเผยแพร่เวอร์ชันที่แข่งขันกัน และผู้อ่านเป็นผู้เลือก

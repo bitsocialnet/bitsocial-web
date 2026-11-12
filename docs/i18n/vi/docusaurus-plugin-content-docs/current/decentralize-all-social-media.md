@@ -33,7 +33,7 @@ hợp thiết kế và các câu hỏi còn bỏ ngỏ để nhà phát triển 
 
 - [WeTube](https://github.com/bitsocialnet/wetube): một giải pháp thay thế YouTube, nơi mỗi kênh là
   một cộng đồng thuộc sở hữu của người tạo ra nó.
-- [GitHub phi tập trung](https://github.com/bitsocialnet/decentralized-github): nghiên cứu và kiến
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): nghiên cứu và kiến
   trúc cho một giải pháp thay thế GitHub xây dựng trên Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): một bách khoa toàn thư không thuộc về
   ai, nơi các nhóm biên tập xuất bản những phiên bản cạnh tranh nhau và người đọc tự chọn.

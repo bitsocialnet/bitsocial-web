@@ -41,7 +41,7 @@ puedan retomarlo.
 
 - [WeTube](https://github.com/bitsocialnet/wetube): una alternativa a YouTube donde cada canal es
   una comunidad propiedad de su creador.
-- [GitHub descentralizado](https://github.com/bitsocialnet/decentralized-github): investigación y
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): investigación y
   arquitectura para una alternativa a GitHub construida sobre Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): una enciclopedia que no pertenece a
   nadie, donde grupos editoriales publican versiones que compiten entre sí y los lectores eligen.

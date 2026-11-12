@@ -39,7 +39,7 @@ RPC, Bitsocial Chain, प्रोफाइल नोड, तिसऱ्या 
 
 - [WeTube](https://github.com/bitsocialnet/wetube): YouTube चा एक पर्याय, ज्यात प्रत्येक चॅनेल हा
   त्याच्या निर्मात्याच्या मालकीचा समुदाय असतो.
-- [विकेंद्रित GitHub](https://github.com/bitsocialnet/decentralized-github): Bitsocial वर बांधलेल्या
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): Bitsocial वर बांधलेल्या
   GitHub च्या पर्यायासाठी संशोधन आणि आर्किटेक्चर.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): ज्याचा कोणीही मालक नाही असा ज्ञानकोश,
   जिथे संपादकीय गट स्पर्धक आवृत्त्या प्रकाशित करतात आणि वाचक निवड करतात.

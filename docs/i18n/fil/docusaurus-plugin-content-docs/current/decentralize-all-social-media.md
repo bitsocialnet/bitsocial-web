@@ -40,7 +40,7 @@ tagapondo.
 
 - [WeTube](https://github.com/bitsocialnet/wetube): alternatibo sa YouTube kung saan bawat channel
   ay isang komunidad na pag-aari ng gumawa nito.
-- [Desentralisadong GitHub](https://github.com/bitsocialnet/decentralized-github): pananaliksik at
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): pananaliksik at
   arkitektura para sa isang alternatibo sa GitHub na binuo sa Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): isang ensiklopedya na walang
   nagmamay-ari, kung saan naglalathala ang mga grupong editoryal ng magkakakumpitensyang bersyon at

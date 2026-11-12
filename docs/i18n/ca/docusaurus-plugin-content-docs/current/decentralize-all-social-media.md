@@ -40,7 +40,7 @@ agafar.
 
 - [WeTube](https://github.com/bitsocialnet/wetube): una alternativa a YouTube on cada canal és una
   comunitat que pertany al seu creador.
-- [GitHub descentralitzat](https://github.com/bitsocialnet/decentralized-github): recerca i
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): recerca i
   arquitectura per a una alternativa a GitHub construïda sobre Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): una enciclopèdia que no és de ningú,
   on grups editorials publiquen versions que competeixen entre si i els lectors trien.

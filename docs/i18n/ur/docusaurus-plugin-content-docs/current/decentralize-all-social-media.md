@@ -38,7 +38,7 @@ description: ماسٹر پلان کا پانچواں مرحلہ، جس کا مر
 
 - [WeTube](https://github.com/bitsocialnet/wetube): YouTube کا ایک متبادل جس میں ہر چینل ایک کمیونٹی
   ہے جس کا مالک اس کا تخلیق کار ہے۔
-- [غیر مرکزی GitHub](https://github.com/bitsocialnet/decentralized-github): Bitsocial پر بنے GitHub
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): Bitsocial پر بنے GitHub
   کے متبادل کے لیے تحقیق اور آرکیٹیکچر۔
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): ایک انسائیکلوپیڈیا جس کا کوئی مالک
   نہیں، جہاں ادارتی گروپ مسابقتی ورژن شائع کرتے ہیں اور قارئین انتخاب کرتے ہیں۔

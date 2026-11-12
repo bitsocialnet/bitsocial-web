@@ -39,7 +39,7 @@ verzamelt het ontwerp en de open vragen, zodat bouwers en financiers het kunnen 
 
 - [WeTube](https://github.com/bitsocialnet/wetube): een YouTube-alternatief waarin elk kanaal een
   community is die eigendom is van de maker.
-- [Gedecentraliseerde GitHub](https://github.com/bitsocialnet/decentralized-github): onderzoek en
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): onderzoek en
   architectuur voor een GitHub-alternatief gebouwd op Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): een encyclopedie die van niemand is,
   waarin redactiegroepen concurrerende versies publiceren en lezers kiezen.

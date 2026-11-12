@@ -38,7 +38,7 @@ Chain, प्रोफ़ाइल नोड, चरण 3 का Twitter/X व�
 
 - [WeTube](https://github.com/bitsocialnet/wetube): YouTube का एक विकल्प, जिसमें हर चैनल एक
   कम्युनिटी है जिसका मालिक उसका क्रिएटर है।
-- [विकेंद्रीकृत GitHub](https://github.com/bitsocialnet/decentralized-github): Bitsocial पर बने
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): Bitsocial पर बने
   GitHub के एक विकल्प के लिए शोध और आर्किटेक्चर।
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): एक विश्वकोश जिसका कोई मालिक नहीं, जहाँ
   संपादकीय समूह प्रतिस्पर्धी संस्करण प्रकाशित करते हैं और पाठक चुनते हैं।

@@ -37,7 +37,7 @@ samlar designen och de öppna frågorna så att byggare och finansiärer kan ta 
 
 - [WeTube](https://github.com/bitsocialnet/wetube): ett YouTube-alternativ där varje kanal är en
   gemenskap som ägs av sin skapare.
-- [Decentraliserad GitHub](https://github.com/bitsocialnet/decentralized-github): research och
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): research och
   arkitektur för ett GitHub-alternativ byggt på Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): ett uppslagsverk som ingen äger, där
   redaktionella grupper publicerar konkurrerande versioner och läsarna väljer.

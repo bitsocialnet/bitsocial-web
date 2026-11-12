@@ -37,7 +37,7 @@ Bitsocial Chain, צמתי פרופיל, החלופה ל-Twitter/X משלב 3, ו
 
 - [WeTube](https://github.com/bitsocialnet/wetube): חלופה ל-YouTube שבה כל ערוץ הוא קהילה בבעלות
   היוצר שלו.
-- [GitHub מבוזר](https://github.com/bitsocialnet/decentralized-github): מחקר וארכיטקטורה לחלופה
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): מחקר וארכיטקטורה לחלופה
   ל-GitHub שבנויה על Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): אנציקלופדיה שאיש אינו הבעלים שלה, שבה
   קבוצות עריכה מפרסמות גרסאות מתחרות והקוראים בוחרים.

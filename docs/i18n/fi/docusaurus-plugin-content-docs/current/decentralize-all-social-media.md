@@ -39,7 +39,7 @@ niihin.
 
 - [WeTube](https://github.com/bitsocialnet/wetube): YouTube-vaihtoehto, jossa jokainen kanava on
   tekijänsä omistama yhteisö.
-- [Hajautettu GitHub](https://github.com/bitsocialnet/decentralized-github): tutkimus ja
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): tutkimus ja
   arkkitehtuuri Bitsocialin päälle rakennetulle GitHub-vaihtoehdolle.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): tietosanakirja, jota kukaan ei omista
   ja jossa toimitusryhmät julkaisevat kilpailevia versioita ja lukijat valitsevat.

@@ -38,7 +38,7 @@ Każde zbiera projekt i otwarte pytania, aby twórcy i fundatorzy mogli je podj�
 
 - [WeTube](https://github.com/bitsocialnet/wetube): alternatywa dla YouTube'a, w której każdy kanał
   jest społecznością należącą do jego twórcy.
-- [Zdecentralizowany GitHub](https://github.com/bitsocialnet/decentralized-github): badania i
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): badania i
   architektura alternatywy dla GitHuba zbudowanej na Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): encyklopedia, której nikt nie posiada,
   w której zespoły redakcyjne publikują konkurencyjne wersje, a czytelnicy wybierają.

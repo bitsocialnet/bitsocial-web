@@ -37,7 +37,7 @@ shromažďuje návrh a otevřené otázky, aby se jich mohli ujmout vývojáři 
 
 - [WeTube](https://github.com/bitsocialnet/wetube): alternativa k YouTube, kde je každý kanál
   komunitou, kterou vlastní její tvůrce.
-- [Decentralizovaný GitHub](https://github.com/bitsocialnet/decentralized-github): výzkum a
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): výzkum a
   architektura alternativy ke GitHubu postavené na Bitsocialu.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): encyklopedie, kterou nikdo nevlastní,
   kde redakční skupiny zveřejňují konkurenční verze a čtenáři si vybírají.

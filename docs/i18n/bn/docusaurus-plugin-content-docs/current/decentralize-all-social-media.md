@@ -38,7 +38,7 @@ Forge, আর অনেকগুলোই বানানো উচিত স্
 
 - [WeTube](https://github.com/bitsocialnet/wetube): YouTube-এর একটি বিকল্প, যেখানে প্রতিটি চ্যানেল
   তার নির্মাতার মালিকানাধীন একটি কমিউনিটি।
-- [বিকেন্দ্রীভূত GitHub](https://github.com/bitsocialnet/decentralized-github): Bitsocial-এর উপর
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): Bitsocial-এর উপর
   তৈরি GitHub-এর একটি বিকল্পের জন্য গবেষণা ও আর্কিটেকচার।
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): এমন একটি বিশ্বকোষ যার মালিক কেউ নয়,
   যেখানে সম্পাদকীয় দলগুলো প্রতিযোগী সংস্করণ প্রকাশ করে এবং পাঠকেরা বেছে নেন।

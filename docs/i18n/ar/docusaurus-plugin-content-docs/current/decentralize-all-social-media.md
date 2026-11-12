@@ -37,7 +37,7 @@ Bitsocial Forge، والكثير منها ينبغي أن يبنيه مطوّر�
 
 - [WeTube](https://github.com/bitsocialnet/wetube): بديل لـ YouTube تكون فيه كل قناة مجتمعًا يملكه
   صانعه.
-- [GitHub لامركزي](https://github.com/bitsocialnet/decentralized-github): أبحاث وبنية لبديل عن
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): أبحاث وبنية لبديل عن
   GitHub مبني على Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): موسوعة لا يملكها أحد، تنشر فيها
   مجموعات تحريرية نسخًا متنافسة ويختار القرّاء بينها.

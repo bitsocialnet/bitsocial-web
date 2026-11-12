@@ -38,7 +38,7 @@ Bitsocial Chain, узлы профилей, альтернатива Twitter/X �
 
 - [WeTube](https://github.com/bitsocialnet/wetube): альтернатива YouTube, в которой каждый канал —
   это сообщество, принадлежащее его автору.
-- [Децентрализованный GitHub](https://github.com/bitsocialnet/decentralized-github): исследования и
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): исследования и
   архитектура альтернативы GitHub на базе Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): энциклопедия, которая никому не
   принадлежит: редакционные группы публикуют конкурирующие версии, а читатели выбирают.

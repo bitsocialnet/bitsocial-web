@@ -37,7 +37,7 @@ Bitsocial Forge بسازد، و بسیاری را باید توسعه‌دهند
 
 - [WeTube](https://github.com/bitsocialnet/wetube): جایگزینی برای YouTube که در آن هر کانال جامعه‌ای
   است که به سازنده‌اش تعلق دارد.
-- [GitHub غیرمتمرکز](https://github.com/bitsocialnet/decentralized-github): پژوهش و معماری برای
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): پژوهش و معماری برای
   جایگزینی برای GitHub که بر پایهٔ Bitsocial ساخته می‌شود.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): دانشنامه‌ای که مالکی ندارد و در آن
   گروه‌های ویراستاری نسخه‌های رقیب منتشر می‌کنند و خوانندگان انتخاب می‌کنند.

@@ -41,7 +41,7 @@ description: Η Φάση 5 του γενικού σχεδίου, με επίκε
 
 - [WeTube](https://github.com/bitsocialnet/wetube): μια εναλλακτική του YouTube όπου κάθε κανάλι
   είναι μια κοινότητα που ανήκει στον δημιουργό του.
-- [Αποκεντρωμένο GitHub](https://github.com/bitsocialnet/decentralized-github): έρευνα και
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): έρευνα και
   αρχιτεκτονική για μια εναλλακτική του GitHub χτισμένη πάνω στο Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): μια εγκυκλοπαίδεια που δεν ανήκει σε
   κανέναν, όπου συντακτικές ομάδες δημοσιεύουν ανταγωνιστικές εκδοχές και οι αναγνώστες επιλέγουν.

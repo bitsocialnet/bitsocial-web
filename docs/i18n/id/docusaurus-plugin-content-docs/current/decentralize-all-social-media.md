@@ -38,7 +38,7 @@ melanjutkannya.
 
 - [WeTube](https://github.com/bitsocialnet/wetube): alternatif YouTube tempat setiap kanal adalah
   komunitas yang dimiliki oleh kreatornya.
-- [GitHub terdesentralisasi](https://github.com/bitsocialnet/decentralized-github): riset dan
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): riset dan
   arsitektur untuk alternatif GitHub yang dibangun di atas Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): ensiklopedia yang tidak dimiliki siapa
   pun, tempat kelompok editorial menerbitkan versi yang saling bersaing dan pembaca yang memilih.

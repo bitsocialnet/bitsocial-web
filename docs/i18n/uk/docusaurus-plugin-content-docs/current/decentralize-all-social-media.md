@@ -38,7 +38,7 @@ RPC, Bitsocial Chain, вузли профілів, альтернатива Twit
 
 - [WeTube](https://github.com/bitsocialnet/wetube): альтернатива YouTube, у якій кожен канал — це
   спільнота, що належить автору каналу.
-- [Децентралізований GitHub](https://github.com/bitsocialnet/decentralized-github): дослідження та
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): дослідження та
   архітектура альтернативи GitHub на базі Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): енциклопедія, яка нікому не належить:
   редакційні групи публікують конкурентні версії, а читачі обирають.

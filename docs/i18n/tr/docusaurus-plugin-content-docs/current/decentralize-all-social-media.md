@@ -39,7 +39,7 @@ sağlayıcılar onu devralabilir.
 
 - [WeTube](https://github.com/bitsocialnet/wetube): her kanalın kendi yaratıcısına ait bir topluluk
   olduğu bir YouTube alternatifi.
-- [Merkeziyetsiz GitHub](https://github.com/bitsocialnet/decentralized-github): Bitsocial üzerine
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): Bitsocial üzerine
   kurulu bir GitHub alternatifi için araştırma ve mimari.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): kimsenin sahibi olmadığı, editoryal
   grupların birbiriyle yarışan sürümler yayımladığı ve okurların seçtiği bir ansiklopedi.

@@ -38,7 +38,7 @@ Néhány ötletnek már van ötletszakaszban lévő repója. Egyikben sincs még
 
 - [WeTube](https://github.com/bitsocialnet/wetube): YouTube-alternatíva, amelyben minden csatorna a
   készítője tulajdonában lévő közösség.
-- [Decentralizált GitHub](https://github.com/bitsocialnet/decentralized-github): kutatás és
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): kutatás és
   architektúra egy Bitsocialra épülő GitHub-alternatívához.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): senki tulajdonában nem lévő
   enciklopédia, amelyben szerkesztői csoportok egymással versengő változatokat tesznek közzé, és az

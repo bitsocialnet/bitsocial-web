@@ -34,7 +34,7 @@ description: Bitsocial సామాజిక క్లయింట్‌ల ల�
 
 - [WeTube](https://github.com/bitsocialnet/wetube): ప్రతి ఛానెల్ దాని సృష్టికర్తకు చెందిన
   కమ్యూనిటీగా ఉండే YouTube ప్రత్యామ్నాయం.
-- [వికేంద్రీకృత GitHub](https://github.com/bitsocialnet/decentralized-github): Bitsocial పై
+- [Gitcommons](https://github.com/bitsocialnet/gitcommons): Bitsocial పై
   నిర్మించే GitHub ప్రత్యామ్నాయం కోసం పరిశోధన మరియు ఆర్కిటెక్చర్.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): ఎవరికీ చెందని విజ్ఞాన సర్వస్వం, ఇందులో
   సంపాదకీయ బృందాలు పోటీ పడే వెర్షన్‌లను ప్రచురిస్తాయి, పాఠకులు ఎంచుకుంటారు.
