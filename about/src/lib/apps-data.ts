@@ -1,6 +1,6 @@
 import type { TFunction } from "i18next";
 
-export type AppCategorySlug = "apps" | "identity" | "anti-spam" | "tools";
+export type AppCategorySlug = "apps" | "identity" | "anti-spam" | "tools" | "concepts";
 
 export type AppPlatformSlug = "web" | "android" | "ios" | "desktop";
 
@@ -27,6 +27,7 @@ export interface AppReleaseIntegrityProbe {
 
 export type AppIconKey =
   | "bell"
+  | "book-open"
   | "bot"
   | "filter"
   | "image"
@@ -36,12 +37,14 @@ export type AppIconKey =
   | "shield"
   | "ticket"
   | "blocks"
+  | "git-branch"
   | "terminal"
   | "clipboard"
   | "flag"
   | "link-2"
   | "share-2"
-  | "sparkles";
+  | "sparkles"
+  | "trending-up";
 
 export type DesktopVariant =
   | "windows"
@@ -55,7 +58,7 @@ export interface CategoryData {
   slug: AppCategorySlug;
   label: string;
   description: string;
-  icon: "layout-grid" | "badge-check" | "shield" | "wrench";
+  icon: "layout-grid" | "badge-check" | "shield" | "wrench" | "lightbulb";
 }
 
 interface BaseAppLink {
@@ -95,7 +98,8 @@ export interface AppData {
   links: AppLink[];
   relatedSlugs: string[];
   featured?: boolean;
-  status?: "ready" | "experimental";
+  /** "idea" marks Concepts entries: designed but not usable yet. */
+  status?: "ready" | "experimental" | "idea";
   searchTerms?: string[];
 }
 
@@ -128,6 +132,12 @@ export const CATEGORIES: CategoryData[] = [
     label: "Tools",
     description: "CLI and admin utilities for running or extending Bitsocial apps.",
     icon: "wrench",
+  },
+  {
+    slug: "concepts",
+    label: "Concepts",
+    description: "Idea-stage Bitsocial apps in research and design, not ready to use yet.",
+    icon: "lightbulb",
   },
 ];
 
@@ -192,6 +202,10 @@ const CATEGORY_TRANSLATION_KEYS: Record<AppCategorySlug, { label: string; descri
     label: "apps.catalog.categories.tools.label",
     description: "apps.catalog.categories.tools.description",
   },
+  concepts: {
+    label: "apps.catalog.categories.concepts.label",
+    description: "apps.catalog.categories.concepts.description",
+  },
 };
 
 const PLATFORM_TRANSLATION_KEYS: Record<
@@ -229,8 +243,10 @@ const APP_TAG_TRANSLATION_KEYS: Record<string, string> = {
   Bots: "apps.catalog.tags.bots",
   CLI: "apps.catalog.tags.cli",
   Captcha: "apps.catalog.tags.captcha",
+  "Code hosting": "apps.catalog.tags.codeHosting",
   Contracts: "apps.catalog.tags.contracts",
   Downloadable: "apps.catalog.tags.downloadable",
+  Encyclopedia: "apps.catalog.tags.encyclopedia",
   Feeds: "apps.catalog.tags.feeds",
   Forums: "apps.catalog.tags.forums",
   "Human checks": "apps.catalog.tags.humanChecks",
@@ -246,7 +262,9 @@ const APP_TAG_TRANSLATION_KEYS: Record<string, string> = {
   "Risk scores": "apps.catalog.tags.riskScores",
   Search: "apps.catalog.tags.search",
   Telegram: "apps.catalog.tags.telegram",
+  Trading: "apps.catalog.tags.trading",
   Verification: "apps.catalog.tags.verification",
+  Video: "apps.catalog.tags.video",
 };
 
 const APP_LINK_LABEL_TRANSLATION_KEYS: Record<string, string> = {
@@ -351,6 +369,26 @@ const APP_COPY_TRANSLATION_KEYS: Record<string, { tagline: string; description: 
   askwise: {
     tagline: "apps.catalog.items.askwise.tagline",
     description: "apps.catalog.items.askwise.description",
+  },
+  wetube: {
+    tagline: "apps.catalog.items.wetube.tagline",
+    description: "apps.catalog.items.wetube.description",
+  },
+  infinipedia: {
+    tagline: "apps.catalog.items.infinipedia.tagline",
+    description: "apps.catalog.items.infinipedia.description",
+  },
+  hopium: {
+    tagline: "apps.catalog.items.hopium.tagline",
+    description: "apps.catalog.items.hopium.description",
+  },
+  "decentralized-github": {
+    tagline: "apps.catalog.items.decentralized-github.tagline",
+    description: "apps.catalog.items.decentralized-github.description",
+  },
+  huggingsocial: {
+    tagline: "apps.catalog.items.huggingsocial.tagline",
+    description: "apps.catalog.items.huggingsocial.description",
   },
 };
 
@@ -1080,6 +1118,96 @@ export const APPS: AppData[] = [
     ],
     relatedSlugs: ["5chan", "bitsocial-cli", "challenge-composer"],
     searchTerms: ["boards", "moderation", "admin"],
+  },
+  {
+    slug: "wetube",
+    name: "WeTube",
+    tagline:
+      "Idea-stage YouTube alternative where each channel is a Bitsocial community its creator owns.",
+    description:
+      "WeTube is a YouTube alternative in which every channel is a Bitsocial community controlled by its creator's key, every video lists redundant embed sources so no single host can take it down, and channels are curated through community lists ranked by votes. A read-only web preview browses channels and plays videos peer-to-peer; uploads, view counts and monetization are not built. The full app belongs to Phase 5 of the Bitsocial master plan.",
+    categories: ["concepts"],
+    tags: ["Video"],
+    icon: "image",
+    logoSrc: "/assets/apps/wetube.svg",
+    githubRepo: "bitsocialnet/wetube",
+    links: [],
+    relatedSlugs: ["seedit", "infinipedia", "huggingsocial"],
+    status: "idea",
+    searchTerms: ["youtube", "video", "channels", "creators", "streaming"],
+  },
+  {
+    slug: "infinipedia",
+    name: "Infinipedia",
+    tagline:
+      "Idea-stage encyclopedia where competing editorial groups publish their own versions of each article.",
+    description:
+      "Infinipedia is an encyclopedia that nobody owns. Editorial groups, human or AI-assisted, each publish their own versions of articles on top of a Wikipedia baseline, every revision is signed by its author, and readers choose whose versions they trust and can compare any two side by side. Nothing is built yet; the repository collects the design.",
+    categories: ["concepts"],
+    tags: ["Encyclopedia"],
+    icon: "book-open",
+    githubRepo: "bitsocialnet/infinipedia",
+    links: [],
+    relatedSlugs: ["seedit", "wetube", "decentralized-github"],
+    status: "idea",
+    searchTerms: ["wikipedia", "grokipedia", "encyclopedia", "wiki", "articles"],
+  },
+  {
+    slug: "hopium",
+    name: "Hopium",
+    tagline:
+      "Idea-stage social trading app where every call is checked against the trader's on-chain trades.",
+    description:
+      "Hopium is a social trading app in which traders post calls from their own Bitsocial profile and link their wallets, and every reader's client checks each call against the trader's on-chain trades, so no company can hide calls or edit track records. Each token also gets a holder room that only its holders can post in and moderate, and trades go through the reader's own wallet. Nothing is built yet; the repository collects the design.",
+    categories: ["concepts"],
+    tags: ["Trading", "On-chain"],
+    icon: "trending-up",
+    githubRepo: "bitsocialnet/hopium",
+    links: [],
+    relatedSlugs: ["5chan", "wetube", "infinipedia"],
+    status: "idea",
+    searchTerms: ["fomo", "trading", "calls", "memecoins", "solana", "wallets", "receipts"],
+  },
+  {
+    slug: "decentralized-github",
+    name: "Decentralized GitHub",
+    tagline:
+      "Idea-stage code collaboration platform that pairs peer-to-peer Git with Bitsocial's social layer.",
+    description:
+      "Decentralized GitHub is research into a GitHub alternative that combines a Radicle-style peer-to-peer Git layer with Bitsocial profiles, communities, discovery and reputation. Each repository's discussions would be a Bitsocial community, developer profiles would be profile nodes most people reach through public RPCs, and CI would come from competing runner services instead of one mandatory provider. The name is a working title; the project is not affiliated with GitHub, Inc.",
+    categories: ["concepts"],
+    tags: ["Code hosting"],
+    icon: "git-branch",
+    githubRepo: "bitsocialnet/decentralized-github",
+    links: [],
+    relatedSlugs: ["bitsocial-cli", "huggingsocial", "infinipedia"],
+    status: "idea",
+    searchTerms: ["github", "git", "radicle", "code", "pull requests", "issues", "ci"],
+  },
+  {
+    slug: "huggingsocial",
+    name: "HuggingSocial",
+    tagline: "Idea-stage peer-to-peer hub for finding, discussing, and downloading open AI models.",
+    description:
+      "HuggingSocial is a model hub that no company owns. Hubs are Bitsocial communities controlled by cryptographic keys, each model listing is a signed post with a model card, checksums, and download sources, and the weights move over BitTorrent or plain HTTP mirrors and are verified on your machine. No client is built yet; the website takes waitlist sign-ups.",
+    categories: ["concepts"],
+    tags: ["AI", "Forums"],
+    icon: "message-square",
+    logoSrc: "/assets/apps/huggingsocial.svg",
+    githubRepo: "Rinse12/huggingsocial",
+    links: [{ label: "Open website", url: "https://huggingsocial.co", kind: "launch" }],
+    relatedSlugs: ["seedit", "5chan", "decentralized-github"],
+    status: "idea",
+    searchTerms: [
+      "ai models",
+      "hugging face",
+      "model hub",
+      "torrent",
+      "bittorrent",
+      "weights",
+      "datasets",
+      "llm",
+    ],
   },
 ];
 

@@ -67,6 +67,11 @@ Two interpretation notes matter:
 - [Bitsocial GitHub Alerts](https://bitsocial.net/projects/bitsocial-github-alerts): Telegram bot that posts compact GitHub activity for Bitsocial repositories.
 - [AskWise](https://bitsocial.net/projects/askwise): AI reply bot that communities opt into and summon with @askwise.
 - [5chan Board Manager](https://bitsocial.net/projects/5chan-board-manager): Board administration tooling for custom 5chan communities.
+- [WeTube](https://bitsocial.net/projects/wetube): Idea-stage YouTube alternative where each channel is a Bitsocial community its creator owns.
+- [Infinipedia](https://bitsocial.net/projects/infinipedia): Idea-stage encyclopedia where competing editorial groups publish their own versions of each article.
+- [Hopium](https://bitsocial.net/projects/hopium): Idea-stage social trading app where every call is checked against the trader's on-chain trades.
+- [Decentralized GitHub](https://bitsocial.net/projects/decentralized-github): Idea-stage code collaboration platform that pairs peer-to-peer Git with Bitsocial's social layer.
+- [HuggingSocial](https://bitsocial.net/projects/huggingsocial): Idea-stage peer-to-peer hub for finding, discussing, and downloading open AI models.
 
 ## Landing page corpus
 
@@ -7983,7 +7988,7 @@ EXAMPLES
   $ bitsocial challenge install ./my-local-challenge
 ```
 
-_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/challenge/install.ts)_
+_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/challenge/install.ts)_
 
 ## `bitsocial challenge list`
 
@@ -8009,7 +8014,7 @@ EXAMPLES
   $ bitsocial challenge list -q
 ```
 
-_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/challenge/list.ts)_
+_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/challenge/list.ts)_
 
 ## `bitsocial challenge ls`
 
@@ -8069,7 +8074,7 @@ EXAMPLES
   $ bitsocial challenge remove my-challenge --force
 ```
 
-_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/challenge/remove.ts)_
+_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/challenge/remove.ts)_
 
 ## `bitsocial challenge rm NAME`
 
@@ -8201,7 +8206,7 @@ EXAMPLES
     $ bitsocial community create --jsonFile ./create-options.json
 ```
 
-_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/community/create.ts)_
+_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/community/create.ts)_
 
 ## `bitsocial community delete ADDRESSES`
 
@@ -8226,7 +8231,7 @@ EXAMPLES
   $ bitsocial community delete 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/community/delete.ts)_
+_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/community/delete.ts)_
 
 ## `bitsocial community edit ADDRESS`
 
@@ -8303,7 +8308,7 @@ EXAMPLES
     $ bitsocial community edit bitsocial.bso --jsonFile ./edit-options.json
 ```
 
-_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/community/edit.ts)_
+_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/community/edit.ts)_
 
 ## `bitsocial community export [ADDRESS]`
 
@@ -8344,7 +8349,7 @@ EXAMPLES
   $ bitsocial community export --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/community/export.ts)_
+_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/community/export.ts)_
 
 ## `bitsocial community get [ADDRESS]`
 
@@ -8375,7 +8380,7 @@ EXAMPLES
   $ bitsocial community get --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/community/get.ts)_
+_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/community/get.ts)_
 
 ## `bitsocial community list`
 
@@ -8398,7 +8403,7 @@ EXAMPLES
   $ bitsocial community list
 ```
 
-_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/community/list.ts)_
+_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/community/list.ts)_
 
 ## `bitsocial community start ADDRESSES`
 
@@ -8432,7 +8437,7 @@ EXAMPLES
     $ bitsocial community start $(bitsocial community list -q) --concurrency 1
 ```
 
-_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/community/start.ts)_
+_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/community/start.ts)_
 
 ## `bitsocial community stop ADDRESSES`
 
@@ -8457,7 +8462,7 @@ EXAMPLES
   $ bitsocial community stop Qmb99crTbSUfKXamXwZBe829Vf6w5w5TktPkb6WstC9RFW
 ```
 
-_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/community/stop.ts)_
+_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/community/stop.ts)_
 
 ## `bitsocial daemon`
 
@@ -8507,7 +8512,7 @@ EXAMPLES
   $ bitsocial daemon --no-allowPrivateKeyExport
 ```
 
-_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/daemon.ts)_
+_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/daemon.ts)_
 
 ## `bitsocial help [COMMAND]`
 
@@ -8571,7 +8576,7 @@ EXAMPLES
   $ bitsocial logs --stdout -f
 ```
 
-_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/logs.ts)_
+_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/logs.ts)_
 
 ## `bitsocial page-sort add PACKAGE`
 
@@ -8663,7 +8668,7 @@ EXAMPLES
   $ bitsocial page-sort install ./my-local-page-sort
 ```
 
-_See code: [src/cli/commands/page-sort/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/page-sort/install.ts)_
+_See code: [src/cli/commands/page-sort/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/page-sort/install.ts)_
 
 ## `bitsocial page-sort list`
 
@@ -8689,7 +8694,7 @@ EXAMPLES
   $ bitsocial page-sort list -q
 ```
 
-_See code: [src/cli/commands/page-sort/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/page-sort/list.ts)_
+_See code: [src/cli/commands/page-sort/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/page-sort/list.ts)_
 
 ## `bitsocial page-sort ls`
 
@@ -8747,7 +8752,7 @@ EXAMPLES
   $ bitsocial page-sort remove @pkcprotocol/active-page-sort --force
 ```
 
-_See code: [src/cli/commands/page-sort/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/page-sort/remove.ts)_
+_See code: [src/cli/commands/page-sort/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/page-sort/remove.ts)_
 
 ## `bitsocial page-sort rm NAME`
 
@@ -8868,7 +8873,7 @@ EXAMPLES
   $ bitsocial reachability disable --purge
 ```
 
-_See code: [src/cli/commands/reachability/disable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/reachability/disable.ts)_
+_See code: [src/cli/commands/reachability/disable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/reachability/disable.ts)_
 
 ## `bitsocial reachability enable`
 
@@ -8888,7 +8893,7 @@ EXAMPLES
   $ bitsocial reachability enable
 ```
 
-_See code: [src/cli/commands/reachability/enable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/reachability/enable.ts)_
+_See code: [src/cli/commands/reachability/enable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/reachability/enable.ts)_
 
 ## `bitsocial reachability setup`
 
@@ -8925,7 +8930,7 @@ EXAMPLES
   $ bitsocial reachability setup --non-interactive
 ```
 
-_See code: [src/cli/commands/reachability/setup.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/reachability/setup.ts)_
+_See code: [src/cli/commands/reachability/setup.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/reachability/setup.ts)_
 
 ## `bitsocial reachability status`
 
@@ -8951,7 +8956,7 @@ EXAMPLES
   $ bitsocial reachability status --json
 ```
 
-_See code: [src/cli/commands/reachability/status.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/reachability/status.ts)_
+_See code: [src/cli/commands/reachability/status.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/reachability/status.ts)_
 
 ## `bitsocial update check`
 
@@ -8968,7 +8973,7 @@ EXAMPLES
   $ bitsocial update check
 ```
 
-_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/update/check.ts)_
+_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/update/check.ts)_
 
 ## `bitsocial update install [VERSION]`
 
@@ -9000,7 +9005,7 @@ EXAMPLES
   $ bitsocial update install --no-restart-daemons
 ```
 
-_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/update/install.ts)_
+_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/update/install.ts)_
 
 ## `bitsocial update versions`
 
@@ -9022,7 +9027,7 @@ EXAMPLES
   $ bitsocial update versions --limit 5
 ```
 
-_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.131/src/cli/commands/update/versions.ts)_
+_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.132/src/cli/commands/update/versions.ts)_
 
 ## Contribution
 
@@ -11621,3 +11626,544 @@ Reference: `pkc-js/src/community/community-client-manager.ts`, `pkc-js/src/runti
 | `src/runtime/node/community/local-community.ts` | Existing archived check that blocks replies |
 | `src/runtime/node/community/db-handler.ts` | `queryPostsWithActiveScore()` — active sort CTE |
 | `src/pages/util.ts` | Sort type definitions and scoring functions |
+
+### WeTube
+
+Repository: bitsocialnet/wetube
+Source: https://github.com/bitsocialnet/wetube#readme
+Description: WeTube is a future YouTube alternative built on Bitsocial. Every channel is a Bitsocial community owned and hosted by its creator, videos are censorship resistant through redundant embed sources, curation happens through decentralized voting, and monetization runs on Bitsocial Chain — with no giant corporation that can ban channels, no global admins, and no global rules.
+
+# WeTube
+
+**WeTube is a future YouTube alternative built on Bitsocial.** Every channel is a Bitsocial community owned and hosted by its creator, videos are censorship-resistant through redundant embed sources, curation happens through decentralized voting, and monetization runs on Bitsocial Chain — with no giant corporation that can ban channels, no global admins, and no global rules.
+
+WeTube is part of [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5): decentralize all social media. Phase 5 explicitly names "creator video and a credible YouTube alternative" as one of the formats Bitsocial apps will rival. WeTube is that app.
+
+> **Status: early preview.** A read-only web client is in `src/`: it browses channels and plays videos peer-to-peer, falling back between each video's sources, with no uploads, view counts or monetization yet. Progress is tracked in [roadmap.md](https://github.com/bitsocialnet/wetube/blob/HEAD/roadmap.md). The full product targets Phase 5 and depends on infrastructure from earlier master plan phases (public RPCs, Bitsocial Chain, pubsub voting).
+
+## Development
+
+The client is a static React app using the same stack as 5chan: Vite, TypeScript, `@bitsocial/bitsocial-react-hooks` and pkc-js running in the browser. Agents working on it follow [AGENTS.md](https://github.com/bitsocialnet/wetube/blob/HEAD/AGENTS.md), the same workflow as the other Bitsocial clients.
+
+```sh
+corepack yarn install
+corepack yarn start   # https://wetube.localhost through Portless; PORTLESS=0 serves http://localhost:5180
+corepack yarn test
+corepack yarn build   # static output in build/
+```
+
+Home page channels are listed in [src/data/channels.ts](https://github.com/bitsocialnet/wetube/blob/HEAD/src/data/channels.ts): the Open Movies demo channel (the Blender open movies, each mirrored on several hosts) and Seedit's `videos-posting.bso`. Any community opens by typing its address in the search box.
+
+Until the [video post BSIP](https://github.com/bitsocialnet/wetube/blob/HEAD/video-sources.md#the-post-format-now-and-in-the-bsip) exists, a video is an ordinary post: `title` is the video title, `link` is the primary source, and `content` is the description, optionally followed by mirror sources. The client plays YouTube, Invidious, Vimeo, PeerTube, Odysee, Bitchute and Streamable embeds, direct video files and `ipfs://` links:
+
+```text
+What this video is about.
+
+Mirrors:
+https://vimeo.com/76979871
+ipfs://bafy…/video.mp4
+```
+
+Authors can edit `content` but not `link`, so the mirror list is the part that can change after posting.
+
+## Look and Feel
+
+Concept mockups with placeholder videos and channels, showing the [WeTube logo](https://github.com/bitsocialnet/wetube/blob/HEAD/design/logo/) in use. App icons, the player watermark, a share card, sizes and colors are in the [logo showcase](https://github.com/bitsocialnet/wetube/blob/HEAD/design/logo/README.md#showcase).
+
+## The Thesis
+
+YouTube is a single company that hosts every video, ranks every video, monetizes every video, and can delete any channel at will. Creators build audiences of millions on infrastructure they do not control and can lose overnight.
+
+WeTube splits YouTube into its parts and decentralizes each one:
+
+| YouTube function | WeTube equivalent |
+|---|---|
+| Channel | A Bitsocial community, owned by a cryptographic key the creator holds |
+| Channel hosting | The creator's own full node, or a non-custodial public RPC (e.g. Forge RPC) |
+| Video hosting | A list of redundant embed sources per video (web embeds, IPFS, WebTorrent) |
+| Comments, likes, dislikes | Bitsocial replies and votes, seeded by users peer-to-peer |
+| View counts | Open problem — likely aggregated from each embed source's counter by competing RPC/indexer aggregators |
+| Homepage / trending | Categories: community lists of channels, ranked by users' pubsub votes |
+| Recommendation algorithm | Provided by competing public RPCs; users can switch it or turn it off |
+| Monetization | Bitsocial Chain: tipping, revenue sharing; ads run by RPCs or by channel owners themselves |
+| Terms of service, global bans | None. Each channel sets its own rules; no one can set rules for all channels |
+
+The key insight: **Bitsocial does not need to host video files to make video censorship-resistant.** It only needs to host the *list of sources* for each video — and that list is text, which is exactly what the Bitsocial protocol already makes censorship-resistant. See [video-sources.md](https://github.com/bitsocialnet/wetube/blob/HEAD/video-sources.md).
+
+## What Makes a Channel Unbannable
+
+A WeTube channel is a Bitsocial community: addressed by a public key, hosted by the owner's node, and moderated only by the owner. There is no registrar, platform, or admin above the channel owner. The owner can:
+
+- run their own full node for maximum censorship resistance, or use a public RPC like Forge RPC (non-custodial — they can exit to self-hosting at any time),
+- post videos that no one else can take down,
+- moderate comments under their own videos, under their own rules,
+- monetize however they want — their channel is effectively their own site.
+
+Viewers connect to channels purely peer-to-peer, exactly like 5chan users connect to boards. And because channels are ordinary Bitsocial communities, they are browsable from other Bitsocial clients too (Seedit, 5chan, the flagship app) — WeTube just renders them as a video experience.
+
+## Documents
+
+- [how-it-works.md](https://github.com/bitsocialnet/wetube/blob/HEAD/how-it-works.md) — architecture: channels as communities, nodes, RPCs, the posting model
+- [video-sources.md](https://github.com/bitsocialnet/wetube/blob/HEAD/video-sources.md) — the embed source list: how videos stay up without Bitsocial hosting them
+- [curation-and-discovery.md](https://github.com/bitsocialnet/wetube/blob/HEAD/curation-and-discovery.md) — categories as voted community lists, discovery without a global algorithm
+- [views.md](https://github.com/bitsocialnet/wetube/blob/HEAD/views.md) — view counts through view providers that viewers choose
+- [roadmap.md](https://github.com/bitsocialnet/wetube/blob/HEAD/roadmap.md) — what is built, what is next, and the decisions behind it
+- [monetization.md](https://github.com/bitsocialnet/wetube/blob/HEAD/monetization.md) — tipping, revenue sharing, and ads via Bitsocial Chain and RPCs
+- [open-questions.md](https://github.com/bitsocialnet/wetube/blob/HEAD/open-questions.md) — design decisions not yet made
+- [design/logo](https://github.com/bitsocialnet/wetube/blob/HEAD/design/logo/README.md) — the WeTube logo: files, colors, construction, and mockups
+
+## License
+
+[GPL-3.0-or-later](https://github.com/bitsocialnet/wetube/blob/HEAD/LICENSE)
+
+## Ecosystem Context
+
+- Bitsocial protocol docs: https://bitsocial.net
+- Pubsub voting (curation layer): `bitsocialnet/pubsub-voting`
+- Bitsocial Chain (economic layer): `bitsocialnet/bitsocial-chain` and https://bitsocial.net/chain
+- Sibling clients: 5chan (imageboard), Seedit (forum)
+
+### Infinipedia
+
+Repository: bitsocialnet/infinipedia
+Source: https://github.com/bitsocialnet/infinipedia#readme
+Description: Infinipedia is an idea for an encyclopedia built on Bitsocial that nobody owns. Editorial groups each maintain their own version of the encyclopedia, every revision is signed by its author, any version can be forked, and readers choose whose versions they trust. No foundation, company or AI model decides what the encyclopedia says.
+
+# Infinipedia
+
+**Infinipedia is an idea for an encyclopedia built on Bitsocial that nobody owns.** Editorial groups each maintain their own version of the encyclopedia, every revision is signed by its author, any version can be forked, and readers choose whose versions they trust. No foundation, company or AI model decides what the encyclopedia says.
+
+> **Status: idea stage.** This repository reserves the name and collects the design. Nothing here is built. It fits [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5), the long tail of Bitsocial clients, and depends on earlier phases: public RPCs, `.bso` names, an indexer and, for voting and payments, Bitsocial Chain.
+
+## The Thesis
+
+Wikipedia's text is already impossible to delete. It is licensed CC BY-SA 4.0, published as public dumps, copied offline by Kiwix and has been mirrored on IPFS. What is centralized is the editorial process: one community of editors and admins settles contested articles, decides which sources count as reliable and publishes one version of each title.
+
+Grokipedia centralizes that process further. Its articles are written by one company's AI model, and its content is licensed under the xAI Community License, which xAI can revoke.
+
+Neither problem is solved by hosting the same single version somewhere harder to take down. Infinipedia makes the version plural instead:
+
+| | Wikipedia | Grokipedia | Infinipedia |
+|---|---|---|---|
+| Who writes | Volunteer editors | Grok, xAI's model | Competing editorial groups: human, AI-assisted or AI-run |
+| Who settles contested articles | Wikipedia's editors and admins | xAI | Each group for its own version; the reader picks between groups |
+| Versions per article | One | One | One per group that edits it, plus the baseline |
+| Content license | CC BY-SA 4.0 | xAI Community License; some pages CC BY-SA 4.0 | CC BY-SA 4.0, inherited from the Wikipedia baseline |
+| Hosting | Wikimedia Foundation servers | xAI servers | IPFS and each group's own node |
+| Can one party stop editing | Yes | Yes | No |
+
+The goal is not an unbiased encyclopedia. Every editor has views. The goal is that biases are plural and visible: on a contested article, the reader sees that versions disagree, sees exactly where, and decides whom to trust.
+
+## Compare Versions
+
+The feature neither Wikipedia nor Grokipedia can offer is the comparison view. For any article, the client shows:
+
+- the version from the reader's default group,
+- how many other groups have their own version, and which ones,
+- a diff between any two versions, including the Wikipedia baseline,
+- each version's signed history: who changed what, and which group accepted it.
+
+Uncontested articles, which are most of them, look like an ordinary encyclopedia. Contested ones show the disagreement instead of hiding it behind one group's decision.
+
+## Why Now
+
+Earlier attempts at a plural or decentralized encyclopedia, such as Citizendium and Larry Sanger's [Encyclosphere](https://encyclosphere.org/), ran into the same wall: maintaining millions of articles takes thousands of editors, and the editors stayed on Wikipedia.
+
+AI changes that cost. Grokipedia showed that one company with a model can produce millions of articles within months. A small editorial group with an AI writer can now maintain a full version of the encyclopedia and spend its human effort on the articles it actually disagrees about. Infinipedia also does not ask groups to rewrite everything: every group starts from the Wikipedia baseline and only publishes the articles it changes. See [how-it-could-work.md](https://github.com/bitsocialnet/infinipedia/blob/HEAD/how-it-could-work.md#the-baseline-and-overlays).
+
+## What It Is Not
+
+- **Not a mirror.** Mirroring Wikipedia on IPFS was done years ago. It shows that hosting is easy and that a mirror nobody updates goes stale.
+- **Not one community per article.** Every Bitsocial community needs an always-online node. Millions of articles would mean millions of always-online keys, which in practice means one operator. Communities are editorial groups, so their number grows with editors, not articles.
+- **Not a Grokipedia mirror.** Grokipedia content is not imported. Its license is revocable and there is no official dump.
+
+## Why IPFS, Not a Blockchain
+
+A blockchain exists to make everyone agree on one shared state. Infinipedia is designed so nobody has to agree: each group decides its own version and readers choose. Putting articles on a chain would bring back one official version decided by validators or token holders, charge a fee for every edit, and make every node store millions of articles.
+
+The content doesn't need a chain:
+
+- Revisions are content-addressed and signed, so tampering is detectable.
+- Each revision names its parent, so history is verifiable.
+- Each group's index sits behind its community's key, so only the group can update it.
+- Anyone can host any of it.
+
+[Bitsocial Chain](https://chain.bitsocial.net) fits the parts that need global agreement or scarcity:
+
+- `.bso` names for groups.
+- Holder-gated voting to rank groups without votes from fake accounts.
+- Tips and bounties for editors.
+- Optionally, anchoring each group's index CID on the chain, so a group can't show different readers different versions or backdate its history.
+
+Articles live on IPFS; only small global facts go on the chain. That is the same split Bitsocial uses for social media.
+
+## Documents
+
+- [how-it-could-work.md](https://github.com/bitsocialnet/infinipedia/blob/HEAD/how-it-could-work.md): revisions, editorial groups, the baseline, edit proposals, the client, search, hosting and Bitsocial Chain
+- [open-questions.md](https://github.com/bitsocialnet/infinipedia/blob/HEAD/open-questions.md): design decisions not yet made
+
+## License
+
+[GPL-3.0-or-later](https://github.com/bitsocialnet/infinipedia/blob/HEAD/LICENSE) for this repository. Encyclopedia content would be CC BY-SA 4.0; see [open-questions.md](https://github.com/bitsocialnet/infinipedia/blob/HEAD/open-questions.md#licensing).
+
+## Ecosystem Context
+
+- Bitsocial protocol docs: https://bitsocial.net
+- Bitsocial Improvement Proposals: `bitsocialnet/BSIPs`
+- Indexer: `bitsocialnet/bitsocial-indexer`
+- Bitsocial Chain (names, voting, payments): `bitsocialnet/bitsocial-chain` and https://chain.bitsocial.net
+- Sibling idea-stage repos: [WeTube](https://github.com/bitsocialnet/wetube) (YouTube alternative), [decentralized-github](https://github.com/bitsocialnet/decentralized-github) (GitHub alternative)
+
+### Hopium
+
+Repository: bitsocialnet/hopium
+Source: https://github.com/bitsocialnet/hopium#readme
+Description: Hopium is an idea for a social trading app built on Bitsocial, where no company can hide a trader's calls or edit their track record. Traders post calls from their own profile and link their wallets. Every reader's client checks each call against the trader's on chain trades. Every token also gets a holder room, a peer to peer thread that only its holders can post in and moderate. Trades go through the reader's own wallet.
+
+# Hopium
+
+**Hopium is an idea for a social trading app built on Bitsocial, where no company can hide a trader's calls or edit their track record.** Traders post calls from their own profile and link their wallets. Every reader's client checks each call against the trader's on-chain trades. Every token also gets a holder room, a peer-to-peer thread that only its holders can post in and moderate. Trades go through the reader's own wallet.
+
+> **Status: idea stage.** This repository collects the design. Nothing here is built; [roadmap.md](https://github.com/bitsocialnet/hopium/blob/HEAD/roadmap.md) tracks what comes next and what each step waits on. It fits [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5) and depends on earlier phases: profile nodes, the follows of the [Phase 3 Twitter/X alternative](https://bitsocial.net/#master-plan-phase-3), public RPCs, `.bso` names and, for tips, Bitsocial Chain.
+
+## The Thesis
+
+Social trading apps such as [Fomo](https://fomo.family) and Pump.fun's mobile app are feeds of traders, their calls and their trades, with a buy button next to each one. The trades are already public on-chain. Everything around them sits on the operator's servers:
+
+- **Visibility.** The operator decides which traders and calls appear in feeds. On 10 November 2026 a trader [accused Fomo](https://x.com/downsin/status/2120049629895229775) of manually hiding another trader's callouts; a reply in the same thread said that trader had deleted his own account. Readers had no way to check which happened.
+- **Track records.** PnL, win rates and leaderboards are computed by the operator from its own database.
+- **Rewards.** Pump.fun pays its best callers at least $300k a day, [according to AirdropAlert](https://airdropalert.com/blogs/fomo-vs-pump-fun/). In October 2026 it tied those rewards to followers' profits, days before Bubblemaps alleged that wallets linked to one of its callers traded ahead of the calls ([cryptonews.net](https://cryptonews.net/news/altcoins/33630912/)).
+
+On Hopium, a call is a signed post in the trader's own Bitsocial profile, and a track record is something every reader's client can recompute from public data:
+
+| | Fomo | Pump.fun app | Hopium |
+|---|---|---|---|
+| Who can hide a trader or a call | Fomo | Pump.fun | Nobody across the network. Each community and client moderates its own view |
+| Who removed a call | Not verifiable by readers | Not verifiable by readers | Signed: a deletion by the trader and a removal by a moderator are different publications |
+| Where the track record comes from | Fomo's database | Pump.fun's database | The trader's linked wallets on-chain, recomputable by anyone |
+| Wallet | An embedded wallet the app sets up | A wallet the user connects, or an embedded one generated through Privy ([terms](https://pump.fun/docs/terms-and-conditions)) | The reader's own wallet |
+| Fee per trade | 0.50%, gas covered except on Ethereum ([October 2026](https://airdropalert.com/blogs/fomo-vs-pump-fun/)) | 0.45%, or 0.40% with a referral code, on top of pool fees of up to 1.25% ([October 2026](https://www.tokenpost.com/news/business/33804)) | Set by each client; competing clients can charge less or nothing |
+| Who pays callers | No rewards program for callers | Pump.fun, from its own pool, by its own ranking | No central program. A client could share its fee with the caller inside the swap; see [open-questions.md](https://github.com/bitsocialnet/hopium/blob/HEAD/open-questions.md#trading) |
+| Chains | Solana, Base, BNB Chain, Ethereum, Monad, Robinhood Chain | Solana, plus Robinhood Chain, BNB Chain, Base, Arc, Ink and Ethereum through its bridge | Solana first; see [open-questions.md](https://github.com/bitsocialnet/hopium/blob/HEAD/open-questions.md#chains) |
+| Can a trader leave with their followers | No | No | Yes. Followers follow the trader's key, which works in every Bitsocial client |
+
+## Receipts on Every Call
+
+The feature centralized apps don't offer is checking each call against the caller's own trades. Because calls are signed and wallets are linked, the client can show next to every call:
+
+- whether the trader held the token when they called it, since when and how much,
+- whether they sold in the minutes or hours after calling it,
+- the price at the call and since,
+- whether someone other than the trader witnessed when the call was posted.
+
+This only covers wallets the trader linked. A trader can still trade from a wallet they didn't link, so receipts are evidence, not proof of honesty. See [how-it-could-work.md](https://github.com/bitsocialnet/hopium/blob/HEAD/how-it-could-work.md#receipts).
+
+## Holder Rooms
+
+Every token gets a room where only its holders can post, reply, vote and moderate. A room has no owner and no server: it is a peer-to-peer topic named after the token, and every peer checks each message's author against on-chain balances before passing it on. A discovery site can stop listing a coin, but nobody can close its room.
+
+Rooms work with any token on a supported chain, including tokens launched on pump.fun, so Hopium complements launchpads instead of competing with them. A coin's page shows its room next to the calls that name it.
+
+Holder rooms extend [pubsub voting](https://bsips.bitsocial.net/bsip-18), which already lets holders rank communities with no server, from votes to messages. See [how-it-could-work.md](https://github.com/bitsocialnet/hopium/blob/HEAD/how-it-could-work.md#holder-rooms).
+
+The idea comes from [Esteban Abaroa](https://github.com/estebanabaroa), Bitsocial's original founder. In 2025, when the project was still called Plebbit, he proposed making every token a thread that only its holders can post in and moderate, run peer-to-peer with no servers, found through crossposts and holder-voted lists, and compatible with existing pump.fun tokens. He also proposed launching a token with every post, which is an [open question](https://github.com/bitsocialnet/hopium/blob/HEAD/open-questions.md#launching-tokens) here.
+
+## What It Is Not
+
+- **Not an exchange or a custodian.** The reader's wallet signs every trade. The client builds swaps through existing aggregators.
+- **Not a launchpad.** Tokens launch elsewhere; calls and rooms work with any token. See [open-questions.md](https://github.com/bitsocialnet/hopium/blob/HEAD/open-questions.md#launching-tokens).
+- **Not a new token.** Hopium needs no token of its own. Tips can use Bitsocial Chain.
+- **Not a separate social network.** Calls are ordinary Bitsocial posts in the trader's profile, so they also show in the Phase 3 client and other Bitsocial clients, and following a trader is the same follow.
+- **Not one community per coin.** Every Bitsocial community needs an always-online node, and new tokens launch far faster than anyone could run a node for each. A coin gets a holder room instead, which needs no node. A coin's team can still run a community for it.
+
+## Why Bitsocial, Not a Blockchain
+
+Trades are already on-chain, and Hopium reads them there. Calls are social posts. Putting each call on a chain would charge a fee for every post and make every node store them, and it would add nothing a signature doesn't already give: a signed call can't be forged or altered, and the trader's profile keeps its own copy if a community removes it.
+
+The chain is only used where it is needed: for trades, optionally for timestamping calls, and on Bitsocial Chain for `.bso` names and tips.
+
+## Documents
+
+- [how-it-could-work.md](https://github.com/bitsocialnet/hopium/blob/HEAD/how-it-could-work.md): traders, linked wallets, profiles, calls, timestamps, receipts, feeds, holder rooms, trading, moderation and what would need a spec
+- [open-questions.md](https://github.com/bitsocialnet/hopium/blob/HEAD/open-questions.md): design decisions not yet made
+- [roadmap.md](https://github.com/bitsocialnet/hopium/blob/HEAD/roadmap.md): what is built, the milestones, what blocks each one and which BSIPs Hopium would add
+
+## License
+
+[GPL-3.0-or-later](https://github.com/bitsocialnet/hopium/blob/HEAD/LICENSE).
+
+## Ecosystem Context
+
+- Bitsocial protocol docs: https://bitsocial.net
+- Bitsocial Improvement Proposals: https://bsips.bitsocial.net
+- Profiles: [BSIP-14 Author Communities](https://bsips.bitsocial.net/bsip-14)
+- Holder voting: [BSIP-18 Pubsub Voting](https://bsips.bitsocial.net/bsip-18) and `bitsocialnet/pubsub-voting`
+- Bitsocial Chain (names, tips): `bitsocialnet/bitsocial-chain` and https://chain.bitsocial.net
+- Sibling idea-stage repos: [WeTube](https://github.com/bitsocialnet/wetube) (YouTube alternative), [decentralized-github](https://github.com/bitsocialnet/decentralized-github) (GitHub alternative), [Infinipedia](https://github.com/bitsocialnet/infinipedia) (encyclopedia), [prediction-markets](https://github.com/bitsocialnet/prediction-markets) (prediction markets with Bitsocial discussion)
+
+### Decentralizing GitHub on Bitsocial
+
+Repository: bitsocialnet/decentralized-github
+Source: https://github.com/bitsocialnet/decentralized-github#readme
+Description: This repository explores a truly decentralized alternative to GitHub built on Bitsocial. The likely architecture combines a Git native peer to peer code layer with Bitsocial profiles, communities, discovery, reputation, funding, and competing infrastructure services.
+
+# Decentralizing GitHub on Bitsocial
+
+**This repository explores a truly decentralized alternative to GitHub built on Bitsocial.** The likely architecture combines a Git-native peer-to-peer code layer with Bitsocial profiles, communities, discovery, reputation, funding, and competing infrastructure services.
+
+> **Status: vision stage.** This is research, not a build specification. The project belongs in [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5) and depends on Phase 3 profile nodes plus practical public RPC infrastructure.
+>
+> **Working title:** "Decentralized GitHub" describes the research topic; the eventual product will have its own name. This project is independent and is not affiliated with or endorsed by GitHub, Inc.
+
+## Documents
+
+- [`architecture-brief.md`](https://github.com/bitsocialnet/decentralized-github/blob/HEAD/architecture-brief.md) — a second architecture synthesis covering project pages, identity, discussions, issues, CI, and a minimal prototype.
+- [`radicle-research.md`](https://github.com/bitsocialnet/decentralized-github/blob/HEAD/radicle-research.md) — a deep dive on Radicle, its peer-to-peer architecture, Collaborative Objects, CI broker, social-layer gap, and collaboration options.
+- [`master-plan-context.md`](https://github.com/bitsocialnet/decentralized-github/blob/HEAD/master-plan-context.md) — the relevant Bitsocial master plan phases and the protocol primitives this project depends on.
+
+---
+
+## 1. The idea in one paragraph
+
+GitHub is three products stacked together: a **code host** (git), a **collaboration layer** (issues, pull requests, discussions, reviews), and a **social network** (profiles, follows, stars, feeds, Explore, Sponsors). The social network is the part that makes open source *thrive* — reputation, discovery, network effects — and it's the part nobody has decentralized well. [Radicle](https://radicle.dev/) decentralizes the code + collaboration layers beautifully (git replicated peer-to-peer, issues/PRs as signed git objects) but has almost no social layer and a high-friction "everyone runs a node" onboarding. **Bitsocial has spent its entire existence building exactly the decentralized social layer Radicle lacks** — profiles, communities, feeds, discovery, anti-spam, and non-custodial RPC so normal users never have to run a server. So the thesis is simple:
+
+> **Decentralized GitHub = a code-collaboration layer (Radicle-style, git-over-p2p) ⊕ Bitsocial's social/community/profile/discovery layer, running on profile nodes (Phase 3), served to most users via Forge RPC, with a competitive marketplace of CI runner services instead of one mandatory CI.**
+
+Each developer's **profile is a Bitsocial full node** (a "profile node"), most of them hosted via public RPC (Forge RPC) so people don't have to self-host — but anyone can move to their own node anytime. Each repo's **Discussions tab is literally a Bitsocial community** (pure p2p, the primitive Bitsocial already ships in 5chan/Seedit). And **CI** — GitHub's most important lock-in — becomes a set of competing runner services reachable over public RPC: unlike GitHub, where you're forced onto theirs, here any CI provider competes on price, speed, and trust.
+
+---
+
+## 2. The original vision (captured faithfully)
+
+Tommaso, 2026-06-02:
+
+> What if we could decentralize GitHub too? At Phase 5 of the master plan. Maybe it would be like Radicle but with the "Discussion" tab on GitHub being a Bitsocial community — so a pure p2p Bitsocial node. Also there would be profiles like on GitHub, so **profile nodes** (which we imagine we'll have during Phase 3), so each profile is a Bitsocial full node, most of them via public RPC (**Forge RPC**).
+>
+> Also to decentralize CI — which is probably GitHub's most important feature — we'd probably use **centralized CI runner services via public RPC**, but the difference with GitHub is that on GitHub you're forced to use theirs, whereas on our GitHub-alternative Bitsocial client you'd be able to use **any CI runner service via public RPC, so there will be competition**.
+>
+> Most importantly, the social layer of GitHub is very good and valuable for open source to thrive, so Bitsocial can decentralize that fully. We could probably do a **hybrid, maybe even collab with Radicle**, who knows. It's not possible before Phase 3 at least, since it would require profile nodes as well as public RPC.
+
+Everything below is research and structure built on top of that.
+
+---
+
+## 3. Why GitHub's social layer is the real prize
+
+You can already self-host git (Gitea, GitLab, cgit) and you can already replicate git peer-to-peer (Radicle). The thing that has *never* been decentralized is the **social graph of open source**:
+
+- **Profiles & reputation** — a developer's identity, contribution history, and credibility.
+- **Following, stars, feeds** — how people discover what to work on and who to trust.
+- **Explore / Trending / Topics** — how projects find contributors and users. (Notably, there's already a `github-explore-bitsocial-topic/` repo in the Bitsocial workspace — a fork of GitHub's Explore/Topics data — so this surface has already been on the radar.)
+- **Discussions** — the open-ended community conversation around a project, separate from issues.
+- **Sponsors** — funding flowing to maintainers.
+
+This is **precisely the layer Bitsocial is built to decentralize.** Bitsocial communities, profiles, follows, feeds, discovery services, tipping/awards, and anti-spam challenges map almost one-to-one onto GitHub's social surfaces. The code-hosting part is the *solved* problem (git is already content-addressed, and Radicle already did the p2p replication). The social part is where Bitsocial is uniquely positioned — and where a centralized incumbent is most vulnerable, because a captured social layer is exactly what platform lock-in is made of.
+
+---
+
+## 4. Where this fits in the master plan
+
+Short version (full text + dependency analysis in [`master-plan-context.md`](https://github.com/bitsocialnet/decentralized-github/blob/HEAD/master-plan-context.md)):
+
+- **Phase 1** — decentralize imageboards/forums (5chan, Seedit), launch first non-custodial RPC service (Forge), public RPC makes always-on p2p communities practical from mobile. *In progress.*
+- **Phase 2** — Bitsocial Network: appchain financial rails (.bso domains, tipping, awards, monetization). → funds **Sponsors-equivalent** and grants.
+- **Phase 3** — flagship profile-based app: **profiles, follows, feeds, communities, and profile nodes.** Each user can be a full p2p node, hosted via non-custodial RPC, movable to a Raspberry Pi anytime. → **this is the unlock.** GitHub-style profiles = profile nodes. No profile nodes ⇒ no decentralized GitHub.
+- **Phase 4** — scale economies: **infrastructure pluralism** — competing RPCs, media hosts, discovery, moderation, profile-node hosting, all fundable. → **this is exactly the CI-runner-marketplace model** ("competing services via public RPC"), applied to compute.
+- **Phase 5** — decentralize all social media: fund the **long tail** of clients (blogging, crowdfunding, YouTube alt, "every format too early for the first four phases," and *"tools that make existing communities easier to run"*). → **a developer-collaboration client lives here.**
+
+So it's a **Phase 5 client** that is *only possible because of Phase 3's profile nodes + RPC* and *economically shaped by Phase 4's service competition*. That matches Tommaso's instinct exactly.
+
+A useful observation: this is technically more than a "social client." It's a **collaboration client** — but it's built entirely from primitives the first four phases already produce (profile nodes, communities, public RPC, competing services, financial rails). It doesn't need new protocol; it needs the protocol to exist.
+
+---
+
+## 5. Radicle: the only existing pure-p2p forge
+
+Full deep-dive in [`radicle-research.md`](https://github.com/bitsocialnet/decentralized-github/blob/HEAD/radicle-research.md). The essentials:
+
+**Is Radicle federated or pure p2p?** → **Pure p2p.** Tommaso wasn't sure; the answer is clear. Radicle's current protocol (**Heartwood**) has *"no clients or servers, only nodes,"* and every user runs one. Nodes are identified by public keys and replicate git repos via a **gossip protocol** + git's own protocol. There are no instances/accounts like ActivityPub — so it is **not** federation. The thing that *looks* federated is **seed nodes**: always-on nodes that keep repos available (the same role Bitsocial calls a "seeder" / full node). So: p2p architecture, with optional always-on seeds for availability — structurally close to Bitsocial.
+
+**What Radicle does well (and we should not reinvent):**
+- **Git-over-p2p replication** that actually works — this is genuinely hard, and they've shipped it.
+- **Collaborative Objects (COBs)** — issues, patches (their PRs), and reviews stored *as signed git objects* using CRDTs, fully offline-capable and independently verifiable.
+- **Self-certifying repos** with **per-repo delegates + a signature threshold** (a built-in multisig-style governance for who can authorize changes).
+- A **CI broker spec** (see below).
+
+**Where Radicle is weak (and Bitsocial is strong):**
+- **Identity is bare** — a public key plus an optional, non-unique alias. No rich profile, no social graph, no reputation surface.
+- **No consumer social layer** — COBs are great for code, but there's no following/feeds/Explore/Discussions-as-community experience for *people*.
+- **High onboarding friction** — "every user runs a node." No mainstream non-custodial hosted path (which is exactly Bitsocial's Forge RPC).
+- **Niche adoption** — strong tech, small user base.
+
+The Venn diagram is almost suspiciously clean: **Radicle = code layer, no social layer. Bitsocial = social layer, no code layer.**
+
+---
+
+## 6. Proposed architecture
+
+### 6.1 The mapping
+
+| GitHub feature | How it's centralized today | Decentralized on Bitsocial |
+| --- | --- | --- |
+| **Profile** (repos, followers, contribution graph) | GitHub account | **Profile node** — a Bitsocial full node (Phase 3). Identity = keypair. Served via Forge RPC for non-self-hosters; movable to your own box anytime. |
+| **Code / repo hosting** | GitHub servers | Git objects replicated p2p. Git is *already* a content-addressed Merkle DAG, so it fits either Radicle's Heartwood (gossip+git) **or** Bitsocial's IPFS content-addressing. Seeded by profile nodes + Forge + competing seeders. |
+| **Discussions tab** | GitHub Discussions | **A Bitsocial community** — pure p2p, the exact primitive 5chan/Seedit already ship. *(Tommaso's core insight.)* |
+| **Issues** | GitHub Issues | Radicle COBs **or** Bitsocial threads attached to the repo's community. |
+| **Pull requests** | GitHub PRs | Radicle **patches** (COBs) for merge mechanics; Bitsocial threads for the review/discussion social layer. |
+| **Stars / follows / feed / notifications** | GitHub social graph | Bitsocial's native social graph (flagship-app primitives, Phase 3). |
+| **Explore / Trending / Topics** | GitHub Explore | Competing Bitsocial **discovery / indexing services** (Phase 4). The `github-explore-bitsocial-topic` data is a head start. |
+| **CI/CD (Actions)** | GitHub Actions — **mandatory, theirs only** | **Competing CI runner services over public RPC** — use *any* provider. *(Tommaso's core insight; see 6.3.)* |
+| **Packages / Releases** | GitHub Packages | Content-addressed artifacts seeded p2p + competing media hosts (Phase 4). |
+| **Sponsors / funding** | GitHub Sponsors | Tipping/awards + Bitsocial Network rails (Phase 2) + decentralized grants (Phase 4/5). |
+| **Org / governance** | GitHub org & permissions | Radicle per-repo **delegates + threshold** ⊕ Bitsocial community ownership (keypair-controlled). |
+
+### 6.2 The code layer — three options (a real decision for build time)
+
+1. **Adopt Radicle (Heartwood) for code, Bitsocial for everything social.** Use Heartwood (or a fork) for repo replication + patches/issues; wrap it in a Bitsocial client that adds profiles, Discussions-as-communities, feeds, discovery, and RPC onboarding. Bridge Radicle node keys ↔ Bitsocial profile-node keys. *Least reinvention, fastest to a real forge.*
+2. **Build git-on-IPFS natively on Bitsocial's stack.** Store git objects via IPFS content-addressing, discover via HTTP routers, seed like any community; reimplement patches/issues as Bitsocial content types. *Most cohesive with the existing stack, but reinvents Radicle's hard-won git-over-p2p work — and it's the **only** option where Bitsocial's content-fade model would touch code, forcing you to build a durable pinned-seeding tier yourself (see §8). That's a strong reason to prefer the hybrid.*
+3. **Bridge / collaborate with Radicle.** Treat Radicle as the code substrate and Bitsocial as the social substrate, with an explicit interop layer — and talk to Radworks (Radicle's funding DAO ran an open CI-integrations RFP, so they actively want integrators). *Potentially grant-fundable and mutually beneficial.*
+
+**Lean:** don't reinvent git-over-p2p (option 1 or 3); *do* own the social layer outright — that's the differentiated, defensible part. Decide at build time based on how Heartwood has evolved by Phase 3-5.
+
+### 6.3 Decentralized CI — the competition unlock
+
+This is the sharpest part of the idea, so it's worth stating precisely.
+
+- **GitHub:** CI (Actions) is bundled and you're locked into GitHub's runners and billing. It is arguably GitHub's deepest lock-in — the thing that's hardest to leave.
+- **Radicle:** CI is *self-hosted per node* — a **broker** listens for repo-change events on your node and launches **adapters** (Concourse, a generic webhook adapter, or the standalone "Ambient" adapter). Sovereign, but high-friction and with no marketplace: you run your own.
+- **Bitsocial-GitHub:** CI runner services **compete via public RPC**, exactly like Bitsocial's non-custodial community-hosting RPC model. A repo (or its delegates) points at one or more runner services; *anyone* can offer one; they compete on price, speed, hardware (GPU/ARM/large runners), trust model, and policy. Unlike GitHub you are never forced onto one provider — and unlike Radicle you don't have to operate the infrastructure yourself.
+
+**Trust model for results** (the hard part of "someone else ran my CI"):
+- Runners return **signed attestations** of build/test results.
+- **Reproducible builds** let anyone independently re-verify a result.
+- Delegates can require **N-of-M independent runners to agree** before a green check counts toward a merge — this generalizes Radicle's "delegates run CI to gain merge confidence" into a *market* of runners, and turns trust into a tunable policy instead of a platform decree.
+- Optional hardened execution (TEEs) for runners that want to sell stronger guarantees.
+
+This is just **Phase 4 "infrastructure pluralism" applied to compute.** It's the same shape as RPCs, media hosts, and discovery services competing — CI is one more service category.
+
+### 6.4 Identity & anti-spam — already solved by Bitsocial
+
+- **Identity:** one keypair = your profile node = your Radicle-style code identity. Bitsocial already treats identity as keypair-controlled and portable; Radicle already maps Node ID = Peer ID = Public Key and supports DID compatibility, so unification is plausible.
+- **Spam on public repos** (a real GitHub pain — issue/PR spam): Bitsocial's **per-community challenge model** maps directly. A repo can require a challenge (captcha, rate-limit, token-gate, allowlist, payment, custom code) before an outside identity can open an issue or submit a patch — local, operator-defined, no platform-level super-admin.
+
+---
+
+## 7. Hybrid & collaborating with Radicle
+
+The "maybe collab with Radicle" instinct is sound, and there's a concrete hook: **Radworks** (Radicle's funding DAO, formerly Radicle DAO, backed by the **RAD** token treasury) funds ecosystem work via grants and has historically issued open RFPs (including for CI integrations). A Bitsocial social-and-onboarding layer on top of Radicle's code substrate is:
+
+- **Complementary, not competitive** — we'd bring the social layer + mainstream RPC onboarding they lack; they bring the git-over-p2p substrate + COBs we'd otherwise reinvent.
+- **Potentially grant-fundable** through Radworks.
+- **A way to bootstrap a network** — existing Radicle repos could appear in the Bitsocial client on day one.
+
+Worth at minimum a conversation before committing to a fully native build. (Decision can wait until Phase 3-5; the ecosystem will have moved by then.)
+
+---
+
+## 8. Hard problems / open questions (for build time)
+
+1. **Durability is the code layer's job — not a Bitsocial problem.** *(Corrects an overstatement in the first draft.)* Bitsocial's "old content can fade" tradeoff only applies to **Bitsocial-hosted content = the social layer** (discussions, profiles, feeds), where fade is the normal, accepted social-media behavior. **Code never lives in Bitsocial** — it lives on the Radicle / git-over-p2p layer, which is built for durability (git keeps full history in every clone; seed nodes keep it available). So fade and source code never touch. The *only* place durability becomes your problem is **option 2 (git-on-IPFS native, §6.2)** — which is a real argument against it and for the hybrid. Optional refinement: a rare long-lived discussion that deserves code-like permanence (a design rationale, an accepted answer) can be pinned with the same code-layer durability if desired — an enhancement, not a requirement.
+2. **CI result trust.** Signed attestations + reproducible builds + N-of-M runner consensus + optional TEEs (see 6.3). What's the default policy, and who sets it per repo?
+3. **Code layer choice.** Adopt Radicle, build git-on-IPFS, or bridge (see 6.2)?
+4. **Identity unification.** One key across Bitsocial profile node + Radicle code identity + DID? How does key rotation/recovery work for a *developer* identity people depend on?
+5. **Code search at scale.** Search is heavy and centralizing by nature; likely a competing indexing-service category (Phase 4) rather than a protocol feature.
+6. **Large binaries / LFS / release artifacts.** Content-addressed + competing media hosts, but needs a real design.
+7. **Funding the commons.** Who pays for durable seeding + CI for unfunded OSS? (Bitsocial Network rails, Sponsors, decentralized grants — Phase 2/4/5.)
+8. **Scope of v1.** Read-only mirror + Discussions first, or full collaboration from the start? (See staged path.)
+
+---
+
+## 9. A staged path (earliest-possible → full)
+
+This lets pieces ship as the protocol matures, instead of waiting for everything:
+
+- **v0 — Discussions, today-ish.** A Bitsocial community attachable to *any* existing repo (even a GitHub or Radicle one) as its "Discussions." The social layer is the part that's buildable earliest and is valuable standalone — a decentralized comment/community layer for OSS projects.
+- **v1 — Profiles (needs Phase 3).** Profile nodes show a developer's repos + activity (mirror/read), with follows/feeds; Discussions are communities.
+- **v2 — Real p2p repos.** Adopt Radicle or git-on-IPFS; patches/issues land (COBs or native).
+- **v3 — CI marketplace (Phase 4 economics).** Competing runner services over public RPC, with the trust model in 6.3.
+- **v4 — Sponsors/grants (Phase 2 rails).** Funding flows to maintainers and to durable seeding/CI for the commons.
+
+---
+
+## 10. Naming
+
+The product has no final name yet. This repository deliberately uses a descriptive working title while the idea is still research. The eventual product should have an independent brand: **Bitsocial Forge** already names the operator and RPC service, while Git is the underlying technology rather than the product name.
+
+---
+
+## 11. Prerequisites checklist
+
+Before this is buildable, the network needs:
+
+- [ ] **Profile nodes** (Phase 3) — the flagship profile-based client and profile-node infrastructure shipped.
+- [ ] **Public/Forge RPC at scale** (Phase 3) — non-custodial hosted nodes so devs don't have to self-host.
+- [ ] **Competing-services economy** (Phase 4) — the marketplace pattern that makes the CI-runner market real.
+- [ ] **Bitsocial Network rails** (Phase 2) — for Sponsors/grants/durable-seeding funding (nice-to-have, not strictly blocking v0-v2).
+- [ ] **A code-layer decision** — Radicle adopt/bridge vs git-on-IPFS native.
+- [ ] **A code-layer durability tier** — handled *by the code layer* (Radicle/git seed nodes), not by Bitsocial. Only becomes a problem to solve if you pick git-on-IPFS native (§6.2 option 2).
+
+---
+
+## License
+
+[GPL-3.0-or-later](https://github.com/bitsocialnet/decentralized-github/blob/HEAD/LICENSE)
+
+### HuggingSocial
+
+Repository: Rinse12/huggingsocial
+Source: https://github.com/Rinse12/huggingsocial#readme
+Description: Website: huggingsocial.co
+
+# HuggingSocial
+
+**Website: [huggingsocial.co](https://huggingsocial.co/)**
+
+**BitTorrent moves the weights. BitSocial keeps the index and the conversation out of anyone's hands.**
+
+HuggingSocial is a peer-to-peer place to find, discuss and download open AI models and datasets. It is a
+model hub that no company owns: the list of models, the model cards, the comments and the votes all
+live on a peer-to-peer network, and the model files themselves are fetched over BitTorrent (or plain
+HTTP mirrors), verified on your machine with checksums.
+
+## Why is this needed?
+
+Almost all open AI models live on one website, Hugging Face. In August 2026 Nvidia agreed to buy it for
+roughly $13 billion. Whatever you think of Nvidia, the open-model ecosystem now has a single owner for
+its hosting, and the places where people *talk* about models (Reddit, Discord) are also companies
+that can change their rules, sell, or be pressured at any time.
+
+When one entity controls where models are stored, the next thing that gets controlled is which models
+are visible, which are removed, and which conversations are allowed. Hugging Face has already removed
+models it did not like ([GPT-4chan](https://thegradient.pub/gpt-4chan-lessons/)), and corporate takedowns
+have wiped community copies ([Meta's DMCA against 403 LLaMA repositories](https://github.com/github/dmca/blob/master/2023/03/2023-03-21-meta.md)).
+A torrent index would help with storage, but torrent indexes get taken down too,
+and a torrent tells you nothing about *who* published a file.
+
+HuggingSocial fixes the three parts together:
+
+- **Discovery.** The index of models is held by communities ("hubs") that are controlled by cryptographic
+  keys, not by accounts on a website. Nobody can delete a hub except its owner.
+- **Provenance.** Every model listing is signed by whoever published it, and every download is checked
+  against the checksums in that listing. A poisoned re-upload will simply fail verification.
+- **Discourse.** Model cards, benchmarks, "does this quant run on my GPU", fine-tune requests and
+  license debates happen in the same hubs, with moderation set by each hub, not by a platform.
+
+## How it works (short version)
+
+- **Hubs** are communities on [BitSocial](https://bitsocial.net), a peer-to-peer social protocol built on
+  IPFS/libp2p. Each hub sets its own rules and anti-spam challenge.
+- A **model listing** is a post in a hub: name, version, license, model card, file checksums, and a list of
+  download sources (Hugging Face URL, magnet link, IPFS, …).
+- The **client** (web app, or desktop app with a built-in torrent engine) downloads from any of those
+  sources, verifies the files, and can keep seeding them so others get them faster.
+- **HuggingSocial hosts nothing.** We build the client. Anyone can run a hub, an index, or a seedbox.
+
+## Status
+
+In design and early development. Sign up to the newsletter on the website to hear when there's
+something to run. Technical design is in [DESIGN.md](https://github.com/Rinse12/huggingsocial/blob/HEAD/DESIGN.md); open work is in [TODO.md](https://github.com/Rinse12/huggingsocial/blob/HEAD/TODO.md).
+
+## License
+
+Free software, [GPL-3.0-or-later](https://github.com/Rinse12/huggingsocial/blob/HEAD/LICENSE): the clients, the tooling, the website. Contributions
+welcome: pick something from [TODO.md](https://github.com/Rinse12/huggingsocial/blob/HEAD/TODO.md) or open an issue.

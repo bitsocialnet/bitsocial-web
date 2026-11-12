@@ -481,6 +481,10 @@
         "identity": {
           "description": "Mga modulo ng kredensyal at pagpapatunay na nag-kontrol kung sino ang maaaring magpost sa mga komunidad ng Bitsocial.",
           "label": "Pagkakakilanlan"
+        },
+        "concepts": {
+          "label": "Mga konsepto",
+          "description": "Mga app ng Bitsocial na ideya pa lang, nasa pananaliksik at disenyo, at hindi pa handang gamitin."
         }
       },
       "platforms": {
@@ -529,7 +533,11 @@
         "antiRepost": "Anti-repost",
         "referenceClient": "Reference client",
         "search": "Paghahanap",
-        "images": "Mga larawan"
+        "images": "Mga larawan",
+        "codeHosting": "Pagho-host ng code",
+        "encyclopedia": "Ensiklopedya",
+        "trading": "Trading",
+        "video": "Video"
       },
       "linkLabels": {
         "androidApk": "APK ng Android",
@@ -628,6 +636,26 @@
         "askwise": {
           "tagline": "AI reply bot na pinipiling i-install ng mga komunidad at tinatawag gamit ang @askwise.",
           "description": "Ang AskWise ay isang AI reply bot na pinipiling i-install ng mga komunidad sa Bitsocial. Sa isang komunidad na nag-install nito, puwedeng i-mention ng kahit sino ang <code>@askwise</code> o <code>askwise.bso</code> sa isang post o reply, at babasahin ng bot ang thread, kasama ang mga larawan nito, at sasagot doon habang sinusunod ang mga patakaran ng komunidad. Binabalewala nito ang mga komunidad na hindi nag-install nito, at ang mga thread lang na bumabanggit dito ang ipinapadala sa AI provider ng operator. Ang AskWise ay isang independiyenteng proyekto na tumatakbo sa bitsocial-cli; hindi ito gawa o pinapatakbo ng Bitsocial."
+        },
+        "wetube": {
+          "tagline": "Alternatibo sa YouTube na ideya pa lang, kung saan bawat channel ay isang komunidad ng Bitsocial na pag-aari ng creator nito.",
+          "description": "Ang WeTube ay isang alternatibo sa YouTube kung saan ang bawat channel ay isang Bitsocial community na kontrolado ng key ng creator nito, bawat video ay naglilista ng mga redundant na embed source para walang iisang host ang makapagtanggal dito, at ang mga channel ay kinu-curate sa pamamagitan ng mga community list na niraranggo ayon sa mga boto. May read-only na web preview kung saan maaaring mag-browse ng mga channel at mag-play ng mga video nang peer-to-peer; hindi pa nabubuo ang uploads, view counts, at monetization. Ang buong app ay bahagi ng Phase 5 ng Bitsocial Master Plan."
+        },
+        "infinipedia": {
+          "tagline": "Ensiklopedya na ideya pa lang, kung saan naglalathala ang magkakalabang grupong editoryal ng sarili nilang bersyon ng bawat artikulo.",
+          "description": "Ang Infinipedia ay isang ensiklopedya na walang nagmamay-ari. Ang mga editorial group, tao man o tinutulungan ng AI, ay naglalathala ng kani-kanilang bersyon ng mga artikulo sa ibabaw ng isang Wikipedia baseline, bawat rebisyon ay pinirmahan ng may-akda nito, at pinipili ng mga mambabasa kung kaninong mga bersyon ang pinagkakatiwalaan nila at maaari nilang paghambingin nang magkatabi ang alinmang dalawa. Wala pang nabubuo; tinitipon ng repository ang disenyo."
+        },
+        "hopium": {
+          "tagline": "Social trading app na ideya pa lang, kung saan bawat call ay sinusuri laban sa mga on-chain trade ng trader.",
+          "description": "Ang Hopium ay isang social trading app kung saan nagpo-post ang mga trader ng calls mula sa sarili nilang Bitsocial profile at ikinokonekta ang kanilang mga wallet, at sinusuri ng client ng bawat mambabasa ang bawat call laban sa mga on-chain trade ng trader, kaya walang kumpanyang makapagtatago ng calls o makapagbabago ng track record. Bawat token ay mayroon ding holder room na tanging mga holder nito ang puwedeng mag-post at mag-moderate, at dumadaan ang mga trade sa sariling wallet ng mambabasa. Wala pang nabubuo; tinitipon ng repository ang disenyo."
+        },
+        "decentralized-github": {
+          "tagline": "Plataporma para sa kolaborasyon sa code na ideya pa lang, na pinagsasama ang peer-to-peer Git at ang social layer ng Bitsocial.",
+          "description": "Ang Decentralized GitHub ay pananaliksik sa isang alternatibo sa GitHub na pinagsasama ang isang Radicle-style na peer-to-peer na Git layer at ang mga profile, komunidad, discovery, at reputasyon ng Bitsocial. Ang mga diskusyon ng bawat repository ay magiging isang komunidad sa Bitsocial, ang mga profile ng developer ay magiging mga profile node na naaabot ng karamihan sa pamamagitan ng mga pampublikong RPC, at manggagaling ang CI sa mga nagkokompitensiyang runner service sa halip na sa iisang sapilitang provider. Pansamantalang pangalan lang ito; hindi kaanib ng GitHub, Inc. ang proyekto."
+        },
+        "huggingsocial": {
+          "tagline": "Peer-to-peer hub na ideya pa lang para sa paghahanap, pagdiskusyon, at pag-download ng bukas na mga modelong AI.",
+          "description": "Ang HuggingSocial ay isang model hub na hindi pagmamay-ari ng anumang kumpanya. Ang mga hub ay mga komunidad ng Bitsocial na kinokontrol ng mga cryptographic key, bawat listing ng modelo ay isang signed post na may model card, checksums, at download sources, at ang mga timbang ay gumagalaw sa BitTorrent o simpleng HTTP mirrors at na-verify sa iyong machine. Wala pang client na nagagawa; ang website ay tumatanggap ng waitlist sign-ups."
         }
       }
     },
@@ -644,7 +672,8 @@
     },
     "filterLimitReached": "Naabot na limitasyon ng filter",
     "devsLabel": "Devs:",
-    "or": "o"
+    "or": "o",
+    "idea": "Ideya"
   },
   "privacy": {
     "eyebrow": "Paano hinahandle ng bitsocial.net ang data",

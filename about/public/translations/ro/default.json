@@ -481,6 +481,10 @@
         "identity": {
           "description": "Module de certificare și verificare care controlează cine poate posta în comunități Bitsocial.",
           "label": "Identitate"
+        },
+        "concepts": {
+          "label": "Concepte",
+          "description": "Aplicații Bitsocial în stadiu de idee, în cercetare și design, încă nepregătite pentru utilizare."
         }
       },
       "platforms": {
@@ -529,7 +533,11 @@
         "antiRepost": "Anti-repost",
         "referenceClient": "Client de referință",
         "search": "Căutare",
-        "images": "Imagini"
+        "images": "Imagini",
+        "codeHosting": "Găzduire de cod",
+        "encyclopedia": "Enciclopedie",
+        "trading": "Trading",
+        "video": "Video"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -628,6 +636,26 @@
         "askwise": {
           "tagline": "Bot de răspunsuri AI pe care comunitățile îl activează din proprie alegere și îl cheamă cu @askwise.",
           "description": "AskWise este un bot de răspunsuri AI pe care comunitățile Bitsocial îl activează din proprie alegere. Într-o comunitate care l-a instalat, oricine poate menționa <code>@askwise</code> sau <code>askwise.bso</code> într-o postare sau într-un răspuns, iar botul citește firul, inclusiv imaginile, și răspunde acolo respectând regulile comunității. Comunitățile care nu l-au instalat sunt ignorate și doar firele care îl menționează sunt trimise furnizorului de AI al operatorului. AskWise este un proiect independent care rulează pe bitsocial-cli; nu este creat și nici operat de Bitsocial."
+        },
+        "wetube": {
+          "tagline": "Alternativă la YouTube în stadiu de idee, în care fiecare canal este o comunitate Bitsocial deținută de creatorul său.",
+          "description": "WeTube este o alternativă la YouTube în care fiecare canal este o comunitate Bitsocial controlată de cheia creatorului său, fiecare videoclip listează surse de încorporare redundante, astfel încât niciun host să nu îl poată elimina singur, iar canalele sunt selectate prin liste de comunități ordonate după voturi. O previzualizare web doar pentru citire permite răsfoirea canalelor și redă videoclipuri peer-to-peer; încărcările, numărul de vizualizări și monetizarea nu au fost dezvoltate. Aplicația completă aparține Fazei 5 din Master Plan-ul Bitsocial."
+        },
+        "infinipedia": {
+          "tagline": "Enciclopedie în stadiu de idee, în care grupuri editoriale concurente își publică propriile versiuni ale fiecărui articol.",
+          "description": "Infinipedia este o enciclopedie pe care nimeni nu o deține. Grupuri editoriale, umane sau asistate de AI, publică fiecare propriile versiuni ale articolelor pornind de la o bază Wikipedia, fiecare revizie este semnată de autorul ei, iar cititorii aleg în versiunile cui au încredere și pot compara oricare două una lângă alta. Încă nu s-a construit nimic; repository-ul adună designul."
+        },
+        "hopium": {
+          "tagline": "Aplicație de social trading în stadiu de idee, în care fiecare semnal este verificat în raport cu tranzacțiile on-chain ale traderului.",
+          "description": "Hopium este o aplicație de social trading în care traderii publică semnale din propriul profil Bitsocial și își conectează portofelele, iar clientul fiecărui cititor verifică fiecare semnal în raport cu tranzacțiile on-chain ale traderului, astfel încât nicio companie nu poate ascunde semnale sau modifica istoricul rezultatelor. Fiecare token primește și o cameră pentru deținători, în care doar deținătorii lui pot posta și modera, iar tranzacțiile trec prin propriul portofel al cititorului. Încă nu este construit nimic; depozitul adună designul."
+        },
+        "decentralized-github": {
+          "tagline": "Platformă de colaborare pe cod în stadiu de idee, care combină Git peer-to-peer cu stratul social al Bitsocial.",
+          "description": "Decentralized GitHub este o cercetare privind o alternativă la GitHub care combină un strat Git peer-to-peer în stilul Radicle cu profilurile, comunitățile, descoperirea și reputația Bitsocial. Discuțiile fiecărui depozit ar fi o comunitate Bitsocial, profilurile dezvoltatorilor ar fi noduri de profil pe care majoritatea oamenilor le-ar accesa prin RPC-uri publice, iar CI-ul ar veni de la servicii de runner concurente în locul unui singur furnizor obligatoriu. Numele este provizoriu; proiectul nu este afiliat cu GitHub, Inc."
+        },
+        "huggingsocial": {
+          "tagline": "Hub peer-to-peer aflat în stadiul de idee, pentru găsirea, discutarea și descărcarea de modele AI deschise.",
+          "description": "HuggingSocial este un hub de modele care nu este deținut de nicio companie. Huburile sunt comunități Bitsocial controlate de chei criptografice, fiecare listare de model este un post semnat cu o fișă de model, sume de verificare și surse de descărcare, iar ponderile se deplasează prin BitTorrent sau oglinzi HTTP simple și sunt verificate pe mașina ta. Încă nu a fost construit niciun client; site-ul web acceptă înregistrări pe lista de așteptare."
         }
       }
     },
@@ -644,7 +672,8 @@
     },
     "filterLimitReached": "Limită de filtre atinsă",
     "devsLabel": "Devs:",
-    "or": "sau"
+    "or": "sau",
+    "idea": "Idee"
   },
   "privacy": {
     "eyebrow": "Cum gestionează bitsocial.net datele",

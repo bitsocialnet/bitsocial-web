@@ -481,6 +481,10 @@
         "identity": {
           "description": "Moduly přihlašovacích údajů a ověřování, které řídí, kdo může přispívat do komunit Bitsocial.",
           "label": "Identita"
+        },
+        "concepts": {
+          "label": "Koncepty",
+          "description": "Aplikace Bitsocial ve fázi nápadu, ve výzkumu a návrhu, zatím nepřipravené k použití."
         }
       },
       "platforms": {
@@ -529,7 +533,11 @@
         "antiRepost": "Proti repostům",
         "referenceClient": "Referenční klient",
         "search": "Vyhledávání",
-        "images": "Obrázky"
+        "images": "Obrázky",
+        "codeHosting": "Hosting kódu",
+        "encyclopedia": "Encyklopedie",
+        "trading": "Obchodování",
+        "video": "Video"
       },
       "linkLabels": {
         "androidApk": "APK pro Android",
@@ -601,6 +609,26 @@
         "askwise": {
           "tagline": "AI bot pro odpovědi, kterého si komunity samy zapínají a přivolávají přes @askwise.",
           "description": "AskWise je AI bot pro odpovědi, kterého si komunity Bitsocial zapínají dobrovolně. V komunitě, která ho nainstalovala, může kdokoli zmínit <code>@askwise</code> nebo <code>askwise.bso</code> v příspěvku nebo odpovědi a bot si přečte vlákno včetně obrázků a odpoví v něm v souladu s pravidly komunity. Komunity, které ho nenainstalovaly, ignoruje a k poskytovateli AI jeho provozovatele se dostanou jen vlákna, ve kterých je zmíněn. AskWise je nezávislý projekt, který běží na bitsocial-cli; Bitsocial ho nevytváří ani neprovozuje."
+        },
+        "wetube": {
+          "tagline": "Alternativa k YouTube ve fázi nápadu, kde je každý kanál komunitou Bitsocial vlastněnou jeho tvůrcem.",
+          "description": "WeTube je alternativa k YouTube, v níž je každý kanál komunitou Bitsocial ovládanou klíčem tvůrce kanálu, každé video uvádí redundantní zdroje pro vložení, takže ho žádný jednotlivý hostitel nemůže stáhnout, a kanály se vybírají pomocí komunitních seznamů seřazených podle hlasů. Webový náhled jen pro čtení umožňuje procházet kanály a přehrává videa peer-to-peer; nahrávání, počty zhlédnutí a monetizace vytvořeny nejsou. Plná aplikace patří do fáze 5 hlavního plánu Bitsocial."
+        },
+        "infinipedia": {
+          "tagline": "Encyklopedie ve fázi nápadu, kde konkurenční redakční skupiny publikují vlastní verze každého článku.",
+          "description": "Infinipedia je encyklopedie, kterou nikdo nevlastní. Redakční skupiny tvořené lidmi nebo s pomocí AI publikují každá vlastní verze článků nad výchozím základem z projektu Wikipedia, každá revize je podepsána svým autorem a čtenáři si vybírají, čí verze jsou pro ně důvěryhodné, a mohou libovolné dvě porovnat vedle sebe. Zatím není nic postaveno; repozitář shromažďuje návrh."
+        },
+        "hopium": {
+          "tagline": "Aplikace pro sociální obchodování ve fázi nápadu, kde se každý signál ověřuje podle on-chain obchodů tradera.",
+          "description": "Hopium je aplikace pro sociální trading, ve které tradeři zveřejňují signály ze svého vlastního profilu Bitsocial a propojují své peněženky, a klient každého čtenáře ověřuje každý signál podle on-chain obchodů tradera, takže žádná firma nemůže signály skrývat ani upravovat historii výsledků. Každý token navíc dostane místnost pro držitele, do které mohou psát a kterou mohou moderovat jen jeho držitelé, a obchody probíhají přes vlastní peněženku čtenáře. Zatím není nic postaveno; repozitář shromažďuje návrh."
+        },
+        "decentralized-github": {
+          "tagline": "Platforma pro spolupráci na kódu ve fázi nápadu, která spojuje peer-to-peer Git se sociální vrstvou Bitsocial.",
+          "description": "Decentralized GitHub je výzkum alternativy ke službě GitHub, která kombinuje peer-to-peer vrstvu Git ve stylu Radicle s profily, komunitami, objevováním a reputací Bitsocial. Diskuse každého repozitáře by byly komunitou Bitsocial, vývojářské profily by byly profilovými uzly, ke kterým by se většina lidí dostávala přes veřejná RPC, a CI by zajišťovaly konkurenční služby runnerů místo jednoho povinného poskytovatele. Název je pracovní; projekt není spojen se společností GitHub, Inc."
+        },
+        "huggingsocial": {
+          "tagline": "Peer-to-peer centrum ve fázi nápadu pro vyhledávání, diskusi a stahování otevřených modelů AI.",
+          "description": "HuggingSocial je centrum modelů, které nevlastní žádná společnost. Rozbočovače jsou komunity Bitsocial řízené kryptografickými klíči, každý výpis modelu je podepsaný příspěvek s kartou modelu, kontrolními součty a zdroji stahování, a váhy se přesouvají přes BitTorrent nebo jednoduchá zrcadla HTTP a jsou ověřovány na vašem počítači. Zatím neexistuje žádný klient; web přijímá registrace na čekací listinu."
         }
       }
     },
@@ -617,7 +645,8 @@
     },
     "filterLimitReached": "Dosažen limit filtrů",
     "devsLabel": "Vývojáři:",
-    "or": "nebo"
+    "or": "nebo",
+    "idea": "Nápad"
   },
   "privacy": {
     "eyebrow": "Jak bitsocial.net zachází s daty",

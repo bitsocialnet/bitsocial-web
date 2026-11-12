@@ -690,6 +690,10 @@
         "tools": {
           "label": "Tools",
           "description": "CLI and admin utilities for running or extending Bitsocial apps."
+        },
+        "concepts": {
+          "label": "Concepts",
+          "description": "Idea-stage Bitsocial apps in research and design, not ready to use yet."
         }
       },
       "platforms": {
@@ -740,7 +744,11 @@
         "antiRepost": "Anti-repost",
         "referenceClient": "Reference client",
         "search": "Search",
-        "images": "Images"
+        "images": "Images",
+        "codeHosting": "Code hosting",
+        "encyclopedia": "Encyclopedia",
+        "trading": "Trading",
+        "video": "Video"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -843,6 +851,26 @@
         "askwise": {
           "tagline": "AI reply bot that communities opt into and summon with @askwise.",
           "description": "AskWise is an AI reply bot that Bitsocial communities opt into. In a community that installed it, anyone can mention <code>@askwise</code> or <code>askwise.bso</code> in a post or reply, and the bot reads the thread, including its images, and answers there while following the community's rules. Communities that haven't installed it are ignored, and only threads that mention it are sent to the operator's AI provider. AskWise is an independent project that runs on bitsocial-cli; it is not made or run by Bitsocial."
+        },
+        "wetube": {
+          "tagline": "Idea-stage YouTube alternative where each channel is a Bitsocial community its creator owns.",
+          "description": "WeTube is a YouTube alternative in which every channel is a Bitsocial community controlled by its creator's key, every video lists redundant embed sources so no single host can take it down, and channels are curated through community lists ranked by votes. A read-only web preview browses channels and plays videos peer-to-peer; uploads, view counts and monetization are not built. The full app belongs to Phase 5 of the Bitsocial master plan."
+        },
+        "infinipedia": {
+          "tagline": "Idea-stage encyclopedia where competing editorial groups publish their own versions of each article.",
+          "description": "Infinipedia is an encyclopedia that nobody owns. Editorial groups, human or AI-assisted, each publish their own versions of articles on top of a Wikipedia baseline, every revision is signed by its author, and readers choose whose versions they trust and can compare any two side by side. Nothing is built yet; the repository collects the design."
+        },
+        "hopium": {
+          "tagline": "Idea-stage social trading app where every call is checked against the trader's on-chain trades.",
+          "description": "Hopium is a social trading app in which traders post calls from their own Bitsocial profile and link their wallets, and every reader's client checks each call against the trader's on-chain trades, so no company can hide calls or edit track records. Each token also gets a holder room that only its holders can post in and moderate, and trades go through the reader's own wallet. Nothing is built yet; the repository collects the design."
+        },
+        "decentralized-github": {
+          "tagline": "Idea-stage code collaboration platform that pairs peer-to-peer Git with Bitsocial's social layer.",
+          "description": "Decentralized GitHub is research into a GitHub alternative that combines a Radicle-style peer-to-peer Git layer with Bitsocial profiles, communities, discovery and reputation. Each repository's discussions would be a Bitsocial community, developer profiles would be profile nodes most people reach through public RPCs, and CI would come from competing runner services instead of one mandatory provider. The name is a working title; the project is not affiliated with GitHub, Inc."
+        },
+        "huggingsocial": {
+          "tagline": "Idea-stage peer-to-peer hub for finding, discussing, and downloading open AI models.",
+          "description": "HuggingSocial is a model hub that no company owns. Hubs are Bitsocial communities controlled by cryptographic keys, each model listing is a signed post with a model card, checksums, and download sources, and the weights move over BitTorrent or plain HTTP mirrors and are verified on your machine. No client is built yet; the website takes waitlist sign-ups."
         }
       }
     },
@@ -856,7 +884,8 @@
       "description": "Explore Bitsocial apps under development on GitHub. If you are building one, add the \"bitsocial\" topic to your repo so others can find it.",
       "link": "Explore GitHub topic",
       "linkShort": "Explore GitHub"
-    }
+    },
+    "idea": "Idea"
   },
   "home": {
     "devOnlyRouteNotice": "{{path}} is still under construction. You have been redirected to the front page.",

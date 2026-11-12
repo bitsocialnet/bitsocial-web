@@ -481,6 +481,10 @@
         "identity": {
           "description": "Hitelesítési és ellenőrzési modulok, amelyek azt szabályozzák, hogy ki tehet közzé a Bitsocial közösségekben.",
           "label": "Identitás"
+        },
+        "concepts": {
+          "label": "Koncepciók",
+          "description": "Ötletszakaszban lévő Bitsocial-alkalmazások, kutatás és tervezés alatt, még nem használatra készek."
         }
       },
       "platforms": {
@@ -529,7 +533,11 @@
         "antiRepost": "Újraküldés elleni",
         "referenceClient": "Referenciakliens",
         "search": "Keresés",
-        "images": "Képek"
+        "images": "Képek",
+        "codeHosting": "Kódtárhely",
+        "encyclopedia": "Enciklopédia",
+        "trading": "Kereskedés",
+        "video": "Videó"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -628,6 +636,26 @@
         "askwise": {
           "tagline": "AI válaszbot, amelyet a közösségek saját döntésük alapján kapcsolnak be, és @askwise megemlítésével hívnak elő.",
           "description": "Az AskWise egy AI válaszbot, amelyet a Bitsocial-közösségek saját döntésük alapján kapcsolhatnak be. Azokban a közösségekben, amelyek telepítették, bárki megemlítheti a botot egy posztban vagy válaszban <code>@askwise</code> vagy <code>askwise.bso</code> alakban, a bot pedig elolvassa a szálat a benne lévő képekkel együtt, és ott válaszol a közösség szabályait betartva. A bot figyelmen kívül hagyja azokat a közösségeket, amelyek nem telepítették, és csak azok a szálak jutnak el az üzemeltető AI-szolgáltatójához, amelyek megemlítik. Az AskWise független projekt, amely a bitsocial-cli-n fut; nem a Bitsocial készíti, és nem is a Bitsocial üzemelteti."
+        },
+        "wetube": {
+          "tagline": "Ötletszakaszban lévő YouTube-alternatíva, amelyben minden csatorna az alkotója tulajdonában lévő Bitsocial-közösség.",
+          "description": "A WeTube egy YouTube-alternatíva, amelyben minden csatorna egy, a létrehozója kulcsával irányított Bitsocial-közösség, minden videó redundáns beágyazási forrásokat sorol fel, így egyetlen tárhelyszolgáltató sem tudja egymaga eltávolítani, a csatornákat pedig szavazatok szerint rangsorolt közösségi listák válogatják. Egy csak olvasható webes előnézetben böngészni lehet a csatornákat, és a videók peer-to-peer módon játszhatók le; a feltöltés, a megtekintésszámlálás és a bevételszerzés nem készült el. A teljes alkalmazás a Bitsocial főtervének 5. fázisához tartozik."
+        },
+        "infinipedia": {
+          "tagline": "Ötletszakaszban lévő enciklopédia, amelyben egymással versengő szerkesztői csoportok minden cikkből saját változatot tesznek közzé.",
+          "description": "Az Infinipedia egy enciklopédia, amelyet senki sem birtokol. Emberi vagy AI által támogatott szerkesztőcsoportok mind a saját cikkváltozataikat teszik közzé egy Wikipedia-alapra építve, minden revíziót a szerzője ír alá, az olvasók pedig eldöntik, kiknek a változataiban bíznak meg, és bármely kettőt egymás mellett összehasonlíthatják. Még semmi sem készült el; a repository a terveket gyűjti."
+        },
+        "hopium": {
+          "tagline": "Ötletszakaszban lévő közösségi kereskedési alkalmazás, amelyben minden jelzést összevetnek a trader on-chain ügyleteivel.",
+          "description": "A Hopium egy közösségi kereskedési alkalmazás, amelyben a kereskedők a saját Bitsocial-profiljukból tesznek közzé kereskedési jelzéseket, és összekapcsolják a tárcáikat, minden olvasó kliense pedig összeveti az egyes jelzéseket a kereskedő on-chain ügyleteivel, így egyetlen cég sem rejtheti el a jelzéseket, és nem írhatja át a teljesítménytörténetet. Minden token kap egy tulajdonosi szobát is, ahová csak a token tulajdonosai írhatnak, és amelyet csak ők moderálhatnak, az ügyletek pedig az olvasó saját tárcáján keresztül zajlanak. Még semmi sem készült el; a tároló a terveket gyűjti."
+        },
+        "decentralized-github": {
+          "tagline": "Ötletszakaszban lévő platform közös kódfejlesztéshez, amely a peer-to-peer Gitet a Bitsocial közösségi rétegével ötvözi.",
+          "description": "A Decentralized GitHub egy GitHub-alternatíva kutatása, amely egy Radicle-szerű peer-to-peer Git-réteget ötvöz a Bitsocial profiljaival, közösségeivel, felfedezésével és reputációjával. Minden tároló beszélgetései egy Bitsocial-közösséget alkotnának, a fejlesztői profilok profilcsomópontok lennének, amelyeket a legtöbben nyilvános RPC-ken keresztül érnének el, a CI pedig egymással versengő runner-szolgáltatásoktól származna egyetlen kötelező szolgáltató helyett. A név munkacím; a projekt nem áll kapcsolatban a GitHub, Inc. céggel."
+        },
+        "huggingsocial": {
+          "tagline": "Ötletszakaszban lévő peer-to-peer központ nyitott AI-modellek keresésére, megbeszélésére és letöltésére.",
+          "description": "A HuggingSocial egy modellközpont, amelyet egyetlen vállalat sem birtokol. A hubok kriptográfiai kulcsokkal vezérelt Bitsocial-közösségek, minden modellbejegyzés egy aláírt bejegyzés, amely modellkártyát, ellenőrzőösszegeket és letöltési forrásokat tartalmaz, a súlyok pedig BitTorrenten vagy egyszerű HTTP-tükrökön keresztül mozognak, és a gépeden ellenőrződnek. Még nem készült kliens; a webhely várólistás feliratkozásokat fogad."
         }
       }
     },
@@ -644,7 +672,8 @@
     },
     "filterLimitReached": "Szűrőkorlát elérve",
     "devsLabel": "Fejlesztők:",
-    "or": "vagy"
+    "or": "vagy",
+    "idea": "Ötlet"
   },
   "privacy": {
     "eyebrow": "Hogyan kezeli a bitsocial.net az adatokat",

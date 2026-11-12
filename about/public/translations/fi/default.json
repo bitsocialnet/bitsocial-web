@@ -481,6 +481,10 @@
         "identity": {
           "description": "Tunnistusten ja vahvistuksen moduulit, jotka hallitsevat sitä, kuka voi kirjoittaa Bitsocial-yhteisöihin.",
           "label": "Identiteetti"
+        },
+        "concepts": {
+          "label": "Konseptit",
+          "description": "Ideavaiheen Bitsocial-sovellukset, joita tutkitaan ja suunnitellaan ja jotka eivät ole vielä käyttövalmiita."
         }
       },
       "platforms": {
@@ -529,7 +533,11 @@
         "antiRepost": "Uudelleenjulkaisun esto",
         "referenceClient": "Viiteasiakas",
         "search": "Haku",
-        "images": "Kuvat"
+        "images": "Kuvat",
+        "codeHosting": "Koodin isännöinti",
+        "encyclopedia": "Tietosanakirja",
+        "trading": "Kaupankäynti",
+        "video": "Video"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -628,6 +636,26 @@
         "askwise": {
           "tagline": "Tekoälyvastausbotti, jonka yhteisöt ottavat käyttöön omasta valinnastaan ja kutsuvat paikalle maininnalla @askwise.",
           "description": "AskWise on tekoälyvastausbotti, jonka Bitsocial-yhteisöt voivat ottaa käyttöön omasta valinnastaan. Yhteisössä, joka on asentanut sen, kuka tahansa voi mainita <code>@askwise</code> tai <code>askwise.bso</code> julkaisussa tai vastauksessa, jolloin botti lukee ketjun kuvineen ja vastaa samaan ketjuun yhteisön sääntöjä noudattaen. Yhteisöt, jotka eivät ole asentaneet sitä, jätetään huomiotta, ja ylläpitäjän tekoälypalveluntarjoajalle lähetetään vain ketjut, joissa botti mainitaan. AskWise on itsenäinen projekti, joka toimii bitsocial-cli-ohjelman päällä; Bitsocial ei ole sen tekijä eikä ylläpitäjä."
+        },
+        "wetube": {
+          "tagline": "Ideavaiheen YouTube-vaihtoehto, jossa jokainen kanava on tekijänsä omistama Bitsocial-yhteisö.",
+          "description": "WeTube on YouTube-vaihtoehto, jossa jokainen kanava on tekijänsä avaimella hallittu Bitsocial-yhteisö, jokainen video listaa redundantteja upotuslähteitä, jotta mikään yksittäinen isäntä ei voi poistaa sitä, ja kanavat kuratoidaan äänten perusteella järjestettyjen yhteisölistojen kautta. Vain luku -tilassa toimivalla verkkoesikatselulla voi selata kanavia, ja se toistaa videoita peer-to-peer-yhteydellä; videoiden lataamista palveluun, katselukertoja ja kaupallistamista ei ole rakennettu. Koko sovellus kuuluu Bitsocialin yleissuunnitelman vaiheeseen 5."
+        },
+        "infinipedia": {
+          "tagline": "Ideavaiheen tietosanakirja, jossa kilpailevat toimitusryhmät julkaisevat omat versionsa jokaisesta artikkelista.",
+          "description": "Infinipedia on tietosanakirja, jota kukaan ei omista. Toimitusryhmät, ihmisten muodostamat tai tekoälyn avustamat, julkaisevat kukin omat versionsa artikkeleista Wikipedia-pohjan päälle, jokainen revisio on tekijänsä allekirjoittama, ja lukijat valitsevat, keiden versioihin he luottavat, ja voivat verrata mitä tahansa kahta rinnakkain. Mitään ei ole vielä rakennettu; repositorio kokoaa suunnitelman."
+        },
+        "hopium": {
+          "tagline": "Ideavaiheen sosiaalisen kaupankäynnin sovellus, jossa jokainen signaali tarkistetaan treidaajan on-chain-kauppoja vasten.",
+          "description": "Hopium on sosiaalisen kaupankäynnin sovellus, jossa treidaajat julkaisevat signaaleja omasta Bitsocial-profiilistaan ja yhdistävät lompakkonsa, ja jokaisen lukijan asiakasohjelma tarkistaa jokaisen signaalin treidaajan on-chain-kauppoja vasten, joten mikään yritys ei voi piilottaa signaaleja tai muokata tuloshistoriaa. Jokainen token saa myös haltijahuoneen, jossa vain tokenin haltijat voivat julkaista ja moderoida, ja kaupat kulkevat lukijan oman lompakon kautta. Mitään ei ole vielä rakennettu; repositorio kokoaa yhteen suunnitelman."
+        },
+        "decentralized-github": {
+          "tagline": "Ideavaiheen koodiyhteistyöalusta, joka yhdistää peer-to-peer-Gitin Bitsocialin sosiaaliseen kerrokseen.",
+          "description": "Decentralized GitHub on tutkimusta GitHub-vaihtoehdosta, joka yhdistää Radiclen kaltaisen peer-to-peer-Git-kerroksen Bitsocialin profiileihin, yhteisöihin, löytämiseen ja maineeseen. Kunkin repositorion keskustelut olisivat Bitsocial-yhteisö, kehittäjäprofiilit olisivat profiilisolmuja, joita useimmat käyttävät julkisten RPC:iden kautta, ja CI tulisi kilpailevilta runner-palveluilta yhden pakollisen palveluntarjoajan sijaan. Nimi on työnimi; projektilla ei ole yhteyttä GitHub, Inc. -yhtiöön."
+        },
+        "huggingsocial": {
+          "tagline": "Ideavaiheessa oleva vertaisverkkokeskus avointen AI-mallien löytämiseen, keskusteluun ja lataamiseen.",
+          "description": "HuggingSocial on mallikeskus, jota mikään yritys ei omista. Hubit ovat Bitsocial-yhteisöjä, joita hallitsevat kryptografiset avaimet, jokainen mallilistaus on allekirjoitettu viesti, jossa on mallikortti, tarkistussummat ja latauslähteet, ja painot siirtyvät BitTorrentin tai tavallisten HTTP-peilien kautta ja vahvistetaan koneellasi. Asiakasohjelmaa ei ole vielä rakennettu; verkkosivusto ottaa vastaan odotuslistalle ilmoittautumisia."
         }
       }
     },
@@ -644,7 +672,8 @@
     },
     "filterLimitReached": "Suodatinraja täynnä",
     "devsLabel": "Kehittäjät:",
-    "or": "tai"
+    "or": "tai",
+    "idea": "Idea"
   },
   "privacy": {
     "eyebrow": "Miten bitsocial.net käsittelee tietoja",

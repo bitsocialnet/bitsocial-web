@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { BadgeCheck, LayoutGrid, Shield, Wrench } from "lucide-react";
+import { BadgeCheck, LayoutGrid, Lightbulb, Shield, Wrench } from "lucide-react";
 import type { AppCategorySlug, CategoryData } from "@/lib/apps-data";
 import { cn } from "@/lib/utils";
 
@@ -23,6 +23,7 @@ interface CategoryFilterProps {
 const categoryIconMap = {
   "layout-grid": LayoutGrid,
   "badge-check": BadgeCheck,
+  lightbulb: Lightbulb,
   shield: Shield,
   wrench: Wrench,
 } as const;

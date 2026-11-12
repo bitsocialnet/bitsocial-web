@@ -481,6 +481,10 @@
         "identity": {
           "description": "Referentie- en verificatiemodules die bepalen wie in Bitsocial-gemeenschappen mag posten.",
           "label": "Identiteit"
+        },
+        "concepts": {
+          "label": "Concepten",
+          "description": "Bitsocial-apps in de ideefase, in onderzoek en ontwerp, nog niet klaar voor gebruik."
         }
       },
       "platforms": {
@@ -529,7 +533,11 @@
         "antiRepost": "Anti-repost",
         "referenceClient": "Referentieclient",
         "search": "Zoeken",
-        "images": "Afbeeldingen"
+        "images": "Afbeeldingen",
+        "codeHosting": "Codehosting",
+        "encyclopedia": "Encyclopedie",
+        "trading": "Trading",
+        "video": "Video"
       },
       "linkLabels": {
         "androidApk": "Android-APK",
@@ -628,6 +636,26 @@
         "askwise": {
           "tagline": "AI-antwoordbot die community's zelf kunnen inschakelen en met @askwise oproepen.",
           "description": "AskWise is een AI-antwoordbot die Bitsocial-community's zelf kunnen inschakelen. In een community die hem heeft geïnstalleerd, kan iedereen <code>@askwise</code> of <code>askwise.bso</code> vermelden in een post of reactie; de bot leest dan de thread, inclusief de afbeeldingen, en antwoordt daar met inachtneming van de regels van de community. Community's die hem niet hebben geïnstalleerd, worden genegeerd, en alleen threads waarin hij wordt vermeld, worden naar de AI-provider van de beheerder gestuurd. AskWise is een onafhankelijk project dat draait op bitsocial-cli; het wordt niet door Bitsocial gemaakt of beheerd."
+        },
+        "wetube": {
+          "tagline": "YouTube-alternatief in de ideefase waarin elk kanaal een Bitsocial-community is die eigendom is van de maker.",
+          "description": "WeTube is een YouTube-alternatief waarin elk kanaal een Bitsocial-community is die wordt beheerd door de sleutel van de maker, elke video redundante insluitbronnen vermeldt zodat geen enkele host hem in zijn eentje offline kan halen, en kanalen worden samengesteld via communitylijsten die op stemmen zijn gerangschikt. Met een alleen-lezen webvoorbeeld kun je door kanalen bladeren en video's peer-to-peer afspelen; uploads, weergavetellers en monetisatie zijn niet gebouwd. De volledige app hoort bij fase 5 van het Bitsocial-masterplan."
+        },
+        "infinipedia": {
+          "tagline": "Encyclopedie in de ideefase waarin concurrerende redactiegroepen hun eigen versies van elk artikel publiceren.",
+          "description": "Infinipedia is een encyclopedie waarvan niemand de eigenaar is. Redactiegroepen, menselijk of met AI-ondersteuning, publiceren elk hun eigen versies van artikelen bovenop een Wikipedia-basis, elke revisie is ondertekend door de auteur, en lezers kiezen wiens versies ze vertrouwen en kunnen er twee naar keuze naast elkaar vergelijken. Er is nog niets gebouwd; de repository verzamelt het ontwerp."
+        },
+        "hopium": {
+          "tagline": "Social-tradingapp in de ideefase waarin elke call wordt getoetst aan de on-chain trades van de trader.",
+          "description": "Hopium is een social-tradingapp waarin traders calls plaatsen vanaf hun eigen Bitsocial-profiel en hun wallets koppelen, en de client van elke lezer controleert elke call aan de hand van de on-chain trades van de trader, zodat geen enkel bedrijf calls kan verbergen of trackrecords kan aanpassen. Elk token krijgt daarnaast een ruimte voor houders waarin alleen de houders van dat token kunnen posten en modereren, en trades lopen via de eigen wallet van de lezer. Er is nog niets gebouwd; de repository verzamelt het ontwerp."
+        },
+        "decentralized-github": {
+          "tagline": "Platform voor samenwerking aan code in de ideefase dat peer-to-peer Git combineert met de sociale laag van Bitsocial.",
+          "description": "Decentralized GitHub is onderzoek naar een GitHub-alternatief dat een peer-to-peer Git-laag in de stijl van Radicle combineert met de profielen, communities, ontdekking en reputatie van Bitsocial. De discussies van elke repository zouden een Bitsocial-community zijn, ontwikkelaarsprofielen zouden profielknooppunten zijn die de meeste mensen via openbare RPC's bereiken, en CI zou komen van concurrerende runnerdiensten in plaats van één verplichte aanbieder. De naam is een werktitel; het project is niet verbonden aan GitHub, Inc."
+        },
+        "huggingsocial": {
+          "tagline": "Peer-to-peer hub in de ideefase voor het vinden, bespreken en downloaden van open AI-modellen.",
+          "description": "HuggingSocial is een modelhub die geen eigendom van een bedrijf is. Hubs zijn Bitsocial-gemeenschappen beheerd door cryptografische sleutels, elke modelvermelding is een ondertekend bericht met een modelkaart, controlesommen en downloadbronnen, en gewichten worden verplaatst via BitTorrent of gewone HTTP-spiegels en geverifieerd op je machine. Er is nog geen client gebouwd; de website accepteert inschrijvingen op de wachtlijst."
         }
       }
     },
@@ -644,7 +672,8 @@
     },
     "filterLimitReached": "Filterlimiet bereikt",
     "devsLabel": "Devs:",
-    "or": "of"
+    "or": "of",
+    "idea": "Idee"
   },
   "privacy": {
     "eyebrow": "Hoe bitsocial.net met gegevens omgaat",

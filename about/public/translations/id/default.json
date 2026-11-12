@@ -481,6 +481,10 @@
         "identity": {
           "description": "Modul kredensial dan verifikasi yang mengontrol siapa yang dapat memposting di komunitas Bitsocial.",
           "label": "Identitas"
+        },
+        "concepts": {
+          "label": "Konsep",
+          "description": "Aplikasi Bitsocial yang masih berupa ide, sedang dalam riset dan desain, dan belum siap digunakan."
         }
       },
       "platforms": {
@@ -529,7 +533,11 @@
         "antiRepost": "Anti-repost",
         "referenceClient": "Klien referensi",
         "search": "Pencarian",
-        "images": "Gambar"
+        "images": "Gambar",
+        "codeHosting": "Hosting kode",
+        "encyclopedia": "Ensiklopedia",
+        "trading": "Trading",
+        "video": "Video"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -628,6 +636,26 @@
         "askwise": {
           "tagline": "Bot balasan AI yang dipasang komunitas atas pilihan sendiri dan dipanggil dengan @askwise.",
           "description": "AskWise adalah bot balasan AI yang dipasang komunitas Bitsocial atas pilihan mereka sendiri. Di komunitas yang memasangnya, siapa pun dapat menyebut <code>@askwise</code> atau <code>askwise.bso</code> dalam posting atau balasan, lalu bot akan membaca thread tersebut, termasuk gambarnya, dan menjawab di sana dengan tetap mengikuti aturan komunitas. Komunitas yang tidak memasangnya diabaikan, dan hanya thread yang menyebutnya yang dikirim ke penyedia AI milik operator. AskWise adalah proyek independen yang berjalan di atas bitsocial-cli; proyek ini tidak dibuat maupun dijalankan oleh Bitsocial."
+        },
+        "wetube": {
+          "tagline": "Alternatif YouTube yang masih berupa ide, di mana setiap channel adalah komunitas Bitsocial milik kreatornya.",
+          "description": "WeTube adalah alternatif YouTube di mana setiap kanal adalah komunitas Bitsocial yang dikendalikan oleh kunci pembuatnya, setiap video mencantumkan sumber sematan redundan sehingga tidak ada satu host pun yang bisa menurunkannya sendirian, dan kanal dikurasi melalui daftar komunitas yang diurutkan berdasarkan suara. Pratinjau web hanya-baca memungkinkan penjelajahan kanal dan memutar video secara peer-to-peer; unggahan, jumlah tayangan, dan monetisasi belum dibangun. Aplikasi lengkapnya termasuk dalam Fase 5 rencana induk Bitsocial."
+        },
+        "infinipedia": {
+          "tagline": "Ensiklopedia yang masih berupa ide, di mana kelompok editorial yang saling bersaing menerbitkan versi mereka sendiri untuk setiap artikel.",
+          "description": "Infinipedia adalah ensiklopedia yang tidak dimiliki siapa pun. Kelompok editorial, baik manusia maupun berbantuan AI, masing-masing menerbitkan versi artikel mereka sendiri di atas basis Wikipedia, setiap revisi ditandatangani oleh penulisnya, dan pembaca memilih versi siapa yang mereka percayai serta dapat membandingkan dua versi mana pun secara berdampingan. Belum ada yang dibangun; repositori ini mengumpulkan desainnya."
+        },
+        "hopium": {
+          "tagline": "Aplikasi social trading yang masih berupa ide, di mana setiap call dicocokkan dengan transaksi on-chain sang trader.",
+          "description": "Hopium adalah aplikasi social trading tempat trader memposting call dari profil Bitsocial mereka sendiri dan menautkan dompet mereka, dan client setiap pembaca memeriksa setiap call terhadap trade on-chain milik trader tersebut, sehingga tidak ada perusahaan yang bisa menyembunyikan call atau mengubah rekam jejak. Setiap token juga mendapat ruang khusus pemegang, tempat hanya pemegang token itu yang bisa memposting dan memoderasi, dan trade dilakukan lewat dompet milik pembaca sendiri. Belum ada yang dibangun; repositori ini menghimpun desainnya."
+        },
+        "decentralized-github": {
+          "tagline": "Platform kolaborasi kode yang masih berupa ide, yang memadukan Git peer-to-peer dengan lapisan sosial Bitsocial.",
+          "description": "Decentralized GitHub adalah riset tentang alternatif GitHub yang menggabungkan lapisan Git peer-to-peer ala Radicle dengan profil, komunitas, discovery, dan reputasi Bitsocial. Diskusi setiap repositori akan menjadi sebuah komunitas Bitsocial, profil developer akan menjadi node profil yang diakses sebagian besar orang melalui RPC publik, dan CI akan datang dari layanan runner yang saling bersaing, bukan dari satu penyedia wajib. Nama ini masih nama sementara; proyek ini tidak berafiliasi dengan GitHub, Inc."
+        },
+        "huggingsocial": {
+          "tagline": "Hub peer-to-peer yang masih berupa ide untuk menemukan, mendiskusikan, dan mengunduh model AI terbuka.",
+          "description": "HuggingSocial adalah pusat model yang tidak dimiliki oleh perusahaan apa pun. Hub adalah komunitas Bitsocial yang dikontrol oleh kunci kriptografi, setiap daftar model adalah posting yang ditandatangani dengan kartu model, checksum, dan sumber unduhan, dan bobot bergerak melalui BitTorrent atau cermin HTTP sederhana dan diverifikasi pada mesin Anda. Belum ada klien yang dibangun; situs web menerima pendaftaran daftar tunggu."
         }
       }
     },
@@ -644,7 +672,8 @@
     },
     "filterLimitReached": "Batas filter tercapai",
     "devsLabel": "Devs:",
-    "or": "atau"
+    "or": "atau",
+    "idea": "Ide"
   },
   "privacy": {
     "eyebrow": "Cara bitsocial.net menangani data",

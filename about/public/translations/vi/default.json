@@ -481,6 +481,10 @@
         "identity": {
           "description": "Các mô-đun thông tin đăng nhập và xác minh kiểm soát ai có thể đăng bài trong các cộng đồng Bitsocial.",
           "label": "Nhân dạng"
+        },
+        "concepts": {
+          "label": "Ý tưởng",
+          "description": "Các ứng dụng Bitsocial ở giai đoạn ý tưởng, đang được nghiên cứu và thiết kế, chưa sẵn sàng để sử dụng."
         }
       },
       "platforms": {
@@ -529,7 +533,11 @@
         "antiRepost": "Chống đăng lại",
         "referenceClient": "Client tham chiếu",
         "search": "Tìm kiếm",
-        "images": "Hình ảnh"
+        "images": "Hình ảnh",
+        "codeHosting": "Lưu trữ mã nguồn",
+        "encyclopedia": "Bách khoa toàn thư",
+        "trading": "Giao dịch",
+        "video": "Video"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -628,6 +636,26 @@
         "askwise": {
           "tagline": "Bot trả lời AI mà các cộng đồng tự chọn bật và gọi bằng @askwise.",
           "description": "AskWise là bot trả lời AI mà các cộng đồng Bitsocial tự chọn bật. Trong cộng đồng đã cài đặt bot, bất kỳ ai cũng có thể nhắc đến <code>@askwise</code> hoặc <code>askwise.bso</code> trong bài đăng hoặc phản hồi, và bot sẽ đọc chủ đề, kể cả hình ảnh trong đó, rồi trả lời ngay tại chủ đề đó theo quy tắc của cộng đồng. Các cộng đồng chưa cài đặt bot sẽ bị bỏ qua, và chỉ những chủ đề có nhắc đến bot mới được gửi tới nhà cung cấp AI của người vận hành. AskWise là một dự án độc lập chạy trên bitsocial-cli; dự án này không do Bitsocial tạo ra hay vận hành."
+        },
+        "wetube": {
+          "tagline": "Giải pháp thay thế YouTube ở giai đoạn ý tưởng, nơi mỗi kênh là một cộng đồng Bitsocial thuộc sở hữu của người sáng tạo.",
+          "description": "WeTube là một giải pháp thay thế YouTube, trong đó mỗi kênh là một cộng đồng Bitsocial do khóa của người tạo kênh kiểm soát, mỗi video liệt kê các nguồn nhúng dự phòng để không một máy chủ lưu trữ đơn lẻ nào có thể gỡ nó xuống, và các kênh được tuyển chọn thông qua danh sách cộng đồng xếp hạng theo lượt bình chọn. Bản xem trước trên web chỉ đọc cho phép duyệt các kênh và phát video theo kiểu peer-to-peer; tính năng tải lên, số lượt xem và kiếm tiền chưa được xây dựng. Ứng dụng đầy đủ thuộc Giai đoạn 5 trong kế hoạch tổng thể của Bitsocial."
+        },
+        "infinipedia": {
+          "tagline": "Bách khoa toàn thư ở giai đoạn ý tưởng, nơi các nhóm biên tập cạnh tranh nhau xuất bản phiên bản riêng của từng bài viết.",
+          "description": "Infinipedia là một bách khoa toàn thư mà không ai sở hữu. Các nhóm biên tập, gồm con người hoặc có AI hỗ trợ, mỗi nhóm xuất bản phiên bản bài viết của riêng mình dựa trên nền tảng từ Wikipedia, mỗi bản sửa đổi đều được tác giả ký, và người đọc chọn tin tưởng phiên bản của ai và có thể so sánh song song hai phiên bản bất kỳ. Hiện chưa có gì được xây dựng; kho mã nguồn tập hợp phần thiết kế."
+        },
+        "hopium": {
+          "tagline": "Ứng dụng giao dịch xã hội ở giai đoạn ý tưởng, nơi mọi kèo đều được đối chiếu với các giao dịch on-chain của trader.",
+          "description": "Hopium là ứng dụng giao dịch xã hội, nơi các trader đăng kèo từ hồ sơ Bitsocial của chính mình và liên kết ví, còn client của mỗi người đọc sẽ đối chiếu từng kèo với các giao dịch on-chain của trader đó, nên không công ty nào có thể giấu kèo hay chỉnh sửa lịch sử thành tích. Mỗi token còn có một phòng dành cho holder mà chỉ những người nắm giữ token đó mới được đăng bài và kiểm duyệt, và các giao dịch đi qua chính ví của người đọc. Hiện chưa có gì được xây dựng; kho mã tập hợp phần thiết kế."
+        },
+        "decentralized-github": {
+          "tagline": "Nền tảng cộng tác mã nguồn ở giai đoạn ý tưởng, kết hợp Git peer-to-peer với lớp xã hội của Bitsocial.",
+          "description": "Decentralized GitHub là một nghiên cứu về một giải pháp thay thế GitHub, kết hợp một lớp Git peer-to-peer theo kiểu Radicle với hồ sơ, cộng đồng, khả năng khám phá và danh tiếng của Bitsocial. Phần thảo luận của mỗi kho mã sẽ là một cộng đồng Bitsocial, hồ sơ nhà phát triển sẽ là các nút hồ sơ mà phần lớn mọi người truy cập qua RPC công khai, và CI sẽ đến từ các dịch vụ runner cạnh tranh nhau thay vì một nhà cung cấp bắt buộc duy nhất. Tên gọi này chỉ là tên tạm; dự án không liên kết với GitHub, Inc."
+        },
+        "huggingsocial": {
+          "tagline": "Trung tâm peer-to-peer ở giai đoạn ý tưởng để tìm kiếm, thảo luận và tải xuống các mô hình AI mở.",
+          "description": "HuggingSocial là một hub mô hình không được sở hữu bởi bất kỳ công ty nào. Các hub là các cộng đồng Bitsocial được kiểm soát bởi các khóa mã hóa, mỗi danh sách mô hình là một bài đăng có chữ ký kèm thẻ mô hình, tổng kiểm tra và nguồn tải xuống, và các trọng số di chuyển qua BitTorrent hoặc các gương HTTP đơn giản và được xác minh trên máy của bạn. Chưa có máy khách nào được xây dựng; trang web nhận đăng ký danh sách chờ."
         }
       }
     },
@@ -644,7 +672,8 @@
     },
     "filterLimitReached": "Đã đạt giới hạn bộ lọc",
     "devsLabel": "Devs:",
-    "or": "hoặc"
+    "or": "hoặc",
+    "idea": "Ý tưởng"
   },
   "privacy": {
     "eyebrow": "bitsocial.net xử lý dữ liệu như thế nào",

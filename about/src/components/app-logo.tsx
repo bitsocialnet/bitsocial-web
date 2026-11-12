@@ -1,11 +1,13 @@
 import type { ComponentType } from "react";
 import {
   Bell,
+  BookOpen,
   Bot,
   Blocks,
   Clipboard,
   Filter,
   Flag,
+  GitBranch,
   Image as ImageIcon,
   Link2,
   MessageSquare,
@@ -16,17 +18,20 @@ import {
   Sparkles,
   Terminal,
   Ticket,
+  TrendingUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { AppIconKey } from "@/lib/apps-data";
 
 const iconMap = {
   bell: Bell,
+  "book-open": BookOpen,
   bot: Bot,
   blocks: Blocks,
   clipboard: Clipboard,
   filter: Filter,
   flag: Flag,
+  "git-branch": GitBranch,
   image: ImageIcon,
   "link-2": Link2,
   "message-square": MessageSquare,
@@ -37,6 +42,7 @@ const iconMap = {
   sparkles: Sparkles,
   terminal: Terminal,
   ticket: Ticket,
+  "trending-up": TrendingUp,
 } satisfies Record<AppIconKey, ComponentType<{ className?: string }>>;
 
 const sizeMap = {

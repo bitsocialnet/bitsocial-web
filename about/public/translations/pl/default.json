@@ -481,6 +481,10 @@
         "identity": {
           "description": "Moduły poświadczenia i weryfikacji kontrolujące, kto może publikować w społecznościach Bitsocial.",
           "label": "Tożsamość"
+        },
+        "concepts": {
+          "label": "Koncepcje",
+          "description": "Aplikacje Bitsocial na etapie pomysłu, w fazie badań i projektowania, jeszcze niegotowe do użycia."
         }
       },
       "platforms": {
@@ -529,7 +533,11 @@
         "antiRepost": "Anty-repost",
         "referenceClient": "Klient referencyjny",
         "search": "Wyszukiwanie",
-        "images": "Obrazy"
+        "images": "Obrazy",
+        "codeHosting": "Hosting kodu",
+        "encyclopedia": "Encyklopedia",
+        "trading": "Trading",
+        "video": "Wideo"
       },
       "linkLabels": {
         "androidApk": "APK na Androida",
@@ -628,6 +636,26 @@
         "askwise": {
           "tagline": "Bot odpowiedzi AI, który społeczności same włączają i przywołują za pomocą @askwise.",
           "description": "AskWise to bot odpowiedzi AI, który społeczności Bitsocial włączają z własnego wyboru. W społeczności, która go zainstalowała, każdy może wspomnieć o <code>@askwise</code> lub <code>askwise.bso</code> w poście lub odpowiedzi, a bot przeczyta wątek, łącznie z obrazami, i odpowie w nim, przestrzegając zasad społeczności. Społeczności, które go nie zainstalowały, są ignorowane, a do dostawcy AI operatora trafiają tylko wątki, w których o nim wspomniano. AskWise to niezależny projekt działający na bitsocial-cli; nie jest tworzony ani prowadzony przez Bitsocial."
+        },
+        "wetube": {
+          "tagline": "Alternatywa dla YouTube na etapie pomysłu, w której każdy kanał jest społecznością Bitsocial należącą do jego twórcy.",
+          "description": "WeTube to alternatywa dla YouTube, w której każdy kanał jest społecznością Bitsocial kontrolowaną kluczem jego twórcy, każdy film wskazuje redundantne źródła osadzania, więc żaden pojedynczy host nie może go usunąć, a kanały są dobierane za pomocą list społeczności uszeregowanych według głosów. Podgląd webowy tylko do odczytu pozwala przeglądać kanały i odtwarza filmy w trybie peer-to-peer; przesyłanie, liczniki wyświetleń i monetyzacja nie zostały zbudowane. Pełna aplikacja należy do fazy 5 planu głównego Bitsocial."
+        },
+        "infinipedia": {
+          "tagline": "Encyklopedia na etapie pomysłu, w której konkurujące grupy redakcyjne publikują własne wersje każdego artykułu.",
+          "description": "Infinipedia to encyklopedia, której nikt nie jest właścicielem. Grupy redakcyjne, złożone z ludzi lub wspierane przez AI, publikują każda własne wersje artykułów na bazie wyjściowej treści z serwisu Wikipedia, każda rewizja jest podpisana przez swojego autora, a czytelnicy wybierają, czyim wersjom ufają, i mogą porównać dowolne dwie obok siebie. Nic jeszcze nie zostało zbudowane; repozytorium gromadzi projekt."
+        },
+        "hopium": {
+          "tagline": "Aplikacja do social tradingu na etapie pomysłu, w której każdy sygnał jest sprawdzany względem transakcji on-chain tradera.",
+          "description": "Hopium to aplikacja do social tradingu, w której traderzy publikują sygnały ze swojego własnego profilu Bitsocial i podpinają swoje portfele, a klient każdego czytelnika sprawdza każdy sygnał względem transakcji on-chain tradera, więc żadna firma nie może ukrywać sygnałów ani edytować historii wyników. Każdy token dostaje też pokój dla posiadaczy, w którym publikować i moderować mogą tylko jego posiadacze, a transakcje przechodzą przez własny portfel czytelnika. Nic nie zostało jeszcze zbudowane; repozytorium zbiera założenia projektowe."
+        },
+        "decentralized-github": {
+          "tagline": "Platforma do współpracy nad kodem na etapie pomysłu, łącząca Git peer-to-peer z warstwą społecznościową Bitsocial.",
+          "description": "Decentralized GitHub to badania nad alternatywą dla GitHub, która łączy warstwę Git peer-to-peer w stylu Radicle z profilami, społecznościami, odkrywaniem i reputacją Bitsocial. Dyskusje każdego repozytorium byłyby społecznością Bitsocial, profile deweloperów byłyby węzłami profilu, do których większość ludzi docierałaby przez publiczne RPC, a CI zapewniałyby konkurujące ze sobą usługi runnerów zamiast jednego obowiązkowego dostawcy. Nazwa jest robocza; projekt nie jest powiązany z GitHub, Inc."
+        },
+        "huggingsocial": {
+          "tagline": "Centrum peer-to-peer na etapie pomysłu do wyszukiwania, dyskusji i pobierania otwartych modeli AI.",
+          "description": "HuggingSocial to centrum modeli, które nie jest własnością żadnej firmy. Huby to społeczności Bitsocial kontrolowane przez klucze kryptograficzne, każda lista modeli to podpisany post z kartą modelu, sumami kontrolnymi i źródłami pobierania, a wagi poruszają się poprzez BitTorrent lub zwykłe lustra HTTP i są weryfikowane na twoim komputerze. Żaden klient nie został jeszcze zbudowany; strona internetowa przyjmuje rejestracje na listę oczekujących."
         }
       }
     },
@@ -644,7 +672,8 @@
     },
     "filterLimitReached": "Osiągnięto limit filtrów",
     "devsLabel": "Devs:",
-    "or": "lub"
+    "or": "lub",
+    "idea": "Pomysł"
   },
   "privacy": {
     "eyebrow": "Jak bitsocial.net przetwarza dane",

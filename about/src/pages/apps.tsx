@@ -140,6 +140,13 @@ export default function Apps() {
         return left.featured ? -1 : 1;
       }
 
+      // Idea-stage concepts follow usable projects in mixed views such as All Projects.
+      const leftIsIdea = left.status === "idea";
+      const rightIsIdea = right.status === "idea";
+      if (leftIsIdea !== rightIsIdea) {
+        return leftIsIdea ? 1 : -1;
+      }
+
       return left.name.localeCompare(right.name);
     });
 

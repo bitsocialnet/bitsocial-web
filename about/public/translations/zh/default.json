@@ -481,6 +481,10 @@
         "identity": {
           "description": "控制谁可以在 Bitsocial 社区中发布的凭证和验证模块。",
           "label": "身份"
+        },
+        "concepts": {
+          "label": "概念",
+          "description": "处于构想阶段、仍在研究和设计中、尚不可用的 Bitsocial 应用。"
         }
       },
       "platforms": {
@@ -529,7 +533,11 @@
         "antiRepost": "反重复发布",
         "referenceClient": "参考客户端",
         "search": "搜索",
-        "images": "图片"
+        "images": "图片",
+        "codeHosting": "代码托管",
+        "encyclopedia": "百科全书",
+        "trading": "交易",
+        "video": "视频"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -627,6 +635,26 @@
         "askwise": {
           "tagline": "社区自主选择启用、通过 @askwise 召唤的 AI 回复机器人。",
           "description": "AskWise 是一款由 Bitsocial 社区自主选择启用的 AI 回复机器人。在已安装它的社区中，任何人都可以在帖子或回复中提及 <code>@askwise</code> 或 <code>askwise.bso</code>，机器人会阅读该讨论串（包括其中的图片），并在遵守社区规则的前提下在原处作答。未安装它的社区会被忽略，只有提及它的讨论串才会发送给运营者的 AI 提供商。AskWise 是运行在 bitsocial-cli 上的独立项目，并非由 Bitsocial 开发或运营。"
+        },
+        "wetube": {
+          "tagline": "处于构想阶段的 YouTube 替代方案，每个频道都是由其创作者拥有的 Bitsocial 社区。",
+          "description": "WeTube 是一个 YouTube 替代方案，其中每个频道都是由创作者密钥控制的 Bitsocial 社区，每个视频都列出冗余的嵌入来源，因此没有任何单一托管方能将其下架，频道则通过按投票排序的社区列表进行精选。只读的网页预览可以浏览频道，并以点对点方式播放视频；上传、观看次数和变现功能均未实现。完整应用属于 Bitsocial 总体规划的第五阶段。"
+        },
+        "infinipedia": {
+          "tagline": "处于构想阶段的百科全书，相互竞争的编辑团体各自发布每篇文章的自有版本。",
+          "description": "Infinipedia 是一部无人拥有的百科全书。由人类组成或借助 AI 辅助的编辑团队各自在 Wikipedia 基线之上发布自己的文章版本，每次修订都由其作者签名，读者可以选择信任谁的版本，并能将任意两个版本并排比较。目前尚未构建任何内容；该代码仓库汇集了设计方案。"
+        },
+        "hopium": {
+          "tagline": "处于构想阶段的社交交易应用，每条喊单都会与交易者的链上交易进行核对。",
+          "description": "Hopium 是一款社交交易应用：交易员从自己的 Bitsocial 个人资料发布喊单并关联钱包，每位读者的客户端都会将每条喊单与该交易员的链上交易进行核对，因此任何公司都无法隐藏喊单或篡改历史战绩。每个代币还拥有一个持有者专属房间，只有该代币的持有者才能在其中发帖和管理，交易则通过读者自己的钱包完成。目前还没有构建任何东西；仓库中汇集了设计方案。"
+        },
+        "decentralized-github": {
+          "tagline": "处于构想阶段的代码协作平台，将 peer-to-peer Git 与 Bitsocial 的社交层相结合。",
+          "description": "Decentralized GitHub 是一项关于 GitHub 替代方案的研究，它将 Radicle 式的 peer-to-peer Git 层与 Bitsocial 的个人资料、社区、发现机制和声誉相结合。每个仓库的讨论将是一个 Bitsocial 社区，开发者个人资料将是个人资料节点，大多数人通过公共 RPC 访问这些节点，CI 则来自相互竞争的 runner 服务，而非某一家强制指定的提供商。该名称只是暂定名；本项目与 GitHub, Inc. 没有任何关联。"
+        },
+        "huggingsocial": {
+          "tagline": "处于构想阶段的对等网络中心，用于查找、讨论和下载开放AI模型。",
+          "description": "HuggingSocial是一个不被任何公司拥有的模型中心。中心是由加密密钥控制的Bitsocial社区，每个模型列表是一个带有模型卡、校验和和下载来源的签名帖子，权重通过BitTorrent或普通HTTP镜像传输，并在您的机器上进行验证。目前尚未开发任何客户端；网站接受等候名单注册。"
         }
       }
     },
@@ -643,7 +671,8 @@
     },
     "filterLimitReached": "已达到筛选上限",
     "devsLabel": "开发者:",
-    "or": "或"
+    "or": "或",
+    "idea": "构想中"
   },
   "privacy": {
     "eyebrow": "bitsocial.net 如何处理数据",

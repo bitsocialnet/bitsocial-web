@@ -481,6 +481,10 @@
         "identity": {
           "description": "Bitsocial 커뮤니티에 누가 게시할 수 있는지를 제어하는 자격증명 및 검증 모듈입니다.",
           "label": "아이덴티티"
+        },
+        "concepts": {
+          "label": "콘셉트",
+          "description": "아직 연구 및 설계 중이라 사용할 수 없는 아이디어 단계의 Bitsocial 앱."
         }
       },
       "platforms": {
@@ -529,7 +533,11 @@
         "antiRepost": "재게시 방지",
         "referenceClient": "레퍼런스 클라이언트",
         "search": "검색",
-        "images": "이미지"
+        "images": "이미지",
+        "codeHosting": "코드 호스팅",
+        "encyclopedia": "백과사전",
+        "trading": "트레이딩",
+        "video": "동영상"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -628,6 +636,26 @@
         "askwise": {
           "tagline": "커뮤니티가 직접 선택해 설치하고 @askwise로 호출하는 AI 답글 봇.",
           "description": "AskWise는 Bitsocial 커뮤니티가 직접 선택해 설치하는 AI 답글 봇입니다. 이 봇을 설치한 커뮤니티에서는 누구나 게시물이나 답글에서 <code>@askwise</code> 또는 <code>askwise.bso</code>를 언급할 수 있으며, 그러면 봇이 이미지를 포함한 스레드를 읽고 커뮤니티 규칙을 지키면서 해당 스레드에 답합니다. 설치하지 않은 커뮤니티는 무시하며, 봇을 언급한 스레드만 운영자의 AI 제공업체로 전송됩니다. AskWise는 bitsocial-cli에서 실행되는 독립 프로젝트이며, Bitsocial이 만들거나 운영하지 않습니다."
+        },
+        "wetube": {
+          "tagline": "각 채널이 크리에이터가 소유한 Bitsocial 커뮤니티가 되는 아이디어 단계의 YouTube 대안.",
+          "description": "WeTube는 YouTube 대안으로, 모든 채널은 크리에이터의 키로 제어되는 Bitsocial 커뮤니티이고, 모든 동영상은 이중화된 임베드 소스를 나열해 어느 한 호스트도 단독으로 내릴 수 없으며, 채널은 투표로 순위가 매겨진 커뮤니티 목록을 통해 큐레이션됩니다. 읽기 전용 웹 미리보기에서는 채널을 둘러보고 동영상을 peer-to-peer로 재생할 수 있습니다. 업로드, 조회수, 수익화는 구현되지 않았습니다. 전체 앱은 Bitsocial 마스터플랜의 5단계에 속합니다."
+        },
+        "infinipedia": {
+          "tagline": "경쟁하는 편집 그룹들이 각 문서의 자체 버전을 발행하는 아이디어 단계의 백과사전.",
+          "description": "Infinipedia는 아무도 소유하지 않는 백과사전입니다. 사람이 운영하거나 AI의 도움을 받는 편집 그룹이 각자 Wikipedia 기준본 위에 자신만의 문서 버전을 게시하고, 모든 수정본에는 작성자의 서명이 들어가며, 독자는 누구의 버전을 신뢰할지 선택하고 어떤 두 버전이든 나란히 비교할 수 있습니다. 아직 구축된 것은 없으며, 저장소에는 설계가 모여 있습니다."
+        },
+        "hopium": {
+          "tagline": "모든 콜을 트레이더의 온체인 거래와 대조해 검증하는 아이디어 단계의 소셜 트레이딩 앱.",
+          "description": "Hopium은 트레이더가 자신의 Bitsocial 프로필에서 매매 콜을 올리고 지갑을 연결하는 소셜 트레이딩 앱으로, 각 독자의 클라이언트가 모든 콜을 트레이더의 온체인 거래와 대조해 확인하므로 어떤 회사도 콜을 숨기거나 실적 기록을 고칠 수 없습니다. 각 토큰에는 해당 토큰 보유자만 글을 올리고 모더레이션할 수 있는 홀더 방도 생기며, 거래는 독자 자신의 지갑을 통해 이루어집니다. 아직 만들어진 것은 없으며, 저장소에는 설계가 모여 있습니다."
+        },
+        "decentralized-github": {
+          "tagline": "peer-to-peer Git과 Bitsocial의 소셜 레이어를 결합하는 아이디어 단계의 코드 협업 플랫폼.",
+          "description": "Decentralized GitHub은 Radicle 방식의 peer-to-peer Git 계층을 Bitsocial의 프로필, 커뮤니티, 발견, 평판과 결합하는 GitHub 대안에 대한 연구입니다. 각 저장소의 토론은 하나의 Bitsocial 커뮤니티가 되고, 개발자 프로필은 대부분의 사람이 공개 RPC를 통해 접근하는 프로필 노드가 되며, CI는 하나의 필수 제공업체 대신 서로 경쟁하는 러너 서비스가 맡게 됩니다. 이름은 임시 이름이며, 이 프로젝트는 GitHub, Inc.의 제휴 프로젝트가 아닙니다."
+        },
+        "huggingsocial": {
+          "tagline": "오픈 AI 모델을 찾고, 토론하고, 다운로드할 수 있는 아이디어 단계의 피어투피어 허브.",
+          "description": "HuggingSocial은 어떤 회사도 소유하지 않는 모델 허브입니다. 허브는 암호화 키로 제어되는 Bitsocial 커뮤니티이며, 각 모델 목록은 모델 카드, 체크섬 및 다운로드 소스가 있는 서명된 게시물이고, 가중치는 BitTorrent 또는 일반 HTTP 미러를 통해 이동하며 머신에서 검증됩니다. 아직 클라이언트는 만들어지지 않았으며, 웹사이트는 대기 목록 가입을 받고 있습니다."
         }
       }
     },
@@ -644,7 +672,8 @@
     },
     "filterLimitReached": "필터 한도 도달",
     "devsLabel": "개발자:",
-    "or": "또는"
+    "or": "또는",
+    "idea": "아이디어"
   },
   "privacy": {
     "eyebrow": "bitsocial.net이 데이터를 처리하는 방식",

@@ -481,6 +481,10 @@
         "identity": {
           "description": "Legitimations- och verifieringsmoduler som kontrollerar vem som kan posta i Bitsocial-gemenskaper.",
           "label": "Identitet"
+        },
+        "concepts": {
+          "label": "Koncept",
+          "description": "Bitsocial-appar på idéstadiet, under research och design, inte klara att använda än."
         }
       },
       "platforms": {
@@ -529,7 +533,11 @@
         "antiRepost": "Anti-repost",
         "referenceClient": "Referensklient",
         "search": "Sökning",
-        "images": "Bilder"
+        "images": "Bilder",
+        "codeHosting": "Kodhosting",
+        "encyclopedia": "Uppslagsverk",
+        "trading": "Trading",
+        "video": "Video"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -628,6 +636,26 @@
         "askwise": {
           "tagline": "AI-svarsbot som communities själva väljer att aktivera och kallar på med @askwise.",
           "description": "AskWise är en AI-svarsbot som Bitsocial-communities själva väljer att aktivera. I en community som har installerat den kan vem som helst nämna <code>@askwise</code> eller <code>askwise.bso</code> i ett inlägg eller svar, och boten läser tråden, inklusive dess bilder, och svarar där enligt communityts regler. Communities som inte har installerat den ignoreras, och endast trådar som nämner den skickas till operatörens AI-leverantör. AskWise är ett oberoende projekt som körs på bitsocial-cli; det är varken skapat eller drivet av Bitsocial."
+        },
+        "wetube": {
+          "tagline": "YouTube-alternativ på idéstadiet där varje kanal är en Bitsocial-community som ägs av sin skapare.",
+          "description": "WeTube är ett YouTube-alternativ där varje kanal är en Bitsocial-gemenskap som styrs av skaparens nyckel, varje video listar redundanta inbäddningskällor så att ingen enskild värd kan ta ned den, och kanaler kureras genom gemenskapslistor rangordnade efter röster. En skrivskyddad webbförhandsvisning låter dig bläddra bland kanaler och spelar upp videor peer-to-peer; uppladdning, visningsräknare och intäktsgenerering är inte byggda. Den fullständiga appen hör till fas 5 i översiktsplanen för Bitsocial."
+        },
+        "infinipedia": {
+          "tagline": "Uppslagsverk på idéstadiet där konkurrerande redaktionsgrupper publicerar egna versioner av varje artikel.",
+          "description": "Infinipedia är en encyklopedi som ingen äger. Redaktionella grupper, mänskliga eller AI-assisterade, publicerar var och en sina egna versioner av artiklar ovanpå en Wikipedia-bas, varje revision är signerad av sin författare, och läsarna väljer vems versioner de litar på och kan jämföra två valfria sida vid sida. Inget är byggt ännu; repositoriet samlar designen."
+        },
+        "hopium": {
+          "tagline": "App för social trading på idéstadiet där varje call stäms av mot traderns on-chain-affärer.",
+          "description": "Hopium är en app för social trading där tradare publicerar calls från sin egen Bitsocial-profil och kopplar sina plånböcker, och varje läsares klient kontrollerar varje call mot tradarens on-chain-affärer, så att inget företag kan dölja calls eller ändra i resultathistoriken. Varje token får också ett rum för innehavare där bara tokenets innehavare kan posta och moderera, och affärerna går via läsarens egen plånbok. Inget är byggt ännu; repositoriet samlar designen."
+        },
+        "decentralized-github": {
+          "tagline": "Plattform för kodsamarbete på idéstadiet som kombinerar peer-to-peer-Git med Bitsocials sociala lager.",
+          "description": "Decentralized GitHub är forskning kring ett GitHub-alternativ som kombinerar ett peer-to-peer-Git-lager i Radicle-stil med Bitsocials profiler, communities, upptäckt och rykte. Varje repositoriums diskussioner skulle vara en Bitsocial-community, utvecklarprofiler skulle vara profilnoder som de flesta når via offentliga RPC:er, och CI skulle komma från konkurrerande runner-tjänster i stället för en enda obligatorisk leverantör. Namnet är ett arbetsnamn; projektet har ingen koppling till GitHub, Inc."
+        },
+        "huggingsocial": {
+          "tagline": "Peer-to-peer-nav på idéstadiet för att hitta, diskutera och ladda ner öppna AI-modeller.",
+          "description": "HuggingSocial är ett modellnav som inget företag äger. Navarna är Bitsocial-gemenskaper kontrollerade av kryptografiska nycklar, varje modellistning är ett signerat inlägg med ett modellkort, kontrollsummor och nedladdningskällor, och vikterna rör sig via BitTorrent eller enkla HTTP-speglar och verifieras på din maskin. Ingen klient är byggd ännu; webbplatsen tar emot registreringar för väntelistan."
         }
       }
     },
@@ -644,7 +672,8 @@
     },
     "filterLimitReached": "Filtergräns nådd",
     "devsLabel": "Utvecklare:",
-    "or": "eller"
+    "or": "eller",
+    "idea": "Idé"
   },
   "privacy": {
     "eyebrow": "Hur bitsocial.net hanterar data",

@@ -540,6 +540,8 @@ function getApplicationCategory(category: AppCategorySlug) {
       return "Security";
     case "tools":
       return "Developer tool";
+    case "concepts":
+      return "Concept";
   }
 }
 
