@@ -43,6 +43,9 @@ sağlayıcılar onu devralabilir.
   kurulu bir GitHub alternatifi için araştırma ve mimari.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): kimsenin sahibi olmadığı, editoryal
   grupların birbiriyle yarışan sürümler yayımladığı ve okurların seçtiği bir ansiklopedi.
+- [Hopium](https://github.com/bitsocialnet/hopium): her çağrının paylaşanın zincir üstü işlemleriyle
+  karşılaştırıldığı ve her tokenin yalnızca sahiplerinin yazabildiği bir odası olduğu, sosyal alım
+  satım için bir Fomo alternatifi.
 
 ## Birçok geliştiriciyi finanse etmek
 

@@ -37,6 +37,9 @@ hợp thiết kế và các câu hỏi còn bỏ ngỏ để nhà phát triển 
   trúc cho một giải pháp thay thế GitHub xây dựng trên Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): một bách khoa toàn thư không thuộc về
   ai, nơi các nhóm biên tập xuất bản những phiên bản cạnh tranh nhau và người đọc tự chọn.
+- [Hopium](https://github.com/bitsocialnet/hopium): một giải pháp thay thế Fomo cho giao dịch xã
+  hội, nơi mỗi kèo được đối chiếu với các giao dịch on-chain của người đăng và mỗi token có một
+  phòng mà chỉ người nắm giữ mới được đăng bài.
 
 ## Cấp vốn cho nhiều người xây dựng
 

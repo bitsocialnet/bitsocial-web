@@ -45,6 +45,9 @@ riprenderlo.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): un'enciclopedia che non appartiene a
   nessuno, in cui gruppi editoriali pubblicano versioni in concorrenza tra loro e i lettori
   scelgono.
+- [Hopium](https://github.com/bitsocialnet/hopium): un'alternativa a Fomo per il social trading, in
+  cui ogni segnalazione viene confrontata con le operazioni on-chain di chi la pubblica e ogni token
+  ha una stanza in cui possono scrivere solo i suoi possessori.
 
 ## Finanziare molti sviluppatori
 

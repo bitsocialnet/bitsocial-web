@@ -33,6 +33,7 @@ description: 总体规划的第 5 阶段，聚焦于资助并构建 Bitsocial �
 - [WeTube](https://github.com/bitsocialnet/wetube)：一个 YouTube 替代品，每个频道都是归其创作者所有的社区。
 - [去中心化 GitHub](https://github.com/bitsocialnet/decentralized-github)：基于 Bitsocial 构建 GitHub 替代品的研究与架构。
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia)：一部不属于任何人的百科全书，由编辑小组发布相互竞争的版本，由读者自行选择。
+- [Hopium](https://github.com/bitsocialnet/hopium)：社交交易领域的 Fomo 替代品，每条喊单都会与发布者的链上交易核对，每个代币都有一个只有持有者才能发言的房间。
 
 ## 资助众多开发者
 

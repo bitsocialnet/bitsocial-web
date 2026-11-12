@@ -41,6 +41,8 @@ Bitsocial Forge، والكثير منها ينبغي أن يبنيه مطوّر�
   GitHub مبني على Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): موسوعة لا يملكها أحد، تنشر فيها
   مجموعات تحريرية نسخًا متنافسة ويختار القرّاء بينها.
+- [Hopium](https://github.com/bitsocialnet/hopium): بديل لـ Fomo للتداول الاجتماعي، تُقارَن فيه كل
+  توصية بصفقات صاحبها على السلسلة، ولكل توكن غرفة لا يكتب فيها إلا حاملوه.
 
 ## تمويل مطوّرين كثيرين
 

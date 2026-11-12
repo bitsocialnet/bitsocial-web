@@ -42,6 +42,9 @@ melanjutkannya.
   arsitektur untuk alternatif GitHub yang dibangun di atas Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): ensiklopedia yang tidak dimiliki siapa
   pun, tempat kelompok editorial menerbitkan versi yang saling bersaing dan pembaca yang memilih.
+- [Hopium](https://github.com/bitsocialnet/hopium): alternatif Fomo untuk social trading, tempat
+  setiap call dicocokkan dengan transaksi on-chain pembuatnya dan setiap token punya ruang tempat
+  hanya pemegangnya yang bisa memposting.
 
 ## Mendanai banyak pengembang
 

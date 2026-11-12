@@ -40,6 +40,8 @@ Forge가 만들 수 있지만, 상당수는 독립 개발자가 만들어야 합
   위한 연구와 아키텍처.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): 누구도 소유하지 않는 백과사전으로, 편집 그룹들이 서로 경쟁하는
   버전을 발행하고 독자가 선택합니다.
+- [Hopium](https://github.com/bitsocialnet/hopium): 소셜 트레이딩을 위한 Fomo 대안으로, 모든 콜을 작성자의 온체인 거래와 대조하고 각
+  토큰에는 보유자만 글을 쓸 수 있는 방이 있습니다.
 
 ## 다수의 개발자를 지원하기
 
