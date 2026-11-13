@@ -536,7 +536,6 @@
         "images": "Képek",
         "codeHosting": "Kódtárhely",
         "encyclopedia": "Enciklopédia",
-        "trading": "Kereskedés",
         "video": "Videó"
       },
       "linkLabels": {
@@ -645,17 +644,13 @@
           "tagline": "Ötletszakaszban lévő enciklopédia, amelyben egymással versengő szerkesztői csoportok minden cikkből saját változatot tesznek közzé.",
           "description": "Az Infinipedia egy enciklopédia, amelyet senki sem birtokol. Emberi vagy AI által támogatott szerkesztőcsoportok mind a saját cikkváltozataikat teszik közzé egy Wikipedia-alapra építve, minden revíziót a szerzője ír alá, az olvasók pedig eldöntik, kiknek a változataiban bíznak meg, és bármely kettőt egymás mellett összehasonlíthatják. Még semmi sem készült el; a repository a terveket gyűjti."
         },
-        "hopium": {
-          "tagline": "Ötletszakaszban lévő közösségi kereskedési alkalmazás, amelyben minden jelzést összevetnek a trader on-chain ügyleteivel.",
-          "description": "A Hopium egy közösségi kereskedési alkalmazás, amelyben a kereskedők a saját Bitsocial-profiljukból tesznek közzé kereskedési jelzéseket, és összekapcsolják a tárcáikat, minden olvasó kliense pedig összeveti az egyes jelzéseket a kereskedő on-chain ügyleteivel, így egyetlen cég sem rejtheti el a jelzéseket, és nem írhatja át a teljesítménytörténetet. Minden token kap egy tulajdonosi szobát is, ahová csak a token tulajdonosai írhatnak, és amelyet csak ők moderálhatnak, az ügyletek pedig az olvasó saját tárcáján keresztül zajlanak. Még semmi sem készült el; a tároló a terveket gyűjti."
-        },
-        "decentralized-github": {
+        "gitcommons": {
           "tagline": "Ötletszakaszban lévő platform közös kódfejlesztéshez, amely a peer-to-peer Gitet a Bitsocial közösségi rétegével ötvözi.",
-          "description": "A Decentralized GitHub egy GitHub-alternatíva kutatása, amely egy Radicle-szerű peer-to-peer Git-réteget ötvöz a Bitsocial profiljaival, közösségeivel, felfedezésével és reputációjával. Minden tároló beszélgetései egy Bitsocial-közösséget alkotnának, a fejlesztői profilok profilcsomópontok lennének, amelyeket a legtöbben nyilvános RPC-ken keresztül érnének el, a CI pedig egymással versengő runner-szolgáltatásoktól származna egyetlen kötelező szolgáltató helyett. A név munkacím; a projekt nem áll kapcsolatban a GitHub, Inc. céggel."
+          "description": "A GitCommons egy GitHub-alternatíva kutatása, amely egy Radicle-szerű peer-to-peer Git-réteget ötvöz a Bitsocial profiljaival, közösségeivel, felfedezésével és reputációjával. Minden tároló beszélgetései egy Bitsocial-közösséget alkotnának, a fejlesztői profilok profilcsomópontok lennének, amelyeket a legtöbben nyilvános RPC-ken keresztül érnének el, a CI pedig egymással versengő runner-szolgáltatásoktól származna egyetlen kötelező szolgáltató helyett. A GitCommons munkanév; a projekt nem áll kapcsolatban a GitHub, Inc. céggel vagy a Git projekttel."
         },
-        "huggingsocial": {
-          "tagline": "Ötletszakaszban lévő peer-to-peer központ nyitott AI-modellek keresésére, megbeszélésére és letöltésére.",
-          "description": "A HuggingSocial egy modellközpont, amelyet egyetlen vállalat sem birtokol. A hubok kriptográfiai kulcsokkal vezérelt Bitsocial-közösségek, minden modellbejegyzés egy aláírt bejegyzés, amely modellkártyát, ellenőrzőösszegeket és letöltési forrásokat tartalmaz, a súlyok pedig BitTorrenten vagy egyszerű HTTP-tükrökön keresztül mozognak, és a gépeden ellenőrződnek. Még nem készült kliens; a webhely várólistás feliratkozásokat fogad."
+        "modelswarm": {
+          "tagline": "Ötletszakaszban lévő Hugging Face-alternatíva, amelyben nyílt súlyú MI-modelleket egy peerekből álló raj oszt meg.",
+          "description": "A Modelswarm egy senki által nem birtokolt központ nyílt súlyú MI-modellek számára. A kiadók a saját Bitsocial-profiljukból írják alá a kiadásokat, a súlyok BitTorrenten és HTTP-tükrökön keresztül terjednek, és minden fájl minden darabját letöltés közben ellenőrzik az aláírt kiadáshoz képest. A központok olyan Bitsocial-közösségek, amelyek válogatják a kiadásokat és helyet adnak a beszélgetésnek, a kódfuttatásra képes formátumú fájlokat pedig letöltés előtt megjelölik. Még semmi sem készült el; a repository a terveket gyűjti."
         }
       }
     },

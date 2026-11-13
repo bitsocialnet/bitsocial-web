@@ -33,10 +33,13 @@ hợp thiết kế và các câu hỏi còn bỏ ngỏ để nhà phát triển 
 
 - [WeTube](https://github.com/bitsocialnet/wetube): một giải pháp thay thế YouTube, nơi mỗi kênh là
   một cộng đồng thuộc sở hữu của người tạo ra nó.
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons): nghiên cứu và kiến
-  trúc cho một giải pháp thay thế GitHub xây dựng trên Bitsocial.
+- [GitCommons](https://github.com/bitsocialnet/gitcommons): nghiên cứu và kiến trúc cho một giải
+  pháp thay thế GitHub xây dựng trên Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): một bách khoa toàn thư không thuộc về
   ai, nơi các nhóm biên tập xuất bản những phiên bản cạnh tranh nhau và người đọc tự chọn.
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm): một giải pháp thay thế Hugging Face, nơi
+  một bầy peer chia sẻ các mô hình AI trọng số mở và mọi tệp đều được kiểm tra với bản phát hành đã
+  ký của nhà phát hành.
 
 ### Đã cân nhắc và gác lại
 

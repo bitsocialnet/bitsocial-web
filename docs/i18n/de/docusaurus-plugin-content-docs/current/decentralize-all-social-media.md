@@ -39,10 +39,13 @@ können.
 
 - [WeTube](https://github.com/bitsocialnet/wetube): eine YouTube-Alternative, bei der jeder Kanal
   eine Community ist, die ihrem Creator gehört.
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons): Forschung und
-  Architektur für eine GitHub-Alternative auf Basis von Bitsocial.
+- [GitCommons](https://github.com/bitsocialnet/gitcommons): Forschung und Architektur für eine
+  GitHub-Alternative auf Basis von Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): eine Enzyklopädie, die niemandem
   gehört, in der Redaktionsgruppen konkurrierende Versionen veröffentlichen und die Leser wählen.
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm): eine Hugging-Face-Alternative, bei der
+  ein Schwarm von Peers Open-Weight-KI-Modelle teilt und jede Datei gegen das signierte Release
+  ihres Herausgebers geprüft wird.
 
 ### Geprüft und zurückgestellt
 

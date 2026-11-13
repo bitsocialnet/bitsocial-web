@@ -38,10 +38,13 @@ Bitsocial Chain, узлы профилей, альтернатива Twitter/X �
 
 - [WeTube](https://github.com/bitsocialnet/wetube): альтернатива YouTube, в которой каждый канал —
   это сообщество, принадлежащее его автору.
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons): исследования и
-  архитектура альтернативы GitHub на базе Bitsocial.
+- [GitCommons](https://github.com/bitsocialnet/gitcommons): исследования и архитектура альтернативы
+  GitHub на базе Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): энциклопедия, которая никому не
   принадлежит: редакционные группы публикуют конкурирующие версии, а читатели выбирают.
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm): альтернатива Hugging Face, где рой пиров
+  распространяет ИИ-модели с открытыми весами, а каждый файл проверяется по подписанному релизу его
+  издателя.
 
 ### Рассмотрено и отложено
 

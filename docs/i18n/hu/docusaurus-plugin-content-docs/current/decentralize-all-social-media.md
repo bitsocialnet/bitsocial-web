@@ -38,11 +38,14 @@ Néhány ötletnek már van ötletszakaszban lévő repója. Egyikben sincs még
 
 - [WeTube](https://github.com/bitsocialnet/wetube): YouTube-alternatíva, amelyben minden csatorna a
   készítője tulajdonában lévő közösség.
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons): kutatás és
-  architektúra egy Bitsocialra épülő GitHub-alternatívához.
+- [GitCommons](https://github.com/bitsocialnet/gitcommons): kutatás és architektúra egy Bitsocialra
+  épülő GitHub-alternatívához.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): senki tulajdonában nem lévő
   enciklopédia, amelyben szerkesztői csoportok egymással versengő változatokat tesznek közzé, és az
   olvasók választanak.
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm): Hugging Face-alternatíva, amelyben egy
+  peerekből álló raj nyílt súlyú MI-modelleket oszt meg, és minden fájlt a kiadója által aláírt
+  kiadáshoz képest ellenőriznek.
 
 ### Megfontolt és félretett ötletek
 

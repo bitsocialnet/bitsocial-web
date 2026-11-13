@@ -536,7 +536,6 @@
         "images": "Imatges",
         "codeHosting": "Allotjament de codi",
         "encyclopedia": "Enciclopèdia",
-        "trading": "Trading",
         "video": "Vídeo"
       },
       "linkLabels": {
@@ -645,17 +644,13 @@
           "tagline": "Enciclopèdia en fase d'idea on grups editorials rivals publiquen les seves pròpies versions de cada article.",
           "description": "Infinipedia és una enciclopèdia que ningú posseeix. Grups editorials, humans o assistits per IA, publiquen cadascun les seves pròpies versions dels articles a partir d'una base de Wikipedia, cada revisió està signada pel seu autor, i els lectors trien de qui són les versions en què confien i poden comparar-ne dues qualssevol una al costat de l'altra. Encara no hi ha res construït; el repositori recull el disseny."
         },
-        "hopium": {
-          "tagline": "App de trading social en fase d'idea on cada call es contrasta amb les operacions on-chain del trader.",
-          "description": "Hopium és una aplicació de trading social en què els traders publiquen calls des del seu propi perfil de Bitsocial i vinculen les seves carteres, i el client de cada lector contrasta cada call amb les operacions on-chain del trader, de manera que cap empresa no pot amagar calls ni alterar historials de resultats. A més, cada token té una sala de holders on només els qui el posseeixen poden publicar i moderar, i les operacions es fan des de la cartera pròpia del lector. Encara no hi ha res construït; el repositori recull el disseny."
-        },
-        "decentralized-github": {
+        "gitcommons": {
           "tagline": "Plataforma de col·laboració en codi en fase d'idea que combina Git peer-to-peer amb la capa social de Bitsocial.",
-          "description": "Decentralized GitHub és una recerca sobre una alternativa a GitHub que combina una capa Git peer-to-peer a l'estil de Radicle amb els perfils, les comunitats, la descoberta i la reputació de Bitsocial. Les discussions de cada repositori serien una comunitat de Bitsocial, els perfils de desenvolupadors serien nodes de perfil als quals la majoria de la gent accediria a través de RPC públics, i la CI vindria de serveis de runners que competeixen entre si en lloc d'un únic proveïdor obligatori. El nom és provisional; el projecte no està afiliat a GitHub, Inc."
+          "description": "GitCommons és una recerca sobre una alternativa a GitHub que combina una capa Git peer-to-peer a l'estil de Radicle amb els perfils, les comunitats, la descoberta i la reputació de Bitsocial. Les discussions de cada repositori serien una comunitat de Bitsocial, els perfils de desenvolupadors serien nodes de perfil als quals la majoria de la gent accediria a través de RPC públics, i la CI vindria de serveis de runners que competeixen entre si en lloc d'un únic proveïdor obligatori. GitCommons és un nom provisional; el projecte no està afiliat a GitHub, Inc. ni al projecte Git."
         },
-        "huggingsocial": {
-          "tagline": "Plataforma entre parells en fase d'idea per trobar, discutir i descarregar models d'IA oberts.",
-          "description": "HuggingSocial és un centre de models que no és propietat de cap empresa. Els concentradors són comunitats de Bitsocial controlades per claus criptogràfiques, cada llistat de model és un missatge signat amb una fitxa de model, sumes de verificació i fonts de descàrrega, i els pesos es mouen per BitTorrent o miralls HTTP simples i es verifiquen a la teva màquina. Encara no s'ha creat cap client; el lloc web accepta inscripcions a la llista d'espera."
+        "modelswarm": {
+          "tagline": "Alternativa a Hugging Face en fase d'idea on un eixam de peers comparteix models d'IA de pesos oberts.",
+          "description": "Modelswarm és un hub de models d'IA de pesos oberts que no és de ningú. Els publicadors signen les versions des del seu propi perfil de Bitsocial, els pesos viatgen per BitTorrent i miralls HTTP, i cada fragment de cada fitxer es verifica contra la versió signada mentre es descarrega. Els hubs són comunitats de Bitsocial que seleccionen versions i acullen la discussió, i els fitxers en formats que poden executar codi es marquen abans de descarregar-los. Encara no hi ha res construït; el repositori recull el disseny."
         }
       }
     },

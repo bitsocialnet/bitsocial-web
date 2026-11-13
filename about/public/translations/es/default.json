@@ -536,7 +536,6 @@
         "images": "Imágenes",
         "codeHosting": "Alojamiento de código",
         "encyclopedia": "Enciclopedia",
-        "trading": "Trading",
         "video": "Video"
       },
       "linkLabels": {
@@ -645,17 +644,13 @@
           "tagline": "Enciclopedia en fase de idea donde grupos editoriales rivales publican sus propias versiones de cada artículo.",
           "description": "Infinipedia es una enciclopedia que nadie posee. Grupos editoriales, humanos o asistidos por IA, publican cada uno sus propias versiones de los artículos sobre una base de Wikipedia, cada revisión está firmada por su autor y los lectores eligen en las versiones de quién confían y pueden comparar dos cualesquiera una junto a otra. Todavía no hay nada construido; el repositorio recoge el diseño."
         },
-        "hopium": {
-          "tagline": "App de trading social en fase de idea donde cada call se contrasta con las operaciones on-chain del trader.",
-          "description": "Hopium es una aplicación de trading social en la que los traders publican calls desde su propio perfil de Bitsocial y vinculan sus carteras, y el cliente de cada lector contrasta cada call con las operaciones on-chain del trader, de modo que ninguna empresa puede ocultar calls ni alterar historiales de resultados. Además, cada token tiene una sala de holders en la que solo quienes lo poseen pueden publicar y moderar, y las operaciones se hacen desde la propia cartera del lector. Todavía no hay nada construido; el repositorio recoge el diseño."
-        },
-        "decentralized-github": {
+        "gitcommons": {
           "tagline": "Plataforma de colaboración en código en fase de idea que combina Git peer-to-peer con la capa social de Bitsocial.",
-          "description": "Decentralized GitHub es una investigación sobre una alternativa a GitHub que combina una capa Git peer-to-peer al estilo de Radicle con los perfiles, las comunidades, el descubrimiento y la reputación de Bitsocial. Las discusiones de cada repositorio serían una comunidad de Bitsocial, los perfiles de desarrolladores serían nodos de perfil a los que la mayoría de la gente accedería a través de RPC públicos, y la CI vendría de servicios de runners que compiten entre sí en lugar de un único proveedor obligatorio. El nombre es provisional; el proyecto no está afiliado a GitHub, Inc."
+          "description": "GitCommons es una investigación sobre una alternativa a GitHub que combina una capa Git peer-to-peer al estilo de Radicle con los perfiles, las comunidades, el descubrimiento y la reputación de Bitsocial. Las discusiones de cada repositorio serían una comunidad de Bitsocial, los perfiles de desarrolladores serían nodos de perfil a los que la mayoría de la gente accedería a través de RPC públicos, y la CI vendría de servicios de runners que compiten entre sí en lugar de un único proveedor obligatorio. GitCommons es un nombre provisional; el proyecto no está afiliado a GitHub, Inc. ni al proyecto Git."
         },
-        "huggingsocial": {
-          "tagline": "Centro peer-to-peer en fase de idea para encontrar, discutir y descargar modelos de IA abiertos.",
-          "description": "HuggingSocial es un centro de modelos que ninguna empresa posee. Los hubs son comunidades de Bitsocial controladas por claves criptográficas, cada listado de modelo es un mensaje firmado con una tarjeta de modelo, sumas de verificación y fuentes de descarga, y los pesos se mueven a través de BitTorrent o espejos HTTP simples y se verifican en tu máquina. Todavía no se ha creado ningún cliente; el sitio web acepta inscripciones en lista de espera."
+        "modelswarm": {
+          "tagline": "Alternativa a Hugging Face en fase de idea donde un enjambre de peers comparte modelos de IA de pesos abiertos.",
+          "description": "Modelswarm es un hub de modelos de IA de pesos abiertos que no pertenece a nadie. Los publicadores firman sus versiones desde su propio perfil de Bitsocial, los pesos viajan por BitTorrent y espejos HTTP, y cada fragmento de cada archivo se verifica contra la versión firmada mientras se descarga. Los hubs son comunidades de Bitsocial que seleccionan versiones y alojan la discusión, y los archivos en formatos que pueden ejecutar código se marcan antes de descargarlos. Todavía no hay nada construido; el repositorio recoge el diseño."
         }
       }
     },

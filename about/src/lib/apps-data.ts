@@ -43,8 +43,7 @@ export type AppIconKey =
   | "flag"
   | "link-2"
   | "share-2"
-  | "sparkles"
-  | "trending-up";
+  | "sparkles";
 
 export type DesktopVariant =
   | "windows"
@@ -262,7 +261,6 @@ const APP_TAG_TRANSLATION_KEYS: Record<string, string> = {
   "Risk scores": "apps.catalog.tags.riskScores",
   Search: "apps.catalog.tags.search",
   Telegram: "apps.catalog.tags.telegram",
-  Trading: "apps.catalog.tags.trading",
   Verification: "apps.catalog.tags.verification",
   Video: "apps.catalog.tags.video",
 };
@@ -378,17 +376,13 @@ const APP_COPY_TRANSLATION_KEYS: Record<string, { tagline: string; description: 
     tagline: "apps.catalog.items.infinipedia.tagline",
     description: "apps.catalog.items.infinipedia.description",
   },
-  hopium: {
-    tagline: "apps.catalog.items.hopium.tagline",
-    description: "apps.catalog.items.hopium.description",
+  gitcommons: {
+    tagline: "apps.catalog.items.gitcommons.tagline",
+    description: "apps.catalog.items.gitcommons.description",
   },
-  "decentralized-github": {
-    tagline: "apps.catalog.items.decentralized-github.tagline",
-    description: "apps.catalog.items.decentralized-github.description",
-  },
-  huggingsocial: {
-    tagline: "apps.catalog.items.huggingsocial.tagline",
-    description: "apps.catalog.items.huggingsocial.description",
+  modelswarm: {
+    tagline: "apps.catalog.items.modelswarm.tagline",
+    description: "apps.catalog.items.modelswarm.description",
   },
 };
 
@@ -1132,7 +1126,7 @@ export const APPS: AppData[] = [
     logoSrc: "/assets/apps/wetube.svg",
     githubRepo: "bitsocialnet/wetube",
     links: [],
-    relatedSlugs: ["seedit", "infinipedia", "huggingsocial"],
+    relatedSlugs: ["seedit", "infinipedia", "modelswarm"],
     status: "idea",
     searchTerms: ["youtube", "video", "channels", "creators", "streaming"],
   },
@@ -1148,64 +1142,61 @@ export const APPS: AppData[] = [
     icon: "book-open",
     githubRepo: "bitsocialnet/infinipedia",
     links: [],
-    relatedSlugs: ["seedit", "wetube", "decentralized-github"],
+    relatedSlugs: ["seedit", "wetube", "gitcommons"],
     status: "idea",
     searchTerms: ["wikipedia", "grokipedia", "encyclopedia", "wiki", "articles"],
   },
   {
-    slug: "hopium",
-    name: "Hopium",
-    tagline:
-      "Idea-stage social trading app where every call is checked against the trader's on-chain trades.",
-    description:
-      "Hopium is a social trading app in which traders post calls from their own Bitsocial profile and link their wallets, and every reader's client checks each call against the trader's on-chain trades, so no company can hide calls or edit track records. Each token also gets a holder room that only its holders can post in and moderate, and trades go through the reader's own wallet. Nothing is built yet; the repository collects the design.",
-    categories: ["concepts"],
-    tags: ["Trading", "On-chain"],
-    icon: "trending-up",
-    githubRepo: "bitsocialnet/hopium",
-    links: [],
-    relatedSlugs: ["5chan", "wetube", "infinipedia"],
-    status: "idea",
-    searchTerms: ["fomo", "trading", "calls", "memecoins", "solana", "wallets", "receipts"],
-  },
-  {
-    slug: "decentralized-github",
-    name: "Decentralized GitHub",
+    slug: "gitcommons",
+    name: "GitCommons",
     tagline:
       "Idea-stage code collaboration platform that pairs peer-to-peer Git with Bitsocial's social layer.",
     description:
-      "Decentralized GitHub is research into a GitHub alternative that combines a Radicle-style peer-to-peer Git layer with Bitsocial profiles, communities, discovery and reputation. Each repository's discussions would be a Bitsocial community, developer profiles would be profile nodes most people reach through public RPCs, and CI would come from competing runner services instead of one mandatory provider. The name is a working title; the project is not affiliated with GitHub, Inc.",
+      "GitCommons is research into a GitHub alternative that combines a Radicle-style peer-to-peer Git layer with Bitsocial profiles, communities, discovery and reputation. Each repository's discussions would be a Bitsocial community, developer profiles would be profile nodes most people reach through public RPCs, and CI would come from competing runner services instead of one mandatory provider. GitCommons is a working name; the project is not affiliated with GitHub, Inc. or the Git project.",
     categories: ["concepts"],
     tags: ["Code hosting"],
     icon: "git-branch",
-    githubRepo: "bitsocialnet/decentralized-github",
+    githubRepo: "bitsocialnet/gitcommons",
     links: [],
-    relatedSlugs: ["bitsocial-cli", "huggingsocial", "infinipedia"],
-    status: "idea",
-    searchTerms: ["github", "git", "radicle", "code", "pull requests", "issues", "ci"],
-  },
-  {
-    slug: "huggingsocial",
-    name: "HuggingSocial",
-    tagline: "Idea-stage peer-to-peer hub for finding, discussing, and downloading open AI models.",
-    description:
-      "HuggingSocial is a model hub that no company owns. Hubs are Bitsocial communities controlled by cryptographic keys, each model listing is a signed post with a model card, checksums, and download sources, and the weights move over BitTorrent or plain HTTP mirrors and are verified on your machine. No client is built yet; the website takes waitlist sign-ups.",
-    categories: ["concepts"],
-    tags: ["AI", "Forums"],
-    icon: "message-square",
-    logoSrc: "/assets/apps/huggingsocial.svg",
-    githubRepo: "Rinse12/huggingsocial",
-    links: [{ label: "Open website", url: "https://huggingsocial.co", kind: "launch" }],
-    relatedSlugs: ["seedit", "5chan", "decentralized-github"],
+    relatedSlugs: ["bitsocial-cli", "modelswarm", "infinipedia"],
     status: "idea",
     searchTerms: [
-      "ai models",
+      "github",
+      "decentralized github",
+      "git",
+      "radicle",
+      "code",
+      "pull requests",
+      "issues",
+      "ci",
+    ],
+  },
+  {
+    slug: "modelswarm",
+    name: "Modelswarm",
+    tagline:
+      "Idea-stage Hugging Face alternative where open-weight AI models are shared by a swarm of peers.",
+    description:
+      "Modelswarm is a hub of open-weight AI models that nobody owns. Publishers sign releases from their own Bitsocial profile, the weights travel over BitTorrent and HTTP mirrors, and every piece of every file is checked against the signed release as it downloads. Hubs are Bitsocial communities that curate releases and host discussion, and files in formats that can run code are flagged before download. Nothing is built yet; the repository collects the design.",
+    categories: ["concepts"],
+    tags: ["AI"],
+    icon: "share-2",
+    logoSrc: "/assets/apps/modelswarm.svg",
+    githubRepo: "bitsocialnet/modelswarm",
+    links: [{ label: "Open website", url: "https://modelswarm.org", kind: "launch" }],
+    relatedSlugs: ["gitcommons", "wetube", "infinipedia"],
+    status: "idea",
+    searchTerms: [
       "hugging face",
+      "huggingsocial",
+      "ai models",
+      "open-weight",
       "model hub",
       "torrent",
       "bittorrent",
       "weights",
-      "datasets",
+      "safetensors",
+      "gguf",
       "llm",
     ],
   },

@@ -36,8 +36,9 @@ Bitsocial Forge が作るものもあれば、多くは独立した開発者が�
 これらのアイデアの一部には、すでにアイデア段階のリポジトリがあります。まだ何も実装されていません。各リポジトリは設計と未解決の問いをまとめており、開発者や出資者が引き継げるようにしています。
 
 - [WeTube](https://github.com/bitsocialnet/wetube)：すべてのチャンネルが作成者の所有するコミュニティになる YouTube の代替。
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons)：Bitsocial 上に構築する GitHub の代替に向けた調査とアーキテクチャ。
+- [GitCommons](https://github.com/bitsocialnet/gitcommons)：Bitsocial 上に構築する GitHub の代替に向けた調査とアーキテクチャ。
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia)：誰のものでもない百科事典。編集グループが競合するバージョンを公開し、読者が選びます。
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm)：ピアの群れがオープンウェイトの AI モデルを共有し、すべてのファイルを公開者の署名済みリリースと照合する Hugging Face の代替。
 
 ### 検討のうえ見送ったもの
 

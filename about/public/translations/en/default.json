@@ -747,7 +747,6 @@
         "images": "Images",
         "codeHosting": "Code hosting",
         "encyclopedia": "Encyclopedia",
-        "trading": "Trading",
         "video": "Video"
       },
       "linkLabels": {
@@ -860,17 +859,13 @@
           "tagline": "Idea-stage encyclopedia where competing editorial groups publish their own versions of each article.",
           "description": "Infinipedia is an encyclopedia that nobody owns. Editorial groups, human or AI-assisted, each publish their own versions of articles on top of a Wikipedia baseline, every revision is signed by its author, and readers choose whose versions they trust and can compare any two side by side. Nothing is built yet; the repository collects the design."
         },
-        "hopium": {
-          "tagline": "Idea-stage social trading app where every call is checked against the trader's on-chain trades.",
-          "description": "Hopium is a social trading app in which traders post calls from their own Bitsocial profile and link their wallets, and every reader's client checks each call against the trader's on-chain trades, so no company can hide calls or edit track records. Each token also gets a holder room that only its holders can post in and moderate, and trades go through the reader's own wallet. Nothing is built yet; the repository collects the design."
-        },
-        "decentralized-github": {
+        "gitcommons": {
           "tagline": "Idea-stage code collaboration platform that pairs peer-to-peer Git with Bitsocial's social layer.",
-          "description": "Decentralized GitHub is research into a GitHub alternative that combines a Radicle-style peer-to-peer Git layer with Bitsocial profiles, communities, discovery and reputation. Each repository's discussions would be a Bitsocial community, developer profiles would be profile nodes most people reach through public RPCs, and CI would come from competing runner services instead of one mandatory provider. The name is a working title; the project is not affiliated with GitHub, Inc."
+          "description": "GitCommons is research into a GitHub alternative that combines a Radicle-style peer-to-peer Git layer with Bitsocial profiles, communities, discovery and reputation. Each repository's discussions would be a Bitsocial community, developer profiles would be profile nodes most people reach through public RPCs, and CI would come from competing runner services instead of one mandatory provider. GitCommons is a working name; the project is not affiliated with GitHub, Inc. or the Git project."
         },
-        "huggingsocial": {
-          "tagline": "Idea-stage peer-to-peer hub for finding, discussing, and downloading open AI models.",
-          "description": "HuggingSocial is a model hub that no company owns. Hubs are Bitsocial communities controlled by cryptographic keys, each model listing is a signed post with a model card, checksums, and download sources, and the weights move over BitTorrent or plain HTTP mirrors and are verified on your machine. No client is built yet; the website takes waitlist sign-ups."
+        "modelswarm": {
+          "tagline": "Idea-stage Hugging Face alternative where open-weight AI models are shared by a swarm of peers.",
+          "description": "Modelswarm is a hub of open-weight AI models that nobody owns. Publishers sign releases from their own Bitsocial profile, the weights travel over BitTorrent and HTTP mirrors, and every piece of every file is checked against the signed release as it downloads. Hubs are Bitsocial communities that curate releases and host discussion, and files in formats that can run code are flagged before download. Nothing is built yet; the repository collects the design."
         }
       }
     },

@@ -536,7 +536,6 @@
         "images": "Hình ảnh",
         "codeHosting": "Lưu trữ mã nguồn",
         "encyclopedia": "Bách khoa toàn thư",
-        "trading": "Giao dịch",
         "video": "Video"
       },
       "linkLabels": {
@@ -645,17 +644,13 @@
           "tagline": "Bách khoa toàn thư ở giai đoạn ý tưởng, nơi các nhóm biên tập cạnh tranh nhau xuất bản phiên bản riêng của từng bài viết.",
           "description": "Infinipedia là một bách khoa toàn thư mà không ai sở hữu. Các nhóm biên tập, gồm con người hoặc có AI hỗ trợ, mỗi nhóm xuất bản phiên bản bài viết của riêng mình dựa trên nền tảng từ Wikipedia, mỗi bản sửa đổi đều được tác giả ký, và người đọc chọn tin tưởng phiên bản của ai và có thể so sánh song song hai phiên bản bất kỳ. Hiện chưa có gì được xây dựng; kho mã nguồn tập hợp phần thiết kế."
         },
-        "hopium": {
-          "tagline": "Ứng dụng giao dịch xã hội ở giai đoạn ý tưởng, nơi mọi kèo đều được đối chiếu với các giao dịch on-chain của trader.",
-          "description": "Hopium là ứng dụng giao dịch xã hội, nơi các trader đăng kèo từ hồ sơ Bitsocial của chính mình và liên kết ví, còn client của mỗi người đọc sẽ đối chiếu từng kèo với các giao dịch on-chain của trader đó, nên không công ty nào có thể giấu kèo hay chỉnh sửa lịch sử thành tích. Mỗi token còn có một phòng dành cho holder mà chỉ những người nắm giữ token đó mới được đăng bài và kiểm duyệt, và các giao dịch đi qua chính ví của người đọc. Hiện chưa có gì được xây dựng; kho mã tập hợp phần thiết kế."
-        },
-        "decentralized-github": {
+        "gitcommons": {
           "tagline": "Nền tảng cộng tác mã nguồn ở giai đoạn ý tưởng, kết hợp Git peer-to-peer với lớp xã hội của Bitsocial.",
-          "description": "Decentralized GitHub là một nghiên cứu về một giải pháp thay thế GitHub, kết hợp một lớp Git peer-to-peer theo kiểu Radicle với hồ sơ, cộng đồng, khả năng khám phá và danh tiếng của Bitsocial. Phần thảo luận của mỗi kho mã sẽ là một cộng đồng Bitsocial, hồ sơ nhà phát triển sẽ là các nút hồ sơ mà phần lớn mọi người truy cập qua RPC công khai, và CI sẽ đến từ các dịch vụ runner cạnh tranh nhau thay vì một nhà cung cấp bắt buộc duy nhất. Tên gọi này chỉ là tên tạm; dự án không liên kết với GitHub, Inc."
+          "description": "GitCommons là một nghiên cứu về một giải pháp thay thế GitHub, kết hợp một lớp Git peer-to-peer theo kiểu Radicle với hồ sơ, cộng đồng, khả năng khám phá và danh tiếng của Bitsocial. Phần thảo luận của mỗi kho mã sẽ là một cộng đồng Bitsocial, hồ sơ nhà phát triển sẽ là các nút hồ sơ mà phần lớn mọi người truy cập qua RPC công khai, và CI sẽ đến từ các dịch vụ runner cạnh tranh nhau thay vì một nhà cung cấp bắt buộc duy nhất. GitCommons chỉ là tên tạm; dự án không liên kết với GitHub, Inc. hay dự án Git."
         },
-        "huggingsocial": {
-          "tagline": "Trung tâm peer-to-peer ở giai đoạn ý tưởng để tìm kiếm, thảo luận và tải xuống các mô hình AI mở.",
-          "description": "HuggingSocial là một hub mô hình không được sở hữu bởi bất kỳ công ty nào. Các hub là các cộng đồng Bitsocial được kiểm soát bởi các khóa mã hóa, mỗi danh sách mô hình là một bài đăng có chữ ký kèm thẻ mô hình, tổng kiểm tra và nguồn tải xuống, và các trọng số di chuyển qua BitTorrent hoặc các gương HTTP đơn giản và được xác minh trên máy của bạn. Chưa có máy khách nào được xây dựng; trang web nhận đăng ký danh sách chờ."
+        "modelswarm": {
+          "tagline": "Giải pháp thay thế Hugging Face ở giai đoạn ý tưởng, nơi các mô hình AI trọng số mở được chia sẻ bởi một bầy peer.",
+          "description": "Modelswarm là một hub cho các mô hình AI trọng số mở mà không ai sở hữu. Nhà phát hành ký các bản phát hành từ chính hồ sơ Bitsocial của mình, trọng số được truyền qua BitTorrent và các bản sao HTTP, và từng mảnh của từng tệp được kiểm tra với bản phát hành đã ký ngay trong lúc tải xuống. Các hub là những cộng đồng Bitsocial tuyển chọn bản phát hành và là nơi thảo luận, còn các tệp ở định dạng có thể chạy mã sẽ được gắn cờ trước khi tải xuống. Hiện chưa có gì được xây dựng; kho mã nguồn tập hợp phần thiết kế."
         }
       }
     },

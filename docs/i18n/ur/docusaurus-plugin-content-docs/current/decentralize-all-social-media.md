@@ -38,10 +38,13 @@ description: ماسٹر پلان کا پانچواں مرحلہ، جس کا مر
 
 - [WeTube](https://github.com/bitsocialnet/wetube): YouTube کا ایک متبادل جس میں ہر چینل ایک کمیونٹی
   ہے جس کا مالک اس کا تخلیق کار ہے۔
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons): Bitsocial پر بنے GitHub
-  کے متبادل کے لیے تحقیق اور آرکیٹیکچر۔
+- [GitCommons](https://github.com/bitsocialnet/gitcommons): Bitsocial پر بنے GitHub کے متبادل کے لیے
+  تحقیق اور آرکیٹیکچر۔
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): ایک انسائیکلوپیڈیا جس کا کوئی مالک
   نہیں، جہاں ادارتی گروپ مسابقتی ورژن شائع کرتے ہیں اور قارئین انتخاب کرتے ہیں۔
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm): Hugging Face کا متبادل، جس میں peers کا
+  ایک جھنڈ open-weight AI ماڈلز شیئر کرتا ہے اور ہر فائل کو اس کے پبلشر کی دستخط شدہ ریلیز سے ملا کر
+  جانچا جاتا ہے۔
 
 ### غور کے بعد الگ رکھے گئے
 

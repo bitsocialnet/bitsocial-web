@@ -40,11 +40,14 @@ tagapondo.
 
 - [WeTube](https://github.com/bitsocialnet/wetube): alternatibo sa YouTube kung saan bawat channel
   ay isang komunidad na pag-aari ng gumawa nito.
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons): pananaliksik at
-  arkitektura para sa isang alternatibo sa GitHub na binuo sa Bitsocial.
+- [GitCommons](https://github.com/bitsocialnet/gitcommons): pananaliksik at arkitektura para sa
+  isang alternatibo sa GitHub na binuo sa Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): isang ensiklopedya na walang
   nagmamay-ari, kung saan naglalathala ang mga grupong editoryal ng magkakakumpitensyang bersyon at
   ang mga mambabasa ang pumipili.
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm): isang alternatibo sa Hugging Face kung
+  saan ibinabahagi ng isang kawan ng mga peer ang mga open-weight na AI model at sinusuri ang bawat
+  file laban sa pinirmahang release ng publisher nito.
 
 ### Pinag-aralan at isinantabi
 

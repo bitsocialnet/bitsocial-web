@@ -38,10 +38,13 @@ collects the design and open questions so builders and funders can pick it up.
 
 - [WeTube](https://github.com/bitsocialnet/wetube): a YouTube alternative where every channel is a
   community owned by its creator.
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons): research and
-  architecture for a GitHub alternative built on Bitsocial.
+- [GitCommons](https://github.com/bitsocialnet/gitcommons): research and architecture for a GitHub
+  alternative built on Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): an encyclopedia nobody owns, where
   editorial groups publish competing versions and readers choose.
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm): a Hugging Face alternative where a swarm
+  of peers shares open-weight AI models and every file is checked against its publisher's signed
+  release.
 
 ### Considered and set aside
 

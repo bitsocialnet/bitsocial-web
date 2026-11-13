@@ -536,7 +536,6 @@
         "images": "Mga larawan",
         "codeHosting": "Pagho-host ng code",
         "encyclopedia": "Ensiklopedya",
-        "trading": "Trading",
         "video": "Video"
       },
       "linkLabels": {
@@ -645,17 +644,13 @@
           "tagline": "Ensiklopedya na ideya pa lang, kung saan naglalathala ang magkakalabang grupong editoryal ng sarili nilang bersyon ng bawat artikulo.",
           "description": "Ang Infinipedia ay isang ensiklopedya na walang nagmamay-ari. Ang mga editorial group, tao man o tinutulungan ng AI, ay naglalathala ng kani-kanilang bersyon ng mga artikulo sa ibabaw ng isang Wikipedia baseline, bawat rebisyon ay pinirmahan ng may-akda nito, at pinipili ng mga mambabasa kung kaninong mga bersyon ang pinagkakatiwalaan nila at maaari nilang paghambingin nang magkatabi ang alinmang dalawa. Wala pang nabubuo; tinitipon ng repository ang disenyo."
         },
-        "hopium": {
-          "tagline": "Social trading app na ideya pa lang, kung saan bawat call ay sinusuri laban sa mga on-chain trade ng trader.",
-          "description": "Ang Hopium ay isang social trading app kung saan nagpo-post ang mga trader ng calls mula sa sarili nilang Bitsocial profile at ikinokonekta ang kanilang mga wallet, at sinusuri ng client ng bawat mambabasa ang bawat call laban sa mga on-chain trade ng trader, kaya walang kumpanyang makapagtatago ng calls o makapagbabago ng track record. Bawat token ay mayroon ding holder room na tanging mga holder nito ang puwedeng mag-post at mag-moderate, at dumadaan ang mga trade sa sariling wallet ng mambabasa. Wala pang nabubuo; tinitipon ng repository ang disenyo."
-        },
-        "decentralized-github": {
+        "gitcommons": {
           "tagline": "Plataporma para sa kolaborasyon sa code na ideya pa lang, na pinagsasama ang peer-to-peer Git at ang social layer ng Bitsocial.",
-          "description": "Ang Decentralized GitHub ay pananaliksik sa isang alternatibo sa GitHub na pinagsasama ang isang Radicle-style na peer-to-peer na Git layer at ang mga profile, komunidad, discovery, at reputasyon ng Bitsocial. Ang mga diskusyon ng bawat repository ay magiging isang komunidad sa Bitsocial, ang mga profile ng developer ay magiging mga profile node na naaabot ng karamihan sa pamamagitan ng mga pampublikong RPC, at manggagaling ang CI sa mga nagkokompitensiyang runner service sa halip na sa iisang sapilitang provider. Pansamantalang pangalan lang ito; hindi kaanib ng GitHub, Inc. ang proyekto."
+          "description": "Ang GitCommons ay pananaliksik sa isang alternatibo sa GitHub na pinagsasama ang isang Radicle-style na peer-to-peer na Git layer at ang mga profile, komunidad, discovery, at reputasyon ng Bitsocial. Ang mga diskusyon ng bawat repository ay magiging isang komunidad sa Bitsocial, ang mga profile ng developer ay magiging mga profile node na naaabot ng karamihan sa pamamagitan ng mga pampublikong RPC, at manggagaling ang CI sa mga nagkokompitensiyang runner service sa halip na sa iisang sapilitang provider. Pansamantalang pangalan ang GitCommons; hindi kaanib ng GitHub, Inc. o ng proyektong Git ang proyekto."
         },
-        "huggingsocial": {
-          "tagline": "Peer-to-peer hub na ideya pa lang para sa paghahanap, pagdiskusyon, at pag-download ng bukas na mga modelong AI.",
-          "description": "Ang HuggingSocial ay isang model hub na hindi pagmamay-ari ng anumang kumpanya. Ang mga hub ay mga komunidad ng Bitsocial na kinokontrol ng mga cryptographic key, bawat listing ng modelo ay isang signed post na may model card, checksums, at download sources, at ang mga timbang ay gumagalaw sa BitTorrent o simpleng HTTP mirrors at na-verify sa iyong machine. Wala pang client na nagagawa; ang website ay tumatanggap ng waitlist sign-ups."
+        "modelswarm": {
+          "tagline": "Alternatibo sa Hugging Face na ideya pa lang, kung saan ibinabahagi ng isang kawan ng mga peer ang mga open-weight na AI model.",
+          "description": "Ang Modelswarm ay isang hub ng mga open-weight na AI model na walang nagmamay-ari. Pinipirmahan ng mga publisher ang mga release mula sa sarili nilang Bitsocial profile, dumadaan ang mga weight sa BitTorrent at mga HTTP mirror, at sinusuri ang bawat piraso ng bawat file laban sa pinirmahang release habang dina-download ito. Ang mga hub ay mga komunidad sa Bitsocial na pumipili ng mga release at nagho-host ng diskusyon, at minamarkahan bago i-download ang mga file na nasa format na kayang magpatakbo ng code. Wala pang nabubuo; tinitipon ng repository ang disenyo."
         }
       }
     },

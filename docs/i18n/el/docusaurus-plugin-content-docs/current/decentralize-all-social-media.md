@@ -41,10 +41,13 @@ description: Η Φάση 5 του γενικού σχεδίου, με επίκε
 
 - [WeTube](https://github.com/bitsocialnet/wetube): μια εναλλακτική του YouTube όπου κάθε κανάλι
   είναι μια κοινότητα που ανήκει στον δημιουργό του.
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons): έρευνα και
-  αρχιτεκτονική για μια εναλλακτική του GitHub χτισμένη πάνω στο Bitsocial.
+- [GitCommons](https://github.com/bitsocialnet/gitcommons): έρευνα και αρχιτεκτονική για μια
+  εναλλακτική του GitHub χτισμένη πάνω στο Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): μια εγκυκλοπαίδεια που δεν ανήκει σε
   κανέναν, όπου συντακτικές ομάδες δημοσιεύουν ανταγωνιστικές εκδοχές και οι αναγνώστες επιλέγουν.
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm): μια εναλλακτική του Hugging Face, όπου
+  ένα σμήνος από peers μοιράζεται μοντέλα AI με ανοιχτά βάρη και κάθε αρχείο ελέγχεται έναντι της
+  υπογεγραμμένης έκδοσης του εκδότη του.
 
 ### Εξετάστηκαν και μπήκαν στην άκρη
 

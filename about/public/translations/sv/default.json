@@ -536,7 +536,6 @@
         "images": "Bilder",
         "codeHosting": "Kodhosting",
         "encyclopedia": "Uppslagsverk",
-        "trading": "Trading",
         "video": "Video"
       },
       "linkLabels": {
@@ -645,17 +644,13 @@
           "tagline": "Uppslagsverk på idéstadiet där konkurrerande redaktionsgrupper publicerar egna versioner av varje artikel.",
           "description": "Infinipedia är en encyklopedi som ingen äger. Redaktionella grupper, mänskliga eller AI-assisterade, publicerar var och en sina egna versioner av artiklar ovanpå en Wikipedia-bas, varje revision är signerad av sin författare, och läsarna väljer vems versioner de litar på och kan jämföra två valfria sida vid sida. Inget är byggt ännu; repositoriet samlar designen."
         },
-        "hopium": {
-          "tagline": "App för social trading på idéstadiet där varje call stäms av mot traderns on-chain-affärer.",
-          "description": "Hopium är en app för social trading där tradare publicerar calls från sin egen Bitsocial-profil och kopplar sina plånböcker, och varje läsares klient kontrollerar varje call mot tradarens on-chain-affärer, så att inget företag kan dölja calls eller ändra i resultathistoriken. Varje token får också ett rum för innehavare där bara tokenets innehavare kan posta och moderera, och affärerna går via läsarens egen plånbok. Inget är byggt ännu; repositoriet samlar designen."
-        },
-        "decentralized-github": {
+        "gitcommons": {
           "tagline": "Plattform för kodsamarbete på idéstadiet som kombinerar peer-to-peer-Git med Bitsocials sociala lager.",
-          "description": "Decentralized GitHub är forskning kring ett GitHub-alternativ som kombinerar ett peer-to-peer-Git-lager i Radicle-stil med Bitsocials profiler, communities, upptäckt och rykte. Varje repositoriums diskussioner skulle vara en Bitsocial-community, utvecklarprofiler skulle vara profilnoder som de flesta når via offentliga RPC:er, och CI skulle komma från konkurrerande runner-tjänster i stället för en enda obligatorisk leverantör. Namnet är ett arbetsnamn; projektet har ingen koppling till GitHub, Inc."
+          "description": "GitCommons är forskning kring ett GitHub-alternativ som kombinerar ett peer-to-peer-Git-lager i Radicle-stil med Bitsocials profiler, communities, upptäckt och rykte. Varje repositoriums diskussioner skulle vara en Bitsocial-community, utvecklarprofiler skulle vara profilnoder som de flesta når via offentliga RPC:er, och CI skulle komma från konkurrerande runner-tjänster i stället för en enda obligatorisk leverantör. GitCommons är ett arbetsnamn; projektet har ingen koppling till GitHub, Inc. eller Git-projektet."
         },
-        "huggingsocial": {
-          "tagline": "Peer-to-peer-nav på idéstadiet för att hitta, diskutera och ladda ner öppna AI-modeller.",
-          "description": "HuggingSocial är ett modellnav som inget företag äger. Navarna är Bitsocial-gemenskaper kontrollerade av kryptografiska nycklar, varje modellistning är ett signerat inlägg med ett modellkort, kontrollsummor och nedladdningskällor, och vikterna rör sig via BitTorrent eller enkla HTTP-speglar och verifieras på din maskin. Ingen klient är byggd ännu; webbplatsen tar emot registreringar för väntelistan."
+        "modelswarm": {
+          "tagline": "Hugging Face-alternativ på idéstadiet där en svärm av peers delar AI-modeller med öppna vikter.",
+          "description": "Modelswarm är en hubb för AI-modeller med öppna vikter som ingen äger. Utgivare signerar releaser från sin egen Bitsocial-profil, vikterna förs över via BitTorrent och HTTP-speglar, och varje del av varje fil kontrolleras mot den signerade releasen medan den laddas ned. Hubbar är Bitsocial-communities som kurerar releaser och står värd för diskussionen, och filer i format som kan köra kod flaggas före nedladdning. Inget är byggt ännu; repositoriet samlar designen."
         }
       }
     },

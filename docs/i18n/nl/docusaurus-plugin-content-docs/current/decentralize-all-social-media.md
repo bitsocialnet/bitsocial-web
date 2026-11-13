@@ -39,10 +39,13 @@ verzamelt het ontwerp en de open vragen, zodat bouwers en financiers het kunnen 
 
 - [WeTube](https://github.com/bitsocialnet/wetube): een YouTube-alternatief waarin elk kanaal een
   community is die eigendom is van de maker.
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons): onderzoek en
-  architectuur voor een GitHub-alternatief gebouwd op Bitsocial.
+- [GitCommons](https://github.com/bitsocialnet/gitcommons): onderzoek en architectuur voor een
+  GitHub-alternatief gebouwd op Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): een encyclopedie die van niemand is,
   waarin redactiegroepen concurrerende versies publiceren en lezers kiezen.
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm): een Hugging Face-alternatief waarin een
+  zwerm peers AI-modellen met open gewichten deelt en elk bestand wordt gecontroleerd aan de hand
+  van de ondertekende release van de uitgever.
 
 ### Overwogen en terzijde gelegd
 

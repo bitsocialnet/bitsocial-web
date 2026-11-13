@@ -33,10 +33,12 @@ description: เฟส 5 ของแผนแม่บท ว่าด้วย
 
 - [WeTube](https://github.com/bitsocialnet/wetube): ทางเลือกแทน YouTube
   ที่ทุกช่องเป็นคอมมูนิตี้ที่ครีเอเตอร์เป็นเจ้าของ
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons):
-  งานวิจัยและสถาปัตยกรรมสำหรับทางเลือกแทน GitHub ที่สร้างบน Bitsocial
+- [GitCommons](https://github.com/bitsocialnet/gitcommons): งานวิจัยและสถาปัตยกรรมสำหรับทางเลือกแทน
+  GitHub ที่สร้างบน Bitsocial
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): สารานุกรมที่ไม่มีใครเป็นเจ้าของ
   ซึ่งกลุ่มบรรณาธิการเผยแพร่เวอร์ชันที่แข่งขันกัน และผู้อ่านเป็นผู้เลือก
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm): ทางเลือกแทน Hugging Face ที่ฝูง peer
+  แบ่งปันโมเดล AI แบบ open-weight และทุกไฟล์จะถูกตรวจสอบกับรีลีสที่ผู้เผยแพร่ลงนามไว้
 
 ### พิจารณาแล้วและพักไว้
 

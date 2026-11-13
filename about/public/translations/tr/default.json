@@ -536,7 +536,6 @@
         "images": "Görseller",
         "codeHosting": "Kod barındırma",
         "encyclopedia": "Ansiklopedi",
-        "trading": "Alım satım",
         "video": "Video"
       },
       "linkLabels": {
@@ -645,17 +644,13 @@
           "tagline": "Rakip editoryal grupların her makalenin kendi sürümlerini yayımladığı, fikir aşamasında bir ansiklopedi.",
           "description": "Infinipedia, kimsenin sahip olmadığı bir ansiklopedidir. İnsanlardan oluşan ya da AI destekli editoryal grupların her biri, bir Wikipedia temeli üzerine makalelerin kendi sürümlerini yayımlar, her revizyon yazarı tarafından imzalanır ve okurlar kimin sürümlerine güveneceklerini seçer, herhangi iki sürümü yan yana karşılaştırabilir. Henüz hiçbir şey geliştirilmedi; depo tasarımı bir araya getiriyor."
         },
-        "hopium": {
-          "tagline": "Her sinyalin trader'ın on-chain işlemleriyle karşılaştırılarak doğrulandığı, fikir aşamasında bir sosyal trading uygulaması.",
-          "description": "Hopium, trader'ların kendi Bitsocial profillerinden sinyal paylaştığı ve cüzdanlarını bağladığı bir sosyal trading uygulamasıdır; her okuyucunun istemcisi her sinyali trader'ın on-chain işlemleriyle karşılaştırır, böylece hiçbir şirket sinyalleri gizleyemez veya performans geçmişini değiştiremez. Her token'ın ayrıca yalnızca sahiplerinin gönderi paylaşıp moderasyon yapabildiği bir sahipler odası vardır ve işlemler okuyucunun kendi cüzdanı üzerinden gerçekleşir. Henüz hiçbir şey geliştirilmedi; depo tasarımı bir araya getiriyor."
-        },
-        "decentralized-github": {
+        "gitcommons": {
           "tagline": "Peer-to-peer Git'i Bitsocial'ın sosyal katmanıyla birleştiren, fikir aşamasında bir kod iş birliği platformu.",
-          "description": "Decentralized GitHub, Radicle tarzı bir peer-to-peer Git katmanını Bitsocial profilleri, toplulukları, keşfi ve itibarıyla birleştiren bir GitHub alternatifi üzerine yapılan bir araştırmadır. Her deponun tartışmaları bir Bitsocial topluluğu olurdu, geliştirici profilleri çoğu kişinin herkese açık RPC'ler üzerinden eriştiği profil düğümleri olurdu ve CI, tek bir zorunlu sağlayıcı yerine birbiriyle rekabet eden runner hizmetlerinden gelirdi. İsim geçici bir çalışma adıdır; proje GitHub, Inc. ile bağlantılı değildir."
+          "description": "GitCommons, Radicle tarzı bir peer-to-peer Git katmanını Bitsocial profilleri, toplulukları, keşfi ve itibarıyla birleştiren bir GitHub alternatifi üzerine yapılan bir araştırmadır. Her deponun tartışmaları bir Bitsocial topluluğu olurdu, geliştirici profilleri çoğu kişinin herkese açık RPC'ler üzerinden eriştiği profil düğümleri olurdu ve CI, tek bir zorunlu sağlayıcı yerine birbiriyle rekabet eden runner hizmetlerinden gelirdi. GitCommons geçici bir çalışma adıdır; proje GitHub, Inc. veya Git projesiyle bağlantılı değildir."
         },
-        "huggingsocial": {
-          "tagline": "Açık AI modellerini bulmak, tartışmak ve indirmek için fikir aşamasındaki eşler arası hub.",
-          "description": "HuggingSocial, hiçbir şirketin sahip olmadığı bir model merkezidir. Merkezler, şifreleme anahtarlarıyla kontrol edilen Bitsocial topluluklarıdır, her model listesi bir model kartı, sağlama toplamları ve indirme kaynakları içeren imzalı bir gönderidir ve ağırlıklar BitTorrent veya sade HTTP aynaları üzerinden taşınarak makinenizde doğrulanır. Henüz bir istemci geliştirilmedi; web sitesi bekleme listesi kayıtlarını kabul eder."
+        "modelswarm": {
+          "tagline": "Açık ağırlıklı yapay zekâ modellerinin bir eş sürüsü tarafından paylaşıldığı, fikir aşamasında bir Hugging Face alternatifi.",
+          "description": "Modelswarm, kimsenin sahibi olmadığı, açık ağırlıklı yapay zekâ modelleri için bir merkezdir. Yayıncılar sürümleri kendi Bitsocial profillerinden imzalar, ağırlıklar BitTorrent ve HTTP aynaları üzerinden taşınır ve her dosyanın her parçası indirilirken imzalı sürüme göre doğrulanır. Merkezler, sürümleri seçen ve tartışmaya ev sahipliği yapan Bitsocial topluluklarıdır; kod çalıştırabilen biçimlerdeki dosyalar ise indirmeden önce işaretlenir. Henüz hiçbir şey geliştirilmedi; depo tasarımı bir araya getiriyor."
         }
       }
     },

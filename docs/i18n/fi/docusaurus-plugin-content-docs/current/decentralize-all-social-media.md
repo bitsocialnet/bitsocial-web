@@ -39,10 +39,13 @@ niihin.
 
 - [WeTube](https://github.com/bitsocialnet/wetube): YouTube-vaihtoehto, jossa jokainen kanava on
   tekijänsä omistama yhteisö.
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons): tutkimus ja
-  arkkitehtuuri Bitsocialin päälle rakennetulle GitHub-vaihtoehdolle.
+- [GitCommons](https://github.com/bitsocialnet/gitcommons): tutkimus ja arkkitehtuuri Bitsocialin
+  päälle rakennetulle GitHub-vaihtoehdolle.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): tietosanakirja, jota kukaan ei omista
   ja jossa toimitusryhmät julkaisevat kilpailevia versioita ja lukijat valitsevat.
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm): Hugging Face -vaihtoehto, jossa
+  vertaisten parvi jakaa avoimien painojen tekoälymalleja ja jokainen tiedosto tarkistetaan
+  julkaisijansa allekirjoittamaa julkaisua vasten.
 
 ### Harkittu ja sivuun jätetty
 

@@ -536,7 +536,6 @@
         "images": "Imagens",
         "codeHosting": "Hospedagem de código",
         "encyclopedia": "Enciclopédia",
-        "trading": "Trading",
         "video": "Vídeo"
       },
       "linkLabels": {
@@ -645,17 +644,13 @@
           "tagline": "Enciclopédia em fase de ideia, em que grupos editoriais concorrentes publicam suas próprias versões de cada artigo.",
           "description": "Infinipedia é uma enciclopédia que ninguém possui. Grupos editoriais, humanos ou assistidos por IA, publicam cada um suas próprias versões dos artigos sobre uma base da Wikipedia, cada revisão é assinada por seu autor, e os leitores escolhem as versões de quem consideram confiável e podem comparar quaisquer duas lado a lado. Nada foi construído ainda; o repositório reúne o design."
         },
-        "hopium": {
-          "tagline": "App de social trading em fase de ideia, em que cada call é conferido com as operações on-chain do trader.",
-          "description": "O Hopium é um aplicativo de trading social em que traders publicam calls a partir do próprio perfil no Bitsocial e vinculam suas carteiras, e o cliente de cada leitor confere cada call com os trades on-chain do trader, de modo que nenhuma empresa pode esconder calls nem editar históricos de desempenho. Cada token também ganha uma sala de holders em que só quem o possui pode publicar e moderar, e os trades passam pela própria carteira do leitor. Nada foi construído ainda; o repositório reúne o design."
-        },
-        "decentralized-github": {
+        "gitcommons": {
           "tagline": "Plataforma de colaboração em código em fase de ideia que une Git peer-to-peer à camada social do Bitsocial.",
-          "description": "O Decentralized GitHub é uma pesquisa sobre uma alternativa ao GitHub que combina uma camada Git peer-to-peer no estilo do Radicle com perfis, comunidades, descoberta e reputação do Bitsocial. As discussões de cada repositório seriam uma comunidade do Bitsocial, os perfis de desenvolvedores seriam nós de perfil que a maioria das pessoas acessaria por meio de RPCs públicos, e o CI viria de serviços de runners concorrentes em vez de um único provedor obrigatório. O nome é provisório; o projeto não é afiliado ao GitHub, Inc."
+          "description": "O GitCommons é uma pesquisa sobre uma alternativa ao GitHub que combina uma camada Git peer-to-peer no estilo do Radicle com perfis, comunidades, descoberta e reputação do Bitsocial. As discussões de cada repositório seriam uma comunidade do Bitsocial, os perfis de desenvolvedores seriam nós de perfil que a maioria das pessoas acessaria por meio de RPCs públicos, e o CI viria de serviços de runners concorrentes em vez de um único provedor obrigatório. GitCommons é um nome provisório; o projeto não é afiliado ao GitHub, Inc. nem ao projeto Git."
         },
-        "huggingsocial": {
-          "tagline": "Centro peer-to-peer em fase de ideia para encontrar, discutir e baixar modelos de IA abertos.",
-          "description": "HuggingSocial é um hub de modelos que nenhuma empresa possui. Os hubs são comunidades Bitsocial controladas por chaves criptográficas, cada listagem de modelo é um post assinado com cartão de modelo, somas de verificação e fontes de download, e os pesos se movem sobre BitTorrent ou espelhos HTTP simples e são verificados em sua máquina. Nenhum cliente foi construído ainda; o site aceita inscrições em lista de espera."
+        "modelswarm": {
+          "tagline": "Alternativa ao Hugging Face em fase de ideia, em que um enxame de peers compartilha modelos de IA de pesos abertos.",
+          "description": "O Modelswarm é um hub de modelos de IA de pesos abertos que não pertence a ninguém. Os publicadores assinam as versões a partir do próprio perfil no Bitsocial, os pesos trafegam por BitTorrent e espelhos HTTP, e cada pedaço de cada arquivo é verificado em relação à versão assinada durante o download. Os hubs são comunidades do Bitsocial que fazem a curadoria das versões e hospedam a discussão, e arquivos em formatos que podem executar código são sinalizados antes do download. Nada foi construído ainda; o repositório reúne o design."
         }
       }
     },

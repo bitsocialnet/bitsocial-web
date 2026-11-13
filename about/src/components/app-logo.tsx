@@ -18,7 +18,6 @@ import {
   Sparkles,
   Terminal,
   Ticket,
-  TrendingUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { AppIconKey } from "@/lib/apps-data";
@@ -42,7 +41,6 @@ const iconMap = {
   sparkles: Sparkles,
   terminal: Terminal,
   ticket: Ticket,
-  "trending-up": TrendingUp,
 } satisfies Record<AppIconKey, ComponentType<{ className?: string }>>;
 
 const sizeMap = {

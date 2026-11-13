@@ -536,7 +536,6 @@
         "images": "Obrázky",
         "codeHosting": "Hosting kódu",
         "encyclopedia": "Encyklopedie",
-        "trading": "Obchodování",
         "video": "Video"
       },
       "linkLabels": {
@@ -618,17 +617,13 @@
           "tagline": "Encyklopedie ve fázi nápadu, kde konkurenční redakční skupiny publikují vlastní verze každého článku.",
           "description": "Infinipedia je encyklopedie, kterou nikdo nevlastní. Redakční skupiny tvořené lidmi nebo s pomocí AI publikují každá vlastní verze článků nad výchozím základem z projektu Wikipedia, každá revize je podepsána svým autorem a čtenáři si vybírají, čí verze jsou pro ně důvěryhodné, a mohou libovolné dvě porovnat vedle sebe. Zatím není nic postaveno; repozitář shromažďuje návrh."
         },
-        "hopium": {
-          "tagline": "Aplikace pro sociální obchodování ve fázi nápadu, kde se každý signál ověřuje podle on-chain obchodů tradera.",
-          "description": "Hopium je aplikace pro sociální trading, ve které tradeři zveřejňují signály ze svého vlastního profilu Bitsocial a propojují své peněženky, a klient každého čtenáře ověřuje každý signál podle on-chain obchodů tradera, takže žádná firma nemůže signály skrývat ani upravovat historii výsledků. Každý token navíc dostane místnost pro držitele, do které mohou psát a kterou mohou moderovat jen jeho držitelé, a obchody probíhají přes vlastní peněženku čtenáře. Zatím není nic postaveno; repozitář shromažďuje návrh."
-        },
-        "decentralized-github": {
+        "gitcommons": {
           "tagline": "Platforma pro spolupráci na kódu ve fázi nápadu, která spojuje peer-to-peer Git se sociální vrstvou Bitsocial.",
-          "description": "Decentralized GitHub je výzkum alternativy ke službě GitHub, která kombinuje peer-to-peer vrstvu Git ve stylu Radicle s profily, komunitami, objevováním a reputací Bitsocial. Diskuse každého repozitáře by byly komunitou Bitsocial, vývojářské profily by byly profilovými uzly, ke kterým by se většina lidí dostávala přes veřejná RPC, a CI by zajišťovaly konkurenční služby runnerů místo jednoho povinného poskytovatele. Název je pracovní; projekt není spojen se společností GitHub, Inc."
+          "description": "GitCommons je výzkum alternativy ke službě GitHub, která kombinuje peer-to-peer vrstvu Git ve stylu Radicle s profily, komunitami, objevováním a reputací Bitsocial. Diskuse každého repozitáře by byly komunitou Bitsocial, vývojářské profily by byly profilovými uzly, ke kterým by se většina lidí dostávala přes veřejná RPC, a CI by zajišťovaly konkurenční služby runnerů místo jednoho povinného poskytovatele. GitCommons je pracovní název; projekt není spojen se společností GitHub, Inc. ani s projektem Git."
         },
-        "huggingsocial": {
-          "tagline": "Peer-to-peer centrum ve fázi nápadu pro vyhledávání, diskusi a stahování otevřených modelů AI.",
-          "description": "HuggingSocial je centrum modelů, které nevlastní žádná společnost. Rozbočovače jsou komunity Bitsocial řízené kryptografickými klíči, každý výpis modelu je podepsaný příspěvek s kartou modelu, kontrolními součty a zdroji stahování, a váhy se přesouvají přes BitTorrent nebo jednoduchá zrcadla HTTP a jsou ověřovány na vašem počítači. Zatím neexistuje žádný klient; web přijímá registrace na čekací listinu."
+        "modelswarm": {
+          "tagline": "Alternativa k Hugging Face ve fázi nápadu, kde AI modely s otevřenými vahami sdílí roj peerů.",
+          "description": "Modelswarm je centrum AI modelů s otevřenými vahami, které nikomu nepatří. Vydavatelé podepisují vydání ze svého vlastního profilu Bitsocial, váhy se přenášejí přes BitTorrent a HTTP zrcadla a každý kus každého souboru se během stahování ověřuje proti podepsanému vydání. Centra jsou komunity Bitsocial, které vybírají vydání a hostí diskusi, a soubory ve formátech, které mohou spouštět kód, jsou před stažením označeny. Zatím není nic postaveno; repozitář shromažďuje návrh."
         }
       }
     },

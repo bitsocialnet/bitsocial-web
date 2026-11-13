@@ -536,7 +536,6 @@
         "images": "Afbeeldingen",
         "codeHosting": "Codehosting",
         "encyclopedia": "Encyclopedie",
-        "trading": "Trading",
         "video": "Video"
       },
       "linkLabels": {
@@ -645,17 +644,13 @@
           "tagline": "Encyclopedie in de ideefase waarin concurrerende redactiegroepen hun eigen versies van elk artikel publiceren.",
           "description": "Infinipedia is een encyclopedie waarvan niemand de eigenaar is. Redactiegroepen, menselijk of met AI-ondersteuning, publiceren elk hun eigen versies van artikelen bovenop een Wikipedia-basis, elke revisie is ondertekend door de auteur, en lezers kiezen wiens versies ze vertrouwen en kunnen er twee naar keuze naast elkaar vergelijken. Er is nog niets gebouwd; de repository verzamelt het ontwerp."
         },
-        "hopium": {
-          "tagline": "Social-tradingapp in de ideefase waarin elke call wordt getoetst aan de on-chain trades van de trader.",
-          "description": "Hopium is een social-tradingapp waarin traders calls plaatsen vanaf hun eigen Bitsocial-profiel en hun wallets koppelen, en de client van elke lezer controleert elke call aan de hand van de on-chain trades van de trader, zodat geen enkel bedrijf calls kan verbergen of trackrecords kan aanpassen. Elk token krijgt daarnaast een ruimte voor houders waarin alleen de houders van dat token kunnen posten en modereren, en trades lopen via de eigen wallet van de lezer. Er is nog niets gebouwd; de repository verzamelt het ontwerp."
-        },
-        "decentralized-github": {
+        "gitcommons": {
           "tagline": "Platform voor samenwerking aan code in de ideefase dat peer-to-peer Git combineert met de sociale laag van Bitsocial.",
-          "description": "Decentralized GitHub is onderzoek naar een GitHub-alternatief dat een peer-to-peer Git-laag in de stijl van Radicle combineert met de profielen, communities, ontdekking en reputatie van Bitsocial. De discussies van elke repository zouden een Bitsocial-community zijn, ontwikkelaarsprofielen zouden profielknooppunten zijn die de meeste mensen via openbare RPC's bereiken, en CI zou komen van concurrerende runnerdiensten in plaats van één verplichte aanbieder. De naam is een werktitel; het project is niet verbonden aan GitHub, Inc."
+          "description": "GitCommons is onderzoek naar een GitHub-alternatief dat een peer-to-peer Git-laag in de stijl van Radicle combineert met de profielen, communities, ontdekking en reputatie van Bitsocial. De discussies van elke repository zouden een Bitsocial-community zijn, ontwikkelaarsprofielen zouden profielknooppunten zijn die de meeste mensen via openbare RPC's bereiken, en CI zou komen van concurrerende runnerdiensten in plaats van één verplichte aanbieder. GitCommons is een werknaam; het project is niet verbonden aan GitHub, Inc. of het Git-project."
         },
-        "huggingsocial": {
-          "tagline": "Peer-to-peer hub in de ideefase voor het vinden, bespreken en downloaden van open AI-modellen.",
-          "description": "HuggingSocial is een modelhub die geen eigendom van een bedrijf is. Hubs zijn Bitsocial-gemeenschappen beheerd door cryptografische sleutels, elke modelvermelding is een ondertekend bericht met een modelkaart, controlesommen en downloadbronnen, en gewichten worden verplaatst via BitTorrent of gewone HTTP-spiegels en geverifieerd op je machine. Er is nog geen client gebouwd; de website accepteert inschrijvingen op de wachtlijst."
+        "modelswarm": {
+          "tagline": "Hugging Face-alternatief in de ideefase waarin een zwerm peers AI-modellen met open gewichten deelt.",
+          "description": "Modelswarm is een hub voor AI-modellen met open gewichten die van niemand is. Uitgevers ondertekenen releases vanuit hun eigen Bitsocial-profiel, de gewichten gaan via BitTorrent en HTTP-mirrors, en elk stuk van elk bestand wordt tijdens het downloaden gecontroleerd aan de hand van de ondertekende release. Hubs zijn Bitsocial-communities die releases cureren en de discussie hosten, en bestanden in formaten die code kunnen uitvoeren worden vóór het downloaden gemarkeerd. Er is nog niets gebouwd; de repository verzamelt het ontwerp."
         }
       }
     },

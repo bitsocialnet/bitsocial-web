@@ -39,10 +39,13 @@ poată prelua.
 
 - [WeTube](https://github.com/bitsocialnet/wetube): o alternativă la YouTube în care fiecare canal
   este o comunitate deținută de creatorul său.
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons): cercetare și
-  arhitectură pentru o alternativă la GitHub construită pe Bitsocial.
+- [GitCommons](https://github.com/bitsocialnet/gitcommons): cercetare și arhitectură pentru o
+  alternativă la GitHub construită pe Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): o enciclopedie pe care nu o deține
   nimeni, în care grupuri editoriale publică versiuni concurente, iar cititorii aleg.
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm): o alternativă la Hugging Face în care un
+  roi de peeri partajează modele AI cu ponderi deschise, iar fiecare fișier este verificat față de
+  versiunea semnată de publicatorul său.
 
 ### Analizate și lăsate deoparte
 

@@ -536,7 +536,6 @@
         "images": "Bilder",
         "codeHosting": "Code-Hosting",
         "encyclopedia": "Enzyklopädie",
-        "trading": "Trading",
         "video": "Video"
       },
       "linkLabels": {
@@ -645,17 +644,13 @@
           "tagline": "Enzyklopädie im Ideenstadium, in der konkurrierende Redaktionsgruppen ihre eigenen Versionen jedes Artikels veröffentlichen.",
           "description": "Infinipedia ist eine Enzyklopädie, die niemandem gehört. Redaktionsgruppen, menschlich oder KI-gestützt, veröffentlichen jeweils eigene Versionen von Artikeln aufbauend auf einer Wikipedia-Basis, jede Revision ist von ihrem Autor signiert, und Leser wählen, wessen Versionen sie vertrauen, und können zwei beliebige nebeneinander vergleichen. Noch ist nichts gebaut; das Repository sammelt das Design."
         },
-        "hopium": {
-          "tagline": "Social-Trading-App im Ideenstadium, in der jeder Call mit den On-Chain-Trades des Traders abgeglichen wird.",
-          "description": "Hopium ist eine Social-Trading-App, in der Trader Calls von ihrem eigenen Bitsocial-Profil aus veröffentlichen und ihre Wallets verknüpfen, und der Client jedes Lesers prüft jeden Call anhand der On-Chain-Trades des Traders, sodass kein Unternehmen Calls verbergen oder Erfolgsbilanzen nachträglich ändern kann. Jeder Token erhält außerdem einen Holder-Raum, in dem nur seine Holder posten und moderieren können, und Trades laufen über die eigene Wallet des Lesers. Noch ist nichts gebaut; das Repository sammelt das Design."
-        },
-        "decentralized-github": {
+        "gitcommons": {
           "tagline": "Plattform für Code-Zusammenarbeit im Ideenstadium, die Peer-to-Peer-Git mit der sozialen Ebene von Bitsocial verbindet.",
-          "description": "Decentralized GitHub erforscht eine GitHub-Alternative, die eine Peer-to-Peer-Git-Schicht nach dem Vorbild von Radicle mit Profilen, Communities, Entdeckung und Reputation von Bitsocial verbindet. Die Diskussionen jedes Repositorys wären eine Bitsocial-Community, Entwicklerprofile wären Profilknoten, die die meisten Menschen über öffentliche RPCs erreichen, und CI käme von konkurrierenden Runner-Diensten statt von einem einzigen vorgeschriebenen Anbieter. Der Name ist ein Arbeitstitel; das Projekt steht in keiner Verbindung zu GitHub, Inc."
+          "description": "GitCommons erforscht eine GitHub-Alternative, die eine Peer-to-Peer-Git-Schicht nach dem Vorbild von Radicle mit Profilen, Communities, Entdeckung und Reputation von Bitsocial verbindet. Die Diskussionen jedes Repositorys wären eine Bitsocial-Community, Entwicklerprofile wären Profilknoten, die die meisten Menschen über öffentliche RPCs erreichen, und CI käme von konkurrierenden Runner-Diensten statt von einem einzigen vorgeschriebenen Anbieter. GitCommons ist ein Arbeitstitel; das Projekt steht in keiner Verbindung zu GitHub, Inc. oder dem Git-Projekt."
         },
-        "huggingsocial": {
-          "tagline": "Peer-to-peer-Hub im Ideenstadium zum Auffinden, Diskutieren und Herunterladen offener KI-Modelle.",
-          "description": "HuggingSocial ist ein Modell-Hub, der keinem Unternehmen gehört. Hubs sind Bitsocial-Gemeinschaften, die durch kryptografische Schlüssel kontrolliert werden, jedes Modellangebot ist ein signierter Beitrag mit einer Modellkarte, Prüfsummen und Download-Quellen, und die Gewichte werden über BitTorrent oder einfache HTTP-Spiegel übertragen und auf Ihrem Computer überprüft. Es gibt noch keinen Client; die Website nimmt Registrierungen für die Warteliste entgegen."
+        "modelswarm": {
+          "tagline": "Hugging-Face-Alternative im Ideenstadium, bei der ein Schwarm von Peers Open-Weight-KI-Modelle teilt.",
+          "description": "Modelswarm ist ein Hub für Open-Weight-KI-Modelle, der niemandem gehört. Herausgeber signieren Releases aus ihrem eigenen Bitsocial-Profil, die Gewichte werden über BitTorrent und HTTP-Mirrors übertragen, und jedes Stück jeder Datei wird schon beim Herunterladen gegen das signierte Release geprüft. Hubs sind Bitsocial-Communities, die Releases kuratieren und Diskussionen beherbergen, und Dateien in Formaten, die Code ausführen können, werden vor dem Download markiert. Noch ist nichts gebaut; das Repository sammelt das Design."
         }
       }
     },

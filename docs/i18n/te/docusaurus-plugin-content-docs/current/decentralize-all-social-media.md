@@ -34,10 +34,13 @@ description: Bitsocial సామాజిక క్లయింట్‌ల ల�
 
 - [WeTube](https://github.com/bitsocialnet/wetube): ప్రతి ఛానెల్ దాని సృష్టికర్తకు చెందిన
   కమ్యూనిటీగా ఉండే YouTube ప్రత్యామ్నాయం.
-- [Gitcommons](https://github.com/bitsocialnet/gitcommons): Bitsocial పై
-  నిర్మించే GitHub ప్రత్యామ్నాయం కోసం పరిశోధన మరియు ఆర్కిటెక్చర్.
+- [GitCommons](https://github.com/bitsocialnet/gitcommons): Bitsocial పై నిర్మించే GitHub
+  ప్రత్యామ్నాయం కోసం పరిశోధన మరియు ఆర్కిటెక్చర్.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): ఎవరికీ చెందని విజ్ఞాన సర్వస్వం, ఇందులో
   సంపాదకీయ బృందాలు పోటీ పడే వెర్షన్‌లను ప్రచురిస్తాయి, పాఠకులు ఎంచుకుంటారు.
+- [Modelswarm](https://github.com/bitsocialnet/modelswarm): open-weight AI మోడళ్లను peers గుంపు
+  పంచుకునే, ప్రతి ఫైల్‌ను దాని ప్రచురణకర్త సంతకం చేసిన రిలీజ్‌తో సరిపోల్చి తనిఖీ చేసే Hugging Face
+  ప్రత్యామ్నాయం.
 
 ### పరిశీలించి పక్కన పెట్టినవి
 
