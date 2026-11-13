@@ -41,9 +41,11 @@ shromažďuje návrh a otevřené otázky, aby se jich mohli ujmout vývojáři 
   architektura alternativy ke GitHubu postavené na Bitsocialu.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): encyklopedie, kterou nikdo nevlastní,
   kde redakční skupiny zveřejňují konkurenční verze a čtenáři si vybírají.
-- [Hopium](https://github.com/bitsocialnet/hopium): alternativa k Fomo pro sociální obchodování, kde
-  se každý tip porovnává s on-chain obchody jeho autora a každý token má místnost, do které mohou
-  psát jen jeho držitelé.
+
+### Zvážené a odložené
+
+- [Hopium](https://github.com/bitsocialnet/hopium): alternativa k Fomo pro sociální obchodování.
+  Odloženo v listopadu 2026; důvody popisuje repozitář.
 
 ## Financování mnoha tvůrců
 

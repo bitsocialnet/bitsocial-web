@@ -38,7 +38,10 @@ Bitsocial Forge が作るものもあれば、多くは独立した開発者が�
 - [WeTube](https://github.com/bitsocialnet/wetube)：すべてのチャンネルが作成者の所有するコミュニティになる YouTube の代替。
 - [Gitcommons](https://github.com/bitsocialnet/gitcommons)：Bitsocial 上に構築する GitHub の代替に向けた調査とアーキテクチャ。
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia)：誰のものでもない百科事典。編集グループが競合するバージョンを公開し、読者が選びます。
-- [Hopium](https://github.com/bitsocialnet/hopium)：ソーシャルトレーディング向けの Fomo の代替。すべてのコールは投稿者のオンチェーン取引と照合され、各トークンには保有者だけが投稿できるルームがあります。
+
+### 検討のうえ見送ったもの
+
+- [Hopium](https://github.com/bitsocialnet/hopium)：ソーシャルトレーディング向けの Fomo の代替。2026年11月に見送り。理由はリポジトリに記録されています。
 
 ## 多くの作り手に資金を出す
 

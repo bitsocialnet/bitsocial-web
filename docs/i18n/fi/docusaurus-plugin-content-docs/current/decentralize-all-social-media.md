@@ -43,9 +43,11 @@ niihin.
   arkkitehtuuri Bitsocialin päälle rakennetulle GitHub-vaihtoehdolle.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): tietosanakirja, jota kukaan ei omista
   ja jossa toimitusryhmät julkaisevat kilpailevia versioita ja lukijat valitsevat.
-- [Hopium](https://github.com/bitsocialnet/hopium): Fomo-vaihtoehto sosiaaliseen kaupankäyntiin,
-  jossa jokaista vinkkiä verrataan sen antajan on-chain-kauppoihin ja jokaisella tokenilla on huone,
-  johon vain sen haltijat voivat kirjoittaa.
+
+### Harkittu ja sivuun jätetty
+
+- [Hopium](https://github.com/bitsocialnet/hopium): Fomon vaihtoehto sosiaaliseen kaupankäyntiin.
+  Jätetty sivuun marraskuussa 2026; repositorio kertoo syyt.
 
 ## Monen rakentajan rahoittaminen
 

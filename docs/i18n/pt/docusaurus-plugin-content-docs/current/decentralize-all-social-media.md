@@ -43,9 +43,11 @@ reúne o design e as questões em aberto para que desenvolvedores e financiadore
   arquitetura para uma alternativa ao GitHub construída sobre o Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): uma enciclopédia que não pertence a
   ninguém, em que grupos editoriais publicam versões concorrentes e os leitores escolhem.
-- [Hopium](https://github.com/bitsocialnet/hopium): uma alternativa ao Fomo para trading social, em
-  que cada call é comparada com as operações on-chain de quem a publicou e cada token tem uma sala
-  onde só seus detentores podem postar.
+
+### Consideradas e postas de lado
+
+- [Hopium](https://github.com/bitsocialnet/hopium): uma alternativa ao Fomo para social trading.
+  Posta de lado em novembro de 2026; o repositório regista os motivos.
 
 ## Financiar muitos construtores
 

@@ -45,9 +45,11 @@ tagapondo.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): isang ensiklopedya na walang
   nagmamay-ari, kung saan naglalathala ang mga grupong editoryal ng magkakakumpitensyang bersyon at
   ang mga mambabasa ang pumipili.
+
+### Pinag-aralan at isinantabi
+
 - [Hopium](https://github.com/bitsocialnet/hopium): isang alternatibo sa Fomo para sa social
-  trading, kung saan bawat call ay ikinukumpara sa mga on-chain na trade ng nag-post nito at bawat
-  token ay may sariling room na mga may-hawak lang nito ang puwedeng mag-post.
+  trading. Isinantabi noong Nobyembre 2026; nakatala sa repository kung bakit.
 
 ## Pagpopondo sa maraming developer
 

@@ -43,9 +43,11 @@ können.
   Architektur für eine GitHub-Alternative auf Basis von Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): eine Enzyklopädie, die niemandem
   gehört, in der Redaktionsgruppen konkurrierende Versionen veröffentlichen und die Leser wählen.
-- [Hopium](https://github.com/bitsocialnet/hopium): eine Fomo-Alternative für Social Trading, bei
-  der jeder Call mit den On-Chain-Trades seines Urhebers abgeglichen wird und jeder Token einen Raum
-  hat, in dem nur seine Inhaber posten können.
+
+### Geprüft und zurückgestellt
+
+- [Hopium](https://github.com/bitsocialnet/hopium): eine Fomo-Alternative für Social Trading. Im
+  November 2026 zurückgestellt; das Repository hält die Gründe fest.
 
 ## Viele Entwickler finanzieren
 

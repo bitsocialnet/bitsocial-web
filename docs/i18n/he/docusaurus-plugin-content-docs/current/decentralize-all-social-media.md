@@ -41,8 +41,11 @@ Bitsocial Chain, צמתי פרופיל, החלופה ל-Twitter/X משלב 3, ו
   ל-GitHub שבנויה על Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): אנציקלופדיה שאיש אינו הבעלים שלה, שבה
   קבוצות עריכה מפרסמות גרסאות מתחרות והקוראים בוחרים.
-- [Hopium](https://github.com/bitsocialnet/hopium): חלופה ל-Fomo למסחר חברתי, שבה כל המלצה נבדקת מול
-  העסקאות שעל השרשרת של מי שפרסם אותה, ולכל טוקן יש חדר שרק המחזיקים בו יכולים לכתוב בו.
+
+### נבחנו והונחו בצד
+
+- [Hopium](https://github.com/bitsocialnet/hopium): חלופה ל-Fomo למסחר חברתי. הונחה בצד בנובמבר
+  2026; המאגר מתעד את הסיבות.
 
 ## מימון בונים רבים
 

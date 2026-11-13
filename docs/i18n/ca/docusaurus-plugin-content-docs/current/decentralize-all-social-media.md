@@ -44,9 +44,11 @@ agafar.
   arquitectura per a una alternativa a GitHub construïda sobre Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): una enciclopèdia que no és de ningú,
   on grups editorials publiquen versions que competeixen entre si i els lectors trien.
-- [Hopium](https://github.com/bitsocialnet/hopium): una alternativa a Fomo per al trading social, on
-  cada senyal es contrasta amb les operacions on-chain de qui la publica i cada token té una sala on
-  només hi poden publicar els seus posseïdors.
+
+### Considerades i descartades
+
+- [Hopium](https://github.com/bitsocialnet/hopium): una alternativa a Fomo per al trading social.
+  Descartada el novembre del 2026; el repositori n'explica els motius.
 
 ## Finançar molts constructors
 

@@ -43,9 +43,11 @@ Néhány ötletnek már van ötletszakaszban lévő repója. Egyikben sincs még
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): senki tulajdonában nem lévő
   enciklopédia, amelyben szerkesztői csoportok egymással versengő változatokat tesznek közzé, és az
   olvasók választanak.
-- [Hopium](https://github.com/bitsocialnet/hopium): Fomo-alternatíva közösségi kereskedéshez, ahol
-  minden tippet összevetnek a közzétevője láncon belüli kereskedéseivel, és minden tokennek van egy
-  szobája, ahová csak a tulajdonosai írhatnak.
+
+### Megfontolt és félretett ötletek
+
+- [Hopium](https://github.com/bitsocialnet/hopium): a Fomo alternatívája a közösségi kereskedéshez.
+  2026 novemberében félretettük; az okokat a repository rögzíti.
 
 ## Sok fejlesztő finanszírozása
 
