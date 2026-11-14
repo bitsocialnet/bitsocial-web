@@ -651,6 +651,10 @@
         "modelswarm": {
           "tagline": "Alternatywa dla Hugging Face na etapie pomysłu, w której rój peerów udostępnia modele AI z otwartymi wagami.",
           "description": "Modelswarm to centrum modeli AI z otwartymi wagami, które nie należy do nikogo. Wydawcy podpisują wydania ze swojego własnego profilu Bitsocial, wagi są przesyłane przez BitTorrent i serwery lustrzane HTTP, a każdy fragment każdego pliku jest sprawdzany względem podpisanego wydania już w trakcie pobierania. Centra to społeczności Bitsocial, które wybierają wydania i goszczą dyskusję, a pliki w formatach zdolnych do uruchamiania kodu są oznaczane przed pobraniem. Nic jeszcze nie zostało zbudowane; repozytorium gromadzi projekt."
+        },
+        "mintpass": {
+          "tagline": "Płatne, nieprzenoszalne przepustki na Ethereum do głosowania w katalogach i publikowania bez captchy.",
+          "description": "MintPass to płatna, nieprzenoszalna przepustka z terminem ważności w sieci głównej Ethereum, którą każda aplikacja Bitsocial wdraża pod własną nazwą: 5chan Pass dla 5chan i Seedit Gold dla Seedit. Ważna przepustka pozwala posiadaczowi głosować w konkursach katalogów i publikować bez rozwiązywania captchy w społecznościach, które sprawdzają ją przez EVM Contract Call. Cena jest stała w USD i płatna w ETH, a ponowny zakup przedłuża tę samą przepustkę zamiast wybijać drugą. Kontrakty nie zostały jeszcze wdrożone."
         }
       }
     },

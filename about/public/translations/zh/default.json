@@ -650,6 +650,10 @@
         "modelswarm": {
           "tagline": "处于构想阶段的 Hugging Face 替代方案，由一群对等节点共享开放权重 AI 模型。",
           "description": "Modelswarm 是一个不归任何人所有的开放权重 AI 模型中心。发布者从自己的 Bitsocial 个人资料签署发布版本，权重通过 BitTorrent 和 HTTP 镜像传输，每个文件的每个分块都会在下载过程中与已签名的发布版本进行校验。各个中心是负责精选发布版本并承载讨论的 Bitsocial 社区，采用可运行代码格式的文件会在下载前被标记。目前尚未构建任何内容；该代码仓库汇集了设计方案。"
+        },
+        "mintpass": {
+          "tagline": "付费、不可转让的 Ethereum 通行证，用于目录投票和免验证码发帖。",
+          "description": "MintPass 是 Ethereum 主网上一种付费、不可转让且会到期的通行证，每个 Bitsocial 应用都以自己的名称部署：5chan 使用 5chan Pass，Seedit 使用 Seedit Gold。持有有效通行证即可在目录竞赛中投票，并在通过 EVM Contract Call 检查通行证的社区中免验证码发帖。价格以美元固定、以 ETH 支付，再次购买会续期同一张通行证，而不是铸造第二张。合约尚未部署。"
         }
       }
     },

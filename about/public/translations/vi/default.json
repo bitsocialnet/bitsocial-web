@@ -651,6 +651,10 @@
         "modelswarm": {
           "tagline": "Giải pháp thay thế Hugging Face ở giai đoạn ý tưởng, nơi các mô hình AI trọng số mở được chia sẻ bởi một bầy peer.",
           "description": "Modelswarm là một hub cho các mô hình AI trọng số mở mà không ai sở hữu. Nhà phát hành ký các bản phát hành từ chính hồ sơ Bitsocial của mình, trọng số được truyền qua BitTorrent và các bản sao HTTP, và từng mảnh của từng tệp được kiểm tra với bản phát hành đã ký ngay trong lúc tải xuống. Các hub là những cộng đồng Bitsocial tuyển chọn bản phát hành và là nơi thảo luận, còn các tệp ở định dạng có thể chạy mã sẽ được gắn cờ trước khi tải xuống. Hiện chưa có gì được xây dựng; kho mã nguồn tập hợp phần thiết kế."
+        },
+        "mintpass": {
+          "tagline": "Thẻ thông hành Ethereum trả phí, không thể chuyển nhượng, dùng để bỏ phiếu trong danh mục và đăng bài không cần captcha.",
+          "description": "MintPass là thẻ thông hành trả phí, không thể chuyển nhượng và có thời hạn trên mainnet Ethereum, mỗi ứng dụng Bitsocial triển khai dưới tên riêng: 5chan Pass cho 5chan và Seedit Gold cho Seedit. Thẻ còn hiệu lực cho phép người sở hữu bỏ phiếu trong các cuộc thi của danh mục và đăng bài mà không cần giải captcha ở những cộng đồng kiểm tra thẻ bằng EVM Contract Call. Giá cố định bằng USD và thanh toán bằng ETH; mua lại sẽ gia hạn chính thẻ đó thay vì đúc thẻ thứ hai. Các hợp đồng chưa được triển khai."
         }
       }
     },

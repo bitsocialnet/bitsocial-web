@@ -651,6 +651,10 @@
         "modelswarm": {
           "tagline": "Hugging Face-alternativ på idéstadiet där en svärm av peers delar AI-modeller med öppna vikter.",
           "description": "Modelswarm är en hubb för AI-modeller med öppna vikter som ingen äger. Utgivare signerar releaser från sin egen Bitsocial-profil, vikterna förs över via BitTorrent och HTTP-speglar, och varje del av varje fil kontrolleras mot den signerade releasen medan den laddas ned. Hubbar är Bitsocial-communities som kurerar releaser och står värd för diskussionen, och filer i format som kan köra kod flaggas före nedladdning. Inget är byggt ännu; repositoriet samlar designen."
+        },
+        "mintpass": {
+          "tagline": "Betalda, icke överlåtbara Ethereum-pass för katalogomröstningar och inlägg utan captcha.",
+          "description": "MintPass är ett betalt, icke överlåtbart pass med utgångsdatum på Ethereums huvudnät som varje Bitsocial-app driftsätter under eget namn: 5chan Pass för 5chan och Seedit Gold för Seedit. Ett giltigt pass låter innehavaren rösta i katalogtävlingar och skriva inlägg utan att lösa en captcha i gemenskaper som kontrollerar det med EVM Contract Call. Priset är fast i USD och betalas i ETH, och ett nytt köp förnyar samma pass i stället för att prägla ett andra. Kontrakten är inte driftsatta än."
         }
       }
     },

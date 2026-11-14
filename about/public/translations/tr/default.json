@@ -651,6 +651,10 @@
         "modelswarm": {
           "tagline": "Açık ağırlıklı yapay zekâ modellerinin bir eş sürüsü tarafından paylaşıldığı, fikir aşamasında bir Hugging Face alternatifi.",
           "description": "Modelswarm, kimsenin sahibi olmadığı, açık ağırlıklı yapay zekâ modelleri için bir merkezdir. Yayıncılar sürümleri kendi Bitsocial profillerinden imzalar, ağırlıklar BitTorrent ve HTTP aynaları üzerinden taşınır ve her dosyanın her parçası indirilirken imzalı sürüme göre doğrulanır. Merkezler, sürümleri seçen ve tartışmaya ev sahipliği yapan Bitsocial topluluklarıdır; kod çalıştırabilen biçimlerdeki dosyalar ise indirmeden önce işaretlenir. Henüz hiçbir şey geliştirilmedi; depo tasarımı bir araya getiriyor."
+        },
+        "mintpass": {
+          "tagline": "Dizin oylaması ve captcha'sız gönderi için ücretli, devredilemez Ethereum geçişleri.",
+          "description": "MintPass, Ethereum ana ağında ücretli, devredilemez ve süresi dolan bir geçiştir; her Bitsocial uygulaması bunu kendi adıyla dağıtır: 5chan için 5chan Pass, Seedit için Seedit Gold. Geçerli bir geçiş, sahibinin dizin yarışmalarında oy vermesini ve geçişi EVM Contract Call ile denetleyen topluluklarda captcha çözmeden gönderi paylaşmasını sağlar. Fiyat USD olarak sabittir ve ETH ile ödenir; yeniden satın almak ikinci bir geçiş basmak yerine aynı geçişi yeniler. Sözleşmeler henüz dağıtılmadı."
         }
       }
     },

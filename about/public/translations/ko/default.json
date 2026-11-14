@@ -651,6 +651,10 @@
         "modelswarm": {
           "tagline": "피어 무리가 오픈 웨이트 AI 모델을 공유하는 아이디어 단계의 Hugging Face 대안.",
           "description": "Modelswarm은 누구의 소유도 아닌 오픈 웨이트 AI 모델 허브입니다. 게시자는 자신의 Bitsocial 프로필에서 릴리스에 서명하고, 가중치는 BitTorrent와 HTTP 미러를 통해 전송되며, 모든 파일의 모든 조각은 다운로드되는 동안 서명된 릴리스와 대조해 검증됩니다. 허브는 릴리스를 큐레이션하고 토론을 호스팅하는 Bitsocial 커뮤니티이며, 코드를 실행할 수 있는 형식의 파일에는 다운로드 전에 경고가 표시됩니다. 아직 구축된 것은 없으며, 저장소에는 설계가 모여 있습니다."
+        },
+        "mintpass": {
+          "tagline": "디렉터리 투표와 캡차 없는 게시를 위한 유료·양도 불가 Ethereum 패스.",
+          "description": "MintPass는 Ethereum 메인넷의 유료·양도 불가·기간제 패스로, 각 Bitsocial 앱이 자체 이름으로 배포합니다. 5chan에는 5chan Pass, Seedit에는 Seedit Gold입니다. 유효한 패스가 있으면 보유자는 디렉터리 경연에서 투표할 수 있고, EVM Contract Call로 패스를 확인하는 커뮤니티에서는 캡차 없이 게시할 수 있습니다. 가격은 USD로 고정되고 ETH로 결제하며, 다시 구매하면 두 번째 패스를 민팅하지 않고 같은 패스가 갱신됩니다. 컨트랙트는 아직 배포되지 않았습니다."
         }
       }
     },

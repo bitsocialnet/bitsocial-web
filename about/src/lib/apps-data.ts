@@ -308,6 +308,10 @@ const APP_COPY_TRANSLATION_KEYS: Record<string, { tagline: string; description: 
     tagline: "apps.catalog.items.evm-contract-call.tagline",
     description: "apps.catalog.items.evm-contract-call.description",
   },
+  mintpass: {
+    tagline: "apps.catalog.items.mintpass.tagline",
+    description: "apps.catalog.items.mintpass.description",
+  },
   "flags-challenge": {
     tagline: "apps.catalog.items.flags-challenge.tagline",
     description: "apps.catalog.items.flags-challenge.description",
@@ -886,8 +890,34 @@ export const APPS: AppData[] = [
         kind: "package",
       },
     ],
-    relatedSlugs: ["voucher-challenge"],
+    relatedSlugs: ["mintpass", "voucher-challenge"],
     searchTerms: ["ethereum", "token gating", "smart contract"],
+  },
+  {
+    slug: "mintpass",
+    name: "MintPass",
+    tagline:
+      "Paid, non-transferable Ethereum passes for directory voting and captcha-free posting.",
+    description:
+      "MintPass is a paid, non-transferable, expiring pass on Ethereum mainnet that each Bitsocial app deploys under its own name: 5chan Pass for 5chan and Seedit Gold for Seedit. A valid pass lets its holder vote in directory contests and post without solving a captcha on communities that check it with EVM Contract Call. The price is fixed in USD and paid in ETH, and buying again renews the same pass instead of minting a second one. The contracts are not deployed yet.",
+    categories: ["identity"],
+    tags: ["On-chain", "Verification"],
+    icon: "ticket",
+    logoSrc: "/assets/apps/mintpass.svg",
+    githubRepo: "bitsocialnet/mintpass",
+    links: [{ label: "Open website", url: "https://mintpass.org", kind: "launch" }],
+    relatedSlugs: ["evm-contract-call", "5chan", "seedit"],
+    status: "experimental",
+    searchTerms: [
+      "5chan pass",
+      "seedit gold",
+      "pass",
+      "soulbound",
+      "erc-5192",
+      "ethereum",
+      "directory voting",
+      "captcha",
+    ],
   },
   {
     slug: "flags-challenge",

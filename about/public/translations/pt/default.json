@@ -651,6 +651,10 @@
         "modelswarm": {
           "tagline": "Alternativa ao Hugging Face em fase de ideia, em que um enxame de peers compartilha modelos de IA de pesos abertos.",
           "description": "O Modelswarm é um hub de modelos de IA de pesos abertos que não pertence a ninguém. Os publicadores assinam as versões a partir do próprio perfil no Bitsocial, os pesos trafegam por BitTorrent e espelhos HTTP, e cada pedaço de cada arquivo é verificado em relação à versão assinada durante o download. Os hubs são comunidades do Bitsocial que fazem a curadoria das versões e hospedam a discussão, e arquivos em formatos que podem executar código são sinalizados antes do download. Nada foi construído ainda; o repositório reúne o design."
+        },
+        "mintpass": {
+          "tagline": "Passes pagos e intransferíveis na Ethereum para votar em diretórios e publicar sem captcha.",
+          "description": "MintPass é um passe pago, intransferível e com validade na mainnet da Ethereum que cada app Bitsocial implanta com o próprio nome: 5chan Pass para o 5chan e Seedit Gold para o Seedit. Um passe válido permite ao titular votar nas disputas dos diretórios e publicar sem resolver captcha nas comunidades que o verificam com o EVM Contract Call. O preço é fixo em USD e pago em ETH, e comprar de novo renova o mesmo passe em vez de cunhar um segundo. Os contratos ainda não foram implantados."
         }
       }
     },
