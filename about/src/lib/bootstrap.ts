@@ -96,7 +96,11 @@ export function getClientBootstrapPayload(): BootstrapPayload | null {
   }
 
   const template = document.getElementById(BOOTSTRAP_TEMPLATE_ID);
-  const rawPayload = template?.textContent?.trim();
+  // The parser puts a <template>'s children in its content fragment, so the element itself has
+  // no text of its own.
+  const rawPayload = (
+    template instanceof HTMLTemplateElement ? template.content : template
+  )?.textContent?.trim();
   if (!rawPayload) {
     return null;
   }

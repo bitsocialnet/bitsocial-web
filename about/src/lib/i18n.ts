@@ -114,7 +114,10 @@ function initWithBrowserDetection() {
 function initWithBootstrapPayload(bootstrapPayload: BootstrapPayload) {
   i18n.use(HttpBackend).use(initReactI18next);
 
-  return i18n.init(createBaseConfig(bootstrapPayload));
+  // The payload carries only the requested locale. Let the http backend load the English
+  // fallback and any language picked later, as the server render had English for untranslated
+  // keys too.
+  return i18n.init({ ...createBaseConfig(bootstrapPayload), partialBundledLanguages: true });
 }
 
 export function initializeClientI18n(bootstrapPayload = getClientBootstrapPayload()) {

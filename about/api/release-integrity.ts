@@ -183,11 +183,49 @@ export default async function handler(request: RequestLike, response: ResponseLi
     return;
   }
 
-  const assetKey = `${app}:${asset}`;
+  try {
+    const lookup = await loadIntegrityAsset(`${app}:${asset}`, releaseAsset);
 
+    if (lookup.body !== undefined) {
+      // Serve a last good body uncached, so the CDN doesn't pin it while upstream is degraded.
+      response.setHeader(
+        "Cache-Control",
+        lookup.fromLastKnown ? ERROR_CACHE_CONTROL : SUCCESS_CACHE_CONTROL,
+      );
+      response.status(200);
+      response.setHeader("Content-Type", releaseAsset.contentType);
+      response.send(lookup.body);
+      return;
+    }
+
+    // Never let the CDN cache a missing or failed lookup: a transient GitHub 404 would
+    // otherwise be served to every visitor for the whole s-maxage window.
+    response.setHeader("Cache-Control", ERROR_CACHE_CONTROL);
+    if (lookup.status === 404) {
+      response.status(204).send("");
+      return;
+    }
+    response.status(lookup.status).send("Release integrity asset is unavailable");
+  } catch {
+    response.setHeader("Cache-Control", ERROR_CACHE_CONTROL);
+    response.status(502).send("Release integrity asset fetch failed");
+  }
+}
+
+type IntegrityAssetLookup =
+  | { body: string; fromLastKnown: boolean }
+  | { body?: undefined; status: number };
+
+// Shared by the asset and target-measurements requests so both see GitHub's flaky "latest"
+// redirect the same way. Throws only when the fetch fails and no good body is remembered.
+async function loadIntegrityAsset(
+  assetKey: string,
+  releaseAsset: ReleaseIntegrityAsset,
+): Promise<IntegrityAssetLookup> {
+  let releaseResponse: Response;
   try {
     const firstAttemptStartedAt = Date.now();
-    let releaseResponse = await fetchReleaseAsset(releaseAsset);
+    releaseResponse = await fetchReleaseAsset(releaseAsset);
 
     if (
       releaseResponse.status === 404 &&
@@ -202,51 +240,22 @@ export default async function handler(request: RequestLike, response: ResponseLi
     if (releaseResponse.ok) {
       const body = await releaseResponse.text();
       lastKnownIntegrityAssets.set(assetKey, body);
-      response.setHeader("Cache-Control", SUCCESS_CACHE_CONTROL);
-      response.status(200);
-      response.setHeader("Content-Type", releaseAsset.contentType);
-      response.send(body);
-      return;
+      return { body, fromLastKnown: false };
     }
-
-    discardResponseBody(releaseResponse);
-    if (sendLastKnownIntegrityAsset(assetKey, releaseAsset, response)) {
-      return;
+  } catch (error) {
+    const lastKnownBody = lastKnownIntegrityAssets.get(assetKey);
+    if (lastKnownBody === undefined) {
+      throw error;
     }
-
-    // Never let the CDN cache a missing or failed lookup: a transient GitHub 404 would
-    // otherwise be served to every visitor for the whole s-maxage window.
-    response.setHeader("Cache-Control", ERROR_CACHE_CONTROL);
-    if (releaseResponse.status === 404) {
-      response.status(204).send("");
-      return;
-    }
-    response.status(releaseResponse.status).send("Release integrity asset is unavailable");
-  } catch {
-    if (sendLastKnownIntegrityAsset(assetKey, releaseAsset, response)) {
-      return;
-    }
-    response.setHeader("Cache-Control", ERROR_CACHE_CONTROL);
-    response.status(502).send("Release integrity asset fetch failed");
+    return { body: lastKnownBody, fromLastKnown: true };
   }
-}
 
-function sendLastKnownIntegrityAsset(
-  assetKey: string,
-  releaseAsset: ReleaseIntegrityAsset,
-  response: ResponseLike,
-) {
+  discardResponseBody(releaseResponse);
   const lastKnownBody = lastKnownIntegrityAssets.get(assetKey);
-  if (lastKnownBody === undefined) {
-    return false;
+  if (lastKnownBody !== undefined) {
+    return { body: lastKnownBody, fromLastKnown: true };
   }
-
-  // Serve the last good body, but don't let the CDN pin it while upstream is degraded.
-  response.setHeader("Cache-Control", ERROR_CACHE_CONTROL);
-  response.status(200);
-  response.setHeader("Content-Type", releaseAsset.contentType);
-  response.send(lastKnownBody);
-  return true;
+  return { status: releaseResponse.status };
 }
 
 // An unread fetch body keeps its connection open until garbage collection.
@@ -324,15 +333,15 @@ async function handleTargetMeasurementsRequest(
       throw new ReleaseIntegrityHttpError(404, "Unknown release integrity app");
     }
 
-    const releaseResponse = await fetchReleaseAsset(manifestAsset);
-    if (!releaseResponse.ok) {
+    const manifestLookup = await loadIntegrityAsset(`${app}:manifest`, manifestAsset);
+    if (manifestLookup.body === undefined) {
       throw new ReleaseIntegrityHttpError(
-        releaseResponse.status === 404 ? 503 : releaseResponse.status,
+        manifestLookup.status === 404 ? 503 : manifestLookup.status,
         "Release manifest is unavailable",
       );
     }
 
-    const manifestText = await releaseResponse.text();
+    const manifestText = manifestLookup.body;
     const manifest = parseReleaseManifest(JSON.parse(manifestText));
     const runtimeFiles = getRuntimeFiles(manifest.files);
     const files = await measureTargetFiles(targetUrl, runtimeFiles);
