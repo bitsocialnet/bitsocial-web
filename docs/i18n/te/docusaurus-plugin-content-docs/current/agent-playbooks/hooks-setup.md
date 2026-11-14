@@ -6,7 +6,6 @@
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude విడిగా ఉండే `.claude/hooks.json`ను చదవదు. ప్రాజెక్ట్ ట్రస్ట్‌ను, హుక్‌లు ప్రారంభించబడ్డాయా లేదా అనేదాన్ని ఇప్పటికీ ప్రతి యాప్ తానే నియంత్రిస్తుంది; ట్రస్ట్‌ను దాటవేయకుండా దాని ప్రస్తుత సెట్టింగ్‌లను పరిశీలించండి. `.codex/config.toml` రిపాజిటరీ కాన్ఫిగరేషన్, హుక్ ఆదేశాల రిజిస్ట్రీ కాదు.
 

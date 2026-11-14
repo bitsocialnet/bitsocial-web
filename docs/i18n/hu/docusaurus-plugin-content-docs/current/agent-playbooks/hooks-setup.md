@@ -6,7 +6,6 @@ A commitolt életciklus-hookok csak a sikeresen szerkesztett JavaScript/TypeScri
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 A Claude nem olvas be különálló `.claude/hooks.json` fájlt. A projekt megbízhatóságáról és a hookok engedélyezéséről továbbra is az egyes alkalmazások döntenek; a megbízhatóság megkerülése helyett vizsgálja meg az aktuális beállításaikat. A `.codex/config.toml` repókonfiguráció, nem hookparancs-nyilvántartás.
 

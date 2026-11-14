@@ -6,7 +6,6 @@
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude אינו קורא קובץ `.claude/hooks.json` עצמאי. כל אפליקציה עדיין שולטת באמון בפרויקט ובשאלה אם hooks מופעלים; בדוק את ההגדרות הנוכחיות שלה במקום לעקוף את מנגנון האמון. `.codex/config.toml` הוא תצורת מאגר, לא מרשם של פקודות hook.
 

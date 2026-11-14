@@ -1,6 +1,6 @@
 # Dovednosti a nástroje
 
-Sdílené dovednosti žijí v `.agents/skills/`. Upravujte tyto zdroje a pak spusťte `yarn ai-workflow:sync`, který pro Claude Code vygeneruje `.claude/skills/`. Codex a Cursor objevují `.agents/skills/` přímo; neobnovujte duplicitní kořeny `.codex/skills/` ani `.cursor/skills/`.
+Sdílené dovednosti žijí v `.agents/skills/`. Upravujte tyto zdroje a pak spusťte `yarn ai-workflow:sync`, který pro Claude Code vygeneruje `.claude/skills/`. Codex načítá dovednosti přímo z `.agents/skills/`.
 
 Sdílené prompty rolí žijí v `.agents/roles/*.md`. Jde o zdrojový formát specifický pro tento repozitář, nikoli o nativní cestu, kterou by agenti sami objevovali. `scripts/ai-workflow-files.mjs` převádí tyto zdroje na níže uvedené soubory pro jednotlivé aplikace; `yarn ai-workflow:sync` je zapisuje. Vygenerované soubory commitujte spolu s jejich zdroji, aby čerstvý checkout měl nativní konfiguraci, aniž by bylo nutné nejdřív spouštět generátor. Po odstranění zdroje odstraňte explicitně i jeho zastaralé vygenerované výstupy; validátor je nahlásí, místo aby soubory potichu mazal.
 
@@ -11,12 +11,11 @@ Ověřeno podle oficiální dokumentace ke dni 2026-09-12:
 | Aplikace    | Instrukce projektu                                                                                  | Dovednosti používané tímto repozitářem        | Vlastní agenti používaní tímto repozitářem |
 | ----------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------- | ------------------------------------------ |
 | Codex       | `AGENTS.md`                                                                                         | `.agents/skills/<name>/SKILL.md`              | Vygenerované `.codex/agents/<name>.toml`   |
-| Cursor      | `AGENTS.md`; `.cursor/rules/*.mdc` zůstává k dispozici pro podmíněná pravidla specifická pro Cursor | `.agents/skills/<name>/SKILL.md`              | Vygenerované `.cursor/agents/<name>.md`    |
 | Claude Code | `CLAUDE.md` importuje `@AGENTS.md`                                                                  | Vygenerované `.claude/skills/<name>/SKILL.md` | Vygenerované `.claude/agents/<name>.md`    |
 
-Zdroje: [dovednosti v Codexu](https://learn.chatgpt.com/docs/build-skills), [subagenti v Codexu](https://learn.chatgpt.com/docs/agent-configuration/subagents), [pravidla v Cursoru](https://cursor.com/docs/rules), [dovednosti v Cursoru](https://cursor.com/docs/skills), [subagenti v Cursoru](https://cursor.com/docs/subagents), [paměť v Claude](https://code.claude.com/docs/en/memory), [dovednosti v Claude](https://code.claude.com/docs/en/skills), [subagenti v Claude](https://code.claude.com/docs/en/sub-agents).
+Zdroje: [dovednosti v Codexu](https://learn.chatgpt.com/docs/build-skills), [subagenti v Codexu](https://learn.chatgpt.com/docs/agent-configuration/subagents), [paměť v Claude](https://code.claude.com/docs/en/memory), [dovednosti v Claude](https://code.claude.com/docs/en/skills), [subagenti v Claude](https://code.claude.com/docs/en/sub-agents).
 
-Nenahrazujte nativní adresáře agentů adresářem `.agents/roles` a nepředpokládejte, že Claude objevuje `.agents/skills`. Claude si odkazovaný soubor odtamtud i tak může přečíst jako běžný kontext projektu. Cursor kvůli kompatibilitě objevuje také `.claude/skills`; kopie zůstávají synchronizované, ale jeho zveřejněná příručka k dovednostem nespecifikuje deduplikaci napříč těmito kořeny. Místo slibů, že se duplicitní položky nemohou objevit, zkontrolujte katalog dovedností v nainstalované aplikaci.
+Nenahrazujte nativní adresáře agentů adresářem `.agents/roles` a nepředpokládejte, že Claude objevuje `.agents/skills`. Claude si odkazovaný soubor odtamtud i tak může přečíst jako běžný kontext projektu.
 
 Adresáře pro AI používají díky `.gitattributes` konce řádků LF, aby vygenerovaný text zůstal na všech platformách totožný. Podpůrné soubory dovedností se kopírují bajt po bajtu.
 
@@ -52,9 +51,9 @@ Vlastní role ponechte pro `browser-check`, `profiler`, `test-apk`, `translator`
 
 Soubory agentů pro Codex obsahují `name`, `description` a `developer_instructions`. `.codex/config.toml` omezuje počet souběžných podřízených agentů na čtyři pomocí `max_concurrent_threads_per_session`. Sdílená metadata rolí obsahují název, popis a volitelný režim sandboxu; pole pro model záměrně nemají.
 
-Pole pro model a úroveň uvažování vynechte z commitnutých dovedností a vlastních agentů ve všech třech aplikacích. Díky tomu se uplatní volby při spuštění, výchozí nastavení uživatele a dědění od rodiče podle dokumentovaného pořadí priorit každé aplikace. Aliasy rodin modelů v Claude snižují nároky na údržbu verzí, ale stále určují rodinu; verzovaný model v Cursoru bude vyžadovat budoucí aktualizace. Pokud je taková volba potřeba, držte ji v nastavení uživatele nebo relace. Dědění nezaručuje automatický výběr nejlepšího aktuálního modelu. Nevymýšlejte alias `latest` a nepřidávejte do rutinních úloh průzkum katalogu modelů. Viz [výběr v Codexu](https://learn.chatgpt.com/docs/agent-configuration/subagents), [výběr v Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model) a [výběr v Cursoru](https://cursor.com/docs/subagents#model-configuration).
+Pole pro model a úroveň uvažování vynechte z commitnutých dovedností a vlastních agentů. Díky tomu se uplatní volby při spuštění, výchozí nastavení uživatele a dědění od rodiče podle dokumentovaného pořadí priorit každé aplikace. Aliasy rodin modelů v Claude snižují nároky na údržbu verzí, ale stále určují rodinu. Pokud je taková volba potřeba, držte ji v nastavení uživatele nebo relace. Dědění nezaručuje automatický výběr nejlepšího aktuálního modelu. Nevymýšlejte alias `latest` a nepřidávejte do rutinních úloh průzkum katalogu modelů. Viz [výběr v Codexu](https://learn.chatgpt.com/docs/agent-configuration/subagents) a [výběr v Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model).
 
-`sandbox-mode: read-only` se mapuje na sandbox Codexu a na `readonly` v Cursoru; u Claude jeho revizní postup omezují seznam nástrojů a instrukce role, přístup k Bashi však není sandbox na úrovni operačního systému.
+`sandbox-mode: read-only` se mapuje na sandbox Codexu. U Claude jeho revizní postup omezují seznam nástrojů a instrukce role, přístup k Bashi však není sandbox na úrovni operačního systému.
 
 Frontmatter sdílených dovedností používá u workflow spouštěných uživatelem, kde je to vhodné, `disable-model-invocation: true`. Odpovídající nastavení Codexu žije v `agents/openai.yaml` jako `policy.allow_implicit_invocation: false`; validátor vyžaduje obojí. Metadata o spouštění doplňují pravidla explicitní autorizace; žádost o revizi nikdy neopravňuje k publikaci jen proto, že dovednost obsahuje kroky publikace.
 

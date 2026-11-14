@@ -6,7 +6,6 @@ Die eingecheckten Lifecycle-Hooks formatieren ausschließlich erfolgreich bearbe
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude liest keine eigenständige `.claude/hooks.json`. Jede App steuert weiterhin selbst das Projektvertrauen und ob Hooks aktiviert sind; prüfen Sie ihre aktuellen Einstellungen, statt das Vertrauen zu umgehen. `.codex/config.toml` ist Repository-Konfiguration, keine Registry für Hook-Befehle.
 

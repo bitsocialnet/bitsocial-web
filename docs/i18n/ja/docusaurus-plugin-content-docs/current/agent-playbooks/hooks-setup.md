@@ -6,7 +6,6 @@
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude は単独の `.claude/hooks.json` を読み込みません。プロジェクトの信頼や、フックを有効にするかどうかは、引き続き各アプリが制御します。信頼の確認を回避するのではなく、アプリの現在の設定を確認してください。`.codex/config.toml` はリポジトリの設定であり、フックコマンドのレジストリではありません。
 

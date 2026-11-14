@@ -6,7 +6,6 @@ Lifecycle hooks ที่คอมมิตไว้ทำหน้าที่�
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude ไม่อ่านไฟล์ `.claude/hooks.json` ที่แยกออกมาต่างหาก แต่ละแอปยังคงควบคุมการให้ความเชื่อถือโปรเจกต์และการเปิดใช้ hooks เอง ให้ตรวจการตั้งค่าปัจจุบันของแอปแทนการข้ามการตรวจความเชื่อถือ `.codex/config.toml` เป็นการกำหนดค่าของ repo ไม่ใช่ทะเบียนคำสั่ง hook
 

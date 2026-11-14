@@ -1,6 +1,6 @@
 # Skills וכלים
 
-ה-skills המשותפים נמצאים ב-`.agents/skills/`. ערוך את המקורות האלה, ואז הרץ `yarn ai-workflow:sync` כדי ליצור את `.claude/skills/` עבור Claude Code. Codex ו-Cursor מגלים את `.agents/skills/` ישירות; אל תשחזר את תיקיות השורש הכפולות `.codex/skills/` או `.cursor/skills/`.
+ה-skills המשותפים נמצאים ב-`.agents/skills/`. ערוך את המקורות האלה, ואז הרץ `yarn ai-workflow:sync` כדי ליצור את `.claude/skills/` עבור Claude Code. Codex מגלה את ה-skills ישירות מתוך `.agents/skills/`.
 
 פרומפטי התפקידים המשותפים נמצאים ב-`.agents/roles/*.md`. זהו פורמט מקור ייחודי למאגר, לא נתיב גילוי נייטיבי של סוכנים. `scripts/ai-workflow-files.mjs` ממיר את המקורות האלה לקבצים הייעודיים לכל אפליקציה שמפורטים להלן; `yarn ai-workflow:sync` כותב אותם. בצע קומיט לקבצים שנוצרו יחד עם המקורות שלהם, כדי שבצ'קאאוט חדש תהיה התצורה הנייטיבית בלי להריץ קודם מחולל. אחרי הסרת מקור, הסר במפורש את הפלטים המיושנים שנוצרו ממנו; המאמת מדווח עליהם במקום למחוק קבצים בשקט.
 
@@ -11,12 +11,11 @@
 | אפליקציה    | הוראות פרויקט                                                                | Skills שבשימוש המאגר הזה                    | סוכנים מותאמים אישית שבשימוש המאגר הזה |
 | ----------- | ---------------------------------------------------------------------------- | ------------------------------------------- | -------------------------------------- |
 | Codex       | `AGENTS.md`                                                                  | `.agents/skills/<name>/SKILL.md`            | קובץ `.codex/agents/<name>.toml` שנוצר |
-| Cursor      | `AGENTS.md`; `.cursor/rules/*.mdc` נשאר זמין לכללים מותנים ייחודיים ל-Cursor | `.agents/skills/<name>/SKILL.md`            | קובץ `.cursor/agents/<name>.md` שנוצר  |
 | Claude Code | `CLAUDE.md` מייבא את `@AGENTS.md`                                            | קובץ `.claude/skills/<name>/SKILL.md` שנוצר | קובץ `.claude/agents/<name>.md` שנוצר  |
 
-מקורות: [skills ב-Codex](https://learn.chatgpt.com/docs/build-skills), [סוכני משנה ב-Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [כללים ב-Cursor](https://cursor.com/docs/rules), [skills ב-Cursor](https://cursor.com/docs/skills), [סוכני משנה ב-Cursor](https://cursor.com/docs/subagents), [זיכרון ב-Claude](https://code.claude.com/docs/en/memory), [skills ב-Claude](https://code.claude.com/docs/en/skills), [סוכני משנה ב-Claude](https://code.claude.com/docs/en/sub-agents).
+מקורות: [skills ב-Codex](https://learn.chatgpt.com/docs/build-skills), [סוכני משנה ב-Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [זיכרון ב-Claude](https://code.claude.com/docs/en/memory), [skills ב-Claude](https://code.claude.com/docs/en/skills), [סוכני משנה ב-Claude](https://code.claude.com/docs/en/sub-agents).
 
-אל תחליף את תיקיות הסוכנים הנייטיביות ב-`.agents/roles` ואל תניח ש-Claude מגלה את `.agents/skills`. Claude עדיין יכול לקרוא קובץ שם שמפנים אליו, כהקשר רגיל של הפרויקט. Cursor מגלה גם את `.claude/skills` לצורך תאימות; העותקים נשארים מסונכרנים, אבל המדריך שפרסם על skills אינו מפרט הסרת כפילויות בין תיקיות השורש האלה. בדוק את קטלוג ה-skills של האפליקציה המותקנת במקום להבטיח שרשומות כפולות לא יכולות להופיע.
+אל תחליף את תיקיות הסוכנים הנייטיביות ב-`.agents/roles` ואל תניח ש-Claude מגלה את `.agents/skills`. Claude עדיין יכול לקרוא קובץ שם שמפנים אליו, כהקשר רגיל של הפרויקט.
 
 תיקיות ה-AI משתמשות בסיומות שורה LF באמצעות `.gitattributes`, כדי שהטקסט שנוצר יישאר זהה בכל הפלטפורמות. נכסי העזר של ה-skills מועתקים ברמת הבתים.
 
@@ -52,9 +51,9 @@
 
 קובצי הסוכנים של Codex כוללים `name`, `description` ו-`developer_instructions`. `.codex/config.toml` מגביל את מספר הצאצאים המקבילים לארבעה באמצעות `max_concurrent_threads_per_session`. המטא-נתונים המשותפים של התפקידים מכילים את השם, את התיאור ומצב sandbox אופציונלי; בכוונה אין בהם שדות מודל.
 
-השאר את שדות המודל וההיסק מחוץ ל-skills ולסוכנים המותאמים אישית שנמצאים במאגר, בכל שלוש האפליקציות. כך מתאפשרות בחירות בזמן ההפעלה, ברירות מחדל של המשתמש וירושה מההורה, לפי סדר הקדימות המתועד של כל אפליקציה. כינויי משפחה של Claude מצמצמים את תחזוקת הגרסאות אבל עדיין בוחרים משפחה; מודל Cursor עם גרסה מחייב עדכונים בעתיד. שמור בחירות כאלה בהגדרות המשתמש/הסשן כשצריך. הירושה אינה מבטיחה בחירה אוטומטית של המודל הטוב ביותר הנוכחי. אל תמציא כינוי `latest` ואל תוסיף מחקר של קטלוג מודלים למשימות שגרתיות. ראה [בחירה ב-Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [בחירה ב-Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model) ו-[בחירה ב-Cursor](https://cursor.com/docs/subagents#model-configuration).
+השאר את שדות המודל וההיסק מחוץ ל-skills ולסוכנים המותאמים אישית שנמצאים במאגר. כך מתאפשרות בחירות בזמן ההפעלה, ברירות מחדל של המשתמש וירושה מההורה, לפי סדר הקדימות המתועד של כל אפליקציה. כינויי משפחה של Claude מצמצמים את תחזוקת הגרסאות אבל עדיין בוחרים משפחה. שמור בחירות כאלה בהגדרות המשתמש/הסשן כשצריך. הירושה אינה מבטיחה בחירה אוטומטית של המודל הטוב ביותר הנוכחי. אל תמציא כינוי `latest` ואל תוסיף מחקר של קטלוג מודלים למשימות שגרתיות. ראה [בחירה ב-Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents) ו-[בחירה ב-Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model).
 
-`sandbox-mode: read-only` ממופה ל-sandbox של Codex ול-`readonly` של Cursor; ב-Claude, רשימת הכלים והוראות התפקיד מגבילות את זרימת הביקורת, אבל גישת Bash אינה sandbox ברמת מערכת ההפעלה.
+`sandbox-mode: read-only` ממופה ל-sandbox של Codex. ב-Claude, רשימת הכלים והוראות התפקיד מגבילות את זרימת הביקורת, אבל גישת Bash אינה sandbox ברמת מערכת ההפעלה.
 
 ה-frontmatter של ה-skills המשותפים משתמש ב-`disable-model-invocation: true` עבור זרימות עבודה שהמשתמש מפעיל, היכן שזה רלוונטי. ההגדרה המקבילה של Codex נמצאת ב-`agents/openai.yaml` בתור `policy.allow_implicit_invocation: false`; המאמת דורש את שתיהן. מטא-נתוני ההפעלה משלימים את כללי ההרשאה המפורשים; בקשת ביקורת לעולם אינה מתירה פרסום רק משום ש-skill כולל צעדי פרסום.
 

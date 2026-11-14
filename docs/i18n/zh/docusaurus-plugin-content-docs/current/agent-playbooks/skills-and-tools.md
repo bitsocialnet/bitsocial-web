@@ -1,6 +1,6 @@
 # 技能与工具
 
-共享技能位于 `.agents/skills/`。编辑这些源文件，然后运行 `yarn ai-workflow:sync`，为 Claude Code 生成 `.claude/skills/`。Codex 和 Cursor 会直接发现 `.agents/skills/`；不要恢复重复的 `.codex/skills/` 或 `.cursor/skills/` 根目录。
+共享技能位于 `.agents/skills/`。编辑这些源文件，然后运行 `yarn ai-workflow:sync`，为 Claude Code 生成 `.claude/skills/`。Codex 直接从 `.agents/skills/` 中发现技能。
 
 共享角色提示词位于 `.agents/roles/*.md`。这是本仓库特有的源格式，而不是原生的代理发现路径。`scripts/ai-workflow-files.mjs` 会把这些源文件转换为下面列出的各应用专用文件；`yarn ai-workflow:sync` 负责写入它们。把生成的文件与其源文件一起提交，这样全新检出的仓库无需先运行生成器就具备原生配置。删除某个源文件之后，要显式删除它已过时的生成产物；验证器会报告这些产物，而不会悄悄删除文件。
 
@@ -11,12 +11,11 @@
 | 应用        | 项目指令                                                          | 本仓库使用的技能                        | 本仓库使用的自定义代理             |
 | ----------- | ----------------------------------------------------------------- | --------------------------------------- | ---------------------------------- |
 | Codex       | `AGENTS.md`                                                       | `.agents/skills/<name>/SKILL.md`        | 生成的 `.codex/agents/<name>.toml` |
-| Cursor      | `AGENTS.md`；`.cursor/rules/*.mdc` 仍可用于 Cursor 专用的条件规则 | `.agents/skills/<name>/SKILL.md`        | 生成的 `.cursor/agents/<name>.md`  |
 | Claude Code | `CLAUDE.md` 导入 `@AGENTS.md`                                     | 生成的 `.claude/skills/<name>/SKILL.md` | 生成的 `.claude/agents/<name>.md`  |
 
-来源：[Codex 技能](https://learn.chatgpt.com/docs/build-skills)、[Codex 子代理](https://learn.chatgpt.com/docs/agent-configuration/subagents)、[Cursor 规则](https://cursor.com/docs/rules)、[Cursor 技能](https://cursor.com/docs/skills)、[Cursor 子代理](https://cursor.com/docs/subagents)、[Claude 记忆](https://code.claude.com/docs/en/memory)、[Claude 技能](https://code.claude.com/docs/en/skills)、[Claude 子代理](https://code.claude.com/docs/en/sub-agents)。
+来源：[Codex 技能](https://learn.chatgpt.com/docs/build-skills)、[Codex 子代理](https://learn.chatgpt.com/docs/agent-configuration/subagents)、[Claude 记忆](https://code.claude.com/docs/en/memory)、[Claude 技能](https://code.claude.com/docs/en/skills)、[Claude 子代理](https://code.claude.com/docs/en/sub-agents)。
 
-不要用 `.agents/roles` 取代原生的代理目录，也不要假定 Claude 会发现 `.agents/skills`。Claude 仍然可以把那里被引用的文件当作普通的项目上下文读取。Cursor 出于兼容性也会发现 `.claude/skills`；这些副本保持同步，但它已发布的技能指南并未说明是否会在这些根目录之间去重。请检查已安装应用的技能清单，而不是承诺不会出现重复条目。
+不要用 `.agents/roles` 取代原生的代理目录，也不要假定 Claude 会发现 `.agents/skills`。Claude 仍然可以把那里被引用的文件当作普通的项目上下文读取。
 
 AI 目录通过 `.gitattributes` 使用 LF 换行符，使生成的文本在各平台上保持一致。技能的辅助资源按字节原样复制。
 
@@ -52,9 +51,9 @@ AI 目录通过 `.gitattributes` 使用 LF 换行符，使生成的文本在各�
 
 Codex 代理文件包含 `name`、`description` 和 `developer_instructions`。`.codex/config.toml` 通过 `max_concurrent_threads_per_session` 把并发子代理的上限设为四个。共享角色元数据包含名称、描述和可选的沙箱模式；它刻意不包含任何模型字段。
 
-在全部三个应用中，已提交的技能和自定义代理都不要包含模型和推理字段。这样就能按照各应用文档规定的优先级，采用运行时调用的选择、用户默认值以及从父级继承。Claude 系列别名减少了版本维护工作，但仍然选定了一个系列；带版本号的 Cursor 模型则需要日后更新。需要时，把这类选择放在用户/会话设置中。继承并不保证会自动选中当前最好的模型。不要臆造 `latest` 别名，也不要在例行任务中加入模型目录调研。参见 [Codex 模型选择](https://learn.chatgpt.com/docs/agent-configuration/subagents)、[Claude 模型选择](https://code.claude.com/docs/en/sub-agents#choose-a-model) 和 [Cursor 模型选择](https://cursor.com/docs/subagents#model-configuration)。
+已提交的技能和自定义代理都不要包含模型和推理字段。这样就能按照各应用文档规定的优先级，采用运行时调用的选择、用户默认值以及从父级继承。Claude 系列别名减少了版本维护工作，但仍然选定了一个系列。需要时，把这类选择放在用户/会话设置中。继承并不保证会自动选中当前最好的模型。不要臆造 `latest` 别名，也不要在例行任务中加入模型目录调研。参见 [Codex 模型选择](https://learn.chatgpt.com/docs/agent-configuration/subagents) 和 [Claude 模型选择](https://code.claude.com/docs/en/sub-agents#choose-a-model)。
 
-`sandbox-mode: read-only` 对应 Codex 的沙箱和 Cursor 的 `readonly`；Claude 的工具列表和角色指令会限制它的审查工作流，但 Bash 访问并不是操作系统级别的沙箱。
+`sandbox-mode: read-only` 对应 Codex 的沙箱。Claude 的工具列表和角色指令会限制它的审查工作流，但 Bash 访问并不是操作系统级别的沙箱。
 
 在适用的情况下，共享技能的 frontmatter 会为用户调用的工作流使用 `disable-model-invocation: true`。Codex 中对应的设置位于 `agents/openai.yaml`，即 `policy.allow_implicit_invocation: false`；验证器要求两者同时存在。调用元数据是对明确授权规则的补充；审查请求绝不会仅仅因为某个技能包含发布步骤，就授权进行发布。
 

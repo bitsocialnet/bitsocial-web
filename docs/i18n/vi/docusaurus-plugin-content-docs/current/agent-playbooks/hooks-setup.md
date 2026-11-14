@@ -6,7 +6,6 @@ Các hook vòng đời đã được commit chỉ định dạng những tệp J
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude không đọc một tệp `.claude/hooks.json` độc lập. Mỗi ứng dụng vẫn tự kiểm soát mức tin cậy của dự án và việc hook có được bật hay không; hãy kiểm tra thiết lập hiện tại của ứng dụng thay vì vượt qua cơ chế tin cậy. `.codex/config.toml` là cấu hình của kho lưu trữ, không phải nơi đăng ký lệnh hook.
 

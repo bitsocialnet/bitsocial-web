@@ -6,7 +6,6 @@ Versionhallintaan tallennetut elinkaarikoukut ainoastaan muotoilevat onnistunees
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude ei lue erillistä tiedostoa `.claude/hooks.json`. Kukin sovellus päättää edelleen itse projektin luottamuksesta ja siitä, ovatko koukut käytössä; tarkista sen nykyiset asetukset sen sijaan, että ohittaisit luottamuksen. `.codex/config.toml` on repon määritystiedosto, ei koukkukomentojen rekisteri.
 

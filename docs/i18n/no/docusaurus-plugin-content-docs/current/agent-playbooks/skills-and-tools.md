@@ -1,6 +1,6 @@
 # Ferdigheter og verktøy
 
-Delte ferdigheter ligger i `.agents/skills/`. Rediger disse kildene, og kjør deretter `yarn ai-workflow:sync` for å generere `.claude/skills/` for Claude Code. Codex og Cursor finner `.agents/skills/` direkte; ikke gjenopprett de dupliserte rotmappene `.codex/skills/` eller `.cursor/skills/`.
+Delte ferdigheter ligger i `.agents/skills/`. Rediger disse kildene, og kjør deretter `yarn ai-workflow:sync` for å generere `.claude/skills/` for Claude Code. Codex finner ferdigheter direkte i `.agents/skills/`.
 
 Delte rolleprompter ligger i `.agents/roles/*.md`. Dette er et repospesifikt kildeformat, ikke en native sti der agenter oppdages. `scripts/ai-workflow-files.mjs` konverterer disse kildene til de appspesifikke filene nedenfor; `yarn ai-workflow:sync` skriver dem. Sjekk inn de genererte filene sammen med kildene deres, slik at en fersk utsjekk har den native konfigurasjonen uten å kjøre en generator først. Når du fjerner en kilde, fjern de foreldede genererte filene eksplisitt; validatoren rapporterer dem i stedet for å slette filer i stillhet.
 
@@ -11,12 +11,11 @@ Verifisert mot offisiell dokumentasjon 2026-09-12:
 | App         | Prosjektinstruksjoner                                                                              | Ferdigheter dette repoet bruker           | Egendefinerte agenter dette repoet bruker |
 | ----------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | Codex       | `AGENTS.md`                                                                                        | `.agents/skills/<name>/SKILL.md`          | Generert `.codex/agents/<name>.toml`      |
-| Cursor      | `AGENTS.md`; `.cursor/rules/*.mdc` er fortsatt tilgjengelig for Cursor-spesifikke betingede regler | `.agents/skills/<name>/SKILL.md`          | Generert `.cursor/agents/<name>.md`       |
 | Claude Code | `CLAUDE.md` importerer `@AGENTS.md`                                                                | Generert `.claude/skills/<name>/SKILL.md` | Generert `.claude/agents/<name>.md`       |
 
-Kilder: [Codex-ferdigheter](https://learn.chatgpt.com/docs/build-skills), [Codex-underagenter](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Cursor-regler](https://cursor.com/docs/rules), [Cursor-ferdigheter](https://cursor.com/docs/skills), [Cursor-underagenter](https://cursor.com/docs/subagents), [Claude-minne](https://code.claude.com/docs/en/memory), [Claude-ferdigheter](https://code.claude.com/docs/en/skills), [Claude-underagenter](https://code.claude.com/docs/en/sub-agents).
+Kilder: [Codex-ferdigheter](https://learn.chatgpt.com/docs/build-skills), [Codex-underagenter](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Claude-minne](https://code.claude.com/docs/en/memory), [Claude-ferdigheter](https://code.claude.com/docs/en/skills), [Claude-underagenter](https://code.claude.com/docs/en/sub-agents).
 
-Ikke erstatt de native agentmappene med `.agents/roles`, og ikke anta at Claude oppdager `.agents/skills`. Claude kan fortsatt lese en fil det henvises til der, som vanlig prosjektkontekst. Cursor oppdager også `.claude/skills` av kompatibilitetshensyn; kopiene holdes synkronisert, men Cursors publiserte veiledning for ferdigheter sier ikke noe om deduplisering på tvers av disse rotmappene. Sjekk ferdighetskatalogen i den installerte appen i stedet for å love at dupliserte oppføringer ikke kan dukke opp.
+Ikke erstatt de native agentmappene med `.agents/roles`, og ikke anta at Claude oppdager `.agents/skills`. Claude kan fortsatt lese en fil det henvises til der, som vanlig prosjektkontekst.
 
 AI-mappene bruker LF-linjeskift gjennom `.gitattributes`, slik at generert tekst forblir identisk på tvers av plattformer. Støttefiler for ferdigheter kopieres byte for byte.
 
@@ -52,9 +51,9 @@ Behold egendefinerte roller for `browser-check`, `profiler`, `test-apk`, `transl
 
 Codex-agentfiler inneholder `name`, `description` og `developer_instructions`. `.codex/config.toml` begrenser antall samtidige underagenter til fire med `max_concurrent_threads_per_session`. Delte rollemetadata inneholder navn, beskrivelse og valgfri sandkassemodus; de har bevisst ingen modellfelt.
 
-Utelat modell- og resonneringsfelt fra innsjekkede ferdigheter og egendefinerte agenter i alle tre appene. Det gir rom for valg ved kjøring, brukerens standardinnstillinger og arv fra foreldreagenten i tråd med hver apps dokumenterte forrangsregler. Familiealiaser for Claude reduserer versjonsvedlikehold, men velger fortsatt en familie; en versjonert Cursor-modell krever fremtidige oppdateringer. Hold slike valg i bruker-/øktinnstillinger ved behov. Arv lover ikke at den beste gjeldende modellen velges automatisk. Ikke finn på et `latest`-alias, og ikke legg til research i modellkataloger i rutineoppgaver. Se [modellvalg i Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [modellvalg i Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model) og [modellvalg i Cursor](https://cursor.com/docs/subagents#model-configuration).
+Utelat modell- og resonneringsfelt fra innsjekkede ferdigheter og egendefinerte agenter. Det gir rom for valg ved kjøring, brukerens standardinnstillinger og arv fra foreldreagenten i tråd med hver apps dokumenterte forrangsregler. Familiealiaser for Claude reduserer versjonsvedlikehold, men velger fortsatt en familie. Hold slike valg i bruker-/øktinnstillinger ved behov. Arv lover ikke at den beste gjeldende modellen velges automatisk. Ikke finn på et `latest`-alias, og ikke legg til research i modellkataloger i rutineoppgaver. Se [modellvalg i Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents) og [modellvalg i Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model).
 
-`sandbox-mode: read-only` tilsvarer sandkassen i Codex og `readonly` i Cursor; for Claude begrenser verktøylisten og rolleinstruksjonene gjennomgangsarbeidsflyten, men Bash-tilgang er ikke en sandkasse på OS-nivå.
+`sandbox-mode: read-only` tilsvarer sandkassen i Codex. For Claude begrenser verktøylisten og rolleinstruksjonene gjennomgangsarbeidsflyten, men Bash-tilgang er ikke en sandkasse på OS-nivå.
 
 Delt frontmatter for ferdigheter bruker `disable-model-invocation: true` for arbeidsflyter som brukeren starter selv, der det er relevant. Den tilsvarende innstillingen i Codex ligger i `agents/openai.yaml` som `policy.allow_implicit_invocation: false`; validatoren krever begge. Metadata for kall supplerer eksplisitte autorisasjonsregler; en forespørsel om gjennomgang gir aldri tillatelse til publisering bare fordi en ferdighet inneholder publiseringssteg.
 

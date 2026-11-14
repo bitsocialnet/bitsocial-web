@@ -6,7 +6,6 @@
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude کوئی الگ `.claude/hooks.json` نہیں پڑھتا۔ پروجیکٹ پر اعتماد اور ہکس کے فعال ہونے یا نہ ہونے کا اختیار بدستور ہر ایپ کے پاس ہے؛ اعتماد کو بائی پاس کرنے کے بجائے اس کی موجودہ ترتیبات کا معائنہ کریں۔ `.codex/config.toml` ریپوزٹری کی کنفیگریشن ہے، ہک کمانڈز کی رجسٹری نہیں۔
 

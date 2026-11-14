@@ -6,7 +6,6 @@
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude আলাদা কোনো `.claude/hooks.json` পড়ে না। প্রজেক্ট ট্রাস্ট এবং হুক সক্রিয় থাকবে কি না, তা এখনও প্রতিটি অ্যাপ নিজেই নিয়ন্ত্রণ করে; ট্রাস্ট এড়িয়ে না গিয়ে অ্যাপটির বর্তমান সেটিংস দেখে নিন। `.codex/config.toml` রিপোজিটরির কনফিগারেশন, কোনো হুক কমান্ড রেজিস্ট্রি নয়।
 

@@ -6,7 +6,6 @@
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude 不会读取独立的 `.claude/hooks.json`。每个应用仍然自行控制项目信任以及是否启用钩子；请检查其当前设置，而不是绕过信任机制。`.codex/config.toml` 是仓库配置，不是钩子命令注册表。
 

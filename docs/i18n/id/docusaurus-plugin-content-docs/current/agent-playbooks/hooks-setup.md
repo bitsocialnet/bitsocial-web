@@ -6,7 +6,6 @@ Hook siklus hidup yang di-commit hanya memformat berkas JavaScript/TypeScript ya
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude tidak membaca `.claude/hooks.json` yang berdiri sendiri. Setiap aplikasi tetap mengendalikan kepercayaan proyek dan apakah hook diaktifkan; periksa pengaturannya saat ini alih-alih melewati mekanisme kepercayaan itu. `.codex/config.toml` adalah konfigurasi repositori, bukan registri perintah hook.
 

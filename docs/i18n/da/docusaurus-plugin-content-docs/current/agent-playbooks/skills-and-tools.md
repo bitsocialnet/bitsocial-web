@@ -1,6 +1,6 @@
 # Skills og værktøjer
 
-Delte skills ligger i `.agents/skills/`. Redigér disse kilder, og kør derefter `yarn ai-workflow:sync` for at generere `.claude/skills/` til Claude Code. Codex og Cursor finder `.agents/skills/` direkte; genskab ikke de duplikerede rodmapper `.codex/skills/` eller `.cursor/skills/`.
+Delte skills ligger i `.agents/skills/`. Redigér disse kilder, og kør derefter `yarn ai-workflow:sync` for at generere `.claude/skills/` til Claude Code. Codex finder skills direkte i `.agents/skills/`.
 
 Delte rolleprompts ligger i `.agents/roles/*.md`. Det er et repo-specifikt kildeformat, ikke en native sti til opdagelse af agenter. `scripts/ai-workflow-files.mjs` konverterer disse kilder til de app-specifikke filer nedenfor; `yarn ai-workflow:sync` skriver dem. Commit de genererede filer sammen med deres kilder, så et frisk checkout har den native konfiguration uden først at skulle køre en generator. Når du fjerner en kilde, skal du selv fjerne dens forældede genererede output; validatoren rapporterer dem i stedet for at slette filer i stilhed.
 
@@ -11,12 +11,11 @@ Verificeret mod den officielle dokumentation den 2026-09-12:
 | App         | Projektinstruktioner                                                                             | Skills, som dette repo bruger              | Brugerdefinerede agenter, som dette repo bruger |
 | ----------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------ | ----------------------------------------------- |
 | Codex       | `AGENTS.md`                                                                                      | `.agents/skills/<name>/SKILL.md`           | Genereret `.codex/agents/<name>.toml`           |
-| Cursor      | `AGENTS.md`; `.cursor/rules/*.mdc` er fortsat tilgængelig til Cursor-specifikke betingede regler | `.agents/skills/<name>/SKILL.md`           | Genereret `.cursor/agents/<name>.md`            |
 | Claude Code | `CLAUDE.md` importerer `@AGENTS.md`                                                              | Genereret `.claude/skills/<name>/SKILL.md` | Genereret `.claude/agents/<name>.md`            |
 
-Kilder: [Codex-skills](https://learn.chatgpt.com/docs/build-skills), [Codex-subagenter](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Cursor-regler](https://cursor.com/docs/rules), [Cursor-skills](https://cursor.com/docs/skills), [Cursor-subagenter](https://cursor.com/docs/subagents), [Claude-hukommelse](https://code.claude.com/docs/en/memory), [Claude-skills](https://code.claude.com/docs/en/skills), [Claude-subagenter](https://code.claude.com/docs/en/sub-agents).
+Kilder: [Codex-skills](https://learn.chatgpt.com/docs/build-skills), [Codex-subagenter](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Claude-hukommelse](https://code.claude.com/docs/en/memory), [Claude-skills](https://code.claude.com/docs/en/skills), [Claude-subagenter](https://code.claude.com/docs/en/sub-agents).
 
-Erstat ikke de native agentmapper med `.agents/roles`, og antag ikke, at Claude finder `.agents/skills`. Claude kan stadig læse en refereret fil dér som almindelig projektkontekst. Cursor finder af kompatibilitetshensyn også `.claude/skills`; kopierne holdes synkroniseret, men Cursors offentliggjorte vejledning om skills angiver ikke, om der deduplikeres på tværs af disse rodmapper. Tjek skill-kataloget i den installerede app i stedet for at love, at dublerede poster ikke kan forekomme.
+Erstat ikke de native agentmapper med `.agents/roles`, og antag ikke, at Claude finder `.agents/skills`. Claude kan stadig læse en refereret fil dér som almindelig projektkontekst.
 
 AI-mapperne bruger LF-linjeskift via `.gitattributes`, så genereret tekst forbliver identisk på tværs af platforme. Understøttende skill-assets kopieres som rå bytes.
 
@@ -52,9 +51,9 @@ Behold brugerdefinerede roller til `browser-check`, `profiler`, `test-apk`, `tra
 
 Codex-agentfiler indeholder `name`, `description` og `developer_instructions`. `.codex/config.toml` begrænser antallet af samtidige underagenter til fire med `max_concurrent_threads_per_session`. Delte rollemetadata indeholder navn, beskrivelse og en valgfri sandbox-tilstand; de har bevidst ingen modelfelter.
 
-Udelad model- og ræsonneringsfelter i committede skills og brugerdefinerede agenter i alle tre apps. Så kan valg ved selve kaldet, brugerens standardindstillinger og arv fra forælderen gælde i henhold til hver apps dokumenterede præcedens. Claudes familiealiasser mindsker vedligeholdelsen af versioner, men vælger stadig en familie; en versioneret Cursor-model kræver opdateringer fremover. Gem sådanne valg i bruger-/sessionsindstillinger, når det er nødvendigt. Arv lover ikke, at den bedste aktuelle model automatisk bliver valgt. Opfind ikke et `latest`-alias, og læg ikke research i modelkataloger ind i rutineopgaver. Se [modelvalg i Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [modelvalg i Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model) og [modelvalg i Cursor](https://cursor.com/docs/subagents#model-configuration).
+Udelad model- og ræsonneringsfelter i committede skills og brugerdefinerede agenter. Så kan valg ved selve kaldet, brugerens standardindstillinger og arv fra forælderen gælde i henhold til hver apps dokumenterede præcedens. Claudes familiealiasser mindsker vedligeholdelsen af versioner, men vælger stadig en familie. Gem sådanne valg i bruger-/sessionsindstillinger, når det er nødvendigt. Arv lover ikke, at den bedste aktuelle model automatisk bliver valgt. Opfind ikke et `latest`-alias, og læg ikke research i modelkataloger ind i rutineopgaver. Se [modelvalg i Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents) og [modelvalg i Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model).
 
-`sandbox-mode: read-only` svarer til Codex' sandbox og Cursors `readonly`; Claudes værktøjsliste og rolleinstruktionerne begrænser dens review-arbejdsgang, men Bash-adgang er ikke en sandbox på OS-niveau.
+`sandbox-mode: read-only` svarer til Codex' sandbox. Claudes værktøjsliste og rolleinstruktionerne begrænser dens review-arbejdsgang, men Bash-adgang er ikke en sandbox på OS-niveau.
 
 Frontmatter i delte skills bruger `disable-model-invocation: true` til arbejdsgange, som brugeren selv kalder, hvor det er relevant. Codex' tilsvarende indstilling ligger i `agents/openai.yaml` som `policy.allow_implicit_invocation: false`; validatoren kræver begge. Kaldsmetadata supplerer de eksplicitte autorisationsregler; en anmodning om review autoriserer aldrig publicering, blot fordi en skill indeholder publiceringstrin.
 

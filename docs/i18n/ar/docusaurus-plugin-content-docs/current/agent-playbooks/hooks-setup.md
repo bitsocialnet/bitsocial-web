@@ -6,7 +6,6 @@
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 لا يقرأ Claude ملف `.claude/hooks.json` مستقلًا. ويظل كل تطبيق متحكمًا في الثقة بالمشروع وفي تفعيل الخطافات من عدمه؛ فافحص إعداداته الحالية بدلًا من تجاوز الثقة. أما `.codex/config.toml` فهو إعداد للمستودع، وليس سجلًّا لأوامر الخطافات.
 

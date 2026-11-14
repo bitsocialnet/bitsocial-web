@@ -6,7 +6,6 @@ De incheckade livscykel-hookarna formaterar endast JavaScript-/TypeScript-filer 
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude läser inte en fristående `.claude/hooks.json`. Varje app styr fortfarande projektförtroendet och om hooks är aktiverade; granska appens aktuella inställningar i stället för att kringgå förtroendet. `.codex/config.toml` är repokonfiguration, inte ett register över hook-kommandon.
 

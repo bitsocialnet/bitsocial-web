@@ -6,7 +6,6 @@
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude فایل مستقل `.claude/hooks.json` را نمی‌خواند. هر اپ همچنان خودش اعتماد به پروژه و فعال بودن هوک‌ها را کنترل می‌کند؛ به جای دور زدن اعتماد، تنظیمات فعلی آن اپ را بررسی کنید. `.codex/config.toml` پیکربندی مخزن است، نه فهرست ثبت فرمان‌های هوک.
 

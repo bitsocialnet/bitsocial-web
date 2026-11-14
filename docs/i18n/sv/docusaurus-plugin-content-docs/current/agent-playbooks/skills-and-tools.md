@@ -1,6 +1,6 @@
 # Skills och verktyg
 
-Delade skills finns i `.agents/skills/`. Redigera de här källorna och kör sedan `yarn ai-workflow:sync` för att generera `.claude/skills/` för Claude Code. Codex och Cursor upptäcker `.agents/skills/` direkt; återställ inte de duplicerade rötterna `.codex/skills/` eller `.cursor/skills/`.
+Delade skills finns i `.agents/skills/`. Redigera de här källorna och kör sedan `yarn ai-workflow:sync` för att generera `.claude/skills/` för Claude Code. Codex hittar skills direkt i `.agents/skills/`.
 
 Delade rollprompter finns i `.agents/roles/*.md`. Det här är ett repospecifikt källformat, inte en inbyggd sökväg för agentupptäckt. `scripts/ai-workflow-files.mjs` konverterar de här källorna till de appspecifika filerna nedan; `yarn ai-workflow:sync` skriver dem. Checka in de genererade filerna tillsammans med sina källor, så att en nyutcheckad kopia har den inbyggda konfigurationen utan att någon generator först behöver köras. När du tar bort en källa, ta uttryckligen bort dess föråldrade genererade utdata; valideraren rapporterar dem i stället för att tyst radera filer.
 
@@ -11,12 +11,11 @@ Verifierat mot officiell dokumentation 2026-09-12:
 | App         | Projektinstruktioner                                                                  | Skills som används av det här repot        | Egna agenter som används av det här repot |
 | ----------- | ------------------------------------------------------------------------------------- | ------------------------------------------ | ----------------------------------------- |
 | Codex       | `AGENTS.md`                                                                           | `.agents/skills/<name>/SKILL.md`           | Genererad `.codex/agents/<name>.toml`     |
-| Cursor      | `AGENTS.md`; `.cursor/rules/*.mdc` finns kvar för Cursor-specifika villkorliga regler | `.agents/skills/<name>/SKILL.md`           | Genererad `.cursor/agents/<name>.md`      |
 | Claude Code | `CLAUDE.md` importerar `@AGENTS.md`                                                   | Genererad `.claude/skills/<name>/SKILL.md` | Genererad `.claude/agents/<name>.md`      |
 
-Källor: [Codex-skills](https://learn.chatgpt.com/docs/build-skills), [Codex-underagenter](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Cursor-regler](https://cursor.com/docs/rules), [Cursor-skills](https://cursor.com/docs/skills), [Cursor-underagenter](https://cursor.com/docs/subagents), [Claude-minne](https://code.claude.com/docs/en/memory), [Claude-skills](https://code.claude.com/docs/en/skills), [Claude-underagenter](https://code.claude.com/docs/en/sub-agents).
+Källor: [Codex-skills](https://learn.chatgpt.com/docs/build-skills), [Codex-underagenter](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Claude-minne](https://code.claude.com/docs/en/memory), [Claude-skills](https://code.claude.com/docs/en/skills), [Claude-underagenter](https://code.claude.com/docs/en/sub-agents).
 
-Ersätt inte de inbyggda agentkatalogerna med `.agents/roles` och anta inte att Claude upptäcker `.agents/skills`. Claude kan ändå läsa en refererad fil där som vanlig projektkontext. Cursor upptäcker också `.claude/skills` för kompatibilitet; kopiorna hålls synkroniserade, men Cursors publicerade guide för skills anger inte någon deduplicering mellan de här rötterna. Kontrollera den installerade appens skill-katalog i stället för att lova att dubbletter inte kan dyka upp.
+Ersätt inte de inbyggda agentkatalogerna med `.agents/roles` och anta inte att Claude upptäcker `.agents/skills`. Claude kan ändå läsa en refererad fil där som vanlig projektkontext.
 
 AI-katalogerna använder LF-radslut via `.gitattributes` så att genererad text förblir identisk på alla plattformar. Stödfiler för skills kopieras byte för byte.
 
@@ -52,9 +51,9 @@ Behåll egna roller för `browser-check`, `profiler`, `test-apk`, `translator` o
 
 Codex-agentfiler innehåller `name`, `description` och `developer_instructions`. `.codex/config.toml` begränsar antalet samtidiga underagenter till fyra med `max_concurrent_threads_per_session`. Delad rollmetadata innehåller namn, beskrivning och valfritt sandlådeläge; den har avsiktligt inga modellfält.
 
-Utelämna modell- och resonemangsfält i incheckade skills och egna agenter i alla tre apparna. Det ger utrymme för val vid anrop under körning, användarens standardinställningar och arv från föräldern enligt varje apps dokumenterade prioritetsordning. Familjealias för Claude minskar versionsunderhållet men väljer ändå en familj; en versionsangiven Cursor-modell kräver framtida uppdateringar. Spara sådana val i användar-/sessionsinställningar vid behov. Arv utlovar inte att den bästa aktuella modellen väljs automatiskt. Hitta inte på ett `latest`-alias och lägg inte till efterforskningar i modellkataloger i rutinuppgifter. Se [modellval i Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [modellval i Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model) och [modellval i Cursor](https://cursor.com/docs/subagents#model-configuration).
+Utelämna modell- och resonemangsfält i incheckade skills och egna agenter. Det ger utrymme för val vid anrop under körning, användarens standardinställningar och arv från föräldern enligt varje apps dokumenterade prioritetsordning. Familjealias för Claude minskar versionsunderhållet men väljer ändå en familj. Spara sådana val i användar-/sessionsinställningar vid behov. Arv utlovar inte att den bästa aktuella modellen väljs automatiskt. Hitta inte på ett `latest`-alias och lägg inte till efterforskningar i modellkataloger i rutinuppgifter. Se [modellval i Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents) och [modellval i Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model).
 
-`sandbox-mode: read-only` mappas till Codex sandlåda och Cursors `readonly`; Claudes verktygslista och rollinstruktionerna begränsar dess granskningsarbetsflöde, men Bash-åtkomst är ingen sandlåda på operativsystemnivå.
+`sandbox-mode: read-only` mappas till Codex sandlåda. Claudes verktygslista och rollinstruktionerna begränsar dess granskningsarbetsflöde, men Bash-åtkomst är ingen sandlåda på operativsystemnivå.
 
 Delad skill-frontmatter använder `disable-model-invocation: true` för arbetsflöden som anropas av användaren där det är tillämpligt. Codex motsvarande inställning finns i `agents/openai.yaml` som `policy.allow_implicit_invocation: false`; valideraren kräver båda. Anropsmetadata kompletterar uttryckliga regler för auktorisering; en begäran om granskning auktoriserar aldrig publicering bara för att en skill innehåller publiceringssteg.
 

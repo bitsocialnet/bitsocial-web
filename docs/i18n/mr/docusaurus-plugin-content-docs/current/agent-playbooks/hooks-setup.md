@@ -6,7 +6,6 @@
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude स्वतंत्र `.claude/hooks.json` वाचत नाही. प्रोजेक्ट ट्रस्ट आणि हुक्स सक्षम आहेत की नाहीत हे अजूनही प्रत्येक ॲपच्याच नियंत्रणात असते; ट्रस्टला बगल देण्याऐवजी त्या ॲपच्या सध्याच्या सेटिंग्ज तपासा. `.codex/config.toml` हे रिपॉझिटरी कॉन्फिगरेशन आहे, हुक कमांड रजिस्ट्री नव्हे.
 

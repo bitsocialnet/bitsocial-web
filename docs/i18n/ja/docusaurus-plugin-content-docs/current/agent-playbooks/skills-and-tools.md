@@ -1,6 +1,6 @@
 # スキルとツール
 
-共有スキルは `.agents/skills/` にあります。このソースを編集してから `yarn ai-workflow:sync` を実行し、Claude Code 用の `.claude/skills/` を生成します。Codex と Cursor は `.agents/skills/` を直接検出します。重複する `.codex/skills/` や `.cursor/skills/` のルートを復活させないでください。
+共有スキルは `.agents/skills/` にあります。このソースを編集してから `yarn ai-workflow:sync` を実行し、Claude Code 用の `.claude/skills/` を生成します。Codex は `.agents/skills/` から直接スキルを検出します。
 
 共有のロールプロンプトは `.agents/roles/*.md` にあります。これはこのリポジトリ固有のソース形式であり、エージェントのネイティブな検出パスではありません。`scripts/ai-workflow-files.mjs` がこれらのソースを下記のアプリ別ファイルに変換し、`yarn ai-workflow:sync` がそれを書き出します。新しくチェックアウトした時点で、ジェネレーターを実行しなくてもネイティブな設定が揃っているよう、生成されたファイルはソースと一緒にコミットしてください。ソースを削除した後は、不要になった生成物を明示的に削除します。バリデーターはそれらを黙って削除するのではなく、報告するだけです。
 
@@ -11,12 +11,11 @@
 | アプリ      | プロジェクトの指示                                                                    | このリポジトリが使うスキル                  | このリポジトリが使うカスタムエージェント |
 | ----------- | ------------------------------------------------------------------------------------- | ------------------------------------------- | ---------------------------------------- |
 | Codex       | `AGENTS.md`                                                                           | `.agents/skills/<name>/SKILL.md`            | 生成された `.codex/agents/<name>.toml`   |
-| Cursor      | `AGENTS.md`。Cursor 固有の条件付きルールには引き続き `.cursor/rules/*.mdc` を使用可能 | `.agents/skills/<name>/SKILL.md`            | 生成された `.cursor/agents/<name>.md`    |
 | Claude Code | `CLAUDE.md` が `@AGENTS.md` をインポート                                              | 生成された `.claude/skills/<name>/SKILL.md` | 生成された `.claude/agents/<name>.md`    |
 
-出典: [Codex のスキル](https://learn.chatgpt.com/docs/build-skills)、[Codex のサブエージェント](https://learn.chatgpt.com/docs/agent-configuration/subagents)、[Cursor のルール](https://cursor.com/docs/rules)、[Cursor のスキル](https://cursor.com/docs/skills)、[Cursor のサブエージェント](https://cursor.com/docs/subagents)、[Claude のメモリ](https://code.claude.com/docs/en/memory)、[Claude のスキル](https://code.claude.com/docs/en/skills)、[Claude のサブエージェント](https://code.claude.com/docs/en/sub-agents)。
+出典: [Codex のスキル](https://learn.chatgpt.com/docs/build-skills)、[Codex のサブエージェント](https://learn.chatgpt.com/docs/agent-configuration/subagents)、[Claude のメモリ](https://code.claude.com/docs/en/memory)、[Claude のスキル](https://code.claude.com/docs/en/skills)、[Claude のサブエージェント](https://code.claude.com/docs/en/sub-agents)。
 
-ネイティブのエージェントディレクトリを `.agents/roles` で置き換えたり、Claude が `.agents/skills` を検出すると想定したりしないでください。ただし Claude も、そこにあるファイルが参照されていれば、通常のプロジェクトコンテキストとして読むことはできます。Cursor は互換性のために `.claude/skills` も検出します。コピーは同期されたままですが、Cursor が公開しているスキルのガイドには、これらのルートをまたいだ重複排除についての記載がありません。重複したエントリが表示されることはないと約束するのではなく、インストールされたアプリのスキルカタログを確認してください。
+ネイティブのエージェントディレクトリを `.agents/roles` で置き換えたり、Claude が `.agents/skills` を検出すると想定したりしないでください。ただし Claude も、そこにあるファイルが参照されていれば、通常のプロジェクトコンテキストとして読むことはできます。
 
 AI 関連のディレクトリは `.gitattributes` によって LF 改行を使うため、生成されたテキストはプラットフォームをまたいで同一に保たれます。スキルの補助アセットはバイト列のままコピーされます。
 
@@ -52,9 +51,9 @@ AI 関連のディレクトリは `.gitattributes` によって LF 改行を使�
 
 Codex のエージェントファイルには `name`、`description`、`developer_instructions` が含まれます。`.codex/config.toml` は `max_concurrent_threads_per_session` を使って、同時に動く子エージェントを 4 つまでに制限しています。共有ロールのメタデータには名前、説明、任意のサンドボックスモードが含まれ、モデルのフィールドは意図的に持たせていません。
 
-3 つのアプリすべてで、コミットするスキルとカスタムエージェントにはモデルと推論のフィールドを含めないでください。こうすることで、各アプリのドキュメントに記された優先順位に従って、実行時の呼び出しでの選択、ユーザーの既定値、親からの継承が適用されます。Claude のファミリーエイリアスを使えばバージョンの保守は減りますが、それでも特定のファミリーを選ぶことになります。バージョン付きの Cursor モデルは、将来の更新が必要になります。必要な場合、こうした選択はユーザーやセッションの設定に置いてください。継承によって、その時点で最良のモデルが自動的に選ばれる保証はありません。`latest` エイリアスをでっち上げたり、日常的なタスクにモデルカタログの調査を加えたりしないでください。[Codex での選択](https://learn.chatgpt.com/docs/agent-configuration/subagents)、[Claude での選択](https://code.claude.com/docs/en/sub-agents#choose-a-model)、[Cursor での選択](https://cursor.com/docs/subagents#model-configuration) を参照してください。
+コミットするスキルとカスタムエージェントにはモデルと推論のフィールドを含めないでください。こうすることで、各アプリのドキュメントに記された優先順位に従って、実行時の呼び出しでの選択、ユーザーの既定値、親からの継承が適用されます。Claude のファミリーエイリアスを使えばバージョンの保守は減りますが、それでも特定のファミリーを選ぶことになります。必要な場合、こうした選択はユーザーやセッションの設定に置いてください。継承によって、その時点で最良のモデルが自動的に選ばれる保証はありません。`latest` エイリアスをでっち上げたり、日常的なタスクにモデルカタログの調査を加えたりしないでください。[Codex での選択](https://learn.chatgpt.com/docs/agent-configuration/subagents)、[Claude での選択](https://code.claude.com/docs/en/sub-agents#choose-a-model) を参照してください。
 
-`sandbox-mode: read-only` は Codex のサンドボックスと Cursor の `readonly` に対応します。Claude ではツールリストとロールの指示によってレビューのワークフローが制限されますが、Bash へのアクセスは OS レベルのサンドボックスではありません。
+`sandbox-mode: read-only` は Codex のサンドボックスに対応します。Claude ではツールリストとロールの指示によってレビューのワークフローが制限されますが、Bash へのアクセスは OS レベルのサンドボックスではありません。
 
 共有スキルのフロントマターでは、該当する場合、ユーザーが呼び出すワークフローに `disable-model-invocation: true` を使います。Codex で対応する設定は `agents/openai.yaml` の `policy.allow_implicit_invocation: false` で、バリデーターは両方を要求します。呼び出しのメタデータは、明示的な許可のルールを補うものです。スキルに公開の手順が含まれているというだけで、レビューの依頼が公開を許可することには決してなりません。
 

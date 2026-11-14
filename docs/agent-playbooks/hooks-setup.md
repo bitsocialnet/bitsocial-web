@@ -6,7 +6,6 @@ The committed lifecycle hooks only format successfully edited JavaScript/TypeScr
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude does not read a standalone `.claude/hooks.json`. Each app still controls project trust and whether hooks are enabled; inspect its current settings rather than bypassing trust. `.codex/config.toml` is repository configuration, not a hook command registry.
 

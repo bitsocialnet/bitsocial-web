@@ -6,7 +6,6 @@ Zatwierdzone w repozytorium haki cyklu życia formatują wyłącznie pomyślnie 
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude nie odczytuje samodzielnego pliku `.claude/hooks.json`. Każda aplikacja nadal sama kontroluje zaufanie do projektu i to, czy haki są włączone; sprawdź jej bieżące ustawienia, zamiast obchodzić mechanizm zaufania. `.codex/config.toml` to konfiguracja repozytorium, a nie rejestr poleceń haków.
 

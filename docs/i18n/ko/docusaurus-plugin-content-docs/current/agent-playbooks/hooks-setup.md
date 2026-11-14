@@ -6,7 +6,6 @@
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude는 독립된 `.claude/hooks.json`을 읽지 않습니다. 프로젝트 신뢰 여부와 훅 활성화 여부는 여전히 각 앱이 제어합니다. 신뢰 설정을 우회하지 말고 해당 앱의 현재 설정을 확인하세요. `.codex/config.toml`은 저장소 설정이지 훅 명령 레지스트리가 아닙니다.
 

@@ -6,7 +6,6 @@
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Το Claude δεν διαβάζει αυτόνομο αρχείο `.claude/hooks.json`. Κάθε εφαρμογή εξακολουθεί να ελέγχει την εμπιστοσύνη στο έργο και το αν τα hooks είναι ενεργοποιημένα· εξετάστε τις τρέχουσες ρυθμίσεις της αντί να παρακάμπτετε την εμπιστοσύνη. Το `.codex/config.toml` είναι ρύθμιση του αποθετηρίου, όχι μητρώο εντολών hook.
 

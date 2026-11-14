@@ -6,7 +6,6 @@ Hook-et e ciklit jetësor të futura në depo vetëm formatojnë, përmes oxfmt 
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude nuk lexon një `.claude/hooks.json` më vete. Çdo aplikacion vazhdon të kontrollojë besimin te projekti dhe nëse hook-et janë të aktivizuara; inspektoni cilësimet e tij aktuale në vend që ta anashkaloni besimin. `.codex/config.toml` është konfigurim i depos, jo regjistër komandash për hook-et.
 

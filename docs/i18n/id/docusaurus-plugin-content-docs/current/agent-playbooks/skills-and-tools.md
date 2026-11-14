@@ -1,6 +1,6 @@
 # Skill dan Alat
 
-Skill bersama berada di `.agents/skills/`. Sunting sumber-sumber ini, lalu jalankan `yarn ai-workflow:sync` untuk menghasilkan `.claude/skills/` bagi Claude Code. Codex dan Cursor menemukan `.agents/skills/` secara langsung; jangan pulihkan root duplikat `.codex/skills/` atau `.cursor/skills/`.
+Skill bersama berada di `.agents/skills/`. Sunting sumber-sumber ini, lalu jalankan `yarn ai-workflow:sync` untuk menghasilkan `.claude/skills/` bagi Claude Code. Codex menemukan skill langsung di `.agents/skills/`.
 
 Prompt peran bersama berada di `.agents/roles/*.md`. Ini adalah format sumber khusus repositori ini, bukan jalur penemuan agen native. `scripts/ai-workflow-files.mjs` mengonversi sumber-sumber ini menjadi berkas khusus aplikasi yang tercantum di bawah; `yarn ai-workflow:sync` yang menuliskannya. Commit berkas hasil generate bersama sumbernya agar checkout baru sudah memiliki konfigurasi native tanpa harus menjalankan generator terlebih dahulu. Setelah menghapus sebuah sumber, hapus keluaran hasil generate-nya yang usang secara eksplisit; validator melaporkannya alih-alih menghapus berkas secara diam-diam.
 
@@ -11,12 +11,11 @@ Diverifikasi terhadap dokumentasi resmi pada 2026-09-12:
 | Aplikasi    | Instruksi proyek                                                                         | Skill yang dipakai repositori ini               | Agen kustom yang dipakai repositori ini    |
 | ----------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------ |
 | Codex       | `AGENTS.md`                                                                              | `.agents/skills/<name>/SKILL.md`                | `.codex/agents/<name>.toml` hasil generate |
-| Cursor      | `AGENTS.md`; `.cursor/rules/*.mdc` tetap tersedia untuk aturan kondisional khusus Cursor | `.agents/skills/<name>/SKILL.md`                | `.cursor/agents/<name>.md` hasil generate  |
 | Claude Code | `CLAUDE.md` mengimpor `@AGENTS.md`                                                       | `.claude/skills/<name>/SKILL.md` hasil generate | `.claude/agents/<name>.md` hasil generate  |
 
-Sumber: [Skill Codex](https://learn.chatgpt.com/docs/build-skills), [Subagen Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Aturan Cursor](https://cursor.com/docs/rules), [Skill Cursor](https://cursor.com/docs/skills), [Subagen Cursor](https://cursor.com/docs/subagents), [Memori Claude](https://code.claude.com/docs/en/memory), [Skill Claude](https://code.claude.com/docs/en/skills), [Subagen Claude](https://code.claude.com/docs/en/sub-agents).
+Sumber: [Skill Codex](https://learn.chatgpt.com/docs/build-skills), [Subagen Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Memori Claude](https://code.claude.com/docs/en/memory), [Skill Claude](https://code.claude.com/docs/en/skills), [Subagen Claude](https://code.claude.com/docs/en/sub-agents).
 
-Jangan mengganti direktori agen native dengan `.agents/roles` atau mengasumsikan Claude menemukan `.agents/skills`. Claude tetap bisa membaca berkas yang dirujuk di sana sebagai konteks proyek biasa. Cursor juga menemukan `.claude/skills` demi kompatibilitas; salinan-salinannya tetap tersinkron, tetapi panduan skill yang diterbitkan Cursor tidak menjelaskan deduplikasi di antara root-root tersebut. Periksa katalog skill di aplikasi yang terpasang alih-alih menjanjikan bahwa entri duplikat tidak mungkin muncul.
+Jangan mengganti direktori agen native dengan `.agents/roles` atau mengasumsikan Claude menemukan `.agents/skills`. Claude tetap bisa membaca berkas yang dirujuk di sana sebagai konteks proyek biasa.
 
 Direktori AI memakai akhir baris LF melalui `.gitattributes` agar teks hasil generate tetap identik di semua platform. Aset pendukung skill disalin byte demi byte.
 
@@ -52,9 +51,9 @@ Pertahankan peran kustom untuk `browser-check`, `profiler`, `test-apk`, `transla
 
 Berkas agen Codex mencakup `name`, `description`, dan `developer_instructions`. `.codex/config.toml` membatasi agen anak yang berjalan bersamaan hingga empat menggunakan `max_concurrent_threads_per_session`. Metadata peran bersama berisi nama, deskripsi, dan mode sandbox opsional; metadata itu sengaja tidak memiliki field model.
 
-Jangan cantumkan field model dan reasoning di skill dan agen kustom yang di-commit, di ketiga aplikasi. Dengan begitu, pilihan saat pemanggilan runtime, default pengguna, dan pewarisan dari induk berlaku sesuai urutan prioritas yang didokumentasikan masing-masing aplikasi. Alias keluarga Claude mengurangi pemeliharaan versi tetapi tetap memilih sebuah keluarga; model Cursor yang berversi memerlukan pembaruan di kemudian hari. Simpan pilihan semacam itu di pengaturan pengguna/sesi bila diperlukan. Pewarisan tidak menjanjikan pemilihan otomatis model terbaik saat ini. Jangan mengarang alias `latest` atau menambahkan riset katalog model ke tugas rutin. Lihat [pemilihan model di Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [pemilihan model di Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model), dan [pemilihan model di Cursor](https://cursor.com/docs/subagents#model-configuration).
+Jangan cantumkan field model dan reasoning di skill dan agen kustom yang di-commit. Dengan begitu, pilihan saat pemanggilan runtime, default pengguna, dan pewarisan dari induk berlaku sesuai urutan prioritas yang didokumentasikan masing-masing aplikasi. Alias keluarga Claude mengurangi pemeliharaan versi tetapi tetap memilih sebuah keluarga. Simpan pilihan semacam itu di pengaturan pengguna/sesi bila diperlukan. Pewarisan tidak menjanjikan pemilihan otomatis model terbaik saat ini. Jangan mengarang alias `latest` atau menambahkan riset katalog model ke tugas rutin. Lihat [pemilihan model di Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents) dan [pemilihan model di Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model).
 
-`sandbox-mode: read-only` dipetakan ke sandbox Codex dan `readonly` Cursor; daftar alat Claude dan instruksi peran membatasi alur kerja tinjauannya, tetapi akses Bash bukanlah sandbox tingkat OS.
+`sandbox-mode: read-only` dipetakan ke sandbox Codex. Daftar alat Claude dan instruksi peran membatasi alur kerja tinjauannya, tetapi akses Bash bukanlah sandbox tingkat OS.
 
 Frontmatter skill bersama memakai `disable-model-invocation: true` untuk alur kerja yang dipanggil pengguna bila berlaku. Pengaturan padanannya di Codex ada di `agents/openai.yaml` sebagai `policy.allow_implicit_invocation: false`; validator mewajibkan keduanya. Metadata pemanggilan melengkapi aturan otorisasi eksplisit; permintaan tinjauan tidak pernah mengizinkan publikasi hanya karena sebuah skill memuat langkah publikasi.
 

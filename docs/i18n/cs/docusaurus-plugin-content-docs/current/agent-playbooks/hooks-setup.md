@@ -6,7 +6,6 @@ Commitnuté hooky životního cyklu pouze formátují úspěšně upravené soub
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude nečte samostatný soubor `.claude/hooks.json`. Každá aplikace i nadále sama řídí důvěru v projekt a to, zda jsou hooky povolené; místo obcházení důvěry si prohlédněte její aktuální nastavení. `.codex/config.toml` je konfigurace repozitáře, nikoli registr příkazů hooků.
 

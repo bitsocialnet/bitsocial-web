@@ -6,7 +6,6 @@ Los hooks de ciclo de vida confirmados en el repositorio solo formatean, con el 
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude no lee un `.claude/hooks.json` independiente. Cada aplicación sigue controlando la confianza en el proyecto y si los hooks están activados; revise su configuración actual en lugar de eludir la confianza. `.codex/config.toml` es configuración del repositorio, no un registro de comandos de hooks.
 

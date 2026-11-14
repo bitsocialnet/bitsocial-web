@@ -6,7 +6,6 @@ Depoya işlenmiş yaşam döngüsü kancaları yalnızca başarıyla düzenlenmi
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude bağımsız bir `.claude/hooks.json` dosyasını okumaz. Proje güvenini ve kancaların etkin olup olmadığını yine her uygulama kendisi denetler; güveni atlatmak yerine uygulamanın mevcut ayarlarını inceleyin. `.codex/config.toml` bir kanca komutu kayıt defteri değil, depo yapılandırmasıdır.
 

@@ -1,6 +1,6 @@
 # Skill và công cụ
 
-Các skill dùng chung nằm trong `.agents/skills/`. Hãy chỉnh sửa các nguồn này, rồi chạy `yarn ai-workflow:sync` để sinh `.claude/skills/` cho Claude Code. Codex và Cursor khám phá trực tiếp `.agents/skills/`; đừng khôi phục các thư mục gốc trùng lặp `.codex/skills/` hay `.cursor/skills/`.
+Các skill dùng chung nằm trong `.agents/skills/`. Hãy chỉnh sửa các nguồn này, rồi chạy `yarn ai-workflow:sync` để sinh `.claude/skills/` cho Claude Code. Codex tìm các skill trực tiếp trong `.agents/skills/`.
 
 Các prompt vai trò dùng chung nằm trong `.agents/roles/*.md`. Đây là một định dạng nguồn riêng của kho lưu trữ, không phải đường dẫn khám phá agent gốc. `scripts/ai-workflow-files.mjs` chuyển các nguồn này thành các tệp riêng cho từng ứng dụng bên dưới; `yarn ai-workflow:sync` ghi chúng ra. Hãy commit các tệp được sinh cùng với nguồn của chúng để một bản checkout mới có sẵn cấu hình gốc mà không cần chạy trình sinh trước. Sau khi xóa một nguồn, hãy xóa một cách tường minh các đầu ra được sinh đã lỗi thời của nó; trình xác thực sẽ báo cáo chúng chứ không âm thầm xóa tệp.
 
@@ -11,12 +11,11 @@ Các prompt vai trò dùng chung nằm trong `.agents/roles/*.md`. Đây là m�
 | Ứng dụng    | Chỉ dẫn dự án                                                                                  | Skill mà kho lưu trữ này dùng              | Agent tùy chỉnh mà kho lưu trữ này dùng |
 | ----------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------ | --------------------------------------- |
 | Codex       | `AGENTS.md`                                                                                    | `.agents/skills/<name>/SKILL.md`           | `.codex/agents/<name>.toml` được sinh   |
-| Cursor      | `AGENTS.md`; `.cursor/rules/*.mdc` vẫn dùng được cho các quy tắc có điều kiện riêng của Cursor | `.agents/skills/<name>/SKILL.md`           | `.cursor/agents/<name>.md` được sinh    |
 | Claude Code | `CLAUDE.md` import `@AGENTS.md`                                                                | `.claude/skills/<name>/SKILL.md` được sinh | `.claude/agents/<name>.md` được sinh    |
 
-Nguồn: [Skill của Codex](https://learn.chatgpt.com/docs/build-skills), [Subagent của Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Quy tắc của Cursor](https://cursor.com/docs/rules), [Skill của Cursor](https://cursor.com/docs/skills), [Subagent của Cursor](https://cursor.com/docs/subagents), [Bộ nhớ của Claude](https://code.claude.com/docs/en/memory), [Skill của Claude](https://code.claude.com/docs/en/skills), [Subagent của Claude](https://code.claude.com/docs/en/sub-agents).
+Nguồn: [Skill của Codex](https://learn.chatgpt.com/docs/build-skills), [Subagent của Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Bộ nhớ của Claude](https://code.claude.com/docs/en/memory), [Skill của Claude](https://code.claude.com/docs/en/skills), [Subagent của Claude](https://code.claude.com/docs/en/sub-agents).
 
-Đừng thay thế các thư mục agent gốc bằng `.agents/roles` hay giả định rằng Claude khám phá `.agents/skills`. Claude vẫn có thể đọc một tệp được tham chiếu ở đó như ngữ cảnh dự án thông thường. Cursor cũng khám phá `.claude/skills` để tương thích; các bản sao vẫn được giữ đồng bộ, nhưng hướng dẫn về skill mà Cursor công bố không nêu rõ việc loại bỏ trùng lặp giữa các thư mục gốc này. Hãy kiểm tra danh mục skill của ứng dụng đã cài thay vì hứa rằng các mục trùng lặp không thể xuất hiện.
+Đừng thay thế các thư mục agent gốc bằng `.agents/roles` hay giả định rằng Claude khám phá `.agents/skills`. Claude vẫn có thể đọc một tệp được tham chiếu ở đó như ngữ cảnh dự án thông thường.
 
 Các thư mục AI dùng ký tự xuống dòng LF thông qua `.gitattributes` để văn bản được sinh giữ nguyên giống hệt trên mọi nền tảng. Các tài nguyên hỗ trợ của skill được sao chép nguyên từng byte.
 
@@ -52,9 +51,9 @@ Giữ các vai trò tùy chỉnh cho `browser-check`, `profiler`, `test-apk`, `t
 
 Tệp agent của Codex bao gồm `name`, `description` và `developer_instructions`. `.codex/config.toml` giới hạn số agent con chạy đồng thời ở mức bốn bằng `max_concurrent_threads_per_session`. Siêu dữ liệu vai trò dùng chung chứa tên, mô tả và chế độ sandbox tùy chọn; nó cố ý không có trường mô hình nào.
 
-Không đưa các trường mô hình và suy luận vào skill và agent tùy chỉnh đã commit ở cả ba ứng dụng. Điều này cho phép lựa chọn khi gọi lúc chạy, mặc định của người dùng và kế thừa từ agent cha theo thứ tự ưu tiên được ghi trong tài liệu của từng ứng dụng. Bí danh dòng mô hình của Claude giảm việc duy trì phiên bản nhưng vẫn chọn một dòng; một mô hình Cursor có gắn phiên bản sẽ cần cập nhật về sau. Hãy giữ những lựa chọn như vậy trong thiết lập người dùng/phiên khi cần. Việc kế thừa không hứa hẹn tự động chọn mô hình tốt nhất hiện có. Đừng tự bịa ra bí danh `latest` hay thêm việc nghiên cứu danh mục mô hình vào các tác vụ thường ngày. Xem [Cách chọn mô hình của Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Cách chọn mô hình của Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model) và [Cách chọn mô hình của Cursor](https://cursor.com/docs/subagents#model-configuration).
+Không đưa các trường mô hình và suy luận vào skill và agent tùy chỉnh đã commit. Điều này cho phép lựa chọn khi gọi lúc chạy, mặc định của người dùng và kế thừa từ agent cha theo thứ tự ưu tiên được ghi trong tài liệu của từng ứng dụng. Bí danh dòng mô hình của Claude giảm việc duy trì phiên bản nhưng vẫn chọn một dòng. Hãy giữ những lựa chọn như vậy trong thiết lập người dùng/phiên khi cần. Việc kế thừa không hứa hẹn tự động chọn mô hình tốt nhất hiện có. Đừng tự bịa ra bí danh `latest` hay thêm việc nghiên cứu danh mục mô hình vào các tác vụ thường ngày. Xem [Cách chọn mô hình của Codex](https://learn.chatgpt.com/docs/agent-configuration/subagents) và [Cách chọn mô hình của Claude](https://code.claude.com/docs/en/sub-agents#choose-a-model).
 
-`sandbox-mode: read-only` ánh xạ tới sandbox của Codex và `readonly` của Cursor; danh sách công cụ của Claude và chỉ dẫn vai trò giới hạn quy trình review của nó, nhưng quyền truy cập Bash không phải là sandbox ở cấp hệ điều hành.
+`sandbox-mode: read-only` ánh xạ tới sandbox của Codex. Danh sách công cụ của Claude và chỉ dẫn vai trò giới hạn quy trình review của nó, nhưng quyền truy cập Bash không phải là sandbox ở cấp hệ điều hành.
 
 Frontmatter của skill dùng chung sử dụng `disable-model-invocation: true` cho các quy trình do người dùng gọi khi phù hợp. Thiết lập tương ứng của Codex nằm trong `agents/openai.yaml` dưới dạng `policy.allow_implicit_invocation: false`; trình xác thực yêu cầu cả hai. Siêu dữ liệu gọi bổ sung cho các quy tắc ủy quyền tường minh; một yêu cầu review không bao giờ cho phép công bố chỉ vì một skill có chứa các bước công bố.
 

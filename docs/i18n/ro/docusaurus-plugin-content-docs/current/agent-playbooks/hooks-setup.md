@@ -6,7 +6,6 @@ Hook-urile de ciclu de viață incluse în depozit doar formatează, prin oxfmt 
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude nu citește un fișier `.claude/hooks.json` de sine stătător. Fiecare aplicație controlează în continuare încrederea în proiect și activarea hook-urilor; inspectați setările ei curente, în loc să ocoliți mecanismul de încredere. `.codex/config.toml` este configurație a depozitului, nu un registru de comenzi pentru hook-uri.
 

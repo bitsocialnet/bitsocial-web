@@ -6,7 +6,6 @@
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude не читає окремий `.claude/hooks.json`. Кожен застосунок і далі сам контролює довіру до проєкту та те, чи ввімкнено хуки; перевіряйте його поточні налаштування, а не обходьте довіру. `.codex/config.toml` — це конфігурація репозиторію, а не реєстр команд хуків.
 

@@ -6,7 +6,6 @@ Els hooks de cicle de vida confirmats al repositori només formaten, amb l'oxfmt
 |---|---|---|
 | Codex | `.codex/hooks.json` | `PostToolUse`, `apply_patch` |
 | Claude Code | `.claude/settings.json` | `PostToolUse`, `Edit|Write|MultiEdit` |
-| Cursor | `.cursor/hooks.json` | `afterFileEdit` |
 
 Claude no llegeix cap `.claude/hooks.json` independent. Cada aplicació continua controlant la confiança en el projecte i si els hooks estan activats; reviseu-ne la configuració actual en lloc d'eludir la confiança. `.codex/config.toml` és configuració del repositori, no un registre d'ordres de hooks.
 
