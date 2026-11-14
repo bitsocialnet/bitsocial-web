@@ -1,4 +1,4 @@
-import { build, defineConfig, type Plugin } from "vite";
+import { build, defineConfig, type Plugin, type ResolvedConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import autoprefixer from "autoprefixer";
 import fs from "node:fs/promises";
@@ -69,6 +69,67 @@ function subdomainRedirectPlugin(): Plugin {
 
         next();
       });
+    },
+  };
+}
+
+/**
+ * Project logos that mirror a file in the project's own repository. Every build fetches them from the
+ * repository's master branch and overwrites the committed copy in public/assets/apps when it differs, so a
+ * logo changed upstream reaches bitsocial.net on its next deploy. The committed copy is the fallback when
+ * GitHub cannot be reached. AskWise is not listed: its icon is a rounded-corner edit of the bot's square avatar.
+ */
+const syncedAppLogos = [
+  { file: "modelswarm.svg", source: "bitsocialnet/modelswarm/master/public/logo.svg" },
+  { file: "wetube.svg", source: "bitsocialnet/wetube/master/design/logo/wetube-favicon.svg" },
+];
+
+// The logos are served from bitsocial.net itself, so accept only a plain SVG document without script hooks.
+function isPlainSvg(text: string) {
+  const trimmed = text.trim();
+  return (
+    trimmed.length < 256_000 &&
+    /^(<\?xml[^>]*\?>\s*)?<svg[\s>]/.test(trimmed) &&
+    trimmed.endsWith("</svg>") &&
+    !/<script|<foreignObject|\son[a-z]+\s*=|javascript:/i.test(trimmed)
+  );
+}
+
+function appLogoSyncPlugin(): Plugin {
+  let logger: ResolvedConfig["logger"];
+
+  return {
+    name: "bitsocial-app-logo-sync",
+    apply: "build",
+    configResolved(config) {
+      logger = config.logger;
+    },
+    async buildStart() {
+      await Promise.all(
+        syncedAppLogos.map(async ({ file, source }) => {
+          const url = `https://raw.githubusercontent.com/${source}`;
+          const target = path.join(__dirname, "public/assets/apps", file);
+          try {
+            const response = await fetch(url, { signal: AbortSignal.timeout(10_000) });
+            if (!response.ok) {
+              throw new Error(`HTTP ${response.status}`);
+            }
+            const svg = await response.text();
+            if (!isPlainSvg(svg)) {
+              throw new Error("response is not a plain SVG");
+            }
+            const current = await fs.readFile(target, "utf8").catch(() => "");
+            if (current !== svg) {
+              await fs.writeFile(target, svg);
+              logger.info(`Updated about/public/assets/apps/${file} from ${url}`);
+            }
+          } catch (error) {
+            logger.warn(
+              `Kept the committed about/public/assets/apps/${file}: could not sync it from ${url} (${error instanceof Error ? error.message : String(error)})`,
+            );
+          }
+        }),
+      );
     },
   };
 }
@@ -170,6 +231,7 @@ export default defineConfig(({ command, mode }) => {
     root: __dirname,
     plugins: [
       react(),
+      appLogoSyncPlugin(),
       staticMetadataPlugin(),
       ssrServerBuildPlugin(profiling),
       ...(command === "serve" && !isPreviewCommand ? [subdomainRedirectPlugin()] : []),
