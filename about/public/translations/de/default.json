@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "Dezentralisierte Imageboards mit direkten Downloads für Web, APK und Desktop.",
+          "tagline": "Anonyme Imageboards auf Bitsocial, für Web, Android und Desktop.",
           "description": "5chan ist der erste öffentliche Bitsocial-Client. Er bildet den anonymen Imageboard-Ablauf auf einem Peer-to-Peer-Netzwerk nach: Boards, Threads, Bild-Uploads, Community-Moderation und mehrere öffentliche Mirrors, ohne auf einen zentralen Server angewiesen zu sein."
         },
         "seedit": {
-          "tagline": "Bitsocial-Client im Forum-Stil mit Web-, APK- und Desktop-Builds.",
-          "description": "Seedit bringt Reddit-ähnliche Diskussionen zu Bitsocial mit Threads, Identitäten, Community-Verwaltung und mehreren Verteilungswegen. Es ist der schnellste Weg, die Forum-Seite des Netzwerks im Browser, auf einem Android-Telefon oder als Desktop-App auszuprobieren."
+          "tagline": "Communities im Reddit-Stil auf Bitsocial, für Web, Android und Desktop.",
+          "description": "Seedit bringt Reddit-ähnliche Diskussionen zu Bitsocial: Communities, die jeder erstellen und besitzen kann, Abstimmungen, verschachtelte Kommentare und eine Moderation, die der Eigentümer jeder Community festlegt. Es ist der schnellste Weg, die Forum-Seite des Netzwerks im Browser, auf einem Android-Telefon oder als Desktop-App auszuprobieren."
         },
         "spam-blocker": {
-          "tagline": "Zentralisierte Risikobewertung zum Filtern missbräuchlicher Publikationen.",
+          "tagline": "Gehosteter Risikobewertungsdienst, der Communities hilft, Spam und Ban-Umgehung herauszufiltern.",
           "description": "Spam Blocker bewertet Veröffentlichungen und gibt einen Risikoscore zurück, den Gemeinschaften mit ihrer eigenen Moderationslogik kombinieren können. Sein gehosteter Service verknüpft auch Signaturschlüssel, die erstmals von derselben IP gesehen wurden, sodass ein Benutzer, der kontinuierlich neue Konten erstellt, um ein Gemeinschaftsverbot zu umgehen oder ein Gespräch zu fabrizieren, seinen Risikoscore erhöht sieht, während einige wenige Unterzeichner für legitime Multi-Device-Nutzung zugelassen bleiben."
         },
         "captcha-canvas-challenge": {
           "tagline": "Benutzerdefinierte Bild-CAPTCHAs für Communities, die menschliche Verifikation wollen.",
-          "description": "Captcha Canvas Challenge erzeugt visuelle CAPTCHAs, die Communities in ihren eigenen Veröffentlichungsablauf einbinden können. Es ist eine leichte Option für Communities, die direkte menschliche Prüfungen wollen, ohne auf selbst gehostete Moderation zu verzichten."
+          "description": "Captcha Canvas Challenge erzeugt ein Bild-CAPTCHA auf dem eigenen Knoten der Community und verlangt, dass es gelöst wird, bevor ein Beitrag, eine Antwort oder eine Abstimmung angenommen wird. An einen CAPTCHA-Dienst von Drittanbietern wird nichts gesendet. Es ist eine einfache Hürde, die hartnäckige Bots per Brute-Force überwinden können. Kombiniere es daher in Communities, die Spam anziehen, mit einer weiteren Challenge."
         },
         "voucher-challenge": {
           "tagline": "Gutscheincodes im Einladungsstil für Communities, die kontrolliertes Wachstum bevorzugen.",
-          "description": "Voucher Challenge erlaubt Moderatoren, vertrauenswürdige Gutscheincodes zu verteilen, die Veröffentlichungen ohne globalen Identity Provider freischalten. Das passt gut zu invite-getriebenen Communities, Nischen-Boards und schrittweisen Rollouts."
+          "description": "Voucher Challenge erlaubt Moderatoren, vertrauenswürdige Gutscheincodes zu verteilen, die Veröffentlichungen ohne globalen Identity Provider freischalten. Ein Code wird an den ersten Autor gebunden, der ihn einlöst. Dieser Autor postet damit weiter, und niemand sonst kann ihn wiederverwenden."
         },
         "evm-contract-call": {
-          "tagline": "On-Chain-Gating für Communities, die Token- oder Vertragsprüfungen wollen.",
-          "description": "EVM Contract Call verifiziert Veröffentlichungen, indem vor der Annahme eines Beitrags ein EVM-Contract aufgerufen wird. So können Communities Token-Gates, Staking-Regeln oder andere On-Chain-Prüfungen in ihren Moderationsablauf einbauen."
+          "tagline": "Verlangt von Postern eine bestandene On-Chain-Prüfung, etwa den Besitz eines Tokens.",
+          "description": "EVM Contract Call verifiziert Veröffentlichungen, indem vor der Annahme eines Beitrags ein EVM-Contract aufgerufen wird. So können Communities Token-Gates, Staking-Regeln oder andere On-Chain-Prüfungen in ihre Posting-Regeln einbauen."
         },
         "bitsocial-cli": {
-          "tagline": "Kommandozeilensteuerung für Nodes, Communities und Automatisierungs-Workflows.",
-          "description": "Bitsocial CLI ist die offizielle Terminaloberfläche für das Protokoll. Verwende sie, um Knoten zu verwalten, Inhalte zu veröffentlichen, einen WebSocket-JSON-RPC-Server für programmatische Steuerung und Code-Automatisierung zu starten, Admin-Abläufe zu automatisieren und direkt mit Bitsocial-Primitiven ohne GUI-Client zu arbeiten."
+          "tagline": "Betreibe einen Bitsocial-Knoten und verwalte Communities vom Terminal aus.",
+          "description": "Bitsocial CLI ist die offizielle Terminaloberfläche für das Protokoll. Verwende sie, um einen Knoten zu betreiben, Communities zu erstellen und zu verwalten, Inhalte zu veröffentlichen und einen WebSocket-JSON-RPC-Server zu starten, den andere Programme steuern können."
         },
         "telegram-bots": {
           "tagline": "Feed-Bots, die neue Bitsocial-Beiträge in Telegram-Kanäle oder -Gruppen weiterleiten.",
           "description": "Bitsocial Telegram Bots überwachen die Community-Listen der Clients und leiten neue Beiträge mit Inline-Links zurück zu Bitsocial-Clients an Telegram-Ziele weiter. Der aktive Bot deckt heute 5chan-Feeds ab, und das Repo ist so aufgebaut, dass mit der Zeit weitere client-spezifische Bots ergänzt werden können."
         },
         "5chan-board-manager": {
-          "tagline": "Board-Administration für eigene 5chan-Communities.",
-          "description": "5chan Board Manager verbindet sich mit Bitsocial CLI, um Administratoren dabei zu helfen, benutzerdefinierte Imageboard-Boards zu erstellen, zu konfigurieren und zu moderieren. Es ist die Hilfsschicht für Board-Betreiber, die operative Kontrolle wünschen."
+          "tagline": "Thread-Archivierung, Bump-Limits und Bereinigung im 4chan-Stil für 5chan-Boards.",
+          "description": "5chan Board Manager läuft neben Bitsocial CLI und gibt einem Board den Thread-Lebenszyklus von 4chan: Threads, die von der letzten Seite fallen, werden archiviert, archivierte Threads werden nach einer festgelegten Zeit endgültig gelöscht, Threads über dem Bump-Limit werden nicht mehr gebumpt, und vom Autor gelöschte Beiträge werden endgültig entfernt."
         },
         "flags-challenge": {
-          "tagline": "Verifizierte Flag-Herausgeber-Herausforderung für länder- und board-spezifische Abzeichen.",
+          "tagline": "Verifizierte Länder- und Board-Flaggen an Beiträgen, signiert von einem Herausgeber, dem die Community vertraut.",
           "description": "Flags Challenge läuft auf einem Bitsocial-Community-Node und verifiziert signierte Flag-Behauptungen von einem konfigurierbaren Ausstellerdienst. Das erste gebündelte Profil zielt auf 5chan ab, deckt Landesflaggen, /pol/ Meme-Flaggen und /mlp/ Pony-Flaggen ab und behält gleichzeitig das gleiche Muster für jeden Client wiederverwendbar, der seinen eigenen Ausstellerdienst und Namespace betreibt."
         },
         "bitsocial-seeder": {
-          "tagline": "Öffentlicher Seeder für Bitsocial-Communities, gepackt für Docker und npm.",
-          "description": "Bitsocial Seeder fixiert Community-First-Seiten, Post-Update-CIDs und pubsub-Topic-Routing durch einen Bitsocial-Daemon. Es nutzt einen bereits laufenden lokalen Daemon wieder, wenn dieser erreichbar ist, oder startet den bündelten bitsocial-cli-Daemon automatisch. Es wird sowohl als Docker-Image für unbeaufsichtigte VPS-Implementierungen als auch als npm-Paket für Node-First-Betreiber bereitgestellt."
+          "tagline": "Hält Bitsocial-Communities schnell und erreichbar, indem er ihre Inhalte erneut hostet, per Docker oder npm.",
+          "description": "Bitsocial Seeder hilft Communities, schnell zu laden, indem er zusätzliche Kopien ihrer Inhalte online hält. Er pinnt die ersten Seiten von Communities, die CIDs von Beitrags-Updates und pubsub-Topic-Routing über einen Bitsocial-Daemon. Er nutzt einen bereits laufenden lokalen Daemon wieder, wenn dieser erreichbar ist, oder startet den mitgelieferten bitsocial-cli-Daemon automatisch. Er wird sowohl als Docker-Image für unbeaufsichtigte VPS-Deployments als auch als npm-Paket für Node-First-Betreiber bereitgestellt."
         },
         "ai-moderation-challenge": {
-          "tagline": "OpenAI-kompatible Moderationsprüfungen gegen die Regeln jeder Community.",
+          "tagline": "Prüft jeden Beitrag anhand der Community-Regeln mit einem KI-Modell, das der Eigentümer auswählt.",
           "description": "AI Moderation Challenge bewertet Bitsocial-Kommentarinhalte anhand von <code>community.rules</code> mit einem OpenAI-kompatiblen Model-Endpoint. Communities können riskante Beiträge zur Überprüfung weiterleiten und dabei Provider-Keys und Prompts in privaten Node-Einstellungen behalten."
         },
         "r9k-challenge": {
-          "tagline": "Robot9000-artiges Originalitäts-Gate für Communities, die ein Anti-Repost-Posting-Erlebnis wollen.",
+          "tagline": "Regel im Robot9000-Stil, die jeden Beitrag ablehnt, der bereits in der Community geposteten Text wiederholt.",
           "description": "R9K Challenge läuft auf einem Bitsocial-Community-Node und vergleicht normalisierten Beitragstext mit der lokalen Kommentardatenbank des Owner-Nodes. Es gibt Communities ein Posting-Erlebnis im <robot9000>Robot9000</robot9000>-Stil: exakte Reposts scheitern vor der Annahme, Backlinks werden ignoriert, wiederholte Fehlschläge lösen eskalierende temporäre Sperren aus, und Hashes akzeptierter Texte bleiben im privaten lokalen Zustand, statt rohen Beitragstext zu speichern. Diese Challenge verwendet keine KI."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "Plattform für Code-Zusammenarbeit im Ideenstadium, die Peer-to-Peer-Git mit der sozialen Ebene von Bitsocial verbindet.",
-          "description": "GitCommons erforscht eine GitHub-Alternative, die eine Peer-to-Peer-Git-Schicht nach dem Vorbild von Radicle mit Profilen, Communities, Entdeckung und Reputation von Bitsocial verbindet. Die Diskussionen jedes Repositorys wären eine Bitsocial-Community, Entwicklerprofile wären Profilknoten, die die meisten Menschen über öffentliche RPCs erreichen, und CI käme von konkurrierenden Runner-Diensten statt von einem einzigen vorgeschriebenen Anbieter. GitCommons ist ein Arbeitstitel; das Projekt steht in keiner Verbindung zu GitHub, Inc. oder dem Git-Projekt."
+          "description": "GitCommons erforscht eine GitHub-Alternative, die eine Peer-to-Peer-Git-Schicht nach dem Vorbild von Radicle mit Profilen, Communities, Entdeckung und Reputation von Bitsocial verbindet. Die Diskussionen jedes Repositorys wären eine Bitsocial-Community, Entwicklerprofile wären Bitsocial-Profile, und CI käme von konkurrierenden Runner-Diensten statt von einem einzigen vorgeschriebenen Anbieter. GitCommons ist ein Arbeitstitel; das Projekt steht in keiner Verbindung zu GitHub, Inc. oder dem Git-Projekt."
         },
         "modelswarm": {
           "tagline": "Hugging-Face-Alternative im Ideenstadium, bei der ein Schwarm von Peers Open-Weight-KI-Modelle teilt.",

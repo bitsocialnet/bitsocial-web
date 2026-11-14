@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "imageboard phi tập trung với tải xuống trực tiếp cho web, APK và desktop.",
+          "tagline": "imageboard ẩn danh trên Bitsocial, cho web, Android và desktop.",
           "description": "5chan là client công khai đầu tiên của Bitsocial. Nó tái tạo luồng imageboard ẩn danh trên mạng peer-to-peer: boards, threads, đăng ảnh, moderation cộng đồng và nhiều public mirror mà không phụ thuộc vào server trung tâm."
         },
         "seedit": {
-          "tagline": "Bitsocial client kiểu forum với bản web, APK và desktop.",
-          "description": "Seedit mang thảo luận kiểu Reddit đến Bitsocial với threads, identities, quản lý cộng đồng và nhiều đường phân phối. Đây là cách nhanh nhất để thử phần forum của mạng từ trình duyệt, điện thoại Android hoặc desktop app."
+          "tagline": "Cộng đồng kiểu Reddit trên Bitsocial, cho web, Android và desktop.",
+          "description": "Seedit mang thảo luận kiểu Reddit đến Bitsocial: cộng đồng mà ai cũng có thể tạo và sở hữu, bình chọn, bình luận theo luồng và việc kiểm duyệt do chủ của từng cộng đồng quyết định. Đây là cách nhanh nhất để thử phần forum của mạng từ trình duyệt, điện thoại Android hoặc desktop app."
         },
         "spam-blocker": {
-          "tagline": "Lớp chấm điểm rủi ro tập trung để lọc các publication gây hại.",
+          "tagline": "Dịch vụ chấm điểm rủi ro được lưu trữ sẵn, giúp cộng đồng lọc spam và hành vi lách lệnh cấm.",
           "description": "Spam Blocker đánh giá các bài đăng và trả về điểm rủi ro mà các cộng đồng có thể kết hợp với logic kiểm duyệt của riêng họ. Dịch vụ được lưu trữ của nó cũng liên kết các khóa ký được nhìn thấy lần đầu tiên từ cùng một IP, do đó người dùng tiếp tục tạo các tài khoản mới để tránh lệnh cấm cộng đồng hoặc tạo ra một cuộc trò chuyện sẽ thấy điểm rủi ro của họ tăng lên, trong khi một số ký hiệu vẫn được phép sử dụng hợp pháp trên nhiều thiết bị."
         },
         "captcha-canvas-challenge": {
           "tagline": "image captcha tùy chỉnh cho các cộng đồng muốn verification từ con người.",
-          "description": "Captcha Canvas Challenge tạo captcha trực quan mà cộng đồng có thể gắn vào luồng publishing của riêng mình. Đây là một lựa chọn nhẹ cho những cộng đồng muốn kiểm tra trực tiếp từ con người mà không phải bỏ self-hosted moderation."
+          "description": "Captcha Canvas Challenge tạo captcha hình ảnh ngay trên node của cộng đồng và yêu cầu người đăng giải nó trước khi bài đăng, câu trả lời hoặc lượt bình chọn được chấp nhận. Không có gì được gửi đến dịch vụ captcha của bên thứ ba. Đây là lớp ngăn chặn cơ bản mà bot quyết tâm vẫn có thể brute-force, vì vậy hãy kết hợp nó với một thử thách khác ở những cộng đồng dễ thu hút spam."
         },
         "voucher-challenge": {
           "tagline": "voucher code kiểu lời mời cho các cộng đồng thích tăng trưởng có kiểm soát.",
-          "description": "Voucher Challenge cho phép moderator phân phối các voucher code tin cậy để mở khóa publishing mà không cần global identity provider. Nó phù hợp với cộng đồng dựa trên lời mời, board niche và rollout theo từng giai đoạn."
+          "description": "Voucher Challenge cho phép moderator phân phối các voucher code tin cậy để mở khóa publishing mà không cần global identity provider. Mỗi code được gắn với tác giả đầu tiên sử dụng nó, nên tác giả đó tiếp tục đăng bài bằng code này và không ai khác có thể dùng lại."
         },
         "evm-contract-call": {
-          "tagline": "gating on-chain cho các cộng đồng muốn kiểm tra token hoặc contract.",
-          "description": "EVM Contract Call xác minh publication bằng cách gọi một EVM contract trước khi post được chấp nhận. Nó cho phép cộng đồng xây dựng token gate, quy tắc staking hoặc các kiểm tra on-chain khác vào luồng moderation của mình."
+          "tagline": "Yêu cầu người đăng vượt qua một kiểm tra on-chain, chẳng hạn như nắm giữ một token.",
+          "description": "EVM Contract Call xác minh publication bằng cách gọi một EVM contract trước khi post được chấp nhận. Nó cho phép cộng đồng đưa token gate, quy tắc staking hoặc các kiểm tra on-chain khác vào quy tắc đăng bài của mình."
         },
         "bitsocial-cli": {
-          "tagline": "Điều khiển bằng command-line cho node, cộng đồng và workflow automation.",
-          "description": "Bitsocial CLI là giao diện terminal chính thức của giao thức. Hãy dùng nó để quản lý node, đăng nội dung, khởi chạy một máy chủ WebSocket JSON-RPC cho việc điều khiển bằng chương trình và tự động hóa mã, tự động hóa các luồng quản trị, và làm việc trực tiếp với các nguyên thủy của Bitsocial mà không cần client GUI."
+          "tagline": "Chạy một node Bitsocial và quản lý cộng đồng từ terminal.",
+          "description": "Bitsocial CLI là giao diện terminal chính thức của giao thức. Hãy dùng nó để chạy một node, tạo và quản lý cộng đồng, đăng nội dung và khởi chạy một máy chủ WebSocket JSON-RPC mà các chương trình khác có thể điều khiển."
         },
         "telegram-bots": {
           "tagline": "feed bot chuyển các bài viết Bitsocial mới vào Telegram channels hoặc groups.",
           "description": "Bitsocial Telegram Bots theo dõi danh sách cộng đồng của client và chuyển các bài viết mới sang các đích Telegram với inline links quay lại Bitsocial clients. Bot đang hoạt động hiện hỗ trợ feed 5chan, và repo được thiết kế để có thể thêm nhiều bot dành riêng cho từng client theo thời gian."
         },
         "5chan-board-manager": {
-          "tagline": "Công cụ quản trị board cho các cộng đồng 5chan tùy chỉnh.",
-          "description": "5chan Board Manager kết nối với Bitsocial CLI để giúp quản trị viên tạo, cấu hình và kiểm duyệt các board imageboard tùy chỉnh. Đây là lớp tiện ích dành cho chủ board muốn kiểm soát vận hành."
+          "tagline": "Lưu trữ thread, giới hạn bump và dọn dẹp kiểu 4chan cho các board 5chan.",
+          "description": "5chan Board Manager chạy song song với Bitsocial CLI và mang lại cho board vòng đời thread của 4chan: thread rơi khỏi trang cuối sẽ được lưu trữ, thread đã lưu trữ bị xóa hẳn sau một khoảng thời gian định sẵn, thread vượt giới hạn bump sẽ ngừng được bump, và bài đăng bị chính tác giả xóa sẽ được dọn sạch."
         },
         "flags-challenge": {
-          "tagline": "Thử thách cấp cấp cờ được xác minh cho huy hiệu quốc gia và bảng cụ thể.",
+          "tagline": "Cờ quốc gia và cờ board đã xác minh trên bài đăng, được ký bởi một bên phát hành mà cộng đồng tin tưởng.",
           "description": "Flags Challenge chạy trên một nút cộng đồng Bitsocial và xác minh các khẳng định cờ được ký từ một dịch vụ nhà phát hành có thể định cấu hình. Hồ sơ đầu tiên được gói hướng tới 5chan, bao gồm cờ quốc gia, memeflags /pol/ và pony flags /mlp/, trong khi giữ mẫu tương tự có thể tái sử dụng cho bất kỳ máy khách nào chạy dịch vụ nhà phát hành và không gian tên của chính nó."
         },
         "bitsocial-seeder": {
-          "tagline": "Seeder công khai cho các cộng đồng Bitsocial, được đóng gói cho Docker và npm.",
-          "description": "Bitsocial Seeder ghim các trang ưu tiên cộng đồng, CID sau cập nhật và định tuyến chủ đề pubsub thông qua daemon Bitsocial. Nó tái sử dụng một daemon cục bộ đang chạy sẵn khi có thể truy cập hoặc tự động khởi động daemon bitsocial-cli được gói gọn và được cung cấp như cả hình ảnh Docker cho triển khai VPS không giám sát và gói npm cho các nhà khai thác Node-first."
+          "tagline": "Giữ cho các cộng đồng Bitsocial nhanh và luôn truy cập được bằng cách lưu trữ lại nội dung của chúng, qua Docker hoặc npm.",
+          "description": "Bitsocial Seeder giúp các cộng đồng tải nhanh bằng cách giữ thêm bản sao nội dung của chúng trực tuyến. Nó ghim trang đầu của cộng đồng, CID của các bản cập nhật bài đăng và định tuyến chủ đề pubsub thông qua một daemon Bitsocial. Nó tái sử dụng daemon cục bộ đang chạy sẵn khi có thể truy cập, hoặc tự động khởi động daemon bitsocial-cli đi kèm, và được phát hành dưới dạng cả Docker image cho triển khai VPS không cần giám sát lẫn gói npm cho những người vận hành Node-first."
         },
         "ai-moderation-challenge": {
-          "tagline": "Kiểm tra kiểm duyệt tương thích OpenAI theo quy tắc của từng cộng đồng.",
+          "tagline": "Kiểm tra từng bài đăng theo quy tắc của cộng đồng bằng mô hình AI do chủ cộng đồng chọn.",
           "description": "AI Moderation Challenge đánh giá nội dung bình luận Bitsocial so với <code>community.rules</code> bằng một model endpoint tương thích OpenAI. Các cộng đồng có thể chuyển các bài đăng rủi ro đi review trong khi giữ provider keys và prompts trong cài đặt node riêng tư."
         },
         "r9k-challenge": {
-          "tagline": "Cổng kiểm tra tính nguyên bản kiểu Robot9000 cho cộng đồng muốn trải nghiệm đăng bài chống đăng lại.",
+          "tagline": "Quy tắc kiểu Robot9000, từ chối mọi bài đăng lặp lại nội dung đã được đăng trong cộng đồng.",
           "description": "R9K Challenge chạy trên một node cộng đồng Bitsocial và so sánh văn bản bài đăng đã chuẩn hóa với cơ sở dữ liệu bình luận cục bộ của node chủ sở hữu. Nó đem lại cho cộng đồng trải nghiệm đăng bài kiểu <robot9000>Robot9000</robot9000>: repost trùng khớp sẽ thất bại trước khi được chấp nhận, backlinks bị bỏ qua, các lần thất bại lặp lại kích hoạt lệnh cấm tạm thời tăng dần, và hash của văn bản đã được chấp nhận được giữ trong state cục bộ riêng tư thay vì lưu văn bản thô của bài đăng. Challenge này không dùng AI."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "Nền tảng cộng tác mã nguồn ở giai đoạn ý tưởng, kết hợp Git peer-to-peer với lớp xã hội của Bitsocial.",
-          "description": "GitCommons là một nghiên cứu về một giải pháp thay thế GitHub, kết hợp một lớp Git peer-to-peer theo kiểu Radicle với hồ sơ, cộng đồng, khả năng khám phá và danh tiếng của Bitsocial. Phần thảo luận của mỗi kho mã sẽ là một cộng đồng Bitsocial, hồ sơ nhà phát triển sẽ là các nút hồ sơ mà phần lớn mọi người truy cập qua RPC công khai, và CI sẽ đến từ các dịch vụ runner cạnh tranh nhau thay vì một nhà cung cấp bắt buộc duy nhất. GitCommons chỉ là tên tạm; dự án không liên kết với GitHub, Inc. hay dự án Git."
+          "description": "GitCommons là một nghiên cứu về một giải pháp thay thế GitHub, kết hợp một lớp Git peer-to-peer theo kiểu Radicle với hồ sơ, cộng đồng, khả năng khám phá và danh tiếng của Bitsocial. Phần thảo luận của mỗi kho mã sẽ là một cộng đồng Bitsocial, hồ sơ nhà phát triển sẽ là hồ sơ Bitsocial, và CI sẽ đến từ các dịch vụ runner cạnh tranh nhau thay vì một nhà cung cấp bắt buộc duy nhất. GitCommons chỉ là tên tạm; dự án không liên kết với GitHub, Inc. hay dự án Git."
         },
         "modelswarm": {
           "tagline": "Giải pháp thay thế Hugging Face ở giai đoạn ý tưởng, nơi các mô hình AI trọng số mở được chia sẻ bởi một bầy peer.",

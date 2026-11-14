@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "imageboard แบบกระจายศูนย์ พร้อมดาวน์โหลดตรงสำหรับ web, APK และ desktop.",
+          "tagline": "imageboard แบบไม่ระบุตัวตนบน Bitsocial สำหรับ web, Android และ desktop",
           "description": "5chan คือ Bitsocial client สาธารณะตัวแรก มันจำลองการทำงานของ imageboard แบบไม่ระบุตัวตนบนเครือข่าย peer-to-peer: boards, threads, การโพสต์ภาพ, community moderation และ public mirrors หลายแห่งโดยไม่ต้องพึ่ง server ส่วนกลาง"
         },
         "seedit": {
-          "tagline": "Bitsocial client สไตล์ forum ที่มี build สำหรับ web, APK และ desktop.",
-          "description": "Seedit นำการสนทนาแบบ Reddit มาสู่ Bitsocial ด้วย threads, identities, community management และช่องทางการแจกจ่ายหลายแบบ เป็นวิธีที่เร็วที่สุดในการลองด้าน forum ของเครือข่ายจาก browser, โทรศัพท์ Android หรือ desktop app"
+          "tagline": "ชุมชนสไตล์ Reddit บน Bitsocial สำหรับ web, Android และ desktop",
+          "description": "Seedit นำการสนทนาแบบ Reddit มาสู่ Bitsocial: ชุมชนที่ใครก็สร้างและเป็นเจ้าของได้ การโหวต ความคิดเห็นแบบ thread และการดูแลที่เจ้าของแต่ละชุมชนกำหนดเอง เป็นวิธีที่เร็วที่สุดในการลองด้าน forum ของเครือข่ายจาก browser, โทรศัพท์ Android หรือ desktop app"
         },
         "spam-blocker": {
-          "tagline": "layer การให้คะแนนความเสี่ยงแบบรวมศูนย์สำหรับกรอง publications ที่เป็นการละเมิด.",
+          "tagline": "บริการให้คะแนนความเสี่ยงแบบโฮสต์ ที่ช่วยชุมชนกรองสแปมและการหลบเลี่ยงการแบน",
           "description": "Spam Blocker ประเมินสิ่งพิมพ์และส่งคืนคะแนนความเสี่ยงที่ชุมชนสามารถรวมกับตรรกะการปกครองของตนเองได้ บริการของตัวอักษรของมันยังเชื่อมโยงคีย์ลายเซ็นที่มองเห็นครั้งแรกจากที่อยู่ IP เดียวกัน เพื่อให้ผู้ใช้ที่ยังคงสร้างบัญชีใหม่เพื่อหลีกเลี่ยงการแบนจากชุมชนหรือสร้างการสนทนาเห็นคะแนนความเสี่ยงของพวกเขาเพิ่มขึ้น ในขณะที่ผู้ลงนามบางคนยังคงอนุญาตสำหรับการใช้งานหลายอุปกรณ์ที่ถูกต้องตามกฎหมาย"
         },
         "captcha-canvas-challenge": {
           "tagline": "image captcha แบบกำหนดเองสำหรับ communities ที่ต้องการ human verification.",
-          "description": "Captcha Canvas Challenge สร้าง visual captchas ที่ communities สามารถเสียบเข้าไปใน publishing flow ของตัวเองได้ เป็นตัวเลือกที่เบาและเหมาะกับ communities ที่ต้องการ human checks โดยตรงแต่ไม่อยากละทิ้ง self-hosted moderation"
+          "description": "Captcha Canvas Challenge สร้าง captcha แบบรูปภาพบน node ของชุมชนเอง และกำหนดให้ผู้โพสต์ต้องแก้ให้ได้ก่อนที่โพสต์ การตอบกลับ หรือการโหวตจะได้รับการยอมรับ ไม่มีข้อมูลใดถูกส่งไปยังบริการ captcha ของบุคคลที่สาม นี่เป็นเพียงด่านป้องกันขั้นพื้นฐานที่บอตซึ่งตั้งใจจริงสามารถ brute-force ผ่านได้ จึงควรใช้คู่กับ challenge อื่นในชุมชนที่มักดึงดูดสแปม"
         },
         "voucher-challenge": {
           "tagline": "voucher code แบบ invite สำหรับ communities ที่ชอบการเติบโตแบบควบคุมได้.",
-          "description": "Voucher Challenge ให้ moderator แจก trusted voucher codes ที่ปลดล็อกการโพสต์ได้โดยไม่ต้องมี global identity provider เหมาะกับ communities แบบ invite-driven, niche boards และ rollout แบบค่อยเป็นค่อยไป"
+          "description": "Voucher Challenge ให้ moderator แจก trusted voucher codes ที่ปลดล็อกการโพสต์ได้โดยไม่ต้องมี global identity provider โค้ดแต่ละอันจะผูกกับผู้เขียนคนแรกที่นำไปใช้ ผู้เขียนคนนั้นจึงใช้โค้ดโพสต์ต่อไปได้เรื่อย ๆ และคนอื่นนำไปใช้ซ้ำไม่ได้"
         },
         "evm-contract-call": {
-          "tagline": "on-chain gating สำหรับ communities ที่ต้องการตรวจ token หรือ contract.",
-          "description": "EVM Contract Call ตรวจสอบ publications โดยเรียก EVM contract ก่อนที่จะยอมรับ post ช่วยให้ communities สร้าง token gates, staking rules หรือ on-chain checks อื่น ๆ เข้าไปใน moderation flow ของตัวเองได้"
+          "tagline": "กำหนดให้ผู้โพสต์ต้องผ่านการตรวจ on-chain เช่น การถือ token",
+          "description": "EVM Contract Call ตรวจสอบ publications โดยเรียก EVM contract ก่อนที่จะยอมรับ post ช่วยให้ communities สร้าง token gates, staking rules หรือ on-chain checks อื่น ๆ เข้าไปในกฎการโพสต์ของตัวเองได้"
         },
         "bitsocial-cli": {
-          "tagline": "การควบคุมผ่าน command-line สำหรับ nodes, communities และ automation workflows.",
-          "description": "Bitsocial CLI คืออินเทอร์เฟซเทอร์มินัลอย่างเป็นทางการของโปรโตคอล ใช้เพื่อจัดการโหนด เผยแพร่เนื้อหา เริ่มต้นเซิร์ฟเวอร์ WebSocket JSON-RPC สำหรับการควบคุมแบบโปรแกรมและการทำงานอัตโนมัติของโค้ด ทำให้งานแอดมินเป็นอัตโนมัติ และทำงานกับพริมิทีฟของ Bitsocial ได้โดยตรงโดยไม่ต้องใช้ไคลเอนต์ GUI."
+          "tagline": "รัน node ของ Bitsocial และจัดการ communities จาก terminal",
+          "description": "Bitsocial CLI คืออินเทอร์เฟซเทอร์มินัลอย่างเป็นทางการของโปรโตคอล ใช้เพื่อรันโหนด สร้างและจัดการชุมชน เผยแพร่เนื้อหา และเริ่มต้นเซิร์ฟเวอร์ WebSocket JSON-RPC ที่โปรแกรมอื่นสั่งงานได้"
         },
         "telegram-bots": {
           "tagline": "feed bots ที่ส่งต่อโพสต์ Bitsocial ใหม่ไปยัง Telegram channels หรือ groups.",
           "description": "Bitsocial Telegram Bots เฝ้าดู community lists ของ client และส่งต่อโพสต์ใหม่ไปยัง Telegram destinations พร้อม inline links กลับไปยัง Bitsocial clients บอทที่ใช้งานอยู่ตอนนี้ครอบคลุม 5chan feeds และ repo ถูกจัดไว้เพื่อเพิ่ม client-specific bots อื่น ๆ ได้ในอนาคต"
         },
         "5chan-board-manager": {
-          "tagline": "เครื่องมือจัดการ board สำหรับ communities 5chan แบบกำหนดเอง.",
-          "description": "5chan Board Manager เชื่อมต่อกับ Bitsocial CLI เพื่อช่วยผู้ดูแลระบบสร้าง กำหนดค่า และดูแลบอร์ด imageboard แบบกำหนดเอง เป็นเลเยอร์เครื่องมือสำหรับเจ้าของบอร์ดที่ต้องการการควบคุมการปฏิบัติงาน"
+          "tagline": "การเก็บ thread เข้าคลัง, bump limit และการล้างข้อมูลสไตล์ 4chan สำหรับบอร์ด 5chan",
+          "description": "5chan Board Manager ทำงานควบคู่กับ Bitsocial CLI และทำให้บอร์ดมีวงจรชีวิตของ thread แบบ 4chan: thread ที่หลุดจากหน้าสุดท้ายจะถูกเก็บเข้าคลัง thread ในคลังจะถูกล้างทิ้งเมื่อครบเวลาที่กำหนด thread ที่เกิน bump limit จะไม่ถูก bump อีก และโพสต์ที่ผู้เขียนลบเองจะถูกล้างทิ้ง"
         },
         "flags-challenge": {
-          "tagline": "ความท้าทายของผู้ออกธงที่ได้รับการยืนยันสำหรับสัญลักษณ์เฉพาะของประเทศและบอร์ด",
+          "tagline": "ธงประเทศและธงบอร์ดที่ยืนยันแล้วบนโพสต์ ลงนามโดยผู้ออกที่ชุมชนไว้วางใจ",
           "description": "Flags Challenge ทำงานบนโหนดชุมชน Bitsocial และตรวจสอบการยืนยันธงที่ลงนามจากบริการผู้ออกที่สามารถกำหนดค่าได้ โปรไฟล์ที่รวมกันแรกมีเป้าหมาย 5chan ครอบคลุมธงประเทศ memeflags ของ /pol/ และ pony flags ของ /mlp/ พร้อมทำให้รูปแบบเดียวกันนำมาใช้ซ้ำได้สำหรับไคลเอนต์ใด ๆ ที่เรียกใช้บริการผู้ออกและเนมสเปซของตัวเอง"
         },
         "bitsocial-seeder": {
-          "tagline": "Seeder สาธารณะสำหรับชุมชน Bitsocial บรรจุสำหรับ Docker และ npm",
-          "description": "Bitsocial Seeder ปักหมุดหน้าคนแรกของชุมชน CID หลังการอัปเดต และการกำหนดเส้นทาง pubsub topic ผ่าน daemon Bitsocial ใช้ daemon ท้องถิ่นที่กำลังทำงานอยู่แล้วเมื่อถึงได้ หรือเริ่ม daemon bitsocial-cli ที่แพ็กเกจแล้วโดยอัตโนมัติ และส่งมอบเป็นทั้งอิมเมจ Docker สำหรับการปรับใช้ VPS ที่ไม่มีการเฝ้าดูและแพ็กเกจ npm สำหรับผู้ดำเนินการ Node-first"
+          "tagline": "ช่วยให้ชุมชน Bitsocial โหลดเร็วและเข้าถึงได้เสมอด้วยการโฮสต์เนื้อหาซ้ำ ผ่าน Docker หรือ npm",
+          "description": "Bitsocial Seeder ช่วยให้ชุมชนโหลดได้เร็วด้วยการเก็บสำเนาเนื้อหาเพิ่มเติมไว้ออนไลน์ โดยจะปักหมุดหน้าแรกของชุมชน CID ของการอัปเดตโพสต์ และการกำหนดเส้นทาง pubsub topic ผ่าน daemon ของ Bitsocial ใช้ daemon ในเครื่องที่กำลังทำงานอยู่แล้วเมื่อเข้าถึงได้ หรือเริ่ม daemon bitsocial-cli ที่มาพร้อมกันโดยอัตโนมัติ และมีให้ใช้ทั้งเป็นอิมเมจ Docker สำหรับการ deploy บน VPS แบบไม่ต้องเฝ้าดูแล และเป็นแพ็กเกจ npm สำหรับผู้ดูแลระบบสาย Node-first"
         },
         "ai-moderation-challenge": {
-          "tagline": "การตรวจสอบการกลั่นกรองที่รองรับ OpenAI ตามกฎของแต่ละชุมชน.",
+          "tagline": "ตรวจทุกโพสต์ตามกฎของชุมชนด้วยโมเดล AI ที่เจ้าของเลือก",
           "description": "AI Moderation Challenge ประเมินเนื้อหาคอมเมนต์ของ Bitsocial เทียบกับ <code>community.rules</code> ด้วย OpenAI-compatible model endpoint Communities สามารถส่งโพสต์ที่เสี่ยงไป review ได้ ในขณะที่เก็บ provider keys และ prompts ไว้ใน private node settings"
         },
         "r9k-challenge": {
-          "tagline": "ด่านความเป็นต้นฉบับสไตล์ Robot9000 สำหรับชุมชนที่ต้องการประสบการณ์โพสต์แบบกันรีโพสต์.",
+          "tagline": "กฎสไตล์ Robot9000 ที่ปฏิเสธทุกโพสต์ซึ่งซ้ำกับข้อความที่เคยโพสต์ในชุมชนแล้ว",
           "description": "R9K Challenge ทำงานบนโหนดชุมชน Bitsocial และเปรียบเทียบข้อความโพสต์ที่ normalize แล้วกับฐานข้อมูลคอมเมนต์ภายในของโหนดเจ้าของ มันให้ประสบการณ์โพสต์สไตล์ <robot9000>Robot9000</robot9000> กับชุมชน: รีโพสต์ที่ซ้ำแบบตรงตัวจะ fail ก่อนถูกยอมรับ, backlinks จะถูกมองข้าม, ความล้มเหลวซ้ำ ๆ จะ trigger temporary bans ที่เพิ่มระดับขึ้น และ hashes ของข้อความที่ยอมรับแล้วจะอยู่ใน private local state แทนการเก็บ raw post text. challenge นี้ไม่ใช้ AI."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "แพลตฟอร์มทำงานร่วมกันบนโค้ดที่ยังอยู่ในขั้นไอเดีย ซึ่งผสาน Git แบบ peer-to-peer เข้ากับเลเยอร์โซเชียลของ Bitsocial",
-          "description": "GitCommons คืองานวิจัยเกี่ยวกับทางเลือกแทน GitHub ที่ผสานเลเยอร์ Git แบบ peer-to-peer สไตล์ Radicle เข้ากับโปรไฟล์ ชุมชน การค้นพบ และชื่อเสียงของ Bitsocial การสนทนาของแต่ละที่เก็บโค้ดจะเป็นชุมชน Bitsocial หนึ่งชุมชน โปรไฟล์นักพัฒนาจะเป็นโหนดโปรไฟล์ที่คนส่วนใหญ่เข้าถึงผ่าน RPC สาธารณะ และ CI จะมาจากบริการ runner ที่แข่งขันกันแทนที่จะมาจากผู้ให้บริการรายเดียวที่บังคับใช้ GitCommons เป็นชื่อชั่วคราว และโปรเจกต์นี้ไม่มีส่วนเกี่ยวข้องกับ GitHub, Inc. หรือโปรเจกต์ Git"
+          "description": "GitCommons คืองานวิจัยเกี่ยวกับทางเลือกแทน GitHub ที่ผสานเลเยอร์ Git แบบ peer-to-peer สไตล์ Radicle เข้ากับโปรไฟล์ ชุมชน การค้นพบ และชื่อเสียงของ Bitsocial การสนทนาของแต่ละที่เก็บโค้ดจะเป็นชุมชน Bitsocial หนึ่งชุมชน โปรไฟล์นักพัฒนาจะเป็นโปรไฟล์ Bitsocial และ CI จะมาจากบริการ runner ที่แข่งขันกันแทนที่จะมาจากผู้ให้บริการรายเดียวที่บังคับใช้ GitCommons เป็นชื่อชั่วคราว และโปรเจกต์นี้ไม่มีส่วนเกี่ยวข้องกับ GitHub, Inc. หรือโปรเจกต์ Git"
         },
         "modelswarm": {
           "tagline": "ทางเลือกแทน Hugging Face ที่ยังอยู่ในขั้นไอเดีย ซึ่งโมเดล AI แบบ open-weight ถูกแบ่งปันโดยฝูง peer",

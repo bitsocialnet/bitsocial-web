@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "Hajautetut imageboardit, joista saa suorat lataukset webiin, APK:lle ja työpöydälle.",
+          "tagline": "Anonyymit imageboardit Bitsocialissa: webiin, Androidille ja työpöydälle.",
           "description": "5chan on Bitsocialin ensimmäinen julkinen client. Se toistaa anonyymin imageboard-virran peer-to-peer-verkossa: boardit, threadit, kuvien julkaisu, yhteisön moderointi ja useat julkiset mirrorit ilman keskitettyä palvelinta."
         },
         "seedit": {
-          "tagline": "Foorumityylinen Bitsocial-client web-, APK- ja desktop-versioina.",
-          "description": "Seedit tuo Reddit-tyylisen keskustelun Bitsocialiin threadien, identiteettien, yhteisön hallinnan ja useiden jakelureittien kautta. Se on nopein tapa kokeilla verkon forum-puolta selaimesta, Android-puhelimesta tai työpöytäsovelluksesta."
+          "tagline": "Reddit-tyyliset yhteisöt Bitsocialissa: webiin, Androidille ja työpöydälle.",
+          "description": "Seedit tuo Reddit-tyylisen keskustelun Bitsocialiin: yhteisöt, joita kuka tahansa voi luoda ja omistaa, äänestäminen, ketjutetut kommentit ja kunkin yhteisön omistajan määrittämä moderointi. Se on nopein tapa kokeilla verkon forum-puolta selaimesta, Android-puhelimesta tai työpöytäsovelluksesta."
         },
         "spam-blocker": {
-          "tagline": "Keskitetty riskipisteytyskerros haitallisten julkaisujen suodattamiseen.",
+          "tagline": "Isännöity riskipisteytyspalvelu, joka auttaa yhteisöjä suodattamaan roskapostia ja bannien kiertämistä.",
           "description": "Spam Blocker arvioi julkaisuja ja palauttaa riskipistemäärän, jonka yhteisöt voivat yhdistää omaan moderointilogiikkaansa. Sen palvelun mukainen palvelu myös linkittää allekirjoitusavaimia, jotka näkyvät ensimmäisen kerran samasta IP-osoitteesta, joten käyttäjä, joka jatkaa uusien tilien luomista yhteisön kiellon välttämiseksi tai keskustelun valmistamiseksi, näkee riskipistemääränsä kasvavan, kun taas muutamat allekirjoittajat pysyvät sallittuina lailliseen usean laitteen käyttöön."
         },
         "captcha-canvas-challenge": {
           "tagline": "Mukautetut kuvacaptcha:t yhteisöille, jotka haluavat ihmisen tekemän varmistuksen.",
-          "description": "Captcha Canvas Challenge generoi visuaalisia captcha-tehtäviä, jotka yhteisöt voivat liittää omaan julkaisuvirtaansa. Se on kevyt vaihtoehto yhteisöille, jotka haluavat suorat ihmistarkistukset luopumatta itse hostatusta moderoinnista."
+          "description": "Captcha Canvas Challenge generoi kuva-captchan yhteisön omalla solmulla ja vaatii julkaisijoita ratkaisemaan sen ennen kuin postaus, vastaus tai ääni hyväksytään. Mitään ei lähetetä kolmannen osapuolen captcha-palveluun. Se on perustason pelote, jonka sinnikkäät botit voivat murtaa raa'alla voimalla, joten yhdistä se toiseen haasteeseen yhteisöissä, jotka houkuttelevat roskapostia."
         },
         "voucher-challenge": {
           "tagline": "Kutsutyyppiset voucher-koodit yhteisöille, jotka suosivat hallittua kasvua.",
-          "description": "Voucher Challenge antaa moderaattoreille mahdollisuuden jakaa luotettavia voucher-koodeja, jotka avaavat julkaisemisen ilman globaalia identity provideria. Se sopii hyvin kutsuihin perustuville yhteisöille, niche-boardeille ja vaiheittaisille käyttöönotolle."
+          "description": "Voucher Challenge antaa moderaattoreille mahdollisuuden jakaa luotettavia voucher-koodeja, jotka avaavat julkaisemisen ilman globaalia identity provideria. Koodi sidotaan ensimmäiseen kirjoittajaan, joka lunastaa sen, joten kyseinen kirjoittaja voi jatkaa julkaisemista sillä eikä kukaan muu voi käyttää sitä uudelleen."
         },
         "evm-contract-call": {
-          "tagline": "On-chain gating yhteisöille, jotka haluavat token- tai contract-tarkistuksia.",
-          "description": "EVM Contract Call varmistaa julkaisut kutsumalla EVM contractia ennen kuin postaus hyväksytään. Sen avulla yhteisöt voivat rakentaa token gateja, staking-sääntöjä tai muita on-chain-tarkistuksia moderointivirtaansa."
+          "tagline": "Vaatii julkaisijoita läpäisemään on-chain-tarkistuksen, kuten tokenin omistamisen.",
+          "description": "EVM Contract Call varmistaa julkaisut kutsumalla EVM contractia ennen kuin postaus hyväksytään. Sen avulla yhteisöt voivat rakentaa token gateja, staking-sääntöjä tai muita on-chain-tarkistuksia julkaisusääntöihinsä."
         },
         "bitsocial-cli": {
-          "tagline": "Komentorivikontrolli nodeille, yhteisöille ja automaatio-workflowille.",
-          "description": "Bitsocial CLI on protokollan virallinen terminaalikäyttöliittymä. Käytä sitä solmujen hallintaan, sisällön julkaisemiseen, WebSocket JSON-RPC -palvelimen käynnistämiseen ohjelmallista ohjausta ja koodiautomaatiota varten, hallintavirtojen automatisointiin ja työskentelyyn suoraan Bitsocial-primitiivien kanssa ilman GUI-asiakasta."
+          "tagline": "Aja Bitsocial-solmua ja hallitse yhteisöjä terminaalista.",
+          "description": "Bitsocial CLI on protokollan virallinen terminaalikäyttöliittymä. Käytä sitä solmun ajamiseen, yhteisöjen luomiseen ja hallintaan, sisällön julkaisemiseen ja sellaisen WebSocket JSON-RPC -palvelimen käynnistämiseen, jota muut ohjelmat voivat ohjata."
         },
         "telegram-bots": {
           "tagline": "Feed-botit, jotka välittävät uudet Bitsocial-julkaisut Telegram-kanaviin tai -ryhmiin.",
           "description": "Bitsocial Telegram Bots seuraa clientin yhteisölistoja ja välittää uudet julkaisut Telegram-kohteisiin inline-linkeillä takaisin Bitsocial-clientteihin. Aktiivinen botti kattaa tänään 5chan-feedit, ja repo on rakennettu niin, että siihen voidaan lisätä lisää client-kohtaisia botteja ajan myötä."
         },
         "5chan-board-manager": {
-          "tagline": "Board-hallintatyökalut mukautetuille 5chan-yhteisöille.",
-          "description": "5chan Board Manager yhdistyy Bitsocial CLI:hin auttaakseen ylläpitäjiä luomaan, määrittämään ja moderoimaan mukautettuja imageboard-foorumeita. Se on apukerros foorumien omistajille, jotka haluavat operatiivista hallintaa."
+          "tagline": "4chan-tyylinen threadien arkistointi, bump-rajat ja poistot 5chan-boardeille.",
+          "description": "5chan Board Manager toimii Bitsocial CLI:n rinnalla ja antaa boardille 4chanin threadien elinkaaren: viimeiseltä sivulta putoavat threadit arkistoidaan, arkistoidut threadit poistetaan pysyvästi määräajan jälkeen, bump-rajan ylittäneet threadit eivät enää nouse, ja kirjoittajansa poistamat postaukset poistetaan pysyvästi."
         },
         "flags-challenge": {
-          "tagline": "Vahvistettu lippujen myöntäjän haaste maa- ja lauta-spesifisille merkeille.",
+          "tagline": "Vahvistetut maa- ja lautaliput postauksissa, yhteisön luottaman myöntäjän allekirjoittamina.",
           "description": "Flags Challenge toimii Bitsocial-yhteisösolmussa ja tarkistaa allekirjoitettuja lipputehtäviä määritettävästä liikkeeseenlaskijapalvelusta. Ensimmäinen niputettu profiili kohdistuu 5chaniin, kattaa maakunnarit, /pol/ memekuntalaput ja /mlp/ pony-kunnarit, säilyttäen samalla kuvion uudelleenkäytettävänä kaikille asiakkaille, jotka käyttävät omaa liikkeeseenlaskijapalveluaan ja nimitilaa."
         },
         "bitsocial-seeder": {
-          "tagline": "Julkinen seeder Bitsocial-yhteisöille, pakattu Dockerille ja npmlle.",
-          "description": "Bitsocial Seeder kiinnittää yhteisön ensimmäiset sivut, päivityksen jälkeiset CID:t ja pubsub-aiheen reitityspyynnöt Bitsocial-daemonin kautta. Se käyttää uudelleen jo käynnissä olevaa paikallista daemonia, kun se on saavutettavissa, tai käynnistää pakatun bitsocial-cli-daemonin automaattisesti ja toimitetaan sekä Docker-kuvan muodossa valvomattomia VPS-käyttöönottoja varten että npm-pakettina Node-first-operaattoreille."
+          "tagline": "Pitää Bitsocial-yhteisöt nopeina ja saavutettavina isännöimällä niiden sisältöä uudelleen, Dockerilla tai npm:llä.",
+          "description": "Bitsocial Seeder auttaa yhteisöjä latautumaan nopeasti pitämällä ylimääräisiä kopioita niiden sisällöstä verkossa. Se kiinnittää kunkin yhteisön ensimmäisen sivun, postausten päivitysten CID:t ja pubsub-aiheiden reitityksen Bitsocial-daemonin kautta. Se käyttää jo käynnissä olevaa paikallista daemonia, kun sellainen on tavoitettavissa, tai käynnistää mukana tulevan bitsocial-cli-daemonin automaattisesti, ja se toimitetaan sekä Docker-imagena valvomattomiin VPS-käyttöönottoihin että npm-pakettina Node-first-operaattoreille."
         },
         "ai-moderation-challenge": {
-          "tagline": "OpenAI-yhteensopivat moderointitarkistukset kunkin yhteisön sääntöjä vasten.",
+          "tagline": "Tarkistaa jokaisen postauksen yhteisön sääntöjä vasten omistajan valitsemalla tekoälymallilla.",
           "description": "AI Moderation Challenge arvioi Bitsocial-kommenttien sisältöä <code>community.rules</code>-sääntöjä vasten OpenAI-yhteensopivan malli-endpointin avulla. Yhteisöt voivat ohjata riskialttiit julkaisut tarkistettavaksi pitäen provider-avaimet ja promptit yksityisissä node-asetuksissa."
         },
         "r9k-challenge": {
-          "tagline": "Robot9000-tyylinen omaperäisyysportti yhteisöille, jotka haluavat repostauksia estävän julkaisu-UX:n.",
+          "tagline": "Robot9000-tyylinen sääntö, joka hylkää jokaisen postauksen, joka toistaa yhteisössä jo julkaistua tekstiä.",
           "description": "R9K Challenge toimii Bitsocial-yhteisön nodessa ja vertaa normalisoitua julkaisun tekstiä omistajan noden paikalliseen kommenttitietokantaan. Se antaa yhteisöille <robot9000>Robot9000</robot9000>-tyylisen julkaisukokemuksen: täsmälliset repostaukset hylätään ennen hyväksyntää, backlinkit ohitetaan, toistuvat epäonnistumiset laukaisevat kasvavia väliaikaisia banneja ja hyväksytyn tekstin hashit pysyvät yksityisessä paikallisessa tilassa raakatekstin tallentamisen sijaan. Tässä challengessa ei käytetä tekoälyä."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "Ideavaiheen koodiyhteistyöalusta, joka yhdistää peer-to-peer-Gitin Bitsocialin sosiaaliseen kerrokseen.",
-          "description": "GitCommons on tutkimusta GitHub-vaihtoehdosta, joka yhdistää Radiclen kaltaisen peer-to-peer-Git-kerroksen Bitsocialin profiileihin, yhteisöihin, löytämiseen ja maineeseen. Kunkin repositorion keskustelut olisivat Bitsocial-yhteisö, kehittäjäprofiilit olisivat profiilisolmuja, joita useimmat käyttävät julkisten RPC:iden kautta, ja CI tulisi kilpailevilta runner-palveluilta yhden pakollisen palveluntarjoajan sijaan. GitCommons on työnimi; projektilla ei ole yhteyttä GitHub, Inc. -yhtiöön eikä Git-projektiin."
+          "description": "GitCommons on tutkimusta GitHub-vaihtoehdosta, joka yhdistää Radiclen kaltaisen peer-to-peer-Git-kerroksen Bitsocialin profiileihin, yhteisöihin, löytämiseen ja maineeseen. Kunkin repositorion keskustelut olisivat Bitsocial-yhteisö, kehittäjäprofiilit olisivat Bitsocial-profiileja, ja CI tulisi kilpailevilta runner-palveluilta yhden pakollisen palveluntarjoajan sijaan. GitCommons on työnimi; projektilla ei ole yhteyttä GitHub, Inc. -yhtiöön eikä Git-projektiin."
         },
         "modelswarm": {
           "tagline": "Ideavaiheen Hugging Face -vaihtoehto, jossa vertaisten parvi jakaa avoimien painojen tekoälymalleja.",

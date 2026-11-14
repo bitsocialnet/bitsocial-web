@@ -553,25 +553,27 @@
       },
       "items": {
         "5chan-board-manager": {
-          "description": "5chan Board Manager forbinder til Bitsocial CLI for at hjælpe administratorer med at oprette, konfigurere og moderere tilpassede imageboard-tavler. Det er værktøjslaget for tavleejere, der ønsker driftsmæssig kontrol."
+          "description": "5chan Board Manager kører ved siden af Bitsocial CLI og giver et board 4chans trådlivscyklus: tråde, der falder ud af den sidste side, arkiveres, arkiverede tråde udrenses efter en fastsat tid, tråde over bump-grænsen holder op med at bumpe, og opslag, som forfatteren selv har slettet, udrenses.",
+          "tagline": "Trådarkivering, bump-grænser og udrensning i 4chan-stil til 5chan-boards."
         },
         "bitsocial-cli": {
-          "description": "Bitsocial CLI er protokollens officielle terminalgrænseflade. Brug det til at administrere noder, udgive indhold, starte en WebSocket JSON-RPC-server til programmatisk styring og kodeautomatisering, automatisere adminflows og arbejde direkte med Bitsocial-primitiver uden en GUI-klient."
+          "description": "Bitsocial CLI er protokollens officielle terminalgrænseflade. Brug det til at køre en node, oprette og administrere fællesskaber, udgive indhold og starte en WebSocket JSON-RPC-server, som andre programmer kan styre.",
+          "tagline": "Kør en Bitsocial-node, og administrer fællesskaber fra terminalen."
         },
         "flags-challenge": {
-          "tagline": "Verificeret flag-udsteders udfordring for land- og board-specifikke insignier.",
+          "tagline": "Verificerede lande- og board-flag på opslag, signeret af en udsteder, som fællesskabet stoler på.",
           "description": "Flags Challenge kører på en Bitsocial-communitynode og verificerer signerede flag-påstande fra en konfigurerbar udsteders-tjeneste. Den første pakkede profil er målrettet mod 5chan, dækker landeflags, /pol/ memeflags og /mlp/ pony flags, samtidig med at det samme mønster holdes genanvendeligt for enhver klient, der kører sin egen udsteders-tjeneste og navnrum."
         },
         "bitsocial-seeder": {
-          "tagline": "Offentlig seeder til Bitsocial-fællesskaber, pakket til Docker og npm.",
-          "description": "Bitsocial Seeder fastgør fællesskabets første sider, post-opdatering CID'er og pubsub emneroutning gennem en Bitsocial daemon. Det genbruger en allerede kørende lokal daemon, når den er tilgængelig, eller starter den medfølgende bitsocial-cli daemon automatisk og leveres både som et Docker-image til ubemandet VPS-installation og som en npm-pakke for Node-first operatører."
+          "tagline": "Holder Bitsocial-fællesskaber hurtige og tilgængelige ved at genhoste deres indhold, via Docker eller npm.",
+          "description": "Bitsocial Seeder hjælper fællesskaber med at indlæse hurtigt ved at holde ekstra kopier af deres indhold online. Det fastgør fællesskabers første sider, CID'er for opslagsopdateringer og pubsub-emneroutning gennem en Bitsocial-daemon. Det genbruger en allerede kørende lokal daemon, når den er tilgængelig, eller starter den medfølgende bitsocial-cli-daemon automatisk og leveres både som et Docker-image til uovervågede VPS-installationer og som en npm-pakke til Node-first-operatører."
         },
         "ai-moderation-challenge": {
-          "tagline": "OpenAI-kompatible moderationskontroller mod hvert fællesskabs regler.",
+          "tagline": "Tjekker hvert opslag mod fællesskabets regler med en AI-model, som ejeren vælger.",
           "description": "AI Moderation Challenge evaluerer Bitsocial-kommentarindhold mod <code>community.rules</code> med et OpenAI-kompatibelt model-endpoint. Communities kan sende risikable opslag til gennemgang, mens provider-nøgler og prompts holdes i private node-indstillinger."
         },
         "r9k-challenge": {
-          "tagline": "Robot9000-inspireret originalitetsgate til fællesskaber, der vil have en anti-repost-oplevelse ved opslag.",
+          "tagline": "Regel i Robot9000-stil, der afviser ethvert opslag, som gentager tekst, der allerede er slået op i fællesskabet.",
           "description": "R9K Challenge kører på en Bitsocial-communitynode og sammenligner normaliseret opslagstekst med ejernodens lokale kommentardatabase. Den giver communities en <robot9000>Robot9000</robot9000>-lignende opslagserfaring: eksakte genopslag fejler før accept, backlinks ignoreres, gentagne fejl udløser eskalerende midlertidige bans, og hashes af accepteret tekst bliver i privat lokal tilstand i stedet for at gemme rå opslagstekst. Denne challenge bruger ikke AI."
         },
         "wordfilter-challenge": {
@@ -599,7 +601,8 @@
           "description": "bitbones er den mindste brugbare flade oven på Bitsocials React-hooks: næsten ingen styling, ingen produktholdninger og ét enkelt hook bag hver visning. Det er det hurtigste sted at reproducere en fejl eller afprøve en hook-ændring mod rigtige fællesskaber, og standardfeedet kan skiftes mellem fællesskabslisterne fra Seedit og 5chan."
         },
         "spam-blocker": {
-          "description": "Spam Blocker evaluerer publikationer og returnerer en risikoscore, som fællesskaber kan kombinere med deres egen moderationslogik. Dens hostede tjeneste forbinder også signeringsnøgler første gang set fra samme IP, så en bruger, der fortsætter med at oprette nye konti for at undgå et fællesskabsforbud eller fremstille en samtale, ser sin risikoscore stige, mens nogle få signaturværdier forbliver tilladt til legitim brug på flere enheder."
+          "description": "Spam Blocker evaluerer publikationer og returnerer en risikoscore, som fællesskaber kan kombinere med deres egen moderationslogik. Dens hostede tjeneste forbinder også signeringsnøgler første gang set fra samme IP, så en bruger, der fortsætter med at oprette nye konti for at undgå et fællesskabsforbud eller fremstille en samtale, ser sin risikoscore stige, mens nogle få signaturværdier forbliver tilladt til legitim brug på flere enheder.",
+          "tagline": "Hostet risikoscoringstjeneste, der hjælper fællesskaber med at filtrere spam og omgåelse af udelukkelser."
         },
         "image-classifier-bot": {
           "tagline": "Bot til moderationskøen, der kun godkender opslag, hvis billede passer til det, fællesskabet tillader.",
@@ -619,7 +622,7 @@
         },
         "gitcommons": {
           "tagline": "Platform til kodesamarbejde på idéstadiet, der kombinerer peer-to-peer-Git med Bitsocials sociale lag.",
-          "description": "GitCommons er forskning i et GitHub-alternativ, der kombinerer et peer-to-peer-Git-lag i Radicle-stil med Bitsocials profiler, fællesskaber, opdagelse og omdømme. Diskussionerne i hvert repository ville være et Bitsocial-fællesskab, udviklerprofiler ville være profilnoder, som de fleste når via offentlige RPC'er, og CI ville komme fra konkurrerende runner-tjenester i stedet for én obligatorisk udbyder. GitCommons er et arbejdsnavn; projektet er ikke tilknyttet GitHub, Inc. eller Git-projektet."
+          "description": "GitCommons er forskning i et GitHub-alternativ, der kombinerer et peer-to-peer-Git-lag i Radicle-stil med Bitsocials profiler, fællesskaber, opdagelse og omdømme. Diskussionerne i hvert repository ville være et Bitsocial-fællesskab, udviklerprofiler ville være Bitsocial-profiler, og CI ville komme fra konkurrerende runner-tjenester i stedet for én obligatorisk udbyder. GitCommons er et arbejdsnavn; projektet er ikke tilknyttet GitHub, Inc. eller Git-projektet."
         },
         "modelswarm": {
           "tagline": "Hugging Face-alternativ på idéstadiet, hvor AI-modeller med åbne vægte deles af en sværm af peers.",
@@ -628,6 +631,23 @@
         "mintpass": {
           "tagline": "Betalte, ikke-overførbare Ethereum-pas til afstemning i kataloger og opslag uden captcha.",
           "description": "MintPass er et betalt, ikke-overførbart pas med udløbsdato på Ethereum mainnet, som hver Bitsocial-app udruller under sit eget navn: 5chan Pass til 5chan og Seedit Gold til Seedit. Et gyldigt pas lader indehaveren stemme i katalogkonkurrencer og skrive opslag uden at løse en captcha i fællesskaber, der tjekker det med EVM Contract Call. Prisen er fast i USD og betales i ETH, og et nyt køb forlænger det samme pas i stedet for at udstede et nyt. Kontrakterne er ikke udrullet endnu."
+        },
+        "5chan": {
+          "tagline": "Anonyme imageboards på Bitsocial til web, Android og desktop."
+        },
+        "captcha-canvas-challenge": {
+          "description": "Captcha Canvas Challenge genererer en billed-CAPTCHA på fællesskabets egen node og kræver, at brugeren løser den, før et opslag, et svar eller en stemme accepteres. Intet sendes til en CAPTCHA-tjeneste fra tredjepart. Det er en grundlæggende afskrækkelse, som målrettede bots kan brute-force, så kombiner den med en anden udfordring i fællesskaber, der tiltrækker spam."
+        },
+        "evm-contract-call": {
+          "description": "EVM Contract Call verificerer publikationer ved at kalde en EVM-kontrakt, før et opslag accepteres. Det lader fællesskaber bygge token gates, staking-regler eller andre on-chain-tjek ind i deres regler for opslag.",
+          "tagline": "Kræver, at brugere består et on-chain-tjek, f.eks. at de ejer et token, før de kan slå noget op."
+        },
+        "seedit": {
+          "description": "Seedit bringer diskussion i Reddit-stil til Bitsocial: fællesskaber, som alle kan oprette og eje, afstemninger, kommentarer i tråde og moderation, som ejeren af hvert fællesskab bestemmer. Det er den hurtigste måde at prøve netværkets forumside på fra en browser, en Android-telefon eller en desktop-app.",
+          "tagline": "Fællesskaber i Reddit-stil på Bitsocial til web, Android og desktop."
+        },
+        "voucher-challenge": {
+          "description": "Voucher Challenge lader moderatorer uddele betroede voucherkoder, der låser op for publicering uden en global identitetsudbyder. En kode bindes til den første forfatter, der indløser den, så den forfatter fortsætter med at skrive opslag med den, og ingen andre kan genbruge den."
         }
       }
     },

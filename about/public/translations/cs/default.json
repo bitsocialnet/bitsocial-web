@@ -553,25 +553,27 @@
       },
       "items": {
         "5chan-board-manager": {
-          "description": "5chan Board Manager se připojuje k Bitsocial CLI, aby pomáhal správcům vytvářet, konfigurovat a moderovat vlastní imageboardy. Je to utilitní vrstva pro vlastníky boardů, kteří chtějí provozní kontrolu."
+          "description": "5chan Board Manager běží vedle Bitsocial CLI a dává boardu životní cyklus vláken známý z 4chan: vlákna, která vypadnou z poslední stránky, se archivují, archivovaná vlákna se po nastavené době promažou, vlákna za bump limitem se přestanou bumpovat a příspěvky smazané jejich autorem se promažou.",
+          "tagline": "Archivace vláken, bump limity a promazávání ve stylu 4chan pro boardy 5chan."
         },
         "bitsocial-cli": {
-          "description": "Bitsocial CLI je oficiální terminálové rozhraní protokolu. Používejte ho ke správě uzlů, publikování obsahu, spuštění serveru WebSocket JSON-RPC pro programové řízení a automatizaci kódu, automatizaci administrátorských toků a přímé práci s primitivy Bitsocial bez GUI klienta."
+          "description": "Bitsocial CLI je oficiální terminálové rozhraní protokolu. Používejte ho k provozu uzlu, vytváření a správě komunit, publikování obsahu a spuštění serveru WebSocket JSON-RPC, který mohou ovládat jiné programy.",
+          "tagline": "Provozujte uzel Bitsocial a spravujte komunity z terminálu."
         },
         "flags-challenge": {
-          "tagline": "Ověřená výzva vydavatele vlajky pro insígnie specifické pro zemi a desku.",
+          "tagline": "Ověřené vlajky zemí a boardů u příspěvků, podepsané vydavatelem, kterému komunita důvěřuje.",
           "description": "Flags Challenge běží na uzlu komunity Bitsocial a ověřuje podepsaná tvrzení vlajek od konfigurovatelné služby vydavatele. První balíčkový profil je zaměřen na 5chan a pokrývá národní vlajky, memeflags z /pol/ a pony flags z /mlp/, přičemž zachovává stejný vzor znovu použitelný pro jakéhokoli klienta, který provozuje svou vlastní službu vydavatele a obor názvů."
         },
         "bitsocial-seeder": {
-          "tagline": "Veřejný seeder pro komunity Bitsocial, zabalený pro Docker a npm.",
-          "description": "Bitsocial Seeder připevňuje stránky komunity na první místo, CID po aktualizaci a směrování tématu pubsub prostřednictvím daemona Bitsocial. Znovu používá již spuštěný místní daemon, pokud je dosažitelný, nebo automaticky spustí balený daemon bitsocial-cli a dodává se jako image Docker pro bezobslužné nasazení VPS a balíček npm pro operátory Node-first."
+          "tagline": "Udržuje komunity Bitsocial rychlé a dostupné tím, že znovu hostuje jejich obsah, přes Docker nebo npm.",
+          "description": "Bitsocial Seeder pomáhá komunitám rychle se načítat tím, že udržuje další kopie jejich obsahu online. Připíná první stránky komunit, CID aktualizací příspěvků a směrování témat pubsub prostřednictvím daemona Bitsocial. Znovu používá již spuštěný místní daemon, pokud je dosažitelný, nebo automaticky spustí přibalený daemon bitsocial-cli a dodává se jako image Docker pro bezobslužné nasazení na VPS i jako balíček npm pro operátory Node-first."
         },
         "ai-moderation-challenge": {
-          "tagline": "Kontroly moderace kompatibilní s OpenAI podle pravidel každé komunity.",
+          "tagline": "Kontroluje každý příspěvek podle pravidel komunity pomocí modelu AI, který zvolí vlastník.",
           "description": "AI Moderation Challenge vyhodnocuje obsah komentářů Bitsocial podle <code>community.rules</code> pomocí OpenAI-kompatibilního endpointu modelu. Komunity mohou rizikové příspěvky posílat ke kontrole a zároveň udržovat klíče poskytovatele a prompty v soukromém nastavení uzlu."
         },
         "r9k-challenge": {
-          "tagline": "Brána originality ve stylu Robot9000 pro komunity, které chtějí publikační UX proti repostům.",
+          "tagline": "Pravidlo ve stylu Robot9000, které odmítne každý příspěvek opakující text, který už byl v komunitě zveřejněn.",
           "description": "R9K Challenge běží na komunitním uzlu Bitsocial a porovnává normalizovaný text příspěvku s lokální databází komentářů uzlu vlastníka. Komunitám dává publikační zkušenost ve stylu <robot9000>Robot9000</robot9000>: přesné reposty selžou před přijetím, backlinks se ignorují, opakovaná selhání spouštějí stupňující se dočasné bany a hashe přijatého textu zůstávají v soukromém lokálním stavu místo ukládání surového textu příspěvku. Tato challenge nepoužívá AI."
         },
         "wordfilter-challenge": {
@@ -599,7 +601,8 @@
           "description": "bitbones je nejmenší užitečná vrstva nad React hooky Bitsocialu: téměř žádné styly, žádná produktová rozhodnutí a za každým zobrazením jediný hook. Je to nejrychlejší místo, kde reprodukovat chybu nebo vyzkoušet změnu hooků proti skutečným komunitám, a jeho výchozí feed lze přepínat mezi seznamy komunit Seedit a 5chan."
         },
         "spam-blocker": {
-          "description": "Spam Blocker vyhodnocuje příspěvky a vrací skóre rizika, které mohou komunity kombinovat se svou vlastní logikou moderace. Její hostovaná služba také propojuje podpisové klíče poprvé viditelné ze stejné IP adresy, takže uživatel, který stále vytváří nové účty, aby se vyhnul zákazu komunity nebo vytvořil konverzaci, vidí nárůst svého skóre rizika, zatímco několik podepisovatelů zůstane povoleno pro legitimní použití více zařízení."
+          "description": "Spam Blocker vyhodnocuje příspěvky a vrací skóre rizika, které mohou komunity kombinovat se svou vlastní logikou moderace. Její hostovaná služba také propojuje podpisové klíče poprvé viditelné ze stejné IP adresy, takže uživatel, který stále vytváří nové účty, aby se vyhnul zákazu komunity nebo vytvořil konverzaci, vidí nárůst svého skóre rizika, zatímco několik podepisovatelů zůstane povoleno pro legitimní použití více zařízení.",
+          "tagline": "Hostovaná služba hodnocení rizika, která komunitám pomáhá filtrovat spam a obcházení banů."
         },
         "image-classifier-bot": {
           "tagline": "Bot pro moderační frontu, který schvaluje jen příspěvky s obrázkem odpovídajícím tomu, co komunita povoluje.",
@@ -619,7 +622,7 @@
         },
         "gitcommons": {
           "tagline": "Platforma pro spolupráci na kódu ve fázi nápadu, která spojuje peer-to-peer Git se sociální vrstvou Bitsocial.",
-          "description": "GitCommons je výzkum alternativy ke službě GitHub, která kombinuje peer-to-peer vrstvu Git ve stylu Radicle s profily, komunitami, objevováním a reputací Bitsocial. Diskuse každého repozitáře by byly komunitou Bitsocial, vývojářské profily by byly profilovými uzly, ke kterým by se většina lidí dostávala přes veřejná RPC, a CI by zajišťovaly konkurenční služby runnerů místo jednoho povinného poskytovatele. GitCommons je pracovní název; projekt není spojen se společností GitHub, Inc. ani s projektem Git."
+          "description": "GitCommons je výzkum alternativy ke službě GitHub, která kombinuje peer-to-peer vrstvu Git ve stylu Radicle s profily, komunitami, objevováním a reputací Bitsocial. Diskuse každého repozitáře by byly komunitou Bitsocial, vývojářské profily by byly profily Bitsocial a CI by zajišťovaly konkurenční služby runnerů místo jednoho povinného poskytovatele. GitCommons je pracovní název; projekt není spojen se společností GitHub, Inc. ani s projektem Git."
         },
         "modelswarm": {
           "tagline": "Alternativa k Hugging Face ve fázi nápadu, kde AI modely s otevřenými vahami sdílí roj peerů.",
@@ -628,6 +631,23 @@
         "mintpass": {
           "tagline": "Placené, nepřenosné průkazy na Ethereu pro hlasování v adresářích a přispívání bez captchy.",
           "description": "MintPass je placený, nepřenosný průkaz s omezenou platností na hlavní síti Etherea, který každá aplikace Bitsocial nasazuje pod vlastním názvem: 5chan Pass pro 5chan a Seedit Gold pro Seedit. Platný průkaz umožňuje držiteli hlasovat v soutěžích adresářů a přispívat bez řešení captchy v komunitách, které ho ověřují pomocí EVM Contract Call. Cena je pevně daná v USD a platí se v ETH; opakovaný nákup prodlouží stejný průkaz, místo aby vytvořil druhý. Kontrakty zatím nejsou nasazené."
+        },
+        "5chan": {
+          "tagline": "Anonymní imageboardy na Bitsocial pro web, Android a desktop."
+        },
+        "captcha-canvas-challenge": {
+          "description": "Captcha Canvas Challenge vygeneruje obrázkovou CAPTCHA na vlastním uzlu komunity a vyžaduje, aby ji přispěvatel vyřešil dříve, než je přijat příspěvek, odpověď nebo hlas. Žádné službě CAPTCHA třetí strany se nic neodesílá. Je to základní zábrana, kterou vytrvalí boti dokážou prolomit hrubou silou, proto ji v komunitách, které přitahují spam, zkombinujte s další výzvou."
+        },
+        "evm-contract-call": {
+          "description": "EVM Contract Call ověřuje publikace voláním kontraktu EVM před přijetím příspěvku. Komunitám umožňuje zabudovat do pravidel přispívání token gates, pravidla stakingu nebo jiné on-chain kontroly.",
+          "tagline": "Vyžaduje, aby přispěvatelé prošli on-chain kontrolou, například držením tokenu."
+        },
+        "seedit": {
+          "description": "Seedit přináší na Bitsocial diskuse ve stylu Reddit: komunity, které může kdokoli založit a vlastnit, hlasování, komentáře ve vláknech a moderaci, kterou určuje vlastník každé komunity. Je to nejrychlejší způsob, jak si vyzkoušet fórovou stránku sítě z prohlížeče, telefonu se systémem Android nebo desktopové aplikace.",
+          "tagline": "Komunity ve stylu Reddit na Bitsocial pro web, Android a desktop."
+        },
+        "voucher-challenge": {
+          "description": "Voucher Challenge umožňuje moderátorům rozdávat důvěryhodné voucherové kódy, které odemykají publikování bez globálního poskytovatele identity. Kód se naváže na prvního autora, který ho uplatní, takže tento autor s ním dál přispívá a nikdo jiný ho znovu použít nemůže."
         }
       }
     },

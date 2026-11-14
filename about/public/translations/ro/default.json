@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "Imageboarduri descentralizate cu descărcări directe pentru web, APK și desktop.",
+          "tagline": "Imageboarduri anonime pe Bitsocial, pentru web, Android și desktop.",
           "description": "5chan este primul client public Bitsocial. Reproduce fluxul anonim de imageboard pe o rețea peer-to-peer: boarduri, thread-uri, postare de imagini, moderare de comunitate și mai multe mirror-uri publice fără a depinde de un server central."
         },
         "seedit": {
-          "tagline": "Client Bitsocial în stil forum, cu build-uri pentru web, APK și desktop.",
-          "description": "Seedit aduce discuția în stil Reddit în Bitsocial, cu thread-uri, identități, administrarea comunității și mai multe căi de distribuție. Este cea mai rapidă metodă de a încerca partea de forum a rețelei din browser, telefon Android sau aplicație desktop."
+          "tagline": "Comunități în stil Reddit pe Bitsocial, pentru web, Android și desktop.",
+          "description": "Seedit aduce discuția în stil Reddit în Bitsocial: comunități pe care oricine le poate crea și deține, voturi, comentarii în thread-uri și moderare stabilită de proprietarul fiecărei comunități. Este cea mai rapidă metodă de a încerca partea de forum a rețelei din browser, telefon Android sau aplicație desktop."
         },
         "spam-blocker": {
-          "tagline": "Strat centralizat de scorare a riscului pentru filtrarea publicațiilor abuzive.",
+          "tagline": "Serviciu găzduit de scorare a riscului care ajută comunitățile să filtreze spamul și ocolirea banurilor.",
           "description": "Spam Blocker evaluează publicațiile și returnează un scor de risc pe care comunităţile îl pot combina cu propria logică de moderare. Serviciul găzduit al acestuia leagă de asemenea cheile semnaturii văzute pentru prima dată din aceeași adresă IP, astfel încât un utilizator care continuă să creeze conturi noi pentru a evita o interzicere din comunitate sau pentru a fabrica o conversație vede scorul de risc al acestuia crescând, în timp ce câțiva semnatori rămân autorizați pentru utilizare legitimă multi-dispozitiv."
         },
         "captcha-canvas-challenge": {
           "tagline": "Captcha-uri cu imagine personalizată pentru comunități care vor verificare umană.",
-          "description": "Captcha Canvas Challenge generează captcha-uri vizuale pe care comunitățile le pot integra în propriul flux de publicare. Este o opțiune ușoară pentru comunități care vor verificări umane directe fără să renunțe la moderarea self-hosted."
+          "description": "Captcha Canvas Challenge generează un captcha cu imagine pe nodul propriu al comunității și le cere autorilor să îl rezolve înainte ca o postare, un răspuns sau un vot să fie acceptat. Nimic nu este trimis către un serviciu captcha terț. Este o măsură de descurajare de bază pe care boții hotărâți o pot sparge prin forță brută, așa că folosește-l împreună cu o altă provocare în comunitățile care atrag spam."
         },
         "voucher-challenge": {
           "tagline": "Coduri voucher în stil invitație pentru comunități care preferă creștere controlată.",
-          "description": "Voucher Challenge le permite moderatorilor să distribuie coduri voucher de încredere care deblochează publicarea fără un identity provider global. Se potrivește bine comunităților bazate pe invitații, boardurilor de nișă și rollout-urilor treptate."
+          "description": "Voucher Challenge le permite moderatorilor să distribuie coduri voucher de încredere care deblochează publicarea fără un identity provider global. Un cod este legat de primul autor care îl folosește, astfel încât acel autor poate posta în continuare cu el și nimeni altcineva nu îl poate refolosi."
         },
         "evm-contract-call": {
-          "tagline": "Gating on-chain pentru comunități care vor verificări de token sau contract.",
-          "description": "EVM Contract Call verifică publicațiile apelând un contract EVM înainte ca un post să fie acceptat. Le permite comunităților să construiască token gates, reguli de staking sau alte verificări on-chain în fluxul lor de moderare."
+          "tagline": "Le cere autorilor să treacă o verificare on-chain, cum ar fi deținerea unui token.",
+          "description": "EVM Contract Call verifică publicațiile apelând un contract EVM înainte ca un post să fie acceptat. Le permite comunităților să construiască token gates, reguli de staking sau alte verificări on-chain în regulile lor de postare."
         },
         "bitsocial-cli": {
-          "tagline": "Control din linia de comandă pentru noduri, comunități și fluxuri de automatizare.",
-          "description": "Bitsocial CLI este interfața oficială de terminal pentru protocol. Folosește-l pentru a gestiona noduri, a publica conținut, a porni un server WebSocket JSON-RPC pentru control programatic și automatizare de cod, a automatiza fluxurile de administrare și a lucra direct cu primitivele Bitsocial fără un client GUI."
+          "tagline": "Rulează un nod Bitsocial și administrează comunități din terminal.",
+          "description": "Bitsocial CLI este interfața oficială de terminal pentru protocol. Folosește-l pentru a rula un nod, a crea și administra comunități, a publica conținut și a porni un server WebSocket JSON-RPC pe care alte programe îl pot controla."
         },
         "telegram-bots": {
           "tagline": "Boți de feed care trimit noile postări Bitsocial în canale sau grupuri Telegram.",
           "description": "Bitsocial Telegram Bots monitorizează listele de comunități ale clientului și redirecționează noile postări către destinații Telegram cu linkuri inline înapoi la clienții Bitsocial. Botul activ acoperă astăzi feed-urile 5chan, iar repo-ul este structurat astfel încât să poată adăuga în timp și alți boți specifici clientului."
         },
         "5chan-board-manager": {
-          "tagline": "Instrumente de administrare board pentru comunități 5chan personalizate.",
-          "description": "5chan Board Manager se conectează la Bitsocial CLI pentru a-i ajuta pe administratori să creeze, să configureze și să modereze boarduri imageboard personalizate. Este stratul de utilitare pentru proprietarii de boarduri care vor control operațional."
+          "tagline": "Arhivare a thread-urilor, limite de bump și curățare în stil 4chan pentru boardurile 5chan.",
+          "description": "5chan Board Manager rulează alături de Bitsocial CLI și îi dă unui board ciclul de viață al thread-urilor din 4chan: thread-urile care cad de pe ultima pagină sunt arhivate, thread-urile arhivate sunt șterse după un timp stabilit, thread-urile care depășesc limita de bump nu mai urcă, iar postările șterse de autorul lor sunt eliminate definitiv."
         },
         "flags-challenge": {
-          "tagline": "Provocare verificată a emitentului de steaguri pentru insigne specifice țării și forumului.",
+          "tagline": "Steaguri verificate de țară și de board pe postări, semnate de un emitent în care comunitatea are încredere.",
           "description": "Flags Challenge rulează pe un nod comunitar Bitsocial și verifică afirmațiile de steag semnate de un serviciu de emitent configurabil. Primul profil agregat vizează 5chan, acoperă steaguri naționale, memeflags din /pol/ și pony flags din /mlp/, menținând același pattern reutilizabil pentru orice client care rulează propriul serviciu de emitent și spațiu de nume."
         },
         "bitsocial-seeder": {
-          "tagline": "Seeder public pentru comunități Bitsocial, ambalat pentru Docker și npm.",
-          "description": "Bitsocial Seeder fixează paginile prioritare ale comunității, CID-urile după actualizare și rutarea subiectelor pubsub prin intermediul unui daemon Bitsocial. Reutilizează un daemon local deja în execuție atunci când este accesibil sau pornește automat daemonul bitsocial-cli inclus și este furnizat atât ca imagine Docker pentru implementări VPS nesupravegheat cât și ca pachet npm pentru operatori Node-first."
+          "tagline": "Menține comunitățile Bitsocial rapide și accesibile găzduindu-le din nou conținutul, prin Docker sau npm.",
+          "description": "Bitsocial Seeder ajută comunitățile să se încarce rapid, păstrând online copii suplimentare ale conținutului lor. Fixează prima pagină a fiecărei comunități, CID-urile actualizărilor de postări și rutarea topicurilor pubsub printr-un daemon Bitsocial. Reutilizează un daemon local deja pornit atunci când acesta este accesibil sau pornește automat daemonul bitsocial-cli inclus și este distribuit atât ca imagine de container Docker pentru instalări pe VPS care rulează fără supraveghere, cât și ca pachet npm pentru operatorii care preferă Node."
         },
         "ai-moderation-challenge": {
-          "tagline": "Verificări de moderare compatibile OpenAI conform regulilor fiecărei comunități.",
+          "tagline": "Verifică fiecare postare după regulile comunității, cu un model AI ales de proprietar.",
           "description": "AI Moderation Challenge evaluează conținutul comentariilor Bitsocial față de <code>community.rules</code> cu un endpoint de model compatibil OpenAI. Comunitățile pot trimite postările riscante spre review, păstrând cheile providerului și prompturile în setările private ale nodului."
         },
         "r9k-challenge": {
-          "tagline": "Poartă de originalitate în stil Robot9000 pentru comunități care vor o experiență de postare anti-repost.",
+          "tagline": "Regulă în stil Robot9000 care respinge orice postare ce repetă un text deja postat în comunitate.",
           "description": "R9K Challenge rulează pe un nod de comunitate Bitsocial și compară textul normalizat al postării cu baza locală de comentarii a nodului proprietar. Oferă comunităților o experiență de postare în stil <robot9000>Robot9000</robot9000>: repostările exacte eșuează înainte de acceptare, backlinkurile sunt ignorate, eșecurile repetate declanșează banuri temporare crescătoare, iar hashurile textului acceptat rămân în stare locală privată în loc să stocheze textul brut al postării. Acest challenge nu folosește AI."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "Platformă de colaborare pe cod în stadiu de idee, care combină Git peer-to-peer cu stratul social al Bitsocial.",
-          "description": "GitCommons este o cercetare privind o alternativă la GitHub care combină un strat Git peer-to-peer în stilul Radicle cu profilurile, comunitățile, descoperirea și reputația Bitsocial. Discuțiile fiecărui depozit ar fi o comunitate Bitsocial, profilurile dezvoltatorilor ar fi noduri de profil pe care majoritatea oamenilor le-ar accesa prin RPC-uri publice, iar CI-ul ar veni de la servicii de runner concurente în locul unui singur furnizor obligatoriu. GitCommons este un nume provizoriu; proiectul nu este afiliat cu GitHub, Inc. sau cu proiectul Git."
+          "description": "GitCommons este o cercetare privind o alternativă la GitHub care combină un strat Git peer-to-peer în stilul Radicle cu profilurile, comunitățile, descoperirea și reputația Bitsocial. Discuțiile fiecărui depozit ar fi o comunitate Bitsocial, profilurile dezvoltatorilor ar fi profiluri Bitsocial, iar CI-ul ar veni de la servicii de runner concurente în locul unui singur furnizor obligatoriu. GitCommons este un nume provizoriu; proiectul nu este afiliat cu GitHub, Inc. sau cu proiectul Git."
         },
         "modelswarm": {
           "tagline": "Alternativă la Hugging Face în stadiu de idee, în care un roi de peeri partajează modele AI cu ponderi deschise.",

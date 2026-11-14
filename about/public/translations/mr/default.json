@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "web, APK आणि desktop downloads सह विकेंद्रित imageboards.",
+          "tagline": "Bitsocial वरील अनामिक imageboards, web, Android आणि desktop साठी.",
           "description": "5chan हा Bitsocial चा पहिला सार्वजनिक client आहे. तो peer-to-peer network वर anonymous imageboard flow पुन्हा तयार करतो: boards, threads, image posting, community moderation, आणि central server वर अवलंबून न राहता अनेक public mirrors."
         },
         "seedit": {
-          "tagline": "web, APK आणि desktop builds असलेला forum-style Bitsocial client.",
-          "description": "Seedit Reddit-style चर्चा Bitsocial मध्ये threads, identities, community management, आणि अनेक distribution paths सह आणतो. browser, Android phone, किंवा desktop app मधून network चा forum भाग वापरून पाहण्याचा हा सर्वात जलद मार्ग आहे."
+          "tagline": "Bitsocial वरील Reddit-style communities, web, Android आणि desktop साठी.",
+          "description": "Seedit Reddit-style चर्चा Bitsocial मध्ये आणतो: कोणीही तयार करू शकेल आणि स्वतःच्या मालकीच्या ठेवू शकेल अशा communities, voting, threaded comments, आणि प्रत्येक community च्या मालकाने ठरवलेले moderation. browser, Android phone, किंवा desktop app मधून network चा forum भाग वापरून पाहण्याचा हा सर्वात जलद मार्ग आहे."
         },
         "spam-blocker": {
-          "tagline": "abusive publications filter करण्यासाठी centralized risk scoring layer.",
+          "tagline": "समुदायांना spam आणि ban evasion फिल्टर करण्यास मदत करणारी hosted risk-scoring सेवा.",
           "description": "Spam Blocker प्रकाशने मूल्यमापन करते आणि एक जोखीम स्कोर परत करते आहे ज्या समुदाय त्यांच्या स्वतःच्या संचालन तर्काशी एकत्रित करू शकतात. त्याची होस्ट केलेली सेवा एकाच IP वरून प्रथम दिसलेल्या स्वाक्षरकर्ता की देखील जोडते, त्यामुळे एक वापरकर्ता जो समुदाय प्रतिबंध मोडण्यासाठी किंवा संभाषण तयार करण्यासाठी नवीन खाती तयार करत राहतो त्याचा जोखीम स्कोर वाढताना दिसतो, तर काही स्वाक्षरकर्ते वैध बहु-उपकरण वापराला अनुमती देतात."
         },
         "captcha-canvas-challenge": {
           "tagline": "मानवी verification हवी असलेल्या communities साठी custom image captchas.",
-          "description": "Captcha Canvas Challenge visual captchas तयार करतो, जे communities त्यांच्या स्वतःच्या publishing flow मध्ये जोडू शकतात. self-hosted moderation सोडून न देता थेट human checks हव्या असलेल्या communities साठी हा हलका पर्याय आहे."
+          "description": "Captcha Canvas Challenge समुदायाच्या स्वतःच्या नोडवर image captcha तयार करतो आणि पोस्ट, उत्तर किंवा मत स्वीकारण्याआधी पोस्ट करणाऱ्यांनी तो सोडवणे आवश्यक करतो. कोणत्याही third-party captcha सेवेकडे काहीही पाठवले जात नाही. हा एक मूलभूत अडथळा आहे, जो चिकाटीचे bots brute-force करून मोडू शकतात, म्हणून spam आकर्षित करणाऱ्या समुदायांमध्ये तो दुसऱ्या आव्हानासोबत वापरा."
         },
         "voucher-challenge": {
           "tagline": "controlled growth पसंत करणाऱ्या communities साठी invite-style voucher codes.",
-          "description": "Voucher Challenge moderators ना trusted voucher codes वितरित करू देतो, जे global identity provider शिवाय publishing उघडतात. invite-driven communities, niche boards, आणि gradual rollouts साठी तो चांगला जुळतो."
+          "description": "Voucher Challenge moderators ना trusted voucher codes वितरित करू देतो, जे global identity provider शिवाय publishing उघडतात. code तो प्रथम वापरणाऱ्या लेखकाशी बांधला जातो, त्यामुळे तो लेखक त्याच code ने पोस्ट करत राहतो आणि इतर कोणीही तो पुन्हा वापरू शकत नाही."
         },
         "evm-contract-call": {
-          "tagline": "token किंवा contract checks हव्या असलेल्या communities साठी on-chain gating.",
-          "description": "EVM Contract Call post स्वीकारण्याआधी EVM contract ला call करून publications verify करतो. त्यामुळे communities token gates, staking rules, किंवा इतर on-chain checks त्यांच्या moderation flow मध्ये आणू शकतात."
+          "tagline": "पोस्ट करणाऱ्यांनी on-chain तपासणी पार करणे आवश्यक करतो, उदाहरणार्थ token धारण करणे.",
+          "description": "EVM Contract Call post स्वीकारण्याआधी EVM contract ला call करून publications verify करतो. त्यामुळे communities token gates, staking rules, किंवा इतर on-chain checks त्यांच्या posting नियमांमध्ये आणू शकतात."
         },
         "bitsocial-cli": {
-          "tagline": "nodes, communities, आणि automation workflows साठी command-line control.",
-          "description": "Bitsocial CLI हा प्रोटोकॉलसाठी अधिकृत टर्मिनल इंटरफेस आहे. नोड्सचे व्यवस्थापन, मजकूर प्रकाशित करणे, प्रोग्रामॅटिक नियंत्रण आणि कोड ऑटोमेशनसाठी WebSocket JSON-RPC सर्व्हर सुरू करणे, प्रशासकीय प्रवाह स्वयंचलित करणे, आणि GUI क्लायंटशिवाय थेट Bitsocial primitives सोबत काम करणे यासाठी याचा वापर करा."
+          "tagline": "terminal मधून Bitsocial नोड चालवा आणि समुदाय व्यवस्थापित करा.",
+          "description": "Bitsocial CLI हा प्रोटोकॉलसाठी अधिकृत टर्मिनल इंटरफेस आहे. नोड चालवणे, समुदाय तयार करणे आणि व्यवस्थापित करणे, मजकूर प्रकाशित करणे, आणि इतर प्रोग्राम्स नियंत्रित करू शकतील असा WebSocket JSON-RPC सर्व्हर सुरू करणे यासाठी याचा वापर करा."
         },
         "telegram-bots": {
           "tagline": "नवीन Bitsocial posts Telegram channels किंवा groups मध्ये पाठवणारे feed bots.",
           "description": "Bitsocial Telegram Bots client community lists monitor करतात आणि नवीन posts Telegram destinations कडे inline links सह forward करतात, ज्यातून Bitsocial clients कडे परत जाता येते. सक्रिय bot आज 5chan feeds कव्हर करतो, आणि repo अशी रचना ठेवतो की वेळेनुसार अधिक client-specific bots जोडता येतील."
         },
         "5chan-board-manager": {
-          "tagline": "custom 5chan communities साठी board administration tooling.",
-          "description": "5chan Board Manager Bitsocial CLI शी जोडले जाते, जेणेकरून प्रशासकांना सानुकूल imageboard बोर्ड तयार करणे, कॉन्फिगर करणे आणि नियंत्रित करणे सोपे जाईल. हे बोर्ड मालकांसाठी ऑपरेशनल नियंत्रण हवे असलेल्या उपयुक्तता स्तराचे साधन आहे."
+          "tagline": "5chan बोर्डांसाठी 4chan-शैलीचे thread archiving, bump limits आणि purging.",
+          "description": "5chan Board Manager Bitsocial CLI च्या सोबत चालतो आणि बोर्डला 4chan चे thread जीवनचक्र देतो: शेवटच्या पानावरून खाली पडणारे threads archive केले जातात, archive केलेले threads ठरावीक वेळेनंतर कायमचे हटवले जातात, bump limit ओलांडलेले threads bump होणे थांबतात, आणि लेखकाने हटवलेल्या पोस्ट्स कायमच्या काढून टाकल्या जातात."
         },
         "flags-challenge": {
-          "tagline": "देश आणि बोर्ड-विशिष्ट प्रतीकांसाठी सत्यापित ध्वज जारीकर्ता आव्हान।",
+          "tagline": "पोस्टवर सत्यापित देश आणि बोर्ड ध्वज, समुदायाचा विश्वास असलेल्या जारीकर्त्याने स्वाक्षरी केलेले.",
           "description": "Flags Challenge हा Bitsocial कमिউनिटी नोडवर चलतो आणि कॉन्फिगरेबल जारीकर्ता सेवेकडून स्वाक्षरित ध्वज असर्शनची पडताळणी करतो. पहिली बंडल केलेली प्रोफाइल 5chan ला लक्ष्य करते, देश ध्वज, /pol/ memeflags आणि /mlp/ pony flags कव्हर करते, तर कोणत्याही क्लायंटसाठी समान पॅटर्न पुन्हा वापरण्यायोग्य ठेवते जो तिची स्वतःची जारीकर्ता सेवा आणि नेमस्पेस चलवते."
         },
         "bitsocial-seeder": {
-          "tagline": "Bitsocial समाजांसाठी सार्वजनिक सीडर, Docker आणि npm साठी पॅकेज केला.",
-          "description": "Bitsocial Seeder समुदायाचे पहिले पृष्ठ, पोस्ट-अपडेट CID आणि pubsub विषय मार्गदर्शन Bitsocial daemon द्वारे पिन करतात. हे आधीपासून चालू असलेले स्थानीय daemon पुनः वापरते जेव्हा ते पोहोचता येते किंवा बंडल केलेले bitsocial-cli daemon आपोआप सुरू करते, आणि त्याचे वितरण निरीक्षण न केलेली VPS तैनातीसाठी Docker प्रतिमा आणि Node-first ऑपरेटरसाठी npm पॅकेज दोन्हीच्या रूपात केले जाते."
+          "tagline": "Bitsocial समुदायांचा मजकूर पुन्हा होस्ट करून त्यांना जलद आणि पोहोचण्यायोग्य ठेवतो, Docker किंवा npm द्वारे.",
+          "description": "Bitsocial Seeder समुदायांच्या मजकुराच्या अतिरिक्त प्रती ऑनलाइन ठेवून त्यांना जलद लोड होण्यास मदत करतो. तो प्रत्येक समुदायाचे पहिले पान, पोस्ट अपडेट्सचे CID आणि pubsub topic routing Bitsocial daemon द्वारे पिन करतो. आधीपासून चालू असलेला स्थानिक daemon उपलब्ध असल्यास तो त्याचाच पुन्हा वापर करतो, नाहीतर सोबत दिलेला bitsocial-cli daemon आपोआप सुरू करतो. तो देखरेखीशिवाय चालणाऱ्या VPS deployments साठी Docker container image म्हणून आणि Node ला प्राधान्य देणाऱ्या ऑपरेटर्ससाठी npm पॅकेज म्हणून उपलब्ध आहे."
         },
         "ai-moderation-challenge": {
-          "tagline": "प्रत्येक समुदायाच्या नियमांविरुद्ध OpenAI-सुसंगत मॉडरेशन तपासणी.",
+          "tagline": "मालकाने निवडलेल्या AI मॉडेलद्वारे प्रत्येक पोस्ट समुदायाच्या नियमांनुसार तपासतो.",
           "description": "AI Moderation Challenge Bitsocial comment content ला OpenAI-compatible model endpoint वापरून <code>community.rules</code> यांच्याशी तुलना करून evaluate करतो. communities risky posts review साठी route करू शकतात, आणि provider keys व prompts private node settings मध्ये ठेवू शकतात."
         },
         "r9k-challenge": {
-          "tagline": "Anti-repost posting UX हवे असलेल्या समुदायांसाठी Robot9000-शैलीचे मौलिकता gate.",
+          "tagline": "समुदायात आधीच पोस्ट झालेला मजकूर पुन्हा वापरणारी कोणतीही पोस्ट नाकारणारा Robot9000-शैलीचा नियम.",
           "description": "R9K Challenge Bitsocial community node वर चालते आणि normalized post text ची owner node च्या local comments database शी तुलना करते. हे समुदायांना <robot9000>Robot9000</robot9000>-शैलीचा posting experience देते: exact reposts acceptance आधी fail होतात, backlinks दुर्लक्षित केले जातात, repeated failures escalating temporary bans trigger करतात, आणि raw post text साठवण्याऐवजी accepted-text hashes private local state मध्ये राहतात. या challenge मध्ये कोणताही AI वापरला जात नाही."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "कल्पनेच्या टप्प्यातील कोड सहयोग प्लॅटफॉर्म, जो peer-to-peer Git ला Bitsocial च्या सोशल लेयरशी जोडतो.",
-          "description": "GitCommons हे GitHub च्या पर्यायावरील संशोधन आहे, जे Radicle सारखा peer-to-peer Git स्तर Bitsocial च्या प्रोफाइल्स, समुदाय, शोध आणि प्रतिष्ठा यांच्याशी जोडते. प्रत्येक रिपॉझिटरीमधील चर्चा एक Bitsocial समुदाय असेल, डेव्हलपर प्रोफाइल्स हे प्रोफाइल नोड्स असतील ज्यांच्यापर्यंत बहुतेक लोक सार्वजनिक RPC द्वारे पोहोचतील, आणि CI एकाच अनिवार्य प्रदात्याऐवजी एकमेकांशी स्पर्धा करणाऱ्या runner सेवांकडून येईल. GitCommons हे तात्पुरते नाव आहे; हा प्रकल्प GitHub, Inc. किंवा Git प्रकल्पाशी संलग्न नाही."
+          "description": "GitCommons हे GitHub च्या पर्यायावरील संशोधन आहे, जे Radicle सारखा peer-to-peer Git स्तर Bitsocial च्या प्रोफाइल्स, समुदाय, शोध आणि प्रतिष्ठा यांच्याशी जोडते. प्रत्येक रिपॉझिटरीमधील चर्चा एक Bitsocial समुदाय असेल, डेव्हलपर प्रोफाइल्स Bitsocial प्रोफाइल्स असतील, आणि CI एकाच अनिवार्य प्रदात्याऐवजी एकमेकांशी स्पर्धा करणाऱ्या runner सेवांकडून येईल. GitCommons हे तात्पुरते नाव आहे; हा प्रकल्प GitHub, Inc. किंवा Git प्रकल्पाशी संलग्न नाही."
         },
         "modelswarm": {
           "tagline": "कल्पनेच्या टप्प्यातील Hugging Face पर्याय, ज्यात open-weight AI मॉडेल्स peers च्या थव्याद्वारे शेअर केली जातात.",

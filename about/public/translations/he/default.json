@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "לוחות תמונות מבוזרים עם הורדות ישירות ל-web, ל-APK ול-desktop.",
+          "tagline": "לוחות תמונות אנונימיים על Bitsocial, ל-web, ל-Android ול-desktop.",
           "description": "5chan הוא ה-client הציבורי הראשון של Bitsocial. הוא משחזר את הזרימה האנונימית של imageboard על רשת peer-to-peer: boards, threads, פרסום תמונות, moderation קהילתי ומספר mirrors ציבוריים בלי להישען על server מרכזי."
         },
         "seedit": {
-          "tagline": "Bitsocial client בסגנון forum עם גרסאות web, APK ו-desktop.",
-          "description": "Seedit מביא ל-Bitsocial דיון בסגנון Reddit עם threads, identities, ניהול קהילה ומסלולי הפצה מרובים. זהו הדרך המהירה ביותר לנסות את צד ה-forum של הרשת מתוך דפדפן, טלפון Android או אפליקציית desktop."
+          "tagline": "קהילות בסגנון Reddit על Bitsocial, ל-web, ל-Android ול-desktop.",
+          "description": "Seedit מביא ל-Bitsocial דיון בסגנון Reddit: קהילות שכל אחד יכול ליצור ולהחזיק בבעלותו, הצבעות, תגובות משורשרות ו-moderation שנקבע על ידי הבעלים של כל קהילה. זוהי הדרך המהירה ביותר לנסות את צד ה-forum של הרשת מתוך דפדפן, טלפון Android או אפליקציית desktop."
         },
         "spam-blocker": {
-          "tagline": "שכבת דירוג סיכון מרכזית לסינון פרסומים פוגעניים.",
+          "tagline": "שירות דירוג סיכון מתארח שעוזר לקהילות לסנן ספאם ועקיפת חסימות.",
           "description": "Spam Blocker מעריך פרסומות ומחזיר ניקוד סיכון שקהילות יכולות לשלב עם ההיגיון המתון שלהם. השירות המארח שלו גם מקשר בין מפתחות חתימה שנראו לראשונה מאותה IP, כך שמשתמש שממשיך ליצור חשבונות חדשים כדי להימנע מחסימה קהילתית או לייצור שיחה רואה את ניקוד הסיכון שלו עולה, בעוד שמעט חותמים נשארים מותרים לשימוש לגיטימי של מכשירים מרובים."
         },
         "captcha-canvas-challenge": {
           "tagline": "CAPTCHA תמונה מותאמים לקהילות שרוצות verification אנושי.",
-          "description": "Captcha Canvas Challenge יוצר captcha חזותיים שהקהילות יכולות לחבר לזרימת הפרסום שלהן. זו אפשרות קלה לקהילות שרוצות בדיקות אנושיות ישירות בלי לוותר על moderation באירוח עצמי."
+          "description": "Captcha Canvas Challenge יוצר captcha תמונה על הצומת של הקהילה עצמה ומחייב את המפרסמים לפתור אותו לפני ש-post, תגובה או הצבעה מתקבלים. שום דבר לא נשלח לשירות captcha של צד שלישי. זהו אמצעי הרתעה בסיסי שבוטים נחושים יכולים לפרוץ ב-brute force, ולכן כדאי לשלב אותו עם אתגר נוסף בקהילות שמושכות ספאם."
         },
         "voucher-challenge": {
           "tagline": "קודי voucher בסגנון הזמנה לקהילות שמעדיפות צמיחה מבוקרת.",
-          "description": "Voucher Challenge מאפשר למנהלים להפיץ קודי voucher מהימנים שפותחים פרסום בלי identity provider גלובלי. הוא מתאים לקהילות מבוססות הזמנות, boards נישתיים והשקות הדרגתיות."
+          "description": "Voucher Challenge מאפשר למנהלים להפיץ קודי voucher מהימנים שפותחים פרסום בלי identity provider גלובלי. קוד נקשר למחבר הראשון שמממש אותו, כך שאותו מחבר ממשיך לפרסם באמצעותו ואף אחד אחר לא יכול להשתמש בו שוב."
         },
         "evm-contract-call": {
-          "tagline": "gating on-chain לקהילות שרוצות בדיקות token או contract.",
-          "description": "EVM Contract Call מאמת פרסומים על ידי קריאה ל-EVM contract לפני קבלת post. הוא מאפשר לקהילות לשלב token gates, כללי staking או בדיקות on-chain אחרות לתוך זרימת ה-moderation שלהן."
+          "tagline": "מחייב את המפרסמים לעבור בדיקת on-chain, כמו החזקת token.",
+          "description": "EVM Contract Call מאמת פרסומים על ידי קריאה ל-EVM contract לפני קבלת post. הוא מאפשר לקהילות לשלב token gates, כללי staking או בדיקות on-chain אחרות לתוך כללי הפרסום שלהן."
         },
         "bitsocial-cli": {
-          "tagline": "שליטה משורת הפקודה ל-nodes, לקהילות ול-workflows של automation.",
-          "description": "Bitsocial CLI היא ממשק הטרמינל הרשמי של הפרוטוקול. השתמשו בה כדי לנהל צמתים, לפרסם תוכן, להפעיל שרת WebSocket JSON-RPC לשליטה פרוגרמטית ולאוטומציה של קוד, לבצע אוטומציה של תהליכי ניהול, ולעבוד ישירות מול פרימיטיבים של Bitsocial בלי לקוח GUI."
+          "tagline": "הריצו צומת Bitsocial ונהלו קהילות מהטרמינל.",
+          "description": "Bitsocial CLI היא ממשק הטרמינל הרשמי של הפרוטוקול. השתמשו בה כדי להריץ צומת, ליצור ולנהל קהילות, לפרסם תוכן ולהפעיל שרת WebSocket JSON-RPC שתוכנות אחרות יכולות לשלוט בו."
         },
         "telegram-bots": {
           "tagline": "feed bots שמעבירים פוסטים Bitsocial חדשים ל-channelים או groupים ב-Telegram.",
           "description": "Bitsocial Telegram Bots עוקב אחרי רשימות הקהילה של ה-client ומעביר פוסטים חדשים ליעדי Telegram עם קישורי inline חזרה ל-clients של Bitsocial. ה-bot הפעיל מכסה היום feed של 5chan, וה-repo בנוי כך שאפשר יהיה להוסיף עם הזמן עוד bots ייעודיים ל-client."
         },
         "5chan-board-manager": {
-          "tagline": "כלי ניהול boards עבור קהילות 5chan מותאמות.",
-          "description": "5chan Board Manager מתחבר ל-Bitsocial CLI כדי לעזור למנהלים ליצור, להגדיר ולנהל לוחות imageboard מותאמים אישית. זו שכבת הכלים לבעלי לוחות שרוצים שליטה תפעולית."
+          "tagline": "ארכוב threads, bump limits ומחיקה בסגנון 4chan עבור boards של 5chan.",
+          "description": "5chan Board Manager רץ לצד Bitsocial CLI ונותן ללוח את מחזור החיים של threads ב-4chan: threads שנופלים מהעמוד האחרון עוברים לארכיון, threads בארכיון נמחקים לצמיתות לאחר זמן מוגדר, threads שעברו את ה-bump limit מפסיקים לקפוץ למעלה, ו-posts שנמחקו על ידי המחבר שלהם נמחקים לצמיתות."
         },
         "flags-challenge": {
-          "tagline": "אתגר מוכח של מנפיק דגלים לאות ייחודיות של מדינה ולוח.",
+          "tagline": "דגלי מדינה ולוח מאומתים על posts, חתומים בידי מנפיק שהקהילה סומכת עליו.",
           "description": "Flags Challenge פועל על צומת קהילה של Bitsocial ומאמת תביעות דגלים חתומות משירות מנפיק הניתן להגדרה. הפרופיל המקופל הראשון מכוון ל-5chan, מכסה דגלי ארצות, memeflags של /pol/ ו-pony flags של /mlp/, תוך שמירה על אותו דפוס שניתן לשימוש חוזר לכל לקוח שמפעיל את שירות המנפיק והמרחב השמות שלו."
         },
         "bitsocial-seeder": {
-          "tagline": "זורע ציבורי לקהילות Bitsocial, מוכן ל-Docker ו-npm.",
-          "description": "Bitsocial Seeder מיתדות דפי קהילה ראשונים, CID לאחר עדכון וניתוב נושא pubsub דרך daemon Bitsocial. הוא משתמש שוב ב-daemon מקומי שכבר פועל כאשר הוא זמין או מפעיל באופן אוטומטי את ה-daemon bitsocial-cli המוכלל, והוא משודר גם כתמונת Docker לפריסות VPS ללא פיקוח וגם כחבילת npm לאופרטורים Node-first."
+          "tagline": "שומר על קהילות Bitsocial מהירות וזמינות באמצעות אירוח מחדש של התוכן שלהן, דרך Docker או npm.",
+          "description": "Bitsocial Seeder עוזר לקהילות להיטען במהירות על ידי שמירת עותקים נוספים של התוכן שלהן ברשת. הוא מצמיד את העמוד הראשון של כל קהילה, את ה-CID של עדכוני ה-posts וניתוב נושאי pubsub דרך daemon של Bitsocial. הוא משתמש ב-daemon מקומי שכבר פועל כשהוא זמין, או מפעיל אוטומטית את ה-daemon המצורף של bitsocial-cli, והוא מופץ גם כ-image של Docker לפריסות VPS ללא השגחה וגם כחבילת npm למפעילים Node-first."
         },
         "ai-moderation-challenge": {
-          "tagline": "בדיקות ניהול תואמות OpenAI מול כללי כל קהילה.",
+          "tagline": "בודק כל post מול כללי הקהילה באמצעות מודל AI שהבעלים בוחר.",
           "description": "AI Moderation Challenge מעריך את תוכן התגובות של Bitsocial מול <code>community.rules</code> באמצעות model endpoint שתואם ל-OpenAI. קהילות יכולות לנתב פוסטים מסוכנים לבדיקה תוך שמירה על provider keys ו-prompts בהגדרות node פרטיות."
         },
         "r9k-challenge": {
-          "tagline": "שער מקוריות בסגנון Robot9000 לקהילות שרוצות חוויית פרסום שמונעת פרסומים חוזרים.",
+          "tagline": "כלל בסגנון Robot9000 שדוחה כל post שחוזר על טקסט שכבר פורסם בקהילה.",
           "description": "R9K Challenge רץ על צומת קהילה של Bitsocial ומשווה טקסט פוסט מנורמל מול מסד התגובות המקומי של צומת הבעלים. הוא נותן לקהילות חוויית פרסום בסגנון <robot9000>Robot9000</robot9000>: פרסומים חוזרים זהים נכשלים לפני קבלה, backlinks מתעלמים מהם, כישלונות חוזרים מפעילים חסימות זמניות מדורגות, ו-hashes של טקסט שהתקבל נשארים במצב מקומי פרטי במקום לשמור את טקסט הפוסט הגולמי. האתגר הזה לא משתמש ב-AI."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "פלטפורמה לשיתוף פעולה בקוד בשלב הרעיון, שמשלבת Git מסוג peer-to-peer עם השכבה החברתית של Bitsocial.",
-          "description": "GitCommons הוא מחקר על חלופה ל-GitHub שמשלבת שכבת Git מסוג peer-to-peer בסגנון Radicle עם הפרופילים, הקהילות, הגילוי והמוניטין של Bitsocial. הדיונים של כל מאגר יהיו קהילת Bitsocial, פרופילי המפתחים יהיו צומתי פרופיל שרוב האנשים ניגשים אליהם דרך RPC ציבוריים, ו-CI יגיע משירותי runner מתחרים במקום מספק חובה יחיד. GitCommons הוא שם זמני; הפרויקט אינו קשור ל-GitHub, Inc. או לפרויקט Git."
+          "description": "GitCommons הוא מחקר על חלופה ל-GitHub שמשלבת שכבת Git מסוג peer-to-peer בסגנון Radicle עם הפרופילים, הקהילות, הגילוי והמוניטין של Bitsocial. הדיונים של כל מאגר יהיו קהילת Bitsocial, פרופילי המפתחים יהיו פרופילי Bitsocial, ו-CI יגיע משירותי runner מתחרים במקום מספק חובה יחיד. GitCommons הוא שם זמני; הפרויקט אינו קשור ל-GitHub, Inc. או לפרויקט Git."
         },
         "modelswarm": {
           "tagline": "חלופה ל־Hugging Face בשלב הרעיון, שבה נחיל של עמיתים משתף מודלי AI עם משקלים פתוחים.",

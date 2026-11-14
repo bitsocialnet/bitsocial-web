@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "বিকেন্দ্রীভূত imageboard, যেখানে web, APK, আর desktop ডাউনলোড সরাসরি পাওয়া যায়।",
+          "tagline": "Bitsocial-এ বেনামি imageboard, web, Android, আর desktop-এর জন্য।",
           "description": "5chan হলো প্রথম পাবলিক Bitsocial client। এটি peer-to-peer নেটওয়ার্কে anonymous imageboard-এর অভিজ্ঞতাকে আবার তৈরি করে: boards, threads, image posting, community moderation, আর central server-এর ওপর নির্ভর না করে একাধিক public mirror।"
         },
         "seedit": {
-          "tagline": "forum-style Bitsocial client, web, APK, আর desktop build সহ।",
-          "description": "Seedit Reddit-এর মতো আলোচনা Bitsocial-এ আনে threads, identities, community management, আর একাধিক distribution path-এর মাধ্যমে। ব্রাউজার, Android ফোন, বা desktop app থেকে নেটওয়ার্কের forum দিকটা চেষ্টা করার সবচেয়ে দ্রুত উপায় এটি।"
+          "tagline": "Bitsocial-এ Reddit-ধাঁচের কমিউনিটি, web, Android, আর desktop-এর জন্য।",
+          "description": "Seedit Reddit-এর মতো আলোচনা Bitsocial-এ আনে: এমন কমিউনিটি যা যে কেউ তৈরি করতে ও নিজের মালিকানায় রাখতে পারে, ভোটিং, থ্রেডেড কমেন্ট, আর প্রতিটি কমিউনিটির মালিকের ঠিক করা মডারেশন। ব্রাউজার, Android ফোন, বা desktop app থেকে নেটওয়ার্কের forum দিকটা চেষ্টা করার সবচেয়ে দ্রুত উপায় এটি।"
         },
         "spam-blocker": {
-          "tagline": "অবমাননাকর publication filter করার জন্য centralized risk scoring layer।",
+          "tagline": "হোস্টেড risk-scoring সার্ভিস, যা কমিউনিটিগুলোকে স্প্যাম ও ban evasion ফিল্টার করতে সাহায্য করে।",
           "description": "Spam Blocker প্রকাশনা মূল্যায়ন করে এবং একটি ঝুঁকি স্কোর প্রদান করে যা সম্প্রদায়গুলি তাদের নিজস্ব মডারেশন লজিকের সাথে একত্রিত করতে পারে। এর হোস্ট করা সেবা একই IP থেকে প্রথমবার দেখা স্বাক্ষরকারী কী গুলিকেও সংযুক্ত করে, তাই একজন ব্যবহারকারী যে ক্রমাগত সম্প্রদায়ের নিষেধাজ্ঞা এড়াতে বা কথোপকথন তৈরি করতে নতুন অ্যাকাউন্ট তৈরি করে তার ঝুঁকি স্কোর বৃদ্ধি পায়, যখন কয়েকজন স্বাক্ষরকারী বৈধ মাল্টি-ডিভাইস ব্যবহারের জন্য অনুমোদিত থাকে।"
         },
         "captcha-canvas-challenge": {
           "tagline": "human verification চাই এমন community-গুলোর জন্য custom image CAPTCHA।",
-          "description": "Captcha Canvas Challenge visual CAPTCHA তৈরি করে, যা community-গুলো তাদের publishing flow-এ বসাতে পারে। নিজস্ব hosting-এর moderation ছাড়তে না চেয়েও direct human check চাইলে এটি একটি lightweight option।"
+          "description": "Captcha Canvas Challenge কমিউনিটির নিজস্ব নোডেই একটি ইমেজ CAPTCHA তৈরি করে এবং কোনো পোস্ট, রিপ্লাই বা ভোট গৃহীত হওয়ার আগে পোস্টকারীকে সেটি সমাধান করতে হয়। তৃতীয় পক্ষের কোনো CAPTCHA সার্ভিসে কিছুই পাঠানো হয় না। এটি একটি প্রাথমিক প্রতিরোধক, যা নাছোড় বট brute-force করে ভাঙতে পারে, তাই যেসব কমিউনিটিতে স্প্যাম বেশি আসে সেখানে এটিকে আরেকটি চ্যালেঞ্জের সঙ্গে ব্যবহার করুন।"
         },
         "voucher-challenge": {
           "tagline": "invite-style voucher code, controlled growth পছন্দ করা community-গুলোর জন্য।",
-          "description": "Voucher Challenge moderator-দের trusted voucher code বিতরণ করতে দেয়, যা global identity provider ছাড়াই publishing unlock করে। invite-driven community, niche board, আর gradual rollout-এর জন্য এটি ভালো মানায়।"
+          "description": "Voucher Challenge moderator-দের trusted voucher code বিতরণ করতে দেয়, যা global identity provider ছাড়াই publishing unlock করে। একটি code প্রথম যে author সেটি redeem করেন তাঁর সঙ্গে বাঁধা হয়ে যায়, ফলে সেই author এটি দিয়ে পোস্ট করে যেতে পারেন আর অন্য কেউ এটি আবার ব্যবহার করতে পারে না।"
         },
         "evm-contract-call": {
-          "tagline": "token বা contract check চাই এমন community-গুলোর জন্য on-chain gating।",
-          "description": "EVM Contract Call post গ্রহণের আগে একটি EVM contract call করে publication verify করে। এতে community-গুলো token gate, staking rule, বা অন্য on-chain check moderation flow-এ যুক্ত করতে পারে।"
+          "tagline": "পোস্টকারীদের একটি on-chain check পাস করতে হয়, যেমন কোনো token ধারণ করা।",
+          "description": "EVM Contract Call post গ্রহণের আগে একটি EVM contract call করে publication verify করে। এতে community-গুলো token gate, staking rule, বা অন্য on-chain check তাদের পোস্টিং নিয়মে যুক্ত করতে পারে।"
         },
         "bitsocial-cli": {
-          "tagline": "node, community, আর automation workflow-এর জন্য command-line control।",
-          "description": "Bitsocial CLI হলো প্রোটোকলের অফিসিয়াল টার্মিনাল ইন্টারফেস। এটি ব্যবহার করে নোড পরিচালনা করুন, কনটেন্ট প্রকাশ করুন, প্রোগ্রামগত নিয়ন্ত্রণ ও কোড অটোমেশনের জন্য একটি WebSocket JSON-RPC সার্ভার চালু করুন, অ্যাডমিন ফ্লো স্বয়ংক্রিয় করুন, এবং GUI ক্লায়েন্ট ছাড়াই সরাসরি Bitsocial primitives-এর সঙ্গে কাজ করুন।"
+          "tagline": "টার্মিনাল থেকে একটি Bitsocial নোড চালান এবং কমিউনিটি পরিচালনা করুন।",
+          "description": "Bitsocial CLI হলো প্রোটোকলের অফিসিয়াল টার্মিনাল ইন্টারফেস। এটি ব্যবহার করে একটি নোড চালান, কমিউনিটি তৈরি ও পরিচালনা করুন, কনটেন্ট প্রকাশ করুন, এবং এমন একটি WebSocket JSON-RPC সার্ভার চালু করুন যা অন্য প্রোগ্রাম নিয়ন্ত্রণ করতে পারে।"
         },
         "telegram-bots": {
           "tagline": "feed bot, যা নতুন Bitsocial post Telegram channel বা group-এ পাঠায়।",
           "description": "Bitsocial Telegram Bots client community list monitor করে এবং নতুন post-গুলোকে Telegram destination-এ forward করে, Bitsocial client-এ ফিরে যাওয়ার জন্য inline link সহ। সক্রিয় bot এখন 5chan feed cover করে, আর repository এমনভাবে সাজানো যাতে সময়ের সঙ্গে আরও client-specific bot যোগ করা যায়।"
         },
         "5chan-board-manager": {
-          "tagline": "custom 5chan community-র জন্য board administration tooling।",
-          "description": "5chan Board Manager Bitsocial CLI-এর সাথে সংযুক্ত হয়ে প্রশাসকদের কাস্টম ইমেজবোর্ড বোর্ড তৈরি, কনফিগার ও মডারেট করতে সাহায্য করে। এটি বোর্ড মালিকদের জন্য অপারেশনাল নিয়ন্ত্রণের ইউটিলিটি স্তর।"
+          "tagline": "5chan বোর্ডের জন্য 4chan-ধাঁচের থ্রেড আর্কাইভিং, bump limit আর purging।",
+          "description": "5chan Board Manager Bitsocial CLI-এর পাশাপাশি চলে এবং একটি বোর্ডকে 4chan-এর থ্রেড জীবনচক্র দেয়: শেষ পৃষ্ঠা থেকে পড়ে যাওয়া থ্রেড আর্কাইভ হয়, আর্কাইভ হওয়া থ্রেড নির্ধারিত সময় পরে purge হয়, bump limit পেরোনো থ্রেড আর bump হয় না, এবং লেখকের নিজের মুছে ফেলা পোস্ট purge হয়।"
         },
         "flags-challenge": {
-          "tagline": "যাচাইকৃত পতাকা জারিকারী চ্যালেঞ্জ দেশ এবং বোর্ড-নির্দিষ্ট ব্যাজের জন্য।",
+          "tagline": "পোস্টে যাচাইকৃত দেশ ও বোর্ডের পতাকা, কমিউনিটির আস্থাভাজন একজন জারিকারীর স্বাক্ষরিত।",
           "description": "Flags Challenge একটি Bitsocial সম্প্রদায় নোডে চলে এবং একটি কনফিগারযোগ্য জারিকারক সেবা থেকে স্বাক্ষরিত ফ্ল্যাগ দাবি যাচাই করে। প্রথম বান্ডিল করা প্রোফাইল 5chan কে লক্ষ্য করে, দেশ ঝাঁড়া, /pol/ memeflags এবং /mlp/ pony flags কভার করে, একই প্যাটার্নটি যেকোনো ক্লায়েন্টের জন্য পুনর্ব্যবহারযোগ্য রেখে যা তার নিজের জারিকারক এবং নামস্থান চালায়।"
         },
         "bitsocial-seeder": {
-          "tagline": "Bitsocial সম্প্রদায়ের জন্য পাবলিক সিডার, Docker এবং npm এর জন্য প্যাকেজ করা।",
-          "description": "Bitsocial Seeder সম্প্রদায়ের প্রথম পৃষ্ঠা, post-update CID এবং pubsub বিষয় রুটিং পিন করে একটি Bitsocial daemon এর মাধ্যমে। এটি ইতিমধ্যে চলমান স্থানীয় daemon পুনরায় ব্যবহার করে যখন এটি পৌঁছানো যায় বা বান্ডিলকৃত bitsocial-cli daemon স্বয়ংক্রিয়ভাবে শুরু করে, এবং অপ্রত্যাশিত VPS স্থাপনার জন্য Docker ইমেজ এবং Node-first অপারেটরদের জন্য npm প্যাকেজ উভয় হিসাবে চালু হয়।"
+          "tagline": "Bitsocial কমিউনিটির কনটেন্ট পুনরায় হোস্ট করে সেগুলোকে দ্রুত ও নাগালের মধ্যে রাখে, Docker বা npm-এর মাধ্যমে।",
+          "description": "Bitsocial Seeder কমিউনিটির কনটেন্টের বাড়তি কপি অনলাইনে রেখে কমিউনিটিগুলোকে দ্রুত লোড হতে সাহায্য করে। এটি একটি Bitsocial daemon-এর মাধ্যমে কমিউনিটির প্রথম পৃষ্ঠা, পোস্ট আপডেটের CID এবং pubsub topic রাউটিং পিন করে। নাগালে থাকলে এটি ইতিমধ্যে চলমান স্থানীয় daemon পুনরায় ব্যবহার করে, নয়তো বান্ডিল করা bitsocial-cli daemon স্বয়ংক্রিয়ভাবে চালু করে, এবং তত্ত্বাবধানহীন VPS ডিপ্লয়মেন্টের জন্য Docker ইমেজ ও Node-first অপারেটরদের জন্য npm প্যাকেজ, দুই রূপেই পাওয়া যায়।"
         },
         "ai-moderation-challenge": {
-          "tagline": "প্রতিটি কমিউনিটির নিয়মের বিরুদ্ধে OpenAI-সামঞ্জস্যপূর্ণ মডারেশন পরীক্ষা।",
+          "tagline": "মালিকের বেছে নেওয়া একটি AI মডেল দিয়ে প্রতিটি পোস্ট কমিউনিটির নিয়মের সঙ্গে মিলিয়ে পরীক্ষা করে।",
           "description": "AI Moderation Challenge OpenAI-compatible model endpoint দিয়ে Bitsocial মন্তব্যের বিষয়বস্তুকে <code>community.rules</code>-এর বিরুদ্ধে মূল্যায়ন করে। communities ঝুঁকিপূর্ণ পোস্টগুলো review-তে পাঠাতে পারে, আর provider keys ও prompts private node settings-এ রাখতে পারে।"
         },
         "r9k-challenge": {
-          "tagline": "যেসব কমিউনিটি anti-repost পোস্টিং অভিজ্ঞতা চায়, তাদের জন্য Robot9000-ধাঁচের মৌলিকতা gate।",
+          "tagline": "Robot9000-ধাঁচের নিয়ম, যা কমিউনিটিতে আগে পোস্ট হওয়া লেখার পুনরাবৃত্তি করা যেকোনো পোস্ট প্রত্যাখ্যান করে।",
           "description": "R9K Challenge একটি Bitsocial community node-এ চলে এবং normalized পোস্টের টেক্সটকে মালিক node-এর local comments database-এর সঙ্গে মিলিয়ে দেখে। এটি community-গুলোকে <robot9000>Robot9000</robot9000>-ধাঁচের posting experience দেয়: exact repost acceptance-এর আগে fail করে, backlinks উপেক্ষা করা হয়, repeated failures escalating temporary bans চালু করে, এবং raw post text সংরক্ষণ না করে accepted-text hashes private local state-এ থাকে. এই challenge-এ কোনো AI ব্যবহার করা হয় না।"
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "ধারণা পর্যায়ের কোড সহযোগিতা প্ল্যাটফর্ম, যা peer-to-peer Git-কে Bitsocial-এর সোশ্যাল লেয়ারের সঙ্গে যুক্ত করে।",
-          "description": "GitCommons হলো একটি GitHub বিকল্প নিয়ে গবেষণা, যা Radicle-ধাঁচের একটি peer-to-peer Git স্তরকে Bitsocial-এর প্রোফাইল, কমিউনিটি, ডিসকভারি ও রেপুটেশনের সঙ্গে যুক্ত করে। প্রতিটি রিপোজিটরির আলোচনা হবে একটি Bitsocial কমিউনিটি, ডেভেলপার প্রোফাইলগুলো হবে প্রোফাইল নোড, যেগুলোতে বেশিরভাগ মানুষ সর্বজনীন RPC-এর মাধ্যমে পৌঁছাবেন, আর CI আসবে একটি বাধ্যতামূলক প্রোভাইডারের বদলে পরস্পর প্রতিযোগী runner সার্ভিস থেকে। GitCommons একটি অস্থায়ী নাম; প্রকল্পটি GitHub, Inc. বা Git প্রকল্পের সঙ্গে যুক্ত নয়।"
+          "description": "GitCommons হলো একটি GitHub বিকল্প নিয়ে গবেষণা, যা Radicle-ধাঁচের একটি peer-to-peer Git স্তরকে Bitsocial-এর প্রোফাইল, কমিউনিটি, ডিসকভারি ও রেপুটেশনের সঙ্গে যুক্ত করে। প্রতিটি রিপোজিটরির আলোচনা হবে একটি Bitsocial কমিউনিটি, ডেভেলপার প্রোফাইলগুলো হবে Bitsocial প্রোফাইল, আর CI আসবে একটি বাধ্যতামূলক প্রোভাইডারের বদলে পরস্পর প্রতিযোগী runner সার্ভিস থেকে। GitCommons একটি অস্থায়ী নাম; প্রকল্পটি GitHub, Inc. বা Git প্রকল্পের সঙ্গে যুক্ত নয়।"
         },
         "modelswarm": {
           "tagline": "ধারণা পর্যায়ের Hugging Face বিকল্প, যেখানে open-weight AI মডেলগুলো একঝাঁক peer মিলে শেয়ার করে।",

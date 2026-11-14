@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "web, APK ve desktop için doğrudan indirmeler sunan merkeziyetsiz imageboard'lar.",
+          "tagline": "Bitsocial üzerinde anonim imageboard'lar; web, Android ve desktop için.",
           "description": "5chan, Bitsocial'ın ilk herkese açık client'ıdır. Anonim imageboard akışını peer-to-peer bir ağ üzerinde yeniden kurar: board'lar, thread'ler, görsel paylaşımı, topluluk moderasyonu ve merkezi bir sunucuya ihtiyaç duymadan birden fazla public mirror."
         },
         "seedit": {
-          "tagline": "web, APK ve desktop build'leri olan forum tarzı Bitsocial client'ı.",
-          "description": "Seedit, Reddit tarzı tartışmayı thread'ler, kimlikler, topluluk yönetimi ve birden fazla dağıtım yolu ile Bitsocial'a getirir. Ağın forum tarafını bir tarayıcıdan, Android telefondan veya desktop uygulamasından denemenin en hızlı yoludur."
+          "tagline": "Bitsocial üzerinde Reddit tarzı topluluklar; web, Android ve desktop için.",
+          "description": "Seedit, Reddit tarzı tartışmayı Bitsocial'a getirir: herkesin oluşturup sahip olabileceği topluluklar, oylama, iç içe yorumlar ve her topluluğun sahibinin belirlediği moderasyon. Ağın forum tarafını bir tarayıcıdan, Android telefondan veya desktop uygulamasından denemenin en hızlı yoludur."
         },
         "spam-blocker": {
-          "tagline": "Kötüye kullanılan yayınları filtrelemek için merkezi risk puanlama katmanı.",
+          "tagline": "Toplulukların spam'i ve ban atlatmayı filtrelemesine yardımcı olan barındırılan risk puanlama hizmeti.",
           "description": "Spam Blocker yayınları değerlendirir ve toplulukların kendi ılımlılık mantığıyla birleştirebileceği bir risk puanı döndürür. Barındırılan hizmeti, aynı IP'den ilk kez görülen imzalayan anahtarları da bağlantılandırır, bu nedenle topluluk yasakından kaçınmak veya konuşma üretmek için yeni hesaplar oluşturmaya devam eden bir kullanıcı, risk puanının arttığını görürken, birkaç imzalayan, yasal çok cihazlı kullanım için izin verilmiş kalır."
         },
         "captcha-canvas-challenge": {
           "tagline": "İnsan doğrulaması isteyen topluluklar için özel görsel captcha'lar.",
-          "description": "Captcha Canvas Challenge, toplulukların kendi publishing akışına bağlayabileceği görsel captcha'lar üretir. Self-hosted moderation'dan vazgeçmeden doğrudan insan kontrolü isteyen topluluklar için hafif bir seçenektir."
+          "description": "Captcha Canvas Challenge, topluluğun kendi node'unda bir görsel captcha üretir ve bir gönderi, yanıt veya oy kabul edilmeden önce gönderenlerin bunu çözmesini şart koşar. Üçüncü taraf bir captcha hizmetine hiçbir şey gönderilmez. Kararlı botların kaba kuvvetle aşabileceği temel bir caydırıcıdır; bu yüzden spam çeken topluluklarda başka bir sınamayla birlikte kullanın."
         },
         "voucher-challenge": {
           "tagline": "Kontrollü büyümeyi tercih eden topluluklar için davet tarzı voucher kodları.",
-          "description": "Voucher Challenge, moderatörlerin global bir identity provider olmadan publishing'i açan güvenilir voucher kodları dağıtmasına izin verir. Davet odaklı topluluklar, niş board'lar ve kademeli rollouts için iyi bir uyumdur."
+          "description": "Voucher Challenge, moderatörlerin global bir identity provider olmadan publishing'i açan güvenilir voucher kodları dağıtmasına izin verir. Bir kod, onu ilk kullanan yazara bağlanır; böylece o yazar kodla gönderi yapmaya devam eder ve başka hiç kimse kodu yeniden kullanamaz."
         },
         "evm-contract-call": {
-          "tagline": "Token veya contract kontrolü isteyen topluluklar için on-chain gating.",
-          "description": "EVM Contract Call, bir post kabul edilmeden önce bir EVM contract çağırarak yayınları doğrular. Toplulukların moderation akışına token gate'ler, staking kuralları veya başka on-chain kontroller eklemesini sağlar."
+          "tagline": "Gönderenlerin, bir token'a sahip olmak gibi bir on-chain kontrolden geçmesini şart koşar.",
+          "description": "EVM Contract Call, bir post kabul edilmeden önce bir EVM contract çağırarak yayınları doğrular. Toplulukların gönderi kurallarına token gate'ler, staking kuralları veya başka on-chain kontroller eklemesini sağlar."
         },
         "bitsocial-cli": {
-          "tagline": "node'lar, topluluklar ve automation workflow'ları için command-line kontrolü.",
-          "description": "Bitsocial CLI, protokol için resmi terminal arayüzüdür. Düğümleri yönetmek, içerik yayımlamak, programatik kontrol ve kod otomasyonu için bir WebSocket JSON-RPC sunucusu başlatmak, yönetim akışlarını otomatikleştirmek ve GUI istemcisi olmadan doğrudan Bitsocial primitive’leriyle çalışmak için kullanın."
+          "tagline": "Terminalden bir Bitsocial node'u çalıştırın ve toplulukları yönetin.",
+          "description": "Bitsocial CLI, protokol için resmi terminal arayüzüdür. Bir düğüm çalıştırmak, topluluklar oluşturup yönetmek, içerik yayımlamak ve başka programların yönetebileceği bir WebSocket JSON-RPC sunucusu başlatmak için kullanın."
         },
         "telegram-bots": {
           "tagline": "Yeni Bitsocial gönderilerini Telegram channel veya group'lara aktaran feed bot'lar.",
           "description": "Bitsocial Telegram Bots, client topluluk listelerini izler ve yeni gönderileri Telegram destination'larına inline link'lerle birlikte, Bitsocial client'larına geri dönecek şekilde iletir. Aktif bot bugün 5chan feed'lerini kapsıyor ve repo, zaman içinde daha fazla client-specific bot eklenebilecek şekilde düzenlendi."
         },
         "5chan-board-manager": {
-          "tagline": "Özel 5chan toplulukları için board yönetim araçları.",
-          "description": "5chan Board Manager, yöneticilerin özel imageboard panoları oluşturmasına, yapılandırmasına ve yönetmesine yardımcı olmak için Bitsocial CLI'ye bağlanır. Bu, operasyonel kontrol isteyen pano sahipleri için yardımcı katmandır."
+          "tagline": "5chan board'ları için 4chan tarzı thread arşivleme, bump limitleri ve temizleme.",
+          "description": "5chan Board Manager, Bitsocial CLI'nin yanında çalışır ve bir board'a 4chan'in thread yaşam döngüsünü kazandırır: son sayfadan düşen thread'ler arşivlenir, arşivlenen thread'ler belirlenen süre sonunda temizlenir, bump limitini aşan thread'ler artık bump'lanmaz ve yazarının sildiği gönderiler temizlenir."
         },
         "flags-challenge": {
-          "tagline": "Ülke ve forum özel rozet için doğrulanmış bayrak veren meydan okuma.",
+          "tagline": "Gönderilerde, topluluğun güvendiği bir veren tarafından imzalanmış doğrulanmış ülke ve board bayrakları.",
           "description": "Flags Challenge, bir Bitsocial toplum düğümünde çalışır ve yapılandırılabilir bir yayınlayan hizmetinden imzalı bayrak önerilişlerini doğrular. İlk paket profil, 5chan'ı hedefler, ülke bayraklarını, /pol/ memeflags ve /mlp/ pony flags kapsar ve kendi yayınlayan hizmetini ve ad alanını çalıştıran herhangi bir istemci için aynı deseni yeniden kullanılabilir olarak tutar."
         },
         "bitsocial-seeder": {
-          "tagline": "Bitsocial toplulukları için genel seeder, Docker ve npm için paketlenmiş.",
-          "description": "Bitsocial Seeder, bir Bitsocial daemon aracılığıyla topluluk öncelikli sayfaları, güncelleme sonrası CID'leri ve pubsub konusu yönlendirmesini sabitleme. Erişilebilir olduğunda zaten çalışan bir yerel daemon'u yeniden kullanır veya paketlenmiş bitsocial-cli daemon'u otomatik olarak başlatır ve hem gözetimsiz VPS dağıtımları için Docker görüntüsü hem de Node-first operatörler için npm paketi olarak sunulur."
+          "tagline": "Bitsocial topluluklarının içeriğini yeniden barındırarak onları hızlı ve erişilebilir tutar; Docker veya npm ile.",
+          "description": "Bitsocial Seeder, içeriklerinin ek kopyalarını çevrimiçi tutarak toplulukların hızlı yüklenmesine yardımcı olur. Bir Bitsocial daemon aracılığıyla toplulukların ilk sayfalarını, gönderi güncelleme CID'lerini ve pubsub konu yönlendirmesini sabitler. Erişilebilir olduğunda zaten çalışan bir yerel daemon'u yeniden kullanır veya paketle gelen bitsocial-cli daemon'unu otomatik olarak başlatır; hem gözetimsiz VPS dağıtımları için Docker imajı hem de Node-first operatörler için npm paketi olarak sunulur."
         },
         "ai-moderation-challenge": {
-          "tagline": "Her topluluğun kurallarına göre OpenAI uyumlu moderasyon kontrolleri.",
+          "tagline": "Her gönderiyi, sahibinin seçtiği bir yapay zekâ modeliyle topluluğun kurallarına göre denetler.",
           "description": "AI Moderation Challenge, OpenAI uyumlu bir model endpoint'i kullanarak Bitsocial yorum içeriğini <code>community.rules</code> karşısında değerlendirir. Topluluklar, provider anahtarlarını ve prompt'ları private node ayarlarında tutarken riskli gönderileri incelemeye yönlendirebilir."
         },
         "r9k-challenge": {
-          "tagline": "Anti-repost gönderi deneyimi isteyen topluluklar için Robot9000 tarzı özgünlük kapısı.",
+          "tagline": "Toplulukta daha önce gönderilmiş bir metni tekrarlayan her gönderiyi reddeden Robot9000 tarzı kural.",
           "description": "R9K Challenge bir Bitsocial topluluk node'unda çalışır ve normalize edilmiş gönderi metnini sahip node'un yerel yorum veritabanıyla karşılaştırır. Topluluklara <robot9000>Robot9000</robot9000> tarzı bir gönderi deneyimi verir: birebir repostlar kabul edilmeden önce başarısız olur, backlinks yok sayılır, tekrarlanan başarısızlıklar artan geçici banları tetikler ve kabul edilen metin hash'leri ham gönderi metnini saklamak yerine private local state içinde kalır. Bu challenge AI kullanmaz."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "Peer-to-peer Git'i Bitsocial'ın sosyal katmanıyla birleştiren, fikir aşamasında bir kod iş birliği platformu.",
-          "description": "GitCommons, Radicle tarzı bir peer-to-peer Git katmanını Bitsocial profilleri, toplulukları, keşfi ve itibarıyla birleştiren bir GitHub alternatifi üzerine yapılan bir araştırmadır. Her deponun tartışmaları bir Bitsocial topluluğu olurdu, geliştirici profilleri çoğu kişinin herkese açık RPC'ler üzerinden eriştiği profil düğümleri olurdu ve CI, tek bir zorunlu sağlayıcı yerine birbiriyle rekabet eden runner hizmetlerinden gelirdi. GitCommons geçici bir çalışma adıdır; proje GitHub, Inc. veya Git projesiyle bağlantılı değildir."
+          "description": "GitCommons, Radicle tarzı bir peer-to-peer Git katmanını Bitsocial profilleri, toplulukları, keşfi ve itibarıyla birleştiren bir GitHub alternatifi üzerine yapılan bir araştırmadır. Her deponun tartışmaları bir Bitsocial topluluğu olurdu, geliştirici profilleri Bitsocial profilleri olurdu ve CI, tek bir zorunlu sağlayıcı yerine birbiriyle rekabet eden runner hizmetlerinden gelirdi. GitCommons geçici bir çalışma adıdır; proje GitHub, Inc. veya Git projesiyle bağlantılı değildir."
         },
         "modelswarm": {
           "tagline": "Açık ağırlıklı yapay zekâ modellerinin bir eş sürüsü tarafından paylaşıldığı, fikir aşamasında bir Hugging Face alternatifi.",

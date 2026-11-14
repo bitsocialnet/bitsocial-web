@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "Imageboard terdesentralisasi dengan unduhan langsung untuk web, APK, dan desktop.",
+          "tagline": "Imageboard anonim di Bitsocial, untuk web, Android, dan desktop.",
           "description": "5chan adalah client publik pertama Bitsocial. Ia merekonstruksi alur imageboard anonim di jaringan peer-to-peer: board, thread, posting gambar, moderasi komunitas, dan beberapa mirror publik tanpa bergantung pada server pusat."
         },
         "seedit": {
-          "tagline": "Client Bitsocial bergaya forum dengan build web, APK, dan desktop.",
-          "description": "Seedit membawa diskusi ala Reddit ke Bitsocial dengan thread, identitas, pengelolaan komunitas, dan banyak jalur distribusi. Ini cara tercepat untuk mencoba sisi forum jaringan dari browser, ponsel Android, atau aplikasi desktop."
+          "tagline": "Komunitas ala Reddit di Bitsocial, untuk web, Android, dan desktop.",
+          "description": "Seedit membawa diskusi ala Reddit ke Bitsocial: komunitas yang bisa dibuat dan dimiliki siapa saja, voting, komentar berutas, dan moderasi yang ditentukan oleh pemilik setiap komunitas. Ini cara tercepat untuk mencoba sisi forum jaringan dari browser, ponsel Android, atau aplikasi desktop."
         },
         "spam-blocker": {
-          "tagline": "Lapisan penilaian risiko terpusat untuk menyaring publikasi abusif.",
+          "tagline": "Layanan penilaian risiko ter-hosting yang membantu komunitas menyaring spam dan penghindaran ban.",
           "description": "Spam Blocker mengevaluasi publikasi dan mengembalikan skor risiko yang dapat dipadukan komunitas dengan logika moderasi mereka sendiri. Layanan tertempat menetapkan juga menghubungkan kunci penanda tangan yang pertama kali terlihat dari IP yang sama, sehingga pengguna yang terus membuat akun baru untuk menghindari larangan komunitas atau menciptakan percakapan melihat skor risiko mereka meningkat, sementara beberapa penanda tangan tetap diizinkan untuk penggunaan multi-perangkat yang sah."
         },
         "captcha-canvas-challenge": {
           "tagline": "Captcha gambar kustom untuk komunitas yang ingin verifikasi manusia.",
-          "description": "Captcha Canvas Challenge menghasilkan captcha visual yang bisa ditanamkan komunitas ke alur publikasi mereka sendiri. Ini opsi ringan untuk komunitas yang ingin pemeriksaan manusia langsung tanpa meninggalkan moderasi self-hosted."
+          "description": "Captcha Canvas Challenge menghasilkan captcha gambar di node milik komunitas itu sendiri dan mewajibkan pengirim menyelesaikannya sebelum post, balasan, atau vote diterima. Tidak ada yang dikirim ke layanan captcha pihak ketiga. Ini penangkal dasar yang bisa di-brute-force oleh bot yang gigih, jadi padukan dengan tantangan lain di komunitas yang menarik spam."
         },
         "voucher-challenge": {
           "tagline": "Kode voucher bergaya undangan untuk komunitas yang lebih suka pertumbuhan terkontrol.",
-          "description": "Voucher Challenge memungkinkan moderator mendistribusikan kode voucher tepercaya yang membuka publikasi tanpa identity provider global. Ini cocok untuk komunitas berbasis undangan, board niche, dan rollout bertahap."
+          "description": "Voucher Challenge memungkinkan moderator mendistribusikan kode voucher tepercaya yang membuka publikasi tanpa identity provider global. Kode terikat pada penulis pertama yang menukarkannya, sehingga penulis itu bisa terus memposting dengannya dan tidak ada orang lain yang bisa memakainya lagi."
         },
         "evm-contract-call": {
-          "tagline": "Gating on-chain untuk komunitas yang ingin pengecekan token atau contract.",
-          "description": "EVM Contract Call memverifikasi publikasi dengan memanggil contract EVM sebelum post diterima. Ini memungkinkan komunitas membangun token gate, aturan staking, atau pengecekan on-chain lain ke dalam alur moderasi mereka."
+          "tagline": "Mewajibkan pengirim lolos pengecekan on-chain, seperti memiliki token.",
+          "description": "EVM Contract Call memverifikasi publikasi dengan memanggil contract EVM sebelum post diterima. Ini memungkinkan komunitas membangun token gate, aturan staking, atau pengecekan on-chain lain ke dalam aturan posting mereka."
         },
         "bitsocial-cli": {
-          "tagline": "Kontrol command-line untuk node, komunitas, dan workflow automasi.",
-          "description": "Bitsocial CLI adalah antarmuka terminal resmi untuk protokol ini. Gunakan untuk mengelola node, menerbitkan konten, menjalankan server WebSocket JSON-RPC untuk kontrol terprogram dan otomatisasi kode, mengotomatisasi alur admin, dan bekerja langsung dengan primitive Bitsocial tanpa klien GUI."
+          "tagline": "Jalankan node Bitsocial dan kelola komunitas dari terminal.",
+          "description": "Bitsocial CLI adalah antarmuka terminal resmi untuk protokol ini. Gunakan untuk menjalankan node, membuat dan mengelola komunitas, menerbitkan konten, dan memulai server WebSocket JSON-RPC yang bisa dikendalikan program lain."
         },
         "telegram-bots": {
           "tagline": "Feed bot yang meneruskan posting Bitsocial baru ke channel atau group Telegram.",
           "description": "Bitsocial Telegram Bots memantau daftar komunitas client dan meneruskan posting baru ke tujuan Telegram dengan inline link kembali ke client Bitsocial. Bot aktif saat ini mencakup feed 5chan, dan repositori disusun agar bot khusus client lain bisa ditambahkan seiring waktu."
         },
         "5chan-board-manager": {
-          "tagline": "Tool administrasi board untuk komunitas 5chan kustom.",
-          "description": "5chan Board Manager terhubung ke Bitsocial CLI untuk membantu administrator membuat, mengonfigurasi, dan memoderasi board imageboard kustom. Ini adalah lapisan utilitas bagi pemilik board yang menginginkan kontrol operasional."
+          "tagline": "Pengarsipan thread, bump limit, dan pembersihan ala 4chan untuk board 5chan.",
+          "description": "5chan Board Manager berjalan di samping Bitsocial CLI dan memberi sebuah board siklus hidup thread ala 4chan: thread yang jatuh dari halaman terakhir diarsipkan, thread yang diarsipkan dibersihkan setelah waktu yang ditentukan, thread yang melewati bump limit berhenti ter-bump, dan post yang dihapus penulisnya dibersihkan."
         },
         "flags-challenge": {
-          "tagline": "Tantangan penerbit bendera terverifikasi untuk lencana spesifik negara dan papan.",
+          "tagline": "Bendera negara dan board terverifikasi pada post, ditandatangani oleh penerbit yang dipercaya komunitas.",
           "description": "Flags Challenge berjalan pada node komunitas Bitsocial dan memverifikasi pernyataan bendera yang ditandatangani dari layanan penerbit yang dapat dikonfigurasi. Profil bundel pertama menargetkan 5chan, mencakup bendera negara, memeflags /pol/, dan pony flags /mlp/, sambil menjaga pola yang sama dapat digunakan kembali untuk klien apa pun yang menjalankan penerbit dan ruang nama mereka sendiri."
         },
         "bitsocial-seeder": {
-          "tagline": "Seeder publik untuk komunitas Bitsocial, dikemas untuk Docker dan npm.",
-          "description": "Bitsocial Seeder menyematkan halaman pertama komunitas, CID pasca-pembaruan, dan perutean topik pubsub melalui daemon Bitsocial. Ini menggunakan kembali daemon lokal yang sudah berjalan saat dapat dijangkau atau memulai daemon bitsocial-cli bundel secara otomatis, dan dikirim sebagai citra Docker untuk penyebaran VPS tanpa pengawasan dan paket npm untuk operator Node-first."
+          "tagline": "Menjaga komunitas Bitsocial tetap cepat dan dapat dijangkau dengan meng-host ulang kontennya, lewat Docker atau npm.",
+          "description": "Bitsocial Seeder membantu komunitas dimuat dengan cepat dengan menjaga salinan tambahan kontennya tetap online. Seeder ini menyematkan halaman pertama setiap komunitas, CID pembaruan post, dan perutean topik pubsub melalui daemon Bitsocial. Ia memakai daemon lokal yang sudah berjalan jika dapat dijangkau, atau otomatis menjalankan daemon bitsocial-cli bawaan, dan tersedia sebagai image Docker untuk deployment VPS tanpa pengawasan maupun sebagai paket npm untuk operator Node-first."
         },
         "ai-moderation-challenge": {
-          "tagline": "Pemeriksaan moderasi yang kompatibel dengan OpenAI sesuai aturan setiap komunitas.",
+          "tagline": "Memeriksa setiap post terhadap aturan komunitas dengan model AI pilihan pemiliknya.",
           "description": "AI Moderation Challenge mengevaluasi konten komentar Bitsocial terhadap <code>community.rules</code> dengan endpoint model yang kompatibel dengan OpenAI. Komunitas dapat mengarahkan posting berisiko ke review sambil menyimpan kunci provider dan prompt di pengaturan node pribadi."
         },
         "r9k-challenge": {
-          "tagline": "Gerbang orisinalitas bergaya Robot9000 untuk komunitas yang menginginkan pengalaman posting anti-repost.",
+          "tagline": "Aturan bergaya Robot9000 yang menolak setiap post yang mengulang teks yang sudah pernah diposting di komunitas.",
           "description": "R9K Challenge berjalan di node komunitas Bitsocial dan membandingkan teks posting yang sudah dinormalisasi dengan database komentar lokal milik node pemilik. Ini memberi komunitas pengalaman posting bergaya <robot9000>Robot9000</robot9000>: repost persis gagal sebelum diterima, backlink diabaikan, kegagalan berulang memicu ban sementara yang meningkat, dan hash teks yang diterima tetap berada di state lokal privat alih-alih menyimpan teks posting mentah. Challenge ini tidak menggunakan AI."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "Platform kolaborasi kode yang masih berupa ide, yang memadukan Git peer-to-peer dengan lapisan sosial Bitsocial.",
-          "description": "GitCommons adalah riset tentang alternatif GitHub yang menggabungkan lapisan Git peer-to-peer ala Radicle dengan profil, komunitas, discovery, dan reputasi Bitsocial. Diskusi setiap repositori akan menjadi sebuah komunitas Bitsocial, profil developer akan menjadi node profil yang diakses sebagian besar orang melalui RPC publik, dan CI akan datang dari layanan runner yang saling bersaing, bukan dari satu penyedia wajib. GitCommons masih nama sementara; proyek ini tidak berafiliasi dengan GitHub, Inc. maupun proyek Git."
+          "description": "GitCommons adalah riset tentang alternatif GitHub yang menggabungkan lapisan Git peer-to-peer ala Radicle dengan profil, komunitas, discovery, dan reputasi Bitsocial. Diskusi setiap repositori akan menjadi sebuah komunitas Bitsocial, profil developer akan menjadi profil Bitsocial, dan CI akan datang dari layanan runner yang saling bersaing, bukan dari satu penyedia wajib. GitCommons masih nama sementara; proyek ini tidak berafiliasi dengan GitHub, Inc. maupun proyek Git."
         },
         "modelswarm": {
           "tagline": "Alternatif Hugging Face yang masih berupa ide, tempat model AI open-weight dibagikan oleh sekumpulan peer.",

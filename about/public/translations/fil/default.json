@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "Mga desentralisadong imageboard na may direktang web, APK, at desktop na download.",
+          "tagline": "Mga anonymous na imageboard sa Bitsocial, para sa web, Android, at desktop.",
           "description": "Ang 5chan ang unang pampublikong Bitsocial client. Binibigyan nito ng bagong anyo ang anonymous imageboard flow sa peer-to-peer network: boards, threads, pag-post ng larawan, community moderation, at maraming public mirror nang hindi umaasa sa central server."
         },
         "seedit": {
-          "tagline": "Bitsocial client na parang forum, may web, APK, at desktop builds.",
-          "description": "Dinadala ng Seedit ang Reddit-style na diskusyon sa Bitsocial gamit ang threads, identities, community management, at maraming paraan ng distribusyon. Ito ang pinakamabilis na paraan para subukan ang forum side ng network mula sa browser, Android phone, o desktop app."
+          "tagline": "Mga komunidad na Reddit-style sa Bitsocial, para sa web, Android, at desktop.",
+          "description": "Dinadala ng Seedit ang Reddit-style na diskusyon sa Bitsocial: mga komunidad na puwedeng gawin at ariin ng kahit sino, pagboto, mga threaded na komento, at moderation na itinatakda ng may-ari ng bawat komunidad. Ito ang pinakamabilis na paraan para subukan ang forum side ng network mula sa browser, Android phone, o desktop app."
         },
         "spam-blocker": {
-          "tagline": "Centralized na risk scoring layer para salain ang mapang-abusong publikasyon.",
+          "tagline": "Hosted na risk-scoring service na tumutulong sa mga komunidad na salain ang spam at ban evasion.",
           "description": "Sinusuri ng Spam Blocker ang mga publikasyon at nagbabalik ng risk score na maaaring gamitin ng mga komunidad na may kanilang sariling moderasyon logic. Ang naka-host na serbisyo nito ay nag-uugnay din ng mga signer keys na unang nakita mula sa parehong IP, kaya ang isang gumagamit na patuloy na lumilikha ng mga bagong account upang maiwasan ang ban ng komunidad o lumikha ng pag-uusap ay nakikita ang pagtaas ng kanilang risk score, habang ilang mga tagapirmang nananatiling pinapayagan para sa lehitimong multi-device na paggamit."
         },
         "captcha-canvas-challenge": {
           "tagline": "Custom na image captcha para sa mga komunidad na gusto ng human verification.",
-          "description": "Lumilikha ang Captcha Canvas Challenge ng visual captcha na puwedeng isama ng mga komunidad sa sarili nilang publishing flow. Isang magaan na opsyon ito para sa mga komunidad na gusto ng direktang human checks nang hindi isinusuko ang self-hosted moderation."
+          "description": "Lumilikha ang Captcha Canvas Challenge ng image captcha sa sariling node ng komunidad at inaatasan ang mga nagpo-post na lutasin ito bago tanggapin ang isang post, reply, o boto. Walang ipinapadala sa third-party na captcha service. Isa itong pangunahing panangga na kayang i-brute-force ng mga determinadong bot, kaya ipares ito sa isa pang hamon sa mga komunidad na umaakit ng spam."
         },
         "voucher-challenge": {
           "tagline": "Invite-style na voucher code para sa mga komunidad na mas gusto ang kontroladong paglago.",
-          "description": "Hinahayaan ng Voucher Challenge ang mga moderator na mamahagi ng trusted voucher code na nagbubukas ng publishing nang walang global identity provider. Bagay ito sa invite-driven na mga komunidad, niche board, at unti-unting rollout."
+          "description": "Hinahayaan ng Voucher Challenge ang mga moderator na mamahagi ng trusted voucher code na nagbubukas ng publishing nang walang global identity provider. Nakatali ang code sa unang author na gumamit nito, kaya patuloy na makakapag-post ang author na iyon gamit ito at walang ibang makakagamit nito muli."
         },
         "evm-contract-call": {
-          "tagline": "On-chain gating para sa mga komunidad na gusto ng token o contract checks.",
-          "description": "Tinitiyak ng EVM Contract Call ang mga publikasyon sa pamamagitan ng pagtawag sa isang EVM contract bago tanggapin ang post. Hinahayaan nito ang mga komunidad na maglagay ng token gate, staking rules, o iba pang on-chain checks sa kanilang moderation flow."
+          "tagline": "Inaatasan ang mga nagpo-post na pumasa sa on-chain check, gaya ng paghawak ng token.",
+          "description": "Tinitiyak ng EVM Contract Call ang mga publikasyon sa pamamagitan ng pagtawag sa isang EVM contract bago tanggapin ang post. Hinahayaan nito ang mga komunidad na maglagay ng token gate, staking rules, o iba pang on-chain checks sa kanilang mga patakaran sa pag-post."
         },
         "bitsocial-cli": {
-          "tagline": "Command-line control para sa nodes, komunidad, at automation workflows.",
-          "description": "Ang Bitsocial CLI ang opisyal na terminal interface para sa protocol. Gamitin ito para pamahalaan ang mga node, mag-publish ng content, mag-start ng isang WebSocket JSON-RPC server para sa programmatic control at code automation, i-automate ang mga admin flow, at direktang makipagtrabaho sa mga Bitsocial primitive nang walang GUI client."
+          "tagline": "Magpatakbo ng Bitsocial node at pamahalaan ang mga komunidad mula sa terminal.",
+          "description": "Ang Bitsocial CLI ang opisyal na terminal interface para sa protocol. Gamitin ito para magpatakbo ng node, gumawa at mamahala ng mga komunidad, mag-publish ng content, at mag-start ng WebSocket JSON-RPC server na puwedeng kontrolin ng ibang mga program."
         },
         "telegram-bots": {
           "tagline": "Feed bots na nagpapasa ng bagong Bitsocial post sa Telegram channels o groups.",
           "description": "Mino-monitor ng Bitsocial Telegram Bots ang mga listahan ng community ng client at ipapasa ang mga bagong post sa mga Telegram destination na may inline links pabalik sa Bitsocial clients. Sinasaklaw ng aktibong bot ngayon ang 5chan feeds, at nakaayos ang repo para makapagdagdag ng mas marami pang client-specific bot sa paglipas ng panahon."
         },
         "5chan-board-manager": {
-          "tagline": "Mga tool para sa board administration ng custom 5chan communities.",
-          "description": "Kumokonekta ang 5chan Board Manager sa Bitsocial CLI para tulungan ang mga administrator na gumawa, mag-configure, at mag-moderate ng mga custom na imageboard board. Ito ang utility layer para sa mga may-ari ng board na gusto ng operational control."
+          "tagline": "4chan-style na pag-archive ng thread, bump limit, at purging para sa mga 5chan board.",
+          "description": "Tumatakbo ang 5chan Board Manager katabi ng Bitsocial CLI at binibigyan ang board ng thread lifecycle ng 4chan: ina-archive ang mga thread na nahuhulog mula sa huling pahina, pine-purge ang mga naka-archive na thread pagkalipas ng itinakdang panahon, hindi na nagba-bump ang mga thread na lampas na sa bump limit, at pine-purge ang mga post na binura ng kanilang author."
         },
         "flags-challenge": {
-          "tagline": "Napatunayan na hamon ng flag issuer para sa bansa at board-specific na insignia.",
+          "tagline": "Mga napatunayang flag ng bansa at board sa mga post, nilagdaan ng issuer na pinagkakatiwalaan ng komunidad.",
           "description": "Ang Flags Challenge ay tumatakbo sa isang Bitsocial community node at nag-verify ng signed flag assertions mula sa isang configurable issuer service. Ang unang bundled profile ay nakatuon sa 5chan, sumasaklaw sa country flags, /pol/ memeflags, at /mlp/ pony flags, habang pinapanatili ang parehong pattern na maaaring gamitin muli para sa anumang client na gumagamit ng sariling issuer at namespace."
         },
         "bitsocial-seeder": {
-          "tagline": "Pampubliko na seeder para sa Bitsocial na mga komunidad, na inihanda para sa Docker at npm.",
-          "description": "Ang Bitsocial Seeder ay nakakapin ng komunidad na unang mga pahina, post-update CID, at pubsub topic routing sa pamamagitan ng Bitsocial daemon. Ito ay muling gumagamit ng isang nang-tumatakbo na lokal na daemon kapag ito ay maaabot o awtomatikong nagsisimula ng bundled bitsocial-cli daemon, at ipinapadala bilang Docker image para sa unattended VPS deployments at npm package para sa Node-first operators."
+          "tagline": "Pinapanatiling mabilis at naaabot ang mga komunidad ng Bitsocial sa pamamagitan ng muling pag-host ng kanilang content, gamit ang Docker o npm.",
+          "description": "Tinutulungan ng Bitsocial Seeder ang mga komunidad na mag-load nang mabilis sa pamamagitan ng pagpapanatiling online ng mga dagdag na kopya ng kanilang content. Pini-pin nito ang unang pahina ng bawat komunidad, mga CID ng mga update ng post, at pubsub topic routing sa pamamagitan ng isang Bitsocial daemon. Ginagamit nito ang lokal na daemon na tumatakbo na kapag naaabot ito, o awtomatikong sinisimulan ang kasamang bitsocial-cli daemon, at available ito bilang Docker image para sa mga unattended na VPS deployment at bilang npm package para sa mga Node-first na operator."
         },
         "ai-moderation-challenge": {
-          "tagline": "Mga pagsusuri sa moderation na tugma sa OpenAI laban sa mga patakaran ng bawat komunidad.",
+          "tagline": "Sinusuri ang bawat post laban sa mga patakaran ng komunidad gamit ang AI model na pinili ng may-ari.",
           "description": "Sinusuri ng AI Moderation Challenge ang nilalaman ng komento sa Bitsocial laban sa <code>community.rules</code> gamit ang OpenAI-compatible na model endpoint. Maaaring i-route ng mga komunidad ang mga mapanganib na post para sa review habang pinapanatili ang provider keys at prompts sa pribadong node settings."
         },
         "r9k-challenge": {
-          "tagline": "Robot9000-style na originality gate para sa mga komunidad na gusto ng anti-repost na karanasan sa pag-post.",
+          "tagline": "Robot9000-style na patakaran na tinatanggihan ang anumang post na umuulit ng tekstong nai-post na sa komunidad.",
           "description": "Tumatakbo ang R9K Challenge sa isang Bitsocial community node at ikinukumpara ang normalized na post text sa lokal na comments database ng owner node. Binibigyan nito ang mga komunidad ng <robot9000>Robot9000</robot9000>-style na karanasan sa pag-post: bumabagsak ang eksaktong repost bago tanggapin, binabalewala ang backlinks, ang paulit-ulit na failure ay nagti-trigger ng papataas na temporary bans, at nananatili sa pribadong local state ang accepted-text hashes sa halip na i-store ang raw post text. Walang AI na ginagamit sa challenge na ito."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "Plataporma para sa kolaborasyon sa code na ideya pa lang, na pinagsasama ang peer-to-peer Git at ang social layer ng Bitsocial.",
-          "description": "Ang GitCommons ay pananaliksik sa isang alternatibo sa GitHub na pinagsasama ang isang Radicle-style na peer-to-peer na Git layer at ang mga profile, komunidad, discovery, at reputasyon ng Bitsocial. Ang mga diskusyon ng bawat repository ay magiging isang komunidad sa Bitsocial, ang mga profile ng developer ay magiging mga profile node na naaabot ng karamihan sa pamamagitan ng mga pampublikong RPC, at manggagaling ang CI sa mga nagkokompitensiyang runner service sa halip na sa iisang sapilitang provider. Pansamantalang pangalan ang GitCommons; hindi kaanib ng GitHub, Inc. o ng proyektong Git ang proyekto."
+          "description": "Ang GitCommons ay pananaliksik sa isang alternatibo sa GitHub na pinagsasama ang isang Radicle-style na peer-to-peer na Git layer at ang mga profile, komunidad, discovery, at reputasyon ng Bitsocial. Ang mga diskusyon ng bawat repository ay magiging isang komunidad sa Bitsocial, ang mga profile ng developer ay magiging mga profile sa Bitsocial, at manggagaling ang CI sa mga nagkokompitensiyang runner service sa halip na sa iisang sapilitang provider. Pansamantalang pangalan ang GitCommons; hindi kaanib ng GitHub, Inc. o ng proyektong Git ang proyekto."
         },
         "modelswarm": {
           "tagline": "Alternatibo sa Hugging Face na ideya pa lang, kung saan ibinabahagi ng isang kawan ng mga peer ang mga open-weight na AI model.",

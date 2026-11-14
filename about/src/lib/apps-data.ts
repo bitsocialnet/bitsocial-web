@@ -512,7 +512,7 @@ export const APPS: AppData[] = [
   {
     slug: "5chan",
     name: "5chan",
-    tagline: "Decentralized imageboards with direct web, APK, and desktop downloads.",
+    tagline: "Anonymous imageboards on Bitsocial, for web, Android, and desktop.",
     description:
       "5chan is the first public Bitsocial client. It recreates the anonymous imageboard flow on a peer-to-peer network: boards, threads, image posting, community moderation, and multiple public mirrors without relying on a central server.",
     categories: ["apps"],
@@ -601,9 +601,9 @@ export const APPS: AppData[] = [
   {
     slug: "seedit",
     name: "Seedit",
-    tagline: "Forum-style Bitsocial client with web, APK, and desktop builds.",
+    tagline: "Reddit-style communities on Bitsocial, for web, Android, and desktop.",
     description:
-      "Seedit brings Reddit-style discussion to Bitsocial with threads, identities, community management, and multiple distribution paths. It is the fastest way to try the forum side of the network from a browser, Android phone, or desktop app.",
+      "Seedit brings Reddit-style discussion to Bitsocial: communities anyone can create and own, voting, threaded comments, and moderation set by each community's owner. It is the fastest way to try the forum side of the network from a browser, Android phone, or desktop app.",
     categories: ["apps"],
     tags: ["Forums", "Downloadable"],
     icon: "message-square",
@@ -716,7 +716,7 @@ export const APPS: AppData[] = [
   {
     slug: "ai-moderation-challenge",
     name: "AI Moderation Challenge",
-    tagline: "OpenAI-compatible moderation checks against each community's rules.",
+    tagline: "Checks each post against the community's rules with an AI model the owner chooses.",
     description:
       "AI Moderation Challenge evaluates Bitsocial comment content against <code>community.rules</code> with an OpenAI-compatible model endpoint. Communities can route risky posts to review while keeping provider keys and prompts in private node settings.",
     categories: ["anti-spam"],
@@ -757,7 +757,7 @@ export const APPS: AppData[] = [
   {
     slug: "spam-blocker",
     name: "Spam Blocker",
-    tagline: "Centralized risk scoring layer for filtering abusive publications.",
+    tagline: "Hosted risk-scoring service that helps communities filter spam and ban evasion.",
     description:
       "Spam Blocker evaluates publications and returns a risk score that communities can combine with their own moderation logic. Its hosted service also links signer keys first seen from the same IP, so a user who keeps generating new accounts to dodge a community ban or manufacture a conversation sees their risk score rise, while a few signers stay allowed for legitimate multi-device use.",
     categories: ["anti-spam", "identity"],
@@ -777,7 +777,8 @@ export const APPS: AppData[] = [
   {
     slug: "r9k-challenge",
     name: "R9K Challenge",
-    tagline: "Robot9000-style originality gate for communities that want anti-repost posting UX.",
+    tagline:
+      "Robot9000-style rule that rejects any post repeating text already posted in the community.",
     description:
       "R9K Challenge runs on a Bitsocial community node and compares normalized post text against the owner node's local comments database. It gives communities a <robot9000>Robot9000</robot9000>-style posting experience without using AI: exact reposts fail before acceptance, backlinks are ignored, repeated failures trigger escalating temporary bans, and accepted-text hashes stay in private local state instead of storing raw post text.",
     categories: ["anti-spam"],
@@ -833,7 +834,7 @@ export const APPS: AppData[] = [
     name: "Captcha Canvas Challenge",
     tagline: "Custom image captchas for communities that want human verification.",
     description:
-      "Captcha Canvas Challenge generates visual captchas that communities can plug into their own publishing flow. It is a lightweight option for communities that want direct human checks without giving up self-hosted moderation.",
+      "Captcha Canvas Challenge generates an image captcha on the community's own node and requires posters to solve it before a post, reply, or vote is accepted. Nothing is sent to a third-party captcha service. It is a basic deterrent that determined bots can brute-force, so pair it with another challenge on communities that attract spam.",
     categories: ["anti-spam"],
     tags: ["Captcha", "Human checks"],
     icon: "image",
@@ -858,7 +859,7 @@ export const APPS: AppData[] = [
     name: "Voucher Challenge",
     tagline: "Invite-style voucher codes for communities that prefer controlled growth.",
     description:
-      "Voucher Challenge lets moderators distribute trusted voucher codes that unlock publishing without a global identity provider. It is a good fit for invite-driven communities, niche boards, and gradual rollouts.",
+      "Voucher Challenge lets moderators distribute trusted voucher codes that unlock publishing without a global identity provider. A code is bound to the first author who redeems it, so that author keeps posting with it and nobody else can reuse it.",
     categories: ["identity"],
     tags: ["Invites", "Access control"],
     icon: "ticket",
@@ -876,9 +877,9 @@ export const APPS: AppData[] = [
   {
     slug: "evm-contract-call",
     name: "EVM Contract Call",
-    tagline: "On-chain gating for communities that want token or contract checks.",
+    tagline: "Requires posters to pass an on-chain check, such as holding a token.",
     description:
-      "EVM Contract Call verifies publications by calling an EVM contract before a post is accepted. It lets communities build token gates, staking rules, or other on-chain checks into their moderation flow.",
+      "EVM Contract Call verifies publications by calling an EVM contract before a post is accepted. It lets communities build token gates, staking rules, or other on-chain checks into their posting rules.",
     categories: ["identity"],
     tags: ["On-chain", "Contracts"],
     icon: "link-2",
@@ -922,7 +923,7 @@ export const APPS: AppData[] = [
   {
     slug: "flags-challenge",
     name: "Flags Challenge",
-    tagline: "Verified flag issuer challenge for country and board-specific flair.",
+    tagline: "Verified country and board flags on posts, signed by an issuer the community trusts.",
     description:
       "Flags Challenge runs on a Bitsocial community node and verifies signed flag assertions from a configurable issuer service. The first bundled profile targets 5chan, covering country flags, /pol/ memeflags, and /mlp/ pony flags, while keeping the same pattern reusable for any client that runs its own issuer and namespace.",
     categories: ["identity"],
@@ -942,9 +943,9 @@ export const APPS: AppData[] = [
   {
     slug: "bitsocial-cli",
     name: "Bitsocial CLI",
-    tagline: "Command-line control for nodes, communities, and automation workflows.",
+    tagline: "Run a Bitsocial node and manage communities from the terminal.",
     description:
-      "Bitsocial CLI is the official terminal interface for the protocol. Use it to manage nodes, publish content, start a WebSocket JSON-RPC server for programmatic control and code automation, automate admin flows, and work directly against Bitsocial primitives without a GUI client.",
+      "Bitsocial CLI is the official terminal interface for the protocol. Use it to run a node, create and manage communities, publish content, and start a WebSocket JSON-RPC server that other programs can drive.",
     categories: ["tools"],
     tags: ["CLI", "Automation"],
     icon: "terminal",
@@ -967,9 +968,10 @@ export const APPS: AppData[] = [
   {
     slug: "bitsocial-seeder",
     name: "Bitsocial Seeder",
-    tagline: "Public seeder for Bitsocial communities, packaged for Docker and npm.",
+    tagline:
+      "Keeps Bitsocial communities fast and reachable by re-hosting their content, via Docker or npm.",
     description:
-      "Bitsocial Seeder pins community first pages, post-update CIDs, and pubsub topic routing through a Bitsocial daemon. It reuses an already-running local daemon when one is reachable or starts the bundled bitsocial-cli daemon automatically, and ships as both a Docker image for unattended VPS deployments and an npm package for Node-first operators.",
+      "Bitsocial Seeder helps communities load quickly by keeping extra copies of their content online. It pins community first pages, post-update CIDs, and pubsub topic routing through a Bitsocial daemon. It reuses an already-running local daemon when one is reachable or starts the bundled bitsocial-cli daemon automatically, and ships as both a Docker image for unattended VPS deployments and an npm package for Node-first operators.",
     categories: ["tools"],
     tags: ["Automation"],
     icon: "share-2",
@@ -1126,9 +1128,9 @@ export const APPS: AppData[] = [
   {
     slug: "5chan-board-manager",
     name: "5chan Board Manager",
-    tagline: "Board administration tooling for custom 5chan communities.",
+    tagline: "4chan-style thread archiving, bump limits, and purging for 5chan boards.",
     description:
-      "5chan Board Manager connects to Bitsocial CLI to help administrators create, configure, and moderate custom imageboard boards. It is the utility layer for board owners who want operational control.",
+      "5chan Board Manager runs next to Bitsocial CLI and gives a board 4chan's thread lifecycle: threads that fall off the last page are archived, archived threads are purged after a set time, threads past the bump limit stop bumping, and posts deleted by their author are purged.",
     categories: ["tools"],
     tags: ["Board admin", "CLI"],
     icon: "clipboard",
@@ -1182,7 +1184,7 @@ export const APPS: AppData[] = [
     tagline:
       "Idea-stage code collaboration platform that pairs peer-to-peer Git with Bitsocial's social layer.",
     description:
-      "GitCommons is research into a GitHub alternative that combines a Radicle-style peer-to-peer Git layer with Bitsocial profiles, communities, discovery and reputation. Each repository's discussions would be a Bitsocial community, developer profiles would be profile nodes most people reach through public RPCs, and CI would come from competing runner services instead of one mandatory provider. GitCommons is a working name; the project is not affiliated with GitHub, Inc. or the Git project.",
+      "GitCommons is research into a GitHub alternative that combines a Radicle-style peer-to-peer Git layer with Bitsocial profiles, communities, discovery and reputation. Each repository's discussions would be a Bitsocial community, developer profiles would be Bitsocial profiles, and CI would come from competing runner services instead of one mandatory provider. GitCommons is a working name; the project is not affiliated with GitHub, Inc. or the Git project.",
     categories: ["concepts"],
     tags: ["Code hosting"],
     icon: "git-branch",

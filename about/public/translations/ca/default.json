@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "Imageboards descentralitzats amb descàrregues directes per a web, APK i escriptori.",
+          "tagline": "Imageboards anònims a Bitsocial, per a web, Android i escriptori.",
           "description": "5chan és el primer client públic de Bitsocial. Reprodueix el flux anònim d’un imageboard sobre una xarxa peer-to-peer: taulers, fils, publicació d’imatges, moderació comunitària i diversos miralls públics sense dependre d’un servidor central."
         },
         "seedit": {
-          "tagline": "Client de Bitsocial d’estil fòrum amb versions per a web, APK i escriptori.",
-          "description": "Seedit porta a Bitsocial la conversa a l’estil Reddit amb fils, identitats, gestió de comunitats i múltiples vies de distribució. És la manera més ràpida de provar la cara més de fòrum de la xarxa des d’un navegador, un mòbil Android o una app d’escriptori."
+          "tagline": "Comunitats a l’estil Reddit a Bitsocial, per a web, Android i escriptori.",
+          "description": "Seedit porta a Bitsocial la conversa a l’estil Reddit: comunitats que qualsevol pot crear i tenir en propietat, votacions, comentaris en fils i una moderació que decideix el propietari de cada comunitat. És la manera més ràpida de provar la cara més de fòrum de la xarxa des d’un navegador, un mòbil Android o una app d’escriptori."
         },
         "spam-blocker": {
-          "tagline": "Capa centralitzada de puntuació de risc per filtrar publicacions abusives.",
+          "tagline": "Servei allotjat de puntuació de risc que ajuda les comunitats a filtrar l’spam i l’evasió de bans.",
           "description": "Spam Blocker avalua les publicacions i retorna una puntuació de risc que les comunitats poden combinar amb la seva pròpia lògica de moderació. El seu servei allotjat també enllaça les claus de signant detectades per primera vegada des de la mateixa IP, de manera que un usuari que segueix creant nous comptes per esquivar una prohibició comunitària o fabricar una conversa veu augmentar la seva puntuació de risc, mentre que alguns signants es mantenen autoritzats per a ús legítim multi-dispositiu."
         },
         "captcha-canvas-challenge": {
           "tagline": "CAPTCHA d’imatge personalitzats per a comunitats que volen verificació humana.",
-          "description": "Captcha Canvas Challenge genera CAPTCHA visuals que les comunitats poden integrar al seu propi flux de publicació. És una opció lleugera per a comunitats que volen comprovacions humanes directes sense renunciar a una moderació autogestionada."
+          "description": "Captcha Canvas Challenge genera un CAPTCHA d’imatge al node propi de la comunitat i exigeix que qui publica el resolgui abans que s’accepti una publicació, una resposta o un vot. No s’envia res a cap servei de CAPTCHA de tercers. És un element dissuasiu bàsic que els bots persistents poden superar per força bruta, així que combina’l amb un altre desafiament a les comunitats que atrauen spam."
         },
         "voucher-challenge": {
           "tagline": "Codis de val estil invitació per a comunitats que prefereixen un creixement controlat.",
-          "description": "Voucher Challenge permet als moderadors distribuir codis de val de confiança que desbloquegen la publicació sense un proveïdor d’identitat global. És una bona opció per a comunitats basades en invitacions, taulers de nínxol i desplegaments graduals."
+          "description": "Voucher Challenge permet als moderadors distribuir codis de val de confiança que desbloquegen la publicació sense un proveïdor d’identitat global. Cada codi queda vinculat al primer autor que el bescanvia, de manera que aquest autor continua publicant amb ell i ningú més el pot reutilitzar."
         },
         "evm-contract-call": {
-          "tagline": "Gating on-chain per a comunitats que volen comprovacions de token o de contracte.",
-          "description": "EVM Contract Call verifica les publicacions fent una crida a un contracte EVM abans d’acceptar un post. Permet a les comunitats incorporar token gates, regles de staking o altres comprovacions on-chain en el seu flux de moderació."
+          "tagline": "Exigeix que qui publica superi una comprovació on-chain, com ara tenir un token.",
+          "description": "EVM Contract Call verifica les publicacions fent una crida a un contracte EVM abans d’acceptar un post. Permet a les comunitats incorporar token gates, regles de staking o altres comprovacions on-chain a les seves regles de publicació."
         },
         "bitsocial-cli": {
-          "tagline": "Control per línia d’ordres per a nodes, comunitats i fluxos d’automatització.",
-          "description": "Bitsocial CLI és la interfície de terminal oficial del protocol. Fes-la servir per gestionar nodes, publicar contingut, engegar un servidor WebSocket JSON-RPC per al control programàtic i l'automatització de codi, automatitzar fluxos d'administració i treballar directament amb les primitives de Bitsocial sense un client GUI."
+          "tagline": "Executa un node de Bitsocial i gestiona comunitats des del terminal.",
+          "description": "Bitsocial CLI és la interfície de terminal oficial del protocol. Fes-la servir per executar un node, crear i gestionar comunitats, publicar contingut i engegar un servidor WebSocket JSON-RPC que altres programes poden controlar."
         },
         "telegram-bots": {
           "tagline": "Bots de feed que envien publicacions noves de Bitsocial a canals o grups de Telegram.",
           "description": "Bitsocial Telegram Bots monitoritza les llistes de comunitats del client i reenvia les publicacions noves a destinacions de Telegram amb enllaços inline de retorn als clients de Bitsocial. El bot actiu cobreix avui els feeds de 5chan, i el repositori està preparat per afegir-hi més bots específics de client amb el temps."
         },
         "5chan-board-manager": {
-          "tagline": "Eines d’administració de taulers per a comunitats 5chan personalitzades.",
-          "description": "5chan Board Manager es connecta amb Bitsocial CLI per ajudar els administradors a crear, configurar i moderar taulers d'imatges personalitzats. És la capa d'utilitat per als propietaris de taulers que volen control operatiu."
+          "tagline": "Arxivat de fils, límits de bump i purga a l’estil 4chan per als taulers de 5chan.",
+          "description": "5chan Board Manager s'executa al costat de Bitsocial CLI i dona a un tauler el cicle de vida dels fils de 4chan: els fils que cauen de l'última pàgina s'arxiven, els fils arxivats es purguen al cap d'un temps establert, els fils que superen el límit de bump deixen de pujar i les publicacions esborrades pel seu autor es purguen."
         },
         "flags-challenge": {
-          "tagline": "Desafiament verificat d'emissor de senyera per a insígnies específiques de país i tauler.",
+          "tagline": "Banderes verificades de país i de tauler a les publicacions, signades per un emissor en qui la comunitat confia.",
           "description": "Flags Challenge s'executa en un node comunitari de Bitsocial i verifica les afirmacions de flags signades d'un servei emissor configurable. El primer perfil agrupat es dirigeix a 5chan, cobreix banderes de país, memeflags de /pol/ i pony flags de /mlp/, mantenint el mateix patró reutilitzable per a qualsevol client que executar el seu propi servei emissor i espai de noms."
         },
         "bitsocial-seeder": {
-          "tagline": "Seeder públic per a comunitats de Bitsocial, empaquetat per a Docker i npm.",
-          "description": "Bitsocial Seeder fixan les pàgines prioritàries de la comunitat, els CID post-actualització i l'encaminament de temes pubsub a través d'un daemon Bitsocial. Reutilitza un daemon local ja en execució quan és accessible o inicia automàticament el daemon bitsocial-cli inclòs, i s'ofereix tant com una imatge Docker per a desplegaments VPS desatesos com un paquet npm per a operadors node-first."
+          "tagline": "Manté les comunitats de Bitsocial ràpides i accessibles tornant a allotjar-ne el contingut, mitjançant Docker o npm.",
+          "description": "Bitsocial Seeder ajuda les comunitats a carregar-se de pressa mantenint còpies addicionals del seu contingut en línia. Fixa les primeres pàgines de les comunitats, els CID de les actualitzacions de publicacions i l'encaminament de temes pubsub a través d'un daemon de Bitsocial. Reutilitza un daemon local ja en execució quan és accessible o inicia automàticament el daemon bitsocial-cli inclòs, i s'ofereix tant com una imatge Docker per a desplegaments VPS desatesos com un paquet npm per a operadors Node-first."
         },
         "ai-moderation-challenge": {
-          "tagline": "Comprovacions de moderació compatibles amb OpenAI segons les regles de cada comunitat.",
+          "tagline": "Comprova cada publicació segons les regles de la comunitat amb un model d’IA que tria el propietari.",
           "description": "AI Moderation Challenge avalua el contingut dels comentaris de Bitsocial segons <code>community.rules</code> amb un endpoint de model compatible amb OpenAI. Les comunitats poden enviar publicacions arriscades a revisió mentre mantenen les claus del proveïdor i els prompts en configuracions privades del node."
         },
         "r9k-challenge": {
-          "tagline": "Porta d'originalitat a l'estil Robot9000 per a comunitats que volen una experiència de publicació anti-repost.",
+          "tagline": "Regla a l'estil Robot9000 que rebutja qualsevol publicació que repeteixi un text ja publicat a la comunitat.",
           "description": "R9K Challenge s'executa en un node de comunitat de Bitsocial i compara el text normalitzat de la publicació amb la base de dades local de comentaris del node propietari. Dona a les comunitats una experiència de publicació a l'estil <robot9000>Robot9000</robot9000>: els reposts exactes fallen abans de ser acceptats, els backlinks s'ignoren, els errors repetits activen bans temporals creixents i els hashes del text acceptat es mantenen en estat local privat en lloc de desar el text cru de la publicació. Aquest challenge no utilitza IA."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "Plataforma de col·laboració en codi en fase d'idea que combina Git peer-to-peer amb la capa social de Bitsocial.",
-          "description": "GitCommons és una recerca sobre una alternativa a GitHub que combina una capa Git peer-to-peer a l'estil de Radicle amb els perfils, les comunitats, la descoberta i la reputació de Bitsocial. Les discussions de cada repositori serien una comunitat de Bitsocial, els perfils de desenvolupadors serien nodes de perfil als quals la majoria de la gent accediria a través de RPC públics, i la CI vindria de serveis de runners que competeixen entre si en lloc d'un únic proveïdor obligatori. GitCommons és un nom provisional; el projecte no està afiliat a GitHub, Inc. ni al projecte Git."
+          "description": "GitCommons és una recerca sobre una alternativa a GitHub que combina una capa Git peer-to-peer a l'estil de Radicle amb els perfils, les comunitats, la descoberta i la reputació de Bitsocial. Les discussions de cada repositori serien una comunitat de Bitsocial, els perfils de desenvolupadors serien perfils de Bitsocial, i la CI vindria de serveis de runners que competeixen entre si en lloc d'un únic proveïdor obligatori. GitCommons és un nom provisional; el projecte no està afiliat a GitHub, Inc. ni al projecte Git."
         },
         "modelswarm": {
           "tagline": "Alternativa a Hugging Face en fase d'idea on un eixam de peers comparteix models d'IA de pesos oberts.",

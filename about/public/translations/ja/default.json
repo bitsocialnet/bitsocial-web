@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "ウェブ、APK、デスクトップ版を直接ダウンロードできる分散型画像掲示板。",
+          "tagline": "Bitsocial 上の匿名画像掲示板。ウェブ、Android、デスクトップに対応。",
           "description": "5chan は Bitsocial 最初の公開クライアントです。匿名画像掲示板の流れをピア・ツー・ピアネットワーク上で再現し、掲示板、スレッド、画像投稿、コミュニティのモデレーション、そして中央サーバーに頼らない複数の公開ミラーを備えています。"
         },
         "seedit": {
-          "tagline": "ウェブ、APK、デスクトップ版を備えた掲示板型の Bitsocial クライアント。",
-          "description": "Seedit は Reddit 風の議論を Bitsocial に持ち込み、スレッド、アイデンティティ、コミュニティ管理、複数の配布経路を備えています。ブラウザ、Android のスマートフォン、デスクトップアプリから、ネットワークの掲示板側を最短で試せます。"
+          "tagline": "Bitsocial 上の Reddit 風コミュニティ。ウェブ、Android、デスクトップに対応。",
+          "description": "Seedit は Reddit 風の議論を Bitsocial に持ち込みます。誰でも作成して所有できるコミュニティ、投票、スレッド形式のコメント、各コミュニティのオーナーが定めるモデレーションを備えています。ブラウザ、Android のスマートフォン、デスクトップアプリから、ネットワークの掲示板側を最短で試せます。"
         },
         "spam-blocker": {
-          "tagline": "悪質な投稿をふるい分ける中央集約型のリスク判定層。",
+          "tagline": "コミュニティがスパムやBAN回避をふるい分けるのを助ける、ホスト型のリスク判定サービス。",
           "description": "Spam Blockerは公開投稿を評価し、コミュニティが独自のモデレーションロジックと組み合わせることができるリスクスコアを返します。その提供サービスは、同じIPから最初に見られたsigner keysをリンクするため、コミュニティの禁止を回避するまたは会話を製造するために新しいアカウントを生成し続けるユーザーはリスクスコアの上昇を経験し、一方で少数の署名者は正当なマルチデバイス使用のために許可されたままです。"
         },
         "captcha-canvas-challenge": {
           "tagline": "人間確認を求めるコミュニティ向けの独自画像 CAPTCHA。",
-          "description": "Captcha Canvas Challenge は視覚的な CAPTCHA を生成し、コミュニティが自分たちの投稿フローに組み込めます。セルフホストのモデレーションを手放さずに、直接的な人間確認を取り入れたい場合の軽量な選択肢です。"
+          "description": "Captcha Canvas Challenge はコミュニティ自身のノード上で画像 CAPTCHA を生成し、投稿、返信、投票が受理される前に投稿者に解かせます。サードパーティの CAPTCHA サービスには何も送信されません。執拗なボットには総当たりで突破されうる基本的な抑止策なので、スパムが集まりやすいコミュニティでは別のチャレンジと併用してください。"
         },
         "voucher-challenge": {
           "tagline": "管理された成長を好むコミュニティ向けの招待制バウチャーコード。",
-          "description": "Voucher Challenge はモデレーターが信頼できるバウチャーコードを配布し、グローバルな認証基盤なしで投稿を解放できます。招待制のコミュニティ、ニッチな掲示板、段階的な展開に向いています。"
+          "description": "Voucher Challenge はモデレーターが信頼できるバウチャーコードを配布し、グローバルな認証基盤なしで投稿を解放できます。コードは最初に利用した投稿者に紐づけられるため、その投稿者は同じコードで投稿を続けられ、他の誰も再利用できません。"
         },
         "evm-contract-call": {
-          "tagline": "トークンやコントラクトの確認を行いたいコミュニティ向けのオンチェーン制御。",
-          "description": "EVM Contract Call は、投稿を受理する前に EVM コントラクトを呼び出して投稿内容を確認します。トークンゲート、ステーキング条件、その他のオンチェーン確認をモデレーションの流れに組み込めます。"
+          "tagline": "トークンの保有など、オンチェーンの確認に合格することを投稿者に求めます。",
+          "description": "EVM Contract Call は、投稿を受理する前に EVM コントラクトを呼び出して投稿内容を確認します。トークンゲート、ステーキング条件、その他のオンチェーン確認を投稿ルールに組み込めます。"
         },
         "bitsocial-cli": {
-          "tagline": "ノード、コミュニティ、自動化ワークフローを操るコマンドライン制御。",
-          "description": "Bitsocial CLI は、プロトコルの公式ターミナルインターフェースです。ノードの管理、コンテンツの公開、プログラム制御とコード自動化のための WebSocket JSON-RPC サーバーの起動、管理フローの自動化、GUI クライアントを使わずに Bitsocial のプリミティブを直接扱う用途に使えます。"
+          "tagline": "ターミナルから Bitsocial ノードを実行し、コミュニティを管理。",
+          "description": "Bitsocial CLI は、プロトコルの公式ターミナルインターフェースです。ノードの実行、コミュニティの作成と管理、コンテンツの公開、他のプログラムから操作できる WebSocket JSON-RPC サーバーの起動に使えます。"
         },
         "telegram-bots": {
           "tagline": "新しい Bitsocial 投稿を Telegram のチャンネルやグループへ中継するフィードボット。",
           "description": "Bitsocial Telegram Bots はクライアントのコミュニティ一覧を監視し、新しい投稿を Telegram の配信先へ転送しながら、Bitsocial クライアントへ戻るインラインリンクを付けます。現在の稼働ボットは 5chan のフィードを対象にしており、将来的にさらにクライアント固有のボットを追加できる構成になっています。"
         },
         "5chan-board-manager": {
-          "tagline": "カスタム 5chan コミュニティ向けの掲示板管理ツール。",
-          "description": "5chan Board Manager は Bitsocial CLI に接続し、管理者がカスタム imageboard ボードを作成、設定、モデレートするのを支援します。これは、運用面を管理したいボード所有者向けのユーティリティ層です。"
+          "tagline": "5chan のボード向けに、4chan 式のスレッドアーカイブ、bump 上限、削除を提供。",
+          "description": "5chan Board Manager は Bitsocial CLI と並行して動作し、ボードに 4chan のスレッドライフサイクルをもたらします。最終ページから落ちたスレッドはアーカイブされ、アーカイブ済みスレッドは一定時間後に完全削除され、bump 上限を超えたスレッドは上がらなくなり、投稿者が削除した投稿は完全削除されます。"
         },
         "flags-challenge": {
-          "tagline": "国とボード固有のバッジ用に検証されたフラグ発行者チャレンジ。",
+          "tagline": "コミュニティが信頼する発行者が署名した、検証済みの国旗とボード別フラグを投稿に表示。",
           "description": "Flags Challengeはビットソーシャルコミュニティノード上で実行され、設定可能な発行者サービスからの署名付きフラグアサーションを検証します。最初のバンドルプロファイルは5chanを対象とし、国旗、/pol/ミームフラグ、/mlpポニーフラグをカバーしながら、独自の発行者と名前空間を実行するすべてのクライアント向けに同じパターンを再利用可能に保ちます。"
         },
         "bitsocial-seeder": {
-          "tagline": "Bitsocialコミュニティ向けのパブリックシーダー、Dockerとnpmにパッケージされている。",
-          "description": "Bitsocial Seederは、Bitsocial daemonを通じて、コミュニティの最初のページ、更新後のCID、およびpubsubトピックルーティングをピン留めします。すでに実行中のローカルdaemonが到達可能な場合は再利用するか、バンドルされたbitsocial-cli daemonを自動的に開始し、無人のVPS展開用のDockerイメージとNode-firstオペレータ向けのnpmパッケージの両方として提供されます。"
+          "tagline": "コンテンツを再ホストして Bitsocial コミュニティを高速かつ到達可能に保ちます。Docker または npm で利用可能。",
+          "description": "Bitsocial Seeder は、コンテンツの追加コピーをオンラインに保つことで、コミュニティの読み込みを高速化します。Bitsocial daemon を通じて、各コミュニティの最初のページ、投稿更新の CID、pubsub トピックのルーティングをピン留めします。すでに稼働中のローカル daemon に到達できる場合はそれを再利用し、できない場合は同梱の bitsocial-cli daemon を自動的に起動します。無人運用の VPS デプロイ向けの Docker イメージと、Node-first のオペレーター向けの npm パッケージの両方で提供されます。"
         },
         "ai-moderation-challenge": {
-          "tagline": "OpenAI互換のモデレーションチェックで、各コミュニティのルールに照合。",
+          "tagline": "オーナーが選んだAIモデルで、各投稿をコミュニティのルールに照合。",
           "description": "AI Moderation Challengeは、OpenAI互換のモデルエンドポイントを使ってBitsocialのコメント内容を<code>community.rules</code>に照らして評価します。コミュニティは、providerキーとpromptをプライベートなnode設定に保ちながら、リスクの高い投稿をreviewに回せます。"
         },
         "r9k-challenge": {
-          "tagline": "再投稿を防ぐ投稿体験がほしいコミュニティ向けの、Robot9000風オリジナリティゲート。",
+          "tagline": "コミュニティで投稿済みのテキストを繰り返す投稿をすべて拒否する、Robot9000風のルール。",
           "description": "R9K Challenge は Bitsocial コミュニティノードで動作し、正規化された投稿テキストをオーナーノードのローカルコメントデータベースと照合します。コミュニティに <robot9000>Robot9000</robot9000> 風の投稿体験を提供し、完全一致の再投稿は承認前に失敗し、バックリンクは無視され、失敗を繰り返すと段階的な一時BANが発生し、生の投稿テキストではなく承認済みテキストのハッシュだけがプライベートなローカル状態に残ります。 このチャレンジではAIを使用しません。"
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "peer-to-peer の Git と Bitsocial のソーシャルレイヤーを組み合わせる、構想段階のコード共同開発プラットフォーム。",
-          "description": "GitCommons は、Radicle 風の peer-to-peer Git レイヤーと Bitsocial のプロフィール、コミュニティ、発見、評判を組み合わせた GitHub 代替の研究です。各リポジトリのディスカッションは Bitsocial のコミュニティとなり、開発者プロフィールは多くの人が公開 RPC 経由でアクセスするプロフィールノードとなり、CI は単一の必須プロバイダーではなく競合する複数のランナーサービスから提供される想定です。GitCommons は仮の名称で、このプロジェクトは GitHub, Inc. および Git プロジェクトとは関係ありません。"
+          "description": "GitCommons は、Radicle 風の peer-to-peer Git レイヤーと Bitsocial のプロフィール、コミュニティ、発見、評判を組み合わせた GitHub 代替の研究です。各リポジトリのディスカッションは Bitsocial のコミュニティとなり、開発者プロフィールは Bitsocial のプロフィールとなり、CI は単一の必須プロバイダーではなく競合する複数のランナーサービスから提供される想定です。GitCommons は仮の名称で、このプロジェクトは GitHub, Inc. および Git プロジェクトとは関係ありません。"
         },
         "modelswarm": {
           "tagline": "オープンウェイトの AI モデルをピアの群れで共有する、構想段階の Hugging Face 代替サービス。",

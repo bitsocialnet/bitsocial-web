@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "Desentraliserte imageboards med direkte nedlastinger for web, APK og desktop.",
+          "tagline": "Anonyme imageboards på Bitsocial, for web, Android og desktop.",
           "description": "5chan er den første offentlige Bitsocial-klienten. Den gjenskaper den anonyme imageboard-flyten på et peer-to-peer-nettverk: boards, tråder, bildeopplasting, fellesskapsmoderering og flere offentlige speil uten å være avhengig av en sentral server."
         },
         "seedit": {
-          "tagline": "Bitsocial-klient i forumstil med web-, APK- og desktop-bygg.",
-          "description": "Seedit bringer Reddit-lignende diskusjon til Bitsocial med tråder, identiteter, fellesskapsstyring og flere distribusjonsveier. Det er den raskeste måten å prøve forumdelen av nettverket fra en nettleser, Android-telefon eller desktop-app."
+          "tagline": "Reddit-lignende fellesskap på Bitsocial, for web, Android og desktop.",
+          "description": "Seedit bringer Reddit-lignende diskusjon til Bitsocial: fellesskap som hvem som helst kan opprette og eie, stemmegivning, trådede kommentarer og moderering som bestemmes av eieren av hvert fellesskap. Det er den raskeste måten å prøve forumdelen av nettverket fra en nettleser, Android-telefon eller desktop-app."
         },
         "spam-blocker": {
-          "tagline": "Sentralisert risikoscoringslag for filtrering av misbrukende publikasjoner.",
+          "tagline": "Driftet risikoscoringstjeneste som hjelper fellesskap med å filtrere spam og omgåelse av utestengelser.",
           "description": "Spam Blocker evaluerer publikasjoner og returnerer en risikoscore som fellesskap kan kombinere med sin egen moderasjonslogikk. Tjenesten der den er vert kobler også signeringsnøkler sett første gang fra samme IP-adresse, slik at en bruker som fortsetter å opprette nye kontoer for å unngå et fellesskapsforbud eller produsere en samtale, ser risikoscoren sin øke, mens noen få signatarer forblir tillatt for legitim bruk av flere enheter."
         },
         "captcha-canvas-challenge": {
           "tagline": "Egendefinerte bilde-captchaer for fellesskap som vil ha menneskelig verifisering.",
-          "description": "Captcha Canvas Challenge genererer visuelle captchaer som fellesskap kan plugge inn i sin egen publiseringsflyt. Det er et lettvektsvalg for fellesskap som vil ha direkte menneskelige kontroller uten å gi opp selvhostet moderering."
+          "description": "Captcha Canvas Challenge genererer en bildecaptcha på fellesskapets egen node og krever at de som poster, løser den før et innlegg, et svar eller en stemme godtas. Ingenting sendes til en tredjeparts captcha-tjeneste. Det er en enkel barriere som målrettede boter kan knekke med brute force, så kombiner den med en annen utfordring i fellesskap som tiltrekker seg spam."
         },
         "voucher-challenge": {
           "tagline": "Invitasjonslignende voucher-koder for fellesskap som foretrekker kontrollert vekst.",
-          "description": "Voucher Challenge lar moderatorer distribuere pålitelige voucher-koder som åpner for publisering uten en global identity provider. Det passer godt for invitasjonsdrevne fellesskap, nisjeboard og gradvise utrullinger."
+          "description": "Voucher Challenge lar moderatorer distribuere pålitelige voucher-koder som åpner for publisering uten en global identity provider. En kode bindes til den første forfatteren som løser den inn, slik at forfatteren kan fortsette å poste med den og ingen andre kan bruke den på nytt."
         },
         "evm-contract-call": {
-          "tagline": "On-chain gating for fellesskap som vil ha token- eller kontraktssjekker.",
-          "description": "EVM Contract Call verifiserer publikasjoner ved å kalle en EVM-kontrakt før et innlegg aksepteres. Det lar fellesskap bygge token-gates, staking-regler eller andre on-chain-sjekker inn i modereringsflyten."
+          "tagline": "Krever at de som poster, består en on-chain-sjekk, for eksempel å eie et token.",
+          "description": "EVM Contract Call verifiserer publikasjoner ved å kalle en EVM-kontrakt før et innlegg aksepteres. Det lar fellesskap bygge token-gates, staking-regler eller andre on-chain-sjekker inn i reglene for publisering."
         },
         "bitsocial-cli": {
-          "tagline": "Kommandolinjekontroll for noder, fellesskap og automatiseringsflyter.",
-          "description": "Bitsocial CLI er protokollens offisielle terminalgrensesnitt. Bruk det til å administrere noder, publisere innhold, starte en WebSocket JSON-RPC-server for programmatisk kontroll og kodeautomatisering, automatisere adminflyter og jobbe direkte med Bitsocial-primitiver uten en GUI-klient."
+          "tagline": "Kjør en Bitsocial-node og administrer fellesskap fra terminalen.",
+          "description": "Bitsocial CLI er protokollens offisielle terminalgrensesnitt. Bruk det til å kjøre en node, opprette og administrere fellesskap, publisere innhold og starte en WebSocket JSON-RPC-server som andre programmer kan styre."
         },
         "telegram-bots": {
           "tagline": "Feed-boter som videresender nye Bitsocial-innlegg til Telegram-kanaler eller -grupper.",
           "description": "Bitsocial Telegram Bots overvåker fellesskapslistene til klienten og videresender nye innlegg til Telegram-destinasjoner med inline-lenker tilbake til Bitsocial-klienter. Den aktive boten dekker i dag 5chan-feeds, og repoet er strukturert for å legge til flere klientspesifikke boter over tid."
         },
         "5chan-board-manager": {
-          "tagline": "Verktøy for board-administrasjon for tilpassede 5chan-fellesskap.",
-          "description": "5chan Board Manager kobler seg til Bitsocial CLI for å hjelpe administratorer med å opprette, konfigurere og moderere tilpassede imageboard-tavler. Det er verktøylaget for tavleeiere som vil ha operativ kontroll."
+          "tagline": "Trådarkivering, bump-grenser og sletting i 4chan-stil for 5chan-boards.",
+          "description": "5chan Board Manager kjører ved siden av Bitsocial CLI og gir et board 4chans livssyklus for tråder: tråder som faller av siste side, arkiveres, arkiverte tråder slettes etter en fastsatt tid, tråder over bump-grensen slutter å bumpe, og innlegg som forfatteren har slettet, fjernes permanent."
         },
         "flags-challenge": {
-          "tagline": "Verifisert flagg-utsteder-utfordring for land- og forum-spesifikke merker.",
+          "tagline": "Verifiserte lands- og boardflagg på innlegg, signert av en utsteder fellesskapet stoler på.",
           "description": "Flags Challenge kjøres på en Bitsocial-communitynode og bekrefter signerte flaggpåstander fra en konfigurerbar utstedertjeneste. Den første pakkede profilen er rettet mot 5chan, dekker landsflagg, /pol/ memeflags og /mlp/ pony flags, mens det samme mønsteret beholdes som gjenbrukbart for alle klienter som kjører sin egen utstedertjeneste og navnerom."
         },
         "bitsocial-seeder": {
-          "tagline": "Offentlig seeder for Bitsocial-fellesskap, pakket for Docker og npm.",
-          "description": "Bitsocial Seeder fester community-first-sider, post-update-CID-er og pubsub-emneruting gjennom en Bitsocial daemon. Den gjenbruker en allerede kjørende lokal daemon når den er tilgjengelig eller starter den medfølgende bitsocial-cli daemon automatisk, og leveres som både et Docker-image for uovervåket VPS-distribusjon og en npm-pakke for Node-first-operatører."
+          "tagline": "Holder Bitsocial-fellesskap raske og tilgjengelige ved å hoste innholdet deres på nytt, via Docker eller npm.",
+          "description": "Bitsocial Seeder hjelper fellesskap med å laste raskt ved å holde ekstra kopier av innholdet deres tilgjengelig på nett. Den pinner førstesiden til hvert fellesskap, CID-ene til innleggsoppdateringer og pubsub-emneruting gjennom en Bitsocial-daemon. Den gjenbruker en lokal daemon som allerede kjører, når den er tilgjengelig, eller starter den medfølgende bitsocial-cli-daemonen automatisk, og leveres både som et Docker-image for VPS-oppsett som kjører uten tilsyn, og som en npm-pakke for operatører som foretrekker Node."
         },
         "ai-moderation-challenge": {
-          "tagline": "OpenAI-kompatible modereringskontroller mot hvert fellesskaps regler.",
+          "tagline": "Sjekker hvert innlegg mot fellesskapets regler med en AI-modell eieren velger.",
           "description": "AI Moderation Challenge evaluerer Bitsocial-kommentarinnhold mot <code>community.rules</code> med et OpenAI-kompatibelt model-endpoint. Communities kan sende risikofylte innlegg til gjennomgang mens provider-nøkler og prompts holdes i private node-innstillinger."
         },
         "r9k-challenge": {
-          "tagline": "Robot9000-inspirert originalitetsport for fellesskap som vil ha en anti-repost-opplevelse for publisering.",
+          "tagline": "Regel i Robot9000-stil som avviser alle innlegg som gjentar tekst som allerede er publisert i fellesskapet.",
           "description": "R9K Challenge kjører på en Bitsocial-communitynode og sammenligner normalisert innleggstekst med den lokale kommentardatabasen på eiernodens side. Den gir fellesskap en <robot9000>Robot9000</robot9000>-lignende publiseringsopplevelse: eksakte reposts feiler før aksept, backlinks ignoreres, gjentatte feil utløser eskalerende midlertidige bans, og hasher av akseptert tekst blir i privat lokal tilstand i stedet for å lagre rå innleggstekst. Denne challengen bruker ikke AI."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "Plattform for kodesamarbeid på idéstadiet som kombinerer peer-to-peer-Git med Bitsocials sosiale lag.",
-          "description": "GitCommons er forskning på et GitHub-alternativ som kombinerer et peer-to-peer-Git-lag i Radicle-stil med Bitsocials profiler, fellesskap, oppdagelse og omdømme. Diskusjonene i hvert repositorium ville vært et Bitsocial-fellesskap, utviklerprofiler ville vært profilnoder som de fleste når via offentlige RPC-er, og CI ville kommet fra konkurrerende runner-tjenester i stedet for én obligatorisk leverandør. GitCommons er et arbeidsnavn; prosjektet er ikke tilknyttet GitHub, Inc. eller Git-prosjektet."
+          "description": "GitCommons er forskning på et GitHub-alternativ som kombinerer et peer-to-peer-Git-lag i Radicle-stil med Bitsocials profiler, fellesskap, oppdagelse og omdømme. Diskusjonene i hvert repositorium ville vært et Bitsocial-fellesskap, utviklerprofiler ville vært Bitsocial-profiler, og CI ville kommet fra konkurrerende runner-tjenester i stedet for én obligatorisk leverandør. GitCommons er et arbeidsnavn; prosjektet er ikke tilknyttet GitHub, Inc. eller Git-prosjektet."
         },
         "modelswarm": {
           "tagline": "Hugging Face-alternativ på idéstadiet der en sverm av peers deler AI-modeller med åpne vekter.",

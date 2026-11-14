@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "Decentralizált imageboardok közvetlen webes, APK- és desktop letöltésekkel.",
+          "tagline": "Anonim imageboardok a Bitsocialon webre, Androidra és desktopra.",
           "description": "A 5chan a Bitsocial első nyilvános kliense. Újraalkotja az anonim imageboard-folyamatot egy peer-to-peer hálózaton: boardok, threadek, képfeltöltés, közösségi moderálás és több nyilvános mirror központi szerver nélkül."
         },
         "seedit": {
-          "tagline": "Forum-stílusú Bitsocial client webes, APK-s és desktop buildekkel.",
-          "description": "A Seedit Reddit-szerű beszélgetést hoz a Bitsocialba threadekkel, identitásokkal, közösségkezeléssel és több terjesztési úttal. Ez a leggyorsabb módja annak, hogy a hálózat fórum oldalát böngészőből, Android telefonról vagy desktop appból kipróbáld."
+          "tagline": "Reddit-stílusú közösségek a Bitsocialon webre, Androidra és desktopra.",
+          "description": "A Seedit Reddit-szerű beszélgetést hoz a Bitsocialba: közösségek, amelyeket bárki létrehozhat és birtokolhat, szavazás, szálakba rendezett kommentek, valamint az egyes közösségek tulajdonosa által meghatározott moderálás. Ez a leggyorsabb módja annak, hogy a hálózat fórum oldalát böngészőből, Android telefonról vagy desktop appból kipróbáld."
         },
         "spam-blocker": {
-          "tagline": "Központosított kockázati pontozási réteg a visszaélésszerű publikációk szűrésére.",
+          "tagline": "Hosztolt kockázatpontozó szolgáltatás, amely segít a közösségeknek kiszűrni a spamet és a kitiltások megkerülését.",
           "description": "A Spam Blocker kiértékeli a publikációkat és egy kockázati pontszámot ad vissza, amelyet a közösségek saját moderációs logikájukkal kombinálhatnak. Az üzemeltetett szolgáltatása az ugyanarról az IP-címről először látott aláíró kulcsokat is összekapcsolja, így az a felhasználó, aki folyamatosan új fiókokat hoz létre, hogy elkerülje a közösségi tilalmat vagy beszélgetést fabrikáljon, a kockázati pontszáma emelkedését látja, míg néhány aláíró marad megengedett az össze-, legális többeszköz-használatra."
         },
         "captcha-canvas-challenge": {
           "tagline": "Egyedi képes captcha-k azoknak a közösségeknek, amelyek emberi ellenőrzést akarnak.",
-          "description": "A Captcha Canvas Challenge vizuális captcha-kat generál, amelyeket a közösségek a saját publikálási folyamatukba illeszthetnek. Könnyű megoldás azoknak, akik közvetlen emberi ellenőrzést szeretnének anélkül, hogy feladnák a saját hosztolású moderálást."
+          "description": "A Captcha Canvas Challenge képes captchát generál a közösség saját csomópontján, és megköveteli a posztolóktól, hogy megoldják, mielőtt egy poszt, válasz vagy szavazat elfogadásra kerül. Semmi sem kerül harmadik fél captcha-szolgáltatásához. Alapszintű elrettentés, amelyet az elszánt botok brute force-szal feltörhetnek, ezért a spamet vonzó közösségekben párosítsd egy másik kihívással."
         },
         "voucher-challenge": {
           "tagline": "Meghívó jellegű voucher kódok azoknak a közösségeknek, amelyek a kontrollált növekedést részesítik előnyben.",
-          "description": "A Voucher Challenge lehetővé teszi a moderátoroknak, hogy megbízható voucher kódokat osszanak ki, amelyek globális identity provider nélkül oldják fel a publikálást. Jól illik meghívásalapú közösségekhez, niche boardokhoz és fokozatos bevezetésekhez."
+          "description": "A Voucher Challenge lehetővé teszi a moderátoroknak, hogy megbízható voucher kódokat osszanak ki, amelyek globális identity provider nélkül oldják fel a publikálást. A kód az első szerzőhöz kötődik, aki beváltja, így ez a szerző továbbra is posztolhat vele, más pedig nem használhatja fel újra."
         },
         "evm-contract-call": {
-          "tagline": "On-chain gating azoknak a közösségeknek, amelyek token- vagy contract ellenőrzéseket akarnak.",
-          "description": "Az EVM Contract Call egy EVM contract meghívásával ellenőrzi a publikációkat, mielőtt egy poszt elfogadásra kerül. Lehetővé teszi, hogy a közösségek token gate-eket, staking szabályokat vagy más on-chain ellenőrzéseket építsenek a moderálási folyamatukba."
+          "tagline": "Megköveteli a posztolóktól, hogy megfeleljenek egy on-chain ellenőrzésen, például egy token birtoklásán.",
+          "description": "Az EVM Contract Call egy EVM contract meghívásával ellenőrzi a publikációkat, mielőtt egy poszt elfogadásra kerül. Lehetővé teszi, hogy a közösségek token gate-eket, staking szabályokat vagy más on-chain ellenőrzéseket építsenek a posztolási szabályaikba."
         },
         "bitsocial-cli": {
-          "tagline": "Parancssoros vezérlés node-okhoz, közösségekhez és automatizálási workflow-khoz.",
-          "description": "A Bitsocial CLI a protokoll hivatalos terminálfelülete. Használd csomópontok kezelésére, tartalmak közzétételére, WebSocket JSON-RPC szerver indítására programozott vezérléshez és kódautomatizáláshoz, adminfolyamatok automatizálására, valamint arra, hogy GUI kliens nélkül közvetlenül a Bitsocial primitívekkel dolgozz."
+          "tagline": "Futtass Bitsocial-csomópontot, és kezeld a közösségeket a terminálból.",
+          "description": "A Bitsocial CLI a protokoll hivatalos terminálfelülete. Használd csomópont futtatására, közösségek létrehozására és kezelésére, tartalmak közzétételére, valamint olyan WebSocket JSON-RPC szerver indítására, amelyet más programok vezérelhetnek."
         },
         "telegram-bots": {
           "tagline": "Feed botok, amelyek az új Bitsocial posztokat Telegram csatornákba vagy csoportokba továbbítják.",
           "description": "A Bitsocial Telegram Bots figyeli a kliens közösségi listáit, és az új posztokat inline linkekkel továbbítja Telegram célpontokba, vissza a Bitsocial kliensekhez. Az aktív bot ma a 5chan feedeket fedi le, és a repo úgy van felépítve, hogy idővel több kliensspecifikus bot is hozzáadható legyen."
         },
         "5chan-board-manager": {
-          "tagline": "Board-adminisztrációs eszközök egyedi 5chan közösségekhez.",
-          "description": "A 5chan Board Manager csatlakozik a Bitsocial CLI-hoz, hogy segítsen az adminisztrátoroknak egyéni imageboard boardokat létrehozni, konfigurálni és moderálni. Ez a segéd réteg azoknak a boardtulajdonosoknak, akik működési kontrollt szeretnének."
+          "tagline": "4chan-stílusú thread-archiválás, bump limitek és törlés 5chan boardokhoz.",
+          "description": "A 5chan Board Manager a Bitsocial CLI mellett fut, és a 4chan thread-életciklusát adja a boardnak: az utolsó oldalról lecsúszó threadek archiválódnak, az archivált threadek egy beállított idő után véglegesen törlődnek, a bump limitet túllépő threadek nem bumpolódnak tovább, a szerzőjük által törölt posztok pedig véglegesen törlődnek."
         },
         "flags-challenge": {
-          "tagline": "Ellenőrzött zászló-kibocsátó kihívás ország- és tábla-specifikus jelvényekhez.",
+          "tagline": "Ellenőrzött ország- és táblazászlók a posztokon, a közösség által megbízhatónak tartott kibocsátó aláírásával.",
           "description": "A Flags Challenge egy Bitsocial közösségi csomóponton futtatódik, és aláírt flag állításokat ellenőriz egy konfigurálható kibocsátó szolgáltatástól. Az első csomagolt profil a 5chant célozza meg, az ország zászlóit, a /pol/ memeflags-okat és a /mlp/ pony flags-okat tartalmazza, miközben megtartja ugyanazt a mintát, amely újrahasználható bármely olyan ügyfél számára, amely saját kibocsátó szolgáltatást és névteret futtat."
         },
         "bitsocial-seeder": {
-          "tagline": "Nyilvános seeder a Bitsocial-közösségekhez, Docker és npm csomagolásban.",
-          "description": "A Bitsocial Seeder a közösség első oldalait, a frissítés utáni CID-eket és a pubsub témakörök irányítását egy Bitsocial daemon-on keresztül rögzíti. Újrafelhasználja egy már futó helyi daemon-t, ha elérhető, vagy automatikusan elindítja a csomagolt bitsocial-cli daemon-t, és Docker-képként sem feligyelt VPS-telepítésekhez, sem npm-csomagként Node-first operátorok számára érkezik."
+          "tagline": "Gyorsan és elérhetően tartja a Bitsocial-közösségeket a tartalmuk újrahosztolásával, Dockerrel vagy npm-mel.",
+          "description": "A Bitsocial Seeder a tartalmuk további másolatainak online tartásával segíti a közösségek gyors betöltődését. Egy Bitsocial daemonon keresztül rögzíti az egyes közösségek első oldalát, a posztfrissítések CID-jeit és a pubsub topicok útválasztását. Ha elérhető egy már futó helyi daemon, azt használja, különben automatikusan elindítja a mellékelt bitsocial-cli daemont, és Docker-image-ként is elérhető felügyelet nélküli VPS-telepítésekhez, valamint npm-csomagként Node-first üzemeltetők számára."
         },
         "ai-moderation-challenge": {
-          "tagline": "OpenAI-kompatibilis moderációs ellenőrzések minden közösség szabályai alapján.",
+          "tagline": "Minden posztot a közösség szabályai alapján ellenőriz a tulajdonos által választott AI-modellel.",
           "description": "Az AI Moderation Challenge a Bitsocial kommenttartalmát a <code>community.rules</code> alapján értékeli egy OpenAI-kompatibilis model endpoint segítségével. A közösségek a kockázatos bejegyzéseket ellenőrzésre irányíthatják, miközben a provider kulcsokat és promptokat privát node beállításokban tartják."
         },
         "r9k-challenge": {
-          "tagline": "Robot9000-stílusú eredetiségkapu olyan közösségeknek, amelyek anti-repost posztolási élményt szeretnének.",
+          "tagline": "Robot9000-stílusú szabály, amely elutasít minden posztot, amely a közösségben már közzétett szöveget ismétel.",
           "description": "Az R9K Challenge egy Bitsocial közösségi node-on fut, és a normalizált posztszöveget összeveti a tulajdonos node helyi kommentadatbázisával. <robot9000>Robot9000</robot9000>-stílusú posztolási élményt ad a közösségeknek: a pontos repostok elfogadás előtt elbuknak, a backlinkek figyelmen kívül maradnak, az ismételt hibák fokozódó ideiglenes banokat indítanak, az elfogadott szöveg hash-ei pedig nyers posztszöveg tárolása helyett privát helyi állapotban maradnak. Ez a challenge nem használ AI-t."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "Ötletszakaszban lévő platform közös kódfejlesztéshez, amely a peer-to-peer Gitet a Bitsocial közösségi rétegével ötvözi.",
-          "description": "A GitCommons egy GitHub-alternatíva kutatása, amely egy Radicle-szerű peer-to-peer Git-réteget ötvöz a Bitsocial profiljaival, közösségeivel, felfedezésével és reputációjával. Minden tároló beszélgetései egy Bitsocial-közösséget alkotnának, a fejlesztői profilok profilcsomópontok lennének, amelyeket a legtöbben nyilvános RPC-ken keresztül érnének el, a CI pedig egymással versengő runner-szolgáltatásoktól származna egyetlen kötelező szolgáltató helyett. A GitCommons munkanév; a projekt nem áll kapcsolatban a GitHub, Inc. céggel vagy a Git projekttel."
+          "description": "A GitCommons egy GitHub-alternatíva kutatása, amely egy Radicle-szerű peer-to-peer Git-réteget ötvöz a Bitsocial profiljaival, közösségeivel, felfedezésével és reputációjával. Minden tároló beszélgetései egy Bitsocial-közösséget alkotnának, a fejlesztői profilok Bitsocial-profilok lennének, a CI pedig egymással versengő runner-szolgáltatásoktól származna egyetlen kötelező szolgáltató helyett. A GitCommons munkanév; a projekt nem áll kapcsolatban a GitHub, Inc. céggel vagy a Git projekttel."
         },
         "modelswarm": {
           "tagline": "Ötletszakaszban lévő Hugging Face-alternatíva, amelyben nyílt súlyú MI-modelleket egy peerekből álló raj oszt meg.",

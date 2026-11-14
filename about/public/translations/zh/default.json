@@ -553,54 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "去中心化 imageboard，支持 web、APK 和 desktop 的直接下载。",
+          "tagline": "Bitsocial 上的匿名 imageboard，支持 web、Android 和 desktop。",
           "description": "5chan 是 Bitsocial 的第一个公开 client。它在 peer-to-peer 网络上重建匿名 imageboard 流程：boards、threads、图片发布、社区 moderation，以及多个 public mirror，而不依赖中心 server。"
         },
         "seedit": {
-          "tagline": "论坛风格的 Bitsocial client，提供 web、APK 和 desktop 构建。",
-          "description": "Seedit 把 Reddit 风格的讨论带到 Bitsocial，包含 threads、identities、community management 和多种分发路径。它是从浏览器、Android phone 或 desktop app 试用网络 forum 侧的最快方式。"
+          "tagline": "Bitsocial 上的 Reddit 风格社区，支持 web、Android 和 desktop。",
+          "description": "Seedit 把 Reddit 风格的讨论带到 Bitsocial：任何人都能创建并拥有的社区、投票、楼中楼评论，以及由各社区所有者决定的审核方式。它是从浏览器、Android phone 或 desktop app 试用网络 forum 侧的最快方式。"
         },
         "spam-blocker": {
-          "tagline": "用于过滤 abusive publications 的集中式风险评分层。",
+          "tagline": "托管式风险评分服务，帮助社区过滤垃圾内容和规避封禁的行为。",
           "description": "Spam Blocker评估发布内容并返回风险评分，社区可以将其与自己的内容审核逻辑相结合。其托管服务还关联首次从相同IP地址看到的签名者密钥，因此一个不断创建新账户以躲避社区禁令或制造对话的用户会看到其风险评分上升，而少数签名者仍然被允许合法的多设备使用。"
         },
         "captcha-canvas-challenge": {
           "tagline": "面向希望进行人工 verification 的社区的自定义图片验证码。",
-          "description": "Captcha Canvas Challenge 会生成视觉验证码，社区可以把它接入自己的 publishing flow。对于想要直接人工检查、又不想放弃 self-hosted moderation 的社区来说，这是一个轻量选择。"
+          "description": "Captcha Canvas Challenge 在社区自己的节点上生成图片验证码，并要求发帖者先完成验证，帖子、回复或投票才会被接受。不会向任何第三方验证码服务发送数据。它只是基础的防护手段，有决心的机器人可以暴力破解，因此在容易招来垃圾内容的社区，请搭配其他挑战一起使用。"
         },
         "voucher-challenge": {
           "tagline": "适合偏好受控增长的社区的邀请码式 voucher code。",
-          "description": "Voucher Challenge 让 moderators 分发可信的 voucher code，在不依赖全局 identity provider 的情况下解锁 publishing。它很适合 invite-driven community、niche board 和逐步 rollout。"
+          "description": "Voucher Challenge 让 moderators 分发可信的 voucher code，在不依赖全局 identity provider 的情况下解锁 publishing。每个 code 会绑定到第一个兑换它的作者，因此该作者可以一直用它发帖，其他人无法重复使用。"
         },
         "evm-contract-call": {
-          "tagline": "面向想要 token 或 contract 检查的社区的 on-chain gating。",
-          "description": "EVM Contract Call 会在 post 被接受之前调用 EVM contract 来验证 publications。它让社区可以把 token gate、staking rules 或其他 on-chain checks 集成到 moderation flow 中。"
+          "tagline": "要求发帖者通过 on-chain 检查，例如持有某种 token。",
+          "description": "EVM Contract Call 会在 post 被接受之前调用 EVM contract 来验证 publications。它让社区可以把 token gate、staking rules 或其他 on-chain checks 集成到自己的发帖规则中。"
         },
         "bitsocial-cli": {
-          "tagline": "用于 nodes、communities 和 automation workflows 的命令行控制。",
-          "description": "Bitsocial CLI 是该协议的官方终端界面。可用它来管理节点、发布内容、启动用于程序化控制和代码自动化的 WebSocket JSON-RPC 服务器、自动化管理流程，并且无需 GUI 客户端即可直接与 Bitsocial 原语交互。"
+          "tagline": "在终端中运行 Bitsocial 节点并管理社区。",
+          "description": "Bitsocial CLI 是该协议的官方终端界面。可用它来运行节点、创建和管理社区、发布内容，以及启动可供其他程序操控的 WebSocket JSON-RPC 服务器。"
         },
         "telegram-bots": {
           "tagline": "将新的 Bitsocial posts 转发到 Telegram channels 或 groups 的 feed bots。",
           "description": "Bitsocial Telegram Bots 会监控 client 的 community lists，并把新的 posts 转发到 Telegram destinations，同时附带返回 Bitsocial clients 的 inline links。当前 active bot 覆盖 5chan feeds，repo 也已按可持续扩展的方式组织，便于未来加入更多 client-specific bots。"
         },
         "5chan-board-manager": {
-          "tagline": "用于自定义 5chan communities 的 board 管理工具。",
-          "description": "5chan Board Manager 连接到 Bitsocial CLI，帮助管理员创建、配置和管理自定义 imageboard 板块。它是为希望掌控运营的板块所有者提供的工具层。"
+          "tagline": "为 5chan 板块提供 4chan 风格的串归档、bump 上限和清除功能。",
+          "description": "5chan Board Manager 与 Bitsocial CLI 一同运行，为板块带来 4chan 式的串生命周期：掉出最后一页的串会被归档，已归档的串在设定时间后被清除，超过 bump 上限的串不再被顶起，被作者删除的帖子也会被清除。"
         },
         "flags-challenge": {
-          "description": "Flags Challenge在Bitsocial社区节点上运行，并验证来自可配置发行者服务的签名标志断言。第一个捆绑的配置文件以5chan为目标，涵盖国家旗帜、/pol/ memeflags和/mlp/ pony flags，同时保持相同的模式可供运行自己的发行者服务和命名空间的任何客户端重用。"
+          "description": "Flags Challenge在Bitsocial社区节点上运行，并验证来自可配置发行者服务的签名标志断言。第一个捆绑的配置文件以5chan为目标，涵盖国家旗帜、/pol/ memeflags和/mlp/ pony flags，同时保持相同的模式可供运行自己的发行者服务和命名空间的任何客户端重用。",
+          "tagline": "帖子上经过验证的国家旗帜和板块旗帜，由社区信任的签发方签名。"
         },
         "bitsocial-seeder": {
-          "tagline": "Bitsocial社区的公共播种者，为Docker和npm打包。",
-          "description": "Bitsocial Seeder 通过 Bitsocial daemon 固定社区首页、更新后的 CID 和 pubsub 主题路由。当本地 daemon 可达时，它会重用已在运行的本地 daemon，或自动启动捆绑的 bitsocial-cli daemon，并同时作为 Docker 映像用于无人值守的 VPS 部署和 npm 包用于 Node-first 运营商提供。"
+          "tagline": "通过重新托管社区内容，让 Bitsocial 社区保持快速、可访问，可通过 Docker 或 npm 使用。",
+          "description": "Bitsocial Seeder 通过让社区内容的额外副本保持在线，帮助社区快速加载。它通过 Bitsocial daemon 固定社区首页、帖子更新的 CID 和 pubsub 主题路由。当本地已有正在运行的 daemon 且可达时，它会直接复用，否则自动启动捆绑的 bitsocial-cli daemon；它同时提供用于无人值守 VPS 部署的 Docker 镜像，以及面向 Node-first 运营者的 npm 包。"
         },
         "ai-moderation-challenge": {
-          "tagline": "基于 OpenAI 兼容接口的审核检查，对照各社区规则。",
+          "tagline": "使用所有者选择的 AI 模型，按社区规则检查每条帖子。",
           "description": "AI Moderation Challenge 通过 OpenAI-compatible model endpoint，对照 <code>community.rules</code> 评估 Bitsocial 评论内容。community 可以将 risky posts 路由到 review，同时将 provider keys 和 prompts 保留在 private node settings 中。"
         },
         "r9k-challenge": {
-          "tagline": "面向希望获得反重复发布体验的社区的 Robot9000 风格原创性门槛。",
+          "tagline": "Robot9000 风格的规则，拒绝任何重复社区内已发布文本的帖子。",
           "description": "R9K Challenge 在 Bitsocial 社区节点上运行，并将规范化后的帖子文本与所有者节点的本地评论数据库进行比对。它为社区提供 <robot9000>Robot9000</robot9000> 风格的发帖体验：完全重复的 repost 会在被接受前失败，backlink 会被忽略，反复失败会触发逐步升级的临时 ban，已接受文本的哈希会保留在私有本地状态中，而不是保存原始帖子文本。 这个 challenge 不使用 AI。"
         },
         "wordfilter-challenge": {
@@ -645,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "处于构想阶段的代码协作平台，将 peer-to-peer Git 与 Bitsocial 的社交层相结合。",
-          "description": "GitCommons 是一项关于 GitHub 替代方案的研究，它将 Radicle 式的 peer-to-peer Git 层与 Bitsocial 的个人资料、社区、发现机制和声誉相结合。每个仓库的讨论将是一个 Bitsocial 社区，开发者个人资料将是个人资料节点，大多数人通过公共 RPC 访问这些节点，CI 则来自相互竞争的 runner 服务，而非某一家强制指定的提供商。GitCommons 只是暂定名；本项目与 GitHub, Inc. 及 Git 项目均无关联。"
+          "description": "GitCommons 是一项关于 GitHub 替代方案的研究，它将 Radicle 式的 peer-to-peer Git 层与 Bitsocial 的个人资料、社区、发现机制和声誉相结合。每个仓库的讨论将是一个 Bitsocial 社区，开发者个人资料将是 Bitsocial 个人资料，CI 则来自相互竞争的 runner 服务，而非某一家强制指定的提供商。GitCommons 只是暂定名；本项目与 GitHub, Inc. 及 Git 项目均无关联。"
         },
         "modelswarm": {
           "tagline": "处于构想阶段的 Hugging Face 替代方案，由一群对等节点共享开放权重 AI 模型。",

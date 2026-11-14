@@ -553,55 +553,55 @@
       },
       "items": {
         "5chan": {
-          "tagline": "web, APK, desktop కోసం నేరుగా downloads ఉన్న decentralized imageboards.",
+          "tagline": "Bitsocial పై అనామక imageboards, web, Android, desktop కోసం.",
           "description": "5chan అనేది Bitsocial యొక్క మొదటి public client. ఇది peer-to-peer network మీద anonymous imageboard flow ను తిరిగి రూపొందిస్తుంది: boards, threads, image posting, community moderation, మరియు central server మీద ఆధారపడకుండా multiple public mirrors."
         },
         "seedit": {
-          "tagline": "web, APK, desktop builds తో forum-style Bitsocial client.",
-          "description": "Seedit Reddit-style discussion ను Bitsocial కు threads, identities, community management, మరియు multiple distribution paths తో తీసుకువస్తుంది. browser, Android phone, లేదా desktop app నుండి network యొక్క forum side ను ప్రయత్నించడానికి ఇదే వేగవంతమైన మార్గం."
+          "tagline": "Bitsocial పై Reddit-style communities, web, Android, desktop కోసం.",
+          "description": "Seedit Reddit-style discussion ను Bitsocial కు తీసుకువస్తుంది: ఎవరైనా సృష్టించి సొంతం చేసుకోగల communities, voting, threaded comments, మరియు ప్రతి community యజమాని నిర్ణయించే moderation. browser, Android phone, లేదా desktop app నుండి network యొక్క forum side ను ప్రయత్నించడానికి ఇదే వేగవంతమైన మార్గం."
         },
         "spam-blocker": {
-          "tagline": "abusive publications ను filter చేయడానికి centralized risk scoring layer.",
+          "tagline": "communities కు spam మరియు ban evasion ను filter చేయడంలో సహాయపడే hosted risk-scoring service.",
           "description": "Spam Blocker ప్రచురణలను మూల్యాంకనం చేస్తుంది మరియు సమాజాలు తమ స్వంత నియంత్రణ తర్కంతో కలపగల ప్రమాద స్కోర్‌ను అందిస్తుంది. దాని హోస్ట్ చేసిన సేవ సమాన IP నుండి మొదటిసారి చూసిన సంతకం కీలను కూడా లింక్ చేస్తుంది, కాబట్టి సామాజిక నిషేధం నుండి తప్పించుకోవటానికి లేదా సంభాషణను తయారు చేయటానికి కొత్త ఖాతాలను రూపొందించుకుంటున్న ఉపయోగకర్త తమ ప్రమాద స్కోర్ పెరుగుదలను చూస్తారు, అయితే కొందరు సంతకం చేసేవారు చట్టబద్ధమైన బహు-పరికర వినియోగం కోసం ఆమోదయోగ్యముగా ఉంటారు."
         },
         "captcha-canvas-challenge": {
           "tagline": "human verification కోరే communities కోసం custom image captchas.",
-          "description": "Captcha Canvas Challenge visual captchas ను తయారు చేస్తుంది, వాటిని communities తమ publishing flow లో plug చేయవచ్చు. self-hosted moderation ను వదలకుండా direct human checks కావాలనుకునే communities కోసం ఇది ఒక lightweight option."
+          "description": "Captcha Canvas Challenge community యొక్క సొంత node పైనే ఒక image captcha ను తయారు చేస్తుంది, మరియు post, reply, లేదా vote accept కావడానికి ముందు posters దాన్ని solve చేయాలి. third-party captcha service కు ఏదీ పంపబడదు. ఇది ఒక ప్రాథమిక అడ్డంకి మాత్రమే, పట్టుదల గల bots దీన్ని brute-force చేయగలవు, కాబట్టి spam ను ఆకర్షించే communities లో దీన్ని మరో challenge తో కలిపి వాడండి."
         },
         "voucher-challenge": {
           "tagline": "controlled growth ను ఇష్టపడే communities కోసం invite-style voucher codes.",
-          "description": "Voucher Challenge moderators కు trusted voucher codes ను distribute చేయడానికి వీలు ఇస్తుంది, ఇవి global identity provider లేకుండానే publishing ను unlock చేస్తాయి. invite-driven communities, niche boards, మరియు gradual rollouts కి ఇది మంచి fit."
+          "description": "Voucher Challenge moderators కు trusted voucher codes ను distribute చేయడానికి వీలు ఇస్తుంది, ఇవి global identity provider లేకుండానే publishing ను unlock చేస్తాయి. ఒక code దాన్ని మొదట redeem చేసిన author కు bind అవుతుంది, కాబట్టి ఆ author దానితో post చేస్తూనే ఉండగలరు, మరెవరూ దాన్ని మళ్లీ వాడలేరు."
         },
         "evm-contract-call": {
-          "tagline": "token లేదా contract checks కావాలనుకునే communities కోసం on-chain gating.",
-          "description": "EVM Contract Call ఒక post accept చేయబడే ముందు EVM contract ను call చేసి publications ను verify చేస్తుంది. ఇది communities కు token gates, staking rules, లేదా ఇతర on-chain checks ను moderation flow లో పెట్టడానికి సహాయపడుతుంది."
+          "tagline": "posters ఒక on-chain check ను pass కావాలి, ఉదాహరణకు ఒక token కలిగి ఉండటం.",
+          "description": "EVM Contract Call ఒక post accept చేయబడే ముందు EVM contract ను call చేసి publications ను verify చేస్తుంది. ఇది communities కు token gates, staking rules, లేదా ఇతర on-chain checks ను తమ posting rules లో పెట్టడానికి సహాయపడుతుంది."
         },
         "bitsocial-cli": {
-          "tagline": "nodes, communities, automation workflows కోసం command-line control.",
-          "description": "Bitsocial CLI అనేది ప్రోటోకాల్‌కు అధికారిక టెర్మినల్ ఇంటర్‌ఫేస్. నోడ్లను నిర్వహించడానికి, కంటెంట్‌ను ప్రచురించడానికి, ప్రోగ్రామాటిక్ నియంత్రణ మరియు కోడ్ ఆటోమేషన్ కోసం WebSocket JSON-RPC సర్వర్‌ను ప్రారంభించడానికి, అడ్మిన్ ఫ్లోలను ఆటోమేట్ చేయడానికి, GUI క్లయింట్ లేకుండా నేరుగా Bitsocial ప్రిమిటివ్‌లతో పని చేయడానికి దీన్ని ఉపయోగించండి."
+          "tagline": "terminal నుండి Bitsocial node ను run చేయండి, communities ను manage చేయండి.",
+          "description": "Bitsocial CLI అనేది ప్రోటోకాల్‌కు అధికారిక టెర్మినల్ ఇంటర్‌ఫేస్. నోడ్‌ను నడపడానికి, కమ్యూనిటీలను సృష్టించి నిర్వహించడానికి, కంటెంట్‌ను ప్రచురించడానికి, ఇతర ప్రోగ్రామ్‌లు నియంత్రించగల WebSocket JSON-RPC సర్వర్‌ను ప్రారంభించడానికి దీన్ని ఉపయోగించండి."
         },
         "telegram-bots": {
           "tagline": "కొత్త Bitsocial posts ను Telegram channels లేదా groups కు relay చేసే feed bots.",
           "description": "Bitsocial Telegram Bots client community lists ను monitor చేసి కొత్త posts ను Telegram destinations కు inline links తో forward చేస్తాయి, Bitsocial clients కి తిరిగి వెళ్లేలా. active bot ప్రస్తుతం 5chan feeds ను cover చేస్తుంది, మరియు repo ను కాలక్రమేణా మరిన్ని client-specific bots ను add చేయగలిగేలా రూపొందించారు."
         },
         "5chan-board-manager": {
-          "tagline": "custom 5chan communities కోసం board administration tooling.",
-          "description": "5chan Board Manager Bitsocial CLIకి కనెక్ట్ అవుతుంది, తద్వారా అడ్మినిస్ట్రేటర్లు కస్టమ్ imageboard బోర్డులను సృష్టించడానికి, కాన్ఫిగర్ చేయడానికి, మోడరేట్ చేయడానికి సహాయపడుతుంది. ఇది ఆపరేషనల్ నియంత్రణ కోరుకునే బోర్డు యజమానుల కోసం యుటిలిటీ లేయర్."
+          "tagline": "5chan బోర్డ్‌ల కోసం 4chan-శైలి thread archiving, bump limits, మరియు purging.",
+          "description": "5chan Board Manager Bitsocial CLI పక్కనే నడుస్తూ, ఒక బోర్డుకు 4chan యొక్క thread lifecycle ను ఇస్తుంది: చివరి పేజీ నుండి జారిపోయిన threads archive చేయబడతాయి, archive అయిన threads నిర్ణీత సమయం తర్వాత purge చేయబడతాయి, bump limit దాటిన threads ఇక bump కావు, మరియు రచయిత తొలగించిన పోస్ట్‌లు purge చేయబడతాయి."
         },
         "flags-challenge": {
-          "tagline": "దేश మరియు బోర్డ్-నిర్దిష్ట బ్యాడ్జ్‌ల కోసం ధృవీకృత ఫ్లాగ్ ఇష్యూయర్ చ్యాలెంజ్.",
+          "tagline": "పోస్ట్‌లపై ధృవీకరించబడిన దేశ మరియు బోర్డ్ ఫ్లాగ్‌లు, కమ్యూనిటీ విశ్వసించే ఇష్యూయర్ సంతకంతో.",
           "description": "Flags Challenge ఒక Bitsocial కమ్యూనిటీ నోడ్‌పై నడుస్తుంది మరియు కాన్ఫిగరేబుల్ ఆధారిత సేవ నుండి సంతకం చేసిన ఫ్లాగ్ నిశ్చయాలను ధృవీకరిస్తుంది. మొదటి బండిల్ చేసిన ప్రొఫైల్ 5chan లను లక్ష్యంగా చేసుకుంటుంది, దేశ జెండాలు, /pol/ memeflags మరియు /mlp/ pony flags లను కవర్ చేస్తుంది, తన స్వంత ఆధారిత సేవ మరియు నామస్థలం నడుపుతున్న ఏదైనా క్లయింట్ కోసం ఒకే నమూనా పునర్వినియోగపరచదగినదిగా ఉంచుతుంది."
         },
         "bitsocial-seeder": {
-          "tagline": "Bitsocial సంఘాల కోసం పబ్లిక్ సీడర్, Docker మరియు npm కోసం ప్యాకేజ్ చేయబడింది.",
-          "description": "Bitsocial Seeder కమ్యూనిటీ ఫర్స్ట్ పేజ్‌లు, పోస్ట్-అప్‌డేట్ CID లు మరియు pubsub టాపిక్ రూటింగ్‌ను Bitsocial daemon ద్వారా పిన్ చేస్తుంది. ఇది ఇప్పటికే నడుస్తున్న స్థానిక daemon ను దొరుకుతున్నప్పుడు పునः ఉపయోగించుకుంటుంది లేదా బండిల్ చేయబడిన bitsocial-cli daemon ను స్వయంచాలకంగా ప్రారంభిస్తుంది, మరియు అటెండెన్సీ లేని VPS విస్తరణల కోసం Docker ఇమేజ్ మరియు Node-first ఆపరేటర్‌ల కోసం npm ప్యాకేజీ రెండింటిగా పంపిణీ చేయబడుతుంది."
+          "tagline": "Bitsocial కమ్యూనిటీల కంటెంట్‌ను మళ్లీ హోస్ట్ చేయడం ద్వారా వాటిని వేగంగా, అందుబాటులో ఉంచుతుంది, Docker లేదా npm ద్వారా.",
+          "description": "Bitsocial Seeder కమ్యూనిటీల కంటెంట్ యొక్క అదనపు కాపీలను ఆన్‌లైన్‌లో ఉంచడం ద్వారా అవి త్వరగా లోడ్ కావడానికి సహాయపడుతుంది. ఇది కమ్యూనిటీ మొదటి పేజీలు, పోస్ట్ అప్‌డేట్‌ల CID లు మరియు pubsub టాపిక్ రూటింగ్‌ను Bitsocial daemon ద్వారా పిన్ చేస్తుంది. ఇప్పటికే నడుస్తున్న స్థానిక daemon అందుబాటులో ఉంటే దాన్నే తిరిగి ఉపయోగిస్తుంది, లేదంటే బండిల్ చేయబడిన bitsocial-cli daemon ను స్వయంచాలకంగా ప్రారంభిస్తుంది, మరియు పర్యవేక్షణ లేని VPS డిప్లాయ్‌మెంట్‌ల కోసం Docker ఇమేజ్‌గా, Node-first ఆపరేటర్‌ల కోసం npm ప్యాకేజీగా రెండు రూపాల్లో లభిస్తుంది."
         },
         "ai-moderation-challenge": {
-          "tagline": "ప్రతి కమ్యూనిటీ నియమాలకు వ్యతిరేకంగా OpenAI అనుకూల మోడరేషన్ తనిఖీలు.",
+          "tagline": "యజమాని ఎంచుకున్న AI మోడల్‌తో ప్రతి పోస్ట్‌ను కమ్యూనిటీ నియమాల ప్రకారం తనిఖీ చేస్తుంది.",
           "description": "AI Moderation Challenge OpenAI-compatible model endpointతో Bitsocial comment contentను <code>community.rules</code>కు వ్యతిరేకంగా evaluate చేస్తుంది. communities risky postsను reviewకు route చేయవచ్చు, provider keys మరియు promptsను private node settingsలో ఉంచుకుంటూ."
         },
         "r9k-challenge": {
-          "tagline": "రీపోస్ట్‌లను అడ్డుకునే పోస్ట్ అనుభవం కోరుకునే కమ్యూనిటీల కోసం Robot9000-శైలి అసలుదనం గేట్.",
+          "tagline": "కమ్యూనిటీలో ఇప్పటికే పోస్ట్ చేసిన వచనాన్ని పునరావృతం చేసే ఏ పోస్ట్‌నైనా తిరస్కరించే Robot9000-శైలి నియమం.",
           "description": "R9K Challenge ఒక Bitsocial కమ్యూనిటీ node పై నడుస్తుంది మరియు normalized post text ను owner node యొక్క local comments database తో పోలుస్తుంది. ఇది కమ్యూనిటీలకు <robot9000>Robot9000</robot9000>-శైలి posting experience ఇస్తుంది: exact reposts acceptance కు ముందు fail అవుతాయి, backlinks పట్టించుకోబడవు, repeated failures escalating temporary bans ను trigger చేస్తాయి, మరియు raw post text నిల్వ చేయకుండా accepted-text hashes private local state లోనే ఉంటాయి. ఈ challenge లో AI ఉపయోగించబడదు."
         },
         "wordfilter-challenge": {
@@ -646,7 +646,7 @@
         },
         "gitcommons": {
           "tagline": "peer-to-peer Git‌ను Bitsocial సోషల్ లేయర్‌తో జోడించే, ఆలోచన దశలోని కోడ్ సహకార ప్లాట్‌ఫామ్.",
-          "description": "GitCommons అనేది ఒక GitHub ప్రత్యామ్నాయంపై పరిశోధన, ఇది Radicle తరహా peer-to-peer Git లేయర్‌ను Bitsocial ప్రొఫైల్‌లు, కమ్యూనిటీలు, డిస్కవరీ మరియు రెప్యుటేషన్‌తో కలుపుతుంది. ప్రతి రిపాజిటరీ చర్చలు ఒక Bitsocial కమ్యూనిటీగా ఉంటాయి, డెవలపర్ ప్రొఫైల్‌లు ప్రొఫైల్ నోడ్‌లుగా ఉంటాయి, వాటిని చాలా మంది పబ్లిక్ RPCల ద్వారా చేరుకుంటారు, మరియు CI ఒకే తప్పనిసరి ప్రొవైడర్‌కు బదులుగా పోటీపడే runner సేవల నుండి వస్తుంది. GitCommons తాత్కాలిక పేరు; ఈ ప్రాజెక్ట్‌కు GitHub, Inc.తో గానీ Git ప్రాజెక్ట్‌తో గానీ ఎలాంటి అనుబంధం లేదు."
+          "description": "GitCommons అనేది ఒక GitHub ప్రత్యామ్నాయంపై పరిశోధన, ఇది Radicle తరహా peer-to-peer Git లేయర్‌ను Bitsocial ప్రొఫైల్‌లు, కమ్యూనిటీలు, డిస్కవరీ మరియు రెప్యుటేషన్‌తో కలుపుతుంది. ప్రతి రిపాజిటరీ చర్చలు ఒక Bitsocial కమ్యూనిటీగా ఉంటాయి, డెవలపర్ ప్రొఫైల్‌లు Bitsocial ప్రొఫైల్‌లుగా ఉంటాయి, మరియు CI ఒకే తప్పనిసరి ప్రొవైడర్‌కు బదులుగా పోటీపడే runner సేవల నుండి వస్తుంది. GitCommons తాత్కాలిక పేరు; ఈ ప్రాజెక్ట్‌కు GitHub, Inc.తో గానీ Git ప్రాజెక్ట్‌తో గానీ ఎలాంటి అనుబంధం లేదు."
         },
         "modelswarm": {
           "tagline": "open-weight AI మోడళ్లను peers గుంపు పంచుకునే, ఆలోచన దశలోని Hugging Face ప్రత్యామ్నాయం.",
