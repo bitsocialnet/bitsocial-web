@@ -14,7 +14,7 @@ så mange sosiale formater som mulig.
 ## Hva som fortsatt må bygges
 
 De første fasene konsentrerer seg om kategoriene med størst effekt: bildetavler, forumer, offentlig
-RPC, Bitsocial Chain, profilnoder, Twitter/X-alternativet i fase 3, og tjenesteøkonomien rundt dem.
+RPC, Bitsocial Chain, profilnoder, Twitter/X-alternativet i fase 2, og tjenesteøkonomien rundt dem.
 
 Deretter bør nettverket utvide seg inn i den lange halen:
 

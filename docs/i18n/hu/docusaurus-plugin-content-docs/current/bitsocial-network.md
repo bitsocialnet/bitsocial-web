@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: A főterv 2. fázisa, amely a Bitsocial alkalmazásokhoz javasolt Ethereum L2 appchain gazdasági réteget mutatja be.
+description: A főterv 3. fázisa, amely a Bitsocial alkalmazásokhoz javasolt Ethereum L2 appchain gazdasági réteget mutatja be.
 ---
 
 # Bitsocial Chain
@@ -66,15 +66,11 @@ A nyilvánosság felé mutatkozó eredmény a következő:
 - az alkotók és a közösségek több kliensen keresztül is kaphatnak támogatást
 - az érték mozoghat az ökoszisztémán belül anélkül, hogy újra létrejönne egy központi platformtulajdonos
 
-## Miért kerül ez ilyen korán sorra
+## Miért a Twitter/X-alternatíva után következik
 
-A jelenlegi főterv a Bitsocial Chaint közvetlenül az első belépési kategóriák után helyezi el: a
-képtáblák, a fórumok és az a nyilvános RPC-réteg után, amely ezeket az alkalmazásokat több felhasználó
-számára is használhatóvá teszi.
+A jelenlegi főterv a Bitsocial Chaint a Twitter/X-alternatíva után helyezi el, mert ennek az alkalmazásnak nincs szüksége a láncra. A profilok profilcsomópontként futnak nem letétkezelő RPC-n keresztül, a `.bso` nevek pedig indulhatnak egy átmeneti nyilvántartásban az Ethereum főhálózatán ([BSIP-13](https://bsips.bitsocial.net/bsip-13)), és később átkerülhetnek a láncra.
 
-Ez az időzítés azért számít, mert a közösségi alkalmazásoknak erős hálózati hatásra van szükségük. Ha a
-névadás, a támogatás, a díjazás, a borravaló és a bevételszerzés túl későn érkezik meg, a központosított
-versenytársak túl sokáig őrzik meg a legnagyobb előnyüket.
+A Bitsocial Chain nem áldozhatja fel a decentralizációt egy korábbi indulásért. Nem adhat hozzá semmilyen bizalmi feltételezést magán az Ethereumon túl: nincsenek frissítési kulcsok, nincs biztonsági tanács, és nincs olyan üzemeltető, amely cenzúrázhatná vagy leállíthatná. Az ehhez vezető legígéretesebb terv, egy natív rollup, egy olyan Ethereum-frissítéstől függ, amelyet még nem ütemeztek. Amíg a lánc nem tudja teljesíteni ezt a mércét, a Twitter/X-alternatíva növeli azt a felhasználói bázist, amelyet a lánc szolgálni fog.
 
 ## Tervezési elvek
 

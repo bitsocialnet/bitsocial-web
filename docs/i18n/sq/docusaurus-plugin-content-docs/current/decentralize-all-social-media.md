@@ -14,7 +14,7 @@ shumë formate sociale që të jetë e mundur.
 ## Çfarë mbetet për t'u ndërtuar
 
 Fazat e para fokusohen te kategoritë me ndikimin më të madh: imageboard-et, forumet, RPC-ja publike,
-Bitsocial Chain, nyjet e profileve, alternativa ndaj Twitter/X e Fazës 3 dhe ekonomia e shërbimeve
+Bitsocial Chain, nyjet e profileve, alternativa ndaj Twitter/X e Fazës 2 dhe ekonomia e shërbimeve
 rreth tyre.
 
 Pas kësaj, rrjeti duhet të zgjerohet në bishtin e gjatë:

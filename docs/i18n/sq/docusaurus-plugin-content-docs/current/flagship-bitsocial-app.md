@@ -1,13 +1,13 @@
 ---
 title: Decentralizimi i Twitter/X
-description: "Faza 3 e planit kryesor: një alternativë e fokusuar dhe e decentralizuar ndaj Twitter/X për bisedë publike me tekstin në qendër, me infrastrukturë të zëvendësueshme."
+description: "Faza 2 e planit kryesor: një alternativë e fokusuar dhe e decentralizuar ndaj Twitter/X për bisedë publike me tekstin në qendër, me infrastrukturë të zëvendësueshme."
 ---
 
 # Decentralizimi i Twitter/X
 
-Faza 3 është një plan për të ndërtuar një alternativë të fokusuar dhe të decentralizuar ndaj Twitter/X. Në qendër është biseda publike me tekstin në plan të parë: postime të shkurtra, përgjigje, ripostime, ndjekje, diskutime në kohë reale dhe komunitete, me shtresën e platformës të hapur.
+Faza 2 është një plan për të ndërtuar një alternativë të fokusuar dhe të decentralizuar ndaj Twitter/X. Në qendër është biseda publike me tekstin në plan të parë: postime të shkurtra, përgjigje, ripostime, ndjekje, diskutime në kohë reale dhe komunitete, me shtresën e platformës të hapur.
 
-Twitter/X vazhdon të përkufizohet nga postimet, teksti dhe ndarja e ideve. Klienti i Fazës 3 duhet të konkurrojë në këtë përvojë thelbësore dhe ta bëjë atë të funksionojë jashtëzakonisht mirë.
+Twitter/X vazhdon të përkufizohet nga postimet, teksti dhe ndarja e ideve. Klienti i Fazës 2 duhet të konkurrojë në këtë përvojë thelbësore dhe ta bëjë atë të funksionojë jashtëzakonisht mirë.
 
 Kjo faqe përshkruan drejtimin e produktit, jo një specifikim përfundimtar të publikimit. Ndërfaqja e saktë, prurja e parazgjedhur, modeli i reklamave, veçoritë AI dhe tregu RPC mund të ndryshojnë ndërsa protokolli dhe aplikacionet e para piqen.
 
@@ -40,13 +40,13 @@ Komunitetet duhet të jenë shumë më të rëndësishme se grupet e izoluara br
 
 Në X/Twitter, komunitetet janë të kufizuara brenda X. Ato mund të jenë të dobishme, por ato trashëgojnë kufijtë e një platforme, një sistemi llogarie, një grupi rekomandimesh dhe një sipërfaqe produkti.
 
-Një komunitet Bitsocial mund të krijohet, të strehohet, të zbulohet dhe të përdoret përmes klientëve të ndryshëm. Kjo do të thotë se klienti i Fazës 3 mund të shfaqë komunitete dhe postime nga rrjeti më i gjerë Bitsocial, jo vetëm nga përdoruesit që filluan brenda tij. Një komunitet mund të ketë njëkohësisht aktivitet nga një klient imageboard, një klient diskutimi në stilin e Reddit, një klient forumi të specializuar, një aplikacion celular dhe klienti i Fazës 3.
+Një komunitet Bitsocial mund të krijohet, të strehohet, të zbulohet dhe të përdoret përmes klientëve të ndryshëm. Kjo do të thotë se klienti i Fazës 2 mund të shfaqë komunitete dhe postime nga rrjeti më i gjerë Bitsocial, jo vetëm nga përdoruesit që filluan brenda tij. Një komunitet mund të ketë njëkohësisht aktivitet nga një klient imageboard, një klient diskutimi në stilin e Reddit, një klient forumi të specializuar, një aplikacion celular dhe klienti i Fazës 2.
 
 Ky është avantazhi kryesor i efektit të rrjetit: një klient mund të ndihet i njohur për përdoruesit e zakonshëm, ndërkohë që ende tërheq vlerë nga shumë klientë, nyje të komunitetit, ofrues RPC dhe shërbime të pavarura.
 
 ## Algoritme opsionale të furnizimit
 
-Klienti i Fazës 3 nuk duhet t'u imponojë të gjithëve një sistem të vetëm global renditjeje.
+Klienti i Fazës 2 nuk duhet t'u imponojë të gjithëve një sistem të vetëm global renditjeje.
 
 Algoritmet e furnizimit duhet të jenë të zgjedhura. Një përdorues mund të zgjedhë një algoritëm nga një treg, të ndërrojë ofrues, të përdorë një algoritëm nga një kompani, të përdorë një të drejtuar nga një operator anonim, të përdorë një të ndërtuar nga një komunitet, të ekzekutojë një personal ose të mos përdorë fare algoritëm.
 
@@ -70,4 +70,4 @@ Ky është ndryshimi midis komoditetit dhe kujdestarisë.
 
 Bitsocial Chain mund të sjellë emërtim të qëndrueshëm, pagesa, bakshishe, çmime dhe mekanizma të tjerë financiarë drejtpërdrejt në bisedën publike.
 
-Klienti i Fazës 3 mbetet i përqendruar te postimet, teksti, ndarja e ideve dhe diskutimet në kohë reale, ndërsa ndan komunitete dhe efekte rrjeti me klientë të tjerë Bitsocial.
+Klienti i Fazës 2 mbetet i përqendruar te postimet, teksti, ndarja e ideve dhe diskutimet në kohë reale, ndërsa ndan komunitete dhe efekte rrjeti me klientë të tjerë Bitsocial.

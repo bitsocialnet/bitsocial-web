@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Fase 2 del pla director, que cobreix la capa econòmica proposada en forma d'appchain L2 d'Ethereum per a les aplicacions Bitsocial.
+description: Fase 3 del pla director, que cobreix la capa econòmica proposada en forma d'appchain L2 d'Ethereum per a les aplicacions Bitsocial.
 ---
 
 # Bitsocial Chain
@@ -69,15 +69,11 @@ El resultat de cara al públic hauria de ser:
 - els creadors i les comunitats poden rebre suport des de qualsevol client
 - el valor es pot moure per l'ecosistema sense recrear el propietari d'una plataforma centralitzada
 
-## Per què arriba tan aviat
+## Per què arriba després de l'alternativa a Twitter/X
 
-El pla director actual situa Bitsocial Chain immediatament després de les primeres categories de
-palanca: els taulers d'imatges, els fòrums i la capa d'RPC públic que fa que aquestes aplicacions
-siguin pràctiques per a més usuaris.
+El pla director actual situa Bitsocial Chain després de l'alternativa a Twitter/X, perquè aquesta aplicació no necessita la cadena. Els perfils funcionen com a nodes de perfil a través d'RPC no custodial, i els noms `.bso` poden començar en un registre provisional a la xarxa principal d'Ethereum ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) i passar a la cadena més endavant.
 
-Aquest calendari importa perquè les aplicacions socials necessiten efectes de xarxa forts. Si els
-noms, el suport, els premis, les propines i la monetització arriben massa tard, els competidors
-centralitzats conserven el seu avantatge més gran durant massa temps.
+Bitsocial Chain no hauria de sacrificar la descentralització per llançar-se abans. No hauria d'afegir cap supòsit de confiança més enllà del mateix Ethereum: cap clau d'actualització, cap consell de seguretat i cap operador que la pugui censurar o aturar. El disseny principal per aconseguir-ho, un rollup natiu, depèn d'una actualització d'Ethereum que encara no té data. Fins que la cadena pugui complir aquest llistó, l'alternativa a Twitter/X fa créixer la base d'usuaris a la qual servirà.
 
 ## Principis de disseny
 

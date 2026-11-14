@@ -14,7 +14,7 @@ finanțeze cât mai multe formate sociale posibil.
 ## Ce mai trebuie construit
 
 Primele faze se concentrează pe categoriile cu cel mai mare efect de pârghie: imageboard-uri,
-forumuri, RPC public, Bitsocial Chain, noduri de profil, alternativa la Twitter/X din Faza 3 și
+forumuri, RPC public, Bitsocial Chain, noduri de profil, alternativa la Twitter/X din Faza 2 și
 economia de servicii din jurul lor.
 
 După aceea, rețeaua ar trebui să se extindă spre coada lungă:

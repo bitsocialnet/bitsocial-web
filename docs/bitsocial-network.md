@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Phase 2 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
+description: Phase 3 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
 ---
 
 # Bitsocial Chain
@@ -62,14 +62,18 @@ The public-facing result should be:
 - creators and communities can receive support across clients
 - value can move across the ecosystem without recreating a centralized platform owner
 
-## Why this sits early
+## Why this comes after the Twitter/X alternative
 
-The current master plan places Bitsocial Chain immediately after the first wedge categories:
-imageboards, forums, and the public RPC layer that makes those apps practical for more users.
+The current master plan places Bitsocial Chain after the Twitter/X alternative, because that app
+does not need the chain. Profiles run as profile nodes through non-custodial RPC, and `.bso` names
+can start on an interim registry on Ethereum mainnet
+([BSIP-13](https://bsips.bitsocial.net/bsip-13)) and move onto the chain later.
 
-That timing matters because social apps need strong network effects. If naming, support, awards,
-tipping, and monetization arrive too late, centralized competitors keep their biggest advantage for
-too long.
+Bitsocial Chain should not trade decentralization for an earlier launch. It should add no trust
+assumptions beyond Ethereum itself: no upgrade keys, no security council, and no operator that can
+censor or halt it. The leading design for that, a native rollup, depends on an Ethereum upgrade that
+is not scheduled yet. Until the chain can meet that bar, the Twitter/X alternative grows the user
+base it will serve.
 
 ## Design principles
 

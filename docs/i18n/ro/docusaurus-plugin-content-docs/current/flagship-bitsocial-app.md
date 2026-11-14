@@ -1,13 +1,13 @@
 ---
 title: Descentralizarea Twitter/X
-description: "Faza 3 a planului principal: o alternativă descentralizată și bine focalizată la Twitter/X pentru conversații publice axate pe text, cu infrastructură înlocuibilă."
+description: "Faza 2 a planului principal: o alternativă descentralizată și bine focalizată la Twitter/X pentru conversații publice axate pe text, cu infrastructură înlocuibilă."
 ---
 
 # Descentralizarea Twitter/X
 
-Faza 3 este un plan de a construi o alternativă descentralizată și bine focalizată la Twitter/X. În centru se află conversația publică axată pe text: postări scurte, răspunsuri, redistribuiri, urmărirea profilurilor, discuții în timp real și comunități, cu stratul de platformă deschis.
+Faza 2 este un plan de a construi o alternativă descentralizată și bine focalizată la Twitter/X. În centru se află conversația publică axată pe text: postări scurte, răspunsuri, redistribuiri, urmărirea profilurilor, discuții în timp real și comunități, cu stratul de platformă deschis.
 
-Twitter/X este definit în continuare de postări, text și schimbul de idei. Clientul din Faza 3 ar trebui să concureze prin această experiență de bază și să o facă să funcționeze excepțional de bine.
+Twitter/X este definit în continuare de postări, text și schimbul de idei. Clientul din Faza 2 ar trebui să concureze prin această experiență de bază și să o facă să funcționeze excepțional de bine.
 
 Această pagină descrie direcția produsului, nu o specificație de lansare definitivă. Interfața exactă, fluxul implicit, modelul de publicitate, funcțiile AI și piața RPC se pot schimba pe măsură ce protocolul și primele aplicații se maturizează.
 
@@ -40,13 +40,13 @@ Comunitățile ar trebui să fie mult mai importante decât grupurile izolate di
 
 Pe X/Twitter, comunitățile sunt limitate în interiorul X. Ele pot fi utile, dar moștenesc limitele unei platforme, unui sistem de cont, a unei stive de recomandări și a unei suprafețe de produs.
 
-O comunitate Bitsocial poate fi creată, găzduită, descoperită și utilizată prin clienți diferiți. Astfel, clientul din Faza 3 poate afișa comunități și postări din rețeaua Bitsocial mai largă, nu doar de la utilizatorii care au început în el. O comunitate poate avea simultan activitate dintr-un client imageboard, un client de discuții în stil Reddit, un client de forum de nișă, o aplicație mobilă și clientul din Faza 3.
+O comunitate Bitsocial poate fi creată, găzduită, descoperită și utilizată prin clienți diferiți. Astfel, clientul din Faza 2 poate afișa comunități și postări din rețeaua Bitsocial mai largă, nu doar de la utilizatorii care au început în el. O comunitate poate avea simultan activitate dintr-un client imageboard, un client de discuții în stil Reddit, un client de forum de nișă, o aplicație mobilă și clientul din Faza 2.
 
 Acesta este avantajul principal al efectului de rețea: un client se poate simți familiar pentru utilizatorii mainstream, în timp ce atrage valoare de la mulți clienți, noduri comunitare, furnizori RPC și servicii independente.
 
 ## Algoritmi opționali de alimentare
 
-Clientul din Faza 3 nu ar trebui să impună tuturor un singur sistem global de clasificare.
+Clientul din Faza 2 nu ar trebui să impună tuturor un singur sistem global de clasificare.
 
 Algoritmii de feed ar trebui să fie opționali și activați numai la alegerea utilizatorului. Un utilizator ar putea alege un algoritm dintr-o piață, să schimbe furnizorii, să folosească un algoritm de la o companie, să folosească unul condus de un operator anonim, să folosească unul creat de o comunitate, să ruleze unul personal sau să nu folosească deloc un algoritm.
 
@@ -70,4 +70,4 @@ Aceasta este diferența dintre comoditate și custodie.
 
 Bitsocial Chain poate aduce nume persistente, plăți, bacșișuri, premii și alte mecanisme financiare direct în conversația publică.
 
-Clientul din Faza 3 rămâne centrat pe postări, text, schimb de idei și discuții în timp real, împărtășind în același timp comunități și efecte de rețea cu alți clienți Bitsocial.
+Clientul din Faza 2 rămâne centrat pe postări, text, schimb de idei și discuții în timp real, împărtășind în același timp comunități și efecte de rețea cu alți clienți Bitsocial.

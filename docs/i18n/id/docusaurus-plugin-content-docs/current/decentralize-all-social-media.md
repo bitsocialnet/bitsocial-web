@@ -14,7 +14,7 @@ mungkin format sosial.
 ## Apa yang masih perlu dibangun
 
 Fase-fase awal berfokus pada kategori dengan daya ungkit terbesar: imageboard, forum, RPC publik,
-Bitsocial Chain, node profil, alternatif Twitter/X pada Fase 3, dan ekonomi layanan di sekitarnya.
+Bitsocial Chain, node profil, alternatif Twitter/X pada Fase 2, dan ekonomi layanan di sekitarnya.
 
 Setelah itu, jaringan harus meluas ke long tail:
 

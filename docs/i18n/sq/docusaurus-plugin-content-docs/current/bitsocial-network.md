@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Faza 2 e masterplanit, që mbulon shtresën ekonomike të propozuar mbi një appchain Ethereum L2 për aplikacionet Bitsocial.
+description: Faza 3 e masterplanit, që mbulon shtresën ekonomike të propozuar mbi një appchain Ethereum L2 për aplikacionet Bitsocial.
 ---
 
 # Bitsocial Chain
@@ -68,14 +68,11 @@ Rezultati i dukshëm për publikun duhet të jetë:
 - krijuesit dhe komunitetet mund të marrin mbështetje nëpër klientë të ndryshëm
 - vlera mund të lëvizë nëpër ekosistem pa rikrijuar një pronar të centralizuar platforme
 
-## Pse kjo vjen herët
+## Pse vjen pas alternativës ndaj Twitter/X
 
-Masterplani aktual e vendos Bitsocial Chain menjëherë pas kategorive të para hyrëse: imageboard-et,
-forumet dhe shtresa publike RPC që i bën këto aplikacione praktike për më shumë përdorues.
+Masterplani aktual e vendos Bitsocial Chain pas alternativës ndaj Twitter/X, sepse ai aplikacion nuk ka nevojë për zinxhirin. Profilet funksionojnë si nyje profili përmes RPC jo-kujdestar, dhe emrat `.bso` mund të nisin në një regjistër të përkohshëm në mainnet-in e Ethereum ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) dhe të kalojnë në zinxhir më vonë.
 
-Kjo renditje në kohë ka rëndësi sepse aplikacionet sociale kanë nevojë për efekte të forta rrjeti.
-Nëse emërtimi, mbështetja, shpërblimet, bakshishet dhe monetizimi vijnë shumë vonë, konkurrentët e
-centralizuar e ruajnë avantazhin e tyre më të madh për shumë gjatë.
+Bitsocial Chain nuk duhet ta shkëmbejë decentralizimin me një nisje më të hershme. Nuk duhet të shtojë asnjë supozim besimi përtej vetë Ethereum: asnjë çelës përditësimi, asnjë këshill sigurie dhe asnjë operator që mund ta censurojë ose ta ndalojë. Dizajni kryesor për këtë, një rollup vendas (native rollup), varet nga një përditësim i Ethereum që ende nuk është planifikuar. Derisa zinxhiri të arrijë këtë standard, alternativa ndaj Twitter/X rrit bazën e përdoruesve të cilëve zinxhiri do t'u shërbejë.
 
 ## Parimet e dizajnit
 

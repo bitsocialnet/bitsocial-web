@@ -1,13 +1,13 @@
 ---
 title: Mendesentralisasikan Twitter/X
-description: "Tahap 3 rencana induk: alternatif Twitter/X yang fokus dan terdesentralisasi untuk percakapan publik yang mengutamakan teks, dengan infrastruktur yang dapat diganti."
+description: "Tahap 2 rencana induk: alternatif Twitter/X yang fokus dan terdesentralisasi untuk percakapan publik yang mengutamakan teks, dengan infrastruktur yang dapat diganti."
 ---
 
 # Mendesentralisasikan Twitter/X
 
-Tahap 3 adalah rencana untuk membangun alternatif Twitter/X yang fokus dan terdesentralisasi. Pusatnya adalah percakapan publik yang mengutamakan teks: posting singkat, balasan, repost, mengikuti akun, diskusi real-time, dan komunitas, dengan lapisan platform yang dibuka.
+Tahap 2 adalah rencana untuk membangun alternatif Twitter/X yang fokus dan terdesentralisasi. Pusatnya adalah percakapan publik yang mengutamakan teks: posting singkat, balasan, repost, mengikuti akun, diskusi real-time, dan komunitas, dengan lapisan platform yang dibuka.
 
-Twitter/X masih ditentukan oleh posting, teks, dan berbagi gagasan. Klien Tahap 3 seharusnya bersaing pada pengalaman inti tersebut dan membuatnya bekerja dengan sangat baik.
+Twitter/X masih ditentukan oleh posting, teks, dan berbagi gagasan. Klien Tahap 2 seharusnya bersaing pada pengalaman inti tersebut dan membuatnya bekerja dengan sangat baik.
 
 Halaman ini menjelaskan arah produk, bukan spesifikasi rilis yang dikunci. Antarmuka yang tepat, feed bawaan, model iklan, fitur AI, dan marketplace RPC dapat berubah seiring dengan berkembangnya protokol dan aplikasi-aplikasi awal.
 
@@ -40,13 +40,13 @@ Komunitas seharusnya jauh lebih penting daripada kelompok terisolasi di dalam sa
 
 Di X/Twitter, komunitas terbatas di dalam X. Komunitas dapat berguna, tetapi mewarisi batasan satu platform, satu sistem akun, satu stack rekomendasi, dan satu permukaan produk.
 
-Komunitas Bitsocial dapat dibuat, di-host, ditemukan, dan digunakan melalui klien yang berbeda. Artinya, klien Tahap 3 dapat menampilkan komunitas dan posting dari jaringan Bitsocial yang lebih luas, bukan hanya dari pengguna yang memulai di dalamnya. Sebuah komunitas dapat memperoleh aktivitas secara bersamaan dari klien imageboard, klien diskusi bergaya Reddit, klien forum khusus, aplikasi seluler, dan klien Tahap 3.
+Komunitas Bitsocial dapat dibuat, di-host, ditemukan, dan digunakan melalui klien yang berbeda. Artinya, klien Tahap 2 dapat menampilkan komunitas dan posting dari jaringan Bitsocial yang lebih luas, bukan hanya dari pengguna yang memulai di dalamnya. Sebuah komunitas dapat memperoleh aktivitas secara bersamaan dari klien imageboard, klien diskusi bergaya Reddit, klien forum khusus, aplikasi seluler, dan klien Tahap 2.
 
 Itulah keunggulan utama efek jaringan: satu klien dapat terasa akrab bagi pengguna umum sambil tetap memperoleh nilai dari banyak klien, node komunitas, penyedia RPC, dan layanan independen.
 
 ## Algoritma feed opsional
 
-Klien Tahap 3 tidak seharusnya memaksakan satu sistem pemeringkatan global kepada semua orang.
+Klien Tahap 2 tidak seharusnya memaksakan satu sistem pemeringkatan global kepada semua orang.
 
 Algoritma feed seharusnya dipilih secara aktif. Pengguna dapat memilih algoritma dari marketplace, berganti penyedia, menggunakan algoritma dari perusahaan, operator anonim, atau komunitas, menjalankan algoritma pribadi, atau tidak menggunakan algoritma sama sekali.
 
@@ -70,4 +70,4 @@ Itulah perbedaan antara kemudahan dan kustodi.
 
 Bitsocial Chain dapat menghadirkan penamaan permanen, pembayaran, tip, penghargaan, dan sarana finansial lainnya langsung ke dalam percakapan publik.
 
-Klien Tahap 3 tetap berpusat pada posting, teks, berbagi gagasan, dan diskusi real-time sambil berbagi komunitas dan efek jaringan dengan klien Bitsocial lainnya.
+Klien Tahap 2 tetap berpusat pada posting, teks, berbagi gagasan, dan diskusi real-time sambil berbagi komunitas dan efek jaringan dengan klien Bitsocial lainnya.

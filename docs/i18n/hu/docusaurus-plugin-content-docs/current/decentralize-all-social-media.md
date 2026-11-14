@@ -14,7 +14,7 @@ közösségi formátum finanszírozását.
 ## Mit kell még megépíteni
 
 Az első fázisok a legnagyobb hatású kategóriákra összpontosítanak: imageboardok, fórumok, nyilvános
-RPC, Bitsocial Chain, profilcsomópontok, a 3. fázis Twitter/X-alternatívája, valamint a köréjük épülő
+RPC, Bitsocial Chain, profilcsomópontok, a 2. fázis Twitter/X-alternatívája, valamint a köréjük épülő
 szolgáltatásgazdaság.
 
 Ezután a hálózatnak a hosszú farok felé kell terjeszkednie:

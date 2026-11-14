@@ -14,7 +14,7 @@ sosyal formatı finanse etmeye başladığı yerdir.
 ## Hâlâ inşa edilmesi gerekenler
 
 İlk aşamalar en yüksek kaldıraca sahip kategorilere odaklanır: imageboard'lar, forumlar, genel RPC,
-Bitsocial Chain, profil düğümleri, 3. aşamadaki Twitter/X alternatifi ve bunların etrafındaki hizmet
+Bitsocial Chain, profil düğümleri, 2. aşamadaki Twitter/X alternatifi ve bunların etrafındaki hizmet
 ekonomisi.
 
 Bundan sonra ağın uzun kuyruğa doğru genişlemesi gerekir:

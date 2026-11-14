@@ -14,7 +14,7 @@ social formats as possible.
 ## What still needs to be built
 
 The first phases focus on the highest-leverage categories: imageboards, forums, public RPC,
-Bitsocial Chain, profile nodes, the Phase 3 Twitter/X alternative, and the service economy around
+Bitsocial Chain, profile nodes, the Phase 2 Twitter/X alternative, and the service economy around
 them.
 
 After that, the network should expand into the long tail:

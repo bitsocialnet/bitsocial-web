@@ -1,13 +1,13 @@
 ---
 title: A Twitter/X decentralizálása
-description: "A mesterterv 3. szakasza: fókuszált, decentralizált Twitter/X-alternatíva a szövegközpontú nyilvános beszélgetéshez, cserélhető infrastruktúrával."
+description: "A mesterterv 2. szakasza: fókuszált, decentralizált Twitter/X-alternatíva a szövegközpontú nyilvános beszélgetéshez, cserélhető infrastruktúrával."
 ---
 
 # A Twitter/X decentralizálása
 
-A 3. szakasz egy fókuszált, decentralizált Twitter/X-alternatíva létrehozásának terve. Középpontjában a szövegközpontú nyilvános beszélgetés áll: rövid bejegyzések, válaszok, újraközlések, követések, valós idejű párbeszéd és közösségek, nyitott platformréteggel.
+A 2. szakasz egy fókuszált, decentralizált Twitter/X-alternatíva létrehozásának terve. Középpontjában a szövegközpontú nyilvános beszélgetés áll: rövid bejegyzések, válaszok, újraközlések, követések, valós idejű párbeszéd és közösségek, nyitott platformréteggel.
 
-A Twitter/X-et továbbra is a bejegyzések, a szöveg és az ötletek megosztása határozza meg. A 3. szakasz kliensének ebben az alapélményben kell versenyeznie, és azt kiemelkedően jól kell megvalósítania.
+A Twitter/X-et továbbra is a bejegyzések, a szöveg és az ötletek megosztása határozza meg. A 2. szakasz kliensének ebben az alapélményben kell versenyeznie, és azt kiemelkedően jól kell megvalósítania.
 
 Ez az oldal a termék irányát írja le, nem egy rögzített kiadási specifikációt. A pontos felület, az alapértelmezett hírfolyam, a hirdetési modell, az AI-funkciók és az RPC-piactér a protokoll és a korai alkalmazások érésével változhat.
 
@@ -40,13 +40,13 @@ A közösségeknek sokkal fontosabbnak kell lenniük, mint az egyetlen alkalmaz�
 
 Az X/Twitter közösségei az X-en belül maradnak. Hasznosak lehetnek, de egyetlen platform, fiókrendszer, ajánlási rendszer és termékfelület korlátait öröklik.
 
-Egy Bitsocial-közösség különböző klienseken keresztül is létrehozható, üzemeltethető, felfedezhető és használható. Ez azt jelenti, hogy a 3. szakasz kliense a tágabb Bitsocial-hálózat közösségeit és bejegyzéseit is megjelenítheti, nem csak azokat a felhasználókat, akik ebben a kliensben kezdték. Egy közösségben egyszerre jelenhet meg aktivitás egy imageboard-kliensből, egy Reddit-szerű beszélgetési kliensből, egy szűk témájú fórumkliensből, egy mobilalkalmazásból és a 3. szakasz klienséből.
+Egy Bitsocial-közösség különböző klienseken keresztül is létrehozható, üzemeltethető, felfedezhető és használható. Ez azt jelenti, hogy a 2. szakasz kliense a tágabb Bitsocial-hálózat közösségeit és bejegyzéseit is megjelenítheti, nem csak azokat a felhasználókat, akik ebben a kliensben kezdték. Egy közösségben egyszerre jelenhet meg aktivitás egy imageboard-kliensből, egy Reddit-szerű beszélgetési kliensből, egy szűk témájú fórumkliensből, egy mobilalkalmazásból és a 2. szakasz klienséből.
 
 Ez a hálózati hatás legfontosabb előnye: egy kliens ismerős lehet a hétköznapi felhasználóknak, miközben számos kliensből, közösségi csomópontból, RPC-szolgáltatótól és független szolgáltatásból merít értéket.
 
 ## Választható hírfolyam-algoritmusok
 
-A 3. szakasz kliense nem kényszeríthet mindenkire egyetlen globális rangsorolási rendszert.
+A 2. szakasz kliense nem kényszeríthet mindenkire egyetlen globális rangsorolási rendszert.
 
 A hírfolyam-algoritmusokat a felhasználónak kell választania. Algoritmust választhat egy piactérről, szolgáltatót válthat, használhat vállalati, névtelen üzemeltető által futtatott vagy közösség által készített algoritmust, futtathat sajátot, vagy teljesen elhagyhatja az algoritmust.
 
@@ -70,4 +70,4 @@ Ez a kényelem és a letétkezelés közötti különbség.
 
 A Bitsocial Chain tartós elnevezést, fizetést, borravalót, díjakat és más pénzügyi lehetőségeket hozhat közvetlenül a nyilvános beszélgetésbe.
 
-A 3. szakasz kliense a bejegyzésekre, a szövegre, az ötletek megosztására és a valós idejű párbeszédre összpontosít, miközben közösségeket és hálózati hatásokat oszt meg más Bitsocial-kliensekkel.
+A 2. szakasz kliense a bejegyzésekre, a szövegre, az ötletek megosztására és a valós idejű párbeszédre összpontosít, miközben közösségeket és hálózati hatásokat oszt meg más Bitsocial-kliensekkel.

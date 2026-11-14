@@ -145,8 +145,8 @@ const config: Config = {
         {
           title: "Roadmap",
           items: [
-            { label: "Bitsocial Chain", to: "/bitsocial-network/" },
             { label: "Decentralize Twitter/X", to: "/flagship-bitsocial-app/" },
+            { label: "Bitsocial Chain", to: "/bitsocial-network/" },
             { label: "Scale Bitsocial economies", to: "/scale-bitsocial-economies/" },
             {
               label: "Decentralize all social media",

@@ -14,7 +14,7 @@ co nejvíce sociálních formátů.
 ## Co ještě zbývá postavit
 
 První fáze se soustředí na kategorie s největší pákou: imageboardy, fóra, veřejné RPC, Bitsocial
-Chain, profilové uzly, alternativu k Twitteru/X ze třetí fáze a ekonomiku služeb okolo nich.
+Chain, profilové uzly, alternativu k Twitteru/X z druhé fáze a ekonomiku služeb okolo nich.
 
 Poté by se síť měla rozšířit do dlouhého ocasu:
 

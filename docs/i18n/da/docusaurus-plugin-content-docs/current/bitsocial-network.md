@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Fase 2 af masterplanen, der dækker det foreslåede økonomiske lag som Ethereum L2-appchain til Bitsocial-apps.
+description: Fase 3 af masterplanen, der dækker det foreslåede økonomiske lag som Ethereum L2-appchain til Bitsocial-apps.
 ---
 
 # Bitsocial Chain
@@ -65,14 +65,11 @@ Resultatet udadtil bør være:
 - skabere og fællesskaber kan modtage støtte på tværs af klienter
 - værdi kan bevæge sig på tværs af økosystemet uden at genskabe en centraliseret platformsejer
 
-## Hvorfor det kommer tidligt i planen
+## Hvorfor det kommer efter Twitter/X-alternativet
 
-Den nuværende masterplan placerer Bitsocial Chain umiddelbart efter de første indgangskategorier:
-imageboards, fora og det offentlige RPC-lag, der gør de apps praktiske for flere brugere.
+Den nuværende masterplan placerer Bitsocial Chain efter Twitter/X-alternativet, fordi den app ikke har brug for kæden. Profiler kører som profilnoder gennem ikke-custodial RPC, og `.bso`-navne kan starte i et midlertidigt register på Ethereum mainnet ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) og flytte over på kæden senere.
 
-Den timing er vigtig, fordi sociale apps har brug for stærke netværkseffekter. Hvis navngivning,
-støtte, belønninger, tips og monetisering kommer for sent, beholder centraliserede konkurrenter
-deres største fordel for længe.
+Bitsocial Chain bør ikke bytte decentralisering for en tidligere lancering. Den bør ikke tilføje nogen tillidsantagelser ud over Ethereum selv: ingen opgraderingsnøgler, intet sikkerhedsråd og ingen operatør, der kan censurere eller standse den. Det førende design til det, en native rollup, afhænger af en Ethereum-opgradering, der endnu ikke er planlagt. Indtil kæden kan leve op til det krav, opbygger Twitter/X-alternativet den brugerbase, kæden skal betjene.
 
 ## Designprincipper
 

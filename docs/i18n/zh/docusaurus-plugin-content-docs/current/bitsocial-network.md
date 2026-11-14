@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: 总体规划的第 2 阶段，涵盖为 Bitsocial 应用提议的 Ethereum L2 应用链经济层。
+description: 总体规划的第 3 阶段，涵盖为 Bitsocial 应用提议的 Ethereum L2 应用链经济层。
 ---
 
 # Bitsocial Chain
@@ -56,13 +56,11 @@ Bitsocial Chain 应当位于 Bitsocial 应用之下，而不是取代它们。
 - 创作者和社区可以跨客户端收到支持
 - 价值可以在整个生态系统中流动，而不必重新造出一个中心化的平台所有者
 
-## 为什么这一步安排得早
+## 为什么它排在 Twitter/X 替代品之后
 
-当前的总体规划把 Bitsocial Chain 放在最初几个突破口类别之后：图版、论坛，以及让这些应用对更多用户来说切实
-可用的公共 RPC 层。
+当前的总体规划把 Bitsocial Chain 放在 Twitter/X 替代品之后，因为那个应用并不需要这条链。个人资料通过非托管 RPC 以个人资料节点的形式运行，而 `.bso` 名称可以先在 Ethereum 主网上的临时注册表（[BSIP-13](https://bsips.bitsocial.net/bsip-13)）中启用，之后再迁移到链上。
 
-这个时间点很关键，因为社交应用需要强网络效应。如果命名、支持、奖励、打赏和变现来得太晚，中心化的竞争对手
-就能把自己最大的优势再多保住很久。
+Bitsocial Chain 不应为了更早上线而牺牲去中心化。它不应在 Ethereum 本身之外增加任何信任假设：没有升级密钥，没有安全委员会，也没有能够审查或停止它的运营者。实现这一点的首选设计是原生 rollup，它依赖一次尚未排期的 Ethereum 升级。在链能够达到这一标准之前，Twitter/X 替代品会先培养这条链将要服务的用户群。
 
 ## 设计原则
 

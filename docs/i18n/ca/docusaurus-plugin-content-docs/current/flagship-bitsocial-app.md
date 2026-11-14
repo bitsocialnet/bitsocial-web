@@ -1,13 +1,13 @@
 ---
 title: Descentralitzar Twitter/X
-description: "Fase 3 del pla mestre: una alternativa a Twitter/X enfocada i descentralitzada per a la conversa pública centrada en el text, amb infraestructura substituïble."
+description: "Fase 2 del pla mestre: una alternativa a Twitter/X enfocada i descentralitzada per a la conversa pública centrada en el text, amb infraestructura substituïble."
 ---
 
 # Descentralitzar Twitter/X
 
-La fase 3 planteja construir una alternativa a Twitter/X enfocada i descentralitzada. El seu centre és la conversa pública centrada en el text: publicacions curtes, respostes, republicacions, seguiments, debat en temps real i comunitats, amb la capa de plataforma oberta.
+La fase 2 planteja construir una alternativa a Twitter/X enfocada i descentralitzada. El seu centre és la conversa pública centrada en el text: publicacions curtes, respostes, republicacions, seguiments, debat en temps real i comunitats, amb la capa de plataforma oberta.
 
-Twitter/X continua definit per les publicacions, el text i l'intercanvi d'idees. El client de la fase 3 hauria de competir en aquesta experiència essencial i fer que funcioni excepcionalment bé.
+Twitter/X continua definit per les publicacions, el text i l'intercanvi d'idees. El client de la fase 2 hauria de competir en aquesta experiència essencial i fer que funcioni excepcionalment bé.
 
 Aquesta pàgina descriu la direcció del producte, no una especificació de llançament tancada. La interfície exacta, el feed predeterminat, el model publicitari, les funcions AI i el mercat RPC poden canviar a mesura que madurin el protocol i les primeres aplicacions.
 
@@ -40,13 +40,13 @@ Les comunitats haurien de ser molt més importants que els grups aïllats dins d
 
 A X/Twitter, les comunitats estan confinades dins d'X. Poden ser útils, però hereten els límits d'una plataforma, un sistema de comptes, una pila de recomanacions i una superfície de producte.
 
-Una comunitat Bitsocial es pot crear, allotjar, descobrir i utilitzar des de clients diferents. Això vol dir que el client de la fase 3 pot mostrar comunitats i publicacions de la xarxa Bitsocial més àmplia, no només d'usuaris que hi hagin començat. Una comunitat podria tenir alhora activitat d'un client d'imageboard, un client de debat a l'estil de Reddit, un client de fòrum de nínxol, una aplicació mòbil i el client de la fase 3.
+Una comunitat Bitsocial es pot crear, allotjar, descobrir i utilitzar des de clients diferents. Això vol dir que el client de la fase 2 pot mostrar comunitats i publicacions de la xarxa Bitsocial més àmplia, no només d'usuaris que hi hagin començat. Una comunitat podria tenir alhora activitat d'un client d'imageboard, un client de debat a l'estil de Reddit, un client de fòrum de nínxol, una aplicació mòbil i el client de la fase 2.
 
 Aquest és l'avantatge essencial de l'efecte de xarxa: un client pot resultar familiar als usuaris generalistes i continuar obtenint valor de molts clients, nodes de comunitat, proveïdors RPC i serveis independents.
 
 ## Algorismes de feed opcionals
 
-El client de la fase 3 no hauria d'imposar a tothom un únic sistema global d'ordenació.
+El client de la fase 2 no hauria d'imposar a tothom un únic sistema global d'ordenació.
 
 Els algorismes dels feeds haurien de ser opcionals. Un usuari podria triar un algorisme en un mercat, canviar de proveïdor, utilitzar l'algorisme d'una empresa, un de gestionat per un operador anònim, un de creat per una comunitat, executar-ne un de propi o no utilitzar-ne cap.
 
@@ -70,4 +70,4 @@ Aquesta és la diferència entre comoditat i custòdia.
 
 Bitsocial Chain pot incorporar noms duradors, pagaments, propines, premis i altres vies financeres directament a la conversa pública.
 
-El client de la fase 3 es manté centrat en les publicacions, el text, l'intercanvi d'idees i el debat en temps real, alhora que comparteix comunitats i efectes de xarxa amb altres clients Bitsocial.
+El client de la fase 2 es manté centrat en les publicacions, el text, l'intercanvi d'idees i el debat en temps real, alhora que comparteix comunitats i efectes de xarxa amb altres clients Bitsocial.

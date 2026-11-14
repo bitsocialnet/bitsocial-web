@@ -1,13 +1,13 @@
 ---
 title: Decentralisér Twitter/X
-description: "Fase 3 i masterplanen: et fokuseret, decentraliseret alternativ til Twitter/X til tekstbaseret offentlig samtale, med udskiftelig infrastruktur."
+description: "Fase 2 i masterplanen: et fokuseret, decentraliseret alternativ til Twitter/X til tekstbaseret offentlig samtale, med udskiftelig infrastruktur."
 ---
 
 # Decentralisér Twitter/X
 
-Fase 3 er en plan om at bygge et fokuseret, decentraliseret alternativ til Twitter/X. Kernen er tekstbaseret offentlig samtale: korte opslag, svar, genopslag, følgere, diskussion i realtid og fællesskaber, mens platformslaget brydes åbent.
+Fase 2 er en plan om at bygge et fokuseret, decentraliseret alternativ til Twitter/X. Kernen er tekstbaseret offentlig samtale: korte opslag, svar, genopslag, følgere, diskussion i realtid og fællesskaber, mens platformslaget brydes åbent.
 
-Twitter/X er stadig defineret af opslag, tekst og deling af idéer. Fase 3-klienten bør konkurrere på den kerneoplevelse og få den til at fungere usædvanligt godt.
+Twitter/X er stadig defineret af opslag, tekst og deling af idéer. Fase 2-klienten bør konkurrere på den kerneoplevelse og få den til at fungere usædvanligt godt.
 
 Denne side beskriver produktretningen, ikke en fastlåst udgivelsesspecifikation. Den præcise brugerflade, standardfeedet, annoncemodellen, AI-funktionerne og RPC-markedspladsen kan ændre sig, efterhånden som protokollen og de tidlige apps modnes.
 
@@ -40,13 +40,13 @@ Fællesskaber bør være langt vigtigere end isolerede grupper i én app.
 
 På X/Twitter er fællesskaber afgrænset til X. De kan være nyttige, men de arver begrænsningerne fra én platform, ét kontosystem, én anbefalingsstak og én produktoverflade.
 
-Et Bitsocial-fællesskab kan oprettes, hostes, opdages og bruges gennem forskellige klienter. Det betyder, at Fase 3-klienten kan vise fællesskaber og opslag fra hele Bitsocial-netværket, ikke kun fra brugere, der begyndte i klienten. Et fællesskab kan samtidig have aktivitet fra en imageboard-klient, en Reddit-lignende diskussionsklient, en specialiseret forumklient, en mobilapp og Fase 3-klienten.
+Et Bitsocial-fællesskab kan oprettes, hostes, opdages og bruges gennem forskellige klienter. Det betyder, at Fase 2-klienten kan vise fællesskaber og opslag fra hele Bitsocial-netværket, ikke kun fra brugere, der begyndte i klienten. Et fællesskab kan samtidig have aktivitet fra en imageboard-klient, en Reddit-lignende diskussionsklient, en specialiseret forumklient, en mobilapp og Fase 2-klienten.
 
 Det er den centrale netværkseffekt: Én klient kan føles velkendt for almindelige brugere og samtidig hente værdi fra mange klienter, fællesskabsnoder, RPC-udbydere og uafhængige tjenester.
 
 ## Valgfrie feedalgoritmer
 
-Fase 3-klienten bør ikke tvinge ét globalt rangeringssystem ned over alle.
+Fase 2-klienten bør ikke tvinge ét globalt rangeringssystem ned over alle.
 
 Feedalgoritmer bør være et aktivt tilvalg. En bruger kan vælge en algoritme fra en markedsplads, skifte udbyder, bruge en algoritme fra en virksomhed, en drevet af en anonym operatør, en bygget af et fællesskab, køre sin egen eller helt undlade at bruge en algoritme.
 
@@ -70,4 +70,4 @@ Det er forskellen mellem bekvemmelighed og forvaring.
 
 Bitsocial Chain kan bringe varige navne, betalinger, drikkepenge, belønninger og andre finansielle muligheder direkte ind i den offentlige samtale.
 
-Fase 3-klienten forbliver centreret om opslag, tekst, deling af idéer og diskussion i realtid, samtidig med at den deler fællesskaber og netværkseffekter med andre Bitsocial-klienter.
+Fase 2-klienten forbliver centreret om opslag, tekst, deling af idéer og diskussion i realtid, samtidig med at den deler fællesskaber og netværkseffekter med andre Bitsocial-klienter.

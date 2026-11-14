@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Druhá fáze hlavního plánu popisující navrhovanou ekonomickou vrstvu pro aplikace Bitsocial postavenou jako appchain na Ethereum L2.
+description: Třetí fáze hlavního plánu popisující navrhovanou ekonomickou vrstvu pro aplikace Bitsocial postavenou jako appchain na Ethereum L2.
 ---
 
 # Bitsocial Chain
@@ -66,14 +66,11 @@ Navenek viditelný výsledek by měl být takový, že:
 - hodnota se může pohybovat napříč ekosystémem, aniž by znovu vznikl centralizovaný vlastník
   platformy
 
-## Proč přichází takto brzy
+## Proč přichází až po alternativě k Twitteru/X
 
-Aktuální hlavní plán řadí Bitsocial Chain hned za první prioritní kategorie: imageboardy, fóra
-a veřejnou RPC vrstvu, díky které jsou tyto aplikace použitelné pro širší okruh lidí.
+Současný hlavní plán řadí Bitsocial Chain až za alternativu k Twitteru/X, protože tato aplikace chain nepotřebuje. Profily běží jako profilové uzly přes nekustodiální RPC a jména `.bso` mohou začít v dočasném registru na hlavní síti Etherea ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) a později se přesunout na chain.
 
-Na tomto načasování záleží, protože sociální aplikace potřebují silné síťové efekty. Pokud
-pojmenování, podpora, ocenění, spropitné a monetizace dorazí příliš pozdě, udrží si centralizovaní
-konkurenti svou největší výhodu příliš dlouho.
+Bitsocial Chain by neměl obětovat decentralizaci kvůli dřívějšímu spuštění. Neměl by přidávat žádné předpoklady důvěry nad rámec samotného Etherea: žádné klíče pro upgrade, žádnou bezpečnostní radu a žádného operátora, který by ho mohl cenzurovat nebo zastavit. Hlavní návrh, který to umožňuje, nativní rollup, závisí na upgradu Etherea, který zatím není naplánovaný. Dokud chain tuto laťku nesplní, alternativa k Twitteru/X rozšiřuje uživatelskou základnu, které bude sloužit.
 
 ## Principy návrhu
 

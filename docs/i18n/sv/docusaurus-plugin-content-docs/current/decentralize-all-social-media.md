@@ -14,7 +14,7 @@ sociala format som möjligt.
 ## Vad som fortfarande behöver byggas
 
 De första faserna fokuserar på kategorierna med störst hävstång: imageboards, forum, publik RPC,
-Bitsocial Chain, profilnoder, Twitter/X-alternativet i fas 3 och tjänsteekonomin runt dem.
+Bitsocial Chain, profilnoder, Twitter/X-alternativet i fas 2 och tjänsteekonomin runt dem.
 
 Därefter bör nätverket expandera in i den långa svansen:
 

@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Ana planın, Bitsocial uygulamaları için önerilen Ethereum L2 appchain ekonomi katmanını kapsayan 2. aşaması.
+description: Ana planın, Bitsocial uygulamaları için önerilen Ethereum L2 appchain ekonomi katmanını kapsayan 3. aşaması.
 ---
 
 # Bitsocial Chain
@@ -64,15 +64,11 @@ Kullanıcıya yansıyan sonuç şöyle olmalıdır:
 - içerik üreticileri ve topluluklar farklı istemciler üzerinden destek alabilir
 - değer, merkezî bir platform sahibini yeniden yaratmadan ekosistem içinde hareket edebilir
 
-## Bu neden planda erken yer alıyor
+## Neden Twitter/X alternatifinden sonra geliyor
 
-Güncel ana plan, Bitsocial Chain'i ilk öncelikli kategorilerin hemen ardına yerleştirir:
-imageboard'lar, forumlar ve bu uygulamaları daha çok kullanıcı için pratik hâle getiren genel RPC
-katmanı.
+Mevcut ana plan, Bitsocial Chain'i Twitter/X alternatifinin arkasına koyuyor, çünkü o uygulamanın zincire ihtiyacı yok. Profiller emanetsiz (non-custodial) RPC üzerinden profil düğümleri olarak çalışır ve `.bso` adları Ethereum ana ağında geçici bir kayıt defterinde ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) başlayıp daha sonra zincire taşınabilir.
 
-Bu zamanlama önemlidir, çünkü sosyal uygulamaların güçlü ağ etkilerine ihtiyacı vardır. Adlandırma,
-destek, ödüller, bahşiş ve para kazanma çok geç gelirse merkezî rakipler en büyük avantajlarını
-fazla uzun süre ellerinde tutar.
+Bitsocial Chain, daha erken bir lansman için merkeziyetsizlikten ödün vermemeli. Ethereum'un kendisinin ötesinde hiçbir güven varsayımı eklememeli: yükseltme anahtarı yok, güvenlik konseyi yok ve onu sansürleyebilecek ya da durdurabilecek bir operatör yok. Bunun için öne çıkan tasarım olan yerel rollup (native rollup), henüz takvime bağlanmamış bir Ethereum yükseltmesine bağlı. Zincir bu çıtayı karşılayabilene kadar Twitter/X alternatifi, zincirin hizmet edeceği kullanıcı tabanını büyütür.
 
 ## Tasarım ilkeleri
 

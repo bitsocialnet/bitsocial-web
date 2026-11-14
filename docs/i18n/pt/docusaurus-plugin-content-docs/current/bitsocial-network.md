@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Fase 2 do plano diretor, cobrindo a proposta de camada econômica em appchain L2 da Ethereum para os aplicativos Bitsocial.
+description: Fase 3 do plano diretor, cobrindo a proposta de camada econômica em appchain L2 da Ethereum para os aplicativos Bitsocial.
 ---
 
 # Bitsocial Chain
@@ -67,15 +67,11 @@ O resultado voltado ao público deve ser:
 - criadores e comunidades podem receber apoio em diferentes clientes
 - o valor pode circular pelo ecossistema sem recriar um dono de plataforma centralizado
 
-## Por que isso vem cedo no plano
+## Por que vem depois da alternativa ao Twitter/X
 
-O plano diretor atual coloca a Bitsocial Chain logo depois das primeiras categorias de entrada:
-imageboards, fóruns e a camada pública de RPC que torna esses aplicativos práticos para mais
-usuários.
+O plano diretor atual coloca a Bitsocial Chain depois da alternativa ao Twitter/X, porque esse app não precisa da chain. Os perfis rodam como nós de perfil por meio de RPC não custodial, e os nomes `.bso` podem começar em um registro provisório na mainnet do Ethereum ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) e migrar para a chain depois.
 
-Esse momento importa porque aplicativos sociais precisam de fortes efeitos de rede. Se nomes, apoio,
-prêmios, gorjetas e monetização chegarem tarde demais, os concorrentes centralizados mantêm sua
-maior vantagem por tempo demais.
+A Bitsocial Chain não deve trocar descentralização por um lançamento mais cedo. Ela não deve acrescentar nenhuma suposição de confiança além do próprio Ethereum: nenhuma chave de upgrade, nenhum conselho de segurança e nenhum operador capaz de censurá-la ou pará-la. O principal design para isso, um rollup nativo, depende de um upgrade do Ethereum que ainda não tem data. Até que a chain consiga atingir esse padrão, a alternativa ao Twitter/X faz crescer a base de usuários que a chain vai atender.
 
 ## Princípios de design
 

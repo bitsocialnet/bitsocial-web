@@ -15,7 +15,7 @@ empieza a financiar tantos formatos sociales como sea posible.
 ## Qué queda por construir
 
 Las primeras fases se centran en las categorías con más impacto: imageboards, foros, RPC pública,
-Bitsocial Chain, nodos de perfil, la alternativa a Twitter/X de la fase 3 y la economía de servicios
+Bitsocial Chain, nodos de perfil, la alternativa a Twitter/X de la fase 2 y la economía de servicios
 que las rodea.
 
 Después de eso, la red debería expandirse hacia la larga cola:

@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Faza 2 a planului general, care acoperă stratul economic propus de tip appchain Ethereum L2 pentru aplicațiile Bitsocial.
+description: Faza 3 a planului general, care acoperă stratul economic propus de tip appchain Ethereum L2 pentru aplicațiile Bitsocial.
 ---
 
 # Bitsocial Chain
@@ -66,15 +66,11 @@ Rezultatul vizibil pentru public ar trebui să fie:
 - creatorii și comunitățile pot primi sprijin din orice client
 - valoarea poate circula în ecosistem fără a recrea un proprietar centralizat de platformă
 
-## De ce vine atât de devreme
+## De ce vine după alternativa la Twitter/X
 
-Planul general actual plasează Bitsocial Chain imediat după primele categorii de pătrundere:
-imageboard-uri, forumuri și stratul RPC public care face aceste aplicații practice pentru mai mulți
-utilizatori.
+Planul general actual plasează Bitsocial Chain după alternativa la Twitter/X, pentru că acea aplicație nu are nevoie de lanț. Profilurile rulează ca noduri de profil prin RPC non-custodial, iar numele `.bso` pot începe într-un registru provizoriu pe mainnetul Ethereum ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) și se pot muta mai târziu pe lanț.
 
-Momentul contează, pentru că aplicațiile sociale au nevoie de efecte de rețea puternice. Dacă
-denumirea, sprijinul, premiile, bacșișurile și monetizarea ajung prea târziu, concurenții
-centralizați își păstrează cel mai mare avantaj prea mult timp.
+Bitsocial Chain nu ar trebui să sacrifice descentralizarea pentru o lansare mai devreme. Nu ar trebui să adauge nicio ipoteză de încredere dincolo de Ethereum însuși: nicio cheie de upgrade, niciun consiliu de securitate și niciun operator care să o poată cenzura sau opri. Designul principal pentru asta, un rollup nativ, depinde de un upgrade Ethereum care nu este încă programat. Până când lanțul poate atinge acest standard, alternativa la Twitter/X crește baza de utilizatori pe care lanțul o va servi.
 
 ## Principii de proiectare
 

@@ -14,7 +14,7 @@ monta sosiaalisen median muotoa kuin suinkin mahdollista.
 ## Mitä on vielä rakennettava
 
 Ensimmäiset vaiheet keskittyvät vaikuttavuudeltaan suurimpiin luokkiin: kuvalautoihin, foorumeihin,
-julkiseen RPC:hen, Bitsocial Chainiin, profiilisolmuihin, vaiheen 3 Twitter/X-vaihtoehtoon ja niiden
+julkiseen RPC:hen, Bitsocial Chainiin, profiilisolmuihin, vaiheen 2 Twitter/X-vaihtoehtoon ja niiden
 ympärille syntyvään palvelutalouteen.
 
 Sen jälkeen verkon pitää laajentua pitkään häntään:

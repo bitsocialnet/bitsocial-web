@@ -66,8 +66,22 @@ const protocolCards = [
 
 const roadmapCards = [
   {
+    to: "/flagship-bitsocial-app/",
+    eyebrow: tr("docs.home.roadmap.card.flagship.eyebrow", "Phase 2", "Roadmap card eyebrow."),
+    title: tr(
+      "docs.home.roadmap.card.flagship.title",
+      "Decentralize Twitter/X",
+      "Roadmap card title for the Phase 2 Twitter/X alternative page.",
+    ),
+    body: tr(
+      "docs.home.roadmap.card.flagship.body",
+      "A focused, text-first public conversation client with replaceable feeds, algorithms, RPCs, and self-hostable profile nodes.",
+      "Roadmap card description for the Phase 2 Twitter/X alternative page.",
+    ),
+  },
+  {
     to: "/bitsocial-network/",
-    eyebrow: tr("docs.home.roadmap.card.network.eyebrow", "Phase 2", "Roadmap card eyebrow."),
+    eyebrow: tr("docs.home.roadmap.card.network.eyebrow", "Phase 3", "Roadmap card eyebrow."),
     title: tr(
       "docs.home.roadmap.card.network.title",
       "Bitsocial Chain",
@@ -77,20 +91,6 @@ const roadmapCards = [
       "docs.home.roadmap.card.network.body",
       "The proposed Ethereum L2 appchain economic layer for .bso names, awards, tipping, monetization, and shared app network effects.",
       "Roadmap card description for Bitsocial Chain.",
-    ),
-  },
-  {
-    to: "/flagship-bitsocial-app/",
-    eyebrow: tr("docs.home.roadmap.card.flagship.eyebrow", "Phase 3", "Roadmap card eyebrow."),
-    title: tr(
-      "docs.home.roadmap.card.flagship.title",
-      "Decentralize Twitter/X",
-      "Roadmap card title for the Phase 3 Twitter/X alternative page.",
-    ),
-    body: tr(
-      "docs.home.roadmap.card.flagship.body",
-      "A focused, text-first public conversation client with replaceable feeds, algorithms, RPCs, and self-hostable profile nodes.",
-      "Roadmap card description for the Phase 3 Twitter/X alternative page.",
     ),
   },
   {

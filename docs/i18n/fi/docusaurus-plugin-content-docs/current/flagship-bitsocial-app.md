@@ -1,13 +1,13 @@
 ---
 title: Twitter/X:n hajauttaminen
-description: "Yleissuunnitelman vaihe 3: tarkasti rajattu, hajautettu vaihtoehto Twitter/X:lle tekstipainotteiseen julkiseen keskusteluun, vaihdettavalla infrastruktuurilla."
+description: "Yleissuunnitelman vaihe 2: tarkasti rajattu, hajautettu vaihtoehto Twitter/X:lle tekstipainotteiseen julkiseen keskusteluun, vaihdettavalla infrastruktuurilla."
 ---
 
 # Twitter/X:n hajauttaminen
 
-Vaiheessa 3 on tarkoitus rakentaa tarkasti rajattu, hajautettu vaihtoehto Twitter/X:lle. Sen ytimessä on tekstipainotteinen julkinen keskustelu: lyhyet julkaisut, vastaukset, uudelleenjulkaisut, seuraamiset, reaaliaikainen keskustelu ja yhteisöt, ja samalla alustakerros avataan.
+Vaiheessa 2 on tarkoitus rakentaa tarkasti rajattu, hajautettu vaihtoehto Twitter/X:lle. Sen ytimessä on tekstipainotteinen julkinen keskustelu: lyhyet julkaisut, vastaukset, uudelleenjulkaisut, seuraamiset, reaaliaikainen keskustelu ja yhteisöt, ja samalla alustakerros avataan.
 
-Twitter/X määrittyy edelleen julkaisujen, tekstin ja ajatusten jakamisen kautta. Vaiheen 3 asiakasohjelman pitäisi kilpailla tällä ydinkokemuksella ja tehdä siitä poikkeuksellisen toimiva.
+Twitter/X määrittyy edelleen julkaisujen, tekstin ja ajatusten jakamisen kautta. Vaiheen 2 asiakasohjelman pitäisi kilpailla tällä ydinkokemuksella ja tehdä siitä poikkeuksellisen toimiva.
 
 Tämä sivu kuvaa tuotteen suuntaa, ei lukittua julkaisuvaatimusta. Tarkka käyttöliittymä, oletussyöte, mainosmalli, AI-ominaisuudet ja RPC-markkinapaikka voivat muuttua protokollan ja ensimmäisten sovellusten kypsyessä.
 
@@ -40,13 +40,13 @@ Yhteisöjen pitäisi olla paljon tärkeämpiä kuin yhden sovelluksen sisäiset 
 
 X/Twitterissä yhteisöt on rajattu X:n sisään. Ne voivat olla hyödyllisiä, mutta niihin periytyvät yhden alustan, yhden tilijärjestelmän, yhden suosituspinon ja yhden tuotenäkymän rajoitukset.
 
-Bitsocial-yhteisö voidaan luoda, ylläpitää, löytää ja ottaa käyttöön eri asiakasohjelmissa. Siksi vaiheen 3 asiakasohjelma voi näyttää yhteisöjä ja julkaisuja laajemmasta Bitsocial-verkostosta eikä vain käyttäjiltä, jotka aloittivat sen sisällä. Samassa yhteisössä voisi olla samanaikaisesti toimintaa imageboard-asiakasohjelmasta, Reddit-tyylisestä keskusteluohjelmasta, erikoistuneesta foorumiohjelmasta, mobiilisovelluksesta ja vaiheen 3 asiakasohjelmasta.
+Bitsocial-yhteisö voidaan luoda, ylläpitää, löytää ja ottaa käyttöön eri asiakasohjelmissa. Siksi vaiheen 2 asiakasohjelma voi näyttää yhteisöjä ja julkaisuja laajemmasta Bitsocial-verkostosta eikä vain käyttäjiltä, jotka aloittivat sen sisällä. Samassa yhteisössä voisi olla samanaikaisesti toimintaa imageboard-asiakasohjelmasta, Reddit-tyylisestä keskusteluohjelmasta, erikoistuneesta foorumiohjelmasta, mobiilisovelluksesta ja vaiheen 2 asiakasohjelmasta.
 
 Tämä on verkostovaikutuksen keskeinen etu: yksi asiakasohjelma voi tuntua tavallisille käyttäjille tutulta ja saada samalla arvoa monista asiakasohjelmista, yhteisösolmuista, RPC-palveluntarjoajista ja riippumattomista palveluista.
 
 ## Valinnaiset syötealgoritmit
 
-Vaiheen 3 asiakasohjelman ei pitäisi pakottaa yhtä maailmanlaajuista järjestysjärjestelmää kaikille.
+Vaiheen 2 asiakasohjelman ei pitäisi pakottaa yhtä maailmanlaajuista järjestysjärjestelmää kaikille.
 
 Syötealgoritmien pitäisi olla valinnaisia. Käyttäjä voisi valita algoritmin markkinapaikalta, vaihtaa palveluntarjoajaa, käyttää yrityksen, nimettömän ylläpitäjän tai yhteisön algoritmia, ajaa omaa algoritmiaan tai olla käyttämättä algoritmia lainkaan.
 
@@ -70,4 +70,4 @@ Tämä on helppokäyttöisyyden ja säilytysvallan ero.
 
 Bitsocial Chain voi tuoda pysyvät nimet, maksut, tipit, palkinnot ja muita taloudellisia väyliä suoraan julkiseen keskusteluun.
 
-Vaiheen 3 asiakasohjelma pysyy keskittyneenä julkaisuihin, tekstiin, ajatusten jakamiseen ja reaaliaikaiseen keskusteluun sekä jakaa yhteisöjä ja verkostovaikutuksia muiden Bitsocial-asiakasohjelmien kanssa.
+Vaiheen 2 asiakasohjelma pysyy keskittyneenä julkaisuihin, tekstiin, ajatusten jakamiseen ja reaaliaikaiseen keskusteluun sekä jakaa yhteisöjä ja verkostovaikutuksia muiden Bitsocial-asiakasohjelmien kanssa.

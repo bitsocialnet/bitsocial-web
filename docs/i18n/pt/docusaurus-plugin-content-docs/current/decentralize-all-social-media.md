@@ -14,7 +14,7 @@ maior número possível de formatos sociais.
 ## O que ainda precisa ser construído
 
 As primeiras fases se concentram nas categorias de maior alavancagem: imageboards, fóruns, RPC
-público, Bitsocial Chain, nós de perfil, a alternativa ao Twitter/X da fase 3 e a economia de
+público, Bitsocial Chain, nós de perfil, a alternativa ao Twitter/X da fase 2 e a economia de
 serviços ao redor delas.
 
 Depois disso, a rede deve se expandir para a cauda longa:

@@ -14,7 +14,7 @@ finanziare quanti più formati sociali possibile.
 ## Che cosa resta da costruire
 
 Le prime fasi si concentrano sulle categorie con il maggiore effetto leva: imageboard, forum, RPC
-pubblico, Bitsocial Chain, nodi profilo, l'alternativa a Twitter/X della fase 3 e l'economia di
+pubblico, Bitsocial Chain, nodi profilo, l'alternativa a Twitter/X della fase 2 e l'economia di
 servizi che ruota attorno a tutto questo.
 
 Poi la rete dovrebbe espandersi nella coda lunga:

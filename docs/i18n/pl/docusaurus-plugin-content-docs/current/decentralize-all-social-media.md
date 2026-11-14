@@ -14,7 +14,7 @@ finansować jak najwięcej formatów społecznościowych.
 ## Co jeszcze trzeba zbudować
 
 Pierwsze etapy skupiają się na kategoriach o największej dźwigni: imageboardach, forach, publicznym
-RPC, Bitsocial Chain, węzłach profilowych, alternatywie dla Twittera/X z etapu 3 oraz gospodarce
+RPC, Bitsocial Chain, węzłach profilowych, alternatywie dla Twittera/X z etapu 2 oraz gospodarce
 usług wokół nich.
 
 Później sieć powinna rozszerzyć się na długi ogon:

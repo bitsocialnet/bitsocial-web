@@ -1,13 +1,13 @@
 ---
 title: Zdecentralizować Twitter/X
-description: "Faza 3 planu głównego: wyspecjalizowana, zdecentralizowana alternatywa dla Twitter/X do publicznych rozmów opartych przede wszystkim na tekście, z wymienną infrastrukturą."
+description: "Faza 2 planu głównego: wyspecjalizowana, zdecentralizowana alternatywa dla Twitter/X do publicznych rozmów opartych przede wszystkim na tekście, z wymienną infrastrukturą."
 ---
 
 # Zdecentralizować Twitter/X
 
-Faza 3 zakłada zbudowanie wyspecjalizowanej, zdecentralizowanej alternatywy dla Twitter/X. Jej centrum stanowi publiczna rozmowa oparta przede wszystkim na tekście: krótkie posty, odpowiedzi, reposty, obserwowanie, dyskusje w czasie rzeczywistym i społeczności, przy otwartej warstwie platformy.
+Faza 2 zakłada zbudowanie wyspecjalizowanej, zdecentralizowanej alternatywy dla Twitter/X. Jej centrum stanowi publiczna rozmowa oparta przede wszystkim na tekście: krótkie posty, odpowiedzi, reposty, obserwowanie, dyskusje w czasie rzeczywistym i społeczności, przy otwartej warstwie platformy.
 
-Twitter/X nadal definiują posty, tekst i dzielenie się pomysłami. Klient fazy 3 powinien konkurować właśnie tym podstawowym doświadczeniem i sprawić, by działało wyjątkowo dobrze.
+Twitter/X nadal definiują posty, tekst i dzielenie się pomysłami. Klient fazy 2 powinien konkurować właśnie tym podstawowym doświadczeniem i sprawić, by działało wyjątkowo dobrze.
 
 Ta strona opisuje kierunek produktu, a nie zamkniętą specyfikację wydania. Dokładny interfejs, domyślny kanał, model reklam, funkcje AI i rynek RPC mogą się zmieniać wraz z dojrzewaniem protokołu i pierwszych aplikacji.
 
@@ -40,13 +40,13 @@ Społeczności powinny być znacznie ważniejsze niż izolowane grupy w jednej a
 
 Na X/Twitterze społeczności są zamknięte w X. Mogą być przydatne, ale dziedziczą ograniczenia jednej platformy, jednego systemu kont, jednego stosu rekomendacji i jednej powierzchni produktu.
 
-Społeczność Bitsocial może być tworzona, hostowana, odkrywana i używana przez różne klienty. Oznacza to, że klient fazy 3 może pokazywać społeczności i posty z szerszej sieci Bitsocial, a nie tylko od użytkowników, którzy zaczęli w nim korzystać z sieci. W jednej społeczności może jednocześnie pojawiać się aktywność z klienta imageboardu, klienta dyskusyjnego w stylu Reddita, niszowego forum, aplikacji mobilnej i klienta fazy 3.
+Społeczność Bitsocial może być tworzona, hostowana, odkrywana i używana przez różne klienty. Oznacza to, że klient fazy 2 może pokazywać społeczności i posty z szerszej sieci Bitsocial, a nie tylko od użytkowników, którzy zaczęli w nim korzystać z sieci. W jednej społeczności może jednocześnie pojawiać się aktywność z klienta imageboardu, klienta dyskusyjnego w stylu Reddita, niszowego forum, aplikacji mobilnej i klienta fazy 2.
 
 Na tym polega podstawowa zaleta efektu sieciowego: jeden klient może czuć się znajomy głównym użytkownikom, a jednocześnie czerpać korzyści z wielu klientów, węzłów społeczności, dostawców RPC i niezależnych usług.
 
 ## Opcjonalne algorytmy podawania
 
-Klient fazy 3 nie powinien narzucać wszystkim jednego globalnego systemu rankingu.
+Klient fazy 2 nie powinien narzucać wszystkim jednego globalnego systemu rankingu.
 
 Algorytmy kanałów powinny być opcjonalne i wybierane przez użytkownika. Użytkownik może wybrać algorytm z rynku, zmienić dostawcę, skorzystać z algorytmu firmy, skorzystać z algorytmu prowadzonego przez anonimowego operatora, skorzystać z algorytmu stworzonego przez społeczność, uruchomić algorytm osobisty lub w ogóle nie używać algorytmu.
 
@@ -70,4 +70,4 @@ Na tym polega różnica między wygodą a przekazaniem kontroli.
 
 Bitsocial Chain może wprowadzić trwałe nazewnictwo, płatności, napiwki, nagrody i inne mechanizmy finansowe bezpośrednio do publicznej rozmowy.
 
-Klient fazy 3 pozostaje skoncentrowany na postach, tekście, dzieleniu się pomysłami i dyskusjach w czasie rzeczywistym, a jednocześnie współdzieli społeczności i efekty sieciowe z innymi klientami Bitsocial.
+Klient fazy 2 pozostaje skoncentrowany na postach, tekście, dzieleniu się pomysłami i dyskusjach w czasie rzeczywistym, a jednocześnie współdzieli społeczności i efekty sieciowe z innymi klientami Bitsocial.

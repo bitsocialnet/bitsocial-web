@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Faza 2 planu głównego, opisująca warstwę ekonomiczną zaproponowaną dla aplikacji Bitsocial w postaci appchaina L2 na Ethereum.
+description: Faza 3 planu głównego, opisująca warstwę ekonomiczną zaproponowaną dla aplikacji Bitsocial w postaci appchaina L2 na Ethereum.
 ---
 
 # Bitsocial Chain
@@ -67,15 +67,11 @@ Efekt widoczny dla użytkowników powinien być następujący:
 - twórcy i społeczności mogą otrzymywać wsparcie niezależnie od używanego klienta
 - wartość może przepływać przez ekosystem bez odtwarzania scentralizowanego właściciela platformy
 
-## Dlaczego ten etap wypada tak wcześnie
+## Dlaczego ten etap przychodzi po alternatywie dla Twittera/X
 
-Obecny plan główny umieszcza Bitsocial Chain zaraz po pierwszych kategoriach wejściowych:
-imageboardach, forach i publicznej warstwie RPC, dzięki której te aplikacje stają się praktyczne dla
-większej liczby użytkowników.
+Obecny plan główny umieszcza Bitsocial Chain po alternatywie dla Twittera/X, ponieważ ta aplikacja nie potrzebuje łańcucha. Profile działają jako węzły profilowe przez niepowiernicze RPC, a nazwy `.bso` mogą zacząć od tymczasowego rejestru w sieci głównej Ethereum ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) i później przenieść się na łańcuch.
 
-Ten moment ma znaczenie, ponieważ aplikacje społecznościowe potrzebują silnych efektów sieciowych.
-Jeśli nazewnictwo, wsparcie, nagrody, napiwki i monetyzacja pojawią się zbyt późno, scentralizowana
-konkurencja zbyt długo zachowa swoją największą przewagę.
+Bitsocial Chain nie powinien poświęcać decentralizacji dla wcześniejszego startu. Nie powinien dodawać żadnych założeń zaufania wykraczających poza samo Ethereum: żadnych kluczy aktualizacji, żadnej rady bezpieczeństwa i żadnego operatora, który mógłby go cenzurować lub zatrzymać. Wiodący projekt, który to umożliwia, czyli natywny rollup, zależy od aktualizacji Ethereum, która nie ma jeszcze terminu. Dopóki łańcuch nie spełni tej poprzeczki, alternatywa dla Twittera/X rozwija bazę użytkowników, której łańcuch będzie służył.
 
 ## Zasady projektowe
 

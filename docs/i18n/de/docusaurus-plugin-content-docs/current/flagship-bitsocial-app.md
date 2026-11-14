@@ -1,13 +1,13 @@
 ---
 title: Twitter/X dezentralisieren
-description: "Phase 3 des Masterplans: eine fokussierte, dezentrale Alternative zu Twitter/X für textorientierte öffentliche Gespräche, mit austauschbarer Infrastruktur."
+description: "Phase 2 des Masterplans: eine fokussierte, dezentrale Alternative zu Twitter/X für textorientierte öffentliche Gespräche, mit austauschbarer Infrastruktur."
 ---
 
 # Twitter/X dezentralisieren
 
-Phase 3 sieht den Aufbau einer fokussierten, dezentralen Alternative zu Twitter/X vor. Im Mittelpunkt stehen textorientierte öffentliche Gespräche: kurze Beiträge, Antworten, Reposts, Follows, Diskussionen in Echtzeit und Communities, wobei die Plattformebene aufgebrochen wird.
+Phase 2 sieht den Aufbau einer fokussierten, dezentralen Alternative zu Twitter/X vor. Im Mittelpunkt stehen textorientierte öffentliche Gespräche: kurze Beiträge, Antworten, Reposts, Follows, Diskussionen in Echtzeit und Communities, wobei die Plattformebene aufgebrochen wird.
 
-Twitter/X wird noch immer durch Beiträge, Text und den Austausch von Ideen bestimmt. Der Phase-3-Client sollte bei diesem Kernerlebnis konkurrieren und es außergewöhnlich gut umsetzen.
+Twitter/X wird noch immer durch Beiträge, Text und den Austausch von Ideen bestimmt. Der Phase-2-Client sollte bei diesem Kernerlebnis konkurrieren und es außergewöhnlich gut umsetzen.
 
 Diese Seite beschreibt die Produktrichtung, keine festgeschriebene Veröffentlichungsspezifikation. Die genaue Oberfläche, der Standard-Feed, das Anzeigenmodell, die AI-Funktionen und der RPC-Marktplatz können sich ändern, während das Protokoll und die ersten Apps reifen.
 
@@ -40,13 +40,13 @@ Communities sollten wesentlich wichtiger sein als isolierte Gruppen innerhalb ei
 
 Auf X/Twitter sind Communities auf X beschränkt. Sie können nützlich sein, erben aber die Grenzen einer Plattform, eines Kontosystems, eines Empfehlungs-Stacks und einer Produktoberfläche.
 
-Eine Bitsocial-Community kann über verschiedene Clients erstellt, gehostet, entdeckt und genutzt werden. Der Phase-3-Client kann dadurch Communities und Beiträge aus dem weiteren Bitsocial-Netzwerk anzeigen, nicht nur von Nutzern, die in diesem Client begonnen haben. Eine Community könnte gleichzeitig Aktivitäten aus einem Imageboard-Client, einem Diskussionsclient im Reddit-Stil, einem spezialisierten Forum-Client, einer mobilen App und dem Phase-3-Client enthalten.
+Eine Bitsocial-Community kann über verschiedene Clients erstellt, gehostet, entdeckt und genutzt werden. Der Phase-2-Client kann dadurch Communities und Beiträge aus dem weiteren Bitsocial-Netzwerk anzeigen, nicht nur von Nutzern, die in diesem Client begonnen haben. Eine Community könnte gleichzeitig Aktivitäten aus einem Imageboard-Client, einem Diskussionsclient im Reddit-Stil, einem spezialisierten Forum-Client, einer mobilen App und dem Phase-2-Client enthalten.
 
 Das ist der entscheidende Netzwerkeffekt: Ein Client kann sich für gewöhnliche Nutzer vertraut anfühlen und zugleich aus vielen Clients, Community-Knoten, RPC-Anbietern und unabhängigen Diensten Nutzen ziehen.
 
 ## Optionale Feed-Algorithmen
 
-Der Phase-3-Client sollte nicht allen ein einziges globales Ranking-System aufzwingen.
+Der Phase-2-Client sollte nicht allen ein einziges globales Ranking-System aufzwingen.
 
 Feed-Algorithmen sollten aktiv gewählt werden. Nutzer könnten einen Algorithmus auf einem Marktplatz auswählen, den Anbieter wechseln, den Algorithmus eines Unternehmens, eines anonymen Betreibers oder einer Community verwenden, einen eigenen betreiben oder ganz auf einen Algorithmus verzichten.
 
@@ -70,4 +70,4 @@ Das ist der Unterschied zwischen Bequemlichkeit und Verwahrung.
 
 Bitsocial Chain kann dauerhafte Namen, Zahlungen, Trinkgelder, Auszeichnungen und weitere finanzielle Möglichkeiten direkt in öffentliche Gespräche bringen.
 
-Der Phase-3-Client bleibt auf Beiträge, Text, Ideenaustausch und Diskussionen in Echtzeit ausgerichtet und teilt zugleich Communities und Netzwerkeffekte mit anderen Bitsocial-Clients.
+Der Phase-2-Client bleibt auf Beiträge, Text, Ideenaustausch und Diskussionen in Echtzeit ausgerichtet und teilt zugleich Communities und Netzwerkeffekte mit anderen Bitsocial-Clients.

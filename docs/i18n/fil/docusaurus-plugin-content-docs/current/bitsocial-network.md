@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Ika-2 yugto ng master plan, sumasaklaw sa iminungkahing Ethereum L2 appchain bilang layer ng ekonomiya para sa mga app ng Bitsocial.
+description: Ika-3 yugto ng master plan, sumasaklaw sa iminungkahing Ethereum L2 appchain bilang layer ng ekonomiya para sa mga app ng Bitsocial.
 ---
 
 # Bitsocial Chain
@@ -72,15 +72,11 @@ Ang dapat makita ng publiko ay:
 - nakakagalaw ang halaga sa buong ecosystem nang hindi muling lumilikha ng isang sentralisadong
   may-ari ng platform
 
-## Bakit maaga ito inilagay sa plano
+## Bakit ito dumarating pagkatapos ng alternatibo sa Twitter/X
 
-Sa kasalukuyang master plan, agad na sumusunod ang Bitsocial Chain sa mga unang kategoryang
-pambungad: mga imageboard, forum, at ang pampublikong RPC layer na nagpapadali sa paggamit ng mga
-app na iyon para sa mas maraming user.
+Inilalagay ng kasalukuyang master plan ang Bitsocial Chain pagkatapos ng alternatibo sa Twitter/X, dahil hindi kailangan ng app na iyon ang chain. Tumatakbo ang mga profile bilang profile node sa pamamagitan ng non-custodial na RPC, at maaaring magsimula ang mga pangalang `.bso` sa isang pansamantalang registry sa Ethereum mainnet ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) at lumipat sa chain sa kalaunan.
 
-Mahalaga ang timing na iyon dahil kailangan ng mga social app ng malalakas na network effect. Kung
-masyadong huli ang pagdating ng pagpapangalan, suporta, award, tipping, at monetisasyon, mas
-matagal na mahahawakan ng mga sentralisadong katunggali ang kanilang pinakamalaking bentahe.
+Hindi dapat ipagpalit ng Bitsocial Chain ang desentralisasyon para sa mas maagang paglulunsad. Hindi ito dapat magdagdag ng anumang trust assumption lampas sa Ethereum mismo: walang upgrade key, walang security council, at walang operator na kayang mag-censor o magpahinto rito. Ang nangungunang disenyo para rito, isang native rollup, ay nakadepende sa isang upgrade ng Ethereum na wala pang iskedyul. Hangga't hindi pa naaabot ng chain ang pamantayang iyon, pinalalaki ng alternatibo sa Twitter/X ang base ng mga user na pagsisilbihan ng chain.
 
 ## Mga prinsipyo sa disenyo
 

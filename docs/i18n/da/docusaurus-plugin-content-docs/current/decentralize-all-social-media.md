@@ -14,7 +14,7 @@ mange sociale formater som muligt.
 ## Hvad der stadig mangler at blive bygget
 
 De første faser fokuserer på de kategorier med størst løftestang: imageboards, fora, offentlig RPC,
-Bitsocial Chain, profilnoder, Twitter/X-alternativet fra fase 3 og serviceøkonomien omkring dem.
+Bitsocial Chain, profilnoder, Twitter/X-alternativet fra fase 2 og serviceøkonomien omkring dem.
 
 Derefter bør netværket udvide sig ud i den lange hale:
 

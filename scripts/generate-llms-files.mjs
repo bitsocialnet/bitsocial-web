@@ -1077,7 +1077,7 @@ ${renderBulletList(chain.sections)}
 
 ## Official docs
 
-- [Bitsocial Chain](${docsOrigin}/bitsocial-network/): Phase 2 architecture and economic-layer overview.
+- [Bitsocial Chain](${docsOrigin}/bitsocial-network/): Phase 3 architecture and economic-layer overview.
 - [BSO Token History](${docsOrigin}/token-history/): Verifiable history of BSO and its immutable Ethereum contract.
 - [Bitsocial Chain proof of concept](https://github.com/${chainProofOfConceptRepo}#readme): Working .bso name registry derived from Ethereum L1 history, with its stated limitations.
 

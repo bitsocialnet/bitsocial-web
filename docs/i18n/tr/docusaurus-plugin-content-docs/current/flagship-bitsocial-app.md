@@ -1,13 +1,13 @@
 ---
 title: Twitter/X'i merkeziyetsizleştirmek
-description: "Ana planın 3. Aşaması: metin öncelikli kamusal konuşma için odaklı, merkeziyetsiz bir Twitter/X alternatifi; altyapısı değiştirilebilir."
+description: "Ana planın 2. Aşaması: metin öncelikli kamusal konuşma için odaklı, merkeziyetsiz bir Twitter/X alternatifi; altyapısı değiştirilebilir."
 ---
 
 # Twitter/X'i merkeziyetsizleştirmek
 
-3. Aşama, Twitter/X'e odaklı ve merkeziyetsiz bir alternatif oluşturma planıdır. Merkezinde metin öncelikli kamusal konuşma vardır: kısa gönderiler, yanıtlar, yeniden paylaşımlar, takipler, gerçek zamanlı tartışmalar ve topluluklar; platform katmanı ise açık hâle getirilir.
+2. Aşama, Twitter/X'e odaklı ve merkeziyetsiz bir alternatif oluşturma planıdır. Merkezinde metin öncelikli kamusal konuşma vardır: kısa gönderiler, yanıtlar, yeniden paylaşımlar, takipler, gerçek zamanlı tartışmalar ve topluluklar; platform katmanı ise açık hâle getirilir.
 
-Twitter/X hâlâ gönderiler, metin ve fikir paylaşımıyla tanımlanıyor. 3. Aşama istemcisi bu temel deneyimde rekabet etmeli ve onu olağanüstü iyi hâle getirmelidir.
+Twitter/X hâlâ gönderiler, metin ve fikir paylaşımıyla tanımlanıyor. 2. Aşama istemcisi bu temel deneyimde rekabet etmeli ve onu olağanüstü iyi hâle getirmelidir.
 
 Bu sayfa sabitlenmiş bir sürüm tanımını değil, ürün yönünü açıklar. Kesin arayüz, varsayılan akış, reklam modeli, AI özellikleri ve RPC pazarı; protokol ve ilk uygulamalar olgunlaştıkça değişebilir.
 
@@ -40,13 +40,13 @@ Topluluklar, tek bir uygulama içindeki izole gruplardan çok daha önemli olmal
 
 X/Twitter'da topluluklar X'in içinde hapsolmuştur. Yararlı olabilirler ancak tek bir platformun, tek hesap sisteminin, tek öneri yığınının ve tek ürün yüzeyinin sınırlarını miras alırlar.
 
-Bir Bitsocial topluluğu farklı istemciler üzerinden oluşturulabilir, barındırılabilir, keşfedilebilir ve kullanılabilir. Böylece 3. Aşama istemcisi yalnızca kendi içinde başlayan kullanıcıların değil, daha geniş Bitsocial ağındaki toplulukları ve gönderileri gösterebilir. Bir toplulukta aynı anda bir imageboard istemcisinden, Reddit tarzı tartışma istemcisinden, niş forum istemcisinden, mobil uygulamadan ve 3. Aşama istemcisinden etkinlik bulunabilir.
+Bir Bitsocial topluluğu farklı istemciler üzerinden oluşturulabilir, barındırılabilir, keşfedilebilir ve kullanılabilir. Böylece 2. Aşama istemcisi yalnızca kendi içinde başlayan kullanıcıların değil, daha geniş Bitsocial ağındaki toplulukları ve gönderileri gösterebilir. Bir toplulukta aynı anda bir imageboard istemcisinden, Reddit tarzı tartışma istemcisinden, niş forum istemcisinden, mobil uygulamadan ve 2. Aşama istemcisinden etkinlik bulunabilir.
 
 Temel ağ etkisi avantajı budur: Bir istemci, birçok istemciden, topluluk düğümünden, RPC sağlayıcısından ve bağımsız hizmetlerden değer alırken, ana kullanıcılara tanıdık gelebilir.
 
 ## İsteğe bağlı besleme algoritmaları
 
-3. Aşama istemcisi herkese tek bir küresel sıralama sistemi dayatmamalıdır.
+2. Aşama istemcisi herkese tek bir küresel sıralama sistemi dayatmamalıdır.
 
 Akış algoritmaları isteğe bağlı olmalı ve yalnızca kullanıcı seçtiğinde etkinleştirilmelidir. Bir kullanıcı bir pazaryerinden bir algoritma seçebilir, sağlayıcıları değiştirebilir, bir şirketteki algoritmayı kullanabilir, anonim bir operatör tarafından çalıştırılan bir algoritmayı kullanabilir, bir topluluk tarafından oluşturulan bir algoritmayı kullanabilir, kişisel bir algoritma çalıştırabilir veya hiçbir algoritma kullanmayabilir.
 
@@ -70,4 +70,4 @@ Kolaylık ile kontrolü devretmek arasındaki fark budur.
 
 Bitsocial Chain kalıcı adlandırmayı, ödemeleri, bahşişleri, ödülleri ve diğer finansal olanakları doğrudan kamusal konuşmaya taşıyabilir.
 
-3. Aşama istemcisi gönderilere, metne, fikir paylaşımına ve gerçek zamanlı tartışmalara odaklanmayı sürdürürken diğer Bitsocial istemcileriyle toplulukları ve ağ etkilerini paylaşır.
+2. Aşama istemcisi gönderilere, metne, fikir paylaşımına ve gerçek zamanlı tartışmalara odaklanmayı sürdürürken diğer Bitsocial istemcileriyle toplulukları ve ağ etkilerini paylaşır.

@@ -1,13 +1,13 @@
 ---
 title: Phi tập trung hóa Twitter/X
-description: "Giai đoạn 3 của kế hoạch tổng thể: một lựa chọn thay thế Twitter/X phi tập trung, có trọng tâm cho đối thoại công khai ưu tiên văn bản, với hạ tầng có thể thay thế."
+description: "Giai đoạn 2 của kế hoạch tổng thể: một lựa chọn thay thế Twitter/X phi tập trung, có trọng tâm cho đối thoại công khai ưu tiên văn bản, với hạ tầng có thể thay thế."
 ---
 
 # Phi tập trung hóa Twitter/X
 
-Giai đoạn 3 là kế hoạch xây dựng một lựa chọn thay thế Twitter/X phi tập trung và có trọng tâm. Trung tâm của nó là đối thoại công khai ưu tiên văn bản: bài đăng ngắn, phản hồi, đăng lại, theo dõi, thảo luận theo thời gian thực và cộng đồng, với lớp nền tảng được mở ra.
+Giai đoạn 2 là kế hoạch xây dựng một lựa chọn thay thế Twitter/X phi tập trung và có trọng tâm. Trung tâm của nó là đối thoại công khai ưu tiên văn bản: bài đăng ngắn, phản hồi, đăng lại, theo dõi, thảo luận theo thời gian thực và cộng đồng, với lớp nền tảng được mở ra.
 
-Twitter/X vẫn được định hình bởi bài đăng, văn bản và việc chia sẻ ý tưởng. Ứng dụng khách Giai đoạn 3 nên cạnh tranh bằng trải nghiệm cốt lõi đó và làm cho trải nghiệm ấy hoạt động thật xuất sắc.
+Twitter/X vẫn được định hình bởi bài đăng, văn bản và việc chia sẻ ý tưởng. Ứng dụng khách Giai đoạn 2 nên cạnh tranh bằng trải nghiệm cốt lõi đó và làm cho trải nghiệm ấy hoạt động thật xuất sắc.
 
 Trang này mô tả hướng đi của sản phẩm, không phải đặc tả phát hành đã khóa. Giao diện chính xác, nguồn cấp dữ liệu mặc định, mô hình quảng cáo, tính năng AI và thị trường RPC có thể thay đổi khi giao thức và các ứng dụng ban đầu trưởng thành.
 
@@ -40,13 +40,13 @@ Cộng đồng sẽ quan trọng hơn nhiều so với các nhóm biệt lập t
 
 Trên X/Twitter, các cộng đồng được giới hạn bên trong X. Chúng có thể hữu ích nhưng kế thừa các giới hạn của một nền tảng, một hệ thống tài khoản, một ngăn xếp đề xuất và một bề mặt sản phẩm.
 
-Một cộng đồng Bitsocial có thể được tạo, lưu trữ, khám phá và sử dụng qua nhiều ứng dụng khách khác nhau. Điều đó có nghĩa là ứng dụng khách Giai đoạn 3 có thể hiển thị cộng đồng và bài đăng từ mạng Bitsocial rộng hơn, không chỉ từ những người dùng bắt đầu bên trong nó. Một cộng đồng có thể đồng thời có hoạt động từ ứng dụng khách imageboard, ứng dụng khách thảo luận kiểu Reddit, ứng dụng khách diễn đàn ngách, ứng dụng di động và ứng dụng khách Giai đoạn 3.
+Một cộng đồng Bitsocial có thể được tạo, lưu trữ, khám phá và sử dụng qua nhiều ứng dụng khách khác nhau. Điều đó có nghĩa là ứng dụng khách Giai đoạn 2 có thể hiển thị cộng đồng và bài đăng từ mạng Bitsocial rộng hơn, không chỉ từ những người dùng bắt đầu bên trong nó. Một cộng đồng có thể đồng thời có hoạt động từ ứng dụng khách imageboard, ứng dụng khách thảo luận kiểu Reddit, ứng dụng khách diễn đàn ngách, ứng dụng di động và ứng dụng khách Giai đoạn 2.
 
 Đó là lợi thế cốt lõi của hiệu ứng mạng: một ứng dụng khách có thể mang lại cảm giác quen thuộc cho người dùng phổ thông trong khi vẫn thu được giá trị từ nhiều ứng dụng khách, nút cộng đồng, nhà cung cấp RPC và các dịch vụ độc lập.
 
 ## Thuật toán nguồn cấp dữ liệu tùy chọn
 
-Ứng dụng khách Giai đoạn 3 không nên áp đặt một hệ thống xếp hạng toàn cầu duy nhất lên mọi người.
+Ứng dụng khách Giai đoạn 2 không nên áp đặt một hệ thống xếp hạng toàn cầu duy nhất lên mọi người.
 
 Thuật toán nguồn cấp dữ liệu phải được chọn tham gia. Người dùng có thể chọn thuật toán từ thị trường, chuyển đổi nhà cung cấp, sử dụng thuật toán từ một công ty, sử dụng thuật toán do nhà điều hành ẩn danh điều hành, sử dụng thuật toán do cộng đồng xây dựng, chạy thuật toán cá nhân hoặc không sử dụng thuật toán nào cả.
 
@@ -70,4 +70,4 @@ Mỗi người dùng sẽ có thể tham gia với tư cách là một nút ngan
 
 Bitsocial Chain có thể đưa khả năng đặt tên bền vững, thanh toán, tiền boa, phần thưởng và các cơ chế tài chính khác trực tiếp vào đối thoại công khai.
 
-Ứng dụng khách Giai đoạn 3 vẫn tập trung vào bài đăng, văn bản, chia sẻ ý tưởng và thảo luận theo thời gian thực, đồng thời chia sẻ cộng đồng và hiệu ứng mạng với các ứng dụng khách Bitsocial khác.
+Ứng dụng khách Giai đoạn 2 vẫn tập trung vào bài đăng, văn bản, chia sẻ ý tưởng và thảo luận theo thời gian thực, đồng thời chia sẻ cộng đồng và hiệu ứng mạng với các ứng dụng khách Bitsocial khác.

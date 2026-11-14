@@ -1,13 +1,13 @@
 ---
 title: Decentralisera Twitter/X
-description: "Fas 3 i huvudplanen: ett fokuserat, decentraliserat alternativ till Twitter/X för textcentrerade offentliga samtal, med utbytbar infrastruktur."
+description: "Fas 2 i huvudplanen: ett fokuserat, decentraliserat alternativ till Twitter/X för textcentrerade offentliga samtal, med utbytbar infrastruktur."
 ---
 
 # Decentralisera Twitter/X
 
-Fas 3 är en plan för att bygga ett fokuserat, decentraliserat alternativ till Twitter/X. Kärnan är textcentrerade offentliga samtal: korta inlägg, svar, återpubliceringar, följningar, diskussioner i realtid och gemenskaper, med ett öppet plattformslager.
+Fas 2 är en plan för att bygga ett fokuserat, decentraliserat alternativ till Twitter/X. Kärnan är textcentrerade offentliga samtal: korta inlägg, svar, återpubliceringar, följningar, diskussioner i realtid och gemenskaper, med ett öppet plattformslager.
 
-Twitter/X definieras fortfarande av inlägg, text och delning av idéer. Klienten i fas 3 bör konkurrera med den kärnupplevelsen och få den att fungera exceptionellt väl.
+Twitter/X definieras fortfarande av inlägg, text och delning av idéer. Klienten i fas 2 bör konkurrera med den kärnupplevelsen och få den att fungera exceptionellt väl.
 
 Den här sidan beskriver produktens riktning, inte en låst lanseringsspecifikation. Det exakta gränssnittet, standardflödet, annonsmodellen, AI-funktionerna och RPC-marknadsplatsen kan förändras när protokollet och de första apparna mognar.
 
@@ -40,13 +40,13 @@ Gemenskaper borde vara mycket viktigare än isolerade grupper i en app.
 
 På X/Twitter är gemenskaper begränsade inom X. De kan vara användbara, men de ärver gränserna för en plattform, ett kontosystem, en rekommendationsstack och en produktyta.
 
-En Bitsocial-gemenskap kan skapas, driftas, upptäckas och användas genom olika klienter. Det innebär att klienten i fas 3 kan visa gemenskaper och inlägg från det bredare Bitsocial-nätverket, inte bara från användare som började i den. En gemenskap kan samtidigt ha aktivitet från en imageboard-klient, en diskussionsklient i Reddit-stil, en nischforumklient, en mobilapp och klienten i fas 3.
+En Bitsocial-gemenskap kan skapas, driftas, upptäckas och användas genom olika klienter. Det innebär att klienten i fas 2 kan visa gemenskaper och inlägg från det bredare Bitsocial-nätverket, inte bara från användare som började i den. En gemenskap kan samtidigt ha aktivitet från en imageboard-klient, en diskussionsklient i Reddit-stil, en nischforumklient, en mobilapp och klienten i fas 2.
 
 Det är den centrala fördelen med nätverkseffekt: en klient kan känna sig bekant för vanliga användare samtidigt som den drar värde från många klienter, communitynoder, RPC-leverantörer och oberoende tjänster.
 
 ## Valfria matningsalgoritmer
 
-Klienten i fas 3 bör inte tvinga på alla ett enda globalt rangordningssystem.
+Klienten i fas 2 bör inte tvinga på alla ett enda globalt rangordningssystem.
 
 Flödesalgoritmer bör vara opt-in. En användare kan välja en algoritm från en marknadsplats, byta leverantör, använda en algoritm från ett företag, använda en som drivs av en anonym operatör, använda en byggd av en gemenskap, köra en personlig eller inte använda någon algoritm alls.
 
@@ -70,4 +70,4 @@ Det är skillnaden mellan bekvämlighet och att lämna över kontrollen.
 
 Bitsocial Chain kan föra in beständig namngivning, betalningar, dricks, utmärkelser och andra finansiella funktioner direkt i det offentliga samtalet.
 
-Klienten i fas 3 förblir inriktad på inlägg, text, delning av idéer och diskussioner i realtid, samtidigt som den delar gemenskaper och nätverkseffekter med andra Bitsocial-klienter.
+Klienten i fas 2 förblir inriktad på inlägg, text, delning av idéer och diskussioner i realtid, samtidigt som den delar gemenskaper och nätverkseffekter med andra Bitsocial-klienter.

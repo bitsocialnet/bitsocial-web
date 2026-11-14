@@ -1,13 +1,13 @@
 ---
 title: I-desentralisa ang Twitter/X
-description: "Ikatlong yugto ng master plan: isang nakatuon at desentralisadong alternatibo sa Twitter/X para sa pampublikong usapang nakasentro sa teksto, na may napapalitang imprastraktura."
+description: "Ikalawang yugto ng master plan: isang nakatuon at desentralisadong alternatibo sa Twitter/X para sa pampublikong usapang nakasentro sa teksto, na may napapalitang imprastraktura."
 ---
 
 # I-desentralisa ang Twitter/X
 
-Ang Yugto 3 ay isang plano para bumuo ng nakatuon at desentralisadong alternatibo sa Twitter/X. Nasa sentro nito ang pampublikong usapang nakasentro sa teksto: maiikling post, reply, repost, follow, real-time na talakayan, at mga komunidad, habang binubuksan ang platform layer.
+Ang Yugto 2 ay isang plano para bumuo ng nakatuon at desentralisadong alternatibo sa Twitter/X. Nasa sentro nito ang pampublikong usapang nakasentro sa teksto: maiikling post, reply, repost, follow, real-time na talakayan, at mga komunidad, habang binubuksan ang platform layer.
 
-Ang Twitter/X ay nananatiling nakabatay sa mga post, teksto, at pagbabahagi ng mga ideya. Dapat makipagkumpitensya ang client ng Yugto 3 sa pangunahing karanasang iyon at gawin itong mahusay sa pambihirang paraan.
+Ang Twitter/X ay nananatiling nakabatay sa mga post, teksto, at pagbabahagi ng mga ideya. Dapat makipagkumpitensya ang client ng Yugto 2 sa pangunahing karanasang iyon at gawin itong mahusay sa pambihirang paraan.
 
 Inilalarawan ng pahinang ito ang direksyon ng produkto, hindi ang isang nakapirming release specification. Maaaring magbago ang eksaktong interface, default feed, modelo ng ads, mga AI feature, at RPC marketplace habang umuunlad ang protocol at mga unang app.
 
@@ -40,13 +40,13 @@ Dapat maging mas mahalaga ang mga komunidad kaysa sa mga nakahiwalay na grupo sa
 
 Sa X/Twitter, nakakulong ang mga komunidad sa loob ng X. Maaari silang maging kapaki-pakinabang, pero minamana nila ang mga limitasyon ng iisang platform, account system, recommendation stack, at product surface.
 
-Maaaring gumawa, mag-host, tumuklas, at gumamit ng isang Bitsocial community sa pamamagitan ng iba't ibang client. Ibig sabihin, maipapakita ng client ng Yugto 3 ang mga komunidad at post mula sa mas malawak na Bitsocial network, hindi lamang mula sa mga user na nagsimula roon. Maaaring sabay-sabay na magkaroon ng aktibidad ang isang komunidad mula sa imageboard client, Reddit-style na discussion client, niche forum client, mobile app, at client ng Yugto 3.
+Maaaring gumawa, mag-host, tumuklas, at gumamit ng isang Bitsocial community sa pamamagitan ng iba't ibang client. Ibig sabihin, maipapakita ng client ng Yugto 2 ang mga komunidad at post mula sa mas malawak na Bitsocial network, hindi lamang mula sa mga user na nagsimula roon. Maaaring sabay-sabay na magkaroon ng aktibidad ang isang komunidad mula sa imageboard client, Reddit-style na discussion client, niche forum client, mobile app, at client ng Yugto 2.
 
 Iyan ang pangunahing bentahe ng network effect: maaaring maging pamilyar ang isang client sa karaniwang user habang kumukuha pa rin ng halaga mula sa maraming client, community node, RPC provider, at independiyenteng serbisyo.
 
 ## Mga opsyonal na feed algorithm
 
-Hindi dapat ipilit ng client ng Yugto 3 ang iisang pandaigdigang ranking system sa lahat.
+Hindi dapat ipilit ng client ng Yugto 2 ang iisang pandaigdigang ranking system sa lahat.
 
 Dapat piliing i-on ang mga feed algorithm. Maaaring pumili ang user ng algorithm mula sa marketplace, magpalit ng provider, gumamit ng algorithm mula sa isang kumpanya, anonymous operator, o komunidad, magpatakbo ng sarili, o huwag gumamit ng anumang algorithm.
 
@@ -70,4 +70,4 @@ Iyan ang pagkakaiba ng kaginhawaan at custody.
 
 Maaaring direktang dalhin ng Bitsocial Chain sa pampublikong usapan ang matatag na pagpapangalan, mga bayad, tip, gantimpala, at iba pang mekanismong pinansyal.
 
-Nananatiling nakasentro ang client ng Yugto 3 sa mga post, teksto, pagbabahagi ng ideya, at real-time na talakayan habang nagbabahagi ng mga komunidad at network effect sa ibang Bitsocial client.
+Nananatiling nakasentro ang client ng Yugto 2 sa mga post, teksto, pagbabahagi ng ideya, at real-time na talakayan habang nagbabahagi ng mga komunidad at network effect sa ibang Bitsocial client.

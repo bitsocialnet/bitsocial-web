@@ -14,7 +14,7 @@ sociale vormen te financieren.
 ## Wat er nog gebouwd moet worden
 
 De eerste fases richten zich op de categorieën met de meeste hefboomwerking: imageboards, forums,
-publieke RPC, Bitsocial Chain, profielnodes, het Twitter/X-alternatief uit fase 3 en de diensteneconomie
+publieke RPC, Bitsocial Chain, profielnodes, het Twitter/X-alternatief uit fase 2 en de diensteneconomie
 eromheen.
 
 Daarna zou het netwerk moeten uitbreiden naar de long tail:

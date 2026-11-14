@@ -15,7 +15,7 @@ financer autant de formats sociaux que possible.
 ## Ce qu'il reste à construire
 
 Les premières phases se concentrent sur les catégories au plus fort effet de levier : imageboards,
-forums, RPC public, Bitsocial Chain, nœuds de profil, l'alternative à Twitter/X de la phase 3 et
+forums, RPC public, Bitsocial Chain, nœuds de profil, l'alternative à Twitter/X de la phase 2 et
 l'économie de services qui les entoure.
 
 Ensuite, le réseau doit s'étendre à la longue traîne :

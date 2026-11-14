@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Fase 2 del plan maestro, dedicada a la capa económica propuesta como appchain L2 de Ethereum para las aplicaciones de Bitsocial.
+description: Fase 3 del plan maestro, dedicada a la capa económica propuesta como appchain L2 de Ethereum para las aplicaciones de Bitsocial.
 ---
 
 # Bitsocial Chain
@@ -68,15 +68,11 @@ De cara al público, el resultado debería ser:
 - los creadores y las comunidades pueden recibir apoyo desde cualquier cliente
 - el valor puede circular por el ecosistema sin recrear a un dueño centralizado de la plataforma
 
-## Por qué llega tan pronto
+## Por qué llega después de la alternativa a Twitter/X
 
-El plan maestro actual coloca a Bitsocial Chain justo después de las primeras categorías de entrada:
-imageboards, foros y la capa pública de RPC que hace que esas aplicaciones resulten prácticas para
-más usuarios.
+El plan maestro actual sitúa Bitsocial Chain después de la alternativa a Twitter/X, porque esa aplicación no necesita la cadena. Los perfiles funcionan como nodos de perfil a través de RPC sin custodia, y los nombres `.bso` pueden empezar en un registro provisional en la red principal de Ethereum ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) y pasar a la cadena más adelante.
 
-Ese calendario importa porque las aplicaciones sociales necesitan efectos de red fuertes. Si los
-nombres, el apoyo, los premios, las propinas y la monetización llegan demasiado tarde, los
-competidores centralizados conservan su mayor ventaja durante demasiado tiempo.
+Bitsocial Chain no debería sacrificar la descentralización a cambio de lanzarse antes. No debería añadir ningún supuesto de confianza más allá del propio Ethereum: ninguna clave de actualización, ningún consejo de seguridad y ningún operador que pueda censurarla o detenerla. El diseño principal para lograrlo, un rollup nativo, depende de una actualización de Ethereum que aún no tiene fecha. Hasta que la cadena pueda cumplir ese listón, la alternativa a Twitter/X hace crecer la base de usuarios a la que servirá la cadena.
 
 ## Principios de diseño
 

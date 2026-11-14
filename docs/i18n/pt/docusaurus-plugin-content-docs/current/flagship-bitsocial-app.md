@@ -1,13 +1,13 @@
 ---
 title: Descentralizar o Twitter/X
-description: "Fase 3 do plano mestre: uma alternativa descentralizada e focada ao Twitter/X para conversas públicas centradas em texto, com infraestrutura substituível."
+description: "Fase 2 do plano mestre: uma alternativa descentralizada e focada ao Twitter/X para conversas públicas centradas em texto, com infraestrutura substituível."
 ---
 
 # Descentralizar o Twitter/X
 
-A Fase 3 é um plano para criar uma alternativa descentralizada e focada ao Twitter/X. O centro é a conversa pública baseada primeiro em texto: posts curtos, respostas, republicações, perfis seguidos, discussões em tempo real e comunidades, com a camada da plataforma aberta.
+A Fase 2 é um plano para criar uma alternativa descentralizada e focada ao Twitter/X. O centro é a conversa pública baseada primeiro em texto: posts curtos, respostas, republicações, perfis seguidos, discussões em tempo real e comunidades, com a camada da plataforma aberta.
 
-O Twitter/X continua definido por posts, texto e compartilhamento de ideias. O cliente da Fase 3 deve competir nessa experiência central e fazê-la funcionar excepcionalmente bem.
+O Twitter/X continua definido por posts, texto e compartilhamento de ideias. O cliente da Fase 2 deve competir nessa experiência central e fazê-la funcionar excepcionalmente bem.
 
 Esta página descreve a direção do produto, não uma especificação de lançamento fechada. A interface exata, o feed padrão, o modelo de anúncios, os recursos de AI e o mercado de RPC podem mudar à medida que o protocolo e os primeiros aplicativos amadurecem.
 
@@ -40,13 +40,13 @@ As comunidades deveriam ser muito mais importantes do que grupos isolados dentro
 
 No X/Twitter, as comunidades estão confinadas dentro do X. Elas podem ser úteis, mas herdam os limites de uma plataforma, um sistema de conta, uma pilha de recomendações e uma superfície de produto.
 
-Uma comunidade Bitsocial pode ser criada, hospedada, descoberta e usada por diferentes clientes. Isso significa que o cliente da Fase 3 pode mostrar comunidades e posts da rede Bitsocial mais ampla, não apenas de usuários que começaram dentro dele. Uma comunidade pode reunir ao mesmo tempo atividades de um cliente de imageboard, um cliente de discussão ao estilo Reddit, um cliente de fórum de nicho, um aplicativo móvel e o cliente da Fase 3.
+Uma comunidade Bitsocial pode ser criada, hospedada, descoberta e usada por diferentes clientes. Isso significa que o cliente da Fase 2 pode mostrar comunidades e posts da rede Bitsocial mais ampla, não apenas de usuários que começaram dentro dele. Uma comunidade pode reunir ao mesmo tempo atividades de um cliente de imageboard, um cliente de discussão ao estilo Reddit, um cliente de fórum de nicho, um aplicativo móvel e o cliente da Fase 2.
 
 Essa é a principal vantagem do efeito de rede: um cliente pode se sentir familiarizado com os usuários convencionais e, ao mesmo tempo, extrair valor de muitos clientes, nós da comunidade, provedores de RPC e serviços independentes.
 
 ## Algoritmos de feed opcionais
 
-O cliente da Fase 3 não deve impor um único sistema global de ranqueamento a todos.
+O cliente da Fase 2 não deve impor um único sistema global de ranqueamento a todos.
 
 Os algoritmos de feed devem ser opcionais. Um usuário pode escolher um algoritmo de um mercado, trocar de provedor, usar um algoritmo de uma empresa, usar um executado por um operador anônimo, usar um criado por uma comunidade, executar um algoritmo pessoal ou não usar nenhum algoritmo.
 
@@ -70,4 +70,4 @@ Essa é a diferença entre conveniência e custódia.
 
 A Bitsocial Chain pode levar nomes duráveis, pagamentos, gorjetas, prêmios e outros recursos financeiros diretamente para a conversa pública.
 
-O cliente da Fase 3 permanece centrado em posts, texto, compartilhamento de ideias e discussões em tempo real, enquanto compartilha comunidades e efeitos de rede com outros clientes Bitsocial.
+O cliente da Fase 2 permanece centrado em posts, texto, compartilhamento de ideias e discussões em tempo real, enquanto compartilha comunidades e efeitos de rede com outros clientes Bitsocial.

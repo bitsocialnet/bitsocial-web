@@ -1,13 +1,13 @@
 ---
 title: Decentralizovat Twitter/X
-description: "Třetí fáze hlavního plánu: cílená, decentralizovaná alternativa k Twitter/X pro veřejnou konverzaci zaměřenou na text, s vyměnitelnou infrastrukturou."
+description: "Druhá fáze hlavního plánu: cílená, decentralizovaná alternativa k Twitter/X pro veřejnou konverzaci zaměřenou na text, s vyměnitelnou infrastrukturou."
 ---
 
 # Decentralizovat Twitter/X
 
-Třetí fáze je plán vybudovat cílenou, decentralizovanou alternativu k Twitter/X. Jejím středobodem je veřejná konverzace zaměřená na text: krátké příspěvky, odpovědi, reposty, sledování, diskuse v reálném čase a komunity, přičemž platformní vrstva zůstane otevřená.
+Druhá fáze je plán vybudovat cílenou, decentralizovanou alternativu k Twitter/X. Jejím středobodem je veřejná konverzace zaměřená na text: krátké příspěvky, odpovědi, reposty, sledování, diskuse v reálném čase a komunity, přičemž platformní vrstva zůstane otevřená.
 
-Twitter/X je stále založený na příspěvcích, textu a sdílení myšlenek. Klient třetí fáze by měl soupeřit právě v tomto základním zážitku a zajistit, aby fungoval mimořádně dobře.
+Twitter/X je stále založený na příspěvcích, textu a sdílení myšlenek. Klient druhé fáze by měl soupeřit právě v tomto základním zážitku a zajistit, aby fungoval mimořádně dobře.
 
 Tato stránka popisuje směr produktu, nikoli pevně danou specifikaci vydání. Přesné rozhraní, výchozí kanál, reklamní model, funkce AI a tržiště RPC se mohou měnit s tím, jak protokol a první aplikace dozrávají.
 
@@ -40,13 +40,13 @@ Komunity by měly být mnohem důležitější než izolované skupiny uvnitř j
 
 Na X/Twitter jsou komunity uzavřené uvnitř X. Mohou být užitečné, ale dědí omezení jedné platformy, jednoho systému účtů, jednoho systému doporučení a jediného produktového rozhraní.
 
-Komunitu Bitsocial lze vytvořit, hostovat, objevovat a používat prostřednictvím různých klientů. Klient třetí fáze tak může zobrazovat komunity a příspěvky z širší sítě Bitsocial, nejen od uživatelů, kteří začali přímo v něm. V jedné komunitě by se mohla současně objevovat aktivita z klienta imageboardu, diskusního klienta ve stylu Redditu, specializovaného diskusního fóra, mobilní aplikace a klienta třetí fáze.
+Komunitu Bitsocial lze vytvořit, hostovat, objevovat a používat prostřednictvím různých klientů. Klient druhé fáze tak může zobrazovat komunity a příspěvky z širší sítě Bitsocial, nejen od uživatelů, kteří začali přímo v něm. V jedné komunitě by se mohla současně objevovat aktivita z klienta imageboardu, diskusního klienta ve stylu Redditu, specializovaného diskusního fóra, mobilní aplikace a klienta druhé fáze.
 
 To je zásadní výhoda síťového efektu: jeden klient může běžným uživatelům připadat známý a přitom čerpat hodnotu z mnoha klientů, komunitních uzlů, poskytovatelů RPC a nezávislých služeb.
 
 ## Volitelné algoritmy kanálu
 
-Klient třetí fáze by neměl všem vnucovat jeden globální systém řazení.
+Klient druhé fáze by neměl všem vnucovat jeden globální systém řazení.
 
 Algoritmy kanálu by měly být volitelné. Uživatel si může vybrat algoritmus na tržišti, změnit poskytovatele, použít algoritmus firmy, anonymního provozovatele nebo komunity, spustit vlastní algoritmus nebo nepoužívat žádný.
 
@@ -70,4 +70,4 @@ To je rozdíl mezi pohodlím a úschovou.
 
 Bitsocial Chain může přinést trvalé názvy, platby, spropitné, ocenění a další finanční nástroje přímo do veřejné konverzace.
 
-Klient třetí fáze zůstává zaměřený na příspěvky, text, sdílení myšlenek a diskusi v reálném čase a zároveň sdílí komunity a síťové efekty s dalšími klienty Bitsocial.
+Klient druhé fáze zůstává zaměřený na příspěvky, text, sdílení myšlenek a diskusi v reálném čase a zároveň sdílí komunity a síťové efekty s dalšími klienty Bitsocial.

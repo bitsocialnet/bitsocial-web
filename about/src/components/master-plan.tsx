@@ -142,7 +142,7 @@ function getPhases(t: TFunction): PhaseItem[] {
     {
       ctas: [
         {
-          href: CHAIN_SITE_URL,
+          href: DOCS_LINKS.flagshipBitsocialApp,
           label: t("masterPlan.cta.learnMore"),
           context: t("masterPlan.phases.phase2.title"),
         },
@@ -156,11 +156,28 @@ function getPhases(t: TFunction): PhaseItem[] {
           <Trans i18nKey="masterPlan.phases.phase2.description" components={richTextComponents} />
         ),
       },
+      extraDescriptions: [
+        {
+          id: "phase2-rpc-nodes",
+          content: (
+            <Trans i18nKey="masterPlan.phases.phase2.rpcNodes" components={richTextComponents} />
+          ),
+        },
+        {
+          id: "phase2-everything-app",
+          content: (
+            <Trans
+              i18nKey="masterPlan.phases.phase2.everythingApp"
+              components={richTextComponents}
+            />
+          ),
+        },
+      ],
     },
     {
       ctas: [
         {
-          href: DOCS_LINKS.flagshipBitsocialApp,
+          href: CHAIN_SITE_URL,
           label: t("masterPlan.cta.learnMore"),
           context: t("masterPlan.phases.phase3.title"),
         },
@@ -174,23 +191,6 @@ function getPhases(t: TFunction): PhaseItem[] {
           <Trans i18nKey="masterPlan.phases.phase3.description" components={richTextComponents} />
         ),
       },
-      extraDescriptions: [
-        {
-          id: "phase3-rpc-nodes",
-          content: (
-            <Trans i18nKey="masterPlan.phases.phase3.rpcNodes" components={richTextComponents} />
-          ),
-        },
-        {
-          id: "phase3-everything-app",
-          content: (
-            <Trans
-              i18nKey="masterPlan.phases.phase3.everythingApp"
-              components={richTextComponents}
-            />
-          ),
-        },
-      ],
     },
     {
       ctas: [

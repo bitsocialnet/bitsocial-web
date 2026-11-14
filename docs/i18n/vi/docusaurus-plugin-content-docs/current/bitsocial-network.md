@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Giai đoạn 2 của kế hoạch tổng thể, trình bày lớp kinh tế appchain Ethereum L2 được đề xuất cho các ứng dụng Bitsocial.
+description: Giai đoạn 3 của kế hoạch tổng thể, trình bày lớp kinh tế appchain Ethereum L2 được đề xuất cho các ứng dụng Bitsocial.
 ---
 
 # Bitsocial Chain
@@ -67,14 +67,11 @@ Kết quả mà người dùng nhìn thấy nên là:
 - nhà sáng tạo và cộng đồng có thể nhận ủng hộ từ nhiều ứng dụng khách khác nhau
 - giá trị có thể luân chuyển trong hệ sinh thái mà không tái tạo ra một chủ sở hữu nền tảng tập trung
 
-## Vì sao phần này đến sớm trong lộ trình
+## Vì sao phần này đến sau giải pháp thay thế Twitter/X
 
-Kế hoạch tổng thể hiện tại đặt Bitsocial Chain ngay sau những nhóm mở đường đầu tiên: bảng hình ảnh,
-diễn đàn, và lớp RPC công khai giúp các ứng dụng đó trở nên thiết thực với nhiều người dùng hơn.
+Kế hoạch tổng thể hiện tại đặt Bitsocial Chain sau giải pháp thay thế Twitter/X, vì ứng dụng đó không cần chuỗi. Hồ sơ chạy như các nút hồ sơ thông qua RPC không lưu ký, và tên `.bso` có thể bắt đầu trên một sổ đăng ký tạm thời trên mạng chính Ethereum ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) rồi chuyển sang chuỗi sau này.
 
-Thời điểm đó quan trọng vì các ứng dụng xã hội cần hiệu ứng mạng mạnh. Nếu việc đặt tên, ủng hộ, trao
-thưởng, tặng tiền boa và kiếm tiền đến quá muộn, các đối thủ tập trung sẽ giữ được lợi thế lớn nhất
-của họ quá lâu.
+Bitsocial Chain không nên đánh đổi tính phi tập trung để ra mắt sớm hơn. Nó không nên thêm bất kỳ giả định tin cậy nào ngoài chính Ethereum: không có khóa nâng cấp, không có hội đồng bảo mật và không có nhà vận hành nào có thể kiểm duyệt hay dừng nó. Thiết kế hàng đầu cho điều đó, một native rollup, phụ thuộc vào một bản nâng cấp Ethereum chưa được lên lịch. Cho đến khi chuỗi có thể đạt chuẩn đó, giải pháp thay thế Twitter/X sẽ phát triển cơ sở người dùng mà chuỗi sẽ phục vụ.
 
 ## Nguyên tắc thiết kế
 

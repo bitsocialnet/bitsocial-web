@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Yleissuunnitelman vaihe 2, joka käsittelee Bitsocial-sovelluksille ehdotettua Ethereum L2 -appchainiin perustuvaa talouskerrosta.
+description: Yleissuunnitelman vaihe 3, joka käsittelee Bitsocial-sovelluksille ehdotettua Ethereum L2 -appchainiin perustuvaa talouskerrosta.
 ---
 
 # Bitsocial Chain
@@ -68,15 +68,11 @@ Käyttäjille näkyvän lopputuloksen pitäisi olla tämä:
 - sisällöntekijät ja yhteisöt voivat ottaa vastaan tukea eri asiakassovellusten kautta
 - arvo voi liikkua ekosysteemissä ilman, että keskitetty alustan omistaja syntyy uudelleen
 
-## Miksi tämä sijoittuu näin aikaisin
+## Miksi tämä tulee Twitter/X-vaihtoehdon jälkeen
 
-Nykyinen yleissuunnitelma sijoittaa Bitsocial Chainin heti ensimmäisten painopisteluokkien jälkeen:
-kuvalautojen, foorumien ja sen julkisen RPC-kerroksen, joka tekee näistä sovelluksista
-käytännöllisiä useammalle käyttäjälle.
+Nykyinen yleissuunnitelma sijoittaa Bitsocial Chainin Twitter/X-vaihtoehdon jälkeen, koska se sovellus ei tarvitse ketjua. Profiilit toimivat profiilisolmuina ei-säilyttävän RPC:n kautta, ja `.bso`-nimet voivat aloittaa väliaikaisessa rekisterissä Ethereumin pääverkossa ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) ja siirtyä ketjuun myöhemmin.
 
-Ajoituksella on väliä, koska sosiaaliset sovellukset tarvitsevat vahvat verkostovaikutukset. Jos
-nimeäminen, tukeminen, palkinnot, tippaus ja ansainta tulevat liian myöhään, keskitetyt kilpailijat
-säilyttävät suurimman etunsa liian pitkään.
+Bitsocial Chainin ei pitäisi vaihtaa hajautusta aikaisempaan julkaisuun. Sen ei pitäisi lisätä luottamusoletuksia Ethereumin itsensä lisäksi: ei päivitysavaimia, ei turvallisuusneuvostoa eikä operaattoria, joka voisi sensuroida tai pysäyttää sen. Johtava rakenne tähän, natiivi rollup, riippuu Ethereumin päivityksestä, jota ei ole vielä aikataulutettu. Kunnes ketju pystyy täyttämään tämän vaatimuksen, Twitter/X-vaihtoehto kasvattaa käyttäjäkuntaa, jota ketju tulee palvelemaan.
 
 ## Suunnitteluperiaatteet
 

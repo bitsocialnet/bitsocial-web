@@ -43,10 +43,10 @@ The content is biased toward inference-time lookup, not formal API reference gen
 
 ## Master plan
 
-- [Bitsocial Chain](https://docs.bitsocial.net/bitsocial-network/): Phase 2 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
+- [Bitsocial Chain](https://docs.bitsocial.net/bitsocial-network/): Phase 3 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
 - [Build your own Bitsocial client](https://docs.bitsocial.net/build-your-own-client/): Builder guide for shipping independent Bitsocial clients, from imageboards and forums to niche social apps.
 - [Decentralize All Social Media](https://docs.bitsocial.net/decentralize-all-social-media/): Phase 5 of the master plan, focused on funding and building the long tail of Bitsocial social clients.
-- [Decentralize Twitter/X](https://docs.bitsocial.net/flagship-bitsocial-app/): Phase 3 of the master plan: a focused, decentralized Twitter/X alternative for text-first public conversation with replaceable infrastructure.
+- [Decentralize Twitter/X](https://docs.bitsocial.net/flagship-bitsocial-app/): Phase 2 of the master plan: a focused, decentralized Twitter/X alternative for text-first public conversation with replaceable infrastructure.
 - [Scale Bitsocial Economies](https://docs.bitsocial.net/scale-bitsocial-economies/): Phase 4 of the master plan, focused on funding, infrastructure pluralism, and competing services around Bitsocial.
 
 ## Apps
@@ -218,8 +218,8 @@ A call to builders.
 Bitsocial wins by attracting as many builders as possible. Run your own unstoppable community, develop your own decentralized social app, or even launch your own business on top of Bitsocial. The tide rises with every builder.
 
 - Phase 1 - Decentralize imageboards and forums: Imageboards are the simplest form of social media to decentralize: anonymous posting, few default boards, and no profile graph. 5chan proves Bitsocial can replace centralized imageboards while removing global admins from the equation.
-- Phase 2 - Launch Bitsocial Chain: In order to decentralize all social media, Bitsocial apps will need killer features and strong network effects: unstoppable financial structures, decentralized Bitsocial domains (.bso), awards and tipping, common liquidity, and practical monetization. All of this will be powered by Bitsocial Chain, the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
-- Phase 3 - Decentralize Twitter/X: Phase 3 should launch a focused, decentralized alternative to Twitter/X: posts, replies, reposts, follows, real-time public conversation, and communities that can pull network effects from every Bitsocial client. It should make text-first public conversation work exceptionally well, while keeping RPCs, feeds, instances, algorithms, ads, and ranking replaceable.
+- Phase 2 - Decentralize Twitter/X: Phase 2 should launch a focused, decentralized alternative to Twitter/X: posts, replies, reposts, follows, real-time public conversation, and communities that can pull network effects from every Bitsocial client. It should make text-first public conversation work exceptionally well, while keeping RPCs, feeds, instances, algorithms, ads, and ranking replaceable.
+- Phase 3 - Launch Bitsocial Chain: In order to decentralize all social media, Bitsocial apps will need killer features and strong network effects: unstoppable financial structures, decentralized Bitsocial domains (.bso), awards and tipping, common liquidity, and practical monetization. All of this will be powered by Bitsocial Chain, the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
 - Phase 4 - Scale Bitsocial economies: The next layer is ecosystem funding and infrastructure pluralism. Bitsocial Forge's RPC should not be the only successful RPC: many businesses, independent teams, anonymous operators, and community entities should build RPCs, media hosting, discovery, moderation, and other services on top of Bitsocial. Funding should push that decentralization forward, so developers and operators can compete to make the network faster, cheaper, more reliable, and harder to capture.
 - Phase 5 - Decentralize all social media: With the core apps, public RPCs, profile nodes, discovery, and monetization in place, Bitsocial can fund and build the long tail of social clients: blogging, crowdfunding, creator video and a credible YouTube alternative, niche experiments, and every format too early for the first four phases. Bitsocial Forge can build some of them, centralized clients can compete too, they do not all have to be FOSS, and decentralized community grants can fund as many developers as possible.
 
@@ -1149,7 +1149,7 @@ peer-to-peer pubsub for real-time communication. Together they produce a social 
 
 Source: https://docs.bitsocial.net/bitsocial-network/
 Path: docs/bitsocial-network.md
-Description: Phase 2 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
+Description: Phase 3 of the master plan, covering the proposed Ethereum L2 appchain economic layer for Bitsocial apps.
 
 # Bitsocial Chain
 
@@ -1210,14 +1210,18 @@ The public-facing result should be:
 - creators and communities can receive support across clients
 - value can move across the ecosystem without recreating a centralized platform owner
 
-## Why this sits early
+## Why this comes after the Twitter/X alternative
 
-The current master plan places Bitsocial Chain immediately after the first wedge categories:
-imageboards, forums, and the public RPC layer that makes those apps practical for more users.
+The current master plan places Bitsocial Chain after the Twitter/X alternative, because that app
+does not need the chain. Profiles run as profile nodes through non-custodial RPC, and `.bso` names
+can start on an interim registry on Ethereum mainnet
+([BSIP-13](https://bsips.bitsocial.net/bsip-13)) and move onto the chain later.
 
-That timing matters because social apps need strong network effects. If naming, support, awards,
-tipping, and monetization arrive too late, centralized competitors keep their biggest advantage for
-too long.
+Bitsocial Chain should not trade decentralization for an earlier launch. It should add no trust
+assumptions beyond Ethereum itself: no upgrade keys, no security council, and no operator that can
+censor or halt it. The leading design for that, a native rollup, depends on an Ethereum upgrade that
+is not scheduled yet. Until the chain can meet that bar, the Twitter/X alternative grows the user
+base it will serve.
 
 ## Design principles
 
@@ -1329,7 +1333,7 @@ social formats as possible.
 ## What still needs to be built
 
 The first phases focus on the highest-leverage categories: imageboards, forums, public RPC,
-Bitsocial Chain, profile nodes, the Phase 3 Twitter/X alternative, and the service economy around
+Bitsocial Chain, profile nodes, the Phase 2 Twitter/X alternative, and the service economy around
 them.
 
 After that, the network should expand into the long tail:
@@ -1406,15 +1410,15 @@ nobody owns; Bitsocial.
 
 Source: https://docs.bitsocial.net/flagship-bitsocial-app/
 Path: docs/flagship-bitsocial-app.md
-Description: Phase 3 of the master plan: a focused, decentralized Twitter/X alternative for text-first public conversation with replaceable infrastructure.
+Description: Phase 2 of the master plan: a focused, decentralized Twitter/X alternative for text-first public conversation with replaceable infrastructure.
 
 # Decentralize Twitter/X
 
-Phase 3 is a plan to build a focused, decentralized alternative to Twitter/X. Its center is
+Phase 2 is a plan to build a focused, decentralized alternative to Twitter/X. Its center is
 text-first public conversation: short posts, replies, reposts, follows, real-time discussion, and
 communities, with the platform layer broken open.
 
-Twitter/X is still defined by posts, text, and sharing ideas. The Phase 3 client should compete on
+Twitter/X is still defined by posts, text, and sharing ideas. The Phase 2 client should compete on
 that core experience and make it work exceptionally well.
 
 This page describes product direction, not a locked release spec. The exact interface, default feed,
@@ -1461,9 +1465,9 @@ On Twitter/X, communities are confined to the product. They can be useful, but t
 limits of one platform, one account system, one recommendation stack, and one product surface.
 
 A Bitsocial community can be created, hosted, discovered, and used through different clients. That
-means the Phase 3 client can show communities and posts from the wider Bitsocial network, not only
+means the Phase 2 client can show communities and posts from the wider Bitsocial network, not only
 from users who started inside it. A community could have activity from an imageboard client, a
-Reddit-style discussion client, a niche forum client, a mobile app, and the Phase 3 client at the
+Reddit-style discussion client, a niche forum client, a mobile app, and the Phase 2 client at the
 same time.
 
 That is the core network-effect advantage: one client can feel familiar to mainstream users while
@@ -1471,7 +1475,7 @@ still pulling value from many clients, community nodes, RPC providers, and indep
 
 ## Optional feed algorithms
 
-The Phase 3 client should not force one global ranking system on everyone.
+The Phase 2 client should not force one global ranking system on everyone.
 
 Feed algorithms should be opt-in. A user could choose an algorithm from a marketplace, switch
 providers, use an algorithm from a company, use one run by an anonymous operator, use one built by a
@@ -1508,7 +1512,7 @@ That is the difference between convenience and custody.
 Bitsocial Chain can bring durable naming, payments, tipping, awards, and other financial rails
 directly into public conversation.
 
-The Phase 3 client stays centered on posts, text, sharing ideas, and real-time discussion while
+The Phase 2 client stays centered on posts, text, sharing ideas, and real-time discussion while
 sharing communities and network effects with other Bitsocial clients.
 
 ### Scale Bitsocial Economies
@@ -5629,7 +5633,7 @@ Repo-specific AI workflow guidance lives in:
 - [`docs/agent-playbooks/hooks-setup.md`](https://github.com/bitsocialnet/spam-blocker/blob/HEAD/docs/agent-playbooks/hooks-setup.md)
 - [`docs/agent-playbooks/skills-and-tools.md`](https://github.com/bitsocialnet/spam-blocker/blob/HEAD/docs/agent-playbooks/skills-and-tools.md)
 
-Use Corepack-managed Yarn. Shared skills and role sources live under `.agents/`; the workflow generator maintains native Codex, Cursor, and Claude outputs. Automatic hooks only format edited source files. See the playbooks for setup and checks selected by the change.
+Use Corepack-managed Yarn. Shared skills and role sources live under `.agents/`; the workflow generator maintains native Codex and Claude outputs. Automatic hooks only format edited source files. See the playbooks for setup and checks selected by the change.
 
 Quick setup for a fresh machine:
 
@@ -12016,7 +12020,7 @@ Description: Modelswarm is an idea for a hub of open weight AI models that nobod
 
 **Modelswarm is an idea for a hub of open-weight AI models that nobody owns.** The name means models distributed by a swarm of peers, as in a BitTorrent swarm, so no company has to host them. Publishers sign their releases from their own Bitsocial profile, and every piece of every file is checked against the signed release as it downloads. No company decides which models are listed, which stay available or what can be said about them.
 
-> **Status: idea stage.** This repository reserves the name and collects the design. Nothing here is built; [roadmap.md](https://github.com/bitsocialnet/modelswarm/blob/HEAD/roadmap.md) tracks what comes next and what each step waits on. It fits [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5), the long tail of Bitsocial clients. Most of it needs only what Bitsocial and BitTorrent already ship, so the first milestones are not blocked by earlier phases.
+> **Status: experimental CLI.** The landing page, [download-engine prototype](https://github.com/bitsocialnet/modelswarm/blob/HEAD/prototypes/download-engine/README.md), and [manifest/CLI milestone](https://github.com/bitsocialnet/modelswarm/blob/HEAD/cli/README.md) exist. `make`, `verify` and `pull` work with unsigned local manifests, v2 peers/HTTP, format checks, checkpoint recovery and verified cache snapshots. The [local Hugging Face endpoint](https://github.com/bitsocialnet/modelswarm/blob/HEAD/cli/ENDPOINT.md) serves these manifests and verified public upstream fallback, tested with the SDK. The [signed release prototype](https://github.com/bitsocialnet/modelswarm/blob/HEAD/cli/RELEASES.md) adds local keys, publisher profile setup, publishing, profile/CID pulls and endpoint registration, tested with an isolated real PKC node. Hosted defaults, public-network operation, search and desktop client remain; [roadmap.md](https://github.com/bitsocialnet/modelswarm/blob/HEAD/roadmap.md) tracks the remaining work. It fits [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5), the long tail of Bitsocial clients. Most of it needs only what Bitsocial and BitTorrent already ship, so the first milestones are not blocked by earlier phases.
 
 > **Credit.** Modelswarm builds on [HuggingSocial](https://github.com/Rinse12/huggingsocial) ([huggingsocial.co](https://huggingsocial.co/)), the original design by Bitsocial developer [Rinse12](https://github.com/Rinse12). Most of the architecture comes from it: Bitsocial for releases and discussion, BitTorrent and HTTP mirrors for the weights, signed manifests checked on the reader's machine, hubs, indexers, the command line and the local Hugging Face endpoint. Modelswarm changes where releases live, how downloads are verified, how formats that can run code are handled and how models that are only on Hugging Face are covered; see [Prior Art](#prior-art).
 

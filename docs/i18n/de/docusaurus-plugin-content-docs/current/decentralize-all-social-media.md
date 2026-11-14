@@ -14,7 +14,7 @@ soziale Formate wie möglich zu finanzieren.
 ## Was noch gebaut werden muss
 
 Die ersten Phasen konzentrieren sich auf die Kategorien mit der größten Hebelwirkung: Imageboards,
-Foren, öffentliches RPC, Bitsocial Chain, Profilknoten, die Twitter/X-Alternative aus Phase 3 und die
+Foren, öffentliches RPC, Bitsocial Chain, Profilknoten, die Twitter/X-Alternative aus Phase 2 und die
 Dienstleistungsökonomie rundherum.
 
 Danach sollte sich das Netzwerk in den Long Tail ausdehnen:

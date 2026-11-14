@@ -1,13 +1,13 @@
 ---
 title: Twitter/X decentraliseren
-description: "Fase 3 van het masterplan: een gerichte, gedecentraliseerde vervanger voor Twitter/X voor openbare gesprekken waarin tekst centraal staat, met vervangbare infrastructuur."
+description: "Fase 2 van het masterplan: een gerichte, gedecentraliseerde vervanger voor Twitter/X voor openbare gesprekken waarin tekst centraal staat, met vervangbare infrastructuur."
 ---
 
 # Twitter/X decentraliseren
 
-Fase 3 is een plan om een gerichte, gedecentraliseerde vervanger voor Twitter/X te bouwen. Openbare gesprekken waarin tekst centraal staat vormen de kern: korte berichten, antwoorden, reposts, volgen, realtime discussies en communities, met een opengebroken platformlaag.
+Fase 2 is een plan om een gerichte, gedecentraliseerde vervanger voor Twitter/X te bouwen. Openbare gesprekken waarin tekst centraal staat vormen de kern: korte berichten, antwoorden, reposts, volgen, realtime discussies en communities, met een opengebroken platformlaag.
 
-Twitter/X draait nog steeds om berichten, tekst en het delen van ideeën. De client van fase 3 moet op die kernervaring concurreren en die uitzonderlijk goed laten werken.
+Twitter/X draait nog steeds om berichten, tekst en het delen van ideeën. De client van fase 2 moet op die kernervaring concurreren en die uitzonderlijk goed laten werken.
 
 Deze pagina beschrijft de productrichting, niet een vastgelegde releasespecificatie. De precieze interface, standaardfeed, het advertentiemodel, AI-functies en de RPC-marktplaats kunnen veranderen naarmate het protocol en de eerste apps volwassen worden.
 
@@ -40,13 +40,13 @@ Gemeenschappen zouden veel belangrijker moeten zijn dan geïsoleerde groepen bin
 
 Op X/Twitter zijn communities beperkt tot X. Ze kunnen nuttig zijn, maar ze nemen de beperkingen over van één platform, één accountsysteem, één aanbevelingenstapel en één productoppervlak.
 
-Een Bitsocial-community kan via verschillende clients worden gemaakt, gehost, ontdekt en gebruikt. Daardoor kan de client van fase 3 communities en berichten uit het bredere Bitsocial-netwerk tonen, niet alleen van gebruikers die erbinnen zijn begonnen. Een community kan tegelijk activiteit bevatten vanuit een imageboardclient, een Reddit-achtige discussieclient, een nicheforumclient, een mobiele app en de client van fase 3.
+Een Bitsocial-community kan via verschillende clients worden gemaakt, gehost, ontdekt en gebruikt. Daardoor kan de client van fase 2 communities en berichten uit het bredere Bitsocial-netwerk tonen, niet alleen van gebruikers die erbinnen zijn begonnen. Een community kan tegelijk activiteit bevatten vanuit een imageboardclient, een Reddit-achtige discussieclient, een nicheforumclient, een mobiele app en de client van fase 2.
 
 Dat is het kernvoordeel van het netwerkeffect: één client kan zich vertrouwd voelen bij reguliere gebruikers, terwijl hij toch waarde kan onttrekken aan veel clients, gemeenschapsknooppunten, RPC-providers en onafhankelijke diensten.
 
 ## Optionele feedalgoritmen
 
-De client van fase 3 mag niet één wereldwijd rangschikkingssysteem aan iedereen opleggen.
+De client van fase 2 mag niet één wereldwijd rangschikkingssysteem aan iedereen opleggen.
 
 Feedalgoritmen moeten opt-in zijn. Een gebruiker kan een algoritme van een marktplaats kiezen, van provider wisselen, een algoritme van een bedrijf gebruiken, een algoritme van een anonieme operator gebruiken, een algoritme gebruiken dat door een gemeenschap is gebouwd, een persoonlijk algoritme gebruiken of helemaal geen algoritme gebruiken.
 
@@ -70,4 +70,4 @@ Dat is het verschil tussen gemak en bewaring.
 
 Bitsocial Chain kan duurzame naamgeving, betalingen, fooien, onderscheidingen en andere financiële voorzieningen rechtstreeks in openbare gesprekken integreren.
 
-De client van fase 3 blijft gericht op berichten, tekst, het delen van ideeën en realtime discussies, terwijl hij communities en netwerkeffecten deelt met andere Bitsocial-clients.
+De client van fase 2 blijft gericht op berichten, tekst, het delen van ideeën en realtime discussies, terwijl hij communities en netwerkeffecten deelt met andere Bitsocial-clients.

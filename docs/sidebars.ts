@@ -41,8 +41,8 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "Master plan",
       items: [
-        "bitsocial-network",
         "flagship-bitsocial-app",
+        "bitsocial-network",
         "scale-bitsocial-economies",
         "build-your-own-client",
         "decentralize-all-social-media",

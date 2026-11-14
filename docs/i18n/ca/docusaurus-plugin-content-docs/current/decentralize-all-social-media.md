@@ -14,7 +14,7 @@ comença a finançar tants formats socials com sigui possible.
 ## Què queda per construir
 
 Les primeres fases se centren en les categories amb més palanca: taulers d'imatges, fòrums, RPC
-públic, Bitsocial Chain, nodes de perfil, l'alternativa a Twitter/X de la Fase 3 i l'economia de
+públic, Bitsocial Chain, nodes de perfil, l'alternativa a Twitter/X de la Fase 2 i l'economia de
 serveis que les envolta.
 
 Després d'això, la xarxa hauria d'expandir-se cap a la llarga cua:

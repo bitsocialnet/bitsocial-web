@@ -11,7 +11,7 @@ Giai đoạn 5 là lúc Bitsocial vượt ra ngoài những nhóm ưu tiên đ�
 
 ## Những gì vẫn còn cần được xây dựng
 
-Các giai đoạn đầu tập trung vào những nhóm có đòn bẩy lớn nhất: bảng hình ảnh, diễn đàn, RPC công khai, Bitsocial Chain, nút hồ sơ, giải pháp thay thế Twitter/X ở Giai đoạn 3, và nền kinh tế dịch vụ xoay quanh chúng.
+Các giai đoạn đầu tập trung vào những nhóm có đòn bẩy lớn nhất: bảng hình ảnh, diễn đàn, RPC công khai, Bitsocial Chain, nút hồ sơ, giải pháp thay thế Twitter/X ở Giai đoạn 2, và nền kinh tế dịch vụ xoay quanh chúng.
 
 Sau đó, mạng lưới nên mở rộng sang phần đuôi dài:
 

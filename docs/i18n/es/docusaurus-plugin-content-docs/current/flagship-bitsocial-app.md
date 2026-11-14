@@ -1,13 +1,13 @@
 ---
 title: Descentralizar Twitter/X
-description: "Fase 3 del plan maestro: una alternativa a Twitter/X enfocada y descentralizada para la conversación pública centrada en el texto, con infraestructura reemplazable."
+description: "Fase 2 del plan maestro: una alternativa a Twitter/X enfocada y descentralizada para la conversación pública centrada en el texto, con infraestructura reemplazable."
 ---
 
 # Descentralizar Twitter/X
 
-La fase 3 plantea construir una alternativa a Twitter/X enfocada y descentralizada. Su centro es la conversación pública centrada en el texto: publicaciones breves, respuestas, reposts, seguimientos, debate en tiempo real y comunidades, con la capa de plataforma abierta.
+La fase 2 plantea construir una alternativa a Twitter/X enfocada y descentralizada. Su centro es la conversación pública centrada en el texto: publicaciones breves, respuestas, reposts, seguimientos, debate en tiempo real y comunidades, con la capa de plataforma abierta.
 
-Twitter/X sigue estando definido por las publicaciones, el texto y el intercambio de ideas. El cliente de la fase 3 debería competir en esa experiencia esencial y hacer que funcione excepcionalmente bien.
+Twitter/X sigue estando definido por las publicaciones, el texto y el intercambio de ideas. El cliente de la fase 2 debería competir en esa experiencia esencial y hacer que funcione excepcionalmente bien.
 
 Esta página describe la dirección del producto, no una especificación de lanzamiento cerrada. La interfaz exacta, el feed predeterminado, el modelo publicitario, las funciones de AI y el mercado de RPC pueden cambiar a medida que maduren el protocolo y las primeras aplicaciones.
 
@@ -40,13 +40,13 @@ Las comunidades deberían ser mucho más importantes que los grupos aislados den
 
 En X/Twitter, las comunidades están confinadas dentro de X. Pueden ser útiles, pero heredan los límites de una sola plataforma, un solo sistema de cuentas, una sola pila de recomendaciones y una sola superficie de producto.
 
-Una comunidad de Bitsocial puede crearse, alojarse, descubrirse y utilizarse mediante clientes distintos. Eso significa que el cliente de la fase 3 puede mostrar comunidades y publicaciones de la red Bitsocial más amplia, no solo de los usuarios que empezaron dentro de él. Una comunidad podría recibir al mismo tiempo actividad de un cliente de imageboard, un cliente de debate al estilo de Reddit, un cliente de foro especializado, una aplicación móvil y el cliente de la fase 3.
+Una comunidad de Bitsocial puede crearse, alojarse, descubrirse y utilizarse mediante clientes distintos. Eso significa que el cliente de la fase 2 puede mostrar comunidades y publicaciones de la red Bitsocial más amplia, no solo de los usuarios que empezaron dentro de él. Una comunidad podría recibir al mismo tiempo actividad de un cliente de imageboard, un cliente de debate al estilo de Reddit, un cliente de foro especializado, una aplicación móvil y el cliente de la fase 2.
 
 Esa es la principal ventaja del efecto de red: un cliente puede resultar familiar para los usuarios generales y seguir obteniendo valor de muchos clientes, nodos de comunidad, proveedores de RPC y servicios independientes.
 
 ## Algoritmos de feed opcionales
 
-El cliente de la fase 3 no debería imponer a todos un único sistema global de clasificación.
+El cliente de la fase 2 no debería imponer a todos un único sistema global de clasificación.
 
 Los algoritmos de los feeds deberían ser opcionales. Un usuario podría elegir un algoritmo en un mercado, cambiar de proveedor, usar el algoritmo de una empresa, uno operado por una persona anónima, uno creado por una comunidad, ejecutar uno propio o no utilizar ningún algoritmo.
 
@@ -70,4 +70,4 @@ Esa es la diferencia entre comodidad y custodia.
 
 Bitsocial Chain puede incorporar nombres duraderos, pagos, propinas, premios y otras vías financieras directamente en la conversación pública.
 
-El cliente de la fase 3 se mantiene centrado en las publicaciones, el texto, el intercambio de ideas y el debate en tiempo real, mientras comparte comunidades y efectos de red con otros clientes de Bitsocial.
+El cliente de la fase 2 se mantiene centrado en las publicaciones, el texto, el intercambio de ideas y el debate en tiempo real, mientras comparte comunidades y efectos de red con otros clientes de Bitsocial.

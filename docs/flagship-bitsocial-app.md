@@ -1,15 +1,15 @@
 ---
 title: Decentralize Twitter/X
-description: "Phase 3 of the master plan: a focused, decentralized Twitter/X alternative for text-first public conversation with replaceable infrastructure."
+description: "Phase 2 of the master plan: a focused, decentralized Twitter/X alternative for text-first public conversation with replaceable infrastructure."
 ---
 
 # Decentralize Twitter/X
 
-Phase 3 is a plan to build a focused, decentralized alternative to Twitter/X. Its center is
+Phase 2 is a plan to build a focused, decentralized alternative to Twitter/X. Its center is
 text-first public conversation: short posts, replies, reposts, follows, real-time discussion, and
 communities, with the platform layer broken open.
 
-Twitter/X is still defined by posts, text, and sharing ideas. The Phase 3 client should compete on
+Twitter/X is still defined by posts, text, and sharing ideas. The Phase 2 client should compete on
 that core experience and make it work exceptionally well.
 
 This page describes product direction, not a locked release spec. The exact interface, default feed,
@@ -56,9 +56,9 @@ On Twitter/X, communities are confined to the product. They can be useful, but t
 limits of one platform, one account system, one recommendation stack, and one product surface.
 
 A Bitsocial community can be created, hosted, discovered, and used through different clients. That
-means the Phase 3 client can show communities and posts from the wider Bitsocial network, not only
+means the Phase 2 client can show communities and posts from the wider Bitsocial network, not only
 from users who started inside it. A community could have activity from an imageboard client, a
-Reddit-style discussion client, a niche forum client, a mobile app, and the Phase 3 client at the
+Reddit-style discussion client, a niche forum client, a mobile app, and the Phase 2 client at the
 same time.
 
 That is the core network-effect advantage: one client can feel familiar to mainstream users while
@@ -66,7 +66,7 @@ still pulling value from many clients, community nodes, RPC providers, and indep
 
 ## Optional feed algorithms
 
-The Phase 3 client should not force one global ranking system on everyone.
+The Phase 2 client should not force one global ranking system on everyone.
 
 Feed algorithms should be opt-in. A user could choose an algorithm from a marketplace, switch
 providers, use an algorithm from a company, use one run by an anonymous operator, use one built by a
@@ -103,5 +103,5 @@ That is the difference between convenience and custody.
 Bitsocial Chain can bring durable naming, payments, tipping, awards, and other financial rails
 directly into public conversation.
 
-The Phase 3 client stays centered on posts, text, sharing ideas, and real-time discussion while
+The Phase 2 client stays centered on posts, text, sharing ideas, and real-time discussion while
 sharing communities and network effects with other Bitsocial clients.

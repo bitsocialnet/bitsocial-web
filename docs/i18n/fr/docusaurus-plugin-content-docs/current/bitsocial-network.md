@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Phase 2 du plan directeur, consacrée à la couche économique proposée pour les applications Bitsocial, sous la forme d'une appchain L2 Ethereum.
+description: Phase 3 du plan directeur, consacrée à la couche économique proposée pour les applications Bitsocial, sous la forme d'une appchain L2 Ethereum.
 ---
 
 # Bitsocial Chain
@@ -70,15 +70,11 @@ Le résultat visible côté public devrait être :
 - les créateurs et les communautés peuvent recevoir du soutien depuis n'importe quel client
 - la valeur peut circuler dans l'écosystème sans recréer un propriétaire de plateforme centralisé
 
-## Pourquoi cette étape arrive tôt
+## Pourquoi elle arrive après l'alternative à Twitter/X
 
-Le plan directeur actuel place Bitsocial Chain juste après les premières catégories prioritaires :
-les imageboards, les forums et la couche RPC publique qui rend ces applications utilisables par un
-public plus large.
+Le plan directeur actuel place Bitsocial Chain après l'alternative à Twitter/X, car cette application n'a pas besoin de la chaîne. Les profils fonctionnent comme des nœuds de profil via un RPC non custodial, et les noms `.bso` peuvent démarrer sur un registre provisoire sur le mainnet d'Ethereum ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) puis migrer vers la chaîne plus tard.
 
-Ce calendrier compte parce que les applications sociales ont besoin d'effets de réseau puissants. Si
-le nommage, le soutien, les récompenses, les pourboires et la monétisation arrivent trop tard, les
-concurrents centralisés conservent bien trop longtemps leur principal avantage.
+Bitsocial Chain ne devrait pas sacrifier la décentralisation pour un lancement plus précoce. Elle ne devrait ajouter aucune hypothèse de confiance au-delà d'Ethereum lui-même : aucune clé de mise à niveau, aucun conseil de sécurité et aucun opérateur capable de la censurer ou de l'arrêter. La conception la plus prometteuse pour y parvenir, un rollup natif, dépend d'une mise à niveau d'Ethereum qui n'est pas encore programmée. Tant que la chaîne ne peut pas atteindre ce niveau d'exigence, l'alternative à Twitter/X fait grandir la base d'utilisateurs que la chaîne servira.
 
 ## Principes de conception
 

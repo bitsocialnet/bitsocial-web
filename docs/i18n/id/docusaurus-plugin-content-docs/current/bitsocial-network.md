@@ -1,6 +1,6 @@
 ---
 title: Bitsocial Chain
-description: Fase 2 dari rencana induk, mencakup usulan lapisan ekonomi appchain L2 Ethereum untuk aplikasi Bitsocial.
+description: Fase 3 dari rencana induk, mencakup usulan lapisan ekonomi appchain L2 Ethereum untuk aplikasi Bitsocial.
 ---
 
 # Bitsocial Chain
@@ -66,15 +66,11 @@ Hasil yang terlihat oleh publik seharusnya:
 - kreator dan komunitas dapat menerima dukungan lintas klien
 - nilai dapat berpindah di seluruh ekosistem tanpa menciptakan kembali pemilik platform yang terpusat
 
-## Mengapa ini ditempatkan lebih awal
+## Mengapa ini datang setelah alternatif Twitter/X
 
-Rencana induk saat ini menempatkan Bitsocial Chain tepat setelah kategori pembuka jalan yang pertama:
-imageboard, forum, dan lapisan RPC publik yang membuat aplikasi-aplikasi itu praktis bagi lebih banyak
-pengguna.
+Rencana induk saat ini menempatkan Bitsocial Chain setelah alternatif Twitter/X, karena aplikasi itu tidak membutuhkan chain. Profil berjalan sebagai node profil melalui RPC non-kustodial, dan nama `.bso` dapat dimulai di registri sementara di mainnet Ethereum ([BSIP-13](https://bsips.bitsocial.net/bsip-13)) lalu pindah ke chain nanti.
 
-Waktu itu penting karena aplikasi sosial membutuhkan efek jaringan yang kuat. Jika penamaan,
-dukungan, penghargaan, pemberian tip, dan monetisasi datang terlalu lambat, pesaing terpusat akan
-mempertahankan keunggulan terbesar mereka terlalu lama.
+Bitsocial Chain tidak boleh menukar desentralisasi dengan peluncuran yang lebih awal. Chain ini tidak boleh menambahkan asumsi kepercayaan apa pun di luar Ethereum itu sendiri: tanpa kunci upgrade, tanpa dewan keamanan, dan tanpa operator yang dapat menyensor atau menghentikannya. Desain utama untuk itu, native rollup, bergantung pada upgrade Ethereum yang belum dijadwalkan. Sampai chain dapat memenuhi standar itu, alternatif Twitter/X menumbuhkan basis pengguna yang akan dilayani chain.
 
 ## Prinsip desain
 

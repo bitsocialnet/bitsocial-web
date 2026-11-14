@@ -14,7 +14,7 @@ ang kasindaming social format hangga't maaari.
 ## Ano pa ang kailangang buuin
 
 Nakatuon ang mga unang yugto sa mga kategoryang may pinakamalaking bisa: mga imageboard, forum,
-pampublikong RPC, Bitsocial Chain, profile node, ang alternatibo sa Twitter/X sa Yugto 3, at ang
+pampublikong RPC, Bitsocial Chain, profile node, ang alternatibo sa Twitter/X sa Yugto 2, at ang
 ekonomiya ng serbisyo sa paligid ng mga ito.
 
 Pagkatapos noon, dapat lumawak ang network patungo sa long tail:
