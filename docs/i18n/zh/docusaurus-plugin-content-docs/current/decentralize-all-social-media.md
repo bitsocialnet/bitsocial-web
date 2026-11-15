@@ -33,7 +33,7 @@ description: 总体规划的第 5 阶段，聚焦于资助并构建 Bitsocial �
 - [WeTube](https://github.com/bitsocialnet/wetube)：一个 YouTube 替代品，每个频道都是归其创作者所有的社区。
 - [GitCommons](https://github.com/bitsocialnet/gitcommons)：基于 Bitsocial 构建 GitHub 替代品的研究与架构。
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia)：一部不属于任何人的百科全书，由编辑小组发布相互竞争的版本，由读者自行选择。
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm)：Hugging Face 的替代方案，由一群对等节点共享开放权重 AI 模型，每个文件都会与其发布者签名的发布版本进行校验。
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm)：Hugging Face 的替代方案，由一群对等节点共享开放权重 AI 模型，每个文件都会与其发布者签名的发布版本进行校验。
 
 ### 已考虑并搁置
 

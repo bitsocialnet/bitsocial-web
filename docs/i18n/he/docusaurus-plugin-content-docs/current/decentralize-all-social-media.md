@@ -41,7 +41,7 @@ Bitsocial Chain, צמתי פרופיל, החלופה ל-Twitter/X משלב 2, ו
   על Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): אנציקלופדיה שאיש אינו הבעלים שלה, שבה
   קבוצות עריכה מפרסמות גרסאות מתחרות והקוראים בוחרים.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): חלופה ל-Hugging Face שבה נחיל של עמיתים
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): חלופה ל-Hugging Face שבה נחיל של עמיתים
   משתף מודלי AI עם משקלים פתוחים, וכל קובץ נבדק מול הגרסה החתומה של המפרסם שלו.
 
 ### נבחנו והונחו בצד

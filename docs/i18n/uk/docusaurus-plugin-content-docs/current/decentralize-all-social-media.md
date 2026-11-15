@@ -42,7 +42,7 @@ RPC, Bitsocial Chain, вузли профілів, альтернатива Twit
   GitHub на базі Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): енциклопедія, яка нікому не належить:
   редакційні групи публікують конкурентні версії, а читачі обирають.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): альтернатива Hugging Face, де рій пірів
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): альтернатива Hugging Face, де рій пірів
   поширює ШІ-моделі з відкритими вагами, а кожен файл перевіряється за підписаним релізом його
   видавця.
 

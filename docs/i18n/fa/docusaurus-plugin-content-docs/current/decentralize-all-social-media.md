@@ -41,7 +41,7 @@ Bitsocial Forge بسازد، و بسیاری را باید توسعه‌دهند
   که بر پایهٔ Bitsocial ساخته می‌شود.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): دانشنامه‌ای که مالکی ندارد و در آن
   گروه‌های ویراستاری نسخه‌های رقیب منتشر می‌کنند و خوانندگان انتخاب می‌کنند.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): جایگزینی برای Hugging Face که در آن
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): جایگزینی برای Hugging Face که در آن
   دسته‌ای از همتایان مدل‌های هوش مصنوعی با وزن‌های باز را به اشتراک می‌گذارند و هر فایل با نسخهٔ
   امضاشدهٔ ناشرش بررسی می‌شود.
 

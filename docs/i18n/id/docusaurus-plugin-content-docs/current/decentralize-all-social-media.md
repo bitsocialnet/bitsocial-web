@@ -42,7 +42,7 @@ melanjutkannya.
   GitHub yang dibangun di atas Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): ensiklopedia yang tidak dimiliki siapa
   pun, tempat kelompok editorial menerbitkan versi yang saling bersaing dan pembaca yang memilih.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): alternatif Hugging Face tempat
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): alternatif Hugging Face tempat
   sekumpulan peer berbagi model AI open-weight dan setiap file diperiksa terhadap rilis yang
   ditandatangani penerbitnya.
 

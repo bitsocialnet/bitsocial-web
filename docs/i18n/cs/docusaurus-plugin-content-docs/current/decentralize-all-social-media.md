@@ -41,7 +41,7 @@ shromažďuje návrh a otevřené otázky, aby se jich mohli ujmout vývojáři 
   GitHubu postavené na Bitsocialu.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): encyklopedie, kterou nikdo nevlastní,
   kde redakční skupiny zveřejňují konkurenční verze a čtenáři si vybírají.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): alternativa k Hugging Face, kde roj
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): alternativa k Hugging Face, kde roj
   peerů sdílí AI modely s otevřenými vahami a každý soubor se ověřuje proti podepsanému vydání svého
   vydavatele.
 

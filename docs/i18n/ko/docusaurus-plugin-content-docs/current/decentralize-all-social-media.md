@@ -40,7 +40,7 @@ Forge가 만들 수 있지만, 상당수는 독립 개발자가 만들어야 합
   아키텍처.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): 누구도 소유하지 않는 백과사전으로, 편집 그룹들이 서로 경쟁하는
   버전을 발행하고 독자가 선택합니다.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): 피어 무리가 오픈 웨이트 AI 모델을 공유하고, 모든 파일을 게시자가
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): 피어 무리가 오픈 웨이트 AI 모델을 공유하고, 모든 파일을 게시자가
   서명한 릴리스와 대조해 검증하는 Hugging Face 대안.
 
 ### 검토 후 보류한 아이디어

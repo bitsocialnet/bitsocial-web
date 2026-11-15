@@ -42,7 +42,7 @@ Bitsocial Chain, узлы профилей, альтернатива Twitter/X �
   GitHub на базе Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): энциклопедия, которая никому не
   принадлежит: редакционные группы публикуют конкурирующие версии, а читатели выбирают.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): альтернатива Hugging Face, где рой пиров
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): альтернатива Hugging Face, где рой пиров
   распространяет ИИ-модели с открытыми весами, а каждый файл проверяется по подписанному релизу его
   издателя.
 

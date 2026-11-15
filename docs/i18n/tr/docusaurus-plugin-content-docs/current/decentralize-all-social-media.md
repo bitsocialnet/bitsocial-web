@@ -43,7 +43,7 @@ sağlayıcılar onu devralabilir.
   alternatifi için araştırma ve mimari.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): kimsenin sahibi olmadığı, editoryal
   grupların birbiriyle yarışan sürümler yayımladığı ve okurların seçtiği bir ansiklopedi.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): bir eş sürüsünün açık ağırlıklı yapay
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): bir eş sürüsünün açık ağırlıklı yapay
   zekâ modellerini paylaştığı ve her dosyanın yayıncısının imzalı sürümüne göre doğrulandığı bir
   Hugging Face alternatifi.
 

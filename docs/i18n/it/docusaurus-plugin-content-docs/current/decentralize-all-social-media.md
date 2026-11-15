@@ -45,7 +45,7 @@ riprenderlo.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): un'enciclopedia che non appartiene a
   nessuno, in cui gruppi editoriali pubblicano versioni in concorrenza tra loro e i lettori
   scelgono.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): un'alternativa a Hugging Face in cui uno
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): un'alternativa a Hugging Face in cui uno
   sciame di peer condivide modelli di IA a pesi aperti e ogni file viene verificato rispetto alla
   release firmata dal suo publisher.
 

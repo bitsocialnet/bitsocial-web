@@ -43,7 +43,7 @@ reúne o design e as questões em aberto para que desenvolvedores e financiadore
   alternativa ao GitHub construída sobre o Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): uma enciclopédia que não pertence a
   ninguém, em que grupos editoriais publicam versões concorrentes e os leitores escolhem.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): uma alternativa ao Hugging Face em que
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): uma alternativa ao Hugging Face em que
   um enxame de peers compartilha modelos de IA de pesos abertos e cada arquivo é verificado em
   relação à versão assinada pelo seu publicador.
 

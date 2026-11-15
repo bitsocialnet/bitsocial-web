@@ -1361,7 +1361,7 @@ collects the design and open questions so builders and funders can pick it up.
   alternative built on Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): an encyclopedia nobody owns, where
   editorial groups publish competing versions and readers choose.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): a Hugging Face alternative where a swarm
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): a Hugging Face alternative where a swarm
   of peers shares open-weight AI models and every file is checked against its publisher's signed
   release.
 
@@ -12187,19 +12187,19 @@ Before this is buildable, the network needs:
 
 [GPL-3.0-or-later](https://github.com/bitsocialnet/gitcommons/blob/HEAD/LICENSE)
 
-### Modelswarm
+### ModelSwarm
 
 Repository: bitsocialnet/modelswarm
 Source: https://github.com/bitsocialnet/modelswarm#readme
-Description: Modelswarm is an idea for a hub of open weight AI models that nobody owns. The name means models distributed by a swarm of peers, as in a BitTorrent swarm, so no company has to host them. Publishers sign their releases from their own Bitsocial profile, and every piece of every file is checked against the signed release as it downloads. No company decides which models are listed, which stay available or what can be said about them.
+Description: ModelSwarm is an idea for a hub of open weight AI models that nobody owns. The name means models distributed by a swarm of peers, as in a BitTorrent swarm, so no company has to host them. Publishers sign their releases from their own Bitsocial profile, and every piece of every file is checked against the signed release as it downloads. No company decides which models are listed, which stay available or what can be said about them.
 
-# Modelswarm
+# ModelSwarm
 
-**Modelswarm is an idea for a hub of open-weight AI models that nobody owns.** The name means models distributed by a swarm of peers, as in a BitTorrent swarm, so no company has to host them. Publishers sign their releases from their own Bitsocial profile, and every piece of every file is checked against the signed release as it downloads. No company decides which models are listed, which stay available or what can be said about them.
+**ModelSwarm is an idea for a hub of open-weight AI models that nobody owns.** The name means models distributed by a swarm of peers, as in a BitTorrent swarm, so no company has to host them. Publishers sign their releases from their own Bitsocial profile, and every piece of every file is checked against the signed release as it downloads. No company decides which models are listed, which stay available or what can be said about them.
 
 > **Status: experimental CLI.** The landing page, [download-engine prototype](https://github.com/bitsocialnet/modelswarm/blob/HEAD/prototypes/download-engine/README.md), and [manifest/CLI milestone](https://github.com/bitsocialnet/modelswarm/blob/HEAD/cli/README.md) exist. `make`, `verify` and `pull` work with unsigned local manifests, v2 peers/HTTP, format checks, checkpoint recovery and verified cache snapshots. The [local Hugging Face endpoint](https://github.com/bitsocialnet/modelswarm/blob/HEAD/cli/ENDPOINT.md) serves these manifests and verified public upstream fallback, tested with the SDK. The [signed release prototype](https://github.com/bitsocialnet/modelswarm/blob/HEAD/cli/RELEASES.md) adds local keys, publisher profile setup, publishing, profile/CID pulls and endpoint registration, tested with an isolated real PKC node. Hosted defaults, public-network operation, search and desktop client remain; [roadmap.md](https://github.com/bitsocialnet/modelswarm/blob/HEAD/roadmap.md) tracks the remaining work. It fits [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5), the long tail of Bitsocial clients. Most of it needs only what Bitsocial and BitTorrent already ship, so the first milestones are not blocked by earlier phases.
 
-> **Credit.** Modelswarm builds on [HuggingSocial](https://github.com/Rinse12/huggingsocial) ([huggingsocial.co](https://huggingsocial.co/)), the original design by Bitsocial developer [Rinse12](https://github.com/Rinse12). Most of the architecture comes from it: Bitsocial for releases and discussion, BitTorrent and HTTP mirrors for the weights, signed manifests checked on the reader's machine, hubs, indexers, the command line and the local Hugging Face endpoint. Modelswarm changes where releases live, how downloads are verified, how formats that can run code are handled and how models that are only on Hugging Face are covered; see [Prior Art](#prior-art).
+> **Credit.** ModelSwarm builds on [HuggingSocial](https://github.com/Rinse12/huggingsocial) ([huggingsocial.co](https://huggingsocial.co/)), the original design by Bitsocial developer [Rinse12](https://github.com/Rinse12). Most of the architecture comes from it: Bitsocial for releases and discussion, BitTorrent and HTTP mirrors for the weights, signed manifests checked on the reader's machine, hubs, indexers, the command line and the local Hugging Face endpoint. ModelSwarm changes where releases live, how downloads are verified, how formats that can run code are handled and how models that are only on Hugging Face are covered; see [Prior Art](#prior-art).
 
 ## The Thesis
 
@@ -12212,9 +12212,9 @@ That company can remove a model, and others can make it do so:
 
 Torrents already solve the storage half. [Academic Torrents](https://academictorrents.com/) and [Pirate Face](https://pirateface.co/) publish models as magnet links, and a file with seeders cannot be deleted by any host. The list of magnets and the discussion around them still sit on one website each, and a magnet link says nothing about who published the file.
 
-Modelswarm splits the hub into parts that no single party holds:
+ModelSwarm splits the hub into parts that no single party holds:
 
-| | Hugging Face | Pirate Face | Modelswarm |
+| | Hugging Face | Pirate Face | ModelSwarm |
 |---|---|---|---|
 | Where the files are | Hugging Face's servers | Seeders, with Hugging Face as a web seed | Seeders, plus any HTTP mirror, including Hugging Face |
 | Who can delist a model | Hugging Face | Pirate Face, which runs the list | Nobody across the network. A hub can drop a release from its own board, not from the publisher's profile |
@@ -12229,7 +12229,7 @@ Pirate Face as described on [pirateface.co](https://pirateface.co/) in November 
 
 A checksum of a whole file can only be compared when the download is finished. For a 40 GB model that means finding out at the end.
 
-Modelswarm releases carry what [BitTorrent v2](https://www.bittorrent.org/beps/bep_0052.html) calls a pieces root for each file: the root of a SHA-256 hash tree built over 16 KiB blocks of that file. The root is inside the signed release, so:
+ModelSwarm releases carry what [BitTorrent v2](https://www.bittorrent.org/beps/bep_0052.html) calls a pieces root for each file: the root of a SHA-256 hash tree built over 16 KiB blocks of that file. The root is inside the signed release, so:
 
 - every piece is verified when it arrives, and a bad one is thrown away and fetched again from another source;
 - the check is the same whether the piece came from a torrent peer or an HTTP mirror, so Hugging Face or any other mirror can serve the bytes without being trusted;
@@ -12239,7 +12239,7 @@ See [how-it-could-work.md](https://github.com/bitsocialnet/modelswarm/blob/HEAD/
 
 ## Integrity Is Not Safety
 
-A signature proves who published a file and that it arrived unchanged. It does not prove the file is harmless. Model files in pickle-based formats can run code when they are loaded, which is why Hugging Face [scans for them](https://huggingface.co/docs/hub/security-pickle). Modelswarm has no central scanner, so the defaults carry the weight:
+A signature proves who published a file and that it arrived unchanged. It does not prove the file is harmless. Model files in pickle-based formats can run code when they are loaded, which is why Hugging Face [scans for them](https://huggingface.co/docs/hub/security-pickle). ModelSwarm has no central scanner, so the defaults carry the weight:
 
 - formats that hold tensors and metadata, such as [safetensors](https://huggingface.co/docs/safetensors/index) and GGUF, download normally;
 - pickle-based files and repositories that ship code to execute are flagged and need an explicit confirmation;
@@ -12256,9 +12256,9 @@ Models that exist only on Hugging Face need no listing at all to be downloaded: 
 
 ## Optional Forge RPC
 
-The planned client would use Forge RPC by default for its Bitsocial connection. Forge RPC is optional: users can switch to another compatible provider or self-host a node, and publishers keep their own keys. Modelswarm remains decentralized; model files travel over BitTorrent and HTTP mirrors, not through the RPC.
+The planned client would use Forge RPC by default for its Bitsocial connection. Forge RPC is optional: users can switch to another compatible provider or self-host a node, and publishers keep their own keys. ModelSwarm remains decentralized; model files travel over BitTorrent and HTTP mirrors, not through the RPC.
 
-RPC revenue from Modelswarm is speculative, not a strong monetization pitch. RPC hosts release metadata and discussion, not the model weights, so metadata hosting alone may offer little reason to pay. Publisher willingness to pay is unvalidated. Reliable weight seeding, managed distribution or enterprise support could be separate paid services, but they go beyond RPC and are not committed features. The repository keeps its GPL-3.0-or-later license.
+RPC revenue from ModelSwarm is speculative, not a strong monetization pitch. RPC hosts release metadata and discussion, not the model weights, so metadata hosting alone may offer little reason to pay. Publisher willingness to pay is unvalidated. Reliable weight seeding, managed distribution or enterprise support could be separate paid services, but they go beyond RPC and are not committed features. The repository keeps its GPL-3.0-or-later license.
 
 ## What It Is Not
 
@@ -12269,7 +12269,7 @@ RPC revenue from Modelswarm is speculative, not a strong monetization pitch. RPC
 
 ## Prior Art
 
-- [HuggingSocial](https://github.com/Rinse12/huggingsocial), by Bitsocial developer Rinse12, is the design Modelswarm builds on, and the source of most of its architecture (see [its DESIGN.md](https://github.com/Rinse12/huggingsocial/blob/master/DESIGN.md)). Modelswarm differs in four ways: releases live in each publisher's own profile and hubs carry crossposts, so no hub can delist a release; every piece is verified during the download against a BitTorrent v2 pieces root, instead of whole files afterwards; formats that can run code are flagged and left out of default downloads; and mirror records are created when someone seeds a model, instead of mirroring Hugging Face in bulk.
+- [HuggingSocial](https://github.com/Rinse12/huggingsocial), by Bitsocial developer Rinse12, is the design ModelSwarm builds on, and the source of most of its architecture (see [its DESIGN.md](https://github.com/Rinse12/huggingsocial/blob/master/DESIGN.md)). ModelSwarm differs in four ways: releases live in each publisher's own profile and hubs carry crossposts, so no hub can delist a release; every piece is verified during the download against a BitTorrent v2 pieces root, instead of whole files afterwards; formats that can run code are flagged and left out of default downloads; and mirror records are created when someone seeds a model, instead of mirroring Hugging Face in bulk.
 - [Pirate Face](https://pirateface.co/) lists models as magnet links with Hugging Face web seeds, checks files against Hugging Face's SHA-256 and offers a drop-in `pip` package for Python tools. It still relies on Hugging Face for its source records and runs the list on its own website. [Academic Torrents](https://academictorrents.com/) indexes models as torrents on its own website.
 
 ## Documents

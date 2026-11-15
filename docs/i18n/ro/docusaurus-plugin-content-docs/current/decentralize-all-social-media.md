@@ -43,7 +43,7 @@ poată prelua.
   alternativă la GitHub construită pe Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): o enciclopedie pe care nu o deține
   nimeni, în care grupuri editoriale publică versiuni concurente, iar cititorii aleg.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): o alternativă la Hugging Face în care un
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): o alternativă la Hugging Face în care un
   roi de peeri partajează modele AI cu ponderi deschise, iar fiecare fișier este verificat față de
   versiunea semnată de publicatorul său.
 

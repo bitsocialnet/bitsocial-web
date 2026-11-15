@@ -1205,11 +1205,11 @@ export const APPS: AppData[] = [
   },
   {
     slug: "modelswarm",
-    name: "Modelswarm",
+    name: "ModelSwarm",
     tagline:
       "Idea-stage Hugging Face alternative where open-weight AI models are shared by a swarm of peers.",
     description:
-      "Modelswarm is a hub of open-weight AI models that nobody owns. Publishers sign releases from their own Bitsocial profile, the weights travel over BitTorrent and HTTP mirrors, and every piece of every file is checked against the signed release as it downloads. Hubs are Bitsocial communities that curate releases and host discussion, and files in formats that can run code are flagged before download. Nothing is built yet; the repository collects the design.",
+      "ModelSwarm is a hub of open-weight AI models that nobody owns. Publishers sign releases from their own Bitsocial profile, the weights travel over BitTorrent and HTTP mirrors, and every piece of every file is checked against the signed release as it downloads. Hubs are Bitsocial communities that curate releases and host discussion, and files in formats that can run code are flagged before download. Nothing is built yet; the repository collects the design.",
     categories: ["concepts"],
     tags: ["AI"],
     icon: "share-2",

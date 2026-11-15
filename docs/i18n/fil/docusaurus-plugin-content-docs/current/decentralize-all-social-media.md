@@ -45,7 +45,7 @@ tagapondo.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): isang ensiklopedya na walang
   nagmamay-ari, kung saan naglalathala ang mga grupong editoryal ng magkakakumpitensyang bersyon at
   ang mga mambabasa ang pumipili.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): isang alternatibo sa Hugging Face kung
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): isang alternatibo sa Hugging Face kung
   saan ibinabahagi ng isang kawan ng mga peer ang mga open-weight na AI model at sinusuri ang bawat
   file laban sa pinirmahang release ng publisher nito.
 

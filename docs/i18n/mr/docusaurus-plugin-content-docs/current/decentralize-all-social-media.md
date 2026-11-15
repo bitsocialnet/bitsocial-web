@@ -43,7 +43,7 @@ RPC, Bitsocial Chain, प्रोफाइल नोड, दुसऱ्या 
   पर्यायासाठी संशोधन आणि आर्किटेक्चर.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): ज्याचा कोणीही मालक नाही असा ज्ञानकोश,
   जिथे संपादकीय गट स्पर्धक आवृत्त्या प्रकाशित करतात आणि वाचक निवड करतात.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): Hugging Face चा पर्याय, ज्यात peers चा
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): Hugging Face चा पर्याय, ज्यात peers चा
   थवा open-weight AI मॉडेल्स शेअर करतो आणि प्रत्येक फाइल तिच्या प्रकाशकाच्या स्वाक्षरी केलेल्या
   रिलीझशी जुळवून तपासली जाते.
 

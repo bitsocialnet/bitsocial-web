@@ -44,7 +44,7 @@ agafar.
   alternativa a GitHub construïda sobre Bitsocial.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): una enciclopèdia que no és de ningú,
   on grups editorials publiquen versions que competeixen entre si i els lectors trien.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): una alternativa a Hugging Face on un
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): una alternativa a Hugging Face on un
   eixam de peers comparteix models d'IA de pesos oberts i cada fitxer es verifica contra la versió
   signada del seu publicador.
 

@@ -42,7 +42,7 @@ Forge, আর অনেকগুলোই বানানো উচিত স্
   বিকল্পের জন্য গবেষণা ও আর্কিটেকচার।
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): এমন একটি বিশ্বকোষ যার মালিক কেউ নয়,
   যেখানে সম্পাদকীয় দলগুলো প্রতিযোগী সংস্করণ প্রকাশ করে এবং পাঠকেরা বেছে নেন।
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): একটি Hugging Face বিকল্প, যেখানে একঝাঁক
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): একটি Hugging Face বিকল্প, যেখানে একঝাঁক
   peer open-weight AI মডেল শেয়ার করে এবং প্রতিটি ফাইল তার প্রকাশকের স্বাক্ষরিত রিলিজের সঙ্গে
   মিলিয়ে যাচাই করা হয়।
 

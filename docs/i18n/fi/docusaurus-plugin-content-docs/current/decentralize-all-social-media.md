@@ -43,7 +43,7 @@ niihin.
   päälle rakennetulle GitHub-vaihtoehdolle.
 - [Infinipedia](https://github.com/bitsocialnet/infinipedia): tietosanakirja, jota kukaan ei omista
   ja jossa toimitusryhmät julkaisevat kilpailevia versioita ja lukijat valitsevat.
-- [Modelswarm](https://github.com/bitsocialnet/modelswarm): Hugging Face -vaihtoehto, jossa
+- [ModelSwarm](https://github.com/bitsocialnet/modelswarm): Hugging Face -vaihtoehto, jossa
   vertaisten parvi jakaa avoimien painojen tekoälymalleja ja jokainen tiedosto tarkistetaan
   julkaisijansa allekirjoittamaa julkaisua vasten.
 
