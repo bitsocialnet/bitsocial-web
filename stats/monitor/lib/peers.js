@@ -103,7 +103,20 @@ const writePeerLocationCaches = () => {
   fs.writeFileSync("peerLocations.json", JSON.stringify(peerLocations, null, 2));
 };
 
-const _fetchPeerLocation = async (peerId, peerIp) => {
+// Peer-ID associations change during metric collection, which runs for every gauge on every scrape,
+// so their writes are batched into one.
+let peerLocationCachesWriteTimer;
+const schedulePeerLocationCachesWrite = () => {
+  peerLocationCachesWriteTimer ??= setTimeout(() => {
+    peerLocationCachesWriteTimer = undefined;
+    writePeerLocationCaches();
+  }, 1000);
+};
+
+// Results are stored by IP only: the peer-ID association is made by getCachedIpLocation from the IP
+// the peer advertises when it is next collected, so a lookup that finishes after the peer moved to
+// another address cannot replace its newer location.
+const _fetchPeerLocation = async (peerIp) => {
   const location = parsePeerLocation(
     await fetchJson(`${peerLocationLookupUrl}/${encodeURIComponent(peerIp)}`),
   );
@@ -111,10 +124,6 @@ const _fetchPeerLocation = async (peerId, peerIp) => {
     throw Error(`failed fetching ip location from ip api`);
   }
 
-  if (peerId) {
-    peerLocations[peerId] = location;
-    peerCountries[peerId] = location.country;
-  }
   peerLocations[peerIp] = location;
   peerCountries[peerIp] = location.country;
   writePeerLocationCaches();
@@ -125,7 +134,7 @@ const _fetchPeerLocation = async (peerId, peerIp) => {
 import PQueue from "p-queue";
 const queue = new PQueue({ concurrency: 1 });
 
-const fetchPeerLocation = (peerId, peerIp) => {
+const fetchPeerLocation = (peerIp) => {
   const failedAt = failedPeerLocationLookups.get(peerIp);
   if (failedAt && Date.now() - failedAt < peerLocationFailureCacheMs) {
     return;
@@ -136,7 +145,7 @@ const fetchPeerLocation = (peerId, peerIp) => {
   }
 
   const lookup = queue
-    .add(() => _fetchPeerLocation(peerId, peerIp))
+    .add(() => _fetchPeerLocation(peerIp))
     .catch((error) => {
       failedPeerLocationLookups.set(peerIp, Date.now());
       debug(error.message);
@@ -150,8 +159,9 @@ const fetchPeerLocation = (peerId, peerIp) => {
 // location kept under its peer ID, which is what the peer falls back to once it is relay-only.
 const getCachedIpLocation = (peer, peerIp) => {
   const location = peerLocations[peerIp];
-  if (location && peer.ID) {
+  if (location && peer.ID && peerLocations[peer.ID] !== location) {
     peerLocations[peer.ID] = location;
+    schedulePeerLocationCachesWrite();
   }
   return location;
 };
@@ -177,12 +187,9 @@ const getPeerCountry = (peer) => {
   if (cachedLocation?.country) {
     return cachedLocation.country;
   }
-  if (peerCountries[peerIp]) {
-    return peerCountries[peerIp];
-  }
 
   // Fetch city-level data asynchronously so metric collection is never blocked.
-  fetchPeerLocation(peer.ID, peerIp);
+  fetchPeerLocation(peerIp);
 
   return missingCountryCode;
 };
@@ -201,7 +208,7 @@ const getPeerLocation = (peer) => {
   if (cachedLocation) {
     return cachedLocation;
   }
-  fetchPeerLocation(peer.ID, peerIp);
+  fetchPeerLocation(peerIp);
 };
 
 const getLocationsPeerCount = (peersName) => {
