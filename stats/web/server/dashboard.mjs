@@ -409,7 +409,8 @@ export const createDashboard = ({ prometheus, monitoring, clients, communityList
       .sort((left, right) => right.count - left.count);
     const countries = (results.peerCountries || [])
       .map(({ metric: labels, value }) => ({
-        country: labels.country || null,
+        // The monitor reports peers it cannot locate, such as relay-only peers behind NAT, as "ZZ".
+        country: labels.country && labels.country !== "ZZ" ? labels.country : null,
         count: toNumber(value[1]) ?? 0,
       }))
       .filter((country) => country.count > 0)

@@ -1,3 +1,55 @@
+import { Address4, Address6 } from "ip-address";
+import { multiaddr } from "@multiformats/multiaddr";
+
+const privateIpv4Ranges = [
+  new Address4("10.0.0.0/8"),
+  new Address4("127.0.0.0/8"),
+  new Address4("172.16.0.0/12"),
+  new Address4("169.254.0.0/16"),
+  new Address4("192.168.0.0/16"),
+];
+const privateIpv6Ranges = [
+  new Address6("::/128"),
+  new Address6("::1/128"),
+  new Address6("fc00::/7"),
+  new Address6("fe80::/10"),
+];
+const isInAnySubnet = (address, ranges) => ranges.some((range) => address.isInSubnet(range));
+const isPrivateIp = (ip) => {
+  if (Address4.isValid(ip)) {
+    return isInAnySubnet(new Address4(ip), privateIpv4Ranges);
+  }
+  if (Address6.isValid(ip)) {
+    const address = new Address6(ip);
+    if (address.address4) {
+      return isPrivateIp(address.address4.correctForm());
+    }
+    return isInAnySubnet(address, privateIpv6Ranges);
+  }
+  return true;
+};
+
+/**
+ * The first public IP among a provider's direct addresses. A relayed (p2p-circuit) address starts
+ * with the relay's address, so its IP locates the relay, not the peer: a peer behind NAT that is
+ * reachable only through relays has no IP of its own and is left unlocated.
+ */
+const getPeerIp = (peer) => {
+  for (const addr of peer?.Addrs || []) {
+    if (String(addr).includes("/p2p-circuit")) {
+      continue;
+    }
+    try {
+      // nodeAddress().address is unpredictable, not always an ip
+      // sometimes '12-144-75-172.k51qzi5uqu5digdd4g1rmh3ircn34nxsehlp9ep60q96fqubc1t2604u88gin4.libp2p.direct'
+      const ip = multiaddr(addr).nodeAddress().address;
+      if (!isPrivateIp(ip)) {
+        return ip;
+      }
+    } catch {}
+  }
+};
+
 const normalizePlaceName = (value) =>
   typeof value === "string" && value.trim() ? value.trim() : "";
 
@@ -45,4 +97,4 @@ const countPeerLocations = (locations) => {
   return [...counts.values()];
 };
 
-export { countPeerLocations, parsePeerLocation };
+export { countPeerLocations, getPeerIp, parsePeerLocation };

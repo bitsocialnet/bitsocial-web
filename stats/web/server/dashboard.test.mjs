@@ -424,3 +424,24 @@ test("a pass reuses each expression's own history", async () => {
     assert.deepEqual(known(series.replies), [21, 23], rangeKey);
   }
 });
+
+test("peers the monitor could not locate are listed without a country", async () => {
+  const { dashboard } = createTestDashboard([
+    {
+      when: /^max without.*network_ipns_http_routers_peer_count\)$/,
+      result: [
+        sample({ country: "ZZ" }, 57),
+        sample({ country: "US" }, 2),
+        sample({ country: "DE" }, 4),
+      ],
+    },
+  ]);
+
+  const overview = await dashboard.overview(timeline);
+
+  assert.deepEqual(overview.peers.countries, [
+    { country: null, count: 57 },
+    { country: "DE", count: 4 },
+    { country: "US", count: 2 },
+  ]);
+});

@@ -1,10 +1,8 @@
 import monitorState from "./monitor-state.js";
 import prometheus from "./prometheus.js";
 import fs from "fs-extra";
-import { Address4, Address6 } from "ip-address";
-import { multiaddr } from "@multiformats/multiaddr";
 import { fetchJson } from "./utils.js";
-import { countPeerLocations, parsePeerLocation } from "./peer-location.js";
+import { countPeerLocations, getPeerIp, parsePeerLocation } from "./peer-location.js";
 import Debug from "debug";
 const debug = Debug("bitsocial-stats-monitor:peers");
 
@@ -84,52 +82,6 @@ for (const peersName of peersNames) {
   });
 }
 
-const privateIpv4Ranges = [
-  new Address4("10.0.0.0/8"),
-  new Address4("127.0.0.0/8"),
-  new Address4("172.16.0.0/12"),
-  new Address4("169.254.0.0/16"),
-  new Address4("192.168.0.0/16"),
-];
-const privateIpv6Ranges = [
-  new Address6("::/128"),
-  new Address6("::1/128"),
-  new Address6("fc00::/7"),
-  new Address6("fe80::/10"),
-];
-const isInAnySubnet = (address, ranges) => ranges.some((range) => address.isInSubnet(range));
-const isPrivateIp = (ip) => {
-  if (Address4.isValid(ip)) {
-    return isInAnySubnet(new Address4(ip), privateIpv4Ranges);
-  }
-  if (Address6.isValid(ip)) {
-    const address = new Address6(ip);
-    if (address.address4) {
-      return isPrivateIp(address.address4.correctForm());
-    }
-    return isInAnySubnet(address, privateIpv6Ranges);
-  }
-  return true;
-};
-
-const getIpFromPeer = (peer) => {
-  if (!peer.Addrs) {
-    return;
-  }
-  // use the first non private ip
-  for (const addr of peer.Addrs) {
-    try {
-      // nodeAddress().address is unpredictable, not always an ip
-      // sometimes '12-144-75-172.k51qzi5uqu5digdd4g1rmh3ircn34nxsehlp9ep60q96fqubc1t2604u88gin4.libp2p.direct'
-      const ip = multiaddr(addr).nodeAddress().address;
-      if (!isPrivateIp(ip)) {
-        return ip;
-      }
-    } catch (error) {}
-  }
-};
-// console.log(getIpFromPeer({Addrs: ['/dns4/12-144-75-172.k51qzi5uqu5digdd4g1rmh3ircn34nxsehlp9ep60q96fqubc1t2604u88gin4.libp2p.direct/tcp/42743/tls/ws']}))
-
 // try to load cache from disk on startup
 let peerCountries = {};
 try {
@@ -206,9 +158,10 @@ const getPeerCountry = (peer) => {
     return peerCountries[peer];
   }
 
-  const peerIp = getIpFromPeer(peer);
+  const peerIp = getPeerIp(peer);
   if (!peerIp) {
-    return missingCountryCode;
+    // Same fallback as getPeerLocation, so the country list and the map count the same peers.
+    return peerLocations[peer.ID]?.country || missingCountryCode;
   }
   if (peerLocations[peerIp]?.country) {
     return peerLocations[peerIp].country;
@@ -228,8 +181,9 @@ const getPeerLocation = (peer) => {
     return peerLocations[peer];
   }
 
-  const peerIp = getIpFromPeer(peer);
+  const peerIp = getPeerIp(peer);
   if (!peerIp) {
+    // Located earlier from a direct address of its own (lookups never use relayed addresses).
     return peerLocations[peer.ID];
   }
   const cachedLocation = peerLocations[peerIp];

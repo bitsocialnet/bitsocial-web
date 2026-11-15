@@ -37,7 +37,11 @@ export function PeerNetwork({ data }: { data: Overview }) {
       now: network.peers.browserProviders,
     },
   ];
-  const countryTotal = peers.countries.reduce((sum, { count }) => sum + count, 0);
+  const countries = peers.countries.filter(({ country }) => country);
+  const countryTotal = countries.reduce((sum, { count }) => sum + count, 0);
+  const unlocated = peers.countries
+    .filter(({ country }) => !country)
+    .reduce((sum, { count }) => sum + count, 0);
 
   return (
     <Section
@@ -48,11 +52,11 @@ export function PeerNetwork({ data }: { data: Overview }) {
       <div className="grid gap-4 xl:grid-cols-[minmax(0,2fr)_minmax(17rem,1fr)]">
         <Panel
           title="Where IPNS record providers are"
-          value={`${formatInteger(countryTotal)} peers in ${peers.countries.length} countries`}
+          value={`${formatInteger(countryTotal)} peers in ${countries.length} countries`}
         >
           <PeerMap locations={peers.locations} />
           <ol className="mt-4 grid gap-x-6 gap-y-2.5 border-t border-line pt-4 sm:grid-cols-2 2xl:grid-cols-4">
-            {peers.countries.slice(0, 8).map(({ country, count }) => (
+            {countries.slice(0, 8).map(({ country, count }) => (
               <li
                 key={country ?? "unknown"}
                 className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1 text-[13px]"
@@ -65,12 +69,18 @@ export function PeerNetwork({ data }: { data: Overview }) {
                 <span className="col-span-2 h-1 overflow-hidden rounded-full bg-raised">
                   <span
                     className="block h-full rounded-full bg-network"
-                    style={{ width: `${(count / (peers.countries[0]?.count || 1)) * 100}%` }}
+                    style={{ width: `${(count / (countries[0]?.count || 1)) * 100}%` }}
                   />
                 </span>
               </li>
             ))}
           </ol>
+          {unlocated > 0 && (
+            <p className="mt-3 text-[11px] text-ink-3">
+              Not shown: {formatInteger(unlocated)} {unlocated === 1 ? "peer" : "peers"} without a
+              known location, such as peers behind NAT that are reachable only through a relay.
+            </p>
+          )}
         </Panel>
         <Panel title="Peers now">
           <ul className="space-y-3">
