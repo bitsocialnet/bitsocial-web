@@ -1,10 +1,8 @@
 import monitorState from "./monitor-state.js";
 import prometheus from "./prometheus.js";
 import fs from "fs-extra";
-import { Address4, Address6 } from "ip-address";
-import { multiaddr } from "@multiformats/multiaddr";
 import { fetchJson } from "./utils.js";
-import { countPeerLocations, parsePeerLocation } from "./peer-location.js";
+import { countPeerLocations, getPeerIp, parsePeerLocation } from "./peer-location.js";
 import Debug from "debug";
 const debug = Debug("bitsocial-stats-monitor:peers");
 
@@ -84,52 +82,6 @@ for (const peersName of peersNames) {
   });
 }
 
-const privateIpv4Ranges = [
-  new Address4("10.0.0.0/8"),
-  new Address4("127.0.0.0/8"),
-  new Address4("172.16.0.0/12"),
-  new Address4("169.254.0.0/16"),
-  new Address4("192.168.0.0/16"),
-];
-const privateIpv6Ranges = [
-  new Address6("::/128"),
-  new Address6("::1/128"),
-  new Address6("fc00::/7"),
-  new Address6("fe80::/10"),
-];
-const isInAnySubnet = (address, ranges) => ranges.some((range) => address.isInSubnet(range));
-const isPrivateIp = (ip) => {
-  if (Address4.isValid(ip)) {
-    return isInAnySubnet(new Address4(ip), privateIpv4Ranges);
-  }
-  if (Address6.isValid(ip)) {
-    const address = new Address6(ip);
-    if (address.address4) {
-      return isPrivateIp(address.address4.correctForm());
-    }
-    return isInAnySubnet(address, privateIpv6Ranges);
-  }
-  return true;
-};
-
-const getIpFromPeer = (peer) => {
-  if (!peer.Addrs) {
-    return;
-  }
-  // use the first non private ip
-  for (const addr of peer.Addrs) {
-    try {
-      // nodeAddress().address is unpredictable, not always an ip
-      // sometimes '12-144-75-172.k51qzi5uqu5digdd4g1rmh3ircn34nxsehlp9ep60q96fqubc1t2604u88gin4.libp2p.direct'
-      const ip = multiaddr(addr).nodeAddress().address;
-      if (!isPrivateIp(ip)) {
-        return ip;
-      }
-    } catch (error) {}
-  }
-};
-// console.log(getIpFromPeer({Addrs: ['/dns4/12-144-75-172.k51qzi5uqu5digdd4g1rmh3ircn34nxsehlp9ep60q96fqubc1t2604u88gin4.libp2p.direct/tcp/42743/tls/ws']}))
-
 // try to load cache from disk on startup
 let peerCountries = {};
 try {
@@ -151,7 +103,20 @@ const writePeerLocationCaches = () => {
   fs.writeFileSync("peerLocations.json", JSON.stringify(peerLocations, null, 2));
 };
 
-const _fetchPeerLocation = async (peerId, peerIp) => {
+// Peer-ID associations change during metric collection, which runs for every gauge on every scrape,
+// so their writes are batched into one.
+let peerLocationCachesWriteTimer;
+const schedulePeerLocationCachesWrite = () => {
+  peerLocationCachesWriteTimer ??= setTimeout(() => {
+    peerLocationCachesWriteTimer = undefined;
+    writePeerLocationCaches();
+  }, 1000);
+};
+
+// Results are stored by IP only: the peer-ID association is made by getCachedIpLocation from the IP
+// the peer advertises when it is next collected, so a lookup that finishes after the peer moved to
+// another address cannot replace its newer location.
+const _fetchPeerLocation = async (peerIp) => {
   const location = parsePeerLocation(
     await fetchJson(`${peerLocationLookupUrl}/${encodeURIComponent(peerIp)}`),
   );
@@ -159,10 +124,6 @@ const _fetchPeerLocation = async (peerId, peerIp) => {
     throw Error(`failed fetching ip location from ip api`);
   }
 
-  if (peerId) {
-    peerLocations[peerId] = location;
-    peerCountries[peerId] = location.country;
-  }
   peerLocations[peerIp] = location;
   peerCountries[peerIp] = location.country;
   writePeerLocationCaches();
@@ -173,7 +134,7 @@ const _fetchPeerLocation = async (peerId, peerIp) => {
 import PQueue from "p-queue";
 const queue = new PQueue({ concurrency: 1 });
 
-const fetchPeerLocation = (peerId, peerIp) => {
+const fetchPeerLocation = (peerIp) => {
   const failedAt = failedPeerLocationLookups.get(peerIp);
   if (failedAt && Date.now() - failedAt < peerLocationFailureCacheMs) {
     return;
@@ -184,7 +145,7 @@ const fetchPeerLocation = (peerId, peerIp) => {
   }
 
   const lookup = queue
-    .add(() => _fetchPeerLocation(peerId, peerIp))
+    .add(() => _fetchPeerLocation(peerIp))
     .catch((error) => {
       failedPeerLocationLookups.set(peerIp, Date.now());
       debug(error.message);
@@ -192,6 +153,17 @@ const fetchPeerLocation = (peerId, peerIp) => {
     .finally(() => pendingPeerLocationLookups.delete(peerIp));
   pendingPeerLocationLookups.set(peerIp, lookup);
   return lookup;
+};
+
+// A peer's latest direct address decides where it is, so a cache hit for its IP also replaces the
+// location kept under its peer ID, which is what the peer falls back to once it is relay-only.
+const getCachedIpLocation = (peer, peerIp) => {
+  const location = peerLocations[peerIp];
+  if (location && peer.ID && peerLocations[peer.ID] !== location) {
+    peerLocations[peer.ID] = location;
+    schedulePeerLocationCachesWrite();
+  }
+  return location;
 };
 
 const missingCountryCode = "ZZ";
@@ -206,19 +178,18 @@ const getPeerCountry = (peer) => {
     return peerCountries[peer];
   }
 
-  const peerIp = getIpFromPeer(peer);
+  const peerIp = getPeerIp(peer);
   if (!peerIp) {
-    return missingCountryCode;
+    // Same fallback as getPeerLocation, so the country list and the map count the same peers.
+    return peerLocations[peer.ID]?.country || missingCountryCode;
   }
-  if (peerLocations[peerIp]?.country) {
-    return peerLocations[peerIp].country;
-  }
-  if (peerCountries[peerIp]) {
-    return peerCountries[peerIp];
+  const cachedLocation = getCachedIpLocation(peer, peerIp);
+  if (cachedLocation?.country) {
+    return cachedLocation.country;
   }
 
   // Fetch city-level data asynchronously so metric collection is never blocked.
-  fetchPeerLocation(peer.ID, peerIp);
+  fetchPeerLocation(peerIp);
 
   return missingCountryCode;
 };
@@ -228,15 +199,16 @@ const getPeerLocation = (peer) => {
     return peerLocations[peer];
   }
 
-  const peerIp = getIpFromPeer(peer);
+  const peerIp = getPeerIp(peer);
   if (!peerIp) {
+    // Located earlier from a direct address of its own (lookups never use relayed addresses).
     return peerLocations[peer.ID];
   }
-  const cachedLocation = peerLocations[peerIp];
+  const cachedLocation = getCachedIpLocation(peer, peerIp);
   if (cachedLocation) {
     return cachedLocation;
   }
-  fetchPeerLocation(peer.ID, peerIp);
+  fetchPeerLocation(peerIp);
 };
 
 const getLocationsPeerCount = (peersName) => {
