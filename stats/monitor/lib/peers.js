@@ -146,6 +146,16 @@ const fetchPeerLocation = (peerId, peerIp) => {
   return lookup;
 };
 
+// A peer's latest direct address decides where it is, so a cache hit for its IP also replaces the
+// location kept under its peer ID, which is what the peer falls back to once it is relay-only.
+const getCachedIpLocation = (peer, peerIp) => {
+  const location = peerLocations[peerIp];
+  if (location && peer.ID) {
+    peerLocations[peer.ID] = location;
+  }
+  return location;
+};
+
 const missingCountryCode = "ZZ";
 const getPeerCountry = (peer) => {
   if (typeof peer === "string") {
@@ -163,8 +173,9 @@ const getPeerCountry = (peer) => {
     // Same fallback as getPeerLocation, so the country list and the map count the same peers.
     return peerLocations[peer.ID]?.country || missingCountryCode;
   }
-  if (peerLocations[peerIp]?.country) {
-    return peerLocations[peerIp].country;
+  const cachedLocation = getCachedIpLocation(peer, peerIp);
+  if (cachedLocation?.country) {
+    return cachedLocation.country;
   }
   if (peerCountries[peerIp]) {
     return peerCountries[peerIp];
@@ -186,7 +197,7 @@ const getPeerLocation = (peer) => {
     // Located earlier from a direct address of its own (lookups never use relayed addresses).
     return peerLocations[peer.ID];
   }
-  const cachedLocation = peerLocations[peerIp];
+  const cachedLocation = getCachedIpLocation(peer, peerIp);
   if (cachedLocation) {
     return cachedLocation;
   }
