@@ -264,7 +264,14 @@ if (isMonitoring("serviceProbes")) {
 // dial community record providers the way a browser does every 5min
 if (isMonitoring("browserReachability")) {
   const monitorBrowserReachability = createBrowserReachabilityMonitor({
-    getCommunities: () => monitorState.communities,
+    // monitorState.communities keeps communities that left the monitored lists, with stale providers
+    getCommunities: () =>
+      Object.fromEntries(
+        (monitorState.communitiesMonitoring || []).map(({ address }) => [
+          address,
+          monitorState.communities[address],
+        ]),
+      ),
     getSeederPeerIds: () => config.monitoring.seederPeerIds,
     notify: notifyProbeTransition,
   });

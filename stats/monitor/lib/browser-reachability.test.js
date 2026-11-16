@@ -42,13 +42,13 @@ test("reports the network down once every provider fails three checks in a row, 
   assert.equal(last(id).ok, true);
   await run();
   assert.equal(last(id).ok, false);
-  assert.match(last(id).summary, /any of the 2 communities/);
+  assert.match(last(id).summary, /any of the 2 monitored communities/);
   assert.equal(last(id).details, `${seederWss} name does not resolve`);
 
   state.dialable = () => true;
   await run();
   assert.equal(last(id).ok, true);
-  assert.match(last(id).summary, /2 of 2 communities/);
+  assert.match(last(id).summary, /2 of 2 monitored communities/);
 });
 
 test("stays up while one community still has a browser-dialable provider", async () => {
@@ -60,16 +60,34 @@ test("stays up while one community still has a browser-dialable provider", async
   });
   for (let i = 0; i < 4; i++) await run();
   assert.equal(last("browserReachability:network").ok, true);
-  assert.match(last("browserReachability:network").summary, /1 of 2 communities/);
+  assert.match(last("browserReachability:network").summary, /1 of 2 monitored communities/);
 });
 
-test("sends nothing while no community has a listed provider", async () => {
+test("sends nothing until the routers have answered for a community", async () => {
   const { run, notifications } = setup({
-    communities: { "a.bso": { ipnsCidHttpRoutersPeers: [] }, "b.bso": {} },
+    communities: { "a.bso": {}, "b.bso": undefined },
     seederPeerIds: [seeder],
   });
   for (let i = 0; i < 4; i++) await run();
   assert.deepEqual(notifications, []);
+});
+
+test("reports the network and seeders down when the routers list no provider at all", async () => {
+  const { run, last } = setup({
+    communities: { "a.bso": { ipnsCidHttpRoutersPeers: [] }, "b.bso": {} },
+    seederPeerIds: [seeder],
+  });
+  for (let i = 0; i < 3; i++) await run();
+  assert.equal(last("browserReachability:network").ok, false);
+  assert.match(
+    last("browserReachability:network").summary,
+    /any of the 1 monitored communities\. The routers list no provider/,
+  );
+  assert.equal(last(`browserReachability:seeder:${seeder}`).ok, false);
+  assert.match(
+    last(`browserReachability:seeder:${seeder}`).summary,
+    /No HTTP router lists the seeder/,
+  );
 });
 
 test("reports a configured seeder that fails its dial, has no secure WebSocket address, or is unlisted", async () => {

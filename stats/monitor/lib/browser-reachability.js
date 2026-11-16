@@ -36,10 +36,11 @@ export const createBrowserReachabilityMonitor = ({
     const peers = new Map();
     const communityPeerIds = [];
     for (const [address, community] of Object.entries(getCommunities() || {})) {
-      const providers = (community?.ipnsCidHttpRoutersPeers || []).filter((peer) => peer?.ID);
-      if (!providers.length) {
+      // undefined until the routers answered for this community's record
+      if (!Array.isArray(community?.ipnsCidHttpRoutersPeers)) {
         continue;
       }
+      const providers = community.ipnsCidHttpRoutersPeers.filter((peer) => peer?.ID);
       communityPeerIds.push({ address, peerIds: providers.map((peer) => peer.ID) });
       for (const provider of providers) {
         const peer = peers.get(provider.ID) || { urls: new Set(), communities: 0 };
@@ -50,9 +51,9 @@ export const createBrowserReachabilityMonitor = ({
         peers.set(provider.ID, peer);
       }
     }
-    // no record has a listed provider yet (startup) or the routers are down, which the http router
-    // probes report; there is nothing to dial either way
-    if (!peers.size) {
+    // no router has answered for any record yet (startup); routers that answer with no provider
+    // at all are a failed check, not a skipped one
+    if (!communityPeerIds.length) {
       return;
     }
 
@@ -73,13 +74,19 @@ export const createBrowserReachabilityMonitor = ({
     const reachableCommunities = communityPeerIds.filter(({ peerIds }) => peerIds.some(isDialable));
     const networkFailures = countFailure("network", reachableCommunities.length === 0);
     const failedUrls = urls.filter((url) => !dialed.get(url));
+    let networkFailureReason = "Every secure WebSocket address failed";
+    if (!peers.size) {
+      networkFailureReason = "The routers list no provider for any of their records";
+    } else if (!urls.length) {
+      networkFailureReason = "No provider lists a secure WebSocket address";
+    }
     await notify({
       id: "browserReachability:network",
       label: "Browser reachability of community records",
       ok: networkFailures < failuresBeforeAlert,
       summary: networkFailures
-        ? `No browser can reach a provider of any of the ${communityPeerIds.length} communities with listed providers. ${urls.length ? "Every secure WebSocket address failed" : "No provider lists a secure WebSocket address"}, ${networkFailures} checks in a row.`
-        : `Browsers can reach a provider for ${reachableCommunities.length} of ${communityPeerIds.length} communities with listed providers.`,
+        ? `No browser can reach a provider of any of the ${communityPeerIds.length} monitored communities. ${networkFailureReason}, ${networkFailures} checks in a row.`
+        : `Browsers can reach a provider for ${reachableCommunities.length} of ${communityPeerIds.length} monitored communities.`,
       details: networkFailures
         ? (await describeFailedUrls(failedUrls.slice(0, 10))).join("\n")
         : "",
