@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Maksulliset, siirtokelvottomat Ethereum-passit hakemistoäänestyksiin ja julkaisemiseen ilman captchaa.",
           "description": "MintPass on maksullinen, siirtokelvoton ja vanheneva passi Ethereumin pääverkossa, jonka jokainen Bitsocial-sovellus ottaa käyttöön omalla nimellään: 5chan Pass 5chanille ja Seedit Gold Seeditille. Voimassa olevalla passilla haltija voi äänestää hakemistojen kilpailuissa ja julkaista ilman captchaa yhteisöissä, jotka tarkistavat sen EVM Contract Callilla. Hinta on kiinteä Yhdysvaltain dollareissa ja maksetaan ETH:na, ja uusi osto jatkaa samaa passia sen sijaan, että lyötäisiin toinen. Sopimuksia ei ole vielä otettu käyttöön."
+        },
+        "subreddit-mirror": {
+          "tagline": "Peilaa subredditin Bitsocial-yhteisöön ja säilyttää sen, minkä Reddit poistaa.",
+          "description": "Subreddit Mirror on taustaprosessi, joka kopioi subredditin julkaisut ja vastaukset Bitsocial-yhteisöön ja jatkaa jokaisen ketjun tarkistamista viikon ajan. Kun Reddit poistaa julkaisun tai kommentin, peilattu kopio säilyy ja saa flairin, joka kertoo, poistivatko sen moderaattorit, Reddit vai kirjoittaja, ja teksti palautetaan julkisista arkistoista, jos se on kadonnut alkuperäiseltä sivulta. Yhteisö voi avautua näkymään, jossa luetellaan vain ne ketjut, joista on poistettu jotakin. Se toimii bitsocial-cli-ohjelman rinnalla ja voi myös täyttää subredditin historian jälkikäteen tai peilata bannatun subredditin pelkkien arkistojen pohjalta. Subreddit Mirror on itsenäinen projekti; Bitsocial ei ole sen tekijä eikä ylläpitäjä."
+        },
+        "flair-page-sort": {
+          "tagline": "Yhteisön sivuja, joilla on vain valitulla flairilla merkityt postaukset ja vastaukset.",
+          "description": "Flair Page Sort on mukautettu sivujen lajittelu yhteisöjen omistajille. Kun se lisätään yhteisön sivuasetuksiin flair-joukon kanssa, solmu julkaisee ylimääräisen sivun, jolla on vain ne postaukset tai vastaukset, joilla on jokin näistä flaireista, järjestettynä viimeksi saadun flairin, uusimpien, kuumimpien tai parhaiden mukaan. Yhteisö voi julkaista sen oletussivunaan, jolloin asiakasohjelmat avautuvat siihen, eikä asiakasohjelmiin tarvitse asentaa mitään sen lukemiseksi. Se vaatii pkc-js 0.0.143:n tai uudemman."
         }
       }
     },

@@ -43,7 +43,8 @@ export type AppIconKey =
   | "flag"
   | "link-2"
   | "share-2"
-  | "sparkles";
+  | "sparkles"
+  | "tag";
 
 export type DesktopVariant =
   | "windows"
@@ -372,6 +373,14 @@ const APP_COPY_TRANSLATION_KEYS: Record<string, { tagline: string; description: 
   askwise: {
     tagline: "apps.catalog.items.askwise.tagline",
     description: "apps.catalog.items.askwise.description",
+  },
+  "subreddit-mirror": {
+    tagline: "apps.catalog.items.subreddit-mirror.tagline",
+    description: "apps.catalog.items.subreddit-mirror.description",
+  },
+  "flair-page-sort": {
+    tagline: "apps.catalog.items.flair-page-sort.tagline",
+    description: "apps.catalog.items.flair-page-sort.description",
   },
   wetube: {
     tagline: "apps.catalog.items.wetube.tagline",
@@ -1125,6 +1134,54 @@ export const APPS: AppData[] = [
     relatedSlugs: ["bitsocial-cli", "5chan", "seedit"],
     status: "experimental",
     searchTerms: ["ai", "bot", "mention", "reply", "askwise", "llm"],
+  },
+  {
+    slug: "subreddit-mirror",
+    name: "Subreddit Mirror",
+    tagline: "Mirrors a subreddit into a Bitsocial community and keeps what Reddit removes.",
+    description:
+      "Subreddit Mirror is a daemon that copies a subreddit's posts and replies into a Bitsocial community and keeps checking each thread for a week. When Reddit removes a post or comment, the mirrored copy stays and gets a flair saying whether moderators, Reddit, or the author removed it, with the text recovered from public archives when the live page lost it. A community can open on a removed-only view that lists just the threads where something was removed. It runs next to bitsocial-cli, and can also backfill a subreddit's history or mirror a banned subreddit from the archives alone. Subreddit Mirror is an independent project; it is not made or run by Bitsocial.",
+    categories: ["tools"],
+    tags: ["Reddit", "Bots", "Moderation"],
+    icon: "share-2",
+    githubRepo: "Rinse12/mirror-subreddit-on-pkc",
+    author: { name: "Rinse12", url: "https://github.com/Rinse12" },
+    links: [],
+    relatedSlugs: ["bitsocial-cli", "flair-page-sort", "bitsocial-indexer", "seedit"],
+    status: "experimental",
+    searchTerms: [
+      "reddit",
+      "subreddit",
+      "mirror",
+      "removed",
+      "deleted",
+      "censorship",
+      "archive",
+      "arctic shift",
+      "redlib",
+      "bot",
+    ],
+  },
+  {
+    slug: "flair-page-sort",
+    name: "Flair Page Sort",
+    tagline: "Community pages that hold only the posts and replies carrying a chosen flair.",
+    description:
+      "Flair Page Sort is a custom page sort for community owners. Listed in a community's page settings with a set of flairs, it makes the node publish an extra page holding only the posts or replies that carry one of those flairs, ordered by most recently flaired, new, hot, or best. A community can publish it as its default page so clients open on it, and clients need nothing installed to read it. It requires pkc-js 0.0.143 or later.",
+    categories: ["tools"],
+    tags: ["Feeds", "Moderation"],
+    icon: "tag",
+    githubRepo: "pkcprotocol/flair-page-sort",
+    links: [
+      {
+        label: "@pkcprotocol/flair-page-sort",
+        url: "https://www.npmjs.com/package/@pkcprotocol/flair-page-sort",
+        kind: "package",
+      },
+    ],
+    relatedSlugs: ["bitsocial-cli", "subreddit-mirror"],
+    status: "experimental",
+    searchTerms: ["flair", "flairs", "page sort", "pageSorts", "filter", "sort", "removed", "feed"],
   },
   {
     slug: "5chan-board-manager",

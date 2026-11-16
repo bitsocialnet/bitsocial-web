@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Pass Ethereum berbayar yang tidak dapat dipindahtangankan untuk voting direktori dan posting tanpa captcha.",
           "description": "MintPass adalah pass berbayar, tidak dapat dipindahtangankan, dan memiliki masa berlaku di mainnet Ethereum yang di-deploy setiap aplikasi Bitsocial dengan namanya sendiri: 5chan Pass untuk 5chan dan Seedit Gold untuk Seedit. Pass yang valid memungkinkan pemegangnya memberi suara dalam kontes direktori dan memposting tanpa mengerjakan captcha di komunitas yang memeriksanya dengan EVM Contract Call. Harganya tetap dalam USD dan dibayar dengan ETH, dan membeli lagi memperpanjang pass yang sama alih-alih mencetak pass kedua. Kontraknya belum di-deploy."
+        },
+        "subreddit-mirror": {
+          "tagline": "Mencerminkan sebuah subreddit ke komunitas Bitsocial dan menyimpan apa yang dihapus Reddit.",
+          "description": "Subreddit Mirror adalah daemon yang menyalin posting dan balasan sebuah subreddit ke komunitas Bitsocial dan terus memeriksa setiap thread selama seminggu. Saat Reddit menghapus sebuah posting atau komentar, salinan cerminnya tetap ada dan diberi flair yang menyatakan apakah moderator, Reddit, atau penulisnya yang menghapus, dan teksnya dipulihkan dari arsip publik jika sudah hilang dari halaman aslinya. Sebuah komunitas dapat dibuka dengan tampilan khusus konten yang dihapus, yang hanya menampilkan thread yang ada bagiannya dihapus. Daemon ini berjalan di samping bitsocial-cli, dan juga dapat mengisi riwayat lama sebuah subreddit atau mencerminkan subreddit yang diblokir hanya dari arsip. Subreddit Mirror adalah proyek independen; proyek ini tidak dibuat maupun dijalankan oleh Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Halaman komunitas yang hanya memuat post dan balasan dengan flair pilihan.",
+          "description": "Flair Page Sort adalah pengurutan halaman kustom untuk pemilik komunitas. Saat dicantumkan di pengaturan halaman sebuah komunitas bersama sekumpulan flair, ia membuat node menerbitkan halaman tambahan yang hanya memuat post atau balasan dengan salah satu flair tersebut, diurutkan menurut flair terbaru, baru, populer, atau terbaik. Komunitas dapat menerbitkannya sebagai halaman default agar klien langsung membukanya, dan klien tidak perlu memasang apa pun untuk membacanya. Membutuhkan pkc-js 0.0.143 atau yang lebih baru."
         }
       }
     },

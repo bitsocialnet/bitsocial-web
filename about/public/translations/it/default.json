@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Pass a pagamento e non trasferibili su Ethereum per votare nelle directory e pubblicare senza captcha.",
           "description": "MintPass è un pass a pagamento, non trasferibile e a scadenza sulla mainnet di Ethereum, che ogni app Bitsocial distribuisce con il proprio nome: 5chan Pass per 5chan e Seedit Gold per Seedit. Un pass valido permette al titolare di votare nelle gare delle directory e di pubblicare senza risolvere un captcha nelle community che lo verificano con EVM Contract Call. Il prezzo è fisso in USD e si paga in ETH, e un nuovo acquisto rinnova lo stesso pass invece di coniarne un secondo. I contratti non sono ancora stati distribuiti."
+        },
+        "subreddit-mirror": {
+          "tagline": "Replica un subreddit in una community Bitsocial e conserva ciò che Reddit rimuove.",
+          "description": "Subreddit Mirror è un demone che copia i post e le risposte di un subreddit in una community Bitsocial e continua a controllare ogni thread per una settimana. Quando Reddit rimuove un post o un commento, la copia replicata resta e riceve un flair che indica se a rimuoverlo sono stati i moderatori, Reddit o l'autore, con il testo recuperato da archivi pubblici quando la pagina live lo ha perso. Una community può aprirsi su una vista dei soli contenuti rimossi, che elenca soltanto i thread in cui è stato rimosso qualcosa. Gira accanto a bitsocial-cli, e può anche recuperare a ritroso la cronologia di un subreddit o replicare un subreddit bannato partendo dai soli archivi. Subreddit Mirror è un progetto indipendente; non è realizzato né gestito da Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Pagine della community che contengono solo i post e le risposte con un flair scelto.",
+          "description": "Flair Page Sort è un ordinamento di pagina personalizzato per i proprietari di community. Inserito nelle impostazioni delle pagine di una community insieme a un insieme di flair, fa pubblicare al nodo una pagina aggiuntiva che contiene solo i post o le risposte con uno di quei flair, ordinati per flair più recente, nuovi, popolari o migliori. Una community può pubblicarla come pagina predefinita, così i client si aprono su di essa, e i client non devono installare nulla per leggerla. Richiede pkc-js 0.0.143 o successivo."
         }
       }
     },

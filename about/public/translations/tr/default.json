@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Dizin oylaması ve captcha'sız gönderi için ücretli, devredilemez Ethereum geçişleri.",
           "description": "MintPass, Ethereum ana ağında ücretli, devredilemez ve süresi dolan bir geçiştir; her Bitsocial uygulaması bunu kendi adıyla dağıtır: 5chan için 5chan Pass, Seedit için Seedit Gold. Geçerli bir geçiş, sahibinin dizin yarışmalarında oy vermesini ve geçişi EVM Contract Call ile denetleyen topluluklarda captcha çözmeden gönderi paylaşmasını sağlar. Fiyat USD olarak sabittir ve ETH ile ödenir; yeniden satın almak ikinci bir geçiş basmak yerine aynı geçişi yeniler. Sözleşmeler henüz dağıtılmadı."
+        },
+        "subreddit-mirror": {
+          "tagline": "Bir subreddit'i bir Bitsocial topluluğuna yansıtır ve Reddit'in kaldırdıklarını saklar.",
+          "description": "Subreddit Mirror, bir subreddit'in gönderilerini ve yanıtlarını bir Bitsocial topluluğuna kopyalayan ve her thread'i bir hafta boyunca denetlemeyi sürdüren bir arka plan sürecidir (daemon). Reddit bir gönderiyi veya yorumu kaldırdığında yansıtılmış kopya yerinde kalır ve onu moderatörlerin mi, Reddit'in mi yoksa yazarın mı kaldırdığını belirten bir flair alır; metin canlı sayfada kaybolduysa herkese açık arşivlerden kurtarılır. Bir topluluk, yalnızca bir şeylerin kaldırıldığı thread'leri listeleyen, yalnızca kaldırılanlara özel bir görünümle açılabilir. bitsocial-cli'nin yanında çalışır; ayrıca bir subreddit'in geçmişini geriye dönük doldurabilir veya yasaklanmış bir subreddit'i yalnızca arşivlerden yansıtabilir. Subreddit Mirror bağımsız bir projedir; Bitsocial tarafından geliştirilmemiştir ve işletilmemektedir."
+        },
+        "flair-page-sort": {
+          "tagline": "Yalnızca seçilen bir flair'i taşıyan gönderi ve yanıtları içeren topluluk sayfaları.",
+          "description": "Flair Page Sort, topluluk sahipleri için özel bir sayfa sıralamasıdır. Bir topluluğun sayfa ayarlarına bir dizi flair ile birlikte eklendiğinde, düğümün yalnızca bu flair'lerden birini taşıyan gönderileri veya yanıtları içeren ek bir sayfa yayımlamasını sağlar; sıralama en son flair verilen, yeni, popüler veya en iyi ölçütüne göre yapılır. Bir topluluk bunu varsayılan sayfası olarak yayımlayabilir, böylece istemciler bu sayfayla açılır ve istemcilerin onu okumak için hiçbir şey kurması gerekmez. pkc-js 0.0.143 veya sonraki bir sürümü gerektirir."
         }
       }
     },

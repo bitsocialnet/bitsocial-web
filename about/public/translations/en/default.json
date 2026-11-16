@@ -870,6 +870,14 @@
         "mintpass": {
           "tagline": "Paid, non-transferable Ethereum passes for directory voting and captcha-free posting.",
           "description": "MintPass is a paid, non-transferable, expiring pass on Ethereum mainnet that each Bitsocial app deploys under its own name: 5chan Pass for 5chan and Seedit Gold for Seedit. A valid pass lets its holder vote in directory contests and post without solving a captcha on communities that check it with EVM Contract Call. The price is fixed in USD and paid in ETH, and buying again renews the same pass instead of minting a second one. The contracts are not deployed yet."
+        },
+        "subreddit-mirror": {
+          "tagline": "Mirrors a subreddit into a Bitsocial community and keeps what Reddit removes.",
+          "description": "Subreddit Mirror is a daemon that copies a subreddit's posts and replies into a Bitsocial community and keeps checking each thread for a week. When Reddit removes a post or comment, the mirrored copy stays and gets a flair saying whether moderators, Reddit, or the author removed it, with the text recovered from public archives when the live page lost it. A community can open on a removed-only view that lists just the threads where something was removed. It runs next to bitsocial-cli, and can also backfill a subreddit's history or mirror a banned subreddit from the archives alone. Subreddit Mirror is an independent project; it is not made or run by Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Community pages that hold only the posts and replies carrying a chosen flair.",
+          "description": "Flair Page Sort is a custom page sort for community owners. Listed in a community's page settings with a set of flairs, it makes the node publish an extra page holding only the posts or replies that carry one of those flairs, ordered by most recently flaired, new, hot, or best. A community can publish it as its default page so clients open on it, and clients need nothing installed to read it. It requires pkc-js 0.0.143 or later."
         }
       }
     },

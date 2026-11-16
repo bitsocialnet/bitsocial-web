@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Pases de pago e intransferibles en Ethereum para votar en directorios y publicar sin captcha.",
           "description": "MintPass es un pase de pago, intransferible y con caducidad en la red principal de Ethereum que cada app de Bitsocial despliega con su propio nombre: 5chan Pass para 5chan y Seedit Gold para Seedit. Un pase válido permite a su titular votar en los concursos de los directorios y publicar sin resolver un captcha en las comunidades que lo comprueban con EVM Contract Call. El precio es fijo en USD y se paga en ETH, y volver a comprar renueva el mismo pase en lugar de acuñar uno nuevo. Los contratos aún no están desplegados."
+        },
+        "subreddit-mirror": {
+          "tagline": "Replica un subreddit en una comunidad de Bitsocial y conserva lo que Reddit elimina.",
+          "description": "Subreddit Mirror es un demonio que copia las publicaciones y respuestas de un subreddit en una comunidad de Bitsocial y sigue revisando cada hilo durante una semana. Cuando Reddit elimina una publicación o un comentario, la copia replicada se mantiene y recibe un flair que indica si lo eliminaron los moderadores, Reddit o el autor, y el texto se recupera de archivos públicos cuando la página en vivo lo ha perdido. Una comunidad puede abrirse con una vista de solo eliminados, que muestra únicamente los hilos en los que se eliminó algo. Se ejecuta junto a bitsocial-cli, y también puede rellenar el historial de un subreddit o replicar un subreddit baneado solo a partir de los archivos. Subreddit Mirror es un proyecto independiente; no lo crea ni lo gestiona Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Páginas de comunidad que contienen solo las publicaciones y respuestas con un flair elegido.",
+          "description": "Flair Page Sort es una ordenación de páginas personalizada para propietarios de comunidades. Al incluirlo en la configuración de páginas de una comunidad junto con un conjunto de flairs, hace que el nodo publique una página adicional que contiene solo las publicaciones o respuestas que llevan alguno de esos flairs, ordenadas por flair más reciente, nuevas, populares o mejores. Una comunidad puede publicarla como su página predeterminada para que los clientes se abran en ella, y los clientes no necesitan instalar nada para leerla. Requiere pkc-js 0.0.143 o posterior."
         }
       }
     },

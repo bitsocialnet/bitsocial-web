@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Betalte, ikke-overførbare Ethereum-pass for katalogavstemning og innlegg uten captcha.",
           "description": "MintPass er et betalt, ikke-overførbart pass med utløpsdato på Ethereum mainnet, som hver Bitsocial-app ruller ut under sitt eget navn: 5chan Pass for 5chan og Seedit Gold for Seedit. Et gyldig pass lar innehaveren stemme i katalogkonkurranser og skrive innlegg uten å løse en captcha i fellesskap som sjekker det med EVM Contract Call. Prisen er fast i USD og betales i ETH, og et nytt kjøp fornyer det samme passet i stedet for å prege et nytt. Kontraktene er ikke rullet ut ennå."
+        },
+        "subreddit-mirror": {
+          "tagline": "Speiler en subreddit til et Bitsocial-fellesskap og tar vare på det Reddit fjerner.",
+          "description": "Subreddit Mirror er en daemon som kopierer innleggene og svarene i en subreddit til et Bitsocial-fellesskap og fortsetter å sjekke hver tråd i en uke. Når Reddit fjerner et innlegg eller en kommentar, blir den speilede kopien stående og får en flair som forteller om det var moderatorene, Reddit eller forfatteren som fjernet det, og teksten hentes fra offentlige arkiver når den er borte fra den opprinnelige siden. Et fellesskap kan åpne i en visning med bare fjernet innhold, som kun lister opp trådene der noe er fjernet. Den kjører ved siden av bitsocial-cli, og kan også etterfylle historikken til en subreddit eller speile en utestengt subreddit fra arkivene alene. Subreddit Mirror er et uavhengig prosjekt; det er ikke laget eller drevet av Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Fellesskapssider som bare inneholder innleggene og svarene med en valgt flair.",
+          "description": "Flair Page Sort er en egendefinert sidesortering for eiere av fellesskap. Når den er oppført i sideinnstillingene til et fellesskap sammen med et sett flairer, får den noden til å publisere en ekstra side som bare inneholder innleggene eller svarene med en av disse flairene, sortert etter sist tildelt flair, nyeste, populære eller beste. Et fellesskap kan publisere den som standardsiden sin slik at klienter åpner på den, og klienter trenger ikke installere noe for å lese den. Den krever pkc-js 0.0.143 eller nyere."
         }
       }
     },
