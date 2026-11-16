@@ -100,11 +100,19 @@ function subdomainRedirectPlugin(): Plugin {
 const syncedAppLogos = [
   {
     file: "gitcommons.svg",
-    source: "bitsocialnet/gitcommons/master/design/logo/gitcommons-app-icon.svg",
+    source: "bitsocialnet/gitcommons/master/design/logo/gitcommons-mark-on-light.svg",
+  },
+  {
+    file: "gitcommons-dark.svg",
+    source: "bitsocialnet/gitcommons/master/design/logo/gitcommons-mark-on-dark.svg",
   },
   {
     file: "infinipedia.svg",
-    source: "bitsocialnet/infinipedia/master/design/logo/infinipedia-app-icon.svg",
+    source: "bitsocialnet/infinipedia/master/design/logo/infinipedia-mark-on-light.svg",
+  },
+  {
+    file: "infinipedia-dark.svg",
+    source: "bitsocialnet/infinipedia/master/design/logo/infinipedia-mark-on-dark.svg",
   },
   { file: "mintpass.svg", source: "bitsocialnet/mintpass/master/web/public/mintpass.svg" },
   { file: "modelswarm.svg", source: "bitsocialnet/modelswarm/master/public/logo.svg" },

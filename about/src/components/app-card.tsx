@@ -91,6 +91,7 @@ export default function AppCard({
           name={app.name}
           icon={app.icon}
           logoSrc={app.logoSrc}
+          logoDarkSrc={app.logoDarkSrc}
           pixelated={app.logoPixelated}
           size={compact ? "sm" : "md"}
         />

@@ -65,6 +65,7 @@ interface AppLogoProps {
   name: string;
   icon: AppIconKey;
   logoSrc?: string;
+  logoDarkSrc?: string;
   pixelated?: boolean;
   loading?: "eager" | "lazy";
   size?: keyof typeof sizeMap;
@@ -75,6 +76,7 @@ export default function AppLogo({
   name,
   icon,
   logoSrc,
+  logoDarkSrc,
   pixelated = false,
   loading = "lazy",
   size = "md",
@@ -92,12 +94,31 @@ export default function AppLogo({
       )}
     >
       {logoSrc ? (
-        <img
-          src={logoSrc}
-          alt={`${name} logo`}
-          loading={loading}
-          className={cn("object-contain", styles.image, pixelated && "image-rendering-pixelated")}
-        />
+        <>
+          <img
+            src={logoSrc}
+            alt={`${name} logo`}
+            loading={loading}
+            className={cn(
+              "object-contain",
+              styles.image,
+              pixelated && "image-rendering-pixelated",
+              logoDarkSrc && "dark:hidden",
+            )}
+          />
+          {logoDarkSrc && (
+            <img
+              src={logoDarkSrc}
+              alt={`${name} logo`}
+              loading={loading}
+              className={cn(
+                "hidden object-contain dark:block",
+                styles.image,
+                pixelated && "image-rendering-pixelated",
+              )}
+            />
+          )}
+        </>
       ) : (
         <Icon className={cn("text-foreground/80", styles.icon)} aria-hidden="true" />
       )}

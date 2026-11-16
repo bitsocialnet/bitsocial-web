@@ -90,6 +90,7 @@ export interface AppData {
   tags: string[];
   icon: AppIconKey;
   logoSrc?: string;
+  logoDarkSrc?: string;
   logoPixelated?: boolean;
   githubRepo: string;
   /** Set only for independent projects, so structured data credits this person instead of Bitsocial. */
@@ -1173,6 +1174,7 @@ export const APPS: AppData[] = [
     tags: ["Encyclopedia"],
     icon: "book-open",
     logoSrc: "/assets/apps/infinipedia.svg",
+    logoDarkSrc: "/assets/apps/infinipedia-dark.svg",
     githubRepo: "bitsocialnet/infinipedia",
     links: [],
     relatedSlugs: ["seedit", "wetube", "gitcommons"],
@@ -1190,6 +1192,7 @@ export const APPS: AppData[] = [
     tags: ["Code hosting"],
     icon: "git-branch",
     logoSrc: "/assets/apps/gitcommons.svg",
+    logoDarkSrc: "/assets/apps/gitcommons-dark.svg",
     githubRepo: "bitsocialnet/gitcommons",
     links: [],
     relatedSlugs: ["bitsocial-cli", "modelswarm", "infinipedia"],

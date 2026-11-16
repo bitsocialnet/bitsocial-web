@@ -90,6 +90,7 @@ export default function AppDetail() {
                 name={app.name}
                 icon={app.icon}
                 logoSrc={app.logoSrc}
+                logoDarkSrc={app.logoDarkSrc}
                 loading="eager"
                 pixelated={app.logoPixelated}
                 size="md"
