@@ -28,6 +28,9 @@ interface BlogP2PModalProps {
 }
 
 const REFRESH_INTERVAL_MS = 5_000;
+// The geo lookups have no timeout of their own. Cutting a stalled read short still lands the
+// local libp2p rows (mode, peer ID, peers, bytes) instead of leaving the modal on stale data.
+const READ_TIMEOUT_MS = 10_000;
 
 type StatsState =
   | { status: "loading"; rows: null; lastUpdated: null }
@@ -48,29 +51,37 @@ export default function BlogP2PModal({ open, onOpenChange }: BlogP2PModalProps) 
 
   useEffect(() => {
     if (!open) return;
+    let cancelled = false;
+    let nextRead: number | undefined;
     const controller = new AbortController();
+    const readTimeout = window.setTimeout(() => controller.abort(), READ_TIMEOUT_MS);
     getBlogP2PStats(account, controller.signal)
       .then((rows) => {
-        if (controller.signal.aborted) return;
+        if (cancelled) return;
         setState({ status: "ready", rows, lastUpdated: Date.now() });
       })
       .catch((error: unknown) => {
-        if (controller.signal.aborted) return;
+        if (cancelled) return;
         setState((previous) => ({
           status: "error",
           rows: null,
           lastUpdated: previous.lastUpdated,
           error: error instanceof Error ? error.message : String(error),
         }));
+      })
+      .finally(() => {
+        window.clearTimeout(readTimeout);
+        // Schedule the next read once this one settles, so a read slower than the refresh
+        // interval is never aborted by the next tick and dropped.
+        if (!cancelled) nextRead = window.setTimeout(refresh, REFRESH_INTERVAL_MS);
       });
-    return () => controller.abort();
-  }, [account, open, tick]);
-
-  useEffect(() => {
-    if (!open) return;
-    const id = window.setInterval(refresh, REFRESH_INTERVAL_MS);
-    return () => window.clearInterval(id);
-  }, [open, refresh]);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(readTimeout);
+      window.clearTimeout(nextRead);
+      controller.abort();
+    };
+  }, [account, open, refresh, tick]);
 
   return (
     <EasterEggOverlay

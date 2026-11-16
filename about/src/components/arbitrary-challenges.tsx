@@ -1,4 +1,4 @@
-import { m, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Bot,
   Code2,
@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { usePrefersReducedMotion } from "@/lib/use-media-query";
 
 type OptionId = "code" | "service" | "proof" | "next";
 
@@ -74,6 +75,9 @@ function ExchangeConnector({
   t: (key: string) => string;
   prefersReducedMotion: boolean;
 }) {
+  // A new key remounts the paths when the preference turns to reduced motion after hydration;
+  // otherwise they would keep the zero-length dash of the hydrated pathLength reveal.
+  const pathKey = prefersReducedMotion ? "static" : "animated";
   const requestLabel = t("arbitraryChallenges.diagram.request");
   const challengeLabel = t("arbitraryChallenges.diagram.challenge");
 
@@ -93,6 +97,7 @@ function ExchangeConnector({
           fill="none"
         >
           <m.path
+            key={`request-${pathKey}`}
             d="M14 6 L14 58"
             stroke="currentColor"
             strokeWidth="1.4"
@@ -109,6 +114,7 @@ function ExchangeConnector({
           />
           <path d="M8 50 L14 58 L20 50" stroke="currentColor" strokeWidth="1.4" fill="none" />
           <m.path
+            key={`challenge-${pathKey}`}
             d="M26 58 L26 6"
             stroke="currentColor"
             strokeWidth="1.4"
@@ -144,6 +150,7 @@ function ExchangeConnector({
           fill="none"
         >
           <m.path
+            key={`request-${pathKey}`}
             d="M8 14 L172 14"
             stroke="currentColor"
             strokeWidth="1.4"
@@ -160,6 +167,7 @@ function ExchangeConnector({
           />
           <path d="M164 8 L172 14 L164 20" stroke="currentColor" strokeWidth="1.4" fill="none" />
           <m.path
+            key={`challenge-${pathKey}`}
             d="M172 30 L8 30"
             stroke="currentColor"
             strokeWidth="1.4"
@@ -185,6 +193,9 @@ function ExchangeConnector({
 }
 
 function NodeModuleConnector({ prefersReducedMotion }: { prefersReducedMotion: boolean }) {
+  // A new key remounts the paths when the preference turns to reduced motion after hydration;
+  // otherwise they would keep the zero-length dash of the hydrated pathLength reveal.
+  const pathKey = prefersReducedMotion ? "static" : "animated";
   const dashAnim = prefersReducedMotion
     ? {}
     : {
@@ -202,6 +213,7 @@ function NodeModuleConnector({ prefersReducedMotion }: { prefersReducedMotion: b
       {/* Mobile bridge: node bottom → challenge module (32px gap) */}
       <svg className="block md:hidden" width="16" height="32" viewBox="0 0 16 32" fill="none">
         <m.path
+          key={pathKey}
           d="M8 0 L8 32"
           stroke="currentColor"
           strokeWidth="1.4"
@@ -213,6 +225,7 @@ function NodeModuleConnector({ prefersReducedMotion }: { prefersReducedMotion: b
       {/* Desktop bridge: node sits 8px above the grid baseline, so the run is 40px */}
       <svg className="hidden md:block" width="16" height="40" viewBox="0 0 16 40" fill="none">
         <m.path
+          key={pathKey}
           d="M8 0 L8 40"
           stroke="currentColor"
           strokeWidth="1.4"
@@ -303,7 +316,7 @@ function ChallengeModule({ t }: { t: (key: string) => string }) {
 
 export default function ArbitraryChallenges() {
   const { t } = useTranslation();
-  const prefersReducedMotion = useReducedMotion() ?? false;
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
     <section className="home-section" aria-labelledby="arbitrary-challenges-title">

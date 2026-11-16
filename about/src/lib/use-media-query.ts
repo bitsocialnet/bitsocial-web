@@ -21,3 +21,17 @@ export function useMediaQuery(query: string): boolean {
 
   return useSyncExternalStore(subscribe, getSnapshot, () => false);
 }
+
+/**
+ * Hydration-safe replacement for framer-motion's `useReducedMotion`, which reads the preference
+ * in the first client render while the server renders the full-motion markup. React does not
+ * patch attribute mismatches while hydrating, so this reports reduced motion only after
+ * hydration (client-only renders get it at once) and follows later changes of the setting.
+ *
+ * Hydrated motion elements have already mounted with their full-motion `initial` values when it
+ * turns `true`. A reduced-motion branch must therefore move them to their final values (or
+ * remount them); dropping the motion props would leave them hidden.
+ */
+export function usePrefersReducedMotion(): boolean {
+  return useMediaQuery("(prefers-reduced-motion: reduce)");
+}

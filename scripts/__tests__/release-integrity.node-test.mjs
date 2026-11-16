@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
@@ -194,6 +195,69 @@ test("release integrity assets never CDN-cache missing or failed lookups", async
       assert.equal(fallback.headers["Content-Type"], "application/json; charset=utf-8", asset);
       assert.equal(fallback.headers["Cache-Control"], "no-store", asset);
     }
+  }
+});
+
+test("target measurements read the manifest with the same 404 retry and warm fallback", async (t) => {
+  const manifestUrl =
+    "https://github.com/bitsocialnet/5chan/releases/latest/download/5chan-release-manifest.json";
+  const targetBody = "<!doctype html><title>5chan</title>";
+  const manifestText = JSON.stringify({
+    appName: "5chan",
+    files: [
+      {
+        bytes: Buffer.byteLength(targetBody),
+        path: "index.html",
+        sha256: createHash("sha256").update(targetBody).digest("hex"),
+      },
+    ],
+    schema: "bitsocial.release-manifest.v1",
+    verificationScope: "web-release-all-files",
+  });
+  const manifestSha256 = createHash("sha256").update(manifestText).digest("hex");
+  const query = { app: "5chan", asset: "target-measurements", targetUrl: "https://5chan.app" };
+  let manifestUpstream = async () => new Response(manifestText);
+  t.mock.method(globalThis, "fetch", async (url) =>
+    url === manifestUrl ? manifestUpstream() : new Response(targetBody),
+  );
+  const measuredManifest = (result, label) => {
+    assert.equal(result.status, 200, label);
+    assert.equal(result.headers["Cache-Control"], "no-store", label);
+    assert.equal(JSON.parse(result.body).manifestSha256, manifestSha256, label);
+  };
+
+  // Cold instance: GitHub's releases/latest redirect flaps to 404 for releases that exist.
+  const coldRequest = await loadHandler();
+  let manifestCalls = 0;
+  manifestUpstream = async () => {
+    manifestCalls += 1;
+    return manifestCalls === 1 ? new Response("", { status: 404 }) : new Response(manifestText);
+  };
+  measuredManifest(await coldRequest(query), "a single flaky 404 is retried");
+  assert.equal(manifestCalls, 2);
+
+  manifestUpstream = async () => new Response("", { status: 404 });
+  const missing = await (await loadHandler())(query);
+  assert.equal(missing.status, 503, "a cold instance still reports a missing manifest");
+  assert.equal(missing.headers["Cache-Control"], "no-store");
+
+  // Warm instance: a manifest fetched by the manifest asset request is reused while upstream is
+  // degraded, so the checkmark does not depend on which request hits the flap.
+  const warmRequest = await loadHandler();
+  manifestUpstream = async () => new Response(manifestText);
+  assert.equal((await warmRequest({ app: "5chan", asset: "manifest" })).status, 200);
+  for (const [label, failure] of [
+    ["404", async () => new Response("", { status: 404 })],
+    ["rate limited", async () => new Response("", { status: 429 })],
+    [
+      "network failure",
+      async () => {
+        throw new TypeError("fetch failed");
+      },
+    ],
+  ]) {
+    manifestUpstream = failure;
+    measuredManifest(await warmRequest(query), label);
   }
 });
 
