@@ -153,6 +153,9 @@ export default {
     kuboRpcProxy: {
       maxUpstreamSockets: 1000,
     },
+    // Peer ids of the seeders to watch one by one: seeder fetch stats, and an alert when browsers
+    // can't dial a seeder. Empty means only the network-wide browser reachability alert runs.
+    seederPeerIds: parseCsvEnv(process.env.BITSOCIAL_STATS_SEEDER_PEER_IDS) || [],
     nfts: [],
   },
   delegatedRoutingUrls,
