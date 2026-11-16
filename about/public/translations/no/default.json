@@ -625,8 +625,8 @@
           "description": "Bitsocial GitHub Alerts videresender pusher, utgivelser, issues og pull requests fra GitHub til enhver samtale, gruppe eller forumtråd på Telegram. Bitsocial-teamet kjører den for sine egne repositorier, og container-imaget er offentlig, så hvem som helst kan drifte den selv for sine."
         },
         "bitbones": {
-          "tagline": "Nedstrippet referanseklient der hver visning bare er et tynt lag rundt én hook.",
-          "description": "bitbones er den minste nyttige flaten oppå React-hookene i Bitsocial: nesten ingen styling, ingen produktvalg og ett enkelt hook bak hver visning. Det er det raskeste stedet å reprodusere en feil eller prøve ut en hook-endring mot ekte fellesskap, og standardfeeden kan veksles mellom fellesskapslistene til Seedit og 5chan."
+          "tagline": "En utviklerklient for å inspisere protokolldata i Bitsocial.",
+          "description": "Inspiser protokolldataene bak feeder, fellesskap, innlegg og svar på Bitsocial. Se kall til React-hooks, rå JSON, klienttilstander og feilsøkingslogger mens du tester endringer med ekte fellesskap."
         },
         "image-classifier-bot": {
           "tagline": "Modereringskø-bot som bare godkjenner innlegg der bildet samsvarer med det fellesskapet tillater.",

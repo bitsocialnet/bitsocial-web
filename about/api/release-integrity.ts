@@ -86,6 +86,14 @@ const RELEASE_INTEGRITY_ASSETS: Record<string, ReleaseIntegrityAsset> = {
     contentType: "application/json; charset=utf-8",
     url: "https://github.com/bitsocialnet/seedit/releases/latest/download/seedit-release-manifest.sig.json",
   },
+  "bitbones:manifest": {
+    contentType: "application/json; charset=utf-8",
+    url: "https://github.com/bitsocialnet/bitbones/releases/latest/download/bitbones-release-manifest.json",
+  },
+  "bitbones:signature": {
+    contentType: "application/json; charset=utf-8",
+    url: "https://github.com/bitsocialnet/bitbones/releases/latest/download/bitbones-release-manifest.sig.json",
+  },
 };
 
 const RELEASE_DOWNLOAD_ASSETS: Record<string, ReleaseDownloadAsset> = {
@@ -158,6 +166,7 @@ const ALLOWED_RELEASE_TARGET_ORIGINS: Record<string, ReadonlySet<string>> = {
     "https://seedit.online",
     "https://seedit.today",
   ]),
+  bitbones: new Set(["https://bitbones.app"]),
 };
 
 export default async function handler(request: RequestLike, response: ResponseLike) {

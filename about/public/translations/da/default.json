@@ -597,8 +597,8 @@
           "description": "Bitsocial GitHub Alerts videresender pushes, releases, issues og pull requests fra GitHub til enhver chat, gruppe eller forumtråd på Telegram. Bitsocial-teamet kører den til sine egne repositories, og container-imaget er offentligt, så alle kan hoste den selv til deres."
         },
         "bitbones": {
-          "tagline": "Ultrasimpel referenceklient, hvor hver visning blot er en tynd indpakning om ét hook.",
-          "description": "bitbones er den mindste brugbare flade oven på Bitsocials React-hooks: næsten ingen styling, ingen produktholdninger og ét enkelt hook bag hver visning. Det er det hurtigste sted at reproducere en fejl eller afprøve en hook-ændring mod rigtige fællesskaber, og standardfeedet kan skiftes mellem fællesskabslisterne fra Seedit og 5chan."
+          "tagline": "En udviklerklient til at inspicere protokoldata i Bitsocial.",
+          "description": "Inspicer protokoldataene bag feeds, fællesskaber, opslag og svar på Bitsocial. Se kald til React-hooks, rå JSON, klienttilstande og fejlfindingslogfiler, mens du tester ændringer med rigtige fællesskaber."
         },
         "spam-blocker": {
           "description": "Spam Blocker evaluerer publikationer og returnerer en risikoscore, som fællesskaber kan kombinere med deres egen moderationslogik. Dens hostede tjeneste forbinder også signeringsnøgler første gang set fra samme IP, så en bruger, der fortsætter med at oprette nye konti for at undgå et fællesskabsforbud eller fremstille en samtale, ser sin risikoscore stige, mens nogle få signaturværdier forbliver tilladt til legitim brug på flere enheder.",

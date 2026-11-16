@@ -625,8 +625,8 @@
           "description": "Bitsocial GitHub Alerts 会把 GitHub 上的推送、发布、issue 和 pull request 转发到任意 Telegram 聊天、群组或论坛话题中。Bitsocial 团队用它来跟踪自己的仓库，容器镜像也已公开，任何人都可以为自己的仓库自行部署。"
         },
         "bitbones": {
-          "tagline": "极简参考客户端，每个视图都只是单个 hook 之上的一层薄封装。",
-          "description": "bitbones 是 Bitsocial React hooks 之上最小的可用外壳：几乎没有样式，不带任何产品取舍，每个视图背后只有一个 hook。要在真实社区上复现 bug 或试验 hooks 的改动，这里是最快的落脚点；它的默认信息流可以在 Seedit 与 5chan 的社区列表之间切换。"
+          "tagline": "用于检查 Bitsocial 协议数据的开发者客户端。",
+          "description": "检查 Bitsocial 信息流、社区、帖子和回复背后的协议数据。在真实社区中测试改动时，可查看 React Hook 调用、原始 JSON、客户端状态和调试日志。"
         },
         "image-classifier-bot": {
           "tagline": "审核队列机器人，只批准图片符合社区允许内容的帖子。",

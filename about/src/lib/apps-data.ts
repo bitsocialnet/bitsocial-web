@@ -441,6 +441,22 @@ const SEEDIT_SIGNED_RELEASE_INTEGRITY: AppReleaseIntegrityProbe = {
   targetMeasurementsUrl: "/api/release-integrity?app=seedit&asset=target-measurements",
 };
 
+const BITBONES_SIGNED_RELEASE_INTEGRITY: AppReleaseIntegrityProbe = {
+  appName: "bitbones",
+  keyId: "bitbones-release-p256-2026-11",
+  manifestUrl: "/api/release-integrity?app=bitbones&asset=manifest",
+  publicKeyJwk: {
+    crv: "P-256",
+    ext: true,
+    key_ops: ["verify"],
+    kty: "EC",
+    x: "TXmydJUFCMvpuraEPkurnJmT0xvRkIEH1zqVpJeLlZY",
+    y: "5BV386CT22Zticp_89luUlv3stDE-phOaHvGIwGHS8I",
+  },
+  signatureUrl: "/api/release-integrity?app=bitbones&asset=signature",
+  targetMeasurementsUrl: "/api/release-integrity?app=bitbones&asset=target-measurements",
+};
+
 export function getCategoryLabel(
   categoryOrSlug: CategoryData | AppCategorySlug,
   t: TFunction,
@@ -707,9 +723,9 @@ export const APPS: AppData[] = [
   {
     slug: "bitbones",
     name: "bitbones",
-    tagline: "Bare-bones reference client where every view is a thin wrapper over one hook.",
+    tagline: "A developer client for inspecting Bitsocial protocol data.",
     description:
-      "bitbones is the smallest useful surface over the Bitsocial React hooks: almost no styling, no product opinions, and a single hook behind every view. It is the fastest place to reproduce a bug or try a hooks change against real communities, and its default feed can be switched between the Seedit and 5chan community lists.",
+      "Inspect the protocol data behind Bitsocial feeds, communities, posts, and replies. See React hook calls, raw JSON, client states, and debug logs as you test changes against real communities.",
     categories: ["apps"],
     tags: ["Reference client", "Forums"],
     icon: "message-square",
@@ -717,11 +733,28 @@ export const APPS: AppData[] = [
     logoPixelated: true,
     githubRepo: "bitsocialnet/bitbones",
     links: [
-      { label: "Open web app", url: "https://bitbones.app", kind: "launch", platform: "web" },
+      {
+        label: "Open web app",
+        url: "https://bitbones.app",
+        kind: "launch",
+        platform: "web",
+        releaseIntegrity: BITBONES_SIGNED_RELEASE_INTEGRITY,
+      },
     ],
     relatedSlugs: ["seedit", "5chan", "bitsocial-cli"],
     status: "experimental",
-    searchTerms: ["bare bones", "reference", "hooks", "minimal", "debug", "developers"],
+    searchTerms: [
+      "bare bones",
+      "reference",
+      "hooks",
+      "minimal",
+      "debug",
+      "developers",
+      "devtools",
+      "inspector",
+      "JSON",
+      "logs",
+    ],
   },
   {
     slug: "ai-moderation-challenge",

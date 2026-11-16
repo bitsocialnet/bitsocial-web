@@ -840,8 +840,8 @@
           "description": "Bitsocial GitHub Alerts forwards pushes, releases, issues, and pull requests from GitHub into any Telegram chat, group, or forum topic. The Bitsocial team runs it for its own repositories, and the container image is public so anyone can self-host it for theirs."
         },
         "bitbones": {
-          "tagline": "Bare-bones reference client where every view is a thin wrapper over one hook.",
-          "description": "bitbones is the smallest useful surface over the Bitsocial React hooks: almost no styling, no product opinions, and a single hook behind every view. It is the fastest place to reproduce a bug or try a hooks change against real communities, and its default feed can be switched between the Seedit and 5chan community lists."
+          "tagline": "A developer client for inspecting Bitsocial protocol data.",
+          "description": "Inspect the protocol data behind Bitsocial feeds, communities, posts, and replies. See React hook calls, raw JSON, client states, and debug logs as you test changes against real communities."
         },
         "image-classifier-bot": {
           "tagline": "Mod-queue bot that only approves posts whose image matches what the community allows.",
