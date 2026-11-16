@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Bayad at hindi maililipat na Ethereum pass para sa pagboto sa directory at pag-post nang walang captcha.",
           "description": "Ang MintPass ay isang bayad, hindi maililipat, at nag-e-expire na pass sa Ethereum mainnet na idine-deploy ng bawat Bitsocial app sa sarili nitong pangalan: 5chan Pass para sa 5chan at Seedit Gold para sa Seedit. Sa isang valid na pass, makakaboto ang may-hawak sa mga paligsahan ng directory at makakapag-post nang hindi sumasagot ng captcha sa mga komunidad na sumusuri nito gamit ang EVM Contract Call. Nakapirmi ang presyo sa USD at binabayaran sa ETH, at ang muling pagbili ay nagre-renew sa parehong pass sa halip na mag-mint ng pangalawa. Hindi pa naka-deploy ang mga kontrata."
+        },
+        "subreddit-mirror": {
+          "tagline": "Mini-mirror ang isang subreddit sa isang komunidad ng Bitsocial at pinapanatili ang mga inaalis ng Reddit.",
+          "description": "Ang Subreddit Mirror ay isang daemon na kumokopya ng mga post at reply ng isang subreddit papunta sa isang komunidad ng Bitsocial at patuloy na sinusuri ang bawat thread sa loob ng isang linggo. Kapag inalis ng Reddit ang isang post o komento, nananatili ang naka-mirror na kopya at nilalagyan ito ng flair na nagsasabi kung mga moderator, ang Reddit, o ang may-akda ang nag-alis nito, at binabawi ang teksto mula sa mga pampublikong archive kapag nawala na ito sa live na pahina. Puwedeng magbukas ang isang komunidad sa view na para lang sa mga inalis, na naglilista lang ng mga thread na may inalis. Tumatakbo ito katabi ng bitsocial-cli, at kaya rin nitong punan ang nakaraang history ng isang subreddit o i-mirror ang isang na-ban na subreddit mula sa mga archive lang. Ang Subreddit Mirror ay isang independiyenteng proyekto; hindi ito gawa o pinapatakbo ng Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Mga page ng komunidad na naglalaman lang ng mga post at reply na may piniling flair.",
+          "description": "Ang Flair Page Sort ay custom na page sort para sa mga may-ari ng komunidad. Kapag inilista sa page settings ng isang komunidad kasama ang isang hanay ng mga flair, pinapa-publish nito sa node ang dagdag na page na naglalaman lang ng mga post o reply na may isa sa mga flair na iyon, nakaayos ayon sa pinakahuling nilagyan ng flair, bago, hot, o best. Puwede itong i-publish ng komunidad bilang default na page nito para doon magbukas ang mga client, at walang kailangang i-install ang mga client para mabasa ito. Kailangan nito ng pkc-js 0.0.143 o mas bago."
         }
       }
     },

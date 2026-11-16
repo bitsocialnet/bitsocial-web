@@ -16,6 +16,7 @@ import {
   Share2,
   Shield,
   Sparkles,
+  Tag,
   Terminal,
   Ticket,
 } from "lucide-react";
@@ -39,6 +40,7 @@ const iconMap = {
   "share-2": Share2,
   shield: Shield,
   sparkles: Sparkles,
+  tag: Tag,
   terminal: Terminal,
   ticket: Ticket,
 } satisfies Record<AppIconKey, ComponentType<{ className?: string }>>;

@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Des pass payants et non transférables sur Ethereum pour voter dans les annuaires et publier sans captcha.",
           "description": "MintPass est un pass payant, non transférable et à durée limitée sur le réseau principal Ethereum, que chaque app Bitsocial déploie sous son propre nom : 5chan Pass pour 5chan et Seedit Gold pour Seedit. Un pass valide permet à son titulaire de voter dans les concours des annuaires et de publier sans résoudre de captcha dans les communautés qui le vérifient avec EVM Contract Call. Le prix est fixé en USD et payé en ETH, et un nouvel achat renouvelle le même pass au lieu d'en frapper un second. Les contrats ne sont pas encore déployés."
+        },
+        "subreddit-mirror": {
+          "tagline": "Reproduit un subreddit dans une communauté Bitsocial et conserve ce que Reddit supprime.",
+          "description": "Subreddit Mirror est un démon qui copie les publications et les réponses d'un subreddit dans une communauté Bitsocial et continue de vérifier chaque fil pendant une semaine. Lorsque Reddit supprime une publication ou un commentaire, la copie miroir reste en place et reçoit un flair indiquant si la suppression vient des modérateurs, de Reddit ou de l'auteur ; le texte est récupéré dans des archives publiques lorsque la page en ligne l'a perdu. Une communauté peut s'ouvrir sur une vue limitée aux suppressions, qui ne liste que les fils où quelque chose a été supprimé. Il tourne à côté de bitsocial-cli, et peut aussi reconstituer l'historique d'un subreddit ou reproduire un subreddit banni à partir des seules archives. Subreddit Mirror est un projet indépendant ; il n'est ni conçu ni exploité par Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Des pages de communauté qui ne contiennent que les posts et les réponses portant un flair choisi.",
+          "description": "Flair Page Sort est un tri de pages personnalisé destiné aux propriétaires de communautés. Déclaré dans les paramètres de pages d’une communauté avec un ensemble de flairs, il fait publier par le nœud une page supplémentaire qui ne contient que les posts ou les réponses portant l’un de ces flairs, classés par flair le plus récent, nouveauté, popularité ou meilleurs. Une communauté peut la publier comme page par défaut afin que les clients s’ouvrent dessus, et les clients n’ont rien à installer pour la lire. Il nécessite pkc-js 0.0.143 ou une version ultérieure."
         }
       }
     },

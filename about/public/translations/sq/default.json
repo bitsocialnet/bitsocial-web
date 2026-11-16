@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Leje me pagesë dhe të patransferueshme në Ethereum për votim në direktori dhe postim pa captcha.",
           "description": "MintPass është një leje me pagesë, e patransferueshme dhe me afat në rrjetin kryesor të Ethereum, që çdo aplikacion Bitsocial e vendos me emrin e vet: 5chan Pass për 5chan dhe Seedit Gold për Seedit. Një leje e vlefshme i lejon mbajtësit të votojë në garat e direktorive dhe të postojë pa zgjidhur captcha në komunitetet që e kontrollojnë me EVM Contract Call. Çmimi është fiks në USD dhe paguhet në ETH, dhe një blerje e re rinovon të njëjtën leje në vend që të krijojë një të dytë. Kontratat ende nuk janë vendosur."
+        },
+        "subreddit-mirror": {
+          "tagline": "Pasqyron një subreddit në një komunitet të Bitsocial dhe ruan atë që Reddit heq.",
+          "description": "Subreddit Mirror është një daemon që kopjon postimet dhe përgjigjet e një subreddit-i në një komunitet të Bitsocial dhe vazhdon të kontrollojë çdo temë për një javë. Kur Reddit heq një postim ose koment, kopja e pasqyruar mbetet dhe merr një flair që tregon nëse e hoqën moderatorët, Reddit apo autori, ndërsa teksti rikuperohet nga arkivat publike kur faqja e drejtpërdrejtë e ka humbur. Një komunitet mund të hapet në një pamje vetëm me të hequrat, që liston vetëm temat ku është hequr diçka. Ekzekutohet krahas bitsocial-cli dhe mund edhe të plotësojë historikun e mëparshëm të një subreddit-i ose të pasqyrojë një subreddit të ndaluar vetëm nga arkivat. Subreddit Mirror është projekt i pavarur; nuk krijohet dhe as nuk drejtohet nga Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Faqe komuniteti që mbajnë vetëm postimet dhe përgjigjet me një flair të zgjedhur.",
+          "description": "Flair Page Sort është një renditje e personalizuar faqesh për pronarët e komuniteteve. I shënuar në cilësimet e faqeve të një komuniteti bashkë me një grup flair-esh, ai e bën nyjën të publikojë një faqe shtesë që mban vetëm postimet ose përgjigjet me njërin prej atyre flair-eve, të renditura sipas flair-it më të fundit, më të rejave, më të nxehtave ose më të mirave. Një komunitet mund ta publikojë si faqen e tij të parazgjedhur që klientët të hapen në të, dhe klientët nuk kanë nevojë të instalojnë asgjë për ta lexuar. Kërkon pkc-js 0.0.143 ose më të ri."
         }
       }
     },

@@ -7406,10 +7406,24 @@ The real Chainlink proxy adds about 5.5k gas per purchase. The fork test measure
 
 ## Website
 
-`web/` is the static [mintpass.org](https://mintpass.org) site: plain HTML and CSS in `web/public/`, served as-is by the Vercel project `mintpass-org` (Root Directory `web`, settings in `web/vercel.json`). Pushes to `master` deploy it. The root `.vercelignore` uploads only `web/` and never `.env` files. To deploy by hand from a checkout of `master`:
+`web/` is the React + Vite + strict TypeScript source for [mintpass.org](https://mintpass.org). It is an independent Yarn 4 project with its own lockfile.
 
 ```sh
-vercel link --yes --project mintpass-org --scope toms-projects-2188af94   # once per checkout
+cd web
+corepack yarn install --immutable
+yarn start
+```
+
+`yarn start` opens `https://mintpass.localhost` through Portless. Linked worktrees get a branch-prefixed URL. `BROWSER=none yarn start` skips browser opening; `PORTLESS=0 yarn start` runs Vite directly. From the repository root, first install the website dependencies with `corepack yarn --cwd web install --immutable`; then `yarn start` delegates to the website.
+
+Agentation and element-source run only in development. Agentation provides visual annotations, while `window.__ELEMENT_SOURCE__.resolveElementInfo(element)` maps DOM elements back to React source. `yarn agent:verify` runs lint, formatting, strict type checking, the production build, and React Doctor. Shared agent skills are in `.agents/skills/`, with website guidance in `web/AGENTS.md`.
+
+`yarn build` produces `web/dist/` with pre-rendered home and 404 pages and hydrates them in the browser. `yarn preview` serves that build locally. Vercel's `mintpass-org` project uses Root Directory `web`, the pinned Yarn install/build commands in `web/vercel.json`, and output directory `dist`. Existing retired-route redirects and security headers are preserved. Pushes to `master` deploy it. The root `.vercelignore` uploads only `web/` and excludes environment files.
+
+To deploy by hand from a checkout of `master`:
+
+```sh
+vercel link --yes --project mintpass-org --scope toms-projects-2188af94
 vercel deploy --prod
 ```
 
@@ -7689,7 +7703,7 @@ Description: What is Bitsocial?
 -   Runs an IPFS and Bitsocial node
 -   Command Line interface to manage Bitsocial communities
 -   WebSocket RPC to access and control your communities and publications
--   Includes Web UIs like Seedit where you can browse the network and manage your community
+-   Includes Web UIs like 5chan and Seedit where you can browse the network and manage your community
 
 ## Install
 
@@ -7769,10 +7783,11 @@ The output will include lines like:
 
 ```
 pkc rpc: listening on ws://localhost:9138/<auth-key> (secret auth key for remote connections)
+WebUI (5chan - Imageboard-style UI): http://<your-ip>:9138/<auth-key>/5chan (secret auth key for remote connections)
 WebUI (seedit - Similar to old reddit UI): http://<your-ip>:9138/<auth-key>/seedit (secret auth key for remote connections)
 ```
 
-Open the WebUI URL in your browser to start using Bitsocial.
+Open the 5chan or Seedit WebUI URL in your browser to start using Bitsocial.
 
 #### Viewing logs
 
@@ -7904,7 +7919,7 @@ WebUI (seedit - Similar to old reddit UI): http://<your-ip>:9138/<auth-key>/seed
 
 ```
 
-Once `bitsocial daemon` is running, you can create and manage your communities through the web interfaces, either seedit or 5chan. All the interfaces are interoperable. If you're a power user and prefer CLI, then you can take a look at the commands below.
+Once `bitsocial daemon` is running, open one of the printed WebUI URLs in your normal browser to browse the network and to create and manage your communities, through either seedit or 5chan. You don't need the separate 5chan or Seedit desktop apps: the daemon runs the full P2P node and serves the web UIs itself. All the interfaces are interoperable. If you're a power user and prefer CLI, then you can take a look at the commands below.
 
 If you need to view detailed protocol or IPFS logs for debugging, you can use `bitsocial logs`. For example, `bitsocial logs --tail 50` shows the last 50 lines, or `bitsocial logs --since 1h` shows logs from the past hour.
 
@@ -8128,7 +8143,7 @@ EXAMPLES
   $ bitsocial challenge install ./my-local-challenge
 ```
 
-_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/challenge/install.ts)_
+_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/challenge/install.ts)_
 
 ## `bitsocial challenge list`
 
@@ -8154,7 +8169,7 @@ EXAMPLES
   $ bitsocial challenge list -q
 ```
 
-_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/challenge/list.ts)_
+_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/challenge/list.ts)_
 
 ## `bitsocial challenge ls`
 
@@ -8214,7 +8229,7 @@ EXAMPLES
   $ bitsocial challenge remove my-challenge --force
 ```
 
-_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/challenge/remove.ts)_
+_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/challenge/remove.ts)_
 
 ## `bitsocial challenge rm NAME`
 
@@ -8346,7 +8361,7 @@ EXAMPLES
     $ bitsocial community create --jsonFile ./create-options.json
 ```
 
-_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/community/create.ts)_
+_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/community/create.ts)_
 
 ## `bitsocial community delete ADDRESSES`
 
@@ -8371,7 +8386,7 @@ EXAMPLES
   $ bitsocial community delete 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/community/delete.ts)_
+_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/community/delete.ts)_
 
 ## `bitsocial community edit ADDRESS`
 
@@ -8448,7 +8463,7 @@ EXAMPLES
     $ bitsocial community edit bitsocial.bso --jsonFile ./edit-options.json
 ```
 
-_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/community/edit.ts)_
+_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/community/edit.ts)_
 
 ## `bitsocial community export [ADDRESS]`
 
@@ -8489,7 +8504,7 @@ EXAMPLES
   $ bitsocial community export --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/community/export.ts)_
+_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/community/export.ts)_
 
 ## `bitsocial community get [ADDRESS]`
 
@@ -8520,7 +8535,7 @@ EXAMPLES
   $ bitsocial community get --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/community/get.ts)_
+_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/community/get.ts)_
 
 ## `bitsocial community list`
 
@@ -8543,7 +8558,7 @@ EXAMPLES
   $ bitsocial community list
 ```
 
-_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/community/list.ts)_
+_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/community/list.ts)_
 
 ## `bitsocial community start ADDRESSES`
 
@@ -8577,7 +8592,7 @@ EXAMPLES
     $ bitsocial community start $(bitsocial community list -q) --concurrency 1
 ```
 
-_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/community/start.ts)_
+_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/community/start.ts)_
 
 ## `bitsocial community stop ADDRESSES`
 
@@ -8602,7 +8617,7 @@ EXAMPLES
   $ bitsocial community stop Qmb99crTbSUfKXamXwZBe829Vf6w5w5TktPkb6WstC9RFW
 ```
 
-_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/community/stop.ts)_
+_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/community/stop.ts)_
 
 ## `bitsocial daemon`
 
@@ -8652,7 +8667,7 @@ EXAMPLES
   $ bitsocial daemon --no-allowPrivateKeyExport
 ```
 
-_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/daemon.ts)_
+_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/daemon.ts)_
 
 ## `bitsocial help [COMMAND]`
 
@@ -8716,7 +8731,7 @@ EXAMPLES
   $ bitsocial logs --stdout -f
 ```
 
-_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/logs.ts)_
+_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/logs.ts)_
 
 ## `bitsocial page-sort add PACKAGE`
 
@@ -8808,7 +8823,7 @@ EXAMPLES
   $ bitsocial page-sort install ./my-local-page-sort
 ```
 
-_See code: [src/cli/commands/page-sort/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/page-sort/install.ts)_
+_See code: [src/cli/commands/page-sort/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/page-sort/install.ts)_
 
 ## `bitsocial page-sort list`
 
@@ -8834,7 +8849,7 @@ EXAMPLES
   $ bitsocial page-sort list -q
 ```
 
-_See code: [src/cli/commands/page-sort/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/page-sort/list.ts)_
+_See code: [src/cli/commands/page-sort/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/page-sort/list.ts)_
 
 ## `bitsocial page-sort ls`
 
@@ -8892,7 +8907,7 @@ EXAMPLES
   $ bitsocial page-sort remove @pkcprotocol/active-page-sort --force
 ```
 
-_See code: [src/cli/commands/page-sort/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/page-sort/remove.ts)_
+_See code: [src/cli/commands/page-sort/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/page-sort/remove.ts)_
 
 ## `bitsocial page-sort rm NAME`
 
@@ -9013,7 +9028,7 @@ EXAMPLES
   $ bitsocial reachability disable --purge
 ```
 
-_See code: [src/cli/commands/reachability/disable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/reachability/disable.ts)_
+_See code: [src/cli/commands/reachability/disable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/reachability/disable.ts)_
 
 ## `bitsocial reachability enable`
 
@@ -9033,7 +9048,7 @@ EXAMPLES
   $ bitsocial reachability enable
 ```
 
-_See code: [src/cli/commands/reachability/enable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/reachability/enable.ts)_
+_See code: [src/cli/commands/reachability/enable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/reachability/enable.ts)_
 
 ## `bitsocial reachability setup`
 
@@ -9070,7 +9085,7 @@ EXAMPLES
   $ bitsocial reachability setup --non-interactive
 ```
 
-_See code: [src/cli/commands/reachability/setup.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/reachability/setup.ts)_
+_See code: [src/cli/commands/reachability/setup.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/reachability/setup.ts)_
 
 ## `bitsocial reachability status`
 
@@ -9096,7 +9111,7 @@ EXAMPLES
   $ bitsocial reachability status --json
 ```
 
-_See code: [src/cli/commands/reachability/status.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/reachability/status.ts)_
+_See code: [src/cli/commands/reachability/status.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/reachability/status.ts)_
 
 ## `bitsocial update check`
 
@@ -9113,7 +9128,7 @@ EXAMPLES
   $ bitsocial update check
 ```
 
-_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/update/check.ts)_
+_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/update/check.ts)_
 
 ## `bitsocial update install [VERSION]`
 
@@ -9145,7 +9160,7 @@ EXAMPLES
   $ bitsocial update install --no-restart-daemons
 ```
 
-_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/update/install.ts)_
+_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/update/install.ts)_
 
 ## `bitsocial update versions`
 
@@ -9167,7 +9182,7 @@ EXAMPLES
   $ bitsocial update versions --limit 5
 ```
 
-_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.136/src/cli/commands/update/versions.ts)_
+_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.140/src/cli/commands/update/versions.ts)_
 
 ## Contribution
 
@@ -10717,6 +10732,453 @@ Copyright (C) 2026 Rinse
 
 [GPL-3.0-or-later](https://github.com/Rinse12/askwise-bot/blob/HEAD/LICENSE): you may redistribute and modify it under the terms of the GNU General Public License, version 3 or any later version.
 
+### pkc_community_mirroring_subreddit
+
+Repository: Rinse12/mirror-subreddit-on-pkc
+Source: https://github.com/Rinse12/mirror-subreddit-on-pkc#readme
+Description: ```bash
+
+# pkc_community_mirroring_subreddit
+
+## Running
+
+```bash
+npm install
+cp config.example.json config.json   # edit: subreddit, Redlib instances
+npm run create-signer                # one bot key per mirror, in data/signers/
+npm run dry-run                      # fetches and records into data/dry-run.sqlite, logs what it would publish
+npm start                            # the real thing: needs the community node's RPC at rpcUrl
+npm run republish                    # daemon stopped: purges every mirrored post and queues it again, after a format change
+```
+
+A mirror with `backfillSince` set also mirrors the subreddit's history from Arctic Shift, inside the same daemon (see [Backfill](#backfill)).
+
+As a service on the community node's machine (`loginctl enable-linger $USER` keeps it running while logged out):
+
+```bash
+cp deploy/subreddit-mirror.service ~/.config/systemd/user/
+systemctl --user daemon-reload
+systemctl --user enable --now subreddit-mirror
+journalctl --user -u subreddit-mirror -f
+```
+
+The service assumes the repo is at `~/pkc_community_mirroring_subreddit` and node comes from nvm; adjust `WorkingDirectory` and `PATH` if not. The daemon exits when its ssh tunnel to the node dies (it has, on a server-side ssh restart) and when the RPC connection is lost under it (pkc-js's RPC client never reconnects once the node's `bitsocial` service restarted; it happened 2026-10-31 and stalled publishing for half an hour), so the service's `Restart=always` is what keeps a mirror running unattended.
+
+Mirrors subreddits onto Bitsocial communities. One daemon, one config file, any number of `subreddit → community` pairs. It copies posts and their comment trees, keeps them up to date, and notices when Reddit removes something. The Bitsocial copy stays up and records who removed it and roughly when.
+
+A community can also open on **what Reddit removed**: with `hotSort: "removed-only"` its default page lists only the posts that were removed or have a removed reply, busiest first, and every thread has a flat page of just its removed replies. The r/AskHistorians entry in `config.example.json` is set up that way, with a backfill of the year's removals. It is a view over an ordinary full mirror, done with page sorts that filter on the removal flairs: the same community still has every post under `new`, and the removed items sit in their threads, flaired and annotated, next to what survived. A community that should hold _only_ the removed items (and the posts and parent comments they sat under) is a **removed-only mirror**, `publish: "removed-only"`, see [Publish modes](#publish-modes). A **banned subreddit** is mirrored from the archive alone with `archiveOnly`, see [Backfill](#backfill).
+
+## Config
+
+`config.json`, validated with zod at startup.
+
+```json
+{
+    "rpcSshHost": "my-node",
+    "nodeDir": "/root/subreddit-mirror",
+    "mirrors": [
+        {
+            "subreddit": "AskScience",
+            "signerPath": "data/signers/askscience.json",
+            "commentUpdateDays": 7,
+            "minScore": 0,
+            "authorDeleted": "hide",
+            "maxCommentsPerPost": null,
+            "skipAuthors": ["AutoModerator"]
+        },
+        {
+            "subreddit": "AskHistorians",
+            "signerPath": "data/signers/askhistorians.json",
+            "hotSort": "removed-only",
+            "backfillSince": "2023-07-01T00:00:00Z",
+            "backfillOnly": "removed"
+        },
+        {
+            "subreddit": "NoNewNormal",
+            "signerPath": "data/signers/nonewnormal.json",
+            "archiveOnly": true,
+            "backfillSince": "2021-01-01T00:00:00Z",
+            "backfillOnly": "removed",
+            "publish": "removed-only",
+            "hotSort": "removed-only"
+        }
+    ],
+    "clientUrl": "https://seedit.app",
+    "backends": {
+        "redlib": { "instances": ["http://localhost:8080"] },
+        "reddit-json": { "userAgent": "pkc-mirror/0.1" },
+        "arctic-shift": { "baseUrl": "https://arctic-shift.photon-reddit.com" },
+        "pullpush": { "baseUrl": "https://api.pullpush.io" }
+    }
+}
+```
+
+- `rpcSshHost` / `nodeDir`: the community node's ssh host and an absolute directory there for the sort files. Leave both out to run on the node's machine and use `rpcUrl` (default `ws://localhost:9138`).
+- `name`: optional, the key of the mirror's state in `state.sqlite`, the subreddit by default. Two mirrors of one subreddit (a full one and a removed-only one, say) need distinct names, and each fetches the subreddit for itself. Renaming a mirror orphans its state.
+- `communityAddress`: optional. Set it to mirror into a community already hosted on the RPC node. Leave it out and the daemon creates one on first run and keeps its address in `state.sqlite`.
+- `authorDeleted`: `"hide"` (default) or `"keep"`, see [Removal detection](#removal-detection).
+- `maxCommentsPerPost`: optional. Unset or `null` means no cap. When set, the highest-scored comments are published, plus every removed comment whose text was captured.
+- `skipAuthors`: Reddit accounts whose comments aren't mirrored, case-insensitive. Default `["AutoModerator"]`; see [What gets mirrored](#what-gets-mirrored).
+- `hotSort`: what the community serves as `hot`, the page clients open on. `"reddit-hot"` (default) is Reddit's hot order; `"removed-only"` is the `flaired` filter, only what Reddit removed, busiest threads first, see [Scores](#scores-custom-page-sorts-not-copied-numbers).
+- `replySort`: what a thread shows as its preloaded reply page, the one Seedit renders. `"reddit-best"` (default) is every reply in Reddit's best order; `"removed-only"` is the `flaired-tree` filter: only the replies Reddit removed, in place, with the chain of parents above each, so a full mirror's threads open on their removals the way its front page does with `hotSort: "removed-only"`. The surviving replies are still published and on the thread's other reply pages.
+- `publish`: `"all"` (default) publishes everything captured; `"removed-only"` publishes only what Reddit removed and its context, see [Publish modes](#publish-modes). `context`: with `"removed-only"`, `"ancestors"` (default) also publishes the not-removed comments between the post and a removed reply, `"post"` only the post.
+- `threadSummary`: `false` by default. `true` keeps one pinned bot reply per thread that lists the replies Reddit removed in it, see [Thread summary](#thread-summary).
+- `backfillSince`: optional, an ISO 8601 instant with time and zone (`"2023-07-01T00:00:00Z"`). Set it to mirror the subreddit's history from Arctic Shift back to that instant, see [Backfill](#backfill). `backfillOnly`: `"all"` (default) or `"removed"`, only the threads where something was removed; the archive can tell a removal from mid-2023 on, so a `"removed"` backfill set earlier than that finds nothing older (see [How far back](#backfill)). `archiveOnly`: `true` for a subreddit that can't be read live (banned); needs `backfillSince`.
+- `clientUrl` (top level): the web client that links in bot replies point at, as `<clientUrl>/#/p/<community>/c/<cid>`. Default `https://seedit.app`.
+
+## Runtime layout
+
+- One long-running daemon (`Type=simple` systemd user service, `Restart=always`) handles every mirror.
+- It runs where Reddit can be reached (e.g. a machine next to a Redlib instance), not necessarily where the community node runs. With `rpcSshHost` set, it reaches the node's RPC through an ssh tunnel (as onlycats-poster does), pushes the page sort files to `<nodeDir>/sorts/` on that host at startup, and pushes each community's sort data to `<nodeDir>/sort-data/` after writing it (rsync over ssh). If the tunnel dies, or the RPC connection is lost (the node's `bitsocial` service restarted; the client never reconnects), the daemon exits and systemd restarts it. Without `rpcSshHost` it connects to `rpcUrl` directly and the sorts read the local files.
+- The live tasks of all mirrors run one at a time in a round (the database and the sources' throttles are shared); the [backfill](#backfill) walk is a background loop beside that round. Publishing sends 4 publications at a time (`PUBLISH_CONCURRENCY`): each waits some seconds for the community's verification, and the items of a batch are independent (a reply is offered only once its parent is published), so a batch of 100 goes out in about a minute and a half when the node is idle. A publish or label run takes items for at most 2 min (`PUBLISH_BUDGET_S`) and leaves the rest to its next run, so a node that is slow to verify (see the note on update cost under [Scores](#scores-custom-page-sorts-not-copied-numbers)) can't hold up the thread checks.
+- State lives in one `data/state.sqlite` (`better-sqlite3`, WAL mode) shared by all mirrors. Each row is keyed by its mirror's `name`, so two mirrors of one subreddit keep separate capture and publish state. Each item records where it came from: `origin` is `live` (seen while watching the subreddit) or `archive` (the backfill walk, see [Backfill](#backfill)), and `source` is the backend that first saw it, `redlib <instance>`, `reddit-json`, `arctic-feed` (the comment feed) or `arctic-walk`. A later sighting by another source never changes it. Rows recorded before `source` existed have it only when it follows from `origin` (`arctic-walk`).
+
+    ```bash
+    sqlite3 data/state.sqlite "select origin, source, status, publishStatus, count(*) from items group by 1,2,3,4"
+    ```
+
+- The daemon exports `data/sort-data/<communityAddress>.json` for the page sorts, one file per community (copied to the node with `rpcSshHost`) (see [Scores](#scores-custom-page-sorts-not-copied-numbers)).
+- Signers live in `data/signers/`, one per community.
+
+## The community
+
+The daemon **creates each community on first run** over RPC, owned by that mirror's bot signer, and keeps its settings in sync with the config:
+
+- **Challenge**: the default challenge stays for native users. Every challenge gets `exclude: [{ publicKeys: [<bot key>] }]`, because pkc-js gives moderators and owners no automatic bypass and the bot publishes posts, replies, edits and moderations all the time.
+- **Role**: the bot's address gets the `moderator` role, which lets it set flairs. `features.postFlairs` / `authorFlairs` stay off: flairs set by a moderator aren't checked against an allowed list, while enabling author-chosen flairs would let any native user pick `Reddit mirror`.
+- **Page sorts**: `settings.pages` is set as described in [Scores](#scores-custom-page-sorts-not-copied-numbers).
+
+## What gets mirrored
+
+- **Posts**: title, selftext, and the link as is. Media is **not** re-uploaded. `i.redd.it`, `v.redd.it`, imgur and other links go into the post unchanged.
+- **Comments**: the full tree, keeping the reply structure. Parents are published before children, oldest first. New comments are picked up for `commentUpdateDays` after a post is mirrored.
+- **Author**: the Reddit username goes in `author.displayName` as `u/name`; the text is the Reddit text alone, with no header line. Each community has **one bot signer**, so every mirrored item has the bot's address and its `Reddit mirror` flair. No per-Reddit-user keys, so the mirror never looks like it is the real person.
+- **Skipped authors**: comments by `skipAuthors` (default `["AutoModerator"]`) aren't mirrored, and replies to them go under the nearest mirrored ancestor. An author added later has their published comments purged, and the replies under them are published again.
+- **Flair**: the bot sets its own author flair to `Reddit mirror` once, by a moderation on its first comment, so it shows next to the author of every mirrored post and reply. Native users can't fake it. Post flairs are left for the removal labels.
+- **Backfilled items** (see [Backfill](#backfill)) look the same, with a `Mirrored from the Arctic Shift archive` line appended, so a reader knows the daemon never saw them live.
+
+Bitsocial users reply **natively** next to the mirrored comments. When a Reddit thread gets locked or nuked, the conversation can continue here.
+
+## Publish modes
+
+`publish: "all"` (default) publishes every captured post and comment. `publish: "removed-only"` makes a community that holds **only what Reddit removed**, for a subreddit whose full mirror would be too much or isn't wanted:
+
+- A post or comment is published once its status is `removed` (by mods, admins, or just gone), never when it is up, locked, or deleted by its author. A removed comment whose text was never captured is still published with its placeholder, as in a full mirror.
+- Its **context** goes with it: the post it sits under is always published (a reply needs a post). With `context: "ancestors"` (default) so are the not-removed comments between the post and the removed reply, so it sits in its place in the thread; with `context: "post"` the removed reply hangs directly under the post. Context items look like any mirrored item, with no flair.
+- Everything else is still captured and re-checked, and sits in the database: a comment removed later is published then, with the window the checks recorded.
+- An item **Reddit restores** is an ordinary comment again and is handled as in a full mirror: the flair is cleared and the note dropped, and it stays on the community (purging it would take the native replies under it; the thread stays for its other removals).
+- Both `hotSort` values work: `"removed-only"` lists the threads busiest first, `"reddit-hot"` puts them in Reddit's hot order.
+
+Capture is the same in both modes. A full mirror and a removed-only mirror of the same subreddit are two entries with distinct `name`s, each with its own community, signer and state; they fetch the subreddit independently (sharing captures between mirrors is not done).
+
+## Thread summary
+
+Off by default (`threadSummary: true` turns it on): the bot keeps **one pinned reply per thread with removed replies**, published once and edited whenever what it would say changes (checked every 5 min). It is one line with the count (`14 of 230 comments removed on Reddit so far`, with a breakdown by remover when they differ, and a trailing count of author deletions), then one line per removed reply, most recently removed first: a link to the mirrored copy (`clientUrl`), who removed it and the window. At most 50 are listed, the rest counted. The reply is signed by the bot with the display name `r/<subreddit> mirror`, pinned by a moderation so reply sorts show it first, and has no removal flair, so it never appears on the `flaired` reply page. When every removal in a thread is restored it is edited to say so rather than purged. `npm run republish` purges it with the thread and a fresh one follows.
+
+A publication that pkc-js _rejects_ (e.g. over its 40 kB publication limit) is marked `failed` in the database and logged, not retried. Network errors and timeouts are retried, and so is a _challenge_: the bot never answers one, and being challenged means the exclude isn't in effect for this session (seen once after a node restart, for the life of the daemon process), so the batch stops and the items stay queued. A thread that no live source can load (e.g. a Redlib 404) is retried 10 min later, without holding up the other threads due for a check.
+
+## Scores: custom page sorts, not copied numbers
+
+Reddit scores aren't copied into Bitsocial votes. Votes on the community stay native. Instead, the community runs custom page sorts (pkc-js `settings.pages`, the same mechanism as [@pkcprotocol/active-page-sort](https://github.com/Rinse12/mirror-subreddit-on-pkc)).
+
+Sorts published by each mirror community, set through `settings.pages` by the daemon. The Reddit-score orders are files in `sorts/`; the removed-only pages are [@pkcprotocol/flair-page-sort](https://github.com/Rinse12/mirror-subreddit-on-pkc), a generic flair filter listed once per page with the mirror's removal flairs, whose `dist/` the daemon copies under `sorts/flair-page-sort/` on the node:
+
+| Scope   | Wire name                                                   | File                                                         | Order                                                                                                                             |
+| ------- | ----------------------------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| posts   | `hot` (preloaded, the default view)                         | `hot.js`, or the flair filter with `hotSort: "removed-only"` | Reddit's hot formula on `redditScore + nativeWeight × nativeVotes`, or the `flaired` filter below in its `hot` order              |
+| posts   | `mirrored-reddit-hot`                                       | `mirrored-reddit-hot.js`                                     | Reddit's hot order, published only when `hot` is the filter                                                                       |
+| posts   | `flaired`                                                   | flair filter, `order: "flaired"`                             | **only** posts removed on Reddit or with a removed reply; most recently removed first                                             |
+| posts   | `new`                                                       | `new.js`                                                     | Reddit creation time                                                                                                              |
+| posts   | `removed-first`                                             | `removed-first.js`                                           | posts removed on Reddit first, then Reddit's hot order                                                                            |
+| posts   | `active`                                                    | pkc-js built-in                                              | last native reply, so a client's "active" tab isn't empty                                                                         |
+| replies | `mirrored-reddit-best` (preloaded)                          | `mirrored-reddit-best.js`                                    | Reddit score plus native votes                                                                                                    |
+| replies | `flaired`                                                   | flair filter, `layout: "flat"`, `order: "best"`              | **only** the replies removed on Reddit, flat (a removed answer shows even when its parent is up), in `mirrored-reddit-best` order |
+| replies | `flaired-tree` (preloaded with `replySort: "removed-only"`) | flair filter, `layout: "tree"`, `order: "best"`              | **only** the replies removed on Reddit and the replies above them, nested in place, in `mirrored-reddit-best` order               |
+
+- `nativeWeight` is a public option, default `"1"`.
+- Native Bitsocial posts have no Reddit data. They are scored with the same formulas from their native votes and Bitsocial timestamp, so they mix in instead of sinking.
+- **The `flaired` pages are a flair filter, nothing Reddit-specific**: [@pkcprotocol/flair-page-sort](https://github.com/Rinse12/mirror-subreddit-on-pkc), one file listed once per page. The daemon gives every entry the four removal flairs as its `flairs` option (`Removed by mods on Reddit`, `Removed by Reddit admins`, `Removed on Reddit`, `Removed or deleted on Reddit`, `REMOVAL_FLAIRS` in `src/content.ts`; author deletions and locks are left out), the wire key as `sortName`, and an `order`: `flaired` (most recently removed first, from `flairedAt` in the sort data) or `hot` (**busiest threads first**, the number of replies present under the post, most recently removed first among equals; votes and age play no part, so a big removed thread stays at the top until a bigger one comes along). A post is kept when it or any reply under it is flaired. The reply pages are the flat `flaired` (`layout: "flat"`, only the flaired replies, one list) and the nested `flaired-tree` (`layout: "tree"`: a reply stays when it or any reply under it is flaired, and a declined reply takes its subtree with it, so the thread is cut down to its removed replies and the parent chains above them), both in `best` order. Every option but the data path is public, so a client can read `flairs` off `community.pageSorts` and tell what the page is about; the package's README has the contract.
+- **Why the built-in names.** The wire key of a sort is its file's `sortName`, and Seedit's sort menu is hard-coded to `hot`, `new`, `active` and `top`, opening on `hot` (`src/constants/sort-types.ts`); it never asks for a custom name. A community that publishes only custom names has nothing to serve a Seedit request once it outgrows one page. So the post sorts take the built-in names, and `hotSort: "removed-only"` is the one lever that makes a community _open_ on the removed view: the filter is published as `hot`. `top` is not served (nothing meaningful to put there yet).
+- **What clients do with the order** (bitsocial-react-hooks 0.1.62, 2026-10-30; Seedit pins 0.1.57, same code): a post feed keeps the community's order for a path file, under a custom name or a built-in one (`isBuiltInPostSortType` is false for a `path:` entry, `src/lib/page-sorts.ts`), and for any name it has no sorter for. A _reply_ feed has no such check: a reply file published as `best` would be re-sorted by the client's own `best` (native votes only), which is why the reply sort keeps its own name. Seedit renders the preloaded reply page as the community ordered it, whatever its key, and offers no reply sort switch, so the flat `flaired` reply page is for clients that list `community.pageSorts`, and `replySort: "removed-only"` is the one lever that makes a thread _open_ on its removals in Seedit: `flaired-tree` is published as the preloaded reply sort and `mirrored-reddit-best` moves off the preload.
+
+**Where the scores come from.** A page sort's `score()` is synchronous and gets no database access. So the daemon writes `data/sort-data/<communityAddress>.json`, `{ "<cid>": { "score", "createdUtc", "status", "removedBy", "flairedAt" } }` (`flairedAt`: when the daemon first saw the item gone, null while it is up), atomically (temp file + rename) whenever scores change. Each sort file holds a module-level `Map` that it refreshes from that file every 60 s _outside_ `score()`, and `score()` only looks the cid up. The file's path is a private option, so it isn't published in `community.pageSorts`. This assumes clients don't re-sort these pages themselves, and that the file reaches the community node's filesystem (directly, or pushed with `rpcSshHost`). Post pages are rebuilt at least every 15 min, so Reddit scores show up on the community with at most that much lag.
+
+**Reply pages and update cost.** A comment's reply pages are part of its CommentUpdate, which pkc-js only recalculates when the comment is flagged. It is flagged by a new vote, edit, moderation or reply on it, by a change below it in the thread, and also whenever _any other comment by the same author_ is flagged, because CommentUpdates carry per-author aggregates. Every mirrored item has the bot as its author, so as long as the mirror publishes anything (a new reply, a label), every mirrored CommentUpdate is recalculated in that cycle, reply pages included, with the sort data current at that moment. Reply order therefore keeps up with Reddit scores while a subreddit is active. The cost is that each update cycle recalculates every mirrored item, so the node's work per cycle grows with the total number of items mirrored into the community. Changing `settings.pages` (which an upgrade that renames sorts does on the daemon's next start) regenerates every CommentUpdate once.
+
+**Changed sort files need a restart of the node's daemon.** pkc-js imports a `path:` sort file with a plain dynamic `import()`, and Node keeps an ES module in memory for the life of the process, so the bitsocial daemon on the node runs the version of each sort file (and of every module it imports, `sort-data.js` included) it loaded first. A new file that imports a _new export_ of an old file fails to load (`ERR_FAILED_TO_IMPORT_PAGE_SORT_FILE_FACTORY`, "does not provide an export named …"), and a file that once failed stays failed. After pushing changed sorts, restart the daemon on the node (`systemctl restart bitsocial` with bitsocial-cli's service) before the mirror daemon starts, or keep new code in new files (`reddit-best.js` exists for that reason).
+
+## Removal detection
+
+The core feature, and it applies to **mirrored replies as much as to mirrored posts**. A thread that stays up while moderators quietly remove half its comments is the common case.
+
+**Capture first.** A removal is only worth showing if the text was saved before it went. Redlib has no subreddit-wide comment feed, so new comments are found by re-reading every active thread (posts younger than `commentUpdateDays`) on the re-check schedule below; the same read that confirms removals finds new comments. Arctic Shift's comment search is polled every few minutes as a second feed, to catch comments removed between two reads. Everything is saved locally on sight, separate from publishing it. Comments removed before either source saw them (AutoMod) are lost.
+
+**The capture rate bounds everything on fast-moderated subreddits.** On r/AskHistorians most answers are removed within minutes of being posted. The thread re-read runs every 10 min at best, and Arctic Shift saves a comment about 2 h after posting (measured 2026-10-30; it was 1–2 days behind in mid-October). An answer removed in its first minutes is captured only when one of those reads happened to fall inside that window, so a removed-only view of such a subreddit shows a sample of the removals, not all of them, and the proportion depends on how fast the mods are. A removed comment nobody captured is still recorded (`body` null) and published as `[text not captured before it was removed]` with its flair and window, so the volume is visible even when the text isn't; the backfill skips those (see [Backfill](#backfill)).
+
+**Re-checks.** Every mirrored post and reply is re-checked on a schedule that slows down with age: every 10 min for the first 6 h, hourly until day 2, then daily until `commentUpdateDays`.
+
+- Re-checks use Reddit's batched lookup by ID (`/api/info`, 100 IDs per request) when it is reachable.
+- Otherwise the thread is re-read through Redlib, following its "More replies" links. Redlib leaves a removed or author-deleted comment out entirely when nothing was posted under it, with no `[removed]` marker; one that still has replies stays in the tree as a tombstone (`[removed] — view removed comment`, author `u/[deleted]`), which the parser reads as removed or deleted. A reply gone from the thread page is recorded as **`missing`**, and its own permalink is then loaded: if the comment isn't there either, it is gone. A comment that is only collapsed is never flaired.
+
+For each item it records:
+
+- **Who removed it**, as precisely as the source allows:
+    - `reddit-json` posts: Reddit's `removed_by_category` (`moderator`, `automod_filtered`, `reddit` / `anti_evil_ops` (admins), `copyright_takedown`, `deleted` (the author)).
+    - `reddit-json` comments: `[removed]` (mods/admins) vs `[deleted]` (author).
+    - Redlib posts: `[removed]`, and "moderator" when Reddit replaced the title with `[ Removed by moderator ]`.
+    - Redlib comments: only that it is gone; removed and author-deleted look the same. If Arctic Shift's 36 h re-check later labels it `removed` or `deleted`, the precise label replaces the vague one.
+        - Arctic Shift saves a comment within seconds and loads it once more about 36 h later; if it is gone then, `_meta.removal_type` says `removed` or `deleted`. A comment already `[removed]` when it was first saved was removed by AutoMod or a filter.
+        - **Limits:** the label arrives about 36 h after posting (the re-check is at 36 h sharp, measured 2026-10-30), and a comment removed after that re-check is never labelled. Around 2026-10-15 Arctic Shift recorded no `removal_type` for a while; as of 2026-10-30 it does again, for posts as well as comments (`removed`, `deleted`, `reddit`), and comments from that gap keep `Removed or deleted on Reddit`.
+        - The removal _time window_ never depends on Arctic Shift: it comes from the daemon's own checks (`lastSeenUpAt`, `goneSeenAt`). Only _who_ removed it comes later.
+- **When**, as a window between the last check that saw it up and the first check that saw it gone: `removed by moderators between 14:00 and 14:10 UTC, 3 h 12 min after posting`. The window is as precise as the re-check schedule; the doc shown to users says it is a window. For a backfilled item the two checks are Arctic Shift's two reads, about 36 h apart.
+- Whether it was **locked** instead of removed.
+
+How it shows up on the community, for posts and replies alike:
+
+1. A **flair** set by the bot as moderator, and cleared again if Reddit restores the item. Removal flairs: `Removed by mods on Reddit`, `Removed by Reddit admins`, `Removed on Reddit` (mods or admins, not which), `Removed or deleted on Reddit` (a comment that vanished from Redlib, until a precise label arrives), `Deleted by author on Reddit`, `Locked on Reddit`. pkc-js doesn't let moderators lock replies, so for a reply "locked" is only a flair.
+2. A **removal note in the mirrored comment itself.** The bot signed the comment, so it publishes a CommentEdit that appends a line: who removed it, the time window, how long after posting, and the last score (plus, for a post, the comment count) seen before removal. Editing in place keeps a removed reply's note next to the reply instead of adding a bot reply under every removed comment.
+3. Items **deleted by their author** are flagged but not highlighted. With `authorDeleted: "hide"` (default) the text is edited down to `[deleted by author on Reddit]`. With `"keep"` it stays. The author chose to delete, which is a different case from moderator removal. A comment only known as "removed or deleted" stays visible until a source says which.
+
+## Fetch backends
+
+Behind one interface (`listNew`, `fetchThread`, `checkIds`), so the rest of the daemon doesn't care where data comes from (which backend first saw an item is kept in its `source` column, see [Runtime layout](#runtime-layout)):
+
+- **`redlib`**: an array of Redlib instances. Redlib has no JSON API: it renders Reddit's `.json` as HTML, which the daemon parses with cheerio (tested against snapshots of Redlib 0.40.0 in `tests/fixtures/`). Bodies come as rendered HTML and are converted back to markdown with turndown, with Redlib's proxied links (`/img/`, `/preview/pre/`, `/vid/`, …) mapped back to `i.redd.it`, `preview.redd.it`, `v.redd.it`, …. Markdown from Arctic Shift or `reddit-json` replaces the converted text when available. An instance that times out, returns 429 or an error page goes on a cooldown (1 min, doubling up to 1 h) and the next one is tried.
+- **`reddit-json`**: the unauthenticated `.json` endpoints. The last resort for listings, and the preferred way to re-check by ID.
+- **`arctic-shift`**: archive API. A second feed of new comments, a source of original markdown, of `removal_type` for comments Redlib can only call gone, and the source of the [backfill](#backfill). It saves items about 2 h after posting (measured 2026-10-30; 1–2 days behind in mid-October 2026) and re-reads each one once, 36 h after posting, so on its own it can only time a removal to that 36 h window. `/api/{posts,comments}/search` pages by 100 with exclusive `before` / `after` bounds on `created_utc`; `/api/{posts,comments}/ids` takes 500 ids.
+
+- **`pullpush`**: archive API, a fallback source of text only, asked when a comment vanished and neither our reads nor Arctic Shift saved it. It saves items within seconds but never re-checks them, so it can't say who removed something.
+
+**Repeat lookups.** The Arctic Shift comment feed keeps a cursor, so no comment is fetched twice. Text for an item we lack is looked up at most 3 times. Who removed a vanished comment is asked at most 3 times, a day apart: Arctic Shift re-checks each comment only once, so asking more often gains nothing.
+
+**Rate limits.** Every host gets its own throttle: one request at a time, a minimum spacing, and a backoff when it pushes back (429, or Arctic Shift's 422 "Maybe slow down a bit"). The backoff lasts as long as the host's `X-RateLimit-Reset` / `Retry-After` says, else 1 min doubling up to 1 h, and requests during it fail at once so the caller can use another source.
+
+| Host                  | Its limit                                                                         | Spacing | Expected use (one mirror)                                                                                                                                                           |
+| --------------------- | --------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Redlib (own instance) | none                                                                              | 1 s     | ~20 thread reads per 10 min at peak                                                                                                                                                 |
+| `reddit-json`         | ~10/min unauthenticated                                                           | 6 s     | fallback only                                                                                                                                                                       |
+| Arctic Shift          | dynamic; "a couple requests per second" is fine                                   | 2 s     | ~30–60/h: comment feed every 2–3 min, batched lookups of up to 500 ids; while backfilling, back to back at the throttle: 1 request per archived post plus 1 per 100 of its comments |
+| PullPush              | 15/min soft, 30/min hard, 1000/h (as its homepage used to state; not re-verified) | 4 s     | a few per hour, batched 100 ids                                                                                                                                                     |
+
+Reddit's official API has paid tiers and terms that don't allow this use.
+
+**Reddit is closing its public Data API** (no new access after Oct 31 2026, unregistered apps cut from Jan 12 2027, closed by March 2027). Redlib, `reddit-json` and Arctic Shift all depend on it. The backend interface is there so a new source (e.g. an `old.reddit.com` HTML scraper) can be added without touching the rest. Whatever happens to live fetching, the community keeps what was captured and its native discussion.
+
+Reddit IDs are stored as strings with their `t1_` / `t3_` prefix and no assumed length (comment IDs became 13 characters in Oct 2026).
+
+## Backfill
+
+With `backfillSince` set, the daemon also mirrors the subreddit's history from Arctic Shift, so a new community is interesting on day one and the removals of the past months are there to browse. The `backfill` walk is its own loop beside the live tasks, paced by the Arctic Shift throttle alone (one request per 2 s, one per thread: about 1,500 threads an hour, ten days or more of r/AskHistorians), and the live path is never held up by it: live items are published before backfilled ones, and history is published newest first. A thread the live path recorded while the walk was fetching its comments keeps the live copy.
+
+- **Walk**: `/api/posts/search` by subreddit, newest first, from now back to `backfillSince`, 100 posts a page, then every comment of each thread (`/api/comments/search?link_id=`). The position (`backfillCursor`, the `created_utc` the next page must be older than) is in the `mirrors` table, so a restart resumes and the backfill is done once the cursor reaches `backfillSince`. Lowering `backfillSince` later continues from where it stopped. A thread the live path already knows is left alone; `minScore`, `maxCommentsPerPost` and `skipAuthors` apply as they do live.
+- **How far back**: as far as Arctic Shift can tell a removal. Its `_meta.removal_type` comes from the re-read, which it started in mid-2023: on r/AskHistorians none of the comments of June 2023 carry it, a third of the removed ones of July 2023 do, coverage is patchy until early 2024 and complete since (sampled 2026-10-31). Before that a removed comment is either `[removed]` (text lost, nothing to publish) or its text with no sign it was removed, so a `backfillOnly: "removed"` walk finds nothing older and `backfillSince` earlier than `2023-07-01T00:00:00Z` only costs requests. A full (`"all"`) backfill of older years would need the live checks to find out what is gone, see TODO.
+- **`backfillOnly: "removed"`**: only threads where the post was removed, or a comment whose text the archive kept was. Every thread still costs one comments request to find out, but only the threads with removals are published. The default `"all"` mirrors every thread in the window; a year of a large subreddit is a lot of items, and each one adds to the node's per-cycle cost (see [Scores](#scores-custom-page-sorts-not-copied-numbers)).
+- **What was removed, and when**: taken from the archive alone, never from a live re-check (`/api/info` at 6 s per 100 ids is too slow for a year of comments, and Reddit's API is closing). Arctic Shift reads an item about 2 h after posting and again 36 h after; `_meta.removal_type` (`removed`, `deleted`, `reddit`) says what the second read found. A removed item whose first read kept the text is published with its removal flair and the note `Mirrored from the Arctic Shift archive. Removed on Reddit between <first read> and <second read> UTC, …`, the honest window. A removed comment already `[removed]` at the first read has no text and is recorded but **not published** (its replies hang under the nearest published ancestor, like replies to a skipped author). A removed post keeps its title, so it is published even when the archive only has `[removed]` for its text, with the window `within N min of posting`; on r/AskHistorians the question is the title, and a quickly removed question is the common case. Author deletions follow `authorDeleted`. Threads the archive hasn't re-read yet (younger than 36 h) go into the live re-check queue instead, so they get the daemon's own window.
+- **Every backfilled item** carries the `Mirrored from the Arctic Shift archive` line, removed or not. It is not marked with pkc-js's `archived` moderation flag: that flag rejects every new publication under the post, and native replies under old threads are half the point.
+- **Banned subreddits** (`archiveOnly: true`, with `backfillSince`): nothing in the walk touches Reddit, so a subreddit Reddit took down is mirrored from the archive alone. An archive-only mirror runs no post discovery, no thread re-checks and no Arctic Shift comment feed, and never puts a thread in the live re-check queue: a thread the archive hadn't re-read (younger than 36 h when archived, or banned before the second read) is published from the first read, with no removal window. Text lookups, removal labels, publishing and the sort data run as usual. The walk goes from the daemon's first start back to `backfillSince`, once; posts archived after that first start are never seen, which is fine for a banned subreddit and wrong for a live one you merely can't reach (see TODO).
+- Not done: Pushshift dumps as a source.
+
+## TODO / later
+
+- **Forward walk for archive-only mirrors**: an archive-only mirror of a subreddit that still gets posts (quarantined, or unreachable live) would need the walk to also look for posts archived after its first start, e.g. a second cursor that moves forward from the start time whenever the backward walk is done.
+- **Shared captures**: two mirrors of one subreddit fetch it twice; capture once per subreddit and publish per mirror.
+- **Older history**: before mid-2023 the archive has the text of many comments later removed but no `removal_type`; a walk that mirrors every thread (`"all"`) and lets the live checks find what is gone could reach further back, at one Redlib read per thread.
+- **Cheaper removed-only walk**: page the subreddit's comment stream (100 comments per request, ~4 h of r/AskHistorians) and fetch only the threads where a removed comment kept its text, instead of one comments request per thread.
+- **Takedown command** for copyright or personal-data requests about a single mirrored item.
+- **Claiming**: a Reddit user posts a code from their Reddit account and from then on gets a `verified u/name` flair on their native Bitsocial posts.
+- Two-way: nothing is ever posted _back_ to Reddit. Keep it that way.
+- Optional: posting removal events to a Telegram channel through the Bitsocial Telegram bots.
+
+### @pkcprotocol/flair-page-sort
+
+Repository: pkcprotocol/flair-page-sort
+Source: https://github.com/pkcprotocol/flair-page-sort#readme
+Description: A flair filter for pkc js communities: a page that holds only the posts or replies carrying a configured flair, or with one somewhere under them, as a configurable page sort (pkc js docs/protocol/page sorts.md). The community decides the page, not the client, so every client sees the same filtered page under the same key.
+
+# @pkcprotocol/flair-page-sort
+
+A flair filter for [pkc-js](https://github.com/pkcprotocol/pkc-js) communities: a page that holds **only** the posts or replies carrying a configured flair, or with one somewhere under them, as a configurable page sort ([pkc-js `docs/protocol/page-sorts.md`](https://github.com/pkcprotocol/pkc-js/blob/master/docs/protocol/page-sorts.md)). The community decides the page, not the client, so every client sees the same filtered page under the same key.
+
+It was built for a community that mirrors a subreddit and flairs what Reddit removes, so the board can open on the removals and a thread can show only its removed replies in place. Nothing in it is Reddit-specific: any community whose moderators flair things (a `Needs sources` queue, a `Resolved` archive, a `Featured` page) can serve those flairs as a page.
+
+## What it does
+
+One file, listed once per page the community wants. Each entry says what to match and how to order, and the entry's own `sortName` says what key to publish under:
+
+- **Keep rule.** A comment is on the page when it carries one of the configured flairs. On a `tree` layout, which is what posts always get, it is also kept when any comment under it carries one: a post with one removed reply is on the removed-posts page, and on a nested reply page a removed reply shows in its place with the chain of replies above it, since a declined reply takes its subtree with it. A `flat` reply page keeps only the flaired replies themselves, one level, so a removed answer shows even when its parent is not.
+- **Orders.** `flaired`: most recently flaired first (the default; needs the data file, else creation time). `new`: newest first. `hot`: most replies present under it first, the most recently flaired first among equals, votes playing no part, so a busy removed thread stays up until a busier one comes along. `best`: a score from the data file plus weighted native votes, older first among equals.
+- **Keys.** The page publishes under `flaired` unless the `settings.pages` entry sets its own `sortName`, which is pkc-js's field, not an option of this package. A community that wants clients to open on the filter publishes it as `hot` (Seedit opens on `hot` and never asks for a custom name), and keeps the full order under another key.
+- **Flairs.** A flair set by a moderator (`commentUpdate.flairs`) replaces the author's (`comment.flairs`), as pkc-js documents. A reply the community removed keeps its flair and still counts for the comments above it.
+
+## Requirements
+
+- pkc-js `>=0.0.143` (configurable page sorts, `settings.pages`, tombstone replies passed to `score`, and the `sortName` field on a `settings.pages` entry, pkc-js#483, which is what lets one file be listed under several keys).
+- Node `>=22` on the machine running the community. The file is imported by the community process.
+
+## Install and configure on your community
+
+```bash
+npm install @pkcprotocol/flair-page-sort
+```
+
+### With pkc-js (TypeScript), running your own node
+
+Register the factory under `pageSorts` and name it in `settings.pages`. This example is the removed-posts board: the front page (`hot`) lists the threads with a removal, busiest first; `flaired` is the same set most recently removed first; inside a thread the preloaded reply page is the removed replies in place, and `flaired` is the flat list of them.
+
+```ts
+import PKC from "@pkcprotocol/pkc-js";
+import flairPageSort from "@pkcprotocol/flair-page-sort";
+
+const pkc = await PKC({ pageSorts: { "@pkcprotocol/flair-page-sort": flairPageSort } });
+const community = await pkc.createCommunity({ address: "yourboard.bso" });
+const flairs = "Removed by mods on Reddit,Removed by Reddit admins";
+await community.edit({
+    settings: {
+        ...community.settings,
+        pages: {
+            posts: [
+                { name: "@pkcprotocol/flair-page-sort", sortName: "hot", options: { flairs, order: "hot" }, preloaded: true },
+                { name: "@pkcprotocol/flair-page-sort", options: { flairs, order: "flaired" } },
+                { name: "new" }
+            ],
+            replies: [
+                { name: "@pkcprotocol/flair-page-sort", sortName: "flaired-tree", options: { flairs, layout: "tree", order: "best" }, preloaded: true },
+                { name: "@pkcprotocol/flair-page-sort", options: { flairs, layout: "flat", order: "best" } },
+                { name: "best" }
+            ]
+        }
+    }
+});
+```
+
+`settings` is replaced wholesale on edit, so pass the existing settings along. An entry without a `sortName` publishes under `flaired`. Two entries resolving to the same key under one scope are rejected (`ERR_PAGE_SORT_DUPLICATE_SORT_NAME`), so when the file is listed more than once under a scope, all but one need their own `sortName`.
+
+### By file path
+
+A `path` entry loads a file from the filesystem of the process running the community (the RPC server, under RPC). Point it at this package's entry file; the same options apply:
+
+```ts
+{
+    path: "/absolute/path/to/node_modules/@pkcprotocol/flair-page-sort/dist/index.js",
+    sortName: "hot",
+    options: { flairs: "Removed by mods on Reddit", order: "hot" },
+    preloaded: true
+}
+```
+
+The file imports its neighbours in `dist/` by relative path and nothing else, so copying the `dist/` directory to the community's machine is enough. A `path` entry publishes no `name` in `community.pageSorts`.
+
+### With bitsocial-cli
+
+Until `bitsocial page-sort install` ships, use the `path` form against the RPC server's filesystem:
+
+```bash
+bitsocial community edit yourboard.bso \
+  '--settings.pages.posts[0].path' /absolute/path/to/node_modules/@pkcprotocol/flair-page-sort/dist/index.js \
+  '--settings.pages.posts[0].options.flairs' 'Removed by mods on Reddit' \
+  '--settings.pages.posts[0].sortName' hot \
+  '--settings.pages.posts[0].options.order' hot \
+  '--settings.pages.posts[0].preloaded' true
+```
+
+### Options
+
+Page sort options are strings. They are **public by default**: everything in `options` is published in `community.pageSorts.<scope>.<key>.publicOptions` unless its name is listed in the entry's `privateOptions`.
+
+| Option | Required | Published | Default | Description |
+|---|---|---|---|---|
+| `flairs` | **yes** | yes, keep it so | | Comma-separated flair texts, trimmed, matched exactly and case-sensitively. A comment needs one of them, on itself or (posts, tree pages) on a comment under it. An entry without one is rejected: it could never put anything on the page |
+| `order` | no | yes | `flaired` | `flaired`, `new`, `hot` or `best`, see above |
+| `layout` | no | yes | `tree` | Reply pages: `tree` (nested, a reply stays when it or any reply under it is flaired) or `flat` (one level, only the flaired replies). Posts are always kept by the tree rule |
+| `sortDataPath` | no | **list it in `privateOptions`** | none | Path of the optional data file on the community's machine, see below |
+| `nativeWeight` | no | yes | `1` | `best` only: how much one native vote counts against one unit of the data file's score. A number |
+| `maxAge`, `pinnedFirst`, `exclude*` | no | always (reserved) | pkc-js's per-scope defaults | pkc-js reserved options, applied by pkc-js to the comments the sort ranks before `score` runs. They cannot be made private |
+
+`sortName` is not an option: it goes on the entry, next to `name`. pkc-js rejects an `options.sortName` as an undeclared option (`ERR_PAGE_SORT_OPTION_NOT_DECLARED_IN_OPTION_INPUTS`).
+
+Keep `flairs` public: a UI reads it off `publicOptions` to tell what the page is about and to mark the matching comments, and most UIs never install this package.
+
+### The data file
+
+Optional. Without it the filter works as described and the orders use what the entry carries: the comment's own timestamp for `flaired` and `new`, native votes alone for `best`. With it, the community's owner can rank by things pkc-js does not know, such as when a flair was set or a score from elsewhere:
+
+```json
+{
+    "QmcidOfOneComment": { "score": 42, "createdUtc": 1793296000, "flairedAt": 1793299600 },
+    "QmcidOfAnother": { "score": null, "createdUtc": 1793200000, "flairedAt": null }
+}
+```
+
+Keyed by the comment's CID. Every field is optional: `score` (a number for `best`), `createdUtc` (unix seconds, used by `new` and as the tie-break), `flairedAt` (unix seconds, when the flair was set, for `flaired` and the `hot` tie-break). The file is read when the entry is loaded and re-read in the background every 60 seconds, never inside `score`; write it atomically (temp file and rename). A missing or broken file leaves the last good content.
+
+### Validation
+
+The entry is validated when the community is created, on every edit (rejecting the whole write) and on start. This package rejects:
+
+- No `flairs`, or a list holding no text (`""`, `" , "`). More than 64 flairs, or one over 128 characters.
+- An `order` or `layout` outside the lists above, and a `nativeWeight` that is not a number.
+
+The entry's `sortName` is validated by pkc-js, not here.
+
+Failures surface as `ERR_PAGE_SORT_SETTINGS_VALIDATION_FAILED` inside pkc-js's aggregated `ERR_PAGE_SORT_SETTINGS_VALIDATION_FAILED_FOR_PAGE_SORTS`.
+
+### What is published
+
+```ts
+community.pageSorts = {
+    posts: {
+        hot: {
+            name: "@pkcprotocol/flair-page-sort", // absent for a path entry
+            description: "Only the comments that carry one of the configured flairs, or (posts, and replies on a tree page) have one under them; ...",
+            publicOptions: {
+                pinnedFirst: "true",
+                excludeRemovedComments: "true",
+                excludeDeletedComments: "true",
+                excludeCommentPendingApproval: "true",
+                excludeCommentWithApprovedFalse: "true",
+                order: "hot",
+                layout: "tree",
+                nativeWeight: "1",
+                flairs: "Removed by mods on Reddit,Removed by Reddit admins"
+            }
+        }
+    }
+};
+```
+
+## For UI developers
+
+- **Know what a page is.** `community.pageSorts.<scope>.<key>.publicOptions.flairs` says which flairs the page is about. A page whose `name` is this package (or whose options carry `flairs`) is a filter: show it as such, not as a full feed.
+- **Mark the matching comments.** `hasFlair(entry, new Set(splitFlairs(publicOptions.flairs)))` is the package's own test, with a moderator's flairs overriding the author's. `flairTexts(entry)` lists what a comment carries.
+- **Re-sort a page locally** (optional). `flairScore(data, { comment, commentUpdate, options, replies })` is the scorer on its own: pass the published `publicOptions` as `options`, an empty `Map` as `data` (the file is private to the community), and for `tree` or `hot` the comment's descendants walked from the reply pages, tombstones included, as pkc-js describes under "Client side". Without the data file the `flaired` order degrades to creation time and `best` to native votes; the filter itself reproduces exactly.
+
+## Exports
+
+| Export | What |
+|---|---|
+| `default`, `flairPageSort` | The factory: `sortName`, `scope` (either), `flat`, `requireReplies`, `optionInputs`, `score`, `validatePageSortSettings` |
+| `flairScore(data, input)` | The scorer alone, for re-sorting on a client |
+| `hasFlair`, `flairTexts`, `splitFlairs`, `isPresent` | The matching and the "reply present on the community" test the `hot` order uses |
+| `FLAIRS_OPTION`, `ORDER_OPTION`, `LAYOUT_OPTION`, `SORT_DATA_PATH_OPTION`, `NATIVE_WEIGHT_OPTION` | The option names |
+| `ORDERS`, `LAYOUTS`, `DEFAULT_SORT_NAME`, `DEFAULT_ORDER`, `DEFAULT_LAYOUT` | The lists and defaults |
+| `sortData(path)`, `resetSortData()` | The data file cache (tests) |
+| types | `SortDataEntry`, `FlairCommentLike`, and pkc-js's page sort types re-exported |
+
+## Development
+
+```bash
+npm install
+npm run typecheck
+npm run build
+npm test
+```
+
+Tests are unit tests of the factory and the scorer against pkc-js's own types (`test/unit/fixtures.ts`), with the data file written to a temp directory. Commits follow conventional commits (commitlint runs on `commit-msg`); a push to `master` that passes CI is released and published by `release.yml`.
+
+## License
+
+GPL-3.0-or-later.
+
 ### 5chan Board Manager
 
 Repository: bitsocialnet/5chan-board-manager
@@ -11867,15 +12329,25 @@ Viewers connect to channels purely peer-to-peer, exactly like 5chan users connec
 
 Repository: bitsocialnet/infinipedia
 Source: https://github.com/bitsocialnet/infinipedia#readme
-Description: Infinipedia is an idea for an encyclopedia built on Bitsocial that nobody owns. Editorial groups each maintain their own version of the encyclopedia, every revision is signed by its author, any version can be forked, and readers choose whose versions they trust. No foundation, company or AI model decides what the encyclopedia says.
+Description: An idea for an encyclopedia on Bitsocial that nobody owns.
 
 # Infinipedia
 
-**Infinipedia is an idea for an encyclopedia built on Bitsocial that nobody owns.** Editorial groups each maintain their own version of the encyclopedia, every revision is signed by its author, any version can be forked, and readers choose whose versions they trust. No foundation, company or AI model decides what the encyclopedia says.
+An idea for an encyclopedia on Bitsocial that nobody owns.
 
-> **Status: idea stage.** This repository reserves the name and collects the design. Nothing here is built. It fits [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5), the long tail of Bitsocial clients, and depends on earlier phases: public RPCs, `.bso` names, an indexer and, for voting and payments, Bitsocial Chain.
+[How it could work](https://github.com/bitsocialnet/infinipedia/blob/HEAD/how-it-could-work.md) · [Open questions](https://github.com/bitsocialnet/infinipedia/blob/HEAD/open-questions.md) · [Logo](https://github.com/bitsocialnet/infinipedia/blob/HEAD/design/logo/README.md)
 
-## The Thesis
+Editorial groups each maintain their own version of the encyclopedia, and readers choose whose versions they trust. No foundation, company or AI model decides what the encyclopedia says.
+
+- **Plural versions.** Each group publishes its own version of the articles it edits, over a shared Wikipedia baseline.
+- **Signed revisions.** Every revision is signed by its author and names its parent, so history is verifiable.
+- **Forkable.** Anyone can fork any version and start a group of their own.
+- **The reader decides.** On a contested article, the reader sees which versions disagree and where.
+
+> [!NOTE]
+> **Idea stage.** This repository reserves the name and collects the design. Nothing here is built. It fits [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5), the long tail of Bitsocial clients, and depends on earlier phases: public RPCs, `.bso` names, an indexer and, for voting and payments, Bitsocial Chain.
+
+## The thesis
 
 Wikipedia's text is already impossible to delete. It is licensed CC BY-SA 4.0, published as public dumps, copied offline by Kiwix and has been mirrored on IPFS. What is centralized is the editorial process: one community of editors and admins settles contested articles, decides which sources count as reliable and publishes one version of each title.
 
@@ -11884,7 +12356,7 @@ Grokipedia centralizes that process further. Its articles are written by one com
 Neither problem is solved by hosting the same single version somewhere harder to take down. Infinipedia makes the version plural instead:
 
 | | Wikipedia | Grokipedia | Infinipedia |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Who writes | Volunteer editors | Grok, xAI's model | Competing editorial groups: human, AI-assisted or AI-run |
 | Who settles contested articles | Wikipedia's editors and admins | xAI | Each group for its own version; the reader picks between groups |
 | Versions per article | One | One | One per group that edits it, plus the baseline |
@@ -11894,30 +12366,30 @@ Neither problem is solved by hosting the same single version somewhere harder to
 
 The goal is not an unbiased encyclopedia. Every editor has views. The goal is that biases are plural and visible: on a contested article, the reader sees that versions disagree, sees exactly where, and decides whom to trust.
 
-## Compare Versions
+## Compare versions
 
 The feature neither Wikipedia nor Grokipedia can offer is the comparison view. For any article, the client shows:
 
-- the version from the reader's default group,
-- how many other groups have their own version, and which ones,
-- a diff between any two versions, including the Wikipedia baseline,
-- each version's signed history: who changed what, and which group accepted it.
+- The version from the reader's default group.
+- How many other groups have their own version, and which ones.
+- A diff between any two versions, including the Wikipedia baseline.
+- Each version's signed history: who changed what, and which group accepted it.
 
 Uncontested articles, which are most of them, look like an ordinary encyclopedia. Contested ones show the disagreement instead of hiding it behind one group's decision.
 
-## Why Now
+## Why now
 
 Earlier attempts at a plural or decentralized encyclopedia, such as Citizendium and Larry Sanger's [Encyclosphere](https://encyclosphere.org/), ran into the same wall: maintaining millions of articles takes thousands of editors, and the editors stayed on Wikipedia.
 
 AI changes that cost. Grokipedia showed that one company with a model can produce millions of articles within months. A small editorial group with an AI writer can now maintain a full version of the encyclopedia and spend its human effort on the articles it actually disagrees about. Infinipedia also does not ask groups to rewrite everything: every group starts from the Wikipedia baseline and only publishes the articles it changes. See [how-it-could-work.md](https://github.com/bitsocialnet/infinipedia/blob/HEAD/how-it-could-work.md#the-baseline-and-overlays).
 
-## What It Is Not
+## What it is not
 
 - **Not a mirror.** Mirroring Wikipedia on IPFS was done years ago. It shows that hosting is easy and that a mirror nobody updates goes stale.
 - **Not one community per article.** Every Bitsocial community needs an always-online node. Millions of articles would mean millions of always-online keys, which in practice means one operator. Communities are editorial groups, so their number grows with editors, not articles.
 - **Not a Grokipedia mirror.** Grokipedia content is not imported. Its license is revocable and there is no official dump.
 
-## Why IPFS, Not a Blockchain
+## Why IPFS, not a blockchain
 
 A blockchain exists to make everyone agree on one shared state. Infinipedia is designed so nobody has to agree: each group decides its own version and readers choose. Putting articles on a chain would bring back one official version decided by validators or token holders, charge a fee for every edit, and make every node store millions of articles.
 
@@ -11939,56 +12411,72 @@ Articles live on IPFS; only small global facts go on the chain. That is the same
 
 ## Documents
 
-- [how-it-could-work.md](https://github.com/bitsocialnet/infinipedia/blob/HEAD/how-it-could-work.md): revisions, editorial groups, the baseline, edit proposals, the client, search, hosting and Bitsocial Chain
-- [open-questions.md](https://github.com/bitsocialnet/infinipedia/blob/HEAD/open-questions.md): design decisions not yet made
+| Document | Contents |
+| --- | --- |
+| [how-it-could-work.md](https://github.com/bitsocialnet/infinipedia/blob/HEAD/how-it-could-work.md) | Revisions, editorial groups, the baseline, edit proposals, the client, search, hosting and Bitsocial Chain |
+| [open-questions.md](https://github.com/bitsocialnet/infinipedia/blob/HEAD/open-questions.md) | Design decisions not yet made |
+| [design/logo](https://github.com/bitsocialnet/infinipedia/blob/HEAD/design/logo/README.md) | The logo, its files and how it is built |
+
+## Ecosystem
+
+| Project | Role |
+| --- | --- |
+| [Bitsocial](https://bitsocial.net) | Protocol docs |
+| [BSIPs](https://github.com/bitsocialnet/BSIPs) | Bitsocial Improvement Proposals |
+| [bitsocial-indexer](https://github.com/bitsocialnet/bitsocial-indexer) | Indexer |
+| [Bitsocial Chain](https://chain.bitsocial.net) ([repo](https://github.com/bitsocialnet/bitsocial-chain)) | Names, voting and payments |
+| [WeTube](https://github.com/bitsocialnet/wetube) | Sibling idea-stage repo: YouTube alternative |
+| [GitCommons](https://github.com/bitsocialnet/gitcommons) | Sibling idea-stage repo: GitHub alternative |
 
 ## License
 
 [GPL-3.0-or-later](https://github.com/bitsocialnet/infinipedia/blob/HEAD/LICENSE) for this repository. Encyclopedia content would be CC BY-SA 4.0; see [open-questions.md](https://github.com/bitsocialnet/infinipedia/blob/HEAD/open-questions.md#licensing).
 
-## Ecosystem Context
-
-- Bitsocial protocol docs: https://bitsocial.net
-- Bitsocial Improvement Proposals: `bitsocialnet/BSIPs`
-- Indexer: `bitsocialnet/bitsocial-indexer`
-- Bitsocial Chain (names, voting, payments): `bitsocialnet/bitsocial-chain` and https://chain.bitsocial.net
-- Sibling idea-stage repos: [WeTube](https://github.com/bitsocialnet/wetube) (YouTube alternative), [decentralized-github](https://github.com/bitsocialnet/decentralized-github) (GitHub alternative)
-
-### Decentralizing GitHub on Bitsocial
+### GitCommons
 
 Repository: bitsocialnet/gitcommons
 Source: https://github.com/bitsocialnet/gitcommons#readme
-Description: This repository explores a truly decentralized alternative to GitHub built on Bitsocial. The likely architecture combines a Git native peer to peer code layer with Bitsocial profiles, communities, discovery, reputation, funding, and competing infrastructure services.
+Description: Research into a decentralized alternative to GitHub, built on Bitsocial.
 
-# Decentralizing GitHub on Bitsocial
+# GitCommons
 
-**This repository explores a truly decentralized alternative to GitHub built on Bitsocial.** The likely architecture combines a Git-native peer-to-peer code layer with Bitsocial profiles, communities, discovery, reputation, funding, and competing infrastructure services.
+Research into a decentralized alternative to GitHub, built on Bitsocial.
 
-> **Status: vision stage.** This is research, not a build specification. The project belongs in [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5) and depends on Phase 2 profile nodes plus practical public RPC infrastructure.
->
-> **Working name: GitCommons.** "Decentralized GitHub" describes the research topic; GitCommons is the working name for the product (see [§10](#10-naming)). This project is independent and is not affiliated with or endorsed by GitHub, Inc. or the Git project.
+[Architecture brief](https://github.com/bitsocialnet/gitcommons/blob/HEAD/architecture-brief.md) · [Radicle research](https://github.com/bitsocialnet/gitcommons/blob/HEAD/radicle-research.md) · [Master plan context](https://github.com/bitsocialnet/gitcommons/blob/HEAD/master-plan-context.md) · [Logo](https://github.com/bitsocialnet/gitcommons/blob/HEAD/design/logo/README.md)
+
+The likely architecture combines a Git-native peer-to-peer code layer with Bitsocial profiles, communities, discovery, reputation, funding and competing infrastructure services.
+
+- **Profiles are nodes.** Each developer's profile is a Bitsocial full node, hosted over public RPC for most people and movable to their own machine at any time.
+- **Discussions are communities.** Each repository's Discussions tab is a Bitsocial community, the peer-to-peer primitive 5chan and Seedit already ship.
+- **CI is a market.** Any runner service can offer CI over public RPC, so providers compete on price, speed and trust.
+- **Code stays Git.** Repositories replicate peer to peer, Radicle-style, and existing projects can start by mirroring from GitHub.
+
+> [!NOTE]
+> **Vision stage.** This is research, not a build specification. The project belongs in [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5) and depends on Phase 2 profile nodes plus practical public RPC infrastructure.
+
+> [!IMPORTANT]
+> GitCommons is a working name (see [Naming](#naming)). This project is independent and is not affiliated with or endorsed by GitHub, Inc. or the Git project.
 
 ## Documents
 
-- [`architecture-brief.md`](https://github.com/bitsocialnet/gitcommons/blob/HEAD/architecture-brief.md) — a second architecture synthesis covering project pages, identity, discussions, issues, CI, and a minimal prototype.
-- [`radicle-research.md`](https://github.com/bitsocialnet/gitcommons/blob/HEAD/radicle-research.md) — a deep dive on Radicle, its peer-to-peer architecture, Collaborative Objects, CI broker, social-layer gap, and collaboration options.
-- [`master-plan-context.md`](https://github.com/bitsocialnet/gitcommons/blob/HEAD/master-plan-context.md) — the relevant Bitsocial master plan phases and the protocol primitives this project depends on.
+| Document | Contents |
+| --- | --- |
+| [architecture-brief.md](https://github.com/bitsocialnet/gitcommons/blob/HEAD/architecture-brief.md) | A second architecture synthesis covering project pages, identity, discussions, issues, CI and a minimal prototype |
+| [radicle-research.md](https://github.com/bitsocialnet/gitcommons/blob/HEAD/radicle-research.md) | A deep dive on Radicle: its peer-to-peer architecture, Collaborative Objects, CI broker, social-layer gap and collaboration options |
+| [master-plan-context.md](https://github.com/bitsocialnet/gitcommons/blob/HEAD/master-plan-context.md) | The relevant Bitsocial master plan phases and the protocol primitives this project depends on |
+| [design/logo](https://github.com/bitsocialnet/gitcommons/blob/HEAD/design/logo/README.md) | The logo, its files and how it is built |
 
----
+## The idea in one paragraph
 
-## 1. The idea in one paragraph
+GitHub is three products stacked together: a **code host** (git), a **collaboration layer** (issues, pull requests, discussions, reviews) and a **social network** (profiles, follows, stars, feeds, Explore, Sponsors). The social network is what makes open source thrive, through reputation, discovery and network effects, and it is the part nobody has decentralized well. [Radicle](https://radicle.dev/) decentralizes the code and collaboration layers (git replicated peer to peer, issues and PRs as signed git objects) but has almost no social layer, and its onboarding asks every user to run a node. Bitsocial has spent its entire existence building the decentralized social layer Radicle lacks: profiles, communities, feeds, discovery, anti-spam, and non-custodial RPC so that normal users never have to run a server. So the thesis is simple:
 
-GitHub is three products stacked together: a **code host** (git), a **collaboration layer** (issues, pull requests, discussions, reviews), and a **social network** (profiles, follows, stars, feeds, Explore, Sponsors). The social network is the part that makes open source *thrive* — reputation, discovery, network effects — and it's the part nobody has decentralized well. [Radicle](https://radicle.dev/) decentralizes the code + collaboration layers beautifully (git replicated peer-to-peer, issues/PRs as signed git objects) but has almost no social layer and a high-friction "everyone runs a node" onboarding. **Bitsocial has spent its entire existence building exactly the decentralized social layer Radicle lacks** — profiles, communities, feeds, discovery, anti-spam, and non-custodial RPC so normal users never have to run a server. So the thesis is simple:
+> **Decentralized GitHub = a code-collaboration layer (Radicle-style, git over p2p) plus Bitsocial's social, community, profile and discovery layer, running on profile nodes (Phase 2), served to most users via Forge RPC, with a competitive marketplace of CI runner services instead of one mandatory CI.**
 
-> **Decentralized GitHub = a code-collaboration layer (Radicle-style, git-over-p2p) ⊕ Bitsocial's social/community/profile/discovery layer, running on profile nodes (Phase 2), served to most users via Forge RPC, with a competitive marketplace of CI runner services instead of one mandatory CI.**
+Each developer's profile is a Bitsocial full node (a "profile node"). Most are hosted via public RPC (Forge RPC) so people don't have to self-host, and anyone can move to their own node at any time. Each repo's Discussions tab is a Bitsocial community. CI, GitHub's most important lock-in, becomes a set of competing runner services reachable over public RPC.
 
-Each developer's **profile is a Bitsocial full node** (a "profile node"), most of them hosted via public RPC (Forge RPC) so people don't have to self-host — but anyone can move to their own node anytime. Each repo's **Discussions tab is literally a Bitsocial community** (pure p2p, the primitive Bitsocial already ships in 5chan/Seedit). And **CI** — GitHub's most important lock-in — becomes a set of competing runner services reachable over public RPC: unlike GitHub, where you're forced onto theirs, here any CI provider competes on price, speed, and trust.
+## The original vision
 
----
-
-## 2. The original vision (captured faithfully)
-
-Tommaso, 2026-06-02:
+Tom, 2026-06-02:
 
 > What if we could decentralize GitHub too? At Phase 5 of the master plan. Maybe it would be like Radicle but with the "Discussion" tab on GitHub being a Bitsocial community — so a pure p2p Bitsocial node. Also there would be profiles like on GitHub, so **profile nodes** (which we imagine we'll have during Phase 3 [now Phase 2]), so each profile is a Bitsocial full node, most of them via public RPC (**Forge RPC**).
 >
@@ -11998,118 +12486,123 @@ Tommaso, 2026-06-02:
 
 Everything below is research and structure built on top of that.
 
----
+## Why GitHub's social layer is the real prize
 
-## 3. Why GitHub's social layer is the real prize
+You can already self-host git (Gitea, GitLab, cgit) and you can already replicate git peer to peer (Radicle). What has never been decentralized is the social graph of open source:
 
-You can already self-host git (Gitea, GitLab, cgit) and you can already replicate git peer-to-peer (Radicle). The thing that has *never* been decentralized is the **social graph of open source**:
+- **Profiles and reputation.** A developer's identity, contribution history and credibility.
+- **Following, stars, feeds.** How people discover what to work on and whom to trust.
+- **Explore, Trending, Topics.** How projects find contributors and users. The Bitsocial workspace already has a `github-explore-bitsocial-topic/` repo, a fork of GitHub's Explore and Topics data.
+- **Discussions.** The open-ended community conversation around a project, separate from issues.
+- **Sponsors.** Funding flowing to maintainers.
 
-- **Profiles & reputation** — a developer's identity, contribution history, and credibility.
-- **Following, stars, feeds** — how people discover what to work on and who to trust.
-- **Explore / Trending / Topics** — how projects find contributors and users. (Notably, there's already a `github-explore-bitsocial-topic/` repo in the Bitsocial workspace — a fork of GitHub's Explore/Topics data — so this surface has already been on the radar.)
-- **Discussions** — the open-ended community conversation around a project, separate from issues.
-- **Sponsors** — funding flowing to maintainers.
+This is the layer Bitsocial is built to decentralize. Bitsocial communities, profiles, follows, feeds, discovery services, tipping, awards and anti-spam challenges map almost one-to-one onto GitHub's social surfaces. Code hosting is the solved problem: git is already content-addressed, and Radicle already did the p2p replication. The social part is where Bitsocial is uniquely positioned, and where a centralized incumbent is most vulnerable, because a captured social layer is what platform lock-in is made of.
 
-This is **precisely the layer Bitsocial is built to decentralize.** Bitsocial communities, profiles, follows, feeds, discovery services, tipping/awards, and anti-spam challenges map almost one-to-one onto GitHub's social surfaces. The code-hosting part is the *solved* problem (git is already content-addressed, and Radicle already did the p2p replication). The social part is where Bitsocial is uniquely positioned — and where a centralized incumbent is most vulnerable, because a captured social layer is exactly what platform lock-in is made of.
+## Where this fits in the master plan
 
----
+The full text and dependency analysis are in [master-plan-context.md](https://github.com/bitsocialnet/gitcommons/blob/HEAD/master-plan-context.md).
 
-## 4. Where this fits in the master plan
-
-Short version (full text + dependency analysis in [`master-plan-context.md`](https://github.com/bitsocialnet/gitcommons/blob/HEAD/master-plan-context.md)):
-
-- **Phase 1** — decentralize imageboards/forums (5chan, Seedit), launch first non-custodial RPC service (Forge), public RPC makes always-on p2p communities practical from mobile. *In progress.*
-- **Phase 2** — flagship profile-based app: **profiles, follows, feeds, communities, and profile nodes.** Each user can be a full p2p node, hosted via non-custodial RPC, movable to a Raspberry Pi anytime. → **this is the unlock.** GitHub-style profiles = profile nodes. No profile nodes ⇒ no decentralized GitHub.
-- **Phase 3** — Bitsocial Network: appchain financial rails (.bso domains, tipping, awards, monetization). → funds **Sponsors-equivalent** and grants.
-- **Phase 4** — scale economies: **infrastructure pluralism** — competing RPCs, media hosts, discovery, moderation, profile-node hosting, all fundable. → **this is exactly the CI-runner-marketplace model** ("competing services via public RPC"), applied to compute.
-- **Phase 5** — decentralize all social media: fund the **long tail** of clients (blogging, crowdfunding, YouTube alt, "every format too early for the first four phases," and *"tools that make existing communities easier to run"*). → **a developer-collaboration client lives here.**
-
-So it's a **Phase 5 client** that is *only possible because of Phase 2's profile nodes + RPC* and *economically shaped by Phase 4's service competition*. That matches Tommaso's instinct exactly.
-
-A useful observation: this is technically more than a "social client." It's a **collaboration client** — but it's built entirely from primitives the first four phases already produce (profile nodes, communities, public RPC, competing services, financial rails). It doesn't need new protocol; it needs the protocol to exist.
-
----
-
-## 5. Radicle: the only existing pure-p2p forge
-
-Full deep-dive in [`radicle-research.md`](https://github.com/bitsocialnet/gitcommons/blob/HEAD/radicle-research.md). The essentials:
-
-**Is Radicle federated or pure p2p?** → **Pure p2p.** Tommaso wasn't sure; the answer is clear. Radicle's current protocol (**Heartwood**) has *"no clients or servers, only nodes,"* and every user runs one. Nodes are identified by public keys and replicate git repos via a **gossip protocol** + git's own protocol. There are no instances/accounts like ActivityPub — so it is **not** federation. The thing that *looks* federated is **seed nodes**: always-on nodes that keep repos available (the same role Bitsocial calls a "seeder" / full node). So: p2p architecture, with optional always-on seeds for availability — structurally close to Bitsocial.
-
-**What Radicle does well (and we should not reinvent):**
-- **Git-over-p2p replication** that actually works — this is genuinely hard, and they've shipped it.
-- **Collaborative Objects (COBs)** — issues, patches (their PRs), and reviews stored *as signed git objects* using CRDTs, fully offline-capable and independently verifiable.
-- **Self-certifying repos** with **per-repo delegates + a signature threshold** (a built-in multisig-style governance for who can authorize changes).
-- A **CI broker spec** (see below).
-
-**Where Radicle is weak (and Bitsocial is strong):**
-- **Identity is bare** — a public key plus an optional, non-unique alias. No rich profile, no social graph, no reputation surface.
-- **No consumer social layer** — COBs are great for code, but there's no following/feeds/Explore/Discussions-as-community experience for *people*.
-- **High onboarding friction** — "every user runs a node." No mainstream non-custodial hosted path (which is exactly Bitsocial's Forge RPC).
-- **Niche adoption** — strong tech, small user base.
-
-The Venn diagram is almost suspiciously clean: **Radicle = code layer, no social layer. Bitsocial = social layer, no code layer.**
-
----
-
-## 6. Proposed architecture
-
-### 6.1 The mapping
-
-| GitHub feature | How it's centralized today | Decentralized on Bitsocial |
+| Phase | What it delivers | What it means here |
 | --- | --- | --- |
-| **Profile** (repos, followers, contribution graph) | GitHub account | **Profile node** — a Bitsocial full node (Phase 2). Identity = keypair. Served via Forge RPC for non-self-hosters; movable to your own box anytime. |
-| **Code / repo hosting** | GitHub servers | Git objects replicated p2p. Git is *already* a content-addressed Merkle DAG, so it fits either Radicle's Heartwood (gossip+git) **or** Bitsocial's IPFS content-addressing. Seeded by profile nodes + Forge + competing seeders. |
-| **Discussions tab** | GitHub Discussions | **A Bitsocial community** — pure p2p, the exact primitive 5chan/Seedit already ship. *(Tommaso's core insight.)* |
-| **Issues** | GitHub Issues | Radicle COBs **or** Bitsocial threads attached to the repo's community. |
-| **Pull requests** | GitHub PRs | Radicle **patches** (COBs) for merge mechanics; Bitsocial threads for the review/discussion social layer. |
-| **Stars / follows / feed / notifications** | GitHub social graph | Bitsocial's native social graph (flagship-app primitives, Phase 2). |
-| **Explore / Trending / Topics** | GitHub Explore | Competing Bitsocial **discovery / indexing services** (Phase 4). The `github-explore-bitsocial-topic` data is a head start. |
-| **CI/CD (Actions)** | GitHub Actions — **mandatory, theirs only** | **Competing CI runner services over public RPC** — use *any* provider. *(Tommaso's core insight; see 6.3.)* |
-| **Packages / Releases** | GitHub Packages | Content-addressed artifacts seeded p2p + competing media hosts (Phase 4). |
-| **Sponsors / funding** | GitHub Sponsors | Tipping/awards + Bitsocial Network rails (Phase 3) + decentralized grants (Phase 4/5). |
-| **Org / governance** | GitHub org & permissions | Radicle per-repo **delegates + threshold** ⊕ Bitsocial community ownership (keypair-controlled). |
+| 1 | Decentralized imageboards and forums (5chan, Seedit) and the first non-custodial RPC service (Forge). In progress | Public RPC makes always-on p2p communities practical from mobile |
+| 2 | The flagship profile-based app: profiles, follows, feeds, communities and profile nodes | **The unlock.** GitHub-style profiles are profile nodes; without them there is no decentralized GitHub |
+| 3 | Bitsocial Network: appchain financial rails (`.bso` domains, tipping, awards, monetization) | Funds a Sponsors equivalent and grants |
+| 4 | Infrastructure pluralism: competing RPCs, media hosts, discovery, moderation and profile-node hosting | The CI runner marketplace is this model applied to compute |
+| 5 | The long tail of clients, including tools that make existing communities easier to run | A developer-collaboration client lives here |
 
-### 6.2 The code layer — three options (a real decision for build time)
+So this is a Phase 5 client that is only possible because of Phase 2's profile nodes and RPC, and is economically shaped by Phase 4's service competition.
 
-1. **Adopt Radicle (Heartwood) for code, Bitsocial for everything social.** Use Heartwood (or a fork) for repo replication + patches/issues; wrap it in a Bitsocial client that adds profiles, Discussions-as-communities, feeds, discovery, and RPC onboarding. Bridge Radicle node keys ↔ Bitsocial profile-node keys. *Least reinvention, fastest to a real forge.*
-2. **Build git-on-IPFS natively on Bitsocial's stack.** Store git objects via IPFS content-addressing, discover via HTTP routers, seed like any community; reimplement patches/issues as Bitsocial content types. *Most cohesive with the existing stack, but reinvents Radicle's hard-won git-over-p2p work — and it's the **only** option where Bitsocial's content-fade model would touch code, forcing you to build a durable pinned-seeding tier yourself (see §8). That's a strong reason to prefer the hybrid.*
-3. **Bridge / collaborate with Radicle.** Treat Radicle as the code substrate and Bitsocial as the social substrate, with an explicit interop layer — and talk to Radworks (Radicle's funding DAO ran an open CI-integrations RFP, so they actively want integrators). *Potentially grant-fundable and mutually beneficial.*
+It is technically more than a social client. It is a collaboration client, but it is built entirely from primitives the first four phases already produce: profile nodes, communities, public RPC, competing services and financial rails. It needs no new protocol; it needs the protocol to exist.
 
-**Lean:** don't reinvent git-over-p2p (option 1 or 3); *do* own the social layer outright — that's the differentiated, defensible part. Decide at build time based on how Heartwood has evolved by Phase 2-5.
+## Radicle: the only existing pure-p2p forge
 
-### 6.3 Decentralized CI — the competition unlock
+The full deep dive is in [radicle-research.md](https://github.com/bitsocialnet/gitcommons/blob/HEAD/radicle-research.md).
 
-This is the sharpest part of the idea, so it's worth stating precisely.
+**Radicle is pure p2p, not federated.** Its current protocol, Heartwood, has "no clients or servers, only nodes", and every user runs one. Nodes are identified by public keys and replicate git repos via a gossip protocol plus git's own protocol. There are no instances or accounts as in ActivityPub. What looks federated is seed nodes: always-on nodes that keep repos available, the role Bitsocial calls a seeder or full node. That is structurally close to Bitsocial.
 
-- **GitHub:** CI (Actions) is bundled and you're locked into GitHub's runners and billing. It is arguably GitHub's deepest lock-in — the thing that's hardest to leave.
-- **Radicle:** CI is *self-hosted per node* — a **broker** listens for repo-change events on your node and launches **adapters** (Concourse, a generic webhook adapter, or the standalone "Ambient" adapter). Sovereign, but high-friction and with no marketplace: you run your own.
-- **Bitsocial-GitHub:** CI runner services **compete via public RPC**, exactly like Bitsocial's non-custodial community-hosting RPC model. A repo (or its delegates) points at one or more runner services; *anyone* can offer one; they compete on price, speed, hardware (GPU/ARM/large runners), trust model, and policy. Unlike GitHub you are never forced onto one provider — and unlike Radicle you don't have to operate the infrastructure yourself.
+What Radicle does well, and should not be reinvented:
 
-**Trust model for results** (the hard part of "someone else ran my CI"):
-- Runners return **signed attestations** of build/test results.
+- **Git-over-p2p replication** that works. This is hard, and they have shipped it.
+- **Collaborative Objects (COBs).** Issues, patches (their PRs) and reviews stored as signed git objects using CRDTs, offline-capable and independently verifiable.
+- **Self-certifying repos** with per-repo delegates and a signature threshold, a built-in multisig-style governance for who can authorize changes.
+- **A CI broker spec** (see [Decentralized CI](#decentralized-ci)).
+
+Where Radicle is weak, and Bitsocial is strong:
+
+- **Identity is bare.** A public key plus an optional, non-unique alias. No rich profile, social graph or reputation surface.
+- **No consumer social layer.** COBs are great for code, but there is no following, feeds, Explore or Discussions-as-community experience for people.
+- **High onboarding friction.** Every user runs a node. There is no mainstream non-custodial hosted path, which is what Bitsocial's Forge RPC provides.
+- **Niche adoption.** Strong tech, small user base.
+
+Radicle has a code layer and no social layer. Bitsocial has a social layer and no code layer.
+
+## Proposed architecture
+
+### The mapping
+
+| GitHub feature | Centralized today | Decentralized on Bitsocial |
+| --- | --- | --- |
+| **Profile** (repos, followers, contribution graph) | GitHub account | A **profile node**: a Bitsocial full node (Phase 2). Identity is a keypair. Served via Forge RPC for people who don't self-host; movable to your own machine at any time |
+| **Code and repo hosting** | GitHub servers | Git objects replicated p2p. Git is already a content-addressed Merkle DAG, so it fits either Radicle's Heartwood (gossip plus git) or Bitsocial's IPFS content-addressing. Seeded by profile nodes, Forge and competing seeders |
+| **Discussions tab** | GitHub Discussions | **A Bitsocial community**: pure p2p, the primitive 5chan and Seedit already ship |
+| **Issues** | GitHub Issues | Radicle COBs, or Bitsocial threads attached to the repo's community |
+| **Pull requests** | GitHub PRs | Radicle patches (COBs) for merge mechanics; Bitsocial threads for review and discussion |
+| **Stars, follows, feed, notifications** | GitHub social graph | Bitsocial's native social graph (flagship-app primitives, Phase 2) |
+| **Explore, Trending, Topics** | GitHub Explore | Competing Bitsocial discovery and indexing services (Phase 4). The `github-explore-bitsocial-topic` data is a head start |
+| **CI/CD (Actions)** | GitHub Actions: mandatory, theirs only | **Competing CI runner services over public RPC**: use any provider (see [Decentralized CI](#decentralized-ci)) |
+| **Packages and releases** | GitHub Packages | Content-addressed artifacts seeded p2p, plus competing media hosts (Phase 4) |
+| **Sponsors and funding** | GitHub Sponsors | Tipping and awards, Bitsocial Network rails (Phase 3) and decentralized grants (Phase 4 and 5) |
+| **Org and governance** | GitHub org and permissions | Radicle per-repo delegates and threshold, plus Bitsocial community ownership (keypair-controlled) |
+
+### The code layer
+
+There are three options, and the choice is a real decision for build time.
+
+| Option | How | Trade-off |
+| --- | --- | --- |
+| 1. Adopt Radicle for code | Use Heartwood (or a fork) for repo replication, patches and issues. Wrap it in a Bitsocial client that adds profiles, Discussions as communities, feeds, discovery and RPC onboarding. Bridge Radicle node keys to Bitsocial profile-node keys | Least reinvention, fastest to a real forge |
+| 2. Build git-on-IPFS natively | Store git objects via IPFS content-addressing, discover via HTTP routers, seed like any community. Reimplement patches and issues as Bitsocial content types | Most cohesive with the existing stack, but it reinvents Radicle's git-over-p2p work. It is also the only option where Bitsocial's content-fade model would touch code, so a durable pinned-seeding tier would have to be built (see [Open questions](#open-questions)) |
+| 3. Bridge and collaborate with Radicle | Treat Radicle as the code substrate and Bitsocial as the social substrate, with an explicit interop layer, and talk to Radworks | Potentially grant-fundable and mutually beneficial. Radworks ran an open RFP for CI integrations, so it wants integrators |
+
+**Lean:** don't reinvent git over p2p (option 1 or 3), and own the social layer outright, since that is the differentiated and defensible part. Decide at build time, based on how Heartwood has evolved by then.
+
+### Decentralized CI
+
+This is the sharpest part of the idea.
+
+| | How CI works |
+| --- | --- |
+| **GitHub** | CI (Actions) is bundled, and you are locked into GitHub's runners and billing. It is arguably GitHub's deepest lock-in |
+| **Radicle** | CI is self-hosted per node. A broker listens for repo-change events on your node and launches adapters (Concourse, a generic webhook adapter, or the standalone "Ambient" adapter). Sovereign, but high-friction and with no marketplace |
+| **GitCommons** | CI runner services compete via public RPC, like Bitsocial's non-custodial community-hosting RPC model. A repo, or its delegates, points at one or more runner services. Anyone can offer one, and they compete on price, speed, hardware (GPU, ARM, large runners), trust model and policy |
+
+The hard part of someone else running your CI is trusting the result:
+
+- Runners return **signed attestations** of build and test results.
 - **Reproducible builds** let anyone independently re-verify a result.
-- Delegates can require **N-of-M independent runners to agree** before a green check counts toward a merge — this generalizes Radicle's "delegates run CI to gain merge confidence" into a *market* of runners, and turns trust into a tunable policy instead of a platform decree.
-- Optional hardened execution (TEEs) for runners that want to sell stronger guarantees.
+- Delegates can require **N-of-M independent runners to agree** before a green check counts toward a merge. This generalizes Radicle's "delegates run CI to gain merge confidence" into a market of runners, and makes trust a tunable policy instead of a platform decree.
+- Runners that want to sell stronger guarantees can offer hardened execution (TEEs).
 
-This is just **Phase 4 "infrastructure pluralism" applied to compute.** It's the same shape as RPCs, media hosts, and discovery services competing — CI is one more service category.
+This is Phase 4's infrastructure pluralism applied to compute. CI is one more service category beside RPCs, media hosts and discovery services.
 
-### 6.4 Identity & anti-spam — already solved by Bitsocial
+### Identity and anti-spam
 
-- **Identity:** one keypair = your profile node = your Radicle-style code identity. Bitsocial already treats identity as keypair-controlled and portable; Radicle already maps Node ID = Peer ID = Public Key and supports DID compatibility, so unification is plausible.
-- **Spam on public repos** (a real GitHub pain — issue/PR spam): Bitsocial's **per-community challenge model** maps directly. A repo can require a challenge (captcha, rate-limit, token-gate, allowlist, payment, custom code) before an outside identity can open an issue or submit a patch — local, operator-defined, no platform-level super-admin.
+Bitsocial already solves both.
 
-### 6.5 GitHub mirroring as the onboarding path
+- **Identity.** One keypair is your profile node and your Radicle-style code identity. Bitsocial already treats identity as keypair-controlled and portable. Radicle already maps Node ID = Peer ID = Public Key and supports DID compatibility, so unification is plausible.
+- **Spam on public repos.** Issue and PR spam is a real GitHub pain, and Bitsocial's per-community challenge model maps directly onto it. A repo can require a challenge (captcha, rate limit, token gate, allowlist, payment, custom code) before an outside identity can open an issue or submit a patch. Challenges are local and operator-defined, with no platform-level super-admin.
+
+### GitHub mirroring as the onboarding path
 
 Asking a project to migrate is the hardest sell. Asking it to mirror costs nothing: the repository stays on GitHub, a mirror keeps a p2p copy in sync, and the team keeps pushing where it already pushes. [open-git](https://open-git.com/home), a self-hosted (not decentralized) code host, leads its pitch with this, and the idea transfers directly.
 
-- **No migration step.** It is plain git on both ends, so every commit, branch, and tag is identical. Stopping the mirror loses nothing, because the repository is whole in both places.
-- **The social layer arrives first.** A mirrored repo gets a project page, a Discussions community, and profile links on day one, before anyone moves issues, pull requests, or CI.
+- **No migration step.** It is plain git on both ends, so every commit, branch and tag is identical. Stopping the mirror loses nothing, because the repository is whole in both places.
+- **The social layer arrives first.** A mirrored repo gets a project page, a Discussions community and profile links on day one, before anyone moves issues, pull requests or CI.
 - **Mirrors are one more replaceable service.** A mirror can run on the maintainer's own node or be offered over public RPC by competing providers, like seeders and CI runners.
 - **One side is canonical per ref.** Two-way sync needs a rule for diverging pushes. The simplest is fast-forward only, with GitHub canonical until the maintainers flip it. The flip is the actual migration, and by then it is a setting, not a project.
-- **Code first.** Mirroring refs is easy. Mirroring issues and pull requests means two canonical states (see §8), so those stay on GitHub until a project switches.
+- **Code first.** Mirroring refs is easy. Mirroring issues and pull requests means two canonical states (see [Open questions](#open-questions)), so those stay on GitHub until a project switches.
 
-### 6.6 Agent session records that travel with the code
+### Agent session records that travel with the code
 
 A growing share of commits is written by coding agents, and review then depends on what the agent was told as much as on the diff. open-git captures the agent session (prompts, transcript, tool calls) and stores it on a metadata branch inside the repository, in a format compatible with [Entire](https://entire.io), then shows it in the pull request timeline.
 
@@ -12121,67 +12614,59 @@ This fits a p2p forge better than a hosted one, because a metadata branch is ord
 
 Session transcripts can contain secrets and private context, so capture should be opt-in per repository and off by default for public ones, as open-git does.
 
----
+## Collaborating with Radicle
 
-## 7. Hybrid & collaborating with Radicle
+There is a concrete hook for collaboration. **Radworks** (Radicle's funding DAO, formerly Radicle DAO, backed by the RAD token treasury) funds ecosystem work via grants and has issued open RFPs, including for CI integrations. A Bitsocial social and onboarding layer on top of Radicle's code substrate is:
 
-The "maybe collab with Radicle" instinct is sound, and there's a concrete hook: **Radworks** (Radicle's funding DAO, formerly Radicle DAO, backed by the **RAD** token treasury) funds ecosystem work via grants and has historically issued open RFPs (including for CI integrations). A Bitsocial social-and-onboarding layer on top of Radicle's code substrate is:
-
-- **Complementary, not competitive** — we'd bring the social layer + mainstream RPC onboarding they lack; they bring the git-over-p2p substrate + COBs we'd otherwise reinvent.
+- **Complementary, not competitive.** Bitsocial brings the social layer and mainstream RPC onboarding Radicle lacks; Radicle brings the git-over-p2p substrate and COBs Bitsocial would otherwise reinvent.
 - **Potentially grant-fundable** through Radworks.
-- **A way to bootstrap a network** — existing Radicle repos could appear in the Bitsocial client on day one.
+- **A way to bootstrap a network.** Existing Radicle repos could appear in the Bitsocial client on day one.
 
-Worth at minimum a conversation before committing to a fully native build. (Decision can wait until Phase 2-5; the ecosystem will have moved by then.)
+This is worth a conversation before committing to a fully native build. The decision can wait until Phase 2 to 5; the ecosystem will have moved by then.
 
----
+## Open questions
 
-## 8. Hard problems / open questions (for build time)
+These are the hard problems to settle at build time.
 
-1. **Durability is the code layer's job — not a Bitsocial problem.** *(Corrects an overstatement in the first draft.)* Bitsocial's "old content can fade" tradeoff only applies to **Bitsocial-hosted content = the social layer** (discussions, profiles, feeds), where fade is the normal, accepted social-media behavior. **Code never lives in Bitsocial** — it lives on the Radicle / git-over-p2p layer, which is built for durability (git keeps full history in every clone; seed nodes keep it available). So fade and source code never touch. The *only* place durability becomes your problem is **option 2 (git-on-IPFS native, §6.2)** — which is a real argument against it and for the hybrid. Optional refinement: a rare long-lived discussion that deserves code-like permanence (a design rationale, an accepted answer) can be pinned with the same code-layer durability if desired — an enhancement, not a requirement.
-2. **CI result trust.** Signed attestations + reproducible builds + N-of-M runner consensus + optional TEEs (see 6.3). What's the default policy, and who sets it per repo?
-3. **Code layer choice.** Adopt Radicle, build git-on-IPFS, or bridge (see 6.2)?
-4. **Identity unification.** One key across Bitsocial profile node + Radicle code identity + DID? How does key rotation/recovery work for a *developer* identity people depend on?
-5. **Code search at scale.** Search is heavy and centralizing by nature; likely a competing indexing-service category (Phase 4) rather than a protocol feature.
-6. **Large binaries / LFS / release artifacts.** Content-addressed + competing media hosts, but needs a real design.
-7. **Funding the commons.** Who pays for durable seeding + CI for unfunded OSS? (Bitsocial Network rails, Sponsors, decentralized grants — Phase 3/4/5.)
-8. **Scope of v1.** Read-only mirror + Discussions first, or full collaboration from the start? (See staged path.)
+1. **Durability is the code layer's job, not Bitsocial's.** Bitsocial's "old content can fade" trade-off applies only to Bitsocial-hosted content, which is the social layer (discussions, profiles, feeds), where fade is normal social-media behavior. Code never lives in Bitsocial. It lives on the Radicle or git-over-p2p layer, which is built for durability: git keeps full history in every clone, and seed nodes keep it available. Durability only becomes this project's problem under [option 2](#the-code-layer), git-on-IPFS, which is an argument against that option. A rare long-lived discussion that deserves code-like permanence, such as a design rationale or an accepted answer, could be pinned with the same code-layer durability.
+2. **CI result trust.** Signed attestations, reproducible builds, N-of-M runner consensus and optional TEEs (see [Decentralized CI](#decentralized-ci)). What is the default policy, and who sets it per repo?
+3. **Code layer choice.** Adopt Radicle, build git-on-IPFS, or bridge (see [The code layer](#the-code-layer))?
+4. **Identity unification.** One key across the Bitsocial profile node, the Radicle code identity and a DID? How do key rotation and recovery work for a developer identity people depend on?
+5. **Code search at scale.** Search is heavy and centralizing by nature. It is likely a competing indexing-service category (Phase 4), not a protocol feature.
+6. **Large binaries, LFS and release artifacts.** Content-addressed storage plus competing media hosts, but it needs a real design.
+7. **Funding the commons.** Who pays for durable seeding and CI for unfunded open source? Candidates are Bitsocial Network rails, Sponsors and decentralized grants (Phase 3, 4 and 5).
+8. **Scope of v1.** A read-only mirror plus Discussions first, or full collaboration from the start? (See [A staged path](#a-staged-path).)
 
----
+## A staged path
 
-## 9. A staged path (earliest-possible → full)
+Pieces can ship as the protocol matures, instead of waiting for everything.
 
-This lets pieces ship as the protocol matures, instead of waiting for everything:
+| Stage | Needs | What ships |
+| --- | --- | --- |
+| **v0: Discussions** | Nothing new | A Bitsocial community attachable to any existing repo, even a GitHub or Radicle one, as its Discussions. The social layer is buildable earliest and is valuable on its own |
+| **v1: Profiles** | Phase 2 | Profile nodes show a developer's repos and activity (mirrored, read-only), with follows and feeds |
+| **v2: Real p2p repos** | A code-layer decision | Radicle or git-on-IPFS, with patches and issues. Existing projects arrive through [GitHub mirroring](#github-mirroring-as-the-onboarding-path) instead of a migration, and [agent session records](#agent-session-records-that-travel-with-the-code) ride along as a metadata branch |
+| **v3: CI marketplace** | Phase 4 economics | Competing runner services over public RPC, with the trust model above |
+| **v4: Sponsors and grants** | Phase 3 rails | Funding flows to maintainers, and to durable seeding and CI for the commons |
 
-- **v0 — Discussions, today-ish.** A Bitsocial community attachable to *any* existing repo (even a GitHub or Radicle one) as its "Discussions." The social layer is the part that's buildable earliest and is valuable standalone — a decentralized comment/community layer for OSS projects.
-- **v1 — Profiles (needs Phase 2).** Profile nodes show a developer's repos + activity (mirror/read), with follows/feeds; Discussions are communities.
-- **v2 — Real p2p repos.** Adopt Radicle or git-on-IPFS; patches/issues land (COBs or native). Existing projects arrive through GitHub mirroring (§6.5) instead of a migration, and agent session records (§6.6) ride along as a metadata branch.
-- **v3 — CI marketplace (Phase 4 economics).** Competing runner services over public RPC, with the trust model in 6.3.
-- **v4 — Sponsors/grants (Phase 3 rails).** Funding flows to maintainers and to durable seeding/CI for the commons.
+## Naming
 
----
-
-## 10. Naming
-
-The working name is **GitCommons**: the shared place for git that nobody owns. It is descriptive (git), it states the difference from GitHub (a commons has no owner, a hub has one), and it reads as the universal place for code rather than as a niche alternative.
+The working name is **GitCommons**: the shared place for git that nobody owns. It is descriptive (git), it states the difference from GitHub (a commons has no owner, a hub has one), and it reads as the universal place for code, not as a niche alternative.
 
 **Bitsocial Forge** already names the operator and RPC service, so "forge" stays out of the product name.
 
 The name uses "Git", which is a trademark of the Git project. The project is fully decentralized and GPL-3.0-or-later free software, so the name is used for now, and it can change if the Git project ever objects.
 
----
-
-## 11. Prerequisites checklist
+## Prerequisites
 
 Before this is buildable, the network needs:
 
-- [ ] **Profile nodes** (Phase 2) — the flagship profile-based client and profile-node infrastructure shipped.
-- [ ] **Public/Forge RPC at scale** (Phase 2) — non-custodial hosted nodes so devs don't have to self-host.
-- [ ] **Competing-services economy** (Phase 4) — the marketplace pattern that makes the CI-runner market real.
-- [ ] **Bitsocial Network rails** (Phase 3) — for Sponsors/grants/durable-seeding funding (nice-to-have, not strictly blocking v0-v2).
-- [ ] **A code-layer decision** — Radicle adopt/bridge vs git-on-IPFS native.
-- [ ] **A code-layer durability tier** — handled *by the code layer* (Radicle/git seed nodes), not by Bitsocial. Only becomes a problem to solve if you pick git-on-IPFS native (§6.2 option 2).
-
----
+- [ ] **Profile nodes** (Phase 2): the flagship profile-based client and profile-node infrastructure shipped.
+- [ ] **Public and Forge RPC at scale** (Phase 2): non-custodial hosted nodes, so developers don't have to self-host.
+- [ ] **A competing-services economy** (Phase 4): the marketplace pattern that makes the CI runner market real.
+- [ ] **Bitsocial Network rails** (Phase 3): for Sponsors, grants and durable-seeding funding. Nice to have, not strictly blocking v0 to v2.
+- [ ] **A code-layer decision**: adopt or bridge Radicle, or build git-on-IPFS natively.
+- [ ] **A code-layer durability tier**: handled by the code layer (Radicle or git seed nodes), not by Bitsocial. It only needs solving under git-on-IPFS.
 
 ## License
 

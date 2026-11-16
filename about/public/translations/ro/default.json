@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Permise plătite și netransferabile pe Ethereum pentru votul în directoare și postarea fără captcha.",
           "description": "MintPass este un permis plătit, netransferabil și cu expirare pe rețeaua principală Ethereum, pe care fiecare aplicație Bitsocial îl lansează sub propriul nume: 5chan Pass pentru 5chan și Seedit Gold pentru Seedit. Un permis valid îi permite deținătorului să voteze în concursurile directoarelor și să posteze fără să rezolve un captcha în comunitățile care îl verifică prin EVM Contract Call. Prețul este fix în USD și se plătește în ETH, iar o nouă achiziție reînnoiește același permis în loc să emită unul nou. Contractele nu sunt încă lansate."
+        },
+        "subreddit-mirror": {
+          "tagline": "Oglindește un subreddit într-o comunitate Bitsocial și păstrează ce elimină Reddit.",
+          "description": "Subreddit Mirror este un daemon care copiază postările și răspunsurile unui subreddit într-o comunitate Bitsocial și continuă să verifice fiecare fir timp de o săptămână. Când Reddit elimină o postare sau un comentariu, copia oglindită rămâne și primește un flair care arată dacă a fost eliminat de moderatori, de Reddit sau de autor, iar textul este recuperat din arhive publice atunci când pagina live l-a pierdut. O comunitate se poate deschide într-o vizualizare doar cu conținut eliminat, care listează numai firele în care a fost eliminat ceva. Rulează alături de bitsocial-cli și poate, de asemenea, să completeze retroactiv istoricul unui subreddit sau să oglindească un subreddit interzis doar pe baza arhivelor. Subreddit Mirror este un proiect independent; nu este creat și nici operat de Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Pagini de comunitate care conțin doar postările și răspunsurile cu un flair ales.",
+          "description": "Flair Page Sort este o sortare de pagini personalizată pentru proprietarii de comunități. Trecut în setările de pagini ale unei comunități împreună cu un set de flairuri, face ca nodul să publice o pagină suplimentară care conține doar postările sau răspunsurile cu unul dintre acele flairuri, ordonate după cel mai recent flair, noi, populare sau cele mai bune. O comunitate o poate publica drept pagină implicită, astfel încât clienții să se deschidă pe ea, iar clienții nu trebuie să instaleze nimic pentru a o citi. Necesită pkc-js 0.0.143 sau o versiune ulterioară."
         }
       }
     },

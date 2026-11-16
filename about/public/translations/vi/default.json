@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Thẻ thông hành Ethereum trả phí, không thể chuyển nhượng, dùng để bỏ phiếu trong danh mục và đăng bài không cần captcha.",
           "description": "MintPass là thẻ thông hành trả phí, không thể chuyển nhượng và có thời hạn trên mainnet Ethereum, mỗi ứng dụng Bitsocial triển khai dưới tên riêng: 5chan Pass cho 5chan và Seedit Gold cho Seedit. Thẻ còn hiệu lực cho phép người sở hữu bỏ phiếu trong các cuộc thi của danh mục và đăng bài mà không cần giải captcha ở những cộng đồng kiểm tra thẻ bằng EVM Contract Call. Giá cố định bằng USD và thanh toán bằng ETH; mua lại sẽ gia hạn chính thẻ đó thay vì đúc thẻ thứ hai. Các hợp đồng chưa được triển khai."
+        },
+        "subreddit-mirror": {
+          "tagline": "Sao chép một subreddit sang cộng đồng Bitsocial và giữ lại những gì Reddit gỡ bỏ.",
+          "description": "Subreddit Mirror là một daemon sao chép các bài đăng và phản hồi của một subreddit sang một cộng đồng Bitsocial và tiếp tục kiểm tra từng chủ đề trong một tuần. Khi Reddit gỡ một bài đăng hoặc bình luận, bản sao vẫn được giữ lại và được gắn flair cho biết người gỡ là kiểm duyệt viên, Reddit hay tác giả, còn nội dung sẽ được khôi phục từ các kho lưu trữ công khai nếu trang gốc không còn. Một cộng đồng có thể mở ra ở chế độ xem chỉ gồm nội dung bị gỡ, chỉ liệt kê những chủ đề có nội dung bị gỡ. Công cụ này chạy song song với bitsocial-cli, và cũng có thể nạp bổ sung lịch sử của một subreddit hoặc sao chép một subreddit đã bị cấm chỉ từ các kho lưu trữ. Subreddit Mirror là một dự án độc lập; dự án này không do Bitsocial tạo ra hay vận hành."
+        },
+        "flair-page-sort": {
+          "tagline": "Các trang cộng đồng chỉ chứa những bài đăng và câu trả lời mang một flair đã chọn.",
+          "description": "Flair Page Sort là một kiểu sắp xếp trang tùy chỉnh dành cho chủ sở hữu cộng đồng. Khi được khai báo trong phần cài đặt trang của cộng đồng cùng với một tập flair, nó khiến node xuất bản thêm một trang chỉ chứa những bài đăng hoặc câu trả lời mang một trong các flair đó, sắp xếp theo mới gắn flair nhất, mới, nổi bật hoặc hay nhất. Cộng đồng có thể xuất bản trang này làm trang mặc định để các client mở vào đó, và client không cần cài đặt gì để đọc nó. Yêu cầu pkc-js 0.0.143 trở lên."
         }
       }
     },

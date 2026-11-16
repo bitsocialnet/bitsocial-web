@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Betalda, icke överlåtbara Ethereum-pass för katalogomröstningar och inlägg utan captcha.",
           "description": "MintPass är ett betalt, icke överlåtbart pass med utgångsdatum på Ethereums huvudnät som varje Bitsocial-app driftsätter under eget namn: 5chan Pass för 5chan och Seedit Gold för Seedit. Ett giltigt pass låter innehavaren rösta i katalogtävlingar och skriva inlägg utan att lösa en captcha i gemenskaper som kontrollerar det med EVM Contract Call. Priset är fast i USD och betalas i ETH, och ett nytt köp förnyar samma pass i stället för att prägla ett andra. Kontrakten är inte driftsatta än."
+        },
+        "subreddit-mirror": {
+          "tagline": "Speglar en subreddit till en Bitsocial-community och behåller det som Reddit tar bort.",
+          "description": "Subreddit Mirror är en daemon som kopierar en subreddits inlägg och svar till en Bitsocial-community och fortsätter att kontrollera varje tråd i en vecka. När Reddit tar bort ett inlägg eller en kommentar finns den speglade kopian kvar och får en flair som anger om det var moderatorerna, Reddit eller författaren som tog bort det, och texten återställs från offentliga arkiv om den har försvunnit från den aktuella sidan. En community kan öppnas i en vy med enbart borttaget innehåll, som bara listar de trådar där något har tagits bort. Den körs bredvid bitsocial-cli och kan också fylla på en subreddits historik i efterhand eller spegla en bannad subreddit enbart utifrån arkiven. Subreddit Mirror är ett oberoende projekt; det är varken skapat eller drivet av Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Communitysidor som bara innehåller de inlägg och svar som har en vald flair.",
+          "description": "Flair Page Sort är en anpassad sidsortering för community-ägare. När den anges i en communitys sidinställningar tillsammans med en uppsättning flairs får den noden att publicera en extra sida som bara innehåller de inlägg eller svar som har någon av dessa flairs, sorterade efter senast tilldelad flair, nya, heta eller bästa. En community kan publicera den som sin standardsida så att klienter öppnas på den, och klienter behöver inte installera något för att läsa den. Den kräver pkc-js 0.0.143 eller senare."
         }
       }
     },

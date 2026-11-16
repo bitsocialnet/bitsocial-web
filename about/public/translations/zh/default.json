@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "付费、不可转让的 Ethereum 通行证，用于目录投票和免验证码发帖。",
           "description": "MintPass 是 Ethereum 主网上一种付费、不可转让且会到期的通行证，每个 Bitsocial 应用都以自己的名称部署：5chan 使用 5chan Pass，Seedit 使用 Seedit Gold。持有有效通行证即可在目录竞赛中投票，并在通过 EVM Contract Call 检查通行证的社区中免验证码发帖。价格以美元固定、以 ETH 支付，再次购买会续期同一张通行证，而不是铸造第二张。合约尚未部署。"
+        },
+        "subreddit-mirror": {
+          "tagline": "将 subreddit 镜像到 Bitsocial 社区，并保留被 Reddit 移除的内容。",
+          "description": "Subreddit Mirror 是一个守护进程，会把 subreddit 的帖子和回复复制到 Bitsocial 社区，并在一周内持续检查每个讨论串。当 Reddit 移除某个帖子或评论时，镜像副本仍会保留，并带上一个 flair 标签，说明是版主、Reddit 还是作者移除了它；如果原页面上的文本已经丢失，则会从公开存档中恢复。社区可以默认打开“仅显示被移除内容”视图，只列出有内容被移除的讨论串。它与 bitsocial-cli 一同运行，还可以回填 subreddit 的历史内容，或仅凭存档镜像已被封禁的 subreddit。Subreddit Mirror 是独立项目，并非由 Bitsocial 开发或运营。"
+        },
+        "flair-page-sort": {
+          "tagline": "只收录带有指定 flair 标签的帖子和回复的社区页面。",
+          "description": "Flair Page Sort 是面向社区所有者的自定义页面排序。在社区的页面设置中连同一组 flair 标签一起列出后，它会让节点额外发布一个页面，只收录带有其中任一 flair 标签的帖子或回复，并按最近添加标签、最新、热门或最佳排序。社区可以将其发布为默认页面，让客户端打开时直接进入该页面，客户端无需安装任何东西即可阅读。需要 pkc-js 0.0.143 或更高版本。"
         }
       }
     },

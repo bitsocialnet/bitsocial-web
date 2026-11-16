@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Betaalde, niet-overdraagbare Ethereum-passen voor stemmen in directory's en posten zonder captcha.",
           "description": "MintPass is een betaalde, niet-overdraagbare pas met een vervaldatum op het Ethereum-mainnet die elke Bitsocial-app onder een eigen naam uitrolt: 5chan Pass voor 5chan en Seedit Gold voor Seedit. Met een geldige pas kan de houder stemmen in directorywedstrijden en zonder captcha posten in community's die de pas controleren met EVM Contract Call. De prijs ligt vast in USD en wordt in ETH betaald, en opnieuw kopen verlengt dezelfde pas in plaats van een tweede te minten. De contracten zijn nog niet uitgerold."
+        },
+        "subreddit-mirror": {
+          "tagline": "Spiegelt een subreddit naar een Bitsocial-community en bewaart wat Reddit verwijdert.",
+          "description": "Subreddit Mirror is een daemon die de posts en reacties van een subreddit naar een Bitsocial-community kopieert en elke thread een week lang blijft controleren. Wanneer Reddit een post of reactie verwijdert, blijft de gespiegelde kopie staan en krijgt die een flair die aangeeft of de moderators, Reddit of de auteur hem heeft verwijderd; de tekst wordt uit openbare archieven teruggehaald als die op de live pagina verloren is gegaan. Een community kan openen op een weergave met alleen verwijderde inhoud, die enkel de threads toont waarin iets is verwijderd. Hij draait naast bitsocial-cli en kan ook de geschiedenis van een subreddit aanvullen of een verbannen subreddit spiegelen op basis van alleen de archieven. Subreddit Mirror is een onafhankelijk project; het wordt niet door Bitsocial gemaakt of beheerd."
+        },
+        "flair-page-sort": {
+          "tagline": "Communitypagina's met alleen de posts en reacties die een gekozen flair dragen.",
+          "description": "Flair Page Sort is een aangepaste paginasortering voor community-eigenaren. Opgenomen in de pagina-instellingen van een community met een set flairs laat het de node een extra pagina publiceren met alleen de posts of reacties die een van die flairs dragen, gesorteerd op meest recente flair, nieuw, populair of beste. Een community kan die als standaardpagina publiceren zodat clients erop openen, en clients hoeven niets te installeren om hem te lezen. Vereist pkc-js 0.0.143 of nieuwer."
         }
       }
     },

@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Bezahlte, nicht übertragbare Ethereum-Pässe für Verzeichnisabstimmungen und Posten ohne Captcha.",
           "description": "MintPass ist ein bezahlter, nicht übertragbarer und ablaufender Pass im Ethereum-Mainnet, den jede Bitsocial-App unter eigenem Namen bereitstellt: 5chan Pass für 5chan und Seedit Gold für Seedit. Mit einem gültigen Pass kann der Inhaber an Verzeichnisabstimmungen teilnehmen und in Communities, die ihn mit EVM Contract Call prüfen, ohne Captcha posten. Der Preis ist in USD festgelegt und wird in ETH bezahlt; ein erneuter Kauf verlängert denselben Pass, statt einen zweiten zu prägen. Die Verträge sind noch nicht bereitgestellt."
+        },
+        "subreddit-mirror": {
+          "tagline": "Spiegelt ein Subreddit in eine Bitsocial-Community und bewahrt, was Reddit entfernt.",
+          "description": "Subreddit Mirror ist ein Daemon, der die Beiträge und Antworten eines Subreddits in eine Bitsocial-Community kopiert und jeden Thread eine Woche lang weiter prüft. Entfernt Reddit einen Beitrag oder Kommentar, bleibt die gespiegelte Kopie erhalten und bekommt ein Flair, das angibt, ob Moderatoren, Reddit oder der Autor ihn entfernt haben; ist der Text auf der Live-Seite verloren gegangen, wird er aus öffentlichen Archiven wiederhergestellt. Eine Community kann mit einer Nur-Entferntes-Ansicht starten, die ausschließlich die Threads auflistet, in denen etwas entfernt wurde. Er läuft neben bitsocial-cli und kann außerdem die Historie eines Subreddits nachträglich auffüllen oder ein gesperrtes Subreddit allein aus den Archiven spiegeln. Subreddit Mirror ist ein unabhängiges Projekt; es wird nicht von Bitsocial entwickelt oder betrieben."
+        },
+        "flair-page-sort": {
+          "tagline": "Community-Seiten, die nur die Beiträge und Antworten mit einem ausgewählten Flair enthalten.",
+          "description": "Flair Page Sort ist eine benutzerdefinierte Seitensortierung für Community-Inhaber. In den Seiteneinstellungen einer Community zusammen mit einer Reihe von Flairs eingetragen, lässt sie den Knoten eine zusätzliche Seite veröffentlichen, die nur die Beiträge oder Antworten mit einem dieser Flairs enthält, sortiert nach zuletzt vergebenem Flair, Neu, Heiß oder Beste. Eine Community kann sie als Standardseite veröffentlichen, sodass Clients direkt darauf starten, und Clients müssen nichts installieren, um sie zu lesen. Erforderlich ist pkc-js 0.0.143 oder neuer."
         }
       }
     },

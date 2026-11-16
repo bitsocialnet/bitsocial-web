@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Passis de pagament i intransferibles a Ethereum per votar als directoris i publicar sense captcha.",
           "description": "MintPass és un passi de pagament, intransferible i amb caducitat a la xarxa principal d'Ethereum que cada app de Bitsocial desplega amb el seu propi nom: 5chan Pass per a 5chan i Seedit Gold per a Seedit. Un passi vàlid permet al titular votar en els concursos dels directoris i publicar sense resoldre cap captcha a les comunitats que el comproven amb EVM Contract Call. El preu és fix en USD i es paga en ETH, i tornar a comprar renova el mateix passi en lloc d'encunyar-ne un altre. Els contractes encara no estan desplegats."
+        },
+        "subreddit-mirror": {
+          "tagline": "Replica un subreddit en una comunitat de Bitsocial i conserva el que Reddit elimina.",
+          "description": "Subreddit Mirror és un dimoni que copia les publicacions i respostes d'un subreddit en una comunitat de Bitsocial i continua revisant cada fil durant una setmana. Quan Reddit elimina una publicació o un comentari, la còpia replicada es manté i rep un flair que indica si l'han eliminat els moderadors, Reddit o l'autor, i el text es recupera d'arxius públics quan la pàgina en viu l'ha perdut. Una comunitat es pot obrir amb una vista de només eliminats, que mostra únicament els fils on s'ha eliminat alguna cosa. S'executa al costat de bitsocial-cli, i també pot reomplir l'historial d'un subreddit o replicar un subreddit prohibit només a partir dels arxius. Subreddit Mirror és un projecte independent; no l'ha creat ni el gestiona Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Pàgines de comunitat que només contenen les publicacions i respostes amb un flair triat.",
+          "description": "Flair Page Sort és una ordenació de pàgines personalitzada per a propietaris de comunitats. Un cop afegit a la configuració de pàgines d’una comunitat amb un conjunt de flairs, fa que el node publiqui una pàgina addicional que només conté les publicacions o respostes que porten algun d’aquests flairs, ordenades per flair més recent, noves, populars o millors. Una comunitat la pot publicar com a pàgina predeterminada perquè els clients s’hi obrin, i els clients no han d’instal·lar res per llegir-la. Requereix pkc-js 0.0.143 o posterior."
         }
       }
     },

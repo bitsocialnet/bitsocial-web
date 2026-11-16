@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Płatne, nieprzenoszalne przepustki na Ethereum do głosowania w katalogach i publikowania bez captchy.",
           "description": "MintPass to płatna, nieprzenoszalna przepustka z terminem ważności w sieci głównej Ethereum, którą każda aplikacja Bitsocial wdraża pod własną nazwą: 5chan Pass dla 5chan i Seedit Gold dla Seedit. Ważna przepustka pozwala posiadaczowi głosować w konkursach katalogów i publikować bez rozwiązywania captchy w społecznościach, które sprawdzają ją przez EVM Contract Call. Cena jest stała w USD i płatna w ETH, a ponowny zakup przedłuża tę samą przepustkę zamiast wybijać drugą. Kontrakty nie zostały jeszcze wdrożone."
+        },
+        "subreddit-mirror": {
+          "tagline": "Tworzy kopię lustrzaną subreddita w społeczności Bitsocial i zachowuje to, co Reddit usuwa.",
+          "description": "Subreddit Mirror to demon, który kopiuje posty i odpowiedzi z subreddita do społeczności Bitsocial i przez tydzień nadal sprawdza każdy wątek. Gdy Reddit usunie post lub komentarz, jego lustrzana kopia pozostaje i otrzymuje flair informujący, czy usunęli go moderatorzy, Reddit, czy autor, a jeśli tekst zniknął z aktualnej strony, jest odzyskiwany z publicznych archiwów. Społeczność może otwierać się w widoku samych usunięć, który pokazuje wyłącznie wątki, w których coś usunięto. Działa obok bitsocial-cli, a ponadto potrafi uzupełnić wstecz historię subreddita albo odtworzyć zbanowany subreddit wyłącznie na podstawie archiwów. Subreddit Mirror to niezależny projekt; nie jest tworzony ani prowadzony przez Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Strony społeczności zawierające tylko posty i odpowiedzi z wybranym flairem.",
+          "description": "Flair Page Sort to niestandardowe sortowanie stron dla właścicieli społeczności. Dodany w ustawieniach stron społeczności wraz z zestawem flairów sprawia, że węzeł publikuje dodatkową stronę zawierającą tylko posty lub odpowiedzi z jednym z tych flairów, uporządkowane według ostatnio nadanego flairu, najnowszych, popularnych lub najlepszych. Społeczność może opublikować ją jako stronę domyślną, aby klienci otwierali się właśnie na niej, a klienci nie muszą niczego instalować, żeby ją odczytać. Wymaga pkc-js 0.0.143 lub nowszego."
         }
       }
     },

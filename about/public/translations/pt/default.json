@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Passes pagos e intransferíveis na Ethereum para votar em diretórios e publicar sem captcha.",
           "description": "MintPass é um passe pago, intransferível e com validade na mainnet da Ethereum que cada app Bitsocial implanta com o próprio nome: 5chan Pass para o 5chan e Seedit Gold para o Seedit. Um passe válido permite ao titular votar nas disputas dos diretórios e publicar sem resolver captcha nas comunidades que o verificam com o EVM Contract Call. O preço é fixo em USD e pago em ETH, e comprar de novo renova o mesmo passe em vez de cunhar um segundo. Os contratos ainda não foram implantados."
+        },
+        "subreddit-mirror": {
+          "tagline": "Espelha um subreddit em uma comunidade do Bitsocial e preserva o que o Reddit remove.",
+          "description": "O Subreddit Mirror é um daemon que copia os posts e as respostas de um subreddit para uma comunidade do Bitsocial e continua verificando cada thread por uma semana. Quando o Reddit remove um post ou comentário, a cópia espelhada permanece e recebe um flair indicando se a remoção foi feita pelos moderadores, pelo Reddit ou pelo autor, com o texto recuperado de arquivos públicos quando a página ao vivo já o perdeu. Uma comunidade pode abrir em uma visualização só de removidos, que lista apenas as threads em que algo foi removido. Ele roda ao lado do bitsocial-cli e também pode preencher retroativamente o histórico de um subreddit ou espelhar um subreddit banido usando apenas os arquivos. O Subreddit Mirror é um projeto independente; ele não é feito nem operado pelo Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Páginas de comunidade que contêm apenas os posts e as respostas com um flair escolhido.",
+          "description": "O Flair Page Sort é uma ordenação de páginas personalizada para donos de comunidades. Listado nas configurações de páginas de uma comunidade com um conjunto de flairs, ele faz o nó publicar uma página extra contendo apenas os posts ou as respostas que têm um desses flairs, ordenados por flair mais recente, novos, em alta ou melhores. Uma comunidade pode publicá-la como página padrão para que os clientes abram nela, e os clientes não precisam instalar nada para lê-la. Requer pkc-js 0.0.143 ou posterior."
         }
       }
     },

@@ -655,6 +655,14 @@
         "mintpass": {
           "tagline": "Fizetős, át nem ruházható Ethereum-bérletek címtárszavazáshoz és captcha nélküli posztoláshoz.",
           "description": "A MintPass egy fizetős, át nem ruházható, lejáró bérlet az Ethereum főhálózatán, amelyet minden Bitsocial-alkalmazás a saját nevén telepít: 5chan Pass az 5chanhez és Seedit Gold a Seedithez. Érvényes bérlettel a tulajdonos szavazhat a címtárak versenyein, és captcha nélkül posztolhat azokban a közösségekben, amelyek az EVM Contract Call segítségével ellenőrzik. Az ár USD-ben rögzített, és ETH-ben kell fizetni; az újabb vásárlás ugyanazt a bérletet hosszabbítja meg ahelyett, hogy egy másodikat bocsátana ki. A szerződések még nincsenek telepítve."
+        },
+        "subreddit-mirror": {
+          "tagline": "Egy subredditet tükröz egy Bitsocial-közösségbe, és megőrzi, amit a Reddit eltávolít.",
+          "description": "A Subreddit Mirror egy démon, amely egy subreddit posztjait és válaszait egy Bitsocial-közösségbe másolja, és egy hétig folyamatosan ellenőrzi az egyes szálakat. Ha a Reddit eltávolít egy posztot vagy hozzászólást, a tükrözött másolat megmarad, és flairt kap, amely jelzi, hogy a moderátorok, a Reddit vagy a szerző távolította-e el; ha a szöveg az élő oldalról már eltűnt, nyilvános archívumokból állítja helyre. Egy közösség megnyílhat olyan nézettel is, amely csak azokat a szálakat listázza, amelyekből valamit eltávolítottak. A bitsocial-cli mellett fut, emellett képes visszamenőleg feltölteni egy subreddit előzményeit, vagy pusztán az archívumokból tükrözni egy kitiltott subredditet. A Subreddit Mirror független projekt; nem a Bitsocial készíti, és nem is a Bitsocial üzemelteti."
+        },
+        "flair-page-sort": {
+          "tagline": "Közösségi oldalak, amelyek csak a kiválasztott flairrel ellátott posztokat és válaszokat tartalmazzák.",
+          "description": "A Flair Page Sort egyéni oldalrendezés közösségtulajdonosoknak. Ha egy közösség oldalbeállításaiban flairek egy készletével együtt szerepel, a csomópont egy további oldalt is közzétesz, amely csak azokat a posztokat vagy válaszokat tartalmazza, amelyeken e flairek valamelyike szerepel, a legutóbb kapott flair, az új, a felkapott vagy a legjobb szerinti sorrendben. A közösség alapértelmezett oldalként is közzéteheti, így a kliensek ezen nyílnak meg, és a klienseknek semmit sem kell telepíteniük az olvasásához. A pkc-js 0.0.143-as vagy újabb verzióját igényli."
         }
       }
     },

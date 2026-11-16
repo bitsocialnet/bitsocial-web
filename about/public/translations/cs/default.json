@@ -648,6 +648,14 @@
         },
         "voucher-challenge": {
           "description": "Voucher Challenge umožňuje moderátorům rozdávat důvěryhodné voucherové kódy, které odemykají publikování bez globálního poskytovatele identity. Kód se naváže na prvního autora, který ho uplatní, takže tento autor s ním dál přispívá a nikdo jiný ho znovu použít nemůže."
+        },
+        "subreddit-mirror": {
+          "tagline": "Zrcadlí subreddit do komunity Bitsocial a uchovává to, co Reddit odstraní.",
+          "description": "Subreddit Mirror je démon, který kopíruje příspěvky a odpovědi ze subredditu do komunity Bitsocial a každé vlákno ještě týden průběžně kontroluje. Když Reddit odstraní příspěvek nebo komentář, zrcadlená kopie zůstane a dostane štítek (flair) s informací, zda obsah odstranili moderátoři, Reddit, nebo autor; pokud text z živé stránky zmizel, obnoví se z veřejných archivů. Komunita se může otevírat v zobrazení pouze odstraněného obsahu, které vypisuje jen vlákna, ve kterých bylo něco odstraněno. Běží vedle bitsocial-cli a umí také zpětně doplnit historii subredditu nebo zrcadlit zabanovaný subreddit pouze z archivů. Subreddit Mirror je nezávislý projekt; Bitsocial ho nevytváří ani neprovozuje."
+        },
+        "flair-page-sort": {
+          "tagline": "Stránky komunity, které obsahují jen příspěvky a odpovědi s vybraným flairem.",
+          "description": "Flair Page Sort je vlastní řazení stránek pro vlastníky komunit. Když je uvedeno v nastavení stránek komunity spolu se sadou flairů, uzel publikuje další stránku, která obsahuje jen příspěvky nebo odpovědi s některým z těchto flairů, seřazené podle naposledy přidaného flairu, od nejnovějších, podle popularity nebo od nejlepších. Komunita ji může publikovat jako svou výchozí stránku, takže se na ní klienti otevřou, a ke čtení nemusí klienti nic instalovat. Vyžaduje pkc-js 0.0.143 nebo novější."
         }
       }
     },

@@ -648,6 +648,14 @@
         },
         "voucher-challenge": {
           "description": "Voucher Challenge lader moderatorer uddele betroede voucherkoder, der låser op for publicering uden en global identitetsudbyder. En kode bindes til den første forfatter, der indløser den, så den forfatter fortsætter med at skrive opslag med den, og ingen andre kan genbruge den."
+        },
+        "subreddit-mirror": {
+          "tagline": "Spejler et subreddit til et Bitsocial-fællesskab og beholder det, Reddit fjerner.",
+          "description": "Subreddit Mirror er en dæmon, der kopierer et subreddits opslag og svar til et Bitsocial-fællesskab og bliver ved med at tjekke hver tråd i en uge. Når Reddit fjerner et opslag eller en kommentar, bliver den spejlede kopi stående og får et flair, der fortæller, om det var moderatorerne, Reddit eller forfatteren, der fjernede det, og teksten gendannes fra offentlige arkiver, hvis den er forsvundet fra den aktuelle side. Et fællesskab kan åbne i en visning med kun fjernet indhold, som udelukkende viser de tråde, hvor noget er blevet fjernet. Den kører ved siden af bitsocial-cli og kan også efterfylde et subreddits historik eller spejle et bandlyst subreddit alene ud fra arkiverne. Subreddit Mirror er et uafhængigt projekt; det er hverken lavet eller drevet af Bitsocial."
+        },
+        "flair-page-sort": {
+          "tagline": "Fællesskabssider, der kun indeholder de opslag og svar, som har et valgt flair.",
+          "description": "Flair Page Sort er en brugerdefineret sidesortering til ejere af fællesskaber. Når den er angivet i et fællesskabs sideindstillinger sammen med et sæt flairs, får den noden til at udgive en ekstra side, der kun indeholder de opslag eller svar, som har et af disse flairs, sorteret efter senest tildelt flair, nyeste, populære eller bedste. Et fællesskab kan udgive den som sin standardside, så klienter åbner på den, og klienter behøver ikke installere noget for at læse den. Den kræver pkc-js 0.0.143 eller nyere."
         }
       }
     },
