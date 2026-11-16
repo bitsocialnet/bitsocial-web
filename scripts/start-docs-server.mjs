@@ -11,11 +11,39 @@ const host = process.env.HOST || "127.0.0.1";
 const usingPortless = Boolean(process.env.PORTLESS_URL);
 const docsStartMode = process.env.DOCS_START_MODE === "live" ? "live" : "multilocale";
 let activeChild = null;
+let stopSignal = null;
 
 function fail(message) {
   console.error(message);
   process.exit(1);
 }
+
+// Registered before the first await so a stop signal during the docs build reaches the build
+// instead of leaving it running after this process exits.
+const forwardSignal = (signal) => {
+  stopSignal ??= signal;
+
+  if (activeChild) {
+    if (!activeChild.killed) {
+      activeChild.kill(signal);
+    }
+    return;
+  }
+
+  exitWithSignal(signal);
+};
+
+const onSigint = () => forwardSignal("SIGINT");
+const onSigterm = () => forwardSignal("SIGTERM");
+
+function exitWithSignal(signal) {
+  process.off("SIGINT", onSigint);
+  process.off("SIGTERM", onSigterm);
+  process.kill(process.pid, signal);
+}
+
+process.on("SIGINT", onSigint);
+process.on("SIGTERM", onSigterm);
 
 if (!Number.isInteger(requestedPort) || requestedPort <= 0) {
   fail(`Invalid docs port: ${process.env.PORT || process.env.DOCS_PORT || "undefined"}`);
@@ -82,7 +110,15 @@ if (docsStartMode === "live") {
 console.log("");
 
 if (docsStartMode === "multilocale") {
-  await runStep(["docs:build"]);
+  await runStep(["docs:build"]).catch((error) => {
+    if (!stopSignal) {
+      throw error;
+    }
+  });
+}
+
+if (stopSignal) {
+  exitWithSignal(stopSignal);
 }
 
 const childArgs =
@@ -106,24 +142,9 @@ console.log(`Running: ${yarnBin} ${childArgs.join(" ")}`);
 const child = spawnChild(childArgs);
 activeChild = child;
 
-const forwardSignal = (signal) => {
-  if (activeChild && !activeChild.killed) {
-    activeChild.kill(signal);
-  }
-};
-
-const onSigint = () => forwardSignal("SIGINT");
-const onSigterm = () => forwardSignal("SIGTERM");
-
-process.on("SIGINT", onSigint);
-process.on("SIGTERM", onSigterm);
-
 child.on("exit", (code, signal) => {
-  process.off("SIGINT", onSigint);
-  process.off("SIGTERM", onSigterm);
-
   if (signal) {
-    process.kill(process.pid, signal);
+    exitWithSignal(signal);
     return;
   }
 

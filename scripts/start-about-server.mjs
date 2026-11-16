@@ -106,11 +106,23 @@ async function handleReleaseIntegrityRequest(request, response) {
   }
 }
 
+let stopping = false;
+
+// Close Vite first: it terminates its HMR WebSocket clients, which would otherwise keep
+// hmrServer.close() waiting for as long as a browser tab stays open. A launcher forwarding the
+// terminal's Ctrl+C can deliver the signal twice, so repeats are ignored while closing.
 const forwardSignal = (signal) => {
-  hmrServer.close(() => {
-    vite.close().finally(() => {
+  if (stopping) {
+    return;
+  }
+  stopping = true;
+  vite.close().finally(() => {
+    hmrServer.close(() => {
+      process.off("SIGINT", onSigint);
+      process.off("SIGTERM", onSigterm);
       process.kill(process.pid, signal);
     });
+    hmrServer.closeAllConnections();
   });
 };
 

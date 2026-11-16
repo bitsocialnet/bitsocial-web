@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import { existsSync } from "node:fs";
-import { spawn } from "node:child_process";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -13,7 +12,9 @@ import {
   isWindows,
   portlessEnv,
   portlessBin,
+  recordDevServerUrl,
   repoRoot,
+  spawnDevServer,
 } from "./dev-server-utils.mjs";
 
 await ensurePinnedNodeVersion(import.meta.url);
@@ -28,6 +29,7 @@ const childEnv = {
   ...process.env,
 };
 let args = [];
+let releaseUrlRecord;
 
 if (docsStartMode && docsStartMode !== "live" && docsStartMode !== "multilocale") {
   console.error(`Invalid docs start mode: ${docsStartMode}`);
@@ -44,6 +46,7 @@ if (command === portlessBin) {
   const publicUrl = getPortlessPublicUrl(appName);
 
   args = [appName, process.execPath, docsServerScript];
+  releaseUrlRecord = recordDevServerUrl("docs", publicUrl);
 
   if (appName !== "docs.bitsocial") {
     console.log(`Starting Portless docs server at ${publicUrl}`);
@@ -56,17 +59,13 @@ if (command === portlessBin) {
   args = [docsServerScript];
 }
 
-const child = spawn(command, args, {
-  cwd: repoRoot,
-  env: command === portlessBin ? { ...portlessEnv, ...childEnv } : childEnv,
-  stdio: "inherit",
-});
-
-child.on("exit", (code, signal) => {
-  if (signal) {
-    process.kill(process.pid, signal);
-    return;
-  }
-
-  process.exit(code ?? 0);
-});
+spawnDevServer(
+  command,
+  args,
+  {
+    cwd: repoRoot,
+    env: command === portlessBin ? { ...portlessEnv, ...childEnv } : childEnv,
+    stdio: "inherit",
+  },
+  releaseUrlRecord,
+);

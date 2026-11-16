@@ -59,9 +59,17 @@ const report = {
   ok: false,
 };
 const abort = new AbortController();
-const interrupt = () => abort.abort(new Error("Profiling interrupted"));
-process.once("SIGINT", interrupt);
-process.once("SIGTERM", interrupt);
+let interrupted = false;
+// Stays installed until the report is written: a repeated Ctrl+C must not kill the runner while it
+// still owns the browser, the machine-wide browser slot and a detached server.
+const interrupt = () => {
+  if (interrupted) return;
+  interrupted = true;
+  process.stderr.write("[perf] Interrupted; cleaning up before exit\n");
+  abort.abort(new Error("Profiling interrupted"));
+};
+process.on("SIGINT", interrupt);
+process.on("SIGTERM", interrupt);
 const safeName = (name) => name.replace(/[^a-z0-9._-]/gi, "-");
 
 // Reported budgets are the enforced ones, so scaled evidence stays readable.
@@ -317,8 +325,6 @@ try {
   report.error = error.stack || error.message;
   process.stderr.write(`[perf] ${error.message}\n`);
 } finally {
-  process.off("SIGINT", interrupt);
-  process.off("SIGTERM", interrupt);
   report.endedAt = new Date().toISOString();
   const filename = path.join(output, "report.json");
   await writeFile(filename, JSON.stringify(report, null, 2), { mode: 0o600 });
@@ -331,4 +337,6 @@ try {
     }),
   );
   process.exitCode = report.ok ? 0 : 1;
+  process.off("SIGINT", interrupt);
+  process.off("SIGTERM", interrupt);
 }

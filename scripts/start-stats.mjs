@@ -117,11 +117,35 @@ function openInBrowser(url) {
   spawn(opener.cmd, opener.args, { stdio: "ignore", detached: true }).unref();
 }
 
+let child = null;
+let containersUp = false;
+
+// Registered before the first await so Ctrl+C while Docker starts or the dashboard warms up still
+// stops the containers. Once the proxy runs, its exit handler stops them instead.
+const onSignal = (signal) => {
+  if (child) {
+    child.kill(signal);
+    return;
+  }
+
+  process.off("SIGINT", onSignal);
+  process.off("SIGTERM", onSignal);
+  if (containersUp) {
+    console.log("");
+    runCompose(["stop"]);
+  }
+  process.kill(process.pid, signal);
+};
+
+process.on("SIGINT", onSignal);
+process.on("SIGTERM", onSignal);
+
 await ensureDocker();
 ensureEnvFile();
 if (runCompose(["up", "--build", "--detach"]) !== 0) {
   process.exit(1);
 }
+containersUp = true;
 
 console.log("Waiting for the stats dashboard...");
 try {
@@ -146,7 +170,7 @@ if (usePortless) {
   console.warn("portless unavailable on this platform, serving the stats proxy directly");
 }
 
-const child = spawn(command, args, {
+child = spawn(command, args, {
   cwd: repoRoot,
   env: usePortless ? { ...portlessEnv, ...process.env } : { ...process.env, PORTLESS: "0" },
   stdio: "inherit",
@@ -169,10 +193,6 @@ if (browserOpenUrl && process.env.BROWSER !== "none") {
 }
 
 // Stop the containers only after the proxy has exited.
-for (const signal of ["SIGINT", "SIGTERM"]) {
-  process.on(signal, () => child.kill(signal));
-}
-
 child.on("exit", (code) => {
   console.log("");
   runCompose(["stop"]);

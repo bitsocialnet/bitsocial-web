@@ -4,8 +4,12 @@ set -euo pipefail
 
 run_smoke=0
 wait_timeout="${AGENT_INIT_TIMEOUT_SECONDS:-60}"
-app_url="${AGENT_APP_URL:-https://bitsocial.localhost}"
+app_url=''
 log_path="${AGENT_START_LOG:-${TMPDIR:-/tmp}/bitsocial-web-agent-start.log}"
+# start-dev.mjs records the Portless URL it claimed (devServerUrlFile in dev-server-utils.mjs).
+# Outside main/master it is <branch>.bitsocial.localhost, and the canonical URL may belong to
+# another checkout, so only AGENT_APP_URL or this record identifies this checkout's server.
+url_record=".dev-servers/about-url"
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
@@ -24,8 +28,17 @@ done
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 
+resolve_app_url() {
+  if [ -n "${AGENT_APP_URL:-}" ]; then
+    app_url="$AGENT_APP_URL"
+  else
+    app_url="$(sed -n '1p' "$url_record" 2>/dev/null || true)"
+  fi
+}
+
 is_server_up() {
-  curl -fsSk "$app_url" >/dev/null 2>&1
+  resolve_app_url
+  [ -n "$app_url" ] && curl -fsSk "$app_url" >/dev/null 2>&1
 }
 
 wait_for_server() {
@@ -52,23 +65,31 @@ run_smoke_check() {
 }
 
 echo "Repo root: $repo_root"
-echo "App URL: $app_url"
 
 if is_server_up; then
   echo "Dev server is already reachable."
 else
+  # The recorded server is not answering, so the record is stale.
+  [ -n "${AGENT_APP_URL:-}" ] || rm -f "$url_record"
   echo "Dev server is not reachable. Starting corepack yarn start..."
+  # Job control gives the server its own process group, so a timeout can stop all of it.
+  set -m
   nohup corepack yarn start >"$log_path" 2>&1 &
+  server_pid=$!
+  set +m
   echo "Startup log: $log_path"
 
   if ! wait_for_server; then
-    echo "Timed out waiting for $app_url" >&2
+    echo "Timed out waiting for ${app_url:-the URL start-dev records in $url_record}" >&2
+    kill -TERM -- "-$server_pid" 2>/dev/null || true
+    echo "Stopped the dev server this run started." >&2
     echo "Last log lines:" >&2
     tail -n 40 "$log_path" >&2 || true
     exit 1
   fi
 fi
 
+echo "App URL: $app_url"
 echo "Dev server is ready."
 
 if [ "$run_smoke" -eq 1 ]; then

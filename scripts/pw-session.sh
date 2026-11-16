@@ -16,8 +16,10 @@ umask 077
 # slot on a machine with headroom).
 #
 # Liveness comes from `playwright-cli list --all`, which reports `status: open`
-# for a running browser. A lock whose recorded session is no longer open is
-# stale, and is reclaimed automatically rather than blocking every later
+# for a running browser. That list only shows a session once its browser has
+# started, so while `open` is launching it the lock records the opener's PID and
+# counts as held. A lock whose opener is gone and whose recorded session is not
+# open is stale, and is reclaimed automatically rather than blocking every later
 # workflow. When playwright-cli cannot be queried the lock is left alone, so a
 # broken CLI never silently disables the budget.
 #
@@ -62,6 +64,9 @@ fi
 owner_file="$lock_dir/owner"
 started_file="$lock_dir/started-at"
 workspace_file="$lock_dir/workspace"
+opener_file="$lock_dir/opener-pid"
+# A lock with no owner yet is younger than this while its acquirer writes it.
+fresh_lock_seconds=10
 default_wait_seconds=300
 poll_seconds="${PW_SESSION_POLL_SECONDS:-5}"
 
@@ -114,6 +119,50 @@ session_state() {
   echo dead
 }
 
+# True while the `open` that took the lock is still running. Matching the
+# command line keeps a recycled PID from holding the slot.
+opener_alive() {
+  local pid
+
+  pid="$(sed -n '1p' "$opener_file" 2>/dev/null || true)"
+  [[ "$pid" =~ ^[0-9]+$ ]] || return 1
+  case "$(ps -ww -o args= -p "$pid" 2>/dev/null || true)" in
+    *pw-session*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+lock_age_seconds() {
+  local modified
+
+  modified="$(stat -c %Y "$lock_dir" 2>/dev/null || stat -f %m "$lock_dir" 2>/dev/null)" || return 1
+  echo $(($(date +%s) - modified))
+}
+
+# Echoes `live`, `starting`, `dead`, or `unknown` for the lock's holder. The
+# opener is checked first: a launch that finishes between the browser list and
+# the opener check would otherwise look dead.
+lock_state() {
+  local owner="$1" age
+
+  if opener_alive; then
+    echo starting
+  elif [ -n "$owner" ]; then
+    session_state "$owner"
+  else
+    age="$(lock_age_seconds)" || age="$fresh_lock_seconds"
+    if [ "$age" -lt "$fresh_lock_seconds" ]; then
+      echo starting
+    else
+      echo dead
+    fi
+  fi
+}
+
+lock_fingerprint() {
+  cat "$1/owner" "$1/started-at" "$1/opener-pid" 2>/dev/null || true
+}
+
 write_lock_metadata() {
   printf '%s\n' "$1" >"$owner_file"
   date -u '+%Y-%m-%dT%H:%M:%SZ' >"$started_file"
@@ -131,10 +180,11 @@ print_status() {
   owner="$(current_owner)"
   started="$(sed -n '1p' "$started_file" 2>/dev/null || true)"
   held_workspace="$(sed -n '1p' "$workspace_file" 2>/dev/null || true)"
-  state="$([ -n "$owner" ] && session_state "$owner" || echo unknown)"
+  state="$(lock_state "$owner")"
 
   case "$state" in
     live) echo "pw-session: browser slot is held" ;;
+    starting) echo "pw-session: browser slot is held (browser starting)" ;;
     dead) echo "pw-session: browser slot is held by a stale lock" ;;
     *) echo "pw-session: browser slot is held (browser state unverifiable)" ;;
   esac
@@ -146,6 +196,7 @@ print_status() {
 
   case "$state" in
     live) echo "Browser: running" ;;
+    starting) echo "Browser: starting" ;;
     dead)
       echo "Browser: not running — the next 'open' reclaims this slot automatically"
       ;;
@@ -155,19 +206,25 @@ print_status() {
   esac
 }
 
-# Atomically drop a lock we have confirmed is stale. Renaming first means only
-# one racing reclaimer can win, so a concurrent fresh lock is never deleted.
+# Atomically drop a lock judged stale. Renaming first means only one racing
+# reclaimer can win. Another reclaimer may already have replaced the stale lock
+# with a fresh one after the verdict, so a renamed lock that no longer matches
+# what was judged is put back instead of deleted.
 reclaim_stale_lock() {
-  local owner="$1" staged="${lock_dir}.stale.$$"
+  local owner="$1" judged="$2" staged="${lock_dir}.stale.$$"
 
-  if mv "$lock_dir" "$staged" 2>/dev/null; then
+  mv "$lock_dir" "$staged" 2>/dev/null || return 0
+  if [ "$(lock_fingerprint "$staged")" = "$judged" ]; then
     rm -rf "$staged"
     echo "pw-session: reclaimed stale slot from '$owner' (its browser is no longer running)" >&2
+  elif [ -e "$lock_dir" ] || ! mv "$staged" "$lock_dir" 2>/dev/null; then
+    rm -rf "$staged"
+    echo "pw-session: warning: the slot changed hands while it was being reclaimed; another browser may be running" >&2
   fi
 }
 
 acquire() {
-  local session="$1" wait_seconds="$2" owner state reclaims=0
+  local session="$1" wait_seconds="$2" owner state fingerprint reclaims=0
 
   validate_session "$session"
   mkdir -p "$(dirname "$lock_dir")"
@@ -175,18 +232,20 @@ acquire() {
   SECONDS=0
   while true; do
     if mkdir "$lock_dir" 2>/dev/null; then
+      printf '%s\n' "$$" >"$opener_file"
       write_lock_metadata "$session"
       echo "pw-session: acquired browser slot for '$session'"
       return 0
     fi
 
+    fingerprint="$(lock_fingerprint "$lock_dir")"
     owner="$(current_owner)"
-    state="$([ -n "$owner" ] && session_state "$owner" || echo dead)"
+    state="$(lock_state "$owner")"
 
     # Bounded so an unremovable lock directory fails loudly instead of spinning.
     if [ "$state" = dead ] && [ "$reclaims" -lt 3 ]; then
       reclaims=$((reclaims + 1))
-      reclaim_stale_lock "${owner:-unknown}"
+      reclaim_stale_lock "${owner:-unknown}" "$fingerprint"
       continue
     fi
 
@@ -224,13 +283,13 @@ release() {
   owner="$(current_owner)"
   if [ "$owner" != "$session" ]; then
     echo "pw-session: '$session' cannot release the slot held by '${owner:-unknown}'" >&2
-    if [ -n "$owner" ] && [ "$(session_state "$owner")" = dead ]; then
+    if [ -n "$owner" ] && [ "$(lock_state "$owner")" = dead ]; then
       echo "pw-session: that lock is stale; the next 'open' reclaims it automatically" >&2
     fi
     return 1
   fi
 
-  rm -f "$owner_file" "$started_file" "$workspace_file"
+  rm -f "$owner_file" "$started_file" "$workspace_file" "$opener_file"
   rmdir "$lock_dir"
   echo "pw-session: released browser slot for '$session'"
 }
@@ -285,6 +344,10 @@ case "$command" in
     if ! "$playwright_cli" -s="$session" open ${open_args[@]+"${open_args[@]}"}; then
       release "$session"
       exit 1
+    fi
+    # The browser is listed as open from here on, so the lock no longer needs this process.
+    if [ "$(sed -n '1p' "$opener_file" 2>/dev/null || true)" = "$$" ]; then
+      rm -f "$opener_file"
     fi
 
     # Hide the dev-only Agentation toolbar so annotations cannot intercept driven clicks.

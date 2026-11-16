@@ -8,6 +8,7 @@ import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 import {
+  devServerUrlFile,
   ensurePortlessProxy,
   ensurePinnedNodeVersion,
   getPortlessAppName,
@@ -15,7 +16,9 @@ import {
   isWindows,
   portlessEnv,
   portlessBin,
+  recordDevServerUrl,
   repoRoot,
+  spawnDevServer,
 } from "./dev-server-utils.mjs";
 
 await ensurePinnedNodeVersion(import.meta.url);
@@ -29,15 +32,17 @@ const childEnv = {
 };
 let args = [];
 let browserOpenUrl = null;
+let releaseUrlRecord;
 
 if (command === portlessBin) {
   ensurePortlessProxy();
   const appName = getPortlessAppName("bitsocial");
   const publicUrl = getPortlessPublicUrl(appName);
-  const docsAppName = getPortlessAppName("docs.bitsocial");
 
   args = [appName, process.execPath, aboutServerScript];
-  childEnv.DOCS_DEV_PROXY_TARGET = getPortlessPublicUrl(docsAppName);
+  releaseUrlRecord = recordDevServerUrl("about", publicUrl);
+  // start-docs records the docs URL it claims; the about server reads it on each /docs request.
+  childEnv.DOCS_DEV_URL_FILE = devServerUrlFile("docs");
   browserOpenUrl = publicUrl;
 
   if (appName !== "bitsocial") {
@@ -51,11 +56,16 @@ if (command === portlessBin) {
   args = [aboutServerScript];
 }
 
-const child = spawn(command, args, {
-  cwd: repoRoot,
-  stdio: "inherit",
-  env: command === portlessBin ? { ...portlessEnv, ...childEnv } : childEnv,
-});
+spawnDevServer(
+  command,
+  args,
+  {
+    cwd: repoRoot,
+    stdio: "inherit",
+    env: command === portlessBin ? { ...portlessEnv, ...childEnv } : childEnv,
+  },
+  releaseUrlRecord,
+);
 
 if (browserOpenUrl && process.env.BROWSER !== "none") {
   waitForUrlReady(browserOpenUrl, 30_000)
@@ -67,15 +77,6 @@ if (browserOpenUrl && process.env.BROWSER !== "none") {
       console.warn(`Could not auto-open ${browserOpenUrl}: ${error.message}`);
     });
 }
-
-child.on("exit", (code, signal) => {
-  if (signal) {
-    process.kill(process.pid, signal);
-    return;
-  }
-
-  process.exit(code ?? 0);
-});
 
 async function waitForUrlReady(url, timeoutMs) {
   const startedAt = Date.now();
