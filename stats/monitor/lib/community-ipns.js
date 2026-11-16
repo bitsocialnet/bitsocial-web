@@ -18,11 +18,14 @@ import Debug from "debug";
 const debug = Debug("bitsocial-stats-monitor:community-ipns");
 
 const countGetCommunity = createCounter();
+// kubo keeps resolving a name, or searching for a block no reachable peer provides, until the client
+// gives up, so a community's update fetch gets the 5min pkc-js gives community ipns
+const communityUpdateTimeoutMs = 1000 * 60 * 5;
 
-const resolveIpnsPath = async (ipnsName) => {
+const resolveIpnsPath = async (ipnsName, options) => {
   let resolvedPath;
 
-  for await (const candidatePath of kubo.name.resolve(ipnsName)) {
+  for await (const candidatePath of kubo.name.resolve(ipnsName, options)) {
     resolvedPath = candidatePath;
   }
 
@@ -49,9 +52,10 @@ const fetchCommunityUpdate = async (communityName, publicKey) => {
   if (!resolvedIpnsName) {
     throw Error(`failed resolving public key '${publicKey}' for '${communityName}'`);
   }
-  const resolvedUpdatePath = await resolveIpnsPath(resolvedIpnsName);
+  const signal = AbortSignal.timeout(communityUpdateTimeoutMs);
+  const resolvedUpdatePath = await resolveIpnsPath(resolvedIpnsName, { signal });
   const resolvedUpdateCid = getCidFromIpfsPath(resolvedUpdatePath);
-  const communityUpdate = await readJsonFromKubo(kubo, resolvedUpdatePath);
+  const communityUpdate = await readJsonFromKubo(kubo, resolvedUpdatePath, { signal });
 
   if (communityUpdate?.address && communityUpdate.address !== communityName) {
     throw Error(

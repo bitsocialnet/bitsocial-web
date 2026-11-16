@@ -7,6 +7,7 @@ import yargs from "yargs/yargs";
 import { getCliArgs } from "./cli-args.js";
 const argv = yargs(getCliArgs(process.argv)).parseSync();
 import { getPeerCounts } from "./peers.js"; // must always import ./peers.js to register peers prometheus metrics
+import { filterHistoryStats } from "./history-filter.js";
 
 const apiPort = argv.apiPort || 3000;
 const app = express();
@@ -272,35 +273,11 @@ app.get("/history", async (req, res) => {
           historyRecentCache[historyFile] ||
           JSON.parse(await fs.readFile(`history/${historyFile}`, "utf8"));
 
-        // filters
-        let filteredStats;
-        if (ipfsGatewayUrl) {
-          filteredStats = {
-            ...filteredStats,
-            ipfsGateways: { [ipfsGatewayUrl]: stats.ipfsGateways[ipfsGatewayUrl] },
-          };
-        }
-        if (communityAddress) {
-          filteredStats = {
-            ...filteredStats,
-            communities: {
-              [communityAddress]:
-                stats.communities?.[communityAddress] || stats.subplebbits?.[communityAddress],
-            },
-          };
-        }
-        if (!filteredStats) {
-          filteredStats = stats;
-        }
-
-        // include
-        if (include?.length) {
-          for (const propName in filteredStats) {
-            if (!include.includes(propName)) {
-              delete filteredStats[propName];
-            }
-          }
-        }
+        const filteredStats = filterHistoryStats(stats, {
+          ipfsGatewayUrl,
+          communityAddress,
+          include,
+        });
 
         const timestamp = Math.round(toDate(historyFile).getTime() / 1000);
         return [timestamp, filteredStats];

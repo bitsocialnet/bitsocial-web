@@ -8,6 +8,7 @@ import {
   ipnsNameToIpnsOverPubsubTopic,
   pubsubTopicToDhtKey,
   createCounter,
+  createRunUnlessPending,
 } from "./utils.js";
 import prometheus from "./prometheus.js";
 import { createEd25519PeerId } from "@libp2p/peer-id-factory";
@@ -17,6 +18,7 @@ import Debug from "debug";
 const debug = Debug("bitsocial-stats-monitor:http-router");
 
 const waitForPostProvidersMs = 1000 * 10;
+const runCommunityIpnsGetProvidersFetches = createRunUnlessPending();
 
 const initHttpRouterMonitorState = (httpRouterUrl) => {
   if (!monitorState.httpRouters[httpRouterUrl]) {
@@ -45,8 +47,8 @@ export const monitorHttpRouters = async () => {
       })
       .catch((e) => debug(e.message));
 
-    // community ipns get providers fetches
-    (async () => {
+    // community ipns get providers fetches, skipped while this router's previous pass is still running
+    runCommunityIpnsGetProvidersFetches(httpRouterUrl, async () => {
       for (const community of monitorState.communitiesMonitoring) {
         // one at a time to not ddos router
         try {
@@ -63,7 +65,7 @@ export const monitorHttpRouters = async () => {
           debug(e.message);
         }
       }
-    })();
+    });
   }
 };
 

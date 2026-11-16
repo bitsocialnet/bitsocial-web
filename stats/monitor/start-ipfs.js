@@ -1,8 +1,7 @@
 import path from "path";
 import { fileURLToPath } from "url";
-import { spawn, spawnSync } from "child_process";
+import { spawnSync } from "child_process";
 import fs from "fs-extra";
-import ps from "node:process";
 import ProgressBar from "progress";
 import https from "https";
 import decompress from "@xhmikosr/decompress";
@@ -10,6 +9,7 @@ import http from "http";
 import tcpPortUsed from "tcp-port-used";
 import { arch } from "os";
 import { createKuboRpcProxy } from "./lib/kubo-rpc-proxy.js";
+import { spawnAsync, startIpfsDaemon } from "./lib/kubo-daemon.js";
 
 const basicAuthUsername = process.env.IPFS_BASIC_AUTH_USERNAME;
 const basicAuthPassword = process.env.IPFS_BASIC_AUTH_PASSWORD;
@@ -100,26 +100,6 @@ const downloadAndExtract = async (url, destinationPath) => {
   fs.removeSync(extractedPath);
   fs.removeSync(dowloadPath);
 };
-
-// use this custom function instead of spawnSync for better logging
-// also spawnSync might have been causing crash on start on windows
-const spawnAsync = (...args) =>
-  new Promise((resolve, reject) => {
-    const spawedProcess = spawn(...args);
-    spawedProcess.on("exit", (exitCode, signal) => {
-      if (exitCode === 0) resolve();
-      else
-        reject(
-          Error(
-            `spawnAsync process '${spawedProcess.pid}' exited with code '${exitCode}' signal '${signal}'`,
-          ),
-        );
-    });
-    spawedProcess.stderr.on("data", (data) => console.error(data.toString()));
-    spawedProcess.stdin.on("data", (data) => console.log(data.toString()));
-    spawedProcess.stdout.on("data", (data) => console.log(data.toString()));
-    spawedProcess.on("error", (data) => console.error(data.toString()));
-  });
 
 const startIpfs = async () => {
   const ipfsFileName = "ipfs";
@@ -216,66 +196,7 @@ const startIpfs = async () => {
   await spawnAsync(ipfsPath, ["config", "show"], { env, hideWindows: true });
   await spawnAsync(ipfsPath, ["id"], { env, hideWindows: true });
 
-  const startIpfsDaemon = () =>
-    new Promise((resolve, reject) => {
-      const ipfsProcess = spawn(
-        ipfsPath,
-        ["daemon", "--migrate", "--enable-pubsub-experiment", "--enable-namesys-pubsub"],
-        { env, hideWindows: true },
-      );
-      console.log(`ipfs daemon process started with pid ${ipfsProcess.pid}`);
-      let lastError;
-      ipfsProcess.stderr.on("data", (data) => {
-        lastError = data.toString();
-        console.error(data.toString());
-      });
-      ipfsProcess.stdin.on("data", (data) => console.log(data.toString()));
-      ipfsProcess.stdout.on("data", (data) => {
-        data = data.toString();
-        console.log(data);
-        if (data.includes("Daemon is ready")) {
-          resolve();
-        }
-      });
-      ipfsProcess.on("error", (data) => console.error(data.toString()));
-      ipfsProcess.on("exit", () => {
-        console.error(`ipfs process with pid ${ipfsProcess.pid} exited`);
-        reject(Error(lastError));
-      });
-      const tryKill = () => {
-        try {
-          ps.kill(ipfsProcess.pid);
-        } catch (e) {
-          console.log(e);
-        }
-        try {
-          // sometimes ipfs doesnt exit unless we kill pid +1
-          ps.kill(ipfsProcess.pid + 1);
-        } catch (e) {
-          console.log(e);
-        }
-      };
-      process.on("exit", () => {
-        tryKill();
-      });
-
-      // healthcheck on kubo rpc, sometimes stops working and needs restart, dont know why
-      setInterval(async () => {
-        let res;
-        try {
-          res = await fetch(`http://127.0.0.1:${ipfsApiPort}/api/v0/config/show`, {
-            method: "POST",
-          }).then((res) => res.json());
-        } catch (e) {}
-        if (!res?.Identity) {
-          console.log(
-            `kubo rpc healthcheck failed, response '${JSON.stringify(res)}', killing ipfs...`,
-          );
-          tryKill();
-        }
-      }, 1000 * 60);
-    });
-  await startIpfsDaemon();
+  await startIpfsDaemon({ ipfsPath, env, ipfsApiPort });
 };
 
 const startIpfsAutoRestart = async () => {
