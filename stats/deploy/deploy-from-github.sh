@@ -155,6 +155,19 @@ release_compose=(
 # The web service runs from the monitor image, which also builds the dashboard.
 "${release_compose[@]}" build ipfs monitor
 
+# Receivers before .deploy-verified-revision wrote .deploy-revision only after every check passed,
+# so on the first run of this receiver on a host they deployed it names the last verified revision:
+# keep it before rsync deletes it. With neither file, no verified revision is on record, so start with
+# an empty file. Either way the file exists from here on, so a .deploy-revision this receiver wrote
+# before a failed check is never copied.
+if [[ ! -f "$target_dir/.deploy-verified-revision" ]]; then
+  if [[ -f "$target_dir/.deploy-revision" ]]; then
+    cp "$target_dir/.deploy-revision" "$target_dir/.deploy-verified-revision"
+  else
+    : > "$target_dir/.deploy-verified-revision"
+  fi
+fi
+
 rsync \
   --archive \
   --delete \
@@ -163,8 +176,15 @@ rsync \
   --exclude '.playwright-cli/' \
   --exclude 'node_modules/' \
   --exclude 'stats/deploy/.env' \
+  --exclude '.deploy-verified-revision' \
   "$release_root/" \
   "$target_dir/"
+
+# The tree now holds the release, so record it and install its receiver before any step below can
+# fail: a failed check then leaves the host naming the revision it runs, and the next deploy runs the
+# receiver that matches it. install replaces the file, so this running copy is unaffected.
+printf '%s\n' "$revision" > "$target_dir/.deploy-revision"
+install -m 0755 "$release_root/stats/deploy/deploy-from-github.sh" "$deploy_script_path"
 
 cd "$target_dir"
 compose=(docker compose --env-file stats/deploy/.env -f stats/deploy/compose.yaml)
@@ -189,7 +209,6 @@ grep -q '"network":' <<< "$overview"
 
 install_caddyfile "$target_dir/stats/deploy/Caddyfile"
 
-printf '%s\n' "$revision" > "$target_dir/.deploy-revision"
-install -m 0755 "$release_root/stats/deploy/deploy-from-github.sh" "$deploy_script_path"
+printf '%s\n' "$revision" > "$target_dir/.deploy-verified-revision"
 log "deployed revision $revision successfully"
 printf 'deployed_revision=%s\n' "$revision"

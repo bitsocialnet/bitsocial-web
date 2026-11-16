@@ -215,22 +215,26 @@ const useNow = (intervalMs: number) => {
   return now;
 };
 
-// The server rebuilds its data every 30 seconds and the page polls every minute, so data this old
+// The server rebuilds its data every 30 seconds, so data already this old when the page received it
 // means the server has stopped refreshing (Prometheus is unreachable) even though it still answers.
+// Data that only aged in the page's cache (a hidden tab, a page or range opened again) is not.
 const STALE_AFTER_MS = 5 * 60_000;
 
 /** How old the data on screen is (when the server built it), and whether the last refresh failed. */
 export function Freshness({
   updatedAt,
+  fetchedAt,
   loading,
   error,
 }: {
   updatedAt: number | undefined;
+  fetchedAt: number | undefined;
   loading: boolean;
   error: string | undefined;
 }) {
   const now = useNow(10_000);
-  const stale = updatedAt !== undefined && now - updatedAt > STALE_AFTER_MS;
+  const stale =
+    updatedAt !== undefined && fetchedAt !== undefined && fetchedAt - updatedAt > STALE_AFTER_MS;
   let text = "Loading…";
   let tone = "bg-unknown";
   if (error) {

@@ -22,7 +22,7 @@ interface Entry {
 const entries = new Map<string, Entry>();
 // The latest data per view, kept so a range change can show the previous chart until the new one
 // arrives instead of flashing empty.
-const latestByView = new Map<string, unknown>();
+const latestByView = new Map<string, Entry>();
 const prefetchedViews = new Set<string>();
 const listeners = new Set<() => void>();
 const watchers = new Map<string, { count: number; stop: () => void }>();
@@ -51,16 +51,27 @@ const load = async (path: string) => {
       throw new Error(body?.error || `The stats API answered ${response.status}.`);
     }
     const body: unknown = await response.json();
-    entries.set(path, { data: body, fetchedAt: Date.now(), loading: false });
-    latestByView.set(viewKey(path), body);
+    const loaded = { data: body, fetchedAt: Date.now(), loading: false };
+    entries.set(path, loaded);
+    // Only a path on screen is the view's previous data (watch() covers one opened on cached data),
+    // not a range loaded in the background.
+    if (watchers.has(path)) {
+      latestByView.set(viewKey(path), loaded);
+    }
     void prefetchOtherRanges(path);
   } catch (error) {
-    entries.set(path, {
-      ...entries.get(path),
-      error: error instanceof Error ? error.message : "The stats API is unreachable.",
-      failedAt: Date.now(),
-      loading: false,
-    });
+    if (watchers.has(path)) {
+      entries.set(path, {
+        ...current,
+        error: error instanceof Error ? error.message : "The stats API is unreachable.",
+        failedAt: Date.now(),
+        loading: false,
+      });
+    } else {
+      // Nobody is looking at this path (usually a background range load), so record no failure:
+      // opening it later fetches it at once instead of showing this error.
+      entries.set(path, { data: current?.data, fetchedAt: current?.fetchedAt, loading: false });
+    }
   }
   notify();
 };
@@ -101,6 +112,12 @@ const watch = (path: string) => {
     watcher.count += 1;
     return;
   }
+  // A path opened on cached data (a prefetched range, or one kept from an earlier visit) is on
+  // screen now and may not be refetched for a minute, so it is the view's previous data already.
+  const cached = entries.get(path);
+  if (cached?.data) {
+    latestByView.set(viewKey(path), cached);
+  }
   const check = () => refreshIfStale(path);
   const interval = window.setInterval(check, CHECK_MS);
   document.addEventListener("visibilitychange", check);
@@ -139,6 +156,9 @@ const getVersion = () => version;
 
 export interface StatsResult<T> {
   data: T | undefined;
+  /** When the page received `data` (epoch ms). Data kept while it was off screen can be old without
+   * the server having stopped updating it. */
+  fetchedAt: number | undefined;
   /** True while `data` belongs to another range of the same view. */
   isPrevious: boolean;
   error: string | undefined;
@@ -151,8 +171,10 @@ export function useStats<T>(path: string | null): StatsResult<T> {
 
   const entry = path ? entries.get(path) : undefined;
   const previous = path && !entry?.data ? latestByView.get(viewKey(path)) : undefined;
+  const shown = previous ?? entry;
   return {
-    data: (entry?.data ?? previous) as T | undefined,
+    data: shown?.data as T | undefined,
+    fetchedAt: shown?.fetchedAt,
     isPrevious: Boolean(previous),
     error: entry?.error,
     loading: Boolean(entry?.loading),

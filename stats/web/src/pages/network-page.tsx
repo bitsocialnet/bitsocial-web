@@ -100,7 +100,7 @@ function NetworkFigures({ data }: { data: Overview }) {
 }
 
 export function NetworkPage({ result, range }: { result: StatsResult<Overview>; range: RangeKey }) {
-  const { data, error, loading, isPrevious } = result;
+  const { data, fetchedAt, error, loading, isPrevious } = result;
   const clientNames = data?.clients.map(({ label }) => label).join(" and ") ?? "5chan and Seedit";
 
   const header = (
@@ -110,6 +110,7 @@ export function NetworkPage({ result, range }: { result: StatsResult<Overview>; 
       status={
         <Freshness
           updatedAt={data && Date.parse(data.generatedAt)}
+          fetchedAt={fetchedAt}
           loading={loading || isPrevious}
           error={error}
         />
