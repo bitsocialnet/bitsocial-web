@@ -80,6 +80,14 @@ function subdomainRedirectPlugin(): Plugin {
  * GitHub cannot be reached. AskWise is not listed: its icon is a rounded-corner edit of the bot's square avatar.
  */
 const syncedAppLogos = [
+  {
+    file: "gitcommons.svg",
+    source: "bitsocialnet/gitcommons/master/design/logo/gitcommons-app-icon.svg",
+  },
+  {
+    file: "infinipedia.svg",
+    source: "bitsocialnet/infinipedia/master/design/logo/infinipedia-app-icon.svg",
+  },
   { file: "mintpass.svg", source: "bitsocialnet/mintpass/master/web/public/mintpass.svg" },
   { file: "modelswarm.svg", source: "bitsocialnet/modelswarm/master/public/logo.svg" },
   { file: "wetube.svg", source: "bitsocialnet/wetube/master/design/logo/wetube-favicon.svg" },
