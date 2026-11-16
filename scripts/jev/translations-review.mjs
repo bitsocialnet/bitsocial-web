@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { lstat, unlink } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { resolve } from "node:path";
 import { parseArgs } from "node:util";
@@ -93,8 +94,30 @@ export async function main(argv = process.argv.slice(2)) {
     await readReviewJson(values.queue),
     await readReviewJson(values.review),
   );
-  for (const [name, value] of Object.entries(result))
-    if (value !== null) await writeReviewJson(`${values.out}.${name}.json`, value);
+  const outputs = Object.entries(result).map(([name, value]) => [
+    `${values.out}.${name}.json`,
+    value,
+  ]);
+  // Both paths must be unused, even one this import leaves unwritten, so a reused prefix cannot
+  // pair a new corpus with an earlier manifest. A write that still fails takes back the ones before.
+  const taken = (file) =>
+    lstat(file).then(
+      () => true,
+      (error) => error.code !== "ENOENT",
+    );
+  for (const [file] of outputs)
+    if (await taken(file)) throw new Error("Output path already exists");
+  const written = [];
+  try {
+    for (const [file, value] of outputs) {
+      if (value === null) continue;
+      await writeReviewJson(file, value);
+      written.push(file);
+    }
+  } catch (error) {
+    await Promise.all(written.map((file) => unlink(file)));
+    throw error;
+  }
   console.log(
     JSON.stringify({
       outputPrefix: values.out,

@@ -78,6 +78,10 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// Fresh listings are written only by saveCache(), once the run has checked them: a short listing
+// cached before the gap check would fail every later run, even after the explorer caught up.
+const unsavedCache = [];
+
 async function cached(key, enabled, load) {
   const file = path.join(cacheDir, `${key}.json`);
   if (enabled) {
@@ -89,10 +93,16 @@ async function cached(key, enabled, load) {
   }
   const value = await load();
   if (enabled) {
-    await mkdir(cacheDir, { recursive: true });
-    await writeFile(file, JSON.stringify(value));
+    unsavedCache.push([file, value]);
   }
   return value;
+}
+
+async function saveCache() {
+  await mkdir(cacheDir, { recursive: true });
+  for (const [file, value] of unsavedCache) {
+    await writeFile(file, JSON.stringify(value));
+  }
 }
 
 // getLogs returns at most 1,000 logs per call, and Routescan leaves logIndex empty, so logs cannot
@@ -275,11 +285,21 @@ async function main() {
   for (const [index, era] of priceHistory.eras.entries()) {
     const retired = index < priceHistory.eras.length - 1;
     const label = `${era.id} transfers`;
-    const transfers = await cached(`transfers-${era.token}`, retired, () =>
-      era.chain === "avalanche"
-        ? fetchAvalancheTransfers(era.token, label)
-        : fetchEthereumTransfers(era.token, retired ? Number.POSITIVE_INFINITY : block, label),
-    );
+    const transfers = await cached(`transfers-${era.token}`, retired, async () => {
+      const listed =
+        era.chain === "avalanche"
+          ? await fetchAvalancheTransfers(era.token, label)
+          : await fetchEthereumTransfers(
+              era.token,
+              retired ? Number.POSITIVE_INFINITY : block,
+              label,
+            );
+      // Every contract traded, so an empty listing is an explorer gap, not a quiet token.
+      if (listed.length === 0) {
+        throw new Error(`The explorer listed no ${label}; rerun once it has them`);
+      }
+      return listed;
+    });
     const oldUnitsBeforeBlock =
       era.id === "gen1" ? Number.POSITIVE_INFINITY : era.id === "gen2" ? REBASE_BURN_BLOCK : 0;
     eras.push({
@@ -307,6 +327,7 @@ async function main() {
   if (drawnGaps.length > 0) {
     throw new Error(`Missing transfers would distort these lines: ${drawnGaps.join("; ")}`);
   }
+  await saveCache();
 
   const wallets = {};
   for (const address of [...selected].sort(

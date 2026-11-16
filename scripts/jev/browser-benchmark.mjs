@@ -4,14 +4,12 @@ import fs from "node:fs/promises";
 import { constants } from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { parseArgs, promisify } from "node:util";
-import { execFile } from "node:child_process";
+import { parseArgs } from "node:util";
 import { performance } from "node:perf_hooks";
-import { createPlaywrightDriver, findPlaywrightCli } from "./browser-playwright.mjs";
+import { createPlaywrightDriver, findPlaywrightCli, runCommand } from "./browser-playwright.mjs";
 import { runBrowserPlan, validatePlan } from "./browser-plan.mjs";
 import { createJevClient } from "./client.mjs";
 
-const execute = promisify(execFile);
 export async function readBenchmarkPlan(file) {
   const handle = await fs.open(
     file,
@@ -107,7 +105,7 @@ export async function benchmarkRun(plan, { createDriver, runPlan, client, baseli
       const started = performance.now();
       controlCalls++;
       try {
-        return await execute(...args);
+        return await runCommand(...args);
       } finally {
         controlMs += performance.now() - started;
       }

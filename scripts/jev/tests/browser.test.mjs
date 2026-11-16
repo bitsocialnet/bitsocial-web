@@ -7,13 +7,17 @@ import {
   browserOriginGuard,
   createPlaywrightDriver,
   findPlaywrightCli,
+  runCommand,
 } from "../browser-playwright.mjs";
+import { benchmarkRun } from "../browser-benchmark.mjs";
 import { runInNewContext } from "node:vm";
-import { mkdtemp, writeFile, rm } from "node:fs/promises";
+import { chmod, mkdir, mkdtemp, writeFile, readFile, readdir, rm } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
+import { setTimeout as delay } from "node:timers/promises";
 
 const basePlan = () => ({
   version: 1,
@@ -625,4 +629,158 @@ test("unavailable or uncertain semantic checks require review; positive assessme
     assert.equal(result.flowCompleted, true);
     assert.equal(result.status, choice === "satisfies" ? "completed" : "incomplete");
   }
+});
+
+// Mirrors playwright-cli's order: `open` starts a detached daemon that launches the browser before
+// it accepts connections, so a `close` during the launch finds nothing to stop. Like the real
+// client, `open` passes a stop signal on to the daemon while the browser is still starting.
+const fakePlaywrightCli = `#!/usr/bin/env node
+import { spawn } from "node:child_process";
+import { existsSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import path from "node:path";
+const state = process.env.FAKE_PLAYWRIGHT_STATE;
+const args = process.argv.slice(2);
+const session = args.find((arg) => arg.startsWith("-s="))?.slice(3);
+const command = args.find((arg) => !arg.startsWith("-"));
+const live = path.join(state, session + ".live");
+const pid = path.join(state, session + ".pid");
+if (command === "daemon") {
+  process.on("SIGTERM", () => process.exit(0));
+  setTimeout(() => writeFileSync(live, ""), Number(process.env.FAKE_PLAYWRIGHT_LAUNCH_MS));
+  setInterval(() => {}, 1000);
+} else if (command === "open") {
+  const daemon = spawn(process.execPath, [process.argv[1], "-s=" + session, "daemon"], {
+    detached: true,
+    stdio: "ignore",
+  });
+  writeFileSync(pid, String(daemon.pid));
+  const stop = () => {
+    daemon.kill("SIGTERM");
+    process.exit(1);
+  };
+  process.on("SIGTERM", stop);
+  const started = setInterval(() => {
+    if (!existsSync(live)) return;
+    clearInterval(started);
+    process.off("SIGTERM", stop);
+    daemon.unref();
+    console.log("### Browser " + session + " opened");
+  }, 20);
+} else if (command === "close") {
+  if (existsSync(live)) {
+    process.kill(Number(readFileSync(pid, "utf8")), "SIGTERM");
+    rmSync(live);
+    console.log("Browser '" + session + "' closed");
+  } else console.log("Browser '" + session + "' is not open.");
+} else if (command === "list") {
+  for (const file of readdirSync(state).filter((name) => name.endsWith(".live")))
+    console.log("- " + file.slice(0, -5) + ":\\n  - status: open");
+} else console.log("### Result\\ntrue");
+`;
+
+/** A fake playwright-cli behind the real pw-session.sh, with its own lock dir and state dir. */
+async function slowLaunch(t) {
+  const directory = await mkdtemp(path.join(tmpdir(), "jev-open-timeout-"));
+  const state = path.join(directory, "state");
+  const lock = path.join(directory, "lock");
+  const cli = path.join(directory, "playwright-cli.mjs");
+  await writeFile(cli, fakePlaywrightCli);
+  await chmod(cli, 0o755);
+  await mkdir(state);
+  const env = {
+    PLAYWRIGHT_CLI_BIN: cli,
+    PLAYWRIGHT_RESOURCE_LOCK_DIR: lock,
+    FAKE_PLAYWRIGHT_STATE: state,
+    // The browser comes up well after the plan's one-second deadline.
+    FAKE_PLAYWRIGHT_LAUNCH_MS: "2500",
+  };
+  const previous = Object.fromEntries(Object.keys(env).map((name) => [name, process.env[name]]));
+  t.after(async () => {
+    for (const [name, value] of Object.entries(previous)) {
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+    for (const file of await readdir(state).catch(() => [])) {
+      if (!file.endsWith(".pid")) continue;
+      try {
+        process.kill(Number(await readFile(path.join(state, file), "utf8")), "SIGKILL");
+      } catch {
+        /* Already stopped. */
+      }
+    }
+    await rm(directory, { recursive: true, force: true });
+  });
+  Object.assign(process.env, env);
+  return {
+    plan: { ...basePlan(), limits: { deadlineMs: 1000 } },
+    async assertNothingLeft() {
+      assert.equal(existsSync(lock), false);
+      // Past the moment the abandoned launch would have finished.
+      await delay(3000);
+      const left = (await readdir(state)).filter((name) => name.endsWith(".live"));
+      assert.deepEqual(left, [], "a browser outlived cleanup without holding the slot");
+    },
+  };
+}
+
+test("a timed-out open stops the launch instead of releasing the slot while it continues", async (t) => {
+  const { plan, assertNothingLeft } = await slowLaunch(t);
+  const driver = createPlaywrightDriver();
+  await assert.rejects(driver.open(validatePlan(plan)), { code: "browser_command_timeout" });
+  await driver.close();
+  await assertNothingLeft();
+});
+
+test("a benchmark run whose open times out leaves no browser behind", async (t) => {
+  const { plan, assertNothingLeft } = await slowLaunch(t);
+  const result = await benchmarkRun(plan, {
+    createDriver: createPlaywrightDriver,
+    runPlan: runBrowserPlan,
+    baseline: true,
+  });
+  assert.equal(result.reason, "browser_command_timeout");
+  await assertNothingLeft();
+});
+
+// A zombie has exited and only waits to be reaped, which a container's PID 1 may never do.
+const alive = (pid) => {
+  const { status, stdout } = spawnSync("ps", ["-o", "stat=", "-p", String(pid)], {
+    encoding: "utf8",
+  });
+  return status === 0 && !stdout.trim().startsWith("Z");
+};
+
+/** Times out `script` under sh; returns the pid it wrote to `$0`, given up to 2 s to stop. */
+async function timedOutShell(t, script) {
+  const directory = await mkdtemp(path.join(tmpdir(), "jev-stubborn-"));
+  const pidFile = path.join(directory, "pid");
+  t.after(async () => {
+    const pid = Number(await readFile(pidFile, "utf8").catch(() => ""));
+    if (pid && alive(pid)) process.kill(pid, "SIGKILL");
+    await rm(directory, { recursive: true, force: true });
+  });
+  await assert.rejects(
+    runCommand("sh", ["-c", script, pidFile], { timeout: 200, maxBuffer: 1024, killAfter: 300 }),
+    { killed: true },
+  );
+  const pid = Number(await readFile(pidFile, "utf8"));
+  // A killed process can briefly remain until it is reaped.
+  for (let waited = 0; alive(pid) && waited < 2000; waited += 50) await delay(50);
+  return pid;
+}
+
+test("a timed-out command that ignores SIGTERM is killed with the processes below it", async (t) => {
+  // An ignored signal stays ignored across fork and exec, so neither the shell nor its sleep stops.
+  const pid = await timedOutShell(t, `trap '' TERM; sleep 60 & echo $! > "$0"; wait`);
+  assert.equal(alive(pid), false, "a process below the command outlived the forced stop");
+});
+
+test("the forced stop still reaches a process that ignores SIGTERM after the output closes", async (t) => {
+  // The shell stops on SIGTERM and closes the output; like the detached daemon, the sleep below it
+  // holds no output pipe, so the command settles while the sleep still runs.
+  const pid = await timedOutShell(
+    t,
+    `(trap '' TERM; exec sleep 60) </dev/null >/dev/null 2>&1 & echo $! > "$0"; wait`,
+  );
+  assert.equal(alive(pid), false, "a process below the command outlived the forced stop");
 });
