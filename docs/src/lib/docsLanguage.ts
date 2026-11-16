@@ -54,9 +54,16 @@ function getBrowserLocaleCandidates(): string[] {
   });
 }
 
+// The last language storage refused, so in-app navigation on this page still honours it.
+let unsavedLanguage: SupportedLanguageCode | null = null;
+
 function readStoredLanguage(): string | null {
   if (!canUseDom()) {
     return null;
+  }
+
+  if (unsavedLanguage) {
+    return unsavedLanguage;
   }
 
   try {
@@ -66,15 +73,19 @@ function readStoredLanguage(): string | null {
   }
 }
 
-function writeStoredLanguage(language: SupportedLanguageCode) {
+function writeStoredLanguage(language: SupportedLanguageCode): boolean {
   if (!canUseDom()) {
-    return;
+    return false;
   }
 
   try {
     window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+    unsavedLanguage = null;
+    return true;
   } catch {
-    // Ignore environments where storage is unavailable.
+    // Storage is blocked or full.
+    unsavedLanguage = language;
+    return false;
   }
 }
 
@@ -99,13 +110,30 @@ export function resolveDocsLanguage(search: string): SupportedLanguageCode {
   return resolveAutomaticLanguage(localeCandidates);
 }
 
-export function persistDocsLanguage(language: string | null | undefined) {
+/** Stores the language for later visits; false when it is unsupported or storage refused it. */
+export function persistDocsLanguage(language: string | null | undefined): boolean {
   const supportedLanguage = resolveSupportedLanguageCode(language);
   if (!supportedLanguage) {
-    return;
+    return false;
   }
 
-  writeStoredLanguage(supportedLanguage);
+  return writeStoredLanguage(supportedLanguage);
+}
+
+/**
+ * Stores an explicit language choice and returns the URL to load for it. When storage refuses the
+ * choice it rides along as `?lang=`, or the default-locale build would send the reader straight
+ * back to the language detected from the browser.
+ */
+export function persistDocsLanguageChoice(language: string, href: string): string {
+  const supportedLanguage = resolveSupportedLanguageCode(language);
+  if (!supportedLanguage || !canUseDom() || persistDocsLanguage(supportedLanguage)) {
+    return href;
+  }
+
+  const url = new URL(href, window.location.href);
+  url.searchParams.set(LANGUAGE_QUERY_PARAM, supportedLanguage);
+  return `${url.pathname}${url.search}${url.hash}`;
 }
 
 export function persistDocsLanguageFromSearch(search: string) {
@@ -126,6 +154,15 @@ export function stripLanguageQueryParam(search: string): string {
   const nextSearch = searchParams.toString();
 
   return nextSearch ? `?${nextSearch}` : "";
+}
+
+/** The locale a docs URL is under: its first path segment when that is a language code. */
+export function getDocsPathLanguage(pathname: string): SupportedLanguageCode {
+  const [firstSegment] = pathname.replace(/^\/+/, "").split("/");
+  return (
+    SUPPORTED_LANGUAGES.find((language) => language.code === firstSegment)?.code ??
+    DEFAULT_LANGUAGE_CODE
+  );
 }
 
 export function isDocsNotFoundPath(pathname: string): boolean {

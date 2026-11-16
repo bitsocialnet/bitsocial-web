@@ -24,6 +24,8 @@ export type HolderHistory = {
   /** The first and last day of every line's time axis, so lines compare across rows. */
   firstDay: number;
   lastDay: number;
+  /** False when the Blockscout top-up failed and the lines end at the committed snapshot. */
+  toppedUp: boolean;
 };
 
 type TransfersResponse = {
@@ -38,6 +40,9 @@ type TransfersResponse = {
 };
 
 type Transfer = { day: number; from: string; to: string; amount: number };
+
+/** More transfers than the top-up may page through; asking again will not make them fewer. */
+class TooManyTransfersError extends Error {}
 
 /** Every BSO transfer after `block`, oldest first. */
 async function fetchTransfersAfter(block: number): Promise<Transfer[]> {
@@ -68,7 +73,9 @@ async function fetchTransfersAfter(block: number): Promise<Transfer[]> {
       return transfers.reverse();
     }
   }
-  throw new Error(`More than ${MAX_PAGES} pages of BSO transfers since block ${block}`);
+  throw new TooManyTransfersError(
+    `More than ${MAX_PAGES} pages of BSO transfers since block ${block}`,
+  );
 }
 
 function applyTransfers(wallets: Map<string, BalancePoint[]>, transfers: Transfer[]) {
@@ -95,10 +102,15 @@ let pending: Promise<HolderHistory> | null = null;
 
 /**
  * The committed lines (`yarn rich-list:history`), topped up from Blockscout with every BSO transfer
- * after their snapshot block. The file is its own chunk, fetched once, the first time a line is needed.
+ * after their snapshot block. The file is its own chunk, fetched the first time a line is needed;
+ * a failed load or a top-up that may pass later is forgotten, so the next call tries again.
  */
 function loadHolderHistory(): Promise<HolderHistory> {
-  pending ??= (async () => {
+  if (pending) {
+    return pending;
+  }
+  let retry = false;
+  const load = (async (): Promise<HolderHistory> => {
     const committed = (await import("@/data/bso-holder-history.json"))
       .default as unknown as CommittedHolderHistory;
     const wallets = new Map(
@@ -108,23 +120,34 @@ function loadHolderHistory(): Promise<HolderHistory> {
       ]),
     );
     let lastDay = Math.floor(Date.now() / DAY_MS);
+    let toppedUp = true;
     try {
       applyTransfers(wallets, await fetchTransfersAfter(committed.block));
     } catch (error) {
       console.warn("Could not top up holder history from Blockscout.", error);
       // Without the top-up the lines end at the snapshot instead of claiming today's balance.
       lastDay = Math.floor(Date.parse(committed.generatedAt) / DAY_MS);
+      toppedUp = false;
+      retry = !(error instanceof TooManyTransfersError);
     }
     let firstDay = Number.POSITIVE_INFINITY;
     for (const series of wallets.values()) {
       firstDay = Math.min(firstDay, series[0]?.[0] ?? firstDay);
     }
-    return { wallets, firstDay: Math.min(firstDay, lastDay), lastDay };
+    return { wallets, firstDay: Math.min(firstDay, lastDay), lastDay, toppedUp };
   })();
-  pending.catch(() => {
-    pending = null;
-  });
-  return pending;
+  pending = load;
+  load.then(
+    () => {
+      if (retry) {
+        pending = null;
+      }
+    },
+    () => {
+      pending = null;
+    },
+  );
+  return load;
 }
 
 export type HolderHistoryState =
@@ -132,12 +155,16 @@ export type HolderHistoryState =
   | { status: "ready"; history: HolderHistory }
   | { status: "unavailable"; history: null };
 
-/** Loads the balance history once `enabled` turns true, as when the table scrolls into view. */
-export function useHolderHistory(enabled: boolean): HolderHistoryState {
+/**
+ * Loads the balance history once `enabled` turns true, as when the table scrolls into view. Until
+ * the lines are topped up, every new `liveSnapshot` tries again, so they catch up with the balances.
+ */
+export function useHolderHistory(enabled: boolean, liveSnapshot: unknown): HolderHistoryState {
   const [state, setState] = useState<HolderHistoryState>({ status: "loading", history: null });
+  const toppedUp = state.history?.toppedUp === true;
 
   useEffect(() => {
-    if (!enabled) {
+    if (!enabled || toppedUp) {
       return;
     }
     let active = true;
@@ -157,7 +184,7 @@ export function useHolderHistory(enabled: boolean): HolderHistoryState {
     return () => {
       active = false;
     };
-  }, [enabled]);
+  }, [enabled, toppedUp, liveSnapshot]);
 
   return state;
 }

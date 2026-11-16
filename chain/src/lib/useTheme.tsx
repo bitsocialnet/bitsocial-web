@@ -7,9 +7,13 @@ function getInitialTheme(): Theme {
     return "dark";
   }
 
-  const stored = window.localStorage.getItem("bso-theme");
-  if (stored === "light" || stored === "dark") {
-    return stored;
+  try {
+    const stored = window.localStorage.getItem("bso-theme");
+    if (stored === "light" || stored === "dark") {
+      return stored;
+    }
+  } catch {
+    // Storage throws when the browser blocks site data; the system scheme decides then.
   }
 
   return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
@@ -29,19 +33,20 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     applyTheme(theme);
-    window.localStorage.setItem("bso-theme", theme);
   }, [theme]);
 
-  return (
-    <ThemeContext.Provider
-      value={{
-        theme,
-        toggle: () => setTheme((current) => (current === "dark" ? "light" : "dark")),
-      }}
-    >
-      {children}
-    </ThemeContext.Provider>
-  );
+  // Only the reader's own choice is stored, so without one the theme follows the system each load.
+  const toggle = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    try {
+      window.localStorage.setItem("bso-theme", next);
+    } catch {
+      // Without storage the choice lasts until the page is closed.
+    }
+    setTheme(next);
+  };
+
+  return <ThemeContext.Provider value={{ theme, toggle }}>{children}</ThemeContext.Provider>;
 }
 
 export function useTheme() {

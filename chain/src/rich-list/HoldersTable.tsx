@@ -40,19 +40,20 @@ export default function HoldersTable() {
   const { t } = useTranslation();
   const format = useFormatters();
   const entityName = useEntityName();
-  const { groupedRows, walletRows, awaitingLive } = useRichList();
+  const { groupedRows, walletRows, awaitingLive, snapshot } = useRichList();
   const bodyRef = useRef<HTMLTableSectionElement>(null);
   const searchId = useId();
   const [view, setView] = useState<View>("grouped");
   const [query, setQuery] = useState("");
   const [limit, setLimit] = useState(PAGE_SIZE);
   const [expanded, setExpanded] = useState<ReadonlySet<string>>(() => new Set());
-  // The balance history is a separate download, fetched only once the table nears the viewport.
+  // The balance history is a separate download, fetched only once the table nears the viewport,
+  // and fetched again with the next live balances when Blockscout could not top it up.
   const { ref: tableRef, revealed } = useReveal<HTMLDivElement>({
     threshold: 0,
     rootMargin: "300px 0px",
   });
-  const history = useHolderHistory(revealed);
+  const history = useHolderHistory(revealed, snapshot);
 
   const normalizedQuery = query.trim().toLowerCase();
   // A search lists matching wallets one by one, each still labelled with its holder, so a match
