@@ -37,9 +37,10 @@ test("reports the network down once every provider fails three checks in a row, 
   });
   const id = "browserReachability:network";
 
+  // under the threshold nothing is reported, so a restart during an outage sends no false recovery
   await run();
   await run();
-  assert.equal(last(id).ok, true);
+  assert.equal(last(id), undefined);
   await run();
   assert.equal(last(id).ok, false);
   assert.match(last(id).summary, /any of the 2 monitored communities/);

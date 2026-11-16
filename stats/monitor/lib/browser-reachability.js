@@ -30,6 +30,13 @@ export const createBrowserReachabilityMonitor = ({
     consecutiveFailures.set(id, count);
     return count;
   };
+  // A failure count under the threshold reports nothing, so the alert keeps its state. That state
+  // survives a restart in monitorState and these counts don't: reporting "up" there would send a
+  // false recovery for an outage that is still going.
+  const report = (failures, notification) =>
+    failures > 0 && failures < failuresBeforeAlert
+      ? undefined
+      : notify({ ...notification, ok: failures === 0 });
 
   return async () => {
     // the providers the routers listed for each community's latest record, merged per peer
@@ -80,10 +87,9 @@ export const createBrowserReachabilityMonitor = ({
     } else if (!urls.length) {
       networkFailureReason = "No provider lists a secure WebSocket address";
     }
-    await notify({
+    await report(networkFailures, {
       id: "browserReachability:network",
       label: "Browser reachability of community records",
-      ok: networkFailures < failuresBeforeAlert,
       summary: networkFailures
         ? `No browser can reach a provider of any of the ${communityPeerIds.length} monitored communities. ${networkFailureReason}, ${networkFailures} checks in a row.`
         : `Browsers can reach a provider for ${reachableCommunities.length} of ${communityPeerIds.length} monitored communities.`,
@@ -106,10 +112,9 @@ export const createBrowserReachabilityMonitor = ({
         summary = `No browser can dial the seeder: all ${peer.urls.size} secure WebSocket addresses failed, ${failures} checks in a row.`;
         details = (await describeFailedUrls([...peer.urls])).join("\n");
       }
-      await notify({
+      await report(failures, {
         id: `browserReachability:seeder:${peerId}`,
         label: `Seeder ${peerId}`,
-        ok: failures < failuresBeforeAlert,
         summary,
         details,
       });
