@@ -231,6 +231,7 @@ export default function Topbar() {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
+  const [isLanguageSheetOpen, setIsLanguageSheetOpen] = useState(false);
   const [usesCompactNavigation, setUsesCompactNavigation] = useState(
     () => typeof window !== "undefined" && window.innerWidth < 768,
   );
@@ -288,9 +289,12 @@ export default function Topbar() {
   }, [usesCompactNavigation]);
 
   useEffect(() => {
-    if (!usesCompactNavigation || !isMobileMenuOpen) return;
+    // The language sheet opens on top of the menu: its Escape and overlay taps close only the sheet.
+    if (!usesCompactNavigation || !isMobileMenuOpen || isLanguageSheetOpen) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      // Radix marks the Escape that dismissed the sheet, and this listener can be attached again
+      // before that same event reaches the window.
+      if (e.key === "Escape" && !e.defaultPrevented) {
         closeMobileMenu();
       }
     };
@@ -320,13 +324,16 @@ export default function Topbar() {
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("pointerdown", onPointerDown, true);
     };
-  }, [closeMobileMenu, usesCompactNavigation, isMobileMenuOpen]);
+  }, [closeMobileMenu, usesCompactNavigation, isMobileMenuOpen, isLanguageSheetOpen]);
 
   const handleNavClick = () => {
     closeMobileMenu();
   };
 
   const handleMenuToggle = () => {
+    // The modal sheet keeps this toggle out of reach while it is open, so any flag still set here is
+    // left from a sheet that unmounted with a force-closed menu without reporting it.
+    setIsLanguageSheetOpen(false);
     setIsMobileMenuOpen((isOpen) => {
       const nextIsOpen = !isOpen;
       if (nextIsOpen) {
@@ -471,6 +478,7 @@ export default function Topbar() {
                 <LanguageSelector
                   mobile
                   mobileMenuInteractionGuardAttribute={MOBILE_MENU_INTERACTION_GUARD_ATTRIBUTE}
+                  onOpenChange={setIsLanguageSheetOpen}
                 />
               </div>
               <div className="flex-1">

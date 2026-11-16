@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { replaceUrlHash } from "@/lib/home-section-nav";
 import {
   DEFAULT_LANGUAGE_CODE,
   LANGUAGE_QUERY_PARAM,
@@ -118,9 +119,12 @@ export function NoJsLanguageSelector({ mobile }: { mobile?: boolean }) {
 export default function LanguageSelector({
   mobile,
   mobileMenuInteractionGuardAttribute,
+  onOpenChange,
 }: {
   mobile?: boolean;
   mobileMenuInteractionGuardAttribute?: string;
+  /** Reports the sheet opening and closing, so a hosting menu can leave its input to the sheet. */
+  onOpenChange?: (open: boolean) => void;
 }) {
   const { i18n, t } = useTranslation();
   const location = useLocation();
@@ -154,6 +158,7 @@ export default function LanguageSelector({
     (code: string) => {
       i18n.changeLanguage(code);
       setOpen(false);
+      onOpenChange?.(false);
       setSearchQuery("");
       setActiveIndex(0);
 
@@ -166,13 +171,18 @@ export default function LanguageSelector({
           searchParams.set(LANGUAGE_QUERY_PARAM, code);
         }
         const query = searchParams.toString();
+        // In-page links move the URL hash without the router, so its `location.hash` can be stale.
+        // Navigate with the router's hash (a new one would start the home section scroll), then
+        // put back the section the address bar was showing.
+        const urlHash = window.location.hash;
         navigate(
           { pathname: location.pathname, search: query ? `?${query}` : "", hash: location.hash },
           { replace: true },
         );
+        replaceUrlHash(urlHash);
       }
     },
-    [i18n, location.hash, location.pathname, location.search, navigate],
+    [i18n, location.hash, location.pathname, location.search, navigate, onOpenChange],
   );
 
   useEffect(() => {
@@ -222,6 +232,7 @@ export default function LanguageSelector({
     }
 
     setOpen(nextOpen);
+    onOpenChange?.(nextOpen);
 
     if (nextOpen) {
       const selectedIndex = filteredLanguages.findIndex(

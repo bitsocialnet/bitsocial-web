@@ -1,4 +1,5 @@
 import type { NavigateFunction } from "react-router-dom";
+import { replaceUrlHash } from "@/lib/home-section-nav";
 import { triggerFeatureGlow } from "@/lib/utils";
 
 const MAILING_LIST_SECTION_ID = "mailing-list";
@@ -126,6 +127,7 @@ export function goToMailingListSection(
   onNavigate?.();
   const isHome = pathname === "/" || pathname === "";
   if (isHome && hash === MAILING_LIST_HASH) {
+    replaceUrlHash(MAILING_LIST_HASH);
     scrollToMailingListSection();
     return;
   }

@@ -15,6 +15,7 @@ import {
 import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import EasterEggOverlay from "@/components/easter-egg-overlay";
+import { closeDeepComparisonHash, openDeepComparisonHash } from "@/lib/deep-comparison-history";
 import { DOCS_LINKS } from "@/lib/docs-links";
 import { loadGsap, type TweenLike } from "@/lib/motion-runtime";
 
@@ -995,28 +996,6 @@ function getDeepComparisonServiceFromHash(hash: string): DeepComparisonServiceId
   );
 }
 
-function replaceDeepComparisonHash(nextHash: string) {
-  if (typeof window === "undefined" || window.location.hash === nextHash) {
-    return;
-  }
-
-  window.history.replaceState(null, "", nextHash);
-}
-
-function pushDeepComparisonHash(serviceId: DeepComparisonServiceId) {
-  if (typeof window === "undefined") {
-    return;
-  }
-
-  const nextHash = getDeepComparisonHash(serviceId);
-
-  if (window.location.hash === nextHash) {
-    return;
-  }
-
-  window.history.pushState(null, "", nextHash);
-}
-
 function getSanctuaryDeepComparisons(t: TFunction): DeepComparison[] {
   return DEEP_COMPARISON_SERVICE_IDS.map((serviceId) => ({
     docsHref: DEEP_COMPARISON_DOCS_HREF_BY_SERVICE[serviceId],
@@ -1374,7 +1353,13 @@ const MobileComparisonCarousel = memo(function MobileComparisonCarousel({
 
       void loadGsap()
         .then((gsap) => {
-          if (!gsap || scrollAnimationRequestRef.current !== animationRequest) {
+          // A newer tap, swipe or resize already reset the snap and pending tab for its own
+          // request, so a superseded load must leave them alone.
+          if (scrollAnimationRequestRef.current !== animationRequest) {
+            return;
+          }
+
+          if (!gsap) {
             carousel.style.scrollSnapType = "";
             setPendingIndex(null);
             return;
@@ -2134,7 +2119,7 @@ export default function SanctuaryCommunication() {
     deepComparisons.find(({ id }) => id === selectedDeepService) ?? deepComparisons[0];
   const openDeepComparison = useCallback((serviceId: DeepComparisonServiceId) => {
     setDeepComparisonState({ open: true, selectedService: serviceId });
-    pushDeepComparisonHash(serviceId);
+    openDeepComparisonHash(getDeepComparisonHash(serviceId));
   }, []);
   const handleSelectedDeepServiceChange = useCallback(
     (serviceId: DeepComparisonServiceId) => {
@@ -2153,7 +2138,7 @@ export default function SanctuaryCommunication() {
       typeof window !== "undefined" &&
       getDeepComparisonServiceFromHash(window.location.hash)
     ) {
-      replaceDeepComparisonHash("#decentralized");
+      closeDeepComparisonHash("#decentralized");
     }
   }, []);
   const noJsMobileApproaches = useMemo(() => {
