@@ -27,6 +27,8 @@ import { monitorServiceProbes } from "./lib/service-probe.js";
 import { monitorNfts } from "./lib/nft.js";
 import { monitorPkcSeeders } from "./lib/pkc-seeder.js";
 import { monitorKuboRpcProxy } from "./lib/kubo-rpc-proxy-stats.js";
+import { createBrowserReachabilityMonitor } from "./lib/browser-reachability.js";
+import { notifyProbeTransition } from "./lib/telegram-alerts.js";
 
 // start server on port 3000
 import "./lib/server.js";
@@ -49,6 +51,7 @@ const serviceProbesIntervalMs = 1000 * 60;
 const nftsIntervalMs = 1000 * 60 * 10;
 const pkcSeedersIntervalMs = 1000 * 60 * 10;
 const kuboRpcProxyIntervalMs = 1000 * 60;
+const browserReachabilityIntervalMs = 1000 * 60 * 5;
 const fiveChanBoardsIntervalMs = 1000 * 60;
 const monitoringNameAliases = {
   previewers: "pkcPreviewers",
@@ -256,6 +259,32 @@ if (isMonitoring("serviceProbes")) {
     () => monitorServiceProbes().catch((e) => console.log(e.message)),
     serviceProbesIntervalMs,
   );
+}
+
+// dial community record providers the way a browser does every 5min
+if (isMonitoring("browserReachability")) {
+  const monitorBrowserReachability = createBrowserReachabilityMonitor({
+    // monitorState.communities keeps communities that left the monitored lists, with stale providers
+    getCommunities: () =>
+      Object.fromEntries(
+        (monitorState.communitiesMonitoring || []).map(({ address }) => [
+          address,
+          monitorState.communities[address],
+        ]),
+      ),
+    getSeederPeerIds: () => config.monitoring.seederPeerIds,
+    notify: notifyProbeTransition,
+  });
+  setTimeout(
+    () => {
+      monitorBrowserReachability().catch((e) => console.log(e.message));
+      setInterval(
+        () => monitorBrowserReachability().catch((e) => console.log(e.message)),
+        browserReachabilityIntervalMs,
+      );
+    },
+    1000 * 60 * 4,
+  ); // wait for community update cid providers from monitorCommunitiesIpns
 }
 
 // check kubo rpc proxy upstream sockets every 1min

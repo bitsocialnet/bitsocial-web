@@ -57,3 +57,24 @@ in [config.js](./config.js), or when requests have waited for a pooled rpc socke
 a row. A socket leak like [#25](https://github.com/bitsocialnet/bitsocial-web/issues/25) is reported
 that way long before it exhausts host TCP memory. With the monitor pointed straight at Kubo and no
 proxy in between, the gauges stay empty and no alert is sent.
+
+### Browser reachability alerts
+
+Browser clients can only dial a peer through a secure WebSocket address whose name resolves in public
+DNS and serves a valid certificate. Every 5 minutes the monitor takes the providers the HTTP routers
+list for each community's latest record and dials their secure WebSocket addresses the way a browser
+does (DNS, TLS, WebSocket upgrade, libp2p multistream reply). It sends an alert when no community has
+a provider a browser can reach, three checks in a row, which is the state the
+[2026-10-31 `libp2p.direct` outage](https://github.com/bitsocialnet/bitsocial-web/issues/55) left the
+network in. The alert lists each failed address and whether its name still resolves.
+
+To also watch seeders one by one, set their peer ids, comma-separated:
+
+```bash
+BITSOCIAL_STATS_SEEDER_PEER_IDS=
+```
+
+A listed seeder is reported when, three checks in a row, no router lists it as a provider of any
+monitored community record, the routers list it with no secure WebSocket address, or every such
+address fails the dial. WebTransport addresses are not dialed: pkc-js browser clients reject
+WebTransport dials, so they are not a path a browser uses.
