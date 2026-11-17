@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { Trans, useTranslation } from "react-i18next";
-import { BSO_RESOLVER_URL } from "@/lib/site";
+import { BSO_REGISTRY_BSIP_URL, BSO_RESOLVER_URL } from "@/lib/site";
 import Section from "./Section";
 
 export default function BsoNames() {
@@ -68,6 +68,22 @@ export default function BsoNames() {
           </span>
         </div>
       </div>
+
+      <p className="tree-caption bso-caption">
+        <Trans
+          i18nKey="sections.bsoNames.fees"
+          components={{
+            bsipLink: (
+              <a
+                className="section-link"
+                href={BSO_REGISTRY_BSIP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              />
+            ),
+          }}
+        />
+      </p>
     </Section>
   );
 }

@@ -46,6 +46,8 @@ export const CONTRIBUTE_URL =
 
 export const BSO_RESOLVER_URL = "https://github.com/bitsocialnet/bso-resolver" as const;
 
+export const BSO_REGISTRY_BSIP_URL = "https://bsips.bitsocial.net/bsip-13" as const;
+
 export type ExternalLink = {
   label: string;
   href: string;
