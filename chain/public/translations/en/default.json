@@ -764,7 +764,6 @@
       "notDeployed": "The registry launches soon. Names and prices can be checked now."
     },
     "plate": {
-      "preview": "What readers see",
       "inputLabelCommunity": "Your community's name",
       "inputLabelProfile": "Your profile's name",
       "placeholderCommunity": "yourcommunity",
@@ -778,7 +777,6 @@
       "about": "About",
       "captionCommunity": "A community header whose title is the .bso name you are checking",
       "captionProfile": "A profile header whose title is the .bso name you are checking",
-      "try": "Try",
       "withoutCommunity": "Without a name, people share",
       "withoutProfile": "Without a name, your posts show",
       "withCommunity": "With one, they share",
@@ -915,31 +913,151 @@
       "caption": "Not to scale. Registering a name again after its grace period clears every record, so the new owner starts empty."
     },
     "eth": {
-      "title": "Coming from a .eth name?",
-      "lead": "Every .eth name that had a bitsocial record at the launch snapshot gets the matching .bso name, with the same owner and record, free for its first year.",
-      "label": "Check a .eth name",
+      "badge": "Free for names in use",
+      "title": "Already using a .bso name? It's yours.",
+      "lead": "Until now, apps read memes.bso from memes.eth. At launch, every .eth name with a bitsocial record, subnames included, is airdropped as the same .bso name to the wallet that holds it, with the same record and its first year paid. There is nothing to claim and nothing to pay.",
+      "caveat": "Only names that had a bitsocial record at the launch snapshot are included. If yours got its record later, claim the .bso name as soon as registration opens, before someone else does.",
+      "label": "Check your .eth name",
       "placeholder": "memes.eth",
       "check": "Check",
       "registered": "{{name}} is registered to {{owner}} until {{date}}.",
       "points": "It points to {{record}}.",
-      "notYet": "{{name}} isn't registered yet. Seeded names are registered before public registration opens.",
-      "notSeeded": "{{name}} isn't registered, so it wasn't seeded. Anyone can claim it.",
+      "notYet": "{{name}} isn't registered yet. Airdropped names are registered before registration opens to everyone, so check again then.",
+      "notSeeded": "{{name}} wasn't airdropped and is open to anyone. If you use {{eth}}, claim it before someone else does.",
       "tryAbove": "Check {{name}} above"
     },
-    "trust": {
-      "title": "Why you can trust it",
-      "noAdmin": "No admin, no upgrades.",
-      "noAdminNote": "No owner key, and the code can't change.",
-      "prices": "Fixed prices.",
-      "pricesNote": "0.0005 ETH a year from 5 characters.",
-      "fees": "Fees fund Bitsocial.",
-      "feesNote": "A {{threshold}}-of-{{owners}} Safe with no power over names.",
-      "feesNoteUnknown": "A multisig Safe with no power over names.",
-      "moves": "Moves to Bitsocial Chain.",
-      "movesNote": "Same owner and record.",
+    "faq": {
+      "eyebrow": "Questions",
+      "title": "How .bso names work",
+      "lead": "The answers follow BSIP-13, the spec this registry implements.",
+      "groups": {
+        "using": "Owning a name",
+        "launch": "Launch and .eth names",
+        "trust": "Fees, trust and Bitsocial Chain"
+      },
+      "signers": "{{threshold}} of its {{owners}} keys must sign",
+      "signersUnknown": "Several of its keys must sign",
+      "priceLength": "Name length",
+      "pricePerYear": "Per year",
+      "bytes_one": "{{count}} byte",
+      "bytes_other": "{{count}} bytes",
+      "bytesOrMore_one": "{{count}} byte or more",
+      "bytesOrMore_other": "{{count}} bytes or more",
       "contract": "Registry contract",
       "safe": "Fee Safe",
-      "spec": "BSIP-13"
+      "spec": "Read BSIP-13",
+      "items": {
+        "what": {
+          "q": "What does a .bso name do?",
+          "a": [
+            "It gives a community or a profile a name people can read. The name's bitsocial record holds a key address, the long 12D3KooW… string that identifies the community or profile on the network. Apps look the name up, read the key and load what it points to, so memes.bso opens the same community in 5chan, Seedit and any other Bitsocial app.",
+            "A name also makes a key replaceable. If the key is lost or stolen, you point the name at a new one and readers follow. A community known only by its key can't recover that way.",
+            "The name itself is an NFT (ERC-721) on Ethereum, held by your wallet. Whoever holds it decides where it points."
+          ]
+        },
+        "profiles": {
+          "q": "Can a profile have a name too?",
+          "a": [
+            "Yes. Authors sign their posts with a key, and apps show a name on those posts when the name's bitsocial record holds that key. Communities and profiles use the same record, so registering works the same way for both.",
+            "Profile pages that collect an author's posts from every community (BSIP-14) arrive with Bitsocial's first public RPC, and a name registered now works for them. One name can't serve as a community and a profile at once."
+          ]
+        },
+        "cost": {
+          "q": "What does a name cost?",
+          "a": [
+            "The yearly price depends on the name's length in bytes, and renewing costs the same. Ethereum gas is paid on top. Letters a–z, digits and hyphens take one byte each, accented, Greek or Cyrillic letters two, Chinese or Japanese characters three, and emoji usually four, so a single emoji is priced as a 4-byte name."
+          ]
+        },
+        "claiming": {
+          "q": "Why does claiming take two transactions?",
+          "a": [
+            "Anyone can watch pending Ethereum transactions. If you sent the name in the open, someone could copy it and register it ahead of you. So you first reserve: you send a fingerprint of the name mixed with a random secret, which reveals nothing. A minute later you claim, sending the name and the secret, and the registry mints the name to your wallet if they match the reservation.",
+            "A reservation stays valid for 24 hours. This page keeps the secret in your browser, so you can reload or come back later on the same device. If you clear the browser's data before claiming, reserve again. The first reservation only cost gas."
+          ]
+        },
+        "expiry": {
+          "q": "What happens if a name expires?",
+          "a": [
+            "A name lasts 365 days. Anyone can renew it for another 365, counted from its current expiry, so a friend or a directory can keep yours alive. After expiry comes a 90-day grace period: the name stops resolving and can only be renewed. Then anyone can register it, first at a premium that falls from 100 ETH to zero over 21 days, then at the normal price.",
+            "A new registration clears every record, and the new holder can point the name at their own key. Readers who follow that name would follow them, so renew early."
+          ]
+        },
+        "spelling": {
+          "q": "Which spellings work?",
+          "a": [
+            "Apps normalize a name before looking it up, the way ENS does (ENSIP-15). That allows lowercase letters, digits, hyphens inside the name, most scripts and emoji. Dots, spaces and underscores aren't allowed, except an underscore at the very start, and look-alike characters that mix scripts are rejected.",
+            "The registry itself checks less, so it would sell spellings no app can resolve, and the fee isn't refunded. This page refuses those and suggests a fix, such as relationship-advice for relationship_advice."
+          ]
+        },
+        "transfer": {
+          "q": "Can I give or sell a name?",
+          "a": [
+            "Yes. A name is an ERC-721 token in your wallet, so you can send it like any NFT. Claiming always mints to the wallet that claims, so to register a name for someone else, claim it and then transfer it. The record doesn't change with the owner, so the new holder should point it at their own key."
+          ]
+        },
+        "subnames": {
+          "q": "Can I hand out subnames?",
+          "a": [
+            "A name's holder can create subnames such as memes.yourname.bso for free. But the holder of the parent name can take any subname back at any time and point it elsewhere, so a community on a subname depends on that person completely. A community should register a name of its own, or stay on its key until it does."
+          ]
+        },
+        "launch": {
+          "q": "What happens at launch?",
+          "a": [
+            "The registry starts closed. First, every .bso name already in use through .eth is registered to its holder for free (see above). Anyone can send those registrations, and the maintainers aim to send them all within an hour of deployment. Public registration opens one hour after the last one, so the opening time is on chain an hour ahead. If they stall, it opens seven days after deployment anyway.",
+            "You can reserve a name before the opening. A reservation made at least a minute and at most 24 hours before the opening can be claimed the moment it opens. Others may claim the same name at that moment, and the first transaction included wins."
+          ]
+        },
+        "eth": {
+          "q": "Does my .eth name still work?",
+          "a": [
+            "Yes. Apps keep resolving .eth names through ENS. What changes is that x.bso no longer means x.eth: apps that support this registry read .bso names only from it, so bot.bso and bot.eth become separate names that can have different owners.",
+            "Some apps will keep reading x.bso from x.eth until they update. If you hold both names, keep their records the same until then."
+          ]
+        },
+        "control": {
+          "q": "Who controls the registry?",
+          "a": [
+            "Nobody. The contract has no owner, admin, proxy, pause switch or upgrade path. Prices, periods and the fee address are fixed in its code, and nobody can take, edit or transfer a name they don't hold.",
+            "It is a fork of the .gwei Name Service with four changes: names end in .bso, fees go to a fixed multisig instead of staying locked in the contract, names already in use are copied in at launch, and a one-time sunset lets it move to Bitsocial Chain. The other side of code that can't change is that a bug can't be patched either."
+          ]
+        },
+        "fees": {
+          "q": "Where do the fees go?",
+          "a": [
+            "Fees collect in the registry, and anyone can send them on to one fixed address: a Safe multisig that funds Bitsocial's development while this registry is in use. {{signers}} anything. The keys belong to Bitsocial's two maintainers and trustees they named, and no one person holds enough of them to move the funds.",
+            "The Safe has exactly two powers over the registry: receiving fees, and starting the sunset once. It can't change prices or touch a name it doesn't hold. It also holds a few reserved project names, such as bitsocial.bso, as an ordinary owner."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Why a new registry instead of ENS?",
+          "a": [
+            "Until now every .bso name was an ENS name, at ENS prices: in October 2026 a new community name was quoted at more than $20 for three years. Most owners won't pay that to try out a community, so they stay on bare keys. Bitsocial Chain will hold .bso names natively, but it doesn't exist yet.",
+            "This interim registry makes a normal name cost 0.0005 ETH a year today, and turns the later move to Bitsocial Chain into a copy of the records instead of a change of owners."
+          ]
+        },
+        "whyEth": {
+          "q": "Why pay in ETH and not BSO?",
+          "a": [
+            "A discount for paying in BSO would need the contract to know BSO's price in ETH. A contract with no owner can't replace a price source that breaks, and a thinly traded pool could be pushed for one transaction to buy short names for almost nothing. A fixed price list in BSO would drift with the token until it was either nearly free or never used, with nobody able to correct it.",
+            "Bitsocial Chain's own registry can give BSO a role without these limits."
+          ]
+        },
+        "move": {
+          "q": "What does moving to Bitsocial Chain mean?",
+          "a": [
+            "Bitsocial Chain is phase 3 of Bitsocial's master plan: a chain of its own that holds .bso names natively. Once a BSIP for its name registry reaches Last Call, the Safe can start the sunset. The contract then gives 30 days' notice, which can't be cancelled or shortened. During the notice everything works as before, so renewals and transfers still count.",
+            "After the notice the Ethereum registry freezes. Nothing can be registered, renewed, transferred or edited, and names keep resolving from the frozen state. Bitsocial Chain imports every name that is active or in its grace period for free, with the same owner, expiry and record. You don't have to do anything.",
+            "BSIP-13 allows the sunset only for this move, and the contract enforces the 30-day notice."
+          ]
+        },
+        "afterMove": {
+          "q": "What happens to fees after the move?",
+          "a": [
+            "Fees funding the maintainers end with this registry. Bitsocial Chain's registry sets its own fees in its own BSIP, and the plan is for name fees there to be burned, or to buy back and burn BSO, instead. The mechanism isn't decided yet."
+          ]
+        }
+      }
     }
   }
 }

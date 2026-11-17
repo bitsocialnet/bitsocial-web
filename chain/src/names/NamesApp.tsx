@@ -17,7 +17,7 @@ import EthCheck from "./EthCheck";
 import { type Kind, readInitialQuery, writeQuery } from "./kind";
 import Lifecycle from "./Lifecycle";
 import NamePlate from "./NamePlate";
-import Trust from "./Trust";
+import NamesFaq from "./NamesFaq";
 import { useNameLookup } from "./use-name-lookup";
 
 const initial = readInitialQuery();
@@ -128,7 +128,7 @@ export default function NamesApp() {
 
           <Lifecycle />
 
-          <section className="rl-section nm-closing">
+          <div className="rl-section">
             <EthCheck
               opened={opening === null || nowMs / 1000 >= opening}
               onPick={(value) => {
@@ -136,8 +136,9 @@ export default function NamesApp() {
                 document.getElementById("nm-plate-input")?.focus();
               }}
             />
-            <Trust />
-          </section>
+          </div>
+
+          <NamesFaq />
 
           <Footer />
         </div>

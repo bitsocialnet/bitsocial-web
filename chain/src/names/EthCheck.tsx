@@ -9,7 +9,7 @@ type Result =
   | { label: string; invalid: true }
   | { label: string; failed: true };
 
-/** Checks whether a .eth name's .bso twin was seeded, by looking the label up in the registry. */
+/** Explains the launch airdrop and checks whether a .eth name's .bso twin was seeded. */
 export default function EthCheck({
   opened,
   onPick,
@@ -66,7 +66,7 @@ export default function EthCheck({
     } else {
       message = (
         <>
-          {t("names.eth.notSeeded", { name })}{" "}
+          {t("names.eth.notSeeded", { name, eth: `${result.label}.eth` })}{" "}
           <button type="button" className="nm-inline-button" onClick={() => onPick(result.label)}>
             {t("names.eth.tryAbove", { name })}
           </button>
@@ -77,10 +77,14 @@ export default function EthCheck({
 
   return (
     <section className="nm-eth glass-card" aria-labelledby="nm-eth-title">
-      <h2 id="nm-eth-title" className="nm-card-title nm-card-title-large">
-        {t("names.eth.title")}
-      </h2>
-      <p className="nm-card-text">{t("names.eth.lead")}</p>
+      <div className="nm-eth-copy">
+        <p className="nm-eth-badge">{t("names.eth.badge")}</p>
+        <h2 id="nm-eth-title" className="nm-card-title nm-card-title-large">
+          {t("names.eth.title")}
+        </h2>
+        <p className="nm-card-text">{t("names.eth.lead")}</p>
+        <p className="nm-card-text nm-eth-caveat">{t("names.eth.caveat")}</p>
+      </div>
       {REGISTRY && (
         <form className="nm-eth-form" onSubmit={(event) => void check(event)}>
           <label htmlFor="nm-eth-input" className="nm-eth-label">

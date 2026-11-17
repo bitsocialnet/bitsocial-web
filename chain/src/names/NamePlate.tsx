@@ -9,7 +9,6 @@ import type { Kind } from "./kind";
 import type { Lookup } from "./use-name-lookup";
 
 const SAMPLE_KEY = "12D3KooWNsF2eMrdw3YFPycAaFEvZ9Eq3ekhNL3vrAAfN6dAwXLp";
-const TRIES = ["cryptomemes", "memes", "5chan", "relationship_advice"];
 
 type Tone = "ok" | "warn" | "bad" | "neutral";
 type Check = { key: string; label: string; text: ReactNode; tone: Tone };
@@ -242,9 +241,7 @@ export default function NamePlate({
       )}
 
       <figure className="nm-plate glass-card">
-        <div className="nm-plate-banner">
-          <span className="nm-plate-preview">{t("names.plate.preview")}</span>
-        </div>
+        <div className="nm-plate-banner" />
         <div className="nm-plate-body">
           <div className="nm-plate-avatar" data-kind={kind} aria-hidden="true">
             {initial}
@@ -312,15 +309,6 @@ export default function NamePlate({
           {t(isProfile ? "names.plate.captionProfile" : "names.plate.captionCommunity")}
         </figcaption>
       </figure>
-
-      <div className="nm-tries">
-        <span>{t("names.plate.try")}</span>
-        {TRIES.map((example) => (
-          <button key={example} type="button" className="nm-try" onClick={() => onQuery(example)}>
-            {example}
-          </button>
-        ))}
-      </div>
 
       <div className="nm-compare">
         <div className="nm-compare-card">
