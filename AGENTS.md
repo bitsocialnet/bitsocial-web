@@ -71,7 +71,7 @@ Record recurring repository surprises with concrete mitigation in [known-surpris
 
 - Never commit secrets or API keys.
 - Never push to a remote unless the user explicitly asks.
-- Do not build wallet integration, authentication, governance, token dashboards, or backend services in this repo.
+- Do not build authentication, governance, token dashboards, or backend services in this repo.
 
 ## Git and ownership
 
