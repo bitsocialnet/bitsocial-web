@@ -15,7 +15,13 @@ import HamburgerButton from "@/components/hamburger-button";
 import LanguageSelector, { NoJsLanguageSelector } from "@/components/language-selector";
 import MobileMenu from "@/components/mobile-menu";
 import { NoJsThemeToggle, ThemeToggle } from "@/components/theme-toggle";
-import { BITSOCIAL_URL, CHART_PATH, RICH_LIST_PATH, type ExternalLink } from "@/lib/site";
+import {
+  BITSOCIAL_URL,
+  CHART_PATH,
+  type ExternalLink,
+  NAMES_PATH,
+  RICH_LIST_PATH,
+} from "@/lib/site";
 import { cn, getScrollBehavior } from "@/lib/utils";
 
 // Every topbar control is an explicit 44px flex-centred box on every pointer type, matching the
@@ -62,7 +68,7 @@ function NavLink({
 
 const FAQ_ID = "faq";
 
-export type TopbarPage = "home" | "rich-list" | "chart";
+export type TopbarPage = "home" | "rich-list" | "chart" | "names";
 
 // Which HTML entry renders the topbar. The FAQ only exists on the landing page.
 const TopbarPageContext = createContext<TopbarPage>("home");
@@ -152,6 +158,13 @@ function SiteNavLinks({ onClick, className }: { onClick?: () => void; className?
 
   return (
     <>
+      <PageNavLink
+        page="names"
+        href={NAMES_PATH}
+        label={t("nav.names")}
+        onClick={onClick}
+        className={className}
+      />
       <PageNavLink
         page="chart"
         href={CHART_PATH}

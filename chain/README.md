@@ -21,7 +21,8 @@ corepack yarn build:chain
 
 ## Important Notes
 
-- The site is static, with no router, SSR, or backend. It has three HTML entries: the landing page ([`index.html`](./index.html)), whose sections are addressed by hash anchors, the rich list ([`rich-list/index.html`](./rich-list/index.html)) at `/rich-list/`, and the price chart ([`chart/index.html`](./chart/index.html)) at `/chart/`.
+- The site is static, with no router, SSR, or backend. It has four HTML entries: the landing page ([`index.html`](./index.html)), whose sections are addressed by hash anchors, the rich list ([`rich-list/index.html`](./rich-list/index.html)) at `/rich-list/`, the price chart ([`chart/index.html`](./chart/index.html)) at `/chart/`, and the .bso names page ([`names/index.html`](./names/index.html)) at `/names/`.
+- The names page registers `.bso` names in the [BSIP-13](https://bsips.bitsocial.net/bsip-13) registry from the visitor's own wallet (EIP-6963, or `window.ethereum`), with no backend: lookups, the activity feed and the fee Safe's threshold are read from Ethereum through public RPCs, and the commit-reveal secret is kept in localStorage until the claim is revealed. Labels are ENS-normalized before anything is committed, as BSIP-13 requires. The registry's address and deployment block are `DEPLOYED_REGISTRY` in [`src/lib/names/registry.ts`](./src/lib/names/registry.ts); until it is set, the page checks spelling and prices and says registration opens soon. `?name=` and `?for=profile` prefill the page, so apps can link to a name.
 - The rich list renders from the committed snapshot in [`src/data/bso-holders.json`](./src/data/bso-holders.json), then refreshes balances and the price from Blockscout's public API in the browser every five minutes. Refresh the fallback snapshot with `corepack yarn rich-list:snapshot`. Which wallets are linked, and the evidence for each link, is curated research in [`src/lib/rich-list/data.ts`](./src/lib/rich-list/data.ts) and never updates on its own.
 - The holders table's History column draws each major wallet's daily balance since 2022 from [`src/data/bso-holder-history.json`](./src/data/bso-holder-history.json). That file is a separate chunk, downloaded only when the table nears the viewport, then topped up from Blockscout's public API with every BSO transfer after its snapshot block. `corepack yarn rich-list:history` rebuilds it by replaying every Transfer of all three contracts, from Routescan (Avalanche) and Blockscout (Ethereum); the two retired contracts' logs are cached under `node_modules/.cache/bso-holder-history`.
 - The price chart draws BSO's daily price and market cap across all three contracts with [Lightweight Charts](https://github.com/tradingview/lightweight-charts) from [`src/data/bso-price-history.json`](./src/data/bso-price-history.json), then adds the current pool's newer days from GeckoTerminal's public API every five minutes. `corepack yarn chart:snapshot` rebuilds that file from every DEX swap and every mint and burn on Routescan (Avalanche) and Blockscout (Ethereum), priced with Coinbase's hourly AVAX and ETH rates. Free price APIs only serve a pool's last 180 days, so refresh the snapshot at least that often. The first run takes a few minutes; logs of the two retired contracts are cached under `node_modules/.cache/bso-price-history`.
@@ -30,6 +31,19 @@ corepack yarn build:chain
 - The official BSO contract address, along with the token, project, and social links, is defined once in [`src/lib/site.ts`](./src/lib/site.ts). The Verify section asks readers to match the address character by character, so never hardcode it elsewhere.
 - Page order comes from `SECTION_IDS` in [`src/lib/faq.ts`](./src/lib/faq.ts). Each section answers one reader question: its headline is the answer, and the question itself only appears in the FAQ index at the bottom. [`src/sections/index.tsx`](./src/sections/index.tsx) keys its components by those ids, so a section without a question, or a question without a section, fails to typecheck.
 - The polygon mesh behind the hero is a 2D canvas that falls back to static SVGs without WebGL support, on constrained mobile hardware or connections, under reduced motion, or when the canvas fails to start; see [`src/lib/graphics-mode.tsx`](./src/lib/graphics-mode.tsx).
+
+## Testing the Names Page Against a Local Chain
+
+In development only, these variables point the names page at another chain and registry instead of mainnet (they are ignored by production builds):
+
+```bash
+VITE_NAMES_RPC_URL=http://127.0.0.1:8545   # JSON-RPC of a local node, such as Hardhat or Anvil
+VITE_NAMES_CHAIN_ID=31337
+VITE_NAMES_REGISTRY=0x…                     # a registry deployed to that node
+VITE_NAMES_FROM_BLOCK=1                     # where the activity feed starts reading
+```
+
+A wallet in the browser has to be on the same chain; the page asks it to add and switch to the local chain.
 
 ## Translations
 
