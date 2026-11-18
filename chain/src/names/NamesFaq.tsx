@@ -55,8 +55,8 @@ export default function NamesFaq() {
                 returnObjects: true,
                 signers,
               });
-              // Translation files are not versioned, so a browser can pair a cached file from before an
-              // item existed with newer code. Skip that item instead of failing the whole page.
+              // The dev server hot-swaps this component but keeps the translations fetched at page load,
+              // so a new item can arrive before its text. Skip it instead of failing the whole page.
               if (!Array.isArray(answer)) return null;
               return (
                 <details key={id} id={`faq-${id}`} className="nm-faq-item">
