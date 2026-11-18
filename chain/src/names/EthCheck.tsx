@@ -1,7 +1,13 @@
 import { type FormEvent, type ReactNode, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { Address } from "viem";
-import { lookupName, lookupSubname, type NameState, REGISTRY } from "@/lib/names/registry";
+import {
+  GRACE_PERIOD,
+  lookupName,
+  lookupSubname,
+  type NameState,
+  REGISTRY,
+} from "@/lib/names/registry";
 import { checkSpelling, type Spelling } from "@/lib/names/spelling";
 import { shortAddress, shortKey, spellingProblemText, useNamesFormat } from "./format";
 
@@ -10,7 +16,9 @@ type Result =
   | {
       kind: "subname";
       labels: string[];
-      held: { owner: Address; until: number; record: string } | null;
+      // Null when the subname was never registered. An existing one is inactive while its parent
+      // has expired or changed hands, and then it neither resolves nor has a date it runs until.
+      found: { owner: Address; active: boolean; until: number; record: string } | null;
     }
   | { kind: "invalid"; spelling: Extract<Spelling, { ok: false }> }
   | { kind: "failed" };
@@ -85,17 +93,18 @@ export default function EthCheck({
   else if (result?.kind === "subname") {
     const name = `${result.labels.join(".")}.bso`;
     const parent = `${result.labels.slice(1).join(".")}.bso`;
-    message = result.held ? (
+    const found = result.found;
+    message = found?.active ? (
       <>
         {t("names.eth.registered", {
           name,
-          owner: shortAddress(result.held.owner),
-          date: format.date(result.held.until),
+          owner: shortAddress(found.owner),
+          date: format.date(found.until),
         })}
-        {result.held.record && (
-          <> {t("names.eth.points", { record: shortKey(result.held.record) })}</>
-        )}
+        {found.record && <> {t("names.eth.points", { record: shortKey(found.record) })}</>}
       </>
+    ) : found ? (
+      t("names.eth.subnameInactive", { name, owner: shortAddress(found.owner), parent })
     ) : opened === null ? (
       t("names.checks.lookupFailed")
     ) : opened ? (
@@ -106,7 +115,18 @@ export default function EthCheck({
   } else if (result?.kind === "name") {
     const name = `${result.label}.bso`;
     const state = result.state;
-    if (state.status === "taken" || state.status === "grace") {
+    if (state.status === "grace") {
+      // Expired, so it no longer resolves, but its holder (or anyone) can still renew it.
+      message = (
+        <>
+          {t("names.checks.grace", {
+            date: format.date(state.expiresAt),
+            until: format.date(state.expiresAt + GRACE_PERIOD),
+          })}{" "}
+          {t("names.cta.noteTaken", { owner: shortAddress(state.owner) })}
+        </>
+      );
+    } else if (state.status === "taken") {
       message = (
         <>
           {t("names.eth.registered", {
@@ -114,9 +134,7 @@ export default function EthCheck({
             owner: shortAddress(state.owner),
             date: format.date(state.expiresAt),
           })}
-          {state.status === "taken" && state.record && (
-            <> {t("names.eth.points", { record: shortKey(state.record) })}</>
-          )}
+          {state.record && <> {t("names.eth.points", { record: shortKey(state.record) })}</>}
         </>
       );
     } else if (opened === null) {
@@ -196,10 +214,13 @@ async function lookUp(labels: string[]): Promise<Result> {
   const top = labels[labels.length - 1];
   if (labels.length === 1) return { kind: "name", label: top, state: await lookupName(top) };
   const [subname, parent] = await Promise.all([lookupSubname(labels), lookupName(top)]);
+  if (!subname) return { kind: "subname", labels, found: null };
   // A subname lasts as long as its top-level name, which gives the date it is held until.
-  const held =
-    subname?.active && parent.status === "taken"
-      ? { owner: subname.owner, until: parent.expiresAt, record: subname.record }
-      : null;
-  return { kind: "subname", labels, held };
+  const active = subname.active && parent.status === "taken";
+  const until = parent.status === "taken" ? parent.expiresAt : 0;
+  return {
+    kind: "subname",
+    labels,
+    found: { owner: subname.owner, active, until, record: subname.record },
+  };
 }
