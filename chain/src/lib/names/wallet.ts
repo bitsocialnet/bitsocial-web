@@ -161,17 +161,35 @@ export async function sendRegistryCall(
   const hash = await walletClient.writeContract(request);
   onSent(hash);
   let replaced = false;
-  const receipt = await publicClient.waitForTransactionReceipt({
-    hash,
-    onReplaced: ({ reason }) => {
-      replaced = reason !== "repriced";
-    },
+  const receipt = await waitForReceipt(hash, ({ reason }) => {
+    replaced = reason !== "repriced";
   });
   if (replaced) throw new RegistryCallFailed({ kind: "revert", error: "Replaced" });
   if (receipt.status !== "success") {
     throw new RegistryCallFailed({ kind: "other", message: "The transaction reverted." });
   }
   return receipt;
+}
+
+const RECEIPT_RETRY_MS = 12_000;
+
+/**
+ * Waits as long as a sent transaction takes. Reporting a slow one as failed would offer the
+ * visitor the same action again, and a renewal sent twice is paid for twice, so there is no
+ * timeout, and an RPC error while waiting is retried rather than reported.
+ */
+async function waitForReceipt(
+  hash: Hash,
+  onReplaced: (replacement: { reason: "cancelled" | "replaced" | "repriced" }) => void,
+) {
+  for (;;) {
+    try {
+      return await publicClient.waitForTransactionReceipt({ hash, onReplaced, timeout: 0 });
+    } catch (error) {
+      console.warn("Still waiting for the transaction; checking again.", error);
+      await new Promise((resolve) => window.setTimeout(resolve, RECEIPT_RETRY_MS));
+    }
+  }
 }
 
 /** Sorts a wallet or contract error into what the page can explain. */
