@@ -17,14 +17,14 @@ Pemblokir Spam adalah layanan pendeteksi spam terpusat yang mengevaluasi publika
 
 Setiap publikasi yang dikirimkan ke titik akhir `/evaluate` menerima skor risiko numerik. Skor tersebut merupakan kombinasi tertimbang dari beberapa sinyal:
 
-| Sinyal           | Deskripsi                                                                                                                                    |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Usia akun        | Akun yang lebih baru menerima skor risiko yang lebih tinggi.                                                                                 |
-| karma            | Akumulasi karma komunitas mengurangi risiko.                                                                                                 |
-| Reputasi penulis | Data reputasi dikumpulkan oleh pengindeks jaringan latar belakang.                                                                           |
-| Analisis isi     | Heuristik tingkat teks (kepadatan tautan, pola spam yang diketahui, dll.).                                                                   |
-| Kecepatan        | Postingan cepat yang berurutan dari penulis yang sama meningkatkan risiko.                                                                   |
-| Kecerdasan IP    | Pencarian geolokasi dan ancaman tingkat negara. Hanya kode negara yang disimpan -- alamat IP mentah tidak pernah dibagikan kepada komunitas. |
+| Sinyal           | Deskripsi                                                                                                 |
+| ---------------- | --------------------------------------------------------------------------------------------------------- |
+| Usia akun        | Akun yang lebih baru menerima skor risiko yang lebih tinggi.                                              |
+| karma            | Akumulasi karma komunitas mengurangi risiko.                                                              |
+| Reputasi penulis | Data reputasi dikumpulkan oleh pengindeks jaringan latar belakang.                                        |
+| Analisis isi     | Heuristik tingkat teks (kepadatan tautan, pola spam yang diketahui, dll.).                                |
+| Kecepatan        | Postingan cepat yang berurutan dari penulis yang sama meningkatkan risiko.                                |
+| Kecerdasan IP    | Pencarian geolokasi dan ancaman tingkat negara. Alamat IP mentah tidak pernah dibagikan kepada komunitas. |
 
 ## Ambang Batas Tingkat
 
@@ -72,7 +72,8 @@ Server menjalankan pengindeks latar belakang yang terus merayapi jaringan untuk 
 Pemblokir Spam dirancang dengan mempertimbangkan privasi:
 
 - Identitas OAuth hanya digunakan untuk verifikasi tantangan dan **tidak pernah diungkapkan** kepada komunitas.
-- Alamat IP ditetapkan menjadi **kode negara saja**; IP mentah tidak disimpan atau dibagikan.
+- Operator layanan menyimpan alamat IP mentah untuk mendeteksi penyalahgunaan dan mengirimkannya ke penyedia intelijen IP pihak ketiga untuk diklasifikasikan.
+- Komunitas hanya menerima kode negara, risiko IP, dan perkiraan jenis koneksi, tidak pernah IP mentahnya.
 
 ## Basis data
 

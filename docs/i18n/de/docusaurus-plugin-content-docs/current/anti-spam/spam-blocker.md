@@ -17,14 +17,14 @@ Spam Blocker ist ein zentraler Spam-Erkennungsdienst, der eingehende Veröffentl
 
 Jede an den Endpunkt `/evaluate` übermittelte Veröffentlichung erhält eine numerische Risikobewertung. Der Score ist eine gewichtete Kombination mehrerer Signale:
 
-| Signal          | Beschreibung                                                                                                                                                           |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Kontoalter      | Neuere Konten erhalten höhere Risikobewertungen.                                                                                                                       |
-| Karma           | Angesammeltes Gemeinschaftskarma reduziert das Risiko.                                                                                                                 |
-| Ruf des Autors  | Vom Hintergrund-Netzwerkindexer erfasste Reputationsdaten.                                                                                                             |
-| Inhaltsanalyse  | Heuristiken auf Textebene (Linkdichte, bekannte Spam-Muster usw.).                                                                                                     |
-| Geschwindigkeit | Schnell aufeinanderfolgende Beiträge desselben Autors erhöhen das Risiko.                                                                                              |
-| IP-Intelligenz  | Geolokalisierung auf Länderebene und Suche nach Bedrohungsfeeds. Es werden nur Ländercodes gespeichert – rohe IP-Adressen werden niemals an Communities weitergegeben. |
+| Signal          | Beschreibung                                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Kontoalter      | Neuere Konten erhalten höhere Risikobewertungen.                                                                               |
+| Karma           | Angesammeltes Gemeinschaftskarma reduziert das Risiko.                                                                         |
+| Ruf des Autors  | Vom Hintergrund-Netzwerkindexer erfasste Reputationsdaten.                                                                     |
+| Inhaltsanalyse  | Heuristiken auf Textebene (Linkdichte, bekannte Spam-Muster usw.).                                                             |
+| Geschwindigkeit | Schnell aufeinanderfolgende Beiträge desselben Autors erhöhen das Risiko.                                                      |
+| IP-Intelligenz  | Geolokalisierung auf Länderebene und Suche nach Bedrohungsfeeds. Rohe IP-Adressen werden niemals an Communities weitergegeben. |
 
 ## Stufenschwellenwerte
 
@@ -72,7 +72,8 @@ Der Server führt einen Hintergrundindexer aus, der das Netzwerk kontinuierlich 
 Spam Blocker wurde unter Berücksichtigung des Datenschutzes entwickelt:
 
 - OAuth-Identitäten werden nur zur Überprüfung der Herausforderung verwendet und **niemals** an Communities weitergegeben.
-- IP-Adressen werden **nur in Ländercodes** aufgelöst; Roh-IPs werden nicht gespeichert oder weitergegeben.
+- Der Betreiber des Dienstes speichert rohe IP-Adressen zur Missbrauchserkennung und sendet sie zur Klassifizierung an einen externen IP-Intelligence-Anbieter.
+- Communities erhalten nur den Ländercode, das IP-Risiko und eine Schätzung des Verbindungstyps, niemals die rohe IP-Adresse.
 
 ## Datenbank
 

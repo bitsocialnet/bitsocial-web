@@ -17,14 +17,14 @@ Spam Blocker este un serviciu centralizat de detectare a spamului, care evalueaz
 
 Fiecare publicare trimisă către endpointul `/evaluate` primește un scor numeric de risc. Scorul este o combinație ponderată a mai multor semnale:
 
-| Semnal               | Descriere                                                                                                                                                                   |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Vechimea contului    | Conturile mai noi primesc scoruri de risc mai mari.                                                                                                                         |
-| Karma                | Karma acumulată în comunitate reduce riscul.                                                                                                                                |
-| Reputația autorului  | Date de reputație colectate de indexatorul de rețea care rulează în fundal.                                                                                                 |
-| Analiza conținutului | Euristici la nivel de text (densitatea linkurilor, tipare de spam cunoscute etc.).                                                                                          |
-| Ritmul de publicare  | Postările rapide și succesive ale aceluiași autor cresc riscul.                                                                                                             |
-| Informații despre IP | Geolocalizare la nivel de țară și interogări în fluxuri de amenințări. Se stochează doar codurile de țară -- adresele IP brute nu sunt niciodată partajate cu comunitățile. |
+| Semnal               | Descriere                                                                                                                             |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Vechimea contului    | Conturile mai noi primesc scoruri de risc mai mari.                                                                                   |
+| Karma                | Karma acumulată în comunitate reduce riscul.                                                                                          |
+| Reputația autorului  | Date de reputație colectate de indexatorul de rețea care rulează în fundal.                                                           |
+| Analiza conținutului | Euristici la nivel de text (densitatea linkurilor, tipare de spam cunoscute etc.).                                                    |
+| Ritmul de publicare  | Postările rapide și succesive ale aceluiași autor cresc riscul.                                                                       |
+| Informații despre IP | Geolocalizare la nivel de țară și interogări în fluxuri de amenințări. Adresele IP brute nu sunt niciodată partajate cu comunitățile. |
 
 ## Praguri pe niveluri
 
@@ -72,7 +72,8 @@ Serverul rulează un indexator în fundal, care parcurge continuu rețeaua pentr
 Spam Blocker este proiectat având în vedere confidențialitatea:
 
 - Identitățile OAuth sunt folosite doar pentru verificarea provocărilor și nu sunt **niciodată dezvăluite** comunităților.
-- Adresele IP sunt reduse **doar la coduri de țară**; adresele IP brute nu sunt stocate și nu sunt partajate.
+- Operatorul serviciului stochează adresele IP brute pentru detectarea abuzurilor și le trimite unui furnizor extern de informații despre IP pentru clasificare.
+- Comunitățile primesc doar codul țării, riscul IP și o estimare a tipului de conexiune, niciodată adresa IP brută.
 
 ## Bază de date
 

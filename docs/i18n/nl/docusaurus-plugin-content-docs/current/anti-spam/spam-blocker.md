@@ -17,14 +17,14 @@ Spam Blocker is een gecentraliseerde spamdetectieservice die binnenkomende publi
 
 Elke publicatie die wordt ingediend bij het `/evaluate`-eindpunt krijgt een numerieke risicoscore. De score is een gewogen combinatie van verschillende signalen:
 
-| Signaal              | Beschrijving                                                                                                                                                          |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Accountleeftijd      | Nieuwere accounts ontvangen hogere risicoscores.                                                                                                                      |
-| Karma                | Geaccumuleerd karma van de gemeenschap vermindert het risico.                                                                                                         |
-| Reputatie van auteur | Reputatiegegevens verzameld door de achtergrondnetwerkindexer.                                                                                                        |
-| Inhoudsanalyse       | Heuristieken op tekstniveau (linkdichtheid, bekende spampatronen, enz.).                                                                                              |
-| Snelheid             | Snel opeenvolgende berichten van dezelfde auteur verhogen het risico.                                                                                                 |
-| IP-intelligentie     | Geolocatie op landniveau en zoekopdrachten naar bedreigingsfeeds. Er worden alleen landcodes opgeslagen; onbewerkte IP-adressen worden nooit gedeeld met communities. |
+| Signaal              | Beschrijving                                                                                                                   |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Accountleeftijd      | Nieuwere accounts ontvangen hogere risicoscores.                                                                               |
+| Karma                | Geaccumuleerd karma van de gemeenschap vermindert het risico.                                                                  |
+| Reputatie van auteur | Reputatiegegevens verzameld door de achtergrondnetwerkindexer.                                                                 |
+| Inhoudsanalyse       | Heuristieken op tekstniveau (linkdichtheid, bekende spampatronen, enz.).                                                       |
+| Snelheid             | Snel opeenvolgende berichten van dezelfde auteur verhogen het risico.                                                          |
+| IP-intelligentie     | Geolocatie op landniveau en zoekopdrachten naar bedreigingsfeeds. Onbewerkte IP-adressen worden nooit gedeeld met communities. |
 
 ## Niveaudrempels
 
@@ -72,7 +72,8 @@ De server voert een achtergrondindexeerder uit die voortdurend het netwerk doorz
 Spam Blocker is ontworpen met het oog op privacy:
 
 - OAuth-identiteiten worden alleen gebruikt voor uitdagingsverificatie en worden **nooit bekendgemaakt** aan communities.
-- IP-adressen worden omgezet in **alleen landcodes**; onbewerkte IP's worden niet opgeslagen of gedeeld.
+- De beheerder van de dienst slaat onbewerkte IP-adressen op om misbruik te detecteren en stuurt ze ter classificatie naar een externe aanbieder van IP-informatie.
+- Communities ontvangen alleen de landcode, het IP-risico en een schatting van het verbindingstype, nooit het onbewerkte IP-adres.
 
 ## Database
 

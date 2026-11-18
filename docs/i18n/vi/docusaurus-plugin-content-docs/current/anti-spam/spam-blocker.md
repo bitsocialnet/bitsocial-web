@@ -17,14 +17,14 @@ Spam Blocker là một dịch vụ phát hiện spam tập trung, có nhiệm v�
 
 Mọi nội dung gửi tới điểm cuối `/evaluate` đều nhận được một điểm rủi ro dạng số. Điểm này là tổ hợp có trọng số của nhiều tín hiệu khác nhau:
 
-| Tín hiệu           | Mô tả                                                                                                                                                   |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tuổi tài khoản     | Tài khoản càng mới thì điểm rủi ro càng cao.                                                                                                            |
-| Karma              | Karma tích lũy trong cộng đồng làm giảm rủi ro.                                                                                                         |
-| Uy tín tác giả     | Dữ liệu uy tín do bộ lập chỉ mục mạng chạy nền thu thập.                                                                                                |
-| Phân tích nội dung | Các quy tắc suy đoán ở mức văn bản (mật độ liên kết, mẫu spam đã biết, v.v.).                                                                           |
-| Tần suất đăng      | Đăng liên tiếp dồn dập từ cùng một tác giả làm tăng rủi ro.                                                                                             |
-| Thông tin về IP    | Định vị ở cấp quốc gia và tra cứu các nguồn dữ liệu về mối đe dọa. Chỉ mã quốc gia được lưu -- địa chỉ IP thô không bao giờ được chia sẻ với cộng đồng. |
+| Tín hiệu           | Mô tả                                                                                                                       |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| Tuổi tài khoản     | Tài khoản càng mới thì điểm rủi ro càng cao.                                                                                |
+| Karma              | Karma tích lũy trong cộng đồng làm giảm rủi ro.                                                                             |
+| Uy tín tác giả     | Dữ liệu uy tín do bộ lập chỉ mục mạng chạy nền thu thập.                                                                    |
+| Phân tích nội dung | Các quy tắc suy đoán ở mức văn bản (mật độ liên kết, mẫu spam đã biết, v.v.).                                               |
+| Tần suất đăng      | Đăng liên tiếp dồn dập từ cùng một tác giả làm tăng rủi ro.                                                                 |
+| Thông tin về IP    | Định vị ở cấp quốc gia và tra cứu các nguồn dữ liệu về mối đe dọa. Địa chỉ IP thô không bao giờ được chia sẻ với cộng đồng. |
 
 ## Ngưỡng phân hạng
 
@@ -72,7 +72,8 @@ Máy chủ chạy một bộ lập chỉ mục nền, liên tục thu thập d�
 Spam Blocker được thiết kế với sự chú trọng vào quyền riêng tư:
 
 - Danh tính OAuth chỉ được dùng để xác minh thử thách và **không bao giờ bị tiết lộ** cho các cộng đồng.
-- Địa chỉ IP chỉ được phân giải thành **mã quốc gia**; địa chỉ IP thô không được lưu hay chia sẻ.
+- Đơn vị vận hành dịch vụ lưu địa chỉ IP thô để phát hiện lạm dụng và gửi chúng đến một nhà cung cấp thông tin IP bên thứ ba để phân loại.
+- Cộng đồng chỉ nhận được mã quốc gia, mức rủi ro IP và ước tính loại kết nối, không bao giờ nhận được IP thô.
 
 ## Cơ sở dữ liệu
 

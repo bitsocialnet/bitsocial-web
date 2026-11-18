@@ -17,14 +17,14 @@ Spam Blocker är en centraliserad tjänst för spamdetektering som utvärderar i
 
 Varje publikation som skickas till slutpunkten `/evaluate` får en numerisk riskpoäng. Poängen är en viktad kombination av flera signaler:
 
-| Signal             | Beskrivning                                                                                                                          |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| Kontoålder         | Nyare konton får högre riskpoäng.                                                                                                    |
-| Karma              | Upparbetad karma i communityn sänker risken.                                                                                         |
-| Författarens rykte | Ryktesdata som samlas in av bakgrundsindexeraren för nätverket.                                                                      |
-| Innehållsanalys    | Heuristik på textnivå (länktäthet, kända spammönster och så vidare).                                                                 |
-| Publiceringstakt   | Många inlägg i snabb följd från samma författare ökar risken.                                                                        |
-| IP-analys          | Geolokalisering på landsnivå och uppslag mot hotdatabaser. Endast landskoder lagras -- råa IP-adresser delas aldrig med communities. |
+| Signal             | Beskrivning                                                                                              |
+| ------------------ | -------------------------------------------------------------------------------------------------------- |
+| Kontoålder         | Nyare konton får högre riskpoäng.                                                                        |
+| Karma              | Upparbetad karma i communityn sänker risken.                                                             |
+| Författarens rykte | Ryktesdata som samlas in av bakgrundsindexeraren för nätverket.                                          |
+| Innehållsanalys    | Heuristik på textnivå (länktäthet, kända spammönster och så vidare).                                     |
+| Publiceringstakt   | Många inlägg i snabb följd från samma författare ökar risken.                                            |
+| IP-analys          | Geolokalisering på landsnivå och uppslag mot hotdatabaser. Råa IP-adresser delas aldrig med communities. |
 
 ## Nivåtrösklar
 
@@ -72,7 +72,8 @@ Servern kör en bakgrundsindexerare som kontinuerligt genomsöker nätverket fö
 Spam Blocker är byggd med integriteten i åtanke:
 
 - OAuth-identiteter används enbart för att verifiera utmaningar och **röjs aldrig** för communities.
-- IP-adresser översätts **enbart till landskoder**; råa IP-adresser lagras eller delas inte.
+- Tjänstens operatör lagrar råa IP-adresser för att upptäcka missbruk och skickar dem till en extern leverantör av IP-information för klassificering.
+- Communities får bara landskoden, IP-risken och en uppskattning av anslutningstypen, aldrig den råa IP-adressen.
 
 ## Databas
 
