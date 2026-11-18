@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "FAQ",
     "richList": "Rich list",
-    "chart": "Chart"
+    "chart": "Chart",
+    "domains": "Mga domain"
   },
   "languageSelector": {
     "title": "Pumili ng wika",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "Hindi pa live ang Chain, mag-subscribe para sa mga update",
     "title": "Ang nawawalang <mark>social layer</mark> ng crypto",
-    "supporting": "Naging casino ang crypto dahil ang Web2, TradFi, at sentralisadong imprastraktura ang nagmamay-ari ng mga distribution rail at binabaluktot ang mga insentibo. Inaayos ito ng Bitsocial Chain: isang hindi mapipigilan at ganap na desentralisadong <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink> kung saan pagmamay-ari ng mga komunidad ang kanilang mga network, token at kita."
+    "supporting": "Naging casino ang crypto dahil ang Web2, TradFi, at sentralisadong imprastraktura ang nagmamay-ari ng mga distribution rail at binabaluktot ang mga insentibo. Inaayos ito ng Bitsocial Chain: isang hindi mapipigilan at ganap na desentralisadong <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink> kung saan pagmamay-ari ng mga komunidad ang kanilang mga network, token at kita.",
+    "domainsCta": "Kunin ang .bso domain mo ngayon"
   },
   "layers": {
     "ariaLabel": "Tatlong nakapatong na layer ng crypto: mga social app sa Bitsocial network sa itaas, ang settlement ng Ethereum L1 sa base, at ang Bitsocial Chain, ang Ethereum L2 appchain na pinapagana ng BSO, na umiilaw bilang kumikinang na nawawalang layer na pumapasok sa puwang sa pagitan ng dalawa, at tinutuhog ng isang energy spine.",
@@ -742,6 +744,320 @@
       "marchRally": {
         "title": "Ang rally ng Marso 2024",
         "body": "Noong Marso 1, nag-tweet ang investor na si Jason Calacanis na gusto niya ng distributed at permissionless na Reddit, at sumagot ang plebbit gamit ang demo nito. Inilabas ang Seedit 0.1.6 noong Marso 3, at noong Marso 4 inanunsyo ng team ang mga token-gated na komunidad. Habang lumampas ang ETH sa $4,000 nang buwang iyon, halos dumoble ang presyo noong Marso 4 at naging tatlong beses pagsapit ng katapusan ng Marso, sa $2.2 milyong volume, ang pinakamalaki sa lahat ng buwan sa chart na ito."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": "Mga .bso Domain - Pangalanan ang Komunidad o Profile Mo",
+      "description": "Mag-register ng .bso domain para sa isang Bitsocial na komunidad o profile. Ang pangalan ay isang NFT na pag-aari ng wallet mo sa Ethereum, mula 0.0005 ETH bawat taon, at bumubukas ito sa bawat Bitsocial app."
+    },
+    "hero": {
+      "titleCommunity": "Bigyan ng pangalan ang komunidad mo",
+      "titleProfile": "Bigyan ng pangalan ang profile mo",
+      "leadCommunity": "I-type ito sa header sa ibaba. Mahahanap ng mga mambabasa ang komunidad mo gamit ang pangalang ito sa bawat Bitsocial app, at pag-aari ito ng wallet mo.",
+      "leadProfile": "I-type ito sa header sa ibaba. Dadalhin ng mga post mo ang pangalang ito sa bawat Bitsocial app, at pag-aari ito ng wallet mo.",
+      "kindLabel": "Pangalan para sa",
+      "kindCommunity": "Isang komunidad",
+      "kindProfile": "Isang profile",
+      "opensIn": "Magbubukas ang registration sa loob ng {{time}}. Puwede ka nang mag-reserve ng pangalan ngayon.",
+      "opensOn": "Magbubukas ang registration sa {{date}}.",
+      "notDeployed": "Malapit nang ilunsad ang registry. Puwede nang tingnan ang mga pangalan at presyo ngayon."
+    },
+    "plate": {
+      "inputLabelCommunity": "Pangalan ng komunidad mo",
+      "inputLabelProfile": "Pangalan ng profile mo",
+      "placeholderCommunity": "komunidadmo",
+      "placeholderProfile": "pangalanmo",
+      "sublineCommunity": "Komunidad · bumubukas gamit ang pangalan sa 5chan, Seedit at iba pang Bitsocial app",
+      "sublineProfile": "Profile · ang mga post mo mula sa bawat komunidad, sa iisang pangalan",
+      "join": "Sumali",
+      "posts": "Mga post",
+      "rules": "Mga patakaran",
+      "follow": "I-follow",
+      "about": "Tungkol",
+      "captionCommunity": "Header ng komunidad na ang pamagat ay ang .bso name na tinitingnan mo",
+      "captionProfile": "Header ng profile na ang pamagat ay ang .bso name na tinitingnan mo",
+      "withoutCommunity": "Kung walang pangalan, ibinabahagi ng mga tao ang",
+      "withoutProfile": "Kung walang pangalan, ipinapakita ng mga post mo ang",
+      "withCommunity": "Kung may pangalan, ibinabahagi nila ang",
+      "withProfile": "Kung may pangalan, ipinapakita nila ang"
+    },
+    "checks": {
+      "spelling": "Baybay",
+      "availability": "Availability",
+      "price": "Presyo",
+      "typeName": "Mag-type ng pangalan",
+      "spellingOk": "Valid na pangalan",
+      "fixFirst": "Ayusin muna ang baybay",
+      "dot": "Hindi puwede ang tuldok sa pangalan.",
+      "space": "Hindi puwede ang espasyo.",
+      "underscore": "Sa simula lang puwede ang underscore.",
+      "hyphenEdge": "Hindi puwedeng magsimula o magtapos sa gitling ang pangalan.",
+      "labelExtension": "Hindi puwedeng \"--\" ang ikatlo at ikaapat na karakter ng pangalan.",
+      "tooLong": "Masyadong mahaba: hanggang 255 byte lang ang pangalan.",
+      "lookalike": "Pinaghahalo nito ang mga sistema ng pagsulat o gumagamit ito ng mga magkamukhang karakter.",
+      "character": "Hindi puwede ang \"{{character}}\".",
+      "characterUnknown": "May karakter itong hindi puwede.",
+      "checking": "Tinitingnan…",
+      "available": "Bakante",
+      "taken": "Naka-register hanggang {{date}}",
+      "yours": "Iyo, hanggang {{date}}",
+      "reserved": "Nakalaan para sa Bitsocial hanggang {{date}}",
+      "grace": "Nag-expire noong {{date}}. Puwede itong i-renew ng may-ari hanggang {{until}}.",
+      "premium": "Pinakawalan noong {{date}}. Bababa sa zero ang premium nito pagsapit ng {{end}}.",
+      "lookupFailed": "Hindi maabot ang Ethereum.",
+      "retry": "Subukan ulit",
+      "notDeployed": "Titingnan kapag nailunsad na ang registry",
+      "yearly": "{{price}} bawat taon",
+      "yearlyShort": "{{price}} bawat taon, ang presyo para sa mga pangalang may {{count}} karakter",
+      "yearlyBytes": "{{price}} bawat taon, batay sa {{count}} byte nito",
+      "withPremium": "{{price}} para sa unang taon, kasama ang {{premium}} na premium"
+    },
+    "cta": {
+      "claim": "I-claim ang {{name}} sa halagang {{price}}",
+      "reserve": "I-reserve ang {{name}} ngayon",
+      "renew": "I-renew ang {{name}}",
+      "pointCommunity": "Ituro ang {{name}} sa komunidad mo",
+      "pointProfile": "Ituro ang {{name}} sa profile mo",
+      "soon": "Malapit nang magbukas ang registration",
+      "fix": "Gamitin ang {{name}}",
+      "noteClaim": "Tatlong transaction sa wallet, mga dalawang minuto.",
+      "noteReserve": "Mag-reserve ngayon at i-claim ito kapag nagbukas ang registration.",
+      "noteReserveLater": "Magbubukas ang pag-reserve 24 oras bago magbukas ang registration.",
+      "noteTaken": "Hawak ng {{owner}}.",
+      "noteReserved": "Hawak ng fee Safe ng Bitsocial, dahil inilalaan ito ng BSIP-13 para sa Safe na iyon.",
+      "noteGrace": "Puwede itong i-renew ng kahit sino, at mananatili ito sa may-ari nito.",
+      "notePremium": "Bumababa ang premium bawat segundo, at ibinabalik ang anumang sobrang bayad.",
+      "noteNotDeployed": "Wala pa sa Ethereum ang kontrata ng registry."
+    },
+    "claim": {
+      "eyebrow": "Pag-claim",
+      "title": "Tatlong transaction mula sa wallet mo, mga dalawang minuto",
+      "pickName": "Pumili ng bakanteng pangalan sa itaas para magsimula.",
+      "claiming": "Kini-claim ang {{name}}",
+      "renewing": "Nire-renew ang {{name}}",
+      "pointing": "Itinuturo ang {{name}}",
+      "connect": "Ikonekta ang wallet",
+      "connectWith": "Ikonekta ang {{wallet}}",
+      "browserWallet": "browser wallet",
+      "connecting": "Kumokonekta…",
+      "noWallet": "Walang nakitang Ethereum wallet sa browser na ito. Mag-install ng browser wallet, o buksan ang page na ito sa browser ng wallet app mo.",
+      "connectedAs": "Nakakonekta bilang {{address}}",
+      "reserveTitle": "Mag-reserve",
+      "reserveBody": "Unang ipinapadala sa chain ang isang selyadong commitment, para walang makabasa ng pangalan mula sa pending transaction mo at makaagaw nito. Pagkatapos, maghintay ng 60 segundo.",
+      "reserveMeta": "commit() · gas lang",
+      "reserveAction": "I-reserve ang {{name}}",
+      "reserveTooEarly": "Puwede kang mag-reserve simula {{date}}, 24 oras bago magbukas ang registration.",
+      "reserved": "Naka-reserve na. Itatago ng browser na ito ang reservation hanggang {{time}}.",
+      "claimTitle": "Mag-claim",
+      "claimBody": "Bayaran ang pangalan. Mami-mint ito sa parehong wallet nang 365 araw. May hanggang 24 oras ka pagkatapos mag-reserve, at naaalala ng browser na ito kung saan ka tumigil.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "I-claim ang {{name}} sa halagang {{price}}",
+      "claimWait": "Handa sa loob ng {{seconds}} s",
+      "claimWaitOpening": "Handa kapag nagbukas ang registration, sa loob ng {{time}}",
+      "startOver": "Magsimula ulit",
+      "renewTitle": "Mag-renew",
+      "renewBody": "Nagdadagdag ng 365 araw sa kasalukuyang expiry. Puwedeng i-renew ng kahit sino ang kahit anong pangalan, at mananatili ito sa may-ari nito.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "I-renew ang {{name}} sa halagang {{price}}",
+      "renewed": "Na-renew hanggang {{date}}.",
+      "recordTitleCommunity": "Ituro ito sa komunidad mo",
+      "recordTitleProfile": "Ituro ito sa profile mo",
+      "recordLabelCommunity": "Ang public key ng komunidad mo, mula sa settings nito",
+      "recordLabelProfile": "Ang public key ng account mo, mula sa account settings ng app mo",
+      "recordMeta": "setText(\"bitsocial\") · gas lang · puwedeng palitan anumang oras",
+      "recordAction": "I-save ang record",
+      "recordInvalid": "Hindi iyan public key. May 52 karakter ito at nagsisimula sa 12D3KooW.",
+      "recordCurrent": "Nakaturo ngayon sa {{record}}.",
+      "recordNotOwner": "Ang wallet lang na may-ari ng {{name}} ang makakapag-set ng record nito.",
+      "doneCommunity": "Nakaturo na ang {{name}} sa komunidad mo. Susunod, itakda ang {{name}} bilang address ng komunidad sa settings nito.",
+      "doneProfile": "Nakaturo na ang {{name}} sa account mo. Susunod, ilagay ang {{name}} bilang pangalan mo sa account settings ng app mo, para maipakita ito ng mga post mo.",
+      "confirmInWallet": "Kumpirmahin sa wallet mo",
+      "waitingForTx": "Hinihintay ang transaction…",
+      "viewTx": "Tingnan ang transaction",
+      "rejected": "Tinanggihan mo sa wallet.",
+      "failed": "May nagkaproblema: {{message}}",
+      "reverted": "Tinanggihan ng registry ang transaction ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "Kailangan munang tumagal nang isang minuto ang reservation. Subukan ulit pagkalipas ng ilang segundo.",
+        "CommitmentTooOld": "Higit 24 oras na ang reservation na ito. Mag-reserve ulit.",
+        "CommitmentNotFound": "Walang nakitang reservation mula sa wallet na ito. Mag-reserve ulit.",
+        "AlreadyCommitted": "Nasa chain na ang reservation na ito.",
+        "AlreadyRegistered": "May naunang nag-register ng pangalang ito.",
+        "InsufficientFee": "Nagbago ang presyo. Subukan ulit.",
+        "Expired": "Nag-expire na ang pangalang ito.",
+        "Unauthorized": "Hindi pag-aari ng wallet na ito ang pangalan."
+      }
+    },
+    "activity": {
+      "title": "Mga pinakabagong pangalan",
+      "live": "Live mula sa Ethereum",
+      "registered": "Na-register ang {{name}}",
+      "empty": "Wala pang naka-register na pangalan.",
+      "notDeployed": "Lalabas dito ang mga pangalan kapag nailunsad na ang registry.",
+      "failed": "Hindi ma-load ang mga pinakabagong pangalan.",
+      "browse": "Tingnan ang lahat ng pangalan"
+    },
+    "lifecycle": {
+      "eyebrow": "Pagpapanatili nito",
+      "title": "Isang taon ang tagal ng pangalan sa bawat pagkakataon",
+      "lead": "Nagdadagdag ang pag-renew ng 365 araw sa kasalukuyang expiry, sa parehong presyo. Puwedeng i-renew ng kahit sino ang kahit anong pangalan, kaya puwedeng panatilihing buhay ng isang kaibigan o direktoryo ang pangalan mo.",
+      "active": "Aktibo",
+      "activeNote": "365 araw, nagre-resolve",
+      "grace": "Grace",
+      "graceNote": "90 araw, hindi nagre-resolve, renew lang",
+      "premium": "Premium",
+      "premiumNote": "21 araw, 100 ETH pababa sa 0",
+      "open": "Bukas",
+      "openNote": "kahit sino, normal na presyo",
+      "caption": "Hindi ayon sa sukat. Kapag muling na-register ang pangalan pagkatapos ng grace period nito, nabubura ang lahat ng record, kaya walang laman sa simula ang bagong may-ari."
+    },
+    "eth": {
+      "badge": "Libre para sa mga ginagamit nang pangalan",
+      "title": "Gumagamit ka na ng .bso name? Sa iyo iyon.",
+      "lead": "Hanggang ngayon, binabasa ng mga app ang memes.bso mula sa memes.eth. Sa paglulunsad, bawat .eth name na may bitsocial record, kasama ang mga subname, ay ia-airdrop bilang parehong .bso name sa wallet na may hawak nito, na may parehong record at bayad na ang unang taon. Walang kailangang i-claim at walang kailangang bayaran.",
+      "caveat": "Kasama lang ang mga pangalang may bitsocial record sa snapshot ng paglulunsad. Kung nakuha ng pangalan mo ang record nito pagkatapos noon, i-claim ang .bso name sa sandaling magbukas ang registration, bago ka maunahan ng iba.",
+      "label": "Tingnan ang .eth name mo",
+      "placeholder": "memes.eth",
+      "check": "Tingnan",
+      "registered": "Naka-register ang {{name}} sa {{owner}} hanggang {{date}}.",
+      "points": "Nakaturo ito sa {{record}}.",
+      "notYet": "Hindi pa naka-register ang {{name}}. Nire-register ang mga na-airdrop na pangalan bago magbukas ang registration para sa lahat, kaya tingnan ulit pagdating noon.",
+      "notSeeded": "Hindi na-airdrop ang {{name}} at bukas ito sa kahit sino. Kung ginagamit mo ang {{eth}}, i-claim ito bago ka maunahan ng iba.",
+      "tryAbove": "Tingnan ang {{name}} sa itaas"
+    },
+    "faq": {
+      "eyebrow": "Mga tanong",
+      "title": "Paano gumagana ang mga .bso name",
+      "lead": "Sumusunod ang mga sagot sa BSIP-13, ang spec na ipinapatupad ng registry na ito.",
+      "groups": {
+        "using": "Pagmamay-ari ng pangalan",
+        "launch": "Paglulunsad at mga .eth name",
+        "trust": "Mga bayad, tiwala at Bitsocial Chain"
+      },
+      "signers": "{{threshold}} sa {{owners}} na susi nito",
+      "signersUnknown": "ilan sa mga susi nito",
+      "priceLength": "Haba ng pangalan",
+      "pricePerYear": "Bawat taon",
+      "bytes_one": "{{count}} byte",
+      "bytes_other": "{{count}} byte",
+      "bytesOrMore_one": "{{count}} byte o higit pa",
+      "bytesOrMore_other": "{{count}} byte o higit pa",
+      "contract": "Kontrata ng registry",
+      "safe": "Fee Safe",
+      "spec": "Basahin ang BSIP-13",
+      "items": {
+        "what": {
+          "q": "Ano ang ginagawa ng isang .bso name?",
+          "a": [
+            "Binibigyan nito ang isang komunidad o profile ng pangalang nababasa ng tao. Ang bitsocial record ng pangalan ay naglalaman ng isang key address, ang mahabang 12D3KooW… na string na tumutukoy sa komunidad o profile sa network. Hinahanap ng mga app ang pangalan, binabasa ang susi at nilo-load ang itinuturo nito, kaya binubuksan ng memes.bso ang parehong komunidad sa 5chan, Seedit at anumang ibang Bitsocial app.",
+            "Ginagawa ring napapalitan ng pangalan ang susi. Kung nawala o nanakaw ang susi, ituturo mo ang pangalan sa bago at susunod ang mga mambabasa. Hindi makakabawi sa ganoong paraan ang isang komunidad na kilala lang sa susi nito.",
+            "Ang pangalan mismo ay isang NFT (ERC-721) sa Ethereum, na hawak ng wallet mo. Kung sino ang may hawak nito, siya ang nagpapasya kung saan ito nakaturo."
+          ]
+        },
+        "profiles": {
+          "q": "Puwede rin bang magkaroon ng pangalan ang isang profile?",
+          "a": [
+            "Oo. Pinipirmahan ng mga author ang mga post nila gamit ang isang susi, at nagpapakita ang mga app ng pangalan sa mga post na iyon kapag hawak ng bitsocial record ng pangalan ang susing iyon. Iisang record ang ginagamit ng mga komunidad at profile, kaya pareho ang paraan ng pag-register para sa dalawa.",
+            "Darating kasabay ng unang pampublikong RPC ng Bitsocial ang mga profile page na nagtitipon ng mga post ng isang author mula sa bawat komunidad (BSIP-14), at gagana roon ang pangalang ire-register ngayon. Hindi puwedeng magsilbi ang isang pangalan bilang komunidad at profile nang sabay."
+          ]
+        },
+        "cost": {
+          "q": "Magkano ang isang pangalan?",
+          "a": [
+            "Nakadepende ang taunang presyo sa haba ng pangalan sa byte, at pareho ang halaga ng pag-renew. Hiwalay na binabayaran ang Ethereum gas. Tig-isang byte ang mga letrang a–z, mga digit at gitling, dalawa ang mga letrang may accent, Griyego o Cyrillic, tatlo ang mga karakter na Chinese o Japanese, at karaniwang apat ang emoji, kaya ang iisang emoji ay may presyo ng 4-byte na pangalan."
+          ]
+        },
+        "claiming": {
+          "q": "Bakit dalawang transaction ang pag-claim?",
+          "a": [
+            "Kahit sino ay puwedeng manood ng mga pending na transaction sa Ethereum. Kung ipapadala mo nang hayagan ang pangalan, puwede itong kopyahin ng iba at i-register bago ka. Kaya magre-reserve ka muna: magpapadala ka ng fingerprint ng pangalan na hinaluan ng random na sikreto, na walang ibinubunyag. Makalipas ang isang minuto, magke-claim ka, ipapadala ang pangalan at ang sikreto, at imi-mint ng registry ang pangalan sa wallet mo kung tugma ang mga ito sa reservation.",
+            "Valid ang reservation nang 24 oras. Itinatago ng page na ito ang sikreto sa browser mo, kaya puwede kang mag-reload o bumalik mamaya sa parehong device. Kung buburahin mo ang data ng browser bago mag-claim, mag-reserve ulit. Gas lang ang nagastos sa unang reservation."
+          ]
+        },
+        "expiry": {
+          "q": "Ano ang mangyayari kapag nag-expire ang pangalan?",
+          "a": [
+            "Tumatagal ang pangalan nang 365 araw. Puwede itong i-renew ng kahit sino para sa isa pang 365, bilang mula sa kasalukuyang expiry nito, kaya puwedeng panatilihing buhay ng isang kaibigan o direktoryo ang pangalan mo. Pagkatapos ng expiry ay may 90 araw na grace period: hihinto sa pag-resolve ang pangalan at puwede lang itong i-renew. Pagkatapos noon, puwede na itong i-register ng kahit sino, una sa premium na bumababa mula 100 ETH hanggang zero sa loob ng 21 araw, at pagkatapos ay sa normal na presyo.",
+            "Binubura ng bagong registration ang lahat ng record, at puwedeng ituro ng bagong may-hawak ang pangalan sa sarili niyang susi. Ang mga mambabasang sumusunod sa pangalang iyon ay susunod sa kanya, kaya mag-renew nang maaga."
+          ]
+        },
+        "spelling": {
+          "q": "Aling mga baybay ang gumagana?",
+          "a": [
+            "Nino-normalize ng mga app ang pangalan bago ito hanapin, gaya ng ginagawa ng ENS (ENSIP-15). Pinapayagan nito ang maliliit na titik, mga digit, mga gitling sa loob ng pangalan, karamihan ng mga sistema ng pagsulat at emoji. Hindi pinapayagan ang tuldok, espasyo at underscore, maliban sa underscore sa pinakasimula, at tinatanggihan ang mga magkamukhang karakter na naghahalo ng mga sistema ng pagsulat.",
+            "Mas kaunti ang sinusuri ng registry mismo, kaya magbebenta ito ng mga baybay na hindi kayang i-resolve ng anumang app, at hindi ibinabalik ang bayad. Tinatanggihan ng page na ito ang mga iyon at nagmumungkahi ng ayos, gaya ng relationship-advice para sa relationship_advice."
+          ]
+        },
+        "transfer": {
+          "q": "Puwede ko bang ibigay o ibenta ang isang pangalan?",
+          "a": [
+            "Oo. Ang pangalan ay isang ERC-721 token sa wallet mo, kaya puwede mo itong ipadala tulad ng anumang NFT. Laging sa wallet na nag-claim nami-mint ang pag-claim, kaya para mag-register ng pangalan para sa iba, i-claim ito at saka i-transfer. Hindi nagbabago ang record kasabay ng may-ari, kaya dapat itong ituro ng bagong may-hawak sa sarili niyang susi."
+          ]
+        },
+        "subnames": {
+          "q": "Puwede ba akong mamigay ng mga subname?",
+          "a": [
+            "Puwedeng gumawa nang libre ang may-hawak ng pangalan ng mga subname gaya ng memes.yourname.bso. Pero puwedeng bawiin ng may-hawak ng parent name ang kahit anong subname anumang oras at ituro ito sa iba, kaya lubos na nakadepende sa taong iyon ang isang komunidad na nasa subname. Dapat mag-register ang isang komunidad ng sarili nitong pangalan, o manatili sa susi nito hanggang makapag-register ito."
+          ]
+        },
+        "launch": {
+          "q": "Ano ang mangyayari sa paglulunsad?",
+          "a": [
+            "Sarado ang registry sa simula. Una, ire-register nang libre sa may-hawak nito ang bawat .bso name na ginagamit na sa pamamagitan ng .eth (tingnan sa itaas). Kahit sino ay puwedeng magpadala ng mga registration na iyon, at layunin ng mga maintainer na maipadala ang lahat sa loob ng isang oras mula sa deployment. Magbubukas ang pampublikong registration isang oras pagkatapos ng huli, kaya nasa chain ang oras ng pagbubukas isang oras bago ito. Kung matigil ang mga ito, magbubukas pa rin ito pitong araw pagkatapos ng deployment.",
+            "Puwede kang mag-reserve ng pangalan bago ang pagbubukas. Ang reservation na ginawa nang hindi bababa sa isang minuto at hindi hihigit sa 24 oras bago ang pagbubukas ay puwedeng i-claim sa mismong sandaling magbukas ito. Puwedeng i-claim din ng iba ang parehong pangalan sa sandaling iyon, at ang unang transaction na maisama ang mananalo."
+          ]
+        },
+        "eth": {
+          "q": "Gumagana pa ba ang .eth name ko?",
+          "a": [
+            "Oo. Patuloy na nire-resolve ng mga app ang mga .eth name sa pamamagitan ng ENS. Ang nagbabago ay hindi na nangangahulugang x.eth ang x.bso: binabasa ng mga app na sumusuporta sa registry na ito ang mga .bso name mula lang dito, kaya magiging magkahiwalay na pangalan ang bot.bso at bot.eth na puwedeng magkaiba ang may-ari.",
+            "May ilang app na patuloy na magbabasa ng x.bso mula sa x.eth hanggang ma-update ang mga ito. Kung hawak mo ang dalawang pangalan, panatilihing pareho ang mga record nila hanggang noon."
+          ]
+        },
+        "control": {
+          "q": "Sino ang may kontrol sa registry?",
+          "a": [
+            "Walang sinuman. Walang owner, admin, proxy, pause switch o upgrade path ang kontrata. Nakatakda sa code nito ang mga presyo, panahon at fee address, at walang sinumang makakakuha, makakapag-edit o makakapag-transfer ng pangalang hindi niya hawak.",
+            "Isa itong fork ng .gwei Name Service na may apat na pagbabago: nagtatapos sa .bso ang mga pangalan, napupunta ang mga bayad sa isang nakapirming multisig sa halip na manatiling naka-lock sa kontrata, kinokopya sa paglulunsad ang mga pangalang ginagamit na, at may isang beses na sunset na nagpapahintulot dito na lumipat sa Bitsocial Chain. Ang kabilang panig ng code na hindi mababago ay hindi rin mapa-patch ang isang bug."
+          ]
+        },
+        "fees": {
+          "q": "Saan napupunta ang mga bayad?",
+          "a": [
+            "Naiipon ang mga bayad sa registry, at kahit sino ay puwedeng magpasa ng mga ito sa iisang nakapirming address: isang Safe multisig na pumopondo sa development ng Bitsocial habang ginagamit ang registry na ito. Kailangang pumirma ang {{signers}} sa anumang aksyon. Pag-aari ng dalawang maintainer ng Bitsocial at ng mga trustee na pinangalanan nila ang mga susi, at walang iisang tao na may hawak ng sapat na susi para ilipat ang pondo.",
+            "Eksaktong dalawang kapangyarihan lang ang Safe sa registry: tumanggap ng mga bayad, at simulan ang sunset nang isang beses. Hindi nito mababago ang mga presyo o magagalaw ang pangalang hindi nito hawak. May hawak din itong ilang nakalaang pangalan ng proyekto, gaya ng bitsocial.bso, bilang ordinaryong may-ari."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Bakit bagong registry sa halip na ENS?",
+          "a": [
+            "Hanggang ngayon, bawat .bso name ay isang ENS name, sa presyo ng ENS: noong Oktubre 2026, higit $20 para sa tatlong taon ang quote para sa isang bagong pangalan ng komunidad. Hindi iyon babayaran ng karamihan ng may-ari para lang subukan ang isang komunidad, kaya nananatili sila sa hubad na susi. Hahawakan ng Bitsocial Chain ang mga .bso name nang native, pero wala pa ito.",
+            "Ginagawa ng pansamantalang registry na ito na 0.0005 ETH bawat taon ang isang normal na pangalan ngayon, at ginagawang pagkopya ng mga record ang paglipat sa Bitsocial Chain sa hinaharap sa halip na pagpapalit ng may-ari."
+          ]
+        },
+        "whyEth": {
+          "q": "Bakit magbayad sa ETH at hindi sa BSO?",
+          "a": [
+            "Kakailanganin ng diskwento para sa pagbabayad sa BSO na malaman ng kontrata ang presyo ng BSO sa ETH. Hindi kayang palitan ng isang kontratang walang owner ang isang price source na nasira, at puwedeng itulak sa loob ng isang transaction ang isang pool na manipis ang trading para makabili ng maiikling pangalan nang halos walang bayad. Ang nakapirming listahan ng presyo sa BSO ay maaanod kasabay ng token hanggang halos libre na ito o hindi kailanman ginagamit, at walang sinumang makakapagtama nito.",
+            "Mabibigyan ng sariling registry ng Bitsocial Chain ng papel ang BSO nang wala ang mga limitasyong ito."
+          ]
+        },
+        "move": {
+          "q": "Ano ang ibig sabihin ng paglipat sa Bitsocial Chain?",
+          "a": [
+            "Ang Bitsocial Chain ay phase 3 ng master plan ng Bitsocial: isang sariling chain na humahawak ng mga .bso name nang native. Kapag umabot sa Last Call ang isang BSIP para sa name registry nito, puwedeng simulan ng Safe ang sunset. Magbibigay ang kontrata ng 30 araw na abiso, na hindi puwedeng kanselahin o paikliin. Habang may abiso, gumagana ang lahat gaya ng dati, kaya bilang pa rin ang mga renewal at transfer.",
+            "Pagkatapos ng abiso, mafi-freeze ang registry sa Ethereum. Wala nang mare-register, mare-renew, mata-transfer o mae-edit, at patuloy na magre-resolve ang mga pangalan mula sa naka-freeze na estado. Ii-import nang libre ng Bitsocial Chain ang bawat pangalang aktibo o nasa grace period nito, na may parehong may-ari, expiry at record. Wala kang kailangang gawin.",
+            "Pinapayagan lang ng BSIP-13 ang sunset para sa paglipat na ito, at ipinapatupad ng kontrata ang 30 araw na abiso."
+          ]
+        },
+        "afterMove": {
+          "q": "Ano ang mangyayari sa mga bayad pagkatapos ng paglipat?",
+          "a": [
+            "Magtatapos kasabay ng registry na ito ang pagpopondo sa mga maintainer gamit ang mga bayad. Itatakda ng registry ng Bitsocial Chain ang sarili nitong mga bayad sa sarili nitong BSIP, at ang plano ay sunugin na lang doon ang mga bayad sa pangalan, o gamitin ang mga ito para bilhin pabalik at sunugin ang BSO. Hindi pa napagpapasyahan ang mekanismo."
+          ]
+        }
       }
     }
   }

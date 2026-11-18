@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "FAQ",
     "richList": "Rich list",
-    "chart": "Grafik"
+    "chart": "Grafik",
+    "domains": "Domain"
   },
   "languageSelector": {
     "title": "Pilih bahasa",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "Chain belum aktif, berlangganan untuk mendapat pembaruan",
     "title": "<mark>Lapisan sosial</mark> yang hilang dari kripto",
-    "supporting": "Kripto menjadi kasino karena Web2, TradFi, dan infrastruktur terpusat menguasai jalur distribusi dan membelokkan insentif. Bitsocial Chain memperbaikinya: <appchainLink>appchain</appchainLink> <l2Link>Ethereum L2</l2Link> yang tak terhentikan dan sepenuhnya terdesentralisasi, tempat komunitas memiliki jaringan, token, dan pendapatan mereka."
+    "supporting": "Kripto menjadi kasino karena Web2, TradFi, dan infrastruktur terpusat menguasai jalur distribusi dan membelokkan insentif. Bitsocial Chain memperbaikinya: <appchainLink>appchain</appchainLink> <l2Link>Ethereum L2</l2Link> yang tak terhentikan dan sepenuhnya terdesentralisasi, tempat komunitas memiliki jaringan, token, dan pendapatan mereka.",
+    "domainsCta": "Dapatkan domain .bso-mu hari ini"
   },
   "layers": {
     "ariaLabel": "Tiga lapisan kripto yang bertumpuk: aplikasi sosial di jaringan Bitsocial di puncak, settlement Ethereum L1 di dasar, dan Bitsocial Chain, appchain Ethereum L2 yang ditenagai BSO, menyala sebagai lapisan hilang yang berpendar dan mengisi celah di antara keduanya, dijalin oleh tulang punggung energi.",
@@ -737,6 +739,318 @@
       "marchRally": {
         "title": "Reli Maret 2024",
         "body": "Pada 1 Maret, investor Jason Calacanis menulis tweet bahwa ia menginginkan Reddit yang terdistribusi dan tanpa izin, dan plebbit membalas dengan demonya. Seedit 0.1.6 dirilis pada 3 Maret, dan pada 4 Maret tim mengumumkan komunitas dengan akses berbasis token. Dengan ETH menembus $4.000 bulan itu, harga hampir naik dua kali lipat pada 4 Maret dan menjadi tiga kali lipat pada akhir Maret, dengan volume $2,2 juta, tertinggi di antara semua bulan di grafik ini."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": "Domain .bso - Beri Nama Komunitas atau Profilmu",
+      "description": "Daftarkan domain .bso untuk komunitas atau profil Bitsocial. Nama ini adalah NFT yang dimiliki dompetmu di Ethereum, mulai 0,0005 ETH per tahun, dan terbuka di setiap aplikasi Bitsocial."
+    },
+    "hero": {
+      "titleCommunity": "Beri nama komunitasmu",
+      "titleProfile": "Beri nama profilmu",
+      "leadCommunity": "Ketik di header di bawah. Pembaca akan menemukan komunitasmu lewat nama ini di setiap aplikasi Bitsocial, dan dompetmu yang memilikinya.",
+      "leadProfile": "Ketik di header di bawah. Postinganmu akan membawa nama ini di setiap aplikasi Bitsocial, dan dompetmu yang memilikinya.",
+      "kindLabel": "Nama untuk",
+      "kindCommunity": "Komunitas",
+      "kindProfile": "Profil",
+      "opensIn": "Pendaftaran dibuka dalam {{time}}. Kamu bisa memesan nama sekarang.",
+      "opensOn": "Pendaftaran dibuka pada {{date}}.",
+      "notDeployed": "Registri segera diluncurkan. Nama dan harga sudah bisa dicek sekarang."
+    },
+    "plate": {
+      "inputLabelCommunity": "Nama komunitasmu",
+      "inputLabelProfile": "Nama profilmu",
+      "placeholderCommunity": "komunitasmu",
+      "placeholderProfile": "namamu",
+      "sublineCommunity": "Komunitas · dibuka lewat nama di 5chan, Seedit, dan aplikasi Bitsocial lainnya",
+      "sublineProfile": "Profil · postinganmu dari setiap komunitas, di bawah satu nama",
+      "join": "Gabung",
+      "posts": "Postingan",
+      "rules": "Aturan",
+      "follow": "Ikuti",
+      "about": "Tentang",
+      "captionCommunity": "Header komunitas dengan judul berupa nama .bso yang sedang kamu cek",
+      "captionProfile": "Header profil dengan judul berupa nama .bso yang sedang kamu cek",
+      "withoutCommunity": "Tanpa nama, orang membagikan",
+      "withoutProfile": "Tanpa nama, postinganmu menampilkan",
+      "withCommunity": "Dengan nama, mereka membagikan",
+      "withProfile": "Dengan nama, postinganmu menampilkan"
+    },
+    "checks": {
+      "spelling": "Ejaan",
+      "availability": "Ketersediaan",
+      "price": "Harga",
+      "typeName": "Ketik nama",
+      "spellingOk": "Nama valid",
+      "fixFirst": "Perbaiki ejaan dulu",
+      "dot": "Titik tidak diizinkan dalam nama.",
+      "space": "Spasi tidak diizinkan.",
+      "underscore": "Garis bawah hanya diizinkan di awal.",
+      "hyphenEdge": "Nama tidak boleh diawali atau diakhiri tanda hubung.",
+      "labelExtension": "Karakter ketiga dan keempat nama tidak boleh berupa \"--\".",
+      "tooLong": "Terlalu panjang: nama maksimal 255 byte.",
+      "lookalike": "Nama ini mencampur aksara atau memakai karakter yang mirip.",
+      "character": "\"{{character}}\" tidak diizinkan.",
+      "characterUnknown": "Ada karakter yang tidak diizinkan.",
+      "checking": "Mengecek…",
+      "available": "Tersedia",
+      "taken": "Terdaftar hingga {{date}}",
+      "yours": "Milikmu, hingga {{date}}",
+      "reserved": "Dicadangkan untuk Bitsocial hingga {{date}}",
+      "grace": "Kedaluwarsa pada {{date}}. Pemiliknya bisa memperpanjang hingga {{until}}.",
+      "premium": "Dilepas pada {{date}}. Preminya turun ke nol paling lambat {{end}}.",
+      "lookupFailed": "Tidak bisa terhubung ke Ethereum.",
+      "retry": "Coba lagi",
+      "notDeployed": "Dicek setelah registri diluncurkan",
+      "yearly": "{{price}} per tahun",
+      "yearlyShort": "{{price}} per tahun, harga untuk nama {{count}} karakter",
+      "yearlyBytes": "{{price}} per tahun, dihitung dari {{count}} byte-nya",
+      "withPremium": "{{price}} untuk tahun pertama, termasuk premi {{premium}}"
+    },
+    "cta": {
+      "claim": "Klaim {{name}} seharga {{price}}",
+      "reserve": "Pesan {{name}} sekarang",
+      "renew": "Perpanjang {{name}}",
+      "pointCommunity": "Arahkan {{name}} ke komunitasmu",
+      "pointProfile": "Arahkan {{name}} ke profilmu",
+      "soon": "Pendaftaran segera dibuka",
+      "fix": "Pakai {{name}}",
+      "noteClaim": "Tiga transaksi dompet, sekitar dua menit.",
+      "noteReserve": "Pesan sekarang dan klaim saat pendaftaran dibuka.",
+      "noteReserveLater": "Pemesanan dibuka 24 jam sebelum pendaftaran dibuka.",
+      "noteTaken": "Dipegang oleh {{owner}}.",
+      "noteReserved": "Dipegang oleh Safe biaya Bitsocial; BSIP-13 mencadangkan nama ini untuknya.",
+      "noteGrace": "Siapa pun bisa memperpanjangnya, dan nama tetap milik pemiliknya.",
+      "notePremium": "Premi turun setiap detik, dan kelebihan bayar akan dikembalikan.",
+      "noteNotDeployed": "Kontrak registri belum ada di Ethereum."
+    },
+    "claim": {
+      "eyebrow": "Klaim",
+      "title": "Tiga transaksi dari dompetmu, sekitar dua menit",
+      "pickName": "Pilih nama yang tersedia di atas untuk mulai.",
+      "claiming": "Mengklaim {{name}}",
+      "renewing": "Memperpanjang {{name}}",
+      "pointing": "Mengarahkan {{name}}",
+      "connect": "Hubungkan dompet",
+      "connectWith": "Hubungkan {{wallet}}",
+      "browserWallet": "dompet browser",
+      "connecting": "Menghubungkan…",
+      "noWallet": "Tidak ada dompet Ethereum di browser ini. Pasang dompet browser, atau buka halaman ini di browser aplikasi dompetmu.",
+      "connectedAs": "Terhubung sebagai {{address}}",
+      "reserveTitle": "Pesan",
+      "reserveBody": "Komitmen tersegel dikirim ke chain lebih dulu, jadi tidak ada yang bisa membaca nama dari transaksimu yang tertunda lalu merebutnya. Lalu tunggu 60 detik.",
+      "reserveMeta": "commit() · hanya gas",
+      "reserveAction": "Pesan {{name}}",
+      "reserveTooEarly": "Kamu bisa memesan mulai {{date}}, 24 jam sebelum pendaftaran dibuka.",
+      "reserved": "Sudah dipesan. Browser ini menyimpan pemesanan hingga {{time}}.",
+      "claimTitle": "Klaim",
+      "claimBody": "Bayar namanya. Nama di-mint ke dompet yang sama selama 365 hari. Kamu punya waktu hingga 24 jam setelah memesan, dan browser ini mengingat sampai mana kamu terakhir.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "Klaim {{name}} seharga {{price}}",
+      "claimWait": "Siap dalam {{seconds}} dtk",
+      "claimWaitOpening": "Siap saat pendaftaran dibuka, dalam {{time}}",
+      "startOver": "Mulai dari awal",
+      "renewTitle": "Perpanjang",
+      "renewBody": "Menambah 365 hari ke tanggal kedaluwarsa saat ini. Siapa pun bisa memperpanjang nama apa pun, dan nama tetap milik pemiliknya.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "Perpanjang {{name}} seharga {{price}}",
+      "renewed": "Diperpanjang hingga {{date}}.",
+      "recordTitleCommunity": "Arahkan ke komunitasmu",
+      "recordTitleProfile": "Arahkan ke profilmu",
+      "recordLabelCommunity": "Kunci publik komunitasmu, dari pengaturannya",
+      "recordLabelProfile": "Kunci publik akunmu, dari pengaturan akun di aplikasimu",
+      "recordMeta": "setText(\"bitsocial\") · hanya gas · bisa diubah kapan saja",
+      "recordAction": "Simpan catatan",
+      "recordInvalid": "Itu bukan kunci publik. Kunci publik panjangnya 52 karakter dan diawali 12D3KooW.",
+      "recordCurrent": "Saat ini menunjuk ke {{record}}.",
+      "recordNotOwner": "Hanya dompet pemilik {{name}} yang bisa mengatur catatannya.",
+      "doneCommunity": "{{name}} kini menunjuk ke komunitasmu. Selanjutnya, atur {{name}} sebagai alamat komunitas di pengaturannya.",
+      "doneProfile": "{{name}} kini menunjuk ke akunmu. Selanjutnya, masukkan {{name}} sebagai namamu di pengaturan akun aplikasimu, agar postinganmu menampilkannya.",
+      "confirmInWallet": "Konfirmasi di dompetmu",
+      "waitingForTx": "Menunggu transaksi…",
+      "viewTx": "Lihat transaksi",
+      "rejected": "Kamu menolak di dompet.",
+      "failed": "Terjadi kesalahan: {{message}}",
+      "reverted": "Registri menolak transaksi ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "Pemesanan perlu menunggu satu menit. Coba lagi dalam beberapa detik.",
+        "CommitmentTooOld": "Pemesanan ini sudah lebih dari 24 jam. Pesan lagi.",
+        "CommitmentNotFound": "Tidak ada pemesanan dari dompet ini. Pesan lagi.",
+        "AlreadyCommitted": "Pemesanan ini sudah ada di chain.",
+        "AlreadyRegistered": "Seseorang sudah mendaftarkan nama ini lebih dulu.",
+        "InsufficientFee": "Harganya berubah. Coba lagi.",
+        "Expired": "Nama ini sudah kedaluwarsa.",
+        "Unauthorized": "Dompet ini tidak memiliki nama tersebut."
+      }
+    },
+    "activity": {
+      "title": "Nama terbaru",
+      "live": "Langsung dari Ethereum",
+      "registered": "{{name}} terdaftar",
+      "empty": "Belum ada nama yang terdaftar.",
+      "notDeployed": "Nama akan muncul di sini setelah registri diluncurkan.",
+      "failed": "Tidak bisa memuat nama terbaru.",
+      "browse": "Jelajahi semua nama"
+    },
+    "lifecycle": {
+      "eyebrow": "Mempertahankannya",
+      "title": "Nama berlaku satu tahun setiap kali",
+      "lead": "Perpanjangan menambah 365 hari ke tanggal kedaluwarsa saat ini, dengan harga yang sama. Siapa pun bisa memperpanjang nama apa pun, jadi teman atau sebuah direktori bisa menjaga namamu tetap aktif.",
+      "active": "Aktif",
+      "activeNote": "365 hari, ter-resolve",
+      "grace": "Tenggang",
+      "graceNote": "90 hari, tidak ter-resolve, hanya perpanjangan",
+      "premium": "Premi",
+      "premiumNote": "21 hari, 100 ETH turun ke 0",
+      "open": "Terbuka",
+      "openNote": "siapa saja, harga normal",
+      "caption": "Tidak sesuai skala. Mendaftarkan ulang nama setelah masa tenggang akan menghapus semua catatan, jadi pemilik baru mulai dari kosong."
+    },
+    "eth": {
+      "badge": "Gratis untuk nama yang sudah dipakai",
+      "title": "Sudah memakai nama .bso? Nama itu milikmu.",
+      "lead": "Selama ini, aplikasi membaca memes.bso dari memes.eth. Saat peluncuran, setiap nama .eth yang punya catatan bitsocial, termasuk subnama, di-airdrop sebagai nama .bso yang sama ke dompet yang memegangnya, dengan catatan yang sama dan tahun pertama sudah dibayar. Tidak ada yang perlu diklaim dan tidak ada yang perlu dibayar.",
+      "caveat": "Hanya nama yang punya catatan bitsocial pada snapshot peluncuran yang disertakan. Jika namamu baru mendapat catatannya setelah itu, klaim nama .bso-nya begitu pendaftaran dibuka, sebelum orang lain melakukannya.",
+      "label": "Cek nama .eth-mu",
+      "placeholder": "memes.eth",
+      "check": "Cek",
+      "registered": "{{name}} terdaftar atas nama {{owner}} hingga {{date}}.",
+      "points": "Nama ini menunjuk ke {{record}}.",
+      "notYet": "{{name}} belum terdaftar. Nama yang di-airdrop didaftarkan sebelum pendaftaran dibuka untuk semua orang, jadi cek lagi saat itu.",
+      "notSeeded": "{{name}} tidak di-airdrop dan terbuka untuk siapa saja. Jika kamu memakai {{eth}}, klaim sebelum orang lain melakukannya.",
+      "tryAbove": "Cek {{name}} di atas"
+    },
+    "faq": {
+      "eyebrow": "Pertanyaan",
+      "title": "Cara kerja nama .bso",
+      "lead": "Jawaban berikut mengikuti BSIP-13, spesifikasi yang diterapkan registri ini.",
+      "groups": {
+        "using": "Memiliki nama",
+        "launch": "Peluncuran dan nama .eth",
+        "trust": "Biaya, kepercayaan, dan Bitsocial Chain"
+      },
+      "signers": "{{threshold}} dari {{owners}} kuncinya",
+      "signersUnknown": "beberapa kuncinya",
+      "priceLength": "Panjang nama",
+      "pricePerYear": "Per tahun",
+      "bytes_other": "{{count}} byte",
+      "bytesOrMore_other": "{{count}} byte atau lebih",
+      "contract": "Kontrak registri",
+      "safe": "Safe biaya",
+      "spec": "Baca BSIP-13",
+      "items": {
+        "what": {
+          "q": "Apa fungsi nama .bso?",
+          "a": [
+            "Nama ini memberi komunitas atau profil sebuah nama yang bisa dibaca orang. Catatan bitsocial pada nama menyimpan alamat kunci, yaitu string panjang 12D3KooW… yang mengidentifikasi komunitas atau profil itu di jaringan. Aplikasi mencari nama itu, membaca kuncinya, lalu memuat apa yang ditunjuknya, sehingga memes.bso membuka komunitas yang sama di 5chan, Seedit, dan aplikasi Bitsocial lainnya.",
+            "Nama juga membuat kunci bisa diganti. Jika kunci hilang atau dicuri, kamu cukup mengarahkan nama ke kunci baru dan pembaca ikut berpindah. Komunitas yang hanya dikenal lewat kuncinya tidak bisa pulih dengan cara itu.",
+            "Nama itu sendiri adalah NFT (ERC-721) di Ethereum yang dipegang dompetmu. Siapa pun yang memegangnya menentukan ke mana nama itu menunjuk."
+          ]
+        },
+        "profiles": {
+          "q": "Bisakah profil juga punya nama?",
+          "a": [
+            "Bisa. Penulis menandatangani postingan mereka dengan sebuah kunci, dan aplikasi menampilkan nama pada postingan itu jika catatan bitsocial nama tersebut menyimpan kunci itu. Komunitas dan profil memakai catatan yang sama, jadi cara mendaftarnya sama untuk keduanya.",
+            "Halaman profil yang mengumpulkan postingan seorang penulis dari setiap komunitas (BSIP-14) hadir bersama RPC publik pertama Bitsocial, dan nama yang didaftarkan sekarang akan berfungsi di sana. Satu nama tidak bisa dipakai sebagai komunitas dan profil sekaligus."
+          ]
+        },
+        "cost": {
+          "q": "Berapa harga sebuah nama?",
+          "a": [
+            "Harga tahunan bergantung pada panjang nama dalam byte, dan perpanjangan berharga sama. Gas Ethereum dibayar terpisah. Huruf a–z, angka, dan tanda hubung masing-masing satu byte, huruf beraksen, Yunani, atau Sirilik dua byte, karakter Tionghoa atau Jepang tiga byte, dan emoji biasanya empat byte, jadi satu emoji dihargai sebagai nama 4 byte."
+          ]
+        },
+        "claiming": {
+          "q": "Mengapa klaim butuh dua transaksi?",
+          "a": [
+            "Siapa pun bisa melihat transaksi Ethereum yang tertunda. Jika kamu mengirim nama secara terbuka, seseorang bisa menyalinnya dan mendaftarkannya lebih dulu. Jadi kamu memesan dulu: kamu mengirim sidik jari dari nama yang dicampur dengan rahasia acak, yang tidak mengungkap apa pun. Semenit kemudian kamu mengklaim dengan mengirim nama dan rahasianya, dan registri me-mint nama itu ke dompetmu jika keduanya cocok dengan pemesanan.",
+            "Pemesanan berlaku selama 24 jam. Halaman ini menyimpan rahasianya di browser-mu, jadi kamu bisa memuat ulang atau kembali nanti di perangkat yang sama. Jika kamu menghapus data browser sebelum mengklaim, pesan lagi. Pemesanan pertama hanya memakan biaya gas."
+          ]
+        },
+        "expiry": {
+          "q": "Apa yang terjadi jika nama kedaluwarsa?",
+          "a": [
+            "Nama berlaku 365 hari. Siapa pun bisa memperpanjangnya 365 hari lagi, dihitung dari tanggal kedaluwarsa saat ini, jadi teman atau sebuah direktori bisa menjaga namamu tetap aktif. Setelah kedaluwarsa ada masa tenggang 90 hari: nama berhenti ter-resolve dan hanya bisa diperpanjang. Setelah itu siapa pun bisa mendaftarkannya, mula-mula dengan premi yang turun dari 100 ETH ke nol selama 21 hari, lalu dengan harga normal.",
+            "Pendaftaran baru menghapus semua catatan, dan pemegang baru bisa mengarahkan nama ke kunci mereka sendiri. Pembaca yang mengikuti nama itu akan mengikuti mereka, jadi perpanjang lebih awal."
+          ]
+        },
+        "spelling": {
+          "q": "Ejaan apa saja yang bisa dipakai?",
+          "a": [
+            "Aplikasi menormalkan nama sebelum mencarinya, seperti yang dilakukan ENS (ENSIP-15). Ini mengizinkan huruf kecil, angka, tanda hubung di dalam nama, sebagian besar aksara, dan emoji. Titik, spasi, dan garis bawah tidak diizinkan, kecuali garis bawah di paling awal, dan karakter mirip yang mencampur aksara ditolak.",
+            "Registri itu sendiri memeriksa lebih sedikit, jadi ia akan menjual ejaan yang tidak bisa di-resolve aplikasi mana pun, dan biayanya tidak dikembalikan. Halaman ini menolak ejaan seperti itu dan menyarankan perbaikan, misalnya relationship-advice untuk relationship_advice."
+          ]
+        },
+        "transfer": {
+          "q": "Bisakah saya memberikan atau menjual nama?",
+          "a": [
+            "Bisa. Nama adalah token ERC-721 di dompetmu, jadi kamu bisa mengirimnya seperti NFT lain. Klaim selalu me-mint ke dompet yang mengklaim, jadi untuk mendaftarkan nama bagi orang lain, klaim lalu transfer. Catatannya tidak berubah mengikuti pemilik, jadi pemegang baru sebaiknya mengarahkannya ke kunci mereka sendiri."
+          ]
+        },
+        "subnames": {
+          "q": "Bisakah saya membagikan subnama?",
+          "a": [
+            "Pemegang nama bisa membuat subnama seperti memes.yourname.bso secara gratis. Tetapi pemegang nama induk bisa mengambil kembali subnama mana pun kapan saja dan mengarahkannya ke tempat lain, jadi komunitas di subnama sepenuhnya bergantung pada orang itu. Komunitas sebaiknya mendaftarkan nama sendiri, atau tetap memakai kuncinya sampai melakukannya."
+          ]
+        },
+        "launch": {
+          "q": "Apa yang terjadi saat peluncuran?",
+          "a": [
+            "Registri dimulai dalam keadaan tertutup. Pertama, setiap nama .bso yang sudah dipakai melalui .eth didaftarkan ke pemegangnya secara gratis (lihat di atas). Siapa pun bisa mengirim pendaftaran itu, dan para pengelola menargetkan semuanya terkirim dalam satu jam setelah deployment. Pendaftaran publik dibuka satu jam setelah pendaftaran terakhir, jadi waktu pembukaannya tercatat di chain satu jam sebelumnya. Jika prosesnya macet, pendaftaran tetap dibuka tujuh hari setelah deployment.",
+            "Kamu bisa memesan nama sebelum pembukaan. Pemesanan yang dibuat paling sedikit satu menit dan paling lama 24 jam sebelum pembukaan bisa diklaim tepat saat dibuka. Orang lain mungkin mengklaim nama yang sama pada saat itu, dan transaksi yang pertama masuk ke blok yang menang."
+          ]
+        },
+        "eth": {
+          "q": "Apakah nama .eth saya masih berfungsi?",
+          "a": [
+            "Ya. Aplikasi tetap me-resolve nama .eth melalui ENS. Yang berubah adalah x.bso tidak lagi berarti x.eth: aplikasi yang mendukung registri ini hanya membaca nama .bso dari registri ini, jadi bot.bso dan bot.eth menjadi nama terpisah yang bisa punya pemilik berbeda.",
+            "Beberapa aplikasi masih akan membaca x.bso dari x.eth sampai diperbarui. Jika kamu memegang kedua nama, samakan catatannya sampai saat itu."
+          ]
+        },
+        "control": {
+          "q": "Siapa yang mengendalikan registri?",
+          "a": [
+            "Tidak ada. Kontraknya tidak punya pemilik, admin, proxy, tombol jeda, atau jalur upgrade. Harga, periode, dan alamat biaya ditetapkan dalam kodenya, dan tidak ada yang bisa mengambil, mengubah, atau mentransfer nama yang tidak mereka pegang.",
+            "Kontrak ini adalah fork dari .gwei Name Service dengan empat perubahan: nama berakhiran .bso, biaya masuk ke multisig tetap alih-alih terkunci di kontrak, nama yang sudah dipakai disalin saat peluncuran, dan mekanisme penutupan (sunset) sekali pakai memungkinkannya pindah ke Bitsocial Chain. Sisi lain dari kode yang tidak bisa diubah adalah bug juga tidak bisa ditambal."
+          ]
+        },
+        "fees": {
+          "q": "Ke mana biayanya pergi?",
+          "a": [
+            "Biaya terkumpul di registri, dan siapa pun bisa meneruskannya ke satu alamat tetap: multisig Safe yang mendanai pengembangan Bitsocial selama registri ini dipakai. Setiap tindakan harus ditandatangani oleh {{signers}}. Kunci-kuncinya dipegang oleh dua pengelola Bitsocial dan wali amanat yang mereka tunjuk, dan tidak ada satu orang pun yang memegang cukup kunci untuk memindahkan dana.",
+            "Safe punya tepat dua wewenang atas registri: menerima biaya, dan memulai penutupan satu kali. Safe tidak bisa mengubah harga atau menyentuh nama yang tidak dipegangnya. Safe juga memegang beberapa nama proyek yang dicadangkan, seperti bitsocial.bso, sebagai pemilik biasa."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Mengapa registri baru, bukan ENS?",
+          "a": [
+            "Selama ini setiap nama .bso adalah nama ENS, dengan harga ENS: pada Oktober 2026, nama komunitas baru ditawarkan lebih dari US$20 untuk tiga tahun. Kebanyakan pemilik tidak mau membayar sebanyak itu hanya untuk mencoba sebuah komunitas, jadi mereka tetap memakai kunci polos. Bitsocial Chain akan menyimpan nama .bso secara native, tetapi chain itu belum ada.",
+            "Registri sementara ini membuat nama biasa berharga 0,0005 ETH per tahun mulai sekarang, dan mengubah perpindahan ke Bitsocial Chain nanti menjadi penyalinan catatan, bukan pergantian pemilik."
+          ]
+        },
+        "whyEth": {
+          "q": "Mengapa membayar dengan ETH, bukan BSO?",
+          "a": [
+            "Diskon untuk pembayaran dengan BSO mengharuskan kontrak mengetahui harga BSO dalam ETH. Kontrak tanpa pemilik tidak bisa mengganti sumber harga yang rusak, dan pool yang sepi transaksi bisa didorong harganya selama satu transaksi untuk membeli nama pendek hampir tanpa biaya. Daftar harga tetap dalam BSO akan bergeser mengikuti token hingga hampir gratis atau tidak pernah dipakai, tanpa ada yang bisa mengoreksinya.",
+            "Registri milik Bitsocial Chain sendiri bisa memberi BSO peran tanpa batasan-batasan ini."
+          ]
+        },
+        "move": {
+          "q": "Apa arti pindah ke Bitsocial Chain?",
+          "a": [
+            "Bitsocial Chain adalah fase 3 dari rencana induk Bitsocial: chain tersendiri yang menyimpan nama .bso secara native. Setelah BSIP untuk registri namanya mencapai status Last Call, Safe bisa memulai penutupan. Kontrak lalu memberi pemberitahuan 30 hari, yang tidak bisa dibatalkan atau dipersingkat. Selama masa pemberitahuan semuanya berjalan seperti biasa, jadi perpanjangan dan transfer tetap berlaku.",
+            "Setelah masa pemberitahuan, registri Ethereum dibekukan. Tidak ada yang bisa didaftarkan, diperpanjang, ditransfer, atau diubah, dan nama tetap ter-resolve dari keadaan yang dibekukan. Bitsocial Chain mengimpor setiap nama yang aktif atau sedang dalam masa tenggang secara gratis, dengan pemilik, tanggal kedaluwarsa, dan catatan yang sama. Kamu tidak perlu melakukan apa pun.",
+            "BSIP-13 hanya mengizinkan penutupan untuk perpindahan ini, dan kontrak memberlakukan pemberitahuan 30 hari itu."
+          ]
+        },
+        "afterMove": {
+          "q": "Apa yang terjadi pada biaya setelah perpindahan?",
+          "a": [
+            "Biaya yang mendanai para pengelola berakhir bersama registri ini. Registri Bitsocial Chain menetapkan biayanya sendiri dalam BSIP-nya sendiri, dan rencananya biaya nama di sana akan dibakar, atau dipakai untuk membeli kembali dan membakar BSO. Mekanismenya belum diputuskan."
+          ]
+        }
       }
     }
   }

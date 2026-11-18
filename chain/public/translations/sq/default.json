@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "Pyetje të shpeshta",
     "richList": "Lista e mbajtësve",
-    "chart": "Grafiku"
+    "chart": "Grafiku",
+    "domains": "Domene"
   },
   "languageSelector": {
     "title": "Zgjidh gjuhën",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "Zinxhiri nuk është ende live, abonohu për përditësime",
     "title": "<mark>Shtresa sociale</mark> që i mungon kriptos",
-    "supporting": "Kripto u bë kazino sepse Web2, TradFi dhe infrastruktura e centralizuar zotërojnë kanalet e shpërndarjes dhe i shtrembërojnë stimujt. Bitsocial Chain e rregullon këtë: një <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink> i pandalshëm, plotësisht i decentralizuar, ku komunitetet zotërojnë rrjetet e tyre, tokenët e tyre dhe të ardhurat e tyre."
+    "supporting": "Kripto u bë kazino sepse Web2, TradFi dhe infrastruktura e centralizuar zotërojnë kanalet e shpërndarjes dhe i shtrembërojnë stimujt. Bitsocial Chain e rregullon këtë: një <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink> i pandalshëm, plotësisht i decentralizuar, ku komunitetet zotërojnë rrjetet e tyre, tokenët e tyre dhe të ardhurat e tyre.",
+    "domainsCta": "Merr sot domenin tënd .bso"
   },
   "layers": {
     "ariaLabel": "Tri shtresa të renditura të kriptos: aplikacionet sociale në rrjetin Bitsocial sipër, shlyerja e Ethereum L1 në bazë, dhe Bitsocial Chain, appchain-i Ethereum L2 i fuqizuar nga BSO, që ndizet si shtresa e munguar e ndritshme e ngjitur në hapësirën mes tyre, e përshkuar nga një shtyllë energjie.",
@@ -742,6 +744,320 @@
       "marchRally": {
         "title": "Rritja e marsit 2024",
         "body": "Më 1 mars, investitori Jason Calacanis shkruan në një tweet se dëshiron një Reddit të shpërndarë dhe pa nevojë për leje, dhe plebbit i përgjigjet me demon e vet. Seedit 0.1.6 del më 3 mars, dhe më 4 mars ekipi shpall komunitete me akses përmes tokenit. Ndërsa ETH kalon $4000 atë muaj, çmimi gati dyfishohet më 4 mars dhe trefishohet deri në fund të marsit, me një volum prej $2,2 milionë, më i larti nga të gjithë muajt në këtë grafik."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": "Domene .bso - Një emër për komunitetin ose profilin tënd",
+      "description": "Regjistro një domen .bso për një komunitet ose profil Bitsocial. Emri është një NFT në Ethereum që e zotëron portofoli yt, nga 0,0005 ETH në vit, dhe hapet në çdo aplikacion Bitsocial."
+    },
+    "hero": {
+      "titleCommunity": "Jepi një emër komunitetit tënd",
+      "titleProfile": "Jepi një emër profilit tënd",
+      "leadCommunity": "Shkruaje në kokën më poshtë. Lexuesit do ta gjejnë komunitetin tënd me këtë emër në çdo aplikacion Bitsocial, dhe portofoli yt e zotëron atë.",
+      "leadProfile": "Shkruaje në kokën më poshtë. Postimet e tua do ta mbajnë këtë emër në çdo aplikacion Bitsocial, dhe portofoli yt e zotëron atë.",
+      "kindLabel": "Emër për",
+      "kindCommunity": "Një komunitet",
+      "kindProfile": "Një profil",
+      "opensIn": "Regjistrimi hapet pas {{time}}. Mund të rezervosh një emër që tani.",
+      "opensOn": "Regjistrimi hapet më {{date}}.",
+      "notDeployed": "Regjistri nis së shpejti. Emrat dhe çmimet mund t'i kontrollosh që tani."
+    },
+    "plate": {
+      "inputLabelCommunity": "Emri i komunitetit tënd",
+      "inputLabelProfile": "Emri i profilit tënd",
+      "placeholderCommunity": "komunitetiyt",
+      "placeholderProfile": "emriyt",
+      "sublineCommunity": "Komunitet · hapet me emër në 5chan, Seedit dhe aplikacione të tjera Bitsocial",
+      "sublineProfile": "Profil · postimet e tua nga çdo komunitet, nën një emër",
+      "join": "Bashkohu",
+      "posts": "Postime",
+      "rules": "Rregulla",
+      "follow": "Ndiq",
+      "about": "Rreth",
+      "captionCommunity": "Koka e një komuniteti, titulli i së cilës është emri .bso që po kontrollon",
+      "captionProfile": "Koka e një profili, titulli i së cilës është emri .bso që po kontrollon",
+      "withoutCommunity": "Pa emër, njerëzit ndajnë",
+      "withoutProfile": "Pa emër, postimet e tua shfaqin",
+      "withCommunity": "Me emër, ata ndajnë",
+      "withProfile": "Me emër, ato shfaqin"
+    },
+    "checks": {
+      "spelling": "Drejtshkrimi",
+      "availability": "Disponueshmëria",
+      "price": "Çmimi",
+      "typeName": "Shkruaj një emër",
+      "spellingOk": "Emër i vlefshëm",
+      "fixFirst": "Rregullo fillimisht drejtshkrimin",
+      "dot": "Pikat nuk lejohen në një emër.",
+      "space": "Hapësirat nuk lejohen.",
+      "underscore": "Një vizë e poshtme lejohet vetëm në fillim.",
+      "hyphenEdge": "Një emër nuk mund të fillojë ose të mbarojë me vizë.",
+      "labelExtension": "Një emër nuk mund të ketë «--» si karakterin e tretë dhe të katërt.",
+      "tooLong": "Shumë i gjatë: një emër ka të shumtën 255 bajtë.",
+      "lookalike": "Përzien sisteme shkrimi ose përdor karaktere që ngjajnë me të tjera.",
+      "character": "«{{character}}» nuk lejohet.",
+      "characterUnknown": "Ka një karakter që nuk lejohet.",
+      "checking": "Po kontrollohet…",
+      "available": "I lirë",
+      "taken": "I regjistruar deri më {{date}}",
+      "yours": "Yti, deri më {{date}}",
+      "reserved": "I rezervuar për Bitsocial deri më {{date}}",
+      "grace": "Skadoi më {{date}}. Pronari mund ta rinovojë deri më {{until}}.",
+      "premium": "U lirua më {{date}}. Çmimi shtesë bie në zero deri më {{end}}.",
+      "lookupFailed": "Ethereum nuk u arrit.",
+      "retry": "Provo përsëri",
+      "notDeployed": "Kontrollohet kur të niset regjistri",
+      "yearly": "{{price}} në vit",
+      "yearlyShort": "{{price}} në vit, çmimi për emrat me {{count}} karaktere",
+      "yearlyBytes": "{{price}} në vit, sipas {{count}} bajtëve të tij",
+      "withPremium": "{{price}} për vitin e parë, përfshirë një çmim shtesë prej {{premium}}"
+    },
+    "cta": {
+      "claim": "Merr {{name}} për {{price}}",
+      "reserve": "Rezervo {{name}} tani",
+      "renew": "Rinovo {{name}}",
+      "pointCommunity": "Drejtoje {{name}} te komuniteti yt",
+      "pointProfile": "Drejtoje {{name}} te profili yt",
+      "soon": "Regjistrimi hapet së shpejti",
+      "fix": "Përdor {{name}}",
+      "noteClaim": "Tre transaksione në portofol, rreth dy minuta.",
+      "noteReserve": "Rezervoje tani dhe merre kur të hapet regjistrimi.",
+      "noteReserveLater": "Rezervimet hapen 24 orë para regjistrimit.",
+      "noteTaken": "Në zotërim të {{owner}}.",
+      "noteReserved": "Në zotërim të Safe-it të tarifave të Bitsocial, për të cilin e rezervon BSIP-13.",
+      "noteGrace": "Kushdo mund ta rinovojë, dhe kështu mbetet te pronari i tij.",
+      "notePremium": "Çmimi shtesë bie çdo sekondë, dhe çdo pagesë e tepërt rimbursohet.",
+      "noteNotDeployed": "Kontrata e regjistrit nuk është ende në Ethereum."
+    },
+    "claim": {
+      "eyebrow": "Marrja",
+      "title": "Tre transaksione nga portofoli yt, rreth dy minuta",
+      "pickName": "Zgjidh më lart një emër të lirë për të filluar.",
+      "claiming": "Po merr {{name}}",
+      "renewing": "Po rinovon {{name}}",
+      "pointing": "Po drejton {{name}}",
+      "connect": "Lidh një portofol",
+      "connectWith": "Lidh {{wallet}}",
+      "browserWallet": "portofolin e shfletuesit",
+      "connecting": "Po lidhet…",
+      "noWallet": "Nuk u gjet asnjë portofol Ethereum në këtë shfletues. Instalo një portofol shfletuesi ose hape këtë faqe në shfletuesin e aplikacionit të portofolit tënd.",
+      "connectedAs": "I lidhur si {{address}}",
+      "reserveTitle": "Rezervo",
+      "reserveBody": "Së pari, një angazhim i vulosur dërgohet on-chain, që askush të mos e lexojë emrin nga transaksioni yt në pritje dhe ta marrë. Pastaj prit 60 sekonda.",
+      "reserveMeta": "commit() · vetëm gas",
+      "reserveAction": "Rezervo {{name}}",
+      "reserveTooEarly": "Mund të rezervosh nga {{date}}, 24 orë para se të hapet regjistrimi.",
+      "reserved": "U rezervua. Ky shfletues e ruan rezervimin deri më {{time}}.",
+      "claimTitle": "Merre",
+      "claimBody": "Paguaj për emrin. Ai krijohet në të njëjtin portofol për 365 ditë. Ke deri në 24 orë pas rezervimit, dhe ky shfletues mban mend ku e le.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "Merr {{name}} për {{price}}",
+      "claimWait": "Gati pas {{seconds}} s",
+      "claimWaitOpening": "Gati kur të hapet regjistrimi, pas {{time}}",
+      "startOver": "Fillo nga e para",
+      "renewTitle": "Rinovo",
+      "renewBody": "Shton 365 ditë te skadimi aktual. Kushdo mund të rinovojë çdo emër, dhe ai mbetet te pronari i tij.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "Rinovo {{name}} për {{price}}",
+      "renewed": "U rinovua deri më {{date}}.",
+      "recordTitleCommunity": "Drejtoje te komuniteti yt",
+      "recordTitleProfile": "Drejtoje te profili yt",
+      "recordLabelCommunity": "Çelësi publik i komunitetit tënd, nga cilësimet e tij",
+      "recordLabelProfile": "Çelësi publik i llogarisë sate, nga cilësimet e llogarisë në aplikacionin tënd",
+      "recordMeta": "setText(\"bitsocial\") · vetëm gas · ndryshohet në çdo kohë",
+      "recordAction": "Ruaj regjistrimin",
+      "recordInvalid": "Ky nuk është çelës publik. Ai ka 52 karaktere dhe fillon me 12D3KooW.",
+      "recordCurrent": "Tani tregon te {{record}}.",
+      "recordNotOwner": "Vetëm portofoli që zotëron {{name}} mund t'ia vendosë regjistrimin.",
+      "doneCommunity": "{{name}} tregon te komuniteti yt. Më pas, vendose {{name}} si adresën e komunitetit në cilësimet e tij.",
+      "doneProfile": "{{name}} tregon te llogaria jote. Më pas, vendose {{name}} si emrin tënd në cilësimet e llogarisë në aplikacionin tënd, që postimet e tua ta shfaqin.",
+      "confirmInWallet": "Konfirmo në portofolin tënd",
+      "waitingForTx": "Në pritje të transaksionit…",
+      "viewTx": "Shiko transaksionin",
+      "rejected": "E refuzove në portofol.",
+      "failed": "Diçka shkoi keq: {{message}}",
+      "reverted": "Regjistri e refuzoi transaksionin ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "Rezervimi duhet të jetë të paktën një minutë i vjetër. Provo përsëri pas pak sekondash.",
+        "CommitmentTooOld": "Ky rezervim është më i vjetër se 24 orë. Rezervo përsëri.",
+        "CommitmentNotFound": "Nuk u gjet asnjë rezervim nga ky portofol. Rezervo përsëri.",
+        "AlreadyCommitted": "Ky rezervim është tashmë on-chain.",
+        "AlreadyRegistered": "Dikush tjetër e regjistroi këtë emër më parë.",
+        "InsufficientFee": "Çmimi ndryshoi. Provo përsëri.",
+        "Expired": "Ky emër ka skaduar.",
+        "Unauthorized": "Ky portofol nuk e zotëron emrin."
+      }
+    },
+    "activity": {
+      "title": "Emrat më të rinj",
+      "live": "Drejtpërdrejt nga Ethereum",
+      "registered": "{{name}} u regjistrua",
+      "empty": "Ende nuk është regjistruar asnjë emër.",
+      "notDeployed": "Emrat shfaqen këtu kur të niset regjistri.",
+      "failed": "Emrat më të rinj nuk u ngarkuan.",
+      "browse": "Shfleto të gjithë emrat"
+    },
+    "lifecycle": {
+      "eyebrow": "Ruajtja e tij",
+      "title": "Një emër zgjat një vit çdo herë",
+      "lead": "Rinovimi shton 365 ditë te skadimi aktual, me të njëjtin çmim. Kushdo mund të rinovojë çdo emër, kështu që një mik ose një direktori mund ta mbajë gjallë tëndin.",
+      "active": "Aktiv",
+      "activeNote": "365 ditë, zgjidhet",
+      "grace": "Falje",
+      "graceNote": "90 ditë, nuk zgjidhet, vetëm rinovim",
+      "premium": "Shtesë",
+      "premiumNote": "21 ditë, nga 100 ETH në 0",
+      "open": "I lirë",
+      "openNote": "kushdo, çmim normal",
+      "caption": "Jo në shkallë. Kur një emër regjistrohet sërish pas periudhës së faljes, fshihen të gjitha regjistrimet e tij, kështu që pronari i ri fillon nga zero."
+    },
+    "eth": {
+      "badge": "Falas për emrat në përdorim",
+      "title": "Përdor tashmë një emër .bso? Është yti.",
+      "lead": "Deri tani, aplikacionet e lexonin memes.bso nga memes.eth. Në lansim, çdo emër .eth me një regjistrim bitsocial, përfshirë nënemrat, shpërndahet me airdrop si i njëjti emër .bso te portofoli që e mban, me të njëjtin regjistrim dhe me vitin e parë të paguar. Nuk ka asgjë për të marrë dhe asgjë për të paguar.",
+      "caveat": "Përfshihen vetëm emrat që kishin një regjistrim bitsocial në snapshot-in e lansimit. Nëse yti e mori regjistrimin më vonë, merre emrin .bso sapo të hapet regjistrimi i emrave, para se ta bëjë dikush tjetër.",
+      "label": "Kontrollo emrin tënd .eth",
+      "placeholder": "memes.eth",
+      "check": "Kontrollo",
+      "registered": "{{name}} është i regjistruar te {{owner}} deri më {{date}}.",
+      "points": "Tregon te {{record}}.",
+      "notYet": "{{name}} nuk është regjistruar ende. Emrat e airdrop-it regjistrohen para se regjistrimi të hapet për të gjithë, prandaj kontrollo sërish atëherë.",
+      "notSeeded": "{{name}} nuk u shpërnda me airdrop dhe është i lirë për këdo. Nëse përdor {{eth}}, merre para se ta bëjë dikush tjetër.",
+      "tryAbove": "Kontrollo {{name}} më lart"
+    },
+    "faq": {
+      "eyebrow": "Pyetje",
+      "title": "Si funksionojnë emrat .bso",
+      "lead": "Përgjigjet ndjekin BSIP-13, specifikimin që zbaton ky regjistër.",
+      "groups": {
+        "using": "Të zotërosh një emër",
+        "launch": "Lansimi dhe emrat .eth",
+        "trust": "Tarifat, besimi dhe Bitsocial Chain"
+      },
+      "signers": "{{threshold}} nga {{owners}} çelësat e tij duhet të nënshkruajnë çdo veprim",
+      "signersUnknown": "Disa nga çelësat e tij duhet të nënshkruajnë çdo veprim",
+      "priceLength": "Gjatësia e emrit",
+      "pricePerYear": "Në vit",
+      "bytes_one": "{{count}} bajt",
+      "bytes_other": "{{count}} bajtë",
+      "bytesOrMore_one": "{{count}} bajt ose më shumë",
+      "bytesOrMore_other": "{{count}} bajtë ose më shumë",
+      "contract": "Kontrata e regjistrit",
+      "safe": "Safe-i i tarifave",
+      "spec": "Lexo BSIP-13",
+      "items": {
+        "what": {
+          "q": "Çfarë bën një emër .bso?",
+          "a": [
+            "I jep një komuniteti ose një profili një emër që njerëzit mund ta lexojnë. Regjistrimi bitsocial i emrit mban një adresë çelësi, vargun e gjatë 12D3KooW… që identifikon komunitetin ose profilin në rrjet. Aplikacionet e kërkojnë emrin, lexojnë çelësin dhe ngarkojnë atë te i cili ai tregon, kështu që memes.bso hap të njëjtin komunitet në 5chan, Seedit dhe çdo aplikacion tjetër Bitsocial.",
+            "Një emër e bën gjithashtu një çelës të zëvendësueshëm. Nëse çelësi humbet ose vidhet, e drejton emrin te një çelës i ri dhe lexuesit vijnë pas. Një komunitet që njihet vetëm nga çelësi i tij nuk mund ta rimarrë veten në këtë mënyrë.",
+            "Vetë emri është një NFT (ERC-721) në Ethereum, që e mban portofoli yt. Kushdo që e mban vendos se ku tregon."
+          ]
+        },
+        "profiles": {
+          "q": "A mund të ketë edhe një profil emër?",
+          "a": [
+            "Po. Autorët i nënshkruajnë postimet e tyre me një çelës, dhe aplikacionet shfaqin një emër në ato postime kur regjistrimi bitsocial i emrit mban atë çelës. Komunitetet dhe profilet përdorin të njëjtin regjistrim, prandaj një emër regjistrohet njësoj për të dyja.",
+            "Faqet e profilit që mbledhin postimet e një autori nga çdo komunitet (BSIP-14) vijnë me RPC-në e parë publike të Bitsocial, dhe një emër i regjistruar tani funksionon për to. Një emër nuk mund të shërbejë njëkohësisht për një komunitet dhe për një profil."
+          ]
+        },
+        "cost": {
+          "q": "Sa kushton një emër?",
+          "a": [
+            "Çmimi vjetor varet nga gjatësia e emrit në bajtë, dhe rinovimi kushton njësoj. Gas-i i Ethereum paguhet veçmas. Shkronjat a–z, shifrat dhe vizat zënë nga një bajt secila, shkronjat me theks, greke ose cirilike nga dy, karakteret kineze ose japoneze nga tre dhe emoji-t zakonisht nga katër, kështu që një emoji i vetëm kushton sa një emër me 4 bajtë."
+          ]
+        },
+        "claiming": {
+          "q": "Pse marrja e një emri kërkon dy transaksione?",
+          "a": [
+            "Kushdo mund t'i shohë transaksionet në pritje në Ethereum. Po ta dërgoje emrin haptazi, dikush mund ta kopjonte dhe ta regjistronte para teje. Prandaj së pari rezervon: dërgon një gjurmë të emrit të përzier me një sekret të rastësishëm, që nuk zbulon asgjë. Një minutë më vonë e merr, duke dërguar emrin dhe sekretin, dhe regjistri e krijon emrin në portofolin tënd nëse ato përputhen me rezervimin.",
+            "Një rezervim mbetet i vlefshëm për 24 orë. Kjo faqe e ruan sekretin në shfletuesin tënd, kështu që mund ta rifreskosh ose të kthehesh më vonë nga e njëjta pajisje. Nëse i fshin të dhënat e shfletuesit para se ta marrësh emrin, rezervo përsëri. Rezervimi i parë kushtoi vetëm gas."
+          ]
+        },
+        "expiry": {
+          "q": "Çfarë ndodh nëse një emër skadon?",
+          "a": [
+            "Një emër zgjat 365 ditë. Kushdo mund ta rinovojë për 365 të tjera, të llogaritura nga skadimi aktual, kështu që një mik ose një direktori mund ta mbajë gjallë tëndin. Pas skadimit vjen një periudhë faljeje 90-ditore: emri nuk zgjidhet më dhe mund vetëm të rinovohet. Pastaj kushdo mund ta regjistrojë, fillimisht me një çmim shtesë që bie nga 100 ETH në zero gjatë 21 ditëve, pastaj me çmimin normal.",
+            "Kur emri regjistrohet sërish, fshihen të gjitha regjistrimet e tij, dhe mbajtësi i ri mund ta drejtojë emrin te çelësi i vet. Lexuesit që e ndjekin atë emër do ta ndiqnin atë person, prandaj rinovo në kohë."
+          ]
+        },
+        "spelling": {
+          "q": "Cilat forma shkrimi funksionojnë?",
+          "a": [
+            "Aplikacionet e normalizojnë një emër para se ta kërkojnë, ashtu si ENS (ENSIP-15). Kjo lejon shkronja të vogla, shifra, viza brenda emrit, shumicën e sistemeve të shkrimit dhe emoji. Pikat, hapësirat dhe vizat e poshtme nuk lejohen, përveç një vize të poshtme në fillim fare, dhe karakteret që ngjajnë me të tjera dhe përziejnë sisteme shkrimi refuzohen.",
+            "Vetë regjistri kontrollon më pak, kështu që do të shiste forma shkrimi që asnjë aplikacion nuk mund t'i zgjidhë, dhe tarifa nuk rimbursohet. Kjo faqe i refuzon ato dhe sugjeron një korrigjim, si relationship-advice në vend të relationship_advice."
+          ]
+        },
+        "transfer": {
+          "q": "A mund ta fal ose ta shes një emër?",
+          "a": [
+            "Po. Një emër është një token ERC-721 në portofolin tënd, kështu që mund ta dërgosh si çdo NFT. Marrja e krijon gjithmonë emrin në portofolin që e merr, kështu që për të regjistruar një emër për dikë tjetër, merre dhe pastaj transferoje. Regjistrimi nuk ndryshon me pronarin, prandaj mbajtësi i ri duhet ta drejtojë te çelësi i vet."
+          ]
+        },
+        "subnames": {
+          "q": "A mund të shpërndaj nënemra?",
+          "a": [
+            "Mbajtësi i një emri mund të krijojë falas nënemra si memes.emriyt.bso. Por mbajtësi i emrit prind mund ta marrë mbrapsht çdo nënemër në çdo kohë dhe ta drejtojë diku tjetër, kështu që një komunitet në një nënemër varet plotësisht nga ai person. Një komunitet duhet të regjistrojë emrin e vet, ose të qëndrojë te çelësi i vet derisa ta bëjë."
+          ]
+        },
+        "launch": {
+          "q": "Çfarë ndodh në lansim?",
+          "a": [
+            "Regjistri nis i mbyllur. Së pari, çdo emër .bso që përdoret tashmë përmes .eth regjistrohet falas te mbajtësi i tij (shih më lart). Kushdo mund t'i dërgojë këto regjistrime, dhe mirëmbajtësit synojnë t'i dërgojnë të gjitha brenda një ore pas vendosjes së kontratës. Regjistrimi publik hapet një orë pas të fundit, kështu që koha e hapjes del on-chain një orë përpara. Nëse ato ngecin, regjistrimi hapet gjithsesi shtatë ditë pas vendosjes së kontratës.",
+            "Mund të rezervosh një emër para hapjes. Një rezervim i bërë të paktën një minutë dhe jo më shumë se 24 orë para hapjes mund të merret në çastin e hapjes. Të tjerë mund ta marrin të njëjtin emër në atë çast, dhe fiton transaksioni i parë që përfshihet në një bllok."
+          ]
+        },
+        "eth": {
+          "q": "A funksionon ende emri im .eth?",
+          "a": [
+            "Po. Aplikacionet vazhdojnë t'i zgjidhin emrat .eth përmes ENS. Ajo që ndryshon është se x.bso nuk do të thotë më x.eth: aplikacionet që e mbështesin këtë regjistër i lexojnë emrat .bso vetëm prej tij, kështu që bot.bso dhe bot.eth bëhen emra të veçantë që mund të kenë pronarë të ndryshëm.",
+            "Disa aplikacione do të vazhdojnë ta lexojnë x.bso nga x.eth derisa të përditësohen. Nëse i mban të dy emrat, mbaji regjistrimet e tyre të njëjta deri atëherë."
+          ]
+        },
+        "control": {
+          "q": "Kush e kontrollon regjistrin?",
+          "a": [
+            "Askush. Kontrata nuk ka pronar, administrator, proxy, buton pauze apo rrugë përditësimi. Çmimet, periudhat dhe adresa e tarifave janë të fiksuara në kodin e saj, dhe askush nuk mund të marrë, ndryshojë ose transferojë një emër që nuk e mban.",
+            "Është një fork i .gwei Name Service me katër ndryshime: emrat mbarojnë me .bso, tarifat shkojnë te një multisig i fiksuar në vend që të mbeten të bllokuara në kontratë, emrat që përdoren tashmë kopjohen në lansim, dhe një mbyllje e njëhershme i lejon të kalojë në Bitsocial Chain. Ana tjetër e kodit që nuk mund të ndryshojë është se as një gabim nuk mund të rregullohet."
+          ]
+        },
+        "fees": {
+          "q": "Ku shkojnë tarifat?",
+          "a": [
+            "Tarifat mblidhen në regjistër, dhe kushdo mund t'i dërgojë më tej te një adresë e fiksuar: një multisig Safe që financon zhvillimin e Bitsocial për sa kohë përdoret ky regjistër. {{signers}}. Çelësat u përkasin dy mirëmbajtësve të Bitsocial dhe personave të besuar që ata kanë caktuar, dhe askush i vetëm nuk mban mjaftueshëm prej tyre për të lëvizur fondet.",
+            "Safe-i ka saktësisht dy kompetenca mbi regjistrin: të marrë tarifat dhe të nisë mbylljen një herë të vetme. Nuk mund të ndryshojë çmimet as të prekë një emër që nuk e mban. Ai mban gjithashtu disa emra të rezervuar të projektit, si bitsocial.bso, si një pronar i zakonshëm."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Pse një regjistër i ri në vend të ENS?",
+          "a": [
+            "Deri tani çdo emër .bso ishte një emër ENS, me çmimet e ENS: në tetor 2026, një emër i ri komuniteti kushtonte mbi 20 $ për tre vjet. Shumica e pronarëve nuk do ta paguajnë këtë për të provuar një komunitet, prandaj mbeten vetëm me çelësat. Bitsocial Chain do t'i mbajë emrat .bso në mënyrë native, por ende nuk ekziston.",
+            "Ky regjistër i përkohshëm e bën një emër normal të kushtojë sot 0,0005 ETH në vit, dhe e kthen kalimin e mëvonshëm në Bitsocial Chain në një kopjim të regjistrimeve në vend të një ndryshimi pronarësh."
+          ]
+        },
+        "whyEth": {
+          "q": "Pse paguhet në ETH dhe jo në BSO?",
+          "a": [
+            "Një zbritje për pagesën në BSO do të kërkonte që kontrata ta dinte çmimin e BSO në ETH. Një kontratë pa pronar nuk mund ta zëvendësojë një burim çmimi që prishet, dhe një pool me pak tregtim mund të shtyhej për një transaksion të vetëm për të blerë emra të shkurtër pothuajse falas. Një listë çmimesh e fiksuar në BSO do të largohej bashkë me tokenin derisa të bëhej ose pothuajse falas ose të mos përdorej kurrë, pa mundur askush ta korrigjojë.",
+            "Regjistri i vetë Bitsocial Chain mund t'i japë BSO një rol pa këto kufizime."
+          ]
+        },
+        "move": {
+          "q": "Çfarë do të thotë kalimi në Bitsocial Chain?",
+          "a": [
+            "Bitsocial Chain është faza 3 e planit kryesor të Bitsocial: një zinxhir më vete që i mban emrat .bso në mënyrë native. Sapo një BSIP për regjistrin e tij të emrave të arrijë në Last Call, Safe-i mund ta nisë mbylljen. Kontrata pastaj jep një njoftim paraprak 30-ditor, që nuk mund të anulohet ose shkurtohet. Gjatë njoftimit gjithçka funksionon si më parë, kështu që rinovimet dhe transferimet vazhdojnë të vlejnë.",
+            "Pas njoftimit, regjistri në Ethereum ngrin. Asgjë nuk mund të regjistrohet, rinovohet, transferohet ose ndryshohet, dhe emrat vazhdojnë të zgjidhen nga gjendja e ngrirë. Bitsocial Chain e importon falas çdo emër që është aktiv ose në periudhën e faljes, me të njëjtin pronar, skadim dhe regjistrim. Nuk ke nevojë të bësh asgjë.",
+            "BSIP-13 e lejon mbylljen vetëm për këtë kalim, dhe kontrata e zbaton njoftimin 30-ditor."
+          ]
+        },
+        "afterMove": {
+          "q": "Çfarë ndodh me tarifat pas kalimit?",
+          "a": [
+            "Financimi i mirëmbajtësve nga tarifat përfundon me këtë regjistër. Regjistri i Bitsocial Chain i cakton tarifat e veta në BSIP-in e vet, dhe plani është që atje tarifat e emrave të digjen, ose të përdoren për të riblerë dhe djegur BSO. Mekanizmi nuk është vendosur ende."
+          ]
+        }
       }
     }
   }

@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "Časté dotazy",
     "richList": "Seznam držitelů",
-    "chart": "Graf"
+    "chart": "Graf",
+    "domains": "Domény"
   },
   "languageSelector": {
     "title": "Vyberte jazyk",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "Blockchain zatím není spuštěn, přihlaste se k odběru novinek",
     "title": "Chybějící <mark>sociální vrstva</mark> kryptoměn",
-    "supporting": "Kryptoměny se staly kasinem, protože Web2, TradFi a centralizovaná infrastruktura vlastní distribuční kanály a deformují pobídky. Bitsocial Chain to napravuje: nezastavitelný, plně decentralizovaný <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink>, kde komunity vlastní své sítě, své tokeny a své příjmy."
+    "supporting": "Kryptoměny se staly kasinem, protože Web2, TradFi a centralizovaná infrastruktura vlastní distribuční kanály a deformují pobídky. Bitsocial Chain to napravuje: nezastavitelný, plně decentralizovaný <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink>, kde komunity vlastní své sítě, své tokeny a své příjmy.",
+    "domainsCta": "Získejte svou doménu .bso ještě dnes"
   },
   "layers": {
     "ariaLabel": "Tři vrstvy kryptoměn nad sebou: sociální aplikace v síti Bitsocial nahoře, vypořádání na Ethereum L1 dole a Bitsocial Chain, Ethereum L2 appchain poháněný BSO, který se rozsvěcuje jako zářící chybějící vrstva zapadající do mezery mezi nimi a je provázán energetickou páteří.",
@@ -752,6 +754,324 @@
       "marchRally": {
         "title": "Rally v březnu 2024",
         "body": "Dne 1. března investor Jason Calacanis tweetuje, že chce distribuovaný Reddit bez nutnosti povolení, a plebbit mu odpovídá svým demem. Dne 3. března vychází Seedit 0.1.6 a 4. března tým oznamuje komunity s přístupem podmíněným tokenem. Zatímco ETH ten měsíc překonává 4 000 dolarů, cena se 4. března téměř zdvojnásobí a do konce března ztrojnásobí, při objemu 2,2 milionu dolarů, nejvyšším ze všech měsíců v tomto grafu."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": "Domény .bso – pojmenujte svou komunitu nebo profil",
+      "description": "Zaregistrujte si doménu .bso pro komunitu nebo profil na Bitsocialu. Jméno je NFT na Ethereu, které vlastní vaše peněženka, stojí od 0,0005 ETH ročně a otevře se v každé aplikaci Bitsocial."
+    },
+    "hero": {
+      "titleCommunity": "Pojmenujte svou komunitu",
+      "titleProfile": "Pojmenujte svůj profil",
+      "leadCommunity": "Napište ho do záhlaví níže. Čtenáři vaši komunitu pod tímto jménem najdou v každé aplikaci Bitsocial a vlastnit ho bude vaše peněženka.",
+      "leadProfile": "Napište ho do záhlaví níže. Vaše příspěvky ponesou toto jméno v každé aplikaci Bitsocial a vlastnit ho bude vaše peněženka.",
+      "kindLabel": "Typ jména",
+      "kindCommunity": "Komunita",
+      "kindProfile": "Profil",
+      "opensIn": "Registrace se otevře za {{time}}. Jméno si můžete rezervovat už teď.",
+      "opensOn": "Registrace se otevře {{date}}.",
+      "notDeployed": "Registr se brzy spustí. Jména a ceny si můžete ověřit už teď."
+    },
+    "plate": {
+      "inputLabelCommunity": "Jméno vaší komunity",
+      "inputLabelProfile": "Jméno vašeho profilu",
+      "placeholderCommunity": "vašekomunita",
+      "placeholderProfile": "vašejméno",
+      "sublineCommunity": "Komunita · otevře se podle jména v 5chan, Seedit a dalších aplikacích Bitsocial",
+      "sublineProfile": "Profil · vaše příspěvky ze všech komunit pod jedním jménem",
+      "join": "Připojit se",
+      "posts": "Příspěvky",
+      "rules": "Pravidla",
+      "follow": "Sledovat",
+      "about": "O mně",
+      "captionCommunity": "Záhlaví komunity, jehož titulkem je jméno .bso, které ověřujete",
+      "captionProfile": "Záhlaví profilu, jehož titulkem je jméno .bso, které ověřujete",
+      "withoutCommunity": "Bez jména lidé sdílejí",
+      "withoutProfile": "Bez jména vaše příspěvky ukazují",
+      "withCommunity": "Se jménem sdílejí",
+      "withProfile": "Se jménem ukazují"
+    },
+    "checks": {
+      "spelling": "Zápis",
+      "availability": "Dostupnost",
+      "price": "Cena",
+      "typeName": "Napište jméno",
+      "spellingOk": "Platné jméno",
+      "fixFirst": "Nejdřív opravte zápis",
+      "dot": "Tečky nejsou ve jménu povoleny.",
+      "space": "Mezery nejsou povoleny.",
+      "underscore": "Podtržítko je povoleno jen na začátku.",
+      "hyphenEdge": "Jméno nesmí začínat ani končit spojovníkem.",
+      "labelExtension": "Třetím a čtvrtým znakem jména nesmí být „--“.",
+      "tooLong": "Příliš dlouhé: jméno smí mít nejvýš 255 bajtů.",
+      "lookalike": "Míchá různá písma nebo používá podobně vypadající znaky.",
+      "character": "Znak „{{character}}“ není povolen.",
+      "characterUnknown": "Obsahuje nepovolený znak.",
+      "checking": "Ověřuji…",
+      "available": "Volné",
+      "taken": "Registrováno do {{date}}",
+      "yours": "Vaše, do {{date}}",
+      "reserved": "Rezervováno pro Bitsocial do {{date}}",
+      "grace": "Platnost vypršela {{date}}. Vlastník ho může obnovit do {{until}}.",
+      "premium": "Uvolněno {{date}}. Příplatek klesne na nulu nejpozději {{end}}.",
+      "lookupFailed": "Nepodařilo se spojit s Ethereem.",
+      "retry": "Zkusit znovu",
+      "notDeployed": "Ověří se po spuštění registru",
+      "yearly": "{{price}} ročně",
+      "yearlyShort": "{{price}} ročně – cena pro jména o délce {{count}} zn.",
+      "yearlyBytes": "{{price}} ročně – cena podle velikosti v bajtech: {{count}}",
+      "withPremium": "{{price}} za první rok včetně příplatku {{premium}}"
+    },
+    "cta": {
+      "claim": "Získat {{name}} za {{price}}",
+      "reserve": "Rezervovat {{name}} hned",
+      "renew": "Obnovit {{name}}",
+      "pointCommunity": "Nasměrovat {{name}} na vaši komunitu",
+      "pointProfile": "Nasměrovat {{name}} na váš profil",
+      "soon": "Registrace se brzy otevře",
+      "fix": "Použít {{name}}",
+      "noteClaim": "Tři transakce v peněžence, asi dvě minuty.",
+      "noteReserve": "Rezervujte teď a získejte ho, až se otevře registrace.",
+      "noteReserveLater": "Rezervace se otevírají 24 hodin před registrací.",
+      "noteTaken": "Drží ho {{owner}}.",
+      "noteReserved": "Drží ho Safe na poplatky Bitsocialu, pro který ho rezervuje BSIP-13.",
+      "noteGrace": "Obnovit ho může kdokoli a zůstane u svého vlastníka.",
+      "notePremium": "Příplatek klesá každou sekundu a případný přeplatek se vrací.",
+      "noteNotDeployed": "Kontrakt registru zatím na Ethereu není."
+    },
+    "claim": {
+      "eyebrow": "Získání",
+      "title": "Tři transakce z vaší peněženky, asi dvě minuty",
+      "pickName": "Začněte tím, že nahoře vyberete volné jméno.",
+      "claiming": "Získávání {{name}}",
+      "renewing": "Obnovování {{name}}",
+      "pointing": "Směrování {{name}}",
+      "connect": "Připojit peněženku",
+      "connectWith": "Připojit {{wallet}}",
+      "browserWallet": "peněženku v prohlížeči",
+      "connecting": "Připojuji…",
+      "noWallet": "V tomto prohlížeči nebyla nalezena žádná peněženka Ethereum. Nainstalujte si peněženku do prohlížeče nebo otevřete tuto stránku v prohlížeči aplikace své peněženky.",
+      "connectedAs": "Připojeno jako {{address}}",
+      "reserveTitle": "Rezervace",
+      "reserveBody": "Nejdřív jde na blockchain skrytý záznam o rezervaci, takže nikdo nepřečte jméno z vaší čekající transakce a nepřebere vám ho. Pak počkejte 60 sekund.",
+      "reserveMeta": "commit() · jen gas",
+      "reserveAction": "Rezervovat {{name}}",
+      "reserveTooEarly": "Rezervovat můžete od {{date}}, 24 hodin před otevřením registrace.",
+      "reserved": "Rezervováno. Tento prohlížeč si rezervaci uchová do {{time}}.",
+      "claimTitle": "Získání",
+      "claimBody": "Zaplaťte za jméno. Bude vyraženo do stejné peněženky na 365 dní. Máte na to až 24 hodin od rezervace a tento prohlížeč si pamatuje, kde jste skončili.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "Získat {{name}} za {{price}}",
+      "claimWait": "Připraveno za {{seconds}} s",
+      "claimWaitOpening": "Připraveno s otevřením registrace, za {{time}}",
+      "startOver": "Začít znovu",
+      "renewTitle": "Obnovení",
+      "renewBody": "Přidá 365 dní k současnému datu vypršení. Obnovit jakékoli jméno může kdokoli a zůstává u svého vlastníka.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "Obnovit {{name}} za {{price}}",
+      "renewed": "Obnoveno do {{date}}.",
+      "recordTitleCommunity": "Nasměrujte ho na svou komunitu",
+      "recordTitleProfile": "Nasměrujte ho na svůj profil",
+      "recordLabelCommunity": "Veřejný klíč vaší komunity z jejího nastavení",
+      "recordLabelProfile": "Veřejný klíč vašeho účtu z nastavení účtu ve vaší aplikaci",
+      "recordMeta": "setText(\"bitsocial\") · jen gas · lze kdykoli změnit",
+      "recordAction": "Uložit záznam",
+      "recordInvalid": "To není veřejný klíč. Ten má 52 znaků a začíná na 12D3KooW.",
+      "recordCurrent": "Teď ukazuje na {{record}}.",
+      "recordNotOwner": "Záznam jména {{name}} může nastavit jen peněženka, která ho vlastní.",
+      "doneCommunity": "{{name}} ukazuje na vaši komunitu. Teď nastavte {{name}} jako adresu komunity v jejím nastavení.",
+      "doneProfile": "{{name}} ukazuje na váš účet. Teď zadejte {{name}} jako své jméno v nastavení účtu ve vaší aplikaci, aby ho vaše příspěvky zobrazovaly.",
+      "confirmInWallet": "Potvrďte v peněžence",
+      "waitingForTx": "Čekám na transakci…",
+      "viewTx": "Zobrazit transakci",
+      "rejected": "V peněžence jste akci odmítli.",
+      "failed": "Něco se pokazilo: {{message}}",
+      "reverted": "Registr transakci odmítl ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "Rezervace musí minutu odležet. Zkuste to znovu za pár sekund.",
+        "CommitmentTooOld": "Tato rezervace je starší než 24 hodin. Rezervujte znovu.",
+        "CommitmentNotFound": "Rezervace z této peněženky nebyla nalezena. Rezervujte znovu.",
+        "AlreadyCommitted": "Tato rezervace už je na blockchainu.",
+        "AlreadyRegistered": "Někdo toto jméno zaregistroval dřív.",
+        "InsufficientFee": "Cena se změnila. Zkuste to znovu.",
+        "Expired": "Platnost tohoto jména vypršela.",
+        "Unauthorized": "Tato peněženka toto jméno nevlastní."
+      }
+    },
+    "activity": {
+      "title": "Nejnovější jména",
+      "live": "Živě z Etherea",
+      "registered": "{{name}} zaregistrováno",
+      "empty": "Zatím nebylo zaregistrováno žádné jméno.",
+      "notDeployed": "Jména se tu objeví po spuštění registru.",
+      "failed": "Nejnovější jména se nepodařilo načíst.",
+      "browse": "Procházet všechna jména"
+    },
+    "lifecycle": {
+      "eyebrow": "Udržení jména",
+      "title": "Jméno platí vždy na jeden rok",
+      "lead": "Obnovení přidá 365 dní k současnému datu vypršení za stejnou cenu. Obnovit jakékoli jméno může kdokoli, takže to vaše může udržet naživu kamarád nebo adresář.",
+      "active": "Aktivní",
+      "activeNote": "365 dní, překládá se",
+      "grace": "Ochranná lhůta",
+      "graceNote": "90 dní, nepřekládá se, jen obnovení",
+      "premium": "Příplatek",
+      "premiumNote": "21 dní, pokles ze 100 ETH na 0",
+      "open": "Volné",
+      "openNote": "kdokoli, běžná cena",
+      "caption": "Není v měřítku. Nová registrace jména po ochranné lhůtě smaže všechny záznamy, takže nový vlastník začíná od nuly."
+    },
+    "eth": {
+      "badge": "Zdarma pro používaná jména",
+      "title": "Už používáte jméno .bso? Je vaše.",
+      "lead": "Aplikace dosud četly memes.bso z memes.eth. Při spuštění přijde každé jméno .eth se záznamem bitsocial, včetně podjmen, airdropem jako stejné jméno .bso do peněženky, která ho drží, se stejným záznamem a zaplaceným prvním rokem. Není co vyzvedávat a není co platit.",
+      "caveat": "Započítají se jen jména, která měla záznam bitsocial ve chvíli snímku při spuštění. Pokud vaše jméno dostalo záznam později, získejte jméno .bso hned po otevření registrace, než to udělá někdo jiný.",
+      "label": "Ověřte své jméno .eth",
+      "placeholder": "memes.eth",
+      "check": "Ověřit",
+      "registered": "{{name}} je registrováno na {{owner}} do {{date}}.",
+      "points": "Ukazuje na {{record}}.",
+      "notYet": "{{name}} zatím není registrováno. Jména z airdropu se registrují dřív, než se registrace otevře všem, takže to ověřte znovu potom.",
+      "notSeeded": "{{name}} nebylo součástí airdropu a může ho získat kdokoli. Pokud používáte {{eth}}, získejte ho dřív, než to udělá někdo jiný.",
+      "tryAbove": "Ověřit {{name}} nahoře"
+    },
+    "faq": {
+      "eyebrow": "Otázky",
+      "title": "Jak fungují jména .bso",
+      "lead": "Odpovědi vycházejí z BSIP-13, specifikace, kterou tento registr implementuje.",
+      "groups": {
+        "using": "Vlastnictví jména",
+        "launch": "Spuštění a jména .eth",
+        "trust": "Poplatky, důvěra a Bitsocial Chain"
+      },
+      "signers": "musí podepsat {{threshold}} z jeho {{owners}} klíčů",
+      "signersUnknown": "musí podepsat několik jeho klíčů",
+      "priceLength": "Délka jména",
+      "pricePerYear": "Ročně",
+      "bytes_one": "{{count}} bajt",
+      "bytes_few": "{{count}} bajty",
+      "bytes_many": "{{count}} bajtu",
+      "bytes_other": "{{count}} bajtů",
+      "bytesOrMore_one": "{{count}} bajt a více",
+      "bytesOrMore_few": "{{count}} bajty a více",
+      "bytesOrMore_many": "{{count}} bajtu a více",
+      "bytesOrMore_other": "{{count}} bajtů a více",
+      "contract": "Kontrakt registru",
+      "safe": "Safe na poplatky",
+      "spec": "Přečíst BSIP-13",
+      "items": {
+        "what": {
+          "q": "K čemu je jméno .bso?",
+          "a": [
+            "Dává komunitě nebo profilu jméno, které lidé umí přečíst. Záznam bitsocial jména obsahuje adresu klíče, dlouhý řetězec 12D3KooW…, který komunitu nebo profil v síti identifikuje. Aplikace jméno vyhledají, přečtou klíč a načtou to, na co ukazuje, takže memes.bso otevře stejnou komunitu v 5chan, Seedit i v jakékoli jiné aplikaci Bitsocial.",
+            "Jméno také umožňuje klíč vyměnit. Pokud klíč ztratíte nebo vám ho ukradnou, nasměrujete jméno na nový a čtenáři půjdou za ním. Komunita známá jen podle klíče se takto zachránit nemůže.",
+            "Samotné jméno je NFT (ERC-721) na Ethereu, které drží vaše peněženka. Kdo ho drží, ten rozhoduje, kam ukazuje."
+          ]
+        },
+        "profiles": {
+          "q": "Může mít jméno i profil?",
+          "a": [
+            "Ano. Autoři podepisují své příspěvky klíčem a aplikace u těchto příspěvků zobrazí jméno, když záznam bitsocial jména obsahuje tento klíč. Komunity i profily používají stejný záznam, takže registrace funguje pro obojí stejně.",
+            "Profilové stránky, které shromažďují příspěvky autora ze všech komunit (BSIP-14), přijdou s prvním veřejným RPC Bitsocialu a jméno zaregistrované teď s nimi bude fungovat. Jedno jméno nemůže sloužit zároveň komunitě i profilu."
+          ]
+        },
+        "cost": {
+          "q": "Kolik jméno stojí?",
+          "a": [
+            "Roční cena závisí na délce jména v bajtech a obnovení stojí stejně. Gas na Ethereu se platí navíc. Písmena a–z, číslice a spojovníky zabírají po jednom bajtu, písmena s diakritikou, řecká nebo cyrilická po dvou, čínské nebo japonské znaky po třech a emoji obvykle po čtyřech, takže jediné emoji stojí jako 4bajtové jméno."
+          ]
+        },
+        "claiming": {
+          "q": "Proč získání jména vyžaduje dvě transakce?",
+          "a": [
+            "Čekající transakce na Ethereu může sledovat kdokoli. Kdybyste jméno poslali otevřeně, někdo by ho mohl zkopírovat a zaregistrovat dřív než vy. Proto nejdřív rezervujete: pošlete otisk jména smíchaného s náhodným tajemstvím, který nic neprozradí. O minutu později jméno získáte tak, že pošlete jméno i tajemství, a registr vám jméno vyrazí do peněženky, pokud odpovídají rezervaci.",
+            "Rezervace platí 24 hodin. Tato stránka uchovává tajemství ve vašem prohlížeči, takže ji můžete znovu načíst nebo se k ní vrátit později na stejném zařízení. Pokud před získáním jména vymažete data prohlížeče, rezervujte znovu. První rezervace stála jen gas."
+          ]
+        },
+        "expiry": {
+          "q": "Co se stane, když jménu vyprší platnost?",
+          "a": [
+            "Jméno platí 365 dní. Kdokoli ho může obnovit o dalších 365, počítáno od současného data vypršení, takže to vaše může udržet naživu kamarád nebo adresář. Po vypršení následuje 90denní ochranná lhůta: jméno se přestane překládat a lze ho jen obnovit. Pak ho může zaregistrovat kdokoli, nejdřív s příplatkem, který během 21 dní klesne ze 100 ETH na nulu, a potom za běžnou cenu.",
+            "Nová registrace smaže všechny záznamy a nový držitel může jméno nasměrovat na svůj vlastní klíč. Čtenáři, kteří toto jméno sledují, by šli za ním, takže obnovujte včas."
+          ]
+        },
+        "spelling": {
+          "q": "Jaký zápis funguje?",
+          "a": [
+            "Aplikace jméno před vyhledáním normalizují stejně jako ENS (ENSIP-15). To povoluje malá písmena, číslice, spojovníky uvnitř jména, většinu písem a emoji. Tečky, mezery a podtržítka povolena nejsou, s výjimkou podtržítka na úplném začátku, a podobně vypadající znaky, které míchají písma, se odmítají.",
+            "Samotný registr kontroluje méně, takže by prodal i zápisy, které žádná aplikace nedokáže přeložit, a poplatek se nevrací. Tato stránka takové zápisy odmítne a navrhne opravu, například relationship-advice místo relationship_advice."
+          ]
+        },
+        "transfer": {
+          "q": "Mohu jméno darovat nebo prodat?",
+          "a": [
+            "Ano. Jméno je token ERC-721 ve vaší peněžence, takže ho můžete poslat jako jakékoli NFT. Získání vždy vyrazí jméno do peněženky, která ho získává, takže pokud chcete jméno zaregistrovat pro někoho jiného, získejte ho a pak ho převeďte. Záznam se s vlastníkem nemění, takže nový držitel by jméno měl nasměrovat na svůj vlastní klíč."
+          ]
+        },
+        "subnames": {
+          "q": "Mohu rozdávat podjména?",
+          "a": [
+            "Držitel jména může zdarma vytvářet podjména jako memes.yourname.bso. Držitel nadřazeného jména si ale může kterékoli podjméno kdykoli vzít zpět a nasměrovat ho jinam, takže komunita na podjménu je na této osobě zcela závislá. Komunita by si měla zaregistrovat vlastní jméno, nebo zůstat u svého klíče, dokud to neudělá."
+          ]
+        },
+        "launch": {
+          "q": "Co se stane při spuštění?",
+          "a": [
+            "Registr startuje uzavřený. Nejdřív se každé jméno .bso, které se už používá přes .eth, zdarma zaregistruje jeho držiteli (viz výše). Tyto registrace může odeslat kdokoli a správci se snaží odeslat je všechny do hodiny od nasazení. Veřejná registrace se otevře hodinu po té poslední, takže čas otevření je na blockchainu známý hodinu předem. Pokud se proces zadrhne, registrace se stejně otevře sedm dní po nasazení.",
+            "Jméno si můžete rezervovat před otevřením. Rezervaci provedenou nejméně minutu a nejvýš 24 hodin před otevřením lze využít k získání jména hned v okamžiku otevření. Ve stejném okamžiku mohou stejné jméno získávat i ostatní a vyhrává transakce, která je do bloku zařazena jako první."
+          ]
+        },
+        "eth": {
+          "q": "Funguje moje jméno .eth dál?",
+          "a": [
+            "Ano. Aplikace dál překládají jména .eth přes ENS. Mění se to, že x.bso už neznamená x.eth: aplikace, které tento registr podporují, čtou jména .bso jen z něj, takže bot.bso a bot.eth se stanou samostatnými jmény, která mohou mít různé vlastníky.",
+            "Některé aplikace budou číst x.bso z x.eth, dokud se neaktualizují. Pokud držíte obě jména, udržujte do té doby jejich záznamy stejné."
+          ]
+        },
+        "control": {
+          "q": "Kdo registr ovládá?",
+          "a": [
+            "Nikdo. Kontrakt nemá vlastníka, administrátora, proxy, vypínač pro pozastavení ani cestu k upgradu. Ceny, lhůty a adresa pro poplatky jsou pevně dané v jeho kódu a nikdo nemůže vzít, upravit ani převést jméno, které nedrží.",
+            "Je to fork .gwei Name Service se čtyřmi změnami: jména končí na .bso, poplatky jdou na pevně daný multisig, místo aby zůstávaly zamčené v kontraktu, už používaná jména se při spuštění zkopírují a jednorázové ukončení umožní přesun na Bitsocial Chain. Druhou stranou kódu, který nejde změnit, je, že ani chybu v něm nejde opravit."
+          ]
+        },
+        "fees": {
+          "q": "Kam jdou poplatky?",
+          "a": [
+            "Poplatky se hromadí v registru a kdokoli je může poslat dál na jedinou pevně danou adresu: multisig Safe, který financuje vývoj Bitsocialu, dokud se tento registr používá. Každou operaci {{signers}}. Klíče patří dvěma správcům Bitsocialu a důvěryhodným osobám, které jmenovali, a žádný jednotlivec jich nemá dost na to, aby prostředky přesunul.",
+            "Safe má nad registrem právě dvě pravomoci: přijímat poplatky a jednou spustit ukončení. Nemůže měnit ceny ani sáhnout na jméno, které nedrží. Jako běžný vlastník také drží několik rezervovaných jmen projektu, například bitsocial.bso."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Proč nový registr místo ENS?",
+          "a": [
+            "Dosud bylo každé jméno .bso jménem ENS za ceny ENS: v říjnu 2026 stálo nové jméno komunity podle nabídky přes 20 $ na tři roky. Většina vlastníků tolik nezaplatí jen proto, aby komunitu vyzkoušeli, a tak zůstávají u holých klíčů. Bitsocial Chain bude jména .bso držet nativně, ale zatím neexistuje.",
+            "Díky tomuto dočasnému registru stojí běžné jméno už dnes 0,0005 ETH ročně a z pozdějšího přesunu na Bitsocial Chain se stane kopie záznamů místo změny vlastníků."
+          ]
+        },
+        "whyEth": {
+          "q": "Proč platit v ETH, a ne v BSO?",
+          "a": [
+            "Sleva za platbu v BSO by vyžadovala, aby kontrakt znal cenu BSO v ETH. Kontrakt bez vlastníka nemůže vyměnit zdroj ceny, který se rozbije, a pool s malým objemem obchodů by šlo na jednu transakci vychýlit a koupit krátká jména skoro zadarmo. Pevný ceník v BSO by se s tokenem rozjížděl, až by byl buď skoro zadarmo, nebo by ho nikdo nepoužíval, a nikdo by ho nemohl opravit.",
+            "Vlastní registr Bitsocial Chain může BSO dát roli bez těchto omezení."
+          ]
+        },
+        "move": {
+          "q": "Co znamená přesun na Bitsocial Chain?",
+          "a": [
+            "Bitsocial Chain je fáze 3 hlavního plánu Bitsocialu: vlastní blockchain, který drží jména .bso nativně. Jakmile BSIP pro jeho registr jmen dosáhne stavu Last Call, Safe může spustit ukončení. Kontrakt pak dá 30denní výpovědní lhůtu, kterou nelze zrušit ani zkrátit. Během ní vše funguje jako dřív, takže obnovení a převody se pořád počítají.",
+            "Po výpovědní lhůtě registr na Ethereu zamrzne. Nic nelze registrovat, obnovovat, převádět ani upravovat a jména se dál překládají ze zmrazeného stavu. Bitsocial Chain zdarma importuje každé jméno, které je aktivní nebo v ochranné lhůtě, se stejným vlastníkem, datem vypršení i záznamem. Nemusíte dělat nic.",
+            "BSIP-13 povoluje ukončení jen pro tento přesun a kontrakt vynucuje 30denní výpovědní lhůtu."
+          ]
+        },
+        "afterMove": {
+          "q": "Co se stane s poplatky po přesunu?",
+          "a": [
+            "Financování správců z poplatků končí s tímto registrem. Registr Bitsocial Chain si stanoví vlastní poplatky ve vlastním BSIP a plán je, že se tam poplatky za jména budou místo toho pálit, nebo se za ně bude vykupovat a pálit BSO. Mechanismus zatím není rozhodnut."
+          ]
+        }
       }
     }
   }

@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "Câu hỏi thường gặp",
     "richList": "Bảng xếp hạng ví",
-    "chart": "Biểu đồ"
+    "chart": "Biểu đồ",
+    "domains": "Tên miền"
   },
   "languageSelector": {
     "title": "Chọn ngôn ngữ",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "Chain chưa hoạt động, đăng ký để nhận cập nhật",
     "title": "<mark>Lớp xã hội</mark> còn thiếu của crypto",
-    "supporting": "Crypto trở thành sòng bạc vì Web2, TradFi và hạ tầng tập trung nắm giữ các kênh phân phối và bóp méo cơ chế khuyến khích. Bitsocial Chain khắc phục điều đó: một <appchainLink>appchain</appchainLink> <l2Link>Ethereum L2</l2Link> không thể ngăn chặn, hoàn toàn phi tập trung, nơi các cộng đồng sở hữu mạng, token và doanh thu của mình."
+    "supporting": "Crypto trở thành sòng bạc vì Web2, TradFi và hạ tầng tập trung nắm giữ các kênh phân phối và bóp méo cơ chế khuyến khích. Bitsocial Chain khắc phục điều đó: một <appchainLink>appchain</appchainLink> <l2Link>Ethereum L2</l2Link> không thể ngăn chặn, hoàn toàn phi tập trung, nơi các cộng đồng sở hữu mạng, token và doanh thu của mình.",
+    "domainsCta": "Sở hữu tên miền .bso ngay hôm nay"
   },
   "layers": {
     "ariaLabel": "Ba lớp xếp chồng của crypto: các ứng dụng xã hội trên mạng Bitsocial ở trên cùng, lớp quyết toán Ethereum L1 ở nền móng, và Bitsocial Chain, appchain Ethereum L2 chạy bằng BSO, bừng sáng như lớp còn thiếu phát sáng, khớp vào khoảng trống giữa hai lớp kia, được một trục năng lượng xuyên qua.",
@@ -737,6 +739,318 @@
       "marchRally": {
         "title": "Đợt tăng giá tháng 3 năm 2024",
         "body": "Ngày 1 tháng 3, nhà đầu tư Jason Calacanis tweet rằng ông muốn có một Reddit phân tán, không cần cấp phép, và plebbit trả lời bằng bản demo của mình. Seedit 0.1.6 ra mắt ngày 3 tháng 3, và ngày 4 tháng 3 đội ngũ công bố các cộng đồng chỉ dành cho người nắm giữ token. Khi ETH vượt mốc 4.000 USD trong tháng đó, giá gần như tăng gấp đôi vào ngày 4 tháng 3 và tăng gấp ba vào cuối tháng 3, với khối lượng giao dịch 2,2 triệu USD, cao nhất trong mọi tháng trên biểu đồ này."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": "Tên miền .bso - Đặt tên cho cộng đồng hoặc hồ sơ của bạn",
+      "description": "Đăng ký tên miền .bso cho một cộng đồng hoặc hồ sơ Bitsocial. Tên là một NFT mà ví của bạn sở hữu trên Ethereum, từ 0,0005 ETH mỗi năm, và mở được trong mọi ứng dụng Bitsocial."
+    },
+    "hero": {
+      "titleCommunity": "Đặt tên cho cộng đồng của bạn",
+      "titleProfile": "Đặt tên cho hồ sơ của bạn",
+      "leadCommunity": "Hãy nhập tên vào phần đầu trang bên dưới. Người đọc sẽ tìm thấy cộng đồng của bạn bằng tên này trong mọi ứng dụng Bitsocial, và ví của bạn sở hữu nó.",
+      "leadProfile": "Hãy nhập tên vào phần đầu trang bên dưới. Bài viết của bạn sẽ mang tên này trong mọi ứng dụng Bitsocial, và ví của bạn sở hữu nó.",
+      "kindLabel": "Tên dành cho",
+      "kindCommunity": "Một cộng đồng",
+      "kindProfile": "Một hồ sơ",
+      "opensIn": "Mở đăng ký sau {{time}}. Bạn có thể đặt trước một tên ngay bây giờ.",
+      "opensOn": "Mở đăng ký vào {{date}}.",
+      "notDeployed": "Sổ đăng ký sắp ra mắt. Bạn đã có thể kiểm tra tên và giá ngay bây giờ."
+    },
+    "plate": {
+      "inputLabelCommunity": "Tên cộng đồng của bạn",
+      "inputLabelProfile": "Tên hồ sơ của bạn",
+      "placeholderCommunity": "congdongcuaban",
+      "placeholderProfile": "tencuaban",
+      "sublineCommunity": "Cộng đồng · mở bằng tên trong 5chan, Seedit và các ứng dụng Bitsocial khác",
+      "sublineProfile": "Hồ sơ · bài viết của bạn từ mọi cộng đồng, dưới một cái tên",
+      "join": "Tham gia",
+      "posts": "Bài viết",
+      "rules": "Quy tắc",
+      "follow": "Theo dõi",
+      "about": "Giới thiệu",
+      "captionCommunity": "Phần đầu trang cộng đồng có tiêu đề là tên .bso bạn đang kiểm tra",
+      "captionProfile": "Phần đầu trang hồ sơ có tiêu đề là tên .bso bạn đang kiểm tra",
+      "withoutCommunity": "Không có tên, mọi người chia sẻ",
+      "withoutProfile": "Không có tên, bài viết của bạn hiển thị",
+      "withCommunity": "Có tên, họ chia sẻ",
+      "withProfile": "Có tên, bài viết hiển thị"
+    },
+    "checks": {
+      "spelling": "Chính tả",
+      "availability": "Tình trạng",
+      "price": "Giá",
+      "typeName": "Nhập một tên",
+      "spellingOk": "Tên hợp lệ",
+      "fixFirst": "Hãy sửa chính tả trước",
+      "dot": "Tên không được chứa dấu chấm.",
+      "space": "Không được dùng dấu cách.",
+      "underscore": "Dấu gạch dưới chỉ được dùng ở đầu tên.",
+      "hyphenEdge": "Tên không được bắt đầu hoặc kết thúc bằng dấu gạch nối.",
+      "labelExtension": "Ký tự thứ ba và thứ tư của tên không được là “--”.",
+      "tooLong": "Quá dài: tên tối đa 255 byte.",
+      "lookalike": "Tên trộn nhiều hệ chữ hoặc dùng ký tự trông giống nhau.",
+      "character": "Không được dùng “{{character}}”.",
+      "characterUnknown": "Tên có một ký tự không được phép.",
+      "checking": "Đang kiểm tra…",
+      "available": "Còn trống",
+      "taken": "Đã đăng ký đến {{date}}",
+      "yours": "Của bạn, đến {{date}}",
+      "reserved": "Dành riêng cho Bitsocial đến {{date}}",
+      "grace": "Đã hết hạn vào {{date}}. Chủ sở hữu có thể gia hạn đến {{until}}.",
+      "premium": "Được mở lại vào {{date}}. Phụ phí giảm về 0 trước {{end}}.",
+      "lookupFailed": "Không thể kết nối Ethereum.",
+      "retry": "Thử lại",
+      "notDeployed": "Sẽ kiểm tra khi sổ đăng ký ra mắt",
+      "yearly": "{{price}} mỗi năm",
+      "yearlyShort": "{{price}} mỗi năm, giá cho tên {{count}} ký tự",
+      "yearlyBytes": "{{price}} mỗi năm, tính giá theo {{count}} byte của tên",
+      "withPremium": "{{price}} cho năm đầu, bao gồm {{premium}} phụ phí"
+    },
+    "cta": {
+      "claim": "Nhận {{name}} với giá {{price}}",
+      "reserve": "Đặt trước {{name}} ngay",
+      "renew": "Gia hạn {{name}}",
+      "pointCommunity": "Trỏ {{name}} đến cộng đồng của bạn",
+      "pointProfile": "Trỏ {{name}} đến hồ sơ của bạn",
+      "soon": "Sắp mở đăng ký",
+      "fix": "Dùng {{name}}",
+      "noteClaim": "Ba giao dịch ví, khoảng hai phút.",
+      "noteReserve": "Đặt trước ngay và nhận tên khi mở đăng ký.",
+      "noteReserveLater": "Việc đặt trước mở 24 giờ trước khi mở đăng ký.",
+      "noteTaken": "Do {{owner}} nắm giữ.",
+      "noteReserved": "Do Safe phí của Bitsocial nắm giữ; BSIP-13 dành riêng tên này cho Safe đó.",
+      "noteGrace": "Bất kỳ ai cũng có thể gia hạn, và tên vẫn thuộc về chủ sở hữu.",
+      "notePremium": "Phụ phí giảm mỗi giây, và mọi khoản trả dư đều được hoàn lại.",
+      "noteNotDeployed": "Hợp đồng sổ đăng ký chưa có trên Ethereum."
+    },
+    "claim": {
+      "eyebrow": "Nhận tên",
+      "title": "Ba giao dịch từ ví của bạn, khoảng hai phút",
+      "pickName": "Chọn một tên còn trống ở trên để bắt đầu.",
+      "claiming": "Đang nhận {{name}}",
+      "renewing": "Đang gia hạn {{name}}",
+      "pointing": "Đang trỏ {{name}}",
+      "connect": "Kết nối ví",
+      "connectWith": "Kết nối {{wallet}}",
+      "browserWallet": "ví trình duyệt",
+      "connecting": "Đang kết nối…",
+      "noWallet": "Không tìm thấy ví Ethereum trong trình duyệt này. Hãy cài một ví trình duyệt, hoặc mở trang này trong trình duyệt của ứng dụng ví.",
+      "connectedAs": "Đã kết nối với {{address}}",
+      "reserveTitle": "Đặt trước",
+      "reserveBody": "Một cam kết niêm phong được đưa lên chuỗi trước, để không ai có thể đọc tên từ giao dịch đang chờ của bạn và giành lấy nó. Sau đó chờ 60 giây.",
+      "reserveMeta": "commit() · chỉ tốn gas",
+      "reserveAction": "Đặt trước {{name}}",
+      "reserveTooEarly": "Bạn có thể đặt trước từ {{date}}, 24 giờ trước khi mở đăng ký.",
+      "reserved": "Đã đặt trước. Trình duyệt này giữ lượt đặt trước đến {{time}}.",
+      "claimTitle": "Nhận tên",
+      "claimBody": "Thanh toán cho tên. Tên được mint vào cùng ví đó với thời hạn 365 ngày. Bạn có tối đa 24 giờ sau khi đặt trước, và trình duyệt này nhớ bạn đang dừng ở bước nào.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "Nhận {{name}} với giá {{price}}",
+      "claimWait": "Sẵn sàng sau {{seconds}} giây",
+      "claimWaitOpening": "Sẵn sàng khi mở đăng ký, sau {{time}}",
+      "startOver": "Bắt đầu lại",
+      "renewTitle": "Gia hạn",
+      "renewBody": "Cộng thêm 365 ngày vào ngày hết hạn hiện tại. Bất kỳ ai cũng có thể gia hạn bất kỳ tên nào, và tên vẫn thuộc về chủ sở hữu.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "Gia hạn {{name}} với giá {{price}}",
+      "renewed": "Đã gia hạn đến {{date}}.",
+      "recordTitleCommunity": "Trỏ tên đến cộng đồng của bạn",
+      "recordTitleProfile": "Trỏ tên đến hồ sơ của bạn",
+      "recordLabelCommunity": "Khóa công khai của cộng đồng, lấy từ phần cài đặt của cộng đồng",
+      "recordLabelProfile": "Khóa công khai của tài khoản, lấy từ phần cài đặt tài khoản trong ứng dụng",
+      "recordMeta": "setText(\"bitsocial\") · chỉ tốn gas · đổi bất cứ lúc nào",
+      "recordAction": "Lưu bản ghi",
+      "recordInvalid": "Đó không phải là khóa công khai. Khóa công khai dài 52 ký tự và bắt đầu bằng 12D3KooW.",
+      "recordCurrent": "Hiện đang trỏ đến {{record}}.",
+      "recordNotOwner": "Chỉ ví sở hữu {{name}} mới có thể đặt bản ghi của tên này.",
+      "doneCommunity": "{{name}} đã trỏ đến cộng đồng của bạn. Tiếp theo, hãy đặt {{name}} làm địa chỉ của cộng đồng trong phần cài đặt của cộng đồng.",
+      "doneProfile": "{{name}} đã trỏ đến tài khoản của bạn. Tiếp theo, hãy nhập {{name}} làm tên của bạn trong phần cài đặt tài khoản của ứng dụng để bài viết của bạn hiển thị tên này.",
+      "confirmInWallet": "Xác nhận trong ví của bạn",
+      "waitingForTx": "Đang chờ giao dịch…",
+      "viewTx": "Xem giao dịch",
+      "rejected": "Bạn đã từ chối trong ví.",
+      "failed": "Đã xảy ra lỗi: {{message}}",
+      "reverted": "Sổ đăng ký đã từ chối giao dịch ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "Lượt đặt trước cần khoảng một phút mới có hiệu lực. Hãy thử lại sau vài giây.",
+        "CommitmentTooOld": "Lượt đặt trước này đã quá 24 giờ. Hãy đặt trước lại.",
+        "CommitmentNotFound": "Không tìm thấy lượt đặt trước nào từ ví này. Hãy đặt trước lại.",
+        "AlreadyCommitted": "Lượt đặt trước này đã có trên chuỗi.",
+        "AlreadyRegistered": "Đã có người đăng ký tên này trước.",
+        "InsufficientFee": "Giá đã thay đổi. Hãy thử lại.",
+        "Expired": "Tên này đã hết hạn.",
+        "Unauthorized": "Ví này không sở hữu tên đó."
+      }
+    },
+    "activity": {
+      "title": "Tên mới nhất",
+      "live": "Trực tiếp từ Ethereum",
+      "registered": "{{name}} đã được đăng ký",
+      "empty": "Chưa có tên nào được đăng ký.",
+      "notDeployed": "Các tên sẽ xuất hiện ở đây khi sổ đăng ký ra mắt.",
+      "failed": "Không thể tải các tên mới nhất.",
+      "browse": "Xem tất cả các tên"
+    },
+    "lifecycle": {
+      "eyebrow": "Giữ tên",
+      "title": "Mỗi lần, một tên có hiệu lực một năm",
+      "lead": "Gia hạn sẽ cộng thêm 365 ngày vào ngày hết hạn hiện tại, với cùng mức giá. Bất kỳ ai cũng có thể gia hạn bất kỳ tên nào, nên bạn bè hoặc một trang danh bạ có thể giữ tên của bạn còn hiệu lực.",
+      "active": "Hoạt động",
+      "activeNote": "365 ngày, được phân giải",
+      "grace": "Ân hạn",
+      "graceNote": "90 ngày, không phân giải, chỉ gia hạn",
+      "premium": "Phụ phí",
+      "premiumNote": "21 ngày, 100 ETH giảm về 0",
+      "open": "Mở",
+      "openNote": "ai cũng được, giá thường",
+      "caption": "Không theo tỷ lệ. Đăng ký lại một tên sau thời gian ân hạn sẽ xóa mọi bản ghi, nên chủ mới bắt đầu từ trạng thái trống."
+    },
+    "eth": {
+      "badge": "Miễn phí cho tên đang dùng",
+      "title": "Đã dùng tên .bso? Tên đó là của bạn.",
+      "lead": "Cho đến nay, các ứng dụng đọc memes.bso từ memes.eth. Khi ra mắt, mọi tên .eth có bản ghi bitsocial, kể cả tên con, sẽ được airdrop dưới dạng tên .bso tương ứng cho ví đang nắm giữ nó, với cùng bản ghi và đã trả phí năm đầu. Không có gì để nhận và không phải trả gì.",
+      "caveat": "Chỉ những tên có bản ghi bitsocial tại thời điểm chụp dữ liệu lúc ra mắt mới được tính. Nếu tên của bạn có bản ghi sau đó, hãy nhận tên .bso ngay khi mở đăng ký, trước khi người khác làm vậy.",
+      "label": "Kiểm tra tên .eth của bạn",
+      "placeholder": "memes.eth",
+      "check": "Kiểm tra",
+      "registered": "{{name}} được đăng ký cho {{owner}} đến {{date}}.",
+      "points": "Tên này trỏ đến {{record}}.",
+      "notYet": "{{name}} chưa được đăng ký. Các tên được airdrop sẽ được đăng ký trước khi mở đăng ký cho mọi người, nên hãy kiểm tra lại lúc đó.",
+      "notSeeded": "{{name}} không được airdrop và ai cũng có thể nhận. Nếu bạn đang dùng {{eth}}, hãy nhận nó trước người khác.",
+      "tryAbove": "Kiểm tra {{name}} ở trên"
+    },
+    "faq": {
+      "eyebrow": "Câu hỏi",
+      "title": "Tên .bso hoạt động như thế nào",
+      "lead": "Các câu trả lời dựa theo BSIP-13, đặc tả mà sổ đăng ký này triển khai.",
+      "groups": {
+        "using": "Sở hữu tên",
+        "launch": "Ra mắt và tên .eth",
+        "trust": "Phí, niềm tin và Bitsocial Chain"
+      },
+      "signers": "chữ ký của {{threshold}} trong số {{owners}} khóa của Safe",
+      "signersUnknown": "chữ ký của nhiều khóa của Safe",
+      "priceLength": "Độ dài tên",
+      "pricePerYear": "Mỗi năm",
+      "bytes_other": "{{count}} byte",
+      "bytesOrMore_other": "{{count}} byte trở lên",
+      "contract": "Hợp đồng sổ đăng ký",
+      "safe": "Safe phí",
+      "spec": "Đọc BSIP-13",
+      "items": {
+        "what": {
+          "q": "Tên .bso dùng để làm gì?",
+          "a": [
+            "Nó cho một cộng đồng hoặc một hồ sơ một cái tên mà con người đọc được. Bản ghi bitsocial của tên chứa một địa chỉ khóa, tức chuỗi dài 12D3KooW… dùng để nhận diện cộng đồng hoặc hồ sơ đó trên mạng. Ứng dụng tra cứu tên, đọc khóa và tải nội dung mà khóa trỏ tới, nên memes.bso mở cùng một cộng đồng trong 5chan, Seedit và mọi ứng dụng Bitsocial khác.",
+            "Tên còn giúp khóa có thể thay thế được. Nếu khóa bị mất hoặc bị đánh cắp, bạn trỏ tên sang khóa mới và người đọc sẽ theo sang. Một cộng đồng chỉ được biết đến qua khóa thì không thể khôi phục theo cách đó.",
+            "Bản thân tên là một NFT (ERC-721) trên Ethereum, do ví của bạn nắm giữ. Ai nắm giữ nó thì người đó quyết định nó trỏ tới đâu."
+          ]
+        },
+        "profiles": {
+          "q": "Hồ sơ cũng có thể có tên chứ?",
+          "a": [
+            "Có. Tác giả ký bài viết của mình bằng một khóa, và ứng dụng hiển thị một tên trên các bài viết đó khi bản ghi bitsocial của tên chứa đúng khóa đó. Cộng đồng và hồ sơ dùng cùng một bản ghi, nên việc đăng ký diễn ra giống nhau cho cả hai.",
+            "Các trang hồ sơ tập hợp bài viết của một tác giả từ mọi cộng đồng (BSIP-14) sẽ ra mắt cùng RPC công khai đầu tiên của Bitsocial, và tên đăng ký bây giờ sẽ dùng được cho chúng. Một tên không thể đồng thời dùng cho cả cộng đồng lẫn hồ sơ."
+          ]
+        },
+        "cost": {
+          "q": "Một tên giá bao nhiêu?",
+          "a": [
+            "Giá hằng năm phụ thuộc vào độ dài của tên tính bằng byte, và gia hạn cũng có giá như vậy. Phí gas Ethereum được trả thêm. Chữ cái a–z, chữ số và dấu gạch nối mỗi ký tự chiếm một byte, chữ có dấu, chữ Hy Lạp hoặc Kirin chiếm hai byte, chữ Trung Quốc hoặc Nhật Bản chiếm ba byte, còn emoji thường chiếm bốn byte, nên một emoji đơn lẻ được tính giá như một tên 4 byte."
+          ]
+        },
+        "claiming": {
+          "q": "Tại sao nhận tên lại cần hai giao dịch?",
+          "a": [
+            "Bất kỳ ai cũng có thể theo dõi các giao dịch Ethereum đang chờ. Nếu bạn gửi tên một cách công khai, ai đó có thể sao chép và đăng ký trước bạn. Vì vậy, trước tiên bạn đặt trước: bạn gửi dấu vân tay của tên trộn với một giá trị bí mật ngẫu nhiên, không để lộ điều gì. Một phút sau bạn nhận tên, gửi tên và giá trị bí mật, và sổ đăng ký sẽ mint tên vào ví của bạn nếu chúng khớp với lượt đặt trước.",
+            "Lượt đặt trước có hiệu lực trong 24 giờ. Trang này lưu giá trị bí mật trong trình duyệt của bạn, nên bạn có thể tải lại trang hoặc quay lại sau trên cùng thiết bị. Nếu bạn xóa dữ liệu trình duyệt trước khi nhận tên, hãy đặt trước lại. Lượt đặt trước đầu tiên chỉ tốn gas."
+          ]
+        },
+        "expiry": {
+          "q": "Điều gì xảy ra nếu tên hết hạn?",
+          "a": [
+            "Một tên có hiệu lực 365 ngày. Bất kỳ ai cũng có thể gia hạn thêm 365 ngày, tính từ ngày hết hạn hiện tại, nên bạn bè hoặc một trang danh bạ có thể giữ tên của bạn còn hiệu lực. Sau khi hết hạn là 90 ngày ân hạn: tên ngừng được phân giải và chỉ có thể được gia hạn. Sau đó bất kỳ ai cũng có thể đăng ký nó, ban đầu kèm một khoản phụ phí giảm từ 100 ETH về 0 trong 21 ngày, rồi theo giá thường.",
+            "Một lượt đăng ký mới sẽ xóa mọi bản ghi, và người nắm giữ mới có thể trỏ tên đến khóa của chính họ. Người đọc theo tên đó sẽ theo họ, vì vậy hãy gia hạn sớm."
+          ]
+        },
+        "spelling": {
+          "q": "Những cách viết nào dùng được?",
+          "a": [
+            "Ứng dụng chuẩn hóa tên trước khi tra cứu, theo cách ENS làm (ENSIP-15). Cách này cho phép chữ thường, chữ số, dấu gạch nối ở giữa tên, hầu hết các hệ chữ và emoji. Không được dùng dấu chấm, dấu cách và dấu gạch dưới, trừ dấu gạch dưới ở ngay đầu tên, và các ký tự trông giống nhau trộn nhiều hệ chữ sẽ bị từ chối.",
+            "Bản thân sổ đăng ký kiểm tra ít hơn, nên nó sẽ bán cả những cách viết mà không ứng dụng nào phân giải được, và phí không được hoàn lại. Trang này từ chối những cách viết đó và gợi ý cách sửa, chẳng hạn relationship-advice thay cho relationship_advice."
+          ]
+        },
+        "transfer": {
+          "q": "Tôi có thể tặng hoặc bán tên không?",
+          "a": [
+            "Có. Tên là một token ERC-721 trong ví của bạn, nên bạn có thể gửi nó như bất kỳ NFT nào. Việc nhận tên luôn mint vào ví thực hiện nhận, nên để đăng ký tên cho người khác, hãy nhận tên rồi chuyển cho họ. Bản ghi không thay đổi theo chủ sở hữu, nên người nắm giữ mới nên trỏ tên đến khóa của chính họ."
+          ]
+        },
+        "subnames": {
+          "q": "Tôi có thể phát tên con không?",
+          "a": [
+            "Người nắm giữ một tên có thể tạo miễn phí các tên con như memes.yourname.bso. Nhưng người nắm giữ tên cha có thể lấy lại bất kỳ tên con nào vào bất cứ lúc nào và trỏ nó đi nơi khác, nên một cộng đồng dùng tên con phụ thuộc hoàn toàn vào người đó. Một cộng đồng nên đăng ký tên của riêng mình, hoặc tiếp tục dùng khóa cho đến khi làm vậy."
+          ]
+        },
+        "launch": {
+          "q": "Điều gì xảy ra khi ra mắt?",
+          "a": [
+            "Sổ đăng ký khởi đầu ở trạng thái đóng. Trước tiên, mọi tên .bso đang được dùng qua .eth sẽ được đăng ký miễn phí cho người nắm giữ (xem ở trên). Bất kỳ ai cũng có thể gửi các giao dịch đăng ký này, và những người duy trì dự án đặt mục tiêu gửi hết trong vòng một giờ sau khi triển khai. Đăng ký công khai mở một giờ sau giao dịch cuối cùng, nên thời điểm mở được ghi trên chuỗi trước một giờ. Nếu quá trình bị đình trệ, đăng ký vẫn mở sau bảy ngày kể từ khi triển khai.",
+            "Bạn có thể đặt trước tên trước giờ mở. Lượt đặt trước được thực hiện ít nhất một phút và nhiều nhất 24 giờ trước giờ mở có thể nhận ngay khi mở. Người khác cũng có thể nhận cùng tên đó vào cùng thời điểm, và giao dịch được đưa vào khối trước sẽ thắng."
+          ]
+        },
+        "eth": {
+          "q": "Tên .eth của tôi có còn hoạt động không?",
+          "a": [
+            "Có. Các ứng dụng vẫn tiếp tục phân giải tên .eth qua ENS. Điều thay đổi là x.bso không còn có nghĩa là x.eth nữa: các ứng dụng hỗ trợ sổ đăng ký này chỉ đọc tên .bso từ nó, nên bot.bso và bot.eth trở thành hai tên riêng biệt có thể có chủ sở hữu khác nhau.",
+            "Một số ứng dụng sẽ tiếp tục đọc x.bso từ x.eth cho đến khi được cập nhật. Nếu bạn nắm giữ cả hai tên, hãy giữ bản ghi của chúng giống nhau cho đến lúc đó."
+          ]
+        },
+        "control": {
+          "q": "Ai kiểm soát sổ đăng ký?",
+          "a": [
+            "Không ai cả. Hợp đồng không có chủ sở hữu, admin, proxy, công tắc tạm dừng hay đường nâng cấp. Giá, thời hạn và địa chỉ nhận phí được cố định trong mã, và không ai có thể lấy, sửa hoặc chuyển một tên mà họ không nắm giữ.",
+            "Nó là một bản fork của .gwei Name Service với bốn thay đổi: tên kết thúc bằng .bso, phí được chuyển đến một multisig cố định thay vì bị khóa trong hợp đồng, các tên đang được dùng được sao chép vào khi ra mắt, và một cơ chế khép lại (sunset) dùng một lần cho phép chuyển sang Bitsocial Chain. Mặt trái của mã không thể thay đổi là lỗi cũng không thể vá."
+          ]
+        },
+        "fees": {
+          "q": "Phí đi đâu?",
+          "a": [
+            "Phí được tích lũy trong sổ đăng ký, và bất kỳ ai cũng có thể chuyển chúng tới một địa chỉ cố định duy nhất: một multisig Safe tài trợ cho việc phát triển Bitsocial trong thời gian sổ đăng ký này được sử dụng. Mọi thao tác đều cần {{signers}}. Các khóa thuộc về hai người duy trì của Bitsocial và những người được ủy thác mà họ chỉ định, và không một cá nhân nào nắm đủ khóa để di chuyển tiền.",
+            "Safe có đúng hai quyền đối với sổ đăng ký: nhận phí, và khởi động cơ chế khép lại một lần. Nó không thể thay đổi giá hay động đến một tên mà nó không nắm giữ. Nó cũng nắm giữ một vài tên dự án được dành riêng, như bitsocial.bso, với tư cách chủ sở hữu thông thường."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Tại sao lại là sổ đăng ký mới thay vì ENS?",
+          "a": [
+            "Cho đến nay mọi tên .bso đều là tên ENS, theo giá ENS: vào tháng 10 năm 2026, một tên cộng đồng mới được báo giá hơn 20 USD cho ba năm. Hầu hết chủ cộng đồng sẽ không trả số tiền đó chỉ để thử lập một cộng đồng, nên họ cứ dùng khóa trần. Bitsocial Chain sẽ lưu giữ tên .bso một cách nguyên bản, nhưng nó chưa tồn tại.",
+            "Sổ đăng ký tạm thời này giúp một tên thông thường chỉ tốn 0,0005 ETH mỗi năm ngay hôm nay, và biến việc chuyển sang Bitsocial Chain sau này thành việc sao chép bản ghi thay vì đổi chủ sở hữu."
+          ]
+        },
+        "whyEth": {
+          "q": "Tại sao trả bằng ETH mà không phải BSO?",
+          "a": [
+            "Muốn giảm giá cho người trả bằng BSO thì hợp đồng phải biết giá BSO tính theo ETH. Một hợp đồng không có chủ sở hữu không thể thay thế một nguồn giá bị hỏng, và một pool giao dịch thưa thớt có thể bị đẩy giá trong một giao dịch để mua tên ngắn với giá gần như bằng không. Một bảng giá cố định bằng BSO sẽ trôi theo giá token cho đến khi gần như miễn phí hoặc chẳng ai dùng, mà không ai có thể điều chỉnh.",
+            "Sổ đăng ký riêng của Bitsocial Chain có thể trao cho BSO một vai trò mà không gặp những giới hạn này."
+          ]
+        },
+        "move": {
+          "q": "Chuyển sang Bitsocial Chain nghĩa là gì?",
+          "a": [
+            "Bitsocial Chain là giai đoạn 3 trong kế hoạch tổng thể của Bitsocial: một chuỗi riêng lưu giữ tên .bso một cách nguyên bản. Khi một BSIP cho sổ đăng ký tên của nó đạt trạng thái Last Call, Safe có thể khởi động cơ chế khép lại. Khi đó hợp đồng đưa ra thông báo trước 30 ngày, không thể hủy hay rút ngắn. Trong thời gian thông báo, mọi thứ vẫn hoạt động như trước, nên các lượt gia hạn và chuyển nhượng vẫn có hiệu lực.",
+            "Sau thời gian thông báo, sổ đăng ký trên Ethereum bị đóng băng. Không gì có thể được đăng ký, gia hạn, chuyển nhượng hay chỉnh sửa, và các tên tiếp tục được phân giải từ trạng thái đã đóng băng. Bitsocial Chain nhập miễn phí mọi tên đang hoạt động hoặc đang trong thời gian ân hạn, với cùng chủ sở hữu, ngày hết hạn và bản ghi. Bạn không cần làm gì cả.",
+            "BSIP-13 chỉ cho phép cơ chế khép lại cho đúng lần chuyển này, và hợp đồng bắt buộc thời gian thông báo 30 ngày."
+          ]
+        },
+        "afterMove": {
+          "q": "Phí sẽ ra sao sau khi chuyển?",
+          "a": [
+            "Việc dùng phí để tài trợ cho những người duy trì sẽ kết thúc cùng sổ đăng ký này. Sổ đăng ký của Bitsocial Chain tự đặt phí trong BSIP của riêng nó, và kế hoạch là phí tên ở đó sẽ được đốt, hoặc dùng để mua lại và đốt BSO. Cơ chế chưa được quyết định."
+          ]
+        }
       }
     }
   }

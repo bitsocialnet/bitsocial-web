@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "FAQ",
     "richList": "Llista de posseïdors",
-    "chart": "Gràfic"
+    "chart": "Gràfic",
+    "domains": "Dominis"
   },
   "languageSelector": {
     "title": "Selecciona l'idioma",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "La cadena encara no està en marxa, subscriu-te per rebre novetats",
     "title": "La <mark>capa social</mark> que falta al món cripto",
-    "supporting": "El món cripto s'ha convertit en un casino perquè Web2, TradFi i la infraestructura centralitzada posseeixen les vies de distribució i distorsionen els incentius. Bitsocial Chain ho soluciona: una <appchainLink>appchain</appchainLink> <l2Link>L2 d'Ethereum</l2Link> imparable i totalment descentralitzada on les comunitats posseeixen les seves xarxes, els seus tokens i els seus ingressos."
+    "supporting": "El món cripto s'ha convertit en un casino perquè Web2, TradFi i la infraestructura centralitzada posseeixen les vies de distribució i distorsionen els incentius. Bitsocial Chain ho soluciona: una <appchainLink>appchain</appchainLink> <l2Link>L2 d'Ethereum</l2Link> imparable i totalment descentralitzada on les comunitats posseeixen les seves xarxes, els seus tokens i els seus ingressos.",
+    "domainsCta": "Aconsegueix avui el teu domini .bso"
   },
   "layers": {
     "ariaLabel": "Tres capes apilades del món cripto: a dalt, les aplicacions socials de la xarxa Bitsocial; a la base, la liquidació d'Ethereum L1; i Bitsocial Chain, l'appchain L2 d'Ethereum impulsada per BSO, que s'encén com la capa lluminosa que faltava i encaixa al buit entre les altres dues, travessada per un eix d'energia.",
@@ -747,6 +749,322 @@
       "marchRally": {
         "title": "La pujada de març del 2024",
         "body": "L'1 de març, l'inversor Jason Calacanis tuiteja que vol un Reddit distribuït i sense permisos, i plebbit li respon amb la seva demo. Seedit 0.1.6 surt el 3 de març, i el 4 de març l'equip anuncia comunitats amb accés per token. Amb ETH superant els 4.000 dòlars aquell mes, el preu gairebé es duplica el 4 de març i a finals de març ja s'ha triplicat, amb un volum de 2,2 milions de dòlars, el més alt de tots els mesos d'aquest gràfic."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": "Dominis .bso - Un nom per a la teva comunitat o el teu perfil",
+      "description": "Registra un domini .bso per a una comunitat o un perfil de Bitsocial. El nom és un NFT a Ethereum que pertany a la teva cartera, des de 0,0005 ETH l'any, i s'obre a totes les aplicacions de Bitsocial."
+    },
+    "hero": {
+      "titleCommunity": "Posa nom a la teva comunitat",
+      "titleProfile": "Posa nom al teu perfil",
+      "leadCommunity": "Escriu-lo a la capçalera de sota. Els lectors trobaran la teva comunitat amb aquest nom a totes les aplicacions de Bitsocial, i la teva cartera n'és la propietària.",
+      "leadProfile": "Escriu-lo a la capçalera de sota. Les teves publicacions portaran aquest nom a totes les aplicacions de Bitsocial, i la teva cartera n'és la propietària.",
+      "kindLabel": "Nom per a",
+      "kindCommunity": "Una comunitat",
+      "kindProfile": "Un perfil",
+      "opensIn": "El registre s'obre d'aquí a {{time}}. Ja pots reservar un nom.",
+      "opensOn": "El registre s'obre el {{date}}.",
+      "notDeployed": "El registre es llança aviat. Ja pots consultar noms i preus."
+    },
+    "plate": {
+      "inputLabelCommunity": "El nom de la teva comunitat",
+      "inputLabelProfile": "El nom del teu perfil",
+      "placeholderCommunity": "latevacomunitat",
+      "placeholderProfile": "elteunom",
+      "sublineCommunity": "Comunitat · s'obre pel nom a 5chan, Seedit i altres aplicacions de Bitsocial",
+      "sublineProfile": "Perfil · les teves publicacions de totes les comunitats, sota un sol nom",
+      "join": "Uneix-t'hi",
+      "posts": "Publicacions",
+      "rules": "Normes",
+      "follow": "Segueix",
+      "about": "Quant a",
+      "captionCommunity": "Una capçalera de comunitat el títol de la qual és el nom .bso que estàs comprovant",
+      "captionProfile": "Una capçalera de perfil el títol de la qual és el nom .bso que estàs comprovant",
+      "withoutCommunity": "Sense nom, la gent comparteix",
+      "withoutProfile": "Sense nom, les teves publicacions mostren",
+      "withCommunity": "Amb un nom, comparteixen",
+      "withProfile": "Amb un nom, mostren"
+    },
+    "checks": {
+      "spelling": "Ortografia",
+      "availability": "Disponibilitat",
+      "price": "Preu",
+      "typeName": "Escriu un nom",
+      "spellingOk": "Nom vàlid",
+      "fixFirst": "Primer corregeix l'ortografia",
+      "dot": "Els punts no estan permesos en un nom.",
+      "space": "Els espais no estan permesos.",
+      "underscore": "Un guió baix només està permès al principi.",
+      "hyphenEdge": "Un nom no pot començar ni acabar amb un guionet.",
+      "labelExtension": "Un nom no pot tenir «--» com a tercer i quart caràcters.",
+      "tooLong": "Massa llarg: un nom té com a màxim 255 bytes.",
+      "lookalike": "Barreja sistemes d'escriptura o fa servir caràcters que es confonen amb d'altres.",
+      "character": "«{{character}}» no està permès.",
+      "characterUnknown": "Conté un caràcter que no està permès.",
+      "checking": "Comprovant…",
+      "available": "Disponible",
+      "taken": "Registrat fins al {{date}}",
+      "yours": "Teu, fins al {{date}}",
+      "reserved": "Reservat per a Bitsocial fins al {{date}}",
+      "grace": "Va vèncer el {{date}}. El propietari el pot renovar fins al {{until}}.",
+      "premium": "Alliberat el {{date}}. El recàrrec baixa fins a zero el {{end}}.",
+      "lookupFailed": "No s'ha pogut connectar amb Ethereum.",
+      "retry": "Torna-ho a provar",
+      "notDeployed": "Es comprovarà quan es llanci el registre",
+      "yearly": "{{price}} l'any",
+      "yearlyShort": "{{price}} l'any, el preu dels noms de {{count}} caràcters",
+      "yearlyBytes": "{{price}} l'any, segons els seus {{count}} bytes",
+      "withPremium": "{{price}} el primer any, amb un recàrrec de {{premium}} inclòs"
+    },
+    "cta": {
+      "claim": "Reclama {{name}} per {{price}}",
+      "reserve": "Reserva {{name}} ara",
+      "renew": "Renova {{name}}",
+      "pointCommunity": "Apunta {{name}} a la teva comunitat",
+      "pointProfile": "Apunta {{name}} al teu perfil",
+      "soon": "El registre s'obre aviat",
+      "fix": "Fes servir {{name}}",
+      "noteClaim": "Tres transaccions a la cartera, uns dos minuts.",
+      "noteReserve": "Reserva'l ara i reclama'l quan s'obri el registre.",
+      "noteReserveLater": "Les reserves s'obren 24 hores abans que el registre.",
+      "noteTaken": "El té {{owner}}.",
+      "noteReserved": "El té el Safe de comissions de Bitsocial, per al qual BSIP-13 el reserva.",
+      "noteGrace": "Qualsevol el pot renovar, i així continua en mans del propietari.",
+      "notePremium": "El recàrrec baixa cada segon, i qualsevol pagament de més es reemborsa.",
+      "noteNotDeployed": "El contracte del registre encara no és a Ethereum."
+    },
+    "claim": {
+      "eyebrow": "Reclamar",
+      "title": "Tres transaccions des de la teva cartera, uns dos minuts",
+      "pickName": "Tria un nom disponible a dalt per començar.",
+      "claiming": "Reclamant {{name}}",
+      "renewing": "Renovant {{name}}",
+      "pointing": "Apuntant {{name}}",
+      "connect": "Connecta una cartera",
+      "connectWith": "Connecta {{wallet}}",
+      "browserWallet": "cartera del navegador",
+      "connecting": "Connectant…",
+      "noWallet": "No s'ha trobat cap cartera d'Ethereum en aquest navegador. Instal·la una cartera de navegador o obre aquesta pàgina al navegador de l'aplicació de la teva cartera.",
+      "connectedAs": "Connectat com a {{address}}",
+      "reserveTitle": "Reserva",
+      "reserveBody": "Primer s'envia on-chain un compromís segellat, perquè ningú no pugui llegir el nom a la teva transacció pendent i prendre-te'l. Després espera 60 segons.",
+      "reserveMeta": "commit() · només gas",
+      "reserveAction": "Reserva {{name}}",
+      "reserveTooEarly": "Pots reservar a partir del {{date}}, 24 hores abans que s'obri el registre.",
+      "reserved": "Reservat. Aquest navegador conserva la reserva fins al {{time}}.",
+      "claimTitle": "Reclama",
+      "claimBody": "Paga el nom. S'encunya a la mateixa cartera per 365 dies. Tens fins a 24 hores després de reservar, i aquest navegador recorda on ho vas deixar.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "Reclama {{name}} per {{price}}",
+      "claimWait": "A punt d'aquí a {{seconds}} s",
+      "claimWaitOpening": "A punt quan s'obri el registre, d'aquí a {{time}}",
+      "startOver": "Torna a començar",
+      "renewTitle": "Renova",
+      "renewBody": "Afegeix 365 dies al venciment actual. Qualsevol pot renovar qualsevol nom, i continua sent del seu propietari.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "Renova {{name}} per {{price}}",
+      "renewed": "Renovat fins al {{date}}.",
+      "recordTitleCommunity": "Apunta'l a la teva comunitat",
+      "recordTitleProfile": "Apunta'l al teu perfil",
+      "recordLabelCommunity": "La clau pública de la teva comunitat, de la seva configuració",
+      "recordLabelProfile": "La clau pública del teu compte, de la configuració del compte de la teva aplicació",
+      "recordMeta": "setText(\"bitsocial\") · només gas · canvia-ho quan vulguis",
+      "recordAction": "Desa el registre",
+      "recordInvalid": "Això no és una clau pública. Té 52 caràcters i comença per 12D3KooW.",
+      "recordCurrent": "Ara apunta a {{record}}.",
+      "recordNotOwner": "Només la cartera propietària de {{name}} en pot configurar el registre.",
+      "doneCommunity": "{{name}} apunta a la teva comunitat. Ara, defineix {{name}} com a adreça de la comunitat a la seva configuració.",
+      "doneProfile": "{{name}} apunta al teu compte. Ara, introdueix {{name}} com a nom teu a la configuració del compte de la teva aplicació, perquè les teves publicacions el mostrin.",
+      "confirmInWallet": "Confirma-ho a la teva cartera",
+      "waitingForTx": "Esperant la transacció…",
+      "viewTx": "Mostra la transacció",
+      "rejected": "Ho has rebutjat a la cartera.",
+      "failed": "Alguna cosa ha fallat: {{message}}",
+      "reverted": "El registre ha rebutjat la transacció ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "La reserva ha de tenir almenys un minut. Torna-ho a provar d'aquí a uns segons.",
+        "CommitmentTooOld": "Aquesta reserva té més de 24 hores. Torna a reservar.",
+        "CommitmentNotFound": "No s'ha trobat cap reserva d'aquesta cartera. Torna a reservar.",
+        "AlreadyCommitted": "Aquesta reserva ja és on-chain.",
+        "AlreadyRegistered": "Algú ha registrat aquest nom abans.",
+        "InsufficientFee": "El preu ha canviat. Torna-ho a provar.",
+        "Expired": "Aquest nom ha vençut.",
+        "Unauthorized": "Aquesta cartera no és la propietària del nom."
+      }
+    },
+    "activity": {
+      "title": "Últims noms",
+      "live": "En directe des d'Ethereum",
+      "registered": "{{name}} registrat",
+      "empty": "Encara no s'ha registrat cap nom.",
+      "notDeployed": "Els noms apareixeran aquí quan es llanci el registre.",
+      "failed": "No s'han pogut carregar els últims noms.",
+      "browse": "Mostra tots els noms"
+    },
+    "lifecycle": {
+      "eyebrow": "Conservar-lo",
+      "title": "Un nom dura un any cada vegada",
+      "lead": "Renovar afegeix 365 dies al venciment actual, al mateix preu. Qualsevol pot renovar qualsevol nom, així que un amic o un directori pot mantenir viu el teu.",
+      "active": "Actiu",
+      "activeNote": "365 dies, es resol",
+      "grace": "Gràcia",
+      "graceNote": "90 dies, no es resol, només renovació",
+      "premium": "Recàrrec",
+      "premiumNote": "21 dies, de 100 ETH a 0",
+      "open": "Lliure",
+      "openNote": "qualsevol, preu normal",
+      "caption": "No està a escala. Tornar a registrar un nom després del període de gràcia n'esborra tots els registres, de manera que el nou propietari comença de zero."
+    },
+    "eth": {
+      "badge": "Gratis per als noms en ús",
+      "title": "Ja fas servir un nom .bso? És teu.",
+      "lead": "Fins ara, les aplicacions llegien memes.bso des de memes.eth. En el llançament, cada nom .eth amb un registre bitsocial, inclosos els subnoms, es reparteix per airdrop com el mateix nom .bso a la cartera que el té, amb el mateix registre i el primer any pagat. No hi ha res a reclamar ni res a pagar.",
+      "caveat": "Només s'hi inclouen els noms que tenien un registre bitsocial a la instantània del llançament. Si el teu va rebre el registre més tard, reclama el nom .bso tan aviat com s'obri el registre de noms, abans que ho faci algú altre.",
+      "label": "Comprova el teu nom .eth",
+      "placeholder": "memes.eth",
+      "check": "Comprova",
+      "registered": "{{name}} està registrat a nom de {{owner}} fins al {{date}}.",
+      "points": "Apunta a {{record}}.",
+      "notYet": "{{name}} encara no està registrat. Els noms de l'airdrop es registren abans que el registre s'obri a tothom, així que torna-ho a comprovar llavors.",
+      "notSeeded": "{{name}} no s'ha repartit per airdrop i està lliure per a qualsevol. Si fas servir {{eth}}, reclama'l abans que ho faci algú altre.",
+      "tryAbove": "Comprova {{name}} a dalt"
+    },
+    "faq": {
+      "eyebrow": "Preguntes",
+      "title": "Com funcionen els noms .bso",
+      "lead": "Les respostes segueixen BSIP-13, l'especificació que implementa aquest registre.",
+      "groups": {
+        "using": "Tenir un nom",
+        "launch": "Llançament i noms .eth",
+        "trust": "Comissions, confiança i Bitsocial Chain"
+      },
+      "signers": "{{threshold}} de les seves {{owners}} claus han de signar qualsevol operació",
+      "signersUnknown": "Diverses de les seves claus han de signar qualsevol operació",
+      "priceLength": "Longitud del nom",
+      "pricePerYear": "Per any",
+      "bytes_one": "{{count}} byte",
+      "bytes_many": "{{count}} bytes",
+      "bytes_other": "{{count}} bytes",
+      "bytesOrMore_one": "{{count}} byte o més",
+      "bytesOrMore_many": "{{count}} bytes o més",
+      "bytesOrMore_other": "{{count}} bytes o més",
+      "contract": "Contracte del registre",
+      "safe": "Safe de comissions",
+      "spec": "Llegeix BSIP-13",
+      "items": {
+        "what": {
+          "q": "Per a què serveix un nom .bso?",
+          "a": [
+            "Dona a una comunitat o a un perfil un nom que la gent pot llegir. El registre bitsocial del nom conté una adreça de clau, la llarga cadena 12D3KooW… que identifica la comunitat o el perfil a la xarxa. Les aplicacions busquen el nom, llegeixen la clau i carreguen allò a què apunta, de manera que memes.bso obre la mateixa comunitat a 5chan, Seedit i qualsevol altra aplicació de Bitsocial.",
+            "Un nom també fa que una clau es pugui substituir. Si la clau es perd o te la roben, apuntes el nom a una de nova i els lectors et segueixen. Una comunitat coneguda només per la seva clau no es pot recuperar d'aquesta manera.",
+            "El nom en si és un NFT (ERC-721) a Ethereum que té la teva cartera. Qui el té decideix on apunta."
+          ]
+        },
+        "profiles": {
+          "q": "Un perfil també pot tenir nom?",
+          "a": [
+            "Sí. Els autors signen les seves publicacions amb una clau, i les aplicacions mostren un nom en aquestes publicacions quan el registre bitsocial del nom conté aquesta clau. Les comunitats i els perfils fan servir el mateix registre, així que registrar un nom funciona igual per a tots dos.",
+            "Les pàgines de perfil que recullen les publicacions d'un autor de totes les comunitats (BSIP-14) arribaran amb el primer RPC públic de Bitsocial, i un nom registrat ara funcionarà amb elles. Un mateix nom no pot servir alhora per a una comunitat i per a un perfil."
+          ]
+        },
+        "cost": {
+          "q": "Quant costa un nom?",
+          "a": [
+            "El preu anual depèn de la longitud del nom en bytes, i renovar-lo costa el mateix. El gas d'Ethereum es paga a part. Les lletres a–z, els dígits i els guionets ocupen un byte cadascun, les lletres accentuades, gregues o ciríl·liques dos, els caràcters xinesos o japonesos tres i els emojis normalment quatre, de manera que un sol emoji té el preu d'un nom de 4 bytes."
+          ]
+        },
+        "claiming": {
+          "q": "Per què reclamar un nom requereix dues transaccions?",
+          "a": [
+            "Qualsevol pot veure les transaccions d'Ethereum pendents. Si enviessis el nom a la vista, algú el podria copiar i registrar abans que tu. Per això primer reserves: envies una empremta del nom barrejada amb un secret aleatori, que no revela res. Un minut després el reclames, enviant el nom i el secret, i el registre encunya el nom a la teva cartera si coincideixen amb la reserva.",
+            "Una reserva és vàlida durant 24 hores. Aquesta pàgina guarda el secret al teu navegador, així que pots recarregar o tornar més tard des del mateix dispositiu. Si esborres les dades del navegador abans de reclamar, torna a reservar. La primera reserva només va costar gas."
+          ]
+        },
+        "expiry": {
+          "q": "Què passa si un nom venç?",
+          "a": [
+            "Un nom dura 365 dies. Qualsevol el pot renovar per 365 més, comptats des del seu venciment actual, així que un amic o un directori pot mantenir viu el teu. Després del venciment ve un període de gràcia de 90 dies: el nom deixa de resoldre's i només es pot renovar. Després, qualsevol el pot registrar, primer amb un recàrrec que baixa de 100 ETH a zero al llarg de 21 dies, i després al preu normal.",
+            "Si algú torna a registrar el nom, se n'esborren tots els registres, i el nou titular pot apuntar el nom a la seva pròpia clau. Els lectors que segueixen aquest nom seguirien aquesta persona, així que renova'l amb temps."
+          ]
+        },
+        "spelling": {
+          "q": "Quines grafies funcionen?",
+          "a": [
+            "Les aplicacions normalitzen un nom abans de buscar-lo, igual que ENS (ENSIP-15). Això permet lletres minúscules, dígits, guionets dins del nom, la majoria de sistemes d'escriptura i emojis. No es permeten punts, espais ni guions baixos, excepte un guió baix just al principi, i es rebutgen els caràcters que es confonen amb d'altres i barregen sistemes d'escriptura.",
+            "El registre mateix comprova menys coses, així que vendria grafies que cap aplicació no pot resoldre, i la comissió no es reemborsa. Aquesta pàgina les rebutja i suggereix una correcció, com ara relationship-advice en lloc de relationship_advice."
+          ]
+        },
+        "transfer": {
+          "q": "Puc regalar o vendre un nom?",
+          "a": [
+            "Sí. Un nom és un token ERC-721 a la teva cartera, així que el pots enviar com qualsevol NFT. Reclamar sempre encunya a la cartera que reclama, així que per registrar un nom per a una altra persona, reclama'l i després transfereix-lo. El registre no canvia amb el propietari, així que el nou titular l'hauria d'apuntar a la seva pròpia clau."
+          ]
+        },
+        "subnames": {
+          "q": "Puc repartir subnoms?",
+          "a": [
+            "El titular d'un nom pot crear gratis subnoms com memes.elteunom.bso. Però el titular del nom principal pot recuperar qualsevol subnom en qualsevol moment i apuntar-lo a un altre lloc, així que una comunitat en un subnom depèn completament d'aquesta persona. Una comunitat hauria de registrar un nom propi, o quedar-se amb la seva clau fins que ho faci."
+          ]
+        },
+        "launch": {
+          "q": "Què passa en el llançament?",
+          "a": [
+            "El registre comença tancat. Primer, cada nom .bso que ja s'utilitza a través de .eth es registra gratis a nom del seu titular (mira més amunt). Qualsevol pot enviar aquests registres, i els mantenidors es proposen enviar-los tots durant l'hora següent al desplegament. El registre públic s'obre una hora després de l'últim, així que l'hora d'obertura queda on-chain amb una hora d'antelació. Si s'encallen, s'obre igualment set dies després del desplegament.",
+            "Pots reservar un nom abans de l'obertura. Una reserva feta almenys un minut i com a màxim 24 hores abans de l'obertura es pot reclamar en el moment que s'obre. Altres persones poden reclamar el mateix nom en aquell moment, i guanya la primera transacció inclosa en un bloc."
+          ]
+        },
+        "eth": {
+          "q": "El meu nom .eth continua funcionant?",
+          "a": [
+            "Sí. Les aplicacions continuen resolent els noms .eth a través d'ENS. El que canvia és que x.bso ja no vol dir x.eth: les aplicacions compatibles amb aquest registre llegeixen els noms .bso només d'aquí, així que bot.bso i bot.eth passen a ser noms separats que poden tenir propietaris diferents.",
+            "Algunes aplicacions continuaran llegint x.bso des de x.eth fins que s'actualitzin. Si tens tots dos noms, mantén-ne els registres iguals fins llavors."
+          ]
+        },
+        "control": {
+          "q": "Qui controla el registre?",
+          "a": [
+            "Ningú. El contracte no té propietari, administrador, proxy, botó de pausa ni via d'actualització. Els preus, els terminis i l'adreça de les comissions estan fixats al seu codi, i ningú no pot prendre, editar ni transferir un nom que no té.",
+            "És un fork del .gwei Name Service amb quatre canvis: els noms acaben en .bso, les comissions van a una multisig fixa en lloc de quedar bloquejades al contracte, els noms que ja s'utilitzen es copien en el llançament, i un tancament únic li permet passar a Bitsocial Chain. L'altra cara d'un codi que no pot canviar és que tampoc no es pot corregir un error."
+          ]
+        },
+        "fees": {
+          "q": "On van les comissions?",
+          "a": [
+            "Les comissions s'acumulen al registre, i qualsevol les pot enviar a una adreça fixa: una multisig Safe que finança el desenvolupament de Bitsocial mentre aquest registre estigui en ús. {{signers}}. Les claus pertanyen als dos mantenidors de Bitsocial i a custodis que ells han designat, i cap persona sola no en té prou per moure els fons.",
+            "El Safe té exactament dos poders sobre el registre: rebre comissions i iniciar el tancament una sola vegada. No pot canviar els preus ni tocar un nom que no té. També té alguns noms reservats del projecte, com ara bitsocial.bso, com un propietari normal."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Per què un registre nou en lloc d'ENS?",
+          "a": [
+            "Fins ara cada nom .bso era un nom d'ENS, a preus d'ENS: l'octubre de 2026, un nom nou per a una comunitat costava més de 20 $ per tres anys. La majoria de propietaris no pagaran això per provar una comunitat, així que es queden només amb les claus. Bitsocial Chain tindrà els noms .bso de manera nativa, però encara no existeix.",
+            "Aquest registre provisional fa que avui un nom normal costi 0,0005 ETH l'any, i converteix el futur pas a Bitsocial Chain en una còpia dels registres en lloc d'un canvi de propietaris."
+          ]
+        },
+        "whyEth": {
+          "q": "Per què pagar en ETH i no en BSO?",
+          "a": [
+            "Un descompte per pagar en BSO requeriria que el contracte conegués el preu de BSO en ETH. Un contracte sense propietari no pot substituir una font de preus que falli, i un pool amb poc volum es podria desplaçar durant una transacció per comprar noms curts gairebé de franc. Una llista de preus fixa en BSO es desviaria amb el token fins a quedar gairebé gratuïta o no fer-se servir mai, sense que ningú la pogués corregir.",
+            "El registre propi de Bitsocial Chain pot donar un paper a BSO sense aquestes limitacions."
+          ]
+        },
+        "move": {
+          "q": "Què vol dir passar a Bitsocial Chain?",
+          "a": [
+            "Bitsocial Chain és la fase 3 del pla mestre de Bitsocial: una cadena pròpia que té els noms .bso de manera nativa. Quan un BSIP per al seu registre de noms arribi a Last Call, el Safe pot iniciar el tancament. Llavors el contracte dona un preavís de 30 dies, que no es pot cancel·lar ni escurçar. Durant el preavís tot funciona com abans, així que les renovacions i les transferències continuen comptant.",
+            "Després del preavís, el registre d'Ethereum es congela. No es pot registrar, renovar, transferir ni editar res, i els noms es continuen resolent a partir de l'estat congelat. Bitsocial Chain importa gratis cada nom actiu o en període de gràcia, amb el mateix propietari, venciment i registre. No has de fer res.",
+            "BSIP-13 només permet el tancament per a aquest pas, i el contracte imposa el preavís de 30 dies."
+          ]
+        },
+        "afterMove": {
+          "q": "Què passa amb les comissions després del pas?",
+          "a": [
+            "El finançament dels mantenidors amb les comissions s'acaba amb aquest registre. El registre de Bitsocial Chain fixa les seves pròpies comissions en el seu propi BSIP, i el pla és que allà les comissions dels noms es cremin, o serveixin per recomprar BSO i cremar-lo. El mecanisme encara no està decidit."
+          ]
+        }
       }
     }
   }

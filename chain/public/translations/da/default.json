@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "FAQ",
     "richList": "Indehaverliste",
-    "chart": "Graf"
+    "chart": "Graf",
+    "domains": "Domæner"
   },
   "languageSelector": {
     "title": "Vælg sprog",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "Chainen er ikke live endnu, tilmeld dig for at få opdateringer",
     "title": "Kryptoens manglende <mark>sociale lag</mark>",
-    "supporting": "Krypto blev et kasino, fordi Web2, TradFi og centraliseret infrastruktur ejer distributionskanalerne og forvrider incitamenterne. Bitsocial Chain retter op på det: en ustoppelig, fuldt decentraliseret <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink>, hvor fællesskaber ejer deres netværk, deres tokens og deres indtægter."
+    "supporting": "Krypto blev et kasino, fordi Web2, TradFi og centraliseret infrastruktur ejer distributionskanalerne og forvrider incitamenterne. Bitsocial Chain retter op på det: en ustoppelig, fuldt decentraliseret <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink>, hvor fællesskaber ejer deres netværk, deres tokens og deres indtægter.",
+    "domainsCta": "Få dit .bso-domæne i dag"
   },
   "layers": {
     "ariaLabel": "Tre stablede lag i krypto: sociale apps på Bitsocial-netværket øverst, Ethereum L1-afvikling i bunden og Bitsocial Chain, Ethereum L2-appchainen drevet af BSO, der tænder som det glødende manglende lag, der passer ind i mellemrummet imellem dem, sammenvævet af en rygrad af energi.",
@@ -742,6 +744,320 @@
       "marchRally": {
         "title": "Rallyet i marts 2024",
         "body": "Den 1. marts tweeter investoren Jason Calacanis, at han ønsker sig et distribueret, tilladelsesfrit Reddit, og plebbit svarer med sin demo. Seedit 0.1.6 udkommer den 3. marts, og den 4. marts annoncerer teamet fællesskaber med adgang via tokens. Mens ETH den måned passerer 4.000 dollar, bliver prisen næsten fordoblet den 4. marts og tredoblet inden udgangen af marts, på en volumen på 2,2 millioner dollar, den højeste for nogen måned i denne graf."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": ".bso-domæner - Giv dit fællesskab eller din profil et navn",
+      "description": "Registrer et .bso-domæne til et fællesskab eller en profil på Bitsocial. Navnet er en NFT, som din wallet ejer på Ethereum, fra 0,0005 ETH om året, og det åbner i alle Bitsocial-apps."
+    },
+    "hero": {
+      "titleCommunity": "Giv dit fællesskab et navn",
+      "titleProfile": "Giv din profil et navn",
+      "leadCommunity": "Skriv det i headeren nedenfor. Læsere finder dit fællesskab under dette navn i alle Bitsocial-apps, og din wallet ejer det.",
+      "leadProfile": "Skriv det i headeren nedenfor. Dine opslag bærer dette navn i alle Bitsocial-apps, og din wallet ejer det.",
+      "kindLabel": "Navn til",
+      "kindCommunity": "Et fællesskab",
+      "kindProfile": "En profil",
+      "opensIn": "Registreringen åbner om {{time}}. Du kan reservere et navn allerede nu.",
+      "opensOn": "Registreringen åbner {{date}}.",
+      "notDeployed": "Registret lanceres snart. Navne og priser kan tjekkes allerede nu."
+    },
+    "plate": {
+      "inputLabelCommunity": "Dit fællesskabs navn",
+      "inputLabelProfile": "Din profils navn",
+      "placeholderCommunity": "ditfællesskab",
+      "placeholderProfile": "ditnavn",
+      "sublineCommunity": "Fællesskab · åbner via navnet i 5chan, Seedit og andre Bitsocial-apps",
+      "sublineProfile": "Profil · dine opslag fra alle fællesskaber, under ét navn",
+      "join": "Bliv medlem",
+      "posts": "Opslag",
+      "rules": "Regler",
+      "follow": "Følg",
+      "about": "Om",
+      "captionCommunity": "En fællesskabsheader, hvis titel er det .bso-navn, du tjekker",
+      "captionProfile": "En profilheader, hvis titel er det .bso-navn, du tjekker",
+      "withoutCommunity": "Uden et navn deler folk",
+      "withoutProfile": "Uden et navn viser dine opslag",
+      "withCommunity": "Med et deler de",
+      "withProfile": "Med et viser de"
+    },
+    "checks": {
+      "spelling": "Stavning",
+      "availability": "Tilgængelighed",
+      "price": "Pris",
+      "typeName": "Skriv et navn",
+      "spellingOk": "Gyldigt navn",
+      "fixFirst": "Ret stavningen først",
+      "dot": "Punktummer er ikke tilladt i et navn.",
+      "space": "Mellemrum er ikke tilladt.",
+      "underscore": "Understregning er kun tilladt i starten.",
+      "hyphenEdge": "Et navn kan ikke starte eller slutte med en bindestreg.",
+      "labelExtension": "Et navn kan ikke have »--« som tredje og fjerde tegn.",
+      "tooLong": "For langt: et navn må højst fylde 255 bytes.",
+      "lookalike": "Det blander skriftsystemer eller bruger tegn, der ligner hinanden.",
+      "character": "»{{character}}« er ikke tilladt.",
+      "characterUnknown": "Det indeholder et tegn, der ikke er tilladt.",
+      "checking": "Tjekker…",
+      "available": "Ledigt",
+      "taken": "Registreret indtil {{date}}",
+      "yours": "Dit, indtil {{date}}",
+      "reserved": "Reserveret til Bitsocial indtil {{date}}",
+      "grace": "Udløb {{date}}. Ejeren kan forny det indtil {{until}}.",
+      "premium": "Frigivet {{date}}. Pristillægget falder til nul senest {{end}}.",
+      "lookupFailed": "Kunne ikke nå Ethereum.",
+      "retry": "Prøv igen",
+      "notDeployed": "Tjekkes, når registret lanceres",
+      "yearly": "{{price}} om året",
+      "yearlyShort": "{{price}} om året, prisen for navne på {{count}} tegn",
+      "yearlyBytes": "{{price}} om året, prissat efter dets {{count}} bytes",
+      "withPremium": "{{price}} for det første år, inklusive et pristillæg på {{premium}}"
+    },
+    "cta": {
+      "claim": "Claim {{name}} for {{price}}",
+      "reserve": "Reserver {{name}} nu",
+      "renew": "Forny {{name}}",
+      "pointCommunity": "Peg {{name}} på dit fællesskab",
+      "pointProfile": "Peg {{name}} på din profil",
+      "soon": "Registreringen åbner snart",
+      "fix": "Brug {{name}}",
+      "noteClaim": "Tre wallet-transaktioner, cirka to minutter.",
+      "noteReserve": "Reserver nu, og claim det, når registreringen åbner.",
+      "noteReserveLater": "Reservationer åbner 24 timer før registreringen.",
+      "noteTaken": "Ejes af {{owner}}.",
+      "noteReserved": "Ejes af Bitsocials gebyr-Safe, som BSIP-13 reserverer det til.",
+      "noteGrace": "Alle kan forny det, og så forbliver det hos sin ejer.",
+      "notePremium": "Pristillægget falder hvert sekund, og en eventuel overbetaling refunderes.",
+      "noteNotDeployed": "Registerkontrakten er ikke på Ethereum endnu."
+    },
+    "claim": {
+      "eyebrow": "Claim",
+      "title": "Tre transaktioner fra din wallet, cirka to minutter",
+      "pickName": "Vælg et ledigt navn ovenfor for at begynde.",
+      "claiming": "Claimer {{name}}",
+      "renewing": "Fornyer {{name}}",
+      "pointing": "Indstiller {{name}}",
+      "connect": "Forbind en wallet",
+      "connectWith": "Forbind {{wallet}}",
+      "browserWallet": "browser-wallet",
+      "connecting": "Forbinder…",
+      "noWallet": "Der blev ikke fundet nogen Ethereum-wallet i denne browser. Installer en browser-wallet, eller åbn denne side i browseren i din wallet-app.",
+      "connectedAs": "Forbundet som {{address}}",
+      "reserveTitle": "Reserver",
+      "reserveBody": "Først sendes en skjult reservation ud på kæden, så ingen kan læse navnet i din ventende transaktion og tage det. Vent derefter 60 sekunder.",
+      "reserveMeta": "commit() · kun gas",
+      "reserveAction": "Reserver {{name}}",
+      "reserveTooEarly": "Du kan reservere fra {{date}}, 24 timer før registreringen åbner.",
+      "reserved": "Reserveret. Denne browser gemmer reservationen indtil {{time}}.",
+      "claimTitle": "Claim",
+      "claimBody": "Betal for navnet. Det mintes til den samme wallet i 365 dage. Du har op til 24 timer efter reservationen, og denne browser husker, hvor du kom til.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "Claim {{name}} for {{price}}",
+      "claimWait": "Klar om {{seconds}} s",
+      "claimWaitOpening": "Klar, når registreringen åbner, om {{time}}",
+      "startOver": "Start forfra",
+      "renewTitle": "Forny",
+      "renewBody": "Lægger 365 dage til den nuværende udløbsdato. Alle kan forny ethvert navn, og det forbliver hos sin ejer.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "Forny {{name}} for {{price}}",
+      "renewed": "Fornyet indtil {{date}}.",
+      "recordTitleCommunity": "Peg det på dit fællesskab",
+      "recordTitleProfile": "Peg det på din profil",
+      "recordLabelCommunity": "Dit fællesskabs offentlige nøgle fra dets indstillinger",
+      "recordLabelProfile": "Din kontos offentlige nøgle fra kontoindstillingerne i din app",
+      "recordMeta": "setText(\"bitsocial\") · kun gas · kan ændres når som helst",
+      "recordAction": "Gem record",
+      "recordInvalid": "Det er ikke en offentlig nøgle. En sådan er 52 tegn lang og starter med 12D3KooW.",
+      "recordCurrent": "Peger nu på {{record}}.",
+      "recordNotOwner": "Kun den wallet, der ejer {{name}}, kan indstille dens record.",
+      "doneCommunity": "{{name}} peger på dit fællesskab. Angiv derefter {{name}} som fællesskabets adresse i dets indstillinger.",
+      "doneProfile": "{{name}} peger på din konto. Angiv derefter {{name}} som dit navn i kontoindstillingerne i din app, så dine opslag viser det.",
+      "confirmInWallet": "Bekræft i din wallet",
+      "waitingForTx": "Venter på transaktionen…",
+      "viewTx": "Se transaktion",
+      "rejected": "Du afviste i din wallet.",
+      "failed": "Noget gik galt: {{message}}",
+      "reverted": "Registret afviste transaktionen ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "Reservationen skal være et minut gammel. Prøv igen om et par sekunder.",
+        "CommitmentTooOld": "Denne reservation er mere end 24 timer gammel. Reserver igen.",
+        "CommitmentNotFound": "Der blev ikke fundet nogen reservation fra denne wallet. Reserver igen.",
+        "AlreadyCommitted": "Denne reservation er allerede på kæden.",
+        "AlreadyRegistered": "En anden registrerede dette navn først.",
+        "InsufficientFee": "Prisen har ændret sig. Prøv igen.",
+        "Expired": "Dette navn er udløbet.",
+        "Unauthorized": "Denne wallet ejer ikke navnet."
+      }
+    },
+    "activity": {
+      "title": "Seneste navne",
+      "live": "Live fra Ethereum",
+      "registered": "{{name}} registreret",
+      "empty": "Ingen navne registreret endnu.",
+      "notDeployed": "Navne vises her, når registret er lanceret.",
+      "failed": "Kunne ikke indlæse de seneste navne.",
+      "browse": "Gennemse alle navne"
+    },
+    "lifecycle": {
+      "eyebrow": "Behold det",
+      "title": "Et navn gælder et år ad gangen",
+      "lead": "En fornyelse lægger 365 dage til den nuværende udløbsdato til samme pris. Alle kan forny ethvert navn, så en ven eller et katalog kan holde dit i live.",
+      "active": "Aktivt",
+      "activeNote": "365 dage, slås op",
+      "grace": "Henstand",
+      "graceNote": "90 dage, slås ikke op, kun fornyelse",
+      "premium": "Pristillæg",
+      "premiumNote": "21 dage, 100 ETH faldende til 0",
+      "open": "Åbent",
+      "openNote": "alle, normal pris",
+      "caption": "Ikke målfast. Hvis et navn registreres igen efter henstandsperioden, ryddes alle records, så den nye ejer starter forfra."
+    },
+    "eth": {
+      "badge": "Gratis for navne i brug",
+      "title": "Bruger du allerede et .bso-navn? Det er dit.",
+      "lead": "Indtil nu har apps læst memes.bso fra memes.eth. Ved lanceringen bliver hvert .eth-navn med en bitsocial-record, undernavne inklusive, airdroppet som det samme .bso-navn til den wallet, der ejer det, med den samme record og det første år betalt. Der er intet at claime og intet at betale.",
+      "caveat": "Kun navne, der havde en bitsocial-record ved lanceringens snapshot, er med. Hvis dit fik sin record senere, så claim .bso-navnet, så snart registreringen åbner, før en anden gør det.",
+      "label": "Tjek dit .eth-navn",
+      "placeholder": "memes.eth",
+      "check": "Tjek",
+      "registered": "{{name}} er registreret til {{owner}} indtil {{date}}.",
+      "points": "Det peger på {{record}}.",
+      "notYet": "{{name}} er ikke registreret endnu. Airdroppede navne registreres, før registreringen åbner for alle, så tjek igen til den tid.",
+      "notSeeded": "{{name}} blev ikke airdroppet og er åbent for alle. Hvis du bruger {{eth}}, så claim det, før en anden gør det.",
+      "tryAbove": "Tjek {{name}} ovenfor"
+    },
+    "faq": {
+      "eyebrow": "Spørgsmål",
+      "title": "Sådan fungerer .bso-navne",
+      "lead": "Svarene følger BSIP-13, den specifikation, som dette register implementerer.",
+      "groups": {
+        "using": "At eje et navn",
+        "launch": "Lancering og .eth-navne",
+        "trust": "Gebyrer, tillid og Bitsocial Chain"
+      },
+      "signers": "{{threshold}} af dens {{owners}} nøgler skal signere",
+      "signersUnknown": "Flere af dens nøgler skal signere",
+      "priceLength": "Navnelængde",
+      "pricePerYear": "Pr. år",
+      "bytes_one": "{{count}} byte",
+      "bytes_other": "{{count}} bytes",
+      "bytesOrMore_one": "{{count}} byte eller mere",
+      "bytesOrMore_other": "{{count}} bytes eller mere",
+      "contract": "Registerkontrakt",
+      "safe": "Gebyr-Safe",
+      "spec": "Læs BSIP-13",
+      "items": {
+        "what": {
+          "q": "Hvad gør et .bso-navn?",
+          "a": [
+            "Det giver et fællesskab eller en profil et navn, som mennesker kan læse. Navnets bitsocial-record indeholder en nøgleadresse, den lange 12D3KooW…-streng, der identificerer fællesskabet eller profilen på netværket. Apps slår navnet op, læser nøglen og indlæser det, den peger på, så memes.bso åbner det samme fællesskab i 5chan, Seedit og enhver anden Bitsocial-app.",
+            "Et navn gør også nøglen udskiftelig. Hvis nøglen mistes eller bliver stjålet, peger du navnet på en ny, og læserne følger med. Et fællesskab, der kun kendes på sin nøgle, kan ikke komme sig på den måde.",
+            "Selve navnet er en NFT (ERC-721) på Ethereum, som din wallet ejer. Den, der ejer den, bestemmer, hvor den peger hen."
+          ]
+        },
+        "profiles": {
+          "q": "Kan en profil også have et navn?",
+          "a": [
+            "Ja. Forfattere signerer deres opslag med en nøgle, og apps viser et navn på de opslag, når navnets bitsocial-record indeholder den nøgle. Fællesskaber og profiler bruger den samme record, så registreringen fungerer på samme måde for begge.",
+            "Profilsider, der samler en forfatters opslag fra alle fællesskaber (BSIP-14), kommer med Bitsocials første offentlige RPC, og et navn, der registreres nu, virker med dem. Ét navn kan ikke fungere som både fællesskab og profil på samme tid."
+          ]
+        },
+        "cost": {
+          "q": "Hvad koster et navn?",
+          "a": [
+            "Årsprisen afhænger af navnets længde i bytes, og en fornyelse koster det samme. Gas på Ethereum betales oveni. Bogstaverne a–z, tal og bindestreger fylder én byte hver, bogstaver med accent samt græske eller kyrilliske bogstaver to, kinesiske eller japanske tegn tre og emoji som regel fire, så en enkelt emoji prissættes som et navn på 4 bytes."
+          ]
+        },
+        "claiming": {
+          "q": "Hvorfor kræver det to transaktioner at claime?",
+          "a": [
+            "Alle kan se ventende Ethereum-transaktioner. Hvis du sendte navnet åbent, kunne nogen kopiere det og registrere det før dig. Derfor reserverer du først: du sender et fingeraftryk af navnet blandet med en tilfældig hemmelighed, som ikke afslører noget. Et minut senere claimer du ved at sende navnet og hemmeligheden, og registret minter navnet til din wallet, hvis de matcher reservationen.",
+            "En reservation er gyldig i 24 timer. Denne side gemmer hemmeligheden i din browser, så du kan genindlæse eller komme tilbage senere på den samme enhed. Hvis du rydder browserens data, før du claimer, så reserver igen. Den første reservation kostede kun gas."
+          ]
+        },
+        "expiry": {
+          "q": "Hvad sker der, hvis et navn udløber?",
+          "a": [
+            "Et navn gælder i 365 dage. Alle kan forny det med yderligere 365, regnet fra den nuværende udløbsdato, så en ven eller et katalog kan holde dit i live. Efter udløbet følger en henstandsperiode på 90 dage: navnet holder op med at blive slået op og kan kun fornyes. Derefter kan alle registrere det, først med et pristillæg, der falder fra 100 ETH til nul over 21 dage, og derefter til normal pris.",
+            "En ny registrering rydder alle records, og den nye indehaver kan pege navnet på sin egen nøgle. Læsere, der følger navnet, ville følge dem, så forny i god tid."
+          ]
+        },
+        "spelling": {
+          "q": "Hvilke stavemåder virker?",
+          "a": [
+            "Apps normaliserer et navn, før de slår det op, på samme måde som ENS gør (ENSIP-15). Det tillader små bogstaver, tal, bindestreger inde i navnet, de fleste skriftsystemer og emoji. Punktummer, mellemrum og understregninger er ikke tilladt, undtagen en understregning helt i starten, og tegn, der ligner hinanden og blander skriftsystemer, afvises.",
+            "Selve registret tjekker mindre, så det ville sælge stavemåder, som ingen app kan slå op, og gebyret refunderes ikke. Denne side afviser dem og foreslår en rettelse, for eksempel relationship-advice i stedet for relationship_advice."
+          ]
+        },
+        "transfer": {
+          "q": "Kan jeg give eller sælge et navn?",
+          "a": [
+            "Ja. Et navn er en ERC-721-token i din wallet, så du kan sende det som enhver anden NFT. Et claim minter altid til den wallet, der claimer, så for at registrere et navn til en anden claimer du det og overfører det bagefter. Recorden ændrer sig ikke med ejeren, så den nye indehaver bør pege det på sin egen nøgle."
+          ]
+        },
+        "subnames": {
+          "q": "Kan jeg dele undernavne ud?",
+          "a": [
+            "Indehaveren af et navn kan gratis oprette undernavne som memes.yourname.bso. Men indehaveren af det overordnede navn kan til enhver tid tage et hvilket som helst undernavn tilbage og pege det et andet sted hen, så et fællesskab på et undernavn er fuldstændig afhængigt af den person. Et fællesskab bør registrere sit eget navn eller blive på sin nøgle, indtil det gør."
+          ]
+        },
+        "launch": {
+          "q": "Hvad sker der ved lanceringen?",
+          "a": [
+            "Registret starter lukket. Først registreres hvert .bso-navn, der allerede er i brug via .eth, gratis til sin indehaver (se ovenfor). Alle kan sende disse registreringer, og udviklerne sigter mod at sende dem alle inden for en time efter udrulningen. Den offentlige registrering åbner en time efter den sidste, så åbningstidspunktet står på kæden en time i forvejen. Hvis det går i stå, åbner den alligevel syv dage efter udrulningen.",
+            "Du kan reservere et navn før åbningen. En reservation, der er lavet mindst et minut og højst 24 timer før åbningen, kan claimes i det øjeblik, registreringen åbner. Andre kan claime det samme navn i samme øjeblik, og den transaktion, der kommer med først, vinder."
+          ]
+        },
+        "eth": {
+          "q": "Virker mit .eth-navn stadig?",
+          "a": [
+            "Ja. Apps bliver ved med at slå .eth-navne op via ENS. Det, der ændrer sig, er, at x.bso ikke længere betyder x.eth: apps, der understøtter dette register, læser kun .bso-navne fra det, så bot.bso og bot.eth bliver separate navne, der kan have forskellige ejere.",
+            "Nogle apps vil blive ved med at læse x.bso fra x.eth, indtil de bliver opdateret. Hvis du ejer begge navne, så hold deres records ens indtil da."
+          ]
+        },
+        "control": {
+          "q": "Hvem kontrollerer registret?",
+          "a": [
+            "Ingen. Kontrakten har ingen ejer, admin, proxy, pauseknap eller opgraderingsvej. Priser, perioder og gebyradressen er fastlagt i dens kode, og ingen kan tage, redigere eller overføre et navn, de ikke ejer.",
+            "Det er en fork af .gwei Name Service med fire ændringer: navne ender på .bso, gebyrer går til en fast multisig i stedet for at blive låst i kontrakten, navne, der allerede er i brug, kopieres ind ved lanceringen, og en engangsafvikling lader det flytte til Bitsocial Chain. Bagsiden af kode, der ikke kan ændres, er, at en fejl heller ikke kan rettes."
+          ]
+        },
+        "fees": {
+          "q": "Hvor går gebyrerne hen?",
+          "a": [
+            "Gebyrerne samles i registret, og alle kan sende dem videre til én fast adresse: en Safe-multisig, der finansierer Bitsocials udvikling, så længe dette register er i brug. {{signers}} alt. Nøglerne tilhører Bitsocials to udviklere og betroede personer, de har udpeget, og ingen enkeltperson har nok af dem til at flytte midlerne.",
+            "Safen har præcis to beføjelser over registret: at modtage gebyrer og at starte afviklingen én gang. Den kan ikke ændre priser eller røre et navn, den ikke ejer. Den ejer også nogle få reserverede projektnavne, såsom bitsocial.bso, som en almindelig ejer."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Hvorfor et nyt register i stedet for ENS?",
+          "a": [
+            "Indtil nu har hvert .bso-navn været et ENS-navn til ENS-priser: i oktober 2026 blev et nyt fællesskabsnavn prissat til mere end 20 dollar for tre år. De fleste ejere vil ikke betale det for at prøve et fællesskab af, så de nøjes med nøgler alene. Bitsocial Chain vil rumme .bso-navne indbygget, men den findes ikke endnu.",
+            "Dette midlertidige register får et almindeligt navn til at koste 0,0005 ETH om året allerede i dag og gør den senere flytning til Bitsocial Chain til en kopi af records i stedet for et ejerskifte."
+          ]
+        },
+        "whyEth": {
+          "q": "Hvorfor betale i ETH og ikke i BSO?",
+          "a": [
+            "En rabat for at betale i BSO ville kræve, at kontrakten kendte BSO's pris i ETH. En kontrakt uden ejer kan ikke udskifte en priskilde, der går i stykker, og en pool med lav handel kunne skubbes i en enkelt transaktion for at købe korte navne for næsten ingenting. En fast prisliste i BSO ville glide med tokenen, indtil den enten var næsten gratis eller aldrig blev brugt, uden at nogen kunne rette den.",
+            "Bitsocial Chains eget register kan give BSO en rolle uden disse begrænsninger."
+          ]
+        },
+        "move": {
+          "q": "Hvad betyder flytningen til Bitsocial Chain?",
+          "a": [
+            "Bitsocial Chain er fase 3 i Bitsocials masterplan: en egen kæde, der rummer .bso-navne indbygget. Når en BSIP for dens navneregister når Last Call, kan Safen starte afviklingen. Kontrakten giver så 30 dages varsel, som ikke kan annulleres eller forkortes. I varslingsperioden virker alt som før, så fornyelser og overførsler tæller stadig.",
+            "Efter varslingsperioden fryses registret på Ethereum. Intet kan registreres, fornyes, overføres eller redigeres, og navne bliver ved med at blive slået op fra den frosne tilstand. Bitsocial Chain importerer gratis hvert navn, der er aktivt eller i sin henstandsperiode, med samme ejer, udløbsdato og record. Du behøver ikke at gøre noget.",
+            "BSIP-13 tillader kun afviklingen til denne flytning, og kontrakten håndhæver de 30 dages varsel."
+          ]
+        },
+        "afterMove": {
+          "q": "Hvad sker der med gebyrerne efter flytningen?",
+          "a": [
+            "Gebyrer, der finansierer udviklerne, ophører med dette register. Bitsocial Chains register fastsætter sine egne gebyrer i sin egen BSIP, og planen er, at navnegebyrer der i stedet brændes eller bruges til at tilbagekøbe og brænde BSO. Mekanismen er ikke besluttet endnu."
+          ]
+        }
       }
     }
   }

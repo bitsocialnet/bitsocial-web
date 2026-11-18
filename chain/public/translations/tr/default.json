@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "SSS",
     "richList": "Zengin listesi",
-    "chart": "Grafik"
+    "chart": "Grafik",
+    "domains": "Alan adları"
   },
   "languageSelector": {
     "title": "Dil seçin",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "Zincir henüz yayında değil, güncellemeler için abone olun",
     "title": "Kriptonun eksik <mark>sosyal katmanı</mark>",
-    "supporting": "Kripto bir kumarhaneye dönüştü, çünkü Web2, TradFi ve merkezi altyapı dağıtım raylarına sahip ve teşvikleri çarpıtıyor. Bitsocial Chain bunu düzeltir: toplulukların kendi ağlarına, token'larına ve gelirlerine sahip olduğu, durdurulamaz ve tamamen merkezi olmayan bir <l2Link>Ethereum L2</l2Link> <appchainLink>uygulama zinciri</appchainLink>."
+    "supporting": "Kripto bir kumarhaneye dönüştü, çünkü Web2, TradFi ve merkezi altyapı dağıtım raylarına sahip ve teşvikleri çarpıtıyor. Bitsocial Chain bunu düzeltir: toplulukların kendi ağlarına, token'larına ve gelirlerine sahip olduğu, durdurulamaz ve tamamen merkezi olmayan bir <l2Link>Ethereum L2</l2Link> <appchainLink>uygulama zinciri</appchainLink>.",
+    "domainsCta": "Bugün .bso alan adınızı alın"
   },
   "layers": {
     "ariaLabel": "Kriptonun üst üste dizilmiş üç katmanı: en üstte Bitsocial ağındaki sosyal uygulamalar, en altta Ethereum L1 mutabakatı ve ikisinin arasındaki boşluğa oturan, parlayan eksik katman olarak alevlenen, BSO ile çalışan Ethereum L2 uygulama zinciri Bitsocial Chain. Katmanların içinden bir enerji omurgası geçiyor.",
@@ -742,6 +744,320 @@
       "marchRally": {
         "title": "Mart 2024 yükselişi",
         "body": "1 Mart'ta yatırımcı Jason Calacanis, bir tweet'inde dağıtık ve izinsiz bir Reddit istediğini yazıyor; plebbit de demosuyla yanıt veriyor. Seedit 0.1.6, 3 Mart'ta çıkıyor ve 4 Mart'ta ekip yalnızca token sahiplerine açık toplulukları duyuruyor. O ay ETH'nin 4.000 doları geçmesiyle fiyat 4 Mart'ta neredeyse ikiye katlanıyor ve mart sonuna kadar üçe katlanıyor; 2,2 milyon dolarlık hacimle bu, grafikteki tüm aylar içinde en yüksek hacim."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": ".bso Alan Adları - Topluluğunuza veya Profilinize Bir Ad Verin",
+      "description": "Bir Bitsocial topluluğu veya profili için .bso alan adı kaydedin. Ad, cüzdanınızın Ethereum'da sahip olduğu bir NFT'dir; yılda 0,0005 ETH'den başlar ve her Bitsocial uygulamasında açılır."
+    },
+    "hero": {
+      "titleCommunity": "Topluluğunuza bir ad verin",
+      "titleProfile": "Profilinize bir ad verin",
+      "leadCommunity": "Adı aşağıdaki başlığa yazın. Okurlar topluluğunuzu her Bitsocial uygulamasında bu adla bulur ve ad cüzdanınıza aittir.",
+      "leadProfile": "Adı aşağıdaki başlığa yazın. Gönderileriniz her Bitsocial uygulamasında bu adı taşır ve ad cüzdanınıza aittir.",
+      "kindLabel": "Ad şunun için",
+      "kindCommunity": "Bir topluluk",
+      "kindProfile": "Bir profil",
+      "opensIn": "Kayıtlar {{time}} içinde açılıyor. Bir adı şimdiden rezerve edebilirsiniz.",
+      "opensOn": "Kayıtlar {{date}} tarihinde açılıyor.",
+      "notDeployed": "Kayıt defteri yakında yayına giriyor. Adları ve fiyatları şimdiden kontrol edebilirsiniz."
+    },
+    "plate": {
+      "inputLabelCommunity": "Topluluğunuzun adı",
+      "inputLabelProfile": "Profilinizin adı",
+      "placeholderCommunity": "toplulugunuz",
+      "placeholderProfile": "adiniz",
+      "sublineCommunity": "Topluluk · 5chan, Seedit ve diğer Bitsocial uygulamalarında adıyla açılır",
+      "sublineProfile": "Profil · her topluluktaki gönderileriniz tek bir ad altında",
+      "join": "Katıl",
+      "posts": "Gönderiler",
+      "rules": "Kurallar",
+      "follow": "Takip et",
+      "about": "Hakkında",
+      "captionCommunity": "Başlığı, kontrol ettiğiniz .bso adı olan bir topluluk başlığı",
+      "captionProfile": "Başlığı, kontrol ettiğiniz .bso adı olan bir profil başlığı",
+      "withoutCommunity": "Ad olmadan insanların paylaştığı",
+      "withoutProfile": "Ad olmadan gönderilerinizde görünen",
+      "withCommunity": "Adla paylaştıkları",
+      "withProfile": "Adla görünen"
+    },
+    "checks": {
+      "spelling": "Yazım",
+      "availability": "Uygunluk",
+      "price": "Fiyat",
+      "typeName": "Bir ad yazın",
+      "spellingOk": "Geçerli ad",
+      "fixFirst": "Önce yazımı düzeltin",
+      "dot": "Adda nokta kullanılamaz.",
+      "space": "Boşluk kullanılamaz.",
+      "underscore": "Alt çizgi yalnızca başta kullanılabilir.",
+      "hyphenEdge": "Ad kısa çizgiyle başlayamaz veya bitemez.",
+      "labelExtension": "Adın üçüncü ve dördüncü karakterleri \"--\" olamaz.",
+      "tooLong": "Çok uzun: bir ad en fazla 255 bayttır.",
+      "lookalike": "Farklı yazı sistemlerini karıştırıyor veya birbirine benzeyen karakterler kullanıyor.",
+      "character": "\"{{character}}\" karakterine izin verilmez.",
+      "characterUnknown": "İzin verilmeyen bir karakter içeriyor.",
+      "checking": "Kontrol ediliyor…",
+      "available": "Müsait",
+      "taken": "{{date}} tarihine kadar kayıtlı",
+      "yours": "Sizin, {{date}} tarihine kadar",
+      "reserved": "{{date}} tarihine kadar Bitsocial'a ayrılmış",
+      "grace": "{{date}} tarihinde süresi doldu. Sahibi {{until}} tarihine kadar yenileyebilir.",
+      "premium": "{{date}} tarihinde serbest bırakıldı. Primi {{end}} tarihine kadar sıfıra iner.",
+      "lookupFailed": "Ethereum'a ulaşılamadı.",
+      "retry": "Tekrar dene",
+      "notDeployed": "Kayıt defteri yayına girince kontrol edilir",
+      "yearly": "Yılda {{price}}",
+      "yearlyShort": "Yılda {{price}}, {{count}} karakterlik adların fiyatı",
+      "yearlyBytes": "Yılda {{price}}, {{count}} baytlık uzunluğuna göre fiyatlandırılır",
+      "withPremium": "İlk yıl için {{premium}} prim dahil {{price}}"
+    },
+    "cta": {
+      "claim": "{{name}} adını {{price}} karşılığında talep et",
+      "reserve": "{{name}} adını şimdi rezerve et",
+      "renew": "{{name}} adını yenile",
+      "pointCommunity": "{{name}} adını topluluğunuza yönlendir",
+      "pointProfile": "{{name}} adını profilinize yönlendir",
+      "soon": "Kayıtlar yakında açılıyor",
+      "fix": "{{name}} adını kullan",
+      "noteClaim": "Üç cüzdan işlemi, yaklaşık iki dakika.",
+      "noteReserve": "Şimdi rezerve edin, kayıtlar açılınca talep edin.",
+      "noteReserveLater": "Rezervasyon, kayıtlar açılmadan 24 saat önce başlar.",
+      "noteTaken": "{{owner}} adresinde tutuluyor.",
+      "noteReserved": "BSIP-13'ün bu adı ayırdığı Bitsocial ücret Safe'inde tutuluyor.",
+      "noteGrace": "Herkes yenileyebilir ve ad sahibinde kalır.",
+      "notePremium": "Prim her saniye düşer ve fazla ödenen tutar iade edilir.",
+      "noteNotDeployed": "Kayıt defteri sözleşmesi henüz Ethereum'da değil."
+    },
+    "claim": {
+      "eyebrow": "Talep etme",
+      "title": "Cüzdanınızdan üç işlem, yaklaşık iki dakika",
+      "pickName": "Başlamak için yukarıdan müsait bir ad seçin.",
+      "claiming": "{{name}} talep ediliyor",
+      "renewing": "{{name}} yenileniyor",
+      "pointing": "{{name}} yönlendiriliyor",
+      "connect": "Cüzdan bağla",
+      "connectWith": "{{wallet}} cüzdanını bağla",
+      "browserWallet": "tarayıcı",
+      "connecting": "Bağlanıyor…",
+      "noWallet": "Bu tarayıcıda Ethereum cüzdanı bulunamadı. Bir tarayıcı cüzdanı yükleyin veya bu sayfayı cüzdan uygulamanızın tarayıcısında açın.",
+      "connectedAs": "Bağlı adres: {{address}}",
+      "reserveTitle": "Rezerve et",
+      "reserveBody": "Önce zincire mühürlü bir taahhüt gönderilir; böylece kimse bekleyen işleminizden adı okuyup kapamaz. Ardından 60 saniye bekleyin.",
+      "reserveMeta": "commit() · yalnızca gas",
+      "reserveAction": "{{name}} adını rezerve et",
+      "reserveTooEarly": "Kayıtlar açılmadan 24 saat önce, {{date}} tarihinden itibaren rezerve edebilirsiniz.",
+      "reserved": "Rezerve edildi. Bu tarayıcı rezervasyonu şu zamana kadar saklar: {{time}}.",
+      "claimTitle": "Talep et",
+      "claimBody": "Adın ücretini ödeyin. Ad, 365 günlüğüne aynı cüzdana mint edilir. Rezervasyondan sonra en fazla 24 saatiniz var ve bu tarayıcı kaldığınız yeri hatırlar.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "{{name}} adını {{price}} karşılığında talep et",
+      "claimWait": "{{seconds}} sn içinde hazır",
+      "claimWaitOpening": "Kayıtlar açılınca hazır, {{time}} içinde",
+      "startOver": "Baştan başla",
+      "renewTitle": "Yenile",
+      "renewBody": "Mevcut bitiş tarihine 365 gün ekler. Herkes herhangi bir adı yenileyebilir ve ad sahibinde kalır.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "{{name}} adını {{price}} karşılığında yenile",
+      "renewed": "{{date}} tarihine kadar yenilendi.",
+      "recordTitleCommunity": "Topluluğunuza yönlendirin",
+      "recordTitleProfile": "Profilinize yönlendirin",
+      "recordLabelCommunity": "Topluluğunuzun ayarlarındaki genel anahtarı",
+      "recordLabelProfile": "Uygulamanızın hesap ayarlarındaki hesap genel anahtarınız",
+      "recordMeta": "setText(\"bitsocial\") · yalnızca gas · istediğiniz zaman değiştirin",
+      "recordAction": "Kaydı yaz",
+      "recordInvalid": "Bu bir genel anahtar değil. Genel anahtar 52 karakter uzunluğundadır ve 12D3KooW ile başlar.",
+      "recordCurrent": "Şu anda gösterdiği: {{record}}.",
+      "recordNotOwner": "{{name}} adının kaydını yalnızca ona sahip olan cüzdan ayarlayabilir.",
+      "doneCommunity": "{{name}} artık topluluğunuzu gösteriyor. Sırada, topluluğun ayarlarında {{name}} adını topluluk adresi olarak ayarlamak var.",
+      "doneProfile": "{{name}} artık hesabınızı gösteriyor. Sırada, gönderilerinizde görünmesi için uygulamanızın hesap ayarlarında {{name}} adını adınız olarak girmek var.",
+      "confirmInWallet": "Cüzdanınızda onaylayın",
+      "waitingForTx": "İşlem bekleniyor…",
+      "viewTx": "İşlemi görüntüle",
+      "rejected": "Cüzdanda reddettiniz.",
+      "failed": "Bir şeyler ters gitti: {{message}}",
+      "reverted": "Kayıt defteri işlemi reddetti ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "Rezervasyonun geçerli olması için bir dakika geçmesi gerekiyor. Birkaç saniye sonra tekrar deneyin.",
+        "CommitmentTooOld": "Bu rezervasyon 24 saatten eski. Yeniden rezerve edin.",
+        "CommitmentNotFound": "Bu cüzdandan rezervasyon bulunamadı. Yeniden rezerve edin.",
+        "AlreadyCommitted": "Bu rezervasyon zaten zincirde.",
+        "AlreadyRegistered": "Bu adı sizden önce başkası kaydetti.",
+        "InsufficientFee": "Fiyat değişti. Tekrar deneyin.",
+        "Expired": "Bu adın süresi doldu.",
+        "Unauthorized": "Bu cüzdan bu adın sahibi değil."
+      }
+    },
+    "activity": {
+      "title": "Son adlar",
+      "live": "Ethereum'dan canlı",
+      "registered": "{{name}} kaydedildi",
+      "empty": "Henüz kayıtlı ad yok.",
+      "notDeployed": "Kayıt defteri yayına girince adlar burada görünür.",
+      "failed": "Son adlar yüklenemedi.",
+      "browse": "Tüm adlara göz at"
+    },
+    "lifecycle": {
+      "eyebrow": "Adı korumak",
+      "title": "Bir ad her seferinde bir yıl geçerlidir",
+      "lead": "Yenileme, mevcut bitiş tarihine aynı fiyatla 365 gün ekler. Herkes herhangi bir adı yenileyebilir; böylece bir arkadaşınız ya da bir dizin adınızı yaşatabilir.",
+      "active": "Etkin",
+      "activeNote": "365 gün, çözümlenir",
+      "grace": "Ek süre",
+      "graceNote": "90 gün, çözümlenmez, yalnızca yenileme",
+      "premium": "Prim",
+      "premiumNote": "21 gün, 100 ETH'den 0'a düşer",
+      "open": "Açık",
+      "openNote": "herkes, normal fiyat",
+      "caption": "Ölçekli değildir. Ek süre bittikten sonra bir adı yeniden kaydetmek tüm kayıtlarını siler; yeni sahip boş bir sayfayla başlar."
+    },
+    "eth": {
+      "badge": "Kullanımdaki adlar için ücretsiz",
+      "title": "Zaten bir .bso adı mı kullanıyorsunuz? O ad sizin.",
+      "lead": "Şimdiye kadar uygulamalar memes.bso adını memes.eth üzerinden okuyordu. Lansmanda, bitsocial kaydı olan her .eth adı, alt adlar dahil, aynı kayıtla ve ilk yılı ödenmiş olarak, aynı .bso adı şeklinde onu elinde tutan cüzdana airdrop edilir. Talep edilecek ve ödenecek hiçbir şey yok.",
+      "caveat": "Yalnızca lansman anlık görüntüsünde bitsocial kaydı olan adlar dahildir. Adınızın kaydı daha sonra eklendiyse, başkası almadan önce kayıtlar açılır açılmaz .bso adını talep edin.",
+      "label": ".eth adınızı kontrol edin",
+      "placeholder": "memes.eth",
+      "check": "Kontrol et",
+      "registered": "{{name}}, {{date}} tarihine kadar {{owner}} adresine kayıtlı.",
+      "points": "Gösterdiği: {{record}}.",
+      "notYet": "{{name}} henüz kayıtlı değil. Airdrop edilen adlar, kayıtlar herkese açılmadan önce kaydedilir; o zaman tekrar kontrol edin.",
+      "notSeeded": "{{name}} airdrop edilmedi ve herkese açık. {{eth}} adını kullanıyorsanız, başkasından önce talep edin.",
+      "tryAbove": "{{name}} adını yukarıda kontrol edin"
+    },
+    "faq": {
+      "eyebrow": "Sorular",
+      "title": ".bso adları nasıl çalışır",
+      "lead": "Yanıtlar, bu kayıt defterinin uyguladığı spesifikasyon olan BSIP-13'ü izler.",
+      "groups": {
+        "using": "Bir ada sahip olmak",
+        "launch": "Lansman ve .eth adları",
+        "trust": "Ücretler, güven ve Bitsocial Chain"
+      },
+      "signers": "Safe'in {{owners}} anahtarından {{threshold}} tanesinin imzası",
+      "signersUnknown": "Safe'in anahtarlarından birkaçının imzası",
+      "priceLength": "Ad uzunluğu",
+      "pricePerYear": "Yıllık",
+      "bytes_one": "{{count}} bayt",
+      "bytes_other": "{{count}} bayt",
+      "bytesOrMore_one": "{{count}} bayt veya daha fazla",
+      "bytesOrMore_other": "{{count}} bayt veya daha fazla",
+      "contract": "Kayıt defteri sözleşmesi",
+      "safe": "Ücret Safe'i",
+      "spec": "BSIP-13'ü okuyun",
+      "items": {
+        "what": {
+          "q": "Bir .bso adı ne işe yarar?",
+          "a": [
+            "Bir topluluğa veya profile insanların okuyabileceği bir ad verir. Adın bitsocial kaydı bir anahtar adresi tutar; bu, topluluğu veya profili ağda tanımlayan uzun 12D3KooW… dizesidir. Uygulamalar adı sorgular, anahtarı okur ve onun gösterdiği şeyi yükler; böylece memes.bso, 5chan'de, Seedit'te ve diğer her Bitsocial uygulamasında aynı topluluğu açar.",
+            "Ad, anahtarı değiştirilebilir de kılar. Anahtar kaybolur veya çalınırsa adı yeni bir anahtara yönlendirirsiniz ve okurlar da onu izler. Yalnızca anahtarıyla bilinen bir topluluk bu şekilde kurtarılamaz.",
+            "Adın kendisi Ethereum'da cüzdanınızın tuttuğu bir NFT'dir (ERC-721). Onu kim tutuyorsa, nereyi göstereceğine o karar verir."
+          ]
+        },
+        "profiles": {
+          "q": "Bir profilin de adı olabilir mi?",
+          "a": [
+            "Evet. Yazarlar gönderilerini bir anahtarla imzalar ve bir adın bitsocial kaydı o anahtarı tutuyorsa uygulamalar bu gönderilerde o adı gösterir. Topluluklar ve profiller aynı kaydı kullanır, dolayısıyla kayıt ikisi için de aynı şekilde işler.",
+            "Bir yazarın her topluluktaki gönderilerini bir araya getiren profil sayfaları (BSIP-14), Bitsocial'ın ilk herkese açık RPC'siyle birlikte gelecek ve şimdi kaydedilen bir ad bu sayfalarda da çalışacak. Bir ad aynı anda hem topluluk hem profil olarak kullanılamaz."
+          ]
+        },
+        "cost": {
+          "q": "Bir adın maliyeti nedir?",
+          "a": [
+            "Yıllık fiyat adın bayt cinsinden uzunluğuna bağlıdır ve yenileme de aynı fiyattır. Ethereum gas ücreti ayrıca ödenir. a–z harfleri, rakamlar ve kısa çizgiler birer bayt, aksanlı, Yunan veya Kiril harfleri iki, Çince veya Japonca karakterler üç, emoji ise genellikle dört bayt tutar; bu yüzden tek bir emoji 4 baytlık bir ad olarak fiyatlandırılır."
+          ]
+        },
+        "claiming": {
+          "q": "Talep etmek neden iki işlem gerektiriyor?",
+          "a": [
+            "Bekleyen Ethereum işlemlerini herkes izleyebilir. Adı açıkça gönderirseniz biri onu kopyalayıp sizden önce kaydedebilir. Bu yüzden önce rezerve edersiniz: adın rastgele bir sırla karıştırılmış, hiçbir şey ele vermeyen bir parmak izini gönderirsiniz. Bir dakika sonra adı ve sırrı göndererek talep edersiniz; bunlar rezervasyonla eşleşirse kayıt defteri adı cüzdanınıza mint eder.",
+            "Rezervasyon 24 saat geçerlidir. Bu sayfa sırrı tarayıcınızda saklar; böylece sayfayı yenileyebilir veya aynı cihazda daha sonra geri dönebilirsiniz. Talep etmeden önce tarayıcı verilerini silerseniz yeniden rezerve edin. İlk rezervasyonun maliyeti yalnızca gas'tı."
+          ]
+        },
+        "expiry": {
+          "q": "Bir adın süresi dolarsa ne olur?",
+          "a": [
+            "Bir ad 365 gün geçerlidir. Herkes onu mevcut bitiş tarihinden itibaren 365 gün daha yenileyebilir; böylece bir arkadaşınız ya da bir dizin adınızı yaşatabilir. Süre dolduktan sonra 90 günlük bir ek süre gelir: ad çözümlenmez ve yalnızca yenilenebilir. Ardından herkes onu kaydedebilir; önce 21 gün içinde 100 ETH'den sıfıra düşen bir primle, sonra normal fiyatla.",
+            "Ad yeniden kaydedildiğinde tüm kayıtları silinir ve yeni sahibi adı kendi anahtarına yönlendirebilir. O adı izleyen okurlar onu izlemiş olur, bu yüzden erken yenileyin."
+          ]
+        },
+        "spelling": {
+          "q": "Hangi yazımlar geçerli?",
+          "a": [
+            "Uygulamalar bir adı sorgulamadan önce ENS'nin yaptığı gibi (ENSIP-15) normalleştirir. Bu; küçük harflere, rakamlara, adın içindeki kısa çizgilere, çoğu yazı sistemine ve emojilere izin verir. Nokta, boşluk ve alt çizgi kullanılamaz (en baştaki alt çizgi hariç); yazı sistemlerini karıştıran, birbirine benzeyen karakterler reddedilir.",
+            "Kayıt defterinin kendisi daha az şey kontrol eder; bu yüzden hiçbir uygulamanın çözümleyemeyeceği yazımları da satar ve ücret iade edilmez. Bu sayfa bu tür yazımları reddeder ve bir düzeltme önerir; örneğin relationship_advice yerine relationship-advice."
+          ]
+        },
+        "transfer": {
+          "q": "Bir adı hediye edebilir veya satabilir miyim?",
+          "a": [
+            "Evet. Ad, cüzdanınızdaki bir ERC-721 token'ıdır; dolayısıyla onu herhangi bir NFT gibi gönderebilirsiniz. Talep etme her zaman talep eden cüzdana mint eder; bu yüzden başkası için ad kaydetmek istiyorsanız adı talep edin ve sonra transfer edin. Kayıt sahiple birlikte değişmez, bu nedenle yeni sahibi adı kendi anahtarına yönlendirmelidir."
+          ]
+        },
+        "subnames": {
+          "q": "Alt adlar dağıtabilir miyim?",
+          "a": [
+            "Bir adın sahibi memes.yourname.bso gibi alt adları ücretsiz oluşturabilir. Ancak üst adın sahibi herhangi bir alt adı istediği zaman geri alıp başka bir yere yönlendirebilir; bu yüzden bir alt ad üzerindeki topluluk tamamen o kişiye bağımlıdır. Bir topluluk kendi adını kaydetmeli ya da kaydedene kadar anahtarıyla kalmalıdır."
+          ]
+        },
+        "launch": {
+          "q": "Lansmanda ne olur?",
+          "a": [
+            "Kayıt defteri kapalı olarak başlar. İlk olarak, .eth üzerinden zaten kullanılan her .bso adı sahibine ücretsiz olarak kaydedilir (yukarıya bakın). Bu kayıt işlemlerini herkes gönderebilir; bakımcılar hepsini sözleşme yayına alındıktan sonraki bir saat içinde göndermeyi hedefliyor. Herkese açık kayıtlar sonuncusundan bir saat sonra açılır, böylece açılış zamanı bir saat önceden zincirde yer alır. Süreç takılırsa kayıtlar yine de sözleşmenin yayına alınmasından yedi gün sonra açılır.",
+            "Açılıştan önce bir ad rezerve edebilirsiniz. Açılıştan en az bir dakika, en fazla 24 saat önce yapılan bir rezervasyon, açıldığı anda talep edilebilir. Başkaları da aynı anda aynı adı talep edebilir; bloğa ilk dahil edilen işlem kazanır."
+          ]
+        },
+        "eth": {
+          "q": ".eth adım çalışmaya devam edecek mi?",
+          "a": [
+            "Evet. Uygulamalar .eth adlarını ENS üzerinden çözümlemeye devam eder. Değişen şey, x.bso'nun artık x.eth anlamına gelmemesidir: bu kayıt defterini destekleyen uygulamalar .bso adlarını yalnızca ondan okur; böylece bot.bso ve bot.eth, farklı sahipleri olabilecek ayrı adlar haline gelir.",
+            "Bazı uygulamalar güncellenene kadar x.bso'yu x.eth üzerinden okumaya devam edecek. İki ada da sahipseniz, o zamana kadar kayıtlarını aynı tutun."
+          ]
+        },
+        "control": {
+          "q": "Kayıt defterini kim kontrol ediyor?",
+          "a": [
+            "Hiç kimse. Sözleşmenin sahibi, yöneticisi, proxy'si, duraklatma düğmesi veya yükseltme yolu yoktur. Fiyatlar, süreler ve ücret adresi kodunda sabittir; kimse elinde tutmadığı bir adı alamaz, düzenleyemez veya transfer edemez.",
+            "Sözleşme, .gwei Name Service'in dört değişiklik içeren bir fork'udur: adlar .bso ile biter, ücretler sözleşmede kilitli kalmak yerine sabit bir multisig'e gider, kullanımdaki adlar lansmanda kopyalanır ve tek seferlik bir kapanış (sunset) Bitsocial Chain'e taşınmasına izin verir. Değiştirilemeyen kodun öbür yüzü, bir hatanın da yamalanamamasıdır."
+          ]
+        },
+        "fees": {
+          "q": "Ücretler nereye gidiyor?",
+          "a": [
+            "Ücretler kayıt defterinde birikir ve herkes bunları tek bir sabit adrese aktarabilir: bu kayıt defteri kullanımdayken Bitsocial'ın geliştirilmesini finanse eden bir Safe multisig. Her işlem için {{signers}} gerekir. Anahtarlar Bitsocial'ın iki bakımcısına ve onların belirlediği mütevellilere aittir; hiç kimse fonları hareket ettirmeye yetecek kadar anahtara tek başına sahip değildir.",
+            "Safe'in kayıt defteri üzerinde tam olarak iki yetkisi vardır: ücretleri almak ve kapanışı bir kez başlatmak. Fiyatları değiştiremez veya elinde tutmadığı bir ada dokunamaz. Ayrıca bitsocial.bso gibi ayrılmış birkaç proje adını sıradan bir sahip olarak tutar."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Neden ENS yerine yeni bir kayıt defteri?",
+          "a": [
+            "Şimdiye kadar her .bso adı, ENS fiyatlarıyla bir ENS adıydı: Ekim 2026'da yeni bir topluluk adı için üç yıllık fiyat teklifi 20 doları aşıyordu. Çoğu sahip bir topluluğu denemek için bu parayı ödemez, bu yüzden çıplak anahtarlarla kalırlar. Bitsocial Chain .bso adlarını yerel olarak tutacak, ama henüz yok.",
+            "Bu geçici kayıt defteri, normal bir adın maliyetini bugünden yılda 0,0005 ETH'ye indirir ve ileride Bitsocial Chain'e geçişi bir sahip değişikliği yerine kayıtların kopyalanmasına dönüştürür."
+          ]
+        },
+        "whyEth": {
+          "q": "Neden BSO değil de ETH ile ödeme?",
+          "a": [
+            "BSO ile ödemeye indirim uygulamak için sözleşmenin BSO'nun ETH cinsinden fiyatını bilmesi gerekirdi. Sahibi olmayan bir sözleşme bozulan bir fiyat kaynağını değiştiremez ve işlem hacmi düşük bir havuzun fiyatı tek bir işlem boyunca itilerek kısa adlar neredeyse bedavaya alınabilir. BSO cinsinden sabit bir fiyat listesi ise token'la birlikte kayarak ya neredeyse bedava hale gelir ya da hiç kullanılmaz ve kimse bunu düzeltemez.",
+            "Bitsocial Chain'in kendi kayıt defteri, bu sınırlamalar olmadan BSO'ya bir rol verebilir."
+          ]
+        },
+        "move": {
+          "q": "Bitsocial Chain'e geçmek ne anlama geliyor?",
+          "a": [
+            "Bitsocial Chain, Bitsocial'ın ana planının 3. aşamasıdır: .bso adlarını yerel olarak tutan kendi zinciri. Ad kayıt defteri için bir BSIP Last Call aşamasına ulaştığında Safe kapanışı başlatabilir. Sözleşme bunun ardından iptal edilemeyen ve kısaltılamayan 30 günlük bir bildirim süresi verir. Bildirim süresince her şey eskisi gibi çalışır, dolayısıyla yenilemeler ve transferler geçerli olmaya devam eder.",
+            "Bildirim süresinden sonra Ethereum'daki kayıt defteri dondurulur. Hiçbir şey kaydedilemez, yenilenemez, transfer edilemez veya düzenlenemez ve adlar dondurulmuş durumdan çözümlenmeye devam eder. Bitsocial Chain, etkin olan veya ek süresindeki her adı aynı sahip, bitiş tarihi ve kayıtla ücretsiz olarak içe aktarır. Sizin hiçbir şey yapmanız gerekmez.",
+            "BSIP-13 kapanışa yalnızca bu geçiş için izin verir ve 30 günlük bildirim süresini sözleşme zorunlu kılar."
+          ]
+        },
+        "afterMove": {
+          "q": "Geçişten sonra ücretlere ne olur?",
+          "a": [
+            "Ücretlerin bakımcıları finanse etmesi bu kayıt defteriyle birlikte sona erer. Bitsocial Chain'in kayıt defteri kendi ücretlerini kendi BSIP'inde belirler ve plan, oradaki ad ücretlerinin bunun yerine yakılması ya da BSO geri alıp yakmak için kullanılması. Mekanizma henüz kararlaştırılmadı."
+          ]
+        }
       }
     }
   }

@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "FAQ",
     "richList": "Rikelista",
-    "chart": "Diagram"
+    "chart": "Diagram",
+    "domains": "Domäner"
   },
   "languageSelector": {
     "title": "Välj språk",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "Kedjan är inte live än, prenumerera för uppdateringar",
     "title": "Kryptovärldens saknade <mark>sociala lager</mark>",
-    "supporting": "Krypto blev ett kasino eftersom Web2, TradFi och centraliserad infrastruktur äger distributionskanalerna och snedvrider incitamenten. Bitsocial Chain rättar till detta: en ostoppbar, fullt decentraliserad <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink> där gemenskaper äger sina nätverk, sina tokens och sina intäkter."
+    "supporting": "Krypto blev ett kasino eftersom Web2, TradFi och centraliserad infrastruktur äger distributionskanalerna och snedvrider incitamenten. Bitsocial Chain rättar till detta: en ostoppbar, fullt decentraliserad <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink> där gemenskaper äger sina nätverk, sina tokens och sina intäkter.",
+    "domainsCta": "Skaffa din .bso-domän redan idag"
   },
   "layers": {
     "ariaLabel": "Tre staplade lager av krypto: sociala appar på Bitsocial-nätverket överst, Ethereum L1-avveckling i botten, och Bitsocial Chain, Ethereum L2-appchainen som drivs av BSO, som tänds som det glödande saknade lagret och glider in i mellanrummet mellan dem, genomdraget av en ryggrad av energi.",
@@ -742,6 +744,320 @@
       "marchRally": {
         "title": "Rallyt i mars 2024",
         "body": "Den 1 mars twittrar investeraren Jason Calacanis att han vill ha ett distribuerat, tillståndslöst Reddit, och plebbit svarar med sin demo. Seedit 0.1.6 släpps den 3 mars, och den 4 mars tillkännager teamet tokenlåsta gemenskaper. När ETH passerar 4 000 dollar den månaden fördubblas priset nästan den 4 mars och har tredubblats i slutet av mars, på en volym på 2,2 miljoner dollar, den högsta av alla månader i diagrammet."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": ".bso-domäner - Namnge din gemenskap eller profil",
+      "description": "Registrera en .bso-domän för en gemenskap eller profil på Bitsocial. Namnet är en NFT som din plånbok äger på Ethereum, från 0,0005 ETH per år, och det öppnas i alla Bitsocial-appar."
+    },
+    "hero": {
+      "titleCommunity": "Ge din gemenskap ett namn",
+      "titleProfile": "Ge din profil ett namn",
+      "leadCommunity": "Skriv in det i sidhuvudet nedan. Läsare hittar din gemenskap under det här namnet i alla Bitsocial-appar, och din plånbok äger det.",
+      "leadProfile": "Skriv in det i sidhuvudet nedan. Dina inlägg bär det här namnet i alla Bitsocial-appar, och din plånbok äger det.",
+      "kindLabel": "Namn för",
+      "kindCommunity": "En gemenskap",
+      "kindProfile": "En profil",
+      "opensIn": "Registreringen öppnar om {{time}}. Du kan reservera ett namn redan nu.",
+      "opensOn": "Registreringen öppnar {{date}}.",
+      "notDeployed": "Registret lanseras snart. Namn och priser kan kontrolleras redan nu."
+    },
+    "plate": {
+      "inputLabelCommunity": "Din gemenskaps namn",
+      "inputLabelProfile": "Din profils namn",
+      "placeholderCommunity": "dingemenskap",
+      "placeholderProfile": "dittnamn",
+      "sublineCommunity": "Gemenskap · öppnas via namnet i 5chan, Seedit och andra Bitsocial-appar",
+      "sublineProfile": "Profil · dina inlägg från alla gemenskaper, under ett namn",
+      "join": "Gå med",
+      "posts": "Inlägg",
+      "rules": "Regler",
+      "follow": "Följ",
+      "about": "Om",
+      "captionCommunity": "Ett sidhuvud för en gemenskap vars titel är .bso-namnet du kontrollerar",
+      "captionProfile": "Ett sidhuvud för en profil vars titel är .bso-namnet du kontrollerar",
+      "withoutCommunity": "Utan namn delar folk",
+      "withoutProfile": "Utan namn visar dina inlägg",
+      "withCommunity": "Med ett delar de",
+      "withProfile": "Med ett visar de"
+    },
+    "checks": {
+      "spelling": "Stavning",
+      "availability": "Tillgänglighet",
+      "price": "Pris",
+      "typeName": "Skriv ett namn",
+      "spellingOk": "Giltigt namn",
+      "fixFirst": "Rätta stavningen först",
+      "dot": "Punkter är inte tillåtna i ett namn.",
+      "space": "Mellanslag är inte tillåtna.",
+      "underscore": "Understreck är bara tillåtet i början.",
+      "hyphenEdge": "Ett namn kan inte börja eller sluta med bindestreck.",
+      "labelExtension": "Ett namn kan inte ha ”--” som tredje och fjärde tecken.",
+      "tooLong": "För långt: ett namn får vara högst 255 byte.",
+      "lookalike": "Det blandar skriftsystem eller använder förväxlingsbara tecken.",
+      "character": "”{{character}}” är inte tillåtet.",
+      "characterUnknown": "Det innehåller ett tecken som inte är tillåtet.",
+      "checking": "Kontrollerar…",
+      "available": "Ledigt",
+      "taken": "Registrerat till {{date}}",
+      "yours": "Ditt, till {{date}}",
+      "reserved": "Reserverat för Bitsocial till {{date}}",
+      "grace": "Gick ut {{date}}. Ägaren kan förnya det till {{until}}.",
+      "premium": "Släpptes {{date}}. Pristillägget sjunker till noll senast {{end}}.",
+      "lookupFailed": "Kunde inte nå Ethereum.",
+      "retry": "Försök igen",
+      "notDeployed": "Kontrolleras när registret lanseras",
+      "yearly": "{{price}} per år",
+      "yearlyShort": "{{price}} per år, priset för namn med {{count}} tecken",
+      "yearlyBytes": "{{price}} per år, prissatt efter dess {{count}} byte",
+      "withPremium": "{{price}} första året, inklusive ett pristillägg på {{premium}}"
+    },
+    "cta": {
+      "claim": "Claima {{name}} för {{price}}",
+      "reserve": "Reservera {{name}} nu",
+      "renew": "Förnya {{name}}",
+      "pointCommunity": "Peka {{name}} mot din gemenskap",
+      "pointProfile": "Peka {{name}} mot din profil",
+      "soon": "Registreringen öppnar snart",
+      "fix": "Använd {{name}}",
+      "noteClaim": "Tre transaktioner i plånboken, ungefär två minuter.",
+      "noteReserve": "Reservera nu och claima när registreringen öppnar.",
+      "noteReserveLater": "Reservationer öppnar 24 timmar före registreringen.",
+      "noteTaken": "Innehas av {{owner}}.",
+      "noteReserved": "Innehas av Bitsocials avgifts-Safe, som BSIP-13 reserverar det åt.",
+      "noteGrace": "Vem som helst kan förnya det, och då stannar det hos sin ägare.",
+      "notePremium": "Pristillägget sjunker varje sekund, och eventuell överbetalning återbetalas.",
+      "noteNotDeployed": "Registerkontraktet finns inte på Ethereum än."
+    },
+    "claim": {
+      "eyebrow": "Claima",
+      "title": "Tre transaktioner från din plånbok, ungefär två minuter",
+      "pickName": "Välj ett ledigt namn ovan för att börja.",
+      "claiming": "Claimar {{name}}",
+      "renewing": "Förnyar {{name}}",
+      "pointing": "Ställer in {{name}}",
+      "connect": "Anslut en plånbok",
+      "connectWith": "Anslut {{wallet}}",
+      "browserWallet": "webbläsarplånbok",
+      "connecting": "Ansluter…",
+      "noWallet": "Ingen Ethereum-plånbok hittades i den här webbläsaren. Installera en webbläsarplånbok, eller öppna sidan i webbläsaren i din plånboksapp.",
+      "connectedAs": "Ansluten som {{address}}",
+      "reserveTitle": "Reservera",
+      "reserveBody": "Först går en dold reservation ut på kedjan, så att ingen kan läsa namnet ur din väntande transaktion och ta det. Vänta sedan 60 sekunder.",
+      "reserveMeta": "commit() · bara gas",
+      "reserveAction": "Reservera {{name}}",
+      "reserveTooEarly": "Du kan reservera från {{date}}, 24 timmar innan registreringen öppnar.",
+      "reserved": "Reserverat. Den här webbläsaren sparar reservationen till {{time}}.",
+      "claimTitle": "Claima",
+      "claimBody": "Betala för namnet. Det mintas till samma plånbok i 365 dagar. Du har upp till 24 timmar efter reservationen, och den här webbläsaren minns var du slutade.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "Claima {{name}} för {{price}}",
+      "claimWait": "Klart om {{seconds}} s",
+      "claimWaitOpening": "Klart när registreringen öppnar, om {{time}}",
+      "startOver": "Börja om",
+      "renewTitle": "Förnya",
+      "renewBody": "Lägger till 365 dagar till nuvarande utgångsdatum. Vem som helst kan förnya vilket namn som helst, och det stannar hos sin ägare.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "Förnya {{name}} för {{price}}",
+      "renewed": "Förnyat till {{date}}.",
+      "recordTitleCommunity": "Peka det mot din gemenskap",
+      "recordTitleProfile": "Peka det mot din profil",
+      "recordLabelCommunity": "Din gemenskaps publika nyckel, från dess inställningar",
+      "recordLabelProfile": "Ditt kontos publika nyckel, från kontoinställningarna i din app",
+      "recordMeta": "setText(\"bitsocial\") · bara gas · ändra när som helst",
+      "recordAction": "Spara record",
+      "recordInvalid": "Det är inte en publik nyckel. En sådan är 52 tecken lång och börjar med 12D3KooW.",
+      "recordCurrent": "Pekar nu på {{record}}.",
+      "recordNotOwner": "Bara plånboken som äger {{name}} kan ställa in dess record.",
+      "doneCommunity": "{{name}} pekar på din gemenskap. Ange sedan {{name}} som gemenskapens adress i dess inställningar.",
+      "doneProfile": "{{name}} pekar på ditt konto. Ange sedan {{name}} som ditt namn i kontoinställningarna i din app, så att dina inlägg visar det.",
+      "confirmInWallet": "Bekräfta i din plånbok",
+      "waitingForTx": "Väntar på transaktionen…",
+      "viewTx": "Visa transaktion",
+      "rejected": "Du avböjde i plånboken.",
+      "failed": "Något gick fel: {{message}}",
+      "reverted": "Registret avvisade transaktionen ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "Reservationen måste vara en minut gammal. Försök igen om några sekunder.",
+        "CommitmentTooOld": "Den här reservationen är äldre än 24 timmar. Reservera igen.",
+        "CommitmentNotFound": "Ingen reservation från den här plånboken hittades. Reservera igen.",
+        "AlreadyCommitted": "Den här reservationen finns redan på kedjan.",
+        "AlreadyRegistered": "Någon registrerade det här namnet först.",
+        "InsufficientFee": "Priset ändrades. Försök igen.",
+        "Expired": "Det här namnet har gått ut.",
+        "Unauthorized": "Den här plånboken äger inte namnet."
+      }
+    },
+    "activity": {
+      "title": "Senaste namnen",
+      "live": "Live från Ethereum",
+      "registered": "{{name}} registrerat",
+      "empty": "Inga namn registrerade än.",
+      "notDeployed": "Namn visas här när registret har lanserats.",
+      "failed": "Kunde inte läsa in de senaste namnen.",
+      "browse": "Bläddra bland alla namn"
+    },
+    "lifecycle": {
+      "eyebrow": "Behålla det",
+      "title": "Ett namn gäller ett år i taget",
+      "lead": "En förnyelse lägger till 365 dagar till nuvarande utgångsdatum, till samma pris. Vem som helst kan förnya vilket namn som helst, så en vän eller en katalog kan hålla ditt vid liv.",
+      "active": "Aktivt",
+      "activeNote": "365 dagar, slås upp",
+      "grace": "Respit",
+      "graceNote": "90 dagar, slås inte upp, bara förnyelse",
+      "premium": "Pristillägg",
+      "premiumNote": "21 dagar, 100 ETH som sjunker till 0",
+      "open": "Öppet",
+      "openNote": "vem som helst, normalpris",
+      "caption": "Inte skalenligt. Att registrera ett namn igen efter respitperioden rensar alla records, så den nya ägaren börjar från noll."
+    },
+    "eth": {
+      "badge": "Gratis för namn som används",
+      "title": "Använder du redan ett .bso-namn? Det är ditt.",
+      "lead": "Hittills har appar läst memes.bso från memes.eth. Vid lanseringen delas varje .eth-namn med en bitsocial-record, undernamn inräknade, ut via airdrop som samma .bso-namn till plånboken som innehar det, med samma record och första året betalt. Det finns inget att claima och inget att betala.",
+      "caveat": "Bara namn som hade en bitsocial-record vid lanseringens ögonblicksbild ingår. Om ditt fick sin record senare, claima .bso-namnet så snart registreringen öppnar, innan någon annan gör det.",
+      "label": "Kontrollera ditt .eth-namn",
+      "placeholder": "memes.eth",
+      "check": "Kontrollera",
+      "registered": "{{name}} är registrerat på {{owner}} till {{date}}.",
+      "points": "Det pekar på {{record}}.",
+      "notYet": "{{name}} är inte registrerat än. Airdroppade namn registreras innan registreringen öppnar för alla, så kontrollera igen då.",
+      "notSeeded": "{{name}} airdroppades inte och är öppet för vem som helst. Om du använder {{eth}}, claima det innan någon annan gör det.",
+      "tryAbove": "Kontrollera {{name}} ovan"
+    },
+    "faq": {
+      "eyebrow": "Frågor",
+      "title": "Så fungerar .bso-namn",
+      "lead": "Svaren följer BSIP-13, specifikationen som det här registret implementerar.",
+      "groups": {
+        "using": "Att äga ett namn",
+        "launch": "Lansering och .eth-namn",
+        "trust": "Avgifter, förtroende och Bitsocial Chain"
+      },
+      "signers": "{{threshold}} av dess {{owners}} nycklar måste signera",
+      "signersUnknown": "Flera av dess nycklar måste signera",
+      "priceLength": "Namnlängd",
+      "pricePerYear": "Per år",
+      "bytes_one": "{{count}} byte",
+      "bytes_other": "{{count}} byte",
+      "bytesOrMore_one": "{{count}} byte eller mer",
+      "bytesOrMore_other": "{{count}} byte eller mer",
+      "contract": "Registerkontrakt",
+      "safe": "Avgifts-Safe",
+      "spec": "Läs BSIP-13",
+      "items": {
+        "what": {
+          "q": "Vad gör ett .bso-namn?",
+          "a": [
+            "Det ger en gemenskap eller en profil ett namn som människor kan läsa. Namnets bitsocial-record innehåller en nyckeladress, den långa 12D3KooW…-strängen som identifierar gemenskapen eller profilen i nätverket. Appar slår upp namnet, läser nyckeln och laddar det den pekar på, så memes.bso öppnar samma gemenskap i 5chan, Seedit och alla andra Bitsocial-appar.",
+            "Ett namn gör också nyckeln utbytbar. Om nyckeln går förlorad eller blir stulen pekar du namnet mot en ny, och läsarna följer med. En gemenskap som bara är känd via sin nyckel kan inte återhämta sig på det sättet.",
+            "Själva namnet är en NFT (ERC-721) på Ethereum som din plånbok innehar. Den som innehar den bestämmer vart den pekar."
+          ]
+        },
+        "profiles": {
+          "q": "Kan en profil också ha ett namn?",
+          "a": [
+            "Ja. Författare signerar sina inlägg med en nyckel, och appar visar ett namn på de inläggen när namnets bitsocial-record innehåller den nyckeln. Gemenskaper och profiler använder samma record, så registreringen fungerar likadant för båda.",
+            "Profilsidor som samlar en författares inlägg från alla gemenskaper (BSIP-14) kommer med Bitsocials första publika RPC, och ett namn som registreras nu fungerar för dem. Ett namn kan inte vara både gemenskap och profil samtidigt."
+          ]
+        },
+        "cost": {
+          "q": "Vad kostar ett namn?",
+          "a": [
+            "Årspriset beror på namnets längd i byte, och en förnyelse kostar lika mycket. Gas på Ethereum betalas utöver det. Bokstäverna a–z, siffror och bindestreck tar en byte var, bokstäver med accent, grekiska eller kyrilliska bokstäver två, kinesiska eller japanska tecken tre och emoji oftast fyra, så en enda emoji prissätts som ett namn på 4 byte."
+          ]
+        },
+        "claiming": {
+          "q": "Varför tar det två transaktioner att claima?",
+          "a": [
+            "Vem som helst kan se väntande Ethereum-transaktioner. Om du skickade namnet öppet kunde någon kopiera det och registrera det före dig. Därför reserverar du först: du skickar ett fingeravtryck av namnet blandat med en slumpmässig hemlighet, som inte avslöjar något. En minut senare claimar du genom att skicka namnet och hemligheten, och registret mintar namnet till din plånbok om de stämmer med reservationen.",
+            "En reservation gäller i 24 timmar. Den här sidan sparar hemligheten i din webbläsare, så du kan ladda om eller komma tillbaka senare på samma enhet. Om du rensar webbläsarens data innan du claimar, reservera igen. Den första reservationen kostade bara gas."
+          ]
+        },
+        "expiry": {
+          "q": "Vad händer om ett namn går ut?",
+          "a": [
+            "Ett namn gäller i 365 dagar. Vem som helst kan förnya det med ytterligare 365, räknat från nuvarande utgångsdatum, så en vän eller en katalog kan hålla ditt vid liv. Efter utgången följer en respitperiod på 90 dagar: namnet slutar slås upp och kan bara förnyas. Sedan kan vem som helst registrera det, först med ett pristillägg som sjunker från 100 ETH till noll under 21 dagar, sedan till normalpris.",
+            "En ny registrering rensar alla records, och den nya innehavaren kan peka namnet mot sin egen nyckel. Läsare som följer namnet skulle följa dem, så förnya i god tid."
+          ]
+        },
+        "spelling": {
+          "q": "Vilka stavningar fungerar?",
+          "a": [
+            "Appar normaliserar ett namn innan de slår upp det, på samma sätt som ENS gör (ENSIP-15). Det tillåter gemener, siffror, bindestreck inuti namnet, de flesta skriftsystem och emoji. Punkter, mellanslag och understreck är inte tillåtna, utom ett understreck allra först, och förväxlingsbara tecken som blandar skriftsystem avvisas.",
+            "Registret självt kontrollerar mindre, så det skulle sälja stavningar som ingen app kan slå upp, och avgiften återbetalas inte. Den här sidan vägrar sådana och föreslår en rättelse, till exempel relationship-advice i stället för relationship_advice."
+          ]
+        },
+        "transfer": {
+          "q": "Kan jag ge bort eller sälja ett namn?",
+          "a": [
+            "Ja. Ett namn är en ERC-721-token i din plånbok, så du kan skicka det som vilken NFT som helst. Ett claim mintar alltid till plånboken som claimar, så för att registrera ett namn åt någon annan claimar du det och överför det sedan. Recorden ändras inte med ägaren, så den nya innehavaren bör peka det mot sin egen nyckel."
+          ]
+        },
+        "subnames": {
+          "q": "Kan jag dela ut undernamn?",
+          "a": [
+            "Den som innehar ett namn kan skapa undernamn som memes.yourname.bso gratis. Men innehavaren av det överordnade namnet kan när som helst ta tillbaka vilket undernamn som helst och peka det någon annanstans, så en gemenskap på ett undernamn är helt beroende av den personen. En gemenskap bör registrera ett eget namn, eller stanna på sin nyckel tills den gör det."
+          ]
+        },
+        "launch": {
+          "q": "Vad händer vid lanseringen?",
+          "a": [
+            "Registret startar stängt. Först registreras varje .bso-namn som redan används via .eth gratis på sin innehavare (se ovan). Vem som helst kan skicka de registreringarna, och utvecklarna siktar på att skicka alla inom en timme efter driftsättningen. Den publika registreringen öppnar en timme efter den sista, så öppningstiden finns på kedjan en timme i förväg. Om det skulle stanna av öppnar den ändå sju dagar efter driftsättningen.",
+            "Du kan reservera ett namn före öppningen. En reservation som görs minst en minut och högst 24 timmar före öppningen kan claimas i samma ögonblick som registreringen öppnar. Andra kan claima samma namn i det ögonblicket, och den transaktion som tas med först vinner."
+          ]
+        },
+        "eth": {
+          "q": "Fungerar mitt .eth-namn fortfarande?",
+          "a": [
+            "Ja. Appar fortsätter att slå upp .eth-namn via ENS. Det som ändras är att x.bso inte längre betyder x.eth: appar som stöder det här registret läser .bso-namn bara från det, så bot.bso och bot.eth blir separata namn som kan ha olika ägare.",
+            "Vissa appar fortsätter att läsa x.bso från x.eth tills de uppdateras. Om du innehar båda namnen, håll deras records likadana fram till dess."
+          ]
+        },
+        "control": {
+          "q": "Vem kontrollerar registret?",
+          "a": [
+            "Ingen. Kontraktet har ingen ägare, admin, proxy, pausknapp eller uppgraderingsväg. Priser, perioder och avgiftsadressen är fasta i koden, och ingen kan ta, ändra eller överföra ett namn som den inte innehar.",
+            "Det är en fork av .gwei Name Service med fyra ändringar: namn slutar på .bso, avgifter går till en fast multisig i stället för att bli kvar låsta i kontraktet, namn som redan används kopieras in vid lanseringen, och en engångsavveckling låter det flytta till Bitsocial Chain. Baksidan med kod som inte kan ändras är att en bugg inte heller kan rättas."
+          ]
+        },
+        "fees": {
+          "q": "Vart går avgifterna?",
+          "a": [
+            "Avgifterna samlas i registret, och vem som helst kan skicka dem vidare till en enda fast adress: en Safe-multisig som finansierar Bitsocials utveckling medan det här registret används. {{signers}} allt. Nycklarna tillhör Bitsocials två utvecklare och förtroendepersoner som de har utsett, och ingen enskild person har tillräckligt många av dem för att flytta pengarna.",
+            "Safen har exakt två befogenheter över registret: att ta emot avgifter och att starta avvecklingen en gång. Den kan inte ändra priser eller röra ett namn som den inte innehar. Den innehar också några reserverade projektnamn, som bitsocial.bso, som en vanlig ägare."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Varför ett nytt register i stället för ENS?",
+          "a": [
+            "Hittills har varje .bso-namn varit ett ENS-namn, till ENS-priser: i oktober 2026 angavs priset för ett nytt gemenskapsnamn till mer än 20 dollar för tre år. De flesta ägare betalar inte det för att prova en gemenskap, så de stannar på nakna nycklar. Bitsocial Chain kommer att hålla .bso-namn inbyggt, men den finns inte än.",
+            "Det här tillfälliga registret gör att ett vanligt namn kostar 0,0005 ETH per år redan idag, och gör den senare flytten till Bitsocial Chain till en kopiering av records i stället för ett ägarbyte."
+          ]
+        },
+        "whyEth": {
+          "q": "Varför betala i ETH och inte i BSO?",
+          "a": [
+            "En rabatt för betalning i BSO skulle kräva att kontraktet känner till BSO:s pris i ETH. Ett kontrakt utan ägare kan inte byta ut en priskälla som går sönder, och en tunt handlad pool skulle kunna knuffas under en enda transaktion för att köpa korta namn nästan gratis. En fast prislista i BSO skulle glida med token tills den antingen var nästan gratis eller aldrig användes, utan att någon kunde rätta den.",
+            "Bitsocial Chains eget register kan ge BSO en roll utan de här begränsningarna."
+          ]
+        },
+        "move": {
+          "q": "Vad innebär flytten till Bitsocial Chain?",
+          "a": [
+            "Bitsocial Chain är fas 3 i Bitsocials masterplan: en egen kedja som håller .bso-namn inbyggt. När en BSIP för dess namnregister når Last Call kan Safen starta avvecklingen. Kontraktet ger då 30 dagars varsel, som inte kan avbrytas eller förkortas. Under varselperioden fungerar allt som förut, så förnyelser och överföringar räknas fortfarande.",
+            "Efter varselperioden fryses registret på Ethereum. Ingenting kan registreras, förnyas, överföras eller ändras, och namn fortsätter att slås upp från det frysta tillståndet. Bitsocial Chain importerar gratis varje namn som är aktivt eller i sin respitperiod, med samma ägare, utgångsdatum och record. Du behöver inte göra något.",
+            "BSIP-13 tillåter avvecklingen bara för den här flytten, och kontraktet upprätthåller 30-dagarsvarslet."
+          ]
+        },
+        "afterMove": {
+          "q": "Vad händer med avgifterna efter flytten?",
+          "a": [
+            "Avgifter som finansierar utvecklarna upphör med det här registret. Bitsocial Chains register sätter sina egna avgifter i en egen BSIP, och planen är att namnavgifter där i stället bränns, eller används för att köpa tillbaka och bränna BSO. Mekanismen är inte bestämd än."
+          ]
+        }
       }
     }
   }

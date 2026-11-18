@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "UKK",
     "richList": "Haltijalista",
-    "chart": "Kaavio"
+    "chart": "Kaavio",
+    "domains": "Verkkotunnukset"
   },
   "languageSelector": {
     "title": "Valitse kieli",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "Ketju ei ole vielä käytössä, tilaa päivitykset",
     "title": "Kryptomaailman puuttuva <mark>sosiaalinen kerros</mark>",
-    "supporting": "Krypto muuttui kasinoksi, koska Web2, TradFi ja keskitetty infrastruktuuri omistavat jakeluväylät ja vääristävät kannustimet. Bitsocial Chain korjaa tämän: pysäyttämätön, täysin hajautettu <l2Link>Ethereum L2</l2Link> -<appchainLink>appchain</appchainLink>, jossa yhteisöt omistavat verkkonsa, tokeninsa ja tulonsa."
+    "supporting": "Krypto muuttui kasinoksi, koska Web2, TradFi ja keskitetty infrastruktuuri omistavat jakeluväylät ja vääristävät kannustimet. Bitsocial Chain korjaa tämän: pysäyttämätön, täysin hajautettu <l2Link>Ethereum L2</l2Link> -<appchainLink>appchain</appchainLink>, jossa yhteisöt omistavat verkkonsa, tokeninsa ja tulonsa.",
+    "domainsCta": "Hanki oma .bso-verkkotunnuksesi jo tänään"
   },
   "layers": {
     "ariaLabel": "Kryptomaailman kolme päällekkäistä kerrosta: ylhäällä sosiaaliset sovellukset Bitsocial-verkossa, alhaalla Ethereum L1 -selvityskerros, ja niiden välisen aukon täyttävänä hehkuvana puuttuvana kerroksena syttyy Bitsocial Chain, BSO:n voimalla toimiva Ethereum L2 -appchain, jota energiaselkäranka yhdistää läpi kerrosten.",
@@ -742,6 +744,320 @@
       "marchRally": {
         "title": "Maaliskuun 2024 nousu",
         "body": "Sijoittaja Jason Calacanis twiittaa 1. maaliskuuta haluavansa hajautetun Redditin, joka ei vaadi lupia, ja plebbit vastaa hänelle demollaan. Seedit 0.1.6 julkaistaan 3. maaliskuuta, ja 4. maaliskuuta tiimi julkistaa tokenilla rajatut yhteisöt. Kun ETH ylittää samassa kuussa 4 000 dollaria, hinta lähes kaksinkertaistuu 4. maaliskuuta ja kolminkertaistuu maaliskuun loppuun mennessä 2,2 miljoonan dollarin volyymilla, joka on tämän kaavion kuukausista suurin."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": ".bso-verkkotunnukset – nimeä yhteisösi tai profiilisi",
+      "description": "Rekisteröi .bso-verkkotunnus Bitsocial-yhteisölle tai -profiilille. Nimi on NFT, jonka lompakkosi omistaa Ethereumissa, se maksaa alkaen 0,0005 ETH vuodessa ja avautuu jokaisessa Bitsocial-sovelluksessa."
+    },
+    "hero": {
+      "titleCommunity": "Anna yhteisöllesi nimi",
+      "titleProfile": "Anna profiilillesi nimi",
+      "leadCommunity": "Kirjoita se alla olevaan otsakkeeseen. Lukijat löytävät yhteisösi tällä nimellä jokaisessa Bitsocial-sovelluksessa, ja nimen omistaa lompakkosi.",
+      "leadProfile": "Kirjoita se alla olevaan otsakkeeseen. Julkaisusi kantavat tätä nimeä jokaisessa Bitsocial-sovelluksessa, ja nimen omistaa lompakkosi.",
+      "kindLabel": "Nimi kohteelle",
+      "kindCommunity": "Yhteisö",
+      "kindProfile": "Profiili",
+      "opensIn": "Rekisteröinti avautuu {{time}} kuluttua. Voit varata nimen jo nyt.",
+      "opensOn": "Rekisteröinti avautuu {{date}}.",
+      "notDeployed": "Rekisteri käynnistyy pian. Nimet ja hinnat voi tarkistaa jo nyt."
+    },
+    "plate": {
+      "inputLabelCommunity": "Yhteisösi nimi",
+      "inputLabelProfile": "Profiilisi nimi",
+      "placeholderCommunity": "yhteisösi",
+      "placeholderProfile": "nimesi",
+      "sublineCommunity": "Yhteisö · avautuu nimellä 5chanissa, Seeditissä ja muissa Bitsocial-sovelluksissa",
+      "sublineProfile": "Profiili · julkaisusi kaikista yhteisöistä yhden nimen alla",
+      "join": "Liity",
+      "posts": "Julkaisut",
+      "rules": "Säännöt",
+      "follow": "Seuraa",
+      "about": "Tietoja",
+      "captionCommunity": "Yhteisön otsake, jonka otsikkona on tarkistamasi .bso-nimi",
+      "captionProfile": "Profiilin otsake, jonka otsikkona on tarkistamasi .bso-nimi",
+      "withoutCommunity": "Ilman nimeä ihmiset jakavat tämän",
+      "withoutProfile": "Ilman nimeä julkaisuissasi näkyy tämä",
+      "withCommunity": "Nimen kanssa tämän",
+      "withProfile": "Nimen kanssa tämä"
+    },
+    "checks": {
+      "spelling": "Kirjoitusasu",
+      "availability": "Saatavuus",
+      "price": "Hinta",
+      "typeName": "Kirjoita nimi",
+      "spellingOk": "Kelvollinen nimi",
+      "fixFirst": "Korjaa ensin kirjoitusasu",
+      "dot": "Pisteet eivät ole sallittuja nimessä.",
+      "space": "Välilyönnit eivät ole sallittuja.",
+      "underscore": "Alaviiva on sallittu vain alussa.",
+      "hyphenEdge": "Nimi ei voi alkaa tai päättyä yhdysmerkkiin.",
+      "labelExtension": "Nimen kolmas ja neljäs merkki eivät voi olla ”--”.",
+      "tooLong": "Liian pitkä: nimi voi olla enintään 255 tavua.",
+      "lookalike": "Siinä sekoittuu kirjoitusjärjestelmiä tai on samannäköisiä merkkejä.",
+      "character": "”{{character}}” ei ole sallittu.",
+      "characterUnknown": "Siinä on merkki, joka ei ole sallittu.",
+      "checking": "Tarkistetaan…",
+      "available": "Vapaana",
+      "taken": "Rekisteröity {{date}} asti",
+      "yours": "Sinun, {{date}} asti",
+      "reserved": "Varattu Bitsocialille {{date}} asti",
+      "grace": "Vanheni {{date}}. Omistaja voi uusia sen {{until}} asti.",
+      "premium": "Vapautui {{date}}. Sen lisähinta laskee nollaan viimeistään {{end}}.",
+      "lookupFailed": "Ethereumiin ei saatu yhteyttä.",
+      "retry": "Yritä uudelleen",
+      "notDeployed": "Tarkistetaan, kun rekisteri käynnistyy",
+      "yearly": "{{price}} vuodessa",
+      "yearlyShort": "{{price}} vuodessa, {{count}} merkin nimien hinta",
+      "yearlyBytes": "{{price}} vuodessa, hinta sen {{count}} tavun mukaan",
+      "withPremium": "{{price}} ensimmäiseltä vuodelta, sisältää lisähinnan {{premium}}"
+    },
+    "cta": {
+      "claim": "Lunasta {{name}} hintaan {{price}}",
+      "reserve": "Varaa {{name}} nyt",
+      "renew": "Uusi {{name}}",
+      "pointCommunity": "Ohjaa {{name}} yhteisöösi",
+      "pointProfile": "Ohjaa {{name}} profiiliisi",
+      "soon": "Rekisteröinti avautuu pian",
+      "fix": "Käytä nimeä {{name}}",
+      "noteClaim": "Kolme lompakkotransaktiota, noin kaksi minuuttia.",
+      "noteReserve": "Varaa nyt ja lunasta, kun rekisteröinti avautuu.",
+      "noteReserveLater": "Varaaminen avautuu 24 tuntia ennen rekisteröintiä.",
+      "noteTaken": "Omistaja: {{owner}}.",
+      "noteReserved": "Omistajana Bitsocialin maksu-Safe, jolle BSIP-13 sen varaa.",
+      "noteGrace": "Kuka tahansa voi uusia sen, jolloin se pysyy omistajallaan.",
+      "notePremium": "Lisähinta laskee joka sekunti, ja mahdollinen ylimaksu palautetaan.",
+      "noteNotDeployed": "Rekisterin älysopimus ei ole vielä Ethereumissa."
+    },
+    "claim": {
+      "eyebrow": "Lunastus",
+      "title": "Kolme transaktiota lompakostasi, noin kaksi minuuttia",
+      "pickName": "Aloita valitsemalla yltä vapaa nimi.",
+      "claiming": "Lunastetaan {{name}}",
+      "renewing": "Uusitaan {{name}}",
+      "pointing": "Ohjataan {{name}}",
+      "connect": "Yhdistä lompakko",
+      "connectWith": "Yhdistä {{wallet}}",
+      "browserWallet": "selainlompakko",
+      "connecting": "Yhdistetään…",
+      "noWallet": "Tästä selaimesta ei löytynyt Ethereum-lompakkoa. Asenna selainlompakko tai avaa tämä sivu lompakkosovelluksesi selaimessa.",
+      "connectedAs": "Yhdistetty: {{address}}",
+      "reserveTitle": "Varaa",
+      "reserveBody": "Ensin ketjuun lähtee piilotettu varaus, joten kukaan ei voi lukea nimeä odottavasta transaktiostasi ja viedä sitä. Odota sitten 60 sekuntia.",
+      "reserveMeta": "commit() · vain gas",
+      "reserveAction": "Varaa {{name}}",
+      "reserveTooEarly": "Voit varata {{date}} alkaen, 24 tuntia ennen kuin rekisteröinti avautuu.",
+      "reserved": "Varattu. Tämä selain säilyttää varauksen {{time}} asti.",
+      "claimTitle": "Lunasta",
+      "claimBody": "Maksa nimestä. Se mintataan samaan lompakkoon 365 päiväksi. Sinulla on aikaa enintään 24 tuntia varauksesta, ja tämä selain muistaa, mihin jäit.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "Lunasta {{name}} hintaan {{price}}",
+      "claimWait": "Valmis {{seconds}} s kuluttua",
+      "claimWaitOpening": "Valmis, kun rekisteröinti avautuu, {{time}} kuluttua",
+      "startOver": "Aloita alusta",
+      "renewTitle": "Uusi",
+      "renewBody": "Lisää 365 päivää nykyiseen vanhenemispäivään. Kuka tahansa voi uusia minkä tahansa nimen, ja se pysyy omistajallaan.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "Uusi {{name}} hintaan {{price}}",
+      "renewed": "Uusittu {{date}} asti.",
+      "recordTitleCommunity": "Ohjaa se yhteisöösi",
+      "recordTitleProfile": "Ohjaa se profiiliisi",
+      "recordLabelCommunity": "Yhteisösi julkinen avain sen asetuksista",
+      "recordLabelProfile": "Tilisi julkinen avain sovelluksesi tiliasetuksista",
+      "recordMeta": "setText(\"bitsocial\") · vain gas · muutettavissa milloin tahansa",
+      "recordAction": "Tallenna tietue",
+      "recordInvalid": "Tämä ei ole julkinen avain. Avain on 52 merkkiä pitkä ja alkaa merkeillä 12D3KooW.",
+      "recordCurrent": "Osoittaa nyt kohteeseen {{record}}.",
+      "recordNotOwner": "Vain nimen {{name}} omistava lompakko voi asettaa sen tietueen.",
+      "doneCommunity": "{{name}} osoittaa nyt yhteisöösi. Aseta seuraavaksi {{name}} yhteisön osoitteeksi sen asetuksissa.",
+      "doneProfile": "{{name}} osoittaa nyt tiliisi. Kirjoita seuraavaksi {{name}} nimeksesi sovelluksesi tiliasetuksiin, jotta julkaisusi näyttävät sen.",
+      "confirmInWallet": "Vahvista lompakossasi",
+      "waitingForTx": "Odotetaan transaktiota…",
+      "viewTx": "Näytä transaktio",
+      "rejected": "Hylkäsit pyynnön lompakossa.",
+      "failed": "Jokin meni pieleen: {{message}}",
+      "reverted": "Rekisteri hylkäsi transaktion ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "Varauksen on oltava minuutin vanha. Yritä uudelleen muutaman sekunnin kuluttua.",
+        "CommitmentTooOld": "Tämä varaus on yli 24 tuntia vanha. Varaa uudelleen.",
+        "CommitmentNotFound": "Tältä lompakolta ei löytynyt varausta. Varaa uudelleen.",
+        "AlreadyCommitted": "Tämä varaus on jo ketjussa.",
+        "AlreadyRegistered": "Joku rekisteröi tämän nimen ensin.",
+        "InsufficientFee": "Hinta muuttui. Yritä uudelleen.",
+        "Expired": "Tämä nimi on vanhentunut.",
+        "Unauthorized": "Tämä lompakko ei omista nimeä."
+      }
+    },
+    "activity": {
+      "title": "Uusimmat nimet",
+      "live": "Suoraan Ethereumista",
+      "registered": "{{name}} rekisteröity",
+      "empty": "Nimiä ei ole vielä rekisteröity.",
+      "notDeployed": "Nimet näkyvät tässä, kun rekisteri käynnistyy.",
+      "failed": "Uusimpia nimiä ei voitu ladata.",
+      "browse": "Selaa kaikkia nimiä"
+    },
+    "lifecycle": {
+      "eyebrow": "Nimen pitäminen",
+      "title": "Nimi on voimassa vuoden kerrallaan",
+      "lead": "Uusiminen lisää 365 päivää nykyiseen vanhenemispäivään samaan hintaan. Kuka tahansa voi uusia minkä tahansa nimen, joten ystävä tai hakemisto voi pitää sinunkin nimesi voimassa.",
+      "active": "Voimassa",
+      "activeNote": "365 päivää, selvitetään",
+      "grace": "Armonaika",
+      "graceNote": "90 päivää, ei selvitetä, vain uusiminen",
+      "premium": "Lisähinta",
+      "premiumNote": "21 päivää, laskee 100 ETH:sta nollaan",
+      "open": "Vapaa",
+      "openNote": "kuka tahansa, normaali hinta",
+      "caption": "Ei mittakaavassa. Kun nimi rekisteröidään uudelleen armonajan jälkeen, kaikki tietueet tyhjennetään, joten uusi omistaja aloittaa tyhjästä."
+    },
+    "eth": {
+      "badge": "Ilmainen käytössä oleville nimille",
+      "title": "Käytätkö jo .bso-nimeä? Se on sinun.",
+      "lead": "Tähän asti sovellukset ovat lukeneet memes.bso:n memes.eth:stä. Käynnistyksessä jokainen .eth-nimi, jolla on bitsocial-tietue, alinimet mukaan lukien, jaetaan airdropilla samana .bso-nimenä sen omistavalle lompakolle samalla tietueella ja ensimmäinen vuosi maksettuna. Mitään ei tarvitse lunastaa eikä maksaa.",
+      "caveat": "Mukana ovat vain nimet, joilla oli bitsocial-tietue käynnistyksen tilannekuvassa. Jos nimesi sai tietueensa myöhemmin, lunasta .bso-nimi heti kun rekisteröinti avautuu, ennen kuin joku muu ehtii.",
+      "label": "Tarkista .eth-nimesi",
+      "placeholder": "memes.eth",
+      "check": "Tarkista",
+      "registered": "{{name}} on rekisteröity omistajalle {{owner}} {{date}} asti.",
+      "points": "Se osoittaa kohteeseen {{record}}.",
+      "notYet": "{{name}} ei ole vielä rekisteröity. Airdropatut nimet rekisteröidään ennen kuin rekisteröinti avautuu kaikille, joten tarkista uudelleen silloin.",
+      "notSeeded": "{{name}} ei saanut airdropia, ja kuka tahansa voi lunastaa sen. Jos käytät nimeä {{eth}}, lunasta se ennen kuin joku muu ehtii.",
+      "tryAbove": "Tarkista {{name}} yllä"
+    },
+    "faq": {
+      "eyebrow": "Kysymykset",
+      "title": "Miten .bso-nimet toimivat",
+      "lead": "Vastaukset perustuvat BSIP-13:een, määrittelyyn, jonka tämä rekisteri toteuttaa.",
+      "groups": {
+        "using": "Nimen omistaminen",
+        "launch": "Käynnistys ja .eth-nimet",
+        "trust": "Maksut, luottamus ja Bitsocial Chain"
+      },
+      "signers": "vaativat {{threshold}} allekirjoitusta sen {{owners}} avaimesta",
+      "signersUnknown": "vaativat allekirjoituksen useammalta sen avaimelta",
+      "priceLength": "Nimen pituus",
+      "pricePerYear": "Vuodessa",
+      "bytes_one": "{{count}} tavu",
+      "bytes_other": "{{count}} tavua",
+      "bytesOrMore_one": "{{count}} tavu tai enemmän",
+      "bytesOrMore_other": "{{count}} tavua tai enemmän",
+      "contract": "Rekisterin älysopimus",
+      "safe": "Maksu-Safe",
+      "spec": "Lue BSIP-13",
+      "items": {
+        "what": {
+          "q": "Mitä .bso-nimi tekee?",
+          "a": [
+            "Se antaa yhteisölle tai profiilille nimen, jonka ihmiset voivat lukea. Nimen bitsocial-tietue sisältää avainosoitteen, pitkän 12D3KooW…-merkkijonon, joka tunnistaa yhteisön tai profiilin verkossa. Sovellukset hakevat nimen, lukevat avaimen ja lataavat sen, mihin avain osoittaa, joten memes.bso avaa saman yhteisön 5chanissa, Seeditissä ja missä tahansa muussa Bitsocial-sovelluksessa.",
+            "Nimi tekee myös avaimesta vaihdettavan. Jos avain katoaa tai varastetaan, ohjaat nimen uuteen avaimeen ja lukijat seuraavat perässä. Pelkällä avaimella tunnettu yhteisö ei voi toipua näin.",
+            "Itse nimi on NFT (ERC-721) Ethereumissa, ja sitä pitää hallussaan lompakkosi. Kuka sen omistaa, päättää, mihin se osoittaa."
+          ]
+        },
+        "profiles": {
+          "q": "Voiko profiilillakin olla nimi?",
+          "a": [
+            "Kyllä. Kirjoittajat allekirjoittavat julkaisunsa avaimella, ja sovellukset näyttävät näissä julkaisuissa nimen, kun nimen bitsocial-tietue sisältää kyseisen avaimen. Yhteisöt ja profiilit käyttävät samaa tietuetta, joten rekisteröinti toimii molemmille samalla tavalla.",
+            "Profiilisivut, jotka kokoavat kirjoittajan julkaisut kaikista yhteisöistä (BSIP-14), tulevat Bitsocialin ensimmäisen julkisen RPC:n myötä, ja nyt rekisteröity nimi toimii niiden kanssa. Yksi nimi ei voi palvella yhtä aikaa yhteisöä ja profiilia."
+          ]
+        },
+        "cost": {
+          "q": "Paljonko nimi maksaa?",
+          "a": [
+            "Vuosihinta riippuu nimen pituudesta tavuina, ja uusiminen maksaa saman verran. Ethereumin gas-maksu tulee päälle. Kirjaimet a–z, numerot ja yhdysmerkit vievät kukin yhden tavun, tarkkeelliset, kreikkalaiset tai kyrilliset kirjaimet kaksi, kiinalaiset tai japanilaiset merkit kolme ja emojit yleensä neljä, joten yksittäinen emoji hinnoitellaan kuin 4 tavun nimi."
+          ]
+        },
+        "claiming": {
+          "q": "Miksi lunastus vaatii kaksi transaktiota?",
+          "a": [
+            "Kuka tahansa voi seurata odottavia Ethereum-transaktioita. Jos lähettäisit nimen avoimesti, joku voisi kopioida sen ja rekisteröidä sen ennen sinua. Siksi ensin varaat: lähetät nimen sormenjäljen sekoitettuna satunnaiseen salaisuuteen, eikä se paljasta mitään. Minuutin päästä lunastat lähettämällä nimen ja salaisuuden, ja rekisteri mintaa nimen lompakkoosi, jos ne vastaavat varausta.",
+            "Varaus on voimassa 24 tuntia. Tämä sivu säilyttää salaisuuden selaimessasi, joten voit ladata sivun uudelleen tai palata myöhemmin samalla laitteella. Jos tyhjennät selaimen tiedot ennen lunastusta, varaa uudelleen. Ensimmäinen varaus maksoi vain gasin."
+          ]
+        },
+        "expiry": {
+          "q": "Mitä tapahtuu, jos nimi vanhenee?",
+          "a": [
+            "Nimi on voimassa 365 päivää. Kuka tahansa voi uusia sen toiseksi 365 päiväksi nykyisestä vanhenemispäivästä laskien, joten ystävä tai hakemisto voi pitää sinunkin nimesi voimassa. Vanhenemisen jälkeen tulee 90 päivän armonaika: nimeä ei enää selvitetä, ja sen voi vain uusia. Sen jälkeen kuka tahansa voi rekisteröidä sen, ensin lisähinnalla, joka laskee 21 päivässä 100 ETH:sta nollaan, ja sitten normaalihintaan.",
+            "Uusi rekisteröinti tyhjentää kaikki tietueet, ja uusi haltija voi ohjata nimen omaan avaimeensa. Nimeä seuraavat lukijat seuraisivat häntä, joten uusi ajoissa."
+          ]
+        },
+        "spelling": {
+          "q": "Mitkä kirjoitusasut toimivat?",
+          "a": [
+            "Sovellukset normalisoivat nimen ennen hakua samalla tavalla kuin ENS (ENSIP-15). Se sallii pienet kirjaimet, numerot, yhdysmerkit nimen sisällä, useimmat kirjoitusjärjestelmät ja emojit. Pisteet, välilyönnit ja alaviivat eivät ole sallittuja, paitsi alaviiva aivan alussa, ja kirjoitusjärjestelmiä sekoittavat samannäköiset merkit hylätään.",
+            "Rekisteri itse tarkistaa vähemmän, joten se myisi kirjoitusasuja, joita mikään sovellus ei pysty selvittämään, eikä maksua palauteta. Tämä sivu torjuu sellaiset ja ehdottaa korjausta, esimerkiksi relationship_advice-nimen sijaan relationship-advice."
+          ]
+        },
+        "transfer": {
+          "q": "Voinko antaa tai myydä nimen?",
+          "a": [
+            "Kyllä. Nimi on ERC-721-token lompakossasi, joten voit lähettää sen kuten minkä tahansa NFT:n. Lunastus mintaa nimen aina lunastavaan lompakkoon, joten jos haluat rekisteröidä nimen jollekulle toiselle, lunasta se ja siirrä se sitten. Tietue ei muutu omistajan mukana, joten uuden haltijan kannattaa ohjata nimi omaan avaimeensa."
+          ]
+        },
+        "subnames": {
+          "q": "Voinko jakaa alinimiä?",
+          "a": [
+            "Nimen haltija voi luoda ilmaiseksi alinimiä, kuten memes.yourname.bso. Mutta ylätason nimen haltija voi milloin tahansa ottaa minkä tahansa alinimen takaisin ja ohjata sen muualle, joten alinimellä toimiva yhteisö on täysin tämän henkilön varassa. Yhteisön kannattaa rekisteröidä oma nimi tai pysyä avaimessaan, kunnes se tekee niin."
+          ]
+        },
+        "launch": {
+          "q": "Mitä käynnistyksessä tapahtuu?",
+          "a": [
+            "Rekisteri käynnistyy suljettuna. Ensin jokainen .eth-nimen kautta jo käytössä oleva .bso-nimi rekisteröidään ilmaiseksi haltijalleen (ks. yllä). Kuka tahansa voi lähettää nämä rekisteröinnit, ja kehittäjät pyrkivät lähettämään ne kaikki tunnin kuluessa käyttöönotosta. Julkinen rekisteröinti avautuu tunti viimeisen jälkeen, joten avautumisaika näkyy ketjussa tuntia etukäteen. Jos prosessi jumittuu, rekisteröinti avautuu joka tapauksessa seitsemän päivän kuluttua käyttöönotosta.",
+            "Voit varata nimen ennen avautumista. Varauksen, joka on tehty vähintään minuuttia ja enintään 24 tuntia ennen avautumista, voi lunastaa heti avautumishetkellä. Muut voivat lunastaa saman nimen samalla hetkellä, ja ensimmäisenä lohkoon päätynyt transaktio voittaa."
+          ]
+        },
+        "eth": {
+          "q": "Toimiiko .eth-nimeni yhä?",
+          "a": [
+            "Kyllä. Sovellukset selvittävät .eth-nimet edelleen ENS:n kautta. Muutos on se, että x.bso ei enää tarkoita x.eth:ta: tätä rekisteriä tukevat sovellukset lukevat .bso-nimet vain siitä, joten bot.bso ja bot.eth ovat erillisiä nimiä, joilla voi olla eri omistajat.",
+            "Jotkin sovellukset lukevat x.bso:n x.eth:sta, kunnes ne päivittyvät. Jos omistat molemmat nimet, pidä niiden tietueet siihen asti samoina."
+          ]
+        },
+        "control": {
+          "q": "Kuka hallitsee rekisteriä?",
+          "a": [
+            "Ei kukaan. Älysopimuksella ei ole omistajaa, ylläpitäjää, proxya, keskeytyskytkintä eikä päivityspolkua. Hinnat, jaksot ja maksuosoite on kiinnitetty sen koodiin, eikä kukaan voi ottaa, muokata tai siirtää nimeä, joka ei ole hänen hallussaan.",
+            "Se on .gwei Name Servicen forkki neljällä muutoksella: nimet päättyvät .bso:hon, maksut menevät kiinteään multisigiin sen sijaan, että ne jäisivät lukituiksi sopimukseen, jo käytössä olevat nimet kopioidaan käynnistyksessä, ja kertaluonteinen alasajo mahdollistaa siirron Bitsocial Chainiin. Muuttumattoman koodin kääntöpuoli on, ettei bugiakaan voi paikata."
+          ]
+        },
+        "fees": {
+          "q": "Minne maksut menevät?",
+          "a": [
+            "Maksut kertyvät rekisteriin, ja kuka tahansa voi lähettää ne eteenpäin yhteen kiinteään osoitteeseen: Safe-multisigiin, joka rahoittaa Bitsocialin kehitystä niin kauan kuin tämä rekisteri on käytössä. Kaikki toimet {{signers}}. Avaimet kuuluvat Bitsocialin kahdelle kehittäjälle ja heidän nimeämilleen luottohenkilöille, eikä kenelläkään yksittäisellä ihmisellä ole niitä tarpeeksi varojen siirtämiseen.",
+            "Safella on rekisteriin tasan kaksi valtuutta: maksujen vastaanottaminen ja alasajon käynnistäminen kerran. Se ei voi muuttaa hintoja eikä koskea nimeen, joka ei ole sen hallussa. Se omistaa myös tavallisena omistajana muutamia varattuja projektinimiä, kuten bitsocial.bso."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Miksi uusi rekisteri eikä ENS?",
+          "a": [
+            "Tähän asti jokainen .bso-nimi on ollut ENS-nimi ENS:n hinnoin: lokakuussa 2026 uuden yhteisönimen hinta oli yli 20 dollaria kolmelta vuodelta. Useimmat omistajat eivät maksa sitä vain kokeillakseen yhteisöä, joten he pysyvät paljaissa avaimissa. Bitsocial Chain tulee säilyttämään .bso-nimet natiivisti, mutta sitä ei ole vielä olemassa.",
+            "Tämän väliaikaisen rekisterin ansiosta tavallinen nimi maksaa jo tänään 0,0005 ETH vuodessa, ja myöhemmästä siirrosta Bitsocial Chainiin tulee tietueiden kopiointi eikä omistajanvaihdos."
+          ]
+        },
+        "whyEth": {
+          "q": "Miksi maksaa ETH:lla eikä BSO:lla?",
+          "a": [
+            "BSO-maksun alennus vaatisi, että sopimus tietäisi BSO:n hinnan ETH:na. Omistajaton sopimus ei voi vaihtaa rikkoutunutta hintalähdettä, ja vähäisen kaupankäynnin poolia voisi siirtää yhden transaktion ajaksi, jotta lyhyitä nimiä voisi ostaa lähes ilmaiseksi. Kiinteä BSO-hinnasto ajelehtisi tokenin mukana, kunnes se olisi joko lähes ilmainen tai ei koskaan käytössä, eikä kukaan voisi korjata sitä.",
+            "Bitsocial Chainin oma rekisteri voi antaa BSO:lle roolin ilman näitä rajoituksia."
+          ]
+        },
+        "move": {
+          "q": "Mitä siirtyminen Bitsocial Chainiin tarkoittaa?",
+          "a": [
+            "Bitsocial Chain on Bitsocialin yleissuunnitelman vaihe 3: oma ketju, joka säilyttää .bso-nimet natiivisti. Kun sen nimirekisteriä koskeva BSIP etenee Last Call -vaiheeseen, Safe voi käynnistää alasajon. Sopimus antaa silloin 30 päivän ennakkoilmoituksen, jota ei voi perua eikä lyhentää. Ilmoitusaikana kaikki toimii kuten ennenkin, joten uusimiset ja siirrot lasketaan edelleen.",
+            "Ilmoitusajan jälkeen Ethereumin rekisteri jäädytetään. Mitään ei voi rekisteröidä, uusia, siirtää tai muokata, ja nimet selvitetään edelleen jäädytetystä tilasta. Bitsocial Chain tuo ilmaiseksi jokaisen voimassa olevan tai armonajalla olevan nimen samalla omistajalla, vanhenemispäivällä ja tietueella. Sinun ei tarvitse tehdä mitään.",
+            "BSIP-13 sallii alasajon vain tätä siirtoa varten, ja sopimus valvoo 30 päivän ennakkoilmoitusta."
+          ]
+        },
+        "afterMove": {
+          "q": "Mitä maksuille tapahtuu siirron jälkeen?",
+          "a": [
+            "Kehittäjien rahoittaminen maksuilla päättyy tämän rekisterin myötä. Bitsocial Chainin rekisteri määrittää omat maksunsa omassa BSIP:ssään, ja suunnitelmana on, että nimimaksut siellä sen sijaan poltetaan tai käytetään BSO:n takaisinostoon ja polttamiseen. Mekanismista ei ole vielä päätetty."
+          ]
+        }
       }
     }
   }

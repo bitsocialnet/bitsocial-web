@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "FAQ",
     "richList": "Rich list",
-    "chart": "Grafico"
+    "chart": "Grafico",
+    "domains": "Domini"
   },
   "languageSelector": {
     "title": "Seleziona lingua",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "La chain non è ancora attiva, iscriviti per ricevere aggiornamenti",
     "title": "Lo <mark>strato sociale</mark> mancante delle crypto",
-    "supporting": "Le crypto sono diventate un casinò perché Web2, TradFi e l'infrastruttura centralizzata possiedono i canali di distribuzione e ne distorcono gli incentivi. Bitsocial Chain risolve il problema: un'<appchainLink>appchain</appchainLink> <l2Link>Ethereum L2</l2Link> inarrestabile e completamente decentralizzata, in cui le comunità possiedono le proprie reti, i propri token e i propri ricavi."
+    "supporting": "Le crypto sono diventate un casinò perché Web2, TradFi e l'infrastruttura centralizzata possiedono i canali di distribuzione e ne distorcono gli incentivi. Bitsocial Chain risolve il problema: un'<appchainLink>appchain</appchainLink> <l2Link>Ethereum L2</l2Link> inarrestabile e completamente decentralizzata, in cui le comunità possiedono le proprie reti, i propri token e i propri ricavi.",
+    "domainsCta": "Prendi oggi il tuo dominio .bso"
   },
   "layers": {
     "ariaLabel": "Tre strati sovrapposti delle crypto: le app social sulla rete Bitsocial in alto, il regolamento di Ethereum L1 alla base e Bitsocial Chain, l'appchain Ethereum L2 alimentata da BSO, che si accende come lo strato luminoso mancante e si incastra nello spazio tra i due, attraversata da una dorsale di energia.",
@@ -747,6 +749,322 @@
       "marchRally": {
         "title": "Il rally di marzo 2024",
         "body": "Il 1° marzo l'investitore Jason Calacanis twitta che vuole un Reddit distribuito e senza permessi, e plebbit risponde con la sua demo. Seedit 0.1.6 esce il 3 marzo e il 4 marzo il team annuncia le comunità con accesso tramite token. Con ETH che supera i 4.000 dollari quel mese, il prezzo quasi raddoppia il 4 marzo e triplica entro la fine di marzo, con un volume di 2,2 milioni di dollari, il più alto tra tutti i mesi di questo grafico."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": "Domini .bso - Un nome per la tua comunità o il tuo profilo",
+      "description": "Registra un dominio .bso per una comunità o un profilo Bitsocial. Il nome è un NFT su Ethereum di proprietà del tuo portafoglio, a partire da 0,0005 ETH all'anno, e si apre in ogni app Bitsocial."
+    },
+    "hero": {
+      "titleCommunity": "Dai un nome alla tua comunità",
+      "titleProfile": "Dai un nome al tuo profilo",
+      "leadCommunity": "Scrivilo nell'intestazione qui sotto. I lettori troveranno la tua comunità con questo nome in ogni app Bitsocial, e il nome appartiene al tuo portafoglio.",
+      "leadProfile": "Scrivilo nell'intestazione qui sotto. I tuoi post porteranno questo nome in ogni app Bitsocial, e il nome appartiene al tuo portafoglio.",
+      "kindLabel": "Nome per",
+      "kindCommunity": "Una comunità",
+      "kindProfile": "Un profilo",
+      "opensIn": "Le registrazioni aprono tra {{time}}. Puoi già prenotare un nome.",
+      "opensOn": "Le registrazioni aprono il {{date}}.",
+      "notDeployed": "Il registro arriva presto. Nomi e prezzi si possono già controllare."
+    },
+    "plate": {
+      "inputLabelCommunity": "Il nome della tua comunità",
+      "inputLabelProfile": "Il nome del tuo profilo",
+      "placeholderCommunity": "latuacomunita",
+      "placeholderProfile": "iltuonome",
+      "sublineCommunity": "Comunità · si apre per nome in 5chan, Seedit e altre app Bitsocial",
+      "sublineProfile": "Profilo · i tuoi post di ogni comunità, sotto un unico nome",
+      "join": "Unisciti",
+      "posts": "Post",
+      "rules": "Regole",
+      "follow": "Segui",
+      "about": "Info",
+      "captionCommunity": "L'intestazione di una comunità il cui titolo è il nome .bso che stai controllando",
+      "captionProfile": "L'intestazione di un profilo il cui titolo è il nome .bso che stai controllando",
+      "withoutCommunity": "Senza un nome, le persone condividono",
+      "withoutProfile": "Senza un nome, i tuoi post mostrano",
+      "withCommunity": "Con un nome, condividono",
+      "withProfile": "Con un nome, mostrano"
+    },
+    "checks": {
+      "spelling": "Ortografia",
+      "availability": "Disponibilità",
+      "price": "Prezzo",
+      "typeName": "Scrivi un nome",
+      "spellingOk": "Nome valido",
+      "fixFirst": "Correggi prima l'ortografia",
+      "dot": "I punti non sono ammessi in un nome.",
+      "space": "Gli spazi non sono ammessi.",
+      "underscore": "Il trattino basso è ammesso solo all'inizio.",
+      "hyphenEdge": "Un nome non può iniziare o finire con un trattino.",
+      "labelExtension": "Un nome non può avere «--» come terzo e quarto carattere.",
+      "tooLong": "Troppo lungo: un nome può avere al massimo 255 byte.",
+      "lookalike": "Mescola sistemi di scrittura o usa caratteri simili ad altri.",
+      "character": "«{{character}}» non è ammesso.",
+      "characterUnknown": "Contiene un carattere non ammesso.",
+      "checking": "Verifica in corso…",
+      "available": "Disponibile",
+      "taken": "Registrato fino al {{date}}",
+      "yours": "Tuo, fino al {{date}}",
+      "reserved": "Riservato a Bitsocial fino al {{date}}",
+      "grace": "Scaduto il {{date}}. Il proprietario può rinnovarlo fino al {{until}}.",
+      "premium": "Liberato il {{date}}. Il sovrapprezzo scende a zero entro il {{end}}.",
+      "lookupFailed": "Impossibile raggiungere Ethereum.",
+      "retry": "Riprova",
+      "notDeployed": "Verificato quando il registro sarà attivo",
+      "yearly": "{{price}} all'anno",
+      "yearlyShort": "{{price}} all'anno, il prezzo per i nomi di {{count}} caratteri",
+      "yearlyBytes": "{{price}} all'anno, in base ai suoi {{count}} byte",
+      "withPremium": "{{price}} per il primo anno, incluso un sovrapprezzo di {{premium}}"
+    },
+    "cta": {
+      "claim": "Rivendica {{name}} per {{price}}",
+      "reserve": "Prenota {{name}} ora",
+      "renew": "Rinnova {{name}}",
+      "pointCommunity": "Punta {{name}} alla tua comunità",
+      "pointProfile": "Punta {{name}} al tuo profilo",
+      "soon": "Le registrazioni aprono presto",
+      "fix": "Usa {{name}}",
+      "noteClaim": "Tre transazioni dal portafoglio, circa due minuti.",
+      "noteReserve": "Prenotalo ora e rivendicalo quando aprono le registrazioni.",
+      "noteReserveLater": "Le prenotazioni aprono 24 ore prima delle registrazioni.",
+      "noteTaken": "Detenuto da {{owner}}.",
+      "noteReserved": "Detenuto dal Safe delle commissioni di Bitsocial, a cui BSIP-13 lo riserva.",
+      "noteGrace": "Chiunque può rinnovarlo, e così resta al suo proprietario.",
+      "notePremium": "Il sovrapprezzo scende ogni secondo, e qualsiasi pagamento in eccesso viene rimborsato.",
+      "noteNotDeployed": "Il contratto del registro non è ancora su Ethereum."
+    },
+    "claim": {
+      "eyebrow": "Rivendicazione",
+      "title": "Tre transazioni dal tuo portafoglio, circa due minuti",
+      "pickName": "Scegli un nome disponibile qui sopra per iniziare.",
+      "claiming": "Rivendicazione di {{name}}",
+      "renewing": "Rinnovo di {{name}}",
+      "pointing": "Collegamento di {{name}}",
+      "connect": "Collega un portafoglio",
+      "connectWith": "Collega {{wallet}}",
+      "browserWallet": "portafoglio del browser",
+      "connecting": "Connessione…",
+      "noWallet": "Nessun portafoglio Ethereum trovato in questo browser. Installa un portafoglio per browser, oppure apri questa pagina nel browser della tua app portafoglio.",
+      "connectedAs": "Connesso come {{address}}",
+      "reserveTitle": "Prenota",
+      "reserveBody": "Prima va on-chain un impegno sigillato, così nessuno può leggere il nome dalla tua transazione in sospeso e prenderlo. Poi aspetti 60 secondi.",
+      "reserveMeta": "commit() · solo gas",
+      "reserveAction": "Prenota {{name}}",
+      "reserveTooEarly": "Puoi prenotare dal {{date}}, 24 ore prima che aprano le registrazioni.",
+      "reserved": "Prenotato. Questo browser conserva la prenotazione fino al {{time}}.",
+      "claimTitle": "Rivendica",
+      "claimBody": "Paga il nome. Viene coniato sullo stesso portafoglio per 365 giorni. Hai fino a 24 ore dopo la prenotazione, e questo browser ricorda dove eri rimasto.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "Rivendica {{name}} per {{price}}",
+      "claimWait": "Pronto tra {{seconds}} s",
+      "claimWaitOpening": "Pronto all'apertura delle registrazioni, tra {{time}}",
+      "startOver": "Ricomincia",
+      "renewTitle": "Rinnova",
+      "renewBody": "Aggiunge 365 giorni alla scadenza attuale. Chiunque può rinnovare qualsiasi nome, e il nome resta al suo proprietario.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "Rinnova {{name}} per {{price}}",
+      "renewed": "Rinnovato fino al {{date}}.",
+      "recordTitleCommunity": "Puntalo alla tua comunità",
+      "recordTitleProfile": "Puntalo al tuo profilo",
+      "recordLabelCommunity": "La chiave pubblica della tua comunità, dalle sue impostazioni",
+      "recordLabelProfile": "La chiave pubblica del tuo account, dalle impostazioni account della tua app",
+      "recordMeta": "setText(\"bitsocial\") · solo gas · modificabile in qualsiasi momento",
+      "recordAction": "Salva record",
+      "recordInvalid": "Questa non è una chiave pubblica. È lunga 52 caratteri e inizia con 12D3KooW.",
+      "recordCurrent": "Ora punta a {{record}}.",
+      "recordNotOwner": "Solo il portafoglio che possiede {{name}} può impostarne il record.",
+      "doneCommunity": "{{name}} punta alla tua comunità. Ora imposta {{name}} come indirizzo della comunità nelle sue impostazioni.",
+      "doneProfile": "{{name}} punta al tuo account. Ora inserisci {{name}} come tuo nome nelle impostazioni account della tua app, così i tuoi post lo mostrano.",
+      "confirmInWallet": "Conferma nel tuo portafoglio",
+      "waitingForTx": "In attesa della transazione…",
+      "viewTx": "Vedi transazione",
+      "rejected": "Hai rifiutato nel portafoglio.",
+      "failed": "Qualcosa è andato storto: {{message}}",
+      "reverted": "Il registro ha rifiutato la transazione ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "La prenotazione deve avere almeno un minuto. Riprova tra qualche secondo.",
+        "CommitmentTooOld": "Questa prenotazione ha più di 24 ore. Prenota di nuovo.",
+        "CommitmentNotFound": "Non è stata trovata nessuna prenotazione da questo portafoglio. Prenota di nuovo.",
+        "AlreadyCommitted": "Questa prenotazione è già on-chain.",
+        "AlreadyRegistered": "Qualcuno ha registrato questo nome prima di te.",
+        "InsufficientFee": "Il prezzo è cambiato. Riprova.",
+        "Expired": "Questo nome è scaduto.",
+        "Unauthorized": "Questo portafoglio non possiede il nome."
+      }
+    },
+    "activity": {
+      "title": "Ultimi nomi",
+      "live": "In diretta da Ethereum",
+      "registered": "{{name}} registrato",
+      "empty": "Ancora nessun nome registrato.",
+      "notDeployed": "I nomi compariranno qui quando il registro sarà attivo.",
+      "failed": "Impossibile caricare gli ultimi nomi.",
+      "browse": "Sfoglia tutti i nomi"
+    },
+    "lifecycle": {
+      "eyebrow": "Mantenerlo",
+      "title": "Un nome dura un anno alla volta",
+      "lead": "Rinnovare aggiunge 365 giorni alla scadenza attuale, allo stesso prezzo. Chiunque può rinnovare qualsiasi nome, quindi un amico o una directory può mantenere attivo il tuo.",
+      "active": "Attivo",
+      "activeNote": "365 giorni, si risolve",
+      "grace": "Grazia",
+      "graceNote": "90 giorni, non si risolve, solo rinnovo",
+      "premium": "Sovrapprezzo",
+      "premiumNote": "21 giorni, da 100 ETH a 0",
+      "open": "Libero",
+      "openNote": "chiunque, prezzo normale",
+      "caption": "Non in scala. Registrare di nuovo un nome dopo il periodo di grazia cancella tutti i record, così il nuovo proprietario parte da zero."
+    },
+    "eth": {
+      "badge": "Gratis per i nomi in uso",
+      "title": "Usi già un nome .bso? È tuo.",
+      "lead": "Finora le app leggevano memes.bso da memes.eth. Al lancio, ogni nome .eth con un record bitsocial, sottonomi inclusi, viene assegnato con un airdrop come lo stesso nome .bso al portafoglio che lo detiene, con lo stesso record e il primo anno pagato. Non c'è niente da rivendicare e niente da pagare.",
+      "caveat": "Sono inclusi solo i nomi che avevano un record bitsocial allo snapshot del lancio. Se il tuo ha ricevuto il record più tardi, rivendica il nome .bso appena aprono le registrazioni, prima che lo faccia qualcun altro.",
+      "label": "Controlla il tuo nome .eth",
+      "placeholder": "memes.eth",
+      "check": "Controlla",
+      "registered": "{{name}} è registrato a {{owner}} fino al {{date}}.",
+      "points": "Punta a {{record}}.",
+      "notYet": "{{name}} non è ancora registrato. I nomi dell'airdrop vengono registrati prima che le registrazioni aprano a tutti, quindi ricontrolla allora.",
+      "notSeeded": "{{name}} non è stato assegnato con l'airdrop ed è libero per chiunque. Se usi {{eth}}, rivendicalo prima che lo faccia qualcun altro.",
+      "tryAbove": "Controlla {{name}} qui sopra"
+    },
+    "faq": {
+      "eyebrow": "Domande",
+      "title": "Come funzionano i nomi .bso",
+      "lead": "Le risposte seguono BSIP-13, la specifica che questo registro implementa.",
+      "groups": {
+        "using": "Possedere un nome",
+        "launch": "Lancio e nomi .eth",
+        "trust": "Commissioni, fiducia e Bitsocial Chain"
+      },
+      "signers": "Ogni operazione richiede la firma di {{threshold}} delle sue {{owners}} chiavi",
+      "signersUnknown": "Ogni operazione richiede la firma di diverse delle sue chiavi",
+      "priceLength": "Lunghezza del nome",
+      "pricePerYear": "All'anno",
+      "bytes_one": "{{count}} byte",
+      "bytes_many": "{{count}} byte",
+      "bytes_other": "{{count}} byte",
+      "bytesOrMore_one": "{{count}} byte o più",
+      "bytesOrMore_many": "{{count}} byte o più",
+      "bytesOrMore_other": "{{count}} byte o più",
+      "contract": "Contratto del registro",
+      "safe": "Safe delle commissioni",
+      "spec": "Leggi BSIP-13",
+      "items": {
+        "what": {
+          "q": "A cosa serve un nome .bso?",
+          "a": [
+            "Dà a una comunità o a un profilo un nome leggibile dalle persone. Il record bitsocial del nome contiene un indirizzo di chiave, la lunga stringa 12D3KooW… che identifica la comunità o il profilo nella rete. Le app cercano il nome, leggono la chiave e caricano ciò a cui punta, così memes.bso apre la stessa comunità in 5chan, Seedit e qualsiasi altra app Bitsocial.",
+            "Un nome rende anche sostituibile una chiave. Se la chiave viene persa o rubata, punti il nome a una nuova chiave e i lettori ti seguono. Una comunità conosciuta solo tramite la sua chiave non può riprendersi in questo modo.",
+            "Il nome stesso è un NFT (ERC-721) su Ethereum, detenuto dal tuo portafoglio. Chi lo detiene decide dove punta."
+          ]
+        },
+        "profiles": {
+          "q": "Anche un profilo può avere un nome?",
+          "a": [
+            "Sì. Gli autori firmano i propri post con una chiave, e le app mostrano un nome su quei post quando il record bitsocial del nome contiene quella chiave. Comunità e profili usano lo stesso record, quindi la registrazione funziona allo stesso modo per entrambi.",
+            "Le pagine profilo che raccolgono i post di un autore da tutte le comunità (BSIP-14) arriveranno con il primo RPC pubblico di Bitsocial, e un nome registrato ora funziona anche per quelle. Un nome non può servire contemporaneamente per una comunità e per un profilo."
+          ]
+        },
+        "cost": {
+          "q": "Quanto costa un nome?",
+          "a": [
+            "Il prezzo annuale dipende dalla lunghezza del nome in byte, e il rinnovo costa lo stesso. Il gas di Ethereum si paga a parte. Le lettere a–z, le cifre e i trattini occupano un byte ciascuno, le lettere accentate, greche o cirilliche due, i caratteri cinesi o giapponesi tre e le emoji di solito quattro, quindi una singola emoji costa come un nome di 4 byte."
+          ]
+        },
+        "claiming": {
+          "q": "Perché rivendicare un nome richiede due transazioni?",
+          "a": [
+            "Chiunque può osservare le transazioni Ethereum in sospeso. Se inviassi il nome in chiaro, qualcuno potrebbe copiarlo e registrarlo prima di te. Quindi prima prenoti: invii un'impronta del nome mescolata con un segreto casuale, che non rivela nulla. Un minuto dopo rivendichi, inviando il nome e il segreto, e il registro conia il nome sul tuo portafoglio se corrispondono alla prenotazione.",
+            "Una prenotazione resta valida per 24 ore. Questa pagina conserva il segreto nel tuo browser, così puoi ricaricare o tornare più tardi dallo stesso dispositivo. Se cancelli i dati del browser prima di rivendicare, prenota di nuovo. La prima prenotazione è costata solo gas."
+          ]
+        },
+        "expiry": {
+          "q": "Cosa succede se un nome scade?",
+          "a": [
+            "Un nome dura 365 giorni. Chiunque può rinnovarlo per altri 365, contati dalla scadenza attuale, quindi un amico o una directory può mantenere attivo il tuo. Dopo la scadenza c'è un periodo di grazia di 90 giorni: il nome smette di risolversi e può solo essere rinnovato. Poi chiunque può registrarlo, prima con un sovrapprezzo che scende da 100 ETH a zero in 21 giorni, poi al prezzo normale.",
+            "Una nuova registrazione cancella tutti i record, e il nuovo detentore può puntare il nome alla propria chiave. I lettori che seguono quel nome seguirebbero quella persona, quindi rinnova per tempo."
+          ]
+        },
+        "spelling": {
+          "q": "Quali grafie funzionano?",
+          "a": [
+            "Le app normalizzano un nome prima di cercarlo, come fa ENS (ENSIP-15). Questo consente lettere minuscole, cifre, trattini all'interno del nome, la maggior parte dei sistemi di scrittura e le emoji. Punti, spazi e trattini bassi non sono ammessi, tranne un trattino basso proprio all'inizio, e i caratteri simili ad altri che mescolano sistemi di scrittura vengono rifiutati.",
+            "Il registro stesso controlla meno, quindi venderebbe grafie che nessuna app può risolvere, e la commissione non viene rimborsata. Questa pagina le rifiuta e suggerisce una correzione, come relationship-advice al posto di relationship_advice."
+          ]
+        },
+        "transfer": {
+          "q": "Posso regalare o vendere un nome?",
+          "a": [
+            "Sì. Un nome è un token ERC-721 nel tuo portafoglio, quindi puoi inviarlo come qualsiasi NFT. La rivendicazione conia sempre sul portafoglio che rivendica, quindi per registrare un nome per qualcun altro, rivendicalo e poi trasferiscilo. Il record non cambia con il proprietario, quindi il nuovo detentore dovrebbe puntarlo alla propria chiave."
+          ]
+        },
+        "subnames": {
+          "q": "Posso distribuire sottonomi?",
+          "a": [
+            "Chi detiene un nome può creare gratis sottonomi come memes.iltuonome.bso. Ma chi detiene il nome padre può riprendersi qualsiasi sottonome in qualsiasi momento e puntarlo altrove, quindi una comunità su un sottonome dipende completamente da quella persona. Una comunità dovrebbe registrare un nome tutto suo, oppure restare sulla propria chiave finché non lo fa."
+          ]
+        },
+        "launch": {
+          "q": "Cosa succede al lancio?",
+          "a": [
+            "Il registro parte chiuso. Prima, ogni nome .bso già in uso tramite .eth viene registrato gratis al suo detentore (vedi sopra). Chiunque può inviare queste registrazioni, e i maintainer puntano a inviarle tutte entro un'ora dal deploy. La registrazione pubblica apre un'ora dopo l'ultima, quindi l'orario di apertura è on-chain con un'ora di anticipo. Se si bloccano, apre comunque sette giorni dopo il deploy.",
+            "Puoi prenotare un nome prima dell'apertura. Una prenotazione fatta almeno un minuto e al massimo 24 ore prima dell'apertura può essere rivendicata nel momento stesso in cui apre. Altri possono rivendicare lo stesso nome in quel momento, e vince la prima transazione inclusa in un blocco."
+          ]
+        },
+        "eth": {
+          "q": "Il mio nome .eth funziona ancora?",
+          "a": [
+            "Sì. Le app continuano a risolvere i nomi .eth tramite ENS. Ciò che cambia è che x.bso non significa più x.eth: le app che supportano questo registro leggono i nomi .bso solo da lì, quindi bot.bso e bot.eth diventano nomi separati che possono avere proprietari diversi.",
+            "Alcune app continueranno a leggere x.bso da x.eth finché non si aggiornano. Se detieni entrambi i nomi, mantieni i loro record uguali fino ad allora."
+          ]
+        },
+        "control": {
+          "q": "Chi controlla il registro?",
+          "a": [
+            "Nessuno. Il contratto non ha owner, admin, proxy, interruttore di pausa né percorso di aggiornamento. Prezzi, periodi e indirizzo delle commissioni sono fissati nel suo codice, e nessuno può prendere, modificare o trasferire un nome che non detiene.",
+            "È un fork del .gwei Name Service con quattro modifiche: i nomi finiscono in .bso, le commissioni vanno a un multisig fisso invece di restare bloccate nel contratto, i nomi già in uso vengono copiati al lancio, e una dismissione una tantum gli permette di passare a Bitsocial Chain. L'altra faccia di un codice che non può cambiare è che nemmeno un bug può essere corretto."
+          ]
+        },
+        "fees": {
+          "q": "Dove vanno le commissioni?",
+          "a": [
+            "Le commissioni si accumulano nel registro, e chiunque può inoltrarle a un indirizzo fisso: un multisig Safe che finanzia lo sviluppo di Bitsocial finché questo registro è in uso. {{signers}}. Le chiavi appartengono ai due maintainer di Bitsocial e a fiduciari da loro nominati, e nessuna singola persona ne detiene abbastanza per spostare i fondi.",
+            "Il Safe ha esattamente due poteri sul registro: ricevere le commissioni e avviare la dismissione una sola volta. Non può cambiare i prezzi né toccare un nome che non detiene. Detiene anche alcuni nomi riservati del progetto, come bitsocial.bso, come un normale proprietario."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Perché un nuovo registro invece di ENS?",
+          "a": [
+            "Finora ogni nome .bso era un nome ENS, a prezzi ENS: a ottobre 2026 un nuovo nome per una comunità costava oltre 20 $ per tre anni. La maggior parte dei proprietari non pagherà tanto per provare una comunità, quindi resta sulle sole chiavi. Bitsocial Chain conterrà i nomi .bso in modo nativo, ma non esiste ancora.",
+            "Questo registro provvisorio fa costare oggi un nome normale 0,0005 ETH all'anno, e trasforma il futuro passaggio a Bitsocial Chain in una copia dei record invece che in un cambio di proprietari."
+          ]
+        },
+        "whyEth": {
+          "q": "Perché pagare in ETH e non in BSO?",
+          "a": [
+            "Uno sconto per chi paga in BSO richiederebbe che il contratto conosca il prezzo di BSO in ETH. Un contratto senza owner non può sostituire una fonte di prezzo che si guasta, e un pool poco scambiato potrebbe essere spinto per una sola transazione per comprare nomi corti quasi gratis. Un listino fisso in BSO si allontanerebbe con il token fino a diventare quasi gratuito o a non essere mai usato, senza che nessuno possa correggerlo.",
+            "Il registro proprio di Bitsocial Chain può dare un ruolo a BSO senza questi limiti."
+          ]
+        },
+        "move": {
+          "q": "Cosa significa passare a Bitsocial Chain?",
+          "a": [
+            "Bitsocial Chain è la fase 3 del master plan di Bitsocial: una chain propria che contiene i nomi .bso in modo nativo. Quando un BSIP per il suo registro dei nomi raggiunge Last Call, il Safe può avviare la dismissione. Il contratto dà allora un preavviso di 30 giorni, che non può essere annullato né accorciato. Durante il preavviso tutto funziona come prima, quindi rinnovi e trasferimenti contano ancora.",
+            "Dopo il preavviso il registro su Ethereum si congela. Non si può più registrare, rinnovare, trasferire o modificare nulla, e i nomi continuano a risolversi dallo stato congelato. Bitsocial Chain importa gratis ogni nome attivo o nel periodo di grazia, con lo stesso proprietario, la stessa scadenza e lo stesso record. Non devi fare nulla.",
+            "BSIP-13 consente la dismissione solo per questo passaggio, e il contratto impone il preavviso di 30 giorni."
+          ]
+        },
+        "afterMove": {
+          "q": "Cosa succede alle commissioni dopo il passaggio?",
+          "a": [
+            "Il finanziamento dei maintainer tramite le commissioni finisce con questo registro. Il registro di Bitsocial Chain fissa le proprie commissioni in un proprio BSIP, e il piano è che lì le commissioni dei nomi vengano invece bruciate, oppure usate per riacquistare BSO e bruciarli. Il meccanismo non è ancora deciso."
+          ]
+        }
       }
     }
   }

@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "FAQ",
     "richList": "Lista deținătorilor",
-    "chart": "Grafic"
+    "chart": "Grafic",
+    "domains": "Domenii"
   },
   "languageSelector": {
     "title": "Selectează limba",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "Lanțul nu este încă activ, abonează-te pentru actualizări",
     "title": "<mark>Stratul social</mark> care lipsește din lumea cripto",
-    "supporting": "Lumea cripto a devenit un cazinou pentru că Web2, TradFi și infrastructura centralizată dețin canalele de distribuție și distorsionează stimulentele. Bitsocial Chain rezolvă această problemă: un <appchainLink>appchain</appchainLink> <l2Link>Ethereum L2</l2Link> de neoprit, complet descentralizat, în care comunitățile își dețin rețelele, tokenurile și veniturile."
+    "supporting": "Lumea cripto a devenit un cazinou pentru că Web2, TradFi și infrastructura centralizată dețin canalele de distribuție și distorsionează stimulentele. Bitsocial Chain rezolvă această problemă: un <appchainLink>appchain</appchainLink> <l2Link>Ethereum L2</l2Link> de neoprit, complet descentralizat, în care comunitățile își dețin rețelele, tokenurile și veniturile.",
+    "domainsCta": "Ia-ți astăzi domeniul .bso"
   },
   "layers": {
     "ariaLabel": "Trei straturi suprapuse ale lumii cripto: aplicațiile sociale din rețeaua Bitsocial deasupra, decontarea Ethereum L1 la bază și Bitsocial Chain, appchain-ul Ethereum L2 alimentat de BSO, care se aprinde ca stratul luminos lipsă și se potrivește în golul dintre ele, străbătut de o coloană de energie.",
@@ -747,6 +749,322 @@
       "marchRally": {
         "title": "Raliul din martie 2024",
         "body": "Pe 1 martie, investitorul Jason Calacanis postează un tweet în care spune că vrea un Reddit distribuit, fără permisiuni, iar plebbit îi răspunde cu demo-ul său. Seedit 0.1.6 apare pe 3 martie, iar pe 4 martie echipa anunță comunități cu acces pe bază de token. Cu ETH trecând de 4.000 $ în acea lună, prețul aproape se dublează pe 4 martie și se triplează până la sfârșitul lui martie, la un volum de 2,2 milioane $, cel mai mare dintre toate lunile din acest grafic."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": "Domenii .bso - Un nume pentru comunitatea sau profilul tău",
+      "description": "Înregistrează un domeniu .bso pentru o comunitate sau un profil Bitsocial. Numele este un NFT pe Ethereum deținut de portofelul tău, de la 0,0005 ETH pe an, și se deschide în fiecare aplicație Bitsocial."
+    },
+    "hero": {
+      "titleCommunity": "Dă-i un nume comunității tale",
+      "titleProfile": "Dă-i un nume profilului tău",
+      "leadCommunity": "Scrie-l în antetul de mai jos. Cititorii îți vor găsi comunitatea după acest nume în fiecare aplicație Bitsocial, iar numele este deținut de portofelul tău.",
+      "leadProfile": "Scrie-l în antetul de mai jos. Postările tale vor purta acest nume în fiecare aplicație Bitsocial, iar numele este deținut de portofelul tău.",
+      "kindLabel": "Nume pentru",
+      "kindCommunity": "O comunitate",
+      "kindProfile": "Un profil",
+      "opensIn": "Înregistrările se deschid în {{time}}. Poți rezerva un nume chiar acum.",
+      "opensOn": "Înregistrările se deschid pe {{date}}.",
+      "notDeployed": "Registrul se lansează în curând. Numele și prețurile pot fi verificate de acum."
+    },
+    "plate": {
+      "inputLabelCommunity": "Numele comunității tale",
+      "inputLabelProfile": "Numele profilului tău",
+      "placeholderCommunity": "comunitateata",
+      "placeholderProfile": "numeletau",
+      "sublineCommunity": "Comunitate · se deschide după nume în 5chan, Seedit și alte aplicații Bitsocial",
+      "sublineProfile": "Profil · postările tale din toate comunitățile, sub un singur nume",
+      "join": "Alătură-te",
+      "posts": "Postări",
+      "rules": "Reguli",
+      "follow": "Urmărește",
+      "about": "Despre",
+      "captionCommunity": "Antetul unei comunități al cărei titlu este numele .bso pe care îl verifici",
+      "captionProfile": "Antetul unui profil al cărui titlu este numele .bso pe care îl verifici",
+      "withoutCommunity": "Fără un nume, oamenii distribuie",
+      "withoutProfile": "Fără un nume, postările tale afișează",
+      "withCommunity": "Cu un nume, distribuie",
+      "withProfile": "Cu un nume, afișează"
+    },
+    "checks": {
+      "spelling": "Ortografie",
+      "availability": "Disponibilitate",
+      "price": "Preț",
+      "typeName": "Scrie un nume",
+      "spellingOk": "Nume valid",
+      "fixFirst": "Corectează mai întâi ortografia",
+      "dot": "Punctele nu sunt permise într-un nume.",
+      "space": "Spațiile nu sunt permise.",
+      "underscore": "Liniuța de subliniere este permisă doar la început.",
+      "hyphenEdge": "Un nume nu poate începe sau se termina cu cratimă.",
+      "labelExtension": "Un nume nu poate avea „--” pe pozițiile a treia și a patra.",
+      "tooLong": "Prea lung: un nume are cel mult 255 de octeți.",
+      "lookalike": "Amestecă sisteme de scriere sau folosește caractere care seamănă cu altele.",
+      "character": "„{{character}}” nu este permis.",
+      "characterUnknown": "Conține un caracter care nu este permis.",
+      "checking": "Se verifică…",
+      "available": "Disponibil",
+      "taken": "Înregistrat până pe {{date}}",
+      "yours": "Al tău, până pe {{date}}",
+      "reserved": "Rezervat pentru Bitsocial până pe {{date}}",
+      "grace": "A expirat pe {{date}}. Proprietarul îl poate reînnoi până pe {{until}}.",
+      "premium": "Eliberat pe {{date}}. Suprataxa lui scade la zero până pe {{end}}.",
+      "lookupFailed": "Ethereum nu a putut fi accesat.",
+      "retry": "Reîncearcă",
+      "notDeployed": "Se verifică după lansarea registrului",
+      "yearly": "{{price}} pe an",
+      "yearlyShort": "{{price}} pe an, prețul pentru nume de {{count}} caractere",
+      "yearlyBytes": "{{price}} pe an, calculat după cei {{count}} octeți ai săi",
+      "withPremium": "{{price}} pentru primul an, inclusiv o suprataxă de {{premium}}"
+    },
+    "cta": {
+      "claim": "Revendică {{name}} pentru {{price}}",
+      "reserve": "Rezervă {{name}} acum",
+      "renew": "Reînnoiește {{name}}",
+      "pointCommunity": "Direcționează {{name}} către comunitatea ta",
+      "pointProfile": "Direcționează {{name}} către profilul tău",
+      "soon": "Înregistrările se deschid în curând",
+      "fix": "Folosește {{name}}",
+      "noteClaim": "Trei tranzacții din portofel, cam două minute.",
+      "noteReserve": "Rezervă-l acum și revendică-l când se deschid înregistrările.",
+      "noteReserveLater": "Rezervările se deschid cu 24 de ore înaintea înregistrărilor.",
+      "noteTaken": "Deținut de {{owner}}.",
+      "noteReserved": "Deținut de Safe-ul de taxe Bitsocial, pentru care BSIP-13 îl rezervă.",
+      "noteGrace": "Oricine îl poate reînnoi, iar asta îl păstrează la proprietarul lui.",
+      "notePremium": "Suprataxa scade în fiecare secundă, iar orice plată în plus se rambursează.",
+      "noteNotDeployed": "Contractul registrului nu este încă pe Ethereum."
+    },
+    "claim": {
+      "eyebrow": "Revendicare",
+      "title": "Trei tranzacții din portofelul tău, cam două minute",
+      "pickName": "Alege mai sus un nume disponibil ca să începi.",
+      "claiming": "Revendici {{name}}",
+      "renewing": "Reînnoiești {{name}}",
+      "pointing": "Direcționezi {{name}}",
+      "connect": "Conectează un portofel",
+      "connectWith": "Conectează {{wallet}}",
+      "browserWallet": "portofelul din browser",
+      "connecting": "Se conectează…",
+      "noWallet": "Niciun portofel Ethereum găsit în acest browser. Instalează un portofel de browser sau deschide această pagină în browserul aplicației tale de portofel.",
+      "connectedAs": "Conectat ca {{address}}",
+      "reserveTitle": "Rezervă",
+      "reserveBody": "Mai întâi, un angajament sigilat ajunge on-chain, ca nimeni să nu poată citi numele din tranzacția ta în așteptare și să ți-l ia. Apoi aștepți 60 de secunde.",
+      "reserveMeta": "commit() · doar gas",
+      "reserveAction": "Rezervă {{name}}",
+      "reserveTooEarly": "Poți rezerva de pe {{date}}, cu 24 de ore înainte să se deschidă înregistrările.",
+      "reserved": "Rezervat. Acest browser păstrează rezervarea până pe {{time}}.",
+      "claimTitle": "Revendică",
+      "claimBody": "Plătește numele. Este emis în același portofel pentru 365 de zile. Ai la dispoziție până la 24 de ore după rezervare, iar acest browser ține minte unde ai rămas.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "Revendică {{name}} pentru {{price}}",
+      "claimWait": "Gata în {{seconds}} s",
+      "claimWaitOpening": "Gata când se deschid înregistrările, în {{time}}",
+      "startOver": "Ia-o de la capăt",
+      "renewTitle": "Reînnoiește",
+      "renewBody": "Adaugă 365 de zile la data actuală de expirare. Oricine poate reînnoi orice nume, iar numele rămâne la proprietarul lui.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "Reînnoiește {{name}} pentru {{price}}",
+      "renewed": "Reînnoit până pe {{date}}.",
+      "recordTitleCommunity": "Direcționează-l către comunitatea ta",
+      "recordTitleProfile": "Direcționează-l către profilul tău",
+      "recordLabelCommunity": "Cheia publică a comunității tale, din setările ei",
+      "recordLabelProfile": "Cheia publică a contului tău, din setările de cont ale aplicației tale",
+      "recordMeta": "setText(\"bitsocial\") · doar gas · se poate schimba oricând",
+      "recordAction": "Salvează înregistrarea",
+      "recordInvalid": "Aceasta nu este o cheie publică. Are 52 de caractere și începe cu 12D3KooW.",
+      "recordCurrent": "Acum indică spre {{record}}.",
+      "recordNotOwner": "Doar portofelul care deține {{name}} îi poate seta înregistrarea.",
+      "doneCommunity": "{{name}} indică spre comunitatea ta. Mai departe, setează {{name}} ca adresă a comunității în setările ei.",
+      "doneProfile": "{{name}} indică spre contul tău. Mai departe, introdu {{name}} ca nume în setările de cont ale aplicației tale, ca postările tale să-l afișeze.",
+      "confirmInWallet": "Confirmă în portofel",
+      "waitingForTx": "Se așteaptă tranzacția…",
+      "viewTx": "Vezi tranzacția",
+      "rejected": "Ai refuzat în portofel.",
+      "failed": "Ceva n-a mers: {{message}}",
+      "reverted": "Registrul a respins tranzacția ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "Rezervarea trebuie să aibă cel puțin un minut. Încearcă din nou în câteva secunde.",
+        "CommitmentTooOld": "Această rezervare are mai mult de 24 de ore. Rezervă din nou.",
+        "CommitmentNotFound": "Nu s-a găsit nicio rezervare de la acest portofel. Rezervă din nou.",
+        "AlreadyCommitted": "Această rezervare este deja on-chain.",
+        "AlreadyRegistered": "Altcineva a înregistrat acest nume înaintea ta.",
+        "InsufficientFee": "Prețul s-a schimbat. Încearcă din nou.",
+        "Expired": "Acest nume a expirat.",
+        "Unauthorized": "Acest portofel nu deține numele."
+      }
+    },
+    "activity": {
+      "title": "Cele mai noi nume",
+      "live": "În direct de pe Ethereum",
+      "registered": "{{name}} înregistrat",
+      "empty": "Încă nu a fost înregistrat niciun nume.",
+      "notDeployed": "Numele apar aici după lansarea registrului.",
+      "failed": "Cele mai noi nume nu au putut fi încărcate.",
+      "browse": "Răsfoiește toate numele"
+    },
+    "lifecycle": {
+      "eyebrow": "Păstrarea lui",
+      "title": "Un nume ține câte un an",
+      "lead": "Reînnoirea adaugă 365 de zile la data actuală de expirare, la același preț. Oricine poate reînnoi orice nume, așa că un prieten sau un director îl poate ține pe al tău în viață.",
+      "active": "Activ",
+      "activeNote": "365 de zile, se rezolvă",
+      "grace": "Grație",
+      "graceNote": "90 de zile, nu se rezolvă, doar reînnoire",
+      "premium": "Suprataxă",
+      "premiumNote": "21 de zile, de la 100 ETH la 0",
+      "open": "Liber",
+      "openNote": "oricine, preț normal",
+      "caption": "Nu este la scară. Reînregistrarea unui nume după perioada de grație șterge toate înregistrările, așa că noul proprietar pornește de la zero."
+    },
+    "eth": {
+      "badge": "Gratuit pentru numele folosite",
+      "title": "Folosești deja un nume .bso? Este al tău.",
+      "lead": "Până acum, aplicațiile citeau memes.bso din memes.eth. La lansare, fiecare nume .eth cu o înregistrare bitsocial, inclusiv subnumele, este distribuit prin airdrop ca același nume .bso către portofelul care îl deține, cu aceeași înregistrare și cu primul an plătit. Nu ai nimic de revendicat și nimic de plătit.",
+      "caveat": "Sunt incluse doar numele care aveau o înregistrare bitsocial la instantaneul lansării. Dacă al tău a primit înregistrarea mai târziu, revendică numele .bso imediat ce se deschid înregistrările, înainte să o facă altcineva.",
+      "label": "Verifică-ți numele .eth",
+      "placeholder": "memes.eth",
+      "check": "Verifică",
+      "registered": "{{name}} este înregistrat pe {{owner}} până pe {{date}}.",
+      "points": "Indică spre {{record}}.",
+      "notYet": "{{name}} nu este încă înregistrat. Numele din airdrop sunt înregistrate înainte ca înregistrările să se deschidă pentru toți, așa că verifică din nou atunci.",
+      "notSeeded": "{{name}} nu a fost distribuit prin airdrop și este liber pentru oricine. Dacă folosești {{eth}}, revendică-l înainte să o facă altcineva.",
+      "tryAbove": "Verifică {{name}} mai sus"
+    },
+    "faq": {
+      "eyebrow": "Întrebări",
+      "title": "Cum funcționează numele .bso",
+      "lead": "Răspunsurile urmează BSIP-13, specificația pe care o implementează acest registru.",
+      "groups": {
+        "using": "Deținerea unui nume",
+        "launch": "Lansarea și numele .eth",
+        "trust": "Taxe, încredere și Bitsocial Chain"
+      },
+      "signers": "{{threshold}} din cele {{owners}} chei ale sale trebuie să semneze orice operațiune",
+      "signersUnknown": "Mai multe dintre cheile sale trebuie să semneze orice operațiune",
+      "priceLength": "Lungimea numelui",
+      "pricePerYear": "Pe an",
+      "bytes_one": "{{count}} octet",
+      "bytes_few": "{{count}} octeți",
+      "bytes_other": "{{count}} de octeți",
+      "bytesOrMore_one": "{{count}} octet sau mai mult",
+      "bytesOrMore_few": "{{count}} octeți sau mai mult",
+      "bytesOrMore_other": "{{count}} de octeți sau mai mult",
+      "contract": "Contractul registrului",
+      "safe": "Safe-ul de taxe",
+      "spec": "Citește BSIP-13",
+      "items": {
+        "what": {
+          "q": "Ce face un nume .bso?",
+          "a": [
+            "Îi dă unei comunități sau unui profil un nume pe care oamenii îl pot citi. Înregistrarea bitsocial a numelui conține o adresă de cheie, șirul lung 12D3KooW… care identifică comunitatea sau profilul în rețea. Aplicațiile caută numele, citesc cheia și încarcă ce indică ea, așa că memes.bso deschide aceeași comunitate în 5chan, Seedit și orice altă aplicație Bitsocial.",
+            "Un nume face și ca o cheie să poată fi înlocuită. Dacă cheia este pierdută sau furată, direcționezi numele către una nouă, iar cititorii te urmează. O comunitate cunoscută doar după cheia ei nu își poate reveni astfel.",
+            "Numele în sine este un NFT (ERC-721) pe Ethereum, deținut de portofelul tău. Cine îl deține decide spre ce indică."
+          ]
+        },
+        "profiles": {
+          "q": "Poate și un profil să aibă un nume?",
+          "a": [
+            "Da. Autorii își semnează postările cu o cheie, iar aplicațiile afișează un nume pe acele postări când înregistrarea bitsocial a numelui conține acea cheie. Comunitățile și profilurile folosesc aceeași înregistrare, așa că un nume se înregistrează la fel pentru amândouă.",
+            "Paginile de profil care adună postările unui autor din toate comunitățile (BSIP-14) vin odată cu primul RPC public al Bitsocial, iar un nume înregistrat acum funcționează pentru ele. Un nume nu poate servi în același timp pentru o comunitate și pentru un profil."
+          ]
+        },
+        "cost": {
+          "q": "Cât costă un nume?",
+          "a": [
+            "Prețul anual depinde de lungimea numelui în octeți, iar reînnoirea costă la fel. Gasul Ethereum se plătește separat. Literele a–z, cifrele și cratimele ocupă câte un octet, literele cu diacritice, grecești sau chirilice câte doi, caracterele chinezești sau japoneze câte trei, iar emoji-urile de obicei câte patru, așa că un singur emoji costă cât un nume de 4 octeți."
+          ]
+        },
+        "claiming": {
+          "q": "De ce revendicarea are nevoie de două tranzacții?",
+          "a": [
+            "Oricine poate urmări tranzacțiile Ethereum în așteptare. Dacă ai trimite numele la vedere, cineva l-ar putea copia și înregistra înaintea ta. Așa că mai întâi rezervi: trimiți o amprentă a numelui amestecată cu un secret aleatoriu, care nu dezvăluie nimic. Un minut mai târziu revendici, trimițând numele și secretul, iar registrul emite numele în portofelul tău dacă se potrivesc cu rezervarea.",
+            "O rezervare rămâne valabilă 24 de ore. Această pagină păstrează secretul în browserul tău, așa că poți reîncărca sau reveni mai târziu pe același dispozitiv. Dacă ștergi datele browserului înainte de revendicare, rezervă din nou. Prima rezervare a costat doar gas."
+          ]
+        },
+        "expiry": {
+          "q": "Ce se întâmplă dacă un nume expiră?",
+          "a": [
+            "Un nume ține 365 de zile. Oricine îl poate reînnoi pentru încă 365, socotite de la data actuală de expirare, așa că un prieten sau un director îl poate ține pe al tău în viață. După expirare urmează o perioadă de grație de 90 de zile: numele nu se mai rezolvă și poate fi doar reînnoit. Apoi oricine îl poate înregistra, mai întâi cu o suprataxă care scade de la 100 ETH la zero în 21 de zile, apoi la prețul normal.",
+            "Când numele este înregistrat din nou, toate înregistrările lui se șterg, iar noul deținător îl poate direcționa către propria cheie. Cititorii care urmăresc acel nume ar urma acea persoană, așa că reînnoiește din timp."
+          ]
+        },
+        "spelling": {
+          "q": "Ce forme de scriere funcționează?",
+          "a": [
+            "Aplicațiile normalizează un nume înainte să-l caute, la fel ca ENS (ENSIP-15). Asta permite litere mici, cifre, cratime în interiorul numelui, majoritatea sistemelor de scriere și emoji-uri. Punctele, spațiile și liniuțele de subliniere nu sunt permise, cu excepția unei liniuțe de subliniere chiar la început, iar caracterele care seamănă cu altele și amestecă sisteme de scriere sunt respinse.",
+            "Registrul în sine verifică mai puțin, așa că ar vinde forme de scriere pe care nicio aplicație nu le poate rezolva, iar taxa nu se rambursează. Această pagină le refuză și sugerează o corectare, de exemplu relationship-advice în loc de relationship_advice."
+          ]
+        },
+        "transfer": {
+          "q": "Pot să dau sau să vând un nume?",
+          "a": [
+            "Da. Un nume este un token ERC-721 în portofelul tău, așa că îl poți trimite ca pe orice NFT. Revendicarea emite mereu în portofelul care revendică, așa că, pentru a înregistra un nume pentru altcineva, revendică-l și apoi transferă-l. Înregistrarea nu se schimbă odată cu proprietarul, așa că noul deținător ar trebui să-l direcționeze către propria cheie."
+          ]
+        },
+        "subnames": {
+          "q": "Pot să ofer subnume?",
+          "a": [
+            "Deținătorul unui nume poate crea gratuit subnume precum memes.numeletau.bso. Dar deținătorul numelui părinte poate lua înapoi orice subnume oricând și îl poate direcționa în altă parte, așa că o comunitate pe un subnume depinde complet de acea persoană. O comunitate ar trebui să-și înregistreze propriul nume sau să rămână pe cheia ei până o face."
+          ]
+        },
+        "launch": {
+          "q": "Ce se întâmplă la lansare?",
+          "a": [
+            "Registrul pornește închis. Mai întâi, fiecare nume .bso deja folosit prin .eth este înregistrat gratuit pe deținătorul lui (vezi mai sus). Oricine poate trimite aceste înregistrări, iar maintainerii își propun să le trimită pe toate în prima oră după implementare. Înregistrarea publică se deschide la o oră după ultima, așa că ora deschiderii apare on-chain cu o oră înainte. Dacă acestea se blochează, se deschide oricum la șapte zile după implementare.",
+            "Poți rezerva un nume înainte de deschidere. O rezervare făcută cu cel puțin un minut și cel mult 24 de ore înainte de deschidere poate fi revendicată chiar în momentul deschiderii. Alții pot revendica același nume în același moment, iar câștigă prima tranzacție inclusă într-un bloc."
+          ]
+        },
+        "eth": {
+          "q": "Numele meu .eth mai funcționează?",
+          "a": [
+            "Da. Aplicațiile rezolvă în continuare numele .eth prin ENS. Ce se schimbă este că x.bso nu mai înseamnă x.eth: aplicațiile care suportă acest registru citesc numele .bso doar din el, așa că bot.bso și bot.eth devin nume separate, care pot avea proprietari diferiți.",
+            "Unele aplicații vor continua să citească x.bso din x.eth până se actualizează. Dacă deții ambele nume, păstrează-le înregistrările identice până atunci."
+          ]
+        },
+        "control": {
+          "q": "Cine controlează registrul?",
+          "a": [
+            "Nimeni. Contractul nu are proprietar, administrator, proxy, buton de pauză sau cale de actualizare. Prețurile, perioadele și adresa taxelor sunt fixate în codul lui, și nimeni nu poate lua, edita sau transfera un nume pe care nu îl deține.",
+            "Este un fork al .gwei Name Service cu patru modificări: numele se termină în .bso, taxele merg la un multisig fix în loc să rămână blocate în contract, numele deja folosite sunt copiate la lansare, iar o procedură de închidere unică îi permite să treacă pe Bitsocial Chain. Reversul unui cod care nu se poate schimba este că nici un bug nu poate fi reparat."
+          ]
+        },
+        "fees": {
+          "q": "Unde merg taxele?",
+          "a": [
+            "Taxele se strâng în registru, iar oricine le poate trimite mai departe la o adresă fixă: un multisig Safe care finanțează dezvoltarea Bitsocial cât timp acest registru este folosit. {{signers}}. Cheile aparțin celor doi maintaineri ai Bitsocial și unor fiduciari numiți de ei, iar nicio persoană singură nu deține destule chei ca să mute fondurile.",
+            "Safe-ul are exact două puteri asupra registrului: să primească taxe și să pornească o singură dată procedura de închidere. Nu poate schimba prețurile și nu se poate atinge de un nume pe care nu îl deține. De asemenea, deține câteva nume rezervate ale proiectului, precum bitsocial.bso, ca un proprietar obișnuit."
+          ]
+        },
+        "whyRegistry": {
+          "q": "De ce un registru nou în loc de ENS?",
+          "a": [
+            "Până acum, fiecare nume .bso era un nume ENS, la prețuri ENS: în octombrie 2026, un nume nou pentru o comunitate costa peste 20 $ pentru trei ani. Majoritatea proprietarilor nu vor plăti atât ca să încerce o comunitate, așa că rămân doar cu cheile. Bitsocial Chain va deține nativ numele .bso, dar încă nu există.",
+            "Acest registru provizoriu face ca un nume normal să coste astăzi 0,0005 ETH pe an și transformă mutarea ulterioară pe Bitsocial Chain într-o copiere a înregistrărilor, nu într-o schimbare de proprietari."
+          ]
+        },
+        "whyEth": {
+          "q": "De ce se plătește în ETH și nu în BSO?",
+          "a": [
+            "O reducere pentru plata în BSO ar cere ca contractul să cunoască prețul BSO în ETH. Un contract fără proprietar nu poate înlocui o sursă de preț care se strică, iar un pool cu tranzacționare redusă ar putea fi împins pentru o singură tranzacție ca să cumpere nume scurte aproape pe nimic. O listă de prețuri fixă în BSO ar deriva odată cu tokenul până ar ajunge fie aproape gratuită, fie nefolosită niciodată, fără ca cineva s-o poată corecta.",
+            "Registrul propriu al Bitsocial Chain poate da un rol BSO fără aceste limite."
+          ]
+        },
+        "move": {
+          "q": "Ce înseamnă mutarea pe Bitsocial Chain?",
+          "a": [
+            "Bitsocial Chain este faza 3 a planului general al Bitsocial: un lanț propriu care deține nativ numele .bso. Odată ce un BSIP pentru registrul său de nume ajunge la Last Call, Safe-ul poate porni procedura de închidere. Contractul dă atunci un preaviz de 30 de zile, care nu poate fi anulat sau scurtat. În timpul preavizului totul funcționează ca înainte, așa că reînnoirile și transferurile contează în continuare.",
+            "După preaviz, registrul de pe Ethereum se îngheață. Nimic nu mai poate fi înregistrat, reînnoit, transferat sau editat, iar numele continuă să se rezolve din starea înghețată. Bitsocial Chain importă gratuit fiecare nume activ sau aflat în perioada de grație, cu același proprietar, aceeași dată de expirare și aceeași înregistrare. Nu trebuie să faci nimic.",
+            "BSIP-13 permite procedura de închidere doar pentru această mutare, iar contractul impune preavizul de 30 de zile."
+          ]
+        },
+        "afterMove": {
+          "q": "Ce se întâmplă cu taxele după mutare?",
+          "a": [
+            "Finanțarea maintainerilor din taxe se încheie odată cu acest registru. Registrul Bitsocial Chain își stabilește propriile taxe în propriul BSIP, iar planul este ca acolo taxele pentru nume să fie în schimb arse sau folosite pentru a răscumpăra și arde BSO. Mecanismul nu este încă stabilit."
+          ]
+        }
       }
     }
   }

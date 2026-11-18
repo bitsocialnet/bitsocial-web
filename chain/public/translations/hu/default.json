@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "GYIK",
     "richList": "Birtokosok listája",
-    "chart": "Grafikon"
+    "chart": "Grafikon",
+    "domains": "Domainek"
   },
   "languageSelector": {
     "title": "Nyelv kiválasztása",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "A Chain még nincs élesben, iratkozz fel a frissítésekért",
     "title": "A kriptovilág hiányzó <mark>közösségi rétege</mark>",
-    "supporting": "A kriptovilág kaszinóvá vált, mert a Web2, a TradFi és a központosított infrastruktúra birtokolja a terjesztési csatornákat, és elferdíti az ösztönzőket. A Bitsocial Chain ezt orvosolja: egy megállíthatatlan, teljesen decentralizált <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink>, ahol a közösségek birtokolják a hálózataikat, a tokenjeiket és a bevételeiket."
+    "supporting": "A kriptovilág kaszinóvá vált, mert a Web2, a TradFi és a központosított infrastruktúra birtokolja a terjesztési csatornákat, és elferdíti az ösztönzőket. A Bitsocial Chain ezt orvosolja: egy megállíthatatlan, teljesen decentralizált <l2Link>Ethereum L2</l2Link> <appchainLink>appchain</appchainLink>, ahol a közösségek birtokolják a hálózataikat, a tokenjeiket és a bevételeiket.",
+    "domainsCta": "Szerezd meg a .bso domainedet még ma"
   },
   "layers": {
     "ariaLabel": "A kriptovilág három egymásra épülő rétege: felül a Bitsocial hálózat közösségi alkalmazásai, alul az Ethereum L1 elszámolási rétege, és a kettő közötti résbe illeszkedve, izzó hiányzó rétegként lobban fel a Bitsocial Chain, a BSO által hajtott Ethereum L2 appchain, amelyet egy energiagerinc fon át.",
@@ -742,6 +744,320 @@
       "marchRally": {
         "title": "A 2024. márciusi emelkedés",
         "body": "Március 1-jén Jason Calacanis befektető azt tweeteli, hogy egy elosztott, engedély nélküli Redditet szeretne, a plebbit pedig a demójával válaszol. A Seedit 0.1.6 március 3-án jelenik meg, március 4-én pedig a csapat bejelenti a tokenhez kötött hozzáférésű közösségeket. Miközben az ETH abban a hónapban átlépi a 4000 dollárt, az árfolyam március 4-én majdnem megduplázódik, március végére pedig megháromszorozódik, 2,2 millió dollár forgalom mellett, ami a grafikon összes hónapja közül a legtöbb."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": ".bso domainek – Nevezd el a közösségedet vagy a profilodat",
+      "description": "Regisztrálj .bso domaint egy Bitsocial-közösségnek vagy -profilnak. A név egy NFT, amely az Ethereumon a tárcád tulajdonában van, évi 0,0005 ETH-tól, és minden Bitsocial alkalmazásban megnyílik."
+    },
+    "hero": {
+      "titleCommunity": "Adj nevet a közösségednek",
+      "titleProfile": "Adj nevet a profilodnak",
+      "leadCommunity": "Írd be az alábbi fejlécbe. Az olvasók minden Bitsocial alkalmazásban ezen a néven találják meg a közösségedet, és a név a tárcád tulajdona lesz.",
+      "leadProfile": "Írd be az alábbi fejlécbe. A bejegyzéseid minden Bitsocial alkalmazásban ezt a nevet viselik majd, és a név a tárcád tulajdona lesz.",
+      "kindLabel": "Mire szól a név",
+      "kindCommunity": "Közösség",
+      "kindProfile": "Profil",
+      "opensIn": "A regisztráció {{time}} múlva nyílik meg. Nevet már most lefoglalhatsz.",
+      "opensOn": "A regisztráció megnyílik: {{date}}.",
+      "notDeployed": "A nyilvántartás hamarosan elindul. A neveket és az árakat már most ellenőrizheted."
+    },
+    "plate": {
+      "inputLabelCommunity": "A közösséged neve",
+      "inputLabelProfile": "A profilod neve",
+      "placeholderCommunity": "közösséged",
+      "placeholderProfile": "neved",
+      "sublineCommunity": "Közösség · név alapján nyílik meg az 5chanben, a Seeditben és más Bitsocial alkalmazásokban",
+      "sublineProfile": "Profil · a bejegyzéseid minden közösségből, egyetlen név alatt",
+      "join": "Csatlakozás",
+      "posts": "Bejegyzések",
+      "rules": "Szabályok",
+      "follow": "Követés",
+      "about": "Névjegy",
+      "captionCommunity": "Egy közösség fejléce, amelynek címe az általad ellenőrzött .bso név",
+      "captionProfile": "Egy profil fejléce, amelynek címe az általad ellenőrzött .bso név",
+      "withoutCommunity": "Név nélkül ezt osztják meg",
+      "withoutProfile": "Név nélkül a bejegyzéseiden ez látszik",
+      "withCommunity": "Névvel ezt",
+      "withProfile": "Névvel ez"
+    },
+    "checks": {
+      "spelling": "Írásmód",
+      "availability": "Elérhetőség",
+      "price": "Ár",
+      "typeName": "Írj be egy nevet",
+      "spellingOk": "Érvényes név",
+      "fixFirst": "Előbb javítsd az írásmódot",
+      "dot": "Pont nem lehet a névben.",
+      "space": "Szóköz nem megengedett.",
+      "underscore": "Aláhúzásjel csak az elején megengedett.",
+      "hyphenEdge": "A név nem kezdődhet és nem végződhet kötőjellel.",
+      "labelExtension": "A név harmadik és negyedik karaktere nem lehet „--”.",
+      "tooLong": "Túl hosszú: egy név legfeljebb 255 bájt lehet.",
+      "lookalike": "Különböző írásrendszereket kever, vagy hasonmás karaktereket használ.",
+      "character": "Nem megengedett karakter: „{{character}}”.",
+      "characterUnknown": "Nem megengedett karaktert tartalmaz.",
+      "checking": "Ellenőrzés…",
+      "available": "Szabad",
+      "taken": "Regisztrálva eddig: {{date}}",
+      "yours": "A tiéd, eddig: {{date}}",
+      "reserved": "A Bitsocial számára fenntartva eddig: {{date}}",
+      "grace": "Lejárt: {{date}}. A tulajdonosa eddig újíthatja meg: {{until}}.",
+      "premium": "Felszabadult: {{date}}. A felára legkésőbb ekkorra nullára csökken: {{end}}.",
+      "lookupFailed": "Nem sikerült elérni az Ethereumot.",
+      "retry": "Újra",
+      "notDeployed": "A nyilvántartás indulása után ellenőrizzük",
+      "yearly": "évi {{price}}",
+      "yearlyShort": "évi {{price}}: {{count}} karakteres nevek ára",
+      "yearlyBytes": "évi {{price}}, a mérete alapján ({{count}} bájt)",
+      "withPremium": "{{price}} az első évre, benne {{premium}} felárral"
+    },
+    "cta": {
+      "claim": "{{name}} igénylése: {{price}}",
+      "reserve": "{{name}} lefoglalása most",
+      "renew": "{{name}} megújítása",
+      "pointCommunity": "{{name}} összekapcsolása a közösségeddel",
+      "pointProfile": "{{name}} összekapcsolása a profiloddal",
+      "soon": "A regisztráció hamarosan megnyílik",
+      "fix": "Használd ezt: {{name}}",
+      "noteClaim": "Három tranzakció a tárcádban, nagyjából két perc.",
+      "noteReserve": "Foglald le most, és igényeld, amikor megnyílik a regisztráció.",
+      "noteReserveLater": "A foglalás 24 órával a regisztráció előtt nyílik meg.",
+      "noteTaken": "Tulajdonos: {{owner}}.",
+      "noteReserved": "A Bitsocial díjgyűjtő Safe-je birtokolja, a BSIP-13 neki tartja fenn.",
+      "noteGrace": "Bárki megújíthatja, és ezzel a tulajdonosánál marad.",
+      "notePremium": "A felár másodpercenként csökken, a túlfizetést pedig visszakapod.",
+      "noteNotDeployed": "A nyilvántartás szerződése még nincs az Ethereumon."
+    },
+    "claim": {
+      "eyebrow": "Igénylés",
+      "title": "Három tranzakció a tárcádból, nagyjából két perc",
+      "pickName": "A kezdéshez válassz fent egy szabad nevet.",
+      "claiming": "{{name}} igénylése",
+      "renewing": "{{name}} megújítása",
+      "pointing": "{{name}} összekapcsolása",
+      "connect": "Tárca csatlakoztatása",
+      "connectWith": "Csatlakoztatás: {{wallet}}",
+      "browserWallet": "böngészős tárca",
+      "connecting": "Csatlakozás…",
+      "noWallet": "Ebben a böngészőben nem található Ethereum-tárca. Telepíts egy böngészős tárcát, vagy nyisd meg ezt az oldalt a tárcaalkalmazásod böngészőjében.",
+      "connectedAs": "Csatlakoztatva: {{address}}",
+      "reserveTitle": "Foglalás",
+      "reserveBody": "Először egy rejtett foglalás kerül a láncra, így senki sem olvashatja ki a nevet a függőben lévő tranzakciódból, hogy elvegye. Ezután várj 60 másodpercet.",
+      "reserveMeta": "commit() · csak gas",
+      "reserveAction": "{{name}} lefoglalása",
+      "reserveTooEarly": "Foglalni ettől lehet: {{date}}, 24 órával a regisztráció megnyitása előtt.",
+      "reserved": "Lefoglalva. Ez a böngésző eddig őrzi meg a foglalást: {{time}}.",
+      "claimTitle": "Igénylés",
+      "claimBody": "Fizess a névért. Ugyanarra a tárcára bocsátják ki 365 napra. A foglalás után legfeljebb 24 órád van rá, és ez a böngésző megjegyzi, hol tartottál.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "{{name}} igénylése: {{price}}",
+      "claimWait": "Kész {{seconds}} mp múlva",
+      "claimWaitOpening": "Kész, amikor megnyílik a regisztráció, {{time}} múlva",
+      "startOver": "Újrakezdés",
+      "renewTitle": "Megújítás",
+      "renewBody": "365 napot ad a jelenlegi lejárathoz. Bármely nevet bárki megújíthat, és az a tulajdonosánál marad.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "{{name}} megújítása: {{price}}",
+      "renewed": "Megújítva eddig: {{date}}.",
+      "recordTitleCommunity": "Kapcsold össze a közösségeddel",
+      "recordTitleProfile": "Kapcsold össze a profiloddal",
+      "recordLabelCommunity": "A közösséged nyilvános kulcsa a beállításaiból",
+      "recordLabelProfile": "A fiókod nyilvános kulcsa az alkalmazásod fiókbeállításaiból",
+      "recordMeta": "setText(\"bitsocial\") · csak gas · bármikor módosítható",
+      "recordAction": "Rekord mentése",
+      "recordInvalid": "Ez nem nyilvános kulcs. Az 52 karakter hosszú, és így kezdődik: 12D3KooW.",
+      "recordCurrent": "Jelenleg ide mutat: {{record}}.",
+      "recordNotOwner": "{{name}} rekordját csak a tulajdonos tárca állíthatja be.",
+      "doneCommunity": "{{name}} a közösségedre mutat. Következő lépésként a közösség beállításaiban add meg címként ezt: {{name}}.",
+      "doneProfile": "{{name}} a fiókodra mutat. Következő lépésként az alkalmazásod fiókbeállításaiban add meg nevedként ezt: {{name}}, hogy a bejegyzéseiden megjelenjen.",
+      "confirmInWallet": "Erősítsd meg a tárcádban",
+      "waitingForTx": "Várakozás a tranzakcióra…",
+      "viewTx": "Tranzakció megtekintése",
+      "rejected": "Elutasítottad a tárcában.",
+      "failed": "Hiba történt: {{message}}",
+      "reverted": "A nyilvántartás elutasította a tranzakciót ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "A foglalásnak egy percig érlelődnie kell. Próbáld újra néhány másodperc múlva.",
+        "CommitmentTooOld": "Ez a foglalás 24 óránál régebbi. Foglalj újra.",
+        "CommitmentNotFound": "Ebből a tárcából nem található foglalás. Foglalj újra.",
+        "AlreadyCommitted": "Ez a foglalás már a láncon van.",
+        "AlreadyRegistered": "Valaki előbb regisztrálta ezt a nevet.",
+        "InsufficientFee": "Az ár megváltozott. Próbáld újra.",
+        "Expired": "Ez a név lejárt.",
+        "Unauthorized": "Ez a tárca nem tulajdonosa a névnek."
+      }
+    },
+    "activity": {
+      "title": "Legújabb nevek",
+      "live": "Élőben az Ethereumról",
+      "registered": "{{name}} regisztrálva",
+      "empty": "Még nincs regisztrált név.",
+      "notDeployed": "A nevek a nyilvántartás indulása után jelennek meg itt.",
+      "failed": "Nem sikerült betölteni a legújabb neveket.",
+      "browse": "Az összes név böngészése"
+    },
+    "lifecycle": {
+      "eyebrow": "Megtartás",
+      "title": "Egy név mindig egy évre szól",
+      "lead": "A megújítás 365 napot ad a jelenlegi lejárathoz, ugyanazon az áron. Bármely nevet bárki megújíthat, így egy barátod vagy egy címtár is életben tarthatja a tiédet.",
+      "active": "Aktív",
+      "activeNote": "365 nap, feloldható",
+      "grace": "Türelmi idő",
+      "graceNote": "90 nap, nem oldható fel, csak megújítható",
+      "premium": "Felár",
+      "premiumNote": "21 nap, 100 ETH-ról 0-ra csökken",
+      "open": "Szabad",
+      "openNote": "bárki, normál áron",
+      "caption": "Nem méretarányos. Ha egy nevet a türelmi idő után újra regisztrálnak, minden rekord törlődik, így az új tulajdonos üresen kezd."
+    },
+    "eth": {
+      "badge": "Ingyenes a használatban lévő neveknek",
+      "title": "Már használsz .bso nevet? A tiéd.",
+      "lead": "Eddig az alkalmazások a memes.bso nevet a memes.eth-ből olvasták. Induláskor minden bitsocial rekorddal rendelkező .eth név, az alneveket is beleértve, ugyanazon .bso névként airdroppal kerül az azt birtokló tárcához, ugyanazzal a rekorddal és kifizetett első évvel. Semmit sem kell igényelni, és semmit sem kell fizetni.",
+      "caveat": "Csak azok a nevek szerepelnek, amelyeknek volt bitsocial rekordjuk az induláskori pillanatképnél. Ha a tiéd később kapta meg a rekordját, igényeld a .bso nevet, amint megnyílik a regisztráció, mielőtt más tenné meg.",
+      "label": "Ellenőrizd a .eth nevedet",
+      "placeholder": "memes.eth",
+      "check": "Ellenőrzés",
+      "registered": "{{name}} regisztrált tulajdonosa: {{owner}}, lejárat: {{date}}.",
+      "points": "Ide mutat: {{record}}.",
+      "notYet": "{{name}} még nincs regisztrálva. Az airdropolt neveket azelőtt regisztrálják, hogy a regisztráció mindenki előtt megnyílna, ezért akkor nézd meg újra.",
+      "notSeeded": "{{name}} nem kapott airdropot, és bárki igényelheti. Ha ezt használod: {{eth}}, igényeld, mielőtt más tenné meg.",
+      "tryAbove": "{{name}} ellenőrzése fent"
+    },
+    "faq": {
+      "eyebrow": "Kérdések",
+      "title": "Hogyan működnek a .bso nevek",
+      "lead": "A válaszok a BSIP-13-at követik, azt a specifikációt, amelyet ez a nyilvántartás megvalósít.",
+      "groups": {
+        "using": "Egy név birtoklása",
+        "launch": "Indulás és .eth nevek",
+        "trust": "Díjak, bizalom és a Bitsocial Chain"
+      },
+      "signers": "{{owners}} kulcsából {{threshold}} aláírása szükséges",
+      "signersUnknown": "több kulcsának aláírása szükséges",
+      "priceLength": "Névhossz",
+      "pricePerYear": "Évente",
+      "bytes_one": "{{count}} bájt",
+      "bytes_other": "{{count}} bájt",
+      "bytesOrMore_one": "{{count}} bájt vagy több",
+      "bytesOrMore_other": "{{count}} bájt vagy több",
+      "contract": "A nyilvántartás szerződése",
+      "safe": "Díjgyűjtő Safe",
+      "spec": "BSIP-13 elolvasása",
+      "items": {
+        "what": {
+          "q": "Mire jó egy .bso név?",
+          "a": [
+            "Egy közösségnek vagy profilnak ember által olvasható nevet ad. A név bitsocial rekordja egy kulcscímet tartalmaz, azt a hosszú 12D3KooW… karakterláncot, amely a közösséget vagy a profilt azonosítja a hálózaton. Az alkalmazások kikeresik a nevet, kiolvassák a kulcsot, és betöltik, amire mutat, így a memes.bso ugyanazt a közösséget nyitja meg az 5chanben, a Seeditben és bármely más Bitsocial alkalmazásban.",
+            "A név a kulcsot is lecserélhetővé teszi. Ha a kulcs elvész vagy ellopják, a nevet egy újra irányítod, és az olvasók követik. Egy csak a kulcsáról ismert közösség így nem tud talpra állni.",
+            "Maga a név egy NFT (ERC-721) az Ethereumon, amelyet a tárcád birtokol. Aki birtokolja, az dönti el, hová mutat."
+          ]
+        },
+        "profiles": {
+          "q": "Egy profilnak is lehet neve?",
+          "a": [
+            "Igen. A szerzők egy kulccsal írják alá a bejegyzéseiket, és az alkalmazások nevet jelenítenek meg ezeken a bejegyzéseken, ha a név bitsocial rekordja ezt a kulcsot tartalmazza. A közösségek és a profilok ugyanazt a rekordot használják, így a regisztráció mindkettőnél ugyanúgy működik.",
+            "Azok a profiloldalak, amelyek egy szerző bejegyzéseit minden közösségből összegyűjtik (BSIP-14), a Bitsocial első nyilvános RPC-jével érkeznek, és egy most regisztrált név működni fog velük. Egy név nem szolgálhat egyszerre közösségként és profilként."
+          ]
+        },
+        "cost": {
+          "q": "Mennyibe kerül egy név?",
+          "a": [
+            "Az éves ár a név bájtban mért hosszától függ, és a megújítás ugyanennyibe kerül. Az Ethereum gas díját ezen felül kell fizetni. Az a–z betűk, a számjegyek és a kötőjelek egy-egy bájtot foglalnak, az ékezetes, görög vagy cirill betűk kettőt, a kínai vagy japán írásjegyek hármat, az emojik pedig általában négyet, így egyetlen emoji ára egy 4 bájtos névével egyezik."
+          ]
+        },
+        "claiming": {
+          "q": "Miért két tranzakció az igénylés?",
+          "a": [
+            "A függőben lévő Ethereum-tranzakciókat bárki láthatja. Ha nyíltan küldenéd el a nevet, valaki lemásolhatná, és előtted regisztrálhatná. Ezért először foglalsz: elküldöd a név egy véletlen titokkal összekevert ujjlenyomatát, amely semmit sem árul el. Egy perccel később igényled, elküldve a nevet és a titkot, és a nyilvántartás a tárcádra bocsátja ki a nevet, ha ezek egyeznek a foglalással.",
+            "Egy foglalás 24 óráig érvényes. Ez az oldal a böngésződben őrzi a titkot, így újratöltheted, vagy később visszatérhetsz ugyanazon az eszközön. Ha az igénylés előtt törlöd a böngésző adatait, foglalj újra. Az első foglalás csak gasba került."
+          ]
+        },
+        "expiry": {
+          "q": "Mi történik, ha egy név lejár?",
+          "a": [
+            "Egy név 365 napig érvényes. Bárki megújíthatja további 365 napra, a jelenlegi lejárattól számítva, így egy barátod vagy egy címtár is életben tarthatja a tiédet. A lejárat után 90 napos türelmi idő következik: a név nem oldható fel, és csak megújítani lehet. Ezután bárki regisztrálhatja, először egy felárral, amely 21 nap alatt 100 ETH-ról nullára csökken, majd normál áron.",
+            "Egy új regisztráció minden rekordot töröl, és az új birtokos a saját kulcsára irányíthatja a nevet. Az olvasók, akik a nevet követik, őt követnék, ezért újíts meg időben."
+          ]
+        },
+        "spelling": {
+          "q": "Milyen írásmódok működnek?",
+          "a": [
+            "Az alkalmazások a kikeresés előtt normalizálják a nevet, ahogy az ENS is (ENSIP-15). Ez megengedi a kisbetűket, a számjegyeket, a név belsejében a kötőjeleket, a legtöbb írásrendszert és az emojikat. Pont, szóköz és aláhúzásjel nem megengedett, kivéve egy aláhúzásjelet a legelején, az írásrendszereket keverő hasonmás karaktereket pedig elutasítják.",
+            "Maga a nyilvántartás kevesebbet ellenőriz, így olyan írásmódokat is eladna, amelyeket egyetlen alkalmazás sem tud feloldani, és a díjat nem térítik vissza. Ez az oldal elutasítja ezeket, és javítást javasol, például relationship_advice helyett relationship-advice."
+          ]
+        },
+        "transfer": {
+          "q": "Elajándékozhatok vagy eladhatok egy nevet?",
+          "a": [
+            "Igen. Egy név egy ERC-721 token a tárcádban, így bármely NFT-hez hasonlóan elküldheted. Az igénylés mindig az igénylő tárcára bocsátja ki a nevet, ezért ha valaki másnak akarsz nevet regisztrálni, igényeld, majd utald át neki. A rekord nem változik a tulajdonossal, ezért az új birtokosnak érdemes a saját kulcsára irányítania."
+          ]
+        },
+        "subnames": {
+          "q": "Oszthatok alneveket?",
+          "a": [
+            "Egy név birtokosa ingyen hozhat létre alneveket, például memes.yourname.bso. A szülőnév birtokosa azonban bármikor visszaveheti bármelyik alnevet, és máshová irányíthatja, így egy alnéven működő közösség teljesen ki van szolgáltatva ennek a személynek. Egy közösségnek saját nevet érdemes regisztrálnia, vagy a kulcsán maradnia, amíg ezt meg nem teszi."
+          ]
+        },
+        "launch": {
+          "q": "Mi történik induláskor?",
+          "a": [
+            "A nyilvántartás zárva indul. Először minden .eth-en keresztül már használt .bso név ingyen a birtokosára regisztrálódik (lásd fent). Ezeket a regisztrációkat bárki elküldheti, és a karbantartók igyekeznek mindet a telepítést követő egy órán belül elküldeni. A nyilvános regisztráció egy órával az utolsó után nyílik meg, így a megnyitás időpontja egy órával előre a láncon van. Ha elakadnak, a regisztráció a telepítés után hét nappal mindenképp megnyílik.",
+            "A megnyitás előtt lefoglalhatsz egy nevet. A megnyitás előtt legalább egy perccel és legfeljebb 24 órával tett foglalás a megnyitás pillanatában igényelhető. Ugyanabban a pillanatban mások is igényelhetik ugyanazt a nevet, és az elsőként blokkba került tranzakció nyer."
+          ]
+        },
+        "eth": {
+          "q": "Működik még a .eth nevem?",
+          "a": [
+            "Igen. Az alkalmazások továbbra is az ENS-en keresztül oldják fel a .eth neveket. Az változik, hogy az x.bso többé nem jelenti az x.eth-t: az ezt a nyilvántartást támogató alkalmazások a .bso neveket csak innen olvassák, így a bot.bso és a bot.eth külön nevekké válnak, amelyeknek különböző tulajdonosaik lehetnek.",
+            "Egyes alkalmazások addig olvassák az x.bso-t az x.eth-ből, amíg nem frissülnek. Ha mindkét név a tiéd, addig tartsd azonosan a rekordjaikat."
+          ]
+        },
+        "control": {
+          "q": "Ki irányítja a nyilvántartást?",
+          "a": [
+            "Senki. A szerződésnek nincs tulajdonosa, adminja, proxyja, szüneteltető kapcsolója vagy frissítési útja. Az árak, az időszakok és a díjcím rögzítve vannak a kódjában, és senki sem veheti el, szerkesztheti vagy ruházhatja át azt a nevet, amely nem az övé.",
+            "A .gwei Name Service forkja, négy változtatással: a nevek .bso-ra végződnek, a díjak egy rögzített multisigbe kerülnek ahelyett, hogy a szerződésben ragadnának, a már használt neveket induláskor átmásolják, és egy egyszeri kivezetés lehetővé teszi az átköltözést a Bitsocial Chainre. A megváltoztathatatlan kód másik oldala, hogy egy hibát sem lehet benne javítani."
+          ]
+        },
+        "fees": {
+          "q": "Hová kerülnek a díjak?",
+          "a": [
+            "A díjak a nyilvántartásban gyűlnek, és bárki továbbküldheti őket egyetlen rögzített címre: egy Safe multisigre, amely a Bitsocial fejlesztését finanszírozza, amíg ez a nyilvántartás használatban van. Bármihez {{signers}}. A kulcsok a Bitsocial két karbantartójáé és az általuk kijelölt megbízottaké, és egyetlen személynek sincs annyi kulcsa, hogy mozgathassa a pénzt.",
+            "A Safe-nek pontosan két jogköre van a nyilvántartás felett: díjakat fogadni és egyszer elindítani a kivezetést. Nem módosíthat árakat, és nem nyúlhat olyan névhez, amely nem az övé. Néhány fenntartott projektnevet is birtokol közönséges tulajdonosként, például a bitsocial.bso nevet."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Miért egy új nyilvántartás az ENS helyett?",
+          "a": [
+            "Eddig minden .bso név ENS-név volt, ENS-árakon: 2026 októberében egy új közösségi névre három évre több mint 20 dolláros árat adtak. A legtöbb tulajdonos ennyit nem fizet azért, hogy kipróbáljon egy közösséget, ezért csupasz kulcsokon maradnak. A Bitsocial Chain natívan fogja tárolni a .bso neveket, de még nem létezik.",
+            "Ez az ideiglenes nyilvántartás már ma évi 0,0005 ETH-ra viszi le egy normál név árát, a későbbi átköltözést a Bitsocial Chainre pedig a rekordok másolásává teszi a tulajdonosváltás helyett."
+          ]
+        },
+        "whyEth": {
+          "q": "Miért ETH-ban kell fizetni, és nem BSO-ban?",
+          "a": [
+            "A BSO-ban fizetőknek adott kedvezményhez a szerződésnek ismernie kellene a BSO ETH-ban kifejezett árát. Egy tulajdonos nélküli szerződés nem tud lecserélni egy elromlott árforrást, egy gyenge forgalmú poolt pedig egyetlen tranzakció idejére el lehetne mozdítani, hogy rövid neveket szinte ingyen vegyenek. Egy rögzített BSO-árlista a tokennel együtt elcsúszna, amíg szinte ingyenes vagy soha nem használt nem lenne, és senki sem tudná kijavítani.",
+            "A Bitsocial Chain saját nyilvántartása e korlátok nélkül adhat szerepet a BSO-nak."
+          ]
+        },
+        "move": {
+          "q": "Mit jelent az átköltözés a Bitsocial Chainre?",
+          "a": [
+            "A Bitsocial Chain a Bitsocial főtervének 3. fázisa: egy saját lánc, amely natívan tárolja a .bso neveket. Amint a névnyilvántartására vonatkozó BSIP eléri a Last Call állapotot, a Safe elindíthatja a kivezetést. A szerződés ekkor 30 napos előzetes értesítést ad, amelyet nem lehet visszavonni vagy lerövidíteni. Az értesítési idő alatt minden a korábbiak szerint működik, így a megújítások és az átruházások továbbra is számítanak.",
+            "Az értesítési idő után az Ethereum-nyilvántartás befagy. Semmit nem lehet regisztrálni, megújítani, átruházni vagy szerkeszteni, a nevek pedig a befagyott állapotból oldódnak fel tovább. A Bitsocial Chain ingyen importál minden aktív vagy türelmi időben lévő nevet, ugyanazzal a tulajdonossal, lejárattal és rekorddal. Neked semmit sem kell tenned.",
+            "A BSIP-13 csak ehhez az átköltözéshez engedi meg a kivezetést, és a szerződés kikényszeríti a 30 napos értesítési időt."
+          ]
+        },
+        "afterMove": {
+          "q": "Mi lesz a díjakkal az átköltözés után?",
+          "a": [
+            "A karbantartók díjakból történő finanszírozása ezzel a nyilvántartással véget ér. A Bitsocial Chain nyilvántartása saját BSIP-ben határozza meg a saját díjait, és a terv az, hogy ott a névdíjakat ehelyett elégetik, vagy BSO-t vásárolnak vissza belőlük, és azt égetik el. A mechanizmusról még nincs döntés."
+          ]
+        }
       }
     }
   }

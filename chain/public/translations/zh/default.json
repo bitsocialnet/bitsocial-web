@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "常见问题",
     "richList": "富豪榜",
-    "chart": "图表"
+    "chart": "图表",
+    "domains": "域名"
   },
   "languageSelector": {
     "title": "选择语言",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "链尚未上线，订阅以获取更新",
     "title": "加密世界缺失的<mark>社交层</mark>",
-    "supporting": "加密世界之所以变成赌场，是因为 Web2、TradFi 和中心化基础设施掌控着分发渠道，并扭曲了激励机制。Bitsocial Chain 要解决这个问题：一条不可阻挡、完全去中心化的 <l2Link>Ethereum L2</l2Link> <appchainLink>应用链</appchainLink>，社区在其上拥有自己的网络、代币和收益。"
+    "supporting": "加密世界之所以变成赌场，是因为 Web2、TradFi 和中心化基础设施掌控着分发渠道，并扭曲了激励机制。Bitsocial Chain 要解决这个问题：一条不可阻挡、完全去中心化的 <l2Link>Ethereum L2</l2Link> <appchainLink>应用链</appchainLink>，社区在其上拥有自己的网络、代币和收益。",
+    "domainsCta": "立即获取你的 .bso 域名"
   },
   "layers": {
     "ariaLabel": "加密世界的三个堆叠层：顶部是 Bitsocial 网络上的社交应用，底部是 Ethereum L1 结算层，而由 BSO 驱动的 Ethereum L2 应用链 Bitsocial Chain，作为发光的缺失层被点亮，嵌入两者之间的空隙，并由一条能量主干贯穿其间。",
@@ -737,6 +739,318 @@
       "marchRally": {
         "title": "2024 年 3 月的上涨行情",
         "body": "3 月 1 日，投资人 Jason Calacanis 发推称他想要一个分布式、无需许可的 Reddit，plebbit 则以其演示版回复。3 月 3 日 Seedit 0.1.6 发布，3 月 4 日团队宣布推出凭代币准入的社区。当月 ETH 突破 4,000 美元，价格在 3 月 4 日几乎翻倍，到 3 月底涨至三倍，成交量达 220 万美元，为本图表中所有月份之最。"
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": ".bso 域名 - 为你的社区或个人资料命名",
+      "description": "为 Bitsocial 社区或个人资料注册 .bso 域名。该名称是你的钱包在 Ethereum 上拥有的 NFT，每年最低 0.0005 ETH，可在所有 Bitsocial 应用中打开。"
+    },
+    "hero": {
+      "titleCommunity": "给你的社区起个名字",
+      "titleProfile": "给你的个人资料起个名字",
+      "leadCommunity": "在下方的页头中输入名称。读者在每个 Bitsocial 应用中都能通过这个名称找到你的社区，而它归你的钱包所有。",
+      "leadProfile": "在下方的页头中输入名称。你的帖子在每个 Bitsocial 应用中都会带有这个名称，而它归你的钱包所有。",
+      "kindLabel": "名称用于",
+      "kindCommunity": "社区",
+      "kindProfile": "个人资料",
+      "opensIn": "注册将在 {{time}} 后开放。你现在就可以预留名称。",
+      "opensOn": "注册将于 {{date}} 开放。",
+      "notDeployed": "注册表即将上线。现在已可查询名称和价格。"
+    },
+    "plate": {
+      "inputLabelCommunity": "你的社区名称",
+      "inputLabelProfile": "你的个人资料名称",
+      "placeholderCommunity": "yourcommunity",
+      "placeholderProfile": "yourname",
+      "sublineCommunity": "社区 · 可在 5chan、Seedit 和其他 Bitsocial 应用中按名称打开",
+      "sublineProfile": "个人资料 · 你在所有社区发布的帖子，归于同一个名称",
+      "join": "加入",
+      "posts": "帖子",
+      "rules": "规则",
+      "follow": "关注",
+      "about": "关于",
+      "captionCommunity": "一个社区页头，其标题就是你正在查询的 .bso 名称",
+      "captionProfile": "一个个人资料页头，其标题就是你正在查询的 .bso 名称",
+      "withoutCommunity": "没有名称时，大家分享的是",
+      "withoutProfile": "没有名称时，你的帖子显示的是",
+      "withCommunity": "有了名称，大家分享的是",
+      "withProfile": "有了名称，显示的是"
+    },
+    "checks": {
+      "spelling": "拼写",
+      "availability": "可用性",
+      "price": "价格",
+      "typeName": "输入一个名称",
+      "spellingOk": "名称有效",
+      "fixFirst": "请先修正拼写",
+      "dot": "名称中不允许使用点号。",
+      "space": "不允许使用空格。",
+      "underscore": "下划线只能出现在开头。",
+      "hyphenEdge": "名称不能以连字符开头或结尾。",
+      "labelExtension": "名称的第三和第四个字符不能是“--”。",
+      "tooLong": "太长：名称最多 255 字节。",
+      "lookalike": "它混用了多种文字，或使用了形近字符。",
+      "character": "不允许使用“{{character}}”。",
+      "characterUnknown": "其中有不允许使用的字符。",
+      "checking": "正在查询…",
+      "available": "可注册",
+      "taken": "已注册，有效期至 {{date}}",
+      "yours": "归你所有，有效期至 {{date}}",
+      "reserved": "为 Bitsocial 保留至 {{date}}",
+      "grace": "已于 {{date}} 过期。其所有者可在 {{until}} 之前续费。",
+      "premium": "已于 {{date}} 释放。其溢价将在 {{end}} 前降至零。",
+      "lookupFailed": "无法连接 Ethereum。",
+      "retry": "重试",
+      "notDeployed": "注册表上线后即可查询",
+      "yearly": "每年 {{price}}",
+      "yearlyShort": "每年 {{price}}，即 {{count}} 字符名称的价格",
+      "yearlyBytes": "每年 {{price}}，按其 {{count}} 字节计价",
+      "withPremium": "首年 {{price}}，含 {{premium}} 溢价"
+    },
+    "cta": {
+      "claim": "以 {{price}} 认领 {{name}}",
+      "reserve": "立即预留 {{name}}",
+      "renew": "为 {{name}} 续费",
+      "pointCommunity": "将 {{name}} 指向你的社区",
+      "pointProfile": "将 {{name}} 指向你的个人资料",
+      "soon": "注册即将开放",
+      "fix": "改用 {{name}}",
+      "noteClaim": "三笔钱包交易，约两分钟。",
+      "noteReserve": "现在预留，注册开放后再认领。",
+      "noteReserveLater": "预留将在注册开放前 24 小时开始。",
+      "noteTaken": "由 {{owner}} 持有。",
+      "noteReserved": "由 Bitsocial 费用 Safe 持有，BSIP-13 为其保留了该名称。",
+      "noteGrace": "任何人都可以为它续费，续费后它仍归原所有者。",
+      "notePremium": "溢价每秒都在下降，多付的部分会退还。",
+      "noteNotDeployed": "注册表合约尚未部署到 Ethereum。"
+    },
+    "claim": {
+      "eyebrow": "认领",
+      "title": "从你的钱包发起三笔交易，约两分钟",
+      "pickName": "在上方选一个可注册的名称即可开始。",
+      "claiming": "正在认领 {{name}}",
+      "renewing": "正在为 {{name}} 续费",
+      "pointing": "正在设置 {{name}} 的指向",
+      "connect": "连接钱包",
+      "connectWith": "连接 {{wallet}}",
+      "browserWallet": "浏览器钱包",
+      "connecting": "正在连接…",
+      "noWallet": "在此浏览器中未找到 Ethereum 钱包。请安装浏览器钱包，或在你的钱包应用内置的浏览器中打开本页。",
+      "connectedAs": "已连接：{{address}}",
+      "reserveTitle": "预留",
+      "reserveBody": "先把一个密封的承诺上链，这样就没人能从你待处理的交易中读出名称并抢走它。然后等待 60 秒。",
+      "reserveMeta": "commit() · 仅需 gas",
+      "reserveAction": "预留 {{name}}",
+      "reserveTooEarly": "你可以从 {{date}} 起预留，即注册开放前 24 小时。",
+      "reserved": "已预留。此浏览器会保存该预留，直到 {{time}}。",
+      "claimTitle": "认领",
+      "claimBody": "为名称付费。它会铸造到同一个钱包，有效期 365 天。预留后你最多有 24 小时来完成这一步，此浏览器会记住你的进度。",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "以 {{price}} 认领 {{name}}",
+      "claimWait": "{{seconds}} 秒后就绪",
+      "claimWaitOpening": "注册开放时就绪，还有 {{time}}",
+      "startOver": "重新开始",
+      "renewTitle": "续费",
+      "renewBody": "在当前到期时间上增加 365 天。任何人都可以为任何名称续费，名称仍归其所有者。",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "以 {{price}} 为 {{name}} 续费",
+      "renewed": "已续费至 {{date}}。",
+      "recordTitleCommunity": "将它指向你的社区",
+      "recordTitleProfile": "将它指向你的个人资料",
+      "recordLabelCommunity": "你的社区公钥，可在社区设置中找到",
+      "recordLabelProfile": "你的账户公钥，可在应用的账户设置中找到",
+      "recordMeta": "setText(\"bitsocial\") · 仅需 gas · 可随时更改",
+      "recordAction": "保存记录",
+      "recordInvalid": "这不是公钥。公钥长 52 个字符，以 12D3KooW 开头。",
+      "recordCurrent": "当前指向 {{record}}。",
+      "recordNotOwner": "只有拥有 {{name}} 的钱包才能设置它的记录。",
+      "doneCommunity": "{{name}} 已指向你的社区。接下来，在社区设置中将 {{name}} 设为社区地址。",
+      "doneProfile": "{{name}} 已指向你的账户。接下来，在应用的账户设置中把 {{name}} 填为你的名称，这样你的帖子就会显示它。",
+      "confirmInWallet": "请在钱包中确认",
+      "waitingForTx": "正在等待交易…",
+      "viewTx": "查看交易",
+      "rejected": "你在钱包中拒绝了请求。",
+      "failed": "出错了：{{message}}",
+      "reverted": "注册表拒绝了该交易（{{error}}）。",
+      "errors": {
+        "CommitmentTooNew": "预留需要等待一分钟才能生效。请几秒后再试。",
+        "CommitmentTooOld": "此预留已超过 24 小时。请重新预留。",
+        "CommitmentNotFound": "未找到此钱包的预留。请重新预留。",
+        "AlreadyCommitted": "此预留已在链上。",
+        "AlreadyRegistered": "已有人抢先注册了这个名称。",
+        "InsufficientFee": "价格已变动。请重试。",
+        "Expired": "此名称已过期。",
+        "Unauthorized": "此钱包不拥有该名称。"
+      }
+    },
+    "activity": {
+      "title": "最新名称",
+      "live": "来自 Ethereum 的实时数据",
+      "registered": "{{name}} 已注册",
+      "empty": "尚无已注册的名称。",
+      "notDeployed": "注册表上线后，名称会显示在这里。",
+      "failed": "无法加载最新名称。",
+      "browse": "浏览所有名称"
+    },
+    "lifecycle": {
+      "eyebrow": "保有名称",
+      "title": "名称每次有效一年",
+      "lead": "续费会在当前到期时间上增加 365 天，价格不变。任何人都可以为任何名称续费，因此朋友或目录站点也能帮你维持名称有效。",
+      "active": "有效",
+      "activeNote": "365 天，可解析",
+      "grace": "宽限期",
+      "graceNote": "90 天，不可解析，仅可续费",
+      "premium": "溢价期",
+      "premiumNote": "21 天，从 100 ETH 降至 0",
+      "open": "开放",
+      "openNote": "任何人，正常价格",
+      "caption": "未按比例绘制。宽限期结束后重新注册名称会清除所有记录，新所有者将从空白开始。"
+    },
+    "eth": {
+      "badge": "已在使用的名称免费",
+      "title": "已经在用 .bso 名称？它归你所有。",
+      "lead": "此前，应用从 memes.eth 读取 memes.bso。上线时，每个带有 bitsocial 记录的 .eth 名称（包括子名称）都会以同名 .bso 名称空投给持有它的钱包，记录保持不变，并已付清首年费用。无需领取，也无需付费。",
+      "caveat": "只有在上线快照时已带有 bitsocial 记录的名称才会被纳入。如果你的名称是之后才添加记录的，请在注册开放后尽快认领该 .bso 名称，以免被他人抢先。",
+      "label": "查询你的 .eth 名称",
+      "placeholder": "memes.eth",
+      "check": "查询",
+      "registered": "{{name}} 已注册给 {{owner}}，有效期至 {{date}}。",
+      "points": "它指向 {{record}}。",
+      "notYet": "{{name}} 尚未注册。空投的名称会在面向所有人开放注册之前完成注册，届时请再来查询。",
+      "notSeeded": "{{name}} 未被空投，任何人都可以注册。如果你在使用 {{eth}}，请抢在别人之前认领它。",
+      "tryAbove": "在上方查询 {{name}}"
+    },
+    "faq": {
+      "eyebrow": "问题",
+      "title": ".bso 名称如何运作",
+      "lead": "以下回答依据 BSIP-13，即本注册表所实现的规范。",
+      "groups": {
+        "using": "拥有名称",
+        "launch": "上线与 .eth 名称",
+        "trust": "费用、信任与 Bitsocial Chain"
+      },
+      "signers": "需要其 {{owners}} 把密钥中的 {{threshold}} 把签名",
+      "signersUnknown": "需要其中多把密钥签名",
+      "priceLength": "名称长度",
+      "pricePerYear": "每年",
+      "bytes_other": "{{count}} 字节",
+      "bytesOrMore_other": "{{count}} 字节或以上",
+      "contract": "注册表合约",
+      "safe": "费用 Safe",
+      "spec": "阅读 BSIP-13",
+      "items": {
+        "what": {
+          "q": ".bso 名称有什么用？",
+          "a": [
+            "它让社区或个人资料拥有一个人们读得懂的名称。名称的 bitsocial 记录保存着一个密钥地址，也就是在网络上标识该社区或个人资料的那串 12D3KooW… 长字符串。应用会查询名称、读取密钥并加载它指向的内容，因此 memes.bso 在 5chan、Seedit 和任何其他 Bitsocial 应用中打开的都是同一个社区。",
+            "名称还让密钥可以更换。如果密钥丢失或被盗，你可以把名称指向新的密钥，读者也会随之跟来。只靠密钥被人认识的社区无法以这种方式恢复。",
+            "名称本身是 Ethereum 上的一个 NFT（ERC-721），由你的钱包持有。谁持有它，谁就决定它指向哪里。"
+          ]
+        },
+        "profiles": {
+          "q": "个人资料也能有名称吗？",
+          "a": [
+            "可以。作者用密钥为自己的帖子签名；当某个名称的 bitsocial 记录保存的正是该密钥时，应用就会在这些帖子上显示这个名称。社区和个人资料使用相同的记录，因此两者的注册方式完全一样。",
+            "汇集作者在所有社区所发帖子的个人资料页（BSIP-14）将随 Bitsocial 的首个公共 RPC 一同推出，现在注册的名称届时同样适用。一个名称不能同时用作社区和个人资料。"
+          ]
+        },
+        "cost": {
+          "q": "名称需要多少钱？",
+          "a": [
+            "每年的价格取决于名称以字节计的长度，续费价格相同。Ethereum gas 费另计。字母 a–z、数字和连字符各占一个字节，带重音符号的字母、希腊字母或西里尔字母占两个字节，中文或日文字符占三个字节，emoji 通常占四个字节，因此单个 emoji 按 4 字节名称计价。"
+          ]
+        },
+        "claiming": {
+          "q": "为什么认领需要两笔交易？",
+          "a": [
+            "任何人都能看到待处理的 Ethereum 交易。如果你直接公开发送名称，别人就可能复制它并抢在你之前注册。所以你要先预留：发送一个由名称与随机秘密值混合而成的指纹，它不会泄露任何信息。一分钟后你再认领，发送名称和秘密值；如果两者与预留相符，注册表就会把名称铸造到你的钱包。",
+            "预留在 24 小时内有效。本页会把秘密值保存在你的浏览器中，因此你可以刷新页面，或稍后在同一设备上回来继续。如果你在认领前清除了浏览器数据，请重新预留。第一次预留只花费了 gas。"
+          ]
+        },
+        "expiry": {
+          "q": "名称过期会怎样？",
+          "a": [
+            "名称的有效期为 365 天。任何人都可以为它再续费 365 天，从当前到期时间起算，因此朋友或目录站点可以帮你维持名称有效。到期后有 90 天宽限期：名称停止解析，只能续费。之后任何人都可以注册它，起初需支付在 21 天内从 100 ETH 降至零的溢价，之后按正常价格注册。",
+            "新的注册会清除所有记录，新持有者可以把名称指向他们自己的密钥。关注该名称的读者会转而关注他们，所以请尽早续费。"
+          ]
+        },
+        "spelling": {
+          "q": "哪些拼写可以使用？",
+          "a": [
+            "应用在查询名称之前会先对其进行规范化，方式与 ENS 相同（ENSIP-15）。允许使用小写字母、数字、名称内部的连字符、大多数文字和 emoji。不允许使用点号、空格和下划线（只有最开头的下划线除外），混用多种文字的形近字符会被拒绝。",
+            "注册表本身的检查较少，因此它会出售任何应用都无法解析的拼写，而且费用不予退还。本页会拒绝这类拼写并建议修正，例如用 relationship-advice 代替 relationship_advice。"
+          ]
+        },
+        "transfer": {
+          "q": "我可以赠送或出售名称吗？",
+          "a": [
+            "可以。名称是你钱包中的 ERC-721 代币，因此你可以像发送任何 NFT 一样发送它。认领总是铸造到发起认领的钱包，所以要为别人注册名称，请先认领再转给对方。记录不会随所有者改变，因此新持有者应把它指向自己的密钥。"
+          ]
+        },
+        "subnames": {
+          "q": "我可以分发子名称吗？",
+          "a": [
+            "名称的持有者可以免费创建 memes.yourname.bso 这样的子名称。但父名称的持有者可以随时收回任何子名称并把它指向别处，因此使用子名称的社区完全受制于这个人。社区应该注册属于自己的名称，在此之前则继续使用自己的密钥。"
+          ]
+        },
+        "launch": {
+          "q": "上线时会发生什么？",
+          "a": [
+            "注册表启动时处于关闭状态。首先，每个已通过 .eth 使用的 .bso 名称都会免费注册给其持有者（见上文）。任何人都可以发送这些注册交易，维护者的目标是在部署后一小时内全部发送完毕。公开注册在最后一笔完成一小时后开放，因此开放时间会提前一小时记录在链上。如果过程停滞，注册无论如何都会在部署七天后开放。",
+            "你可以在开放之前预留名称。在开放前至少一分钟、至多 24 小时内完成的预留，可以在开放的那一刻立即认领。其他人也可能在同一时刻认领同一个名称，最先被打包上链的交易胜出。"
+          ]
+        },
+        "eth": {
+          "q": "我的 .eth 名称还能用吗？",
+          "a": [
+            "能。应用会继续通过 ENS 解析 .eth 名称。变化在于 x.bso 不再等同于 x.eth：支持本注册表的应用只从本注册表读取 .bso 名称，因此 bot.bso 和 bot.eth 会成为两个独立的名称，可以有不同的所有者。",
+            "有些应用在更新之前仍会从 x.eth 读取 x.bso。如果你同时持有这两个名称，在此之前请保持它们的记录一致。"
+          ]
+        },
+        "control": {
+          "q": "谁控制注册表？",
+          "a": [
+            "没有人。该合约没有所有者、管理员、代理、暂停开关或升级途径。价格、期限和费用地址都固定写在代码中，任何人都无法夺取、编辑或转移自己并不持有的名称。",
+            "它是 .gwei Name Service 的一个分叉，做了四处改动：名称以 .bso 结尾；费用转入一个固定的多签，而不是锁在合约中；已在使用的名称在上线时复制进来；还有一次性的停用机制，使其可以迁移到 Bitsocial Chain。代码无法更改的另一面是：漏洞也无法修补。"
+          ]
+        },
+        "fees": {
+          "q": "费用流向哪里？",
+          "a": [
+            "费用先在注册表中累积，任何人都可以把它们转到一个固定地址：一个 Safe 多签，在本注册表使用期间用于资助 Bitsocial 的开发。{{signers}}，才能执行任何操作。这些密钥属于 Bitsocial 的两位维护者以及他们指定的受托人，没有任何一个人持有足够多的密钥来动用资金。",
+            "Safe 对注册表恰好只有两项权力：接收费用，以及启动一次停用程序。它不能更改价格，也不能触碰它不持有的名称。它还以普通所有者的身份持有少数保留的项目名称，例如 bitsocial.bso。"
+          ]
+        },
+        "whyRegistry": {
+          "q": "为什么要新建注册表，而不是用 ENS？",
+          "a": [
+            "此前每个 .bso 名称都是 ENS 名称，按 ENS 的价格收费：2026 年 10 月，一个新社区名称三年的报价超过 20 美元。大多数所有者不愿为试水一个社区付这笔钱，所以只用裸密钥。Bitsocial Chain 将原生承载 .bso 名称，但它目前还不存在。",
+            "这个临时注册表让普通名称如今每年只需 0.0005 ETH，并让日后迁移到 Bitsocial Chain 变成复制记录，而不是更换所有者。"
+          ]
+        },
+        "whyEth": {
+          "q": "为什么用 ETH 而不是 BSO 支付？",
+          "a": [
+            "如果为使用 BSO 支付提供折扣，合约就需要知道 BSO 以 ETH 计的价格。没有所有者的合约无法替换出故障的价格来源，而交易清淡的池子可能在一笔交易内被操纵，从而以几乎为零的价格买下短名称。以 BSO 计价的固定价目表会随代币价格漂移，最终要么几乎免费，要么无人使用，而且没有人能修正它。",
+            "Bitsocial Chain 自己的注册表可以在没有这些限制的情况下赋予 BSO 一定的作用。"
+          ]
+        },
+        "move": {
+          "q": "迁移到 Bitsocial Chain 意味着什么？",
+          "a": [
+            "Bitsocial Chain 是 Bitsocial 总体规划的第 3 阶段：一条原生承载 .bso 名称的独立链。一旦其名称注册表的 BSIP 进入 Last Call 阶段，Safe 就可以启动停用程序。随后合约会给出 30 天的通知期，且无法取消或缩短。通知期内一切照常运作，因此续费和转移依然有效。",
+            "通知期结束后，Ethereum 上的注册表将被冻结。任何名称都无法再注册、续费、转移或编辑，名称会继续按冻结时的状态解析。Bitsocial Chain 会免费导入所有处于有效期或宽限期内的名称，所有者、到期时间和记录均保持不变。你无需做任何事。",
+            "BSIP-13 只允许为这次迁移启动停用，且合约会强制执行 30 天通知期。"
+          ]
+        },
+        "afterMove": {
+          "q": "迁移之后费用会怎样？",
+          "a": [
+            "用费用资助维护者的做法将随本注册表一同结束。Bitsocial Chain 的注册表会在自己的 BSIP 中设定自己的费用，计划是改为销毁那里的名称费用，或用它回购并销毁 BSO。具体机制尚未确定。"
+          ]
+        }
       }
     }
   }

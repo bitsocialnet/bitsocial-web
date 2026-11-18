@@ -5,7 +5,8 @@
     "bitsocial": "Bitsocial",
     "faq": "FAQ",
     "richList": "Rijkenlijst",
-    "chart": "Grafiek"
+    "chart": "Grafiek",
+    "domains": "Domeinen"
   },
   "languageSelector": {
     "title": "Taal selecteren",
@@ -28,7 +29,8 @@
   "hero": {
     "statusCta": "De chain is nog niet live, abonneer je op updates",
     "title": "De ontbrekende <mark>sociale laag</mark> van crypto",
-    "supporting": "Crypto is een casino geworden omdat Web2, TradFi en gecentraliseerde infrastructuur de distributiekanalen bezitten en de prikkels verdraaien. Bitsocial Chain lost dit op: een onstuitbare, volledig gedecentraliseerde <l2Link>Ethereum L2</l2Link>-<appchainLink>appchain</appchainLink> waarin communities zelf hun netwerken, tokens en inkomsten bezitten."
+    "supporting": "Crypto is een casino geworden omdat Web2, TradFi en gecentraliseerde infrastructuur de distributiekanalen bezitten en de prikkels verdraaien. Bitsocial Chain lost dit op: een onstuitbare, volledig gedecentraliseerde <l2Link>Ethereum L2</l2Link>-<appchainLink>appchain</appchainLink> waarin communities zelf hun netwerken, tokens en inkomsten bezitten.",
+    "domainsCta": "Claim vandaag je .bso-domein"
   },
   "layers": {
     "ariaLabel": "Drie gestapelde lagen van crypto: sociale apps op het Bitsocial-netwerk bovenaan, Ethereum L1-afwikkeling onderaan, en Bitsocial Chain, de door BSO aangedreven Ethereum L2-appchain, die opvlamt als de gloeiende ontbrekende laag die in de opening tussen beide past, doorlopen door een ruggengraat van energie.",
@@ -742,6 +744,320 @@
       "marchRally": {
         "title": "De rally van maart 2024",
         "body": "Op 1 maart tweet investeerder Jason Calacanis dat hij een gedistribueerd, permissieloos Reddit wil, en plebbit reageert met zijn demo. Seedit 0.1.6 verschijnt op 3 maart, en op 4 maart kondigt het team token-gated communities aan. Terwijl ETH die maand boven de $4.000 stijgt, verdubbelt de koers bijna op 4 maart en verdrievoudigt hij tegen eind maart, bij $2,2 miljoen aan volume, het hoogste van alle maanden in deze grafiek."
+      }
+    }
+  },
+  "names": {
+    "meta": {
+      "title": ".bso-domeinen - Een naam voor je community of profiel",
+      "description": "Registreer een .bso-domein voor een Bitsocial-community of -profiel. De naam is een NFT op Ethereum die van je wallet is, vanaf 0,0005 ETH per jaar, en hij opent in elke Bitsocial-app."
+    },
+    "hero": {
+      "titleCommunity": "Geef je community een naam",
+      "titleProfile": "Geef je profiel een naam",
+      "leadCommunity": "Typ hem in de header hieronder. Lezers vinden je community onder deze naam in elke Bitsocial-app, en je wallet is de eigenaar.",
+      "leadProfile": "Typ hem in de header hieronder. Je berichten dragen deze naam in elke Bitsocial-app, en je wallet is de eigenaar.",
+      "kindLabel": "Naam voor",
+      "kindCommunity": "Een community",
+      "kindProfile": "Een profiel",
+      "opensIn": "De registratie opent over {{time}}. Je kunt nu al een naam reserveren.",
+      "opensOn": "De registratie opent op {{date}}.",
+      "notDeployed": "Het register komt binnenkort. Namen en prijzen kun je nu al controleren."
+    },
+    "plate": {
+      "inputLabelCommunity": "De naam van je community",
+      "inputLabelProfile": "De naam van je profiel",
+      "placeholderCommunity": "jouwcommunity",
+      "placeholderProfile": "jouwnaam",
+      "sublineCommunity": "Community · opent op naam in 5chan, Seedit en andere Bitsocial-apps",
+      "sublineProfile": "Profiel · je berichten uit elke community, onder één naam",
+      "join": "Lid worden",
+      "posts": "Berichten",
+      "rules": "Regels",
+      "follow": "Volgen",
+      "about": "Over",
+      "captionCommunity": "Een communityheader met als titel de .bso-naam die je controleert",
+      "captionProfile": "Een profielheader met als titel de .bso-naam die je controleert",
+      "withoutCommunity": "Zonder naam delen mensen",
+      "withoutProfile": "Zonder naam tonen je berichten",
+      "withCommunity": "Met een naam delen ze",
+      "withProfile": "Met een naam tonen ze"
+    },
+    "checks": {
+      "spelling": "Spelling",
+      "availability": "Beschikbaarheid",
+      "price": "Prijs",
+      "typeName": "Typ een naam",
+      "spellingOk": "Geldige naam",
+      "fixFirst": "Corrigeer eerst de spelling",
+      "dot": "Punten zijn niet toegestaan in een naam.",
+      "space": "Spaties zijn niet toegestaan.",
+      "underscore": "Een underscore mag alleen aan het begin staan.",
+      "hyphenEdge": "Een naam mag niet met een koppelteken beginnen of eindigen.",
+      "labelExtension": "Een naam mag niet “--” als derde en vierde teken hebben.",
+      "tooLong": "Te lang: een naam is maximaal 255 bytes.",
+      "lookalike": "Hij mengt schriften of gebruikt tekens die op andere lijken.",
+      "character": "“{{character}}” is niet toegestaan.",
+      "characterUnknown": "Hij bevat een teken dat niet is toegestaan.",
+      "checking": "Controleren…",
+      "available": "Beschikbaar",
+      "taken": "Geregistreerd tot {{date}}",
+      "yours": "Van jou, tot {{date}}",
+      "reserved": "Gereserveerd voor Bitsocial tot {{date}}",
+      "grace": "Verlopen op {{date}}. De eigenaar kan hem verlengen tot {{until}}.",
+      "premium": "Vrijgegeven op {{date}}. De toeslag daalt tot nul op {{end}}.",
+      "lookupFailed": "Ethereum is niet bereikbaar.",
+      "retry": "Opnieuw proberen",
+      "notDeployed": "Gecontroleerd zodra het register live is",
+      "yearly": "{{price}} per jaar",
+      "yearlyShort": "{{price}} per jaar, de prijs voor namen van {{count}} tekens",
+      "yearlyBytes": "{{price}} per jaar, berekend op de {{count}} bytes",
+      "withPremium": "{{price}} voor het eerste jaar, inclusief {{premium}} toeslag"
+    },
+    "cta": {
+      "claim": "Claim {{name}} voor {{price}}",
+      "reserve": "Reserveer {{name}} nu",
+      "renew": "Verleng {{name}}",
+      "pointCommunity": "Laat {{name}} naar je community wijzen",
+      "pointProfile": "Laat {{name}} naar je profiel wijzen",
+      "soon": "De registratie opent binnenkort",
+      "fix": "Gebruik {{name}}",
+      "noteClaim": "Drie wallettransacties, ongeveer twee minuten.",
+      "noteReserve": "Reserveer nu en claim hem zodra de registratie opent.",
+      "noteReserveLater": "Reserveren kan vanaf 24 uur voordat de registratie opent.",
+      "noteTaken": "In bezit van {{owner}}.",
+      "noteReserved": "In bezit van de kosten-Safe van Bitsocial, waarvoor BSIP-13 hem reserveert.",
+      "noteGrace": "Iedereen kan hem verlengen, waardoor hij bij de eigenaar blijft.",
+      "notePremium": "De toeslag daalt elke seconde, en wat je te veel betaalt, krijg je terug.",
+      "noteNotDeployed": "Het registercontract staat nog niet op Ethereum."
+    },
+    "claim": {
+      "eyebrow": "Claimen",
+      "title": "Drie transacties vanuit je wallet, ongeveer twee minuten",
+      "pickName": "Kies hierboven een beschikbare naam om te beginnen.",
+      "claiming": "{{name}} claimen",
+      "renewing": "{{name}} verlengen",
+      "pointing": "{{name}} koppelen",
+      "connect": "Wallet verbinden",
+      "connectWith": "{{wallet}} verbinden",
+      "browserWallet": "browserwallet",
+      "connecting": "Verbinden…",
+      "noWallet": "Geen Ethereum-wallet gevonden in deze browser. Installeer een browserwallet, of open deze pagina in de browser van je wallet-app.",
+      "connectedAs": "Verbonden als {{address}}",
+      "reserveTitle": "Reserveren",
+      "reserveBody": "Eerst gaat er een verzegelde commitment on-chain, zodat niemand de naam uit je openstaande transactie kan lezen en hem kan inpikken. Wacht daarna 60 seconden.",
+      "reserveMeta": "commit() · alleen gas",
+      "reserveAction": "Reserveer {{name}}",
+      "reserveTooEarly": "Je kunt reserveren vanaf {{date}}, 24 uur voordat de registratie opent.",
+      "reserved": "Gereserveerd. Deze browser bewaart de reservering tot {{time}}.",
+      "claimTitle": "Claimen",
+      "claimBody": "Betaal voor de naam. Hij wordt voor 365 dagen naar dezelfde wallet gemint. Je hebt tot 24 uur na het reserveren, en deze browser onthoudt waar je gebleven was.",
+      "claimMeta": "reveal() · {{price}} + gas",
+      "claimAction": "Claim {{name}} voor {{price}}",
+      "claimWait": "Klaar over {{seconds}} s",
+      "claimWaitOpening": "Klaar zodra de registratie opent, over {{time}}",
+      "startOver": "Opnieuw beginnen",
+      "renewTitle": "Verlengen",
+      "renewBody": "Voegt 365 dagen toe aan de huidige vervaldatum. Iedereen kan elke naam verlengen, en hij blijft bij de eigenaar.",
+      "renewMeta": "renew() · {{price}} + gas",
+      "renewAction": "Verleng {{name}} voor {{price}}",
+      "renewed": "Verlengd tot {{date}}.",
+      "recordTitleCommunity": "Laat hem naar je community wijzen",
+      "recordTitleProfile": "Laat hem naar je profiel wijzen",
+      "recordLabelCommunity": "De publieke sleutel van je community, uit de instellingen ervan",
+      "recordLabelProfile": "De publieke sleutel van je account, uit de accountinstellingen van je app",
+      "recordMeta": "setText(\"bitsocial\") · alleen gas · altijd te wijzigen",
+      "recordAction": "Record opslaan",
+      "recordInvalid": "Dat is geen publieke sleutel. Die is 52 tekens lang en begint met 12D3KooW.",
+      "recordCurrent": "Wijst nu naar {{record}}.",
+      "recordNotOwner": "Alleen de wallet die eigenaar is van {{name}} kan het record instellen.",
+      "doneCommunity": "{{name}} wijst naar je community. Stel {{name}} hierna in de instellingen van de community in als het adres ervan.",
+      "doneProfile": "{{name}} wijst naar je account. Vul {{name}} hierna in als je naam in de accountinstellingen van je app, zodat je berichten hem tonen.",
+      "confirmInWallet": "Bevestig in je wallet",
+      "waitingForTx": "Wachten op de transactie…",
+      "viewTx": "Transactie bekijken",
+      "rejected": "Je hebt geweigerd in de wallet.",
+      "failed": "Er ging iets mis: {{message}}",
+      "reverted": "Het register heeft de transactie geweigerd ({{error}}).",
+      "errors": {
+        "CommitmentTooNew": "De reservering moet eerst een minuut oud zijn. Probeer het over een paar seconden opnieuw.",
+        "CommitmentTooOld": "Deze reservering is meer dan 24 uur oud. Reserveer opnieuw.",
+        "CommitmentNotFound": "Er is geen reservering van deze wallet gevonden. Reserveer opnieuw.",
+        "AlreadyCommitted": "Deze reservering staat al on-chain.",
+        "AlreadyRegistered": "Iemand anders heeft deze naam eerder geregistreerd.",
+        "InsufficientFee": "De prijs is veranderd. Probeer het opnieuw.",
+        "Expired": "Deze naam is verlopen.",
+        "Unauthorized": "Deze wallet is geen eigenaar van de naam."
+      }
+    },
+    "activity": {
+      "title": "Nieuwste namen",
+      "live": "Live van Ethereum",
+      "registered": "{{name}} geregistreerd",
+      "empty": "Nog geen namen geregistreerd.",
+      "notDeployed": "Namen verschijnen hier zodra het register live is.",
+      "failed": "De nieuwste namen konden niet worden geladen.",
+      "browse": "Alle namen bekijken"
+    },
+    "lifecycle": {
+      "eyebrow": "Behouden",
+      "title": "Een naam geldt telkens voor een jaar",
+      "lead": "Verlengen voegt 365 dagen toe aan de huidige vervaldatum, tegen dezelfde prijs. Iedereen kan elke naam verlengen, dus een vriend of een directory kan de jouwe in leven houden.",
+      "active": "Actief",
+      "activeNote": "365 dagen, resolvet",
+      "grace": "Respijt",
+      "graceNote": "90 dagen, resolvet niet, alleen verlengen",
+      "premium": "Toeslag",
+      "premiumNote": "21 dagen, 100 ETH dalend naar 0",
+      "open": "Vrij",
+      "openNote": "iedereen, normale prijs",
+      "caption": "Niet op schaal. Een naam opnieuw registreren na de respijtperiode wist alle records, zodat de nieuwe eigenaar leeg begint."
+    },
+    "eth": {
+      "badge": "Gratis voor namen in gebruik",
+      "title": "Gebruik je al een .bso-naam? Hij is van jou.",
+      "lead": "Tot nu toe lazen apps memes.bso uit memes.eth. Bij de lancering wordt elke .eth-naam met een bitsocial-record, subnamen inbegrepen, via een airdrop als dezelfde .bso-naam toegewezen aan de wallet die hem bezit, met hetzelfde record en het eerste jaar betaald. Er valt niets te claimen en niets te betalen.",
+      "caveat": "Alleen namen die bij de momentopname van de lancering een bitsocial-record hadden, doen mee. Kreeg de jouwe zijn record later, claim de .bso-naam dan zodra de registratie opent, voordat iemand anders het doet.",
+      "label": "Controleer je .eth-naam",
+      "placeholder": "memes.eth",
+      "check": "Controleren",
+      "registered": "{{name}} is tot {{date}} geregistreerd op naam van {{owner}}.",
+      "points": "Hij wijst naar {{record}}.",
+      "notYet": "{{name}} is nog niet geregistreerd. Namen uit de airdrop worden geregistreerd voordat de registratie voor iedereen opent, dus kijk dan nog eens.",
+      "notSeeded": "{{name}} is niet via de airdrop toegewezen en is vrij voor iedereen. Gebruik je {{eth}}, claim hem dan voordat iemand anders het doet.",
+      "tryAbove": "Controleer {{name}} hierboven"
+    },
+    "faq": {
+      "eyebrow": "Vragen",
+      "title": "Zo werken .bso-namen",
+      "lead": "De antwoorden volgen BSIP-13, de specificatie die dit register implementeert.",
+      "groups": {
+        "using": "Een naam bezitten",
+        "launch": "Lancering en .eth-namen",
+        "trust": "Kosten, vertrouwen en Bitsocial Chain"
+      },
+      "signers": "{{threshold}} van de {{owners}} sleutels moeten elke transactie ondertekenen",
+      "signersUnknown": "Meerdere van de sleutels moeten elke transactie ondertekenen",
+      "priceLength": "Naamlengte",
+      "pricePerYear": "Per jaar",
+      "bytes_one": "{{count}} byte",
+      "bytes_other": "{{count}} bytes",
+      "bytesOrMore_one": "{{count}} byte of meer",
+      "bytesOrMore_other": "{{count}} bytes of meer",
+      "contract": "Registercontract",
+      "safe": "Kosten-Safe",
+      "spec": "BSIP-13 lezen",
+      "items": {
+        "what": {
+          "q": "Wat doet een .bso-naam?",
+          "a": [
+            "Hij geeft een community of een profiel een naam die mensen kunnen lezen. Het bitsocial-record van de naam bevat een sleuteladres, de lange 12D3KooW…-reeks die de community of het profiel op het netwerk identificeert. Apps zoeken de naam op, lezen de sleutel en laden waar die naar wijst, zodat memes.bso dezelfde community opent in 5chan, Seedit en elke andere Bitsocial-app.",
+            "Een naam maakt een sleutel ook vervangbaar. Als de sleutel verloren gaat of gestolen wordt, laat je de naam naar een nieuwe wijzen en volgen lezers mee. Een community die alleen via haar sleutel bekend is, kan zich zo niet herstellen.",
+            "De naam zelf is een NFT (ERC-721) op Ethereum, in bezit van je wallet. Wie hem bezit, bepaalt waar hij naar wijst."
+          ]
+        },
+        "profiles": {
+          "q": "Kan een profiel ook een naam hebben?",
+          "a": [
+            "Ja. Auteurs ondertekenen hun berichten met een sleutel, en apps tonen een naam bij die berichten als het bitsocial-record van die naam die sleutel bevat. Communities en profielen gebruiken hetzelfde record, dus registreren werkt voor beide hetzelfde.",
+            "Profielpagina's die de berichten van een auteur uit elke community verzamelen (BSIP-14) komen er met de eerste publieke RPC van Bitsocial, en een naam die je nu registreert werkt daarvoor. Eén naam kan niet tegelijk voor een community en een profiel dienen."
+          ]
+        },
+        "cost": {
+          "q": "Wat kost een naam?",
+          "a": [
+            "De jaarprijs hangt af van de lengte van de naam in bytes, en verlengen kost hetzelfde. Ethereum-gas komt daar nog bij. Letters a–z, cijfers en koppeltekens nemen elk één byte in, letters met accenten en Griekse of Cyrillische letters twee, Chinese of Japanse tekens drie en emoji meestal vier, dus één emoji kost evenveel als een naam van 4 bytes."
+          ]
+        },
+        "claiming": {
+          "q": "Waarom kost claimen twee transacties?",
+          "a": [
+            "Iedereen kan openstaande Ethereum-transacties bekijken. Als je de naam openlijk zou versturen, kon iemand hem kopiëren en vóór jou registreren. Daarom reserveer je eerst: je verstuurt een vingerafdruk van de naam gemengd met een willekeurig geheim, die niets prijsgeeft. Een minuut later claim je, door de naam en het geheim te versturen, en het register mint de naam naar je wallet als ze overeenkomen met de reservering.",
+            "Een reservering blijft 24 uur geldig. Deze pagina bewaart het geheim in je browser, zodat je kunt herladen of later terugkomen op hetzelfde apparaat. Wis je de browsergegevens voordat je claimt, reserveer dan opnieuw. De eerste reservering kostte alleen gas."
+          ]
+        },
+        "expiry": {
+          "q": "Wat gebeurt er als een naam verloopt?",
+          "a": [
+            "Een naam geldt 365 dagen. Iedereen kan hem met nog eens 365 verlengen, gerekend vanaf de huidige vervaldatum, dus een vriend of een directory kan de jouwe in leven houden. Na het verlopen volgt een respijtperiode van 90 dagen: de naam resolvet niet meer en kan alleen nog worden verlengd. Daarna kan iedereen hem registreren, eerst met een toeslag die in 21 dagen van 100 ETH naar nul daalt, daarna tegen de normale prijs.",
+            "Een nieuwe registratie wist alle records, en de nieuwe houder kan de naam naar zijn eigen sleutel laten wijzen. Lezers die die naam volgen, zouden dan die persoon volgen, dus verleng op tijd."
+          ]
+        },
+        "spelling": {
+          "q": "Welke spellingen werken?",
+          "a": [
+            "Apps normaliseren een naam voordat ze hem opzoeken, zoals ENS dat doet (ENSIP-15). Dat staat kleine letters, cijfers, koppeltekens binnen de naam, de meeste schriften en emoji toe. Punten, spaties en underscores zijn niet toegestaan, behalve een underscore helemaal aan het begin, en tekens die op andere lijken en schriften mengen worden geweigerd.",
+            "Het register zelf controleert minder, dus het zou spellingen verkopen die geen enkele app kan resolven, en de kosten worden niet terugbetaald. Deze pagina weigert die en stelt een correctie voor, zoals relationship-advice voor relationship_advice."
+          ]
+        },
+        "transfer": {
+          "q": "Kan ik een naam weggeven of verkopen?",
+          "a": [
+            "Ja. Een naam is een ERC-721-token in je wallet, dus je kunt hem versturen zoals elke NFT. Claimen mint altijd naar de wallet die claimt, dus om een naam voor iemand anders te registreren, claim je hem en draag je hem daarna over. Het record verandert niet mee met de eigenaar, dus de nieuwe houder moet hem naar zijn eigen sleutel laten wijzen."
+          ]
+        },
+        "subnames": {
+          "q": "Kan ik subnamen uitdelen?",
+          "a": [
+            "De houder van een naam kan gratis subnamen maken, zoals memes.jouwnaam.bso. Maar de houder van de bovenliggende naam kan elke subnaam op elk moment terugnemen en ergens anders naartoe laten wijzen, dus een community op een subnaam is volledig afhankelijk van die persoon. Een community zou een eigen naam moeten registreren, of bij haar sleutel moeten blijven tot ze dat doet."
+          ]
+        },
+        "launch": {
+          "q": "Wat gebeurt er bij de lancering?",
+          "a": [
+            "Het register start gesloten. Eerst wordt elke .bso-naam die al via .eth in gebruik is gratis geregistreerd op naam van de houder (zie hierboven). Iedereen kan die registraties versturen, en de maintainers willen ze allemaal binnen een uur na de deployment versturen. De publieke registratie opent een uur na de laatste, dus het openingstijdstip staat een uur van tevoren on-chain. Lopen ze vast, dan opent ze toch zeven dagen na de deployment.",
+            "Je kunt een naam vóór de opening reserveren. Een reservering die minstens een minuut en hoogstens 24 uur vóór de opening is gedaan, kan worden geclaimd op het moment dat de registratie opent. Anderen kunnen dezelfde naam op dat moment claimen, en de eerste transactie die in een blok wordt opgenomen wint."
+          ]
+        },
+        "eth": {
+          "q": "Werkt mijn .eth-naam nog?",
+          "a": [
+            "Ja. Apps blijven .eth-namen via ENS resolven. Wat verandert is dat x.bso niet langer x.eth betekent: apps die dit register ondersteunen, lezen .bso-namen alleen nog daaruit, dus bot.bso en bot.eth worden aparte namen die verschillende eigenaren kunnen hebben.",
+            "Sommige apps blijven x.bso uit x.eth lezen tot ze worden bijgewerkt. Heb je beide namen, houd hun records dan tot die tijd gelijk."
+          ]
+        },
+        "control": {
+          "q": "Wie beheert het register?",
+          "a": [
+            "Niemand. Het contract heeft geen eigenaar, admin, proxy, pauzeknop of upgradepad. Prijzen, termijnen en het kostenadres liggen vast in de code, en niemand kan een naam afpakken, bewerken of overdragen die hij niet bezit.",
+            "Het is een fork van de .gwei Name Service met vier wijzigingen: namen eindigen op .bso, kosten gaan naar een vaste multisig in plaats van vast te zitten in het contract, namen die al in gebruik zijn worden bij de lancering overgenomen, en een eenmalige uitfasering maakt de verhuizing naar Bitsocial Chain mogelijk. De keerzijde van code die niet kan veranderen, is dat een bug ook niet kan worden gepatcht."
+          ]
+        },
+        "fees": {
+          "q": "Waar gaan de kosten naartoe?",
+          "a": [
+            "Kosten verzamelen zich in het register, en iedereen kan ze doorsturen naar één vast adres: een Safe-multisig die de ontwikkeling van Bitsocial financiert zolang dit register in gebruik is. {{signers}}. De sleutels zijn van de twee maintainers van Bitsocial en van vertrouwenspersonen die zij hebben aangewezen, en niemand heeft er in zijn eentje genoeg om de middelen te verplaatsen.",
+            "De Safe heeft precies twee bevoegdheden over het register: kosten ontvangen en eenmalig de uitfasering starten. Hij kan geen prijzen wijzigen en geen naam aanraken die hij niet bezit. Hij bezit ook een paar gereserveerde projectnamen, zoals bitsocial.bso, als gewone eigenaar."
+          ]
+        },
+        "whyRegistry": {
+          "q": "Waarom een nieuw register in plaats van ENS?",
+          "a": [
+            "Tot nu toe was elke .bso-naam een ENS-naam, tegen ENS-prijzen: in oktober 2026 werd een nieuwe communitynaam geprijsd op meer dan $ 20 voor drie jaar. De meeste eigenaren betalen dat niet om een community uit te proberen, dus blijven ze bij kale sleutels. Bitsocial Chain zal .bso-namen native bevatten, maar bestaat nog niet.",
+            "Dit tijdelijke register laat een normale naam vandaag 0,0005 ETH per jaar kosten, en maakt van de latere verhuizing naar Bitsocial Chain een kopie van de records in plaats van een eigenaarswissel."
+          ]
+        },
+        "whyEth": {
+          "q": "Waarom betalen in ETH en niet in BSO?",
+          "a": [
+            "Een korting voor betalen in BSO zou vereisen dat het contract de prijs van BSO in ETH kent. Een contract zonder eigenaar kan een prijsbron die stukgaat niet vervangen, en een dun verhandelde pool zou voor één transactie kunnen worden verschoven om korte namen voor bijna niets te kopen. Een vaste prijslijst in BSO zou met de token meebewegen tot hij bijna gratis was of nooit werd gebruikt, zonder dat iemand hem kon corrigeren.",
+            "Het eigen register van Bitsocial Chain kan BSO een rol geven zonder deze beperkingen."
+          ]
+        },
+        "move": {
+          "q": "Wat betekent de verhuizing naar Bitsocial Chain?",
+          "a": [
+            "Bitsocial Chain is fase 3 van het masterplan van Bitsocial: een eigen chain die .bso-namen native bevat. Zodra een BSIP voor het naamregister ervan Last Call bereikt, kan de Safe de uitfasering starten. Het contract kondigt die dan 30 dagen van tevoren aan, en die termijn kan niet worden geannuleerd of ingekort. Tijdens die termijn werkt alles zoals eerst, dus verlengingen en overdrachten tellen nog steeds.",
+            "Na de termijn bevriest het Ethereum-register. Er kan niets meer worden geregistreerd, verlengd, overgedragen of bewerkt, en namen blijven resolven vanuit de bevroren staat. Bitsocial Chain importeert elke naam die actief is of in de respijtperiode zit gratis, met dezelfde eigenaar, dezelfde vervaldatum en hetzelfde record. Je hoeft niets te doen.",
+            "BSIP-13 staat de uitfasering alleen voor deze verhuizing toe, en het contract dwingt de termijn van 30 dagen af."
+          ]
+        },
+        "afterMove": {
+          "q": "Wat gebeurt er na de verhuizing met de kosten?",
+          "a": [
+            "De financiering van de maintainers uit kosten stopt met dit register. Het register van Bitsocial Chain legt zijn eigen kosten vast in een eigen BSIP, en het plan is dat naamkosten daar in plaats daarvan worden verbrand, of worden gebruikt om BSO terug te kopen en te verbranden. Het mechanisme is nog niet bepaald."
+          ]
+        }
       }
     }
   }
