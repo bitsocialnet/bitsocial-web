@@ -51,7 +51,7 @@ export default function EthCheck({
     const spellings = parts.map((part, index) =>
       checkSpelling(part, { topLevel: index === parts.length - 1 }),
     );
-    if (spellings.every((spelling) => spelling === null)) return;
+    if (!input.trim()) return;
     // An empty label, as in alice..bravo.eth, is a dot where none is allowed.
     if (spellings.some((spelling) => spelling === null)) {
       setResult({
