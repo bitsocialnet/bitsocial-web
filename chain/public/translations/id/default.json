@@ -1050,6 +1050,14 @@
           "a": [
             "Biaya yang mendanai para pengelola berakhir bersama registri ini. Registri Bitsocial Chain menetapkan biayanya sendiri dalam BSIP-nya sendiri, dan rencananya biaya nama di sana akan dibakar, atau dipakai untuk membeli kembali dan membakar BSO. Mekanismenya belum diputuskan."
           ]
+        },
+        "captcha": {
+          "q": "Bisakah saya melewati captcha dengan sebuah nama?",
+          "a": [
+            "Bisa, di komunitas yang memilih mengizinkannya. Setiap komunitas memilih tantangan anti-spam yang dimintanya, misalnya captcha, dan pemiliknya bisa membebaskan penulis yang memposting dengan nama .bso dari tantangan tersebut. Komunitas yang memblokir posting lewat Tor atau VPN juga bisa membuat pengecualian yang sama.",
+            "Alasannya adalah biaya. Captcha memperlambat spammer di setiap postingan. Nama memerlukan biaya tahunan dan satu transaksi Ethereum, dan spammer yang di-ban harus membeli nama baru untuk kembali. Mengaku memakai nama yang tidak kamu pegang tidak akan berhasil: komunitas memeriksa bahwa catatan bitsocial nama itu menyimpan kunci yang menandatangani postingan tersebut.",
+            "Pemilik mengaturnya dengan menambahkan tantangan yang memeriksa nama .bso dan menyetel captcha agar melewati siapa pun yang lolos tantangan itu. Belum semua aplikasi atau layanan hosting menyediakan pengaturan ini."
+          ]
         }
       }
     }

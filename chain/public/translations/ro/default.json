@@ -1064,6 +1064,14 @@
           "a": [
             "Finanțarea maintainerilor din taxe se încheie odată cu acest registru. Registrul Bitsocial Chain își stabilește propriile taxe în propriul BSIP, iar planul este ca acolo taxele pentru nume să fie în schimb arse sau folosite pentru a răscumpăra și arde BSO. Mecanismul nu este încă stabilit."
           ]
+        },
+        "captcha": {
+          "q": "Pot sări peste captcha-uri cu un nume?",
+          "a": [
+            "În comunitățile care aleg să permită asta. Fiecare comunitate decide ce verificări anti-spam cere, cum ar fi un captcha, iar proprietarul ei îi poate scuti de ele pe autorii care postează sub un nume .bso. Comunitățile care blochează postările prin Tor sau printr-un VPN pot face aceeași excepție.",
+            "Motivul este costul. Un captcha încetinește un spammer postare cu postare. Un nume presupune o taxă anuală și o tranzacție Ethereum, iar un spammer blocat trebuie să cumpere unul nou ca să revină. Nu poți pretinde un nume pe care nu îl deții: comunitatea verifică dacă înregistrarea bitsocial a numelui conține cheia care a semnat postarea.",
+            "Proprietarii configurează asta adăugând o verificare care caută un nume .bso și setându-și captcha-ul să-i sară pe cei care trec de ea. Nu toate aplicațiile și serviciile de găzduire oferă încă această setare."
+          ]
         }
       }
     }

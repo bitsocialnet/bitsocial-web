@@ -1064,6 +1064,14 @@
           "a": [
             "O financiamento dos mantenedores pelas taxas termina com este registro. O registro da Bitsocial Chain define as próprias taxas no próprio BSIP, e o plano é que lá as taxas de nomes sejam queimadas, ou usadas para recomprar BSO e queimá-lo. O mecanismo ainda não foi decidido."
           ]
+        },
+        "captcha": {
+          "q": "Um nome me livra dos captchas?",
+          "a": [
+            "Nas comunidades que escolhem permitir isso. Cada comunidade decide quais desafios anti-spam exige, como um captcha, e o dono dela pode isentar os autores que publicam com um nome .bso. Comunidades que bloqueiam publicações via Tor ou uma VPN podem abrir a mesma exceção.",
+            "O motivo é o custo. Um captcha freia um spammer publicação por publicação. Um nome exige uma taxa anual e uma transação no Ethereum, e um spammer banido precisa comprar outro para voltar. Reivindicar um nome que você não detém não funciona: a comunidade verifica se o registro bitsocial do nome guarda a chave que assinou a publicação.",
+            "Os donos configuram isso adicionando um desafio que verifica se há um nome .bso e ajustando o captcha para pular quem passar nesse desafio. Nem todo app ou serviço de hospedagem oferece essa opção ainda."
+          ]
         }
       }
     }

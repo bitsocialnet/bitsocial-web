@@ -1057,6 +1057,14 @@
           "a": [
             "Gebyrer, der finansierer udviklerne, ophører med dette register. Bitsocial Chains register fastsætter sine egne gebyrer i sin egen BSIP, og planen er, at navnegebyrer der i stedet brændes eller bruges til at tilbagekøbe og brænde BSO. Mekanismen er ikke besluttet endnu."
           ]
+        },
+        "captcha": {
+          "q": "Kan et navn få mig forbi captchaer?",
+          "a": [
+            "I fællesskaber, der vælger at tillade det. Hvert fællesskab vælger selv, hvilke antispam-udfordringer det kræver, for eksempel en captcha, og ejeren kan undtage forfattere, der skriver opslag under et .bso-navn. Fællesskaber, der blokerer opslag via Tor eller en VPN, kan gøre den samme undtagelse.",
+            "Grunden er prisen. En captcha forsinker en spammer for hvert opslag. Et navn koster et årligt gebyr og en transaktion på Ethereum, og en bandlyst spammer skal købe et nyt for at komme tilbage. Det virker ikke at bruge et navn, du ikke ejer: fællesskabet tjekker, at navnets bitsocial-record indeholder den nøgle, der signerede opslaget.",
+            "Ejerne sætter det op ved at tilføje en udfordring, der tjekker for et .bso-navn, og indstille deres captcha til at springe alle over, der består udfordringen. Ikke alle apps eller hostingtjenester tilbyder indstillingen endnu."
+          ]
         }
       }
     }

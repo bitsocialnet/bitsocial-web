@@ -1057,6 +1057,14 @@
           "a": [
             "Ücretlerin bakımcıları finanse etmesi bu kayıt defteriyle birlikte sona erer. Bitsocial Chain'in kayıt defteri kendi ücretlerini kendi BSIP'inde belirler ve plan, oradaki ad ücretlerinin bunun yerine yakılması ya da BSO geri alıp yakmak için kullanılması. Mekanizma henüz kararlaştırılmadı."
           ]
+        },
+        "captcha": {
+          "q": "Bir ad sayesinde captcha'ları atlayabilir miyim?",
+          "a": [
+            "Buna izin vermeyi seçen topluluklarda. Her topluluk, captcha gibi hangi spam önleme sınamalarını isteyeceğini kendisi seçer ve topluluğun sahibi bir .bso adıyla gönderi paylaşan yazarları bunlardan muaf tutabilir. Tor veya VPN üzerinden gönderi paylaşımını engelleyen topluluklar da aynı istisnayı tanıyabilir.",
+            "Nedeni maliyettir. Captcha bir spamcıyı her gönderide yavaşlatır. Bir ad ise yıllık bir ücret ve bir Ethereum işlemi gerektirir; yasaklanan bir spamcı geri dönmek için yeni bir ad satın almak zorundadır. Elinizde tutmadığınız bir adı sahiplenmek işe yaramaz: topluluk, adın bitsocial kaydının gönderiyi imzalayan anahtarı tutup tutmadığını kontrol eder.",
+            "Sahipler bunu, .bso adını kontrol eden bir sınama ekleyip captcha'larını bu sınamayı geçenlere gösterilmeyecek şekilde ayarlayarak kurar. Bu ayar henüz her uygulamada veya barındırma hizmetinde yok."
+          ]
         }
       }
     }

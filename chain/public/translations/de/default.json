@@ -1057,6 +1057,14 @@
           "a": [
             "Die Finanzierung der Maintainer durch Gebühren endet mit dieser Registry. Die Registry von Bitsocial Chain legt ihre eigenen Gebühren in einem eigenen BSIP fest, und der Plan ist, dass Namensgebühren dort stattdessen verbrannt werden oder BSO zurückkaufen und verbrennen. Der Mechanismus ist noch nicht entschieden."
           ]
+        },
+        "captcha": {
+          "q": "Erspart mir ein Name Captchas?",
+          "a": [
+            "In Communities, die sich dafür entscheiden. Jede Community legt selbst fest, welche Anti-Spam-Prüfungen sie verlangt, etwa ein Captcha, und ihr Besitzer kann Autoren davon ausnehmen, die unter einem .bso-Namen posten. Communities, die Beiträge über Tor oder ein VPN sperren, können dieselbe Ausnahme machen.",
+            "Der Grund sind die Kosten. Ein Captcha bremst einen Spammer Beitrag für Beitrag aus. Für einen Namen fallen eine jährliche Gebühr und eine Ethereum-Transaktion an, und ein gesperrter Spammer muss einen neuen kaufen, um zurückzukommen. Einen Namen zu beanspruchen, den du nicht hältst, funktioniert nicht: Die Community prüft, ob der bitsocial-Eintrag des Namens den Schlüssel enthält, der den Beitrag signiert hat.",
+            "Besitzer richten das ein, indem sie eine Prüfung auf einen .bso-Namen hinzufügen und ihr Captcha so einstellen, dass es jeden überspringt, der sie besteht. Noch bietet nicht jede App und nicht jeder Hosting-Dienst diese Einstellung an."
+          ]
         }
       }
     }

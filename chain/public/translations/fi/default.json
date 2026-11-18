@@ -1057,6 +1057,14 @@
           "a": [
             "Kehittäjien rahoittaminen maksuilla päättyy tämän rekisterin myötä. Bitsocial Chainin rekisteri määrittää omat maksunsa omassa BSIP:ssään, ja suunnitelmana on, että nimimaksut siellä sen sijaan poltetaan tai käytetään BSO:n takaisinostoon ja polttamiseen. Mekanismista ei ole vielä päätetty."
           ]
+        },
+        "captcha": {
+          "q": "Pääsenkö nimellä captchojen ohi?",
+          "a": [
+            "Yhteisöissä, jotka päättävät sallia sen. Jokainen yhteisö valitsee itse, mitä roskapostin vastaisia haasteita se vaatii, esimerkiksi captchan, ja sen omistaja voi vapauttaa niistä kirjoittajat, jotka julkaisevat .bso-nimellä. Yhteisöt, jotka estävät julkaisemisen Torin tai VPN:n kautta, voivat tehdä saman poikkeuksen.",
+            "Syynä ovat kustannukset. Captcha hidastaa roskapostittajaa julkaisu kerrallaan. Nimestä maksetaan vuosimaksu ja Ethereum-transaktio, ja porttikiellon saaneen roskapostittajan on ostettava uusi nimi palatakseen. Nimellä, joka ei ole hallussasi, ei voi esiintyä: yhteisö tarkistaa, että nimen bitsocial-tietue sisältää avaimen, jolla julkaisu on allekirjoitettu.",
+            "Omistajat ottavat tämän käyttöön lisäämällä haasteen, joka tarkistaa .bso-nimen, ja määräämällä captchansa ohittamaan jokaisen, joka läpäisee sen. Kaikki sovellukset tai hosting-palvelut eivät vielä tarjoa tätä asetusta."
+          ]
         }
       }
     }

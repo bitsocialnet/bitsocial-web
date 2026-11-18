@@ -1064,6 +1064,14 @@
           "a": [
             "Il finanziamento dei maintainer tramite le commissioni finisce con questo registro. Il registro di Bitsocial Chain fissa le proprie commissioni in un proprio BSIP, e il piano è che lì le commissioni dei nomi vengano invece bruciate, oppure usate per riacquistare BSO e bruciarli. Il meccanismo non è ancora deciso."
           ]
+        },
+        "captcha": {
+          "q": "Con un nome posso saltare i captcha?",
+          "a": [
+            "Nelle comunità che scelgono di consentirlo. Ogni comunità decide quali sfide anti-spam richiedere, come un captcha, e il suo proprietario può esentare gli autori che pubblicano con un nome .bso. Le comunità che bloccano i post da Tor o da una VPN possono fare la stessa eccezione.",
+            "Il motivo è il costo. Un captcha rallenta uno spammer post dopo post. Un nome richiede una commissione annuale e una transazione Ethereum, e uno spammer bannato deve comprarne uno nuovo per tornare. Dichiarare un nome che non detieni non funziona: la comunità verifica che il record bitsocial del nome contenga la chiave che ha firmato il post.",
+            "I proprietari lo configurano aggiungendo una sfida che verifica la presenza di un nome .bso e impostando il proprio captcha in modo che salti chiunque la superi. Non tutte le app né tutti i servizi di hosting offrono ancora questa impostazione."
+          ]
         }
       }
     }

@@ -1064,6 +1064,14 @@
           "a": [
             "Le financement des mainteneurs par les frais prend fin avec ce registre. Le registre de Bitsocial Chain fixe ses propres frais dans son propre BSIP, et il est prévu que les frais de noms y soient plutôt brûlés, ou servent à racheter des BSO pour les brûler. Le mécanisme n’est pas encore décidé."
           ]
+        },
+        "captcha": {
+          "q": "Un nom permet-il d’éviter les captchas ?",
+          "a": [
+            "Dans les communautés qui choisissent de l’autoriser. Chaque communauté décide des défis anti-spam qu’elle demande, comme un captcha, et son propriétaire peut en dispenser les auteurs qui publient sous un nom .bso. Les communautés qui bloquent les publications via Tor ou un VPN peuvent faire la même exception.",
+            "La raison, c’est le coût. Un captcha ralentit un spammeur publication après publication. Un nom demande des frais annuels et une transaction Ethereum, et un spammeur banni doit en acheter un nouveau pour revenir. Revendiquer un nom que vous ne détenez pas ne fonctionne pas : la communauté vérifie que l’enregistrement bitsocial du nom contient la clé qui a signé la publication.",
+            "Les propriétaires mettent cela en place en ajoutant un défi qui vérifie la présence d’un nom .bso et en réglant leur captcha pour qu’il laisse passer quiconque réussit ce défi. Ce réglage n’est pas encore proposé par toutes les applications ni par tous les services d’hébergement."
+          ]
         }
       }
     }

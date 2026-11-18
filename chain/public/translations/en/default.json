@@ -1057,6 +1057,14 @@
           "a": [
             "Fees funding the maintainers end with this registry. Bitsocial Chain's registry sets its own fees in its own BSIP, and the plan is for name fees there to be burned, or to buy back and burn BSO, instead. The mechanism isn't decided yet."
           ]
+        },
+        "captcha": {
+          "q": "Can a name get me past captchas?",
+          "a": [
+            "In communities that choose to allow it. Each community picks the anti-spam challenges it asks for, such as a captcha, and its owner can exempt authors who post under a .bso name. Communities that block posting over Tor or a VPN can make the same exception.",
+            "The reason is cost. A captcha slows a spammer down post by post. A name costs a yearly fee and an Ethereum transaction, and a banned spammer has to buy a new one to come back. Claiming a name you don't hold doesn't work: the community checks that the name's bitsocial record holds the key that signed the post.",
+            "Owners set this up by adding a challenge that checks for a .bso name and telling their captcha to skip anyone who passes it. Not every app or hosting service offers the setting yet."
+          ]
         }
       }
     }

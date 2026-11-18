@@ -1057,6 +1057,14 @@
           "a": [
             "Financimi i mirëmbajtësve nga tarifat përfundon me këtë regjistër. Regjistri i Bitsocial Chain i cakton tarifat e veta në BSIP-in e vet, dhe plani është që atje tarifat e emrave të digjen, ose të përdoren për të riblerë dhe djegur BSO. Mekanizmi nuk është vendosur ende."
           ]
+        },
+        "captcha": {
+          "q": "A mund t'i anashkaloj captcha-t me një emër?",
+          "a": [
+            "Në komunitetet që zgjedhin ta lejojnë. Çdo komunitet vendos cilat sfida kundër spamit kërkon, si një captcha, dhe pronari i tij mund t'i përjashtojë prej tyre autorët që postojnë me një emër .bso. Komunitetet që bllokojnë postimet përmes Tor ose një VPN mund të bëjnë të njëjtin përjashtim.",
+            "Arsyeja është kostoja. Një captcha e ngadalëson një spamer postim pas postimi. Një emër kërkon një tarifë vjetore dhe një transaksion në Ethereum, dhe një spamer i bllokuar duhet të blejë një të ri për t'u kthyer. Të pretendosh një emër që nuk e mban nuk funksionon: komuniteti kontrollon nëse regjistrimi bitsocial i emrit mban çelësin që nënshkroi postimin.",
+            "Pronarët e konfigurojnë këtë duke shtuar një sfidë që kontrollon nëse ka një emër .bso dhe duke e vendosur captcha-n e tyre ta anashkalojë këdo që e kalon këtë sfidë. Jo çdo aplikacion apo shërbim hostimi e ofron ende këtë cilësim."
+          ]
         }
       }
     }

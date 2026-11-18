@@ -8,7 +8,17 @@ import OutboundLink from "./OutboundLink";
 const GROUPS = [
   {
     key: "using",
-    items: ["what", "profiles", "cost", "claiming", "expiry", "spelling", "transfer", "subnames"],
+    items: [
+      "what",
+      "profiles",
+      "captcha",
+      "cost",
+      "claiming",
+      "expiry",
+      "spelling",
+      "transfer",
+      "subnames",
+    ],
   },
   { key: "launch", items: ["launch", "eth"] },
   { key: "trust", items: ["control", "fees", "whyRegistry", "whyEth", "move", "afterMove"] },
@@ -41,10 +51,13 @@ export default function NamesFaq() {
           <h3 className="nm-faq-group-title">{t(`names.faq.groups.${group.key}`)}</h3>
           <div className="nm-faq glass-card">
             {group.items.map((id) => {
-              const answer = t(`names.faq.items.${id}.a`, {
+              const answer: unknown = t(`names.faq.items.${id}.a`, {
                 returnObjects: true,
                 signers,
-              }) as string[];
+              });
+              // Translation files are not versioned, so a browser can pair a cached file from before an
+              // item existed with newer code. Skip that item instead of failing the whole page.
+              if (!Array.isArray(answer)) return null;
               return (
                 <details key={id} id={`faq-${id}`} className="nm-faq-item">
                   <summary className="nm-faq-question">{t(`names.faq.items.${id}.q`)}</summary>

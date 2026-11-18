@@ -1057,6 +1057,14 @@
           "a": [
             "A karbantartók díjakból történő finanszírozása ezzel a nyilvántartással véget ér. A Bitsocial Chain nyilvántartása saját BSIP-ben határozza meg a saját díjait, és a terv az, hogy ott a névdíjakat ehelyett elégetik, vagy BSO-t vásárolnak vissza belőlük, és azt égetik el. A mechanizmusról még nincs döntés."
           ]
+        },
+        "captcha": {
+          "q": "Átjuthatok egy névvel a captchákon?",
+          "a": [
+            "Azokban a közösségekben, amelyek ezt engedélyezik. Minden közösség maga választja ki, milyen spamellenes ellenőrzéseket kér, például captchát, és a tulajdonosa felmentheti ezek alól azokat a szerzőket, akik .bso név alatt tesznek közzé bejegyzéseket. Azok a közösségek, amelyek tiltják a Tor vagy VPN használatával küldött bejegyzéseket, ugyanezt a kivételt tehetik.",
+            "Ennek oka a költség. Egy captcha bejegyzésről bejegyzésre lassítja a spammert. Egy név éves díjba és egy Ethereum-tranzakcióba kerül, és egy kitiltott spammernek újat kell vennie, hogy visszatérhessen. Hiába hivatkozol egy olyan névre, amely nem a tiéd: a közösség ellenőrzi, hogy a név bitsocial rekordja tartalmazza-e azt a kulcsot, amellyel a bejegyzést aláírták.",
+            "Ehhez a tulajdonosok hozzáadnak egy ellenőrzést, amely .bso nevet keres, és beállítják, hogy a captcha ne jelenjen meg annak, aki ezen az ellenőrzésen átjutott. Ezt a beállítást még nem minden alkalmazás vagy tárhelyszolgáltatás kínálja."
+          ]
         }
       }
     }

@@ -1050,6 +1050,14 @@
           "a": [
             "Việc dùng phí để tài trợ cho những người duy trì sẽ kết thúc cùng sổ đăng ký này. Sổ đăng ký của Bitsocial Chain tự đặt phí trong BSIP của riêng nó, và kế hoạch là phí tên ở đó sẽ được đốt, hoặc dùng để mua lại và đốt BSO. Cơ chế chưa được quyết định."
           ]
+        },
+        "captcha": {
+          "q": "Tên có giúp tôi bỏ qua captcha không?",
+          "a": [
+            "Có, ở những cộng đồng chọn cho phép điều đó. Mỗi cộng đồng tự chọn các thử thách chống spam mà mình yêu cầu, chẳng hạn captcha, và chủ cộng đồng có thể miễn thử thách cho những tác giả đăng bài dưới một tên .bso. Các cộng đồng chặn việc đăng bài qua Tor hoặc VPN cũng có thể áp dụng ngoại lệ tương tự.",
+            "Lý do là chi phí. Captcha làm kẻ spam chậm lại ở từng bài viết. Một tên tốn phí hằng năm và một giao dịch Ethereum, và kẻ spam bị cấm phải mua tên mới để quay lại. Tự nhận một tên mà bạn không nắm giữ thì không được: cộng đồng kiểm tra xem bản ghi bitsocial của tên có chứa đúng khóa đã ký bài viết hay không.",
+            "Chủ cộng đồng thiết lập việc này bằng cách thêm một thử thách kiểm tra tên .bso và đặt captcha bỏ qua bất kỳ ai vượt qua thử thách đó. Hiện chưa phải ứng dụng hay dịch vụ hosting nào cũng có tùy chọn này."
+          ]
         }
       }
     }

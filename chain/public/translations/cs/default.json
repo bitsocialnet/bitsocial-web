@@ -1071,6 +1071,14 @@
           "a": [
             "Financování správců z poplatků končí s tímto registrem. Registr Bitsocial Chain si stanoví vlastní poplatky ve vlastním BSIP a plán je, že se tam poplatky za jména budou místo toho pálit, nebo se za ně bude vykupovat a pálit BSO. Mechanismus zatím není rozhodnut."
           ]
+        },
+        "captcha": {
+          "q": "Pomůže mi jméno obejít captchy?",
+          "a": [
+            "V komunitách, které se rozhodnou to povolit. Každá komunita si sama volí antispamová ověření, která vyžaduje, například captchu, a její vlastník od nich může osvobodit autory, kteří přispívají pod jménem .bso. Komunity, které blokují přispívání přes Tor nebo VPN, mohou udělat stejnou výjimku.",
+            "Důvodem je cena. Captcha spammera zdrží u každého příspěvku. Jméno stojí roční poplatek a transakci na Ethereu a zablokovaný spammer si musí koupit nové, aby se mohl vrátit. Použít jméno, které nedržíte, nejde: komunita kontroluje, že záznam bitsocial jména obsahuje klíč, kterým je příspěvek podepsaný.",
+            "Vlastníci to zapnou tak, že přidají ověření, které hledá jméno .bso, a captchu nastaví tak, aby se nezobrazovala nikomu, kdo tímto ověřením projde. Toto nastavení zatím nenabízejí všechny aplikace ani hostingové služby."
+          ]
         }
       }
     }

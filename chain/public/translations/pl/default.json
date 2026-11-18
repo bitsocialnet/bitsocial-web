@@ -1071,6 +1071,14 @@
           "a": [
             "Finansowanie opiekunów z opłat kończy się wraz z tym rejestrem. Rejestr Bitsocial Chain ustala własne opłaty we własnym BSIP, a plan zakłada, że opłaty za nazwy będą tam zamiast tego spalane albo przeznaczane na odkup i spalanie BSO. Mechanizm nie został jeszcze ustalony."
           ]
+        },
+        "captcha": {
+          "q": "Czy nazwa pozwoli mi ominąć captchę?",
+          "a": [
+            "W społecznościach, które zdecydują się na to pozwolić. Każda społeczność sama wybiera weryfikacje antyspamowe, które trzeba przejść, na przykład captchę, a jej właściciel może zwolnić z nich autorów publikujących pod nazwą .bso. Społeczności, które blokują publikowanie przez Tor lub VPN, mogą zrobić taki sam wyjątek.",
+            "Chodzi o koszt. Captcha spowalnia spamera przy każdym poście. Nazwa wymaga rocznej opłaty i transakcji na Ethereum, a zbanowany spamer musi kupić nową, żeby wrócić. Podpisanie się nazwą, której nie posiadasz, nic nie da: społeczność sprawdza, czy rekord bitsocial nazwy zawiera klucz, którym podpisano post.",
+            "Właściciele włączają to, dodając weryfikację, która sprawdza nazwę .bso, i ustawiając captchę tak, by nie wyświetlała się nikomu, kto przejdzie tę weryfikację. Jeszcze nie każda aplikacja i usługa hostingowa oferuje to ustawienie."
+          ]
         }
       }
     }
