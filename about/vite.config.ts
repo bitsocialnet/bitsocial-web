@@ -169,42 +169,6 @@ function appLogoSyncPlugin(): Plugin {
   };
 }
 
-/**
- * The client entry reaches the application through a dynamic import, so Vite emits no preload
- * for it and the browser only discovers the application chunks after the entry has run. Listing
- * the bootstrap chunk and its static imports in the HTML lets them download with the document.
- */
-function bootstrapModulePreloadPlugin(): Plugin {
-  return {
-    name: "bitsocial-bootstrap-modulepreload",
-    apply: "build",
-    transformIndexHtml: {
-      order: "post",
-      handler(_html, { bundle }) {
-        const chunks = Object.values(bundle ?? {}).filter((output) => output.type === "chunk");
-        const bootstrapChunk = chunks.find((chunk) =>
-          chunk.facadeModuleId?.endsWith("/src/bootstrap.tsx"),
-        );
-        if (!bootstrapChunk) return;
-
-        const fileNames = new Set<string>();
-        const collect = (fileName: string) => {
-          if (fileNames.has(fileName)) return;
-          fileNames.add(fileName);
-          chunks.find((chunk) => chunk.fileName === fileName)?.imports.forEach(collect);
-        };
-        collect(bootstrapChunk.fileName);
-
-        return [...fileNames].map((fileName) => ({
-          tag: "link",
-          attrs: { rel: "modulepreload", crossorigin: true, href: `/${fileName}` },
-          injectTo: "head" as const,
-        }));
-      },
-    },
-  };
-}
-
 function staticMetadataPlugin() {
   let outDir = path.resolve(__dirname, "../dist");
 
@@ -303,7 +267,6 @@ export default defineConfig(({ command, mode }) => {
     plugins: [
       react(),
       appLogoSyncPlugin(),
-      bootstrapModulePreloadPlugin(),
       staticMetadataPlugin(),
       ssrServerBuildPlugin(profiling),
       ...(command === "serve" && !isPreviewCommand ? [subdomainRedirectPlugin()] : []),
