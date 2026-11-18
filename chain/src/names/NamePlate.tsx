@@ -241,6 +241,12 @@ export default function NamePlate({
         </>
       );
     } else {
+      // Renewing keeps a name with its holder, so anyone may renew it, as the FAQ explains.
+      action = (
+        <a className="nm-button nm-button-quiet" href="#claim">
+          {t("names.cta.renew", { name })}
+        </a>
+      );
       note = reserved
         ? t("names.cta.noteReserved")
         : t("names.cta.noteTaken", { owner: shortAddress(state.owner) });

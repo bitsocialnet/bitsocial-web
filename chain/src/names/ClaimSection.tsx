@@ -91,16 +91,16 @@ export default function ClaimSection({
   const account = wallet?.account ?? null;
   const owned =
     nameState?.status === "taken" && account !== null && isAddressEqual(nameState.owner, account);
+  // Anyone can renew a registered name (BSIP-13), so a friend can keep it alive; only its holder
+  // can point it, and the holder's cards include renewal too.
   const mode =
     !label || !nameState || !REGISTRY
       ? "idle"
       : nameState.status === "available" || nameState.status === "premium"
         ? "register"
-        : nameState.status === "grace"
-          ? "renew"
-          : owned
-            ? "record"
-            : "idle";
+        : owned
+          ? "record"
+          : "renew";
   // Read on every render: savePendingClaim/removePendingClaim bump the version to re-render.
   const pending = mode === "register" && label && account ? findPendingClaim(label, account) : null;
   const fee = feeForLength(bytes);
@@ -364,9 +364,7 @@ export default function ClaimSection({
       </p>
     );
 
-  // A registered name offers the wallet too: only a connected wallet shows that it holds the name,
-  // which opens its record and early renewal.
-  const connectBlock = !wallet && (mode !== "idle" || nameState?.status === "taken") && (
+  const connectBlock = !wallet && mode !== "idle" && (
     <div className="nm-connect">
       {wallets.length === 0 ? (
         <p className="nm-connect-note">{t("names.claim.noWallet")}</p>
