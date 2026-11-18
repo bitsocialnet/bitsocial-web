@@ -10,16 +10,10 @@
     <link rel="icon" type="image/png" sizes="576x576" href="/favicon-576.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-    <!-- Preload the locally hosted Exo display font -->
+    <!-- Preload the Latin subset of the locally hosted Exo display font. The Latin Extended and
+         Vietnamese subsets load on demand: most languages never use them, and preloading
+         them delayed the scripts every visitor waits on. -->
     <link rel="preload" href="/fonts/exo/latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/exo/latin-ext.woff2" as="font" type="font/woff2" crossorigin />
-    <link
-      rel="preload"
-      href="/fonts/exo/vietnamese.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
