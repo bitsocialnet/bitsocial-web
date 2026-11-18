@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { type Address, type Hash, isAddressEqual } from "viem";
 import { isKeyAddress } from "@/lib/names/key-address";
@@ -152,14 +152,23 @@ export default function ClaimSection({
     };
   }, [unconfirmedTx, label, account, committing]);
 
-  async function run(step: Step, action: (onSent: (hash: Hash) => void) => Promise<Hash>) {
+  // The running transaction, so Start over can give up on a commit that may never be mined.
+  const runningRef = useRef<AbortController | null>(null);
+
+  async function run(
+    step: Step,
+    action: (onSent: (hash: Hash) => void, signal: AbortSignal) => Promise<Hash>,
+  ) {
+    const controller = new AbortController();
+    runningRef.current = controller;
     setProblem(null);
     setDone(null);
     setActivity({ step, hash: null });
     try {
-      const hash = await action((sent) => setActivity({ step, hash: sent }));
+      const hash = await action((sent) => setActivity({ step, hash: sent }), controller.signal);
       if (label) setDone({ step, hash, label });
     } catch (error) {
+      if (controller.signal.aborted) return;
       console.warn(`The ${step} transaction failed.`, error);
       const described = describeError(error);
       setProblem(described);
@@ -167,7 +176,11 @@ export default function ClaimSection({
       // registered it first, say), so read it again. Declining in the wallet changes nothing.
       if (described.kind !== "rejected") onChanged();
     } finally {
-      setActivity(null);
+      // An abandoned run has already cleared its step, and a newer one may be running.
+      if (runningRef.current === controller) {
+        runningRef.current = null;
+        setActivity(null);
+      }
     }
   }
 
@@ -188,7 +201,7 @@ export default function ClaimSection({
     const registry = REGISTRY.address;
     const secret = randomSecret();
     const commitment = makeCommitment(label, wallet.account, secret);
-    void run("commit", async (onSent) => {
+    void run("commit", async (onSent, signal) => {
       // The lookup may be minutes old; a name registered since then could never be revealed.
       const fresh = await lookupName(label);
       if (fresh.status !== "available" && fresh.status !== "premium") {
@@ -216,10 +229,17 @@ export default function ClaimSection({
             bumpPending();
             onSent(hash);
           },
+          signal,
         );
-        const block = await publicClient.getBlock({ blockNumber: receipt.blockNumber });
-        savePendingClaim(claim(Number(block.timestamp), true, receipt.transactionHash));
-        bumpPending();
+        // The commit is mined either way. Without its block time, the unconfirmed claim saved at
+        // signing stays, and the check above confirms it from the registry's own record.
+        const block = await publicClient
+          .getBlock({ blockNumber: receipt.blockNumber })
+          .catch(() => null);
+        if (block) {
+          savePendingClaim(claim(Number(block.timestamp), true, receipt.transactionHash));
+          bumpPending();
+        }
         return receipt.transactionHash;
       } catch (error) {
         // Only a commit known not to have run lets go of its secret; after a network error the
@@ -268,6 +288,12 @@ export default function ClaimSection({
   }
 
   function startOver(claimToDrop: PendingClaim) {
+    // A commit still waiting to be mined is given up on: if it is mined later, nothing uses it.
+    if (committing) {
+      runningRef.current?.abort();
+      runningRef.current = null;
+      setActivity(null);
+    }
     removePendingClaim(claimToDrop);
     bumpPending();
     setProblem(null);
@@ -479,7 +505,7 @@ export default function ClaimSection({
               )}
               {/* A commit that is never mined (dropped, or replaced in the wallet) would
                   otherwise hold the name here with no way out. */}
-              {pending && !pending.confirmed && !busy && (
+              {pending && !pending.confirmed && (!busy || committing) && (
                 <button
                   type="button"
                   className="nm-inline-button"

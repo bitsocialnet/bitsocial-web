@@ -144,6 +144,7 @@ export async function sendRegistryCall(
   account: Address,
   call: RegistryCall,
   onSent: (hash: Hash) => void,
+  signal?: AbortSignal,
 ) {
   if (!REGISTRY) throw new Error("The .bso registry is not deployed yet.");
   await ensureChain(wallet.provider);
@@ -161,9 +162,13 @@ export async function sendRegistryCall(
   const hash = await walletClient.writeContract(request);
   onSent(hash);
   let replaced = false;
-  const receipt = await waitForReceipt(hash, ({ reason }) => {
-    replaced = reason !== "repriced";
-  });
+  const receipt = await waitForReceipt(
+    hash,
+    ({ reason }) => {
+      replaced = reason !== "repriced";
+    },
+    signal,
+  );
   if (replaced) throw new RegistryCallFailed({ kind: "revert", error: "Replaced" });
   if (receipt.status !== "success") {
     throw new RegistryCallFailed({ kind: "other", message: "The transaction reverted." });
@@ -176,18 +181,36 @@ const RECEIPT_RETRY_MS = 12_000;
 /**
  * Waits as long as a sent transaction takes. Reporting a slow one as failed would offer the
  * visitor the same action again, and a renewal sent twice is paid for twice, so there is no
- * timeout, and an RPC error while waiting is retried rather than reported.
+ * timeout, and an RPC error while waiting is retried rather than reported. Only `signal` ends the
+ * wait early, when the visitor gives up on a transaction that may never be mined; viem then stops
+ * watching once the transaction is mined or replaced.
  */
 async function waitForReceipt(
   hash: Hash,
   onReplaced: (replacement: { reason: "cancelled" | "replaced" | "repriced" }) => void,
+  signal?: AbortSignal,
 ) {
+  const abandoned = new Promise<never>((_, reject) => {
+    if (!signal) return;
+    const stop = () => reject(signal.reason);
+    if (signal.aborted) stop();
+    else signal.addEventListener("abort", stop, { once: true });
+  });
+  // The wait may finish first, leaving nothing to observe this rejection.
+  abandoned.catch(() => {});
   for (;;) {
     try {
-      return await publicClient.waitForTransactionReceipt({ hash, onReplaced, timeout: 0 });
+      return await Promise.race([
+        publicClient.waitForTransactionReceipt({ hash, onReplaced, timeout: 0 }),
+        abandoned,
+      ]);
     } catch (error) {
+      if (signal?.aborted) throw error;
       console.warn("Still waiting for the transaction; checking again.", error);
-      await new Promise((resolve) => window.setTimeout(resolve, RECEIPT_RETRY_MS));
+      await Promise.race([
+        new Promise((resolve) => window.setTimeout(resolve, RECEIPT_RETRY_MS)),
+        abandoned,
+      ]);
     }
   }
 }
