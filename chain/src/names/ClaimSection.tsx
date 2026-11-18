@@ -44,8 +44,9 @@ import OutboundLink from "./OutboundLink";
 export type ConnectedWallet = { option: WalletOption; account: Address };
 
 type Step = "commit" | "reveal" | "renew" | "record";
-// `scope` is the name and account the transaction is for (see `scope` below).
-type Activity = { step: Step; hash: Hash | null; sentAt: number | null; scope: string } | null;
+// The name and account a transaction is for: `scope` (see below) and the two parts, for display.
+type For = { scope: string; label: string; account: Address | null };
+type Activity = ({ step: Step; hash: Hash | null; sentAt: number | null } & For) | null;
 
 // The reveal is simulated against the latest block, which trails this browser's clock by up to
 // one 12-second slot, and the clocks can differ by a few seconds. Waiting this much past the
@@ -84,9 +85,7 @@ export default function ClaimSection({
   const [connecting, setConnecting] = useState(false);
   const [activity, setActivity] = useState<Activity>(null);
   // A transaction the visitor stopped waiting for: it may still be mined, so the page says so.
-  const [unresolved, setUnresolved] = useState<{ step: Step; hash: Hash; scope: string } | null>(
-    null,
-  );
+  const [unresolved, setUnresolved] = useState<({ step: Step; hash: Hash } & For) | null>(null);
   const [problemState, setProblemState] = useState<{
     for: string;
     problem: TransactionProblem;
@@ -184,12 +183,13 @@ export default function ClaimSection({
     setProblem(null);
     setDone(null);
     setUnresolved(null);
-    setActivity({ step, hash: null, sentAt: null, scope: runScope });
+    const runFor: For = { scope: runScope, label: label ?? "", account };
+    setActivity({ step, hash: null, sentAt: null, ...runFor });
     try {
       const hash = await action((sent) => {
         // A wallet can still approve after the visitor gave up on this run.
         if (!controller.signal.aborted) {
-          setActivity({ step, hash: sent, sentAt: Date.now() / 1000, scope: runScope });
+          setActivity({ step, hash: sent, sentAt: Date.now() / 1000, ...runFor });
         }
       }, controller.signal);
       if (label && !controller.signal.aborted) setDone({ step, hash, label });
@@ -333,7 +333,8 @@ export default function ClaimSection({
   // and the name is read again in case it went through after all.
   function stopWaiting() {
     if (!activity?.hash) return;
-    setUnresolved({ step: activity.step, hash: activity.hash, scope: activity.scope });
+    const { step, hash, scope: forScope, label: forLabel, account: forAccount } = activity;
+    setUnresolved({ step, hash, scope: forScope, label: forLabel, account: forAccount });
     runningRef.current?.abort();
     runningRef.current = null;
     setActivity(null);
@@ -375,40 +376,68 @@ export default function ClaimSection({
     });
   }
 
+  // A step's card shows its own transaction. When that card isn't on screen (the visitor moved to
+  // another name or account, or the name's state changed which cards show), the transaction shows
+  // under the header instead, named, so the busy page explains itself and can still be stopped.
+  const cardShows = (item: { step: Step } & For) =>
+    item.scope === scope && (mode !== "renew" || item.step === "renew");
+  const forText = (item: { step: Step } & For) => {
+    const forName = `${item.label}.bso`;
+    const key =
+      item.step === "renew"
+        ? "names.claim.renewing"
+        : item.step === "record"
+          ? "names.claim.pointing"
+          : "names.claim.claiming";
+    const who = item.account && item.account !== account ? ` (${shortAddress(item.account)})` : "";
+    return `${t(key, { name: forName })}${who} · `;
+  };
+
+  const activityLine = (current: NonNullable<Activity>, context: string | null) => {
+    const sentAt = current.sentAt;
+    // A reservation's own card has Start over instead, which also lets go of its secret.
+    const canStop = sentAt !== null && (context !== null || current.step !== "commit");
+    return (
+      <p className="nm-step-status" role="status">
+        {context}
+        {current.hash ? t("names.claim.waitingForTx") : t("names.claim.confirmInWallet")}
+        {current.hash && <TxLink hash={current.hash} />}
+        {canStop && (
+          <Ticking>
+            {(nowSeconds) =>
+              nowSeconds - sentAt >= STOP_WAITING_AFTER && (
+                <>
+                  {" "}
+                  <button type="button" className="nm-inline-button" onClick={stopWaiting}>
+                    {t("names.claim.stopWaiting")}
+                  </button>
+                </>
+              )
+            }
+          </Ticking>
+        )}
+      </p>
+    );
+  };
+
+  const unresolvedLine = (item: NonNullable<typeof unresolved>, context: string | null) => (
+    <p className="nm-step-status" role="status">
+      {context}
+      {t("names.claim.unresolved")}
+      <TxLink hash={item.hash} />
+    </p>
+  );
+
+  const elsewhere =
+    activity && !cardShows(activity)
+      ? activityLine(activity, forText(activity))
+      : unresolved && !cardShows(unresolved)
+        ? unresolvedLine(unresolved, forText(unresolved))
+        : null;
+
   const status = (step: Step): ReactNode => {
-    // Shown only on the card of the name and account the transaction is for.
-    if (activity?.step === step && activity.scope === scope) {
-      const sentAt = activity.sentAt;
-      return (
-        <p className="nm-step-status" role="status">
-          {activity.hash ? t("names.claim.waitingForTx") : t("names.claim.confirmInWallet")}
-          {activity.hash && <TxLink hash={activity.hash} />}
-          {/* A reservation has Start over instead, which also lets go of its secret. */}
-          {sentAt !== null && step !== "commit" && (
-            <Ticking>
-              {(nowSeconds) =>
-                nowSeconds - sentAt >= STOP_WAITING_AFTER && (
-                  <>
-                    {" "}
-                    <button type="button" className="nm-inline-button" onClick={stopWaiting}>
-                      {t("names.claim.stopWaiting")}
-                    </button>
-                  </>
-                )
-              }
-            </Ticking>
-          )}
-        </p>
-      );
-    }
-    if (unresolved?.step === step && unresolved.scope === scope) {
-      return (
-        <p className="nm-step-status" role="status">
-          {t("names.claim.unresolved")}
-          <TxLink hash={unresolved.hash} />
-        </p>
-      );
-    }
+    if (activity?.step === step && cardShows(activity)) return activityLine(activity, null);
+    if (unresolved?.step === step && cardShows(unresolved)) return unresolvedLine(unresolved, null);
     if (done?.step === step && done.label === label) {
       const text =
         step === "record"
@@ -513,6 +542,7 @@ export default function ClaimSection({
       <p className="nm-eyebrow">{t("names.claim.eyebrow")}</p>
       <h2 className="rl-section-title">{t("names.claim.title")}</h2>
       {header}
+      {elsewhere}
       {renewedNote}
       {connectBlock}
       {problemText && (
