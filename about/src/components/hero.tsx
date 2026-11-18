@@ -12,6 +12,7 @@ import {
 } from "react";
 import { m } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useTheme } from "next-themes";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 import {
@@ -19,12 +20,16 @@ import {
   resetHeroMountForIntroSync,
   TAGLINE_INTRO_START_MS,
 } from "@/lib/hero-intro-timing";
+import { shouldPreferPngGraphicsFallback } from "@/lib/graphics-device";
+import { requestGraphicsFallback, useGraphicsMode } from "@/lib/graphics-mode";
 import {
-  requestGraphicsFallback,
-  shouldPreferPngGraphicsFallback,
-  useGraphicsMode,
-} from "@/lib/graphics-mode";
+  ensureHeroFallbackPreload,
+  getHeroFallbackSources,
+  HERO_FALLBACK_MOBILE_QUERY,
+  type HeroFallbackTheme,
+} from "@/lib/hero-fallback";
 import { HOOKS_SITE_URL } from "@/lib/docs-links";
+import { hasInitialRenderCommitted } from "@/lib/initial-render";
 import { goToMailingListSection } from "@/lib/mailing-list-nav";
 import { rememberScrollReturn } from "@/lib/scroll-return";
 import { highlightedCtaClassName } from "@/components/card-inline-cta";
@@ -49,35 +54,8 @@ const developersCtaClassName = cn(
 const TAGLINE_LINK_COUNT = 6;
 const INTRO_START_DELAY = TAGLINE_INTRO_START_MS;
 const INTRO_STEP_MS = 1000;
-const HERO_FALLBACK_MOBILE_QUERY = "(max-width: 767px)";
-const HERO_FALLBACK_PRELOAD_ATTR = "data-hero-fallback-preload";
 const HERO_FALLBACK_BOTTOM_MASK =
   "linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.28) 9%, black 22%, black 100%)";
-const HERO_FALLBACK_SOURCES = {
-  desktop: {
-    dark: {
-      png: "/hero-fallback-desktop-dark.png",
-      webp: "/hero-fallback-desktop-dark.webp",
-    },
-    light: {
-      png: "/hero-fallback-desktop-light.png",
-      webp: "/hero-fallback-desktop-light.webp",
-    },
-  },
-  mobile: {
-    dark: {
-      png: "/hero-fallback-mobile-dark.png",
-      webp: "/hero-fallback-mobile-dark.webp",
-    },
-    light: {
-      png: "/hero-fallback-mobile-light.png",
-      webp: "/hero-fallback-mobile-light.webp",
-    },
-  },
-} as const;
-
-type HeroFallbackViewport = keyof typeof HERO_FALLBACK_SOURCES;
-
 class HeroGraphicErrorBoundary extends Component<
   { children: React.ReactNode; onError: () => void },
   { hasError: boolean }
@@ -97,52 +75,23 @@ class HeroGraphicErrorBoundary extends Component<
   }
 }
 
-function getHeroFallbackSources(isDark: boolean) {
-  const desktop = isDark ? HERO_FALLBACK_SOURCES.desktop.dark : HERO_FALLBACK_SOURCES.desktop.light;
-  const mobile = isDark ? HERO_FALLBACK_SOURCES.mobile.dark : HERO_FALLBACK_SOURCES.mobile.light;
-
-  return {
-    desktopPng: desktop.png,
-    desktopWebp: desktop.webp,
-    mobilePng: mobile.png,
-    mobileWebp: mobile.webp,
-  };
-}
-
-function ensureHeroFallbackPreloads(viewport: HeroFallbackViewport, preferPng: boolean) {
-  if (typeof document === "undefined") return;
-
-  const format = preferPng ? "png" : "webp";
-
-  for (const source of Object.values(HERO_FALLBACK_SOURCES[viewport])) {
-    const src = source[format];
-    if (document.head.querySelector(`link[${HERO_FALLBACK_PRELOAD_ATTR}="${src}"]`)) {
-      continue;
-    }
-
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "image";
-    link.href = src;
-    link.type = preferPng ? "image/png" : "image/webp";
-    link.setAttribute(HERO_FALLBACK_PRELOAD_ATTR, src);
-    document.head.appendChild(link);
-  }
-}
-
 function useHeroFallbackPreloads(enabled: boolean, preferPng: boolean) {
+  const { resolvedTheme } = useTheme();
+
   useEffect(() => {
     if (!enabled) return;
     if (typeof window === "undefined") return;
+
+    const theme: HeroFallbackTheme = resolvedTheme === "dark" ? "dark" : "light";
     if (typeof window.matchMedia !== "function") {
-      ensureHeroFallbackPreloads("desktop", preferPng);
-      ensureHeroFallbackPreloads("mobile", preferPng);
+      ensureHeroFallbackPreload("desktop", theme, preferPng);
+      ensureHeroFallbackPreload("mobile", theme, preferPng);
       return;
     }
 
     const mobileQuery = window.matchMedia(HERO_FALLBACK_MOBILE_QUERY);
     const syncPreloads = () => {
-      ensureHeroFallbackPreloads(mobileQuery.matches ? "mobile" : "desktop", preferPng);
+      ensureHeroFallbackPreload(mobileQuery.matches ? "mobile" : "desktop", theme, preferPng);
     };
 
     syncPreloads();
@@ -160,7 +109,7 @@ function useHeroFallbackPreloads(enabled: boolean, preferPng: boolean) {
         mobileQuery.removeListener(syncPreloads);
       }
     };
-  }, [enabled, preferPng]);
+  }, [enabled, preferPng, resolvedTheme]);
 }
 
 function TaglineLink({
@@ -207,7 +156,15 @@ function TaglineLink({
   );
 }
 
-function HeroFallbackPicture({ isDark, preferPng }: { isDark: boolean; preferPng: boolean }) {
+function HeroFallbackPicture({
+  isDark,
+  preferPng,
+  isActiveTheme,
+}: {
+  isDark: boolean;
+  preferPng: boolean;
+  isActiveTheme: boolean;
+}) {
   const { desktopPng, desktopWebp, mobilePng, mobileWebp } = getHeroFallbackSources(isDark);
 
   return (
@@ -222,9 +179,11 @@ function HeroFallbackPicture({ isDark, preferPng }: { isDark: boolean; preferPng
         alt=""
         aria-hidden="true"
         className="mx-auto h-auto w-auto max-h-[clamp(19rem,34vh,23rem)] md:max-h-[min(36vh,24rem)] lg:max-h-[min(38vh,28rem)] xl:max-h-[min(42vh,32rem)] max-w-[min(100rem,100%)] -translate-y-16 object-contain object-bottom sm:translate-y-0"
-        loading="eager"
+        // The other theme's picture is display:none; lazy loading keeps the browser from
+        // downloading it until a theme switch shows it.
+        loading={isActiveTheme ? "eager" : "lazy"}
         decoding="async"
-        fetchPriority="high"
+        fetchPriority={isActiveTheme ? "high" : "auto"}
         style={{
           maskImage: HERO_FALLBACK_BOTTOM_MASK,
           WebkitMaskImage: HERO_FALLBACK_BOTTOM_MASK,
@@ -235,10 +194,17 @@ function HeroFallbackPicture({ isDark, preferPng }: { isDark: boolean; preferPng
 }
 
 function HeroFallbackImage({ preferPng }: { preferPng: boolean }) {
+  // Unknown without JavaScript (the noscript copy), where both pictures stay eager.
+  const { resolvedTheme } = useTheme();
+
   return (
     <>
-      <HeroFallbackPicture isDark={false} preferPng={preferPng} />
-      <HeroFallbackPicture isDark preferPng={preferPng} />
+      <HeroFallbackPicture
+        isDark={false}
+        preferPng={preferPng}
+        isActiveTheme={resolvedTheme !== "dark"}
+      />
+      <HeroFallbackPicture isDark preferPng={preferPng} isActiveTheme={resolvedTheme !== "light"} />
     </>
   );
 }
@@ -324,6 +290,9 @@ export default function Hero() {
   const showFallbackGraphic = graphicsMode === "fallback" || graphicsInitFailed;
   const preferPngFallback = shouldPreferPngGraphicsFallback();
   const { highlightedIndex, resetIntro } = useTaglineIntro();
+  const [copyEntranceInitial] = useState(() =>
+    hasInitialRenderCommitted() ? { opacity: 0, y: 20 } : false,
+  );
 
   useHeroFallbackPreloads(showFallbackGraphic, preferPngFallback);
 
@@ -360,7 +329,7 @@ export default function Hero() {
           slack goes above the copy and the rest below the CTAs, which centers the stack
           between the topbar and the top of the mesh. */}
       <m.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={copyEntranceInitial}
         animate={{ opacity: 1, y: -20 }}
         transition={{ delay: 0.3, duration: 0.6 }}
         className="relative z-10 mb-[var(--space-hero-actions-gap)] px-2 text-center sm:px-4 md:mb-[var(--space-hero-stack-gap)] md:mt-[calc(var(--space-hero-stack-slack)/4)]"
@@ -441,7 +410,7 @@ export default function Hero() {
       </m.div>
 
       <m.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={copyEntranceInitial}
         animate={{ opacity: 1, y: -20 }}
         transition={{ delay: 0.5, duration: 0.6 }}
         className="flex flex-col sm:flex-row gap-4 relative z-40 md:mb-[calc(var(--space-hero-stack-slack)*3/4)]"

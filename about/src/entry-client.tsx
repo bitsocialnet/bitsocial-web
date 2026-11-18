@@ -1,3 +1,7 @@
+import { preloadHeroFallbackForDevice } from "@/lib/hero-fallback";
+
+preloadHeroFallbackForDevice();
+
 // Install the React hook before evaluating React DOM or development annotation tools.
 async function start() {
   if (import.meta.env.DEV || import.meta.env.MODE === "profiling") {

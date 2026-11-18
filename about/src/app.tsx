@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, type ReactNode } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Home from "@/pages/home";
@@ -11,6 +11,7 @@ import PageViewTracker from "@/components/page-view-tracker";
 import PolygonMeshBackground from "@/components/polygon-mesh-background";
 import SeoHead from "@/components/seo-head";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
+import { markInitialRenderCommitted } from "@/lib/initial-render";
 import { normalizeInitialHomeScrollPosition } from "@/lib/initial-scroll";
 
 function InitialHomeScrollGuard() {
@@ -66,6 +67,10 @@ function AppFrame({
 }) {
   const location = useLocation();
   const hideBackgroundAtScrollTop = location.pathname === "/";
+
+  useEffect(() => {
+    markInitialRenderCommitted();
+  }, []);
 
   return (
     <>
