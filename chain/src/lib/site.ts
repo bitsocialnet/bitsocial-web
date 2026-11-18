@@ -6,8 +6,8 @@ export const RICH_LIST_PATH = "/rich-list/" as const;
 /** The price chart is the site's third HTML entry, `chain/chart/index.html`. */
 export const CHART_PATH = "/chart/" as const;
 
-/** The .bso names page is the site's fourth HTML entry, `chain/names/index.html`. */
-export const NAMES_PATH = "/names/" as const;
+/** The .bso domains page is the site's fourth HTML entry, `chain/domains/index.html`. */
+export const DOMAINS_PATH = "/domains/" as const;
 
 /** The Safe multisig that BSIP-13's registry sends name fees to. */
 export const BSO_FEE_SAFE_ADDRESS = "0x442A54b2AFEe1db441Df5aA825059d663c96AA6E" as const;

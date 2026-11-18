@@ -68,7 +68,7 @@ export default function NamesApp() {
   return (
     <div className="shell rl-page nm-page">
       <PolygonMeshBackground />
-      <Topbar page="names" />
+      <Topbar page="domains" />
       <TopbarSpacer />
 
       <main className="shell-main">

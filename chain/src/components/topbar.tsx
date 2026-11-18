@@ -19,7 +19,7 @@ import {
   BITSOCIAL_URL,
   CHART_PATH,
   type ExternalLink,
-  NAMES_PATH,
+  DOMAINS_PATH,
   RICH_LIST_PATH,
 } from "@/lib/site";
 import { cn, getScrollBehavior } from "@/lib/utils";
@@ -68,7 +68,7 @@ function NavLink({
 
 const FAQ_ID = "faq";
 
-export type TopbarPage = "home" | "rich-list" | "chart" | "names";
+export type TopbarPage = "home" | "rich-list" | "chart" | "domains";
 
 // Which HTML entry renders the topbar. The FAQ only exists on the landing page.
 const TopbarPageContext = createContext<TopbarPage>("home");
@@ -159,9 +159,9 @@ function SiteNavLinks({ onClick, className }: { onClick?: () => void; className?
   return (
     <>
       <PageNavLink
-        page="names"
-        href={NAMES_PATH}
-        label={t("nav.names")}
+        page="domains"
+        href={DOMAINS_PATH}
+        label={t("nav.domains")}
         onClick={onClick}
         className={className}
       />
