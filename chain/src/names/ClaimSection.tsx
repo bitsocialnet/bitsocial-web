@@ -163,8 +163,9 @@ export default function ClaimSection({
       console.warn(`The ${step} transaction failed.`, error);
       const described = describeError(error);
       setProblem(described);
-      // A revert means the name's state differs from what the page showed, so read it again.
-      if (described.kind === "revert") onChanged();
+      // A failure, in simulation or mined, may mean the name changed since it was shown (someone
+      // registered it first, say), so read it again. Declining in the wallet changes nothing.
+      if (described.kind !== "rejected") onChanged();
     } finally {
       setActivity(null);
     }
@@ -346,7 +347,12 @@ export default function ClaimSection({
   const openingAt = opening.status === "known" ? opening.at : null;
   const readyAt =
     pending?.confirmed && openingAt !== null
-      ? Math.max(pending.committedAt + MIN_COMMITMENT_AGE + CLOCK_MARGIN, openingAt)
+      ? Math.max(
+          pending.committedAt + MIN_COMMITMENT_AGE + CLOCK_MARGIN,
+          // The same margin keeps the first claim at the opening from being checked against a
+          // block from just before it.
+          openingAt + CLOCK_MARGIN,
+        )
       : null;
   const reserveFrom = openingAt !== null ? openingAt - RESERVE_WINDOW : null;
   const tooEarly = reserveFrom !== null && now < reserveFrom;
@@ -473,6 +479,17 @@ export default function ClaimSection({
                   <TxLink hash={pending.commitTx} />
                 </p>
               )}
+              {/* A commit that is never mined (dropped, or replaced in the wallet) would
+                  otherwise hold the name here with no way out. */}
+              {pending && !pending.confirmed && !busy && (
+                <button
+                  type="button"
+                  className="nm-inline-button"
+                  onClick={() => startOver(pending)}
+                >
+                  {t("names.claim.startOver")}
+                </button>
+              )}
               {pending && !pendingClaimsSaved() && (
                 <p className="nm-step-status" role="alert">
                   {t("names.claim.notSaved")}
@@ -498,9 +515,9 @@ export default function ClaimSection({
                     {(nowSeconds) =>
                       nowSeconds < readyAt ? (
                         <button type="button" className="nm-button nm-button-primary" disabled>
-                          {openingAt !== null && readyAt === openingAt
+                          {openingAt !== null && readyAt === openingAt + CLOCK_MARGIN
                             ? t("names.claim.claimWaitOpening", {
-                                time: countdown(openingAt - nowSeconds),
+                                time: countdown(readyAt - nowSeconds),
                               })
                             : t("names.claim.claimWait", {
                                 seconds: Math.ceil(readyAt - nowSeconds),
