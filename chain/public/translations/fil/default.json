@@ -755,8 +755,8 @@
     "hero": {
       "titleCommunity": "Bigyan ng pangalan ang komunidad mo",
       "titleProfile": "Bigyan ng pangalan ang profile mo",
-      "leadCommunity": "I-type ito sa header sa ibaba. Mahahanap ng mga mambabasa ang komunidad mo gamit ang pangalang ito sa bawat Bitsocial app, at pag-aari ito ng wallet mo.",
-      "leadProfile": "I-type ito sa header sa ibaba. Dadalhin ng mga post mo ang pangalang ito sa bawat Bitsocial app, at pag-aari ito ng wallet mo.",
+      "leadCommunity": "I-type ito sa header sa ibaba. Mahahanap ng mga mambabasa ang komunidad mo gamit ang pangalang ito sa mga Bitsocial app, at pag-aari ito ng wallet mo.",
+      "leadProfile": "I-type ito sa header sa ibaba. Dadalhin ng mga post mo ang pangalang ito sa mga Bitsocial app, at pag-aari ito ng wallet mo.",
       "kindLabel": "Pangalan para sa",
       "kindCommunity": "Isang komunidad",
       "kindProfile": "Isang profile",
@@ -812,7 +812,8 @@
       "yearly": "{{price}} bawat taon",
       "yearlyShort": "{{price}} bawat taon, ang presyo para sa mga pangalang may {{count}} karakter",
       "yearlyBytes": "{{price}} bawat taon, batay sa {{count}} byte nito",
-      "withPremium": "{{price}} para sa unang taon, kasama ang {{premium}} na premium"
+      "withPremium": "{{price}} para sa unang taon, kasama ang {{premium}} na premium",
+      "tooShort": "Masyadong maikli: kailangang may hindi bababa sa 3 karakter ang pangalan."
     },
     "cta": {
       "claim": "I-claim ang {{name}} sa halagang {{price}}",
@@ -887,8 +888,10 @@
         "AlreadyRegistered": "May naunang nag-register ng pangalang ito.",
         "InsufficientFee": "Nagbago ang presyo. Subukan ulit.",
         "Expired": "Nag-expire na ang pangalang ito.",
-        "Unauthorized": "Hindi pag-aari ng wallet na ito ang pangalan."
-      }
+        "Unauthorized": "Hindi pag-aari ng wallet na ito ang pangalan.",
+        "Replaced": "Kinansela o pinalitan ng wallet ang transaction na ito, kaya hindi ito natuloy."
+      },
+      "notSaved": "Hindi ma-save ng browser na ito ang reservation. Panatilihing bukas ang tab na ito hanggang ma-claim mo ang pangalan."
     },
     "activity": {
       "title": "Mga pinakabagong pangalan",
@@ -923,9 +926,10 @@
       "check": "Tingnan",
       "registered": "Naka-register ang {{name}} sa {{owner}} hanggang {{date}}.",
       "points": "Nakaturo ito sa {{record}}.",
-      "notYet": "Hindi pa naka-register ang {{name}}. Nire-register ang mga na-airdrop na pangalan bago magbukas ang registration para sa lahat, kaya tingnan ulit pagdating noon.",
-      "notSeeded": "Hindi na-airdrop ang {{name}} at bukas ito sa kahit sino. Kung ginagamit mo ang {{eth}}, i-claim ito bago ka maunahan ng iba.",
-      "tryAbove": "Tingnan ang {{name}} sa itaas"
+      "notYet": "Hindi pa naka-register ang {{name}}. Dapat naka-register na ang lahat ng na-airdrop na pangalan bago magbukas ang registration para sa lahat, kaya tingnan ulit pagdating noon.",
+      "notSeeded": "Hindi naka-register ang {{name}}, kaya puwede itong i-claim ng kahit sino. Kung ginagamit mo ang {{eth}}, i-claim ito bago ka maunahan ng iba.",
+      "tryAbove": "Tingnan ang {{name}} sa itaas",
+      "subnameNotSeeded": "Hindi naka-register ang {{name}}. Ang may-hawak lang ng {{parent}} ang makakagawa nito, at libre ang mga subname."
     },
     "faq": {
       "eyebrow": "Mga tanong",
@@ -966,7 +970,7 @@
         "cost": {
           "q": "Magkano ang isang pangalan?",
           "a": [
-            "Nakadepende ang taunang presyo sa haba ng pangalan sa byte, at pareho ang halaga ng pag-renew. Hiwalay na binabayaran ang Ethereum gas. Tig-isang byte ang mga letrang a–z, mga digit at gitling, dalawa ang mga letrang may accent, Griyego o Cyrillic, tatlo ang mga karakter na Chinese o Japanese, at karaniwang apat ang emoji, kaya ang iisang emoji ay may presyo ng 4-byte na pangalan."
+            "Nakadepende ang taunang presyo sa haba ng pangalan sa byte, at pareho ang halaga ng pag-renew. Hiwalay na binabayaran ang Ethereum gas. Tig-isang byte ang mga letrang a–z, mga digit at gitling, dalawa ang mga letrang may accent, Griyego o Cyrillic, tatlo ang mga karakter na Chinese o Japanese, at karaniwang apat ang emoji. Kailangan ding may hindi bababa sa 3 karakter ang pangalan, at binibilang ang bawat isa bilang isang Unicode code point, kaya hindi mare-register ang pangalang may dalawang letra, ang iisang karakter na Chinese, o ang karamihan ng emoji na nag-iisa."
           ]
         },
         "claiming": {

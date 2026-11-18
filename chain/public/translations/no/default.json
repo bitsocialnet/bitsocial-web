@@ -755,8 +755,8 @@
     "hero": {
       "titleCommunity": "Gi fellesskapet ditt et navn",
       "titleProfile": "Gi profilen din et navn",
-      "leadCommunity": "Skriv det inn i toppfeltet nedenfor. Lesere finner fellesskapet ditt under dette navnet i alle Bitsocial-apper, og lommeboken din eier det.",
-      "leadProfile": "Skriv det inn i toppfeltet nedenfor. Innleggene dine bærer dette navnet i alle Bitsocial-apper, og lommeboken din eier det.",
+      "leadCommunity": "Skriv det inn i toppfeltet nedenfor. Lesere finner fellesskapet ditt under dette navnet i Bitsocial-apper, og lommeboken din eier det.",
+      "leadProfile": "Skriv det inn i toppfeltet nedenfor. Innleggene dine bærer dette navnet i Bitsocial-apper, og lommeboken din eier det.",
       "kindLabel": "Navn for",
       "kindCommunity": "Et fellesskap",
       "kindProfile": "En profil",
@@ -812,7 +812,8 @@
       "yearly": "{{price}} i året",
       "yearlyShort": "{{price}} i året, prisen for navn på {{count}} tegn",
       "yearlyBytes": "{{price}} i året, priset etter størrelsen på {{count}} byte",
-      "withPremium": "{{price}} for det første året, inkludert et pristillegg på {{premium}}"
+      "withPremium": "{{price}} for det første året, inkludert et pristillegg på {{premium}}",
+      "tooShort": "For kort: et navn må ha minst 3 tegn."
     },
     "cta": {
       "claim": "Claim {{name}} for {{price}}",
@@ -887,8 +888,10 @@
         "AlreadyRegistered": "Noen registrerte dette navnet først.",
         "InsufficientFee": "Prisen har endret seg. Prøv igjen.",
         "Expired": "Dette navnet har utløpt.",
-        "Unauthorized": "Denne lommeboken eier ikke navnet."
-      }
+        "Unauthorized": "Denne lommeboken eier ikke navnet.",
+        "Replaced": "Lommeboken avbrøt eller erstattet denne transaksjonen, så den gikk ikke gjennom."
+      },
+      "notSaved": "Denne nettleseren kunne ikke lagre reservasjonen. Hold denne fanen åpen til du claimer navnet."
     },
     "activity": {
       "title": "Siste navn",
@@ -923,9 +926,10 @@
       "check": "Sjekk",
       "registered": "{{name}} er registrert på {{owner}} til {{date}}.",
       "points": "Det peker til {{record}}.",
-      "notYet": "{{name}} er ikke registrert ennå. Airdroppede navn registreres før registreringen åpner for alle, så sjekk igjen da.",
-      "notSeeded": "{{name}} ble ikke airdroppet og er åpent for alle. Hvis du bruker {{eth}}, claim det før noen andre gjør det.",
-      "tryAbove": "Sjekk {{name}} ovenfor"
+      "notYet": "{{name}} er ikke registrert ennå. Alle airdroppede navn bør være registrert før registreringen åpner for alle, så sjekk igjen da.",
+      "notSeeded": "{{name}} er ikke registrert, så hvem som helst kan claime det. Hvis du bruker {{eth}}, claim det før noen andre gjør det.",
+      "tryAbove": "Sjekk {{name}} ovenfor",
+      "subnameNotSeeded": "{{name}} er ikke registrert. Bare den som har {{parent}}, kan lage det, og undernavn er gratis."
     },
     "faq": {
       "eyebrow": "Spørsmål",
@@ -966,7 +970,7 @@
         "cost": {
           "q": "Hva koster et navn?",
           "a": [
-            "Årsprisen avhenger av navnets lengde i byte, og fornyelse koster det samme. Gas på Ethereum kommer i tillegg. Bokstavene a–z, sifre og bindestreker tar én byte hver, bokstaver med aksent samt greske eller kyrilliske bokstaver to, kinesiske eller japanske tegn tre og emoji vanligvis fire, så én enkelt emoji prises som et navn på 4 byte."
+            "Årsprisen avhenger av navnets lengde i byte, og fornyelse koster det samme. Gas på Ethereum kommer i tillegg. Bokstavene a–z, sifre og bindestreker tar én byte hver, bokstaver med aksent samt greske eller kyrilliske bokstaver to, kinesiske eller japanske tegn tre og emoji vanligvis fire. Et navn må også ha minst 3 tegn, der hvert tegn telles som ett Unicode-kodepunkt, så et navn på to bokstaver, ett enkelt kinesisk tegn eller de fleste enkeltstående emoji kan ikke registreres."
           ]
         },
         "claiming": {

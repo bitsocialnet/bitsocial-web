@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 /** How often an open page refreshes its live data. */
 const REFRESH_MS = 5 * 60 * 1000;
@@ -9,7 +9,9 @@ export type LiveStatus = "loading" | "live" | "unavailable";
  * Renders from committed data at once, then keeps the page on live data: refreshed five minutes
  * after the previous refresh while the tab is visible, and as soon as it becomes visible again
  * after going stale. A failed refresh keeps the last good data; before any live data has arrived,
- * it reports the page as unavailable. `fetchLive` must be a stable, module-level function.
+ * it reports the page as unavailable. `refreshFailed` says whether the latest refresh failed, which
+ * `status` stops showing once live data has arrived, and `retry` refreshes at once. `fetchLive`
+ * must be a stable, module-level function.
  */
 export function useLiveData<T>(
   committed: T,
@@ -18,6 +20,8 @@ export function useLiveData<T>(
 ) {
   const [data, setData] = useState<T>(committed);
   const [status, setStatus] = useState<LiveStatus>("loading");
+  const [refreshFailed, setRefreshFailed] = useState(false);
+  const retryRef = useRef(() => {});
 
   useEffect(() => {
     let controller: AbortController | null = null;
@@ -40,16 +44,21 @@ export function useLiveData<T>(
       timer = window.setTimeout(refreshIfVisible, REFRESH_MS);
       try {
         const next = await fetchLive(current.signal);
+        // A newer refresh, or leaving the page, aborted this one, so its result is stale.
+        if (current.signal.aborted) return;
         setData(next);
         setStatus("live");
+        setRefreshFailed(false);
       } catch (error) {
         if (!current.signal.aborted) {
           console.warn(`Could not refresh live data from ${sourceName}.`, error);
           setStatus((previous) => (previous === "live" ? "live" : "unavailable"));
+          setRefreshFailed(true);
         }
       }
     };
 
+    retryRef.current = () => void refresh();
     void refresh();
     document.addEventListener("visibilitychange", refreshIfVisible);
 
@@ -60,7 +69,8 @@ export function useLiveData<T>(
     };
   }, [fetchLive, sourceName]);
 
-  return { data, status };
+  const retry = useCallback(() => retryRef.current(), []);
+  return { data, status, refreshFailed, retry };
 }
 
 /**

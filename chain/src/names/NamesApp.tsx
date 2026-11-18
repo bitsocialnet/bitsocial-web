@@ -14,13 +14,14 @@ import PolygonMeshBackground from "@/PolygonMeshBackground";
 import Activity from "./Activity";
 import ClaimSection, { type ConnectedWallet } from "./ClaimSection";
 import EthCheck from "./EthCheck";
-import { type Kind, readInitialQuery, writeQuery } from "./kind";
+import { cancelQueryWrite, type Kind, readQuery, writeQuery } from "./kind";
 import Lifecycle from "./Lifecycle";
 import NamePlate from "./NamePlate";
 import NamesFaq from "./NamesFaq";
+import type { Opening } from "./opening";
 import { useNameLookup } from "./use-name-lookup";
 
-const initial = readInitialQuery();
+const initial = readQuery();
 const fetchOpening = () => (REGISTRY ? readOpening() : Promise.resolve(null));
 
 export default function NamesApp() {
@@ -32,7 +33,17 @@ export default function NamesApp() {
   const [local, setLocal] = useState<Registration[]>([]);
   // Coarse on purpose: countdowns tick on their own (Ticking), so the page re-renders rarely.
   const nowMs = useNow(15_000);
-  const { data: opening } = useLiveData<number | null>(null, fetchOpening, "the .bso registry");
+  const {
+    data: openingAt,
+    status: openingStatus,
+    retry: retryOpening,
+  } = useLiveData<number | null>(null, fetchOpening, "the .bso registry");
+  const opening: Opening =
+    openingAt !== null
+      ? { status: "known", at: openingAt }
+      : openingStatus === "unavailable"
+        ? { status: "failed" }
+        : { status: "loading" };
 
   const spelling = checkSpelling(query);
   const label = spelling?.ok ? spelling.label : null;
@@ -47,6 +58,18 @@ export default function NamesApp() {
     setKind(value);
     writeQuery(query.trim(), value);
   };
+
+  // Back and Forward restore an address with another name; show the name the address has.
+  useEffect(() => {
+    const onPopState = () => {
+      cancelQueryWrite();
+      const restored = readQuery();
+      setQuery(restored.name);
+      setKind(restored.kind);
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
   // Follow the wallet when the visitor switches accounts in it.
   useEffect(() => {
@@ -107,6 +130,7 @@ export default function NamesApp() {
               onRetry={refresh}
               account={wallet?.account ?? null}
               opening={opening}
+              onRetryOpening={retryOpening}
               nowMs={nowMs}
             />
           </section>
@@ -130,7 +154,7 @@ export default function NamesApp() {
 
           <div className="rl-section">
             <EthCheck
-              opened={opening === null || nowMs / 1000 >= opening}
+              opened={opening.status === "known" ? nowMs / 1000 >= opening.at : null}
               onPick={(value) => {
                 changeQuery(value);
                 document.getElementById("nm-plate-input")?.focus();

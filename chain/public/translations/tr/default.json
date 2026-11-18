@@ -755,8 +755,8 @@
     "hero": {
       "titleCommunity": "Topluluğunuza bir ad verin",
       "titleProfile": "Profilinize bir ad verin",
-      "leadCommunity": "Adı aşağıdaki başlığa yazın. Okurlar topluluğunuzu her Bitsocial uygulamasında bu adla bulur ve ad cüzdanınıza aittir.",
-      "leadProfile": "Adı aşağıdaki başlığa yazın. Gönderileriniz her Bitsocial uygulamasında bu adı taşır ve ad cüzdanınıza aittir.",
+      "leadCommunity": "Adı aşağıdaki başlığa yazın. Okurlar topluluğunuzu Bitsocial uygulamalarında bu adla bulur ve ad cüzdanınıza aittir.",
+      "leadProfile": "Adı aşağıdaki başlığa yazın. Gönderileriniz Bitsocial uygulamalarında bu adı taşır ve ad cüzdanınıza aittir.",
       "kindLabel": "Ad şunun için",
       "kindCommunity": "Bir topluluk",
       "kindProfile": "Bir profil",
@@ -812,7 +812,8 @@
       "yearly": "Yılda {{price}}",
       "yearlyShort": "Yılda {{price}}, {{count}} karakterlik adların fiyatı",
       "yearlyBytes": "Yılda {{price}}, {{count}} baytlık uzunluğuna göre fiyatlandırılır",
-      "withPremium": "İlk yıl için {{premium}} prim dahil {{price}}"
+      "withPremium": "İlk yıl için {{premium}} prim dahil {{price}}",
+      "tooShort": "Çok kısa: bir ad en az 3 karakter olmalıdır."
     },
     "cta": {
       "claim": "{{name}} adını {{price}} karşılığında talep et",
@@ -887,8 +888,10 @@
         "AlreadyRegistered": "Bu adı sizden önce başkası kaydetti.",
         "InsufficientFee": "Fiyat değişti. Tekrar deneyin.",
         "Expired": "Bu adın süresi doldu.",
-        "Unauthorized": "Bu cüzdan bu adın sahibi değil."
-      }
+        "Unauthorized": "Bu cüzdan bu adın sahibi değil.",
+        "Replaced": "Cüzdan bu işlemi iptal etti veya değiştirdi, bu yüzden işlem gerçekleşmedi."
+      },
+      "notSaved": "Bu tarayıcı rezervasyonu kaydedemedi. Adı talep edene kadar bu sekmeyi açık tutun."
     },
     "activity": {
       "title": "Son adlar",
@@ -923,9 +926,10 @@
       "check": "Kontrol et",
       "registered": "{{name}}, {{date}} tarihine kadar {{owner}} adresine kayıtlı.",
       "points": "Gösterdiği: {{record}}.",
-      "notYet": "{{name}} henüz kayıtlı değil. Airdrop edilen adlar, kayıtlar herkese açılmadan önce kaydedilir; o zaman tekrar kontrol edin.",
-      "notSeeded": "{{name}} airdrop edilmedi ve herkese açık. {{eth}} adını kullanıyorsanız, başkasından önce talep edin.",
-      "tryAbove": "{{name}} adını yukarıda kontrol edin"
+      "notYet": "{{name}} henüz kayıtlı değil. Airdrop edilen adların tamamı, kayıtlar herkese açılmadan önce kaydedilmiş olmalı; o zaman tekrar kontrol edin.",
+      "notSeeded": "{{name}} kayıtlı değil, bu yüzden herkes talep edebilir. {{eth}} adını kullanıyorsanız, başkasından önce talep edin.",
+      "tryAbove": "{{name}} adını yukarıda kontrol edin",
+      "subnameNotSeeded": "{{name}} kayıtlı değil. Onu yalnızca {{parent}} adının sahibi oluşturabilir ve alt adlar ücretsizdir."
     },
     "faq": {
       "eyebrow": "Sorular",
@@ -966,7 +970,7 @@
         "cost": {
           "q": "Bir adın maliyeti nedir?",
           "a": [
-            "Yıllık fiyat adın bayt cinsinden uzunluğuna bağlıdır ve yenileme de aynı fiyattır. Ethereum gas ücreti ayrıca ödenir. a–z harfleri, rakamlar ve kısa çizgiler birer bayt, aksanlı, Yunan veya Kiril harfleri iki, Çince veya Japonca karakterler üç, emoji ise genellikle dört bayt tutar; bu yüzden tek bir emoji 4 baytlık bir ad olarak fiyatlandırılır."
+            "Yıllık fiyat adın bayt cinsinden uzunluğuna bağlıdır ve yenileme de aynı fiyattır. Ethereum gas ücreti ayrıca ödenir. a–z harfleri, rakamlar ve kısa çizgiler birer bayt, aksanlı, Yunan veya Kiril harfleri iki, Çince veya Japonca karakterler üç, emoji ise genellikle dört bayt tutar. Bir ad ayrıca en az 3 karakter olmalıdır ve her karakter bir Unicode kod noktası olarak sayılır; bu yüzden iki harfli bir ad, tek bir Çince karakter veya çoğu tek emoji kaydedilemez."
           ]
         },
         "claiming": {

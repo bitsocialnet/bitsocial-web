@@ -755,8 +755,8 @@
     "hero": {
       "titleCommunity": "Adj nevet a közösségednek",
       "titleProfile": "Adj nevet a profilodnak",
-      "leadCommunity": "Írd be az alábbi fejlécbe. Az olvasók minden Bitsocial alkalmazásban ezen a néven találják meg a közösségedet, és a név a tárcád tulajdona lesz.",
-      "leadProfile": "Írd be az alábbi fejlécbe. A bejegyzéseid minden Bitsocial alkalmazásban ezt a nevet viselik majd, és a név a tárcád tulajdona lesz.",
+      "leadCommunity": "Írd be az alábbi fejlécbe. Az olvasók a Bitsocial alkalmazásokban ezen a néven találják meg a közösségedet, és a név a tárcád tulajdona lesz.",
+      "leadProfile": "Írd be az alábbi fejlécbe. A bejegyzéseid a Bitsocial alkalmazásokban ezt a nevet viselik majd, és a név a tárcád tulajdona lesz.",
       "kindLabel": "Mire szól a név",
       "kindCommunity": "Közösség",
       "kindProfile": "Profil",
@@ -812,7 +812,8 @@
       "yearly": "évi {{price}}",
       "yearlyShort": "évi {{price}}: {{count}} karakteres nevek ára",
       "yearlyBytes": "évi {{price}}, a mérete alapján ({{count}} bájt)",
-      "withPremium": "{{price}} az első évre, benne {{premium}} felárral"
+      "withPremium": "{{price}} az első évre, benne {{premium}} felárral",
+      "tooShort": "Túl rövid: egy névnek legalább 3 karakterből kell állnia."
     },
     "cta": {
       "claim": "{{name}} igénylése: {{price}}",
@@ -887,8 +888,10 @@
         "AlreadyRegistered": "Valaki előbb regisztrálta ezt a nevet.",
         "InsufficientFee": "Az ár megváltozott. Próbáld újra.",
         "Expired": "Ez a név lejárt.",
-        "Unauthorized": "Ez a tárca nem tulajdonosa a névnek."
-      }
+        "Unauthorized": "Ez a tárca nem tulajdonosa a névnek.",
+        "Replaced": "A tárca visszavonta vagy lecserélte ezt a tranzakciót, így nem ment végbe."
+      },
+      "notSaved": "Ez a böngésző nem tudta elmenteni a foglalást. Tartsd nyitva ezt a lapot, amíg nem igényled a nevet."
     },
     "activity": {
       "title": "Legújabb nevek",
@@ -923,9 +926,10 @@
       "check": "Ellenőrzés",
       "registered": "{{name}} regisztrált tulajdonosa: {{owner}}, lejárat: {{date}}.",
       "points": "Ide mutat: {{record}}.",
-      "notYet": "{{name}} még nincs regisztrálva. Az airdropolt neveket azelőtt regisztrálják, hogy a regisztráció mindenki előtt megnyílna, ezért akkor nézd meg újra.",
-      "notSeeded": "{{name}} nem kapott airdropot, és bárki igényelheti. Ha ezt használod: {{eth}}, igényeld, mielőtt más tenné meg.",
-      "tryAbove": "{{name}} ellenőrzése fent"
+      "notYet": "{{name}} még nincs regisztrálva. Az airdropolt neveket várhatóan mind azelőtt regisztrálják, hogy a regisztráció mindenki előtt megnyílna, ezért akkor nézd meg újra.",
+      "notSeeded": "{{name}} nincs regisztrálva, így bárki igényelheti. Ha ezt használod: {{eth}}, igényeld, mielőtt más tenné meg.",
+      "tryAbove": "{{name}} ellenőrzése fent",
+      "subnameNotSeeded": "{{name}} nincs regisztrálva. Csak {{parent}} birtokosa hozhatja létre, és az alnevek ingyenesek."
     },
     "faq": {
       "eyebrow": "Kérdések",
@@ -966,7 +970,7 @@
         "cost": {
           "q": "Mennyibe kerül egy név?",
           "a": [
-            "Az éves ár a név bájtban mért hosszától függ, és a megújítás ugyanennyibe kerül. Az Ethereum gas díját ezen felül kell fizetni. Az a–z betűk, a számjegyek és a kötőjelek egy-egy bájtot foglalnak, az ékezetes, görög vagy cirill betűk kettőt, a kínai vagy japán írásjegyek hármat, az emojik pedig általában négyet, így egyetlen emoji ára egy 4 bájtos névével egyezik."
+            "Az éves ár a név bájtban mért hosszától függ, és a megújítás ugyanennyibe kerül. Az Ethereum gas díját ezen felül kell fizetni. Az a–z betűk, a számjegyek és a kötőjelek egy-egy bájtot foglalnak, az ékezetes, görög vagy cirill betűk kettőt, a kínai vagy japán írásjegyek hármat, az emojik pedig általában négyet. Egy névnek emellett legalább 3 karakterből kell állnia, és mindegyik karakter egy Unicode-kódpontnak számít, így kétbetűs név, egyetlen kínai írásjegy vagy a legtöbb önálló emoji nem regisztrálható."
           ]
         },
         "claiming": {

@@ -127,6 +127,8 @@
 }
 
 .nm-plate-name {
+  /* A domain reads left to right even on an RTL page; the input keeps the label's own direction. */
+  direction: ltr;
   display: flex;
   align-items: baseline;
   margin-top: 0.75rem;
@@ -134,6 +136,11 @@
   overflow: hidden;
   border-bottom: 2px solid var(--line-strong);
   transition: border-color 160ms ease;
+}
+
+/* On an RTL page the name keeps its left-to-right order but sits on the right, like the rest. */
+[dir="rtl"] .nm-plate-name {
+  justify-content: flex-end;
 }
 
 .nm-plate-name[data-tone="ok"] {

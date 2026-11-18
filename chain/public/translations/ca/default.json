@@ -760,8 +760,8 @@
     "hero": {
       "titleCommunity": "Posa nom a la teva comunitat",
       "titleProfile": "Posa nom al teu perfil",
-      "leadCommunity": "Escriu-lo a la capçalera de sota. Els lectors trobaran la teva comunitat amb aquest nom a totes les aplicacions de Bitsocial, i la teva cartera n'és la propietària.",
-      "leadProfile": "Escriu-lo a la capçalera de sota. Les teves publicacions portaran aquest nom a totes les aplicacions de Bitsocial, i la teva cartera n'és la propietària.",
+      "leadCommunity": "Escriu-lo a la capçalera de sota. Els lectors trobaran la teva comunitat amb aquest nom a les aplicacions de Bitsocial, i la teva cartera n'és la propietària.",
+      "leadProfile": "Escriu-lo a la capçalera de sota. Les teves publicacions portaran aquest nom a les aplicacions de Bitsocial, i la teva cartera n'és la propietària.",
       "kindLabel": "Nom per a",
       "kindCommunity": "Una comunitat",
       "kindProfile": "Un perfil",
@@ -817,7 +817,8 @@
       "yearly": "{{price}} l'any",
       "yearlyShort": "{{price}} l'any, el preu dels noms de {{count}} caràcters",
       "yearlyBytes": "{{price}} l'any, segons els seus {{count}} bytes",
-      "withPremium": "{{price}} el primer any, amb un recàrrec de {{premium}} inclòs"
+      "withPremium": "{{price}} el primer any, amb un recàrrec de {{premium}} inclòs",
+      "tooShort": "Massa curt: un nom ha de tenir com a mínim 3 caràcters."
     },
     "cta": {
       "claim": "Reclama {{name}} per {{price}}",
@@ -892,8 +893,10 @@
         "AlreadyRegistered": "Algú ha registrat aquest nom abans.",
         "InsufficientFee": "El preu ha canviat. Torna-ho a provar.",
         "Expired": "Aquest nom ha vençut.",
-        "Unauthorized": "Aquesta cartera no és la propietària del nom."
-      }
+        "Unauthorized": "Aquesta cartera no és la propietària del nom.",
+        "Replaced": "La cartera ha cancel·lat o substituït aquesta transacció, així que no s'ha completat."
+      },
+      "notSaved": "Aquest navegador no ha pogut desar la reserva. Mantén aquesta pestanya oberta fins que reclamis el nom."
     },
     "activity": {
       "title": "Últims noms",
@@ -928,9 +931,10 @@
       "check": "Comprova",
       "registered": "{{name}} està registrat a nom de {{owner}} fins al {{date}}.",
       "points": "Apunta a {{record}}.",
-      "notYet": "{{name}} encara no està registrat. Els noms de l'airdrop es registren abans que el registre s'obri a tothom, així que torna-ho a comprovar llavors.",
-      "notSeeded": "{{name}} no s'ha repartit per airdrop i està lliure per a qualsevol. Si fas servir {{eth}}, reclama'l abans que ho faci algú altre.",
-      "tryAbove": "Comprova {{name}} a dalt"
+      "notYet": "{{name}} encara no està registrat. Tots els noms de l'airdrop haurien d'estar registrats abans que el registre s'obri a tothom, així que torna-ho a comprovar llavors.",
+      "notSeeded": "{{name}} no està registrat, així que qualsevol el pot reclamar. Si fas servir {{eth}}, reclama'l abans que ho faci algú altre.",
+      "tryAbove": "Comprova {{name}} a dalt",
+      "subnameNotSeeded": "{{name}} no està registrat. Només el titular de {{parent}} el pot crear, i els subnoms són gratis."
     },
     "faq": {
       "eyebrow": "Preguntes",
@@ -973,7 +977,7 @@
         "cost": {
           "q": "Quant costa un nom?",
           "a": [
-            "El preu anual depèn de la longitud del nom en bytes, i renovar-lo costa el mateix. El gas d'Ethereum es paga a part. Les lletres a–z, els dígits i els guionets ocupen un byte cadascun, les lletres accentuades, gregues o ciríl·liques dos, els caràcters xinesos o japonesos tres i els emojis normalment quatre, de manera que un sol emoji té el preu d'un nom de 4 bytes."
+            "El preu anual depèn de la longitud del nom en bytes, i renovar-lo costa el mateix. El gas d'Ethereum es paga a part. Les lletres a–z, els dígits i els guionets ocupen un byte cadascun, les lletres accentuades, gregues o ciríl·liques dos, els caràcters xinesos o japonesos tres i els emojis normalment quatre. A més, un nom ha de tenir com a mínim 3 caràcters, cadascun comptat com un punt de codi Unicode, de manera que un nom de dues lletres, un sol caràcter xinès o la majoria d'emojis sols no es poden registrar."
           ]
         },
         "claiming": {

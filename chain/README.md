@@ -34,13 +34,16 @@ corepack yarn build:chain
 
 ## Testing the Names Page Against a Local Chain
 
-In development only, these variables point the names page at another chain and registry instead of mainnet (they are ignored by production builds):
+In development only, these variables point the names page at another chain and registry instead of mainnet (they are ignored by production builds). Save them in `chain/.env.development.local`, which Git ignores, and restart `corepack yarn start:chain`:
 
 ```bash
-VITE_NAMES_RPC_URL=http://127.0.0.1:8545   # JSON-RPC of a local node, such as Hardhat or Anvil
+# JSON-RPC of a local node, such as Hardhat or Anvil
+VITE_NAMES_RPC_URL=http://127.0.0.1:8545
 VITE_NAMES_CHAIN_ID=31337
-VITE_NAMES_REGISTRY=0x…                     # a registry deployed to that node
-VITE_NAMES_FROM_BLOCK=1                     # where the activity feed starts reading
+# A registry deployed to that node
+VITE_NAMES_REGISTRY=0x…
+# Where the activity feed starts reading
+VITE_NAMES_FROM_BLOCK=1
 ```
 
 A wallet in the browser has to be on the same chain; the page asks it to add and switch to the local chain.

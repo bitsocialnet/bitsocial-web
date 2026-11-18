@@ -750,8 +750,8 @@
     "hero": {
       "titleCommunity": "给你的社区起个名字",
       "titleProfile": "给你的个人资料起个名字",
-      "leadCommunity": "在下方的页头中输入名称。读者在每个 Bitsocial 应用中都能通过这个名称找到你的社区，而它归你的钱包所有。",
-      "leadProfile": "在下方的页头中输入名称。你的帖子在每个 Bitsocial 应用中都会带有这个名称，而它归你的钱包所有。",
+      "leadCommunity": "在下方的页头中输入名称。读者可以在 Bitsocial 应用中通过这个名称找到你的社区，而它归你的钱包所有。",
+      "leadProfile": "在下方的页头中输入名称。你的帖子在 Bitsocial 应用中会带有这个名称，而它归你的钱包所有。",
       "kindLabel": "名称用于",
       "kindCommunity": "社区",
       "kindProfile": "个人资料",
@@ -807,7 +807,8 @@
       "yearly": "每年 {{price}}",
       "yearlyShort": "每年 {{price}}，即 {{count}} 字符名称的价格",
       "yearlyBytes": "每年 {{price}}，按其 {{count}} 字节计价",
-      "withPremium": "首年 {{price}}，含 {{premium}} 溢价"
+      "withPremium": "首年 {{price}}，含 {{premium}} 溢价",
+      "tooShort": "太短：名称至少需要 3 个字符。"
     },
     "cta": {
       "claim": "以 {{price}} 认领 {{name}}",
@@ -882,8 +883,10 @@
         "AlreadyRegistered": "已有人抢先注册了这个名称。",
         "InsufficientFee": "价格已变动。请重试。",
         "Expired": "此名称已过期。",
-        "Unauthorized": "此钱包不拥有该名称。"
-      }
+        "Unauthorized": "此钱包不拥有该名称。",
+        "Replaced": "钱包取消或替换了这笔交易，因此交易未能完成。"
+      },
+      "notSaved": "此浏览器未能保存该预留。认领名称之前，请不要关闭此标签页。"
     },
     "activity": {
       "title": "最新名称",
@@ -918,9 +921,10 @@
       "check": "查询",
       "registered": "{{name}} 已注册给 {{owner}}，有效期至 {{date}}。",
       "points": "它指向 {{record}}。",
-      "notYet": "{{name}} 尚未注册。空投的名称会在面向所有人开放注册之前完成注册，届时请再来查询。",
-      "notSeeded": "{{name}} 未被空投，任何人都可以注册。如果你在使用 {{eth}}，请抢在别人之前认领它。",
-      "tryAbove": "在上方查询 {{name}}"
+      "notYet": "{{name}} 尚未注册。空投的名称应该都会在面向所有人开放注册之前完成注册，届时请再来查询。",
+      "notSeeded": "{{name}} 未注册，因此任何人都可以认领。如果你在使用 {{eth}}，请抢在别人之前认领它。",
+      "tryAbove": "在上方查询 {{name}}",
+      "subnameNotSeeded": "{{name}} 未注册。只有 {{parent}} 的持有者才能创建它，且子名称是免费的。"
     },
     "faq": {
       "eyebrow": "问题",
@@ -959,7 +963,7 @@
         "cost": {
           "q": "名称需要多少钱？",
           "a": [
-            "每年的价格取决于名称以字节计的长度，续费价格相同。Ethereum gas 费另计。字母 a–z、数字和连字符各占一个字节，带重音符号的字母、希腊字母或西里尔字母占两个字节，中文或日文字符占三个字节，emoji 通常占四个字节，因此单个 emoji 按 4 字节名称计价。"
+            "每年的价格取决于名称以字节计的长度，续费价格相同。Ethereum gas 费另计。字母 a–z、数字和连字符各占一个字节，带重音符号的字母、希腊字母或西里尔字母占两个字节，中文或日文字符占三个字节，emoji 通常占四个字节。名称还需要至少 3 个字符，每个字符按一个 Unicode 码位计算，因此两个字母的名称、单个中文字符或大多数单个 emoji 都无法注册。"
           ]
         },
         "claiming": {

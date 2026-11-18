@@ -755,8 +755,8 @@
     "hero": {
       "titleCommunity": "Gib deiner Community einen Namen",
       "titleProfile": "Gib deinem Profil einen Namen",
-      "leadCommunity": "Gib ihn unten in den Header ein. Leser finden deine Community in jeder Bitsocial-App unter diesem Namen, und er gehört deiner Wallet.",
-      "leadProfile": "Gib ihn unten in den Header ein. Deine Beiträge tragen diesen Namen in jeder Bitsocial-App, und er gehört deiner Wallet.",
+      "leadCommunity": "Gib ihn unten in den Header ein. Leser finden deine Community in Bitsocial-Apps unter diesem Namen, und er gehört deiner Wallet.",
+      "leadProfile": "Gib ihn unten in den Header ein. Deine Beiträge tragen diesen Namen in Bitsocial-Apps, und er gehört deiner Wallet.",
       "kindLabel": "Name für",
       "kindCommunity": "Eine Community",
       "kindProfile": "Ein Profil",
@@ -812,7 +812,8 @@
       "yearly": "{{price}} pro Jahr",
       "yearlyShort": "{{price}} pro Jahr, der Preis für Namen mit {{count}} Zeichen",
       "yearlyBytes": "{{price}} pro Jahr, berechnet nach seinen {{count}} Bytes",
-      "withPremium": "{{price}} für das erste Jahr, inklusive {{premium}} Aufschlag"
+      "withPremium": "{{price}} für das erste Jahr, inklusive {{premium}} Aufschlag",
+      "tooShort": "Zu kurz: Ein Name braucht mindestens 3 Zeichen."
     },
     "cta": {
       "claim": "{{name}} für {{price}} claimen",
@@ -887,8 +888,10 @@
         "AlreadyRegistered": "Jemand hat diesen Namen zuerst registriert.",
         "InsufficientFee": "Der Preis hat sich geändert. Versuch es erneut.",
         "Expired": "Dieser Name ist abgelaufen.",
-        "Unauthorized": "Dieser Wallet gehört der Name nicht."
-      }
+        "Unauthorized": "Dieser Wallet gehört der Name nicht.",
+        "Replaced": "Die Wallet hat diese Transaktion abgebrochen oder ersetzt, daher wurde sie nicht ausgeführt."
+      },
+      "notSaved": "Dieser Browser konnte die Reservierung nicht speichern. Lass diesen Tab offen, bis du den Namen claimst."
     },
     "activity": {
       "title": "Neueste Namen",
@@ -923,9 +926,10 @@
       "check": "Prüfen",
       "registered": "{{name}} ist bis {{date}} auf {{owner}} registriert.",
       "points": "Er verweist auf {{record}}.",
-      "notYet": "{{name}} ist noch nicht registriert. Per Airdrop verteilte Namen werden registriert, bevor die Registrierung für alle öffnet, also schau dann noch einmal nach.",
-      "notSeeded": "{{name}} wurde nicht per Airdrop verteilt und ist für jeden frei. Wenn du {{eth}} nutzt, claime ihn, bevor es jemand anderes tut.",
-      "tryAbove": "{{name}} oben prüfen"
+      "notYet": "{{name}} ist noch nicht registriert. Alle per Airdrop verteilten Namen sollten registriert sein, bevor die Registrierung für alle öffnet, also schau dann noch einmal nach.",
+      "notSeeded": "{{name}} ist nicht registriert, also kann ihn jeder claimen. Wenn du {{eth}} nutzt, claime ihn, bevor es jemand anderes tut.",
+      "tryAbove": "{{name}} oben prüfen",
+      "subnameNotSeeded": "{{name}} ist nicht registriert. Nur der Halter von {{parent}} kann ihn erstellen, und Subnamen sind kostenlos."
     },
     "faq": {
       "eyebrow": "Fragen",
@@ -966,7 +970,7 @@
         "cost": {
           "q": "Was kostet ein Name?",
           "a": [
-            "Der Jahrespreis hängt von der Länge des Namens in Bytes ab, und eine Verlängerung kostet gleich viel. Ethereum-Gas kommt noch dazu. Buchstaben a–z, Ziffern und Bindestriche belegen je ein Byte, Buchstaben mit Akzent sowie griechische oder kyrillische Buchstaben zwei, chinesische oder japanische Zeichen drei und Emoji meist vier, daher wird ein einzelnes Emoji wie ein 4-Byte-Name berechnet."
+            "Der Jahrespreis hängt von der Länge des Namens in Bytes ab, und eine Verlängerung kostet gleich viel. Ethereum-Gas kommt noch dazu. Buchstaben a–z, Ziffern und Bindestriche belegen je ein Byte, Buchstaben mit Akzent sowie griechische oder kyrillische Buchstaben zwei, chinesische oder japanische Zeichen drei und Emoji meist vier. Ein Name braucht außerdem mindestens 3 Zeichen, die jeweils als ein Unicode-Codepunkt zählen, daher lassen sich ein Name aus zwei Buchstaben, ein einzelnes chinesisches Zeichen oder die meisten einzelnen Emoji nicht registrieren."
           ]
         },
         "claiming": {

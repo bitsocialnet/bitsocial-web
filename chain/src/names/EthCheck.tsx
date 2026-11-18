@@ -1,20 +1,29 @@
-import { type FormEvent, type ReactNode, useState } from "react";
+import { type FormEvent, type ReactNode, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { lookupName, type NameState, REGISTRY } from "@/lib/names/registry";
-import { checkSpelling } from "@/lib/names/spelling";
-import { shortAddress, shortKey, useNamesFormat } from "./format";
+import type { Address } from "viem";
+import { lookupName, lookupSubname, type NameState, REGISTRY } from "@/lib/names/registry";
+import { checkSpelling, type Spelling } from "@/lib/names/spelling";
+import { shortAddress, shortKey, spellingProblemText, useNamesFormat } from "./format";
 
 type Result =
-  | { label: string; state: NameState }
-  | { label: string; invalid: true }
-  | { label: string; failed: true };
+  | { kind: "name"; label: string; state: NameState }
+  | {
+      kind: "subname";
+      labels: string[];
+      held: { owner: Address; until: number; record: string } | null;
+    }
+  | { kind: "invalid"; spelling: Extract<Spelling, { ok: false }> }
+  | { kind: "failed" };
 
-/** Explains the launch airdrop and checks whether a .eth name's .bso twin was seeded. */
+/**
+ * Explains the launch airdrop and checks whether a .eth name's .bso twin was seeded, subnames
+ * included. `opened` is null while the opening time can't be read.
+ */
 export default function EthCheck({
   opened,
   onPick,
 }: {
-  opened: boolean;
+  opened: boolean | null;
   onPick: (label: string) => void;
 }) {
   const { t } = useTranslation();
@@ -22,51 +31,105 @@ export default function EthCheck({
   const [input, setInput] = useState("");
   const [checking, setChecking] = useState(false);
   const [result, setResult] = useState<Result | null>(null);
+  // Each check and each edit gets a new number; an answer for an older one is dropped.
+  const requestRef = useRef(0);
+
+  function edit(value: string) {
+    requestRef.current += 1;
+    setInput(value);
+    setResult(null);
+    setChecking(false);
+  }
 
   async function check(event: FormEvent) {
     event.preventDefault();
-    const raw = input.trim().replace(/\.(eth|bso)$/i, "");
-    const spelling = checkSpelling(raw);
-    if (!spelling) return;
-    if (!spelling.ok) {
-      setResult({ label: raw, invalid: true });
+    const parts = input
+      .trim()
+      .replace(/\.(eth|bso)$/i, "")
+      .split(".");
+    // The last label is the top-level name; the ones before it name a subname under it.
+    const spellings = parts.map((part, index) =>
+      checkSpelling(part, { topLevel: index === parts.length - 1 }),
+    );
+    if (spellings.some((spelling) => spelling === null)) return;
+    const invalid = spellings.find((spelling) => spelling?.ok === false);
+    if (invalid && !invalid.ok) {
+      setResult({ kind: "invalid", spelling: invalid });
       return;
     }
+    const labels = spellings.map((spelling) => (spelling?.ok ? spelling.label : ""));
+    const request = (requestRef.current += 1);
     setChecking(true);
     try {
-      setResult({ label: spelling.label, state: await lookupName(spelling.label) });
+      const next = await lookUp(labels);
+      if (request === requestRef.current) setResult(next);
     } catch (error) {
       console.warn("Could not check the .eth name.", error);
-      setResult({ label: spelling.label, failed: true });
+      if (request === requestRef.current) setResult({ kind: "failed" });
     } finally {
-      setChecking(false);
+      if (request === requestRef.current) setChecking(false);
     }
   }
 
   let message: ReactNode = null;
-  if (result) {
+  if (result?.kind === "invalid") message = spellingProblemText(t, result.spelling);
+  else if (result?.kind === "failed") message = t("names.checks.lookupFailed");
+  else if (result?.kind === "subname") {
+    const name = `${result.labels.join(".")}.bso`;
+    const parent = `${result.labels.slice(1).join(".")}.bso`;
+    message = result.held ? (
+      <>
+        {t("names.eth.registered", {
+          name,
+          owner: shortAddress(result.held.owner),
+          date: format.date(result.held.until),
+        })}
+        {result.held.record && (
+          <> {t("names.eth.points", { record: shortKey(result.held.record) })}</>
+        )}
+      </>
+    ) : opened === null ? (
+      t("names.checks.lookupFailed")
+    ) : opened ? (
+      t("names.eth.subnameNotSeeded", { name, parent })
+    ) : (
+      t("names.eth.notYet", { name })
+    );
+  } else if (result?.kind === "name") {
     const name = `${result.label}.bso`;
-    if ("invalid" in result) message = t("names.checks.characterUnknown");
-    else if ("failed" in result) message = t("names.checks.lookupFailed");
-    else if (result.state.status === "taken" || result.state.status === "grace") {
+    const state = result.state;
+    if (state.status === "taken" || state.status === "grace") {
       message = (
         <>
           {t("names.eth.registered", {
             name,
-            owner: shortAddress(result.state.owner),
-            date: format.date(result.state.expiresAt),
+            owner: shortAddress(state.owner),
+            date: format.date(state.expiresAt),
           })}
-          {result.state.status === "taken" && result.state.record && (
-            <> {t("names.eth.points", { record: shortKey(result.state.record) })}</>
+          {state.status === "taken" && state.record && (
+            <> {t("names.eth.points", { record: shortKey(state.record) })}</>
           )}
         </>
       );
+    } else if (opened === null) {
+      message = t("names.checks.lookupFailed");
     } else if (!opened) {
       message = t("names.eth.notYet", { name });
     } else {
+      // Only the current state is known here: a name in its premium was registered once and
+      // lapsed, so this says what can be done now rather than whether it was airdropped.
       message = (
         <>
-          {t("names.eth.notSeeded", { name, eth: `${result.label}.eth` })}{" "}
+          {t("names.eth.notSeeded", { name, eth: `${result.label}.eth` })}
+          {state.status === "premium" && (
+            <>
+              {" "}
+              {t("names.checks.premium", {
+                date: format.date(state.releasedAt),
+                end: format.date(state.releasedAt + 21 * 86_400),
+              })}
+            </>
+          )}{" "}
           <button type="button" className="nm-inline-button" onClick={() => onPick(result.label)}>
             {t("names.eth.tryAbove", { name })}
           </button>
@@ -96,7 +159,7 @@ export default function EthCheck({
               className="nm-field"
               type="text"
               value={input}
-              onChange={(event) => setInput(event.target.value)}
+              onChange={(event) => edit(event.target.value)}
               placeholder={t("names.eth.placeholder")}
               autoComplete="off"
               autoCapitalize="off"
@@ -119,4 +182,16 @@ export default function EthCheck({
       )}
     </section>
   );
+}
+
+async function lookUp(labels: string[]): Promise<Result> {
+  const top = labels[labels.length - 1];
+  if (labels.length === 1) return { kind: "name", label: top, state: await lookupName(top) };
+  const [subname, parent] = await Promise.all([lookupSubname(labels), lookupName(top)]);
+  // A subname lasts as long as its top-level name, which gives the date it is held until.
+  const held =
+    subname?.active && parent.status === "taken"
+      ? { owner: subname.owner, until: parent.expiresAt, record: subname.record }
+      : null;
+  return { kind: "subname", labels, held };
 }

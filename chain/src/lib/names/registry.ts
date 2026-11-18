@@ -10,6 +10,7 @@ import {
   keccak256,
   parseAbi,
   toHex,
+  zeroAddress,
 } from "viem";
 import { mainnet } from "viem/chains";
 import { namehash } from "viem/ens";
@@ -56,7 +57,9 @@ export const REGISTRY_ABI = parseAbi([
   "function records(uint256 tokenId) view returns (string label, uint256 parent, uint64 expiresAt, uint64 epoch, uint64 parentEpoch)",
   "function ownerOf(uint256 tokenId) view returns (address)",
   "function text(uint256 tokenId, string key) view returns (string)",
+  "function resolve(uint256 tokenId) view returns (address)",
   "function getPremium(uint256 tokenId) view returns (uint256)",
+  "function commitments(bytes32 commitment) view returns (uint256)",
   "function commit(bytes32 commitment)",
   "function reveal(string label, bytes32 secret) payable returns (uint256)",
   "function renew(uint256 tokenId) payable",
@@ -144,19 +147,55 @@ export async function lookupName(label: string): Promise<NameState> {
 }
 
 /**
- * When public registration opens: `openAt` once the last seed sets it, otherwise `SEED_END`
- * (BSIP-13, Seeding). Null when neither can be read, which the page treats as already open.
+ * A subname such as chat.alice.bso, given as its labels from the left. Subnames have no expiry of
+ * their own and are active only while their parent is and has not reclaimed them (BSIP-13), which
+ * the registry's `resolve` reports by returning the zero address. Null if it was never registered.
  */
-export async function readOpening(): Promise<number | null> {
+export async function lookupSubname(
+  labels: string[],
+): Promise<{ owner: Address; active: boolean; record: string } | null> {
+  const registry = requireRegistry();
+  const tokenId = BigInt(namehash(`${labels.join(".")}.bso`));
+  const read = { address: registry.address, abi: REGISTRY_ABI } as const;
+  const [storedLabel] = await publicClient.readContract({
+    ...read,
+    functionName: "records",
+    args: [tokenId],
+  });
+  if (!storedLabel) return null;
+  const [owner, resolved, record] = await Promise.all([
+    publicClient.readContract({ ...read, functionName: "ownerOf", args: [tokenId] }),
+    publicClient.readContract({ ...read, functionName: "resolve", args: [tokenId] }),
+    publicClient.readContract({ ...read, functionName: "text", args: [tokenId, RECORD_KEY] }),
+  ]);
+  return { owner, active: resolved !== zeroAddress, record };
+}
+
+/**
+ * When public registration opens: `openAt` once the last seed sets it, or `SEED_END`, whichever
+ * comes first (BSIP-13, Seeding). Throws when either can't be read, so an unknown opening is never
+ * mistaken for an open registry.
+ */
+export async function readOpening(): Promise<number> {
   const registry = requireRegistry();
   const read = { address: registry.address, abi: REGISTRY_ABI } as const;
   const [openAt, seedEnd] = await Promise.all([
-    publicClient.readContract({ ...read, functionName: "openAt" }).catch(() => null),
-    publicClient.readContract({ ...read, functionName: "SEED_END" }).catch(() => null),
+    publicClient.readContract({ ...read, functionName: "openAt" }),
+    publicClient.readContract({ ...read, functionName: "SEED_END" }),
   ]);
-  const candidates = [openAt, seedEnd].filter((value): value is bigint => !!value && value > 0n);
-  if (candidates.length === 0) return null;
-  return Number(candidates.reduce((a, b) => (a < b ? a : b)));
+  return Number(openAt > 0n && openAt < seedEnd ? openAt : seedEnd);
+}
+
+/** When a commitment was mined, from the registry's own record, or null if it isn't on chain. */
+export async function readCommitmentTime(commitment: Hex): Promise<number | null> {
+  const registry = requireRegistry();
+  const committedAt = await publicClient.readContract({
+    address: registry.address,
+    abi: REGISTRY_ABI,
+    functionName: "commitments",
+    args: [commitment],
+  });
+  return committedAt > 0n ? Number(committedAt) : null;
 }
 
 export type Registration = {
@@ -169,13 +208,20 @@ export type Registration = {
 
 const LOG_WINDOW = 50_000n;
 
-/** The newest registrations, read backwards from the head in windows public RPCs accept. */
-export async function readRecentRegistrations(limit: number): Promise<Registration[]> {
+/**
+ * The newest registrations, read backwards from the head in windows public RPCs accept. A
+ * superseded refresh aborts `signal`, which stops the scan at the next window.
+ */
+export async function readRecentRegistrations(
+  limit: number,
+  signal?: AbortSignal,
+): Promise<Registration[]> {
   const registry = requireRegistry();
   const head = await publicClient.getBlockNumber();
   const found: Registration[] = [];
 
   for (let to = head; to >= registry.fromBlock && found.length < limit; to -= LOG_WINDOW) {
+    signal?.throwIfAborted();
     const from =
       to - LOG_WINDOW + 1n > registry.fromBlock ? to - LOG_WINDOW + 1n : registry.fromBlock;
     const logs = await publicClient.getContractEvents({
@@ -188,6 +234,9 @@ export async function readRecentRegistrations(limit: number): Promise<Registrati
     for (const log of logs.reverse()) {
       const { tokenId, label, owner, expiresAt } = log.args;
       if (tokenId === undefined || !label || !owner || expiresAt === undefined) continue;
+      // A subname (seeded at launch, or created by its parent's holder) has no expiry, and its
+      // event carries only its own label, so the feed lists top-level names only.
+      if (expiresAt === 0n) continue;
       // Every top-level registration runs 365 days, so its time needs no block lookup.
       found.push({
         tokenId,

@@ -760,8 +760,8 @@
     "hero": {
       "titleCommunity": "Dă-i un nume comunității tale",
       "titleProfile": "Dă-i un nume profilului tău",
-      "leadCommunity": "Scrie-l în antetul de mai jos. Cititorii îți vor găsi comunitatea după acest nume în fiecare aplicație Bitsocial, iar numele este deținut de portofelul tău.",
-      "leadProfile": "Scrie-l în antetul de mai jos. Postările tale vor purta acest nume în fiecare aplicație Bitsocial, iar numele este deținut de portofelul tău.",
+      "leadCommunity": "Scrie-l în antetul de mai jos. Cititorii îți vor găsi comunitatea după acest nume în aplicațiile Bitsocial, iar numele este deținut de portofelul tău.",
+      "leadProfile": "Scrie-l în antetul de mai jos. Postările tale vor purta acest nume în aplicațiile Bitsocial, iar numele este deținut de portofelul tău.",
       "kindLabel": "Nume pentru",
       "kindCommunity": "O comunitate",
       "kindProfile": "Un profil",
@@ -817,7 +817,8 @@
       "yearly": "{{price}} pe an",
       "yearlyShort": "{{price}} pe an, prețul pentru nume de {{count}} caractere",
       "yearlyBytes": "{{price}} pe an, calculat după cei {{count}} octeți ai săi",
-      "withPremium": "{{price}} pentru primul an, inclusiv o suprataxă de {{premium}}"
+      "withPremium": "{{price}} pentru primul an, inclusiv o suprataxă de {{premium}}",
+      "tooShort": "Prea scurt: un nume trebuie să aibă cel puțin 3 caractere."
     },
     "cta": {
       "claim": "Revendică {{name}} pentru {{price}}",
@@ -892,8 +893,10 @@
         "AlreadyRegistered": "Altcineva a înregistrat acest nume înaintea ta.",
         "InsufficientFee": "Prețul s-a schimbat. Încearcă din nou.",
         "Expired": "Acest nume a expirat.",
-        "Unauthorized": "Acest portofel nu deține numele."
-      }
+        "Unauthorized": "Acest portofel nu deține numele.",
+        "Replaced": "Portofelul a anulat sau a înlocuit această tranzacție, așa că nu a fost efectuată."
+      },
+      "notSaved": "Acest browser nu a putut salva rezervarea. Ține această filă deschisă până revendici numele."
     },
     "activity": {
       "title": "Cele mai noi nume",
@@ -928,9 +931,10 @@
       "check": "Verifică",
       "registered": "{{name}} este înregistrat pe {{owner}} până pe {{date}}.",
       "points": "Indică spre {{record}}.",
-      "notYet": "{{name}} nu este încă înregistrat. Numele din airdrop sunt înregistrate înainte ca înregistrările să se deschidă pentru toți, așa că verifică din nou atunci.",
-      "notSeeded": "{{name}} nu a fost distribuit prin airdrop și este liber pentru oricine. Dacă folosești {{eth}}, revendică-l înainte să o facă altcineva.",
-      "tryAbove": "Verifică {{name}} mai sus"
+      "notYet": "{{name}} nu este încă înregistrat. Numele din airdrop ar trebui să fie toate înregistrate înainte ca înregistrările să se deschidă pentru toți, așa că verifică din nou atunci.",
+      "notSeeded": "{{name}} nu este înregistrat, așa că oricine îl poate revendica. Dacă folosești {{eth}}, revendică-l înainte să o facă altcineva.",
+      "tryAbove": "Verifică {{name}} mai sus",
+      "subnameNotSeeded": "{{name}} nu este înregistrat. Doar deținătorul lui {{parent}} îl poate crea, iar subnumele sunt gratuite."
     },
     "faq": {
       "eyebrow": "Întrebări",
@@ -973,7 +977,7 @@
         "cost": {
           "q": "Cât costă un nume?",
           "a": [
-            "Prețul anual depinde de lungimea numelui în octeți, iar reînnoirea costă la fel. Gasul Ethereum se plătește separat. Literele a–z, cifrele și cratimele ocupă câte un octet, literele cu diacritice, grecești sau chirilice câte doi, caracterele chinezești sau japoneze câte trei, iar emoji-urile de obicei câte patru, așa că un singur emoji costă cât un nume de 4 octeți."
+            "Prețul anual depinde de lungimea numelui în octeți, iar reînnoirea costă la fel. Gasul Ethereum se plătește separat. Literele a–z, cifrele și cratimele ocupă câte un octet, literele cu diacritice, grecești sau chirilice câte doi, caracterele chinezești sau japoneze câte trei, iar emoji-urile de obicei câte patru. Un nume trebuie să aibă și cel puțin 3 caractere, fiecare numărat ca un punct de cod Unicode, așa că un nume din două litere, un singur caracter chinezesc sau majoritatea emoji-urilor singure nu pot fi înregistrate."
           ]
         },
         "claiming": {

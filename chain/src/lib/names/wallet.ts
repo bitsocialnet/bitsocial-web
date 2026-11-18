@@ -117,9 +117,27 @@ type RegistryCall =
   | { functionName: "renew"; args: readonly [bigint]; value: bigint }
   | { functionName: "setText"; args: readonly [bigint, string, string] };
 
+export type TransactionProblem =
+  | { kind: "rejected" }
+  | { kind: "revert"; error: string }
+  | { kind: "other"; message: string };
+
+/**
+ * A registry call that is known not to have run: it was stopped before sending, it reverted, or
+ * the wallet cancelled or replaced it. Anything it reserved can be let go.
+ */
+export class RegistryCallFailed extends Error {
+  constructor(readonly problem: TransactionProblem) {
+    super(problem.kind === "revert" ? problem.error : "The registry call did not run.");
+    this.name = "RegistryCallFailed";
+  }
+}
+
 /**
  * Simulates the call against the public RPC first, so a revert is explained before the wallet
- * asks for a signature, then sends it from the wallet and waits for it to be mined.
+ * asks for a signature, then sends it from the wallet and waits for it to be mined. A wallet can
+ * speed up a pending transaction (accepted: the same call at a higher fee) or cancel or replace it
+ * (rejected: the receipt would be for a different transaction).
  */
 export async function sendRegistryCall(
   wallet: WalletOption,
@@ -142,18 +160,23 @@ export async function sendRegistryCall(
   });
   const hash = await walletClient.writeContract(request);
   onSent(hash);
-  const receipt = await publicClient.waitForTransactionReceipt({ hash });
-  if (receipt.status !== "success") throw new Error("The transaction reverted.");
+  let replaced = false;
+  const receipt = await publicClient.waitForTransactionReceipt({
+    hash,
+    onReplaced: ({ reason }) => {
+      replaced = reason !== "repriced";
+    },
+  });
+  if (replaced) throw new RegistryCallFailed({ kind: "revert", error: "Replaced" });
+  if (receipt.status !== "success") {
+    throw new RegistryCallFailed({ kind: "other", message: "The transaction reverted." });
+  }
   return receipt;
 }
 
-export type TransactionProblem =
-  | { kind: "rejected" }
-  | { kind: "revert"; error: string }
-  | { kind: "other"; message: string };
-
 /** Sorts a wallet or contract error into what the page can explain. */
 export function describeError(error: unknown): TransactionProblem {
+  if (error instanceof RegistryCallFailed) return error.problem;
   if (error instanceof BaseError) {
     if (error.walk((cause) => cause instanceof UserRejectedRequestError))
       return { kind: "rejected" };

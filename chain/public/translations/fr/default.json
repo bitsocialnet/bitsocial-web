@@ -760,8 +760,8 @@
     "hero": {
       "titleCommunity": "Donnez un nom à votre communauté",
       "titleProfile": "Donnez un nom à votre profil",
-      "leadCommunity": "Saisissez-le dans l’en-tête ci-dessous. Les lecteurs trouveront votre communauté sous ce nom dans toutes les applications Bitsocial, et c’est votre portefeuille qui le possède.",
-      "leadProfile": "Saisissez-le dans l’en-tête ci-dessous. Vos publications porteront ce nom dans toutes les applications Bitsocial, et c’est votre portefeuille qui le possède.",
+      "leadCommunity": "Saisissez-le dans l’en-tête ci-dessous. Les lecteurs trouveront votre communauté sous ce nom dans les applications Bitsocial, et c’est votre portefeuille qui le possède.",
+      "leadProfile": "Saisissez-le dans l’en-tête ci-dessous. Vos publications porteront ce nom dans les applications Bitsocial, et c’est votre portefeuille qui le possède.",
       "kindLabel": "Nom pour",
       "kindCommunity": "Une communauté",
       "kindProfile": "Un profil",
@@ -817,7 +817,8 @@
       "yearly": "{{price}} par an",
       "yearlyShort": "{{price}} par an, le prix des noms de {{count}} caractères",
       "yearlyBytes": "{{price}} par an, calculé sur ses {{count}} octets",
-      "withPremium": "{{price}} pour la première année, dont {{premium}} de majoration"
+      "withPremium": "{{price}} pour la première année, dont {{premium}} de majoration",
+      "tooShort": "Trop court : un nom doit faire au moins 3 caractères."
     },
     "cta": {
       "claim": "Réclamer {{name}} pour {{price}}",
@@ -892,8 +893,10 @@
         "AlreadyRegistered": "Quelqu’un a enregistré ce nom avant vous.",
         "InsufficientFee": "Le prix a changé. Réessayez.",
         "Expired": "Ce nom a expiré.",
-        "Unauthorized": "Ce portefeuille ne possède pas le nom."
-      }
+        "Unauthorized": "Ce portefeuille ne possède pas le nom.",
+        "Replaced": "Le portefeuille a annulé ou remplacé cette transaction, elle n’a donc pas abouti."
+      },
+      "notSaved": "Ce navigateur n’a pas pu sauvegarder la réservation. Gardez cet onglet ouvert jusqu’à ce que vous réclamiez le nom."
     },
     "activity": {
       "title": "Derniers noms",
@@ -928,9 +931,10 @@
       "check": "Vérifier",
       "registered": "{{name}} est enregistré pour {{owner}} jusqu’au {{date}}.",
       "points": "Il pointe vers {{record}}.",
-      "notYet": "{{name}} n’est pas encore enregistré. Les noms distribués par airdrop sont enregistrés avant l’ouverture des enregistrements à tous, alors revérifiez à ce moment-là.",
-      "notSeeded": "{{name}} n’a pas été distribué par airdrop et est ouvert à tous. Si vous utilisez {{eth}}, réclamez-le avant que quelqu’un d’autre ne le fasse.",
-      "tryAbove": "Vérifier {{name}} ci-dessus"
+      "notYet": "{{name}} n’est pas encore enregistré. Les noms distribués par airdrop devraient tous être enregistrés avant l’ouverture des enregistrements à tous, alors revérifiez à ce moment-là.",
+      "notSeeded": "{{name}} n’est pas enregistré, donc n’importe qui peut le réclamer. Si vous utilisez {{eth}}, réclamez-le avant que quelqu’un d’autre ne le fasse.",
+      "tryAbove": "Vérifier {{name}} ci-dessus",
+      "subnameNotSeeded": "{{name}} n’est pas enregistré. Seul le détenteur de {{parent}} peut le créer, et les sous-noms sont gratuits."
     },
     "faq": {
       "eyebrow": "Questions",
@@ -973,7 +977,7 @@
         "cost": {
           "q": "Combien coûte un nom ?",
           "a": [
-            "Le prix annuel dépend de la longueur du nom en octets, et le renouvellement coûte le même prix. Le gas Ethereum s’ajoute en plus. Les lettres a–z, les chiffres et les traits d’union prennent un octet chacun, les lettres accentuées, grecques ou cyrilliques deux, les caractères chinois ou japonais trois, et les emoji généralement quatre, si bien qu’un seul emoji est facturé comme un nom de 4 octets."
+            "Le prix annuel dépend de la longueur du nom en octets, et le renouvellement coûte le même prix. Le gas Ethereum s’ajoute en plus. Les lettres a–z, les chiffres et les traits d’union prennent un octet chacun, les lettres accentuées, grecques ou cyrilliques deux, les caractères chinois ou japonais trois, et les emoji généralement quatre. Un nom doit aussi faire au moins 3 caractères, chacun compté comme un point de code Unicode, si bien qu’un nom de deux lettres, un seul caractère chinois ou la plupart des emoji seuls ne peuvent pas être enregistrés."
           ]
         },
         "claiming": {

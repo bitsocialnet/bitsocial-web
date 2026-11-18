@@ -24,7 +24,8 @@ const GROUPS = [
   { key: "trust", items: ["control", "fees", "whyRegistry", "whyEth", "move", "afterMove"] },
 ] as const;
 
-const PRICE_LENGTHS = [1, 2, 3, 4, 5] as const;
+// A top-level name needs 3 code points, so it is never shorter than 3 bytes (BSIP-13 change 5).
+const PRICE_LENGTHS = [3, 4, 5] as const;
 
 const fetchSafe = () => readFeeSafe();
 const UNKNOWN = null as { threshold: number; owners: number } | null;

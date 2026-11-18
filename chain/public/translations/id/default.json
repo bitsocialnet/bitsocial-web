@@ -750,8 +750,8 @@
     "hero": {
       "titleCommunity": "Beri nama komunitasmu",
       "titleProfile": "Beri nama profilmu",
-      "leadCommunity": "Ketik di header di bawah. Pembaca akan menemukan komunitasmu lewat nama ini di setiap aplikasi Bitsocial, dan dompetmu yang memilikinya.",
-      "leadProfile": "Ketik di header di bawah. Postinganmu akan membawa nama ini di setiap aplikasi Bitsocial, dan dompetmu yang memilikinya.",
+      "leadCommunity": "Ketik di header di bawah. Pembaca akan menemukan komunitasmu lewat nama ini di aplikasi Bitsocial, dan dompetmu yang memilikinya.",
+      "leadProfile": "Ketik di header di bawah. Postinganmu akan membawa nama ini di aplikasi Bitsocial, dan dompetmu yang memilikinya.",
       "kindLabel": "Nama untuk",
       "kindCommunity": "Komunitas",
       "kindProfile": "Profil",
@@ -807,7 +807,8 @@
       "yearly": "{{price}} per tahun",
       "yearlyShort": "{{price}} per tahun, harga untuk nama {{count}} karakter",
       "yearlyBytes": "{{price}} per tahun, dihitung dari {{count}} byte-nya",
-      "withPremium": "{{price}} untuk tahun pertama, termasuk premi {{premium}}"
+      "withPremium": "{{price}} untuk tahun pertama, termasuk premi {{premium}}",
+      "tooShort": "Terlalu pendek: nama minimal 3 karakter."
     },
     "cta": {
       "claim": "Klaim {{name}} seharga {{price}}",
@@ -882,8 +883,10 @@
         "AlreadyRegistered": "Seseorang sudah mendaftarkan nama ini lebih dulu.",
         "InsufficientFee": "Harganya berubah. Coba lagi.",
         "Expired": "Nama ini sudah kedaluwarsa.",
-        "Unauthorized": "Dompet ini tidak memiliki nama tersebut."
-      }
+        "Unauthorized": "Dompet ini tidak memiliki nama tersebut.",
+        "Replaced": "Dompet membatalkan atau mengganti transaksi ini, jadi transaksinya tidak berhasil."
+      },
+      "notSaved": "Browser ini tidak bisa menyimpan pemesanan. Biarkan tab ini terbuka sampai kamu mengklaim namanya."
     },
     "activity": {
       "title": "Nama terbaru",
@@ -918,9 +921,10 @@
       "check": "Cek",
       "registered": "{{name}} terdaftar atas nama {{owner}} hingga {{date}}.",
       "points": "Nama ini menunjuk ke {{record}}.",
-      "notYet": "{{name}} belum terdaftar. Nama yang di-airdrop didaftarkan sebelum pendaftaran dibuka untuk semua orang, jadi cek lagi saat itu.",
-      "notSeeded": "{{name}} tidak di-airdrop dan terbuka untuk siapa saja. Jika kamu memakai {{eth}}, klaim sebelum orang lain melakukannya.",
-      "tryAbove": "Cek {{name}} di atas"
+      "notYet": "{{name}} belum terdaftar. Semua nama yang di-airdrop seharusnya sudah didaftarkan sebelum pendaftaran dibuka untuk semua orang, jadi cek lagi saat itu.",
+      "notSeeded": "{{name}} tidak terdaftar, jadi siapa saja bisa mengklaimnya. Jika kamu memakai {{eth}}, klaim sebelum orang lain melakukannya.",
+      "tryAbove": "Cek {{name}} di atas",
+      "subnameNotSeeded": "{{name}} tidak terdaftar. Hanya pemegang {{parent}} yang bisa membuatnya, dan subnama gratis."
     },
     "faq": {
       "eyebrow": "Pertanyaan",
@@ -959,7 +963,7 @@
         "cost": {
           "q": "Berapa harga sebuah nama?",
           "a": [
-            "Harga tahunan bergantung pada panjang nama dalam byte, dan perpanjangan berharga sama. Gas Ethereum dibayar terpisah. Huruf a–z, angka, dan tanda hubung masing-masing satu byte, huruf beraksen, Yunani, atau Sirilik dua byte, karakter Tionghoa atau Jepang tiga byte, dan emoji biasanya empat byte, jadi satu emoji dihargai sebagai nama 4 byte."
+            "Harga tahunan bergantung pada panjang nama dalam byte, dan perpanjangan berharga sama. Gas Ethereum dibayar terpisah. Huruf a–z, angka, dan tanda hubung masing-masing satu byte, huruf beraksen, Yunani, atau Sirilik dua byte, karakter Tionghoa atau Jepang tiga byte, dan emoji biasanya empat byte. Nama juga harus terdiri dari minimal 3 karakter, masing-masing dihitung sebagai satu titik kode Unicode, jadi nama dua huruf, satu karakter Tionghoa, atau sebagian besar emoji tunggal tidak bisa didaftarkan."
           ]
         },
         "claiming": {

@@ -755,8 +755,8 @@
     "hero": {
       "titleCommunity": "Anna yhteisöllesi nimi",
       "titleProfile": "Anna profiilillesi nimi",
-      "leadCommunity": "Kirjoita se alla olevaan otsakkeeseen. Lukijat löytävät yhteisösi tällä nimellä jokaisessa Bitsocial-sovelluksessa, ja nimen omistaa lompakkosi.",
-      "leadProfile": "Kirjoita se alla olevaan otsakkeeseen. Julkaisusi kantavat tätä nimeä jokaisessa Bitsocial-sovelluksessa, ja nimen omistaa lompakkosi.",
+      "leadCommunity": "Kirjoita se alla olevaan otsakkeeseen. Lukijat löytävät yhteisösi tällä nimellä Bitsocial-sovelluksissa, ja nimen omistaa lompakkosi.",
+      "leadProfile": "Kirjoita se alla olevaan otsakkeeseen. Julkaisusi kantavat tätä nimeä Bitsocial-sovelluksissa, ja nimen omistaa lompakkosi.",
       "kindLabel": "Nimi kohteelle",
       "kindCommunity": "Yhteisö",
       "kindProfile": "Profiili",
@@ -812,7 +812,8 @@
       "yearly": "{{price}} vuodessa",
       "yearlyShort": "{{price}} vuodessa, {{count}} merkin nimien hinta",
       "yearlyBytes": "{{price}} vuodessa, hinta sen {{count}} tavun mukaan",
-      "withPremium": "{{price}} ensimmäiseltä vuodelta, sisältää lisähinnan {{premium}}"
+      "withPremium": "{{price}} ensimmäiseltä vuodelta, sisältää lisähinnan {{premium}}",
+      "tooShort": "Liian lyhyt: nimessä on oltava vähintään 3 merkkiä."
     },
     "cta": {
       "claim": "Lunasta {{name}} hintaan {{price}}",
@@ -887,8 +888,10 @@
         "AlreadyRegistered": "Joku rekisteröi tämän nimen ensin.",
         "InsufficientFee": "Hinta muuttui. Yritä uudelleen.",
         "Expired": "Tämä nimi on vanhentunut.",
-        "Unauthorized": "Tämä lompakko ei omista nimeä."
-      }
+        "Unauthorized": "Tämä lompakko ei omista nimeä.",
+        "Replaced": "Lompakko peruutti tai korvasi tämän transaktion, joten se ei mennyt läpi."
+      },
+      "notSaved": "Tämä selain ei voinut tallentaa varausta. Pidä tämä välilehti auki, kunnes lunastat nimen."
     },
     "activity": {
       "title": "Uusimmat nimet",
@@ -923,9 +926,10 @@
       "check": "Tarkista",
       "registered": "{{name}} on rekisteröity omistajalle {{owner}} {{date}} asti.",
       "points": "Se osoittaa kohteeseen {{record}}.",
-      "notYet": "{{name}} ei ole vielä rekisteröity. Airdropatut nimet rekisteröidään ennen kuin rekisteröinti avautuu kaikille, joten tarkista uudelleen silloin.",
-      "notSeeded": "{{name}} ei saanut airdropia, ja kuka tahansa voi lunastaa sen. Jos käytät nimeä {{eth}}, lunasta se ennen kuin joku muu ehtii.",
-      "tryAbove": "Tarkista {{name}} yllä"
+      "notYet": "{{name}} ei ole vielä rekisteröity. Kaikkien airdropattujen nimien pitäisi olla rekisteröity ennen kuin rekisteröinti avautuu kaikille, joten tarkista uudelleen silloin.",
+      "notSeeded": "{{name}} ei ole rekisteröity, joten kuka tahansa voi lunastaa sen. Jos käytät nimeä {{eth}}, lunasta se ennen kuin joku muu ehtii.",
+      "tryAbove": "Tarkista {{name}} yllä",
+      "subnameNotSeeded": "{{name}} ei ole rekisteröity. Vain nimen {{parent}} haltija voi luoda sen, ja alinimet ovat ilmaisia."
     },
     "faq": {
       "eyebrow": "Kysymykset",
@@ -966,7 +970,7 @@
         "cost": {
           "q": "Paljonko nimi maksaa?",
           "a": [
-            "Vuosihinta riippuu nimen pituudesta tavuina, ja uusiminen maksaa saman verran. Ethereumin gas-maksu tulee päälle. Kirjaimet a–z, numerot ja yhdysmerkit vievät kukin yhden tavun, tarkkeelliset, kreikkalaiset tai kyrilliset kirjaimet kaksi, kiinalaiset tai japanilaiset merkit kolme ja emojit yleensä neljä, joten yksittäinen emoji hinnoitellaan kuin 4 tavun nimi."
+            "Vuosihinta riippuu nimen pituudesta tavuina, ja uusiminen maksaa saman verran. Ethereumin gas-maksu tulee päälle. Kirjaimet a–z, numerot ja yhdysmerkit vievät kukin yhden tavun, tarkkeelliset, kreikkalaiset tai kyrilliset kirjaimet kaksi, kiinalaiset tai japanilaiset merkit kolme ja emojit yleensä neljä. Nimessä on myös oltava vähintään 3 merkkiä, joista kukin lasketaan yhdeksi Unicode-koodipisteeksi, joten kahden kirjaimen nimeä, yksittäistä kiinalaista merkkiä tai useimpia yksittäisiä emojeja ei voi rekisteröidä."
           ]
         },
         "claiming": {

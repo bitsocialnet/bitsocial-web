@@ -1,6 +1,8 @@
 import { type ReactNode, useMemo } from "react";
+import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { formatEther } from "viem";
+import type { Spelling } from "@/lib/names/spelling";
 import { useNow } from "@/lib/use-now";
 
 /** Formatters for the names page, in the active language, built once per language. */
@@ -51,4 +53,12 @@ export function countdown(seconds: number) {
   const minutes = Math.floor((total % 3600) / 60);
   const secs = String(total % 60).padStart(2, "0");
   return hours > 0 ? `${hours}:${String(minutes).padStart(2, "0")}:${secs}` : `${minutes}:${secs}`;
+}
+
+/** Why a spelling was refused, in the visitor's language. */
+export function spellingProblemText(t: TFunction, spelling: Extract<Spelling, { ok: false }>) {
+  if (spelling.problem !== "character") return t(`names.checks.${spelling.problem}`);
+  return spelling.character
+    ? t("names.checks.character", { character: spelling.character })
+    : t("names.checks.characterUnknown");
 }

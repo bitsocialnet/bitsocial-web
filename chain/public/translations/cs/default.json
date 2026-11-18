@@ -765,8 +765,8 @@
     "hero": {
       "titleCommunity": "Pojmenujte svou komunitu",
       "titleProfile": "Pojmenujte svůj profil",
-      "leadCommunity": "Napište ho do záhlaví níže. Čtenáři vaši komunitu pod tímto jménem najdou v každé aplikaci Bitsocial a vlastnit ho bude vaše peněženka.",
-      "leadProfile": "Napište ho do záhlaví níže. Vaše příspěvky ponesou toto jméno v každé aplikaci Bitsocial a vlastnit ho bude vaše peněženka.",
+      "leadCommunity": "Napište ho do záhlaví níže. Čtenáři vaši komunitu pod tímto jménem najdou v aplikacích Bitsocial a vlastnit ho bude vaše peněženka.",
+      "leadProfile": "Napište ho do záhlaví níže. Vaše příspěvky ponesou toto jméno v aplikacích Bitsocial a vlastnit ho bude vaše peněženka.",
       "kindLabel": "Typ jména",
       "kindCommunity": "Komunita",
       "kindProfile": "Profil",
@@ -822,7 +822,8 @@
       "yearly": "{{price}} ročně",
       "yearlyShort": "{{price}} ročně – cena pro jména o délce {{count}} zn.",
       "yearlyBytes": "{{price}} ročně – cena podle velikosti v bajtech: {{count}}",
-      "withPremium": "{{price}} za první rok včetně příplatku {{premium}}"
+      "withPremium": "{{price}} za první rok včetně příplatku {{premium}}",
+      "tooShort": "Příliš krátké: jméno musí mít alespoň 3 znaky."
     },
     "cta": {
       "claim": "Získat {{name}} za {{price}}",
@@ -897,8 +898,10 @@
         "AlreadyRegistered": "Někdo toto jméno zaregistroval dřív.",
         "InsufficientFee": "Cena se změnila. Zkuste to znovu.",
         "Expired": "Platnost tohoto jména vypršela.",
-        "Unauthorized": "Tato peněženka toto jméno nevlastní."
-      }
+        "Unauthorized": "Tato peněženka toto jméno nevlastní.",
+        "Replaced": "Peněženka tuto transakci zrušila nebo nahradila, takže neproběhla."
+      },
+      "notSaved": "Tento prohlížeč nemohl rezervaci uložit. Nechte tuto kartu otevřenou, dokud jméno nezískáte."
     },
     "activity": {
       "title": "Nejnovější jména",
@@ -933,9 +936,10 @@
       "check": "Ověřit",
       "registered": "{{name}} je registrováno na {{owner}} do {{date}}.",
       "points": "Ukazuje na {{record}}.",
-      "notYet": "{{name}} zatím není registrováno. Jména z airdropu se registrují dřív, než se registrace otevře všem, takže to ověřte znovu potom.",
-      "notSeeded": "{{name}} nebylo součástí airdropu a může ho získat kdokoli. Pokud používáte {{eth}}, získejte ho dřív, než to udělá někdo jiný.",
-      "tryAbove": "Ověřit {{name}} nahoře"
+      "notYet": "{{name}} zatím není registrováno. Všechna jména z airdropu by měla být registrována dřív, než se registrace otevře všem, takže to ověřte znovu potom.",
+      "notSeeded": "{{name}} není registrováno, takže ho může získat kdokoli. Pokud používáte {{eth}}, získejte ho dřív, než to udělá někdo jiný.",
+      "tryAbove": "Ověřit {{name}} nahoře",
+      "subnameNotSeeded": "{{name}} není registrováno. Vytvořit ho může jen držitel {{parent}} a podjména jsou zdarma."
     },
     "faq": {
       "eyebrow": "Otázky",
@@ -980,7 +984,7 @@
         "cost": {
           "q": "Kolik jméno stojí?",
           "a": [
-            "Roční cena závisí na délce jména v bajtech a obnovení stojí stejně. Gas na Ethereu se platí navíc. Písmena a–z, číslice a spojovníky zabírají po jednom bajtu, písmena s diakritikou, řecká nebo cyrilická po dvou, čínské nebo japonské znaky po třech a emoji obvykle po čtyřech, takže jediné emoji stojí jako 4bajtové jméno."
+            "Roční cena závisí na délce jména v bajtech a obnovení stojí stejně. Gas na Ethereu se platí navíc. Písmena a–z, číslice a spojovníky zabírají po jednom bajtu, písmena s diakritikou, řecká nebo cyrilická po dvou, čínské nebo japonské znaky po třech a emoji obvykle po čtyřech. Jméno navíc musí mít alespoň 3 znaky, z nichž každý se počítá jako jeden kódový bod Unicode, takže nelze zaregistrovat dvoupísmenné jméno, jediný čínský znak ani většinu samotných emoji."
           ]
         },
         "claiming": {

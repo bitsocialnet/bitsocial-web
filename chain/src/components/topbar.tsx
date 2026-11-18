@@ -77,7 +77,8 @@ function FaqNavLink({ onClick, className }: { onClick?: () => void; className?: 
   const { t } = useTranslation();
   const page = useContext(TopbarPageContext);
 
-  if (page !== "home") {
+  // The landing and domains pages have their own FAQ; the other pages link to the landing one.
+  if (page !== "home" && page !== "domains") {
     return (
       <a href={`/#${FAQ_ID}`} className={cn(navLinkClassName, className)} onClick={onClick}>
         {t("nav.faq")}
@@ -88,9 +89,10 @@ function FaqNavLink({ onClick, className }: { onClick?: () => void; className?: 
   return <HomeFaqNavLink onClick={onClick} className={className} />;
 }
 
-// The landing page's in-page FAQ link. The href keeps it working without JavaScript; with it, the
-// click scrolls smoothly (unless reduced motion is on) like bitsocial.net's topbar FAQ instead of
-// the anchor's instant jump, and replaces the hash so the jump does not stack history entries.
+// The in-page FAQ link on pages with their own FAQ. The href keeps it working without JavaScript;
+// with it, the click scrolls smoothly (unless reduced motion is on) like bitsocial.net's topbar FAQ
+// instead of the anchor's instant jump, and replaces the hash so the jump does not stack history
+// entries.
 function HomeFaqNavLink({ onClick, className }: { onClick?: () => void; className?: string }) {
   const { t } = useTranslation();
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {

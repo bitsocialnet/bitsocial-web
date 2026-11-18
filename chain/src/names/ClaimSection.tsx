@@ -1,21 +1,24 @@
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { type Address, type Hash, isAddressEqual } from "viem";
 import { isKeyAddress } from "@/lib/names/key-address";
 import {
   findPendingClaim,
   type PendingClaim,
+  pendingClaimsSaved,
   removePendingClaim,
   savePendingClaim,
 } from "@/lib/names/pending";
 import {
   etherscanUrl,
   feeForLength,
+  lookupName,
   makeCommitment,
   MAX_COMMITMENT_AGE,
   MIN_COMMITMENT_AGE,
   type NameState,
   publicClient,
+  readCommitmentTime,
   type Registration,
   randomSecret,
   RECORD_KEY,
@@ -26,13 +29,16 @@ import {
 import {
   connectWallet,
   describeError,
+  RegistryCallFailed,
   sendRegistryCall,
   type TransactionProblem,
   useWallets,
   type WalletOption,
 } from "@/lib/names/wallet";
+import { cn } from "@/lib/utils";
 import { countdown, shortAddress, Ticking, useNamesFormat } from "./format";
 import type { Kind } from "./kind";
+import { type Opening, RESERVE_WINDOW } from "./opening";
 import OutboundLink from "./OutboundLink";
 
 export type ConnectedWallet = { option: WalletOption; account: Address };
@@ -44,6 +50,8 @@ type Activity = { step: Step; hash: Hash | null } | null;
 // one 12-second slot, and the clocks can differ by a few seconds. Waiting this much past the
 // 60-second minimum keeps the reveal from being checked against a block that is still too early.
 const CLOCK_MARGIN = 15;
+// How often an unconfirmed reservation checks whether its commit has been mined.
+const CONFIRM_POLL_MS = 12_000;
 
 export default function ClaimSection({
   kind,
@@ -60,7 +68,7 @@ export default function ClaimSection({
   label: string | null;
   bytes: number;
   nameState: NameState | null;
-  opening: number | null;
+  opening: Opening;
   nowMs: number;
   wallet: ConnectedWallet | null;
   onWallet: (wallet: ConnectedWallet) => void;
@@ -73,7 +81,8 @@ export default function ClaimSection({
   const [activity, setActivity] = useState<Activity>(null);
   const [problem, setProblem] = useState<TransactionProblem | null>(null);
   const [done, setDone] = useState<{ step: Step; hash: Hash; label: string } | null>(null);
-  const [recordInput, setRecordInput] = useState("");
+  // A draft belongs to one name and wallet, so switching either never sends it to another name.
+  const [recordDraft, setRecordDraft] = useState({ for: "", value: "" });
   const [, setPendingVersion] = useState(0);
 
   const isProfile = kind === "profile";
@@ -99,6 +108,50 @@ export default function ClaimSection({
   const busy = activity !== null;
   const bumpPending = () => setPendingVersion((value) => value + 1);
 
+  // A reservation saved when the wallet signed waits for the registry's record of its commit,
+  // which gives the time the reveal is counted from. This also picks up a commit from a tab that
+  // closed before it was mined, or one the wallet sped up under another hash.
+  const unconfirmedTx = pending && !pending.confirmed ? pending.commitTx : null;
+  const committing = activity?.step === "commit";
+  useEffect(() => {
+    if (!unconfirmedTx || !label || !account || committing) return;
+    let stopped = false;
+    let timer: number | undefined;
+    const settle = (update: () => void) => {
+      update();
+      setPendingVersion((value) => value + 1);
+    };
+    const check = async () => {
+      const claimToConfirm = findPendingClaim(label, account);
+      if (!claimToConfirm || claimToConfirm.confirmed) return;
+      try {
+        const { owner, secret, commitTx } = claimToConfirm;
+        const committedAt = await readCommitmentTime(makeCommitment(label, owner, secret));
+        if (stopped) return;
+        if (committedAt !== null) {
+          settle(() => savePendingClaim({ ...claimToConfirm, committedAt, confirmed: true }));
+          return;
+        }
+        const receipt = await publicClient
+          .getTransactionReceipt({ hash: commitTx })
+          .catch(() => null);
+        if (stopped) return;
+        if (receipt?.status === "reverted") {
+          settle(() => removePendingClaim(claimToConfirm));
+          return;
+        }
+      } catch (error) {
+        console.warn("Could not check the reservation.", error);
+      }
+      if (!stopped) timer = window.setTimeout(() => void check(), CONFIRM_POLL_MS);
+    };
+    void check();
+    return () => {
+      stopped = true;
+      window.clearTimeout(timer);
+    };
+  }, [unconfirmedTx, label, account, committing]);
+
   async function run(step: Step, action: (onSent: (hash: Hash) => void) => Promise<Hash>) {
     setProblem(null);
     setDone(null);
@@ -108,7 +161,10 @@ export default function ClaimSection({
       if (label) setDone({ step, hash, label });
     } catch (error) {
       console.warn(`The ${step} transaction failed.`, error);
-      setProblem(describeError(error));
+      const described = describeError(error);
+      setProblem(described);
+      // A revert means the name's state differs from what the page showed, so read it again.
+      if (described.kind === "revert") onChanged();
     } finally {
       setActivity(null);
     }
@@ -132,29 +188,47 @@ export default function ClaimSection({
     const secret = randomSecret();
     const commitment = makeCommitment(label, wallet.account, secret);
     void run("commit", async (onSent) => {
-      const claim = (committedAt: number, commitTx: Hash): PendingClaim => ({
+      // The lookup may be minutes old; a name registered since then could never be revealed.
+      const fresh = await lookupName(label);
+      if (fresh.status !== "available" && fresh.status !== "premium") {
+        throw new RegistryCallFailed({ kind: "revert", error: "AlreadyRegistered" });
+      }
+      const claim = (committedAt: number, confirmed: boolean, commitTx: Hash): PendingClaim => ({
         registry,
         label,
         owner: wallet.account,
         secret,
         committedAt,
+        confirmed,
         commitTx,
       });
-      const receipt = await sendRegistryCall(
-        wallet.option,
-        wallet.account,
-        { functionName: "commit", args: [commitment] },
-        (hash) => {
-          // Saved as soon as the wallet signs, so a closed tab keeps the secret.
-          savePendingClaim(claim(Math.floor(Date.now() / 1000), hash));
+      const sent: { claim: PendingClaim | null } = { claim: null };
+      try {
+        const receipt = await sendRegistryCall(
+          wallet.option,
+          wallet.account,
+          { functionName: "commit", args: [commitment] },
+          (hash) => {
+            // Saved as soon as the wallet signs, so a closed tab keeps the secret.
+            sent.claim = claim(Math.floor(Date.now() / 1000), false, hash);
+            savePendingClaim(sent.claim);
+            bumpPending();
+            onSent(hash);
+          },
+        );
+        const block = await publicClient.getBlock({ blockNumber: receipt.blockNumber });
+        savePendingClaim(claim(Number(block.timestamp), true, receipt.transactionHash));
+        bumpPending();
+        return receipt.transactionHash;
+      } catch (error) {
+        // Only a commit known not to have run lets go of its secret; after a network error the
+        // commit may still be mined, and the unconfirmed reservation goes on checking for it.
+        if (sent.claim && error instanceof RegistryCallFailed) {
+          removePendingClaim(sent.claim);
           bumpPending();
-          onSent(hash);
-        },
-      );
-      const block = await publicClient.getBlock({ blockNumber: receipt.blockNumber });
-      savePendingClaim(claim(Number(block.timestamp), receipt.transactionHash));
-      bumpPending();
-      return receipt.transactionHash;
+        }
+        throw error;
+      }
     });
   }
 
@@ -200,6 +274,7 @@ export default function ClaimSection({
 
   function renew() {
     if (!wallet || !label) return;
+    // An early renewal is a renewal too; the registry adds the year to the current expiry.
     void run("renew", async (onSent) => {
       const receipt = await sendRegistryCall(
         wallet.option,
@@ -212,6 +287,8 @@ export default function ClaimSection({
     });
   }
 
+  const draftFor = `${label ?? ""}|${account ?? ""}`;
+  const recordInput = recordDraft.for === draftFor ? recordDraft.value : "";
   const recordValue = recordInput.trim();
   const recordValid = isKeyAddress(recordValue);
 
@@ -265,15 +342,25 @@ export default function ClaimSection({
           : t("names.claim.reverted", { error: problem.error })
         : t("names.claim.failed", { message: problem.message }));
 
-  // Step 2 becomes available 60 seconds after the commitment, and not before the opening.
-  const readyAt = pending
-    ? Math.max(pending.committedAt + MIN_COMMITMENT_AGE + CLOCK_MARGIN, opening ?? 0)
-    : null;
-  const notOpen = opening !== null && now < opening;
-  const reserveFrom = opening !== null ? opening - MAX_COMMITMENT_AGE + 300 : null;
-  const tooEarly = notOpen && reserveFrom !== null && now < reserveFrom;
+  // Step 2 becomes available 60 seconds after the commit is mined, and not before the opening.
+  const openingAt = opening.status === "known" ? opening.at : null;
+  const readyAt =
+    pending?.confirmed && openingAt !== null
+      ? Math.max(pending.committedAt + MIN_COMMITMENT_AGE + CLOCK_MARGIN, openingAt)
+      : null;
+  const reserveFrom = openingAt !== null ? openingAt - RESERVE_WINDOW : null;
+  const tooEarly = reserveFrom !== null && now < reserveFrom;
+  // Shown instead of an action that needs the opening while the registry hasn't said when it is.
+  const openingUnknown =
+    opening.status === "known" ? null : (
+      <p className="nm-step-status" role="status">
+        {t(opening.status === "loading" ? "names.checks.checking" : "names.checks.lookupFailed")}
+      </p>
+    );
 
-  const connectBlock = !wallet && mode !== "idle" && (
+  // A registered name offers the wallet too: only a connected wallet shows that it holds the name,
+  // which opens its record and early renewal.
+  const connectBlock = !wallet && (mode !== "idle" || nameState?.status === "taken") && (
     <div className="nm-connect">
       {wallets.length === 0 ? (
         <p className="nm-connect-note">{t("names.claim.noWallet")}</p>
@@ -318,9 +405,9 @@ export default function ClaimSection({
       )}
     </div>
   );
-  // A renewal moves an expired name back to "registered", which closes the renew card, so its
-  // confirmation shows under the header instead.
-  const renewedNote = mode !== "renew" && status("renew");
+  // A renewal moves an expired name back to "registered", which closes the renew card. Unless the
+  // visitor owns the name, whose cards include early renewal, the confirmation shows up here.
+  const renewedNote = mode !== "renew" && mode !== "record" && status("renew");
 
   const priceText = format.eth(fee + premium);
 
@@ -338,29 +425,7 @@ export default function ClaimSection({
       )}
 
       {mode === "renew" ? (
-        <ol className="nm-steps">
-          <li className="nm-step glass-card" data-state="current">
-            <span className="nm-step-number">01</span>
-            <div className="nm-step-body">
-              <h3 className="nm-step-title">{t("names.claim.renewTitle")}</h3>
-              <p className="nm-step-text">{t("names.claim.renewBody")}</p>
-              <p className="nm-step-meta">
-                {t("names.claim.renewMeta", { price: format.eth(fee) })}
-              </p>
-              {wallet && (
-                <button
-                  type="button"
-                  className="nm-button nm-button-primary"
-                  disabled={busy}
-                  onClick={renew}
-                >
-                  {t("names.claim.renewAction", { name, price: format.eth(fee) })}
-                </button>
-              )}
-              {status("renew")}
-            </div>
-          </li>
-        </ol>
+        <ol className="nm-steps">{renewStep("current")}</ol>
       ) : (
         <ol className="nm-steps">
           <li
@@ -383,26 +448,34 @@ export default function ClaimSection({
               {mode === "register" &&
                 wallet &&
                 !pending &&
-                (tooEarly && reserveFrom !== null ? (
-                  <p className="nm-step-status">
-                    {t("names.claim.reserveTooEarly", { date: format.dateTime(reserveFrom) })}
-                  </p>
-                ) : (
-                  <button
-                    type="button"
-                    className="nm-button nm-button-primary"
-                    disabled={busy}
-                    onClick={reserve}
-                  >
-                    {t("names.claim.reserveAction", { name })}
-                  </button>
-                ))}
-              {pending && activity?.step !== "commit" && (
-                <p className="nm-step-status" data-tone="ok">
-                  {t("names.claim.reserved", {
-                    time: format.dateTime(pending.committedAt + MAX_COMMITMENT_AGE),
-                  })}
+                (openingUnknown ??
+                  (tooEarly && reserveFrom !== null ? (
+                    <p className="nm-step-status">
+                      {t("names.claim.reserveTooEarly", { date: format.dateTime(reserveFrom) })}
+                    </p>
+                  ) : (
+                    <button
+                      type="button"
+                      className="nm-button nm-button-primary"
+                      disabled={busy}
+                      onClick={reserve}
+                    >
+                      {t("names.claim.reserveAction", { name })}
+                    </button>
+                  )))}
+              {pending && !committing && (
+                <p className="nm-step-status" data-tone={pending.confirmed ? "ok" : undefined}>
+                  {pending.confirmed
+                    ? t("names.claim.reserved", {
+                        time: format.dateTime(pending.committedAt + MAX_COMMITMENT_AGE),
+                      })
+                    : t("names.claim.waitingForTx")}
                   <TxLink hash={pending.commitTx} />
+                </p>
+              )}
+              {pending && !pendingClaimsSaved() && (
+                <p className="nm-step-status" role="alert">
+                  {t("names.claim.notSaved")}
                 </p>
               )}
               {status("commit")}
@@ -418,15 +491,16 @@ export default function ClaimSection({
               <h3 className="nm-step-title">{t("names.claim.claimTitle")}</h3>
               <p className="nm-step-text">{t("names.claim.claimBody")}</p>
               <p className="nm-step-meta">{t("names.claim.claimMeta", { price: priceText })}</p>
+              {pending?.confirmed && wallet && readyAt === null && openingUnknown}
               {pending && wallet && readyAt !== null && (
                 <div className="nm-step-actions">
                   <Ticking>
                     {(nowSeconds) =>
                       nowSeconds < readyAt ? (
                         <button type="button" className="nm-button nm-button-primary" disabled>
-                          {opening !== null && readyAt === opening
+                          {openingAt !== null && readyAt === openingAt
                             ? t("names.claim.claimWaitOpening", {
-                                time: countdown(opening - nowSeconds),
+                                time: countdown(openingAt - nowSeconds),
                               })
                             : t("names.claim.claimWait", {
                                 seconds: Math.ceil(readyAt - nowSeconds),
@@ -481,7 +555,7 @@ export default function ClaimSection({
                   className="nm-field nm-field-mono"
                   type="text"
                   value={recordInput}
-                  onChange={(event) => setRecordInput(event.target.value)}
+                  onChange={(event) => setRecordDraft({ for: draftFor, value: event.target.value })}
                   placeholder="12D3KooW…"
                   autoComplete="off"
                   autoCapitalize="off"
@@ -511,10 +585,38 @@ export default function ClaimSection({
               {status("record")}
             </div>
           </li>
+          {mode === "record" && renewStep("upcoming", "04")}
         </ol>
       )}
     </div>
   );
+
+  function renewStep(state: "current" | "upcoming", number = "01") {
+    return (
+      <li className="nm-step glass-card" data-state={state}>
+        <span className="nm-step-number">{number}</span>
+        <div className="nm-step-body">
+          <h3 className="nm-step-title">{t("names.claim.renewTitle")}</h3>
+          <p className="nm-step-text">{t("names.claim.renewBody")}</p>
+          <p className="nm-step-meta">{t("names.claim.renewMeta", { price: format.eth(fee) })}</p>
+          {wallet && (
+            <button
+              type="button"
+              className={cn(
+                "nm-button",
+                state === "current" ? "nm-button-primary" : "nm-button-quiet",
+              )}
+              disabled={busy}
+              onClick={renew}
+            >
+              {t("names.claim.renewAction", { name, price: format.eth(fee) })}
+            </button>
+          )}
+          {status("renew")}
+        </div>
+      </li>
+    );
+  }
 }
 
 function TxLink({ hash }: { hash: Hash }) {

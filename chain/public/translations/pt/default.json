@@ -760,8 +760,8 @@
     "hero": {
       "titleCommunity": "Dê um nome à sua comunidade",
       "titleProfile": "Dê um nome ao seu perfil",
-      "leadCommunity": "Digite-o no cabeçalho abaixo. Os leitores vão encontrar sua comunidade por esse nome em todos os apps do Bitsocial, e ele pertence à sua carteira.",
-      "leadProfile": "Digite-o no cabeçalho abaixo. Suas publicações vão levar esse nome em todos os apps do Bitsocial, e ele pertence à sua carteira.",
+      "leadCommunity": "Digite-o no cabeçalho abaixo. Os leitores vão encontrar sua comunidade por esse nome nos apps do Bitsocial, e ele pertence à sua carteira.",
+      "leadProfile": "Digite-o no cabeçalho abaixo. Suas publicações vão levar esse nome nos apps do Bitsocial, e ele pertence à sua carteira.",
       "kindLabel": "Nome para",
       "kindCommunity": "Uma comunidade",
       "kindProfile": "Um perfil",
@@ -817,7 +817,8 @@
       "yearly": "{{price}} por ano",
       "yearlyShort": "{{price}} por ano, o preço para nomes de {{count}} caracteres",
       "yearlyBytes": "{{price}} por ano, cobrado pelos seus {{count}} bytes",
-      "withPremium": "{{price}} no primeiro ano, incluindo uma sobretaxa de {{premium}}"
+      "withPremium": "{{price}} no primeiro ano, incluindo uma sobretaxa de {{premium}}",
+      "tooShort": "Curto demais: um nome precisa de pelo menos 3 caracteres."
     },
     "cta": {
       "claim": "Resgatar {{name}} por {{price}}",
@@ -892,8 +893,10 @@
         "AlreadyRegistered": "Alguém registrou este nome primeiro.",
         "InsufficientFee": "O preço mudou. Tente de novo.",
         "Expired": "Este nome venceu.",
-        "Unauthorized": "Esta carteira não é dona do nome."
-      }
+        "Unauthorized": "Esta carteira não é dona do nome.",
+        "Replaced": "A carteira cancelou ou substituiu esta transação, então ela não foi concluída."
+      },
+      "notSaved": "Este navegador não conseguiu salvar a reserva. Mantenha esta aba aberta até resgatar o nome."
     },
     "activity": {
       "title": "Nomes mais recentes",
@@ -928,9 +931,10 @@
       "check": "Verificar",
       "registered": "{{name}} está registrado para {{owner}} até {{date}}.",
       "points": "Ele aponta para {{record}}.",
-      "notYet": "{{name}} ainda não está registrado. Os nomes do airdrop são registrados antes de o registro abrir para todos, então verifique de novo nesse momento.",
-      "notSeeded": "{{name}} não foi distribuído por airdrop e está livre para qualquer pessoa. Se você usa {{eth}}, resgate-o antes que outra pessoa faça isso.",
-      "tryAbove": "Verificar {{name}} acima"
+      "notYet": "{{name}} ainda não está registrado. Os nomes do airdrop devem estar todos registrados antes de o registro abrir para todos, então verifique de novo nesse momento.",
+      "notSeeded": "{{name}} não está registrado, então qualquer pessoa pode resgatá-lo. Se você usa {{eth}}, resgate-o antes que outra pessoa faça isso.",
+      "tryAbove": "Verificar {{name}} acima",
+      "subnameNotSeeded": "{{name}} não está registrado. Só quem detém {{parent}} pode criá-lo, e subnomes são gratuitos."
     },
     "faq": {
       "eyebrow": "Perguntas",
@@ -973,7 +977,7 @@
         "cost": {
           "q": "Quanto custa um nome?",
           "a": [
-            "O preço anual depende do tamanho do nome em bytes, e a renovação custa o mesmo. O gás do Ethereum é pago à parte. Letras de a–z, dígitos e hífens ocupam um byte cada, letras acentuadas, gregas ou cirílicas dois, caracteres chineses ou japoneses três e emoji geralmente quatro, então um único emoji custa o mesmo que um nome de 4 bytes."
+            "O preço anual depende do tamanho do nome em bytes, e a renovação custa o mesmo. O gás do Ethereum é pago à parte. Letras de a–z, dígitos e hífens ocupam um byte cada, letras acentuadas, gregas ou cirílicas dois, caracteres chineses ou japoneses três e emoji geralmente quatro. Um nome também precisa de pelo menos 3 caracteres, cada um contado como um ponto de código Unicode, então um nome de duas letras, um único caractere chinês ou a maioria dos emoji isolados não podem ser registrados."
           ]
         },
         "claiming": {

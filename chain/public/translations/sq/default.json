@@ -755,8 +755,8 @@
     "hero": {
       "titleCommunity": "Jepi një emër komunitetit tënd",
       "titleProfile": "Jepi një emër profilit tënd",
-      "leadCommunity": "Shkruaje në kokën më poshtë. Lexuesit do ta gjejnë komunitetin tënd me këtë emër në çdo aplikacion Bitsocial, dhe portofoli yt e zotëron atë.",
-      "leadProfile": "Shkruaje në kokën më poshtë. Postimet e tua do ta mbajnë këtë emër në çdo aplikacion Bitsocial, dhe portofoli yt e zotëron atë.",
+      "leadCommunity": "Shkruaje në kokën më poshtë. Lexuesit do ta gjejnë komunitetin tënd me këtë emër në aplikacionet Bitsocial, dhe portofoli yt e zotëron atë.",
+      "leadProfile": "Shkruaje në kokën më poshtë. Postimet e tua do ta mbajnë këtë emër në aplikacionet Bitsocial, dhe portofoli yt e zotëron atë.",
       "kindLabel": "Emër për",
       "kindCommunity": "Një komunitet",
       "kindProfile": "Një profil",
@@ -812,7 +812,8 @@
       "yearly": "{{price}} në vit",
       "yearlyShort": "{{price}} në vit, çmimi për emrat me {{count}} karaktere",
       "yearlyBytes": "{{price}} në vit, sipas {{count}} bajtëve të tij",
-      "withPremium": "{{price}} për vitin e parë, përfshirë një çmim shtesë prej {{premium}}"
+      "withPremium": "{{price}} për vitin e parë, përfshirë një çmim shtesë prej {{premium}}",
+      "tooShort": "Shumë i shkurtër: një emër duhet të ketë të paktën 3 karaktere."
     },
     "cta": {
       "claim": "Merr {{name}} për {{price}}",
@@ -887,8 +888,10 @@
         "AlreadyRegistered": "Dikush tjetër e regjistroi këtë emër më parë.",
         "InsufficientFee": "Çmimi ndryshoi. Provo përsëri.",
         "Expired": "Ky emër ka skaduar.",
-        "Unauthorized": "Ky portofol nuk e zotëron emrin."
-      }
+        "Unauthorized": "Ky portofol nuk e zotëron emrin.",
+        "Replaced": "Portofoli e anuloi ose e zëvendësoi këtë transaksion, prandaj nuk u krye."
+      },
+      "notSaved": "Ky shfletues nuk mundi ta ruante rezervimin. Mbaje këtë skedë të hapur derisa ta marrësh emrin."
     },
     "activity": {
       "title": "Emrat më të rinj",
@@ -923,9 +926,10 @@
       "check": "Kontrollo",
       "registered": "{{name}} është i regjistruar te {{owner}} deri më {{date}}.",
       "points": "Tregon te {{record}}.",
-      "notYet": "{{name}} nuk është regjistruar ende. Emrat e airdrop-it regjistrohen para se regjistrimi të hapet për të gjithë, prandaj kontrollo sërish atëherë.",
-      "notSeeded": "{{name}} nuk u shpërnda me airdrop dhe është i lirë për këdo. Nëse përdor {{eth}}, merre para se ta bëjë dikush tjetër.",
-      "tryAbove": "Kontrollo {{name}} më lart"
+      "notYet": "{{name}} nuk është regjistruar ende. Të gjithë emrat e airdrop-it duhet të regjistrohen para se regjistrimi të hapet për të gjithë, prandaj kontrollo sërish atëherë.",
+      "notSeeded": "{{name}} nuk është regjistruar, prandaj kushdo mund ta marrë. Nëse përdor {{eth}}, merre para se ta bëjë dikush tjetër.",
+      "tryAbove": "Kontrollo {{name}} më lart",
+      "subnameNotSeeded": "{{name}} nuk është regjistruar. Vetëm mbajtësi i {{parent}} mund ta krijojë, dhe nënemrat janë falas."
     },
     "faq": {
       "eyebrow": "Pyetje",
@@ -966,7 +970,7 @@
         "cost": {
           "q": "Sa kushton një emër?",
           "a": [
-            "Çmimi vjetor varet nga gjatësia e emrit në bajtë, dhe rinovimi kushton njësoj. Gas-i i Ethereum paguhet veçmas. Shkronjat a–z, shifrat dhe vizat zënë nga një bajt secila, shkronjat me theks, greke ose cirilike nga dy, karakteret kineze ose japoneze nga tre dhe emoji-t zakonisht nga katër, kështu që një emoji i vetëm kushton sa një emër me 4 bajtë."
+            "Çmimi vjetor varet nga gjatësia e emrit në bajtë, dhe rinovimi kushton njësoj. Gas-i i Ethereum paguhet veçmas. Shkronjat a–z, shifrat dhe vizat zënë nga një bajt secila, shkronjat me theks, greke ose cirilike nga dy, karakteret kineze ose japoneze nga tre dhe emoji-t zakonisht nga katër. Një emër duhet të ketë gjithashtu të paktën 3 karaktere, secili i numëruar si një pikë kodi Unicode, kështu që një emër me dy shkronja, një karakter i vetëm kinez ose shumica e emoji-ve të vetme nuk mund të regjistrohen."
           ]
         },
         "claiming": {

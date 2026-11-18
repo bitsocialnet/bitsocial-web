@@ -755,8 +755,8 @@
     "hero": {
       "titleCommunity": "Geef je community een naam",
       "titleProfile": "Geef je profiel een naam",
-      "leadCommunity": "Typ hem in de header hieronder. Lezers vinden je community onder deze naam in elke Bitsocial-app, en je wallet is de eigenaar.",
-      "leadProfile": "Typ hem in de header hieronder. Je berichten dragen deze naam in elke Bitsocial-app, en je wallet is de eigenaar.",
+      "leadCommunity": "Typ hem in de header hieronder. Lezers vinden je community onder deze naam in Bitsocial-apps, en je wallet is de eigenaar.",
+      "leadProfile": "Typ hem in de header hieronder. Je berichten dragen deze naam in Bitsocial-apps, en je wallet is de eigenaar.",
       "kindLabel": "Naam voor",
       "kindCommunity": "Een community",
       "kindProfile": "Een profiel",
@@ -812,7 +812,8 @@
       "yearly": "{{price}} per jaar",
       "yearlyShort": "{{price}} per jaar, de prijs voor namen van {{count}} tekens",
       "yearlyBytes": "{{price}} per jaar, berekend op de {{count}} bytes",
-      "withPremium": "{{price}} voor het eerste jaar, inclusief {{premium}} toeslag"
+      "withPremium": "{{price}} voor het eerste jaar, inclusief {{premium}} toeslag",
+      "tooShort": "Te kort: een naam heeft minstens 3 tekens nodig."
     },
     "cta": {
       "claim": "Claim {{name}} voor {{price}}",
@@ -887,8 +888,10 @@
         "AlreadyRegistered": "Iemand anders heeft deze naam eerder geregistreerd.",
         "InsufficientFee": "De prijs is veranderd. Probeer het opnieuw.",
         "Expired": "Deze naam is verlopen.",
-        "Unauthorized": "Deze wallet is geen eigenaar van de naam."
-      }
+        "Unauthorized": "Deze wallet is geen eigenaar van de naam.",
+        "Replaced": "De wallet heeft deze transactie geannuleerd of vervangen, dus is ze niet doorgegaan."
+      },
+      "notSaved": "Deze browser kon de reservering niet opslaan. Houd dit tabblad open tot je de naam claimt."
     },
     "activity": {
       "title": "Nieuwste namen",
@@ -923,9 +926,10 @@
       "check": "Controleren",
       "registered": "{{name}} is tot {{date}} geregistreerd op naam van {{owner}}.",
       "points": "Hij wijst naar {{record}}.",
-      "notYet": "{{name}} is nog niet geregistreerd. Namen uit de airdrop worden geregistreerd voordat de registratie voor iedereen opent, dus kijk dan nog eens.",
-      "notSeeded": "{{name}} is niet via de airdrop toegewezen en is vrij voor iedereen. Gebruik je {{eth}}, claim hem dan voordat iemand anders het doet.",
-      "tryAbove": "Controleer {{name}} hierboven"
+      "notYet": "{{name}} is nog niet geregistreerd. Namen uit de airdrop zouden allemaal geregistreerd moeten zijn voordat de registratie voor iedereen opent, dus kijk dan nog eens.",
+      "notSeeded": "{{name}} is niet geregistreerd, dus iedereen kan hem claimen. Gebruik je {{eth}}, claim hem dan voordat iemand anders het doet.",
+      "tryAbove": "Controleer {{name}} hierboven",
+      "subnameNotSeeded": "{{name}} is niet geregistreerd. Alleen de houder van {{parent}} kan hem aanmaken, en subnamen zijn gratis."
     },
     "faq": {
       "eyebrow": "Vragen",
@@ -966,7 +970,7 @@
         "cost": {
           "q": "Wat kost een naam?",
           "a": [
-            "De jaarprijs hangt af van de lengte van de naam in bytes, en verlengen kost hetzelfde. Ethereum-gas komt daar nog bij. Letters a–z, cijfers en koppeltekens nemen elk één byte in, letters met accenten en Griekse of Cyrillische letters twee, Chinese of Japanse tekens drie en emoji meestal vier, dus één emoji kost evenveel als een naam van 4 bytes."
+            "De jaarprijs hangt af van de lengte van de naam in bytes, en verlengen kost hetzelfde. Ethereum-gas komt daar nog bij. Letters a–z, cijfers en koppeltekens nemen elk één byte in, letters met accenten en Griekse of Cyrillische letters twee, Chinese of Japanse tekens drie en emoji meestal vier. Een naam heeft ook minstens 3 tekens nodig, die elk als één Unicode-codepunt worden geteld, dus een naam van twee letters, één Chinees teken of de meeste losse emoji kunnen niet worden geregistreerd."
           ]
         },
         "claiming": {

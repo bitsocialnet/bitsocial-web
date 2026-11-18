@@ -1,11 +1,19 @@
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { isAddressEqual } from "viem";
-import { feeForLength, MAX_COMMITMENT_AGE, REGISTRY } from "@/lib/names/registry";
+import { feeForLength, REGISTRY } from "@/lib/names/registry";
 import type { Spelling } from "@/lib/names/spelling";
 import { BSO_FEE_SAFE_ADDRESS } from "@/lib/site";
-import { countdown, shortAddress, shortKey, Ticking, useNamesFormat } from "./format";
+import {
+  countdown,
+  shortAddress,
+  shortKey,
+  spellingProblemText,
+  Ticking,
+  useNamesFormat,
+} from "./format";
 import type { Kind } from "./kind";
+import { type Opening, RESERVE_WINDOW } from "./opening";
 import type { Lookup } from "./use-name-lookup";
 
 const SAMPLE_KEY = "12D3KooWNsF2eMrdw3YFPycAaFEvZ9Eq3ekhNL3vrAAfN6dAwXLp";
@@ -22,6 +30,7 @@ export default function NamePlate({
   onRetry,
   account,
   opening,
+  onRetryOpening,
   nowMs,
 }: {
   kind: Kind;
@@ -31,7 +40,8 @@ export default function NamePlate({
   lookup: Lookup;
   onRetry: () => void;
   account: `0x${string}` | null;
-  opening: number | null;
+  opening: Opening;
+  onRetryOpening: () => void;
   nowMs: number;
 }) {
   const { t } = useTranslation();
@@ -41,14 +51,17 @@ export default function NamePlate({
   const name = label ? `${label}.bso` : null;
   const fee = spelling?.ok ? feeForLength(spelling.bytes) : null;
   const now = nowMs / 1000;
-  const notOpen = opening !== null && now < opening;
+  const openingAt = opening.status === "known" ? opening.at : null;
+  const notOpen = openingAt !== null && now < openingAt;
   // A commitment is only valid for 24 hours, so reserving more than a day ahead would lapse.
-  const canReserve = !notOpen || opening - now < MAX_COMMITMENT_AGE - 300;
+  const canReserve = openingAt !== null && (!notOpen || openingAt - now < RESERVE_WINDOW);
 
   const placeholder = t(
     isProfile ? "names.plate.placeholderProfile" : "names.plate.placeholderCommunity",
   );
   const shown = name ?? `${query.trim().replace(/\.bso$/i, "") || placeholder}.bso`;
+  // A pasted full name already ends in .bso, so the header doesn't add a second one.
+  const typedSuffix = /\.bso$/i.test(query.trim());
   const initial = (label ?? query.trim()).slice(0, 1).toUpperCase() || "?";
   const state = lookup.status === "ready" ? lookup.state : null;
   const owned =
@@ -69,13 +82,7 @@ export default function NamePlate({
     const base = { key: "spelling", label: t("names.checks.spelling") };
     if (!spelling) return { ...base, text: t("names.checks.typeName"), tone: "neutral" };
     if (spelling.ok) return { ...base, text: t("names.checks.spellingOk"), tone: "ok" };
-    const text =
-      spelling.problem === "character"
-        ? spelling.character
-          ? t("names.checks.character", { character: spelling.character })
-          : t("names.checks.characterUnknown")
-        : t(`names.checks.${spelling.problem}`);
-    return { ...base, text, tone: "bad" };
+    return { ...base, text: spellingProblemText(t, spelling), tone: "bad" };
   }
 
   function availabilityCheck(): Check {
@@ -184,7 +191,18 @@ export default function NamePlate({
     note = t("names.cta.noteNotDeployed");
   } else if (name && fee !== null && state) {
     if (state.status === "available" || state.status === "premium") {
-      if (notOpen && !canReserve) {
+      if (opening.status === "loading") {
+        note = t("names.checks.checking");
+      } else if (opening.status === "failed") {
+        note = (
+          <>
+            {t("names.checks.lookupFailed")}{" "}
+            <button type="button" className="nm-inline-button" onClick={onRetryOpening}>
+              {t("names.checks.retry")}
+            </button>
+          </>
+        );
+      } else if (notOpen && !canReserve) {
         note = t("names.cta.noteReserveLater");
       } else {
         action = (
@@ -210,11 +228,17 @@ export default function NamePlate({
       );
       note = t("names.cta.noteGrace");
     } else if (owned) {
+      // A renewal adds a year to the current expiry, so renewing early loses nothing.
       action = (
-        <a className="nm-button nm-button-primary" href="#claim">
-          {t(isProfile ? "names.cta.pointProfile" : "names.cta.pointCommunity", { name })}
-          <ArrowIcon />
-        </a>
+        <>
+          <a className="nm-button nm-button-primary" href="#claim">
+            {t(isProfile ? "names.cta.pointProfile" : "names.cta.pointCommunity", { name })}
+            <ArrowIcon />
+          </a>
+          <a className="nm-button nm-button-quiet" href="#claim">
+            {t("names.cta.renew", { name })}
+          </a>
+        </>
       );
     } else {
       note = reserved
@@ -227,14 +251,15 @@ export default function NamePlate({
 
   return (
     <>
-      {notOpen && opening !== null && (
+      {notOpen && openingAt !== null && (
         <p className="nm-opening" role="status">
           <span aria-hidden="true" className="nm-opening-dot" />
           <Ticking>
             {(nowSeconds) =>
-              opening - nowSeconds < 86_400
-                ? t("names.hero.opensIn", { time: countdown(opening - nowSeconds) })
-                : t("names.hero.opensOn", { date: format.dateTime(opening) })
+              // "You can reserve a name now" only once reserving is possible.
+              openingAt - nowSeconds < RESERVE_WINDOW
+                ? t("names.hero.opensIn", { time: countdown(openingAt - nowSeconds) })
+                : t("names.hero.opensOn", { date: format.dateTime(openingAt) })
             }
           </Ticking>
         </p>
@@ -258,6 +283,8 @@ export default function NamePlate({
                 type="text"
                 // A one-character intrinsic width lets the hidden copy decide the cell's width.
                 size={1}
+                // The row reads left to right like a domain; the name keeps its own direction.
+                dir="auto"
                 value={query}
                 onChange={(event) => onQuery(event.target.value)}
                 placeholder={placeholder}
@@ -266,9 +293,11 @@ export default function NamePlate({
                 spellCheck={false}
               />
             </span>
-            <span className="nm-plate-tld" aria-hidden="true">
-              .bso
-            </span>
+            {!typedSuffix && (
+              <span className="nm-plate-tld" aria-hidden="true">
+                .bso
+              </span>
+            )}
           </div>
           <p className="nm-plate-subline">
             {t(isProfile ? "names.plate.sublineProfile" : "names.plate.sublineCommunity")}

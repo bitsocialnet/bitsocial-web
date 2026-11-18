@@ -760,8 +760,8 @@
     "hero": {
       "titleCommunity": "Dai un nome alla tua comunità",
       "titleProfile": "Dai un nome al tuo profilo",
-      "leadCommunity": "Scrivilo nell'intestazione qui sotto. I lettori troveranno la tua comunità con questo nome in ogni app Bitsocial, e il nome appartiene al tuo portafoglio.",
-      "leadProfile": "Scrivilo nell'intestazione qui sotto. I tuoi post porteranno questo nome in ogni app Bitsocial, e il nome appartiene al tuo portafoglio.",
+      "leadCommunity": "Scrivilo nell'intestazione qui sotto. I lettori troveranno la tua comunità con questo nome nelle app Bitsocial, e il nome appartiene al tuo portafoglio.",
+      "leadProfile": "Scrivilo nell'intestazione qui sotto. I tuoi post porteranno questo nome nelle app Bitsocial, e il nome appartiene al tuo portafoglio.",
       "kindLabel": "Nome per",
       "kindCommunity": "Una comunità",
       "kindProfile": "Un profilo",
@@ -817,7 +817,8 @@
       "yearly": "{{price}} all'anno",
       "yearlyShort": "{{price}} all'anno, il prezzo per i nomi di {{count}} caratteri",
       "yearlyBytes": "{{price}} all'anno, in base ai suoi {{count}} byte",
-      "withPremium": "{{price}} per il primo anno, incluso un sovrapprezzo di {{premium}}"
+      "withPremium": "{{price}} per il primo anno, incluso un sovrapprezzo di {{premium}}",
+      "tooShort": "Troppo corto: un nome deve avere almeno 3 caratteri."
     },
     "cta": {
       "claim": "Rivendica {{name}} per {{price}}",
@@ -892,8 +893,10 @@
         "AlreadyRegistered": "Qualcuno ha registrato questo nome prima di te.",
         "InsufficientFee": "Il prezzo è cambiato. Riprova.",
         "Expired": "Questo nome è scaduto.",
-        "Unauthorized": "Questo portafoglio non possiede il nome."
-      }
+        "Unauthorized": "Questo portafoglio non possiede il nome.",
+        "Replaced": "Il portafoglio ha annullato o sostituito questa transazione, quindi non è andata a buon fine."
+      },
+      "notSaved": "Questo browser non è riuscito a salvare la prenotazione. Tieni aperta questa scheda finché non rivendichi il nome."
     },
     "activity": {
       "title": "Ultimi nomi",
@@ -928,9 +931,10 @@
       "check": "Controlla",
       "registered": "{{name}} è registrato a {{owner}} fino al {{date}}.",
       "points": "Punta a {{record}}.",
-      "notYet": "{{name}} non è ancora registrato. I nomi dell'airdrop vengono registrati prima che le registrazioni aprano a tutti, quindi ricontrolla allora.",
-      "notSeeded": "{{name}} non è stato assegnato con l'airdrop ed è libero per chiunque. Se usi {{eth}}, rivendicalo prima che lo faccia qualcun altro.",
-      "tryAbove": "Controlla {{name}} qui sopra"
+      "notYet": "{{name}} non è ancora registrato. I nomi dell'airdrop dovrebbero essere tutti registrati prima che le registrazioni aprano a tutti, quindi ricontrolla allora.",
+      "notSeeded": "{{name}} non è registrato, quindi chiunque può rivendicarlo. Se usi {{eth}}, rivendicalo prima che lo faccia qualcun altro.",
+      "tryAbove": "Controlla {{name}} qui sopra",
+      "subnameNotSeeded": "{{name}} non è registrato. Solo chi detiene {{parent}} può crearlo, e i sottonomi sono gratuiti."
     },
     "faq": {
       "eyebrow": "Domande",
@@ -973,7 +977,7 @@
         "cost": {
           "q": "Quanto costa un nome?",
           "a": [
-            "Il prezzo annuale dipende dalla lunghezza del nome in byte, e il rinnovo costa lo stesso. Il gas di Ethereum si paga a parte. Le lettere a–z, le cifre e i trattini occupano un byte ciascuno, le lettere accentate, greche o cirilliche due, i caratteri cinesi o giapponesi tre e le emoji di solito quattro, quindi una singola emoji costa come un nome di 4 byte."
+            "Il prezzo annuale dipende dalla lunghezza del nome in byte, e il rinnovo costa lo stesso. Il gas di Ethereum si paga a parte. Le lettere a–z, le cifre e i trattini occupano un byte ciascuno, le lettere accentate, greche o cirilliche due, i caratteri cinesi o giapponesi tre e le emoji di solito quattro. Un nome deve anche avere almeno 3 caratteri, ciascuno contato come un punto di codice Unicode, quindi non si possono registrare un nome di due lettere, un singolo carattere cinese o la maggior parte delle emoji singole."
           ]
         },
         "claiming": {

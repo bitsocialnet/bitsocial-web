@@ -755,8 +755,8 @@
     "hero": {
       "titleCommunity": "Give your community a name",
       "titleProfile": "Give your profile a name",
-      "leadCommunity": "Type it into the header below. Readers will find your community by this name in every Bitsocial app, and your wallet owns it.",
-      "leadProfile": "Type it into the header below. Your posts will carry this name in every Bitsocial app, and your wallet owns it.",
+      "leadCommunity": "Type it into the header below. Readers will find your community by this name in Bitsocial apps, and your wallet owns it.",
+      "leadProfile": "Type it into the header below. Your posts will carry this name in Bitsocial apps, and your wallet owns it.",
       "kindLabel": "Name for",
       "kindCommunity": "A community",
       "kindProfile": "A profile",
@@ -812,7 +812,8 @@
       "yearly": "{{price}} a year",
       "yearlyShort": "{{price}} a year, the price for {{count}}-character names",
       "yearlyBytes": "{{price}} a year, priced by its {{count}} bytes",
-      "withPremium": "{{price}} for the first year, including a {{premium}} premium"
+      "withPremium": "{{price}} for the first year, including a {{premium}} premium",
+      "tooShort": "Too short: a name needs at least 3 characters."
     },
     "cta": {
       "claim": "Claim {{name}} for {{price}}",
@@ -887,8 +888,10 @@
         "AlreadyRegistered": "Someone registered this name first.",
         "InsufficientFee": "The price changed. Try again.",
         "Expired": "This name has expired.",
-        "Unauthorized": "This wallet doesn't own the name."
-      }
+        "Unauthorized": "This wallet doesn't own the name.",
+        "Replaced": "The wallet cancelled or replaced this transaction, so it didn't go through."
+      },
+      "notSaved": "This browser couldn't save the reservation. Keep this tab open until you claim the name."
     },
     "activity": {
       "title": "Latest names",
@@ -923,9 +926,10 @@
       "check": "Check",
       "registered": "{{name}} is registered to {{owner}} until {{date}}.",
       "points": "It points to {{record}}.",
-      "notYet": "{{name}} isn't registered yet. Airdropped names are registered before registration opens to everyone, so check again then.",
-      "notSeeded": "{{name}} wasn't airdropped and is open to anyone. If you use {{eth}}, claim it before someone else does.",
-      "tryAbove": "Check {{name}} above"
+      "notYet": "{{name}} isn't registered yet. Airdropped names should all be registered before registration opens to everyone, so check again then.",
+      "notSeeded": "{{name}} isn't registered, so anyone can claim it. If you use {{eth}}, claim it before someone else does.",
+      "tryAbove": "Check {{name}} above",
+      "subnameNotSeeded": "{{name}} isn't registered. Only the holder of {{parent}} can create it, and subnames are free."
     },
     "faq": {
       "eyebrow": "Questions",
@@ -966,7 +970,7 @@
         "cost": {
           "q": "What does a name cost?",
           "a": [
-            "The yearly price depends on the name's length in bytes, and renewing costs the same. Ethereum gas is paid on top. Letters a–z, digits and hyphens take one byte each, accented, Greek or Cyrillic letters two, Chinese or Japanese characters three, and emoji usually four, so a single emoji is priced as a 4-byte name."
+            "The yearly price depends on the name's length in bytes, and renewing costs the same. Ethereum gas is paid on top. Letters a–z, digits and hyphens take one byte each, accented, Greek or Cyrillic letters two, Chinese or Japanese characters three, and emoji usually four. A name also needs at least 3 characters, each counted as one Unicode code point, so a two-letter name, a single Chinese character or most single emoji can't be registered."
           ]
         },
         "claiming": {

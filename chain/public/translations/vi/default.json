@@ -750,8 +750,8 @@
     "hero": {
       "titleCommunity": "Đặt tên cho cộng đồng của bạn",
       "titleProfile": "Đặt tên cho hồ sơ của bạn",
-      "leadCommunity": "Hãy nhập tên vào phần đầu trang bên dưới. Người đọc sẽ tìm thấy cộng đồng của bạn bằng tên này trong mọi ứng dụng Bitsocial, và ví của bạn sở hữu nó.",
-      "leadProfile": "Hãy nhập tên vào phần đầu trang bên dưới. Bài viết của bạn sẽ mang tên này trong mọi ứng dụng Bitsocial, và ví của bạn sở hữu nó.",
+      "leadCommunity": "Hãy nhập tên vào phần đầu trang bên dưới. Người đọc sẽ tìm thấy cộng đồng của bạn bằng tên này trong các ứng dụng Bitsocial, và ví của bạn sở hữu nó.",
+      "leadProfile": "Hãy nhập tên vào phần đầu trang bên dưới. Bài viết của bạn sẽ mang tên này trong các ứng dụng Bitsocial, và ví của bạn sở hữu nó.",
       "kindLabel": "Tên dành cho",
       "kindCommunity": "Một cộng đồng",
       "kindProfile": "Một hồ sơ",
@@ -807,7 +807,8 @@
       "yearly": "{{price}} mỗi năm",
       "yearlyShort": "{{price}} mỗi năm, giá cho tên {{count}} ký tự",
       "yearlyBytes": "{{price}} mỗi năm, tính giá theo {{count}} byte của tên",
-      "withPremium": "{{price}} cho năm đầu, bao gồm {{premium}} phụ phí"
+      "withPremium": "{{price}} cho năm đầu, bao gồm {{premium}} phụ phí",
+      "tooShort": "Quá ngắn: tên cần ít nhất 3 ký tự."
     },
     "cta": {
       "claim": "Nhận {{name}} với giá {{price}}",
@@ -882,8 +883,10 @@
         "AlreadyRegistered": "Đã có người đăng ký tên này trước.",
         "InsufficientFee": "Giá đã thay đổi. Hãy thử lại.",
         "Expired": "Tên này đã hết hạn.",
-        "Unauthorized": "Ví này không sở hữu tên đó."
-      }
+        "Unauthorized": "Ví này không sở hữu tên đó.",
+        "Replaced": "Ví đã hủy hoặc thay thế giao dịch này, nên giao dịch không được thực hiện."
+      },
+      "notSaved": "Trình duyệt này không lưu được lượt đặt trước. Hãy giữ tab này mở cho đến khi bạn nhận tên."
     },
     "activity": {
       "title": "Tên mới nhất",
@@ -918,9 +921,10 @@
       "check": "Kiểm tra",
       "registered": "{{name}} được đăng ký cho {{owner}} đến {{date}}.",
       "points": "Tên này trỏ đến {{record}}.",
-      "notYet": "{{name}} chưa được đăng ký. Các tên được airdrop sẽ được đăng ký trước khi mở đăng ký cho mọi người, nên hãy kiểm tra lại lúc đó.",
-      "notSeeded": "{{name}} không được airdrop và ai cũng có thể nhận. Nếu bạn đang dùng {{eth}}, hãy nhận nó trước người khác.",
-      "tryAbove": "Kiểm tra {{name}} ở trên"
+      "notYet": "{{name}} chưa được đăng ký. Tất cả các tên được airdrop dự kiến sẽ được đăng ký trước khi mở đăng ký cho mọi người, nên hãy kiểm tra lại lúc đó.",
+      "notSeeded": "{{name}} chưa được đăng ký, nên ai cũng có thể nhận. Nếu bạn đang dùng {{eth}}, hãy nhận nó trước người khác.",
+      "tryAbove": "Kiểm tra {{name}} ở trên",
+      "subnameNotSeeded": "{{name}} chưa được đăng ký. Chỉ người nắm giữ {{parent}} mới có thể tạo tên này, và tên con là miễn phí."
     },
     "faq": {
       "eyebrow": "Câu hỏi",
@@ -959,7 +963,7 @@
         "cost": {
           "q": "Một tên giá bao nhiêu?",
           "a": [
-            "Giá hằng năm phụ thuộc vào độ dài của tên tính bằng byte, và gia hạn cũng có giá như vậy. Phí gas Ethereum được trả thêm. Chữ cái a–z, chữ số và dấu gạch nối mỗi ký tự chiếm một byte, chữ có dấu, chữ Hy Lạp hoặc Kirin chiếm hai byte, chữ Trung Quốc hoặc Nhật Bản chiếm ba byte, còn emoji thường chiếm bốn byte, nên một emoji đơn lẻ được tính giá như một tên 4 byte."
+            "Giá hằng năm phụ thuộc vào độ dài của tên tính bằng byte, và gia hạn cũng có giá như vậy. Phí gas Ethereum được trả thêm. Chữ cái a–z, chữ số và dấu gạch nối mỗi ký tự chiếm một byte, chữ có dấu, chữ Hy Lạp hoặc Kirin chiếm hai byte, chữ Trung Quốc hoặc Nhật Bản chiếm ba byte, còn emoji thường chiếm bốn byte. Tên cũng cần có ít nhất 3 ký tự, mỗi ký tự được tính là một điểm mã Unicode, nên không thể đăng ký tên hai chữ cái, một chữ Trung Quốc đơn lẻ hay hầu hết các emoji đơn lẻ."
           ]
         },
         "claiming": {

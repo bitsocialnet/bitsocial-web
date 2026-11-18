@@ -765,8 +765,8 @@
     "hero": {
       "titleCommunity": "Nadaj nazwę swojej społeczności",
       "titleProfile": "Nadaj nazwę swojemu profilowi",
-      "leadCommunity": "Wpisz ją w nagłówku poniżej. Czytelnicy znajdą twoją społeczność pod tą nazwą w każdej aplikacji Bitsocial, a należeć będzie ona do twojego portfela.",
-      "leadProfile": "Wpisz ją w nagłówku poniżej. Twoje posty będą podpisane tą nazwą w każdej aplikacji Bitsocial, a należeć będzie ona do twojego portfela.",
+      "leadCommunity": "Wpisz ją w nagłówku poniżej. Czytelnicy znajdą twoją społeczność pod tą nazwą w aplikacjach Bitsocial, a należeć będzie ona do twojego portfela.",
+      "leadProfile": "Wpisz ją w nagłówku poniżej. Twoje posty będą podpisane tą nazwą w aplikacjach Bitsocial, a należeć będzie ona do twojego portfela.",
       "kindLabel": "Nazwa dla",
       "kindCommunity": "Społeczność",
       "kindProfile": "Profil",
@@ -822,7 +822,8 @@
       "yearly": "{{price}} rocznie",
       "yearlyShort": "{{price}} rocznie – cena dla nazw o długości {{count}} zn.",
       "yearlyBytes": "{{price}} rocznie – cena według rozmiaru w bajtach: {{count}}",
-      "withPremium": "{{price}} za pierwszy rok, w tym dopłata {{premium}}"
+      "withPremium": "{{price}} za pierwszy rok, w tym dopłata {{premium}}",
+      "tooShort": "Za krótka: nazwa musi mieć co najmniej 3 znaki."
     },
     "cta": {
       "claim": "Odbierz {{name}} za {{price}}",
@@ -897,8 +898,10 @@
         "AlreadyRegistered": "Ktoś zarejestrował tę nazwę pierwszy.",
         "InsufficientFee": "Cena się zmieniła. Spróbuj ponownie.",
         "Expired": "Ta nazwa wygasła.",
-        "Unauthorized": "Ten portfel nie jest właścicielem tej nazwy."
-      }
+        "Unauthorized": "Ten portfel nie jest właścicielem tej nazwy.",
+        "Replaced": "Portfel anulował lub zastąpił tę transakcję, więc nie została zrealizowana."
+      },
+      "notSaved": "Ta przeglądarka nie mogła zapisać rezerwacji. Zostaw tę kartę otwartą, dopóki nie odbierzesz nazwy."
     },
     "activity": {
       "title": "Najnowsze nazwy",
@@ -933,9 +936,10 @@
       "check": "Sprawdź",
       "registered": "{{name}} jest zarejestrowana na {{owner}} do {{date}}.",
       "points": "Wskazuje na {{record}}.",
-      "notYet": "{{name}} nie jest jeszcze zarejestrowana. Nazwy z airdropu są rejestrowane, zanim rejestracja otworzy się dla wszystkich, więc sprawdź ponownie wtedy.",
-      "notSeeded": "{{name}} nie trafiła do airdropu i jest dostępna dla każdego. Jeśli używasz {{eth}}, odbierz ją, zanim zrobi to ktoś inny.",
-      "tryAbove": "Sprawdź {{name}} powyżej"
+      "notYet": "{{name}} nie jest jeszcze zarejestrowana. Wszystkie nazwy z airdropu powinny zostać zarejestrowane, zanim rejestracja otworzy się dla wszystkich, więc sprawdź ponownie wtedy.",
+      "notSeeded": "{{name}} nie jest zarejestrowana, więc każdy może ją odebrać. Jeśli używasz {{eth}}, odbierz ją, zanim zrobi to ktoś inny.",
+      "tryAbove": "Sprawdź {{name}} powyżej",
+      "subnameNotSeeded": "{{name}} nie jest zarejestrowana. Tylko posiadacz {{parent}} może ją utworzyć, a nazwy podrzędne są bezpłatne."
     },
     "faq": {
       "eyebrow": "Pytania",
@@ -980,7 +984,7 @@
         "cost": {
           "q": "Ile kosztuje nazwa?",
           "a": [
-            "Roczna cena zależy od długości nazwy w bajtach, a odnowienie kosztuje tyle samo. Do tego dochodzi gas na Ethereum. Litery a–z, cyfry i łączniki zajmują po jednym bajcie, litery ze znakami diakrytycznymi, greckie lub cyrylickie po dwa, znaki chińskie lub japońskie po trzy, a emoji zwykle po cztery, więc pojedyncze emoji kosztuje tyle co nazwa 4-bajtowa."
+            "Roczna cena zależy od długości nazwy w bajtach, a odnowienie kosztuje tyle samo. Do tego dochodzi gas na Ethereum. Litery a–z, cyfry i łączniki zajmują po jednym bajcie, litery ze znakami diakrytycznymi, greckie lub cyrylickie po dwa, znaki chińskie lub japońskie po trzy, a emoji zwykle po cztery. Nazwa musi też mieć co najmniej 3 znaki, z których każdy liczy się jako jeden punkt kodowy Unicode, więc nie da się zarejestrować nazwy dwuliterowej, pojedynczego chińskiego znaku ani większości pojedynczych emoji."
           ]
         },
         "claiming": {

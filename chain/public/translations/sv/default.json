@@ -755,8 +755,8 @@
     "hero": {
       "titleCommunity": "Ge din gemenskap ett namn",
       "titleProfile": "Ge din profil ett namn",
-      "leadCommunity": "Skriv in det i sidhuvudet nedan. Läsare hittar din gemenskap under det här namnet i alla Bitsocial-appar, och din plånbok äger det.",
-      "leadProfile": "Skriv in det i sidhuvudet nedan. Dina inlägg bär det här namnet i alla Bitsocial-appar, och din plånbok äger det.",
+      "leadCommunity": "Skriv in det i sidhuvudet nedan. Läsare hittar din gemenskap under det här namnet i Bitsocial-appar, och din plånbok äger det.",
+      "leadProfile": "Skriv in det i sidhuvudet nedan. Dina inlägg bär det här namnet i Bitsocial-appar, och din plånbok äger det.",
       "kindLabel": "Namn för",
       "kindCommunity": "En gemenskap",
       "kindProfile": "En profil",
@@ -812,7 +812,8 @@
       "yearly": "{{price}} per år",
       "yearlyShort": "{{price}} per år, priset för namn med {{count}} tecken",
       "yearlyBytes": "{{price}} per år, prissatt efter dess {{count}} byte",
-      "withPremium": "{{price}} första året, inklusive ett pristillägg på {{premium}}"
+      "withPremium": "{{price}} första året, inklusive ett pristillägg på {{premium}}",
+      "tooShort": "För kort: ett namn måste ha minst 3 tecken."
     },
     "cta": {
       "claim": "Claima {{name}} för {{price}}",
@@ -887,8 +888,10 @@
         "AlreadyRegistered": "Någon registrerade det här namnet först.",
         "InsufficientFee": "Priset ändrades. Försök igen.",
         "Expired": "Det här namnet har gått ut.",
-        "Unauthorized": "Den här plånboken äger inte namnet."
-      }
+        "Unauthorized": "Den här plånboken äger inte namnet.",
+        "Replaced": "Plånboken avbröt eller ersatte den här transaktionen, så den gick inte igenom."
+      },
+      "notSaved": "Den här webbläsaren kunde inte spara reservationen. Håll den här fliken öppen tills du claimar namnet."
     },
     "activity": {
       "title": "Senaste namnen",
@@ -923,9 +926,10 @@
       "check": "Kontrollera",
       "registered": "{{name}} är registrerat på {{owner}} till {{date}}.",
       "points": "Det pekar på {{record}}.",
-      "notYet": "{{name}} är inte registrerat än. Airdroppade namn registreras innan registreringen öppnar för alla, så kontrollera igen då.",
-      "notSeeded": "{{name}} airdroppades inte och är öppet för vem som helst. Om du använder {{eth}}, claima det innan någon annan gör det.",
-      "tryAbove": "Kontrollera {{name}} ovan"
+      "notYet": "{{name}} är inte registrerat än. Samtliga airdroppade namn bör vara registrerade innan registreringen öppnar för alla, så kontrollera igen då.",
+      "notSeeded": "{{name}} är inte registrerat, så vem som helst kan claima det. Om du använder {{eth}}, claima det innan någon annan gör det.",
+      "tryAbove": "Kontrollera {{name}} ovan",
+      "subnameNotSeeded": "{{name}} är inte registrerat. Bara innehavaren av {{parent}} kan skapa det, och undernamn är gratis."
     },
     "faq": {
       "eyebrow": "Frågor",
@@ -966,7 +970,7 @@
         "cost": {
           "q": "Vad kostar ett namn?",
           "a": [
-            "Årspriset beror på namnets längd i byte, och en förnyelse kostar lika mycket. Gas på Ethereum betalas utöver det. Bokstäverna a–z, siffror och bindestreck tar en byte var, bokstäver med accent, grekiska eller kyrilliska bokstäver två, kinesiska eller japanska tecken tre och emoji oftast fyra, så en enda emoji prissätts som ett namn på 4 byte."
+            "Årspriset beror på namnets längd i byte, och en förnyelse kostar lika mycket. Gas på Ethereum betalas utöver det. Bokstäverna a–z, siffror och bindestreck tar en byte var, bokstäver med accent, grekiska eller kyrilliska bokstäver två, kinesiska eller japanska tecken tre och emoji oftast fyra. Ett namn måste också ha minst 3 tecken, där varje tecken räknas som en Unicode-kodpunkt, så ett namn på två bokstäver, ett enda kinesiskt tecken eller de flesta enskilda emoji kan inte registreras."
           ]
         },
         "claiming": {
