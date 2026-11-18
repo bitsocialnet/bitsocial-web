@@ -17,14 +17,14 @@ Spam Blocker to scentralizowana usługa wykrywania spamu, która ocenia napływa
 
 Każda publikacja przesłana do endpointu `/evaluate` dostaje liczbową punktację ryzyka. Wynik jest ważoną kombinacją kilku sygnałów:
 
-| Sygnał             | Opis                                                                                                                                                                             |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Wiek konta         | Nowsze konta dostają wyższą punktację ryzyka.                                                                                                                                    |
-| Karma              | Zgromadzona karma w społeczności obniża ryzyko.                                                                                                                                  |
-| Reputacja autora   | Dane o reputacji zbierane przez działający w tle indekser sieci.                                                                                                                 |
-| Analiza treści     | Heurystyki na poziomie tekstu (gęstość linków, znane wzorce spamu itp.).                                                                                                         |
-| Tempo publikowania | Szybkie serie wpisów od tego samego autora podnoszą ryzyko.                                                                                                                      |
-| Dane o adresach IP | Geolokalizacja na poziomie kraju i sprawdzanie w kanałach informacji o zagrożeniach. Zapisywane są wyłącznie kody krajów -- surowe adresy IP nigdy nie trafiają do społeczności. |
+| Sygnał             | Opis                                                                                                                                      |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Wiek konta         | Nowsze konta dostają wyższą punktację ryzyka.                                                                                             |
+| Karma              | Zgromadzona karma w społeczności obniża ryzyko.                                                                                           |
+| Reputacja autora   | Dane o reputacji zbierane przez działający w tle indekser sieci.                                                                          |
+| Analiza treści     | Heurystyki na poziomie tekstu (gęstość linków, znane wzorce spamu itp.).                                                                  |
+| Tempo publikowania | Szybkie serie wpisów od tego samego autora podnoszą ryzyko.                                                                               |
+| Dane o adresach IP | Geolokalizacja na poziomie kraju i sprawdzanie w kanałach informacji o zagrożeniach. Surowe adresy IP nigdy nie trafiają do społeczności. |
 
 ## Progi poziomów
 
@@ -72,7 +72,8 @@ Serwer uruchamia działający w tle indekser, który nieprzerwanie przeszukuje s
 Spam Blocker zaprojektowano z myślą o prywatności:
 
 - Tożsamości OAuth służą wyłącznie do weryfikacji wyzwań i **nigdy nie są ujawniane** społecznościom.
-- Adresy IP są rozwiązywane wyłącznie do **kodów krajów**; surowe adresy IP nie są przechowywane ani udostępniane.
+- Operator usługi przechowuje surowe adresy IP w celu wykrywania nadużyć i wysyła je do klasyfikacji zewnętrznemu dostawcy danych o adresach IP.
+- Społeczności otrzymują tylko kod kraju, ryzyko IP i szacowany typ połączenia, nigdy surowy adres IP.
 
 ## Baza danych
 

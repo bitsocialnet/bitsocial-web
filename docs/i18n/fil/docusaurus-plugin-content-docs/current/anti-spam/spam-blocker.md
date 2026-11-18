@@ -17,14 +17,14 @@ Ang Spam Blocker ay isang sentralisadong serbisyo sa pagtuklas ng spam na sinusu
 
 Ang bawat publikasyong isinumite sa `/evaluate` endpoint ay nakakatanggap ng numeric na marka ng panganib. Ang marka ay isang tinimbang na kumbinasyon ng ilang mga signal:
 
-| Signal                 | Paglalarawan                                                                                                                                                                           |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Edad ng account        | Ang mga bagong account ay tumatanggap ng mas mataas na marka ng panganib.                                                                                                              |
-| Karma                  | Ang naipon na karma ng komunidad ay nagpapababa ng panganib.                                                                                                                           |
-| Reputasyon ng may-akda | Data ng reputasyon na nakalap ng background network indexer.                                                                                                                           |
-| Pagsusuri ng nilalaman | Mga heuristic sa antas ng teksto (densidad ng link, kilalang mga pattern ng spam, atbp.).                                                                                              |
-| Bilis                  | Ang mabilis na sunud-sunod na mga post mula sa parehong may-akda ay nagpapataas ng panganib.                                                                                           |
-| IP intelligence        | Geolocation sa antas ng bansa at mga lookup ng threat-feed. Ang mga code ng bansa lamang ang nakaimbak -- ang mga hilaw na IP address ay hindi kailanman ibinabahagi sa mga komunidad. |
+| Signal                 | Paglalarawan                                                                                                                             |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Edad ng account        | Ang mga bagong account ay tumatanggap ng mas mataas na marka ng panganib.                                                                |
+| Karma                  | Ang naipon na karma ng komunidad ay nagpapababa ng panganib.                                                                             |
+| Reputasyon ng may-akda | Data ng reputasyon na nakalap ng background network indexer.                                                                             |
+| Pagsusuri ng nilalaman | Mga heuristic sa antas ng teksto (densidad ng link, kilalang mga pattern ng spam, atbp.).                                                |
+| Bilis                  | Ang mabilis na sunud-sunod na mga post mula sa parehong may-akda ay nagpapataas ng panganib.                                             |
+| IP intelligence        | Geolocation sa antas ng bansa at mga lookup ng threat-feed. Ang mga hilaw na IP address ay hindi kailanman ibinabahagi sa mga komunidad. |
 
 ## Mga Tier Threshold
 
@@ -72,7 +72,8 @@ Ang server ay nagpapatakbo ng background indexer na patuloy na nagko-crawl sa ne
 Ang Spam Blocker ay idinisenyo na nasa isip ang privacy:
 
 - Ginagamit lang ang mga pagkakakilanlan ng OAuth para sa pag-verify ng hamon at **hindi ibinubunyag** sa mga komunidad.
-- Ang mga IP address ay niresolba sa **mga code ng bansa lamang**; hindi nakaimbak o nakabahagi ang mga hilaw na IP.
+- Iniimbak ng operator ng serbisyo ang mga hilaw na IP address para matukoy ang pang-aabuso at ipinapadala ang mga ito sa isang third-party na provider ng IP intelligence para ma-classify.
+- Ang natatanggap lang ng mga komunidad ay ang country code, ang IP risk, at ang tantiya ng uri ng koneksyon, hindi kailanman ang hilaw na IP.
 
 ## Database
 

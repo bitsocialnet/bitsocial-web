@@ -17,14 +17,14 @@ Spam Blocker është një shërbim i centralizuar për zbulimin e spamit, i cili
 
 Çdo publikim që dërgohet te endpoint-i `/evaluate` merr një pikë numerike rreziku. Kjo pikë është një kombinim i peshuar i disa sinjaleve:
 
-| Sinjali                 | Përshkrimi                                                                                                                                                    |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Mosha e llogarisë       | Llogaritë më të reja marrin pikë rreziku më të larta.                                                                                                         |
-| Karma                   | Karma e grumbulluar në komunitet e ul rrezikun.                                                                                                               |
-| Reputacioni i autorit   | Të dhëna reputacioni të mbledhura nga indeksuesi i rrjetit që punon në sfond.                                                                                 |
-| Analiza e përmbajtjes   | Heuristika në nivel teksti (dendësia e lidhjeve, modele spami të njohura etj.).                                                                               |
-| Shpejtësia e publikimit | Postimet e njëpasnjëshme e të shpejta nga i njëjti autor e rrisin rrezikun.                                                                                   |
-| Të dhënat për IP-në     | Gjeolokalizim në nivel shteti dhe kontrolle në lista kërcënimesh. Ruhen vetëm kodet e shteteve -- adresat IP të papërpunuara nuk ndahen kurrë me komunitetet. |
+| Sinjali                 | Përshkrimi                                                                                                                    |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Mosha e llogarisë       | Llogaritë më të reja marrin pikë rreziku më të larta.                                                                         |
+| Karma                   | Karma e grumbulluar në komunitet e ul rrezikun.                                                                               |
+| Reputacioni i autorit   | Të dhëna reputacioni të mbledhura nga indeksuesi i rrjetit që punon në sfond.                                                 |
+| Analiza e përmbajtjes   | Heuristika në nivel teksti (dendësia e lidhjeve, modele spami të njohura etj.).                                               |
+| Shpejtësia e publikimit | Postimet e njëpasnjëshme e të shpejta nga i njëjti autor e rrisin rrezikun.                                                   |
+| Të dhënat për IP-në     | Gjeolokalizim në nivel shteti dhe kontrolle në lista kërcënimesh. Adresat IP të papërpunuara nuk ndahen kurrë me komunitetet. |
 
 ## Pragjet e niveleve
 
@@ -72,7 +72,8 @@ Serveri drejton një indeksues në sfond që zvarrit vazhdimisht rrjetin për t�
 Spam Blocker është projektuar duke pasur parasysh privatësinë:
 
 - Identitetet OAuth përdoren vetëm për verifikimin e sfidave dhe **nuk u zbulohen kurrë** komuniteteve.
-- Adresat IP shndërrohen **vetëm në kode shtetesh**; IP-të e papërpunuara nuk ruhen dhe nuk ndahen.
+- Operatori i shërbimit ruan adresat IP të papërpunuara për zbulimin e abuzimeve dhe i dërgon te një ofrues i jashtëm të dhënash për IP-në për klasifikim.
+- Komunitetet marrin vetëm kodin e shtetit, rrezikun e IP-së dhe vlerësimin e llojit të lidhjes, kurrë IP-në e papërpunuar.
 
 ## Baza e të dhënave
 
