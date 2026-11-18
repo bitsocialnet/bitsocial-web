@@ -79,9 +79,12 @@ export default function ClaimSection({
   const wallets = useWallets();
   const [connecting, setConnecting] = useState(false);
   const [activity, setActivity] = useState<Activity>(null);
-  const [problem, setProblem] = useState<TransactionProblem | null>(null);
+  const [problemState, setProblemState] = useState<{
+    for: string;
+    problem: TransactionProblem;
+  } | null>(null);
   const [done, setDone] = useState<{ step: Step; hash: Hash; label: string } | null>(null);
-  // A draft belongs to one name and wallet, so switching either never sends it to another name.
+  // Kept with the name and account it was typed for (see `scope`), so it never goes to another.
   const [recordDraft, setRecordDraft] = useState({ for: "", value: "" });
   const [, setPendingVersion] = useState(0);
 
@@ -89,6 +92,12 @@ export default function ClaimSection({
   const name = label ? `${label}.bso` : null;
   const now = nowMs / 1000;
   const account = wallet?.account ?? null;
+  // Errors and the record draft belong to one name and wallet account: switching either hides
+  // them, so a message about one name never shows under another.
+  const scope = `${label ?? ""}|${account ?? ""}`;
+  const problem = problemState?.for === scope ? problemState.problem : null;
+  const setProblem = (next: TransactionProblem | null, forScope = scope) =>
+    setProblemState(next && { for: forScope, problem: next });
   const owned =
     nameState?.status === "taken" && account !== null && isAddressEqual(nameState.owner, account);
   // Anyone can renew a registered name (BSIP-13), so a friend can keep it alive; only its holder
@@ -161,6 +170,8 @@ export default function ClaimSection({
   ) {
     const controller = new AbortController();
     runningRef.current = controller;
+    // The name and account this action is for, which the visitor may change while it runs.
+    const runScope = scope;
     setProblem(null);
     setDone(null);
     setActivity({ step, hash: null });
@@ -171,7 +182,7 @@ export default function ClaimSection({
       if (controller.signal.aborted) return;
       console.warn(`The ${step} transaction failed.`, error);
       const described = describeError(error);
-      setProblem(described);
+      setProblem(described, runScope);
       // A failure, in simulation or mined, may mean the name changed since it was shown (someone
       // registered it first, say), so read it again. Declining in the wallet changes nothing.
       if (described.kind !== "rejected") onChanged();
@@ -316,8 +327,7 @@ export default function ClaimSection({
     });
   }
 
-  const draftFor = `${label ?? ""}|${account ?? ""}`;
-  const recordInput = recordDraft.for === draftFor ? recordDraft.value : "";
+  const recordInput = recordDraft.for === scope ? recordDraft.value : "";
   const recordValue = recordInput.trim();
   const recordValid = isKeyAddress(recordValue);
 
@@ -598,7 +608,7 @@ export default function ClaimSection({
                   className="nm-field nm-field-mono"
                   type="text"
                   value={recordInput}
-                  onChange={(event) => setRecordDraft({ for: draftFor, value: event.target.value })}
+                  onChange={(event) => setRecordDraft({ for: scope, value: event.target.value })}
                   placeholder="12D3KooW…"
                   autoComplete="off"
                   autoCapitalize="off"
