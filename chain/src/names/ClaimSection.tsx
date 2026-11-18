@@ -44,12 +44,16 @@ import OutboundLink from "./OutboundLink";
 export type ConnectedWallet = { option: WalletOption; account: Address };
 
 type Step = "commit" | "reveal" | "renew" | "record";
-type Activity = { step: Step; hash: Hash | null } | null;
+// `scope` is the name and account the transaction is for (see `scope` below).
+type Activity = { step: Step; hash: Hash | null; sentAt: number | null; scope: string } | null;
 
 // The reveal is simulated against the latest block, which trails this browser's clock by up to
 // one 12-second slot, and the clocks can differ by a few seconds. Waiting this much past the
 // 60-second minimum keeps the reveal from being checked against a block that is still too early.
 const CLOCK_MARGIN = 15;
+// How long a sent transaction waits before the visitor is offered to stop waiting for it: long
+// enough that a normal one is mined first, since sending the same action again could pay twice.
+const STOP_WAITING_AFTER = 5 * 60;
 // How often an unconfirmed reservation checks whether its commit has been mined.
 const CONFIRM_POLL_MS = 12_000;
 
@@ -79,6 +83,10 @@ export default function ClaimSection({
   const wallets = useWallets();
   const [connecting, setConnecting] = useState(false);
   const [activity, setActivity] = useState<Activity>(null);
+  // A transaction the visitor stopped waiting for: it may still be mined, so the page says so.
+  const [unresolved, setUnresolved] = useState<{ step: Step; hash: Hash; scope: string } | null>(
+    null,
+  );
   const [problemState, setProblemState] = useState<{
     for: string;
     problem: TransactionProblem;
@@ -121,7 +129,8 @@ export default function ClaimSection({
   // which gives the time the reveal is counted from. This also picks up a commit from a tab that
   // closed before it was mined, or one the wallet sped up under another hash.
   const unconfirmedTx = pending && !pending.confirmed ? pending.commitTx : null;
-  const committing = activity?.step === "commit";
+  // Only a commit for the name and account on screen; another name's commit runs on regardless.
+  const committing = activity?.step === "commit" && activity.scope === scope;
   useEffect(() => {
     if (!unconfirmedTx || !label || !account || committing) return;
     let stopped = false;
@@ -174,9 +183,15 @@ export default function ClaimSection({
     const runScope = scope;
     setProblem(null);
     setDone(null);
-    setActivity({ step, hash: null });
+    setUnresolved(null);
+    setActivity({ step, hash: null, sentAt: null, scope: runScope });
     try {
-      const hash = await action((sent) => setActivity({ step, hash: sent }), controller.signal);
+      const hash = await action((sent) => {
+        // A wallet can still approve after the visitor gave up on this run.
+        if (!controller.signal.aborted) {
+          setActivity({ step, hash: sent, sentAt: Date.now() / 1000, scope: runScope });
+        }
+      }, controller.signal);
       if (label && !controller.signal.aborted) setDone({ step, hash, label });
     } catch (error) {
       if (controller.signal.aborted) return;
@@ -269,7 +284,7 @@ export default function ClaimSection({
   function claim(claimToReveal: PendingClaim) {
     if (!wallet || !REGISTRY) return;
     const registry = REGISTRY.address;
-    void run("reveal", async (onSent) => {
+    void run("reveal", async (onSent, signal) => {
       // The premium only falls, so today's figure covers it; the registry refunds the rest.
       const livePremium = await publicClient.readContract({
         address: registry,
@@ -286,6 +301,7 @@ export default function ClaimSection({
           value: fee + livePremium,
         },
         onSent,
+        signal,
       );
       removePendingClaim(claimToReveal);
       bumpPending();
@@ -312,15 +328,28 @@ export default function ClaimSection({
     setProblem(null);
   }
 
+  // A transaction that is never mined (dropped from the mempool) would keep the step waiting
+  // forever. Stopping only stops the page waiting: the transaction is not resent, its link stays,
+  // and the name is read again in case it went through after all.
+  function stopWaiting() {
+    if (!activity?.hash) return;
+    setUnresolved({ step: activity.step, hash: activity.hash, scope: activity.scope });
+    runningRef.current?.abort();
+    runningRef.current = null;
+    setActivity(null);
+    onChanged();
+  }
+
   function renew() {
     if (!wallet || !label) return;
     // An early renewal is a renewal too; the registry adds the year to the current expiry.
-    void run("renew", async (onSent) => {
+    void run("renew", async (onSent, signal) => {
       const receipt = await sendRegistryCall(
         wallet.option,
         wallet.account,
         { functionName: "renew", args: [tokenIdFor(label)], value: fee },
         onSent,
+        signal,
       );
       onChanged();
       return receipt.transactionHash;
@@ -333,12 +362,13 @@ export default function ClaimSection({
 
   function saveRecord() {
     if (!wallet || !label || !recordValid) return;
-    void run("record", async (onSent) => {
+    void run("record", async (onSent, signal) => {
       const receipt = await sendRegistryCall(
         wallet.option,
         wallet.account,
         { functionName: "setText", args: [tokenIdFor(label), RECORD_KEY, recordValue] },
         onSent,
+        signal,
       );
       onChanged();
       return receipt.transactionHash;
@@ -346,11 +376,36 @@ export default function ClaimSection({
   }
 
   const status = (step: Step): ReactNode => {
-    if (activity?.step === step) {
+    // Shown only on the card of the name and account the transaction is for.
+    if (activity?.step === step && activity.scope === scope) {
+      const sentAt = activity.sentAt;
       return (
         <p className="nm-step-status" role="status">
           {activity.hash ? t("names.claim.waitingForTx") : t("names.claim.confirmInWallet")}
           {activity.hash && <TxLink hash={activity.hash} />}
+          {/* A reservation has Start over instead, which also lets go of its secret. */}
+          {sentAt !== null && step !== "commit" && (
+            <Ticking>
+              {(nowSeconds) =>
+                nowSeconds - sentAt >= STOP_WAITING_AFTER && (
+                  <>
+                    {" "}
+                    <button type="button" className="nm-inline-button" onClick={stopWaiting}>
+                      {t("names.claim.stopWaiting")}
+                    </button>
+                  </>
+                )
+              }
+            </Ticking>
+          )}
+        </p>
+      );
+    }
+    if (unresolved?.step === step && unresolved.scope === scope) {
+      return (
+        <p className="nm-step-status" role="status">
+          {t("names.claim.unresolved")}
+          <TxLink hash={unresolved.hash} />
         </p>
       );
     }
