@@ -395,8 +395,11 @@ export default function ClaimSection({
 
   const activityLine = (current: NonNullable<Activity>, context: string | null) => {
     const sentAt = current.sentAt;
-    // A reservation's own card has Start over instead, which also lets go of its secret.
-    const canStop = sentAt !== null && (context !== null || current.step !== "commit");
+    // A reservation's own card has Start over instead, which also lets go of its secret, as long
+    // as the reservation can be read; when it can't (its name's lookup failed), stopping is the
+    // way out there too.
+    const canStop =
+      sentAt !== null && (context !== null || current.step !== "commit" || pending === null);
     return (
       <p className="nm-step-status" role="status">
         {context}
