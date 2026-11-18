@@ -17,7 +17,7 @@ const NONE: Registration[] = [];
 // One transaction can register several names (the launch seeding does), so a row is the pair.
 const rowKey = (item: Registration) => `${item.txHash}:${item.tokenId}`;
 
-/** The newest registrations, with any the visitor just made on top until the feed shows them. */
+/** The newest registrations, including any the visitor just made that the feed hasn't shown yet. */
 export default function Activity({ local, nowMs }: { local: Registration[]; nowMs: number }) {
   const { t } = useTranslation();
   if (!REGISTRY) {
@@ -54,9 +54,12 @@ function ActivityFeed({ local, nowMs }: { local: Registration[]; nowMs: number }
   const { t } = useTranslation();
   const format = useNamesFormat();
   const { data, status, refreshFailed } = useLiveData(NONE, fetchRecent, "the .bso registry");
-  // A visitor's own registration stays on top until the feed has it, then takes its chain order.
+  // A visitor's own registration shows before the feed has indexed it, in time order with the
+  // rest, so it moves down as newer names arrive and drops off like any other row.
   const fetched = new Set(data.map(rowKey));
-  const rows = [...local.filter((item) => !fetched.has(rowKey(item))), ...data].slice(0, SHOWN);
+  const rows = [...local.filter((item) => !fetched.has(rowKey(item))), ...data]
+    .sort((a, b) => b.registeredAt - a.registeredAt)
+    .slice(0, SHOWN);
   const browseUrl = REGISTRY ? etherscanUrl("token", REGISTRY.address) : null;
   const live = status === "live" && !refreshFailed;
 

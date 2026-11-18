@@ -166,7 +166,7 @@ export default function ClaimSection({
     setActivity({ step, hash: null });
     try {
       const hash = await action((sent) => setActivity({ step, hash: sent }), controller.signal);
-      if (label) setDone({ step, hash, label });
+      if (label && !controller.signal.aborted) setDone({ step, hash, label });
     } catch (error) {
       if (controller.signal.aborted) return;
       console.warn(`The ${step} transaction failed.`, error);
@@ -236,6 +236,8 @@ export default function ClaimSection({
         const block = await publicClient
           .getBlock({ blockNumber: receipt.blockNumber })
           .catch(() => null);
+        // Start over during that read gave the reservation up; saving it now would bring it back.
+        if (signal.aborted) return receipt.transactionHash;
         if (block) {
           savePendingClaim(claim(Number(block.timestamp), true, receipt.transactionHash));
           bumpPending();
