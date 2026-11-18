@@ -3,6 +3,7 @@ import { etherscanUrl, feeForLength, readFeeSafe, REGISTRY } from "@/lib/names/r
 import { BSO_FEE_SAFE_URL, BSO_REGISTRY_BSIP_URL } from "@/lib/site";
 import { useLiveData } from "@/lib/use-live-data";
 import { useNamesFormat } from "./format";
+import OutboundLink from "./OutboundLink";
 
 const GROUPS = [
   {
@@ -82,17 +83,9 @@ export default function NamesFaq() {
       ))}
 
       <p className="nm-faq-links">
-        {contractUrl && (
-          <a className="rl-link" href={contractUrl} target="_blank" rel="noreferrer">
-            {t("names.faq.contract")}
-          </a>
-        )}
-        <a className="rl-link" href={BSO_FEE_SAFE_URL} target="_blank" rel="noreferrer">
-          {t("names.faq.safe")}
-        </a>
-        <a className="rl-link" href={BSO_REGISTRY_BSIP_URL} target="_blank" rel="noreferrer">
-          {t("names.faq.spec")}
-        </a>
+        {contractUrl && <OutboundLink href={contractUrl}>{t("names.faq.contract")}</OutboundLink>}
+        <OutboundLink href={BSO_FEE_SAFE_URL}>{t("names.faq.safe")}</OutboundLink>
+        <OutboundLink href={BSO_REGISTRY_BSIP_URL}>{t("names.faq.spec")}</OutboundLink>
       </p>
     </section>
   );

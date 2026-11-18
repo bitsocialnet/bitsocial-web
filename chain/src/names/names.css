@@ -724,9 +724,13 @@
   color: var(--ink-muted);
 }
 
-.nm-activity-browse {
+.nm-outbound {
   display: inline-flex;
   align-items: center;
+  gap: 0.25rem;
+}
+
+.nm-activity-browse {
   min-height: 2.75rem;
   margin-top: 0.25rem;
   font-size: 0.875rem;

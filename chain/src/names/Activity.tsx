@@ -7,6 +7,7 @@ import {
 } from "@/lib/names/registry";
 import { useLiveData } from "@/lib/use-live-data";
 import { shortAddress, useNamesFormat } from "./format";
+import OutboundLink from "./OutboundLink";
 
 const SHOWN = 8;
 const fetchRecent = () => readRecentRegistrations(SHOWN);
@@ -85,9 +86,9 @@ function ActivityList({ local, nowMs }: { local: Registration[]; nowMs: number }
         })}
       </ul>
       {browseUrl && (
-        <a className="rl-link nm-activity-browse" href={browseUrl} target="_blank" rel="noreferrer">
+        <OutboundLink href={browseUrl} className="nm-activity-browse">
           {t("names.activity.browse")}
-        </a>
+        </OutboundLink>
       )}
     </>
   );

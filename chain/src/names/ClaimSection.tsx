@@ -33,6 +33,7 @@ import {
 } from "@/lib/names/wallet";
 import { countdown, shortAddress, Ticking, useNamesFormat } from "./format";
 import type { Kind } from "./kind";
+import OutboundLink from "./OutboundLink";
 
 export type ConnectedWallet = { option: WalletOption; account: Address };
 
@@ -523,9 +524,7 @@ function TxLink({ hash }: { hash: Hash }) {
   return (
     <>
       {" "}
-      <a className="rl-link" href={url} target="_blank" rel="noreferrer">
-        {t("names.claim.viewTx")}
-      </a>
+      <OutboundLink href={url}>{t("names.claim.viewTx")}</OutboundLink>
     </>
   );
 }
