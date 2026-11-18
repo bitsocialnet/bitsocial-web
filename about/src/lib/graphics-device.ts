@@ -16,6 +16,9 @@ const MIN_APPLE_TOUCH_CORES_FOR_FULL_GRAPHICS = 4;
 const MIN_NON_APPLE_MOBILE_CORES_FOR_FULL_GRAPHICS = 6;
 const MIN_NON_APPLE_MOBILE_MEMORY_GB_FOR_FULL_GRAPHICS = 6;
 const SLOW_EFFECTIVE_CONNECTION_TYPES = new Set(["slow-2g", "2g", "3g"]);
+const MOBILE_USER_AGENT_PATTERN = /\b(Android|iPhone|iPad|iPod|Mobile|mobi)\b/i;
+const CONSTRAINED_USER_AGENT_PATTERN =
+  /\b(LibreWolf|moto g power|moto g play|moto g pure|moto e)\b/i;
 
 export function getReducedMotionQuery() {
   if (typeof window === "undefined") return null;
@@ -56,7 +59,7 @@ function isAppleTouchDevice() {
 function isMobileLikeDevice() {
   const userAgent = navigator.userAgent ?? "";
   const isMobileUserAgent =
-    /\b(Android|iPhone|iPad|iPod|Mobile|mobi)\b/i.test(userAgent) ||
+    MOBILE_USER_AGENT_PATTERN.test(userAgent) ||
     Boolean(
       (navigator as Navigator & { userAgentData?: { mobile?: boolean } }).userAgentData?.mobile,
     );
@@ -72,10 +75,7 @@ function isMobileLikeDevice() {
 function isKnownConstrainedBrowserOrDevice() {
   const userAgent = navigator.userAgent ?? "";
 
-  return (
-    /\b(LibreWolf|moto g power|moto g play|moto g pure|moto e)\b/i.test(userAgent) ||
-    isPrivacyHardenedFirefox()
-  );
+  return CONSTRAINED_USER_AGENT_PATTERN.test(userAgent) || isPrivacyHardenedFirefox();
 }
 
 function isPrivacyHardenedFirefox() {
@@ -145,4 +145,24 @@ export function shouldPreferPngGraphicsFallback() {
   }
 
   return isPrivacyHardenedFirefox();
+}
+
+/**
+ * The part of `computeGraphicsMode` the server can answer from request headers. When it says
+ * "fallback" the static hero image is in the HTML itself, so it paints without waiting for the
+ * bundle; every other device stays "pending" until the browser has checked its hardware.
+ * Firefox is left out because its fallback image format depends on a browser-only signal.
+ */
+export function getRequestGraphicsMode(request: {
+  userAgent: string | undefined;
+  saveData: string | undefined;
+}): "pending" | "fallback" {
+  const userAgent = request.userAgent ?? "";
+  if (/\bFirefox\//i.test(userAgent)) return "pending";
+  if (CONSTRAINED_USER_AGENT_PATTERN.test(userAgent)) return "fallback";
+  if (request.saveData?.toLowerCase() === "on" && MOBILE_USER_AGENT_PATTERN.test(userAgent)) {
+    return "fallback";
+  }
+
+  return "pending";
 }

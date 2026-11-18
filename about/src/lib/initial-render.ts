@@ -1,3 +1,5 @@
+import { useSyncExternalStore } from "react";
+
 // Above-the-fold copy is server-rendered in its final state so it paints before the bundle
 // loads; markup that waits at opacity 0 for hydration delays Largest Contentful Paint by the
 // whole script download. The first client render has to match that markup, so entrance
@@ -10,4 +12,17 @@ export function markInitialRenderCommitted() {
 
 export function hasInitialRenderCommitted() {
   return initialRenderCommitted;
+}
+
+function subscribeToNothing() {
+  return () => {};
+}
+
+/** False on the server and during hydration, true for every render after it. */
+export function useIsHydrated() {
+  return useSyncExternalStore(
+    subscribeToNothing,
+    () => true,
+    () => false,
+  );
 }

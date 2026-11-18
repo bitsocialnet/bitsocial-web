@@ -1,23 +1,23 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import { X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
-import AdoptionThesis from "@/components/adoption-thesis";
-import ArbitraryChallenges from "@/components/arbitrary-challenges";
 import BackToTop from "@/components/back-to-top";
-import BrowserPeer from "@/components/browser-peer";
-import Faq from "@/components/faq";
-import Footer from "@/components/footer";
 import Hero from "@/components/hero";
-import MailingList from "@/components/mailing-list";
-import MasterPlan from "@/components/master-plan";
-import ProblemSection from "@/components/problem";
-import SanctuaryCommunication from "@/components/sanctuary-communication";
-import TextOnlyProtocol from "@/components/text-only-protocol";
 import Topbar from "@/components/topbar";
-import Features from "@/components/features";
+import { deferredComponent } from "@/lib/deferred-component";
 import { HOME_SECTION_HASHES, scrollToHomeSectionHash } from "@/lib/home-section-nav";
 import { MAILING_LIST_HASH, scheduleMailingListHashScroll } from "@/lib/mailing-list-nav";
+
+const HomeBelowFold = deferredComponent(() => import("@/components/home-below-fold"));
+
+// Hoisted so a Home re-render hands React the same element: new props on a Suspense boundary
+// that has not hydrated yet would make React discard its server markup.
+const homeBelowFold = (
+  <Suspense fallback={null}>
+    <HomeBelowFold />
+  </Suspense>
+);
 
 const HOME_SECTION_LAYOUT_DELTA_PX = 1;
 const HOME_SECTION_LAYOUT_STABLE_FRAMES = 2;
@@ -188,19 +188,7 @@ export default function Home() {
               }}
             />
           </div>
-          <div className="relative z-10">
-            <ProblemSection />
-            <Features />
-            <BrowserPeer />
-            <SanctuaryCommunication />
-            <ArbitraryChallenges />
-            <TextOnlyProtocol />
-            <AdoptionThesis />
-            <MasterPlan />
-            <MailingList />
-            <Faq />
-            <Footer />
-          </div>
+          <div className="relative z-10">{homeBelowFold}</div>
         </div>
       </main>
       <BackToTop />

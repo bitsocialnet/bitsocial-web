@@ -4,6 +4,7 @@ import {
   normalizeLanguageCode,
   type SupportedLanguageCode,
 } from "@/lib/locales";
+import type { SupportedThemeMode } from "@/lib/theme";
 
 const BOOTSTRAP_TEMPLATE_ID = "bitsocial-bootstrap";
 
@@ -25,7 +26,9 @@ export interface BootstrapPayload {
     requiresConfirmation: boolean;
   };
   clientDefaults: {
-    graphicsMode: "pending";
+    graphicsMode: "pending" | "fallback";
+    /** The theme the server rendered with, when a cookie or the query named one. */
+    theme: SupportedThemeMode | null;
   };
 }
 
@@ -58,6 +61,8 @@ export function createBootstrapPayload(input: {
     isConfigured?: boolean;
     requiresConfirmation?: boolean;
   };
+  graphicsMode?: "pending" | "fallback";
+  theme?: SupportedThemeMode | null;
 }): BootstrapPayload {
   const locale = normalizeLanguageCode(input.locale ?? DEFAULT_LANGUAGE_CODE);
 
@@ -77,7 +82,8 @@ export function createBootstrapPayload(input: {
       requiresConfirmation: input.newsletter?.requiresConfirmation ?? false,
     },
     clientDefaults: {
-      graphicsMode: "pending",
+      graphicsMode: input.graphicsMode ?? "pending",
+      theme: input.theme ?? null,
     },
   };
 }
@@ -112,6 +118,18 @@ export function getClientBootstrapPayload(): BootstrapPayload | null {
   } catch {
     return null;
   }
+}
+
+let serverRenderPayload: BootstrapPayload | null = null;
+
+/** Set around the synchronous server render so components can read the request's payload. */
+export function setServerRenderBootstrapPayload(payload: BootstrapPayload | null) {
+  serverRenderPayload = payload;
+}
+
+/** The payload of the render in progress: the request's on the server, the page's in the browser. */
+export function getRenderBootstrapPayload(): BootstrapPayload | null {
+  return serverRenderPayload ?? getClientBootstrapPayload();
 }
 
 export function getDocumentLanguageAttributes(payload: Pick<BootstrapPayload, "locale" | "dir">) {

@@ -12,6 +12,7 @@ import {
   getDocumentLanguageAttributes,
   getNewsletterBootstrapFlags,
   renderBootstrapPayload,
+  setServerRenderBootstrapPayload,
   type BootstrapPayload,
 } from "@/lib/bootstrap";
 import {
@@ -20,7 +21,9 @@ import {
   resolveRequestLanguage,
 } from "@/lib/locales";
 import { getSeoMetadata, injectSeoHead, isKnownRoute } from "@/lib/seo";
+import { preloadDeferredComponents } from "@/lib/deferred-component";
 import { resolveRequestTheme } from "@/lib/theme";
+import { getRequestGraphicsMode } from "@/lib/graphics-device";
 import { GraphicsModeProvider } from "@/lib/graphics-mode";
 import sourceClientTemplateHtml from "../../index.html?raw";
 
@@ -162,6 +165,10 @@ export async function renderAboutRequest(request: RenderRequest) {
     queryTheme,
     cookieHeader: getHeaderValue(request.headers, "cookie"),
   });
+  const graphicsMode = getRequestGraphicsMode({
+    userAgent: getHeaderValue(request.headers, "user-agent"),
+    saveData: getHeaderValue(request.headers, "save-data"),
+  });
   const resources = await readLocaleResources(locale);
   const bootstrapPayload = createBootstrapPayload({
     locale,
@@ -170,9 +177,19 @@ export async function renderAboutRequest(request: RenderRequest) {
     hash: "",
     resources,
     newsletter: getNewsletterBootstrapFlags(process.env),
+    graphicsMode,
+    theme,
   });
   const i18nInstance = await createServerI18n(bootstrapPayload);
-  const appHtml = renderApplication(`${requestUrl.pathname}${requestUrl.search}`, i18nInstance);
+  await preloadDeferredComponents();
+  // renderToString is synchronous, so no other request can observe this payload.
+  setServerRenderBootstrapPayload(bootstrapPayload);
+  let appHtml: string;
+  try {
+    appHtml = renderApplication(`${requestUrl.pathname}${requestUrl.search}`, i18nInstance);
+  } finally {
+    setServerRenderBootstrapPayload(null);
+  }
   const seo = getSeoMetadata(requestUrl.pathname, requestUrl.search, i18nInstance.t);
   const template = request.templateHtml ?? CLIENT_TEMPLATE_HTML;
   const htmlWithSeo = injectSeoHead(template, seo);
@@ -186,7 +203,7 @@ export async function renderAboutRequest(request: RenderRequest) {
     status: isKnownRoute(requestUrl.pathname) ? 200 : 404,
     headers: {
       "Content-Type": "text/html; charset=utf-8",
-      Vary: "Accept-Language, Cookie",
+      Vary: "Accept-Language, Cookie, User-Agent, Save-Data",
       ...(languageCookie ? { "Set-Cookie": languageCookie } : {}),
       "X-Bitsocial-Locale": locale,
       "X-Bitsocial-Dir": getDirectionForLanguage(locale),

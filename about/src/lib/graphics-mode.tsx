@@ -1,5 +1,5 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { getClientBootstrapPayload } from "@/lib/bootstrap";
+import { useEffect, useSyncExternalStore } from "react";
+import { getRenderBootstrapPayload } from "@/lib/bootstrap";
 import {
   computeGraphicsMode,
   getConnection,
@@ -7,81 +7,99 @@ import {
   type GraphicsMode,
 } from "@/lib/graphics-device";
 
-const GRAPHICS_FALLBACK_EVENT = "bitsocial:graphics-fallback";
-
-const GraphicsModeContext = createContext<GraphicsMode | null>(null);
+// The mode lives in a module-level store rather than React context. It always changes right
+// after hydration (the server renders "pending"), and a context change above a Suspense
+// boundary that has not hydrated yet makes React throw away that boundary's server markup.
+// A store only re-renders the components that read it.
+let currentMode: GraphicsMode | null = null;
+let forcedFallback = false;
+let detachEnvironmentListeners: (() => void) | null = null;
+const listeners = new Set<() => void>();
 
 function syncReducedMotionDataset(isReducedMotion: boolean) {
   if (typeof document === "undefined") return;
   document.documentElement.dataset.reducedMotion = isReducedMotion ? "true" : "false";
 }
 
-export function GraphicsModeProvider({ children }: { children: React.ReactNode }) {
-  const [graphicsMode, setGraphicsMode] = useState<GraphicsMode>(() => {
-    const bootstrapPayload = getClientBootstrapPayload();
-    return bootstrapPayload?.clientDefaults.graphicsMode ?? computeGraphicsMode();
-  });
-  const lastModeRef = useRef<GraphicsMode>(graphicsMode);
-  const forcedFallbackRef = useRef(false);
+function refreshGraphicsMode() {
+  const reducedMotionQuery = getReducedMotionQuery();
+  syncReducedMotionDataset(Boolean(reducedMotionQuery?.matches));
 
-  useEffect(() => {
-    const reducedMotionQuery = getReducedMotionQuery();
+  const nextMode = forcedFallback ? "fallback" : computeGraphicsMode(reducedMotionQuery);
+  if (currentMode === nextMode) return;
+  currentMode = nextMode;
+  for (const listener of listeners) listener();
+}
 
-    const updateMode = () => {
-      syncReducedMotionDataset(Boolean(reducedMotionQuery?.matches));
+function attachEnvironmentListeners() {
+  const reducedMotionQuery = getReducedMotionQuery();
+  const connection = getConnection();
 
-      const nextMode = forcedFallbackRef.current
-        ? "fallback"
-        : computeGraphicsMode(reducedMotionQuery);
-      if (lastModeRef.current === nextMode) return;
-      lastModeRef.current = nextMode;
-      setGraphicsMode(nextMode);
-    };
-    const connection = getConnection();
+  if (reducedMotionQuery?.addEventListener) {
+    reducedMotionQuery.addEventListener("change", refreshGraphicsMode);
+  } else if (reducedMotionQuery) {
+    reducedMotionQuery.addListener(refreshGraphicsMode);
+  }
+  connection?.addEventListener?.("change", refreshGraphicsMode);
+  window.addEventListener("resize", refreshGraphicsMode);
+  window.visualViewport?.addEventListener("resize", refreshGraphicsMode);
 
-    updateMode();
-
-    const handleReducedMotionChange = () => updateMode();
-    const handleEnvironmentChange = () => updateMode();
-    const handleFallbackRequest = () => {
-      forcedFallbackRef.current = true;
-      updateMode();
-    };
-    if (reducedMotionQuery?.addEventListener) {
-      reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
+  return () => {
+    if (reducedMotionQuery?.removeEventListener) {
+      reducedMotionQuery.removeEventListener("change", refreshGraphicsMode);
     } else if (reducedMotionQuery) {
-      reducedMotionQuery.addListener(handleReducedMotionChange);
+      reducedMotionQuery.removeListener(refreshGraphicsMode);
     }
-    connection?.addEventListener?.("change", handleEnvironmentChange);
-    window.addEventListener("resize", handleEnvironmentChange);
-    window.addEventListener(GRAPHICS_FALLBACK_EVENT, handleFallbackRequest);
-    window.visualViewport?.addEventListener("resize", handleEnvironmentChange);
+    connection?.removeEventListener?.("change", refreshGraphicsMode);
+    window.removeEventListener("resize", refreshGraphicsMode);
+    window.visualViewport?.removeEventListener("resize", refreshGraphicsMode);
+  };
+}
 
-    return () => {
-      if (reducedMotionQuery?.removeEventListener) {
-        reducedMotionQuery.removeEventListener("change", handleReducedMotionChange);
-      } else if (reducedMotionQuery) {
-        reducedMotionQuery.removeListener(handleReducedMotionChange);
-      }
-      connection?.removeEventListener?.("change", handleEnvironmentChange);
-      window.removeEventListener("resize", handleEnvironmentChange);
-      window.removeEventListener(GRAPHICS_FALLBACK_EVENT, handleFallbackRequest);
-      window.visualViewport?.removeEventListener("resize", handleEnvironmentChange);
-    };
-  }, []);
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  if (!detachEnvironmentListeners) {
+    detachEnvironmentListeners = attachEnvironmentListeners();
+    refreshGraphicsMode();
+  }
 
-  return (
-    <GraphicsModeContext.Provider value={graphicsMode}>{children}</GraphicsModeContext.Provider>
-  );
+  return () => {
+    listeners.delete(listener);
+    if (listeners.size === 0) {
+      detachEnvironmentListeners?.();
+      detachEnvironmentListeners = null;
+    }
+  };
+}
+
+function getGraphicsModeSnapshot(): GraphicsMode {
+  if (currentMode === null) {
+    currentMode = forcedFallback ? "fallback" : computeGraphicsMode();
+  }
+  return currentMode;
+}
+
+// Also what the browser renders with while hydrating, so it matches the server markup.
+function getServerGraphicsModeSnapshot(): GraphicsMode {
+  return getRenderBootstrapPayload()?.clientDefaults.graphicsMode ?? "pending";
+}
+
+function noop() {}
+
+/** Keeps the store's environment listeners and the reduced-motion dataset alive app-wide. */
+export function GraphicsModeProvider({ children }: { children: React.ReactNode }) {
+  useEffect(() => subscribe(noop), []);
+
+  return children;
 }
 
 export function useGraphicsMode() {
-  const graphicsMode = useContext(GraphicsModeContext);
-  return graphicsMode ?? "pending";
+  return useSyncExternalStore(subscribe, getGraphicsModeSnapshot, getServerGraphicsModeSnapshot);
 }
 
 export function requestGraphicsFallback() {
   if (typeof window === "undefined") return;
 
-  window.dispatchEvent(new Event(GRAPHICS_FALLBACK_EVENT));
+  forcedFallback = true;
+  refreshGraphicsMode();
 }

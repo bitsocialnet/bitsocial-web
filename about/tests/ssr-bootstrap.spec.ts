@@ -187,3 +187,57 @@ test.describe("SSR bootstrap (reduced motion)", () => {
     expect(hydrationErrors()).toEqual([]);
   });
 });
+
+// The server renders the static hero image itself for devices it can recognise from the request,
+// so the image paints before the bundle loads. The sections under the hero ship in their own
+// chunk and must hydrate the server markup in place once it arrives, not replace it.
+test.describe("SSR bootstrap (constrained device user agent)", () => {
+  test.use({
+    userAgent:
+      "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",
+    viewport: { width: 412, height: 823 },
+  });
+
+  test("serves the fallback hero image and hydrates the deferred sections in place", async ({
+    browserName,
+    page,
+  }) => {
+    test.skip(browserName !== "chromium", "one project is enough for this hydration test");
+
+    const hydrationErrors = collectHydrationErrors(page);
+    await rememberServerAppNode(page);
+    await page.addInitScript(() => {
+      document.addEventListener("readystatechange", () => {
+        if (document.readyState !== "interactive") return;
+        const testWindow = window as Window & { __serverFooter?: Element | null };
+        testWindow.__serverFooter = document.querySelector("footer");
+        document.documentElement.dataset.serverHeroFallbackImages = String(
+          document.querySelectorAll('main section img[src*="/hero-fallback"]').length,
+        );
+      });
+    });
+
+    await page.goto("/");
+
+    await expect(
+      page.locator("html"),
+      "the server markup holds both theme variants of the fallback image",
+    ).toHaveAttribute("data-server-hero-fallback-images", "2");
+    await expectHydratedFromPayload(page, "en");
+    await expect
+      .poll(() =>
+        page.evaluate(() => {
+          const footer = document.querySelector("footer");
+          const testWindow = window as Window & { __serverFooter?: Element | null };
+          return Boolean(
+            footer &&
+            footer === testWindow.__serverFooter &&
+            Object.keys(footer).some((key) => key.startsWith("__react")),
+          );
+        }),
+      )
+      .toBe(true);
+    await expect(page.locator('main section img[src*="/hero-fallback"]:visible')).toHaveCount(1);
+    expect(hydrationErrors()).toEqual([]);
+  });
+});

@@ -11,6 +11,7 @@ import PageViewTracker from "@/components/page-view-tracker";
 import PolygonMeshBackground from "@/components/polygon-mesh-background";
 import SeoHead from "@/components/seo-head";
 import { isRouteAccessible } from "@/lib/dev-only-routes";
+import { preloadDeferredComponents } from "@/lib/deferred-component";
 import { markInitialRenderCommitted } from "@/lib/initial-render";
 import { normalizeInitialHomeScrollPosition } from "@/lib/initial-scroll";
 
@@ -70,6 +71,16 @@ function AppFrame({
 
   useEffect(() => {
     markInitialRenderCommitted();
+
+    // Fetch the deferred chunks once the browser is idle so a later client-side navigation
+    // to a page that uses them renders without a gap.
+    const preload = () => void preloadDeferredComponents();
+    if (typeof window.requestIdleCallback !== "function") {
+      const timeoutId = window.setTimeout(preload, 2000);
+      return () => window.clearTimeout(timeoutId);
+    }
+    const idleId = window.requestIdleCallback(preload, { timeout: 5000 });
+    return () => window.cancelIdleCallback(idleId);
   }, []);
 
   return (

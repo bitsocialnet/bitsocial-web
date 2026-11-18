@@ -20,6 +20,7 @@ import {
   resetHeroMountForIntroSync,
   TAGLINE_INTRO_START_MS,
 } from "@/lib/hero-intro-timing";
+import { getRenderBootstrapPayload } from "@/lib/bootstrap";
 import { shouldPreferPngGraphicsFallback } from "@/lib/graphics-device";
 import { requestGraphicsFallback, useGraphicsMode } from "@/lib/graphics-mode";
 import {
@@ -29,7 +30,7 @@ import {
   type HeroFallbackTheme,
 } from "@/lib/hero-fallback";
 import { HOOKS_SITE_URL } from "@/lib/docs-links";
-import { hasInitialRenderCommitted } from "@/lib/initial-render";
+import { hasInitialRenderCommitted, useIsHydrated } from "@/lib/initial-render";
 import { goToMailingListSection } from "@/lib/mailing-list-nav";
 import { rememberScrollReturn } from "@/lib/scroll-return";
 import { highlightedCtaClassName } from "@/components/card-inline-cta";
@@ -194,17 +195,18 @@ function HeroFallbackPicture({
 }
 
 function HeroFallbackImage({ preferPng }: { preferPng: boolean }) {
-  // Unknown without JavaScript (the noscript copy), where both pictures stay eager.
   const { resolvedTheme } = useTheme();
+  const isHydrated = useIsHydrated();
+  // The server cannot see the system theme. Without a theme cookie it bets on light, so only
+  // the light picture is eager in the markup; hydration renders the same and then corrects it.
+  const theme = isHydrated
+    ? resolvedTheme
+    : (getRenderBootstrapPayload()?.clientDefaults.theme ?? "light");
 
   return (
     <>
-      <HeroFallbackPicture
-        isDark={false}
-        preferPng={preferPng}
-        isActiveTheme={resolvedTheme !== "dark"}
-      />
-      <HeroFallbackPicture isDark preferPng={preferPng} isActiveTheme={resolvedTheme !== "light"} />
+      <HeroFallbackPicture isDark={false} preferPng={preferPng} isActiveTheme={theme !== "dark"} />
+      <HeroFallbackPicture isDark preferPng={preferPng} isActiveTheme={theme !== "light"} />
     </>
   );
 }
