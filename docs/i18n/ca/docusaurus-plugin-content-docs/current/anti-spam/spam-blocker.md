@@ -17,14 +17,14 @@ Spam Blocker és un servei centralitzat de detecció de correu brossa que avalua
 
 Cada publicació enviada al punt final `/evaluate` rep una puntuació de risc numèrica. La puntuació és una combinació ponderada de diversos senyals:
 
-| Senyal               | Descripció                                                                                                                                                            |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Edat del compte      | Els comptes més nous reben puntuacions de risc més altes.                                                                                                             |
-| Karma                | El karma de la comunitat acumulat redueix el risc.                                                                                                                    |
-| Reputació d'autor    | Dades de reputació recopilades per l'indexador de xarxa de fons.                                                                                                      |
-| Anàlisi de contingut | Heurístiques a nivell de text (densitat d'enllaços, patrons de correu brossa coneguts, etc.).                                                                         |
-| Velocitat            | Les publicacions successives ràpides del mateix autor augmenten el risc.                                                                                              |
-| Intel·ligència IP    | Geolocalització a nivell de país i cerques d'amenaces. Només s'emmagatzemen els codis de país; les adreces IP sense processar mai es comparteixen amb les comunitats. |
+| Senyal               | Descripció                                                                                                                    |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Edat del compte      | Els comptes més nous reben puntuacions de risc més altes.                                                                     |
+| Karma                | El karma de la comunitat acumulat redueix el risc.                                                                            |
+| Reputació d'autor    | Dades de reputació recopilades per l'indexador de xarxa de fons.                                                              |
+| Anàlisi de contingut | Heurístiques a nivell de text (densitat d'enllaços, patrons de correu brossa coneguts, etc.).                                 |
+| Velocitat            | Les publicacions successives ràpides del mateix autor augmenten el risc.                                                      |
+| Intel·ligència IP    | Geolocalització a nivell de país i cerques d'amenaces. Les adreces IP sense processar mai es comparteixen amb les comunitats. |
 
 ## Llindars de nivell
 
@@ -72,7 +72,8 @@ El servidor executa un indexador en segon pla que rastreja contínuament la xarx
 El bloquejador de correu brossa està dissenyat tenint en compte la privadesa:
 
 - Les identitats d'OAuth només s'utilitzen per a la verificació de desafiaments i **mai es divulguen** a les comunitats.
-- Les adreces IP es resolen en **només codis de país**; Les IP en brut no s'emmagatzemen ni es comparteixen.
+- L'operador del servei emmagatzema les adreces IP sense processar per detectar abusos i les envia a un proveïdor extern d'informació d'IP perquè les classifiqui.
+- Les comunitats només reben el codi de país, el risc de la IP i l'estimació del tipus de connexió, mai la IP sense processar.
 
 ## Base de dades
 

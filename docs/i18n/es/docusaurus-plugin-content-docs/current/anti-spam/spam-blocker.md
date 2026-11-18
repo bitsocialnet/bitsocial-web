@@ -17,14 +17,14 @@ Spam Blocker es un servicio centralizado de detección de spam que evalúa las p
 
 Cada publicación enviada al punto final `/evaluate` recibe una puntuación de riesgo numérica. La puntuación es una combinación ponderada de varias señales:
 
-| Señal                                 | Descripción                                                                                                                                                                        |
-| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Antigüedad de la cuenta               | Las cuentas más nuevas reciben puntuaciones de riesgo más altas.                                                                                                                   |
-| Karma                                 | El karma comunitario acumulado reduce el riesgo.                                                                                                                                   |
-| Reputación del autor                  | Datos de reputación recopilados por el indexador de red en segundo plano.                                                                                                          |
-| Análisis de contenido                 | Heurística a nivel de texto (densidad de enlaces, patrones de spam conocidos, etc.).                                                                                               |
-| Velocidad                             | Las publicaciones sucesivas y rápidas del mismo autor aumentan el riesgo.                                                                                                          |
-| Inteligencia de propiedad intelectual | Geolocalización a nivel de país y búsquedas de fuentes de amenazas. Solo se almacenan los códigos de país; las direcciones IP sin procesar nunca se comparten con las comunidades. |
+| Señal                                 | Descripción                                                                                                                                 |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Antigüedad de la cuenta               | Las cuentas más nuevas reciben puntuaciones de riesgo más altas.                                                                            |
+| Karma                                 | El karma comunitario acumulado reduce el riesgo.                                                                                            |
+| Reputación del autor                  | Datos de reputación recopilados por el indexador de red en segundo plano.                                                                   |
+| Análisis de contenido                 | Heurística a nivel de texto (densidad de enlaces, patrones de spam conocidos, etc.).                                                        |
+| Velocidad                             | Las publicaciones sucesivas y rápidas del mismo autor aumentan el riesgo.                                                                   |
+| Inteligencia de propiedad intelectual | Geolocalización a nivel de país y búsquedas de fuentes de amenazas. Las direcciones IP sin procesar nunca se comparten con las comunidades. |
 
 ## Umbrales de nivel
 
@@ -72,7 +72,8 @@ El servidor ejecuta un indexador en segundo plano que rastrea continuamente la r
 Spam Blocker está diseñado teniendo en cuenta la privacidad:
 
 - Las identidades de OAuth se utilizan únicamente para la verificación de desafíos y **nunca se divulgan** a las comunidades.
-- Las direcciones IP se resuelven en **códigos de país únicamente**; Las IP sin procesar no se almacenan ni se comparten.
+- El operador del servicio almacena las direcciones IP sin procesar para detectar abusos y las envía a un proveedor externo de inteligencia de IP para clasificarlas.
+- Las comunidades solo reciben el código de país, el riesgo de la IP y una estimación del tipo de conexión, nunca la IP sin procesar.
 
 ## Base de datos
 

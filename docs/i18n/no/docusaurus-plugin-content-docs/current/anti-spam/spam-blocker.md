@@ -17,14 +17,14 @@ Spam Blocker er en sentralisert spam-deteksjonstjeneste som evaluerer innkommend
 
 Hver publikasjon som sendes til `/evaluate`-endepunktet mottar en numerisk risikoscore. Poengsummen er en vektet kombinasjon av flere signaler:
 
-| Signal            | Beskrivelse                                                                                                                |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Kontoalder        | Nyere kontoer får høyere risikoscore.                                                                                      |
-| Karma             | Akkumulert fellesskapskarma reduserer risikoen.                                                                            |
-| Forfatter omdømme | Omdømmedata samlet inn av bakgrunnsnettverksindeksereren.                                                                  |
-| Innholdsanalyse   | Heuristikk på tekstnivå (koblingstetthet, kjente spammønstre osv.).                                                        |
-| Hastighet         | Raske påfølgende innlegg fra samme forfatter øker risikoen.                                                                |
-| IP-intelligens    | Geolokalisering på landsnivå og oppslag i trusselfeed. Bare landskoder lagres – rå IP-adresser deles aldri med fellesskap. |
+| Signal            | Beskrivelse                                                                                       |
+| ----------------- | ------------------------------------------------------------------------------------------------- |
+| Kontoalder        | Nyere kontoer får høyere risikoscore.                                                             |
+| Karma             | Akkumulert fellesskapskarma reduserer risikoen.                                                   |
+| Forfatter omdømme | Omdømmedata samlet inn av bakgrunnsnettverksindeksereren.                                         |
+| Innholdsanalyse   | Heuristikk på tekstnivå (koblingstetthet, kjente spammønstre osv.).                               |
+| Hastighet         | Raske påfølgende innlegg fra samme forfatter øker risikoen.                                       |
+| IP-intelligens    | Geolokalisering på landsnivå og oppslag i trusselfeed. Rå IP-adresser deles aldri med fellesskap. |
 
 ## Nivåterskler
 
@@ -72,7 +72,8 @@ Serveren kjører en bakgrunnsindekserer som kontinuerlig gjennomsøker nettverke
 Spam Blocker er designet med personvern i tankene:
 
 - OAuth-identiteter brukes kun til utfordringsverifisering og blir **aldri avslørt** til fellesskap.
-- IP-adresser er løst til **kun landskoder**; rå IP-er blir ikke lagret eller delt.
+- Tjenesteoperatøren lagrer rå IP-adresser for å oppdage misbruk og sender dem til en ekstern leverandør av IP-informasjon for klassifisering.
+- Fellesskap mottar bare landskoden, IP-risikoen og et anslag over tilkoblingstypen, aldri den rå IP-adressen.
 
 ## Database
 

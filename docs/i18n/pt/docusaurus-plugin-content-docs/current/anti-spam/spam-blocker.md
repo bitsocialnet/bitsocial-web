@@ -17,14 +17,14 @@ O Spam Blocker é um serviço centralizado de detecção de spam que avalia as p
 
 Toda publicação enviada ao endpoint `/evaluate` recebe uma pontuação de risco numérica. A pontuação é uma combinação ponderada de vários sinais:
 
-| Sinal               | Descrição                                                                                                                                                                     |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Idade da conta      | Contas mais recentes recebem pontuações de risco mais altas.                                                                                                                  |
-| Karma               | O karma acumulado na comunidade reduz o risco.                                                                                                                                |
-| Reputação do autor  | Dados de reputação coletados pelo indexador de rede em segundo plano.                                                                                                         |
-| Análise do conteúdo | Heurísticas no nível do texto (densidade de links, padrões conhecidos de spam etc.).                                                                                          |
-| Velocidade          | Publicações sucessivas e rápidas do mesmo autor aumentam o risco.                                                                                                             |
-| Inteligência de IP  | Geolocalização em nível de país e consultas a feeds de ameaças. Apenas os códigos de país são armazenados -- endereços IP brutos nunca são compartilhados com as comunidades. |
+| Sinal               | Descrição                                                                                                                        |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Idade da conta      | Contas mais recentes recebem pontuações de risco mais altas.                                                                     |
+| Karma               | O karma acumulado na comunidade reduz o risco.                                                                                   |
+| Reputação do autor  | Dados de reputação coletados pelo indexador de rede em segundo plano.                                                            |
+| Análise do conteúdo | Heurísticas no nível do texto (densidade de links, padrões conhecidos de spam etc.).                                             |
+| Velocidade          | Publicações sucessivas e rápidas do mesmo autor aumentam o risco.                                                                |
+| Inteligência de IP  | Geolocalização em nível de país e consultas a feeds de ameaças. Endereços IP brutos nunca são compartilhados com as comunidades. |
 
 ## Limiares de nível
 
@@ -72,7 +72,8 @@ O servidor executa um indexador em segundo plano que rastreia a rede continuamen
 O Spam Blocker foi projetado com a privacidade em mente:
 
 - As identidades OAuth são usadas apenas para a verificação de desafios e **nunca são reveladas** às comunidades.
-- Os endereços IP são resolvidos **somente para códigos de país**; os IPs brutos não são armazenados nem compartilhados.
+- O operador do serviço armazena endereços IP brutos para detectar abusos e os envia a um provedor terceirizado de inteligência de IP para classificação.
+- As comunidades recebem apenas o código do país, o risco do IP e uma estimativa do tipo de conexão, nunca o IP bruto.
 
 ## Banco de dados
 

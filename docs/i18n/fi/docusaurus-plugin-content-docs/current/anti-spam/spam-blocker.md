@@ -17,14 +17,14 @@ Roskapostin esto on keskitetty roskapostin tunnistuspalvelu, joka arvioi saapuva
 
 Jokainen `/evaluate`-päätepisteeseen lähetetty julkaisu saa numeerisen riskipisteen. Pisteet on useiden signaalien painotettu yhdistelmä:
 
-| Signaali        | Kuvaus                                                                                                                                   |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Tilin ikä       | Uudemmat tilit saavat korkeammat riskipisteet.                                                                                           |
-| Karma           | Kertynyt yhteisökarma vähentää riskiä.                                                                                                   |
-| Tekijän maine   | Taustaverkon indeksoijan keräämät mainetiedot.                                                                                           |
-| Sisältöanalyysi | Tekstitason heuristiikka (linkin tiheys, tunnetut roskapostimallit jne.).                                                                |
-| Nopeus          | Nopeat peräkkäiset viestit samalta kirjoittajalta lisäävät riskiä.                                                                       |
-| IP-tiedustelu   | Maatason maantieteellinen sijainti ja uhkasyötteen haut. Vain maakoodit tallennetaan – raaka-IP-osoitteita ei koskaan jaeta yhteisöille. |
+| Signaali        | Kuvaus                                                                                                     |
+| --------------- | ---------------------------------------------------------------------------------------------------------- |
+| Tilin ikä       | Uudemmat tilit saavat korkeammat riskipisteet.                                                             |
+| Karma           | Kertynyt yhteisökarma vähentää riskiä.                                                                     |
+| Tekijän maine   | Taustaverkon indeksoijan keräämät mainetiedot.                                                             |
+| Sisältöanalyysi | Tekstitason heuristiikka (linkin tiheys, tunnetut roskapostimallit jne.).                                  |
+| Nopeus          | Nopeat peräkkäiset viestit samalta kirjoittajalta lisäävät riskiä.                                         |
+| IP-tiedustelu   | Maatason maantieteellinen sijainti ja uhkasyötteen haut. Raaka-IP-osoitteita ei koskaan jaeta yhteisöille. |
 
 ## Tason kynnykset
 
@@ -72,7 +72,8 @@ Palvelin käyttää tausta-indeksoijaa, joka indeksoi jatkuvasti verkkoa luodaks
 Roskapostin esto on suunniteltu yksityisyyttä ajatellen:
 
 - OAuth-identiteettejä käytetään vain haasteen vahvistamiseen, eikä niitä **ei koskaan paljasteta** yhteisöille.
-- IP-osoitteet määritetään **vain maakoodeiksi**; raaka-IP-osoitteita ei tallenneta tai jaeta.
+- Palvelun ylläpitäjä tallentaa raaka-IP-osoitteet väärinkäytösten havaitsemiseksi ja lähettää ne luokiteltaviksi ulkopuoliselle IP-tietojen palveluntarjoajalle.
+- Yhteisöt saavat vain maakoodin, IP-riskin ja arvion yhteystyypistä, eivät koskaan raakaa IP-osoitetta.
 
 ## Tietokanta
 

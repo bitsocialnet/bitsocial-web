@@ -1859,14 +1859,14 @@ Spam Blocker is a centralized spam detection service that evaluates incoming pub
 
 Every publication submitted to the `/evaluate` endpoint receives a numeric risk score. The score is a weighted combination of several signals:
 
-| Signal            | Description                                                                                                                             |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Account age       | Newer accounts receive higher risk scores.                                                                                              |
-| Karma             | Accumulated community karma reduces risk.                                                                                               |
-| Author reputation | Reputation data gathered by the background network indexer.                                                                             |
-| Content analysis  | Text-level heuristics (link density, known spam patterns, etc.).                                                                        |
-| Velocity          | Rapid successive posts from the same author increase risk.                                                                              |
-| IP intelligence   | Country-level geolocation and threat-feed lookups. Only country codes are stored -- raw IP addresses are never shared with communities. |
+| Signal            | Description                                                                                            |
+| ----------------- | ------------------------------------------------------------------------------------------------------ |
+| Account age       | Newer accounts receive higher risk scores.                                                             |
+| Karma             | Accumulated community karma reduces risk.                                                              |
+| Author reputation | Reputation data gathered by the background network indexer.                                            |
+| Content analysis  | Text-level heuristics (link density, known spam patterns, etc.).                                       |
+| Velocity          | Rapid successive posts from the same author increase risk.                                             |
+| IP intelligence   | Country-level geolocation and threat-feed lookups. Raw IP addresses are never shared with communities. |
 
 ## Tier Thresholds
 
@@ -1914,7 +1914,8 @@ The server runs a background indexer that continuously crawls the network to bui
 Spam Blocker is designed with privacy in mind:
 
 - OAuth identities are used only for challenge verification and are **never disclosed** to communities.
-- IP addresses are resolved to **country codes only**; raw IPs are not stored or shared.
+- The service operator stores raw IP addresses for abuse detection and sends them to a third-party IP intelligence provider for classification.
+- Communities receive only the country code, IP risk, and connection type estimate, never the raw IP.
 
 ## Database
 

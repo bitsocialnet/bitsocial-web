@@ -17,14 +17,14 @@ Spam Blocker, gelen yayınları değerlendirip onlara risk puanı atayan merkezi
 
 `/evaluate` uç noktasına gönderilen her yayın sayısal bir risk puanı alır. Puan, birkaç sinyalin ağırlıklı birleşimidir:
 
-| Sinyal         | Açıklama                                                                                                                           |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Hesap yaşı     | Yeni açılmış hesaplar daha yüksek risk puanı alır.                                                                                 |
-| Karma          | Biriken topluluk karması riski azaltır.                                                                                            |
-| Yazar itibarı  | Arka planda çalışan ağ indeksleyicisinin topladığı itibar verileri.                                                                |
-| İçerik analizi | Metin düzeyindeki sezgisel kurallar (bağlantı yoğunluğu, bilinen spam kalıpları vb.).                                              |
-| Hız            | Aynı yazardan art arda gelen hızlı gönderiler riski artırır.                                                                       |
-| IP istihbaratı | Ülke düzeyinde konum ve tehdit listesi sorguları. Yalnızca ülke kodları saklanır; ham IP adresleri topluluklarla asla paylaşılmaz. |
+| Sinyal         | Açıklama                                                                                           |
+| -------------- | -------------------------------------------------------------------------------------------------- |
+| Hesap yaşı     | Yeni açılmış hesaplar daha yüksek risk puanı alır.                                                 |
+| Karma          | Biriken topluluk karması riski azaltır.                                                            |
+| Yazar itibarı  | Arka planda çalışan ağ indeksleyicisinin topladığı itibar verileri.                                |
+| İçerik analizi | Metin düzeyindeki sezgisel kurallar (bağlantı yoğunluğu, bilinen spam kalıpları vb.).              |
+| Hız            | Aynı yazardan art arda gelen hızlı gönderiler riski artırır.                                       |
+| IP istihbaratı | Ülke düzeyinde konum ve tehdit listesi sorguları. Ham IP adresleri topluluklarla asla paylaşılmaz. |
 
 ## Kademe Eşikleri
 
@@ -72,7 +72,8 @@ Sunucu, yazar itibar verilerini oluşturmak ve güncel tutmak için ağı sürek
 Spam Blocker gizlilik gözetilerek tasarlanmıştır:
 
 - OAuth kimlikleri yalnızca doğrulamanın denetlenmesinde kullanılır ve topluluklara **asla açıklanmaz**.
-- IP adresleri **yalnızca ülke koduna** çözümlenir; ham IP'ler saklanmaz ve paylaşılmaz.
+- Hizmet operatörü, kötüye kullanımı tespit etmek için ham IP adreslerini saklar ve sınıflandırma için üçüncü taraf bir IP istihbarat sağlayıcısına gönderir.
+- Topluluklar yalnızca ülke kodunu, IP riskini ve bağlantı türü tahminini alır; ham IP'yi asla almaz.
 
 ## Veritabanı
 

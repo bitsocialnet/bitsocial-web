@@ -17,14 +17,14 @@ Spam Blocker è un servizio centralizzato di rilevamento dello spam che valuta l
 
 Ogni pubblicazione inviata all'endpoint `/evaluate` riceve un punteggio di rischio numerico. Il punteggio è una combinazione ponderata di più segnali:
 
-| Segnale                 | Descrizione                                                                                                                                                                           |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Anzianità dell'account  | Gli account più recenti ricevono punteggi di rischio più alti.                                                                                                                        |
-| Karma                   | Il karma accumulato nella comunità riduce il rischio.                                                                                                                                 |
-| Reputazione dell'autore | Dati di reputazione raccolti dall'indicizzatore di rete in background.                                                                                                                |
-| Analisi del contenuto   | Euristiche sul testo (densità di link, schemi di spam noti e simili).                                                                                                                 |
-| Frequenza               | Pubblicazioni ravvicinate dallo stesso autore aumentano il rischio.                                                                                                                   |
-| Informazioni sull'IP    | Geolocalizzazione a livello di paese e consultazione di feed sulle minacce. Vengono conservati solo i codici paese -- gli indirizzi IP grezzi non sono mai condivisi con le comunità. |
+| Segnale                 | Descrizione                                                                                                                                 |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Anzianità dell'account  | Gli account più recenti ricevono punteggi di rischio più alti.                                                                              |
+| Karma                   | Il karma accumulato nella comunità riduce il rischio.                                                                                       |
+| Reputazione dell'autore | Dati di reputazione raccolti dall'indicizzatore di rete in background.                                                                      |
+| Analisi del contenuto   | Euristiche sul testo (densità di link, schemi di spam noti e simili).                                                                       |
+| Frequenza               | Pubblicazioni ravvicinate dallo stesso autore aumentano il rischio.                                                                         |
+| Informazioni sull'IP    | Geolocalizzazione a livello di paese e consultazione di feed sulle minacce. Gli indirizzi IP grezzi non sono mai condivisi con le comunità. |
 
 ## Soglie dei livelli
 
@@ -72,7 +72,8 @@ Il server esegue un indicizzatore in background che analizza di continuo la rete
 Spam Blocker è progettato tenendo conto della privacy:
 
 - Le identità OAuth servono solo alla verifica delle sfide e non vengono **mai divulgate** alle comunità.
-- Gli indirizzi IP vengono risolti **solo in codici paese**; gli IP grezzi non vengono conservati né condivisi.
+- L'operatore del servizio conserva gli indirizzi IP grezzi per rilevare gli abusi e li invia a un fornitore esterno di informazioni sugli IP per classificarli.
+- Le comunità ricevono solo il codice paese, il rischio dell'IP e una stima del tipo di connessione, mai l'IP grezzo.
 
 ## Database
 

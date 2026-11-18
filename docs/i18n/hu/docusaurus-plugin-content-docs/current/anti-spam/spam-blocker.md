@@ -17,14 +17,14 @@ A Spam Blocker egy központosított spamészlelő szolgáltatás, amely kiérté
 
 Minden, a `/evaluate` végponthoz benyújtott kiadvány numerikus kockázati pontszámot kap. A pontszám több jel súlyozott kombinációja:
 
-| Jel              | Leírás                                                                                                                                                                 |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Számla kora      | Az újabb fiókok magasabb kockázati pontszámot kapnak.                                                                                                                  |
-| Karma            | A felhalmozott közösségi karma csökkenti a kockázatot.                                                                                                                 |
-| A szerző hírneve | A háttérhálózati indexelő által gyűjtött hírnévadatok.                                                                                                                 |
-| Tartalomelemzés  | Szövegszintű heurisztika (linksűrűség, ismert spam-minták stb.).                                                                                                       |
-| Sebesség         | Az ugyanattól a szerzőtől származó gyors, egymást követő bejegyzések növelik a kockázatot.                                                                             |
-| IP intelligencia | Országszintű földrajzi helymeghatározás és fenyegetés-hírcsatorna keresések. Csak az országkódokat tároljuk – a nyers IP-címeket soha nem osztjuk meg a közösségekkel. |
+| Jel              | Leírás                                                                                                                                |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Számla kora      | Az újabb fiókok magasabb kockázati pontszámot kapnak.                                                                                 |
+| Karma            | A felhalmozott közösségi karma csökkenti a kockázatot.                                                                                |
+| A szerző hírneve | A háttérhálózati indexelő által gyűjtött hírnévadatok.                                                                                |
+| Tartalomelemzés  | Szövegszintű heurisztika (linksűrűség, ismert spam-minták stb.).                                                                      |
+| Sebesség         | Az ugyanattól a szerzőtől származó gyors, egymást követő bejegyzések növelik a kockázatot.                                            |
+| IP intelligencia | Országszintű földrajzi helymeghatározás és fenyegetés-hírcsatorna keresések. A nyers IP-címeket soha nem osztjuk meg a közösségekkel. |
 
 ## Szintküszöbök
 
@@ -72,7 +72,8 @@ A kiszolgáló egy háttérindexelőt futtat, amely folyamatosan feltérképezi 
 A Spam Blocker az adatvédelmet szem előtt tartva készült:
 
 - Az OAuth-identitásokat csak kihívás-ellenőrzésre használják, és **soha nem hozzák nyilvánosságra** a közösségek számára.
-- Az IP-címek feloldása **csak országkódra**; A nyers IP-címeket nem tárolják és nem osztják meg.
+- A szolgáltatás üzemeltetője a visszaélések felderítéséhez tárolja a nyers IP-címeket, és besorolás céljából elküldi őket egy külső IP-információs szolgáltatónak.
+- A közösségek csak az országkódot, az IP-kockázatot és a kapcsolattípus becslését kapják meg, a nyers IP-címet soha.
 
 ## Adatbázis
 

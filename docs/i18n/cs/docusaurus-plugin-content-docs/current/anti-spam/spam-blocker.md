@@ -17,14 +17,14 @@ Spam Blocker je centralizovaná služba detekce spamu, která vyhodnocuje příc
 
 Každá publikace odeslaná do koncového bodu `/evaluate` obdrží číselné skóre rizika. Skóre je vážená kombinace několika signálů:
 
-| Signál           | Popis                                                                                                                                         |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| Stáří účtu       | Novější účty dostávají vyšší skóre rizika.                                                                                                    |
-| Karma            | Nahromaděná komunitní karma snižuje riziko.                                                                                                   |
-| Pověst autora    | Údaje o pověsti shromážděné indexátorem sítě na pozadí.                                                                                       |
-| Obsahová analýza | Heuristika na úrovni textu (hustota odkazů, známé vzorce spamu atd.).                                                                         |
-| Rychlost         | Rychle po sobě jdoucí příspěvky od stejného autora zvyšují riziko.                                                                            |
-| IP inteligence   | Geolokace na úrovni země a vyhledávání zdrojů hrozeb. Ukládají se pouze kódy zemí – nezpracované IP adresy nejsou nikdy sdíleny s komunitami. |
+| Signál           | Popis                                                                                                           |
+| ---------------- | --------------------------------------------------------------------------------------------------------------- |
+| Stáří účtu       | Novější účty dostávají vyšší skóre rizika.                                                                      |
+| Karma            | Nahromaděná komunitní karma snižuje riziko.                                                                     |
+| Pověst autora    | Údaje o pověsti shromážděné indexátorem sítě na pozadí.                                                         |
+| Obsahová analýza | Heuristika na úrovni textu (hustota odkazů, známé vzorce spamu atd.).                                           |
+| Rychlost         | Rychle po sobě jdoucí příspěvky od stejného autora zvyšují riziko.                                              |
+| IP inteligence   | Geolokace na úrovni země a vyhledávání zdrojů hrozeb. Nezpracované IP adresy nejsou nikdy sdíleny s komunitami. |
 
 ## Hranice úrovně
 
@@ -72,7 +72,8 @@ Server spouští indexátor na pozadí, který nepřetržitě prochází síť, 
 Spam Blocker je navržen s ohledem na soukromí:
 
 - Identity OAuth se používají pouze pro ověření výzvy a nejsou **nikdy sdělovány** komunitám.
-- IP adresy jsou přeloženy na **pouze kódy zemí**; nezpracované IP adresy nejsou uloženy ani sdíleny.
+- Provozovatel služby ukládá nezpracované IP adresy kvůli odhalování zneužití a posílá je ke klasifikaci externímu poskytovateli informací o IP adresách.
+- Komunity dostávají pouze kód země, rizikovost IP a odhad typu připojení, nikdy nezpracovanou IP adresu.
 
 ## databáze
 
