@@ -118,7 +118,8 @@ const config: Config = {
       title: navbarBrandTitle,
       logo: {
         alt: "Bitsocial logo",
-        src: "img/logo.png",
+        // Shown at 24px; the 640px logo.png weighed 78 kB and delayed the fonts behind it.
+        src: "img/logo-small.png",
       },
       items: [
         {
