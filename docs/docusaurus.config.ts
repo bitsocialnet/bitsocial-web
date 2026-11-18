@@ -9,7 +9,8 @@ import {
 } from "./src/lib/locales";
 
 const repoEditUrl = "https://github.com/bitsocialnet/bitsocial-web/tree/master";
-const showDocsGitMetadata = process.env.VERCEL !== "1";
+const isVercel = process.env.VERCEL === "1";
+const showDocsGitMetadata = !isVercel;
 const docsPreviewMode = process.env.DOCS_START_MODE === "live" ? "live" : "multilocale";
 
 /** Docs live at docs.bitsocial.net; the navbar brand links to the docs home of the current locale. */
@@ -52,6 +53,17 @@ const config: Config = {
     locales: [...SUPPORTED_LANGUAGE_CODES],
     localeConfigs,
   },
+  headTags: isVercel
+    ? [
+        {
+          tagName: "script",
+          attributes: {},
+          innerHTML:
+            "window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };",
+        },
+      ]
+    : [],
+  scripts: isVercel ? [{ src: "/_vercel/insights/script.js", defer: true }] : [],
   stylesheets: [
     {
       href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Exo:wght@400;500;600;700;800;900&display=swap",
