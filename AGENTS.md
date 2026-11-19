@@ -29,6 +29,7 @@ Record recurring repository surprises with concrete mitigation in [known-surpris
 | Files in a directory with AGENTS.md                                        | Read that directory's instructions                                                                  |
 | Code or automation changed                                                 | Select checks by impact in [verification.md](docs/agent-playbooks/verification.md)                  |
 | React state/effects/data flow/performance changed                          | Read relevant React skill rules; use Doctor when diagnostics resolve a concern                      |
+| Web platform choices in `about/`, `chain/`, `docs/`, or `stats/web/`       | Consult [Modern Web Guidance](.agents/skills/modern-web-guidance/SKILL.md) for the relevant feature |
 | UI/layout changed                                                          | Verify affected flows; choose browsers/viewports using the verification playbook                    |
 | Translation keys/values                                                    | Use `translate`; one writer applies all locale changes                                              |
 | `package.json` changed                                                     | Run `corepack yarn install` and keep `yarn.lock` synchronized                                       |
