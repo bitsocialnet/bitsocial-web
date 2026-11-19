@@ -10827,6 +10827,7 @@ __metadata:
     js-yaml: "npm:4.3.2"
     knip: "npm:6.17.0"
     lint-staged: "npm:16.4.0"
+    modern-web-guidance: "npm:1.0.0"
     oxfmt: "npm:0.20.0"
     oxlint: "npm:1.56.0"
     portless: "npm:0.11.1"
@@ -19341,6 +19342,15 @@ __metadata:
   version: 0.5.3
   resolution: "mkdirp-classic@npm:0.5.3"
   checksum: 10c0/95371d831d196960ddc3833cc6907e6b8f67ac5501a6582f47dfae5eb0f092e9f8ce88e0d83afcae95d6e2b61a01741ba03714eeafb6f7a6e9dcc158ac85b168
+  languageName: node
+  linkType: hard
+
+"modern-web-guidance@npm:1.0.0":
+  version: 1.0.0
+  resolution: "modern-web-guidance@npm:1.0.0"
+  bin:
+    modern-web-guidance: skills/modern-web-guidance/modern-web.mjs
+  checksum: 10c0/227875ba43c9ef9390c5bdc4d98c309930e1a7848b10b3558bf810b650d2a94fb3d0239627f8fe6ed1e921a1e81be417e629883e2d717bb1a641cb60617b3a38
   languageName: node
   linkType: hard
 
