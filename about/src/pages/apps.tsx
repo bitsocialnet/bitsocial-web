@@ -1,11 +1,11 @@
-import { useSyncExternalStore } from "react";
+import { useRef, useSyncExternalStore } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { ChevronDown, Globe, LayoutGrid, Monitor, Search, Smartphone, X } from "lucide-react";
 import AppCard from "@/components/app-card";
 import AppsDevsCta from "@/components/apps-devs-cta";
 import AppsGithubTopicCta from "@/components/apps-github-topic-cta";
-import AppTagPill from "@/components/app-tag-pill";
+import AppsActiveFilters, { type ActiveFilter } from "@/components/apps-active-filters";
 import CardInlineCta, { highlightedCtaClassName } from "@/components/card-inline-cta";
 import CategoryFilter from "@/components/category-filter";
 import Footer from "@/components/footer";
@@ -35,7 +35,7 @@ import {
 import { SUBMIT_APP_URL } from "@/lib/apps-urls";
 import { useGraphicsMode } from "@/lib/graphics-mode";
 import { useMediaQuery } from "@/lib/use-media-query";
-import { cn } from "@/lib/utils";
+import { cn, getScrollBehavior } from "@/lib/utils";
 
 /** Cap on simultaneously active tag + category + platform + status filters: three on desktop, two on mobile. */
 const MAX_FILTER_COUNT_DESKTOP = 3;
@@ -165,10 +165,6 @@ export default function Apps() {
 
       return left.name.localeCompare(right.name);
     });
-
-  const isFiltered = Boolean(
-    query || activePlatform || activeCategory || activeStatus || activeTags.length > 0,
-  );
   const isAtFilterCap = baseFilterCount + activeTags.length >= maxFilterCount;
   const useSimplifiedSurfaces = graphicsMode === "fallback" || isFirefoxLike;
 
@@ -222,11 +218,72 @@ export default function Apps() {
     setSearchParams({}, { replace: true });
   }
 
+  const resultsRef = useRef<HTMLDivElement>(null);
+
+  // A filter clicked on a card further down replaces the list under the reader, so bring
+  // the "Filtering by" row at the top of the results back into view.
+  function revealResults() {
+    const results = resultsRef.current;
+    if (!results) return;
+    const scrollMarginTop = Number.parseFloat(getComputedStyle(results).scrollMarginTop) || 0;
+    if (results.getBoundingClientRect().top < scrollMarginTop) {
+      results.scrollIntoView({ behavior: getScrollBehavior(), block: "start" });
+    }
+  }
+
   const clearFiltersHref = buildAppsHref(
     searchParams,
     { q: null, category: null, platform: null, status: null, tag: null },
     { clearAll: true },
   );
+
+  // The "Filtering by" row clears the filters but keeps any typed search.
+  const clearActiveFiltersUpdates = { category: null, platform: null, status: null, tag: null };
+  const clearActiveFiltersHref = buildAppsHref(searchParams, clearActiveFiltersUpdates);
+
+  function clearActiveFilters() {
+    updateSearchParams(clearActiveFiltersUpdates);
+  }
+
+  const activeFilters: ActiveFilter[] = [
+    ...(activeCategory
+      ? [
+          {
+            key: "category",
+            label: getCategoryLabel(activeCategory, t),
+            onRemove: () => handleCategoryChange(null),
+            removeHref: buildAppsHref(searchParams, { category: null }),
+          },
+        ]
+      : []),
+    ...(activePlatform
+      ? [
+          {
+            key: "platform",
+            label: getPlatformShortLabel(activePlatform, t),
+            onRemove: () => handlePlatformChange(null),
+            removeHref: buildAppsHref(searchParams, { platform: null }),
+          },
+        ]
+      : []),
+    ...(activeStatus
+      ? [
+          {
+            key: "status",
+            label: getAppStatusLabel(activeStatus, t),
+            onRemove: () => handleStatusChange(null),
+            removeHref: buildAppsHref(searchParams, { status: null }),
+          },
+        ]
+      : []),
+    ...activeTags.map((tag) => ({
+      key: `tag:${tag}`,
+      label: getAppTagLabel(tag, t),
+      onRemove: () => handleTagSelect(tag),
+      removeHref: buildAppsHref(searchParams, { tag }),
+    })),
+  ];
+  const noscriptActiveFilters = activeFilters.map(({ onRemove: _onRemove, ...filter }) => filter);
 
   const buildCardFilterHref = (
     updates: Partial<Record<"category" | "platform" | "status" | "tag", string | null>>,
@@ -300,54 +357,6 @@ export default function Apps() {
                   >
                     <X className="h-4 w-4" />
                   </button>
-                ) : null}
-                {isFiltered ? (
-                  <div className="flex min-w-0 max-w-[60%] items-center gap-1.5">
-                    <div className="flex min-w-0 items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [&>*]:shrink-0 [&::-webkit-scrollbar]:hidden">
-                      {activeTags.map((tag) => (
-                        <AppTagPill
-                          key={tag}
-                          active
-                          label={getAppTagLabel(tag, t)}
-                          onClick={() => handleTagSelect(tag)}
-                        />
-                      ))}
-                      {activePlatform ? (
-                        <AppTagPill
-                          active
-                          label={getPlatformShortLabel(activePlatform, t)}
-                          onClick={() => handlePlatformChange(null)}
-                        />
-                      ) : null}
-                      {activeStatus ? (
-                        <AppTagPill
-                          active
-                          label={getAppStatusLabel(activeStatus, t)}
-                          onClick={() => handleStatusChange(null)}
-                        />
-                      ) : null}
-                      {activeCategory ? (
-                        <AppTagPill
-                          active
-                          label={
-                            CATEGORIES.find((category) => category.slug === activeCategory)
-                              ? getCategoryLabel(activeCategory, t)
-                              : activeCategory
-                          }
-                          onClick={() => handleCategoryChange(null)}
-                        />
-                      ) : null}
-                    </div>
-                    <button
-                      type="button"
-                      onClick={clearFilters}
-                      aria-label={t("apps.clearFilters")}
-                      className="touch-target inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/70 px-3 py-1 text-xs font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
-                    >
-                      <X className="h-3.5 w-3.5" />
-                      <span className="hidden sm:inline">{t("apps.clearFilters")}</span>
-                    </button>
-                  </div>
                 ) : null}
               </div>
 
@@ -457,53 +466,6 @@ export default function Apps() {
                     >
                       <X className="h-4 w-4" />
                     </a>
-                  ) : null}
-                  {isFiltered ? (
-                    <div className="flex min-w-0 max-w-[60%] items-center gap-1.5">
-                      <div className="flex min-w-0 items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [&>*]:shrink-0 [&::-webkit-scrollbar]:hidden">
-                        {activeTags.map((tag) => (
-                          <AppTagPill
-                            key={tag}
-                            active
-                            href={buildAppsHref(searchParams, { tag })}
-                            label={getAppTagLabel(tag, t)}
-                          />
-                        ))}
-                        {activePlatform ? (
-                          <AppTagPill
-                            active
-                            href={buildAppsHref(searchParams, { platform: null })}
-                            label={getPlatformShortLabel(activePlatform, t)}
-                          />
-                        ) : null}
-                        {activeStatus ? (
-                          <AppTagPill
-                            active
-                            href={buildAppsHref(searchParams, { status: null })}
-                            label={getAppStatusLabel(activeStatus, t)}
-                          />
-                        ) : null}
-                        {activeCategory ? (
-                          <AppTagPill
-                            active
-                            href={buildAppsHref(searchParams, { category: null })}
-                            label={
-                              CATEGORIES.find((category) => category.slug === activeCategory)
-                                ? getCategoryLabel(activeCategory, t)
-                                : activeCategory
-                            }
-                          />
-                        ) : null}
-                      </div>
-                      <a
-                        href={clearFiltersHref}
-                        aria-label={t("apps.clearFilters")}
-                        className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/70 px-3 py-1 text-xs font-semibold text-foreground/80 transition-all duration-300 hover:border-blue-glow hover:text-foreground"
-                      >
-                        <X className="h-3.5 w-3.5" />
-                        <span className="hidden sm:inline">{t("apps.clearFilters")}</span>
-                      </a>
-                    </div>
                   ) : null}
                 </div>
 
@@ -647,7 +609,12 @@ export default function Apps() {
               </div>
             </noscript>
 
-            <div className="apps-js-results">
+            <div ref={resultsRef} className="apps-js-results scroll-mt-24 lg:scroll-mt-28">
+              <AppsActiveFilters
+                filters={activeFilters}
+                clearHref={clearActiveFiltersHref}
+                onClear={clearActiveFilters}
+              />
               {filteredApps.length === 0 ? (
                 <div className="glass-card flex min-h-[24rem] flex-col items-center justify-center text-center">
                   <p className="text-2xl font-display text-foreground/75">{t("apps.noMatches")}</p>
@@ -673,10 +640,22 @@ export default function Apps() {
                       activeTags={activeTags}
                       app={app}
                       isAtFilterCap={isAtFilterCap}
-                      onCategorySelect={(slug) => handleCategoryChange(slug)}
-                      onPlatformSelect={(platform) => handlePlatformChange(platform)}
-                      onStatusSelect={handleStatusSelect}
-                      onTagSelect={handleTagSelect}
+                      onCategorySelect={(slug) => {
+                        handleCategoryChange(slug);
+                        revealResults();
+                      }}
+                      onPlatformSelect={(platform) => {
+                        handlePlatformChange(platform);
+                        revealResults();
+                      }}
+                      onStatusSelect={(status) => {
+                        handleStatusSelect(status);
+                        revealResults();
+                      }}
+                      onTagSelect={(tag) => {
+                        handleTagSelect(tag);
+                        revealResults();
+                      }}
                       preferredPlatform={activePlatform}
                     />
                   ))}
@@ -686,6 +665,10 @@ export default function Apps() {
 
             <noscript>
               <div>
+                <AppsActiveFilters
+                  filters={noscriptActiveFilters}
+                  clearHref={clearActiveFiltersHref}
+                />
                 {filteredApps.length === 0 ? (
                   <div className="glass-card flex min-h-[24rem] flex-col items-center justify-center text-center">
                     <p className="text-2xl font-display text-foreground/75">
