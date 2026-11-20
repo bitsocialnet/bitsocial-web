@@ -17,6 +17,7 @@ interface CardInlineCtaProps {
   className?: string;
   href: string;
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
+  title?: string;
 }
 
 export default function CardInlineCta({
@@ -26,6 +27,7 @@ export default function CardInlineCta({
   className,
   href,
   onClick,
+  title,
 }: CardInlineCtaProps) {
   const resolvedClassName = cn(className ?? cardInlineCtaClassName);
 
@@ -39,6 +41,7 @@ export default function CardInlineCta({
         className={resolvedClassName}
         aria-describedby={ariaDescribedBy}
         aria-label={ariaLabel}
+        title={title}
       >
         {children}
       </a>
@@ -53,6 +56,7 @@ export default function CardInlineCta({
         className={resolvedClassName}
         aria-describedby={ariaDescribedBy}
         aria-label={ariaLabel}
+        title={title}
       >
         {children}
       </a>
@@ -67,6 +71,7 @@ export default function CardInlineCta({
         className={resolvedClassName}
         aria-describedby={ariaDescribedBy}
         aria-label={ariaLabel}
+        title={title}
       >
         {children}
       </a>
@@ -81,6 +86,7 @@ export default function CardInlineCta({
         className={resolvedClassName}
         aria-describedby={ariaDescribedBy}
         aria-label={ariaLabel}
+        title={title}
       >
         {children}
       </a>
@@ -94,6 +100,7 @@ export default function CardInlineCta({
       className={resolvedClassName}
       aria-describedby={ariaDescribedBy}
       aria-label={ariaLabel}
+      title={title}
     >
       {children}
     </Link>

@@ -1,12 +1,23 @@
 import { useRef, useSyncExternalStore } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { ChevronDown, Globe, LayoutGrid, Monitor, Search, Smartphone, X } from "lucide-react";
+import {
+  ChevronDown,
+  Github,
+  Globe,
+  LayoutGrid,
+  Monitor,
+  Search,
+  Smartphone,
+  X,
+} from "lucide-react";
 import AppCard from "@/components/app-card";
 import AppsDevsCta from "@/components/apps-devs-cta";
-import AppsGithubTopicCta from "@/components/apps-github-topic-cta";
 import AppsActiveFilters, { type ActiveFilter } from "@/components/apps-active-filters";
-import CardInlineCta, { highlightedCtaClassName } from "@/components/card-inline-cta";
+import CardInlineCta, {
+  cardInlineCtaClassName,
+  highlightedCtaClassName,
+} from "@/components/card-inline-cta";
 import CategoryFilter from "@/components/category-filter";
 import Footer from "@/components/footer";
 import Topbar from "@/components/topbar";
@@ -32,7 +43,7 @@ import {
   tagsMatchFilter,
   toggleTagInList,
 } from "@/lib/apps-data";
-import { SUBMIT_APP_URL } from "@/lib/apps-urls";
+import { BITSOCIAL_TOPIC_URL, SUBMIT_APP_URL } from "@/lib/apps-urls";
 import { useGraphicsMode } from "@/lib/graphics-mode";
 import { useMediaQuery } from "@/lib/use-media-query";
 import { cn, getScrollBehavior } from "@/lib/utils";
@@ -41,6 +52,9 @@ import { cn, getScrollBehavior } from "@/lib/utils";
 const MAX_FILTER_COUNT_DESKTOP = 3;
 const MAX_FILTER_COUNT_MOBILE = 2;
 const MOBILE_QUERY = "(max-width: 639px)";
+
+// Desktop pairs it with Submit App; phones get both in the compact Devs row instead.
+const githubTopicCtaClassName = `apps-frosted-cta ${cardInlineCtaClassName} gap-2 !rounded-full !px-5 !py-2.5 text-sm xl:!px-6 xl:!py-3`;
 
 function isValidCategory(value: string | null): value is AppCategorySlug {
   return value !== null && CATEGORIES.some((category) => category.slug === value);
@@ -421,12 +435,23 @@ export default function Apps() {
                   })}
                 </div>
 
-                <CardInlineCta
-                  href={SUBMIT_APP_URL}
-                  className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} ml-auto hidden !px-5 !py-2.5 text-sm md:inline-flex xl:ml-0 xl:!px-6 xl:!py-3`}
-                >
-                  {t("apps.submitApp")}
-                </CardInlineCta>
+                {/* Grouped so the two developer actions wrap together, right-aligned. */}
+                <div className="ml-auto hidden items-center gap-2 md:flex xl:ml-0">
+                  <CardInlineCta
+                    href={BITSOCIAL_TOPIC_URL}
+                    title={t("apps.githubTopic.description")}
+                    className={githubTopicCtaClassName}
+                  >
+                    <Github className="h-4 w-4" aria-hidden="true" />
+                    <span>{t("apps.githubTopic.linkShort")}</span>
+                  </CardInlineCta>
+                  <CardInlineCta
+                    href={SUBMIT_APP_URL}
+                    className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} !px-5 !py-2.5 text-sm xl:!px-6 xl:!py-3`}
+                  >
+                    {t("apps.submitApp")}
+                  </CardInlineCta>
+                </div>
               </div>
             </div>
           </section>
@@ -513,6 +538,14 @@ export default function Apps() {
                   </button>
 
                   <CardInlineCta
+                    href={BITSOCIAL_TOPIC_URL}
+                    title={t("apps.githubTopic.description")}
+                    className={`${githubTopicCtaClassName} hidden md:inline-flex`}
+                  >
+                    <Github className="h-4 w-4" aria-hidden="true" />
+                    <span>{t("apps.githubTopic.linkShort")}</span>
+                  </CardInlineCta>
+                  <CardInlineCta
                     href={SUBMIT_APP_URL}
                     className={`apps-frosted-cta apps-frosted-cta-highlighted ${highlightedCtaClassName} hidden !px-5 !py-2.5 text-sm md:inline-flex xl:!px-6 xl:!py-3`}
                   >
@@ -524,7 +557,6 @@ export default function Apps() {
           </noscript>
 
           <AppsDevsCta />
-          <AppsGithubTopicCta />
 
           <div className="grid gap-6 lg:grid-cols-[16rem_minmax(0,1fr)]">
             <div className="apps-js-sidebar">

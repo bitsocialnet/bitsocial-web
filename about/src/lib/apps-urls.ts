@@ -1,5 +1,5 @@
 /** Shared external URLs used by the Apps surface. Keep them in one place so the
- *  Devs CTA, the GitHub topic card, and the apps page can never drift apart. */
+ *  mobile Devs CTA and the projects page controls can never drift apart. */
 
 export const BITSOCIAL_TOPIC_URL = "https://github.com/topics/bitsocial";
 
