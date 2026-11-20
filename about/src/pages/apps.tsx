@@ -311,7 +311,7 @@ export default function Apps() {
 
   return (
     <div
-      className="apps-page min-h-screen overflow-x-hidden"
+      className="apps-page min-h-screen overflow-x-hidden supports-[overflow:clip]:overflow-x-clip"
       data-surface-mode={useSimplifiedSurfaces ? "simplified" : "default"}
     >
       <noscript>
@@ -554,8 +554,9 @@ export default function Apps() {
                   />
                 </div>
               </details>
-              {/* Desktop: always shown as the sticky sidebar. */}
-              <div className="hidden lg:block">
+              {/* Desktop: always shown as the sticky sidebar. The wrapper fills the grid row so the
+                  sticky aside has room to travel alongside the results. */}
+              <div className="hidden lg:block lg:h-full">
                 <CategoryFilter
                   categories={categorySummaries}
                   activeCategory={activeCategory}
@@ -595,7 +596,7 @@ export default function Apps() {
                   />
                 </div>
               </details>
-              <div className="hidden lg:block">
+              <div className="hidden lg:block lg:h-full">
                 <CategoryFilter
                   categories={categorySummaries}
                   activeCategory={activeCategory}

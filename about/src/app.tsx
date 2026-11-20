@@ -88,7 +88,9 @@ function AppFrame({
       {enableClientEffects ? <SeoHead /> : null}
       {enableClientEffects ? <InitialHomeScrollGuard /> : null}
       {enableClientEffects ? <RouteScrollReset /> : null}
-      <div className="relative min-h-screen overflow-x-hidden">
+      {/* `clip` crops sideways overflow like `hidden` without becoming a scroll container,
+          which would stop `position: sticky` descendants from sticking. */}
+      <div className="relative min-h-screen overflow-x-hidden supports-[overflow:clip]:overflow-x-clip">
         <PolygonMeshBackground hideAtScrollTop={hideBackgroundAtScrollTop} />
         <div className="relative z-10">
           <Routes>

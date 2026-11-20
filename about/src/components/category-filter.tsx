@@ -41,7 +41,9 @@ export default function CategoryFilter({
   totalCount,
 }: CategoryFilterProps) {
   return (
-    <aside className="h-fit lg:sticky lg:top-28">
+    // While stuck, the sidebar scrolls on its own when it is taller than the space under the
+    // topbar; the padding/negative margin pair keeps the active card's glow from being clipped.
+    <aside className="h-fit lg:sticky lg:top-[6.5rem] lg:-m-2 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto lg:p-2 lg:[scrollbar-width:thin]">
       {hideHeader ? null : (
         <div className="mb-3 px-1 pt-1">
           <h2 className="text-xs font-display uppercase tracking-[0.2em] text-foreground/50">
