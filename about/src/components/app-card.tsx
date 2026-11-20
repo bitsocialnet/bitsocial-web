@@ -78,12 +78,6 @@ export default function AppCard({
       className={cn(
         "glass-card flex h-full min-w-0 flex-col overflow-hidden",
         compact ? "gap-4 p-5" : "gap-5 p-5 md:p-6",
-        app.status === "ready" &&
-          !compact &&
-          "border-blue-core/20 shadow-[0_0_20px_rgba(37,99,235,0.14)]",
-        app.status === "experimental" &&
-          !compact &&
-          "border-amber-500/25 shadow-[0_0_20px_rgba(245,158,11,0.14)]",
       )}
     >
       <div className="flex items-start gap-4">
@@ -106,7 +100,7 @@ export default function AppCard({
                 {app.name}
               </Link>
             </h3>
-            {app.status ? <AppStatusBadge status={app.status} /> : null}
+            <AppStatusBadge status={app.status} />
           </div>
 
           <p className="mt-2 text-sm font-medium leading-relaxed text-foreground/70">{tagline}</p>

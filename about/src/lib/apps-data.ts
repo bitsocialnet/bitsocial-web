@@ -109,8 +109,8 @@ export interface AppData {
   links: AppLink[];
   relatedSlugs: string[];
   featured?: boolean;
-  /** "idea" marks Concepts entries: designed but not usable yet. */
-  status?: "ready" | "experimental" | "idea";
+  /** "ready": in production use; "experimental": usable but unproven; "idea": Concepts entries, not built yet. */
+  status: "ready" | "experimental" | "idea";
   searchTerms?: string[];
 }
 
@@ -839,6 +839,7 @@ export const APPS: AppData[] = [
       "captcha-canvas-challenge",
       "voucher-challenge",
     ],
+    status: "ready",
     searchTerms: ["ai", "openai", "llm", "rules", "review", "moderation"],
   },
   {
@@ -875,6 +876,7 @@ export const APPS: AppData[] = [
       },
     ],
     relatedSlugs: ["ai-moderation-challenge", "r9k-challenge", "captcha-canvas-challenge"],
+    status: "ready",
     searchTerms: ["filtering", "risk", "moderation", "sybil", "ban evasion", "signers", "accounts"],
   },
   {
@@ -902,6 +904,7 @@ export const APPS: AppData[] = [
       "captcha-canvas-challenge",
       "flags-challenge",
     ],
+    status: "ready",
     searchTerms: [
       "r9k",
       "robot9000",
@@ -930,6 +933,7 @@ export const APPS: AppData[] = [
       },
     ],
     relatedSlugs: ["r9k-challenge", "ai-moderation-challenge", "spam-blocker", "5chan"],
+    status: "experimental",
     searchTerms: ["wordfilter", "word filter", "replacements", "imageboard", "5chan", "censor"],
   },
   {
@@ -955,6 +959,7 @@ export const APPS: AppData[] = [
       "r9k-challenge",
       "spam-blocker",
     ],
+    status: "experimental",
     searchTerms: ["base64", "data uri", "embedded images", "inline images", "binary", "files"],
   },
   {
@@ -980,6 +985,7 @@ export const APPS: AppData[] = [
       "voucher-challenge",
       "evm-contract-call",
     ],
+    status: "experimental",
     searchTerms: ["captcha", "verification", "images"],
   },
   {
@@ -1000,6 +1006,7 @@ export const APPS: AppData[] = [
       },
     ],
     relatedSlugs: ["ai-moderation-challenge", "captcha-canvas-challenge", "evm-contract-call"],
+    status: "experimental",
     searchTerms: ["voucher", "invite", "codes"],
   },
   {
@@ -1020,6 +1027,7 @@ export const APPS: AppData[] = [
       },
     ],
     relatedSlugs: ["mintpass", "voucher-challenge"],
+    status: "ready",
     searchTerms: ["ethereum", "token gating", "smart contract"],
   },
   {
@@ -1066,6 +1074,7 @@ export const APPS: AppData[] = [
       },
     ],
     relatedSlugs: ["5chan", "voucher-challenge", "ai-moderation-challenge"],
+    status: "ready",
     searchTerms: ["flags", "country", "memeflags", "pony", "flair", "5chan", "issuer"],
   },
   {
@@ -1091,6 +1100,7 @@ export const APPS: AppData[] = [
       },
     ],
     relatedSlugs: ["bitsocial-seeder", "5chan-board-manager", "bitsocial-indexer"],
+    status: "ready",
     searchTerms: ["terminal", "command line", "automation"],
   },
   {
@@ -1117,6 +1127,7 @@ export const APPS: AppData[] = [
       },
     ],
     relatedSlugs: ["bitsocial-cli", "5chan", "seedit", "5chan-board-manager"],
+    status: "ready",
     searchTerms: ["seeder", "docker", "ipfs", "vps", "pubsub", "daemon", "pinning"],
   },
   {
@@ -1137,6 +1148,7 @@ export const APPS: AppData[] = [
       },
     ],
     relatedSlugs: ["bitsocial-seeder", "bitsocial-cli", "5chan", "seedit"],
+    status: "ready",
     searchTerms: ["provider", "pubsub", "relay", "docker", "kubo", "ipfs", "vps", "routing"],
   },
   {
@@ -1153,6 +1165,7 @@ export const APPS: AppData[] = [
       { label: "Open web app", url: "https://5archive.org", kind: "launch", platform: "web" },
     ],
     relatedSlugs: ["bitsocial-cli", "bitsocial-discovery", "bitsocial-seeder", "5chan", "seedit"],
+    status: "ready",
     searchTerms: ["indexer", "search", "crawler", "archive", "sqlite", "5archive", "self-hosted"],
   },
   {
@@ -1204,6 +1217,7 @@ export const APPS: AppData[] = [
       },
     ],
     relatedSlugs: ["5chan", "seedit", "bitsocial-seeder"],
+    status: "ready",
     searchTerms: ["preview", "opengraph", "share", "redirect", "docker", "embed", "twitter"],
   },
   {
@@ -1225,6 +1239,7 @@ export const APPS: AppData[] = [
       },
     ],
     relatedSlugs: ["bitsocial-cli", "captcha-canvas-challenge", "voucher-challenge"],
+    status: "ready",
     searchTerms: ["challenges", "settings", "editor", "composer", "offline", "anti-spam"],
   },
   {
@@ -1239,6 +1254,7 @@ export const APPS: AppData[] = [
     githubRepo: "bitsocialnet/bitsocial-telegram-bots",
     links: [],
     relatedSlugs: ["5chan", "seedit", "bitsocial-github-alerts", "bitsocial-cli"],
+    status: "ready",
     searchTerms: ["telegram", "bots", "feeds", "5chan", "automation"],
   },
   {
@@ -1265,6 +1281,7 @@ export const APPS: AppData[] = [
       },
     ],
     relatedSlugs: ["telegram-bots", "bitsocial-cli"],
+    status: "ready",
     searchTerms: ["github", "alerts", "telegram", "notifications", "releases", "webhook"],
   },
   {
@@ -1414,6 +1431,7 @@ export const APPS: AppData[] = [
       },
     ],
     relatedSlugs: ["5chan", "bitsocial-cli", "challenge-composer"],
+    status: "ready",
     searchTerms: ["boards", "moderation", "admin"],
   },
   {

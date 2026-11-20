@@ -158,7 +158,7 @@ The home route uses generous vertical spacing and large hero moments; the app di
 
 ## Elevation & Depth
 
-Depth is mostly tonal and atmospheric. The default surface is a bordered glass card with subtle gradient fill and backdrop blur. Shadows appear on active app statuses, hover states, focused controls, sheets, and selected filters.
+Depth is mostly tonal and atmospheric. The default surface is a bordered glass card with subtle gradient fill and backdrop blur. Shadows appear on hover states, focused controls, sheets, and selected filters. Project cards carry no status glow; every project has a status badge instead.
 
 ### Shadow Vocabulary
 

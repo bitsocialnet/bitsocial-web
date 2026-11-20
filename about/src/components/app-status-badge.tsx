@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import type { AppData } from "@/lib/apps-data";
 import { cn } from "@/lib/utils";
 
-export default function AppStatusBadge({ status }: { status: NonNullable<AppData["status"]> }) {
+export default function AppStatusBadge({ status }: { status: AppData["status"] }) {
   const { t } = useTranslation();
 
   return (
