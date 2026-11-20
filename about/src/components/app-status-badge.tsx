@@ -35,7 +35,6 @@ export default function AppStatusBadge({
   const className = cn(
     "rounded-full border px-2 py-0.5 text-[0.625rem] font-medium uppercase leading-4 tracking-[0.14em]",
     statusClassNames[status],
-    active && "ring-1 ring-current",
   );
   const activeAttr = active ? "true" : undefined;
 
