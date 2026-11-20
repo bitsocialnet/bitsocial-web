@@ -13,7 +13,8 @@ export default function AppStatusBadge({ status }: { status: NonNullable<AppData
           "border-emerald-500/30 text-emerald-700 dark:border-emerald-400/35 dark:text-emerald-200",
         status === "experimental" &&
           "border-amber-500/25 text-amber-700 dark:border-amber-400/35 dark:text-amber-200",
-        status === "idea" && "border-border/80 text-foreground/65",
+        status === "idea" &&
+          "border-violet-500/25 text-violet-700 dark:border-violet-400/35 dark:text-violet-200",
       )}
     >
       {status === "ready"

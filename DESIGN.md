@@ -15,6 +15,7 @@ colors:
   ink: "#1a1a1a"
   soft-border: "#e5e5e5"
   amber-status: "#f59e0b"
+  violet-status: "#8b5cf6"
 typography:
   display:
     fontFamily: "Exo, sans-serif"
@@ -102,6 +103,7 @@ The palette is a restrained protocol palette: near-black and graphite foundation
 ### Secondary
 
 - **Amber Status** (`#f59e0b`): Experimental app status and caution-style ecosystem metadata. Keep it local to status, not brand identity.
+- **Violet Status** (`#8b5cf6`): Idea status badge for Concepts entries. Like amber, keep it local to status.
 
 ### Neutral
 
