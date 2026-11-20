@@ -9259,7 +9259,7 @@ No — and for most users it is not the recommended way. Bitsocial desktop apps 
 
 A publicly reachable seeder also serves a role the apps usually cannot: it makes communities hosted behind NAT loadable from browsers. Most desktop nodes sit behind home routers, carrier-grade NAT, or mobile hotspots without port forwarding, so their Kubo announces only relayed (`/p2p-circuit`) addresses. A browser node cannot hole-punch to such a node (Kubo has no WebRTC private-to-private transport), and a relayed connection is too limited to serve pages, so a community whose only provider is its owner's NATed node never loads on web clients such as 5chan.app (see [pkc-js#369](https://github.com/pkcprotocol/pkc-js/issues/369)). A seeder on a public IP pins the community's record, pages and post updates and joins its pubsub topic, giving browsers a dialable peer to fetch from.
 
-This is also an **experimental repository**. Releases are cut frequently, internals change without warning between minor versions, and the project is treated as a place to try ideas that benefit the protocol but are not on its critical path. Please file issues if you hit anything; expect bumps.
+The seeder runs in production for Bitsocial's own communities. Releases are frequent, and until 1.0 a minor version can change internals or configuration, so read the release notes before upgrading. Please file an issue if you hit anything.
 
 ## Posting to communities hosted behind NAT
 
@@ -10603,25 +10603,26 @@ GPL-3.0-or-later
 
 Repository: bitsocialnet/bitsocial-github-alerts
 Source: https://github.com/bitsocialnet/bitsocial-github-alerts#readme
-Description: A Telegram bot that posts compact GitHub notifications — pushes, releases, issues, pull requests, and more — to any chat, group, or forum topic. Run by the Bitsocial team for its repositories, but anyone can self host it.
+Description: A Telegram bot that keeps a chat, group, or forum topic up to date with GitHub activity: it posts releases and outside contributions as they happen, and sums up everything else in a daily digest. Run by the Bitsocial team for its repositories, but anyone can self host it.
 
 # bitsocial-github-alerts
 
-A Telegram bot that posts compact GitHub notifications — pushes, releases, issues, pull requests, and more — to any chat, group, or forum topic. Run by the [Bitsocial](https://github.com/bitsocialnet) team for its repositories, but anyone can self-host it.
+A Telegram bot that keeps a chat, group, or forum topic up to date with GitHub activity: it posts releases and outside contributions as they happen, and sums up everything else in a daily digest. Run by the [Bitsocial](https://github.com/bitsocialnet) team for its repositories, but anyone can self-host it.
 
 This is a fork of [mhkafadar/notifine](https://github.com/mhkafadar/notifine), stripped down to GitHub + Telegram only, with compact message formatting and added support for GitHub release notifications. All credit for the original architecture goes to the notifine authors. This repository carries no license of its own because upstream notifine has none; licensing follows upstream.
 
 ## Features
 
-- **Compact messages** — pushes show at most 5 commits (first line of each commit message, truncated to 72 chars) plus an "… and N more" line
-- **Release notifications** — one-liner when a release is published, with tag link, release name, pre-release marker, and the first line of the release notes
-- **Dependabot suppression** — events from Dependabot and activity on `dependabot/*` branches are acknowledged without posting to Telegram
-- **Explicit suppression** — include `[skip github-alerts]` in a commit message to acknowledge that push, or in an issue or pull request body (an HTML comment works) to acknowledge every event about that issue or pull request, without posting to Telegram
-- **Supported events**: push (incl. branch create/delete and force-push), release, issues (incl. transfers), pull requests, comments (issue/PR review/commit), check runs, workflow runs, wiki edits, ping
-- **Issue transfers** — reported once, from the source repository, naming who moved the issue and where it landed; the destination repository's `opened` event is dropped because GitHub sends it with the original author as sender
+- **Releases** — a one-liner when a minor or major release is published (`x.y.0`, any tag prefix such as `v` or `challenge-v`), with tag link, release name, pre-release marker, and the first line of prose in the release notes (headings, lists, and changelog headers are skipped). Patch releases appear only in the digest
+- **Outside contributions** — issues opened, and pull requests opened or merged, by anyone who is not a bot or listed in `CORE_GITHUB_LOGINS`
+- **Daily digest** — at 18:00 UTC (or every `DIGEST_INTERVAL_HOURS`), one message per chat with commits that landed on default branches, active repositories, contributors, releases, issues opened and closed, and pull requests merged, plus the release list. Nothing is posted when there was no activity. Activity is stored in Postgres for 30 days, and each chat's last digest time is stored, so a restart neither repeats a digest nor loses a missed one
+- **Quiet by default** — pushes, branches, tags, and core maintainers' and bots' issues and pull requests are never posted on their own; they are only counted in the digest
+- **Dependabot suppression** — events from Dependabot and activity on `dependabot/*` branches are acknowledged without posting or counting them
+- **Explicit suppression** — include `[skip github-alerts]` in a commit message to leave that push out, or in an issue or pull request body (an HTML comment works) to leave out every event about that issue or pull request, from both alerts and the digest. Release notes are not checked, because generated notes quote commit messages
+- **Supported events**: push (digest only), release, issues, pull requests, comments (issue/PR review/commit), check runs, workflow runs, wiki edits, ping
 - **Branch filtering** — `?branch=` / `?exclude_branch=` glob patterns on the webhook URL
 - **Authenticated deliveries** — verifies HMAC-SHA256 signatures and accepts only the GitHub organization IDs of `bitsocialnet`, `bitsocialforge`, and `pkcprotocol`
-- **Public repositories only** — private repositories and missing or inconsistent visibility are acknowledged without payload logging or Telegram notifications
+- **Public repositories only** — private repositories and missing or inconsistent visibility are acknowledged without payload logging, storage, or Telegram notifications
 - **Forum topics** — run `/start` inside a Telegram topic to receive notifications there
 - Built with Rust (actix-web + teloxide + diesel/Postgres)
 
@@ -10633,7 +10634,7 @@ To configure an organization's Telegram destination (organization owners only):
 
 1. Open the destination chat or topic with the bot (or add it to a group) and send `/start`.
 2. The bot replies with that chat's webhook URL of the form `https://github.bitsocial.net/github/<token>`; sending `/start` alone does not change the organization's destination.
-3. In the organization's **Settings → Webhooks**, configure one webhook with the URL, content type `application/json`, and the desired events. The hosted setup subscribes to pushes, issues, and releases.
+3. In the organization's **Settings → Webhooks**, configure one webhook with the URL, content type `application/json`, and the desired events. The hosted setup subscribes to pushes, issues, pull requests, and releases; pushes only feed the digest.
 4. Set **Secret** to the server's `GITHUB_WEBHOOK_SECRET`, supplied privately by the operator. Keep SSL verification enabled. Never put the secret in the URL or a repository.
 5. Verify a successful organization-hook delivery, then disable repository hooks pointing to the same destination to prevent duplicate alerts.
 
@@ -10654,7 +10655,7 @@ https://github.bitsocial.net/github/<token>?branch=main,release/*
 https://github.bitsocial.net/github/<token>?exclude_branch=feature/*,dependabot/*
 ```
 
-Applies to push, pull request, workflow run, and create/delete events.
+Applies to pull request and workflow run events.
 
 ## Self-hosting
 
@@ -10667,6 +10668,8 @@ Applies to push, pull request, workflow run, and create/delete events.
 | `GITHUB_TELOXIDE_TOKEN` | yes | Telegram bot token from [@BotFather](https://t.me/BotFather) |
 | `GITHUB_WEBHOOK_SECRET` | yes | Random signing secret of at least 32 bytes, identical to the Secret setting on every connected GitHub webhook |
 | `PORT` | no | HTTP listen port (default `8080`) |
+| `CORE_GITHUB_LOGINS` | no | Comma-separated GitHub logins of core maintainers, e.g. `tomcasaburi,Rinse12`. Their issues and pull requests are only counted in the digest. Unset means every person's are posted |
+| `DIGEST_INTERVAL_HOURS` | no | Hours between digests, counted from 18:00 UTC: a divisor of 24 (default `24`), or `0` to turn the digest off |
 | `ADMIN_LOGS` | no | `ACTIVE` to send admin logs to Telegram (default `NOT_ACTIVE`) |
 | `TELEGRAM_ADMIN_CHAT_ID` | no | Chat id that receives admin logs |
 | `ADMIN_LOG_LEVEL` | no | 0–255 verbosity threshold for admin logs (default `50`) |
@@ -14055,7 +14058,7 @@ This is the main open question, and both sides have real arguments. They are lai
 - **For reusing an existing project:** audited encryption, offline delivery and device sync already exist. A small team should not rebuild them.
 - **For a native layer:** every other part of Bitsocial can move between a hosted node, a competing host and a self-hosted node. A user's messages should move the same way, and one inbox should work in every Bitsocial app.
 
-The two may not conflict. In October 2026 XMTP became a stack that anyone runs themselves, with no shared network. A Bitsocial host could run it beside its node as the mailbox, and its code is MIT-licensed. The catch is that two such backends do not exchange messages, so users on different hosts could not reach each other without extra design.
+The two may not conflict. In October 2026 XMTP became a stack that anyone runs themselves, with no shared network. A Bitsocial host could run it beside its node as the mailbox, and its code is MIT-licensed. The catch is that two such backends do not exchange messages. A prototype shows a sender can connect to the recipient's backend instead, but then a user's conversations are tied to hosts and do not move with them.
 
 ## How to Help
 
@@ -14072,6 +14075,7 @@ Nothing is decided, so opinions and evidence are both useful. Open an issue if y
 - [open-questions.md](https://github.com/bitsocialnet/bitsocial-chat/blob/HEAD/open-questions.md): decisions not yet made.
 - [research/pkc-js-surface.md](https://github.com/bitsocialnet/bitsocial-chat/blob/HEAD/research/pkc-js-surface.md): what pkc-js exposes to a separate library today.
 - [research/existing-networks.md](https://github.com/bitsocialnet/bitsocial-chat/blob/HEAD/research/existing-networks.md): XMTP, Matrix, SimpleX, Waku and others.
+- [prototypes/xmtp-recipient-backend](https://github.com/bitsocialnet/bitsocial-chat/blob/HEAD/prototypes/xmtp-recipient-backend/): a working test of messaging between users of two separate XMTP backends.
 
 ## License
 
